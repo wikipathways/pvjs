@@ -1,5 +1,5 @@
 <div style="position:relative; width:100%; height:90%;" id="pathwayEditor" class="pathwayEditor">
-	<div style="position:relative; width:70%; height:auto; float:left;">
+	<div style="position:relative; width:100%; height:auto; float:left;">
 		<span ng-include src="'partials/render.html'" />
 		<div style="position:relative">
 			<!-- from http://xme.im/display-fullscreen-website-using-javascript -->
@@ -8,8 +8,5 @@
 			<button style="float:left;" onclick="enableZoom = 1;" ng-init="editable = false" go-full-screen>Enable Zoom</button>
 			<button style="float:left;" ng-click="editable = true" ng-init="editable = false" go-full-screen>Edit Full Screen</button>
 		</div>
-	</div>
-	<div style="position:relative; min-width: 300px; width:30%; height:auto; float:right;">
-		<span ng-include src="'partials/editorToolbar.html'" />
 	</div>
 </div>
