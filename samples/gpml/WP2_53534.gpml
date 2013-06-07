@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Pathway xmlns="http://genmapp.org/GPML/2010a" Name="Valine Biosynthesis" Organism="Saccharomyces cerevisiae">
+  <Comment Source="GenMAPP remarks">Based on http://pathway.yeastgenome.org/biocyc/</Comment>
+  <Comment Source="WikiPathways-category">Metabolic Process</Comment>
+  <Comment Source="WikiPathways-description">Biosynthesis of the aromatic amino acids tyrosine, phenylalanine, and tryptophan proceeds via a common pathway to chorismate, at which point the pathway branches(CITS:[Jones][1943992]).  One branch proceeds to tyrosine and phenylalanine, and the other to tryptophan (CITS:[Jones]).  The series of reactions to chorismate, called the shikimate pathway, and the series of reactions from chorismate to tryptophan have been found to be common to all eukaryotes and prokaryotes studied thus far (as reported in (CITS:[1943992])).  In contrast, there appears to be two separate routes for tyrosine and phenylalanine biosynthesis from chorismate, only one of which has been found in S. cerevisiae (CITS:[1943992]).  S. cerevisiae, similar to E. coli, synthesize tyrosine and phenylalanine via the intermediate 4-hydroxyphenylpyruvate and phenylpyruvate, respectively, whereas some other organisms synthesize them via arogenate (CITS:[1943992]).  Aromatic amino acid biosynthesis in S. cerevisiae is controlled by a combination of feedback inhibition, activation of enzyme activity, and regulation of enzyme synthesis (CITS:[Jones][1943992]).  The carbon flow through the pathways is regulated primarily at the initial step and the branching points by the terminal end-products. The initial step of chorismate biosynthesis can be catalyzed by two isoenzymes Aro3p or Aro4p, whereby Aro3p is inhibited by phenylalanine, and Aro4p by tyrosine (CITS:[Jones][1943992]).  The first step in the phenylalanine-tyrosine branch is feedback inhibited by tyrosine and activated by tryptophan, and the first step in the tryptophan branch is feedback inhibited by tryptophan (CITS:[1943992]).  The transcriptional activator GCN4 regulates most of the genes encoding for the aromatic amino acid biosynthetic enzymes; however, no GCN4 regulation was found for TYR1 of the tyrosine branch, ARO7 of the tyrosine and phenylalanine branch or TRP1 of the tryptophan branch, (CITS:[1943992]). 
+SOURCE: SGD pathways, http://pathway.yeastgenome.org/server.html</Comment>
+  <BiopaxRef>vtw</BiopaxRef>
+  <Graphics BoardWidth="795.0" BoardHeight="396.0" />
+  <DataNode TextLabel="ILV2" GraphId="cc2" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="ILV2" />
+    <Graphics CenterX="187.0" CenterY="40.666666666666664" Width="40.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="SGD" ID="S000004714" />
+  </DataNode>
+  <DataNode TextLabel="ILV6" GraphId="a74" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="ILV6" />
+    <Graphics CenterX="187.0" CenterY="60.66666666666667" Width="40.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="SGD" ID="S000000515" />
+  </DataNode>
+  <DataNode TextLabel="ILV3" GraphId="e36" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="ILV3" />
+    <Graphics CenterX="594.0" CenterY="184.0" Width="40.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="SGD" ID="S000003777" />
+  </DataNode>
+  <DataNode TextLabel="BAT2" GraphId="ed7" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="BAT2" />
+    <Graphics CenterX="463.3333333333333" CenterY="250.0" Width="40.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="SGD" ID="S000003909" />
+  </DataNode>
+  <DataNode TextLabel="BAT1" GraphId="e3d" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="BAT1" />
+    <Graphics CenterX="463.3333333333333" CenterY="270.0" Width="40.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="SGD" ID="S000001251" />
+  </DataNode>
+  <DataNode TextLabel="NADPH" GraphId="a57" Type="Metabolite">
+    <Graphics CenterX="426.6666666666667" CenterY="133.33333333333334" Width="63.333333333333336" Height="19.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Xref Database="CAS" ID="2646-71-1" />
+  </DataNode>
+  <DataNode TextLabel="L-glutamate" GraphId="e41" Type="Metabolite">
+    <Graphics CenterX="523.3333333333334" CenterY="323.3333333333333" Width="95.33333333333333" Height="19.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Xref Database="CAS" ID="56-86-0" />
+  </DataNode>
+  <DataNode TextLabel="H2O" GraphId="e7b7a" Type="Metabolite">
+    <Graphics CenterX="725.0" CenterY="193.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Xref Database="InChIKey" ID="XLYOFNOQVPJJNP-UHFFFAOYSA-N" />
+  </DataNode>
+  <DataNode TextLabel="2-keto-isovalerate" GraphId="b5f43" Type="Metabolite">
+    <Graphics CenterX="626.5" CenterY="282.0" Width="125.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Xref Database="InChIKey" ID="QHKABHOOEWYVLI-UHFFFAOYSA-N" />
+  </DataNode>
+  <DataNode TextLabel="2,3-dihydroxy-isovalerate" GraphId="b1e8a" Type="Metabolite">
+    <Graphics CenterX="628.5" CenterY="79.0" Width="129.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Xref Database="InChIKey" ID="JTEYKUFKXGDTEU-UHFFFAOYSA-M" />
+  </DataNode>
+  <DataNode TextLabel="2-aceto-lactate" GraphId="d75c1" Type="Metabolite">
+    <Graphics CenterX="323.0" CenterY="77.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Xref Database="InChIKey" ID="NMDWGEGFJUBKLB-UHFFFAOYSA-M" />
+  </DataNode>
+  <DataNode TextLabel="CO2" GraphId="c9f44" Type="Metabolite">
+    <Graphics CenterX="190.5" CenterY="120.0" Width="39.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Xref Database="InChIKey" ID="CURLTUGMZLYLDI-UHFFFAOYSA-N" />
+  </DataNode>
+  <DataNode TextLabel="2-oxoglutarate" GraphId="f9e4e" Type="Metabolite">
+    <Graphics CenterX="396.0" CenterY="324.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Xref Database="InChIKey" ID="KPGXRSRHYNQIFN-UHFFFAOYSA-L" />
+  </DataNode>
+  <Line GraphId="idb5df2fca">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="94.0" Y="78.0" GraphRef="c8a" RelX="1.0" RelY="0.0" />
+      <Point X="283.0" Y="77.0" GraphRef="d75c1" RelX="-1.0" RelY="0.0" ArrowHead="Arrow" />
+      <Anchor Position="0.20155352469015386" Shape="None" GraphId="e5de5" />
+    </Graphics>
+  </Line>
+  <Line GraphId="id5af6da3">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="132.09361616643906" Y="77.79844647530985" GraphRef="e5de5" RelX="0.0" RelY="0.0" />
+      <Point X="171.0" Y="120.0" GraphRef="c9f44" RelX="-1.0" RelY="0.0" ArrowHead="Arrow" />
+    </Graphics>
+  </Line>
+  <Line GraphId="id508ce097">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="363.0" Y="77.0" GraphRef="d75c1" RelX="1.0" RelY="0.0" />
+      <Point X="564.0" Y="79.0" GraphRef="b1e8a" RelX="-1.0" RelY="0.0" ArrowHead="Arrow" />
+    </Graphics>
+  </Line>
+  <Line GraphId="ida6493928">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="513.3333333333334" Y="100.0" />
+      <Point X="513.3333333333334" Y="106.66666666666667" ArrowHead="Arrow" />
+    </Graphics>
+  </Line>
+  <Line GraphId="id3bdea818">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="628.5" Y="89.0" GraphRef="b1e8a" RelX="0.0" RelY="1.0" />
+      <Point X="626.5" Y="272.0" GraphRef="b5f43" RelX="0.0" RelY="-1.0" ArrowHead="Arrow" />
+      <Anchor Position="0.4" Shape="None" />
+      <Anchor Position="0.4" Shape="None" GraphId="ce99f" />
+    </Graphics>
+  </Line>
+  <Line GraphId="idc1662a74">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="627.7" Y="162.2" GraphRef="ce99f" RelX="0.0" RelY="0.0" />
+      <Point X="685.0" Y="193.0" GraphRef="e7b7a" RelX="-1.0" RelY="0.0" ArrowHead="Arrow" />
+    </Graphics>
+  </Line>
+  <Line GraphId="ide3e21712">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="564.0" Y="282.0" GraphRef="b5f43" RelX="-1.0" RelY="0.0" />
+      <Point X="343.3333333333333" Y="283.3333333333333" ArrowHead="Arrow" />
+    </Graphics>
+  </Line>
+  <Line GraphId="idbcdea463">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="417.3333333333333" Y="307.6666666666667" />
+      <Point X="417.3333333333333" Y="314.3333333333333" ArrowHead="Arrow" />
+    </Graphics>
+  </Line>
+  <Label TextLabel="2 pyruvate" GraphId="c8a">
+    <Graphics CenterX="51.333333333333336" CenterY="78.0" Width="85.33333333333333" Height="19.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="12" Valign="Middle" />
+  </Label>
+  <Label TextLabel="H+" GraphId="dce">
+    <Graphics CenterX="426.6666666666667" CenterY="116.66666666666667" Width="26.333333333333332" Height="19.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="12" Valign="Middle" />
+  </Label>
+  <Label TextLabel="NADP" GraphId="d67">
+    <Graphics CenterX="513.3333333333334" CenterY="116.66666666666667" Width="51.333333333333336" Height="19.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="12" Valign="Middle" />
+  </Label>
+  <Shape GraphId="f0b">
+    <Graphics CenterX="470.0" CenterY="106.66273333333334" Width="86.66666666666667" Height="53.74838666666667" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="Arc" Rotation="3.141593" />
+  </Shape>
+  <Shape GraphId="ab3">
+    <Graphics CenterX="469.1666666138287" CenterY="313.30506868739286" Width="108.33333343900864" Height="60.36924" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="Arc" Rotation="3.1769498105995826" />
+  </Shape>
+  <InfoBox CenterX="1.6666666666666667" CenterY="265.0" />
+  <Legend CenterX="-34.0" CenterY="107.0" />
+  <Biopax>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="vtw">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">3289762</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Regulation of isoleucine-valine biosynthesis in Saccharomyces cerevisiae.</bp:TITLE>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Curr Genet</bp:SOURCE>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1988</bp:YEAR>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Holmberg S</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Petersen JG</bp:AUTHORS>
+    </bp:PublicationXref>
+  </Biopax>
+</Pathway>
