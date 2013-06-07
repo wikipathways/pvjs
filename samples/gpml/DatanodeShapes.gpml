@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Pathway xmlns="http://pathvisio.org/GPML/2013a" Name="New Pathway" Version="20130430">
+  <Graphics BoardWidth="753.7839195979899" BoardHeight="1218.0491395631407" />
+  <DataNode TextLabel="GeneProduct" GraphId="b8b67" Type="GeneProduct">
+    <Graphics CenterX="115.26894905894636" CenterY="111.98617992104599" Width="133.5" Height="82.5" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="" ID="" />
+  </DataNode>
+  <DataNode TextLabel="GeneProduct" GraphId="fad4e" Type="GeneProduct">
+    <Graphics CenterX="115.26894905894636" CenterY="214.9669690652944" Width="133.5" Height="82.5" ZOrder="32769" FontSize="10" Valign="Middle" ShapeType="RoundedRectangle" />
+    <Xref Database="" ID="" />
+  </DataNode>
+  <DataNode TextLabel="GeneProduct" GraphId="f7206" Type="GeneProduct">
+    <Graphics CenterX="115.26894905894636" CenterY="316.4501675041876" Width="133.5" Height="82.5" ZOrder="32770" FontSize="10" Valign="Middle" ShapeType="Oval" />
+    <Xref Database="" ID="" />
+  </DataNode>
+  <DataNode TextLabel="GeneProduct" GraphId="b60ee" Type="GeneProduct">
+    <Graphics CenterX="79.72207405894636" CenterY="419.4501665207109" Width="133.5" Height="71.44709354639059" ZOrder="32771" FontSize="10" Valign="Middle" ShapeType="Triangle" />
+    <Xref Database="" ID="" />
+  </DataNode>
+  <DataNode TextLabel="GeneProduct" GraphId="e883b" Type="GeneProduct">
+    <Graphics CenterX="108.89489112227795" CenterY="544.4501667665802" Width="133.5" Height="78.46216110885143" ZOrder="32772" FontSize="10" Valign="Middle" ShapeType="Pentagon" />
+    <Xref Database="" ID="" />
+  </DataNode>
+  <DataNode TextLabel="GeneProduct" GraphId="c0c29" Type="GeneProduct">
+    <Graphics CenterX="295.6496720685359" CenterY="111.98618090452264" Width="133.5" Height="82.5" ZOrder="32773" FontSize="10" Valign="Middle" ShapeType="Hexagon" />
+    <Xref Database="" ID="" />
+  </DataNode>
+  <DataNode TextLabel="GeneProduct" GraphId="d3048" Type="GeneProduct">
+    <Graphics CenterX="295.62900059495394" CenterY="214.97655815189952" Width="133.5" Height="82.21136673850499" ZOrder="32774" FontSize="10" Valign="Middle" ShapeType="Mitochondria" />
+    <Xref Database="" ID="" />
+  </DataNode>
+  <DataNode TextLabel="GeneProduct" GraphId="f896a" Type="GeneProduct">
+    <Graphics CenterX="295.56780886399144" CenterY="329.2567130959054" Width="133.5" Height="82.35909798357746" ZOrder="32775" FontSize="10" Valign="Middle" ShapeType="Sarcoplasmic Reticulum" />
+    <Xref Database="" ID="" />
+  </DataNode>
+  <DataNode TextLabel="GeneProduct" GraphId="ad9aa" Type="GeneProduct">
+    <Graphics CenterX="295.78231525466504" CenterY="426.5658791484667" Width="133.5" Height="82.04324840261856" ZOrder="32776" FontSize="10" Valign="Middle" ShapeType="Endoplasmic Reticulum" />
+    <Xref Database="" ID="" />
+  </DataNode>
+  <DataNode TextLabel="GeneProduct" GraphId="dacd7" Type="GeneProduct">
+    <Graphics CenterX="304.1320343846153" CenterY="546.7243872563358" Width="133.5" Height="82.30961595845017" ZOrder="32777" FontSize="10" Valign="Middle" ShapeType="Golgi Apparatus" />
+    <Xref Database="" ID="" />
+  </DataNode>
+  <InfoBox CenterX="0.0" CenterY="0.0" />
+  <Biopax />
+</Pathway>
+

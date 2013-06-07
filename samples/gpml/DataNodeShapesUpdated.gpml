@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Pathway xmlns="http://pathvisio.org/GPML/2013a" Name="New Pathway" Version="20130430">
+  <Graphics BoardWidth="491.8473895582329" BoardHeight="641.7804551539491" />
+  <DataNode TextLabel="GeneProduct" GraphId="b8b67" Type="GeneProduct">
+    <Graphics CenterX="115.26894905894636" CenterY="111.98617992104599" Width="133.5" Height="82.5" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="" ID="" />
+  </DataNode>
+  <DataNode TextLabel="Metabolite" GraphId="f96fc" Type="Metabolite">
+    <Graphics CenterX="341.497090402426" CenterY="188.88835614567114" Width="132.2668633718548" Height="85.40936535256668" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Xref Database="" ID="" />
+  </DataNode>
+  <DataNode TextLabel="Protein" GraphId="e979e" Type="Protein">
+    <Graphics CenterX="341.497090402426" CenterY="309.0612244897959" Width="172.69387755102034" Height="91.0612244897959" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="" ID="" />
+  </DataNode>
+  <DataNode TextLabel="Rna" GraphId="a2ded" Type="Rna">
+    <Graphics CenterX="341.49709040242595" CenterY="421.94387755102036" Width="172.69387755102036" Height="92.33673469387755" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="" ID="" />
+  </DataNode>
+  <DataNode TextLabel="GeneProduct" GraphId="d167c" Type="GeneProduct">
+    <Graphics CenterX="341.497090402426" CenterY="90.3112244897959" Width="172.69387755102036" Height="77.03061224489798" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="" ID="" />
+  </DataNode>
+  <DataNode TextLabel="Unknown" GraphId="b551f">
+    <Graphics CenterX="341.497090402426" CenterY="547.9871663524848" Width="120.21867060077045" Height="127.58657760292863" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="" ID="" />
+  </DataNode>
+  <DataNode TextLabel="GeneProduct" GraphId="fad4e" Type="GeneProduct" GroupRef="fe843">
+    <Graphics CenterX="115.26894905894636" CenterY="214.9669690652944" Width="133.5" Height="82.5" ZOrder="32769" FontSize="10" Valign="Middle" ShapeType="RoundedRectangle" />
+    <Xref Database="" ID="" />
+  </DataNode>
+  <DataNode TextLabel="GeneProduct" GraphId="f7206" Type="GeneProduct" GroupRef="fe843">
+    <Graphics CenterX="115.26894905894636" CenterY="316.4501675041876" Width="133.5" Height="82.5" ZOrder="32770" FontSize="10" Valign="Middle" ShapeType="Oval" />
+    <Xref Database="" ID="" />
+  </DataNode>
+  <Group GroupId="fe843" Style="Complex" />
+  <InfoBox CenterX="0.0" CenterY="0.0" />
+  <Biopax />
+</Pathway>
+
