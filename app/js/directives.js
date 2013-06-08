@@ -7,15 +7,16 @@ angular.module('myApp.directives', [])
 	return function($scope, elm, attrs) {
 		$scope.$watch('editable', function(editable) {
 			if (editable) {
-				//var svg = d3.select("svg#pathwaySvg")
 				if ($scope.editable == true) {
-					fullScreenApi.requestFullScreen(document.body)
+					// need to add code to handle this when inside an iframe
 					// if inside iframe use this: fullScreenApi.requestFullScreen(parent.parent.document.getElementById('pathwayFrame'))
+					fullScreenApi.requestFullScreen(document.body)
 				}
 			}
 		});
 	}
 }])
+// this directive is not currently in use. It would be nice to move the SVG script in view.html to this location.
 .directive('draggable', function() {
 	return {
 		// A = attribute, E = Element, C = Class and M = HTML Comment
@@ -30,6 +31,7 @@ angular.module('myApp.directives', [])
 })
 .directive('drawingBoard', ['pathwayService', function(pathwayService) {
 	return function($scope, elm, attrs) {
+		// I don't remember what this is for
 		function objToString (obj) {
 			var str = '';
 			for (var p in obj) {
@@ -43,17 +45,27 @@ angular.module('myApp.directives', [])
 		// Define svg
 		//$scope.$watch(function() { return angular.toJson(['pathways.Pathway["@Name"]', 'editable']) }, function(pathway) {
 		$scope.$watch('pathways.Pathway["@Name"]', function() {
+		console.log($scope);
+		var cscope = self.cscope = $scope;
 			if ($scope.pathways)
 				{
-					//console.log("inside");
+					console.log("inside");
+					console.log($scope);
+					console.log($scope.editable);
+					console.log($scope.pathways);
+					console.log($scope.pathways.Pathway);
+					console.log($scope.pathways.Pathway.Graphics["@BoardWidth"]);
 					//console.log($scope.pathways.Pathway["@Name"]);
-					//paper.attr("preserveAspectRatio", "xMidYMid")
-					//paper.attr("style", "background-color: beige; : xMidYMid; display: block; position:absolute; height:auto; bottom:0; top:0; left:0; right:0; margin-top:0; margin-bottom:0; margin-right:0; margin-left:0;")
-					//paper.attr("viewBox", "0 0 " + $scope.pathway.width + " " + $scope.pathway.height);
+					//elm.attr("style", "background-color: beige; display: block; position:absolute; height:auto; bottom:0; top:0; left:0; right:0; margin-top:0; margin-bottom:0; margin-right:0; margin-left:0;");
+					elm.attr("preserveAspectRatio", "xMidYMid");
+				       // removed position:absolute and display:block in order to not break the pan ability
+					elm.attr("style", "background-color: beige; height:auto; bottom:0; top:0; left:0; right:0; margin-top:0; margin-bottom:0; margin-right:0; margin-left:0;");
+				       // it appears the g viewport container is messing up the viewbox somehow
+					elm.attr("viewBox", "0 0 " + $scope.pathways.Pathway.Graphics["@BoardWidth"] + " " + $scope.pathways.Pathway.Graphics["@BoardHeight"]);
 
 					if ($scope.editable == true) {
-						//paper.attr("viewBox", "0 0 " + paper[0][0].clientWidth + " " + paper[0][0].clientHeight)
-						//alert("true: " + $scope.pathway.editable);
+						elm.attr("viewBox", "0 0 " + elm[0].clientWidth + " " + elm[0].clientHeight)
+						alert("true: " + $scope.pathway.editable);
 						//fullScreenApi.requestFullScreen(parent.parent.document.getElementById('pathwayFrame'))
 					}
 					else {
@@ -82,6 +94,8 @@ angular.module('myApp.directives', [])
 		//console.log(elm[0]);
 		//console.log($scope);
 		elm[0].id = $scope.DataNode["@GraphId"];
+		//elm[0].setAttribute("x", $scope.DataNode.Graphics.x);
+		//elm[0].setAttribute("y", $scope.DataNode.Graphics.y);
 		elm[0].setAttribute("x", 0)
 		elm[0].setAttribute("y", 0);
 		elm[0].setAttribute("width", $scope.DataNode.Graphics["@Width"]);
@@ -122,3 +136,4 @@ angular.module('myApp.directives', [])
 				}})
 	}
 }])
+
