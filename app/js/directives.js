@@ -5,14 +5,10 @@
 angular.module('myApp.directives', [])
 .directive('goFullScreen', ['pathwayService', function(pathwayService) {
 	return function($scope, elm, attrs) {
-		//console.log("$scope-goFullScreen");
-		//console.log($scope);
-
 		$scope.$watch('editable', function(editable) {
 			if (editable) {
 				//var svg = d3.select("svg#pathwaySvg")
 				if ($scope.editable == true) {
-					//circle.attr("fill", "black");
 					fullScreenApi.requestFullScreen(document.body)
 					// if inside iframe use this: fullScreenApi.requestFullScreen(parent.parent.document.getElementById('pathwayFrame'))
 				}
