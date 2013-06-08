@@ -12,7 +12,7 @@ angular.module('myApp.services', ['ngResource'])
    return {
        getSource: function(callback) {
           //var url = $location.search().dataSrc;
-          var url = "/samples/gpml" && $location.search().dataSrc;
+          var url = "../samples/gpml/" + $location.search().wgTitle + "_" + $location.search().wgCurRevisionId  + ".gpml";
 	  console.log(url)
           $http.get(url).success(function(data) {
              callback(data);
