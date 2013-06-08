@@ -28,7 +28,7 @@ angular.module('myApp.directives', [])
 		}
 	};
 })
-.directive('paper', ['pathwayService', function(pathwayService) {
+.directive('drawingBoard', ['pathwayService', function(pathwayService) {
 	return function($scope, elm, attrs) {
 		function objToString (obj) {
 			var str = '';
