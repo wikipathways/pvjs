@@ -59,7 +59,7 @@ angular.module('myApp.directives', [])
 					//elm.attr("style", "background-color: beige; display: block; position:absolute; height:auto; bottom:0; top:0; left:0; right:0; margin-top:0; margin-bottom:0; margin-right:0; margin-left:0;");
 					elm.attr("preserveAspectRatio", "xMidYMid");
 				       // removed position:absolute and display:block in order to not break the pan ability
-					elm.attr("style", "background-color: beige; height:auto; bottom:0; top:0; left:0; right:0; margin-top:0; margin-bottom:0; margin-right:0; margin-left:0;");
+					elm.attr("style", "background-color: #fff0ff; height:auto; bottom:0; top:0; left:0; right:0; margin-top:0; margin-bottom:0; margin-right:0; margin-left:0;");
 				       // it appears the g viewport container is messing up the viewbox somehow
 					elm.attr("viewBox", "0 0 " + $scope.pathways.Pathway.Graphics["@BoardWidth"] + " " + $scope.pathways.Pathway.Graphics["@BoardHeight"]);
 
