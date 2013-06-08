@@ -4,13 +4,20 @@
 
 angular.module('myApp.directives', [])
 .directive('goFullScreen', ['pathwayService', function(pathwayService) {
-	return function($scope, elm, attrs) {
+	return function($scope, elm, attrs, $location) {
 		$scope.$watch('editable', function(editable) {
 			if (editable) {
 				if ($scope.editable == true) {
 					// need to add code to handle this when inside an iframe
-					// if inside iframe use this: fullScreenApi.requestFullScreen(parent.parent.document.getElementById('pathwayFrame'))
-					fullScreenApi.requestFullScreen(document.body)
+					// if inside iframe use this: 
+					fullScreenApi.requestFullScreen(parent.document.getElementById('pathwayFrame'))
+					console.log("parent.document");
+					console.log(parent.document);
+					console.log(parent.document.getElementById('pathwayFrame'));
+					// how do I do routing for an iframe?
+					console.log("location");
+					console.log($location.search().wgTitle);
+					// fullScreenApi.requestFullScreen(document.body)
 				}
 			}
 		});
@@ -31,7 +38,7 @@ angular.module('myApp.directives', [])
 })
 .directive('drawingBoard', ['pathwayService', function(pathwayService) {
 	return function($scope, elm, attrs) {
-		// I don't remember what this is for
+		// I don't remember what this is for - maybe checking whether I'm inside an iframe?
 		function objToString (obj) {
 			var str = '';
 			for (var p in obj) {
