@@ -101,63 +101,9 @@ XrefPanel_bridgeUrl = './/wpi/extensions/bridgedb.php';
 @import "./skins/common/notitle.css";
 /*]]>*/</style>
 <style type="text/css"></style>
-
-<!-- For pathvisio.js -->
-<link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
-<style type="text/css">
-	body .modal {
-	  width: 96%; /* desired relative width */
-	  left: 2%; /* (100%-width)/2 */
-	  height: 96%; /* desired relative width */
-	  top: 18%; /* (100%-width)/2 */
-	  margin: auto auto auto auto; /* place center */
-	}
-	body .modal-header {
-	  width: 96%; /* desired relative width */
-	  height: 5%; /* desired relative width */
-	  margin: auto auto auto auto; /* place center */
-	}
-	body div#modal-body {
-	  width: 96%; /* desired relative width */
-	  height: 75%; /* desired relative width */
-	  margin: auto auto auto auto; /* place center */
-	}
-	body .modal-footer {
-	position: absolute;
-	  width: 98%; /* desired relative width */
-	  height: 7%; /* desired relative width */
-	  top: auto; /* (100%-width)/2 */
-	  bottom: 0%; /* (100%-width)/2 */
-	  margin: auto auto auto auto; /* place center */
-	}
-	body .modal.fade.in {
-	  top: 2%; /* (100%-width)/2 */
-	  //top: auto; /* fade in to correct spot */
-	}
-</style>
-<!-- These scripts are for pathvisio.js. Located here for convenience of grouping pathvisio.js content, but in production, should be 
-     located at bottom of page for faster load time. -->
-<script type="text/javascript" src="js/d3.v2.js"></script>
-<script src="http://code.jquery.com/jquery.js"></script>
-<script src="js/bootstrap.min.js"></script>
-
 </head>
 <body class="mediawiki ns-102 ltr page-Pathway_WP299">
 <div id="globalWrapper">
-<!-- Modal -->
-<div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-header">
-    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-    <h3 id="myModalLabel">Modal header</h3>
-  </div>
-  <div class="modal-body">
-	<iframe width="100%" height="500" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="http://127.0.0.1/~andersriutta/pathvisio.js/app/#/edit?wgTitle=WP299&wgCurRevisionId=61677" id="pathwayFrame" name="pathwayFrame"></iframe>
-  </div>
-  <div class="modal-footer">
-    <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
-    <button class="btn btn-primary">Save changes</button>
-  </div>
-</div>
 	<div id="column-content">
 		<div id="content">
 			<a name="top" id="top"></a>
@@ -174,8 +120,6 @@ XrefPanel_bridgeUrl = './/wpi/extensions/bridgedb.php';
 <!-- Start for pathvisio.js -->
 
 	<iframe width="100%" height="500" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="http://127.0.0.1/~andersriutta/pathvisio.js/app/#/view?wgTitle=WP299&wgCurRevisionId=61677" id="pathwayFrame" name="pathwayFrame"></iframe>
-<!-- Button to trigger modal -->
-<a href="#myModal" role="button" class="btn" data-toggle="modal">Edit</a>
  
 <!-- End for pathvisio.js -->
 
