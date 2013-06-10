@@ -1,14 +1,20 @@
 <button style="float:left;" ng-click="viewSize = 'small'" btn-view-size>
 	<i class="icon-large icon-resize-small"></i>
-	View Small
+	Small
 </button>
 			<!-- This doesn't work with the modal yet
 			<button style="float:left;" ng-click="editable = true" ng-init="editable = false" go-full-screen>Edit</button>-->
+<button style="float:left;" on-click="alert('Sorry, Large View not yet functional.')" btn-view-size>
+	<i class="icon-large icon-resize-full"></i>
+	Large	
+</button>
+<!--
 <button style="float:left;" ng-click="viewSize = 'large'" btn-view-size>
 	<i class="icon-large icon-resize-full"></i>
-	View Large	
+	Large	
 </button>
+-->
 <button style="float:left;" ng-click="viewSize = 'fullscreen'" btn-view-size>
 <i class="icon-large icon-fullscreen"></i>
-	View Full Screen
+	Full 
 </button>

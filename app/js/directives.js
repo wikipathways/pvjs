@@ -3,16 +3,37 @@
 /* Directives */
 
 angular.module('myApp.directives', [])
+.directive('btnZoomable', ['pathwayService', function(pathwayService) {
+	return function($scope, elm, attrs) {
+		elm[0].textContent = "Enable Zoom";
+		$scope.$watch('zoomable', function(zoomable) {
+			if (zoomable) {
+				if ($scope.zoomable == 'restState') {
+					if (enableZoom == 1) {
+						enableZoom = 0;
+						elm[0].textContent = "Enable Zoom";
+					}
+					else {
+						enableZoom = 1;
+						elm[0].textContent = "Disable Zoom";
+					}
+				}
+				else {
+					$scope.zoomable = 'restState';
+				}
+			}
+		});
+	}
+}])
 .directive('btnEditable', ['pathwayService', function(pathwayService) {
 	return function($scope, elm, attrs, $location) {
 		$scope.$watch('editable', function(editable) {
-			//alert($scope.editable);
 			if (editable) {
 				if ($scope.editable == true) {
-					parent.document.getElementById('pathwayFrame').src = "../../app/#/edit?wgTitle=WP299&wgCurRevisionId=61677";
+					parent.document.getElementById('pathwayFrame').src = "../../app/#/wpEditor?wgTitle=WP299&wgCurRevisionId=61677";
 				}
 				else {
-					parent.document.getElementById('pathwayFrame').src = "../../app/#/view?wgTitle=WP299&wgCurRevisionId=61677";
+					parent.document.getElementById('pathwayFrame').src = "../../app/#/wpViewer?wgTitle=WP299&wgCurRevisionId=61677";
 				
 				}
 			}
@@ -20,7 +41,7 @@ angular.module('myApp.directives', [])
 	}
 }])
 .directive('btnViewSize', ['pathwayService', function(pathwayService) {
-	return function($scope, elm, attrs, $location) {
+	return function($scope, elm, attrs) {
 		$scope.$watch('viewSize', function(viewSize) {
 			if (viewSize) {
 				if ($scope.viewSize == 'fullscreen') {
@@ -29,7 +50,7 @@ angular.module('myApp.directives', [])
 				else {
 					fullScreenApi.cancelFullScreen();
 					if ($scope.viewSize == 'large') {
-						alert('Sorry, large using modal not working yet');
+						alert('Sorry, Large View not yet functional.');
 					}
 				}
 			}
