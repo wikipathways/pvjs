@@ -6,18 +6,24 @@ angular.module('myApp.directives', [])
 .directive('goFullScreen', ['pathwayService', function(pathwayService) {
 	return function($scope, elm, attrs, $location) {
 		$scope.$watch('editable', function(editable) {
+			//alert($scope.editable);
 			if (editable) {
 				if ($scope.editable == true) {
 					// need to add code to handle this when inside an iframe
 					// if inside iframe use this: 
-					fullScreenApi.requestFullScreen(parent.document.getElementById('pathwayFrame'))
+					fullScreenApi.requestFullScreen(parent.document.getElementById('pathwayFrame'));
 					console.log("parent.document");
 					console.log(parent.document);
+					parent.document.getElementById('pathwayFrame').src = "http://127.0.0.1/~andersriutta/pathvisio.js/app/#/edit?wgTitle=WP299&wgCurRevisionId=61677";
 					console.log(parent.document.getElementById('pathwayFrame'));
 					// how do I do routing for an iframe?
-					console.log("location");
-					console.log($location.search().wgTitle);
 					// fullScreenApi.requestFullScreen(document.body)
+				}
+				else {
+					console.log(parent.document.getElementById('globalWrapper'));
+					fullScreenApi.cancelFullScreen();
+					parent.document.getElementById('pathwayFrame').src = "http://127.0.0.1/~andersriutta/pathvisio.js/app/#/view?wgTitle=WP299&wgCurRevisionId=61677";
+				
 				}
 			}
 		});
@@ -72,7 +78,7 @@ angular.module('myApp.directives', [])
 
 					if ($scope.editable == true) {
 						elm.attr("viewBox", "0 0 " + elm[0].clientWidth + " " + elm[0].clientHeight)
-						alert("true: " + $scope.pathway.editable);
+						//alert("true: " + $scope.pathway.editable);
 						//fullScreenApi.requestFullScreen(parent.parent.document.getElementById('pathwayFrame'))
 					}
 					else {
