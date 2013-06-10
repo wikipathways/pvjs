@@ -8,6 +8,9 @@
 			<button style="float:left;" onclick="enableZoom = 0;">Disable Zoom</button>
 			<button style="float:left;" ng-click="editable = 'foo'" btn-editable>Exit Edit Mode</button>
 		</div>
+		<div style="position:relative; float:right;">
+			<span ng-include src="'partials/viewSizeToolbar.html'" />
+		</div>
 	</div>
 	<div style="position:relative; min-width: 300px; width:30%; height:auto; float:right;">
 		<span ng-include src="'partials/editorToolbar.html'" />
