@@ -14,7 +14,7 @@ angular.module('myApp.directives', [])
 					fullScreenApi.requestFullScreen(parent.document.getElementById('pathwayFrame'));
 					console.log("parent.document");
 					console.log(parent.document);
-					parent.document.getElementById('pathwayFrame').src = "http://127.0.0.1/~andersriutta/pathvisio.js/app/#/edit?wgTitle=WP299&wgCurRevisionId=61677";
+					parent.document.getElementById('pathwayFrame').src = "../../app/#/edit?wgTitle=WP299&wgCurRevisionId=61677";
 					console.log(parent.document.getElementById('pathwayFrame'));
 					// how do I do routing for an iframe?
 					// fullScreenApi.requestFullScreen(document.body)
@@ -22,7 +22,7 @@ angular.module('myApp.directives', [])
 				else {
 					console.log(parent.document.getElementById('globalWrapper'));
 					fullScreenApi.cancelFullScreen();
-					parent.document.getElementById('pathwayFrame').src = "http://127.0.0.1/~andersriutta/pathvisio.js/app/#/view?wgTitle=WP299&wgCurRevisionId=61677";
+					parent.document.getElementById('pathwayFrame').src = "../../app/#/view?wgTitle=WP299&wgCurRevisionId=61677";
 				
 				}
 			}
