@@ -19,15 +19,18 @@ angular.module('myApp.directives', [])
 		});
 	}
 }])
-.directive('btnFullScreen', ['pathwayService', function(pathwayService) {
+.directive('btnViewSize', ['pathwayService', function(pathwayService) {
 	return function($scope, elm, attrs, $location) {
-		$scope.$watch('fullscreen', function(fullscreen) {
-			if (fullscreen) {
-				if ($scope.fullscreen == true) {
+		$scope.$watch('viewSize', function(viewSize) {
+			if (viewSize) {
+				if ($scope.viewSize == 'fullscreen') {
 					fullScreenApi.requestFullScreen(parent.document.getElementById('pathwayFrame'));
 				}
 				else {
 					fullScreenApi.cancelFullScreen();
+					if ($scope.viewSize == 'large') {
+						alert('Sorry, large using modal not working yet');
+					}
 				}
 			}
 		});

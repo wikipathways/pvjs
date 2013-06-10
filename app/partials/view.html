@@ -2,15 +2,16 @@
 	<div style="position:relative; width:100%; height:auto; float:left;">
 		<span ng-include src="'partials/render.html'" />
 		<div style="position:relative">
+		<div style="position:relative; float:left;">
 			<!-- from http://xme.im/display-fullscreen-website-using-javascript -->
 			<script type="text/javascript" src="js/fullscreen.js"></script>
 			<button style="float:left;" onclick="enableZoom = 1;">Enable Zoom</button>
 			<button style="float:left;" onclick="enableZoom = 0;">Disable Zoom</button>
-			<!-- This doesn't work with the modal yet
-			<button style="float:left;" ng-click="editable = true" ng-init="editable = false" go-full-screen>Edit</button>-->
-			<button style="float:left;" ng-click="fullscreen = true" btn-full-screen>View Full Screen</button>
-			<button style="float:left;" ng-click="fullscreen = 'foo'" btn-full-screen>Exit Full Screen</button>
 			<button style="float:left;" ng-click="editable = true" btn-editable>Edit</button>
+		</div>
+		<div style="position:relative; float:right;">
+			<span ng-include src="'partials/viewSizeToolbar.html'" />
+		</div>
 		</div>
 	</div>
 </div>
