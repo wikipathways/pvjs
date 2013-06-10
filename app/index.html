@@ -8,40 +8,39 @@
 <!-- For pathvisio.js -->
 <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
 <style type="text/css">
-	body .modal {
-	  width: 96%; /* desired relative width */
-	  left: 2%; /* (100%-width)/2 */
-	  height: 96%; /* desired relative width */
-	  top: 18%; /* (100%-width)/2 */
-	  margin: auto auto auto auto; /* place center */
-	}
-	body .modal-header {
-	  width: 96%; /* desired relative width */
-	  height: 5%; /* desired relative width */
-	  margin: auto auto auto auto; /* place center */
-	}
-	body div#modal-body {
-	  width: 96%; /* desired relative width */
-	  height: 75%; /* desired relative width */
-	  margin: auto auto auto auto; /* place center */
-	}
-	body .modal-footer {
+body .modal {
+	width: 96%; /* desired relative width */
+	left: 2%; /* (100%-width)/2 */
+	height: 96%; /* desired relative width */
+	top: 18%; /* (100%-width)/2 */
+	margin: auto auto auto auto; /* place center */
+}
+body .modal-header {
+	width: 96%; /* desired relative width */
+	height: 5%; /* desired relative width */
+	margin: auto auto auto auto; /* place center */
+}
+body div#modal-body {
+	width: 96%; /* desired relative width */
+	height: 75%; /* desired relative width */
+	margin: auto auto auto auto; /* place center */
+}
+body .modal-footer {
 	position: absolute;
-	  width: 98%; /* desired relative width */
-	  height: 7%; /* desired relative width */
-	  top: auto; /* (100%-width)/2 */
-	  bottom: 0%; /* (100%-width)/2 */
-	  margin: auto auto auto auto; /* place center */
-	}
-	body .modal.fade.in {
-	  top: 2%; /* (100%-width)/2 */
-	  //top: auto; /* fade in to correct spot */
-	}
+	width: 98%; /* desired relative width */
+	height: 7%; /* desired relative width */
+	top: auto; /* (100%-width)/2 */
+	bottom: 0%; /* (100%-width)/2 */
+	margin: auto auto auto auto; /* place center */
+}
+body .modal.fade.in {
+	top: 2%; /* (100%-width)/2 */
+	//top: auto; /* fade in to correct spot */
+}
 </style>
 <!-- These scripts are for pathvisio.js. Located here for convenience of grouping pathvisio.js content, but in production, should be 
      located at bottom of page for faster load time. -->
 <script src="js/jquery-1.9.1.js"></script>
-<script src="js/bootstrap.min.js"></script>
 <script src="js/xml2json.js"></script>
 </head>
 
@@ -53,18 +52,21 @@
   </ul>
 -->  
 <div ng-view></div>
-  <!-- In production use:
+<!-- In production use:
   <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.6/angular.min.js"></script>
   -->
-  <script src="lib/angular/angular.js"></script>
-  <script src="js/app.js"></script>
-  <script src="js/services.js"></script>
-  <script src="js/controllers.js"></script>
-  <script src="js/filters.js"></script>
-  <script src="js/directives.js"></script>
-  <script src="lib/angular/angular-resource.js"></script>
+<script src="lib/angular/angular.js"></script>
+<script src="js/app.js"></script>
+<script src="js/services.js"></script>
+<script src="js/controllers.js"></script>
+<script src="js/filters.js"></script>
+<script src="js/directives.js"></script>
+<script src="lib/angular/angular-resource.js"></script>
 
-  <script src="js/ui-bootstrap-0.3.0.min.js"></script>
+<link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-combined.min.css" rel="stylesheet">
+<script src="js/ui-bootstrap-0.3.0.min.js"></script>
+<!-- from http://xme.im/display-fullscreen-website-using-javascript -->
+<script type="text/javascript" src="js/fullscreen.js"></script>
 </body>
 </html>
 

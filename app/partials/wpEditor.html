@@ -2,10 +2,7 @@
 	<div style="position:relative; width:70%; height:auto; float:left;">
 		<span ng-include src="'partials/render.html'" />
 		<div style="position:relative">
-			<!-- from http://xme.im/display-fullscreen-website-using-javascript -->
-			<script type="text/javascript" src="js/fullscreen.js"></script>
-			<button style="float:left;" onclick="enableZoom = 1;">Enable Zoom</button>
-			<button style="float:left;" onclick="enableZoom = 0;">Disable Zoom</button>
+			<button style="float:left;" ng-click="zoomable = 'toggleState'" btn-zoomable></button>
 			<button style="float:left;" ng-click="editable = 'foo'" btn-editable>Exit Edit Mode</button>
 		</div>
 		<div style="position:relative; float:right;">
