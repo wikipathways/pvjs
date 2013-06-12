@@ -3,38 +3,16 @@
 /* Directives */
 
 angular.module('myApp.directives', [])
-.directive('btnZoomable', ['pathwayService', function(pathwayService) {
-	return function($scope, elm, attrs) {
-		elm[0].textContent = "Enable Zoom";
-		$scope.$watch('zoomable', function(zoomable) {
-			if (zoomable) {
-				if ($scope.zoomable == 'restState') {
-					if (enableZoom == 1) {
-						enableZoom = 0;
-						elm[0].textContent = "Enable Zoom";
-					}
-					else {
-						enableZoom = 1;
-						elm[0].textContent = "Disable Zoom";
-					}
-				}
-				else {
-					$scope.zoomable = 'restState';
-				}
-			}
-		});
-	}
-}])
 .directive('btnEditable', ['pathwayService', function(pathwayService) {
 	return function($scope, elm, attrs, $location) {
 		$scope.$watch('editable', function(editable) {
 			if (editable) {
 				if ($scope.editable == true) {
 					parent.document.getElementById('pathwayFrame').src = "../../app/#/wpEditor?wgTitle=WP299&wgCurRevisionId=61677";
+					$('#viewport').attr("transform", "scale(1)")
 				}
 				else {
 					parent.document.getElementById('pathwayFrame').src = "../../app/#/wpViewer?wgTitle=WP299&wgCurRevisionId=61677";
-				
 				}
 			}
 		});
@@ -46,11 +24,19 @@ angular.module('myApp.directives', [])
 			if (viewSize) {
 				if ($scope.viewSize == 'fullscreen') {
 					fullScreenApi.requestFullScreen(parent.document.getElementById('pathwayFrame'));
+					$scope.$parent.enableZoom = 1;
 				}
 				else {
-					fullScreenApi.cancelFullScreen();
 					if ($scope.viewSize == 'large') {
+						fullScreenApi.cancelFullScreen();
+						$scope.$parent.enableZoom = 1;
 						alert('Sorry, Large View not yet functional.');
+					}
+					else {
+						if ($scope.viewSize == 'small') {
+							fullScreenApi.cancelFullScreen();
+							$scope.$parent.enableZoom = 0;
+						}
 					}
 				}
 			}
@@ -83,6 +69,11 @@ angular.module('myApp.directives', [])
 			return str;
 		}
 
+		$scope.$parent.enablePan = 1;
+		$scope.$parent.enableZoom = 0;
+		$scope.$parent.enableDrag = 0;
+		$scope.$parent.zoomScale = .2;
+		
 		// Define svg
 		//$scope.$watch(function() { return angular.toJson(['pathways.Pathway["@Name"]', 'editable']) }, function(pathway) {
 		$scope.$watch('pathways.Pathway["@Name"]', function() {
@@ -93,25 +84,28 @@ angular.module('myApp.directives', [])
 					console.log("inside");
 					console.log($scope);
 					console.log($scope.editable);
+					console.log($scope.$parent.editable);
 					console.log($scope.pathways);
 					console.log($scope.pathways.Pathway);
 					console.log($scope.pathways.Pathway.Graphics["@BoardWidth"]);
 					//console.log($scope.pathways.Pathway["@Name"]);
 					//elm.attr("style", "background-color: beige; display: block; position:absolute; height:auto; bottom:0; top:0; left:0; right:0; margin-top:0; margin-bottom:0; margin-right:0; margin-left:0;");
-					elm.attr("preserveAspectRatio", "xMidYMid");
+				//	elm.attr("preserveAspectRatio", "xMidYMid");
 				       // removed position:absolute and display:block in order to not break the pan ability
 					elm.attr("style", "background-color: #fff0ff; height:auto; bottom:0; top:0; left:0; right:0; margin-top:0; margin-bottom:0; margin-right:0; margin-left:0;");
 				       // it appears the g viewport container is messing up the viewbox somehow
-					elm.attr("viewBox", "0 0 " + $scope.pathways.Pathway.Graphics["@BoardWidth"] + " " + $scope.pathways.Pathway.Graphics["@BoardHeight"]);
+				//	elm.attr("viewBox", "0 0 " + $scope.pathways.Pathway.Graphics["@BoardWidth"] + " " + $scope.pathways.Pathway.Graphics["@BoardHeight"]);
+			       		var scaleViewAll = Math.min(elm[0].clientWidth/$scope.pathways.Pathway.Graphics["@BoardWidth"], elm[0].clientHeight/$scope.pathways.Pathway.Graphics["@BoardHeight"]);
 
-					if ($scope.editable == true) {
-						elm.attr("viewBox", "0 0 " + elm[0].clientWidth + " " + elm[0].clientHeight)
-						alert("true: " + $scope.pathway.editable);
+					if ($scope.$parent.editable == true) {
+						//$('#viewport').attr("transform", "scale(1)")
+						alert("true: " + $scope.editable);
 						//fullScreenApi.requestFullScreen(parent.parent.document.getElementById('pathwayFrame'))
 					}
 					else {
+						//$('#viewport').attr("transform", "scale(" + scaleViewAll + ")")
 						//svg.attr("viewBox", "0 0 " + $scope.pathway.width + " " + $scope.pathway.height)
-						//alert("else: " + $scope.pathway.editable);
+						alert("else: " + $scope.editable);
 					};
 				}
 		}, true)

@@ -1,14 +1,34 @@
-<div style="position:relative; width:100%; height:auto;" id="pathwayEditor" class="pathwayEditor">
-	<div style="position:relative; width:100%; height:auto; float:left;">
-		<span ng-include src="'partials/render.html'" />
-		<div style="position:relative">
-			<div style="position:relative; float:left;">
-				<button style="float:left;" ng-click="zoomable = 'toggleState'" btn-zoomable></button>
-				<button style="float:left;" ng-click="editable = true" btn-editable>Edit</button>
-			</div>
-			<div style="position:relative; float:right;">
-				<span ng-include src="'partials/viewSizeToolbar.html'" />
-			</div>
-		</div>
+<style type="text/css">
+html, body {
+    margin: 0;
+    padding: 0;
+    overflow: hidden
+}
+#content {
+    background: #eee;
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 25px;
+    width: 100%;
+    overflow-y: scroll
+}
+#footer {
+    background: #ccc;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 25px
+}
+</style>
+<div id="content">
+	<div ng-include src="'partials/render.html'">
+	</div>
+</div>
+<div id="footer">
+	<button style="float:left;" ng-click="editable = true" btn-editable>Edit</button>
+	<div style="position:relative; float:right; min-height:150;">
+		<span ng-include src="'partials/viewSizeToolbar.html'"></span>
 	</div>
 </div>
