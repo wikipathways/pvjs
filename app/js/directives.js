@@ -106,7 +106,7 @@ angular.module('myApp.directives', [])
 
 					if ($scope.editable == true) {
 						elm.attr("viewBox", "0 0 " + elm[0].clientWidth + " " + elm[0].clientHeight)
-						//alert("true: " + $scope.pathway.editable);
+						alert("true: " + $scope.pathway.editable);
 						//fullScreenApi.requestFullScreen(parent.parent.document.getElementById('pathwayFrame'))
 					}
 					else {
