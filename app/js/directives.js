@@ -3,16 +3,14 @@
 /* Directives */
 
 angular.module('myApp.directives', [])
-.directive('btnEditable', ['drawingParameters', function(drawingParameters) {
+.directive('btnEditable', [function() {
 	return function($scope, elm, attrs, $location) {
-		$scope.$watch('editable', function(editable) {
+		$scope.$watch('drawingParameters.editable', function(editable) {
 			if (editable) {
-				if ($scope.editable == true) {
-					drawingParameters.editable = true;
+				if (editable == true) {
 					parent.document.getElementById('pathwayFrame').src = "../../app/#/wpEditor?wgTitle=WP299&wgCurRevisionId=61677";
 				}
 				else {
-					drawingParameters.editable = false;
 					parent.document.getElementById('pathwayFrame').src = "../../app/#/wpViewer?wgTitle=WP299&wgCurRevisionId=61677";
 				}
 			}
@@ -22,27 +20,29 @@ angular.module('myApp.directives', [])
 .directive('btnViewSize', [function() {
 	return function($scope, elm, attrs) {
 		$scope.$watch('drawingParameters.viewSize', function(viewSize) {
-			console.log("$scope in btnViewSize");
-			console.log($scope);
-			//alert(viewSize);
-			//alert("enableZoom in btnViewSize: " + $scope.drawingParameters.enableZoom);
-			if (viewSize) {
-				if (viewSize == 'fullscreen') {
-					alert('btnViewSize: fullscreen');
-					$scope.drawingParameters.enableZoom = 1;
-					fullScreenApi.requestFullScreen(parent.document.getElementById('pathwayFrame'));
-				}
-				else {
-					if (viewSize == 'large') {
-						fullScreenApi.cancelFullScreen();
+			if ($scope.pathways) {
+				console.log("$scope in btnViewSize");
+				console.log($scope);
+				//alert(viewSize);
+				//alert("enableZoom in btnViewSize: " + $scope.drawingParameters.enableZoom);
+				if (viewSize) {
+					if (viewSize == 'fullscreen') {
+						//alert('btnViewSize: fullscreen');
+						fullScreenApi.requestFullScreen(parent.document.getElementById('pathwayFrame'));
 						$scope.drawingParameters.enableZoom = 1;
-						alert('Sorry, Large View not yet functional.');
 					}
 					else {
-						if (viewSize == 'small') {
+						if (viewSize == 'large') {
 							fullScreenApi.cancelFullScreen();
-							alert('btnViewSize: small');
-							$scope.drawingParameters.enableZoom = 0;
+							$scope.drawingParameters.enableZoom = 1;
+							alert('Sorry, Large View not yet functional.');
+						}
+						else {
+							if (viewSize == 'small') {
+								fullScreenApi.cancelFullScreen();
+								$scope.drawingParameters.enableZoom = 0;
+								//alert('btnViewSize: small');
+							}
 						}
 					}
 				}
@@ -63,7 +63,7 @@ angular.module('myApp.directives', [])
 		}
 	};
 })
-.directive('drawingBoard', ['drawingParameters', function(drawingParameters) {
+.directive('drawingBoard', [function() {
 	return function($scope, elm, attrs) {
 		// I don't remember what this is for - maybe checking whether I'm inside an iframe?
 		function objToString (obj) {
@@ -78,6 +78,27 @@ angular.module('myApp.directives', [])
 
 		// Define svg
 		//$scope.$watch(function() { return angular.toJson(['pathways.Pathway["@Name"]', 'editable']) }, function(pathway) {
+		$scope.$watch('drawingParameters.enableZoom', function(enableZoom) {
+			if ($scope.pathways) {
+				console.log("enableZoom");
+				console.log(enableZoom);
+				//$('svg').svgPan('viewport', $scope.drawingParameters.enablePan, enableZoom, $scope.drawingParameters.enableDrag, $scope.drawingParameters.zoomScale);
+			       if (enableZoom == 1) {
+					//$('#drawingBoard').off()
+				        alert("1=" + enableZoom);
+					$('#drawingBoard').svgPan('viewport', 1, 1, 0, .2);
+					//$(selector).svgPan(viewportId, enablePan, enableZoom, enableDrag, zoomScale);
+			       }
+			       else {
+				       alert("0=" + enableZoom);
+					$('#drawingBoard').off()
+					$('#drawingBoard').svgPan('viewport', 1, 0, 0, .2);
+					//$(selector).svgPan(viewportId, enablePan, enableZoom, enableDrag, zoomScale);
+			       };
+
+				//elm.svgPan('viewport', $scope.drawingParameters.enablePan, enableZoom, $scope.drawingParameters.enableDrag, $scope.drawingParameters.zoomScale);
+			}
+		});
 		$scope.$watch('pathways.Pathway["@Name"]', function() {
 			console.log("$scope inside drawingBoard");
 			console.log($scope);
@@ -85,11 +106,9 @@ angular.module('myApp.directives', [])
 				{
 					console.log("$scope inside drawingBoard if statement");
 					console.log($scope);
-					console.log("drawingParameters.editable");
-					console.log(drawingParameters.editable);
 					elm.attr("style", "background-color: #fff0ff; height:auto; bottom:0; top:0; left:0; right:0; margin-top:0; margin-bottom:0; margin-right:0; margin-left:0;");
 			       		var scaleViewAll = Math.min(elm[0].clientWidth/$scope.pathways.Pathway.Graphics["@BoardWidth"], elm[0].clientHeight/$scope.pathways.Pathway.Graphics["@BoardHeight"]);
-					if (drawingParameters.editable == true) {
+					if ($scope.drawingParameters.editable == true) {
 						$('#viewport').attr("transform", "scale(1)")
 					}
 					else {
@@ -97,13 +116,6 @@ angular.module('myApp.directives', [])
 					};
 				}
 		}, true)
-		$scope.$watch('drawingParameters.enableZoom', function(enableZoom) {
-			console.log("enableZoom");
-			console.log(enableZoom);
-			//alert("$scope.drawingParameters.enableZoom in drawingBoard: " + $scope.drawingParameters.enableZoom);
-			//alert("enableZoom in drawingBoard: " + enableZoom);
-			elm.svgPan('viewport', $scope.drawingParameters.enablePan, enableZoom, $scope.drawingParameters.enableDrag, $scope.drawingParameters.zoomScale);
-		});
 	}
 }
 ])

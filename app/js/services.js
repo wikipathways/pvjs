@@ -7,7 +7,6 @@
 // In this case it is a simple value service.
 angular.module('myApp.services', ['ngResource'])
 	.value('pathwayService', 'pathwaytext')
-	.value('drawingParameters', {editable:false, enablePan:1, enableZoom:0, enableDrag:0, zoomScale:0.2 })
 	.factory('Pathway', function($location, $http){
 	   return {
 	       getSource: function(callback) {
