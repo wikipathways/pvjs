@@ -53,11 +53,9 @@ angular.module('myApp.controllers', [])
 		$scope.drawingParameters.enablePan = 1;
 		if (!($scope.drawingParameters.enableZoom)) {
 			if ($scope.drawingParameters.viewSize == 'small') {
-				alert("eZ0");
 				$scope.drawingParameters.enableZoom = 0;
 			}
 			else {
-				alert("eZ0");
 				$scope.drawingParameters.enableZoom = 1;
 			}
 		};
