@@ -36,17 +36,34 @@ angular.module('myApp.controllers', [])
 		});
 
 		$scope.pathways = pathway;
-		$scope.drawingParameters = {};
-		$scope.drawingParameters.editable = false;
-		$scope.drawingParameters.viewSize = 'small';
-		$scope.drawingParameters.enablePan = 1;
-		$scope.drawingParameters.enableZoom = 0;
-		$scope.drawingParameters.enableDrag = 0;
-		$scope.drawingParameters.zoomScale = 0.2;
 		return pathway;
 	
 	}
-					   );
+   );
+
+		if (!($scope.drawingParameters)) {
+			$scope.drawingParameters = {};
+		}
+		if (!($scope.drawingParameters.editable)) {
+			$scope.drawingParameters.editable = false;
+		}
+		if (!($scope.drawingParameters.viewSize)) {
+			$scope.drawingParameters.viewSize = 'small';
+		}
+		$scope.drawingParameters.enablePan = 1;
+		if (!($scope.drawingParameters.enableZoom)) {
+			if ($scope.drawingParameters.viewSize == 'small') {
+				alert("eZ0");
+				$scope.drawingParameters.enableZoom = 0;
+			}
+			else {
+				alert("eZ0");
+				$scope.drawingParameters.enableZoom = 1;
+			}
+		};
+		$scope.drawingParameters.enableDrag = 0;
+		$scope.drawingParameters.zoomScale = 0.2;
+
 }])
 
 
