@@ -36,7 +36,13 @@ angular.module('myApp.controllers', [])
 		});
 
 		$scope.pathways = pathway;
-		$scope.editable = false;
+		$scope.drawingParameters = {};
+		$scope.drawingParameters.editable = false;
+		$scope.drawingParameters.viewSize = 'small';
+		$scope.drawingParameters.enablePan = 1;
+		$scope.drawingParameters.enableZoom = 0;
+		$scope.drawingParameters.enableDrag = 0;
+		$scope.drawingParameters.zoomScale = 0.2;
 		return pathway;
 	
 	}
