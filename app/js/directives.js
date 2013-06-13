@@ -83,20 +83,8 @@ angular.module('myApp.directives', [])
 				console.log("enableZoom");
 				console.log(enableZoom);
 				//$('svg').svgPan('viewport', $scope.drawingParameters.enablePan, enableZoom, $scope.drawingParameters.enableDrag, $scope.drawingParameters.zoomScale);
-			       if (enableZoom == 1) {
-					//$('#drawingBoard').off()
-				        alert("1=" + enableZoom);
-					$('#drawingBoard').svgPan('viewport', 1, 1, 0, .2);
-					//$(selector).svgPan(viewportId, enablePan, enableZoom, enableDrag, zoomScale);
-			       }
-			       else {
-				       alert("0=" + enableZoom);
-					$('#drawingBoard').off()
-					$('#drawingBoard').svgPan('viewport', 1, 0, 0, .2);
-					//$(selector).svgPan(viewportId, enablePan, enableZoom, enableDrag, zoomScale);
-			       };
-
-				//elm.svgPan('viewport', $scope.drawingParameters.enablePan, enableZoom, $scope.drawingParameters.enableDrag, $scope.drawingParameters.zoomScale);
+				$('#drawingBoard').off()
+				$('#drawingBoard').svgPan('viewport', 1, enableZoom, 0, .2);
 			}
 		});
 		$scope.$watch('pathways.Pathway["@Name"]', function() {
@@ -114,6 +102,8 @@ angular.module('myApp.directives', [])
 					else {
 						$('#viewport').attr("transform", "scale(" + scaleViewAll + ")")
 					};
+					$('#drawingBoard').off()
+					$('#drawingBoard').svgPan('viewport', 1, $scope.drawingParameters.enableZoom, 0, .2);
 				}
 		}, true)
 	}
