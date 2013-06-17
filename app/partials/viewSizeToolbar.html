@@ -1,23 +1,8 @@
-<p style="position:relative; float:left;">
-	&nbsp; &nbsp; View: &nbsp;
-</p>
-<button style="float:left;" ng-click="drawingParameters.viewSize = 'small';" btn-view-size>
+<button id="viewSmall" style="float:left;" ng-click="drawingParameters.viewSize = 'small';" btn-view-size>
 	<i class="icon-large icon-resize-small"></i>
-	Small
 </button>
-			<!-- This doesn't work with the modal yet
-			<button style="float:left;" ng-click="editable = true" ng-init="editable = false" go-full-screen>Edit</button>-->
-<button style="float:left;" ng-click="drawingParameters.viewSize = 'large';" btn-view-size>
-	<i class="icon-large icon-resize-full"></i>
-	Large	
-</button>
-<!--
-<button style="float:left;" ng-click="viewSize = 'large'" btn-view-size>
-	<i class="icon-large icon-resize-full"></i>
-	Large	
-</button>
--->
-<button style="float:left;" ng-click="drawingParameters.viewSize = 'fullscreen';" btn-view-size>
+<!-- This doesn't work with the modal yet
+<button style="float:left;" ng-click="editable = true" ng-init="editable = false" go-full-screen>Edit</button>-->
+<button id="viewFullScreen" style="float:left;" ng-click="drawingParameters.viewSize = 'fullscreen';" btn-view-size>
 <i class="icon-large icon-fullscreen"></i>
-	Full 
 </button>
