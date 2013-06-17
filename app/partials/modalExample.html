@@ -1,0 +1,35 @@
+<!doctype html>
+<html ng-app="plunker">
+  <head>
+<script src="../lib/angular/angular.js"></script>
+<script src="../js/app.js"></script>
+<script src="../js/services.js"></script>
+<script src="../js/controllers.js"></script>
+<script src="../js/filters.js"></script>
+<script src="../js/directives.js"></script>
+<script src="../lib/angular/angular-resource.js"></script>
+    <script src="http://angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.3.0.js"></script>
+    <script src="../js/example.js"></script>
+    <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-combined.min.css" rel="stylesheet">
+  </head>
+  <body>
+
+<div ng-controller="ModalDemoCtrl">
+    <button class="btn" ng-click="open()">Open me!</button>
+    <div modal="shouldBeOpen" close="close()" options="opts">
+        <div class="modal-header">
+            <h4>I'm a modal!</h4>
+        </div>
+        <div class="modal-body">
+            <ul>
+                <li ng-repeat="item in items">{{item}}</li>
+            </ul>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-warning cancel" ng-click="close()">Cancel</button>
+        </div>
+    </div>
+</div>
+  </body>
+</html>
+
