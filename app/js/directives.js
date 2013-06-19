@@ -112,7 +112,7 @@ angular.module('myApp.directives', [])
 				{
 					console.log("$scope inside drawingBoard if statement");
 					console.log($scope);
-					elm.attr("style", "background-color: #fff0ff; height:auto; bottom:0; top:0; left:0; right:0; margin-top:0; margin-bottom:0; margin-right:0; margin-left:0;");
+					elm.attr("style", "background-color: #fafafa; height:auto; bottom:0; top:0; left:0; right:0; margin-top:0; margin-bottom:0; margin-right:0; margin-left:0;");
 			       		var scaleViewAll = Math.min(elm[0].clientWidth/$scope.pathways.Pathway.Graphics["@BoardWidth"], elm[0].clientHeight/$scope.pathways.Pathway.Graphics["@BoardHeight"]);
 					var translateX = (elm[0].clientWidth - $scope.pathways.Pathway.Graphics["@BoardWidth"]*scaleViewAll)/2;
 					console.log(elm[0].clientWidth);

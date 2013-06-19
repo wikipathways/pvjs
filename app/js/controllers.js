@@ -61,8 +61,8 @@ angular.module('myApp.controllers', [])
 		};
 		$scope.drawingParameters.enableDrag = 0;
 		$scope.drawingParameters.zoomScale = 0.2;
-		$scope.databases = ["HMDB", "WormBase", "Metabolome", "Kegg"];
-
+		$scope.databases = ["GeneOntology", "HMDB", "WormBase", "Metabolome", "Kegg"];
+		$scope.identifiers = ["GO:0030528", "GO:0030528", "GO:0004871", "GO:0005634", "GO:0007165"];
 }])
 
 
