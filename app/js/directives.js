@@ -3,6 +3,20 @@
 /* Directives */
 
 angular.module('myApp.directives', [])
+.directive('dropdownDatabase', [function() {
+	return function($scope, elm, attrs, $location) {
+		$scope.$watch('drawingParameters.editable', function(editable) {
+			if (editable) {
+				if (editable == true) {
+					parent.document.getElementById('pathwayFrame').src = "../../app/#/wpEditor?wgTitle=WP299&wgCurRevisionId=61677";
+				}
+				else {
+					parent.document.getElementById('pathwayFrame').src = "../../app/#/wpViewer?wgTitle=WP299&wgCurRevisionId=61677";
+				}
+			}
+		});
+	}
+}])
 .directive('btnEditable', [function() {
 	return function($scope, elm, attrs, $location) {
 		$scope.$watch('drawingParameters.editable', function(editable) {

@@ -61,6 +61,7 @@ angular.module('myApp.controllers', [])
 		};
 		$scope.drawingParameters.enableDrag = 0;
 		$scope.drawingParameters.zoomScale = 0.2;
+		$scope.databases = ["HMDB", "WormBase", "Metabolome", "Kegg"];
 
 }])
 
