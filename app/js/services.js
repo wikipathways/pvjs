@@ -11,9 +11,13 @@ angular.module('pathvisio.services', ['ngResource'])
 	   return {
 	       getSource: function(callback) {
 		  //var url = $location.search().dataSrc;
-		  var url = "../samples/gpml/" + $location.search().wgTitle + "_" + $location.search().wgCurRevisionId  + ".gpml";
-		  console.log(url)
-		  $http.get(url).success(function(data) {
+		  if (!($location.search().wgTitle)) {
+			  var url = "../samples/gpml/WP673_63184.gpml";
+		  }
+		  else {
+			  var url = "../samples/gpml/" + $location.search().wgTitle + "_" + $location.search().wgCurRevisionId  + ".gpml";
+		  };
+		  return $http.get(url).success(function(data) {
 		     callback(data);
 		  })
 	       }
