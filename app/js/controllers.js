@@ -1,7 +1,7 @@
 'use strict';
 
 /* Controllers */
-angular.module('myApp.controllers', [])
+angular.module('pathvisio.controllers', [])
 .controller('HomeCtrl', [function() {
 
 }])

@@ -2,7 +2,7 @@
 
 /* Directives */
 
-angular.module('myApp.directives', [])
+angular.module('pathvisio.directives', [])
 .directive('dropdownDatabase', [function() {
 	return function($scope, elm, attrs, $location) {
 		$scope.$watch('drawingParameters.editable', function(editable) {

@@ -5,7 +5,7 @@
 
 // Demonstrate how to register services
 // In this case it is a simple value service.
-angular.module('myApp.services', ['ngResource'])
+angular.module('pathvisio.services', ['ngResource'])
 	.value('pathwayService', 'pathwaytext')
 	.factory('Pathway', function($location, $http){
 	   return {
