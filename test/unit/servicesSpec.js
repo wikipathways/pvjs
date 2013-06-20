@@ -5,10 +5,9 @@
 describe('service', function() {
   beforeEach(module('pathvisio.services'));
 
-
-  describe('version', function() {
-    it('should return current version', inject(function(version) {
-      expect(version).toEqual('0.1');
+  describe('Pathway', function() {
+    it('should not be null', inject(function(Pathway) {
+	    expect(Pathway).not.toBe(null);
     }));
   });
 });

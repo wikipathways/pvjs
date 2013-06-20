@@ -2,30 +2,53 @@
 
 /* jasmine specs for controllers go here */
 
-describe('controllers', function(){
-  beforeEach(module('myApp.controllers'));
+describe('controllers', function() {
 
+	describe('HomeCtrl', function() {
 
-  it('should ....', inject(function() {
-    //spec body
-  }));
+		beforeEach(module('pathvisio.controllers'));
 
-  it('should ....', inject(function() {
-    //spec body
-  }));
+		var ctrl, scope;
+
+		beforeEach(inject(function($controller, $rootScope) {
+			scope = $rootScope.$new();
+			ctrl = $controller('HomeCtrl', {
+				$scope: scope
+			});
+		}));
+
+		it('get value of scope.test for demo controller test', function() {
+			console.log("scope for HomeCtrl");
+			console.log(scope);
+			console.log(scope.test);
+
+			expect(scope.test).toBe("test");
+		});
+	});
+
+	describe('PathwayCtrl', function() {
+
+		beforeEach(module('pathvisio.services'));
+
+		beforeEach(module('pathvisio.controllers'));
+
+		var ctrl, scope;
+
+		beforeEach(inject(function($controller, $rootScope) {
+			scope = $rootScope.$new();
+			ctrl = $controller('PathwayCtrl', {
+				$scope: scope,
+				Pathway: Pathway
+			});
+		}));
+
+		it('should create "pathways" model with 1 Pathway', function() {
+			console.log("scope for PathwayCtrl");
+			console.log(scope);
+			console.log(scope.Pathway);
+
+			expect(scope.Pathway.length).toBe(1);
+		});
+	});
 });
 
-
-
-describe('PhoneCat controllers', function() {
- 
-  describe('PhoneListCtrl', function(){
- 
-    it('should create "phones" model with 3 phones', function() {
-      var scope = {},
-          ctrl = new PhoneListCtrl(scope);
- 
-      expect(scope.phones.length).toBe(3);
-    });
-  });
-});

@@ -2,17 +2,21 @@
 
 /* Controllers */
 angular.module('pathvisio.controllers', [])
-.controller('HomeCtrl', [function() {
+.controller('HomeCtrl', ['$scope', function($scope) {
+	$scope.test = "test";
+	return $scope;
 
 }])
 .controller('PathwayCtrl', ['$scope', 'Pathway', function($scope, Pathway) {
 	// I would like to put this code in the service, but doing so gave me errors.
-	$scope.pathways = Pathway.getSource(function(data) {
+	// how should I define $scope.pathways - here or inside the function?
+	//$scope.pathways = Pathway.getSource(function(data) {
+	Pathway.getSource(function(data) {
 		var sMyString = data;
 		var oParser = new DOMParser();
 		var oDOM = oParser.parseFromString(sMyString, "text/xml");
 
-		var json = self.json = xml2json(oDOM, "");
+		var json = xml2json(oDOM, "");
 
 		var pathway = jQuery.parseJSON(json);
 
@@ -36,33 +40,34 @@ angular.module('pathvisio.controllers', [])
 		});
 
 		$scope.pathways = pathway;
-		return pathway;
-	
-	}
-   );
+		// This doesn't seem needed
+		// return pathway;
 
-		if (!($scope.drawingParameters)) {
-			$scope.drawingParameters = {};
+	});
+
+	if (!($scope.drawingParameters)) {
+		$scope.drawingParameters = {};
+	}
+	if (!($scope.drawingParameters.editable)) {
+		$scope.drawingParameters.editable = false;
+	}
+	if (!($scope.drawingParameters.viewSize)) {
+		$scope.drawingParameters.viewSize = 'small';
+	}
+	$scope.drawingParameters.enablePan = 1;
+	if (!($scope.drawingParameters.enableZoom)) {
+		if ($scope.drawingParameters.viewSize == 'small') {
+			$scope.drawingParameters.enableZoom = 0;
 		}
-		if (!($scope.drawingParameters.editable)) {
-			$scope.drawingParameters.editable = false;
+		else {
+			$scope.drawingParameters.enableZoom = 1;
 		}
-		if (!($scope.drawingParameters.viewSize)) {
-			$scope.drawingParameters.viewSize = 'small';
-		}
-		$scope.drawingParameters.enablePan = 1;
-		if (!($scope.drawingParameters.enableZoom)) {
-			if ($scope.drawingParameters.viewSize == 'small') {
-				$scope.drawingParameters.enableZoom = 0;
-			}
-			else {
-				$scope.drawingParameters.enableZoom = 1;
-			}
-		};
-		$scope.drawingParameters.enableDrag = 0;
-		$scope.drawingParameters.zoomScale = 0.2;
-		$scope.databases = ["GeneOntology2", "HMDB", "WormBase", "Metabolome", "Kegg"];
-		$scope.identifiers = ["GO:0030528", "GO:0030528", "GO:0004871", "GO:0005634", "GO:0007165"];
+	};
+	$scope.drawingParameters.enableDrag = 0;
+	$scope.drawingParameters.zoomScale = 0.2;
+	$scope.databases = ["GeneOntology2", "HMDB", "WormBase", "Metabolome", "Kegg"];
+	$scope.identifiers = ["GO:0030528", "GO:0030528", "GO:0004871", "GO:0005634", "GO:0007165"];
+	return $scope;
 }])
 
 
