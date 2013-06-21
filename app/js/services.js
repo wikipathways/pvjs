@@ -9,6 +9,35 @@ angular.module('pathvisio.services', [])
 	return {
 		// $scope is required, but url is optional
 		getData: function($scope, url) {
+
+			function Right(str, n){
+				if (n <= 0)
+					return "";
+				else if (n > String(str).length)
+					return str;
+				else {
+					var iLen = String(str).length;
+					return String(str).substring(iLen, iLen - n);
+				}
+			}
+
+			function Left(str, n){
+				if (n <= 0)
+					return "";
+				else if (n > String(str).length)
+					return str;
+				else {
+					return String(str).substring(0, n);
+				}
+			}
+
+
+			var gpmlXmlnsSupported = "http://pathvisio.org/GPML/2013a";
+			var gpmlXmlnsIdentifier = "/GPML/";
+			// current and previous GPML xmlns values
+			// "http://pathvisio.org/GPML/2013a"
+			// "http://genmapp.org/GPML/2010a"
+
 			if (!(url)) {
 				if (!($location.search().wgTitle)) {
 					var url = "../samples/gpml/error.gpml";
@@ -31,17 +60,6 @@ angular.module('pathvisio.services', [])
 			}
 
 			var getData = getDataFile(url, function(data) {
-				function Right(str, n){
-					if (n <= 0)
-						return "";
-					else if (n > String(str).length)
-						return str;
-					else {
-						var iLen = String(str).length;
-						return String(str).substring(iLen, iLen - n);
-					}
-				}
-
 				function cleanJson(object) {
 					if (Object.prototype.toString.call( object ) === '[object Object]' ) {
 						var array = [];
@@ -55,9 +73,9 @@ angular.module('pathvisio.services', [])
 					}
 				}
 
-				// what if a gpml file ends in .xml, .XML or .GPML?
-				// this should have a better test for being in GPML format.
-				if (Right(url,4) == "gpml") {
+				// Test for whether file could be GPML based on filename extension
+
+				if (Right(url,4).toLowerCase() == "gpml" || Right(url,3).toLowerCase() == "xml") {
 					var sMyString = data;
 					var oParser = new DOMParser();
 					var oDOM = oParser.parseFromString(sMyString, "text/xml");
@@ -66,132 +84,156 @@ angular.module('pathvisio.services', [])
 
 					var parsedJson = jQuery.parseJSON(json);
 
-					// It would be better to do this in the conversion file xml2json.js.
+					var xmlns = "";
 
-					// BiopaxRefs
 					try {
-						parsedJson.Pathway.BiopaxRefs = cleanJson( parsedJson.Pathway.BiopaxRef );
-						delete parsedJson.Pathway.BiopaxRef;
-
-						parsedJson.Pathway.BiopaxRefs.forEach(function(element, index, array) {
-							// modify data
-						});
+						xmlns = parsedJson.Pathway["@xmlns"]
 					}
 					catch (e) {
-						console.log("No BiopaxRefs found.");
+						// catch e here
 					}
 
-					// Comments 
-					try {
-						parsedJson.Pathway.Comments = cleanJson( parsedJson.Pathway.Comment );
-						delete parsedJson.Pathway.Comment;
+					// test for whether file is GPML based on xmlns without reference to version
 
-						parsedJson.Pathway.Comments.forEach(function(element, index, array) {
-							// modify data
-						});
-					}
-					catch (e) {
-						console.log("No Comments found.");
-					}
+					if ( xmlns.indexOf(gpmlXmlnsIdentifier) !== -1 ) {
 
-					// DataNodes 
-					try {
-						parsedJson.Pathway.DataNodes = cleanJson( parsedJson.Pathway.DataNode );
-						delete parsedJson.Pathway.DataNode;
+						// test for whether the GPML file version matches the current version supported by pathvisio.js
 
-						parsedJson.Pathway.DataNodes.forEach(function(element, index, array) {
-							element.Graphics["x"] = parseFloat(element.Graphics["@CenterX"]) - parseFloat(element.Graphics["@Width"])/2;
-							element.Graphics["y"] = parseFloat(element.Graphics["@CenterY"]) - parseFloat(element.Graphics["@Height"])/2;
-							delete element.Graphics["@CenterX"];
-							delete element.Graphics["@CenterY"];
-							if (element.Graphics["@FillColor"]) {
-								element.Graphics["@FillColor"] = "#" + element.Graphics["@FillColor"]
-							}
-							else {
-								element.Graphics["@FillColor"] = "white";
-							};	
-							if (element.Graphics["@Color"]) {
-								element.Graphics["@Color"] = "#" + element.Graphics["@Color"]
-							}
-							else {
-								element.Graphics["@Color"] = "black";
-							};	
-						});
-					}
-					catch (e) {
-						console.log("No DataNodes found.");
-					}
+						if (xmlns != gpmlXmlnsSupported) {
+							// preferably, this would call the Java RPC updater for the file to be updated.
+							alert("Pathvisio.js may not fully support the version of GPML provided (xmlns: " + xmlns + "). Please convert to the supported version of GPML (xmlns: " + gpmlXmlnsSupported + ").")
+						}
 
-					// Graphics
-					try {
-						parsedJson.Pathway.Graphics = cleanJson( parsedJson.Pathway.Graphics );
+						// It would be better to do this in the conversion file xml2json.js.
 
-						parsedJson.Pathway.Graphics.forEach(function(element, index, array) {
-							// modify data
-						});
-					}
-					catch (e) {
-						console.log("No Graphics found.");
-					}
+						// BiopaxRefs
+						try {
+							parsedJson.Pathway.BiopaxRefs = cleanJson( parsedJson.Pathway.BiopaxRef );
+							delete parsedJson.Pathway.BiopaxRef;
 
-					// Groups
-					try {
-						parsedJson.Pathway.Groups = cleanJson( parsedJson.Pathway.Group );
-						delete parsedJson.Pathway.Group;
+							parsedJson.Pathway.BiopaxRefs.forEach(function(element, index, array) {
+								// modify data
+							});
+						}
+						catch (e) {
+							console.log("No BiopaxRefs found.");
+						}
 
-						parsedJson.Pathway.Groups.forEach(function(element, index, array) {
-							// modify data
-						});
-					}
-					catch (e) {
-						console.log("No Groups found.");
-					}
+						// Comments 
+						try {
+							parsedJson.Pathway.Comments = cleanJson( parsedJson.Pathway.Comment );
+							delete parsedJson.Pathway.Comment;
 
-					// Interactions
-					try {
-						parsedJson.Pathway.Interactions = cleanJson( parsedJson.Pathway.Interaction );
-						delete parsedJson.Pathway.Interaction;
+							parsedJson.Pathway.Comments.forEach(function(element, index, array) {
+								// modify data
+							});
+						}
+						catch (e) {
+							console.log("No Comments found.");
+						}
 
-						parsedJson.Pathway.Interactions.forEach(function(element, index, array) {
-							// modify data
-						});
-					}
-					catch (e) {
-						console.log("No Interactions found.");
-					}
+						// DataNodes 
+						try {
+							parsedJson.Pathway.DataNodes = cleanJson( parsedJson.Pathway.DataNode );
+							delete parsedJson.Pathway.DataNode;
 
-					// Labels
-					try {
-						parsedJson.Pathway.Labels = cleanJson( parsedJson.Pathway.Label );
-						delete parsedJson.Pathway.Label;
+							parsedJson.Pathway.DataNodes.forEach(function(element, index, array) {
+								element.Graphics["x"] = parseFloat(element.Graphics["@CenterX"]) - parseFloat(element.Graphics["@Width"])/2;
+								element.Graphics["y"] = parseFloat(element.Graphics["@CenterY"]) - parseFloat(element.Graphics["@Height"])/2;
+								delete element.Graphics["@CenterX"];
+								delete element.Graphics["@CenterY"];
+								if (element.Graphics["@FillColor"]) {
+									element.Graphics["@FillColor"] = "#" + element.Graphics["@FillColor"]
+								}
+								else {
+									element.Graphics["@FillColor"] = "white";
+								};	
+								if (element.Graphics["@Color"]) {
+									element.Graphics["@Color"] = "#" + element.Graphics["@Color"]
+								}
+								else {
+									element.Graphics["@Color"] = "black";
+								};	
+							});
+						}
+						catch (e) {
+							console.log("No DataNodes found.");
+						}
 
-						parsedJson.Pathway.Labels.forEach(function(element, index, array) {
-							// modify data
-						});
-					}
-					catch (e) {
-						console.log("No Labels found.");
-					}
+						// Graphics
+						try {
+							parsedJson.Pathway.Graphics = cleanJson( parsedJson.Pathway.Graphics );
 
-					// Shapes
-					try {
-						parsedJson.Pathway.Shapes = cleanJson( parsedJson.Pathway.Shape );
-						delete parsedJson.Pathway.Shape;
+							parsedJson.Pathway.Graphics.forEach(function(element, index, array) {
+								// modify data
+							});
+						}
+						catch (e) {
+							console.log("No Graphics found.");
+						}
 
-						parsedJson.Pathway.Shapes.forEach(function(element, index, array) {
-							// modify data
-						});
-					}
-					catch (e) {
-						console.log("No Shapes found.");
-					}
+						// Groups
+						try {
+							parsedJson.Pathway.Groups = cleanJson( parsedJson.Pathway.Group );
+							delete parsedJson.Pathway.Group;
 
-					$scope.Pathway = parsedJson.Pathway;
-					console.log("$scope");
-					console.log($scope);
+							parsedJson.Pathway.Groups.forEach(function(element, index, array) {
+								// modify data
+							});
+						}
+						catch (e) {
+							console.log("No Groups found.");
+						}
+
+						// Interactions
+						try {
+							parsedJson.Pathway.Interactions = cleanJson( parsedJson.Pathway.Interaction );
+							delete parsedJson.Pathway.Interaction;
+
+							parsedJson.Pathway.Interactions.forEach(function(element, index, array) {
+								// modify data
+							});
+						}
+						catch (e) {
+							console.log("No Interactions found.");
+						}
+
+						// Labels
+						try {
+							parsedJson.Pathway.Labels = cleanJson( parsedJson.Pathway.Label );
+							delete parsedJson.Pathway.Label;
+
+							parsedJson.Pathway.Labels.forEach(function(element, index, array) {
+								// modify data
+							});
+						}
+						catch (e) {
+							console.log("No Labels found.");
+						}
+
+						// Shapes
+						try {
+							parsedJson.Pathway.Shapes = cleanJson( parsedJson.Pathway.Shape );
+							delete parsedJson.Pathway.Shape;
+
+							parsedJson.Pathway.Shapes.forEach(function(element, index, array) {
+								// modify data
+							});
+						}
+						catch (e) {
+							console.log("No Shapes found.");
+						}
+
+						$scope.Pathway = parsedJson.Pathway;
+						console.log("$scope");
+						console.log($scope);
+					}
+					else {
+						alert("Pathvisio.js does not support the data format provided. Please convert to GPML and retry.")
+					}
 				}
 				else {
-					alert("Pathvisio.js does not support this data format. Please convert to GPML and retry.")
+					alert("Pathvisio.js does not support the data format provided. Please convert to GPML (XML) and retry.")
 				}
 			});
 
