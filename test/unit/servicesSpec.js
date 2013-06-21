@@ -5,9 +5,11 @@
 describe('service', function() {
   beforeEach(module('pathvisio.services'));
 
-  describe('Pathway', function() {
-    it('should not be null', inject(function(Pathway) {
-	    expect(Pathway).not.toBe(null);
+  describe('PathwayService', function() {
+    it('should not be null', inject(function(PathwayService) {
+	    console.log("PathwayService.getData()");
+	    console.log(PathwayService.getData());
+	    expect(PathwayService.getData()).not.toBe(null);
     }));
   });
 });
