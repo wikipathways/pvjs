@@ -7,9 +7,9 @@ angular.module('pathvisio.controllers', [])
 	return $scope;
 
 }])
-.controller('PathwayCtrl', ['$scope', '$location', '$http', 'Pathway', function($scope, $location, $http, Pathway) {
+.controller('PathwayCtrl', ['$scope', '$location', '$http', 'PathwayService', function($scope, $location, $http, PathwayService) {
 
-	Pathway.getData($scope);
+	PathwayService.getData($scope);
 
 	if (!($scope.drawingParameters)) {
 		$scope.drawingParameters = {};

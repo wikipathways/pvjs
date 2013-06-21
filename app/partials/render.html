@@ -1,9 +1,10 @@
 <svg id="drawingBoard" style="width:100%; height:100%" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" drawing-board>
 	<g id="viewport">
-		<g ng-repeat="DataNode in Pathway.DataNode" class="node GeneProduct" node>
+		<g ng-repeat="DataNode in Pathway.DataNodes" class="node GeneProduct" node>
 			<rect node-bounding-box></rect>
 			<text font-family="Arial" node-label>{{ DataNode["@TextLabel"] }}</text>
 		</g>
 	</g>
 </svg>
+<!-- does this script belong here or in index.html? -->
 <script type="text/javascript" src="js/jquery-svgpan.js"></script>
