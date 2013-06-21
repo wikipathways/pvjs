@@ -3,20 +3,6 @@
 /* Directives */
 
 angular.module('pathvisio.directives', [])
-.directive('dropdownDatabase', [function() {
-	return function($scope, elm, attrs, $location) {
-		$scope.$watch('drawingParameters.editable', function(editable) {
-			if (editable) {
-				if (editable == true) {
-					parent.document.getElementById('pathwayFrame').src = "../../app/#/wpEditor?wgTitle=WP299&wgCurRevisionId=61677";
-				}
-				else {
-					parent.document.getElementById('pathwayFrame').src = "../../app/#/wpViewer?wgTitle=WP299&wgCurRevisionId=61677";
-				}
-			}
-		});
-	}
-}])
 .directive('btnEditable', [function() {
 	return function($scope, elm, attrs, $location) {
 		$scope.$watch('drawingParameters.editable', function(editable) {
@@ -112,7 +98,7 @@ angular.module('pathvisio.directives', [])
 				{
 					console.log("$scope inside drawingBoard if statement");
 					console.log($scope);
-					elm.attr("style", "background-color: #fafafa; height:auto; bottom:0; top:0; left:0; right:0; margin-top:0; margin-bottom:0; margin-right:0; margin-left:0;");
+					elm.attr("style", "background-color: #fff0ff; height:auto; bottom:0; top:0; left:0; right:0; margin-top:0; margin-bottom:0; margin-right:0; margin-left:0;");
 			       		var scaleViewAll = Math.min(elm[0].clientWidth/$scope.Pathway.Graphics["@BoardWidth"], elm[0].clientHeight/$scope.Pathway.Graphics["@BoardHeight"]);
 					var translateX = (elm[0].clientWidth - $scope.Pathway.Graphics["@BoardWidth"]*scaleViewAll)/2;
 					console.log(elm[0].clientWidth);
@@ -134,6 +120,8 @@ angular.module('pathvisio.directives', [])
 ])
 .directive('node', [function() {
 	return function($scope, elm, attrs) {
+		console.log("$scope inside node");
+		console.log($scope);
 		elm[0].setAttribute("transform", "translate(" + $scope.DataNode.Graphics.x + "," + $scope.DataNode.Graphics.y + ")");
 	}
 }])
@@ -147,6 +135,8 @@ angular.module('pathvisio.directives', [])
 		//elm[0].setAttribute("y", $scope.DataNode.Graphics.y);
 		elm[0].setAttribute("x", 0)
 		elm[0].setAttribute("y", 0);
+		console.log("$scope inside nbb");
+		console.log($scope);
 		elm[0].setAttribute("width", $scope.DataNode.Graphics["@Width"]);
 		elm[0].setAttribute("height", $scope.DataNode.Graphics["@Height"]);
 		elm[0].setAttribute("stroke", $scope.DataNode.Graphics["@Color"]);
