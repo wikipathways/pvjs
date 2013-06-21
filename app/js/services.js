@@ -37,6 +37,8 @@ angular.module('pathvisio.services', [])
 			// current and previous GPML xmlns values
 			// "http://pathvisio.org/GPML/2013a"
 			// "http://genmapp.org/GPML/2010a"
+			// "http://genmapp.org/GPML/2008a"
+			// "http://genmapp.org/GPML/2007"
 
 			if (!(url)) {
 				if (!($location.search().wgTitle)) {
