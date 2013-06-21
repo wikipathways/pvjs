@@ -2,15 +2,22 @@
 
 /* Services */
 
-angular.module('pathvisio.services', ['ngResource'])
+// If don't use resouce, I can get rid of ngResource here
+//angular.module('pathvisio.services', ['ngResource'])
+angular.module('pathvisio.services', [])
 .factory('Pathway', function($location, $http){
 	return {
-		getData: function($scope) {
-			if (!($location.search().wgTitle)) {
-				var url = "../samples/gpml/WP673_63184.gpml";
-			}
-			else {
-				var url = "../samples/gpml/" + $location.search().wgTitle + "_" + $location.search().wgCurRevisionId  + ".gpml";
+		// $scope is required, but url is optional
+		getData: function($scope, url) {
+			// maybe it would be better to use a try catch here to see whether url is found
+			if (!(url)) {
+				if (!($location.search().wgTitle)) {
+					// should replace this with an error message, possibly in the form of a custom gpml file
+					var url = "../samples/gpml/DatanodeShapes.gpml";
+				}
+				else {
+					var url = "../samples/gpml/" + $location.search().wgTitle + "_" + $location.search().wgCurRevisionId  + ".gpml";
+				}
 			};
 			function getDataFile(url, callback) {
 				$http.get(url).success(function(data) {
@@ -28,6 +35,7 @@ angular.module('pathvisio.services', ['ngResource'])
 						return String(str).substring(iLen, iLen - n);
 					}
 				}
+				// what is the file ends in .xml, .XML or .GPML?
 				if (Right(url,4) == "gpml") {
 					var sMyString = data;
 					var oParser = new DOMParser();
