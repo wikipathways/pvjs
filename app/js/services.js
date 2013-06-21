@@ -24,7 +24,7 @@ angular.module('pathvisio.services', [])
 					return callback(data);
 				})
 			}
-			getDataFile(url, function(data) {
+			var getData = getDataFile(url, function(data) {
 				function Right(str, n){
 					if (n <= 0)
 						return "";
@@ -43,9 +43,9 @@ angular.module('pathvisio.services', [])
 
 					var json = xml2json(oDOM, "");
 
-					var pathway = jQuery.parseJSON(json);
+					var parsedJson = jQuery.parseJSON(json);
 
-					pathway.Pathway.DataNode.forEach(function(element, index, array) {
+					parsedJson.Pathway.DataNode.forEach(function(element, index, array) {
 						element.Graphics["x"] = parseFloat(element.Graphics["@CenterX"]) - parseFloat(element.Graphics["@Width"])/2;
 						element.Graphics["y"] = parseFloat(element.Graphics["@CenterY"]) - parseFloat(element.Graphics["@Height"])/2;
 						delete element.Graphics["@CenterX"];
@@ -64,7 +64,7 @@ angular.module('pathvisio.services', [])
 						};	
 					});
 
-					$scope.pathways = pathway;
+					$scope.Pathway = parsedJson.Pathway;
 				}
 				else {
 					console.log("file type error")

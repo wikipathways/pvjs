@@ -34,7 +34,7 @@ angular.module('pathvisio.directives', [])
 .directive('btnViewSize', [function() {
 	return function($scope, elm, attrs) {
 		$scope.$watch('drawingParameters.viewSize', function(viewSize) {
-			if ($scope.pathways) {
+			if ($scope.Pathway) {
 				console.log("$scope in btnViewSize");
 				console.log($scope);
 				//alert(viewSize);
@@ -95,9 +95,9 @@ angular.module('pathvisio.directives', [])
 		}
 
 		// Define svg
-		//$scope.$watch(function() { return angular.toJson(['pathways.Pathway["@Name"]', 'editable']) }, function(pathway) {
+		//$scope.$watch(function() { return angular.toJson(['Pathway["@Name"]', 'editable']) }, function(pathway) {
 		$scope.$watch('drawingParameters.enableZoom', function(enableZoom) {
-			if ($scope.pathways) {
+			if ($scope.Pathway) {
 				console.log("enableZoom");
 				console.log(enableZoom);
 				//$('svg').svgPan('viewport', $scope.drawingParameters.enablePan, enableZoom, $scope.drawingParameters.enableDrag, $scope.drawingParameters.zoomScale);
@@ -105,18 +105,18 @@ angular.module('pathvisio.directives', [])
 				$('#drawingBoard').svgPan('viewport', 1, enableZoom, 0, .2);
 			}
 		});
-		$scope.$watch('pathways.Pathway["@Name"]', function() {
+		$scope.$watch('Pathway["@Name"]', function() {
 			console.log("$scope inside drawingBoard");
 			console.log($scope);
-			if ($scope.pathways)
+			if ($scope.Pathway)
 				{
 					console.log("$scope inside drawingBoard if statement");
 					console.log($scope);
 					elm.attr("style", "background-color: #fafafa; height:auto; bottom:0; top:0; left:0; right:0; margin-top:0; margin-bottom:0; margin-right:0; margin-left:0;");
-			       		var scaleViewAll = Math.min(elm[0].clientWidth/$scope.pathways.Pathway.Graphics["@BoardWidth"], elm[0].clientHeight/$scope.pathways.Pathway.Graphics["@BoardHeight"]);
-					var translateX = (elm[0].clientWidth - $scope.pathways.Pathway.Graphics["@BoardWidth"]*scaleViewAll)/2;
+			       		var scaleViewAll = Math.min(elm[0].clientWidth/$scope.Pathway.Graphics["@BoardWidth"], elm[0].clientHeight/$scope.Pathway.Graphics["@BoardHeight"]);
+					var translateX = (elm[0].clientWidth - $scope.Pathway.Graphics["@BoardWidth"]*scaleViewAll)/2;
 					console.log(elm[0].clientWidth);
-					console.log($scope.pathways.Pathway.Graphics["@BoardWidth"]);
+					console.log($scope.Pathway.Graphics["@BoardWidth"]);
 					console.log(scaleViewAll);
 					console.log(translateX);
 					if ($scope.drawingParameters.editable == true) {
@@ -155,8 +155,8 @@ angular.module('pathvisio.directives', [])
 }])
 .directive('nodeLabel', [function() {
 	return function($scope, elm, attrs) {
-		$scope.$watch('pathways.Pathway.DataNode["@TextLabel"]', function() {
-			if ($scope.pathways)
+		$scope.$watch('Pathway.DataNode["@TextLabel"]', function() {
+			if ($scope.Pathway)
 				{
 					elm[0].id = $scope.DataNode["@GraphId"];
 					elm[0].setAttribute("class", "node " + $scope.DataNode.Graphics["@ShapeType"])
