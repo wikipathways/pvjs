@@ -9,7 +9,6 @@ angular.module('pathvisio.services', [])
 	return {
 		// $scope is required, but url is optional
 		getData: function($scope, url) {
-			// maybe it would be better to use a try catch here to see whether url is found
 			if (!(url)) {
 				if (!($location.search().wgTitle)) {
 					var url = "../samples/gpml/error.gpml";
@@ -18,11 +17,19 @@ angular.module('pathvisio.services', [])
 					var url = "../samples/gpml/" + $location.search().wgTitle + "_" + $location.search().wgCurRevisionId  + ".gpml";
 				}
 			};
+
 			function getDataFile(url, callback) {
-				$http.get(url).success(function(data) {
-					return callback(data);
-				})
+				try {
+					$http.get(url).success(function(data) {
+						return callback(data);
+					})
+				}
+				catch (e) {
+					console.log("Error: File not found.");
+					$scope.Pathway = {"@xmlns":"http://pathvisio.org/GPML/2013a","@Name":"Error - File not found.","@Version":"20130621","Graphics":[{"@BoardWidth":"471.0","@BoardHeight":"239.0"}],"InfoBox":{"@CenterX":"0.0","@CenterY":"0.0"},"Biopax":null,"DataNodes":[{"@TextLabel":"Error - File not found.","@GraphId":"ec16d","Graphics":{"@Width":"249.5","@Height":"73.5","@ZOrder":"32768","@FontName":"Verdana","@FontWeight":"Bold","@FontSize":"16","@Valign":"Middle","@Color":"#ff0000","x":1.5,"y":19.5,"@FillColor":"white"},"Xref":{"@Database":"","@ID":""}}]};
+				}
 			}
+
 			var getData = getDataFile(url, function(data) {
 				function Right(str, n){
 					if (n <= 0)
@@ -34,6 +41,20 @@ angular.module('pathvisio.services', [])
 						return String(str).substring(iLen, iLen - n);
 					}
 				}
+
+				function cleanJson(object) {
+					if (Object.prototype.toString.call( object ) === '[object Object]' ) {
+						var array = [];
+						array.push(object)
+						return array;
+					}
+					else {
+						if( Object.prototype.toString.call( object ) === '[object Array]' ) {
+							return object;
+						}
+					}
+				}
+
 				// what if a gpml file ends in .xml, .XML or .GPML?
 				// this should have a better test for being in GPML format.
 				if (Right(url,4) == "gpml") {
@@ -43,73 +64,127 @@ angular.module('pathvisio.services', [])
 
 					var json = xml2json(oDOM, "");
 
-					var parsedJson = self.parsedJson = jQuery.parseJSON(json);
+					var parsedJson = jQuery.parseJSON(json);
 
 					// It would be better to do this in the conversion file xml2json.js.
-					// check on dealing with interactions.
-					parsedJson.Pathway.DataNodes = parsedJson.Pathway.DataNode;
-					delete parsedJson.Pathway.DataNode;
-					parsedJson.Pathway.Comments = parsedJson.Pathway.Comment;
-					delete parsedJson.Pathway.Comment;
-					parsedJson.Pathway.Groups = parsedJson.Pathway.Group;
-					delete parsedJson.Pathway.Group;
-					parsedJson.Pathway.Labels = parsedJson.Pathway.Label;
-					delete parsedJson.Pathway.Label;
-					parsedJson.Pathway.Lines = parsedJson.Pathway.Line;
-					delete parsedJson.Pathway.Line;
 
-					console.log(parsedJson);
-
-
+					// BiopaxRefs
 					try {
-						if( Object.prototype.toString.call( parsedJson.Pathway.DataNodes ) === '[object Array]' ) {
-							parsedJson.Pathway.DataNodes.forEach(function(element, index, array) {
-								element.Graphics["x"] = parseFloat(element.Graphics["@CenterX"]) - parseFloat(element.Graphics["@Width"])/2;
-								element.Graphics["y"] = parseFloat(element.Graphics["@CenterY"]) - parseFloat(element.Graphics["@Height"])/2;
-								delete element.Graphics["@CenterX"];
-								delete element.Graphics["@CenterY"];
-								if (element.Graphics["@FillColor"]) {
-									element.Graphics["@FillColor"] = "#" + element.Graphics["@FillColor"]
-								}
-								else {
-									element.Graphics["@FillColor"] = "white";
-								};	
-								if (element.Graphics["@Color"]) {
-									element.Graphics["@Color"] = "#" + element.Graphics["@Color"]
-								}
-								else {
-									element.Graphics["@Color"] = "black";
-								};	
-							});
-						}
-						else {
-							if (Object.prototype.toString.call( parsedJson.Pathway.DataNodes ) === '[object Object]' ) {
-								parsedJson.Pathway.DataNodes.Graphics["x"] = parseFloat(parsedJson.Pathway.DataNodes.Graphics["@CenterX"]) - parseFloat(parsedJson.Pathway.DataNodes.Graphics["@Width"])/2;
-								parsedJson.Pathway.DataNodes.Graphics["y"] = parseFloat(parsedJson.Pathway.DataNodes.Graphics["@CenterY"]) - parseFloat(parsedJson.Pathway.DataNodes.Graphics["@Height"])/2;
-								delete parsedJson.Pathway.DataNodes.Graphics["@CenterX"];
-								delete parsedJson.Pathway.DataNodes.Graphics["@CenterY"];
-								if (parsedJson.Pathway.DataNodes.Graphics["@FillColor"]) {
-									parsedJson.Pathway.DataNodes.Graphics["@FillColor"] = "#" + parsedJson.Pathway.DataNodes.Graphics["@FillColor"]
-								}
-								else {
-									parsedJson.Pathway.DataNodes.Graphics["@FillColor"] = "white";
-								};	
-								if (parsedJson.Pathway.DataNodes.Graphics["@Color"]) {
-									parsedJson.Pathway.DataNodes.Graphics["@Color"] = "#" + parsedJson.Pathway.DataNodes.Graphics["@Color"]
-								}
-								else {
-									parsedJson.Pathway.DataNodes.Graphics["@Color"] = "black";
-								};	
-							}
-						}
+						parsedJson.Pathway.BiopaxRefs = cleanJson( parsedJson.Pathway.BiopaxRef );
+						delete parsedJson.Pathway.BiopaxRef;
+
+						parsedJson.Pathway.BiopaxRefs.forEach(function(element, index, array) {
+							// modify data
+						});
 					}
 					catch (e) {
-						alert("Error parsing DataNodes.");
-					}
-					finally {
-					   //finally_statements
+						console.log("No BiopaxRefs found.");
 					}
 
+					// Comments 
+					try {
+						parsedJson.Pathway.Comments = cleanJson( parsedJson.Pathway.Comment );
+						delete parsedJson.Pathway.Comment;
+
+						parsedJson.Pathway.Comments.forEach(function(element, index, array) {
+							// modify data
+						});
+					}
+					catch (e) {
+						console.log("No Comments found.");
+					}
+
+					// DataNodes 
+					try {
+						parsedJson.Pathway.DataNodes = cleanJson( parsedJson.Pathway.DataNode );
+						delete parsedJson.Pathway.DataNode;
+
+						parsedJson.Pathway.DataNodes.forEach(function(element, index, array) {
+							element.Graphics["x"] = parseFloat(element.Graphics["@CenterX"]) - parseFloat(element.Graphics["@Width"])/2;
+							element.Graphics["y"] = parseFloat(element.Graphics["@CenterY"]) - parseFloat(element.Graphics["@Height"])/2;
+							delete element.Graphics["@CenterX"];
+							delete element.Graphics["@CenterY"];
+							if (element.Graphics["@FillColor"]) {
+								element.Graphics["@FillColor"] = "#" + element.Graphics["@FillColor"]
+							}
+							else {
+								element.Graphics["@FillColor"] = "white";
+							};	
+							if (element.Graphics["@Color"]) {
+								element.Graphics["@Color"] = "#" + element.Graphics["@Color"]
+							}
+							else {
+								element.Graphics["@Color"] = "black";
+							};	
+						});
+					}
+					catch (e) {
+						console.log("No DataNodes found.");
+					}
+
+					// Graphics
+					try {
+						parsedJson.Pathway.Graphics = cleanJson( parsedJson.Pathway.Graphics );
+
+						parsedJson.Pathway.Graphics.forEach(function(element, index, array) {
+							// modify data
+						});
+					}
+					catch (e) {
+						console.log("No Graphics found.");
+					}
+
+					// Groups
+					try {
+						parsedJson.Pathway.Groups = cleanJson( parsedJson.Pathway.Group );
+						delete parsedJson.Pathway.Group;
+
+						parsedJson.Pathway.Groups.forEach(function(element, index, array) {
+							// modify data
+						});
+					}
+					catch (e) {
+						console.log("No Groups found.");
+					}
+
+					// Interactions
+					try {
+						parsedJson.Pathway.Interactions = cleanJson( parsedJson.Pathway.Interaction );
+						delete parsedJson.Pathway.Interaction;
+
+						parsedJson.Pathway.Interactions.forEach(function(element, index, array) {
+							// modify data
+						});
+					}
+					catch (e) {
+						console.log("No Interactions found.");
+					}
+
+					// Labels
+					try {
+						parsedJson.Pathway.Labels = cleanJson( parsedJson.Pathway.Label );
+						delete parsedJson.Pathway.Label;
+
+						parsedJson.Pathway.Labels.forEach(function(element, index, array) {
+							// modify data
+						});
+					}
+					catch (e) {
+						console.log("No Labels found.");
+					}
+
+					// Shapes
+					try {
+						parsedJson.Pathway.Shapes = cleanJson( parsedJson.Pathway.Shape );
+						delete parsedJson.Pathway.Shape;
+
+						parsedJson.Pathway.Shapes.forEach(function(element, index, array) {
+							// modify data
+						});
+					}
+					catch (e) {
+						console.log("No Shapes found.");
+					}
 
 					$scope.Pathway = parsedJson.Pathway;
 					console.log("$scope");
