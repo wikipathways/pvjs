@@ -3,7 +3,7 @@
 /* Controllers */
 angular.module('pathvisio.controllers', [])
 .controller('HomeCtrl', ['$scope', function($scope) {
-	$scope.test = "test";
+	$scope.test = "blue";
 	return $scope;
 
 }])
