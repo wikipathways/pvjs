@@ -39,6 +39,7 @@ angular.module('pathvisio.services', [])
 			// "http://genmapp.org/GPML/2010a"
 			// "http://genmapp.org/GPML/2008a"
 			// "http://genmapp.org/GPML/2007"
+			console.log(url);
 
 			if (!(url)) {
 				if (!($location.search().wgTitle)) {
@@ -48,10 +49,12 @@ angular.module('pathvisio.services', [])
 					var url = "../samples/gpml/" + $location.search().wgTitle + "_" + $location.search().wgCurRevisionId  + ".gpml";
 				}
 			};
+			console.log(url);
 
 			function getDataFile(url, callback) {
 				try {
 					$http.get(url).success(function(data) {
+			console.log(url);
 						return callback(data);
 					})
 				}
@@ -229,6 +232,7 @@ angular.module('pathvisio.services', [])
 						$scope.Pathway = parsedJson.Pathway;
 						console.log("$scope");
 						console.log($scope);
+						console.log(JSON.stringify($scope.Pathway));
 					}
 					else {
 						alert("Pathvisio.js does not support the data format provided. Please convert to GPML and retry.")
