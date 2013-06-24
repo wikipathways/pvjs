@@ -22,9 +22,6 @@ describe('controllers', function() {
 		}));
 
 		it('get value of scope.test for demo controller test', function() {
-			console.log("scope for HomeCtrl");
-			console.log(scope);
-			console.log(scope.test);
 
 			expect(scope.test).toBe("blue");
 		});
@@ -50,11 +47,7 @@ describe('controllers', function() {
 			});
 		}));
 
-		it('should add 1 Pathway to scope', function() {
-			console.log("scope for PathwayCtrl");
-			console.log(scope);
-			console.log(scope.Pathway);
-			console.log(scope.Pathway[0].DataNodes.length);
+		it('should have 75 DataNodes', function() {
 
 			expect(scope.Pathway[0].DataNodes.length).toEqual(75);
 		});
