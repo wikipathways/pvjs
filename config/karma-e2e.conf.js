@@ -13,7 +13,7 @@ browsers = ['Chrome'];
 singleRun = true;
 
 proxies = {
-  '/': 'http://localhost:8000/'
+  '/': 'http://127.0.0.1/~andersriutta/pathvisio.js/'
 };
 
 junitReporter = {
