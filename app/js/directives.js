@@ -96,7 +96,7 @@ angular.module('pathvisio.directives', [])
 				{
 					//console.log("$scope inside drawingBoard if statement");
 					//console.log($scope);
-					elm.attr("style", "background-color: #fff0ff; height:auto; bottom:0; top:0; left:0; right:0; margin-top:0; margin-bottom:0; margin-right:0; margin-left:0;");
+					elm.attr("style", "background-color: #f5f5f5; height:auto; bottom:0; top:0; left:0; right:0; margin-top:0; margin-bottom:0; margin-right:0; margin-left:0;");
 			       		var scaleViewAll = Math.min(elm[0].clientWidth/$scope.Pathway.Graphics["@BoardWidth"], elm[0].clientHeight/$scope.Pathway.Graphics["@BoardHeight"]);
 					var translateX = (elm[0].clientWidth - $scope.Pathway.Graphics["@BoardWidth"]*scaleViewAll)/2;
 					if ($scope.drawingParameters.editable == true) {
@@ -116,6 +116,7 @@ angular.module('pathvisio.directives', [])
 	return function($scope, elm, attrs) {
 		//console.log("$scope inside node");
 		//console.log($scope);
+		elm[0].setAttribute("class", "node " + $scope.DataNode["@Type"]);
 		elm[0].setAttribute("transform", "translate(" + $scope.DataNode.Graphics.x + "," + $scope.DataNode.Graphics.y + ")");
 	}
 }])

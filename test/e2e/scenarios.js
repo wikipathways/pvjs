@@ -29,7 +29,7 @@ describe('viewer', function() {
     });
 
     it('should have 2 Metabolites', function() {
-      expect(element('g.Metabolites').count()).toEqual(2);
+      expect(element('g.Metabolite').count()).toEqual(2);
     });
 
     it('should have 5 Pathways', function() {
@@ -41,27 +41,9 @@ describe('viewer', function() {
     });
 
     it('should have an svg#drawingBoard with height equal to the height of the body', function() {
-	var bodyHeight = element('body').height();
-	var drawingBoardHeight = element('#drawingBoard').height();
-      expect(bodyHeight).toEqual(drawingBoardHeight);
+	    element('body').query(function(body, done) {
+	      expect(element('#drawingBoard').height()).toEqual(body.height());
+	      done();
+	    });
     });
-
-    /*
-    it('should have an svg#drawingBoard with height 657', function() {
-      expect( element('body').height() ).toEqual(1);
-    });
-
-    it('should have an svg#drawingBoard with height equal to window height', function() {
-	var body = document.body,
-	    html = document.documentElement;
-
-	var height = Math.max( body.scrollHeight, body.offsetHeight, 
-			       html.clientHeight, html.scrollHeight, html.offsetHeight );
-
-    var ratioBodyToSvg = height / document.getElementById('drawingBoard').getBBox().height;
-    console.log(ratioBodyToSvg);
-
-      expect(ratioBodyToSvg).toEqual(1);
-    });
-*/
 });
