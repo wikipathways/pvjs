@@ -54,7 +54,6 @@ angular.module('pathvisio.services', [])
 			function getDataFile(url, callback) {
 				try {
 					$http.get(url).success(function(data) {
-			console.log(url);
 						return callback(data);
 					})
 				}
@@ -67,6 +66,7 @@ angular.module('pathvisio.services', [])
 			var getData = getDataFile(url, function(data) {
 				function cleanJson(object) {
 					if (Object.prototype.toString.call( object ) === '[object Object]' ) {
+						console.log('hey');
 						var array = [];
 						array.push(object)
 						return array;
@@ -81,11 +81,27 @@ angular.module('pathvisio.services', [])
 				// Test for whether file could be GPML based on filename extension
 
 				if (Right(url,4).toLowerCase() == "gpml" || Right(url,3).toLowerCase() == "xml") {
-					var sMyString = data;
-					var oParser = new DOMParser();
-					var oDOM = oParser.parseFromString(sMyString, "text/xml");
+					try //Internet Explorer
+					  {
+					  var xmlDoc=new ActiveXObject("Microsoft.XMLDOM");
+					  xmlDoc.async="false";
+					  xmlDoc.loadXML(data);
+					  }
+					catch(e)
+					  {
+					  try //Firefox, Mozilla, Opera, etc.
+					  {
+					  var parser=new DOMParser();
+					  var xmlDoc=parser.parseFromString(data,"text/xml");
+					  }
+					  catch(e)
+					  {
+					  alert(e.message);
+					  return;
+					  }
+					}
 
-					var json = xml2json(oDOM, "");
+					var json = xml2json(xmlDoc, "");
 
 					var parsedJson = jQuery.parseJSON(json);
 
