@@ -96,9 +96,10 @@ angular.module('pathvisio.directives', [])
 				{
 					//console.log("$scope inside drawingBoard if statement");
 					//console.log($scope);
-					//elm.attr("style", "width: 1123px; height: 610px; background-color: #f5f5f5; bottom:0; top:0; left:0; right:0; margin-top:0; margin-bottom:0; margin-right:0; margin-left:0;");
-					//elm.attr("style", "background-color: #f5f5f5; height:auto; bottom:0; top:0; left:0; right:0; margin-top:0; margin-bottom:0; margin-right:0; margin-left:0;");
-			       		var scaleViewAll = Math.min(elm[0].getBoundingClientRect().width/$scope.Pathway.Graphics["@BoardWidth"], elm[0].getBoundingClientRect().height/$scope.Pathway.Graphics["@BoardHeight"]);
+
+					elm.attr("style", "width: 100%; height: 100%; background-color: #f5f5f5; bottom:0; top:0; left:0; right:0; margin-top:0; margin-bottom:0; margin-right:0; margin-left:0;");
+			       		/* old scaling before using viewBox
+					var scaleViewAll = Math.min(elm[0].getBoundingClientRect().width/$scope.Pathway.Graphics["@BoardWidth"], elm[0].getBoundingClientRect().height/$scope.Pathway.Graphics["@BoardHeight"]);
 					console.log("elm[0].clientWidth");
 					console.log(elm[0].clientWidth);
 					console.log(elm[0]);
@@ -109,12 +110,18 @@ angular.module('pathvisio.directives', [])
 					console.log(scaleViewAll);
 					var translateX = (elm[0].clientWidth - $scope.Pathway.Graphics["@BoardWidth"]*scaleViewAll)/2;
 					if ($scope.drawingParameters.editable == true) {
-					//	$('#viewport').attr("transform", "scale(1)")
+						$('#viewport').attr("transform", "scale(1)")
 					}
 					else {
-					//	$('#viewport').attr("transform", "scale(" + scaleViewAll + ") translate(" + translateX/scaleViewAll + ",0)")
+						$('#viewport').attr("transform", "scale(" + scaleViewAll + ") translate(" + translateX/scaleViewAll + ",0)")
+					};
+				       */
+					if ($scope.drawingParameters.editable == true) {
+						// would perhaps be better to do this without requiring jQuery
+						elm[0].setAttribute("viewBox", "0 0 " + $('body').width() + " " + $('body').height());
+					}
+					else {
 						elm[0].setAttribute("viewBox", "0 0 " + $scope.Pathway.Graphics["@BoardWidth"] + " " + $scope.Pathway.Graphics["@BoardHeight"]);
-						//elm[0].setAttribute("viewbox", "0 0 1500 1500");
 					};
 					$('#drawingBoard').off()
 					$('#drawingBoard').svgPan('viewport', 1, $scope.drawingParameters.enableZoom, 0, .2);
