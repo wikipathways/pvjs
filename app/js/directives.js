@@ -98,24 +98,18 @@ angular.module('pathvisio.directives', [])
 					//console.log($scope);
 
 					elm.attr("style", "width: 100%; height: 100%; background-color: #f5f5f5; bottom:0; top:0; left:0; right:0; margin-top:0; margin-bottom:0; margin-right:0; margin-left:0;");
-			       		/* old scaling before using viewBox
-					var scaleViewAll = Math.min(elm[0].getBoundingClientRect().width/$scope.Pathway.Graphics["@BoardWidth"], elm[0].getBoundingClientRect().height/$scope.Pathway.Graphics["@BoardHeight"]);
-					console.log("elm[0].clientWidth");
-					console.log(elm[0].clientWidth);
-					console.log(elm[0]);
-					console.log('$scope.$parent.Pathway.Graphics["@BoardWidth"]');
-					console.log($scope.$parent.Pathway.Graphics["@BoardWidth"]);
-					console.log($scope);
-					console.log("scaleViewAll");
-					console.log(scaleViewAll);
-					var translateX = (elm[0].clientWidth - $scope.Pathway.Graphics["@BoardWidth"]*scaleViewAll)/2;
+			       		// scaling without using viewBox.
+					// would perhaps be better to get max svg width allowed without requiring jQuery
+					var scaleViewAll = Math.min($('body').width() / $scope.Pathway.Graphics["@BoardWidth"], $('body').height() / $scope.Pathway.Graphics["@BoardHeight"]);
+					var translateX = ($('body').width() - $scope.Pathway.Graphics["@BoardWidth"]*scaleViewAll)/2;
 					if ($scope.drawingParameters.editable == true) {
 						$('#viewport').attr("transform", "scale(1)")
 					}
 					else {
 						$('#viewport').attr("transform", "scale(" + scaleViewAll + ") translate(" + translateX/scaleViewAll + ",0)")
 					};
-				       */
+				       /*
+			       		// scaling using viewBox. Does not work correctly with svgPan.js.
 					if ($scope.drawingParameters.editable == true) {
 						// would perhaps be better to do this without requiring jQuery
 						elm[0].setAttribute("viewBox", "0 0 " + $('body').width() + " " + $('body').height());
@@ -123,6 +117,7 @@ angular.module('pathvisio.directives', [])
 					else {
 						elm[0].setAttribute("viewBox", "0 0 " + $scope.Pathway.Graphics["@BoardWidth"] + " " + $scope.Pathway.Graphics["@BoardHeight"]);
 					};
+				       */
 					$('#drawingBoard').off()
 					$('#drawingBoard').svgPan('viewport', 1, $scope.drawingParameters.enableZoom, 0, .2);
 				}
@@ -132,14 +127,16 @@ angular.module('pathvisio.directives', [])
 ])
 .directive('node', [function() {
 	return function($scope, elm, attrs) {
-		//console.log("$scope inside node");
+		console.log("$scope inside node");
 		//console.log($scope);
 		elm[0].setAttribute("class", "node " + $scope.DataNode["@Type"]);
 		elm[0].setAttribute("transform", "translate(" + $scope.DataNode.Graphics.x + "," + $scope.DataNode.Graphics.y + ")");
+		console.log("$scope inside node end");
 	}
 }])
 .directive('nodeBoundingBox', [function() {
 	return function($scope, elm, attrs) {
+		console.log("$scope inside nodeBoundingBox");
 		elm[0].id = $scope.DataNode["@GraphId"];
 		elm[0].setAttribute("x", 0)
 		elm[0].setAttribute("y", 0);
@@ -151,6 +148,7 @@ angular.module('pathvisio.directives', [])
 }])
 .directive('nodeLabel', [function() {
 	return function($scope, elm, attrs) {
+		console.log("$scope inside nodeLabel");
 		$scope.$watch('Pathway.DataNode["@TextLabel"]', function() {
 			if ($scope.Pathway)
 				{
@@ -179,6 +177,7 @@ angular.module('pathvisio.directives', [])
 					}
 					positionLabel();
 				}})
+		console.log("$scope inside nodeLabel end");
 	}
 }])
 
