@@ -1,3 +1,52 @@
+<script>
+// create SVG root element
+var svg = document.createElementNS(svgns, 'svg'); // don't need to pass in 'true'
+svg.setAttribute('width', '300');
+svg.setAttribute('height', '300');
+
+// create an example circle and append it to SVG root element
+var el = document.createElementNS(svgns, 'circle');
+el.setAttribute('cx', 200);
+el.setAttribute('cy', 200);
+el.setAttribute('r', 5);
+el.setAttribute('fill', '#223FA3');
+el.setAttribute('stroke-width', '1px');
+el.setAttribute('stroke', 'black');
+
+// Must use a callback to know when SVG is appended to page (this is slight
+// divergence from standard). The following are supported ways to do this:
+svg.addEventListener('SVGLoad', function() {
+  svg = this; // this will correctly refer to your SVG root
+  alert('loaded!');
+svg.appendChild(el);
+}, false);
+
+// now append the SVG root to our document
+svgweb.appendChild(svg, document.getElementById('dog')); // note that we call svgweb.appendChild
+</script>
+<h1>end</h1>
+<div id="dog"></div>
+
+<svg 
+     version="1.1" 
+     xmlns="http://www.w3.org/2000/svg"
+     xmlns:xlink="http://www.w3.org/1999/xlink"
+     width="200" height="200"
+     style="background-color: #D2B48C;">
+   <g 
+      id="myGroup" 
+      fill="blue" 
+      style="font-size: 18px; text-anchor: middle; font-family: serif;">
+      <circle
+         id="myCircle" 
+         cx="100" cy="75" r="50"
+         stroke="firebrick"
+         stroke-width="3" />
+      <text x="100" y="155">Hello World</text>
+      <text x="100" y="175">From An SVG File!</text>
+   </g>
+</svg>
+	<!--
 <svg id="drawingBoard" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" preserveaspectratio="xMidYMid" drawing-board>
 	<g id="viewport">
 		<g ng-repeat="DataNode in Pathway.DataNodes" node>
@@ -6,5 +55,6 @@
 		</g>
 	</g>
 </svg>
+-->
 <!-- does this script belong here or in index.html? -->
 <script type="text/javascript" src="js/jquery-svgpan.js"></script>
