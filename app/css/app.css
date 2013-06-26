@@ -28,3 +28,65 @@
   content: "";
   padding: 0;
 }
+
+body .modal {
+	width: 96%; /* desired relative width */
+	left: 2%; /* (100%-width)/2 */
+	height: 96%; /* desired relative width */
+	top: 18%; /* (100%-width)/2 */
+	margin: auto auto auto auto; /* place center */
+}
+body .modal-header {
+	width: 96%; /* desired relative width */
+	height: 5%; /* desired relative width */
+	margin: auto auto auto auto; /* place center */
+}
+body div#modal-body {
+	width: 96%; /* desired relative width */
+	height: 75%; /* desired relative width */
+	margin: auto auto auto auto; /* place center */
+}
+body .modal-footer {
+	position: absolute;
+	width: 98%; /* desired relative width */
+	height: 7%; /* desired relative width */
+	top: auto; /* (100%-width)/2 */
+	bottom: 0%; /* (100%-width)/2 */
+	margin: auto auto auto auto; /* place center */
+}
+body .modal.fade.in {
+	top: 2%; /* (100%-width)/2 */
+	//top: auto; /* fade in to correct spot */
+}
+html, body {
+    margin: 0;
+    padding: 0;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    height: 100%;
+    width: 100%;
+    overflow: hidden
+}
+#content {
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    height: 100%;
+    width: 100%;
+    overflow: hidden
+}
+#footer {
+    background: #e5e5e5;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 33px
+}
