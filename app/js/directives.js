@@ -120,6 +120,13 @@ angular.module('pathvisio.directives', [])
 				       */
 					$('#drawingBoard').off()
 					$('#drawingBoard').svgPan('viewport', 1, $scope.drawingParameters.enableZoom, 0, .2);
+					// there must be a better way to put the svg into svgweb than using a time out.
+					console.log("elm.parent()[0]");
+					console.log(elm.parent()[0]);
+					setTimeout(function(){svgweb.appendChild(elm[0], document.getElementById('dog'));},100);
+					//setTimeout(function(){svgweb.appendChild(elm[0], elm.parent()[0]);},100);
+					// This would seem to be the better option, but it doesn't render the text labels.
+					//$scope.$evalAsync(svgweb.appendChild(elm[0], document.getElementById('dog'))); // note that we call svgweb.appendChild
 				}
 		}, true)
 	}
@@ -152,6 +159,7 @@ angular.module('pathvisio.directives', [])
 		$scope.$watch('Pathway.DataNode["@TextLabel"]', function() {
 			if ($scope.Pathway)
 				{
+					elm[0].textContent = $scope.DataNode["@TextLabel"];
 					elm[0].id = $scope.DataNode["@GraphId"];
 					elm[0].setAttribute("class", "node " + $scope.DataNode.Graphics["@ShapeType"])
 					elm[0].setAttribute("font-size", $scope.DataNode.Graphics["@FontSize"] + "px")
