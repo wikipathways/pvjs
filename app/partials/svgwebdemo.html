@@ -1,6 +1,22 @@
 <script>
 function objLoadFunc() {
 
+	// via javascript
+       // create SVG root element
+	var svg = document.createElementNS(svgns, 'svg'); // don't need to pass in 'true'
+	svg.setAttribute('width', '300');
+	svg.setAttribute('height', '300');
+
+	var circleBlue = document.createElementNS(svgns, 'circle');
+	circleBlue.setAttribute('x', 10);
+	circleBlue.setAttribute('y', 10);
+	circleBlue.setAttribute('r', 5);
+	circleBlue.setAttribute('fill', 'blue');
+	
+	svg.appendChild(circleBlue);
+	svgweb.appendChild(svg, document.body); // note that we call svgweb.appendChild
+
+
 	var doc = document.getElementById('mySVG').contentDocument;                
 	var circle = document.createElementNS(svgns, 'circle');
 	circle.setAttribute('x', 10);
