@@ -2,32 +2,32 @@
 <html lang="en" class="ng-app:pathvisio" id="ng-app" ng-app="pathvisio" xmlns:ng="http://angularjs.org">
 <head>
 <meta charset="utf-8">
-  <meta name="svg.render.forceflash" content="true" />
-   <script src="js/svg.js" data-path="js/"></script>
-   <script>
+<meta name="svg.render.forceflash" content="false" />
+<script src="js/svg.js" data-path="js/"></script>
+<script>
 // see source: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/forEach
-  if ( !Array.prototype.forEach ) {
-  Array.prototype.forEach = function(fn, scope) {
-    for(var i = 0, len = this.length; i < len; ++i) {
-      fn.call(scope, this[i], i, this);
-    }
-  };
+if ( !Array.prototype.forEach ) {
+	Array.prototype.forEach = function(fn, scope) {
+		for(var i = 0, len = this.length; i < len; ++i) {
+			fn.call(scope, this[i], i, this);
+		}
+	};
 } 
-   </script>
-  
+</script>
+
 
 <title>pathvisio.js</title>
-    <!--[if lt IE 9]>
+<!--[if lt IE 9]>
       <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
-    <!--[if lte IE 8]>
+<!--[if lte IE 8]>
       <script>
-        document.createElement('ng-include');
-        document.createElement('ng-pluralize');
-        document.createElement('ng-view');
-        document.createElement('ng:include');
-        document.createElement('ng:pluralize');
-        document.createElement('ng:view');
+	document.createElement('ng-include');
+	document.createElement('ng-pluralize');
+	document.createElement('ng-view');
+	document.createElement('ng:include');
+	document.createElement('ng:pluralize');
+	document.createElement('ng:view');
       </script>
     <![endif]-->
 
@@ -53,7 +53,7 @@ endif
 <body ng-controller="PathwayCtrl">
 <div id="content">
 	<span ng-include src="'partials/render.html'">
-	<!--<span ng-include src="'partials/svgwebdemo.html'">-->
+		<!--<span ng-include src="'partials/svgwebdemo.html'">-->
 	</span>
 </div>
 <div style="position:absolute; right:0; height:100%;">
