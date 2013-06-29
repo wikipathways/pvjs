@@ -1,10 +1,39 @@
-<script>
-</script>
-<h1>end</h1>
-<p>dynamic inside</p>
-<div id="dog" height="500" width="500"></div>
+<p>app/partials/render.html script svg</p>
+    <script type="image/svg+xml">
+      <svg id="SVGViewerControlLastElement">
+          <g id="g3">
+            <rect
+               width="250"
+               height="120"
+               ry="5"
+               x="50"
+               y="50"
+               style="opacity:1;fill:blue;fill-opacity:1;stroke:none;stroke-width:15;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+               id="rect4" />
+          </g>
+      </svg>
+    </script>
 
-<p>dynamic</p>
+<p>app/partials/render.html script javascript</p>
+<div id="dog" height="500" width="500"></div>
+    <script>
+	setTimeout(function() {
+		var svgNS = "http://www.w3.org/2000/svg";
+
+		var myCircle = document.createElementNS(svgNS,"circle");
+		myCircle.setAttributeNS(null,"id","mycircle");
+		myCircle.setAttributeNS(null,"cx",100);
+		myCircle.setAttributeNS(null,"cy",100);
+		myCircle.setAttributeNS(null,"r",50);
+		myCircle.setAttributeNS(null,"fill","black");
+		myCircle.setAttributeNS(null,"stroke","none");
+		console.log(myCircle);
+		svgweb.appendChild(myCircle, document.getElementById('dog'));
+		console.log(document.getElementById('dog'));
+	},500);
+    </script>
+
+<p>app/partials/render.html script inline from angular</p>
 <svg id="drawingBoard" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" preserveaspectratio="xMidYMid" drawing-board>
 	<g id="viewport">
 		<g ng-repeat="DataNode in Pathway.DataNodes" node>
