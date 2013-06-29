@@ -1,31 +1,7 @@
-<p>app/partials/render.html using svgweb and javascript vs svgweb, javascript and an html object</p>
-<div id="svgContainer" height="500" width="500"></div>
+<p>app/partials/render.html using svgweb, javascript and an html object</p>
+<div id="svgContainer1" height="500" width="500"></div>
 <script>
 function objLoadFunc() {
-
-	// via javascript
-       // create SVG root element
-	var svg = document.createElementNS(svgns, 'svg'); // don't need to pass in 'true'
-	svg.setAttribute('width', '300');
-	svg.setAttribute('height', '300');
-
-	var rectGreen = document.createElementNS(svgns, 'rect');
-	rectGreen.setAttribute('x', 10);
-	rectGreen.setAttribute('y', 10);
-	rectGreen.setAttribute('width', 40);
-	rectGreen.setAttribute('height', 20);
-	rectGreen.setAttribute('fill', 'green');
-	svg.appendChild(rectGreen);
-
-	var circleBlue = document.createElementNS(svgns, 'circle');
-	circleBlue.setAttribute('x', 15);
-	circleBlue.setAttribute('y', 15);
-	circleBlue.setAttribute('r', 5);
-	circleBlue.setAttribute('fill', 'blue');
-	svg.appendChild(circleBlue);
-
-	svgweb.appendChild(svg, document.body); // note that we call svgweb.appendChild
-
 
 	var doc = document.getElementById('mySVG').contentDocument;                
 	var circle = document.createElementNS(svgns, 'circle');
@@ -50,6 +26,36 @@ function objLoadFunc() {
 
 		window._counter++;
 	}, 5000);
+
+	// via javascript
+       // create SVG root element
+	var svg = document.createElementNS(svgns, 'svg'); // don't need to pass in 'true'
+	svg.setAttribute('width', '100');
+	svg.setAttribute('height', '100');
+
+	var rectGreen = document.createElementNS(svgns, 'rect');
+	rectGreen.setAttribute('x', 10);
+	rectGreen.setAttribute('y', 10);
+	rectGreen.setAttribute('width', 40);
+	rectGreen.setAttribute('height', 20);
+	rectGreen.setAttribute('fill', 'green');
+	svg.appendChild(rectGreen);
+
+	var circleBlue = document.createElementNS(svgns, 'circle');
+	circleBlue.setAttribute('x', 15);
+	circleBlue.setAttribute('y', 15);
+	circleBlue.setAttribute('r', 5);
+	circleBlue.setAttribute('fill', 'blue');
+	svg.appendChild(circleBlue);
+	console.log(circleBlue);
+
+	/*
+	// this does not work
+	var pathwayGroup = document.getElementById('viewport');
+	svg.appendChild(pathwayGroup);
+	*/
+
+	svgweb.appendChild(svg, document.getElementById('svgContainer2')); // note that we call svgweb.appendChild
 }
 
 function loadFunc() {
@@ -64,7 +70,7 @@ function loadFunc() {
 
 	obj.addEventListener(window.svgweb ? 'SVGLoad' : 'load', objLoadFunc, false);
 
-	var container = document.getElementById('svgContainer');
+	var container = document.getElementById('svgContainer1');
 	if (window.svgweb) {
 		svgweb.appendChild(obj, container);
 	} else {
@@ -82,12 +88,15 @@ else {
 
 </script>
 
+<p>app/partials/render.html using svgweb and javascript without an html object</p>
+<div id="svgContainer2" height="500" width="500"></div>
+
 <p>app/partials/render.html script inline from angular</p>
 <svg id="drawingBoard" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" preserveaspectratio="xMidYMid" drawing-board>
-	<g id="viewport">
-		<g ng-repeat="DataNode in Pathway.DataNodes" node>
-			<rect node-bounding-box></rect>
-			<text font-family="Arial" node-label></text>
+	<g id="viewport" xmlns="http://www.w3.org/2000/svg">
+		<g ng-repeat="DataNode in Pathway.DataNodes" xmlns="http://www.w3.org/2000/svg" node>
+			<rect xmlns="http://www.w3.org/2000/svg" node-bounding-box></rect>
+			<text xmlns="http://www.w3.org/2000/svg" font-family="Arial" node-label></text>
 		</g>
 	</g>
 </svg>
