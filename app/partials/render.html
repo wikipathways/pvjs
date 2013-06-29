@@ -8,54 +8,11 @@ function objLoadFunc() {
 	circle.setAttribute('x', 15);
 	circle.setAttribute('y', 15);
 	circle.setAttribute('r', 5);
-	circle.setAttribute('fill', 'red');
+	circle.setAttribute('fill', 'purple');
 	var root = doc.getElementsByTagNameNS(svgns, 'svg')[0];
 	root.appendChild(circle);
 	console.log('window.onsvgload');
-	// use some JavaScript to animate the rectangles over and over
-	window._counter = 1;
-	window.setInterval(function() {
-		var rect = doc.getElementById('myRect');
-		var fill;
-		if (window._counter % 2 == 0) {
-			fill = 'blue';
-		} else {
-			fill = 'darkblue';
-		}
-		rect.setAttribute('fill', fill);
 
-		window._counter++;
-	}, 5000);
-
-	// via javascript
-       // create SVG root element
-	var svg = document.createElementNS(svgns, 'svg'); // don't need to pass in 'true'
-	svg.setAttribute('width', '100');
-	svg.setAttribute('height', '100');
-
-	var rectGreen = document.createElementNS(svgns, 'rect');
-	rectGreen.setAttribute('x', 10);
-	rectGreen.setAttribute('y', 10);
-	rectGreen.setAttribute('width', 40);
-	rectGreen.setAttribute('height', 20);
-	rectGreen.setAttribute('fill', 'green');
-	svg.appendChild(rectGreen);
-
-	var circleBlue = document.createElementNS(svgns, 'circle');
-	circleBlue.setAttribute('x', 15);
-	circleBlue.setAttribute('y', 15);
-	circleBlue.setAttribute('r', 5);
-	circleBlue.setAttribute('fill', 'blue');
-	svg.appendChild(circleBlue);
-	console.log(circleBlue);
-
-	/*
-	// this does not work
-	var pathwayGroup = document.getElementById('viewport');
-	svg.appendChild(pathwayGroup);
-	*/
-
-	svgweb.appendChild(svg, document.getElementById('svgContainer2')); // note that we call svgweb.appendChild
 }
 
 function loadFunc() {
@@ -63,7 +20,9 @@ function loadFunc() {
 	obj.id = 'mySVG';
 	//obj.setAttribute('classid', 'image/svg+xml');
 	obj.setAttribute('type', 'image/svg+xml');
-	obj.setAttribute('src', 'svg-files/mysvg.svg');
+	obj.setAttribute('src', 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg"></svg>');
+	//obj.setAttribute('data', 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg"></svg>');
+	//obj.setAttribute('src', 'svg-files/mysvg.svg');
 	//obj.setAttribute('data', '../svg-files/mysvg.svg');
 	obj.setAttribute('width', '250');
 	obj.setAttribute('height', '100');

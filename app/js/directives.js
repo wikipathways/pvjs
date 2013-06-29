@@ -97,6 +97,31 @@ angular.module('pathvisio.directives', [])
 					//console.log("$scope inside drawingBoard if statement");
 					//console.log($scope);
 
+			       // create SVG root element
+				var svg = document.createElementNS(svgns, 'svg'); // don't need to pass in 'true'
+				svg.setAttribute('width', '100');
+				svg.setAttribute('height', '100');
+				console.log("svg");
+				console.log(svg);
+				console.log("elm");
+				console.log(elm);
+				console.log(elm[0]);
+
+				var circleBlue = document.createElementNS(svgns, 'circle');
+				circleBlue.setAttribute('x', 15);
+				circleBlue.setAttribute('y', 15);
+				circleBlue.setAttribute('r', 5);
+				circleBlue.setAttribute('fill', 'red');
+				svg.appendChild(circleBlue);
+
+				/*
+				// this does not work
+				var pathwayGroup = document.getElementById('viewport');
+				svg.appendChild(pathwayGroup);
+				*/
+
+				svgweb.appendChild(svg, document.getElementById('svgContainer2')); // note that we call svgweb.appendChild
+
 					elm.attr("style", "width: 100%; height: 100%; background-color: #f5f5f5; bottom:0; top:0; left:0; right:0; margin-top:0; margin-bottom:0; margin-right:0; margin-left:0;");
 			       		// scaling without using viewBox.
 					// would perhaps be better to get max svg width allowed without requiring jQuery
@@ -139,7 +164,30 @@ angular.module('pathvisio.directives', [])
 		elm[0].setAttribute("class", "node " + $scope.DataNode["@Type"]);
 		elm[0].setAttribute("transform", "translate(" + $scope.DataNode.Graphics.x + "," + $scope.DataNode.Graphics.y + ")");
 		console.log("$scope inside node end");
-	}
+
+		// I will want to use something better than a timeout to know when the object is created.
+		// I also may want to do conditional checking so as not to run this if not IE8
+		window.setTimeout(function() {
+			var doc = document.getElementById('mySVG').contentDocument;                
+			var g = document.createElementNS(svgns, 'g');
+			g.setAttribute("class", "node " + $scope.DataNode["@Type"]);
+			g.setAttribute("transform", "translate(" + $scope.DataNode.Graphics.x + "," + $scope.DataNode.Graphics.y + ")");
+			var root = doc.getElementsByTagNameNS(svgns, 'svg')[0];
+			root.appendChild(g);
+			console.log('window.onsvgload');
+		}, 500)
+
+		
+/*
+		var rectGreen = document.createElementNS(svgns, 'rect');
+		rectGreen.setAttribute('x', 10);
+		rectGreen.setAttribute('y', 10);
+		rectGreen.setAttribute('width', 40);
+		rectGreen.setAttribute('height', 20);
+		rectGreen.setAttribute('fill', 'green');
+		svg.appendChild(rectGreen);
+*/
+		}
 }])
 .directive('nodeBoundingBox', [function() {
 	return function($scope, elm, attrs) {
@@ -151,6 +199,21 @@ angular.module('pathvisio.directives', [])
 		elm[0].setAttribute("height", $scope.DataNode.Graphics["@Height"]);
 		elm[0].setAttribute("stroke", $scope.DataNode.Graphics["@Color"]);
 		elm[0].setAttribute("fill", $scope.DataNode.Graphics["@FillColor"]);
+
+		window.setTimeout(function() {
+			var doc = document.getElementById('mySVG').contentDocument;                
+			var rect = document.createElementNS(svgns, 'rect');
+			rect.id = $scope.DataNode["@GraphId"];
+			rect.setAttribute("x", 0)
+			rect.setAttribute("y", 0);
+			rect.setAttribute("width", $scope.DataNode.Graphics["@Width"]);
+			rect.setAttribute("height", $scope.DataNode.Graphics["@Height"]);
+			rect.setAttribute("stroke", $scope.DataNode.Graphics["@Color"]);
+			rect.setAttribute("fill", $scope.DataNode.Graphics["@FillColor"]);
+			var root = doc.getElementsByTagNameNS(svgns, 'svg')[0];
+			root.appendChild(rect);
+			console.log('window.onsvgload');
+		}, 600)
 	}
 }])
 .directive('nodeLabel', [function() {
