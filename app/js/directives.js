@@ -2,6 +2,8 @@
 
 /* Directives */
 
+// might need this for Firefox compatibility, but haven't tested FF enough to know yet. Otherwise, can remove.
+// https://developer.mozilla.org/en-US/docs/xml/xml:id
 var getElementByIdWrapper = function (xmldoc, myID) {
 	return xmldoc.evaluate('//*[@xml:id="'+myID+'"]', xmldoc, 
 			       function () {
@@ -75,10 +77,8 @@ angular.module('pathvisio.directives', [])
 })
 .directive('pathwayImage', [function() {
 	function objLoadFunc() {
-
 		var doc = document.getElementById('pathwayImageFlash').contentDocument;                
 		var root = doc.getElementsByTagNameNS(svgns, 'svg')[0];
-
 	}
 
 	function loadFunc() {
@@ -103,50 +103,41 @@ angular.module('pathvisio.directives', [])
 		}
 
 	}
-	
-	// I don't remember what this is for - maybe checking whether I'm inside an iframe?
-	function objToString (obj) {
-		var str = '';
-		for (var p in obj) {
-			if (obj.hasOwnProperty(p)) {
-				str += p + '::' + obj[p] + '\n';
-			}
+
+	function createPathwayImage($scope, elm, attrs) {
+		elm.attr("style", "width: 100%; height: 100%; background-color: #f5f5f5; bottom:0; top:0; left:0; right:0; margin-top:0; margin-bottom:0; margin-right:0; margin-left:0;");
+		// scaling without using viewBox.
+		// would perhaps be better to get max svg width allowed without requiring jQuery
+		var scaleViewAll = Math.min($('body').width() / $scope.Pathway.Graphics["@BoardWidth"], $('body').height() / $scope.Pathway.Graphics["@BoardHeight"]);
+		var translateX = ($('body').width() - $scope.Pathway.Graphics["@BoardWidth"]*scaleViewAll)/2;
+		if ($scope.drawingParameters.editable == true) {
+			$('#viewport').attr("transform", "scale(1)")
 		}
-		return str;
-	}
+		else {
+			$('#viewport').attr("transform", "scale(" + scaleViewAll + ") translate(" + translateX/scaleViewAll + ",0)")
+		};
+
+		/*
+		// scaling using viewBox. Does not work correctly with svgPan.js.
+		if ($scope.drawingParameters.editable == true) {
+		// would perhaps be better to do this without requiring jQuery
+		elm[0].setAttribute("viewBox", "0 0 " + $('body').width() + " " + $('body').height());
+		}
+		else {
+		elm[0].setAttribute("viewBox", "0 0 " + $scope.Pathway.Graphics["@BoardWidth"] + " " + $scope.Pathway.Graphics["@BoardHeight"]);
+		};
+		*/
+		$('#pathwayImage').off()
+		$('#pathwayImage').svgPan('viewport', 1, $scope.drawingParameters.enableZoom, 0, .2);
+		// there must be a better way to put the svg into svgweb than using a time out.
+		//setTimeout(function(){svgweb.appendChild(elm[0], document.getElementById('dog'));},100);
+		//setTimeout(function(){svgweb.appendChild(elm[0], elm.parent()[0]);},100);
+		// This would seem to be the better option, but it doesn't render the text labels.
+		//$scope.$evalAsync(svgweb.appendChild(elm[0], document.getElementById('dog'))); // note that we call svgweb.appendChild
+	};
 
 	return function($scope, elm, attrs) {
 
-		function createPathwayImage($scope, elm, attrs) {
-			elm.attr("style", "width: 100%; height: 100%; background-color: #f5f5f5; bottom:0; top:0; left:0; right:0; margin-top:0; margin-bottom:0; margin-right:0; margin-left:0;");
-			// scaling without using viewBox.
-			// would perhaps be better to get max svg width allowed without requiring jQuery
-			var scaleViewAll = Math.min($('body').width() / $scope.Pathway.Graphics["@BoardWidth"], $('body').height() / $scope.Pathway.Graphics["@BoardHeight"]);
-			var translateX = ($('body').width() - $scope.Pathway.Graphics["@BoardWidth"]*scaleViewAll)/2;
-			if ($scope.drawingParameters.editable == true) {
-				$('#viewport').attr("transform", "scale(1)")
-			}
-			else {
-				$('#viewport').attr("transform", "scale(" + scaleViewAll + ") translate(" + translateX/scaleViewAll + ",0)")
-			};
-			/*
-			// scaling using viewBox. Does not work correctly with svgPan.js.
-			if ($scope.drawingParameters.editable == true) {
-			// would perhaps be better to do this without requiring jQuery
-			elm[0].setAttribute("viewBox", "0 0 " + $('body').width() + " " + $('body').height());
-			}
-			else {
-			elm[0].setAttribute("viewBox", "0 0 " + $scope.Pathway.Graphics["@BoardWidth"] + " " + $scope.Pathway.Graphics["@BoardHeight"]);
-			};
-			*/
-			$('#pathwayImage').off()
-			$('#pathwayImage').svgPan('viewport', 1, $scope.drawingParameters.enableZoom, 0, .2);
-			// there must be a better way to put the svg into svgweb than using a time out.
-			//setTimeout(function(){svgweb.appendChild(elm[0], document.getElementById('dog'));},100);
-			//setTimeout(function(){svgweb.appendChild(elm[0], elm.parent()[0]);},100);
-			// This would seem to be the better option, but it doesn't render the text labels.
-			//$scope.$evalAsync(svgweb.appendChild(elm[0], document.getElementById('dog'))); // note that we call svgweb.appendChild
-		};
 		// Define svg
 		//$scope.$watch(function() { return angular.toJson(['Pathway["@Name"]', 'editable']) }, function(pathway) {
 		$scope.$watch('drawingParameters.enableZoom', function(enableZoom) {
@@ -167,6 +158,7 @@ angular.module('pathvisio.directives', [])
 				}
 				else {
 					if ($scope.drawingParameters.imageFormat == 'flash') {
+						// might be able to modify this so that we're using the same function for svg and svgweb.
 						if (window.svgweb) {
 							svgweb.addOnLoad(loadFunc);
 						}
@@ -184,64 +176,61 @@ angular.module('pathvisio.directives', [])
 }
 ])
 .directive('node', [function() {
+	function createNode($scope, elm, attrs) {
+		elm.id = 'node' + $scope.DataNode["@GraphId"];
+		elm.setAttribute("class", "node " + $scope.DataNode["@Type"]);
+		elm.setAttribute("transform", "translate(" + $scope.DataNode.Graphics.x + "," + $scope.DataNode.Graphics.y + ")");
+	};
+
 	return function($scope, elm, attrs) {
-		//console.log("$scope inside node");
-		//console.log($scope);
-		elm[0].id = 'node' + $scope.DataNode["@GraphId"];
-		elm[0].setAttribute("class", "node " + $scope.DataNode["@Type"]);
-		elm[0].setAttribute("transform", "translate(" + $scope.DataNode.Graphics.x + "," + $scope.DataNode.Graphics.y + ")");
-
-		// I will want to use something better than a timeout to know when the object is created.
-		// I also may want to do conditional checking so as not to run this if not IE8
-		window.setTimeout(function() {
-			var doc = document.getElementById('pathwayImageFlash').contentDocument;                
-			var g = document.createElementNS(svgns, 'g');
-			g.id = 'node' + $scope.DataNode["@GraphId"];
-			g.setAttribute("class", "node " + $scope.DataNode["@Type"]);
-			g.setAttribute("transform", "translate(" + $scope.DataNode.Graphics['x'] + "," + $scope.DataNode.Graphics['y'] + ")");
-			//g.setAttribute("transform", "translate(" + $scope.DataNode.Graphics.x + "," + $scope.DataNode.Graphics.y + ")");
-			var root = doc.getElementsByTagNameNS(svgns, 'svg')[0];
-			root.appendChild(g);
-		}, 1500)
-
-
-		/*
-		   var rectGreen = document.createElementNS(svgns, 'rect');
-		   rectGreen.setAttribute('x', 10);
-		   rectGreen.setAttribute('y', 10);
-		   rectGreen.setAttribute('width', 40);
-		   rectGreen.setAttribute('height', 20);
-		   rectGreen.setAttribute('fill', 'green');
-		   svg.appendChild(rectGreen);
-		   */
+		if ($scope.drawingParameters.imageFormat == 'svg') {
+			createNode($scope, elm[0], attrs)
+		}
+		else {
+			if ($scope.drawingParameters.imageFormat == 'flash') {
+				window.setTimeout(function() {
+					var doc = document.getElementById('pathwayImageFlash').contentDocument;                
+					var g = document.createElementNS(svgns, 'g');
+					createNode($scope, g, attrs)
+					var root = doc.getElementsByTagNameNS(svgns, 'svg')[0];
+					root.appendChild(g);
+				}, 1500)
+			}
+			else {
+				// do nothing
+			};
+		}
 	}
 }])
 .directive('nodeBoundingBox', [function() {
-		return function($scope, elm, attrs) {
-		//console.log("$scope inside nodeBoundingBox");
-		elm[0].id = 'nodeBoundingBox' + $scope.DataNode["@GraphId"];
-		elm[0].setAttribute("x", 0)
-		elm[0].setAttribute("y", 0);
-		elm[0].setAttribute("width", $scope.DataNode.Graphics["@Width"]);
-		elm[0].setAttribute("height", $scope.DataNode.Graphics["@Height"]);
-		elm[0].setAttribute("stroke", $scope.DataNode.Graphics["@Color"]);
-		elm[0].setAttribute("fill", $scope.DataNode.Graphics["@FillColor"]);
+	function createNodeBoundingBox($scope, elm, attrs) {
+		elm.id = 'nodeBoundingBox' + $scope.DataNode["@GraphId"];
+		elm.setAttribute("x", 0)
+		elm.setAttribute("y", 0);
+		elm.setAttribute("width", $scope.DataNode.Graphics["@Width"]);
+		elm.setAttribute("height", $scope.DataNode.Graphics["@Height"]);
+		elm.setAttribute("stroke", $scope.DataNode.Graphics["@Color"]);
+		elm.setAttribute("fill", $scope.DataNode.Graphics["@FillColor"]);
+	};
 
-		window.setTimeout(function() {
-			var doc = document.getElementById('pathwayImageFlash').contentDocument;                
-			var rect = document.createElementNS(svgns, 'rect');
-			rect.id = 'nodeBoundingBox' + $scope.DataNode["@GraphId"];
-			rect.setAttribute("x", 0)
-			rect.setAttribute("y", 0);
-			rect.setAttribute("width", $scope.DataNode.Graphics["@Width"]);
-			rect.setAttribute("height", $scope.DataNode.Graphics["@Height"]);
-			rect.setAttribute("stroke", $scope.DataNode.Graphics["@Color"]);
-			rect.setAttribute("fill", $scope.DataNode.Graphics["@FillColor"]);
-			//var root = doc.getElementsByTagNameNS(svgns, "g")[0];
-			//var root = getElementByIdWrapper(doc, 'node' + $scope.DataNode["@GraphId"]); // Got it
-			var root = doc.getElementById('node' + $scope.DataNode["@GraphId"]); // Got it
-			root.appendChild(rect);
-		}, 1700)
+	return function($scope, elm, attrs) {
+		if ($scope.drawingParameters.imageFormat == 'svg') {
+			createNodeBoundingBox($scope, elm[0], attrs)
+		}
+		else {
+			if ($scope.drawingParameters.imageFormat == 'flash') {
+				window.setTimeout(function() {
+					var doc = document.getElementById('pathwayImageFlash').contentDocument;                
+					var rect = document.createElementNS(svgns, 'rect');
+					createNodeBoundingBox($scope, rect, attrs)
+					var root = doc.getElementById('node' + $scope.DataNode["@GraphId"]); // Got it
+					root.appendChild(rect);
+				}, 1700)
+			}
+			else {
+				// do nothing
+			};
+		}
 	}
 }])
 .directive('nodeShape', [function() {
@@ -277,56 +266,63 @@ angular.module('pathvisio.directives', [])
 	}
 }])
 .directive('nodeLabel', [function() {
+	function createNodeLabel($scope, elm, attrs) {
+		elm.textContent = $scope.DataNode["@TextLabel"];
+		elm.id = 'nodeLabel' + $scope.DataNode["@GraphId"];
+		elm.setAttribute("class", "node " + $scope.DataNode.Graphics["@ShapeType"])
+		elm.setAttribute("font-size", $scope.DataNode.Graphics["@FontSize"] + "px")
+		elm.setAttribute("fill", $scope.DataNode.Graphics["@Color"]);
+	};
+
+	var positionLabel = function (){
+		var labelBbox = elm[0].getBBox();
+		var labelText = $scope.DataNode["@TextLabel"];
+		if ( $scope.DataNode.Graphics["@Width"] < labelBbox["width"] ) {
+			labelText = labelText.substring(0, labelText.length - 4);
+			elm[0].textContent = labelText + "...";
+			labelBbox = elm[0].getBBox();
+			while ( $scope.DataNode.Graphics["@Width"] < labelBbox["width"] ) {
+				labelText = labelText.substring(0, labelText.length - 1);
+				elm[0].textContent = labelText + "...";
+				labelBbox = elm[0].getBBox();
+			};
+
+		};
+		var labelxtransform = -1*(labelBbox["x"]) + $scope.DataNode.Graphics["@Width"]/2 - labelBbox["width"]/2;
+		var labelytransform = -1*(labelBbox["y"]) + $scope.DataNode.Graphics["@Height"]/2 - labelBbox["height"]/2;
+		elm[0].setAttribute("transform", "translate(" + labelxtransform + "," + labelytransform + ")");
+	}
+
 	return function($scope, elm, attrs) {
-		//console.log("$scope inside nodeLabel");
 		$scope.$watch('Pathway.DataNode["@TextLabel"]', function() {
-			if ($scope.Pathway)
-				{
-					elm[0].textContent = $scope.DataNode["@TextLabel"];
-					elm[0].id = 'nodeLabel' + $scope.DataNode["@GraphId"];
-					elm[0].setAttribute("class", "node " + $scope.DataNode.Graphics["@ShapeType"])
-					elm[0].setAttribute("font-size", $scope.DataNode.Graphics["@FontSize"] + "px")
-					elm[0].setAttribute("fill", $scope.DataNode.Graphics["@Color"]);
+			if ($scope.Pathway) {
+				if ($scope.drawingParameters.imageFormat == 'svg') {
+					createNodeLabel($scope, elm[0], attrs)
+				}
+				else {
+					if ($scope.drawingParameters.imageFormat == 'flash') {
+						// I don't think I can use the exact same function here for svg and svgweb
+						window.setTimeout(function() {
+							var textNode = document.createTextNode($scope.DataNode["@TextLabel"], true);
+							var doc = document.getElementById('pathwayImageFlash').contentDocument;                
+							var metadata = doc.createElementNS(svgns, 'metadata');
+							metadata.appendChild(textNode);
 
-					window.setTimeout(function() {
-
-						var textNode = document.createTextNode($scope.DataNode["@TextLabel"], true);
-						var doc = document.getElementById('pathwayImageFlash').contentDocument;                
-						var metadata = doc.createElementNS(svgns, 'metadata');
-						metadata.appendChild(textNode);
-
-
-						var text = doc.createElementNS(svgns, 'text');
-						//text.setAttributeNS(null,"x",x);     
-						//text.setAttributeNS(null,"y",y); 
-						text.setAttributeNS(null,"font-size",$scope.DataNode.Graphics["@FontSize"] + "px");
-						text.appendChild(textNode);
-						//var root = doc.getElementsByTagNameNS(svgns, "g")[0];
-						var root = doc.getElementById('node' + $scope.DataNode["@GraphId"]); // Got it
-						root.appendChild(text);
-					}, 1600)
-
-					var positionLabel = function (){
-						var labelBbox = elm[0].getBBox();
-						var labelText = $scope.DataNode["@TextLabel"];
-						if ( $scope.DataNode.Graphics["@Width"] < labelBbox["width"] ) {
-							labelText = labelText.substring(0, labelText.length - 4);
-							elm[0].textContent = labelText + "...";
-							labelBbox = elm[0].getBBox();
-							while ( $scope.DataNode.Graphics["@Width"] < labelBbox["width"] ) {
-								labelText = labelText.substring(0, labelText.length - 1);
-								elm[0].textContent = labelText + "...";
-								labelBbox = elm[0].getBBox();
-							};
-
-						};
-						var labelxtransform = -1*(labelBbox["x"]) + $scope.DataNode.Graphics["@Width"]/2 - labelBbox["width"]/2;
-						var labelytransform = -1*(labelBbox["y"]) + $scope.DataNode.Graphics["@Height"]/2 - labelBbox["height"]/2;
-						elm[0].setAttribute("transform", "translate(" + labelxtransform + "," + labelytransform + ")");
+							var text = doc.createElementNS(svgns, 'text');
+							text.setAttributeNS(null,"font-size",$scope.DataNode.Graphics["@FontSize"] + "px");
+							text.appendChild(textNode);
+							var root = doc.getElementById('node' + $scope.DataNode["@GraphId"]); // Got it
+							root.appendChild(text);
+						}, 1600)
 					}
-					//disable for testing svgweb
-					//positionLabel();
-				}})
+					else {
+						// do nothing
+					};
+				}
+
+				//disable for testing svgweb
+				//positionLabel();
+			}})
 	}
 }])
 
