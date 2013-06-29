@@ -3,8 +3,10 @@
 <head>
 <meta charset="utf-8">
   <meta name="svg.render.forceflash" content="true" />
+   <script src="js/svg.js" data-path="js/"></script>
+  
+
 <title>pathvisio.js</title>
-<script src="js/svg.js" data-path="js/"></script>
     <!--[if lt IE 9]>
       <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
@@ -40,7 +42,8 @@ endif
 </head>
 <body ng-controller="PathwayCtrl">
 <div id="content">
-	<span ng-include src="'partials/render.html'">
+	<!--<span ng-include src="'partials/render.html'">-->
+	<span ng-include src="'partials/svgwebdemo.html'">
 	</span>
 </div>
 <div style="position:absolute; right:0; height:100%;">

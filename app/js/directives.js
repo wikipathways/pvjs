@@ -123,7 +123,7 @@ angular.module('pathvisio.directives', [])
 					// there must be a better way to put the svg into svgweb than using a time out.
 					console.log("elm.parent()[0]");
 					console.log(elm.parent()[0]);
-					setTimeout(function(){svgweb.appendChild(elm[0], document.getElementById('dog'));},100);
+					//setTimeout(function(){svgweb.appendChild(elm[0], document.getElementById('dog'));},100);
 					//setTimeout(function(){svgweb.appendChild(elm[0], elm.parent()[0]);},100);
 					// This would seem to be the better option, but it doesn't render the text labels.
 					//$scope.$evalAsync(svgweb.appendChild(elm[0], document.getElementById('dog'))); // note that we call svgweb.appendChild
@@ -183,7 +183,8 @@ angular.module('pathvisio.directives', [])
 						var labelytransform = -1*(labelBbox["y"]) + $scope.DataNode.Graphics["@Height"]/2 - labelBbox["height"]/2;
 						elm[0].setAttribute("transform", "translate(" + labelxtransform + "," + labelytransform + ")");
 					}
-					positionLabel();
+					//disable for testing svgweb
+					//positionLabel();
 				}})
 		console.log("$scope inside nodeLabel end");
 	}
