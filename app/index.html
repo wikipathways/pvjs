@@ -4,6 +4,16 @@
 <meta charset="utf-8">
   <meta name="svg.render.forceflash" content="true" />
    <script src="js/svg.js" data-path="js/"></script>
+   <script>
+// see source: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/forEach
+  if ( !Array.prototype.forEach ) {
+  Array.prototype.forEach = function(fn, scope) {
+    for(var i = 0, len = this.length; i < len; ++i) {
+      fn.call(scope, this[i], i, this);
+    }
+  };
+} 
+   </script>
   
 
 <title>pathvisio.js</title>
