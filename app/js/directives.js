@@ -2,6 +2,14 @@
 
 /* Directives */
 
+var getElementByIdWrapper = function (xmldoc, myID) {
+        return xmldoc.evaluate('//*[@xml:id="'+myID+'"]', xmldoc, 
+                function () {
+                  return 'http://www.w3.org/XML/1998/namespace';},
+                XPathResult.FIRST_ORDERED_NODE_TYPE, 
+                null).singleNodeValue;
+};
+
 angular.module('pathvisio.directives', [])
 .directive('btnEditable', [function() {
 	return function($scope, elm, attrs, $location) {
@@ -66,6 +74,42 @@ angular.module('pathvisio.directives', [])
 	};
 })
 .directive('drawingBoard', [function() {
+function objLoadFunc() {
+
+	var doc = document.getElementById('mySVG').contentDocument;                
+	var circle = document.createElementNS(svgns, 'circle');
+	circle.setAttribute('x', 15);
+	circle.setAttribute('y', 15);
+	circle.setAttribute('r', 5);
+	circle.setAttribute('fill', 'purple');
+	var root = doc.getElementsByTagNameNS(svgns, 'svg')[0];
+	root.appendChild(circle);
+	console.log('window.onsvgload');
+
+}
+
+function loadFunc() {
+	var obj = document.createElement('object', true);
+	obj.id = 'mySVG';
+	//obj.setAttribute('classid', 'image/svg+xml');
+	obj.setAttribute('type', 'image/svg+xml');
+	obj.setAttribute('src', 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg"></svg>');
+	//obj.setAttribute('data', 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg"></svg>');
+	//obj.setAttribute('src', 'svg-files/mysvg.svg');
+	//obj.setAttribute('data', '../svg-files/mysvg.svg');
+	obj.setAttribute('width', '1000');
+	obj.setAttribute('height', '1000');
+
+	obj.addEventListener(window.svgweb ? 'SVGLoad' : 'load', objLoadFunc, false);
+
+	var container = document.getElementById('svgContainer1');
+	if (window.svgweb) {
+		svgweb.appendChild(obj, container);
+	} else {
+		container.appendChild(obj);
+	}
+
+}
 	return function($scope, elm, attrs) {
 		// I don't remember what this is for - maybe checking whether I'm inside an iframe?
 		function objToString (obj) {
@@ -97,30 +141,13 @@ angular.module('pathvisio.directives', [])
 					//console.log("$scope inside drawingBoard if statement");
 					//console.log($scope);
 
-			       // create SVG root element
-				var svg = document.createElementNS(svgns, 'svg'); // don't need to pass in 'true'
-				svg.setAttribute('width', '100');
-				svg.setAttribute('height', '100');
-				console.log("svg");
-				console.log(svg);
-				console.log("elm");
-				console.log(elm);
-				console.log(elm[0]);
 
-				var circleBlue = document.createElementNS(svgns, 'circle');
-				circleBlue.setAttribute('x', 15);
-				circleBlue.setAttribute('y', 15);
-				circleBlue.setAttribute('r', 5);
-				circleBlue.setAttribute('fill', 'red');
-				svg.appendChild(circleBlue);
-
-				/*
-				// this does not work
-				var pathwayGroup = document.getElementById('viewport');
-				svg.appendChild(pathwayGroup);
-				*/
-
-				svgweb.appendChild(svg, document.getElementById('svgContainer2')); // note that we call svgweb.appendChild
+if (window.svgweb) {
+	svgweb.addOnLoad(loadFunc);
+}
+else {
+	window.addEventListener('load', loadFunc, false);
+}
 
 					elm.attr("style", "width: 100%; height: 100%; background-color: #f5f5f5; bottom:0; top:0; left:0; right:0; margin-top:0; margin-bottom:0; margin-right:0; margin-left:0;");
 			       		// scaling without using viewBox.
@@ -161,21 +188,24 @@ angular.module('pathvisio.directives', [])
 	return function($scope, elm, attrs) {
 		console.log("$scope inside node");
 		//console.log($scope);
+		elm[0].id = 'node' + $scope.DataNode["@GraphId"];
 		elm[0].setAttribute("class", "node " + $scope.DataNode["@Type"]);
 		elm[0].setAttribute("transform", "translate(" + $scope.DataNode.Graphics.x + "," + $scope.DataNode.Graphics.y + ")");
 		console.log("$scope inside node end");
 
 		// I will want to use something better than a timeout to know when the object is created.
 		// I also may want to do conditional checking so as not to run this if not IE8
+		// probably best to use a callback for this
 		window.setTimeout(function() {
 			var doc = document.getElementById('mySVG').contentDocument;                
 			var g = document.createElementNS(svgns, 'g');
+			g.id = 'node' + $scope.DataNode["@GraphId"];
 			g.setAttribute("class", "node " + $scope.DataNode["@Type"]);
-			g.setAttribute("transform", "translate(" + $scope.DataNode.Graphics.x + "," + $scope.DataNode.Graphics.y + ")");
+			g.setAttribute("transform", "translate(" + $scope.DataNode.Graphics['x'] + "," + $scope.DataNode.Graphics['y'] + ")");
+			//g.setAttribute("transform", "translate(" + $scope.DataNode.Graphics.x + "," + $scope.DataNode.Graphics.y + ")");
 			var root = doc.getElementsByTagNameNS(svgns, 'svg')[0];
 			root.appendChild(g);
-			console.log('window.onsvgload');
-		}, 500)
+		}, 1500)
 
 		
 /*
@@ -192,7 +222,7 @@ angular.module('pathvisio.directives', [])
 .directive('nodeBoundingBox', [function() {
 	return function($scope, elm, attrs) {
 		console.log("$scope inside nodeBoundingBox");
-		elm[0].id = $scope.DataNode["@GraphId"];
+		elm[0].id = 'nodeBoundingBox' + $scope.DataNode["@GraphId"];
 		elm[0].setAttribute("x", 0)
 		elm[0].setAttribute("y", 0);
 		elm[0].setAttribute("width", $scope.DataNode.Graphics["@Width"]);
@@ -203,17 +233,18 @@ angular.module('pathvisio.directives', [])
 		window.setTimeout(function() {
 			var doc = document.getElementById('mySVG').contentDocument;                
 			var rect = document.createElementNS(svgns, 'rect');
-			rect.id = $scope.DataNode["@GraphId"];
+			rect.id = 'nodeBoundingBox' + $scope.DataNode["@GraphId"];
 			rect.setAttribute("x", 0)
 			rect.setAttribute("y", 0);
 			rect.setAttribute("width", $scope.DataNode.Graphics["@Width"]);
 			rect.setAttribute("height", $scope.DataNode.Graphics["@Height"]);
 			rect.setAttribute("stroke", $scope.DataNode.Graphics["@Color"]);
 			rect.setAttribute("fill", $scope.DataNode.Graphics["@FillColor"]);
-			var root = doc.getElementsByTagNameNS(svgns, 'svg')[0];
+			//var root = doc.getElementsByTagNameNS(svgns, "g")[0];
+			//var root = getElementByIdWrapper(doc, 'node' + $scope.DataNode["@GraphId"]); // Got it
+			var root = doc.getElementById('node' + $scope.DataNode["@GraphId"]); // Got it
 			root.appendChild(rect);
-			console.log('window.onsvgload');
-		}, 600)
+		}, 1700)
 	}
 }])
 .directive('nodeLabel', [function() {
@@ -223,10 +254,28 @@ angular.module('pathvisio.directives', [])
 			if ($scope.Pathway)
 				{
 					elm[0].textContent = $scope.DataNode["@TextLabel"];
-					elm[0].id = $scope.DataNode["@GraphId"];
+					elm[0].id = 'nodeLabel' + $scope.DataNode["@GraphId"];
 					elm[0].setAttribute("class", "node " + $scope.DataNode.Graphics["@ShapeType"])
 					elm[0].setAttribute("font-size", $scope.DataNode.Graphics["@FontSize"] + "px")
 					elm[0].setAttribute("fill", $scope.DataNode.Graphics["@Color"]);
+
+		window.setTimeout(function() {
+
+			var textNode = document.createTextNode($scope.DataNode["@TextLabel"], true);
+			var doc = document.getElementById('mySVG').contentDocument;                
+			var metadata = doc.createElementNS(svgns, 'metadata');
+			metadata.appendChild(textNode);
+
+
+			var text = doc.createElementNS(svgns, 'text');
+			//text.setAttributeNS(null,"x",x);     
+			//text.setAttributeNS(null,"y",y); 
+			text.setAttributeNS(null,"font-size",$scope.DataNode.Graphics["@FontSize"] + "px");
+			text.appendChild(textNode);
+			//var root = doc.getElementsByTagNameNS(svgns, "g")[0];
+			var root = doc.getElementById('node' + $scope.DataNode["@GraphId"]); // Got it
+			root.appendChild(text);
+		}, 1600)
 
 					var positionLabel = function (){
 						var labelBbox = elm[0].getBBox();
