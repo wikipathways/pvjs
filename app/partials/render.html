@@ -15,7 +15,81 @@
     </script>
 
 <p>app/partials/render.html script javascript</p>
-<div id="dog" height="500" width="500"></div>
+<div id="svgContainer" height="500" width="500"></div>
+<script>
+function objLoadFunc() {
+
+	// via javascript
+       // create SVG root element
+	var svg = document.createElementNS(svgns, 'svg'); // don't need to pass in 'true'
+	svg.setAttribute('width', '300');
+	svg.setAttribute('height', '300');
+
+	var circleBlue = document.createElementNS(svgns, 'circle');
+	circleBlue.setAttribute('x', 10);
+	circleBlue.setAttribute('y', 10);
+	circleBlue.setAttribute('r', 5);
+	circleBlue.setAttribute('fill', 'blue');
+	
+	svg.appendChild(circleBlue);
+	svgweb.appendChild(svg, document.body); // note that we call svgweb.appendChild
+
+
+	var doc = document.getElementById('mySVG').contentDocument;                
+	var circle = document.createElementNS(svgns, 'circle');
+	circle.setAttribute('x', 10);
+	circle.setAttribute('y', 10);
+	circle.setAttribute('r', 5);
+	circle.setAttribute('fill', 'red');
+	var root = doc.getElementsByTagNameNS(svgns, 'svg')[0];
+	root.appendChild(circle);
+	console.log('window.onsvgload');
+	// use some JavaScript to animate the rectangles over and over
+	window._counter = 1;
+	window.setInterval(function() {
+		var rect = doc.getElementById('myRect');
+		var fill;
+		if (window._counter % 2 == 0) {
+			fill = 'blue';
+		} else {
+			fill = 'yellow';
+		}
+		rect.setAttribute('fill', fill);
+
+		window._counter++;
+	}, 100);
+}
+
+function loadFunc() {
+	var obj = document.createElement('object', true);
+	obj.id = 'mySVG';
+	//obj.setAttribute('classid', 'image/svg+xml');
+	obj.setAttribute('type', 'image/svg+xml');
+	obj.setAttribute('src', 'svg-files/mysvg.svg');
+	//obj.setAttribute('data', '../svg-files/mysvg.svg');
+	obj.setAttribute('width', '500');
+	obj.setAttribute('height', '500');
+
+	obj.addEventListener(window.svgweb ? 'SVGLoad' : 'load', objLoadFunc, false);
+
+	var container = document.getElementById('svgContainer');
+	if (window.svgweb) {
+		svgweb.appendChild(obj, container);
+	} else {
+		container.appendChild(obj);
+	}
+
+}
+
+if (window.svgweb) {
+	svgweb.addOnLoad(loadFunc);
+}
+else {
+	window.addEventListener('load', loadFunc, false);
+}
+
+</script>
+
     <script>
 	setTimeout(function() {
 		var svgNS = "http://www.w3.org/2000/svg";
@@ -28,7 +102,7 @@
 		myCircle.setAttributeNS(null,"fill","black");
 		myCircle.setAttributeNS(null,"stroke","none");
 		console.log(myCircle);
-		svgweb.appendChild(myCircle, document.getElementById('dog'));
+		svgweb.appendChild(myCircle, document.getElementById('svgContainer'));
 		console.log(document.getElementById('dog'));
 	},500);
     </script>
