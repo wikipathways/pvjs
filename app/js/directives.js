@@ -84,7 +84,6 @@ function objLoadFunc() {
 	circle.setAttribute('fill', 'purple');
 	var root = doc.getElementsByTagNameNS(svgns, 'svg')[0];
 	root.appendChild(circle);
-	console.log('window.onsvgload');
 
 }
 
@@ -173,8 +172,6 @@ else {
 					$('#drawingBoard').off()
 					$('#drawingBoard').svgPan('viewport', 1, $scope.drawingParameters.enableZoom, 0, .2);
 					// there must be a better way to put the svg into svgweb than using a time out.
-					console.log("elm.parent()[0]");
-					console.log(elm.parent()[0]);
 					//setTimeout(function(){svgweb.appendChild(elm[0], document.getElementById('dog'));},100);
 					//setTimeout(function(){svgweb.appendChild(elm[0], elm.parent()[0]);},100);
 					// This would seem to be the better option, but it doesn't render the text labels.
@@ -186,16 +183,14 @@ else {
 ])
 .directive('node', [function() {
 	return function($scope, elm, attrs) {
-		console.log("$scope inside node");
+		//console.log("$scope inside node");
 		//console.log($scope);
 		elm[0].id = 'node' + $scope.DataNode["@GraphId"];
 		elm[0].setAttribute("class", "node " + $scope.DataNode["@Type"]);
 		elm[0].setAttribute("transform", "translate(" + $scope.DataNode.Graphics.x + "," + $scope.DataNode.Graphics.y + ")");
-		console.log("$scope inside node end");
 
 		// I will want to use something better than a timeout to know when the object is created.
 		// I also may want to do conditional checking so as not to run this if not IE8
-		// probably best to use a callback for this
 		window.setTimeout(function() {
 			var doc = document.getElementById('mySVG').contentDocument;                
 			var g = document.createElementNS(svgns, 'g');
@@ -221,7 +216,7 @@ else {
 }])
 .directive('nodeBoundingBox', [function() {
 	return function($scope, elm, attrs) {
-		console.log("$scope inside nodeBoundingBox");
+		//console.log("$scope inside nodeBoundingBox");
 		elm[0].id = 'nodeBoundingBox' + $scope.DataNode["@GraphId"];
 		elm[0].setAttribute("x", 0)
 		elm[0].setAttribute("y", 0);
@@ -247,9 +242,41 @@ else {
 		}, 1700)
 	}
 }])
+.directive('nodeShape', [function() {
+	return function($scope, elm, attrs) {
+		//console.log("$scope inside nodeShape");
+		elm[0].id = 'nodeShape' + $scope.DataNode["@GraphId"];
+		elm[0].setAttribute("x", 0)
+		elm[0].setAttribute("y", 0);
+		elm[0].setAttribute("width", $scope.DataNode.Graphics["@Width"]);
+		elm[0].setAttribute("height", $scope.DataNode.Graphics["@Height"]);
+		elm[0].setAttribute("stroke", $scope.DataNode.Graphics["@Color"]);
+		elm[0].setAttribute("stroke-opacity", 0.3);
+		elm[0].setAttribute("fill", $scope.DataNode.Graphics["@FillColor"]);
+		elm[0].setAttribute("fill-opacity", 0.3);
+
+		window.setTimeout(function() {
+			var doc = document.getElementById('mySVG').contentDocument;                
+			var rect = document.createElementNS(svgns, 'rect');
+			rect.id = 'nodeBoundingBox' + $scope.DataNode["@GraphId"];
+			rect.setAttribute("x", 0)
+			rect.setAttribute("y", 0);
+			rect.setAttribute("width", $scope.DataNode.Graphics["@Width"]);
+			rect.setAttribute("height", $scope.DataNode.Graphics["@Height"]);
+			rect.setAttribute("stroke", $scope.DataNode.Graphics["@Color"]);
+			rect.setAttribute("stroke-opacity", 0.3);
+			rect.setAttribute("fill", $scope.DataNode.Graphics["@FillColor"]);
+			rect.setAttribute("fill-opacity", 0.3);
+			//var root = doc.getElementsByTagNameNS(svgns, "g")[0];
+			//var root = getElementByIdWrapper(doc, 'node' + $scope.DataNode["@GraphId"]); // Got it
+			var root = doc.getElementById('node' + $scope.DataNode["@GraphId"]); // Got it
+			root.appendChild(rect);
+		}, 1700)
+	}
+}])
 .directive('nodeLabel', [function() {
 	return function($scope, elm, attrs) {
-		console.log("$scope inside nodeLabel");
+		//console.log("$scope inside nodeLabel");
 		$scope.$watch('Pathway.DataNode["@TextLabel"]', function() {
 			if ($scope.Pathway)
 				{
@@ -298,7 +325,6 @@ else {
 					//disable for testing svgweb
 					//positionLabel();
 				}})
-		console.log("$scope inside nodeLabel end");
 	}
 }])
 

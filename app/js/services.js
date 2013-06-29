@@ -48,8 +48,6 @@ angular.module('pathvisio.services', [])
 					var url = "../samples/gpml/" + $location.search().wgTitle + "_" + $location.search().wgCurRevisionId  + ".gpml";
 				}
 			};
-			console.log("url");
-			console.log(url);
 
 			function getDataFile(url, callback) {
 				try {
@@ -64,9 +62,8 @@ angular.module('pathvisio.services', [])
 			}
 
 			var getData = getDataFile(url, function(data) {
-				function cleanJson(object) {
+				function convertToArray(object) {
 					if (Object.prototype.toString.call( object ) === '[object Object]' ) {
-						console.log('hey');
 						var array = [];
 						array.push(object)
 						return array;
@@ -77,6 +74,21 @@ angular.module('pathvisio.services', [])
 						}
 					}
 				}
+
+				function validateCssColor(color){
+					if (color == null | color == 'undefined' | color == '' | (!color)) {
+						return false;
+					}
+					else {
+					    var rgb = $('<div style="color:#28e32a">');     // Use a non standard dummy color to ease checking for edge cases
+					    var valid_rgb = "rgb(40, 227, 42)";
+					    rgb.css("color", color);
+					    if(rgb.css('color') == valid_rgb && color != ':#28e32a' && color.replace(/ /g,"") != valid_rgb.replace(/ /g,""))
+						return false;
+					    else
+						return true;
+					}
+				};
 
 				// Test for whether file could be GPML based on filename extension
 
@@ -101,9 +113,12 @@ angular.module('pathvisio.services', [])
 					  }
 					}
 
+					///* Below is an alternative to JXON.build(). Which is better? If I use JXON.build, I need to redo my GPML tests.
 					var json = xml2json(xmlDoc, "");
-
 					var parsedJson = jQuery.parseJSON(json);
+				       //*/
+					
+				       //var parsedJson = JXON.build(xmlDoc.documentElement);
 
 					var xmlns = "";
 
@@ -129,7 +144,7 @@ angular.module('pathvisio.services', [])
 
 						// BiopaxRefs
 						try {
-							parsedJson.Pathway.BiopaxRefs = cleanJson( parsedJson.Pathway.BiopaxRef );
+							parsedJson.Pathway.BiopaxRefs = convertToArray( parsedJson.Pathway.BiopaxRef );
 							delete parsedJson.Pathway.BiopaxRef;
 
 							parsedJson.Pathway.BiopaxRefs.forEach(function(element, index, array) {
@@ -142,7 +157,7 @@ angular.module('pathvisio.services', [])
 
 						// Comments 
 						try {
-							parsedJson.Pathway.Comments = cleanJson( parsedJson.Pathway.Comment );
+							parsedJson.Pathway.Comments = convertToArray( parsedJson.Pathway.Comment );
 							delete parsedJson.Pathway.Comment;
 
 							parsedJson.Pathway.Comments.forEach(function(element, index, array) {
@@ -155,7 +170,7 @@ angular.module('pathvisio.services', [])
 
 						// DataNodes 
 						try {
-							parsedJson.Pathway.DataNodes = cleanJson( parsedJson.Pathway.DataNode );
+							parsedJson.Pathway.DataNodes = convertToArray( parsedJson.Pathway.DataNode );
 							delete parsedJson.Pathway.DataNode;
 
 							parsedJson.Pathway.DataNodes.forEach(function(element, index, array) {
@@ -163,17 +178,19 @@ angular.module('pathvisio.services', [])
 								element.Graphics["y"] = parseFloat(element.Graphics["@CenterY"]) - parseFloat(element.Graphics["@Height"])/2;
 								delete element.Graphics["@CenterX"];
 								delete element.Graphics["@CenterY"];
-								if (element.Graphics["@FillColor"]) {
+
+								if (element.Graphics.hasOwnProperty("@FillColor")) {
+									// does not deal with color if user entered "white". Should use validateColor() to address.
 									element.Graphics["@FillColor"] = "#" + element.Graphics["@FillColor"]
 								}
 								else {
-									element.Graphics["@FillColor"] = "white";
+									element.Graphics['@FillColor'] = "#ffffff";
 								};	
-								if (element.Graphics["@Color"]) {
+								if (element.Graphics.hasOwnProperty("@Color")) {
 									element.Graphics["@Color"] = "#" + element.Graphics["@Color"]
 								}
 								else {
-									element.Graphics["@Color"] = "black";
+									element.Graphics['@Color'] = "#000000";
 								};	
 							});
 						}
@@ -183,7 +200,7 @@ angular.module('pathvisio.services', [])
 
 						// Groups
 						try {
-							parsedJson.Pathway.Groups = cleanJson( parsedJson.Pathway.Group );
+							parsedJson.Pathway.Groups = convertToArray( parsedJson.Pathway.Group );
 							delete parsedJson.Pathway.Group;
 
 							parsedJson.Pathway.Groups.forEach(function(element, index, array) {
@@ -196,7 +213,7 @@ angular.module('pathvisio.services', [])
 
 						// Interactions
 						try {
-							parsedJson.Pathway.Interactions = cleanJson( parsedJson.Pathway.Interaction );
+							parsedJson.Pathway.Interactions = convertToArray( parsedJson.Pathway.Interaction );
 							delete parsedJson.Pathway.Interaction;
 
 							parsedJson.Pathway.Interactions.forEach(function(element, index, array) {
@@ -209,7 +226,7 @@ angular.module('pathvisio.services', [])
 
 						// Labels
 						try {
-							parsedJson.Pathway.Labels = cleanJson( parsedJson.Pathway.Label );
+							parsedJson.Pathway.Labels = convertToArray( parsedJson.Pathway.Label );
 							delete parsedJson.Pathway.Label;
 
 							parsedJson.Pathway.Labels.forEach(function(element, index, array) {
@@ -222,7 +239,7 @@ angular.module('pathvisio.services', [])
 
 						// Shapes
 						try {
-							parsedJson.Pathway.Shapes = cleanJson( parsedJson.Pathway.Shape );
+							parsedJson.Pathway.Shapes = convertToArray( parsedJson.Pathway.Shape );
 							delete parsedJson.Pathway.Shape;
 
 							parsedJson.Pathway.Shapes.forEach(function(element, index, array) {
@@ -234,8 +251,8 @@ angular.module('pathvisio.services', [])
 						}
 
 						$scope.Pathway = parsedJson.Pathway;
-						console.log("$scope");
-						console.log($scope);
+						//console.log("$scope");
+						//console.log($scope);
 						//console.log(JSON.stringify($scope.Pathway));
 					}
 					else {
