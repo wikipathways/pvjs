@@ -73,7 +73,7 @@ angular.module('pathvisio.directives', [])
 		}
 	};
 })
-.directive('drawingBoard', [function() {
+.directive('pathwayImage', [function() {
 	function objLoadFunc() {
 
 		var doc = document.getElementById('mySVG').contentDocument;                
@@ -95,7 +95,7 @@ angular.module('pathvisio.directives', [])
 
 		obj.addEventListener(window.svgweb ? 'SVGLoad' : 'load', objLoadFunc, false);
 
-		var container = document.getElementById('svgContainer1');
+		var container = document.getElementById('pathwayContainer');
 		if (window.svgweb) {
 			svgweb.appendChild(obj, container);
 		} else {
@@ -122,16 +122,16 @@ angular.module('pathvisio.directives', [])
 				//console.log("enableZoom");
 				//console.log(enableZoom);
 				//$('svg').svgPan('viewport', $scope.drawingParameters.enablePan, enableZoom, $scope.drawingParameters.enableDrag, $scope.drawingParameters.zoomScale);
-				$('#drawingBoard').off()
-				$('#drawingBoard').svgPan('viewport', 1, enableZoom, 0, .2);
+				$('#pathwayImage').off()
+				$('#pathwayImage').svgPan('viewport', 1, enableZoom, 0, .2);
 			}
 		});
 		$scope.$watch('Pathway["@Name"]', function() {
-			//console.log("$scope inside drawingBoard");
+			//console.log("$scope inside pathwayImage");
 			//console.log($scope);
 			if ($scope.Pathway)
 				{
-					//console.log("$scope inside drawingBoard if statement");
+					//console.log("$scope inside pathwayImage if statement");
 					//console.log($scope);
 
 
@@ -163,8 +163,8 @@ angular.module('pathvisio.directives', [])
 					elm[0].setAttribute("viewBox", "0 0 " + $scope.Pathway.Graphics["@BoardWidth"] + " " + $scope.Pathway.Graphics["@BoardHeight"]);
 					};
 					*/
-					$('#drawingBoard').off()
-						$('#drawingBoard').svgPan('viewport', 1, $scope.drawingParameters.enableZoom, 0, .2);
+					$('#pathwayImage').off()
+						$('#pathwayImage').svgPan('viewport', 1, $scope.drawingParameters.enableZoom, 0, .2);
 					// there must be a better way to put the svg into svgweb than using a time out.
 					//setTimeout(function(){svgweb.appendChild(elm[0], document.getElementById('dog'));},100);
 					//setTimeout(function(){svgweb.appendChild(elm[0], elm.parent()[0]);},100);

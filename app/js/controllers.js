@@ -9,11 +9,6 @@ angular.module('pathvisio.controllers', [])
 }])
 .controller('PathwayCtrl', ['$scope', '$location', '$http', 'PathwayService', function($scope, $location, $http, PathwayService) {
 
-	this.svgweb = function()
-	{
-		svgweb.appendChild(document.getElementById('drawingBoard'), document.getElementById('dog')); // note that we call svgweb.appendChild
-	}
-
 	PathwayService.getData($scope);
 
 	if (!($scope.drawingParameters)) {
@@ -36,16 +31,10 @@ angular.module('pathvisio.controllers', [])
 	};
 	$scope.drawingParameters.enableDrag = 0;
 	$scope.drawingParameters.zoomScale = 0.2;
+	// this is for demo purposes. need to add code to pull this data, probably in services.js.
 	$scope.databases = ["GeneOntology2", "HMDB", "WormBase", "Metabolome", "Kegg"];
 	$scope.identifiers = ["GO:0030528", "GO:0030528", "GO:0004871", "GO:0005634", "GO:0007165"];
 	return $scope;
-
-/*
-	$scope.$on('$viewContentLoaded', function() {
-		svgweb.appendChild(document.getElementById('drawingBoard'), document.getElementById('dog')); // note that we call svgweb.appendChild
-	});
-
-	*/
 
 }])
 
