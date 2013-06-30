@@ -332,7 +332,7 @@ angular.module('pathvisio.directives', [])
 		elm.setAttribute("fill", $scope.DataNode.Graphics["@Color"]);
 	};
 
-	var positionLabel = function (){
+	var positionLabel = function ($scope, elm, attrs){
 		var labelBbox = elm[0].getBBox();
 		var labelText = $scope.DataNode["@TextLabel"];
 		if ( $scope.DataNode.Graphics["@Width"] < labelBbox["width"] ) {
@@ -356,6 +356,8 @@ angular.module('pathvisio.directives', [])
 			if ($scope.Pathway) {
 				if ($scope.drawingParameters.imageFormat == 'svg') {
 					createNodeLabel($scope, elm[0], attrs)
+					// disabled for svgweb version. need to modify to support it.
+					positionLabel($scope, elm, attrs);
 				}
 				else {
 					if ($scope.drawingParameters.imageFormat == 'flash') {
@@ -378,8 +380,6 @@ angular.module('pathvisio.directives', [])
 					};
 				}
 
-				//disable for testing svgweb
-				//positionLabel();
 			}})
 	}
 }])
