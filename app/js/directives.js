@@ -63,7 +63,7 @@ angular.module('pathvisio.directives', [])
 	}
 }])
 // this directive is not currently in use. It would be nice to move the SVG script in view.html to this location.
-.directive('draggable', function() {
+.directive('draggable', function($scope) {
 	return {
 		// A = attribute, E = Element, C = Class and M = HTML Comment
 		restrict:'A',
@@ -76,24 +76,19 @@ angular.module('pathvisio.directives', [])
 	};
 })
 .directive('pathwayImage', [function() {
-	function objLoadFunc() {
-		var doc = document.getElementById('pathwayImageFlash').contentDocument;                
-		var root = doc.getElementsByTagNameNS(svgns, 'svg')[0];
-	}
+	return function($scope, elm, attrs) {
 
-	function loadFunc() {
+	function createFlashObject() {
 		var obj = document.createElement('object', true);
 		obj.id = 'pathwayImageFlash';
 		//obj.setAttribute('classid', 'image/svg+xml');
 		obj.setAttribute('type', 'image/svg+xml');
 		obj.setAttribute('src', 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg"></svg>');
 		//obj.setAttribute('data', 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg"></svg>');
-		//obj.setAttribute('src', 'svg-files/mysvg.svg');
-		//obj.setAttribute('data', '../svg-files/mysvg.svg');
-		obj.setAttribute('width', '1000');
-		obj.setAttribute('height', '1000');
+		obj.setAttribute('width', '100%');
+		obj.setAttribute('height', '100%');
 
-		obj.addEventListener(window.svgweb ? 'SVGLoad' : 'load', objLoadFunc, false);
+		obj.addEventListener(window.svgweb ? 'SVGLoad' : 'load', stylePathwayImageFlash, false);
 
 		var container = document.getElementById('pathwayContainer');
 		if (window.svgweb) {
@@ -101,11 +96,16 @@ angular.module('pathvisio.directives', [])
 		} else {
 			container.appendChild(obj);
 		}
-
 	}
 
-	function createPathwayImage($scope, elm, attrs) {
-		elm.attr("style", "width: 100%; height: 100%; background-color: #f5f5f5; bottom:0; top:0; left:0; right:0; margin-top:0; margin-bottom:0; margin-right:0; margin-left:0;");
+	function stylePathwayImageFlash(pathwayImageFlash) {
+		var doc = document.getElementById('pathwayImageFlash').contentDocument;                
+		var pathwayImageFlash = doc.getElementsByTagNameNS(svgns, 'svg')[0];
+		stylePathwayImage(pathwayImageFlash);
+	}
+
+	function stylePathwayImage(pathwayImage) {
+		pathwayImage.setAttribute("style", "width: 100%; height: 100%; background-color: #f5f5f5; bottom:0; top:0; left:0; right:0; margin-top:0; margin-bottom:0; margin-right:0; margin-left:0;");
 		// scaling without using viewBox.
 		// would perhaps be better to get max svg width allowed without requiring jQuery
 		var scaleViewAll = Math.min($('body').width() / $scope.Pathway.Graphics["@BoardWidth"], $('body').height() / $scope.Pathway.Graphics["@BoardHeight"]);
@@ -129,14 +129,7 @@ angular.module('pathvisio.directives', [])
 		*/
 		$('#pathwayImage').off()
 		$('#pathwayImage').svgPan('viewport', 1, $scope.drawingParameters.enableZoom, 0, .2);
-		// there must be a better way to put the svg into svgweb than using a time out.
-		//setTimeout(function(){svgweb.appendChild(elm[0], document.getElementById('dog'));},100);
-		//setTimeout(function(){svgweb.appendChild(elm[0], elm.parent()[0]);},100);
-		// This would seem to be the better option, but it doesn't render the text labels.
-		//$scope.$evalAsync(svgweb.appendChild(elm[0], document.getElementById('dog'))); // note that we call svgweb.appendChild
 	};
-
-	return function($scope, elm, attrs) {
 
 		// Define svg
 		//$scope.$watch(function() { return angular.toJson(['Pathway["@Name"]', 'editable']) }, function(pathway) {
@@ -144,7 +137,7 @@ angular.module('pathvisio.directives', [])
 			if ($scope.Pathway) {
 				//console.log("enableZoom");
 				//console.log(enableZoom);
-				//$('svg').svgPan('viewport', $scope.drawingParameters.enablePan, enableZoom, $scope.drawingParameters.enableDrag, $scope.drawingParameters.zoomScale);
+				$('svg').svgPan('viewport', $scope.drawingParameters.enablePan, enableZoom, $scope.drawingParameters.enableDrag, $scope.drawingParameters.zoomScale);
 				$('#pathwayImage').off()
 				$('#pathwayImage').svgPan('viewport', 1, enableZoom, 0, .2);
 			}
@@ -154,16 +147,16 @@ angular.module('pathvisio.directives', [])
 			//console.log($scope);
 			if ($scope.Pathway) {
 				if ($scope.drawingParameters.imageFormat == 'svg') {
-					createPathwayImage($scope, elm, attrs)
+					stylePathwayImage(elm[0])
 				}
 				else {
 					if ($scope.drawingParameters.imageFormat == 'flash') {
 						// might be able to modify this so that we're using the same function for svg and svgweb.
 						if (window.svgweb) {
-							svgweb.addOnLoad(loadFunc);
+							svgweb.addOnLoad(createFlashObject);
 						}
 						else {
-							window.addEventListener('load', loadFunc, false);
+							window.addEventListener('load', createFlashObject, false);
 						}
 					}
 					else {

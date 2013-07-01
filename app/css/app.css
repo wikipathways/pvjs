@@ -81,6 +81,18 @@ html, body {
     width: 100%;
     overflow: hidden
 }
+#pathwayContainer {
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    height: 100%;
+    width: 100%;
+    overflow: hidden
+}
 #footer {
     background: #e5e5e5;
     position: absolute;
