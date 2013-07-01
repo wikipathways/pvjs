@@ -101,27 +101,34 @@ angular.module('pathvisio.directives', [])
 	function stylePathwayImageFlash(pathwayImageFlash) {
 		var doc = document.getElementById('pathwayImageFlash').contentDocument;                
 		var pathwayImageFlash = doc.getElementsByTagNameNS(svgns, 'svg')[0];
+		var viewport = document.createElementNS(svgns, 'g');
+		viewport.id = 'viewport';
+		pathwayImageFlash.appendChild(viewport);
 		stylePathwayImage(pathwayImageFlash);
 	}
 
 	function stylePathwayImage(pathwayImage) {
 		pathwayImage.setAttribute("style", "width: 100%; height: 100%; background-color: #f5f5f5; bottom:0; top:0; left:0; right:0; margin-top:0; margin-bottom:0; margin-right:0; margin-left:0;");
+		// If any extra divs or other elements are added to this directive, make sure elm.parent() == $('pathwayContainer')
+		//var pathwayContainer = $('pathwayContainer');
+		var pathwayContainer = elm.parent();
+		self.pI = pathwayImage;
+
 		// scaling without using viewBox.
-		// would perhaps be better to get max svg width allowed without requiring jQuery
-		var scaleViewAll = Math.min($('body').width() / $scope.Pathway.Graphics["@BoardWidth"], $('body').height() / $scope.Pathway.Graphics["@BoardHeight"]);
-		var translateX = ($('body').width() - $scope.Pathway.Graphics["@BoardWidth"]*scaleViewAll)/2;
+		var scaleViewAll = Math.min(pathwayContainer.width() / $scope.Pathway.Graphics["@BoardWidth"], pathwayContainer.height() / $scope.Pathway.Graphics["@BoardHeight"]);
+		var translateX = (pathwayContainer.width() - $scope.Pathway.Graphics["@BoardWidth"]*scaleViewAll)/2;
 		if ($scope.drawingParameters.editable == true) {
-			$('#viewport').attr("transform", "scale(1)")
+			pathwayImage.getElementsByTagNameNS(svgns, 'g')[0].setAttribute("transform", "scale(1)")
 		}
 		else {
-			$('#viewport').attr("transform", "scale(" + scaleViewAll + ") translate(" + translateX/scaleViewAll + ",0)")
+			pathwayImage.getElementsByTagNameNS(svgns, 'g')[0].setAttribute("transform", "scale(" + scaleViewAll + ") translate(" + translateX/scaleViewAll + ",0)")
 		};
 
 		/*
 		// scaling using viewBox. Does not work correctly with svgPan.js.
 		if ($scope.drawingParameters.editable == true) {
 		// would perhaps be better to do this without requiring jQuery
-		elm[0].setAttribute("viewBox", "0 0 " + $('body').width() + " " + $('body').height());
+		elm[0].setAttribute("viewBox", "0 0 " + pathwayContainer.width() + " " + pathwayContainer.height());
 		}
 		else {
 		elm[0].setAttribute("viewBox", "0 0 " + $scope.Pathway.Graphics["@BoardWidth"] + " " + $scope.Pathway.Graphics["@BoardHeight"]);
@@ -183,10 +190,10 @@ angular.module('pathvisio.directives', [])
 			if ($scope.drawingParameters.imageFormat == 'flash') {
 				window.setTimeout(function() {
 					var doc = document.getElementById('pathwayImageFlash').contentDocument;                
+					var viewport = doc.getElementsByTagNameNS(svgns, 'g')[0];
 					var g = document.createElementNS(svgns, 'g');
 					createNode($scope, g, attrs)
-					var root = doc.getElementsByTagNameNS(svgns, 'svg')[0];
-					root.appendChild(g);
+					viewport.appendChild(g);
 				}, 1500)
 			}
 			else {
