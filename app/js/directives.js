@@ -80,7 +80,7 @@ angular.module('pathvisio.directives', [])
 
 		function createFlashObject() {
 			var obj = document.createElement('object', true);
-			obj.id = 'pathwayImageFlash';
+			obj.id = 'pathwayObjectFlash';
 			//obj.setAttribute('classid', 'image/svg+xml');
 			obj.setAttribute('type', 'image/svg+xml');
 			obj.setAttribute('src', 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg"></svg>');
@@ -99,7 +99,7 @@ angular.module('pathvisio.directives', [])
 		}
 
 		function stylePathwayImageFlash(pathwayImageFlash) {
-			var doc = document.getElementById('pathwayImageFlash').contentDocument;                
+			var doc = document.getElementById('pathwayObjectFlash').contentDocument;                
 			var pathwayImageFlash = doc.getElementsByTagNameNS(svgns, 'svg');
 			var viewport = document.createElementNS(svgns, 'g');
 			viewport.id = 'viewport';
@@ -201,7 +201,7 @@ angular.module('pathvisio.directives', [])
 		else {
 			if ($scope.drawingParameters.imageFormat == 'flash') {
 				window.setTimeout(function() {
-					var doc = document.getElementById('pathwayImageFlash').contentDocument;                
+					var doc = document.getElementById('pathwayObjectFlash').contentDocument;                
 					var viewport = doc.getElementsByTagNameNS(svgns, 'g')[0];
 					var g = document.createElementNS(svgns, 'g');
 					createNode($scope, g, attrs)
@@ -234,7 +234,7 @@ angular.module('pathvisio.directives', [])
 		else {
 			if ($scope.drawingParameters.imageFormat == 'flash') {
 				window.setTimeout(function() {
-					var doc = document.getElementById('pathwayImageFlash').contentDocument;                
+					var doc = document.getElementById('pathwayObjectFlash').contentDocument;                
 					var rect = document.createElementNS(svgns, 'rect');
 					createNodeBoundingBox($scope, rect, attrs)
 					var root = doc.getElementById('node' + $scope.DataNode["@GraphId"]); // Got it
@@ -304,7 +304,7 @@ angular.module('pathvisio.directives', [])
 		else {
 			if ($scope.drawingParameters.imageFormat == 'flash') {
 				window.setTimeout(function() {
-					var doc = document.getElementById('pathwayImageFlash').contentDocument;                
+					var doc = document.getElementById('pathwayObjectFlash').contentDocument;                
 					var g = document.createElementNS(svgns, 'g');
 					// Define Node Shape 
 					if ( $scope.DataNode.Graphics["@ShapeType"] == "Rectangle" ) {
@@ -377,7 +377,7 @@ angular.module('pathvisio.directives', [])
 					if ($scope.drawingParameters.imageFormat == 'flash') {
 						window.setTimeout(function() {
 							var textNode = document.createTextNode($scope.DataNode["@TextLabel"], true);
-							var doc = document.getElementById('pathwayImageFlash').contentDocument;                
+							var doc = document.getElementById('pathwayObjectFlash').contentDocument;                
 							var metadata = doc.createElementNS(svgns, 'metadata');
 							metadata.appendChild(textNode);
 							var text = doc.createElementNS(svgns, 'text');
