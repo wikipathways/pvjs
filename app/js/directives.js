@@ -177,6 +177,9 @@ angular.module('pathvisio.directives', [])
 						else {
 							window.addEventListener('load', createFlashObject, false);
 						}
+						stylePathwayImage(elm)
+						pathwayImage.off()
+						pathwayImage.svgPan('viewport', 1, $scope.drawingParameters.enableZoom, 0, .2);
 					}
 					else {
 						// display png image of pathway
@@ -306,6 +309,7 @@ angular.module('pathvisio.directives', [])
 		}
 		else {
 			if ($scope.drawingParameters.imageFormat == 'flash') {
+				createNodeShape(elm[0])
 				window.setTimeout(function() {
 					createNodeShape(elm[0])
 					var doc = document.getElementById('pathwayObjectFlash').contentDocument;                
@@ -333,7 +337,7 @@ angular.module('pathvisio.directives', [])
 			nodeContainer.setAttribute("fill", $scope.DataNode.Graphics["@Color"]);
 		};
 
-		var positionNodeLabel = function (nodeLabel){
+		function positionNodeLabel(nodeLabel){
 			var labelBbox = nodeLabel.getBBox();
 			var labelText = $scope.DataNode["@TextLabel"];
 			if ( $scope.DataNode.Graphics["@Width"] < labelBbox["width"] ) {
@@ -380,6 +384,8 @@ angular.module('pathvisio.directives', [])
 							var root = doc.getElementById('node' + $scope.DataNode["@GraphId"]); // Got it
 							root.appendChild(text);
 						}, 600)
+						styleNodeLabel(elm[0])
+						positionNodeLabel(elm[0]);
 					}
 					else {
 						// do nothing
