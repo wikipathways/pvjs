@@ -78,65 +78,75 @@ angular.module('pathvisio.directives', [])
 .directive('pathwayImage', [function() {
 	return function($scope, elm, attrs) {
 
-	function createFlashObject() {
-		var obj = document.createElement('object', true);
-		obj.id = 'pathwayImageFlash';
-		//obj.setAttribute('classid', 'image/svg+xml');
-		obj.setAttribute('type', 'image/svg+xml');
-		obj.setAttribute('src', 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg"></svg>');
-		//obj.setAttribute('data', 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg"></svg>');
-		obj.setAttribute('width', '100%');
-		obj.setAttribute('height', '100%');
+		function createFlashObject() {
+			var obj = document.createElement('object', true);
+			obj.id = 'pathwayImageFlash';
+			//obj.setAttribute('classid', 'image/svg+xml');
+			obj.setAttribute('type', 'image/svg+xml');
+			obj.setAttribute('src', 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg"></svg>');
+			//obj.setAttribute('data', 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg"></svg>');
+			obj.setAttribute('width', '100%');
+			obj.setAttribute('height', '100%');
 
-		obj.addEventListener(window.svgweb ? 'SVGLoad' : 'load', stylePathwayImageFlash, false);
+			obj.addEventListener(window.svgweb ? 'SVGLoad' : 'load', stylePathwayImageFlash, false);
 
-		var container = document.getElementById('pathwayContainer');
-		if (window.svgweb) {
-			svgweb.appendChild(obj, container);
-		} else {
-			container.appendChild(obj);
+			var container = document.getElementById('pathwayContainer');
+			if (window.svgweb) {
+				svgweb.appendChild(obj, container);
+			} else {
+				container.appendChild(obj);
+			}
 		}
-	}
 
-	function stylePathwayImageFlash(pathwayImageFlash) {
-		var doc = document.getElementById('pathwayImageFlash').contentDocument;                
-		var pathwayImageFlash = doc.getElementsByTagNameNS(svgns, 'svg')[0];
-		var viewport = document.createElementNS(svgns, 'g');
-		viewport.id = 'viewport';
-		pathwayImageFlash.appendChild(viewport);
-		stylePathwayImage(pathwayImageFlash);
-	}
-
-	function stylePathwayImage(pathwayImage) {
-		pathwayImage.setAttribute("style", "width: 100%; height: 100%; background-color: #f5f5f5; bottom:0; top:0; left:0; right:0; margin-top:0; margin-bottom:0; margin-right:0; margin-left:0;");
-		// If any extra divs or other elements are added to this directive, make sure elm.parent() == $('pathwayContainer')
-		//var pathwayContainer = $('pathwayContainer');
-		var pathwayContainer = elm.parent();
-		self.pI = pathwayImage;
-
-		// scaling without using viewBox.
-		var scaleViewAll = Math.min(pathwayContainer.width() / $scope.Pathway.Graphics["@BoardWidth"], pathwayContainer.height() / $scope.Pathway.Graphics["@BoardHeight"]);
-		var translateX = (pathwayContainer.width() - $scope.Pathway.Graphics["@BoardWidth"]*scaleViewAll)/2;
-		if ($scope.drawingParameters.editable == true) {
-			pathwayImage.getElementsByTagNameNS(svgns, 'g')[0].setAttribute("transform", "scale(1)")
+		function stylePathwayImageFlash(pathwayImageFlash) {
+			var doc = document.getElementById('pathwayImageFlash').contentDocument;                
+			var pathwayImageFlash = doc.getElementsByTagNameNS(svgns, 'svg');
+			var viewport = document.createElementNS(svgns, 'g');
+			viewport.id = 'viewport';
+			pathwayImageFlash[0].appendChild(viewport);
+			stylePathwayImage(pathwayImageFlash);
+			self.pathwayImageFlash = pathwayImageFlash;
+			// this works
+			pathwayImageFlash[0].currentTranslate.setX(300);
+			// but this does not. Why?
+			// addEventListener does not work in IE8
+			// http://help.dottoro.com/ljmojcxu.php#supByObj
+			//pathwayImageFlash[0].addEventListener('drag', function(event) {
+			//$('pathwayImageFlash')[0].attachEvent('ondrag', function() {
+			$('#pathwayContainer')[0].attachEvent('ondrag', function() {
+				pathwayImageFlash[0].currentTranslate.setX(0);
+				alert('This text may be dragged');
+			})
 		}
-		else {
-			pathwayImage.getElementsByTagNameNS(svgns, 'g')[0].setAttribute("transform", "scale(" + scaleViewAll + ") translate(" + translateX/scaleViewAll + ",0)")
+
+		function stylePathwayImage(pathwayImage) {
+			self.pathwayImage = pathwayImage;
+			pathwayImage[0].setAttribute("style", "width: 100%; height: 100%; background-color: #f5f5f5; bottom:0; top:0; left:0; right:0; margin-top:0; margin-bottom:0; margin-right:0; margin-left:0;");
+			// If any extra divs or other elements are added to this directive, make sure elm.parent() == $('pathwayContainer')
+			//var pathwayContainer = $('pathwayContainer');
+			var pathwayContainer = elm.parent();
+
+			// scaling without using viewBox.
+			var scaleViewAll = Math.min(pathwayContainer.width() / $scope.Pathway.Graphics["@BoardWidth"], pathwayContainer.height() / $scope.Pathway.Graphics["@BoardHeight"]);
+			var translateX = (pathwayContainer.width() - $scope.Pathway.Graphics["@BoardWidth"]*scaleViewAll)/2;
+			if ($scope.drawingParameters.editable == true) {
+				pathwayImage[0].getElementsByTagNameNS(svgns, 'g')[0].setAttribute("transform", "scale(1)")
+			}
+			else {
+				pathwayImage[0].getElementsByTagNameNS(svgns, 'g')[0].setAttribute("transform", "scale(" + scaleViewAll + ") translate(" + translateX/scaleViewAll + ",0)")
+			};
+
+			/*
+			// scaling using viewBox. Does not work correctly with svgPan.js.
+			if ($scope.drawingParameters.editable == true) {
+			// would perhaps be better to do this without requiring jQuery
+			elm[0].setAttribute("viewBox", "0 0 " + pathwayContainer.width() + " " + pathwayContainer.height());
+			}
+			else {
+			elm[0].setAttribute("viewBox", "0 0 " + $scope.Pathway.Graphics["@BoardWidth"] + " " + $scope.Pathway.Graphics["@BoardHeight"]);
+			};
+			*/
 		};
-
-		/*
-		// scaling using viewBox. Does not work correctly with svgPan.js.
-		if ($scope.drawingParameters.editable == true) {
-		// would perhaps be better to do this without requiring jQuery
-		elm[0].setAttribute("viewBox", "0 0 " + pathwayContainer.width() + " " + pathwayContainer.height());
-		}
-		else {
-		elm[0].setAttribute("viewBox", "0 0 " + $scope.Pathway.Graphics["@BoardWidth"] + " " + $scope.Pathway.Graphics["@BoardHeight"]);
-		};
-		*/
-		$('#pathwayImage').off()
-		$('#pathwayImage').svgPan('viewport', 1, $scope.drawingParameters.enableZoom, 0, .2);
-	};
 
 		// Define svg
 		//$scope.$watch(function() { return angular.toJson(['Pathway["@Name"]', 'editable']) }, function(pathway) {
@@ -154,7 +164,9 @@ angular.module('pathvisio.directives', [])
 			//console.log($scope);
 			if ($scope.Pathway) {
 				if ($scope.drawingParameters.imageFormat == 'svg') {
-					stylePathwayImage(elm[0])
+					stylePathwayImage(elm)
+					pathwayImage.off()
+					pathwayImage.svgPan('viewport', 1, $scope.drawingParameters.enableZoom, 0, .2);
 				}
 				else {
 					if ($scope.drawingParameters.imageFormat == 'flash') {
@@ -194,7 +206,7 @@ angular.module('pathvisio.directives', [])
 					var g = document.createElementNS(svgns, 'g');
 					createNode($scope, g, attrs)
 					viewport.appendChild(g);
-				}, 1500)
+				}, 500)
 			}
 			else {
 				// do nothing
@@ -227,7 +239,7 @@ angular.module('pathvisio.directives', [])
 					createNodeBoundingBox($scope, rect, attrs)
 					var root = doc.getElementById('node' + $scope.DataNode["@GraphId"]); // Got it
 					root.appendChild(rect);
-				}, 1700)
+				}, 700)
 			}
 			else {
 				// do nothing
@@ -315,7 +327,7 @@ angular.module('pathvisio.directives', [])
 					createNodeShape($scope, g, nodeShape, attrs)
 					var root = doc.getElementById('node' + $scope.DataNode["@GraphId"]); // Got it
 					root.appendChild(g);
-				}, 1700)
+				}, 700)
 			}
 			else {
 				// do nothing
@@ -324,56 +336,64 @@ angular.module('pathvisio.directives', [])
 	}
 }])
 .directive('nodeLabel', [function() {
-	function createNodeLabel($scope, elm, attrs) {
-		elm.textContent = $scope.DataNode["@TextLabel"];
-		elm.id = 'nodeLabel' + $scope.DataNode["@GraphId"];
-		elm.setAttribute("class", "node " + $scope.DataNode.Graphics["@ShapeType"])
-		elm.setAttribute("font-size", $scope.DataNode.Graphics["@FontSize"] + "px")
-		elm.setAttribute("fill", $scope.DataNode.Graphics["@Color"]);
-	};
-
-	var positionLabel = function ($scope, elm, attrs){
-		var labelBbox = elm[0].getBBox();
-		var labelText = $scope.DataNode["@TextLabel"];
-		if ( $scope.DataNode.Graphics["@Width"] < labelBbox["width"] ) {
-			labelText = labelText.substring(0, labelText.length - 4);
-			elm[0].textContent = labelText + "...";
-			labelBbox = elm[0].getBBox();
-			while ( $scope.DataNode.Graphics["@Width"] < labelBbox["width"] ) {
-				labelText = labelText.substring(0, labelText.length - 1);
-				elm[0].textContent = labelText + "...";
-				labelBbox = elm[0].getBBox();
-			};
-
-		};
-		var labelxtransform = -1*(labelBbox["x"]) + $scope.DataNode.Graphics["@Width"]/2 - labelBbox["width"]/2;
-		var labelytransform = -1*(labelBbox["y"]) + $scope.DataNode.Graphics["@Height"]/2 - labelBbox["height"]/2;
-		elm[0].setAttribute("transform", "translate(" + labelxtransform + "," + labelytransform + ")");
-	}
-
 	return function($scope, elm, attrs) {
+
+		function styleNodeLabel(nodeContainer) {
+			nodeContainer.textContent = $scope.DataNode["@TextLabel"];
+			nodeContainer.id = 'nodeLabel' + $scope.DataNode["@GraphId"];
+			nodeContainer.setAttribute("class", "node " + $scope.DataNode.Graphics["@ShapeType"])
+			nodeContainer.setAttributeNS(null,"font-family",$scope.DataNode.Graphics["@FontName"]);
+			nodeContainer.setAttribute("font-size", $scope.DataNode.Graphics["@FontSize"] + "px")
+			nodeContainer.setAttribute("fill", $scope.DataNode.Graphics["@Color"]);
+		};
+
+		var positionNodeLabel = function (nodeLabel){
+			var labelBbox = nodeLabel.getBBox();
+			var labelText = $scope.DataNode["@TextLabel"];
+			if ( $scope.DataNode.Graphics["@Width"] < labelBbox["width"] ) {
+				labelText = labelText.substring(0, labelText.length - 4);
+				nodeLabel.textContent = labelText + "...";
+				labelBbox = nodeLabel.getBBox();
+				while ( $scope.DataNode.Graphics["@Width"] < labelBbox["width"] ) {
+					labelText = labelText.substring(0, labelText.length - 1);
+					nodeLabel.textContent = labelText + "...";
+					labelBbox = nodeLabel.getBBox();
+				};
+
+			};
+			var labelxtransform = -1*(labelBbox["x"]) + $scope.DataNode.Graphics["@Width"]/2 - labelBbox["width"]/2;
+			var labelytransform = -1*(labelBbox["y"]) + $scope.DataNode.Graphics["@Height"]/2 - labelBbox["height"]/2;
+			nodeLabel.setAttribute("transform", "translate(" + labelxtransform + "," + labelytransform + ")");
+		};
+
 		$scope.$watch('Pathway.DataNode["@TextLabel"]', function() {
 			if ($scope.Pathway) {
 				if ($scope.drawingParameters.imageFormat == 'svg') {
-					createNodeLabel($scope, elm[0], attrs)
-					// disabled for svgweb version. need to modify to support it.
-					positionLabel($scope, elm, attrs);
+					styleNodeLabel(elm[0])
+					// I could call positionNodeLabel() from styleNodeLabel() if I could correct the wait until load for the svgweb version
+					positionNodeLabel(elm[0]);
 				}
 				else {
 					if ($scope.drawingParameters.imageFormat == 'flash') {
-						// I don't think I can use the exact same function here for svg and svgweb
 						window.setTimeout(function() {
 							var textNode = document.createTextNode($scope.DataNode["@TextLabel"], true);
 							var doc = document.getElementById('pathwayImageFlash').contentDocument;                
 							var metadata = doc.createElementNS(svgns, 'metadata');
 							metadata.appendChild(textNode);
-
 							var text = doc.createElementNS(svgns, 'text');
-							text.setAttributeNS(null,"font-size",$scope.DataNode.Graphics["@FontSize"] + "px");
+
+							styleNodeLabel(text);
+							// the large timeout value results in a visible movement of text into position,
+							// but a smaller value doesn't result in the text moving into its correct position.
+							// Need to use listener or something other than a setTimeout.
+							window.setTimeout(function() {
+								positionNodeLabel(text);
+							}, 1000)
+
 							text.appendChild(textNode);
 							var root = doc.getElementById('node' + $scope.DataNode["@GraphId"]); // Got it
 							root.appendChild(text);
-						}, 1600)
+						}, 600)
 					}
 					else {
 						// do nothing

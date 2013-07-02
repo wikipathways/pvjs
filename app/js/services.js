@@ -186,11 +186,19 @@ angular.module('pathvisio.services', [])
 								else {
 									element.Graphics['@FillColor'] = "#ffffff";
 								};	
+
 								if (element.Graphics.hasOwnProperty("@Color")) {
 									element.Graphics["@Color"] = "#" + element.Graphics["@Color"]
 								}
 								else {
 									element.Graphics['@Color'] = "#000000";
+								};	
+
+								if (element.Graphics.hasOwnProperty("@FontName")) {
+									element.Graphics["@Color"] = element.Graphics["@FontName"]
+								}
+								else {
+									element.Graphics['@FontName'] = "Arial";
 								};	
 							});
 						}
