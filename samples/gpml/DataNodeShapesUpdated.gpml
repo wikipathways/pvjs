@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Pathway xmlns="http://pathvisio.org/GPML/2013a" Name="New Pathway" Version="20130430">
-  <Graphics BoardWidth="491.8473895582329" BoardHeight="641.7804551539491" />
+  <Graphics BoardWidth="461.8440291779362" BoardHeight="641.7804551539491" />
   <DataNode TextLabel="GeneProduct" GraphId="b8b67" Type="GeneProduct">
     <Graphics CenterX="115.26894905894636" CenterY="111.98617992104599" Width="133.5" Height="82.5" ZOrder="32768" FontSize="10" Valign="Middle" />
     <Xref Database="" ID="" />
@@ -18,11 +18,11 @@
     <Xref Database="" ID="" />
   </DataNode>
   <DataNode TextLabel="GeneProduct" GraphId="d167c" Type="GeneProduct">
-    <Graphics CenterX="341.497090402426" CenterY="90.3112244897959" Width="172.69387755102036" Height="77.03061224489798" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Graphics CenterX="345.497090402426" CenterY="90.3112244897959" Width="172.69387755102036" Height="77.03061224489798" ZOrder="32768" FontName="Garamond" FontSize="10" Valign="Middle" />
     <Xref Database="" ID="" />
   </DataNode>
   <DataNode TextLabel="Unknown" GraphId="b551f">
-    <Graphics CenterX="341.497090402426" CenterY="547.9871663524848" Width="120.21867060077045" Height="127.58657760292863" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Graphics CenterX="341.497090402426" CenterY="547.9871663524848" Width="120.21867060077045" Height="127.58657760292863" ZOrder="32768" FontName="Times New Roman" FontSize="10" Valign="Middle" />
     <Xref Database="" ID="" />
   </DataNode>
   <DataNode TextLabel="GeneProduct" GraphId="fad4e" Type="GeneProduct" GroupRef="fe843">
