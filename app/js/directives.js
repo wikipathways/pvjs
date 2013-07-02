@@ -215,28 +215,30 @@ angular.module('pathvisio.directives', [])
 	}
 }])
 .directive('nodeBoundingBox', [function() {
-	function createNodeBoundingBox($scope, elm, attrs) {
-		elm.id = 'nodeBoundingBox' + $scope.DataNode["@GraphId"];
-		elm.setAttribute("x", 0)
-		elm.setAttribute("y", 0);
-		elm.setAttribute("width", $scope.DataNode.Graphics["@Width"]);
-		elm.setAttribute("height", $scope.DataNode.Graphics["@Height"]);
-		elm.setAttribute("stroke", '#FFD300');
-		elm.setAttribute("stroke-opacity", 0.1);
-		elm.setAttribute("fill", '#FFFFED');
-		elm.setAttribute("fill-opacity", 0);
-	};
-
 	return function($scope, elm, attrs) {
+
+		function styleNodeBoundingBox(elm) {
+			elm.id = 'nodeBoundingBox' + $scope.DataNode["@GraphId"];
+			elm.setAttribute("x", 0)
+			elm.setAttribute("y", 0);
+			elm.setAttribute("width", $scope.DataNode.Graphics["@Width"]);
+			elm.setAttribute("height", $scope.DataNode.Graphics["@Height"]);
+			elm.setAttribute("stroke", '#FFD300');
+			elm.setAttribute("stroke-opacity", 0.1);
+			elm.setAttribute("fill", '#FFFFED');
+			elm.setAttribute("fill-opacity", 0);
+		};
+
 		if ($scope.drawingParameters.imageFormat == 'svg') {
-			createNodeBoundingBox($scope, elm[0], attrs)
+			styleNodeBoundingBox(elm[0])
 		}
 		else {
 			if ($scope.drawingParameters.imageFormat == 'flash') {
+				styleNodeBoundingBox(elm[0])
 				window.setTimeout(function() {
 					var doc = document.getElementById('pathwayObjectFlash').contentDocument;                
 					var rect = document.createElementNS(svgns, 'rect');
-					createNodeBoundingBox($scope, rect, attrs)
+					styleNodeBoundingBox(rect)
 					var root = doc.getElementById('node' + $scope.DataNode["@GraphId"]); // Got it
 					root.appendChild(rect);
 				}, 700)
@@ -248,83 +250,67 @@ angular.module('pathvisio.directives', [])
 	}
 }])
 .directive('nodeShape', [function() {
-	function createNodeShape($scope, elm, nodeShape, attrs) {
-		// nodeShape container
-		elm.id = 'nodeShapeContainer' + $scope.DataNode["@GraphId"];
-
-		// Define Node Shape 
-		if ( $scope.DataNode.Graphics["@ShapeType"] == "Rectangle" ) {
-			nodeShape.setAttribute("width", $scope.DataNode.Graphics["@Width"]);
-			nodeShape.setAttribute("height", $scope.DataNode.Graphics["@Height"]);
-		}
-		else { if ( $scope.DataNode.Graphics["@ShapeType"] == "RoundedRectangle" ) {
-			nodeShape.setAttribute("width", $scope.DataNode.Graphics["@Width"]);
-			nodeShape.setAttribute("height", $scope.DataNode.Graphics["@Height"]);
-			nodeShape.setAttribute("rx", 10);
-			nodeShape.setAttribute("ry", 10);
-		}
-		else { if ( $scope.DataNode.Graphics["@ShapeType"] == "Oval" ) {
-			nodeShape.setAttribute("cx", $scope.DataNode.Graphics["@Width"]/2);
-			nodeShape.setAttribute("cy", $scope.DataNode.Graphics["@Height"]/2);
-			nodeShape.setAttribute("rx", $scope.DataNode.Graphics["@Width"]/2);
-			nodeShape.setAttribute("ry", $scope.DataNode.Graphics["@Height"]/2);
-		}
-		else {
-			nodeShape.setAttribute("width", $scope.DataNode.Graphics["@Width"]);
-			nodeShape.setAttribute("height", $scope.DataNode.Graphics["@Height"]);
-		}}};
-		nodeShape.id = 'nodeShape' + $scope.DataNode["@GraphId"];
-		nodeShape.setAttribute("stroke", $scope.DataNode.Graphics["@Color"]);
-		nodeShape.setAttribute("fill", $scope.DataNode.Graphics["@FillColor"]);
-		nodeShape.setAttribute("fill-opacity", 0);
-	};
-
 	return function($scope, elm, attrs) {
-		if ($scope.drawingParameters.imageFormat == 'svg') {
-			// Define Node Shape 
+
+		function createNodeShape(nodeShapeContainer) {
+			// nodeShape container
+			nodeShapeContainer.id = 'nodeShapeContainer' + $scope.DataNode["@GraphId"];
+
+					// Create Node Shape 
+					if ( $scope.DataNode.Graphics["@ShapeType"] == "Rectangle" ) {
+						var nodeShape = document.createElementNS(svgns, 'rect');
+						nodeShapeContainer.appendChild(nodeShape);
+					}
+					else { if ( $scope.DataNode.Graphics["@ShapeType"] == "RoundedRectangle" ) {
+						var nodeShape = document.createElementNS(svgns, 'rect');
+						nodeShapeContainer.appendChild(nodeShape);
+					}
+					else { if ( $scope.DataNode.Graphics["@ShapeType"] == "Oval" ) {
+						var nodeShape = document.createElementNS(svgns, 'ellipse');
+						nodeShapeContainer.appendChild(nodeShape);
+					}
+					else {
+						var nodeShape = document.createElementNS(svgns, 'rect');
+						nodeShapeContainer.appendChild(nodeShape);
+						//console.log("This node shape type is not defined in pathvisio.js. Substituting rectangle.");
+					}}};
+			// Style Node Shape 
 			if ( $scope.DataNode.Graphics["@ShapeType"] == "Rectangle" ) {
-				var nodeShape = document.createElementNS(svgns, 'rect');
-				elm.append(nodeShape);
+				nodeShape.setAttribute("width", $scope.DataNode.Graphics["@Width"]);
+				nodeShape.setAttribute("height", $scope.DataNode.Graphics["@Height"]);
 			}
 			else { if ( $scope.DataNode.Graphics["@ShapeType"] == "RoundedRectangle" ) {
-				var nodeShape = document.createElementNS(svgns, 'rect');
-				elm.append(nodeShape);
+				nodeShape.setAttribute("width", $scope.DataNode.Graphics["@Width"]);
+				nodeShape.setAttribute("height", $scope.DataNode.Graphics["@Height"]);
+				nodeShape.setAttribute("rx", 10);
+				nodeShape.setAttribute("ry", 10);
 			}
 			else { if ( $scope.DataNode.Graphics["@ShapeType"] == "Oval" ) {
-				var nodeShape = document.createElementNS(svgns, 'ellipse');
-				elm.append(nodeShape);
+				nodeShape.setAttribute("cx", $scope.DataNode.Graphics["@Width"]/2);
+				nodeShape.setAttribute("cy", $scope.DataNode.Graphics["@Height"]/2);
+				nodeShape.setAttribute("rx", $scope.DataNode.Graphics["@Width"]/2);
+				nodeShape.setAttribute("ry", $scope.DataNode.Graphics["@Height"]/2);
 			}
 			else {
-				var nodeShape = document.createElementNS(svgns, 'rect');
-				elm.append(nodeShape);
-				//console.log("This node shape type is not defined in pathvisio.js. Substituting rectangle.");
+				nodeShape.setAttribute("width", $scope.DataNode.Graphics["@Width"]);
+				nodeShape.setAttribute("height", $scope.DataNode.Graphics["@Height"]);
 			}}};
-			createNodeShape($scope, elm[0], nodeShape, attrs)
+			nodeShape.id = 'nodeShape' + $scope.DataNode["@GraphId"];
+			nodeShape.setAttribute("stroke", $scope.DataNode.Graphics["@Color"]);
+			nodeShape.setAttribute("fill", $scope.DataNode.Graphics["@FillColor"]);
+			nodeShape.setAttribute("fill-opacity", 0);
+		};
+
+		if ($scope.drawingParameters.imageFormat == 'svg') {
+			createNodeShape(elm[0])
 		}
 		else {
 			if ($scope.drawingParameters.imageFormat == 'flash') {
 				window.setTimeout(function() {
+					createNodeShape(elm[0])
 					var doc = document.getElementById('pathwayObjectFlash').contentDocument;                
 					var g = document.createElementNS(svgns, 'g');
-					// Define Node Shape 
-					if ( $scope.DataNode.Graphics["@ShapeType"] == "Rectangle" ) {
-						var nodeShape = document.createElementNS(svgns, 'rect');
-						g.appendChild(nodeShape);
-					}
-					else { if ( $scope.DataNode.Graphics["@ShapeType"] == "RoundedRectangle" ) {
-						var nodeShape = document.createElementNS(svgns, 'rect');
-						g.appendChild(nodeShape);
-					}
-					else { if ( $scope.DataNode.Graphics["@ShapeType"] == "Oval" ) {
-						var nodeShape = document.createElementNS(svgns, 'ellipse');
-						g.appendChild(nodeShape);
-					}
-					else {
-						var nodeShape = document.createElementNS(svgns, 'rect');
-						g.appendChild(nodeShape);
-						//console.log("This node shape type is not defined in pathvisio.js. Substituting rectangle.");
-					}}};
-					createNodeShape($scope, g, nodeShape, attrs)
+					createNodeShape(g)
 					var root = doc.getElementById('node' + $scope.DataNode["@GraphId"]); // Got it
 					root.appendChild(g);
 				}, 700)
