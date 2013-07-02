@@ -191,15 +191,15 @@ angular.module('pathvisio.directives', [])
 }
 ])
 .directive('node', [function() {
-	function createNode($scope, elm, attrs) {
-		elm.id = 'node' + $scope.DataNode["@GraphId"];
-		elm.setAttribute("class", "node " + $scope.DataNode["@Type"]);
-		elm.setAttribute("transform", "translate(" + $scope.DataNode.Graphics.x + "," + $scope.DataNode.Graphics.y + ")");
-	};
-
 	return function($scope, elm, attrs) {
+		function styleNode(node) {
+			node.id = 'node' + $scope.DataNode["@GraphId"];
+			node.setAttribute("class", "node " + $scope.DataNode["@Type"]);
+			node.setAttribute("transform", "translate(" + $scope.DataNode.Graphics.x + "," + $scope.DataNode.Graphics.y + ")");
+		};
+
 		if ($scope.drawingParameters.imageFormat == 'svg') {
-			createNode($scope, elm[0], attrs)
+			styleNode(elm[0])
 		}
 		else {
 			if ($scope.drawingParameters.imageFormat == 'flash') {
@@ -207,9 +207,10 @@ angular.module('pathvisio.directives', [])
 					var doc = document.getElementById('pathwayObjectFlash').contentDocument;                
 					var viewport = doc.getElementsByTagNameNS(svgns, 'g')[0];
 					var g = document.createElementNS(svgns, 'g');
-					createNode($scope, g, attrs)
+					styleNode(g)
 					viewport.appendChild(g);
 				}, 500)
+				styleNode(elm[0])
 			}
 			else {
 				// do nothing
