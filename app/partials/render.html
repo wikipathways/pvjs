@@ -1,5 +1,14 @@
 <div id="pathwayContainer" height="100%" width="100%">
 	<svg id="pathwayImage" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" preserveaspectratio="xMidYMid" pathway-image>
+	  <defs>
+	    <marker id="Triangle"
+	      viewBox="0 0 10 10" refX="10" refY="5" 
+	      markerUnits="strokeWidth"
+	      markerWidth="10" markerHeight="10"
+	      orient="auto">
+	      <path d="M 0 0 L 10 5 L 0 10 z" />
+	    </marker>
+	  </defs>
 		<g id="viewport" xmlns="http://www.w3.org/2000/svg">
 			<rect ng-repeat="Group in Pathway.Groups" xmlns="http://www.w3.org/2000/svg" group></rect>
 			<g ng-repeat="DataNode in Pathway.DataNodes" xmlns="http://www.w3.org/2000/svg" node>
@@ -9,6 +18,7 @@
 				<g xmlns="http://www.w3.org/2000/svg" node-shape></g>
 				<text xmlns="http://www.w3.org/2000/svg" node-label></text>
 			</g>
+			<path ng-repeat="Interaction in Pathway.Interactions" marker-end="url(#Triangle)" interaction/>
 		</g>
 	</svg>
 </div>

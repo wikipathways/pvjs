@@ -158,8 +158,6 @@ angular.module('pathvisio.services', [])
 		parsedJson.Pathway = JXON.build(xmlDoc.documentElement);
 		*/
 
-	       console.log(parsedJson.Pathway);
-
 		var xmlns = "";
 
 		try {
@@ -275,6 +273,8 @@ angular.module('pathvisio.services', [])
 				delete parsedJson.Pathway.Interaction;
 
 				parsedJson.Pathway.Interactions.forEach(function(element, index, array) {
+					element.Graphics.Points = convertToArray( element.Graphics.Point );
+					delete element.Graphics.Point;
 					// modify data
 				});
 			}
@@ -308,7 +308,6 @@ angular.module('pathvisio.services', [])
 				console.log("No Shapes found.");
 			}
 
-			console.log(parsedJson.Pathway);
 			return parsedJson.Pathway;
 		}
 		else {

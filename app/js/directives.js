@@ -219,11 +219,11 @@ angular.module('pathvisio.directives', [])
 		}
 
 		function groupSpecifications() {
-			console.log($scope.$parent.$parent.Pathway.DataNodes);
+			//console.log($scope.$parent.$parent.Pathway.DataNodes);
 			var dataNodes = $scope.$parent.$parent.Pathway.DataNodes;
 			var dataNodesFiltered = dataNodes.filter(isGroupMember);
-			console.log('dataNodesFiltered');
-			console.log(dataNodesFiltered);
+			//console.log('dataNodesFiltered');
+			//console.log(dataNodesFiltered);
 			var x = dataNodesFiltered.sort(function(a, b) {
 			    return a.Graphics["x"] - b.Graphics["x"];
 			})[0].Graphics["x"] - 5;
@@ -238,9 +238,9 @@ angular.module('pathvisio.directives', [])
 			    return (a.Graphics['y'] + a.Graphics["@Height"]) - (b.Graphics['y'] + b.Graphics["@Height"]);
 			}).reverse()[0];
 			var height = southMostNode.Graphics['y'] + southMostNode.Graphics['@Height'] - y + 5;
-			console.log(southMostNode.Graphics['y']);
-			console.log(southMostNode.Graphics['@Height']);
-			console.log(y);
+			//console.log(southMostNode.Graphics['y']);
+			//console.log(southMostNode.Graphics['@Height']);
+			//console.log(y);
 			//var x = Math.min(dataNodesFiltered[0].Graphics["x"]);
 			//var y = Math.min();
 			
@@ -249,7 +249,7 @@ angular.module('pathvisio.directives', [])
 
 		function styleGroup(elm) {
 			groupSpecifications = groupSpecifications();
-			elm.id = 'group' + $scope.Group["@GraphId"];
+			elm.id = 'group_' + $scope.Group["@GraphId"];
 			elm.setAttribute("class", "group");
 			elm.setAttribute("x", groupSpecifications.x)
 			elm.setAttribute("y", groupSpecifications.y);
@@ -269,7 +269,7 @@ angular.module('pathvisio.directives', [])
 .directive('node', ['ImageFormat', function(ImageFormat) {
 	return function($scope, elm, attrs) {
 		function styleNode(node) {
-			node.id = 'node' + $scope.DataNode["@GraphId"];
+			node.id = 'node_' + $scope.DataNode["@GraphId"];
 			node.setAttribute("class", "node " + $scope.DataNode["@Type"]);
 			node.setAttribute("transform", "translate(" + $scope.DataNode.Graphics.x + "," + $scope.DataNode.Graphics.y + ")");
 		};
@@ -300,7 +300,7 @@ angular.module('pathvisio.directives', [])
 .directive('nodeBoundingBox', ['ImageFormat', function(ImageFormat) {
 	return function($scope, elm, attrs) {
 		function styleNodeBoundingBox(elm) {
-			elm.id = 'nodeBoundingBox' + $scope.DataNode["@GraphId"];
+			elm.id = 'nodeBoundingBox_' + $scope.DataNode["@GraphId"];
 			elm.setAttribute("x", 0)
 			elm.setAttribute("y", 0);
 			elm.setAttribute("width", $scope.DataNode.Graphics["@Width"]);
@@ -339,7 +339,7 @@ angular.module('pathvisio.directives', [])
 
 		function createNodeShape(nodeShapeContainer) {
 			// nodeShape container
-			nodeShapeContainer.id = 'nodeShapeContainer' + $scope.DataNode["@GraphId"];
+			nodeShapeContainer.id = 'nodeShapeContainer_' + $scope.DataNode["@GraphId"];
 
 			// Create Node Shape 
 			if ( $scope.DataNode.Graphics["@ShapeType"] == "Rectangle" ) {
@@ -481,6 +481,34 @@ angular.module('pathvisio.directives', [])
 			       */
 
 			}})
+	}
+}])
+.directive('interaction', ['ImageFormat', function(ImageFormat) {
+	return function($scope, elm, attrs) {
+		function styleInteraction(elm) {
+			//<path d="M 1195.0 456.0 L 1279.0 456.0" stroke="black" stroke-width="1" />
+			console.log($scope);
+			var pathData = "";
+			$scope.Interaction.Graphics.Points.forEach(function(element, index, array) {
+				if (index == 0) {
+					pathData = "M " + element["@X"] + " " + element["@Y"]; 
+				}
+				else {
+					pathData += " L " + element["@X"] + " " + element["@Y"]; 
+				};
+				return pathData;
+			});
+			console.log('pathData outside');
+			console.log(pathData);
+			elm.id = 'interaction_' + $scope.Interaction["@GraphId"];
+			elm.setAttribute("d", pathData)
+			elm.setAttribute("stroke", '#000000');
+			elm.setAttribute("fill", 'none');
+		};
+
+		if (ImageFormat() == 'svg') {
+			styleInteraction(elm[0])
+		}
 	}
 }])
 
