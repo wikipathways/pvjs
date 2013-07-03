@@ -122,7 +122,7 @@ angular.module('pathvisio.directives', [])
 		}
 */
 		function stylePathwayImage(pathwayImage) {
-			pathwayImage[0].setAttribute("style", "width: 100%; height: 100%; background-color: #ffffff; bottom:0; top:0; left:0; right:0; margin-top:0; margin-bottom:0; margin-right:0; margin-left:0;");
+			pathwayImage[0].setAttribute("style", "width: 100%; height: 100%; background-color: #f5f5f5; bottom:0; top:0; left:0; right:0; margin-top:0; margin-bottom:0; margin-right:0; margin-left:0;");
 			// If any extra divs or other elements are added to this directive, make sure elm.parent() == $('pathwayContainer')
 			//var pathwayContainer = $('pathwayContainer');
 			var pathwayContainer = elm.parent();
