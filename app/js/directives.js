@@ -212,6 +212,60 @@ angular.module('pathvisio.directives', [])
 	}
 }
 ])
+.directive('group', ['ImageFormat', function(ImageFormat) {
+	return function($scope, elm, attrs) {
+		function isGroupMember(elm, index, array) {
+		  return (elm['@GroupRef'] == $scope.Group["@GroupId"]);
+		}
+
+		function groupSpecifications() {
+			console.log($scope.$parent.$parent.Pathway.DataNodes);
+			var dataNodes = $scope.$parent.$parent.Pathway.DataNodes;
+			var dataNodesFiltered = dataNodes.filter(isGroupMember);
+			console.log('dataNodesFiltered');
+			console.log(dataNodesFiltered);
+			var x = dataNodesFiltered.sort(function(a, b) {
+			    return a.Graphics["x"] - b.Graphics["x"];
+			})[0].Graphics["x"] - 5;
+			var y = dataNodesFiltered.sort(function(a, b) {
+			    return a.Graphics["y"] - b.Graphics["y"];
+			})[0].Graphics["y"] - 5;
+			var eastMostNode = dataNodesFiltered.sort(function(a, b) {
+			    return (a.Graphics['x'] + a.Graphics["@Width"]) - (b.Graphics['x'] + b.Graphics["@Width"]);
+			}).reverse()[0];
+			var width = eastMostNode.Graphics['x'] + eastMostNode.Graphics['@Width'] - x + 5;
+			var southMostNode = dataNodesFiltered.sort(function(a, b) {
+			    return (a.Graphics['y'] + a.Graphics["@Height"]) - (b.Graphics['y'] + b.Graphics["@Height"]);
+			}).reverse()[0];
+			var height = southMostNode.Graphics['y'] + southMostNode.Graphics['@Height'] - y + 5;
+			console.log(southMostNode.Graphics['y']);
+			console.log(southMostNode.Graphics['@Height']);
+			console.log(y);
+			//var x = Math.min(dataNodesFiltered[0].Graphics["x"]);
+			//var y = Math.min();
+			
+			return {"x":x, "y":y, "width":width, "height":height};
+		};
+
+		function styleGroup(elm) {
+			groupSpecifications = groupSpecifications();
+			elm.id = 'group' + $scope.Group["@GraphId"];
+			elm.setAttribute("class", "group");
+			elm.setAttribute("x", groupSpecifications.x)
+			elm.setAttribute("y", groupSpecifications.y);
+			elm.setAttribute("width", groupSpecifications.width);
+			elm.setAttribute("height", groupSpecifications.height);
+			elm.setAttribute("stroke", '#000000');
+			elm.setAttribute("stroke-opacity", 1);
+			elm.setAttribute("fill", '#FFFAFA');
+			elm.setAttribute("fill-opacity", 1);
+		};
+
+		if (ImageFormat() == 'svg') {
+			styleGroup(elm[0])
+		}
+	}
+}])
 .directive('node', ['ImageFormat', function(ImageFormat) {
 	return function($scope, elm, attrs) {
 		function styleNode(node) {
@@ -245,7 +299,6 @@ angular.module('pathvisio.directives', [])
 }])
 .directive('nodeBoundingBox', ['ImageFormat', function(ImageFormat) {
 	return function($scope, elm, attrs) {
-
 		function styleNodeBoundingBox(elm) {
 			elm.id = 'nodeBoundingBox' + $scope.DataNode["@GraphId"];
 			elm.setAttribute("x", 0)
@@ -328,7 +381,7 @@ angular.module('pathvisio.directives', [])
 			nodeShape.id = 'nodeShape_' + $scope.DataNode["@GraphId"];
 			nodeShape.setAttribute("stroke", $scope.DataNode.Graphics["@Color"]);
 			nodeShape.setAttribute("fill", $scope.DataNode.Graphics["@FillColor"]);
-			nodeShape.setAttribute("fill-opacity", 0);
+			nodeShape.setAttribute("fill-opacity", 1);
 		};
 
 		if (ImageFormat() == 'svg') {

@@ -158,6 +158,8 @@ angular.module('pathvisio.services', [])
 		parsedJson.Pathway = JXON.build(xmlDoc.documentElement);
 		*/
 
+	       console.log(parsedJson.Pathway);
+
 		var xmlns = "";
 
 		try {
@@ -223,6 +225,9 @@ angular.module('pathvisio.services', [])
 					element.Graphics["y"] = parseFloat(element.Graphics["@CenterY"]) - parseFloat(element.Graphics["@Height"])/2;
 					delete element.Graphics["@CenterX"];
 					delete element.Graphics["@CenterY"];
+
+					element.Graphics["@Width"] = parseFloat(element.Graphics["@Width"]);
+					element.Graphics["@Height"] = parseFloat(element.Graphics["@Height"]);
 
 					if (element.Graphics.hasOwnProperty("@FillColor")) {
 						// does not deal with color if user entered "white". Should use validateColor() to address.
@@ -303,6 +308,7 @@ angular.module('pathvisio.services', [])
 				console.log("No Shapes found.");
 			}
 
+			console.log(parsedJson.Pathway);
 			return parsedJson.Pathway;
 		}
 		else {
