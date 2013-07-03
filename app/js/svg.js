@@ -1,209 +1,7931 @@
-(function(){function q(a,b){for(var c in b)a.prototype[c]=b[c]}function O(a,b){for(var c in b)a[c]=b[c]}function v(a,b,c,d){if(!b)b=a.documentElement;if(typeof XPathEvaluator!="undefined"){var e=new XPathEvaluator;a=a.createNSResolver(b);c=e.evaluate(c,b,a,0,null);for(b=r();e=c.iterateNext();)b.push(e);return b}else{a.setProperty("SelectionLanguage","XPath");if(d){var f="",h={};for(e=0;e<d.length;e++){var g=d[e],k=d["_"+g];if(!h["_"+g]){f+=k=="xmlns"?'xmlns="'+g+'" ':"xmlns:"+k+'="'+g+'" ';h["_"+
-g]=g}}a.setProperty("SelectionNamespaces",f)}b=b.selectNodes(c);if(b===null||typeof b=="undefined")b=r();c=r();for(e=0;e<b.length;e++)c.push(b[e]);return c}}function z(a,b){if(b===undefined)b=false;var c=J[b+a];if(c)return c.cloneNode(true);var d;if(P){c=new DOMParser;try{d=c.parseFromString(a,"application/xml")}catch(e){throw e;}c=d.documentElement;if(c.nodeName=="parsererror")throw Error("There is a bug in your SVG: "+(A?(new XMLSerializer).serializeToString(c):c.xml));}else{c=["Msxml2.DOMDocument.6.0",
-"Msxml2.DOMDocument.3.0"];for(var f=0;f<c.length;f++)try{if(d=new ActiveXObject(c[f]))break}catch(h){}if(!d)throw Error("Unable to instantiate XML parser");try{d.preserveWhiteSpace=b;d.resolveExternals=false;d.validateOnParse=false;d.setProperty("ProhibitDTD",false);d.async="false";if(!d.loadXML(a)||d.parseError.errorCode!==0)throw Error(d.parseError.reason);}catch(g){console.log(g.message);throw Error("Unable to parse SVG: "+g.message);}}try{J[b+a]=d.cloneNode(true)}catch(k){}return d}function B(a,
-b){var c=a._nodeXML||a,d;if(A)d=(new XMLSerializer).serializeToString(c);else if(c.xml)d=c.xml;else if(typeof XMLSerializer!="undefined")d=(new XMLSerializer).serializeToString(c);d=d.replace(/urn\:__fake__internal__namespace/g,svgns);c="";if(d.indexOf("xmlns=")==-1)c='xmlns="'+svgns+'" ';if(b)for(var e=0;e<b.length;e++){var f=b[e],h=b["_"+f];if(f==svgnsFake)f=svgns;f=h!="xmlns"?"xmlns:"+h+'="'+f+'"':'xmlns="'+f+'"';if(d.indexOf(f)==-1)c+=f+" "}return d=d.replace(/<([^ ]+) /,"<$1 "+c)}function m(a,
-b){if(typeof b=="string")b=a[b];return function(){return b.apply(a,arguments.length?arguments:[])}}function ca(){if(typeof XMLHttpRequest!="undefined")return new XMLHttpRequest;else if(ActiveXObject){var a=null,b;for(b=0;b<Q.length&&!a;++b)try{a=new ActiveXObject(Q[b])}catch(c){}if(!a)throw Error("XMLHttpRequest object not available on this platform");return a}}function R(){this._setXDomain();this.libraryPath=this._getLibraryPath();this.htcFilename=this._getHTCFilename();j&&!Object.defineProperty&&
-l._prepareBehavior(this.libraryPath,this.htcFilename);this._interceptOnloadListeners();this._initDOMContentLoaded()}function S(){if(this._forceFlash())console.log("Forcing Flash SVG viewer for this browser");else if(this.hasNativeSVG()){this.supported=true;this.use="native";return}var a=new T;if(a.capable)if(a.isVersionOrAbove(10,0,0)){this.supported=true;this.use="flash"}else{this.supported=false;this.reason="Flash 10+ required"}else{this.supported=false;this.reason="Flash 10+ or a different browser required"}}
-function T(){this._detectVersion()}function l(a){this.type=a.type;this._keyboardListeners=[];this._redrawManager=new U(this);if(this.type=="script"){this.id=a.svgID;this._xml=a.xml;this._svgString=a.svgString;this._origSVG=a.origSVG;this._scriptNode=a.scriptNode}else if(this.type=="object"){this.id=a.objID;this._objNode=a.objNode}}function o(a){this.type=a.type;this._xml=a.xml;if(this.type=="object"){this.id=a.objID;this._objNode=a.objNode}else if(this.type=="script"){this.id=a.svgID;this._svgString=
-a.svgString;this._scriptNode=a.scriptNode}}function U(a){this._handler=a;this._batch=[];this._nextID=1;this._ids=[];this._timeoutIDs={}}function V(){}function i(a,b,c,d,e,f){if(!(a===undefined&&b===undefined)){this.nodeName=a;this._nodeXML=e;this._handler=f;this._listeners={};this._detachedListeners=[];this.fake=true;if(d==svgnsFake)d=svgns;if(b==i.ELEMENT_NODE&&!this._nodeXML){e='<?xml version="1.0"?>\n';e+=d==svgns&&!c?"<"+a+' xmlns="'+svgnsFake+'" xmlns:xlink="http://www.w3.org/1999/xlink"/>':
-"<"+a+" xmlns:"+c+'="'+d+'"/>';this._nodeXML=z(e).documentElement}else if(b==i.DOCUMENT_FRAGMENT_NODE){e='<?xml version="1.0"?>\n<__document__fragment></__document__fragment>';this._nodeXML=z(e).documentElement}if(b!=i.DOCUMENT_NODE&&this._nodeXML){this._nodeXML.getAttribute("__guid")||this._nodeXML.setAttribute("__guid","_"+K++);this._guid=this._nodeXML.getAttribute("__guid");svgweb._guidLookup["_"+this._guid]=this}if(b==i.ELEMENT_NODE)this.localName=a.indexOf(":")!=-1?a.match(/^[^:]*:(.*)$/)[1]:
-a;this.nodeType=b?b:i.ELEMENT_NODE;if(b==i.ELEMENT_NODE||b==i.DOCUMENT_NODE||b==i.DOCUMENT_FRAGMENT_NODE){this.prefix=c;this.namespaceURI=d;this._nodeValue=null}else if(b==i.TEXT_NODE){this._nodeValue=this._nodeXML.firstChild.nodeValue;this.namespaceURI=this.prefix=null;if(this._nodeValue===undefined)this._nodeValue=null}this.ownerDocument=document;if(this._handler&&this._handler.type=="object")this.ownerDocument=this._handler.document;j&&this._createEmptyMethods();this._childNodes=this._createChildNodes();
-b==i.TEXT_NODE&&this._nodeXML.setAttribute("__fakeTextNode",true);if(j)j&&this.nodeType!=i.DOCUMENT_NODE&&this._createHTC();else this._defineNodeAccessors()}}function t(a,b,c,d,e){if(!(a===undefined&&c===undefined&&d===undefined&&e===undefined)){i.apply(this,[a,i.ELEMENT_NODE,b,c,d,e]);this._attributes={};this._attributes._id="";this._importAttributes(this,this._nodeXML);j||this._defineAccessors();if(this.namespaceURI==svgns){if(!(j&&this._attached&&this._handler&&this._handler.type=="script"&&this.nodeName==
-"svg"))this.style=new s(this);if(!(j&&this._attached&&this._handler&&this._handler.type=="script"&&this.nodeName=="svg"))if(j)this.style._ignoreStyleChanges=false}}}function C(a){i.apply(this,["#document-fragment",i.DOCUMENT_FRAGMENT_NODE,null,null,null,null]);this.ownerDocument=a}function s(a){this._element=a;this._setup()}function W(a,b){this._handler=b;this._svgNode=a;this._scriptsToExec=[];this._htcLoaded=Object.defineProperty?true:false;this._swfLoaded=false;for(var c=0;this._svgNode._onloadListeners&&
-c<this._svgNode._onloadListeners.length;c++){var d=function(e,f){return function(){f.apply(e.flash)}}(this._handler,this._svgNode._onloadListeners[c]);svgweb.addOnLoad(d)}j&&this._loadHTC();this.url=this._svgNode.getAttribute("src");if(!this.url)this.url=this._svgNode.getAttribute("data");c=m(this,function(e){this._handler._origSVG=e;e=svgweb._cleanSVG(e,true,false);this._svgString=e.svg;this._xml=e.xml;this.document=new D(this._xml,this._handler);this._handler.document=this.document;this._savedParams=
-this._getPARAMs(this._svgNode);this._handler._inserter=new L("object",this._xml.documentElement,this._svgNode,this._handler)});this.url.substring(0,5)=="data:"?c(this.url.substring(this.url.indexOf(",")+1)):this._fetchURL(this.url,c,m(this,this._fallback))}function X(a){this._handler=a;this.fake=true;this.frameElement=this._handler.flash;this.location=this._createLocation();this.alert=window.alert;this.top=this.parent=window;this._onloadListeners=[]}function L(a,b,c,d){this._embedType=a;this._nodeXML=
-b;this._replaceMe=c;this._handler=d;this._parentNode=c.parentNode;if(this._embedType=="object"){this._explicitWidth=this._replaceMe.getAttribute("width");this._explicitHeight=this._replaceMe.getAttribute("height")}this._setupFlash()}function E(a,b,c,d){this._attached=true;t.apply(this,["svg",null,svgns,a,d]);this._nodeXML=a;this._svgString=b;this._scriptNode=c;this._htcLoaded=Object.defineProperty?true:false;this._swfLoaded=false;if(this._handler.type=="script")this._handler.document._nodeById["_"+
-this._nodeXML.getAttribute("id")]=this;this._currentScale=1;this._currentTranslate=this._createCurrentTranslate();if(j&&this._handler.type=="script"){this._addRedrawMethods();this.style=new s(this);this._readyStateListener=m(this,this._onHTCLoaded);this._htcNode.attachEvent("onreadystatechange",this._readyStateListener)}else j&&this._handler.type=="object"&&this._addRedrawMethods();if(this._handler.type=="script")this._handler._inserter=new L("script",this._nodeXML,this._scriptNode,this._handler)}
-function D(a,b){i.apply(this,["#document",i.DOCUMENT_NODE,null,null,a,b],svgns);this._xml=a;this._handler=b;this._nodeById={};this._namespaces=this._getNamespaces();this.implementation=new V;if(this._handler.type=="script")this.defaultView=window}function r(){var a=[];a.item=function(b){return b>=this.length?null:this[b]};return a}function F(a,b,c,d,e,f,h){this.a=a;this.b=b;this.c=c;this.d=d;this.e=e;this.f=f;this._handler=h}function G(a){this.value=a}function H(a){this.baseVal=a;this.animVal=undefined}
-function Y(a,b,c){this.type=a;this.matrix=b;this.angle=c}function I(a,b,c,d){if(c===undefined)c=false;this._formalAccessors=c;this.x=a;this.y=b;if(c){this.setX=m(this,function(e){this.x=e;d("x",e)});this.getX=m(this,function(){return this.x});this.setY=m(this,function(e){this.y=e;d("y",e)});this.getY=m(this,function(){return this.y});this.setXY=m(this,function(e,f){this.x=e;this.y=f;d("xy",e,f)})}}function M(a,b,c,d){this.x=a;this.y=b;this.width=c;this.height=d}window.svgns="http://www.w3.org/2000/svg";
-window.xlinkns="http://www.w3.org/1999/xlink";svgnsFake="urn:__fake__internal__namespace";var w=false,x=false,Z=false,j=false,$=false,N=false,u=false,aa=false,P=false,A=false;(function(){var a=navigator,b=a.userAgent;a=a.appVersion;var c=parseFloat(a);if(b.indexOf("Opera")>=0)w=c;var d=Math.max(a.indexOf("WebKit"),a.indexOf("Safari"),0);if(d)x=parseFloat(a.split("Version/")[1])||parseFloat(a.substr(d+7))>419.3?3:2;b.indexOf("AdobeAIR");if(a.indexOf("Konqueror")>=0||x)$=c;if(b.indexOf("Gecko")>=0&&
-!$)Z=c;if(Z)N=parseFloat(b.split("Firefox/")[1])||undefined;if(document.all&&!w)j=parseFloat(a.split("MSIE ")[1])||undefined;if(b.indexOf("Chrome")>=0)aa=1;isStandardsMode=document.documentMode?document.documentMode>5:document.compatMode=="CSS1Compat";if(document.contentType=="application/xhtml+xml")u=true;else if(typeof XMLDocument!="undefined"&&document.constructor==XMLDocument)u=true;if(typeof DOMParser!="undefined"&&typeof XPathEvaluator!="undefined"&&typeof XMLSerializer!="undefined")A=P=true})();
-var da=function(){for(var a=false,b=document.getElementsByTagName("script"),c=0;c<b.length;c++)if(/svg(?:\-uncompressed)?\.js/.test(b[c].src)){a=b[c].getAttribute("data-debug");a=a==="true"||a===true?true:false}return a}();if(typeof console=="undefined"||!console.log){var y=[];console={};if(da){console.log=function(a){var b=null,c=false;try{b=document.getElementsByTagName("body")[0]}catch(d){c=true}if(j)try{document.documentElement.doScroll("left")}catch(e){c=true}if(c)y.push(a);else{for(;y.length;){var f=
-y.shift();c=document.createElement("p");c.appendChild(document.createTextNode(f));b.appendChild(c)}c=document.createElement("p");c.appendChild(document.createTextNode(a));b.appendChild(c)}};if(j)var ea=window.setInterval(function(){if(document.readyState=="complete"){for(;y.length;){var a=y.shift();p=document.createElement("p");p.appendChild(document.createTextNode(a));document.body.appendChild(p)}window.clearTimeout(ea)}},50)}else console.log=function(){}}var J={},Q=["MSXML2.XMLHTTP.6.0","MSXML2.XMLHTTP.3.0",
-"MSXML2.XMLHTTP","Microsoft.XMLHTTP"],K=0;q(R,{libraryPath:"./",config:null,pageLoaded:false,handlers:[],totalLoaded:0,_guidLookup:[],_loadListeners:[],_removedNodes:[],_allSVGNamespaces:[],addOnLoad:function(a,b,c){if(b){var d;if(c.frameElement)d=c.frameElement;else{var e;for(e=0;e<this.handlers.length;e++)if(this.handlers[e]._objNode&&this.handlers[e]._objNode.contentDocument&&this.handlers[e]._objNode.contentDocument.defaultView==c)d=this.handlers[e]._objNode}if(b&&this.getHandlerType()=="flash")a.apply(c);
-else if(d._svgHandler)d._svgHandler._onObjectLoad(a,c);else{d._svgWindow=c;d._svgFunc=a}}else this._loadListeners.push(a);this.pageLoaded&&this._fireOnLoad()},getHandlerType:function(){if(this.renderer==l)return"flash";else if(this.renderer==o)return"native"},appendChild:function(a,b){if(a.nodeName.toLowerCase()=="object"&&a.getAttribute("type")=="image/svg+xml"){this.totalSVG++;this._svgObjects.push(a);if(this.getHandlerType()=="native"){a.onload=a.onsvgload;b.appendChild(a)}var c=a;if(this.getHandlerType()==
-"flash"){a.onsvgload&&a.addEventListener("SVGLoad",a.onsvgload,false);c=document._createElement("div");for(var d=0;d<a.attributes.length;d++){var e=a.attributes[d],f=e.nodeValue;!f&&f!=="true"||c.setAttribute(e.nodeName,f)}b.appendChild(c);c._onloadListeners=a._onloadListeners;c=c}c=this._processSVGObject(c);a._objID=c}else if(a.nodeName.toLowerCase()=="svg"){this.totalSVG++;a.onsvgload&&a.addEventListener("SVGLoad",a.onsvgload,false);if(j&&a._fakeNode)a=a._fakeNode;c=B(a);d=document.createElement("script");
-d.type="image/svg+xml";if(u)d.appendChild(document.createTextNode(c));else try{d.appendChild(document.createTextNode(c))}catch(h){d.text=c}this._svgScripts.push(d);b.appendChild(d);d._onloadListeners=a._detachedListeners||a._onloadListeners;this._processSVGScript(d)}},removeChild:function(a,b){var c=a.nodeName.toLowerCase(),d;if(c=="object"||c=="embed"||c=="svg"){this.totalSVG=this.totalSVG==0?0:this.totalSVG-1;this.totalLoaded=this.totalLoaded==0?0:this.totalLoaded-1;d=a.id;d=this.handlers[d];for(var e=
-[],f=0;f<this.handlers.length;f++){var h=this.handlers[f];if(h!=d){e[h.id]=h;e.push(h)}}this.handlers=e}if(c=="object"||c=="embed"){if(this.getHandlerType()=="flash"&&d.document&&d.document.defaultView){var g=d.document.defaultView;if(g._intervalIDs)for(f=0;f<g._intervalIDs.length;f++)g.clearInterval(g._intervalIDs[f]);if(g._timeoutIDs)for(f=0;f<g._timeoutIDs.length;f++)g.clearTimeout(g._timeoutIDs[f]);for(f=0;f<d._keyboardListeners.length;f++){c=d._keyboardListeners[f];if(j){document.detachEvent("onkeydown",
-c);document.detachEvent("onkeyup",c)}else{document.removeEventListener("keydown",c,true);document.removeEventListener("keydown",c,false);document.removeEventListener("keyup",c,true);document.removeEventListener("keyup",c,false)}}}c=typeof a._objID!="undefined"?a._objID:typeof a.contentDocument!="undefined"?a.contentDocument._handler.id:a._handler.id;for(f=0;f<svgweb._svgObjects.length;f++)if(svgweb._svgObjects[f]._objID===c){svgweb._svgObjects.splice(f,1);break}b.removeChild(a);if(this.getHandlerType()==
-"flash"){if(c=document.getElementById("__htc_container"))for(f=0;f<c.childNodes.length;f++){e=c.childNodes[f];if(typeof e.ownerDocument!="undefined"&&e.ownerDocument==d._svgObject.document){if(typeof e._fakeNode!="undefined"&&typeof e._fakeNode._htcNode!="undefined")e._fakeNode._htcNode=null;e._fakeNode=null;e._handler=null;c.removeChild(e)}}for(var k in svgweb._guidLookup){e=svgweb._guidLookup[k];e._fake&&e.ownerDocument===d.document&&delete svgweb._guidLookup[k]}d.flash.contentDocument=null;d.flash=
-null;d._xml=null;if(d.window){d.window._scope=null;d.window=null}k=d._svgObject;f=k.document;f._nodeById=null;f._xml=null;f.defaultView=null;f.documentElement=null;f.rootElement=null;f=f.defaultView=null;k._svgNode=null;k._handler=null;if(g){g._setTimeout=null;g.setTimeout=null;g._setInterval=null;g.setInterval=null}g=d=k=d._svgObject=null}}else if(c=="svg"){for(f=0;f<svgweb._svgScripts.length;f++)if(svgweb._svgScripts[f]==d._scriptNode){svgweb._svgScripts.splice(f,1);break}if(j&&this.getHandlerType()==
-"flash"&&a._fakeNode)a=a._fakeNode;g=this.getHandlerType()=="native"?a:a._handler.flash;j?window.setTimeout(function(n,ba){return function(){n.removeChild(ba);ba=n=null}}(b,g),1):b.removeChild(g);if(this.getHandlerType()=="flash"){a._setUnattached();for(k in svgweb._guidLookup){e=svgweb._guidLookup[k];e._fake&&e._getFakeNode()===d&&delete svgweb._guidLookup[k]}d._scriptNode=null;d.flash.documentElement=null;d.flash=null;d=d._xml=null}}},_initDOMContentLoaded:function(){var a=this;if(document.addEventListener)document.addEventListener("DOMContentLoaded",
-function(){a._onDOMContentLoaded()},false);else{document.write('<script id="__ie__svg__onload" defer src=//0><\/script>');document.getElementById("__ie__svg__onload").onreadystatechange=function(){this.readyState=="complete"&&a._onDOMContentLoaded()};var b=function(){if(window.onload){a._saveWindowOnload();document.detachEvent("onreadystatechange",b)}};document.attachEvent("onreadystatechange",b)}},_setXDomain:function(){for(var a=document.getElementsByTagName("script"),b=0;b<a.length;b++)if(/svg(?:\-uncompressed)?\.js/.test(a[b].src)&&
-/^https?/.test(a[b].src)){var c=a[b].src.replace(/svg(?:\-uncompressed)?\.js/,""),d=c.match(/https?\:\/\/[^\/]*/)[0],e=window.location.protocol.replace(/:|\//g,"")+"://"+window.location.host;if(d!=e){this.xDomainURL=c;this._isXDomain=true;return}}this._isXDomain=false},_getLibraryPath:function(){for(var a=null,b=document.getElementsByTagName("meta"),c=0;c<b.length;c++)if(b[c].name=="svg.config.data-path"&&b[c].content.length>0)a=b[c].content;b=document.getElementsByTagName("script");for(c=0;c<b.length;c++)if(/svg(?:\-uncompressed)?\.js/.test(b[c].src)){if(b[c].getAttribute("data-path"))a=
-b[c].getAttribute("data-path");else if(a===null){a=b[c].getAttribute("src").split("/");a.length-=1;a=a.join("/")}break}if(a===null)a="./";if(a.charAt(a.length-1)!="/")a+="/";return a},_getHTCFilename:function(){var a="svg.htc",b=window.location.toString();if(b.indexOf("svg.htcFilename=svg-htc.php")!=-1)return"svg-htc.php";else if(b.indexOf("svg.htcFilename=svg-htc.jsp")!=-1)return"svg-htc.jsp";else if(b.indexOf("svg.htcFilename=svg-htc.asp")!=-1)return"svg-htc.asp";b=document.getElementsByTagName("script");
-for(var c=0;c<b.length;c++)if(/svg(?:\-uncompressed)?\.js/.test(b[c].src)&&b[c].getAttribute("data-htc-filename")){a=b[c].getAttribute("data-htc-filename");break}return a},_onDOMContentLoaded:function(){if(!arguments.callee.done){arguments.callee.done=true;this._startTime=(new Date).getTime();var a=document.getElementById("__ie__svg__onload");if(a){a.parentNode.removeChild(a);a.onreadystatechange=null}this._saveWindowOnload();this.config=new S;j&&this._watchUnload();this._svgScripts=this._getSVGScripts();
-this._svgObjects=this._getSVGObjects();this.totalSVG=this._svgScripts.length+this._svgObjects.length;this._cleanupSVGObjects();this._handleHTMLTitleBug();if(this.config.supported){if(this.config.use=="flash")this.renderer=l;else if(this.config.use=="native")this.renderer=o;this.renderer._patchBrowserObjects(window,document);this.renderer.documentRef=document;if(this.config.use=="flash"){this._createResizeListener();this._attachResizeListener()}if(this.totalSVG===0)this._fireOnLoad();else{for(a=0;a<
-this._svgScripts.length;a++)this._processSVGScript(this._svgScripts[a]);for(a=0;a<this._svgObjects.length;a++){var b=this._processSVGObject(this._svgObjects[a]);this._svgObjects[a]._objID=b}}}else{this._displayNotSupported(this.config.reason);this._fireOnLoad()}}},_createResizeListener:function(){this._resizeFunc=j?function(a){return function(){a._onWindowResize()}}(this):m(this,function(){this._onWindowResize()})},_attachResizeListener:function(){j?window.attachEvent("onresize",this._resizeFunc):
-window.addEventListener("resize",this._resizeFunc,false)},_detachResizeListener:function(){j?window.detachEvent("onresize",this._resizeFunc):window.removeEventListener("resize",this._resizeFunc,false)},_onWindowResize:function(){if(this.pageLoaded){this._detachResizeListener();for(var a=0;a<this.handlers.length;a++){var b=this.handlers[a];if(!(!b._inserter||!b.flash||!b._loaded)){var c=b._inserter._determineSize();b.flash.width=c.width;b.flash.height=c.height;b.sendToFlash("jsHandleResize",[c.pixelsWidth,
-c.pixelsHeight])}}this._attachResizeListener()}},_getSVGScripts:function(){for(var a=document.getElementsByTagName("script"),b=[],c=0;c<a.length;c++)a[c].type=="image/svg+xml"&&b.push(a[c]);return b},_getSVGObjects:function(){for(var a=document.getElementsByTagName("object"),b=[],c=0;c<a.length;c++)if(a[c].getAttribute("classid")=="image/svg+xml")b.push(a[c]);else a[c].getAttribute("type")=="image/svg+xml"&&b.push(a[c]);return b},_displayNotSupported:function(a){for(var b=0;b<this._svgObjects.length;b++){var c=
-this._svgObjects[b];if(!c.childNodes.length||c.childNodes.length==1&&c.childNodes[0].nodeType==3&&/^[ ]*$/m.test(c.childNodes[0].nodeValue)){var d=document.createElement("span");d.className="svg-noscript";d.appendChild(document.createTextNode(a));c.parentNode.replaceChild(d,c)}}for(b=0;b<this._svgScripts.length;b++){c=this._svgScripts[b];d=document.createElement("span");d.className="svg-noscript";for(var e=c.nextSibling;e&&e.nodeType!=1;)e=e.nextSibling;if(e&&e.nodeName.toLowerCase()=="noscript")d.innerHTML=
-e.innerHTML;else d.appendChild(document.createTextNode(a));c.parentNode.insertBefore(d,c)}},_fireOnLoad:function(){if(!(this.handlers.length<this._svgObjects.length)){for(var a=true,b=0;b<this.handlers.length;b++)if(!this.handlers[b]._loaded){a=false;break}if(a){this.pageLoaded=true;this._endTime=(new Date).getTime();if(this._loadListeners.length){var c=this;window.setTimeout(function(){var d=c._loadListeners;c._loadListeners=[];for(var e=this.totalLoaded=0;e<d.length;e++)try{d[e]()}catch(f){console.log("Error while firing onload: "+
-(f.message||f))}},1)}}}},_cleanSVG:function(a,b,c){if(/^\s*<\!\[CDATA\[/.test(a)){a=a.replace(/^\s*<\!\[CDATA\[/,"");a=a.replace(/\]\]>\s*/,"")}RegExp.lastIndex=0;for(var d,e=/<!ENTITY\s+(\S+)\s+"([^"]*)"/g;e.exec(a)!=null;){var f=RegExp.$2;a=a.split("&"+RegExp.$1+";").join(f)}if(b){if(/\<\?xml/m.test(a)==false)a='<?xml version="1.0"?>\n'+a;if(/xmlns:[^=]+=['"]http:\/\/www\.w3\.org\/1999\/xlink['"]/.test(a)==false)a=a.replace("<svg",'<svg xmlns:xlink="http://www.w3.org/1999/xlink"');if(/xmlns\=['"]http:\/\/www\.w3\.org\/2000\/svg['"]/.test(a)==
-false)a=a.replace("<svg",'<svg xmlns="http://www.w3.org/2000/svg"')}if(a.charAt(0)!="<")a=a.replace(/\s*<\?xml/,"<?xml");if(c)a=a.replace(/\>\s+\</gm,"><");if(this.renderer==l){a=a.replace(/<!\-\-[\s\S]*?\-\->/g,"");a=a.replace(/<svg/,"<SVGROOT");a=a.replace(/<svg/g,"<NESTEDSVG");a=a.replace(/<SVGROOT/,"<svg");b=a.match(/<svg/)[0];e=a.split(/<svg/);if(a=e[1].indexOf("<![CDATA[")!=-1){RegExp.lastIndex=0;var h=/<\!\[CDATA\[/g;d=h.exec(e[1]);var g=[];for(f=0;d&&RegExp.rightContext;){var k=h.lastIndex-
-9,n=RegExp.rightContext;d=h.lastIndex+n.indexOf("]]\>")+2;n=n.substring(0,n.indexOf("]]\>"));n="<![CDATA["+n+"]]\>";g.push(n);k=e[1].substring(0,k);d=e[1].substring(d+1,e[1].length);e[1]=k+"__SVG_CDATA_TOKEN_"+f+d;d=h.exec(e[1]);f++}}e[1]=e[1].replace(/>([^<]+)</g,"><__text>$1</__text><");if(a)for(f=0;f<g.length;f++)e[1]=e[1].replace("__SVG_CDATA_TOKEN_"+f,g[f]);a=e[0]+b+e[1];for(f=2;f<e.length;f++)a+=e[f]}a=a.replace(/<NESTEDSVG/g,"<svg");if(this.renderer==l){a=l._encodeFlashData(a);a=a.replace(/xmlns(\:[^=]*)?=['"]http\:\/\/www\.w3\.org\/2000\/svg['"]/g,
-'xmlns$1="'+svgnsFake+'"')}c=this._addTracking(a,c);a=A?(new XMLSerializer).serializeToString(c):c.xml;if(this.renderer==l)a=a.replace(RegExp(svgnsFake,"g"),svgns);return{svg:a,xml:c}},_processSVGScript:function(a){var b;if(u){b="";for(var c=0;c<a.childNodes.length;c++)b+=a.childNodes[c].textContent}else b=a.innerHTML;var d=this._cleanSVG(b,true,true);c=d.svg;var e=d.xml;d=e.documentElement.getAttribute("id");var f=e.documentElement.getAttribute("onload");if(f){f=new Function('var evt = { target: document.getElementById("'+
-d+'") ,currentTarget: document.getElementById("'+d+'") ,preventDefault: function() { this.returnValue=false; }};'+f);this._loadListeners.push(function(h,g){return function(){var k=svgweb.handlers[g];k=svgweb.getHandlerType()=="flash"?k.document.documentElement._getProxyNode():document.getElementById(g);return h.apply(k)}}(f,d))}a=new this.renderer({type:"script",svgID:d,xml:e,svgString:c,origSVG:b,scriptNode:a});this.handlers[d]=a;this.handlers.push(a);a.start()},_processSVGObject:function(a){var b=
-a.getAttribute("id");if(!b){a.setAttribute("id",svgweb._generateID("__svg__random__","__object"));b=a.getAttribute("id")}a=new this.renderer({type:"object",objID:b,objNode:a});this.handlers[b]=a;this.handlers.push(a);a.start();return b},_generateID:function(a,b){b||(b="");a||(a="");return a+("_"+K++)+b},_addTracking:function(a,b){var c=z(a,!b),d=c.documentElement;d&&!d.getAttribute("id")&&d.setAttribute("id",this._generateID("__svg__random__",null));if(this.getHandlerType()!="flash")return c;for(var e=
-d;e;){e.nodeType==i.ELEMENT_NODE&&e.setAttribute("__guid","_"+K++);e.nodeType==i.ELEMENT_NODE&&!e.getAttribute("id")&&e.setAttribute("id",svgweb._generateID("__svg__random__",null));var f=e.firstChild;if(f)e=f;else for(;e;){if(e!=d)if(f=e.nextSibling){e=f;break}if(e==d)e=null;else{e=e.parentNode;if(e.nodeType!=1)e=null}}}return c},_handleDone:function(a,b,c){this.totalLoaded++;if(b=="script"&&c._scriptNode._onloadListeners){for(a=0;a<c._scriptNode._onloadListeners.length;a++){var d=c._scriptNode._onloadListeners[a];
-if(svgweb.getHandlerType()=="flash")d=d.listener;else c._svgRoot.addEventListener.toString().indexOf("[native code]")!=-1&&o._patchAddEventListener(c._svgRoot);try{var e=document.getElementById(c.id);w?setTimeout(function(){d.apply(e);e=d=null},1):d.apply(e)}catch(f){console.log("Error while firing onload listener: "+f.message||f)}}c._scriptNode._onloadListeners=[]}this.totalLoaded>=this.totalSVG&&this._fireOnLoad()},_handleHTMLTitleBug:function(){var a=document.getElementsByTagName("head")[0],b=
-a.getElementsByTagName("title");if(b.length===0){b=document.createElement("title");a.appendChild(b)}},_fireFlashError:function(){},_exportID:function(a){a.__defineGetter__("id",function(){return a.getAttribute("id")});a.__defineSetter__("id",function(b){return a.setAttribute("id",b)})},_watchUnload:function(){window.attachEvent("onunload",function(){window.detachEvent("onunload",arguments.callee);svgweb._fireUnload()})},_fireUnload:function(){if(j){for(var a=0;a<svgweb.handlers.length;a++)if(svgweb.handlers[a].type==
-"object"){var b=svgweb.handlers[a].flash;b&&b.parentNode&&svgweb.removeChild(b,b.parentNode)}else svgweb.handlers[a].document.documentElement=null;if(b=document.getElementById("__htc_container")){for(a=0;a<b.childNodes.length;a++){var c=b.childNodes[a];if(c.nodeType==1&&c.namespaceURI==svgns){c.detachEvent("onpropertychange",c._fakeNode.style._changeListener);c.style.item=null;c.style.setProperty=null;c.style.getPropertyValue=null}if(c._fakeNode)c._fakeNode._htcNode=null;c._fakeNode=null;c._handler=
-null}b.parentNode.removeChild(b)}for(a=0;a<svgweb.handlers.length;a++)svgweb.handlers[a].flash=null;svgweb.handlers=null;for(a=0;a<svgweb._removedNodes.length;a++){b=svgweb._removedNodes[a];if(b._fakeNode)b._fakeNode._htcNode=null;b._fakeNode=null;b._handler=null}svgweb._removedNodes=null;document.getElementById=document._getElementById;document._getElementById=null;document.getElementsByTagNameNS=document._getElementsByTagNameNS;document._getElementsByTagNameNS=null;document.createElementNS=document._createElementNS;
-document._createElementNS=null;document.createElement=document._createElement;document._createElement=null;document.createTextNode=document._createTextNode;document._createTextNode=null;document._importNodeFunc=null;document.createDocumentFragment=document._createDocumentFragment;document._createDocumentFragment=null;window.addEventListener=null;window._addEventListener=null;window.attachEvent=window._attachEvent;J=window._attachEvent=null}},_cleanupSVGObjects:function(){if(this.config.use=="flash"&&
-this.config.hasNativeSVG())for(var a=0;a<this._svgObjects.length;a++){for(var b=this._svgObjects[a],c=document.createElement("div"),d=0;d<b.attributes.length;d++){var e=b.attributes[d];c.setAttribute(e.nodeName,e.nodeValue)}c.innerHTML=b.innerHTML;b.parentNode.replaceChild(c,b);this._svgObjects[a]=c}for(a=0;a<this._svgObjects.length;a++)this._svgObjects[a].style.visibility="hidden"},_interceptOnloadListeners:function(){if(window.addEventListener){window._addEventListener=window.addEventListener;window.addEventListener=
-function(a,b,c){if(a.toLowerCase()=="svgload")svgweb.addOnLoad(b);else return window._addEventListener(a,b,c)}}else window.addEventListener=function(a,b){if(a.toLowerCase()=="svgload")svgweb.addOnLoad(b);else if(j&&window.attachEvent)return window.attachEvent("on"+a,b)};if(j&&window.attachEvent){window._attachEvent=window.attachEvent;window.attachEvent=function(a,b){if(a.toLowerCase()=="onsvgload")svgweb.addOnLoad(b);else return window._attachEvent(a,b)}}},_saveWindowOnload:function(){var a=window.onsvgload;
-if(document.getElementsByTagName("body")){var b=document.getElementsByTagName("body")[0];if(b.getAttribute("onsvgload")){callbackStr=b.getAttribute("onsvgload");a=function(c){return function(){eval(c)}}(callbackStr)}}if(a){j?this._loadListeners.splice(0,0,a):this._loadListeners.push(a);window.onsvgload=a=null}}});q(S,{supported:false,reason:null,use:null,_forceFlash:function(){for(var a=false,b=false,c=document.getElementsByTagName("meta"),d=0;d<c.length;d++)if(c[d].name=="svg.render.forceflash"&&
-c[d].content.toLowerCase()=="true")b=a=true;if(window.location.search.indexOf("svg.render.forceflash=true")!=-1)a=true;else if(b&&window.location.search.indexOf("svg.render.forceflash=false")!=-1)a=false;return a},hasNativeSVG:function(){return document.implementation&&document.implementation.hasFeature?document.implementation.hasFeature("http://www.w3.org/TR/SVG11/feature#BasicStructure","1.1"):false}});T.prototype={version:-1,versionMajor:-1,versionMinor:-1,versionRevision:-1,capable:false,isVersionOrAbove:function(a,
-b,c){c=parseFloat("."+c);return this.versionMajor>=a&&this.versionMinor>=b&&this.versionRevision>=c?true:false},_detectVersion:function(){for(var a,b=25;b>0;b--){if(j){var c;try{c=b>6?new ActiveXObject("ShockwaveFlash.ShockwaveFlash."+b):new ActiveXObject("ShockwaveFlash.ShockwaveFlash");if(typeof c=="object"){if(b==6)c.AllowScriptAccess="always";a=c.GetVariable("$version")}}catch(d){continue}}else a=this._JSFlashInfo(b);if(a==-1){this.capable=false;break}else if(a!==0){a=j?a.split(" ")[1].split(","):
-a.split(".");this.versionMajor=a[0];this.versionMinor=a[1];this.versionRevision=a[2];this.version=parseFloat(this.versionMajor+"."+this.versionRevision);this.capable=true;break}}},_JSFlashInfo:function(){if(navigator.plugins!==null&&navigator.plugins.length>0)if(navigator.plugins["Shockwave Flash 2.0"]||navigator.plugins["Shockwave Flash"]){var a=navigator.plugins["Shockwave Flash"+(navigator.plugins["Shockwave Flash 2.0"]?" 2.0":"")].description.split(" "),b=a[2].split("."),c=b[0];b=b[1];a=(a[3]||
-a[4]).split("r");return c+"."+b+"."+(a[1]>0?a[1]:0)}return-1}};l._keyboardListeners=[];l._unattachedDoc=z('<?xml version="1.0"?>\n<svg xmlns="'+svgns+'"></svg>',false);l._prepareBehavior=function(a,b){for(var c=null,d=0;d<document.namespaces.length;d++)if(document.namespaces.item(d).name=="svg"){c=document.namespaces.item(d);break}if(c===null)c=document.namespaces.add("svg",svgns);c.doImport(a+b)};l._getNode=function(a,b){var c;c=svgweb._guidLookup["_"+a.getAttribute("__guid")];var d=false;if(!c&&
-a.nodeName=="__text")d=true;if(!c&&!d&&a.nodeType==i.ELEMENT_NODE)c=new t(a.nodeName,a.prefix,a.namespaceURI,a,b);else if(!c&&(a.nodeType==i.TEXT_NODE||d))c=new i("#text",i.TEXT_NODE,null,null,a,b);else if(!c)throw Error("Unknown node type given to _getNode: "+a.nodeType);return c._getProxyNode()};l._patchBrowserObjects=function(a,b){if(!b._getElementById){b._getElementById=b.getElementById;b.getElementById=l._getElementById;b._getElementsByTagNameNS=b.getElementsByTagNameNS;b.getElementsByTagNameNS=
-l._getElementsByTagNameNS;b._createElementNS=b.createElementNS;b.createElementNS=l._createElementNS;b._createElement=b.createElement;b.createElement=l._createElement;b._createTextNode=b.createTextNode;b.createTextNode=l._createTextNode;b._importNodeFunc=l._importNodeFunc;b._createDocumentFragment=b.createDocumentFragment;b.createDocumentFragment=l._createDocumentFragment;b._addEventListener=b.addEventListener;b.addEventListener=l._addEventListener}};l._patchFakeObjects=function(a,b){b._addEventListener=
-b.addEventListener;b.addEventListener=l._addEventListener};l._addEventListener=function(a,b,c){if(a.substring(0,3)=="key"){var d=function(e){return function(f){if(!f.preventDefault)f.preventDefault=function(){this.returnValue=false;f=null};typeof e=="object"?e.handleEvent.call(e,f):e(f)}}(b);d.__type=a;d.__listener=b;d.__useCapture=c;this._handler?this._handler._keyboardListeners.push(d):l._keyboardListeners.push(d)}if(this._addEventListener)this._addEventListener(a,b,c);else this.attachEvent&&this.attachEvent("on"+
-a,b)};l._getElementById=function(a){var b=document._getElementById(a);if(b!==null)return b;for(var c=0;c<svgweb.handlers.length;c++){if(svgweb.handlers[c].type=="script")b=svgweb.handlers[c].document.getElementById(a);if(b)return b}return null};l._getElementsByTagNameNS=function(a,b){var c=r();if(document._getElementsByTagNameNS)for(var d=document._getElementsByTagNameNS(a,b),e=0;e<d.length;e++)c.push(d[e]);for(var f=0;f<svgweb.handlers.length;f++)if(svgweb.handlers[f].type=="script"){d=svgweb.handlers[f].document.getElementsByTagNameNS(a,
-b);for(e=0;e<d.length;e++)c.push(d[e])}return c};l._createElementNS=function(a,b,c){if(c===undefined)c=false;if(a===null||a=="http://www.w3.org/1999/xhtml")return j?document.createElement(b):document._createElementNS(a,b);var d=false;if(a==svgns){a=svgnsFake;d=true}if(!j&&!c){if(svgweb._allSVGNamespaces["_"+a])d=true;for(c=0;!d&&c<svgweb.handlers.length;c++)if(svgweb.handlers[c].type=="script"&&svgweb.handlers[c].document._namespaces["_"+a]){d=true;break}if(!d)return document._createElementNS(a,b)}var e;
-if(svgweb._allSVGNamespaces["_"+a])e=svgweb._allSVGNamespaces["_"+a];else for(c=0;c<svgweb.handlers.length;c++)if(svgweb.handlers[c].type=="script")if(e=svgweb.handlers[c].document._namespaces["_"+a])break;if(e=="xmlns"||!e)e=b.indexOf(":")!=-1?b.substring(0,b.indexOf(":")):null;return(new t(b,e,a))._getProxyNode()};l._createElement=function(a,b){if(b){if(b&&a.toLowerCase()=="object"){var c=document._createElement("object");c._onloadListeners=[];var d=c.addEventListener;(function(e,f){e.addEventListener=
-function(h,g,k){if(h.toLowerCase()=="svgload")this._onloadListeners.push(g);else d?f(h,g,k):this.attachEvent("on"+h,g)}})(c,d);return c}}else return document._createElement(a)};l._createTextNode=function(a,b){if(b){var c=l._unattachedDoc,d;d=j?c.createElement("__text"):c.createElementNS(svgnsFake,"__text");d.appendChild(c.createTextNode(a));c=new i("#text",i.TEXT_NODE,null,null,d);c._nodeValue=a;c.ownerDocument=document;return c._getProxyNode()}else return document._createTextNode(a)};l._importNodeFunc=
-function(a,b,c){switch(b.nodeType){case 1:var d=a.createElement(b.nodeName);if(b.attributes&&b.attributes.length>0)for(var e=0;e<b.attributes.length;e++){var f=b.attributes[e].nodeName,h=b.getAttribute(f);d.setAttribute(f,h)}if(c&&b.childNodes&&b.childNodes.length>0)for(e=0;e<b.childNodes.length;e++)d.appendChild(document._importNodeFunc(a,b.childNodes[e],c));return d;case 3:return a.createTextNode(b.nodeValue)}};l._createDocumentFragment=function(a){return a?(new C(document))._getProxyNode():document._createDocumentFragment()};
-l._encodeFlashData=function(a){a=a.toString().replace(/\\/g,"\\\\");return a=a.replace(/&/g,"__SVG__AMPERSAND")};q(l,{flashID:null,flash:null,start:function(){if(this.type=="script")this._handleScript();else this.type=="object"&&this._handleObject()},_stringToMsg:function(a){if(a==null||typeof a!="string")return a;var b={};a=a.split(/__SVG__DELIMIT/g);for(var c=0;c<a.length;c++){var d=a[c].indexOf(":"),e=a[c].substring(0,d);d=a[c].substring(d+1);if(d==="true")d=true;else if(d==="false")d=false;else if(d===
-"null")d=null;else if(d==="undefined")d=undefined;b[e]=d}return b},debugMsg:function(a){if(a===undefined)return"undefined";else if(a===null)return"null";var b=[],c;for(c in a)b.push(c+":"+a[c]);b=b.join(", ");return"{"+b+"}"},sendToFlash:function(a,b){var c=b.join("__SVG__DELIMIT");if(this._redrawManager.isSuspended())this._redrawManager.batch(a,c);else try{typeof this.flash[a]=="undefined"&&__flash__addCallback(this.flash,a);return this.flash[a](c)}catch(d){console.log("Call to flash but flash is not present! "+
-a+": "+this.debugMsg(c)+": "+d)}},onMessage:function(a){a=this._stringToMsg(a);if(a.type=="event")this._onEvent(a);else if(a.type=="log")this._onLog(a);else if(a.type=="script")this._onObjectScript(a);else if(a.type=="viewsource")this._onViewSource();else if(a.type=="viewsourceDynamic")this._onViewSourceDynamic(a);else a.type=="error"&&this._onFlashError(a)},fireOnLoad:function(a,b){svgweb._handleDone(a,b,this)},_handleScript:function(){this.document=new D(this._xml,this);this.document.documentElement=
-new E(this._xml.documentElement,this._svgString,this._scriptNode,this)},_handleObject:function(){this._svgObject=new W(this._objNode,this);this._objNode=null},_onLog:function(a){console.log("FLASH: "+a.logString)},_onEvent:function(a){if(a.eventType.substr(0,5)=="mouse"||a.eventType=="click")this._onMouseEvent(a);else if(a.eventType.substr(0,3)=="key")this._onKeyboardEvent(a);else if(a.eventType=="onRenderingFinished")if(this.type=="script")this.document.documentElement._onRenderingFinished(a);else this.type==
-"object"&&this._svgObject._onRenderingFinished(a);else if(a.eventType=="onFlashLoaded")if(this.type=="script")this.document.documentElement._onFlashLoaded(a);else this.type=="object"&&this._svgObject._onFlashLoaded(a)},_onMouseEvent:function(a){var b=this._getElementByGuid(a.targetGUID),c=this._getElementByGuid(a.currentTargetGUID),d={target:b._getProxyNode(),currentTarget:c._getProxyNode(),type:a.eventType,clientX:Math.round(new Number(a.stageX)),clientY:Math.round(new Number(a.stageY)),screenX:Math.round(new Number(a.stageX)),
-screenY:Math.round(new Number(a.stageY)),altKey:a.altKey,ctrlKey:a.ctrlKey,shiftKey:a.shiftKey,button:0,preventDefault:function(){this.returnValue=false},stopPropagation:function(){}},e=c._listeners[a.eventType];if(e)for(var f=0;f<e.length;f++){var h=e[f].listener;typeof h=="object"?h.handleEvent.call(h,d):h.call(d.currentTarget,d)}if(a.scriptCode!=null)this.type=="object"?this.sandbox_eval(this._svgObject._sandboxedScript('var evt = { target: document.getElementById("'+b._getProxyNode().getAttribute("id")+
-'") ,\ncurrentTarget:document.getElementById("'+c._getProxyNode().getAttribute("id")+'") ,\ntype: "'+a.eventType+'",\nclientX: '+Math.round(new Number(a.stageX))+",\nclientY: "+Math.round(new Number(a.stageY))+",\nscreenX: "+Math.round(new Number(a.stageX))+",\nscreenY: "+Math.round(new Number(a.stageY))+",\naltKey: "+a.altKey+",\nctrlKey: "+a.ctrlKey+",\nshiftKey: "+a.shiftKey+",\nbutton: 0,\npreventDefault: function() { this.returnValue=false; },\nstopPropagation: function() { }\n};\n"+(";(function (evt) { "+
-a.scriptCode+"; }).call(evt.currentTarget, evt);\n"))):(new Function(a.scriptCode)).call(d.currentTarget,d)},_onKeyboardEvent:function(a){var b=this._getElementByGuid(a.targetGUID),c=this._getElementByGuid(a.currentTargetGUID);a={target:b._getProxyNode(),currentTarget:c._getProxyNode(),type:a.eventType,keyCode:Number(a.keyCode),altKey:a.altKey,ctrlKey:a.ctrlKey,shiftKey:a.shiftKey,preventDefault:function(){this.returnValue=false},stopPropagation:function(){}};if(!((N||aa)&&this.flash.getAttribute("wmode")==
-"transparent")){if(this.type=="script")for(b=0;b<l._keyboardListeners.length;b++){c=l._keyboardListeners[b];c.__type==a.type&&c.call(a.currentTarget,a)}var d=this._keyboardListeners;for(b=0;b<d.length;b++){c=d[b];c.__type==a.type&&c.call(a.currentTarget,a)}}},addKeyboardListener:function(a,b,c){var d=function(e){return function(f){if(!f.preventDefault)f.preventDefault=function(){this.returnValue=false;f=null};typeof e=="object"?e.handleEvent.call(e,f):e(f)}}(b);d.__type=a;d.__listener=b;d.__useCapture=
-c;this._keyboardListeners.push(d)},_getElementByGuid:function(a){var b=svgweb._guidLookup["_"+a];if(b)return b;var c;if(this.type=="script")c=v(this._xml,null,'//*[@__guid="'+a+'"]');else if(this.type=="object")c=v(this._svgObject._xml,null,'//*[@__guid="'+a+'"]');if(c.length)a=c[0];else return null;b=l._getNode(a,this);if(j&&b._fakeNode)b=b._fakeNode;b._attached=true;return b},_onFlashError:function(a){this._onLog(a);svgweb._fireFlashError("FLASH: "+a.logString);throw Error("FLASH: "+a.logString);
-},_onObjectScript:function(a){this._svgObject._scriptsToExec.push(a.script)},_onViewSource:function(){var a=this._origSVG;a||(a="SVG Source Not Available");a=a.replace(/>/g,"&gt;").replace(/</g,"&lt;");var b=window.open("","_blank");b.document.write("<html><body><pre>"+a+"</pre></body></html>");b.document.close()},_onViewSourceDynamic:function(a){if(a.source.indexOf("<?xml")==-1)a.source='<?xml version="1.0"?>\n'+a.source;a.source=a.source.replace(/<svg:([^ ]+) /g,"<$1 ");a.source=a.source.replace(/<\/svg:([^>]+)>/g,
-"</$1>");a.source=a.source.replace(/\n\s*<__text[^\/]*\/>/gm,"");a.source=a.source.replace(/<__text[^>]*>([^<]*)<\/__text>/gm,"$1");a.source=a.source.replace(/<__text[^>]*>/g,"");a.source=a.source.replace(/<\/__text>/g,"");a.source=a.source.replace(/\s*__guid="[^"]*"/g,"");a.source=a.source.replace(/ id="__svg__random__[^"]*"/g,"");a.source=a.source.replace(/>\n\n/g,">\n");a.source=a.source.replace(/>/g,"&gt;");a.source=a.source.replace(/</g,"&lt;");var b=window.open("","_blank");b.document.write("<body><pre>"+
-a.source+"</pre></body>");b.document.close()}});o._patchBrowserObjects=function(a,b){if(!b._getElementById){b._getElementById=b.getElementById;b.getElementById=function(d){var e=b._getElementById(d);if(e!==null)return e.parentNode===null?null:e;e=v(b,null,'//*[@id="'+d+'"]');if(e.length){d=e[0];d.namespaceURI!==null&&d.namespaceURI!=svgns&&d.namespaceURI!="http://www.w3.org/1999/xhtml"&&svgweb._exportID(d);return d}else return null};b._getElementsByTagNameNS=b.getElementsByTagNameNS;b.getElementsByTagNameNS=
-function(d,e){var f=b._getElementsByTagNameNS(d,e);if(f!==null&&f.length!==0){if(d!==null&&d!="http://www.w3.org/1999/xhtml"&&d!=svgns){for(var h=0;h<f.length;h++){var g=f[h];svgweb._exportID(g)}return f}return f}if(f===null||f.length===0)f=r();var k;for(h=0;h<svgweb.handlers.length;h++){g=svgweb.handlers[h];if(g.type!="object")if(k=g._namespaces["_"+d]){k=v(b,g._svgRoot,k=="xmlns"?"//*[namespace-uri()='"+svgns+"' and name()='"+e+"']":k?"//"+k+":"+e:"//"+e,g._namespaces);if(k!==null&&k!==undefined&&
-k.length>0){for(h=0;h<k.length;h++){g=k[h];g.namespaceURI!==null&&g.namespaceURI!=svgns&&g.namespaceURI!="http://www.w3.org/1999/xhtml"&&svgweb._exportID(g);f.push(g)}return f}}}return r()};b._createElementNS=b.createElementNS;b.createElementNS=function(d,e){if(d!=svgns||e!="svg")return b._createElementNS(d,e);var f=b._createElementNS(d,e);return f=o._patchAddEventListener(f)};b._createElement=b.createElement;b.createElement=function(d,e){if(!e)return b._createElement(d);if(e&&d=="object"){var f=
-b._createElement(d);return f=o._patchAddEventListener(f)}else throw"Unknown createElement() call for SVG: "+d;};o._patchCloneNode();N&&o._patchStyleObject(a);var c=b.rootElement;c&&c.localName=="svg"&&c.namespaceURI==svgns&&o._patchSvgFileAddEventListener(a,b)}};o._patchCloneNode=function(){var a;a=typeof SVGSVGElement!="undefined"?SVGSVGElement.prototype:document.createElementNS(svgns,"svg").__proto__;if(!a._cloneNode){a._cloneNode=a.cloneNode;a.cloneNode=function(b){b=this._cloneNode(b);o._patchAddEventListener(b);
-return b}}};o._patchAddEventListener=function(a){if(a.nodeName.toLowerCase()=="object"&&!o._objectAddEventListener)o._objectAddEventListener=a.addEventListener;a._addEventListener=a.nodeName.toLowerCase()=="object"?o._objectAddEventListener:a.addEventListener;a._onloadListeners=[];a.addEventListener=function(){return function(b,c,d){b.toLowerCase()=="svgload"?this._onloadListeners.push(c):a._addEventListener(b,c,d)}}();return a};o._patchStyleObject=function(a){var b=a.CSSStyleDeclaration;for(a=0;a<
-s._allStyles.length;a++){var c=s._allStyles[a],d=c.replace(/([A-Z])/g,"-$1").toLowerCase();(function(e,f){b.prototype.__defineSetter__(e,function(h){return this.setProperty(f,h,null)});b.prototype.__defineGetter__(e,function(){return this.getPropertyValue(f)})})(c,d)}};o._patchSvgFileAddEventListener=function(a){var b=a.addEventListener;a.addEventListener=function(c,d,e){if(c.toLowerCase()!="svgload")b(c,d,e);else typeof d=="object"?d.handleEvent.call(d,undefined):d()};if(Object.defineProperty)Object.defineProperty(a,
-"onsvgload",{get:function(){return this.__onsvgload},set:function(c){this.__onsvgload=c;this.addEventListener("SVGLoad",c,false)}});else{a.__defineGetter__("onsvgload",function(){return this.__onsvgload});a.__defineSetter__("onsvgload",function(c){this.__onsvgload=c;this.addEventListener("SVGLoad",c,false)})}};q(o,{start:function(){if(this.type=="object")this._handleObject();else this.type=="script"&&this._handleScript()},_handleScript:function(){this._namespaces=this._getNamespaces();this._processSVGScript(this._xml,
-this._svgString,this._scriptNode);this._loaded=true;svgweb._handleDone(this.id,"script",this)},_handleObject:function(){this._objNode.style.overflow="hidden";this._objNode.style.visibility="visible";if(this._objNode._svgWindow)this._onObjectLoad(this._objNode._svgFunc,this._objNode._svgWindow);else{this._objNode._svgHandler=this;var a=this,b=function(){a._objNode.contentDocument&&a._onObjectLoad(a._objNode._svgFunc,a._objNode.contentDocument.defaultView)};if(this._objNode._addEventListener)this._objNode._addEventListener("load",
-b,false);else if(w&&this._objNode.onload==null){var c=this._objNode.parentNode,d=this._objNode.nextSibling;c.removeChild(this._objNode);this._objNode.addEventListener("load",b,false);d?c.insertBefore(this._objNode,d):c.appendChild(this._objNode)}else this._objNode.addEventListener("load",b,false)}},_onObjectLoad:function(a,b){if(this._loaded)a&&a.apply(b);else{this._loaded=true;var c=b.document;o._patchBrowserObjects(b,c);var d=c.rootElement;d&&this._patchCurrentTranslate(d);b.svgns=svgns;b.xlinkns=
-xlinkns;this._namespaces=this._getNamespaces(c);a&&a.apply(b);for(c=0;this._objNode._onloadListeners&&c<this._objNode._onloadListeners.length;c++){a=this._objNode._onloadListeners[c];a.apply(this._objNode)}svgweb._fireOnLoad()}},_processSVGScript:function(a,b,c){var d;try{d=document.importNode(a.documentElement,true)}catch(e){if(typeof DOMParser!="undefined"){a=(new DOMParser).parseFromString(b,"application/xml");d=document.adoptNode(a.documentElement,true)}}c.parentNode.replaceChild(d,c);this._svgRoot=
-d;this._patchCurrentTranslate(this._svgRoot)},_getNamespaces:function(a){var b=[];a=a?a.documentElement.attributes:this._xml.documentElement.attributes;for(var c=0;c<a.length;c++){var d=a[c];if(/^xmlns:?(.*)$/.test(d.nodeName)){var e=d.nodeName.match(/^xmlns:?(.*)$/);e=e[1]?e[1]:"xmlns";d=d.nodeValue;if(!b["_"+e]){b["_"+e]=d;b["_"+d]=e;b.push(d)}}}return b},_patchCurrentTranslate:function(a){var b;if(typeof SVGRoot!="undefined")b=a.currentTranslate;else if(typeof a.currentTranslate.__proto__!="undefined")b=
-a.currentTranslate.__proto__;else if(typeof SVGPoint!="undefined")b=SVGPoint.prototype;b.setX=function(c){return this.x=c};b.getX=function(){return this.x};b.setY=function(c){return this.y=c};b.getY=function(){return this.y};b.setXY=function(c,d){this.x=c;this.y=d}}});q(U,{isSuspended:function(){return this._ids.length>0},batch:function(a,b){this._batch.push(a+":"+b)},suspendRedraw:function(a,b){if(a===undefined)throw"Not enough arguments to suspendRedraw";if(b===undefined)b=true;var c=this._nextID;
-this._nextID++;var d=this,e=window.setTimeout(function(){d.unsuspendRedraw(c);delete d._timeoutIDs["_"+c]},a);this._ids.push(c);this._timeoutIDs["_"+c]=e;if(b)try{typeof this._handler.flash.jsSuspendRedraw=="undefined"&&__flash__addCallback(this._handler.flash,"jsSuspendRedraw");this._handler.flash.jsSuspendRedraw()}catch(f){console.log("suspendRedraw exception: "+f)}return c},unsuspendRedraw:function(a,b){if(b===undefined)b=true;for(var c=-1,d=0;d<this._ids.length;d++)if(this._ids[d]==a){c=d;break}if(c==
--1)throw"Unknown id passed to unsuspendRedraw: "+a;this._timeoutIDs["_"+a]!=undefined&&window.clearTimeout(this._timeoutIDs["_"+a]);this._ids.splice(c,1);delete this._timeoutIDs["_"+a];if(!(this.isSuspended()||this._batch.length==0&&!b)){c=this._batch.join("__SVG__METHOD__DELIMIT");this._batch=[];try{typeof this._handler.flash.jsUnsuspendRedrawAll=="undefined"&&__flash__addCallback(this._handler.flash,"jsUnsuspendRedrawAll");this._handler.flash.jsUnsuspendRedrawAll(c)}catch(e){console.log("unsuspendRedraw exception: "+
-e)}}},unsuspendRedrawAll:function(){for(var a=0;a<this._ids.length;a++)this.unsuspendRedraw(this._ids[a])},forceRedraw:function(){}});q(V,{hasFeature:function(){}});O(i,{ELEMENT_NODE:1,TEXT_NODE:3,DOCUMENT_NODE:9,DOCUMENT_FRAGMENT_NODE:11});q(i,{_listeners:null,_detachedListeners:null,insertBefore:function(a,b){if(this.nodeType!=i.ELEMENT_NODE&&this.nodeType!=i.DOCUMENT_FRAGMENT_NODE)throw"Not supported";a.parentNode&&a.parentNode.removeChild(a);a=this._getFakeNode(a);b=this._getFakeNode(b);var c=
-a.nodeType==i.DOCUMENT_FRAGMENT_NODE,d;if(c)d=a._getChildNodes(true);if(c&&d.length==0){a._reset();return a._getProxyNode()}var e=this._findChild(b);if(e===null)throw Error("Invalid child passed to insertBefore");e=e.position;var f=[];if(c)for(c=0;c<d.length;c++)f.push(d[c]);else f.push(a);for(c=0;c<f.length;c++){this._nodeXML.insertBefore(this._importNode(f[c],false),b._nodeXML);this._processAppendedChildren(f[c],this,this._attached)}if(this._attached&&this._passThrough){d=l._encodeFlashData(B(a,
-this._handler.document._namespaces));this._handler.sendToFlash("jsInsertBefore",[b._guid,this._guid,e,d])}if(!j)for(c=0;c<f.length;c++){this._defineChildNodeAccessor(this._childNodes.length);this._childNodes.length++}if(a.nodeType==i.DOCUMENT_FRAGMENT_NODE)a._reset();else a._attached=this._attached;return a._getProxyNode()},replaceChild:function(a,b){if(this.nodeType!=i.ELEMENT_NODE&&this.nodeType!=i.DOCUMENT_FRAGMENT_NODE)throw"Not supported";a.parentNode&&a.parentNode.removeChild(a);a=this._getFakeNode(a);
-b=this._getFakeNode(b);var c=a.nodeType==i.DOCUMENT_FRAGMENT_NODE,d;if(c)d=a._getChildNodes(true);if(c&&d.length==0){a._reset();return a._getProxyNode()}var e=this._findChild(b);if(e===null)throw Error("Invalid child passed to replaceChild");e=e.position;this.removeChild(b);var f=[];if(c)for(c=0;c<d.length;c++)f.push(d[c]);else f.push(a);if(!j)for(c=0;c<f.length;c++){this._defineChildNodeAccessor(this._childNodes.length);this._childNodes.length++}d=false;if(e>=this._nodeXML.childNodes.length)d=true;
-var h=e;for(c=0;c<f.length;c++){var g=this._importNode(f[c],false);if(d)this._nodeXML.appendChild(g);else{this._nodeXML.insertBefore(g,this._nodeXML.childNodes[h]);h++}}if(this._attached&&this._passThrough){f=l._encodeFlashData(B(a,this._handler.document._namespaces));this._handler.sendToFlash("jsAddChildAt",[this._guid,e,f])}this._processAppendedChildren(a,this,this._attached);b._setUnattached();svgweb._removedNodes.push(b._getProxyNode());if(a.nodeType==i.DOCUMENT_FRAGMENT_NODE)a._reset();else a._attached=
-this._attached;return b._getProxyNode()},removeChild:function(a){if(this.nodeType!=i.ELEMENT_NODE&&this.nodeType!=i.DOCUMENT_FRAGMENT_NODE)throw"Not supported";if(a.nodeType!=i.ELEMENT_NODE&&a.nodeType!=i.TEXT_NODE)throw"Not supported";a=this._getFakeNode(a);var b=this._findChild(a);if(b===null)throw Error("Invalid child passed to removeChild");var c=b.position;this._nodeXML.removeChild(b.nodeXML);if(a.nodeType==i.ELEMENT_NODE)if((b=a._getId())&&this._attached)this._handler.document._nodeById["_"+
-b]=undefined;a._persistEventListeners();if(j)this._childNodes.splice(c,1);else{delete this._childNodes[this._childNodes.length-1];this._childNodes.length--}this._attached&&this._passThrough&&this._handler.sendToFlash("jsRemoveChild",[a._guid]);a._setUnattached();svgweb._removedNodes.push(a._getProxyNode());return a._getProxyNode()},appendChild:function(a){if(this.nodeType!=i.ELEMENT_NODE&&this.nodeType!=i.DOCUMENT_FRAGMENT_NODE)throw"Not supported";a.parentNode&&a.parentNode.removeChild(a);a=this._getFakeNode(a);
-var b=a.nodeType==i.DOCUMENT_FRAGMENT_NODE,c;if(b)c=a._getChildNodes(true);if(b&&c.length==0){a._reset();return a._getProxyNode()}if(b)for(var d=0;d<c.length;d++)this._importNode(c[d]);else this._importNode(a);if(j)if(b)for(d=0;d<c.length;d++)this._childNodes.push(c[d]._htcNode);else this._childNodes.push(a._htcNode);else if(b)for(d=0;d<c.length;d++){this._defineChildNodeAccessor(this._childNodes.length);this._childNodes.length++}else{this._defineChildNodeAccessor(this._childNodes.length);this._childNodes.length++}this._attached&&
-this._passThrough&&this._handler.sendToFlash("jsAppendChild",[this._guid,l._encodeFlashData(B(a,this._handler.document._namespaces))]);this._processAppendedChildren(a,this,this._attached);if(a.nodeType==i.DOCUMENT_FRAGMENT_NODE)a._reset();else a._attached=this._attached;return a._getProxyNode()},hasChildNodes:function(){return this._getChildNodes().length>0},isSupported:function(a,b){if(b=="2.0")if(a=="Core")return true;else{if(a=="Events"||a=="UIEvents"||a=="MouseEvents")return true}else return false},
-hasAttributes:function(){if(this.nodeType==i.ELEMENT_NODE)for(var a in this._attributes)if(!/^_xmlns/i.test(a))if(!(a=="_id"&&/^__svg__random__/.test(this._attributes[a])))if(!(a=="___guid"&&/^__guid/.test(this._attributes[a])))if(!(a=="___fakeTextNode"&&/^__fakeTextNode/.test(this._attributes[a])))if(/^_.*/.test(a)&&this._attributes.hasOwnProperty(a))return true;return false},addEventListener:function(a,b,c,d){if(this.nodeType!=i.ELEMENT_NODE&&this.nodeType!=i.TEXT_NODE&&(this.nodeType!=i.DOCUMENT_NODE||
-a.substring(0,3)!="key"))throw"Not supported";if(!d&&!this._attached)this._detachedListeners.push({type:a,listener:b,useCapture:c});else{if(this._listeners[a]===undefined)this._listeners[a]=[];this._listeners[a].push({type:a,listener:b,useCapture:c});this._listeners[a]["_"+b.toString()+":"+c]=b;a.substring(0,3)=="key"?this._handler.addKeyboardListener(a,b,c):this._handler.sendToFlash("jsAddEventListener",[this._guid,a])}},removeEventListener:function(a,b,c){if(this.nodeType!=i.ELEMENT_NODE&&this.nodeType!=
-i.TEXT_NODE)throw"Not supported";var d;if(this._attached){if(this._listeners[a]){d=this._findListener(this._listeners[a],a,b,c);if(d!==null){this._listeners[a].splice(d,1);delete this._listeners[a]["_"+b.toString()+":"+c]}}if(a.substring(0,3)=="key"){d=this._findListener(this._keyboardListeners,a,b,c);d!==null&&this._keyboardListeners.splice(d,1)}this._handler.sendToFlash("jsRemoveEventListener",[this._guid,a])}else{d=this._findListener(this._detachedListeners,a,b,c);d!==null&&this._detachedListeners.splice(d,
-1)}},getScreenCTM:function(){if(this._handler){var a=this._handler.sendToFlash("jsGetScreenCTM",[this._guid]);a=this._handler._stringToMsg(a);return new F(new Number(a.a),new Number(a.b),new Number(a.c),new Number(a.d),new Number(a.e),new Number(a.f),this._handler)}else return new F(1,0,0,1,0,0)},getCTM:function(){return this.getScreenCTM()},cloneNode:function(a){var b;if(this.nodeType==i.ELEMENT_NODE&&this.namespaceURI!=svgns)b=new t(this.nodeName,this.prefix,this.namespaceURI);else if(this.nodeType==
-i.ELEMENT_NODE)b=document.createElementNS(this.namespaceURI,this.nodeName);else if(this.nodeType==i.TEXT_NODE)b=document.createTextNode(this._nodeValue,true);else if(this.nodeType==i.DOCUMENT_FRAGMENT_NODE)b=document.createDocumentFragment(true);else throw"cloneNode not supported for nodeType: "+this.nodeType;b=this._getFakeNode(b);for(var c=this._nodeXML.attributes,d=0;d<c.length;d++){var e=c.item(d);e.name.match(/([^:]+):?(.*)/);var f=e.namespaceURI;if(x&&e.name.indexOf("xmlns")!=-1)b._nodeXML.setAttribute(e.name,
-e.nodeValue);else{var h=b._nodeXML.ownerDocument;f=j?h.createNode(2,e.name,f):h.createAttributeNS(f,e.name);f.nodeValue=e.nodeValue;j?b._nodeXML.setAttributeNode(f):b._nodeXML.setAttributeNodeNS(f)}}b._nodeXML.setAttribute("__guid",b._guid);if(j){c=this._htcNode.style;for(d=0;d<c.length;d++){e=c.item(d);f=c.getPropertyValue(e);try{b._htcNode.style.length++}catch(g){}b.style.length++;b.style._ignoreStyleChanges=true;b._htcNode.style[e]=f;b.style._ignoreStyleChanges=false}}b.nodeType==i.ELEMENT_NODE&&
-b._importAttributes(b,b._nodeXML);if(a&&(b.nodeType==i.ELEMENT_NODE||b.nodeType==i.DOCUMENT_FRAGMENT_NODE)){a=this._getChildNodes();for(d=0;d<a.length;d++){c=a[d].cloneNode(true);b.appendChild(c)}}b.ownerDocument=this.ownerDocument;return b._getProxyNode()},toString:function(){return this.namespaceURI==svgns?"[_SVG"+this.localName.charAt(0).toUpperCase()+this.localName.substring(1)+"]":this.prefix?"["+this.prefix+":"+this.localName+"]":this.localName?"["+this.localName+"]":"["+this.nodeName+"]"},
-_addEvent:function(a,b,c){if(a.addEventListener)a.addEventListener(b,c,false);else if(a.attachEvent){a["e"+b+c]=c;a[b+c]=function(d,e,f){return function(){d["e"+e+f](window.event)}}(a,b,c);a.attachEvent("on"+b,a[b+c])}},nodeName:null,nodeType:null,ownerDocument:null,namespaceURI:null,localName:null,prefix:null,_getParentNode:function(){if(this.nodeType==i.DOCUMENT_NODE||this.nodeType==i.DOCUMENT_FRAGMENT_NODE)return null;if(this._attached&&this._handler&&this._getProxyNode()==this._handler.document.rootElement)if(this._handler.type==
-"script")return this._handler.flash.parentNode;else if(this._handler.type=="object")return this._handler.document;var a=this._nodeXML.parentNode;if(a===null||a.nodeType==i.DOCUMENT_NODE)return null;a=l._getNode(a,this._handler);this._getFakeNode(a)._attached=this._attached;return a},_getFirstChild:function(){if(this.nodeType==i.TEXT_NODE)return null;var a=this._nodeXML.firstChild;if(a===null)return null;a=l._getNode(a,this._handler);this._getFakeNode(a)._attached=this._attached;return a},_getLastChild:function(){if(this.nodeType==
-i.TEXT_NODE)return null;var a=this._nodeXML.lastChild;if(a===null)return null;a=l._getNode(a,this._handler);this._getFakeNode(a)._attached=this._attached;return a},_getPreviousSibling:function(){if(this.nodeType==i.DOCUMENT_NODE||this.nodeType==i.DOCUMENT_FRAGMENT_NODE)return null;if(this._attached&&this._handler&&this._getProxyNode()==this._handler.document.rootElement&&this._handler.type=="script"){var a=this._handler.flash.previousSibling;if(a&&a.nodeType==1&&a.className&&a.className.indexOf("embedssvg")!=
--1){a=a.getAttribute("id").replace("_flash","");a=svgweb.handlers[a].document.documentElement;return a._getProxyNode()}else return a}a=this._nodeXML.previousSibling;if(a===null||a.nodeType==7)return null;a=l._getNode(a,this._handler);this._getFakeNode(a)._attached=this._attached;return a},_getNextSibling:function(){if(this.nodeType==i.DOCUMENT_NODE||this.nodeType==i.DOCUMENT_FRAGMENT_NODE)return null;if(this._attached&&this._handler&&this._getProxyNode()==this._handler.document.rootElement&&this._handler.type==
-"script"){var a=this._handler.flash.nextSibling;if(a&&a.nodeType==1&&a.className&&a.className.indexOf("embedssvg")!=-1){a=this._handler.document._nodeById["_"+a.getAttribute("id").replace("_flash","")];return a._getProxyNode()}else return a}a=this._nodeXML.nextSibling;if(a===null)return null;a=l._getNode(a,this._handler);this._getFakeNode(a)._attached=this._attached;return a},_passThrough:true,_attached:false,_fake:true,_defineNodeAccessors:function(){this.__defineGetter__("parentNode",m(this,this._getParentNode));
-this.__defineGetter__("firstChild",m(this,this._getFirstChild));this.__defineGetter__("lastChild",m(this,this._getLastChild));this.__defineGetter__("previousSibling",m(this,this._getPreviousSibling));this.__defineGetter__("nextSibling",m(this,this._getNextSibling));this.__defineGetter__("childNodes",function(c){return function(){return c._childNodes}}(this));if(this.nodeName=="#text")this._childNodes.length=0;else{var a=this._nodeXML.childNodes;this._childNodes.length=a.length;for(var b=0;b<a.length;b++)this._defineChildNodeAccessor(b)}if(this.nodeType==
-i.TEXT_NODE){this.__defineGetter__("data",function(c){return function(){return c._nodeValue}}(this));this.__defineSetter__("data",function(c){return function(d){return c._setNodeValue(d)}}(this));this.__defineGetter__("textContent",function(c){return function(){return c._nodeValue}}(this));this.__defineSetter__("textContent",function(c){return function(d){return c._setNodeValue(d)}}(this))}else this.__defineGetter__("textContent",function(){return function(){return""}}());this.__defineGetter__("nodeValue",
-function(c){return function(){return c._nodeValue}}(this));this.__defineSetter__("nodeValue",function(c){return function(d){return c._setNodeValue(d)}}(this))},_defineChildNodeAccessor:function(a){var b=this;this._childNodes.__defineGetter__(a,function(){var c=l._getNode(b._nodeXML.childNodes[a],b._handler);c._attached=b._attached;return c})},_getChildNodes:function(a){if(!j)return this._childNodes;if(a===undefined)a=false;var b=r();if(this.nodeName=="#text")return b;if(this._nodeXML.childNodes.length==
-this._childNodes.length&&!a)return this._childNodes;else{for(var c=0;c<this._nodeXML.childNodes.length;c++){var d=l._getNode(this._nodeXML.childNodes[c],this._handler);d._fakeNode._attached=this._attached;if(a)d=d._fakeNode;b.push(d)}return this._childNodes=b}},_createHTC:function(){if(Object.defineProperty){this._htcNode=document.createElement("div");this._htcNode.appendChild=function(c){return this._fakeNode.appendChild(c)};this._htcNode.addEventListener=function(c,d,e){return this._fakeNode.addEventListener(c,
-d,e)};this._htcNode.beginElement=function(){return this._fakeNode.beginElement()};this._htcNode.beginElementAt=function(c){return this._fakeNode.beginElementAt(c)};this._htcNode.endElement=function(){return this._fakeNode.endElement()};this._htcNode.endElementAt=function(c){return this._fakeNode.endElementAt(c)};this._htcNode._cloneNode=this._htcNode.cloneNode;this._htcNode.cloneNode=function(c){return this._fakeNode.cloneNode(c)};this._htcNode.createSVGPoint=function(){return this._fakeNode.createSVGPoint()};
-this._htcNode.createSVGRect=function(){return this._fakeNode.createSVGRect()};this._htcNode.getAttribute=function(c){return this._fakeNode.getAttribute(c)};this._htcNode.getAttributeNS=function(c,d){return this._fakeNode.getAttributeNS(c,d)};this._htcNode.getScreenCTM=function(){return this._fakeNode.getScreenCTM()};this._htcNode.getBBox=function(){return this._fakeNode.getBBox()};this._htcNode.getCTM=function(){return this._fakeNode.getCTM()};this._htcNode.getElementsByTagNameNS=function(c,d){return this._fakeNode.getElementsByTagNameNS(c,
-d)};this._htcNode.hasChildNodes=function(){return this._fakeNode.hasChildNodes()};this._htcNode.hasAttributes=function(){return this._fakeNode.hasAttributes()};this._htcNode.hasAttribute=function(c){return this._fakeNode.hasAttribute(c)};this._htcNode.hasAttributeNS=function(c,d){return this._fakeNode.hasAttributeNS(c,d)};this._htcNode.insertBefore=function(c,d){return this._fakeNode.insertBefore(c,d)};this._htcNode.isSupported=function(c,d){return this._fakeNode.isSupported(c,d)};this._htcNode.setAttribute=
-function(c,d){return this._fakeNode.setAttribute(c,d)};this._htcNode.setAttributeNS=function(c,d,e){return this._fakeNode.setAttributeNS(c,d,e)};this._htcNode.removeChild=function(c){return this._fakeNode.removeChild(c)};this._htcNode.replaceChild=function(c,d){return this._fakeNode.replaceChild(c,d)};this._htcNode.removeAttribute=function(c){return this._fakeNode.removeAttribute(c)};this._htcNode.removeAttributeNS=function(c,d){return this._fakeNode.removeAttributeNS(c,d)};this._htcNode.removeEventListener=
-function(c,d,e){return this._fakeNode.removeEventListener(c,d,e)};this._htcNode.get=function(c){return this._fakeNode.get(c)};this._htcNode.set=function(c,d){return this._fakeNode.set(c,d)};this._htcNode.create=function(c,d,e,f,h){return this._fakeNode.create(c,d,e,f,h)};this._htcNode.createChild=function(c,d,e,f,h){return this._fakeNode.createChild(c,d,e,f,h)};this._htcNode.addChild=function(c,d){return this._fakeNode.addChild(c,d)};this._htcNode._getNodeName=function(){return this._fakeNode.nodeName};
-this._htcNode._getNodeType=function(){return this._fakeNode.nodeType};this._htcNode._getLocalName=function(){return this._fakeNode.localName};this._htcNode._getPrefix=function(){return this._fakeNode.prefix};this._htcNode._getNamespaceURI=function(){return this._fakeNode.namespaceURI};this._htcNode._getChildNodes=function(){return this._fakeNode._getChildNodes()};this._htcNode._getParentNode=function(){return this._fakeNode._getParentNode()};this._htcNode._getFirstChild=function(){return this._fakeNode._getFirstChild()};
-this._htcNode._getLastChild=function(){return this._fakeNode._getLastChild()};this._htcNode._getPreviousSibling=function(){return this._fakeNode._getPreviousSibling()};this._htcNode._getNextSibling=function(){return this._fakeNode._getNextSibling()};this._htcNode._getNodeValue=function(){return this._fakeNode._nodeValue};this._htcNode._setNodeValue=function(c){return this._fakeNode._setNodeValue(c)};this._htcNode._getTextContent=function(){return this._fakeNode._getTextContent()};this._htcNode._setTextContent=
-function(c){return this._fakeNode._setTextContent(c)};this._htcNode._getData=function(){return this._fakeNode._getData()};this._htcNode._setData=function(c){return this._fakeNode._setData(c)};this._htcNode._getOwnerDocument=function(){return this._fakeNode.ownerDocument};this._htcNode._getId=function(){return this._fakeNode._getId()};this._htcNode._setId=function(c){return this._fakeNode._setId(c)};this._htcNode._getX=function(){return this._fakeNode._getX()};this._htcNode._getY=function(){return this._fakeNode._getY()};
-this._htcNode._getWidth=function(){return this._fakeNode._getWidth()};this._htcNode._getHeight=function(){return this._fakeNode._getHeight()};this._htcNode._getCurrentScale=function(){return this._fakeNode._getCurrentScale()};this._htcNode._setCurrentScale=function(c){return this._fakeNode._setCurrentScale(c)};this._htcNode._getCurrentTranslate=function(){return this._fakeNode._getCurrentTranslate()};Object.defineProperty(this._htcNode,"currentScale",{get:function(){return this._getCurrentScale()},
-set:function(c){this._setCurrentScale(c)}});Object.defineProperty(this._htcNode,"currentTranslate",{get:function(){return this._getCurrentTranslate()},set:function(){}});Object.defineProperty(this._htcNode,"nodeName",{get:function(){return this._getNodeName()},set:function(){}});Object.defineProperty(this._htcNode,"nodeType",{get:function(){return this._getNodeType()},set:function(){}});Object.defineProperty(this._htcNode,"localName",{get:function(){return this._getLocalName()},set:function(){}});
-Object.defineProperty(this._htcNode,"prefix",{get:function(){return this._getPrefix()},set:function(){}});Object.defineProperty(this._htcNode,"namespaceURI",{get:function(){return this._getNamespaceURI()},set:function(){}});Object.defineProperty(this._htcNode,"childNodes",{get:function(){return this._getChildNodes()},set:function(){}});Object.defineProperty(this._htcNode,"parentNode",{get:function(){return this._getParentNode()},set:function(){}});Object.defineProperty(this._htcNode,"firstChild",
-{get:function(){return this._getFirstChild()},set:function(){}});Object.defineProperty(this._htcNode,"id",{get:function(){return this._getId()},set:function(c){this._setId(c)}});Object.defineProperty(this._htcNode,"lastChild",{get:function(){return this._getLastChild()},set:function(){}});Object.defineProperty(this._htcNode,"previousSibling",{get:function(){return this._getPreviousSibling()},set:function(){}});Object.defineProperty(this._htcNode,"nextSibling",{get:function(){return this._getNextSibling()},
-set:function(){}});Object.defineProperty(this._htcNode,"nodeValue",{get:function(){return this._getNodeValue()},set:function(c){this._setNodeValue(c)}});Object.defineProperty(this._htcNode,"textContent",{get:function(){return this._getTextContent()},set:function(c){this._setTextContent(c)}});Object.defineProperty(this._htcNode,"data",{get:function(){return this._getData()},set:function(c){this._setData(c)}});Object.defineProperty(this._htcNode,"ownerDocument",{get:function(){return this._getOwnerDocument()},
-set:function(){}});Object.defineProperty(this._htcNode,"x",{get:function(){return this._getX()},set:function(){}});Object.defineProperty(this._htcNode,"y",{get:function(){return this._getY()},set:function(){}});Object.defineProperty(this._htcNode,"width",{get:function(){return this._getWidth()},set:function(){}});Object.defineProperty(this._htcNode,"height",{get:function(){return this._getHeight()},set:function(){}});this._htcNode._fakeNode=this;this._htcNode._handler=this._handler}else{if(!this._htcContainer){this._htcContainer=
-document.getElementById("__htc_container");if(!this._htcContainer){var a=document.getElementsByTagName("body")[0],b=document.createElement("div");b.id="__htc_container";b.style.position="absolute";b.style.top="-5000px";b.style.left="-5000px";a.appendChild(b);this._htcContainer=b}}this._htcNode=document.createElement("svg:"+this.nodeName);this._htcNode._fakeNode=this;this._htcNode._handler=this._handler;this._htcContainer.appendChild(this._htcNode)}},_setNodeValue:function(a){if(this.nodeType!=i.TEXT_NODE)return a;
-this._nodeValue=a;this._nodeXML.firstChild.nodeValue=a;if(this._attached&&this._passThrough){var b=l._encodeFlashData(a);this._handler.sendToFlash("jsSetText",[this._nodeXML.parentNode.getAttribute("__guid"),this._guid,b])}return a},_getFakeNode:function(a){a||(a=this);if(j&&a._fakeNode)a=a._fakeNode;return a},_processAppendedChildren:function(a,b,c){var d;b=a.nodeType==i.DOCUMENT_FRAGMENT_NODE?this._getFakeNode(a._getFirstChild()):a;if(c)d=this._handler._redrawManager.suspendRedraw(1E4,false);for(;b;){var e=
-b._nodeXML;b._handler=this._handler;e=e.getAttribute("id");if(c&&b.nodeType==i.ELEMENT_NODE&&e)this._handler.document._nodeById["_"+e]=b;if(c){if(this._handler.type=="script")b.ownerDocument=document;else if(this._handler.type=="object")b.ownerDocument=this._handler.document;b._attached=true;for(e=0;e<b._detachedListeners.length;e++){var f=b._detachedListeners[e];f&&b.addEventListener(f.type,f.listener,f.useCapture,true)}b._detachedListeners=[]}if(e=(e=b._getChildNodes())&&e.length>0?e[0]:null){b=
-e;if(j)b=b._fakeNode}for(;!e&&b;){if(b!=a)if(e=b._getNextSibling()){b=e;if(j)b=b._fakeNode;break}if(b==a)b=null;else{if((b=b._getParentNode())&&j)b=b._fakeNode;if(b&&(b.nodeType!=1||b._handler&&b._getProxyNode()==b._handler.document.rootElement))b=null}}}c&&this._handler._redrawManager.unsuspendRedraw(d,false)},_importNode:function(a,b){if(typeof b=="undefined")b=true;var c;c=this._attached?this._handler.document._xml:this._nodeXML.ownerDocument;c=typeof c.importNode=="undefined"?document._importNodeFunc(c,
-a._nodeXML,true):c.importNode(a._nodeXML,true);b&&this._nodeXML.appendChild(c);a._importChildXML(c);return c},_importChildXML:function(a){this._nodeXML=a;a=this._getChildNodes();for(var b=0;b<a.length;b++){var c=a[b];if(j&&c._fakeNode)c=c._fakeNode;c._nodeXML=this._nodeXML.childNodes[b];c._importChildXML(this._nodeXML.childNodes[b])}},_findChild:function(a,b){if(b===undefined)b=false;for(var c={},d=0,e=0;e<this._nodeXML.childNodes.length;e++){var f=this._nodeXML.childNodes[e];if(!(f.nodeType!=i.ELEMENT_NODE&&
-f.nodeType!=i.TEXT_NODE))if(!(b&&(f.getAttribute("__fakeTextNode")||f.nodeType==i.TEXT_NODE))){f.nodeType==i.ELEMENT_NODE&&d++;if(f.nodeType==i.ELEMENT_NODE&&f.getAttribute("__guid")==a._guid){c.position=b?d:e;c.nodeXML=f;return c}}}return null},_setUnattached:function(){for(var a=this._getChildNodes(),b=0;b<a.length;b++){var c=a[b];if(j)c=c._fakeNode;c._setUnattached()}this._attached=false;this._handler=null},_getProxyNode:function(){return j?this._htcNode:this},_createChildNodes:function(){var a;
-if(j)a=r();else{a={};a.item=function(b){return b>=this.length?null:this[b]}}return a},_getTextContent:function(){return this.nodeType==i.TEXT_NODE?this._nodeValue:""},_setTextContent:function(a){return this.nodeType==i.TEXT_NODE?this._setNodeValue(a):""},_getData:function(){if(this.nodeType==i.TEXT_NODE)return this._nodeValue},_setData:function(a){if(this.nodeType==i.TEXT_NODE)return this._setNodeValue(a)},_createEmptyMethods:function(){if(this.nodeType==i.TEXT_NODE)this.getAttribute=this.getAttributeNS=
-this.setAttribute=this.setAttributeNS=this.removeAttribute=this.removeAttributeNS=this.hasAttribute=this.hasAttributeNS=this.getElementsByTagNameNS=this._getId=this._setId=this._getX=this._getY=this._getWidth=this._getHeight=this._getCurrentScale=this._setCurrentScale=this._getCurrentTranslate=this.createSVGRect=this.createSVGPoint=function(){}},_persistEventListeners:function(){for(var a in this._listeners)for(var b=0;b<this._listeners[a].length;b++){var c=this._listeners[a][b];this._detachedListeners.push({type:c.type,
-listener:c.listener,useCapture:c.useCapture})}this._listeners=[];a=this._getChildNodes();for(b=0;b<a.length;b++){c=a[b];if(c._fakeNode)c=c._fakeNode;c._persistEventListeners()}},_findListener:function(a,b,c,d){for(var e=0;e<a.length;e++){var f=a[e];if(f.listener==c&&f.type==b&&f.useCapture==d)return e}return null}});t.prototype=new i;q(t,{getAttribute:function(a){return this.getAttributeNS(null,a,true)},getAttributeNS:function(a,b,c){var d;if(a==null&&b=="__guid")return null;if(this._attached&&this._passThrough&&
-!this._handler._redrawManager.isSuspended())d=this._handler.sendToFlash("jsGetAttribute",[this._guid,false,false,a,b,true]);else if(j){if(j)if(a)for(var e=0;e<this._nodeXML.attributes.length;e++){var f=this._nodeXML.attributes.item(e),h=(new String(f.name)).match(/[^:]*:?(.*)/)[1];if(f.namespaceURI&&f.namespaceURI==a&&h==b){d=f.nodeValue;break}}else d=this._nodeXML.getAttribute(b)}else d=this._nodeXML.getAttributeNS(a,b);if(a=="null"&&b=="id"&&!d)return"";if(d===undefined||d===null||/^[ ]*$/.test(d))return c?
-null:"";return d},removeAttribute:function(a){this.removeAttributeNS(null,a)},removeAttributeNS:function(a,b){if(b=="id"&&this._attached&&this.namespaceURI==svgns){var c=this._handler.document,d=this._nodeXML.getAttribute("id");c._nodeById["_"+d]=undefined}var e;if(a)for(c=0;c<this._nodeXML.attributes.length;c++){d=this._nodeXML.attributes.item(c);var f=(new String(d.name)).match(/([^:]+:)?(.*)/),h;if(d.name.indexOf(":")!=-1){h=f[1];f=f[2]}else f=f[1];if(d.namespaceURI&&d.namespaceURI==a&&f==b){e=
-d;break}}else e=this._nodeXML.getAttributeNode(b);if(e){this._nodeXML.removeAttributeNode(e);e=b;if(a)e=h+":"+b;this._attributes["_"+e]=undefined;this._attached&&this._passThrough&&this._handler.sendToFlash("jsRemoveAttribute",[this._guid,a,b])}else console.log("No attribute node found for: "+b+" in the namespace: "+a)},setAttribute:function(a,b){this.setAttributeNS(null,a,b)},setAttributeNS:function(a,b,c){if(c===null||typeof c=="undefined")c="";var d=b;if(b.indexOf(":")!=-1)d=b.split(":")[1];if(this._attached&&
-b=="id"){var e=this._handler.document,f=this._nodeXML.getAttribute("id");e._nodeById["_"+f]=undefined;if(f===0||f)e._nodeById["_"+c]=this}if(x&&d=="style"&&this._nodeXML.parentNode!==null&&this._nodeXML.parentNode.nodeName=="clipPath"){e=this._nodeXML.nextSibling;f=this._nodeXML.parentNode;this._nodeXML.parentNode.removeChild(this._nodeXML);this._nodeXML.setAttribute("style",c);e?f.insertBefore(this._nodeXML,e):f.appendChild(this._nodeXML)}else if(a&&j){e=this._nodeXML.ownerDocument.createNode(2,
-b,a);e.nodeValue=c;this._nodeXML.setAttributeNode(e)}else j?this._nodeXML.setAttribute(b,c):this._nodeXML.setAttributeNS(a,b,c);if(/^xmlns:?(.*)$/.test(b)){e=b.match(/^xmlns:?(.*)$/);e=e[1]?e[1]:"xmlns";f=c;if(!svgweb._allSVGNamespaces["_"+e]){svgweb._allSVGNamespaces["_"+e]=f;svgweb._allSVGNamespaces["_"+f]=e}}this._attributes["_"+b]=c;if(this._attached&&this._passThrough){b=l._encodeFlashData(c);this._handler.sendToFlash("jsSetAttribute",[this._guid,false,a,d,b])}if(this._handler&&this._handler.type==
-"script"&&this._attached&&this._getProxyNode()==this._handler.document.rootElement&&(d=="width"||d=="height"))svgweb._onWindowResize()},hasAttribute:function(a){return this.hasAttributeNS(null,a)},hasAttributeNS:function(a,b){if(!a&&!j)return this._nodeXML.hasAttribute(b);else if(j){for(var c=null,d=0;d<this._nodeXML.attributes.length;d++){var e=this._nodeXML.attributes.item(d),f=(new String(e.name)).match(/(?:[^:]+:)?(.*)/)[1],h=e.namespaceURI;if(h=="")h=null;if(a==h&&f==b){c=e;break}}return c!=
-null}else return this._nodeXML.hasAttributeNS(a,b)},getElementsByTagNameNS:function(a,b){var c=r(),d;if(a=="")a=null;if(a==svgns)a=svgnsFake;if(this._nodeXML.getElementsByTagNameNS)c=this._nodeXML.getElementsByTagNameNS(a,b);else{var e=null;if(this._attached)e=this._handler.document._namespaces;d="xmlns";if(a&&a!="*"&&e){d=e["_"+a];if(d===undefined)return r()}d=v(this._nodeXML.ownerDocument,this._nodeXML,a=="*"&&b=="*"?"//*[ancestor::*[@__guid = '"+this._guid+"']]":a=="*"?"//*[namespace-uri()='*' and local-name()='"+
-b+"' and ancestor::*[@__guid = '"+this._guid+"']]":b=="*"?"//*[namespace-uri()='"+a+"' and ancestor::*[@__guid = '"+this._guid+"']]":"//"+b+"[ancestor::*[@__guid = '"+this._guid+"']]| //*[namespace-uri()='"+a+"' and local-name()='"+b+"' and ancestor::*[@__guid = '"+this._guid+"']]",e);if(d!==null&&d!==undefined&&d.length>0)for(e=0;e<d.length;e++)d[e]!==this._nodeXML&&c.push(d[e])}if((a=="*"||a==svgnsFake)&&b=="*"){d=[];for(e=0;e<c.length;e++)c[e].nodeType==i.ELEMENT_NODE&&c[e].nodeName!="__text"&&
-d.push(c[e]);c=d}d=r();for(e=0;e<c.length;e++){var f=l._getNode(c[e],this._handler);this._getFakeNode(f)._attached=this._attached;d.push(f)}return d},beginElement:function(){this.beginElementAt(0)},endElement:function(){this.endElementAt(0)},beginElementAt:function(a){this._attached&&this._passThrough&&this._handler.sendToFlash("jsBeginElementAt",[this._guid,a])},endElementAt:function(a){this._attached&&this._passThrough&&this._handler.sendToFlash("jsEndElementAt",[this._guid,a])},style:null,_setClassName:function(){},
-_getClassName:function(){},_setTransform:function(){},_getTransform:function(){},_getViewBox:function(){},_getId:function(){return this._attributes._id?this._attributes._id:""},_setId:function(a){return this.setAttribute("id",a)},ownerSVGElement:null,_getX:function(){var a=this._trimMeasurement(this.getAttribute("x"));return new H(new G(new Number(a)))},_getY:function(){var a=this._trimMeasurement(this.getAttribute("y"));return new H(new G(new Number(a)))},_getWidth:function(){var a=this._trimMeasurement(this.getAttribute("width"));
-return new H(new G(new Number(a)))},_getHeight:function(){var a=this._trimMeasurement(this.getAttribute("height"));return new H(new G(new Number(a)))},_getCurrentScale:function(){return this._currentScale},_setCurrentScale:function(a){if(a!==this._currentScale){this._currentScale=a;this._handler.sendToFlash("jsSetCurrentScale",[a])}return a},_getCurrentTranslate:function(){return this._currentTranslate},createSVGPoint:function(){return new I(0,0)},createSVGRect:function(){return new M(0,0,0,0)},getBBox:function(){if(this._handler){var a=
-this._handler.sendToFlash("jsGetBBox",[this._guid]);a=this._handler._stringToMsg(a);return new M(new Number(a.x),new Number(a.y),new Number(a.width),new Number(a.height))}else return new M(0,0,0,0)},_trimMeasurement:function(a){if(a!==null)a=a.replace(/[a-z]/gi,"");return a},_getInnerHTML:function(){},_setInnerHTML:function(){},_allEvents:["onfocusin","onfocusout","onactivate","onclick","onmousedown","onmouseup","onmouseover","onmousemove","onmouseout","onload","onunload","onabort","onerror","onresize",
-"onscroll","onzoom","onbegin","onend","onrepeat"],_handleEvent:function(){},_prepareEvents:function(){},_attributes:null,_importAttributes:function(a,b){for(var c=0;c<b.attributes.length;c++){var d=b.attributes[c];this._attributes["_"+d.nodeName]=d.nodeValue}},_defineAccessors:function(){var a=this;if(this.nodeName=="svg"||this.nodeName=="use"){this.__defineGetter__("x",function(){return a._getX()});this.__defineGetter__("y",function(){return a._getY()});this.__defineGetter__("width",function(){return a._getWidth()});
-this.__defineGetter__("height",function(){return a._getHeight()})}if(this.nodeName=="svg"){this.__defineGetter__("currentTranslate",function(){return a._getCurrentTranslate()});this.__defineGetter__("currentScale",function(){return a._getCurrentScale()});this.__defineSetter__("currentScale",function(b){return a._setCurrentScale(b)})}this.__defineGetter__("id",m(this,this._getId));this.__defineSetter__("id",m(this,this._setId))},_defineAccessor:function(a,b){var c=this;this.__defineGetter__(a,function(){return c.getAttribute(a)});
-b&&this.__defineSetter__(a,function(d){return c.setAttribute(a,d)})}});C.prototype=new i;q(C,{_reset:function(){for(;this._nodeXML.firstChild;)this._nodeXML.removeChild(this._nodeXML.firstChild);this._childNodes=this._createChildNodes();j||this._defineNodeAccessors()}});s._allStyles=["font","fontFamily","fontSize","fontSizeAdjust","fontStretch","fontStyle","fontVariant","fontWeight","direction","letterSpacing","textDecoration","unicodeBidi","wordSpacing","clip","color","cursor","display","overflow",
-"visibility","clipPath","clipRule","mask","opacity","enableBackground","filter","floodColor","floodOpacity","lightingColor","stopColor","stopOpacity","pointerEvents","colorInterpolation","colorInterpolationFilters","colorProfile","colorRendering","fill","fillOpacity","fillRule","imageRendering","marker","markerEnd","markerMid","markerStart","shapeRendering","stroke","strokeDasharray","strokeDashoffset","strokeLinecap","strokeLinejoin","strokeMiterlimit","strokeOpacity","strokeWidth","textRendering",
-"alignmentBaseline","baselineShift","dominantBaseline","glyphOrientationHorizontal","glyphOrientationVertical","kerning","textAnchor","writingMode"];s._allRootStyles=["border","verticalAlign","backgroundColor","top","right","bottom","left","position","width","height","margin","marginTop","marginBottom","marginRight","marginLeft","padding","paddingTop","paddingBottom","paddingLeft","paddingRight","borderTopWidth","borderRightWidth","borderBottomWidth","borderLeftWidth","borderTopColor","borderRightColor",
-"borderBottomColor","borderLeftColor","borderTopStyle","borderRightStyle","borderBottomStyle","borderLeftStyle","zIndex","overflowX","overflowY","float","clear"];q(s,{_ignoreStyleChanges:true,_setup:function(){this._normalizeStyle();if(j){var a=this._element._htcNode.style,b=this._fromStyleString();for(f=0;f<b.length;f++){h=this._toCamelCase(b[f].styleName);var c=b[f].styleValue;try{a[h]=c}catch(d){console.log("The following exception occurred setting style."+h+" on IE: "+(d.message||d))}}try{a.length=
-0}catch(e){}this.length=0;a.item=m(this,this.item);a.setProperty=m(this,this.setProperty);a.getPropertyValue=m(this,this.getPropertyValue);this._changeListener=m(this,this._onPropertyChange);this._element._htcNode.attachEvent("onpropertychange",this._changeListener);if(j&&j>=8)return a.pixelBottom}else{for(var f=0;f<s._allStyles.length;f++){var h=s._allStyles[f];this._defineAccessor(h)}if(this._element._handler&&this._element._getProxyNode()==this._element._handler.document.rootElement)for(f=0;f<
-s._allRootStyles.length;f++){h=s._allRootStyles[f];this._defineAccessor(h)}this.__defineGetter__("length",m(this,this._getLength))}},_defineAccessor:function(a){var b=this;this.__defineGetter__(a,function(){return b._getStyleAttribute(a)});this.__defineSetter__(a,function(c){return b._setStyleAttribute(a,c)})},_setStyleAttribute:function(a,b){for(var c=this._fromCamelCase(a),d=this._fromStyleString(),e=false,f=0;f<d.length;f++)if(d[f].styleName===c){d[f].styleValue=b;e=true;break}e||d.push({styleName:c,
-styleValue:b});d=this._toStyleString(d);this._element._nodeXML.setAttribute("style",d);this._element._attributes._style=d;if(j){d=this._element._htcNode.style;if(!e){try{d.length++}catch(h){}this.length++}this._ignoreStyleChanges=true;d[a]=b;this._ignoreStyleChanges=false}if(this._element._attached&&this._element._passThrough){e=l._encodeFlashData(b);this._element._handler.sendToFlash("jsSetAttribute",[this._element._guid,true,null,c,e])}},_getStyleAttribute:function(a){a=this._fromCamelCase(a);if(this._element._attached&&
-this._element._passThrough&&!this._element._handler._redrawManager.isSuspended())return this._element._handler.sendToFlash("jsGetAttribute",[this._element._guid,true,false,null,a,false]);else{for(var b=this._fromStyleString(),c=0;c<b.length;c++)if(b[c].styleName===a)return b[c].styleValue;return null}},_fromStyleString:function(){var a=this._element._nodeXML.getAttribute("style");if(a===null||a===undefined)return[];if(a.indexOf(";")==-1)a=[a];else{a=a.split(/\s*;\s*/);a[a.length-1]||(a=a.slice(0,
-a.length-1))}for(var b=[],c=0;c<a.length;c++){var d=a[c].split(":");if(d.length==2){var e=d[0];d=d[1];e=e.replace(/^\s+/,"");d=d.replace(/^\s+/,"");b.push({styleName:e,styleValue:d})}}return b},_toStyleString:function(a){for(var b="",c=0;c<a.length;c++){b+=a[c].styleName+": ";b+=a[c].styleValue+";";if(c!=a.length-1)b+=" "}return b},_fromCamelCase:function(a){return a.replace(/([A-Z])/g,"-$1").toLowerCase()},_toCamelCase:function(a){if(a.indexOf("-")==-1)return a;var b="";a=a.split("-");b+=a[0];for(var c=
-1;c<a.length;c++)b+=a[c].charAt(0).toUpperCase()+a[c].substring(1);return b},setProperty:function(a,b){this._setStyleAttribute(this._toCamelCase(a),b);return b},getPropertyValue:function(a){return this._getStyleAttribute(this._toCamelCase(a))},item:function(a){return this._fromStyleString()[a].styleName},_getLength:function(){return this._fromStyleString().length},_normalizeStyle:function(){if(this._element._nodeXML.getAttribute("style"))if(/[A-Z]/.test(this._element._nodeXML.getAttribute("style"))){for(var a=
-this._fromStyleString(),b=0;b<a.length;b++){a[b].styleName=a[b].styleName.toLowerCase();if(a[b].styleValue.indexOf("url(")==-1)a[b].styleValue=a[b].styleValue.toLowerCase()}var c="";for(b=0;b<a.length;b++)c+=a[b].styleName+": "+a[b].styleValue+"; ";if(c.charAt(c.length-1)==" ")c=c.substring(0,c.length-1);this._element._passThrough=false;this._element.setAttribute("style",c);this._element._passThrough=true}},_onPropertyChange:function(){if(!this._ignoreStyleChanges){var a=window.event.propertyName;
-if(a&&/^style\./.test(a)&&a!="style.length"){a=a.match(/^style\.(.*)$/)[1];this._setStyleAttribute(a,this._element._htcNode.style[a])}}}});q(W,{_scriptsToExec:null,_utf8encode:function(a){a=a.replace(/\r\n/g,"\n");for(var b="",c=0;c<a.length;c++){var d=a.charCodeAt(c);if(d<128)b+=String.fromCharCode(d);else{if(d>127&&d<2048)b+=escape(String.fromCharCode(d>>6|192));else{b+=escape(String.fromCharCode(d>>12|224));b+=escape(String.fromCharCode(d>>6&63|128))}b+=escape(String.fromCharCode(d&63|128))}}return b},
-_fetchURL:function(a,b,c){var d=ca();if(j){a=this._utf8encode(a);a+=a.indexOf("?")==-1?"?":"&";a+=(new Date).getTime()}d.onreadystatechange=function(){if(d.readyState==4){d.status==200?b(d.responseText):c(d.status+": "+d.statusText);d=null}};d.open("GET",a,true);d.send(null)},_fallback:function(a){console.log("onError (fallback), error="+a)},_loadHTC:function(){this._dummyNode=document.createElement("svg:__force__load");this._dummyNode._handler=this._handler;this._readyStateListener=m(this,this._onHTCLoaded);
-this._dummyNode.attachEvent("onreadystatechange",this._readyStateListener);document.getElementsByTagName("head")[0].appendChild(this._dummyNode)},_onFlashLoaded:function(a){document.getElementById(this._handler.flashID)?this._onFlashLoadedNow(a):setTimeout(function(b,c){return function(){b._onFlashLoaded(c)}}(this,a),1)},_onFlashLoadedNow:function(){this._handler.flash=document.getElementById(this._handler.flashID);if(this._savedParams.length){for(var a=0;a<this._savedParams.length;a++)this._handler.flash.appendChild(this._savedParams[a]);
-this._savedParams=null}this._handler.flash.top=this._handler.flash.parent=window;this._swfLoaded=true;if(!j||this._htcLoaded)this._onEverythingLoaded()},_onHTCLoaded:function(){document.getElementsByTagName("head")[0].removeChild(this._dummyNode);this._dummyNode.detachEvent("onreadystatechange",this._readyStateListener);this._dummyNode=null;this._htcLoaded=true;this._swfLoaded&&this._onEverythingLoaded()},_onEverythingLoaded:function(){var a=this._handler._inserter._determineSize();this._handler.sendToFlash("jsHandleLoad",
-[this._getRelativeTo("object"),this._getRelativeTo("page"),a.pixelsWidth,a.pixelsHeight,false,this._svgString])},_onRenderingFinished:function(){this._handler.flash.style.visibility="visible";var a=this._xml.documentElement,b=a.getAttribute("id"),c=new E(a,null,null,this._handler),d=this._handler.document;d._attached=true;d.documentElement=c._getProxyNode();d.rootElement=c._getProxyNode();d._nodeById["_"+b]=c;j&&this._handler.flash.setAttribute("contentDocument",null);try{this._handler.flash.contentDocument=
-d}catch(e){try{this._handler.flash.__contentDocument=d;var f=this;Object.defineProperty(this._handler.flash,"contentDocument",{get:function(){return f._handler.flash.__contentDocument},set:function(g){f._handler.flash.__contentDocument=g}})}catch(h){console.log("This exception occurred setting object contentDocument: "+(h.message||h))}}this._handler.window=new X(this._handler);d.defaultView=this._handler.window;l._patchFakeObjects(d.defaultView,d);if(a=a.getAttribute("onload")){a=";(function(){"+
-('var evt = { target: document.getElementById("'+c.getAttribute("id")+'") ,currentTarget: document.getElementById("'+c.getAttribute("id")+'") ,preventDefault: function() { this.returnValue=false; }};')+a+"}).apply(document.documentElement);";this._scriptsToExec.push(a)}c="";for(a=0;a<this._scriptsToExec.length;a++)c+=this._scriptsToExec[a]+"\n";this._executeScript(c);this._handler._loaded=true;this._handler.fireOnLoad(this._handler.id,"object")},_getRelativeTo:function(a){var b="";if((a=a=="object"?
-this.url.replace(/[^:]*:\/\/[^\/]*/).match(/\/?[^\?\#]*/)[0]:window.location.pathname.toString())&&a.length>0&&a.indexOf("/")!=-1)b=a.replace(/\/([^\/]*)$/,"/");return b},_executeScript:function(a){var b=document.createElement("iframe");b.setAttribute("src","about:blank");b.style.position="absolute";b.style.top="-1000px";b.style.left="-1000px";document.getElementsByTagName("body")[0].appendChild(b);var c=b.contentDocument?b.contentDocument:b.contentWindow.document;b=b.contentWindow;this._handler.document.defaultView=
-b;a=this._sandboxedScript(a);a=a+";if (__svgHandler) __svgHandler.sandbox_eval = "+(j?"window.eval;":"function(scriptCode) { return window.eval(scriptCode) };");if(w)setTimeout(function(d,e,f){return function(){e.eval.apply(e,[f]);d._fireOnload()}}(this._handler.window,b,a),1);else{c.write("<script>"+a+"<\/script>");c.close();this._handler.window._fireOnload()}},_sandboxedScript:function(a){var b="top.svgweb";if(!top.svgweb&&self.frameElement){if(!self.frameElement.id)self.frameElement.id=svgweb._generateID("__svg__random__",
-"__iframe");b='top.document.getElementById("'+self.frameElement.id+'").contentWindow.svgweb'}a="var __svgHandler = "+b+'.handlers["'+this._handler.id+'"];\nwindow.svgns = "'+svgns+'";\nwindow.xlinkns = "'+xlinkns+'";\nwindow._timeoutIDs = [];\nwindow._setTimeout = window.setTimeout;\nwindow.setTimeout = \n       (function() {\n          return function(f, ms) {\n            var timeID = window._setTimeout(f, ms);\n            window._timeoutIDs.push(timeID);\n            return timeID;\n          };\n        })();\nwindow._intervalIDs = [];\nwindow._setInterval = window.setInterval;\nwindow.setInterval = \n       (function() {\n          return function(f, ms) {\n            var timeID = window._setInterval(f, ms);\n            window._intervalIDs.push(timeID);\n            return timeID;\n          };\n        })();\n\n\n'+
-a;a=a.replace(/top\.document/g,"top.DOCUMENT");a=a.replace(/top\.window/g,"top.WINDOW");a=a.replace(/(^|[^A-Za-z0-9_])document(\.|'|"|\,| |\))/g,"$1__svgHandler.document$2");a=a.replace(/window\.(location|addEventListener|onload|frameElement)/g,"__svgHandler.window.$1");a=a.replace(/top\.DOCUMENT/g,"top.document");return a=a.replace(/top\.WINDOW/g,"top.window")},_getPARAMs:function(a){for(var b=[],c=0;c<a.childNodes.length;c++){var d=a.childNodes[c];d.nodeName.toUpperCase()=="PARAM"&&b.push(d.cloneNode(false))}return b}});
-q(X,{addEventListener:function(a,b){if(a.toLowerCase()=="svgload"||a.toLowerCase()=="load")this._onloadListeners.push(b)},_fireOnload:function(){for(var a=0;a<this._onloadListeners.length;a++)try{this._onloadListeners[a]()}catch(b){console.log("The following exception occurred from an SVG onload listener: "+(b.message||b))}if(this.onload)try{this.onload()}catch(c){console.log("The following exception occurred from an SVG onload listener: "+(c.message||c))}},_createLocation:function(a){var b={},c=
-this._handler._svgObject.url;a=a?a:window.location;if(/^data:/.test(c)){b.href=c;b.toString=function(){return this.href};return b}if(!/^http/.test(c))if(c.charAt(0)=="/")c=a.protocol+"//"+a.host+c;else if(a.pathname.indexOf("/")==-1)c=a.protocol+"//"+a.host+"/"+c;else{for(var d=a.pathname,e=d.length-1;e>=0;e--){if(d.charAt(e)=="/")break;d=d.substring(0,e)}c=a.protocol+"//"+a.host+d+c}c=c.match(/^(https?:)\/\/([^\/:]*):?([0-9]*)([^\?#]*)([^#]*)(#.*)?$/);b.protocol=c[1]?c[1]:a.href;if(b.protocol.charAt(b.protocol.length-
-1)!=":")b.protocol+=":";b.hostname=c[2];b.port="";if(c[3])b.port=c[3];d=true;if(b.protocol!=a.protocol||b.hostname!=a.hostname||b.port&&b.port!=a.port)d=false;if(d&&!b.port)b.port=a.port;b.host=b.port?b.hostname+":"+b.port:b.hostname;b.pathname=c[4]?c[4]:"";b.search=c[5]?c[5]:"";b.hash=c[6]?c[6]:"";b.href=b.protocol+"//"+b.host+b.pathname+b.search+b.hash;b.toString=function(){return this.protocol+"//"+this.host+this.pathname+this.search+this.hash};return b}});q(L,{_setupFlash:function(){var a=this._determineSize(),
-b=this._determineBackground(),c=this._determineStyle(),d=this._determineClassName(),e=this._determineCustomAttrs(),f;if(this._embedType=="script"){f=this._nodeXML.getAttribute("id");this._handler.flashID=f+"_flash"}else if(this._embedType=="object"){f=this._replaceMe.getAttribute("id");this._handler.flashID=f}this._insertFlash(this._createFlash(a,f,b,c,d,e))},_insertFlash:function(a){if(j){var b=this;window.setTimeout(function(){b._replaceMe.removeAttribute("id");b._replaceMe.removeAttribute("name");
-b._replaceMe.outerHTML=a;b=null},1)}else{var c;if(u){if(u)c=a}else{var d=document.createElement("div");d.innerHTML=a;c=d.childNodes[0];d.removeChild(c);for(d=0;d<c.childNodes.length;d++){var e=c.childNodes[d];if(e.nodeName.toUpperCase()=="EMBED"){c=e;break}}}this._replaceMe.parentNode.replaceChild(c,this._replaceMe);return c}},_determineSize:function(){var a=this._parentNode.clientWidth,b=this._parentNode.clientHeight;if(b==0)this.invalidParentHeight=true;if(a==0)a=this._parentNode.offsetWidth;if(!x){a-=
-this._getMargin(this._parentNode,"margin-left");a-=this._getMargin(this._parentNode,"margin-right");b-=this._getMargin(this._parentNode,"margin-top");b-=this._getMargin(this._parentNode,"margin-bottom")}return isStandardsMode?this._getStandardsSize(a,b):this._getQuirksSize(a,b)},_getQuirksSize:function(a,b){var c,d;if(this._embedType=="script")for(c=this._parentNode;c&&c.style;){if(c.nodeName.toLowerCase()=="div")break;if(c.nodeName.toLowerCase()=="body"){if(this._nodeXML.getAttribute("style")&&this._nodeXML.getAttribute("style").indexOf("fixed")!=
--1){b=window.innerHeight&&window.innerHeight>0?window.innerHeight:document.documentElement&&document.documentElement.clientHeight&&document.documentElement.clientHeight>0?document.documentElement.clientHeight:document.body.clientHeight;this.invalidParentHeight=false}else{this.invalidParentHeight=true;b=0}break}c=c.parentNode}var e=this._explicitWidth,f=this._explicitHeight,h=this._nodeXML.getAttribute("width");if(h&&h.indexOf("%")==-1)h=parseInt(h).toString();var g=this._nodeXML.getAttribute("height");
-if(g&&g.indexOf("%")==-1)g=parseInt(g).toString();if(e&&f){c=e.indexOf("%")!=-1?a*parseInt(e)/100:e;if(f.indexOf("%")!=-1)if(b>0)d=b*parseInt(f)/100;else console.log("SVGWeb: unhandled resize scenario.");else d=f;return{width:e,height:d,pixelsWidth:c,pixelsHeight:d,clipMode:this._nodeXML.getAttribute("viewBox")?"neither":"both"}}if(e){c=e.indexOf("%")!=-1?a*parseInt(e)/100:e;if(this._nodeXML.getAttribute("viewBox")){if(h&&h.indexOf("%")==-1&&g&&g.indexOf("%")==-1)f=c*(g/h);else{g=this._nodeXML.getAttribute("viewBox").split(/\s+|,/);
-h=g[2];g=g[3];f=c*(g/h)}return{width:e,height:f,pixelsWidth:c,pixelsHeight:f,clipMode:"neither"}}else{f=h&&h.indexOf("%")==-1&&g&&g.indexOf("%")==-1?c*(g/h):g&&g.indexOf("%")==-1?g:150;return{width:e,height:f,pixelsWidth:c,pixelsHeight:f,clipMode:"both"}}}if(f){d=f.indexOf("%")!=-1?b*parseInt(f)/100:f;if(this._nodeXML.getAttribute("viewBox")){if(h&&h.indexOf("%")==-1&&g&&g.indexOf("%")==-1)e=d*(h/g);else{g=this._nodeXML.getAttribute("viewBox").split(/\s+|,/);h=g[2];g=g[3];e=d*(h/g)}return{width:e,
-height:f,pixelsWidth:e,pixelsHeight:d,clipMode:"neither"}}else{if(h&&h.indexOf("%")==-1&&g&&g.indexOf("%")==-1)c=e=d*(h/g);else{e=h?h:"100%";c=e.indexOf("%")!=-1?a*parseInt(e)/100:e}return{width:e,height:f,pixelsWidth:c,pixelsHeight:d,clipMode:"both"}}}e=h?h:"100%";c=e.indexOf("%")!=-1?a*parseInt(e)/100:e;if(g&&g.indexOf("%")==-1){f=g;return{width:e,height:f,pixelsWidth:c,pixelsHeight:f,clipMode:this._nodeXML.getAttribute("viewBox")?"neither":"both"}}else if(this._nodeXML.getAttribute("viewBox")){if(this._embedType==
-"script"&&(g==null||g.indexOf("%")!=-1)&&!this.invalidParentHeight){if(g==null)g="100%";d=b*parseInt(g)/100;return{width:e,height:d,pixelsWidth:c,pixelsHeight:d,clipMode:"neither"}}g=this._nodeXML.getAttribute("viewBox").split(/\s+|,/);h=g[2];g=g[3];f=c*(g/h);return{width:e,height:f,pixelsWidth:c,pixelsHeight:f,clipMode:"neither"}}else{f=150;return{width:e,height:f,pixelsWidth:c,pixelsHeight:f,clipMode:"both"}}},_getStandardsSize:function(a,b){var c,d,e=this._explicitWidth,f=this._explicitHeight,
-h=this._nodeXML.getAttribute("width");if(h&&h.indexOf("%")==-1)h=parseInt(h).toString();var g=this._nodeXML.getAttribute("height");if(g&&g.indexOf("%")==-1)g=parseInt(g).toString();if(e&&!f)return this._getQuirksSize(a,b);if(!e&&!f)return this._getQuirksSize(a,b);if(!e&&f){e=h?h:"100%";c=e.indexOf("%")!=-1?a*parseInt(e)/100:e;if(f.indexOf("%")==-1){d=f;if(h&&h.indexOf("%")==-1&&g&&g.indexOf("%")==-1)c=e=f*(h/g);else if(this._nodeXML.getAttribute("viewBox")){viewBox=this._nodeXML.getAttribute("viewBox").split(/\s+|,/);
-boxWidth=viewBox[2];boxHeight=viewBox[3];c=e=d*(boxWidth/boxHeight)}return{width:e,height:f,pixelsWidth:c,pixelsHeight:f,clipMode:this._nodeXML.getAttribute("viewBox")?"neither":"both"}}else{if(g&&g.indexOf("%")==-1)d=g;else if(this._nodeXML.getAttribute("viewBox")){viewBox=this._nodeXML.getAttribute("viewBox").split(/\s+|,/);boxWidth=viewBox[2];boxHeight=viewBox[3];d=c*(boxHeight/boxWidth)}else d=150;return{width:e,height:d,pixelsWidth:c,pixelsHeight:d,clipMode:this._nodeXML.getAttribute("viewBox")?
-"neither":"both"}}}if(e&&f){c=e.indexOf("%")!=-1?a*parseInt(e)/100:e;if(f.indexOf("%")==-1)return{width:e,height:f,pixelsWidth:c,pixelsHeight:f,clipMode:this._nodeXML.getAttribute("viewBox")?"neither":"both"};else if(h&&h.indexOf("%")==-1&&g&&g.indexOf("%")==-1){d=c*(g/h);return{width:e,height:d,pixelsWidth:c,pixelsHeight:d,clipMode:"neither"}}else if(this.invalidParentHeight)if(this._nodeXML.getAttribute("viewBox")){viewBox=this._nodeXML.getAttribute("viewBox").split(/\s+|,/);boxWidth=viewBox[2];
-boxHeight=viewBox[3];f=c*(boxHeight/boxWidth);return{width:e,height:f,pixelsWidth:c,pixelsHeight:f,clipMode:"neither"}}else{d=g&&g.indexOf("%")==-1?g:150;return{width:e,height:d,pixelsWidth:c,pixelsHeight:d,clipMode:"both"}}else{d=b*parseInt(f)/100;return{width:e,height:d,pixelsWidth:c,pixelsHeight:d,clipMode:"neither"}}}},_getMargin:function(a,b){var c;if(a.currentStyle)c=parseInt(a.currentStyle[b]);else if(window.getComputedStyle)c=parseInt(document.defaultView.getComputedStyle(a,null).getPropertyValue(b));
-return c?c:0},_determineBackground:function(){var a=false,b=null,c=this._nodeXML.getAttribute("style");if(c&&c.indexOf("background-color")!=-1)if(c=c.match(/background\-color:\s*([^;]*)/))b=c[1];if(b===null)a=true;return{color:b,transparent:a}},_determineStyle:function(){var a=this._nodeXML.getAttribute("style");a||(a="");if(a.length>0&&a.charAt(a.length-1)!=";")a+=";";if(this._embedType=="script"&&a.indexOf("display:")==-1)a+="display: inline;";if(this._embedType=="script"&&a.indexOf("overflow:")==
--1)a+="overflow: hidden;";return a},_determineClassName:function(){var a=this._nodeXML.getAttribute("class");return a?a+" embedssvg":"embedssvg"},_determineCustomAttrs:function(){var a=[];if(this._embedType=="object")for(var b=this._replaceMe,c=document._createElement("object"),d=0;d<b.attributes.length;d++){var e=b.attributes[d],f=e.nodeName;e=e.nodeValue;!e&&e!=="true"||c.getAttribute(f)||/^(id|name|width|height|data|class|style|codebase|type|_listeners|addEventListener|onload)$/.test(f)||a.push({attrName:f.toString(),
-attrValue:e.toString()})}return a},_createFlash:function(a,b,c,d,e,f){b="uniqueId="+encodeURIComponent(b)+"&sourceType=string&clipMode="+a.clipMode+"&debug=true&svgId="+encodeURIComponent(b);var h;h=this._isXDomain?svgweb.xDomainURL+"svg.swf":svgweb.libraryPath+"svg.swf";var g=window.location.protocol;if(g.charAt(g.length-1)==":")g=g.substring(0,g.length-1);var k;if(u){k=document.createElement("embed");k.setAttribute("src",h);k.setAttribute("quality","high");c.color&&k.setAttribute("bgcolor",c.color);
-c.transparent&&k.setAttribute("wmode","transparent");k.setAttribute("width",a.width);k.setAttribute("height",a.height);k.setAttribute("id",this._handler.flashID);k.setAttribute("name",this._handler.flashID);k.setAttribute("swLiveConnect","true");k.setAttribute("allowScriptAccess","always");k.setAttribute("type","application/x-shockwave-flash");k.setAttribute("FlashVars",b);k.setAttribute("pluginspage",g+"://www.macromedia.com/go/getflashplayer");k.setAttribute("style",d);k.setAttribute("className",
-e);for(var n=0;n<f.length;n++)k.setAttribute(f[n].attrName,f[n].attrValue)}else{k="";for(n=0;n<f.length;n++)k+=" "+f[n].attrName+'="'+f[n].attrValue+'"';k='<object\n classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000"\n codebase="'+g+'://fpdownload.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=10,0,0,0"\n width="'+a.width+'"\n height="'+a.height+'"\n id="'+this._handler.flashID+'"\n name="'+this._handler.flashID+'"\n style="'+d+'"\n class="'+e+'"\n '+k+'\n>\n <param name="allowScriptAccess" value="always"></param>\n <param name="movie" value="'+
-h+'"></param>\n <param name="quality" value="high"></param>\n <param name="FlashVars" value="'+b+'"></param>\n '+(c.color?'<param name="bgcolor" value="'+c.color+'"></param>\n ':"")+(c.transparent?'<param name="wmode" value="transparent"></param>\n ':"")+'<embed src="'+h+'" quality="high" '+(c.color?'bgcolor="'+c.color+'" \n':"")+(c.transparent?'wmode="transparent" \n':"")+'width="'+a.width+'" height="'+a.height+'" id="'+this._handler.flashID+'" name="'+this._handler.flashID+'" swLiveConnect="true" allowScriptAccess="always" type="application/x-shockwave-flash" FlashVars="'+
-b+'" pluginspage="'+g+'://www.macromedia.com/go/getflashplayer" style="'+d+'"\n class="'+e+'"\n '+k+"\n /></object>"}return k}});E.prototype=new t;q(E,{suspendRedraw:function(a){return this._handler._redrawManager.suspendRedraw(a)},unsuspendRedraw:function(a){this._handler._redrawManager.unsuspendRedraw(a)},unsuspendRedrawAll:function(){this._handler._redrawManager.unsuspendRedrawAll()},forceRedraw:function(){},nearestViewportElement:null,farthestViewportElement:null,getTransformToElement:function(){},
-_onHTCLoaded:function(){this._htcNode.detachEvent("onreadystatechange",this._readyStateListener);this.style._ignoreStyleChanges=false;this._htcLoaded=true;this._swfLoaded&&this._onEverythingLoaded()},_onFlashLoaded:function(a){document.getElementById(this._handler.flashID)?this._onFlashLoadedNow(a):setTimeout(function(b,c){return function(){b._onFlashLoaded(c)}}(this,a),1)},_onFlashLoadedNow:function(){this._handler.flash=document.getElementById(this._handler.flashID);this._swfLoaded=true;if(!j||
-this._htcLoaded)this._onEverythingLoaded()},_onEverythingLoaded:function(){var a=this._handler._inserter._determineSize();this._handler.sendToFlash("jsHandleLoad",[this._getRelativeTo("object"),this._getRelativeTo("page"),a.pixelsWidth,a.pixelsHeight,true,this._svgString])},_onRenderingFinished:function(){if(this._handler.type=="script")this._handler.flash.documentElement=this._getProxyNode();if(this._attached)if(this._handler.type=="script")this.ownerDocument=document;else if(this._handler.type==
-"object")this.ownerDocument=this._handler.document;this._handler.document.rootElement=this._getProxyNode();var a=this._nodeXML.getAttribute("id");this._handler._loaded=true;this._handler.fireOnLoad(a,"script")},_getRelativeTo:function(){var a="",b=window.location.pathname.toString();if(b&&b.length>0&&b.indexOf("/")!=-1)a=b.replace(/\/([^\/]*)$/,"/");return a},_addRedrawMethods:function(){this._htcNode.suspendRedraw=function(){return function(a){return this._fakeNode.suspendRedraw(a)}}();this._htcNode.unsuspendRedraw=
-function(){return function(a){return this._fakeNode.unsuspendRedraw(a)}}();this._htcNode.unsuspendRedrawAll=function(){return function(){return this._fakeNode.unsuspendRedrawAll()}}();this._htcNode.forceRedraw=function(){return function(){return this._fakeNode.forceRedraw()}}()},_createCurrentTranslate:function(){return new I(0,0,true,m(this,this._updateCurrentTranslate))},_updateCurrentTranslate:function(a,b,c){a=="xy"?this._handler.sendToFlash("jsSetCurrentTranslate",["xy",b,c]):this._handler.sendToFlash("jsSetCurrentTranslate",
-[a,b])}});D.prototype=new i;q(D,{_nodeById:null,implementation:null,documentElement:null,createElementNS:function(a,b){var c=this._namespaces["_"+a];if(c=="xmlns"||!c)c=b.indexOf(":")!=-1?b.substring(0,b.indexOf(":")):null;return(new t(b,c,a,undefined,this._handler))._getProxyNode()},createTextNode:function(a){var b=l._unattachedDoc,c;c=j?b.createElement("__text"):b.createElementNS(svgnsFake,"__text");c.appendChild(b.createTextNode(a));b=new i("#text",i.TEXT_NODE,null,null,c,this._handler);b._nodeValue=
-a;b.ownerDocument=this;return b._getProxyNode()},createDocumentFragment:function(){return(new C(this))._getProxyNode()},getElementById:function(a){a=v(this._xml,null,'//*[@id="'+a+'"]');if(a.length)a=a[0];else return null;a=l._getNode(a,this._handler);this._getFakeNode(a)._attached=true;return a},getElementsByTagNameNS:function(a,b){if(this._handler.type=="script"&&!this._handler._loaded)return[];var c=this.rootElement.getElementsByTagNameNS(a,b);if(a==svgns&&b=="svg"){if(typeof c.push=="undefined"){var d=
-c;c=[];for(var e=0;e<d.length;e++)c.push(d[e])}c.push(this.rootElement)}return c},_getNamespaces:function(){for(var a=[],b=this._xml.documentElement.attributes,c=0;c<b.length;c++){var d=b[c];if(/^xmlns:?(.*)$/.test(d.nodeName)){var e=d.nodeName.match(/^xmlns:?(.*)$/);e=e[1]?e[1]:"xmlns";d=d.nodeValue;if(!a["_"+e]){a["_"+e]=d;a["_"+d]=e;a.push(d)}}}return a}});q(F,{multiply:function(){},inverse:function(){var a=this._handler.sendToFlash("jsMatrixInvert",[this.a,this.b,this.c,this.d,this.e,this.f]);
-a=this._handler._stringToMsg(a);return new F(new Number(a.a),new Number(a.b),new Number(a.c),new Number(a.d),new Number(a.e),new Number(a.f),this._handler)},translate:function(){},scale:function(){},scaleNonUniform:function(){},rotate:function(){},rotateFromVector:function(){},flipX:function(){},flipY:function(){},skewX:function(){},skewY:function(){}});O(Y,{SVG_TRANSFORM_UNKNOWN:0,SVG_TRANSFORM_MATRIX:1,SVG_TRANSFORM_TRANSLATE:2,SVG_TRANSFORM_SCALE:3,SVG_TRANSFORM_ROTATE:4,SVG_TRANSFORM_SKEWX:5,
-SVG_TRANSFORM_SKEWY:6});q(Y,{type:null,matrix:null,angle:null,setMatrix:function(){},setTranslate:function(){},setScale:function(){},setRotate:function(){},setSkewX:function(){},setSkewY:function(){}});q(I,{matrixTransform:function(a){return new I(a.a*this.x+a.c*this.y+a.e,a.b*this.x+a.d*this.y+a.f,this._formalAccessors)}});window.svgweb=new R})();
+/*
+Copyright (c) 2009 Google Inc. (Brad Neuberg, http://codinginparadise.org)
+
+Portions Copyright (c) 2009 Rick Masters
+Portions Copyright (c) 2009 Others (see COPYING.txt for details on
+third party code)
+
+Permission is hereby granted, free of charge, to any person
+obtaining a copy of this software and associated documentation
+files (the "Software"), to deal in the Software without
+restriction, including without limitation the rights to use,
+copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the
+Software is furnished to do so, subject to the following
+conditions:
+
+The above copyright notice and this permission notice shall be
+included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
+OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
+HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
+OTHER DEALINGS IN THE SOFTWARE.
+*/
+
+// TODO: Document the architecture of the JavaScript portion of the library
+// separately and point to it from here.
+
+// Remove timing functions when done with Issue 96
+window.timer = {};
+
+function start(subject, subjectStarted) {
+  //console.log('start('+subject+','+subjectStarted+')');
+  if (subjectStarted && !ifStarted(subjectStarted)) {
+    //console.log(subjectStarted + ' not started yet so returning for ' + subject);
+    return;
+  }
+  //console.log('storing time for ' + subject);
+  window.timer[subject] = {start: new Date().getTime()};
+}
+
+function end(subject, subjectStarted) {
+  //console.log('end('+subject+','+subjectStarted+')');
+  if (subjectStarted && !ifStarted(subjectStarted)) {
+    //console.log(subjectStarted + ' not started yet so returning for ' + subject);
+    return;
+  }
+  
+  if (!window.timer[subject]) {
+    console.log('Unknown subject: ' + subject);
+    return;
+  }
+  
+  window.timer[subject].end = new Date().getTime();
+  
+  //console.log('at end, storing total time: ' + total(subject));
+}
+
+function increment(subject, amount) {
+  if (!window.timer[subject]) {
+    window.timer[subject] = {incremented: true, total: 0};
+  }
+  
+  window.timer[subject].total += amount;
+}
+
+function total(subject) {
+  if (!window.timer[subject]) {
+    console.log('Unknown subject: ' + subject);
+    return;
+  }
+  
+  var t = window.timer[subject];
+  if (t.incremented) {
+    return t.total;
+  } else if (t) {
+    return t.end - t.start;
+  } else {
+    return null;
+  }
+}
+
+function ifStarted(subject) {
+  for (var i in window.timer) {
+    var t = window.timer[i];
+    if (i == subject && t.start !== undefined && t.end === undefined) {
+      return true;
+    }
+  }
+  
+  return false;
+}
+
+function report() {
+  for (var i in window.timer) {
+    var t = total(i);
+    if (t !== null) {
+      console.log(i + ': ' + t + 'ms');
+    }
+  }
+}
+// Remove these functions when done with Issue 96
+
+(function(){ // hide everything externally to avoid name collisions
+ 
+// expose namespaces globally to ease developer authoring
+window.svgns = 'http://www.w3.org/2000/svg';
+window.xlinkns = 'http://www.w3.org/1999/xlink';
+
+// Firefox and Safari will incorrectly turn our internal parsed XML
+// for the Flash Handler into actual SVG nodes, causing issues. This is
+// a workaround to prevent this problem.
+svgnsFake = 'urn:__fake__internal__namespace'; 
+ 
+// browser detection adapted from Dojo
+var isOpera = false, isSafari = false, isMoz = false, isIE = false, 
+    isAIR = false, isKhtml = false, isFF = false, isXHTML = false;
+    
+function _detectBrowsers() {
+  var n = navigator,
+      dua = n.userAgent,
+      dav = n.appVersion,
+      tv = parseFloat(dav);
+
+  if (dua.indexOf('Opera') >= 0) { isOpera = tv; }
+  // safari detection derived from:
+  //    http://developer.apple.com/internet/safari/faq.html#anchor2
+  //    http://developer.apple.com/internet/safari/uamatrix.html
+  var index = Math.max(dav.indexOf('WebKit'), dav.indexOf('Safari'), 0);
+  if (index) {
+    // try to grab the explicit Safari version first. If we don't get
+    // one, look for 419.3+ as the indication that we're on something
+    // "Safari 3-ish". Lastly, default to "Safari 2" handling.
+    isSafari = parseFloat(dav.split('Version/')[1]) ||
+      (parseFloat(dav.substr(index + 7)) > 419.3) ? 3 : 2;
+  }
+  if (dua.indexOf('AdobeAIR') >= 0) { isAIR = 1; }
+  if (dav.indexOf('Konqueror') >= 0 || isSafari) { isKhtml =  tv; }
+  if (dua.indexOf('Gecko') >= 0 && !isKhtml) { isMoz = tv; }
+  if (isMoz) {
+    isFF = parseFloat(dua.split('Firefox/')[1]) || undefined;
+  }
+  if (document.all && !isOpera) {
+    isIE = parseFloat(dav.split('MSIE ')[1]) || undefined;
+  }
+
+  // compatMode deprecated on IE8 in favor of documentMode
+  if (document.documentMode) {
+    isStandardsMode = (document.documentMode > 5);
+  } else {
+    isStandardsMode = (document.compatMode == 'CSS1Compat');
+  }
+  
+  // are we in an XHTML page?
+  if (document.contentType == 'application/xhtml+xml') { /* FF */
+    isXHTML = true;
+  } else if (typeof XMLDocument != 'undefined' 
+             && document.constructor == XMLDocument) { /* Safari */
+    isXHTML = true;
+  }
+}
+
+_detectBrowsers();
+
+// end browser detection
+
+
+// be able to have debug output when there is no Firebug
+// see if debugging is turned on
+function doDebugging() {
+  var debug = false;
+  var scripts = document.getElementsByTagName('script');
+  for (var i = 0; i < scripts.length; i++) {
+    if (/svg(?:\-uncompressed)?\.js/.test(scripts[i].src)) {
+      var debugSetting = scripts[i].getAttribute('data-debug');
+      debug = (debugSetting === 'true' || debugSetting === true) ? true : false;
+    }
+  }
+  
+  return debug;
+}
+var debug = doDebugging();
+
+if (typeof console == 'undefined' || !console.log) {
+  var queue = [];
+  console = {};
+  if (!debug) {
+    console.log = function() {};
+  } else {
+    console.log = function(msg) {
+      var body = null;
+      var delay = false;
+    
+      // IE can sometimes throw an exception if document.body is accessed
+      // before the document is fully loaded
+      try { 
+        body = document.getElementsByTagName('body')[0]; 
+      } catch (exp) {
+        delay = true;
+      }
+    
+      // IE will sometimes have the body object but we can get the dreaded
+      // "Operation Aborted" error if we try to do an appendChild on it; a 
+      // workaround is that the doScroll method will throw an exception before 
+      // we can truly use the body element so we can detect this before
+      // any "Operation Aborted" errors
+      if (isIE) {
+        try {
+          document.documentElement.doScroll('left');
+        } catch (exp) {
+          delay = true;
+        }
+      }
+
+      if (delay) {
+        queue.push(msg);
+        return;
+      }
+       
+      var p;
+      while (queue.length) {
+        var oldMsg = queue.shift();
+        p = document.createElement('p');
+        p.appendChild(document.createTextNode(oldMsg));
+        body.appendChild(p);
+      }
+    
+      // display new message now
+      p = document.createElement('p');
+      p.appendChild(document.createTextNode(msg));
+      body.appendChild(p);
+    };
+    
+    // IE has an unfortunate issue; under some situations calling
+    // document.body.appendChild can throw an Operation Aborted error,
+    // such as when there are many SVG OBJECTs on a page. This is a workaround
+    // to print out any queued messages until the page has truly loaded.
+    if (isIE) {
+      function flushQueue() {
+        while (queue.length) {
+          var oldMsg = queue.shift();
+          p = document.createElement('p');
+          p.appendChild(document.createTextNode(oldMsg));
+          document.body.appendChild(p);
+        }
+      }
+
+      var debugInterval = window.setInterval(function() {
+        if (document.readyState == 'complete') {
+          flushQueue();
+          window.clearTimeout(debugInterval);
+        }
+      }, 50);
+    }
+  }
+}
+// end debug output methods
+
+/*
+  Quick way to define prototypes that take up less space and result in
+  smaller file size; much less verbose than standard 
+  foobar.prototype.someFunc = function() lists.
+
+  @param f Function object/constructor to add to.
+  @param addMe Object literal that contains the properties/methods to
+    add to f's prototype.
+*/
+function extend(f, addMe) {
+  for (var i in addMe) {
+    f.prototype[i] = addMe[i];
+  }
+}
+
+/**
+  Mixes an object literal of properties into some instance. Good for things 
+  that mimic 'static' properties.
+  
+  @param f Function object/contructor to add to
+  @param addMe Object literal that contains the properties/methods to add to f.
+*/
+function mixin(f, addMe) {
+  for (var i in addMe) {
+    f[i] = addMe[i];
+  } 
+}
+
+/** Utility function to do XPath cross browser.
+
+    @param doc Either HTML or XML document to work with.
+    @param context DOM node context to restrict the xpath executing 
+    against; can be null, which defaults to doc.documentElement.
+    @param expr String XPath expression to execute.
+    @param namespaces Optional; an array that contains prefix to namespace
+    lookups; see the _getNamespaces() methods in this file for how this
+    data structure is setup.
+    
+    @returns Array with results, empty array if there are none. */
+function xpath(doc, context, expr, namespaces) {
+  if (!context) {
+    context = doc.documentElement;
+  }
+
+  if (typeof XPathEvaluator != 'undefined') { // non-IE browsers
+    var evaluator = new XPathEvaluator();
+    var resolver = doc.createNSResolver(context);
+    var result = evaluator.evaluate(expr, context, resolver, 0, null);
+    var found = createNodeList(), current;
+    while (current = result.iterateNext()) {
+      found.push(current);
+    }
+
+    return found;
+  } else { // IE
+    doc.setProperty('SelectionLanguage', 'XPath');
+    
+    if (namespaces) {
+      var allNamespaces = '';
+      // IE throws an error if the same namespace is present multiple times,
+      // so remove duplicates
+      var foundNamespace = {};
+      for (var i = 0; i < namespaces.length; i++) {
+        var namespaceURI = namespaces[i];
+        var prefix = namespaces['_' + namespaceURI];
+
+        // seen before?
+        if (!foundNamespace['_' + namespaceURI]) {
+          if (prefix == 'xmlns') {
+            allNamespaces += 'xmlns="' + namespaceURI + '" ';
+          } else {
+            allNamespaces += 'xmlns:' + prefix + '="' + namespaceURI + '" ';
+          }
+          
+          foundNamespace['_' + namespaceURI] = namespaceURI;
+        }
+      }
+      doc.setProperty('SelectionNamespaces',  allNamespaces);
+    }
+    
+    var found = context.selectNodes(expr);
+    if (found === null || typeof found == 'undefined') {
+      found = createNodeList();
+    }
+    
+    // found is not an Array; it is a NodeList -- turn it into an Array
+    var results = createNodeList();
+    for (var i = 0; i < found.length; i++) {
+      results.push(found[i]);
+    }
+    
+    return results;
+  }
+}
+
+/** Parses the given XML string and returns the document object.
+
+    @param xml XML String to parse.
+    @param preserveWhiteSpace Whether to parse whitespace in the XML document
+    into their own nodes. Defaults to false. Controls Internet Explorer's
+    XML parser only.
+    
+    @returns XML DOM document node.
+*/
+function parseXML(xml, preserveWhiteSpace) {
+  if (preserveWhiteSpace === undefined) {
+    preserveWhiteSpace = false;
+  }
+    
+  var xmlDoc;
+  if (typeof DOMParser != 'undefined') { // non-IE browsers
+    // parse the SVG using an XML parser
+    var parser = new DOMParser();
+    try { 
+      xmlDoc = parser.parseFromString(xml, 'application/xml');
+    } catch (e) {
+      throw e;
+    }
+    
+    var root = xmlDoc.documentElement;
+    if (root.nodeName == 'parsererror') {
+      throw new Error('There is a bug in your SVG: '
+                      + (new XMLSerializer().serializeToString(root)));
+    }
+  } else { // IE
+    // only use the following two MSXML parsers:
+    // http://blogs.msdn.com/xmlteam/archive/2006/10/23/using-the-right-version-of-msxml-in-internet-explorer.aspx
+    var versions = [ 'Msxml2.DOMDocument.6.0', 'Msxml2.DOMDocument.3.0' ];
+    
+    var xmlDoc;
+    for (var i = 0; i < versions.length; i++) {
+      try {
+        xmlDoc = new ActiveXObject(versions[i]);
+        if (xmlDoc) {
+          break;
+        }
+      } catch (e) {}
+    }
+    
+    if (!xmlDoc) {
+      throw new Error('Unable to instantiate XML parser');
+    }
+    
+    try {
+      xmlDoc.preserveWhiteSpace = preserveWhiteSpace;
+      // IE will attempt to resolve external DTDs (i.e. the SVG DTD) unless 
+      // we add the following two flags
+      xmlDoc.resolveExternals = false;
+      xmlDoc.validateOnParse = false;
+      
+      // MSXML 6 breaking change (Issue 138):
+      // http://code.google.com/p/sgweb/issues/detail?id=138
+      xmlDoc.setProperty('ProhibitDTD', false);
+      
+      xmlDoc.async = 'false';
+      var successful = xmlDoc.loadXML(xml);
+      
+      if (!successful || xmlDoc.parseError.errorCode !== 0) {
+        throw new Error(xmlDoc.parseError.reason);
+      }
+    } catch (e) {
+      console.log(e.message);
+      throw new Error('Unable to parse SVG: ' + e.message);
+    }
+  }
+  
+  return xmlDoc;
+}
+
+/*
+  Useful for closures and event handlers. Instead of having to do
+  this:
+  
+  var self = this;
+  window.onload = function(){
+      self.init();
+  }
+  
+  you can do this:
+  
+  window.onload = hitch(this, 'init');
+  
+  @param context The instance to bind this method to.
+  @param method A string method name or function object to run on context.
+*/
+function hitch(context, method) {
+  if (typeof method == 'string') {
+    method = context[method];
+  }
+  
+  // this method shows up in the style string on IE's HTC object since we
+  // use it to extend the HTC element's style object with methods like
+  // item(), setProperty(), etc., so we want to keep it short
+  return function() { return method.apply(context, (arguments.length) ? arguments : []); };
+}
+
+/* 
+  Internet Explorer's list of standard XHR PROGIDS. 
+*/
+var XHR_PROGIDS = [
+  'MSXML2.XMLHTTP.6.0', 'MSXML2.XMLHTTP.3.0', 'MSXML2.XMLHTTP',
+  'Microsoft.XMLHTTP'
+];
+
+/*
+  Standard way to grab XMLHttpRequest object.
+*/
+function xhrObj() {
+  if (typeof XMLHttpRequest != 'undefined') {
+    return new XMLHttpRequest();
+  } else if (ActiveXObject) {
+    var xhr = null;
+    var i; // save the good PROGID for quicker access next time
+    for (i = 0; i < XHR_PROGIDS.length && !xhr; ++i) {
+      try {
+        xhr = new ActiveXObject(XHR_PROGIDS[i]);
+      } catch(e) {}
+    }
+
+    if (!xhr) {
+      throw new Error('XMLHttpRequest object not available on this platform');
+    }
+
+    return xhr;
+  }
+}
+
+// we just use an autoincrement counter to ensure uniqueness, which is fine
+// for our situation and produces much smaller GUIDs
+var guidCounter = 0;
+function guid() {
+  return '_' + guidCounter++;
+}
+
+
+/** 
+  Our singleton object that acts as the primary entry point for the library. 
+  Gets exposed globally as 'svgweb'.
+*/
+function SVGWeb() {
+  //start('SVGWeb_constructor');
+  // is SVG Web being hosted cross-domain?
+  this._setXDomain();
+  
+  // grab any configuration that might exist on where our library resources
+  // are
+  this.libraryPath = this._getLibraryPath();
+  
+  // see if there is an optional HTC filename being used, such as svg-htc.php;
+  // these are used to have the server automatically send the correct MIME
+  // type for HTC files without having to fiddle with MIME type settings
+  this.htcFilename = this._getHTCFilename();
+  
+  // prepare IE by inserting special markup into the page to have the HTC
+  // be available
+  if (isIE) {
+    FlashHandler._prepareBehavior(this.libraryPath, this.htcFilename);
+  }
+  
+  // make sure we can intercept onload listener registration to delay onload 
+  // until we are done with our internal machinery
+  this._interceptOnloadListeners();
+  
+  // wait for our page's DOM content to be available
+  this._initDOMContentLoaded();
+  //end('SVGWeb_constructor');
+}
+
+extend(SVGWeb, {
+  // path to find library resources
+  libraryPath: './',
+  // RenderConfig object of which renderer (native or Flash) to use
+  config: null,
+  pageLoaded: false,
+  handlers: [],
+  totalLoaded: 0,
+  
+  /** Every element (including text nodes) has a unique GUID. This lookup
+      table allows us to go from a GUID taken from an XML node to a fake 
+      node (_Element or _Node) that might have been instantiated already. */
+  _guidLookup: [],
+  
+  /** Onload page load listeners. */
+  _loadListeners: [],
+  
+  /** A data structure that we used to keep track of removed nodes, necessary
+      so we can clean things up and prevent memory leaks on IE on page unload.
+      Unfortunately we have to keep track of this at the global 'svgweb'
+      level rather than on individual handlers because a removed node
+      might have never been associated with a real DOM or a real handler. */
+  _removedNodes: [],
+  
+  /** Adds an event listener to know when both the page, the internal SVG
+      machinery, and any SVG SCRIPTS or OBJECTS are finished loading.
+      Window.onload is not safe, since it can get fired before we are
+      truly done, so this method should be used instead.
+      
+      @param listener Function that will get called when page and all
+      embedded SVG is loaded and rendered.
+      @param fromObject Optional. If true, then we are calling this from
+      inside an SVG OBJECT file.
+      @param objectWindow Optional. Provided when called from inside an SVG
+      OBJECT file; this is the window object inside the SVG OBJECT. */
+  addOnLoad: function(listener, fromObject, objectWindow) {
+    if (fromObject) { // addOnLoad called from an SVG file embedded with OBJECT
+      var obj = objectWindow.frameElement;
+      
+      // If we are being called from an SVG OBJECT tag and are the Flash
+      // renderer than just execute the onload listener now since we know
+      // the SVG file is done rendering.
+      if (fromObject && this.getHandlerType() == 'flash') {
+        listener.apply(objectWindow);
+      } else {
+        // NOTE: some browsers will fire the onload of the SVG file _before_ our
+        // NativeHandler is done (Firefox); others will do it the opposite way
+        // (Safari). We set variables pointing between the OBJECT and its
+        // NativeHandler to handle this.
+        if (obj._svgHandler) { // NativeHandler already constructed
+          obj._svgHandler._onObjectLoad(listener, objectWindow);
+        } else {
+          // NativeHandler not constructed yet; store a reference for later
+          // handling
+          obj._svgWindow = objectWindow;
+          obj._svgFunc = listener;
+        }
+      }
+    } else { // normal addOnLoad request from containing HTML page
+      this._loadListeners.push(listener);
+    }
+  },
+  
+  /** Returns a string for the given handler for this platform, 'flash' if
+      flash is being used or 'native' if the native capabilities are being
+      used. */
+  getHandlerType: function() {
+    if (this.renderer == FlashHandler) {
+      return 'flash';
+    } else if (this.renderer == NativeHandler) {
+      return 'native';
+    }
+  },
+  
+  /** Appends a dynamically created SVG OBJECT or SVG root to the page.
+      See the section "Dynamically Creating and Removing SVG OBJECTs and 
+      SVG Roots" in the User Guide for details. NOTE: Only appending 
+      SVG OBJECTs is supported for now.
+      
+      @node Either an 'object' created with 
+      document.createElement('object', true) or an SVG root created with
+      document.createElementNS(svgns, 'svg')
+      @parent An HTML DOM parent to attach our SVG OBJECT or SVG root to.
+      This DOM parent must already be attached to the visible DOM. */
+  appendChild: function(node, parent) {
+    if (node.nodeName.toLowerCase() == 'object'
+        && node.getAttribute('type') == 'image/svg+xml') {
+      // dynamically created OBJECT tag for an SVG file
+      this.totalSVG++;
+      this._svgObjects.push(node);
+      
+      if (this.getHandlerType() == 'native') {
+        parent.appendChild(node);
+      }
+      
+      var placeHolder = node;
+      if (this.getHandlerType() == 'flash') {
+        // register onloads
+        if (node.onload) {
+          node.addEventListener('load', node.onload, false);
+        }
+        
+        // Turn our OBJECT into a place-holder DIV attached to the DOM, 
+        // copying over our properties; this will get replaced by the 
+        // Flash OBJECT. We need to do this because we need a real element
+        // to 'replace' later on for IE which uses outerHTML, and the DIV
+        // will act as that place-holder element.
+        var div = document._createElement('div');
+        for (var j = 0; j < node.attributes.length; j++) {
+          var attr = node.attributes[j];
+          var attrName = attr.nodeName;
+          var attrValue = attr.nodeValue;
+          
+          // trim out 'empty' attributes with no value
+          if (!attrValue && attrValue !== 'true') {
+            continue;
+          }
+          
+          div.setAttribute(attrName, attrValue);
+        }
+
+        parent.appendChild(div);
+
+        // copy over internal event listener info
+        div._listeners = node._listeners;
+        
+        placeHolder = div;
+      }
+              
+      // now handle this SVG OBJECT
+      var objID = this._processSVGObject(placeHolder);
+      
+      // add the ID to our original SVG OBJECT node as a private member;
+      // we will later use this if svgweb.removeChild is called to remove
+      // the node in order to remove the SVG OBJECT from our
+      // handler._svgObjects array
+      node._objID = objID;
+    }
+  },
+  
+  /** Removes a dynamically created SVG OBJECT or SVG root to the page.
+      See the section "Dynamically Creating and Removing SVG OBJECTs and 
+      SVG Roots" for details. NOTE: Only removing SVG OBJECTs is supported
+      for now.
+      
+      @node OBJECT or EMBED tag for the SVG OBJECT to remove.
+      @parent The parent of the node to remove. */
+  removeChild: function(node, parent) {
+    if (node.nodeName.toLowerCase() == 'object' 
+        || node.nodeName.toLowerCase() == 'embed') {
+      this.totalSVG = this.totalSVG == 0 ? 0 : this.totalSVG - 1;
+      this.totalLoaded = this.totalLoaded == 0 ? 0 : this.totalLoaded - 1;
+      
+      // remove from our list of handlers
+      var objID = node.getAttribute('id');
+      var objHandler = this.handlers[objID];
+      var newHandlers = [];
+      for (var i = 0; i < this.handlers.length; i++) {
+        var currentHandler = this.handlers[i];
+        if (currentHandler != objHandler) {
+          newHandlers[currentHandler.id] = currentHandler;
+          newHandlers.push(currentHandler);
+        } 
+      }
+      this.handlers = newHandlers;
+      
+      // ObjHandler might not have a fake 'document' object; this can happen
+      // if loading of the SVG OBJECT is 'interrupted' by a rapid removeChild
+      // before it ever had a chance to even finish loading. If there is no
+      // fake document then skip trying to remove timing functions and event
+      // handlers below
+      if (this.getHandlerType() == 'flash' 
+          && objHandler.document
+          && objHandler.document.defaultView) {
+        // remove any setTimeout or setInterval functions that might have
+        // been registered inside this object; see _SVGWindow.setTimeout
+        // for details
+        var iframeWin = objHandler.document.defaultView;
+        for (var i = 0; i < iframeWin._intervalIDs.length; i++) {
+          iframeWin.clearInterval(iframeWin._intervalIDs[i]);
+        }
+        for (var i = 0; i < iframeWin._timeoutIDs.length; i++) {
+          iframeWin.clearTimeout(iframeWin._timeoutIDs[i]);
+        }
+      
+        // remove keyboard event handlers; we added a record of these for
+        // exactly this reason in _Node.addEventListener()
+        for (var i = 0; i < objHandler._keyboardListeners.length; i++) {
+          var l = objHandler._keyboardListeners[i];
+          if (isIE) {
+            document.detachEvent('onkeydown', l);
+          } else {
+            // we aren't sure whether the event listener is a useCapture or
+            // not; just try to remove both
+            document.removeEventListener('keydown', l, true);
+            document.removeEventListener('keydown', l, false);
+          }
+        }
+      }
+      
+      // remove the original SVG OBJECT node from our handlers._svgObjects
+      // array
+      for (var i = 0; i < svgweb._svgObjects.length; i++) {
+        if (svgweb._svgObjects[i]._objID === objID) {
+          svgweb._svgObjects.splice(i, 1);
+          break;
+        }
+      }
+      
+      // remove from the page
+      node.parentNode.removeChild(node);
+
+      if (this.getHandlerType() == 'flash') {
+        // delete the HTC container and all HTC nodes that belong to this
+        // SVG OBJECT
+        var container = document.getElementById('__htc_container');
+        if (container) {
+          for (var i = 0; i < container.childNodes.length; i++) {
+            var child = container.childNodes[i];
+            if (typeof child.ownerDocument != 'undefined'
+                && child.ownerDocument == objHandler._svgObject.document) {
+              if (typeof child._fakeNode != 'undefined'
+                  && typeof child._fakeNode._htcNode != 'undefined') {
+                child._fakeNode._htcNode = null;
+              }
+              child._fakeNode = null;
+              child._handler = null;
+              container.removeChild(child);
+            }
+          }
+        }
+
+        // clear out the guidLookup table for nodes that belong to this
+        // SVG OBJECT
+        for (var guid in svgweb._guidLookup) {
+          var child = svgweb._guidLookup[guid];
+          if (child._fake && child.ownerDocument === objHandler.document) {
+            delete svgweb._guidLookup[guid];
+          }
+        }
+
+        // remove various properties to prevent IE memory leaks
+        objHandler._finishedCallback = null;
+        objHandler.flash.contentDocument = null;
+        objHandler.flash = null;
+        objHandler._xml = null;
+        // objHandler.window might not be present if this SVG OBJECT is being
+        // removed before it was even finished loading
+        if (objHandler.window) {
+          objHandler.window._scope = null;
+          objHandler.window = null;
+        }
+
+        var svgObj = objHandler._svgObject;
+        var svgDoc = svgObj.document;
+        svgDoc._nodeById = null;
+        svgDoc._xml = null;
+        svgDoc.defaultView = null;
+        svgDoc.documentElement = null;
+        svgDoc.rootElement = null;
+        svgDoc.defaultView = null;
+        svgDoc = null;  
+        svgObj._svgNode = null;
+        svgObj._handler = null;
+
+        if (iframeWin) {
+          iframeWin._setTimeout = null;
+          iframeWin.setTimeout = null;
+          iframeWin._setInterval = null;
+          iframeWin.setInterval = null;
+        }
+
+        objHandler._svgObject = null;
+        svgObj = null;
+        objHandler = null;
+        iframeWin = null;
+      } // end if (this.getHandlerType() == 'flash')
+    } // SVG OBJECT handling
+  },
+  
+  /** Sets up an onContentLoaded listener */
+  _initDOMContentLoaded: function() {
+    // code adapted from Dean Edwards/Matthias Miller/John Resig/others
+  
+    var self = this;
+    if (document.addEventListener) {
+      // DOMContentLoaded natively supported on Opera 9/Mozilla/Safari 3
+      document.addEventListener('DOMContentLoaded', function() {
+        self._saveWindowOnload();
+        self._onDOMContentLoaded();
+      }, false);
+    } else { // Internet Explorer
+      // id is set to be __ie__svg__onload rather than __ie_onload so
+      // we don't have name collisions with other scripts using this
+      // code as well
+      document.write('<script id=__ie__svg__onload defer '
+                      + 'src=javascript:void(0)><\/script>');
+      var script = document.getElementById('__ie__svg__onload');
+      script.onreadystatechange = function() {
+        // Save any window.onload listener that might be registered so we can
+        // delay calling it until we are done internally. IE has two tricky
+        // states when it comes to this:
+        // * Page loaded from cache - window.onload will be ready during
+        // 'loaded' or 'loading' readyState event. If we wait until a
+        // 'complete' readyState for this kind it will be too late.
+        // * Page not in cache - we must use a document.onreadystatechange
+        // listener to detect an 'interactive' or 'complete' readyState event.
+        if (this.readyState != 'complete' && window.onload) {
+          self._saveWindowOnload();
+        } else if (this.readyState == 'complete') {
+          // all the DOM content is finished loading -- continue our internal
+          // execution now
+          self._onDOMContentLoaded();
+        }
+      }
+      
+      // needed to intercept window.onload when page loaded first time
+      // (i.e. not in cache); see details above in script.onreadystatechange
+      var documentReady = function() {
+        if (window.onload) {
+          self._saveWindowOnload();
+          document.detachEvent('onreadystatechange', documentReady);
+        }
+      };
+      document.attachEvent('onreadystatechange', documentReady);
+    }
+  },
+  
+  /** Determines whether SVG Web is being hosted cross-domain (Issue 285,
+      "For Wikipedia: Be able to host bulk of SVG Web on a different domain",
+      http://code.google.com/p/svgweb/issues/detail?id=285). We determine
+      this by seeing if the svg.js or svg-uncompressed.js files are being
+      hosted on a different domain than the current page. */
+  _setXDomain: function() {
+    var scripts = document.getElementsByTagName('script');
+    for (var i = 0; i < scripts.length; i++) {
+      if (/svg(?:\-uncompressed)?\.js/.test(scripts[i].src)
+          && /^https?/.test(scripts[i].src)) {
+        // strip out svg.js filename
+        var url = scripts[i].src.replace(/svg(?:\-uncompressed)?\.js/, '');
+        
+        // get just protocol/hostname/port portion
+        var loc = url.match(/https?\:\/\/[^\/]*/)[0];
+        
+        // get the protocol/hostname/port portion of our current web page
+        var ourLoc = window.location.protocol.replace(/:|\//g, '') + '://' 
+                     + window.location.host;
+      
+        // are they different?
+        if (loc != ourLoc) {
+          this.xDomainURL = url;
+          this._isXDomain = true;
+          return;
+        }
+      }
+    }
+    
+    this._isXDomain = false;
+  },
+  
+  /** Gets any data-path value that might exist on the SCRIPT tag
+      that pulls in our svg.js or svg-uncompressed.js library to configure 
+      where to find library resources like SWF files, HTC files, etc. */
+  _getLibraryPath: function() {
+    // determine the path to our HTC and Flash files
+    var libraryPath = './';
+    var scripts = document.getElementsByTagName('script');
+    for (var i = 0; i < scripts.length; i++) {
+      if (/svg(?:\-uncompressed)?\.js/.test(scripts[i].src)
+          && scripts[i].getAttribute('data-path')) {
+        libraryPath = scripts[i].getAttribute('data-path');
+        break;
+      }
+    }
+    
+    if (libraryPath.charAt(libraryPath.length - 1) != '/') {
+      libraryPath += '/';
+    }
+    
+    return libraryPath;
+  },
+  
+  /** Gets an optional data-htc-filename value that might exist on the SCRIPT
+      tag. If present, this holds a different filename for where to grab the
+      HTC file from, such as svg-htc.php or svg-htc.asp. This is a trick to
+      help support those in environments where they can't manually add new
+      MIME types, so we have an ASP, JSP, or PHP file set the MIME type for the
+      HTC file automatically. */
+  _getHTCFilename: function() {
+    var htcFilename = 'svg.htc';
+    
+    // see if one of our three predefined file names is given in the query
+    // string as the query parameter 'svg.htcFilename'; we do whitelisting 
+    // rather than directly copying this value in to prevent XSS attacks
+    var loc = window.location.toString();
+    if (loc.indexOf('svg.htcFilename=svg-htc.php') != -1) {
+      return 'svg-htc.php';
+    } else if (loc.indexOf('svg.htcFilename=svg-htc.jsp') != -1) {
+      return 'svg-htc.jsp';
+    } else if (loc.indexOf('svg.htcFilename=svg-htc.asp') != -1) {
+      return 'svg-htc.asp';
+    }
+    
+    var scripts = document.getElementsByTagName('script');
+    for (var i = 0; i < scripts.length; i++) {
+      if (/svg(?:\-uncompressed)?\.js/.test(scripts[i].src)
+          && scripts[i].getAttribute('data-htc-filename')) {
+        htcFilename = scripts[i].getAttribute('data-htc-filename');
+        break;
+      }
+    }
+    
+    return htcFilename;
+    
+  },
+  
+  /** Fires when the DOM content of the page is ready to be worked with. */
+  _onDOMContentLoaded: function() {
+    //console.log('onDOMContentLoaded');
+    //start('DOMContentLoaded');
+    
+    // quit if this function has already been called
+    if (arguments.callee.done) {
+      return;
+    }
+    
+    // flag this function so we don't do the same thing twice
+    arguments.callee.done = true;
+    
+    // start tracking total startup time
+    this._startTime = new Date().getTime();
+    
+    // cleanup onDOMContentLoaded handler to prevent memory leaks on IE
+    var listener = document.getElementById('__ie__svg__onload');
+    if (listener) {
+      listener.parentNode.removeChild(listener);
+      listener.onreadystatechange = null;
+      listener = null;
+    }
+    
+    // determine what renderers (native or Flash) to use for which browsers
+    this.config = new RenderConfig();
+    
+    // sign up for the onunload event on IE to clean up references that
+    // can cause memory leaks
+    if (isIE) {
+      this._watchUnload();
+    }
+
+    // extract any SVG SCRIPTs or OBJECTs
+    this._svgScripts = this._getSVGScripts();
+    this._svgObjects = this._getSVGObjects();
+
+    this.totalSVG = this._svgScripts.length + this._svgObjects.length;
+    
+    // do various things we must do early on in the page load process
+    // around cleaning up SVG OBJECTs on the page
+    this._cleanupSVGObjects();
+    
+    // handle a peculiarity for Safari (see method for details)
+    this._handleHTMLTitleBug();
+    
+    // see if we can even support SVG in any way
+    if (!this.config.supported) {
+      // no ability to use SVG in any way
+      this._displayNotSupported(this.config.reason);
+      this._fireOnLoad();
+      return;
+    }
+    
+    // setup which renderer we will use
+    this.renderer;
+    if (this.config.use == 'flash') {
+      this.renderer = FlashHandler;
+    } else if (this.config.use == 'native') {
+      this.renderer = NativeHandler;
+    }
+    
+    // patch the document and style objects with bug fixes for the 
+    // NativeHandler and actual implementations for the FlashHandler
+    this.renderer._patchBrowserObjects(window, document);
+
+    // There may be objects added later. Add the listener before
+    // checking for whether there is any svg content.
+    if (this.config.use == 'flash') {
+      // Attach window resize listener to adjust svg size when % is used.
+      this._createResizeListener();
+      this._attachResizeListener();
+    }
+    
+    // no SVG - we're done
+    if (this.totalSVG === 0) {
+      this._fireOnLoad();
+      return;
+    }
+  
+    // now process each of the SVG SCRIPTs and SVG OBJECTs
+    var self = this;
+    for (var i = 0; i < this._svgScripts.length; i++) {
+      this._processSVGScript(this._svgScripts[i]);
+    }
+    
+    for (var i = 0; i < this._svgObjects.length; i++) {
+      var objID = this._processSVGObject(this._svgObjects[i]);
+      
+      // add the ID to our original SVG OBJECT node as a private member;
+      // we will later use this if svgweb.removeChild is called to remove
+      // the node in order to remove the SVG OBJECT from our
+      // handler._svgObjects array
+      this._svgObjects[i]._objID = objID;
+    }
+    //end('DOMContentLoaded');
+    
+    // wait until all of them have done their work, then fire onload
+  },
+
+  _createResizeListener: function() {
+    var self = this;
+    if (isIE) {
+      this._resizeFunc =
+          (function(self) {
+            return function() {
+              self._onWindowResize();
+            };
+          })(this); // prevent IE memory leaks
+    } else {
+      this._resizeFunc = hitch(this, function() {
+          this._onWindowResize();
+      });
+    }
+  },
+
+  _attachResizeListener: function() {
+    if (isIE) {
+      window.attachEvent('onresize', this._resizeFunc);
+    } else {
+      window.addEventListener('resize', this._resizeFunc, false);
+    }
+  },
+
+  _detachResizeListener: function() {
+    if (isIE) {
+      window.detachEvent('onresize', this._resizeFunc);
+    } else {
+      window.removeEventListener('resize', this._resizeFunc, false);
+    }  
+  },
+
+  _onWindowResize: function() {
+    if (!this.pageLoaded) {
+      return;
+    }
+    this._detachResizeListener();
+    for (var i = 0; i < this.handlers.length; i++) {
+      var handler = this.handlers[i];
+      if (!handler._inserter || !handler.flash) {
+        // Flash still being rendered
+        continue;
+      }
+      
+      var size = handler._inserter._determineSize();
+      //console.log("svg #"+i+": flash resize: " 
+      //            + size.width + "," + size.height + " "
+      //            + size.pixelsWidth + "," + size.pixelsHeight);
+      handler.flash.width = size.width;
+      handler.flash.height = size.height;
+      handler.sendToFlash('jsHandleResize',
+                          [ /* objectWidth */ size.pixelsWidth,
+                            /* objectHeight */ size.pixelsHeight ]);
+    }
+    this._attachResizeListener();
+  },
+  
+  /** Gets any SVG SCRIPT blocks on the page. */
+  _getSVGScripts: function() {
+    var scripts = document.getElementsByTagName('script');
+    var results = [];
+    for (var i = 0; i < scripts.length; i++) {
+      if (scripts[i].type == 'image/svg+xml') {
+        results.push(scripts[i]);
+      }
+    }
+    
+    return results;
+  },
+
+  /** Gets any SVG OBJECTs on the page. */
+  _getSVGObjects: function() {
+    // Note for IE: Unfortunately we have to use @classid to carry our MIME 
+    // type instead of @type for IE. Here's why: on IE, you must have 
+    // either @classid or @type present on your OBJECT tag. If there is 
+    // _any_ fallback content inside of the OBJECT tag, IE will erase the 
+    // OBJECT from the DOM and replace it with the fallback content if the 
+    // @type attribute is set to an unknown MIME type; this makes it 
+    // impossible for us to then get the OBJECT from the DOM below. If we 
+    // don't have a @classid this will also happen, so we just set it to 
+    // the string 'image/svg+xml' which is arbitrary. If both @type and 
+    // @classid are present, IE will still look at the type first and 
+    // repeat the same incorrect fallback behavior for our purposes.
+    var objs = document.getElementsByTagName('object');
+    var results = [];
+    for (var i = 0; i < objs.length; i++) {
+      if (objs[i].getAttribute('classid') == 'image/svg+xml') {
+        results.push(objs[i]);
+      } else if (objs[i].getAttribute('type') == 'image/svg+xml') {
+        results.push(objs[i]);
+      }
+    }
+    
+    return results;
+  },
+  
+  /** Displays not supported messages. 
+  
+      @param reason String containing why this browser is not supported. */
+  _displayNotSupported: function(reason) {
+    // write the reason into the OBJECT tags if nothing is already present
+    for (var i = 0; i < this._svgObjects.length; i++) {
+      var obj = this._svgObjects[i];
+      // ignore whitespace children
+      if (!obj.childNodes.length || 
+          (obj.childNodes.length == 1 && obj.childNodes[0].nodeType == 3
+            && /^[ ]*$/m.test(obj.childNodes[0].nodeValue))) {
+        var span = document.createElement('span');
+        span.className = 'svg-noscript';
+        span.appendChild(document.createTextNode(reason));
+        obj.parentNode.replaceChild(span, obj);
+      }
+    }
+    
+    // surface any adjacent NOSCRIPTs that might be adjacent to our SVG
+    // SCRIPTs; if none present, write out our reason
+    for (var i = 0; i < this._svgScripts.length; i++) {
+      var script = this._svgScripts[i];
+      var output = document.createElement('span');
+      output.className = 'svg-noscript';
+      
+      var sibling = script.nextSibling;
+      // jump past everything until we hit our first Element
+      while (sibling && sibling.nodeType != 1) {
+        sibling = sibling.nextSibling;
+      }
+      
+      if (sibling && sibling.nodeName.toLowerCase() == 'noscript') {
+        var noscript = sibling;
+        output.innerHTML = noscript.innerHTML;
+      } else {
+        output.appendChild(document.createTextNode(reason));
+      }
+      
+      script.parentNode.insertBefore(output, script);
+    }
+  },
+  
+  /** Fires any addOnLoad() listeners that were registered by a developer. */
+  _fireOnLoad: function() {
+    //console.log('svgweb._fireOnLoad');
+    // see if all SVG OBJECTs are done loading; if so, fire final onload
+    // event for any externally registered SVG
+    if (this.handlers.length < this._svgObjects.length) {
+      // not even done constructing all our Native Handlers yet
+      return;
+    }
+
+    var allLoaded = true;
+    for (var i = 0; i < this.handlers.length; i++) {
+      var h = this.handlers[i];
+      if (!h._loaded) {
+        allLoaded = false;
+        break;
+      }
+    }
+
+    if (!allLoaded) {
+      return;
+    }
+
+    // the page is truly finished loading
+    this.pageLoaded = true;
+    
+    // report total startup time
+    this._endTime = new Date().getTime();
+    // FIXME: Get these times to be more accurate; I think they are off
+    //console.log('Total JS plus Flash startup time: ' 
+    //                + (this._endTime - this._startTime) + 'ms');
+    
+    if (this._loadListeners.length) {
+      // we do a slight timeout so that if exceptions get thrown inside the
+      // developers onload methods they will correctly show up and get reported
+      // to the developer; otherwise since the fireOnLoad method is called 
+      // from Flash and an exception gets called it can get 'squelched'
+      var self = this;
+      window.setTimeout(function() {
+        //console.log('svgweb._fireOnLoad timeout');
+        // make a copy of our listeners and then clear them out _before_ looping
+        // and calling each one; this is to handle the following edge condition: 
+        // one of the listeners might dynamically create an SVG OBJECT _inside_ 
+        // of it, which would then add a new listener, and we would then 
+        // incorrectly get it in our list of listeners as we loop below!
+        var listeners = self._loadListeners;
+        self._loadListeners = [];
+        this.totalLoaded = 0;
+        for (var i = 0; i < listeners.length; i++) {
+          try {
+            listeners[i]();
+          } catch (exp) {
+            console.log('Error while firing onload: ' + (exp.message || exp));
+          }
+        }
+      }, 1);
+    }
+  },
+  
+  /** Cleans up some SVG in various ways (adding IDs, etc.)
+  
+      @param svg SVG string to clean up.
+      @param addMissing If true, we add missing
+      XML doctypes, SVG namespace, etc. to make working with SVG a bit easier
+      when doing direct embed; if false, we require the XML to be
+      well-formed and correct (primarily for independent .svg files). 
+      @param normalizeWhitespace If true, we try to remove whitespace between 
+      nodes to make the DOM more similar to Internet Explorer's 
+      ignoreWhiteSpace, mostly used when doing direct embed of SVG into an 
+      HTML page; if false, we leave things alone (primarily for independent 
+      .svg files). 
+      
+      @returns Returns an object with two values:
+        svg: cleaned up SVG as a String
+        xml: parsed SVG as an XML object
+  */
+  _cleanSVG: function(svg, addMissing, normalizeWhitespace) {
+    // if this was directly embedded SVG into a SCRIPT block on an XHTML page,
+    // but on IE, then it will be surrounded with a CDATA block; remove this
+    if (/^\s*<\!\[CDATA\[/.test(svg)) {
+      svg = svg.replace(/^\s*<\!\[CDATA\[/, '');
+      svg = svg.replace(/\]\]>\s*/, '');
+    }
+
+    if (addMissing) {
+      // add any missing things (XML declaration, SVG namespace, etc.)
+      if (/\<\?xml/m.test(svg) == false) { // XML declaration
+        svg = '<?xml version="1.0"?>\n' + svg;
+      }
+      
+      // add SVG namespace declaration; don't however if there is a custom 
+      // prefix for SVG namespace
+
+      // NOTE: the following regular expression in this if statement
+      // right below had to be replaced since it was a performance
+      // bottleneck; see Issue 218
+      // for details: http://code.google.com/p/svgweb/issues/detail?id=218
+      if (svg.indexOf(':svg ') == -1) { // was regular expression
+        if (/xmlns\=['"]http:\/\/www\.w3\.org\/2000\/svg['"]/.test(svg) == false) {
+          svg = svg.replace('<svg', '<svg xmlns="http://www.w3.org/2000/svg"');
+        }
+      }
+      
+      // add xlink namespace if it is not present
+      if (/xmlns:[^=]+=['"]http:\/\/www\.w3\.org\/1999\/xlink['"]/.test(svg) == false) {
+        svg = svg.replace('<svg', '<svg xmlns:xlink="http://www.w3.org/1999/xlink"');
+      }
+    }
+    
+    // remove leading whitespace before XML declaration
+    if (svg.charAt(0) != '<') {
+      svg = svg.replace(/\s*<\?xml/, '<?xml');
+    }
+    
+    // expand ENTITY definitions
+    // Issue 221: "DOCTYPE ENTITYs not expanded on certain 
+    // browsers (safari, opera)"
+    // http://code.google.com/p/svgweb/issues/detail?id=221
+    // NOTE: entity expansion is performance sensitive; see 
+    // Issue 218 for details 
+    // (http://code.google.com/p/svgweb/issues/detail?id=218)
+    RegExp.lastIndex = 0;
+    var match;
+    var entityRE = /<!ENTITY\s+(\S+)\s+"([^"]*)"/g;
+    while ((match = entityRE.exec(svg)) != null) {
+      var entityName = RegExp.$1;
+      var entityValue = RegExp.$2;
+      svg = svg.split('&' + entityName + ';').join(entityValue);
+    }
+    
+    if (normalizeWhitespace) {
+      // remove whitespace between tags to normalize the DOM between IE
+      // and other browsers
+      svg = svg.replace(/\>\s+\</gm, '><');
+    }
+    
+    // transform text nodes into 'fake' elements so that we can track them
+    // with a GUID
+    if (this.renderer == FlashHandler) {
+      // strip out <!-- --> style comments; these cause a variety of problems:
+      // 1) We don't parse comments into our DOM, 2) when we add our
+      // <__text> sections below they can get incorrectly nested into multi
+      // line comments; stripping them out is a simple solution for now.
+      var commentRE = /<!\-\-/g;
+      RegExp.lastIndex = 0; // reset global exec()
+      match = commentRE.exec(svg);
+      var i = 0;
+      var strippedSVG = svg;
+      while (match && RegExp.lastMatch) {
+        // get the text of the comment
+        var endIndx = RegExp.rightContext.indexOf('-->') + 3;
+        var comment = '<!--' + RegExp.rightContext.substring(0, endIndx);
+        
+        // now strip it out
+        strippedSVG = strippedSVG.replace(comment, '');
+        
+        // find next match
+        match = commentRE.exec(svg);
+        i++;
+      }
+      svg = strippedSVG;
+      
+      // We might have nested <svg> elements; we want to make sure we don't
+      // incorrectly think these are SVG root elements. To do this, temporarily
+      // rename the SVG root element, then rename nested <svg> root elements
+      // to a temporary token that we will restore at the end of this method
+      svg = svg.replace(/<(svg:)?svg/, '<$1SVGROOT'); // root <svg> element
+      svg = svg.replace(/<(svg:)?svg/g, '<$1NESTEDSVG'); // nested <svg>
+      svg = svg.replace(/<(svg:)?SVGROOT/, '<$1svg');
+      
+      // break SVG string into pieces so that we don't incorrectly add our
+      // <__text> fake text nodes outside the SVG root tag
+      var separator = svg.match(/<[a-zA-Z_-]*:?svg/)[0];
+      var pieces = svg.split(/<[a-zA-Z_-]*:?svg/);
+      
+      // extract CDATA sections temporarily so that we don't end up
+      // adding double <__text> blocks
+      var hasCData = (pieces[1].indexOf('<![CDATA[') != -1);
+      if (hasCData) {
+        RegExp.lastIndex = 0; // reset global exec()
+        var cdataRE = /<\!\[CDATA\[/g;
+        match = cdataRE.exec(pieces[1]);
+        var cdataBlocks = [];
+        i = 0;
+        while (match && RegExp.rightContext) {
+          var startIdx = cdataRE.lastIndex - '<![CDATA['.length;
+          var context = RegExp.rightContext;
+          var endIdx = cdataRE.lastIndex + context.indexOf(']]>') + 2;
+          var section = context.substring(0, context.indexOf(']]>'));
+        
+          // save this CDATA section for later
+          section = '<![CDATA[' + section + ']]>';
+          cdataBlocks.push(section);
+        
+          // change the CDATA section into a token that we will replace later
+          var before = pieces[1].substring(0, startIdx);
+          var after = pieces[1].substring(endIdx + 1, pieces[1].length);
+          pieces[1] = before + '__SVG_CDATA_TOKEN_' + i + after;
+        
+          // find next match
+          match = cdataRE.exec(pieces[1]);
+          i++;
+        }
+      }
+      
+      // capture anything between > and < tags
+      pieces[1] = pieces[1].replace(/>([^>]+)</g, 
+                                    '><__text>$1</__text><');
+      
+      // re-assemble our CDATA blocks
+      if (hasCData) {
+        for (var i = 0; i < cdataBlocks.length; i++) {
+          pieces[1] = pieces[1].replace('__SVG_CDATA_TOKEN_' + i, cdataBlocks[i]);
+        }
+      }
+             
+      // paste the pieces back together
+      svg = pieces[0] + separator + pieces[1];
+      for (var i = 2; i < pieces.length; i++) {
+        svg = svg + pieces[i];
+      }
+    }
+    
+    // earlier we turned nested <svg> elements into a temporary token; restore
+    // them
+    svg = svg.replace(/<(svg:)?NESTEDSVG/g, '<$1svg');
+                 
+    if (this.renderer == FlashHandler) {
+      // handle Flash encoding issues
+      svg = FlashHandler._encodeFlashData(svg);
+      
+      // Firefox and Safari will parse any nodes in the SVG namespace into 'real'
+      // SVG nodes when using the Flash handler, which we don't want 
+      // (they take up more memory, and can mess up our return results in some 
+      // cases). To get around this, we change the SVG namespace in our XML into
+      // a temporary different one to prevent this from happening.
+      svg = svg.replace(/xmlns(\:[^=]*)?=['"]http\:\/\/www\.w3\.org\/2000\/svg['"]/g, 
+                        "xmlns$1='" + svgnsFake + "'");
+    }
+        
+    // add guids and IDs to all elements and get the root SVG elements ID;
+    // this also has the side effect of also parsing our SVG into an actual
+    // XML tree we can use later; we do it here so that we don't have to
+    // parse the XML twice for performance reasons
+    var xml = this._addTracking(svg, normalizeWhitespace);
+    if (typeof XMLSerializer != 'undefined') { // non-IE browsers
+      svg = (new XMLSerializer()).serializeToString(xml);
+    } else { // IE
+      svg = xml.xml;
+    }
+    
+    // remove the fake SVG namespace we added as a workaround right above now 
+    // that we are parsed
+    if (this.renderer == FlashHandler) {
+      svg = svg.replace(new RegExp(svgnsFake, 'g'), svgns);
+    }
+    
+    return {svg: svg, xml: xml};
+  },
+  
+  /** Extracts SVG from the script, cleans it up, adds GUIDs to all elements, 
+      and then creates the correct Flash or Native handler to do 
+      the hard work. 
+      
+      @param script SCRIPT node to get the SVG from. */
+  _processSVGScript: function(script) {
+    //console.log('processSVGScript, script='+script);
+    var origSVG;
+    if (!isXHTML) {
+      origSVG = script.innerHTML;
+    } else { // XHTML document
+      // Safari/Native has an unusual bug; sometimes, when fetching the
+      // SVG text content inside of a SCRIPT tag, it will break it up into
+      // multiple CDATA sections, corrupting the source if we fetch it
+      // with innerHTML above. Instead loop through and get the CDATA text.
+      origSVG = '';
+      for (var i = 0; i < script.childNodes.length; i++) {
+        origSVG += script.childNodes[i].textContent;
+      }
+    }
+
+    var results = this._cleanSVG(origSVG, true, true);
+    var svg = results.svg;
+    var xml = results.xml;
+    var rootID = xml.documentElement.getAttribute('id');
+    var rootOnload = xml.documentElement.getAttribute('onload');
+    if (rootOnload) {
+      // turn the textual onload handler into a real function
+      var defineEvtCode =
+        'var evt = { target: document.getElementById("' + rootID + '") ,' +
+                    'currentTarget: document.getElementById("' + rootID + '") ,' +
+                    'preventDefault: function() { this.returnValue=false; }' +
+                  '};';
+      rootOnload = new Function(defineEvtCode + rootOnload);
+
+      
+      // return a function that makes the 'this' keyword apply to
+      // the SVG root; wrap in another anonymous closure as well to prevent
+      // IE memory leaks
+      var f = (function(rootOnload, rootID) {
+        return function() {
+          // get our SVG root so we can set the 'this' keyword correctly
+          var handler = svgweb.handlers[rootID];
+          var root;
+          if (svgweb.getHandlerType() == 'flash') {
+            root = handler.document.documentElement._getProxyNode();
+          } else { // native
+            // Safari/Native has a bizarre bug; earlier we save a reference
+            // to our handler._svgRoot variable, but it won't match what
+            // is returned by document.getElementById(rootID). We use that
+            // instead to have correct object identity.
+            root = document.getElementById(rootID);
+          }
+
+          return rootOnload.apply(root);
+        };
+      })(rootOnload, rootID);
+      
+      // add to our list of page-level onload listeners
+      this._loadListeners.push(f);
+    }
+    
+    // create the correct handler
+    var self = this;
+    var finishedCallback = function(id, type) {
+      // prevent IE memory leaks
+      script = null;
+      xml = null;
+
+      self._handleDone(id, type);
+    };
+
+    var handler = new this.renderer({type: 'script', 
+                                     svgID: rootID,
+                                     xml: xml, 
+                                     svgString: svg,
+                                     origSVG: origSVG,
+                                     scriptNode: script,
+                                     finishedCallback: finishedCallback});
+
+    // NOTE: FIXME: If someone chooses a rootID that starts with a number
+    // this will break
+    this.handlers[rootID] = handler;
+    this.handlers.push(handler);      
+  },
+  
+  /** Extracts or autogenerates an ID for the object and then creates the
+      correct Flash or Native handler to do the hard work. 
+      
+      @returns The ID for the object, either what was specified or what was
+      autogenerated. */
+  _processSVGObject: function(obj) {
+    //console.log('processSVGObject');
+    var objID = obj.getAttribute('id');
+    // extract an ID from the OBJECT tag; generate a random ID if needed
+    if (!objID) {
+      obj.setAttribute('id', svgweb._generateID('__svg__random__', '__object'));
+      objID = obj.getAttribute('id');
+    }
+
+    // create the correct handler
+    var finishedCallback = (function(self) {
+      return function(id, type) {
+        //console.log('anonymous inner finishedCallback, id='+id+', type='+type);
+        self._handleDone(id, type);
+      };
+    })(this); // prevent IE memory leaks
+    
+    var handler = new this.renderer({type: 'object', 
+                                     objID: objID,
+                                     objNode: obj,
+                                     finishedCallback: finishedCallback});
+                                      
+    // NOTE: FIXME: If someone chooses an objID that starts with a number
+    // this will break
+    this.handlers[objID] = handler;
+    this.handlers.push(handler);
+    
+    return objID;
+  },
+  
+  /** Generates a random SVG ID. It is recommended that you use the prefix
+      and postfix.
+      
+      @param prefix An optional string to add to the beginning of the ID.
+      @param postfix An optional string to add to the end of the ID. */
+  _generateID: function(prefix, postfix) {
+    // generate an ID for this element
+    if (!postfix) {
+      postfix = '';
+    }
+    
+    if (!prefix) {
+      prefix = '';
+    }
+    
+    return prefix + guid() + postfix;
+  },
+  
+  /** Walks the SVG DOM, adding automatic generated GUIDs to all elements.
+      Generates an ID for the SVG root if one is not present.
+      
+      @param normalizeWhitespace If true, then when parsing we ignore
+      whitespace, acting more like normal HTML; if false, then we keep
+      whitespace as independent nodes more like XML.
+      @returns Parsed DOM XML Document of the SVG with all elements having 
+      an ID and a GUID. */
+  _addTracking: function(svg, normalizeWhitespace) {
+    var parseWhitespace = !normalizeWhitespace;
+                    
+    // parse the SVG
+    var xmlDoc = parseXML(svg, parseWhitespace);
+    var root = xmlDoc.documentElement;
+    
+    // make sure the root has an ID
+    if (root && !root.getAttribute('id')) {
+      root.setAttribute('id', this._generateID('__svg__random__', null));
+    }
+    
+    if (this.getHandlerType() != 'flash') {
+      return xmlDoc;
+    }
+    
+    // now walk the parsed DOM
+    var current = root;
+    while (current) {
+      if (current.nodeType == _Node.ELEMENT_NODE) {
+        current.setAttribute('__guid', guid());
+      }
+      
+      if (current.nodeType == _Node.ELEMENT_NODE 
+          && !current.getAttribute('id')) {
+        // generate a random ID, since the Flash backend needs IDs for certain
+        // scenarios (such as tracking dependencies around redraws for USE
+        // nodes, for example)
+        current.setAttribute('id', svgweb._generateID('__svg__random__', null));
+      }
+      
+      var next = current.firstChild;
+      if (next) {
+        current = next;
+        continue;
+      }
+      
+      while (current) {
+        if (current != root) {
+          next = current.nextSibling;
+          if (next) {
+            current = next;
+            break;
+          }
+        }
+        if (current == root) {
+          current = null;
+        } else {
+          current = current.parentNode;
+          if (current.nodeType != 1
+              || current.nodeName.toUpperCase() == 'SVG') {
+            current = null;
+          }
+        }
+      }
+    }
+    
+    return xmlDoc;
+  },
+  
+  /** Called when an SVG SCRIPT or OBJECT is done loading. If we are finished
+      loading every SVG item then we fire window onload and also indicate to
+      each handler that the page is finished loading so that handlers can
+      take further action, such as executing any SVG scripts that might be
+      inside of an SVG file loaded in an SVG OBJECT. 
+      
+      @param ID of either the SVG root element inside of an SVG SCRIPT or 
+      the SVG OBJECT that has finished loading.
+      @param type Either 'script' for an SVG SCRIPT or 'object' for an
+      SVG OBJECT.
+      */
+  _handleDone: function(id, type) {
+    this.totalLoaded++;
+    
+    if (this.totalLoaded >= this.totalSVG) {
+      // we are finished
+      this._fireOnLoad();
+    }
+  },
+  
+  /** Safari 3 has a strange bug where if you have no HTML TITLE element,
+      it will interpret the first SVG TITLE as the HTML TITLE and change
+      the browser's title at the top of the title bar; this only happens
+      with the native handler, but for consistency we insert an empty
+      HTML TITLE into the page if none is present for all handlers
+      which solves the issue. */
+  _handleHTMLTitleBug: function() {
+    var head = document.getElementsByTagName('head')[0];
+    var title = head.getElementsByTagName('title');
+    if (title.length === 0) {
+      title = document.createElement('title');
+      head.appendChild(title);
+    }
+  },
+  
+  /** This method is a hook useful for unit testing; unit testing can
+      override it to be informed if an error occurs inside the Flash
+      so that we can stop the unit test and report the error. */
+  _fireFlashError: function(logString) {
+  },
+  
+  /** Add an .id attribute for non-SVG and non-HTML nodes for the Native
+      Handler, which don't have them by default in order to have parity with the
+      Flash viewer. We have this here instead of on the Native Handlers
+      themselves because the method is called by our patched 
+      document.getElementByTagNameNS and we don't want to do any closure
+      magic there to prevent memory leaks. */
+  _exportID: function(node) {
+    node.__defineGetter__('id', function() {
+      return node.getAttribute('id');
+    });
+    node.__defineSetter__('id', function(newValue) {
+      return node.setAttribute('id', newValue);
+    });
+  },
+  
+  /** Sign up for the onunload event on IE to clean up references that
+      can cause memory leaks. */
+  _watchUnload: function() {
+    window.attachEvent('onunload', function(evt) {
+      // detach this anonymous listener
+      window.detachEvent('onunload', arguments.callee);
+      
+      // do all the onunload work now
+      svgweb._fireUnload();
+    });
+  },
+  
+  /** Called when window unload event fires; putting this in a separate
+      function helps us with unit testing. */
+  _fireUnload: function() {
+    if (!isIE) { // helps with unit testing
+      return;
+    }
+
+    // clean up SVG OBJECTs
+    for (var i = 0; i < svgweb.handlers.length; i++) {      
+      if (svgweb.handlers[i].type == 'object') {
+        var removeMe = svgweb.handlers[i].flash;
+        if (removeMe.parentNode) { // attachment may have been interrupted
+          svgweb.removeChild(removeMe, removeMe.parentNode);
+        }
+      } else {
+        // null out reference to root
+        svgweb.handlers[i].document.documentElement = null;
+      }
+    }
+
+    // delete the HTC container and all HTC nodes
+    var container = document.getElementById('__htc_container');
+    if (container) {
+      for (var i = 0; i < container.childNodes.length; i++) {
+        var child = container.childNodes[i];
+        // remove style handling
+        if (child.nodeType == 1 && child.namespaceURI == svgns) {
+          child.detachEvent('onpropertychange', 
+                           child._fakeNode.style._changeListener);
+          child.style.item = null;
+          child.style.setProperty = null;
+          child.style.getPropertyValue = null;
+        }
+        
+        // remove other references
+        if (child._fakeNode) {
+            child._fakeNode._htcNode = null;
+        }
+        child._fakeNode = null;
+        child._handler = null;
+      }
+      container.parentNode.removeChild(container);
+      container = null;
+    }
+
+    // for all the handlers, remove their reference to the Flash object
+    for (var i = 0; i < svgweb.handlers.length; i++) {
+      var handler = svgweb.handlers[i];
+      handler.flash = null;
+    }
+    svgweb.handlers = null;
+
+    // clean up any nodes that were removed in the past
+    for (var i = 0; i < svgweb._removedNodes.length; i++) {
+      var node = svgweb._removedNodes[i];
+      if (node._fakeNode) {
+        node._fakeNode._htcNode = null;
+      }
+      node._fakeNode = null;
+      node._handler = null;
+    }
+    svgweb._removedNodes = null;
+
+    // cleanup document patching
+    document.getElementById = document._getElementById;
+    document._getElementById = null;
+    
+    document.getElementsByTagNameNS = document._getElementsByTagNameNS;
+    document._getElementsByTagNameNS = null;
+    
+    document.createElementNS = document._createElementNS;
+    document._createElementNS = null;
+    
+    document.createElement = document._createElement;
+    document._createElement = null;
+    
+    document.createTextNode = document._createTextNode;
+    document._createTextNode = null;
+    
+    document._importNodeFunc = null;
+    
+    document.createDocumentFragment = document._createDocumentFragment;
+    document._createDocumentFragment = null;
+    
+    window.addEventListener = null;
+    window._addEventListener = null;
+    
+    window.attachEvent = window._attachEvent;
+    window._attachEvent = null;
+  },
+  
+  /** Does certain things early on in the page load process to cleanup
+      any SVG objects on our page, such as making them hidden, etc. */
+  _cleanupSVGObjects: function() {
+    // if this browser has native SVG support, do some tricks to take away
+    // control from it for the Flash renderer early in the process
+    if (this.config.use == 'flash' && this.config.hasNativeSVG()) {
+      for (var i = 0; i < this._svgObjects.length; i++) {
+        // replace the SVG OBJECT with a DIV
+        var obj = this._svgObjects[i];
+        var div = document.createElement('div');
+        for (var j = 0; j < obj.attributes.length; j++) {
+          var attr = obj.attributes[j];
+          div.setAttribute(attr.nodeName, attr.nodeValue);
+        }
+        // bring over fallback content
+        var fallback = obj.innerHTML;
+        div.innerHTML = fallback;
+        obj.parentNode.replaceChild(div, obj);
+        this._svgObjects[i] = div;
+      }
+    }
+    
+    // make any SVG objects have visibility hidden early in the process
+    // to prevent IE from showing scroll bars
+    for (var i = 0; i < this._svgObjects.length; i++) {
+      this._svgObjects[i].style.visibility = 'hidden';
+    }
+  },
+  
+  /** Intercepts setting up window.onload events so we can delay firing
+      them until we are done with our internal work. */
+  _interceptOnloadListeners: function() {
+    if (window.addEventListener) {
+      window._addEventListener = window.addEventListener;
+      window.addEventListener = function(type, f, useCapture) {
+        if (type != 'load') {
+          return window._addEventListener(type, f, useCapture);
+        } else {
+          svgweb.addOnLoad(f);
+        }
+      }
+    }
+    
+    if (isIE && window.attachEvent) {
+      window._attachEvent = window.attachEvent;
+      window.attachEvent = function(type, f) {
+        if (type != 'onload') {
+          return window._attachEvent(type, f);
+        } else {
+          svgweb.addOnLoad(f);
+        }
+      }
+    }
+  },
+  
+  _saveWindowOnload: function() {
+    // intercept and save window.onload or <body onload="">
+    if (window.onload) {
+      // preserve IE's different behavior of firing window.onload 
+      // behavior _before_ everything else; other browsers don't necessarily
+      // give preferential treatment to window.onload
+      if (isIE) {
+        this._loadListeners.splice(0, 0, window.onload);
+      } else {
+        this._loadListeners.push(window.onload);
+      }
+      window.onload = null;
+    }
+  }
+});
+
+
+/** Sees if there is a META tag to force Flash rendering for all browsers.
+    Also determines if the browser supports native SVG or Flash and the
+    correct Flash version. Determines the best renderer to use. */
+function RenderConfig() {
+  // see if there is a META tag for 'svg.render.forceflash' or a query
+  // value in the URL
+  if (!this._forceFlash()) {
+    // if not, see if this browser natively supports SVG
+    if (this.hasNativeSVG()) {
+      this.supported = true;
+      this.use = 'native';
+      return;
+    }
+  } else {
+    console.log('Forcing Flash SVG viewer for this browser');
+  }
+  
+  // if not, see if this browser has Flash and the correct Flash version (9+)
+  var info = new FlashInfo();
+  if (info.capable) {
+    if (info.isVersionOrAbove(9, 0, 0)) {
+      this.supported = true;
+      this.use = 'flash';
+    } else { // has Flash but wrong version
+      this.supported = false;
+      this.reason = 'Flash 9+ required';
+    }
+  } else { // no Flash present
+    this.supported = false;
+    this.reason = 'Flash 9+ or a different browser required';
+  }
+}
+
+extend(RenderConfig, {
+  /** Boolean on whether the given browser is supported. */
+  supported: false,
+  
+  /* String on why the given browser is not supported. */
+  reason: null,
+  
+  /** String on which renderer to use: flash or native. */
+  use: null,
+  
+  /** Determines if there is the META tag 'svg.render.forceflash' set to
+      true or a URL query value with 'svg.render.forceflash' given. */
+  _forceFlash: function() {
+    var results = false;
+    var hasMeta = false;
+    
+    var meta = document.getElementsByTagName('meta');
+    for (var i = 0; i < meta.length; i++) {
+      if (meta[i].name == 'svg.render.forceflash' &&
+          meta[i].content.toLowerCase() == 'true') {
+        results = true;
+        hasMeta = true;
+      }
+    }
+    
+    if (window.location.search.indexOf('svg.render.forceflash=true') != -1) {
+      results = true;
+    } else if (hasMeta
+               && window.location.search.indexOf(
+                                        'svg.render.forceflash=false') != -1) {
+      // URL takes precedence
+      results = false;
+    }
+    
+    return results;
+  },
+  
+  /** Determines whether this browser supports native SVG. */
+  hasNativeSVG: function() {
+    if (document.implementation && document.implementation.hasFeature) {
+      return document.implementation.hasFeature(
+            'http://www.w3.org/TR/SVG11/feature#BasicStructure', '1.1');
+    } else {
+      return false;
+    }
+  }
+});
+
+
+// adapted from Dojo Flash dojox.flash.Info
+function FlashInfo(){
+	// summary: A class that helps us determine whether Flash is available.
+	// description:
+	//	A class that helps us determine whether Flash is available,
+	//	it's major and minor versions, and what Flash version features should
+	//	be used for Flash/JavaScript communication. Parts of this code
+	//	are adapted from the automatic Flash plugin detection code autogenerated 
+	//	by the Macromedia Flash 8 authoring environment.
+
+	this._detectVersion();
+}
+
+FlashInfo.prototype = {
+	// version: String
+	//		The full version string, such as "8r22".
+	version: -1,
+	
+	// versionMajor, versionMinor, versionRevision: String
+	//		The major, minor, and revisions of the plugin. For example, if the
+	//		plugin is 8r22, then the major version is 8, the minor version is 0,
+	//		and the revision is 22. 
+	versionMajor: -1,
+	versionMinor: -1,
+	versionRevision: -1,
+	
+	// capable: Boolean
+	//		Whether this platform has Flash already installed.
+	capable: false,
+	
+	isVersionOrAbove: function(
+							/* int */ reqMajorVer, 
+							/* int */ reqMinorVer, 
+							/* int */ reqVer){ /* Boolean */
+		// summary: 
+		//	Asserts that this environment has the given major, minor, and revision
+		//	numbers for the Flash player.
+		// description:
+		//	Asserts that this environment has the given major, minor, and revision
+		//	numbers for the Flash player. 
+		//	
+		//	Example- To test for Flash Player 7r14:
+		//	
+		//	info.isVersionOrAbove(7, 0, 14)
+		// returns:
+		//	Returns true if the player is equal
+		//	or above the given version, false otherwise.
+		
+		// make the revision a decimal (i.e. transform revision 14 into
+		// 0.14
+		reqVer = parseFloat("." + reqVer);
+		
+		if (this.versionMajor >= reqMajorVer && this.versionMinor >= reqMinorVer
+			 && this.versionRevision >= reqVer) {
+			return true;
+		} else {
+			return false;
+		}
+	},
+	
+	_detectVersion: function(){
+		var versionStr;
+		
+		// loop backwards through the versions until we find the newest version	
+		for (var testVersion = 25; testVersion > 0; testVersion--) {
+			if (isIE) {
+				var axo;
+				try {
+					if (testVersion > 6) {
+						axo = new ActiveXObject("ShockwaveFlash.ShockwaveFlash." 
+																		+ testVersion);
+					} else {
+						axo = new ActiveXObject("ShockwaveFlash.ShockwaveFlash");
+					}
+					if (typeof axo == "object") {
+						if (testVersion == 6) {
+							axo.AllowScriptAccess = "always";
+						}
+						versionStr = axo.GetVariable("$version");
+					}
+				} catch(e) {
+					continue;
+				}
+			} else {
+				versionStr = this._JSFlashInfo(testVersion);		
+			}
+				
+			if (versionStr == -1 ) {
+				this.capable = false; 
+				return;
+			} else if (versionStr !== 0) {
+				var versionArray;
+				if (isIE) {
+					var tempArray = versionStr.split(" ");
+					var tempString = tempArray[1];
+					versionArray = tempString.split(",");
+				} else {
+					versionArray = versionStr.split(".");
+				}
+					
+				this.versionMajor = versionArray[0];
+				this.versionMinor = versionArray[1];
+				this.versionRevision = versionArray[2];
+				
+				// 7.0r24 == 7.24
+				var versionString = this.versionMajor + "." + this.versionRevision;
+				this.version = parseFloat(versionString);
+				
+				this.capable = true;
+				
+				break;
+			}
+		}
+	},
+	 
+	// JavaScript helper required to detect Flash Player PlugIn version 
+	// information.
+	_JSFlashInfo: function(testVersion){
+		// NS/Opera version >= 3 check for Flash plugin in plugin array
+		if (navigator.plugins !== null && navigator.plugins.length > 0) {
+			if (navigator.plugins["Shockwave Flash 2.0"] || 
+				 navigator.plugins["Shockwave Flash"]) {
+				var swVer2 = navigator.plugins["Shockwave Flash 2.0"] ? " 2.0" : "";
+				var flashDescription = navigator.plugins["Shockwave Flash" + swVer2].description;
+				var descArray = flashDescription.split(" ");
+				var tempArrayMajor = descArray[2].split(".");
+				var versionMajor = tempArrayMajor[0];
+				var versionMinor = tempArrayMajor[1];
+				var tempArrayMinor = (descArray[3] || descArray[4]).split("r");
+				var versionRevision = tempArrayMinor[1] > 0 ? tempArrayMinor[1] : 0;
+				var version = versionMajor + "." + versionMinor + "." + versionRevision;
+											
+				return version;
+			}
+		}
+		
+		return -1;
+	}
+};
+
+
+/** Creates a FlashHandler that will embed the given SVG into the page using
+    Flash. Pass in an object literal with the correct arguments. 
+    
+    If dealing with an SVG SCRIPT tag these arguments are:
+    
+    type - The string 'script'.
+    svgID - A unique ID for the SVG root tag.
+    xml - XML Document object for parsed SVG.
+    svgString - The SVG content as a String.
+    origSVG - The original, pre-cleaned up SVG. Useful so that we can
+    provide the original SVG for 'View Source' functionality. Only used
+    by the FlashHandler.
+    scriptNode - The DOM element for the SVG SCRIPT block.
+    finishedCallback - Called when we are done loading and rendering the
+    SVG inside of the Flash player; called with two arguments, the svgID
+    that was just rendered and type set to 'script'.
+    
+    If dealing with an SVG OBJECT tag these arguments are:
+    
+    type - The string 'object'.
+    objID - A unique ID for the SVG OBJECT tag.
+    objNode - DOM OBJECT pointing to an SVG URL to handle.
+    finishedCallback - Called when we are done loading and rendering the
+    SVG inside of the Flash player; called with two arguments, the svgID
+    that was just rendered and type set to 'object'. 
+  */
+function FlashHandler(args) {
+  this.type = args.type;
+  this._finishedCallback = args.finishedCallback;
+  
+  // we keep a record of all keyboard listeners added by any of our nodes;
+  // this is necessary so that if the containing SVG document is removed from
+  // the DOM we can clean up keyboard listeners, which are actually registered
+  // on the document object
+  this._keyboardListeners = [];
+  
+  // helps us with suspendRedraw operations
+  this._redrawManager = new _RedrawManager(this);
+  
+  if (this.type == 'script') {
+    this.id = args.svgID;
+    this._xml = args.xml;
+    this._svgString = args.svgString;
+    this._origSVG = args.origSVG;
+    this._scriptNode = args.scriptNode;
+    this._handleScript();
+  } else if (this.type == 'object') {
+    this.id = args.objID;
+    this._objNode = args.objNode;
+    this._handleObject();
+  }
+}
+
+// start of 'static' singleton functions and properties
+
+// when someone calls createElementNS or createTextNode we are not attached
+// to a handler yet; we need an XML document object in order to generate things
+// though, so this single unattached XML document object serves that purpose
+FlashHandler._unattachedDoc = parseXML('<?xml version="1.0"?>\n'
+                                       + '<svg xmlns="' + svgns + '"></svg>',
+                                       false);
+
+/** Prepares the svg.htc behavior for IE. */
+FlashHandler._prepareBehavior = function(libraryPath, htcFilename) {
+  // Adapted from Mark Finkle's SVG using VML project
+
+  // add the SVG namespace to the page in a way IE can use
+  var ns = null;
+  for (var i = 0; i < document.namespaces.length; i++) {
+    if (document.namespaces.item(i).name == 'svg') {
+      ns = document.namespaces.item(i);
+      break;
+    }
+  }
+  
+  if (ns === null) {
+    ns = document.namespaces.add('svg', svgns);
+  }
+  
+  // attach SVG behavior to the page
+  ns.doImport(libraryPath + htcFilename);
+};
+
+/** Fetches an _Element or _Node or creates a new one on demand.
+    
+    @param nodeXML XML or HTML DOM node for the element to use when 
+    constructing the _Element or _Node.
+    @param handler Optional. A FlashHandler to associate with this node if
+    the node is attached to a real DOM.
+    
+    @returns If IE, returns the HTC proxy for the node (i.e. node._htcNode) so
+    that external callers can manipulate it and have getter/setter magic happen; 
+    if other browsers, returns the _Node or _Element itself. */
+FlashHandler._getNode = function(nodeXML, handler) {
+  //console.log('getNode, nodeXML='+nodeXML+', nodeName='+nodeXML.nodeName+', guid='+nodeXML.getAttribute('__guid')+', handler='+handler);
+  var node;
+  
+  // if we've created an _Element or _Node for this XML before, we
+  // stored a reference to it by GUID so we could get it later
+  node = svgweb._guidLookup['_' + nodeXML.getAttribute('__guid')];
+
+  // NOTE: We represent text nodes using an XML Element node in order to do
+  // tracking, so we have to catch this fact below
+  var fakeTextNode = false;
+  if (!node && nodeXML.nodeName == '__text') {
+    fakeTextNode = true;
+  }
+  
+  if (!node && !fakeTextNode && nodeXML.nodeType == _Node.ELEMENT_NODE) {
+    // never seen before -- we'll have to create a new _Element now
+    node = new _Element(nodeXML.nodeName, nodeXML.prefix, 
+                        nodeXML.namespaceURI, nodeXML, handler, true);
+  } else if (!node && (nodeXML.nodeType == _Node.TEXT_NODE || fakeTextNode)) {
+    node = new _Node('#text', _Node.TEXT_NODE, null, null, nodeXML,
+                     handler, false);
+  } else if (!node) {
+    throw new Error('Unknown node type given to _getNode: ' 
+                    + nodeXML.nodeType);
+  }
+    
+  return node._getProxyNode();
+};
+
+/** Patches the document object to also use the Flash backend. */
+FlashHandler._patchBrowserObjects = function(win, doc) {
+  if (doc._getElementById) { // already patched
+    return;
+  }
+  
+  // We don't capture the original document functions as a closure, 
+  // as Firefox doesn't like this and will fail to run the original. 
+  // Instead, we capture the original versions on the document object
+  // itself but with a _ prefix.
+  
+  document._getElementById = document.getElementById;
+  document.getElementById = FlashHandler._getElementById;
+  
+  document._getElementsByTagNameNS = document.getElementsByTagNameNS;
+  document.getElementsByTagNameNS = FlashHandler._getElementsByTagNameNS;
+  
+  document._createElementNS = document.createElementNS;
+  document.createElementNS = FlashHandler._createElementNS;
+  
+  document._createElement = document.createElement;
+  document.createElement = FlashHandler._createElement;
+    
+  document._createTextNode = document.createTextNode;
+  document.createTextNode = FlashHandler._createTextNode;
+  
+  document._importNodeFunc = FlashHandler._importNodeFunc;
+  
+  document._createDocumentFragment = document.createDocumentFragment;
+  document.createDocumentFragment = FlashHandler._createDocumentFragment;
+};
+
+/** Our implementation of getElementById, which we patch into the 
+    document object. We do it here to prevent a closure and therefore
+    a memory leak on IE. Note that this function runs in the global
+    scope, so 'this' will not refer to our object instance but rather
+    the window object. */
+FlashHandler._getElementById = function(id) {
+  var result = document._getElementById(id);
+  if (result !== null) { // Firefox doesn't like 'if (result)'
+    return result;
+  }
+
+  for (var i = 0; i < svgweb.handlers.length; i++) {
+    if (svgweb.handlers[i].type == 'script') {
+      result = svgweb.handlers[i].document.getElementById(id);
+    }
+    
+    if (result) {
+      return result;
+    }
+  }
+  
+  return null;
+};
+
+/** Our implementation of getElementsByTagNameNS, which we patch into the 
+    document object. We do it here to prevent a closure and therefore
+    a memory leak on IE. Note that this function runs in the global
+    scope, so 'this' will not refer to our object instance but rather
+    the window object. */
+FlashHandler._getElementsByTagNameNS = function(ns, localName) {
+  //console.log('getElementsByTagNameNS, ns='+ns+', localName='+localName);
+  var results = createNodeList();
+  
+  // NOTE: can't use Array.concat to combine our arrays below because 
+  // document._getElementsByTagNameNS results aren't a real Array, they
+  // are DOM NodeLists
+  
+  if (document._getElementsByTagNameNS) {
+    var matches = document._getElementsByTagNameNS(ns, localName);
+    
+    for (var j = 0; j < matches.length; j++) {
+      results.push(matches[j]);
+    }
+  }
+  
+  for (var i = 0; i < svgweb.handlers.length; i++) {
+    if (svgweb.handlers[i].type == 'script') {
+      var doc = svgweb.handlers[i].document;
+      var matches = doc.getElementsByTagNameNS(ns, localName);
+      for (var j = 0; j < matches.length; j++) {
+        results.push(matches[j]);
+      }
+    }
+  }
+
+  return results;
+};
+
+/** Our implementation of createElementNS, which we patch into the 
+    document object. We do it here to prevent a closure and therefore
+    a memory leak on IE. Note that this function runs in the global
+    scope, so 'this' will not refer to our object instance but rather
+    the window object. */
+FlashHandler._createElementNS = function(ns, qname) {
+  //console.log('createElementNS, ns='+ns+', qname='+qname);
+  if (ns === null || ns == 'http://www.w3.org/1999/xhtml') {
+    if (isIE) {
+      return document.createElement(qname);
+    } else {
+      return document._createElementNS(ns, qname);
+    }
+  }
+  
+  // Firefox and Safari will incorrectly turn our internal parsed XML
+  // for the Flash Handler into actual SVG nodes, causing issues. This is
+  // a workaround to prevent this problem.
+  if (ns == svgns) {
+    ns = svgnsFake;
+  }
+  
+  // someone might be using this library on an XHTML page;
+  // only use our overridden createElementNS if they are using
+  // a namespace we have never seen before
+  if (!isIE) {
+    var namespaceFound = false;
+    for (var i = 0; i < svgweb.handlers.length; i++) {
+      if (svgweb.handlers[i].type == 'script'
+          && svgweb.handlers[i].document._namespaces['_' + ns]) {
+        namespaceFound = true;
+        break;
+      }
+    }
+    
+    if (!namespaceFound) {
+      return document._createElementNS(ns, qname);
+    }
+  }
+  
+  var prefix;
+  for (var i = 0; i < svgweb.handlers.length; i++) {
+    if (svgweb.handlers[i].type == 'script') {
+      prefix = svgweb.handlers[i].document._namespaces['_' + ns];
+      if (prefix) {
+        break;
+      }
+    }
+  }
+  
+  if (prefix == 'xmlns' || !prefix) { // default SVG namespace
+    prefix = null;
+  }
+
+  var node = new _Element(qname, prefix, ns);
+  
+  return node._getProxyNode(); 
+};
+
+/** Our implementation of createElement, which we patch into the 
+    document object. We do it here to prevent a closure and therefore
+    a memory leak on IE. Note that this function runs in the global
+    scope, so 'this' will not refer to our object instance but rather
+    the window object. 
+    
+    We patch createElement to have a second boolean argument that controls 
+    how we handle the nodeName, in particular for 'object'. This flags to
+    us that this object will be used as an SVG object so that we can 
+    keep track of onload listeners added through addEventListener.
+    
+    @param nodeName The node name, such as 'div' or 'object'.
+    @param forSVG Optional boolean on whether the node is an OBJECT that
+    will be used as an SVG OBJECT. Defaults to false. */
+FlashHandler._createElement = function(nodeName, forSVG) {
+  if (!forSVG) {
+    return document._createElement(nodeName);
+  } else if (forSVG && nodeName.toLowerCase() == 'object') {
+    var obj = document._createElement('object');
+    obj._listeners = [];
+    
+    // capture any original addEventListener method
+    var addEventListener = obj.addEventListener;
+    // Do a trick to form a mini-closure here so that we don't capture
+    // the objects above and form memory leaks on IE. We basically patch
+    // addEventListener for just this object to build up our list of
+    // onload listeners; for other event types we delegate to the browser's
+    // native way to attach event listeners.
+    (function(_obj, _addEventListener){
+      _obj.addEventListener = function(type, listener, useCapture) {
+        // handle onloads special
+        // NOTE: 'this' == our SVG OBJECT
+        if (type == 'load') {
+          this._listeners.push(listener);
+        } else if (!addEventListener) { // IE
+          this.attachEvent('on' + type, listener);
+        } else { // W3C
+          _addEventListener(type, listener, useCapture);
+        }  
+      };
+    })(obj, addEventListener); // pass in object and native addEventListener
+    
+    return obj;
+  }
+};
+
+/** Our implementation of createTextNode, which we patch into the 
+    document object. We do it here to prevent a closure and therefore
+    a memory leak on IE. Note that this function runs in the global
+    scope, so 'this' will not refer to our object instance but rather
+    the window object. 
+    
+    We patch createTextNode to have a second boolean argument that controls 
+    whether the resulting text node will be appended within our SVG tree. 
+    We need this so we can return one of our magic _Nodes instead of a native
+    DOM node for later appending and tracking. 
+    
+    @param data Text String.
+    @param forSVG Optional boolean on whether node will be attached to
+    SVG sub-tree. Defaults to false. */
+FlashHandler._createTextNode = function(data, forSVG) {
+  if (!forSVG) {
+    return document._createTextNode(data);
+  } else {
+    // we create a DOM Element instead of a DOM Text Node so that we can
+    // assign it a _guid and do tracking on it; we assign the data value
+    // to a DOM Text Node that is a child of our fake DOM Element. Note
+    // that since we are unattached we use an XML document object we
+    // created earlier (FlashHandler._unattachedDoc) in order to
+    // generate things.
+    var doc = FlashHandler._unattachedDoc;
+    var nodeXML;
+    if (isIE) {
+      nodeXML = doc.createElement('__text');
+    } else {
+      nodeXML = doc.createElementNS(svgnsFake, '__text');
+    }
+    nodeXML.appendChild(doc.createTextNode(data));
+    var textNode = new _Node('#text', _Node.TEXT_NODE, null, null, nodeXML);
+    textNode._nodeValue = data;
+    textNode.ownerDocument = document;
+    
+    return textNode._getProxyNode();
+  }
+};
+
+/** IE doesn't support the importNode function. We define it on the
+    document object as _importNodeFunc. Unfortunately we need it there
+    since it is a recursive function and needs to call itself, and we
+    don't want to do this on an object instance to avoid memory leaks
+    from closures on IE. Note that this function runs in the global scope
+    so 'this' will point to the Window object. 
+    
+    @param doc The document object to work with.
+    @param node An XML node to import
+    @param allChildren Whether to import the node's children as well. */
+FlashHandler._importNodeFunc = function(doc, node, allChildren) {
+  switch (node.nodeType) {
+    case 1: // ELEMENT NODE
+      var newNode = doc.createElement(node.nodeName);
+
+      // does the node have any attributes to add?
+      if (node.attributes && node.attributes.length > 0) {
+        for (var i = 0; i < node.attributes.length; i++) {
+          var attrName = node.attributes[i].nodeName;
+          var attrValue = node.getAttribute(attrName);
+          newNode.setAttribute(attrName, attrValue);
+        }
+      }
+
+      // are we going after children too, and does the node have any?
+      if (allChildren && node.childNodes && node.childNodes.length > 0) {
+        for (var i = 0; i < node.childNodes.length; i++) {
+          newNode.appendChild(
+              document._importNodeFunc(doc, node.childNodes[i], allChildren));
+        }
+      }
+
+      return newNode;
+      break;
+    case 3: // TEXT NODE
+      return doc.createTextNode(node.nodeValue);
+      break;
+  }
+};
+
+/** Our implementation of createDocumentFragment, which we patch into the 
+    document object. We do it here to prevent a closure and therefore
+    a memory leak on IE. Note that this function runs in the global
+    scope, so 'this' will not refer to our object instance but rather
+    the window object. 
+    
+    @param forSVG Optional boolean value. If true, then we return a fake
+    _DocumentFragment suitable for adding SVG nodes into. If false or not
+    present, then this is a normal browser native DocumentFragment. */
+FlashHandler._createDocumentFragment = function(forSVG) {
+  if (forSVG) {
+    return new _DocumentFragment(document)._getProxyNode();
+  } else {
+    return document._createDocumentFragment();
+  }
+};
+
+/** Flash has a number of encoding issues when talking over the Flash/JS
+    boundry. This method encapsulates fixing these issues. 
+    
+    @param str String before fixing encoding issues.
+    
+    @returns String suitable for sending to Flash. */
+FlashHandler._encodeFlashData = function(str) {
+  // Flash has a surprising bug: backslashing certain characters will
+  // cause an 'Illegal Character' error. For example, if I have a SCRIPT
+  // inside my SVG OBJECT as follows: var temp = "\"\"" then I will get
+  // this exception. To handle this we double encode back slashes.
+  str = str.toString().replace(/\\/g, '\\\\');
+  
+  // Flash barfs on entities, such as &quot;. To get around this, tokenize
+  // our & characters which we will then replace on the other side.
+  str = str.replace(/&/g, '__SVG__AMPERSAND');
+  
+  return str;
+};
+
+// end static singleton functions
+
+// methods that every FlashHandler instance will have
+extend(FlashHandler, {
+  /** The Flash object's ID; set by _SVGSVGElement. */
+  flashID: null, 
+  
+  /** The Flash object; set by _SVGSVGElement. */
+  flash: null,
+  
+  /** Turns the string results from Flash back into an Object. The HTC
+      still returns an Object, so we detect that and simply return it if so. */
+  _stringToMsg: function(msg) {
+    if (msg == null || typeof msg != 'string') {
+      return msg;
+    }
+    
+    var results = {};
+          
+    // our delimiter is a custom token: __SVG__DELIMIT
+    var tokens = msg.split(/__SVG__DELIMIT/g);
+    for (var i = 0; i < tokens.length; i++) {
+        // each token is a propname:propvalue pair
+        var cutAt = tokens[i].indexOf(':');
+        var propName = tokens[i].substring(0, cutAt);
+        var propValue = tokens[i].substring(cutAt + 1);
+        if (propValue === 'true') {
+            propValue = true;
+        } else if (propValue === 'false') {
+            propValue = false;
+        } else if (propValue === 'null') {
+            propValue = null;
+        } else if (propValue === 'undefined') {
+            propValue = undefined;
+        }
+                        
+        results[propName] = propValue;
+    }
+    
+    return results;
+  },
+  
+  /**
+    Stringifies the msg object sent back from the Flash SVG renderer or 
+    from the HTC file to help with debugging.
+  */
+  debugMsg: function(msg) {
+    if (msg === undefined) {
+      return 'undefined';
+    } else if (msg === null) {
+      return 'null';
+    }
+
+    var result = [];
+    for (var i in msg) {
+      result.push(i + ':' + msg[i]);
+    }
+    result = result.join(', ');
+
+    return '{' + result + '}';
+  },
+  
+  /** Sends a message to the Flash object rendering this SVG. 
+  
+      @param invoke Flash method to invoke, such as jsSetAttribute. 
+      @param args Array of values to pass to the Flash method. */
+  sendToFlash: function(invoke, args) {
+    //console.log('sendToFlash, invoke='+invoke);
+    // Performance testing found that Flash/JS communication is one of the
+    // primary bottlenecks. Two workarounds were found to make this faster:
+    // 1) Send over giant strings instead of Objects and 2) minimize
+    // our own custom marshaling code. To accomodate this, we take all
+    // of our arguments and turn them into a giant string, delimited with
+    // __SVG__DELIMIT. We then call individual Flash methods exposed through
+    // ExternalInterface on the Flash side for each method (given by 'invoke');
+    // each of these methods knows how to deal with their arguments, so we
+    // can minimize our marshaling code and keep it from being too generic
+    // and slow
+    
+    // note that 'this.flash' is set by the FlashInserter class after we 
+    // create a Flash object there
+    
+    var message = args.join('__SVG__DELIMIT');
+    
+    // batch things up if we are in the middle of a suspendRedraw operation
+    if (this._redrawManager.isSuspended()) {
+      this._redrawManager.batch(invoke, message);
+    } else {
+      return this.flash[invoke](message);
+    }
+  },
+  
+  /** @param msg The HTC sends us an Object populated with various values;
+      for Flash, we send over string values instead since we found that
+      performance is roughly double as strings. */
+  onMessage: function(msg) {
+    msg = this._stringToMsg(msg);
+    //console.log('onMessage, msg='+this.debugMsg(msg));
+    if (msg.type == 'event') {
+      this._onEvent(msg);
+      return;
+    } else if (msg.type == 'log') {
+      this._onLog(msg);
+      return;
+    } else if (msg.type == 'script') {
+      this._onObjectScript(msg);
+      return;
+    } else if (msg.type == 'viewsource') {
+      this._onViewSource();
+      return;
+    } else if (msg.type == 'error') {
+      this._onFlashError(msg);
+    }
+  },
+  
+  /** Called by _SVGSVGElement or _SVGObject when we are loaded and rendered. 
+  
+      @param id The ID of the SVG element.
+      @param type The type of element that is finished loading,
+      either 'script' or 'object'. */
+  fireOnLoad: function(id, type) {
+    //console.log('FlashHandler.fireOnLoad');
+    this._finishedCallback(id, type);
+  },
+  
+  /** Handles SVG embedded into the page with a SCRIPT tag. */
+  _handleScript: function() {
+    // create proxy objects representing the Document and SVG root; these
+    // kick off creating the Flash internally
+    this.document = new _Document(this._xml, this);
+    this.document.documentElement = 
+            new _SVGSVGElement(this._xml.documentElement, this._svgString,
+                               this._scriptNode, this);
+  },
+  
+  /** Handles SVG embedded into the page with an OBJECT tag. */
+  _handleObject: function() {
+    // transform the SVG OBJECT into a Flash one; the _SVGObject class
+    // will handle embedding the Flash asychronously; see there for 
+    // where the code continues after the Flash is done loading
+    this._svgObject = new _SVGObject(this._objNode, this);
+    this._objNode = null;
+  },
+  
+  _onLog: function(msg) {
+    console.log('FLASH: ' + msg.logString);
+  },
+  
+  _onEvent: function(msg) {
+    //console.log('onEvent, msg='+this.debugMsg(msg));
+    if (msg.eventType.substr(0, 5) == 'mouse' || msg.eventType == 'click') {
+      this._onMouseEvent(msg);
+      return;
+    } else if (msg.eventType == 'onRenderingFinished') {
+      if (this.type == 'script') {
+        this.document.documentElement._onRenderingFinished(msg);
+      } else if (this.type == 'object') {
+        this._svgObject._onRenderingFinished(msg);
+      }
+      return;
+    } else if (msg.eventType == 'onFlashLoaded') {
+      if (this.type == 'script') {
+        this.document.documentElement._onFlashLoaded(msg);
+      } else if (this.type == 'object') {
+        this._svgObject._onFlashLoaded(msg);
+      }
+      return;
+    }
+  },
+  
+  _onMouseEvent: function(msg) {
+    //console.log('_onMouseEvent, msg='+this.debugMsg(msg));
+    var target = this._getElementByGuid(msg.targetGUID);
+    var currentTarget = this._getElementByGuid(msg.currentTargetGUID);
+
+    // TODO: FIXME:
+    // The stageX,Y mouse coordinates delivered from flash are
+    // relative to the flash object.
+    // In native implementations, mouse event coordinates are
+    // relative to the browser content viewport (clientX, clientY)
+    // and to the actual physical screen pixels (screenX, screenY).
+    // AFAICT, flash does not have access to this positioning information,
+    // so for now we provide mouse coordinates which assume the flash
+    // object is located at the viewport origin and that the viewport
+    // origin is at the screen origin, which of course is not accurate.
+    // 
+    // However, SVG developers who take no interest as to what
+    // location the SVG file has been placed within the browser viewport
+    // or screen should be OK.
+    // 
+    // This logic should remain consistent with the implementation
+    // of getScreenCTM. Native implementations implement getScreenCTM
+    // relative to the browser viewport, not the actual screen,
+    // which is confusing because that differs from screenX,Y in
+    // mouse events. In fact, getScreenCTM must be implemented consistent
+    // with clientX,clientY mouse event coordinates! There are SVG
+    // scripting examples which depend on this.
+    // In our case, that means getScreenCTM should return a transform
+    // assuming the flash object is located at the browser origin,
+    // which is what flash provides as node.transform.concatenatedMatrix
+    var evt = { target: target._getProxyNode(),
+                currentTarget: currentTarget._getProxyNode(),
+                clientX: new Number(msg.stageX),
+                clientY: new Number(msg.stageY),
+                screenX: new Number(msg.stageX),
+                screenY: new Number(msg.stageY),
+                altKey: msg.altKey,
+                ctrlKey: msg.ctrlKey,
+                shiftKey: msg.shiftKey,
+                preventDefault: function() { this.returnValue=false; }
+              };
+              
+    var handlers = currentTarget._listeners[msg.eventType];
+    if (handlers) {
+        for (var i = 0; i < handlers.length; i++) {
+          var handler = handlers[i];
+          var listener = handler.listener;
+          listener(evt);
+        }
+    }
+    if (msg.scriptCode != null) {
+      if (this.type == 'object') {
+        var defineEvtCode = 
+        'var evt = { target: document.getElementById("' + 
+                      target._getProxyNode().getAttribute('id') + '") ,\n' +
+                    'currentTarget:document.getElementById("' +
+                      currentTarget._getProxyNode().getAttribute('id') + '") ,\n' +
+                    'clientX: ' + new Number(msg.stageX) + ',\n' +
+                    'clientY: ' + new Number(msg.stageY) + ',\n' +
+                    'screenX: ' + new Number(msg.stageX) + ',\n' +
+                    'screenY: ' + new Number(msg.stageY) + ',\n' +
+                    'altKey: ' + msg.altKey + ',\n' +
+                    'ctrlKey: ' + msg.ctrlKey + ',\n' +
+                    'shiftKey: ' + msg.shiftKey + ',\n' +
+                    'preventDefault: function() { this.returnValue=false; }\n' +
+                  '};\n';
+
+        // prepare the code for the correct object context.
+        var executeInContext = ';(function (evt) { ' + msg.scriptCode + '; }' +
+                                    ').call(evt.target, evt);\n';
+        // execute the code within the correct window context.
+        this.sandbox_eval(this._svgObject._sandboxedScript(defineEvtCode + executeInContext));
+      } else {
+        // TODO
+      }
+    }
+  },
+
+  _getElementByGuid: function(guid) {
+    var node = svgweb._guidLookup['_' + guid];
+    if (node) {
+        return node;
+    }
+    
+    var results;
+    if (this.type == 'script') {
+      results = xpath(this._xml, null, '//*[@__guid="' + guid + '"]');
+    } else if (this.type == 'object') {
+      results = xpath(this._svgObject._xml, null, '//*[@__guid="' + guid + '"]');
+    }
+
+    var nodeXML, node;
+    
+    if (results.length) {
+      nodeXML = results[0];
+    } else {
+      return null;
+    }
+    
+    // create or get an _Element for this XML DOM node for node
+    node = FlashHandler._getNode(nodeXML, this);
+    node._passThrough = true;
+    
+    return node;
+  },
+
+  /** Calls if the Flash encounters an error. */
+  _onFlashError: function(msg) {
+    this._onLog(msg);
+    svgweb._fireFlashError('FLASH: ' + msg.logString);
+    throw new Error('FLASH: ' + msg.logString);
+  },
+  
+  /** Stores any SCRIPT that might be inside an SVG file embedded through
+      an SVG OBJECT to be executed at a later time when are done
+      loading the Flash and HTC infrastructure. */
+  _onObjectScript: function(msg) {
+    //console.log('onObjectScript, msg='+this.debugMsg(msg));
+    
+    // batch for later execution
+    this._svgObject._scriptsToExec.push(msg.script);
+  },
+
+  /** View XML source for svg. Invoked from flash context menu. */
+  _onViewSource: function() {
+    var origSVG = this._origSVG;
+
+    if (!origSVG) { // dynamically created SVG objects and roots
+      origSVG = 'SVG Source Not Available';
+    }
+    
+    // escape tags
+    origSVG = origSVG.replace(/>/g,'&gt;').replace(/</g,'&lt;');
+
+    // place source in a new window
+    var w = window.open('', '_blank');
+    w.document.write('<html><body><pre>' + origSVG + '</pre></body></html>');
+    w.document.close();
+  }
+});
+
+
+/** Creates a NativeHandler that will embed the given SVG into the page using
+    native SVG support. Pass in an object literal with the correct arguments. 
+    
+    If dealing with an SVG SCRIPT tag these arguments are:
+    
+    type - The string 'script'.
+    svgID - A unique ID for the SVG root tag.
+    xml - XML Document object for parsed SVG.
+    svgString - The SVG content as a String.
+    origSVG - The original, pre-cleaned up SVG. Useful so that we can
+    provide the original SVG for 'View Source' functionality. Only used
+    by the FlashHandler.
+    scriptNode - The DOM element for the SVG SCRIPT block.
+    finishedCallback - Called when we are done loading and rendering the
+    SVG; called with two arguments, the svgID that was just rendered and 
+    type set to 'script'.
+    
+    If dealing with an SVG OBJECT tag these arguments are:
+    
+    type - The string 'object'.
+    objID - A unique ID for the SVG OBJECT tag.
+    objNode - DOM OBJECT pointing to an SVG URL to handle.
+    finishedCallback - Called when we are done loading and rendering the
+    SVG; called with two arguments, the svgID that was just rendered and 
+    type set to 'object'.
+  */
+function NativeHandler(args) {
+  this.type = args.type;
+  this._finishedCallback = args.finishedCallback;
+  
+  this._xml = args.xml;
+  
+  if (this.type == 'object') {
+    // these are mostly handled by the browser
+    this.id = args.objID;
+    this._objNode = args.objNode;
+    this._handleObject();
+  } else if (this.type == 'script') {
+    this.id = args.svgID;
+    this._svgString = args.svgString;
+    this._scriptNode = args.scriptNode;
+    this._handleScript();
+  }
+}
+
+// start of 'static' singleton functions, mostly around patching the 
+// document object with some bug fixes
+NativeHandler._patchBrowserObjects = function(win, doc) {
+  if (doc._getElementById) {
+    // already defined before
+    return;
+  }
+  
+  // we have to patch getElementById because getting a node by ID
+  // if it is namespaced to something that is not XHTML or SVG does
+  // not work natively; we build up a lookup table in _processSVGScript
+  // that we can work with later
+  // FIXME: explore actually removing support for this, as it's 'correct'
+  // behavior according to the XML specification and would save file size
+  // and simplify the NativeHandler code significantly
+  
+  // getElementById
+  doc._getElementById = doc.getElementById;
+  doc.getElementById = function(id) {
+    var result = doc._getElementById(id);
+    if (result !== null) { // Firefox doesn't like 'if (result)'
+      // This is to solve an edge bug on Safari 3;
+      // if you do a replaceChild on a non-SVG, non-HTML node,
+      // the element is still returned by getElementById!
+      // The element has a null parentNode.
+      // TODO: FIXME: Track down whether this is caused by a memory
+      // leak of some kind
+      if (result.parentNode === null) {
+        return null;
+      } else {
+        return result;
+      }
+    }
+    
+    // The id attribute for namespaced, non-SVG and non-HTML nodes
+    // does not get picked up by getElementById, such as 
+    // <sodipodi:namedview id="someID"/>, so we have to use an XPath 
+    // expression
+    result = xpath(doc, null, '//*[@id="' + id + '"]');
+    if (result.length) {
+      var node = result[0];
+      
+      // add an .id attribute for non-SVG and non-HTML nodes, which
+      // don't have them by default in order to have parity with the
+      // Flash viewer; note Firefox doesn't like if (node.namespaceURI)
+      // rather than (node.namespaceURI !== null)
+      if (node.namespaceURI !== null && node.namespaceURI != svgns
+          && node.namespaceURI != 'http://www.w3.org/1999/xhtml') {
+        svgweb._exportID(node);
+      }
+      
+      return node;
+    } else {
+      return null;
+    }
+  };
+  
+  // we also have to patch getElementsByTagNameNS because it does 
+  // not seem to work consistently with namepaced content in an HTML
+  // context, I believe due to casing issues (i.e. if the local name
+  // were RDF rather than rdf it won't work)
+  
+  // getElementsByTagNameNS
+  doc._getElementsByTagNameNS = doc.getElementsByTagNameNS;
+  doc.getElementsByTagNameNS = function(ns, localName) {
+    var result = doc._getElementsByTagNameNS(ns, localName);
+    
+    // firefox doesn't like if (result)
+    if (result !== null && result.length !== 0) {
+      if (ns !== null && ns != 'http://www.w3.org/1999/xhtml' && ns != svgns) {
+        // add an .id attribute for non-SVG and non-HTML nodes, which
+        // don't have them by default in order to have parity with the
+        // Flash viewer
+        for (var i = 0; i < result.length; i++) {
+          var node = result[i];
+          svgweb._exportID(node);
+        }
+        
+        return result;
+      }
+      
+      return result;
+    }
+    
+    if (result === null || result.length === 0) {
+      result = createNodeList();
+    }
+    
+    var xpathResults;
+    for (var i = 0; i < svgweb.handlers.length; i++) {
+      var handler = svgweb.handlers[i];
+      
+      if (handler.type == 'object') {
+        continue;
+      }
+      
+      var prefix = handler._namespaces['_' + ns];
+      if (!prefix) {
+        continue;
+      }
+      
+      var expr;
+      if (prefix == 'xmlns') { // default SVG namespace
+        expr = "//*[namespace-uri()='" + svgns + "' and name()='" 
+               + localName + "']";
+      } else if (prefix) {
+        expr = '//' + prefix + ':' + localName;
+      } else {
+        expr = '//' + localName;
+      }
+      
+      xpathResults = xpath(doc, handler._svgRoot, expr, 
+                           handler._namespaces);
+      if (xpathResults !== null && xpathResults !== undefined
+          && xpathResults.length > 0) {
+        for (var j = 0; j < xpathResults.length; j++) {
+          var node = xpathResults[j];
+          
+          // add an .id attribute for non-SVG and non-HTML nodes, which
+          // don't have them by default in order to have parity with the
+          // Flash viewer; note Firefox doesn't like if (node.namespaceURI)
+          // rather than (node.namespaceURI !== null)
+          if (node.namespaceURI !== null && node.namespaceURI != svgns
+              && node.namespaceURI != 'http://www.w3.org/1999/xhtml') {
+            svgweb._exportID(node);
+          }
+          
+          result.push(node);
+        }
+        
+        return result;
+      }
+    }
+    
+    return createNodeList();
+  };
+  
+  // Firefox/Native needs some help around svgElement.style.* access; see
+  // NativeHandler._patchStyleObject for details
+  if (isFF) {
+    NativeHandler._patchStyleObject(win);
+  }
+};
+
+/** Surprisingly, Firefox doesn't work when setting svgElement.style.property! 
+    For example, if you set myCircle.style.fill = 'red', nothing happens. You 
+    have to do myCircle.style.setProperty('fill', 'red', null). This issue is 
+    independent of the fact that we are running in a text/html situation,
+    and happens in self-contained SVG files as well. To fix this, we have
+    to patch in the ability to use the svgElement.style.* syntax. Note that
+    Safari, Opera, Chrome, and others all natively support the 
+    svgElement.style.* syntax so we don't have to patch anything there.
+    
+    @param window The owner window to patch.
+*/
+NativeHandler._patchStyleObject = function(win) {
+  // Unfortunately, trying to set SVGElement.prototype.style = to our own
+  // custom object that then defines all of our getters and setters doesn't
+  // work; somehow that is a 'magical' prototype that doesn't stick. Instead,
+  // the trick we have to use is to modify the CSSStyleDeclaration prototype.
+  // TODO: Document whether adding extra members to CSSStyleDeclaration has
+  // a memory impact because it also affects HTML elements.
+  
+  // prototype definitions are 'window' specific
+  var patchMe = win.CSSStyleDeclaration;
+  
+  // define getters and setters for SVG CSS property names
+  for (var i = 0; i < _Style._allStyles.length; i++) {
+    var styleName = _Style._allStyles[i];
+  
+    // convert camel casing (i.e. strokeWidth becomes stroke-width)
+    var stylePropName = styleName.replace(/([A-Z])/g, '-$1').toLowerCase();
+  
+    // Do a trick so that we can have a separate closure for each
+    // iteration of the loop and therefore each separate style name; 
+    // closures are function-level, so doing an anonymous inline function 
+    // will force the closure into just being what we pass into it. If we 
+    // don't do this then the closure will actually always simply be the final 
+    // index position when the for loop finishes.
+    (function(styleName, stylePropName) {
+      patchMe.prototype.__defineSetter__(styleName, 
+        function(styleValue) {
+          return this.setProperty(stylePropName, styleValue, null);
+        }
+      );
+      patchMe.prototype.__defineGetter__(styleName, 
+        function() {
+          return this.getPropertyValue(stylePropName);
+        }
+      );
+    })(styleName, stylePropName); // pass closure values
+  }
+};
+
+// end of static singleton functions
+
+// methods that every NativeHandler instance has
+extend(NativeHandler, {
+  /** Handles SVG embedded into the page with a SCRIPT tag. */
+  _handleScript: function() {
+    // build up a list of namespaces, used by our patched getElementsByTagNameNS
+    this._namespaces = this._getNamespaces();
+    
+    // replace the SCRIPT node with some actual SVG
+    this._processSVGScript(this._xml, this._svgString, this._scriptNode);
+    
+    // indicate that we are done
+    this._loaded = true;
+    this._finishedCallback(this.id, 'script');
+  },
+  
+  /** Handles SVG embedded into the page with an OBJECT tag. */
+  _handleObject: function() {
+    // needed so that Firefox doesn't display scroll bars on SVG content
+    // (Issue 164: http://code.google.com/p/svgweb/issues/detail?id=164)
+    // FIXME: Will this cause issues if someone wants to override default
+    // overflow behavior?
+    this._objNode.style.overflow = 'hidden';
+        
+    // make the object visible again
+    this._objNode.style.visibility = 'visible';
+    
+    // at this point we wait for our SVG OBJECTs to call svgweb.addOnLoad
+    // so we can know they have loaded. Some browsers however will fire the 
+    // onload of the SVG file _before_ our NativeHandler is done depending
+    // on whether they are loading from the cache or not; others will do it the 
+    // opposite way (Safari). If the onload was fired and therefore 
+    // svgweb.addOnLoad was called, then we stored a reference to the SVG file's 
+    // Window object there.
+    if (this._objNode._svgWindow) {
+      this._onObjectLoad(this._objNode._svgFunc, this._objNode._svgWindow);
+    } else {    
+      // if SVG Window isn't there, then we need to wait for svgweb.addOnLoad
+      // to get called by the SVG file itself. Store a reference to ourselves
+      // to be used there.
+      this._objNode._svgHandler = this;
+      
+      // if this is a purely static SVG file and it's the only one on the page
+      // then we need to manually see when it loads for Firefox; Safari
+      // correctly fires our onload listener but not Firefox.
+      // Issue 219: "body.onload not fired for SVG OBJECT"
+      // http://code.google.com/p/svgweb/issues/detail?id=219
+      var self = this;
+      this._objNode.addEventListener('load', function() {
+        var win = self._objNode.contentDocument.defaultView;
+        self._onObjectLoad(self._objNode._svgFunc, win);
+      }, false);
+    }
+  },
+  
+  /** Called by svgweb.addOnLoad() or our NativeHandler function constructor
+      after an SVG OBJECT has loaded to tell us that we have loaded. We require 
+      that script writers manually tell us when they have loaded; see 
+      'Knowing When Your SVG Is Loaded' section in the documentation.
+      
+      @param func The actual onload function to fire inside the SVG file
+      (i.e. this is the function the end developer wants run when the SVG
+      file is done loading).
+      @param win The Window object inside the SVG OBJECT */
+  _onObjectLoad: function(func, win) {
+    //console.log('onObjectLoad');
+    
+    // we might have already been called before
+    if (this._loaded) {
+      return; // nothing to do
+    }
+    
+    // flag that we are loaded
+    this._loaded = true;
+    
+    // patch the document and style objects to correct some browser bugs and 
+    // to have more consistency between the Flash and Native handlers
+    var doc = win.document;    
+    NativeHandler._patchBrowserObjects(win, doc);
+    
+    // make the SVG root currentTranslate property work like the FlashHandler,
+    // which slightly diverges from the standard due to limitations of IE
+    var root = doc.rootElement;
+    if (root) {
+      this._patchCurrentTranslate(root);
+    }
+    
+    // expose the svgns and xlinkns variables inside in the SVG files 
+    // Window object
+    win.svgns = svgns;
+    win.xlinkns = xlinkns;
+    
+    // build up list of namespaces so that getElementsByTagNameNS works with
+    // foreign namespaces
+    this._namespaces = this._getNamespaces(doc);
+    
+    // execute the actual SVG onload that the developer wants run
+    if (func) {
+      func.apply(win);
+    }
+    
+    // try to fire the page-level onload event; the svgweb object will check
+    // to make sure all SVG OBJECTs are loaded
+    svgweb._fireOnLoad();
+  },
+  
+  /** Inserts the SVG back into the HTML page with the correct namespace. */
+  _processSVGScript: function(xml, svgString, scriptNode) {
+   var importedSVG = document.importNode(xml.documentElement, true);
+   scriptNode.parentNode.replaceChild(importedSVG, scriptNode);
+   this._svgRoot = importedSVG;
+   
+   // make the SVG root currentTranslate property work like the FlashHandler,
+   // which slightly diverges from the standard due to limitations of IE
+   this._patchCurrentTranslate(this._svgRoot);
+  },
+  
+  /** Extracts any namespaces we might have, creating a prefix/namespaceURI
+      lookup table.
+      
+      NOTE: We only support namespace declarations on the root SVG node
+      for now.
+      
+      @param doc Optional. If present, then we retrieve the list of namespaces
+      from the SVG inside of the object. This is the document object inside the
+      SVG file.
+      
+      @returns An object that associates prefix to namespaceURI, and vice
+      versa. */
+  _getNamespaces: function(doc) {
+    var results = [];
+    
+    var attrs;
+    if (doc) {
+      attrs = doc.documentElement.attributes;
+    } else {
+      attrs = this._xml.documentElement.attributes;
+    }
+    
+    for (var i = 0; i < attrs.length; i++) {
+      var attr = attrs[i];
+      if (/^xmlns:?(.*)$/.test(attr.nodeName)) {
+        var m = attr.nodeName.match(/^xmlns:?(.*)$/);
+        var prefix = (m[1] ? m[1] : 'xmlns');
+        var namespaceURI = attr.nodeValue;
+        
+        // don't add duplicates
+        if (!results['_' + prefix]) {
+          results['_' + prefix] = namespaceURI;
+          results['_' + namespaceURI] = prefix;
+          results.push(namespaceURI);
+        }
+      }
+    }
+    
+    return results;
+  },
+  
+  /** We patch native browsers to use our getter/setter syntax for 
+      currentTranslate (we have to use formal methods like
+      currentTranslate.setX() for the Flash renderer instead of 
+      currentTranslate.x = 3 due to limitations in Internet Explorer)
+
+      @root The SVG Root on which we are going to patch the 
+      currentTranslate property. */
+  _patchCurrentTranslate: function(root) {
+    // we have to unfortunately do this at runtime for each SVG OBJECT
+    // since for Firefox/Native the SVGPoint prototype doesn't seem to correctly
+    // extend the currentTranslate property; Safari likes us to extend
+    // the prototype which DOES work there (and FF doesn't), while FF wants
+    // us to extend the actual currentTranslate instance (which Safari
+    // doesn't like)
+    var t;
+    if (typeof SVGRoot != 'undefined') { // FF
+      t = root.currentTranslate;
+    } else { // Safari et al
+      t = root.currentTranslate.__proto__;
+    }
+    
+    t.setX = function(newValue) { return this.x = newValue; }
+    t.getX = function() { return this.x; }
+    t.setY = function(newValue) { return this.y = newValue; }
+    t.getY = function() { return this.y; }
+    // custom extension in SVG Web to aid performance for Flash renderer
+    t.setXY = function(newValue1, newValue2) {
+      this.x = newValue1;
+      this.y = newValue2;
+    }
+  }
+  
+});
+
+/** Utility class that helps us keep track of any suspendRedraw operations
+    that might be in effect. The FlashHandler.sendToFlash() method is the
+    primary point at which we check to see if things are suspended; if they
+    are, then we batch them up internally. When things are unsuspended we
+    send them all over in one shot to Flash.
+    
+    @param handler The handler associated with this _RedrawManager */
+function _RedrawManager(handler) {
+  this._handler = handler;
+  
+  // we batch all the methods and messages into an array
+  this._batch = [];
+  
+  // the next available suspend ID; we increment this each time so we don't
+  // get duplicate suspend IDs
+  this._nextID = 1;
+  
+  // array of our suspend IDs
+  this._ids = [];
+  
+  // a lookup table going from suspend ID to a window.setTimeout ID
+  this._timeoutIDs = {};
+}
+
+extend(_RedrawManager, {
+  /** Returns true if redrawing is suspended. */
+  isSuspended: function() {
+    return (this._ids.length > 0);
+  },
+  
+  /** Batches up the given Flash method and message for later execution
+      when things are unsuspended. 
+      
+      @param method Flash method to invoke
+      @param message Message to send to Flash method. */
+  batch: function(method, message) {
+    // turn into a single string
+    this._batch.push(method + ':' + message);
+  },
+  
+  suspendRedraw: function(ms) {
+    if (ms === undefined) {
+      throw 'Not enough arguments to suspendRedraw';
+    }
+    
+    // generate an ID
+    var id = this._nextID; /* technically should be unsigned long */
+    this._nextID++;
+    
+    // kick off a timer to cancel if not unsuspended by developer in time
+    var self = this;
+    var timeoutID = window.setTimeout(function() {
+      self.unsuspendRedraw(id);
+      delete self._timeoutIDs['_' + id];
+    }, ms);
+    
+    // store an entry
+    this._ids.push(id);
+    this._timeoutIDs['_' + id] = timeoutID;
+    
+    // tell Flash to stop rendering
+    this._handler.flash.jsSuspendRedraw();
+    
+    return id;
+  },
+  
+  unsuspendRedraw: function(id) {
+    
+    var idx = -1;
+    for (var i = 0; i < this._ids.length; i++) {
+      if (this._ids[i] == id) {
+        idx = i;
+        break;
+      }
+    }
+    if (idx == -1) {
+      throw 'Unknown id passed to unsuspendRedraw: ' + id;
+    }
+  
+    // clear timeout if still in effect
+    if (this._timeoutIDs['_' + id] != undefined) {
+      window.clearTimeout(this._timeoutIDs['_' + id]);
+    }
+  
+    // clear entry
+    this._ids.splice(idx, 1);
+    delete this._timeoutIDs['_' + id];
+  
+    // other suspendRedraws in effect or nothing to do?
+    if (this.isSuspended()) {
+      return;
+    }
+  
+    // Send over everything to Flash now. We call jsUnsuspendRedrawAll and
+    // send over everything as a giant string. This string is setup as follows.
+    // method:message__SVG__METHOD__DELIMIT
+    // Basically, we have the method name, followed by a colon, followed
+    // by the message to send to that method (which might have __SVG__DELIMITs
+    // in it). Each method is separated by the __SVG__METHOD__DELIMIT
+    // delimiter.
+    var sendMe = this._batch.join('__SVG__METHOD__DELIMIT');
+    this._batch = [];
+    
+    // there is a chance that unsuspendRedraw is called while the page
+    // is unloading from a setTimout interval; surround everything with a 
+    // try/catch block to prevent an exception from blocking page unload
+    try {
+      this._handler.flash.jsUnsuspendRedrawAll(sendMe);
+    } catch (exp) {
+      console.log('unsuspendRedraw exception: ' + exp);
+    }
+  },
+  
+  unsuspendRedrawAll: function() {
+    for (var i = 0; i < this._ids.length; i++) {
+      this.unsuspendRedraw(this._ids[i]);
+    }
+  },
+  
+  forceRedraw: function() {
+    // not implemented
+  }
+});    
+
+
+/*
+  The SVG 1.1 spec requires DOM Level 2 Core and Events support.
+  
+  DOM Level 2 Core spec: http://www.w3.org/TR/DOM-Level-2-Core/
+  DOM Level 2 Events spec: 
+  http://www.w3.org/TR/DOM-Level-2-Events/events.html#Events-Registration-interfaces
+  
+  The following DOM 2 Core interfaces are not supported:
+  NamedNodeMap, Attr, Text, Comment, CDATASection, 
+  DocumentType, Notation, Entity, EntityReference,
+  ProcessingInstruction
+
+  We underscore our DOM interface names below so that they don't collide 
+  with the browser's implementations of these (for example, Firefox exposes 
+  the DOMException, Node, etc. interfaces as well)
+*/
+
+function _DOMImplementation() {}
+
+extend(_DOMImplementation, {
+  hasFeature: function(feature /* String */, version /* String */) /* Boolean */ {
+    // TODO
+  }
+  
+  // Note: createDocumentType and createDocument left out
+});
+
+
+// Note: Only element, text nodes, document nodes, and document fragment nodes
+// are supported for now. We don't parse and retain comments, processing 
+// instructions, etc. CDATA nodes are turned into text nodes.
+function _Node(nodeName, nodeType, prefix, namespaceURI, nodeXML, handler, 
+               passThrough) {
+  if (nodeName === undefined && nodeType === undefined) {
+    // prototype subclassing
+    return;
+  }
+  
+  this.nodeName = nodeName;
+  this._nodeXML = nodeXML;
+  this._handler = handler;
+  this._listeners = {};
+  this._detachedListeners = [];
+  this.fake = true;
+  
+  // Firefox and Safari will incorrectly turn our internal parsed XML
+  // for the Flash Handler into actual SVG nodes, causing issues. This is
+  // a workaround to prevent this problem.
+  if (namespaceURI == svgnsFake) {
+    namespaceURI = svgns;
+  }
+  
+  // determine whether we are attached
+  this._attached = true;
+  if (!this._handler) {
+    this._attached = false;
+  }
+  
+  // handle nodes that were created with createElementNS but are not yet
+  // attached to the document yet
+  if (nodeType == _Node.ELEMENT_NODE && !this._nodeXML && !this._handler) {
+    // build up an empty XML node for this element
+    var xml = '<?xml version="1.0"?>\n';
+    if (namespaceURI == svgns && !prefix) {
+      // we use a fake namespace for SVG to prevent Firefox and Safari
+      // from incorrectly making these XML nodes real SVG objects!
+      xml += '<' + nodeName + ' xmlns="' + svgnsFake + '"/>';
+    } else {
+      xml += '<' + nodeName + ' xmlns:' + prefix + '="' + namespaceURI + '"/>';
+    }
+        
+    this._nodeXML = parseXML(xml).documentElement;
+  } else if (nodeType == _Node.DOCUMENT_FRAGMENT_NODE) {
+    var xml = '<?xml version="1.0"?>\n'
+              + '<__document__fragment></__document__fragment>';
+    this._nodeXML = parseXML(xml).documentElement;
+  }
+  
+  // handle guid tracking
+  if (nodeType != _Node.DOCUMENT_NODE && this._nodeXML) {
+    if (!this._nodeXML.getAttribute('__guid')) {
+      this._nodeXML.setAttribute('__guid', guid());
+    }
+    this._guid = this._nodeXML.getAttribute('__guid');
+    
+    // store a reference to the new node so that later fetching of this
+    // node will respect object equality
+    svgweb._guidLookup['_' + this._guid] = this;
+  }
+  
+  if (nodeType == _Node.ELEMENT_NODE) {
+    if (nodeName.indexOf(':') != -1) {
+      this.localName = nodeName.match(/^[^:]*:(.*)$/)[1];
+    } else {
+      this.localName = nodeName;
+    }
+  }
+  
+  if (nodeType) {
+    this.nodeType = nodeType;
+  } else {
+    this.nodeType = _Node.ELEMENT_NODE;
+  }
+    
+  if (nodeType == _Node.ELEMENT_NODE 
+      || nodeType == _Node.DOCUMENT_NODE
+      || nodeType == _Node.DOCUMENT_FRAGMENT_NODE) {
+    this.prefix = prefix;
+    this.namespaceURI = namespaceURI;
+    this._nodeValue = null;
+  } else if (nodeType == _Node.TEXT_NODE) {
+    // We store the actual text node value as a child of our 'fake' DOM
+    // Element. We have to use a DOM Element so that we have access to
+    // setAttribute to store a fake __guid attribute to track the text node. 
+    this._nodeValue = this._nodeXML.firstChild.nodeValue;
+    
+    // browsers return null instead of undefined; match their behavior
+    this.prefix = null;
+    this.namespaceURI = null;
+    if (this._nodeValue === undefined) {
+      this._nodeValue = null;
+    }
+  }
+  
+  if (this._attached) {
+    if (this._handler.type == 'script') {
+      this.ownerDocument = document;
+    } else if (this._handler.type == 'object') {
+      this.ownerDocument = this._handler.document;
+    }
+  }
+  
+  if (passThrough === undefined) {
+    passThrough = false;
+  }
+  this._passThrough = passThrough;
+  
+  // create empty stub methods for certain methods to help IE's HTC be
+  // smaller, which has a very strong affect on performance
+  if (isIE) {
+    this._createEmptyMethods();
+  }
+  
+  this._childNodes = this._createChildNodes();
+    
+  // we use an XML Element rather than an XML Text Node to 'track' our
+  // text nodes; indicate as such using an attribute
+  if (nodeType == _Node.TEXT_NODE) {
+    this._nodeXML.setAttribute('__fakeTextNode', true);
+  }
+  
+  // prepare the getter and setter magic for non-IE browsers
+  if (!isIE) {
+    this._defineNodeAccessors();
+  } else if (isIE && this.nodeType != _Node.DOCUMENT_NODE) {
+    // If we are IE, we must use a behavior in order to get onpropertychange
+    // and override core DOM methods. We only do this for normal SVG elements
+    // and DocumentFragments and not for the DOCUMENT element.
+    this._createHTC();
+  }
+}
+
+mixin(_Node, {
+  ELEMENT_NODE: 1,
+  TEXT_NODE: 3,
+  DOCUMENT_NODE: 9,
+  DOCUMENT_FRAGMENT_NODE: 11
+  
+  // Note: many other node types left out here
+});
+
+extend(_Node, {
+  /* Event listeners; this is an object hashtable that keys the event name,
+     such as 'mousedown', with an array of functions to execute when this 
+     event happens. This second level array is also used as an object
+     hashtable to associate the function + useCapture with the listener so
+     that we can implement removeListener at a later point. We only add to
+     this table if the node is attached to the DOM. Example:
+     
+     _listeners['mousedown'] --> array of listeners
+     _listeners['mousedown'][0] --> first mousedown listener, a function
+     _listeners['mousedown']['_' + someListener + ':' + useCapture] --> 
+                                  getting listener by function reference for
+                                  mouse down event 
+  */
+  _listeners: null,
+  
+  /* An array that we use to store addEventListener requests for detached nodes, 
+     where each array entry is an object literal with the following values:
+     
+     type - The type of the event
+     listener - The function object to execute
+     useCapture - Whether to use capturing or not. */
+  _detachedListeners: null,
+  
+  insertBefore: function(newChild /* _Node */, refChild /* _Node */) {
+    //console.log('insertBefore, newChild='+newChild.id+', refChild='+refChild.id);
+    
+    if (this.nodeType != _Node.ELEMENT_NODE
+        && this.nodeType != _Node.DOCUMENT_FRAGMENT_NODE) {
+      throw 'Not supported';
+    }
+    
+    // if the children are DOM nodes, turn them into _Node or _Element
+    // references
+    newChild = this._getFakeNode(newChild);
+    refChild = this._getFakeNode(refChild);
+    
+    // flag that indicates that the child is a _DocumentFragment (keeps
+    // the overall code smaller); we have to treat these differently since
+    // we are importing all of the DocumentFragment's children rather than
+    // just one new child
+    var isFragment = (newChild.nodeType == _Node.DOCUMENT_FRAGMENT_NODE);
+    var fragmentChildren;
+    if (isFragment) {
+      fragmentChildren = newChild._getChildNodes(true /* get fake nodes */);
+    }
+    
+    // are we an empty DocumentFragment?
+    if (isFragment && fragmentChildren.length == 0) {
+      // nothing to do
+      newChild._reset(); // clean out DocumentFragment
+      return newChild._getProxyNode();
+    }
+    
+    // get an index position for where refChild is
+    var findResults = this._findChild(refChild);
+    if (findResults === null) {
+      // TODO: Throw the correct DOM error instead
+      throw new Error('Invalid child passed to insertBefore');
+    }
+    var position = findResults.position;
+    
+    // import the newChild or all of the _DocumentFragment children into 
+    // ourselves, insert it into our XML, and process the newChild and all 
+    // its descendants
+    var importMe = [];
+    if (isFragment) {
+      for (var i = 0; i < fragmentChildren.length; i++) {
+        importMe.push(fragmentChildren[i]);
+      }
+    } else {
+      importMe.push(newChild);
+    }
+    for (var i = 0; i < importMe.length; i++) {
+      var importedNode = this._importNode(importMe[i], false);
+      this._nodeXML.insertBefore(importedNode, refChild._nodeXML);
+      this._processAppendedChildren(importMe[i], this, this._attached, 
+                                    this._passThrough);
+    }
+    
+    // inform Flash about the change
+    if (this._attached && this._passThrough) {
+      var xmlString = FlashHandler._encodeFlashData(this._toXML(newChild));
+      this._handler.sendToFlash('jsInsertBefore',
+                                [ refChild._guid, this._guid, position,
+                                  xmlString ]);
+    }
+    
+    if (!isIE) {
+      // _childNodes is an object literal instead of an array
+      // to support getter/setter magic for Safari
+      for (var i = 0; i < importMe.length; i++) {
+        this._defineChildNodeAccessor(this._childNodes.length);
+        this._childNodes.length++;
+      }
+    }
+    
+    // clear out the child if it is a DocumentFragment
+    if (newChild.nodeType == _Node.DOCUMENT_FRAGMENT_NODE) {
+      newChild._reset();
+    }
+    
+    return newChild._getProxyNode();
+  },
+  
+  replaceChild: function(newChild /* _Node */, oldChild /* _Node */) {
+    //console.log('replaceChild, newChild='+newChild.nodeName+', oldChild='+oldChild.nodeName);
+    
+    if (this.nodeType != _Node.ELEMENT_NODE
+        && this.nodeType != _Node.DOCUMENT_FRAGMENT_NODE) {
+      throw 'Not supported';
+    }
+    
+    // the children could be DOM nodes; turn them into something we can
+    // work with, such as _Nodes or _Elements
+    newChild = this._getFakeNode(newChild);
+    oldChild = this._getFakeNode(oldChild);
+    
+    // flag that indicates that the child is a _DocumentFragment (keeps
+    // the overall code smaller); we have to treat these differently since
+    // we are importing all of the DocumentFragment's children rather than
+    // just one new child
+    var isFragment = (newChild.nodeType == _Node.DOCUMENT_FRAGMENT_NODE);
+    var fragmentChildren;
+    if (isFragment) {
+      fragmentChildren = newChild._getChildNodes(true /* get fake nodes */);
+    }
+    
+    // are we an empty DocumentFragment?
+    if (isFragment && fragmentChildren.length == 0) {
+      // nothing to do
+      newChild._reset(); // clean out DocumentFragment
+      return newChild._getProxyNode();
+    }
+    
+    // in our XML, find the index position of where oldChild used to be
+    var findResults = this._findChild(oldChild);
+    if (findResults === null) {
+      // TODO: Throw the correct DOM error instead
+      throw new Error('Invalid child passed to replaceChild');
+    }
+    var position = findResults.position;
+    
+    // remove oldChild
+    this.removeChild(oldChild);
+    
+    // import the newChild or all of the _DocumentFragment children into 
+    // ourselves, insert it into our XML, and process the newChild and all 
+    // its descendants
+    var importMe = [];
+    if (isFragment) {
+      for (var i = 0; i < fragmentChildren.length; i++) {
+        importMe.push(fragmentChildren[i]);
+      }
+    } else {
+      importMe.push(newChild);
+    }
+    
+    if (!isIE) {
+      for (var i = 0; i < importMe.length; i++) {
+        // _childNodes is an object literal instead of an array
+        // to support getter/setter magic for Safari
+        this._defineChildNodeAccessor(this._childNodes.length);
+        this._childNodes.length++;
+      }
+    }
+    
+    var addToEnd = false;
+    if (position >= this._nodeXML.childNodes.length) {
+      addToEnd = true;
+    }
+    var insertAt = position;
+    for (var i = 0; i < importMe.length; i++) {    
+      // import newChild into ourselves, telling importNode not to do an
+      // appendChild since we will handle things ourselves manually later on
+      var importedNode = this._importNode(importMe[i], false);
+
+      // now bring the imported child into our XML where the oldChild used to be
+      if (addToEnd) {
+        // old node was at the end -- just do an appendChild
+        this._nodeXML.appendChild(importedNode);
+      } else {
+        // old node is somewhere in the middle or beginning; jump one ahead
+        // from the old position and do an insertBefore
+        var placeBefore = this._nodeXML.childNodes[insertAt];
+        this._nodeXML.insertBefore(importedNode, placeBefore);
+        insertAt++;
+      }
+    }
+    
+    // tell Flash about the newly inserted child
+    if (this._attached && this._passThrough) {
+      var xmlString = FlashHandler._encodeFlashData(this._toXML(newChild));
+      this._handler.sendToFlash('jsAddChildAt',
+                                [ this._guid, position, xmlString ]);
+    }
+    
+    // now process the newChild's node
+    this._processAppendedChildren(newChild, this, this._attached, 
+                                  this._passThrough);
+    
+    // recursively set the removed node to be unattached and to not
+    // pass through changes to Flash anymore
+    oldChild._setUnattached();
+    
+    // track this removed node so we can clean it up on page unload
+    svgweb._removedNodes.push(oldChild._getProxyNode());
+    
+    // clear out the child if it is a DocumentFragment
+    if (newChild.nodeType == _Node.DOCUMENT_FRAGMENT_NODE) {
+      newChild._reset();
+    }
+    
+    return oldChild._getProxyNode();
+  },
+  
+  removeChild: function(child /* _Node or DOM Node */) {
+    //console.log('removeChild, child='+child.nodeName+', this='+this.nodeName);
+    if (this.nodeType != _Node.ELEMENT_NODE
+        && this.nodeType != _Node.DOCUMENT_FRAGMENT_NODE) {
+      throw 'Not supported';
+    }
+    
+    if (child.nodeType != _Node.ELEMENT_NODE 
+        && child.nodeType != _Node.TEXT_NODE) {
+      throw 'Not supported';    
+    }
+    
+    // the child could be a DOM node; turn it into something we can
+    // work with, such as a _Node or _Element
+    child = this._getFakeNode(child);
+
+    // remove child from our list of XML
+    var findResults = this._findChild(child);
+    if (findResults === null) {
+      // TODO: Throw the correct DOM error instead
+      throw new Error('Invalid child passed to removeChild');
+    }
+    var position = findResults.position;
+    
+    this._nodeXML.removeChild(findResults.nodeXML);
+
+    // remove from our nodeById lookup table
+    if (child.nodeType == _Node.ELEMENT_NODE) {
+      var childID = child._getId();
+      if (childID && this._attached) {
+        this._handler.document._nodeById['_' + childID] = undefined;
+      }
+    }
+    
+    // TODO: FIXME: Note that we don't remove the node from the GUID lookup
+    // table; this is because developers might still be working with the
+    // node while detached, and we want object equality to hold. This means
+    // that memory will grow over time however. Find a good solution to this
+    // issue without having to have the complex unattached child node structure
+    // we had before.    
+    //svgweb._guidLookup['_' + child._guid] = undefined;
+    
+    // persist event listeners if this node is later reattached
+    child._persistEventListeners();
+    
+    // remove the getter/setter for this childNode for non-IE browsers
+    if (!isIE) {
+      // just remove the last getter/setter, since they all resolve
+      // to a dynamic function anyway
+      delete this._childNodes[this._childNodes.length - 1];
+      this._childNodes.length--;
+    } else {
+      // for IE, remove from _childNodes data structure
+      this._childNodes.splice(position, 1);
+    }
+    
+    // inform Flash about the change
+    if (this._attached && this._passThrough) {
+      this._handler.sendToFlash('jsRemoveChild', [ child._guid ]);
+    }
+    
+    // recursively set the removed node to be unattached and to not
+    // pass through changes to Flash anymore
+    child._setUnattached();
+    
+    // track this removed node so we can clean it up on page unload
+    svgweb._removedNodes.push(child._getProxyNode());
+    
+    return child._getProxyNode();  
+  },
+  
+  /** Appends the given child. The child can either be _Node, an
+      actual DOM Node, or a Text DOM node created through 
+      document.createTextNode. We return either a _Node or an HTC reference
+      depending on the browser. */
+  appendChild: function(child /* _Node or DOM Node */) {
+    //console.log('appendChild, child='+child.nodeName+', this.nodeName='+this.nodeName);
+    if (this.nodeType != _Node.ELEMENT_NODE
+        && this.nodeType != _Node.DOCUMENT_FRAGMENT_NODE) {
+      throw 'Not supported';
+    }
+    
+    // the child could be a DOM node; turn it into something we can
+    // work with, such as a _Node or _Element
+    child = this._getFakeNode(child);
+    
+    // flag that indicates that the child is a _DocumentFragment (keeps
+    // the overall code smaller); we have to treat these differently since
+    // we are importing all of the DocumentFragment's children rather than
+    // just one new child
+    var isFragment = (child.nodeType == _Node.DOCUMENT_FRAGMENT_NODE);
+    var fragmentChildren;
+    if (isFragment) {
+      fragmentChildren = child._getChildNodes(true /* get fake nodes */);
+    }
+    
+    // are we an empty DocumentFragment?
+    if (isFragment && fragmentChildren.length == 0) {
+      // nothing to do
+      child._reset(); // clean out DocumentFragment
+      return child._getProxyNode();
+    }
+    
+    // add the child's XML to our own
+    if (isFragment) {
+      for (var i = 0; i < fragmentChildren.length; i++) {
+        this._importNode(fragmentChildren[i]);
+      }
+    } else {
+      this._importNode(child);
+    }
+    
+    if (isIE) {
+      // _childNodes is a real array on IE rather than an object literal
+      // like other browsers
+      if (isFragment) {
+        for (var i = 0; i < fragmentChildren.length; i++) {
+          this._childNodes.push(fragmentChildren[i]._htcNode);
+        }
+      } else {
+        this._childNodes.push(child._htcNode);
+      }
+    } else {
+      // _childNodes is an object literal instead of an array
+      // to support getter/setter magic for Safari
+      if (isFragment) {
+        for (var i = 0; i < fragmentChildren.length; i++) {
+          this._defineChildNodeAccessor(this._childNodes.length);
+          this._childNodes.length++;
+        }
+      } else {
+        this._defineChildNodeAccessor(this._childNodes.length);
+        this._childNodes.length++;
+      }
+    }
+
+    // serialize this node and all its children into an XML string and
+    // send that over to Flash
+    if (this._attached && this._passThrough) {  
+      // note that if the child is a DocumentFragment that we simply send
+      // the <__document__fragment> tag over to Flash so it knows what it is
+      // dealing with
+      var xmlString = FlashHandler._encodeFlashData(this._toXML(child));
+      this._handler.sendToFlash('jsAppendChild', [ this._guid, xmlString ]);
+    }
+
+    // process the children (cache important info, add a handler, etc.)
+    this._processAppendedChildren(child, this, this._attached, 
+                                  this._passThrough);
+
+    // clear out the child if it is a DocumentFragment
+    if (child.nodeType == _Node.DOCUMENT_FRAGMENT_NODE) {
+      child._reset();
+    }
+
+    return child._getProxyNode();
+  },
+  
+  hasChildNodes: function() /* Boolean */ {
+    return (this._getChildNodes().length > 0);
+  },
+  
+  // Note: cloneNode and normalize not supported
+  
+  isSupported: function(feature /* String */, version /* String */) {
+    if (version == '2.0') {
+      if (feature == 'Core') {
+        // NOTE: There are a number of things we don't yet support in Core,
+        // but we support the bulk of it
+        return true;
+      } else if (feature == 'Events' || feature == 'UIEvents'
+                 || feature == 'MouseEvents') {
+        // NOTE: We plan on supporting most of these interfaces, but not
+        // all of them
+        return true;
+      }
+    } else {
+      return false;
+    }
+  },
+  
+  hasAttributes: function() /* Boolean */ {
+    if (this.nodeType == _Node.ELEMENT_NODE) {
+      for (var i in this._attributes) {
+        // if this is an XMLNS declaration, don't consider it a valid
+        // attribute for hasAttributes
+        if (/^_xmlns/i.test(i)) {
+          continue;
+        }
+        
+        // if there is an ID attribute, but it's one of our randomly generated
+        // ones, then don't consider this a valid attribute for hasAttributes
+        if (i == '_id' && /^__svg__random__/.test(this._attributes[i])) {
+          continue;
+        }
+        
+        // ignore our internal __guid and __fakeTextNode attributes;
+        // note that we have an extra _ before our attribute name when we
+        // store it internally, so __guid becomes ___guid
+        if (i == '___guid' && /^__guid/.test(this._attributes[i])) {
+          continue;
+        }
+        if (i == '___fakeTextNode' 
+            && /^__fakeTextNode/.test(this._attributes[i])) {
+          continue;
+        }
+        
+        // our attributes start with an underscore
+        if (/^_.*/.test(i) && this._attributes.hasOwnProperty(i)) {
+          return true;
+        }
+      }
+      
+      return false;
+    } else {
+      return false;
+    }
+  },
+  
+  /*
+    DOM Level 2 EventTarget interface methods.
+  
+    Note: dispatchEvent not supported. Technically as well this interface
+    should not appear on SVG elements that don't have any event dispatching,
+    such as the SVG DESC element, but in our implementation they still appear.
+    We also don't support the useCapture feature for addEventListener and
+    removeEventListener.
+  */
+  
+  /* @param _adding Internal boolean flag used when we are adding this node
+     to a real DOM, so that we can replay and send our addEventListener 
+     request over to Flash. */
+  addEventListener: function(type, listener /* Function */, useCapture, 
+                             _adding /* Internal -- Boolean */) {
+    //console.log('addEventListener, type='+type+', listener='+listener+', useCapture='+useCapture+', _adding='+_adding);
+    // Note: capturing not supported
+    
+    if (this.nodeType != _Node.ELEMENT_NODE
+        && this.nodeType != _Node.TEXT_NODE) {
+      throw 'Not supported';
+    }
+    
+    if (!_adding && !this._attached) {
+      // add to a list of event listeners that will get truly registered when
+      // we get attached in _Node._processAppendedChildren()
+      this._detachedListeners.push({ type: type, listener: listener, 
+                                     useCapture: useCapture });
+      return;
+    }
+    
+    // add to our list of event listeners
+    if (this._listeners[type] === undefined) {
+      this._listeners[type] = [];
+    }
+    this._listeners[type].push({ type: type, listener: listener, 
+                                 useCapture: useCapture });
+    this._listeners[type]['_' + listener.toString() + ':' + useCapture] = listener;
+                                        
+    if (type == 'keydown') {
+      // TODO: Be able to handle key events on individual SVG graphics 
+      // (g, rect, etc.) that might have focus
+      // TODO: FIXME: do we want to be adding this listener to 'document'
+      // when dealing with SVG OBJECTs?
+      
+      // prevent closure by using an inline method
+      var wrappedListener = (function(listener) {
+                                return function(evt) {
+                                  // shim in preventDefault function for IE
+                                  if (!evt.preventDefault) {
+                                    evt.preventDefault = function() {
+                                      this.returnValue = false;
+                                      evt = null;
+                                    }
+                                  }
+                                  // call the developer's listener now
+                                  listener(evt);
+                                }
+                              })(listener);
+      // save keyboard listeners for later so we can clean them up
+      // later if the parent SVG document is removed from the DOM
+      this._handler._keyboardListeners.push(wrappedListener);
+      
+      // now actually subscribe to the event
+      this._addEvent(document, type, wrappedListener);
+      return;
+    }
+
+    this._handler.sendToFlash('jsAddEventListener', [ this._guid, type ]);
+  },
+  
+  removeEventListener: function(type, listener /* Function */, useCapture) {
+    // NOTE: capturing not supported
+    
+    if (this.nodeType != _Node.ELEMENT_NODE
+        && this.nodeType != _Node.TEXT_NODE) {
+      throw 'Not supported';
+    }
+    
+    // TODO: Implement
+  },
+
+  getScreenCTM: function() {
+    var msg = this._handler.sendToFlash('jsGetScreenCTM', [ this._guid ]); 
+    msg = this._handler._stringToMsg(msg);
+    return new _SVGMatrix(new Number(msg.a), new Number(msg.b), new Number(msg.c),
+                          new Number(msg.d), new Number(msg.e), new Number(msg.f),
+                          this._handler);
+  },
+
+  getCTM: function() {
+    return this.getScreenCTM();
+  },
+
+  toString: function() {
+    if (this.namespaceURI == svgns) {
+      return '[_SVG' + this.localName.charAt(0).toUpperCase()
+             + this.localName.substring(1) + ']';
+    } else if (this.prefix) {
+      return '[' + this.prefix + ':' + this.localName + ']';
+    } else if (this.localName) {
+      return '[' + this.localName + ']';
+    } else {
+      return '[' + this.nodeName + ']';
+    }
+  },
+  
+  /** Adds an event cross platform. 
+  
+      @param obj Obj to add event to.
+      @param type String type of event.
+      @param fn Function to execute when event happens. */
+  _addEvent: function(obj, type, fn) {
+    if (obj.addEventListener) {
+      obj.addEventListener(type, fn, false);
+    }
+    else if (obj.attachEvent) { // IE
+      obj['e'+type+fn] = fn;
+      // do a trick to prevent closure over ourselves, which can lead to
+      // IE memory leaks
+      obj[type+fn] = (function(obj, type, fn) { 
+        return function(){ obj['e'+type+fn](window.event) }; 
+      })(obj, type, fn);
+      obj.attachEvent('on'+type, obj[type+fn]);
+    }
+  },
+  
+  // NOTE: technically the following attributes should be read-only, 
+  // raising DOMExceptions if set, but for simplicity we make them 
+  // simple JS properties instead. If set nothing will happen.
+  nodeName: null,
+  nodeType: null,
+  ownerDocument: null, /* Document or _Document depending on context. */
+  namespaceURI: null,
+  localName: null,
+  prefix: null, /* Note: in the DOM 2 spec this is settable but not for us */
+  
+  // getter/setter attribute methods
+  
+  // nodeValue defined as getter/setter
+  // textContent and data defined as getters/setters for TEXT_NODES
+  // childNodes defined as getter/setter
+  
+  _getParentNode: function() {
+    if (this.nodeType == _Node.DOCUMENT_NODE
+        || this.nodeType == _Node.DOCUMENT_FRAGMENT_NODE) {
+      return null;
+    }
+    
+    // are we the root SVG node when being embedded by an SVG SCRIPT?
+    if (this.nodeName == 'svg' && this._handler.type == 'script') {
+      return this._handler.flash.parentNode;
+    } else if (this.nodeName == 'svg' && this._handler.type == 'object') {
+      // if we are the root SVG node and are embedded by an SVG OBJECT, then
+      // our parent is a #document object
+      return this._handler.document;
+    }
+    
+    var parentXML = this._nodeXML.parentNode;
+    // unattached nodes might have an XML document as their parentNode
+    if (parentXML === null || parentXML.nodeType == _Node.DOCUMENT_NODE) {
+      return null;
+    }
+    
+    var node = FlashHandler._getNode(parentXML, this._handler);
+    
+    return node;
+  },
+  
+  _getFirstChild: function() {
+    if (this.nodeType == _Node.TEXT_NODE) {
+      return null;
+    }
+    
+    var childXML = this._nodeXML.firstChild;
+    if (childXML === null) {
+      return null;
+    }
+    
+    var node = FlashHandler._getNode(childXML, this._handler);
+    this._getFakeNode(node)._passThrough = this._passThrough;
+        
+    return node;
+  },
+  
+  _getLastChild: function() {
+    if (this.nodeType == _Node.TEXT_NODE) {
+      return null;
+    }
+    
+    var childXML = this._nodeXML.lastChild;
+    if (childXML === null) {
+      return null;
+    }
+    
+    var node = FlashHandler._getNode(childXML, this._handler);
+    this._getFakeNode(node)._passThrough = this._passThrough;
+    
+    return node;
+  },
+  
+  _getPreviousSibling: function() {
+    if (this.nodeType == _Node.DOCUMENT_NODE
+        || this.nodeType == _Node.DOCUMENT_FRAGMENT_NODE) {
+      return null;
+    }
+    
+    // are we the root SVG object when being embedded by an SVG SCRIPT?
+    if (this.nodeName == 'svg' && this._handler.type == 'script') {
+      var sibling = this._handler.flash.previousSibling;
+      // is our previous sibling also an SVG object?
+      if (sibling && sibling.nodeType == 1 && sibling.className 
+          && sibling.className.indexOf('embedssvg') != -1) {
+        var rootID = sibling.getAttribute('id').replace('_flash', '');
+        var node = svgweb.handlers[rootID].document.documentElement;
+        return node._getProxyNode();
+      } else {
+        return sibling;
+      }
+    }
+    
+    var siblingXML = this._nodeXML.previousSibling;
+    // unattached nodes will sometimes have an XML Processing Instruction
+    // as their previous node (type=7)
+    if (siblingXML === null || siblingXML.nodeType == 7) {
+      return null;
+    }
+    
+    var node = FlashHandler._getNode(siblingXML, this._handler);
+    this._getFakeNode(node)._passThrough = this._passThrough;
+    
+    return node;
+  },
+  
+  _getNextSibling: function() {
+    if (this.nodeType == _Node.DOCUMENT_NODE
+        || this.nodeType == _Node.DOCUMENT_FRAGMENT_NODE) {
+      return null;
+    }
+      
+    // are we the root SVG object when being embedded by an SVG SCRIPT?
+    if (this.nodeName == 'svg' && this._handler.type == 'script') {
+      var sibling = this._handler.flash.nextSibling;
+      
+      // is our previous sibling also an SVG object?
+      if (sibling && sibling.nodeType == 1 && sibling.className 
+          && sibling.className.indexOf('embedssvg') != -1) {
+        var id = sibling.getAttribute('id').replace('_flash', '');
+        var node = this._handler.document._nodeById['_' + id];
+        return node._getProxyNode();
+      } else {
+        return sibling;
+      }
+    }
+    
+    var siblingXML = this._nodeXML.nextSibling;
+    if (siblingXML === null) {
+      return null;
+    }
+    
+    var node = FlashHandler._getNode(siblingXML, this._handler);
+    this._getFakeNode(node)._passThrough = this._passThrough;
+
+    return node;
+  },
+  
+  // Note: 'attributes' property not supported since we don't support
+  // Attribute DOM Node types
+  
+  // TODO: It would be nice to support the ElementTraversal spec here as well
+  // since it cuts down on code size:
+  // http://www.w3.org/TR/ElementTraversal/
+  
+  /** The passthrough flag controls whether we 'pass through' any changes
+      to this object to the underlying Flash viewer. For example, if a
+      Node has been created but is not yet attached to the document, any 
+      changes to its attributes should not pass through to the Flash viewer,
+      and this flag would therefore be false. After the Node is attached
+      through appendChild(), passThrough would become true and everything
+      would get passed through to Flash for rendering. */
+  _passThrough: false,
+  
+  /** The attached flag indicates whether this node is attached to a live
+      DOM yet. For example, if you call createElementNS, you can set
+      values on this node before actually appending it using appendChild
+      to a node that is connected to the actual visible DOM, ready to
+      be rendered. */
+  _attached: true,
+  
+  /** A flag we put on our _Nodes and _Elements to indicate they are fake;
+      useful if someone wants to 'break' the abstraction and see if a node
+      is a real DOM node or not (which won't have this flag). */
+  _fake: true,
+  
+  /** Do the getter/setter magic for our attributes for non-IE browsers. */
+  _defineNodeAccessors: function() {
+    // readonly properties
+    this.__defineGetter__('parentNode', hitch(this, this._getParentNode));
+    this.__defineGetter__('firstChild', hitch(this, this._getFirstChild));
+    this.__defineGetter__('lastChild', hitch(this, this._getLastChild));
+    this.__defineGetter__('previousSibling', 
+                          hitch(this, this._getPreviousSibling));
+    this.__defineGetter__('nextSibling', hitch(this, this._getNextSibling));
+    
+    // childNodes array -- define and execute an inline function so that we 
+    // only get closure over the 'self' variable rather than all the 
+    // __defineGetter__ calls above. Note that we are forced to have our
+    // childNodes variable be an object literal rather than array, since this
+    // is the only way we can do getter/setter magic on each indexed position
+    // for Safari.
+    this.__defineGetter__('childNodes', (function(self) {
+      return function() { return self._childNodes; };
+    })(this));
+    
+    // We represent Text nodes internally using XML Element nodes in order
+    // to support tracking; just set our child nodes to be zero to simulate
+    // Text nodes having no children
+    if (this.nodeName == '#text') {
+      this._childNodes.length = 0;
+    } else {    
+      var children = this._nodeXML.childNodes;
+      this._childNodes.length = children.length; 
+      for (var i = 0; i < children.length; i++) {
+        // do the defineGetter in a different method so the closure gets
+        // formed correctly (closures can be tricky in loops if you are not
+        // careful); we also need the defineChildNodeAccessor method anyway
+        // since we need the ability to individually define new accessors
+        // at a later point (such as in insertBefore(), for example).
+        this._defineChildNodeAccessor(i);
+      }
+    }
+    
+    // read/write properties
+    if (this.nodeType == _Node.TEXT_NODE) {
+      this.__defineGetter__('data', (function(self) { 
+        return function() { return self._nodeValue; };
+      })(this));
+      this.__defineSetter__('data', (function(self) {
+        return function(newValue) { return self._setNodeValue(newValue); };
+      })(this));
+      
+      this.__defineGetter__('textContent', (function(self) {
+        return function() { return self._nodeValue; }; 
+      })(this));
+      this.__defineSetter__('textContent', (function(self) {
+        return function(newValue) { return self._setNodeValue(newValue); };
+      })(this));
+    } else { // ELEMENT and DOCUMENT nodes
+      // Firefox and Safari return '' for textContent for non-text nodes;
+      // mimic this behavior
+      this.__defineGetter__('textContent', (function() {
+        return function() { return ''; };
+      })());
+    }
+    
+    this.__defineGetter__('nodeValue', (function(self) {
+      return function() { return self._nodeValue; };
+    })(this));
+    this.__defineSetter__('nodeValue', (function(self) {
+      return function(newValue) { return self._setNodeValue(newValue); };
+    })(this));
+  },
+  
+  /** Creates a getter/setter for a childNode at the given index position.
+      We define each one in a separate function so that we don't pull
+      the wrong things into our closure. See _defineNodeAccessors() for
+      details. */
+  _defineChildNodeAccessor: function(i) {
+    var self = this;
+    
+    this._childNodes.__defineGetter__(i, function() {
+      var childXML = self._nodeXML.childNodes[i];
+      var node = FlashHandler._getNode(childXML, self._handler);
+      node._passThrough = self._passThrough;
+      return node;
+    });
+  },
+  
+  /** For IE we have to do some tricks that are a bit different than
+      the other browsers; we can't know when a particular
+      indexed member is called, such as childNodes[1], so instead we
+      return the entire _childNodes array; what is nice is that IE applies
+      the indexed lookup _after_ we've returned things, so this works. This
+      requires us to instantiate all the children, however, when childNodes
+      is called. This method is called by the HTC file.
+      
+      @param returnFakeNodes Optional. If true, then we return our fake
+      nodes; if false, then we return the HTC proxy for IE. Defaults to false.
+      
+      @returns An array of either the HTC proxies for our nodes if IE,
+      or an array of _Element and _Nodes for other browsers. */
+  _getChildNodes: function(returnFakeNodes) {
+    if (!isIE) {
+      return this._childNodes;
+    }
+    
+    if (returnFakeNodes === undefined) {
+      returnFakeNodes = false;
+    }
+    
+    // NOTE: for IE we return a real full Array, while for other browsers
+    // our _childNodes array is an object literal in order to do
+    // our __defineGetter__ magic in _defineNodeAccessors. It turns out
+    // that on IE a full array can be returned from the getter, and _then_
+    // the index can get applied (i.e. our array is returned, and then 
+    // [2] might get applied to that array).
+    var results = createNodeList();
+    
+    // We represent our text nodes using an XML Element node instead of an
+    // XML Text node in order to do tracking; we store our actual text value
+    // as a further XML Text node child. Don't return this though.
+    if (this.nodeName == '#text') {
+      return results;
+    }
+    
+    if (this._nodeXML.childNodes.length == this._childNodes.length
+        && !returnFakeNodes) {
+      // we've already processed our childNodes before
+      return this._childNodes;
+    } else {
+      for (var i = 0; i < this._nodeXML.childNodes.length; i++) {
+        var childXML = this._nodeXML.childNodes[i];
+        var node = FlashHandler._getNode(childXML, this._handler);
+        node._fakeNode._passThrough = this._passThrough;
+        if (returnFakeNodes) {
+          node = node._fakeNode;
+        }
+        results.push(node);
+      }
+      
+      this._childNodes = results;
+      return results;
+    }
+  },
+  
+  /** If we are IE, we must use an HTC behavior in order to get onpropertychange
+      and override core DOM methods. */
+  _createHTC: function() {
+    //console.log('createHTC');
+    
+    // we store our HTC nodes into a hidden container located in the
+    // BODY of the document; either get it now or create one on demand
+    if (!this._htcContainer) {
+      this._htcContainer = document.getElementById('__htc_container');
+      if (!this._htcContainer) {
+        // NOTE: Strangely, onpropertychange does _not_ fire for HTC elements
+        // that are in the HEAD of the document, which is where we used
+        // to put the htc_container. Instead, we have to put it into the BODY
+        // of the document and position it offscreen.
+        var body = document.getElementsByTagName('body')[0];
+        var c = document.createElement('div');
+        c.id = '__htc_container';
+        // NOTE: style.display = 'none' does not work
+        c.style.position = 'absolute';
+        c.style.top = '-5000px';
+        c.style.left = '-5000px';
+        body.appendChild(c);
+        this._htcContainer = c;
+      }
+    }
+    
+    // now store our HTC UI node into this container; we will intercept
+    // all calls through the HTC, and implement all the real behavior
+    // inside ourselves (inside _Element)
+    // Note: we do svg: even if we are dealing with a non-SVG node on IE,
+    // such as sodipodi:namedview; this is necessary so that our svg.htc
+    // file gets invoked for all these nodes, which is by necessity bound to 
+    // the svg: namespace
+    var htcNode = document.createElement('svg:' + this.nodeName);
+    htcNode._fakeNode = this;
+    htcNode._handler = this._handler;
+    this._htcContainer.appendChild(htcNode);
+    this._htcNode = htcNode;
+  },
+  
+  _setNodeValue: function(newValue) {
+    //console.log('setNodeValue, newValue='+newValue);
+    if (this.nodeType != _Node.TEXT_NODE) {
+      return newValue;
+    }
+    
+    this._nodeValue = newValue;
+    
+    // we store the real text value as a child of our fake text node,
+    // which is actually a DOM Element so that we can do tracking
+    this._nodeXML.firstChild.nodeValue = newValue;
+    
+    if (this._attached && this._passThrough) {
+      var flashStr = FlashHandler._encodeFlashData(newValue);
+      var parentGUID = this._nodeXML.parentNode.getAttribute('__guid');
+      this._handler.sendToFlash('jsSetText',
+                                [ parentGUID, this._guid, flashStr ]);
+    }
+
+    return newValue;
+  },
+  
+  /** For functions like appendChild, insertBefore, removeChild, etc.
+      outside callers can pass in DOM nodes, etc. This function turns
+      this into something we can work with, such as a _Node or _Element. */
+  _getFakeNode: function(child) {
+    // Was an HTC node passed in for IE? If so, get its _Node
+    if (isIE && child._fakeNode) {
+      child = child._fakeNode;
+    }
+    
+    return child;
+  },
+  
+  /** We do a bunch of work in this method in order to append a child to
+      ourselves, including: Walking over the child and all of it's children; 
+      setting it's handler; setting that it is both attached and
+      can pass through it's values; informing Flash about the newly
+      created element; and updating our list of namespaces if there is a node
+      with a new namespace in the appended children. This method gets called 
+      recursively for the child and all of it's children.
+      
+      @param child _Node to work with.
+      @param parent The parent of this child.
+      @param attached Boolean on whether we are attached or not yet.
+      @param passThrough Boolean on whether to pass values through
+      to Flash or not. */
+  _processAppendedChildren: function(child, parent, attached, passThrough) {
+    //console.log('processAppendedChildren, this.nodeName='+this.nodeName+', child.nodeName='+child.nodeName+', attached='+attached+', passThrough='+passThrough);
+    // walk the DOM from the child using an iterative algorithm, which was 
+    // found to be faster than a recursive one; for each node visited we will
+    // store some important reference information
+    var current;
+    var suspendID;
+    if (child.nodeType == _Node.DOCUMENT_FRAGMENT_NODE) {
+      current = this._getFakeNode(child._getFirstChild());
+      
+      // turn on suspendRedraw so adding our event handlers happens in one go
+      if (attached && passThrough) {
+        suspendID = this._handler._redrawManager.suspendRedraw(10000);
+      }
+    } else {
+      current = child;
+    }
+
+    while (current) {
+      // visit this node
+      var currentXML = current._nodeXML;
+
+      // set its handler
+      current._handler = this._handler;
+
+      // store a reference to our node so we can return it in the future
+      var id = currentXML.getAttribute('id');
+      if (attached && current.nodeType == _Node.ELEMENT_NODE && id) {
+        this._handler.document._nodeById['_' + id] = current;
+      }
+
+      // set the ownerDocument based on how we were embedded
+      if (attached) {
+        if (this._handler.type == 'script') {
+          current.ownerDocument = document;
+        } else if (this._handler.type == 'object') {
+          current.ownerDocument = this._handler.document;
+        }
+      }
+    
+      if (attached) {
+        // register and send over any event listeners that were added while
+        // this node was detached
+        for (var i = 0; i < current._detachedListeners.length; i++) {
+          var addMe = current._detachedListeners[i];
+          current.addEventListener(addMe.type, addMe.listener, 
+                                   addMe.useCapture, true);
+        }
+        current._detachedListeners = [];
+      }
+          
+      // now continue visiting other nodes
+      var lastVisited = current;
+      var children = current._getChildNodes();
+      var next = (children && children.length > 0) ? children[0] : null;
+      if (next) {
+        current = next;
+        if (isIE) {
+          current = current._fakeNode;
+        }
+      }
+      
+      while (!next && current) {
+        if (current != child) {
+          next = current._getNextSibling();
+          if (next) {
+            current = next;
+            if (isIE) {
+              current = current._fakeNode;
+            }
+            break;
+          }
+        }
+
+        if (current == child) {
+          current = null;
+        } else {
+          current = current._getParentNode();
+          if (current && isIE) {
+            current = current._fakeNode;
+          }
+
+          if (current && 
+                  (current.nodeType != 1 || 
+                   current.nodeName.toUpperCase() == 'SVG')) {
+            current = null;
+          }
+        }
+      }
+      
+      // set our attached information
+      lastVisited._attached = attached;
+      lastVisited._passThrough = passThrough;
+    }
+    
+    // turn off suspendRedraw if dealing with a DocumentFragment; all 
+    // event handlers should shoot through now
+    if (child.nodeType == _Node.DOCUMENT_FRAGMENT_NODE 
+        && attached && passThrough) {
+      this._handler._redrawManager.unsuspendRedraw(suspendID);
+    }
+  },
+  
+  /** Transforms the given node and all of its children into an XML string,
+      suitable for us to send over to Flash for adding to the document. 
+      
+      @param node The _Element or _Node to transform into XML. 
+      
+      @returns XML String suitable for sending to Flash. */
+  _toXML: function(node) {
+    var nodeXML = node._nodeXML;
+    var xml;
+    
+    if (typeof XMLSerializer != 'undefined') { // non-IE browsers
+      xml = (new XMLSerializer().serializeToString(nodeXML));
+    } else {
+      xml = nodeXML.xml;
+    }
+    
+    // Firefox and Safari will incorrectly turn our internal parsed XML
+    // for the Flash Handler into actual SVG nodes, causing issues. We added
+    // a fake SVG namespace earlier to prevent this from happening; remove that
+    // now
+    xml = xml.replace(/urn\:__fake__internal__namespace/g, svgns);
+    
+    // add our namespace declarations; having repeats is ok if some are
+    // already there
+    var nsString = 'xmlns="' + svgns + '" ';
+    for (var i = 0; i < this._handler.document._namespaces.length; i++) {
+      var uri = this._handler.document._namespaces[i];
+      var prefix = this._handler.document._namespaces['_' + uri];
+      
+      // ignore our fake SVG namespace string
+      if (uri == svgnsFake) {
+        uri = svgns;
+      }
+      
+      if (prefix != 'xmlns') {
+        nsString += 'xmlns:' + prefix + '="' + uri + '" ';
+      } else {
+        nsString += 'xmlns' + '="' + uri + '" ';
+      }
+    }
+
+    xml = xml.replace(/<([^ ]+)/, '<$1 ' + nsString + ' ');
+    
+    return xml;
+  },
+  
+  /** Imports the given child and all it's children's XML into our XML. 
+  
+      @param child _Node to import.
+      @param doAppend Optional. Boolean on whether to actually append
+      the child once it is imported. Useful for functions such as
+      replaceChild that want to do this manually. Defaults to true if not
+      specified.
+      
+      @returns The imported node. */
+  _importNode: function(child, doAppend) {
+    //console.log('importNode, child='+child.nodeName+', doAppend='+doAppend);
+    if (typeof doAppend == 'undefined') {
+      doAppend = true;
+    }
+    
+    // try to import the node into our _Document's XML object
+    var doc;
+    if (this._attached) {
+      doc = this._handler.document._xml;
+    } else {
+      doc = this._nodeXML.ownerDocument;
+    }
+
+    // IE does not support document.importNode, even on XML documents, 
+    // so we have to define it ourselves.
+    // Adapted from ALA article:
+    // http://www.alistapart.com/articles/crossbrowserscripting
+    var importedNode;
+    if (typeof doc.importNode == 'undefined') {
+      // import the node for IE
+      importedNode = document._importNodeFunc(doc, child._nodeXML, true);
+    } else { // non-IE browsers
+      importedNode = doc.importNode(child._nodeXML, true);
+    }
+
+    // complete the import into ourselves
+    if (doAppend) {
+      this._nodeXML.appendChild(importedNode);
+    }
+    
+    // replace all of the children's XML with our copy of it now that it 
+    // is imported
+    child._importChildXML(importedNode);
+
+    return importedNode;
+  },
+  
+  /** Recursively replaces the XML inside of our children with the given
+      new XML to ensure that each node's reference to it's own internal
+      _nodeXML pointer all points to the same tree, but in different
+      locations. Called after we are importing a node into ourselves with 
+      appendChild. */
+  _importChildXML: function(newXML) {
+    this._nodeXML = newXML;
+    var children = this._getChildNodes();
+    for (var i = 0; i < children.length; i++) {
+      var currentChild = children[i];
+      if (isIE && currentChild._fakeNode) { // IE
+        currentChild = currentChild._fakeNode;
+      } 
+      
+      currentChild._nodeXML = this._nodeXML.childNodes[i];
+      currentChild._importChildXML(this._nodeXML.childNodes[i]);
+    }
+  },
+  
+  /** Tries to find the given child in our list of child nodes.
+      
+      @param child A _Node or _Element to search for in our list of
+      childNodes. 
+      @param ignoreTextNodes Optional, defaults to false. If true, then we
+      ignore any text nodes when looking for the child, as if all we have
+      are element nodes.
+      
+      @returns Null if nothing found, otherwise an object literal with 2 values:
+         position The index position of where the child is located.
+         nodeXML The found XML node.
+         
+      If the child is not found then null is returned instead. */
+  _findChild: function(child, ignoreTextNodes) {
+    //console.log('findChild, child='+child.nodeName);
+    if (ignoreTextNodes === undefined) {
+      ignoreTextNodes = false;
+    }
+    
+    var results = {};
+
+    var elementIndex = 0;
+    for (var i = 0; i < this._nodeXML.childNodes.length; i++) {
+      var currentXML = this._nodeXML.childNodes[i];
+      if (currentXML.nodeType != _Node.ELEMENT_NODE 
+          && currentXML.nodeType != _Node.TEXT_NODE) {
+        // FIXME: What about CDATA nodes?
+        // FIXME: If there are other kinds of nodes, how does this impact
+        // our elementIndex variable?
+        continue;
+      }
+      
+      // skip text nodes?
+      if (ignoreTextNodes
+                    && (currentXML.getAttribute('__fakeTextNode')
+                        || currentXML.nodeType == _Node.TEXT_NODE)) {
+        continue;
+      }
+
+      if (currentXML.nodeType == _Node.ELEMENT_NODE) {
+        elementIndex++;
+      }
+            
+      if (currentXML.nodeType == _Node.ELEMENT_NODE
+          && currentXML.getAttribute('__guid') == child._guid) {
+        results.position = (ignoreTextNodes) ? elementIndex : i;
+        results.nodeXML = currentXML;
+        return results;
+      }
+    }
+    
+    return null;
+  },
+  
+  /** After a node is unattached, such as through a removeChild, this method
+      recursively sets _attached and _passThrough to false on this node
+      and all of its children.  */
+  _setUnattached: function() {   
+    // set each child to be unattached
+    var children = this._getChildNodes();
+    for (var i = 0; i < children.length; i++) {
+      var child = children[i];
+      if (isIE) {
+        child = child._fakeNode;
+      }
+      child._setUnattached();
+    }
+    this._attached = false;
+    this._passThrough = false;
+    this._handler = null;
+  },
+  
+  /** When we return results to external callers, such as appendChild,
+      we can return one of our fake _Node or _Elements. However, for IE,
+      we have to return the HTC 'proxy' through which callers manipulate
+      things. The HTC is what allows us to override core DOM methods and
+      know when property and style changes have happened, for example. */
+  _getProxyNode: function() {
+    if (!isIE) {
+      return this;
+    } else {
+      // for IE, the developer will manipulate things through the UI/HTC
+      // proxy facade so that we can know about property changes, etc.
+      return this._htcNode;
+    }
+  },
+  
+  /** Creates our childNodes data structure in a different way for different
+      browsers. We have this in a separate method so that we avoid forming
+      a closure of elements that could lead to a memory leak in IE. */
+  _createChildNodes: function() {
+    var childNodes;
+    
+    if (!isIE) {
+      // NOTE: we make _childNodes an object literal instead of an Array; if
+      // it is an array we can't do __defineGetter__ on each index position on
+      // Safari
+      childNodes = {};
+      
+      // add the item() method from NodeList to our childNodes instance
+      childNodes.item = function(index) {
+        if (index >= this.length) {
+          return null; // DOM Level 2 spec says return null
+        } else {
+          return this[index];
+        }
+      };
+    } else { // IE
+      childNodes = createNodeList();
+    }
+    
+    return childNodes;
+  },
+  
+  // the following getters and setters for textContent and data are called
+  // by the HTC; we put them here to minimize the size of the HTC which
+  // has a very strong correlation with performance
+  
+  _getTextContent: function() {
+    if (this.nodeType == _Node.TEXT_NODE) {
+      return this._nodeValue;
+    } else {
+      return ''; // Firefox and Safari return empty strings for .textContent
+    }
+  },
+  
+  _setTextContent: function(newValue) {
+    if (this.nodeType == _Node.TEXT_NODE) { 
+      return this._setNodeValue(newValue);
+    } else {
+      return ''; // Firefox and Safari return empty strings for .textContent
+    }
+  },
+  
+  _getData: function() {
+    if (this.nodeType == _Node.TEXT_NODE) {
+      return this._nodeValue;
+    } else {
+      return undefined;
+    }
+  },
+  
+  _setData: function(newValue) {
+    if (this.nodeType == _Node.TEXT_NODE) {
+      return this._setNodeValue(newValue);
+    } else {
+      return undefined;
+    }
+  },
+  
+  /** For Internet Explorer, the length of the script in our HTC is a major
+      determinant in the amount of time it takes to create a new HTC element.
+      In order to minimize the size of this code, we have many 'no-op'
+      implementations of some methods so that we can just safely call
+      them from the HTC without checking the type of the node inside the
+      HTC. */
+  _createEmptyMethods: function() {
+    if (this.nodeType == _Node.TEXT_NODE) {
+      this.getAttribute 
+          = this.setAttribute 
+          = this.setAttributeNS
+          = this._getId
+          = this._setId
+          = this._getX
+          = this._getY
+          = this._getWidth
+          = this._getHeight
+          = this._getCurrentScale
+          = this._setCurrentScale
+          = this._getCurrentTranslate
+          = this.createSVGRect
+          = this.createSVGPoint
+          = function() { return undefined; };
+    }
+  },
+  
+  /** When a node is removed from the DOM, we make sure that all of its 
+      event listener information (and all of the event info for its children)
+      is persisted if it is later reattached to the DOM. */
+  _persistEventListeners: function() {
+    // persist all the listeners for ourselves
+    for (var eventType in this._listeners) {
+      for (var i = 0; i < this._listeners[eventType].length; i++) {
+        var l = this._listeners[eventType][i];
+        this._detachedListeners.push({ type: l.type, 
+                                       listener: l.listener, 
+                                       useCapture: l.useCapture });
+      }
+    }
+    this._listeners = [];
+    
+    // visit each of our children
+    var children = this._getChildNodes();
+    for (var i = 0; i < children.length; i++) {
+      var c = children[i];
+      if (c._fakeNode) { // IE
+        c = c._fakeNode;
+      }
+      c._persistEventListeners();
+    }
+  }
+});
+
+
+/** Our DOM Element for each SVG node.
+
+    @param nodeName The node name, such as 'rect' or 'sodipodi:namedview'.
+    @param prefix The namespace prefix, such as 'svg' or 'sodipodi'.
+    @param namespaceURI The namespace URI. If undefined, defaults to null.
+    @param nodeXML The parsed XML DOM node for this element.
+    @param handler The FlashHandler rendering this node. 
+    @param passThrough Optional boolean on whether any changes to this
+    element 'pass through' and cause changes in the Flash renderer. */                 
+function _Element(nodeName, prefix, namespaceURI, nodeXML, handler, 
+                  passThrough) {
+  if (nodeName === undefined && namespaceURI === undefined 
+      && nodeXML === undefined && handler === undefined) {
+    // prototype subclassing
+    return;
+  }
+  
+  // superclass constructor
+  _Node.apply(this, [nodeName, _Node.ELEMENT_NODE, prefix, namespaceURI, 
+                     nodeXML, handler, passThrough]);
+                     
+  // setup our attributes
+  this._attributes = {};
+  this._attributes['_id'] = ''; // default id is empty string on FF and Safari
+  this._importAttributes(this, this._nodeXML);
+  
+  // define our accessors if we are not IE; IE does this by using the HTC
+  // file rather than doing it here
+  if (!isIE) {
+    this._defineAccessors();
+  }
+  
+  if (this.namespaceURI == svgns) {
+    // track .style changes; 
+    if (isIE 
+        && this._attached 
+        && this._handler.type == 'script' 
+        && this.nodeName == 'svg') {
+      // do nothing now -- if we are IE and are being embedded with an
+      // SVG SCRIPT tag, don't setup the style object for the SVG root now; we
+      // do that later in _SVGSVGElement
+    } else {
+      this.style = new _Style(this);
+    }
+    
+    // handle style changes for HTCs
+    if (isIE 
+        && this._attached
+        && this._handler.type == 'script' 
+        && this.nodeName == 'svg') {
+      // do nothing now - if we are IE we delay creating the style property
+      // until later in _SVGSVGElement
+    } else if (isIE) {
+      this.style._ignoreStyleChanges = false;
+    }
+  }
+}
+
+// subclasses _Node
+_Element.prototype = new _Node;
+
+extend(_Element, {
+  getAttribute: function(attrName) /* String */ {
+    //console.log('getAttribute, attrName='+attrName+', this.nodeName='+this.nodeName);
+    var value;
+    
+    // ignore internal __guid property
+    if (attrName == '__guid') {
+      return null;
+    }
+    
+    // make sure we are attached and aren't in the middle of a 
+    // suspendRedraw operation
+    if (this._attached && this._passThrough 
+        && !this._handler._redrawManager.isSuspended()) {
+      value = this._handler.sendToFlash('jsGetAttribute',
+                                          [ this._guid, false, false, null, 
+                                            attrName ]);
+    } else {
+      value = this._nodeXML.getAttribute(attrName);
+
+      // id property is special; we return an empty string instead of null
+      // to mimic native behavior on Firefox and Safari
+      if (attrName == 'id' && !value) {
+        return '';
+      }
+    }
+    
+    if (value === undefined || value === null || /^[ ]*$/.test(value)) {
+      return null;
+    }
+    
+    return value;
+  },
+  
+  setAttribute: function(attrName, attrValue /* String */) /* void */ {
+    //console.log('setAttribute, attrName='+attrName+', attrValue='+attrValue);
+    this.setAttributeNS(null, attrName, attrValue);
+  },
+  
+  removeAttribute: function(name) /* void */ {
+    /* throws DOMException */
+    // TODO: Implement
+  },
+
+  getAttributeNS: function(ns, localName) /* String */ {
+    // TODO: Implement
+  },
+
+  setAttributeNS: function(ns, qName, attrValue /* String */) /* void */ {
+    //console.log('setAttributeNS, ns='+ns+', qName='+qName+', attrValue='+attrValue+', this.nodeName='+this.nodeName);
+    // TODO: Confirm that calling setAttributeNS with arbitrary namespaces
+    // works
+    
+    var elementId = this._nodeXML.getAttribute('id');
+    
+    // parse out local name of attribute
+    var localName = qName;
+    if (qName.indexOf(':') != -1) {
+      localName = qName.split(':')[1];
+    }
+
+    // if id then change node lookup table (only if we are attached to
+    // the DOM however)
+    if (this._attached && qName == 'id') {
+      var doc = this._handler.document;
+
+      // old lookup
+      doc._nodeById['_' + elementId] = undefined;
+      // new lookup
+      doc._nodeById['_' + attrValue] = this;
+    }
+    
+    /* Safari has a wild bug; If you have an element inside of a clipPath with
+       a style string:
+    
+       <clipPath id="clipPath11119">
+          <rect width="36.416" height="36.416" ry="0" x="247" y="-157"
+                style="opacity:1;fill:#6b6b6b;"
+                id="rect11121" />
+        </clipPath>
+        
+       Then calling setAttribute('style', '') on our nodeXML causes the
+       browser to crash! The workaround is to temporarily remove nodes
+       that have a clipPath parent, set their style, then
+       reattach them (!) */
+    if (isSafari
+        && localName == 'style'
+        && this._nodeXML.parentNode !== null 
+        && this._nodeXML.parentNode.nodeName == 'clipPath') {
+      // save our XML position information for later re-inserting
+      var addBeforeXML = this._nodeXML.nextSibling;
+      var origParent = this._nodeXML.parentNode;
+      // remove the node and set style; doing this prevents crash when 
+      // setting style string      
+      this._nodeXML.parentNode.removeChild(this._nodeXML);
+      this._nodeXML.setAttribute('style', attrValue);
+      // re-attach ourselves before our old sibling
+      if (addBeforeXML) {
+        origParent.insertBefore(this._nodeXML, addBeforeXML);
+      } else { // node was at end originally
+        origParent.appendChild(this._nodeXML);
+      }
+    } else { // we are an attrname other than style, or on a non-Safari browser
+      // update our XML; we store the full qname (i.e. xlink:href) since
+      // IE has no native setAttributeNS support
+      this._nodeXML.setAttribute(qName, attrValue);
+    }
+
+    // update our internal set of attributes
+    this._attributes['_' + qName] = attrValue;
+
+    // send to Flash
+    if (this._attached && this._passThrough) {
+      var flashStr = FlashHandler._encodeFlashData(attrValue);
+      this._handler.sendToFlash('jsSetAttribute', 
+                                [ this._guid, false, ns, localName, flashStr ]);
+    }
+  },
+  
+  removeAttributeNS: function(ns, localName) /* void */ {
+      /* throws DOMException */
+    // TODO: Implement
+  },
+  
+  getElementsByTagNameNS: function(ns, localName) /* _NodeList */ {
+    // TODO: Implement
+  },
+
+  hasAttributeNS: function(ns, localName) /* Boolean */ {
+    // TODO: Implement
+  }, 
+
+  /*
+    Note: DOM Level 2 getAttributeNode, setAttributeNode, removeAttributeNode,
+    getElementsByTagName, getAttributeNodeNS, setAttributeNodeNS not supported
+  */
+  
+  // SVGStylable interface
+  style: null, /** Note: technically should be read only; _Style instance */
+  
+  _setClassName: function(className) {
+    // TODO: Implement
+  },
+  
+  // Note: we return a normal String instead of an SVGAnimatedString
+  // as dictated by the SVG 1.1 standard
+  _getClassName: function() {
+    // TODO: Implement
+  },
+  
+  // Note: getPresentationAttribute not supported
+  
+  // SVGTransformable; takes an _SVGTransform
+  _setTransform: function(transform) {
+    // TODO: Implement
+  },
+  
+  // Note: we return a JS Array of _SVGTransforms instead of an 
+  // SVGAnimatedTransformList as dictated by the SVG 1.1 standard
+  _getTransform: function() /* readonly; returns Array */ {
+    // TODO: Implement
+  },
+  
+  // SVGFitToViewBox
+  // Note: only supported for root SVG element for now
+  _getViewBox: function() { /* readonly; SVGRect */
+    // Note: We return an _SVGRect instead of an SVGAnimatedRect as dictated
+    // by the SVG 1.1 standard
+    // TODO: Implement
+  },
+  
+  // SVGElement
+  _getId: function() {
+    // note: all attribute names are prefixed with _ to prevent attribute names
+    // starting numbers from being interpreted as array indexes
+    if (this._attributes['_id']) {
+      return this._attributes['_id'];
+    } else {
+      // id property is special; we return empty string instead of null
+      // to mimic native behavior on Firefox and Safari
+      return '';
+    }
+  },
+  
+  _setId: function(id) {
+    return this.setAttribute('id', id);
+  },
+  
+  ownerSVGElement: null, /* Note: technically readonly */
+  
+  // not supported: xmlbase, viewportElement
+  
+  // SVGSVGElement and SVGUseElement readonly
+  
+  _getX: function() { /* SVGAnimatedLength */
+    var value = this._trimMeasurement(this.getAttribute('x'));
+    return new _SVGAnimatedLength(new _SVGLength(new Number(value)));
+  },
+  
+  _getY: function() { /* SVGAnimatedLength */
+    var value = this._trimMeasurement(this.getAttribute('y'));
+    return new _SVGAnimatedLength(new _SVGLength(new Number(value)));
+  },
+  
+  _getWidth: function() { /* SVGAnimatedLength */
+    var value = this._trimMeasurement(this.getAttribute('width'));
+    return new _SVGAnimatedLength(new _SVGLength(new Number(value)));
+  },
+  
+  _getHeight: function() { /* SVGAnimatedLength */
+    var value = this._trimMeasurement(this.getAttribute('height'));
+    return new _SVGAnimatedLength(new _SVGLength(new Number(value)));
+  },
+
+  _getCurrentScale: function() { /* float */
+    return this._currentScale;
+  },
+  
+  _setCurrentScale: function(newScale /* float */) {
+    if (newScale !== this._currentScale) {
+      this._currentScale = newScale;
+      
+      this._handler.sendToFlash('jsSetCurrentScale', [ newScale ]);
+    }
+    
+    return newScale;
+  },
+
+  _getCurrentTranslate: function() { /* SVGPoint */
+    // TODO: at some point we probably want to call over to Flash on this one,
+    // since I believe it can be animated through SMIL
+    return this._currentTranslate;
+  },
+  
+  createSVGPoint: function() {
+    return new _SVGPoint(0, 0);
+  },
+  
+  createSVGRect: function() {
+    return new _SVGRect(0, 0, 0, 0);
+  },
+  
+  /** Extracts the unit value and trims off the measurement type. For example, 
+      if you pass in 14px, this method will return 14. Null will return null. */
+  _trimMeasurement: function(value) {
+    if (value !== null) {
+      value = value.replace(/[a-z]/gi, '');
+    }
+    return value;
+  },
+  
+  // many attributes and methods from these two interfaces not here
+  
+  // defacto non-standard attributes
+  
+  _getInnerHTML: function() {
+    // TODO: Implement; NativeHandler will require this as well, since 
+    // innerHTML not natively supported there
+  },
+  
+  _setInnerHTML: function(newValue) {
+    // TODO: Implement; NativeHandler will require this as well, since 
+    // innerHTML not natively supported there
+  },
+  
+  // SVG 1.1 inline event attributes:
+  // http://www.w3.org/TR/SVG/script.html#EventAttributes
+  // Note: Technically not all elements have all these events; also
+  // technically the SVG spec requires us to support the DOM Mutation
+  // Events, which we do not.
+  // We use this array to build up our getters and setters .
+  // TODO: Gauge the performance impact of making this dynamic
+  _allEvents: [
+    'onfocusin', 'onfocusout', 'onactivate', 'onclick', 'onmousedown',
+    'onmouseup', 'onmouseover', 'onmousemove', 'onmouseout', 'onload',
+    'onunload', 'onabort', 'onerror', 'onresize', 'onscroll', 'onzoom',
+    'onbegin', 'onend', 'onrepeat'
+  ],
+  
+  _handleEvent: function(evt) {
+    // called from the IE HTC when an event is fired, as well as from
+    // one of our getter/setters for non-IE browsers
+  },
+  
+  _prepareEvents: function() {
+    // for non-IE browsers, make the getter/setter magic using the
+    // _allEvents array
+  },
+  
+  // SVGTests, SVGLangSpace, SVGExternalResourcesRequired
+  // not supported
+  
+  // contains any attribute set with setAttribute; object literal of
+  // name/value pairs
+  _attributes: null,
+  
+  // copies the attributes from the XML DOM node into target
+  _importAttributes: function(target, nodeXML) {
+    for (var i = 0; i < nodeXML.attributes.length; i++) {
+      var attr = nodeXML.attributes[i];
+      this._attributes['_' + attr.nodeName] = attr.nodeValue;
+    }
+  },
+  
+  /** Does all the getter/setter magic for attributes, so that external
+      callers can do something like myElement.innerHTML = 'foobar' or
+      myElement.id = 'test' and our getters and setters will intercept
+      these to do the correct behavior with the Flash viewer.*/
+  _defineAccessors: function() {
+    var props;
+    var self = this;
+    
+    // innerHTML
+    /* // TODO: Not implemented yet
+    this.__defineGetter__('innerHTML', function() {
+      return self._getInnerHTML();
+    });
+    this.__defineSetter__('innerHTML', function(newValue) {
+      return self._setInnerHTML(newValue);
+    });
+    */
+    
+    // SVGSVGElement and SVGUseElement readyonly props
+    if (this.nodeName == 'svg' || this.nodeName == 'use') {
+      this.__defineGetter__('x', function() { return self._getX(); });
+      this.__defineGetter__('y', function() { return self._getY(); });
+      this.__defineGetter__('width', function() { return self._getWidth(); });
+      this.__defineGetter__('height', function() { return self._getHeight(); });
+    }
+    
+    if (this.nodeName == 'svg') {
+      // TODO: Ensure that currentTranslate and currentScale only show up
+      // on root SVG node and not nested SVG nodes
+      this.__defineGetter__('currentTranslate', function() {
+        return self._getCurrentTranslate();
+      });
+      
+      this.__defineGetter__('currentScale', function() {
+        return self._getCurrentScale();
+      });
+      this.__defineSetter__('currentScale', function(newScale) {
+        return self._setCurrentScale(newScale);
+      });
+    }
+    
+    // id property
+    this.__defineGetter__('id', hitch(this, this._getId));
+    this.__defineSetter__('id', hitch(this, this._setId));
+  },
+  
+  /** @param prop String property name, such as 'x'.
+      @param readWrite Boolean on whether the property is both read and write;
+      if false then read only. */
+  _defineAccessor: function(prop, readWrite) {
+    var self = this;
+    
+    var getMethod = function() {
+      return self.getAttribute(prop);
+    };
+  
+    this.__defineGetter__(prop, getMethod);
+    
+    if (readWrite) {
+      var setMethod = function(newValue) {
+        return self.setAttribute(prop, newValue);
+      };
+      
+      this.__defineSetter__(prop, setMethod);
+    }
+  }
+});
+
+
+/** The DOM DocumentFragment API. 
+
+    @param doc The document that produced this _DocumentFragment. Either
+    the global, browser native 'document' or a fake _Document if this was
+    created in the context of an SVG OBJECT. */
+function _DocumentFragment(doc) {
+  // superclass constructor
+  _Node.apply(this, ['#document-fragment', _Node.DOCUMENT_FRAGMENT_NODE, 
+                     null, null, null, null]);
+  
+  this.ownerDocument = doc;
+}
+
+// subclasses _Node
+_DocumentFragment.prototype = new _Node;
+
+extend(_DocumentFragment, {
+  /** 'Resets' a _DocumentFragment so it can be reused. Basically removes
+      all of it's children. */
+  _reset: function() {
+    // delete all the XML children; using a while() loop works better than
+    // for() since the # of childNodes will change out from under us as we
+    // remove children.
+    while (this._nodeXML.firstChild) {
+      this._nodeXML.removeChild(this._nodeXML.firstChild);
+    }
+
+    this._childNodes = this._createChildNodes();
+    if (!isIE) {
+      this._defineNodeAccessors();
+    }
+    
+    // NOTE: we never remove the DocumentFragment from the svgweb._guidLookup
+    // table or the HTC node for this DocumentFragment; this is because we
+    // must make it possible to reuse the DocumentFragment. This could cause
+    // a memory leak issue over time however.
+  }
+});
+
+/** Not an official DOM interface; used so that we can track changes to
+    the CSS style property of an Element
+    @param element The _Element that this Style is attached to. */
+function _Style(element) {
+  this._element = element;
+  this._setup();
+}
+
+// we use this array to build up getters and setters to watch any changes for
+// any of these styles. Note: Technically we shouldn't have all of these for
+// every element, since some SVG elements won't have specific kinds of
+// style properties, like the DESC element having a font-size.
+// TODO: Gauge the performance impact of making this dynamic
+_Style._allStyles = [
+  'font', 'fontFamily', 'fontSize', 'fontSizeAdjust', 'fontStretch', 'fontStyle',
+  'fontVariant', 'fontWeight', 'direction', 'letterSpacing', 'textDecoration',
+  'unicodeBidi', 'wordSpacing', 'clip', 'color', 'cursor', 'display', 'overflow',
+  'visibility', 'clipPath', 'clipRule', 'mask', 'opacity', 'enableBackground',
+  'filter', 'floodColor', 'floodOpacity', 'lightingColor', 'stopColor',
+  'stopOpacity', 'pointerEvents', 'colorInterpolation',
+  'colorInterpolationFilters', 'colorProfile', 'colorRendering', 'fill',
+  'fillOpacity', 'fillRule', 'imageRendering', 'marker', 'markerEnd',
+  'markerMid', 'markerStart', 'shapeRendering', 'stroke', 'strokeDasharray',
+  'strokeDashoffset', 'strokeLinecap', 'strokeLinejoin', 'strokeMiterlimit',
+  'strokeOpacity', 'strokeWidth', 'textRendering', 'alignmentBaseline', 
+  'baselineShift', 'dominantBaseline', 'glyphOrientationHorizontal',
+  'glyphOrientationVertical', 'kerning', 'textAnchor',
+  'writingMode'
+];
+
+extend(_Style, {
+  /** Flag that indicates that the HTC should ignore any property changes
+      due to style changes. Used when we are internally making style changes. */
+  _ignoreStyleChanges: true,
+  
+  /** Initializes our magic getters and setters for non-IE browsers. For IE
+      we set our initial style values on the HTC. */
+  _setup: function() {
+    // Handle an edge-condition: the SVG spec requires us to support
+    // style="" strings that might have uppercase style names, measurements,
+    // etc. Normalize these here before continuing.
+    this._normalizeStyle();
+    
+    // now handle browser-specific initialization
+    if (!isIE) {
+      // setup getter/setter magic for non-IE browsers
+      for (var i = 0; i < _Style._allStyles.length; i++) {
+        var styleName = _Style._allStyles[i];
+        this._defineAccessor(styleName);
+      }
+      
+      // CSSStyleDeclaration properties
+      this.__defineGetter__('length', hitch(this, this._getLength));
+    } else { // Internet Explorer setup
+      var htcStyle = this._element._htcNode.style;
+      
+      // parse style string
+      var parsedStyle = this._fromStyleString();
+      
+      // loop through each one, setting it on our HTC's style object
+      for (var i = 0; i < parsedStyle.length; i++) {
+        var styleName = this._toCamelCase(parsedStyle[i].styleName);
+        var styleValue = parsedStyle[i].styleValue;
+        htcStyle[styleName] = styleValue;
+      }
+      
+      // set initial values for style.length
+      htcStyle.length = 0;
+      
+      // expose .length property on our custom _Style object to aid it 
+      // being used internally
+      this.length = 0;
+      
+      // set CSSStyleDeclaration methods to our implementation
+      htcStyle.item = hitch(this, this.item);
+      htcStyle.setProperty = hitch(this, this.setProperty);
+      htcStyle.getPropertyValue = hitch(this, this.getPropertyValue);
+      
+      // start paying attention to style change events on the HTC node
+      this._changeListener = hitch(this, this._onPropertyChange);
+      this._element._htcNode.attachEvent('onpropertychange', 
+                                         this._changeListener);
+    }
+  },
+  
+  /** Defines the getter and setter for a single style, such as 'display'. */
+  _defineAccessor: function(styleName) {
+    var self = this;
+    
+    this.__defineGetter__(styleName, function() {
+      return self._getStyleAttribute(styleName);
+    });
+    
+    this.__defineSetter__(styleName, function(styleValue) {
+      return self._setStyleAttribute(styleName, styleValue);
+    });
+  },
+  
+  _setStyleAttribute: function(styleName, styleValue) {
+    //console.log('setStyleAttribute, styleName='+styleName+', styleValue='+styleValue);
+    // Note: .style values and XML attributes have separate values. The XML
+    // attributes always have precedence over any style values.
+    
+    // convert camel casing (i.e. strokeWidth becomes stroke-width)
+    var stylePropName = this._fromCamelCase(styleName);
+    
+    // change our XML style string value
+    
+    // parse style string first
+    var parsedStyle = this._fromStyleString();
+    
+    // is our style name there?
+    var foundStyle = false;
+    for (var i = 0; i < parsedStyle.length; i++) {
+      if (parsedStyle[i].styleName === stylePropName) {
+        parsedStyle[i].styleValue = styleValue;
+        foundStyle = true;
+        break;
+      }
+    }
+    
+    // if we didn't find it above add it
+    if (!foundStyle) {
+      parsedStyle.push({ styleName: stylePropName, styleValue: styleValue });
+    }
+    
+    // now turn the style back into a string and set it on our XML and
+    // internal list of attribute values
+    var styleString = this._toStyleString(parsedStyle);
+    this._element._nodeXML.setAttribute('style', styleString);
+    this._element._attributes['_style'] = styleString;
+    
+    // for IE, update our HTC style object; we can't do magic getters for 
+    // those so have to update and cache the values
+    if (isIE) {
+      var htcStyle = this._element._htcNode.style;
+      
+      // never seen before; bump our style length
+      if (!foundStyle) {
+        htcStyle.length++;
+        this.length++;
+      }
+      
+      // update style value on HTC node so that when the value is fetched
+      // it is correct; ignoreStyleChanges during this or we will get into
+      // an infinite loop
+      this._ignoreStyleChanges = true;
+      htcStyle[styleName] = styleValue;
+      this._ignoreStyleChanges = false;
+    }
+    
+    // tell Flash about the change
+    if (this._element._attached && this._element._passThrough) {
+      var flashStr = FlashHandler._encodeFlashData(styleValue);
+      this._element._handler.sendToFlash('jsSetAttribute',
+                                          [ this._element._guid, true,
+                                            null, stylePropName, flashStr ]);
+    }
+  },
+  
+  _getStyleAttribute: function(styleName) {
+    //console.log('getStyleAttribute, styleName='+styleName);
+    // convert camel casing (i.e. strokeWidth becomes stroke-width)
+    var stylePropName = this._fromCamelCase(styleName);
+    
+    if (this._element._attached && this._element._passThrough
+        && !this._element._handler._redrawManager.isSuspended()) {
+      var value = this._element._handler.sendToFlash('jsGetAttribute',
+                                              [ this._element._guid,
+                                                true, false, null, 
+                                                stylePropName ]);
+      return value;
+    } else {
+      // not attached yet; have to parse it from our local value
+      var parsedStyle = this._fromStyleString();
+
+      for (var i = 0; i < parsedStyle.length; i++) {
+        if (parsedStyle[i].styleName === stylePropName) {
+          return parsedStyle[i].styleValue;
+        }
+      }
+      
+      return null;
+    }
+  },
+  
+  /** Parses our style string into an array, where each array entry is an
+      object literal with the 'styleName' and 'styleValue', such as:
+      
+      results[0].styleName
+      results[0].styleValue
+      etc. 
+      
+      If there are no results an empty array is returned. */
+  _fromStyleString: function() {
+    var styleValue = this._element._nodeXML.getAttribute('style');
+    
+    if (styleValue === null || styleValue === undefined) {
+      return [];
+    }
+    
+    var baseStyles;
+    if (styleValue.indexOf(';') == -1) {
+      // only one style value given, with no trailing semicolon
+      baseStyles = [ styleValue ];
+    } else {
+      baseStyles = styleValue.split(/\s*;\s*/);
+      // last style is empty due to split()
+      if (!baseStyles[baseStyles.length - 1]) {
+        baseStyles = baseStyles.slice(0, baseStyles.length - 1);
+      }
+    }
+    
+    var results = [];
+    for (var i = 0; i < baseStyles.length; i++) {
+      var style = baseStyles[i];
+      var styleSet = style.split(':');
+      if (styleSet.length == 2) {
+        var attrName = styleSet[0];
+        var attrValue = styleSet[1];
+        
+        // trim leading whitespace
+        attrName = attrName.replace(/^\s+/, '');
+        attrValue = attrValue.replace(/^\s+/, '');
+        
+        var entry = { styleName: attrName, styleValue: attrValue };
+        results.push(entry);
+      }
+    }
+    
+    return results;
+  },
+  
+  /** Turns a parsed style into a string.
+  
+      @param parsedStyle An array where each entry is an object literal
+      with two values, 'styleName' and 'styleValue'. Uses same data structure
+      returned from fromStyleString() method above. */
+  _toStyleString: function(parsedStyle) {
+    var results = '';
+    for (var i = 0; i < parsedStyle.length; i++) {
+      results += parsedStyle[i].styleName + ': ';
+      results += parsedStyle[i].styleValue + ';';
+      if (i != (parsedStyle.length - 1)) {
+        results += ' ';
+      }
+    }
+    
+    return results;
+  },
+  
+  /** Transforms a camel case style name, such as strokeWidth, into it's
+      dash equivalent, such as stroke-width. */
+  _fromCamelCase: function(styleName) {
+    return styleName.replace(/([A-Z])/g, '-$1').toLowerCase();
+  },
+  
+  /** Transforms a dash style name, such as stroke-width, into it's 
+      camel case equivalent, such as strokeWidth. */
+  _toCamelCase: function(stylePropName) {
+    if (stylePropName.indexOf('-') == -1) {
+      return stylePropName;
+    }
+    
+    var results = '';
+    var sections = stylePropName.split('-');
+    results += sections[0];
+    for (var i = 1; i < sections.length; i++) {
+      results += sections[i].charAt(0).toUpperCase() + sections[i].substring(1);
+    }
+    
+    return results;
+  },
+  
+  // CSSStyleDeclaration interface methods and properties
+  
+  // TODO: removeProperty not supported yet
+  
+  setProperty: function(stylePropName, styleValue, priority) {
+    // TODO: priority not supported for now; not sure if it even makes
+    // sense in this context
+    
+    // convert from dash style to camel casing (i.e. stroke-width becomes
+    // strokeWidth
+    var styleName = this._toCamelCase(stylePropName);
+    
+    this._setStyleAttribute(styleName, styleValue);
+    return styleValue;
+  },
+  
+  getPropertyValue: function(stylePropName) {
+    // convert from dash style to camel casing (i.e. stroke-width becomes
+    // strokeWidth
+    var styleName = this._toCamelCase(stylePropName);
+    
+    return this._getStyleAttribute(styleName);
+  },
+  
+  item: function(index) {
+    // parse style string
+    var parsedStyle = this._fromStyleString();
+    
+    // TODO: Throw exception if index is greater than length of style rules
+    
+    return parsedStyle[index].styleName;
+  },
+  
+  // NOTE: We don't support cssText for now. The reason why is that
+  // IE has a style.cssText property already on our HTC nodes. This
+  // property incorrectly includes some of our custom internal code,
+  // such as 'length' as well as both versions of certain camel cased
+  // properties (like stroke-width and strokeWidth). There is no way 
+  // currently known to work around this. The property is not that important
+  // anyway so it won't currently be supported.
+  
+  _getLength: function() {
+    // parse style string
+    var parsedStyle = this._fromStyleString();
+    return parsedStyle.length;
+  },
+  
+  /** Handles an edge-condition: the SVG spec requires us to support
+      style="" strings that might have uppercase style names, measurements,
+      etc. We normalize these to lower-case in this method. */
+  _normalizeStyle: function() {
+    // style="" attribute?
+    // NOTE: IE doesn't support nodeXML.hasAttribute()
+    if (!this._element._nodeXML.getAttribute('style')) {
+      return;
+    }
+    
+    // no uppercase letters?
+    if (!/[A-Z]/.test(this._element._nodeXML.getAttribute('style'))) {
+      return;
+    }
+    
+    // parse style into it's components
+    var parsedStyle = this._fromStyleString();
+    for (var i = 0; i < parsedStyle.length; i++) {
+      parsedStyle[i].styleName = parsedStyle[i].styleName.toLowerCase();
+      
+      // don't lowercase url() values
+      if (parsedStyle[i].styleValue.indexOf('url(') == -1) {
+        parsedStyle[i].styleValue = parsedStyle[i].styleValue.toLowerCase();
+      }
+    }
+    
+    // turn back into a string
+    var results = '';
+    for (var i = 0; i < parsedStyle.length; i++) {
+      results += parsedStyle[i].styleName + ': ' 
+                 + parsedStyle[i].styleValue + '; ';
+    }
+    
+    // remove trailing space
+    if (results.charAt(results.length - 1) == ' ') {
+      results = results.substring(0, results.length - 1);
+    }
+    
+    // change our style value; however, don't pass this through to Flash
+    // because Flash might not even know about our existence yet, because we
+    // are still being run from the _Element constructor
+    var origPassThrough = this._element._passThrough;
+    this._element._passThrough = false;
+    this._element.setAttribute('style', results);
+    this._element._passThrough = origPassThrough;
+  },
+  
+  /** For Internet Explorer, this method is called whenever a
+      propertychange event fires on the HTC. */
+  _onPropertyChange: function() {
+    // watch to see when anyone changes a 'style' property so we
+    // can mirror it in the Flash control
+    
+    if (this._ignoreStyleChanges) {
+      return;
+    }
+    
+    var prop = window.event.propertyName;
+
+    if (prop && /^style\./.test(prop) && prop != 'style.length') {        
+      // extract the style name and value
+      var styleName = prop.match(/^style\.(.*)$/)[1];
+      var styleValue = this._element._htcNode.style[styleName];
+      
+      // tell Flash and our fake node about our style change
+      this._setStyleAttribute(styleName, styleValue);
+    }
+  }
+});
+
+
+/** An OBJECT tag that is embedding an SVG element. This class encapsulates
+    how we actually do the work of embedding this into the page (such as 
+    internally transforming the SVG OBJECT into a Flash one).
+    
+    @param svgNode The SVG OBJECT node to work with.
+    @param handler The FlashHandler that owns us. */
+function _SVGObject(svgNode, handler) {
+  this._handler = handler;
+  this._svgNode = svgNode;
+  this._scriptsToExec = [];
+  
+  // flags to know when the SWF file (and on IE the HTC file) are done loading
+  this._htcLoaded = false;
+  this._swfLoaded = false;
+  
+  // handle any onload event listeners that might be present for
+  // dynamically created OBJECT tags; this._svgNode._listeners is an array 
+  // we expose through our custom document.createElement('object', true) -- 
+  // the 'true' actually flags us to do things like this
+  for (var i = 0; this._svgNode._listeners 
+                  && i < this._svgNode._listeners.length; i++) {
+    // wrap each of the listeners so that its 'this' object
+    // correctly refers to the Flash OBJECT if used inside the listener
+    // function; we use an outer function to prevent closure from 
+    // incorrectly happening, and then return an inner function inside
+    // of this that correctly makes the 'this' object be our Flash
+    // OBJECT rather than the global window object
+    var wrappedListener = (function(handler, listener) {
+      return function() {
+        //console.log('_SVGObject, wrappedListener, handler='+handler+', listener='+listener);
+        listener.apply(handler.flash);
+      };
+    })(this._handler, this._svgNode._listeners[i]); // pass values into function
+    svgweb.addOnLoad(wrappedListener);
+  }
+  
+  // start fetching the HTC file in the background
+  if (isIE) {
+    this._loadHTC();
+  }
+  
+  // fetch the SVG URL now and start processing.
+  // Note: unfortunately we must use the 'src' attribute instead of the 
+  // standard 'data' attribute for IE. On certain installations of IE
+  // with some security patches IE will display a gold security bar indicating
+  // that some URLs were blocked; on others IE will attempt to download the
+  // file pointed to by the 'data' attribute. Note that using the 'src'
+  // attribute is a divergence from the standard, but it solves both issues.
+  this.url = this._svgNode.getAttribute('src');
+  if (!this.url) {
+    this.url = this._svgNode.getAttribute('data');
+  }
+
+  // success function
+  var successFunc = hitch(this,
+    function(svgStr) {
+      // clean up and parse our SVG
+      this._handler._origSVG = svgStr;
+      var results = svgweb._cleanSVG(svgStr, true, false);
+      this._svgString = results.svg;
+      this._xml = results.xml;
+
+      // create our document objects
+      this.document = new _Document(this._xml, this._handler);
+      this._handler.document = this.document;
+
+      // insert our Flash and replace the SVG OBJECT tag
+      var nodeXML = this._xml.documentElement;
+      
+      // save any custom PARAM tags that might be nested inside our SVG OBJECT
+      this._savedParams = this._getPARAMs(this._svgNode);
+      
+      // now insert the Flash
+      this._handler._inserter = new FlashInserter('object', this._xml.documentElement,
+                                                  this._svgNode, this._handler);
+
+      // wait for Flash to finish loading; see _onFlashLoaded() in this class
+      // for further execution after the Flash asynchronous process is done
+    });
+
+  if (this.url.substring(0, 5) == 'data:') {
+    successFunc(this.url.substring(this.url.indexOf(',')+1));
+  }
+  else {
+    this._fetchURL(this.url, successFunc, hitch(this, this._fallback));
+  }
+}
+
+extend(_SVGObject, {
+  /** An array of strings, where each string is an SVG SCRIPT tag embedded
+      in an external SVG file. This is when SVG is embedded with an OBJECT. */
+  _scriptsToExec: null,
+ 
+  /**
+   * UTF-8 data encode / decode
+   * http://www.webtoolkit.info/
+   **/
+  _utf8encode : function (string) {
+    string = string.replace(/\r\n/g,"\n");
+    var utftext = "";
+    for (var n = 0; n < string.length; n++) {
+      var c = string.charCodeAt(n);
+      if (c < 128) {
+        utftext += String.fromCharCode(c);
+      } else if ((c > 127) && (c < 2048)) {
+        utftext += escape(String.fromCharCode((c >> 6) | 192));
+        utftext += escape(String.fromCharCode((c & 63) | 128));
+      } else {
+        utftext += escape(String.fromCharCode((c >> 12) | 224));
+        utftext += escape(String.fromCharCode(((c >> 6) & 63) | 128));
+        utftext += escape(String.fromCharCode((c & 63) | 128));
+      }
+    }
+    return utftext;
+  },
+  
+  _fetchURL: function(url, onSuccess, onFailure) {
+    var req = xhrObj();
+    
+    // bust the cache for IE since IE's XHR GET requests are wonky
+    if (isIE) {
+      url = this._utf8encode(url);
+      url += (url.indexOf('?') == -1) ? '?' : '&';
+      url += new Date().getTime();
+    }
+    
+    req.onreadystatechange = function() {
+      if (req.readyState == 4) {
+        if (req.status == 200) { // done
+          onSuccess(req.responseText);
+        } else { // error
+          onFailure(req.status + ': ' + req.statusText);
+        }
+        
+        req = null;
+      }
+    };
+    
+    req.open('GET', url, true);
+    req.send(null);
+  },
+  
+  _fallback: function(error) {
+    console.log('onError (fallback), error='+error);
+    // TODO!!!
+  },
+  
+  _loadHTC: function() {
+    // if IE, force the HTC file to asynchronously load with a dummy element;
+    // we want to do the async operation now so that external API users don't 
+    // get hit with the async nature of the HTC file first loading when they
+    // make a sync call; we will send the SVG over to the Flash _after_ the
+    // HTC file is done loading.
+    this._dummyNode = document.createElement('svg:__force__load');
+    this._dummyNode._handler = this._handler;
+    
+    // find out when the content is ready
+    // NOTE: we do this here instead of inside the HTC file using an
+    // internal oncontentready event in order to make the HTC file faster
+    // and use less memory. Note also that 'oncontentready' is not available 
+    // outside HTC files, only 'onreadystatechange' is available.
+    this._readyStateListener = hitch(this, this._onHTCLoaded); // cleanup later
+    this._dummyNode.attachEvent('onreadystatechange', 
+                                this._readyStateListener);
+    
+    var head = document.getElementsByTagName('head')[0];
+    // NOTE: as _soon_ as we append the dummy element the HTC file will
+    // get called, branching control, so code after this call will not
+    // get run in the sequence expected
+    head.appendChild(this._dummyNode);
+    
+    // wait for HTC to load
+  },
+    
+  _onFlashLoaded: function(msg) {
+    //console.log('_SVGObject, onFlashLoaded, msg='+this._handler.debugMsg(msg));
+
+    // store a reference to our Flash object
+    this._handler.flash = document.getElementById(this._handler.flashID);
+
+    // copy any custom developer PARAM tags on the original SVG OBJECT 
+    // over to the Flash element so that SVG scripts can programmatically 
+    // access them; we saved these earlier in the _SVGObject constructor
+    if (this._savedParams.length) {
+      for (var i = 0; i < this._savedParams.length; i++) {
+        var param = this._savedParams[i];
+        this._handler.flash.appendChild(param);
+        param = null;
+      }
+      
+      this._savedParams = null;
+    }
+    
+    // expose top and parent attributes on Flash OBJECT
+    this._handler.flash.top = this._handler.flash.parent = window;
+    
+    // flag that the SWF is loaded; if not IE, send everything over to Flash;
+    // if IE, make sure the HTC file is done loading
+    this._swfLoaded = true;
+    if (!isIE || this._htcLoaded) {
+      this._onEverythingLoaded();
+    }
+  },
+  
+  _onHTCLoaded: function() {
+    //console.log('_SVGObject, onHTCLoaded');
+    
+    // We added a 'dummy' HTC node to the page when we first instantiated our
+    // _SVGObject; this was so that the HTC part of the architecture is primed
+    // and loaded and ready to go, so later on when someone does a 
+    // synchronous createElement() to create an SVG node the HTC behavior is
+    // already loaded and ready to do it's magic. Now that the HTC file is 
+    // loaded we want to remove the dummy element created earlier.
+    
+    // can't use htcNode.parentNode to get the parent and remove the child
+    // since we override that inside svg.htc
+    var head = document.getElementsByTagName('head')[0];
+    head.removeChild(this._dummyNode);
+    
+    // cleanup our event handler
+    this._dummyNode.detachEvent('onreadystatechange', this._readyStateListener);
+    
+    // prevent IE memory leaks
+    this._dummyNode = null;
+    head = null;
+    
+    // flag that we are loaded; send things over to Flash if the SWF is loaded
+    this._htcLoaded = true;
+    if (this._swfLoaded) {
+      this._onEverythingLoaded();
+    }
+  },
+  
+  _onEverythingLoaded: function() {
+    //console.log('_SVGObject, onEverythingLoaded');
+
+    var size = this._handler._inserter._determineSize();
+    this._handler.sendToFlash('jsHandleLoad',
+                              [ /* objectURL */ this._getRelativeTo('object'),
+                                /* pageURL */ this._getRelativeTo('page'),
+                                /* objectWidth */ size.pixelsWidth,
+                                /* objectHeight */ size.pixelsHeight,
+                                /* ignoreWhiteSpace */ false,
+                                /* svgString */ this._svgString ]);
+  },
+  
+  _onRenderingFinished: function(msg) {
+    //console.log('_SVGObject, onRenderingFinished, id='+this._handler.id
+    //            + ', msg='+this._handler.debugMsg(msg));
+    
+    // we made the SVG hidden before to avoid scrollbars on IE; make visible
+    // now
+    this._handler.flash.style.visibility = 'visible';
+
+    // create the documentElement and rootElement and set them to our SVG 
+    // root element
+    var rootXML = this._xml.documentElement;
+    var rootID = rootXML.getAttribute('id');
+    var root = new _SVGSVGElement(rootXML, null, null, this._handler);
+    var doc = this._handler.document;
+    doc.documentElement = root._getProxyNode();
+    doc.rootElement = root._getProxyNode();
+    // add to our lookup tables so that fetching this node in the future works
+    doc._nodeById['_' + rootID] = root;
+
+    // add our contentDocument property
+    // TODO: This should be doc._getProxyNode(), but Issue 227 needs to be
+    // addressed first:
+    // http://code.google.com/p/svgweb/issues/detail?id=227
+    
+    if (isIE) {
+      // this workaround will prevent Issue 140:
+      // "SVG OBJECT.contentDocument does not work when DOCTYPE specified 
+      // inside of HTML file itself"
+      // http://code.google.com/p/svgweb/issues/detail?id=140
+      this._handler.flash.setAttribute('contentDocument', null);
+    }
+    
+    this._handler.flash.contentDocument = doc;
+    
+    // FIXME: NOTE: unfortunately we can't support the getSVGDocument() method; 
+    // Firefox throws an error when we try to override it:
+    // 'Trying to add unsupported property on scriptable plugin object!'
+    // this._handler.flash.getSVGDocument = function() {
+    //   return this.contentDocument;
+    // };
+    
+    // create a pseudo window element
+    this._handler.window = new _SVGWindow(this._handler);
+    
+    // our fake document object should point to our fake window object
+    doc.defaultView = this._handler.window;
+    
+    // add our onload handler to the list of scripts to execute at the
+    // beginning
+    var onload = root.getAttribute('onload');
+    if (onload) {
+      // we want 'this' inside of the onload handler to point to our
+      // SVG root; the 'document.documentElement' will get rewritten later by
+      // the _executeScript() method to point to our fake SVG root instead
+      var defineEvtCode = 
+        'var evt = { target: document.getElementById("' + root.getAttribute('id') + '") ,' +
+                    'currentTarget: document.getElementById("' + root.getAttribute('id') + '") ,' +
+                    'preventDefault: function() { this.returnValue=false; }' +
+                  '};';
+      onload = '(function(){' + defineEvtCode + onload + '}).apply(document.documentElement);';
+      this._scriptsToExec.push(onload);
+    }
+    
+    // now execute any scripts embedded into the SVG file; we turn all
+    // the scripts into one giant block and run them together so that 
+    // global functions can 'see' and call each other
+    var finalScript = '';
+    for (var i = 0; i < this._scriptsToExec.length; i++) {
+      finalScript += this._scriptsToExec[i] + '\n';
+    }
+    this._executeScript(finalScript);
+    
+    // indicate that we are done
+    this._handler._loaded = true;
+    this._handler.fireOnLoad(this._handler.id, 'object');
+  },
+  
+  /** Relative URLs inside of SVG need to expand against something (i.e.
+      such as having an SVG Audio tag with a relative URL). This method
+      figures out what that relative URL should be. We send this over to
+      Flash when rendering things so Flash knows what to expand against. 
+      
+      @param toWhat - String that controls what we use for the relative URL.
+      If "object" given, we use the URL to the SVG OBJECT; if "page" given,
+      we determine things relative to the page itself. */
+  _getRelativeTo: function(toWhat) {
+    var results = '';
+    if (toWhat == 'object') {
+      // strip off scheme and hostname, then match just path portion
+      var pathname = this.url.replace(/[^:]*:\/\/[^\/]*/).match(/\/?[^\?\#]*/)[0];
+      if (pathname && pathname.length > 0 && pathname.indexOf('/') != -1) {
+        // snip off any filename after a final slash
+        results = pathname.replace(/\/([^/]*)$/, '/');
+      }
+    } else {
+      var pathname = window.location.pathname.toString();
+      if (pathname && pathname.length > 0 && pathname.indexOf('/') != -1) {
+        // snip off any filename after a final slash
+        results = pathname.replace(/\/([^/]*)$/, '/');
+      }
+    }
+
+    return results;
+  },
+  
+  /** Executes a SCRIPT block inside of an SVG file. We essentially rewrite
+      the references in this script to point to our Flash Handler instead, 
+      create an invisible iframe that will act as the 'global' object, and then
+      write the script into the iframe as a new SCRIPT block.
+      
+      @param script String with script to execute. */
+  _executeScript: function(script) {
+    // Create an iframe that we will use to 'silo' and execute our
+    // code, which will act as a place for globals to be defined without
+    // clobbering globals on the HTML document's window or from other
+    // embedded SVG files. This is necessary so that setTimeouts and
+    // setIntervals will work later on, for example.
+                
+    // create an iframe and attach it offscreen
+    var iframe = document.createElement('iframe');
+    iframe.setAttribute('src', 'about:blank');
+    iframe.style.position = 'absolute';
+    iframe.style.top = '-1000px';
+    iframe.style.left = '-1000px';
+    var body = document.getElementsByTagName('body')[0];
+    body.appendChild(iframe);
+    
+    // get the iframes document object; IE differs on how to get this
+    var iframeDoc = (iframe.contentDocument) ? 
+                iframe.contentDocument : iframe.contentWindow.document;
+
+    // set the document.defaultView to the iframe's real Window object;
+    // note that IE doesn't support defaultView
+    var iframeWin = iframe.contentWindow;
+    this._handler.document.defaultView = iframeWin;
+
+    // Create a script with the proper environment.
+    script = this._sandboxedScript(script);
+
+    // Add code to set back an eval function we can use for further execution.
+    // Code adapted from blog post by YuppY:
+    // http://dean.edwards.name/weblog/2006/11/sandbox/
+    script = script + ';__svgHandler.sandbox_eval = ' +
+             (isIE ? 'window.eval;'
+                   : 'function(scriptCode) { return window.eval(scriptCode) };');
+
+    // now insert the script into the iframe to execute it in a siloed way
+    iframeDoc.write('<script>' + script + '</script>');
+    iframeDoc.close();
+    
+    // execute any addEventListener(onloads) that might have been
+    // registered
+    this._handler.window._fireOnload();
+  },
+
+  _sandboxedScript: function(script) {
+    // expose the handler as a global object at the top of the script; 
+    // expose the svgns and xlinkns variables; and override the setTimeout
+    // and setInterval functions for the iframe where we will execute things
+    // so we can clear out all timing functions if the SVG OBJECT is later
+    // removed with a call to svgweb.removeChild
+    var addToTop = 'var __svgHandler = top.svgweb.handlers["' 
+                  + this._handler.id + '"];\n'
+                  + 'window.svgns = "' + svgns + '";\n'
+                  + 'window.xlinkns = "' + xlinkns + '";\n';
+                  
+    var timeoutOverride = 
+                    'window._timeoutIDs = [];\n'
+                  + 'window._setTimeout = window.setTimeout;\n'
+                  + 'window.setTimeout = \n'
+                  + '       (function() {\n'
+                  + '          return function(f, ms) {\n'
+                  + '            var timeID = window._setTimeout(f, ms);\n'
+                  + '            window._timeoutIDs.push(timeID);\n'
+                  + '            return timeID;\n'
+                  + '          };\n'
+                  + '        })();\n'; 
+                  
+    var intervalOverride = 
+                    'window._intervalIDs = [];\n'
+                  + 'window._setInterval = window.setInterval;\n'
+                  + 'window.setInterval = \n'
+                  + '       (function() {\n'
+                  + '          return function(f, ms) {\n'
+                  + '            var timeID = window._setInterval(f, ms);\n'
+                  + '            window._intervalIDs.push(timeID);\n'
+                  + '            return timeID;\n'
+                  + '          };\n'
+                  + '        })();\n';
+                  
+    script = addToTop + timeoutOverride + intervalOverride  + '\n\n' + script;
+    
+    // change any calls to top.document or top.window, to a temporary different 
+    // string to avoid collisions when we transform next
+    script = script.replace(/top\.document/g, 'top.DOCUMENT');
+    script = script.replace(/top\.window/g, 'top.WINDOW');
+    
+    // intercept any calls to 'document.' or 'window.' inside of a string;
+    // transform to this to a different temporary token so we can handle
+    // it differently (i.e. we will put backslashes around certain portions:
+    // top.svgweb.handlers[\"svg2\"].document for example)
+    
+    // change any calls to the document object to point to our Flash Handler
+    // instead; avoid variable names that have the word document in them,
+    // and pick up document* used with different endings
+    script = script.replace(/(^|[^A-Za-z0-9_])document(\.|'|"|\,| |\))/g, 
+                            '$1__svgHandler.document$2');
+    
+    // change some calls to the window object to point to our fake window
+    // object instead
+    script = script.replace(/window\.(location|addEventListener|onload|frameElement)/g, 
+                            '__svgHandler.window.$1');
+                            
+    // change back any of our top.document or top.window calls to be
+    // their original lower case (we uppercased them earlier so that we
+    // wouldn't incorrectly transform them)
+    script = script.replace(/top\.DOCUMENT/g, 'top.document');
+    script = script.replace(/top\.WINDOW/g, 'top.window');
+
+    return script;
+  },
+
+  
+  /** Developers can nest custom PARAM tags inside our SVG OBJECT in order
+      to pass parameters into their SVG file. This function gets these,
+      and makes a clone of them suitable for us to re-attach and use in the
+      future.
+      
+      @param svgNode The SVG OBJECT DOM node.
+      
+      @returns An array of cloned PARAM objects. If none, then the array has
+      zero length. */
+  _getPARAMs: function(svgNode) {
+    var params = [];
+    
+    for (var i = 0; i < svgNode.childNodes.length; i++) {
+      var child = svgNode.childNodes[i];
+      if (child.nodeName.toUpperCase() == 'PARAM') {
+        params.push(child.cloneNode(false));
+      }
+    }
+    
+    return params;
+  }
+});
+
+
+/** A fake window object that we provide for SVG files to use internally. 
+    
+    @param handler The Flash Handler assigned to this fake window object. */
+function _SVGWindow(handler) {
+  this._handler = handler;
+  this.fake = true; // helps to detect fake abstraction
+  
+  this.frameElement = this._handler.flash;
+  this.location = this._createLocation();
+  this.alert = window.alert;
+  this.top = this.parent = window;
+  
+  this._onloadListeners = [];
+}
+
+extend(_SVGWindow, {
+  addEventListener: function(type, listener, capture) {
+    if (type == 'load' || type == 'SVGLoad') {
+      this._onloadListeners.push(listener);
+    }
+  },
+  
+  _fireOnload: function() {
+    //console.log('_SVGWindow._fireOnLoad');
+    for (var i = 0; i < this._onloadListeners.length; i++) {
+      try {
+        this._onloadListeners[i]();
+      } catch (exp) {
+        console.log('The following exception occurred from an SVG onload '
+                    + 'listener: ' + (exp.message || exp));
+      }
+    }
+    
+    // if there is an inline window.onload execute that now
+    if (this.onload) {
+      try {
+        this.onload();
+      } catch (exp) {
+        console.log('The following exception occurred from an SVG onload '
+                    + 'listener: ' + (exp.message || exp));
+      }
+    }
+  },
+  
+  /** Creates a fake window.location object. 
+  
+      @param fakeLocation A full window.location object (i.e. it has .port,
+      .hash, etc.) used for testing purposes to give a fake value
+      to the containing HTML page's window.location value. */
+  _createLocation: function(fakeLocation) {
+    var loc = {};
+    var url = this._handler._svgObject.url;
+    var windowLocation;
+    if (fakeLocation) {
+      windowLocation = fakeLocation;
+    } else {
+      windowLocation = window.location;
+    }
+    
+    // Bypass parsing data: URLs.
+    if (/^data:/.test(url)) {
+      loc.href = url;
+      loc.toString = function() {
+        return this.href;
+      };
+      return loc;
+    }
+     
+    // expand URL
+    
+    // first, see if this url is fully expanded already
+    if (/^http/.test(url)) {
+      // nothing to do
+    } else if (url.charAt(0) == '/') { // ex: /embed1.svg
+      url = windowLocation.protocol + '//' + windowLocation.host + url;
+    } else { // fully relative, such as embed1.svg
+      // get the pathname of the page we are on, clearing out everything after
+      // the last slash
+      if (windowLocation.pathname.indexOf('/') == -1) {
+        url = windowLocation.protocol + '//' + windowLocation.host + '/' + url;
+      } else {
+        var relativeTo = windowLocation.pathname;
+
+        // walk the string in reverse removing characters until we hit a slash
+        for (var i = relativeTo.length - 1; i >= 0; i--) {
+          if (relativeTo.charAt(i) == '/') {
+            break;
+          }
+          
+          relativeTo = relativeTo.substring(0, i);
+        }
+        
+        url = windowLocation.protocol + '//' + windowLocation.host
+              + relativeTo + url;
+      }
+    }
+        
+    // parse URL
+    
+    // FIXME: NOTE: href, search, and pathname should be URL-encoded; the others
+    // should be URL-decoded
+    
+    // match 1 - protocol
+    // match 2 - hostname
+    // match 3 - port
+    // match 4 - pathname
+    // match 5 - search
+    // match 6 - hash
+
+    var results = 
+          url.match(/^(https?:)\/\/([^\/:]*):?([0-9]*)([^\?#]*)([^#]*)(#.*)?$/);
+          
+    loc.protocol = (results[1]) ? results[1] : windowLocation.href;
+    if (loc.protocol.charAt(loc.protocol.length - 1) != ':') {
+      loc.protocol += ':';
+    }
+    loc.hostname = results[2];
+        
+    // NOTE: browsers natively drop the port if its not explicitly specified
+    loc.port = '';
+    if (results[3]) {
+      loc.port = results[3];
+    }
+        
+    // is the URL and the containing page at different domains?
+    var sameDomain = true;
+    if (loc.protocol != windowLocation.protocol
+        || loc.hostname != windowLocation.hostname
+        || (loc.port && loc.port != windowLocation.port)) {
+      sameDomain = false;
+    }
+        
+    if (sameDomain && !loc.port) {
+      loc.port = windowLocation.port;
+    }
+        
+    if (loc.port) {
+      loc.host = loc.hostname + ':' + loc.port;
+    } else {
+      loc.host = loc.hostname;
+    }
+    
+    loc.pathname = (results[4]) ? results[4] : '';
+    loc.search = (results[5]) ? results[5] : '';
+    loc.hash = (results[6]) ? results[6] : '';
+    
+    loc.href = loc.protocol + '//' + loc.host + loc.pathname + loc.search
+               + loc.hash;
+    
+    loc.toString = function() {
+      return this.protocol + '//' + this.host + this.pathname + this.search
+             + this.hash;
+    };
+    
+    return loc;
+  }
+});
+
+
+/** Utility helper class that will generate the correct HTML for a Flash
+    OBJECT and embed it into a page. Broken out so that both _SVGObject
+    and _SVGSVGElement can use it in different contexts.
+    
+    @param embedType Either the string 'script' when embedding SVG into
+    a page using the SCRIPT tag or 'object' if embedding SVG into a page
+    using the OBJECT tag.
+    @param nodeXML The parsed XML for the root SVG element, used for sizing,
+    background, color, etc.
+    @param replaceMe If embedType is 'script', this is the SCRIPT node to
+    replace. If embedType is 'object', then this is the SVG OBJECT node.
+    @param handler The FlashHandler that will be associated with this Flash
+    object.
+  */
+function FlashInserter(embedType, nodeXML, replaceMe, handler) {
+  this._embedType = embedType;
+  this._nodeXML = nodeXML;
+  this._replaceMe = replaceMe;
+  this._handler = handler;
+  this._parentNode = replaceMe.parentNode;
+  
+  // Get width and height from object tag, if present.
+  if (this._embedType == 'object') {
+    this._explicitWidth = this._replaceMe.getAttribute('width');
+    this._explicitHeight = this._replaceMe.getAttribute('height');
+  }
+
+  this._setupFlash();
+}
+
+extend(FlashInserter, {
+  _setupFlash: function() {
+    // determine various information we need to display this object
+    var size = this._determineSize();  
+    var background = this._determineBackground();
+    var style = this._determineStyle();
+    var className = this._determineClassName();
+    var customAttrs = this._determineCustomAttrs();
+    
+    // setup our ID; if we are embedded with a SCRIPT tag, we use the ID from 
+    // the SVG ROOT tag; if we are embedded with an OBJECT tag, then we 
+    // simply make the Flash have the exact same ID as the OBJECT we are 
+    // replacing
+    var elementID;
+    if (this._embedType == 'script') {
+      elementID = this._nodeXML.getAttribute('id');
+      this._handler.flashID = elementID + '_flash';
+    } else if (this._embedType == 'object') {
+      elementID = this._replaceMe.getAttribute('id');
+      this._handler.flashID = elementID;
+    }
+    
+    // get a Flash object and insert it into our document
+    var flash = this._createFlash(size, elementID, background, style, 
+                                  className, customAttrs);
+    this._insertFlash(flash);
+    
+    // wait for the Flash file to finish loading
+  },
+  
+  /** Inserts the Flash object into the page.
+  
+      @param flash Flash HTML string. If this is an XHTML page, then this is
+      an EMBED object already instantiated and ready to insert into the page.
+      
+      @returns The Flash DOM object. */
+  _insertFlash: function(flash) {
+    if (!isIE) {
+      var flashObj;
+      if (!isXHTML) { // no innerHTML in XHTML land
+        // do a trick to turn the Flash HTML string into an actual DOM object
+        // unfortunately this doesn't work on IE; on IE the Flash is immediately
+        // loaded when we do div.innerHTML even though we aren't attached
+        // to the document!
+        var div = document.createElement('div');
+        div.innerHTML = flash;
+        flashObj = div.childNodes[0];
+        div.removeChild(flashObj);
+    
+        // at this point we have the OBJECT tag; ExternalInterface communication
+        // won't work on Firefox unless we get the EMBED tag itself
+        for (var i = 0; i < flashObj.childNodes.length; i++) {
+          var check = flashObj.childNodes[i];
+          if (check.nodeName.toUpperCase() == 'EMBED') {
+            flashObj = check;
+            break;
+          }
+        }
+      } else if (isXHTML) { /* XHTML */
+        // 'flash' is an EMBED object already created for us by createFlash();
+        // no innerHTML in this environment so we can't instantiate from
+        // a string:
+        // Issue 312: Odd error when using within XHTML document: 
+        // works with Firefox, does not work with any other browser
+        // http://code.google.com/p/svgweb/issues/detail?id=312
+        flashObj = flash;
+      }
+      
+      // now insert the EMBED tag into the document
+      this._replaceMe.parentNode.replaceChild(flashObj, this._replaceMe);
+  
+      return flashObj;
+    } else { // IE
+      // NOTE 1: as _soon_ as we make this call the Flash will load, even
+      // before the rest of this method has finished. The Flash can
+      // therefore finish loading before anything after the next statement
+      // has run, so be careful of timing bugs.
+      // NOTE 2: IE requires that we have this on a slight timeout, or we
+      // will get the following issue on IE 7: when the SWF and HTC files are
+      // loaded from the browser's cache (i.e. the second time a page loads
+      // by using ctrl-R), loading the HTC and SWF file from the same 'thread'
+      // of control causes an IE bug where the SWF never loads. The one
+      // second timeout gets both files loading on separate 'threads' of
+      // control.
+      var self = this;
+      window.setTimeout(function() {
+        self._replaceMe.outerHTML = flash;
+        self = null; // IE memory leaks
+      }, 1);
+    }
+  },
+  
+  /** Determines a width and height for the parsed SVG XML. Returns an
+      object literal with two values, width and height.
+
+      It is worth noting that pixels in this function and generally in
+      javascript land refer to "unzoomed" pixels. An object has a css
+      width value and that unit system does not change due to browser
+      zooming.
+       
+      Flash knows the object size in real screen pixels, so it will
+      account for the zoom mismatch. It does not know the javascript
+      land units, so we must tell it. That is mainly why we are
+      always calculating the pixel values here (from percent values,
+      if necessary).
+    */
+  _determineSize: function() {
+
+    var parentWidth = this._parentNode.clientWidth;
+    var parentHeight = this._parentNode.clientHeight;
+
+    // If parentHeight is zero, then the object was sized with a %
+    // object height and the parent height is not known.
+    // We should use aspect ratio for sizing the object height.
+    // Subsequent resizing of the object may result in a valid
+    // parent height, but in this case, we should stick to our earlier
+    // determination that the image should rely on aspect ratio to size
+    // the object height.
+    if (parentHeight == 0) {
+      this.invalidParentHeight = true;
+    }
+    /* IE7 quirk */
+    if (parentWidth == 0) {
+        parentWidth = this._parentNode.offsetWidth;
+    }
+
+    if (!isSafari) {
+      parentWidth -= this._getMargin(this._parentNode, 'margin-left');
+      parentWidth -= this._getMargin(this._parentNode, 'margin-right');
+      parentHeight -= this._getMargin(this._parentNode, 'margin-top');
+      parentHeight -= this._getMargin(this._parentNode, 'margin-bottom');
+    }
+
+    if (isStandardsMode) {
+      return this._getStandardsSize(parentWidth, parentHeight);
+    }
+    else {
+      return this._getQuirksSize(parentWidth, parentHeight);
+    }
+  },
+
+  _getQuirksSize: function(parentWidth, parentHeight) {
+    var pixelsWidth, pixelsHeight;
+
+    /** In the case of script or where an svg object has a height percent
+        and the svg image has a height percent, then the height of the parent
+        is not used and the viewBox aspect resolution is used.
+        However, in certain circumstances, the % of the parent height
+        is used. That circumstance is when the embed type is script
+        and parentHeight is > 0 and if it is in a div with height.
+        Here, we look for a parent div, and if we do not find one,
+        then we default to clientHeight.
+    */
+    if (this._embedType == 'script') {
+      var grandParent = this._parentNode;
+      while (grandParent && grandParent.style) {
+        // If a grandparent is a div, the parent height is ok.
+        if (grandParent.nodeName.toLowerCase() == 'div') {
+          // ?? may need to check for valid height
+          break;
+        }
+        // If we get to the body without div, ignore parent height.
+        if (grandParent.nodeName.toLowerCase() == 'body') {
+          // See Issue 276. Images with position: fixed
+          // scale into the viewport.
+          if (this._nodeXML.getAttribute('style') &&
+              this._nodeXML.getAttribute('style').indexOf('fixed') != -1) {
+            if (window.innerHeight && window.innerHeight > 0) {
+              parentHeight = window.innerHeight;
+            } else if (document.documentElement &&
+                       document.documentElement.clientHeight &&
+                       document.documentElement.clientHeight > 0) {
+              parentHeight = document.documentElement.clientHeight;
+            } else {
+              parentHeight = document.body.clientHeight;
+            }
+            this.invalidParentHeight = false;
+          } else {
+            // Issue 233: Default to viewBox
+            this.invalidParentHeight = true;
+            parentHeight = 0;
+          }
+          break;
+        }
+        grandParent = grandParent.parentNode;
+      }
+    }
+
+    // Calculate the object width and size starting with
+    // the width and height from the object tag.
+    // 
+    // If this is script embed type, the algorithm will perform as
+    // an object tag with neither width nor height specified.
+    // 
+    var objWidth = this._explicitWidth;
+    var objHeight = this._explicitHeight;
+
+    var xmlWidth = this._nodeXML.getAttribute('width');
+    var xmlHeight = this._nodeXML.getAttribute('height');
+
+    if (objWidth && objHeight) {
+      // calculate width in pixels
+      if (objWidth.indexOf('%') != -1) {
+        pixelsWidth = parentWidth * parseInt(objWidth) / 100;
+      } else {
+        pixelsWidth = objWidth;
+      }
+
+      // calculate height in pixels
+      if (objHeight.indexOf('%') != -1) {
+        if (parentHeight > 0) {
+          pixelsHeight = parentHeight * parseInt(objHeight) / 100;
+        }
+        else {
+          console.log('SVGWeb: unhandled resize scenario.');
+          parentHeight = 200;
+        }
+      } else {
+        pixelsHeight = objHeight;
+      }
+      return {width: objWidth, height: pixelsHeight,
+              pixelsWidth: pixelsWidth, pixelsHeight: pixelsHeight,
+              clipMode: this._nodeXML.getAttribute('viewBox') ? 'neither' : 'both'};
+    }
+
+    var viewBox, boxWidth, boxHeight;
+    if (objWidth) {
+      // estimate the width that will be used for percents
+      if (objWidth.indexOf('%') != -1) {
+        pixelsWidth = parentWidth * parseInt(objWidth) / 100;
+      } else {
+        pixelsWidth = objWidth;
+      }
+
+      if (this._nodeXML.getAttribute('viewBox')) {
+        // If width and height are both specified on the SVG file in pixels,
+        // then the height is calculated based on the object width and the
+        // aspect ratio between the svg height and width.
+        // The viewBox scales into resulting area (honoring preserveAspectRatio).
+        // SVG height and width are not using in actual rendering.
+        if (xmlWidth && xmlWidth.indexOf('%') == -1 &&
+            xmlHeight && xmlHeight.indexOf('%') == -1) {
+          objHeight = pixelsWidth * (xmlHeight / xmlWidth);
+        }
+        else {
+          viewBox = this._nodeXML.getAttribute('viewBox').split(/\s+|,/);
+          boxWidth = viewBox[2];
+          boxHeight = viewBox[3];
+          objHeight = pixelsWidth * (boxHeight / boxWidth);
+        }
+        return {width: objWidth, height: objHeight,
+                pixelsWidth: pixelsWidth, pixelsHeight: objHeight, clipMode: 'neither'};
+      } else {
+        if (xmlWidth && xmlWidth.indexOf('%') == -1 &&
+          xmlHeight && xmlHeight.indexOf('%') == -1) {
+          objHeight = pixelsWidth * (xmlHeight / xmlWidth);
+        } else {
+          if (xmlHeight && xmlHeight.indexOf('%') == -1) {
+            objHeight = xmlHeight;
+          } else {
+            objHeight = 150;
+          }
+        }
+        return {width: objWidth, height: objHeight,
+                pixelsWidth: pixelsWidth, pixelsHeight: objHeight, clipMode: 'both'};
+      }
+    }
+
+    if (objHeight) {
+
+      if (objHeight.indexOf('%') != -1) {
+        pixelsHeight = parentHeight * parseInt(objHeight) / 100;
+      } else {
+        pixelsHeight = objHeight;
+      }
+
+      if (this._nodeXML.getAttribute('viewBox')) {
+        // If width and height are both specified on the SVG file in pixels,
+        // then the object width is calculated based on the object height and the
+        // aspect ratio between the svg height and width.
+        if (xmlWidth && xmlWidth.indexOf('%') == -1 &&
+          xmlHeight && xmlHeight.indexOf('%') == -1) {
+          objWidth = pixelsHeight * (xmlWidth / xmlHeight);
+        } else {
+          viewBox = this._nodeXML.getAttribute('viewBox').split(/\s+|,/);
+          boxWidth = viewBox[2];
+          boxHeight = viewBox[3];
+          objWidth = pixelsHeight * (boxWidth / boxHeight);
+        }
+        return {width: objWidth, height: objHeight,
+                pixelsWidth: objWidth, pixelsHeight: pixelsHeight, clipMode: 'neither'};
+      } else {
+        // No viewbox, use svg width for object size
+        if (xmlWidth && xmlWidth.indexOf('%') == -1 &&
+          xmlHeight && xmlHeight.indexOf('%') == -1) {
+          objWidth = pixelsHeight * (xmlWidth / xmlHeight);
+          pixelsWidth = objWidth;
+        } else {
+          if (xmlWidth) {
+            objWidth = xmlWidth;
+          } else {
+            objWidth = "100%";
+          }
+
+          // estimate the width that will be used for percents
+          if (objWidth.indexOf('%') != -1) {
+            pixelsWidth = parentWidth * parseInt(objWidth) / 100;
+          } else {
+            pixelsWidth = objWidth;
+          }
+        }
+
+        // Also use svg width for svg clipping
+        return {width: objWidth, height: objHeight,
+                pixelsWidth: pixelsWidth, pixelsHeight: pixelsHeight, clipMode: 'both'};
+      }
+    }
+
+
+    // If we are here, neither object height nor width were specified.
+
+    // Use the svg width
+    if (xmlWidth) {
+      objWidth = xmlWidth;
+    } else {
+      objWidth = "100%";
+    }
+
+    // Calculate the width that will be used for percents.
+    if (objWidth.indexOf('%') != -1) {
+      pixelsWidth = parentWidth * parseInt(objWidth) / 100;
+    } else {
+      pixelsWidth = objWidth;
+    }
+
+    // Height pixels are used directly.
+    if (xmlHeight && xmlHeight.indexOf('%') == -1) {
+      objHeight = xmlHeight;
+      return {width: objWidth, height: objHeight,
+              pixelsWidth: pixelsWidth, pixelsHeight: objHeight,
+              clipMode: this._nodeXML.getAttribute('viewBox') ? 'neither' : 'both'};
+    } else {
+      // The height is a % or missing. Check for viewBox.
+      if (this._nodeXML.getAttribute('viewBox')) {
+        // Issue 276
+        if (this._embedType == 'script'
+            && (xmlHeight == null || xmlHeight.indexOf('%') != -1) && !this.invalidParentHeight) {
+          if (xmlHeight == null) {
+            xmlHeight = "100%";
+          }
+          if (objHeight == null) {
+            objHeight = "100%";
+          }
+          pixelsHeight = parentHeight * parseInt(xmlHeight) / 100;
+          return {width: objWidth, height: pixelsHeight,
+                  pixelsWidth: pixelsWidth, pixelsHeight: pixelsHeight, clipMode: 'neither'};
+        }
+        var viewBox = this._nodeXML.getAttribute('viewBox').split(/\s+|,/);
+        var boxWidth = viewBox[2];
+        var boxHeight = viewBox[3];
+        objHeight = pixelsWidth * (boxHeight / boxWidth);
+        return {width: objWidth, height: objHeight,
+                pixelsWidth: pixelsWidth, pixelsHeight: objHeight, clipMode: 'neither'};
+      } else {
+        objHeight = 150;
+        return {width: objWidth, height: objHeight,
+                pixelsWidth: pixelsWidth, pixelsHeight: objHeight, clipMode: 'both'};
+      }
+    }
+
+  },
+
+  _getStandardsSize: function(parentWidth, parentHeight) {
+    var pixelsWidth, pixelsHeight;
+
+    // Calculate the object width and size starting with
+    // the width and height from the object tag.
+    // 
+    // If this is script embed type, the algorithm will perform as
+    // an object tag with neither width nor height specified.
+    // 
+    var objWidth = this._explicitWidth;
+    var objHeight = this._explicitHeight;
+
+    var xmlWidth = this._nodeXML.getAttribute('width');
+    var xmlHeight = this._nodeXML.getAttribute('height');
+
+    if (objWidth && !objHeight) {
+      return this._getQuirksSize(parentWidth, parentHeight);
+    }
+
+    if (!objWidth && !objHeight) {
+      return this._getQuirksSize(parentWidth, parentHeight);
+    }
+
+    if (!objWidth && objHeight) {
+      if (xmlWidth) {
+         objWidth = xmlWidth;
+      } else {
+         objWidth = '100%';
+      }
+
+      // calculate width in pixels
+      if (objWidth.indexOf('%') != -1) {
+        pixelsWidth = parentWidth * parseInt(objWidth) / 100;
+      } else {
+        pixelsWidth = objWidth;
+      }
+
+      // Use object height pixels, if specified.
+      if (objHeight.indexOf('%') == -1) {
+        pixelsHeight = objHeight;
+        // If width and height are both specified on the SVG file in pixels,
+        // then the object width is calculated based on the object height and the
+        // aspect ratio between the svg height and width.
+        if (xmlWidth && xmlWidth.indexOf('%') == -1 &&
+          xmlHeight && xmlHeight.indexOf('%') == -1) {
+          objWidth = objHeight * (xmlWidth / xmlHeight);
+          pixelsWidth = objWidth;
+        } else {
+          if (this._nodeXML.getAttribute('viewBox')) {
+            viewBox = this._nodeXML.getAttribute('viewBox').split(/\s+|,/);
+            boxWidth = viewBox[2];
+            boxHeight = viewBox[3];
+            objWidth = pixelsHeight * (boxWidth / boxHeight);
+            pixelsWidth = objWidth;
+          }
+        }
+        return {width: objWidth, height: objHeight,
+                pixelsWidth: pixelsWidth, pixelsHeight: objHeight,
+                clipMode: this._nodeXML.getAttribute('viewBox') ? 'neither' : 'both'};
+      } else {
+        if (xmlHeight && xmlHeight.indexOf('%') == -1) {
+          pixelsHeight = xmlHeight;
+        } else {
+          if (this._nodeXML.getAttribute('viewBox')) {
+            viewBox = this._nodeXML.getAttribute('viewBox').split(/\s+|,/);
+            boxWidth = viewBox[2];
+            boxHeight = viewBox[3];
+            pixelsHeight = pixelsWidth * (boxHeight / boxWidth);
+          }
+          else {
+            pixelsHeight = 150;
+          }
+        }
+        return {width: objWidth, height: pixelsHeight,
+                pixelsWidth: pixelsWidth, pixelsHeight: pixelsHeight,
+                clipMode: this._nodeXML.getAttribute('viewBox') ? 'neither' : 'both'};
+      }
+    }
+
+    if (objWidth && objHeight) {
+      // calculate width in pixels
+      if (objWidth.indexOf('%') != -1) {
+        pixelsWidth = parentWidth * parseInt(objWidth) / 100;
+      } else {
+        pixelsWidth = objWidth;
+      }
+
+      // Use object height pixels, if specified.
+      if (objHeight.indexOf('%') == -1) {
+        return {width: objWidth, height: objHeight,
+                pixelsWidth: pixelsWidth, pixelsHeight: objHeight,
+                clipMode: this._nodeXML.getAttribute('viewBox') ? 'neither' : 'both'};
+      }
+      else {
+        if (xmlWidth && xmlWidth.indexOf('%') == -1 &&
+          // If width and height are both specified on the SVG file in pixels,
+          // then the height is calculated based on the object width and the
+          // aspect ratio between the svg height and width.
+          xmlHeight && xmlHeight.indexOf('%') == -1) {
+          pixelsHeight = pixelsWidth * (xmlHeight / xmlWidth);
+          return {width: objWidth, height: pixelsHeight,
+                  pixelsWidth: pixelsWidth, pixelsHeight: pixelsHeight, clipMode: 'neither'};
+        } else {
+          if (!this.invalidParentHeight) {
+            // If parent height is "valid", use it.
+            pixelsHeight = parentHeight * parseInt(objHeight) / 100;
+            return {width: objWidth, height: pixelsHeight,
+                    pixelsWidth: pixelsWidth, pixelsHeight: pixelsHeight, clipMode: 'neither'};
+          }
+          else {
+            // Default to viewbox aspect resolution
+            if (this._nodeXML.getAttribute('viewBox')) {
+              viewBox = this._nodeXML.getAttribute('viewBox').split(/\s+|,/);
+              boxWidth = viewBox[2];
+              boxHeight = viewBox[3];
+              objHeight = pixelsWidth * (boxHeight / boxWidth);
+              return {width: objWidth, height: objHeight,
+                      pixelsWidth: pixelsWidth, pixelsHeight: objHeight, clipMode: 'neither'};
+            } else {
+              if (xmlHeight && xmlHeight.indexOf('%') == -1) {
+                pixelsHeight = xmlHeight;
+              } else {
+                pixelsHeight = 150;
+              }
+              return {width: objWidth, height: pixelsHeight,
+                      pixelsWidth: pixelsWidth, pixelsHeight: pixelsHeight, clipMode: 'both'};
+            }
+          }
+        }
+      }
+    }
+
+
+  },
+
+  // http://www.quirksmode.org/dom/getstyles.html
+  _getMargin: function(node,styleProp) {
+    var y;
+    if (node.currentStyle)
+      y = parseInt(node.currentStyle[styleProp]);
+    else if (window.getComputedStyle)
+      y = parseInt(document.defaultView.getComputedStyle(node,null).getPropertyValue(styleProp));
+
+    if (y)
+      return y;
+    else
+      return 0;
+  },
+
+  
+  /** Determines the background coloring. Returns an object literal with
+      two values, 'color' with a color or null and 'transparent' with a 
+      boolean. */
+  _determineBackground: function() {
+    var transparent = false;
+    var color = null;
+    
+    // NOTE: CSS 2.1 spec says background does not get inherited, and we don't
+    // support external CSS style rules for now; we also only support
+    // 'background-color' property and not 'background' CSS property for
+    // setting the background color.
+    var style = this._nodeXML.getAttribute('style');
+    if (style && style.indexOf('background-color') != -1) {
+      var m = style.match(/background\-color:\s*([^;]*)/);
+      if (m) {
+        color = m[1];
+      }
+    }
+
+    if (color === null) {
+      // no background color specified
+      transparent = true;
+    }
+    
+    return {color: color, transparent: transparent};
+  },
+  
+  /** Determines what the style should be on the SVG root element, copying
+      over any styles the user has placed inline and defaulting certain
+      styles. We will bring these over to the Flash object.
+      
+      @returns Style string ready to copy over to Flash object. */
+  _determineStyle: function() {
+    var style = this._nodeXML.getAttribute('style');
+    
+    if (!style) {
+      style = '';
+    }
+    
+    // IE sometimes leaves off trailing semicolon of style values
+    if (style.length > 0 && style.charAt(style.length - 1) != ';') {
+      style += ';';
+    }
+        
+    // SVG spec says default display value for SVG root element is 
+    // inline
+    if (this._embedType == 'script' && style.indexOf('display:') == -1) {
+      style += 'display: inline;';
+    }
+    
+    // SVG spec says SVG by default should have overflow: none
+    if (this._embedType == 'script' && style.indexOf('overflow:') == -1) {
+      style += 'overflow: hidden;';
+    }
+    
+    return style;
+  },
+  
+  /** Determines a class name for the Flash object; we simply copy over
+      any class names on the SVG root object to aid in external styling.
+      
+      @returns Class name string. Returns '' if there is none. */
+  _determineClassName: function() {
+    var className = this._nodeXML.getAttribute('class');
+    if (!className) {
+      return 'embedssvg';
+    } else {
+      return className + ' embedssvg';
+    }
+  },
+  
+  /** The developer might have added custom attributes on to the place holder
+      we are replacing for SVG OBJECTs; copy those over and make sure they
+      show up on the Flash OBJECT as well. */
+  _determineCustomAttrs: function() {
+    var results = [];
+    if (this._embedType == 'object') {
+      var node = this._replaceMe;
+      // we use a fake object to determine potential default attributes that
+      // we don't want to copy over to our Flash object
+      var commonObj = document._createElement('object');
+      for (var j = 0; j < node.attributes.length; j++) {
+        var attr = node.attributes[j];
+        var attrName = attr.nodeName;
+        var attrValue = attr.nodeValue;
+                 
+        // trim out 'empty' attributes with no value
+        if (!attrValue && attrValue !== 'true') {
+          continue;
+        }
+        
+        // trim out anything that is on a common OBJECT so we don't have
+        // overlap
+        if (commonObj.getAttribute(attrName)) {
+          continue;
+        }
+        
+        // trim out other OBJECT overrides as well as some custom attributes
+        // we might have added earlier in the OBJECT creation process 
+        // (_listeners, addEventListener, etc.)
+        if (/^(id|name|width|height|data|class|style|codebase|type|_listeners|addEventListener|onload)$/.test(attrName)) {
+          continue;
+        }
+        
+        results.push({attrName: attrName.toString(), 
+                      attrValue: attrValue.toString()});
+      }
+    }
+    
+    return results;
+  },
+  
+  /** Creates a Flash object that embeds the Flash SVG Viewer.
+
+      @param size Object literal with width and height.
+      @param elementID The ID of either the SVG ROOT object or of an
+      SVG OBJECT.
+      @param background Object literal with background color and 
+      transparent boolean.
+      @param style Style string to copy onto Flash object.
+      @param className The class name to copy into the Flash object.
+      @param customAttrs Array of custom attributes that the developer might
+      have put on their SVG OBJECT; each entry in the array is an object
+      literal with attrName and attrValue as the keys.
+      
+      @returns Flash object as HTML string. If the page is an XHTML 
+      page, then we return an EMBED tag already instantiated and ready to
+      insert; this is because we do not have innerHTML on XHTML pages. */ 
+  _createFlash: function(size, elementID, background, style, className,
+                         customAttrs) {
+    var flashVars = 
+          'uniqueId=' + encodeURIComponent(elementID)
+        + '&sourceType=string'
+        + '&clipMode=' + size.clipMode
+        + '&debug=true'
+        + '&svgId=' + encodeURIComponent(elementID);
+    var src;
+    if (this._isXDomain) {
+      src = svgweb.xDomainURL + 'svg.swf';
+    } else {
+      src = svgweb.libraryPath + 'svg.swf';
+    }
+
+    var protocol = window.location.protocol;
+    if (protocol.charAt(protocol.length - 1) == ':') {
+      protocol = protocol.substring(0, protocol.length - 1);
+    }
+
+    var flash;
+    if (isXHTML) {
+      // XHTML environments have no innerHTML
+      flash = document.createElement('embed');
+      flash.setAttribute('src', src);
+      flash.setAttribute('quality', 'high');
+      // FIXME: Will this logic test break if the color is black?
+      if (background.color) {
+        flash.setAttribute('bgcolor', background.color);
+      }
+      if (background.transparent) {
+        flash.setAttribute('wmode', 'transparent');
+      }
+      flash.setAttribute('width', size.width);
+      flash.setAttribute('height', size.height);
+      flash.setAttribute('id', this._handler.flashID);
+      flash.setAttribute('name', this._handler.flashID);
+      flash.setAttribute('swLiveConnect', 'true');
+      flash.setAttribute('allowScriptAccess', 'always');
+      flash.setAttribute('type', 'application/x-shockwave-flash');
+      flash.setAttribute('FlashVars', flashVars);
+      flash.setAttribute('pluginspage', protocol
+                       + '://www.macromedia.com/go/getflashplayer');
+      flash.setAttribute('style', style);
+      flash.setAttribute('className', className);
+      flash.setAttribute
+      for (var i = 0; i < customAttrs.length; i++) {
+        flash.setAttribute(customAttrs[i].attrName,
+                         customAttrs[i].attrValue);
+      }
+    } else { // normal text/html environment
+      var customAttrStr = '';
+      for (var i = 0; i < customAttrs.length; i++) {
+        customAttrStr += ' ' + customAttrs[i].attrName + '="'
+                              + customAttrs[i].attrValue + '"';
+      }
+      
+      flash =
+          '<object\n '
+            + 'classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000"\n '
+            + 'codebase="'
+            + protocol
+            + '://fpdownload.macromedia.com/pub/shockwave/cabs/flash/'
+            + 'swflash.cab#version=9,0,0,0"\n '
+            + 'width="' + size.width + '"\n '
+            + 'height="' + size.height + '"\n '
+            + 'id="' + this._handler.flashID + '"\n '
+            + 'name="' + this._handler.flashID + '"\n '
+            + 'style="' + style + '"\n '
+            + 'class="' + className + '"\n '
+            + customAttrStr + '\n'
+            + '>\n '
+            + '<param name="allowScriptAccess" value="always"></param>\n '
+            + '<param name="movie" value="' + src + '"></param>\n '
+            + '<param name="quality" value="high"></param>\n '
+            + '<param name="FlashVars" value="' + flashVars + '"></param>\n '
+            // FIXME: Will this logic test break if the color is black?
+            + (background.color ? '<param name="bgcolor" value="' 
+                                    + background.color + '"></param>\n ' : '')
+            + (background.transparent ? 
+                                    '<param name="wmode" value="transparent">'
+                                    + '</param>\n ' : '')
+            + '<embed '
+              + 'src="' + src + '" '
+              + 'quality="high" '
+              + (background.color ? 'bgcolor="' + background.color 
+                                     + '" \n' : '')
+              + (background.transparent ? 'wmode="transparent" \n' : '')
+              + 'width="' + size.width + '" '
+              + 'height="' + size.height + '" '
+              + 'id="' + this._handler.flashID + '" '
+              + 'name="' + this._handler.flashID + '" '
+              + 'swLiveConnect="true" '
+              + 'allowScriptAccess="always" '
+              + 'type="application/x-shockwave-flash" '
+              + 'FlashVars="' + flashVars + '" '
+              + 'pluginspage="'
+              + protocol
+              + '://www.macromedia.com/go/getflashplayer" '
+              + 'style="' + style + '"\n '
+              + 'class="' + className + '"\n '
+              + customAttrStr + '\n'
+              + ' />'
+          + '</object>';
+    }
+
+    return flash;
+  }
+});
+
+
+/** SVG Root element.
+
+    @param nodeXML A parsed XML node object that is the SVG root node.
+    @param svgString The full SVG as a string. Null if this SVG root
+    element is being embedded by an SVG OBJECT.
+    @param scriptNode The script node that contains this SVG. Null if this
+    SVG root element is being embedded by an SVG OBJECT.
+    @param handler The FlashHandler that we are a part of. */
+function _SVGSVGElement(nodeXML, svgString, scriptNode, handler) {
+  // superclass constructor
+  _Element.apply(this, ['svg', null, svgns, nodeXML, handler, true]);
+  
+  this._nodeXML = nodeXML;
+  this._svgString = svgString;
+  this._scriptNode = scriptNode;
+  
+  // flash that we use to know whether the HTC and SWF files are loaded
+  this._htcLoaded = false;
+  this._swfLoaded = false;
+  
+  // add to our nodeByID lookup table so that fetching this node in the
+  // future works
+  if (this._handler.type == 'script') {
+    var rootID = this._nodeXML.getAttribute('id');
+    var doc = this._handler.document;
+    doc._nodeById['_' + rootID] = this;
+  }
+  
+  this._currentScale = 1;
+  this._currentTranslate = this._createCurrentTranslate();
+  
+  // when being embedded by a SCRIPT element, the _SVGSVGElement class
+  // takes over inserting the Flash and HTC elements so that we have 
+  // something visible on the screen; when being embedded by an SVG OBJECT
+  // we don't do this since the OBJECT tag itself is what is visible on the 
+  // screen
+  if (isIE && this._handler.type == 'script') {
+    // slot in our suspendRedraw/unsuspendRedraw methods
+    this._addRedrawMethods();
+    
+    // track .style changes
+    this.style = new _Style(this);
+    
+    // find out when the content is ready
+    // NOTE: we do this here instead of inside the HTC file using an
+    // internal oncontentready event in order to make the HTC file faster
+    // and use less memory. Note also that 'oncontentready' is not available 
+    // outside HTC files, only 'onreadystatechange' is available.
+    this._readyStateListener = hitch(this, this._onHTCLoaded); // cleanup later
+    this._htcNode.attachEvent('onreadystatechange', this._readyStateListener);
+ 
+    // now wait for the HTC file to load for the SVG root element;
+    // continue inserting our Flash object below as well so that the HTC 
+    // file and SWF file load in parallel for better overall performance
+  } else if (isIE && this._handler.type == 'object') {
+    // slot in our suspendRedraw/unsuspendRedraw methods
+    this._addRedrawMethods();
+  }
+
+  if (this._handler.type == 'script') { 
+    // insert the Flash
+    this._handler._inserter = new FlashInserter('script', this._nodeXML,
+                                                this._scriptNode, this._handler);
+  }
+}  
+
+// subclasses _Element
+_SVGSVGElement.prototype = new _Element;
+
+extend(_SVGSVGElement, {
+  // SVGSVGElement
+  
+  // NOTE: there are properties and methods from SVGSVGElement not defined 
+  // or implemented here; see
+  // http://www.w3.org/TR/SVG/struct.html#InterfaceSVGSVGElement
+  // for full list
+  
+  // TODO: Implement the functions below
+  
+  suspendRedraw: function(ms /* unsigned long */) /* unsigned long */ {
+    return this._handler._redrawManager.suspendRedraw(ms);                                                     
+  },
+
+  unsuspendRedraw: function(id /* unsigned long */) /* void */
+                                                /* throws DOMException */ {
+    this._handler._redrawManager.unsuspendRedraw(id);                                                                                                   
+  },
+                                                
+  unsuspendRedrawAll: function() /* void */ {
+    this._handler._redrawManager.unsuspendRedrawAll();
+  },
+  
+  forceRedraw: function() /* void */ {
+    // not implemented
+  },
+  
+  // end SVGSVGElement
+  
+  // SVGLocatable
+  
+  // TODO: Implement the following properties
+  
+  nearestViewportElement: null, /* readonly SVGElement */
+  farthestViewportElement: null, /* readonly SVGElement */
+  
+  // TODO: Implement the following methods
+  
+  getBBox: function() /* SVGRect */ {},
+  getTransformToElement: function(element /* SVGElement */) /* SVGMatrix */ {
+    /* throws SVGException */
+  },
+  
+  // end of SVGLocatable
+  
+  /** Called when the Microsoft Behavior HTC file is loaded. */
+  _onHTCLoaded: function() {
+    //console.log('onHTCLoaded');
+    //end('HTCLoading');
+    //start('onHTCLoaded');
+    
+    // cleanup our event handler
+    this._htcNode.detachEvent('onreadystatechange', this._readyStateListener);
+                           
+    // pay attention to style changes now in the HTC
+    this.style._ignoreStyleChanges = false;
+    //end('onHTCLoaded');
+    
+    // indicate that the HTC is loaded; see if Flash is loaded
+    this._htcLoaded = true;
+    if (this._swfLoaded) {
+      this._onEverythingLoaded();
+    }
+    
+    // TODO: we are not handling dynamically created nodes yet
+  },
+  
+  /** Called when the Flash SWF file has been loaded. Note that this doesn't
+      include the SVG being rendered -- at this point we haven't even
+      sent the SVG to the Flash file for rendering yet. */
+  _onFlashLoaded: function(msg) {
+    //end('SWFLoading');
+    //start('onFlashLoaded');
+    // the Flash object is done loading
+    //console.log('_onFlashLoaded');
+    
+    // store a reference to our Flash object
+    this._handler.flash = document.getElementById(this._handler.flashID);
+    
+    // for non-IE browsers we are ready to go; for IE, see if the HTC is done
+    // loading yet
+    this._swfLoaded = true;
+    if (!isIE || this._htcLoaded) {
+      this._onEverythingLoaded();
+    }
+    
+    //end('onFlashLoaded');
+  },
+  
+  /** Called when the Flash is loaded initially, as well as the HTC file for IE. */
+  _onEverythingLoaded: function() {
+    //console.log('_onEverythingLoaded');
+    
+    // send the SVG over to Flash now
+    //start('firstSendToFlash');
+    //start('jsHandleLoad');
+
+    var size = this._handler._inserter._determineSize();
+    this._handler.sendToFlash('jsHandleLoad',
+                              [ /* objectURL */ this._getRelativeTo('object'),
+                                /* pageURL */ this._getRelativeTo('page'),
+                                /* objectWidth */ size.pixelsWidth,
+                                /* objectHeight */ size.pixelsHeight,
+                                /* ignoreWhiteSpace */ true,
+                                /* svgString */ this._svgString ]);
+    //end('jsHandleLoad');
+  },
+  
+  /** The Flash is finished rendering. */
+  _onRenderingFinished: function(msg) {
+    //end('firstSendToFlash');
+    //start('onRenderingFinished');
+    //console.log('onRenderingFinished');
+    
+    if (this._handler.type == 'script') {
+      // expose the root SVG element as 'documentElement' on the EMBED
+      // or OBJECT tag for SVG SCRIPT embed as a utility property for 
+      // developers to descend down into the SVG root tag
+      // (see Known Issues and Errata for details)
+      this._handler.flash.documentElement = this._getProxyNode();
+    }
+    
+    var elementId = this._nodeXML.getAttribute('id');
+    this._handler._loaded = true;
+    //end('onRenderingFinished');
+    this._handler.fireOnLoad(elementId, 'script');
+  },
+  
+  /** Relative URLs inside of SVG need to expand against something (i.e.
+      such as having an SVG Audio tag with a relative URL). This method
+      figures out what that relative URL should be. We send this over to
+      Flash when rendering things so Flash knows what to expand against. */
+  _getRelativeTo: function() {
+    var results = '';
+    var pathname = window.location.pathname.toString();
+    if (pathname && pathname.length > 0 && pathname.indexOf('/') != -1) {
+      // snip off any filename after a final slash
+      results = pathname.replace(/\/([^/]*)$/, '/');
+    }
+
+    return results;
+  },
+  
+  /** Adds the various suspendRedraw/unsuspendRedraw methods to our HTC
+      proxy for IE. We do it here for two reasons: so that we don't have to
+      bloat the size of the HTC file which has a large affect on performance,
+      and so that these methods don't show up for SVG nodes that aren't the
+      root SVG node. */
+  _addRedrawMethods: function() {
+    // add methods inside of fresh closures to prevent IE memory leaks
+    this._htcNode.suspendRedraw = (function() {
+      return function(ms) { return this._fakeNode.suspendRedraw(ms); };
+    })();
+    this._htcNode.unsuspendRedraw = (function() { 
+      return function(id) { return this._fakeNode.unsuspendRedraw(id); };
+    })();
+    this._htcNode.unsuspendRedrawAll = (function() { 
+      return function() { return this._fakeNode.unsuspendRedrawAll(); };
+    })();
+    this._htcNode.forceRedraw = (function() { 
+      return function() { return this._fakeNode.forceRedraw(); };
+    })();
+  },
+  
+  /** Sets up our currentTranslate property to pass over any changes on the
+      X and Y values over to Flash. */ 
+  _createCurrentTranslate: function() {
+    var p = new _SVGPoint(0, 0, true /* formalAccessor */,
+                          hitch(this, this._updateCurrentTranslate));
+    return p;
+  },
+  
+  _updateCurrentTranslate: function(type, newValue1, newValue2) {
+    if (type != 'xy') {
+      this._handler.sendToFlash('jsSetCurrentTranslate', [ type, newValue1 ]);
+    } else {
+      this._handler.sendToFlash('jsSetCurrentTranslate', [ 'xy', newValue1, 
+                                newValue2 ]);
+    }
+  }
+});
+
+
+/** Represent a Document object for manipulating the SVG document.
+
+    @param xml Parsed XML for the SVG.
+    @param handler The FlashHandler this document is a part of. */
+function _Document(xml, handler) {
+  // superclass constructor
+  _Node.apply(this, ['#document', _Node.DOCUMENT_NODE, null, null, 
+                     xml, handler], svgns);
+  this._xml = xml;
+  this._handler = handler;
+  this._nodeById = {};
+  this._namespaces = this._getNamespaces();
+  this.implementation = new _DOMImplementation();
+  if (this._handler.type == 'script') {
+    this.defaultView = window;
+  } else if (this._handler.type == 'object') {
+    // we set the document.defaultView in _SVGObject._executeScript() once
+    // we create the iframe that we execute our script into
+  }
+}
+
+// subclasses _Node
+_Document.prototype = new _Node;
+
+extend(_Document, {
+  /** Stores a lookup from a node's ID to it's _Element or _Node 
+      representation. An object literal. */
+  _nodeById: null,
+  
+  /*
+    Note: technically these 2 properties should be read-only and throw 
+    a DOMException when set. For simplicity we make them simple JS
+    properties; if set, nothing will happen. Also note that we don't
+    support the 'doctype' property.
+  */
+  implementation: null,
+  documentElement: null,
+  
+  createElementNS: function(ns, qname) /* _Element */ {
+    var prefix = this._namespaces['_' + ns];
+    
+    if (prefix == 'xmlns' || !prefix) { // default SVG namespace
+      prefix = null;
+    }
+
+    var node = new _Element(qname, prefix, ns);
+    
+    return node._getProxyNode();
+  },
+  
+  createTextNode: function(data /* DOM Text Node */) /* _Node */ {
+    // We create a DOM Element node to represent this text node. We do this
+    // so that we can track the text node over time to register changes to
+    // it and so on. We must use a DOM Element node so that we have access
+    // to the setAttribute method in order to store data on the XML DOM node.
+    // This is due to a limitation on Internet Explorer where you can not
+    // store 'expandos' on XML node objects (i.e. you can't add custom
+    // properties). We store the actual data as a DOM Text Node of our DOM
+    // Element. Note that since we have no handler yet we simply use a default
+    // XML document object (_unattachedDoc) to create things for now.
+    var doc = FlashHandler._unattachedDoc;
+    var nodeXML;
+    if (isIE) { // no createElementNS available
+      nodeXML = doc.createElement('__text');
+    } else {
+      nodeXML = doc.createElementNS(svgnsFake, '__text');
+    }
+    nodeXML.appendChild(doc.createTextNode(data));
+    var textNode = new _Node('#text', _Node.TEXT_NODE, null, null, nodeXML,
+                             this._handler);
+    textNode._nodeValue = data;
+    textNode.ownerDocument = this;
+    
+    return textNode._getProxyNode();
+  },
+  
+  createDocumentFragment: function(forSVG) {
+    return new _DocumentFragment(this)._getProxyNode();
+  },
+  
+  getElementById: function(id) /* _Element */ {
+    // XML parser does not have getElementById, due to id mapping in XML
+    // issues; use XPath instead
+    var results = xpath(this._xml, null, '//*[@id="' + id + '"]');
+
+    var nodeXML, node;
+    
+    if (results.length) {
+      nodeXML = results[0];
+    } else {
+      return null;
+    }
+    
+    // create or get an _Element for this XML DOM node for node
+    node = FlashHandler._getNode(nodeXML, this._handler);
+    node._passThrough = true;
+    return node;
+  },
+  
+  /** NOTE: on IE we don't support calls like the following:
+      getElementsByTagNameNS(*, 'someTag');
+      
+      We do support:
+      getElementsByTagNameNS('*', '*');
+      getElementsByTagNameNS('someNameSpace', '*');
+      getElementsByTagNameNS(null, 'someTag');
+  */
+  getElementsByTagNameNS: function(ns, localName) /* _NodeList of _Elements */ {
+    //console.log('document.getElementsByTagNameNS, ns='+ns+', localName='+localName);
+    var results = createNodeList();
+    var matches;
+    // DOM Level 2 spec details:
+    // if ns is null or '', return elements that have no namespace
+    // if ns is '*', match all namespaces
+    // if localName is '*', match all tags in the given namespace
+    if (ns == '') {
+      ns = null;
+    }
+    
+    // we internally have to mess with the SVG namespace a bit to avoid
+    // an issue with Firefox and Safari
+    if (ns == svgns) {
+      ns = svgnsFake;
+    }
+
+    // get DOM nodes with the given tag name
+    if (this._xml.getElementsByTagNameNS) { // non-IE browsers
+      results = this._xml.getElementsByTagNameNS(ns, localName);
+    } else { // IE
+      // we use XPath instead of xml.getElementsByTagName because some versions
+      // of MSXML have namespace glitches with xml.getElementsByTagName
+      // (Issue 183: http://code.google.com/p/svgweb/issues/detail?id=183)
+      
+      // figure out prefix
+      var prefix = 'xmlns';
+      if (ns && ns != '*') {
+        prefix = this._namespaces['_' + ns];
+        
+        if (prefix === undefined) {
+          return createNodeList(); // empty []
+        }
+      }
+      
+      // determine correct xpath query
+      var query;
+      if (ns == '*' && localName == '*') {
+        query = '//*';
+      } else if (ns == '*') {
+        query = "//*[namespace-uri()='*' and local-name()='" + localName + "']";
+      } else if (localName == '*') {
+        query = "//*[namespace-uri()='" + ns + "']";
+      } else {
+        // Wonderful IE bug: some versions of MSXML don't seem to 'see'
+        // the default XML namespace with XPath, forcing you to pretend like 
+        // an element has no namespace: //circle
+        // _Other_ versions of MSXML won't work like this, and _do_ see the
+        // default namespace, forcing you to fully specify it:
+        // //*[namespace-uri()='http://my-namespace' and local-name()='circle']
+        // To accomodate these we run both and use an XPath Union Operator
+        // to combine the results
+        query = "//" + localName 
+                + " | //*[namespace-uri()='" + ns + "' and local-name()='" 
+                + localName + "']";
+      }
+
+      matches = xpath(this._xml, null, query, this._namespaces);
+      if (matches !== null && matches !== undefined && matches.length > 0) {
+        for (var i = 0; i < matches.length; i++) {
+          results.push(matches[i]);
+        }
+      }
+    }
+    
+    // now create or fetch _Elements representing these DOM nodes
+    var nodes = createNodeList();
+    for (var i = 0; i < results.length; i++) {
+      var elem = FlashHandler._getNode(results[i], this._handler);
+      elem._passThrough = true;
+      nodes.push(elem);
+    }
+    
+    return nodes;
+  },
+  
+  // Note: createDocumentFragment, createComment, createCDATASection,
+  // createProcessingInstruction, createAttribute, createEntityReference,
+  // importNode, createElement, getElementsByTagName,
+  // createAttributeNS not supported
+  
+  /** Extracts any namespaces we might have, creating a prefix/namespaceURI
+      lookup table.
+      
+      NOTE: We only support namespace declarations on the root SVG node
+      for now.
+      
+      @returns An object that associates prefix to namespaceURI, and vice
+      versa. */
+  _getNamespaces: function() {
+    var results = [];
+    var attrs = this._xml.documentElement.attributes;
+    for (var i = 0; i < attrs.length; i++) {
+      var attr = attrs[i];
+      if (/^xmlns:?(.*)$/.test(attr.nodeName)) {
+        var m = attr.nodeName.match(/^xmlns:?(.*)$/);
+        var prefix = (m[1] ? m[1] : 'xmlns');
+        var namespaceURI = attr.nodeValue;
+                
+        // don't add duplicates
+        if (!results['_' + prefix]) {
+          results['_' + prefix] = namespaceURI;
+          results['_' + namespaceURI] = prefix;
+          results.push(namespaceURI);
+        }
+      }
+    }
+    
+    return results;
+  }
+});
+
+
+// We don't create a NodeList class due to the complexity of subclassing
+// the Array object cross browser. Instead, we simply patch in the item()
+// method to a normal Array object
+function createNodeList() {
+  var results = [];
+  results.item = function(i) {
+    if (i >= this.length) {
+      return null; // DOM Level 2 spec says return null
+    } else {
+      return this[i];
+    }
+  }
+  
+  return results;
+}
+
+
+// We don't have an actual DOM CharacterData type for now. We just return
+// a String object with the 'data' property patched in, since that is what
+// is most commonly accessed
+function createCharacterData(data) {
+  var results = (data !== undefined) ? new String(data) : new String();
+  results.data = results.toString();
+  return results;
+}
+
+// End DOM Level 2 Core/Events support
+
+// SVG DOM interfaces
+
+// Note: where the spec returns an SVGNumber or SVGString we just return
+// the JavaScript base type instead. Note that in general also instead of
+// returning the many SVG List types, such as SVGPointList, we just
+// return standard JavaScript Arrays. For SVGAngle we also
+// just return a JS Number for now.
+
+function _SVGMatrix(a /** All Numbers */, b, c, d, e, f, _handler) {
+  this.a = a; this.b = b; this.c = c; this.d = d; this.e = e; this.f = f;
+  this._handler = _handler;
+}
+
+extend(_SVGMatrix, {
+  // all functions return _SVGMatrix
+
+  // TODO: Implement the following methods
+  
+  multiply: function(secondMatrix /* _SVGMatrix */ ) {},
+  inverse: function() {
+      var msg =this._handler.sendToFlash('jsMatrixInvert',
+                                [ this.a, this.b, this.c, this.d,
+                                  this.e, this.f ]);
+      msg = this._handler._stringToMsg(msg);
+      return new _SVGMatrix(new Number(msg.a), new Number(msg.b), new Number(msg.c),
+                            new Number(msg.d), new Number(msg.e), new Number(msg.f),
+                            this._handler);
+  },
+  translate: function(x /* Number */, y /* Number */) {},
+  scale: function(scaleFactor /* Number */) {},
+  scaleNonUniform: function(scaleFactorX /* Number */, scaleFactorY /* Number */) {},
+  rotate: function(angle /* Number */) {},
+  rotateFromVector: function(x, y) {},
+  flipX: function() {},
+  flipY: function() {},
+  skewX: function(angle) {},
+  skewY: function(angle) {}
+});
+
+
+// Note: Most of the functions on SVGLength not supported for now
+function _SVGLength(/* Number */ value) {
+  this.value = value;
+}
+
+
+// Note: We only support _SVGAnimatedLength because that is what Firefox
+// and Safari return, and we want to have parity. Only baseVal works for now
+function _SVGAnimatedLength(/* _SVGLength */ value) {
+  this.baseVal = value;
+  this.animVal = undefined; // not supported for now
+}
+
+
+function _SVGTransform(type, matrix, angle) {
+  this.type = type;
+  this.matrix = matrix;
+  this.angle = angle;
+}
+
+mixin(_SVGTransform, {
+  SVG_TRANSFORM_UNKNOWN: 0, SVG_TRANSFORM_MATRIX: 1, SVG_TRANSFORM_TRANSLATE: 2,
+  SVG_TRANSFORM_SCALE: 3, SVG_TRANSFORM_ROTATE: 4, SVG_TRANSFORM_SKEWX: 5,
+  SVG_TRANSFORM_SKEWY: 6
+});
+
+extend(_SVGTransform, {
+  // Note: the following 3 should technically be readonly
+  type: null, /* one of the constants above */
+  matrix: null, /* _SVGMatrix */
+  angle: null, /* float */
+  
+  // TODO: Implement the following methods
+  
+  setMatrix: function(matrix /* SVGMatrix */) {},
+  setTranslate: function(tx /* float */, ty /* float */) {},
+  setScale: function(sx /* float */, sy /* float */) {},
+  setRotate: function(angle /* float */, cx /* float */, cy /* float */) {},
+  setSkewX: function(angle /* float */) {},
+  setSkewY: function(angle /* float */) {}  
+});
+
+
+/** SVGPoint class.
+    @formalAccessors - Optional boolean that controls whether we force
+    the class to have formal get and set method to handle limitations in
+    IE, such as getX. Defaults to false. 
+    @callback - Optional Function. Called when a setter is called. Given
+    the following arguments: 'x', 'y', or 'xy' on what is being set followed
+    by the new value(s) */
+function _SVGPoint(x, y, formalAccessors, callback) {
+  if (formalAccessors === undefined) {
+    formalAccessors = false;
+  }
+  
+  this._formalAccessors = formalAccessors;
+  
+  this.x = x;
+  this.y = y;
+  
+  if (formalAccessors) {
+    this.setX = hitch(this, function(newValue) {
+      this.x = newValue;
+      callback('x', newValue);
+    });
+    this.getX = hitch(this, function() {
+      return this.x;
+    });
+    this.setY = hitch(this, function(newValue) {
+      this.y = newValue;
+      callback('y', newValue);
+    });
+    this.getY = hitch(this, function() {
+      return this.y;
+    });
+    this.setXY = hitch(this, function(newX, newY) {
+      callback('xy', newX, newY);
+    });
+  }
+}
+
+extend(_SVGPoint, {
+  matrixTransform: function(m) {
+    return new _SVGPoint(
+                m.a * this.x + m.c * this.y + m.e,
+                m.b * this.x + m.d * this.y + m.f,
+                this._formalAccessors);
+  }
+});
+
+// SVGRect
+function _SVGRect(x, y, width, height) {
+  this.x = x;
+  this.y = y;
+  this.width = width;
+  this.height = height;
+}
+     
+// end SVG DOM interfaces
+
+/* 
+  Other DOM interfaces specified by SVG 1.1:
+  
+  * SVG 1.1 spec requires DOM 2 Views support, which we do not implement:
+    http://www.w3.org/TR/DOM-Level-2-Views/
+
+  * SVG 1.1 spec has the DOM traversal and range APIs as optional; these are
+    not supported
+
+  * Technically we need to support certain DOM Level 2 CSS interfaces:
+    http://www.w3.org/TR/DOM-Level-2-Style/css.html
+    We support some (anything that should be on an SVG Element), 
+    but the following interfaces are not supported:
+    CSSStyleSheet, CSSRuleList, CSSRule, CSSStyleRule, CSSMediaRule,
+    CSSFontFaceRule, CSSPageRule, CSSImportRule, CSSCharsetRule,
+    CSSUnknownRule, CSSStyleDeclaration, CSSValue, CSSPrimitiveValue,
+    CSSValueList, RGBColor, Rect, Counter, ViewCSS (getComputedStyle),
+    DocumentCSS, DOMImplementationCSS, none of the CSS 2 Extended Interfaces
+    
+  * There are many SVG DOM interfaces we don't support
+*/
+
+window.svgweb = new SVGWeb(); // kicks things off
+
+// hide internal implementation details inside of a closure
+})();

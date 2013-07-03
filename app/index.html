@@ -2,8 +2,10 @@
 <html lang="en" class="ng-app:pathvisio" id="ng-app" ng-app="pathvisio" xmlns:ng="http://angularjs.org">
 <head>
 <meta charset="utf-8">
+<!-- disabled until we get svgweb working
 <meta name="svg.render.forceflash" content="false" />
 <script src="js/svg.js" data-path="js/"></script>
+-->
 <script>
 // see source: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/forEach
 if ( !Array.prototype.forEach ) {
@@ -52,7 +54,6 @@ endif
 </head>
 <body ng-controller="PathwayCtrl">
 <div id="content" height=100% width="100%" ng-include src="'partials/render.html'">
-	<!--<span ng-include src="'partials/svgwebdemo.html'">-->
 </div>
 <div style="position:absolute; right:0; height:100%;">
 	<span ng-include src="'partials/toolbars/right.html'"></span>

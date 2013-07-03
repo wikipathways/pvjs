@@ -2,6 +2,8 @@
 
 /* Directives */
 
+var svgns = "http://www.w3.org/2000/svg";
+
 // might need this for Firefox compatibility, but haven't tested FF enough to know yet. Otherwise, can remove.
 // https://developer.mozilla.org/en-US/docs/xml/xml:id
 var getElementByIdWrapper = function (xmldoc, myID) {
@@ -15,7 +17,7 @@ var getElementByIdWrapper = function (xmldoc, myID) {
 angular.module('pathvisio.directives', [])
 .directive('btnEditable', [function() {
 	return function($scope, elm, attrs, $location) {
-		$scope.$watch('drawingParameters.editable', function(editable) {
+		$scope.$watch('pathwayImageStatus.editable', function(editable) {
 			if (editable) {
 				if (editable == true) {
 					parent.document.getElementById('pathwayFrame').src = "../../app/#/wpEditor?wgTitle=WP299&wgCurRevisionId=61677";
@@ -29,14 +31,14 @@ angular.module('pathvisio.directives', [])
 }])
 .directive('btnViewSize', [function() {
 	return function($scope, elm, attrs) {
-		$scope.$watch('drawingParameters.viewSize', function(viewSize) {
+		$scope.$watch('pathwayImageStatus.viewSize', function(viewSize) {
 			if ($scope.Pathway) {
 				//alert(viewSize);
-				//alert("enableZoom in btnViewSize: " + $scope.drawingParameters.enableZoom);
+				//alert("enableZoom in btnViewSize: " + $scope.pathwayImageStatus.enableZoom);
 				if (viewSize) {
 					if (viewSize == 'fullscreen') {
 						fullScreenApi.requestFullScreen(parent.document.getElementById('pathwayFrame'));
-						$scope.drawingParameters.enableZoom = 1;
+						$scope.pathwayImageStatus.enableZoom = 1;
 						elm.hide();
 						$('#viewSmall').show();
 					}
@@ -44,13 +46,13 @@ angular.module('pathvisio.directives', [])
 						if (viewSize == 'large') {
 							// this doesn't work
 							fullScreenApi.cancelFullScreen();
-							$scope.drawingParameters.enableZoom = 1;
+							$scope.pathwayImageStatus.enableZoom = 1;
 							alert('Sorry, Large View not yet functional.');
 						}
 						else {
 							if (viewSize == 'small') {
 								fullScreenApi.cancelFullScreen();
-								$scope.drawingParameters.enableZoom = 0;
+								$scope.pathwayImageStatus.enableZoom = 0;
 								elm.hide();
 								$('#viewFullScreen').show();
 								//alert('btnViewSize: small');
@@ -75,9 +77,10 @@ angular.module('pathvisio.directives', [])
 		}
 	};
 })
-.directive('pathwayImage', [function() {
+.directive('pathwayImage', ['PathwayStaticImageUrl', 'ImageFormat', function(PathwayStaticImageUrl, ImageFormat) {
 	return function($scope, elm, attrs) {
-
+/*
+ // for svgweb
 		function createFlashObject() {
 			var obj = document.createElement('object', true);
 			obj.id = 'pathwayObjectFlash';
@@ -105,7 +108,6 @@ angular.module('pathvisio.directives', [])
 			viewport.id = 'viewport';
 			pathwayImageFlash[0].appendChild(viewport);
 			stylePathwayImage(pathwayImageFlash);
-			self.pathwayImageFlash = pathwayImageFlash;
 			// this works
 			pathwayImageFlash[0].currentTranslate.setX(300);
 			// but this does not. Why?
@@ -118,9 +120,8 @@ angular.module('pathvisio.directives', [])
 				alert('This text may be dragged');
 			})
 		}
-
+*/
 		function stylePathwayImage(pathwayImage) {
-			self.pathwayImage = pathwayImage;
 			pathwayImage[0].setAttribute("style", "width: 100%; height: 100%; background-color: #f5f5f5; bottom:0; top:0; left:0; right:0; margin-top:0; margin-bottom:0; margin-right:0; margin-left:0;");
 			// If any extra divs or other elements are added to this directive, make sure elm.parent() == $('pathwayContainer')
 			//var pathwayContainer = $('pathwayContainer');
@@ -129,16 +130,18 @@ angular.module('pathvisio.directives', [])
 			// scaling without using viewBox.
 			var scaleViewAll = Math.min(pathwayContainer.width() / $scope.Pathway.Graphics["@BoardWidth"], pathwayContainer.height() / $scope.Pathway.Graphics["@BoardHeight"]);
 			var translateX = (pathwayContainer.width() - $scope.Pathway.Graphics["@BoardWidth"]*scaleViewAll)/2;
-			if ($scope.drawingParameters.editable == true) {
+			if ($scope.pathwayImageStatus.editable == true) {
 				pathwayImage[0].getElementsByTagNameNS(svgns, 'g')[0].setAttribute("transform", "scale(1)")
 			}
 			else {
 				pathwayImage[0].getElementsByTagNameNS(svgns, 'g')[0].setAttribute("transform", "scale(" + scaleViewAll + ") translate(" + translateX/scaleViewAll + ",0)")
 			};
+			pathwayImage.off()
+			pathwayImage.svgPan('viewport', 1, $scope.pathwayImageStatus.enableZoom, 0, .2);
 
 			/*
 			// scaling using viewBox. Does not work correctly with svgPan.js.
-			if ($scope.drawingParameters.editable == true) {
+			if ($scope.pathwayImageStatus.editable == true) {
 			// would perhaps be better to do this without requiring jQuery
 			elm[0].setAttribute("viewBox", "0 0 " + pathwayContainer.width() + " " + pathwayContainer.height());
 			}
@@ -150,26 +153,44 @@ angular.module('pathvisio.directives', [])
 
 		// Define svg
 		//$scope.$watch(function() { return angular.toJson(['Pathway["@Name"]', 'editable']) }, function(pathway) {
-		$scope.$watch('drawingParameters.enableZoom', function(enableZoom) {
+		$scope.$watch('pathwayImageStatus.enableZoom', function(enableZoom) {
 			if ($scope.Pathway) {
 				//console.log("enableZoom");
 				//console.log(enableZoom);
-				$('svg').svgPan('viewport', $scope.drawingParameters.enablePan, enableZoom, $scope.drawingParameters.enableDrag, $scope.drawingParameters.zoomScale);
-				$('#pathwayImage').off()
-				$('#pathwayImage').svgPan('viewport', 1, enableZoom, 0, .2);
+				if (ImageFormat() == 'svg') {
+					// need to check which of these lines should be included here. I think I can delete the $('svg') line.
+					//$('svg').svgPan('viewport', $scope.pathwayImageStatus.enablePan, enableZoom, $scope.pathwayImageStatus.enableDrag, $scope.pathwayImageStatus.zoomScale);
+					$('#pathwayImage').off()
+					$('#pathwayImage').svgPan('viewport', 1, enableZoom, 0, .2);
+				}
 			}
 		});
 		$scope.$watch('Pathway["@Name"]', function() {
 			//console.log("$scope inside pathwayImage");
 			//console.log($scope);
 			if ($scope.Pathway) {
-				if ($scope.drawingParameters.imageFormat == 'svg') {
+				if (ImageFormat() == 'svg') {
 					stylePathwayImage(elm)
-					pathwayImage.off()
-					pathwayImage.svgPan('viewport', 1, $scope.drawingParameters.enableZoom, 0, .2);
 				}
 				else {
-					if ($scope.drawingParameters.imageFormat == 'flash') {
+					var pathwayImageStatic = document.createElement("img");
+					// do we want to automatically create image maps for this so that would could display details for
+					// data nodes? I think I've seen automated systems for doing this on the backend.
+					pathwayImageStatic.setAttribute("src", PathwayStaticImageUrl);
+					pathwayImageStatic.setAttribute("height", "293");
+					pathwayImageStatic.setAttribute("width", "600");
+					pathwayImageStatic.setAttribute("alt", "Pathway Image");
+					document.getElementById("pathwayContainer").appendChild(pathwayImageStatic);
+
+					// should be able to make SVG viewer and possibly editor work with flash for browsers that don't support svg (IE8)
+					// using svgweb, but at present, it is unclear whether it is better to build an svg within the svgweb flash object
+					// or whether it is possible to build the svg normally using angular and then move it into the svgweb flash object
+					// or refresh svgweb with this method: http://stackoverflow.com/questions/15486422/reinitialize-svgweb-for-ajax
+					// It is also unclear whether the svg that angular builds in IE8 has the translate values needed for node positioning
+					// and node label positioning.
+					// For now, IE8 will default to a static PNG image.
+					/*
+					if (ImageFormat() == 'flash') {
 						// might be able to modify this so that we're using the same function for svg and svgweb.
 						if (window.svgweb) {
 							svgweb.addOnLoad(createFlashObject);
@@ -179,18 +200,19 @@ angular.module('pathvisio.directives', [])
 						}
 						stylePathwayImage(elm)
 						pathwayImage.off()
-						pathwayImage.svgPan('viewport', 1, $scope.drawingParameters.enableZoom, 0, .2);
+						pathwayImage.svgPan('viewport', 1, $scope.pathwayImageStatus.enableZoom, 0, .2);
 					}
 					else {
 						// display png image of pathway
 					};
+				       */
 				}
 			};
 		}, true)
 	}
 }
 ])
-.directive('node', [function() {
+.directive('node', ['ImageFormat', function(ImageFormat) {
 	return function($scope, elm, attrs) {
 		function styleNode(node) {
 			node.id = 'node' + $scope.DataNode["@GraphId"];
@@ -198,11 +220,13 @@ angular.module('pathvisio.directives', [])
 			node.setAttribute("transform", "translate(" + $scope.DataNode.Graphics.x + "," + $scope.DataNode.Graphics.y + ")");
 		};
 
-		if ($scope.drawingParameters.imageFormat == 'svg') {
+		if (ImageFormat() == 'svg') {
 			styleNode(elm[0])
 		}
+		/*
+ // for svgweb
 		else {
-			if ($scope.drawingParameters.imageFormat == 'flash') {
+			if (ImageFormat() == 'flash') {
 				window.setTimeout(function() {
 					var doc = document.getElementById('pathwayObjectFlash').contentDocument;                
 					var viewport = doc.getElementsByTagNameNS(svgns, 'g')[0];
@@ -216,9 +240,10 @@ angular.module('pathvisio.directives', [])
 				// do nothing
 			};
 		}
+	       */
 	}
 }])
-.directive('nodeBoundingBox', [function() {
+.directive('nodeBoundingBox', ['ImageFormat', function(ImageFormat) {
 	return function($scope, elm, attrs) {
 
 		function styleNodeBoundingBox(elm) {
@@ -233,11 +258,13 @@ angular.module('pathvisio.directives', [])
 			elm.setAttribute("fill-opacity", 0);
 		};
 
-		if ($scope.drawingParameters.imageFormat == 'svg') {
+		if (ImageFormat() == 'svg') {
 			styleNodeBoundingBox(elm[0])
 		}
+		/*
+ // for svgweb
 		else {
-			if ($scope.drawingParameters.imageFormat == 'flash') {
+			if (ImageFormat() == 'flash') {
 				styleNodeBoundingBox(elm[0])
 				window.setTimeout(function() {
 					var doc = document.getElementById('pathwayObjectFlash').contentDocument;                
@@ -251,65 +278,66 @@ angular.module('pathvisio.directives', [])
 				// do nothing
 			};
 		}
+	       */
 	}
 }])
-.directive('nodeShape', [function() {
+.directive('nodeShape', ['ImageFormat', function(ImageFormat) {
 	return function($scope, elm, attrs) {
 
 		function createNodeShape(nodeShapeContainer) {
 			// nodeShape container
 			nodeShapeContainer.id = 'nodeShapeContainer' + $scope.DataNode["@GraphId"];
 
-					// Create Node Shape 
-					if ( $scope.DataNode.Graphics["@ShapeType"] == "Rectangle" ) {
-						var nodeShape = document.createElementNS(svgns, 'rect');
-						nodeShapeContainer.appendChild(nodeShape);
-					}
-					else { if ( $scope.DataNode.Graphics["@ShapeType"] == "RoundedRectangle" ) {
-						var nodeShape = document.createElementNS(svgns, 'rect');
-						nodeShapeContainer.appendChild(nodeShape);
-					}
-					else { if ( $scope.DataNode.Graphics["@ShapeType"] == "Oval" ) {
-						var nodeShape = document.createElementNS(svgns, 'ellipse');
-						nodeShapeContainer.appendChild(nodeShape);
-					}
-					else {
-						var nodeShape = document.createElementNS(svgns, 'rect');
-						nodeShapeContainer.appendChild(nodeShape);
-						//console.log("This node shape type is not defined in pathvisio.js. Substituting rectangle.");
-					}}};
-			// Style Node Shape 
+			// Create Node Shape 
 			if ( $scope.DataNode.Graphics["@ShapeType"] == "Rectangle" ) {
+				var nodeShape = document.createElementNS(svgns, 'rect');
+				nodeShape.setAttribute("x", 0)
+				nodeShape.setAttribute("y", 0);
 				nodeShape.setAttribute("width", $scope.DataNode.Graphics["@Width"]);
 				nodeShape.setAttribute("height", $scope.DataNode.Graphics["@Height"]);
+				nodeShapeContainer.appendChild(nodeShape);
 			}
 			else { if ( $scope.DataNode.Graphics["@ShapeType"] == "RoundedRectangle" ) {
+				var nodeShape = document.createElementNS(svgns, 'rect');
+				nodeShape.setAttribute("x", 0)
+				nodeShape.setAttribute("y", 0);
 				nodeShape.setAttribute("width", $scope.DataNode.Graphics["@Width"]);
 				nodeShape.setAttribute("height", $scope.DataNode.Graphics["@Height"]);
 				nodeShape.setAttribute("rx", 10);
 				nodeShape.setAttribute("ry", 10);
+				nodeShapeContainer.appendChild(nodeShape);
 			}
 			else { if ( $scope.DataNode.Graphics["@ShapeType"] == "Oval" ) {
+				var nodeShape = document.createElementNS(svgns, 'ellipse');
 				nodeShape.setAttribute("cx", $scope.DataNode.Graphics["@Width"]/2);
 				nodeShape.setAttribute("cy", $scope.DataNode.Graphics["@Height"]/2);
 				nodeShape.setAttribute("rx", $scope.DataNode.Graphics["@Width"]/2);
 				nodeShape.setAttribute("ry", $scope.DataNode.Graphics["@Height"]/2);
+				nodeShapeContainer.appendChild(nodeShape);
 			}
 			else {
+				var nodeShape = document.createElementNS(svgns, 'rect');
+				nodeShape.setAttribute("x", 0)
+				nodeShape.setAttribute("y", 0);
 				nodeShape.setAttribute("width", $scope.DataNode.Graphics["@Width"]);
 				nodeShape.setAttribute("height", $scope.DataNode.Graphics["@Height"]);
+				nodeShapeContainer.appendChild(nodeShape);
+				//console.log("This node shape type is not defined in pathvisio.js. Substituting rectangle.");
 			}}};
-			nodeShape.id = 'nodeShape' + $scope.DataNode["@GraphId"];
+
+			nodeShape.id = 'nodeShape_' + $scope.DataNode["@GraphId"];
 			nodeShape.setAttribute("stroke", $scope.DataNode.Graphics["@Color"]);
 			nodeShape.setAttribute("fill", $scope.DataNode.Graphics["@FillColor"]);
 			nodeShape.setAttribute("fill-opacity", 0);
 		};
 
-		if ($scope.drawingParameters.imageFormat == 'svg') {
+		if (ImageFormat() == 'svg') {
 			createNodeShape(elm[0])
 		}
+		/*
+ // for svgweb
 		else {
-			if ($scope.drawingParameters.imageFormat == 'flash') {
+			if (ImageFormat() == 'flash') {
 				createNodeShape(elm[0])
 				window.setTimeout(function() {
 					createNodeShape(elm[0])
@@ -324,18 +352,20 @@ angular.module('pathvisio.directives', [])
 				// do nothing
 			};
 		}
+	       */
 	}
 }])
-.directive('nodeLabel', [function() {
+.directive('nodeLabel', ['ImageFormat', function(ImageFormat) {
 	return function($scope, elm, attrs) {
 
 		function styleNodeLabel(nodeContainer) {
 			nodeContainer.textContent = $scope.DataNode["@TextLabel"];
-			nodeContainer.id = 'nodeLabel' + $scope.DataNode["@GraphId"];
+			nodeContainer.id = 'nodeLabel_' + $scope.DataNode["@GraphId"];
 			nodeContainer.setAttribute("class", "node " + $scope.DataNode.Graphics["@ShapeType"])
 			nodeContainer.setAttributeNS(null,"font-family",$scope.DataNode.Graphics["@FontName"]);
 			nodeContainer.setAttribute("font-size", $scope.DataNode.Graphics["@FontSize"] + "px")
 			nodeContainer.setAttribute("fill", $scope.DataNode.Graphics["@Color"]);
+			positionNodeLabel(nodeContainer);
 		};
 
 		function positionNodeLabel(nodeLabel){
@@ -359,13 +389,13 @@ angular.module('pathvisio.directives', [])
 
 		$scope.$watch('Pathway.DataNode["@TextLabel"]', function() {
 			if ($scope.Pathway) {
-				if ($scope.drawingParameters.imageFormat == 'svg') {
+				if (ImageFormat() == 'svg') {
 					styleNodeLabel(elm[0])
-					// I could call positionNodeLabel() from styleNodeLabel() if I could correct the wait until load for the svgweb version
-					positionNodeLabel(elm[0]);
 				}
+				/*
+ // for svgweb
 				else {
-					if ($scope.drawingParameters.imageFormat == 'flash') {
+					if (ImageFormat() == 'flash') {
 						window.setTimeout(function() {
 							var textNode = document.createTextNode($scope.DataNode["@TextLabel"], true);
 							var doc = document.getElementById('pathwayObjectFlash').contentDocument;                
@@ -392,6 +422,7 @@ angular.module('pathvisio.directives', [])
 						// do nothing
 					};
 				}
+			       */
 
 			}})
 	}
