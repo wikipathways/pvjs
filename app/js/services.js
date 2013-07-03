@@ -41,6 +41,10 @@ angular.module('pathvisio.services', [])
 	};
 })
 .factory('PathwayService', function($http, $location){
+	// this needs to be updated to get a URL provided by the php backend. We could also consider getting the GPML from the SOAP webservice,
+	// but that would require a more significant refactoring.
+	// Should we allow for getting GPML from other locations than WikiPathways?
+	// need to test whether it will work to get GPML from WikiPathways when viewer is used as widget on third-party site.
 	function getGpmlUrl() {
 		if (!($location.search().wgTitle)) {
 			var url = "../samples/gpml/error.gpml";
@@ -118,7 +122,7 @@ angular.module('pathvisio.services', [])
 		}
 	};
 
-	function formatJson(data){
+	function convertGpml2Json(data){
 		try //Internet Explorer
 		{
 			var xmlDoc=new ActiveXObject("Microsoft.XMLDOM");
@@ -139,12 +143,20 @@ angular.module('pathvisio.services', [])
 			}
 		}
 
-		///* Below is an alternative to JXON.build(). Which is better? If I use JXON.build, I need to redo my GPML test.
+		// We can use xml2json.js or JXON.js. Which is better?
+		
+		// xml2json.js
+		///*
 		var json = xml2json(xmlDoc, "");
-		var parsedJson = jQuery.parseJSON(json);
+		var parsedJson = JSON.parse(json);
+		//var parsedJson = jQuery.parseJSON(json);
 		//*/
 
-		//var parsedJson = JXON.build(xmlDoc.documentElement);
+	       // JXON.js
+		/*
+		var parsedJson = {};
+		parsedJson.Pathway = JXON.build(xmlDoc.documentElement);
+		*/
 
 		var xmlns = "";
 
@@ -167,13 +179,12 @@ angular.module('pathvisio.services', [])
 		if ( xmlns.indexOf(gpmlXmlnsIdentifier) !== -1 ) {
 
 			// test for whether the GPML file version matches the current version supported by pathvisio.js
-
 			if (xmlns != gpmlXmlnsSupported) {
 				// preferably, this would call the Java RPC updater for the file to be updated.
 				alert("Pathvisio.js may not fully support the version of GPML provided (xmlns: " + xmlns + "). Please convert to the supported version of GPML (xmlns: " + gpmlXmlnsSupported + ").")
 			}
 
-			// Convert result of xml to json conversion into proper JSON.
+			// Convert output from xml2json into well-formed JSON.
 			// It would be better to do this in the conversion file xml2json.js.
 
 			// BiopaxRefs
@@ -293,9 +304,6 @@ angular.module('pathvisio.services', [])
 			}
 
 			return parsedJson.Pathway;
-			//console.log("$scope");
-			//console.log($scope);
-			//console.log(JSON.stringify($scope.Pathway));
 		}
 		else {
 			alert("Pathvisio.js does not support the data format provided. Please convert to GPML and retry.")
@@ -305,7 +313,7 @@ angular.module('pathvisio.services', [])
 	return {
 		getData: function(callback) {
 			var pathway = getDataFile(function(data) {
-				var pathway = formatJson(data);
+				var pathway = convertGpml2Json(data);
 				return callback(pathway);
 			})
 		}
