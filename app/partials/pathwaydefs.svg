@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 
 <!-- 
+  This file serves as our template for standardized GPML pathway visual representations.
+  This file can be used for many purposes outside of pathvisio.js, including allowing
+  other projects to work better with GPML. For purposes of pathvisio.js, this file will
+  be the starting point for our JavaScript rendering of pathways. Every time we want to
+  render a GPML file on the browser, we will read a copy of this file into D3.js and
+  modify the copy by adding "use" statements, cloning markers, etc. in order to create
+  the desired pathway illustration in SVG.
+
   The XML declaration above is taken from an example from the W3C 
   <http://www.w3.org/TR/SVG/images/struct/use04.svg>,
   except I added:
