@@ -511,4 +511,10 @@ angular.module('pathvisio.directives', [])
 		}
 	}
 }])
-
+.directive('sArrow', ['ImageFormat', function(ImageFormat) {
+	return function($scope, elm, attrs) {
+			elm.id = 'sArrow';
+			elm[0].setAttribute("stroke", '#000000');
+			elm[0].setAttribute("fill", 'red');
+	}
+}])
