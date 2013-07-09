@@ -160,7 +160,7 @@
   }
   ]]></style>
 
-    <!-- TODO add styles for markers and shapes without styles.
+    <!-- TODO add styles for line types without styles.
          -->
   
   <g>
@@ -525,13 +525,13 @@
                = (25 + 13.625) / 2
                = 19.3125
 
-              Currently, I have the text being positioned both via the x and y attributes and a script
-              embedded in this document. The x and y attributes are set as follows:
+              Currently, I have the text labels being positioned with the x and y attributes. If a text label is resized
+              due to truncation, the label is repositioned with the embedded script.
+              The x and y attributes are set as follows:
                x = (width of shape) / 2
                y = [(height of shape) / 2] + 0.3 * (font-size)
 
-               With this method, we can position the text very accurately for rendering engines that
-               support scripting, but we will still be close for those that do not.
+            TODO What happens to this calculation if the font is bold?
 
              For existing shapes with text that overflows the width of its parent shape, we will have 
              JavaScript truncate the text so it fits. Truncation will be indicated with ellipses.
