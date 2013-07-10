@@ -183,36 +183,39 @@
 <!-- ECMAScript to truncate (if needed) and position text labels -->
   <script type="application/ecmascript"> <![CDATA[
 		function positionNodeLabel(){
-      // right now, we are only checking one label. TODO Use forEach to check every label.
-      // var nodeLabel = document.getElementsByTagNameNS('http://www.w3.org/2000/svg','text').item(10);
-      // nodeLabel.forEach(function() { };);
-      var nodeLabel = document.getElementById('text-wbf238');
-			var labelBbox = nodeLabel.getBBox();
-			var labelText = nodeLabel.textContent;
-      var shape = nodeLabel.parentNode.getElementsByTagNameNS('http://www.w3.org/2000/svg','use').item(0);
-			var shapeBbox = shape.getBBox();
+      var nodeLabels = document.getElementsByTagNameNS('http://www.w3.org/2000/svg','text');
+      for (var i = 0; i < nodeLabels.length; ++i) {
+        var nodeLabel = nodeLabels.item(i); // Calling nodeLabels.item(i) instead of nodeLabels[i]
+        // shouldn't be necessary in JavaScript, but Batik can only use .item(i).
+        var labelBbox = nodeLabel.getBBox();
+        var labelText = nodeLabel.textContent;
+        shapeNodeList = nodeLabel.parentNode.getElementsByTagNameNS('http://www.w3.org/2000/svg','use'); 
+        if (typeof shapeNodeList.item(0) !== 'undefined' && shapeNodeList.item(0) !== null) {
+          var shape = nodeLabel.parentNode.getElementsByTagNameNS('http://www.w3.org/2000/svg','use').item(0);
+          var shapeBbox = shape.getBBox();
 
-      // truncate label, if needed
-			if ( shapeBbox['width'] < labelBbox['width'] ) {
-				labelText = labelText.substring(0, labelText.length - 4);
-				nodeLabel.textContent = labelText + "...";
-				labelBbox = nodeLabel.getBBox();
-				while ( shapeBbox['width'] < labelBbox['width'] ) {
-					labelText = labelText.substring(0, labelText.length - 1);
-					nodeLabel.textContent = labelText + "...";
-					labelBbox = nodeLabel.getBBox();
-				};
+          // truncate label, if needed
+          if ( shapeBbox['width'] < labelBbox['width'] ) {
+            labelText = labelText.substring(0, labelText.length - 4);
+            nodeLabel.textContent = labelText + "...";
+            labelBbox = nodeLabel.getBBox();
+            while ( shapeBbox['width'] < labelBbox['width'] ) {
+              labelText = labelText.substring(0, labelText.length - 1);
+              nodeLabel.textContent = labelText + "...";
+              labelBbox = nodeLabel.getBBox();
+            };
 
-			};
-
-      // reposition label after making it narrow from truncation. I think this can be removed now
-      // that we are using text-anchor="middle". TODO test this SVG in other SVG renderers.
-      // It works without this repositioning code in Chrome and Squiggle (Batik).
-      /*
-			var labelxtransform = -1*(labelBbox["x"]) + shapeBbox['width']/2 - labelBbox["width"]/2;
-      var labelytransform = -1*(labelBbox["y"]) + shapeBbox["height"]/2 - labelBbox["height"]/2;
-			nodeLabel.setAttribute("transform", "translate(" + labelxtransform + "," + labelytransform + ")");
-      */
+            // reposition label after making it narrow from truncation. I think this can be removed now
+            // that we are using text-anchor="middle". TODO test this SVG in other SVG renderers.
+            // It works without this repositioning code in Chrome and Squiggle (Batik).
+            /*
+            var labelxtransform = -1*(labelBbox["x"]) + shapeBbox['width']/2 - labelBbox["width"]/2;
+            var labelytransform = -1*(labelBbox["y"]) + shapeBbox["height"]/2 - labelBbox["height"]/2;
+            nodeLabels.setAttribute("transform", "translate(" + labelxtransform + "," + labelytransform + ")");
+            */
+          };
+        };
+      };
 		};
     
   ]]> </script>
@@ -228,57 +231,71 @@
         I wish fill="currentColor" worked for markers, but that does not appear to be the case. -->
 
     <marker id="arrow-start-black" 
-      viewBox="0 -6 12 12"
-      markerWidth="10" markerHeight="10"
-      refX="0" refY="0"
+      fill="black"
       markerUnits="strokeWidth"
-      orient="auto">
-      <path d="M0,0 L10,-5 L10,5 Z" stroke="black" stroke-width="1px" fill="black"/>
+      markerWidth="10" markerHeight="10"
+      orient="auto"
+      refX="0" refY="0"
+      stroke="black"
+      viewBox="0 -6 12 12">
+      <path d="M0,0 L10,-5 L10,5 Z" stroke-width="1px"/>
     </marker>
 
     <marker id="arrow-end-black"
-      viewBox="-12 -6 12 12"
-      markerWidth="10" markerHeight="10"
-      refX="0" refY="0"
+      fill="black"
       markerUnits="strokeWidth"
-      orient="auto">
-      <path d="M0,0 L-10,-5 L-10,5 Z" stroke="black" stroke-width="1px" fill="black"/>
+      markerWidth="10" markerHeight="10"
+      orient="auto"
+      refX="0" refY="0"
+      stroke="black"
+      viewBox="-12 -6 12 12">
+      <path d="M0,0 L-10,-5 L-10,5 Z" stroke-width="1px"/>
     </marker>
 
     <marker id="mim-stimulation-start-black"
-      viewBox="0 -6 12 12"
+      fill="white"
       markerWidth="10" markerHeight="10"
-      refX="0" refY="0"
       markerUnits="strokeWidth"
-      orient="auto">
-      <path d="M0,0 L10,-5 L10,5 Z" stroke="black" stroke-width="1px" fill="white"/>
+      orient="auto"
+      refX="0" refY="0"
+      stroke="black"
+      viewBox="0 -6 12 12">
+      <path d="M0,0 L10,-5 L10,5 Z" stroke-width="1px"/>
     </marker>
 
     <marker id="mim-stimulation-end-black"
-      viewBox="-12 -6 12 12"
-      markerWidth="10" markerHeight="10"
-      refX="0" refY="0"
+      fill="white"
       markerUnits="strokeWidth"
-      orient="auto">
-      <path d="M0,0 L-10,-5 L-10,5 Z" stroke="black" stroke-width="1px" fill="white"/>
+      markerWidth="10" markerHeight="10"
+      orient="auto"
+      refX="0" refY="0"
+      stroke="black"
+      viewBox="-12 -6 12 12">
+      <path d="M0,0 L-10,-5 L-10,5 Z" stroke-width="1px"/>
     </marker>
 
     <marker id="mim-catalysis-start-black"
-      viewBox="-6 -6 12 12"
-      markerWidth="10" markerHeight="10"
-      refX="-5" refY="0"
+      fill="white"
+      markerHeight="10"
+      markerWidth="10"
       markerUnits="strokeWidth"
-      orient="auto">
-      <circle cx="0" cy="0" r="5px" stroke="black" stroke-width="1px" fill="white"/>
+      orient="auto"
+      refX="-5" refY="0"
+      stroke="black"
+      viewBox="-6 -6 12 12">
+      <circle cx="0" cy="0" r="5px" stroke-width="1px"/>
     </marker>
 
     <marker id="mim-catalysis-end-black"
-      viewBox="-6 -6 12 12"
-      refX="5" refY="0"
-      markerWidth="10" markerHeight="10"
+      fill="white"
+      markerHeight="10"
       markerUnits="strokeWidth"
-      orient="auto">
-      <circle cx="0" cy="0" r="5px" stroke="black" stroke-width="1px" fill="white"/>
+      markerWidth="10"
+      orient="auto"
+      refX="5" refY="0"
+      stroke="black"
+      viewBox="-6 -6 12 12">
+      <circle cx="0" cy="0" r="5px" stroke-width="1px"/>
     </marker>
 
   <!-- ***************************
@@ -431,34 +448,34 @@
 
         <g id="g-wbf244" transform="translate(10 10)" class="data-node gene-product">
           <use id="use-wbf240" x="0" y="0" width="100" height="50" xlink:href="#shape-rect" />
-          <text x="50" y="25" dy="0.3em" id="text-wbf240">node in group</text>
+          <text x="50" y="28.6" id="text-wbf240">node in group</text>
         </g>
 
         <g id="g-wbf245" transform="translate(10 70)" class="data-node gene-product">
           <use id="use-wbf240" x="0" y="0" width="100" height="50" xlink:href="#shape-rect" />
-          <text x="50" y="25" dy="0.3em" id="text-wbf240">node in group</text>
+          <text x="50" y="28.6" id="text-wbf240">node in group</text>
         </g>
 
         <g id="g-wbf246" transform="translate(10 130)" class="data-node gene-product">
           <use id="use-wbf240" x="0" y="0" width="100" height="50" xlink:href="#shape-rect" />
-          <text x="50" y="25" dy="0.3em" id="text-wbf240">node in group</text>
+          <text x="50" y="28.6" id="text-wbf240">node in group</text>
         </g>
 
       </g>
 
       <g id="g-wbf240" transform="translate(10 220)" class="data-node gene-product">
         <use id="use-wbf240" x="0" y="0" width="100" height="50" xlink:href="#shape-rect" />
-        <text x="50" y="25" dy="0.3em" id="text-wbf240">rect</text>
+        <text x="50" y="28.6" id="text-wbf240">rect</text>
       </g>
 
       <g id="g-wbf241" transform="translate(10 280)" class="data-node gene-product">
         <use id="use-wbf241" x="0" y="0" width="100" height="50" xlink:href="#shape-rounded-rect" />
-        <text x="50" y="25" dy="0.3em" id="text-wbf241">rounded-rect</text>
+        <text x="50" y="28.6" id="text-wbf241">rounded-rect</text>
       </g>
 
       <g id="g-wbf242" transform="translate(10 340)" class="data-node gene-product">
         <use id="use-wbf242" x="0" y="0" width="100" height="50" xlink:href="#shape-oval" />
-        <text x="50" y="25" dy="0.3em" id="text-wbf242">oval</text>
+        <text x="50" y="28.6" id="text-wbf242">oval</text>
       </g>
 
       <use id="use-wbf243" x="10" y="4000" width="100" height="50" xlink:href="#shape-mitochondria" />
