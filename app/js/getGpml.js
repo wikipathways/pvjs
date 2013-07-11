@@ -1,65 +1,8 @@
-'use strict';
-
-/* Services */
-
-// TODO Can I can get rid of ngResource here?
-//angular.module('pathvisio.services', ['ngResource'])
-angular.module('pathvisio.services', [])
-// I think we can grab the URL from the javascript variables created by PHP on the WP page.
-// this needs to get updated to supply the correct url.
-// see here for getting the png url: http://svn.bigcat.unimaas.nl/wikipathways/trunk/img_auth.php
-.value('PathwayStaticImageUrl', 'http://www.wikipathways.org/img_auth.php/thumb/b/b6/WP1591_59218.svg/600px-WP1591_59218.svg.png')
-.value('ImageFormat', function() {
-	function supportsSvg() {
-		return !!document.createElementNS && !!document.createElementNS('http://www.w3.org/2000/svg', "svg").createSVGRect;
-	};
-
-	function supportsFlash() {
-		var hasFlash = false;
-		try {
-			var fo = new ActiveXObject('ShockwaveFlash.ShockwaveFlash');
-			if(fo) hasFlash = true;
-		}catch(e){
-			if(navigator.mimeTypes ["application/x-shockwave-flash"] != undefined) 
-				hasFlash = true;
-		};
-		return hasFlash;
-	};
-
-	// test for browser svg support. would it be better to use modernizr?
-	// http://stackoverflow.com/questions/654112/how-do-you-detect-support-for-vml-or-svg-in-a-browser
-	if (supportsSvg()) {
-		return "svg";
-	}
-	else {
-		if (supportsFlash()) {
-			return "flash";
-		}
-		else {
-			return "png";
-		}
-	};
-})
-.factory('PathwayService', function($http, $location){
+function getGpml(url, callback) {
 	// this needs to be updated to get a URL provided by the php backend. We could also consider getting the GPML from the SOAP webservice,
 	// but that would require a more significant refactoring.
 	// Should we allow for getting GPML from other locations than WikiPathways?
 	// need to test whether it will work to get GPML from WikiPathways when viewer is used as widget on third-party site.
-	function getGpmlUrl() {
-		if (!($location.search().wgTitle)) {
-			var url = "../samples/gpml/error.gpml";
-		}
-		else {
-			var url = "../samples/gpml/" + $location.search().wgTitle + "_" + $location.search().wgCurRevisionId  + ".gpml";
-		}
-		// This step is probably unneeded, but in case an invalid gpml url is specified, this will catch the error based on filename extension
-		if (Right(url,4).toLowerCase() == "gpml" || Right(url,3).toLowerCase() == "xml") {
-			return url;
-		}
-		else {
-			alert("Pathvisio.js does not support the data format provided. Please convert to GPML (XML) and retry.")
-		}
-	}
 
 	function Right(str, n){
 		if (n <= 0)
@@ -84,7 +27,7 @@ angular.module('pathvisio.services', [])
 
 	function getDataFile(callback) {
 		try {
-			$http.get(getGpmlUrl()).success(function(data) {
+			jQuery.get(url).success(function(data) {
 				callback(data);
 			})
 		}
@@ -315,20 +258,12 @@ angular.module('pathvisio.services', [])
 			return;
 		}
 	};
-	return {
-		getData: function(callback) {
-			var pathway = getDataFile(function(data) {
-				var pathway = convertGpml2Json(data);
-				return callback(pathway);
-			})
-		}
+
+	if (!(url)) {
+		url = "../../samples/gpml/error.gpml";
 	}
-
-	/* I would like to use $resource, but this isn't working now.
-	   return $scope.pathway
-	   return $resource('../samples/gpml/DatanodeShapes.gpml', {}, {
-query: {method:'GET', headers:{'Content-Type':'text/xml'}}
-});
-*/
-});
-
+	var pathway = getDataFile(function(data) {
+		var pathway = convertGpml2Json(data);
+		return callback(pathway);
+	})
+}
