@@ -8,7 +8,9 @@ http://google-styleguide.googlecode.com/svn/trunk/htmlcssguide.xml
 http://google-styleguide.googlecode.com/svn/trunk/javascriptguide.xml
 -->
 
-<script type="text/javascript" src="http://mbostock.github.com/d3/d3.js?1.27.1"></script>
+<script src="http://mbostock.github.com/d3/d3.js?1.27.1"></script>
+<script src="../js/xml2json.js"></script>
+<script src="../js/jquery-1.9.1.js"></script>
 <style>
   text {
     font-size: 200px;
@@ -16,8 +18,202 @@ http://google-styleguide.googlecode.com/svn/trunk/javascriptguide.xml
   }
 </style>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
-<!--<object id="svg-container" data="http://192.168.42.84/~andersriutta/d3-from-gpml-using-defs/pathwayDefs.svg" type="image/svg+xml" width="500" height="500"></object>-->
+
+<object id="svg-container" data="http://127.0.0.1/~andersriutta/d3-from-gpml-using-defs/pathwayDefs.svg" type="image/svg+xml" width="100%" height="1000"></object>
+
 <script>
+	function convertToArray(object) {
+		if (Object.prototype.toString.call( object ) === '[object Object]' ) {
+			var array = [];
+			array.push(object)
+			return array;
+		}
+		else {
+			if( Object.prototype.toString.call( object ) === '[object Array]' ) {
+				return object;
+			}
+		}
+	}
+	function convertGpml2Json(xmlDoc){
+ 
+    console.log('xmlDoc');
+    console.log(xmlDoc);
+
+		// We can use xml2json.js or JXON.js. Which is better?
+		
+		// xml2json.js
+		///*
+		var json = xml2json(xmlDoc, "");
+		var parsedJson = JSON.parse(json);
+		//var parsedJson = jQuery.parseJSON(json);
+		//*/
+
+	       // JXON.js
+		/*
+		var parsedJson = {};
+		parsedJson.Pathway = JXON.build(xmlDoc.documentElement);
+		*/
+
+		var xmlns = "";
+
+		try {
+			xmlns = parsedJson.Pathway["@xmlns"]
+		}
+		catch (e) {
+			alert(e.message);
+			return;
+		}
+
+		// test for whether file is GPML based on xmlns without reference to version
+		var gpmlXmlnsSupported = "http://pathvisio.org/GPML/2013a";
+		var gpmlXmlnsIdentifier = "/GPML/";
+		// current and previous GPML xmlns values
+		// "http://pathvisio.org/GPML/2013a"
+		// "http://genmapp.org/GPML/2010a"
+		// "http://genmapp.org/GPML/2008a"
+		// "http://genmapp.org/GPML/2007"
+		if ( xmlns.indexOf(gpmlXmlnsIdentifier) !== -1 ) {
+
+			// test for whether the GPML file version matches the current version supported by pathvisio.js
+			if (xmlns != gpmlXmlnsSupported) {
+				// preferably, this would call the Java RPC updater for the file to be updated.
+				alert("Pathvisio.js may not fully support the version of GPML provided (xmlns: " + xmlns + "). Please convert to the supported version of GPML (xmlns: " + gpmlXmlnsSupported + ").")
+			}
+
+			// Convert output from xml2json into well-formed JSON.
+			// It would be better to do this in the conversion file xml2json.js.
+
+			// BiopaxRefs
+			try {
+				parsedJson.Pathway.BiopaxRefs = convertToArray( parsedJson.Pathway.BiopaxRef );
+				delete parsedJson.Pathway.BiopaxRef;
+
+				parsedJson.Pathway.BiopaxRefs.forEach(function(element, index, array) {
+					// modify data
+				});
+			}
+			catch (e) {
+				console.log("No BiopaxRefs found.");
+			}
+
+			// Comments 
+			try {
+				parsedJson.Pathway.Comments = convertToArray( parsedJson.Pathway.Comment );
+				delete parsedJson.Pathway.Comment;
+
+				parsedJson.Pathway.Comments.forEach(function(element, index, array) {
+					// modify data
+				});
+			}
+			catch (e) {
+				console.log("No Comments found.");
+			}
+
+			// DataNodes 
+			try {
+				parsedJson.Pathway.DataNodes = convertToArray( parsedJson.Pathway.DataNode );
+				delete parsedJson.Pathway.DataNode;
+
+				parsedJson.Pathway.DataNodes.forEach(function(element, index, array) {
+					element.Graphics["x"] = parseFloat(element.Graphics["@CenterX"]) - parseFloat(element.Graphics["@Width"])/2;
+					element.Graphics["y"] = parseFloat(element.Graphics["@CenterY"]) - parseFloat(element.Graphics["@Height"])/2;
+					delete element.Graphics["@CenterX"];
+					delete element.Graphics["@CenterY"];
+
+					element.Graphics["@Width"] = parseFloat(element.Graphics["@Width"]);
+					element.Graphics["@Height"] = parseFloat(element.Graphics["@Height"]);
+
+					if (element.Graphics.hasOwnProperty("@FillColor")) {
+						// does not deal with color if user entered "white". Should use validateColor() to address.
+						element.Graphics["@FillColor"] = "#" + element.Graphics["@FillColor"]
+					}
+					else {
+						element.Graphics['@FillColor'] = "#ffffff";
+					};	
+
+					if (element.Graphics.hasOwnProperty("@Color")) {
+						element.Graphics["@Color"] = "#" + element.Graphics["@Color"]
+					}
+					else {
+						element.Graphics['@Color'] = "#000000";
+					};	
+
+					if (element.Graphics.hasOwnProperty("@FontName")) {
+						element.Graphics["@Color"] = element.Graphics["@FontName"]
+					}
+					else {
+						element.Graphics['@FontName'] = "Arial";
+					};	
+				});
+			}
+			catch (e) {
+				console.log("No DataNodes found.");
+			}
+
+			// Groups
+			try {
+				parsedJson.Pathway.Groups = convertToArray( parsedJson.Pathway.Group );
+				delete parsedJson.Pathway.Group;
+
+				parsedJson.Pathway.Groups.forEach(function(element, index, array) {
+					// modify data
+				});
+			}
+			catch (e) {
+				console.log("No Groups found.");
+			}
+
+			// Interactions
+			try {
+				parsedJson.Pathway.Interactions = convertToArray( parsedJson.Pathway.Interaction );
+				delete parsedJson.Pathway.Interaction;
+
+				parsedJson.Pathway.Interactions.forEach(function(element, index, array) {
+					element.Graphics.Points = convertToArray( element.Graphics.Point );
+					delete element.Graphics.Point;
+					// modify data
+				});
+			}
+			catch (e) {
+				console.log("No Interactions found.");
+			}
+
+			// Labels
+			try {
+				parsedJson.Pathway.Labels = convertToArray( parsedJson.Pathway.Label );
+				delete parsedJson.Pathway.Label;
+
+				parsedJson.Pathway.Labels.forEach(function(element, index, array) {
+					// modify data
+				});
+			}
+			catch (e) {
+				console.log("No Labels found.");
+			}
+
+			// Shapes
+			try {
+				parsedJson.Pathway.Shapes = convertToArray( parsedJson.Pathway.Shape );
+				delete parsedJson.Pathway.Shape;
+
+				parsedJson.Pathway.Shapes.forEach(function(element, index, array) {
+					// modify data
+				});
+			}
+			catch (e) {
+				console.log("No Shapes found.");
+			}
+
+      console.log('parsedJson.Pathway');
+      console.log(parsedJson.Pathway);
+			return parsedJson.Pathway;
+		}
+		else {
+			alert("Pathvisio.js does not support the data format provided. Please convert to GPML and retry.")
+			return;
+		}
+	};
+
 function clone(selector) {
   var node = d3.select(selector).node();
   return d3.select(node.parentNode.insertBefore(node.cloneNode(true),
@@ -60,11 +256,13 @@ $.ajax({
 // svg?
 */
 
-d3.xml('pathwaydefs.svg', 'image/svg+xml', function(xml) {
-  var svg = xml.documentElement; 
-  var viewport = svg.getElementById('viewport');
-  svg.removeChild(viewport);
-  document.body.appendChild(xml.documentElement);	
+  var svg = d3.select('svg');
+  console.log('svg');
+  console.log(svg);
+  var viewport = d3.select('viewport');
+  svg.remove(viewport);
+
+  removeViewport(svg);
   /*
 		var svg = d3.select('#pathway-image');
 		svg[0].setAttribute('width', '200');
@@ -117,55 +315,22 @@ d3.xml('pathwaydefs.svg', 'image/svg+xml', function(xml) {
 			path[0][8].setAttribute('marker-start', 'url(#arrow-start-red)');
 		}, 1900);
     */
-  });
-</script>
 
-<script type="text/javascript">
-  d3.xml("WP103_41337.gpml", "application/xml", function(xml) {
-  nodes2 = [1, 2, 3];
-  console.log(nodes2);
-  jsonRectangles = [ { "x_axis": 10, "y_axis": 10, "height": 20, "width":20, "color" : "green" }, { "x_axis": 160, "y_axis": 40, "height": 20, "width":20, "color" : "purple" }, { "x_axis": 70, "y_axis": 70, "height": 20, "width":20, "color" : "red" }];
-  console.log(jsonRectangles);
-  getPathway = function(d) {
-        return d3.select(d).selectAll("Pathway")[0].map(function(d) {
-        return { pathway : { 
-          boardwidth : d3.select(d).select("Graphics").attr("BoardWidth")/20,
-          boardheight : d3.select(d).select("Graphics").attr("BoardHeight")/20 
-        }};
-    })
-  }
-  var pathway = getPathway(xml);
+function removeViewport(xml) {
+
+  drawPathway(svg);
+  console.log('svg in removeViewport()');
+  console.log(svg);
+};
+function drawPathway(svg) {
+  console.log('svg in drawPathway()');
+  console.log(svg);
+
+  d3.xml("../../samples/gpml/WP673_63184.gpml", "application/xml", function(xml) {
+
+
+  var pathway = convertGpml2Json(xml);
   console.log(pathwayc = pathway);
-  getNodes = function(d) {
-        return d3.select(d).selectAll("DataNode")[0].map(function(d) {
-        return { node : { 
-          BackpageHead : d3.select(d).attr("BackpageHead"),
-          color : d3.select(d).selectAll("Graphics")[0].map(function(d) {
-            return d3.select(d).attr("Color"); 
-          }),
-          x : d3.select(d).selectAll("Graphics")[0].map(function(d) {
-            return (d3.select(d).attr("CenterX") - d3.select(d).attr("Width"))/20; 
-          }),
-          y : d3.select(d).selectAll("Graphics")[0].map(function(d) {
-            return (d3.select(d).attr("CenterY") - d3.select(d).attr("Height"))/20; 
-          }),
-          width : d3.select(d).selectAll("Graphics")[0].map(function(d) {
-            return d3.select(d).attr("Width")/20; 
-          }),
-          height : d3.select(d).selectAll("Graphics")[0].map(function(d) {
-            return d3.select(d).attr("Height")/20; 
-          }),
-          fill : d3.select(d).selectAll("Graphics")[0].map(function(d) {
-            return  "#FFF"; 
-          }),
-          stroke : d3.select(d).selectAll("Graphics")[0].map(function(d) {
-            return  d3.select(d).attr("Color"); 
-          })
-        }};
-    })
-      }
-  var nodes = getNodes(xml);
-  console.log(nodesc = nodes);
 
   var drag = d3.behavior.drag()
     .on("drag", dragmove);
@@ -175,10 +340,14 @@ d3.xml('pathwaydefs.svg', 'image/svg+xml', function(xml) {
   var body = d3.select("body")
 
   //var svg = body.append("svg:svg")
-  var svg = d3.select("svg")
+ /*
+  var svg = d3.select(svg)
     .data(pathway)
-    .attr("width", function (pathway) {return pathway.pathway["boardwidth"];})
-    .attr("height", function (pathway) {return pathway.pathway["boardheight"];})
+    .attr("width", function (d) {console.log('d'); return d.Graphics["@BoardWidth"];})
+    .attr("height", function (d) {return d.Graphics["@BoardHeight"];})
+   */ 
+  console.log('svg in d3.xml()xml,svg');
+  console.log(svg);
 
   /*
      <g id="g-wbf240" transform="translate(10 220)" class="data-node gene-product">
@@ -189,11 +358,11 @@ d3.xml('pathwaydefs.svg', 'image/svg+xml', function(xml) {
 
 
   var g = svg.selectAll("g")	
-    .data(nodes)
+    .data(pathway.DataNodes)
     .enter()
     .append("g")
     .attr("id", "g-wbf240")
-    .attr('transform', function(nodes) {return 'translate(' + nodes.node["x"] + ' ' + nodes.node["y"] + ')'})
+    .attr('transform', function(d) {return 'translate(' + d[0].Graphics.x + ' ' + d[0].Graphics.y + ')'})
     .attr("class", "data-node gene-product")
     .call(drag);
 
@@ -202,16 +371,16 @@ d3.xml('pathwaydefs.svg', 'image/svg+xml', function(xml) {
       .attr("id", "use-wbf240")
       .attr("x", 0)
       .attr("y", 0)
-      .attr("width", function (nodes) {return nodes.node["width"]})
-      .attr("height", function (nodes) {return nodes.node["height"]})
+      .attr("width", function (d) {return d[0].Graphics["@Width"]})
+      .attr("height", function (d) {return d[0].Graphics["@Height"]})
       // d3 bug strips 'xlink' so need to say 'xlink:xlink'
       .attr("xlink:xlink:href", "#shape-rounded-rect")
 
       d3.select(this).append('text')
       .attr("id", "text-wbf240")
-      .attr("x", function (nodes) {return nodes.node["width"] / 2 })
+      .attr("x", function (d) {return d[0].Graphics["@Width"] / 2 })
       // TODO replace '12' with the actual font-size
-      .attr("y", function (nodes) {return nodes.node["height"] / 2 + 0.3*12 })
+      .attr("y", function (d) {return d[0].Graphics["@Height"] / 2 + 0.3*12 })
       .text('rect');
     });
 
@@ -232,25 +401,25 @@ d3.xml('pathwaydefs.svg', 'image/svg+xml', function(xml) {
       .attr("y", d3.event.y);
   }	
   /*var rectAttrs = rect
-    .attr("x", function (nodes) {return nodes.Graphics["-CenterX"]/20 - nodes.Graphics["-Width"]/40})
-          .attr("y", function (nodes) {return nodes.Graphics["-CenterY"]/20 - nodes.Graphics["-Height"]/40})
-    .attr("width",function (nodes) {return nodes.Graphics["-Width"]/20} )
-    .attr("height", function (nodes) {return nodes.Graphics["-Height"]/20})
+    .attr("x", function (pathway.DataNodes) {return pathway.DataNodes.Graphics["-CenterX"]/20 - pathway.DataNodes.Graphics["-Width"]/40})
+          .attr("y", function (pathway.DataNodes) {return pathway.DataNodes.Graphics["-CenterY"]/20 - pathway.DataNodes.Graphics["-Height"]/40})
+    .attr("width",function (pathway.DataNodes) {return pathway.DataNodes.Graphics["-Width"]/20} )
+    .attr("height", function (pathway.DataNodes) {return pathway.DataNodes.Graphics["-Height"]/20})
     .style("fill", "#FFF")
-    .style("stroke", function (nodes) {return nodes.Graphics["-Color"]});
+    .style("stroke", function (pathway.DataNodes) {return pathway.DataNodes.Graphics["-Color"]});
     
   var text = svg.selectAll("text")
-    .data(nodes)
+    .data(pathway.DataNodes)
     .enter()
     .append("text");
 
   var textAttrs = text
-    .attr("x", function (nodes) {return nodes.Graphics["-CenterX"]/20 - nodes.Graphics["-Width"]/40})
-          .attr("y", function (nodes) {return nodes.Graphics["-CenterY"]/20 - nodes.Graphics["-Height"]/40})
-    .attr("dy", function (nodes) {return nodes.Graphics["-Height"]/25})
+    .attr("x", function (pathway.DataNodes) {return pathway.DataNodes.Graphics["-CenterX"]/20 - pathway.DataNodes.Graphics["-Width"]/40})
+          .attr("y", function (pathway.DataNodes) {return pathway.DataNodes.Graphics["-CenterY"]/20 - pathway.DataNodes.Graphics["-Height"]/40})
+    .attr("dy", function (pathway.DataNodes) {return pathway.DataNodes.Graphics["-Height"]/25})
     .attr("dx", 5)
-    .text(function (nodes) {return nodes["-TextLabel"]})
-    .style("fill", function (nodes) {return nodes.Graphics["-Color"]});
+    .text(function (pathway.DataNodes) {return pathway.DataNodes["-TextLabel"]})
+    .style("fill", function (pathway.DataNodes) {return pathway.DataNodes.Graphics["-Color"]});
 
 
   var line = svg.selectAll("line")
@@ -265,5 +434,6 @@ d3.xml('pathwaydefs.svg', 'image/svg+xml', function(xml) {
           .attr("y2", function(lines) { return lines.Graphics.Point[1]["-y"]/20})
     .style("stroke", function(lines) { return lines.Graphics["-Color"]});*/
   });
+};
 
 </script>
