@@ -56,6 +56,10 @@
     Opening this SVG directly with Illustrator does not work well.
     In the future, we could use Uniconverter on the server to make it possible to download pathway images in
     .ai (Illustrator) and .cdr (CorelDraw) formats.
+
+  For more information on SVG, these references are helpful:
+  [W3 Spec](http://www.w3.org/TR/SVG/expanded-toc.html)
+  [MDN on SVG](https://developer.mozilla.org/en-US/docs/Web/SVG)
 -->
 
 <svg id="pathway-image"
@@ -91,7 +95,7 @@
     text-anchor: middle;
   }
 
-  .group {
+  .complex {
     fill: rgb(180,180,100);
     fill-opacity: 0.098;
     stroke: gray;
@@ -149,9 +153,16 @@
     fill: white;
   }
 
-  .line {
+  .solid-line {
     fill:none;
     stroke: black; 
+    stroke-width: 1px; 
+  }
+
+  .dashed-line {
+    fill:none;
+    stroke: black; 
+    stroke-dasharray: 5,3,2;
     stroke-width: 1px; 
   }
 
@@ -189,6 +200,7 @@
         // shouldn't be necessary in JavaScript, but Batik can only use .item(i).
         var labelBbox = nodeLabel.getBBox();
         var labelText = nodeLabel.textContent;
+        //this selector isn't good enough. TODO
         shapeNodeList = nodeLabel.parentNode.getElementsByTagNameNS('http://www.w3.org/2000/svg','use'); 
         if (typeof shapeNodeList.item(0) !== 'undefined' && shapeNodeList.item(0) !== null) {
           var shape = nodeLabel.parentNode.getElementsByTagNameNS('http://www.w3.org/2000/svg','use').item(0);
@@ -252,6 +264,228 @@
       <path d="M0,0 L-10,-5 L-10,5 Z" stroke-width="1px"/>
     </marker>
 
+    <!-- inhibition markers are incorrect as circles -->
+
+    <marker id="inhibition-start-black" 
+      fill="white"
+      markerHeight="10"
+      markerWidth="10"
+      markerUnits="strokeWidth"
+      orient="auto"
+      refX="0" refY="0"
+      stroke="black"
+      viewBox="-1 -6 12 12">
+      <circle cx="5" cy="0" r="5px" stroke-width="1px"/>
+    </marker>
+
+    <marker id="inhibition-end-black"
+      fill="white"
+      markerHeight="10"
+      markerWidth="10"
+      markerUnits="strokeWidth"
+      orient="auto"
+      refX="0" refY="0"
+      stroke="black"
+      viewBox="-1 -6 12 12">
+      <circle cx="5" cy="0" r="5px" stroke-width="1px"/>
+    </marker>
+
+     <marker id="mim-binding-start-black" 
+      fill="black"
+      markerUnits="strokeWidth"
+      markerWidth="10" markerHeight="10"
+      orient="auto"
+      refX="0" refY="0"
+      stroke="black"
+      viewBox="0 -6 12 12">
+      <path d="M0,0 L10,-5 L10,5 Z" stroke-width="1px"/>
+    </marker>
+
+    <marker id="mim-binding-end-black"
+      fill="black"
+      markerUnits="strokeWidth"
+      markerWidth="10" markerHeight="10"
+      orient="auto"
+      refX="0" refY="0"
+      stroke="black"
+      viewBox="-12 -6 12 12">
+      <path d="M0,0 L-10,-5 L-10,5 Z" stroke-width="1px"/>
+    </marker>
+
+    <marker id="mim-catalysis-start-black"
+      fill="white"
+      markerHeight="10"
+      markerWidth="10"
+      markerUnits="strokeWidth"
+      orient="auto"
+      refX="0" refY="0"
+      stroke="black"
+      viewBox="-1 -6 12 12">
+      <circle cx="5" cy="0" r="5px" stroke-width="1px"/>
+    </marker>
+
+    <marker id="mim-catalysis-end-black"
+      fill="white"
+      markerHeight="10"
+      markerUnits="strokeWidth"
+      markerWidth="10"
+      orient="auto"
+      refX="5" refY="0"
+      stroke="black"
+      viewBox="-6 -6 12 12">
+      <circle cx="0" cy="0" r="5px" stroke-width="1px"/>
+    </marker>
+
+    <!-- mim-cleavage markers are incorrect as circles -->
+
+    <marker id="mim-cleavage-start-black" 
+      fill="white"
+      markerHeight="10"
+      markerWidth="10"
+      markerUnits="strokeWidth"
+      orient="auto"
+      refX="0" refY="0"
+      stroke="black"
+      viewBox="-1 -6 12 12">
+      <circle cx="5" cy="0" r="5px" stroke-width="1px"/>
+    </marker>
+
+    <marker id="mim-cleavage-end-black"
+      fill="white"
+      markerHeight="10"
+      markerWidth="10"
+      markerUnits="strokeWidth"
+      orient="auto"
+      refX="0" refY="0"
+      stroke="black"
+      viewBox="-1 -6 12 12">
+      <circle cx="5" cy="0" r="5px" stroke-width="1px"/>
+    </marker>
+
+  <!-- mim-conversion markers are incorrect -->
+
+     <marker id="mim-conversion-start-black" 
+      fill="black"
+      markerUnits="strokeWidth"
+      markerWidth="10" markerHeight="10"
+      orient="auto"
+      refX="0" refY="0"
+      stroke="black"
+      viewBox="0 -6 12 12">
+      <path d="M0,0 L10,-5 L10,5 Z" stroke-width="1px"/>
+    </marker>
+
+    <marker id="mim-conversion-end-black"
+      fill="black"
+      markerUnits="strokeWidth"
+      markerWidth="10" markerHeight="10"
+      orient="auto"
+      refX="0" refY="0"
+      stroke="black"
+      viewBox="-12 -6 12 12">
+      <path d="M0,0 L-10,-5 L-10,5 Z" stroke-width="1px"/>
+    </marker>
+
+    <!-- mim-covalent-bond markers are incorrect as circles -->
+
+    <marker id="mim-covalent-bond-start-black" 
+      fill="white"
+      markerHeight="10"
+      markerWidth="10"
+      markerUnits="strokeWidth"
+      orient="auto"
+      refX="0" refY="0"
+      stroke="black"
+      viewBox="-1 -6 12 12">
+      <circle cx="5" cy="0" r="5px" stroke-width="1px"/>
+    </marker>
+
+    <marker id="mim-covalent-bond-end-black"
+      fill="white"
+      markerHeight="10"
+      markerWidth="10"
+      markerUnits="strokeWidth"
+      orient="auto"
+      refX="0" refY="0"
+      stroke="black"
+      viewBox="-1 -6 12 12">
+      <circle cx="5" cy="0" r="5px" stroke-width="1px"/>
+    </marker>
+
+    <!-- mim-inhibition markers are incorrect as circles -->
+
+    <marker id="mim-inhibition-start-black" 
+      fill="white"
+      markerHeight="10"
+      markerWidth="10"
+      markerUnits="strokeWidth"
+      orient="auto"
+      refX="0" refY="0"
+      stroke="black"
+      viewBox="-1 -6 12 12">
+      <circle cx="5" cy="0" r="5px" stroke-width="1px"/>
+    </marker>
+
+    <marker id="mim-inhibition-end-black"
+      fill="white"
+      markerHeight="10"
+      markerWidth="10"
+      markerUnits="strokeWidth"
+      orient="auto"
+      refX="0" refY="0"
+      stroke="black"
+      viewBox="-1 -6 12 12">
+      <circle cx="5" cy="0" r="5px" stroke-width="1px"/>
+    </marker>
+
+  <!-- mim-modification markers are incorrect -->
+
+     <marker id="mim-modification-start-black" 
+      fill="black"
+      markerUnits="strokeWidth"
+      markerWidth="10" markerHeight="10"
+      orient="auto"
+      refX="0" refY="0"
+      stroke="black"
+      viewBox="0 -6 12 12">
+      <path d="M0,0 L10,-5 L10,5 Z" stroke-width="1px"/>
+    </marker>
+
+    <marker id="mim-modification-end-black"
+      fill="black"
+      markerUnits="strokeWidth"
+      markerWidth="10" markerHeight="10"
+      orient="auto"
+      refX="0" refY="0"
+      stroke="black"
+      viewBox="-12 -6 12 12">
+      <path d="M0,0 L-10,-5 L-10,5 Z" stroke-width="1px"/>
+    </marker>
+
+  <!-- mim-necessary-stimulation markers are incorrect -->
+
+    <marker id="mim-necessary-stimulation-start-black"
+      fill="white"
+      markerWidth="10" markerHeight="10"
+      markerUnits="strokeWidth"
+      orient="auto"
+      refX="0" refY="0"
+      stroke="black"
+      viewBox="0 -6 12 12">
+      <path d="M0,0 L10,-5 L10,5 Z" stroke-width="1px"/>
+    </marker>
+
+    <marker id="mim-necessary-stimulation-end-black"
+      fill="white"
+      markerUnits="strokeWidth"
+      markerWidth="10" markerHeight="10"
+      orient="auto"
+      refX="0" refY="0"
+      stroke="black"
+      viewBox="-12 -6 12 12">
+      <path d="M0,0 L-10,-5 L-10,5 Z" stroke-width="1px"/>
+    </marker>
+
     <marker id="mim-stimulation-start-black"
       fill="white"
       markerWidth="10" markerHeight="10"
@@ -274,28 +508,52 @@
       <path d="M0,0 L-10,-5 L-10,5 Z" stroke-width="1px"/>
     </marker>
 
-    <marker id="mim-catalysis-start-black"
+  <!-- mim-transcription-translation markers are incorrect -->
+
+    <marker id="mim-transcription-translation-start-black"
       fill="white"
-      markerHeight="10"
-      markerWidth="10"
+      markerWidth="10" markerHeight="10"
       markerUnits="strokeWidth"
       orient="auto"
-      refX="-5" refY="0"
+      refX="0" refY="0"
       stroke="black"
-      viewBox="-6 -6 12 12">
-      <circle cx="0" cy="0" r="5px" stroke-width="1px"/>
+      viewBox="0 -6 12 12">
+      <path d="M0,0 L10,-5 L10,5 Z" stroke-width="1px"/>
     </marker>
 
-    <marker id="mim-catalysis-end-black"
+    <marker id="mim-transcription-translation-end-black"
       fill="white"
-      markerHeight="10"
       markerUnits="strokeWidth"
-      markerWidth="10"
+      markerWidth="10" markerHeight="10"
       orient="auto"
-      refX="5" refY="0"
+      refX="0" refY="0"
       stroke="black"
-      viewBox="-6 -6 12 12">
-      <circle cx="0" cy="0" r="5px" stroke-width="1px"/>
+      viewBox="-12 -6 12 12">
+      <path d="M0,0 L-10,-5 L-10,5 Z" stroke-width="1px"/>
+    </marker>
+
+  <!-- mim-gap markers are incorrect -->
+
+    <marker id="mim-gap-start-black"
+      fill="white"
+      markerWidth="10" markerHeight="10"
+      markerUnits="strokeWidth"
+      orient="auto"
+      refX="0" refY="0"
+      stroke="black"
+      viewBox="0 -6 12 12">
+      <path d="M0,0 L10,-5 L10,5 Z" stroke-width="1px"/>
+    </marker>
+
+    <marker id="mim-gap-end-black"
+      fill="white"
+      markerUnits="strokeWidth"
+      markerWidth="10" markerHeight="10"
+      orient="auto"
+      refX="0" refY="0"
+      stroke="black"
+      viewBox="-12 -6 12 12">
+      <path d="M0,0 L-10,-5 L-10,5 Z" stroke-width="1px"/>
     </marker>
 
   <!-- ***************************
@@ -311,24 +569,74 @@
           TODO Is there a better way to address this?
          -->
 
-    <symbol id="group" viewBox="0 0 120 180" preserveAspectRatio="none">
+  <!-- Shape is placeholder until it can be replaced with correct shape. -->
+
+   <symbol id="shape-arc" viewBox="0 0 100 50" preserveAspectRatio="none">
+      <desc>arc</desc>
+      <rect x="1" y="1" width="98" height="48" vector-effect="non-scaling-stroke"></rect>
+    </symbol>
+
+  <!-- Shape is placeholder until it can be replaced with correct shape. -->
+
+   <symbol id="shape-brace" viewBox="0 0 100 50" preserveAspectRatio="none">
+      <desc>brace</desc>
+      <rect x="1" y="1" width="98" height="48" vector-effect="non-scaling-stroke"></rect>
+    </symbol>
+
+  <!-- Shape is placeholder until it can be replaced with correct shape. -->
+
+   <symbol id="shape-cell" viewBox="0 0 100 50" preserveAspectRatio="none">
+      <desc>cell</desc>
+      <rect x="1" y="1" width="98" height="48" vector-effect="non-scaling-stroke"></rect>
+    </symbol>
+
+    <!-- this is the background shape for a set of data nodes in a complex -->
+
+    <symbol id="shape-complex" viewBox="0 0 120 180" preserveAspectRatio="none">
       <desc>Group</desc>
       <rect x="1" y="1" width="118" height="178" vector-effect="non-scaling-stroke"></rect>
     </symbol>
 
-    <symbol id="shape-rect" viewBox="0 0 100 50" preserveAspectRatio="none">
-      <desc>Rectangle</desc>
+  <!-- Shape is placeholder until it can be replaced with correct shape. -->
+
+   <symbol id="shape-endoplasmic-reticulum" viewBox="0 0 100 50" preserveAspectRatio="none">
+      <desc>endoplasmic-reticulum</desc>
       <rect x="1" y="1" width="98" height="48" vector-effect="non-scaling-stroke"></rect>
     </symbol>
 
-    <symbol id="shape-rounded-rect" viewBox="0 0 100 50" preserveAspectRatio="none">
-      <desc>Rounded Rectangle</desc>
-      <rect x="1" y="1" rx="10" ry="10" width="98" height="48" vector-effect="non-scaling-stroke"></rect>
+  <!-- Shape is placeholder until it can be replaced with correct shape. -->
+
+   <symbol id="shape-extracellular-region" viewBox="0 0 100 50" preserveAspectRatio="none">
+      <desc>extracellular-region</desc>
+      <rect x="1" y="1" width="98" height="48" vector-effect="non-scaling-stroke"></rect>
     </symbol>
 
-    <symbol id="shape-oval" viewBox="0 0 100 50" preserveAspectRatio="none">
-      <desc>Oval</desc>
-      <ellipse cx="49" cy="24" rx="49" ry="24" vector-effect="non-scaling-stroke"></ellipse>
+  <!-- Shape is placeholder until it can be replaced with correct shape. -->
+
+   <symbol id="shape-golgi-apparatus" viewBox="0 0 100 50" preserveAspectRatio="none">
+      <desc>golgi-apparatus</desc>
+      <rect x="1" y="1" width="98" height="48" vector-effect="non-scaling-stroke"></rect>
+    </symbol>
+
+    <!-- this is the dragbox shape for any set of elements that have been grouped. this only shows up in edit mode. -->
+
+    <symbol id="shape-group-drag-box" viewBox="0 0 120 180" preserveAspectRatio="none">
+      <desc>Group</desc>
+      <rect x="1" y="1" width="118" height="178" vector-effect="non-scaling-stroke"></rect>
+    </symbol>
+
+  <!-- Shape is placeholder until it can be replaced with correct shape. -->
+
+   <symbol id="shape-hexagon" viewBox="0 0 100 50" preserveAspectRatio="none">
+      <desc>hexagon</desc>
+      <rect x="1" y="1" width="98" height="48" vector-effect="non-scaling-stroke"></rect>
+    </symbol>
+
+  <!-- Shape is placeholder until it can be replaced with correct shape. -->
+
+   <symbol id="shape-mim-degradation" viewBox="0 0 100 50" preserveAspectRatio="none">
+      <desc>mim-degradation</desc>
+      <rect x="1" y="1" width="98" height="48" vector-effect="non-scaling-stroke"></rect>
     </symbol>
 
     <symbol id="shape-mitochondria" viewBox="0 0 100 65.5" preserveAspectRatio="none">
@@ -349,6 +657,63 @@
         stroke-linecap="square"
         stroke-miterlimit="10"
         d="M95.753,46.125  c0,7.808-5.905,14.14-13.189,14.14H17.442c-7.284,0-13.189-6.332-13.189-14.14v-26.22c0-7.81,5.905-14.141,13.189-14.141h65.122  c7.284,0,13.189,6.331,13.189,14.141V46.125z"/>
+  </symbol>
+
+  <!-- Shape is placeholder until it can be replaced with correct shape. -->
+
+   <symbol id="shape-nucleus" viewBox="0 0 100 50" preserveAspectRatio="none">
+      <desc>nucleus</desc>
+      <rect x="1" y="1" width="98" height="48" vector-effect="non-scaling-stroke"></rect>
+    </symbol>
+
+  <!-- Shape is placeholder until it can be replaced with correct shape. -->
+
+   <symbol id="shape-organelle" viewBox="0 0 100 50" preserveAspectRatio="none">
+      <desc>organelle</desc>
+      <rect x="1" y="1" width="98" height="48" vector-effect="non-scaling-stroke"></rect>
+    </symbol>
+
+   <symbol id="shape-oval" viewBox="0 0 100 50" preserveAspectRatio="none">
+      <desc>Oval</desc>
+      <ellipse cx="49" cy="24" rx="49" ry="24" vector-effect="non-scaling-stroke"></ellipse>
+    </symbol>
+
+  <!-- Shape is placeholder until it can be replaced with correct shape. -->
+
+   <symbol id="shape-pentagon" viewBox="0 0 100 50" preserveAspectRatio="none">
+      <desc>pentagon</desc>
+      <rect x="1" y="1" width="98" height="48" vector-effect="non-scaling-stroke"></rect>
+    </symbol>
+
+   <symbol id="shape-rect" viewBox="0 0 100 50" preserveAspectRatio="none">
+      <desc>Rectangle</desc>
+      <rect x="1" y="1" width="98" height="48" vector-effect="non-scaling-stroke"></rect>
+    </symbol>
+
+    <symbol id="shape-rounded-rect" viewBox="0 0 100 50" preserveAspectRatio="none">
+      <desc>Rounded Rectangle</desc>
+      <rect x="1" y="1" rx="10" ry="10" width="98" height="48" vector-effect="non-scaling-stroke"></rect>
+    </symbol>
+
+  <!-- Shape is placeholder until it can be replaced with correct shape. -->
+
+   <symbol id="shape-sarcoplasmic-reticulum" viewBox="0 0 100 50" preserveAspectRatio="none">
+      <desc>sarcoplasmic-reticulum</desc>
+      <rect x="1" y="1" width="98" height="48" vector-effect="non-scaling-stroke"></rect>
+    </symbol>
+
+  <!-- Shape is placeholder until it can be replaced with correct shape. -->
+
+   <symbol id="shape-triangle" viewBox="0 0 100 50" preserveAspectRatio="none">
+      <desc>triangle</desc>
+      <rect x="1" y="1" width="98" height="48" vector-effect="non-scaling-stroke"></rect>
+    </symbol>
+
+  <!-- Shape is placeholder until it can be replaced with correct shape. -->
+
+   <symbol id="shape-vesicle" viewBox="0 0 100 50" preserveAspectRatio="none">
+      <desc>vesicle</desc>
+      <rect x="1" y="1" width="98" height="48" vector-effect="non-scaling-stroke"></rect>
     </symbol>
 
     <!-- TODO more markers and symbols to add:
@@ -393,7 +758,7 @@
   <g id="viewport">
 
     <!-- The visible elements below are for testing and development purposes only. These visible elements as well as
-         all comments are to be removed from this file before it is released into production. -->
+         all comments are to be removed from the production version of this file. -->
 
     <g id="markers" transform="translate(10 20)">
 
@@ -419,23 +784,23 @@
         d="M10,20 L100,40"
         marker-start="url(#arrow-start-black)"
         marker-end="url(#arrow-end-black)"
-        class="line"/>
+        class="solid-line"/>
 
       <path id="path-sfe400"
         d="M10,40 L100,60"
         marker-start="url(#mim-stimulation-start-black)"
         marker-end="url(#mim-stimulation-end-black)"
-        class="line"/>
+        class="solid-line"/>
 
       <path id="path-sfe400"
         d="M10,60 L100,80"
         marker-start="url(#mim-catalysis-start-black)"
         marker-end="url(#mim-catalysis-end-black)"
-        class="line"/>
+        class="solid-line"/>
 
     </g>
 
-    <g id="shapes" transform="translate(200 20)">
+    <g id="shapes" transform="translate(160 20)">
 
       <!-- *********************************
            Display an example of every shape 
@@ -443,22 +808,22 @@
 
       <text x="60" y="0">Shapes</text>
 
-      <g id="g-wbf243" transform="translate(0 20)" class="group">
-        <use id="use-wbf240" x="0" y="0" width="120" height="190" xlink:href="#group" />
+      <g id="g-wbf243" transform="translate(0 20)" class="complex">
+        <use id="use-wbf240" x="0" y="0" width="120" height="190" xlink:href="#shape-complex" />
 
         <g id="g-wbf244" transform="translate(10 10)" class="data-node gene-product">
           <use id="use-wbf240" x="0" y="0" width="100" height="50" xlink:href="#shape-rect" />
-          <text x="50" y="28.6" id="text-wbf240">node in group</text>
+          <text x="50" y="28.6" id="text-wbf240">node in complex</text>
         </g>
 
         <g id="g-wbf245" transform="translate(10 70)" class="data-node gene-product">
           <use id="use-wbf240" x="0" y="0" width="100" height="50" xlink:href="#shape-rect" />
-          <text x="50" y="28.6" id="text-wbf240">node in group</text>
+          <text x="50" y="28.6" id="text-wbf240">node in complex</text>
         </g>
 
         <g id="g-wbf246" transform="translate(10 130)" class="data-node gene-product">
           <use id="use-wbf240" x="0" y="0" width="100" height="50" xlink:href="#shape-rect" />
-          <text x="50" y="28.6" id="text-wbf240">node in group</text>
+          <text x="50" y="28.6" id="text-wbf240">node in complex</text>
         </g>
 
       </g>
@@ -478,11 +843,134 @@
         <text x="50" y="28.6" id="text-wbf242">oval</text>
       </g>
 
-      <use id="use-wbf243" x="10" y="4000" width="100" height="50" xlink:href="#shape-mitochondria" />
+      <use id="use-wbf243" x="10" y="400" width="100" height="50" xlink:href="#shape-mitochondria" />
 
     </g>
 
-    <g id="sandbox" transform="translate(500 0)">
+    <g id="connectors" transform="translate(300 20)">
+
+      <!-- *************************************
+           Display an example of every interaction type 
+           ************************************* -->
+
+<!-- why does this get truncated? TODO Check script for incorrect selector. -->
+
+      <text x="80" y="0">Edges</text>
+
+      <g transform="translate(10 10)">
+
+        <g id="g-abc123" transform="translate(10 10)" class="data-node gene-product">
+          <use id="symbol-abc123" x="0" y="0" width="40" height="50" xlink:href="#shape-rect" />
+          <text id="text-abc123" x="20px" y="28.6px">gene product</text>
+        </g>
+
+        <path id="path-sfe415"
+          d="M30,60 V105 H80 L80,150"
+          marker-start="url(#mim-catalysis-start-black)"
+          class="solid-line"/>
+        <circle cx="30" cy="60" r="3px" stroke="yellow" stroke-width="1px"/>
+        <circle cx="30" cy="105" r="3px" stroke="yellow" stroke-width="1px"/>
+        <circle cx="80" cy="105" r="3px" stroke="yellow" stroke-width="1px"/>
+        <circle cx="80" cy="150" r="3px" stroke="yellow" stroke-width="1px"/>
+
+        <g id="g-wbf237" transform="translate(60 150)" class="data-node metabolite">
+          <use id="use-wbf237" x="0" y="0" width="40px" height="40px" xlink:href="#shape-rounded-rect" />
+          <text id="text-wbf237" x="20px" y="23.6px">metabolite</text>
+        </g>
+
+      </g>
+
+      <g transform="translate(90 10)">
+
+        <g id="g-abc123" transform="translate(10 10)" class="data-node gene-product">
+          <use id="symbol-abc123" x="0" y="0" width="40" height="50" xlink:href="#shape-rect" />
+          <text id="text-abc123" x="20px" y="28.6px">gene product</text>
+        </g>
+
+        <path id="path-sfe415"
+          d="M30,60 L80,150"
+          marker-start="url(#mim-catalysis-start-black)"
+          class="solid-line"/>
+        <circle cx="30" cy="60" r="3px" stroke="yellow" stroke-width="1px"/>
+        <circle cx="80" cy="150" r="3px" stroke="yellow" stroke-width="1px"/>
+
+        <g id="g-wbf237" transform="translate(60 150)" class="data-node metabolite">
+          <use id="use-wbf237" x="0" y="0" width="40px" height="40px" xlink:href="#shape-rounded-rect" />
+          <text id="text-wbf237" x="20px" y="23.6px">metabolite</text>
+        </g>
+
+      </g>
+
+      <g transform="translate(10 200)">
+
+        <g id="g-abc123" transform="translate(10 10)" class="data-node gene-product">
+          <use id="symbol-abc123" x="0" y="0" width="40" height="50" xlink:href="#shape-rect" />
+          <text id="text-abc123" x="20px" y="28.6px">gene product</text>
+        </g>
+
+        <path id="path-sfe415"
+          d="M30,60 L25,100 L50,130 L80,150"
+          marker-start="url(#mim-catalysis-start-black)"
+          class="solid-line"/>
+        <circle cx="30" cy="60" r="3px" stroke="yellow" stroke-width="1px"/>
+        <circle cx="25" cy="100" r="3px" stroke="yellow" stroke-width="1px"/>
+        <circle cx="50" cy="130" r="3px" stroke="yellow" stroke-width="1px"/>
+        <circle cx="80" cy="150" r="3px" stroke="yellow" stroke-width="1px"/>
+
+        <g id="g-wbf237" transform="translate(60 150)" class="data-node metabolite">
+          <use id="use-wbf237" x="0" y="0" width="40px" height="40px" xlink:href="#shape-rounded-rect" />
+          <text id="text-wbf237" x="20px" y="23.6px">metabolite</text>
+        </g>
+
+      </g>
+
+      <g transform="translate(90 200)">
+
+        <g id="g-abc123" transform="translate(10 10)" class="data-node gene-product">
+          <use id="symbol-abc123" x="0" y="0" width="40" height="50" xlink:href="#shape-rect" />
+          <text id="text-abc123" x="20px" y="28.6px">gene product</text>
+        </g>
+
+        <!-- We have options on how we do the curved edges.
+             
+             Option 1) Use cubic Bézier curve commands: Q30,65 35,100 (equivalent to
+             L30,65 T35,100)? If we just used T35,100, the start-marker would appear to be in the wrong place.
+             Because the circle must appear offset 5 units in the Y direction from the actual end of the line,
+             we need to tell the path to use an extra L30,65, which is 5 units down in the Y direction. If the
+             line were coming out of the east side of the shape, we would need to use L35,60 (adding 5 units in
+             the X direction), with similar logic coming out of W and N sides. At least for circular markers,
+             the second path point needs to be 5 units away from the line tangent to the outline of the shape
+             at the point at which the path intersects the shape outline. What about other marker types?
+
+              d="M30,60 Q30,65 35,100 T80,150"
+
+                              vs.
+
+              Option 2) Use quadratic Bézier curve commands:
+
+              d="M30,60 C30,65 30,90 55,100 S80,130 80,150"
+             
+             -->
+
+        <path id="path-sfe415"
+          d="M30,60 Q30,65 35,100 T80,150"
+          marker-start="url(#mim-catalysis-start-black)"
+          class="solid-line"/>
+        <circle cx="30" cy="60" r="3px" stroke="yellow" stroke-width="1px"/>
+        <circle cx="30" cy="65" r="3px" stroke="pink" stroke-width="1px"/>
+        <circle cx="35" cy="100" r="3px" stroke="yellow" stroke-width="1px"/>
+        <circle cx="80" cy="150" r="3px" stroke="yellow" stroke-width="1px"/>
+
+        <g id="g-wbf237" transform="translate(60 150)" class="data-node metabolite">
+          <use id="use-wbf237" x="0" y="0" width="40px" height="40px" xlink:href="#shape-rounded-rect" />
+          <text id="text-wbf237" x="20px" y="23.6px">metabolite</text>
+        </g>
+
+      </g>
+
+   </g>
+
+    <g id="sandbox" transform="translate(600 0)">
 
       <!-- *******************************
            Sandbox: try out using the defs 
@@ -495,7 +983,7 @@
         It ends with x = symbol.width and y = symbol.height / 2. -->
 
         <use id="symbol-abc123" x="0" y="0" width="300" height="100" xlink:href="#shape-rect" />
-        <text id="text-abc123" x="150px" y="50px" dy="0.3em" textLength="68px">gene product</text>
+        <text id="text-abc123" x="150px" y="53.6px">gene product</text>
       </g>
 
       <!-- the marker-start for this interaction overlaps the marker start for another. TODO What should
@@ -505,18 +993,18 @@
         d="M165,110 V145 H500 L500,180"
         marker-start="url(#arrow-start-black)"
         marker-end="url(#mim-catalysis-end-black)"
-        class="line"/>
+        class="solid-line"/>
 
       <g id="g-wbf237" transform="translate(300 180)" class="data-node metabolite">
         <use id="use-wbf237" x="0" y="0" width="400px" height="100px" xlink:href="#shape-rounded-rect" />
-        <text id="text-wbf237" x="200px" y="50px" dy="0.3em" textLength="52.8125px">metabolite</text>
+        <text id="text-wbf237" x="200px" y="53.6px">metabolite</text>
       </g>
 
       <path id="path1-sfe416"
         d="M165,110 L105,200"
         marker-start="url(#mim-catalysis-start-black)"
         marker-end="url(#mim-catalysis-end-black)"
-        class="line"/>
+        class="solid-line"/>
 
       <g id="g-wbf238" transform="translate(10 200)" class="data-node metabolite" >
         <use id="use-wbf238" x="0" y="0" width="200" height="25" xlink:href="#shape-rect" />
