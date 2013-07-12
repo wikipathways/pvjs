@@ -10,7 +10,7 @@
     <Xref Database="" ID="" />
   </DataNode>
   <DataNode TextLabel="Protein" GraphId="e979e" Type="Protein">
-    <Graphics CenterX="341.497090402426" CenterY="309.0612244897959" Width="172.69387755102034" Height="91.0612244897959" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Graphics CenterX="341.497090402426" CenterY="309.0612244897959" Width="172.69387755102034" Height="91.0612244897959" ZOrder="32768" FontSize="10" Valign="Middle" ShapeType="Oval" />
     <Xref Database="" ID="" />
   </DataNode>
   <DataNode TextLabel="Rna" GraphId="a2ded" Type="Rna">

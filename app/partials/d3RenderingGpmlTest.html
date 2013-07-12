@@ -147,12 +147,31 @@ function convertGpml2Json(xmlDoc){
           element.Graphics['@Color'] = "#000000";
         };	
 
-        if (element.Graphics.hasOwnProperty("@FontName")) {
-          element.Graphics["@Color"] = element.Graphics["@FontName"]
+        if (!(element.Graphics.hasOwnProperty("@FontName"))) {
+          element.Graphics['@FontName'] = "arial";
+        };	
+
+        // GPML to jGPML shape name mappings: { 'oldName':'new-name' }
+
+        var shapeMappings = { 'Brace':'shape-brace',  'Rectangle':'shape-rect', 'RoundedRectangle':'shape-rounded-rect', 'Oval':'shape-ellipse', 'Endoplasmic Reticulum':'shape-endoplasmic-reticulum', 'Golgi Apparatus':'shape-golgi-apparatus', 'Mitochondria':'shape-mitochondrion', 'Triangle':'shape-triangle', 'Pentagon':'shape-pentagon', 'Hexagon':'shape-hexagon', 'Sarcoplasmic Reticulum':'shape-sarcoplasmic-reticulum' };
+
+        if ((!(element.Graphics.hasOwnProperty("@ShapeType"))) || (element.Graphics["@ShapeType"] === 'Rectangle')) {
+          console.log(element.Graphics["@ShapeType"]);
+          element.Graphics["@ShapeType"] = "shape-rect";
         }
         else {
-          element.Graphics['@FontName'] = "Arial";
+          if (shapeMappings.hasOwnProperty(element.Graphics["@ShapeType"])) {
+            element.Graphics['@ShapeType'] = shapeMappings[element.Graphics['@ShapeType']];
+          }
         };	
+
+        // GPML to jGPML type name mappings: { 'oldName':'new-name' }
+
+        var typeMappings = { 'GeneProduct':'gene-product',  'Metabolite':'metabolite', 'Pathway':'pathway', 'Protein':'protein', 'Unknown':'unknown' };
+        if (typeMappings.hasOwnProperty(element["@Type"])) {
+          element["@Type"] = typeMappings[element["@Type"]];
+        }
+
       });
     }
     catch (e) {
@@ -216,8 +235,48 @@ function convertGpml2Json(xmlDoc){
       delete parsedJson.Pathway.Shape;
 
       parsedJson.Pathway.Shapes.forEach(function(element, index, array) {
+        element.Graphics["x"] = parseFloat(element.Graphics["@CenterX"]) - parseFloat(element.Graphics["@Width"])/2;
+        element.Graphics["y"] = parseFloat(element.Graphics["@CenterY"]) - parseFloat(element.Graphics["@Height"])/2;
+        delete element.Graphics["@CenterX"];
+        delete element.Graphics["@CenterY"];
 
-        // modify data
+        element.Graphics["@Width"] = parseFloat(element.Graphics["@Width"]);
+        element.Graphics["@Height"] = parseFloat(element.Graphics["@Height"]);
+
+        if (element.Graphics.hasOwnProperty("@FillColor")) {
+
+          // does not deal with color if user entered "white". Should use validateColor() to address.
+
+          element.Graphics["@FillColor"] = "#" + element.Graphics["@FillColor"]
+        }
+        else {
+          element.Graphics['@FillColor'] = "#ffffff";
+        };	
+
+        if (element.Graphics.hasOwnProperty("@Color")) {
+          element.Graphics["@Color"] = "#" + element.Graphics["@Color"]
+        }
+        else {
+          element.Graphics['@Color'] = "#000000";
+        };	
+
+        if (!(element.Graphics.hasOwnProperty("@FontName"))) {
+          element.Graphics['@FontName'] = "arial";
+        };	
+
+        // GPML to jGPML shape name mappings: { 'oldName':'new-name' }
+
+        var shapeMappings = { 'Brace':'shape-brace',  'Rectangle':'shape-rect', 'RoundedRectangle':'shape-rounded-rect', 'Oval':'shape-ellipse', 'Endoplasmic Reticulum':'shape-endoplasmic-reticulum', 'Golgi Apparatus':'shape-golgi-apparatus', 'Mitochondria':'shape-mitochondrion', 'Triangle':'shape-triangle', 'Pentagon':'shape-pentagon', 'Hexagon':'shape-hexagon', 'Sarcoplasmic Reticulum':'shape-sarcoplasmic-reticulum' };
+
+        if ((!(element.Graphics.hasOwnProperty("@ShapeType"))) || (element.Graphics["@ShapeType"] === 'Rectangle')) {
+          console.log(element.Graphics["@ShapeType"]);
+          element.Graphics["@ShapeType"] = "shape-rect";
+        }
+        else {
+          if (shapeMappings.hasOwnProperty(element.Graphics["@ShapeType"])) {
+            element.Graphics['@ShapeType'] = shapeMappings[element.Graphics['@ShapeType']];
+          }
+        };	
 
       });
     }
@@ -243,6 +302,7 @@ function clone(selector) {
 
 $(document).ready(function() {
 d3.xml("../../samples/gpml/WP673_63184.gpml", "application/xml", function(xml) {
+ //d3.xml("../../samples/gpml/ovalandpentagon.gpml", "application/xml", function(xml) {
   var pathway = convertGpml2Json(xml);
   console.log(pathwayc = pathway);
 
@@ -268,34 +328,108 @@ d3.xml("../../samples/gpml/WP673_63184.gpml", "application/xml", function(xml) {
   console.log('svg in d3.xml()xml,svg');
   console.log(svg);
 
-  var g = svg.selectAll("g")	
+  var gDataNodes = svg.selectAll("g.data-node")	
   .data(pathway.DataNodes)
   .enter()
   .append("g")
-  .attr("id", "g-wbf240")
+  .attr("id", function (d) {return 'datanode-g-' + d["@GraphId"]})
   .attr('transform', function(d) {return 'translate(' + d.Graphics.x + ' ' + d.Graphics.y + ')'})
-  .attr("class", "data-node gene-product")
+  .attr("class", function (d) {return "data-node " + d["@Type"]})
   .call(drag);
 
-  var use = g.each(function(d) {
-    d3.select(this).append('use')
-    .attr("id", "use-wbf240")
+  var symbols = svg.selectAll('symbol');
+
+  var usesDataNodes = gDataNodes.each(function(d) {
+    var useDataNode = d3.select(this).append('use')
+    .attr("id", function (d) {return 'datanode-use-' + d["@GraphId"]})
+    .attr("class", function (d) {return "data-node " + d["@Type"]})
     .attr("x", 0)
     .attr("y", 0)
     .attr("width", function (d) {return d.Graphics["@Width"]})
-    .attr("height", function (d) {return d.Graphics["@Height"]})
-    // d3 bug strips 'xlink' so need to say 'xlink:xlink'
-    .attr("xlink:xlink:href", "#shape-rounded-rect")
+    .attr("height", function (d) {return d.Graphics["@Height"]});
+
+    if (symbols.filter(function(d, i) { return (symbols[0][i].id === pathway.DataNodes[0].Graphics['@ShapeType']); }).length > 0) {
+      // d3 bug strips 'xlink' so need to say 'xlink:xlink'
+      useDataNode.attr("xlink:xlink:href", function (d) {return "#" + d.Graphics["@ShapeType"]})
+    }
+    else {
+      useDataNode.attr("xlink:xlink:href", "#shape-rect")
+      console.log('Pathvisio.js does not have access to the requested shape: ' + pathway.DataNodes[0].Graphics['@ShapeType'] )
+    };
 
     d3.select(this).append('text')
-    .attr("id", "text-wbf240")
+  .attr("id", function (d) {return 'datanode-text-' + d["@GraphId"]})
     .attr("x", function (d) {return d.Graphics["@Width"] / 2 })
     // TODO replace '12' with the actual font-size
     .attr("y", function (d) {return d.Graphics["@Height"] / 2 + 0.3*12 })
-    .text('rect');
+    .text(function (d) {return d["@TextLabel"]});
   });
 
+  // symbols
 
+  var gShapes = svg.selectAll("g.shape")	
+  .data(pathway.Shapes)
+  .enter()
+  .append("g")
+  .attr("id", function (d) {return 'shapes-g-' + d["@GraphId"]})
+  .attr("class", "shape")
+  .attr('transform', function(d) {return 'translate(' + d.Graphics.x + ' ' + d.Graphics.y + ')'})
+  .call(drag);
+
+  var symbols = svg.selectAll('symbol');
+
+  var usesShapes = gShapes.each(function(d) {
+    var useShape = d3.select(this).append('use')
+  .attr("id", function (d) {return 'shapes-use-' + d["@GraphId"]})
+    .attr("class", function (d) {return "data-node " + d["@Type"]})
+    .attr("x", 0)
+    .attr("y", 0)
+    .attr("width", function (d) {return d.Graphics["@Width"]})
+    .attr("height", function (d) {return d.Graphics["@Height"]});
+
+    if (symbols.filter(function(d, i) { return (symbols[0][i].id === pathway.Shapes[0].Graphics['@ShapeType']); }).length > 0) {
+      // d3 bug strips 'xlink' so need to say 'xlink:xlink'
+      useShape.attr("xlink:xlink:href", function (d) {return "#" + d.Graphics["@ShapeType"]})
+    }
+    else {
+      useShape.attr("xlink:xlink:href", "#shape-rect")
+      console.log('Pathvisio.js does not have access to the requested shape: ' + pathway.Shapes[0].Graphics['@ShapeType'] )
+    };
+
+    d3.select(this).append('text')
+    .attr("id", function (d) {return 'shapes-text-' + d["@GraphId"]})
+    .attr("x", function (d) {return d.Graphics["@Width"] / 2 })
+    // TODO replace '12' with the actual font-size
+    .attr("y", function (d) {return d.Graphics["@Height"] / 2 + 0.3*12 })
+    .text(function (d) {return d["@TextLabel"]});
+  });
+
+  function getPathData(d) {
+    var pathData = "";
+    d.Graphics.Points.forEach(function(element, index, array) {
+      if (index == 0) {
+        pathData = "M " + element["@X"] + " " + element["@Y"]; 
+      }
+      else {
+        pathData += " L " + element["@X"] + " " + element["@Y"]; 
+      };
+      return pathData;
+    });
+    console.log(pathData);
+    return pathData;
+  };
+
+  var interactions = svg.selectAll("path.interaction")
+  .data(pathway.Interactions)
+  .enter()
+  .append("path")
+  .attr("id", function (d) {return 'interaction-' + d["@GraphId"]})
+  .attr("class", "interaction")
+  .attr("d", function (d) {return getPathData(d);})
+  .attr("stroke", '#000000')
+  .attr("fill", 'none')
+  .attr("marker-end","url(#arrow-end-black)");
+  
   //.attr("x", d.x = d3.event.x)
   //.attr("y", d.y = d3.event.y);
 
@@ -383,58 +517,5 @@ console.log(xmlResponse);
 // svg?
  */
 
-
-/*
-   var svg = d3.select('#pathway-image');
-   svg[0].setAttribute('width', '200');
-   svg[0].setAttribute('height', '200');
-
-   var path = self.path = svg.selectAll('path');
-   console.log(path);
-   path[0][8].setAttribute('stroke', 'red');
-   var defs = svg.select('defs');
-
-   var arrowStartBlack = defs.select('#arrow-start-black');
-   var arrowEndBlack = defs.select('#arrow-end-black');
-
-   var mimCatalysisEndBlack = defs.select('#mim-catalysis-end-black');
-
-   var arrowStartRed = clone(arrowStartBlack[0][0]);
-   arrowStartRed[0][0].setAttribute('id', 'arrow-start-red');
-   arrowStartRed[0][0].setAttribute('style', 'stroke:none; fill:red;');
-
-   var arrowEndRed = clone(arrowEndBlack[0][0]);
-   arrowEndRed[0][0].setAttribute('id', 'arrow-end-red');
-   arrowEndRed[0][0].setAttribute('style', 'stroke:none; fill:red;');
-
-   var arrowEndYellow = clone(arrowEndBlack[0][0]);
-   arrowEndYellow[0][0].setAttribute('id', 'arrow-end-yellow');
-   arrowEndYellow[0][0].setAttribute('fill', 'yellow');
-   arrowEndYellow[0][0].setAttribute('stroke', 'yellow');
-
-   var mimCatalysisEndRed = clone(mimCatalysisEndBlack[0][0]);
-   mimCatalysisEndRed[0][0].setAttribute('id', 'mim-catalysis-end-red');
-   mimCatalysisEndRed[0][0].setAttribute('stroke', 'red');
-   mimCatalysisEndRed[0][0].setAttribute('fill', 'white');
-
-   var timeoutId = window.setTimeout(function() {
-   path[0][8].setAttribute('marker-end', 'url(#arrow-end-yellow)');
-   }, 300);
-   var timeoutId = window.setTimeout(function() {
-   path[0][8].setAttribute('marker-end', 'url(#arrow-end-black)');
-   }, 700);
-
-   var timeoutId = window.setTimeout(function() {
-   path[0][8].setAttribute('marker-end', 'url(#mim-stimulation-end-black)');
-   }, 1100);
-
-   var timeoutId = window.setTimeout(function() {
-   path[0][8].setAttribute('marker-end', 'url(#mim-catalysis-end-red)');
-   }, 1500);
-
-   var timeoutId = window.setTimeout(function() {
-   path[0][8].setAttribute('marker-start', 'url(#arrow-start-red)');
-   }, 1900);
- */
 });
 </script>
