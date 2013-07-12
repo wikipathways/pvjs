@@ -140,13 +140,13 @@
     fill: blue;
   }
 
-  .pathway path {
+  .pathway {
     stroke: rgb(20,150,30);
   }
+
   .pathway text {
     fill: rgb(20,150,30);
     font-size: 12px;
-    font-weight: bold;
   }
 
   .shape {
@@ -639,7 +639,7 @@
       <rect x="1" y="1" width="98" height="48" vector-effect="non-scaling-stroke"></rect>
     </symbol>
 
-    <symbol id="shape-mitochondria" viewBox="0 0 100 65.5" preserveAspectRatio="none">
+    <symbol id="shape-mitochondrion" viewBox="0 0 100 65.5" preserveAspectRatio="none">
       <desc>Mitochondria</desc>
       <g opacity="0.5" vector-effect="non-scaling-stroke">
         <path
@@ -673,8 +673,8 @@
       <rect x="1" y="1" width="98" height="48" vector-effect="non-scaling-stroke"></rect>
     </symbol>
 
-   <symbol id="shape-oval" viewBox="0 0 100 50" preserveAspectRatio="none">
-      <desc>Oval</desc>
+   <symbol id="shape-ellipse" viewBox="0 0 100 50" preserveAspectRatio="none">
+      <desc>Ellipse</desc>
       <ellipse cx="49" cy="24" rx="49" ry="24" vector-effect="non-scaling-stroke"></ellipse>
     </symbol>
 
@@ -839,11 +839,11 @@
       </g>
 
       <g id="g-wbf242" transform="translate(10 340)" class="data-node gene-product">
-        <use id="use-wbf242" x="0" y="0" width="100" height="50" xlink:href="#shape-oval" />
-        <text x="50" y="28.6" id="text-wbf242">oval</text>
+        <use id="use-wbf242" x="0" y="0" width="100" height="50" xlink:href="#shape-ellipse" />
+        <text x="50" y="28.6" id="text-wbf242">ellipse</text>
       </g>
 
-      <use id="use-wbf243" x="10" y="400" width="100" height="50" xlink:href="#shape-mitochondria" />
+      <use id="use-wbf243" x="10" y="400" width="100" height="50" xlink:href="#shape-mitochondrion" />
 
     </g>
 
@@ -1055,7 +1055,7 @@
           <text id="text-wbf238" x="100px" y="16.1px">Another metabolite for the pathvisio.js SVG to render.</text>
       </g>
 
-      <use id="use-wbf239" x="310" y="20" width="100" height="75" xlink:href="#shape-mitochondria" />
+      <use id="use-wbf239" x="310" y="20" width="100" height="75" xlink:href="#shape-mitochondrion" />
 
     </g>
 
