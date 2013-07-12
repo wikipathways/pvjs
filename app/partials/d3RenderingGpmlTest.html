@@ -12,213 +12,340 @@ http://google-styleguide.googlecode.com/svn/trunk/javascriptguide.xml
 <script src="../js/xml2json.js"></script>
 <script src="../js/jquery-1.9.1.js"></script>
 <style>
-  text {
-    font-size: 200px;
-    font-family: "arial";
-  }
+text {
+  font-size: 200px;
+  font-family: "arial";
+}
 </style>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 
-<object id="svg-container" data="http://127.0.0.1/~andersriutta/d3-from-gpml-using-defs/pathwayDefs.svg" type="image/svg+xml" width="100%" height="1000"></object>
+<object id="pathway-container" data="http://127.0.0.1/~andersriutta/pathvisio.js/app/partials/pathwayDefs.svg" type="image/svg+xml" width="100%" height="1000"></object>
 
 <script>
-	function convertToArray(object) {
-		if (Object.prototype.toString.call( object ) === '[object Object]' ) {
-			var array = [];
-			array.push(object)
-			return array;
-		}
-		else {
-			if( Object.prototype.toString.call( object ) === '[object Array]' ) {
-				return object;
-			}
-		}
-	}
-	function convertGpml2Json(xmlDoc){
- 
-    console.log('xmlDoc');
-    console.log(xmlDoc);
+function convertToArray(object) {
+  if (Object.prototype.toString.call( object ) === '[object Object]' ) {
+    var array = [];
+    array.push(object)
+    return array;
+  }
+  else {
+    if( Object.prototype.toString.call( object ) === '[object Array]' ) {
+      return object;
+    }
+  }
+}
+function convertGpml2Json(xmlDoc){
 
-		// We can use xml2json.js or JXON.js. Which is better?
-		
-		// xml2json.js
-		///*
-		var json = xml2json(xmlDoc, "");
-		var parsedJson = JSON.parse(json);
-		//var parsedJson = jQuery.parseJSON(json);
-		//*/
+  console.log('xmlDoc');
+  console.log(xmlDoc);
 
-	       // JXON.js
-		/*
-		var parsedJson = {};
-		parsedJson.Pathway = JXON.build(xmlDoc.documentElement);
-		*/
+  // We can use xml2json.js or JXON.js. Which is better?
+  // JXON.js
+  /*
+     var parsedJson = {};
+     parsedJson.Pathway = JXON.build(xmlDoc.documentElement);
+   */
 
-		var xmlns = "";
+  // xml2json.js
 
-		try {
-			xmlns = parsedJson.Pathway["@xmlns"]
-		}
-		catch (e) {
-			alert(e.message);
-			return;
-		}
+  var json = xml2json(xmlDoc, "");
+  var parsedJson = JSON.parse(json);
+  var xmlns = "";
 
-		// test for whether file is GPML based on xmlns without reference to version
-		var gpmlXmlnsSupported = "http://pathvisio.org/GPML/2013a";
-		var gpmlXmlnsIdentifier = "/GPML/";
-		// current and previous GPML xmlns values
-		// "http://pathvisio.org/GPML/2013a"
-		// "http://genmapp.org/GPML/2010a"
-		// "http://genmapp.org/GPML/2008a"
-		// "http://genmapp.org/GPML/2007"
-		if ( xmlns.indexOf(gpmlXmlnsIdentifier) !== -1 ) {
+  try {
+    xmlns = parsedJson.Pathway["@xmlns"]
+  }
+  catch (e) {
+    console.log(e.message);
+    return;
+  }
 
-			// test for whether the GPML file version matches the current version supported by pathvisio.js
-			if (xmlns != gpmlXmlnsSupported) {
-				// preferably, this would call the Java RPC updater for the file to be updated.
-				alert("Pathvisio.js may not fully support the version of GPML provided (xmlns: " + xmlns + "). Please convert to the supported version of GPML (xmlns: " + gpmlXmlnsSupported + ").")
-			}
+  // test for whether file is GPML based on xmlns without reference to version
 
-			// Convert output from xml2json into well-formed JSON.
-			// It would be better to do this in the conversion file xml2json.js.
+  var gpmlXmlnsSupported = "http://pathvisio.org/GPML/2013a";
+  var gpmlXmlnsIdentifier = "/GPML/";
 
-			// BiopaxRefs
-			try {
-				parsedJson.Pathway.BiopaxRefs = convertToArray( parsedJson.Pathway.BiopaxRef );
-				delete parsedJson.Pathway.BiopaxRef;
+  // current and previous GPML xmlns values
+  // "http://pathvisio.org/GPML/2013a"
+  // "http://genmapp.org/GPML/2010a"
+  // "http://genmapp.org/GPML/2008a"
+  // "http://genmapp.org/GPML/2007"
 
-				parsedJson.Pathway.BiopaxRefs.forEach(function(element, index, array) {
-					// modify data
-				});
-			}
-			catch (e) {
-				console.log("No BiopaxRefs found.");
-			}
+  if ( xmlns.indexOf(gpmlXmlnsIdentifier) !== -1 ) {
 
-			// Comments 
-			try {
-				parsedJson.Pathway.Comments = convertToArray( parsedJson.Pathway.Comment );
-				delete parsedJson.Pathway.Comment;
+    // test for whether the GPML file version matches the current version supported by pathvisio.js
 
-				parsedJson.Pathway.Comments.forEach(function(element, index, array) {
-					// modify data
-				});
-			}
-			catch (e) {
-				console.log("No Comments found.");
-			}
+    if (xmlns != gpmlXmlnsSupported) {
 
-			// DataNodes 
-			try {
-				parsedJson.Pathway.DataNodes = convertToArray( parsedJson.Pathway.DataNode );
-				delete parsedJson.Pathway.DataNode;
+      // preferably, this would call the Java RPC updater for the file to be updated.
 
-				parsedJson.Pathway.DataNodes.forEach(function(element, index, array) {
-					element.Graphics["x"] = parseFloat(element.Graphics["@CenterX"]) - parseFloat(element.Graphics["@Width"])/2;
-					element.Graphics["y"] = parseFloat(element.Graphics["@CenterY"]) - parseFloat(element.Graphics["@Height"])/2;
-					delete element.Graphics["@CenterX"];
-					delete element.Graphics["@CenterY"];
+      alert("Pathvisio.js may not fully support the version of GPML provided (xmlns: " + xmlns + "). Please convert to the supported version of GPML (xmlns: " + gpmlXmlnsSupported + ").")
+    }
 
-					element.Graphics["@Width"] = parseFloat(element.Graphics["@Width"]);
-					element.Graphics["@Height"] = parseFloat(element.Graphics["@Height"]);
+    // Convert output from xml2json into well-formed JSON.
+    // It would be better to do this in the conversion file xml2json.js.
 
-					if (element.Graphics.hasOwnProperty("@FillColor")) {
-						// does not deal with color if user entered "white". Should use validateColor() to address.
-						element.Graphics["@FillColor"] = "#" + element.Graphics["@FillColor"]
-					}
-					else {
-						element.Graphics['@FillColor'] = "#ffffff";
-					};	
+    // BiopaxRefs
 
-					if (element.Graphics.hasOwnProperty("@Color")) {
-						element.Graphics["@Color"] = "#" + element.Graphics["@Color"]
-					}
-					else {
-						element.Graphics['@Color'] = "#000000";
-					};	
+    try {
+      parsedJson.Pathway.BiopaxRefs = convertToArray( parsedJson.Pathway.BiopaxRef );
+      delete parsedJson.Pathway.BiopaxRef;
 
-					if (element.Graphics.hasOwnProperty("@FontName")) {
-						element.Graphics["@Color"] = element.Graphics["@FontName"]
-					}
-					else {
-						element.Graphics['@FontName'] = "Arial";
-					};	
-				});
-			}
-			catch (e) {
-				console.log("No DataNodes found.");
-			}
+      parsedJson.Pathway.BiopaxRefs.forEach(function(element, index, array) {
+        // modify data
+      });
+    }
+    catch (e) {
+      console.log("No BiopaxRefs found.");
+    }
 
-			// Groups
-			try {
-				parsedJson.Pathway.Groups = convertToArray( parsedJson.Pathway.Group );
-				delete parsedJson.Pathway.Group;
+    // Comments 
 
-				parsedJson.Pathway.Groups.forEach(function(element, index, array) {
-					// modify data
-				});
-			}
-			catch (e) {
-				console.log("No Groups found.");
-			}
+    try {
+      parsedJson.Pathway.Comments = convertToArray( parsedJson.Pathway.Comment );
+      delete parsedJson.Pathway.Comment;
 
-			// Interactions
-			try {
-				parsedJson.Pathway.Interactions = convertToArray( parsedJson.Pathway.Interaction );
-				delete parsedJson.Pathway.Interaction;
+      parsedJson.Pathway.Comments.forEach(function(element, index, array) {
 
-				parsedJson.Pathway.Interactions.forEach(function(element, index, array) {
-					element.Graphics.Points = convertToArray( element.Graphics.Point );
-					delete element.Graphics.Point;
-					// modify data
-				});
-			}
-			catch (e) {
-				console.log("No Interactions found.");
-			}
+        // modify data
 
-			// Labels
-			try {
-				parsedJson.Pathway.Labels = convertToArray( parsedJson.Pathway.Label );
-				delete parsedJson.Pathway.Label;
+      });
+    }
+    catch (e) {
+      console.log("No Comments found.");
+    }
 
-				parsedJson.Pathway.Labels.forEach(function(element, index, array) {
-					// modify data
-				});
-			}
-			catch (e) {
-				console.log("No Labels found.");
-			}
+    // DataNodes 
 
-			// Shapes
-			try {
-				parsedJson.Pathway.Shapes = convertToArray( parsedJson.Pathway.Shape );
-				delete parsedJson.Pathway.Shape;
+    try {
+      parsedJson.Pathway.DataNodes = convertToArray( parsedJson.Pathway.DataNode );
+      delete parsedJson.Pathway.DataNode;
 
-				parsedJson.Pathway.Shapes.forEach(function(element, index, array) {
-					// modify data
-				});
-			}
-			catch (e) {
-				console.log("No Shapes found.");
-			}
+      parsedJson.Pathway.DataNodes.forEach(function(element, index, array) {
+        element.Graphics["x"] = parseFloat(element.Graphics["@CenterX"]) - parseFloat(element.Graphics["@Width"])/2;
+        element.Graphics["y"] = parseFloat(element.Graphics["@CenterY"]) - parseFloat(element.Graphics["@Height"])/2;
+        delete element.Graphics["@CenterX"];
+        delete element.Graphics["@CenterY"];
 
-      console.log('parsedJson.Pathway');
-      console.log(parsedJson.Pathway);
-			return parsedJson.Pathway;
-		}
-		else {
-			alert("Pathvisio.js does not support the data format provided. Please convert to GPML and retry.")
-			return;
-		}
-	};
+        element.Graphics["@Width"] = parseFloat(element.Graphics["@Width"]);
+        element.Graphics["@Height"] = parseFloat(element.Graphics["@Height"]);
+
+        if (element.Graphics.hasOwnProperty("@FillColor")) {
+
+          // does not deal with color if user entered "white". Should use validateColor() to address.
+
+          element.Graphics["@FillColor"] = "#" + element.Graphics["@FillColor"]
+        }
+        else {
+          element.Graphics['@FillColor'] = "#ffffff";
+        };	
+
+        if (element.Graphics.hasOwnProperty("@Color")) {
+          element.Graphics["@Color"] = "#" + element.Graphics["@Color"]
+        }
+        else {
+          element.Graphics['@Color'] = "#000000";
+        };	
+
+        if (element.Graphics.hasOwnProperty("@FontName")) {
+          element.Graphics["@Color"] = element.Graphics["@FontName"]
+        }
+        else {
+          element.Graphics['@FontName'] = "Arial";
+        };	
+      });
+    }
+    catch (e) {
+      console.log("No DataNodes found.");
+    }
+
+    // Groups
+
+    try {
+      parsedJson.Pathway.Groups = convertToArray( parsedJson.Pathway.Group );
+      delete parsedJson.Pathway.Group;
+
+      parsedJson.Pathway.Groups.forEach(function(element, index, array) {
+
+        // modify data
+
+      });
+    }
+    catch (e) {
+      console.log("No Groups found.");
+    }
+
+    // Interactions
+
+    try {
+      parsedJson.Pathway.Interactions = convertToArray( parsedJson.Pathway.Interaction );
+      delete parsedJson.Pathway.Interaction;
+
+      parsedJson.Pathway.Interactions.forEach(function(element, index, array) {
+        element.Graphics.Points = convertToArray( element.Graphics.Point );
+        delete element.Graphics.Point;
+
+        // modify data
+
+      });
+    }
+    catch (e) {
+      console.log("No Interactions found.");
+    }
+
+    // Labels
+
+    try {
+      parsedJson.Pathway.Labels = convertToArray( parsedJson.Pathway.Label );
+      delete parsedJson.Pathway.Label;
+
+      parsedJson.Pathway.Labels.forEach(function(element, index, array) {
+
+        // modify data
+
+      });
+    }
+    catch (e) {
+      console.log("No Labels found.");
+    }
+
+    // Shapes
+
+    try {
+      parsedJson.Pathway.Shapes = convertToArray( parsedJson.Pathway.Shape );
+      delete parsedJson.Pathway.Shape;
+
+      parsedJson.Pathway.Shapes.forEach(function(element, index, array) {
+
+        // modify data
+
+      });
+    }
+    catch (e) {
+      console.log("No Shapes found.");
+    }
+
+    console.log('parsedJson.Pathway');
+    console.log(parsedJson.Pathway);
+    return parsedJson.Pathway;
+  }
+  else {
+    alert("Pathvisio.js does not support the data format provided. Please convert to GPML and retry.")
+    console.log("Pathvisio.js does not support the data format provided. Please convert to GPML and retry.")
+    return;
+  }
+};
 
 function clone(selector) {
   var node = d3.select(selector).node();
-  return d3.select(node.parentNode.insertBefore(node.cloneNode(true),
-  node.nextSibling));
-}
+  return d3.select(node.parentNode.insertBefore(node.cloneNode(true), node.nextSibling));
+};
+
+$(document).ready(function() {
+d3.xml("../../samples/gpml/WP673_63184.gpml", "application/xml", function(xml) {
+  var pathway = convertGpml2Json(xml);
+  console.log(pathwayc = pathway);
+
+  var drag = d3.behavior.drag()
+  .on("drag", dragmove);
+
+  var svg = d3.select("#pathway-container").select(function() {
+    console.log('this');
+    console.log(this);
+    return this.contentDocument.documentElement;
+  });
+
+   svg.attr('width', pathway.Graphics["@BoardWidth"]);
+   svg.attr('height', pathway.Graphics["@BoardHeight"]);
+  console.log('svg');
+  console.log(svg);
+  var doc = d3.select('#pathway-container')[0][0].contentDocument;
+  var viewport = doc.getElementById('viewport');
+  console.log('viewport');
+  console.log(viewport);
+  viewport.remove();
+
+  console.log('svg in d3.xml()xml,svg');
+  console.log(svg);
+
+  var g = svg.selectAll("g")	
+  .data(pathway.DataNodes)
+  .enter()
+  .append("g")
+  .attr("id", "g-wbf240")
+  .attr('transform', function(d) {return 'translate(' + d.Graphics.x + ' ' + d.Graphics.y + ')'})
+  .attr("class", "data-node gene-product")
+  .call(drag);
+
+  var use = g.each(function(d) {
+    d3.select(this).append('use')
+    .attr("id", "use-wbf240")
+    .attr("x", 0)
+    .attr("y", 0)
+    .attr("width", function (d) {return d.Graphics["@Width"]})
+    .attr("height", function (d) {return d.Graphics["@Height"]})
+    // d3 bug strips 'xlink' so need to say 'xlink:xlink'
+    .attr("xlink:xlink:href", "#shape-rounded-rect")
+
+    d3.select(this).append('text')
+    .attr("id", "text-wbf240")
+    .attr("x", function (d) {return d.Graphics["@Width"] / 2 })
+    // TODO replace '12' with the actual font-size
+    .attr("y", function (d) {return d.Graphics["@Height"] / 2 + 0.3*12 })
+    .text('rect');
+  });
+
+
+  //.attr("x", d.x = d3.event.x)
+  //.attr("y", d.y = d3.event.y);
+
+  function dragmove(d) {
+    log.text(
+      "x: " + d3.event.x + ", " + 
+      "y: " + d3.event.y + ", " + 
+      "dx: " + d3.event.dx + ", " + 
+      "dy: " + d3.event.dy);
+      d.x=d3.event.x;
+      d.y=d3.event.y;
+      d3.select(this)
+      .attr("x", d3.event.x)
+      .attr("y", d3.event.y);
+  }	
+
+  /*var rectAttrs = rect
+    .attr("x", function (pathway.DataNodes) {return pathway.DataNodes.Graphics["-CenterX"]/20 - pathway.DataNodes.Graphics["-Width"]/40})
+    .attr("y", function (pathway.DataNodes) {return pathway.DataNodes.Graphics["-CenterY"]/20 - pathway.DataNodes.Graphics["-Height"]/40})
+    .attr("width",function (pathway.DataNodes) {return pathway.DataNodes.Graphics["-Width"]/20} )
+    .attr("height", function (pathway.DataNodes) {return pathway.DataNodes.Graphics["-Height"]/20})
+    .style("fill", "#FFF")
+    .style("stroke", function (pathway.DataNodes) {return pathway.DataNodes.Graphics["-Color"]});
+
+    var text = svg.selectAll("text")
+    .data(pathway.DataNodes)
+    .enter()
+    .append("text");
+
+    var textAttrs = text
+    .attr("x", function (pathway.DataNodes) {return pathway.DataNodes.Graphics["-CenterX"]/20 - pathway.DataNodes.Graphics["-Width"]/40})
+    .attr("y", function (pathway.DataNodes) {return pathway.DataNodes.Graphics["-CenterY"]/20 - pathway.DataNodes.Graphics["-Height"]/40})
+    .attr("dy", function (pathway.DataNodes) {return pathway.DataNodes.Graphics["-Height"]/25})
+    .attr("dx", 5)
+    .text(function (pathway.DataNodes) {return pathway.DataNodes["-TextLabel"]})
+    .style("fill", function (pathway.DataNodes) {return pathway.DataNodes.Graphics["-Color"]});
+
+
+    var line = svg.selectAll("line")
+    .data(lines)
+    .enter()
+    .append("line");
+
+    var lineAttrs = line
+    .attr("x1", function(lines) { return lines.Graphics.Point[0]["-x"]/20})
+    .attr("y1", function(lines) { return lines.Graphics.Point[0]["-y"]/20})
+    .attr("x2", function(lines) { return lines.Graphics.Point[1]["-x"]/20})
+    .attr("y2", function(lines) { return lines.Graphics.Point[1]["-y"]/20})
+    .style("stroke", function(lines) { return lines.Graphics["-Color"]});*/
+});
 
 /*
 // If users want to use pathvisio.js from another domain without copying over the full source,
@@ -236,13 +363,13 @@ d3.xml("http://192.168.42.84/~andersriutta/d3-from-gpml-using-defs/pathwayDefs.s
 // http://stackoverflow.com/questions/1678214/javascript-how-do-i-create-jsonp
 
 $.ajax({
-  type: "GET",
-  url: "http://192.168.42.84/~andersriutta/d3-from-gpml-using-defs/pathwayDefs.svg",
-  dataType: "jsonp text",
-  success: function(xmlResponse) {
-  // process data 
-  console.log(xmlResponse);
-  }
+type: "GET",
+url: "http://192.168.42.84/~andersriutta/d3-from-gpml-using-defs/pathwayDefs.svg",
+dataType: "jsonp text",
+success: function(xmlResponse) {
+// process data 
+console.log(xmlResponse);
+}
 });
 
 // It would also be possible to recreate pathwayDefs.svg using d3.js. I'm not sure is faster:
@@ -254,186 +381,60 @@ $.ajax({
 // using d3). It would be possible to do both: download pathwayDefs.svg if on WikiPathways.org
 // domain or recreate it with d3 if not. Is it possible to create d3 code from an existing
 // svg?
-*/
-
-  var svg = d3.select('svg');
-  console.log('svg');
-  console.log(svg);
-  var viewport = d3.select('viewport');
-  svg.remove(viewport);
-
-  removeViewport(svg);
-  /*
-		var svg = d3.select('#pathway-image');
-		svg[0].setAttribute('width', '200');
-		svg[0].setAttribute('height', '200');
-
-		var path = self.path = svg.selectAll('path');
-    console.log(path);
-		path[0][8].setAttribute('stroke', 'red');
-		var defs = svg.select('defs');
-
-		var arrowStartBlack = defs.select('#arrow-start-black');
-		var arrowEndBlack = defs.select('#arrow-end-black');
-
-		var mimCatalysisEndBlack = defs.select('#mim-catalysis-end-black');
-
-		var arrowStartRed = clone(arrowStartBlack[0][0]);
-		arrowStartRed[0][0].setAttribute('id', 'arrow-start-red');
-		arrowStartRed[0][0].setAttribute('style', 'stroke:none; fill:red;');
-
-		var arrowEndRed = clone(arrowEndBlack[0][0]);
-		arrowEndRed[0][0].setAttribute('id', 'arrow-end-red');
-		arrowEndRed[0][0].setAttribute('style', 'stroke:none; fill:red;');
-
-		var arrowEndYellow = clone(arrowEndBlack[0][0]);
-		arrowEndYellow[0][0].setAttribute('id', 'arrow-end-yellow');
-		arrowEndYellow[0][0].setAttribute('fill', 'yellow');
-		arrowEndYellow[0][0].setAttribute('stroke', 'yellow');
-
-		var mimCatalysisEndRed = clone(mimCatalysisEndBlack[0][0]);
-		mimCatalysisEndRed[0][0].setAttribute('id', 'mim-catalysis-end-red');
-		mimCatalysisEndRed[0][0].setAttribute('stroke', 'red');
-		mimCatalysisEndRed[0][0].setAttribute('fill', 'white');
-
-		var timeoutId = window.setTimeout(function() {
-			path[0][8].setAttribute('marker-end', 'url(#arrow-end-yellow)');
-		}, 300);
-		var timeoutId = window.setTimeout(function() {
-			path[0][8].setAttribute('marker-end', 'url(#arrow-end-black)');
-		}, 700);
-
-		var timeoutId = window.setTimeout(function() {
-			path[0][8].setAttribute('marker-end', 'url(#mim-stimulation-end-black)');
-		}, 1100);
-
-		var timeoutId = window.setTimeout(function() {
-			path[0][8].setAttribute('marker-end', 'url(#mim-catalysis-end-red)');
-		}, 1500);
-
-		var timeoutId = window.setTimeout(function() {
-			path[0][8].setAttribute('marker-start', 'url(#arrow-start-red)');
-		}, 1900);
-    */
-
-function removeViewport(xml) {
-
-  drawPathway(svg);
-  console.log('svg in removeViewport()');
-  console.log(svg);
-};
-function drawPathway(svg) {
-  console.log('svg in drawPathway()');
-  console.log(svg);
-
-  d3.xml("../../samples/gpml/WP673_63184.gpml", "application/xml", function(xml) {
+ */
 
 
-  var pathway = convertGpml2Json(xml);
-  console.log(pathwayc = pathway);
+/*
+   var svg = d3.select('#pathway-image');
+   svg[0].setAttribute('width', '200');
+   svg[0].setAttribute('height', '200');
 
-  var drag = d3.behavior.drag()
-    .on("drag", dragmove);
+   var path = self.path = svg.selectAll('path');
+   console.log(path);
+   path[0][8].setAttribute('stroke', 'red');
+   var defs = svg.select('defs');
 
-  var log = d3.select("#log");
+   var arrowStartBlack = defs.select('#arrow-start-black');
+   var arrowEndBlack = defs.select('#arrow-end-black');
 
-  var body = d3.select("body")
+   var mimCatalysisEndBlack = defs.select('#mim-catalysis-end-black');
 
-  //var svg = body.append("svg:svg")
- /*
-  var svg = d3.select(svg)
-    .data(pathway)
-    .attr("width", function (d) {console.log('d'); return d.Graphics["@BoardWidth"];})
-    .attr("height", function (d) {return d.Graphics["@BoardHeight"];})
-   */ 
-  console.log('svg in d3.xml()xml,svg');
-  console.log(svg);
+   var arrowStartRed = clone(arrowStartBlack[0][0]);
+   arrowStartRed[0][0].setAttribute('id', 'arrow-start-red');
+   arrowStartRed[0][0].setAttribute('style', 'stroke:none; fill:red;');
 
-  /*
-     <g id="g-wbf240" transform="translate(10 220)" class="data-node gene-product">
-          <use id="use-wbf240" x="0" y="0" width="100" height="50" xlink:href="#shape-rect"/>
-          <text x="50" y="25" id="text-wbf240">rect</text>
-        </g>
-        */
+   var arrowEndRed = clone(arrowEndBlack[0][0]);
+   arrowEndRed[0][0].setAttribute('id', 'arrow-end-red');
+   arrowEndRed[0][0].setAttribute('style', 'stroke:none; fill:red;');
 
+   var arrowEndYellow = clone(arrowEndBlack[0][0]);
+   arrowEndYellow[0][0].setAttribute('id', 'arrow-end-yellow');
+   arrowEndYellow[0][0].setAttribute('fill', 'yellow');
+   arrowEndYellow[0][0].setAttribute('stroke', 'yellow');
 
-  var g = svg.selectAll("g")	
-    .data(pathway.DataNodes)
-    .enter()
-    .append("g")
-    .attr("id", "g-wbf240")
-    .attr('transform', function(d) {return 'translate(' + d[0].Graphics.x + ' ' + d[0].Graphics.y + ')'})
-    .attr("class", "data-node gene-product")
-    .call(drag);
+   var mimCatalysisEndRed = clone(mimCatalysisEndBlack[0][0]);
+   mimCatalysisEndRed[0][0].setAttribute('id', 'mim-catalysis-end-red');
+   mimCatalysisEndRed[0][0].setAttribute('stroke', 'red');
+   mimCatalysisEndRed[0][0].setAttribute('fill', 'white');
 
-    var use = g.each(function(d) {
-      d3.select(this).append('use')
-      .attr("id", "use-wbf240")
-      .attr("x", 0)
-      .attr("y", 0)
-      .attr("width", function (d) {return d[0].Graphics["@Width"]})
-      .attr("height", function (d) {return d[0].Graphics["@Height"]})
-      // d3 bug strips 'xlink' so need to say 'xlink:xlink'
-      .attr("xlink:xlink:href", "#shape-rounded-rect")
+   var timeoutId = window.setTimeout(function() {
+   path[0][8].setAttribute('marker-end', 'url(#arrow-end-yellow)');
+   }, 300);
+   var timeoutId = window.setTimeout(function() {
+   path[0][8].setAttribute('marker-end', 'url(#arrow-end-black)');
+   }, 700);
 
-      d3.select(this).append('text')
-      .attr("id", "text-wbf240")
-      .attr("x", function (d) {return d[0].Graphics["@Width"] / 2 })
-      // TODO replace '12' with the actual font-size
-      .attr("y", function (d) {return d[0].Graphics["@Height"] / 2 + 0.3*12 })
-      .text('rect');
-    });
+   var timeoutId = window.setTimeout(function() {
+   path[0][8].setAttribute('marker-end', 'url(#mim-stimulation-end-black)');
+   }, 1100);
 
+   var timeoutId = window.setTimeout(function() {
+   path[0][8].setAttribute('marker-end', 'url(#mim-catalysis-end-red)');
+   }, 1500);
 
-        //.attr("x", d.x = d3.event.x)
-        //.attr("y", d.y = d3.event.y);
-    
-  function dragmove(d) {
-      log.text(
-          "x: " + d3.event.x + ", " + 
-          "y: " + d3.event.y + ", " + 
-          "dx: " + d3.event.dx + ", " + 
-          "dy: " + d3.event.dy);
-    d.x=d3.event.x;
-    d.y=d3.event.y;
-    d3.select(this)
-      .attr("x", d3.event.x)
-      .attr("y", d3.event.y);
-  }	
-  /*var rectAttrs = rect
-    .attr("x", function (pathway.DataNodes) {return pathway.DataNodes.Graphics["-CenterX"]/20 - pathway.DataNodes.Graphics["-Width"]/40})
-          .attr("y", function (pathway.DataNodes) {return pathway.DataNodes.Graphics["-CenterY"]/20 - pathway.DataNodes.Graphics["-Height"]/40})
-    .attr("width",function (pathway.DataNodes) {return pathway.DataNodes.Graphics["-Width"]/20} )
-    .attr("height", function (pathway.DataNodes) {return pathway.DataNodes.Graphics["-Height"]/20})
-    .style("fill", "#FFF")
-    .style("stroke", function (pathway.DataNodes) {return pathway.DataNodes.Graphics["-Color"]});
-    
-  var text = svg.selectAll("text")
-    .data(pathway.DataNodes)
-    .enter()
-    .append("text");
-
-  var textAttrs = text
-    .attr("x", function (pathway.DataNodes) {return pathway.DataNodes.Graphics["-CenterX"]/20 - pathway.DataNodes.Graphics["-Width"]/40})
-          .attr("y", function (pathway.DataNodes) {return pathway.DataNodes.Graphics["-CenterY"]/20 - pathway.DataNodes.Graphics["-Height"]/40})
-    .attr("dy", function (pathway.DataNodes) {return pathway.DataNodes.Graphics["-Height"]/25})
-    .attr("dx", 5)
-    .text(function (pathway.DataNodes) {return pathway.DataNodes["-TextLabel"]})
-    .style("fill", function (pathway.DataNodes) {return pathway.DataNodes.Graphics["-Color"]});
-
-
-  var line = svg.selectAll("line")
-    .data(lines)
-    .enter()
-    .append("line");
-
-  var lineAttrs = line
-    .attr("x1", function(lines) { return lines.Graphics.Point[0]["-x"]/20})
-          .attr("y1", function(lines) { return lines.Graphics.Point[0]["-y"]/20})
-          .attr("x2", function(lines) { return lines.Graphics.Point[1]["-x"]/20})
-          .attr("y2", function(lines) { return lines.Graphics.Point[1]["-y"]/20})
-    .style("stroke", function(lines) { return lines.Graphics["-Color"]});*/
-  });
-};
-
+   var timeoutId = window.setTimeout(function() {
+   path[0][8].setAttribute('marker-start', 'url(#arrow-start-red)');
+   }, 1900);
+ */
+});
 </script>
