@@ -6,6 +6,7 @@
 Style guides can be arbitrary, but for sake of consistency within this project, let's use these:
 http://google-styleguide.googlecode.com/svn/trunk/htmlcssguide.xml
 http://google-styleguide.googlecode.com/svn/trunk/javascriptguide.xml
+http://google-styleguide.googlecode.com/svn/trunk/jsoncstyleguide.xml#General_Guidelines
 -->
 
 <script src="http://mbostock.github.com/d3/d3.js?1.27.1"></script>
@@ -35,6 +36,21 @@ function convertToArray(object) {
   }
 }
 function convertGpml2Json(xmlDoc){
+
+  // GPML to jGPML mappings: { 'oldName':'new-name' }
+  // replace spaces with dashes
+  // Add dashes before every capital letter except any capital letters at the beginning of the string
+  // Replace spaces with dashes
+  // Replace double dashes with single dashes
+  // replace capitals letters with lowercase. 
+
+  // GPML to jGPML shape name mappings: { "oldName":"new-name" }
+
+  var shapeMappings = { "Brace":"brace",  "Rectangle":"rectangle", "RoundedRectangle":"rounded-rectangle", "Oval":"oval", "Endoplasmic Reticulum":"endoplasmic-reticulum", "Golgi Apparatus":"golgi-apparatus", "Mitochondria":"mitochondria", "Triangle":"triangle", "Pentagon":"pentagon", "Hexagon":"hexagon", "Sarcoplasmic Reticulum":"sarcoplasmic-reticulum" };
+
+  // GPML to jGPML marker name mappings: { "oldName":"new-name" }
+
+  var markerMappings = { "Arrow":"arrow", "TBar":"tbar", "mim-necessary-stimulation":"mim-necessary-stimulation", "mim-binding":"mim-binding", "mim-conversion":"mim-conversion", "mim-stimulation":"mim-stimulation", "mim-modification":"mim-modification", "mim-catalysis":"mim-catalysis", "mim-inhibition":"mim-inhibition", "mim-cleavage":"mim-cleavage", "mim-covalent-bond":"mim-covalent-bond", "mim-branching-left":"mim-branching-left", "mim-branching-right":"mim-branching-right", "mim-transcription-translation":"mim-transcription-translation", "mim-gap":"mim-gap" };
 
   console.log('xmlDoc');
   console.log(xmlDoc);
@@ -155,13 +171,9 @@ function convertGpml2Json(xmlDoc){
         };	
         */
 
-        // GPML to jGPML shape name mappings: { 'oldName':'new-name' }
-
-        var shapeMappings = { 'Brace':'shape-brace',  'Rectangle':'shape-rect', 'RoundedRectangle':'shape-rounded-rect', 'Oval':'shape-ellipse', 'Endoplasmic Reticulum':'shape-endoplasmic-reticulum', 'Golgi Apparatus':'shape-golgi-apparatus', 'Mitochondria':'shape-mitochondrion', 'Triangle':'shape-triangle', 'Pentagon':'shape-pentagon', 'Hexagon':'shape-hexagon', 'Sarcoplasmic Reticulum':'shape-sarcoplasmic-reticulum' };
-
         if ((!(element.Graphics.hasOwnProperty("@ShapeType"))) || (element.Graphics["@ShapeType"] === 'Rectangle')) {
           console.log(element.Graphics["@ShapeType"]);
-          element.Graphics["@ShapeType"] = "shape-rect";
+          element.Graphics["@ShapeType"] = "rectangle";
         }
         else {
           if (shapeMappings.hasOwnProperty(element.Graphics["@ShapeType"])) {
@@ -208,8 +220,26 @@ function convertGpml2Json(xmlDoc){
         element.Graphics.Points = convertToArray( element.Graphics.Point );
         delete element.Graphics.Point;
 
-        // modify data
+        element.Graphics.Points.forEach(function(element, index, array) {
 
+
+          // This is probably unreliable. We need to establish a way to ensure we identify start and end markers correctly, and we should not rely on the order of elements in XML.
+
+          if (index === 0) {
+            element.position = 'start';
+          }
+          else {
+            if (index === array.length - 1) {
+              element.position = 'end';
+            }
+          };
+
+          if (markerMappings.hasOwnProperty(element["@ArrowHead"])) {
+            element.marker = markerMappings[element['@ArrowHead']];
+            delete element["@ArrowHead"];
+          };	
+
+        });
       });
     }
     catch (e) {
@@ -273,13 +303,8 @@ function convertGpml2Json(xmlDoc){
           element.Graphics['@FontName'] = "arial";
         };	
 
-        // GPML to jGPML shape name mappings: { 'oldName':'new-name' }
-
-        var shapeMappings = { 'Brace':'shape-brace',  'Rectangle':'shape-rect', 'RoundedRectangle':'shape-rounded-rect', 'Oval':'shape-ellipse', 'Endoplasmic Reticulum':'shape-endoplasmic-reticulum', 'Golgi Apparatus':'shape-golgi-apparatus', 'Mitochondria':'shape-mitochondrion', 'Triangle':'shape-triangle', 'Pentagon':'shape-pentagon', 'Hexagon':'shape-hexagon', 'Sarcoplasmic Reticulum':'shape-sarcoplasmic-reticulum' };
-
         if ((!(element.Graphics.hasOwnProperty("@ShapeType"))) || (element.Graphics["@ShapeType"] === 'Rectangle')) {
-          console.log(element.Graphics["@ShapeType"]);
-          element.Graphics["@ShapeType"] = "shape-rect";
+          element.Graphics["@ShapeType"] = "rectangle";
         }
         else {
           if (shapeMappings.hasOwnProperty(element.Graphics["@ShapeType"])) {
@@ -319,8 +344,6 @@ d3.xml("../../samples/gpml/WP673_63184.gpml", "application/xml", function(xml) {
   .on("drag", dragmove);
 
   var svg = d3.select("#pathway-container").select(function() {
-    console.log('this');
-    console.log(this);
     return this.contentDocument.documentElement;
   });
 
@@ -337,7 +360,20 @@ d3.xml("../../samples/gpml/WP673_63184.gpml", "application/xml", function(xml) {
   console.log('svg in d3.xml()xml,svg');
   console.log(svg);
 
-  var symbols = svg.selectAll('symbol');
+  var symbolsAvailable = svg.selectAll('symbol');
+  var markersAvailable = svg.selectAll('marker');
+
+  var pathwayNameText = svg.append('text')
+  .attr("id", 'pathway-name-text')
+  .attr("x", 80)
+  .attr("y", 10)
+  .text(function (d) { return 'Title: ' + pathway["@Name"] });
+
+  var pathwayOrganismText = svg.append('text')
+  .attr("id", 'pathway-organism-text')
+  .attr("x", 80)
+  .attr("y", 30)
+  .text(function (d) { return 'Organism: ' + pathway["@Organism"] });
 
   // Data Nodes
 
@@ -359,9 +395,6 @@ d3.xml("../../samples/gpml/WP673_63184.gpml", "application/xml", function(xml) {
     .attr("width", function (d) {return d.Graphics["@Width"]})
     .attr("height", function (d) {return d.Graphics["@Height"]});
     
-    console.log((!(!d.Graphics['@FillColor'])));
-    console.log(!(!(d.Graphics['@Color'])));
-
     if (!(!(d.Graphics['@Color']))) {
       dataNodeUse.attr("style", function (d) {return "stroke:" + d.Graphics["@Color"] + ";"})
     }
@@ -370,12 +403,12 @@ d3.xml("../../samples/gpml/WP673_63184.gpml", "application/xml", function(xml) {
       dataNodeUse.attr("style", function (d) {return "fill:" + d.Graphics["@FillColor"] + ";"})
     }
 
-    if (symbols.filter(function(d, i) { return (symbols[0][i].id === pathway.DataNodes[0].Graphics['@ShapeType']); }).length > 0) {
+    if (symbolsAvailable.filter(function(d, i) { return (symbolsAvailable[0][i].id === pathway.DataNodes[0].Graphics['@ShapeType']); }).length > 0) {
       // d3 bug strips 'xlink' so need to say 'xlink:xlink'
       dataNodeUse.attr("xlink:xlink:href", function (d) {return "#" + d.Graphics["@ShapeType"]})
     }
     else {
-      dataNodeUse.attr("xlink:xlink:href", "#shape-rect")
+      dataNodeUse.attr("xlink:xlink:href", "#rectangle")
       console.log('Pathvisio.js does not have access to the requested shape: ' + pathway.DataNodes[0].Graphics['@ShapeType'] )
     };
 
@@ -420,12 +453,12 @@ d3.xml("../../samples/gpml/WP673_63184.gpml", "application/xml", function(xml) {
       shapeUse.attr("style", function (d) {return "fill:" + d.Graphics["@FillColor"] + ";"})
     }
 
-    if (symbols.filter(function(d, i) { return (symbols[0][i].id === pathway.Shapes[0].Graphics['@ShapeType']); }).length > 0) {
+    if (symbolsAvailable.filter(function(d, i) { return (symbolsAvailable[0][i].id === pathway.Shapes[0].Graphics['@ShapeType']); }).length > 0) {
       // d3 bug strips 'xlink' so need to say 'xlink:xlink'
       shapeUse.attr("xlink:xlink:href", function (d) {return "#" + d.Graphics["@ShapeType"]})
     }
     else {
-      shapeUse.attr("xlink:xlink:href", "#shape-rect")
+      shapeUse.attr("xlink:xlink:href", "#rectangle")
       console.log('Pathvisio.js does not have access to the requested shape: ' + pathway.Shapes[0].Graphics['@ShapeType'] )
     };
 
@@ -470,12 +503,12 @@ d3.xml("../../samples/gpml/WP673_63184.gpml", "application/xml", function(xml) {
       labelUse.attr("style", function (d) {return "fill:" + d.Graphics["@FillColor"] + ";"})
     }
 
-    if (symbols.filter(function(d, i) { return (symbols[0][i].id === pathway.Labels[0].Graphics['@LabelType']); }).length > 0) {
+    if (symbolsAvailable.filter(function(d, i) { return (symbolsAvailable[0][i].id === pathway.Labels[0].Graphics['@LabelType']); }).length > 0) {
       // d3 bug strips 'xlink' so need to say 'xlink:xlink'
       labelUse.attr("xlink:xlink:href", function (d) {return "#" + d.Graphics["@ShapeType"]})
     }
     else {
-      labelUse.attr("xlink:xlink:href", "#shape-rect")
+      labelUse.attr("xlink:xlink:href", "#rectangle")
       console.log('Pathvisio.js does not have access to the requested shape: ' + pathway.Labels[0].Graphics['@ShapeType'] )
     };
 
@@ -494,10 +527,40 @@ d3.xml("../../samples/gpml/WP673_63184.gpml", "application/xml", function(xml) {
 
 // Interactions
 
+  function getMarkers(d) {
+    var marker = {};
+    marker.start = null;
+    marker.end = null;
+    d.Graphics.Points.forEach(function(element, index, array) {
+      if ((element.position === 'start') && (element.hasOwnProperty('marker'))) {
+        if (markersAvailable.filter(function(d, i) { return (markersAvailable[0][i].id === element.marker + '-start-black'); }).length > 0) {
+          marker.start = element.marker + '-start-black'; 
+        }
+        else {
+          console.log('Pathvisio.js does not have access to the requested marker: ' + element.marker )
+          marker.start = element.marker + 'arrow-start-black'; 
+        };
+      }
+      else {
+        if ((element.position === 'end') && (element.hasOwnProperty('marker'))) {
+          if (markersAvailable.filter(function(d, i) { return (markersAvailable[0][i].id === element.marker + '-end-black'); }).length > 0) {
+            marker.end = element.marker + '-end-black'; 
+          }
+          else {
+            console.log('Pathvisio.js does not have access to the requested marker: ' + element.marker )
+            marker.end = element.marker + 'arrow-end-black'; 
+          };
+        }
+      };
+      return marker;
+    });
+    return marker;
+  };
+
   function getPathData(d) {
     var pathData = "";
     d.Graphics.Points.forEach(function(element, index, array) {
-      if (index == 0) {
+      if (index === 0) {
         pathData = "M " + element["@X"] + " " + element["@Y"]; 
       }
       else {
@@ -512,13 +575,19 @@ d3.xml("../../samples/gpml/WP673_63184.gpml", "application/xml", function(xml) {
   .data(pathway.Interactions)
   .enter()
   .append("path")
-  .attr("id", function (d) {return 'interaction-' + d["@GraphId"]})
+  .attr("id", function (d) { return 'interaction-' + d["@GraphId"]; })
   .attr("class", "interaction")
-  .attr("d", function (d) {return getPathData(d);})
+  .attr("d", function (d) { return getPathData(d); })
   .attr("stroke", '#000000')
   .attr("fill", 'none')
-  .attr("marker-end","url(#arrow-end-black)");
-  
+
+  if (getMarkers(pathway.Interactions[0]).start !== null) {
+    interactions.attr("marker-start", function (d) { return "url(#" + getMarkers(d).start + ")"; })
+  }
+  if (getMarkers(pathway.Interactions[0]).end !== null) {
+    interactions.attr("marker-end", function (d) { return "url(#" + getMarkers(d).end + ")"; })
+  }
+
   //.attr("x", d.x = d3.event.x)
   //.attr("y", d.y = d3.event.y);
 

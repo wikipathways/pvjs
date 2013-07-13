@@ -152,6 +152,13 @@
     </Graphics>
     <Xref Database="" ID="" />
   </Interaction>
+  <Interaction>
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="687.1008939974458" Y="103.44827586206898" />
+      <Point X="777.7777777777778" Y="102.17113665389529" ArrowHead="TBar" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
   <GraphicalLine GraphId="idb51acdef">
     <Graphics ZOrder="12288" LineThickness="1.0">
       <Point X="681.9526627218936" Y="156.80473372781066" />
