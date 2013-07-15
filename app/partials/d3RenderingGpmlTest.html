@@ -37,7 +37,7 @@ function convertToArray(object) {
 }
 function convertGpml2Json(xmlDoc){
 
-  // GPML to jGPML mappings: { 'oldName':'new-name' }
+  // GPML to jGPML mappings: { 'OldName':'new-name' }
   // replace spaces with dashes
   // Add dashes before every capital letter except any capital letters at the beginning of the string
   // Replace spaces with dashes
@@ -50,7 +50,7 @@ function convertGpml2Json(xmlDoc){
 
   // GPML to jGPML marker name mappings: { "oldName":"new-name" }
 
-  var markerMappings = { "Arrow":"arrow", "TBar":"tbar", "mim-necessary-stimulation":"mim-necessary-stimulation", "mim-binding":"mim-binding", "mim-conversion":"mim-conversion", "mim-stimulation":"mim-stimulation", "mim-modification":"mim-modification", "mim-catalysis":"mim-catalysis", "mim-inhibition":"mim-inhibition", "mim-cleavage":"mim-cleavage", "mim-covalent-bond":"mim-covalent-bond", "mim-branching-left":"mim-branching-left", "mim-branching-right":"mim-branching-right", "mim-transcription-translation":"mim-transcription-translation", "mim-gap":"mim-gap" };
+  var markerMappings = { "Arrow":"arrow", "TBar":"t-bar", "mim-necessary-stimulation":"mim-necessary-stimulation", "mim-binding":"mim-binding", "mim-conversion":"mim-conversion", "mim-stimulation":"mim-stimulation", "mim-modification":"mim-modification", "mim-catalysis":"mim-catalysis", "mim-inhibition":"mim-inhibition", "mim-cleavage":"mim-cleavage", "mim-covalent-bond":"mim-covalent-bond", "mim-branching-left":"mim-branching-left", "mim-branching-right":"mim-branching-right", "mim-transcription-translation":"mim-transcription-translation", "mim-gap":"mim-gap" };
 
   console.log('xmlDoc');
   console.log(xmlDoc);
@@ -130,6 +130,10 @@ function convertGpml2Json(xmlDoc){
     catch (e) {
       console.log("No Comments found.");
     }
+
+    // LabelableElement
+   
+    parsedJson.Pathway.labelableElement = {};
 
     // DataNodes 
 

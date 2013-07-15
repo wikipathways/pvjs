@@ -266,9 +266,9 @@
       <path d="M0,0 L-10,-5 L-10,5 Z" stroke-width="1px"/>
     </marker>
 
-  <!-- tbar markers are incorrect -->
+  <!-- t-bar markers are incorrect -->
 
-    <marker id="tbar-start-black"
+    <marker id="t-bar-start-black"
       fill="white"
       markerWidth="10" markerHeight="10"
       markerUnits="strokeWidth"
@@ -280,7 +280,7 @@
       <path d="M10,-10 L10,10" stroke-width="2px"/>
     </marker>
 
-    <marker id="tbar-end-black"
+    <marker id="t-bar-end-black"
       fill="white"
       markerUnits="strokeWidth"
       markerWidth="10" markerHeight="10"
@@ -724,41 +724,9 @@
       <rect x="1" y="1" width="98" height="48" vector-effect="non-scaling-stroke"></rect>
     </symbol>
 
-    <!-- TODO more markers and symbols to add:
-         
-         Markers
-         *******
-         tbar
-         mim-inhibition
-         mim-transcription
-         
-         Symbols
-         *******
-         protein
-         pathway
-         rna
-         unknown
-         cell
-         nucleus
-         complex
-         SBGN? Available as SVG here: http://www.sbgn.org/Documents/Templates 
-         
-          Not sure about adding lines. Should they be only defined in CSS?
-
-          TODO I propose ordering the markers and shapes in this file by category:
-
-          A. Markers
-            1. Basic (or else most commonly used) interactions
-            2. MIM/SBGN interactions
-
-          B. Symbols 
-            1. Data nodes
-            2. Graphical elements
-            3. Cellular components
-            4. SBGN shapes
-
-          C. Templates?
-
+    <!-- TODO Update placeholders for SVG definitions of shapes.
+         Should we add SBGN? Available as SVG here: http://www.sbgn.org/Documents/Templates 
+         Not sure about adding lines. Should they be only defined in CSS?
          -->
 
   </defs>
@@ -808,8 +776,8 @@
 
      <path id="path-sfe400"
         d="M10,80 L100,100"
-        marker-start="url(#tbar-start-black)"
-        marker-end="url(#tbar-end-black)"
+        marker-start="url(#t-bar-start-black)"
+        marker-end="url(#t-bar-end-black)"
         class="solid-line"/>
 
     </g>
