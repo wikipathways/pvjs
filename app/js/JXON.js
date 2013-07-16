@@ -12,7 +12,7 @@
 var JXON = new (function () {
 
   var
-    sValProp = "keyValue", sAttrProp = "keyAttributes", sAttrsPref = "@", /* you can customize these values */
+    sValProp = "keyValue", sAttrProp = "keyAttributes", sAttrsPref = "", /* you can customize these values */
     aCache = [], rIsNull = /^\s*$/, rIsBool = /^(?:true|false)$/i;
 
   function parseText (sValue) {
