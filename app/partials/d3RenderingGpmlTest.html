@@ -193,7 +193,10 @@ function convertGpml2Json(xmlDoc){
         if (element.hasOwnProperty("textlabel")) {
           element.textLabel = {"text":element.textlabel};
           delete element.textlabel;
-          element.textLabel.fill = element.stroke;
+
+          if (element.graphics.hasOwnProperty("color")) {
+            element.textLabel.fill = "#" + element.graphics.color;
+          };	
 
           if (element.graphics.hasOwnProperty("fontsize")) {
             element.textLabel.fontSize = element.graphics.fontsize;
@@ -401,15 +404,6 @@ $(document).ready(function() {
             svg.attr('height', pathway.boardHeight);
           console.log('svg');
           console.log(svg);
-    window.setTimeout(function() {
-          var doc = d3.select('#pathway-container')[0][0].contentDocument;
-          var viewport = doc.getElementById('viewport');
-          console.log('viewport');
-          console.log(viewport);
-          doc.documentElement.removeChild(viewport);
-
-          console.log('svg in d3.xml()xml,svg');
-          console.log(svg);
 
           var symbolsAvailable = svg.selectAll('symbol');
           var markersAvailable = svg.selectAll('marker');
@@ -480,6 +474,7 @@ $(document).ready(function() {
               console.log('Pathvisio.js does not have access to the requested symbol: ' + pathway.labelableElements[0].symbolType + '. Rectangle used as placeholder.');
             };
 
+            /*
             if (d.hasOwnProperty('textLabel')) {
               var labelableElementText = d3.select(this).append('text')
               .attr("id", function (d) { return 'labelable-element-text-' + d.graphId; })
@@ -495,7 +490,63 @@ $(document).ready(function() {
                     })
               .text(function (d) { return d.textLabel.text; });
             };
+            */
 
+            if (d.hasOwnProperty('textLabel')) {
+              var labelableElementSwitch = d3.select(this).append('switch');
+              
+              var labelableElementForeignObject = labelableElementSwitch.append('foreignObject') 
+              //.attr("x", 0)
+              //.attr("y", 0)
+              .attr("width", function (d) { return d.width; })
+              .attr("height", function (d) { return d.height; });
+
+              var labelableElementBody = labelableElementForeignObject.append('xhtml:body') 
+              .attr("xmlns", "http://www.w3.org/1999/xhtml")
+              .attr("id", function (d) { return 'labelable-element-text-' + d.graphId; });
+
+              var labelableElementLink = labelableElementBody.append('link') 
+              .attr("rel", "stylesheet")
+              .attr("href", "pathways.css")
+              .attr("type", "text/css");
+
+              var labelableElementP = labelableElementBody.append('p') 
+              .attr("style", function (d) { 
+                  var style = '';
+                  if (d.textLabel.hasOwnProperty('fill')) {
+                      style = 'fill:' + d.textLabel.fill + '; '; 
+                  };
+                  return style; 
+                  })
+              .text(function (d) {
+                var text = d.textLabel.text;
+                return text; 
+              })
+              .attr("class", function (d) { 
+                var styleClass = ''; 
+                if (d.elementType === 'data-node') {
+                  styleClass = "labelable-element " + d.elementType + ' ' + d.dataNodeType; 
+                }
+                else {
+                  styleClass = "labelable-element " + d.elementType; 
+                };
+                return styleClass });
+
+              var labelableElementText = labelableElementSwitch.append('text')
+              .attr("id", function (d) { return 'labelable-element-text-' + d.graphId; })
+              .attr("x", function (d) { return d.width / 2; })
+              .attr("y", function (d) { return d.height / 2 + 0.3 * d.textLabel.fontSize; })
+              //.attr("style", function (d) { return 'stroke:' + 'red'; })
+                .attr("style", function (d) { 
+                    var style = '';
+                    if (d.textLabel.hasOwnProperty('fill')) {
+                        style = 'fill:' + d.textLabel.fill + '; '; 
+                    };
+                    return style; 
+                    })
+              .text(function (d) { return d.textLabel.text; });
+
+            };
           });
 
         // Interactions
@@ -564,7 +615,6 @@ $(document).ready(function() {
           //.attr("x", d.x = d3.event.x)
           //.attr("y", d.y = d3.event.y);
 
-}, 100);
         });
 
 /*
