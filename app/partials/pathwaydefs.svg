@@ -150,6 +150,16 @@
 
   .shape {
     fill: white;
+    fill-opacity: 1;
+    stroke: black;
+    stroke-dasharray: 0;
+    stroke-miterlimit: 1;
+    stroke-width: 1px;
+  }
+
+  .label {
+    fill: white;
+    fill-opacity: 1;
   }
 
   .solid-line {
