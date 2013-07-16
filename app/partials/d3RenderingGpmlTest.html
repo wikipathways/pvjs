@@ -11,14 +11,15 @@ http://google-styleguide.googlecode.com/svn/trunk/jsoncstyleguide.xml#General_Gu
 
 <script src="http://mbostock.github.com/d3/d3.js?1.27.1"></script>
 <script src="../js/xml2json.js"></script>
+<script src="../js/jxon.js"></script>
 <script src="../js/jquery-1.9.1.js"></script>
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <style>
 text {
   font-size: 200px;
   font-family: "arial";
 }
 </style>
-<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 
 <object id="pathway-container" data="pathwaydefs.svg" type="image/svg+xml" width="100%" height="1000"></object>
 
@@ -52,16 +53,382 @@ function convertGpml2Json(xmlDoc){
 
   var markerMappings = { "Arrow":"arrow", "TBar":"t-bar", "mim-necessary-stimulation":"mim-necessary-stimulation", "mim-binding":"mim-binding", "mim-conversion":"mim-conversion", "mim-stimulation":"mim-stimulation", "mim-modification":"mim-modification", "mim-catalysis":"mim-catalysis", "mim-inhibition":"mim-inhibition", "mim-cleavage":"mim-cleavage", "mim-covalent-bond":"mim-covalent-bond", "mim-branching-left":"mim-branching-left", "mim-branching-right":"mim-branching-right", "mim-transcription-translation":"mim-transcription-translation", "mim-gap":"mim-gap" };
 
+  var dataNodeTypeMappings = { 'GeneProduct':'gene-product',  'Metabolite':'metabolite', 'Pathway':'pathway', 'Protein':'protein', 'Unknown':'unknown' };
+
   console.log('xmlDoc');
   console.log(xmlDoc);
 
   // We can use xml2json.js or JXON.js. Which is better?
   // JXON.js
-  /*
-     var parsedJson = {};
-     parsedJson.Pathway = JXON.build(xmlDoc.documentElement);
-   */
+     var parsedJson = self.parsedJson = {};
+     pathway = JXON.build(xmlDoc.documentElement);
+  try {
+    xmlns = pathway["xmlns"]
+  }
+  catch (e) {
+    console.log(e.message);
+    return;
+  }
 
+  // test for whether file is GPML based on xmlns without reference to version
+
+  var gpmlXmlnsSupported = "http://pathvisio.org/GPML/2013a";
+  var gpmlXmlnsIdentifier = "/GPML/";
+
+  // current and previous GPML xmlns values
+  // "http://pathvisio.org/GPML/2013a"
+  // "http://genmapp.org/GPML/2010a"
+  // "http://genmapp.org/GPML/2008a"
+  // "http://genmapp.org/GPML/2007"
+
+  if ( xmlns.indexOf(gpmlXmlnsIdentifier) !== -1 ) {
+
+    // test for whether the GPML file version matches the current version supported by pathvisio.js
+
+    if (xmlns != gpmlXmlnsSupported) {
+
+      // preferably, this would call the Java RPC updater for the file to be updated.
+
+      alert("Pathvisio.js may not fully support the version of GPML provided (xmlns: " + xmlns + "). Please convert to the supported version of GPML (xmlns: " + gpmlXmlnsSupported + ").")
+    }
+
+    // Convert output from xml2json into well-formed JSON.
+    // It would be better to do this in the conversion file xml2json.js.
+
+    pathway.boardWidth = pathway.graphics.boardwidth;
+    pathway.boardHeight = pathway.graphics.boardheight;
+    delete pathway.graphics;
+
+    // infoBox
+
+    pathway.infoBox = pathway.infobox;
+    delete pathway.infobox;
+
+    // what should these values actually be?
+
+    pathway.infoBox.x = pathway.infoBox.centerx;
+    delete pathway.infoBox.centerx;
+    pathway.infoBox.y = pathway.infoBox.centery;
+    delete pathway.infoBox.centery;
+
+    // BiopaxRefs
+
+    try {
+      pathway.biopaxRefs = convertToArray( pathway.biopaxref );
+      delete pathway.biopaxref;
+
+      pathway.biopaxRefs.forEach(function(element, index, array) {
+        // modify data
+      });
+    }
+    catch (e) {
+      console.log("No BiopaxRefs found.");
+    }
+
+    // Comments 
+
+    try {
+      pathway.comments = convertToArray( pathway.comment );
+      delete pathway.comment;
+
+      pathway.comments.forEach(function(element, index, array) {
+
+        // modify data
+
+      });
+    }
+    catch (e) {
+      console.log("No Comments found.");
+    }
+
+    // LabelableElements
+   
+    pathway.labelableElements = [];
+
+    function parseLabelableElement(element, index, array, elementType) {
+        element.graphId = element.graphid;
+        delete element.graphid;
+
+        if (element.hasOwnProperty('comment')) {
+          element.comments = convertToArray( element.comment );
+          delete element.comment;
+        };
+
+        element.x = parseFloat(element.graphics.centerx) - parseFloat(element.graphics.width)/2;
+        delete element.graphics.centerx;
+
+        element.y = parseFloat(element.graphics.centery) - parseFloat(element.graphics.height)/2;
+        delete element.graphics.centery;
+
+        element.width = parseFloat(element.graphics.width);
+        delete element.graphics.width;
+
+        element.height = parseFloat(element.graphics.height);
+        delete element.graphics.height;
+
+        // If unspecified due to being default, should we set the styles for stroke, fill and font-name here or in CSS?
+
+        if (element.graphics.hasOwnProperty("fillcolor")) {
+
+          // does not deal with color if user entered "white". Should use validateColor() to address.
+
+          element.fill = "#" + element.graphics.fillcolor;
+        }
+        else {
+          element.fill = "#ffffff";
+        };
+
+        if (element.graphics.hasOwnProperty("color")) {
+          element.stroke = "#" + element.graphics.color;
+        }
+        else {
+          element.stroke = "#000000";
+        };	
+
+        if (element.graphics.hasOwnProperty("linethickness")) {
+          element.strokeWidth = element.graphics.linethickness;
+        }
+        else {
+          element.strokeWidth = 1;
+        };	
+
+        if (element.hasOwnProperty("textlabel")) {
+          element.textLabel = {"text":element.textlabel};
+          delete element.textlabel;
+          element.textLabel.fill = element.stroke;
+
+          if (!(element.graphics.hasOwnProperty("fontsize"))) {
+            element.textLabel.fontSize = 10;
+          }
+          else {
+            element.textLabel.fontSize = element.graphics.fontsize;
+          };
+
+          if (!(element.graphics.hasOwnProperty("fontname"))) {
+            element.textLabel.fontFamily = "arial";
+          }
+          else {
+            element.textLabel.fontFamily = element.graphics.fontname;
+          };
+        }
+
+        if ((!(element.graphics.hasOwnProperty("shapetype"))) || (element.graphics.shapetype === 'Rectangle')) {
+          element.symbolType = "rectangle";
+        }
+        else {
+          element.symbolType = shapeMappings[element.graphics.shapetype];
+        };	
+
+        delete element.graphics;
+
+        element.elementType = elementType;
+
+        if (elementType === 'data-node') {
+          if (dataNodeTypeMappings.hasOwnProperty(element.type)) {
+            element.dataNodeType = dataNodeTypeMappings[element.type];
+          }
+          else {
+            element.dataNodeType = element.type;
+          };
+          delete element.type;
+
+          if (element.hasOwnProperty('xref')) {
+            element.xRef = element.xref;
+            delete element.xref;
+          };
+        };
+
+        pathway.labelableElements.push(element);
+    };
+
+    // DataNodes 
+
+    try {
+      pathway.dataNodes = convertToArray( pathway.datanode );
+      delete pathway.datanode;
+
+      pathway.dataNodes.forEach(function(element, index, array) {
+        parseLabelableElement(element, index, array, 'data-node');
+      });
+
+      delete pathway.dataNodes;
+
+    }
+    catch (e) {
+      console.log("No DataNodes found.");
+    }
+
+    // Groups
+
+    try {
+      pathway.groups = convertToArray( pathway.group );
+      delete pathway.group;
+
+      pathway.groups.forEach(function(element, index, array) {
+
+        element.graphId = element.graphid;
+        delete element.graphid;
+
+        element.groupId = element.groupid;
+        delete element.groupid;
+
+      });
+    }
+    catch (e) {
+      console.log("No Groups found.");
+    }
+
+    // Interactions
+
+    try {
+      pathway.interactions = convertToArray( pathway.interaction );
+      delete pathway.interaction;
+
+      pathway.interactions.forEach(function(element, index, array) {
+
+        element.graphId = element.graphid;
+        delete element.graphid;
+
+        element.strokeWidth = element.graphics.linethickness;
+        delete element.graphics.linethickness;
+
+        element.zIndex = element.graphics.zorder;
+        delete element.graphics.zorder;
+
+        element.xRef = element.xref;
+        delete element.xref;
+
+        // Points
+
+        element.points = convertToArray( element.graphics.point );
+        delete element.graphics;
+
+        element.points.forEach(function(element, index, array) {
+
+          element.graphRef = element.graphref;
+          delete element.graphref;
+
+          // This is probably unreliable. We need to establish a way to ensure we identify start and end markers correctly, and we should not rely on the order of elements in XML.
+
+          if (index === 0) {
+            element.position = 'start';
+          }
+          else {
+            if (index === array.length - 1) {
+              element.position = 'end';
+            }
+          };
+
+          if (markerMappings.hasOwnProperty(element.arrowhead)) {
+            element.marker = markerMappings[element.arrowhead];
+            delete element.arrowhead;
+          };	
+
+        });
+      });
+    }
+    catch (e) {
+      console.log("No Interactions found.");
+    }
+
+    // Labels
+
+    try {
+      pathway.labels = convertToArray( pathway.label );
+      delete pathway.label;
+
+      pathway.labels.forEach(function(element, index, array) {
+        parseLabelableElement(element, index, array, 'label');
+      });
+
+      delete pathway.labels;
+
+      /*
+      pathway.Labels.forEach(function(element, index, array) {
+        element.graphics["x"] = parseFloat(element.graphics["CenterX"]) - parseFloat(element.graphics["Width"])/2;
+        element.graphics["y"] = parseFloat(element.graphics["CenterY"]) - parseFloat(element.graphics["Height"])/2;
+        delete element.graphics["CenterX"];
+        delete element.graphics["CenterY"];
+
+        element.graphics["Width"] = parseFloat(element.graphics["Width"]);
+        element.graphics["Height"] = parseFloat(element.graphics["Height"]);
+
+      });
+      */
+    }
+    catch (e) {
+      console.log("No Labels found.");
+    }
+
+    // Shapes
+
+    try {
+      pathway.shapes = convertToArray( pathway.shape );
+      delete pathway.shape;
+
+      pathway.shapes.forEach(function(element, index, array) {
+        parseLabelableElement(element, index, array, 'shape');
+      });
+
+      delete pathway.shapes;
+
+      /*
+      pathway.Shapes.forEach(function(element, index, array) {
+        element.graphics["x"] = parseFloat(element.graphics["CenterX"]) - parseFloat(element.graphics["Width"])/2;
+        element.graphics["y"] = parseFloat(element.graphics["CenterY"]) - parseFloat(element.graphics["Height"])/2;
+        delete element.graphics["CenterX"];
+        delete element.graphics["CenterY"];
+
+        element.graphics["Width"] = parseFloat(element.graphics["Width"]);
+        element.graphics["Height"] = parseFloat(element.graphics["Height"]);
+
+        if (element.graphics.hasOwnProperty("fillcolor")) {
+
+          // does not deal with color if user entered "white". Should use validateColor() to address.
+
+          element.graphics["fillcolor"] = "#" + element.graphics["fillcolor"]
+        }
+        else {
+          element.graphics['fillcolor'] = "#ffffff";
+        };	
+
+        if (element.graphics.hasOwnProperty("Color")) {
+          element.graphics["Color"] = "#" + element.graphics["Color"]
+        }
+        else {
+          element.graphics['Color'] = "#000000";
+        };	
+
+        if (!(element.graphics.hasOwnProperty("FontName"))) {
+          element.graphics['FontName'] = "arial";
+        };	
+
+        if ((!(element.graphics.hasOwnProperty("ShapeType"))) || (element.graphics["ShapeType"] === 'Rectangle')) {
+          element.graphics["ShapeType"] = "rectangle";
+        }
+        else {
+          if (shapeMappings.hasOwnProperty(element.graphics["ShapeType"])) {
+            element.graphics['ShapeType'] = shapeMappings[element.graphics['ShapeType']];
+          }
+        };	
+
+      });
+      */
+    }
+    catch (e) {
+      console.log("No Shapes found.");
+    }
+
+    console.log('pathway');
+    console.log(pathway);
+    return pathway;
+  }
+  else {
+    alert("Pathvisio.js does not support the data format provided. Please convert to GPML and retry.")
+    console.log("Pathvisio.js does not support the data format provided. Please convert to GPML and retry.")
+    return;
+  }
+/*
   // xml2json.js
 
   var json = xml2json(xmlDoc, "");
@@ -142,46 +509,21 @@ function convertGpml2Json(xmlDoc){
       delete parsedJson.Pathway.DataNode;
 
       parsedJson.Pathway.DataNodes.forEach(function(element, index, array) {
-        element.Graphics["x"] = parseFloat(element.Graphics["@CenterX"]) - parseFloat(element.Graphics["@Width"])/2;
-        element.Graphics["y"] = parseFloat(element.Graphics["@CenterY"]) - parseFloat(element.Graphics["@Height"])/2;
-        delete element.Graphics["@CenterX"];
-        delete element.Graphics["@CenterY"];
+        element.graphics["x"] = parseFloat(element.graphics["@CenterX"]) - parseFloat(element.graphics["@Width"])/2;
+        element.graphics["y"] = parseFloat(element.graphics["@CenterY"]) - parseFloat(element.graphics["@Height"])/2;
+        delete element.graphics["@CenterX"];
+        delete element.graphics["@CenterY"];
 
-        element.Graphics["@Width"] = parseFloat(element.Graphics["@Width"]);
-        element.Graphics["@Height"] = parseFloat(element.Graphics["@Height"]);
+        element.graphics["@Width"] = parseFloat(element.graphics["@Width"]);
+        element.graphics["@Height"] = parseFloat(element.graphics["@Height"]);
 
-        /*
-           // If unspecified due to being default, should we set the styles for stroke, fill and font-name here or in CSS?
-
-        if (element.Graphics.hasOwnProperty("@FillColor")) {
-
-          // does not deal with color if user entered "white". Should use validateColor() to address.
-
-          element.Graphics["@FillColor"] = "#" + element.Graphics["@FillColor"]
+        if ((!(element.graphics.hasOwnProperty("@ShapeType"))) || (element.graphics["@ShapeType"] === 'Rectangle')) {
+          console.log(element.graphics["@ShapeType"]);
+          element.graphics["@ShapeType"] = "rectangle";
         }
         else {
-          element.Graphics['@FillColor'] = "#ffffff";
-        };
-
-        if (element.Graphics.hasOwnProperty("@Color")) {
-          element.Graphics["@Color"] = "#" + element.Graphics["@Color"]
-        }
-        else {
-          element.Graphics['@Color'] = "#000000";
-        };	
-
-        if (!(element.Graphics.hasOwnProperty("@FontName"))) {
-          element.Graphics['@FontName'] = "arial";
-        };	
-        */
-
-        if ((!(element.Graphics.hasOwnProperty("@ShapeType"))) || (element.Graphics["@ShapeType"] === 'Rectangle')) {
-          console.log(element.Graphics["@ShapeType"]);
-          element.Graphics["@ShapeType"] = "rectangle";
-        }
-        else {
-          if (shapeMappings.hasOwnProperty(element.Graphics["@ShapeType"])) {
-            element.Graphics['@ShapeType'] = shapeMappings[element.Graphics['@ShapeType']];
+          if (shapeMappings.hasOwnProperty(element.graphics["@ShapeType"])) {
+            element.graphics['@ShapeType'] = shapeMappings[element.graphics['@ShapeType']];
           }
         };	
 
@@ -221,10 +563,10 @@ function convertGpml2Json(xmlDoc){
       delete parsedJson.Pathway.Interaction;
 
       parsedJson.Pathway.Interactions.forEach(function(element, index, array) {
-        element.Graphics.Points = convertToArray( element.Graphics.Point );
-        delete element.Graphics.Point;
+        element.graphics.Points = convertToArray( element.graphics.Point );
+        delete element.graphics.Point;
 
-        element.Graphics.Points.forEach(function(element, index, array) {
+        element.graphics.Points.forEach(function(element, index, array) {
 
 
           // This is probably unreliable. We need to establish a way to ensure we identify start and end markers correctly, and we should not rely on the order of elements in XML.
@@ -257,13 +599,13 @@ function convertGpml2Json(xmlDoc){
       delete parsedJson.Pathway.Label;
 
       parsedJson.Pathway.Labels.forEach(function(element, index, array) {
-        element.Graphics["x"] = parseFloat(element.Graphics["@CenterX"]) - parseFloat(element.Graphics["@Width"])/2;
-        element.Graphics["y"] = parseFloat(element.Graphics["@CenterY"]) - parseFloat(element.Graphics["@Height"])/2;
-        delete element.Graphics["@CenterX"];
-        delete element.Graphics["@CenterY"];
+        element.graphics["x"] = parseFloat(element.graphics["@CenterX"]) - parseFloat(element.graphics["@Width"])/2;
+        element.graphics["y"] = parseFloat(element.graphics["@CenterY"]) - parseFloat(element.graphics["@Height"])/2;
+        delete element.graphics["@CenterX"];
+        delete element.graphics["@CenterY"];
 
-        element.Graphics["@Width"] = parseFloat(element.Graphics["@Width"]);
-        element.Graphics["@Height"] = parseFloat(element.Graphics["@Height"]);
+        element.graphics["@Width"] = parseFloat(element.graphics["@Width"]);
+        element.graphics["@Height"] = parseFloat(element.graphics["@Height"]);
 
       });
     }
@@ -278,41 +620,41 @@ function convertGpml2Json(xmlDoc){
       delete parsedJson.Pathway.Shape;
 
       parsedJson.Pathway.Shapes.forEach(function(element, index, array) {
-        element.Graphics["x"] = parseFloat(element.Graphics["@CenterX"]) - parseFloat(element.Graphics["@Width"])/2;
-        element.Graphics["y"] = parseFloat(element.Graphics["@CenterY"]) - parseFloat(element.Graphics["@Height"])/2;
-        delete element.Graphics["@CenterX"];
-        delete element.Graphics["@CenterY"];
+        element.graphics["x"] = parseFloat(element.graphics["@CenterX"]) - parseFloat(element.graphics["@Width"])/2;
+        element.graphics["y"] = parseFloat(element.graphics["@CenterY"]) - parseFloat(element.graphics["@Height"])/2;
+        delete element.graphics["@CenterX"];
+        delete element.graphics["@CenterY"];
 
-        element.Graphics["@Width"] = parseFloat(element.Graphics["@Width"]);
-        element.Graphics["@Height"] = parseFloat(element.Graphics["@Height"]);
+        element.graphics["@Width"] = parseFloat(element.graphics["@Width"]);
+        element.graphics["@Height"] = parseFloat(element.graphics["@Height"]);
 
-        if (element.Graphics.hasOwnProperty("@FillColor")) {
+        if (element.graphics.hasOwnProperty("@fillcolor")) {
 
           // does not deal with color if user entered "white". Should use validateColor() to address.
 
-          element.Graphics["@FillColor"] = "#" + element.Graphics["@FillColor"]
+          element.graphics["@fillcolor"] = "#" + element.graphics["@fillcolor"]
         }
         else {
-          element.Graphics['@FillColor'] = "#ffffff";
+          element.graphics['@fillcolor'] = "#ffffff";
         };	
 
-        if (element.Graphics.hasOwnProperty("@Color")) {
-          element.Graphics["@Color"] = "#" + element.Graphics["@Color"]
+        if (element.graphics.hasOwnProperty("@Color")) {
+          element.graphics["@Color"] = "#" + element.graphics["@Color"]
         }
         else {
-          element.Graphics['@Color'] = "#000000";
+          element.graphics['@Color'] = "#000000";
         };	
 
-        if (!(element.Graphics.hasOwnProperty("@FontName"))) {
-          element.Graphics['@FontName'] = "arial";
+        if (!(element.graphics.hasOwnProperty("@FontName"))) {
+          element.graphics['@FontName'] = "arial";
         };	
 
-        if ((!(element.Graphics.hasOwnProperty("@ShapeType"))) || (element.Graphics["@ShapeType"] === 'Rectangle')) {
-          element.Graphics["@ShapeType"] = "rectangle";
+        if ((!(element.graphics.hasOwnProperty("@ShapeType"))) || (element.graphics["@ShapeType"] === 'Rectangle')) {
+          element.graphics["@ShapeType"] = "rectangle";
         }
         else {
-          if (shapeMappings.hasOwnProperty(element.Graphics["@ShapeType"])) {
-            element.Graphics['@ShapeType'] = shapeMappings[element.Graphics['@ShapeType']];
+          if (shapeMappings.hasOwnProperty(element.graphics["@ShapeType"])) {
+            element.graphics['@ShapeType'] = shapeMappings[element.graphics['@ShapeType']];
           }
         };	
 
@@ -331,6 +673,7 @@ function convertGpml2Json(xmlDoc){
     console.log("Pathvisio.js does not support the data format provided. Please convert to GPML and retry.")
     return;
   }
+  */
 };
 
 function clone(selector) {
@@ -351,8 +694,8 @@ d3.xml("../../samples/gpml/WP673_63184.gpml", "application/xml", function(xml) {
     return this.contentDocument.documentElement;
   });
 
-   svg.attr('width', pathway.Graphics["@BoardWidth"]);
-   svg.attr('height', pathway.Graphics["@BoardHeight"]);
+   svg.attr('width', pathway.boardWidth);
+   svg.attr('height', pathway.boardHeight);
   console.log('svg');
   console.log(svg);
   var doc = d3.select('#pathway-container')[0][0].contentDocument;
@@ -371,64 +714,66 @@ d3.xml("../../samples/gpml/WP673_63184.gpml", "application/xml", function(xml) {
   .attr("id", 'pathway-name-text')
   .attr("x", 80)
   .attr("y", 10)
-  .text(function (d) { return 'Title: ' + pathway["@Name"] });
+  .text(function (d) { return 'Title: ' + pathway.name });
 
   var pathwayOrganismText = svg.append('text')
   .attr("id", 'pathway-organism-text')
   .attr("x", 80)
   .attr("y", 30)
-  .text(function (d) { return 'Organism: ' + pathway["@Organism"] });
+  .text(function (d) { return 'Organism: ' + pathway.organism });
 
   // Data Nodes
 
-  var dataNodesG = svg.selectAll("g.data-node")	
-  .data(pathway.DataNodes)
+  var labelableElementsContainer = svg.selectAll("g.labelable-elements-container")	
+  .data(pathway.labelableElements)
   .enter()
   .append("g")
-  .attr("id", function (d) {return 'datanode-g-' + d["@GraphId"]})
-  .attr('transform', function(d) {return 'translate(' + d.Graphics.x + ' ' + d.Graphics.y + ')'})
-  .attr("class", function (d) {return "data-node " + d["@Type"]})
+  .attr("id", function (d) { return 'labelable-elements-container-' + d.graphId })
+  .attr('transform', function(d) { return 'translate(' + d.x + ' ' + d.y + ')' })
+  .attr("class", "labelable-elements-container")
   .call(drag);
 
-  var dataNodesUses = dataNodesG.each(function(d) {
-    var dataNodeUse = d3.select(this).append('use')
-    .attr("id", function (d) {return 'datanode-use-' + d["@GraphId"]})
-    .attr("class", function (d) {return "data-node " + d["@Type"]})
+  var labelableElements = labelableElementsContainer.each(function(d) {
+    var labelableElement = d3.select(this).append('use')
+    .attr("id", function (d) {return 'labelable-element-' + d["@GraphId"]})
+    .attr("class", function (d) { 
+      var styleClass = ''; 
+      if (d.elementType === 'data-node') {
+        styleClass = "labelable-element " + d.elementType + ' ' + d.dataNodeType; 
+      }
+      else {
+        styleClass = "labelable-element " + d.elementType; 
+      };
+      return styleClass })
     .attr("x", 0)
     .attr("y", 0)
-    .attr("width", function (d) {return d.Graphics["@Width"]})
-    .attr("height", function (d) {return d.Graphics["@Height"]});
-    
-    if (!(!(d.Graphics['@Color']))) {
-      dataNodeUse.attr("style", function (d) {return "stroke:" + d.Graphics["@Color"] + ";"})
-    }
+    .attr("width", function (d) { return d.width; })
+    .attr("height", function (d) { return d.height; })
+    .attr("z-index", function (d) { return d.zIndex; })
+    .attr("style", function (d) { return 'fill:' + d.fill + '; stroke:' + d.stroke + '; stroke-width:' + d.strokeWidth; });
 
-    if (!(!(d.Graphics['@FillColor']))) {
-      dataNodeUse.attr("style", function (d) {return "fill:" + d.Graphics["@FillColor"] + ";"})
-    }
-
-    if (symbolsAvailable.filter(function(d, i) { return (symbolsAvailable[0][i].id === pathway.DataNodes[0].Graphics['@ShapeType']); }).length > 0) {
-      // d3 bug strips 'xlink' so need to say 'xlink:xlink'
-      dataNodeUse.attr("xlink:xlink:href", function (d) {return "#" + d.Graphics["@ShapeType"]})
+    if (symbolsAvailable.filter(function(d, i) { return (symbolsAvailable[0][i].id === pathway.labelableElements[0].symbolType); }).length > 0) {
+      // d3 bug strips 'xlink' so need to say 'xlink:xlink';
+      labelableElement.attr("xlink:xlink:href", function (d) {return "#" + d.symbolType; });
     }
     else {
-      dataNodeUse.attr("xlink:xlink:href", "#rectangle")
-      console.log('Pathvisio.js does not have access to the requested shape: ' + pathway.DataNodes[0].Graphics['@ShapeType'] )
+      labelableElement.attr("xlink:xlink:href", "#rectangle");
+      console.log('Pathvisio.js does not have access to the requested symbol: ' + pathway.labelableElements[0].symbolType + '. Rectangle used as placeholder.');
     };
 
-    var dataNodeText = d3.select(this).append('text')
-    .attr("id", function (d) {return 'datanode-text-' + d["@GraphId"]})
-    .attr("x", function (d) {return d.Graphics["@Width"] / 2 })
-    // TODO replace '12' with the actual font-size
-    .attr("y", function (d) {return d.Graphics["@Height"] / 2 + 0.3*12 })
-    .text(function (d) {return d["@TextLabel"]});
-
-    if (!(!(d.Graphics['@Color']))) {
-      dataNodeText.attr("style", function (d) {return "fill:" + d.Graphics["@Color"] + ";"})
-    }
+    if (d.hasOwnProperty('textLabel')) {
+      var labelableElementText = d3.select(this).append('text')
+      .attr("id", function (d) { return 'labelable-element-text-' + d.graphId; })
+      .attr("x", function (d) { return d.width / 2; })
+      .attr("y", function (d) { return d.height / 2 + 0.3 * d.textLabel.fontSize; })
+      //.attr("style", function (d) { return 'stroke:' + 'red'; })
+      .attr("style", function (d) { return 'fill:' + d.textLabel.fill; })
+      .text(function (d) { return d.textLabel.text; });
+    };
 
   });
 
+  /*
   // Symbols/Shapes
 
   var shapesG = svg.selectAll("g.shape")	
@@ -437,7 +782,7 @@ d3.xml("../../samples/gpml/WP673_63184.gpml", "application/xml", function(xml) {
   .append("g")
   .attr("id", function (d) {return 'g-shapes' + d["@GraphId"]})
   .attr("class", "shape")
-  .attr('transform', function(d) {return 'translate(' + d.Graphics.x + ' ' + d.Graphics.y + ')'})
+  .attr('transform', function(d) {return 'translate(' + d.graphics.x + ' ' + d.graphics.y + ')'})
   .call(drag);
 
   var shapeUses = shapesG.each(function(d) {
@@ -446,35 +791,35 @@ d3.xml("../../samples/gpml/WP673_63184.gpml", "application/xml", function(xml) {
     .attr("class", function (d) {return "data-node " + d["@Type"]})
     .attr("x", 0)
     .attr("y", 0)
-    .attr("width", function (d) {return d.Graphics["@Width"]})
-    .attr("height", function (d) {return d.Graphics["@Height"]});
+    .attr("width", function (d) {return d.graphics["@Width"]})
+    .attr("height", function (d) {return d.graphics["@Height"]});
 
-    if (!(!(d.Graphics['@Color']))) {
-      shapeUse.attr("style", function (d) {return "stroke:" + d.Graphics["@Color"] + ";"})
+    if (!(!(d.graphics['@Color']))) {
+      shapeUse.attr("style", function (d) {return "stroke:" + d.graphics["@Color"] + ";"})
     }
 
-    if (!(!(d.Graphics['@FillColor']))) {
-      shapeUse.attr("style", function (d) {return "fill:" + d.Graphics["@FillColor"] + ";"})
+    if (!(!(d.graphics['@fillcolor']))) {
+      shapeUse.attr("style", function (d) {return "fill:" + d.graphics["@fillcolor"] + ";"})
     }
 
-    if (symbolsAvailable.filter(function(d, i) { return (symbolsAvailable[0][i].id === pathway.Shapes[0].Graphics['@ShapeType']); }).length > 0) {
+    if (symbolsAvailable.filter(function(d, i) { return (symbolsAvailable[0][i].id === pathway.Shapes[0].graphics['@ShapeType']); }).length > 0) {
       // d3 bug strips 'xlink' so need to say 'xlink:xlink'
-      shapeUse.attr("xlink:xlink:href", function (d) {return "#" + d.Graphics["@ShapeType"]})
+      shapeUse.attr("xlink:xlink:href", function (d) {return "#" + d.graphics["@ShapeType"]})
     }
     else {
       shapeUse.attr("xlink:xlink:href", "#rectangle")
-      console.log('Pathvisio.js does not have access to the requested shape: ' + pathway.Shapes[0].Graphics['@ShapeType'] )
+      console.log('Pathvisio.js does not have access to the requested shape: ' + pathway.Shapes[0].graphics['@ShapeType'] )
     };
 
     var shapeText = d3.select(this).append('text')
     .attr("id", function (d) {return 'shape-text-' + d["@GraphId"]})
-    .attr("x", function (d) {return d.Graphics["@Width"] / 2 })
+    .attr("x", function (d) {return d.graphics["@Width"] / 2 })
     // TODO replace '12' with the actual font-size
-    .attr("y", function (d) {return d.Graphics["@Height"] / 2 + 0.3*12 })
+    .attr("y", function (d) {return d.graphics["@Height"] / 2 + 0.3*12 })
     .text(function (d) {return d["@TextLabel"]});
 
-    if (!(!(d.Graphics['@Color']))) {
-      shapeText.attr("style", function (d) {return "fill:" + d.Graphics["@Color"] + ";"})
+    if (!(!(d.graphics['@Color']))) {
+      shapeText.attr("style", function (d) {return "fill:" + d.graphics["@Color"] + ";"})
     }
 
   });
@@ -487,7 +832,7 @@ d3.xml("../../samples/gpml/WP673_63184.gpml", "application/xml", function(xml) {
   .append("g")
   .attr("id", function (d) {return 'labels-g-' + d["@GraphId"]})
   .attr("class", "label")
-  .attr('transform', function(d) {return 'translate(' + d.Graphics.x + ' ' + d.Graphics.y + ')'})
+  .attr('transform', function(d) {return 'translate(' + d.graphics.x + ' ' + d.graphics.y + ')'})
   .call(drag);
 
   var labelsUses = labelsG.each(function(d) {
@@ -496,38 +841,39 @@ d3.xml("../../samples/gpml/WP673_63184.gpml", "application/xml", function(xml) {
     .attr("class", function (d) {return "data-node " + d["@Type"]})
     .attr("x", 0)
     .attr("y", 0)
-    .attr("width", function (d) {return d.Graphics["@Width"]})
-    .attr("height", function (d) {return d.Graphics["@Height"]});
+    .attr("width", function (d) {return d.graphics["@Width"]})
+    .attr("height", function (d) {return d.graphics["@Height"]});
 
-    if (!(!(d.Graphics['@Color']))) {
-      labelUse.attr("style", function (d) {return "stroke:" + d.Graphics["@Color"] + ";"})
+    if (!(!(d.graphics['@Color']))) {
+      labelUse.attr("style", function (d) {return "stroke:" + d.graphics["@Color"] + ";"})
     }
 
-    if (!(!(d.Graphics['@FillColor']))) {
-      labelUse.attr("style", function (d) {return "fill:" + d.Graphics["@FillColor"] + ";"})
+    if (!(!(d.graphics['@fillcolor']))) {
+      labelUse.attr("style", function (d) {return "fill:" + d.graphics["@fillcolor"] + ";"})
     }
 
-    if (symbolsAvailable.filter(function(d, i) { return (symbolsAvailable[0][i].id === pathway.Labels[0].Graphics['@LabelType']); }).length > 0) {
+    if (symbolsAvailable.filter(function(d, i) { return (symbolsAvailable[0][i].id === pathway.Labels[0].graphics['@LabelType']); }).length > 0) {
       // d3 bug strips 'xlink' so need to say 'xlink:xlink'
-      labelUse.attr("xlink:xlink:href", function (d) {return "#" + d.Graphics["@ShapeType"]})
+      labelUse.attr("xlink:xlink:href", function (d) {return "#" + d.graphics["@ShapeType"]})
     }
     else {
       labelUse.attr("xlink:xlink:href", "#rectangle")
-      console.log('Pathvisio.js does not have access to the requested shape: ' + pathway.Labels[0].Graphics['@ShapeType'] )
+      console.log('Pathvisio.js does not have access to the requested shape: ' + pathway.Labels[0].graphics['@ShapeType'] )
     };
 
     var labelText = d3.select(this).append('text')
     .attr("id", function (d) {return 'label-text-' + d["@GraphId"]})
-    .attr("x", function (d) {return d.Graphics["@Width"] / 2 })
+    .attr("x", function (d) {return d.graphics["@Width"] / 2 })
     // TODO replace '12' with the actual font-size
-    .attr("y", function (d) {return d.Graphics["@Height"] / 2 + 0.3*12 })
+    .attr("y", function (d) {return d.graphics["@Height"] / 2 + 0.3*12 })
     .text(function (d) {return d["@TextLabel"]});
 
-    if (!(!(d.Graphics['@Color']))) {
-      labelText.attr("style", function (d) {return "fill:" + d.Graphics["@Color"] + ";"})
+    if (!(!(d.graphics['@Color']))) {
+      labelText.attr("style", function (d) {return "fill:" + d.graphics["@Color"] + ";"})
     }
 
   });
+*/
 
 // Interactions
 
@@ -535,13 +881,13 @@ d3.xml("../../samples/gpml/WP673_63184.gpml", "application/xml", function(xml) {
     var marker = {};
     marker.start = null;
     marker.end = null;
-    d.Graphics.Points.forEach(function(element, index, array) {
+    d.points.forEach(function(element, index, array) {
       if ((element.position === 'start') && (element.hasOwnProperty('marker'))) {
         if (markersAvailable.filter(function(d, i) { return (markersAvailable[0][i].id === element.marker + '-start-black'); }).length > 0) {
           marker.start = element.marker + '-start-black'; 
         }
         else {
-          console.log('Pathvisio.js does not have access to the requested marker: ' + element.marker )
+          console.log('Pathvisio.js does not have access to the requested marker: ' + element.marker + '. Arrow used as placeholder.');
           marker.start = element.marker + 'arrow-start-black'; 
         };
       }
@@ -551,7 +897,7 @@ d3.xml("../../samples/gpml/WP673_63184.gpml", "application/xml", function(xml) {
             marker.end = element.marker + '-end-black'; 
           }
           else {
-            console.log('Pathvisio.js does not have access to the requested marker: ' + element.marker )
+            console.log('Pathvisio.js does not have access to the requested marker: ' + element.marker + '. Arrow used as placeholder.');
             marker.end = element.marker + 'arrow-end-black'; 
           };
         }
@@ -563,12 +909,12 @@ d3.xml("../../samples/gpml/WP673_63184.gpml", "application/xml", function(xml) {
 
   function getPathData(d) {
     var pathData = "";
-    d.Graphics.Points.forEach(function(element, index, array) {
+    d.points.forEach(function(element, index, array) {
       if (index === 0) {
-        pathData = "M " + element["@X"] + " " + element["@Y"]; 
+        pathData = "M " + element.x + " " + element.y; 
       }
       else {
-        pathData += " L " + element["@X"] + " " + element["@Y"]; 
+        pathData += " L " + element.x + " " + element.y; 
       };
       return pathData;
     });
@@ -576,19 +922,19 @@ d3.xml("../../samples/gpml/WP673_63184.gpml", "application/xml", function(xml) {
   };
 
   var interactions = svg.selectAll("path.interaction")
-  .data(pathway.Interactions)
+  .data(pathway.interactions)
   .enter()
   .append("path")
-  .attr("id", function (d) { return 'interaction-' + d["@GraphId"]; })
+  .attr("id", function (d) { return 'interaction-' + d.graphId; })
   .attr("class", "interaction")
   .attr("d", function (d) { return getPathData(d); })
   .attr("stroke", '#000000')
   .attr("fill", 'none')
 
-  if (getMarkers(pathway.Interactions[0]).start !== null) {
+  if (getMarkers(pathway.interactions[0]).start !== null) {
     interactions.attr("marker-start", function (d) { return "url(#" + getMarkers(d).start + ")"; })
   }
-  if (getMarkers(pathway.Interactions[0]).end !== null) {
+  if (getMarkers(pathway.interactions[0]).end !== null) {
     interactions.attr("marker-end", function (d) { return "url(#" + getMarkers(d).end + ")"; })
   }
 
@@ -609,12 +955,12 @@ d3.xml("../../samples/gpml/WP673_63184.gpml", "application/xml", function(xml) {
   }	
 
   /*var rectAttrs = rect
-    .attr("x", function (pathway.DataNodes) {return pathway.DataNodes.Graphics["-CenterX"]/20 - pathway.DataNodes.Graphics["-Width"]/40})
-    .attr("y", function (pathway.DataNodes) {return pathway.DataNodes.Graphics["-CenterY"]/20 - pathway.DataNodes.Graphics["-Height"]/40})
-    .attr("width",function (pathway.DataNodes) {return pathway.DataNodes.Graphics["-Width"]/20} )
-    .attr("height", function (pathway.DataNodes) {return pathway.DataNodes.Graphics["-Height"]/20})
+    .attr("x", function (pathway.DataNodes) {return pathway.DataNodes.graphics["-CenterX"]/20 - pathway.DataNodes.graphics["-Width"]/40})
+    .attr("y", function (pathway.DataNodes) {return pathway.DataNodes.graphics["-CenterY"]/20 - pathway.DataNodes.graphics["-Height"]/40})
+    .attr("width",function (pathway.DataNodes) {return pathway.DataNodes.graphics["-Width"]/20} )
+    .attr("height", function (pathway.DataNodes) {return pathway.DataNodes.graphics["-Height"]/20})
     .style("fill", "#FFF")
-    .style("stroke", function (pathway.DataNodes) {return pathway.DataNodes.Graphics["-Color"]});
+    .style("stroke", function (pathway.DataNodes) {return pathway.DataNodes.graphics["-Color"]});
 
     var text = svg.selectAll("text")
     .data(pathway.DataNodes)
@@ -622,12 +968,12 @@ d3.xml("../../samples/gpml/WP673_63184.gpml", "application/xml", function(xml) {
     .append("text");
 
     var textAttrs = text
-    .attr("x", function (pathway.DataNodes) {return pathway.DataNodes.Graphics["-CenterX"]/20 - pathway.DataNodes.Graphics["-Width"]/40})
-    .attr("y", function (pathway.DataNodes) {return pathway.DataNodes.Graphics["-CenterY"]/20 - pathway.DataNodes.Graphics["-Height"]/40})
-    .attr("dy", function (pathway.DataNodes) {return pathway.DataNodes.Graphics["-Height"]/25})
+    .attr("x", function (pathway.DataNodes) {return pathway.DataNodes.graphics["-CenterX"]/20 - pathway.DataNodes.graphics["-Width"]/40})
+    .attr("y", function (pathway.DataNodes) {return pathway.DataNodes.graphics["-CenterY"]/20 - pathway.DataNodes.graphics["-Height"]/40})
+    .attr("dy", function (pathway.DataNodes) {return pathway.DataNodes.graphics["-Height"]/25})
     .attr("dx", 5)
     .text(function (pathway.DataNodes) {return pathway.DataNodes["-TextLabel"]})
-    .style("fill", function (pathway.DataNodes) {return pathway.DataNodes.Graphics["-Color"]});
+    .style("fill", function (pathway.DataNodes) {return pathway.DataNodes.graphics["-Color"]});
 
     var line = svg.selectAll("line")
     .data(lines)
@@ -635,11 +981,11 @@ d3.xml("../../samples/gpml/WP673_63184.gpml", "application/xml", function(xml) {
     .append("line");
 
     var lineAttrs = line
-    .attr("x1", function(lines) { return lines.Graphics.Point[0]["-x"]/20})
-    .attr("y1", function(lines) { return lines.Graphics.Point[0]["-y"]/20})
-    .attr("x2", function(lines) { return lines.Graphics.Point[1]["-x"]/20})
-    .attr("y2", function(lines) { return lines.Graphics.Point[1]["-y"]/20})
-    .style("stroke", function(lines) { return lines.Graphics["-Color"]});*/
+    .attr("x1", function(lines) { return lines.graphics.Point[0]["-x"]/20})
+    .attr("y1", function(lines) { return lines.graphics.Point[0]["-y"]/20})
+    .attr("x2", function(lines) { return lines.graphics.Point[1]["-x"]/20})
+    .attr("y2", function(lines) { return lines.graphics.Point[1]["-y"]/20})
+    .style("stroke", function(lines) { return lines.graphics["-Color"]});*/
 });
 
 /*

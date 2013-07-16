@@ -37,38 +37,192 @@ function getGpml(url, callback) {
 			/*
 			 // jGpml
 			 return 
-			 {
+			 var pathway = {
 			 	"xmlns":"http://pathvisio.org/GPML/2013a",
 				"name":"Error - File not found.",
+				"organism":"Homo sapiens",
+			       	"license":"CC BY 2.0",
 				"version":"20130621",
 				"boardWidth":471.0,
 				"boardHeight":239.0,
+			       	"comments":[
+			       		{
+				       		"source":"WikiPathways-description",
+					       	"text":"sample text"
+					},
+					{
+				       		"source":"WikiPathways-category",
+					       	"text":"Cellular Process"
+					}
+				],
+				"biopaxRefs":[
+					"c42",
+					"bfa"
+				],
 				"infoBox":{
 					"x":0.0,
 					"y":0.0
 					},
 				"biopax":null,
-				"dataNodes":[
+				"labelableElement":[ // includes data nodes, shapes (lines, arcs, braces, rectangles, cellular compartments...) and labels
 					{
-						"textLabel":"Error - File not found.",
+					       	"comments":[
+					       		"abc",
+					       		"cdf"
+					       	],
 						"graphId":"ec16d",
+					       	"elementType":"data-node",
+					       	"dataNodeType":"gene-product",
+					       	"shapeType":"rectangle",
+						"textLabel":{
+							"text":"Error - File not found.",
+							"color":"#ff0000",
+							"fontFamily":"Verdana",
+							"fontStyle":"italic", // must be lowercase
+							"fontWeight":"bold", // must be lowercase
+							"fontSize":16,
+							"vAlign":"middle",
+						       	"align":"center"
+						},
+						"x":1.5,
+						"y":19.5,
 						"width":249.5,
 						"height":73.5,
 						"zOrder":32768,
-						"fontName":"Verdana",
-						"fontWeight":"Bold",
-						"fontSize":16,
-						"valign":"middle",
-						"color":"#ff0000",
+						"rotation":0,
+					       	"transparent":false,
+						"fill":"white"
+						"stroke":"#ff0000",
+					       	"strokeStyle":"dashed", // can be solid, dashed or double
+					       	"strokeWidth":1,
+						"xRef":{ // data nodes and edges only
+							"database":"Entrez Gene",
+							"id":"1950"
+						}
+					},
+					{
+					       	"comments":[
+					       		"abc",
+					       		"cdf"
+					       	],
+						"graphId":"ec16d",
+					       	"elementType":"shape", // data-node, shape or label
+					       	"shapeType":"rounded-rectangle",
+						"textLabel":{
+							"text":"Error - File not found.",
+							"color":"#ff0000",
+							"fontFamily":"Verdana",
+							"fontSize":16,
+							"fontStyle":"italic", // must be lowercase
+							"fontWeight":"bold", // must be lowercase
+							"vAlign":"middle",
+						       	"align":"center"
+						},
 						"x":1.5,
 						"y":19.5,
-						"fillColor":"white"
-						"xRef":{
-							"database":"",
-							"id":""
-							}
+						"width":249.5,
+						"height":73.5,
+						"zOrder":32768,
+					       	"transparent":false,
+						"fill":"white"
+						"stroke":"#ff0000",
+					       	"strokeStyle":"solid", // can be solid, dashed or double
+					       	"strokeWidth":0
+					},
+					{
+					       	"comments":[
+					       		"abc",
+					       		"cdf"
+					       	],
+						"graphId":"ec16d",
+					       	"elementType":"label", // shape or label
+					       	"shapeType":"rectangle",
+						"textLabel":{
+							"text":"Error - File not found.",
+							"color":"#ff0000",
+							"fontFamily":"Verdana",
+							"fontStyle":"italic", // must be lowercase
+							"fontWeight":"bold", // must be lowercase
+							"fontSize":16,
+							"vAlign":"middle",
+						       	"align":"center"
+						},
+						"x":1.5,
+						"y":19.5,
+						"width":249.5,
+						"height":73.5,
+						"zOrder":32768,
+						"stroke":"none",
+					       	"strokeWidth":0,
+						"fill":"none"
+					       	"transparent":true,
+					       	"href":"http://www.wikipathways.org" // labels only
 					}
-				]
+				],
+			       	"interactions":[
+			       		{
+					       	"comments":[
+					       		"abc",
+					       		"cdf"
+					       	],
+						"graphId":"ec16d",
+						"zOrder":32768,
+						"stroke":"black",
+					       	"strokeWidth":1,
+					       	"points":[
+					       		{
+								"x":1.5,
+								"y":19.5,
+						       	},
+						       	{
+							       	"source":"a6fe5", // node or interaction to which this is connected
+							       	"target":"rp501"  // anchor on node or interaction to which this is connected
+							       	"marker":"arrow"
+						       	}
+						],
+						"xRef":{
+							"database":"Entrez Gene",
+							"id":"1950"
+						}
+					},
+					{
+					       	"comments":[
+					       		"abc",
+					       		"cdf"
+					       	],
+						"graphId":"ec16d",
+						"zOrder":32768,
+						"stroke":"black",
+					       	"strokeWidth":1,
+					       	"points":[
+					       		{
+							       	"source":"a6fe5", // node or interaction to which this is connected
+							       	"target":"rp501"  // anchor on node or interaction to which this is connected
+						       	},
+						       	{
+							       	"source":"a6fe5", // node or interaction to which this is connected
+							       	"target":"rp501"  // anchor on node or interaction to which this is connected
+							       	"marker":"arrow"
+						       	}
+						],
+						"xRef":{
+							"database":"Entrez Gene",
+							"id":"1950"
+						}
+				       	}
+				],
+			       	"groups":[
+			       		{
+				       		"graphId":"f98d7"
+				       		"groupId":"bad26"
+				       		"style":"group"
+				       	},
+			       		{
+				       		"graphId":"f98d8"
+				       		"groupId":"bad27"
+				       		"style":"complex"
+				       	}
+					]
 			};
 		}
 	       */
