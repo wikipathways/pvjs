@@ -5,10 +5,32 @@
     vector-effect: non-scaling-stroke;
   }
 
+  body {
+    text-align:center;
+    margin:0; 
+  }
+
+  div.outer {
+    display:table;
+    text-align:center;
+    margin-top:0; 
+    margin-bottom:0; 
+    margin-left:auto; 
+    margin-right:auto;
+  }
+
+  p {
+    display:table-cell;
+    vertical-align:middle;
+  }
+
   text, p {
     color: black;
     font-family: Sans-Serif;
-    font-size: 12px;
+    font-size: 10px;
+  }
+
+  text {
     text-anchor: middle;
   }
 
@@ -26,8 +48,7 @@
   }
 
   .label {
-    font-size: 12px;
-    font-weight: bold;
+    font-size: 10px;
     stroke: none;
   }
 
@@ -63,7 +84,7 @@
 
   text.pathway, p.pathway {
     color: rgb(20,150,30);
-    font-size: 12px;
+    font-size: 10px;
   }
 
   .shape {
@@ -75,21 +96,19 @@
     stroke-width: 1px;
   }
 
-  .label {
+  use.label {
     fill: white;
     fill-opacity: 1;
+    stroke-width: 0;
   }
 
-  .solid-line {
+  .interaction {
     fill:none;
     stroke: black; 
     stroke-width: 1px; 
   }
 
-  .dashed-line {
-    fill:none;
-    stroke: black; 
-    stroke-dasharray: 5,3,2;
-    stroke-width: 1px; 
+  .dashed-stroke {
+    stroke-dasharray: 6,3;
   }
 

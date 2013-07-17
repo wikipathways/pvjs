@@ -43,14 +43,15 @@
   <Interaction GraphId="idcdccad3">
     <Graphics ZOrder="12288" LineThickness="1.0">
       <Point X="482.48248248248245" Y="127.12712712712711" />
-      <Point X="580.5805805805805" Y="126.12612612612611" ArrowHead="Arrow" />
+      <Point X="589.8174831892411" Y="127.12712712712712" ArrowHead="Arrow" />
     </Graphics>
     <Xref Database="" ID="" />
   </Interaction>
   <Interaction GraphId="idd669b8f0">
-    <Graphics ZOrder="12288" LineStyle="Broken" LineThickness="1.0">
-      <Point X="474.47447447447445" Y="181.18118118118116" />
-      <Point X="580.5805805805805" Y="181.18118118118116" />
+    <Attribute Key="org.pathvisio.DoubleLineProperty" Value="Double" />
+    <Graphics ZOrder="12288" LineThickness="2.0" Color="0000ff">
+      <Point X="407.6305220883534" Y="188.88835614567114" GraphRef="f96fc" RelX="1.0" RelY="0.0" />
+      <Point X="1227.2815533980583" Y="80.38834951456307" GraphRef="e897b" RelX="-1.0" RelY="0.0" />
     </Graphics>
     <Xref Database="" ID="" />
   </Interaction>
@@ -153,13 +154,19 @@
     <Xref Database="" ID="" />
   </Interaction>
   <GraphicalLine GraphId="idb51acdef">
-    <Graphics ZOrder="12288" LineThickness="1.0">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="ff6666">
       <Point X="681.9526627218936" Y="156.80473372781066" />
       <Point X="767.7514792899409" Y="153.84615384615387" />
     </Graphics>
   </GraphicalLine>
   <Label TextLabel="Label" GraphId="afff7">
-    <Graphics CenterX="696.7455621301776" CenterY="48.816568047337284" Width="80.0" Height="20.0" ZOrder="28672" FillColor="ffffff" FontSize="10" Valign="Middle" />
+    <Graphics CenterX="1271.9882805767804" CenterY="20.903946688113983" Width="80.0" Height="20.0" ZOrder="28672" FillColor="99ffff" FontSize="10" Valign="Middle" ShapeType="Rectangle" />
+  </Label>
+  <Label TextLabel="Label" GraphId="e8a51">
+    <Graphics CenterX="1268.2038834951454" CenterY="44.90291262135922" Width="80.0" Height="20.0" ZOrder="28672" FillColor="99ffff" FontName="Arial Black" FontSize="10" Valign="Middle" ShapeType="Rectangle" />
+  </Label>
+  <Label TextLabel="Label" GraphId="e897b">
+    <Graphics CenterX="1267.2815533980583" CenterY="80.38834951456307" Width="80.0" Height="20.0" ZOrder="32771" FillColor="99ffff" FontWeight="Bold" FontStyle="Italic" FontSize="12" Valign="Bottom" Align="Right" ShapeType="Rectangle" />
   </Label>
   <Shape GraphId="f98a6">
     <Graphics CenterX="761.5843195266273" CenterY="291.1701183431953" Width="98.13313609467468" Height="50.79585798816555" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="Arc" Rotation="0.0" />

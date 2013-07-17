@@ -21,7 +21,7 @@ text {
 }
 </style>
 
-<object id="pathway-container" data="pathwaydefs.svg" type="image/svg+xml" width="100%" height="1000"></object>
+<object id="pathway-container" data="pathwaydefs.svg" type="image/svg+xml" width="100%" height="100%"></object>
 
 <script>
 function convertToArray(object) {
@@ -190,12 +190,14 @@ function convertGpml2Json(xmlDoc){
           element.strokeDasharray = strokeDasharrayMappings[element.graphics.linestyle];
         };	
 
+        // textLabel data
+
         if (element.hasOwnProperty("textlabel")) {
           element.textLabel = {"text":element.textlabel};
           delete element.textlabel;
 
           if (element.graphics.hasOwnProperty("color")) {
-            element.textLabel.fill = "#" + element.graphics.color;
+            element.textLabel.color = "#" + element.graphics.color;
           };	
 
           if (element.graphics.hasOwnProperty("fontsize")) {
@@ -204,6 +206,14 @@ function convertGpml2Json(xmlDoc){
 
           if (element.graphics.hasOwnProperty("fontname")) {
             element.textLabel.fontFamily = element.graphics.fontname;
+          };
+
+          if (element.graphics.hasOwnProperty("fontweight")) {
+            element.textLabel.fontWeight = element.graphics.fontweight.toLowerCase();
+          };
+
+          if (element.graphics.hasOwnProperty("fontstyle")) {
+            element.textLabel.fontStyle = element.graphics.fontstyle.toLowerCase();
           };
         }
 
@@ -284,8 +294,26 @@ function convertGpml2Json(xmlDoc){
         element.graphId = element.graphid;
         delete element.graphid;
 
+        if (element.graphics.hasOwnProperty('color')) {
+          element.stroke = element.graphics.color;
+          delete element.graphics.color;
+        };	
+
         element.strokeWidth = element.graphics.linethickness;
         delete element.graphics.linethickness;
+
+        if (element.graphics.hasOwnProperty('linestyle')) {
+          element.strokeStyle = element.graphics.linestyle.toLowerCase();
+          delete element.graphics.linestyle;
+        }	
+        else {
+          if (element.hasOwnProperty('attribute')) {
+            if ((element.attribute.key === "org.pathvisio.DoubleLineProperty") && (element.attribute.value === "Double")) {
+              element.strokeStyle = 'double';
+              delete element.attribute;
+            };
+          };	
+        };
 
         element.zIndex = element.graphics.zorder;
         delete element.graphics.zorder;
@@ -375,7 +403,8 @@ function clone(selector) {
 };
 
 $(document).ready(function() {
-        d3.xml("../../samples/gpml/WP673_63184.gpml", "application/xml", function(xml) {
+        d3.xml("../../samples/gpml/DatanodeShapes1.gpml", "application/xml", function(xml) {
+        //d3.xml("../../samples/gpml/WP673_63184.gpml", "application/xml", function(xml) {
          //d3.xml("../../samples/gpml/ovalandpentagon.gpml", "application/xml", function(xml) {
           var pathway = convertGpml2Json(xml);
           console.log(pathwayc = pathway);
@@ -484,7 +513,7 @@ $(document).ready(function() {
                 .attr("style", function (d) { 
                     var style = '';
                     if (d.textLabel.hasOwnProperty('fill')) {
-                        style = 'fill:' + d.textLabel.fill + '; '; 
+                        style = 'fill:' + d.textLabel.color + '; '; 
                     };
                     return style; 
                     })
@@ -498,23 +527,34 @@ $(document).ready(function() {
               var labelableElementForeignObject = labelableElementSwitch.append('foreignObject') 
               //.attr("x", 0)
               //.attr("y", 0)
-              .attr("width", function (d) { return d.width; })
-              .attr("height", function (d) { return d.height; });
+              .attr("width", function (d) { return d.width + 'px'; })
+              .attr("height", function (d) { return d.height + 'px'; });
 
               var labelableElementBody = labelableElementForeignObject.append('xhtml:body') 
               .attr("xmlns", "http://www.w3.org/1999/xhtml")
-              .attr("id", function (d) { return 'labelable-element-text-' + d.graphId; });
+              .attr("id", function (d) { return 'labelable-element-text-' + d.graphId; })
+              .attr("style", function (d) { return 'height:' + d.height + 'px'; });
 
               var labelableElementLink = labelableElementBody.append('link') 
               .attr("rel", "stylesheet")
               .attr("href", "pathways.css")
               .attr("type", "text/css");
 
-              var labelableElementP = labelableElementBody.append('p') 
+              var labelableElementOuter = labelableElementBody.append('div') 
+              .attr("class", "outer") 
+              .attr("style", function (d) { return 'height:' + d.height + 'px'; });
+
+              var labelableElementP = labelableElementOuter.append('p') 
               .attr("style", function (d) { 
-                  var style = '';
-                  if (d.textLabel.hasOwnProperty('fill')) {
-                      style = 'fill:' + d.textLabel.fill + '; '; 
+                  var style = 'height:' + d.height + 'px; ';
+                  if (d.textLabel.hasOwnProperty('color')) {
+                      style += 'color:' + d.textLabel.color + '; '; 
+                  };
+                  if (d.textLabel.hasOwnProperty('fontWeight')) {
+                      style += 'font-weight:' + d.textLabel.fontWeight + '; '; 
+                  };
+                  if (d.textLabel.hasOwnProperty('fontStyle')) {
+                      style += 'font-style:' + d.textLabel.fontStyle + '; '; 
                   };
                   return style; 
                   })
@@ -539,9 +579,15 @@ $(document).ready(function() {
               //.attr("style", function (d) { return 'stroke:' + 'red'; })
                 .attr("style", function (d) { 
                     var style = '';
-                    if (d.textLabel.hasOwnProperty('fill')) {
-                        style = 'fill:' + d.textLabel.fill + '; '; 
+                    if (d.textLabel.hasOwnProperty('color')) {
+                        style += 'fill:' + d.textLabel.color + '; '; 
                     };
+                  if (d.textLabel.hasOwnProperty('fontWeight')) {
+                      style += 'font-weight:' + d.textLabel.fontWeight + '; '; 
+                  };
+                  if (d.textLabel.hasOwnProperty('fontStyle')) {
+                      style += 'font-style:' + d.textLabel.fontStyle + '; '; 
+                  };
                     return style; 
                     })
               .text(function (d) { return d.textLabel.text; });
@@ -601,9 +647,40 @@ $(document).ready(function() {
           .append("path")
           .attr("id", function (d) { return 'interaction-' + d.graphId; })
           .attr("class", "interaction")
-          .attr("d", function (d) { return getPathData(d); })
-          .attr("stroke", '#000000')
-          .attr("fill", 'none')
+          .attr("class", function (d) { 
+              var styleClass = 'interaction ';
+              if (d.hasOwnProperty('strokeStyle')) {
+                if (d.strokeStyle === 'broken') {
+                  styleClass += "dashed-stroke "; 
+                };
+              };
+              return styleClass; 
+              })
+          .attr("d", function (d) {
+            var pathData = getPathData(d);
+            if (d.hasOwnProperty('strokeStyle')) {
+              if (d.strokeStyle === 'double') {
+                svg.append("path")
+                .attr("class", "interaction-double")
+                .attr("d", pathData)
+                .attr("style", "stroke:white; stroke-width:" + d.strokeWidth + '; ');
+              };
+            };
+            return pathData; 
+          })
+          .attr("style", function (d) { 
+              var style = 'stroke-width:' + d.strokeWidth + '; ';
+              if (d.hasOwnProperty('stroke')) {
+                  style += 'stroke:' + d.stroke + '; '; 
+              };
+              if (d.hasOwnProperty('strokeStyle')) {
+                if (d.strokeStyle === 'double') {
+                  style += 'stroke-width:' + (3 * d.strokeWidth) + '; '; 
+                };
+              };
+              return style; 
+              })
+          .attr("fill", 'none');
 
           if (getMarkers(pathway.interactions[0]).start !== null) {
             interactions.attr("marker-start", function (d) { return "url(#" + getMarkers(d).start + ")"; })

@@ -69,9 +69,10 @@
   xmlns:xlink="http://www.w3.org/1999/xlink"
   xmlns:ev="http://www.w3.org/2001/xml-events"
   width="100%"
-  height="100%"
+  height="100%">
+  <!--
   onload="positionNodeLabel()">
-
+-->
   <!-- ***************************
        CSS Style Sheet
        ***************************
