@@ -1,3 +1,5 @@
+/* pathvisio.js assumes the default drawing board background color is white, and the default element color is black. */
+
   svg {
     color-interpolation: auto;
     image-rendering: auto;
@@ -108,7 +110,14 @@
     stroke-width: 1px; 
   }
 
-  .dashed-stroke {
-    stroke-dasharray: 6,3;
+  marker {
+    /* this is what should work per the spec
+    stroke-dasharray: none; */
+    /* but I need to add this to make it work in Safari */
+    stroke-dasharray: 9999999999999999999999999;
+  }
+
+  .broken-stroke {
+    stroke-dasharray: 5,3;
   }
 
