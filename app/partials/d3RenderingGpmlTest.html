@@ -13,6 +13,7 @@ http://google-styleguide.googlecode.com/svn/trunk/jsoncstyleguide.xml#General_Gu
 <script src="../js/xml2json.js"></script>
 <script src="../js/jxon.js"></script>
 <script src="../js/jquery-1.9.1.js"></script>
+<script src="../js/rgbcolor.js"></script>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <style>
 text {
@@ -21,7 +22,7 @@ text {
 }
 </style>
 
-<object id="pathway-container" data="pathwaydefs.svg" type="image/svg+xml" width="100%" height="100%"></object>
+<object id="pathway-container" data="pathwaydefs.svg" type="image/svg+xml" width="100%" height="100%" onload="drawPathway()"></object>
 
 <script>
 function convertToArray(object) {
@@ -47,15 +48,14 @@ function convertGpml2Json(xmlDoc){
 
   // GPML to jGPML shape name mappings: { "oldName":"new-name" }
 
-  var shapeMappings = { "Brace":"brace",  "Rectangle":"rectangle", "RoundedRectangle":"rounded-rectangle", "Oval":"oval", "Endoplasmic Reticulum":"endoplasmic-reticulum", "Golgi Apparatus":"golgi-apparatus", "Mitochondria":"mitochondria", "Triangle":"triangle", "Pentagon":"pentagon", "Hexagon":"hexagon", "Sarcoplasmic Reticulum":"sarcoplasmic-reticulum" };
+  var shapeMappings = { "Arc":"arc", "Brace":"brace",  "Rectangle":"rectangle", "RoundedRectangle":"rounded-rectangle", "Oval":"oval", "Endoplasmic Reticulum":"endoplasmic-reticulum", "Golgi Apparatus":"golgi-apparatus", "Mitochondria":"mitochondria", "Triangle":"triangle", "Pentagon":"pentagon", "Hexagon":"hexagon", "Sarcoplasmic Reticulum":"sarcoplasmic-reticulum", "mim-degradation":"mim-degradation" };
 
   // GPML to jGPML marker name mappings: { "oldName":"new-name" }
+  // excludes mim-branching-left and mim-branching-right as per Alex Pico's request
 
-  var markerMappings = { "Arrow":"arrow", "TBar":"t-bar", "mim-necessary-stimulation":"mim-necessary-stimulation", "mim-binding":"mim-binding", "mim-conversion":"mim-conversion", "mim-stimulation":"mim-stimulation", "mim-modification":"mim-modification", "mim-catalysis":"mim-catalysis", "mim-inhibition":"mim-inhibition", "mim-cleavage":"mim-cleavage", "mim-covalent-bond":"mim-covalent-bond", "mim-branching-left":"mim-branching-left", "mim-branching-right":"mim-branching-right", "mim-transcription-translation":"mim-transcription-translation", "mim-gap":"mim-gap" };
+  var markerMappings = { "Arrow":"arrow", "TBar":"t-bar", "mim-necessary-stimulation":"mim-necessary-stimulation", "mim-binding":"mim-binding", "mim-conversion":"mim-conversion", "mim-stimulation":"mim-stimulation", "mim-modification":"mim-modification", "mim-catalysis":"mim-catalysis", "mim-inhibition":"mim-inhibition", "mim-cleavage":"mim-cleavage", "mim-covalent-bond":"mim-covalent-bond", "mim-transcription-translation":"mim-transcription-translation", "mim-gap":"mim-gap" };
 
   var dataNodeTypeMappings = { 'GeneProduct':'gene-product',  'Metabolite':'metabolite', 'Pathway':'pathway', 'Protein':'protein', 'Unknown':'unknown' };
-
-  var strokeDasharrayMappings = { 'Broken':'10, 5',  'Dotted':'10,2' };
 
   console.log('xmlDoc');
   console.log(xmlDoc);
@@ -157,37 +157,60 @@ function convertGpml2Json(xmlDoc){
         };
 
         element.x = parseFloat(element.graphics.centerx) - parseFloat(element.graphics.width)/2;
-        delete element.graphics.centerx;
+        element.x = Math.round( element.x * 100 ) / 100;
 
         element.y = parseFloat(element.graphics.centery) - parseFloat(element.graphics.height)/2;
-        delete element.graphics.centery;
+        element.y = Math.round( element.y * 100 ) / 100;
 
         element.width = parseFloat(element.graphics.width);
-        delete element.graphics.width;
+        element.width = Math.round( element.width * 100 ) / 100;
 
         element.height = parseFloat(element.graphics.height);
-        delete element.graphics.height;
+        element.height = Math.round( element.height * 100 ) / 100;
 
         // If unspecified due to being default, should we set the styles for stroke, fill and font-name here or in CSS?
         // Currently, every default value that can be specified in the CSS is not specified in the code below.
 
         if (element.graphics.hasOwnProperty("fillcolor")) {
-
-          // does not deal with color if user entered "white". Use validateColor() to address?
-
-          element.fill = "#" + element.graphics.fillcolor;
+          // RGBColor() from http://www.phpied.com/rgb-color-parser-in-javascript/
+          // license: Use it if you like it
+          var fill = new RGBColor(element.graphics.fillcolor);
+          if (fill.ok) { 
+            element.fill = fill.toHex();
+          }
         };
 
         if (element.graphics.hasOwnProperty("color")) {
-          element.stroke = "#" + element.graphics.color;
+          var color = new RGBColor(element.graphics.color);
+          if (color.ok) { 
+            element.stroke = color.toHex();
+          }
         };	
 
         if (element.graphics.hasOwnProperty("linethickness")) {
           element.strokeWidth = element.graphics.linethickness;
         };	
 
-        if (strokeDasharrayMappings.hasOwnProperty(element.graphics.linestyle)) {
-          element.strokeDasharray = strokeDasharrayMappings[element.graphics.linestyle];
+        if (element.graphics.hasOwnProperty('linestyle')) {
+          element.strokeStyle = element.graphics.linestyle.toLowerCase();
+          delete element.graphics.linestyle;
+        }	
+        else {
+          if (element.hasOwnProperty('attribute')) {
+            if ((element.attribute.key === "org.pathvisio.DoubleLineProperty") && (element.attribute.value === "Double")) {
+              element.strokeStyle = 'double';
+              delete element.attribute;
+            };
+          };	
+        };
+
+        if (element.graphics.hasOwnProperty("rotation")) {
+
+          // get rotation in degrees because SVG rotate attribute uses degrees
+          // http://www.w3.org/TR/SVG/coords.html#TransformAttribute
+
+          element.rotation = element.graphics.rotation * (180 / Math.PI);
+          element.rotation = Math.round( element.rotation * 100 ) / 100;
         };	
 
         // textLabel data
@@ -197,7 +220,8 @@ function convertGpml2Json(xmlDoc){
           delete element.textlabel;
 
           if (element.graphics.hasOwnProperty("color")) {
-            element.textLabel.color = "#" + element.graphics.color;
+            // element stroke and text color appear to be the same property in the Java PathVisio code
+            element.textLabel.color = element.stroke;
           };	
 
           if (element.graphics.hasOwnProperty("fontsize")) {
@@ -244,6 +268,7 @@ function convertGpml2Json(xmlDoc){
         };
 
         pathway.labelableElements.push(element);
+        delete element.graphics;
     };
 
     // DataNodes 
@@ -295,12 +320,13 @@ function convertGpml2Json(xmlDoc){
         delete element.graphid;
 
         if (element.graphics.hasOwnProperty('color')) {
-          element.stroke = element.graphics.color;
-          delete element.graphics.color;
+          var color = new RGBColor(element.graphics.color);
+          if (color.ok) { 
+            element.stroke = color.toHex();
+          }
         };	
 
         element.strokeWidth = element.graphics.linethickness;
-        delete element.graphics.linethickness;
 
         if (element.graphics.hasOwnProperty('linestyle')) {
           element.strokeStyle = element.graphics.linestyle.toLowerCase();
@@ -321,6 +347,9 @@ function convertGpml2Json(xmlDoc){
         element.xRef = element.xref;
         delete element.xref;
 
+        var markerStart = 'none';
+        var markerEnd = 'none';
+
         // Points
 
         element.points = convertToArray( element.graphics.point );
@@ -333,25 +362,110 @@ function convertGpml2Json(xmlDoc){
 
           // This is probably unreliable. We need to establish a way to ensure we identify start and end markers correctly, and we should not rely on the order of elements in XML.
 
-          if (index === 0) {
-            element.position = 'start';
+          if ((index === 0) && (markerMappings.hasOwnProperty(element.arrowhead))) {
+              markerStart = markerMappings[element.arrowhead];
+              delete element.arrowhead;
           }
           else {
-            if (index === array.length - 1) {
-              element.position = 'end';
+            if ((index === array.length - 1) && (markerMappings.hasOwnProperty(element.arrowhead))) {
+              markerEnd = markerMappings[element.arrowhead];
+              delete element.arrowhead;
             }
           };
-
-          if (markerMappings.hasOwnProperty(element.arrowhead)) {
-            element.marker = markerMappings[element.arrowhead];
-            delete element.arrowhead;
-          };	
-
         });
+
+        // Back to interactions
+        // TODO This could be refactored for maintainability and speed.
+
+        if (markerStart === 'none') {
+          element.markerStart = markerStart;
+        }
+        else {
+
+          // if it's black, use the default
+
+          if ( (element.stroke === '#000') || (element.stroke === '#000000') || (!(element.stroke)) ) {
+            element.markerStart = markerStart + '-start-black';
+          }
+
+          // else create a new marker with the desired color
+
+          else {
+            var svg = d3.select("#pathway-container").select(function() {
+              return this.contentDocument.documentElement;
+            });
+
+            var markerElementBlack = svg.select('marker#' + markerStart + '-start-black');
+
+            var markerElement = clone(markerElementBlack[0][0]);
+
+            // define style of marker element
+
+            var markerElementStyle = '';
+
+            if (markerElement[0][0].getAttribute('stroke') === 'black') {
+             markerElementStyle += 'stroke:' + element.stroke + '; ';
+            };
+
+            if (markerElement[0][0].getAttribute('fill') === 'black') {
+             markerElementStyle += 'fill:' + element.stroke + '; ';
+            };
+
+            markerElement[0][0].setAttribute('id', markerStart + '-start-' + element.stroke );
+            markerElement[0][0].setAttribute('style', markerElementStyle);
+
+            element.markerStart = markerStart + '-start-' + element.stroke;
+          };
+        };
+
+        if (markerEnd === 'none') {
+          element.markerEnd = markerEnd;
+        }
+        else {
+
+          // if it's black, use the default
+
+          if ( (element.stroke === '#000') || (element.stroke === '#000000') || (!(element.stroke)) ) {
+            element.markerEnd = markerEnd + '-end-black';
+          }
+
+          // else create a new marker with the desired color
+
+          else {
+            var svg = d3.select("#pathway-container").select(function() {
+              return this.contentDocument.documentElement;
+            });
+
+            var markerElementBlack = svg.select('marker#' + markerEnd + '-end-black');
+
+            var markerElement = clone(markerElementBlack[0][0]);
+
+            // define style of marker element
+
+            var markerElementStyle = '';
+
+            if (markerElement[0][0].getAttribute('stroke') === 'black') {
+             markerElementStyle += 'stroke:' + element.stroke + '; ';
+            };
+
+            if (markerElement[0][0].getAttribute('fill') === 'black') {
+             markerElementStyle += 'fill:' + element.stroke + '; ';
+            };
+
+            markerElement[0][0].setAttribute('id', markerEnd + '-end-' + element.stroke );
+            markerElement[0][0].setAttribute('style', markerElementStyle);
+
+            element.markerEnd = markerEnd + '-end-' + element.stroke;
+          };
+        };
+
+
+        delete element.graphics;
+
       });
     }
     catch (e) {
-      console.log("No Interactions found.");
+      console.log(e + "No Interactions found.");
     }
 
     // Labels
@@ -402,7 +516,7 @@ function clone(selector) {
   return d3.select(node.parentNode.insertBefore(node.cloneNode(true), node.nextSibling));
 };
 
-$(document).ready(function() {
+function drawPathway() {
         d3.xml("../../samples/gpml/DatanodeShapes1.gpml", "application/xml", function(xml) {
         //d3.xml("../../samples/gpml/WP673_63184.gpml", "application/xml", function(xml) {
          //d3.xml("../../samples/gpml/ovalandpentagon.gpml", "application/xml", function(xml) {
@@ -425,12 +539,19 @@ $(document).ready(function() {
               .attr("y", d3.event.y);
           }	
 
-          var svg = d3.select("#pathway-container").select(function() {
-            return this.contentDocument.documentElement;
+          var svg = self.svg = d3.select("#pathway-container").select(function() {
+            var svgObject = self.svgObject = this;
+            console.log(svgObject);
+            var svgContentDocument = self.svgContentDocument = this.getSVGDocument();
+            console.log(svgContentDocument);
+            var svgInside = self.svgInside = this.getSVGDocument().documentElement; 
+            console.log(svgInside);
+            return this.getSVGDocument().documentElement;
           });
 
-            svg.attr('width', pathway.boardWidth);
-            svg.attr('height', pathway.boardHeight);
+          svg.attr('width', pathway.boardWidth);
+          svg.attr('height', pathway.boardHeight);
+
           console.log('svg');
           console.log(svg);
 
@@ -456,13 +577,20 @@ $(document).ready(function() {
           .enter()
           .append("g")
           .attr("id", function (d) { return 'labelable-elements-container-' + d.graphId })
-          .attr('transform', function(d) { return 'translate(' + d.x + ' ' + d.y + ')' })
+          .attr('transform', function(d) { return 'translate(' + d.x + ' ' + d.y + ')'; })
           .attr("class", "labelable-elements-container")
           .call(drag);
 
           var labelableElements = labelableElementsContainer.each(function(d) {
             var labelableElement = d3.select(this).append('use')
             .attr("id", function (d) {return 'labelable-element-' + d["@GraphId"]})
+            .attr('transform', function(d) { 
+              var transform = 'none';
+              if (d.hasOwnProperty('rotation')) {
+                transform = 'rotate(' + d.rotation + ' ' + d.width / 2 + ' ' + d.height / 2 + ')';
+              };
+              return transform;
+            })
             .attr("class", function (d) { 
               var styleClass = ''; 
               if (d.elementType === 'data-node') {
@@ -470,6 +598,12 @@ $(document).ready(function() {
               }
               else {
                 styleClass = "labelable-element " + d.elementType; 
+              };
+              if (d.hasOwnProperty('strokeStyle')) {
+                if (d.strokeStyle === 'broken') {
+                  styleClass += " broken-stroke"; 
+                };
+                // TODO currently cannot render double lines for linestyles for labelableElements.
               };
               return styleClass })
             .attr("x", 0)
@@ -487,9 +621,6 @@ $(document).ready(function() {
                 };
                 if (d.hasOwnProperty('strokeWidth')) {
                     style += 'stroke-width:' + d.strokeWidth + '; '; 
-                };
-                if (d.hasOwnProperty('strokeDasharray')) {
-                    style += 'stroke-dasharray:' + d.strokeDasharray + '; '; 
                 };
                 return style; 
                 });
@@ -641,6 +772,8 @@ $(document).ready(function() {
             return pathData;
           };
 
+          var pathData = null;
+
           var interactions = svg.selectAll("path.interaction")
           .data(pathway.interactions)
           .enter()
@@ -648,52 +781,71 @@ $(document).ready(function() {
           .attr("id", function (d) { return 'interaction-' + d.graphId; })
           .attr("class", "interaction")
           .attr("class", function (d) { 
-              var styleClass = 'interaction ';
-              if (d.hasOwnProperty('strokeStyle')) {
-                if (d.strokeStyle === 'broken') {
-                  styleClass += "dashed-stroke "; 
-                };
+            var styleClass = 'interaction ';
+            if (d.hasOwnProperty('strokeStyle')) {
+              if (d.strokeStyle === 'broken') {
+                styleClass += " broken-stroke"; 
               };
-              return styleClass; 
-              })
+            };
+            return styleClass; 
+          })
           .attr("d", function (d) {
-            var pathData = getPathData(d);
+            console.log('d');
+            console.log(d);
+            pathData = getPathData(d);
             if (d.hasOwnProperty('strokeStyle')) {
               if (d.strokeStyle === 'double') {
+                
+                // setting stroke-width equal to its specified line value is
+                // what PathVisio (Java) does, but the white line (overlaying the
+                // thick line to create a "double line") is hard to see at 1px.
+
                 svg.append("path")
                 .attr("class", "interaction-double")
                 .attr("d", pathData)
-                .attr("style", "stroke:white; stroke-width:" + d.strokeWidth + '; ');
+                .attr("style", "stroke:white; stroke-width:" + d.strokeWidth + '; ')
+                .attr("marker-start", 'url(#' + d.markerStart + ')')
+                .attr("marker-end", 'url(#' + d.markerEnd + ')');
               };
             };
             return pathData; 
           })
           .attr("style", function (d) { 
-              var style = 'stroke-width:' + d.strokeWidth + '; ';
-              if (d.hasOwnProperty('stroke')) {
-                  style += 'stroke:' + d.stroke + '; '; 
+            var style = 'stroke-width:' + d.strokeWidth + '; ';
+            if (d.hasOwnProperty('stroke')) {
+                style += 'stroke:' + d.stroke + '; '; 
+            };
+            if (d.hasOwnProperty('strokeStyle')) {
+              if (d.strokeStyle === 'double') {
+                style += 'stroke-width:' + (3 * d.strokeWidth) + '; '; 
               };
-              if (d.hasOwnProperty('strokeStyle')) {
-                if (d.strokeStyle === 'double') {
-                  style += 'stroke-width:' + (3 * d.strokeWidth) + '; '; 
-                };
+            };
+            return style; 
+            })
+          .attr("marker-start", function (d) { 
+            markerStart = d.markerStart;
+            if (d.hasOwnProperty('strokeStyle')) {
+              if (d.strokeStyle === 'double') {
+                markerStart = 'blank-out-start';
               };
-              return style; 
-              })
+            };
+            return 'url(#' + markerStart + ')'; 
+          })
+          .attr("marker-end", function (d) { 
+            markerEnd = d.markerEnd;
+            if (d.hasOwnProperty('strokeStyle')) {
+              if (d.strokeStyle === 'double') {
+                markerEnd = 'blank-out-end';
+              };
+            };
+            return 'url(#' + markerEnd + ')'; 
+          })
           .attr("fill", 'none');
-
-          if (getMarkers(pathway.interactions[0]).start !== null) {
-            interactions.attr("marker-start", function (d) { return "url(#" + getMarkers(d).start + ")"; })
-          }
-          if (getMarkers(pathway.interactions[0]).end !== null) {
-            interactions.attr("marker-end", function (d) { return "url(#" + getMarkers(d).end + ")"; })
-          }
 
           //.attr("x", d.x = d3.event.x)
           //.attr("y", d.y = d3.event.y);
 
         });
-
 /*
 // If users want to use pathvisio.js from another domain without copying over the full source,
 // they will need to be able to access pathwayDefs.svg from a non-WikiPathways domain. For widget
@@ -730,5 +882,5 @@ console.log(xmlResponse);
 // svg?
  */
 
-});
+};
 </script>

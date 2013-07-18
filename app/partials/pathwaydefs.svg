@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<?xml-stylesheet type="text/css" href="pathways.css"?>
 
 <!-- 
   This file serves as our template for standardized GPML pathway visual representations.
@@ -79,7 +80,6 @@
        
        Moved to external style sheet: pathways.css.
        -->
-<?xml-stylesheet type="text/css" href="pathways.css"?>
   
   <g>
     <title>pathway defs for pathvisio.js</title>
@@ -149,6 +149,40 @@
          we need to clone the black marker and set the color for the clone to the desired color using d3.js.
         I wish fill="currentColor" worked for markers, but that does not appear to be the case. -->
 
+      <!-- 
+       Boxes filled with background color to blank out the end of lines, such as for double lines.
+       TODO This could be refactored to make the shape match the viewbox.
+       It can overlap the side of the shape, blanking out a small part of it when the edge is at an angle.
+       -->
+
+    <marker id="blank-out-start" 
+      fill="white"
+      markerUnits="strokeWidth"
+      markerWidth="10" markerHeight="10"
+      orient="auto"
+      refX="0" refY="0"
+      stroke="none"
+      viewBox="0 -6 12 12">
+      <rect x="-7" y="-2.5" width="10" height="5" />
+      <!--
+      <path d="M0,0 L10,-5 L10,5 Z" stroke-width="1px"/>
+      -->
+    </marker>
+
+    <marker id="blank-out-end"
+      fill="white"
+      markerUnits="strokeWidth"
+      markerWidth="10" markerHeight="10"
+      orient="auto"
+      refX="0" refY="0"
+      stroke="none"
+      viewBox="-12 -6 12 12">
+      <rect x="-3" y="-2.5" width="10" height="5" />
+      <!--
+      <path d="M0,0 L-10,-5 L-10,5 Z" stroke-width="1px"/>
+      -->
+    </marker>
+
   <!-- arrow markers -->
 
     <marker id="arrow-start-black" 
@@ -173,10 +207,9 @@
       <path d="M0,0 L-10,-5 L-10,5 Z" stroke-width="1px"/>
     </marker>
 
-  <!-- t-bar markers are incorrect -->
+  <!-- t-bar markers -->
 
     <marker id="t-bar-start-black"
-      fill="white"
       markerWidth="10" markerHeight="10"
       markerUnits="strokeWidth"
       orient="auto"
@@ -188,7 +221,6 @@
     </marker>
 
     <marker id="t-bar-end-black"
-      fill="white"
       markerUnits="strokeWidth"
       markerWidth="10" markerHeight="10"
       orient="auto"
@@ -249,7 +281,7 @@
       <circle cx="0" cy="0" r="5px" stroke-width="1px"/>
     </marker>
 
-    <!-- mim-cleavage markers are incorrect as circles -->
+    <!-- mim-cleavage markers are incorrect. TODO Replace marker defs. -->
 
     <marker id="mim-cleavage-start-black" 
       fill="white"
@@ -260,7 +292,8 @@
       refX="0" refY="0"
       stroke="black"
       viewBox="-1 -6 12 12">
-      <circle cx="5" cy="0" r="5px" stroke-width="1px"/>
+      <line stroke="#ff0000" id="svg_14" y2="-8.20383" x2="-8.19998" y1="9.79617" x1="9.80002" stroke-width="5" fill="none"/>
+      <line transform="rotate(-90 1.20001 1.6962)" id="svg_15" stroke="#ff0000" y2="-7.3038" x2="-7.79999" y1="10.6962" x1="10.20001" stroke-width="5" fill="none"/>
     </marker>
 
     <marker id="mim-cleavage-end-black"
@@ -272,10 +305,11 @@
       refX="0" refY="0"
       stroke="black"
       viewBox="-1 -6 12 12">
-      <circle cx="5" cy="0" r="5px" stroke-width="1px"/>
+      <line stroke="#ff0000" id="svg_14" y2="-8.20383" x2="-8.19998" y1="9.79617" x1="9.80002" stroke-width="5" fill="none"/>
+      <line transform="rotate(-90 1.20001 1.6962)" id="svg_15" stroke="#ff0000" y2="-7.3038" x2="-7.79999" y1="10.6962" x1="10.20001" stroke-width="5" fill="none"/>
     </marker>
 
-  <!-- mim-conversion markers are incorrect -->
+  <!-- mim-conversion markers are incorrect. TODO Replace marker defs. -->
 
      <marker id="mim-conversion-start-black" 
       fill="black"
@@ -285,7 +319,8 @@
       refX="0" refY="0"
       stroke="black"
       viewBox="0 -6 12 12">
-      <path d="M0,0 L10,-5 L10,5 Z" stroke-width="1px"/>
+      <line stroke="#ff0000" id="svg_14" y2="-8.20383" x2="-8.19998" y1="9.79617" x1="9.80002" stroke-width="5" fill="none"/>
+      <line transform="rotate(-90 1.20001 1.6962)" id="svg_15" stroke="#ff0000" y2="-7.3038" x2="-7.79999" y1="10.6962" x1="10.20001" stroke-width="5" fill="none"/>
     </marker>
 
     <marker id="mim-conversion-end-black"
@@ -296,10 +331,11 @@
       refX="0" refY="0"
       stroke="black"
       viewBox="-12 -6 12 12">
-      <path d="M0,0 L-10,-5 L-10,5 Z" stroke-width="1px"/>
+      <line stroke="#ff0000" id="svg_14" y2="-8.20383" x2="-8.19998" y1="9.79617" x1="9.80002" stroke-width="5" fill="none"/>
+      <line transform="rotate(-90 1.20001 1.6962)" id="svg_15" stroke="#ff0000" y2="-7.3038" x2="-7.79999" y1="10.6962" x1="10.20001" stroke-width="5" fill="none"/>
     </marker>
 
-    <!-- mim-covalent-bond markers are incorrect as circles -->
+    <!-- mim-covalent-bond markers are incorrect. TODO Replace marker defs. -->
 
     <marker id="mim-covalent-bond-start-black" 
       fill="white"
@@ -310,7 +346,8 @@
       refX="0" refY="0"
       stroke="black"
       viewBox="-1 -6 12 12">
-      <circle cx="5" cy="0" r="5px" stroke-width="1px"/>
+      <line stroke="#ff0000" id="svg_14" y2="-8.20383" x2="-8.19998" y1="9.79617" x1="9.80002" stroke-width="5" fill="none"/>
+      <line transform="rotate(-90 1.20001 1.6962)" id="svg_15" stroke="#ff0000" y2="-7.3038" x2="-7.79999" y1="10.6962" x1="10.20001" stroke-width="5" fill="none"/>
     </marker>
 
     <marker id="mim-covalent-bond-end-black"
@@ -322,13 +359,13 @@
       refX="0" refY="0"
       stroke="black"
       viewBox="-1 -6 12 12">
-      <circle cx="5" cy="0" r="5px" stroke-width="1px"/>
+      <line stroke="#ff0000" id="svg_14" y2="-8.20383" x2="-8.19998" y1="9.79617" x1="9.80002" stroke-width="5" fill="none"/>
+      <line transform="rotate(-90 1.20001 1.6962)" id="svg_15" stroke="#ff0000" y2="-7.3038" x2="-7.79999" y1="10.6962" x1="10.20001" stroke-width="5" fill="none"/>
     </marker>
 
-    <!-- mim-inhibition markers are incorrect as circles -->
+    <!-- mim-inhibition markers -->
 
     <marker id="mim-inhibition-start-black" 
-      fill="white"
       markerHeight="10"
       markerWidth="10"
       markerUnits="strokeWidth"
@@ -336,22 +373,22 @@
       refX="0" refY="0"
       stroke="black"
       viewBox="-1 -6 12 12">
-      <circle cx="5" cy="0" r="5px" stroke-width="1px"/>
+      <path d="M0,0 L10,0" stroke-width="2px" stroke="white"/>
+      <path d="M10,-10 L10,10" stroke-width="2px"/>
     </marker>
 
     <marker id="mim-inhibition-end-black"
-      fill="white"
-      markerHeight="10"
-      markerWidth="10"
       markerUnits="strokeWidth"
+      markerWidth="10" markerHeight="10"
       orient="auto"
       refX="0" refY="0"
       stroke="black"
-      viewBox="-1 -6 12 12">
-      <circle cx="5" cy="0" r="5px" stroke-width="1px"/>
+      viewBox="-12 -6 12 12">
+      <path d="M0,0 L-10,0" stroke-width="2px" stroke="white"/>
+      <path d="M-10,-10 L-10,10" stroke-width="2px"/>
     </marker>
 
-  <!-- mim-modification markers are incorrect -->
+  <!-- mim-modification markers are incorrect. TODO Replace marker defs. -->
 
      <marker id="mim-modification-start-black" 
       fill="black"
@@ -361,7 +398,8 @@
       refX="0" refY="0"
       stroke="black"
       viewBox="0 -6 12 12">
-      <path d="M0,0 L10,-5 L10,5 Z" stroke-width="1px"/>
+      <line stroke="#ff0000" id="svg_14" y2="-8.20383" x2="-8.19998" y1="9.79617" x1="9.80002" stroke-width="5" fill="none"/>
+      <line transform="rotate(-90 1.20001 1.6962)" id="svg_15" stroke="#ff0000" y2="-7.3038" x2="-7.79999" y1="10.6962" x1="10.20001" stroke-width="5" fill="none"/>
     </marker>
 
     <marker id="mim-modification-end-black"
@@ -372,10 +410,11 @@
       refX="0" refY="0"
       stroke="black"
       viewBox="-12 -6 12 12">
-      <path d="M0,0 L-10,-5 L-10,5 Z" stroke-width="1px"/>
+      <line stroke="#ff0000" id="svg_14" y2="-8.20383" x2="-8.19998" y1="9.79617" x1="9.80002" stroke-width="5" fill="none"/>
+      <line transform="rotate(-90 1.20001 1.6962)" id="svg_15" stroke="#ff0000" y2="-7.3038" x2="-7.79999" y1="10.6962" x1="10.20001" stroke-width="5" fill="none"/>
     </marker>
 
-  <!-- mim-necessary-stimulation markers are incorrect -->
+  <!-- mim-necessary-stimulation markers are incorrect. TODO Replace marker defs. -->
 
     <marker id="mim-necessary-stimulation-start-black"
       fill="white"
@@ -385,7 +424,8 @@
       refX="0" refY="0"
       stroke="black"
       viewBox="0 -6 12 12">
-      <path d="M0,0 L10,-5 L10,5 Z" stroke-width="1px"/>
+      <line stroke="#ff0000" id="svg_14" y2="-8.20383" x2="-8.19998" y1="9.79617" x1="9.80002" stroke-width="5" fill="none"/>
+      <line transform="rotate(-90 1.20001 1.6962)" id="svg_15" stroke="#ff0000" y2="-7.3038" x2="-7.79999" y1="10.6962" x1="10.20001" stroke-width="5" fill="none"/>
     </marker>
 
     <marker id="mim-necessary-stimulation-end-black"
@@ -396,7 +436,8 @@
       refX="0" refY="0"
       stroke="black"
       viewBox="-12 -6 12 12">
-      <path d="M0,0 L-10,-5 L-10,5 Z" stroke-width="1px"/>
+      <line stroke="#ff0000" id="svg_14" y2="-8.20383" x2="-8.19998" y1="9.79617" x1="9.80002" stroke-width="5" fill="none"/>
+      <line transform="rotate(-90 1.20001 1.6962)" id="svg_15" stroke="#ff0000" y2="-7.3038" x2="-7.79999" y1="10.6962" x1="10.20001" stroke-width="5" fill="none"/>
     </marker>
 
   <!-- mim-stimulation markers -->
@@ -423,7 +464,7 @@
       <path d="M0,0 L-10,-5 L-10,5 Z" stroke-width="1px"/>
     </marker>
 
-  <!-- mim-transcription-translation markers are incorrect -->
+  <!-- mim-transcription-translation markers are incorrect. TODO Replace marker defs. -->
 
     <marker id="mim-transcription-translation-start-black"
       fill="white"
@@ -433,7 +474,8 @@
       refX="0" refY="0"
       stroke="black"
       viewBox="0 -6 12 12">
-      <path d="M0,0 L10,-5 L10,5 Z" stroke-width="1px"/>
+      <line stroke="#ff0000" id="svg_14" y2="-8.20383" x2="-8.19998" y1="9.79617" x1="9.80002" stroke-width="5" fill="none"/>
+      <line transform="rotate(-90 1.20001 1.6962)" id="svg_15" stroke="#ff0000" y2="-7.3038" x2="-7.79999" y1="10.6962" x1="10.20001" stroke-width="5" fill="none"/>
     </marker>
 
     <marker id="mim-transcription-translation-end-black"
@@ -444,10 +486,11 @@
       refX="0" refY="0"
       stroke="black"
       viewBox="-12 -6 12 12">
-      <path d="M0,0 L-10,-5 L-10,5 Z" stroke-width="1px"/>
+      <line stroke="#ff0000" id="svg_14" y2="-8.20383" x2="-8.19998" y1="9.79617" x1="9.80002" stroke-width="5" fill="none"/>
+      <line transform="rotate(-90 1.20001 1.6962)" id="svg_15" stroke="#ff0000" y2="-7.3038" x2="-7.79999" y1="10.6962" x1="10.20001" stroke-width="5" fill="none"/>
     </marker>
 
-  <!-- mim-gap markers are incorrect -->
+  <!-- mim-gap markers are incorrect. TODO Replace marker defs. -->
 
     <marker id="mim-gap-start-black"
       fill="white"
@@ -457,7 +500,8 @@
       refX="0" refY="0"
       stroke="black"
       viewBox="0 -6 12 12">
-      <path d="M0,0 L10,-5 L10,5 Z" stroke-width="1px"/>
+      <line stroke="#ff0000" id="svg_14" y2="-8.20383" x2="-8.19998" y1="9.79617" x1="9.80002" stroke-width="5" fill="none"/>
+      <line transform="rotate(-90 1.20001 1.6962)" id="svg_15" stroke="#ff0000" y2="-7.3038" x2="-7.79999" y1="10.6962" x1="10.20001" stroke-width="5" fill="none"/>
     </marker>
 
     <marker id="mim-gap-end-black"
@@ -468,7 +512,8 @@
       refX="0" refY="0"
       stroke="black"
       viewBox="-12 -6 12 12">
-      <path d="M0,0 L-10,-5 L-10,5 Z" stroke-width="1px"/>
+      <line stroke="#ff0000" id="svg_14" y2="-8.20383" x2="-8.19998" y1="9.79617" x1="9.80002" stroke-width="5" fill="none"/>
+      <line transform="rotate(-90 1.20001 1.6962)" id="svg_15" stroke="#ff0000" y2="-7.3038" x2="-7.79999" y1="10.6962" x1="10.20001" stroke-width="5" fill="none"/>
     </marker>
 
   <!-- ***************************
@@ -482,6 +527,9 @@
          I need to figure out how to correct this. Using the vector-effect attribute set to
           "non-scaling-stroke" works in Chrome, but not all renderers support this attribute.
           TODO Is there a better way to address this?
+
+          Some symbols such as "nucleus" appear to be cropped at the top and left sides in Chrome.
+          TODO redraw symbols so they are entirely within viewbox.
          -->
 
   <!-- Shape is placeholder until it can be replaced with correct shape. -->
@@ -489,6 +537,7 @@
    <symbol id="arc" viewBox="0 0 100 50" preserveAspectRatio="none">
       <desc>arc</desc>
       <rect x="1" y="1" width="98" height="48" vector-effect="non-scaling-stroke"></rect>
+      <path d="m9.90539,9.46855l0,24.81445l30,0l0,-24.81445l-30,0zm25.27735,22.68503l-20.55551,0l0,-20.5556l20.55551,0l0,20.5556zm-15.5557,-12.49887c1.58443,0 2.8704,-1.28815 2.8704,-2.87552c0,-1.58035 -1.28598,-2.86841 -2.8704,-2.86841c-1.58524,0 -2.86949,1.28806 -2.86949,2.86841c0,1.58737 1.28425,2.87552 2.86949,2.87552zm14.44598,2.4957l-5.46353,-5.45935l-7.68539,7.68411l-2.13031,-2.12943l-3.05775,3.05859l0,5.73676l18.33698,0l0,-8.89069z" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="1px" stroke="#000000" fill="none"/>
     </symbol>
 
   <!-- Shape is placeholder until it can be replaced with correct shape. -->
@@ -496,6 +545,7 @@
    <symbol id="brace" viewBox="0 0 100 50" preserveAspectRatio="none">
       <desc>brace</desc>
       <rect x="1" y="1" width="98" height="48" vector-effect="non-scaling-stroke"></rect>
+      <path d="m9.90539,9.46855l0,24.81445l30,0l0,-24.81445l-30,0zm25.27735,22.68503l-20.55551,0l0,-20.5556l20.55551,0l0,20.5556zm-15.5557,-12.49887c1.58443,0 2.8704,-1.28815 2.8704,-2.87552c0,-1.58035 -1.28598,-2.86841 -2.8704,-2.86841c-1.58524,0 -2.86949,1.28806 -2.86949,2.86841c0,1.58737 1.28425,2.87552 2.86949,2.87552zm14.44598,2.4957l-5.46353,-5.45935l-7.68539,7.68411l-2.13031,-2.12943l-3.05775,3.05859l0,5.73676l18.33698,0l0,-8.89069z" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="1px" stroke="#000000" fill="none"/>
     </symbol>
 
   <!-- Shape is placeholder until it can be replaced with correct shape. -->
@@ -503,6 +553,7 @@
    <symbol id="cell" viewBox="0 0 100 50" preserveAspectRatio="none">
       <desc>cell</desc>
       <rect x="1" y="1" width="98" height="48" vector-effect="non-scaling-stroke"></rect>
+      <path d="m9.90539,9.46855l0,24.81445l30,0l0,-24.81445l-30,0zm25.27735,22.68503l-20.55551,0l0,-20.5556l20.55551,0l0,20.5556zm-15.5557,-12.49887c1.58443,0 2.8704,-1.28815 2.8704,-2.87552c0,-1.58035 -1.28598,-2.86841 -2.8704,-2.86841c-1.58524,0 -2.86949,1.28806 -2.86949,2.86841c0,1.58737 1.28425,2.87552 2.86949,2.87552zm14.44598,2.4957l-5.46353,-5.45935l-7.68539,7.68411l-2.13031,-2.12943l-3.05775,3.05859l0,5.73676l18.33698,0l0,-8.89069z" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="1px" stroke="#000000" fill="none"/>
     </symbol>
 
     <!-- this is the background shape for a set of data nodes in a complex -->
@@ -517,6 +568,7 @@
    <symbol id="endoplasmic-reticulum" viewBox="0 0 100 50" preserveAspectRatio="none">
       <desc>endoplasmic-reticulum</desc>
       <rect x="1" y="1" width="98" height="48" vector-effect="non-scaling-stroke"></rect>
+      <path d="m9.90539,9.46855l0,24.81445l30,0l0,-24.81445l-30,0zm25.27735,22.68503l-20.55551,0l0,-20.5556l20.55551,0l0,20.5556zm-15.5557,-12.49887c1.58443,0 2.8704,-1.28815 2.8704,-2.87552c0,-1.58035 -1.28598,-2.86841 -2.8704,-2.86841c-1.58524,0 -2.86949,1.28806 -2.86949,2.86841c0,1.58737 1.28425,2.87552 2.86949,2.87552zm14.44598,2.4957l-5.46353,-5.45935l-7.68539,7.68411l-2.13031,-2.12943l-3.05775,3.05859l0,5.73676l18.33698,0l0,-8.89069z" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="1px" stroke="#000000" fill="none"/>
     </symbol>
 
   <!-- Shape is placeholder until it can be replaced with correct shape. -->
@@ -524,6 +576,7 @@
    <symbol id="extracellular-region" viewBox="0 0 100 50" preserveAspectRatio="none">
       <desc>extracellular-region</desc>
       <rect x="1" y="1" width="98" height="48" vector-effect="non-scaling-stroke"></rect>
+      <path d="m9.90539,9.46855l0,24.81445l30,0l0,-24.81445l-30,0zm25.27735,22.68503l-20.55551,0l0,-20.5556l20.55551,0l0,20.5556zm-15.5557,-12.49887c1.58443,0 2.8704,-1.28815 2.8704,-2.87552c0,-1.58035 -1.28598,-2.86841 -2.8704,-2.86841c-1.58524,0 -2.86949,1.28806 -2.86949,2.86841c0,1.58737 1.28425,2.87552 2.86949,2.87552zm14.44598,2.4957l-5.46353,-5.45935l-7.68539,7.68411l-2.13031,-2.12943l-3.05775,3.05859l0,5.73676l18.33698,0l0,-8.89069z" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="1px" stroke="#000000" fill="none"/>
     </symbol>
 
   <!-- Shape is placeholder until it can be replaced with correct shape. -->
@@ -531,6 +584,7 @@
    <symbol id="golgi-apparatus" viewBox="0 0 100 50" preserveAspectRatio="none">
       <desc>golgi-apparatus</desc>
       <rect x="1" y="1" width="98" height="48" vector-effect="non-scaling-stroke"></rect>
+      <path d="m9.90539,9.46855l0,24.81445l30,0l0,-24.81445l-30,0zm25.27735,22.68503l-20.55551,0l0,-20.5556l20.55551,0l0,20.5556zm-15.5557,-12.49887c1.58443,0 2.8704,-1.28815 2.8704,-2.87552c0,-1.58035 -1.28598,-2.86841 -2.8704,-2.86841c-1.58524,0 -2.86949,1.28806 -2.86949,2.86841c0,1.58737 1.28425,2.87552 2.86949,2.87552zm14.44598,2.4957l-5.46353,-5.45935l-7.68539,7.68411l-2.13031,-2.12943l-3.05775,3.05859l0,5.73676l18.33698,0l0,-8.89069z" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="1px" stroke="#000000" fill="none"/>
     </symbol>
 
     <!-- this is the dragbox shape for any set of elements that have been grouped. this only shows up in edit mode. -->
@@ -545,6 +599,7 @@
    <symbol id="hexagon" viewBox="0 0 100 50" preserveAspectRatio="none">
       <desc>hexagon</desc>
       <rect x="1" y="1" width="98" height="48" vector-effect="non-scaling-stroke"></rect>
+      <path d="m9.90539,9.46855l0,24.81445l30,0l0,-24.81445l-30,0zm25.27735,22.68503l-20.55551,0l0,-20.5556l20.55551,0l0,20.5556zm-15.5557,-12.49887c1.58443,0 2.8704,-1.28815 2.8704,-2.87552c0,-1.58035 -1.28598,-2.86841 -2.8704,-2.86841c-1.58524,0 -2.86949,1.28806 -2.86949,2.86841c0,1.58737 1.28425,2.87552 2.86949,2.87552zm14.44598,2.4957l-5.46353,-5.45935l-7.68539,7.68411l-2.13031,-2.12943l-3.05775,3.05859l0,5.73676l18.33698,0l0,-8.89069z" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="1px" stroke="#000000" fill="none"/>
     </symbol>
 
   <!-- Shape is placeholder until it can be replaced with correct shape. -->
@@ -552,7 +607,10 @@
    <symbol id="mim-degradation" viewBox="0 0 100 50" preserveAspectRatio="none">
       <desc>mim-degradation</desc>
       <rect x="1" y="1" width="98" height="48" vector-effect="non-scaling-stroke"></rect>
+      <path d="m9.90539,9.46855l0,24.81445l30,0l0,-24.81445l-30,0zm25.27735,22.68503l-20.55551,0l0,-20.5556l20.55551,0l0,20.5556zm-15.5557,-12.49887c1.58443,0 2.8704,-1.28815 2.8704,-2.87552c0,-1.58035 -1.28598,-2.86841 -2.8704,-2.86841c-1.58524,0 -2.86949,1.28806 -2.86949,2.86841c0,1.58737 1.28425,2.87552 2.86949,2.87552zm14.44598,2.4957l-5.46353,-5.45935l-7.68539,7.68411l-2.13031,-2.12943l-3.05775,3.05859l0,5.73676l18.33698,0l0,-8.89069z" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="1px" stroke="#000000" fill="none"/>
     </symbol>
+
+  <!-- mitochondria -->
 
     <symbol id="mitochondria" viewBox="0 0 100 65.5" preserveAspectRatio="none">
       <desc>Mitochondria</desc>
@@ -579,6 +637,7 @@
    <symbol id="nucleus" viewBox="0 0 100 50" preserveAspectRatio="none">
       <desc>nucleus</desc>
       <rect x="1" y="1" width="98" height="48" vector-effect="non-scaling-stroke"></rect>
+      <path d="m9.90539,9.46855l0,24.81445l30,0l0,-24.81445l-30,0zm25.27735,22.68503l-20.55551,0l0,-20.5556l20.55551,0l0,20.5556zm-15.5557,-12.49887c1.58443,0 2.8704,-1.28815 2.8704,-2.87552c0,-1.58035 -1.28598,-2.86841 -2.8704,-2.86841c-1.58524,0 -2.86949,1.28806 -2.86949,2.86841c0,1.58737 1.28425,2.87552 2.86949,2.87552zm14.44598,2.4957l-5.46353,-5.45935l-7.68539,7.68411l-2.13031,-2.12943l-3.05775,3.05859l0,5.73676l18.33698,0l0,-8.89069z" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="1px" stroke="#000000" fill="none"/>
     </symbol>
 
   <!-- Shape is placeholder until it can be replaced with correct shape. -->
@@ -586,7 +645,10 @@
    <symbol id="organelle" viewBox="0 0 100 50" preserveAspectRatio="none">
       <desc>organelle</desc>
       <rect x="1" y="1" width="98" height="48" vector-effect="non-scaling-stroke"></rect>
+      <path d="m9.90539,9.46855l0,24.81445l30,0l0,-24.81445l-30,0zm25.27735,22.68503l-20.55551,0l0,-20.5556l20.55551,0l0,20.5556zm-15.5557,-12.49887c1.58443,0 2.8704,-1.28815 2.8704,-2.87552c0,-1.58035 -1.28598,-2.86841 -2.8704,-2.86841c-1.58524,0 -2.86949,1.28806 -2.86949,2.86841c0,1.58737 1.28425,2.87552 2.86949,2.87552zm14.44598,2.4957l-5.46353,-5.45935l-7.68539,7.68411l-2.13031,-2.12943l-3.05775,3.05859l0,5.73676l18.33698,0l0,-8.89069z" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="1px" stroke="#000000" fill="none"/>
     </symbol>
+
+  <!-- oval -->
 
    <symbol id="oval" viewBox="0 0 100 50" preserveAspectRatio="none">
       <desc>Ellipse</desc>
@@ -598,12 +660,17 @@
    <symbol id="pentagon" viewBox="0 0 100 50" preserveAspectRatio="none">
       <desc>pentagon</desc>
       <rect x="1" y="1" width="98" height="48" vector-effect="non-scaling-stroke"></rect>
+      <path d="m9.90539,9.46855l0,24.81445l30,0l0,-24.81445l-30,0zm25.27735,22.68503l-20.55551,0l0,-20.5556l20.55551,0l0,20.5556zm-15.5557,-12.49887c1.58443,0 2.8704,-1.28815 2.8704,-2.87552c0,-1.58035 -1.28598,-2.86841 -2.8704,-2.86841c-1.58524,0 -2.86949,1.28806 -2.86949,2.86841c0,1.58737 1.28425,2.87552 2.86949,2.87552zm14.44598,2.4957l-5.46353,-5.45935l-7.68539,7.68411l-2.13031,-2.12943l-3.05775,3.05859l0,5.73676l18.33698,0l0,-8.89069z" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="1px" stroke="#000000" fill="none"/>
     </symbol>
+
+  <!-- rectangle -->
 
    <symbol id="rectangle" viewBox="0 0 100 50" preserveAspectRatio="none">
       <desc>Rectangle</desc>
       <rect x="1" y="1" width="98" height="48" vector-effect="non-scaling-stroke"></rect>
     </symbol>
+
+  <!-- rounded-rectangle -->
 
     <symbol id="rounded-rectangle" viewBox="0 0 100 50" preserveAspectRatio="none">
       <desc>Rounded Rectangle</desc>
@@ -615,6 +682,7 @@
    <symbol id="sarcoplasmic-reticulum" viewBox="0 0 100 50" preserveAspectRatio="none">
       <desc>sarcoplasmic-reticulum</desc>
       <rect x="1" y="1" width="98" height="48" vector-effect="non-scaling-stroke"></rect>
+      <path d="m9.90539,9.46855l0,24.81445l30,0l0,-24.81445l-30,0zm25.27735,22.68503l-20.55551,0l0,-20.5556l20.55551,0l0,20.5556zm-15.5557,-12.49887c1.58443,0 2.8704,-1.28815 2.8704,-2.87552c0,-1.58035 -1.28598,-2.86841 -2.8704,-2.86841c-1.58524,0 -2.86949,1.28806 -2.86949,2.86841c0,1.58737 1.28425,2.87552 2.86949,2.87552zm14.44598,2.4957l-5.46353,-5.45935l-7.68539,7.68411l-2.13031,-2.12943l-3.05775,3.05859l0,5.73676l18.33698,0l0,-8.89069z" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="1px" stroke="#000000" fill="none"/>
     </symbol>
 
   <!-- Shape is placeholder until it can be replaced with correct shape. -->
@@ -622,6 +690,7 @@
    <symbol id="triangle" viewBox="0 0 100 50" preserveAspectRatio="none">
       <desc>triangle</desc>
       <rect x="1" y="1" width="98" height="48" vector-effect="non-scaling-stroke"></rect>
+      <path d="m9.90539,9.46855l0,24.81445l30,0l0,-24.81445l-30,0zm25.27735,22.68503l-20.55551,0l0,-20.5556l20.55551,0l0,20.5556zm-15.5557,-12.49887c1.58443,0 2.8704,-1.28815 2.8704,-2.87552c0,-1.58035 -1.28598,-2.86841 -2.8704,-2.86841c-1.58524,0 -2.86949,1.28806 -2.86949,2.86841c0,1.58737 1.28425,2.87552 2.86949,2.87552zm14.44598,2.4957l-5.46353,-5.45935l-7.68539,7.68411l-2.13031,-2.12943l-3.05775,3.05859l0,5.73676l18.33698,0l0,-8.89069z" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="1px" stroke="#000000" fill="none"/>
     </symbol>
 
   <!-- Shape is placeholder until it can be replaced with correct shape. -->
@@ -629,6 +698,7 @@
    <symbol id="vesicle" viewBox="0 0 100 50" preserveAspectRatio="none">
       <desc>vesicle</desc>
       <rect x="1" y="1" width="98" height="48" vector-effect="non-scaling-stroke"></rect>
+      <path d="m9.90539,9.46855l0,24.81445l30,0l0,-24.81445l-30,0zm25.27735,22.68503l-20.55551,0l0,-20.5556l20.55551,0l0,20.5556zm-15.5557,-12.49887c1.58443,0 2.8704,-1.28815 2.8704,-2.87552c0,-1.58035 -1.28598,-2.86841 -2.8704,-2.86841c-1.58524,0 -2.86949,1.28806 -2.86949,2.86841c0,1.58737 1.28425,2.87552 2.86949,2.87552zm14.44598,2.4957l-5.46353,-5.45935l-7.68539,7.68411l-2.13031,-2.12943l-3.05775,3.05859l0,5.73676l18.33698,0l0,-8.89069z" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="1px" stroke="#000000" fill="none"/>
     </symbol>
 
     <!-- TODO Update placeholders for SVG definitions of shapes.

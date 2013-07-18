@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Pathway xmlns="http://pathvisio.org/GPML/2013a" Name="New Pathway" Version="20130430">
-  <Graphics BoardWidth="1743.0177514792902" BoardHeight="966.3905325443786" />
+  <Graphics BoardWidth="1421.6749963470336" BoardHeight="993.5479951397325" />
   <DataNode TextLabel="GeneProduct" GraphId="b8b67" Type="GeneProduct">
     <Graphics CenterX="115.26894905894636" CenterY="111.98617992104599" Width="133.5" Height="82.5" ZOrder="32768" FontSize="10" Valign="Middle" />
     <Xref Database="" ID="" />
   </DataNode>
   <DataNode TextLabel="Metabolite" GraphId="f96fc" Type="Metabolite">
-    <Graphics CenterX="341.497090402426" CenterY="188.88835614567114" Width="132.2668633718548" Height="85.40936535256668" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Graphics CenterX="339.8496439444359" CenterY="174.0613380237601" Width="132.2668633718548" Height="85.40936535256668" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff" />
     <Xref Database="" ID="" />
   </DataNode>
   <DataNode TextLabel="Protein" GraphId="e979e" Type="Protein">
@@ -14,225 +14,312 @@
     <Xref Database="" ID="" />
   </DataNode>
   <DataNode TextLabel="Rna" GraphId="a2ded" Type="Rna">
-    <Graphics CenterX="341.49709040242595" CenterY="421.94387755102036" Width="172.69387755102036" Height="92.33673469387755" ZOrder="32768" FontSize="10" Valign="Middle" />
-    <Xref Database="" ID="" />
-  </DataNode>
-  <DataNode TextLabel="GeneProduct" GraphId="d167c" Type="GeneProduct">
-    <Graphics CenterX="345.497090402426" CenterY="90.3112244897959" Width="172.69387755102036" Height="77.03061224489798" ZOrder="32768" FontName="Garamond" FontSize="10" Valign="Middle" ShapeType="Mitochondria" />
+    <Graphics CenterX="120.27586918120461" CenterY="433.9558895630324" Width="172.69387755102036" Height="92.33673469387755" ZOrder="32768" FontSize="10" Valign="Middle" />
     <Xref Database="" ID="" />
   </DataNode>
   <DataNode TextLabel="Unknown" GraphId="b551f">
-    <Graphics CenterX="341.497090402426" CenterY="547.9871663524848" Width="120.21867060077045" Height="127.58657760292863" ZOrder="32768" FontName="Times New Roman" FontSize="10" Valign="Middle" />
+    <Graphics CenterX="334.490083395419" CenterY="441.8810602463784" Width="120.21867060077045" Height="127.58657760292863" ZOrder="32768" FontName="Times New Roman" FontSize="10" Valign="Middle" />
     <Xref Database="" ID="" />
   </DataNode>
-  <DataNode TextLabel="GeneProduct" GraphId="fad4e" Type="GeneProduct" GroupRef="fe843">
+  <DataNode TextLabel="Pathway" GraphId="bc38a" Type="Pathway">
+    <Graphics CenterX="333.0833333333332" CenterY="82.33258258258229" Width="116.6161161161161" Height="65.56506506506511" ZOrder="32768" FontWeight="Bold" FontSize="12" Valign="Middle" ShapeType="None" Color="14961e" />
+    <Xref Database="" ID="" />
+  </DataNode>
+  <DataNode TextLabel="GeneProduct in complex" GraphId="fad4e" Type="GeneProduct" GroupRef="fe843">
     <Graphics CenterX="115.26894905894636" CenterY="214.9669690652944" Width="133.5" Height="82.5" ZOrder="32769" FontSize="10" Valign="Middle" ShapeType="RoundedRectangle" />
     <Xref Database="" ID="" />
   </DataNode>
-  <DataNode TextLabel="GeneProduct" GraphId="f7206" Type="GeneProduct" GroupRef="fe843">
+  <DataNode TextLabel="GeneProduct in complex" GraphId="f7206" Type="GeneProduct" GroupRef="fe843">
     <Graphics CenterX="115.26894905894636" CenterY="316.4501675041876" Width="133.5" Height="82.5" ZOrder="32770" FontSize="10" Valign="Middle" ShapeType="Oval" />
     <Xref Database="" ID="" />
   </DataNode>
   <Interaction GraphId="id968f3436">
     <Graphics ZOrder="12288" LineThickness="1.0">
-      <Point X="476.4764764764764" Y="86.08608608608607" />
-      <Point X="574.5745745745745" Y="87.08708708708708" />
+      <Point X="475.52409552409546" Y="55.60989560989563" />
+      <Point X="573.6221936221935" Y="56.610896610896646" />
     </Graphics>
     <Xref Database="" ID="" />
   </Interaction>
   <Interaction GraphId="idcdccad3">
     <Graphics ZOrder="12288" LineThickness="1.0">
-      <Point X="482.48248248248245" Y="127.12712712712711" />
-      <Point X="589.8174831892411" Y="127.12712712712712" ArrowHead="Arrow" />
+      <Point X="472.00629200629186" Y="117.60331760331765" />
+      <Point X="579.3412927130505" Y="117.60331760331768" ArrowHead="Arrow" />
     </Graphics>
     <Xref Database="" ID="" />
   </Interaction>
   <Interaction GraphId="idd669b8f0">
     <Attribute Key="org.pathvisio.DoubleLineProperty" Value="Double" />
-    <Graphics ZOrder="12288" LineThickness="2.0" Color="0000ff">
-      <Point X="407.6305220883534" Y="188.88835614567114" GraphRef="f96fc" RelX="1.0" RelY="0.0" />
-      <Point X="1227.2815533980583" Y="80.38834951456307" GraphRef="e897b" RelX="-1.0" RelY="0.0" />
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="0000ff">
+      <Point X="405.9830756303633" Y="174.0613380237601" GraphRef="f96fc" RelX="1.0" RelY="0.0" ArrowHead="Arrow" />
+      <Point X="672.9293851849237" Y="221.1145124990234" GraphRef="e897b" RelX="-1.0" RelY="0.0" ArrowHead="TBar" />
     </Graphics>
     <Xref Database="" ID="" />
   </Interaction>
   <Interaction GraphId="id5ae9a761">
     <Graphics ZOrder="12288" LineStyle="Broken" LineThickness="1.0">
-      <Point X="477.4774774774774" Y="249.24924924924923" />
-      <Point X="625.6256256256255" Y="249.24924924924923" ArrowHead="Arrow" />
+      <Point X="461.9607843137255" Y="258.8235294117647" ArrowHead="TBar" />
+      <Point X="624.3137254901961" Y="258.03921568627453" ArrowHead="mim-necessary-stimulation" />
     </Graphics>
     <Xref Database="" ID="" />
   </Interaction>
   <Interaction GraphId="idb908a573">
-    <Graphics ZOrder="12288" LineThickness="1.0">
-      <Point X="480.4804804804804" Y="308.30830830830826" />
-      <Point X="587.5875875875876" Y="305.3053053053053" ArrowHead="mim-necessary-stimulation" />
+    <Attribute Key="org.pathvisio.DoubleLineProperty" Value="Double" />
+    <Graphics ZOrder="12288" LineThickness="3.0">
+      <Point X="480.4804804804804" Y="324.49878449878463" ArrowHead="mim-necessary-stimulation" />
+      <Point X="603.1372549019608" Y="324.7058823529412" ArrowHead="mim-binding" />
     </Graphics>
     <Xref Database="" ID="" />
   </Interaction>
   <Interaction GraphId="id6a717d56">
     <Graphics ZOrder="12288" LineThickness="1.0">
-      <Point X="489.4894894894894" Y="357.35735735735733" />
-      <Point X="573.5735735735735" Y="363.3633633633633" ArrowHead="mim-binding" />
+      <Point X="491.39425139425134" Y="378.30973830973835" ArrowHead="mim-binding" />
+      <Point X="575.4783354783355" Y="384.3157443157443" ArrowHead="mim-conversion" />
     </Graphics>
     <Xref Database="" ID="" />
   </Interaction>
   <Interaction GraphId="id41954dd5">
     <Graphics ZOrder="12288" LineThickness="1.0">
-      <Point X="512.5125125125124" Y="405.40540540540536" />
-      <Point X="574.5745745745745" Y="405.40540540540536" ArrowHead="mim-conversion" />
+      <Point X="498.2267982267981" Y="443.50064350064366" ArrowHead="mim-conversion" />
+      <Point X="560.2888602888601" Y="443.50064350064366" ArrowHead="mim-stimulation" />
     </Graphics>
     <Xref Database="" ID="" />
   </Interaction>
   <Interaction GraphId="id801fef43">
     <Graphics ZOrder="12288" LineThickness="1.0">
-      <Point X="517.5175175175175" Y="452.4524524524524" />
-      <Point X="591.5915915915915" Y="452.4524524524524" ArrowHead="mim-stimulation" />
+      <Point X="497.5175175175173" Y="504.8334048334053" ArrowHead="mim-stimulation" />
+      <Point X="571.5915915915913" Y="504.8334048334053" ArrowHead="mim-modification" />
     </Graphics>
     <Xref Database="" ID="" />
   </Interaction>
   <Interaction GraphId="idabc602a6">
-    <Graphics ZOrder="12288" LineThickness="1.0">
-      <Point X="521.5215215215214" Y="480.4804804804804" />
-      <Point X="569.5695695695695" Y="482.48248248248245" ArrowHead="mim-modification" />
+    <Graphics ZOrder="12288" LineStyle="Broken" LineThickness="1.0">
+      <Point X="474.46457990115323" Y="578.2537067545303" ArrowHead="mim-modification" />
+      <Point X="568.5889835954764" Y="576.0099745336695" ArrowHead="mim-catalysis" />
     </Graphics>
     <Xref Database="" ID="" />
   </Interaction>
   <Interaction GraphId="id7af2310d">
     <Graphics ZOrder="12288" LineThickness="1.0">
-      <Point X="516.5165165165165" Y="512.5125125125124" />
-      <Point X="547.5475475475475" Y="514.5145145145144" ArrowHead="mim-catalysis" />
+      <Point X="483.5274735924025" Y="630.3950641212003" ArrowHead="mim-catalysis" />
+      <Point X="565.0961010433829" Y="631.1793778466905" ArrowHead="mim-inhibition" />
     </Graphics>
     <Xref Database="" ID="" />
   </Interaction>
   <Interaction GraphId="ide3aad202">
     <Graphics ZOrder="12288" LineThickness="1.0">
-      <Point X="501.5015015015014" Y="548.5485485485485" />
-      <Point X="545.5455455455455" Y="551.5515515515515" ArrowHead="mim-inhibition" />
+      <Point X="477.64705882352945" Y="702.7450980392157" ArrowHead="mim-inhibition" />
+      <Point X="556.1049421514516" Y="704.2501637850482" ArrowHead="mim-cleavage" />
     </Graphics>
     <Xref Database="" ID="" />
   </Interaction>
   <Interaction GraphId="id11f26d85">
     <Graphics ZOrder="12288" LineThickness="1.0">
-      <Point X="498.49849849849846" Y="596.5965965965966" />
-      <Point X="539.5395395395395" Y="597.5975975975975" ArrowHead="mim-cleavage" />
+      <Point X="681.7794538724754" Y="315.2285840657941" ArrowHead="mim-cleavage" />
+      <Point X="756.8627450980392" Y="316.07843137254906" ArrowHead="mim-covalent-bond" />
     </Graphics>
     <Xref Database="" ID="" />
   </Interaction>
   <Interaction GraphId="id5466fc56">
     <Graphics ZOrder="12288" LineThickness="1.0">
-      <Point X="501.5015015015014" Y="646.6466466466466" />
-      <Point X="557.5575575575575" Y="646.6466466466466" ArrowHead="mim-covalent-bond" />
+      <Point X="681.68168168168" Y="397.8367736507275" ArrowHead="mim-covalent-bond" />
+      <Point X="737.7377377377358" Y="397.8367736507275" ArrowHead="mim-branching-left" />
     </Graphics>
     <Xref Database="" ID="" />
   </Interaction>
   <Interaction GraphId="id51574d78">
     <Graphics ZOrder="12288" LineThickness="1.0">
-      <Point X="499.49949949949945" Y="672.6726726726725" />
-      <Point X="582.5825825825825" Y="674.6746746746746" ArrowHead="mim-branching-left" />
+      <Point X="662.7450980392157" Y="471.3725490196079" ArrowHead="mim-branching-left" />
+      <Point X="760.0" Y="472.15686274509807" ArrowHead="mim-branching-right" />
     </Graphics>
     <Xref Database="" ID="" />
   </Interaction>
   <Interaction GraphId="idf0c9962f">
     <Graphics ZOrder="12288" LineThickness="1.0">
-      <Point X="493.9172749391727" Y="722.6277372262773" />
-      <Point X="569.3430656934306" Y="732.3600973236009" ArrowHead="mim-branching-right" />
+      <Point X="674.0974551193515" Y="543.8358175517244" ArrowHead="mim-branching-right" />
+      <Point X="774.9019607843138" Y="548.2352941176471" ArrowHead="mim-transcription-translation" />
     </Graphics>
     <Xref Database="" ID="" />
   </Interaction>
   <Interaction GraphId="id81eddd48">
     <Graphics ZOrder="12288" LineThickness="1.0">
-      <Point X="493.9172749391727" Y="795.6204379562043" />
-      <Point X="588.8077858880778" Y="790.7542579075425" ArrowHead="mim-transcription-translation" />
+      <Point X="670.5067908464611" Y="634.7818396461046" ArrowHead="mim-transcription-translation" />
+      <Point X="765.3973017953655" Y="629.9156595974428" ArrowHead="mim-gap" />
     </Graphics>
     <Xref Database="" ID="" />
   </Interaction>
   <Interaction GraphId="id38ca81bd">
     <Graphics ZOrder="12288" LineThickness="1.0">
-      <Point X="501.4084507042254" Y="852.112676056338" />
-      <Point X="597.6331360946746" Y="847.6331360946747" ArrowHead="mim-gap" />
+      <Point X="680.0" Y="716.8627450980392" ArrowHead="mim-gap" />
+      <Point X="777.8133162748528" Y="717.3151841041447" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction>
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="282.5370675453048" Y="537.0675453047776" ArrowHead="TBar" />
+      <Point X="358.31960461285007" Y="584.0197693574959" ArrowHead="TBar" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="cb1ec">
+    <Graphics ZOrder="32790" LineThickness="1.0">
+      <Point X="281.7133443163097" Y="672.9818780889622" ArrowHead="mim-inhibition" />
+      <Point X="361.72981878088973" Y="622.0263591433276" ArrowHead="mim-inhibition" />
     </Graphics>
     <Xref Database="" ID="" />
   </Interaction>
   <GraphicalLine GraphId="idb51acdef">
     <Graphics ZOrder="12288" LineThickness="1.0" Color="ff6666">
-      <Point X="681.9526627218936" Y="156.80473372781066" />
-      <Point X="767.7514792899409" Y="153.84615384615387" />
+      <Point X="880.0085557960133" Y="54.739120119062186" />
+      <Point X="965.8073723640606" Y="51.78054023740539" />
     </Graphics>
   </GraphicalLine>
   <Label TextLabel="Label" GraphId="afff7">
-    <Graphics CenterX="1271.9882805767804" CenterY="20.903946688113983" Width="80.0" Height="20.0" ZOrder="28672" FillColor="99ffff" FontSize="10" Valign="Middle" ShapeType="Rectangle" />
+    <Graphics CenterX="720.3479403580683" CenterY="39.129949118247595" Width="80.0" Height="20.0" ZOrder="28672" FillColor="99ffff" FontSize="10" Valign="Middle" ShapeType="Rectangle" />
   </Label>
-  <Label TextLabel="Label" GraphId="e8a51">
-    <Graphics CenterX="1268.2038834951454" CenterY="44.90291262135922" Width="80.0" Height="20.0" ZOrder="28672" FillColor="99ffff" FontName="Arial Black" FontSize="10" Valign="Middle" ShapeType="Rectangle" />
+  <Label TextLabel="Label (font: &#xA;Copperplate)" GraphId="e8a51">
+    <Graphics CenterX="723.8539442484862" CenterY="108.68856774110492" Width="80.0" Height="86.8179688057132" ZOrder="28672" FillColor="99ffff" FontName="Copperplate" FontSize="10" Valign="Bottom" Align="Right" ShapeType="Rectangle" />
   </Label>
-  <Label TextLabel="Label" GraphId="e897b">
-    <Graphics CenterX="1267.2815533980583" CenterY="80.38834951456307" Width="80.0" Height="20.0" ZOrder="32771" FillColor="99ffff" FontWeight="Bold" FontStyle="Italic" FontSize="12" Valign="Bottom" Align="Right" ShapeType="Rectangle" />
+  <Label TextLabel="Interaction&#xA;Start: Line&#xA;End: Line" GraphId="e2efc">
+    <Graphics CenterX="522.8571428571429" CenterY="30.714285714285698" Width="80.0" Height="38.571428571428555" ZOrder="28672" FillColor="ffffff" FontSize="10" Valign="Middle" />
   </Label>
-  <Shape GraphId="f98a6">
-    <Graphics CenterX="761.5843195266273" CenterY="291.1701183431953" Width="98.13313609467468" Height="50.79585798816555" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="Arc" Rotation="0.0" />
+  <Label TextLabel="Label for the&#xA;rendering of text&#xA;(bold, italic)" GraphId="e897b">
+    <Graphics CenterX="729.2781153064612" CenterY="221.1145124990234" Width="112.69746024307507" Height="53.431167799183015" ZOrder="32771" FillColor="99ffff" FontWeight="Bold" FontStyle="Italic" FontSize="12" Valign="Bottom" Align="Right" ShapeType="Rectangle" />
+  </Label>
+  <Label TextLabel="Interaction&#xA;Start: Line&#xA;End: Arrow" GraphId="f4e47">
+    <Graphics CenterX="524.2857142857142" CenterY="87.61904761904758" Width="80.0" Height="34.285714285714164" ZOrder="32772" FillColor="ffffff" FontSize="10" Valign="Middle" />
+  </Label>
+  <Label TextLabel="Interaction&#xA;Double Line&#xA;Start: Arrow&#xA;End: tbar/inhibition" GraphId="e8ac2">
+    <Graphics CenterX="535.2941176470596" CenterY="156.810994142493" Width="173.3333333333334" Height="47.76080541572645" ZOrder="32773" FillColor="ffffff" FontSize="10" Valign="Middle" />
+  </Label>
+  <Label TextLabel="Interaction&#xA;Dashed Line&#xA;Start: tbar/inhibition&#xA;End: mim-necessary-stimulation" GraphId="a4f3e">
+    <Graphics CenterX="518.8235294117648" CenterY="229.28571428571428" Width="157.64705882352945" Height="50.00000000000003" ZOrder="32774" FillColor="ffffff" FontSize="10" Valign="Middle" />
+  </Label>
+  <Label TextLabel="Interaction&#xA;Double Line&#xA;Start: mim-necessary-stimulation&#xA;End: mim-binding" GraphId="be5a6">
+    <Graphics CenterX="526.6661901698708" CenterY="288.8360034171628" Width="143.52845877111406" Height="50.731354510212526" ZOrder="32775" FillColor="ffffff" FontSize="10" Valign="Middle" />
+  </Label>
+  <Label TextLabel="Interaction&#xA;Start: mim-binding&#xA;End: mim-conversion" GraphId="a1e77">
+    <Graphics CenterX="537.7030812324929" CenterY="353.80952380952317" Width="96.35854341736716" Height="34.285714285714164" ZOrder="32776" FillColor="ffffff" FontSize="10" Valign="Middle" />
+  </Label>
+  <Label TextLabel="Interaction&#xA;Start: mim-conversion&#xA;End: mim-stimulation" GraphId="fda37">
+    <Graphics CenterX="531.7647058823528" CenterY="413.5014005602226" Width="109.8039215686271" Height="34.285714285714164" ZOrder="32777" FillColor="ffffff" FontSize="10" Valign="Middle" />
+  </Label>
+  <Label TextLabel="Interaction&#xA;Start: mim-stimulation&#xA;End: mim-modification" GraphId="a2e30">
+    <Graphics CenterX="531.8767507002797" CenterY="473.8095238095217" Width="106.4425770308129" Height="34.285714285714164" ZOrder="32778" FillColor="ffffff" FontSize="10" Valign="Middle" />
+  </Label>
+  <Label TextLabel="Interaction&#xA;Dashed Line&#xA;Start: mim-modification&#xA;End: mim-catalysis" GraphId="e0b15">
+    <Graphics CenterX="524.1638655462184" CenterY="539.9585392641397" Width="108.71988795518178" Height="48.583745194949756" ZOrder="32779" FillColor="ffffff" FontSize="10" Valign="Middle" />
+  </Label>
+  <Label TextLabel="Interaction&#xA;Start: mim-catalysis&#xA;End: mim-inhibition" GraphId="d14ef">
+    <Graphics CenterX="519.2055385580918" CenterY="605.2263277633931" Width="93.80952380952397" Height="34.285714285714164" ZOrder="32781" FillColor="ffffff" FontSize="10" Valign="Middle" />
+  </Label>
+  <Label TextLabel="Interaction&#xA;Start: mim-inhibition&#xA;End: mim-cleavage" GraphId="a78f5">
+    <Graphics CenterX="527.9846457753438" CenterY="661.4106831083551" Width="93.80952380952397" Height="34.285714285714164" ZOrder="32782" FillColor="ffffff" FontSize="10" Valign="Middle" />
+  </Label>
+  <Label TextLabel="Interaction&#xA;Start: mim-cleavage&#xA;End: mim-covalent-bond" GraphId="c4524">
+    <Graphics CenterX="720.1702151633745" CenterY="270.0070770399053" Width="129.85564810462387" Height="34.285714285714164" ZOrder="32783" FillColor="ffffff" FontSize="10" Valign="Middle" />
+  </Label>
+  <Label TextLabel="Interaction&#xA;Start: mim-covalent-bond&#xA;End: mim-branching-left" GraphId="bfb78">
+    <Graphics CenterX="706.665230014065" CenterY="354.6231281114972" Width="113.02990033222682" Height="34.285714285714164" ZOrder="32784" FillColor="ffffff" FontSize="10" Valign="Middle" />
+  </Label>
+  <Label TextLabel="Interaction&#xA;Start: mim-branching-left&#xA;End: mim-branching-right" GraphId="e95f5">
+    <Graphics CenterX="714.4289113974721" CenterY="437.3979183081491" Width="123.03995447628597" Height="34.285714285714164" ZOrder="32785" FillColor="ffffff" FontSize="10" Valign="Middle" />
+  </Label>
+  <Label TextLabel="Interaction&#xA;Start: mim-branching-right&#xA;End: mim-transcription-translation" GraphId="c43a2">
+    <Graphics CenterX="725.0980392156863" CenterY="505.42446106169575" Width="156.07843137254918" Height="34.285714285714164" ZOrder="32786" FillColor="ffffff" FontSize="10" Valign="Middle" />
+  </Label>
+  <Label TextLabel="Interaction&#xA;Start: mim-transcription-translation&#xA;End: mim-gap" GraphId="e40e9">
+    <Graphics CenterX="721.4924523551479" CenterY="588.4571642686535" Width="161.6038882138518" Height="34.285714285714164" ZOrder="32787" FillColor="ffffff" FontSize="10" Valign="Middle" />
+  </Label>
+  <Label TextLabel="Interaction&#xA;Start: mim-gap&#xA;End: Line" GraphId="c7aa8">
+    <Graphics CenterX="729.011076991327" CenterY="677.451778272244" Width="93.80952380952397" Height="34.285714285714164" ZOrder="32788" FillColor="ffffff" FontSize="10" Valign="Middle" />
+  </Label>
+  <Label TextLabel="Graphical Line" GraphId="bb3bb">
+    <Graphics CenterX="920.4634612046524" CenterY="22.2574205867037" Width="80.0" Height="25.959034889776085" ZOrder="32789" FillColor="ffffff" FontSize="10" Valign="Middle" />
+  </Label>
+  <Shape TextLabel="Arc" GraphId="f98a6">
+    <Graphics CenterX="919.4423508307748" CenterY="102.50942395766666" Width="97.93182324732058" Height="62.29585439329384" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="Arc" Rotation="0.0" />
   </Shape>
-  <Shape GraphId="db0b7">
-    <Graphics CenterX="805.2233727810651" CenterY="406.55473372781074" Width="179.4940828402369" Height="65.5887573964497" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="Rectangle" Rotation="0.0" />
+  <Shape TextLabel="Rectangle (Rotated)" GraphId="db0b7">
+    <Graphics CenterX="923.0848551625962" CenterY="246.16591234263703" Width="179.4940828402369" Height="65.5887573964497" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="Rectangle" Rotation="4.149326160497226" />
   </Shape>
-  <Shape GraphId="d9aa0">
-    <Graphics CenterX="820.7559171597634" CenterY="539.6908284023668" Width="145.4704142011836" Height="36.00295857988169" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="Oval" Rotation="0.0" />
+  <Shape TextLabel="oval" GraphId="d9aa0">
+    <Graphics CenterX="908.2407288244051" CenterY="381.73214067454217" Width="145.4704142011836" Height="36.00295857988169" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="Oval" Rotation="0.0" />
   </Shape>
-  <Shape GraphId="cb9b8">
-    <Graphics CenterX="796.3476331360947" CenterY="643.9807692307693" Width="129.19822485207098" Height="49.316568047337455" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="RoundedRectangle" Rotation="0.0" />
+  <Shape TextLabel="rounded rectangle" GraphId="cb9b8">
+    <Graphics CenterX="927.574850633057" CenterY="462.93581175810704" Width="129.19822485207098" Height="49.316568047337455" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="RoundedRectangle" Rotation="0.0" />
   </Shape>
-  <Shape GraphId="a771e">
-    <Graphics CenterX="803.7440828402367" CenterY="769.7204142011834" Width="141.03254437869836" Height="58.192307692307786" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="Triangle" Rotation="0.0" />
+  <Shape TextLabel="triangle" GraphId="a771e">
+    <Graphics CenterX="890.0138276762029" CenterY="558.2987860116328" Width="141.03254437869836" Height="58.192307692307786" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="Triangle" Rotation="0.0" />
   </Shape>
-  <Shape GraphId="c7853">
-    <Graphics CenterX="779.3357988165681" CenterY="851.0813609467457" Width="47.83727810650897" Height="16.77218934911233" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="Pentagon" Rotation="0.0" />
+  <Shape TextLabel="pentagon" GraphId="c7853">
+    <Graphics CenterX="924.8549954345106" CenterY="845.0419198055896" Width="105.58284023668648" Height="52.173754556500455" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="Pentagon" Rotation="0.0" />
   </Shape>
-  <Shape GraphId="dbd9b">
-    <Graphics CenterX="783.7736686390533" CenterY="916.9097633136096" Width="59.67159763313606" Height="38.96153846153827" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="Hexagon" Rotation="0.0" />
+  <Shape TextLabel="hexagon" GraphId="dbd9b">
+    <Graphics CenterX="918.2812070862104" CenterY="917.730292910193" Width="56.51170490412467" Height="40.60259765470511" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="Hexagon" Rotation="0.0" />
   </Shape>
-  <Shape GraphId="b973a">
-    <Graphics CenterX="1114.3949704142015" CenterY="89.24704142011836" Width="70.02662721893489" Height="55.23372781065087" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="Brace" Rotation="0.0" />
+  <Shape TextLabel="brace" GraphId="b973a">
+    <Graphics CenterX="932.1349461128672" CenterY="767.2543318210901" Width="70.02662721893489" Height="55.23372781065087" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="Brace" Rotation="0.0" />
   </Shape>
-  <Shape GraphId="b46fd">
-    <Graphics CenterX="1068.5369822485209" CenterY="230.5192307692308" Width="52.2751479289941" Height="50.795857988165686" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="mim-degradation" Rotation="0.0" />
+  <Shape TextLabel="mim-degradation" GraphId="b46fd">
+    <Graphics CenterX="910.0210893181961" CenterY="663.3139923213537" Width="94.90314335631732" Height="85.27967027831494" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="mim-degradation" Rotation="0.0" />
   </Shape>
-  <Shape GraphId="e31c4">
+  <Shape TextLabel="cell" GraphId="e31c4">
     <Attribute Key="org.pathvisio.CellularComponentProperty" Value="Cell" />
     <Attribute Key="org.pathvisio.DoubleLineProperty" Value="Double" />
-    <Graphics CenterX="1086.2884615384617" CenterY="379.18786982248525" Width="87.77810650887574" Height="75.94378698224847" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="RoundedRectangle" LineThickness="3.0" Color="c0c0c0" Rotation="0.0" />
+    <Graphics CenterX="1126.3856668847563" CenterY="65.70062802418718" Width="87.77810650887574" Height="75.94378698224847" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="RoundedRectangle" LineThickness="3.0" Color="c0c0c0" Rotation="0.0" />
   </Shape>
-  <Shape GraphId="de1ed">
+  <Shape TextLabel="nucleus" GraphId="de1ed">
     <Attribute Key="org.pathvisio.CellularComponentProperty" Value="Nucleus" />
     <Attribute Key="org.pathvisio.DoubleLineProperty" Value="Double" />
-    <Graphics CenterX="1317.0576923076924" CenterY="399.8979289940829" Width="126.23964497041442" Height="78.90236686390534" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="Oval" LineThickness="3.0" Color="c0c0c0" Rotation="0.0" />
+    <Graphics CenterX="1123.8620665482756" CenterY="179.97083300380308" Width="126.23964497041442" Height="78.90236686390534" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="Oval" LineThickness="3.0" Color="c0c0c0" Rotation="0.0" />
   </Shape>
-  <Shape GraphId="b977c">
+  <Shape TextLabel="endoplasmic reticulum" GraphId="b977c">
     <Attribute Key="org.pathvisio.CellularComponentProperty" Value="Endoplasmic Reticulum" />
-    <Graphics CenterX="1115.1346153846155" CenterY="564.0991124260355" Width="124.76035502958558" Height="81.86094674556213" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="Endoplasmic Reticulum" LineThickness="3.0" Color="c0c0c0" Rotation="0.0" />
+    <Graphics CenterX="1127.2852836713712" CenterY="300.4296106034353" Width="124.76035502958558" Height="81.86094674556213" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="Endoplasmic Reticulum" LineThickness="3.0" Color="c0c0c0" Rotation="0.0" />
   </Shape>
-  <Shape GraphId="cc6a6">
+  <Shape TextLabel="golgi apparatus" GraphId="cc6a6">
     <Attribute Key="org.pathvisio.CellularComponentProperty" Value="Golgi Apparatus" />
-    <Graphics CenterX="1407.294378698225" CenterY="570.0162721893491" Width="135.11538461538441" Height="87.77810650887585" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="Golgi Apparatus" LineThickness="3.0" Color="c0c0c0" Rotation="0.0" />
+    <Graphics CenterX="1150.9152778476791" CenterY="511.69306441292076" Width="135.11538461538441" Height="87.77810650887585" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="Golgi Apparatus" LineThickness="3.0" Color="c0c0c0" Rotation="0.0" />
   </Shape>
-  <Shape GraphId="c85fa">
+  <Shape TextLabel="mitochondria" GraphId="c85fa">
     <Attribute Key="org.pathvisio.CellularComponentProperty" Value="Mitochondria" />
-    <Graphics CenterX="1140.2825443786983" CenterY="711.2884615384617" Width="118.84319526627239" Height="71.50591715976323" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="Mitochondria" LineThickness="3.0" Color="c0c0c0" Rotation="0.0" />
+    <Graphics CenterX="1141.497611207374" CenterY="409.95188802691837" Width="118.84319526627239" Height="71.50591715976323" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="Mitochondria" LineThickness="3.0" Color="c0c0c0" Rotation="6.223978403555872" />
   </Shape>
-  <Shape GraphId="af875">
+  <Shape TextLabel="sarcoplasmic reticulum" GraphId="af875">
     <Attribute Key="org.pathvisio.CellularComponentProperty" Value="Sarcoplasmic Reticulum" />
-    <Graphics CenterX="1378.4482248520712" CenterY="695.7559171597634" Width="89.25739644970406" Height="72.98520710059162" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="Sarcoplasmic Reticulum" LineThickness="3.0" Color="c0c0c0" Rotation="0.0" />
+    <Graphics CenterX="1152.445794718415" CenterY="715.1969864185731" Width="89.25739644970406" Height="72.98520710059162" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="Sarcoplasmic Reticulum" LineThickness="3.0" Color="c0c0c0" Rotation="0.0" />
   </Shape>
-  <Shape GraphId="d1405">
+  <Shape TextLabel="organelle" GraphId="d1405">
     <Attribute Key="org.pathvisio.CellularComponentProperty" Value="Organelle" />
     <Attribute Key="org.pathvisio.DoubleLineProperty" Value="Double" />
-    <Graphics CenterX="1118.8328402366865" CenterY="822.2352071005918" Width="132.15680473372782" Height="56.713017751479335" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="RoundedRectangle" LineThickness="3.0" Color="c0c0c0" Rotation="0.0" />
+    <Graphics CenterX="1145.564310467549" CenterY="609.5985120823656" Width="132.15680473372782" Height="56.713017751479335" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="RoundedRectangle" LineThickness="3.0" Color="c0c0c0" Rotation="0.0" />
   </Shape>
-  <Shape GraphId="cebed">
+  <Shape TextLabel="vesicle" GraphId="cebed">
     <Attribute Key="org.pathvisio.CellularComponentProperty" Value="Vesicle" />
-    <Graphics CenterX="1388.0636094674558" CenterY="816.3180473372781" Width="102.5710059171599" Height="86.29881656804731" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="Oval" LineThickness="3.0" Color="c0c0c0" Rotation="0.0" />
+    <Graphics CenterX="1160.846112505123" CenterY="822.3933814806558" Width="102.5710059171599" Height="86.29881656804731" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="Oval" LineThickness="3.0" Color="c0c0c0" Rotation="0.0" />
   </Shape>
-  <Shape GraphId="a5b67">
+  <Shape TextLabel="extracellular&#xA;region" GraphId="a5b67">
     <Attribute Key="org.pathvisio.CellularComponentProperty" Value="Extracellular region" />
-    <Graphics CenterX="1676.525147928994" CenterY="708.3298816568048" Width="72.98520710059205" Height="71.50591715976343" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="RoundedRectangle" LineStyle="Broken" Color="c0c0c0" Rotation="0.0" />
+    <Graphics CenterX="1165.7027849475505" CenterY="930.4561407608186" Width="84.14728551194578" Height="66.18370875782784" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="RoundedRectangle" LineStyle="Broken" Color="c0c0c0" Rotation="0.0" />
+  </Shape>
+  <Shape TextLabel="rectangle (dashed)" GraphId="f4077">
+    <Graphics CenterX="1296.7869016179925" CenterY="65.05632160746987" Width="129.19822485207098" Height="49.316568047337455" ZOrder="32791" FontSize="10" Valign="Middle" ShapeType="Rectangle" LineStyle="Broken" Rotation="0.0" />
+  </Shape>
+  <Shape TextLabel="rectangle (double)" GraphId="c14df">
+    <Attribute Key="org.pathvisio.DoubleLineProperty" Value="Double" />
+    <Graphics CenterX="1299.834410308607" CenterY="141.10498904663558" Width="129.19822485207098" Height="49.316568047337455" ZOrder="32792" FontSize="10" Valign="Middle" ShapeType="Rectangle" Rotation="0.0" />
+  </Shape>
+  <Shape TextLabel="rectangle (dashed)&#xA;stroke: red" GraphId="c49f9">
+    <Attribute Key="org.pathvisio.CellularComponentProperty" Value="None" />
+    <Graphics CenterX="1306.7869016179923" CenterY="212.9473992436229" Width="129.19822485207098" Height="49.316568047337455" ZOrder="32793" FontSize="10" Valign="Middle" ShapeType="RoundedRectangle" LineStyle="Broken" Color="ff0033" Rotation="0.0" />
+  </Shape>
+  <Shape TextLabel="rectangle (dashed)&#xA;stroke: red&#xA;fill: yellow" GraphId="dbe31">
+    <Graphics CenterX="1310.993158860171" CenterY="284.3610724765315" Width="129.19822485207098" Height="49.316568047337455" ZOrder="32794" FillColor="ffffcc" FontSize="10" Valign="Middle" ShapeType="Rectangle" LineStyle="Broken" Color="ff0033" Rotation="0.0" />
+  </Shape>
+  <Shape TextLabel="rectangle w/ mitochondria&#xA;(dashed)&#xA;stroke: red&#xA;fill: yellow" GraphId="be803">
+    <Attribute Key="org.pathvisio.CellularComponentProperty" Value="Mitochondria" />
+    <Graphics CenterX="1327.075883920998" CenterY="364.9206831821276" Width="129.19822485207098" Height="49.316568047337455" ZOrder="32795" FillColor="ffffcc" FontSize="10" Valign="Middle" ShapeType="Rectangle" LineStyle="Broken" Color="ff0033" Rotation="0.0" />
   </Shape>
   <Group GroupId="fe843" Style="Complex" />
   <InfoBox CenterX="0.0" CenterY="0.0" />
