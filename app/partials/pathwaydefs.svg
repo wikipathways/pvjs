@@ -149,40 +149,6 @@
          we need to clone the black marker and set the color for the clone to the desired color using d3.js.
         I wish fill="currentColor" worked for markers, but that does not appear to be the case. -->
 
-      <!-- 
-       Boxes filled with background color to blank out the end of lines, such as for double lines.
-       TODO This could be refactored to make the shape match the viewbox.
-       It can overlap the side of the shape, blanking out a small part of it when the edge is at an angle.
-       -->
-
-    <marker id="blank-out-start" 
-      fill="white"
-      markerUnits="strokeWidth"
-      markerWidth="10" markerHeight="10"
-      orient="auto"
-      refX="0" refY="0"
-      stroke="none"
-      viewBox="0 -6 12 12">
-      <rect x="-7" y="-2.5" width="10" height="5" />
-      <!--
-      <path d="M0,0 L10,-5 L10,5 Z" stroke-width="1px"/>
-      -->
-    </marker>
-
-    <marker id="blank-out-end"
-      fill="white"
-      markerUnits="strokeWidth"
-      markerWidth="10" markerHeight="10"
-      orient="auto"
-      refX="0" refY="0"
-      stroke="none"
-      viewBox="-12 -6 12 12">
-      <rect x="-3" y="-2.5" width="10" height="5" />
-      <!--
-      <path d="M0,0 L-10,-5 L-10,5 Z" stroke-width="1px"/>
-      -->
-    </marker>
-
   <!-- arrow markers -->
 
     <marker id="arrow-start-black" 
@@ -490,18 +456,22 @@
       <line transform="rotate(-90 1.20001 1.6962)" id="svg_15" stroke="#ff0000" y2="-7.3038" x2="-7.79999" y1="10.6962" x1="10.20001" stroke-width="5" fill="none"/>
     </marker>
 
-  <!-- mim-gap markers are incorrect. TODO Replace marker defs. -->
+  <!-- mim-gap markers. Says "...-black", but there is actually no black color in the marker. -->
+      <!-- 
+       Boxes filled with background color to blank out the end of lines, such as for double lines.
+       TODO This could be refactored to make the shape match the viewbox.
+       It can overlap the side of the shape, blanking out a small part of it when the edge is at an angle.
+       -->
 
     <marker id="mim-gap-start-black"
       fill="white"
-      markerWidth="10" markerHeight="10"
       markerUnits="strokeWidth"
+      markerWidth="10" markerHeight="10"
       orient="auto"
       refX="0" refY="0"
-      stroke="black"
+      stroke="none"
       viewBox="0 -6 12 12">
-      <line stroke="#ff0000" id="svg_14" y2="-8.20383" x2="-8.19998" y1="9.79617" x1="9.80002" stroke-width="5" fill="none"/>
-      <line transform="rotate(-90 1.20001 1.6962)" id="svg_15" stroke="#ff0000" y2="-7.3038" x2="-7.79999" y1="10.6962" x1="10.20001" stroke-width="5" fill="none"/>
+      <rect x="-7" y="-2.5" width="10" height="5" />
     </marker>
 
     <marker id="mim-gap-end-black"
@@ -510,10 +480,9 @@
       markerWidth="10" markerHeight="10"
       orient="auto"
       refX="0" refY="0"
-      stroke="black"
+      stroke="none"
       viewBox="-12 -6 12 12">
-      <line stroke="#ff0000" id="svg_14" y2="-8.20383" x2="-8.19998" y1="9.79617" x1="9.80002" stroke-width="5" fill="none"/>
-      <line transform="rotate(-90 1.20001 1.6962)" id="svg_15" stroke="#ff0000" y2="-7.3038" x2="-7.79999" y1="10.6962" x1="10.20001" stroke-width="5" fill="none"/>
+      <rect x="-3" y="-2.5" width="10" height="5" />
     </marker>
 
   <!-- ***************************
