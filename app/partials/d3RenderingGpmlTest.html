@@ -826,7 +826,7 @@ function drawPathway() {
             markerStart = d.markerStart;
             if (d.hasOwnProperty('strokeStyle')) {
               if (d.strokeStyle === 'double') {
-                markerStart = 'blank-out-start';
+                markerStart = 'mim-gap-start-black';
               };
             };
             return 'url(#' + markerStart + ')'; 
@@ -835,7 +835,7 @@ function drawPathway() {
             markerEnd = d.markerEnd;
             if (d.hasOwnProperty('strokeStyle')) {
               if (d.strokeStyle === 'double') {
-                markerEnd = 'blank-out-end';
+                markerEnd = 'mim-gap-end-black';
               };
             };
             return 'url(#' + markerEnd + ')'; 
