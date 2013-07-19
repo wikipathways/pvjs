@@ -61,7 +61,7 @@ function convertGpml2Json(xmlDoc){
 
   var alignToAnchorMappings = { "Left":"start",  "Center":"middle", "Right":"end" };
 
-  console.log('xmlDoc');
+  console.log('GPML pathway');
   console.log(xmlDoc);
 
   // We can use xml2json.js or JXON.js. Which is better?
@@ -525,8 +525,9 @@ function convertGpml2Json(xmlDoc){
       console.log("No Shapes found.");
     }
 
-    console.log('pathway');
+    console.log('jGPML pathway');
     console.log(pathway);
+
     return pathway;
   }
   else {
@@ -546,7 +547,6 @@ function drawPathway() {
         //d3.xml("../../samples/gpml/WP673_63184.gpml", "application/xml", function(xml) {
          //d3.xml("../../samples/gpml/ovalandpentagon.gpml", "application/xml", function(xml) {
           var pathway = convertGpml2Json(xml);
-          console.log(pathwayc = pathway);
 
           var drag = d3.behavior.drag()
           .on("drag", dragmove);
@@ -565,20 +565,11 @@ function drawPathway() {
           }	
 
           var svg = self.svg = d3.select("#pathway-container").select(function() {
-            var svgObject = self.svgObject = this;
-            console.log(svgObject);
-            var svgContentDocument = self.svgContentDocument = this.getSVGDocument();
-            console.log(svgContentDocument);
-            var svgInside = self.svgInside = this.getSVGDocument().documentElement; 
-            console.log(svgInside);
             return this.getSVGDocument().documentElement;
           });
 
           svg.attr('width', pathway.boardWidth);
           svg.attr('height', pathway.boardHeight);
-
-          console.log('svg');
-          console.log(svg);
 
           var symbolsAvailable = svg.selectAll('symbol');
           var markersAvailable = svg.selectAll('marker');
@@ -873,8 +864,6 @@ function drawPathway() {
             return styleClass; 
           })
           .attr("d", function (d) {
-            console.log('d');
-            console.log(d);
             pathData = getPathData(d);
             if (d.hasOwnProperty('strokeStyle')) {
               if (d.strokeStyle === 'double') {
