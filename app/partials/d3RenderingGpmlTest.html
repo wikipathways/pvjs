@@ -9,7 +9,8 @@ http://google-styleguide.googlecode.com/svn/trunk/javascriptguide.xml
 http://google-styleguide.googlecode.com/svn/trunk/jsoncstyleguide.xml#General_Guidelines
 -->
 
-<script src="http://mbostock.github.com/d3/d3.js?1.27.1"></script>
+<!--<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>-->
+<script type="text/javascript" src="http://mbostock.github.com/d3/d3.v2.js"></script>
 <script src="../js/xml2json.js"></script>
 <script src="../js/gpml2jgpml.js"></script>
 <script src="../js/jquery-1.9.1.js"></script>
@@ -543,7 +544,7 @@ function clone(selector) {
 };
 
 function drawPathway() {
-        d3.xml("../../samples/gpml/DatanodeShapes1.gpml", "application/xml", function(xml) {
+        d3.xml("../../samples/gpml/DatanodeShapes1.gpml", "application/xml", function(xml,e) {
         //d3.xml("../../samples/gpml/WP673_63184.gpml", "application/xml", function(xml) {
          //d3.xml("../../samples/gpml/ovalandpentagon.gpml", "application/xml", function(xml) {
           var pathway = convertGpml2Json(xml);
