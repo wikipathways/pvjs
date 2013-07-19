@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<?xml-stylesheet type="text/css" href="pathways.css"?>
 
 <!-- 
   This file serves as our template for standardized GPML pathway visual representations.
@@ -71,15 +70,6 @@
   xmlns:ev="http://www.w3.org/2001/xml-events"
   width="100%"
   height="100%">
-  <!--
-  onload="positionNodeLabel()">
--->
-  <!-- ***************************
-       CSS Style Sheet
-       ***************************
-       
-       Moved to external style sheet: pathways.css.
-       -->
   
   <g>
     <title>pathway defs for pathvisio.js</title>
@@ -91,55 +81,174 @@
     </desc>
   </g>
 
+  <defs>
+
   <!-- ***************************
-       Embedded Scripts 
+       CSS Style Sheet
        ***************************
 
-       We could move this code into an external script. TODO Would that make maintainability easier?
+       Note: pathvisio.js assumes the default drawing board background color is white, and the default element color is black.
        -->
- 
-<!-- ECMAScript to truncate (if needed) and position text labels 
-  <script type="application/ecmascript"> <![CDATA[
-		function positionNodeLabel(){
-      var nodeLabels = document.getElementsByTagNameNS('http://www.w3.org/2000/svg','text');
-      for (var i = 0; i < nodeLabels.length; ++i) {
-        var nodeLabel = nodeLabels.item(i); // Calling nodeLabels.item(i) instead of nodeLabels[i]
-        // shouldn't be necessary in JavaScript, but Batik can only use .item(i).
-        var labelBbox = nodeLabel.getBBox();
-        var labelText = nodeLabel.textContent;
-        //this selector isn't good enough. TODO
-        shapeNodeList = nodeLabel.parentNode.getElementsByTagNameNS('http://www.w3.org/2000/svg','use'); 
-        if (typeof shapeNodeList.item(0) !== 'undefined' && shapeNodeList.item(0) !== null) {
-          var shape = nodeLabel.parentNode.getElementsByTagNameNS('http://www.w3.org/2000/svg','use').item(0);
-          var shapeBbox = shape.getBBox();
 
-          // truncate label, if needed
-          if ( shapeBbox['width'] < labelBbox['width'] ) {
-            labelText = labelText.substring(0, labelText.length - 4);
-            nodeLabel.textContent = labelText + "...";
-            labelBbox = nodeLabel.getBBox();
-            while ( shapeBbox['width'] < labelBbox['width'] ) {
-              labelText = labelText.substring(0, labelText.length - 1);
-              nodeLabel.textContent = labelText + "...";
-              labelBbox = nodeLabel.getBBox();
-            };
+    <style type="text/css"><![CDATA[
 
-            // reposition label after making it narrow from truncation. I think this can be removed now
-            // that we are using text-anchor="middle". TODO test this SVG in other SVG renderers.
-            // It works without this repositioning code in Chrome and Squiggle (Batik).
-            /*
-            var labelxtransform = -1*(labelBbox["x"]) + shapeBbox['width']/2 - labelBbox["width"]/2;
-            var labelytransform = -1*(labelBbox["y"]) + shapeBbox["height"]/2 - labelBbox["height"]/2;
-            nodeLabels.setAttribute("transform", "translate(" + labelxtransform + "," + labelytransform + ")");
-            */
-          };
-        };
-      };
-		};
-    
-  ]]> </script>
--->
-  <defs>
+          svg {
+            color-interpolation: auto;
+            image-rendering: auto;
+            shape-rendering: auto;
+            vector-effect: non-scaling-stroke;
+          }
+
+          body {
+            text-align:center;
+            margin:0; 
+          }
+
+          div.outer {
+            display:table;
+            text-align:center;
+            margin-top:0; 
+            margin-bottom:0; 
+            margin-left:auto; 
+            margin-right:auto;
+          }
+
+          p {
+            display:table-cell;
+            vertical-align:middle;
+            color: black;
+          }
+
+          text, p {
+            font-family: Sans-Serif;
+            font-size: 10px;
+          }
+
+          text {
+            fill: black;
+            stroke: none;
+            text-anchor: middle;
+          }
+
+          .complex {
+            fill: rgb(180,180,100);
+            fill-opacity: 0.098;
+            stroke: gray;
+            stroke-dasharray: 4,2;
+            stroke-miterlimit: 1;
+            stroke-width: 1px;
+          }
+
+          .complex {
+            stroke-dasharray: 1;
+          }
+
+          .label {
+            font-size: 10px;
+            stroke: none;
+          }
+
+          .data-node {
+            fill: white;
+            fill-opacity: 1;
+            stroke: black;
+            stroke-dasharray: 0;
+            stroke-miterlimit: 1;
+            stroke-width: 1px;
+          }
+
+          .gene-product {
+            stroke: black;
+          }
+
+          text.gene-product, p.gene-product {
+            fill: black;  
+            stroke: none;
+          }
+
+          .metabolite {
+            stroke: blue;
+          }
+
+          text.metabolite, p.metabolite {
+            fill: blue;
+            stroke: none;
+          }
+
+          .pathway {
+            stroke: rgb(20,150,30);
+          }
+
+          text.pathway, p.pathway {
+            fill: rgb(20,150,30);
+            font-size: 10px;
+            stroke: none;
+          }
+
+          .protein {
+            stroke: black;
+          }
+
+          text.protein, p.protein {
+            fill: black;  
+            stroke: none;
+          }
+
+          .rna {
+            stroke: black;
+          }
+
+          text.rna, p.rna {
+            fill: black;  
+            stroke: none;
+          }
+
+          .unknown {
+            stroke: black;
+          }
+
+          text.unknown, p.unknown {
+            fill: black;  
+            stroke: none;
+          }
+
+          .shape {
+            fill: white;
+            fill-opacity: 1;
+            stroke: black;
+            stroke-dasharray: 0;
+            stroke-miterlimit: 1;
+            stroke-width: 1px;
+          }
+
+          text.shape, p.shape {
+            fill: black;  
+            stroke: none;
+          }
+
+          use.label {
+            fill: white;
+            fill-opacity: 1;
+            stroke-width: 0;
+          }
+
+          .interaction {
+            fill:none;
+            stroke: black; 
+            stroke-width: 1px; 
+          }
+
+          marker {
+            /* this is what should work per the spec
+            stroke-dasharray: none; */
+            /* but I need to add this to make it work in Safari */
+            stroke-dasharray: 9999999999999999999999999;
+          }
+
+          .broken-stroke {
+            stroke-dasharray: 5,3;
+          }
+    ]]></style>
 
   <!-- ***************************
        Markers (Arrowheads) 
