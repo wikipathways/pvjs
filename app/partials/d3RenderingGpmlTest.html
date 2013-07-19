@@ -55,7 +55,11 @@ function convertGpml2Json(xmlDoc){
 
   var markerMappings = { "Arrow":"arrow", "TBar":"t-bar", "mim-necessary-stimulation":"mim-necessary-stimulation", "mim-binding":"mim-binding", "mim-conversion":"mim-conversion", "mim-stimulation":"mim-stimulation", "mim-modification":"mim-modification", "mim-catalysis":"mim-catalysis", "mim-inhibition":"mim-inhibition", "mim-cleavage":"mim-cleavage", "mim-covalent-bond":"mim-covalent-bond", "mim-transcription-translation":"mim-transcription-translation", "mim-gap":"mim-gap" };
 
-  var dataNodeTypeMappings = { 'GeneProduct':'gene-product',  'Metabolite':'metabolite', 'Pathway':'pathway', 'Protein':'protein', 'Unknown':'unknown' };
+  var dataNodeTypeMappings = { "GeneProduct":"gene-product",  "Metabolite":"metabolite", "Pathway":"pathway", "Protein":"protein", "Rna":"rna" };
+
+  // TODO What happens if we have right to left flowing text?
+
+  var alignToAnchorMappings = { "Left":"start",  "Center":"middle", "Right":"end" };
 
   console.log('xmlDoc');
   console.log(xmlDoc);
@@ -216,8 +220,13 @@ function convertGpml2Json(xmlDoc){
         // textLabel data
 
         if (element.hasOwnProperty("textlabel")) {
-          element.textLabel = {"text":element.textlabel};
+          var text = element.textlabel;
           delete element.textlabel;
+
+          element.textLabel = {};
+
+          // PathVisio (Java) uses '&#xA;' for indicating newline, and browsers convert this into '\r\n' or just '\n' in JavaScript.
+          var splitText = text.split(/\r\n|\r|\n/g);;
 
           if (element.graphics.hasOwnProperty("color")) {
             // element stroke and text color appear to be the same property in the Java PathVisio code
@@ -225,8 +234,20 @@ function convertGpml2Json(xmlDoc){
           };	
 
           if (element.graphics.hasOwnProperty("fontsize")) {
-            element.textLabel.fontSize = element.graphics.fontsize;
+            var fontSize = element.graphics.fontsize;
+          }
+          else {
+            var fontSize = 10;
           };
+
+          element.textLabel.fontSize = fontSize;
+
+          // TODO there must be a better way to pass the fontSize to the tspan when it's being created.
+
+          splitText.forEach(function(element, index, array) {
+            splitText[index] = {"text":element, "fontSize":fontSize };
+          });
+          element.textLabel.textArray = splitText;
 
           if (element.graphics.hasOwnProperty("fontname")) {
             element.textLabel.fontFamily = element.graphics.fontname;
@@ -238,6 +259,10 @@ function convertGpml2Json(xmlDoc){
 
           if (element.graphics.hasOwnProperty("fontstyle")) {
             element.textLabel.fontStyle = element.graphics.fontstyle.toLowerCase();
+          };
+
+          if (alignToAnchorMappings.hasOwnProperty(element.graphics.align)) {
+            element.textLabel.textAnchor = alignToAnchorMappings[element.graphics.align];
           };
         }
 
@@ -257,7 +282,7 @@ function convertGpml2Json(xmlDoc){
             element.dataNodeType = dataNodeTypeMappings[element.type];
           }
           else {
-            element.dataNodeType = element.type;
+            element.dataNodeType = "unknown";
           };
           delete element.type;
 
@@ -634,23 +659,80 @@ function drawPathway() {
               console.log('Pathvisio.js does not have access to the requested symbol: ' + pathway.labelableElements[0].symbolType + '. Rectangle used as placeholder.');
             };
 
-            /*
+           // use this for tspan option for rendering text, including multi-line
+
             if (d.hasOwnProperty('textLabel')) {
               var labelableElementText = d3.select(this).append('text')
               .attr("id", function (d) { return 'labelable-element-text-' + d.graphId; })
-              .attr("x", function (d) { return d.width / 2; })
-              .attr("y", function (d) { return d.height / 2 + 0.3 * d.textLabel.fontSize; })
-              //.attr("style", function (d) { return 'stroke:' + 'red'; })
-                .attr("style", function (d) { 
-                    var style = '';
-                    if (d.textLabel.hasOwnProperty('fill')) {
-                        style = 'fill:' + d.textLabel.color + '; '; 
-                    };
-                    return style; 
-                    })
-              .text(function (d) { return d.textLabel.text; });
+              .attr("x", 0)
+              .attr("y", 0)
+              .attr('transform', function(d) {
+                if (d.textLabel.hasOwnProperty('textAnchor')) {
+
+                  // giving padding of 5. maybe this should go into the CSS.
+
+                  if (d.textLabel.textAnchor === 'start') {
+                    var dx = 5;
+                  }
+                  else {
+                    if (d.textLabel.textAnchor === 'end') {
+                      var dx = d.width - 5;
+                    }
+                  };
+                }
+                else {
+                  var dx = d.width / 2;
+                };
+                var dy = (d.height / 2) + (0.3 * d.textLabel.fontSize) - (((d.textLabel.textArray.length - 1) * d.textLabel.fontSize)/2);
+                return 'translate(' + dx + ' ' + dy + ')'; })
+              .attr("class", function (d) { 
+                var styleClass = ''; 
+                if (d.elementType === 'data-node') {
+                  styleClass = "labelable-element " + d.elementType + ' ' + d.dataNodeType; 
+                }
+                else {
+                  styleClass = "labelable-element " + d.elementType; 
+                };
+                return styleClass })
+              .attr("style", function (d) { 
+                  var style = '';
+                  if (d.textLabel.hasOwnProperty('color')) {
+                      style += 'fill:' + d.textLabel.color + '; '; 
+                  };
+                  if (d.textLabel.hasOwnProperty('fontFamily')) {
+                      style += 'font-family:' + d.textLabel.fontFamily + '; '; 
+                  };
+                  if (d.textLabel.hasOwnProperty('fontSize')) {
+                      style += 'font-size:' + d.textLabel.fontSize + '; '; 
+                  };
+                  if (d.textLabel.hasOwnProperty('fontWeight')) {
+                      style += 'font-weight:' + d.textLabel.fontWeight + '; '; 
+                  };
+                  if (d.textLabel.hasOwnProperty('fontStyle')) {
+                      style += 'font-style:' + d.textLabel.fontStyle + '; '; 
+                  };
+                  if (d.textLabel.hasOwnProperty('textAnchor')) {
+                      style += 'text-anchor:' + d.textLabel.textAnchor + '; '; 
+                  };
+                  return style; 
+                  });
+
+              var labelableElementTspan = labelableElementText.selectAll('tspan')
+              .data(function (d) {
+                // how can we pass fontSize into here without having it on every element
+                // of textArray?
+                return d.textLabel.textArray; 
+              })
+              .enter()
+              .append('tspan')
+              .attr("x", 0)
+              .attr("y", function (d, i) { return i * d.fontSize; })
+              .text(function (d) { return d.text; });
             };
-            */
+
+            /*
+
+           // use this for foreignObject object option for rendering text, including multi-line
 
             if (d.hasOwnProperty('textLabel')) {
               var labelableElementSwitch = d3.select(this).append('switch');
@@ -724,6 +806,7 @@ function drawPathway() {
               .text(function (d) { return d.textLabel.text; });
 
             };
+            */
           });
 
         // Interactions
