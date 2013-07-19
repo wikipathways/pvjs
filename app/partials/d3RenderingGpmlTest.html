@@ -544,9 +544,12 @@ function clone(selector) {
 };
 
 function drawPathway() {
-        d3.xml("../../samples/gpml/DatanodeShapes1.gpml", "application/xml", function(xml,e) {
+        d3.xml("../../samples/gpml/DatanodeShapes1.gpml", "application/gpml+xml", function(xml,e) {
         //d3.xml("../../samples/gpml/WP673_63184.gpml", "application/xml", function(xml) {
          //d3.xml("../../samples/gpml/ovalandpentagon.gpml", "application/xml", function(xml) {
+
+          // be sure server has set gpml mime type to application/gpml+xml
+
           var pathway = convertGpml2Json(xml);
 
           var drag = d3.behavior.drag()
