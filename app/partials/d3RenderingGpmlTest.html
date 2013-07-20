@@ -9,13 +9,11 @@ http://google-styleguide.googlecode.com/svn/trunk/javascriptguide.xml
 http://google-styleguide.googlecode.com/svn/trunk/jsoncstyleguide.xml#General_Guidelines
 -->
 
-<!--<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>-->
-<script type="text/javascript" src="http://mbostock.github.com/d3/d3.v2.js"></script>
+<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
 <script src="../js/xml2json.js"></script>
-<script src="../js/gpml2jgpml.js"></script>
+<script src="../js/gpml2json.js"></script>
 <script src="../js/jquery-1.9.1.js"></script>
 <script src="../js/rgbcolor.js"></script>
-<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <style>
 text {
   font-size: 200px;
@@ -23,7 +21,7 @@ text {
 }
 </style>
 
-<object id="pathway-container" data="pathwaydefs.svg" type="image/svg+xml" width="100%" height="100%" onload="drawPathway()"></object>
+<object id="pathway-container" data="pathwaydefs.svg" type="image/svg+xml" width="100%" height="100%" onload="testPathway()"></object>
 
 <script>
 function convertToArray(object) {
@@ -62,8 +60,6 @@ function convertGpml2Json(xmlDoc){
 
   var alignToAnchorMappings = { "Left":"start",  "Center":"middle", "Right":"end" };
 
-  console.log('GPML pathway');
-  console.log(xmlDoc);
 
   // We can use xml2json.js or JXON.js. Which is better?
   // JXON.js
@@ -543,11 +539,27 @@ function clone(selector) {
   return d3.select(node.parentNode.insertBefore(node.cloneNode(true), node.nextSibling));
 };
 
-function drawPathway() {
-        d3.xml("../../samples/gpml/DatanodeShapes1.gpml", "application/gpml+xml", function(xml,e) {
+function testPathway() {
+        d3.json("../../samples/gpml/datanodeshapes.json", "application/gpml+xml", function(gpml,e) {
         //d3.xml("../../samples/gpml/WP673_63184.gpml", "application/xml", function(xml) {
-         //d3.xml("../../samples/gpml/ovalandpentagon.gpml", "application/xml", function(xml) {
+        //d3.xml("../../samples/gpml/ovalandpentagon.gpml", "application/xml", function(xml) {
 
+        console.log('GPML pathway');
+        console.log(gpml);
+        self.gpml = gpml;
+
+        });
+};
+
+function drawPathway() {
+        d3.json("../../samples/gpml/datanodeshapes.json", "application/gpml+xml", function(xml,e) {
+        //d3.xml("../../samples/gpml/WP673_63184.gpml", "application/xml", function(xml) {
+        //d3.xml("../../samples/gpml/ovalandpentagon.gpml", "application/xml", function(xml) {
+
+        console.log('GPML pathway');
+        console.log(xmlDoc);
+        self.xmlDoc = xmlDoc;
+        
           // be sure server has set gpml mime type to application/gpml+xml
 
           var pathway = convertGpml2Json(xml);

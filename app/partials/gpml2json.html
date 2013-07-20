@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<title>pathvisio.js gpml2json interface</title>
+
+<!-- 
+Style guides can be arbitrary, but for sake of consistency within this project, let's use these:
+http://google-styleguide.googlecode.com/svn/trunk/htmlcssguide.xml
+http://google-styleguide.googlecode.com/svn/trunk/javascriptguide.xml
+http://google-styleguide.googlecode.com/svn/trunk/jsoncstyleguide.xml#General_Guidelines
+-->
+
+<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+<script src="../js/gpml2json.js"></script>
+<script src="../js/jxon.js"></script>
+<script src="../js/jquery-1.9.1.js"></script>
+<script src="../js/rgbcolor.js"></script>
+
+<body>
+  <h1>pathvisio.js gpml2json interface</h1>
+
+  <form>
+    <!--
+    <input type="file" />
+    <input type="hidden" />
+    <input type="image" />
+ -->
+    GPML File Name (without .gpml extension): 
+    <input type="text" id="gpml-file-name" />
+    <input type="submit" onclick="submitRequest()" />
+  </form>
+<script>
+$("form").submit( function () {
+  return false;
+} );
+
+function displayResults(sGpml, sJson) {
+  $('#gpml').text(sGpml)
+  $('#json').text(sJson)
+}
+
+// $("#json").text("Found " + allInputs.length + " inputs and the form has " +
+   //                      formChildren.length + " children.");
+ 
+// so it won't submit
+function submitRequest() {
+  var allInputs = $(":input");
+  var formChildren = $("form > *");
+  var sGpmlUrl = 'http://127.0.0.1/~andersriutta/pathvisio.js/samples/gpml/' + $('#gpml-file-name').val() + '.gpml';
+  getJson(sGpmlUrl, displayResults);
+  //getJson('../../samples/gpml/DatanodeShapes1.gpml', displayResults);
+};
+ 
+</script>
+
+  <h2>GPML</h2>
+  <div id="gpml"></div>
+  <h2>json</h2>
+  <div id="json"></div>
+</body>
+
