@@ -6,6 +6,8 @@
  */
 function RGBColor(color_string)
 {
+	color_string = color_string.toString();
+
     this.ok = false;
 
     // strip any leading #
