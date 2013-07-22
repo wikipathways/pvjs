@@ -27,6 +27,13 @@ function clone(selector) {
   return d3.select(node.parentNode.insertBefore(node.cloneNode(true), node.nextSibling));
 };
 
+function splitTextByLines(text) {
+
+  // PathVisio (Java) uses '&#xA;' for indicating newline, and browsers convert this into '\r\n' or '\n' in JavaScript.
+
+  return text.split(/\r\n|\r|\n/g);
+};
+
 function getMarker(name, position, color) {
   var markerName = '';
   if (name === 'none') {
@@ -87,7 +94,7 @@ function getPathData(d) {
 };
 
 function drawPathway() {
-  d3.json("../../samples/gpml/WP673_63184.json",function(error, json) {
+  d3.json("../../samples/gpml/all-elements.json",function(error, json) {
   //d3.json("../../samples/gpml/datanodeshapes.json",function(error, json) {
     if (error) return console.warn(error);
     data = json;
@@ -228,7 +235,9 @@ function drawPathway() {
             else {
               var dx = d.width / 2;
             };
-            var dy = (d.height / 2) + (0.3 * d.textLabel.fontSize) - (((d.textLabel.textArray.length - 1) * d.textLabel.fontSize)/2);
+            var dy = (d.height / 2) + (0.3 * d.textLabel.fontSize) - (((splitTextByLines(d.textLabel.text).length - 1) * d.textLabel.fontSize)/2);
+            console.log('splitTextByLines(d.textLabel.text).length');
+            console.log(splitTextByLines(d.textLabel.text).length);
             return 'translate(' + dx + ' ' + dy + ')'; })
             .attr("class", function (d) { 
               var styleClass = ''; 
@@ -241,6 +250,7 @@ function drawPathway() {
               return styleClass })
               .attr("style", function (d) { 
                 var style = '';
+                var fontSize = d.fontSize;
                 if (d.textLabel.hasOwnProperty('color')) {
                   style += 'fill:' + d.textLabel.color + '; '; 
                 };
@@ -262,17 +272,19 @@ function drawPathway() {
                 return style; 
               });
 
-              var labelableElementTspan = labelableElementText.selectAll('tspan')
-              .data(function (d) {
-                // how can we pass fontSize into here without having it on every element
-                // of textArray?
-                return d.textLabel.textArray; 
-              })
-              .enter()
-              .append('tspan')
-              .attr("x", 0)
-              .attr("y", function (d, i) { return i * d.fontSize; })
-              .text(function (d) { return d.text; });
+              var labelableElementTspan = labelableElementText.each(function(d) {
+                var fontSize = d.textLabel.fontSize;
+                d3.select(this).selectAll('tspan')
+                .data(function (d) {
+                  var textArray = splitTextByLines(d.textLabel.text);
+                  return textArray;
+                })
+                .enter()
+                .append('tspan')
+                .attr("x", 0)
+                .attr("y", function (d, i) { return i * fontSize; })
+                .text(function (d) { return d; });
+              });
         };
 
         /*
