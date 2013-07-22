@@ -223,8 +223,7 @@ function convertGpml2Json(xmlDoc){
 
           element.textLabel = {};
 
-          // PathVisio (Java) uses '&#xA;' for indicating newline, and browsers convert this into '\r\n' or '\n' in JavaScript.
-          var splitText = text.split(/\r\n|\r|\n/g);
+          element.textLabel.text = text;
 
           if (element.graphics.hasOwnProperty("color")) {
             // element stroke and text color appear to be the same property in the Java PathVisio code
@@ -239,13 +238,6 @@ function convertGpml2Json(xmlDoc){
           };
 
           element.textLabel.fontSize = fontSize;
-
-          // TODO there must be a better way to pass the fontSize to the tspan when it's being created.
-
-          splitText.forEach(function(element, index, array) {
-            splitText[index] = {"text":element, "fontSize":fontSize };
-          });
-          element.textLabel.textArray = splitText;
 
           if (element.graphics.hasOwnProperty("fontname")) {
             element.textLabel.fontFamily = element.graphics.fontname;
