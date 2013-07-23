@@ -780,6 +780,10 @@
     </symbol>
 
     <!-- TODO Update placeholders for SVG definitions of shapes.
+         
+         For current symbols in GIF and/or BMP format, see
+         http://svn.bigcat.unimaas.nl/pathvisio/trunk/modules/org.pathvisio.core/resources/
+
          Should we add SBGN? Available as SVG here: http://www.sbgn.org/Documents/Templates 
          Not sure about adding lines. Should they be only defined in CSS?
          -->

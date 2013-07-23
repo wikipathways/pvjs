@@ -343,6 +343,10 @@ function convertGpml2Json(xmlDoc){
 
         element.strokeWidth = element.graphics.linethickness;
 
+        if (element.graphics.hasOwnProperty('connectortype')) {
+		element.connectorType = element.graphics.connectortype.toLowerCase();
+        }	
+
         if (element.graphics.hasOwnProperty('linestyle')) {
           element.strokeStyle = element.graphics.linestyle.toLowerCase();
           delete element.graphics.linestyle;
