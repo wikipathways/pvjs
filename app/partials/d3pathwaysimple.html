@@ -122,7 +122,6 @@ function getPathData(d, labelableElements) {
               pathData += " H " + (xStart + element.x)/2 + " V " +  element.y + " H " + element.x; 
             };
           };
-          console.log(pathData);
           return pathData;
         };
       });
@@ -149,7 +148,6 @@ function getPathData(d, labelableElements) {
       if (d.connectorType === 'segmented') {
         d.points.forEach(function(element, index, array) {
             if (index === 0) {
-              console.log(element.graphRef);
               pathData = "M " + element.x + " " + element.y; 
             }
             else {
@@ -170,21 +168,9 @@ function getPathData(d, labelableElements) {
 
             // what is here is just a starting point. It has not been tested to match the PathVisio (Java) implementation.
 
-            console.log(d.points);
             var pointStart = d.points[0];
-            console.log('pointStart');
-            console.log(pointStart);
-            console.log(pointStart.x);
-
             var pointControl = d.points[1];
-            console.log('pointControl');
-            console.log(pointControl);
-            console.log(pointControl.x);
-
             var pointEnd = d.points[2];
-            console.log('pointEnd');
-            console.log(pointEnd);
-            console.log(pointEnd.x);
 
             pathData = "M" + pointStart.x + "," + pointStart.y + " S" + pointControl.x + "," + pointControl.y + " " + pointEnd.x + "," + pointEnd.y; 
             return pathData;
@@ -193,16 +179,8 @@ function getPathData(d, labelableElements) {
 
             // Some of the curved connector types only have two points. I don't know which function is used in these cases. For now, I approximated with a smooth quadratic bezier.
 
-            console.log(d.points);
             var pointStart = d.points[0];
-            console.log('pointStart');
-            console.log(pointStart);
-            console.log(pointStart.x);
-
             var pointEnd = d.points[1];
-            console.log('pointEnd');
-            console.log(pointEnd);
-            console.log(pointEnd.x);
 
             pathData = "M" + pointStart.x + "," + pointStart.y + " T" + pointEnd.x + "," + pointEnd.y; 
             return pathData;
@@ -212,7 +190,6 @@ function getPathData(d, labelableElements) {
             console.log('Warning: pathvisio.js does not support connector type: ' + d.connectorType);
             d.points.forEach(function(element, index, array) {
               if (index === 0) {
-                console.log(element.graphRef);
                 pathData = "M " + element.x + " " + element.y; 
               }
               else {
