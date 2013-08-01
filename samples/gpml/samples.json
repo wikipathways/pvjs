@@ -40,9 +40,6 @@
             }
           ],
         "strokeWidth" : 1,
-        "xRef" : { "database" : null,
-            "id" : null
-          },
         "zIndex" : 12288
       },
       { "graphId" : "idcdccad3",
@@ -62,9 +59,6 @@
             }
           ],
         "strokeWidth" : 1,
-        "xRef" : { "database" : null,
-            "id" : null
-          },
         "zIndex" : 12288
       },
       { "graphId" : "idd669b8f0",
@@ -86,9 +80,6 @@
         "stroke" : "#0000ff",
         "strokeStyle" : "double",
         "strokeWidth" : 1,
-        "xRef" : { "database" : null,
-            "id" : null
-          },
         "zIndex" : 12288
       },
       { "graphId" : "id5ae9a761",
@@ -109,9 +100,6 @@
           ],
         "strokeStyle" : "broken",
         "strokeWidth" : 1,
-        "xRef" : { "database" : null,
-            "id" : null
-          },
         "zIndex" : 12288
       },
       { "graphId" : "idb908a573",
@@ -132,9 +120,6 @@
           ],
         "strokeStyle" : "double",
         "strokeWidth" : 3,
-        "xRef" : { "database" : null,
-            "id" : null
-          },
         "zIndex" : 12288
       },
       { "graphId" : "id6a717d56",
@@ -154,9 +139,6 @@
             }
           ],
         "strokeWidth" : 1,
-        "xRef" : { "database" : null,
-            "id" : null
-          },
         "zIndex" : 12288
       },
       { "graphId" : "id41954dd5",
@@ -176,9 +158,6 @@
             }
           ],
         "strokeWidth" : 1,
-        "xRef" : { "database" : null,
-            "id" : null
-          },
         "zIndex" : 12288
       },
       { "graphId" : "id801fef43",
@@ -198,9 +177,6 @@
             }
           ],
         "strokeWidth" : 1,
-        "xRef" : { "database" : null,
-            "id" : null
-          },
         "zIndex" : 12288
       },
       { "graphId" : "idabc602a6",
@@ -221,9 +197,6 @@
           ],
         "strokeStyle" : "broken",
         "strokeWidth" : 1,
-        "xRef" : { "database" : null,
-            "id" : null
-          },
         "zIndex" : 12288
       },
       { "graphId" : "id7af2310d",
@@ -243,9 +216,6 @@
             }
           ],
         "strokeWidth" : 1,
-        "xRef" : { "database" : null,
-            "id" : null
-          },
         "zIndex" : 12288
       },
       { "graphId" : "ide3aad202",
@@ -265,9 +235,6 @@
             }
           ],
         "strokeWidth" : 1,
-        "xRef" : { "database" : null,
-            "id" : null
-          },
         "zIndex" : 12288
       },
       { "graphId" : "id11f26d85",
@@ -287,9 +254,6 @@
             }
           ],
         "strokeWidth" : 1,
-        "xRef" : { "database" : null,
-            "id" : null
-          },
         "zIndex" : 12288
       },
       { "graphId" : "id5466fc56",
@@ -310,9 +274,6 @@
             }
           ],
         "strokeWidth" : 1,
-        "xRef" : { "database" : null,
-            "id" : null
-          },
         "zIndex" : 12288
       },
       { "graphId" : "id51574d78",
@@ -334,9 +295,6 @@
             }
           ],
         "strokeWidth" : 1,
-        "xRef" : { "database" : null,
-            "id" : null
-          },
         "zIndex" : 12288
       },
       { "graphId" : "idf0c9962f",
@@ -357,9 +315,6 @@
             }
           ],
         "strokeWidth" : 1,
-        "xRef" : { "database" : null,
-            "id" : null
-          },
         "zIndex" : 12288
       },
       { "graphId" : "id81eddd48",
@@ -379,9 +334,6 @@
             }
           ],
         "strokeWidth" : 1,
-        "xRef" : { "database" : null,
-            "id" : null
-          },
         "zIndex" : 12288
       },
       { "graphId" : "id38ca81bd",
@@ -401,9 +353,6 @@
             }
           ],
         "strokeWidth" : 1,
-        "xRef" : { "database" : null,
-            "id" : null
-          },
         "zIndex" : 12288
       }
     ],
@@ -417,9 +366,6 @@
           },
         "width" : 133.5,
         "x" : 15.369999999999999,
-        "xRef" : { "database" : null,
-            "id" : null
-          },
         "y" : 36.25
       },
       { "dataNodeType" : "metabolite",
@@ -434,9 +380,6 @@
           },
         "width" : 132.27000000000001,
         "x" : 15.99,
-        "xRef" : { "database" : null,
-            "id" : null
-          },
         "y" : 130.71000000000001
       },
       { "dataNodeType" : "rna",
@@ -449,9 +392,6 @@
           },
         "width" : 147.41999999999999,
         "x" : 8.4100000000000001,
-        "xRef" : { "database" : null,
-            "id" : null
-          },
         "y" : 445.25999999999999
       },
       { "dataNodeType" : "unknown",
@@ -464,9 +404,6 @@
           },
         "width" : 120.48,
         "x" : 21.879999999999999,
-        "xRef" : { "database" : null,
-            "id" : null
-          },
         "y" : 553.20000000000005
       },
       { "dataNodeType" : "pathway",
@@ -481,9 +418,6 @@
           },
         "width" : 116.62,
         "x" : 23.82,
-        "xRef" : { "database" : null,
-            "id" : null
-          },
         "y" : 246.25
       },
       { "dataNodeType" : "protein",
@@ -496,9 +430,6 @@
           },
         "width" : 95.010000000000005,
         "x" : 34.619999999999997,
-        "xRef" : { "database" : null,
-            "id" : null
-          },
         "y" : 368.58999999999997
       },
       { "dataNodeType" : "gene-product",
@@ -512,9 +443,6 @@
           },
         "width" : 80,
         "x" : 42.119999999999997,
-        "xRef" : { "database" : null,
-            "id" : null
-          },
         "y" : 698.80999999999995
       },
       { "dataNodeType" : "metabolite",
@@ -530,9 +458,6 @@
           },
         "width" : 80,
         "x" : 42.119999999999997,
-        "xRef" : { "database" : null,
-            "id" : null
-          },
         "y" : 739.67999999999995
       },
       { "dataNodeType" : "pathway",
@@ -548,9 +473,6 @@
           },
         "width" : 80,
         "x" : 42.119999999999997,
-        "xRef" : { "database" : null,
-            "id" : null
-          },
         "y" : 843.74000000000001
       },
       { "dataNodeType" : "protein",
@@ -564,9 +486,6 @@
           },
         "width" : 80,
         "x" : 42.119999999999997,
-        "xRef" : { "database" : null,
-            "id" : null
-          },
         "y" : 882.04999999999995
       },
       { "dataNodeType" : "gene-product",
@@ -579,9 +498,6 @@
           },
         "width" : 80,
         "x" : 212.99000000000001,
-        "xRef" : { "database" : null,
-            "id" : null
-          },
         "y" : 39.810000000000002
       },
       { "dataNodeType" : "metabolite",
@@ -596,9 +512,6 @@
           },
         "width" : 80,
         "x" : 467.73000000000002,
-        "xRef" : { "database" : null,
-            "id" : null
-          },
         "y" : 314.41000000000003
       },
       { "dataNodeType" : "gene-product",
@@ -611,9 +524,6 @@
           },
         "width" : 80,
         "x" : 466.45999999999998,
-        "xRef" : { "database" : null,
-            "id" : null
-          },
         "y" : 48.530000000000001
       },
       { "dataNodeType" : "gene-product",
@@ -626,9 +536,6 @@
           },
         "width" : 80,
         "x" : 466.45999999999998,
-        "xRef" : { "database" : null,
-            "id" : null
-          },
         "y" : 110.89
       },
       { "dataNodeType" : "gene-product",
@@ -641,9 +548,6 @@
           },
         "width" : 80,
         "x" : 212.99000000000001,
-        "xRef" : { "database" : null,
-            "id" : null
-          },
         "y" : 109.40000000000001
       },
       { "dataNodeType" : "gene-product",
@@ -656,9 +560,6 @@
           },
         "width" : 80,
         "x" : 466.45999999999998,
-        "xRef" : { "database" : null,
-            "id" : null
-          },
         "y" : 178.15000000000001
       },
       { "dataNodeType" : "gene-product",
@@ -671,9 +572,6 @@
           },
         "width" : 80,
         "x" : 212.99000000000001,
-        "xRef" : { "database" : null,
-            "id" : null
-          },
         "y" : 180.49000000000001
       },
       { "dataNodeType" : "gene-product",
@@ -686,9 +584,6 @@
           },
         "width" : 80,
         "x" : 466.45999999999998,
-        "xRef" : { "database" : null,
-            "id" : null
-          },
         "y" : 245.40000000000001
       },
       { "dataNodeType" : "gene-product",
@@ -701,9 +596,6 @@
           },
         "width" : 80,
         "x" : 212.99000000000001,
-        "xRef" : { "database" : null,
-            "id" : null
-          },
         "y" : 256.68000000000001
       },
       { "dataNodeType" : "gene-product",
@@ -716,9 +608,6 @@
           },
         "width" : 80,
         "x" : 212.99000000000001,
-        "xRef" : { "database" : null,
-            "id" : null
-          },
         "y" : 318.69999999999999
       },
       { "dataNodeType" : "gene-product",
@@ -731,9 +620,6 @@
           },
         "width" : 80,
         "x" : 466.45999999999998,
-        "xRef" : { "database" : null,
-            "id" : null
-          },
         "y" : 381.19
       },
       { "dataNodeType" : "gene-product",
@@ -746,9 +632,6 @@
           },
         "width" : 80,
         "x" : 466.45999999999998,
-        "xRef" : { "database" : null,
-            "id" : null
-          },
         "y" : 435.88999999999999
       },
       { "dataNodeType" : "gene-product",
@@ -761,9 +644,6 @@
           },
         "width" : 80,
         "x" : 212.99000000000001,
-        "xRef" : { "database" : null,
-            "id" : null
-          },
         "y" : 373.08999999999997
       },
       { "dataNodeType" : "gene-product",
@@ -776,9 +656,6 @@
           },
         "width" : 80,
         "x" : 212.99000000000001,
-        "xRef" : { "database" : null,
-            "id" : null
-          },
         "y" : 434.18000000000001
       },
       { "dataNodeType" : "gene-product",
@@ -791,9 +668,6 @@
           },
         "width" : 80,
         "x" : 212.99000000000001,
-        "xRef" : { "database" : null,
-            "id" : null
-          },
         "y" : 496.54000000000002
       },
       { "dataNodeType" : "gene-product",
@@ -806,9 +680,6 @@
           },
         "width" : 80,
         "x" : 466.45999999999998,
-        "xRef" : { "database" : null,
-            "id" : null
-          },
         "y" : 500.14999999999998
       },
       { "dataNodeType" : "gene-product",
@@ -821,9 +692,6 @@
           },
         "width" : 80,
         "x" : 212.99000000000001,
-        "xRef" : { "database" : null,
-            "id" : null
-          },
         "y" : 563.78999999999996
       },
       { "dataNodeType" : "gene-product",
@@ -836,9 +704,6 @@
           },
         "width" : 80,
         "x" : 466.45999999999998,
-        "xRef" : { "database" : null,
-            "id" : null
-          },
         "y" : 566.13
       },
       { "dataNodeType" : "gene-product",
@@ -851,9 +716,6 @@
           },
         "width" : 80,
         "x" : 212.99000000000001,
-        "xRef" : { "database" : null,
-            "id" : null
-          },
         "y" : 629.76999999999998
       },
       { "dataNodeType" : "gene-product",
@@ -866,9 +728,6 @@
           },
         "width" : 80,
         "x" : 212.99000000000001,
-        "xRef" : { "database" : null,
-            "id" : null
-          },
         "y" : 1030.5699999999999
       },
       { "dataNodeType" : "gene-product",
@@ -881,9 +740,6 @@
           },
         "width" : 80,
         "x" : 466.45999999999998,
-        "xRef" : { "database" : null,
-            "id" : null
-          },
         "y" : 1032.9100000000001
       },
       { "dataNodeType" : "gene-product",
@@ -896,9 +752,6 @@
           },
         "width" : 80,
         "x" : 212.99000000000001,
-        "xRef" : { "database" : null,
-            "id" : null
-          },
         "y" : 952.23000000000002
       },
       { "dataNodeType" : "gene-product",
@@ -911,9 +764,6 @@
           },
         "width" : 80,
         "x" : 466.45999999999998,
-        "xRef" : { "database" : null,
-            "id" : null
-          },
         "y" : 943.08000000000004
       },
       { "dataNodeType" : "gene-product",
@@ -926,9 +776,6 @@
           },
         "width" : 80,
         "x" : 212.99000000000001,
-        "xRef" : { "database" : null,
-            "id" : null
-          },
         "y" : 880.27999999999997
       },
       { "dataNodeType" : "gene-product",
@@ -941,9 +788,6 @@
           },
         "width" : 80,
         "x" : 466.45999999999998,
-        "xRef" : { "database" : null,
-            "id" : null
-          },
         "y" : 882.62
       },
       { "dataNodeType" : "gene-product",
@@ -956,9 +800,6 @@
           },
         "width" : 80,
         "x" : 466.45999999999998,
-        "xRef" : { "database" : null,
-            "id" : null
-          },
         "y" : 798.11000000000001
       },
       { "dataNodeType" : "gene-product",
@@ -971,9 +812,6 @@
           },
         "width" : 80,
         "x" : 212.99000000000001,
-        "xRef" : { "database" : null,
-            "id" : null
-          },
         "y" : 795.34000000000003
       },
       { "dataNodeType" : "gene-product",
@@ -986,9 +824,6 @@
           },
         "width" : 80,
         "x" : 212.99000000000001,
-        "xRef" : { "database" : null,
-            "id" : null
-          },
         "y" : 696.77999999999997
       },
       { "dataNodeType" : "gene-product",
@@ -1001,9 +836,6 @@
           },
         "width" : 80,
         "x" : 466.45999999999998,
-        "xRef" : { "database" : null,
-            "id" : null
-          },
         "y" : 694.00999999999999
       },
       { "dataNodeType" : "gene-product",
@@ -1016,9 +848,6 @@
           },
         "width" : 80,
         "x" : 466.45999999999998,
-        "xRef" : { "database" : null,
-            "id" : null
-          },
         "y" : 629.94000000000005
       },
       { "dataNodeType" : "gene-product",
@@ -1031,9 +860,6 @@
           },
         "width" : 80,
         "x" : 212.99000000000001,
-        "xRef" : { "database" : null,
-            "id" : null
-          },
         "y" : 1078.8900000000001
       },
       { "dataNodeType" : "gene-product",
@@ -1046,9 +872,6 @@
           },
         "width" : 80,
         "x" : 466.45999999999998,
-        "xRef" : { "database" : null,
-            "id" : null
-          },
         "y" : 1190.8199999999999
       },
       { "dataNodeType" : "gene-product",
@@ -1061,9 +884,6 @@
           },
         "width" : 80,
         "x" : 212.99000000000001,
-        "xRef" : { "database" : null,
-            "id" : null
-          },
         "y" : 1186.8
       },
       { "dataNodeType" : "gene-product",
@@ -1076,9 +896,6 @@
           },
         "width" : 80,
         "x" : 466.45999999999998,
-        "xRef" : { "database" : null,
-            "id" : null
-          },
         "y" : 1107.6099999999999
       },
       { "elementType" : "label",
