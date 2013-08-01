@@ -1,19 +1,18 @@
 { "biopax" : true,
   "boardHeight" : 1240.8238422645616,
   "boardWidth" : 1573.2300163132136,
-  "graphicalline" : { "graphics" : { "color" : "ff6666",
-          "linethickness" : 1,
-          "point" : [ { "x" : 884.7798529296982,
-                "y" : 54.739120119062186
-              },
-              { "x" : 970.5786694977455,
-                "y" : 51.78054023740539
-              }
-            ],
-          "zorder" : 12288
-        },
-      "graphid" : "idb51acdef"
-    },
+  "graphicalLines" : [ { "graphId" : "idb51acdef",
+        "points" : [ { "x" : 884.7798529296982,
+              "y" : 54.739120119062186
+            },
+            { "x" : 970.5786694977455,
+              "y" : 51.78054023740539
+            }
+          ],
+        "stroke" : "ff6666",
+        "strokeWidth" : 1,
+        "zIndex" : 12288
+      } ],
   "groups" : [ { "groupId" : "d516a",
         "style" : "Complex"
       },
