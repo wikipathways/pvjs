@@ -21,6 +21,12 @@ function clone(selector) {
   return d3.select(node.parentNode.insertBefore(node.cloneNode(true), node.nextSibling));
 };
 
+// Thanks to http://stackoverflow.com/questions/11582512/how-to-get-url-parameters-with-javascript
+
+function getURLParameter(name) {
+    return decodeURIComponent((new RegExp('[?|&]' + name + '=' + '([^&;]+?)(&|#|;|$)').exec(location.search)||[,""])[1].replace(/\+/g, '%20'))||null
+}
+
 function splitTextByLines(text) {
 
   // PathVisio (Java) uses '&#xA;' for indicating newline, and browsers convert this into '\r\n' or '\n' in JavaScript.
@@ -205,7 +211,8 @@ function getPathData(d, labelableElements) {
 };
 
 function drawPathway() {
-  d3.json("../../samples/gpml/WP673_63184.json", function(error, json) {
+  //d3.json("../../samples/gpml/WP673_63184.json", function(error, json) {
+  d3.json("../../samples/gpml/" + getURLParameter(pathway) + ".json", function(error, json) {
 
   // d3.json("../../samples/gpml/all-elements.json",function(error, json) {
   // d3.json("../../samples/gpml/datanodeshapes.json",function(error, json) {
