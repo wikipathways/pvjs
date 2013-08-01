@@ -1,19 +1,18 @@
 { "biopax" : true,
   "boardHeight" : 1240.8238422645616,
   "boardWidth" : 1573.2300163132136,
-  "graphicalline" : { "graphics" : { "color" : "ff6666",
-          "linethickness" : 1,
-          "point" : [ { "x" : 884.7798529296982,
-                "y" : 54.739120119062186
-              },
-              { "x" : 970.5786694977455,
-                "y" : 51.78054023740539
-              }
-            ],
-          "zorder" : 12288
-        },
-      "graphid" : "idb51acdef"
-    },
+  "graphicalLines" : [ { "graphId" : "idb51acdef",
+        "points" : [ { "x" : 884.7798529296982,
+              "y" : 54.739120119062186
+            },
+            { "x" : 970.5786694977455,
+              "y" : 51.78054023740539
+            }
+          ],
+        "stroke" : "#ff6666",
+        "strokeWidth" : 1,
+        "zIndex" : 12288
+      } ],
   "groups" : [ { "groupId" : "d516a",
         "style" : "Complex"
       },
@@ -505,7 +504,7 @@
       { "dataNodeType" : "gene-product",
         "elementType" : "data-node",
         "graphId" : "f6058",
-        "groupref" : "d516a",
+        "groupRef" : "d516a",
         "height" : 20,
         "symbolType" : "rectangle",
         "textLabel" : { "fontSize" : 10,
@@ -521,7 +520,7 @@
       { "dataNodeType" : "metabolite",
         "elementType" : "data-node",
         "graphId" : "d6943",
-        "groupref" : "d516a",
+        "groupRef" : "d516a",
         "height" : 20,
         "stroke" : "#0000ff",
         "symbolType" : "rectangle",
@@ -539,7 +538,7 @@
       { "dataNodeType" : "pathway",
         "elementType" : "data-node",
         "graphId" : "e21de",
-        "groupref" : "ce89e",
+        "groupRef" : "ce89e",
         "height" : 20,
         "stroke" : "#14961e",
         "textLabel" : { "color" : "#14961e",
@@ -557,7 +556,7 @@
       { "dataNodeType" : "protein",
         "elementType" : "data-node",
         "graphId" : "c4cf8",
-        "groupref" : "ce89e",
+        "groupRef" : "ce89e",
         "height" : 20,
         "symbolType" : "rectangle",
         "textLabel" : { "fontSize" : 10,
