@@ -354,7 +354,7 @@
     </Graphics>
   </GraphicalLine>
   <GraphicalLine GraphId="a863a">
-    <Graphics ConnectorType="Elbow" ZOrder="32834" LineThickness="1.0" Color="00cc33">
+    <Graphics ConnectorType="Elbow" ZOrder="32834" LineStyle="Broken" LineThickness="1.0" Color="00cc33">
       <Point X="724.4662554182327" Y="329.49340257440576" ArrowHead="TBar" />
       <Point X="791.6500711237557" Y="341.42888644537356" />
       <Point X="841.6065503677682" Y="353.3643703163413" />
@@ -370,6 +370,7 @@
     </Graphics>
   </GraphicalLine>
   <GraphicalLine GraphId="d98f1">
+    <Attribute Key="org.pathvisio.DoubleLineProperty" Value="Double" />
     <Graphics ConnectorType="Segmented" ZOrder="32841" LineThickness="1.0">
       <Point X="735.1348187183748" Y="635.3255505118166" ArrowHead="mim-binding" />
       <Point X="805.1209103840683" Y="679.2318634423898" />
@@ -404,7 +405,7 @@
     </Graphics>
   </GraphicalLine>
   <GraphicalLine GraphId="aa8e7">
-    <Graphics ZOrder="32861" LineThickness="1.0">
+    <Graphics ZOrder="32861" LineThickness="5.0">
       <Point X="716.8304668304664" Y="1406.8229068229084" />
       <Point X="1006.7567567567563" Y="1406.8229068229084" />
     </Graphics>
@@ -487,14 +488,14 @@
   <Label TextLabel="Graphical Line (Curved)&#xA;Start: Arrow&#xA;End: tbar" GraphId="bdc73">
     <Graphics CenterX="856.325836640002" CenterY="184.53354255609568" Width="115.73542349418918" Height="40.19056504885224" ZOrder="32833" FillColor="ffffff" FontSize="10" Valign="Middle" Align="Left" />
   </Label>
-  <Label TextLabel="Graphical Line&#xA;    Elbow&#xA;    Greenish color&#xA;Start: tbar&#xA;End: mim-necessary-stimulation" GraphId="fd3a2">
-    <Graphics CenterX="842.8692715929822" CenterY="292.45554256365256" Width="149.04805396546706" Height="58.71264588538761" ZOrder="32835" FillColor="ffffff" FontSize="10" Valign="Middle" Align="Left" />
+  <Label TextLabel="Graphical Line&#xA;    Elbow&#xA;    Greenish color&#xA;    Dashed&#xA;Start: tbar&#xA;End: mim-necessary-stimulation" GraphId="fd3a2">
+    <Graphics CenterX="830.1535586047897" CenterY="285.7923996014929" Width="149.04805396546706" Height="70.22240138282234" ZOrder="32835" FillColor="ffffff" FontSize="10" Valign="Middle" Align="Left" />
   </Label>
   <Label TextLabel="Graphical Line&#xA;    Elbow&#xA;    Connected to data nodes&#xA;Start: mim-necessary-stimulation&#xA;End: mim-binding" GraphId="f1aa7">
     <Graphics CenterX="832.9546200993834" CenterY="433.5648140453312" Width="149.04805396546706" Height="56.80704744550127" ZOrder="32837" FillColor="ffffff" FontSize="10" Valign="Middle" Align="Left" />
   </Label>
-  <Label TextLabel="Graphical Line (Segmented)&#xA;Start: mim-binding&#xA;End: mim-conversion" GraphId="bea69">
-    <Graphics CenterX="853.5378348931243" CenterY="607.5487309193311" Width="149.04805396546706" Height="40.19056504885224" ZOrder="32842" FillColor="ffffff" FontSize="10" Valign="Middle" Align="Left" />
+  <Label TextLabel="Graphical Line&#xA;    Segmented&#xA;    Double&#xA;Start: mim-binding&#xA;End: mim-conversion" GraphId="bea69">
+    <Graphics CenterX="858.404014941786" CenterY="608.2258996659174" Width="149.04805396546706" Height="60.73403777465727" ZOrder="32842" FillColor="ffffff" FontSize="10" Valign="Middle" Align="Left" />
   </Label>
   <Label TextLabel="Graphical Line&#xA;    Segmented&#xA;    Connected to data nodes&#xA;Start: mim-conversion&#xA;End: mim-stimulation" GraphId="b9d0a">
     <Graphics CenterX="860.0118826180689" CenterY="749.2080025696322" Width="181.82545240255374" Height="60.29367228009043" ZOrder="32843" FillColor="ffffff" FontSize="10" Valign="Middle" Align="Left" />
@@ -508,8 +509,8 @@
   <Label TextLabel="Graphical Line&#xA;    Straight&#xA;    Connected to one data node&#xA;Start: Arrow&#xA;End: Line" GraphId="c4bf8">
     <Graphics CenterX="881.4783251371426" CenterY="1233.095897837868" Width="181.82545240255374" Height="68.27311453126254" ZOrder="32857" FillColor="ffffff" FontSize="10" Valign="Middle" Align="Left" />
   </Label>
-  <Label TextLabel="Graphical Line&#xA;    Straight&#xA;Start: Line&#xA;End: Line" GraphId="bcb18">
-    <Graphics CenterX="847.9855021706356" CenterY="1376.7413456768652" Width="97.64078927052229" Height="49.173487044525785" ZOrder="32860" FillColor="ffffff" FontSize="10" Valign="Middle" Align="Left" />
+  <Label TextLabel="Graphical Line&#xA;    Straight&#xA;    Thickness: 5&#xA;Start: Line&#xA;End: Line" GraphId="bcb18">
+    <Graphics CenterX="821.2215119029961" CenterY="1364.8976212419" Width="97.64078927052229" Height="65.56166584146415" ZOrder="32860" FillColor="ffffff" FontSize="10" Valign="Middle" Align="Left" />
   </Label>
   <Shape TextLabel="Arc" GraphId="f98a6">
     <Graphics CenterX="1404.429452345573" CenterY="102.50942395766666" Width="97.93182324732058" Height="62.29585439329384" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="Arc" Rotation="0.0" />
