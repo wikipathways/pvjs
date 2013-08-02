@@ -48,9 +48,27 @@ function convertGpml2Json(xmlDoc){
 
   // GPML to jGPML shape name mappings: { "oldName":"new-name" }
 
-  var shapeMappings = { "Arc":"arc", "Brace":"brace",  "Rectangle":"rectangle", "RoundedRectangle":"rounded-rectangle", "Oval":"oval", "Endoplasmic Reticulum":"endoplasmic-reticulum", "Golgi Apparatus":"golgi-apparatus", "Mitochondria":"mitochondria", "Triangle":"triangle", "Pentagon":"pentagon", "Hexagon":"hexagon", "Sarcoplasmic Reticulum":"sarcoplasmic-reticulum", "mim-degradation":"mim-degradation" };
-
-  // GPML to jGPML marker name mappings: { "oldName":"new-name" }
+  var shapeMappings = { "Arc" : "arc",
+	  "Brace" : "brace",
+	  "Cell" : "cell",
+	  "Endoplasmic Reticulum" : "endoplasmic-reticulum",
+	  "Extracellular region" : "extracellular-region",
+	  "Golgi Apparatus" : "golgi-apparatus",
+	  "Hexagon" : "hexagon",
+	  "Mitochondria" : "mitochondria",
+	  "Nucleus" : "nucleus",
+	  "Organelle" : "organelle",
+	  "Oval" : "oval",
+	  "Pentagon" : "pentagon",
+	  "Rectangle" : "rectangle",
+	  "RoundedRectangle" : "rounded-rectangle",
+	  "Sarcoplasmic Reticulum" : "sarcoplasmic-reticulum",
+	  "Triangle" : "triangle",
+	  "Vesicle" : "vesicle",
+	  "mim-degradation" : "mim-degradation"
+  }; 
+	 
+ // GPML to jGPML marker name mappings: { "oldName":"new-name" }
   // excludes mim-branching-left and mim-branching-right as per Alex Pico's request
 
   var markerMappings = { "Arrow":"arrow", "TBar":"t-bar", "mim-necessary-stimulation":"mim-necessary-stimulation", "mim-binding":"mim-binding", "mim-conversion":"mim-conversion", "mim-stimulation":"mim-stimulation", "mim-modification":"mim-modification", "mim-catalysis":"mim-catalysis", "mim-inhibition":"mim-inhibition", "mim-cleavage":"mim-cleavage", "mim-covalent-bond":"mim-covalent-bond", "mim-transcription-translation":"mim-transcription-translation", "mim-gap":"mim-gap" };
@@ -153,9 +171,24 @@ function convertGpml2Json(xmlDoc){
         element.graphId = element.graphid;
         delete element.graphid;
 
+        if (element.hasOwnProperty('groupref')) {
+          element.groupRef = element.groupref;
+          delete element.groupref;
+        };
+
         if (element.hasOwnProperty('comment')) {
           element.comments = convertToArray( element.comment );
           delete element.comment;
+        };
+
+        if (element.hasOwnProperty('xref')) {
+		if ((element.xref.database === null) && (element.xref.id === null)) {
+		  delete element.xref;
+		}
+		else {
+			console.log('element.xref.database');
+			console.log(element.xref.database);
+		};
         };
 
         element.x = parseFloat(element.graphics.centerx) - parseFloat(element.graphics.width)/2;
@@ -197,14 +230,22 @@ function convertGpml2Json(xmlDoc){
           element.strokeStyle = element.graphics.linestyle.toLowerCase();
           delete element.graphics.linestyle;
         }	
-        else {
+
           if (element.hasOwnProperty('attribute')) {
-            if ((element.attribute.key === "org.pathvisio.DoubleLineProperty") && (element.attribute.value === "Double")) {
-              element.strokeStyle = 'double';
-              delete element.attribute;
-            };
+	      element.attributes = convertToArray( element.attribute );
+		    delete element.attribute;
+		  element.attributes.forEach(function(el, index, array) {
+			    if ((el.key === "org.pathvisio.DoubleLineProperty") && (el.value === "Double")) {
+			      el.strokeStyle = 'double';
+			    }
+			    else {
+				    if ((el.key === "org.pathvisio.CellularComponentProperty") && (el.value !== "None")) {
+					  element.graphics.shapetype = el.value;
+				    };
+			    };
+		  });
+		    delete element.attributes;
           };	
-        };
 
         if (element.graphics.hasOwnProperty("rotation")) {
 
@@ -225,8 +266,15 @@ function convertGpml2Json(xmlDoc){
 
           element.textLabel.text = text;
 
+        if (element.hasOwnProperty('groupref')) {
+          element.groupRef = element.groupref;
+          delete element.groupref;
+        };
+
           if (element.graphics.hasOwnProperty("color")) {
+
             // element stroke and text color appear to be the same property in the Java PathVisio code
+
             element.textLabel.color = element.stroke;
           };	
 
@@ -323,6 +371,94 @@ function convertGpml2Json(xmlDoc){
       console.log("No Groups found or error: " + e);
     }
 
+    // Graphical Lines 
+
+    try {
+      pathway.graphicalLines = convertToArray( pathway.graphicalline );
+      delete pathway.graphicalline;
+
+      pathway.graphicalLines.forEach(function(element, index, array) {
+
+        element.graphId = element.graphid;
+        delete element.graphid;
+
+        if (element.hasOwnProperty('groupref')) {
+          element.groupRef = element.groupref;
+          delete element.groupref;
+        };
+
+        if (element.graphics.hasOwnProperty('color')) {
+          var color = new RGBColor(element.graphics.color);
+          if (color.ok) { 
+            element.stroke = color.toHex();
+          }
+        };	
+
+        element.strokeWidth = element.graphics.linethickness;
+
+        if (element.graphics.hasOwnProperty('connectortype')) {
+		element.connectorType = element.graphics.connectortype.toLowerCase();
+        }	
+
+        if (element.graphics.hasOwnProperty('linestyle')) {
+          element.strokeStyle = element.graphics.linestyle.toLowerCase();
+          delete element.graphics.linestyle;
+        }	
+        else {
+          if (element.hasOwnProperty('attribute')) {
+            if ((element.attribute.key === "org.pathvisio.DoubleLineProperty") && (element.attribute.value === "Double")) {
+              element.strokeStyle = 'double';
+              delete element.attribute;
+            };
+          };	
+        };
+
+        element.zIndex = element.graphics.zorder;
+        delete element.graphics.zorder;
+
+        element.xRef = element.xref;
+        delete element.xref;
+
+        var markerStart = 'none';
+        var markerEnd = 'none';
+
+        // Points
+
+        element.points = convertToArray( element.graphics.point );
+        delete element.graphics;
+
+        element.points.forEach(function(element, index, array) {
+
+          element.graphRef = element.graphref;
+          delete element.graphref;
+
+          // This is probably unreliable. We need to establish a way to ensure we identify start and end markers correctly, and we should not rely on the order of elements in XML.
+
+          if ((index === 0) && (markerMappings.hasOwnProperty(element.arrowhead))) {
+              markerStart = markerMappings[element.arrowhead];
+              delete element.arrowhead;
+          }
+          else {
+            if ((index === array.length - 1) && (markerMappings.hasOwnProperty(element.arrowhead))) {
+              markerEnd = markerMappings[element.arrowhead];
+              delete element.arrowhead;
+            }
+          };
+        });
+
+        // Back to graphical lines
+
+        element.markerStart = markerStart;
+        element.markerEnd = markerEnd;
+
+        delete element.graphics;
+
+      });
+    }
+    catch (e) {
+      console.log("No graphical lines found or error: " + e);
+    }
+
     // Interactions
 
     try {
@@ -333,6 +469,11 @@ function convertGpml2Json(xmlDoc){
 
         element.graphId = element.graphid;
         delete element.graphid;
+
+        if (element.hasOwnProperty('groupref')) {
+          element.groupRef = element.groupref;
+          delete element.groupref;
+        };
 
         if (element.graphics.hasOwnProperty('color')) {
           var color = new RGBColor(element.graphics.color);

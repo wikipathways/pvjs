@@ -216,7 +216,8 @@ function drawPathway() {
 
     // be sure server has set gpml mime type to application/gpml+xml
 
-    var pathway = data; //convertGpml2Json(xml);
+    //var pathway = convertGpml2Json(xml);
+    var pathway = data;
 
     var drag = d3.behavior.drag()
     .on("drag", dragmove);
@@ -472,6 +473,84 @@ function drawPathway() {
   };
   */
     });
+
+    // Graphical Lines 
+
+    var pathData = null;
+
+        var graphicalLines = svg.selectAll("path.graphical-line")
+        .data(pathway.graphicalLines)
+        .enter()
+        .append("path")
+        .attr("id", function (d) { return 'graphical-line-' + d.graphId; })
+        .attr("class", "graphical-line")
+        .attr("class", function (d) { 
+          var styleClass = 'graphical-line ';
+          if (d.hasOwnProperty('strokeStyle')) {
+            if (d.strokeStyle === 'broken') {
+              styleClass += " broken-stroke"; 
+            };
+          };
+          return styleClass; 
+        })
+        .attr("d", function (d) {
+          pathData = getPathData(d, pathway.labelableElements);
+          if (d.hasOwnProperty('strokeStyle')) {
+            if (d.strokeStyle === 'double') {
+
+              // setting stroke-width equal to its specified line value is
+              // what PathVisio (Java) does, but the white line (overlaying the
+              // thick line to create a "double line") is hard to see at 1px.
+
+              svg.append("path")
+              .attr("class", "graphical-line-double")
+              .attr("d", pathData)
+              .attr("style", "stroke:white; stroke-width:" + d.strokeWidth + '; ')
+              .attr("marker-start", 'url(#' + getMarker(d.markerStart, 'start', d.stroke) + ')')
+              .attr("marker-end", 'url(#' + getMarker(d.markerEnd, 'end', d.stroke) + ')');
+            };
+          };
+          return pathData; 
+        })
+        .attr("style", function (d) { 
+          var style = 'stroke-width:' + d.strokeWidth + '; ';
+          if (d.hasOwnProperty('stroke')) {
+            style += 'stroke:' + d.stroke + '; '; 
+          };
+          if (d.hasOwnProperty('strokeStyle')) {
+            if (d.strokeStyle === 'double') {
+              style += 'stroke-width:' + (3 * d.strokeWidth) + '; '; 
+            };
+          };
+          return style; 
+        })
+        .attr("marker-start", function (d) { 
+          markerStart = getMarker(d.markerStart, 'start', d.stroke);
+          if (d.hasOwnProperty('strokeStyle')) {
+            if (d.strokeStyle === 'double') {
+
+		// if it's a double line, the marker will be taken care of above
+		    // we use the gap as a blank
+
+              markerStart = 'mim-gap-start-black';
+            };
+          };
+          return 'url(#' + markerStart + ')'; 
+        })
+        .attr("marker-end", function (d) { 
+          markerEnd = getMarker(d.markerEnd, 'end', d.stroke);
+          if (d.hasOwnProperty('strokeStyle')) {
+            if (d.strokeStyle === 'double') {
+
+		// if it's a double line, the marker will be taken care of above
+		    // we use the gap as a blank
+
+              markerEnd = 'mim-gap-end-black';
+            };
+          };
+          return 'url(#' + markerEnd + ')'; 
+        })
+        .attr("fill", 'none');
 
     // Interactions
 
