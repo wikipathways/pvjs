@@ -173,13 +173,13 @@
     <Graphics CenterX="252.9885057471264" CenterY="1088.8888888888887" Width="80.0" Height="20.0" ZOrder="32826" FontSize="10" Valign="Middle" />
     <Xref Database="" ID="" />
   </DataNode>
-  <DataNode TextLabel="GeneProduct" GraphId="a40d0" Type="GeneProduct">
+  <DataNode TextLabel="ENSMUSG00000017167" GraphId="a40d0" Type="GeneProduct">
     <Graphics CenterX="506.4572508266417" CenterY="1200.8238422645616" Width="80.0" Height="20.0" ZOrder="32827" FontSize="10" Valign="Middle" />
-    <Xref Database="" ID="" />
+    <Xref Database="Ensembl Mouse" ID="ENSMUSG00000017167" />
   </DataNode>
-  <DataNode TextLabel="GeneProduct" GraphId="e71ac" Type="GeneProduct">
+  <DataNode TextLabel="ENSMUSG00000041147" GraphId="e71ac" Type="GeneProduct">
     <Graphics CenterX="252.9885057471264" CenterY="1196.803740443325" Width="80.0" Height="20.0" ZOrder="32828" FontSize="10" Valign="Middle" />
-    <Xref Database="" ID="" />
+    <Xref Database="Ensembl Mouse" ID="ENSMUSG00000041147" />
   </DataNode>
   <DataNode TextLabel="GeneProduct" GraphId="e3bb5" Type="GeneProduct">
     <Graphics CenterX="506.4572508266416" CenterY="1117.6117496807153" Width="80.0" Height="20.0" ZOrder="32829" FontSize="10" Valign="Middle" />
@@ -519,7 +519,7 @@
     <Graphics CenterX="856.325836640002" CenterY="184.53354255609568" Width="115.73542349418918" Height="40.19056504885224" ZOrder="32833" FillColor="ffffff" FontSize="10" Valign="Middle" Align="Left" />
   </Label>
   <Label TextLabel="Graphical Line&#xA;    Elbow&#xA;    Greenish color&#xA;    Dashed&#xA;Start: tbar&#xA;End: mim-necessary-stimulation" GraphId="fd3a2">
-    <Graphics CenterX="830.1535586047897" CenterY="285.7923996014929" Width="149.04805396546706" Height="70.22240138282234" ZOrder="32835" FillColor="ffffff" FontSize="10" Valign="Middle" Align="Left" />
+    <Graphics CenterX="830.1535586047897" CenterY="283.5202328175337" Width="149.04805396546706" Height="76.97424046950448" ZOrder="32835" FillColor="ffffff" FontSize="10" Valign="Middle" Align="Left" />
   </Label>
   <Label TextLabel="Graphical Line&#xA;    Elbow&#xA;    Connected to data nodes&#xA;Start: mim-necessary-stimulation&#xA;End: mim-binding" GraphId="f1aa7">
     <Graphics CenterX="832.9546200993834" CenterY="433.5648140453312" Width="149.04805396546706" Height="56.80704744550127" ZOrder="32837" FillColor="ffffff" FontSize="10" Valign="Middle" Align="Left" />
