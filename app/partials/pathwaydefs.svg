@@ -220,6 +220,12 @@
             stroke: none;
           }
 
+          .graphical-line {
+            fill:none;
+            stroke: black; 
+            stroke-width: 1px; 
+          }
+
           .interaction {
             fill:none;
             stroke: black; 
