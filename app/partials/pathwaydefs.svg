@@ -135,10 +135,6 @@
             stroke-width: 1px;
           }
 
-          .label {
-            stroke: black;
-          }
-
           text.label {
             font-size: 10px;
             stroke: none;
