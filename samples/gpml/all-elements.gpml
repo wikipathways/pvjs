@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Pathway xmlns="http://pathvisio.org/GPML/2013a" Name="New Pathway" Version="20130430">
-  <Graphics BoardWidth="2040.1401606843162" BoardHeight="1532.8391895229684" />
+<Pathway xmlns="http://pathvisio.org/GPML/2013a" Name="All Elements" Version="20130430" Author="Anders Riutta" Organism="Mus musculus">
+  <Graphics BoardWidth="2040.1401606843162" BoardHeight="1481.3381500219289" />
   <DataNode TextLabel="GeneProduct" GraphId="b8b67" Type="GeneProduct">
-    <Graphics CenterX="82.12384456836487" CenterY="77.5034213003563" Width="133.5" Height="82.5" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Graphics CenterX="78.45580238587976" CenterY="77.5034213003563" Width="133.5" Height="82.5" ZOrder="32768" FontSize="10" Valign="Middle" />
     <Xref Database="" ID="" />
   </DataNode>
   <DataNode TextLabel="Metabolite" GraphId="f96fc" Type="Metabolite">
@@ -369,6 +369,12 @@
       <Point X="866.457190481566" Y="232.41131199486233" />
       <Point X="916.4136697255786" Y="248.54034425292676" />
       <Point X="978.349153596546" Y="264.6693765109912" ArrowHead="TBar" />
+    </Graphics>
+  </GraphicalLine>
+  <GraphicalLine>
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="1284.9056603773583" Y="1071.698113207547" />
+      <Point X="1483.0188679245282" Y="1084.9056603773583" />
     </Graphics>
   </GraphicalLine>
   <GraphicalLine GraphId="a863a">
