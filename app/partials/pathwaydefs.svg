@@ -87,7 +87,7 @@
        CSS Style Sheet
        ***************************
 
-       Note: pathvisio.js assumes the default drawing board background color is white, and the default element color is black.
+       Note: pathvisio.js assumes the default element color is black.
        -->
 
     <style type="text/css"><![CDATA[
@@ -97,40 +97,27 @@
             image-rendering: auto;
             shape-rendering: auto;
             vector-effect: non-scaling-stroke;
+            fill: white;
           }
 
-          body {
-            text-align:center;
-            margin:0; 
+          .default-element-color {
+            stroke: black;
+            fill: black;
           }
 
-          div.outer {
-            display:table;
-            text-align:center;
-            margin-top:0; 
-            margin-bottom:0; 
-            margin-left:auto; 
-            margin-right:auto;
-          }
-
-          p {
-            display:table-cell;
-            vertical-align:middle;
-            color: black;
-          }
-
-          text, p {
-            font-family: Sans-Serif;
-            font-size: 10px;
+          .default-background-color {
+            fill: white;
           }
 
           text {
+            font-family: Sans-Serif;
+            font-size: 10px;
             fill: black;
             stroke: none;
             text-anchor: middle;
           }
 
-          .complex {
+          .group {
             fill: rgb(180,180,100);
             fill-opacity: 0.098;
             stroke: gray;
@@ -140,16 +127,24 @@
           }
 
           .complex {
-            stroke-dasharray: 1;
+            fill: rgb(180,180,100);
+            fill-opacity: 0.098;
+            stroke: gray;
+            stroke-miterlimit: 1;
+            stroke-width: 1px;
           }
 
           .label {
             font-size: 10px;
             stroke: none;
+            fill-opacity: 0;
           }
 
+          text.label {
+            fill-opacity: 1;
+          };
+
           .data-node {
-            fill: white;
             fill-opacity: 1;
             stroke: black;
             stroke-dasharray: 0;
@@ -213,7 +208,6 @@
           }
 
           .shape {
-            fill: white;
             fill-opacity: 1;
             stroke: black;
             stroke-dasharray: 0;
@@ -224,12 +218,6 @@
           text.shape, p.shape {
             fill: black;  
             stroke: none;
-          }
-
-          use.label {
-            fill: white;
-            fill-opacity: 1;
-            stroke-width: 0;
           }
 
           .interaction {
@@ -291,7 +279,7 @@
       refX="0" refY="0"
       stroke="black"
       viewBox="0 -6 12 12">
-      <path d="M0,0 L10,0" stroke-width="2px" stroke="white"/>
+      <path d="M0,0 L10,0" stroke-width="2px" class="default-background-color"/>
       <path d="M10,-10 L10,10" stroke-width="2px"/>
     </marker>
 
@@ -302,7 +290,7 @@
       refX="0" refY="0"
       stroke="black"
       viewBox="-12 -6 12 12">
-      <path d="M0,0 L-10,0" stroke-width="2px" stroke="white"/>
+      <path d="M0,0 L-10,0" stroke-width="2px" class="default-background-color"/>
       <path d="M-10,-10 L-10,10" stroke-width="2px"/>
     </marker>
 
@@ -333,7 +321,7 @@
   <!-- mim-catalysis markers -->
 
     <marker id="mim-catalysis-start-black"
-      fill="white"
+      class="default-background-color"
       markerHeight="10"
       markerWidth="10"
       markerUnits="strokeWidth"
@@ -345,7 +333,7 @@
     </marker>
 
     <marker id="mim-catalysis-end-black"
-      fill="white"
+      class="default-background-color"
       markerHeight="10"
       markerUnits="strokeWidth"
       markerWidth="10"
@@ -359,7 +347,7 @@
     <!-- mim-cleavage markers are incorrect. TODO Replace marker defs. -->
 
     <marker id="mim-cleavage-start-black" 
-      fill="white"
+      class="default-background-color"
       markerHeight="10"
       markerWidth="10"
       markerUnits="strokeWidth"
@@ -372,7 +360,7 @@
     </marker>
 
     <marker id="mim-cleavage-end-black"
-      fill="white"
+      class="default-background-color"
       markerHeight="10"
       markerWidth="10"
       markerUnits="strokeWidth"
@@ -413,7 +401,7 @@
     <!-- mim-covalent-bond markers are incorrect. TODO Replace marker defs. -->
 
     <marker id="mim-covalent-bond-start-black" 
-      fill="white"
+      class="default-background-color"
       markerHeight="10"
       markerWidth="10"
       markerUnits="strokeWidth"
@@ -426,7 +414,7 @@
     </marker>
 
     <marker id="mim-covalent-bond-end-black"
-      fill="white"
+      class="default-background-color"
       markerHeight="10"
       markerWidth="10"
       markerUnits="strokeWidth"
@@ -448,7 +436,7 @@
       refX="0" refY="0"
       stroke="black"
       viewBox="-1 -6 12 12">
-      <path d="M0,0 L10,0" stroke-width="2px" stroke="white"/>
+      <path d="M0,0 L10,0" stroke-width="2px" class="default-background-color"/>
       <path d="M10,-10 L10,10" stroke-width="2px"/>
     </marker>
 
@@ -459,7 +447,7 @@
       refX="0" refY="0"
       stroke="black"
       viewBox="-12 -6 12 12">
-      <path d="M0,0 L-10,0" stroke-width="2px" stroke="white"/>
+      <path d="M0,0 L-10,0" stroke-width="2px" class="default-background-color"/>
       <path d="M-10,-10 L-10,10" stroke-width="2px"/>
     </marker>
 
@@ -492,7 +480,7 @@
   <!-- mim-necessary-stimulation markers are incorrect. TODO Replace marker defs. -->
 
     <marker id="mim-necessary-stimulation-start-black"
-      fill="white"
+      class="default-background-color"
       markerWidth="10" markerHeight="10"
       markerUnits="strokeWidth"
       orient="auto"
@@ -505,7 +493,7 @@
     </marker>
 
     <marker id="mim-necessary-stimulation-end-black"
-      fill="white"
+      class="default-background-color"
       markerUnits="strokeWidth"
       markerWidth="10" markerHeight="10"
       orient="auto"
@@ -520,7 +508,7 @@
   <!-- mim-stimulation markers -->
 
     <marker id="mim-stimulation-start-black"
-      fill="white"
+      class="default-background-color"
       markerWidth="10" markerHeight="10"
       markerUnits="strokeWidth"
       orient="auto"
@@ -531,7 +519,7 @@
     </marker>
 
     <marker id="mim-stimulation-end-black"
-      fill="white"
+      class="default-background-color"
       markerUnits="strokeWidth"
       markerWidth="10" markerHeight="10"
       orient="auto"
@@ -544,7 +532,7 @@
   <!-- mim-transcription-translation markers are incorrect. TODO Replace marker defs. -->
 
     <marker id="mim-transcription-translation-start-black"
-      fill="white"
+      class="default-background-color"
       markerWidth="10" markerHeight="10"
       markerUnits="strokeWidth"
       orient="auto"
@@ -556,7 +544,7 @@
     </marker>
 
     <marker id="mim-transcription-translation-end-black"
-      fill="white"
+      class="default-background-color"
       markerUnits="strokeWidth"
       markerWidth="10" markerHeight="10"
       orient="auto"
@@ -575,7 +563,7 @@
        -->
 
     <marker id="mim-gap-start-black"
-      fill="white"
+      class="default-background-color"
       markerUnits="strokeWidth"
       markerWidth="10" markerHeight="10"
       orient="auto"
@@ -586,7 +574,7 @@
     </marker>
 
     <marker id="mim-gap-end-black"
-      fill="white"
+      class="default-background-color"
       markerUnits="strokeWidth"
       markerWidth="10" markerHeight="10"
       orient="auto"
@@ -636,10 +624,11 @@
       <path d="m9.90539,9.46855l0,24.81445l30,0l0,-24.81445l-30,0zm25.27735,22.68503l-20.55551,0l0,-20.5556l20.55551,0l0,20.5556zm-15.5557,-12.49887c1.58443,0 2.8704,-1.28815 2.8704,-2.87552c0,-1.58035 -1.28598,-2.86841 -2.8704,-2.86841c-1.58524,0 -2.86949,1.28806 -2.86949,2.86841c0,1.58737 1.28425,2.87552 2.86949,2.87552zm14.44598,2.4957l-5.46353,-5.45935l-7.68539,7.68411l-2.13031,-2.12943l-3.05775,3.05859l0,5.73676l18.33698,0l0,-8.89069z" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="1px" stroke="#000000" fill="none"/>
     </symbol>
 
-    <!-- this is the background shape for a set of data nodes in a complex -->
+    <!-- this is the background shape for a set of elements in a complex. We don't need a background symbol for a non-complex group, because it will just be a "g" element. Both group types will still require CSS classes, however. -->
+  <!-- Shape is placeholder until it can be replaced with correct shape. -->
 
     <symbol id="complex" viewBox="0 0 120 180" preserveAspectRatio="none">
-      <desc>Group</desc>
+      <desc>Complex</desc>
       <rect x="1" y="1" width="118" height="178" vector-effect="non-scaling-stroke"></rect>
     </symbol>
 

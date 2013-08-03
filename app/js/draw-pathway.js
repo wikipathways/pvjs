@@ -245,6 +245,8 @@ function drawPathway() {
     var symbolsAvailable = svg.selectAll('symbol');
     var markersAvailable = svg.selectAll('marker');
 
+    // This section for the Title/Organism/etc needs to be updated. TODO
+
     var pathwayNameText = svg.append('text')
     .attr("id", 'pathway-name-text')
     .attr("x", 80)
@@ -256,6 +258,35 @@ function drawPathway() {
     .attr("x", 80)
     .attr("y", 30)
     .text(function (d) { return 'Organism: ' + pathway.organism });
+
+    // Draw Complexes
+
+    var complexesContainer = svg.selectAll("use.complex")	
+    .data(pathway.groups.filter(function(d, i) { return (d.style === 'Complex'); }))
+    .enter()
+    .append("use")
+    .attr("id", function (d) { return 'complex-' + d.graphId })
+    .attr('transform', function(d) { 
+	var groupMembers = pathway.labelableElements.filter(function(el) {return (el.groupRef === d.groupId)});
+	var groupX = (d3.min(groupMembers, function(el) {return el.x})) - 15;
+	var groupY = (d3.min(groupMembers, function(el) {return el.y})) - 15;
+	    return 'translate(' + groupX + ' ' + groupY + ')'; 
+    })
+        .attr("width", function (d) {
+		var groupMembers = pathway.labelableElements.filter(function(el) {return (el.groupRef === d.groupId)});
+		var groupX = (d3.min(groupMembers, function(el) {return el.x})) - 15;
+		var groupWidth = (d3.max(groupMembers, function(el) {return el.x + el.width})) - groupX + 15;
+		return groupWidth; 
+	})
+        .attr("height", function (d) { 
+		var groupMembers = pathway.labelableElements.filter(function(el) {return (el.groupRef === d.groupId)});
+		var groupY = (d3.min(groupMembers, function(el) {return el.y})) - 15;
+		var groupHeight = (d3.max(groupMembers, function(el) {return el.y + el.height})) - groupY + 15;
+		return groupHeight; 
+	})
+    .attr("class", "complex")
+	.attr("xlink:xlink:href", "#complex")
+    .call(drag);
 
     // Draw Labelable Elements
 
