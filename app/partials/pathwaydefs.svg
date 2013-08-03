@@ -106,6 +106,7 @@
           }
 
           .default-background-color {
+            stroke: white;
             fill: white;
           }
 
@@ -135,14 +136,13 @@
           }
 
           .label {
-            font-size: 10px;
-            stroke: none;
-            fill-opacity: 0;
+            stroke: black;
           }
 
           text.label {
-            fill-opacity: 1;
-          };
+            font-size: 10px;
+            stroke: none;
+          }
 
           .data-node {
             fill-opacity: 1;
@@ -514,7 +514,6 @@
   <!-- mim-stimulation markers -->
 
     <marker id="mim-stimulation-start-black"
-      class="default-background-color"
       markerWidth="10" markerHeight="10"
       markerUnits="strokeWidth"
       orient="auto"
@@ -525,7 +524,6 @@
     </marker>
 
     <marker id="mim-stimulation-end-black"
-      class="default-background-color"
       markerUnits="strokeWidth"
       markerWidth="10" markerHeight="10"
       orient="auto"
