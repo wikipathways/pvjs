@@ -71,6 +71,7 @@ function getMarker(name, position, color) {
 
 function getPathData(d, labelableElements) {
   var pathData = "";
+    console.log(d);
   if ((!d.connectorType) || (d.connectorType === 'undefined') || (d.connectorType === 'straight')) {
     d.points.forEach(function(element, index, array) {
         if (index === 0) {
@@ -85,60 +86,78 @@ function getPathData(d, labelableElements) {
   else {
 
     // just a start for the elbow connector type. still need to consider several other potential configurations.
-    if (d.connectorType === 'elbow') {
+    // It doesn't make sense for an unconnected interaction or graphical line to be an elbow, so any that are
+    // so specified will be drawn as segmented lines.
+
+    if (d.connectorType === 'elbow' && d.points[0].hasOwnProperty('graphRef') && d.points[d.points.length - 1].hasOwnProperty('graphRef')) {
         var pointStart = d.points[0];
         var graphRef = pointStart.graphRef;
         var sourceElement = labelableElements.filter(function(element) {return element.graphId === graphRef})[0]
-        var dists = [{"location":"n","dist":Math.abs(sourceElement.y - pointStart.y)},
+        console.log('sourceElement');
+        console.log(sourceElement);
+        var distsStart = [{"location":"n","dist":Math.abs(sourceElement.y - pointStart.y)},
           {"location":"s","dist":Math.abs((sourceElement.y + sourceElement.height) - pointStart.y)},
           {"location":"e","dist":Math.abs((sourceElement.x + sourceElement.width) - pointStart.x)},
           {"location":"w","dist":Math.abs(sourceElement.x - pointStart.x)}];
-        dists.sort(function(a,b) { return parseFloat(a.dist) - parseFloat(b.dist) } );
+        distsStart.sort(function(a,b) { return parseFloat(a.dist) - parseFloat(b.dist) } );
+        console.log('distsStart');
         var xStart = pointStart.x;
         var yStart = pointStart.y;
         pathData = "M " + xStart + " " + yStart; 
 
         var pointEnd = d.points[d.points.length - 1];
         var graphRef = pointEnd.graphRef;
-        var sourceElement = labelableElements.filter(function(element) {return element.graphId === graphRef})[0]
-        var distsEnd = [{"location":"n","dist":Math.abs(sourceElement.y - pointEnd.y)},
-          {"location":"s","dist":Math.abs((sourceElement.y + sourceElement.height) - pointEnd.y)},
-          {"location":"e","dist":Math.abs((sourceElement.x + sourceElement.width) - pointEnd.x)},
-          {"location":"w","dist":Math.abs(sourceElement.x - pointEnd.x)}];
+        var targetElement = labelableElements.filter(function(element) {return element.graphId === graphRef})[0]
+        console.log('targetElement');
+        console.log(targetElement);
+        var distsEnd = [{"location":"n","dist":Math.abs(targetElement.y - pointEnd.y)},
+          {"location":"s","dist":Math.abs((targetElement.y + targetElement.height) - pointEnd.y)},
+          {"location":"e","dist":Math.abs((targetElement.x + targetElement.width) - pointEnd.x)},
+          {"location":"w","dist":Math.abs(targetElement.x - pointEnd.x)}];
         distsEnd.sort(function(a,b) { return parseFloat(a.dist) - parseFloat(b.dist) } );
+        console.log(distsStart);
         var xEnd = pointEnd.x;
         var yEnd = pointEnd.y;
       d.points.forEach(function(element, index, array) {
-        if ((index > 0) && (index < array.length - 1)) {
-          if ((dists[0].location === "n") || (dists[0].location === "s")) {
-            pathData += " V " + (yStart + element.y)/2 + " H " +  element.x + " V " + element.y; 
-          }
-          else {
-            if (dists[0].location === "e" || dists[0].location === "w") {
-              pathData += " H " + (xStart + element.x)/2 + " V " +  element.y + " H " + element.x; 
+        if (index > 0) {
+            if (index < array.length - 1) {
+                console.log('inside forEach');
+                console.log(sourceElement);
+                if ((distsStart[0].location === "n") || (distsStart[0].location === "s")) {
+                    console.log('V');
+                    console.log(distsStart[0].location);
+                    pathData += " V " + (yStart + element.y)/2 + " H " +  element.x + " V " + element.y; 
+                }
+                else {
+                    if (distsStart[0].location === "e" || distsStart[0].location === "w") {
+                        console.log('H');
+                        console.log(distsStart[0].location);
+                        pathData += " H " + (xStart + element.x)/2 + " V " +  element.y + " H " + element.x; 
+                    };
+                };
+            }
+            else {
+                if (((distsStart[0].location === "n") || (distsStart[0].location === "s")) && ((distsEnd[0].location === "n") || (distsEnd[0].location === "s"))) {
+                    pathData += " V " + (yStart + element.y)/2 + " H " +  element.x + " V " + element.y; 
+                }
+                else {
+                    if (((distsStart[0].location === "e") || (distsStart[0].location === "w")) && ((distsEnd[0].location === "e") || (distsEnd[0].location === "w"))) {
+                      pathData += " H " + (xStart + element.x)/2 + " V " +  element.y + " H " + element.x; 
+                    }
+                    else {
+                      if (((distsStart[0].location === "n") || (distsStart[0].location === "s")) && ((distsEnd[0].location === "e") || (distsEnd[0].location === "w"))) {
+                        pathData += " V " + yEnd + " H " +  xEnd; 
+                      }
+                      else {
+                        if (((distsStart[0].location === "e") || (distsStart[0].location === "w")) && ((distsEnd[0].location === "n") || (distsEnd[0].location === "s"))) {
+                          pathData += " H " +  xEnd + " V " + yEnd; 
+                        };
+                      };
+                    };
+                };
             };
-          };
-          return pathData;
         };
       });
-      if (((dists[0].location === "n") || (dists[0].location === "s")) && ((distsEnd[0].location === "n") || (distsEnd[0].location === "s"))) {
-        pathData += " V " + (yStart + element.y)/2 + " H " +  element.x + " V " + element.y; 
-      }
-      else {
-        if (((dists[0].location === "e") || (dists[0].location === "w")) && ((distsEnd[0].location === "e") || (distsEnd[0].location === "w"))) {
-          pathData += " H " + (xStart + element.x)/2 + " V " +  element.y + " H " + element.x; 
-        }
-        else {
-          if (((dists[0].location === "n") || (dists[0].location === "s")) && ((distsEnd[0].location === "e") || (distsEnd[0].location === "w"))) {
-            pathData += " V " + yEnd + " H " +  xEnd; 
-          }
-          else {
-            if (((dists[0].location === "e") || (dists[0].location === "w")) && ((distsEnd[0].location === "n") || (distsEnd[0].location === "s"))) {
-              pathData += " H " +  xEnd + " V " + yEnd; 
-            };
-          };
-        };
-      };
     }
     else {
       if (d.connectorType === 'segmented') {
@@ -509,6 +528,8 @@ function drawPathway() {
 
     var pathData = null;
 
+    if (pathway.hasOwnProperty('graphicalLines')) {
+
         var graphicalLines = svg.selectAll("path.graphical-line")
         .data(pathway.graphicalLines)
         .enter()
@@ -582,6 +603,8 @@ function drawPathway() {
           return 'url(#' + markerEnd + ')'; 
         })
         .attr("fill", 'none');
+
+    };
 
     // Interactions
 

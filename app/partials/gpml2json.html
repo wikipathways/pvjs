@@ -19,42 +19,33 @@ http://google-styleguide.googlecode.com/svn/trunk/jsoncstyleguide.xml#General_Gu
   <h1>pathvisio.js gpml2json interface</h1>
 
   <form>
-    <!--
-    <input type="file" />
-    <input type="hidden" />
-    <input type="image" />
- -->
     GPML File Name (without .gpml extension): 
     <input type="text" id="gpml-file-name" />
     <input type="submit" onclick="submitRequest()" />
   </form>
-<script>
-$("form").submit( function () {
-  return false;
-} );
-
-function displayResults(sGpml, sJson) {
-  $('#gpml').text(sGpml)
-  $('#json').text(sJson)
-}
-
-// $("#json").text("Found " + allInputs.length + " inputs and the form has " +
-   //                      formChildren.length + " children.");
- 
-// so it won't submit
-function submitRequest() {
-  var allInputs = $(":input");
-  var formChildren = $("form > *");
-  var sGpmlUrl = 'http://127.0.0.1/~andersriutta/pathvisio.js/samples/gpml/' + $('#gpml-file-name').val() + '.gpml';
-  getJson(sGpmlUrl, displayResults);
-  //getJson('../../samples/gpml/DatanodeShapes1.gpml', displayResults);
-};
- 
-</script>
 
   <h2>GPML</h2>
-  <div id="gpml"></div>
+  <textarea name="gpml" id="gpml" rows="20" cols="150">Write something here</textarea>
   <h2>json</h2>
-  <div id="json"></div>
+  <textarea name="json" id="json" rows="20" cols="150">Write something here</textarea>
 </body>
 
+<script>
+
+    $("form").submit( function () {
+      return false;
+    } );
+
+    function displayResults(sGpml, sJson) {
+      $('#gpml').text(sGpml)
+      $('#json').text(sJson)
+    }
+
+    // so it won't submit
+
+    function submitRequest() {
+      var sGpmlUrl = '../../samples/gpml/' + $('#gpml-file-name').val() + '.gpml';
+      getJson(sGpmlUrl, displayResults);
+    };
+ 
+</script>

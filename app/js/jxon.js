@@ -19,7 +19,10 @@ var JXON = new (function () {
     if (rIsNull.test(sValue)) { return null; }
     if (rIsBool.test(sValue)) { return sValue.toLowerCase() === "true"; }
     if (isFinite(sValue)) { return parseFloat(sValue); }
-    if (isFinite(Date.parse(sValue))) { return new Date(sValue); }
+    
+    // had to disable this because it was turning the value "Ca+2" into a date
+
+    //if (isFinite(Date.parse(sValue))) { return new Date(sValue); }
     return sValue;
   }
 
