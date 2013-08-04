@@ -32,8 +32,8 @@ http://google-styleguide.googlecode.com/svn/trunk/jsoncstyleguide.xml#General_Gu
 
 <script>
 
-    $("form").submit( function () {
-      return false;
+  $("form").submit( function () {
+    return false;
     } );
 
     function displayResults(sGpml, sJson) {
@@ -46,6 +46,6 @@ http://google-styleguide.googlecode.com/svn/trunk/jsoncstyleguide.xml#General_Gu
     function submitRequest() {
       var sGpmlUrl = '../../samples/gpml/' + $('#gpml-file-name').val() + '.gpml';
       getJson(sGpmlUrl, displayResults);
-    };
- 
-</script>
+      };
+
+    </script>

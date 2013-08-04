@@ -5,8 +5,8 @@ function clone(selector) {
 
 function getURLParameter(name) {
 
-// Thanks to http://stackoverflow.com/questions/11582512/how-to-get-url-parameters-with-javascript
-// This will be replaced once we get the backend php to get the json
+  // Thanks to http://stackoverflow.com/questions/11582512/how-to-get-url-parameters-with-javascript
+  // This will be replaced once we get the backend php to get the json
 
   var parameter = decodeURIComponent((new RegExp('[?|&]' + name + '=' + '([^&;]+?)(&|#|;|$)').exec(location.search)||[,""])[1].replace(/\+/g, '%20'))||null;
   if (parameter !== null) {
@@ -53,11 +53,11 @@ function getMarker(name, position, color) {
       var markerElementStyle = '';
 
       if (markerElement[0][0].getAttribute('stroke') === 'black') {
-       markerElementStyle += 'stroke:' + color + '; ';
+        markerElementStyle += 'stroke:' + color + '; ';
       };
 
       if (markerElement[0][0].getAttribute('fill') === 'black') {
-       markerElementStyle += 'fill:' + color + '; ';
+        markerElementStyle += 'fill:' + color + '; ';
       };
 
       markerElement[0][0].setAttribute('id', name + '-' + position + '-' + color );
@@ -71,17 +71,17 @@ function getMarker(name, position, color) {
 
 function getPathData(d, labelableElements) {
   var pathData = "";
-    console.log(d);
+  console.log(d);
   if ((!d.connectorType) || (d.connectorType === 'undefined') || (d.connectorType === 'straight')) {
     d.points.forEach(function(element, index, array) {
-        if (index === 0) {
-          pathData = "M " + element.x + " " + element.y; 
-        }
-        else {
-          pathData += " L " + element.x + " " + element.y; 
-        };
-        return pathData;
-        });
+      if (index === 0) {
+        pathData = "M " + element.x + " " + element.y; 
+      }
+      else {
+        pathData += " L " + element.x + " " + element.y; 
+      };
+      return pathData;
+    });
   }
   else {
 
@@ -90,15 +90,15 @@ function getPathData(d, labelableElements) {
     // so specified will be drawn as segmented lines.
 
     if (d.connectorType === 'elbow' && d.points[0].hasOwnProperty('graphRef') && d.points[d.points.length - 1].hasOwnProperty('graphRef')) {
-        var pointStart = d.points[0];
-        var graphRef = pointStart.graphRef;
-        var sourceElement = labelableElements.filter(function(element) {return element.graphId === graphRef})[0]
-        console.log('sourceElement');
-        console.log(sourceElement);
-        var distsStart = [{"location":"n","dist":Math.abs(sourceElement.y - pointStart.y)},
-          {"location":"s","dist":Math.abs((sourceElement.y + sourceElement.height) - pointStart.y)},
-          {"location":"e","dist":Math.abs((sourceElement.x + sourceElement.width) - pointStart.x)},
-          {"location":"w","dist":Math.abs(sourceElement.x - pointStart.x)}];
+      var pointStart = d.points[0];
+      var graphRef = pointStart.graphRef;
+      var sourceElement = labelableElements.filter(function(element) {return element.graphId === graphRef})[0]
+      console.log('sourceElement');
+      console.log(sourceElement);
+      var distsStart = [{"location":"n","dist":Math.abs(sourceElement.y - pointStart.y)},
+        {"location":"s","dist":Math.abs((sourceElement.y + sourceElement.height) - pointStart.y)},
+        {"location":"e","dist":Math.abs((sourceElement.x + sourceElement.width) - pointStart.x)},
+        {"location":"w","dist":Math.abs(sourceElement.x - pointStart.x)}];
         distsStart.sort(function(a,b) { return parseFloat(a.dist) - parseFloat(b.dist) } );
         console.log('distsStart');
         var xStart = pointStart.x;
@@ -114,67 +114,67 @@ function getPathData(d, labelableElements) {
           {"location":"s","dist":Math.abs((targetElement.y + targetElement.height) - pointEnd.y)},
           {"location":"e","dist":Math.abs((targetElement.x + targetElement.width) - pointEnd.x)},
           {"location":"w","dist":Math.abs(targetElement.x - pointEnd.x)}];
-        distsEnd.sort(function(a,b) { return parseFloat(a.dist) - parseFloat(b.dist) } );
-        console.log(distsStart);
-        var xEnd = pointEnd.x;
-        var yEnd = pointEnd.y;
-      d.points.forEach(function(element, index, array) {
-        if (index > 0) {
-            if (index < array.length - 1) {
+          distsEnd.sort(function(a,b) { return parseFloat(a.dist) - parseFloat(b.dist) } );
+          console.log(distsStart);
+          var xEnd = pointEnd.x;
+          var yEnd = pointEnd.y;
+          d.points.forEach(function(element, index, array) {
+            if (index > 0) {
+              if (index < array.length - 1) {
                 console.log('inside forEach');
                 console.log(sourceElement);
                 if ((distsStart[0].location === "n") || (distsStart[0].location === "s")) {
-                    console.log('V');
+                  console.log('V');
+                  console.log(distsStart[0].location);
+                  pathData += " V " + (yStart + element.y)/2 + " H " +  element.x + " V " + element.y; 
+                }
+                else {
+                  if (distsStart[0].location === "e" || distsStart[0].location === "w") {
+                    console.log('H');
                     console.log(distsStart[0].location);
-                    pathData += " V " + (yStart + element.y)/2 + " H " +  element.x + " V " + element.y; 
-                }
-                else {
-                    if (distsStart[0].location === "e" || distsStart[0].location === "w") {
-                        console.log('H');
-                        console.log(distsStart[0].location);
-                        pathData += " H " + (xStart + element.x)/2 + " V " +  element.y + " H " + element.x; 
-                    };
+                    pathData += " H " + (xStart + element.x)/2 + " V " +  element.y + " H " + element.x; 
+                  };
                 };
-            }
-            else {
+              }
+              else {
                 if (((distsStart[0].location === "n") || (distsStart[0].location === "s")) && ((distsEnd[0].location === "n") || (distsEnd[0].location === "s"))) {
-                    pathData += " V " + (yStart + element.y)/2 + " H " +  element.x + " V " + element.y; 
+                  pathData += " V " + (yStart + element.y)/2 + " H " +  element.x + " V " + element.y; 
                 }
                 else {
-                    if (((distsStart[0].location === "e") || (distsStart[0].location === "w")) && ((distsEnd[0].location === "e") || (distsEnd[0].location === "w"))) {
-                      pathData += " H " + (xStart + element.x)/2 + " V " +  element.y + " H " + element.x; 
+                  if (((distsStart[0].location === "e") || (distsStart[0].location === "w")) && ((distsEnd[0].location === "e") || (distsEnd[0].location === "w"))) {
+                    pathData += " H " + (xStart + element.x)/2 + " V " +  element.y + " H " + element.x; 
+                  }
+                  else {
+                    if (((distsStart[0].location === "n") || (distsStart[0].location === "s")) && ((distsEnd[0].location === "e") || (distsEnd[0].location === "w"))) {
+                      pathData += " V " + yEnd + " H " +  xEnd; 
                     }
                     else {
-                      if (((distsStart[0].location === "n") || (distsStart[0].location === "s")) && ((distsEnd[0].location === "e") || (distsEnd[0].location === "w"))) {
-                        pathData += " V " + yEnd + " H " +  xEnd; 
-                      }
-                      else {
-                        if (((distsStart[0].location === "e") || (distsStart[0].location === "w")) && ((distsEnd[0].location === "n") || (distsEnd[0].location === "s"))) {
-                          pathData += " H " +  xEnd + " V " + yEnd; 
-                        };
+                      if (((distsStart[0].location === "e") || (distsStart[0].location === "w")) && ((distsEnd[0].location === "n") || (distsEnd[0].location === "s"))) {
+                        pathData += " H " +  xEnd + " V " + yEnd; 
                       };
                     };
+                  };
                 };
+              };
             };
-        };
-      });
+          });
     }
     else {
       if (d.connectorType === 'segmented') {
         d.points.forEach(function(element, index, array) {
-            if (index === 0) {
-              pathData = "M " + element.x + " " + element.y; 
-            }
-            else {
-              pathData += " L " + element.x + " " + element.y; 
-            };
-            return pathData;
-            });
+          if (index === 0) {
+            pathData = "M " + element.x + " " + element.y; 
+          }
+          else {
+            pathData += " L " + element.x + " " + element.y; 
+          };
+          return pathData;
+        });
       }
       else {
         if (d.connectorType === 'curved') {
           if (d.points.length === 3) {
-           
+
             // see here for PathVisio (Java) code for cubic bezier curve
             // http://svn.bigcat.unimaas.nl/pathvisio/trunk/modules/org.pathvisio.core/src/org/pathvisio/core/model/CurvedConnectorShape.java
 
@@ -202,16 +202,16 @@ function getPathData(d, labelableElements) {
           };
         }
         else {
-            console.log('Warning: pathvisio.js does not support connector type: ' + d.connectorType);
-            d.points.forEach(function(element, index, array) {
-              if (index === 0) {
-                pathData = "M " + element.x + " " + element.y; 
-              }
-              else {
-                pathData += " L " + element.x + " " + element.y; 
-              };
-              return pathData;
-              });
+          console.log('Warning: pathvisio.js does not support connector type: ' + d.connectorType);
+          d.points.forEach(function(element, index, array) {
+            if (index === 0) {
+              pathData = "M " + element.x + " " + element.y; 
+            }
+            else {
+              pathData += " L " + element.x + " " + element.y; 
+            };
+            return pathData;
+          });
         };
       };
     };
@@ -223,8 +223,8 @@ function drawPathway() {
   //d3.json("../../samples/gpml/WP673_63184.json", function(error, json) {
   d3.json("../../samples/gpml/" + getURLParameter("pathway") + ".json", function(error, json) {
 
-  // d3.json("../../samples/gpml/all-elements.json",function(error, json) {
-  // d3.json("../../samples/gpml/datanodeshapes.json",function(error, json) {
+    // d3.json("../../samples/gpml/all-elements.json",function(error, json) {
+    // d3.json("../../samples/gpml/datanodeshapes.json",function(error, json) {
 
     if (error) return console.warn(error);
     data = json;
@@ -286,25 +286,25 @@ function drawPathway() {
     .append("use")
     .attr("id", function (d) { return 'complex-' + d.graphId })
     .attr('transform', function(d) { 
-	var groupMembers = pathway.labelableElements.filter(function(el) {return (el.groupRef === d.groupId)});
-	var groupX = (d3.min(groupMembers, function(el) {return el.x})) - 15;
-	var groupY = (d3.min(groupMembers, function(el) {return el.y})) - 15;
-	    return 'translate(' + groupX + ' ' + groupY + ')'; 
+      var groupMembers = pathway.labelableElements.filter(function(el) {return (el.groupRef === d.groupId)});
+      var groupX = (d3.min(groupMembers, function(el) {return el.x})) - 15;
+      var groupY = (d3.min(groupMembers, function(el) {return el.y})) - 15;
+      return 'translate(' + groupX + ' ' + groupY + ')'; 
     })
-        .attr("width", function (d) {
-		var groupMembers = pathway.labelableElements.filter(function(el) {return (el.groupRef === d.groupId)});
-		var groupX = (d3.min(groupMembers, function(el) {return el.x})) - 15;
-		var groupWidth = (d3.max(groupMembers, function(el) {return el.x + el.width})) - groupX + 15;
-		return groupWidth; 
-	})
-        .attr("height", function (d) { 
-		var groupMembers = pathway.labelableElements.filter(function(el) {return (el.groupRef === d.groupId)});
-		var groupY = (d3.min(groupMembers, function(el) {return el.y})) - 15;
-		var groupHeight = (d3.max(groupMembers, function(el) {return el.y + el.height})) - groupY + 15;
-		return groupHeight; 
-	})
+    .attr("width", function (d) {
+      var groupMembers = pathway.labelableElements.filter(function(el) {return (el.groupRef === d.groupId)});
+      var groupX = (d3.min(groupMembers, function(el) {return el.x})) - 15;
+      var groupWidth = (d3.max(groupMembers, function(el) {return el.x + el.width})) - groupX + 15;
+      return groupWidth; 
+    })
+    .attr("height", function (d) { 
+      var groupMembers = pathway.labelableElements.filter(function(el) {return (el.groupRef === d.groupId)});
+      var groupY = (d3.min(groupMembers, function(el) {return el.y})) - 15;
+      var groupHeight = (d3.max(groupMembers, function(el) {return el.y + el.height})) - groupY + 15;
+      return groupHeight; 
+    })
     .attr("class", "complex")
-	.attr("xlink:xlink:href", "#complex")
+    .attr("xlink:xlink:href", "#complex")
     .call(drag);
 
     // Draw Labelable Elements
@@ -530,79 +530,79 @@ function drawPathway() {
 
     if (pathway.hasOwnProperty('graphicalLines')) {
 
-        var graphicalLines = svg.selectAll("path.graphical-line")
-        .data(pathway.graphicalLines)
-        .enter()
-        .append("path")
-        .attr("id", function (d) { return 'graphical-line-' + d.graphId; })
-        .attr("class", "graphical-line")
-        .attr("class", function (d) { 
-          var styleClass = 'graphical-line ';
-          if (d.hasOwnProperty('strokeStyle')) {
-            if (d.strokeStyle === 'broken') {
-              styleClass += " broken-stroke"; 
-            };
+      var graphicalLines = svg.selectAll("path.graphical-line")
+      .data(pathway.graphicalLines)
+      .enter()
+      .append("path")
+      .attr("id", function (d) { return 'graphical-line-' + d.graphId; })
+      .attr("class", "graphical-line")
+      .attr("class", function (d) { 
+        var styleClass = 'graphical-line ';
+        if (d.hasOwnProperty('strokeStyle')) {
+          if (d.strokeStyle === 'broken') {
+            styleClass += " broken-stroke"; 
           };
-          return styleClass; 
-        })
-        .attr("d", function (d) {
-          pathData = getPathData(d, pathway.labelableElements);
-          if (d.hasOwnProperty('strokeStyle')) {
-            if (d.strokeStyle === 'double') {
+        };
+        return styleClass; 
+      })
+      .attr("d", function (d) {
+        pathData = getPathData(d, pathway.labelableElements);
+        if (d.hasOwnProperty('strokeStyle')) {
+          if (d.strokeStyle === 'double') {
 
-              // setting stroke-width equal to its specified line value is
-              // what PathVisio (Java) does, but the white line (overlaying the
-              // thick line to create a "double line") is hard to see at 1px.
+            // setting stroke-width equal to its specified line value is
+            // what PathVisio (Java) does, but the white line (overlaying the
+            // thick line to create a "double line") is hard to see at 1px.
 
-              svg.append("path")
-              .attr("class", "graphical-line-double")
-              .attr("d", pathData)
-              .attr("style", "stroke:white; stroke-width:" + d.strokeWidth + '; ')
-              .attr("marker-start", 'url(#' + getMarker(d.markerStart, 'start', d.stroke) + ')')
-              .attr("marker-end", 'url(#' + getMarker(d.markerEnd, 'end', d.stroke) + ')');
-            };
+            svg.append("path")
+            .attr("class", "graphical-line-double")
+            .attr("d", pathData)
+            .attr("style", "stroke:white; stroke-width:" + d.strokeWidth + '; ')
+            .attr("marker-start", 'url(#' + getMarker(d.markerStart, 'start', d.stroke) + ')')
+            .attr("marker-end", 'url(#' + getMarker(d.markerEnd, 'end', d.stroke) + ')');
           };
-          return pathData; 
-        })
-        .attr("style", function (d) { 
-          var style = 'stroke-width:' + d.strokeWidth + '; ';
-          if (d.hasOwnProperty('stroke')) {
-            style += 'stroke:' + d.stroke + '; '; 
+        };
+        return pathData; 
+      })
+      .attr("style", function (d) { 
+        var style = 'stroke-width:' + d.strokeWidth + '; ';
+        if (d.hasOwnProperty('stroke')) {
+          style += 'stroke:' + d.stroke + '; '; 
+        };
+        if (d.hasOwnProperty('strokeStyle')) {
+          if (d.strokeStyle === 'double') {
+            style += 'stroke-width:' + (3 * d.strokeWidth) + '; '; 
           };
-          if (d.hasOwnProperty('strokeStyle')) {
-            if (d.strokeStyle === 'double') {
-              style += 'stroke-width:' + (3 * d.strokeWidth) + '; '; 
-            };
+        };
+        return style; 
+      })
+      .attr("marker-start", function (d) { 
+        markerStart = getMarker(d.markerStart, 'start', d.stroke);
+        if (d.hasOwnProperty('strokeStyle')) {
+          if (d.strokeStyle === 'double') {
+
+            // if it's a double line, the marker will be taken care of above
+            // we use the gap as a blank
+
+            markerStart = 'mim-gap-start-black';
           };
-          return style; 
-        })
-        .attr("marker-start", function (d) { 
-          markerStart = getMarker(d.markerStart, 'start', d.stroke);
-          if (d.hasOwnProperty('strokeStyle')) {
-            if (d.strokeStyle === 'double') {
+        };
+        return 'url(#' + markerStart + ')'; 
+      })
+      .attr("marker-end", function (d) { 
+        markerEnd = getMarker(d.markerEnd, 'end', d.stroke);
+        if (d.hasOwnProperty('strokeStyle')) {
+          if (d.strokeStyle === 'double') {
 
-		// if it's a double line, the marker will be taken care of above
-		    // we use the gap as a blank
+            // if it's a double line, the marker will be taken care of above
+            // we use the gap as a blank
 
-              markerStart = 'mim-gap-start-black';
-            };
+            markerEnd = 'mim-gap-end-black';
           };
-          return 'url(#' + markerStart + ')'; 
-        })
-        .attr("marker-end", function (d) { 
-          markerEnd = getMarker(d.markerEnd, 'end', d.stroke);
-          if (d.hasOwnProperty('strokeStyle')) {
-            if (d.strokeStyle === 'double') {
-
-		// if it's a double line, the marker will be taken care of above
-		    // we use the gap as a blank
-
-              markerEnd = 'mim-gap-end-black';
-            };
-          };
-          return 'url(#' + markerEnd + ')'; 
-        })
-        .attr("fill", 'none');
+        };
+        return 'url(#' + markerEnd + ')'; 
+      })
+      .attr("fill", 'none');
 
     };
 
@@ -611,70 +611,70 @@ function drawPathway() {
 
     var pathData = null;
 
-        var interactions = svg.selectAll("path.interaction")
-        .data(pathway.interactions)
-        .enter()
-        .append("path")
-        .attr("id", function (d) { return 'interaction-' + d.graphId; })
-        .attr("class", "interaction")
-        .attr("class", function (d) { 
-          var styleClass = 'interaction ';
-          if (d.hasOwnProperty('strokeStyle')) {
-            if (d.strokeStyle === 'broken') {
-              styleClass += " broken-stroke"; 
-            };
-          };
-          return styleClass; 
-        })
-        .attr("d", function (d) {
-          pathData = getPathData(d, pathway.labelableElements);
-          if (d.hasOwnProperty('strokeStyle')) {
-            if (d.strokeStyle === 'double') {
+    var interactions = svg.selectAll("path.interaction")
+    .data(pathway.interactions)
+    .enter()
+    .append("path")
+    .attr("id", function (d) { return 'interaction-' + d.graphId; })
+    .attr("class", "interaction")
+    .attr("class", function (d) { 
+      var styleClass = 'interaction ';
+      if (d.hasOwnProperty('strokeStyle')) {
+        if (d.strokeStyle === 'broken') {
+          styleClass += " broken-stroke"; 
+        };
+      };
+      return styleClass; 
+    })
+    .attr("d", function (d) {
+      pathData = getPathData(d, pathway.labelableElements);
+      if (d.hasOwnProperty('strokeStyle')) {
+        if (d.strokeStyle === 'double') {
 
-              // setting stroke-width equal to its specified line value is
-              // what PathVisio (Java) does, but the white line (overlaying the
-              // thick line to create a "double line") is hard to see at 1px.
+          // setting stroke-width equal to its specified line value is
+          // what PathVisio (Java) does, but the white line (overlaying the
+          // thick line to create a "double line") is hard to see at 1px.
 
-              svg.append("path")
-              .attr("class", "interaction-double")
-              .attr("d", pathData)
-              .attr("style", "stroke:white; stroke-width:" + d.strokeWidth + '; ')
-              .attr("marker-start", 'url(#' + getMarker(d.markerStart, 'start', d.stroke) + ')')
-              .attr("marker-end", 'url(#' + getMarker(d.markerEnd, 'end', d.stroke) + ')');
-            };
-          };
-          return pathData; 
-        })
-        .attr("style", function (d) { 
-          var style = 'stroke-width:' + d.strokeWidth + '; ';
-          if (d.hasOwnProperty('stroke')) {
-            style += 'stroke:' + d.stroke + '; '; 
-          };
-          if (d.hasOwnProperty('strokeStyle')) {
-            if (d.strokeStyle === 'double') {
-              style += 'stroke-width:' + (3 * d.strokeWidth) + '; '; 
-            };
-          };
-          return style; 
-        })
-        .attr("marker-start", function (d) { 
-          markerStart = getMarker(d.markerStart, 'start', d.stroke);
-          if (d.hasOwnProperty('strokeStyle')) {
-            if (d.strokeStyle === 'double') {
-              markerStart = 'mim-gap-start-black';
-            };
-          };
-          return 'url(#' + markerStart + ')'; 
-        })
-        .attr("marker-end", function (d) { 
-          markerEnd = getMarker(d.markerEnd, 'end', d.stroke);
-          if (d.hasOwnProperty('strokeStyle')) {
-            if (d.strokeStyle === 'double') {
-              markerEnd = 'mim-gap-end-black';
-            };
-          };
-          return 'url(#' + markerEnd + ')'; 
-        })
-        .attr("fill", 'none');
+          svg.append("path")
+          .attr("class", "interaction-double")
+          .attr("d", pathData)
+          .attr("style", "stroke:white; stroke-width:" + d.strokeWidth + '; ')
+          .attr("marker-start", 'url(#' + getMarker(d.markerStart, 'start', d.stroke) + ')')
+          .attr("marker-end", 'url(#' + getMarker(d.markerEnd, 'end', d.stroke) + ')');
+        };
+      };
+      return pathData; 
+    })
+    .attr("style", function (d) { 
+      var style = 'stroke-width:' + d.strokeWidth + '; ';
+      if (d.hasOwnProperty('stroke')) {
+        style += 'stroke:' + d.stroke + '; '; 
+      };
+      if (d.hasOwnProperty('strokeStyle')) {
+        if (d.strokeStyle === 'double') {
+          style += 'stroke-width:' + (3 * d.strokeWidth) + '; '; 
+        };
+      };
+      return style; 
+    })
+    .attr("marker-start", function (d) { 
+      markerStart = getMarker(d.markerStart, 'start', d.stroke);
+      if (d.hasOwnProperty('strokeStyle')) {
+        if (d.strokeStyle === 'double') {
+          markerStart = 'mim-gap-start-black';
+        };
+      };
+      return 'url(#' + markerStart + ')'; 
+    })
+    .attr("marker-end", function (d) { 
+      markerEnd = getMarker(d.markerEnd, 'end', d.stroke);
+      if (d.hasOwnProperty('strokeStyle')) {
+        if (d.strokeStyle === 'double') {
+          markerEnd = 'mim-gap-end-black';
+        };
+      };
+      return 'url(#' + markerEnd + ')'; 
+    })
+    .attr("fill", 'none');
   });
 };
