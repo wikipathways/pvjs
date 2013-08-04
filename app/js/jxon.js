@@ -12,14 +12,14 @@
 var JXON = new (function () {
 
   var
-    sValProp = "keyValue", sAttrProp = "keyAttributes", sAttrsPref = "", /* you can customize these values */
-    aCache = [], rIsNull = /^\s*$/, rIsBool = /^(?:true|false)$/i;
+  sValProp = "keyValue", sAttrProp = "keyAttributes", sAttrsPref = "", /* you can customize these values */
+  aCache = [], rIsNull = /^\s*$/, rIsBool = /^(?:true|false)$/i;
 
   function parseText (sValue) {
     if (rIsNull.test(sValue)) { return null; }
     if (rIsBool.test(sValue)) { return sValue.toLowerCase() === "true"; }
     if (isFinite(sValue)) { return parseFloat(sValue); }
-    
+
     // had to disable this because it was turning the value "Ca+2" into a date
 
     //if (isFinite(Date.parse(sValue))) { return new Date(sValue); }
@@ -39,12 +39,12 @@ var JXON = new (function () {
   function createObjTree (oParentNode, nVerb, bFreeze, bNesteAttr) {
 
     var
-      nLevelStart = aCache.length, bChildren = oParentNode.hasChildNodes(),
-      bAttributes = oParentNode.hasAttributes(), bHighVerb = Boolean(nVerb & 2);
+    nLevelStart = aCache.length, bChildren = oParentNode.hasChildNodes(),
+    bAttributes = oParentNode.hasAttributes(), bHighVerb = Boolean(nVerb & 2);
 
     var
-      sProp, vContent, nLength = 0, sCollectedTxt = "",
-      vResult = bHighVerb ? {} : /* put here the default value for empty nodes: */ true;
+    sProp, vContent, nLength = 0, sCollectedTxt = "",
+    vResult = bHighVerb ? {} : /* put here the default value for empty nodes: */ true;
 
     if (bChildren) {
       for (var oNode, nItem = 0; nItem < oParentNode.childNodes.length; nItem++) {
@@ -74,8 +74,8 @@ var JXON = new (function () {
     if (bAttributes) {
 
       var
-        nAttrLen = oParentNode.attributes.length,
-        sAPrefix = bNesteAttr ? "" : sAttrsPref, oAttrParent = bNesteAttr ? {} : vResult;
+      nAttrLen = oParentNode.attributes.length,
+      sAPrefix = bNesteAttr ? "" : sAttrsPref, oAttrParent = bNesteAttr ? {} : vResult;
 
       for (var oAttrib, nAttrib = 0; nAttrib < nAttrLen; nLength++, nAttrib++) {
         oAttrib = oParentNode.attributes.item(nAttrib);
@@ -120,7 +120,7 @@ var JXON = new (function () {
       if (sName === sValProp) {
         if (vValue !== null && vValue !== true) { oParentEl.appendChild(oXMLDoc.createTextNode(vValue.constructor === Date ? vValue.toGMTString() : String(vValue))); }
       } else if (sName === sAttrProp) { /* verbosity level is 3 */
-        for (var sAttrib in vValue) { oParentEl.setAttribute(sAttrib, vValue[sAttrib]); }
+      for (var sAttrib in vValue) { oParentEl.setAttribute(sAttrib, vValue[sAttrib]); }
       } else if (sName.charAt(0) === sAttrsPref) {
         oParentEl.setAttribute(sName.slice(1), vValue);
       } else if (vValue.constructor === Array) {

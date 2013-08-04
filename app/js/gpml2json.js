@@ -7,19 +7,19 @@ function getJson(gpmlUrl, callback) {
   };
 
   d3.xml(gpmlUrl, "application/gpml+xml", function(error, gpml) {
-          // be sure server has set gpml mime type to application/gpml+xml
+    // be sure server has set gpml mime type to application/gpml+xml
 
-          var gpmlDoc = gpml.documentElement
+    var gpmlDoc = gpml.documentElement
 
-          var oSerializer = new XMLSerializer();
-          var sGpml = oSerializer.serializeToString(gpmlDoc);
+    var oSerializer = new XMLSerializer();
+    var sGpml = oSerializer.serializeToString(gpmlDoc);
 
 
-          var pathway = convertGpml2Json(gpml);
+    var pathway = convertGpml2Json(gpml);
 
-          var sJson = self.sJson = JSON.stringify(pathway, undefined, 2);
+    var sJson = self.sJson = JSON.stringify(pathway, undefined, 2);
 
-          callback(sGpml, sJson);
+    callback(sGpml, sJson);
 
   });
 };
@@ -49,26 +49,26 @@ function convertGpml2Json(xmlDoc){
   // GPML to jGPML shape name mappings: { "oldName":"new-name" }
 
   var shapeMappings = { "Arc" : "arc",
-	  "Brace" : "brace",
-	  "Cell" : "cell",
-	  "Endoplasmic Reticulum" : "endoplasmic-reticulum",
-	  "Extracellular region" : "extracellular-region",
-	  "Golgi Apparatus" : "golgi-apparatus",
-	  "Hexagon" : "hexagon",
-	  "Mitochondria" : "mitochondria",
-	  "Nucleus" : "nucleus",
-	  "Organelle" : "organelle",
-	  "Oval" : "oval",
-	  "Pentagon" : "pentagon",
-	  "Rectangle" : "rectangle",
-	  "RoundedRectangle" : "rounded-rectangle",
-	  "Sarcoplasmic Reticulum" : "sarcoplasmic-reticulum",
-	  "Triangle" : "triangle",
-	  "Vesicle" : "vesicle",
-	  "mim-degradation" : "mim-degradation"
+    "Brace" : "brace",
+    "Cell" : "cell",
+    "Endoplasmic Reticulum" : "endoplasmic-reticulum",
+    "Extracellular region" : "extracellular-region",
+    "Golgi Apparatus" : "golgi-apparatus",
+    "Hexagon" : "hexagon",
+    "Mitochondria" : "mitochondria",
+    "Nucleus" : "nucleus",
+    "Organelle" : "organelle",
+    "Oval" : "oval",
+    "Pentagon" : "pentagon",
+    "Rectangle" : "rectangle",
+    "RoundedRectangle" : "rounded-rectangle",
+    "Sarcoplasmic Reticulum" : "sarcoplasmic-reticulum",
+    "Triangle" : "triangle",
+    "Vesicle" : "vesicle",
+    "mim-degradation" : "mim-degradation"
   }; 
-	 
- // GPML to jGPML marker name mappings: { "oldName":"new-name" }
+
+  // GPML to jGPML marker name mappings: { "oldName":"new-name" }
   // excludes mim-branching-left and mim-branching-right as per Alex Pico's request
 
   var markerMappings = { "Arrow":"arrow", "TBar":"t-bar", "mim-necessary-stimulation":"mim-necessary-stimulation", "mim-binding":"mim-binding", "mim-conversion":"mim-conversion", "mim-stimulation":"mim-stimulation", "mim-modification":"mim-modification", "mim-catalysis":"mim-catalysis", "mim-inhibition":"mim-inhibition", "mim-cleavage":"mim-cleavage", "mim-covalent-bond":"mim-covalent-bond", "mim-transcription-translation":"mim-transcription-translation", "mim-gap":"mim-gap" };
@@ -82,8 +82,8 @@ function convertGpml2Json(xmlDoc){
   // We can use xml2json.js or JXON.js. Which is better?
   // JXON.js
 
-     pathway = JXON.build(xmlDoc.documentElement);
-    console.log(pathway);
+  pathway = JXON.build(xmlDoc.documentElement);
+  console.log(pathway);
   try {
     xmlns = pathway["xmlns"]
   }
@@ -152,484 +152,484 @@ function convertGpml2Json(xmlDoc){
     // We should look at available standardized implementations of json Biopax.
 
     try {
-        if (pathway.hasOwnProperty('biopaxref')) {
-            pathway.biopaxRefs = convertToArray( pathway.biopaxref );
-            delete pathway.biopaxref;
+      if (pathway.hasOwnProperty('biopaxref')) {
+        pathway.biopaxRefs = convertToArray( pathway.biopaxref );
+        delete pathway.biopaxref;
 
-            pathway.biopaxRefs.forEach(function(element, index, array) {
-            // modify data
-            });
-        }
-        else {
-            console.log("No element(s) named 'biopaxref' found in this gpml file.");
-        }
+        pathway.biopaxRefs.forEach(function(element, index, array) {
+          // modify data
+        });
+      }
+      else {
+        console.log("No element(s) named 'biopaxref' found in this gpml file.");
+      }
     }
     catch (e) {
-        console.log("Error converting biopaxref to json: " + e.message);
-        delete pathway.biopaxRefs;
+      console.log("Error converting biopaxref to json: " + e.message);
+      delete pathway.biopaxRefs;
     };
 
     // Comments 
 
     try {
-        if (pathway.hasOwnProperty('comment')) {
-            pathway.comments = convertToArray( pathway.comment );
-            delete pathway.comment;
+      if (pathway.hasOwnProperty('comment')) {
+        pathway.comments = convertToArray( pathway.comment );
+        delete pathway.comment;
 
-            pathway.comments.forEach(function(element, index, array) {
-            // modify data
-            });
-        }
-        else {
-            console.log("No element(s) named 'comment' found in this gpml file.");
-        }
+        pathway.comments.forEach(function(element, index, array) {
+          // modify data
+        });
+      }
+      else {
+        console.log("No element(s) named 'comment' found in this gpml file.");
+      }
     }
     catch (e) {
-        console.log("Error converting comment to json: " + e.message);
-        delete pathway.comments;
+      console.log("Error converting comment to json: " + e.message);
+      delete pathway.comments;
     };
 
     // LabelableElements
-   
+
     pathway.labelableElements = [];
 
     function parseLabelableElement(element, index, array, elementType) {
-        element.graphId = element.graphid;
-        delete element.graphid;
+      element.graphId = element.graphid;
+      delete element.graphid;
+
+      if (element.hasOwnProperty('groupref')) {
+        element.groupRef = element.groupref;
+        delete element.groupref;
+      };
+
+      if (element.hasOwnProperty('comment')) {
+        element.comments = convertToArray( element.comment );
+        delete element.comment;
+      };
+
+      if (element.hasOwnProperty('xref')) {
+        if ((element.xref.database === null) && (element.xref.id === null)) {
+          delete element.xref;
+        };
+      };
+
+      element.x = parseFloat(element.graphics.centerx) - parseFloat(element.graphics.width)/2;
+      element.x = Math.round( element.x * 100 ) / 100;
+
+      element.y = parseFloat(element.graphics.centery) - parseFloat(element.graphics.height)/2;
+      element.y = Math.round( element.y * 100 ) / 100;
+
+      element.width = parseFloat(element.graphics.width);
+      element.width = Math.round( element.width * 100 ) / 100;
+
+      element.height = parseFloat(element.graphics.height);
+      element.height = Math.round( element.height * 100 ) / 100;
+
+      // If unspecified due to being default, should we set the styles for stroke, fill and font-name here or in CSS?
+      // Currently, every default value that can be specified in the CSS is not specified in the code below.
+
+      if (element.graphics.hasOwnProperty("fillcolor")) {
+        // RGBColor() from http://www.phpied.com/rgb-color-parser-in-javascript/
+        // license: Use it if you like it
+        var fill = new RGBColor(element.graphics.fillcolor);
+        if (fill.ok) { 
+          element.fill = fill.toHex();
+        }
+      };
+
+      if (element.graphics.hasOwnProperty("color")) {
+        var color = new RGBColor(element.graphics.color);
+        if (color.ok) { 
+          element.stroke = color.toHex();
+        }
+      };	
+
+      if (element.graphics.hasOwnProperty("linethickness")) {
+        element.strokeWidth = element.graphics.linethickness;
+      };	
+
+      if (element.graphics.hasOwnProperty('linestyle')) {
+        element.strokeStyle = element.graphics.linestyle.toLowerCase();
+        delete element.graphics.linestyle;
+      }	
+
+      if (element.hasOwnProperty('attribute')) {
+        element.attributes = convertToArray( element.attribute );
+        delete element.attribute;
+        element.attributes.forEach(function(el, index, array) {
+          if ((el.key === "org.pathvisio.DoubleLineProperty") && (el.value === "Double")) {
+            el.strokeStyle = 'double';
+          }
+          else {
+            if ((el.key === "org.pathvisio.CellularComponentProperty") && (el.value !== "None")) {
+              element.graphics.shapetype = el.value;
+            };
+          };
+        });
+        delete element.attributes;
+      };	
+
+      if (element.graphics.hasOwnProperty("rotation")) {
+
+        // get rotation in degrees because SVG rotate attribute uses degrees
+        // http://www.w3.org/TR/SVG/coords.html#TransformAttribute
+
+        element.rotation = element.graphics.rotation * (180 / Math.PI);
+        element.rotation = Math.round( element.rotation * 100 ) / 100;
+      };	
+
+      // textLabel data
+
+      if (element.hasOwnProperty("textlabel")) {
+        var text = element.textlabel.toString().replace("&#xA;","\r\n");
+        delete element.textlabel;
+
+        element.textLabel = {};
+
+        element.textLabel.text = text;
 
         if (element.hasOwnProperty('groupref')) {
           element.groupRef = element.groupref;
           delete element.groupref;
-        };
-
-        if (element.hasOwnProperty('comment')) {
-          element.comments = convertToArray( element.comment );
-          delete element.comment;
-        };
-
-        if (element.hasOwnProperty('xref')) {
-            if ((element.xref.database === null) && (element.xref.id === null)) {
-              delete element.xref;
-            };
-        };
-
-        element.x = parseFloat(element.graphics.centerx) - parseFloat(element.graphics.width)/2;
-        element.x = Math.round( element.x * 100 ) / 100;
-
-        element.y = parseFloat(element.graphics.centery) - parseFloat(element.graphics.height)/2;
-        element.y = Math.round( element.y * 100 ) / 100;
-
-        element.width = parseFloat(element.graphics.width);
-        element.width = Math.round( element.width * 100 ) / 100;
-
-        element.height = parseFloat(element.graphics.height);
-        element.height = Math.round( element.height * 100 ) / 100;
-
-        // If unspecified due to being default, should we set the styles for stroke, fill and font-name here or in CSS?
-        // Currently, every default value that can be specified in the CSS is not specified in the code below.
-
-        if (element.graphics.hasOwnProperty("fillcolor")) {
-          // RGBColor() from http://www.phpied.com/rgb-color-parser-in-javascript/
-          // license: Use it if you like it
-          var fill = new RGBColor(element.graphics.fillcolor);
-          if (fill.ok) { 
-            element.fill = fill.toHex();
-          }
         };
 
         if (element.graphics.hasOwnProperty("color")) {
-          var color = new RGBColor(element.graphics.color);
-          if (color.ok) { 
-            element.stroke = color.toHex();
-          }
+
+          // element stroke and text color appear to be the same property in the Java PathVisio code
+
+          element.textLabel.color = element.stroke;
         };	
 
-        if (element.graphics.hasOwnProperty("linethickness")) {
-          element.strokeWidth = element.graphics.linethickness;
-        };	
-
-        if (element.graphics.hasOwnProperty('linestyle')) {
-          element.strokeStyle = element.graphics.linestyle.toLowerCase();
-          delete element.graphics.linestyle;
-        }	
-
-          if (element.hasOwnProperty('attribute')) {
-	      element.attributes = convertToArray( element.attribute );
-		    delete element.attribute;
-		  element.attributes.forEach(function(el, index, array) {
-			    if ((el.key === "org.pathvisio.DoubleLineProperty") && (el.value === "Double")) {
-			      el.strokeStyle = 'double';
-			    }
-			    else {
-				    if ((el.key === "org.pathvisio.CellularComponentProperty") && (el.value !== "None")) {
-					  element.graphics.shapetype = el.value;
-				    };
-			    };
-		  });
-		    delete element.attributes;
-          };	
-
-        if (element.graphics.hasOwnProperty("rotation")) {
-
-          // get rotation in degrees because SVG rotate attribute uses degrees
-          // http://www.w3.org/TR/SVG/coords.html#TransformAttribute
-
-          element.rotation = element.graphics.rotation * (180 / Math.PI);
-          element.rotation = Math.round( element.rotation * 100 ) / 100;
-        };	
-
-        // textLabel data
-
-        if (element.hasOwnProperty("textlabel")) {
-          var text = element.textlabel.toString().replace("&#xA;","\r\n");
-          delete element.textlabel;
-
-          element.textLabel = {};
-
-          element.textLabel.text = text;
-
-        if (element.hasOwnProperty('groupref')) {
-          element.groupRef = element.groupref;
-          delete element.groupref;
-        };
-
-          if (element.graphics.hasOwnProperty("color")) {
-
-            // element stroke and text color appear to be the same property in the Java PathVisio code
-
-            element.textLabel.color = element.stroke;
-          };	
-
-          if (element.graphics.hasOwnProperty("fontsize")) {
-            var fontSize = element.graphics.fontsize;
-          }
-          else {
-            var fontSize = 10;
-          };
-
-          element.textLabel.fontSize = fontSize;
-
-          if (element.graphics.hasOwnProperty("fontname")) {
-            element.textLabel.fontFamily = element.graphics.fontname;
-          };
-
-          if (element.graphics.hasOwnProperty("fontweight")) {
-            element.textLabel.fontWeight = element.graphics.fontweight.toLowerCase();
-          };
-
-          if (element.graphics.hasOwnProperty("fontstyle")) {
-            element.textLabel.fontStyle = element.graphics.fontstyle.toLowerCase();
-          };
-
-          if (alignToAnchorMappings.hasOwnProperty(element.graphics.align)) {
-            element.textLabel.textAnchor = alignToAnchorMappings[element.graphics.align];
-          };
-        }
-
-        if ((!(element.graphics.hasOwnProperty("shapetype"))) || (element.graphics.shapetype === 'Rectangle')) {
-          element.symbolType = "rectangle";
+        if (element.graphics.hasOwnProperty("fontsize")) {
+          var fontSize = element.graphics.fontsize;
         }
         else {
-          element.symbolType = shapeMappings[element.graphics.shapetype];
-        };	
-
-        delete element.graphics;
-
-        element.elementType = elementType;
-
-        if (elementType === 'data-node') {
-          if (dataNodeTypeMappings.hasOwnProperty(element.type)) {
-            element.dataNodeType = dataNodeTypeMappings[element.type];
-          }
-          else {
-            element.dataNodeType = "unknown";
-          };
-          delete element.type;
-
-          if (element.hasOwnProperty('xref')) {
-            element.xRef = element.xref;
-            delete element.xref;
-          };
+          var fontSize = 10;
         };
 
-        pathway.labelableElements.push(element);
-        delete element.graphics;
+        element.textLabel.fontSize = fontSize;
+
+        if (element.graphics.hasOwnProperty("fontname")) {
+          element.textLabel.fontFamily = element.graphics.fontname;
+        };
+
+        if (element.graphics.hasOwnProperty("fontweight")) {
+          element.textLabel.fontWeight = element.graphics.fontweight.toLowerCase();
+        };
+
+        if (element.graphics.hasOwnProperty("fontstyle")) {
+          element.textLabel.fontStyle = element.graphics.fontstyle.toLowerCase();
+        };
+
+        if (alignToAnchorMappings.hasOwnProperty(element.graphics.align)) {
+          element.textLabel.textAnchor = alignToAnchorMappings[element.graphics.align];
+        };
+      }
+
+      if ((!(element.graphics.hasOwnProperty("shapetype"))) || (element.graphics.shapetype === 'Rectangle')) {
+        element.symbolType = "rectangle";
+      }
+      else {
+        element.symbolType = shapeMappings[element.graphics.shapetype];
+      };	
+
+      delete element.graphics;
+
+      element.elementType = elementType;
+
+      if (elementType === 'data-node') {
+        if (dataNodeTypeMappings.hasOwnProperty(element.type)) {
+          element.dataNodeType = dataNodeTypeMappings[element.type];
+        }
+        else {
+          element.dataNodeType = "unknown";
+        };
+        delete element.type;
+
+        if (element.hasOwnProperty('xref')) {
+          element.xRef = element.xref;
+          delete element.xref;
+        };
+      };
+
+      pathway.labelableElements.push(element);
+      delete element.graphics;
     };
 
     // DataNodes 
 
     try {
-        if (pathway.hasOwnProperty('datanode')) {
-            pathway.dataNodes = convertToArray( pathway.datanode );
-            delete pathway.datanode;
+      if (pathway.hasOwnProperty('datanode')) {
+        pathway.dataNodes = convertToArray( pathway.datanode );
+        delete pathway.datanode;
 
-            pathway.dataNodes.forEach(function(element, index, array) {
-                parseLabelableElement(element, index, array, 'data-node');
-            });
-            delete pathway.dataNodes;
-        }
-        else {
-            console.log("No element(s) named 'datanode' found in this gpml file.");
-        }
+        pathway.dataNodes.forEach(function(element, index, array) {
+          parseLabelableElement(element, index, array, 'data-node');
+        });
+        delete pathway.dataNodes;
+      }
+      else {
+        console.log("No element(s) named 'datanode' found in this gpml file.");
+      }
     }
     catch (e) {
-        console.log("Error converting datanode to json: " + e.message);
-        delete pathway.dataNodes;
+      console.log("Error converting datanode to json: " + e.message);
+      delete pathway.dataNodes;
     };
 
     // Groups
 
     try {
-        if (pathway.hasOwnProperty('group')) {
-          pathway.groups = convertToArray( pathway.group );
-          delete pathway.group;
+      if (pathway.hasOwnProperty('group')) {
+        pathway.groups = convertToArray( pathway.group );
+        delete pathway.group;
 
-          pathway.groups.forEach(function(element, index, array) {
+        pathway.groups.forEach(function(element, index, array) {
 
-            element.graphId = element.graphid;
-            delete element.graphid;
+          element.graphId = element.graphid;
+          delete element.graphid;
 
-            element.groupId = element.groupid;
-            delete element.groupid;
+          element.groupId = element.groupid;
+          delete element.groupid;
 
-          });
-        }
-        else {
-            console.log("No element(s) named 'datanode' found in this gpml file.");
-        }
+        });
+      }
+      else {
+        console.log("No element(s) named 'datanode' found in this gpml file.");
+      }
     }
     catch (e) {
-        console.log("Error converting group to json: " + e.message);
-        delete pathway.groups;
+      console.log("Error converting group to json: " + e.message);
+      delete pathway.groups;
     };
 
     // Graphical Lines 
 
     try {
-        if (pathway.hasOwnProperty('graphicalline')) {
-          pathway.graphicalLines = convertToArray( pathway.graphicalline );
-          delete pathway.graphicalline;
+      if (pathway.hasOwnProperty('graphicalline')) {
+        pathway.graphicalLines = convertToArray( pathway.graphicalline );
+        delete pathway.graphicalline;
 
-          pathway.graphicalLines.forEach(function(element, index, array) {
+        pathway.graphicalLines.forEach(function(element, index, array) {
 
-            element.graphId = element.graphid;
-            delete element.graphid;
+          element.graphId = element.graphid;
+          delete element.graphid;
 
-            if (element.hasOwnProperty('groupref')) {
-              element.groupRef = element.groupref;
-              delete element.groupref;
-            };
+          if (element.hasOwnProperty('groupref')) {
+            element.groupRef = element.groupref;
+            delete element.groupref;
+          };
 
-            if (element.graphics.hasOwnProperty('color')) {
-              var color = new RGBColor(element.graphics.color);
-              if (color.ok) { 
-                element.stroke = color.toHex();
-              }
-            };	
+          if (element.graphics.hasOwnProperty('color')) {
+            var color = new RGBColor(element.graphics.color);
+            if (color.ok) { 
+              element.stroke = color.toHex();
+            }
+          };	
 
-            element.strokeWidth = element.graphics.linethickness;
+          element.strokeWidth = element.graphics.linethickness;
 
-            if (element.graphics.hasOwnProperty('connectortype')) {
+          if (element.graphics.hasOwnProperty('connectortype')) {
             element.connectorType = element.graphics.connectortype.toLowerCase();
-            }	
+          }	
 
-            if (element.graphics.hasOwnProperty('linestyle')) {
-              element.strokeStyle = element.graphics.linestyle.toLowerCase();
-              delete element.graphics.linestyle;
-            }	
-            else {
-              if (element.hasOwnProperty('attribute')) {
-                if ((element.attribute.key === "org.pathvisio.DoubleLineProperty") && (element.attribute.value === "Double")) {
-                  element.strokeStyle = 'double';
-                  delete element.attribute;
-                };
-              };	
-            };
-
-            element.zIndex = element.graphics.zorder;
-            delete element.graphics.zorder;
-
-            element.xRef = element.xref;
-            delete element.xref;
-
-            var markerStart = 'none';
-            var markerEnd = 'none';
-
-            // Points
-
-            element.points = convertToArray( element.graphics.point );
-            delete element.graphics;
-
-            element.points.forEach(function(element, index, array) {
-
-              element.graphRef = element.graphref;
-              delete element.graphref;
-
-              // This is probably unreliable. We need to establish a way to ensure we identify start and end markers correctly, and we should not rely on the order of elements in XML.
-
-              if ((index === 0) && (markerMappings.hasOwnProperty(element.arrowhead))) {
-                  markerStart = markerMappings[element.arrowhead];
-                  delete element.arrowhead;
-              }
-              else {
-                if ((index === array.length - 1) && (markerMappings.hasOwnProperty(element.arrowhead))) {
-                  markerEnd = markerMappings[element.arrowhead];
-                  delete element.arrowhead;
-                }
+          if (element.graphics.hasOwnProperty('linestyle')) {
+            element.strokeStyle = element.graphics.linestyle.toLowerCase();
+            delete element.graphics.linestyle;
+          }	
+          else {
+            if (element.hasOwnProperty('attribute')) {
+              if ((element.attribute.key === "org.pathvisio.DoubleLineProperty") && (element.attribute.value === "Double")) {
+                element.strokeStyle = 'double';
+                delete element.attribute;
               };
-            });
+            };	
+          };
 
-            // Back to graphical lines
+          element.zIndex = element.graphics.zorder;
+          delete element.graphics.zorder;
 
-            element.markerStart = markerStart;
-            element.markerEnd = markerEnd;
+          element.xRef = element.xref;
+          delete element.xref;
 
-            delete element.graphics;
+          var markerStart = 'none';
+          var markerEnd = 'none';
 
+          // Points
+
+          element.points = convertToArray( element.graphics.point );
+          delete element.graphics;
+
+          element.points.forEach(function(element, index, array) {
+
+            element.graphRef = element.graphref;
+            delete element.graphref;
+
+            // This is probably unreliable. We need to establish a way to ensure we identify start and end markers correctly, and we should not rely on the order of elements in XML.
+
+            if ((index === 0) && (markerMappings.hasOwnProperty(element.arrowhead))) {
+              markerStart = markerMappings[element.arrowhead];
+              delete element.arrowhead;
+            }
+            else {
+              if ((index === array.length - 1) && (markerMappings.hasOwnProperty(element.arrowhead))) {
+                markerEnd = markerMappings[element.arrowhead];
+                delete element.arrowhead;
+              }
+            };
           });
-        }
-        else {
-            console.log("No element(s) named 'graphicalline' found in this gpml file.");
-        }
+
+          // Back to graphical lines
+
+          element.markerStart = markerStart;
+          element.markerEnd = markerEnd;
+
+          delete element.graphics;
+
+        });
+      }
+      else {
+        console.log("No element(s) named 'graphicalline' found in this gpml file.");
+      }
     }
     catch (e) {
-        console.log("Error converting graphicalline to json: " + e.message);
-        delete pathway.graphicalLines;
+      console.log("Error converting graphicalline to json: " + e.message);
+      delete pathway.graphicalLines;
     };
 
     // Interactions
 
     try {
-        if (pathway.hasOwnProperty('interaction')) {
-          pathway.interactions = convertToArray( pathway.interaction );
-          delete pathway.interaction;
+      if (pathway.hasOwnProperty('interaction')) {
+        pathway.interactions = convertToArray( pathway.interaction );
+        delete pathway.interaction;
 
-          pathway.interactions.forEach(function(element, index, array) {
+        pathway.interactions.forEach(function(element, index, array) {
 
-            element.graphId = element.graphid;
-            delete element.graphid;
+          element.graphId = element.graphid;
+          delete element.graphid;
 
-            if (element.hasOwnProperty('groupref')) {
-              element.groupRef = element.groupref;
-              delete element.groupref;
-            };
+          if (element.hasOwnProperty('groupref')) {
+            element.groupRef = element.groupref;
+            delete element.groupref;
+          };
 
-            if (element.graphics.hasOwnProperty('color')) {
-              var color = new RGBColor(element.graphics.color);
-              if (color.ok) { 
-                element.stroke = color.toHex();
-              }
-            };	
+          if (element.graphics.hasOwnProperty('color')) {
+            var color = new RGBColor(element.graphics.color);
+            if (color.ok) { 
+              element.stroke = color.toHex();
+            }
+          };	
 
-            element.strokeWidth = element.graphics.linethickness;
+          element.strokeWidth = element.graphics.linethickness;
 
-            if (element.graphics.hasOwnProperty('connectortype')) {
+          if (element.graphics.hasOwnProperty('connectortype')) {
             element.connectorType = element.graphics.connectortype.toLowerCase();
-            }	
+          }	
 
-            if (element.graphics.hasOwnProperty('linestyle')) {
-              element.strokeStyle = element.graphics.linestyle.toLowerCase();
-              delete element.graphics.linestyle;
-            }	
-            else {
-              if (element.hasOwnProperty('attribute')) {
-                if ((element.attribute.key === "org.pathvisio.DoubleLineProperty") && (element.attribute.value === "Double")) {
-                  element.strokeStyle = 'double';
-                  delete element.attribute;
-                };
-              };	
-            };
-
-            element.zIndex = element.graphics.zorder;
-            delete element.graphics.zorder;
-
-            element.xRef = element.xref;
-            delete element.xref;
-
-            var markerStart = 'none';
-            var markerEnd = 'none';
-
-            // Points
-
-            element.points = convertToArray( element.graphics.point );
-            delete element.graphics;
-
-            element.points.forEach(function(element, index, array) {
-
-              element.graphRef = element.graphref;
-              delete element.graphref;
-
-              // This is probably unreliable. We need to establish a way to ensure we identify start and end markers correctly, and we should not rely on the order of elements in XML.
-
-              if ((index === 0) && (markerMappings.hasOwnProperty(element.arrowhead))) {
-                  markerStart = markerMappings[element.arrowhead];
-                  delete element.arrowhead;
-              }
-              else {
-                if ((index === array.length - 1) && (markerMappings.hasOwnProperty(element.arrowhead))) {
-                  markerEnd = markerMappings[element.arrowhead];
-                  delete element.arrowhead;
-                }
+          if (element.graphics.hasOwnProperty('linestyle')) {
+            element.strokeStyle = element.graphics.linestyle.toLowerCase();
+            delete element.graphics.linestyle;
+          }	
+          else {
+            if (element.hasOwnProperty('attribute')) {
+              if ((element.attribute.key === "org.pathvisio.DoubleLineProperty") && (element.attribute.value === "Double")) {
+                element.strokeStyle = 'double';
+                delete element.attribute;
               };
-            });
+            };	
+          };
 
-            // Back to interactions
+          element.zIndex = element.graphics.zorder;
+          delete element.graphics.zorder;
 
-            element.markerStart = markerStart;
-            element.markerEnd = markerEnd;
+          element.xRef = element.xref;
+          delete element.xref;
 
-            delete element.graphics;
+          var markerStart = 'none';
+          var markerEnd = 'none';
 
+          // Points
+
+          element.points = convertToArray( element.graphics.point );
+          delete element.graphics;
+
+          element.points.forEach(function(element, index, array) {
+
+            element.graphRef = element.graphref;
+            delete element.graphref;
+
+            // This is probably unreliable. We need to establish a way to ensure we identify start and end markers correctly, and we should not rely on the order of elements in XML.
+
+            if ((index === 0) && (markerMappings.hasOwnProperty(element.arrowhead))) {
+              markerStart = markerMappings[element.arrowhead];
+              delete element.arrowhead;
+            }
+            else {
+              if ((index === array.length - 1) && (markerMappings.hasOwnProperty(element.arrowhead))) {
+                markerEnd = markerMappings[element.arrowhead];
+                delete element.arrowhead;
+              }
+            };
           });
-        }
+
+          // Back to interactions
+
+          element.markerStart = markerStart;
+          element.markerEnd = markerEnd;
+
+          delete element.graphics;
+
+        });
+      }
     }
     catch (e) {
-        console.log("Error converting interaction to json: " + e.message);
-        delete pathway.interactions;
+      console.log("Error converting interaction to json: " + e.message);
+      delete pathway.interactions;
     };
 
     // Labels
 
     try {
-        if (pathway.hasOwnProperty('label')) {
-          pathway.labels = convertToArray( pathway.label );
-          delete pathway.label;
+      if (pathway.hasOwnProperty('label')) {
+        pathway.labels = convertToArray( pathway.label );
+        delete pathway.label;
 
-          pathway.labels.forEach(function(element, index, array) {
-            parseLabelableElement(element, index, array, 'label');
-          });
+        pathway.labels.forEach(function(element, index, array) {
+          parseLabelableElement(element, index, array, 'label');
+        });
 
-          delete pathway.labels;
-        }
-        else {
-            console.log("No element(s) named 'label' found in this gpml file.");
-        }
+        delete pathway.labels;
+      }
+      else {
+        console.log("No element(s) named 'label' found in this gpml file.");
+      }
     }
     catch (e) {
-        console.log("Error converting label to json: " + e.message);
-        delete pathway.labels;
+      console.log("Error converting label to json: " + e.message);
+      delete pathway.labels;
     };
 
     // Shapes
 
     try {
-        if (pathway.hasOwnProperty('shape')) {
-          pathway.shapes = convertToArray( pathway.shape );
-          delete pathway.shape;
+      if (pathway.hasOwnProperty('shape')) {
+        pathway.shapes = convertToArray( pathway.shape );
+        delete pathway.shape;
 
-          pathway.shapes.forEach(function(element, index, array) {
-            parseLabelableElement(element, index, array, 'shape');
-          });
+        pathway.shapes.forEach(function(element, index, array) {
+          parseLabelableElement(element, index, array, 'shape');
+        });
 
-          delete pathway.shapes;
-        }
-        else {
-            console.log("No element(s) named 'shape' found in this gpml file.");
-        }
+        delete pathway.shapes;
+      }
+      else {
+        console.log("No element(s) named 'shape' found in this gpml file.");
+      }
     }
     catch (e) {
-        console.log("Error converting shape to json: " + e.message);
-        delete pathway.shapes;
+      console.log("Error converting shape to json: " + e.message);
+      delete pathway.shapes;
     };
 
     console.log('jGPML pathway');
