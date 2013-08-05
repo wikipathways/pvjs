@@ -1,0 +1,372 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Pathway xmlns="http://pathvisio.org/GPML/2013a" Name="neural crest development" Organism="Danio rerio">
+  <Comment Source="GenMAPP notes"></Comment>
+  <Comment Source="GenMAPP remarks"></Comment>
+  <Comment Source="WikiPathways-description">This pathway displays genes required for different processes in neural crest development. It is based on genetic and signaling interactions.</Comment>
+  <Comment Source="WikiPathways-category">Cellular Process</Comment>
+  <BiopaxRef>ae2</BiopaxRef>
+  <BiopaxRef>c1d</BiopaxRef>
+  <BiopaxRef>f9f</BiopaxRef>
+  <BiopaxRef>db7</BiopaxRef>
+  <Graphics BoardWidth="456.4308176100627" BoardHeight="784.6540880503145" />
+  <DataNode TextLabel="snai1b" GraphId="ed3da" Type="GeneProduct">
+    <Graphics CenterX="92.26415094339625" CenterY="545.3207547169811" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Entrez Gene" ID="30182" />
+  </DataNode>
+  <DataNode TextLabel="dlx4b" GraphId="a4f62" Type="GeneProduct">
+    <Graphics CenterX="382.2641509433961" CenterY="389.9874213836478" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Entrez Gene" ID="30581" />
+  </DataNode>
+  <DataNode TextLabel="bcmo1" GraphId="a5199" Type="GeneProduct">
+    <BiopaxRef>a9a</BiopaxRef>
+    <Graphics CenterX="92.26415094339625" CenterY="744.6540880503145" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Entrez Gene" ID="84039" />
+  </DataNode>
+  <DataNode TextLabel="dlx3b" GraphId="e080c" Type="GeneProduct">
+    <Graphics CenterX="92.26415094339625" CenterY="480.6540880503145" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Entrez Gene" ID="30585" />
+  </DataNode>
+  <DataNode TextLabel="pah" GraphId="f56f9" Type="GeneProduct">
+    <Graphics CenterX="242.2641509433961" CenterY="171.32075471698118" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Entrez Gene" ID="378962" />
+  </DataNode>
+  <DataNode TextLabel="plp1b" GraphId="a5c61" Type="GeneProduct">
+    <Graphics CenterX="382.2641509433961" CenterY="191.32075471698118" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Entrez Gene" ID="368234" />
+  </DataNode>
+  <DataNode TextLabel="csf1r" GraphId="a9100" Type="GeneProduct">
+    <Graphics CenterX="242.2641509433961" CenterY="191.32075471698118" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Entrez Gene" ID="64274" />
+  </DataNode>
+  <DataNode TextLabel="plp1a" GraphId="f2ca6" Type="GeneProduct">
+    <Graphics CenterX="382.2641509433961" CenterY="171.32075471698118" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Entrez Gene" ID="64264" />
+  </DataNode>
+  <DataNode TextLabel="ednrb1" GraphId="de5f9" Type="GeneProduct">
+    <Graphics CenterX="242.2641509433961" CenterY="211.32075471698118" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Entrez Gene" ID="30442" />
+  </DataNode>
+  <DataNode TextLabel="silvb" GraphId="b48e0" Type="GeneProduct">
+    <Graphics CenterX="242.2641509433961" CenterY="377.3207547169812" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Entrez Gene" ID="562810" />
+  </DataNode>
+  <DataNode TextLabel="mbp" GraphId="efca5" Type="GeneProduct">
+    <Graphics CenterX="382.2641509433961" CenterY="211.32075471698118" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Entrez Gene" ID="326281" />
+  </DataNode>
+  <DataNode TextLabel="qdprb1" GraphId="e520c" Type="GeneProduct">
+    <Graphics CenterX="242.2641509433961" CenterY="621.3207547169811" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Entrez Gene" ID="791448" />
+  </DataNode>
+  <DataNode TextLabel="zic2b" GraphId="e041b" Type="GeneProduct">
+    <Graphics CenterX="92.26415094339625" CenterY="420.6540880503145" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Entrez Gene" ID="570746" />
+  </DataNode>
+  <DataNode TextLabel="msxb" GraphId="cc56c" Type="GeneProduct">
+    <Graphics CenterX="92.26415094339625" CenterY="360.6540880503145" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Entrez Gene" ID="30511" />
+  </DataNode>
+  <DataNode TextLabel="twist1a" GraphId="eae12" Type="GeneProduct">
+    <Graphics CenterX="92.26415094339625" CenterY="605.3207547169811" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Entrez Gene" ID="30175" />
+  </DataNode>
+  <DataNode TextLabel="twist1b" GraphId="c9952" Type="GeneProduct">
+    <Graphics CenterX="92.26415094339625" CenterY="625.3207547169811" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Entrez Gene" ID="550518" />
+  </DataNode>
+  <DataNode TextLabel="kitb" GraphId="e540e" Type="GeneProduct">
+    <Graphics CenterX="242.2641509433961" CenterY="250.32075471698118" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Entrez Gene" ID="497629" />
+  </DataNode>
+  <DataNode TextLabel="pts" GraphId="f7da3" Type="GeneProduct">
+    <Graphics CenterX="242.2641509433961" CenterY="521.3207547169811" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Entrez Gene" ID="100073330" />
+  </DataNode>
+  <DataNode TextLabel="bmp7a" GraphId="a9145" Type="GeneProduct">
+    <Graphics CenterX="92.26415094339625" CenterY="171.32075471698118" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Entrez Gene" ID="30584" />
+  </DataNode>
+  <DataNode TextLabel="tyrp1b" GraphId="be901" Type="GeneProduct">
+    <Graphics CenterX="242.2641509433961" CenterY="317.3207547169812" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Entrez Gene" ID="437022" />
+  </DataNode>
+  <DataNode TextLabel="msxe" GraphId="be18d" Type="GeneProduct">
+    <Graphics CenterX="92.26415094339625" CenterY="320.6540880503145" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Entrez Gene" ID="30527" />
+  </DataNode>
+  <DataNode TextLabel="zic5" GraphId="c01c5" Type="GeneProduct">
+    <Graphics CenterX="92.26415094339625" CenterY="460.6540880503145" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Entrez Gene" ID="403041" />
+  </DataNode>
+  <DataNode TextLabel="foxd3" GraphId="cc84a" Type="GeneProduct">
+    <Graphics CenterX="92.26415094339625" CenterY="565.3207547169811" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Entrez Gene" ID="30548" />
+  </DataNode>
+  <DataNode TextLabel="zic1" GraphId="b63f0" Type="GeneProduct">
+    <Graphics CenterX="92.26415094339625" CenterY="380.6540880503145" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Entrez Gene" ID="30096" />
+  </DataNode>
+  <DataNode TextLabel="aox3" GraphId="c4b17" Type="GeneProduct">
+    <Graphics CenterX="242.2641509433961" CenterY="561.3207547169811" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Entrez Gene" ID="64265" />
+  </DataNode>
+  <DataNode TextLabel="mbz" GraphId="dd197" Type="GeneProduct">
+    <Graphics CenterX="382.2641509433961" CenterY="231.32075471698118" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Entrez Gene" ID="114417" />
+  </DataNode>
+  <DataNode TextLabel="tyr" GraphId="dca23" Type="GeneProduct">
+    <Graphics CenterX="242.2641509433961" CenterY="297.3207547169812" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Entrez Gene" ID="30207" />
+  </DataNode>
+  <DataNode TextLabel="bmp2b" GraphId="aee33" Type="GeneProduct">
+    <Graphics CenterX="92.26415094339625" CenterY="151.32075471698118" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Entrez Gene" ID="30632" />
+  </DataNode>
+  <DataNode TextLabel="gchfr" GraphId="a00d2" Type="GeneProduct">
+    <Graphics CenterX="242.2641509433961" CenterY="501.3207547169812" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Entrez Gene" ID="393735" />
+  </DataNode>
+  <DataNode TextLabel="wnt8a" GraphId="f2a23" Type="GeneProduct">
+    <Graphics CenterX="92.26415094339625" CenterY="211.32075471698118" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Entrez Gene" ID="30122" />
+  </DataNode>
+  <DataNode TextLabel="dlx2a" GraphId="dd7e4" Type="GeneProduct">
+    <Graphics CenterX="382.2641509433961" CenterY="349.9874213836478" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Entrez Gene" ID="30574" />
+  </DataNode>
+  <DataNode TextLabel="myca" GraphId="fec38" Type="GeneProduct">
+    <Graphics CenterX="92.26415094339625" CenterY="705.3207547169811" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Entrez Gene" ID="30686" />
+  </DataNode>
+  <DataNode TextLabel="ltk" GraphId="d45ef" Type="GeneProduct">
+    <BiopaxRef>f5d</BiopaxRef>
+    <Graphics CenterX="380.2641509433961" CenterY="454.6540880503145" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Entrez Gene" ID="564470" />
+  </DataNode>
+  <DataNode TextLabel="phox2b" GraphId="b619b" Type="GeneProduct">
+    <Graphics CenterX="92.26415094339625" CenterY="725.3207547169811" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Entrez Gene" ID="544654" />
+  </DataNode>
+  <DataNode TextLabel="tfap2a" GraphId="c7f58" Type="GeneProduct">
+    <Graphics CenterX="92.26415094339625" CenterY="685.3207547169811" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Entrez Gene" ID="140618" />
+  </DataNode>
+  <DataNode TextLabel="pcbd1" GraphId="bbfba" Type="GeneProduct">
+    <Graphics CenterX="242.2641509433961" CenterY="581.3207547169811" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Entrez Gene" ID="393787" />
+  </DataNode>
+  <DataNode TextLabel="pax3a" GraphId="f7e06" Type="GeneProduct">
+    <Graphics CenterX="92.26415094339625" CenterY="280.6540880503145" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Entrez Gene" ID="30532" />
+  </DataNode>
+  <DataNode TextLabel="sox10" GraphId="dbff2" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="sox10" />
+    <Graphics CenterX="92.26415094339625" CenterY="585.3207547169811" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Entrez Gene" ID="140616" />
+  </DataNode>
+  <DataNode TextLabel="egr2b" GraphId="ce108" Type="GeneProduct">
+    <Graphics CenterX="382.2641509433961" CenterY="151.32075471698118" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Entrez Gene" ID="30190" />
+  </DataNode>
+  <DataNode TextLabel="sox9b" GraphId="d8bea" Type="GeneProduct">
+    <Graphics CenterX="92.26415094339625" CenterY="645.3207547169811" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Entrez Gene" ID="60642" />
+  </DataNode>
+  <DataNode TextLabel="dlx1a" GraphId="a0125" Type="GeneProduct">
+    <Graphics CenterX="382.2641509433961" CenterY="329.9874213836478" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Entrez Gene" ID="30568" />
+  </DataNode>
+  <DataNode TextLabel="qdpra" GraphId="a7990" Type="GeneProduct">
+    <Graphics CenterX="242.2641509433961" CenterY="601.3207547169811" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Entrez Gene" ID="566323" />
+  </DataNode>
+  <DataNode TextLabel="slc45a2" GraphId="a7538" Type="GeneProduct">
+    <Graphics CenterX="242.2641509433961" CenterY="417.3207547169812" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Entrez Gene" ID="558311" />
+  </DataNode>
+  <DataNode TextLabel="dlx3b" GraphId="e431e" Type="GeneProduct">
+    <Graphics CenterX="92.26415094339625" CenterY="260.6540880503145" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Entrez Gene" ID="30585" />
+  </DataNode>
+  <DataNode TextLabel="ret1" GraphId="caa43" Type="GeneProduct">
+    <Graphics CenterX="382.2641509433961" CenterY="281.3207547169812" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Entrez Gene" ID="30512" />
+  </DataNode>
+  <DataNode TextLabel="mitfa" GraphId="bd21c" Type="GeneProduct">
+    <Graphics CenterX="242.2641509433961" CenterY="151.32075471698118" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Entrez Gene" ID="30080" />
+  </DataNode>
+  <DataNode TextLabel="bmp7b" GraphId="b4083" Type="GeneProduct">
+    <Graphics CenterX="92.26415094339625" CenterY="191.32075471698118" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Entrez Gene" ID="557567" />
+  </DataNode>
+  <DataNode TextLabel="spra" GraphId="ca4dd" Type="GeneProduct">
+    <Graphics CenterX="242.2641509433961" CenterY="541.3207547169811" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Entrez Gene" ID="554136" />
+  </DataNode>
+  <DataNode TextLabel="dlx4a" GraphId="bc6f3" Type="GeneProduct">
+    <Graphics CenterX="382.2641509433961" CenterY="369.9874213836478" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Entrez Gene" ID="30561" />
+  </DataNode>
+  <DataNode TextLabel="zic2a" GraphId="ef66c" Type="GeneProduct">
+    <Graphics CenterX="92.26415094339625" CenterY="400.6540880503145" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Entrez Gene" ID="58077" />
+  </DataNode>
+  <DataNode TextLabel="kita" GraphId="c23d3" Type="GeneProduct">
+    <Graphics CenterX="242.2641509433961" CenterY="230.32075471698118" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Entrez Gene" ID="30256" />
+  </DataNode>
+  <DataNode TextLabel="dct" GraphId="d4cd7" Type="GeneProduct">
+    <Graphics CenterX="242.2641509433961" CenterY="337.3207547169812" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Entrez Gene" ID="58074" />
+  </DataNode>
+  <DataNode TextLabel="dlx5a" GraphId="ed0eb" Type="GeneProduct">
+    <Graphics CenterX="382.2641509433961" CenterY="409.9874213836478" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Entrez Gene" ID="30569" />
+  </DataNode>
+  <DataNode TextLabel="msxc" GraphId="a5a0a" Type="GeneProduct">
+    <Graphics CenterX="92.26415094339625" CenterY="340.6540880503145" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Entrez Gene" ID="30526" />
+  </DataNode>
+  <DataNode TextLabel="dlx4b" GraphId="feb31" Type="GeneProduct">
+    <Graphics CenterX="92.26415094339625" CenterY="500.6540880503145" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Entrez Gene" ID="30581" />
+  </DataNode>
+  <DataNode TextLabel="silva" GraphId="c8823" Type="GeneProduct">
+    <Graphics CenterX="242.2641509433961" CenterY="357.3207547169812" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Entrez Gene" ID="321239" />
+  </DataNode>
+  <DataNode TextLabel="oca2" GraphId="e653e" Type="GeneProduct">
+    <Graphics CenterX="242.2641509433961" CenterY="397.3207547169812" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Entrez Gene" ID="567419" />
+  </DataNode>
+  <DataNode TextLabel="pax7a" GraphId="d096c" Type="GeneProduct">
+    <Graphics CenterX="92.26415094339625" CenterY="300.6540880503145" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Entrez Gene" ID="30587" />
+  </DataNode>
+  <DataNode TextLabel="slc24a5" GraphId="b7bb5" Type="GeneProduct">
+    <Graphics CenterX="242.2641509433961" CenterY="437.3207547169812" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Entrez Gene" ID="570312" />
+  </DataNode>
+  <DataNode TextLabel="id2a" GraphId="a0a05" Type="GeneProduct">
+    <Graphics CenterX="92.26415094339625" CenterY="665.3207547169811" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Entrez Gene" ID="266599" />
+  </DataNode>
+  <DataNode TextLabel="zic3" GraphId="c398a" Type="GeneProduct">
+    <Graphics CenterX="92.26415094339625" CenterY="440.6540880503145" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Entrez Gene" ID="368263" />
+  </DataNode>
+  <DataNode TextLabel="gch2" GraphId="f848a" Type="GeneProduct">
+    <Graphics CenterX="242.2641509433961" CenterY="481.3207547169812" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Entrez Gene" ID="64263" />
+  </DataNode>
+  <Label TextLabel="neural plate border specifiers" GraphId="e0c9f">
+    <Graphics CenterX="92.26415094339625" CenterY="240.6540880503145" Width="150.33333333333334" Height="12.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="8" Valign="Middle" />
+  </Label>
+  <Label TextLabel="iridophores" GraphId="d8fc7">
+    <Graphics CenterX="382.4308176100628" CenterY="436.8207547169812" Width="71.66666666666667" Height="9.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="8" Valign="Middle" />
+  </Label>
+  <Label TextLabel="enteric neurons" GraphId="e6633">
+    <Graphics CenterX="380.4308176100628" CenterY="260.8207547169812" Width="71.66666666666667" Height="9.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="8" Valign="Middle" />
+  </Label>
+  <Label TextLabel="melanin synthesis" GraphId="f30b9">
+    <Graphics CenterX="242.2641509433961" CenterY="277.3207547169812" Width="94.33333333333333" Height="12.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="8" Valign="Middle" />
+  </Label>
+  <Label TextLabel="Induction signals" GraphId="ae7a4">
+    <Graphics CenterX="92.26415094339625" CenterY="127.9874213836478" Width="89.33333333333333" Height="12.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="8" Valign="Middle" />
+  </Label>
+  <Label TextLabel="branchial arches" GraphId="f431c">
+    <Graphics CenterX="382.2641509433961" CenterY="309.9874213836478" Width="88.33333333333333" Height="12.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="8" Valign="Middle" />
+  </Label>
+  <Label TextLabel="pigmentation" GraphId="b0524">
+    <Graphics CenterX="242.2641509433961" CenterY="127.9874213836478" Width="68.33333333333333" Height="12.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="8" Valign="Middle" />
+  </Label>
+  <Label TextLabel="pteridin syntesis" GraphId="c91c8">
+    <Graphics CenterX="242.2641509433961" CenterY="461.3207547169812" Width="86.33333333333333" Height="12.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="8" Valign="Middle" />
+  </Label>
+  <Label TextLabel="glia" GraphId="af8fd">
+    <Graphics CenterX="382.2641509433961" CenterY="127.9874213836478" Width="23.333333333333332" Height="12.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="8" Valign="Middle" />
+  </Label>
+  <Label TextLabel="neural crest specifiers" GraphId="f508f">
+    <Graphics CenterX="92.26415094339625" CenterY="525.3207547169811" Width="116.33333333333333" Height="12.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="8" Valign="Middle" />
+  </Label>
+  <InfoBox CenterX="0.0" CenterY="0.0" />
+  <Biopax>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="c1d">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">15880502</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Central role of gene cooption in neural crest evolution.</bp:TITLE>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">J Exp Zoolog B Mol Dev Evol</bp:SOURCE>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2005</bp:YEAR>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Meulemans D</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Bronner-Fraser M</bp:AUTHORS>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="db7">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">18478530</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">The origin and evolution of the neural crest.</bp:TITLE>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Bioessays</bp:SOURCE>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2008</bp:YEAR>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Donoghue PC</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Graham A</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Kelsh RN</bp:AUTHORS>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="f5d">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">18369445</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Leukocyte tyrosine kinase functions in pigment cell development.</bp:TITLE>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PLoS Genet</bp:SOURCE>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2008</bp:YEAR>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Lopes SS</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Yang X</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Muller J</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Carney TJ</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">McAdow AR</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Rauch GJ</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Jacoby AS</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Hurst LD</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Delfino-Machââ n M</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Haffter P</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Geisler R</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Johnson SL</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Ward A</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Kelsh RN</bp:AUTHORS>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="a9a">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">12668631</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Provitamin A conversion to retinal via the beta,beta-carotene-15,15'-oxygenase (bcox) is essential for pattern formation and differentiation during zebrafish embryogenesis.</bp:TITLE>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Development</bp:SOURCE>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2003</bp:YEAR>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Lampert JM</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Holzschuh J</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Hessel S</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Driever W</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Vogt K</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">von Lintig J</bp:AUTHORS>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="ae2">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">15363405</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Gene-regulatory interactions in neural crest evolution and development.</bp:TITLE>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Dev Cell</bp:SOURCE>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2004</bp:YEAR>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Meulemans D</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Bronner-Fraser M</bp:AUTHORS>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="f9f">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">14523379</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Neural crest specification: migrating into genomics.</bp:TITLE>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Nat Rev Neurosci</bp:SOURCE>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2003</bp:YEAR>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Gammill LS</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Bronner-Fraser M</bp:AUTHORS>
+    </bp:PublicationXref>
+    <bp:openControlledVocabulary xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#">
+      <bp:TERM xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">signaling pathway pertinent to development</bp:TERM>
+      <bp:ID xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PW:0000650</bp:ID>
+      <bp:Ontology xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Pathway Ontology</bp:Ontology>
+    </bp:openControlledVocabulary>
+  </Biopax>
+</Pathway>

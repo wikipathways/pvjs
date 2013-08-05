@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Pathway xmlns="http://pathvisio.org/GPML/2013a" Name="Glutathione-Glutaredoxin Redox Reaction" Organism="Saccharomyces cerevisiae">
+  <Comment Source="GenMAPP notes"/>
+  <Comment Source="GenMAPP remarks">Based on http://pathway.yeastgenome.org/biocyc/</Comment>
+  <Comment Source="WikiPathways-category">Metabolic Process</Comment>
+  <Graphics BoardWidth="771.8333333333334" BoardHeight="416.1666666666667"/>
+  <DataNode TextLabel="GTT2" GraphId="bfc" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="GTT2"/>
+    <Graphics CenterX="266.6666666666667" CenterY="83.33333333333333" Width="40.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="SGD" ID="S000003983"/>
+  </DataNode>
+  <DataNode TextLabel="GTT1" GraphId="c00" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="GTT1"/>
+    <Graphics CenterX="266.6666666666667" CenterY="103.33333333333333" Width="40.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="SGD" ID="S000001477"/>
+  </DataNode>
+  <DataNode TextLabel="GPX1" GraphId="dc7" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="GPX1"/>
+    <Graphics CenterX="423.3333333333333" CenterY="243.33333333333334" Width="40.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="SGD" ID="S000001509"/>
+  </DataNode>
+  <DataNode TextLabel="HYR1" GraphId="fb3" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="HYR1"/>
+    <Graphics CenterX="423.3333333333333" CenterY="263.3333333333333" Width="40.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="SGD" ID="S000001476"/>
+  </DataNode>
+  <DataNode TextLabel="GPX2" GraphId="e13" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="GPX2"/>
+    <Graphics CenterX="423.3333333333333" CenterY="283.3333333333333" Width="40.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="SGD" ID="S000000448"/>
+  </DataNode>
+  <DataNode TextLabel="GLR1" GraphId="f19" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="GLR1"/>
+    <Graphics CenterX="113.33333333333333" CenterY="276.6666666666667" Width="40.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="SGD" ID="S000006012"/>
+  </DataNode>
+  <DataNode TextLabel="NADPH" GraphId="fe0" Type="Metabolite">
+    <Graphics CenterX="33.333333333333336" CenterY="300.0" Width="63.333333333333336" Height="19.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff"/>
+    <Xref Database="CAS" ID="2646-71-1"/>
+  </DataNode>
+  <Interaction GraphId="idc52cb9d8">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="200.0" Y="66.66666666666667"/>
+      <Point X="230.0" Y="93.33333333333333"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="idd884bb17">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="243.33333333333334" Y="60.0"/>
+      <Point X="230.0" Y="93.33333333333333"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="id1de6e2f3">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="230.0" Y="93.33333333333333"/>
+      <Point X="213.33333333333334" Y="110.0" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="id908d306f">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="230.0" Y="93.33333333333333"/>
+      <Point X="256.6666666666667" Y="143.33333333333334" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="id277800a5">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="276.6666666666667" Y="166.66666666666666"/>
+      <Point X="400.0" Y="190.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="id35ac63d5">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="400.0" Y="190.0"/>
+      <Point X="400.0" Y="356.6666666666667"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="idb13bbbe">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="400.0" Y="356.6666666666667"/>
+      <Point X="323.3333333333333" Y="376.6666666666667" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="idb905ff3e">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="366.6666666666667" Y="293.3333333333333"/>
+      <Point X="356.6666666666667" Y="293.3333333333333" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="idb5a68990">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="333.3333333333333" Y="373.3333333333333"/>
+      <Point X="656.6666666666666" Y="323.3333333333333"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="id8cc08cdf">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="656.6666666666666" Y="226.66666666666666"/>
+      <Point X="656.6666666666666" Y="350.0" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="iddc1a6e4b">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="630.0" Y="290.0"/>
+      <Point X="656.6666666666666" Y="313.3333333333333"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="id65ab2c98">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="156.66666666666666" Y="373.3333333333333"/>
+      <Point X="90.0" Y="360.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="idfca0289f">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="90.0" Y="360.0"/>
+      <Point X="90.0" Y="200.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="id3206f739">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="90.0" Y="200.0"/>
+      <Point X="206.66666666666666" Y="166.66666666666666" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="ide23ba52a">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="73.33333333333333" Y="246.66666666666666"/>
+      <Point X="66.66666666666667" Y="246.66666666666666" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Label TextLabel="HX" GraphId="eca">
+    <Graphics CenterX="193.33333333333334" CenterY="60.0" Width="28.333333333333332" Height="19.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="12" Valign="Middle"/>
+  </Label>
+  <Label TextLabel="RX" GraphId="c3e">
+    <Graphics CenterX="203.33333333333334" CenterY="123.33333333333333" Width="28.333333333333332" Height="19.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="12" Valign="Middle"/>
+  </Label>
+  <Label TextLabel="R-S-G" GraphId="c7c">
+    <Graphics CenterX="246.66666666666666" CenterY="46.666666666666664" Width="50.333333333333336" Height="19.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="12" Valign="Middle"/>
+  </Label>
+  <Label TextLabel="reduced glutathione" GraphId="dec">
+    <Graphics CenterX="260.0" CenterY="153.33333333333334" Width="158.33333333333334" Height="19.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="12" Valign="Middle"/>
+  </Label>
+  <Label TextLabel="glutathione disulfide" GraphId="c39">
+    <Graphics CenterX="240.0" CenterY="376.6666666666667" Width="160.33333333333334" Height="19.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="12" Valign="Middle"/>
+  </Label>
+  <Label TextLabel="H2O2" GraphId="f59">
+    <Graphics CenterX="333.3333333333333" CenterY="233.33333333333334" Width="47.333333333333336" Height="19.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="12" Valign="Middle"/>
+  </Label>
+  <Label TextLabel="H2O" GraphId="c0a">
+    <Graphics CenterX="336.6666666666667" CenterY="293.3333333333333" Width="38.333333333333336" Height="19.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="12" Valign="Middle"/>
+  </Label>
+  <Label TextLabel="oxidized glutaredoxin" GraphId="f1a">
+    <Graphics CenterX="656.6666666666666" CenterY="216.66666666666666" Width="170.33333333333334" Height="19.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="12" Valign="Middle"/>
+  </Label>
+  <Label TextLabel="GrxA" GraphId="a7e">
+    <Graphics CenterX="656.6666666666666" CenterY="360.0" Width="43.333333333333336" Height="19.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="12" Valign="Middle"/>
+  </Label>
+  <Label TextLabel="2 reduced glutathione" GraphId="d0c">
+    <Graphics CenterX="566.6666666666666" CenterY="280.0" Width="171.33333333333334" Height="19.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="12" Valign="Middle"/>
+  </Label>
+  <Label TextLabel="NADP" GraphId="b07">
+    <Graphics CenterX="40.0" CenterY="246.66666666666666" Width="51.333333333333336" Height="19.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="12" Valign="Middle"/>
+  </Label>
+  <Shape GraphId="f0e">
+    <Graphics CenterX="356.6666666666667" CenterY="263.3333333333333" Width="60.0" Height="86.92269333333334" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="Arc" Rotation="4.712389"/>
+  </Shape>
+  <Shape GraphId="d2f">
+    <Graphics CenterX="66.66666666666667" CenterY="273.3333333333333" Width="53.74838666666667" Height="46.64178666666667" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="Arc" Rotation="4.712389"/>
+  </Shape>
+  <InfoBox CenterX="541.6666666666666" CenterY="41.666666666666664"/>
+  <Legend CenterX="0.0" CenterY="0.0"/>
+  <Biopax>
+    <bp:openControlledVocabulary xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#">
+      <bp:TERM xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">glutathione metabolic pathway</bp:TERM>
+      <bp:ID xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PW:0000134</bp:ID>
+      <bp:Ontology xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Pathway Ontology</bp:Ontology>
+    </bp:openControlledVocabulary>
+  </Biopax>
+</Pathway>

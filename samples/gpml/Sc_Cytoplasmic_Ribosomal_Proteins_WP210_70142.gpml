@@ -1,0 +1,659 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Pathway xmlns="http://pathvisio.org/GPML/2013a" Name="Cytoplasmic Ribosomal Proteins" Organism="Saccharomyces cerevisiae">
+  <Comment Source="GenMAPP notes"></Comment>
+  <Comment Source="GenMAPP remarks">Based on http://pathway.yeastgenome.org/biocyc/</Comment>
+  <Comment Source="WikiPathways-category">Metabolic Process</Comment>
+  <Graphics BoardWidth="513.3333333333334" BoardHeight="856.6666666666666" />
+  <DataNode TextLabel="L1" GraphId="a41" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Also known as L10a</Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="L1" />
+    <Graphics CenterX="56.666666666666664" CenterY="83.33333333333333" Width="66.66666666666667" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="SGD" ID="S000003103" />
+  </DataNode>
+  <DataNode TextLabel="L2" GraphId="bae" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Also known as YL6, L5, or RP8</Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="L2" />
+    <Graphics CenterX="56.666666666666664" CenterY="103.33333333333333" Width="66.66666666666667" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="SGD" ID="S000001280" />
+  </DataNode>
+  <DataNode TextLabel="L3" GraphId="b35" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Also known as YL1 or RP1</Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="L3" />
+    <Graphics CenterX="56.666666666666664" CenterY="123.33333333333333" Width="66.66666666666667" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="SGD" ID="S000005589" />
+  </DataNode>
+  <DataNode TextLabel="L4-A" GraphId="b0c" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Also known as L2A or RP2</Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="L4-A" />
+    <Graphics CenterX="56.666666666666664" CenterY="143.33333333333334" Width="66.66666666666667" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="SGD" ID="S000000235" />
+  </DataNode>
+  <DataNode TextLabel="L4-B" GraphId="af3" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Also known as L2B or RP2</Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="L4-B" />
+    <Graphics CenterX="56.666666666666664" CenterY="163.33333333333334" Width="66.66666666666667" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="SGD" ID="S000002419" />
+  </DataNode>
+  <DataNode TextLabel="L5" GraphId="da7" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Also known as L1 or YL3</Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="L5" />
+    <Graphics CenterX="56.666666666666664" CenterY="183.33333333333334" Width="66.66666666666667" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="SGD" ID="S000006052" />
+  </DataNode>
+  <DataNode TextLabel="L6-A" GraphId="a85" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Also known as L17, YL16, or RP18</Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="L6-A" />
+    <Graphics CenterX="56.666666666666664" CenterY="203.33333333333334" Width="66.66666666666667" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="SGD" ID="S000004538" />
+  </DataNode>
+  <DataNode TextLabel="L6-B" GraphId="b5f" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Also known as L17, YL16, or RP18</Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="L6-B" />
+    <Graphics CenterX="56.666666666666664" CenterY="223.33333333333334" Width="66.66666666666667" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="SGD" ID="S000004440" />
+  </DataNode>
+  <DataNode TextLabel="L7-like" GraphId="d78" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="L7-like" />
+    <Graphics CenterX="56.666666666666664" CenterY="243.33333333333334" Width="66.66666666666667" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="SGD" ID="S000004947" />
+  </DataNode>
+  <DataNode TextLabel="L7-A" GraphId="dbf" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Also known as L6A, YL8A, or RP11</Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="L7-A" />
+    <Graphics CenterX="56.666666666666664" CenterY="263.3333333333333" Width="66.66666666666667" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="SGD" ID="S000003044" />
+  </DataNode>
+  <DataNode TextLabel="L7-B" GraphId="b1e" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Also known as L6B or YL8B</Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="L7-B" />
+    <Graphics CenterX="56.666666666666664" CenterY="283.3333333333333" Width="66.66666666666667" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="SGD" ID="S000006119" />
+  </DataNode>
+  <DataNode TextLabel="L8-A" GraphId="f48" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Also known as L7A-2, L4-2, YL5, or RP6</Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="L8-A" />
+    <Graphics CenterX="56.666666666666664" CenterY="303.3333333333333" Width="66.66666666666667" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="SGD" ID="S000001025" />
+  </DataNode>
+  <DataNode TextLabel="L8-B" GraphId="faf" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Also known as L7A-1, L4-1, YL5, or RP6</Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="L8-B" />
+    <Graphics CenterX="56.666666666666664" CenterY="323.3333333333333" Width="66.66666666666667" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="SGD" ID="S000003968" />
+  </DataNode>
+  <DataNode TextLabel="L9-A" GraphId="ad3" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Also known as L8, YL11, or RP25</Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="L9-A" />
+    <Graphics CenterX="56.666666666666664" CenterY="343.3333333333333" Width="66.66666666666667" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="SGD" ID="S000003115" />
+  </DataNode>
+  <DataNode TextLabel="L9-B" GraphId="c61" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Also known as L8, YL11, or RP25</Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="L9-B" />
+    <Graphics CenterX="56.666666666666664" CenterY="363.3333333333333" Width="66.66666666666667" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="SGD" ID="S000005011" />
+  </DataNode>
+  <DataNode TextLabel="L10" GraphId="b14" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Also known as L9</Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="L10" />
+    <Graphics CenterX="56.666666666666664" CenterY="383.3333333333333" Width="66.66666666666667" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="SGD" ID="S000004065" />
+  </DataNode>
+  <DataNode TextLabel="L11" GraphId="ffb" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Also known as L16, YL16, 39A, or RP39</Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="L11" />
+    <Graphics CenterX="56.666666666666664" CenterY="403.3333333333333" Width="66.66666666666667" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="SGD" ID="S000003317" />
+  </DataNode>
+  <DataNode TextLabel="L12" GraphId="e7d" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Also known as L15 or YL23</Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="L12" />
+    <Graphics CenterX="56.666666666666664" CenterY="423.3333333333333" Width="66.66666666666667" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="SGD" ID="S000000780" />
+  </DataNode>
+  <DataNode TextLabel="L13-A" GraphId="a53" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="L13-A" />
+    <Graphics CenterX="56.666666666666664" CenterY="443.3333333333333" Width="66.66666666666667" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="SGD" ID="S000002240" />
+  </DataNode>
+  <DataNode TextLabel="L13-B" GraphId="bfb" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="L13-B" />
+    <Graphics CenterX="56.666666666666664" CenterY="463.3333333333333" Width="66.66666666666667" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="SGD" ID="S000004750" />
+  </DataNode>
+  <DataNode TextLabel="L14-A" GraphId="d88" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="L14-A" />
+    <Graphics CenterX="56.666666666666664" CenterY="483.3333333333333" Width="66.66666666666667" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="SGD" ID="S000001489" />
+  </DataNode>
+  <DataNode TextLabel="L14-B" GraphId="df9" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="L14-B" />
+    <Graphics CenterX="56.666666666666664" CenterY="503.3333333333333" Width="66.66666666666667" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="SGD" ID="S000000993" />
+  </DataNode>
+  <DataNode TextLabel="L15-A" GraphId="fc8" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Also known as YL10, L13, RP15R, or YP18</Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="L15-A" />
+    <Graphics CenterX="56.666666666666664" CenterY="523.3333333333334" Width="66.66666666666667" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="SGD" ID="S000004019" />
+  </DataNode>
+  <DataNode TextLabel="L15-B" GraphId="a3b" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Also known as YL10, L13, RP15R, or YP18</Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="L15-B" />
+    <Graphics CenterX="56.666666666666664" CenterY="543.3333333333334" Width="66.66666666666667" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="SGD" ID="S000004728" />
+  </DataNode>
+  <DataNode TextLabel="L16-A" GraphId="a0a" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Also known as L13A or RP22</Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="L16-A" />
+    <Graphics CenterX="56.666666666666664" CenterY="563.3333333333334" Width="66.66666666666667" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="SGD" ID="S000001395" />
+  </DataNode>
+  <DataNode TextLabel="L16-B" GraphId="c0d" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Also known as YL15 or RP23</Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="L16-B" />
+    <Graphics CenterX="56.666666666666664" CenterY="583.3333333333334" Width="66.66666666666667" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="SGD" ID="S000005013" />
+  </DataNode>
+  <DataNode TextLabel="L17-A" GraphId="bc2" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Also known as YL17-A</Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="L17-A" />
+    <Graphics CenterX="56.666666666666664" CenterY="603.3333333333334" Width="66.66666666666667" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="SGD" ID="S000001663" />
+  </DataNode>
+  <DataNode TextLabel="L17-B" GraphId="d63" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Also known as YL17-B</Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="L17-B" />
+    <Graphics CenterX="56.666666666666664" CenterY="623.3333333333334" Width="66.66666666666667" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="SGD" ID="S000003713" />
+  </DataNode>
+  <DataNode TextLabel="L18" GraphId="dc7" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Also known as RP28</Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="L18" />
+    <Graphics CenterX="56.666666666666664" CenterY="643.3333333333334" Width="66.66666666666667" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="SGD" ID="S000005245" />
+  </DataNode>
+  <DataNode TextLabel="L19" GraphId="c9a" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Also known as L23, YL14, RP33, or RP15L</Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="L19" />
+    <Graphics CenterX="56.666666666666664" CenterY="663.3333333333334" Width="66.66666666666667" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="SGD" ID="S000000123" />
+  </DataNode>
+  <DataNode TextLabel="L20" GraphId="b46" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Also known as L18A</Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="L20" />
+    <Graphics CenterX="56.666666666666664" CenterY="683.3333333333334" Width="66.66666666666667" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="SGD" ID="S000004855" />
+  </DataNode>
+  <DataNode TextLabel="L21-A" GraphId="adc" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="L21-A" />
+    <Graphics CenterX="153.33333333333334" CenterY="83.33333333333333" Width="66.66666666666667" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="SGD" ID="S000000395" />
+  </DataNode>
+  <DataNode TextLabel="L21-B" GraphId="c53" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="L21-B" />
+    <Graphics CenterX="153.33333333333334" CenterY="103.33333333333333" Width="66.66666666666667" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="SGD" ID="S000006000" />
+  </DataNode>
+  <DataNode TextLabel="L22-A" GraphId="d7b" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Also known as YL31 or RP4</Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="L22-A" />
+    <Graphics CenterX="153.33333333333334" CenterY="123.33333333333333" Width="66.66666666666667" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="SGD" ID="S000004051" />
+  </DataNode>
+  <DataNode TextLabel="L22-B" GraphId="c4e" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="L22-B" />
+    <Graphics CenterX="153.33333333333334" CenterY="143.33333333333334" Width="66.66666666666667" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="SGD" ID="S000006436" />
+  </DataNode>
+  <DataNode TextLabel="L23" GraphId="e83" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Also known as L17</Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="L23" />
+    <Graphics CenterX="153.33333333333334" CenterY="163.33333333333334" Width="66.66666666666667" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="SGD" ID="S000000183" />
+  </DataNode>
+  <DataNode TextLabel="L24-A" GraphId="e2a" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Also known as L30A, RP29, or YL21</Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="L24-A" />
+    <Graphics CenterX="153.33333333333334" CenterY="183.33333333333334" Width="66.66666666666667" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="SGD" ID="S000002999" />
+  </DataNode>
+  <DataNode TextLabel="L24-B" GraphId="a26" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Also known as L30B, RP29, or YL21</Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="L24-B" />
+    <Graphics CenterX="153.33333333333334" CenterY="203.33333333333334" Width="66.66666666666667" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="SGD" ID="S000003380" />
+  </DataNode>
+  <DataNode TextLabel="L25" GraphId="c5f" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Also known as YL25 or RP61L</Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="L25" />
+    <Graphics CenterX="153.33333333333334" CenterY="223.33333333333334" Width="66.66666666666667" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="SGD" ID="S000005487" />
+  </DataNode>
+  <DataNode TextLabel="L26-A" GraphId="c75" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Also known as YL33</Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="L26-A" />
+    <Graphics CenterX="153.33333333333334" CenterY="243.33333333333334" Width="66.66666666666667" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="SGD" ID="S000004336" />
+  </DataNode>
+  <DataNode TextLabel="L26-B" GraphId="bba" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Also known as YL33</Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="L26-B" />
+    <Graphics CenterX="153.33333333333334" CenterY="263.3333333333333" Width="66.66666666666667" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="SGD" ID="S000003266" />
+  </DataNode>
+  <DataNode TextLabel="L27" GraphId="de8" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="L27" />
+    <Graphics CenterX="153.33333333333334" CenterY="283.3333333333333" Width="66.66666666666667" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="SGD" ID="S000001052" />
+  </DataNode>
+  <DataNode TextLabel="L28" GraphId="b75" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Also known as L27A, L29, YL24, or RP62</Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="L28" />
+    <Graphics CenterX="153.33333333333334" CenterY="303.3333333333333" Width="66.66666666666667" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="SGD" ID="S000003071" />
+  </DataNode>
+  <DataNode TextLabel="L29" GraphId="a22" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Also known as YL43</Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="L29" />
+    <Graphics CenterX="153.33333333333334" CenterY="323.3333333333333" Width="66.66666666666667" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="SGD" ID="S000006437" />
+  </DataNode>
+  <DataNode TextLabel="L30" GraphId="ee4" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Also known as YL32 or RP73</Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="L30" />
+    <Graphics CenterX="153.33333333333334" CenterY="343.3333333333333" Width="66.66666666666667" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="SGD" ID="S000002998" />
+  </DataNode>
+  <DataNode TextLabel="L31" GraphId="a8a" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Also known as YL28</Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="L31" />
+    <Graphics CenterX="153.33333333333334" CenterY="363.3333333333333" Width="66.66666666666667" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="SGD" ID="S000002233" />
+  </DataNode>
+  <DataNode TextLabel="L32" GraphId="af1" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="L32" />
+    <Graphics CenterX="153.33333333333334" CenterY="383.3333333333333" Width="66.66666666666667" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="SGD" ID="S000000188" />
+  </DataNode>
+  <DataNode TextLabel="L33-A" GraphId="a07" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Also known as L37A, YL37, or RP47</Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="L33-A" />
+    <Graphics CenterX="153.33333333333334" CenterY="403.3333333333333" Width="66.66666666666667" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="SGD" ID="S000006064" />
+  </DataNode>
+  <DataNode TextLabel="L33-B" GraphId="a1e" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Also known as L37B, YL27, or RP47</Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="L33-B" />
+    <Graphics CenterX="153.33333333333334" CenterY="423.3333333333333" Width="66.66666666666667" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="SGD" ID="S000005760" />
+  </DataNode>
+  <DataNode TextLabel="L34-A" GraphId="b6a" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="L34-A" />
+    <Graphics CenterX="153.33333333333334" CenterY="443.3333333333333" Width="66.66666666666667" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="SGD" ID="S000002135" />
+  </DataNode>
+  <DataNode TextLabel="L34-B" GraphId="d10" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="L34-B" />
+    <Graphics CenterX="153.33333333333334" CenterY="463.3333333333333" Width="66.66666666666667" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="SGD" ID="S000001314" />
+  </DataNode>
+  <DataNode TextLabel="L35" GraphId="f2c" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="L35" />
+    <Graphics CenterX="153.33333333333334" CenterY="483.3333333333333" Width="66.66666666666667" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="SGD" ID="S000002295" />
+  </DataNode>
+  <DataNode TextLabel="L36-A" GraphId="ccd" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Also known as L39A or YL39</Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="L36-A" />
+    <Graphics CenterX="153.33333333333334" CenterY="503.3333333333333" Width="66.66666666666667" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="SGD" ID="S000004807" />
+  </DataNode>
+  <DataNode TextLabel="L36-B" GraphId="f74" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Also known as  L39B or YL39</Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="L36-B" />
+    <Graphics CenterX="153.33333333333334" CenterY="523.3333333333334" Width="66.66666666666667" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="SGD" ID="S000006438" />
+  </DataNode>
+  <DataNode TextLabel="L37-A" GraphId="da3" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Also known as L35 or YP55</Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="L37-A" />
+    <Graphics CenterX="153.33333333333334" CenterY="543.3333333333334" Width="66.66666666666667" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="SGD" ID="S000004175" />
+  </DataNode>
+  <DataNode TextLabel="L37-B" GraphId="b0f" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Also known as L35 or YP55</Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="L37-B" />
+    <Graphics CenterX="153.33333333333334" CenterY="563.3333333333334" Width="66.66666666666667" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="SGD" ID="S000002908" />
+  </DataNode>
+  <DataNode TextLabel="L38" GraphId="b5b" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="L38" />
+    <Graphics CenterX="153.33333333333334" CenterY="583.3333333333334" Width="66.66666666666667" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="SGD" ID="S000004317" />
+  </DataNode>
+  <DataNode TextLabel="L39" GraphId="d08" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Also known as L46 or YL40</Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="L39" />
+    <Graphics CenterX="153.33333333333334" CenterY="603.3333333333334" Width="66.66666666666667" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="SGD" ID="S000003725" />
+  </DataNode>
+  <DataNode TextLabel="L40" GraphId="ff6" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Also known as CEP52</Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="L40" />
+    <Graphics CenterX="153.33333333333334" CenterY="623.3333333333334" Width="66.66666666666667" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="SGD" ID="S000001410" />
+  </DataNode>
+  <DataNode TextLabel="L41" GraphId="ce6" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Also known as YL41 or YL47</Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="L41" />
+    <Graphics CenterX="153.33333333333334" CenterY="643.3333333333334" Width="66.66666666666667" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="SGD" ID="S000002293" />
+  </DataNode>
+  <DataNode TextLabel="L42" GraphId="b20" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Also known as L44, YL27, YP44, or L41</Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="L42" />
+    <Graphics CenterX="153.33333333333334" CenterY="663.3333333333334" Width="66.66666666666667" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="SGD" ID="S000001183" />
+  </DataNode>
+  <DataNode TextLabel="L43" GraphId="baa" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Also known as L37A or YL35</Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="L43" />
+    <Graphics CenterX="153.33333333333334" CenterY="683.3333333333334" Width="66.66666666666667" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="SGD" ID="S000003855" />
+  </DataNode>
+  <DataNode TextLabel="S0-A" GraphId="b7a" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Also known as Nucleic acid-binding protein NAB1A</Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="S0-A" />
+    <Graphics CenterX="313.3333333333333" CenterY="83.36666666666666" Width="93.33333333333333" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="SGD" ID="S000003446" />
+  </DataNode>
+  <DataNode TextLabel="S0-B" GraphId="fa2" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Also known as Nucleic acid-binding protein NAB1B</Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="S0-B" />
+    <Graphics CenterX="313.3333333333333" CenterY="103.36666666666666" Width="93.33333333333333" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="SGD" ID="S000004038" />
+  </DataNode>
+  <DataNode TextLabel="S1-A" GraphId="a6e" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Also known as RP10A</Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="S1-A" />
+    <Graphics CenterX="313.3333333333333" CenterY="123.36666666666666" Width="93.33333333333333" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="SGD" ID="S000004433" />
+  </DataNode>
+  <DataNode TextLabel="S1-B" GraphId="ebd" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Also known as RP10B</Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="S1-B" />
+    <Graphics CenterX="313.3333333333333" CenterY="143.36666666666667" Width="93.33333333333333" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="SGD" ID="S000004528" />
+  </DataNode>
+  <DataNode TextLabel="S2" GraphId="f59" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Also known as S4, YS5, or RP12</Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="S2" />
+    <Graphics CenterX="313.3333333333333" CenterY="163.36666666666667" Width="93.33333333333333" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="SGD" ID="S000003091" />
+  </DataNode>
+  <DataNode TextLabel="S3" GraphId="c95" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Also known as YS3 or RP13</Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="S3" />
+    <Graphics CenterX="313.3333333333333" CenterY="183.36666666666667" Width="93.33333333333333" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="SGD" ID="S000005122" />
+  </DataNode>
+  <DataNode TextLabel="S4" GraphId="dd9" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Also known as S7, YS6, or RP5</Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="S4" />
+    <Graphics CenterX="313.3333333333333" CenterY="203.36666666666667" Width="93.33333333333333" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="SGD" ID="S000001246" />
+  </DataNode>
+  <DataNode TextLabel="S5" GraphId="e93" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Also known as S2, YS8, or RP14</Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="S5" />
+    <Graphics CenterX="313.3333333333333" CenterY="223.36666666666667" Width="93.33333333333333" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="SGD" ID="S000003884" />
+  </DataNode>
+  <DataNode TextLabel="S6" GraphId="af5" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Also known as S10, YS4, or RP9</Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="S6" />
+    <Graphics CenterX="313.3333333333333" CenterY="243.36666666666667" Width="93.33333333333333" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="SGD" ID="S000000385" />
+  </DataNode>
+  <DataNode TextLabel="S7-A" GraphId="bde" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Also known as RP30</Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="S7-A" />
+    <Graphics CenterX="313.3333333333333" CenterY="263.3666666666667" Width="93.33333333333333" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="SGD" ID="S000005622" />
+  </DataNode>
+  <DataNode TextLabel="S7-B" GraphId="c3e" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="S7-B" />
+    <Graphics CenterX="313.3333333333333" CenterY="283.3666666666667" Width="93.33333333333333" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="SGD" ID="S000005040" />
+  </DataNode>
+  <DataNode TextLabel="S8" GraphId="ba5" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Also known as S14, YS9, or RP19</Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="S8" />
+    <Graphics CenterX="313.3333333333333" CenterY="303.3666666666667" Width="93.33333333333333" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="SGD" ID="S000000168" />
+  </DataNode>
+  <DataNode TextLabel="S9-A" GraphId="e37" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Also known as S13, YS11, RP21, or YP28</Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="S9-A" />
+    <Graphics CenterX="313.3333333333333" CenterY="323.3666666666667" Width="93.33333333333333" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="SGD" ID="S000006002" />
+  </DataNode>
+  <DataNode TextLabel="S9-B" GraphId="c51" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Also known as S13, YS11, RP21, or YP28</Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="S9-B" />
+    <Graphics CenterX="313.3333333333333" CenterY="343.3666666666667" Width="93.33333333333333" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="SGD" ID="S000000393" />
+  </DataNode>
+  <DataNode TextLabel="S10-A" GraphId="f5f" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="S10-A" />
+    <Graphics CenterX="313.3333333333333" CenterY="363.3666666666667" Width="93.33333333333333" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="SGD" ID="S000005819" />
+  </DataNode>
+  <DataNode TextLabel="S10-B" GraphId="a14" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="S10-B" />
+    <Graphics CenterX="313.3333333333333" CenterY="383.3666666666667" Width="93.33333333333333" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="SGD" ID="S000004843" />
+  </DataNode>
+  <DataNode TextLabel="S11" GraphId="de3" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Also known as S18, YS12, or RP41</Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="S11" />
+    <Graphics CenterX="313.3333333333333" CenterY="403.3666666666667" Width="93.33333333333333" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="SGD" ID="S000000252" />
+  </DataNode>
+  <DataNode TextLabel="S12" GraphId="ece" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="S12" />
+    <Graphics CenterX="313.3333333333333" CenterY="423.3666666666667" Width="93.33333333333333" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="SGD" ID="S000005896" />
+  </DataNode>
+  <DataNode TextLabel="S13" GraphId="de7" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Also known as S27A or YS15</Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="S13" />
+    <Graphics CenterX="313.3333333333333" CenterY="443.3666666666667" Width="93.33333333333333" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="SGD" ID="S000002471" />
+  </DataNode>
+  <DataNode TextLabel="S14-A" GraphId="c3a" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Also known as RP59A</Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="S14-A" />
+    <Graphics CenterX="313.3333333333333" CenterY="463.3666666666667" Width="93.33333333333333" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="SGD" ID="S000000627" />
+  </DataNode>
+  <DataNode TextLabel="S14-B" GraphId="ab7" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Also known as RP59B</Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="S14-B" />
+    <Graphics CenterX="313.3333333333333" CenterY="483.3666666666667" Width="93.33333333333333" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="SGD" ID="S000003727" />
+  </DataNode>
+  <DataNode TextLabel="S15" GraphId="ddf" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Also known as S21, YS21, RP52, or RIG protein</Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="S15" />
+    <Graphics CenterX="436.6666666666667" CenterY="83.36666666666666" Width="93.33333333333333" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="SGD" ID="S000005400" />
+  </DataNode>
+  <DataNode TextLabel="S16" GraphId="ba9" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Also known as RP61R</Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="S16" />
+    <Graphics CenterX="436.6666666666667" CenterY="103.36666666666666" Width="93.33333333333333" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="SGD" ID="S000002241" />
+  </DataNode>
+  <DataNode TextLabel="S17-A" GraphId="ca2" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Also known as RP51A</Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="S17-A" />
+    <Graphics CenterX="436.6666666666667" CenterY="123.36666666666666" Width="93.33333333333333" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="SGD" ID="S000004486" />
+  </DataNode>
+  <DataNode TextLabel="S17-B" GraphId="a4e" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Also known as RP51B</Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="S17-B" />
+    <Graphics CenterX="436.6666666666667" CenterY="143.36666666666667" Width="93.33333333333333" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="SGD" ID="S000002855" />
+  </DataNode>
+  <DataNode TextLabel="S18" GraphId="c23" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="S18" />
+    <Graphics CenterX="436.6666666666667" CenterY="163.36666666666667" Width="93.33333333333333" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="SGD" ID="S000002858" />
+  </DataNode>
+  <DataNode TextLabel="S19-A" GraphId="f64" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Also known as S16A, YS16, RP55, or YP45</Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="S19-A" />
+    <Graphics CenterX="436.6666666666667" CenterY="183.36666666666667" Width="93.33333333333333" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="SGD" ID="S000005481" />
+  </DataNode>
+  <DataNode TextLabel="S19-B" GraphId="ce2" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Also known as S16B, YS16, or RP55</Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="S19-B" />
+    <Graphics CenterX="436.6666666666667" CenterY="203.36666666666667" Width="93.33333333333333" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="SGD" ID="S000005246" />
+  </DataNode>
+  <DataNode TextLabel="S20" GraphId="d12" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="S20" />
+    <Graphics CenterX="436.6666666666667" CenterY="223.36666666666667" Width="93.33333333333333" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="SGD" ID="S000001007" />
+  </DataNode>
+  <DataNode TextLabel="S21" GraphId="e74" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Also known as S36 or YS25</Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="S21" />
+    <Graphics CenterX="436.6666666666667" CenterY="243.36666666666667" Width="93.33333333333333" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="SGD" ID="S000001765" />
+  </DataNode>
+  <DataNode TextLabel="S22" GraphId="bb0" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Also known as S24, YS22, RP50, or YP58</Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="S22" />
+    <Graphics CenterX="436.6666666666667" CenterY="263.3666666666667" Width="93.33333333333333" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="SGD" ID="S000003726" />
+  </DataNode>
+  <DataNode TextLabel="S23" GraphId="a0f" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Also known as S28, YS14, or RP37</Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="S23" />
+    <Graphics CenterX="436.6666666666667" CenterY="283.3666666666667" Width="93.33333333333333" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="SGD" ID="S000003350" />
+  </DataNode>
+  <DataNode TextLabel="S24" GraphId="a16" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Also known as RP50</Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="S24" />
+    <Graphics CenterX="436.6666666666667" CenterY="303.3666666666667" Width="93.33333333333333" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="SGD" ID="S000000876" />
+  </DataNode>
+  <DataNode TextLabel="S25" GraphId="ec5" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Also known as S31, YS23, or RP45</Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="S25" />
+    <Graphics CenterX="436.6666666666667" CenterY="323.3666666666667" Width="93.33333333333333" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="SGD" ID="S000003259" />
+  </DataNode>
+  <DataNode TextLabel="S26-A" GraphId="a33" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="S26-A" />
+    <Graphics CenterX="436.6666666666667" CenterY="343.3666666666667" Width="93.33333333333333" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="SGD" ID="S000003157" />
+  </DataNode>
+  <DataNode TextLabel="S26-B" GraphId="e22" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="S26-B" />
+    <Graphics CenterX="436.6666666666667" CenterY="363.3666666666667" Width="93.33333333333333" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="SGD" ID="S000000933" />
+  </DataNode>
+  <DataNode TextLabel="S27-A" GraphId="bf5" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Also known as YS20 or RP61</Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="S27-A" />
+    <Graphics CenterX="436.6666666666667" CenterY="383.3666666666667" Width="93.33333333333333" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="SGD" ID="S000001639" />
+  </DataNode>
+  <DataNode TextLabel="S27-B" GraphId="ed0" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Also known as YS20 or RP61</Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="S27-B" />
+    <Graphics CenterX="436.6666666666667" CenterY="403.3666666666667" Width="93.33333333333333" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="SGD" ID="S000001063" />
+  </DataNode>
+  <DataNode TextLabel="S28" GraphId="cdc" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Also known as S33 or YS27</Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="S28" />
+    <Graphics CenterX="436.6666666666667" CenterY="423.3666666666667" Width="93.33333333333333" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="SGD" ID="S000004254" />
+  </DataNode>
+  <DataNode TextLabel="S29-A" GraphId="d2a" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Also known as S36 or YS29</Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="S29-A" />
+    <Graphics CenterX="436.6666666666667" CenterY="443.3666666666667" Width="93.33333333333333" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="SGD" ID="S000004380" />
+  </DataNode>
+  <DataNode TextLabel="S29-B" GraphId="fcd" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Also known as S36 or YS29</Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="S29-B" />
+    <Graphics CenterX="436.6666666666667" CenterY="463.3666666666667" Width="93.33333333333333" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="SGD" ID="S000002219" />
+  </DataNode>
+  <DataNode TextLabel="S30" GraphId="eba" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="S30" />
+    <Graphics CenterX="436.6666666666667" CenterY="483.3666666666667" Width="93.33333333333333" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="SGD" ID="S000004278" />
+  </DataNode>
+  <DataNode TextLabel="S37" GraphId="d62" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Also known as CEP76 or YS24</Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="S37" />
+    <Graphics CenterX="436.6666666666667" CenterY="503.3666666666667" Width="93.33333333333333" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="SGD" ID="S000004157" />
+  </DataNode>
+  <DataNode TextLabel="Acidic Protein P0" GraphId="e51" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Also known as L10E</Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="Acidic Protein P0" />
+    <Graphics CenterX="106.66666666666667" CenterY="736.6666666666666" Width="180.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="SGD" ID="S000004332" />
+  </DataNode>
+  <DataNode TextLabel="Acidic Protein P1-alpha" GraphId="ec1" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Also known as A1</Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="Acidic Protein P1-alpha" />
+    <Graphics CenterX="106.66666666666667" CenterY="756.6666666666666" Width="180.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="SGD" ID="S000002239" />
+  </DataNode>
+  <DataNode TextLabel="Acidic Protein P1-beta" GraphId="c5e" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Also known as L44â or L12EIIB</Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="Acidic Protein P1-beta" />
+    <Graphics CenterX="106.66666666666667" CenterY="776.6666666666666" Width="180.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="SGD" ID="S000002288" />
+  </DataNode>
+  <DataNode TextLabel="Acidic Protein P2-alpha" GraphId="f82" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Also known as A2</Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="Acidic Protein P2-alpha" />
+    <Graphics CenterX="106.66666666666667" CenterY="796.6666666666666" Width="180.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="SGD" ID="S000005399" />
+  </DataNode>
+  <DataNode TextLabel="Acidic Protein P2-beta" GraphId="b49" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Also knwon as L45, YL44C, YPA1, or L12EIA</Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="Acidic Protein P2-beta" />
+    <Graphics CenterX="106.66666666666667" CenterY="816.6666666666666" Width="180.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="SGD" ID="S000002790" />
+  </DataNode>
+  <Label TextLabel="Large (60S) Subunit" GraphId="a39">
+    <Graphics CenterX="103.33333333333333" CenterY="56.666666666666664" Width="156.33333333333334" Height="19.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="12" Valign="Middle" />
+  </Label>
+  <Label TextLabel="Small (40S) Subunit" GraphId="b6c">
+    <Graphics CenterX="370.0" CenterY="56.7" Width="154.33333333333334" Height="19.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="12" Valign="Middle" />
+  </Label>
+  <InfoBox CenterX="298.3333333333333" CenterY="751.6666666666666" />
+  <Legend CenterX="229.13333333333333" CenterY="450.53333333333336" />
+  <Biopax>
+    <bp:openControlledVocabulary xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#">
+      <bp:TERM xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">ribosome biogenesis pathway</bp:TERM>
+      <bp:ID xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PW:0001066</bp:ID>
+      <bp:Ontology xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Pathway Ontology</bp:Ontology>
+    </bp:openControlledVocabulary>
+  </Biopax>
+</Pathway>

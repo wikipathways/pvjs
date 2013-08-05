@@ -1,0 +1,819 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Pathway xmlns="http://pathvisio.org/GPML/2013a" Name="Male mating" Author="kyook@caltech.edu" Organism="Caenorhabditis elegans">
+  <Comment Source="WikiPathways-category">Physiological Process</Comment>
+  <Comment Source="WikiPathways-description">Caenorhabditis elegans males exhibit sterotypic and invariant mating behavior starting the moment the animal senses a hermaphrodite and ending with insemination.  This complex behavior has been broken down into six steps or sub behaviors: male response to hermaphrodite contact, backwards movement along her body, sharply turning in a ventral coil upon reaching the head or tail, continued backing until his tail contacts the vulva (vulval location), spicule insertion, and ejaculation into the hermaphrodite uterus. Each of these sub behaviors have been molecularly dissected and it has been found that two of these sub behaviors, male response to hermaphrodite contact and vulval location involve similar molecules.  In particular these behaviors involve cell autonomous signaling through LOV-1 and PKD-2, which are homologs of human polycystin kidney disease (PKD) associated genes PC-1 and PC-2 respectively. Studies in C. elegans have shown that these genes likely have a sensory function rather than structural or development role in the cilia of male sensory neurons. The identification and characterization of LOV-1 and PKD-2 in C. elegans has lead to insights and new avenues of inquiry in the study of human PKD polycystin pathways. </Comment>
+  <BiopaxRef>b60</BiopaxRef>
+  <BiopaxRef>d1b</BiopaxRef>
+  <BiopaxRef>eed</BiopaxRef>
+  <BiopaxRef>f83</BiopaxRef>
+  <Graphics BoardWidth="2371.0" BoardHeight="997.0" />
+  <DataNode TextLabel="PKD-2/PC-2" GraphId="d2970" Type="GeneProduct">
+    <Comment>PKD-2 phosphorylation state appears to modulate its function and ciliary localization, with S534A and S534D reflecting two extreme states. </Comment>
+    <Comment>CK2-phosphorylated PKD-2 is dephosphorylated by calcineurin.</Comment>
+    <BiopaxRef>edd</BiopaxRef>
+    <Graphics CenterX="620.6986247153073" CenterY="101.12639570656778" Width="80.0" Height="20.0" ZOrder="16398" FillColor="66ffcc" FontSize="10" Valign="Middle" ShapeType="Oval" />
+    <Xref Database="WormBase" ID="Y73F8A.1" />
+  </DataNode>
+  <DataNode TextLabel="LOV-1/PC-1" GraphId="bdbb9" Type="GeneProduct">
+    <Comment>LOV-1 localizes to intracellular membranes</Comment>
+    <BiopaxRef>c81</BiopaxRef>
+    <Graphics CenterX="1033.5893016305054" CenterY="94.42748745658906" Width="80.0" Height="20.0" ZOrder="32769" FillColor="cc00ff" FontSize="10" Valign="Middle" ShapeType="Oval" />
+    <Xref Database="WormBase" ID="ZK945.9" />
+  </DataNode>
+  <DataNode TextLabel="PKD-2/PC-2" GraphId="e5093" Type="GeneProduct">
+    <Comment>PKD-2 localizes to intracellular membranes</Comment>
+    <Comment>Functional localization of PKD-2 is in the ciliary plasma membrane and in intracellular membrane</Comment>
+    <Comment>PKD-2 degradation does not require K48 polyubiquitination and is likely due to STAM-1-Hrs-mediated degradation. </Comment>
+    <BiopaxRef>c81</BiopaxRef>
+    <BiopaxRef>e47</BiopaxRef>
+    <BiopaxRef>c50</BiopaxRef>
+    <Graphics CenterX="1065.0577124868837" CenterY="75.55089192025184" Width="80.0" Height="20.0" ZOrder="32771" FillColor="66ffcc" FontSize="10" Valign="Middle" ShapeType="Oval" />
+    <Xref Database="WormBase" ID="Y73F8A.1" />
+  </DataNode>
+  <DataNode TextLabel="UNC-101" GraphId="c7cf1" Type="GeneProduct">
+    <Comment>UNC-101 acts at a somatodendritic sorting step to restrict PKFD-2, along with other ciliary receptors, to the dendritic compartment.</Comment>
+    <BiopaxRef>ead</BiopaxRef>
+    <Graphics CenterX="1271.9526813880134" CenterY="309.55835962145164" Width="80.0" Height="20.0" ZOrder="32773" FillColor="cccc00" FontSize="10" Valign="Middle" ShapeType="Oval" />
+    <Xref Database="WormBase" ID="K11D2.3" />
+  </DataNode>
+  <DataNode TextLabel="KIN-3/CK2" GraphId="f1e47" Type="GeneProduct" GroupRef="ddbe6">
+    <Comment>kin-3 and kin-10 are coexpressed with lov-1 and pkd-2 in the male-specific CEM head neurons and ray RnB and hook HOB tail neurons</Comment>
+    <Comment>KIN-3::GFP and KIN-10 GFP are enriched in cilia and also found in cell bodies (including nuclei), dendrites, and axons.</Comment>
+    <BiopaxRef>edd</BiopaxRef>
+    <Graphics CenterX="537.5219339987142" CenterY="41.97796432318992" Width="80.0" Height="20.0" ZOrder="32775" FillColor="cc3300" FontSize="10" Valign="Middle" ShapeType="Oval" />
+    <Xref Database="WormBase" ID="B0205.7" />
+  </DataNode>
+  <DataNode TextLabel="STAM-1/STAM" GraphId="bb2d7" Type="GeneProduct">
+    <Comment>STAM-1A specifically associates with the LOV-1 C-tail</Comment>
+    <Comment>stam-1 and pkd-2 are clearly coexpressed in male-specific ciliated CEM, ray B-type(RnB), and hook HOB sensory neurons</Comment>
+    <Comment>STAM-1A::GFP labels puncta and accumulates at ciliary bases, but is obviously excluded from the cilium proper of CEM, RnB and HOB neurons
+
+</Comment>
+    <Comment>STAM-1A co-localizes at the ciliary base with LOV-1 and PKD-2</Comment>
+    <Comment>STAM-1 and HGRS-1 expression completely overlaps in cell bodies and ciliary bases of polysystin-expressing neurons</Comment>
+    <Comment>STAM-1A. but not STAM-1B, specifically acts in the polycystin down-regulation process. </Comment>
+    <Comment>STAM-1A binds, sorts, and targets the polycystin complex for lysosomal degradation</Comment>
+    <BiopaxRef>c50</BiopaxRef>
+    <Graphics CenterX="926.4048109089501" CenterY="50.17634587563619" Width="80.0" Height="20.0" ZOrder="32777" FillColor="ff9999" FontSize="10" Valign="Middle" ShapeType="Oval" />
+    <Xref Database="WormBase" ID="C34G6.7" />
+  </DataNode>
+  <DataNode TextLabel="RAB-5" GraphId="c2259" Type="GeneProduct">
+    <Comment>STAM-1 and RAB-5 collocate in the cell bodies and ciliary bases of polycystin-expressing neurons.</Comment>
+    <BiopaxRef>c50</BiopaxRef>
+    <Graphics CenterX="909.9495471273332" CenterY="135.45225371975687" Width="80.0" Height="20.0" ZOrder="32779" FillColor="6699ff" FontSize="10" Valign="Middle" ShapeType="Oval" />
+    <Xref Database="WormBase" ID="F26H9.6" />
+  </DataNode>
+  <DataNode TextLabel="HGSRS-1/Hrs" GraphId="f6d8e" Type="GeneProduct">
+    <Comment>STAM-1 and HGRS-1 expression completely overlaps in cell bodies and ciliary bases of polysystin-expressing neurons.</Comment>
+    <BiopaxRef>c50</BiopaxRef>
+    <Graphics CenterX="919.5269379420729" CenterY="29.798522001397135" Width="80.0" Height="20.0" ZOrder="32781" FillColor="6666ff" FontSize="10" Valign="Middle" ShapeType="Oval" />
+    <Xref Database="WormBase" ID="C07G1.5" />
+  </DataNode>
+  <DataNode TextLabel="PKD-2/PC-2" GraphId="ce8bd" Type="GeneProduct" GroupRef="f2d1a">
+    <Comment>PKD-2 is synthesized in the ER and packaged into vesicles that are transported to the ciliary base and inserted onto the ciliary membrane.</Comment>
+    <BiopaxRef>ead</BiopaxRef>
+    <Graphics CenterX="2003.7455310199803" CenterY="290.9095688748689" Width="63.13354363827344" Height="20.0" ZOrder="32783" FillColor="66ffcc" FontSize="10" Valign="Middle" ShapeType="Oval" />
+    <Xref Database="WormBase" ID="Y73F8A.1" />
+  </DataNode>
+  <DataNode TextLabel="CIL-1" GraphId="a092a" Type="GeneProduct">
+    <Graphics CenterX="892.5495316853362" CenterY="219.41758866176946" Width="80.0" Height="20.0" ZOrder="32785" FillColor="00cc00" FontSize="10" Valign="Middle" ShapeType="Oval" />
+    <Xref Database="WormBase" ID="C50C3.7 " />
+  </DataNode>
+  <DataNode TextLabel="Unknown" GraphId="ad55d" GroupRef="b05d2">
+    <Graphics CenterX="113.64388092612944" CenterY="266.64057331863296" Width="80.0" Height="20.0" ZOrder="32787" FillColor="999900" FontSize="10" Valign="Middle" ShapeType="Oval" />
+    <Xref Database="" ID="" />
+  </DataNode>
+  <DataNode TextLabel="ASB-1" GraphId="b8462" Type="GeneProduct">
+    <Comment>ASB-1 and ASG-2 localize to male-specific sensory cilia as well as mitochondria.</Comment>
+    <BiopaxRef>c97</BiopaxRef>
+    <Graphics CenterX="488.9327453142224" CenterY="194.68905712940406" Width="80.0" Height="20.0" ZOrder="32789" FillColor="990099" FontSize="10" Valign="Middle" ShapeType="Oval" />
+    <Xref Database="WormBase" ID="F35G12.10" />
+  </DataNode>
+  <DataNode TextLabel="OSM-1" GraphId="bc64a" Type="GeneProduct" GroupRef="aed88">
+    <Graphics CenterX="113.64388092612944" CenterY="222.43550165380384" Width="80.0" Height="20.0" ZOrder="32791" FillColor="999900" FontSize="10" Valign="Middle" ShapeType="Oval" />
+    <Xref Database="WormBase" ID="T27B1.1" />
+  </DataNode>
+  <DataNode TextLabel="PI(3,5)P2" GraphId="d424d" Type="Metabolite">
+    <Graphics CenterX="1053.8281014520035" CenterY="217.742006615215" Width="80.0" Height="20.0" ZOrder="32793" FontSize="10" Valign="Middle" ShapeType="Hexagon" Color="0000ff" />
+    <Xref Database="" ID="" />
+  </DataNode>
+  <DataNode TextLabel="DAF-10" GraphId="dbd9b" Type="GeneProduct" GroupRef="dd215">
+    <Graphics CenterX="114.84895259095856" CenterY="310.8456449834621" Width="80.0" Height="20.0" ZOrder="32795" FillColor="999900" FontSize="10" Valign="Middle" ShapeType="Oval" />
+    <Xref Database="WormBase" ID="F23B2.4" />
+  </DataNode>
+  <DataNode TextLabel="PI3P" GraphId="f2b77" Type="Metabolite">
+    <Graphics CenterX="1054.3583241455349" CenterY="274.742006615215" Width="80.0" Height="20.0" ZOrder="32799" FontSize="10" Valign="Middle" ShapeType="Hexagon" Color="0000ff" />
+    <Xref Database="" ID="" />
+  </DataNode>
+  <DataNode TextLabel="OSM-5" GraphId="ec750" Type="GeneProduct" GroupRef="aed88">
+    <Comment>OSM-5 localizes to cilia through its TPR repeats through intraflagellar transport</Comment>
+    <BiopaxRef>dc2</BiopaxRef>
+    <Graphics CenterX="113.64388092612944" CenterY="204.18550165380384" Width="80.0" Height="20.0" ZOrder="32801" FillColor="999900" FontSize="10" Valign="Middle" ShapeType="Oval" />
+    <Xref Database="WormBase" ID="Y41G9A.1" />
+  </DataNode>
+  <DataNode TextLabel="LOV-1/PC-1" GraphId="bb606" Type="GeneProduct">
+    <Comment>LOV-1 localized to cilia by CIL-1</Comment>
+    <Comment>LOV-1 is expressed in male specific sensory neurons...with basodendritic subcellular localization in cell body and sensory endings</Comment>
+    <Comment>lov-1 is exclusively expressed in three categories of adult male sensory neurons: the rays, the hook, and the head CEMs</Comment>
+    <Comment>lov-1 and pkd-2 are expressed in male-specific sensory neurons and are localized to the similar region of the same cell.</Comment>
+    <Comment>lov-1 and atp-2 are coexpressed in the tail ray B neurons and HOB hook neuron...as well as the male-specific CEM head neurons.</Comment>
+    <BiopaxRef>da8</BiopaxRef>
+    <BiopaxRef>c81</BiopaxRef>
+    <BiopaxRef>e47</BiopaxRef>
+    <BiopaxRef>c97</BiopaxRef>
+    <Graphics CenterX="659.2967762226401" CenterY="225.23308519456913" Width="80.0" Height="20.0" ZOrder="32803" FillColor="cc33ff" FontSize="10" Valign="Middle" ShapeType="Oval" />
+    <Xref Database="WormBase" ID="ZK945.9" />
+  </DataNode>
+  <DataNode TextLabel="CHE-11" GraphId="ac32e" Type="GeneProduct" GroupRef="dd215">
+    <Graphics CenterX="114.84895259095856" CenterY="330.8456449834621" Width="80.0" Height="20.0" ZOrder="32809" FillColor="999900" FontSize="10" Valign="Middle" ShapeType="Oval" />
+    <Xref Database="WormBase" ID="C27A7.4" />
+  </DataNode>
+  <DataNode TextLabel="OSM-6" GraphId="dad92" Type="GeneProduct" GroupRef="aed88">
+    <Graphics CenterX="113.64388092612944" CenterY="242.43550165380384" Width="80.0" Height="20.0" ZOrder="32811" FillColor="999900" FontSize="10" Valign="Middle" ShapeType="Oval" />
+    <Xref Database="WormBase" ID="R31.3" />
+  </DataNode>
+  <DataNode TextLabel="KAP-1" GraphId="acc59" Type="GeneProduct" GroupRef="b05d2">
+    <Comment>IFT Complex A poly peptides , DAF-10 and CHE-11 move and that motility is at the same rate as IFT Complex B polypeptides, OSM-1, OSM-5 and OSM-6, and KAP (a subunit of the kinesin motor).</Comment>
+    <BiopaxRef>dc2</BiopaxRef>
+    <Graphics CenterX="113.64388092612944" CenterY="286.64057331863296" Width="80.0" Height="20.0" ZOrder="32815" FillColor="999900" FontSize="10" Valign="Middle" ShapeType="Oval" />
+    <Xref Database="WormBase" ID="F08F8.3" />
+  </DataNode>
+  <DataNode TextLabel="CWP-5" GraphId="fe9e4" Type="GeneProduct">
+    <BiopaxRef>cde</BiopaxRef>
+    <Graphics CenterX="661.9458613530774" CenterY="177.2557883131202" Width="80.0" Height="20.0" ZOrder="32823" FillColor="996600" FontSize="10" Valign="Middle" ShapeType="Oval" />
+    <Xref Database="WormBase" ID="F48C11.2" />
+  </DataNode>
+  <DataNode TextLabel="PKD-2/PC-2" GraphId="e3618" Type="GeneProduct">
+    <Comment>PKD-2 localized to cilia by CIL-1</Comment>
+    <Comment>PKD-2 GFP accumulates in a ring around the ciliary transition zones. </Comment>
+    <Comment>Functional localization of PKD-2 is in the ciliary plasma membrane and in intracellular membrane</Comment>
+    <Comment>PKD-2 protein is hghly enriched in sensory cilia that are directly exposed to the environment</Comment>
+    <Comment>Within the ciliary region, PKD-2::GFP is distributed throughout the cilium, but primarily concentrated at the ciliary base, which corresponds to the distal-most dendrite and transition zone regions.</Comment>
+    <Comment>In wild-type adult males, PKD-2 is distributed along the ciliary axoneme and accumulates in the transition zone between the cilium and dendrite. &lt;localization is developmentally regulated. &gt; In ray neurons of wild-type late L4 males, the magority of the PKD-2 protein localizes to the tip of the cilium and around the transition zone, whereas the staining along the ciliary axoneme is weak. </Comment>
+    <Comment>anti PKD-2 antibodies only label male-specific neurons</Comment>
+    <Comment>lov-1 and pkd-2 are expressed in male-specific sensory neurons and are localized to the similar region of the same cell.</Comment>
+    <BiopaxRef>da8</BiopaxRef>
+    <BiopaxRef>c81</BiopaxRef>
+    <BiopaxRef>e47</BiopaxRef>
+    <BiopaxRef>ead</BiopaxRef>
+    <BiopaxRef>edd</BiopaxRef>
+    <Graphics CenterX="660.0496141124593" CenterY="156.2557883131202" Width="80.0" Height="20.0" ZOrder="32825" FillColor="66ffcc" FontSize="10" Valign="Middle" ShapeType="Oval" />
+    <Xref Database="WormBase" ID="Y73F8A.1" />
+  </DataNode>
+  <DataNode TextLabel="ATP-2" GraphId="eb32f" Type="GeneProduct">
+    <Comment>ATP-2 is identified as one candidate that physically interacts with the PLAT domain of LOV-1</Comment>
+    <Comment>ATP-2 and other ATP synthase components were found to localize to the cilia of male-specific sensory neurons.</Comment>
+    <Comment>ATP-2::GFP clearly colocalizes with PKD-2::DsRed2 in CEM cilia.</Comment>
+    <Comment>ATP-2 physically interacts with LOV-1</Comment>
+    <BiopaxRef>c97</BiopaxRef>
+    <Graphics CenterX="660.2967762226401" CenterY="246.4777336152125" Width="80.0" Height="20.0" ZOrder="32831" FillColor="ffff66" FontSize="10" Valign="Middle" ShapeType="Oval" />
+    <Xref Database="WormBase" ID="C34E10.6" />
+  </DataNode>
+  <DataNode TextLabel="ASG-1" GraphId="c22db" Type="GeneProduct" GroupRef="ce441">
+    <Comment>ASB-1 and ASG-2 localize to male-specific sensory cilia as well as mitochondria.</Comment>
+    <BiopaxRef>c97</BiopaxRef>
+    <Graphics CenterX="945.8644217135798" CenterY="499.35460497103304" Width="80.0" Height="20.0" ZOrder="32833" FillColor="990099" FontSize="10" Valign="Middle" ShapeType="Oval" />
+    <Xref Database="WormBase" ID="K07A12.3" />
+  </DataNode>
+  <DataNode TextLabel="ASG-1" GraphId="a482b" Type="GeneProduct">
+    <Comment>ASB-1 and ASG-2 localize to male-specific sensory cilia as well as mitochondria.</Comment>
+    <BiopaxRef>c97</BiopaxRef>
+    <Graphics CenterX="496.79510997013983" CenterY="222.30545680037858" Width="80.0" Height="20.0" ZOrder="32835" FillColor="990099" FontSize="10" Valign="Middle" ShapeType="Oval" />
+    <Xref Database="WormBase" ID="K07A12.3" />
+  </DataNode>
+  <DataNode TextLabel="ASB-1" GraphId="d8303" Type="GeneProduct" GroupRef="ce441">
+    <Comment>ASB-1 and ASG-2 localize to male-specific sensory cilia as well as mitochondria.</Comment>
+    <BiopaxRef>c97</BiopaxRef>
+    <Graphics CenterX="925.8081923861264" CenterY="470.19363473950057" Width="80.0" Height="20.0" ZOrder="32837" FillColor="990099" FontSize="10" Valign="Middle" ShapeType="Oval" />
+    <Xref Database="WormBase" ID="F35G12.10" />
+  </DataNode>
+  <DataNode TextLabel="KIN-10/CK2" GraphId="e158c" Type="GeneProduct" GroupRef="ddbe6">
+    <Comment>kin-3 and kin-10 are coexpressed with lov-1 and pkd-2 in the male-specific CEM head neurons and ray RnB and hook HOB tail neurons</Comment>
+    <Comment>KIN-3::GFP and KIN-10 GFP are enriched in cilia and also found in cell bodies (including nuclei), dendrites, and axons.</Comment>
+    <Comment>CK2-phosphorylated PKD-2 is dephosphorylated by calcineurin</Comment>
+    <Comment>CK2, lov-1, and pkd-2 act in the same genetic pathway regulating mating behavior.</Comment>
+    <Comment>CK2 modulates PKD-2 function.</Comment>
+    <Comment>PKD-2(S534) is one but not the only in vitro CK2 phosphorylation site. </Comment>
+    <BiopaxRef>edd</BiopaxRef>
+    <Graphics CenterX="537.7276003156097" CenterY="62.23819517313743" Width="80.0" Height="20.0" ZOrder="32843" FillColor="cc3300" FontSize="10" Valign="Middle" ShapeType="Oval" />
+    <Xref Database="WormBase" ID="T01G9.6" />
+  </DataNode>
+  <DataNode TextLabel="TAX-6/Calcineurin" GraphId="dcadf" Type="GeneProduct">
+    <Comment>TAX-6::GFP also localizes to cilia of these polycystin-expressing neurons</Comment>
+    <Comment>CK and calcineurin/protein phosphatase 2B(PP2B) modulate PKD-2 function and ciliary localization</Comment>
+    <Comment>CK2 and calcineurin function antagonistically to regulate PKD-2 phosphorylation state</Comment>
+    <Comment>CK2 phosphorylated PKD-2 is dephosphorylated by calcineurin</Comment>
+    <Comment>In the male, we observed tax-6 expression in the CEM, HOB, and ray RnB neurons, with expression noticeably absent from ray 6, which is very similar to lov-1 and pkd-2 expression patterns</Comment>
+    <BiopaxRef>edd</BiopaxRef>
+    <Graphics CenterX="538.5125472190657" CenterY="154.51511999236652" Width="97.0" Height="20.0" ZOrder="32845" FillColor="00cc00" FontSize="10" Valign="Middle" ShapeType="Oval" />
+    <Xref Database="WormBase" ID="C02F4.2" />
+  </DataNode>
+  <DataNode TextLabel="STAM-1/STAM" GraphId="c0b6d" Type="GeneProduct">
+    <Comment>GFP-tagged STAM-1 fusion protein localized to cytoplasmic and dendritic puncta resembling endosomes</Comment>
+    <BiopaxRef>c50</BiopaxRef>
+    <Graphics CenterX="779.797922419887" CenterY="23.085816159959023" Width="80.0" Height="20.0" ZOrder="32857" FillColor="ff9999" FontSize="10" Valign="Middle" ShapeType="Oval" />
+    <Xref Database="WormBase" ID="C34G6.7" />
+  </DataNode>
+  <DataNode TextLabel="PKD-2/PC-2" GraphId="aea45" Type="GeneProduct" GroupRef="f58f0">
+    <Comment>PKD-2 is synthesized in the ER and packaged into vesicles that are transported to the ciliary base and inserted onto the ciliary membrane.</Comment>
+    <BiopaxRef>ead</BiopaxRef>
+    <Graphics CenterX="1742.7287066246058" CenterY="345.9915878023137" Width="63.13354363827344" Height="20.0" ZOrder="32859" FillColor="66ffcc" FontSize="10" Valign="Middle" ShapeType="Oval" />
+    <Xref Database="WormBase" ID="Y73F8A.1" />
+  </DataNode>
+  <DataNode TextLabel="PKD-2/PC-2" GraphId="ddfdf" Type="GeneProduct" GroupRef="ddb38">
+    <Comment>PKD-2 is synthesized in the ER and packaged into vesicles that are transported to the ciliary base and inserted onto the ciliary membrane.</Comment>
+    <BiopaxRef>ead</BiopaxRef>
+    <Graphics CenterX="1261.2786540483721" CenterY="349.2912723449008" Width="63.13354363827344" Height="20.0" ZOrder="32863" FillColor="66ffcc" FontSize="10" Valign="Middle" ShapeType="Oval" />
+    <Xref Database="WormBase" ID="Y73F8A.1" />
+  </DataNode>
+  <DataNode TextLabel="UNC-101" GraphId="e1f74" Type="GeneProduct">
+    <Comment>UNC-101 acts at a somatodendritic sorting step to restrict PKFD-2, along with other ciliary receptors, to the dendritic compartment.</Comment>
+    <BiopaxRef>ead</BiopaxRef>
+    <Graphics CenterX="1765.9526813880134" CenterY="305.55835962145164" Width="80.0" Height="20.0" ZOrder="32865" FillColor="cccc00" FontSize="10" Valign="Middle" ShapeType="Oval" />
+    <Xref Database="WormBase" ID="K11D2.3" />
+  </DataNode>
+  <DataNode TextLabel="KIN-3/CK2" GraphId="a9e67" Type="GeneProduct" GroupRef="f3c36">
+    <Comment>kin-3 and kin-10 are coexpressed with lov-1 and pkd-2 in the male-specific CEM head neurons and ray RnB and hook HOB tail neurons</Comment>
+    <Comment>KIN-3::GFP and KIN-10 GFP are enriched in cilia and also found in cell bodies (including nuclei), dendrites, and axons.</Comment>
+    <BiopaxRef>edd</BiopaxRef>
+    <Graphics CenterX="946.0577124868835" CenterY="367.4438614900315" Width="80.0" Height="20.0" ZOrder="32867" FillColor="cc3300" FontSize="10" Valign="Middle" ShapeType="Oval" />
+    <Xref Database="WormBase" ID="B0205.7" />
+  </DataNode>
+  <DataNode TextLabel="KIN-10/CK2" GraphId="aebfe" Type="GeneProduct" GroupRef="f3c36">
+    <Comment>kin-3 and kin-10 are coexpressed with lov-1 and pkd-2 in the male-specific CEM head neurons and ray RnB and hook HOB tail neurons</Comment>
+    <Comment>KIN-3::GFP and KIN-10 GFP are enriched in cilia and also found in cell bodies (including nuclei), dendrites, and axons.</Comment>
+    <BiopaxRef>edd</BiopaxRef>
+    <Graphics CenterX="946.0" CenterY="387.0" Width="80.0" Height="20.0" ZOrder="32869" FillColor="cc3300" FontSize="10" Valign="Middle" ShapeType="Oval" />
+    <Xref Database="WormBase" ID="T01G9.6" />
+  </DataNode>
+  <DataNode TextLabel="KIN-3/CK2" GraphId="ff9f8" Type="GeneProduct" GroupRef="c07ae">
+    <Comment>kin-3 and kin-10 are coexpressed with lov-1 and pkd-2 in the male-specific CEM head neurons and ray RnB and hook HOB tail neurons</Comment>
+    <Comment>KIN-3::GFP and KIN-10 GFP are enriched in cilia and also found in cell bodies (including nuclei), dendrites, and axons.</Comment>
+    <BiopaxRef>edd</BiopaxRef>
+    <Graphics CenterX="2030.057712486884" CenterY="510.44386149003174" Width="80.0" Height="20.0" ZOrder="32871" FillColor="cc3300" FontSize="10" Valign="Middle" ShapeType="Oval" />
+    <Xref Database="WormBase" ID="B0205.7" />
+  </DataNode>
+  <DataNode TextLabel="KIN-10/CK2" GraphId="a4af0" Type="GeneProduct" GroupRef="c07ae">
+    <Comment>kin-3 and kin-10 are coexpressed with lov-1 and pkd-2 in the male-specific CEM head neurons and ray RnB and hook HOB tail neurons</Comment>
+    <Comment>KIN-3::GFP and KIN-10 GFP are enriched in cilia and also found in cell bodies (including nuclei), dendrites, and axons.</Comment>
+    <BiopaxRef>edd</BiopaxRef>
+    <Graphics CenterX="2030.0" CenterY="530.0" Width="80.0" Height="20.0" ZOrder="32873" FillColor="cc3300" FontSize="10" Valign="Middle" ShapeType="Oval" />
+    <Xref Database="WormBase" ID="T01G9.6" />
+  </DataNode>
+  <DataNode TextLabel="KIN-3/CK2" GraphId="a65fb" Type="GeneProduct" GroupRef="ef175">
+    <Comment>kin-3 and kin-10 are coexpressed with lov-1 and pkd-2 in the male-specific CEM head neurons and ray RnB and hook HOB tail neurons</Comment>
+    <Comment>KIN-3::GFP and KIN-10 GFP are enriched in cilia and also found in cell bodies (including nuclei), dendrites, and axons.</Comment>
+    <BiopaxRef>edd</BiopaxRef>
+    <Graphics CenterX="1713.0" CenterY="406.0" Width="80.0" Height="20.0" ZOrder="32875" FillColor="cc3300" FontSize="10" Valign="Middle" ShapeType="Oval" />
+    <Xref Database="WormBase" ID="B0205.7" />
+  </DataNode>
+  <DataNode TextLabel="KIN-10/CK2" GraphId="bc131" Type="GeneProduct" GroupRef="ef175">
+    <Comment>kin-3 and kin-10 are coexpressed with lov-1 and pkd-2 in the male-specific CEM head neurons and ray RnB and hook HOB tail neurons</Comment>
+    <Comment>KIN-3::GFP and KIN-10 GFP are enriched in cilia and also found in cell bodies (including nuclei), dendrites, and axons.</Comment>
+    <BiopaxRef>edd</BiopaxRef>
+    <Graphics CenterX="1713.0000000000002" CenterY="425.55613850996826" Width="80.0" Height="20.0" ZOrder="32877" FillColor="cc3300" FontSize="10" Valign="Middle" ShapeType="Oval" />
+    <Xref Database="WormBase" ID="T01G9.6" />
+  </DataNode>
+  <DataNode TextLabel="PKD-2/PC-2" GraphId="d7cde" Type="GeneProduct">
+    <Comment>PKD-2 phosphorylation state appears to modulate its function and ciliary localization, with S534A and S534D reflecting two extreme states.</Comment>
+    <Comment>CK2-phosphorylated PKD-2 is dephosphorylated by calcineurin.</Comment>
+    <BiopaxRef>edd</BiopaxRef>
+    <Graphics CenterX="803.7417280934579" CenterY="79.64685740646286" Width="80.0" Height="20.0" ZOrder="32891" FillColor="66ffcc" FontSize="10" Valign="Middle" ShapeType="Oval" />
+    <Xref Database="WormBase" ID="Y73F8A.1" />
+  </DataNode>
+  <DataNode TextLabel="" GraphId="b5e9a" Type="GeneProduct">
+    <Comment></Comment>
+    <Graphics CenterX="45.736434108527135" CenterY="569.1707627222266" Width="80.0" Height="20.0" ZOrder="32902" FillColor="cccc00" FontSize="10" Valign="Middle" ShapeType="Oval" />
+    <Xref Database="WormBase" ID="" />
+  </DataNode>
+  <DataNode TextLabel="" GraphId="e433f" Type="GeneProduct">
+    <Comment></Comment>
+    <Comment></Comment>
+    <Graphics CenterX="45.736434108527135" CenterY="598.0201649033677" Width="80.0" Height="20.0" ZOrder="32904" FillColor="cc3300" FontSize="10" Valign="Middle" ShapeType="Oval" />
+    <Xref Database="WormBase" ID="" />
+  </DataNode>
+  <DataNode TextLabel="" GraphId="d877e" Type="GeneProduct">
+    <Graphics CenterX="45.736434108527135" CenterY="627.1942587979975" Width="79.06976744186048" Height="20.030087055167687" ZOrder="32908" FillColor="00cc00" FontSize="10" Valign="Middle" ShapeType="Oval" />
+    <Xref Database="WormBase" ID="" />
+  </DataNode>
+  <DataNode TextLabel="" GraphId="a66fa" Type="GeneProduct">
+    <Comment></Comment>
+    <Graphics CenterX="46.736434108527135" CenterY="543.1707627222266" Width="80.0" Height="20.0" ZOrder="32912" FillColor="999900" FontSize="10" Valign="Middle" ShapeType="Oval" />
+    <Xref Database="WormBase" ID="" />
+  </DataNode>
+  <State GraphRef="d2970" TextLabel="P" GraphId="cdf74">
+    <Graphics RelX="1.0" RelY="1.0" Width="15.0" Height="15.0" FillColor="ffcc00" ShapeType="Oval" />
+    <Xref Database="" ID="" />
+  </State>
+  <State GraphRef="d7cde" TextLabel="P" GraphId="ee38b">
+    <Graphics RelX="1.0" RelY="1.0" Width="15.0" Height="15.0" FillColor="ffcc00" ShapeType="Oval" />
+    <Xref Database="" ID="" />
+  </State>
+  <Interaction GraphId="c8c0d">
+    <Graphics ZOrder="-9" LineThickness="1.0">
+      <Point X="710.0" Y="308.0" />
+      <Point X="1676.0" Y="288.0" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="idee60a74f">
+    <Graphics ZOrder="12288" LineThickness="3.0" Color="ffcc00">
+      <Point X="51.39172636180672" Y="452.71317829457365" GraphRef="d9f7b" RelX="-1.0" RelY="0.0" />
+      <Point X="7.751937984496124" Y="452.71317829457365" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="idd094022b">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="50.0" Y="505.0" />
+      <Point X="22.0" Y="505.0" ArrowHead="mim-cleavage" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="id38f32654">
+    <Graphics ZOrder="12296" LineStyle="Broken" LineThickness="1.0" Color="0066cc">
+      <Point X="1731.6982124079914" Y="342.2053101997899" GraphRef="f7b0f" RelX="-1.0" RelY="0.0" />
+      <Point X="1308.9426919032594" Y="345.5565194532077" GraphRef="df912" RelX="1.0" RelY="0.0" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="idd26df72c">
+    <Graphics ZOrder="12298" LineStyle="Broken" LineThickness="1.0" Color="0066cc">
+      <Point X="1246.3512092534165" Y="345.5565194532077" GraphRef="df912" RelX="-1.0" RelY="0.0" />
+      <Point X="1105.0" Y="345.0" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="id10e73b6c">
+    <Graphics ZOrder="12300" LineStyle="Broken" LineThickness="1.0" Color="0066cc">
+      <Point X="1883.0621975418399" Y="342.43092389953813" GraphRef="b1a0b" RelX="-1.0" RelY="0.5" />
+      <Point X="1794.2896950578343" Y="342.2053101997899" GraphRef="f7b0f" RelX="1.0" RelY="0.0" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="idf453b44b">
+    <Comment>PKD-2 degradation does not require K48 polyubiquitination and is likely due to STAM-1-Hrs-mediated degradation. </Comment>
+    <BiopaxRef>c50</BiopaxRef>
+    <Graphics ZOrder="12306" LineThickness="1.0">
+      <Point X="1025.0577124868837" Y="75.55089192025184" GraphRef="e5093" RelX="-1.0" RelY="0.0" ArrowHead="mim-cleavage" />
+      <Point X="966.4048109089501" Y="50.17634587563619" GraphRef="bb2d7" RelX="1.0" RelY="0.0" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="ida414c24f">
+    <Graphics ZOrder="12308" LineThickness="1.0">
+      <Point X="707.0" Y="310.0" />
+      <Point X="1875.0" Y="310.0" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="iddbb52592">
+    <BiopaxRef>da8</BiopaxRef>
+    <Graphics ZOrder="12312" LineThickness="1.0">
+      <Point X="932.5495316853362" Y="219.41758866176946" GraphRef="a092a" RelX="1.0" RelY="0.0" />
+      <Point X="1001.3583241455351" Y="246.24200661521496" GraphRef="b085a" RelX="-1.0" RelY="0.0" ArrowHead="mim-catalysis" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="idd8f6598">
+    <Comment>IFT Complex A poly peptides DAF-10 and CHE-11 move at the same rate as IFT Complex B poly peptides OSM-5, OSM-1, and OSM-6. | OSM-5 undergoes anterograde and retrograde transport.</Comment>
+    <BiopaxRef>dc2</BiopaxRef>
+    <Graphics ZOrder="12314" LineStyle="Broken" LineThickness="1.0" Color="0066ff">
+      <Point X="61.64388092612944" Y="223.31050165380384" GraphRef="e0f15" RelX="-1.0" RelY="0.0" />
+      <Point X="20.0" Y="223.0" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="idb1599886">
+    <Comment>CIL-1 localizes PKD-2 to the cilia</Comment>
+    <Comment>LOV-1 localizes PKD-2 to cilia in RnB and aids localization of PKD-2 in CEM</Comment>
+    <BiopaxRef>da8</BiopaxRef>
+    <Graphics ZOrder="16397" LineStyle="Broken" LineThickness="1.0" Color="0066cc">
+      <Point X="852.5495316853362" Y="219.41758866176946" GraphRef="a092a" RelX="-1.0" RelY="0.0" />
+      <Point X="700.0496141124593" Y="156.2557883131202" GraphRef="e3618" RelX="1.0" RelY="0.0" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="id28ad2f7f">
+    <Comment>Consitutive phophorylation of PKD-2 results in a loss of PKD-2 from cilia. </Comment>
+    <BiopaxRef>edd</BiopaxRef>
+    <Graphics ZOrder="16401" LineStyle="Broken" LineThickness="1.0" Color="0066cc">
+      <Point X="660.6986247153073" Y="101.12639570656778" GraphRef="d2970" RelX="1.0" RelY="0.0" />
+      <Point X="763.7417280934579" Y="79.64685740646286" GraphRef="d7cde" RelX="-1.0" RelY="0.0" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="ide476c211">
+    <Graphics ZOrder="16403" LineThickness="1.0">
+      <Point X="3.851157662624059" Y="272.5380374862184" />
+      <Point X="673.6493936052922" Y="272.3263506063947" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="feba6">
+    <Graphics ZOrder="32767" LineThickness="1.0">
+      <Point X="721.0" Y="306.0" />
+      <Point X="1876.0" Y="306.0" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="ac32a">
+    <Graphics ZOrder="32807" LineThickness="1.0">
+      <Point X="3.851157662624059" Y="281.5380374862184" />
+      <Point X="672.5468577728776" Y="281.14663726571115" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="f8830">
+    <Comment>IFT Complex A poly peptides DAF-10 and CHE-11 move at the same rate as IFT Complex B poly peptides OSM-5, OSM-1, and OSM-6. </Comment>
+    <BiopaxRef>dc2</BiopaxRef>
+    <Graphics ZOrder="32813" LineStyle="Broken" LineThickness="1.0" Color="0066ff">
+      <Point X="62.84895259095856" Y="320.8456449834621" GraphRef="b7591" RelX="-1.0" RelY="0.0" />
+      <Point X="20.8955223880597" Y="320.14925373134326" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="f9a44">
+    <Comment>IFT Complex A poly peptides DAF-10 and CHE-11 move at the same rate as IFT Complex B poly peptides OSM-5, OSM-1, and OSM-6. | OSM-5 undergoes anterograde and retrograde transport.</Comment>
+    <BiopaxRef>dc2</BiopaxRef>
+    <Graphics ZOrder="32839" LineStyle="Broken" LineThickness="1.0" Color="0066ff">
+      <Point X="165.64388092612944" Y="223.31050165380384" GraphRef="e0f15" RelX="1.0" RelY="0.0" />
+      <Point X="205.0" Y="223.0" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="ce8fa">
+    <Comment>IFT Complex A poly peptides DAF-10 and CHE-11 move at the same rate as IFT Complex B poly peptides OSM-5, OSM-1, and OSM-6. | OSM-5 undergoes anterograde and retrograde transport.</Comment>
+    <BiopaxRef>dc2</BiopaxRef>
+    <Graphics ZOrder="32841" LineStyle="Broken" LineThickness="1.0" Color="0066ff">
+      <Point X="166.84895259095856" Y="320.8456449834621" GraphRef="b7591" RelX="1.0" RelY="0.0" />
+      <Point X="201.0" Y="320.0" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="cc63f">
+    <Comment>CK2 phosphorylated PKD-2 is dephosphorylated by calcineurin</Comment>
+    <Graphics ZOrder="32847" LineThickness="3.0" Color="ffcc00">
+      <Point X="562.7625472190657" Y="144.51511999236652" GraphRef="dcadf" RelX="0.5" RelY="-1.0" />
+      <Point X="620.6986247153073" Y="111.12639570656778" GraphRef="d2970" RelX="0.0" RelY="1.0" ArrowHead="mim-inhibition" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="id6a8131b9">
+    <Comment>PKD-2(S534) is one but not the only in vitro CK2 phosphorylation site. </Comment>
+    <Graphics ZOrder="32849" LineThickness="3.0" Color="ffcc00">
+      <Point X="557.7276003156097" Y="72.23819517313743" GraphRef="e158c" RelX="0.5" RelY="1.0" />
+      <Point X="620.6986247153073" Y="91.12639570656778" GraphRef="d2970" RelX="0.0" RelY="-1.0" ArrowHead="mim-modification" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="idfe217ef2">
+    <Comment>CIL-1 localizes LOV-1 to cilia.</Comment>
+    <Comment>Type your comment here</Comment>
+    <BiopaxRef>da8</BiopaxRef>
+    <Graphics ZOrder="32855" LineStyle="Broken" LineThickness="1.0" Color="0066ff">
+      <Point X="852.5495316853362" Y="219.41758866176946" GraphRef="a092a" RelX="-1.0" RelY="0.0" />
+      <Point X="699.2967762226401" Y="225.23308519456913" GraphRef="bb606" RelX="1.0" RelY="0.0" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="fd5d6">
+    <Graphics ZOrder="32894" LineStyle="Broken" LineThickness="1.0" Color="0066ff">
+      <Point X="51.39172636180672" Y="427.295918367347" GraphRef="fe669" RelX="-1.0" RelY="0.0" />
+      <Point X="6.660828510508695" Y="427.08802924154753" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="e4119">
+    <Graphics ZOrder="32896" LineThickness="3.0" Color="ffcc00">
+      <Point X="51.39172636180672" Y="478.2170542635658" GraphRef="ea725" RelX="-1.0" RelY="0.0" />
+      <Point X="4.241781548250265" Y="477.73064687168613" ArrowHead="TBar" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="e8c8c">
+    <Comment>LOV-1 localizes CWP-5 to neuronal cilia</Comment>
+    <BiopaxRef>cde</BiopaxRef>
+    <Graphics ZOrder="32911" LineStyle="Broken" LineThickness="1.0">
+      <Point X="659.2967762226401" Y="215.23308519456913" GraphRef="bb606" RelX="0.0" RelY="-1.0" />
+      <Point X="661.9458613530774" Y="187.2557883131202" GraphRef="fe9e4" RelX="0.0" RelY="1.0" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Label TextLabel="KEY" GraphId="d8921">
+    <Graphics CenterX="32.29591836734695" CenterY="395.30612244897964" Width="98.67346938775508" Height="25.306122448979785" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="10" Valign="Middle" />
+  </Label>
+  <Label TextLabel="Phosphorylates" GraphId="d9f7b">
+    <Graphics CenterX="91.39172636180672" CenterY="452.71317829457365" Width="80.0" Height="20.0" ZOrder="28674" FillColor="ffffff" FontSize="10" Valign="Middle" Align="Left" />
+  </Label>
+  <Label TextLabel="IFT Complex A poly peptides &#xA;DAF-10 and CHE-11  move at &#xA;the same rate as IFT Complex B &#xA;polypeptides OSM-5, OSM-1, &#xA;and OSM-6." GraphId="ee952">
+    <Graphics CenterX="282.3432835820896" CenterY="326.2164179104477" Width="160.68656716417897" Height="74.43283582089549" ZOrder="28676" FillColor="ffffff" FontSize="10" Valign="Middle" />
+  </Label>
+  <Label TextLabel="Translocation" GraphId="fe669">
+    <Graphics CenterX="91.39172636180672" CenterY="427.295918367347" Width="80.0" Height="20.000000000000014" ZOrder="28678" FillColor="ffffff" FontSize="10" Valign="Middle" Align="Left" />
+  </Label>
+  <Label TextLabel="OSM-5 undergoes anterograde &#xA;and retrograde transport." GraphId="f5409">
+    <Graphics CenterX="279.5" CenterY="215.0" Width="161.0" Height="20.0" ZOrder="28680" FillColor="ffffff" FontSize="10" Valign="Middle" />
+  </Label>
+  <Label TextLabel="cilium" GraphId="e9511">
+    <Graphics CenterX="655.1675854465273" CenterY="352.66593164277856" Width="80.0" Height="20.0" ZOrder="28682" FillColor="ffffff" FontSize="10" Valign="Middle" />
+  </Label>
+  <Label TextLabel="male sensory neuron" GraphId="cf720">
+    <Graphics CenterX="1314.319259480823" CenterY="27.04648388454291" Width="133.0" Height="20.0" ZOrder="28684" FillColor="ffffff" FontSize="10" Valign="Middle" />
+  </Label>
+  <Label TextLabel="ciliary transition zone" GraphId="eff47">
+    <BiopaxRef>e47</BiopaxRef>
+    <Graphics CenterX="708.8015435501658" CenterY="327.1201764057332" Width="128.20286659316412" Height="20.0" ZOrder="32853" FillColor="ffffff" FontSize="10" Valign="Middle" />
+  </Label>
+  <Label TextLabel="Dephosphorylates" GraphId="ea725">
+    <Graphics CenterX="91.39172636180672" CenterY="478.2170542635658" Width="80.0" Height="20.000000000000014" ZOrder="32898" FillColor="ffffff" FontSize="10" Valign="Middle" Align="Left" />
+  </Label>
+  <Label TextLabel="Intracellular transport" GraphId="f50db">
+    <Graphics CenterX="151.24031007751938" CenterY="570.1162790697673" Width="119.37209302325584" Height="25.658914728682532" ZOrder="32900" FillColor="ffffff" FontSize="10" Valign="Middle" Align="Left" />
+  </Label>
+  <Label TextLabel="Kinase activity" GraphId="cdbc6">
+    <Graphics CenterX="136.97543507032643" CenterY="598.2713178294571" Width="90.84234300886999" Height="25.658914728682475" ZOrder="32906" FillColor="ffffff" FontSize="10" Valign="Middle" Align="Left" />
+  </Label>
+  <Label TextLabel="Phosphatase activity" GraphId="a6280">
+    <Graphics CenterX="140.6869939250454" CenterY="626.426356589147" Width="98.2654607183079" Height="25.658914728682532" ZOrder="32910" FillColor="ffffff" FontSize="10" Valign="Middle" Align="Left" />
+  </Label>
+  <Label TextLabel="Intraflagellar transport" GraphId="f6642">
+    <Graphics CenterX="151.24031007751938" CenterY="544.1162790697673" Width="119.37209302325584" Height="25.658914728682532" ZOrder="32913" FillColor="ffffff" FontSize="10" Valign="Middle" Align="Left" />
+  </Label>
+  <Label TextLabel="Sends for degradation" GraphId="c1863">
+    <Graphics CenterX="109.69586318090336" CenterY="505.2170542635658" Width="116.60827363819328" Height="20.000000000000014" ZOrder="32914" FillColor="ffffff" FontSize="10" Valign="Middle" Align="Left" />
+  </Label>
+  <Shape GraphId="c7112">
+    <Attribute Key="org.pathvisio.CellularComponentProperty" Value="Nucleus" />
+    <Attribute Key="org.pathvisio.DoubleLineProperty" Value="Double" />
+    <Graphics CenterX="1950.75" CenterY="443.25" Width="780.5" Height="1047.5" ZOrder="-7" FillColor="ffffff" FontSize="10" Valign="Middle" ShapeType="Oval" LineThickness="3.0" Color="cccccc" Rotation="0.0" />
+  </Shape>
+  <Shape GraphId="de93c">
+    <Attribute Key="org.pathvisio.CellularComponentProperty" Value="Cell" />
+    <Attribute Key="org.pathvisio.DoubleLineProperty" Value="Double" />
+    <Graphics CenterX="1314.0420904453517" CenterY="245.46056380882746" Width="1219.7949283351709" Height="643.1775082690187" ZOrder="-5" FillColor="ffffff" FontSize="10" Valign="Middle" ShapeType="RoundedRectangle" LineThickness="3.0" Color="c0c0c0" Rotation="0.0" />
+  </Shape>
+  <Shape GraphId="aea4c">
+    <Attribute Key="org.pathvisio.CellularComponentProperty" Value="Organelle" />
+    <Attribute Key="org.pathvisio.DoubleLineProperty" Value="Double" />
+    <Graphics CenterX="336.9683020948181" CenterY="187.95068205666317" Width="729.0633958103638" Height="360.0" ZOrder="2" FontSize="10" Valign="Middle" ShapeType="RoundedRectangle" LineThickness="3.0" Color="c0c0c0" Rotation="0.0" />
+  </Shape>
+  <Shape GraphId="de478">
+    <Attribute Key="org.pathvisio.CellularComponentProperty" Value="Nucleus" />
+    <Graphics CenterX="1946.0" CenterY="442.25" Width="758.0" Height="1023.5" ZOrder="5" FillColor="ffffff" FontSize="10" Valign="Middle" ShapeType="Oval" LineThickness="3.0" Color="ffffff" Rotation="0.0" />
+  </Shape>
+  <Shape GraphId="f186f">
+    <Attribute Key="org.pathvisio.CellularComponentProperty" Value="Nucleus" />
+    <Attribute Key="org.pathvisio.DoubleLineProperty" Value="Double" />
+    <Graphics CenterX="2006.25" CenterY="551.75" Width="273.5" Height="208.5" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="Oval" LineThickness="3.0" Color="c0c0c0" Rotation="0.0" />
+  </Shape>
+  <Shape GraphId="f7b0f" GroupRef="f58f0">
+    <Attribute Key="org.pathvisio.CellularComponentProperty" Value="Vesicle" />
+    <Graphics CenterX="1762.9939537329128" CenterY="342.2053101997899" Width="62.591482649842646" Height="46.767087276551045" ZOrder="16386" FontSize="10" Valign="Middle" ShapeType="Oval" LineThickness="3.0" Color="c0c0c0" Rotation="0.0" />
+  </Shape>
+  <Shape GraphId="a1673">
+    <Attribute Key="org.pathvisio.CellularComponentProperty" Value="Lysosome" />
+    <Graphics CenterX="1090.864917957683" CenterY="82.89611752360966" Width="99.48737289890441" Height="90.24134312696748" ZOrder="16388" FontSize="10" Valign="Middle" ShapeType="Oval" LineThickness="3.0" Color="c0c0c0" Rotation="0.0" />
+  </Shape>
+  <Shape GraphId="c8fdf" GroupRef="f2d1a">
+    <Attribute Key="org.pathvisio.CellularComponentProperty" Value="Endoplasmic Reticulum" />
+    <Graphics CenterX="1993.2331862795836" CenterY="266.8990023433056" Width="188.60050184710963" Height="275.60462670872784" ZOrder="16390" FontSize="10" Valign="Middle" ShapeType="Endoplasmic Reticulum" LineThickness="3.0" Color="c0c0c0" Rotation="0.0583123107589704" />
+  </Shape>
+  <Shape GraphId="ee476">
+    <Attribute Key="org.pathvisio.CellularComponentProperty" Value="Organelle" />
+    <Graphics CenterX="749.2251591041336" CenterY="23.861174484104616" Width="58.78609995013706" Height="37.98621830209481" ZOrder="16392" FontSize="10" Valign="Middle" ShapeType="Oval" LineThickness="3.0" Color="c0c0c0" Rotation="0.0" />
+  </Shape>
+  <Shape GraphId="b6564">
+    <Graphics CenterX="704.2703969128999" CenterY="181.91841234840138" Width="51.216648291069305" Height="379.27232635060636" ZOrder="16396" FillColor="ffffff" FontSize="10" Valign="Middle" ShapeType="Oval" LineThickness="4.0" Color="cccccc" Rotation="0.0" />
+  </Shape>
+  <Shape GraphId="aef97" GroupRef="ce441">
+    <Attribute Key="org.pathvisio.CellularComponentProperty" Value="Mitochondria" />
+    <Graphics CenterX="990.8911428462116" CenterY="481.86678759100573" Width="129.74032208885905" Height="75.86447272470105" ZOrder="16405" FontSize="10" Valign="Middle" ShapeType="Mitochondria" LineThickness="3.0" Color="c0c0c0" Rotation="0.0" />
+  </Shape>
+  <Shape GraphId="b085a">
+    <Graphics CenterX="1016.358324145535" CenterY="246.242006615215" Width="55.0" Height="30.0" ZOrder="16407" FontSize="10" Valign="Middle" ShapeType="Arc" Rotation="1.5707963267948966" />
+  </Shape>
+  <Shape GraphId="fe06a">
+    <Graphics CenterX="703.7596471885337" CenterY="181.91841234840132" Width="36.802646085997594" Height="357.2216097023154" ZOrder="32851" FontSize="10" Valign="Middle" ShapeType="Oval" LineThickness="4.0" Color="cccccc" Rotation="0.0" />
+  </Shape>
+  <Shape GraphId="df912" GroupRef="ddb38">
+    <Attribute Key="org.pathvisio.CellularComponentProperty" Value="Vesicle" />
+    <Graphics CenterX="1277.646950578338" CenterY="345.5565194532077" Width="62.591482649842646" Height="46.767087276551045" ZOrder="32861" FontSize="10" Valign="Middle" ShapeType="Oval" LineThickness="3.0" Color="c0c0c0" Rotation="0.0" />
+  </Shape>
+  <Group GroupId="ddb38" GraphId="bb399" Style="Group" />
+  <Group GroupId="dd215" GraphId="b7591" Style="Complex" TextLabel="IFT Complex A">
+    <Comment></Comment>
+  </Group>
+  <Group GroupId="f2d1a" GraphId="b1a0b" Style="Group" />
+  <Group GroupId="b05d2" Style="Complex" />
+  <Group GroupId="f58f0" GraphId="d065d" Style="Group" />
+  <Group GroupId="c07ae" Style="Complex" />
+  <Group GroupId="f3c36" Style="Complex" />
+  <Group GroupId="ef175" Style="Complex" />
+  <Group GroupId="ce441" Style="Group" />
+  <Group GroupId="ddbe6" GraphId="f3888" Style="Complex">
+    <Comment>CK2</Comment>
+  </Group>
+  <Group GroupId="aed88" GraphId="e0f15" Style="Complex" TextLabel="IFT Complex B" />
+  <InfoBox CenterX="0.0" CenterY="0.0" />
+  <Biopax>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="c50">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">17581863</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">STAM and Hrs down-regulate ciliary TRP receptors.</bp:TITLE>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Mol Biol Cell</bp:SOURCE>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2007</bp:YEAR>
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">17581863</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">STAM and Hrs down-regulate ciliary TRP receptors.</bp:TITLE>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Mol Biol Cell</bp:SOURCE>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2007</bp:YEAR>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Hu J</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Wittekind SG</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Barr MM</bp:AUTHORS>
+    </bp:PublicationXref>
+    <bp:openControlledVocabulary xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#">
+      <bp:TERM xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">polycystic kidney disease</bp:TERM>
+      <bp:ID xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">DOID:898</bp:ID>
+      <bp:Ontology xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Disease</bp:Ontology>
+    </bp:openControlledVocabulary>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="e47">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">11553327</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">The Caenorhabditis elegans autosomal dominant polycystic kidney disease gene homologs lov-1 and pkd-2 act in the same pathway.</bp:TITLE>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Curr Biol</bp:SOURCE>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2001</bp:YEAR>
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">11553327</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">The Caenorhabditis elegans autosomal dominant polycystic kidney disease gene homologs lov-1 and pkd-2 act in the same pathway.</bp:TITLE>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Curr Biol</bp:SOURCE>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2001</bp:YEAR>
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">11553327</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">The Caenorhabditis elegans autosomal dominant polycystic kidney disease gene homologs lov-1 and pkd-2 act in the same pathway.</bp:TITLE>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Curr Biol</bp:SOURCE>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2001</bp:YEAR>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Barr MM</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">DeModena J</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Braun D</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Nguyen CQ</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Hall DH</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Sternberg PW</bp:AUTHORS>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="f83">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">21586324</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Putative roles of cilia in polycystic kidney disease.</bp:TITLE>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Biochim Biophys Acta</bp:SOURCE>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2011</bp:YEAR>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Winyard P</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Jenkins D</bp:AUTHORS>
+    </bp:PublicationXref>
+    <bp:openControlledVocabulary xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#">
+      <bp:TERM xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">lysosomes based pathway of protein degradation</bp:TERM>
+      <bp:ID xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PW:0000182</bp:ID>
+      <bp:Ontology xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Pathway Ontology</bp:Ontology>
+    </bp:openControlledVocabulary>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="ead">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">16943275</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">General and cell-type specific mechanisms target TRPP2/PKD-2 to cilia.</bp:TITLE>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Development</bp:SOURCE>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2006</bp:YEAR>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Bae YK</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Qin H</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Knobel KM</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Hu J</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Rosenbaum JL</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Barr MM</bp:AUTHORS>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="cde">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">20223935</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">A latent capacity of the C. elegans polycystins to disrupt sensory transduction is repressed by the single-pass ciliary membrane protein CWP-5.</bp:TITLE>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Dis Model Mech</bp:SOURCE>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2010</bp:YEAR>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Miller RM</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Portman DS</bp:AUTHORS>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="eed">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">21537177</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Caenorhabditis elegans, a model organism for kidney research: from cilia to mechanosensation and longevity.</bp:TITLE>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Curr Opin Nephrol Hypertens</bp:SOURCE>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2011</bp:YEAR>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Müller RU</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Zank S</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Fabretti F</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Benzing T</bp:AUTHORS>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="edd">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">16481400</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Casein kinase II and calcineurin modulate TRPP function and ciliary localization.</bp:TITLE>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Mol Biol Cell</bp:SOURCE>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2006</bp:YEAR>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Hu J</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Bae YK</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Knobel KM</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Barr MM</bp:AUTHORS>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="da8">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">19781942</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">The CIL-1 PI 5-phosphatase localizes TRP Polycystins to cilia and activates sperm in C. elegans.</bp:TITLE>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Curr Biol</bp:SOURCE>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2009</bp:YEAR>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Bae YK</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Kim E</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">L'hernault SW</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Barr MM</bp:AUTHORS>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="b60">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">18050467</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Male mating behavior.</bp:TITLE>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">WormBook</bp:SOURCE>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2006</bp:YEAR>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Barr MM</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Garcia LR</bp:AUTHORS>
+    </bp:PublicationXref>
+    <bp:openControlledVocabulary xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#">
+      <bp:TERM xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">protein sorting pathway</bp:TERM>
+      <bp:ID xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PW:0000426</bp:ID>
+      <bp:Ontology xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Pathway Ontology</bp:Ontology>
+    </bp:openControlledVocabulary>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="dc2">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">11301258</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">An autosomal recessive polycystic kidney disease gene homolog is involved in intraflagellar transport in C. elegans ciliated sensory neurons.</bp:TITLE>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Curr Biol</bp:SOURCE>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2001</bp:YEAR>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Qin H</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Rosenbaum JL</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Barr MM</bp:AUTHORS>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="c81">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">10517638</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">A polycystic kidney-disease gene homologue required for male mating behaviour in C. elegans.</bp:TITLE>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Nature</bp:SOURCE>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1999</bp:YEAR>
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">10517638</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">A polycystic kidney-disease gene homologue required for male mating behaviour in C. elegans.</bp:TITLE>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Nature</bp:SOURCE>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1999</bp:YEAR>
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">10517638</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">A polycystic kidney-disease gene homologue required for male mating behaviour in C. elegans.</bp:TITLE>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Nature</bp:SOURCE>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1999</bp:YEAR>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Barr MM</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Sternberg PW</bp:AUTHORS>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="c97">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">15563610</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">ATP-2 interacts with the PLAT domain of LOV-1 and is involved in Caenorhabditis elegans polycystin signaling.</bp:TITLE>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Mol Biol Cell</bp:SOURCE>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2005</bp:YEAR>
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">15563610</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">ATP-2 interacts with the PLAT domain of LOV-1 and is involved in Caenorhabditis elegans polycystin signaling.</bp:TITLE>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Mol Biol Cell</bp:SOURCE>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2005</bp:YEAR>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Hu J</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Barr MM</bp:AUTHORS>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="d1b">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">15947985</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Mating worms and the cystic kidney: Caenorhabditis elegans as a model for renal disease.</bp:TITLE>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Pediatr Nephrol</bp:SOURCE>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2005</bp:YEAR>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Lipton J</bp:AUTHORS>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="e9b">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string"></bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string"></bp:TITLE>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string"></bp:SOURCE>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string"></bp:YEAR>
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">19781942</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">The CIL-1 PI 5-phosphatase localizes TRP Polycystins to cilia and activates sperm in C. elegans.</bp:TITLE>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Curr Biol</bp:SOURCE>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2009</bp:YEAR>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Bae YK</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Kim E</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">L'hernault SW</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Barr MM</bp:AUTHORS>
+    </bp:PublicationXref>
+    <bp:openControlledVocabulary xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#">
+      <bp:TERM xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">ciliated cell</bp:TERM>
+      <bp:ID xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">CL:0000064</bp:ID>
+      <bp:Ontology xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Cell Type</bp:Ontology>
+    </bp:openControlledVocabulary>
+  </Biopax>
+</Pathway>

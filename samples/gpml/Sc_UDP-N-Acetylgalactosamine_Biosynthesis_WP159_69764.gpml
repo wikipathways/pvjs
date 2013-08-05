@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Pathway xmlns="http://pathvisio.org/GPML/2013a" Name="UDP-N-Acetylgalactosamine Biosynthesis" Organism="Saccharomyces cerevisiae">
+  <Comment Source="GenMAPP notes"/>
+  <Comment Source="GenMAPP remarks">Based on http://pathway.yeastgenome.org/biocyc/</Comment>
+  <Comment Source="WikiPathways-category">Metabolic Process</Comment>
+  <Graphics BoardWidth="853.1666666666667" BoardHeight="502.8333333333333"/>
+  <DataNode TextLabel="GNA1" GraphId="b63" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="GNA1"/>
+    <Graphics CenterX="656.3333333333334" CenterY="188.0" Width="40.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="SGD" ID="S000001877"/>
+  </DataNode>
+  <DataNode TextLabel="PCM1" GraphId="df8" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="PCM1"/>
+    <Graphics CenterX="436.6666666666667" CenterY="280.0" Width="46.666666666666664" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="SGD" ID="S000000784"/>
+  </DataNode>
+  <DataNode TextLabel="GFA1" GraphId="c70" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="GFA1"/>
+    <Graphics CenterX="356.6666666666667" CenterY="80.0" Width="40.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="SGD" ID="S000001587"/>
+  </DataNode>
+  <DataNode TextLabel="QRI1" GraphId="d0a" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="QRI1"/>
+    <Graphics CenterX="230.0" CenterY="375.0" Width="40.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="SGD" ID="S000002261"/>
+  </DataNode>
+  <DataNode TextLabel="fructose-6-phosphate" GraphId="f32" Type="Metabolite">
+    <Graphics CenterX="86.66666666666667" CenterY="96.66666666666667" Width="169.33333333333334" Height="19.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff"/>
+    <Xref Database="CAS" ID="643-13-0"/>
+  </DataNode>
+  <DataNode TextLabel="L-glutamine" GraphId="d7e" Type="Metabolite">
+    <Graphics CenterX="303.3333333333333" CenterY="143.33333333333334" Width="95.33333333333333" Height="19.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff"/>
+    <Xref Database="CAS" ID="56-85-9"/>
+  </DataNode>
+  <DataNode TextLabel="L-glutamate" GraphId="c52" Type="Metabolite">
+    <Graphics CenterX="413.3333333333333" CenterY="143.33333333333334" Width="95.33333333333333" Height="19.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff"/>
+    <Xref Database="CAS" ID="56-86-0"/>
+  </DataNode>
+  <DataNode TextLabel="D-glucosamine-6-phosphate" GraphId="c7e" Type="Metabolite">
+    <Graphics CenterX="680.0" CenterY="96.66666666666667" Width="221.33333333333334" Height="19.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff"/>
+    <Xref Database="CAS" ID="3616-42-0"/>
+  </DataNode>
+  <DataNode TextLabel="acetyl-CoA" GraphId="a6e" Type="Metabolite">
+    <Graphics CenterX="760.0" CenterY="140.0" Width="88.33333333333333" Height="19.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff"/>
+    <Xref Database="CAS" ID="72-89-9"/>
+  </DataNode>
+  <DataNode TextLabel="Coenzyme A" GraphId="a4b" Type="Metabolite">
+    <Graphics CenterX="766.6666666666666" CenterY="233.33333333333334" Width="102.33333333333333" Height="19.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff"/>
+    <Xref Database="CAS" ID="64885-97-8"/>
+  </DataNode>
+  <DataNode TextLabel="N-acetyl-D-glucosamine-6-phosphate" GraphId="eae" Type="Metabolite">
+    <Graphics CenterX="679.0" CenterY="296.6666666666667" Width="288.3333333333333" Height="19.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff"/>
+    <Xref Database="CAS" ID="102029-88-9"/>
+  </DataNode>
+  <DataNode TextLabel="N-acetyl-glucosamine-1-phosphate" GraphId="bfb" Type="Metabolite">
+    <Graphics CenterX="206.66666666666666" CenterY="296.7" Width="271.3333333333333" Height="19.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff"/>
+    <Xref Database="CAS" ID="102029-88-9"/>
+  </DataNode>
+  <DataNode TextLabel="pyrophosphate" GraphId="ba6" Type="Metabolite">
+    <Graphics CenterX="96.66666666666667" CenterY="410.0" Width="122.33333333333333" Height="19.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff"/>
+    <Xref Database="CAS" ID="2466-09-3"/>
+  </DataNode>
+  <Interaction GraphId="id702aaf6">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="171.33333333333334" Y="96.66666666666667" GraphRef="f32" RelX="1.0" RelY="0.0"/>
+      <Point X="569.3333333333333" Y="96.66666666666667" GraphRef="c7e" RelX="-1.0" RelY="0.0" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="iddd9c83f6">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="680.0" Y="106.16666666666667" GraphRef="c7e" RelX="0.0" RelY="1.0"/>
+      <Point X="679.0" Y="287.1666666666667" GraphRef="eae" RelX="0.0" RelY="-1.0" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="idb74079d1">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="534.8333333333333" Y="296.6666666666667" GraphRef="eae" RelX="-1.0" RelY="0.0"/>
+      <Point X="342.3333333333333" Y="296.7" GraphRef="bfb" RelX="1.0" RelY="0.0" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="idf65e3f98">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="206.66666666666666" Y="306.2" GraphRef="bfb" RelX="0.0" RelY="1.0"/>
+      <Point X="207.33333333333334" Y="453.8333333333333" GraphRef="af6" RelX="0.0" RelY="-1.0" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="id7ee16977">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="258.5" Y="463.3333333333333" GraphRef="af6" RelX="1.0" RelY="0.0"/>
+      <Point X="330.83333333333337" Y="463.3333333333333" GraphRef="ba2" RelX="-1.0" RelY="0.0" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="ide9863972">
+    <Graphics ConnectorType="Curved" ZOrder="12288" LineThickness="1.0">
+      <Point X="715.8333333333333" Y="140.0" GraphRef="a6e" RelX="-1.0" RelY="0.0"/>
+      <Point X="677.0" Y="186.66666666666669"/>
+      <Point X="715.5" Y="233.33333333333334" GraphRef="a4b" RelX="-1.0" RelY="0.0" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="id25229d5e">
+    <Graphics ConnectorType="Curved" ZOrder="12288" LineThickness="1.0">
+      <Point X="303.3333333333333" Y="133.83333333333334" GraphRef="d7e" RelX="0.0" RelY="-1.0"/>
+      <Point X="358.33333333333326" Y="93.0"/>
+      <Point X="413.33333333333326" Y="133.83333333333334" GraphRef="c52" RelX="0.0" RelY="-1.0" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="idf34183a5">
+    <Graphics ConnectorType="Curved" ZOrder="12288" LineThickness="1.0">
+      <Point X="159.16666666666666" Y="343.3333333333333" GraphRef="aa2" RelX="1.0" RelY="0.0"/>
+      <Point X="210.0" Y="376.66666666666663"/>
+      <Point X="157.83333333333337" Y="410.0" GraphRef="ba6" RelX="1.0" RelY="0.0" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Label TextLabel="UTP" GraphId="aa2">
+    <Graphics CenterX="140.0" CenterY="343.3333333333333" Width="38.333333333333336" Height="19.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="12" Valign="Middle"/>
+  </Label>
+  <Label TextLabel="UDP-GlcNAc" GraphId="af6">
+    <Graphics CenterX="207.33333333333334" CenterY="463.3333333333333" Width="102.33333333333333" Height="19.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="12" Valign="Middle"/>
+  </Label>
+  <Label TextLabel="UDP-N-acetylgalactosamine" GraphId="ba2">
+    <Graphics CenterX="440.0" CenterY="463.3333333333333" Width="218.33333333333334" Height="19.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="12" Valign="Middle"/>
+  </Label>
+  <InfoBox CenterX="645.0" CenterY="411.6666666666667"/>
+  <Legend CenterX="0.0" CenterY="0.0"/>
+  <Biopax>
+    <bp:openControlledVocabulary xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#">
+      <bp:TERM xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">hexosamine biosynthetic pathway</bp:TERM>
+      <bp:ID xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PW:0000559</bp:ID>
+      <bp:Ontology xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Pathway Ontology</bp:Ontology>
+    </bp:openControlledVocabulary>
+  </Biopax>
+</Pathway>

@@ -1,0 +1,441 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Pathway xmlns="http://pathvisio.org/GPML/2013a" Name="Fatty Acid Biosynthesis" Organism="Drosophila melanogaster">
+  <Comment Source="GenMAPP notes">Updated from original (Kam Dahlquist) by Magali Jaillard, Marijke Vermeer, Michiel Adrieans, Ron Schormans and Chris Evelo</Comment>
+  <Comment Source="GenMAPP remarks">http://www.bigcat.unimaas.nl/mapps/</Comment>
+  <Comment Source="WikiPathways-category">Metabolic Process</Comment>
+  <Graphics BoardWidth="1108.0" BoardHeight="920.0"/>
+  <DataNode TextLabel="CG1516" GraphId="e72" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="CG1516 | CG1516"/>
+    <Graphics CenterX="93.33333333333333" CenterY="183.33333333333334" Width="53.333333333333336" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="36020"/>
+  </DataNode>
+  <DataNode TextLabel="ATPCL" GraphId="ec5" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="ATPCL | ATP citrate lyase"/>
+    <Graphics CenterX="266.6666666666667" CenterY="400.0" Width="53.333333333333336" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="36760"/>
+  </DataNode>
+  <DataNode TextLabel="CG3523" GraphId="b4b" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="CG3523 | CG3523"/>
+    <Graphics CenterX="210.0" CenterY="543.3333333333334" Width="53.333333333333336" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="33524"/>
+  </DataNode>
+  <DataNode TextLabel="CG3523" GraphId="fc5" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="CG3523 | CG3523"/>
+    <Graphics CenterX="166.66666666666666" CenterY="673.3333333333334" Width="53.333333333333336" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="33524"/>
+  </DataNode>
+  <DataNode TextLabel="ACACB" GraphId="b8b" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="ACACB | acetyl-Coenzyme A carboxylase beta"/>
+    <Graphics CenterX="326.6666666666667" CenterY="553.3333333333334" Width="53.333333333333336" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID=""/>
+  </DataNode>
+  <DataNode TextLabel="CG11198" GraphId="f4f" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="CG11198 | CG11198"/>
+    <Graphics CenterX="326.6666666666667" CenterY="533.3333333333334" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="35761"/>
+  </DataNode>
+  <DataNode TextLabel="CG3523" GraphId="eae" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="CG3523 | CG3523"/>
+    <Graphics CenterX="366.6666666666667" CenterY="673.3333333333334" Width="53.333333333333336" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="33524"/>
+  </DataNode>
+  <DataNode TextLabel="CG3523" GraphId="ff9" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="CG3523 | CG3523"/>
+    <Graphics CenterX="266.6666666666667" CenterY="826.6666666666666" Width="53.333333333333336" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="33524"/>
+  </DataNode>
+  <DataNode TextLabel="CG3523" GraphId="fb3" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="CG3523 | CG3523"/>
+    <Graphics CenterX="446.6666666666667" CenterY="880.0" Width="53.333333333333336" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="33524"/>
+  </DataNode>
+  <DataNode TextLabel="CG3523" GraphId="c1b" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="CG3523 | CG3523"/>
+    <Graphics CenterX="653.3333333333334" CenterY="820.0" Width="53.333333333333336" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="33524"/>
+  </DataNode>
+  <DataNode TextLabel="CG3523" GraphId="b15" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="CG3523 | CG3523"/>
+    <Graphics CenterX="653.3333333333334" CenterY="673.3333333333334" Width="53.333333333333336" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="33524"/>
+  </DataNode>
+  <DataNode TextLabel="CG3523" GraphId="b49" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="CG3523 | CG3523"/>
+    <Graphics CenterX="653.3333333333334" CenterY="420.0" Width="53.333333333333336" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="33524"/>
+  </DataNode>
+  <DataNode TextLabel="yip2" GraphId="a6a" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="yip2 | yippee interacting protein 2"/>
+    <Graphics CenterX="653.3333333333334" CenterY="233.33333333333334" Width="53.333333333333336" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="34313"/>
+  </DataNode>
+  <DataNode TextLabel="HADHSC" GraphId="e09" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="HADHSC | L-3-hydroxyacyl-Coenzyme A dehydrogena..."/>
+    <Graphics CenterX="686.6666666666666" CenterY="120.0" Width="66.66666666666667" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID=""/>
+  </DataNode>
+  <DataNode TextLabel="CG9577" GraphId="ff0" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="CG9577 | CG9577"/>
+    <Graphics CenterX="810.0" CenterY="90.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="33016"/>
+  </DataNode>
+  <DataNode TextLabel="PECR" GraphId="c02" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="PECR"/>
+    <Graphics CenterX="876.6666666666666" CenterY="233.33333333333334" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID=""/>
+  </DataNode>
+  <DataNode TextLabel="SCD" GraphId="c7f" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="scd"/>
+    <Graphics CenterX="873.3333333333334" CenterY="420.0" Width="53.333333333333336" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="252579"/>
+  </DataNode>
+  <DataNode TextLabel="CG3961" GraphId="f5e" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="CG3961 | CG3961"/>
+    <Graphics CenterX="873.3333333333334" CenterY="530.0" Width="53.333333333333336" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="40056"/>
+  </DataNode>
+  <DataNode TextLabel="l(2)44DEa" GraphId="fb7" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="l(2)44DEa | lethal (2) 44DEa"/>
+    <Graphics CenterX="873.3333333333334" CenterY="550.0" Width="66.66666666666667" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="46068"/>
+  </DataNode>
+  <DataNode TextLabel="ACSL4" GraphId="a36" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="ACSL4 | acyl-CoA synthetase long-chain family m..."/>
+    <Graphics CenterX="873.3333333333334" CenterY="570.0" Width="53.333333333333336" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID=""/>
+  </DataNode>
+  <DataNode TextLabel="AcCoAS" GraphId="b0b" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="AcCoAS | Acetyl Coenzyme A synthase"/>
+    <Graphics CenterX="873.3333333333334" CenterY="630.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="40348"/>
+  </DataNode>
+  <DataNode TextLabel="ACSL5" GraphId="e34" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="ACSL5 | acyl-CoA synthetase long-chain family m..."/>
+    <Graphics CenterX="873.3333333333334" CenterY="590.0" Width="53.333333333333336" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID=""/>
+  </DataNode>
+  <DataNode TextLabel="ACSL6" GraphId="be1" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="ACSL6 | acyl-CoA synthetase long-chain family m..."/>
+    <Graphics CenterX="873.3333333333334" CenterY="610.0" Width="53.333333333333336" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID=""/>
+  </DataNode>
+  <DataNode TextLabel="CG6543" GraphId="cc3" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="CG6543 | CG6543"/>
+    <Graphics CenterX="810.0" CenterY="110.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="36536"/>
+  </DataNode>
+  <DataNode TextLabel="ECHDC2" GraphId="a0d" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="ECHDC2"/>
+    <Graphics CenterX="870.0" CenterY="110.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID=""/>
+  </DataNode>
+  <DataNode TextLabel="ECHDC1" GraphId="fa7" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="ECHDC1"/>
+    <Graphics CenterX="870.0" CenterY="90.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID=""/>
+  </DataNode>
+  <DataNode TextLabel="CG6984" GraphId="e1c" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="CG6984 | CG6984"/>
+    <Graphics CenterX="870.0" CenterY="130.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="36926"/>
+  </DataNode>
+  <DataNode TextLabel="CG16935" GraphId="d86" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="CG16935 | CG16935"/>
+    <Graphics CenterX="876.6666666666666" CenterY="213.33333333333334" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="36540"/>
+  </DataNode>
+  <DataNode TextLabel="DECR1" GraphId="faf" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="DECR1"/>
+    <Graphics CenterX="876.6666666666666" CenterY="253.33333333333334" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID=""/>
+  </DataNode>
+  <Interaction GraphId="id3484368b">
+    <Graphics ZOrder="12288" LineStyle="Broken" LineThickness="1.0">
+      <Point X="13.333333333333334" Y="280.0"/>
+      <Point X="603.3333333333334" Y="280.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="id30755ce9">
+    <Graphics ZOrder="12288" LineStyle="Broken" LineThickness="1.0">
+      <Point X="13.333333333333334" Y="303.3333333333333"/>
+      <Point X="603.3333333333334" Y="303.3333333333333"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="idaf31885d">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="93.33333333333333" Y="236.66666666666666"/>
+      <Point X="93.33333333333333" Y="120.0" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="id26e4d9f2">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="153.33333333333334" Y="113.33333333333333"/>
+      <Point X="233.33333333333334" Y="160.0" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="ide76ae3e8">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="133.33333333333334" Y="246.66666666666666"/>
+      <Point X="233.33333333333334" Y="200.0" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="id4335a9f8">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="266.6666666666667" Y="216.66666666666666"/>
+      <Point X="266.6666666666667" Y="333.3333333333333" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="id6edb8922">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="266.6666666666667" Y="356.6666666666667"/>
+      <Point X="266.6666666666667" Y="456.6666666666667" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="id66832061">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="253.33333333333334" Y="486.6666666666667"/>
+      <Point X="166.66666666666666" Y="603.3333333333334" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="id22c60420">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="166.66666666666666" Y="633.3333333333334"/>
+      <Point X="166.66666666666666" Y="726.6666666666666" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="id201cb529">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="286.6666666666667" Y="486.6666666666667"/>
+      <Point X="366.6666666666667" Y="600.0" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="id76184500">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="366.6666666666667" Y="633.3333333333334"/>
+      <Point X="366.6666666666667" Y="726.6666666666666" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="idfe9a651d">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="213.33333333333334" Y="760.0"/>
+      <Point X="260.0" Y="866.6666666666666" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="id81bb863a">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="320.0" Y="760.0"/>
+      <Point X="273.3333333333333" Y="866.6666666666666" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="id29390a3f">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="346.6666666666667" Y="880.0"/>
+      <Point X="556.6666666666666" Y="880.0" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="idf949838d">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="653.3333333333334" Y="870.0"/>
+      <Point X="653.3333333333334" Y="753.3333333333334" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="id1f8232fc">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="653.3333333333334" Y="733.3333333333334"/>
+      <Point X="653.3333333333334" Y="626.6666666666666" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="id9d2d412f">
+    <Graphics ZOrder="12288" LineStyle="Broken" LineThickness="1.0">
+      <Point X="593.3333333333334" Y="616.6666666666666"/>
+      <Point X="433.3333333333333" Y="616.6666666666666" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="idccd7153f">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="653.3333333333334" Y="603.3333333333334"/>
+      <Point X="653.3333333333334" Y="503.3333333333333" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="id3501248a">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="653.3333333333334" Y="476.6666666666667"/>
+      <Point X="653.3333333333334" Y="363.3333333333333" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="id8597f671">
+    <Graphics ZOrder="12288" LineStyle="Broken" LineThickness="1.0">
+      <Point X="603.3333333333334" Y="280.0"/>
+      <Point X="1066.6666666666667" Y="280.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="idc9fcfd11">
+    <Graphics ZOrder="12288" LineStyle="Broken" LineThickness="1.0">
+      <Point X="603.3333333333334" Y="303.3333333333333"/>
+      <Point X="1066.6666666666667" Y="303.3333333333333"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="idc8eee1ac">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="653.3333333333334" Y="333.3333333333333"/>
+      <Point X="653.3333333333334" Y="186.66666666666666" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="id76ec1ae9">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="653.3333333333334" Y="160.0"/>
+      <Point X="716.6666666666666" Y="66.66666666666667" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="id7c679586">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="800.0" Y="66.66666666666667"/>
+      <Point X="873.3333333333334" Y="156.66666666666666" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="id2615f9c4">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="873.3333333333334" Y="183.33333333333334"/>
+      <Point X="873.3333333333334" Y="326.6666666666667" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="idc5b701b7">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="873.3333333333334" Y="353.3333333333333"/>
+      <Point X="873.3333333333334" Y="480.0" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="ideedfe720">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="873.3333333333334" Y="503.3333333333333"/>
+      <Point X="873.3333333333334" Y="666.6666666666666" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="id33d37e1">
+    <Graphics ZOrder="12288" LineStyle="Broken" LineThickness="1.0">
+      <Point X="873.3333333333334" Y="696.6666666666666"/>
+      <Point X="873.3333333333334" Y="766.6666666666666" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Label TextLabel="Oxaloacetate" GraphId="e88">
+    <Graphics CenterX="93.33333333333333" CenterY="110.0" Width="104.33333333333333" Height="19.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="12" Valign="Middle"/>
+  </Label>
+  <Label TextLabel="Pyruvate" GraphId="c54">
+    <Graphics CenterX="93.33333333333333" CenterY="250.0" Width="73.33333333333333" Height="19.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="12" Valign="Middle"/>
+  </Label>
+  <Label TextLabel="TCA Cycle" GraphId="d1d">
+    <Graphics CenterX="266.6666666666667" CenterY="180.0" Width="54.333333333333336" Height="12.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="8" Valign="Middle"/>
+  </Label>
+  <Label TextLabel="Mitochondrion" GraphId="ea3">
+    <Graphics CenterX="60.0" CenterY="270.0" Width="96.33333333333333" Height="16.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="10" Valign="Middle" Color="00ff00"/>
+  </Label>
+  <Label TextLabel="Cytosol" GraphId="c0f">
+    <Graphics CenterX="40.0" CenterY="313.3333333333333" Width="51.333333333333336" Height="16.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="10" Valign="Middle" Color="00ff00"/>
+  </Label>
+  <Label TextLabel="Citrate" GraphId="ea0">
+    <Graphics CenterX="266.6666666666667" CenterY="346.6666666666667" Width="55.333333333333336" Height="19.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="12" Valign="Middle"/>
+  </Label>
+  <Label TextLabel="Acetyl-CoA" GraphId="d4c">
+    <Graphics CenterX="266.6666666666667" CenterY="473.3333333333333" Width="90.33333333333333" Height="19.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="12" Valign="Middle"/>
+  </Label>
+  <Label TextLabel="Acetyl-ACP" GraphId="f57">
+    <Graphics CenterX="166.66666666666666" CenterY="616.6666666666666" Width="91.33333333333333" Height="19.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="12" Valign="Middle"/>
+  </Label>
+  <Label TextLabel="Acetyl-synthase" GraphId="f1c">
+    <Graphics CenterX="166.66666666666666" CenterY="740.0" Width="127.33333333333333" Height="19.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="12" Valign="Middle"/>
+  </Label>
+  <Label TextLabel="Malonyl-CoA" GraphId="ac0">
+    <Graphics CenterX="366.6666666666667" CenterY="616.6666666666666" Width="102.33333333333333" Height="19.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="12" Valign="Middle"/>
+  </Label>
+  <Label TextLabel="Malonyl-ACP" GraphId="e79">
+    <Graphics CenterX="366.6666666666667" CenterY="740.0" Width="103.33333333333333" Height="19.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="12" Valign="Middle"/>
+  </Label>
+  <Label TextLabel="Acetoacetyl-ACP" GraphId="e2e">
+    <Graphics CenterX="266.6666666666667" CenterY="880.0" Width="133.33333333333334" Height="19.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="12" Valign="Middle"/>
+  </Label>
+  <Label TextLabel="beta-hydroxybutyryl" GraphId="b8f">
+    <Graphics CenterX="653.3333333333334" CenterY="880.0" Width="159.33333333333334" Height="19.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="12" Valign="Middle"/>
+  </Label>
+  <Label TextLabel="Crotonoyl-ACP" GraphId="eb5">
+    <Graphics CenterX="653.3333333333334" CenterY="740.0" Width="120.33333333333333" Height="19.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="12" Valign="Middle"/>
+  </Label>
+  <Label TextLabel="Butyryl-ACP" GraphId="ab1">
+    <Graphics CenterX="653.3333333333334" CenterY="616.6666666666666" Width="99.33333333333333" Height="19.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="12" Valign="Middle"/>
+  </Label>
+  <Label TextLabel="less than 6 iterations" GraphId="c37">
+    <Graphics CenterX="520.0" CenterY="616.6666666666666" Width="108.33333333333333" Height="12.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="8" Valign="Middle" Color="ff0000"/>
+  </Label>
+  <Label TextLabel="Palmitoyl-ACP" GraphId="df6">
+    <Graphics CenterX="653.3333333333334" CenterY="490.0" Width="114.33333333333333" Height="19.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="12" Valign="Middle"/>
+  </Label>
+  <Label TextLabel="6 iterations" GraphId="ad6">
+    <Graphics CenterX="653.3333333333334" CenterY="553.3333333333334" Width="60.333333333333336" Height="12.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="8" Valign="Middle" Color="ff0000"/>
+  </Label>
+  <Label TextLabel="Palmitate" GraphId="deb">
+    <Graphics CenterX="653.3333333333334" CenterY="346.6666666666667" Width="75.33333333333333" Height="19.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="12" Valign="Middle"/>
+  </Label>
+  <Label TextLabel="3-ketoacyl-CoA" GraphId="b3d">
+    <Graphics CenterX="653.3333333333334" CenterY="173.33333333333334" Width="121.33333333333333" Height="19.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="12" Valign="Middle"/>
+  </Label>
+  <Label TextLabel="3-L-Hydroxyacyl-CoA" GraphId="d3b">
+    <Graphics CenterX="746.6666666666666" CenterY="53.333333333333336" Width="168.33333333333334" Height="19.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="12" Valign="Middle"/>
+  </Label>
+  <Label TextLabel="trans-delta2-enoyl-CoA" GraphId="dbc">
+    <Graphics CenterX="873.3333333333334" CenterY="173.33333333333334" Width="180.33333333333334" Height="19.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="12" Valign="Middle"/>
+  </Label>
+  <Label TextLabel="Acyl-CoA (n+2)" GraphId="f1d">
+    <Graphics CenterX="873.3333333333334" CenterY="346.6666666666667" Width="118.33333333333333" Height="19.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="12" Valign="Middle"/>
+  </Label>
+  <Label TextLabel="Long-Chain fatty acid" GraphId="cf3">
+    <Graphics CenterX="873.3333333333334" CenterY="490.0" Width="168.33333333333334" Height="19.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="12" Valign="Middle"/>
+  </Label>
+  <Label TextLabel="Fatty acyl CoA" GraphId="f15">
+    <Graphics CenterX="873.3333333333334" CenterY="683.3333333333334" Width="115.33333333333333" Height="19.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="12" Valign="Middle"/>
+  </Label>
+  <Label TextLabel="See Triacylglyceride Synthesis MAPP" GraphId="a6f">
+    <Graphics CenterX="933.3333333333334" CenterY="783.3333333333334" Width="289.3333333333333" Height="19.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="12" Valign="Middle" Color="0000ff"/>
+  </Label>
+  <Label TextLabel="HOMOLOGY MAPP" GraphId="fda">
+    <Graphics CenterX="56.666666666666664" CenterY="20.0" Width="89.33333333333333" Height="19.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="12" Valign="Middle" Color="008000"/>
+  </Label>
+  <Shape GraphId="d95">
+    <Graphics CenterX="266.6666666666667" CenterY="180.0" Width="73.33333333333333" Height="66.66666666666667" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="Oval" Rotation="0.0"/>
+  </Shape>
+  <InfoBox CenterX="158.33333333333334" CenterY="8.333333333333334"/>
+  <Legend CenterX="1000.0" CenterY="0.6666666666666666"/>
+  <Biopax>
+    <bp:openControlledVocabulary xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#">
+      <bp:TERM xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">fatty acid biosynthetic pathway</bp:TERM>
+      <bp:ID xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PW:0000029</bp:ID>
+      <bp:Ontology xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Pathway Ontology</bp:Ontology>
+    </bp:openControlledVocabulary>
+  </Biopax>
+</Pathway>

@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Pathway xmlns="http://pathvisio.org/GPML/2013a" Name="Asparagine Biosynthesis" Organism="Saccharomyces cerevisiae">
+  <Comment Source="GenMAPP remarks">Based on http://pathway.yeastgenome.org/biocyc/</Comment>
+  <Comment Source="WikiPathways-category">Metabolic Process</Comment>
+  <Comment Source="WikiPathways-description">The first five steps of arginine biosynthesis in S. cerevisiae take place in the mitochondrion (CITS: [11553611])(CITS: [Hinnebusch]). This part of the pathway is known as the acetylated derivatives cycle because the acetyl group that is added to L-glutamate in the first step of the pathway is recycled via N-acetylglutamate generated in the fifth step. The enzymes that catalyze the second and third steps are encoded by a single gene (ARG5,6) that is translated into a pre-protein which is imported into mitochondria and cleaved there to yield two enzymes, N-acetylglutamate kinase and N-acetylglutamyl-phosphate reductase (CITS: [1649049]). These enzymes form a complex with each other and with N-acetylglutamate synthase, the first enzyme in the pathway, which may have implications for regulation of their activity (CITS: [11553611]).  The mitochondrial steps of the arginine biosynthesis pathway result in the formation of ornithine, which is exported to the cytoplasm by the transporter Ort1p (CITS: [8798783]). In the cytoplasm, L-ornithine is converted to L-arginine in three reactions mediated by ornithine carbamoyltransferase, arginosuccinate synthase, and argininosuccinate lyase.  Transcription of genes of the arginine biosynthetic pathway, as well as of other amino acid biosynthetic pathways, is activated by the transcription factor Gcn4p under conditions of amino acid starvation (CITS: [11390663])(CITS: [Hinnebusch]). Transcription of ARG1, ARG3, ARG5,6, and ARG8 is also repressed in the presence of arginine by the ArgR/Mcm1p complex, which consists of Arg80p, Arg81p, Arg82p, and Mcm1p (CITS: [14563547]). The transcriptional activator Gcn4p interacts with subunits of the ArgR/Mcm1p repressor, allowing for fine-tuning of transcriptional control in response to arginine availability (CITS: [15289616]). 
+SOURCE: SGD pathways, http://pathway.yeastgenome.org/server.html</Comment>
+  <Graphics BoardWidth="806.0000000000001" BoardHeight="251.66666666666666"/>
+  <DataNode TextLabel="oxaloacetic acid" GraphId="ab9" Type="Metabolite">
+    <Graphics CenterX="70.0" CenterY="90.0" Width="128.33333333333334" Height="19.0" ZOrder="28672" FontSize="12" Valign="Middle"/>
+    <Xref Database="" ID=""/>
+  </DataNode>
+  <DataNode TextLabel="2-oxoglutarate" GraphId="c03" Type="Metabolite">
+    <Graphics CenterX="296.6666666666667" CenterY="140.0" Width="115.33333333333333" Height="19.0" ZOrder="28672" FontSize="12" Valign="Middle"/>
+    <Xref Database="" ID=""/>
+  </DataNode>
+  <DataNode TextLabel="L-aspartate" GraphId="f66" Type="Metabolite">
+    <Graphics CenterX="406.6666666666667" CenterY="90.0" Width="91.33333333333333" Height="19.0" ZOrder="28672" FontSize="12" Valign="Middle"/>
+    <Xref Database="" ID=""/>
+  </DataNode>
+  <DataNode TextLabel="H2O" GraphId="f03" Type="Metabolite" GroupRef="ffc16">
+    <Graphics CenterX="478.6666666666667" CenterY="179.03333333333333" Width="38.333333333333336" Height="19.0" ZOrder="28672" FontSize="12" Valign="Middle"/>
+    <Xref Database="" ID=""/>
+  </DataNode>
+  <DataNode TextLabel="AMP" GraphId="af5" Type="Metabolite" GroupRef="db8a5">
+    <Graphics CenterX="625.6333333333333" CenterY="179.03333333333333" Width="40.333333333333336" Height="19.0" ZOrder="28672" FontSize="12" Valign="Middle"/>
+    <Xref Database="" ID=""/>
+  </DataNode>
+  <DataNode TextLabel="AAT1" GraphId="a17" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="AAT1"/>
+    <Graphics CenterX="234.66666666666666" CenterY="56.666666666666664" Width="40.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="SGD" ID="S000001589"/>
+  </DataNode>
+  <DataNode TextLabel="AAT2" GraphId="d06" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="AAT2"/>
+    <Graphics CenterX="234.66666666666666" CenterY="76.66666666666667" Width="40.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="SGD" ID="S000004017"/>
+  </DataNode>
+  <DataNode TextLabel="ASN1" GraphId="ebf" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="ASN1"/>
+    <Graphics CenterX="550.6666666666666" CenterY="57.666666666666664" Width="40.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="SGD" ID="S000006349"/>
+  </DataNode>
+  <DataNode TextLabel="ASN2" GraphId="bb4" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="ASN2"/>
+    <Graphics CenterX="550.6666666666666" CenterY="77.66666666666667" Width="40.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="SGD" ID="S000003356"/>
+  </DataNode>
+  <DataNode TextLabel="L-glutamate" GraphId="ec9" Type="Metabolite">
+    <Graphics CenterX="173.33333333333334" CenterY="140.03333333333333" Width="95.33333333333333" Height="19.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff"/>
+    <Xref Database="CAS" ID="56-86-0"/>
+  </DataNode>
+  <DataNode TextLabel="ATP" GraphId="cab" GroupRef="ffc16" Type="Metabolite">
+    <Graphics CenterX="478.6666666666667" CenterY="142.36666666666667" Width="37.333333333333336" Height="19.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff"/>
+    <Xref Database="CAS" ID="1927-31-7"/>
+  </DataNode>
+  <DataNode TextLabel="L-glutamine" GraphId="fb4" GroupRef="ffc16" Type="Metabolite">
+    <Graphics CenterX="478.6666666666667" CenterY="159.03333333333333" Width="95.33333333333333" Height="19.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff"/>
+    <Xref Database="CAS" ID="56-85-9"/>
+  </DataNode>
+  <DataNode TextLabel="L-glutamate" GraphId="d4a" GroupRef="db8a5" Type="Metabolite">
+    <Graphics CenterX="625.6333333333333" CenterY="142.36666666666667" Width="95.33333333333333" Height="19.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff"/>
+    <Xref Database="CAS" ID="56-86-0"/>
+  </DataNode>
+  <DataNode TextLabel="pyrophosphate" GraphId="ca2" GroupRef="db8a5" Type="Metabolite">
+    <Graphics CenterX="625.6333333333333" CenterY="159.03333333333333" Width="122.33333333333333" Height="19.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff"/>
+    <Xref Database="CAS" ID="2466-09-3"/>
+  </DataNode>
+  <DataNode TextLabel="L-asparagine" GraphId="b22" Type="Metabolite">
+    <Graphics CenterX="723.3333333333334" CenterY="90.0" Width="105.33333333333333" Height="19.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff"/>
+    <Xref Database="CAS" ID="70-47-3"/>
+  </DataNode>
+  <Interaction GraphId="idd1c19908">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="134.16666666666669" Y="90.0" GraphRef="ab9" RelX="1.0" RelY="0.0"/>
+      <Point X="361.0" Y="90.0" GraphRef="f66" RelX="-1.0" RelY="0.0" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="idd116f80">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="452.33333333333326" Y="90.0" GraphRef="f66" RelX="1.0" RelY="0.0"/>
+      <Point X="670.6666666666667" Y="90.0" GraphRef="b22" RelX="-1.0" RelY="0.0" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="id12d5f90a">
+    <Graphics ConnectorType="Curved" ZOrder="12288" LineThickness="1.0">
+      <Point X="173.33333333333334" Y="130.53333333333333" GraphRef="ec9" RelX="0.0" RelY="-1.0"/>
+      <Point X="235.0" Y="88.0"/>
+      <Point X="296.6666666666667" Y="130.5" GraphRef="c03" RelX="0.0" RelY="-1.0" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="ide0890b03">
+    <Graphics ConnectorType="Curved" ZOrder="12288" LineThickness="1.0">
+      <Point X="478.6666666666667" Y="124.86666666666666" GraphRef="df84c" RelX="0.0" RelY="-1.0"/>
+      <Point X="552.1500000000001" Y="88.0"/>
+      <Point X="625.6333333333334" Y="124.86666666666666" GraphRef="fc128" RelX="0.0" RelY="-1.0" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Group GroupId="ffc16" GraphId="df84c"/>
+  <Group GroupId="db8a5" GraphId="fc128"/>
+  <InfoBox CenterX="601.6666666666666" CenterY="221.66666666666666"/>
+  <Biopax>
+    <bp:openControlledVocabulary xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#">
+      <bp:TERM xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">asparagine biosynthetic process from oxaloacetate</bp:TERM>
+      <bp:ID xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PW:0019266</bp:ID>
+      <bp:Ontology xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Pathway Ontology</bp:Ontology>
+    </bp:openControlledVocabulary>
+  </Biopax>
+</Pathway>

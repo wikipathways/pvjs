@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Pathway xmlns="http://pathvisio.org/GPML/2013a" Name="Abscisic Acid Biosynthesis" Organism="Arabidopsis thaliana" License="CC BY 2.0">
+  <Comment>AGRON-OMICS Project</Comment>
+  <Comment Source="WikiPathways-category">Metabolic Process</Comment>
+  <Comment Source="WikiPathways-description">Abscisic acid (ABA), also known as ''abscisin II'' and ''dormin'', is a [[wikipedia:plant hormone|plant hormone]].  ABA functions in many plant developmental processes, including bud [[wikipedia:dormancy|dormancy]].
+
+Source: [[wikipedia:Abscisic_acid|Wikipedia]]</Comment>
+  <BiopaxRef>b05</BiopaxRef>
+  <Graphics BoardWidth="552.0" BoardHeight="478.00000000000006"/>
+  <DataNode TextLabel="ABA-aldehyde" GraphId="cd291" Type="Metabolite">
+    <Graphics CenterX="339.48333333333335" CenterY="339.48333333333335" Width="78.03333333333333" Height="29.033333333333335" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff"/>
+    <Xref Database="ChEBI" ID="31157"/>
+  </DataNode>
+  <DataNode TextLabel="Neoxanthin cleavage enzyme" GraphId="f90ce" Type="GeneProduct">
+    <Graphics CenterX="442.98333333333335" CenterY="215.48333333333332" Width="156.03333333333333" Height="23.033333333333335" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Gramene Arabidopsis" ID="AT3G14440-TAIR-G"/>
+  </DataNode>
+  <DataNode TextLabel="Violaxanthin" GraphId="b65f1" Type="Metabolite">
+    <Graphics CenterX="339.48333333333335" CenterY="98.48333333333333" Width="95.03333333333333" Height="29.033333333333335" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff"/>
+    <Xref Database="HMDB" ID="HMDB03101"/>
+  </DataNode>
+  <DataNode TextLabel="Neoxanthin synthase" GraphId="f5046" Type="GeneProduct">
+    <Graphics CenterX="442.98333333333335" CenterY="134.98333333333332" Width="156.03333333333336" Height="24.033333333333335" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="843028"/>
+  </DataNode>
+  <DataNode TextLabel="Zeaxanthin epoxidase" GraphId="b560d" Type="GeneProduct">
+    <Graphics CenterX="443.98333333333335" CenterY="58.983333333333334" Width="156.03333333333336" Height="22.033333333333335" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Gramene Arabidopsis" ID="AT5G67030-TAIR-G"/>
+  </DataNode>
+  <DataNode TextLabel="ABA-aldehyde oxidase" GraphId="f7fe9" Type="GeneProduct">
+    <Graphics CenterX="443.98333333333335" CenterY="382.48333333333335" Width="156.03333333333336" Height="21.03333333333336" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Gramene Arabidopsis" ID="AT2G27150-TAIR-G"/>
+  </DataNode>
+  <DataNode TextLabel="ABA" GraphId="c6773" Type="Metabolite">
+    <Graphics CenterX="339.48333333333335" CenterY="437.48333333333335" Width="80.03333333333333" Height="21.033333333333335" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff"/>
+    <Xref Database="ChEBI" ID="22152"/>
+  </DataNode>
+  <DataNode TextLabel="Xanthoxin" GraphId="f9db4" Type="Metabolite">
+    <Graphics CenterX="339.48333333333335" CenterY="261.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff"/>
+    <Xref Database="ChEBI" ID="32304"/>
+  </DataNode>
+  <DataNode TextLabel="Antheraxanthin" GraphId="f1965" Type="Metabolite">
+    <Graphics CenterX="339.48333333333335" CenterY="29.483333333333334" Width="103.03333333333333" Height="23.033333333333335" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff"/>
+    <Xref Database="CAS" ID="640-03-9"/>
+  </DataNode>
+  <DataNode TextLabel="Neoxanthin" GraphId="a5470" Type="Metabolite">
+    <Graphics CenterX="339.48333333333335" CenterY="179.98333333333332" Width="79.03333333333333" Height="22.033333333333335" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff"/>
+    <Xref Database="ChEBI" ID="32446"/>
+  </DataNode>
+  <DataNode TextLabel="Xanthoxin oxidase" GraphId="e780b" Type="GeneProduct">
+    <Graphics CenterX="442.98333333333335" CenterY="292.98333333333335" Width="156.03333333333336" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Gramene Arabidopsis" ID="AT1G52340-TAIR-G"/>
+  </DataNode>
+  <Interaction GraphId="d2e14">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="339.48333333333335" Y="190.99999999999994" GraphRef="a5470" RelX="0.0" RelY="1.0"/>
+      <Point X="339.48333333333335" Y="251.0" GraphRef="f9db4" RelX="0.0" RelY="-1.0" ArrowHead="Arrow"/>
+      <Anchor Position="0.4" Shape="None" GraphId="b58a6"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e2ac9">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="339.48333333333335" Y="271.0" GraphRef="f9db4" RelX="0.0" RelY="1.0"/>
+      <Point X="339.48333333333335" Y="324.9666666666667" GraphRef="cd291" RelX="0.0" RelY="-1.0" ArrowHead="Arrow"/>
+      <Anchor Position="0.4" Shape="None" GraphId="b66ea"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="d4cd3">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="339.48333333333335" Y="354.0" GraphRef="cd291" RelX="0.0" RelY="1.0"/>
+      <Point X="339.48333333333335" Y="426.9666666666667" GraphRef="c6773" RelX="0.0" RelY="-1.0" ArrowHead="Arrow"/>
+      <Anchor Position="0.4" Shape="None" GraphId="b21c1"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e3062">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="339.48333333333335" Y="41.0" GraphRef="f1965" RelX="0.0" RelY="1.0"/>
+      <Point X="339.48333333333335" Y="83.96666666666667" GraphRef="b65f1" RelX="0.0" RelY="-1.0" ArrowHead="Arrow"/>
+      <Anchor Position="0.4" Shape="None" GraphId="abf1b"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="a8723">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="339.48333333333335" Y="113.0" GraphRef="b65f1" RelX="0.0" RelY="1.0"/>
+      <Point X="339.48333333333335" Y="168.96666666666664" GraphRef="a5470" RelX="0.0" RelY="-1.0" ArrowHead="Arrow"/>
+      <Anchor Position="0.4" Shape="None" GraphId="a2634"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="f69e3">
+    <Graphics ZOrder="32769" LineThickness="1.0">
+      <Point X="365.9666666666667" Y="58.983333333333334" GraphRef="b560d" RelX="-1.0" RelY="0.0"/>
+      <Point X="339.48333333333335" Y="58.18666666666667" GraphRef="abf1b" RelX="0.0" RelY="0.0" ArrowHead="mim-catalysis"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="f1fc5">
+    <Graphics ZOrder="32769" LineThickness="1.0">
+      <Point X="364.9666666666667" Y="134.98333333333332" GraphRef="f5046" RelX="-1.0" RelY="0.0"/>
+      <Point X="339.48333333333335" Y="135.38666666666666" GraphRef="a2634" RelX="0.0" RelY="0.0" ArrowHead="mim-catalysis"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="b92d6">
+    <Graphics ZOrder="32769" LineThickness="1.0">
+      <Point X="364.9666666666667" Y="215.4833333333333" GraphRef="f90ce" RelX="-1.0" RelY="0.0"/>
+      <Point X="339.48333333333335" Y="214.99999999999997" GraphRef="b58a6" RelX="0.0" RelY="0.0" ArrowHead="mim-catalysis"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="fb456">
+    <Graphics ZOrder="32769" LineThickness="1.0">
+      <Point X="364.9666666666667" Y="292.98333333333335" GraphRef="e780b" RelX="-1.0" RelY="0.0"/>
+      <Point X="339.48333333333335" Y="292.5866666666667" GraphRef="b66ea" RelX="0.0" RelY="0.0" ArrowHead="mim-catalysis"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="cd0d8">
+    <Graphics ZOrder="32769" LineThickness="1.0">
+      <Point X="365.9666666666667" Y="382.48333333333335" GraphRef="f7fe9" RelX="-1.0" RelY="0.0"/>
+      <Point X="339.48333333333335" Y="383.18666666666667" GraphRef="b21c1" RelX="0.0" RelY="0.0" ArrowHead="mim-catalysis"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <InfoBox CenterX="0.0" CenterY="0.0"/>
+  <Biopax>
+    <bp:PublicationXref xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" rdf:id="b05">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">11432933</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">The pathway of biosynthesis of abscisic acid in vascular plants: a review of the present state of knowledge of ABA biosynthesis.</bp:TITLE>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">J Exp Bot</bp:SOURCE>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2001</bp:YEAR>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Milborrow BV</bp:AUTHORS>
+    </bp:PublicationXref>
+    <bp:openControlledVocabulary xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#">
+      <bp:TERM xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">abscisic acid biosynthetic pathway</bp:TERM>
+      <bp:ID xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PW:0001310</bp:ID>
+      <bp:Ontology xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Pathway Ontology</bp:Ontology>
+    </bp:openControlledVocabulary>
+  </Biopax>
+</Pathway>

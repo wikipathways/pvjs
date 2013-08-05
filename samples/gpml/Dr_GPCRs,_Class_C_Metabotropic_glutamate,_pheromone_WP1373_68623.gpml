@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Pathway xmlns="http://pathvisio.org/GPML/2013a" Name="GPCRs, Class C Metabotropic glutamate, pheromone" Organism="Danio rerio">
+  <Comment Source="GenMAPP notes">This MAPP was created using the GPCRDB (Horn et al., 1998), http://www.cmbi.kun.nl/7tm/. The groupings are based on the GPCR phylogenetic tree available from the GPCRDB and the training sets used by Karchin et al. (Bioinformatics, 2002, pg. 147-159). The labels indicate children and grandchildren of the various classes of GPCRs as described by these references.</Comment>
+  <Comment Source="WikiPathways-category">Molecular Function</Comment>
+  <Comment Source="HomologyConvert">This pathway was inferred from Homo sapiens pathway [http://www.wikipathways.org/index.php?title=Pathway:WP501&amp;amp;oldid=21732 WP501(r21732)] with a 53% conversion rate.</Comment>
+  <Graphics BoardWidth="218.0" BoardHeight="563.3333333333334"/>
+  <DataNode TextLabel="si:ch211-51a19.1" GraphId="bc3" Type="GeneProduct" GroupRef="bfdfc">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="si:ch211-51a19.1"/>
+    <Graphics CenterX="100.0" CenterY="183.33333333333334" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="555576"/>
+  </DataNode>
+  <DataNode TextLabel="LOC568406" GraphId="e0e" Type="GeneProduct" GroupRef="bfdfc">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="LOC568406"/>
+    <Graphics CenterX="100.0" CenterY="203.33333333333334" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="568406"/>
+  </DataNode>
+  <DataNode TextLabel="GRM2" GraphId="da2" Type="GeneProduct" GroupRef="bfdfc">
+    <Graphics CenterX="100.0" CenterY="223.33333333333334" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="" ID=""/>
+  </DataNode>
+  <DataNode TextLabel="CH211-233H19.1" GraphId="f71" Type="GeneProduct" GroupRef="bfdfc">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="CH211-233H19.1"/>
+    <Graphics CenterX="100.0" CenterY="243.33333333333334" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="565256"/>
+  </DataNode>
+  <DataNode TextLabel="LOC569768" GraphId="a89" Type="GeneProduct" GroupRef="bfdfc">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="LOC569768"/>
+    <Graphics CenterX="100.0" CenterY="263.3333333333333" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="569768"/>
+  </DataNode>
+  <DataNode TextLabel="wu:fi18a01" GraphId="ca8" Type="GeneProduct" GroupRef="bfdfc">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="wu:fi18a01"/>
+    <Graphics CenterX="100.0" CenterY="283.3333333333333" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="567181"/>
+  </DataNode>
+  <DataNode TextLabel="GRM7" GraphId="eea" Type="GeneProduct" GroupRef="bfdfc">
+    <Graphics CenterX="100.0" CenterY="303.3333333333333" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="" ID=""/>
+  </DataNode>
+  <DataNode TextLabel="GRM6" GraphId="a77" Type="GeneProduct" GroupRef="bfdfc">
+    <Graphics CenterX="100.0" CenterY="323.3333333333333" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="" ID=""/>
+  </DataNode>
+  <DataNode TextLabel="LOC560607" GraphId="f17" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="LOC560607"/>
+    <Graphics CenterX="100.0" CenterY="363.3333333333333" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="560607"/>
+  </DataNode>
+  <DataNode TextLabel="GABBR1" GraphId="b7a" Type="GeneProduct" GroupRef="a9c6e">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="gabbr1"/>
+    <Graphics CenterX="100.0" CenterY="403.3333333333333" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="373873"/>
+  </DataNode>
+  <DataNode TextLabel="si:dkey-190l1.2" GraphId="a45" Type="GeneProduct" GroupRef="a9c6e">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="si:dkey-190l1.2"/>
+    <Graphics CenterX="100.0" CenterY="423.3333333333333" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="560267"/>
+  </DataNode>
+  <DataNode TextLabel="GPRC5D" GraphId="da5" Type="GeneProduct" GroupRef="cde75">
+    <Graphics CenterX="100.0" CenterY="463.3333333333333" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="" ID=""/>
+  </DataNode>
+  <DataNode TextLabel="gprc5c" GraphId="dd0" Type="GeneProduct" GroupRef="cde75">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="gprc5c"/>
+    <Graphics CenterX="100.0" CenterY="483.3333333333333" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="563405"/>
+  </DataNode>
+  <DataNode TextLabel="GPRC5B" GraphId="aa1" Type="GeneProduct" GroupRef="cde75">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="gprc5b"/>
+    <Graphics CenterX="100.0" CenterY="503.3333333333333" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="336218"/>
+  </DataNode>
+  <DataNode TextLabel="GPRC5A" GraphId="b98" Type="GeneProduct" GroupRef="cde75">
+    <Graphics CenterX="100.0" CenterY="523.3333333333334" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="" ID=""/>
+  </DataNode>
+  <Label TextLabel="Metabotropic glutamate" GraphId="cc7">
+    <Graphics CenterX="100.0" CenterY="163.33333333333334" Width="120.33333333333333" Height="12.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="8" Valign="Middle"/>
+  </Label>
+  <Label TextLabel="Metabotropic glutamate other" GraphId="e3f">
+    <Graphics CenterX="100.0" CenterY="343.3333333333333" Width="148.33333333333334" Height="12.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="8" Valign="Middle"/>
+  </Label>
+  <Label TextLabel="GABA-B" GraphId="b13">
+    <Graphics CenterX="100.0" CenterY="383.3333333333333" Width="44.333333333333336" Height="12.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="8" Valign="Middle"/>
+  </Label>
+  <Label TextLabel="Orphan GPRC5" GraphId="da7">
+    <Graphics CenterX="100.0" CenterY="443.3333333333333" Width="79.33333333333333" Height="12.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="8" Valign="Middle"/>
+  </Label>
+  <Group GroupId="bfdfc" GraphId="fa4dd"/>
+  <Group GroupId="a9c6e" GraphId="d8e24"/>
+  <Group GroupId="cde75" GraphId="d9326"/>
+  <InfoBox CenterX="5.1" CenterY="42.666666666666664"/>
+  <Legend CenterX="188.0" CenterY="118.53333333333333"/>
+</Pathway>

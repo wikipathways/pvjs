@@ -1,0 +1,389 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Pathway xmlns="http://pathvisio.org/GPML/2013a" Name="Cholesterol Biosynthesis" Organism="Saccharomyces cerevisiae">
+  <Comment Source="WikiPathways-category">Metabolic Process</Comment>
+  <Comment Source="WikiPathways-description">Cholesterol is a waxy steroid metabolite found in the cell membranes and transported in the blood plasma of all animals. It is an essential structural component of mammalian cell membranes, where it is required to establish proper membrane permeability and fluidity. In addition, cholesterol is an important component for the manufacture of bile acids, steroid hormones, and several fat-soluble vitamins. Cholesterol is the principal sterol synthesized by animals, but small quantities are synthesized in other eukaryotes, such as plants and fungi. It is almost completely absent among prokaryotes, which include bacteria.
+
+Source: [[wikipedia:Cholesterol|Wikipedia]]</Comment>
+  <BiopaxRef>ce7</BiopaxRef>
+  <BiopaxRef>ade</BiopaxRef>
+  <BiopaxRef>be8</BiopaxRef>
+  <BiopaxRef>ee2</BiopaxRef>
+  <BiopaxRef>a23</BiopaxRef>
+  <BiopaxRef>e57</BiopaxRef>
+  <BiopaxRef>f9d</BiopaxRef>
+  <Graphics BoardWidth="688.3333333333334" BoardHeight="650.0"/>
+  <DataNode TextLabel="ERG20" GraphId="ed5" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="ERG20 | Farnesyl pyrophosphate synthetase has..."/>
+    <Graphics CenterX="76.66666666666667" CenterY="523.3333333333334" Width="66.66666666666667" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="853272"/>
+  </DataNode>
+  <DataNode TextLabel="IDI1" GraphId="b76" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="IDI1 | Isopentenyl diphosphate:dimethylallyl d..."/>
+    <Graphics CenterX="200.0" CenterY="483.3333333333333" Width="66.66666666666667" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="855986"/>
+  </DataNode>
+  <DataNode TextLabel="ERG13" GraphId="f8f" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="ERG13 | 3-hydroxy-3-methylglutaryl-CoA (HMG-Co..."/>
+    <Graphics CenterX="363.3333333333333" CenterY="143.33333333333334" Width="66.66666666666667" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="854913"/>
+  </DataNode>
+  <DataNode TextLabel="HMG1" GraphId="b5c" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="HMG1 | One of two isozymes of HMG-CoA reductas..."/>
+    <Graphics CenterX="363.3333333333333" CenterY="220.0" Width="66.66666666666667" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="854900"/>
+  </DataNode>
+  <DataNode TextLabel="ERG12" GraphId="ab3" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="ERG12 | Mevalonate kinase acts in the biosynt..."/>
+    <Graphics CenterX="363.3333333333333" CenterY="290.0" Width="66.66666666666667" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="855248"/>
+  </DataNode>
+  <DataNode TextLabel="MVD1" GraphId="c5c" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="MVD1 | Mevalonate pyrophosphate decarboxylase..."/>
+    <Graphics CenterX="363.3333333333333" CenterY="433.3333333333333" Width="66.66666666666667" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="855779"/>
+  </DataNode>
+  <DataNode TextLabel="ERG20" GraphId="fdb" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="ERG20 | Farnesyl pyrophosphate synthetase has..."/>
+    <Graphics CenterX="363.3333333333333" CenterY="523.3333333333334" Width="66.66666666666667" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="853272"/>
+  </DataNode>
+  <DataNode TextLabel="ERG9" GraphId="a20" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="ERG9 | Farnesyl-diphosphate farnesyl transfera..."/>
+    <Graphics CenterX="363.3333333333333" CenterY="610.0" Width="66.66666666666667" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="856597"/>
+  </DataNode>
+  <DataNode TextLabel="DHCR7" GraphId="c07" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="DHCR7 | 7-dehydrocholesterol reductase"/>
+    <Graphics CenterX="540.0" CenterY="206.66666666666666" Width="66.66666666666667" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID=""/>
+  </DataNode>
+  <DataNode TextLabel="ERG3" GraphId="b2d" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="ERG3 | C-5 sterol desaturase catalyzes the in..."/>
+    <Graphics CenterX="540.0" CenterY="283.3333333333333" Width="66.66666666666667" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="850745"/>
+  </DataNode>
+  <DataNode TextLabel="ERG7" GraphId="aab" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="ERG7 | Lanosterol synthase an essential enzym..."/>
+    <Graphics CenterX="540.0" CenterY="480.0" Width="66.66666666666667" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="856470"/>
+  </DataNode>
+  <DataNode TextLabel="ERG1" GraphId="e27" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="ERG1 | Squalene epoxidase catalyzes the epoxi..."/>
+    <Graphics CenterX="540.0" CenterY="566.6666666666666" Width="66.66666666666667" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="853086"/>
+  </DataNode>
+  <DataNode TextLabel="PMVK" GraphId="eae" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="PMVK | phosphomevalonate kinase"/>
+    <Graphics CenterX="363.3333333333333" CenterY="360.0" Width="66.66666666666667" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID=""/>
+  </DataNode>
+  <DataNode TextLabel="ERG26" GraphId="c43" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">NAD(P) dependent steroid dehydrogenase-like</Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="ERG26 | C-3 sterol dehydrogenase catalyzes th..."/>
+    <Graphics CenterX="540.0" CenterY="350.0" Width="66.66666666666667" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="852883"/>
+  </DataNode>
+  <DataNode TextLabel="ERG11" GraphId="d04" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="ERG11 | Lanosterol 14-alpha-demethylase catal..."/>
+    <Graphics CenterX="540.0" CenterY="403.3333333333333" Width="66.66666666666667" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="856398"/>
+  </DataNode>
+  <DataNode TextLabel="ERG25" GraphId="d5a" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="ERG25 | C-4 methyl sterol oxidase catalyzes t..."/>
+    <Graphics CenterX="540.0" CenterY="376.6666666666667" Width="66.66666666666667" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="852951"/>
+  </DataNode>
+  <DataNode TextLabel="Acetyl-CoA" GraphId="ab4" Type="Metabolite">
+    <Graphics CenterX="370.0" CenterY="100.0" Width="74.33333333333333" Height="16.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff"/>
+    <Xref Database="CAS" ID="72-89-9"/>
+  </DataNode>
+  <DataNode TextLabel="Squalene" GraphId="d0d" Type="Metabolite">
+    <Graphics CenterX="540.0" CenterY="610.0" Width="66.33333333333333" Height="16.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff"/>
+    <Xref Database="CAS" ID="111-02-4"/>
+  </DataNode>
+  <DataNode TextLabel="Lathosterol" GraphId="ed4" Type="Metabolite">
+    <Graphics CenterX="540.0" CenterY="313.3333333333333" Width="76.33333333333333" Height="16.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff"/>
+    <Xref Database="CAS" ID="80-99-9"/>
+  </DataNode>
+  <DataNode TextLabel="Cholesterol" GraphId="f7a" Type="Metabolite">
+    <Graphics CenterX="540.0" CenterY="166.66666666666666" Width="77.33333333333333" Height="16.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff"/>
+    <Xref Database="CAS" ID="57-88-5"/>
+  </DataNode>
+  <Interaction GraphId="idc160decd">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="363.3333333333333" Y="63.333333333333336"/>
+      <Point X="363.3333333333333" Y="86.66666666666667" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="idf5b9dca6">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="363.3333333333333" Y="183.33333333333334"/>
+      <Point X="363.3333333333333" Y="253.33333333333334" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="id32c05a21">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="363.3333333333333" Y="260.0"/>
+      <Point X="363.3333333333333" Y="320.0" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="idacba1ca3">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="363.3333333333333" Y="326.6666666666667"/>
+      <Point X="363.3333333333333" Y="386.6666666666667" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="idcedf8afc">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="363.3333333333333" Y="406.6666666666667"/>
+      <Point X="363.3333333333333" Y="470.0" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="idb0d30497">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="363.3333333333333" Y="500.0"/>
+      <Point X="363.3333333333333" Y="556.6666666666666" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="id8200fe41">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="126.66666666666667" Y="523.3333333333334"/>
+      <Point X="170.0" Y="523.3333333333334" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="idaed7fc0b">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="76.66666666666667" Y="490.0"/>
+      <Point X="76.66666666666667" Y="523.3333333333334"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="idad1b7dc5">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="250.0" Y="523.3333333333334"/>
+      <Point X="313.3333333333333" Y="523.3333333333334" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="id1aeeedee">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="193.33333333333334" Y="483.3333333333333"/>
+      <Point X="133.33333333333334" Y="483.3333333333333" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="id2b38ee74">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="250.0" Y="483.3333333333333"/>
+      <Point X="293.3333333333333" Y="483.3333333333333" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="id3e697987">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="363.3333333333333" Y="573.3333333333334"/>
+      <Point X="363.3333333333333" Y="610.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="idf80fe425">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="413.3333333333333" Y="610.0"/>
+      <Point X="496.6666666666667" Y="610.0" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="idee2b1a7d">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="540.0" Y="606.6666666666666"/>
+      <Point X="540.0" Y="533.3333333333334" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="idca1ad2cc">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="540.0" Y="513.3333333333334"/>
+      <Point X="540.0" Y="446.6666666666667" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="idcfdf0d50">
+    <Graphics ZOrder="12288" LineStyle="Broken" LineThickness="1.0">
+      <Point X="540.0" Y="426.6666666666667"/>
+      <Point X="540.0" Y="323.3333333333333" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="id3c0bf250">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="540.0" Y="316.6666666666667"/>
+      <Point X="540.0" Y="250.0" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="ide0d3bd2">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="540.0" Y="230.0"/>
+      <Point X="540.0" Y="176.66666666666666" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="idaf5bd982">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="363.3333333333333" Y="113.33333333333333"/>
+      <Point X="363.3333333333333" Y="130.0" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="idf0e3d905">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="363.3333333333333" Y="160.0"/>
+      <Point X="363.3333333333333" Y="173.33333333333334" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Label TextLabel="HMG-CoA" GraphId="cf5">
+    <Graphics CenterX="370.0" CenterY="186.66666666666666" Width="65.33333333333333" Height="16.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="10" Valign="Middle"/>
+  </Label>
+  <Label TextLabel="Geranyl-PP" GraphId="d99">
+    <Graphics CenterX="216.66666666666666" CenterY="523.3333333333334" Width="77.33333333333333" Height="16.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="10" Valign="Middle"/>
+  </Label>
+  <Label TextLabel="Squalene-2,3-Epoxide" GraphId="fef">
+    <Graphics CenterX="540.0" CenterY="523.3333333333334" Width="144.33333333333334" Height="16.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="10" Valign="Middle"/>
+  </Label>
+  <Label TextLabel="Lanosterol" GraphId="d73">
+    <Graphics CenterX="540.0" CenterY="436.6666666666667" Width="72.33333333333333" Height="16.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="10" Valign="Middle"/>
+  </Label>
+  <Label TextLabel="7-dehydro Cholesterol" GraphId="cd2">
+    <Graphics CenterX="540.0" CenterY="240.0" Width="144.33333333333334" Height="16.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="10" Valign="Middle"/>
+  </Label>
+  <Label TextLabel="Mevalonate" GraphId="ba3">
+    <Graphics CenterX="370.0" CenterY="263.3333333333333" Width="79.33333333333333" Height="16.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="10" Valign="Middle"/>
+  </Label>
+  <Label TextLabel="Mevalonate-5-P" GraphId="a21">
+    <Graphics CenterX="370.0" CenterY="330.0" Width="103.33333333333333" Height="16.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="10" Valign="Middle"/>
+  </Label>
+  <Label TextLabel="Mevalonate-5-PP" GraphId="eb9">
+    <Graphics CenterX="370.0" CenterY="396.6666666666667" Width="112.33333333333333" Height="16.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="10" Valign="Middle"/>
+  </Label>
+  <Label TextLabel="Delta-Isopentenyl-5-PP" GraphId="ab1">
+    <Graphics CenterX="370.0" CenterY="483.3333333333333" Width="148.33333333333334" Height="16.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="10" Valign="Middle"/>
+  </Label>
+  <Label TextLabel="trans-trans-farnesyl-pp" GraphId="f20">
+    <Graphics CenterX="370.0" CenterY="566.6666666666666" Width="145.33333333333334" Height="16.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="10" Valign="Middle"/>
+  </Label>
+  <Label TextLabel="DiMethylally-PP" GraphId="b59">
+    <Graphics CenterX="76.66666666666667" CenterY="483.3333333333333" Width="105.33333333333333" Height="16.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="10" Valign="Middle"/>
+  </Label>
+  <Label TextLabel="Fatty Acid Degradation" GraphId="fb7">
+    <Graphics CenterX="370.0" CenterY="56.666666666666664" Width="179.33333333333334" Height="19.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="12" Valign="Middle" Color="0000ff"/>
+  </Label>
+  <Label TextLabel="HOMOLOGY MAPP" GraphId="fbc">
+    <Graphics CenterX="245.5" CenterY="13.0" Width="127.0" Height="19.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="12" Valign="Middle" Color="008000"/>
+  </Label>
+  <InfoBox CenterX="565.0" CenterY="38.333333333333336"/>
+  <Legend CenterX="658.3333333333334" CenterY="51.666666666666664"/>
+  <Biopax>
+    <bp:openControlledVocabulary xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#">
+      <bp:TERM xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">cholesterol biosynthetic pathway</bp:TERM>
+      <bp:ID xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PW:0000454</bp:ID>
+      <bp:Ontology xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Pathway Ontology</bp:Ontology>
+    </bp:openControlledVocabulary>
+    <bp:PublicationXref xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" rdf:id="ade">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">11969204</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Membrane-bound enzymes of cholesterol synthesis from lanosterol.</bp:TITLE>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Biochem Biophys Res Commun</bp:SOURCE>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2002</bp:YEAR>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Gaylor JL</bp:AUTHORS>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" rdf:id="be8">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">8663358</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Characterization of yeast methyl sterol oxidase (ERG25) and identification of a human homologue.</bp:TITLE>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">J Biol Chem</bp:SOURCE>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1996</bp:YEAR>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Li L</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Kaplan J</bp:AUTHORS>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" rdf:id="ee2">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">10369263</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">The gene mutated in bare patches and striated mice encodes a novel 3beta-hydroxysteroid dehydrogenase.</bp:TITLE>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Nat Genet</bp:SOURCE>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1999</bp:YEAR>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Liu XY</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Dangel AW</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Kelley RI</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Zhao W</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Denny P</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Botcherby M</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Cattanach B</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Peters J</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Hunsicker PR</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Mallon AM</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Strivens MA</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Bate R</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Miller W</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Rhodes M</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Brown SD</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Herman GE</bp:AUTHORS>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" rdf:id="ce7">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">8552601</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Cloning and characterization of ERG25, the Saccharomyces cerevisiae gene encoding C-4 sterol methyl oxidase.</bp:TITLE>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Proc Natl Acad Sci U S A</bp:SOURCE>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1996</bp:YEAR>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Bard M</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Bruner DA</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Pierson CA</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Lees ND</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Biermann B</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Frye L</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Koegel C</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Barbuch R</bp:AUTHORS>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" rdf:id="e57">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">8407863</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Geranylgeranyl diphosphate synthase catalyzing the single condensation between isopentenyl diphosphate and farnesyl diphosphate.</bp:TITLE>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">J Biochem</bp:SOURCE>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1993</bp:YEAR>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Sagami H</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Korenaga T</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Ogura K</bp:AUTHORS>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" rdf:id="a23">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">12837764</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Localization of mammalian NAD(P)H steroid dehydrogenase-like protein on lipid droplets.</bp:TITLE>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">J Biol Chem</bp:SOURCE>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2003</bp:YEAR>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Ohashi M</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Mizushima N</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Kabeya Y</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Yoshimori T</bp:AUTHORS>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" rdf:id="f9d">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">9498553</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Structural and evolutionary studies on sterol 14-demethylase P450 (CYP51), the most conserved P450 monooxygenase: I. Structural analyses of the gene and multiple sizes of mRNA.</bp:TITLE>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">J Biochem</bp:SOURCE>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1997</bp:YEAR>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Noshiro M</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Aoyama Y</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Kawamoto T</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Gotoh O</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Horiuchi T</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Yoshida Y</bp:AUTHORS>
+    </bp:PublicationXref>
+  </Biopax>
+</Pathway>

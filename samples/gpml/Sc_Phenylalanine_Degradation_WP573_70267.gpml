@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Pathway xmlns="http://pathvisio.org/GPML/2013a" Name="Phenylalanine Degradation" Organism="Saccharomyces cerevisiae">
+  <Comment Source="GenMAPP remarks">Based on http://pathway.yeastgenome.org/biocyc/</Comment>
+  <Comment Source="WikiPathways-category">Metabolic Process</Comment>
+  <Comment Source="WikiPathways-description">While Saccharomyces cerevisiae can use most amino acids as their sole nitrogen source, they can only use a few amino acids as a carbon source to support growth (CITS:[Large86][Cooper82]).  This is in contrast to most eukaryotes and some fungi, which can metabolize amino acids completely, utilizing them as sole sources of carbon and nitrogen (CITS:[Stryer88][Large 86]). S. cerevisiae degrade the aromatic amino acids (phenylalanine, tyrosine, and tryptophan) and the branched-chain amino acids (valine, leucine, and iso-leucine) via the Ehrlich pathway (CITS:[Sentheshanmuganathan60][10989420]).  This pathway is comprised of the following steps:  1) deamination of the amino acid to the corresponding alpha-keto acid; 2) decarboxylation of the resulting alpha-keto acid to the respective aldehyde; and, 3) reduction of the aldehyde to form the corresponding long chain or complex alcohol, known as a fusel alcohol or fusel oil (CITS:[10989420][Large 86]).  Fusel alcohols are important flavor and aroma compounds in yeast-fermented food products and beverages (as reported in (CITS:[9546164]).   Aro10p appears to be the primary decarboxylase catalyzing the second step in phenylalanine degradation (CITS:[12902239][15933030]).   Although Vulrahan et. al. (2003) (CITS:[12902239]) found that THI3 does not encode an active phenylpyruvate decarboxylase, they found Thi3p was required in conjunction with one of the pyruvate decarboxylases  Pdc1p, Pdc5p or Pdc6p for the ARO10-independent decarboxylase activity.   The main uptake systems for utilizing aromatic amino acids appear to be Gap1p, a general amino acid permease, and Wap1p, an inducible amino acid permease with wide substrate specificity (CITS:[10207060]) 
+SOURCE: SGD pathways, http://pathway.yeastgenome.org/server.html</Comment>
+  <BiopaxRef>n0t</BiopaxRef>
+  <BiopaxRef>zkm</BiopaxRef>
+  <BiopaxRef>ln9</BiopaxRef>
+  <BiopaxRef>z1c</BiopaxRef>
+  <BiopaxRef>jxi</BiopaxRef>
+  <Graphics BoardWidth="789.6666666666667" BoardHeight="429.5" />
+  <DataNode TextLabel="PDC1" GraphId="a5f" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="PDC1" />
+    <Graphics CenterX="503.3333333333333" CenterY="83.33333333333333" Width="46.666666666666664" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="SGD" ID="S000004034" />
+  </DataNode>
+  <DataNode TextLabel="PDC5" GraphId="b9c" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="PDC5" />
+    <Graphics CenterX="503.3333333333333" CenterY="103.33333333333333" Width="46.666666666666664" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="SGD" ID="S000004124" />
+  </DataNode>
+  <DataNode TextLabel="ARO10" GraphId="a51" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="ARO10" />
+    <Graphics CenterX="503.3333333333333" CenterY="63.333333333333336" Width="46.666666666666664" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="SGD" ID="S000002788" />
+  </DataNode>
+  <DataNode TextLabel="PDC6" GraphId="b86" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="PDC6" />
+    <Graphics CenterX="503.3333333333333" CenterY="123.33333333333333" Width="46.666666666666664" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="SGD" ID="S000003319" />
+  </DataNode>
+  <DataNode TextLabel="SFA1" GraphId="f30" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="SFA1" />
+    <Graphics CenterX="643.3333333333334" CenterY="203.33333333333334" Width="40.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="SGD" ID="S000002327" />
+  </DataNode>
+  <DataNode TextLabel="ADH1" GraphId="f47" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="ADH1" />
+    <Graphics CenterX="643.3333333333334" CenterY="223.33333333333334" Width="40.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="SGD" ID="S000005446" />
+  </DataNode>
+  <DataNode TextLabel="ADH2" GraphId="f5a" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="ADH2" />
+    <Graphics CenterX="643.3333333333334" CenterY="243.33333333333334" Width="40.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="SGD" ID="S000004918" />
+  </DataNode>
+  <DataNode TextLabel="ADH3" GraphId="a24" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="ADH3" />
+    <Graphics CenterX="643.3333333333334" CenterY="263.3333333333333" Width="40.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="SGD" ID="S000004688" />
+  </DataNode>
+  <DataNode TextLabel="ADH5" GraphId="d51" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="ADH5" />
+    <Graphics CenterX="643.3333333333334" CenterY="303.3333333333333" Width="40.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="SGD" ID="S000000349" />
+  </DataNode>
+  <DataNode TextLabel="ADH4" GraphId="be1" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="ADH4" />
+    <Graphics CenterX="643.3333333333334" CenterY="283.3333333333333" Width="40.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="SGD" ID="S000003225" />
+  </DataNode>
+  <DataNode TextLabel="ARO9" GraphId="c58" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="ARO9" />
+    <Graphics CenterX="210.0" CenterY="123.33333333333333" Width="40.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="SGD" ID="S000001179" />
+  </DataNode>
+  <DataNode TextLabel="L-glutamate" GraphId="fe9" Type="Metabolite">
+    <Graphics CenterX="270.0" CenterY="173.33333333333334" Width="95.33333333333333" Height="19.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Xref Database="CAS" ID="56-86-0" />
+  </DataNode>
+  <DataNode TextLabel="L-phenylalanine" GraphId="b5b" Type="Metabolite">
+    <Graphics CenterX="66.66666666666667" CenterY="136.66666666666666" Width="127.33333333333333" Height="19.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Xref Database="CAS" ID="63-91-2" />
+  </DataNode>
+  <DataNode TextLabel="phenylacetaldehyde" GraphId="e87" Type="Metabolite">
+    <Graphics CenterX="680.0" CenterY="136.66666666666666" Width="159.33333333333334" Height="19.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Xref Database="CAS" ID="122-78-1" />
+  </DataNode>
+  <Interaction GraphId="id33263e23">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="133.33333333333334" Y="136.66666666666666" />
+      <Point X="306.6666666666667" Y="136.66666666666666" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="id4d1f9c42">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="250.0" Y="156.66666666666666" />
+      <Point X="250.0" Y="163.33333333333334" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="id5e99e586">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="433.3333333333333" Y="136.66666666666666" />
+      <Point X="596.6666666666666" Y="136.66666666666666" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="id1ea34ef1">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="670.0" Y="146.66666666666666" />
+      <Point X="670.0" Y="376.6666666666667" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="id4a35fd3a">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="683.3333333333334" Y="296.6666666666667" />
+      <Point X="670.0" Y="350.0" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Label TextLabel="2-oxoglutarate" GraphId="d43">
+    <Graphics CenterX="156.66666666666666" CenterY="173.33333333333334" Width="115.33333333333333" Height="19.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="12" Valign="Middle" />
+  </Label>
+  <Label TextLabel="phenylpyruvate" GraphId="bd4">
+    <Graphics CenterX="370.0" CenterY="136.66666666666666" Width="124.33333333333333" Height="19.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="12" Valign="Middle" />
+  </Label>
+  <Label TextLabel="H2O" GraphId="f5c">
+    <Graphics CenterX="693.3" CenterY="290.03333333333336" Width="38.333333333333336" Height="19.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="12" Valign="Middle" />
+  </Label>
+  <Label TextLabel="phenylethanol" GraphId="c4a">
+    <Graphics CenterX="670.0" CenterY="390.0" Width="114.33333333333333" Height="19.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="12" Valign="Middle" />
+  </Label>
+  <Shape GraphId="d64">
+    <Graphics CenterX="210.0" CenterY="163.33333333333334" Width="80.0" Height="53.74838666666667" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="Arc" Rotation="3.141593" />
+  </Shape>
+  <InfoBox CenterX="0.0" CenterY="335.0" />
+  <Legend CenterX="0.0" CenterY="0.0" />
+  <Biopax>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="zkm">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">9491082</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Phenylalanine- and tyrosine-auxotrophic mutants of Saccharomyces cerevisiae impaired in transamination.</bp:TITLE>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Mol Gen Genet</bp:SOURCE>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1998</bp:YEAR>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Urrestarazu A</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Vissers S</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Iraqui I</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Grenson M</bp:AUTHORS>
+    </bp:PublicationXref>
+    <bp:openControlledVocabulary xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#">
+      <bp:TERM xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">phenylalanine degradation pathway</bp:TERM>
+      <bp:ID xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PW:0001288</bp:ID>
+      <bp:Ontology xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Pathway Ontology</bp:Ontology>
+    </bp:openControlledVocabulary>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="z1c">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">12902239</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Identification and characterization of phenylpyruvate decarboxylase genes in Saccharomyces cerevisiae.</bp:TITLE>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Appl Environ Microbiol</bp:SOURCE>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2003</bp:YEAR>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Vuralhan Z</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Morais MA</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Tai SL</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Piper MD</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Pronk JT</bp:AUTHORS>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="ln9">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">9491083</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Characterisation of Saccharomyces cerevisiae ARO8 and ARO9 genes encoding aromatic aminotransferases I and II reveals a new aminotransferase subfamily.</bp:TITLE>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Mol Gen Genet</bp:SOURCE>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1998</bp:YEAR>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Iraqui I</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Vissers S</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Cartiaux M</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Urrestarazu A</bp:AUTHORS>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="jxi">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">15933030</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Physiological characterization of the ARO10-dependent, broad-substrate-specificity 2-oxo acid decarboxylase activity of Saccharomyces cerevisiae.</bp:TITLE>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Appl Environ Microbiol</bp:SOURCE>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2005</bp:YEAR>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Vuralhan Z</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Luttik MA</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Tai SL</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Boer VM</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Morais MA</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Schipper D</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Almering MJ</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">KÃÂÃÂ¶tter P</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Dickinson JR</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Daran JM</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Pronk JT</bp:AUTHORS>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="n0t">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">12499363</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">The catabolism of amino acids to long chain and complex alcohols in Saccharomyces cerevisiae.</bp:TITLE>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">J Biol Chem</bp:SOURCE>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2003</bp:YEAR>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Dickinson JR</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Salgado LE</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Hewlins MJ</bp:AUTHORS>
+    </bp:PublicationXref>
+  </Biopax>
+</Pathway>

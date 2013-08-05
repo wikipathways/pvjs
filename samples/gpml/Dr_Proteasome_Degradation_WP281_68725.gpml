@@ -1,0 +1,596 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Pathway xmlns="http://pathvisio.org/GPML/2013a" Name="Proteasome Degradation" Organism="Danio rerio">
+  <Comment Source="GenMAPP notes"/>
+  <Comment Source="GenMAPP remarks"/>
+  <Comment Source="WikiPathways-category">Physiological Process</Comment>
+  <Graphics BoardWidth="883.3333333333334" BoardHeight="893.3333333333334"/>
+  <DataNode TextLabel="h2afx" GraphId="eaeb7" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="h2afx | H2A histone family member X"/>
+    <Graphics CenterX="93.33333333333333" CenterY="133.33333333333334" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="394048"/>
+  </DataNode>
+  <DataNode TextLabel="H2AFZ" GraphId="efaeb" Type="GeneProduct">
+    <Graphics CenterX="93.33333333333333" CenterY="153.33333333333334" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID=""/>
+  </DataNode>
+  <DataNode TextLabel="ube1" GraphId="ce3cc" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="ube1 | ubiquitin-activating enzyme E1 (A1S9T an..."/>
+    <Graphics CenterX="433.3333333333333" CenterY="70.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="406335"/>
+  </DataNode>
+  <DataNode TextLabel="UBE1L" GraphId="dc4bf" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="enzyme E1 (D8)"/>
+    <Graphics CenterX="433.3333333333333" CenterY="90.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID=""/>
+  </DataNode>
+  <DataNode TextLabel="UBE2B" GraphId="b8995" Type="GeneProduct">
+    <Graphics CenterX="433.3333333333333" CenterY="156.66666666666666" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID=""/>
+  </DataNode>
+  <DataNode TextLabel="zgc:73096" GraphId="e4204" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="zgc:73096 | zgc:73096"/>
+    <Graphics CenterX="433.3333333333333" CenterY="176.66666666666666" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="324015"/>
+  </DataNode>
+  <DataNode TextLabel="UBE2D2" GraphId="bb6c7" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="ube2d2"/>
+    <Graphics CenterX="433.3333333333333" CenterY="196.66666666666666" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="335444"/>
+  </DataNode>
+  <DataNode TextLabel="UBE2D3" GraphId="aac83" Type="GeneProduct">
+    <Graphics CenterX="433.3333333333333" CenterY="216.66666666666666" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID=""/>
+  </DataNode>
+  <DataNode TextLabel="psmc1" GraphId="facd7" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="psmc1 | proteasome (prosome macropain) 26S su..."/>
+    <Graphics CenterX="213.33333333333334" CenterY="426.6666666666667" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="336786"/>
+  </DataNode>
+  <DataNode TextLabel="NEDD4" GraphId="b75cd" Type="GeneProduct">
+    <Graphics CenterX="543.3333333333334" CenterY="270.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID=""/>
+  </DataNode>
+  <DataNode TextLabel="psmc6" GraphId="d94f5" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="psmc6 | proteasome (prosome macropain) 26S su..."/>
+    <Graphics CenterX="213.33333333333334" CenterY="526.6666666666666" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="321585"/>
+  </DataNode>
+  <DataNode TextLabel="psmd1" GraphId="d7756" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="psmd1 | proteasome (prosome macropain) 26S su..."/>
+    <Graphics CenterX="213.33333333333334" CenterY="546.6666666666666" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="394159"/>
+  </DataNode>
+  <DataNode TextLabel="psmd2" GraphId="d4cc2" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="psmd2 | proteasome (prosome macropain) 26S su..."/>
+    <Graphics CenterX="213.33333333333334" CenterY="566.6666666666666" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="393518"/>
+  </DataNode>
+  <DataNode TextLabel="PSMD3" GraphId="ac093" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="psmd3"/>
+    <Graphics CenterX="213.33333333333334" CenterY="586.6666666666666" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="393544"/>
+  </DataNode>
+  <DataNode TextLabel="zgc:110247" GraphId="bece7" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="zgc:110247 | zgc:110247"/>
+    <Graphics CenterX="333.3333333333333" CenterY="426.6666666666667" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="550287"/>
+  </DataNode>
+  <DataNode TextLabel="zgc:92464" GraphId="d1df5" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="zgc:92464 | zgc:92464"/>
+    <Graphics CenterX="280.0" CenterY="653.3333333333334" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="445285"/>
+  </DataNode>
+  <DataNode TextLabel="psmc2" GraphId="b5dcb" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="psmc2 | proteasome (prosome macropain) 26S su..."/>
+    <Graphics CenterX="213.33333333333334" CenterY="446.6666666666667" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="393941"/>
+  </DataNode>
+  <DataNode TextLabel="psmc3" GraphId="d0598" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="psmc3 | proteasome (prosome macropain) 26S su..."/>
+    <Graphics CenterX="213.33333333333334" CenterY="466.6666666666667" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="321947"/>
+  </DataNode>
+  <DataNode TextLabel="psmc4" GraphId="feb19" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">PRS6_HUMAN</Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="psmc4 | proteasome (prosome macropain) 26S su..."/>
+    <Graphics CenterX="213.33333333333334" CenterY="486.6666666666667" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="326884"/>
+  </DataNode>
+  <DataNode TextLabel="PSMA1" GraphId="ca75e" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="PSMA1"/>
+    <Graphics CenterX="513.3333333333334" CenterY="446.6666666666667" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID=""/>
+  </DataNode>
+  <DataNode TextLabel="zgc:110710" GraphId="ce995" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="zgc:110710 | zgc:110710"/>
+    <Graphics CenterX="513.3333333333334" CenterY="466.6666666666667" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="554153"/>
+  </DataNode>
+  <DataNode TextLabel="psmb1" GraphId="a11a0" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="psmb1 | proteasome (prosome macropain) subuni..."/>
+    <Graphics CenterX="630.0" CenterY="446.6666666666667" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="445413"/>
+  </DataNode>
+  <DataNode TextLabel="PSMA3" GraphId="ea89a" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="PSMA3"/>
+    <Graphics CenterX="513.3333333333334" CenterY="486.6666666666667" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID=""/>
+  </DataNode>
+  <DataNode TextLabel="psma4" GraphId="eb4c7" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="psma4 | proteasome (prosome macropain) subuni..."/>
+    <Graphics CenterX="513.3333333333334" CenterY="506.6666666666667" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="326687"/>
+  </DataNode>
+  <DataNode TextLabel="PSMB3" GraphId="bd30d" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="psmb3"/>
+    <Graphics CenterX="630.0" CenterY="486.6666666666667" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="573095"/>
+  </DataNode>
+  <DataNode TextLabel="psmb6" GraphId="cd8a1" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">U13393</Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="psmb6 | proteasome (prosome macropain) subuni..."/>
+    <Graphics CenterX="630.0" CenterY="546.6666666666666" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="30388"/>
+  </DataNode>
+  <DataNode TextLabel="psmb7" GraphId="d567d" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="psmb7 | proteasome (prosome macropain) subuni..."/>
+    <Graphics CenterX="630.0" CenterY="566.6666666666666" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="64278"/>
+  </DataNode>
+  <DataNode TextLabel="psmb5" GraphId="b585d" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="psmb5 | proteasome (prosome macropain) subuni..."/>
+    <Graphics CenterX="630.0" CenterY="526.6666666666666" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="30387"/>
+  </DataNode>
+  <DataNode TextLabel="zgc:110330" GraphId="d033e" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="zgc:110330 | zgc:110330"/>
+    <Graphics CenterX="630.0" CenterY="506.6666666666667" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="550499"/>
+  </DataNode>
+  <DataNode TextLabel="psme1" GraphId="cbcdd" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="psme1 | proteasome activator subunit 1"/>
+    <Graphics CenterX="776.6666666666666" CenterY="243.33333333333334" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="30648"/>
+  </DataNode>
+  <DataNode TextLabel="psme2" GraphId="b94e2" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="psme2 | proteasome activator subunit 2"/>
+    <Graphics CenterX="776.6666666666666" CenterY="263.3333333333333" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="30647"/>
+  </DataNode>
+  <DataNode TextLabel="IFNG" GraphId="ad502" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="IFNG"/>
+    <Graphics CenterX="823.3333333333334" CenterY="356.6666666666667" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID=""/>
+  </DataNode>
+  <DataNode TextLabel="PSMB9" GraphId="a6a2b" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="LMP2"/>
+    <Graphics CenterX="803.3333333333334" CenterY="550.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID=""/>
+  </DataNode>
+  <DataNode TextLabel="PSMB10" GraphId="d1ecc" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="psmb10"/>
+    <Graphics CenterX="803.3333333333334" CenterY="570.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="64280"/>
+  </DataNode>
+  <DataNode TextLabel="psmb8" GraphId="b1663" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="psmb8 | proteasome (prosome macropain) subuni..."/>
+    <Graphics CenterX="803.3333333333334" CenterY="530.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="30666"/>
+  </DataNode>
+  <DataNode TextLabel="psme3" GraphId="c5d6d" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="psme3 | proteasome activator subunit 3"/>
+    <Graphics CenterX="776.6666666666666" CenterY="283.3333333333333" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="30649"/>
+  </DataNode>
+  <DataNode TextLabel="PSMD7" GraphId="d6572" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="psmd7"/>
+    <Graphics CenterX="333.3333333333333" CenterY="486.6666666666667" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="327330"/>
+  </DataNode>
+  <DataNode TextLabel="p44S10" GraphId="a23c0" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="PSMD6"/>
+    <Graphics CenterX="333.3333333333333" CenterY="466.6666666666667" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID=""/>
+  </DataNode>
+  <DataNode TextLabel="zgc:86762" GraphId="fea19" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="zgc:86762 | zgc:86762"/>
+    <Graphics CenterX="333.3333333333333" CenterY="506.6666666666667" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="415221"/>
+  </DataNode>
+  <DataNode TextLabel="zgc:92643" GraphId="c6527" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="zgc:92643 | zgc:92643"/>
+    <Graphics CenterX="333.3333333333333" CenterY="526.6666666666666" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="436709"/>
+  </DataNode>
+  <DataNode TextLabel="psmd10" GraphId="d8fed" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="psmd10 | proteasome (prosome macropain) 26S s..."/>
+    <Graphics CenterX="333.3333333333333" CenterY="546.6666666666666" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="403085"/>
+  </DataNode>
+  <DataNode TextLabel="psmd11" GraphId="b44ce" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="psmd11 | proteasome (prosome macropain) 26S s..."/>
+    <Graphics CenterX="333.3333333333333" CenterY="566.6666666666666" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="322265"/>
+  </DataNode>
+  <DataNode TextLabel="psmd12" GraphId="b2af6" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="psmd12 | proteasome (prosome macropain) 26S s..."/>
+    <Graphics CenterX="333.3333333333333" CenterY="586.6666666666666" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="321898"/>
+  </DataNode>
+  <DataNode TextLabel="psmd13" GraphId="a5c6b" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="psmd13 | proteasome (prosome macropain) 26S s..."/>
+    <Graphics CenterX="333.3333333333333" CenterY="606.6666666666666" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="393922"/>
+  </DataNode>
+  <DataNode TextLabel="zgc:92464" GraphId="e6d9a" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">PRS6_HUMAN</Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="zgc:92464 | zgc:92464"/>
+    <Graphics CenterX="213.33333333333334" CenterY="506.6666666666667" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="445285"/>
+  </DataNode>
+  <DataNode TextLabel="PSMA6" GraphId="ca033" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="PSMA6"/>
+    <Graphics CenterX="513.3333333333334" CenterY="546.6666666666666" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID=""/>
+  </DataNode>
+  <DataNode TextLabel="zgc:77139" GraphId="d38b1" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="zgc:77139 | zgc:77139"/>
+    <Graphics CenterX="513.3333333333334" CenterY="566.6666666666666" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="406445"/>
+  </DataNode>
+  <DataNode TextLabel="psma5" GraphId="d08e7" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="psma5 | proteasome (prosome macropain) subuni..."/>
+    <Graphics CenterX="513.3333333333334" CenterY="526.6666666666666" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="403011"/>
+  </DataNode>
+  <DataNode TextLabel="zgc:92282" GraphId="a8a06" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="zgc:92282 | zgc:92282"/>
+    <Graphics CenterX="630.0" CenterY="466.6666666666667" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="436882"/>
+  </DataNode>
+  <DataNode TextLabel="HLA-A" GraphId="d577b" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="HLA-A"/>
+    <Graphics CenterX="360.0" CenterY="793.3333333333334" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID=""/>
+  </DataNode>
+  <DataNode TextLabel="HLA-B" GraphId="b4202" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="HLA-B"/>
+    <Graphics CenterX="360.0" CenterY="813.3333333333334" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID=""/>
+  </DataNode>
+  <DataNode TextLabel="HLA-C" GraphId="a4a1d" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="HLA-C"/>
+    <Graphics CenterX="360.0" CenterY="833.3333333333334" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID=""/>
+  </DataNode>
+  <DataNode TextLabel="HLA-E" GraphId="f2710" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="HLA-E"/>
+    <Graphics CenterX="360.0" CenterY="853.3333333333334" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID=""/>
+  </DataNode>
+  <DataNode TextLabel="HLA-F" GraphId="bcc24" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="HLA-F"/>
+    <Graphics CenterX="470.0" CenterY="793.3333333333334" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID=""/>
+  </DataNode>
+  <DataNode TextLabel="HLA-G" GraphId="c4526" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="HLA-G"/>
+    <Graphics CenterX="470.0" CenterY="813.3333333333334" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID=""/>
+  </DataNode>
+  <DataNode TextLabel="rpn2" GraphId="c320f" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="rpn2 | ribophorin II"/>
+    <Graphics CenterX="80.0" CenterY="446.6666666666667" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="335985"/>
+  </DataNode>
+  <DataNode TextLabel="RPN1" GraphId="e4a85" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="rpn1"/>
+    <Graphics CenterX="80.0" CenterY="426.6666666666667" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="325561"/>
+  </DataNode>
+  <DataNode TextLabel="UBC" GraphId="edf8f" Type="GeneProduct">
+    <Graphics CenterX="276.6666666666667" CenterY="43.333333333333336" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID=""/>
+  </DataNode>
+  <DataNode TextLabel="PSMD5" GraphId="a1999" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="subunit 5B"/>
+    <Graphics CenterX="333.3333333333333" CenterY="446.6666666666667" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID=""/>
+  </DataNode>
+  <DataNode TextLabel="HLA-H" GraphId="eeb3e" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="HLA-H"/>
+    <Graphics CenterX="470.0" CenterY="833.3333333333334" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID=""/>
+  </DataNode>
+  <DataNode TextLabel="HLA-J" GraphId="cb1d6" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="HLA-J"/>
+    <Graphics CenterX="470.0" CenterY="853.3333333333334" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID=""/>
+  </DataNode>
+  <DataNode TextLabel="HIST1H2AB" GraphId="a76c5" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="Histone H2A.5"/>
+    <Graphics CenterX="93.33333333333333" CenterY="113.33333333333333" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID=""/>
+  </DataNode>
+  <Interaction GraphId="idb4f553ca">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="276.6666666666667" Y="60.0"/>
+      <Point X="276.6666666666667" Y="116.66666666666667" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="idcec5ccc5">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="276.6666666666667" Y="93.33333333333333"/>
+      <Point X="290.0" Y="80.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="id5d4d3369">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="290.0" Y="80.0"/>
+      <Point X="386.6666666666667" Y="80.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="idecf0e6fb">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="276.6666666666667" Y="150.0"/>
+      <Point X="276.6666666666667" Y="220.0" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="ida5af0758">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="276.6666666666667" Y="183.33333333333334"/>
+      <Point X="286.6666666666667" Y="173.33333333333334"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="idb33a3c7b">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="286.6666666666667" Y="173.33333333333334"/>
+      <Point X="386.6666666666667" Y="173.33333333333334"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="idf220c076">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="240.0" Y="50.0"/>
+      <Point X="140.0" Y="100.0" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="id86e884ee">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="276.6666666666667" Y="243.33333333333334"/>
+      <Point X="276.6666666666667" Y="303.3333333333333" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="idbe39ce20">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="276.6666666666667" Y="280.0"/>
+      <Point X="286.6666666666667" Y="270.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="id87645184">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="286.6666666666667" Y="270.0"/>
+      <Point X="343.3333333333333" Y="270.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="idca204465">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="510.0" Y="270.0"/>
+      <Point X="416.6666666666667" Y="270.0" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="id1c0553d4">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="460.0" Y="270.0"/>
+      <Point X="483.3333333333333" Y="293.3333333333333"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="idaf4c70ce">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="276.6666666666667" Y="323.3333333333333"/>
+      <Point X="276.6666666666667" Y="373.3333333333333" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="id9d48dd45">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="483.3333333333333" Y="293.3333333333333"/>
+      <Point X="483.3333333333333" Y="306.6666666666667"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="id165f1870">
+    <Graphics ZOrder="12288" LineStyle="Broken" LineThickness="1.0">
+      <Point X="280.0" Y="646.6666666666666"/>
+      <Point X="280.0" Y="690.0" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="ida062292">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="720.0" Y="530.0"/>
+      <Point X="743.3333333333334" Y="530.0" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="id9daa6a8f">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="720.0" Y="530.0"/>
+      <Point X="700.0" Y="530.0" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="id2a8206fd">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="726.6666666666666" Y="263.3333333333333"/>
+      <Point X="640.0" Y="380.0" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="idb5c8446a">
+    <Graphics ZOrder="12288" LineStyle="Broken" LineThickness="1.0">
+      <Point X="823.3333333333334" Y="343.3333333333333"/>
+      <Point X="790.0" Y="300.0" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="idc7213f4c">
+    <Graphics ZOrder="12288" LineStyle="Broken" LineThickness="1.0">
+      <Point X="826.6666666666666" Y="366.6666666666667"/>
+      <Point X="800.0" Y="513.3333333333334" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="id2f2c5d41">
+    <Graphics ZOrder="12288" LineStyle="Broken" LineThickness="1.0">
+      <Point X="506.6666666666667" Y="560.0"/>
+      <Point X="556.6666666666666" Y="683.3333333333334" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="id60edaa31">
+    <Graphics ZOrder="12288" LineStyle="Broken" LineThickness="1.0">
+      <Point X="643.3333333333334" Y="560.0"/>
+      <Point X="573.3333333333334" Y="683.3333333333334" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="id21f07227">
+    <Graphics ZOrder="12288" LineStyle="Broken" LineThickness="1.0">
+      <Point X="570.0" Y="696.6666666666666"/>
+      <Point X="456.6666666666667" Y="760.0" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="id3c793094">
+    <Graphics ZOrder="12288" LineStyle="Broken" LineThickness="1.0">
+      <Point X="280.0" Y="696.6666666666666"/>
+      <Point X="366.6666666666667" Y="756.6666666666666" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="id29e0880d">
+    <Graphics ZOrder="12288" LineStyle="Broken" LineThickness="1.0">
+      <Point X="696.6666666666666" Y="143.33333333333334"/>
+      <Point X="590.0" Y="370.0" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="ide50c9e16">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="720.0" Y="550.0"/>
+      <Point X="743.3333333333334" Y="550.0" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="id59c1d913">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="720.0" Y="550.0"/>
+      <Point X="700.0" Y="550.0" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="idc013199a">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="720.0" Y="570.0"/>
+      <Point X="743.3333333333334" Y="570.0" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="id15d94797">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="720.0" Y="570.0"/>
+      <Point X="700.0" Y="570.0" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Label TextLabel="ATP" GraphId="add9c">
+    <Graphics CenterX="346.6666666666667" CenterY="66.66666666666667" Width="37.333333333333336" Height="19.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="12" Valign="Middle"/>
+  </Label>
+  <Label TextLabel="AMP Ubiquitin/E1 Complex" GraphId="cc01d">
+    <Graphics CenterX="276.6666666666667" CenterY="133.33333333333334" Width="209.33333333333334" Height="19.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="12" Valign="Middle"/>
+  </Label>
+  <Label TextLabel="Ubiquitin/E2 Complex" GraphId="bf893">
+    <Graphics CenterX="276.6666666666667" CenterY="233.33333333333334" Width="170.33333333333334" Height="19.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="12" Valign="Middle"/>
+  </Label>
+  <Label TextLabel="E3/Protein" GraphId="c7686">
+    <Graphics CenterX="370.0" CenterY="270.0" Width="84.33333333333333" Height="19.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="12" Valign="Middle"/>
+  </Label>
+  <Label TextLabel="Proteins to be Degraded" GraphId="a130d">
+    <Graphics CenterX="490.0" CenterY="316.6666666666667" Width="190.33333333333334" Height="19.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="12" Valign="Middle"/>
+  </Label>
+  <Label TextLabel="Ubiquitin/Protein" GraphId="bcc37">
+    <Graphics CenterX="276.6666666666667" CenterY="316.6666666666667" Width="133.33333333333334" Height="19.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="12" Valign="Middle"/>
+  </Label>
+  <Label TextLabel="Proteasome 26 S" GraphId="fcb6a">
+    <Graphics CenterX="276.6666666666667" CenterY="383.3333333333333" Width="134.33333333333334" Height="19.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="12" Valign="Middle"/>
+  </Label>
+  <Label TextLabel="(PA700) (ATP dependent)" GraphId="c74bc">
+    <Graphics CenterX="273.3333333333333" CenterY="403.3333333333333" Width="196.33333333333334" Height="19.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="12" Valign="Middle"/>
+  </Label>
+  <Label TextLabel="p45 ATPase Subunit" GraphId="abeaf">
+    <Graphics CenterX="276.6666666666667" CenterY="630.0" Width="160.33333333333334" Height="19.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="12" Valign="Middle"/>
+  </Label>
+  <Label TextLabel="Unfolds and Degrades" GraphId="fbdf3">
+    <Graphics CenterX="283.3333333333333" CenterY="700.0" Width="176.33333333333334" Height="19.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="12" Valign="Middle"/>
+  </Label>
+  <Label TextLabel="Intact Proteins" GraphId="c1dc1">
+    <Graphics CenterX="283.3333333333333" CenterY="716.6666666666666" Width="115.33333333333333" Height="19.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="12" Valign="Middle"/>
+  </Label>
+  <Label TextLabel="Proteasome 20S" GraphId="f838d">
+    <Graphics CenterX="570.0" CenterY="383.3333333333333" Width="130.33333333333334" Height="19.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="12" Valign="Middle"/>
+  </Label>
+  <Label TextLabel="Catalytic Core (p45)" GraphId="c115f">
+    <Graphics CenterX="570.0" CenterY="400.0" Width="154.33333333333334" Height="19.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="12" Valign="Middle"/>
+  </Label>
+  <Label TextLabel="Activators of" GraphId="b89c9">
+    <Graphics CenterX="780.0" CenterY="203.33333333333334" Width="101.33333333333333" Height="19.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="12" Valign="Middle"/>
+  </Label>
+  <Label TextLabel="Degrades only Peptides" GraphId="cbb4f">
+    <Graphics CenterX="563.3333333333334" CenterY="700.0" Width="187.33333333333334" Height="19.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="12" Valign="Middle"/>
+  </Label>
+  <Label TextLabel="Presentation by MHC class 1" GraphId="a0503">
+    <Graphics CenterX="423.3333333333333" CenterY="770.0" Width="223.33333333333334" Height="19.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="12" Valign="Middle"/>
+  </Label>
+  <Label TextLabel="Oxidatively Damaged" GraphId="e56e7">
+    <Graphics CenterX="690.0" CenterY="116.66666666666667" Width="166.33333333333334" Height="19.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="12" Valign="Middle"/>
+  </Label>
+  <Label TextLabel="Cytosolic Proteins" GraphId="fc181">
+    <Graphics CenterX="686.6666666666666" CenterY="133.33333333333334" Width="145.33333333333334" Height="19.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="12" Valign="Middle"/>
+  </Label>
+  <Label TextLabel="20S Complex" GraphId="daf64">
+    <Graphics CenterX="780.0" CenterY="220.0" Width="106.33333333333333" Height="19.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="12" Valign="Middle"/>
+  </Label>
+  <Label TextLabel="Lid subunits" GraphId="ca2e3">
+    <Graphics CenterX="80.0" CenterY="403.3333333333333" Width="100.33333333333333" Height="19.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="12" Valign="Middle"/>
+  </Label>
+  <Label TextLabel="Alpha subunits" GraphId="c42fe">
+    <Graphics CenterX="516.6666666666666" CenterY="423.3333333333333" Width="98.33333333333333" Height="16.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="10" Valign="Middle"/>
+  </Label>
+  <Label TextLabel="Beta subunits" GraphId="c6ed8">
+    <Graphics CenterX="633.3333333333334" CenterY="423.3333333333333" Width="90.33333333333333" Height="16.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="10" Valign="Middle"/>
+  </Label>
+  <Label TextLabel="HOMOLOGY MAPP" GraphId="dfc3f">
+    <Graphics CenterX="56.666666666666664" CenterY="20.0" Width="85.33333333333333" Height="18.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="12" Valign="Middle" Color="008000"/>
+  </Label>
+  <InfoBox CenterX="738.3333333333334" CenterY="751.6666666666666"/>
+  <Legend CenterX="808.3333333333334" CenterY="595.0"/>
+  <Biopax>
+    <bp:openControlledVocabulary xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#">
+      <bp:TERM xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">ubiquitin/proteasome degradation pathway</bp:TERM>
+      <bp:ID xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PW:0000144</bp:ID>
+      <bp:Ontology xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Pathway Ontology</bp:Ontology>
+    </bp:openControlledVocabulary>
+  </Biopax>
+</Pathway>
