@@ -462,7 +462,9 @@ function convertGpml2Json(xmlDoc){
 
           element.points.forEach(function(element, index, array) {
 
-            element.graphRef = element.graphref;
+            if (element.graphref !== undefined) {
+              element.graphRef = element.graphref;
+            };
             delete element.graphref;
 
             // This is probably unreliable. We need to establish a way to ensure we identify start and end markers correctly, and we should not rely on the order of elements in XML.
@@ -556,7 +558,9 @@ function convertGpml2Json(xmlDoc){
 
           element.points.forEach(function(element, index, array) {
 
-            element.graphRef = element.graphref;
+            if (element.graphref !== undefined) {
+              element.graphRef = element.graphref;
+            };
             delete element.graphref;
 
             // This is probably unreliable. We need to establish a way to ensure we identify start and end markers correctly, and we should not rely on the order of elements in XML.
