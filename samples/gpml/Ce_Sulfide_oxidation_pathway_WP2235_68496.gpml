@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Pathway xmlns="http://pathvisio.org/GPML/2013a" Name="Sulfide oxidation pathway" Author="kyook@caltech.edu" Organism="Caenorhabditis elegans">
+  <Comment Source="WikiPathways-category">Molecular Function</Comment>
+  <Comment Source="WikiPathways-description">"Proposed mechanism. Both H2S and HCN can inhibit electron transport. Electron transport inhibition causes induction of HIF-1 activity resulting in high expression of SQRD-1 and CYSL-2. SQRD-1 catalyzes the first step in the H2S-oxidation pathway, ultimately resulting in production of sulfate and thiosulfate. CYSL-2 catalyzes the first step in the HCN assimilation pathway, producing H2S. The resultant H2S is detoxified by CYSL-1."</Comment>
+  <BiopaxRef>e0c</BiopaxRef>
+  <Graphics BoardWidth="716.0" BoardHeight="517.0"/>
+  <DataNode TextLabel="H2S" GraphId="b12eb" Type="Metabolite">
+    <Graphics CenterX="145.5" CenterY="113.0" Width="41.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff"/>
+    <Xref Database="ChemIDplus" ID="7783-06-4"/>
+  </DataNode>
+  <DataNode TextLabel="polysulfide" GraphId="fd901" Type="Metabolite">
+    <Graphics CenterX="313.0" CenterY="113.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff"/>
+    <Xref Database="ChemIDplus" ID="9080-49-3"/>
+  </DataNode>
+  <DataNode TextLabel="thiosulfate" GraphId="e613d" Type="Metabolite">
+    <Graphics CenterX="466.375" CenterY="113.0" Width="61.25" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff"/>
+    <Xref Database="HMDB" ID="HMDB00257"/>
+  </DataNode>
+  <DataNode TextLabel="ETHE-1" GraphId="a532c" Type="GeneProduct">
+    <Graphics CenterX="390.5" CenterY="129.0" Width="55.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="WormBase" ID="C33A12.7"/>
+  </DataNode>
+  <DataNode TextLabel="HIF-1" GraphId="f02a4" Type="GeneProduct">
+    <Graphics CenterX="289.5" CenterY="251.0" Width="51.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="WormBase" ID="F38A6.3"/>
+  </DataNode>
+  <DataNode TextLabel="CYSL-2" GraphId="defbd" Type="GeneProduct">
+    <Graphics CenterX="235.125" CenterY="425.75" Width="53.75" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="WormBase" ID="K10H10.2"/>
+  </DataNode>
+  <DataNode TextLabel="sulfate" GraphId="e8ca6" Type="Metabolite">
+    <Graphics CenterX="553.375" CenterY="113.0" Width="61.25" Height="20.0" ZOrder="32769" FontSize="10" Valign="Middle" Color="0000ff"/>
+    <Xref Database="HMDB" ID="HMDB01448"/>
+  </DataNode>
+  <DataNode TextLabel="SQRD-1" GraphId="d7880" Type="GeneProduct">
+    <Graphics CenterX="213.5" CenterY="129.0" Width="55.0" Height="20.0" ZOrder="32770" FontSize="10" Valign="Middle"/>
+    <Xref Database="WormBase" ID="F02H6.5"/>
+  </DataNode>
+  <DataNode TextLabel="H2S" GraphId="a2d2d" Type="Metabolite">
+    <Graphics CenterX="59.5" CenterY="250.0" Width="41.0" Height="20.0" ZOrder="32771" FontSize="10" Valign="Middle" Color="0000ff"/>
+    <Xref Database="ChemIDplus" ID="7783-06-4"/>
+  </DataNode>
+  <DataNode TextLabel="hydrogen cyanide" GraphId="b1749" Type="Metabolite">
+    <Graphics CenterX="186.0" CenterY="310.0" Width="92.0" Height="20.0" ZOrder="32772" FontSize="10" Valign="Middle" Color="0000ff"/>
+    <Xref Database="ChemIDplus" ID="74-90-8"/>
+  </DataNode>
+  <DataNode TextLabel="cysteine" GraphId="f322f" Type="Metabolite">
+    <Graphics CenterX="78.5" CenterY="449.0" Width="51.0" Height="20.0" ZOrder="32773" FontSize="10" Valign="Middle" Color="0000ff"/>
+    <Xref Database="ChemIDplus" ID="52-90-4"/>
+  </DataNode>
+  <DataNode TextLabel="hydrogen cyanide" GraphId="ae5ed" Type="Metabolite">
+    <Graphics CenterX="160.0" CenterY="449.0" Width="92.0" Height="20.0" ZOrder="32774" FontSize="10" Valign="Middle" Color="0000ff"/>
+    <Xref Database="HMDB" ID="HMDB02084"/>
+  </DataNode>
+  <DataNode TextLabel="beta-cyanoalanine" GraphId="b5c43" Type="Metabolite">
+    <Graphics CenterX="313.5" CenterY="449.0" Width="99.0" Height="20.0" ZOrder="32776" FontSize="10" Valign="Middle" Color="0000ff"/>
+    <Xref Database="ChemIDplus" ID="923-01-3"/>
+  </DataNode>
+  <DataNode TextLabel="H2S" GraphId="ebe9b" Type="Metabolite">
+    <Graphics CenterX="396.5" CenterY="449.0" Width="41.0" Height="20.0" ZOrder="32778" FontSize="10" Valign="Middle" Color="0000ff"/>
+    <Xref Database="ChemIDplus" ID="7783-06-4"/>
+  </DataNode>
+  <DataNode TextLabel="O-Acetylserine" GraphId="dd608" Type="Metabolite">
+    <Graphics CenterX="466.5" CenterY="449.0" Width="77.0" Height="20.0" ZOrder="32780" FontSize="10" Valign="Middle" Color="0000ff"/>
+    <Xref Database="ChemIDplus" ID="4985-36-8"/>
+  </DataNode>
+  <DataNode TextLabel="acetate" GraphId="c6864" Type="Metabolite">
+    <Graphics CenterX="643.5" CenterY="449.0" Width="51.0" Height="20.0" ZOrder="32781" FontSize="10" Valign="Middle" Color="0000ff"/>
+    <Xref Database="ChemIDplus" ID="71-50-1"/>
+  </DataNode>
+  <DataNode TextLabel="cysteine" GraphId="c900f" Type="Metabolite">
+    <Graphics CenterX="578.5" CenterY="449.0" Width="51.0" Height="20.0" ZOrder="32783" FontSize="10" Valign="Middle" Color="0000ff"/>
+    <Xref Database="ChemIDplus" ID="52-90-4"/>
+  </DataNode>
+  <DataNode TextLabel="CYSL-1" GraphId="a36cb" Type="GeneProduct">
+    <Graphics CenterX="528.125" CenterY="424.75" Width="53.75" Height="20.0" ZOrder="32784" FontSize="10" Valign="Middle"/>
+    <Xref Database="WormBase" ID="C17G1.7"/>
+  </DataNode>
+  <Interaction GraphId="idd5f55c5f">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="166.0" Y="113.0" GraphRef="b12eb" RelX="1.0" RelY="0.0"/>
+      <Point X="273.0" Y="113.0" GraphRef="fd901" RelX="-1.0" RelY="0.0" ArrowHead="mim-conversion"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="iddc6936d5">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="353.0" Y="113.0" GraphRef="fd901" RelX="1.0" RelY="0.0"/>
+      <Point X="435.75" Y="113.0" GraphRef="e613d" RelX="-1.0" RelY="0.0" ArrowHead="mim-conversion"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="idd936cbc6">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="289.5" Y="241.0" GraphRef="f02a4" RelX="0.0" RelY="-1.0"/>
+      <Point X="213.5" Y="139.0" ArrowHead="mim-stimulation"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="id390ba882">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="80.0" Y="250.0"/>
+      <Point X="130.0" Y="250.5" GraphRef="b567b" RelX="-1.0" RelY="0.0" ArrowHead="mim-stimulation"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="idf06fedc">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="210.0" Y="250.5" GraphRef="b567b" RelX="1.0" RelY="0.0"/>
+      <Point X="264.0" Y="251.0" GraphRef="f02a4" RelX="-1.0" RelY="0.0" ArrowHead="mim-stimulation"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="idfb562f22">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="289.5" Y="261.0" GraphRef="f02a4" RelX="0.0" RelY="1.0"/>
+      <Point X="235.125" Y="415.75" GraphRef="defbd" RelX="0.0" RelY="-1.0" ArrowHead="mim-stimulation"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="idb2355b15">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="186.0" Y="300.0" GraphRef="b1749" RelX="0.0" RelY="-1.0"/>
+      <Point X="170.0" Y="271.0" GraphRef="b567b" RelX="0.0" RelY="1.0" ArrowHead="mim-stimulation"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="id68194da1">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="105.0" Y="346.5" GraphRef="a7068" RelX="1.0" RelY="-0.5"/>
+      <Point X="163.0" Y="320.0" GraphRef="b1749" RelX="-0.5" RelY="1.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="id5b45c362">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="206.0" Y="449.0" GraphRef="ae5ed" RelX="1.0" RelY="0.0"/>
+      <Point X="264.0" Y="449.0" GraphRef="b5c43" RelX="-1.0" RelY="0.0" ArrowHead="mim-conversion"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="ide732105d">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="505.0" Y="449.0" GraphRef="dd608" RelX="1.0" RelY="0.0"/>
+      <Point X="553.0" Y="449.0" GraphRef="c900f" RelX="-1.0" RelY="0.0" ArrowHead="mim-conversion"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Label TextLabel="+" GraphId="f0435">
+    <Graphics CenterX="511.0" CenterY="113.0" Width="18.0" Height="20.0" ZOrder="28672" FillColor="ffffff" FontSize="10" Valign="Middle"/>
+  </Label>
+  <Label TextLabel="Sulfide Oxidation" GraphId="c3560">
+    <Graphics CenterX="358.5" CenterY="56.0" Width="139.0" Height="20.0" ZOrder="28672" FillColor="ffffff" FontSize="10" Valign="Middle"/>
+  </Label>
+  <Label TextLabel="O2" GraphId="cf0b3">
+    <Graphics CenterX="394.5" CenterY="101.0" Width="19.0" Height="20.0" ZOrder="28672" FillColor="ffffff" FontSize="10" Valign="Middle"/>
+  </Label>
+  <Label TextLabel="Electron &#10;Transport &#10;Inhibition" GraphId="b567b">
+    <Graphics CenterX="170.0" CenterY="250.5" Width="80.0" Height="41.0" ZOrder="28672" FillColor="ffffff" FontSize="10" Valign="Middle"/>
+  </Label>
+  <Label TextLabel="Cyanide Assimilation" GraphId="bb591">
+    <Graphics CenterX="375.5" CenterY="369.0" Width="125.0" Height="20.0" ZOrder="28672" FillColor="ffffff" FontSize="10" Valign="Middle"/>
+  </Label>
+  <Label TextLabel="+" GraphId="f441e">
+    <Graphics CenterX="110.0" CenterY="449.0" Width="18.0" Height="20.0" ZOrder="32775" FillColor="ffffff" FontSize="10" Valign="Middle"/>
+  </Label>
+  <Label TextLabel="+" GraphId="c14a5">
+    <Graphics CenterX="370.0" CenterY="449.0" Width="18.0" Height="20.0" ZOrder="32777" FillColor="ffffff" FontSize="10" Valign="Middle"/>
+  </Label>
+  <Label TextLabel="+" GraphId="a538d">
+    <Graphics CenterX="423.0" CenterY="449.0" Width="18.0" Height="20.0" ZOrder="32779" FillColor="ffffff" FontSize="10" Valign="Middle"/>
+  </Label>
+  <Label TextLabel="+" GraphId="b1672">
+    <Graphics CenterX="612.0" CenterY="449.0" Width="18.0" Height="20.0" ZOrder="32782" FillColor="ffffff" FontSize="10" Valign="Middle"/>
+  </Label>
+  <Shape GraphId="ed916">
+    <Attribute Key="org.pathvisio.CellularComponentProperty" Value="None"/>
+    <Graphics CenterX="228.57142857142856" CenterY="449.75" Width="382.8571428571429" Height="74.5" ZOrder="-6" FillColor="99ff99" FontSize="10" Valign="Middle" ShapeType="Rectangle" Rotation="0.0"/>
+  </Shape>
+  <Shape GraphId="c7181">
+    <Graphics CenterX="529.75" CenterY="425.75" Width="312.5" Height="74.5" ZOrder="-4" FillColor="9999ff" FontSize="10" Valign="Middle" ShapeType="Rectangle" Rotation="0.0"/>
+  </Shape>
+  <Shape GraphId="be5f4">
+    <Graphics CenterX="352.0" CenterY="103.5" Width="488.0" Height="119.0" ZOrder="-2" FillColor="ffffcc" FontSize="10" Valign="Middle" ShapeType="Rectangle" Rotation="0.0"/>
+  </Shape>
+  <Shape TextLabel="Pseudomonas&#10;aeruginosa" GraphId="a7068">
+    <Graphics CenterX="57.25" CenterY="360.0" Width="95.5" Height="54.0" ZOrder="16384" FillColor="9999ff" FontStyle="Italic" FontSize="12" Valign="Middle" ShapeType="Oval" Rotation="0.0"/>
+  </Shape>
+  <InfoBox CenterX="0.0" CenterY="0.0"/>
+  <Biopax>
+    <bp:openControlledVocabulary xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#">
+      <bp:TERM xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">xenobiotics biodegradation pathway</bp:TERM>
+      <bp:ID xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PW:0000107</bp:ID>
+      <bp:Ontology xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Pathway Ontology</bp:Ontology>
+    </bp:openControlledVocabulary>
+    <bp:PublicationXref xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" rdf:id="e0c">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">21840852 </bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">The response of Caenorhabditis elegans to hydrogen sulfide and hydrogen cyanide.</bp:TITLE>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Genetics</bp:SOURCE>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2011</bp:YEAR>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Budde MW</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Roth MB</bp:AUTHORS>
+    </bp:PublicationXref>
+  </Biopax>
+</Pathway>

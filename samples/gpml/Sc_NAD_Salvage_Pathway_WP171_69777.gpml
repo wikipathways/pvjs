@@ -1,0 +1,293 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Pathway xmlns="http://pathvisio.org/GPML/2013a" Name="NAD Salvage Pathway" Organism="Saccharomyces cerevisiae">
+  <Comment Source="GenMAPP notes"></Comment>
+  <Comment Source="GenMAPP remarks">Based on http://pathway.yeastgenome.org/biocyc/</Comment>
+  <Comment Source="WikiPathways-category">Metabolic Process</Comment>
+  <Graphics BoardWidth="1026.8333333333333" BoardHeight="656.1666666666666" />
+  <DataNode TextLabel="NPV1" GraphId="e83" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="NPV1" />
+    <Graphics CenterX="356.6666666666667" CenterY="106.66666666666667" Width="40.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="SGD" ID="S000003035" />
+  </DataNode>
+  <DataNode TextLabel="PNC1" GraphId="be0" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="PNC1" />
+    <Graphics CenterX="683.3333333333334" CenterY="353.3333333333333" Width="40.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="SGD" ID="S000003005" />
+  </DataNode>
+  <DataNode TextLabel="NMA2" GraphId="e71" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="NMA2" />
+    <Graphics CenterX="193.33333333333334" CenterY="340.0" Width="46.666666666666664" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="SGD" ID="S000003242" />
+  </DataNode>
+  <DataNode TextLabel="NMA1" GraphId="e3b" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="NMA1" />
+    <Graphics CenterX="193.33333333333334" CenterY="360.0" Width="46.666666666666664" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="SGD" ID="S000004320" />
+  </DataNode>
+  <DataNode TextLabel="QNS1" GraphId="d67" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="QNS1" />
+    <Graphics CenterX="190.0" CenterY="513.3333333333334" Width="43.333333333333336" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="SGD" ID="S000001116" />
+  </DataNode>
+  <DataNode TextLabel="NPT1" GraphId="b46" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="NPT1" />
+    <Graphics CenterX="480.0" CenterY="363.3333333333333" Width="40.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="SGD" ID="S000005735" />
+  </DataNode>
+  <DataNode TextLabel="ribose-5-phosphate" GraphId="d2e" Type="Metabolite">
+    <Graphics CenterX="450.0" CenterY="290.0" Width="154.33333333333334" Height="19.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Xref Database="CAS" ID="3615-55-2" />
+  </DataNode>
+  <DataNode TextLabel="niacinamide" GraphId="d1d" Type="Metabolite">
+    <Graphics CenterX="663.3333333333334" CenterY="283.3333333333333" Width="97.33333333333333" Height="19.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Xref Database="CAS" ID="98-92-0" />
+  </DataNode>
+  <DataNode TextLabel="adenosine diphosphate ribose" GraphId="ee4" Type="Metabolite">
+    <Graphics CenterX="703.3333333333334" CenterY="213.33333333333334" Width="237.33333333333334" Height="19.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Xref Database="CAS" ID="20762-30-5" />
+  </DataNode>
+  <DataNode TextLabel="ATP" GraphId="cc4" Type="Metabolite">
+    <Graphics CenterX="113.33333333333333" CenterY="333.3333333333333" Width="37.333333333333336" Height="19.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Xref Database="CAS" ID="1927-31-7" />
+  </DataNode>
+  <DataNode TextLabel="pyrophosphate" GraphId="ad7" Type="Metabolite">
+    <Graphics CenterX="73.33333333333333" CenterY="370.0" Width="122.33333333333333" Height="19.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Xref Database="CAS" ID="2466-09-3" />
+  </DataNode>
+  <DataNode TextLabel="L-glutamine" GraphId="b2c" Type="Metabolite">
+    <Graphics CenterX="80.0" CenterY="480.0" Width="95.33333333333333" Height="19.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Xref Database="CAS" ID="56-85-9" />
+  </DataNode>
+  <DataNode TextLabel="ATP" GraphId="e4a" Type="Metabolite">
+    <Graphics CenterX="80.0" CenterY="500.0" Width="37.333333333333336" Height="19.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Xref Database="CAS" ID="1927-31-7" />
+  </DataNode>
+  <DataNode TextLabel="pyrophosphate" GraphId="e14" Type="Metabolite">
+    <Graphics CenterX="66.66666666666667" CenterY="543.3333333333334" Width="122.33333333333333" Height="19.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Xref Database="CAS" ID="2466-09-3" />
+  </DataNode>
+  <DataNode TextLabel="L-glutamate" GraphId="efa" Type="Metabolite">
+    <Graphics CenterX="63.333333333333336" CenterY="563.3333333333334" Width="95.33333333333333" Height="19.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Xref Database="CAS" ID="56-86-0" />
+  </DataNode>
+  <DataNode TextLabel="ADP" GraphId="a4d" Type="Metabolite">
+    <Graphics CenterX="480.0" CenterY="436.6666666666667" Width="39.333333333333336" Height="19.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Xref Database="CAS" ID="58-64-0" />
+  </DataNode>
+  <DataNode TextLabel="phosphate" GraphId="f29" Type="Metabolite">
+    <Graphics CenterX="470.0" CenterY="453.3333333333333" Width="87.33333333333333" Height="19.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Xref Database="CAS" ID="14265-44-2" />
+  </DataNode>
+  <DataNode TextLabel="pyrophosphate" GraphId="b8c" Type="Metabolite">
+    <Graphics CenterX="460.0" CenterY="473.3333333333333" Width="122.33333333333333" Height="19.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Xref Database="CAS" ID="2466-09-3" />
+  </DataNode>
+  <DataNode TextLabel="ATP" GraphId="f6f" Type="Metabolite">
+    <Graphics CenterX="576.6666666666666" CenterY="440.0" Width="37.333333333333336" Height="19.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Xref Database="CAS" ID="1927-31-7" />
+  </DataNode>
+  <DataNode TextLabel="PRPP" GraphId="e33" Type="Metabolite">
+    <Graphics CenterX="576.6666666666666" CenterY="460.0" Width="50.333333333333336" Height="19.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Xref Database="CAS" ID="97-55-2" />
+  </DataNode>
+  <DataNode TextLabel="niacine" GraphId="dd772" Type="Metabolite">
+    <Graphics CenterX="659.0" CenterY="429.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Xref Database="ChEBI" ID="CHEBI:15940" />
+  </DataNode>
+  <Interaction GraphId="iddcc5290c">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="333.3333333333333" Y="53.333333333333336" />
+      <Point X="333.3333333333333" Y="163.33333333333334" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="iddced6cc0">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="310.0" Y="133.33333333333334" />
+      <Point X="303.3333333333333" Y="133.33333333333334" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="idfac03b17">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="353.3333333333333" Y="186.66666666666666" />
+      <Point X="610.0" Y="283.3333333333333" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="id12ff3457">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="486.6666666666667" Y="270.0" />
+      <Point X="476.6666666666667" Y="276.6666666666667" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="id948201b8">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="953.3333333333334" Y="186.66666666666666" />
+      <Point X="713.3333333333334" Y="283.3333333333333" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="id83f35bd3">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="783.3333333333334" Y="230.0" />
+      <Point X="780.0" Y="223.33333333333334" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="id4b00dac6">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="660.0" Y="293.3333333333333" />
+      <Point X="659.0" Y="419.0" GraphRef="dd772" RelX="0.0" RelY="-1.0" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="idc3cbb976">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="640.0" Y="380.0" />
+      <Point X="630.0" Y="380.0" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="id5b2236e7">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="326.6666666666667" Y="186.66666666666666" />
+      <Point X="126.66666666666667" Y="286.6666666666667" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="idb0f37845">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="166.66666666666666" Y="310.0" />
+      <Point X="166.66666666666666" Y="400.0" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="id105d5426">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="146.66666666666666" Y="370.0" />
+      <Point X="136.66666666666666" Y="370.0" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="idcc1ba1eb">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="160.0" Y="250.0" />
+      <Point X="156.66666666666666" Y="243.33333333333334" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="idb56f2157">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="166.66666666666666" Y="420.0" />
+      <Point X="166.66666666666666" Y="606.6666666666666" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="id23487ba9">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="136.66666666666666" Y="546.6666666666666" />
+      <Point X="123.33333333333333" Y="546.6666666666666" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="ide26ea2c3">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="619.0" Y="429.0" GraphRef="dd772" RelX="-1.0" RelY="0.0" />
+      <Point X="236.66666666666666" Y="303.3333333333333" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="iddfc4ceda">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="486.6666666666667" Y="416.6666666666667" />
+      <Point X="483.3333333333333" Y="423.3333333333333" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Label TextLabel="NAD" GraphId="d4e">
+    <Graphics CenterX="333.3333333333333" CenterY="40.0" Width="40.333333333333336" Height="19.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="12" Valign="Middle" />
+  </Label>
+  <Label TextLabel="H2O" GraphId="fbd">
+    <Graphics CenterX="280.0" CenterY="73.33333333333333" Width="38.333333333333336" Height="19.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="12" Valign="Middle" />
+  </Label>
+  <Label TextLabel="AMP" GraphId="a8b">
+    <Graphics CenterX="280.0" CenterY="133.33333333333334" Width="40.333333333333336" Height="19.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="12" Valign="Middle" />
+  </Label>
+  <Label TextLabel="nicotinamide nucleotide" GraphId="fb4">
+    <Graphics CenterX="333.3333333333333" CenterY="173.33333333333334" Width="187.33333333333334" Height="19.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="12" Valign="Middle" />
+  </Label>
+  <Label TextLabel="H2O" GraphId="d7d">
+    <Graphics CenterX="436.6666666666667" CenterY="236.66666666666666" Width="38.333333333333336" Height="19.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="12" Valign="Middle" />
+  </Label>
+  <Label TextLabel="H2O" GraphId="c4a">
+    <Graphics CenterX="846.6666666666666" CenterY="183.33333333333334" Width="38.333333333333336" Height="19.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="12" Valign="Middle" />
+  </Label>
+  <Label TextLabel="NAD" GraphId="df3">
+    <Graphics CenterX="976.6666666666666" CenterY="183.33333333333334" Width="40.333333333333336" Height="19.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="12" Valign="Middle" />
+  </Label>
+  <Label TextLabel="H2O" GraphId="bfb">
+    <Graphics CenterX="613.3333333333334" CenterY="326.6666666666667" Width="38.333333333333336" Height="19.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="12" Valign="Middle" />
+  </Label>
+  <Label TextLabel="NH3" GraphId="d8e">
+    <Graphics CenterX="613.3333333333334" CenterY="380.0" Width="38.333333333333336" Height="19.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="12" Valign="Middle" />
+  </Label>
+  <Label TextLabel="nicotinate nucleotide" GraphId="cd9">
+    <Graphics CenterX="150.0" CenterY="300.0" Width="164.33333333333334" Height="19.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="12" Valign="Middle" />
+  </Label>
+  <Label TextLabel="deamido-NAD" GraphId="dcb">
+    <Graphics CenterX="156.66666666666666" CenterY="410.0" Width="111.33333333333333" Height="19.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="12" Valign="Middle" />
+  </Label>
+  <Label TextLabel="NH3" GraphId="dcf">
+    <Graphics CenterX="150.0" CenterY="233.33333333333334" Width="38.333333333333336" Height="19.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="12" Valign="Middle" />
+  </Label>
+  <Label TextLabel="H2O" GraphId="e99">
+    <Graphics CenterX="196.66666666666666" CenterY="203.33333333333334" Width="38.333333333333336" Height="19.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="12" Valign="Middle" />
+  </Label>
+  <Label TextLabel="H2O" GraphId="bc7">
+    <Graphics CenterX="80.0" CenterY="463.3333333333333" Width="38.333333333333336" Height="19.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="12" Valign="Middle" />
+  </Label>
+  <Label TextLabel="AMP" GraphId="a32">
+    <Graphics CenterX="63.333333333333336" CenterY="526.6666666666666" Width="40.333333333333336" Height="19.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="12" Valign="Middle" />
+  </Label>
+  <Label TextLabel="NAD" GraphId="b07">
+    <Graphics CenterX="166.66666666666666" CenterY="616.6666666666666" Width="40.333333333333336" Height="19.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="12" Valign="Middle" />
+  </Label>
+  <Label TextLabel="H2O" GraphId="d44">
+    <Graphics CenterX="576.6666666666666" CenterY="480.0" Width="38.333333333333336" Height="19.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="12" Valign="Middle" />
+  </Label>
+  <Shape GraphId="a7e">
+    <Graphics CenterX="300.0" CenterY="103.33333333333333" Width="61.46362666666666" Height="66.99917333333333" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="Arc" Rotation="4.712389" />
+  </Shape>
+  <Shape GraphId="d24">
+    <Graphics CenterX="470.0" CenterY="253.33333333333334" Width="48.53406666666667" Height="42.16370666666667" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="Arc" Rotation="4.039066" />
+  </Shape>
+  <Shape GraphId="c83">
+    <Graphics CenterX="820.0" CenterY="210.0" Width="84.3274" Height="56.56854666666666" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="Arc" Rotation="5.916011" />
+  </Shape>
+  <Shape GraphId="e28">
+    <Graphics CenterX="633.3333333333334" CenterY="353.3333333333333" Width="54.97474666666667" Height="53.333333333333336" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="Arc" Rotation="4.712389" />
+  </Shape>
+  <Shape GraphId="fcd">
+    <Graphics CenterX="136.66666666666666" CenterY="350.0" Width="40.551746666666666" Height="60.0" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="Arc" Rotation="4.712389" />
+  </Shape>
+  <Shape GraphId="ddf">
+    <Graphics CenterX="183.33333333333334" CenterY="233.33333333333334" Width="59.628479999999996" Height="42.687493333333336" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="Arc" Rotation="5.639684" />
+  </Shape>
+  <Shape GraphId="f56">
+    <Graphics CenterX="130.0" CenterY="513.3333333333334" Width="66.99917333333333" Height="73.33333333333333" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="Arc" Rotation="4.712389" />
+  </Shape>
+  <Shape GraphId="fe2">
+    <Graphics CenterX="523.3333333333334" CenterY="436.6666666666667" Width="84.3274" Height="74.5356" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="Arc" Rotation="3.437033" />
+  </Shape>
+  <InfoBox CenterX="695.0" CenterY="15.0" />
+  <Legend CenterX="0.0" CenterY="0.0" />
+  <Biopax>
+    <bp:openControlledVocabulary xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#">
+      <bp:TERM xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">nicotinamide adenine dinucleotide biosynthesis, the salvage pathway</bp:TERM>
+      <bp:ID xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PW:0001375</bp:ID>
+      <bp:Ontology xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Pathway Ontology</bp:Ontology>
+    </bp:openControlledVocabulary>
+  </Biopax>
+</Pathway>

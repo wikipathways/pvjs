@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Pathway xmlns="http://pathvisio.org/GPML/2013a" Name="Acetylcholine Synthesis" Organism="Caenorhabditis elegans">
+  <Comment Source="GenMAPP notes"></Comment>
+  <Comment Source="GenMAPP remarks"></Comment>
+  <Comment Source="WikiPathways-category">Metabolic Process</Comment>
+  <Comment Source="WikiPathways-description">Acetylcholine is an important neurotransmitter. It can be rapidly released in the synaptic cleft upon activation of the neuron. In the synaptic cleft the compound is degraded rapidly into choline and acetate, this is essential for proper neuronal functioning. Choline and Acetate are taken up into the cytosol and recycled for the next activation.</Comment>
+  <BiopaxRef>e4c</BiopaxRef>
+  <Graphics BoardWidth="856.6666666666666" BoardHeight="649.0" />
+  <DataNode TextLabel="PDHA-1" GraphId="a5b" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="T05H10.6 | T05H10.6b" />
+    <Graphics CenterX="113.66666666666669" CenterY="258.7" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Entrez Gene" ID="3565996" />
+  </DataNode>
+  <DataNode TextLabel="PDHA2" GraphId="d8c" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="PDHA2 | pyruvate dehydrogenase (lipoamide) alph..." />
+    <Graphics CenterX="113.66666666666667" CenterY="278.7" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Entrez Gene" ID=" " />
+  </DataNode>
+  <DataNode TextLabel="PMT-1" GraphId="b9d" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="PEMT | phosphatidylethanolamine N-methyltransfe..." />
+    <Graphics CenterX="493.80952380952374" CenterY="127.61836734693878" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="WormBase" ID=" WBGene00022781" />
+  </DataNode>
+  <DataNode TextLabel="PCYT-1" GraphId="b03" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="F08C6.2 | F08C6.2a" />
+    <Graphics CenterX="795.6666666666666" CenterY="207.36666666666667" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="WormBase" ID="WBGene00017241" />
+  </DataNode>
+  <DataNode TextLabel="CKA-2" GraphId="b20" Type="Protein">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="cka-2 | Choline Kinase A" />
+    <Graphics CenterX="567.9421768707487" CenterY="398.4346938775508" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Entrez Gene" ID="180703" />
+  </DataNode>
+  <DataNode TextLabel="ace-1" GraphId="e64" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="ace-1 | abnormal ACEtylcholinesterase" />
+    <Graphics CenterX="253.33333333333334" CenterY="530.0333333333333" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Entrez Gene" ID="181706" />
+  </DataNode>
+  <DataNode TextLabel="UNC-17" GraphId="daa" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="unc-17 | UNCoordinated" />
+    <Graphics CenterX="252.33333333333337" CenterY="381.3666666666667" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Entrez Gene" ID="177124" />
+  </DataNode>
+  <DataNode TextLabel="Phosphorylcholine" GraphId="fc1ca" Type="Metabolite">
+    <Graphics CenterX="714.5476190476193" CenterY="333.62585034013625" Width="154.0" Height="32.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Xref Database="" ID="" />
+  </DataNode>
+  <DataNode TextLabel="Cytidine Diphosphate Choline" GraphId="b6de5" Type="Metabolite">
+    <Graphics CenterX="714.5476190476193" CenterY="82.0" Width="154.0" Height="32.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Xref Database="" ID="" />
+  </DataNode>
+  <DataNode TextLabel="Phosphatidylethanolamine" GraphId="b2c0b" Type="Metabolite">
+    <Graphics CenterX="416.4285714285711" CenterY="82.0" Width="154.0" Height="32.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Xref Database="" ID="" />
+  </DataNode>
+  <DataNode TextLabel="Phosphatidylcholine" GraphId="c4c7a" Type="Metabolite">
+    <Graphics CenterX="416.4285714285711" CenterY="188.57142857142858" Width="154.0" Height="32.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Xref Database="" ID="" />
+  </DataNode>
+  <DataNode TextLabel="Glycerophosphocholine" GraphId="e23ab" Type="Metabolite">
+    <Graphics CenterX="416.4285714285711" CenterY="256.6666666666667" Width="154.0" Height="32.0" ZOrder="32769" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Xref Database="" ID="" />
+  </DataNode>
+  <DataNode TextLabel="Choline" GraphId="e08ad" Type="Metabolite">
+    <Graphics CenterX="416.4285714285711" CenterY="329.62585034013625" Width="154.0" Height="32.0" ZOrder="32770" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Xref Database="" ID="" />
+  </DataNode>
+  <DataNode TextLabel="Acetylcholine" GraphId="beb0b" Type="Metabolite">
+    <Graphics CenterX="253.80952380952374" CenterY="449.047619047619" Width="154.00000000000003" Height="32.0" ZOrder="32771" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Xref Database="" ID="" />
+  </DataNode>
+  <DataNode TextLabel="Choline" GraphId="d8392" Type="Metabolite">
+    <Graphics CenterX="415.4251700680271" CenterY="582.3809523809523" Width="154.0" Height="32.0" ZOrder="32772" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Xref Database="" ID="" />
+  </DataNode>
+  <DataNode TextLabel="Acetate" GraphId="d1a9c" Type="Metabolite">
+    <Graphics CenterX="113.99659863945553" CenterY="582.3809523809523" Width="154.0" Height="32.0" ZOrder="32773" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Xref Database="" ID="" />
+  </DataNode>
+  <DataNode TextLabel="Acetyl CoA" GraphId="c05a8" Type="Metabolite">
+    <Graphics CenterX="113.99659863945553" CenterY="329.62585034013625" Width="154.0" Height="32.0" ZOrder="32774" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Xref Database="" ID="" />
+  </DataNode>
+  <Interaction GraphId="idf4cb8e43">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="416.4285714285711" Y="98.0" GraphRef="b2c0b" RelX="0.0" RelY="1.0" />
+      <Point X="416.4285714285711" Y="172.57142857142858" GraphRef="c4c7a" RelX="0.0" RelY="-1.0" ArrowHead="Arrow" />
+      <Anchor Position="0.4" Shape="None" GraphId="d91b0" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="idb4611b8c">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="416.4285714285711" Y="204.57142857142858" GraphRef="c4c7a" RelX="0.0" RelY="1.0" />
+      <Point X="416.4285714285711" Y="240.66666666666669" GraphRef="e23ab" RelX="0.0" RelY="-1.0" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="id5df9d2ed">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="416.4285714285711" Y="272.6666666666667" GraphRef="e23ab" RelX="0.0" RelY="1.0" />
+      <Point X="416.4285714285711" Y="313.62585034013625" GraphRef="e08ad" RelX="0.0" RelY="-1.0" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="id58225035">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="113.99659863945553" Y="566.3809523809523" GraphRef="d1a9c" RelX="0.0" RelY="-1.0" />
+      <Point X="113.99659863945553" Y="345.62585034013625" GraphRef="c05a8" RelX="0.0" RelY="1.0" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="idf56b396a">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="637.5476190476193" Y="82.0" GraphRef="b6de5" RelX="-1.0" RelY="0.0" />
+      <Point X="493.4285714285711" Y="82.0" GraphRef="b2c0b" RelX="1.0" RelY="0.0" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="idb1396494">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="637.5476190476193" Y="333.62585034013625" GraphRef="fc1ca" RelX="-1.0" RelY="0.0" />
+      <Point X="466.6666666666667" Y="333.3666666666667" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="id2c3eff4c">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="339.4285714285711" Y="329.62585034013625" GraphRef="e08ad" RelX="-1.0" RelY="0.0" />
+      <Point X="190.99659863945553" Y="329.62585034013625" GraphRef="c05a8" RelX="1.0" RelY="0.0" />
+      <Anchor Position="0.5822773207452031" Shape="None" GraphId="a59f4" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="id77833c04">
+    <Graphics ConnectorType="Elbow" ZOrder="12288" LineThickness="1.0">
+      <Point X="416.517710634037" Y="429.6405702253691" GraphRef="d46b2" RelX="0.0" RelY="0.0" />
+      <Point X="614.7959183673468" Y="429.3202851126846" />
+      <Point X="664.671768707483" Y="429.0" />
+      <Point X="714.5476190476193" Y="349.62585034013625" GraphRef="fc1ca" RelX="0.0" RelY="1.0" ArrowHead="Arrow" />
+      <Anchor Position="0.4" Shape="None" GraphId="fbbb1" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="id91935869">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="113.66666666666667" Y="235.2" GraphRef="b86" RelX="0.0" RelY="1.0" />
+      <Point X="113.99659863945553" Y="313.62585034013625" GraphRef="c05a8" RelX="0.0" RelY="-1.0" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="id616825b7">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="416.6666666666667" Y="570.0333333333333" />
+      <Point X="416.4285714285711" Y="345.62585034013625" GraphRef="e08ad" RelX="0.0" RelY="1.0" ArrowHead="Arrow" />
+      <Anchor Position="0.6256153370439087" Shape="None" GraphId="d46b2" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="id13bb1958">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="714.5476190476193" Y="317.62585034013625" GraphRef="fc1ca" RelX="0.0" RelY="-1.0" />
+      <Point X="714.5476190476193" Y="98.0" GraphRef="b6de5" RelX="0.0" RelY="1.0" ArrowHead="Arrow" />
+      <Anchor Position="0.5" Shape="None" GraphId="c0aa4" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="id2ed5490a">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="765.6666666666666" Y="207.36666666666667" GraphRef="b03" RelX="-1.0" RelY="0.0" />
+      <Point X="714.5476190476193" Y="207.81292517006813" GraphRef="c0aa4" RelX="0.0" RelY="0.0" ArrowHead="mim-catalysis" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="idf2f26e6e">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="567.9421768707487" Y="388.4346938775508" GraphRef="b20" RelX="0.0" RelY="-1.0" />
+      <Point X="567.7355619535631" Y="429.6405702253691" GraphRef="fbbb1" RelX="0.0" RelY="0.0" ArrowHead="mim-catalysis" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction>
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="253.0" Y="329.62585034013625" GraphRef="a59f4" RelX="0.0" RelY="0.0" />
+      <Point X="253.80952380952374" Y="433.047619047619" GraphRef="beb0b" RelX="0.0" RelY="-1.0" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction>
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="190.99659863945553" Y="582.3809523809523" GraphRef="d1a9c" RelX="1.0" RelY="0.0" />
+      <Point X="338.4251700680271" Y="582.3809523809523" GraphRef="d8392" RelX="-1.0" RelY="0.0" />
+      <Anchor Position="0.4205657069029175" Shape="None" GraphId="e0594" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction>
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="253.80952380952374" Y="465.047619047619" GraphRef="beb0b" RelX="0.0" RelY="1.0" />
+      <Point X="253.0" Y="582.3809523809523" GraphRef="e0594" RelX="0.0" RelY="0.0" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="d0a6f">
+    <Graphics ZOrder="32775" LineThickness="1.0">
+      <Point X="463.80952380952374" Y="127.61836734693878" GraphRef="b9d" RelX="-1.0" RelY="0.0" />
+      <Point X="416.4285714285711" Y="127.82857142857144" GraphRef="d91b0" RelX="0.0" RelY="0.0" ArrowHead="mim-catalysis" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <GraphicalLine>
+    <Graphics ZOrder="12288" LineStyle="Broken" LineThickness="2.0" Color="999999">
+      <Point X="33.0" Y="482.0" />
+      <Point X="620.0" Y="482.0" />
+    </Graphics>
+  </GraphicalLine>
+  <GraphicalLine GraphId="f8f3f">
+    <Graphics ZOrder="32776" LineStyle="Broken" LineThickness="2.0" Color="999999">
+      <Point X="35.0" Y="491.0" />
+      <Point X="622.0" Y="491.0" />
+    </Graphics>
+  </GraphicalLine>
+  <Label TextLabel="Pyruvate from Glycolysis" GraphId="b86">
+    <Graphics CenterX="113.66666666666667" CenterY="225.7" Width="195.33333333333334" Height="19.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="12" Valign="Middle" />
+  </Label>
+  <Label TextLabel="*Cytosol*" GraphId="bf4">
+    <Graphics CenterX="470.0" CenterY="473.3666666666667" Width="76.33333333333333" Height="19.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="12" Valign="Middle" />
+  </Label>
+  <Label TextLabel="*Synaptic Cleft*" GraphId="eb1">
+    <Graphics CenterX="493.3333333333333" CenterY="506.7" Width="123.33333333333333" Height="19.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="12" Valign="Middle" />
+  </Label>
+  <InfoBox CenterX="8.333333333333334" CenterY="11.666666666666666" />
+  <Biopax>
+    <bp:openControlledVocabulary xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#">
+      <bp:TERM xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">acetylcholine metabolic pathway</bp:TERM>
+      <bp:ID xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PW:0000408</bp:ID>
+      <bp:Ontology xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Pathway Ontology</bp:Ontology>
+    </bp:openControlledVocabulary>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="e4c">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">6867732</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Choline and cholinergic neurons.</bp:TITLE>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Science</bp:SOURCE>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1983</bp:YEAR>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Blusztajn JK</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Wurtman RJ</bp:AUTHORS>
+    </bp:PublicationXref>
+  </Biopax>
+</Pathway>

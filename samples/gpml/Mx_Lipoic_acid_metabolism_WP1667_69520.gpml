@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Pathway xmlns="http://pathvisio.org/GPML/2013a" Name="Lipoic acid metabolism" Organism="Mycobacterium tuberculosis" License="CC BY 2.0">
+  <Comment Source="WikiPathways-description">Source: [http://www.genome.jp/kegg-bin/show_pathway?mtu00785 KEGG Pathways]</Comment>
+  <Comment Source="WikiPathways-category">Metabolic Process</Comment>
+  <Attribute Key="ConversionDate" Value="20100629"/>
+  <Attribute Key="KeggId" Value="path:mtu00785"/>
+  <Graphics BoardWidth="914.0" BoardHeight="606.0"/>
+  <DataNode TextLabel="lipA" GraphId="e0be4" Type="GeneProduct">
+    <Comment Source="KeggConverter">Original kegg element: gene;1;mtu:Rv2218</Comment>
+    <Graphics CenterX="177.0" CenterY="193.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="TubercuList" ID="Rv2218"/>
+  </DataNode>
+  <DataNode TextLabel="lipB" GraphId="cefb8" Type="GeneProduct">
+    <Comment Source="KeggConverter">Original kegg element: gene;2;mtu:Rv2217</Comment>
+    <Graphics CenterX="195.0" CenterY="364.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="TubercuList" ID="Rv2217"/>
+  </DataNode>
+  <DataNode TextLabel="Lipoyl-[acp]" GraphId="e3560" Type="Metabolite">
+    <Graphics CenterX="306.0" CenterY="268.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff"/>
+    <Xref Database="Kegg Compound" ID="C16239"/>
+  </DataNode>
+  <DataNode TextLabel="ko:K03800" GraphId="d987d" Type="GeneProduct">
+    <Graphics CenterX="630.0" CenterY="373.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Kegg ortholog" ID="K03800"/>
+  </DataNode>
+  <DataNode TextLabel="lipA" GraphId="dba86" Type="GeneProduct">
+    <Comment Source="KeggConverter">Original kegg element: gene;7;mtu:Rv2218</Comment>
+    <Graphics CenterX="397.0" CenterY="364.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="TubercuList" ID="Rv2218"/>
+  </DataNode>
+  <DataNode TextLabel="lipB" GraphId="ef505" Type="GeneProduct">
+    <Comment Source="KeggConverter">Original kegg element: gene;8;mtu:Rv2217</Comment>
+    <Graphics CenterX="591.0" CenterY="190.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="TubercuList" ID="Rv2217"/>
+  </DataNode>
+  <DataNode TextLabel="ko:K03800" GraphId="f39a3" Type="GeneProduct">
+    <Graphics CenterX="844.0" CenterY="219.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Kegg ortholog" ID="K03800"/>
+  </DataNode>
+  <DataNode TextLabel="ko:K10105" GraphId="fe163" Type="GeneProduct">
+    <Graphics CenterX="844.0" CenterY="344.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Kegg ortholog" ID="K10105"/>
+  </DataNode>
+  <DataNode TextLabel="Octanoyl-[acp]" GraphId="f0d17" Type="Metabolite">
+    <Graphics CenterX="306.0" CenterY="125.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff"/>
+    <Xref Database="Kegg Compound" ID="C05752"/>
+  </DataNode>
+  <DataNode TextLabel="Lipoic Acid" GraphId="c4e16" Type="Metabolite">
+    <Graphics CenterX="739.0" CenterY="125.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff"/>
+    <Xref Database="Kegg Compound" ID="C00725"/>
+  </DataNode>
+  <DataNode TextLabel="lipoyl-AMP" GraphId="a77f5" Type="Metabolite">
+    <Graphics CenterX="739.0" CenterY="277.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff"/>
+    <Xref Database="Kegg Compound" ID="C16238"/>
+  </DataNode>
+  <DataNode TextLabel="Protein N6-(octanoyl)lysine" GraphId="c6305" Type="Metabolite">
+    <Graphics CenterX="477.0" CenterY="268.0" Width="152.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff"/>
+    <Xref Database="Kegg Compound" ID="C16236"/>
+  </DataNode>
+  <DataNode TextLabel="Protein N6-(lipoyl)lysine" GraphId="c7323" Type="Metabolite">
+    <Graphics CenterX="475.5" CenterY="491.0" Width="141.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff"/>
+    <Xref Database="Kegg Compound" ID="C16237"/>
+  </DataNode>
+  <DataNode TextLabel="Fatty acid biosynthesis" GraphId="c0807" Type="Pathway">
+    <Graphics CenterX="114.25" CenterY="125.0" Width="171.5" Height="64.5" ZOrder="32768" FontWeight="Bold" FontSize="12" Valign="Middle" ShapeType="None" Color="14961e"/>
+    <Xref Database="WikiPathways" ID="WP1647"/>
+  </DataNode>
+  <Interaction GraphId="aa0f2">
+    <Comment Source="KeggConverter">rn:R07769</Comment>
+    <Graphics ConnectorType="Elbow" ZOrder="0" LineThickness="1.0">
+      <Point X="306.0" Y="278.0" GraphRef="e3560" RelX="0.0" RelY="1.0"/>
+      <Point X="405.0" Y="491.0" GraphRef="c7323" RelX="-1.0" RelY="0.0" ArrowHead="Arrow"/>
+      <Anchor Position="0.2719841972617668" Shape="None" GraphId="d81ef"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e9ca2">
+    <Comment Source="KeggConverter">rn:R07767</Comment>
+    <Graphics ZOrder="0" LineThickness="1.0">
+      <Point X="477.0" Y="278.0" GraphRef="c6305" RelX="0.0" RelY="1.0"/>
+      <Point X="475.5" Y="481.0" GraphRef="c7323" RelX="0.0" RelY="-1.0" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="a2987">
+    <Comment Source="KeggConverter">rn:R07770</Comment>
+    <Graphics ZOrder="0" LineThickness="1.0">
+      <Point X="739.0" Y="135.0" GraphRef="c4e16" RelX="0.0" RelY="1.0"/>
+      <Point X="739.0" Y="267.0" GraphRef="a77f5" RelX="0.0" RelY="-1.0" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="f0f7c">
+    <Comment Source="KeggConverter">rn:R07771</Comment>
+    <Graphics ConnectorType="Elbow" ZOrder="0" LineThickness="1.0">
+      <Point X="739.0" Y="287.0" GraphRef="a77f5" RelX="0.0" RelY="1.0"/>
+      <Point X="546.0" Y="491.0" GraphRef="c7323" RelX="1.0" RelY="0.0" ArrowHead="Arrow"/>
+      <Anchor Position="0.2148931577811353" Shape="None" GraphId="eea38"/>
+      <Anchor Position="0.0" Shape="None"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="b6509">
+    <Comment Source="KeggConverter">rn:R07769</Comment>
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="235.0" Y="364.0" GraphRef="cefb8" RelX="1.0" RelY="0.0"/>
+      <Point X="306.0" Y="362.8590695456712" GraphRef="d81ef" RelX="0.0" RelY="0.0" ArrowHead="mim-catalysis"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="a434a">
+    <Comment Source="KeggConverter">rn:R07767</Comment>
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="437.0" Y="364.0" GraphRef="dba86" RelX="1.0" RelY="0.0"/>
+      <Point X="474.0" Y="365.0" ArrowHead="mim-catalysis"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="c5a22">
+    <Comment Source="KeggConverter">rn:R07766</Comment>
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="551.0" Y="190.0" GraphRef="ef505" RelX="-1.0" RelY="0.0"/>
+      <Point X="477.0" Y="192.0" ArrowHead="mim-catalysis"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="c5ad1">
+    <Comment Source="KeggConverter">rn:R07771</Comment>
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="804.0" Y="344.0" GraphRef="fe163" RelX="-1.0" RelY="0.0"/>
+      <Point X="744.0" Y="343.0" ArrowHead="mim-catalysis"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="dd395">
+    <Comment Source="KeggConverter">rn:R07770</Comment>
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="804.0" Y="219.0" GraphRef="f39a3" RelX="-1.0" RelY="0.0"/>
+      <Point X="744.0" Y="220.0" ArrowHead="mim-catalysis"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="bb811">
+    <Comment Source="KeggConverter">rn:R07771</Comment>
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="670.0" Y="373.0" GraphRef="d987d" RelX="1.0" RelY="0.0"/>
+      <Point X="739.0" Y="372.3125836391107" GraphRef="eea38" RelX="0.0" RelY="0.0" ArrowHead="mim-catalysis"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="id11fa1c85">
+    <Graphics ZOrder="12288" LineStyle="Broken" LineThickness="1.0">
+      <Point X="200.0" Y="125.0" GraphRef="c0807" RelX="1.0" RelY="0.0"/>
+      <Point X="266.0" Y="125.0" GraphRef="f0d17" RelX="-1.0" RelY="0.0" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="id4b1dd2d6">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="306.0" Y="135.0" GraphRef="f0d17" RelX="0.0" RelY="1.0"/>
+      <Point X="306.0" Y="258.0" GraphRef="e3560" RelX="0.0" RelY="-1.0" ArrowHead="mim-conversion"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="ida83c9cd5">
+    <Graphics ConnectorType="Elbow" ZOrder="12288" LineThickness="1.0">
+      <Point X="346.0" Y="125.0" GraphRef="f0d17" RelX="1.0" RelY="0.0"/>
+      <Point X="477.0" Y="258.0" GraphRef="c6305" RelX="0.0" RelY="-1.0" ArrowHead="mim-conversion"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="id7f6714d9">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="215.0" Y="193.0"/>
+      <Point X="307.0" Y="193.0" ArrowHead="mim-catalysis"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="id40439c75">
+    <Graphics ZOrder="12288" LineStyle="Broken" LineThickness="1.0">
+      <Point X="475.5" Y="501.0" GraphRef="c7323" RelX="0.0" RelY="1.0"/>
+      <Point X="475.5" Y="536.0" GraphRef="c2f91" RelX="0.0" RelY="-1.0" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Label TextLabel="Biosynthesis" GraphId="c3cdb">
+    <Graphics CenterX="328.75" CenterY="88.0" Width="116.5" Height="30.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="14" Valign="Middle" Color="660066"/>
+  </Label>
+  <Label TextLabel="Salvage&#10;" GraphId="d3966">
+    <Graphics CenterX="739.0" CenterY="91.0" Width="80.0" Height="20.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="14" Valign="Middle" Color="660066"/>
+  </Label>
+  <Label TextLabel="Oxo-acid dehydrogenaase complexes (E2 subunit)" GraphId="c2f91">
+    <Graphics CenterX="475.5" CenterY="546.0" Width="318.0" Height="20.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="12" Valign="Middle"/>
+  </Label>
+  <Label TextLabel="Glycene cleavage system (H protein)" GraphId="a0dd4">
+    <Graphics CenterX="475.5" CenterY="566.0" Width="309.0" Height="20.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="12" Valign="Middle"/>
+  </Label>
+  <InfoBox CenterX="0.0" CenterY="0.0"/>
+  <Biopax>
+    <bp:openControlledVocabulary xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#">
+      <bp:TERM xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">lipoic acid metabolic pathway</bp:TERM>
+      <bp:ID xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PW:0001063</bp:ID>
+      <bp:Ontology xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Pathway Ontology</bp:Ontology>
+    </bp:openControlledVocabulary>
+  </Biopax>
+</Pathway>

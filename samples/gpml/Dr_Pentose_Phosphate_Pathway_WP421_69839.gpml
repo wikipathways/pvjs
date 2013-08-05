@@ -1,0 +1,254 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Pathway xmlns="http://pathvisio.org/GPML/2013a" Name="Pentose Phosphate Pathway" Organism="Danio rerio">
+  <Comment Source="GenMAPP notes">D. Voet &amp; J.G. Voet (1990) Biochemistry, John Wiley &amp; Sons, New York, pp. 577-583.</Comment>
+  <Comment Source="WikiPathways-category">Metabolic Process</Comment>
+  <Graphics BoardWidth="1033.1666666666667" BoardHeight="833.5" />
+  <DataNode TextLabel="G6PD" GraphId="a1384" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="Glucose-6-Phosphate 1-Dehydrogenase" />
+    <Graphics CenterX="399.33332612242884" CenterY="136.66666666666666" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Entrez Gene" ID="" />
+  </DataNode>
+  <DataNode TextLabel="pgls" GraphId="c4921" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="pgls | 6-phosphogluconolactonase" />
+    <Graphics CenterX="399.33332612242884" CenterY="226.66666666666666" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Entrez Gene" ID="445494" />
+  </DataNode>
+  <DataNode TextLabel="pgd" GraphId="ab21d" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="pgd | phosphogluconate hydrogenase" />
+    <Graphics CenterX="399.33332612242884" CenterY="303.3333333333333" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Entrez Gene" ID="406762" />
+  </DataNode>
+  <DataNode TextLabel="rpia" GraphId="d6315" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="rpia | ribose 5-phosphate isomerase A (ribose 5..." />
+    <Graphics CenterX="310.0" CenterY="383.3333333333333" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Entrez Gene" ID="407673" />
+  </DataNode>
+  <DataNode TextLabel="TKT" GraphId="d768a" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="tkt" />
+    <Graphics CenterX="400.0" CenterY="483.3333333333333" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Entrez Gene" ID="378713" />
+  </DataNode>
+  <DataNode TextLabel="TKT" GraphId="f218d" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="tkt" />
+    <Graphics CenterX="670.0" CenterY="553.3333333333334" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Entrez Gene" ID="378713" />
+  </DataNode>
+  <DataNode TextLabel="taldo1" GraphId="cf1af" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="taldo1 | transaldolase 1" />
+    <Graphics CenterX="400.0" CenterY="716.6666666666666" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Entrez Gene" ID="324556" />
+  </DataNode>
+  <DataNode TextLabel="rpe" GraphId="fdf14" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="rpe | ribulose-5-phosphate-3-epimerase" />
+    <Graphics CenterX="485.1054852320675" CenterY="383.3333333333333" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Entrez Gene" ID="334897" />
+  </DataNode>
+  <Interaction GraphId="id54696e35">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="310.0" Y="393.3333333333333" GraphRef="d6315" RelX="0.0" RelY="1.0" />
+      <Point X="276.6666666666667" Y="417.1666666666667" GraphRef="b8599" RelX="0.0" RelY="-1.0" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="ida8f7a803">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="399.33332612242884" Y="146.66666666666666" GraphRef="a1384" RelX="0.0" RelY="1.0" />
+      <Point X="399.33332612242884" Y="180.5" GraphRef="af8c6" RelX="0.0" RelY="-1.0" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="id84972671">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="399.33332612242884" Y="236.66666666666666" GraphRef="c4921" RelX="0.0" RelY="1.0" />
+      <Point X="399.33332612242884" Y="260.5" GraphRef="ad7b3" RelX="0.0" RelY="-1.0" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="ide6e829e9">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="399.33332612242884" Y="313.3333333333333" GraphRef="ab21d" RelX="0.0" RelY="1.0" />
+      <Point X="399.33332612242884" Y="340.5" GraphRef="c0ff0" RelX="0.0" RelY="-1.0" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="id7532d13">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="485.1054852320675" Y="393.3333333333333" GraphRef="fdf14" RelX="0.0" RelY="1.0" />
+      <Point X="530.0" Y="417.1666666666667" GraphRef="fb349" RelX="0.0" RelY="-1.0" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="iddcaed417">
+    <Graphics ZOrder="12288" LineStyle="Broken" LineThickness="1.0">
+      <Point X="196.0" Y="426.6666666666667" GraphRef="b8599" RelX="-1.0" RelY="0.0" />
+      <Point X="114.0" Y="426.6666666666667" GraphRef="ff825" RelX="1.0" RelY="0.0" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="id79c7b384">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="400.0" Y="493.3333333333333" GraphRef="d768a" RelX="0.0" RelY="1.0" />
+      <Point X="400.0" Y="589.1666666666666" GraphRef="d2b87" RelX="0.0" RelY="-1.0" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="idfc3f93fc">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="400.0" Y="726.6666666666666" GraphRef="cf1af" RelX="0.0" RelY="1.0" />
+      <Point X="400.33333333333337" Y="784.5" GraphRef="b080e" RelX="0.0" RelY="-1.0" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="ida8dd8f4f">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="530.0" Y="436.1666666666667" GraphRef="fb349" RelX="0.0" RelY="1.0" />
+      <Point X="670.0" Y="543.3333333333334" GraphRef="f218d" RelX="0.0" RelY="-1.0" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="id3fb6cb2c">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="700.0" Y="553.3333333333334" GraphRef="f218d" RelX="1.0" RelY="0.0" />
+      <Point X="768.8333333333333" Y="555.0" GraphRef="f3f47" RelX="-1.0" RelY="0.0" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="id47f42bb3">
+    <Graphics ZOrder="12288" LineStyle="Broken" LineThickness="1.0">
+      <Point X="890.0" Y="590.8333333333334" GraphRef="f3f47" RelX="0.0" RelY="1.0" />
+      <Point X="891.1282616685044" Y="658.140573318633" GraphRef="ebbca" RelX="0.0" RelY="-1.0" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="idfec8db76">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="276.6666666666667" Y="436.1666666666667" GraphRef="b8599" RelX="0.0" RelY="1.0" />
+      <Point X="370.0" Y="483.3333333333333" GraphRef="d768a" RelX="-1.0" RelY="0.0" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="ida337d026">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="530.0" Y="436.1666666666667" GraphRef="fb349" RelX="0.0" RelY="1.0" />
+      <Point X="430.0" Y="483.3333333333333" GraphRef="d768a" RelX="1.0" RelY="0.0" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction>
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="399.3333261224288" Y="102.83333333333333" GraphRef="d046b" RelX="0.0" RelY="1.0" />
+      <Point X="399.33332612242884" Y="126.66666666666666" GraphRef="a1384" RelX="0.0" RelY="-1.0" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction>
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="399.33332612242884" Y="199.5" GraphRef="af8c6" RelX="0.0" RelY="1.0" />
+      <Point X="399.33332612242884" Y="216.66666666666666" GraphRef="c4921" RelX="0.0" RelY="-1.0" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction>
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="399.33332612242884" Y="279.5" GraphRef="ad7b3" RelX="0.0" RelY="1.0" />
+      <Point X="399.33332612242884" Y="293.3333333333333" GraphRef="ab21d" RelX="0.0" RelY="-1.0" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction>
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="400.0" Y="668.8333333333334" GraphRef="d2b87" RelX="0.0" RelY="1.0" />
+      <Point X="400.0" Y="706.6666666666666" GraphRef="cf1af" RelX="0.0" RelY="-1.0" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction>
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="310.0" Y="373.3333333333333" GraphRef="d6315" RelX="0.0" RelY="-1.0" />
+      <Point X="355.49999278909553" Y="359.5" GraphRef="c0ff0" RelX="-0.5" RelY="1.0" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction>
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="443.16665945576216" Y="359.5" GraphRef="c0ff0" RelX="0.5" RelY="1.0" />
+      <Point X="485.1054852320675" Y="373.3333333333333" GraphRef="fdf14" RelX="0.0" RelY="-1.0" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <GraphicalLine>
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="670.0" Y="563.3333333333334" GraphRef="f218d" RelX="0.0" RelY="1.0" />
+      <Point X="566.8073136427568" Y="656.8213783403658" />
+    </Graphics>
+  </GraphicalLine>
+  <Label TextLabel="Glucose-6-Phosphate" GraphId="d046b">
+    <Graphics CenterX="399.3333261224288" CenterY="93.33333333333333" Width="170.33333333333334" Height="19.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="12" Valign="Middle" />
+  </Label>
+  <Label TextLabel="6-Phosphoglucono-delta-lactone" GraphId="af8c6">
+    <Graphics CenterX="399.33332612242884" CenterY="190.0" Width="255.33333333333334" Height="19.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="12" Valign="Middle" />
+  </Label>
+  <Label TextLabel="6-Phosphogluconate" GraphId="ad7b3">
+    <Graphics CenterX="399.33332612242884" CenterY="270.0" Width="165.33333333333334" Height="19.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="12" Valign="Middle" />
+  </Label>
+  <Label TextLabel="Ribulose-5-Phosphate" GraphId="c0ff0">
+    <Graphics CenterX="399.33332612242884" CenterY="350.0" Width="175.33333333333334" Height="19.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="12" Valign="Middle" />
+  </Label>
+  <Label TextLabel="Ribose-5-Phosphate" GraphId="b8599">
+    <Graphics CenterX="276.6666666666667" CenterY="426.6666666666667" Width="161.33333333333334" Height="19.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="12" Valign="Middle" />
+  </Label>
+  <Label TextLabel="(Hexose Monophosphosphate Shunt" GraphId="ae13d">
+    <Graphics CenterX="380.0" CenterY="36.666666666666664" Width="286.3333333333333" Height="19.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="12" Valign="Middle" />
+  </Label>
+  <Label TextLabel="or Phosphogluconate Pathway)" GraphId="fb587">
+    <Graphics CenterX="646.6666666666666" CenterY="36.666666666666664" Width="246.33333333333334" Height="19.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="12" Valign="Middle" />
+  </Label>
+  <Label TextLabel="Fructose-6-Phosphate + Erythose-4-Phosphate" GraphId="b080e">
+    <Graphics CenterX="400.3333333333333" CenterY="794.0" Width="363.3333333333333" Height="19.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="12" Valign="Middle" />
+  </Label>
+  <Label TextLabel="Fructose-6-Phosphate" GraphId="d8b0a" GroupRef="ba874">
+    <Graphics CenterX="890.0" CenterY="536.6666666666666" Width="175.33333333333334" Height="19.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="12" Valign="Middle" />
+  </Label>
+  <Label TextLabel="Sedoheptulose-7-Phosphate" GraphId="abee7" GroupRef="f02b5">
+    <Graphics CenterX="400.0" CenterY="651.3333333333334" Width="223.33333333333334" Height="19.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="12" Valign="Middle" />
+  </Label>
+  <Label TextLabel="+" GraphId="b6447" GroupRef="f02b5">
+    <Graphics CenterX="400.0" CenterY="626.6666666666666" Width="14.333333333333334" Height="19.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="12" Valign="Middle" />
+  </Label>
+  <Label TextLabel="Glyceraldehyde-3-Phosphate" GraphId="b855a" GroupRef="ba874">
+    <Graphics CenterX="890.0" CenterY="573.3333333333334" Width="226.33333333333334" Height="19.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="12" Valign="Middle" />
+  </Label>
+  <Label TextLabel="+" GraphId="f6819" GroupRef="ba874">
+    <Graphics CenterX="890.0" CenterY="556.6666666666666" Width="14.333333333333334" Height="19.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="12" Valign="Middle" />
+  </Label>
+  <Label TextLabel="Glycolysis/Gluconeogenesis" GraphId="ebbca">
+    <Graphics CenterX="891.1282616685043" CenterY="667.640573318633" Width="222.33333333333334" Height="19.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="12" Valign="Middle" Color="0000ff" />
+  </Label>
+  <Label TextLabel="Xylulose-5-Phosphate" GraphId="fb349">
+    <Graphics CenterX="530.0" CenterY="426.6666666666667" Width="173.33333333333334" Height="19.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="12" Valign="Middle" />
+  </Label>
+  <Label TextLabel="Glyceraldehyde-3-Phosphate" GraphId="ea515" GroupRef="f02b5">
+    <Graphics CenterX="400.0" CenterY="606.6666666666666" Width="226.33333333333334" Height="19.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="12" Valign="Middle" />
+  </Label>
+  <Label TextLabel="Nucleotide" GraphId="c69de" GroupRef="e935a">
+    <Graphics CenterX="50.0" CenterY="416.6666666666667" Width="87.33333333333333" Height="19.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="12" Valign="Middle" Color="0000ff" />
+  </Label>
+  <Label TextLabel="Biosynthesis" GraphId="bd8dc" GroupRef="e935a">
+    <Graphics CenterX="53.333333333333336" CenterY="436.6666666666667" Width="105.33333333333333" Height="19.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="12" Valign="Middle" Color="0000ff" />
+  </Label>
+  <Label TextLabel="HOMOLOGY MAPP" GraphId="a3bf8">
+    <Graphics CenterX="56.666666666666664" CenterY="20.0" Width="85.33333333333333" Height="18.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="12" Valign="Middle" Color="008000" />
+  </Label>
+  <Group GroupId="f02b5" GraphId="d2b87" Style="Group" />
+  <Group GroupId="ba874" GraphId="f3f47" Style="Group" />
+  <Group GroupId="e935a" GraphId="ff825" Style="Group" />
+  <InfoBox CenterX="641.6666666666666" CenterY="68.33333333333333" />
+  <Legend CenterX="784.4" CenterY="90.2" />
+  <Biopax>
+    <bp:openControlledVocabulary xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#">
+      <bp:TERM xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">pentose phosphate pathway</bp:TERM>
+      <bp:ID xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PW:0000045</bp:ID>
+      <bp:Ontology xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Pathway Ontology</bp:Ontology>
+    </bp:openControlledVocabulary>
+  </Biopax>
+</Pathway>

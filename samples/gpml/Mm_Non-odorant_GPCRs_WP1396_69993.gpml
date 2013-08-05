@@ -1,0 +1,1429 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Pathway xmlns="http://pathvisio.org/GPML/2013a" Name="Non-odorant GPCRs" Organism="Mus musculus">
+  <Comment Source="GenMAPP notes">R. 20090827. Derived from AltAnalyze Gene 1.0ST data</Comment>
+  <Comment Source="GenMAPP remarks"></Comment>
+  <Comment Source="WikiPathways-description">Listing of non-odorant Mouse GCPRs by coupling.</Comment>
+  <Comment Source="WikiPathways-category">Molecular Function</Comment>
+  <Graphics BoardWidth="1598.0" BoardHeight="940.0" />
+  <DataNode TextLabel="Adra1d" GraphId="e3670" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">âadrenergic receptor, alpha 1d â</Comment>
+    <Graphics CenterX="100.0" CenterY="138.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000027335" />
+  </DataNode>
+  <DataNode TextLabel="Agtr2" GraphId="cca9e" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Putative uncharacterized protein</Comment>
+    <Graphics CenterX="100.0" CenterY="158.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000068122" />
+  </DataNode>
+  <DataNode TextLabel="Bai1" GraphId="bd1dc" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Brain-specific angiogenesis inhibitor 1</Comment>
+    <Graphics CenterX="100.0" CenterY="178.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000034730" />
+  </DataNode>
+  <DataNode TextLabel="Bai3" GraphId="c82bf" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Brain-specific angiogenesis inhibitor 3</Comment>
+    <Graphics CenterX="100.0" CenterY="198.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000033569" />
+  </DataNode>
+  <DataNode TextLabel="Bdkrb1" GraphId="d455a" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">âbradykinin receptor, beta 1â</Comment>
+    <Graphics CenterX="100.0" CenterY="218.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000041347" />
+  </DataNode>
+  <DataNode TextLabel="C3ar1" GraphId="e98e9" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">C3a anaphylatoxin chemotactic receptor</Comment>
+    <Graphics CenterX="100.0" CenterY="238.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000040552" />
+  </DataNode>
+  <DataNode TextLabel="C5ar1" GraphId="caa86" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">âcomplement component 5, receptor 1 â</Comment>
+    <Graphics CenterX="100.0" CenterY="258.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000049130" />
+  </DataNode>
+  <DataNode TextLabel="Ccbp2" GraphId="ccc91" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Chemokine binding protein 2</Comment>
+    <Graphics CenterX="100.0" CenterY="278.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000044534" />
+  </DataNode>
+  <DataNode TextLabel="Ccr1l1" GraphId="d3e00" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">chemokine -C-C motif receptor 1-like 1</Comment>
+    <Graphics CenterX="100.0" CenterY="298.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000064039" />
+  </DataNode>
+  <DataNode TextLabel="Ccr7" GraphId="e3bc6" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">chemokine -C-C motif receptor 7</Comment>
+    <Graphics CenterX="100.0" CenterY="318.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000037944" />
+  </DataNode>
+  <DataNode TextLabel="Ccr8" GraphId="dc5d7" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">chemokine -C-C motif receptor 8</Comment>
+    <Graphics CenterX="100.0" CenterY="338.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000042262" />
+  </DataNode>
+  <DataNode TextLabel="Ccrl2" GraphId="dae21" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">chemokine -C-C motif receptor-like 2</Comment>
+    <Graphics CenterX="100.0" CenterY="358.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000043953" />
+  </DataNode>
+  <DataNode TextLabel="Cd97" GraphId="d870c" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Isoform 3 of CD97 antigen</Comment>
+    <Graphics CenterX="100.0" CenterY="378.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000002885" />
+  </DataNode>
+  <DataNode TextLabel="Celsr1" GraphId="a3262" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">âcadherin, EGF LAG seven-pass G-type receptor 1 -flamingo homolog, Drosophilaâ</Comment>
+    <Graphics CenterX="100.0" CenterY="398.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000016028" />
+  </DataNode>
+  <DataNode TextLabel="Celsr2" GraphId="c93b1" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">âcadherin, EGF LAG seven-pass G-type receptor 2 -flamingo homolog, Drosophilaâ</Comment>
+    <Graphics CenterX="100.0" CenterY="418.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000068740" />
+  </DataNode>
+  <DataNode TextLabel="Celsr3" GraphId="acb75" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">âcadherin, EGF LAG seven-pass G-type receptor 3 -flamingo homolog, Drosophilaâ</Comment>
+    <Graphics CenterX="100.0" CenterY="438.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000023473" />
+  </DataNode>
+  <DataNode TextLabel="Cx3cr1" GraphId="a579b" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">cdna:known chromosome:NCBIM37:9:119957811:119977400:-1</Comment>
+    <Graphics CenterX="100.0" CenterY="458.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000052336" />
+  </DataNode>
+  <DataNode TextLabel="Cxcr3" GraphId="e52af" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">chemokine -C-X-C motif receptor 3</Comment>
+    <Graphics CenterX="100.0" CenterY="478.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000050232" />
+  </DataNode>
+  <DataNode TextLabel="Cxcr5" GraphId="ede19" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">chemochine -C-X-C motif receptor 5</Comment>
+    <Graphics CenterX="100.0" CenterY="498.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000047880" />
+  </DataNode>
+  <DataNode TextLabel="Cxcr6" GraphId="e7f23" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">chemokine -C-X-C motif receptor 6</Comment>
+    <Graphics CenterX="100.0" CenterY="518.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000048521" />
+  </DataNode>
+  <DataNode TextLabel="Cxcr7" GraphId="f47bc" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">chemokine -C-X-C motif receptor 7</Comment>
+    <Graphics CenterX="100.0" CenterY="538.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000044337" />
+  </DataNode>
+  <DataNode TextLabel="Darc" GraphId="a8785" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">âDuffy blood group, chemokine receptorâ</Comment>
+    <Graphics CenterX="100.0" CenterY="558.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000037872" />
+  </DataNode>
+  <DataNode TextLabel="Eltd1" GraphId="d2d8c" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">âEGF, latrophilin seven transmembrane domain-containing protein 1 â</Comment>
+    <Graphics CenterX="100.0" CenterY="578.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000039167" />
+  </DataNode>
+  <DataNode TextLabel="Emr1" GraphId="e7da0" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">âEGF-like module containing, mucin-like, hormone receptor-like sequence 1â</Comment>
+    <Graphics CenterX="100.0" CenterY="598.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000004730" />
+  </DataNode>
+  <DataNode TextLabel="Emr4" GraphId="e6d26" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">âEGF-like module containing, mucin-like, hormone receptor-like sequence 4â</Comment>
+    <Graphics CenterX="100.0" CenterY="618.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000032915" />
+  </DataNode>
+  <DataNode TextLabel="Galr3" GraphId="e7c3a" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Galanin receptor type 3</Comment>
+    <Graphics CenterX="100.0" CenterY="638.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000047429" />
+  </DataNode>
+  <DataNode TextLabel="Gper" GraphId="f8a2a" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">G-protein coupled estrogen receptor 1</Comment>
+    <Graphics CenterX="100.0" CenterY="658.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000053647" />
+  </DataNode>
+  <DataNode TextLabel="Gpr120" GraphId="b8d04" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">G-protein coupled receptor 120</Comment>
+    <Graphics CenterX="100.0" CenterY="678.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000054200" />
+  </DataNode>
+  <DataNode TextLabel="Gpr132" GraphId="a01a9" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Probable G-protein coupled receptor 132</Comment>
+    <Graphics CenterX="100.0" CenterY="698.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000021298" />
+  </DataNode>
+  <DataNode TextLabel="Gpr143" GraphId="ff56f" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">G-protein coupled receptor 143</Comment>
+    <Graphics CenterX="100.0" CenterY="718.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000025333" />
+  </DataNode>
+  <DataNode TextLabel="Gpr15" GraphId="de475" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">G protein-coupled receptor 15</Comment>
+    <Graphics CenterX="100.00000000000001" CenterY="738.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000047293" />
+  </DataNode>
+  <DataNode TextLabel="Gpr174" GraphId="ce8e2" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Probable G-protein coupled receptor 174</Comment>
+    <Graphics CenterX="100.00000000000001" CenterY="758.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000073008" />
+  </DataNode>
+  <DataNode TextLabel="Gpr50" GraphId="f7d66" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Putative uncharacterized protein</Comment>
+    <Graphics CenterX="100.00000000000001" CenterY="778.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000056380" />
+  </DataNode>
+  <DataNode TextLabel="Gpr56" GraphId="acbf5" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">G-protein coupled receptor 56</Comment>
+    <Graphics CenterX="100.00000000000001" CenterY="798.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000031785" />
+  </DataNode>
+  <DataNode TextLabel="Gpr64" GraphId="e71ad" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Isoform 5 of G-protein coupled receptor 64</Comment>
+    <Graphics CenterX="100.00000000000001" CenterY="818.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000031298" />
+  </DataNode>
+  <DataNode TextLabel="Gpr65" GraphId="bf59e" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Putative uncharacterized protein</Comment>
+    <Graphics CenterX="100.00000000000001" CenterY="838.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000021886" />
+  </DataNode>
+  <DataNode TextLabel="Gpr77" GraphId="a84ac" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">G protein-coupled receptor 77 isoform 2</Comment>
+    <Graphics CenterX="100.00000000000001" CenterY="858.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000074361" />
+  </DataNode>
+  <DataNode TextLabel="Gprc5a" GraphId="d97fc" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">âG protein-coupled receptor, family C, group 5, member Aâ</Comment>
+    <Graphics CenterX="100.00000000000001" CenterY="878.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000046733" />
+  </DataNode>
+  <DataNode TextLabel="Gprc5b" GraphId="f27cf" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">âG protein-coupled receptor, family C, group 5, member Bâ</Comment>
+    <Graphics CenterX="207.33333333333334" CenterY="140.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000008734" />
+  </DataNode>
+  <DataNode TextLabel="Gprc5d" GraphId="b4e3c" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Isoform 2 of G-protein coupled receptor family C group 5 member D</Comment>
+    <Graphics CenterX="207.33333333333334" CenterY="160.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000030205" />
+  </DataNode>
+  <DataNode TextLabel="Hcrtr2" GraphId="b5cc9" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Isoform 1 of Orexin receptor type 2</Comment>
+    <Graphics CenterX="207.33333333333334" CenterY="180.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000032360" />
+  </DataNode>
+  <DataNode TextLabel="Hrh4" GraphId="a9f55" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Histamine H4 receptor</Comment>
+    <Graphics CenterX="207.33333333333334" CenterY="200.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000037346" />
+  </DataNode>
+  <DataNode TextLabel="Htr5a" GraphId="d7a60" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">5-hydroxytryptamine -serotonin receptor 5A</Comment>
+    <Graphics CenterX="207.33333333333334" CenterY="220.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000039106" />
+  </DataNode>
+  <DataNode TextLabel="Htr5b" GraphId="c55ea" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">5-hydroxytryptamine -serotonin receptor 5B</Comment>
+    <Graphics CenterX="207.33333333333334" CenterY="240.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000050534" />
+  </DataNode>
+  <DataNode TextLabel="LOC100048050" GraphId="c06c7" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">similar to calcium-independent alpha-latrotoxin receptor homolog 2</Comment>
+    <Graphics CenterX="345.3333333333333" CenterY="610.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000028184" />
+  </DataNode>
+  <DataNode TextLabel="LOC100048050" GraphId="e9da2" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">similar to calcium-independent alpha-latrotoxin receptor homolog 2</Comment>
+    <Graphics CenterX="345.3333333333333" CenterY="630.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000028184" />
+  </DataNode>
+  <DataNode TextLabel="LOC100048050" GraphId="c540a" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">similar to calcium-independent alpha-latrotoxin receptor homolog 2</Comment>
+    <Graphics CenterX="345.3333333333333" CenterY="650.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000028184" />
+  </DataNode>
+  <DataNode TextLabel="LOC100048050" GraphId="a0d14" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">similar to calcium-independent alpha-latrotoxin receptor homolog 2</Comment>
+    <Graphics CenterX="345.3333333333333" CenterY="670.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000028184" />
+  </DataNode>
+  <DataNode TextLabel="LOC100048050" GraphId="cf1f2" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">similar to calcium-independent alpha-latrotoxin receptor homolog 2</Comment>
+    <Graphics CenterX="345.3333333333333" CenterY="690.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000028184" />
+  </DataNode>
+  <DataNode TextLabel="LOC100048050" GraphId="f5ebe" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">similar to calcium-independent alpha-latrotoxin receptor homolog 2</Comment>
+    <Graphics CenterX="345.3333333333333" CenterY="710.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000028184" />
+  </DataNode>
+  <DataNode TextLabel="LOC100048050" GraphId="a99ee" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">similar to calcium-independent alpha-latrotoxin receptor homolog 2</Comment>
+    <Graphics CenterX="345.3333333333333" CenterY="730.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000028184" />
+  </DataNode>
+  <DataNode TextLabel="LOC100048816" GraphId="bc6a1" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Isoform 3 of Brain-specific angiogenesis inhibitor 2</Comment>
+    <Graphics CenterX="345.3333333333333" CenterY="750.0" Width="100.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000028782" />
+  </DataNode>
+  <DataNode TextLabel="Lpar5" GraphId="e2160" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Lysophosphatidic acid receptor 5</Comment>
+    <Graphics CenterX="207.33333333333334" CenterY="260.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000067714" />
+  </DataNode>
+  <DataNode TextLabel="Lphn1" GraphId="da0eb" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Isoform 2 of Latrophilin-1</Comment>
+    <Graphics CenterX="207.33333333333334" CenterY="280.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000013033" />
+  </DataNode>
+  <DataNode TextLabel="Lphn2" GraphId="b430c" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">latrophilin 2</Comment>
+    <Graphics CenterX="207.33333333333334" CenterY="300.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000028184" />
+  </DataNode>
+  <DataNode TextLabel="Lphn3" GraphId="ead7b" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Isoform 6 of Latrophilin-3</Comment>
+    <Graphics CenterX="207.33333333333334" CenterY="320.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000037605" />
+  </DataNode>
+  <DataNode TextLabel="Ltb4r1" GraphId="efe59" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Leukotriene B4 receptor 1</Comment>
+    <Graphics CenterX="207.33333333333334" CenterY="340.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000046908" />
+  </DataNode>
+  <DataNode TextLabel="Mas1" GraphId="e1331" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">cdna:known chromosome:NCBIM37:17:13033943:13061009:-1</Comment>
+    <Graphics CenterX="207.33333333333334" CenterY="360.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000068037" />
+  </DataNode>
+  <DataNode TextLabel="Nmbr" GraphId="be5ca" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Neuromedin-B receptor</Comment>
+    <Graphics CenterX="207.33333333333334" CenterY="380.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000019865" />
+  </DataNode>
+  <DataNode TextLabel="Nmur1" GraphId="e02c3" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Neuromedin-U receptor 1</Comment>
+    <Graphics CenterX="207.33333333333334" CenterY="400.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000026237" />
+  </DataNode>
+  <DataNode TextLabel="Nmur2" GraphId="cb97d" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Neuromedin-U receptor 2</Comment>
+    <Graphics CenterX="207.33333333333337" CenterY="420.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000037393" />
+  </DataNode>
+  <DataNode TextLabel="Npbwr1" GraphId="e6426" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Neuropeptides B/W receptor type 1</Comment>
+    <Graphics CenterX="207.3333333333334" CenterY="440.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000033774" />
+  </DataNode>
+  <DataNode TextLabel="Npsr1" GraphId="c863f" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">neuropeptide S receptor 1</Comment>
+    <Graphics CenterX="207.3333333333334" CenterY="460.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000043659" />
+  </DataNode>
+  <DataNode TextLabel="Npy1r" GraphId="fc086" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Isoform NPY1-R alpha of Neuropeptide Y receptor type 1</Comment>
+    <Graphics CenterX="207.3333333333334" CenterY="480.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000036437" />
+  </DataNode>
+  <DataNode TextLabel="Npy2r" GraphId="bd385" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Neuropeptide Y receptor type 2</Comment>
+    <Graphics CenterX="207.3333333333334" CenterY="500.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000028004" />
+  </DataNode>
+  <DataNode TextLabel="Opn3" GraphId="ede35" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Opsin-3</Comment>
+    <Graphics CenterX="207.3333333333334" CenterY="520.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000026525" />
+  </DataNode>
+  <DataNode TextLabel="Opn4" GraphId="f6bc8" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">opsin 4 -melanopsin</Comment>
+    <Graphics CenterX="207.3333333333334" CenterY="540.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000021799" />
+  </DataNode>
+  <DataNode TextLabel="Opn5" GraphId="f79ac" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Isoform 1 of Opsin-5</Comment>
+    <Graphics CenterX="207.3333333333334" CenterY="560.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000043972" />
+  </DataNode>
+  <DataNode TextLabel="Oprd1" GraphId="c8d6c" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Delta-type opioid receptor</Comment>
+    <Graphics CenterX="207.3333333333334" CenterY="580.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000050511" />
+  </DataNode>
+  <DataNode TextLabel="Oprk1" GraphId="a14c9" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Kappa-type opioid receptor</Comment>
+    <Graphics CenterX="207.3333333333334" CenterY="600.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000025905" />
+  </DataNode>
+  <DataNode TextLabel="Oprm1" GraphId="ea65d" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Mu-opioid receptor variant MOR-1Vii</Comment>
+    <Graphics CenterX="207.3333333333334" CenterY="620.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000000766" />
+  </DataNode>
+  <DataNode TextLabel="P2ry1" GraphId="a600b" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">âpurinergic receptor P2Y, G-protein coupled 1â</Comment>
+    <Graphics CenterX="207.3333333333334" CenterY="640.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000027765" />
+  </DataNode>
+  <DataNode TextLabel="P2ry10" GraphId="be7bb" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">âpurinergic receptor P2Y, G-protein coupled 10â</Comment>
+    <Graphics CenterX="207.3333333333334" CenterY="660.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000050921" />
+  </DataNode>
+  <DataNode TextLabel="P2ry14" GraphId="ca6c2" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">âpurinergic receptor P2Y, G-protein coupled, 14â</Comment>
+    <Graphics CenterX="207.3333333333334" CenterY="680.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000036381" />
+  </DataNode>
+  <DataNode TextLabel="Ppyr1" GraphId="ec864" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">pancreatic polypeptide receptor 1</Comment>
+    <Graphics CenterX="207.3333333333334" CenterY="700.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000048337" />
+  </DataNode>
+  <DataNode TextLabel="Prlhr" GraphId="f90a2" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Prolactin-releasing peptide receptor</Comment>
+    <Graphics CenterX="207.3333333333334" CenterY="720.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000045052" />
+  </DataNode>
+  <DataNode TextLabel="Rgr" GraphId="e575c" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">RPE-retinal G protein-coupled receptor</Comment>
+    <Graphics CenterX="207.3333333333334" CenterY="740.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000021804" />
+  </DataNode>
+  <DataNode TextLabel="Rrh" GraphId="a4c6c" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">retinal pigment epithelium derived rhodopsin homolog</Comment>
+    <Graphics CenterX="207.3333333333334" CenterY="760.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000028012" />
+  </DataNode>
+  <DataNode TextLabel="S1pr2" GraphId="d4985" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">âendothelial differentiation, sphingolipid G-protein-coupled receptor, 5 â</Comment>
+    <Graphics CenterX="207.3333333333334" CenterY="780.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000043895" />
+  </DataNode>
+  <DataNode TextLabel="S1pr3" GraphId="c0b2e" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Sphingosine 1-phosphate receptor 3</Comment>
+    <Graphics CenterX="207.3333333333334" CenterY="800.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000067586" />
+  </DataNode>
+  <DataNode TextLabel="S1pr4" GraphId="daf3c" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Sphingosine 1-phosphate receptor 4</Comment>
+    <Graphics CenterX="207.3333333333334" CenterY="820.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000044199" />
+  </DataNode>
+  <DataNode TextLabel="Smo" GraphId="ba79e" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">smoothened homolog -Drosophila</Comment>
+    <Graphics CenterX="207.3333333333334" CenterY="840.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000001761" />
+  </DataNode>
+  <DataNode TextLabel="Sstr1" GraphId="b4818" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Somatostatin receptor type 1</Comment>
+    <Graphics CenterX="207.3333333333334" CenterY="860.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000035431" />
+  </DataNode>
+  <DataNode TextLabel="Sstr4" GraphId="b63f7" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">somatostatin receptor 4</Comment>
+    <Graphics CenterX="207.3333333333334" CenterY="880.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000037014" />
+  </DataNode>
+  <DataNode TextLabel="Sucnr1" GraphId="dd37b" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Succinate receptor 1</Comment>
+    <Graphics CenterX="207.3333333333334" CenterY="900.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000027762" />
+  </DataNode>
+  <DataNode TextLabel="Ghsr" GraphId="a24db" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Growth hormone secretagogue receptor type 1</Comment>
+    <Graphics CenterX="600.6666666666666" CenterY="758.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000051136" />
+  </DataNode>
+  <DataNode TextLabel="S1pr5" GraphId="b8e13" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Sphingosine 1-phosphate receptor 5</Comment>
+    <Graphics CenterX="710.6666666666666" CenterY="756.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000045087" />
+  </DataNode>
+  <DataNode TextLabel="Adora1" GraphId="c4886" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">adenosine A1 receptor</Comment>
+    <Graphics CenterX="343.6666666666667" CenterY="140.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000042429" />
+  </DataNode>
+  <DataNode TextLabel="Adora3" GraphId="b3a8d" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Adenosine A3 receptor</Comment>
+    <Graphics CenterX="343.6666666666667" CenterY="160.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000000562" />
+  </DataNode>
+  <DataNode TextLabel="Adra2a" GraphId="a59df" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">âadrenergic receptor, alpha 2a â</Comment>
+    <Graphics CenterX="343.6666666666667" CenterY="180.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000033717" />
+  </DataNode>
+  <DataNode TextLabel="Adra2b" GraphId="c2f40" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">âadrenergic receptor, alpha 2b â</Comment>
+    <Graphics CenterX="343.6666666666667" CenterY="200.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000058620" />
+  </DataNode>
+  <DataNode TextLabel="Adra2c" GraphId="e9d1e" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">cdna:known chromosome:NCBIM37:5:35621363:35624530:1</Comment>
+    <Graphics CenterX="343.6666666666667" CenterY="220.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000045318" />
+  </DataNode>
+  <DataNode TextLabel="Aplnr" GraphId="e11cb" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Apelin receptor</Comment>
+    <Graphics CenterX="343.6666666666667" CenterY="240.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000044338" />
+  </DataNode>
+  <DataNode TextLabel="Cnr1" GraphId="d0373" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">cannabinoid receptor 1 -brain</Comment>
+    <Graphics CenterX="343.6666666666667" CenterY="260.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000044288" />
+  </DataNode>
+  <DataNode TextLabel="Cnr2" GraphId="dc967" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">cannabinoid receptor 2 -macrophage</Comment>
+    <Graphics CenterX="343.6666666666667" CenterY="280.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000062585" />
+  </DataNode>
+  <DataNode TextLabel="Drd2" GraphId="b1643" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Isoform 2 of D-2 dopamine receptor</Comment>
+    <Graphics CenterX="343.6666666666667" CenterY="300.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000032259" />
+  </DataNode>
+  <DataNode TextLabel="Drd3" GraphId="b5205" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Isoform D3Long of D-3 dopamine receptor</Comment>
+    <Graphics CenterX="343.6666666666667" CenterY="320.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000022705" />
+  </DataNode>
+  <DataNode TextLabel="Drd4" GraphId="c8931" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">D-4 dopamine receptor</Comment>
+    <Graphics CenterX="343.6666666666667" CenterY="340.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000025496" />
+  </DataNode>
+  <DataNode TextLabel="Galr1" GraphId="abeaf" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Galanin receptor type 1</Comment>
+    <Graphics CenterX="343.6666666666667" CenterY="360.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000024553" />
+  </DataNode>
+  <DataNode TextLabel="Gpr17" GraphId="c9110" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Uracil nucleotide/cysteinyl leukotriene receptor</Comment>
+    <Graphics CenterX="343.6666666666667" CenterY="380.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000052229" />
+  </DataNode>
+  <DataNode TextLabel="Gpr18" GraphId="bcf36" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">N-arachidonyl glycine receptor</Comment>
+    <Graphics CenterX="343.6666666666667" CenterY="400.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000050350" />
+  </DataNode>
+  <DataNode TextLabel="Grm2" GraphId="a1153" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">âG protein-coupled receptor, family C, group 1, member B â</Comment>
+    <Graphics CenterX="343.6666666666667" CenterY="420.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000023192" />
+  </DataNode>
+  <DataNode TextLabel="Grm3" GraphId="e1808" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">âglutamate receptor, metabotropic 3â</Comment>
+    <Graphics CenterX="343.6666666666667" CenterY="440.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000003974" />
+  </DataNode>
+  <DataNode TextLabel="Grm4" GraphId="ec8a9" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Isoform 2 of Metabotropic glutamate receptor 4</Comment>
+    <Graphics CenterX="343.6666666666667" CenterY="460.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000063239" />
+  </DataNode>
+  <DataNode TextLabel="Grm6" GraphId="fa353" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">âglutamate receptor, metabotropic 6â</Comment>
+    <Graphics CenterX="343.6666666666667" CenterY="480.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000000617" />
+  </DataNode>
+  <DataNode TextLabel="Grm7" GraphId="c4088" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">âglutamate receptor, metabotropic 7â</Comment>
+    <Graphics CenterX="343.6666666666667" CenterY="500.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000056755" />
+  </DataNode>
+  <DataNode TextLabel="Grm8" GraphId="dc4b7" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">âGlutamate receptor, metabotropic 8 â</Comment>
+    <Graphics CenterX="452.0" CenterY="139.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000024211" />
+  </DataNode>
+  <DataNode TextLabel="Hrh1" GraphId="ac471" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Histamine H1 receptor</Comment>
+    <Graphics CenterX="452.0" CenterY="259.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000053004" />
+  </DataNode>
+  <DataNode TextLabel="Hrh3" GraphId="c384b" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Histamine H3 receptor</Comment>
+    <Graphics CenterX="452.0" CenterY="279.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000039059" />
+  </DataNode>
+  <DataNode TextLabel="Htr1a" GraphId="f4cb3" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">5-hydroxytryptamine -serotonin receptor 1A</Comment>
+    <Graphics CenterX="452.0" CenterY="299.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000021721" />
+  </DataNode>
+  <DataNode TextLabel="Htr1b" GraphId="f0dbd" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">5-hydroxytryptamine -serotonin receptor 1B</Comment>
+    <Graphics CenterX="452.0" CenterY="319.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000049511" />
+  </DataNode>
+  <DataNode TextLabel="Htr1d" GraphId="fe0f5" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">5-hydroxytryptamine -serotonin receptor 1D</Comment>
+    <Graphics CenterX="452.0" CenterY="339.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000070687" />
+  </DataNode>
+  <DataNode TextLabel="Htr1f" GraphId="c120a" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">5-hydroxytryptamine -serotonin receptor 1F</Comment>
+    <Graphics CenterX="452.0" CenterY="359.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000050783" />
+  </DataNode>
+  <DataNode TextLabel="Mtnr1a" GraphId="eecd7" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Melatonin receptor 1A splice variant</Comment>
+    <Graphics CenterX="452.0" CenterY="379.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000054764" />
+  </DataNode>
+  <DataNode TextLabel="Mtnr1b" GraphId="ba571" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Melatonin receptor type 1B</Comment>
+    <Graphics CenterX="452.0" CenterY="399.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000050901" />
+  </DataNode>
+  <DataNode TextLabel="Niacr1" GraphId="ede42" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Nicotinic acid receptor</Comment>
+    <Graphics CenterX="452.0" CenterY="419.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000045502" />
+  </DataNode>
+  <DataNode TextLabel="Npy5r" GraphId="a371c" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Neuropeptide Y receptor type 5</Comment>
+    <Graphics CenterX="452.0" CenterY="439.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000044014" />
+  </DataNode>
+  <DataNode TextLabel="Npy6r" GraphId="f6642" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Neuropeptide Y receptor type 6</Comment>
+    <Graphics CenterX="452.0" CenterY="459.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000038071" />
+  </DataNode>
+  <DataNode TextLabel="P2ry12" GraphId="a53af" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">âpurinergic receptor P2Y, G-protein coupled 12â</Comment>
+    <Graphics CenterX="452.0" CenterY="479.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000036353" />
+  </DataNode>
+  <DataNode TextLabel="P2ry13" GraphId="ee345" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">âpurinergic receptor P2Y, G-protein coupled 13â</Comment>
+    <Graphics CenterX="452.0" CenterY="499.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000036362" />
+  </DataNode>
+  <DataNode TextLabel="Rxfp3" GraphId="f10ce" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">relaxin family peptide receptor 3</Comment>
+    <Graphics CenterX="452.0" CenterY="159.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000060735" />
+  </DataNode>
+  <DataNode TextLabel="Rxfp4" GraphId="b1a33" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">relaxin family peptide receptor 4</Comment>
+    <Graphics CenterX="452.0" CenterY="179.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000049741" />
+  </DataNode>
+  <DataNode TextLabel="S1pr1" GraphId="f5015" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">sphingosine-1-phosphate receptor 1</Comment>
+    <Graphics CenterX="452.0" CenterY="199.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000045092" />
+  </DataNode>
+  <DataNode TextLabel="Sstr3" GraphId="ad20e" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">somatostatin receptor 3</Comment>
+    <Graphics CenterX="452.0" CenterY="219.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000044933" />
+  </DataNode>
+  <DataNode TextLabel="Sstr5" GraphId="e6bd0" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Putative uncharacterized protein</Comment>
+    <Graphics CenterX="452.0" CenterY="239.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000050824" />
+  </DataNode>
+  <DataNode TextLabel="Lpar1" GraphId="ec573" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Isoform 2 of Lysophosphatidic acid receptor 1</Comment>
+    <Graphics CenterX="819.3333333333334" CenterY="754.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000038668" />
+  </DataNode>
+  <DataNode TextLabel="Lpar2" GraphId="cd79a" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">âendothelial differentiation, lysophosphatidic acid G-protein-coupled receptor 4 â</Comment>
+    <Graphics CenterX="819.3333333333334" CenterY="774.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000031861" />
+  </DataNode>
+  <DataNode TextLabel="Lpar3" GraphId="cb00e" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Lysophosphatidic acid receptor 3</Comment>
+    <Graphics CenterX="820.3333333333334" CenterY="828.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000036832" />
+  </DataNode>
+  <DataNode TextLabel="Adra1b" GraphId="fb265" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">âAdrenergic receptor, alpha 1b, isoform CRA_a â</Comment>
+    <Graphics CenterX="600.3333333333334" CenterY="135.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000050541" />
+  </DataNode>
+  <DataNode TextLabel="Agtr1a" GraphId="c3815" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">âangiotensin II receptor, type 1aâ</Comment>
+    <Graphics CenterX="600.3333333333334" CenterY="155.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000049115" />
+  </DataNode>
+  <DataNode TextLabel="Agtr1b" GraphId="c9870" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">âangiotensin II receptor, type 1bâ</Comment>
+    <Graphics CenterX="600.3333333333334" CenterY="175.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000054988" />
+  </DataNode>
+  <DataNode TextLabel="Avpr1a" GraphId="a5404" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">arginine vasopressin receptor 1A</Comment>
+    <Graphics CenterX="600.3333333333334" CenterY="195.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000020123" />
+  </DataNode>
+  <DataNode TextLabel="Avpr1b" GraphId="eee52" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">arginine vasopressin receptor 1B</Comment>
+    <Graphics CenterX="600.3333333333334" CenterY="215.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000026432" />
+  </DataNode>
+  <DataNode TextLabel="Bdkrb2" GraphId="f8f76" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Isoform Long of B2 bradykinin receptor</Comment>
+    <Graphics CenterX="600.3333333333334" CenterY="235.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000021070" />
+  </DataNode>
+  <DataNode TextLabel="Casr" GraphId="f1986" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Isoform B of Extracellular calcium-sensing receptor</Comment>
+    <Graphics CenterX="600.3333333333334" CenterY="255.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000051980" />
+  </DataNode>
+  <DataNode TextLabel="Cckar" GraphId="d9359" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Cholecystokinin receptor type A</Comment>
+    <Graphics CenterX="600.3333333333334" CenterY="275.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000029193" />
+  </DataNode>
+  <DataNode TextLabel="Cckbr" GraphId="e26a5" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Gastrin/cholecystokinin type B receptor</Comment>
+    <Graphics CenterX="600.3333333333334" CenterY="295.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000030898" />
+  </DataNode>
+  <DataNode TextLabel="Ccr1" GraphId="e65d9" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">chemokine -C-C motif receptor 1</Comment>
+    <Graphics CenterX="600.3333333333334" CenterY="315.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000025804" />
+  </DataNode>
+  <DataNode TextLabel="Ccr10" GraphId="a2d73" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">chemokine -C-C motif receptor 10</Comment>
+    <Graphics CenterX="600.3333333333334" CenterY="335.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000044052" />
+  </DataNode>
+  <DataNode TextLabel="Ccr2" GraphId="f7d84" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">chemokine -C-C motif receptor 2</Comment>
+    <Graphics CenterX="600.3333333333334" CenterY="355.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000049103" />
+  </DataNode>
+  <DataNode TextLabel="Ccr3" GraphId="b04a5" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">chemokine -C-C motif receptor 3</Comment>
+    <Graphics CenterX="600.3333333333334" CenterY="375.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000035448" />
+  </DataNode>
+  <DataNode TextLabel="Ccr6" GraphId="da16f" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">chemokine -C-C motif receptor 6</Comment>
+    <Graphics CenterX="600.3333333333334" CenterY="395.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000040899" />
+  </DataNode>
+  <DataNode TextLabel="Ccr9" GraphId="a1f19" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">chemokine -C-C motif receptor 9</Comment>
+    <Graphics CenterX="600.3333333333334" CenterY="415.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000029530" />
+  </DataNode>
+  <DataNode TextLabel="Cxcr4" GraphId="e3596" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Isoform CXCR4-B of C-X-C chemokine receptor type 4</Comment>
+    <Graphics CenterX="600.3333333333334" CenterY="435.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000045382" />
+  </DataNode>
+  <DataNode TextLabel="Cysltr1" GraphId="a5a6c" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Isoform 2 of Cysteinyl leukotriene receptor 1</Comment>
+    <Graphics CenterX="600.3333333333334" CenterY="455.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000052821" />
+  </DataNode>
+  <DataNode TextLabel="Cysltr2" GraphId="d29c7" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Cysteinyl leukotriene receptor 2</Comment>
+    <Graphics CenterX="600.3333333333334" CenterY="475.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000033470" />
+  </DataNode>
+  <DataNode TextLabel="Ednra" GraphId="ca0d5" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">endothelin receptor type A</Comment>
+    <Graphics CenterX="600.3333333333334" CenterY="495.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000031616" />
+  </DataNode>
+  <DataNode TextLabel="Ednrb" GraphId="e0f88" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Putative uncharacterized protein</Comment>
+    <Graphics CenterX="600.3333333333334" CenterY="515.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000022122" />
+  </DataNode>
+  <DataNode TextLabel="F2r" GraphId="cbb0f" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">coagulation factor II -thrombin receptor</Comment>
+    <Graphics CenterX="600.3333333333334" CenterY="535.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000048376" />
+  </DataNode>
+  <DataNode TextLabel="F2rl1" GraphId="e1ef4" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">coagulation factor II -thrombin receptor-like 1</Comment>
+    <Graphics CenterX="600.3333333333334" CenterY="555.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000021678" />
+  </DataNode>
+  <DataNode TextLabel="F2rl2" GraphId="df383" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">coagulation factor II -thrombin receptor-like 2</Comment>
+    <Graphics CenterX="600.3333333333335" CenterY="575.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000021675" />
+  </DataNode>
+  <DataNode TextLabel="F2rl3" GraphId="ed483" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">coagulation factor II -thrombin receptor-like 3</Comment>
+    <Graphics CenterX="600.3333333333336" CenterY="595.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000050147" />
+  </DataNode>
+  <DataNode TextLabel="Fpr1" GraphId="abac9" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">formyl peptide receptor 1</Comment>
+    <Graphics CenterX="600.3333333333336" CenterY="615.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000045551" />
+  </DataNode>
+  <DataNode TextLabel="Fzd1" GraphId="ff5ae" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">frizzled homolog 1 -Drosophila</Comment>
+    <Graphics CenterX="600.3333333333336" CenterY="635.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000044674" />
+  </DataNode>
+  <DataNode TextLabel="Fzd2" GraphId="c0cb5" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">frizzled homolog 2 -Drosophila</Comment>
+    <Graphics CenterX="600.3333333333336" CenterY="655.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000050288" />
+  </DataNode>
+  <DataNode TextLabel="Fzd3" GraphId="ad709" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">frizzled homolog 3 -Drosophila</Comment>
+    <Graphics CenterX="600.3333333333336" CenterY="675.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000007989" />
+  </DataNode>
+  <DataNode TextLabel="Fzd4" GraphId="f27e6" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">frizzled homolog 4 -Drosophila</Comment>
+    <Graphics CenterX="710.6666666666666" CenterY="134.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000049791" />
+  </DataNode>
+  <DataNode TextLabel="Fzd5" GraphId="b0101" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">frizzled homolog 5 -Drosophila</Comment>
+    <Graphics CenterX="710.6666666666666" CenterY="154.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000045005" />
+  </DataNode>
+  <DataNode TextLabel="Fzd6" GraphId="cb303" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">frizzled homolog 6 -Drosophila</Comment>
+    <Graphics CenterX="710.6666666666666" CenterY="174.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000022297" />
+  </DataNode>
+  <DataNode TextLabel="Fzd7" GraphId="dc8bc" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">frizzled homolog 7 -Drosophila</Comment>
+    <Graphics CenterX="710.6666666666666" CenterY="194.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000041075" />
+  </DataNode>
+  <DataNode TextLabel="Fzd8" GraphId="c6c2e" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">frizzled homolog 8 -Drosophila</Comment>
+    <Graphics CenterX="710.6666666666666" CenterY="214.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000036904" />
+  </DataNode>
+  <DataNode TextLabel="Fzd9" GraphId="de1d9" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">frizzled homolog 9 -Drosophila</Comment>
+    <Graphics CenterX="710.6666666666666" CenterY="234.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000049551" />
+  </DataNode>
+  <DataNode TextLabel="Gnrhr" GraphId="e7921" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Gonadotropin-releasing hormone receptor</Comment>
+    <Graphics CenterX="710.6666666666666" CenterY="254.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000029255" />
+  </DataNode>
+  <DataNode TextLabel="Gpr6" GraphId="b3f35" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Sphingosine 1-phosphate receptor GPR6</Comment>
+    <Graphics CenterX="710.6666666666666" CenterY="274.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000046922" />
+  </DataNode>
+  <DataNode TextLabel="Gpr68" GraphId="cfb04" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Sphingosylphosphorylcholine receptor</Comment>
+    <Graphics CenterX="710.6666666666666" CenterY="294.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000047415" />
+  </DataNode>
+  <DataNode TextLabel="Gprc6a" GraphId="bdb62" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Isoform 3 of G-protein coupled receptor family C group 6 member A</Comment>
+    <Graphics CenterX="710.6666666666666" CenterY="314.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000019905" />
+  </DataNode>
+  <DataNode TextLabel="Grm1" GraphId="b80b0" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Isoform 2 of Metabotropic glutamate receptor 1</Comment>
+    <Graphics CenterX="710.6666666666666" CenterY="334.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000019828" />
+  </DataNode>
+  <DataNode TextLabel="Grm5" GraphId="f8645" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Isoform 2 of Metabotropic glutamate receptor 5</Comment>
+    <Graphics CenterX="710.6666666666666" CenterY="354.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000049583" />
+  </DataNode>
+  <DataNode TextLabel="Grpr" GraphId="a0163" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Gastrin-releasing peptide receptor</Comment>
+    <Graphics CenterX="710.6666666666666" CenterY="374.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000031364" />
+  </DataNode>
+  <DataNode TextLabel="Hcrtr1" GraphId="b6f10" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">hypocretin -orexin receptor 1</Comment>
+    <Graphics CenterX="710.6666666666666" CenterY="394.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000028778" />
+  </DataNode>
+  <DataNode TextLabel="Htr2a" GraphId="a3f07" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">5-hydroxytryptamine -serotonin receptor 2A</Comment>
+    <Graphics CenterX="710.6666666666666" CenterY="414.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000034997" />
+  </DataNode>
+  <DataNode TextLabel="Htr2b" GraphId="f7771" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">5-hydroxytryptamine -serotonin receptor 2B</Comment>
+    <Graphics CenterX="710.6666666666666" CenterY="434.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000026228" />
+  </DataNode>
+  <DataNode TextLabel="Htr2c" GraphId="d56ae" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">5-hydroxytryptamine -serotonin receptor 2C</Comment>
+    <Graphics CenterX="710.6666666666666" CenterY="454.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000041380" />
+  </DataNode>
+  <DataNode TextLabel="Il8ra" GraphId="dca2f" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">High affinity interleukin-8 receptor A</Comment>
+    <Graphics CenterX="710.6666666666666" CenterY="474.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000048480" />
+  </DataNode>
+  <DataNode TextLabel="Il8rb" GraphId="e2f87" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">High affinity interleukin-8 receptor B</Comment>
+    <Graphics CenterX="710.6666666666666" CenterY="494.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000026180" />
+  </DataNode>
+  <DataNode TextLabel="Kiss1r" GraphId="b0f1f" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">KiSS-1 receptor</Comment>
+    <Graphics CenterX="710.6666666666666" CenterY="514.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000035773" />
+  </DataNode>
+  <DataNode TextLabel="Ltb4r2" GraphId="da75e" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Leukotriene B4 receptor 2</Comment>
+    <Graphics CenterX="710.6666666666666" CenterY="534.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000040432" />
+  </DataNode>
+  <DataNode TextLabel="Npffr2" GraphId="da39e" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Neuropeptide FF receptor 2</Comment>
+    <Graphics CenterX="710.6666666666666" CenterY="554.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000035528" />
+  </DataNode>
+  <DataNode TextLabel="Ntsr1" GraphId="b6465" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">cdna:known chromosome:NCBIM37:2:180234681:180279684:1</Comment>
+    <Graphics CenterX="710.6666666666666" CenterY="574.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000027568" />
+  </DataNode>
+  <DataNode TextLabel="Ntsr2" GraphId="d5ed0" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">neurotensin receptor 2</Comment>
+    <Graphics CenterX="710.6666666666666" CenterY="594.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000020591" />
+  </DataNode>
+  <DataNode TextLabel="Oxgr1" GraphId="dcb6c" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">oxoglutarate -alpha-ketoglutarate receptor 1</Comment>
+    <Graphics CenterX="710.6666666666666" CenterY="614.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000044819" />
+  </DataNode>
+  <DataNode TextLabel="Oxtr" GraphId="b30ac" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">oxytocin receptor</Comment>
+    <Graphics CenterX="710.6666666666666" CenterY="634.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000049112" />
+  </DataNode>
+  <DataNode TextLabel="P2ry2" GraphId="b3c6b" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">âpurinergic receptor P2Y, G-protein coupled 2â</Comment>
+    <Graphics CenterX="710.6666666666666" CenterY="654.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000032860" />
+  </DataNode>
+  <DataNode TextLabel="P2ry4" GraphId="ae89f" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">âpyrimidinergic receptor P2Y, G-protein coupled, 4â</Comment>
+    <Graphics CenterX="710.6666666666666" CenterY="674.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000044359" />
+  </DataNode>
+  <DataNode TextLabel="P2ry6" GraphId="cdb90" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">âpyrimidinergic receptor P2Y, G-protein coupled, 6â</Comment>
+    <Graphics CenterX="815.0" CenterY="131.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000048779" />
+  </DataNode>
+  <DataNode TextLabel="Prokr1" GraphId="fc2ce" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Prokineticin receptor 1</Comment>
+    <Graphics CenterX="815.0" CenterY="151.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000049409" />
+  </DataNode>
+  <DataNode TextLabel="Prokr2" GraphId="c0528" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Prokineticin receptor 2</Comment>
+    <Graphics CenterX="815.0" CenterY="171.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000050558" />
+  </DataNode>
+  <DataNode TextLabel="Ptafr" GraphId="efd43" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Platelet-activating factor receptor</Comment>
+    <Graphics CenterX="815.0" CenterY="191.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000056529" />
+  </DataNode>
+  <DataNode TextLabel="Ptger1" GraphId="aedcf" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">prostaglandin E receptor 1 -subtype EP1</Comment>
+    <Graphics CenterX="815.0" CenterY="211.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000019464" />
+  </DataNode>
+  <DataNode TextLabel="Ptgfr" GraphId="c5721" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Prostaglandin F2-alpha receptor</Comment>
+    <Graphics CenterX="815.0" CenterY="231.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000028036" />
+  </DataNode>
+  <DataNode TextLabel="Qrfpr" GraphId="cc35b" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Pyroglutamylated RFamide peptide receptor</Comment>
+    <Graphics CenterX="815.0" CenterY="251.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000058400" />
+  </DataNode>
+  <DataNode TextLabel="Sstr2" GraphId="f2700" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Isoform B of Somatostatin receptor type 2</Comment>
+    <Graphics CenterX="815.0" CenterY="271.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000047904" />
+  </DataNode>
+  <DataNode TextLabel="Tacr1" GraphId="e7066" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Tachykinin receptor 1</Comment>
+    <Graphics CenterX="815.0" CenterY="291.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000030043" />
+  </DataNode>
+  <DataNode TextLabel="Tacr2" GraphId="fb836" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">cdna:known chromosome:NCBIM37:10:61715504:61728738:1</Comment>
+    <Graphics CenterX="815.0" CenterY="311.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000020081" />
+  </DataNode>
+  <DataNode TextLabel="Tacr3" GraphId="cf381" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Neuromedin-K receptor</Comment>
+    <Graphics CenterX="815.0" CenterY="331.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000028172" />
+  </DataNode>
+  <DataNode TextLabel="Tas2r103" GraphId="cd6cd" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">âtaste receptor, type 2, member 103â</Comment>
+    <Graphics CenterX="815.0" CenterY="351.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000030196" />
+  </DataNode>
+  <DataNode TextLabel="Tas2r105" GraphId="b297e" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">âtaste receptor, type 2, member 105â</Comment>
+    <Graphics CenterX="815.0" CenterY="371.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000051153" />
+  </DataNode>
+  <DataNode TextLabel="Tas2r108" GraphId="b5327" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">âtaste receptor, type 2, member 108â</Comment>
+    <Graphics CenterX="815.0" CenterY="391.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000037140" />
+  </DataNode>
+  <DataNode TextLabel="Tas2r110" GraphId="c80dd" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">âtaste receptor, type 2, member 110â</Comment>
+    <Graphics CenterX="815.0" CenterY="411.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000062952" />
+  </DataNode>
+  <DataNode TextLabel="Tas2r118" GraphId="e5d6c" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">âtaste receptor, type 2, member 118â</Comment>
+    <Graphics CenterX="815.0" CenterY="431.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000043865" />
+  </DataNode>
+  <DataNode TextLabel="Tas2r119" GraphId="f8bf8" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">âtaste receptor, type 2, member 119 â</Comment>
+    <Graphics CenterX="815.0" CenterY="451.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000045267" />
+  </DataNode>
+  <DataNode TextLabel="Tas2r121" GraphId="aaee5" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">âtaste receptor, type 2, member 121â</Comment>
+    <Graphics CenterX="815.0" CenterY="471.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000071150" />
+  </DataNode>
+  <DataNode TextLabel="Tas2r123" GraphId="ee42e" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">âtaste receptor, type 2, member 123â</Comment>
+    <Graphics CenterX="815.0" CenterY="491.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000057381" />
+  </DataNode>
+  <DataNode TextLabel="Tas2r126" GraphId="d68a7" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">âtaste receptor, type 2, member 126â</Comment>
+    <Graphics CenterX="815.0" CenterY="511.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000048284" />
+  </DataNode>
+  <DataNode TextLabel="Tas2r130" GraphId="c81fd" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">âtaste receptor, type 2, member 130â</Comment>
+    <Graphics CenterX="815.0" CenterY="531.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000054497" />
+  </DataNode>
+  <DataNode TextLabel="Tas2r137" GraphId="e615b" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">âtaste receptor, type 2, member 137 â</Comment>
+    <Graphics CenterX="815.0" CenterY="551.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000052850" />
+  </DataNode>
+  <DataNode TextLabel="Tas2r140" GraphId="c12bb" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">âtaste receptor, type 2, member 140â</Comment>
+    <Graphics CenterX="815.0" CenterY="571.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000071147" />
+  </DataNode>
+  <DataNode TextLabel="Tas2r144" GraphId="dcffa" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">âtaste receptor, type 2, member 144â</Comment>
+    <Graphics CenterX="815.0" CenterY="591.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000051917" />
+  </DataNode>
+  <DataNode TextLabel="Tbxa2r" GraphId="f9e24" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Thromboxane A2 receptor</Comment>
+    <Graphics CenterX="815.0" CenterY="611.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000034881" />
+  </DataNode>
+  <DataNode TextLabel="Trhr" GraphId="b7a71" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Thyrotropin-releasing hormone receptor</Comment>
+    <Graphics CenterX="815.0" CenterY="631.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000038760" />
+  </DataNode>
+  <DataNode TextLabel="Uts2r" GraphId="b0fcc" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Urotensin II receptor</Comment>
+    <Graphics CenterX="815.0" CenterY="651.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000039321" />
+  </DataNode>
+  <DataNode TextLabel="Xcr1" GraphId="e7ba2" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">chemokine -C motif receptor 1</Comment>
+    <Graphics CenterX="815.0" CenterY="671.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000060509" />
+  </DataNode>
+  <DataNode TextLabel="Adra1a" GraphId="cd7f6" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">âAdrenergic receptor, alpha 1a â</Comment>
+    <Graphics CenterX="1084.3333333333333" CenterY="728.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000045875" />
+  </DataNode>
+  <DataNode TextLabel="Ccr4" GraphId="c83b6" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">chemokine -C-C motif receptor 4</Comment>
+    <Graphics CenterX="964.3333333333334" CenterY="588.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000047898" />
+  </DataNode>
+  <DataNode TextLabel="Chrm1" GraphId="baafd" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">âcholinergic receptor, muscarinic 1, CNSâ</Comment>
+    <Graphics CenterX="964.3333333333334" CenterY="608.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000032773" />
+  </DataNode>
+  <DataNode TextLabel="Chrm2" GraphId="edfdf" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">âcholinergic receptor, muscarinic 2, cardiacâ</Comment>
+    <Graphics CenterX="964.3333333333334" CenterY="628.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000045613" />
+  </DataNode>
+  <DataNode TextLabel="Chrm3" GraphId="b6f35" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">âcholinergic receptor, muscarinic 3, cardiacâ</Comment>
+    <Graphics CenterX="964.3333333333334" CenterY="648.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000046159" />
+  </DataNode>
+  <DataNode TextLabel="Chrm4" GraphId="b253b" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Muscarinic acetylcholine receptor M4</Comment>
+    <Graphics CenterX="964.3333333333334" CenterY="668.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000040495" />
+  </DataNode>
+  <DataNode TextLabel="Chrm5" GraphId="e070c" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Muscarinic acetylcholine receptor M5</Comment>
+    <Graphics CenterX="964.3333333333334" CenterY="688.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000074939" />
+  </DataNode>
+  <DataNode TextLabel="Ffar1" GraphId="d5e5b" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Free fatty acid receptor 1</Comment>
+    <Graphics CenterX="964.3333333333334" CenterY="708.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000044453" />
+  </DataNode>
+  <DataNode TextLabel="Ffar2" GraphId="d56c5" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Free fatty acid receptor 2</Comment>
+    <Graphics CenterX="964.3333333333334" CenterY="728.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000051314" />
+  </DataNode>
+  <DataNode TextLabel="Ffar3" GraphId="d5a0a" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Free fatty acid receptor 3</Comment>
+    <Graphics CenterX="964.3333333333334" CenterY="748.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000019429" />
+  </DataNode>
+  <DataNode TextLabel="Gabbr1" GraphId="a36dc" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Isoform 1C of Gamma-aminobutyric acid type B receptor subunit 1</Comment>
+    <Graphics CenterX="964.3333333333334" CenterY="768.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000024462" />
+  </DataNode>
+  <DataNode TextLabel="Gabbr2" GraphId="b47ef" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Gamma-aminobutyric acid type B receptor subunit 2</Comment>
+    <Graphics CenterX="964.3333333333334" CenterY="788.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000039809" />
+  </DataNode>
+  <DataNode TextLabel="Galr2" GraphId="d972c" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">galanin receptor 2</Comment>
+    <Graphics CenterX="964.3333333333334" CenterY="808.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000020793" />
+  </DataNode>
+  <DataNode TextLabel="Mchr1" GraphId="fa0f6" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Melanin-concentrating hormone receptor 1</Comment>
+    <Graphics CenterX="964.3333333333334" CenterY="828.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000050164" />
+  </DataNode>
+  <DataNode TextLabel="Mrgprd" GraphId="c2e94" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Mas-related G-protein coupled receptor member D</Comment>
+    <Graphics CenterX="964.3333333333334" CenterY="848.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000051207" />
+  </DataNode>
+  <DataNode TextLabel="Ptger3" GraphId="a23b8" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Isoform Alpha of Prostaglandin E2 receptor EP3 subtype</Comment>
+    <Graphics CenterX="964.3333333333334" CenterY="868.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000040016" />
+  </DataNode>
+  <DataNode TextLabel="Adcyap1r1" GraphId="c0fc2" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Pituitary adenylate cyclase-activating polypeptide type I receptor</Comment>
+    <Graphics CenterX="967.3333333333334" CenterY="132.0" Width="73.33333333333333" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000029778" />
+  </DataNode>
+  <DataNode TextLabel="Adora2a" GraphId="d2e65" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">adenosine A2a receptor</Comment>
+    <Graphics CenterX="967.3333333333336" CenterY="152.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000020178" />
+  </DataNode>
+  <DataNode TextLabel="Adora2b" GraphId="cfb2c" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Putative uncharacterized protein</Comment>
+    <Graphics CenterX="967.3333333333336" CenterY="172.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000018500" />
+  </DataNode>
+  <DataNode TextLabel="Adrb1" GraphId="c0c14" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">âadrenergic receptor, beta 1 â</Comment>
+    <Graphics CenterX="967.3333333333336" CenterY="192.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000035283" />
+  </DataNode>
+  <DataNode TextLabel="Adrb2" GraphId="abcb6" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">âAdrenergic receptor, beta 2 â</Comment>
+    <Graphics CenterX="967.3333333333336" CenterY="212.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000045730" />
+  </DataNode>
+  <DataNode TextLabel="Adrb3" GraphId="e3727" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Isoform B of Beta-3 adrenergic receptor</Comment>
+    <Graphics CenterX="967.3333333333336" CenterY="232.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000031489" />
+  </DataNode>
+  <DataNode TextLabel="Avpr2" GraphId="b0ce1" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Arginine vasopressin receptor 2</Comment>
+    <Graphics CenterX="967.3333333333336" CenterY="252.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000031390" />
+  </DataNode>
+  <DataNode TextLabel="Calcr" GraphId="b3fa2" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">calcitonin receptor isoform b precursor</Comment>
+    <Graphics CenterX="967.3333333333336" CenterY="272.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000023964" />
+  </DataNode>
+  <DataNode TextLabel="Calcrl" GraphId="bfea1" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Calcitonin gene-related peptide type 1 receptor</Comment>
+    <Graphics CenterX="967.3333333333336" CenterY="292.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000059588" />
+  </DataNode>
+  <DataNode TextLabel="Crhr1" GraphId="d676f" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Corticotropin releasing hormone receptor variant 1f</Comment>
+    <Graphics CenterX="967.3333333333336" CenterY="312.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000018634" />
+  </DataNode>
+  <DataNode TextLabel="Crhr2" GraphId="bdc99" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Soluble corticotropin releasing factor receptor type 2 alpha</Comment>
+    <Graphics CenterX="967.3333333333336" CenterY="332.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000003476" />
+  </DataNode>
+  <DataNode TextLabel="Drd1a" GraphId="f6d7f" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">D-1A dopamine receptor</Comment>
+    <Graphics CenterX="967.3333333333336" CenterY="352.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000021478" />
+  </DataNode>
+  <DataNode TextLabel="Drd5" GraphId="c027e" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">D-1B dopamine receptor</Comment>
+    <Graphics CenterX="967.3333333333334" CenterY="372.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000039358" />
+  </DataNode>
+  <DataNode TextLabel="Fshr" GraphId="bb78c" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Follicle-stimulating hormone receptor</Comment>
+    <Graphics CenterX="967.3333333333331" CenterY="392.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000032937" />
+  </DataNode>
+  <DataNode TextLabel="Ghrhr" GraphId="c54cc" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">growth hormone releasing hormone receptor precursor</Comment>
+    <Graphics CenterX="967.3333333333328" CenterY="412.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000004654" />
+  </DataNode>
+  <DataNode TextLabel="Gipr" GraphId="c5b4b" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Isoform 1 of Gastric inhibitory polypeptide receptor</Comment>
+    <Graphics CenterX="967.3333333333328" CenterY="432.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000030406" />
+  </DataNode>
+  <DataNode TextLabel="Glp1r" GraphId="c043d" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">glucagon-like peptide 1 receptor</Comment>
+    <Graphics CenterX="967.3333333333328" CenterY="452.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000024027" />
+  </DataNode>
+  <DataNode TextLabel="Glp2r" GraphId="d9344" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Putative uncharacterized protein</Comment>
+    <Graphics CenterX="967.3333333333328" CenterY="472.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000049928" />
+  </DataNode>
+  <DataNode TextLabel="Gpbar1" GraphId="ef137" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">G-protein coupled bile acid receptor 1</Comment>
+    <Graphics CenterX="967.3333333333328" CenterY="492.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000064272" />
+  </DataNode>
+  <DataNode TextLabel="Gpr119" GraphId="ebf76" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Glucose-dependent insulinotropic receptor</Comment>
+    <Graphics CenterX="967.3333333333328" CenterY="512.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000051209" />
+  </DataNode>
+  <DataNode TextLabel="Hrh2" GraphId="fe1f3" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">histamine receptor H 2 isoform 1</Comment>
+    <Graphics CenterX="1086.6666666666667" CenterY="130.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000034987" />
+  </DataNode>
+  <DataNode TextLabel="Htr4" GraphId="b225a" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">â5 hydroxytryptamine -Serotonin receptor 4, isoform CRA_c â</Comment>
+    <Graphics CenterX="1086.6666666666667" CenterY="150.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000026322" />
+  </DataNode>
+  <DataNode TextLabel="Htr6" GraphId="d021c" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">5-hydroxytryptamine -serotonin receptor 6</Comment>
+    <Graphics CenterX="1086.6666666666667" CenterY="170.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000028747" />
+  </DataNode>
+  <DataNode TextLabel="Htr7" GraphId="a5dc3" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">5-hydroxytryptamine -serotonin receptor 7</Comment>
+    <Graphics CenterX="1086.6666666666667" CenterY="190.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000024798" />
+  </DataNode>
+  <DataNode TextLabel="Lhcgr" GraphId="ae8ea" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">luteinizing hormone/choriogonadotropin receptor</Comment>
+    <Graphics CenterX="1086.6666666666667" CenterY="210.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000024107" />
+  </DataNode>
+  <DataNode TextLabel="Mc1r" GraphId="fefe5" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">melanocortin 1 receptor</Comment>
+    <Graphics CenterX="1086.6666666666667" CenterY="230.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000074037" />
+  </DataNode>
+  <DataNode TextLabel="Mc2r" GraphId="d7002" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Adrenocorticotropic hormone receptor</Comment>
+    <Graphics CenterX="1086.6666666666667" CenterY="250.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000045569" />
+  </DataNode>
+  <DataNode TextLabel="Mc3r" GraphId="a1a38" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Melanocortin receptor 3</Comment>
+    <Graphics CenterX="1086.6666666666667" CenterY="270.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000038537" />
+  </DataNode>
+  <DataNode TextLabel="Mc4r" GraphId="ac91e" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Melanocortin 4 receptor</Comment>
+    <Graphics CenterX="1086.6666666666667" CenterY="290.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000047259" />
+  </DataNode>
+  <DataNode TextLabel="Mc5r" GraphId="f6651" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">melanocortin 5 receptor</Comment>
+    <Graphics CenterX="1086.6666666666667" CenterY="310.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000007480" />
+  </DataNode>
+  <DataNode TextLabel="P2ry5" GraphId="a658e" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Oleoyl-L-alpha-lysophosphatidic acid receptor</Comment>
+    <Graphics CenterX="1086.6666666666667" CenterY="330.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000033446" />
+  </DataNode>
+  <DataNode TextLabel="Ptger2" GraphId="f9d2e" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">prostaglandin E receptor 2 -subtype EP2</Comment>
+    <Graphics CenterX="1086.6666666666667" CenterY="350.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000037759" />
+  </DataNode>
+  <DataNode TextLabel="Ptger4" GraphId="fdeab" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">âProstaglandin E receptor 4 -Subtype EP4, isoform CRA_b â</Comment>
+    <Graphics CenterX="1086.6666666666667" CenterY="370.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000039942" />
+  </DataNode>
+  <DataNode TextLabel="Ptgir" GraphId="e6c0f" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">âProstaglandin I receptor -IP, isoform CRA_a â</Comment>
+    <Graphics CenterX="1086.6666666666667" CenterY="390.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000043017" />
+  </DataNode>
+  <DataNode TextLabel="Pth2r" GraphId="b362d" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Parathyroid hormone 2 receptor</Comment>
+    <Graphics CenterX="1086.6666666666667" CenterY="410.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000025946" />
+  </DataNode>
+  <DataNode TextLabel="Rxfp2" GraphId="d0fc9" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">relaxin/insulin-like family peptide receptor 2</Comment>
+    <Graphics CenterX="1086.6666666666667" CenterY="430.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000053368" />
+  </DataNode>
+  <DataNode TextLabel="Sctr" GraphId="e8b75" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">secretin receptor</Comment>
+    <Graphics CenterX="1086.6666666666667" CenterY="450.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000026387" />
+  </DataNode>
+  <DataNode TextLabel="Taar1" GraphId="b7d7c" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Trace amine-associated receptor 1</Comment>
+    <Graphics CenterX="1086.6666666666667" CenterY="470.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000056379" />
+  </DataNode>
+  <DataNode TextLabel="Tshr" GraphId="dd692" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">thyroid stimulating hormone receptor isoform 2 precursor</Comment>
+    <Graphics CenterX="1086.6666666666667" CenterY="490.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000020963" />
+  </DataNode>
+  <DataNode TextLabel="Vipr1" GraphId="acc28" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Vasoactive intestinal polypeptide receptor 1</Comment>
+    <Graphics CenterX="1086.6666666666667" CenterY="510.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000032528" />
+  </DataNode>
+  <DataNode TextLabel="Rxfp1" GraphId="cf43d" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">relaxin/insulin-like family peptide receptor 1</Comment>
+    <Graphics CenterX="1084.0" CenterY="780.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000034009" />
+  </DataNode>
+  <DataNode TextLabel="Gcgr" GraphId="ffaec" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">glucagon receptor precursor</Comment>
+    <Graphics CenterX="1083.0" CenterY="592.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000025127" />
+  </DataNode>
+  <DataNode TextLabel="Lpar4" GraphId="f6f25" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Lysophosphatidic acid receptor 4</Comment>
+    <Graphics CenterX="1083.0" CenterY="612.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000049929" />
+  </DataNode>
+  <DataNode TextLabel="Ptgdr" GraphId="b751a" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Prostaglandin D2 receptor</Comment>
+    <Graphics CenterX="1083.0" CenterY="632.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000071489" />
+  </DataNode>
+  <DataNode TextLabel="Pth1r" GraphId="a6c4c" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">parathyroid hormone receptor 1</Comment>
+    <Graphics CenterX="1083.0" CenterY="652.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000032492" />
+  </DataNode>
+  <DataNode TextLabel="Vipr2" GraphId="dc162" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Vasoactive intestinal polypeptide receptor 2</Comment>
+    <Graphics CenterX="1083.0" CenterY="672.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000011171" />
+  </DataNode>
+  <Label TextLabel="Unspecified Coupling" GraphId="a109d">
+    <Graphics CenterX="155.0" CenterY="106.0" Width="143.0" Height="20.0" ZOrder="28672" FillColor="ffffff" FontSize="13" Valign="Middle" />
+  </Label>
+  <Label TextLabel="G11" GraphId="d056a">
+    <Graphics CenterX="600.0" CenterY="735.0" Width="80.0" Height="20.0" ZOrder="28672" FillColor="ffffff" FontSize="13" Valign="Middle" />
+  </Label>
+  <Label TextLabel="G12, Gi" GraphId="c42dc">
+    <Graphics CenterX="710.0" CenterY="734.0" Width="80.0" Height="16.0" ZOrder="28672" FillColor="ffffff" FontSize="13" Valign="Middle" />
+  </Label>
+  <Label TextLabel="Gi" GraphId="e3833">
+    <Graphics CenterX="399.0" CenterY="107.0" Width="80.0" Height="20.0" ZOrder="28672" FillColor="ffffff" FontSize="13" Valign="Middle" />
+  </Label>
+  <Label TextLabel="Go, Gq, Gi, G13, G12" GraphId="b81c2">
+    <Graphics CenterX="822.0" CenterY="732.0" Width="138.0" Height="20.0" ZOrder="28672" FillColor="ffffff" FontSize="13" Valign="Middle" />
+  </Label>
+  <Label TextLabel="Go, Gq, Gi" GraphId="ffcdd">
+    <Graphics CenterX="818.0" CenterY="807.0" Width="80.0" Height="20.0" ZOrder="28672" FillColor="ffffff" FontSize="13" Valign="Middle" />
+  </Label>
+  <Label TextLabel="Gq" GraphId="c3007">
+    <Graphics CenterX="710.0" CenterY="95.0" Width="80.0" Height="20.0" ZOrder="28672" FillColor="ffffff" FontSize="13" Valign="Middle" />
+  </Label>
+  <Label TextLabel="Gq, G11" GraphId="b6a8b">
+    <Graphics CenterX="1084.0" CenterY="708.0" Width="80.0" Height="20.0" ZOrder="28672" FillColor="ffffff" FontSize="13" Valign="Middle" />
+  </Label>
+  <Label TextLabel="Gq, Gi" GraphId="db88f">
+    <Graphics CenterX="962.0" CenterY="566.0" Width="80.0" Height="20.0" ZOrder="28672" FillColor="ffffff" FontSize="13" Valign="Middle" />
+  </Label>
+  <Label TextLabel="Gs" GraphId="ba783">
+    <Graphics CenterX="1023.0" CenterY="98.0" Width="80.0" Height="20.0" ZOrder="28672" FillColor="ffffff" FontSize="13" Valign="Middle" />
+  </Label>
+  <Label TextLabel="Gs, Gi" GraphId="d1a0a">
+    <Graphics CenterX="1084.0" CenterY="760.0" Width="80.0" Height="20.0" ZOrder="28672" FillColor="ffffff" FontSize="13" Valign="Middle" />
+  </Label>
+  <Label TextLabel="Gs, Gq" GraphId="e2324">
+    <Graphics CenterX="1083.0" CenterY="572.0" Width="80.0" Height="20.0" ZOrder="28672" FillColor="ffffff" FontSize="13" Valign="Middle" />
+  </Label>
+  <Label TextLabel="GPCR Homology&#xA;Unspecified coupling" GraphId="f78e4">
+    <Graphics CenterX="347.0" CenterY="583.5" Width="124.0" Height="39.0" ZOrder="28672" FillColor="ffffff" FontSize="13" Valign="Middle" />
+  </Label>
+  <Label TextLabel="Non-Odorant Mouse GPCRs" GraphId="c2d78">
+    <Graphics CenterX="595.5" CenterY="44.0" Width="409.0" Height="54.0" ZOrder="28672" FillColor="ffffff" FontSize="20" Valign="Middle" />
+  </Label>
+  <InfoBox CenterX="5.1" CenterY="8.333333333333334" />
+  <Legend CenterX="1568.0" CenterY="118.53333333333333" />
+  <Biopax>
+    <bp:openControlledVocabulary xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#">
+      <bp:TERM xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">G protein mediated signaling pathway</bp:TERM>
+      <bp:ID xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PW:0000125</bp:ID>
+      <bp:Ontology xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Pathway Ontology</bp:Ontology>
+    </bp:openControlledVocabulary>
+  </Biopax>
+</Pathway>

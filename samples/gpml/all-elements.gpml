@@ -586,7 +586,8 @@
   </Shape>
   <Shape TextLabel="cell" GraphId="e31c4">
     <Attribute Key="org.pathvisio.CellularComponentProperty" Value="Cell" />
-    <Attribute Key="org.pathvisio.DoubleLineProperty" Value="Double" />
+    <Attribute Key="
+" Value="Double" />
     <Graphics CenterX="1600.612288111135" CenterY="65.70062802418718" Width="87.77810650887574" Height="75.94378698224847" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="RoundedRectangle" LineThickness="3.0" Color="c0c0c0" Rotation="0.0" />
   </Shape>
   <Shape TextLabel="nucleus" GraphId="de1ed">

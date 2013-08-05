@@ -1,0 +1,372 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Pathway xmlns="http://pathvisio.org/GPML/2013a" Name="TOR signaling" Last-Modified="2/20/2013" Organism="Caenorhabditis elegans" License="CC BY 2.0">
+  <Comment Source="WikiPathways-category">Cellular Process</Comment>
+  <Graphics BoardWidth="863.0" BoardHeight="693.0"/>
+  <DataNode TextLabel="let-363" GraphId="bd478" Type="GeneProduct" GroupRef="ebb54">
+    <Graphics CenterX="633.0" CenterY="445.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="WormBase" ID="B0261.2"/>
+  </DataNode>
+  <DataNode TextLabel="rsks-1" GraphId="fd009" Type="GeneProduct">
+    <Graphics CenterX="279.0" CenterY="526.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="WormBase" ID="Y47D3A.16"/>
+  </DataNode>
+  <DataNode TextLabel="rict-1" GraphId="e5c53" Type="GeneProduct" GroupRef="ebb54">
+    <Graphics CenterX="553.0" CenterY="445.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="WormBase" ID="F29C12.3"/>
+  </DataNode>
+  <DataNode TextLabel="daf-15" GraphId="db2a8" Type="GeneProduct" GroupRef="f17c5">
+    <Graphics CenterX="199.0" CenterY="447.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="WormBase" ID="C10C5.6"/>
+  </DataNode>
+  <DataNode TextLabel="let-363" GraphId="ad412" Type="GeneProduct" GroupRef="f17c5">
+    <Graphics CenterX="279.0" CenterY="447.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="WormBase" ID="B0261.2"/>
+  </DataNode>
+  <DataNode TextLabel="sinh-1" GraphId="c411d" Type="GeneProduct" GroupRef="ebb54">
+    <Graphics CenterX="713.0" CenterY="445.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="WormBase" ID="Y57A10A.20"/>
+  </DataNode>
+  <DataNode TextLabel="C10H11.8" GraphId="e0172" Type="GeneProduct" GroupRef="f17c5">
+    <Graphics CenterX="359.0" CenterY="447.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Ensembl" ID="C10H11.8"/>
+  </DataNode>
+  <DataNode TextLabel="rheb-1" GraphId="d6d4b" Type="GeneProduct">
+    <Graphics CenterX="279.0" CenterY="356.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="WormBase" ID="F54C8.5"/>
+  </DataNode>
+  <DataNode TextLabel="C10H11.8" GraphId="a53e1" Type="GeneProduct" GroupRef="ebb54">
+    <Graphics CenterX="793.0" CenterY="445.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Ensembl" ID="C10H11.8"/>
+  </DataNode>
+  <DataNode TextLabel="aak-2" GraphId="c38f6" Type="GeneProduct">
+    <Graphics CenterX="215.0" CenterY="266.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="WormBase" ID="T01C8.1"/>
+  </DataNode>
+  <DataNode TextLabel="par-4" GraphId="b9082" Type="GeneProduct">
+    <Graphics CenterX="88.0" CenterY="266.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="WormBase" ID="Y59A8B.14"/>
+  </DataNode>
+  <DataNode TextLabel="unc-51" GraphId="b1855" Type="GeneProduct">
+    <Graphics CenterX="172.48333333333332" CenterY="525.9833333333333" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="WormBase" ID="Y60A3A.1"/>
+  </DataNode>
+  <DataNode TextLabel="akt-1" GraphId="f101d" Type="GeneProduct" GroupRef="da475">
+    <Graphics CenterX="477.0" CenterY="264.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="WormBase" ID="C12D8.10"/>
+  </DataNode>
+  <DataNode TextLabel="akt-2" GraphId="c209b" Type="GeneProduct" GroupRef="da475">
+    <Graphics CenterX="477.0" CenterY="284.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="WormBase" ID="F28H6.1"/>
+  </DataNode>
+  <DataNode TextLabel="hif-1" GraphId="eac56" Type="GeneProduct">
+    <Graphics CenterX="376.0" CenterY="580.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="WormBase" ID="F38A6.3"/>
+  </DataNode>
+  <DataNode TextLabel="rps-6" GraphId="f5e32" Type="GeneProduct">
+    <Graphics CenterX="279.0" CenterY="579.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="WormBase" ID="Y71A12B.1"/>
+  </DataNode>
+  <DataNode TextLabel="sgk-1" GraphId="f92b8" Type="GeneProduct">
+    <Graphics CenterX="673.0" CenterY="524.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="WormBase" ID="W10G6.2"/>
+  </DataNode>
+  <DataNode TextLabel="mRNA translation" GraphId="a9e9f" Type="Pathway">
+    <Graphics CenterX="279.5" CenterY="629.0" Width="135.0" Height="20.0" ZOrder="32768" FontWeight="Bold" FontSize="12" Valign="Middle" ShapeType="None" Color="14961e"/>
+    <Xref Database="WikiPathways" ID="WP110"/>
+  </DataNode>
+  <DataNode TextLabel="Autophagy" GraphId="d3e1d" Type="Pathway">
+    <Graphics CenterX="173.5" CenterY="650.0" Width="117.0" Height="20.0" ZOrder="32768" FontWeight="Bold" FontSize="12" Valign="Middle" ShapeType="None" Color="14961e"/>
+    <Xref Database="" ID=""/>
+  </DataNode>
+  <DataNode TextLabel="Insulin signaling" GraphId="e8846" Type="Pathway">
+    <Graphics CenterX="477.5" CenterY="116.0" Width="117.0" Height="20.0" ZOrder="32768" FontWeight="Bold" FontSize="12" Valign="Middle" ShapeType="None" Color="14961e"/>
+    <Xref Database="" ID=""/>
+  </DataNode>
+  <DataNode TextLabel="daf-16" GraphId="dfeea" Type="GeneProduct">
+    <Graphics CenterX="478.75" CenterY="351.0" Width="72.5" Height="22.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="" ID=""/>
+  </DataNode>
+  <Interaction GraphId="id9371302e">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="279.0" Y="469.0" GraphRef="fadf0" RelX="0.0" RelY="1.0"/>
+      <Point X="279.0" Y="516.0" GraphRef="fd009" RelX="0.0" RelY="-1.0" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="id3989b6f5">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="279.0" Y="366.0" GraphRef="d6d4b" RelX="0.0" RelY="1.0"/>
+      <Point X="279.0" Y="425.0" GraphRef="fadf0" RelX="0.0" RelY="-1.0" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="id3e5e2e4a">
+    <Graphics ConnectorType="Elbow" ZOrder="12288" LineThickness="1.0">
+      <Point X="215.0" Y="276.0" GraphRef="c38f6" RelX="0.0" RelY="1.0"/>
+      <Point X="213.0" Y="425.0" GraphRef="fadf0" RelX="-0.5" RelY="-1.0" ArrowHead="TBar"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="idd42b0440">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="22.0" Y="197.0"/>
+      <Point X="821.0" Y="197.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="d4b87">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="22.0" Y="176.0"/>
+      <Point X="823.0" Y="177.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="id3b252faf">
+    <Graphics ZOrder="12288" LineStyle="Broken" LineThickness="1.0">
+      <Point X="215.5" Y="129.0" GraphRef="c8f3e" RelX="0.0" RelY="1.0"/>
+      <Point X="215.0" Y="256.0" GraphRef="c38f6" RelX="0.0" RelY="-1.0" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="idee58b89b">
+    <Graphics ZOrder="12288" LineStyle="Broken" LineThickness="1.0">
+      <Point X="87.0" Y="130.0" GraphRef="a5a02" RelX="0.0" RelY="1.0"/>
+      <Point X="88.0" Y="256.0" GraphRef="b9082" RelX="0.0" RelY="-1.0" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="idec4345f1">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="279.0" Y="469.0" GraphRef="fadf0" RelX="0.0" RelY="1.0"/>
+      <Point X="172.48333333333332" Y="515.9833333333333" GraphRef="b1855" RelX="0.0" RelY="-1.0" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="id9bc24778">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="128.0" Y="266.0" GraphRef="b9082" RelX="1.0" RelY="0.0"/>
+      <Point X="175.0" Y="266.0" GraphRef="c38f6" RelX="-1.0" RelY="0.0" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="idbe147f98">
+    <Graphics ConnectorType="Elbow" ZOrder="12288" LineThickness="1.0">
+      <Point X="673.0" Y="423.0" GraphRef="ae036" RelX="0.0" RelY="-1.0"/>
+      <Point X="525.0" Y="274.0" GraphRef="d3d8d" RelX="1.0" RelY="0.0" ArrowHead="TBar"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="id18821ae9">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="477.0" Y="294.0" GraphRef="c209b" RelX="0.0" RelY="1.0"/>
+      <Point X="345.0" Y="425.0" GraphRef="fadf0" RelX="0.5" RelY="-1.0" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="idb6302cc6">
+    <Graphics ZOrder="12288" LineStyle="Broken" LineThickness="1.0">
+      <Point X="477.5" Y="126.0" GraphRef="e8846" RelX="0.0" RelY="1.0"/>
+      <Point X="477.0" Y="254.0" GraphRef="f101d" RelX="0.0" RelY="-1.0" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="id3f9f2dc9">
+    <BiopaxRef>a2a</BiopaxRef>
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="279.0" Y="536.0" GraphRef="fd009" RelX="0.0" RelY="1.0"/>
+      <Point X="376.0" Y="570.0" GraphRef="eac56" RelX="0.0" RelY="-1.0" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="id56858d18">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="279.0" Y="536.0" GraphRef="fd009" RelX="0.0" RelY="1.0"/>
+      <Point X="279.0" Y="569.0" GraphRef="f5e32" RelX="0.0" RelY="-1.0" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="ida3c9caaa">
+    <Graphics ZOrder="12288" LineStyle="Broken" LineThickness="1.0">
+      <Point X="279.0" Y="589.0" GraphRef="f5e32" RelX="0.0" RelY="1.0"/>
+      <Point X="279.5" Y="619.0" GraphRef="a9e9f" RelX="0.0" RelY="-1.0" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="idb0f16b8e">
+    <Graphics ZOrder="12288" LineStyle="Broken" LineThickness="1.0">
+      <Point X="376.0" Y="590.0" GraphRef="eac56" RelX="0.0" RelY="1.0"/>
+      <Point X="376.5" Y="643.0" GraphRef="f4cc7" RelX="0.0" RelY="-1.0" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="idd295de11">
+    <Graphics ZOrder="12288" LineStyle="Broken" LineThickness="1.0">
+      <Point X="172.48333333333332" Y="535.9833333333333" GraphRef="b1855" RelX="0.0" RelY="1.0"/>
+      <Point X="173.5" Y="640.0" GraphRef="d3e1d" RelX="0.0" RelY="-1.0" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="id90d48d3f">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="342.0" Y="255.0" GraphRef="b32d2" RelX="0.0" RelY="1.0"/>
+      <Point X="315.0" Y="430.0" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="id76ee40c">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="673.0" Y="467.0" GraphRef="ae036" RelX="0.0" RelY="1.0"/>
+      <Point X="673.0" Y="514.0" GraphRef="f92b8" RelX="0.0" RelY="-1.0" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="id444e17e4">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="476.0" Y="294.0"/>
+      <Point X="476.0" Y="338.0" ArrowHead="TBar"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="id6d3f617d">
+    <BiopaxRef>b90</BiopaxRef>
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="477.0" Y="364.0"/>
+      <Point X="228.0" Y="421.0" ArrowHead="TBar"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Label TextLabel="TOR complex 1" GraphId="fcd75">
+    <Graphics CenterX="155.0" CenterY="409.0" Width="112.0" Height="20.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="14" Valign="Middle"/>
+  </Label>
+  <Label TextLabel="TOR complex 2" GraphId="f30c0">
+    <Graphics CenterX="538.0" CenterY="411.0" Width="112.0" Height="20.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="14" Valign="Middle"/>
+  </Label>
+  <Label TextLabel="High AMP:ATP" GraphId="c8f3e">
+    <Graphics CenterX="215.5" CenterY="119.0" Width="95.0" Height="20.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="12" Valign="Middle" Color="660066"/>
+  </Label>
+  <Label TextLabel="Energy stress" GraphId="a5a02">
+    <Graphics CenterX="87.0" CenterY="120.0" Width="106.0" Height="20.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="12" Valign="Middle" Color="660066"/>
+  </Label>
+  <Label TextLabel="Amino acid transporter" GraphId="c39c4">
+    <Graphics CenterX="296.5" CenterY="150.0" Width="125.0" Height="20.0" ZOrder="28672" FillColor="ffffff" FontSize="10" Valign="Middle"/>
+  </Label>
+  <Label TextLabel="amino acids" GraphId="b32d2">
+    <Graphics CenterX="342.0" CenterY="245.0" Width="80.0" Height="20.0" ZOrder="28672" FillColor="ffffff" FontSize="10" Valign="Middle"/>
+  </Label>
+  <Label TextLabel="life span extention" GraphId="f4cc7">
+    <Graphics CenterX="376.5" CenterY="653.0" Width="123.0" Height="20.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="12" Valign="Middle" Color="660066"/>
+  </Label>
+  <Shape GraphId="f614e">
+    <Graphics CenterX="378.98333333333335" CenterY="182.5" Width="16.033333333333335" Height="47.0" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="Rectangle" Rotation="0.0"/>
+  </Shape>
+  <Shape GraphId="adf32">
+    <Graphics CenterX="349.98333333333335" CenterY="182.5" Width="16.033333333333335" Height="47.0" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="Rectangle" Rotation="0.0"/>
+  </Shape>
+  <Shape GraphId="e8066">
+    <Graphics CenterX="354.48333333333335" CenterY="146.0" Width="9.033333333333333" Height="10.0" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="Oval" Rotation="0.0"/>
+  </Shape>
+  <Shape GraphId="f9a65">
+    <Graphics CenterX="353.48333333333335" CenterY="125.0" Width="9.033333333333333" Height="10.0" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="Oval" Rotation="0.0"/>
+  </Shape>
+  <Shape GraphId="f587d">
+    <Graphics CenterX="363.48333333333335" CenterY="135.0" Width="9.033333333333333" Height="10.0" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="Oval" Rotation="0.0"/>
+  </Shape>
+  <Shape GraphId="cfb91">
+    <Graphics CenterX="344.48333333333335" CenterY="136.0" Width="9.033333333333333" Height="10.0" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="Oval" Rotation="0.0"/>
+  </Shape>
+  <Shape GraphId="ec3ab">
+    <Graphics CenterX="367.48333333333335" CenterY="118.0" Width="9.033333333333333" Height="10.0" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="Oval" Rotation="0.0"/>
+  </Shape>
+  <Shape GraphId="e4ab4">
+    <Graphics CenterX="373.48333333333335" CenterY="145.0" Width="9.033333333333333" Height="10.0" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="Oval" Rotation="0.0"/>
+  </Shape>
+  <Shape GraphId="fff3d">
+    <Graphics CenterX="358.48333333333335" CenterY="231.0" Width="9.033333333333333" Height="10.0" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="Oval" Rotation="0.0"/>
+  </Shape>
+  <Shape GraphId="b6960">
+    <Graphics CenterX="362.48333333333335" CenterY="214.0" Width="9.033333333333333" Height="10.0" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="Oval" Rotation="0.0"/>
+  </Shape>
+  <Shape GraphId="e7fb4">
+    <Graphics CenterX="348.48333333333335" CenterY="221.0" Width="9.033333333333333" Height="10.0" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="Oval" Rotation="0.0"/>
+  </Shape>
+  <Shape GraphId="aaaa0">
+    <Graphics CenterX="339.48333333333335" CenterY="232.0" Width="9.033333333333333" Height="10.0" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="Oval" Rotation="0.0"/>
+  </Shape>
+  <Group GroupId="f17c5" GraphId="fadf0" Style="Complex"/>
+  <Group GroupId="ebb54" GraphId="ae036" Style="Complex"/>
+  <Group GroupId="da475" GraphId="d3d8d" Style="Group"/>
+  <InfoBox CenterX="0.0" CenterY="0.0"/>
+  <Biopax>
+    <bp:PublicationXref xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" rdf:id="b27">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">17041621</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Upstream of the mammalian target of rapamycin: do all roads pass through mTOR?</bp:TITLE>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Oncogene</bp:SOURCE>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2006</bp:YEAR>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Corradetti MN</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Guan KL</bp:AUTHORS>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" rdf:id="b36">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">19143648</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Rag proteins regulate amino-acid-induced mTORC1 signalling.</bp:TITLE>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Biochem Soc Trans</bp:SOURCE>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2009</bp:YEAR>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Sancak Y</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Sabatini DM</bp:AUTHORS>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" rdf:id="fbe">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">17680028</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Expanding mTOR signaling.</bp:TITLE>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Cell Res</bp:SOURCE>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2007</bp:YEAR>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Yang Q</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Guan KL</bp:AUTHORS>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" rdf:id="f9c">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">16469695</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">TOR signaling in growth and metabolism.</bp:TITLE>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Cell</bp:SOURCE>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2006</bp:YEAR>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Wullschleger S</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Loewith R</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Hall MN</bp:AUTHORS>
+    </bp:PublicationXref>
+    <bp:openControlledVocabulary xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#">
+      <bp:TERM xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">mTOR signaling pathway</bp:TERM>
+      <bp:ID xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PW:0000180</bp:ID>
+      <bp:Ontology xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Pathway Ontology</bp:Ontology>
+    </bp:openControlledVocabulary>
+    <bp:PublicationXref xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" rdf:id="a76">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">16516475</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Complexity of the TOR signaling network.</bp:TITLE>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Trends Cell Biol</bp:SOURCE>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2006</bp:YEAR>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Inoki K</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Guan KL</bp:AUTHORS>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" rdf:id="b90">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">15253933</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">The TOR pathway interacts with the insulin sugnaling pathway to regulate C. elegans larval development, metabolisma and lifespan </bp:TITLE>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Development</bp:SOURCE>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2004</bp:YEAR>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Jia, K.</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Chen, D.</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Riddle, D.L.</bp:AUTHORS>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" rdf:id="a2a">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">19461873</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">HIF-1 modulates dietary restriction-mediated lifespan extension via IRE-1 in Caenorhabditis elegans.</bp:TITLE>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PLoS Genet</bp:SOURCE>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2009</bp:YEAR>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Chen D</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Thomas EL</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Kapahi P</bp:AUTHORS>
+    </bp:PublicationXref>
+  </Biopax>
+</Pathway>

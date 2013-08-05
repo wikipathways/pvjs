@@ -1,0 +1,304 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Pathway xmlns="http://pathvisio.org/GPML/2013a" Name="Arginine Biosynthesis" Organism="Saccharomyces cerevisiae">
+  <Comment Source="GenMAPP remarks">Based on http://pathway.yeastgenome.org/biocyc/</Comment>
+  <Comment Source="WikiPathways-category">Metabolic Process</Comment>
+  <Comment Source="WikiPathways-description">The first five steps of arginine biosynthesis in S. cerevisiae take place in the mitochondrion (CITS: [11553611])(CITS: [Hinnebusch]). This part of the pathway is known as the acetylated derivatives cycle because the acetyl group that is added to L-glutamate in the first step of the pathway is recycled via N-acetylglutamate generated in the fifth step. The enzymes that catalyze the second and third steps are encoded by a single gene (ARG5,6) that is translated into a pre-protein which is imported into mitochondria and cleaved there to yield two enzymes, N-acetylglutamate kinase and N-acetylglutamyl-phosphate reductase (CITS: [1649049]). These enzymes form a complex with each other and with N-acetylglutamate synthase, the first enzyme in the pathway, which may have implications for regulation of their activity (CITS: [11553611]).  The mitochondrial steps of the arginine biosynthesis pathway result in the formation of ornithine, which is exported to the cytoplasm by the transporter Ort1p (CITS: [8798783]). In the cytoplasm, L-ornithine is converted to L-arginine in three reactions mediated by ornithine carbamoyltransferase, arginosuccinate synthase, and argininosuccinate lyase.  Transcription of genes of the arginine biosynthetic pathway, as well as of other amino acid biosynthetic pathways, is activated by the transcription factor Gcn4p under conditions of amino acid starvation (CITS: [11390663])(CITS: [Hinnebusch]). Transcription of ARG1, ARG3, ARG5,6, and ARG8 is also repressed in the presence of arginine by the ArgR/Mcm1p complex, which consists of Arg80p, Arg81p, Arg82p, and Mcm1p (CITS: [14563547]). The transcriptional activator Gcn4p interacts with subunits of the ArgR/Mcm1p repressor, allowing for fine-tuning of transcriptional control in response to arginine availability (CITS: [15289616]). 
+SOURCE: SGD pathways, http://pathway.yeastgenome.org/server.html</Comment>
+  <BiopaxRef>ktn</BiopaxRef>
+  <BiopaxRef>ntr</BiopaxRef>
+  <Graphics BoardWidth="961.1666666666667" BoardHeight="852.8333333333334"/>
+  <DataNode TextLabel="ARG2" GraphId="aba" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="ARG2"/>
+    <Graphics CenterX="283.3333333333333" CenterY="53.333333333333336" Width="41.9841" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="SGD" ID="S000003607"/>
+  </DataNode>
+  <DataNode TextLabel="ARG5,6" GraphId="cfd" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="ARG5,6"/>
+    <Graphics CenterX="556.6666666666666" CenterY="166.66666666666666" Width="53.333333333333336" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="SGD" ID="S000000871"/>
+  </DataNode>
+  <DataNode TextLabel="ARG5,6" GraphId="acd" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="ARG5,6"/>
+    <Graphics CenterX="383.70637785800244" CenterY="271.85318892900113" Width="53.333333333333336" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="SGD" ID="S000000871"/>
+  </DataNode>
+  <DataNode TextLabel="ARG8" GraphId="ca7" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="ARG8"/>
+    <Graphics CenterX="186.57039711191342" CenterY="388.79663056558365" Width="41.9841" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="SGD" ID="S000005500"/>
+  </DataNode>
+  <DataNode TextLabel="ECM40" GraphId="e52" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="ECM40"/>
+    <Graphics CenterX="323.70637785800244" CenterY="487.5932611311673" Width="49.61756666666667" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="SGD" ID="S000004666"/>
+  </DataNode>
+  <DataNode TextLabel="ARG3" GraphId="e47" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="ARG3"/>
+    <Graphics CenterX="670.8303249097471" CenterY="486.38989169675096" Width="41.9841" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="SGD" ID="S000003624"/>
+  </DataNode>
+  <DataNode TextLabel="ARG1" GraphId="cba" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="ARG1"/>
+    <Graphics CenterX="878.1468110709988" CenterY="654.1636582430805" Width="41.9841" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="SGD" ID="S000005419"/>
+  </DataNode>
+  <DataNode TextLabel="ARG4" GraphId="a5f" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="ARG4"/>
+    <Graphics CenterX="643.3333333333334" CenterY="763.3333333333334" Width="41.9841" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="SGD" ID="S000001060"/>
+  </DataNode>
+  <DataNode TextLabel="L-glutamate" GraphId="f99" Type="Metabolite">
+    <Graphics CenterX="50.0" CenterY="66.66666666666667" Width="95.33333333333333" Height="19.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff"/>
+    <Xref Database="CAS" ID="56-86-0"/>
+  </DataNode>
+  <DataNode TextLabel="acetyl-CoA" GraphId="b2e" Type="Metabolite">
+    <Graphics CenterX="223.33333333333334" CenterY="103.33333333333333" Width="88.33333333333333" Height="19.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff"/>
+    <Xref Database="CAS" ID="72-89-9"/>
+  </DataNode>
+  <DataNode TextLabel="Coenzyme A" GraphId="a20" Type="Metabolite">
+    <Graphics CenterX="339.56685499058375" CenterY="103.33333333333333" Width="102.33333333333333" Height="19.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff"/>
+    <Xref Database="CAS" ID="64885-97-8"/>
+  </DataNode>
+  <DataNode TextLabel="ATP" GraphId="b97" Type="Metabolite">
+    <Graphics CenterX="640.0" CenterY="126.66666666666667" Width="37.333333333333336" Height="19.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff"/>
+    <Xref Database="CAS" ID="1927-31-7"/>
+  </DataNode>
+  <DataNode TextLabel="ADP" GraphId="a2e" Type="Metabolite">
+    <Graphics CenterX="640.0" CenterY="213.33333333333334" Width="39.333333333333336" Height="19.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff"/>
+    <Xref Database="CAS" ID="58-64-0"/>
+  </DataNode>
+  <DataNode TextLabel="phosphate" GraphId="fc0" GroupRef="a0971" Type="Metabolite">
+    <Graphics CenterX="314.175691937425" CenterY="334.259927797834" Width="87.33333333333333" Height="19.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff"/>
+    <Xref Database="CAS" ID="14265-44-2"/>
+  </DataNode>
+  <DataNode TextLabel="NADPH" GraphId="e07" GroupRef="c7059" Type="Metabolite">
+    <Graphics CenterX="450.8303249097474" CenterY="354.53670276774966" Width="63.333333333333336" Height="19.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff"/>
+    <Xref Database="CAS" ID="2646-71-1"/>
+  </DataNode>
+  <DataNode TextLabel="L-glutamate" GraphId="be1" Type="Metabolite">
+    <Graphics CenterX="70.0" CenterY="346.6666666666667" Width="95.33333333333333" Height="19.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff"/>
+    <Xref Database="CAS" ID="56-86-0"/>
+  </DataNode>
+  <DataNode TextLabel="L-glutamate" GraphId="f6a" Type="Metabolite">
+    <Graphics CenterX="253.33333333333334" CenterY="546.6666666666666" Width="95.33333333333333" Height="19.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff"/>
+    <Xref Database="CAS" ID="56-86-0"/>
+  </DataNode>
+  <DataNode TextLabel="L-ornithine" GraphId="c0c" Type="Metabolite">
+    <Graphics CenterX="503.3333333333333" CenterY="503.3333333333333" Width="88.33333333333333" Height="19.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff"/>
+    <Xref Database="CAS" ID="70-26-8"/>
+  </DataNode>
+  <DataNode TextLabel="phosphate" GraphId="f7e" Type="Metabolite">
+    <Graphics CenterX="733.7063778580026" CenterY="540.0" Width="87.33333333333333" Height="19.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff"/>
+    <Xref Database="CAS" ID="14265-44-2"/>
+  </DataNode>
+  <DataNode TextLabel="citrulline" GraphId="cee" Type="Metabolite">
+    <Graphics CenterX="849.5668549905838" CenterY="503.3333333333333" Width="70.33333333333333" Height="19.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff"/>
+    <Xref Database="CAS" ID="372-75-8"/>
+  </DataNode>
+  <DataNode TextLabel="ATP" GraphId="f22" GroupRef="c64d4" Type="Metabolite">
+    <Graphics CenterX="758.0625752105901" CenterY="600.2767749699157" Width="37.333333333333336" Height="19.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff"/>
+    <Xref Database="CAS" ID="1927-31-7"/>
+  </DataNode>
+  <DataNode TextLabel="pyrophosphate" GraphId="e7d" GroupRef="c5c0c" Type="Metabolite">
+    <Graphics CenterX="746.3056558363423" CenterY="706.6666666666666" Width="122.33333333333333" Height="19.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff"/>
+    <Xref Database="CAS" ID="2466-09-3"/>
+  </DataNode>
+  <DataNode TextLabel="L-arginine" GraphId="be3" Type="Metabolite">
+    <Graphics CenterX="483.3333333333333" CenterY="776.6666666666666" Width="82.33333333333333" Height="19.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff"/>
+    <Xref Database="CAS" ID="74-79-3"/>
+  </DataNode>
+  <Interaction GraphId="id359da20">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="97.66666666666666" Y="66.66666666666667" GraphRef="f99" RelX="1.0" RelY="0.0"/>
+      <Point X="504.6337099811677" Y="66.66666666666667" GraphRef="f03" RelX="-1.0" RelY="0.0" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="id2735e061">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="585.8003766478344" Y="76.16666666666667" GraphRef="f03" RelX="0.0" RelY="1.0"/>
+      <Point X="586.6666666666666" Y="280.5" GraphRef="e43" RelX="0.0" RelY="-1.0" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="id8b53d689">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="477.0" Y="290.0" GraphRef="e43" RelX="-1.0" RelY="0.0"/>
+      <Point X="249.0668549905839" Y="287.2264595103578" GraphRef="e42" RelX="1.0" RelY="0.0" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="id87534d8">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="149.95715630885127" Y="299.5" GraphRef="e42" RelX="0.0" RelY="1.0"/>
+      <Point X="149.34369284845013" Y="495.7165725047081" GraphRef="c50" RelX="0.0" RelY="-1.0" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="idc78ebe27">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="215.65489472217115" Y="505.2165725047081" GraphRef="c50" RelX="1.0" RelY="0.0"/>
+      <Point X="459.16666666666663" Y="503.33333333333326" GraphRef="c0c" RelX="-1.0" RelY="0.0" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="id6c09e56c">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="547.5" Y="503.33333333333326" GraphRef="c0c" RelX="1.0" RelY="0.0"/>
+      <Point X="814.4001883239171" Y="503.33333333333326" GraphRef="cee" RelX="-1.0" RelY="0.0" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="id3b559cfa">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="849.5668549905838" Y="512.8333333333333" GraphRef="cee" RelX="0.0" RelY="1.0"/>
+      <Point X="850.0" Y="767.1666666666666" GraphRef="ce9" RelX="0.0" RelY="-1.0" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="id83ca31cb">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="768.8333333333333" Y="776.6666666666666" GraphRef="ce9" RelX="-1.0" RelY="0.0"/>
+      <Point X="524.5" Y="776.6666666666666" GraphRef="be3" RelX="1.0" RelY="0.0" ArrowHead="Arrow"/>
+      <Anchor Position="0.19723396283840816" Shape="None" GraphId="ca5f0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="id95fe819a">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="720.6425017464823" Y="776.6666666666666" GraphRef="ca5f0" RelX="0.0" RelY="0.0"/>
+      <Point X="676.6666666666667" Y="803.8333333333334" GraphRef="bff" RelX="0.0" RelY="-1.0" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="idc26c0965">
+    <Graphics ConnectorType="Curved" ZOrder="12288" LineThickness="1.0">
+      <Point X="223.33333333333334" Y="93.83333333333333" GraphRef="b2e" RelX="0.0" RelY="-1.0"/>
+      <Point X="281.45009416195853" Y="66.18531889290013"/>
+      <Point X="339.5668549905837" Y="93.83333333333333" GraphRef="a20" RelX="0.0" RelY="-1.0" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="id67a123e9">
+    <Graphics ConnectorType="Curved" ZOrder="12288" LineThickness="1.0">
+      <Point X="621.3333333333333" Y="126.66666666666669" GraphRef="b97" RelX="-1.0" RelY="0.0"/>
+      <Point X="584.8375451263538" Y="170.0"/>
+      <Point X="620.3333333333333" Y="213.33333333333334" GraphRef="a2e" RelX="-1.0" RelY="0.0" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="id6a2851c2">
+    <Graphics ConnectorType="Curved" ZOrder="12288" LineThickness="1.0">
+      <Point X="450.83032490974733" Y="320.37003610108303" GraphRef="a55ee" RelX="0.0" RelY="-1.0"/>
+      <Point X="382.50300842358615" Y="286.40192539109506"/>
+      <Point X="314.175691937425" Y="316.759927797834" GraphRef="c5301" RelX="0.0" RelY="-1.0" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="idab0731ac">
+    <Graphics ConnectorType="Curved" ZOrder="12288" LineThickness="1.0">
+      <Point X="117.66666666666666" Y="346.6666666666667" GraphRef="be1" RelX="1.0" RelY="0.0"/>
+      <Point X="151.6245487364621" Y="390.0"/>
+      <Point X="117.66666666666666" Y="433.3333333333333" GraphRef="d87" RelX="1.0" RelY="0.0" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="idf361fccd">
+    <Graphics ConnectorType="Curved" ZOrder="12288" LineThickness="1.0">
+      <Point X="253.33333333333334" Y="537.1666666666666" GraphRef="f6a" RelX="0.0" RelY="-1.0"/>
+      <Point X="322.73164861612514" Y="503.0084235860409"/>
+      <Point X="392.12996389891697" Y="537.1666666666666" GraphRef="ec3" RelX="0.0" RelY="-1.0" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="id2198b188">
+    <Graphics ConnectorType="Curved" ZOrder="12288" LineThickness="1.0">
+      <Point X="600.5535499398316" Y="530.5" GraphRef="da2" RelX="0.0" RelY="-1.0"/>
+      <Point X="667.1299638989171" Y="503.0084235860409"/>
+      <Point X="733.7063778580027" Y="530.5" GraphRef="f7e" RelX="0.0" RelY="-1.0" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="id3b83002e">
+    <Graphics ConnectorType="Curved" ZOrder="12288" LineThickness="1.0">
+      <Point X="811.729241877257" Y="609.2117930204572" GraphRef="e76db" RelX="1.0" RelY="0.0"/>
+      <Point X="851.9855595667871" Y="653.7725631768952"/>
+      <Point X="815.4723225030091" Y="698.3333333333333" GraphRef="a127d" RelX="1.0" RelY="0.0" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Label TextLabel="N-acetyl-L-glutamate" GraphId="f03">
+    <Graphics CenterX="585.8003766478344" CenterY="66.66666666666667" Width="162.33333333333334" Height="19.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="12" Valign="Middle"/>
+  </Label>
+  <Label TextLabel="N-acetylglutamyl-phosphate" GraphId="e43">
+    <Graphics CenterX="586.6666666666666" CenterY="290.0" Width="219.33333333333334" Height="19.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="12" Valign="Middle"/>
+  </Label>
+  <Label TextLabel="H+" GraphId="ce1" GroupRef="c7059">
+    <Graphics CenterX="450.8303249097474" CenterY="337.87003610108303" Width="26.333333333333332" Height="19.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="12" Valign="Middle"/>
+  </Label>
+  <Label TextLabel="NADP" GraphId="b7f" GroupRef="a0971">
+    <Graphics CenterX="314.175691937425" CenterY="354.259927797834" Width="51.333333333333336" Height="19.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="12" Valign="Middle"/>
+  </Label>
+  <Label TextLabel="N-acetylglutamate semialdehyde" GraphId="e42">
+    <Graphics CenterX="149.95715630885127" CenterY="287.2264595103578" Width="198.21939736346525" Height="24.547080979284424" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="12" Valign="Middle"/>
+  </Label>
+  <Label TextLabel="2-oxoglutarate" GraphId="d87">
+    <Graphics CenterX="60.0" CenterY="433.3333333333333" Width="115.33333333333333" Height="19.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="12" Valign="Middle"/>
+  </Label>
+  <Label TextLabel="N-alpha-acetylornithine" GraphId="c50">
+    <Graphics CenterX="149.34369284845013" CenterY="505.2165725047081" Width="132.62240374744206" Height="19.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="12" Valign="Middle"/>
+  </Label>
+  <Label TextLabel="N-acetyl-L-glutamate" GraphId="ec3">
+    <Graphics CenterX="392.12996389891697" CenterY="546.6666666666666" Width="162.33333333333334" Height="19.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="12" Valign="Middle"/>
+  </Label>
+  <Label TextLabel="carbamoyl-phosphate" GraphId="da2">
+    <Graphics CenterX="600.5535499398314" CenterY="540.0" Width="172.33333333333334" Height="19.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="12" Valign="Middle"/>
+  </Label>
+  <Label TextLabel="L-aspartate" GraphId="ba8" GroupRef="c64d4">
+    <Graphics CenterX="758.0625752105901" CenterY="618.1468110709988" Width="91.33333333333333" Height="19.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="12" Valign="Middle"/>
+  </Label>
+  <Label TextLabel="L-arginino-succinate" GraphId="ce9">
+    <Graphics CenterX="850.0" CenterY="776.6666666666666" Width="162.33333333333334" Height="19.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="12" Valign="Middle"/>
+  </Label>
+  <Label TextLabel="AMP" GraphId="d75" GroupRef="c5c0c">
+    <Graphics CenterX="746.3056558363423" CenterY="690.0" Width="40.333333333333336" Height="19.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="12" Valign="Middle"/>
+  </Label>
+  <Label TextLabel="fumarate" GraphId="bff">
+    <Graphics CenterX="676.6666666666666" CenterY="813.3333333333334" Width="72.33333333333333" Height="19.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="12" Valign="Middle"/>
+  </Label>
+  <Group GroupId="c7059" GraphId="a55ee"/>
+  <Group GroupId="a0971" GraphId="c5301"/>
+  <Group GroupId="c64d4" GraphId="e76db"/>
+  <Group GroupId="c5c0c" GraphId="a127d"/>
+  <InfoBox CenterX="11.666666666666666" CenterY="751.6666666666666"/>
+  <Biopax>
+    <bp:openControlledVocabulary xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#">
+      <bp:TERM xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">arginine biosynthetic pathway</bp:TERM>
+      <bp:ID xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PW:0001260</bp:ID>
+      <bp:Ontology xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Pathway Ontology</bp:Ontology>
+    </bp:openControlledVocabulary>
+    <bp:PublicationXref xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" rdf:id="ktn">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">12603335</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">The N-acetylglutamate synthase/N-acetylglutamate kinase metabolon of Saccharomyces cerevisiae allows co-ordinated feedback regulation of the first two steps in arginine biosynthesis.</bp:TITLE>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Eur J Biochem</bp:SOURCE>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2003</bp:YEAR>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Pauwels K</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Abadjieva A</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Hilven P</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Stankiewicz A</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Crabeel M</bp:AUTHORS>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" rdf:id="ntr">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">11553611</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">A new yeast metabolon involving at least the two first enzymes of arginine biosynthesis: acetylglutamate synthase activity requires complex formation with acetylglutamate kinase.</bp:TITLE>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">J Biol Chem</bp:SOURCE>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2001</bp:YEAR>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Abadjieva A</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Pauwels K</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Hilven P</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Crabeel M</bp:AUTHORS>
+    </bp:PublicationXref>
+  </Biopax>
+</Pathway>

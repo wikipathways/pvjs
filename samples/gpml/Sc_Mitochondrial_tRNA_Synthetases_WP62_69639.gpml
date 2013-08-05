@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Pathway xmlns="http://pathvisio.org/GPML/2013a" Name="Mitochondrial tRNA Synthetases" Organism="Saccharomyces cerevisiae">
+  <Comment Source="GenMAPP notes"/>
+  <Comment Source="GenMAPP remarks">Based on http://pathway.yeastgenome.org/biocyc/</Comment>
+  <Comment Source="WikiPathways-category">Metabolic Process</Comment>
+  <Graphics BoardWidth="356.66666666666663" BoardHeight="541.6666666666667"/>
+  <DataNode TextLabel="pre AsnRS" GraphId="e06" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="Asparaginyl-tRNA Synthetase Precursor"/>
+    <Graphics CenterX="260.0" CenterY="96.66666666666667" Width="133.33333333333334" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="SGD" ID="S000000618"/>
+  </DataNode>
+  <DataNode TextLabel="AspRS" GraphId="aa5" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="Aspartyl-tRNA Synthetase"/>
+    <Graphics CenterX="260.0" CenterY="136.66666666666666" Width="133.33333333333334" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="SGD" ID="S000006025"/>
+  </DataNode>
+  <DataNode TextLabel="pre ArgRS" GraphId="a39" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="Arginyl-tRNA Synthetase Precursor"/>
+    <Graphics CenterX="260.0" CenterY="76.66666666666667" Width="133.33333333333334" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="SGD" ID="S000001133"/>
+  </DataNode>
+  <DataNode TextLabel="pre ValRS" GraphId="be3" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="Valyl-tRNA Synthetase Precursor"/>
+    <Graphics CenterX="260.0" CenterY="356.6666666666667" Width="133.33333333333334" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="SGD" ID="S000003326"/>
+  </DataNode>
+  <DataNode TextLabel="GluRS" GraphId="c2d" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="Glutamyl-tRNA Synthetase"/>
+    <Graphics CenterX="260.0" CenterY="156.66666666666666" Width="133.33333333333334" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="SGD" ID="S000005393"/>
+  </DataNode>
+  <DataNode TextLabel="pre AspRS" GraphId="d81" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="Asparaginyl-tRNA Synthetase Precursor"/>
+    <Graphics CenterX="260.0" CenterY="116.66666666666667" Width="133.33333333333334" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="SGD" ID="S000000618"/>
+  </DataNode>
+  <DataNode TextLabel="pre HisRS" GraphId="da3" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="Histidyl-tRNA Synthetase Precursor"/>
+    <Graphics CenterX="260.0" CenterY="176.66666666666666" Width="133.33333333333334" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="SGD" ID="S000006237"/>
+  </DataNode>
+  <DataNode TextLabel="IleRS" GraphId="c55" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="Isoleucyl-tRNA synthetase"/>
+    <Graphics CenterX="260.0" CenterY="196.66666666666666" Width="133.33333333333334" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="SGD" ID="S000005961"/>
+  </DataNode>
+  <DataNode TextLabel="pre LeuRS" GraphId="b3d" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="Leucyl-tRNA Synthetase Precursor"/>
+    <Graphics CenterX="260.0" CenterY="216.66666666666666" Width="133.33333333333334" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="SGD" ID="S000004374"/>
+  </DataNode>
+  <DataNode TextLabel="pre LysRS" GraphId="fac" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="Lysyl-tRNA Synthetase Precursor"/>
+    <Graphics CenterX="260.0" CenterY="236.66666666666666" Width="133.33333333333334" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="SGD" ID="S000005017"/>
+  </DataNode>
+  <DataNode TextLabel="MetRS" GraphId="e11" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="Methionyl-tRNA Synthetase"/>
+    <Graphics CenterX="260.0" CenterY="256.6666666666667" Width="133.33333333333334" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="SGD" ID="S000003403"/>
+  </DataNode>
+  <DataNode TextLabel="pre PheRS" GraphId="f4b" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="Phenylalanyl-tRNA Synthetase Precursor"/>
+    <Graphics CenterX="260.0" CenterY="276.6666666666667" Width="133.33333333333334" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="SGD" ID="S000006251"/>
+  </DataNode>
+  <DataNode TextLabel="pre ThrRS" GraphId="d5b" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="Threonyl-tRNA Synthetase Precursor"/>
+    <Graphics CenterX="260.0" CenterY="296.6666666666667" Width="133.33333333333334" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="SGD" ID="S000001677"/>
+  </DataNode>
+  <DataNode TextLabel="TrpRS" GraphId="d30" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="Tryptophanyl-tRNA Synthetase"/>
+    <Graphics CenterX="260.0" CenterY="316.6666666666667" Width="133.33333333333334" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="SGD" ID="S000002676"/>
+  </DataNode>
+  <DataNode TextLabel="pre TyrRS" GraphId="d42" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="Tyrosyl-tRNA Synthetase Precursor"/>
+    <Graphics CenterX="260.0" CenterY="336.6666666666667" Width="133.33333333333334" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="SGD" ID="S000006018"/>
+  </DataNode>
+  <Label TextLabel="Mitochondrial" GraphId="bc2">
+    <Graphics CenterX="263.3333333333333" CenterY="50.0" Width="109.33333333333333" Height="19.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="12" Valign="Middle"/>
+  </Label>
+  <InfoBox CenterX="301.6666666666667" CenterY="381.6666666666667"/>
+  <Legend CenterX="5.466666666666667" CenterY="511.6666666666667"/>
+  <Biopax>
+    <bp:openControlledVocabulary xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#">
+      <bp:TERM xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">mitochondrial aminoacyl-tRNA biosynthetic pathway</bp:TERM>
+      <bp:ID xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PW:0001324</bp:ID>
+      <bp:Ontology xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Pathway Ontology</bp:Ontology>
+    </bp:openControlledVocabulary>
+  </Biopax>
+</Pathway>
