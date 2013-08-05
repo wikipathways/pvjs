@@ -220,23 +220,19 @@ function getPathData(d, labelableElements) {
 };
 
 function drawPathway() {
+    // be sure server has set gpml mime type to application/gpml+xml
+  d3.xml("../../samples/gpml/" + getURLParameter("pathway"), "application/gpml+xml", function(response) {
+  //d3.xml("../../samples/gpml/" + getURLParameter("pathway"), "application/gpml+xml", function(error, response) {
   //d3.json("../../samples/gpml/WP673_63184.json", function(error, json) {
-  d3.json("../../samples/gpml/" + getURLParameter("pathway") + ".json", function(error, json) {
 
-    // d3.json("../../samples/gpml/all-elements.json",function(error, json) {
-    // d3.json("../../samples/gpml/datanodeshapes.json",function(error, json) {
-
-    if (error) return console.warn(error);
-    data = json;
+    //if (error) return console.warn(error);
 
     console.log('GPML pathway');
-    console.log(data);
-    self.data = data;
+    console.log(response.documentElement);
 
-    // be sure server has set gpml mime type to application/gpml+xml
+    var pathway = convertGpml2Json(response);
 
-    //var pathway = convertGpml2Json(xml);
-    var pathway = data;
+    self.pathway = pathway;
 
     var drag = d3.behavior.drag()
     .on("drag", dragmove);
