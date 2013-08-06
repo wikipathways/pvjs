@@ -78,7 +78,7 @@ function convertGpml2Json(xmlDoc){
   // pathvisio.js vs PathVisio (Java) specification of anchor position
   // -----------------------------------------
   // pathvisio.js |  PathVisio  | Meaning
-  //  x   |   y   | relx | rely |
+  //  relX | relY | relx | rely |
   // -----------------------------------------
   // 0.333   0      -0.5   -1.0   top side at left third-point 
   // 0.5     0       0.0   -1.0   top side at center 
@@ -579,15 +579,15 @@ function convertGpml2Json(xmlDoc){
           element.points.forEach(function(element, index, array) {
 
             // for anchor points, the data model for a point is
-            // x, y, [dx], [dy]
+            // relX, relY, [dx], [dy]
             // with dx and dy only being used for the first and last point
             //
-            // "x, y" indicates where on the shape the anchor is located.
+            // "relX, relY" indicates where on the shape the anchor is located.
             //
-            // Table of meanings for "x, y"
-            // ----------------------------
-            //   x   |   y   | meaning
-            // ----------------------------
+            // Table of meanings for "relX, relY"
+            // ----------------------------------
+            //  relX   |   relY   | meaning
+            // ----------------------------------
             // 0.333   0       top side at left third-point 
             // 0.5     0       top side at center 
             // 0.667   0       top side at right third-point 
@@ -619,25 +619,27 @@ function convertGpml2Json(xmlDoc){
               element.graphRef = element.graphref;
               delete element.graphref;
 
-              element.x = anchorPositionMappings[element.relx.toString()];
+              element.relX = anchorPositionMappings[element.relx.toString()];
               delete element.relx;
+              delete element.x;
 
-              element.y = anchorPositionMappings[element.rely.toString()];
+              element.relY = anchorPositionMappings[element.rely.toString()];
               delete element.rely;
+              delete element.y;
 
-              if (element.x === 0) {
+              if (element.relX === 0) {
                 element.dx = -1;
               }
               else {
-                if (element.x === 1) {
+                if (element.relX === 1) {
                   element.dx = 1;
                 }
                 else {
-                  if (element.y === 0) {
+                  if (element.relY === 0) {
                     element.dy = -1;
                   }
                   else {
-                    if (element.y === 1) {
+                    if (element.relY === 1) {
                       element.dy = 1;
                     };
                   };

@@ -71,17 +71,58 @@ function getMarker(name, position, color) {
 
 function getPathData(d, labelableElements) {
   var pathData = "";
+
+  var sourcePoint = d.points[0];
+  if (d.points[0].hasOwnProperty('graphRef')) {
+    var sourceGraphRef = sourcePoint.graphRef;
+
+    var sourceElement = labelableElements.filter(function(element) {return element.graphId === sourceGraphRef})[0]
+    console.log('sourceElement');
+    console.log(sourceElement);
+
+    var sourceX = sourceElement.x + (sourcePoint.relX * sourceElement.width);
+    var sourceY = sourceElement.y + (sourcePoint.relY * sourceElement.height);
+
+    pathData = "M " + sourceX + " " + sourceY; 
+    console.log('pathData');
+    console.log(pathData);
+
+    var sourceDx = sourcePoint.dx;
+    var sourceDy = sourcePoint.dy;
+  }
+  else {
+    pathData = "M " + sourcePoint.x + " " + sourcePoint.y; 
+    var sourceDx = 1;
+    var sourceDy = 1;
+  };
+  console.log('sourcePoint');
+  console.log(sourcePoint);
+
+  var targetPoint = d.points[d.points.length - 1];
+  if (d.points[d.points.length - 1].hasOwnProperty('graphRef')) {
+    var targetGraphRef = targetPoint.graphRef;
+
+    var targetElement = labelableElements.filter(function(element) {return element.graphId === targetGraphRef})[0]
+    console.log('targetElement');
+    console.log(targetElement);
+
+    var targetX = targetElement.x + (targetPoint.relX * targetElement.width);
+    var targetY = targetElement.y + (targetPoint.relY * targetElement.height);
+
+    var targetDx = targetPoint.dx;
+    var targetDy = targetPoint.dy;
+  }
+  else {
+    var targetX = targetPoint.x;
+    var targetY = targetPoint.y;
+
+    var targetDx = 1;
+    var targetDy = 1;
+  };
+
   console.log(d);
   if ((!d.connectorType) || (d.connectorType === 'undefined') || (d.connectorType === 'straight')) {
-    d.points.forEach(function(element, index, array) {
-      if (index === 0) {
-        pathData = "M " + element.x + " " + element.y; 
-      }
-      else {
-        pathData += " L " + element.x + " " + element.y; 
-      };
-      return pathData;
-    });
+    pathData += " L " + targetX + " " + targetY; 
   }
   else {
 
@@ -90,20 +131,6 @@ function getPathData(d, labelableElements) {
     // so specified will be drawn as segmented lines.
 
     if (d.connectorType === 'elbow' && d.points[0].hasOwnProperty('graphRef') && d.points[d.points.length - 1].hasOwnProperty('graphRef')) {
-      var sourcePoint = d.points[0];
-      var sourceGraphRef = sourcePoint.graphRef;
-      var sourceElement = labelableElements.filter(function(element) {return element.graphId === sourceGraphRef})[0]
-      console.log('sourceElement');
-      console.log(sourceElement);
-      var sourceX = sourceElement.x + (sourcePoint.x * sourceElement.width);
-      var sourceY = sourceElement.y + (sourcePoint.y * sourceElement.height);
-
-      pathData = "M " + sourceX + " " + sourceY; 
-      console.log('pathData');
-      console.log(pathData);
-
-      var sourceDx = sourcePoint.dx;
-      var sourceDy = sourcePoint.dy;
 
       function isOdd(num) { return num % 2;}
 
@@ -142,16 +169,6 @@ function getPathData(d, labelableElements) {
         };
       });
 
-      var targetPoint = d.points[d.points.length - 1];
-      var targetGraphRef = targetPoint.graphRef;
-      var targetElement = labelableElements.filter(function(element) {return element.graphId === targetGraphRef})[0]
-      console.log('targetElement');
-      console.log(targetElement);
-      var targetX = targetElement.x + (targetPoint.x * targetElement.width);
-      var targetY = targetElement.y + (targetPoint.y * targetElement.height);
-      var targetDx = targetPoint.dx;
-      var targetDy = targetPoint.dy;
-
       if (Math.abs(targetDx) === 1) {
         pathData += " V " + targetY + " H " + targetX; 
         console.log('pathData');
@@ -166,14 +183,11 @@ function getPathData(d, labelableElements) {
     else {
       if (d.connectorType === 'segmented') {
         d.points.forEach(function(element, index, array) {
-          if (index === 0) {
-            pathData = "M " + element.x + " " + element.y; 
-          }
-          else {
-            pathData += " L " + element.x + " " + element.y; 
+          if ((index > 0) && (index < (array.length -1))) {
+              pathData += " L " + element.x + " " + element.y; 
           };
-          return pathData;
         });
+        pathData += " L " + targetX + " " + targetY; 
       }
       else {
         if (d.connectorType === 'curved') {
@@ -208,14 +222,11 @@ function getPathData(d, labelableElements) {
         else {
           console.log('Warning: pathvisio.js does not support connector type: ' + d.connectorType);
           d.points.forEach(function(element, index, array) {
-            if (index === 0) {
-              pathData = "M " + element.x + " " + element.y; 
-            }
-            else {
-              pathData += " L " + element.x + " " + element.y; 
+            if ((index > 0) && (index < (array.length -1))) {
+                pathData += " L " + element.x + " " + element.y; 
             };
-            return pathData;
           });
+          pathData += " L " + targetX + " " + targetY; 
         };
       };
     };
