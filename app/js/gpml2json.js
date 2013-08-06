@@ -623,6 +623,7 @@ function convertGpml2Json(xmlDoc){
               delete element.relx;
               delete element.x;
 
+
               element.relY = anchorPositionMappings[element.rely.toString()];
               delete element.rely;
               delete element.y;
