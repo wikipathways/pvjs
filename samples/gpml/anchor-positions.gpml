@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Pathway xmlns="http://pathvisio.org/GPML/2013a" Name="New Pathway" Version="20130805">
+  <Graphics BoardWidth="1129.5382746051037" BoardHeight="817.363304981774" />
+  <DataNode TextLabel="GeneProduct" GraphId="ce4b8" Type="GeneProduct">
+    <Graphics CenterX="691.3730255164033" CenterY="47.387606318347466" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="" ID="" />
+  </DataNode>
+  <DataNode TextLabel="GeneProduct" GraphId="e57dd" Type="GeneProduct">
+    <Graphics CenterX="605.1032806804392" CenterY="148.23815309842047" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="" ID="" />
+  </DataNode>
+  <DataNode TextLabel="GeneProduct" GraphId="a7a83" Type="GeneProduct">
+    <Graphics CenterX="113.7370753323486" CenterY="246.6765140324963" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="" ID="" />
+  </DataNode>
+  <DataNode TextLabel="GeneProduct" GraphId="e17de" Type="GeneProduct">
+    <Graphics CenterX="296.8980797636632" CenterY="394.38700147710483" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="" ID="" />
+  </DataNode>
+  <DataNode TextLabel="GeneProduct" GraphId="b6551" Type="GeneProduct">
+    <Graphics CenterX="869.9878493317156" CenterY="194.41069258809245" Width="80.0" Height="20.0" ZOrder="32781" FontSize="10" Valign="Middle" />
+    <Xref Database="" ID="" />
+  </DataNode>
+  <DataNode TextLabel="GeneProduct" GraphId="a245a" Type="GeneProduct">
+    <Graphics CenterX="1017.0109356014588" CenterY="269.74483596597804" Width="80.0" Height="20.0" ZOrder="32782" FontSize="10" Valign="Middle" />
+    <Xref Database="" ID="" />
+  </DataNode>
+  <DataNode TextLabel="GeneProduct" GraphId="b6f38" Type="GeneProduct">
+    <Graphics CenterX="888.2138517618494" CenterY="420.4131227217498" Width="80.0" Height="20.0" ZOrder="32784" FontSize="10" Valign="Middle" />
+    <Xref Database="" ID="" />
+  </DataNode>
+  <DataNode TextLabel="GeneProduct" GraphId="fe9d4" Type="GeneProduct">
+    <Graphics CenterX="799.5139732685302" CenterY="302.5516403402187" Width="80.0" Height="20.0" ZOrder="32785" FontSize="10" Valign="Middle" />
+    <Xref Database="" ID="" />
+  </DataNode>
+  <DataNode TextLabel="GeneProduct" GraphId="cb76e" Type="GeneProduct">
+    <Graphics CenterX="1024.3013365735142" CenterY="656.1360874848116" Width="80.0" Height="20.0" ZOrder="32787" FontSize="10" Valign="Middle" />
+    <Xref Database="" ID="" />
+  </DataNode>
+  <DataNode TextLabel="GeneProduct" GraphId="e5b02" Type="GeneProduct">
+    <Graphics CenterX="906.4398541919815" CenterY="523.6938031591736" Width="80.0" Height="20.0" ZOrder="32788" FontSize="10" Valign="Middle" />
+    <Xref Database="" ID="" />
+  </DataNode>
+  <Interaction>
+    <Graphics ConnectorType="Elbow" ZOrder="12288" LineThickness="1.0">
+      <Point X="731.3730255164033" Y="47.387606318347466" GraphRef="ce4b8" RelX="1.0" RelY="0.0" />
+      <Point X="766.6174298375184" Y="76.86957863923281" />
+      <Point X="638.109305760709" Y="106.35155096011816" />
+      <Point X="509.60118168389954" Y="127.29485202926932" />
+      <Point X="565.1032806804392" Y="148.23815309842047" GraphRef="e57dd" RelX="-1.0" RelY="0.0" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction>
+    <Graphics ConnectorType="Elbow" ZOrder="12288" LineThickness="1.0">
+      <Point X="73.73707533234858" Y="246.6765140324963" GraphRef="a7a83" RelX="-1.0" RelY="0.0" />
+      <Point X="336.8980797636632" Y="394.38700147710483" GraphRef="e17de" RelX="1.0" RelY="0.0" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="a240f">
+    <Graphics ConnectorType="Elbow" ZOrder="32780" LineThickness="1.0">
+      <Point X="1017.0109356014586" Y="279.74483596597804" GraphRef="a245a" RelX="0.0" RelY="1.0" />
+      <Point X="984.1332373723689" Y="316.1004431314623" />
+      <Point X="951.2555391432791" Y="224.51994091580502" />
+      <Point X="910.6216942374973" Y="132.9394387001477" />
+      <Point X="869.9878493317156" Y="184.41069258809245" GraphRef="b6551" RelX="0.0" RelY="-1.0" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="bc77e">
+    <Graphics ConnectorType="Elbow" ZOrder="32783" LineThickness="1.0">
+      <Point X="759.5139732685302" Y="302.5516403402187" GraphRef="fe9d4" RelX="-1.0" RelY="0.0" />
+      <Point X="706.056129985229" Y="346.9922160342157" />
+      <Point X="797.1349908735392" Y="391.4327917282127" />
+      <Point X="888.2138517618494" Y="410.4131227217498" GraphRef="b6f38" RelX="0.0" RelY="-1.0" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="bcfce">
+    <Graphics ConnectorType="Elbow" ZOrder="32786" LineThickness="1.0">
+      <Point X="946.4398541919815" Y="523.6938031591736" GraphRef="e5b02" RelX="1.0" RelY="0.0" />
+      <Point X="1024.3013365735142" Y="646.1360874848116" GraphRef="cb76e" RelX="0.0" RelY="-1.0" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <InfoBox CenterX="0.0" CenterY="0.0" />
+  <Biopax />
+</Pathway>
+

@@ -90,74 +90,78 @@ function getPathData(d, labelableElements) {
     // so specified will be drawn as segmented lines.
 
     if (d.connectorType === 'elbow' && d.points[0].hasOwnProperty('graphRef') && d.points[d.points.length - 1].hasOwnProperty('graphRef')) {
-      var pointStart = d.points[0];
-      var graphRef = pointStart.graphRef;
-      var sourceElement = labelableElements.filter(function(element) {return element.graphId === graphRef})[0]
+      var sourcePoint = d.points[0];
+      var sourceGraphRef = sourcePoint.graphRef;
+      var sourceElement = labelableElements.filter(function(element) {return element.graphId === sourceGraphRef})[0]
       console.log('sourceElement');
       console.log(sourceElement);
-      var distsStart = [{"location":"n","dist":Math.abs(sourceElement.y - pointStart.y)},
-        {"location":"s","dist":Math.abs((sourceElement.y + sourceElement.height) - pointStart.y)},
-        {"location":"e","dist":Math.abs((sourceElement.x + sourceElement.width) - pointStart.x)},
-        {"location":"w","dist":Math.abs(sourceElement.x - pointStart.x)}];
-        distsStart.sort(function(a,b) { return parseFloat(a.dist) - parseFloat(b.dist) } );
-        console.log('distsStart');
-        var xStart = pointStart.x;
-        var yStart = pointStart.y;
-        pathData = "M " + xStart + " " + yStart; 
+      var sourceX = sourceElement.x + (sourcePoint.x * sourceElement.width);
+      var sourceY = sourceElement.y + (sourcePoint.y * sourceElement.height);
 
-        var pointEnd = d.points[d.points.length - 1];
-        var graphRef = pointEnd.graphRef;
-        var targetElement = labelableElements.filter(function(element) {return element.graphId === graphRef})[0]
-        console.log('targetElement');
-        console.log(targetElement);
-        var distsEnd = [{"location":"n","dist":Math.abs(targetElement.y - pointEnd.y)},
-          {"location":"s","dist":Math.abs((targetElement.y + targetElement.height) - pointEnd.y)},
-          {"location":"e","dist":Math.abs((targetElement.x + targetElement.width) - pointEnd.x)},
-          {"location":"w","dist":Math.abs(targetElement.x - pointEnd.x)}];
-          distsEnd.sort(function(a,b) { return parseFloat(a.dist) - parseFloat(b.dist) } );
-          console.log(distsStart);
-          var xEnd = pointEnd.x;
-          var yEnd = pointEnd.y;
-          d.points.forEach(function(element, index, array) {
-            if (index > 0) {
-              if (index < array.length - 1) {
-                console.log('inside forEach');
-                console.log(sourceElement);
-                if ((distsStart[0].location === "n") || (distsStart[0].location === "s")) {
-                  console.log('V');
-                  console.log(distsStart[0].location);
-                  pathData += " V " + (yStart + element.y)/2 + " H " +  element.x + " V " + element.y; 
-                }
-                else {
-                  if (distsStart[0].location === "e" || distsStart[0].location === "w") {
-                    console.log('H');
-                    console.log(distsStart[0].location);
-                    pathData += " H " + (xStart + element.x)/2 + " V " +  element.y + " H " + element.x; 
-                  };
-                };
-              }
-              else {
-                if (((distsStart[0].location === "n") || (distsStart[0].location === "s")) && ((distsEnd[0].location === "n") || (distsEnd[0].location === "s"))) {
-                  pathData += " V " + (yStart + element.y)/2 + " H " +  element.x + " V " + element.y; 
-                }
-                else {
-                  if (((distsStart[0].location === "e") || (distsStart[0].location === "w")) && ((distsEnd[0].location === "e") || (distsEnd[0].location === "w"))) {
-                    pathData += " H " + (xStart + element.x)/2 + " V " +  element.y + " H " + element.x; 
-                  }
-                  else {
-                    if (((distsStart[0].location === "n") || (distsStart[0].location === "s")) && ((distsEnd[0].location === "e") || (distsEnd[0].location === "w"))) {
-                      pathData += " V " + yEnd + " H " +  xEnd; 
-                    }
-                    else {
-                      if (((distsStart[0].location === "e") || (distsStart[0].location === "w")) && ((distsEnd[0].location === "n") || (distsEnd[0].location === "s"))) {
-                        pathData += " H " +  xEnd + " V " + yEnd; 
-                      };
-                    };
-                  };
-                };
-              };
+      pathData = "M " + sourceX + " " + sourceY; 
+      console.log('pathData');
+      console.log(pathData);
+
+      var sourceDx = sourcePoint.dx;
+      var sourceDy = sourcePoint.dy;
+
+      function isOdd(num) { return num % 2;}
+
+      d.points.forEach(function(element, index, array) {
+        console.log('index');
+        console.log(index);
+        if ((index > 0) && (index < (array.length -1))) {
+          if (isOdd(index)) {
+            if (Math.abs(sourceDx) === 1) {
+              pathData += " H " + element.x; 
+              console.log('pathData');
+              console.log(pathData);
+              console.log(element.x);
+            }
+            else {
+              pathData += " V " + element.y; 
+              console.log('pathData');
+              console.log(pathData);
+              console.log(element.y);
             };
-          });
+          }
+          else {
+            if (Math.abs(sourceDx) === 1) {
+              pathData += " V " + element.y; 
+              console.log('pathData');
+              console.log(pathData);
+              console.log(element.y);
+            }
+            else {
+              pathData += " H " + element.x; 
+              console.log('pathData');
+              console.log(pathData);
+              console.log(element.x);
+            };
+          };
+        };
+      });
+
+      var targetPoint = d.points[d.points.length - 1];
+      var targetGraphRef = targetPoint.graphRef;
+      var targetElement = labelableElements.filter(function(element) {return element.graphId === targetGraphRef})[0]
+      console.log('targetElement');
+      console.log(targetElement);
+      var targetX = targetElement.x + (targetPoint.x * targetElement.width);
+      var targetY = targetElement.y + (targetPoint.y * targetElement.height);
+      var targetDx = targetPoint.dx;
+      var targetDy = targetPoint.dy;
+
+      if (Math.abs(targetDx) === 1) {
+        pathData += " V " + targetY + " H " + targetX; 
+        console.log('pathData');
+        console.log(pathData);
+      }
+      else {
+        pathData += " H " + targetX + " V " + targetY; 
+        console.log('pathData');
+        console.log(pathData);
+      };
     }
     else {
       if (d.connectorType === 'segmented') {
@@ -220,10 +224,10 @@ function getPathData(d, labelableElements) {
 };
 
 function drawPathway() {
-    // be sure server has set gpml mime type to application/gpml+xml
+  // be sure server has set gpml mime type to application/gpml+xml
   d3.xml("../../samples/gpml/" + getURLParameter("pathway"), "application/gpml+xml", function(response) {
-  //d3.xml("../../samples/gpml/" + getURLParameter("pathway"), "application/gpml+xml", function(error, response) {
-  //d3.json("../../samples/gpml/WP673_63184.json", function(error, json) {
+    //d3.xml("../../samples/gpml/" + getURLParameter("pathway"), "application/gpml+xml", function(error, response) {
+    //d3.json("../../samples/gpml/WP673_63184.json", function(error, json) {
 
     //if (error) return console.warn(error);
 
@@ -231,7 +235,6 @@ function drawPathway() {
     console.log(response.documentElement);
 
     var pathway = convertGpml2Json(response);
-
     self.pathway = pathway;
 
     var drag = d3.behavior.drag()
@@ -276,32 +279,34 @@ function drawPathway() {
 
     // Draw Complexes
 
-    var complexesContainer = svg.selectAll("use.complex")	
-    .data(pathway.groups.filter(function(d, i) { return (d.style === 'Complex'); }))
-    .enter()
-    .append("use")
-    .attr("id", function (d) { return 'complex-' + d.graphId })
-    .attr('transform', function(d) { 
-      var groupMembers = pathway.labelableElements.filter(function(el) {return (el.groupRef === d.groupId)});
-      var groupX = (d3.min(groupMembers, function(el) {return el.x})) - 15;
-      var groupY = (d3.min(groupMembers, function(el) {return el.y})) - 15;
-      return 'translate(' + groupX + ' ' + groupY + ')'; 
-    })
-    .attr("width", function (d) {
-      var groupMembers = pathway.labelableElements.filter(function(el) {return (el.groupRef === d.groupId)});
-      var groupX = (d3.min(groupMembers, function(el) {return el.x})) - 15;
-      var groupWidth = (d3.max(groupMembers, function(el) {return el.x + el.width})) - groupX + 15;
-      return groupWidth; 
-    })
-    .attr("height", function (d) { 
-      var groupMembers = pathway.labelableElements.filter(function(el) {return (el.groupRef === d.groupId)});
-      var groupY = (d3.min(groupMembers, function(el) {return el.y})) - 15;
-      var groupHeight = (d3.max(groupMembers, function(el) {return el.y + el.height})) - groupY + 15;
-      return groupHeight; 
-    })
-    .attr("class", "complex")
-    .attr("xlink:xlink:href", "#complex")
-    .call(drag);
+    if (pathway.hasOwnProperty('groups')) {
+      var complexesContainer = svg.selectAll("use.complex")	
+      .data(pathway.groups.filter(function(d, i) { return (d.style === 'Complex'); }))
+      .enter()
+      .append("use")
+      .attr("id", function (d) { return 'complex-' + d.graphId })
+      .attr('transform', function(d) { 
+        var groupMembers = pathway.labelableElements.filter(function(el) {return (el.groupRef === d.groupId)});
+        var groupX = (d3.min(groupMembers, function(el) {return el.x})) - 15;
+        var groupY = (d3.min(groupMembers, function(el) {return el.y})) - 15;
+        return 'translate(' + groupX + ' ' + groupY + ')'; 
+      })
+      .attr("width", function (d) {
+        var groupMembers = pathway.labelableElements.filter(function(el) {return (el.groupRef === d.groupId)});
+        var groupX = (d3.min(groupMembers, function(el) {return el.x})) - 15;
+        var groupWidth = (d3.max(groupMembers, function(el) {return el.x + el.width})) - groupX + 15;
+        return groupWidth; 
+      })
+      .attr("height", function (d) { 
+        var groupMembers = pathway.labelableElements.filter(function(el) {return (el.groupRef === d.groupId)});
+        var groupY = (d3.min(groupMembers, function(el) {return el.y})) - 15;
+        var groupHeight = (d3.max(groupMembers, function(el) {return el.y + el.height})) - groupY + 15;
+        return groupHeight; 
+      })
+      .attr("class", "complex")
+      .attr("xlink:xlink:href", "#complex")
+      .call(drag);
+    };
 
     // Draw Labelable Elements
 
@@ -527,150 +532,150 @@ function drawPathway() {
     if (pathway.hasOwnProperty('graphicalLines')) {
 
       var graphicalLines = svg.selectAll("path.graphical-line")
-      .data(pathway.graphicalLines)
-      .enter()
-      .append("path")
-      .attr("id", function (d) { return 'graphical-line-' + d.graphId; })
-      .attr("class", "graphical-line")
-      .attr("class", function (d) { 
-        var styleClass = 'graphical-line ';
-        if (d.hasOwnProperty('strokeStyle')) {
-          if (d.strokeStyle === 'broken') {
+        .data(pathway.graphicalLines)
+        .enter()
+        .append("path")
+        .attr("id", function (d) { return 'graphical-line-' + d.graphId; })
+        .attr("class", "graphical-line")
+        .attr("class", function (d) { 
+            var styleClass = 'graphical-line ';
+            if (d.hasOwnProperty('strokeStyle')) {
+            if (d.strokeStyle === 'broken') {
             styleClass += " broken-stroke"; 
-          };
-        };
-        return styleClass; 
-      })
+            };
+            };
+            return styleClass; 
+            })
       .attr("d", function (d) {
-        pathData = getPathData(d, pathway.labelableElements);
-        if (d.hasOwnProperty('strokeStyle')) {
+          pathData = getPathData(d, pathway.labelableElements);
+          if (d.hasOwnProperty('strokeStyle')) {
           if (d.strokeStyle === 'double') {
-
-            // setting stroke-width equal to its specified line value is
-            // what PathVisio (Java) does, but the white line (overlaying the
-            // thick line to create a "double line") is hard to see at 1px.
-
-            svg.append("path")
-            .attr("class", "graphical-line-double")
-            .attr("d", pathData)
-            .attr("style", "stroke:white; stroke-width:" + d.strokeWidth + '; ')
-            .attr("marker-start", 'url(#' + getMarker(d.markerStart, 'start', d.stroke) + ')')
-            .attr("marker-end", 'url(#' + getMarker(d.markerEnd, 'end', d.stroke) + ')');
-          };
-        };
-        return pathData; 
-      })
-      .attr("style", function (d) { 
-        var style = 'stroke-width:' + d.strokeWidth + '; ';
-        if (d.hasOwnProperty('stroke')) {
-          style += 'stroke:' + d.stroke + '; '; 
-        };
-        if (d.hasOwnProperty('strokeStyle')) {
-          if (d.strokeStyle === 'double') {
-            style += 'stroke-width:' + (3 * d.strokeWidth) + '; '; 
-          };
-        };
-        return style; 
-      })
-      .attr("marker-start", function (d) { 
-        markerStart = getMarker(d.markerStart, 'start', d.stroke);
-        if (d.hasOwnProperty('strokeStyle')) {
-          if (d.strokeStyle === 'double') {
-
-            // if it's a double line, the marker will be taken care of above
-            // we use the gap as a blank
-
-            markerStart = 'mim-gap-start-black';
-          };
-        };
-        return 'url(#' + markerStart + ')'; 
-      })
-      .attr("marker-end", function (d) { 
-        markerEnd = getMarker(d.markerEnd, 'end', d.stroke);
-        if (d.hasOwnProperty('strokeStyle')) {
-          if (d.strokeStyle === 'double') {
-
-            // if it's a double line, the marker will be taken care of above
-            // we use the gap as a blank
-
-            markerEnd = 'mim-gap-end-black';
-          };
-        };
-        return 'url(#' + markerEnd + ')'; 
-      })
-      .attr("fill", 'none');
-
-    };
-
-    // Interactions
-
-
-    var pathData = null;
-
-    var interactions = svg.selectAll("path.interaction")
-    .data(pathway.interactions)
-    .enter()
-    .append("path")
-    .attr("id", function (d) { return 'interaction-' + d.graphId; })
-    .attr("class", "interaction")
-    .attr("class", function (d) { 
-      var styleClass = 'interaction ';
-      if (d.hasOwnProperty('strokeStyle')) {
-        if (d.strokeStyle === 'broken') {
-          styleClass += " broken-stroke"; 
-        };
-      };
-      return styleClass; 
-    })
-    .attr("d", function (d) {
-      pathData = getPathData(d, pathway.labelableElements);
-      if (d.hasOwnProperty('strokeStyle')) {
-        if (d.strokeStyle === 'double') {
 
           // setting stroke-width equal to its specified line value is
           // what PathVisio (Java) does, but the white line (overlaying the
           // thick line to create a "double line") is hard to see at 1px.
 
           svg.append("path")
-          .attr("class", "interaction-double")
+          .attr("class", "graphical-line-double")
           .attr("d", pathData)
           .attr("style", "stroke:white; stroke-width:" + d.strokeWidth + '; ')
           .attr("marker-start", 'url(#' + getMarker(d.markerStart, 'start', d.stroke) + ')')
-          .attr("marker-end", 'url(#' + getMarker(d.markerEnd, 'end', d.stroke) + ')');
-        };
-      };
-      return pathData; 
-    })
-    .attr("style", function (d) { 
-      var style = 'stroke-width:' + d.strokeWidth + '; ';
-      if (d.hasOwnProperty('stroke')) {
-        style += 'stroke:' + d.stroke + '; '; 
-      };
-      if (d.hasOwnProperty('strokeStyle')) {
-        if (d.strokeStyle === 'double') {
-          style += 'stroke-width:' + (3 * d.strokeWidth) + '; '; 
-        };
-      };
-      return style; 
-    })
-    .attr("marker-start", function (d) { 
-      markerStart = getMarker(d.markerStart, 'start', d.stroke);
-      if (d.hasOwnProperty('strokeStyle')) {
-        if (d.strokeStyle === 'double') {
-          markerStart = 'mim-gap-start-black';
-        };
-      };
-      return 'url(#' + markerStart + ')'; 
-    })
-    .attr("marker-end", function (d) { 
-      markerEnd = getMarker(d.markerEnd, 'end', d.stroke);
-      if (d.hasOwnProperty('strokeStyle')) {
-        if (d.strokeStyle === 'double') {
-          markerEnd = 'mim-gap-end-black';
-        };
-      };
-      return 'url(#' + markerEnd + ')'; 
-    })
-    .attr("fill", 'none');
-  });
-};
+            .attr("marker-end", 'url(#' + getMarker(d.markerEnd, 'end', d.stroke) + ')');
+              };
+              };
+              return pathData; 
+              })
+            .attr("style", function (d) { 
+              var style = 'stroke-width:' + d.strokeWidth + '; ';
+              if (d.hasOwnProperty('stroke')) {
+              style += 'stroke:' + d.stroke + '; '; 
+              };
+              if (d.hasOwnProperty('strokeStyle')) {
+              if (d.strokeStyle === 'double') {
+              style += 'stroke-width:' + (3 * d.strokeWidth) + '; '; 
+              };
+              };
+              return style; 
+              })
+            .attr("marker-start", function (d) { 
+              markerStart = getMarker(d.markerStart, 'start', d.stroke);
+              if (d.hasOwnProperty('strokeStyle')) {
+              if (d.strokeStyle === 'double') {
+
+              // if it's a double line, the marker will be taken care of above
+              // we use the gap as a blank
+
+              markerStart = 'mim-gap-start-black';
+              };
+              };
+              return 'url(#' + markerStart + ')'; 
+                })
+              .attr("marker-end", function (d) { 
+                markerEnd = getMarker(d.markerEnd, 'end', d.stroke);
+                if (d.hasOwnProperty('strokeStyle')) {
+                if (d.strokeStyle === 'double') {
+
+                // if it's a double line, the marker will be taken care of above
+                // we use the gap as a blank
+
+                markerEnd = 'mim-gap-end-black';
+                };
+                };
+                return 'url(#' + markerEnd + ')'; 
+                  })
+                .attr("fill", 'none');
+
+                };
+
+                // Interactions
+
+
+                var pathData = null;
+
+                var interactions = svg.selectAll("path.interaction")
+                  .data(pathway.interactions)
+                  .enter()
+                  .append("path")
+                  .attr("id", function (d) { return 'interaction-' + d.graphId; })
+                  .attr("class", "interaction")
+                  .attr("class", function (d) { 
+                      var styleClass = 'interaction ';
+                      if (d.hasOwnProperty('strokeStyle')) {
+                      if (d.strokeStyle === 'broken') {
+                      styleClass += " broken-stroke"; 
+                      };
+                      };
+                      return styleClass; 
+                      })
+                .attr("d", function (d) {
+                    pathData = getPathData(d, pathway.labelableElements);
+                    if (d.hasOwnProperty('strokeStyle')) {
+                    if (d.strokeStyle === 'double') {
+
+                    // setting stroke-width equal to its specified line value is
+                    // what PathVisio (Java) does, but the white line (overlaying the
+                    // thick line to create a "double line") is hard to see at 1px.
+
+                    svg.append("path")
+                    .attr("class", "interaction-double")
+                    .attr("d", pathData)
+                    .attr("style", "stroke:white; stroke-width:" + d.strokeWidth + '; ')
+                    .attr("marker-start", 'url(#' + getMarker(d.markerStart, 'start', d.stroke) + ')')
+                      .attr("marker-end", 'url(#' + getMarker(d.markerEnd, 'end', d.stroke) + ')');
+                        };
+                        };
+                        return pathData; 
+                        })
+                      .attr("style", function (d) { 
+                        var style = 'stroke-width:' + d.strokeWidth + '; ';
+                        if (d.hasOwnProperty('stroke')) {
+                        style += 'stroke:' + d.stroke + '; '; 
+                        };
+                        if (d.hasOwnProperty('strokeStyle')) {
+                        if (d.strokeStyle === 'double') {
+                        style += 'stroke-width:' + (3 * d.strokeWidth) + '; '; 
+                        };
+                        };
+                        return style; 
+                        })
+                      .attr("marker-start", function (d) { 
+                        markerStart = getMarker(d.markerStart, 'start', d.stroke);
+                        if (d.hasOwnProperty('strokeStyle')) {
+                        if (d.strokeStyle === 'double') {
+                        markerStart = 'mim-gap-start-black';
+                        };
+                        };
+                        return 'url(#' + markerStart + ')'; 
+                          })
+                        .attr("marker-end", function (d) { 
+                          markerEnd = getMarker(d.markerEnd, 'end', d.stroke);
+                          if (d.hasOwnProperty('strokeStyle')) {
+                          if (d.strokeStyle === 'double') {
+                          markerEnd = 'mim-gap-end-black';
+                          };
+                          };
+                          return 'url(#' + markerEnd + ')'; 
+                            })
+                          .attr("fill", 'none');
+                          });
+                        };

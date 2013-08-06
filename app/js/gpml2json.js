@@ -75,6 +75,26 @@ function convertGpml2Json(xmlDoc){
 
   var dataNodeTypeMappings = { "GeneProduct":"gene-product",  "Metabolite":"metabolite", "Pathway":"pathway", "Protein":"protein", "Rna":"rna" };
 
+  // pathvisio.js vs PathVisio (Java) specification of anchor position
+  // -----------------------------------------
+  // pathvisio.js |  PathVisio  | Meaning
+  //  x   |   y   | relx | rely |
+  // -----------------------------------------
+  // 0.333   0      -0.5   -1.0   top side at left third-point 
+  // 0.5     0       0.0   -1.0   top side at center 
+  // 0.667   0       0.5   -1.0   top side at right third-point 
+  // 1       0.333   1.0   -0.5   right side at top third-point 
+  // 1       0.5     1.0    0.0   right side at middle 
+  // 1       0.667   1.0    0.5   right side at bottom third-point 
+  // 0.667   1       0.5    1.0   bottom side at right third-point 
+  // 0.5     1       0.0    1.0   bottom side at center 
+  // 0.333   1      -0.5    1.0   bottom side at left third-point 
+  // 0       0.667  -1.0    0.5   left side at bottom third-point 
+  // 0       0.5    -1.0    0.0   left side at middle 
+  // 0       0.333  -1.0   -0.5   left side at top third-point 
+
+  var anchorPositionMappings = { "-1":0, "-0.5":0.333, "0":0.5, "0.5":0.667, "1":1 };
+
   // TODO What happens if we have right to left flowing text?
 
   var alignToAnchorMappings = { "Left":"start",  "Center":"middle", "Right":"end" };
@@ -464,8 +484,8 @@ function convertGpml2Json(xmlDoc){
 
             if (element.graphref !== undefined) {
               element.graphRef = element.graphref;
+              delete element.graphref;
             };
-            delete element.graphref;
 
             // This is probably unreliable. We need to establish a way to ensure we identify start and end markers correctly, and we should not rely on the order of elements in XML.
 
@@ -558,10 +578,72 @@ function convertGpml2Json(xmlDoc){
 
           element.points.forEach(function(element, index, array) {
 
+            // for anchor points, the data model for a point is
+            // x, y, [dx], [dy]
+            // with dx and dy only being used for the first and last point
+            //
+            // "x, y" indicates where on the shape the anchor is located.
+            //
+            // Table of meanings for "x, y"
+            // ----------------------------
+            //   x   |   y   | meaning
+            // ----------------------------
+            // 0.333   0       top side at left third-point 
+            // 0.5     0       top side at center 
+            // 0.667   0       top side at right third-point 
+            // 1       0.333   right side at top third-point 
+            // 1       0.5     right side at middle 
+            // 1       0.667   right side at bottom third-point 
+            // 0.667   1       bottom side at right third-point 
+            // 0.5     1       bottom side at center 
+            // 0.333   1       bottom side at left third-point 
+            // 0       0.667   left side at bottom third-point 
+            // 0       0.5     left side at middle 
+            // 0       0.333   left side at top third-point 
+            //
+            // "dx, dy" indicates the direction of the line relative to the shape
+            //
+            // Table of meanings for "dx, dy"
+            // ------------------------------
+            //  dx | dy | meaning
+            // ------------------------------
+            //   0   -1   line emanates upward from anchor 
+            //   1    0   line emanates rightward from anchor 
+            //   0    1   line emanates downward from anchor 
+            //  -1    0   line emanates leftward from anchor 
+            //
+            //  adapted from jsPlumb implementation:
+            //  https://github.com/sporritt/jsPlumb/wiki/anchors
+
             if (element.graphref !== undefined) {
               element.graphRef = element.graphref;
+              delete element.graphref;
+
+              element.x = anchorPositionMappings[element.relx.toString()];
+              delete element.relx;
+
+              element.y = anchorPositionMappings[element.rely.toString()];
+              delete element.rely;
+
+              if (element.x === 0) {
+                element.dx = -1;
+              }
+              else {
+                if (element.x === 1) {
+                  element.dx = 1;
+                }
+                else {
+                  if (element.y === 0) {
+                    element.dy = -1;
+                  }
+                  else {
+                    if (element.y === 1) {
+                      element.dy = 1;
+                    };
+                  };
+                };
+              };
             };
-            delete element.graphref;
 
             // This is probably unreliable. We need to establish a way to ensure we identify start and end markers correctly, and we should not rely on the order of elements in XML.
 
