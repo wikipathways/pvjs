@@ -132,43 +132,66 @@ function getPathData(d, labelableElements) {
 
     if (d.connectorType === 'elbow' && d.points[0].hasOwnProperty('graphRef') && d.points[d.points.length - 1].hasOwnProperty('graphRef')) {
 
-      function isOdd(num) { return num % 2;}
+      function switchDirection(currentDirection) {
+        if (currentDirection === 'H') {
+          return 'V';
+        }
+        else {
+          return 'H';
+        };
+      };
+
+      if (Math.abs(sourceDx) === 1) {
+        currentDirection = 'H';
+      }
+      else {
+        currentDirection = 'V';
+      };
+      console.log('currentDirection');
+      console.log(currentDirection);
+      console.log(sourceDy);
+      console.log(sourceY);
+      console.log(targetY);
+
+      if ((sourceDy === -1) && (sourceY < targetY)) {
+        pathData += " V " + (sourceY - 15); 
+        console.log('pathData');
+        console.log(pathData);
+        currentDirection = switchDirection(currentDirection);
+        console.log('currentDirection');
+        console.log(currentDirection);
+        console.log('inside');
+        if (targetDy === -1 && sourceX < targetX) {
+          pathData += " H " + targetX + " V " + targetY; 
+        }
+        else {
+          if (targetDx === 1 && sourceX < targetX) {
+            pathData += ' H ' + (targetX + 15) + ' V ' + targetY + ' H ' + targetX; 
+          };
+        };
+      };
 
       d.points.forEach(function(element, index, array) {
         console.log('index');
         console.log(index);
         if ((index > 0) && (index < (array.length -1))) {
-          if (isOdd(index)) {
-            if (Math.abs(sourceDx) === 1) {
-              pathData += " H " + element.x; 
-              console.log('pathData');
-              console.log(pathData);
-              console.log(element.x);
-            }
-            else {
-              pathData += " V " + element.y; 
-              console.log('pathData');
-              console.log(pathData);
-              console.log(element.y);
-            };
+          if (currentDirection === 'H') {
+            pathData += ' ' + currentDirection + ' ' + element.x; 
+            console.log('pathData');
+            console.log(pathData);
           }
           else {
-            if (Math.abs(sourceDx) === 1) {
-              pathData += " V " + element.y; 
-              console.log('pathData');
-              console.log(pathData);
-              console.log(element.y);
-            }
-            else {
-              pathData += " H " + element.x; 
-              console.log('pathData');
-              console.log(pathData);
-              console.log(element.x);
-            };
+            pathData += ' ' + currentDirection + ' ' + element.y; 
+            console.log('pathData');
+            console.log(pathData);
           };
+        currentDirection = switchDirection(currentDirection);
+        console.log('currentDirection');
+        console.log(currentDirection);
         };
       });
 
+      /*
       if (Math.abs(targetDx) === 1) {
         pathData += " V " + targetY + " H " + targetX; 
         console.log('pathData');
@@ -179,6 +202,7 @@ function getPathData(d, labelableElements) {
         console.log('pathData');
         console.log(pathData);
       };
+      */
     }
     else {
       if (d.connectorType === 'segmented') {
@@ -201,21 +225,16 @@ function getPathData(d, labelableElements) {
 
             // what is here is just a starting point. It has not been tested to match the PathVisio (Java) implementation.
 
-            var pointStart = d.points[0];
             var pointControl = d.points[1];
-            var pointEnd = d.points[2];
 
-            pathData = "M" + pointStart.x + "," + pointStart.y + " S" + pointControl.x + "," + pointControl.y + " " + pointEnd.x + "," + pointEnd.y; 
+            pathData += " S" + pointControl.x + "," + pointControl.y + " " + targetX + "," + targetY; 
             return pathData;
           }
           else {
 
             // Some of the curved connector types only have two points. I don't know which function is used in these cases. For now, I approximated with a smooth quadratic bezier.
 
-            var pointStart = d.points[0];
-            var pointEnd = d.points[1];
-
-            pathData = "M" + pointStart.x + "," + pointStart.y + " T" + pointEnd.x + "," + pointEnd.y; 
+            pathData += " T" + targetX + "," + targetY; 
             return pathData;
           };
         }
@@ -535,102 +554,17 @@ function drawPathway() {
   };
   */
     });
-
-    // Graphical Lines 
-
-    var pathData = null;
-
-    if (pathway.hasOwnProperty('graphicalLines')) {
-
-      var graphicalLines = svg.selectAll("path.graphical-line")
-        .data(pathway.graphicalLines)
-        .enter()
-        .append("path")
-        .attr("id", function (d) { return 'graphical-line-' + d.graphId; })
-        .attr("class", "graphical-line")
-        .attr("class", function (d) { 
-            var styleClass = 'graphical-line ';
-            if (d.hasOwnProperty('strokeStyle')) {
-            if (d.strokeStyle === 'broken') {
-            styleClass += " broken-stroke"; 
-            };
-            };
-            return styleClass; 
-            })
-      .attr("d", function (d) {
-          pathData = getPathData(d, pathway.labelableElements);
-          if (d.hasOwnProperty('strokeStyle')) {
-          if (d.strokeStyle === 'double') {
-
-          // setting stroke-width equal to its specified line value is
-          // what PathVisio (Java) does, but the white line (overlaying the
-          // thick line to create a "double line") is hard to see at 1px.
-
-          svg.append("path")
-          .attr("class", "graphical-line-double")
-          .attr("d", pathData)
-          .attr("style", "stroke:white; stroke-width:" + d.strokeWidth + '; ')
-          .attr("marker-start", 'url(#' + getMarker(d.markerStart, 'start', d.stroke) + ')')
-            .attr("marker-end", 'url(#' + getMarker(d.markerEnd, 'end', d.stroke) + ')');
-              };
-              };
-              return pathData; 
-              })
-            .attr("style", function (d) { 
-              var style = 'stroke-width:' + d.strokeWidth + '; ';
-              if (d.hasOwnProperty('stroke')) {
-              style += 'stroke:' + d.stroke + '; '; 
-              };
-              if (d.hasOwnProperty('strokeStyle')) {
-              if (d.strokeStyle === 'double') {
-              style += 'stroke-width:' + (3 * d.strokeWidth) + '; '; 
-              };
-              };
-              return style; 
-              })
-            .attr("marker-start", function (d) { 
-              markerStart = getMarker(d.markerStart, 'start', d.stroke);
-              if (d.hasOwnProperty('strokeStyle')) {
-              if (d.strokeStyle === 'double') {
-
-              // if it's a double line, the marker will be taken care of above
-              // we use the gap as a blank
-
-              markerStart = 'mim-gap-start-black';
-              };
-              };
-              return 'url(#' + markerStart + ')'; 
-                })
-              .attr("marker-end", function (d) { 
-                markerEnd = getMarker(d.markerEnd, 'end', d.stroke);
-                if (d.hasOwnProperty('strokeStyle')) {
-                if (d.strokeStyle === 'double') {
-
-                // if it's a double line, the marker will be taken care of above
-                // we use the gap as a blank
-
-                markerEnd = 'mim-gap-end-black';
-                };
-                };
-                return 'url(#' + markerEnd + ')'; 
-                  })
-                .attr("fill", 'none');
-
-                };
-
                 // Interactions
-
 
                 var pathData = null;
 
-                var interactions = svg.selectAll("path.interaction")
-                  .data(pathway.interactions)
+                var edges = svg.selectAll("path.edge")
+                  .data(pathway.edges)
                   .enter()
                   .append("path")
-                  .attr("id", function (d) { return 'interaction-' + d.graphId; })
-                  .attr("class", "interaction")
+                  .attr("id", function (d) { return d.edgeType + '-' + d.graphId; })
                   .attr("class", function (d) { 
-                      var styleClass = 'interaction ';
+                      var styleClass = 'edge ' + d.edgeType + ' ';
                       if (d.hasOwnProperty('strokeStyle')) {
                       if (d.strokeStyle === 'broken') {
                       styleClass += " broken-stroke"; 
@@ -648,7 +582,7 @@ function drawPathway() {
                     // thick line to create a "double line") is hard to see at 1px.
 
                     svg.append("path")
-                    .attr("class", "interaction-double")
+                    .attr("class", d.edgeType + "-double")
                     .attr("d", pathData)
                     .attr("style", "stroke:white; stroke-width:" + d.strokeWidth + '; ')
                     .attr("marker-start", 'url(#' + getMarker(d.markerStart, 'start', d.stroke) + ')')

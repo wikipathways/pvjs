@@ -427,87 +427,16 @@ function convertGpml2Json(xmlDoc){
 
     try {
       if (pathway.hasOwnProperty('graphicalline')) {
-        pathway.graphicalLines = convertToArray( pathway.graphicalline );
+        graphicalLines = convertToArray( pathway.graphicalline );
         delete pathway.graphicalline;
 
-        pathway.graphicalLines.forEach(function(element, index, array) {
+        if (pathway.edges === undefined) {
+          pathway.edges = [];
+        };
 
-          element.graphId = element.graphid;
-          delete element.graphid;
-
-          if (element.hasOwnProperty('groupref')) {
-            element.groupRef = element.groupref;
-            delete element.groupref;
-          };
-
-          if (element.graphics.hasOwnProperty('color')) {
-            var color = new RGBColor(element.graphics.color);
-            if (color.ok) { 
-              element.stroke = color.toHex();
-            }
-          };	
-
-          element.strokeWidth = element.graphics.linethickness;
-
-          if (element.graphics.hasOwnProperty('connectortype')) {
-            element.connectorType = element.graphics.connectortype.toLowerCase();
-          }	
-
-          if (element.graphics.hasOwnProperty('linestyle')) {
-            element.strokeStyle = element.graphics.linestyle.toLowerCase();
-            delete element.graphics.linestyle;
-          }	
-          else {
-            if (element.hasOwnProperty('attribute')) {
-              if ((element.attribute.key === "org.pathvisio.DoubleLineProperty") && (element.attribute.value === "Double")) {
-                element.strokeStyle = 'double';
-                delete element.attribute;
-              };
-            };	
-          };
-
-          element.zIndex = element.graphics.zorder;
-          delete element.graphics.zorder;
-
-          element.xRef = element.xref;
-          delete element.xref;
-
-          var markerStart = 'none';
-          var markerEnd = 'none';
-
-          // Points
-
-          element.points = convertToArray( element.graphics.point );
-          delete element.graphics;
-
-          element.points.forEach(function(element, index, array) {
-
-            if (element.graphref !== undefined) {
-              element.graphRef = element.graphref;
-              delete element.graphref;
-            };
-
-            // This is probably unreliable. We need to establish a way to ensure we identify start and end markers correctly, and we should not rely on the order of elements in XML.
-
-            if ((index === 0) && (markerMappings.hasOwnProperty(element.arrowhead))) {
-              markerStart = markerMappings[element.arrowhead];
-              delete element.arrowhead;
-            }
-            else {
-              if ((index === array.length - 1) && (markerMappings.hasOwnProperty(element.arrowhead))) {
-                markerEnd = markerMappings[element.arrowhead];
-                delete element.arrowhead;
-              }
-            };
-          });
-
-          // Back to graphical lines
-
-          element.markerStart = markerStart;
-          element.markerEnd = markerEnd;
-
-          delete element.graphics;
-
+        graphicalLines.forEach(function(element, index, array) {
+          element.edgeType = 'graphical-line';
+          pathway.edges.push(element);
         });
       }
       else {
@@ -516,17 +445,42 @@ function convertGpml2Json(xmlDoc){
     }
     catch (e) {
       console.log("Error converting graphicalline to json: " + e.message);
-      delete pathway.graphicalLines;
+      delete pathway.graphicalline;
     };
 
     // Interactions
 
     try {
       if (pathway.hasOwnProperty('interaction')) {
-        pathway.interactions = convertToArray( pathway.interaction );
+        var interactions = convertToArray( pathway.interaction );
         delete pathway.interaction;
 
-        pathway.interactions.forEach(function(element, index, array) {
+        if (pathway.edges === undefined) {
+          pathway.edges = [];
+        };
+
+        interactions.forEach(function(element, index, array) {
+          element.edgeType = 'interaction';
+          pathway.edges.push(element);
+        });
+
+        self.interactions = interactions;
+        self.edges = pathway.edges;
+      }
+      else {
+        console.log("No element(s) named 'interaction' found in this gpml file.");
+      }
+    }
+    catch (e) {
+      console.log("Error converting interaction to json: " + e.message);
+      delete pathway.interaction;
+    };
+
+    // Edges 
+
+    try {
+      if (pathway.hasOwnProperty('edges')) {
+        pathway.edges.forEach(function(element, index, array) {
 
           element.graphId = element.graphid;
           delete element.graphid;
@@ -661,7 +615,7 @@ function convertGpml2Json(xmlDoc){
             };
           });
 
-          // Back to interactions
+          // Back to edges
 
           element.markerStart = markerStart;
           element.markerEnd = markerEnd;
@@ -669,11 +623,10 @@ function convertGpml2Json(xmlDoc){
           delete element.graphics;
 
         });
-      }
+      };
     }
     catch (e) {
-      console.log("Error converting interaction to json: " + e.message);
-      delete pathway.interactions;
+      console.log("Error converting edge to json: " + e.message);
     };
 
     // Labels
