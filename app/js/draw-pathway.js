@@ -141,6 +141,10 @@ function getPathData(d, labelableElements) {
         };
       };
 
+      // distance to move away from node when we can't go directly to the next node
+      
+      var step = 15;
+
       if (Math.abs(sourceDx) === 1) {
         currentDirection = 'H';
       }
@@ -149,47 +153,88 @@ function getPathData(d, labelableElements) {
       };
       console.log('currentDirection');
       console.log(currentDirection);
-      console.log(sourceDy);
+      console.log(sourceX);
       console.log(sourceY);
+      console.log(sourceDx);
+      console.log(sourceDy);
+      console.log(targetX);
       console.log(targetY);
+      console.log(targetDx);
+      console.log(targetDy);
 
-      if ((sourceDy === -1) && (sourceY < targetY)) {
-        pathData += " V " + (sourceY - 15); 
-        console.log('pathData');
-        console.log(pathData);
-        currentDirection = switchDirection(currentDirection);
-        console.log('currentDirection');
-        console.log(currentDirection);
-        console.log('inside');
-        if (targetDy === -1 && sourceX < targetX) {
-          pathData += " H " + targetX + " V " + targetY; 
+      if (d.points.length === 2) {
+        //if (sourceDx === ((sourceX - targetX) / Math.abs(sourceX - targetX)) || sourceDx === targetDy || sourceDy === targetDx) {
+        if (Math.abs(sourceDx) === 1) {
+          pathData += " H " + (sourceX + sourceDx * 15); 
+          console.log('pathData');
+          console.log(pathData);
+          currentDirection = switchDirection(currentDirection);
         }
         else {
-          if (targetDx === 1 && sourceX < targetX) {
-            pathData += ' H ' + (targetX + 15) + ' V ' + targetY + ' H ' + targetX; 
+          //if (sourceDy === ((sourceY - targetY) / Math.abs(sourceY - targetY)) || sourceDx === targetDy || sourceDy === targetDx) {
+          if (Math.abs(sourceDy) === 1) {
+            pathData += " V " + (sourceY + sourceDy * 15); 
+            console.log('pathData');
+            console.log(pathData);
+            currentDirection = switchDirection(currentDirection);
           };
+        };
+
+        if (targetDx === ((targetX - sourceX) / Math.abs(targetX - sourceX)) || sourceDx === targetDy || sourceDy === targetDx) {
+        //if (Math.abs(targetDx) === 1) {
+          pathData += " H " + (targetX + targetDx * 15) + ' V ' + targetY + ' H ' + targetX; 
+          console.log('pathData');
+          console.log(pathData);
+          currentDirection = switchDirection(currentDirection);
+        }
+        else {
+          if (targetDy === ((targetY - sourceY) / Math.abs(targetY - sourceY)) || sourceDx === targetDy || sourceDy === targetDx) {
+          //if (Math.abs(targetDy) === 1) {
+            pathData += " V " + (targetY + targetDy * 15) + ' H ' + targetX + ' V ' + targetY; 
+            console.log('pathData');
+            console.log(pathData);
+            currentDirection = switchDirection(currentDirection);
+          };
+        };
+      }
+      else {
+        d.points.forEach(function(element, index, array) {
+          console.log('index');
+          console.log(index);
+          if ((index > 0) && (index < (array.length - 1))) {
+            if (currentDirection === 'H') {
+              pathData += ' ' + currentDirection + ' ' + element.x; 
+              console.log('pathData');
+              console.log(pathData);
+            }
+            else {
+              pathData += ' ' + currentDirection + ' ' + element.y; 
+              console.log('pathData');
+              console.log(pathData);
+            };
+          currentDirection = switchDirection(currentDirection);
+          console.log('currentDirection');
+          console.log(currentDirection);
+          };
+        });
+
+        if (currentDirection === 'H') {
+          pathData += ' ' + currentDirection + ' ' + targetX; 
+          currentDirection = switchDirection(currentDirection);
+          pathData += ' ' + currentDirection + ' ' + targetY; 
+          currentDirection = switchDirection(currentDirection);
+          console.log('pathData');
+          console.log(pathData);
+        }
+        else {
+          pathData += ' ' + currentDirection + ' ' + targetY; 
+          currentDirection = switchDirection(currentDirection);
+          pathData += ' ' + currentDirection + ' ' + targetX; 
+          currentDirection = switchDirection(currentDirection);
+          console.log('pathData');
+          console.log(pathData);
         };
       };
-
-      d.points.forEach(function(element, index, array) {
-        console.log('index');
-        console.log(index);
-        if ((index > 0) && (index < (array.length -1))) {
-          if (currentDirection === 'H') {
-            pathData += ' ' + currentDirection + ' ' + element.x; 
-            console.log('pathData');
-            console.log(pathData);
-          }
-          else {
-            pathData += ' ' + currentDirection + ' ' + element.y; 
-            console.log('pathData');
-            console.log(pathData);
-          };
-        currentDirection = switchDirection(currentDirection);
-        console.log('currentDirection');
-        console.log(currentDirection);
-        };
-      });
 
       /*
       if (Math.abs(targetDx) === 1) {
