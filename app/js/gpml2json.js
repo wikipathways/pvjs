@@ -648,7 +648,7 @@ function convertGpml2Json(xmlDoc){
           }
           else {
             if ((el.key === "org.pathvisio.CellularComponentProperty") && (el.value !== "None")) {
-              element.graphics.shapetype = el.value;
+              element.cellularComponent = el.value;
             };
           };
         });
@@ -712,8 +712,13 @@ function convertGpml2Json(xmlDoc){
         };
       }
 
-      if ((!(element.graphics.hasOwnProperty("shapetype"))) || (element.graphics.shapetype === 'Rectangle')) {
-        element.symbolType = "rectangle";
+      if ((!(element.graphics.hasOwnProperty("shapetype")))) {
+        if (element.elementType === 'data-node') {
+          element.symbolType = "rectangle";
+        }
+        else {
+          element.symbolType = "none";
+        }
       }
       else {
         element.symbolType = shapeMappings[element.graphics.shapetype];
