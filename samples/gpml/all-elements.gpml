@@ -30,7 +30,7 @@
     <Xref Database="" ID="" />
   </DataNode>
   <DataNode TextLabel="Metabolite" GraphId="d6943" Type="Metabolite" GroupRef="d516a">
-    <Graphics CenterX="96.17237585827556" CenterY="1085.5683269476367" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Graphics CenterX="96.17237585827556" CenterY="1095.941770931039" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff" />
     <Xref Database="" ID="" />
   </DataNode>
   <DataNode TextLabel="Pathway" GraphId="e21de" Type="Pathway" GroupRef="b8b92">
@@ -38,7 +38,7 @@
     <Xref Database="" ID="" />
   </DataNode>
   <DataNode TextLabel="Protein" GraphId="c4cf8" Type="Protein" GroupRef="b8b92">
-    <Graphics CenterX="125.53449115534127" CenterY="803.3903519244041" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Graphics CenterX="135.90793513874377" CenterY="817.9131735011674" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
     <Xref Database="" ID="" />
   </DataNode>
   <DataNode TextLabel="GeneProduct" GraphId="fc358" Type="GeneProduct">
@@ -218,7 +218,7 @@
     <Xref Database="" ID="" />
   </DataNode>
   <DataNode TextLabel="Protein" GraphId="dd17b" Type="Protein" GroupRef="ce917">
-    <Graphics CenterX="139.50647466936783" CenterY="1304.4845562710836" Width="80.0" Height="20.0" ZOrder="32867" FontSize="10" Valign="Middle" />
+    <Graphics CenterX="143.65585226272879" CenterY="1310.708622661125" Width="80.0" Height="20.0" ZOrder="32867" FontSize="10" Valign="Middle" />
     <Xref Database="" ID="" />
   </DataNode>
   <DataNode TextLabel="Pathway" GraphId="fe239" Type="Pathway" GroupRef="ce917">
@@ -527,7 +527,7 @@
   </Interaction>
   <Interaction GraphId="idc75cb80b" GroupRef="b8b92">
     <Graphics ZOrder="12288" LineThickness="1.0">
-      <Point X="125.53449115534127" Y="793.3903519244041" GraphRef="c4cf8" RelX="0.0" RelY="-1.0" />
+      <Point X="135.90793513874377" Y="807.9131735011674" GraphRef="c4cf8" RelX="0.0" RelY="-1.0" />
       <Point X="64.5460579271604" Y="696.2118223668936" GraphRef="e21de" RelX="0.0" RelY="1.0" ArrowHead="Arrow" />
     </Graphics>
     <Xref Database="" ID="" />
@@ -540,21 +540,21 @@
     </Graphics>
     <Xref Database="" ID="" />
   </Interaction>
-  <Interaction>
+  <Interaction GraphId="id47f481e0">
     <Graphics ZOrder="12288" LineThickness="1.0">
       <Point X="64.87889273356402" Y="2125.432525951557" />
       <Point X="100.0" Y="2100.0" ArrowHead="Arrow" />
     </Graphics>
     <Xref Database="" ID="" />
   </Interaction>
-  <Interaction>
+  <Interaction GraphId="id80b6d0e2">
     <Graphics ZOrder="12288" LineThickness="1.0">
       <Point X="725.7785467128028" Y="1474.0484429065746" />
       <Point X="700.0" Y="1500.0" ArrowHead="Arrow" />
     </Graphics>
     <Xref Database="" ID="" />
   </Interaction>
-  <Interaction>
+  <Interaction GraphId="id7f849395">
     <Graphics ZOrder="12288" LineThickness="1.0">
       <Point X="71.79930795847751" Y="1471.453287197232" />
       <Point X="100.0" Y="1500.0" ArrowHead="Arrow" />
@@ -563,7 +563,7 @@
   </Interaction>
   <Interaction GraphId="ceb83" GroupRef="ce917">
     <Graphics ZOrder="32865" LineThickness="1.0">
-      <Point X="139.50647466936783" Y="1294.4845562710836" GraphRef="dd17b" RelX="0.0" RelY="-1.0" />
+      <Point X="143.65585226272879" Y="1300.708622661125" GraphRef="dd17b" RelX="0.0" RelY="-1.0" />
       <Point X="78.51804144118678" Y="1197.3060267135731" GraphRef="fe239" RelX="0.0" RelY="1.0" ArrowHead="Arrow" />
     </Graphics>
     <Xref Database="" ID="" />
@@ -807,8 +807,8 @@
   </GraphicalLine>
   <GraphicalLine GraphId="aa8e7">
     <Graphics ZOrder="32861" LineThickness="5.0">
-      <Point X="716.8304668304664" Y="1406.8229068229084" />
-      <Point X="1006.7567567567563" Y="1406.8229068229084" />
+      <Point X="720.9798444238274" Y="1408.8975956195889" />
+      <Point X="1010.9061343501173" Y="1408.8975956195889" />
     </Graphics>
   </GraphicalLine>
   <GraphicalLine GraphId="b36fc" GroupRef="b8b92">
@@ -1093,6 +1093,7 @@
   <Group GroupId="d516a" Style="Complex" />
   <Group GroupId="b8b92" Style="Group" />
   <Group GroupId="ce917" Style="Complex" />
+  <Group GroupId="ee2e5" GraphId="dfae8" Style="Complex" />
   <InfoBox CenterX="0.0" CenterY="0.0" />
   <Biopax />
 </Pathway>

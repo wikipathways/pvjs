@@ -72,6 +72,7 @@ function getMarker(name, position, color) {
 function getPathData(d, labelableElements) {
   var pathData = "";
 
+  /*
   var sourcePoint = d.points[0];
   if (d.points[0].hasOwnProperty('graphRef')) {
     var sourceGraphRef = sourcePoint.graphRef;
@@ -97,17 +98,179 @@ function getPathData(d, labelableElements) {
   };
   console.log('sourcePoint');
   console.log(sourcePoint);
+  */
+
+  var sourcePoint = d.points[0];
+  if (d.points[0].hasOwnProperty('graphRef')) {
+    var sourceGraphRef = sourcePoint.graphRef;
+
+    var sourceElement = labelableElements.filter(function(element) {return element.graphId === sourceGraphRef})[0]
+    console.log('d');
+    console.log(d);
+    console.log('sourceElement try 1');
+    console.log(sourceElement);
+
+    if (sourceElement !== undefined) {
+      var sourceX = sourceElement.x + (sourcePoint.relX * sourceElement.width);
+      var sourceY = sourceElement.y + (sourcePoint.relY * sourceElement.height);
+    }
+    else {
+      var sourceGroup = pathway.groups.filter(function(el) {return (el.graphId === sourceGraphRef)});
+      console.log('sourceGroup');
+      console.log(sourceGroup);
+
+      if (sourceGroup.length > 0) {
+        var sourceGroupRef = pathway.groups.filter(function(el) {return (el.graphId === sourceGraphRef)})[0].groupId;
+        console.log('sourceGroupRef');
+        console.log(sourceGroupRef);
+        var groupMembers = pathway.labelableElements.filter(function(el) {return (el.groupRef === sourceGroupRef)});
+        console.log('groupMembers');
+        console.log(groupMembers);
+        var groupX = (d3.min(groupMembers, function(el) {return el.x})) - 15;
+        var groupY = (d3.min(groupMembers, function(el) {return el.y})) - 15;
+
+        var groupWidth = (d3.max(groupMembers, function(el) {return el.x + el.width})) - groupX + 15;
+        var groupHeight = (d3.max(groupMembers, function(el) {return el.y + el.height})) - groupY + 15;
+
+        console.log('sourceElement try 2');
+
+        var sourceX = groupX + (sourcePoint.relX * groupWidth);
+        var sourceY = groupY + (sourcePoint.relY * groupHeight);
+        console.log(sourceX);
+        console.log(sourceY);
+      }
+      else {
+        pathway.edges.forEach(function(element) {
+          var sourceAnchor = element.anchors.filter(function(element) {return element.graphId === sourceGraphRef})[0]
+          if (sourceAnchor !== undefined) {
+            sourceX = sourceAnchor.position * ( element.points[element.points.length - 1].x - element.points[0].x );
+            sourceY = sourceAnchor.position * ( element.points[element.points.length - 1].y - element.points[0].y );
+            console.log('sourceElement try 3');
+            console.log(sourceX);
+            console.log(sourceY);
+          };
+        });
+      };
+    };
+
+    pathData = "M " + sourceX + " " + sourceY; 
+    console.log('pathData');
+    console.log(pathData);
+
+    var sourceDx = sourcePoint.dx;
+    var sourceDy = sourcePoint.dy;
+  }
+  else {
+    pathData = "M " + sourcePoint.x + " " + sourcePoint.y; 
+    var sourceDx = 1;
+    var sourceDy = 1;
+  };
 
   var targetPoint = d.points[d.points.length - 1];
   if (d.points[d.points.length - 1].hasOwnProperty('graphRef')) {
     var targetGraphRef = targetPoint.graphRef;
 
     var targetElement = labelableElements.filter(function(element) {return element.graphId === targetGraphRef})[0]
-    console.log('targetElement');
+    console.log('d');
+    console.log(d);
+    console.log('targetElement try 1');
     console.log(targetElement);
 
-    var targetX = targetElement.x + (targetPoint.relX * targetElement.width);
-    var targetY = targetElement.y + (targetPoint.relY * targetElement.height);
+    if (targetElement !== undefined) {
+      var targetX = targetElement.x + (targetPoint.relX * targetElement.width);
+      var targetY = targetElement.y + (targetPoint.relY * targetElement.height);
+    }
+    else {
+      targetGroup = [];
+      if (pathway.hasOwnProperty('groups')) {
+        targetGroup = pathway.groups.filter(function(el) {return (el.graphId === targetGraphRef)});
+        console.log('targetGroup');
+        console.log(targetGroup);
+      };
+
+      if (targetGroup.length > 0) {
+        var targetGroupRef = pathway.groups.filter(function(el) {return (el.graphId === targetGraphRef)})[0].groupId;
+        console.log('targetGroupRef');
+        console.log(targetGroupRef);
+        var groupMembers = pathway.labelableElements.filter(function(el) {return (el.groupRef === targetGroupRef)});
+        console.log('groupMembers');
+        console.log(groupMembers);
+        var groupX = (d3.min(groupMembers, function(el) {return el.x})) - 15;
+        var groupY = (d3.min(groupMembers, function(el) {return el.y})) - 15;
+
+        var groupWidth = (d3.max(groupMembers, function(el) {return el.x + el.width})) - groupX + 15;
+        var groupHeight = (d3.max(groupMembers, function(el) {return el.y + el.height})) - groupY + 15;
+
+        console.log('targetElement try 2');
+
+        var targetX = groupX + (targetPoint.relX * groupWidth);
+        var targetY = groupY + (targetPoint.relY * groupHeight);
+        console.log(targetX);
+        console.log(targetY);
+      }
+      else {
+
+        // this is a very rough attempt at getting this done. It will run into problems with recursion and
+        // cannot handle a case such as the interaction associated with the anchor being attached to a group.
+        // this logic has not been ported to the sourceElement.
+
+        var edgesWithAnchors = pathway.edges.filter(function(element) {return element.hasOwnProperty('anchors')})
+        console.log('edgesWithAnchors');
+        console.log(edgesWithAnchors);
+        edgesWithAnchors.forEach(function(edge) {
+          var targetAnchor = edge.anchors.filter(function(element) {return element.graphId === targetGraphRef})[0]
+          console.log('targetAnchor');
+          console.log(targetAnchor);
+          if (targetAnchor !== undefined) {
+            console.log(targetAnchor);
+            console.log(targetAnchor.position);
+            console.log(edge.points);
+
+            secondarySourcePoint = edge.points[0];
+            if (secondarySourcePoint.hasOwnProperty('graphRef')) {
+              var secondarySourceGraphRef = secondarySourcePoint.graphRef;
+
+              var secondarySourceElement = labelableElements.filter(function(element) {return element.graphId === secondarySourceGraphRef})[0]
+
+              var secondarySourceX = secondarySourceElement.x + (secondarySourcePoint.relX * secondarySourceElement.width);
+              var secondarySourceY = secondarySourceElement.y + (secondarySourcePoint.relY * secondarySourceElement.height);
+            }
+            else {
+              secondarySourceX = secondarySourcePoint.x;
+              secondarySourceY = secondarySourcePoint.y;
+            };
+            console.log('secondarySource');
+            console.log(secondarySourceX);
+            console.log(secondarySourceY);
+
+            secondaryTargetPoint = edge.points[edge.points.length - 1];
+            if (secondaryTargetPoint.hasOwnProperty('graphRef')) {
+              var secondaryTargetGraphRef = secondaryTargetPoint.graphRef;
+
+              var secondaryTargetElement = labelableElements.filter(function(element) {return element.graphId === secondaryTargetGraphRef})[0]
+
+              var secondaryTargetX = secondaryTargetElement.x + (secondaryTargetPoint.relX * secondaryTargetElement.width);
+              var secondaryTargetY = secondaryTargetElement.y + (secondaryTargetPoint.relY * secondaryTargetElement.height);
+            }
+            else {
+              secondaryTargetX = secondaryTargetPoint.x;
+              secondaryTargetY = secondaryTargetPoint.y;
+            };
+            console.log('secondaryTarget');
+            console.log(secondarySourceX);
+            console.log(secondarySourceY);
+
+
+            targetX = secondarySourceX + targetAnchor.position * ( secondaryTargetX - secondarySourceX );
+            targetY = secondarySourceY + targetAnchor.position * ( secondaryTargetY - secondarySourceY );
+            console.log('targetElement try 3');
+            console.log(targetX);
+            console.log(targetY);
+            return;
+          };
+        });
+      };
+    };
 
     var targetDx = targetPoint.dx;
     var targetDy = targetPoint.dy;
@@ -121,7 +284,7 @@ function getPathData(d, labelableElements) {
   };
 
   console.log(d);
-  if ((!d.connectorType) || (d.connectorType === 'undefined') || (d.connectorType === 'straight')) {
+  if ((!d.connectorType) || (d.connectorType === undefined) || (d.connectorType === 'straight')) {
     pathData += " L " + targetX + " " + targetY; 
   }
   else {
@@ -162,7 +325,10 @@ function getPathData(d, labelableElements) {
       console.log(targetDx);
       console.log(targetDy);
 
-      if (d.points.length === 2) {
+      //if (d.points.length === 2) {
+      //doesn't quite work yet, so this works for most cases
+
+      if (d.points.length === -2) {
         //if (sourceDx === ((sourceX - targetX) / Math.abs(sourceX - targetX)) || sourceDx === targetDy || sourceDy === targetDx) {
         if (Math.abs(sourceDx) === 1) {
           pathData += " H " + (sourceX + sourceDx * 15); 
@@ -217,23 +383,23 @@ function getPathData(d, labelableElements) {
           console.log(currentDirection);
           };
         });
+      };
 
-        if (currentDirection === 'H') {
-          pathData += ' ' + currentDirection + ' ' + targetX; 
-          currentDirection = switchDirection(currentDirection);
-          pathData += ' ' + currentDirection + ' ' + targetY; 
-          currentDirection = switchDirection(currentDirection);
-          console.log('pathData');
-          console.log(pathData);
-        }
-        else {
-          pathData += ' ' + currentDirection + ' ' + targetY; 
-          currentDirection = switchDirection(currentDirection);
-          pathData += ' ' + currentDirection + ' ' + targetX; 
-          currentDirection = switchDirection(currentDirection);
-          console.log('pathData');
-          console.log(pathData);
-        };
+      if (currentDirection === 'H') {
+        pathData += ' ' + currentDirection + ' ' + targetX; 
+        currentDirection = switchDirection(currentDirection);
+        pathData += ' ' + currentDirection + ' ' + targetY; 
+        currentDirection = switchDirection(currentDirection);
+        console.log('pathData');
+        console.log(pathData);
+      }
+      else {
+        pathData += ' ' + currentDirection + ' ' + targetY; 
+        currentDirection = switchDirection(currentDirection);
+        pathData += ' ' + currentDirection + ' ' + targetX; 
+        currentDirection = switchDirection(currentDirection);
+        console.log('pathData');
+        console.log(pathData);
       };
 
       /*
