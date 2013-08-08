@@ -209,220 +209,6 @@ function convertGpml2Json(xmlDoc){
       delete pathway.comments;
     };
 
-    // LabelableElements
-
-    pathway.labelableElements = [];
-
-    function parseLabelableElement(element, index, array, elementType) {
-      element.graphId = element.graphid;
-      delete element.graphid;
-
-      if (element.hasOwnProperty('groupref')) {
-        element.groupRef = element.groupref;
-        delete element.groupref;
-      };
-
-      if (element.hasOwnProperty('comment')) {
-        element.comments = convertToArray( element.comment );
-        delete element.comment;
-      };
-
-      if (element.hasOwnProperty('xref')) {
-        if ((element.xref.database === null) && (element.xref.id === null)) {
-          delete element.xref;
-        };
-      };
-
-      element.x = parseFloat(element.graphics.centerx) - parseFloat(element.graphics.width)/2;
-      element.x = Math.round( element.x * 100 ) / 100;
-
-      element.y = parseFloat(element.graphics.centery) - parseFloat(element.graphics.height)/2;
-      element.y = Math.round( element.y * 100 ) / 100;
-
-      element.width = parseFloat(element.graphics.width);
-      element.width = Math.round( element.width * 100 ) / 100;
-
-      element.height = parseFloat(element.graphics.height);
-      element.height = Math.round( element.height * 100 ) / 100;
-
-      // If unspecified due to being default, should we set the styles for stroke, fill and font-name here or in CSS?
-      // Currently, every default value that can be specified in the CSS is not specified in the code below.
-
-      if (element.graphics.hasOwnProperty("fillcolor")) {
-        // RGBColor() from http://www.phpied.com/rgb-color-parser-in-javascript/
-        // license: Use it if you like it
-        var fill = new RGBColor(element.graphics.fillcolor);
-        if (fill.ok) { 
-          element.fill = fill.toHex();
-        }
-      };
-
-      if (element.graphics.hasOwnProperty("color")) {
-        var color = new RGBColor(element.graphics.color);
-        if (color.ok) { 
-          element.stroke = color.toHex();
-        }
-      };	
-
-      if (element.graphics.hasOwnProperty("linethickness")) {
-        element.strokeWidth = element.graphics.linethickness;
-      };	
-
-      if (element.graphics.hasOwnProperty('linestyle')) {
-        element.strokeStyle = element.graphics.linestyle.toLowerCase();
-        delete element.graphics.linestyle;
-      }	
-
-      if (element.hasOwnProperty('attribute')) {
-        element.attributes = convertToArray( element.attribute );
-        delete element.attribute;
-        element.attributes.forEach(function(el, index, array) {
-          if ((el.key === "org.pathvisio.DoubleLineProperty") && (el.value === "Double")) {
-            el.strokeStyle = 'double';
-          }
-          else {
-            if ((el.key === "org.pathvisio.CellularComponentProperty") && (el.value !== "None")) {
-              element.graphics.shapetype = el.value;
-            };
-          };
-        });
-        delete element.attributes;
-      };	
-
-      if (element.graphics.hasOwnProperty("rotation")) {
-
-        // get rotation in degrees because SVG rotate attribute uses degrees
-        // http://www.w3.org/TR/SVG/coords.html#TransformAttribute
-
-        element.rotation = element.graphics.rotation * (180 / Math.PI);
-        element.rotation = Math.round( element.rotation * 100 ) / 100;
-      };	
-
-      // textLabel data
-
-      if (element.hasOwnProperty("textlabel")) {
-        var text = element.textlabel.toString().replace("&#xA;","\r\n");
-        delete element.textlabel;
-
-        element.textLabel = {};
-
-        element.textLabel.text = text;
-
-        if (element.hasOwnProperty('groupref')) {
-          element.groupRef = element.groupref;
-          delete element.groupref;
-        };
-
-        if (element.graphics.hasOwnProperty("color")) {
-
-          // element stroke and text color appear to be the same property in the Java PathVisio code
-
-          element.textLabel.color = element.stroke;
-        };	
-
-        if (element.graphics.hasOwnProperty("fontsize")) {
-          var fontSize = element.graphics.fontsize;
-        }
-        else {
-          var fontSize = 10;
-        };
-
-        element.textLabel.fontSize = fontSize;
-
-        if (element.graphics.hasOwnProperty("fontname")) {
-          element.textLabel.fontFamily = element.graphics.fontname;
-        };
-
-        if (element.graphics.hasOwnProperty("fontweight")) {
-          element.textLabel.fontWeight = element.graphics.fontweight.toLowerCase();
-        };
-
-        if (element.graphics.hasOwnProperty("fontstyle")) {
-          element.textLabel.fontStyle = element.graphics.fontstyle.toLowerCase();
-        };
-
-        if (alignToAnchorMappings.hasOwnProperty(element.graphics.align)) {
-          element.textLabel.textAnchor = alignToAnchorMappings[element.graphics.align];
-        };
-      }
-
-      if ((!(element.graphics.hasOwnProperty("shapetype"))) || (element.graphics.shapetype === 'Rectangle')) {
-        element.symbolType = "rectangle";
-      }
-      else {
-        element.symbolType = shapeMappings[element.graphics.shapetype];
-      };	
-
-      delete element.graphics;
-
-      element.elementType = elementType;
-
-      if (elementType === 'data-node') {
-        if (dataNodeTypeMappings.hasOwnProperty(element.type)) {
-          element.dataNodeType = dataNodeTypeMappings[element.type];
-        }
-        else {
-          element.dataNodeType = "unknown";
-        };
-        delete element.type;
-
-        if (element.hasOwnProperty('xref')) {
-          element.xRef = element.xref;
-          delete element.xref;
-        };
-      };
-
-      pathway.labelableElements.push(element);
-      delete element.graphics;
-    };
-
-    // DataNodes 
-
-    try {
-      if (pathway.hasOwnProperty('datanode')) {
-        pathway.dataNodes = convertToArray( pathway.datanode );
-        delete pathway.datanode;
-
-        pathway.dataNodes.forEach(function(element, index, array) {
-          parseLabelableElement(element, index, array, 'data-node');
-        });
-        delete pathway.dataNodes;
-      }
-      else {
-        console.log("No element(s) named 'datanode' found in this gpml file.");
-      }
-    }
-    catch (e) {
-      console.log("Error converting datanode to json: " + e.message);
-      delete pathway.dataNodes;
-    };
-
-    // Groups
-
-    try {
-      if (pathway.hasOwnProperty('group')) {
-        pathway.groups = convertToArray( pathway.group );
-        delete pathway.group;
-
-        pathway.groups.forEach(function(element, index, array) {
-
-          element.graphId = element.graphid;
-          delete element.graphid;
-
-          element.groupId = element.groupid;
-          delete element.groupid;
-
-        });
-      }
-      else {
-        console.log("No element(s) named 'datanode' found in this gpml file.");
-      }
-    }
-    catch (e) {
-      console.log("Error converting group to json: " + e.message);
-      delete pathway.groups;
-    };
-
     // Graphical Lines 
 
     try {
@@ -517,7 +303,6 @@ function convertGpml2Json(xmlDoc){
           };
 
           element.zIndex = element.graphics.zorder;
-          delete element.graphics.zorder;
 
           element.xRef = element.xref;
           delete element.xref;
@@ -624,23 +409,132 @@ function convertGpml2Json(xmlDoc){
 
         });
       };
+      edges.sort(function(a,b) {return a.zIndex - b.zIndex});
     }
     catch (e) {
       console.log("Error converting edge to json: " + e.message);
+    };
+
+    // Groups
+
+    try {
+      if (pathway.hasOwnProperty('group')) {
+        pathway.groups = convertToArray( pathway.group );
+        delete pathway.group;
+
+        pathway.groups.forEach(function(element, index, array) {
+
+          element.graphId = element.graphid;
+          delete element.graphid;
+
+          element.groupId = element.groupid;
+          delete element.groupid;
+
+        });
+      }
+      else {
+        console.log("No element(s) named 'datanode' found in this gpml file.");
+      }
+    }
+    catch (e) {
+      console.log("Error converting group to json: " + e.message);
+      delete pathway.groups;
+    };
+
+    // DataNodes 
+
+    try {
+      if (pathway.hasOwnProperty('datanode')) {
+        var dataNodes = convertToArray( pathway.datanode );
+        delete pathway.datanode;
+
+        dataNodes.forEach(function(element, index, array) {
+
+          element.elementType = 'data-node';
+
+          if (dataNodeTypeMappings.hasOwnProperty(element.type)) {
+            element.dataNodeType = dataNodeTypeMappings[element.type];
+          }
+          else {
+            element.dataNodeType = 'unknown';
+          };
+          delete element.type;
+
+          if (element.hasOwnProperty('xref')) {
+            element.xRef = element.xref;
+            delete element.xref;
+          };
+
+          if (element.graphics.hasOwnProperty("fillcolor")) {
+
+            // RGBColor() from http://www.phpied.com/rgb-color-parser-in-javascript/
+            // license: Use it if you like it
+            
+            element.graphics.fillcolor = element.graphics.fillcolor.toLowerCase();
+
+            if (element.graphics.fillcolor = 'transparent') {
+              element.fillOpacity = 0;
+            }
+            else {
+              var fill = new RGBColor(element.graphics.fillcolor);
+              if (fill.ok) { 
+                element.fill = fill.toHex();
+                if (element.dataNodeType === 'pathway') {
+
+                  // default opacity in PathVisio (Java) is 0, which is specified in the CSS.
+                  
+                  element.fillOpacity = 1;
+                };
+              }
+            };
+
+          };
+        });
+
+        if (pathway.hasOwnProperty('labelableElements')) {
+          pathway.labelableElements = pathway.labelableElements.concat(dataNodes);
+        }
+        else {
+          pathway.labelableElements = dataNodes;
+        };
+
+      }
+      else {
+        console.log("No element(s) named 'datanode' found in this gpml file.");
+      }
+    }
+    catch (e) {
+      console.log("Error converting datanode to json: " + e.message);
+      delete pathway.datanode;
     };
 
     // Labels
 
     try {
       if (pathway.hasOwnProperty('label')) {
-        pathway.labels = convertToArray( pathway.label );
+        var labels = self.labels = convertToArray( pathway.label );
         delete pathway.label;
 
-        pathway.labels.forEach(function(element, index, array) {
-          parseLabelableElement(element, index, array, 'label');
+        labels.forEach(function(element, index, array) {
+          element.elementType = 'label';
+
+          if (element.graphics.hasOwnProperty("fillcolor")) {
+
+            element.fillOpacity = 1;
+            var fill = new RGBColor(element.graphics.fillcolor);
+            if (fill.ok) { 
+              element.fill = fill.toHex();
+            };
+          };
         });
 
-        delete pathway.labels;
+        if (pathway.hasOwnProperty('labelableElements')) {
+          pathway.labelableElements = pathway.labelableElements.concat(labels);
+        }
+        else {
+          pathway.labelableElements = labels;
+        };
+
       }
       else {
         console.log("No element(s) named 'label' found in this gpml file.");
@@ -648,21 +542,36 @@ function convertGpml2Json(xmlDoc){
     }
     catch (e) {
       console.log("Error converting label to json: " + e.message);
-      delete pathway.labels;
+      delete pathway.label;
     };
 
     // Shapes
 
     try {
       if (pathway.hasOwnProperty('shape')) {
-        pathway.shapes = convertToArray( pathway.shape );
+        var shapes = convertToArray( pathway.shape );
         delete pathway.shape;
 
-        pathway.shapes.forEach(function(element, index, array) {
-          parseLabelableElement(element, index, array, 'shape');
+        shapes.forEach(function(element, index, array) {
+          element.elementType = 'shape';
+
+          if (element.graphics.hasOwnProperty("fillcolor")) {
+
+            element.fillOpacity = 1;
+            var fill = new RGBColor(element.graphics.fillcolor);
+            if (fill.ok) { 
+              element.fill = fill.toHex();
+            };
+          };
         });
 
-        delete pathway.shapes;
+        if (pathway.hasOwnProperty('labelableElements')) {
+          pathway.labelableElements = pathway.labelableElements.concat(shapes);
+        }
+        else {
+          pathway.labelableElements = shapes;
+        };
+
       }
       else {
         console.log("No element(s) named 'shape' found in this gpml file.");
@@ -670,8 +579,150 @@ function convertGpml2Json(xmlDoc){
     }
     catch (e) {
       console.log("Error converting shape to json: " + e.message);
-      delete pathway.shapes;
+      delete pathway.shape;
     };
+
+    // LabelableElements
+
+    pathway.labelableElements.forEach(function(element, index, array) {
+      element.graphId = element.graphid;
+      delete element.graphid;
+
+      if (element.hasOwnProperty('groupref')) {
+        element.groupRef = element.groupref;
+        delete element.groupref;
+      };
+
+      if (element.hasOwnProperty('comment')) {
+        element.comments = convertToArray( element.comment );
+        delete element.comment;
+      };
+
+      if (element.hasOwnProperty('xref')) {
+        if ((element.xref.database === null) && (element.xref.id === null)) {
+          delete element.xref;
+        };
+      };
+
+      // Be warned that support for zIndex in SVG is spotty. It's best to rely on ordering in the DOM as well.
+
+      if (element.graphics.hasOwnProperty("zorder")) {
+        element.zIndex = parseFloat(element.graphics.zorder);
+        console.log('zoroder');
+      };
+
+      element.x = parseFloat(element.graphics.centerx) - parseFloat(element.graphics.width)/2;
+      //element.x = Math.round( element.x * 100 ) / 100;
+
+      element.y = parseFloat(element.graphics.centery) - parseFloat(element.graphics.height)/2;
+      //element.y = Math.round( element.y * 100 ) / 100;
+
+      element.width = parseFloat(element.graphics.width);
+      //element.width = Math.round( element.width * 100 ) / 100;
+
+      element.height = parseFloat(element.graphics.height);
+      //element.height = Math.round( element.height * 100 ) / 100;
+
+      if (element.graphics.hasOwnProperty("color")) {
+        var color = new RGBColor(element.graphics.color);
+        if (color.ok) { 
+          element.stroke = color.toHex();
+        }
+      };	
+
+      if (element.graphics.hasOwnProperty("linethickness")) {
+        element.strokeWidth = element.graphics.linethickness;
+      };	
+
+      if (element.graphics.hasOwnProperty('linestyle')) {
+        element.strokeStyle = element.graphics.linestyle.toLowerCase();
+        delete element.graphics.linestyle;
+      }	
+
+      if (element.hasOwnProperty('attribute')) {
+        element.attributes = convertToArray( element.attribute );
+        delete element.attribute;
+        element.attributes.forEach(function(el, index, array) {
+          if ((el.key === "org.pathvisio.DoubleLineProperty") && (el.value === "Double")) {
+            el.strokeStyle = 'double';
+          }
+          else {
+            if ((el.key === "org.pathvisio.CellularComponentProperty") && (el.value !== "None")) {
+              element.graphics.shapetype = el.value;
+            };
+          };
+        });
+        delete element.attributes;
+      };	
+
+      if (element.graphics.hasOwnProperty("rotation")) {
+
+        // get rotation in degrees because SVG rotate attribute uses degrees
+        // http://www.w3.org/TR/SVG/coords.html#TransformAttribute
+
+        element.rotation = element.graphics.rotation * (180 / Math.PI);
+        //element.rotation = Math.round( element.rotation * 100 ) / 100;
+      };	
+
+      // textLabel data
+
+      if (element.hasOwnProperty("textlabel")) {
+        var text = element.textlabel.toString().replace("&#xA;","\r\n");
+        delete element.textlabel;
+
+        element.textLabel = {};
+
+        element.textLabel.text = text;
+
+        if (element.hasOwnProperty('groupref')) {
+          element.groupRef = element.groupref;
+          delete element.groupref;
+        };
+
+        if (element.graphics.hasOwnProperty("color")) {
+
+          // element stroke and text color appear to be the same property in the Java PathVisio code
+
+          element.textLabel.color = element.stroke;
+        };	
+
+        if (element.graphics.hasOwnProperty("fontsize")) {
+          var fontSize = element.graphics.fontsize;
+        }
+        else {
+          var fontSize = 10;
+        };
+
+        element.textLabel.fontSize = fontSize;
+
+        if (element.graphics.hasOwnProperty("fontname")) {
+          element.textLabel.fontFamily = element.graphics.fontname;
+        };
+
+        if (element.graphics.hasOwnProperty("fontweight")) {
+          element.textLabel.fontWeight = element.graphics.fontweight.toLowerCase();
+        };
+
+        if (element.graphics.hasOwnProperty("fontstyle")) {
+          element.textLabel.fontStyle = element.graphics.fontstyle.toLowerCase();
+        };
+
+        if (alignToAnchorMappings.hasOwnProperty(element.graphics.align)) {
+          element.textLabel.textAnchor = alignToAnchorMappings[element.graphics.align];
+        };
+      }
+
+      if ((!(element.graphics.hasOwnProperty("shapetype"))) || (element.graphics.shapetype === 'Rectangle')) {
+        element.symbolType = "rectangle";
+      }
+      else {
+        element.symbolType = shapeMappings[element.graphics.shapetype];
+      };	
+
+      delete element.graphics;
+    });
+
+    pathway.labelableElements.sort(function(a,b) {return a.zIndex - b.zIndex});
 
     console.log('jGPML pathway');
     console.log(pathway);
