@@ -427,13 +427,24 @@ function drawPathway() {
         .attr("style", function (d) { 
           var style = '';
           if (d.hasOwnProperty('fill')) {
-            style = 'fill:' + d.fill + '; '; 
+            style += ' fill:' + d.fill + '; '; 
+          };
+          if (d.hasOwnProperty('fillOpacity')) {
+            style += ' fill-opacity:' + d.fillOpacity + '; '; 
           };
           if (d.hasOwnProperty('stroke')) {
             style += 'stroke:' + d.stroke + '; '; 
           };
           if (d.hasOwnProperty('strokeWidth')) {
-            style += 'stroke-width:' + d.strokeWidth + '; '; 
+
+            // doubling strokeWidth, because stroke is centered on bounding box, meaning half of it gets cut off.
+
+            style += 'stroke-width:' + 2 * d.strokeWidth + '; '; 
+          }
+          else {
+            if (d.symbolType !== 'none') {
+              style += 'stroke-width: 2; '; 
+            };
           };
           return style; 
         });
