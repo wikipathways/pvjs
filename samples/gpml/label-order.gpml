@@ -20,6 +20,8 @@
     <Graphics ZOrder="32771" LineThickness="1.0">
       <Point X="151.6802906448683" Y="50.0" />
       <Point X="268.84650317892823" Y="50.0" ArrowHead="Arrow" />
+      <Anchor Position="0.6398031168691829" Shape="None" />
+      <Anchor Position="0.3370953032375742" Shape="None" />
     </Graphics>
     <Xref Database="" ID="" />
   </Interaction>

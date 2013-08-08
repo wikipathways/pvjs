@@ -92,6 +92,9 @@ function convertGpml2Json(xmlDoc){
   // 0       0.667  -1.0    0.5   left side at bottom third-point 
   // 0       0.5    -1.0    0.0   left side at middle 
   // 0       0.333  -1.0   -0.5   left side at top third-point 
+  //
+  // PathVisio (Java) also sometimes comes up with other values for relx and rely.
+  // I don't know what those mean.
 
   var anchorPositionMappings = { "-1":0, "-0.5":0.333, "0":0.5, "0.5":0.667, "1":1 };
 
@@ -276,6 +279,14 @@ function convertGpml2Json(xmlDoc){
             delete element.groupref;
           };
 
+          if (element.graphics.hasOwnProperty('anchor')) {
+            element.anchors = convertToArray(element.graphics.anchor);
+            element.anchors.forEach(function(element) {
+              element.graphId = element.graphid;
+              delete element.graphid;
+            });
+          };
+
           if (element.graphics.hasOwnProperty('color')) {
             var color = new RGBColor(element.graphics.color);
             if (color.ok) { 
@@ -358,11 +369,17 @@ function convertGpml2Json(xmlDoc){
               element.graphRef = element.graphref;
               delete element.graphref;
 
-              element.relX = anchorPositionMappings[element.relx.toString()];
+              var relx = (Math.round(element.relx * 2)/2).toString()
+              console.log('relx');
+              console.log(relx);
+              element.relX = parseFloat(anchorPositionMappings[relx]);
+              console.log('element.relX');
+              console.log(element.relX);
               delete element.relx;
               delete element.x;
 
-              element.relY = anchorPositionMappings[element.rely.toString()];
+              var rely = (Math.round(element.rely * 2)/2).toString()
+              element.relY = parseFloat(anchorPositionMappings[rely]);
               delete element.rely;
               delete element.y;
 
