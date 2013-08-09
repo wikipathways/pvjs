@@ -69,223 +69,156 @@ function getMarker(name, position, color) {
   return markerName;
 };
 
-function getPathData(d, labelableElements) {
-  var pathData = "";
-
-  /*
-  var sourcePoint = d.points[0];
-  if (d.points[0].hasOwnProperty('graphRef')) {
-    var sourceGraphRef = sourcePoint.graphRef;
-
-    var sourceElement = labelableElements.filter(function(element) {return element.graphId === sourceGraphRef})[0]
-    console.log('sourceElement');
-    console.log(sourceElement);
-
-    var sourceX = sourceElement.x + (sourcePoint.relX * sourceElement.width);
-    var sourceY = sourceElement.y + (sourcePoint.relY * sourceElement.height);
-
-    pathData = "M " + sourceX + " " + sourceY; 
-    console.log('pathData');
-    console.log(pathData);
-
-    var sourceDx = sourcePoint.dx;
-    var sourceDy = sourcePoint.dy;
-  }
-  else {
-    pathData = "M " + sourcePoint.x + " " + sourcePoint.y; 
-    var sourceDx = 1;
-    var sourceDy = 1;
-  };
-  console.log('sourcePoint');
-  console.log(sourcePoint);
-  */
-
-  var sourcePoint = d.points[0];
-  if (d.points[0].hasOwnProperty('graphRef')) {
-    var sourceGraphRef = sourcePoint.graphRef;
-
-    var sourceElement = labelableElements.filter(function(element) {return element.graphId === sourceGraphRef})[0]
-    console.log('d');
-    console.log(d);
-    console.log('sourceElement try 1');
-    console.log(sourceElement);
-
-    if (sourceElement !== undefined) {
-      var sourceX = sourceElement.x + (sourcePoint.relX * sourceElement.width);
-      var sourceY = sourceElement.y + (sourcePoint.relY * sourceElement.height);
-    }
-    else {
-      var sourceGroup = pathway.groups.filter(function(el) {return (el.graphId === sourceGraphRef)});
-      console.log('sourceGroup');
-      console.log(sourceGroup);
-
-      if (sourceGroup.length > 0) {
-        var sourceGroupRef = pathway.groups.filter(function(el) {return (el.graphId === sourceGraphRef)})[0].groupId;
-        console.log('sourceGroupRef');
-        console.log(sourceGroupRef);
-        var groupMembers = pathway.labelableElements.filter(function(el) {return (el.groupRef === sourceGroupRef)});
-        console.log('groupMembers');
-        console.log(groupMembers);
-        var groupX = (d3.min(groupMembers, function(el) {return el.x})) - 15;
-        var groupY = (d3.min(groupMembers, function(el) {return el.y})) - 15;
-
-        var groupWidth = (d3.max(groupMembers, function(el) {return el.x + el.width})) - groupX + 15;
-        var groupHeight = (d3.max(groupMembers, function(el) {return el.y + el.height})) - groupY + 15;
-
-        console.log('sourceElement try 2');
-
-        var sourceX = groupX + (sourcePoint.relX * groupWidth);
-        var sourceY = groupY + (sourcePoint.relY * groupHeight);
-        console.log(sourceX);
-        console.log(sourceY);
-      }
-      else {
-        pathway.edges.forEach(function(element) {
-          var sourceAnchor = element.anchors.filter(function(element) {return element.graphId === sourceGraphRef})[0]
-          if (sourceAnchor !== undefined) {
-            sourceX = sourceAnchor.position * ( element.points[element.points.length - 1].x - element.points[0].x );
-            sourceY = sourceAnchor.position * ( element.points[element.points.length - 1].y - element.points[0].y );
-            console.log('sourceElement try 3');
-            console.log(sourceX);
-            console.log(sourceY);
-          };
-        });
+function getEdgeTerminusRef(point) {
+  if (point.hasOwnProperty('graphRef')) {
+    if (pathway.hasOwnProperty('labelableElements')) {
+      var labelableElement = pathway.labelableElements.filter(function(element) {return element.graphId === point.graphRef})[0]
+      if (labelableElement !== undefined) {
+        return {'type':'labelableElement', 'element':labelableElement};
       };
     };
 
-    pathData = "M " + sourceX + " " + sourceY; 
-    console.log('pathData');
-    console.log(pathData);
+    if (pathway.hasOwnProperty('groups')) {
+      var group = pathway.groups.filter(function(element) {return element.graphId === point.graphRef})[0]
+      if (group !== undefined) {
+        return {'type':'group', 'groupId':group.groupId};
+      };
+    };
 
-    var sourceDx = sourcePoint.dx;
-    var sourceDy = sourcePoint.dy;
+    var edgesWithAnchors = pathway.edges.filter(function(element) {return element.hasOwnProperty('anchors')})
+    var i = -1;
+    do {
+      i += 1;
+      var anchor = edgesWithAnchors[i].anchors.filter(function(element) {return element.graphId === point.graphRef})[0]
+    } while (anchor === undefined && i < edgesWithAnchors.length);
+
+    return {'type':'anchor', 'element':anchor, 'edge':edgesWithAnchors[i]};
+
   }
   else {
-    pathData = "M " + sourcePoint.x + " " + sourcePoint.y; 
-    var sourceDx = 1;
-    var sourceDy = 1;
+    return {'type':'unconnected'};
+  };
+};
+
+function getGroupDimensions(groupId) {
+  var groupMembers = pathway.labelableElements.filter(function(el) {return (el.groupRef === groupId)});
+  var group = {};
+  group.x = (d3.min(groupMembers, function(el) {return el.x})) - 15;
+  group.y = (d3.min(groupMembers, function(el) {return el.y})) - 15;
+
+  group.width = (d3.max(groupMembers, function(el) {return el.x + el.width})) - group.x + 15;
+  group.height = (d3.max(groupMembers, function(el) {return el.y + el.height})) - group.y + 15;
+
+  return group;
+  console.log('group');
+  console.log(group);
+};
+
+function getBBoxPortCoordinates(boxDimensions, relX, relY) {
+  var port = {};
+  port.x = boxDimensions.x + (relX * boxDimensions.width);
+  port.y = boxDimensions.y + (relY * boxDimensions.height);
+  return port;
+};
+
+function getEdgeTerminusCoordinatesNonAnchor(point) {
+  var coordinates = {};
+  var edgeTerminusRef = getEdgeTerminusRef(point);
+  if (edgeTerminusRef.type === 'unconnected') {
+    coordinates.x = point.x;
+    coordinates.y = point.y;
+    return coordinates;
+  }
+  else {
+    if (edgeTerminusRef.type === 'labelableElement') {
+      var coordinates = getBBoxPortCoordinates(edgeTerminusRef.element, point.relX, point.relY);
+      return coordinates;
+    }
+    else {
+      if (edgeTerminusRef.type === 'group') {
+        var groupDimensions = getGroupDimensions(edgeTerminusRef.groupId);
+        var coordinates = getBBoxPortCoordinates(groupDimensions, point.relX, point.relY);
+        return coordinates;
+      }
+      else {
+          return 'error';
+      };
+    };
+  };
+};
+
+function getEdgeTerminusCoordinates(point) {
+  var coordinates = {};
+  var edgeTerminusRef = getEdgeTerminusRef(point);
+  if (edgeTerminusRef.type !== 'anchor') {
+    return getEdgeTerminusCoordinatesNonAnchor(point);
+  }
+  else {
+
+    // this needs work to do more than one level deep of anchors
+    
+    secondarySourcePoint = edgeTerminusRef.edge.points[0];
+    secondaryTargetPoint = edgeTerminusRef.edge.points[edgeTerminusRef.edge.points.length - 1];
+
+    if (getEdgeTerminusRef(secondarySourcePoint).type !== 'anchor' && getEdgeTerminusRef(secondaryTargetPoint).type !== 'anchor') {
+      secondarySourcePointCoordinates = getEdgeTerminusCoordinatesNonAnchor(secondarySourcePoint);
+      secondaryTargetPointCoordinates = getEdgeTerminusCoordinatesNonAnchor(secondaryTargetPoint);
+
+      coordinates.x = secondarySourcePointCoordinates.x + edgeTerminusRef.element.position * ( secondaryTargetPointCoordinates.x - secondarySourcePointCoordinates.x );
+      coordinates.y = secondarySourcePointCoordinates.y + edgeTerminusRef.element.position * ( secondaryTargetPointCoordinates.y - secondarySourcePointCoordinates.y );
+
+      return coordinates;
+    };
+  };
+};
+
+function isTwoPointElbow(source, target) {
+  var isRightAngle = ( Math.abs(source.dx) === Math.abs(target.dy) && Math.abs(source.dy) === Math.abs(target.dx) ); 
+  var sourcePasses = ( (((target.x - source.x)/Math.abs(target.x - source.x) === source.dx) || ((target.y - source.y)/Math.abs(target.y - source.y) === source.dy)) );
+  var targetPasses = ( ((source.x - target.x)/Math.abs(source.x - target.x) === target.dx) || ((source.y - target.y)/Math.abs(source.y - target.y) === target.dy) );
+  return ( isRightAngle && sourcePasses && targetPasses );
+};
+
+function getPathData(d, labelableElements) {
+  var sourcePoint = d.points[0];
+  var source = getEdgeTerminusCoordinates(sourcePoint);
+
+  if (sourcePoint.dx === undefined) {
+    source.dx = 0;
+  }
+  else { 
+    source.dx = sourcePoint.dx;
+  };
+
+  if (sourcePoint.dy === undefined) {
+    source.dy = 0;
+  }
+  else { 
+    source.dy = sourcePoint.dy;
   };
 
   var targetPoint = d.points[d.points.length - 1];
-  if (d.points[d.points.length - 1].hasOwnProperty('graphRef')) {
-    var targetGraphRef = targetPoint.graphRef;
+  var target = getEdgeTerminusCoordinates(targetPoint);
 
-    var targetElement = labelableElements.filter(function(element) {return element.graphId === targetGraphRef})[0]
-    console.log('d');
-    console.log(d);
-    console.log('targetElement try 1');
-    console.log(targetElement);
-
-    if (targetElement !== undefined) {
-      var targetX = targetElement.x + (targetPoint.relX * targetElement.width);
-      var targetY = targetElement.y + (targetPoint.relY * targetElement.height);
-    }
-    else {
-      targetGroup = [];
-      if (pathway.hasOwnProperty('groups')) {
-        targetGroup = pathway.groups.filter(function(el) {return (el.graphId === targetGraphRef)});
-        console.log('targetGroup');
-        console.log(targetGroup);
-      };
-
-      if (targetGroup.length > 0) {
-        var targetGroupRef = pathway.groups.filter(function(el) {return (el.graphId === targetGraphRef)})[0].groupId;
-        console.log('targetGroupRef');
-        console.log(targetGroupRef);
-        var groupMembers = pathway.labelableElements.filter(function(el) {return (el.groupRef === targetGroupRef)});
-        console.log('groupMembers');
-        console.log(groupMembers);
-        var groupX = (d3.min(groupMembers, function(el) {return el.x})) - 15;
-        var groupY = (d3.min(groupMembers, function(el) {return el.y})) - 15;
-
-        var groupWidth = (d3.max(groupMembers, function(el) {return el.x + el.width})) - groupX + 15;
-        var groupHeight = (d3.max(groupMembers, function(el) {return el.y + el.height})) - groupY + 15;
-
-        console.log('targetElement try 2');
-
-        var targetX = groupX + (targetPoint.relX * groupWidth);
-        var targetY = groupY + (targetPoint.relY * groupHeight);
-        console.log(targetX);
-        console.log(targetY);
-      }
-      else {
-
-        // this is a very rough attempt at getting this done. It will run into problems with recursion and
-        // cannot handle a case such as the interaction associated with the anchor being attached to a group.
-        // this logic has not been ported to the sourceElement.
-
-        var edgesWithAnchors = pathway.edges.filter(function(element) {return element.hasOwnProperty('anchors')})
-        console.log('edgesWithAnchors');
-        console.log(edgesWithAnchors);
-        edgesWithAnchors.forEach(function(edge) {
-          var targetAnchor = edge.anchors.filter(function(element) {return element.graphId === targetGraphRef})[0]
-          console.log('targetAnchor');
-          console.log(targetAnchor);
-          if (targetAnchor !== undefined) {
-            console.log(targetAnchor);
-            console.log(targetAnchor.position);
-            console.log(edge.points);
-
-            secondarySourcePoint = edge.points[0];
-            if (secondarySourcePoint.hasOwnProperty('graphRef')) {
-              var secondarySourceGraphRef = secondarySourcePoint.graphRef;
-
-              var secondarySourceElement = labelableElements.filter(function(element) {return element.graphId === secondarySourceGraphRef})[0]
-
-              var secondarySourceX = secondarySourceElement.x + (secondarySourcePoint.relX * secondarySourceElement.width);
-              var secondarySourceY = secondarySourceElement.y + (secondarySourcePoint.relY * secondarySourceElement.height);
-            }
-            else {
-              secondarySourceX = secondarySourcePoint.x;
-              secondarySourceY = secondarySourcePoint.y;
-            };
-            console.log('secondarySource');
-            console.log(secondarySourceX);
-            console.log(secondarySourceY);
-
-            secondaryTargetPoint = edge.points[edge.points.length - 1];
-            if (secondaryTargetPoint.hasOwnProperty('graphRef')) {
-              var secondaryTargetGraphRef = secondaryTargetPoint.graphRef;
-
-              var secondaryTargetElement = labelableElements.filter(function(element) {return element.graphId === secondaryTargetGraphRef})[0]
-
-              var secondaryTargetX = secondaryTargetElement.x + (secondaryTargetPoint.relX * secondaryTargetElement.width);
-              var secondaryTargetY = secondaryTargetElement.y + (secondaryTargetPoint.relY * secondaryTargetElement.height);
-            }
-            else {
-              secondaryTargetX = secondaryTargetPoint.x;
-              secondaryTargetY = secondaryTargetPoint.y;
-            };
-            console.log('secondaryTarget');
-            console.log(secondarySourceX);
-            console.log(secondarySourceY);
-
-
-            targetX = secondarySourceX + targetAnchor.position * ( secondaryTargetX - secondarySourceX );
-            targetY = secondarySourceY + targetAnchor.position * ( secondaryTargetY - secondarySourceY );
-            console.log('targetElement try 3');
-            console.log(targetX);
-            console.log(targetY);
-            return;
-          };
-        });
-      };
-    };
-
-    var targetDx = targetPoint.dx;
-    var targetDy = targetPoint.dy;
+  if (targetPoint.dx === undefined) {
+    target.dx = 0;
   }
-  else {
-    var targetX = targetPoint.x;
-    var targetY = targetPoint.y;
-
-    var targetDx = 1;
-    var targetDy = 1;
+  else { 
+    target.dx = targetPoint.dx;
   };
+
+  if (targetPoint.dy === undefined) {
+    target.dy = 0;
+  }
+  else { 
+    target.dy = targetPoint.dy;
+  };
+
+  var pathData = 'M ' + source.x + ' ' + source.y;
 
   console.log(d);
   if ((!d.connectorType) || (d.connectorType === undefined) || (d.connectorType === 'straight')) {
-    pathData += " L " + targetX + " " + targetY; 
+    pathData += " L " + target.x + " " + target.y; 
   }
   else {
 
@@ -308,7 +241,7 @@ function getPathData(d, labelableElements) {
       
       var step = 15;
 
-      if (Math.abs(sourceDx) === 1) {
+      if (Math.abs(source.dx) === 1) {
         currentDirection = 'H';
       }
       else {
@@ -316,100 +249,105 @@ function getPathData(d, labelableElements) {
       };
       console.log('currentDirection');
       console.log(currentDirection);
-      console.log(sourceX);
-      console.log(sourceY);
-      console.log(sourceDx);
-      console.log(sourceDy);
-      console.log(targetX);
-      console.log(targetY);
-      console.log(targetDx);
-      console.log(targetDy);
+      console.log(source.x);
+      console.log(source.y);
+      console.log(source.dx);
+      console.log(source.dy);
+      console.log(target.x);
+      console.log(target.y);
+      console.log(target.dx);
+      console.log(target.dy);
 
       //if (d.points.length === 2) {
       //doesn't quite work yet, so this works for most cases
 
-      if (d.points.length === -2) {
-        //if (sourceDx === ((sourceX - targetX) / Math.abs(sourceX - targetX)) || sourceDx === targetDy || sourceDy === targetDx) {
-        if (Math.abs(sourceDx) === 1) {
-          pathData += " H " + (sourceX + sourceDx * 15); 
-          console.log('pathData');
-          console.log(pathData);
-          currentDirection = switchDirection(currentDirection);
-        }
-        else {
-          //if (sourceDy === ((sourceY - targetY) / Math.abs(sourceY - targetY)) || sourceDx === targetDy || sourceDy === targetDx) {
-          if (Math.abs(sourceDy) === 1) {
-            pathData += " V " + (sourceY + sourceDy * 15); 
-            console.log('pathData');
-            console.log(pathData);
-            currentDirection = switchDirection(currentDirection);
-          };
-        };
-
-        if (targetDx === ((targetX - sourceX) / Math.abs(targetX - sourceX)) || sourceDx === targetDy || sourceDy === targetDx) {
-        //if (Math.abs(targetDx) === 1) {
-          pathData += " H " + (targetX + targetDx * 15) + ' V ' + targetY + ' H ' + targetX; 
-          console.log('pathData');
-          console.log(pathData);
-          currentDirection = switchDirection(currentDirection);
-        }
-        else {
-          if (targetDy === ((targetY - sourceY) / Math.abs(targetY - sourceY)) || sourceDx === targetDy || sourceDy === targetDx) {
-          //if (Math.abs(targetDy) === 1) {
-            pathData += " V " + (targetY + targetDy * 15) + ' H ' + targetX + ' V ' + targetY; 
-            console.log('pathData');
-            console.log(pathData);
-            currentDirection = switchDirection(currentDirection);
-          };
-        };
+      if (( d.points.length === 2 && isTwoPointElbow(source, target)) ) {
+        console.log('is two point elbow');
       }
       else {
-        d.points.forEach(function(element, index, array) {
-          console.log('index');
-          console.log(index);
-          if ((index > 0) && (index < (array.length - 1))) {
-            if (currentDirection === 'H') {
-              pathData += ' ' + currentDirection + ' ' + element.x; 
-              console.log('pathData');
-              console.log(pathData);
-            }
-            else {
-              pathData += ' ' + currentDirection + ' ' + element.y; 
-              console.log('pathData');
-              console.log(pathData);
+        if ( d.points.length > 2 ) {
+          d.points.forEach(function(element, index, array) {
+            console.log('index');
+            console.log(index);
+            if ((index > 0) && (index < (array.length - 1))) {
+              if (currentDirection === 'H') {
+                pathData += ' ' + currentDirection + ' ' + element.x; 
+                console.log('pathData');
+                console.log(pathData);
+              }
+              else {
+                pathData += ' ' + currentDirection + ' ' + element.y; 
+                console.log('pathData');
+                console.log(pathData);
+              };
+            currentDirection = switchDirection(currentDirection);
+            console.log('currentDirection');
+            console.log(currentDirection);
             };
-          currentDirection = switchDirection(currentDirection);
-          console.log('currentDirection');
-          console.log(currentDirection);
+          });
+        }
+        else {
+          //if (source.dx === ((source.x - target.x) / Math.abs(source.x - target.x)) || source.dx === target.dy || source.dy === target.dx) {
+          if (Math.abs(source.dx) === 1) {
+            pathData += " H " + (source.x + source.dx * 15); 
+            console.log('pathData');
+            console.log(pathData);
+            currentDirection = switchDirection(currentDirection);
+          }
+          else {
+            //if (source.dy === ((source.y - target.y) / Math.abs(source.y - target.y)) || source.dx === target.dy || source.dy === target.dx) {
+            if (Math.abs(source.dy) === 1) {
+              pathData += " V " + (source.y + source.dy * 15); 
+              console.log('pathData for moving upward');
+              console.log(pathData);
+              currentDirection = switchDirection(currentDirection);
+            };
           };
-        });
+
+          if (target.dx === ((target.x - source.x) / Math.abs(target.x - source.x)) || source.dx === target.dy || source.dy === target.dx) {
+          //if (Math.abs(target.dx) === 1) {
+            pathData += " H " + (target.x + target.dx * 15) + ' V ' + target.y + ' H ' + target.x; 
+            console.log('pathData at target');
+            console.log(pathData);
+            currentDirection = switchDirection(currentDirection);
+          }
+          else {
+            if (target.dy === ((target.y - source.y) / Math.abs(target.y - source.y)) || source.dx === target.dy || source.dy === target.dx) {
+            //if (Math.abs(target.dy) === 1) {
+              pathData += " V " + (target.y + target.dy * 15) + ' H ' + target.x + ' V ' + target.y; 
+              console.log('pathData at target');
+              console.log(pathData);
+              currentDirection = switchDirection(currentDirection);
+            };
+          };
+        };
       };
 
       if (currentDirection === 'H') {
-        pathData += ' ' + currentDirection + ' ' + targetX; 
+        pathData += ' ' + currentDirection + ' ' + target.x; 
         currentDirection = switchDirection(currentDirection);
-        pathData += ' ' + currentDirection + ' ' + targetY; 
+        pathData += ' ' + currentDirection + ' ' + target.y; 
         currentDirection = switchDirection(currentDirection);
-        console.log('pathData');
+        console.log('pathData at target');
         console.log(pathData);
       }
       else {
-        pathData += ' ' + currentDirection + ' ' + targetY; 
+        pathData += ' ' + currentDirection + ' ' + target.y; 
         currentDirection = switchDirection(currentDirection);
-        pathData += ' ' + currentDirection + ' ' + targetX; 
+        pathData += ' ' + currentDirection + ' ' + target.x; 
         currentDirection = switchDirection(currentDirection);
-        console.log('pathData');
+        console.log('pathData at target');
         console.log(pathData);
       };
 
       /*
-      if (Math.abs(targetDx) === 1) {
-        pathData += " V " + targetY + " H " + targetX; 
+      if (Math.abs(target.dx) === 1) {
+        pathData += " V " + target.y + " H " + target.x; 
         console.log('pathData');
         console.log(pathData);
       }
       else {
-        pathData += " H " + targetX + " V " + targetY; 
+        pathData += " H " + target.x + " V " + target.y; 
         console.log('pathData');
         console.log(pathData);
       };
@@ -422,7 +360,7 @@ function getPathData(d, labelableElements) {
               pathData += " L " + element.x + " " + element.y; 
           };
         });
-        pathData += " L " + targetX + " " + targetY; 
+        pathData += " L " + target.x + " " + target.y; 
       }
       else {
         if (d.connectorType === 'curved') {
@@ -438,14 +376,14 @@ function getPathData(d, labelableElements) {
 
             var pointControl = d.points[1];
 
-            pathData += " S" + pointControl.x + "," + pointControl.y + " " + targetX + "," + targetY; 
+            pathData += " S" + pointControl.x + "," + pointControl.y + " " + target.x + "," + target.y; 
             return pathData;
           }
           else {
 
             // Some of the curved connector types only have two points. I don't know which function is used in these cases. For now, I approximated with a smooth quadratic bezier.
 
-            pathData += " T" + targetX + "," + targetY; 
+            pathData += " T" + target.x + "," + target.y; 
             return pathData;
           };
         }
@@ -456,7 +394,7 @@ function getPathData(d, labelableElements) {
                 pathData += " L " + element.x + " " + element.y; 
             };
           });
-          pathData += " L " + targetX + " " + targetY; 
+          pathData += " L " + target.x + " " + target.y; 
         };
       };
     };
