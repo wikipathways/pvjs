@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Pathway xmlns="http://pathvisio.org/GPML/2013a" Name="Glutathione Biosynthesis" Organism="Saccharomyces cerevisiae">
+  <Comment Source="GenMAPP remarks">Based on http://pathway.yeastgenome.org/biocyc/</Comment>
+  <Comment Source="WikiPathways-category">Metabolic Process</Comment>
+  <Comment Source="WikiPathways-description">The tripeptide glutathione (GSH: L-&amp;gamma;-glutamyl-L-cysteinylglycine) is a prevalent intracellular thiol that is able to act as a cellular redox buffer due to its low redox potential (as reviewed in (CITS: [12702279])). GSH is involved in many biological processes including: protein and DNA synthesis; amino acid transport; enzyme regulation; protection of cells against reactive oxygen compounds and free radicals, xenobiotics and heavy metals (as reviewed in (CITS: [12702279])). GSH can also be used as a source of sulfur and cysteine in (CITS: [1674526], [10514563]).  GSH is synthesized from its constituent amino acids by two ATP-dependent steps (as reviewed in (CITS: [12702279])). In the first step &amp;gamma;-glutamylcysteine synthetase (Gsh1p) catalyzes the formation of the dipeptide &amp;gamma;-glutamylcysteine from glutamate and cysteine. In the second step, GSH synthetase (Gsh2p) catalyzes the ligation of glycine with &amp;gamma;-glutamylcysteine to form GSH. GSH is an essential reductant in yeast during normal metabolic processes (CITS: [8662189]), but the dipeptide &amp;gamma;-glutamylcysteine is able to substitute for GSH as an antioxidant (CITS: [9307967]).  GSH biosynthesis is co-regulated by Met4p, a transcription factor that induces expression of genes involved in sulfur assimilation, by Yap1p, a stress-responsive transcription factor, and by GSH feedback inhibition, which inhibits both GSH1 expression and Gsh1p enzyme activity (CITS: [12406228], [14514673]).  Expression of GSH1 and GSH2 is induced by oxidative stress in a Yap1p-dependent manner with subsequent increases in intracellular GSH content (CITS: [7915005], [10809786]).  GSH1 is also transcriptionally up-regulated by the heavy metal cadmium in the presence of Met4p and the DNA-binding proteins Met31p and Met32p (CITS: [9044254], [10921921]). 
+SOURCE: SGD pathways, http://pathway.yeastgenome.org/server.html</Comment>
+  <BiopaxRef>s8c</BiopaxRef>
+  <Graphics BoardWidth="992.4666666666667" BoardHeight="209.5"/>
+  <DataNode TextLabel="GSH1" GraphId="b93" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="GSH1"/>
+    <Graphics CenterX="193.33333333333334" CenterY="93.33333333333333" Width="40.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="SGD" ID="S000003637"/>
+  </DataNode>
+  <DataNode TextLabel="GHS2" GraphId="d3b" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="GHS2"/>
+    <Graphics CenterX="656.6666666666666" CenterY="93.33333333333333" Width="40.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="SGD" ID="S000005409"/>
+  </DataNode>
+  <DataNode TextLabel="L-glutamate" GraphId="a5b" Type="Metabolite">
+    <Graphics CenterX="50.0" CenterY="96.66666666666667" Width="95.33333333333333" Height="19.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff"/>
+    <Xref Database="CAS" ID="56-86-0"/>
+  </DataNode>
+  <DataNode TextLabel="L-cysteine" GraphId="a15" Type="Metabolite">
+    <Graphics CenterX="50.0" CenterY="116.66666666666667" Width="84.33333333333333" Height="19.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff"/>
+    <Xref Database="CAS" ID="52-90-4"/>
+  </DataNode>
+  <DataNode TextLabel="ATP" GraphId="ef4" Type="Metabolite">
+    <Graphics CenterX="153.33333333333334" CenterY="146.66666666666666" Width="37.333333333333336" Height="19.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff"/>
+    <Xref Database="CAS" ID="1927-31-7"/>
+  </DataNode>
+  <DataNode TextLabel="ADP" GraphId="ae3" Type="Metabolite">
+    <Graphics CenterX="240.0" CenterY="150.0" Width="39.333333333333336" Height="19.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff"/>
+    <Xref Database="CAS" ID="58-64-0"/>
+  </DataNode>
+  <DataNode TextLabel="phosphate" GraphId="cab" Type="Metabolite">
+    <Graphics CenterX="240.0" CenterY="166.66666666666666" Width="87.33333333333333" Height="19.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff"/>
+    <Xref Database="CAS" ID="14265-44-2"/>
+  </DataNode>
+  <DataNode TextLabel="ATP" GraphId="eae" Type="Metabolite">
+    <Graphics CenterX="593.3333333333334" CenterY="150.0" Width="37.333333333333336" Height="19.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff"/>
+    <Xref Database="CAS" ID="1927-31-7"/>
+  </DataNode>
+  <DataNode TextLabel="L-glycine" GraphId="f2e" Type="Metabolite">
+    <Graphics CenterX="593.3333333333334" CenterY="170.0" Width="75.33333333333333" Height="19.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff"/>
+    <Xref Database="CAS" ID="56-40-6"/>
+  </DataNode>
+  <DataNode TextLabel="phosphate" GraphId="a50" Type="Metabolite">
+    <Graphics CenterX="713.3333333333334" CenterY="150.0" Width="87.33333333333333" Height="19.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff"/>
+    <Xref Database="CAS" ID="14265-44-2"/>
+  </DataNode>
+  <DataNode TextLabel="ADP" GraphId="d14" Type="Metabolite">
+    <Graphics CenterX="713.3333333333334" CenterY="170.0" Width="39.333333333333336" Height="19.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff"/>
+    <Xref Database="CAS" ID="58-64-0"/>
+  </DataNode>
+  <Interaction GraphId="idd4aec2a8">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="213.33333333333334" Y="106.66666666666667"/>
+      <Point X="113.33333333333333" Y="106.66666666666667" ArrowHead="Receptor"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="id2c301690">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="213.33333333333334" Y="106.66666666666667"/>
+      <Point X="283.3333333333333" Y="106.66666666666667" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="id8a955a">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="240.0" Y="133.33333333333334"/>
+      <Point X="240.0" Y="140.0" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="idd5478cbe">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="493.3333333333333" Y="106.66666666666667"/>
+      <Point X="796.6666666666666" Y="106.66666666666667" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="idf2289d66">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="713.3333333333334" Y="130.0"/>
+      <Point X="713.3333333333334" Y="140.0" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Label TextLabel="L-gamma-glutamylcysteine" GraphId="c88">
+    <Graphics CenterX="389.96666666666664" CenterY="106.7" Width="210.33333333333334" Height="19.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="12" Valign="Middle"/>
+  </Label>
+  <Label TextLabel="reduced glutathione" GraphId="f12">
+    <Graphics CenterX="883.3" CenterY="106.7" Width="158.33333333333334" Height="19.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="12" Valign="Middle"/>
+  </Label>
+  <Shape GraphId="b9b">
+    <Graphics CenterX="196.68453333333335" CenterY="139.98579999999998" Width="86.70241333333334" Height="66.66666666666667" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="Arc" Rotation="3.141593"/>
+  </Shape>
+  <Shape GraphId="eb0">
+    <Graphics CenterX="653.3333333333334" CenterY="136.66666666666666" Width="120.15661333333334" Height="60.00001333333333" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="Arc" Rotation="3.141593"/>
+  </Shape>
+  <InfoBox CenterX="798.3333333333334" CenterY="175.0"/>
+  <Legend CenterX="0.0" CenterY="0.0"/>
+  <Biopax>
+    <bp:PublicationXref xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" rdf:id="s8c">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">11169096</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Role of the glutathione/glutaredoxin and thioredoxin systems in yeast growth and response to stress conditions.</bp:TITLE>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Mol Microbiol</bp:SOURCE>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2001</bp:YEAR>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Grant CM</bp:AUTHORS>
+    </bp:PublicationXref>
+    <bp:openControlledVocabulary xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#">
+      <bp:TERM xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">glutathione biosynthetic pathway</bp:TERM>
+      <bp:ID xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PW:0001277</bp:ID>
+      <bp:Ontology xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Pathway Ontology</bp:Ontology>
+    </bp:openControlledVocabulary>
+  </Biopax>
+</Pathway>

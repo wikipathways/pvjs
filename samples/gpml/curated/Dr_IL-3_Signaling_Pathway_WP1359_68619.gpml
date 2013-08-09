@@ -1,0 +1,3148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Pathway xmlns="http://pathvisio.org/GPML/2013a" Name="IL-3 Signaling Pathway" Organism="Danio rerio">
+  <Comment Source="GenMAPP notes">NetPath:15 - IL-3 Signaling Pathway.  NetPath (http://www.netpath.org) is a collaborative project between PandeyLab at Johns Hopkins University (http://pandeylab.igm.jhmi.edu) and the Institute of Bioinformatics (http://www.ibioinformatics.org).  If you use this pathway, you must cite the NetPath website until the pathway is published.</Comment>
+  <Comment Source="GenMAPP remarks">http://www.netpath.org</Comment>
+  <Comment Source="WikiPathways-category">Cellular Process</Comment>
+  <Comment Source="HomologyConvert">This pathway was inferred from Homo sapiens pathway [http://www.wikipathways.org/index.php?title=Pathway:WP286&amp;amp;oldid=21281 WP286(r21281)] with a 67% conversion rate.</Comment>
+  <Graphics BoardWidth="1870.0" BoardHeight="2173.3886666666667"/>
+  <DataNode TextLabel="IL3" GraphId="fa9" Type="GeneProduct">
+    <Graphics CenterX="1396.6666666666667" CenterY="103.33333333333333" Width="46.666666666666664" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="" ID=""/>
+  </DataNode>
+  <DataNode TextLabel="IL3RA" GraphId="f61" Type="GeneProduct">
+    <Graphics CenterX="1396.6666666666667" CenterY="213.33333333333334" Width="46.666666666666664" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="" ID=""/>
+  </DataNode>
+  <DataNode TextLabel="IL3" GraphId="bfc" Type="GeneProduct">
+    <Graphics CenterX="1233.3333333333333" CenterY="103.33333333333333" Width="53.333333333333336" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="" ID=""/>
+  </DataNode>
+  <DataNode TextLabel="IL3" GraphId="eac" Type="GeneProduct">
+    <Graphics CenterX="1350.0" CenterY="103.33333333333333" Width="46.666666666666664" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="" ID=""/>
+  </DataNode>
+  <DataNode TextLabel="CSF2RB" GraphId="c96" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="csf2rb"/>
+    <Graphics CenterX="1233.3333333333333" CenterY="213.33333333333334" Width="73.33333333333333" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="100135062"/>
+  </DataNode>
+  <DataNode TextLabel="IL3RA" GraphId="d04" Type="GeneProduct">
+    <Graphics CenterX="1350.0" CenterY="213.33333333333334" Width="46.666666666666664" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="" ID=""/>
+  </DataNode>
+  <DataNode TextLabel="CSF2RB" GraphId="b85" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="csf2rb"/>
+    <Graphics CenterX="1160.0" CenterY="213.33333333333334" Width="73.33333333333333" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="100135062"/>
+  </DataNode>
+  <DataNode TextLabel="LOC561737" GraphId="e7a" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="LOC561737"/>
+    <Graphics CenterX="790.0" CenterY="420.0" Width="55.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="561737"/>
+  </DataNode>
+  <DataNode TextLabel="pik3cd" GraphId="b21" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="pik3cd"/>
+    <Graphics CenterX="756.6666666666666" CenterY="460.0" Width="55.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="394174"/>
+  </DataNode>
+  <DataNode TextLabel="HRAS" GraphId="eed" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="hras"/>
+    <Graphics CenterX="646.6666666666666" CenterY="293.3333333333333" Width="46.666666666666664" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="550286"/>
+  </DataNode>
+  <DataNode TextLabel="zgc:175287" GraphId="ad5" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="zgc:175287"/>
+    <Graphics CenterX="346.6666666666667" CenterY="223.33333333333334" Width="40.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="571588"/>
+  </DataNode>
+  <DataNode TextLabel="VAV1" GraphId="ba3" Type="GeneProduct">
+    <Graphics CenterX="246.66666666666666" CenterY="223.33333333333334" Width="42.354033333333334" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="" ID=""/>
+  </DataNode>
+  <DataNode TextLabel="jak1" GraphId="bae" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="jak1"/>
+    <Graphics CenterX="1373.3333333333333" CenterY="410.0" Width="40.428846666666665" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="30280"/>
+  </DataNode>
+  <DataNode TextLabel="jak2b" GraphId="a8e" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="jak2b"/>
+    <Graphics CenterX="1320.0" CenterY="480.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="30298"/>
+  </DataNode>
+  <DataNode TextLabel="ptpn6" GraphId="a74" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="ptpn6"/>
+    <Graphics CenterX="1026.6666666666667" CenterY="483.3333333333333" Width="50.41899333333333" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="335573"/>
+  </DataNode>
+  <DataNode TextLabel="ptpn11" GraphId="dd7" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="ptpn11"/>
+    <Graphics CenterX="1000.0" CenterY="586.6666666666666" Width="57.611113333333336" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="333979"/>
+  </DataNode>
+  <DataNode TextLabel="zgc:92124" GraphId="b40" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="zgc:92124"/>
+    <Graphics CenterX="1820.0" CenterY="590.0" Width="40.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="447804"/>
+  </DataNode>
+  <DataNode TextLabel="syk" GraphId="e54" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="syk"/>
+    <Graphics CenterX="1820.0" CenterY="636.6666666666666" Width="40.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="405769"/>
+  </DataNode>
+  <DataNode TextLabel="LOC569951" GraphId="fb3" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="LOC569951"/>
+    <Graphics CenterX="1716.6666666666667" CenterY="663.3333333333334" Width="40.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="569951"/>
+  </DataNode>
+  <DataNode TextLabel="fynb" GraphId="ffe" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="fynb"/>
+    <Graphics CenterX="1543.3333333333333" CenterY="733.3333333333334" Width="40.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="574422"/>
+  </DataNode>
+  <DataNode TextLabel="LCK" GraphId="c9b" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="lck"/>
+    <Graphics CenterX="1113.3333333333333" CenterY="420.0" Width="40.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="414333"/>
+  </DataNode>
+  <DataNode TextLabel="stat1a" GraphId="a02" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="stat1a"/>
+    <Graphics CenterX="1280.0" CenterY="943.3333333333334" Width="50.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="30768"/>
+  </DataNode>
+  <DataNode TextLabel="STAT5A" GraphId="a08" Type="GeneProduct">
+    <Graphics CenterX="1266.6666666666667" CenterY="1020.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="" ID=""/>
+  </DataNode>
+  <DataNode TextLabel="LOC566983" GraphId="aa5" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="LOC566983"/>
+    <Graphics CenterX="1313.3333333333333" CenterY="976.6666666666666" Width="50.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="566983"/>
+  </DataNode>
+  <DataNode TextLabel="STAT5B" GraphId="c38" Type="GeneProduct">
+    <Graphics CenterX="1310.0" CenterY="853.3333333333334" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="" ID=""/>
+  </DataNode>
+  <DataNode TextLabel="stat3" GraphId="bbc" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="stat3"/>
+    <Graphics CenterX="1396.6666666666667" CenterY="933.3333333333334" Width="50.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="30767"/>
+  </DataNode>
+  <DataNode TextLabel="RARA" GraphId="e13" Type="GeneProduct">
+    <Graphics CenterX="1240.0" CenterY="1220.0" Width="46.666666666666664" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="" ID=""/>
+  </DataNode>
+  <DataNode TextLabel="rxraa" GraphId="f98" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="rxraa"/>
+    <Graphics CenterX="1300.0" CenterY="1220.0" Width="46.666666666666664" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="555578"/>
+  </DataNode>
+  <DataNode TextLabel="LOC557176" GraphId="b31" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="LOC557176"/>
+    <Graphics CenterX="860.0" CenterY="586.6666666666666" Width="53.333333333333336" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="557176"/>
+  </DataNode>
+  <DataNode TextLabel="pik3r2" GraphId="e96" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="pik3r2"/>
+    <Graphics CenterX="763.3333333333334" CenterY="586.6666666666666" Width="53.333333333333336" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="404211"/>
+  </DataNode>
+  <DataNode TextLabel="LOC792354" GraphId="d17" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="LOC792354"/>
+    <Graphics CenterX="773.3333333333334" CenterY="950.0" Width="41.52152666666667" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="792354"/>
+  </DataNode>
+  <DataNode TextLabel="YWHAZ" GraphId="a9a" Type="GeneProduct">
+    <Graphics CenterX="143.33333333333334" CenterY="503.3333333333333" Width="55.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="" ID=""/>
+  </DataNode>
+  <DataNode TextLabel="FES" GraphId="ed2" Type="GeneProduct">
+    <Graphics CenterX="1686.6666666666667" CenterY="696.6666666666666" Width="40.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="" ID=""/>
+  </DataNode>
+  <DataNode TextLabel="cish" GraphId="e90" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="cish"/>
+    <Graphics CenterX="1516.6666666666667" CenterY="826.6666666666666" Width="40.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="767678"/>
+  </DataNode>
+  <DataNode TextLabel="gnb2l1" GraphId="bfa" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="gnb2l1"/>
+    <Graphics CenterX="1066.6666666666667" CenterY="313.3333333333333" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="30722"/>
+  </DataNode>
+  <DataNode TextLabel="prkcb1" GraphId="d69" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="prkcb1"/>
+    <Graphics CenterX="1070.0" CenterY="336.6666666666667" Width="60.3545" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="393953"/>
+  </DataNode>
+  <DataNode TextLabel="LOC563639" GraphId="e36" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="LOC563639"/>
+    <Graphics CenterX="376.6666666666667" CenterY="396.6666666666667" Width="42.354033333333334" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="563639"/>
+  </DataNode>
+  <DataNode TextLabel="YWHAQ" GraphId="cce" Type="GeneProduct">
+    <Graphics CenterX="96.66666666666667" CenterY="833.3333333333334" Width="57.611113333333336" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="" ID=""/>
+  </DataNode>
+  <DataNode TextLabel="YWHAB" GraphId="ca5" Type="GeneProduct">
+    <Graphics CenterX="113.33333333333333" CenterY="873.3333333333334" Width="56.35064" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="" ID=""/>
+  </DataNode>
+  <DataNode TextLabel="LOC564517" GraphId="c28" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="LOC564517"/>
+    <Graphics CenterX="260.0" CenterY="336.6666666666667" Width="43.333333333333336" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="564517"/>
+  </DataNode>
+  <DataNode TextLabel="grb2" GraphId="b69" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="grb2"/>
+    <Graphics CenterX="320.0" CenterY="513.3333333333334" Width="43.333333333333336" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="406308"/>
+  </DataNode>
+  <DataNode TextLabel="SOS1" GraphId="b88" Type="GeneProduct">
+    <Graphics CenterX="426.6666666666667" CenterY="513.3333333333334" Width="43.333333333333336" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="" ID=""/>
+  </DataNode>
+  <DataNode TextLabel="LOC559103" GraphId="eb9" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="LOC559103"/>
+    <Graphics CenterX="506.6666666666667" CenterY="303.3333333333333" Width="55.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="559103"/>
+  </DataNode>
+  <DataNode TextLabel="gab1" GraphId="aa9" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="gab1"/>
+    <Graphics CenterX="706.6666666666666" CenterY="493.3333333333333" Width="43.333333333333336" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="406666"/>
+  </DataNode>
+  <DataNode TextLabel="CH211-127H20.2" GraphId="f24" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="CH211-127H20.2"/>
+    <Graphics CenterX="533.3333333333334" CenterY="376.6666666666667" Width="68.58466666666666" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="558635"/>
+  </DataNode>
+  <DataNode TextLabel="crkl" GraphId="ec6" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="crkl"/>
+    <Graphics CenterX="826.6666666666666" CenterY="473.3333333333333" Width="43.333333333333336" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="556443"/>
+  </DataNode>
+  <DataNode TextLabel="cbl" GraphId="a4f" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="cbl"/>
+    <Graphics CenterX="1053.3333333333333" CenterY="740.0" Width="40.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="492364"/>
+  </DataNode>
+  <DataNode TextLabel="crk" GraphId="ba8" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="crk"/>
+    <Graphics CenterX="666.6666666666666" CenterY="556.6666666666666" Width="40.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="445234"/>
+  </DataNode>
+  <DataNode TextLabel="PILRB" GraphId="be7" Type="GeneProduct">
+    <Graphics CenterX="996.6666666666666" CenterY="303.3333333333333" Width="47.45316666666667" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="" ID=""/>
+  </DataNode>
+  <DataNode TextLabel="BAD" GraphId="da7" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="bad"/>
+    <Graphics CenterX="266.6666666666667" CenterY="943.3333333333334" Width="40.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="58100"/>
+  </DataNode>
+  <DataNode TextLabel="bcl2l" GraphId="ff5" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="bcl2l"/>
+    <Graphics CenterX="193.33333333333334" CenterY="793.3333333333334" Width="56.35064" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="114401"/>
+  </DataNode>
+  <DataNode TextLabel="BCL2" GraphId="d61" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="bcl2"/>
+    <Graphics CenterX="376.6666666666667" CenterY="846.6666666666666" Width="41.52152666666667" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="570772"/>
+  </DataNode>
+  <DataNode TextLabel="BAX" GraphId="e80" Type="GeneProduct">
+    <Graphics CenterX="380.0" CenterY="976.6666666666666" Width="40.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="" ID=""/>
+  </DataNode>
+  <DataNode TextLabel="BCL2L11" GraphId="b67" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="bcl2l11"/>
+    <Graphics CenterX="116.66666666666667" CenterY="993.3333333333334" Width="63.333333333333336" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="100190951"/>
+  </DataNode>
+  <DataNode TextLabel="zgc:56064" GraphId="d0c" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="zgc:56064"/>
+    <Graphics CenterX="1130.0" CenterY="553.3333333333334" Width="60.3545" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="393885"/>
+  </DataNode>
+  <DataNode TextLabel="creb1" GraphId="ddd" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="creb1"/>
+    <Graphics CenterX="970.0" CenterY="946.6666666666666" Width="50.41899333333333" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="573207"/>
+  </DataNode>
+  <DataNode TextLabel="ptk2.1" GraphId="b08" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="ptk2.1"/>
+    <Graphics CenterX="1120.0" CenterY="1103.3333333333333" Width="41.52152666666667" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="142986"/>
+  </DataNode>
+  <DataNode TextLabel="pxn" GraphId="a99" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="pxn"/>
+    <Graphics CenterX="993.3333333333334" CenterY="1103.3333333333333" Width="40.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="399546"/>
+  </DataNode>
+  <DataNode TextLabel="src" GraphId="e74" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="src"/>
+    <Graphics CenterX="1393.3333333333333" CenterY="796.6666666666666" Width="40.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="325084"/>
+  </DataNode>
+  <DataNode TextLabel="socs2" GraphId="f6f" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="socs2"/>
+    <Graphics CenterX="1493.3333333333333" CenterY="880.0" Width="53.333333333333336" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="562062"/>
+  </DataNode>
+  <DataNode TextLabel="SOCS3" GraphId="fe4" Type="GeneProduct">
+    <Graphics CenterX="1503.3333333333333" CenterY="1016.6666666666666" Width="53.333333333333336" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="" ID=""/>
+  </DataNode>
+  <DataNode TextLabel="dnm2" GraphId="ce8" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="dnm2"/>
+    <Graphics CenterX="1133.3333333333333" CenterY="690.0" Width="46.666666666666664" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="559334"/>
+  </DataNode>
+  <DataNode TextLabel="vcl" GraphId="aa1" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="vcl"/>
+    <Graphics CenterX="996.6666666666666" CenterY="1186.6666666666667" Width="40.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="552980"/>
+  </DataNode>
+  <DataNode TextLabel="raf1" GraphId="a07" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="raf1"/>
+    <Graphics CenterX="510.0" CenterY="470.0" Width="41.52152666666667" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="30716"/>
+  </DataNode>
+  <DataNode TextLabel="map2k1" GraphId="faf" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="map2k1"/>
+    <Graphics CenterX="540.0" CenterY="830.0" Width="60.3545" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="406728"/>
+  </DataNode>
+  <DataNode TextLabel="rac1" GraphId="fe6" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="rac1"/>
+    <Graphics CenterX="616.6666666666666" CenterY="576.6666666666666" Width="42.354033333333334" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="327204"/>
+  </DataNode>
+  <DataNode TextLabel="rac2" GraphId="f20" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="rac2"/>
+    <Graphics CenterX="590.0" CenterY="606.6666666666666" Width="42.354033333333334" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="415151"/>
+  </DataNode>
+  <DataNode TextLabel="zgc:172209" GraphId="c1e" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="zgc:172209"/>
+    <Graphics CenterX="470.0" CenterY="1063.3333333333333" Width="53.333333333333336" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="562720"/>
+  </DataNode>
+  <DataNode TextLabel="mapk1" GraphId="afb" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="mapk1"/>
+    <Graphics CenterX="630.0" CenterY="846.6666666666666" Width="53.333333333333336" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="360144"/>
+  </DataNode>
+  <DataNode TextLabel="mapk3" GraphId="ccd" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="mapk3"/>
+    <Graphics CenterX="586.6666666666666" CenterY="886.6666666666666" Width="53.333333333333336" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="399480"/>
+  </DataNode>
+  <DataNode TextLabel="GATA1" GraphId="d97" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="gata1"/>
+    <Graphics CenterX="606.6666666666666" CenterY="1213.3333333333333" Width="53.333333333333336" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="30481"/>
+  </DataNode>
+  <DataNode TextLabel="gata2a" GraphId="b28" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="gata2a"/>
+    <Graphics CenterX="636.6666666666666" CenterY="1256.6666666666667" Width="53.333333333333336" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="30480"/>
+  </DataNode>
+  <DataNode TextLabel="zgc:158799" GraphId="c82" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="zgc:158799"/>
+    <Graphics CenterX="376.6666666666667" CenterY="790.0" Width="62.282286666666664" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="564064"/>
+  </DataNode>
+  <DataNode TextLabel="pak1" GraphId="f55" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="pak1"/>
+    <Graphics CenterX="423.3333333333333" CenterY="1106.6666666666667" Width="42.354033333333334" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="373103"/>
+  </DataNode>
+  <DataNode TextLabel="LOC563639" GraphId="a7f" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="LOC563639"/>
+    <Graphics CenterX="170.0" CenterY="220.0" Width="42.354033333333334" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="563639"/>
+  </DataNode>
+  <DataNode TextLabel="LOC100149498" GraphId="bd1" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="LOC100149498"/>
+    <Graphics CenterX="90.0" CenterY="603.3333333333334" Width="53.333333333333336" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="100149498"/>
+  </DataNode>
+  <DataNode TextLabel="LOC100149498" GraphId="f48" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="LOC100149498"/>
+    <Graphics CenterX="90.0" CenterY="220.0" Width="53.333333333333336" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="100149498"/>
+  </DataNode>
+  <DataNode TextLabel="NFKB1" GraphId="d2a" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="nfkb1"/>
+    <Graphics CenterX="780.0" CenterY="1020.0" Width="50.41899333333333" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="565756"/>
+  </DataNode>
+  <DataNode TextLabel="NFKB1" GraphId="fc7" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="nfkb1"/>
+    <Graphics CenterX="780.0" CenterY="1310.0" Width="50.41899333333333" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="565756"/>
+  </DataNode>
+  <DataNode TextLabel="slc2a1" GraphId="a2a" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="slc2a1"/>
+    <Graphics CenterX="1640.0" CenterY="730.0" Width="57.611113333333336" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="555778"/>
+  </DataNode>
+  <DataNode TextLabel="slc2a1" GraphId="b90" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="slc2a1"/>
+    <Graphics CenterX="1646.6666666666667" CenterY="210.0" Width="57.611113333333336" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="555778"/>
+  </DataNode>
+  <DataNode TextLabel="BAD" GraphId="b50" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="bad"/>
+    <Graphics CenterX="153.33333333333334" CenterY="696.6666666666666" Width="40.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="58100"/>
+  </DataNode>
+  <DataNode TextLabel="mapk3" GraphId="e52" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="mapk3"/>
+    <Graphics CenterX="580.0" CenterY="1316.6666666666667" Width="53.333333333333336" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="399480"/>
+  </DataNode>
+  <DataNode TextLabel="TYK2" GraphId="ae5" Type="GeneProduct">
+    <Graphics CenterX="1436.6666666666667" CenterY="450.0" Width="40.428846666666665" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="" ID=""/>
+  </DataNode>
+  <DataNode TextLabel="GSK3A" GraphId="f27" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="gsk3a"/>
+    <Graphics CenterX="1513.3333333333333" CenterY="536.6666666666666" Width="53.333333333333336" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="30664"/>
+  </DataNode>
+  <DataNode TextLabel="gsk3b" GraphId="d45" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="gsk3b"/>
+    <Graphics CenterX="1576.6666666666667" CenterY="536.6666666666666" Width="53.333333333333336" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="30654"/>
+  </DataNode>
+  <DataNode TextLabel="KCNIP3" GraphId="a2b" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="kcnip3"/>
+    <Graphics CenterX="1603.3333333333333" CenterY="493.3333333333333" Width="55.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="393755"/>
+  </DataNode>
+  <DataNode TextLabel="mapk7" GraphId="a80" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="mapk7"/>
+    <Graphics CenterX="796.6666666666666" CenterY="870.0" Width="53.333333333333336" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="541323"/>
+  </DataNode>
+  <DataNode TextLabel="FOXO1A" GraphId="f44" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="foxo1a"/>
+    <Graphics CenterX="746.6666666666666" CenterY="1083.3333333333333" Width="60.3545" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="768121"/>
+  </DataNode>
+  <DataNode TextLabel="hspb1" GraphId="eb1" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="hspb1"/>
+    <Graphics CenterX="876.6666666666666" CenterY="866.6666666666666" Width="53.333333333333336" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="368243"/>
+  </DataNode>
+  <DataNode TextLabel="mapk14a" GraphId="cf8" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="mapk14a"/>
+    <Graphics CenterX="830.0" CenterY="900.0" Width="60.3545" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="65237"/>
+  </DataNode>
+  <DataNode TextLabel="atf2l" GraphId="a75" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="atf2l"/>
+    <Graphics CenterX="706.6666666666666" CenterY="1186.6666666666667" Width="40.428846666666665" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="100006516"/>
+  </DataNode>
+  <DataNode TextLabel="atf1" GraphId="ba2" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="atf1"/>
+    <Graphics CenterX="680.0" CenterY="1133.3333333333333" Width="40.428846666666665" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="325609"/>
+  </DataNode>
+  <DataNode TextLabel="mras" GraphId="d99" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="mras"/>
+    <Graphics CenterX="826.6666666666666" CenterY="286.6666666666667" Width="46.666666666666664" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="564799"/>
+  </DataNode>
+  <DataNode TextLabel="kras" GraphId="d9d" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="kras"/>
+    <Graphics CenterX="903.3333333333334" CenterY="286.6666666666667" Width="46.666666666666664" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="445289"/>
+  </DataNode>
+  <DataNode TextLabel="RPS6KB2" GraphId="d2d" Type="GeneProduct">
+    <Graphics CenterX="563.3333333333334" CenterY="703.3333333333334" Width="67.3814" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="" ID=""/>
+  </DataNode>
+  <DataNode TextLabel="rap1a" GraphId="deb" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="rap1a"/>
+    <Graphics CenterX="366.6666666666667" CenterY="586.6666666666666" Width="53.333333333333336" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="415242"/>
+  </DataNode>
+  <DataNode TextLabel="birc5a" GraphId="cf6" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="birc5a"/>
+    <Graphics CenterX="943.3333333333334" CenterY="1140.0" Width="46.666666666666664" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="373110"/>
+  </DataNode>
+  <DataNode TextLabel="mapkapk2a" GraphId="e8d" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="mapkapk2a"/>
+    <Graphics CenterX="820.0" CenterY="986.6666666666666" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="327321"/>
+  </DataNode>
+  <DataNode TextLabel="spi1" GraphId="d67" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="spi1"/>
+    <Graphics CenterX="906.6666666666666" CenterY="1200.0" Width="40.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="30117"/>
+  </DataNode>
+  <DataNode TextLabel="cdc42l" GraphId="ffa" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="cdc42l"/>
+    <Graphics CenterX="1163.3333333333333" CenterY="1156.6666666666667" Width="50.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="793158"/>
+  </DataNode>
+  <DataNode TextLabel="BMX" GraphId="c86" Type="GeneProduct">
+    <Graphics CenterX="1193.3333333333333" CenterY="1076.6666666666667" Width="40.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="" ID=""/>
+  </DataNode>
+  <DataNode TextLabel="LOC796190" GraphId="d46" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="LOC796190"/>
+    <Graphics CenterX="1776.6666666666667" CenterY="243.33333333333334" Width="75.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="796190"/>
+  </DataNode>
+  <DataNode TextLabel="id1" GraphId="bda" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="id1"/>
+    <Graphics CenterX="833.3333333333334" CenterY="1170.0" Width="40.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="30493"/>
+  </DataNode>
+  <DataNode TextLabel="LOC796481" GraphId="f25" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="LOC796481"/>
+    <Graphics CenterX="1470.0" CenterY="853.3333333333334" Width="42.354033333333334" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="796481"/>
+  </DataNode>
+  <DataNode TextLabel="FCER2" GraphId="a1f" Type="GeneProduct">
+    <Graphics CenterX="1706.6666666666667" CenterY="243.33333333333334" Width="50.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="" ID=""/>
+  </DataNode>
+  <DataNode TextLabel="LOC100149273" GraphId="ea8" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="LOC100149273"/>
+    <Graphics CenterX="393.3333333333333" CenterY="670.0" Width="53.333333333333336" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="100149273"/>
+  </DataNode>
+  <DataNode TextLabel="chek1" GraphId="ba4" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="chek1"/>
+    <Graphics CenterX="866.6666666666666" CenterY="1243.3333333333333" Width="50.41899333333333" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="393162"/>
+  </DataNode>
+  <DataNode TextLabel="CH211-63J24.2" GraphId="ae8" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="CH211-63J24.2"/>
+    <Graphics CenterX="1103.3333333333333" CenterY="920.0" Width="46.666666666666664" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="567405"/>
+  </DataNode>
+  <DataNode TextLabel="mmp2" GraphId="fdf" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="mmp2"/>
+    <Graphics CenterX="1056.6666666666667" CenterY="956.6666666666666" Width="46.666666666666664" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="337179"/>
+  </DataNode>
+  <DataNode TextLabel="mmp9" GraphId="dcc" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="mmp9"/>
+    <Graphics CenterX="1126.6666666666667" CenterY="976.6666666666666" Width="46.666666666666664" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="406397"/>
+  </DataNode>
+  <DataNode TextLabel="Gene Symbol" GraphId="d18" Type="GeneProduct">
+    <Graphics CenterX="76.66666666666667" CenterY="1303.3333333333333" Width="95.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="" ID=""/>
+  </DataNode>
+  <DataNode TextLabel="IL3" GraphId="a00" Type="GeneProduct">
+    <Graphics CenterX="1163.3333333333333" CenterY="103.33333333333333" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="" ID=""/>
+  </DataNode>
+  <Interaction GraphId="f2700">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="008000">
+      <Point X="30.0" Y="1433.3333333333333"/>
+      <Point X="76.66666666666667" Y="1433.3333333333333" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="a8903">
+    <Graphics ZOrder="12288" LineStyle="Broken" LineThickness="1.0" Color="800040">
+      <Point X="30.0" Y="1903.3333333333333"/>
+      <Point X="80.0" Y="1903.3333333333333" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="b2d7b">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="0000ff">
+      <Point X="26.666666666666668" Y="1646.6666666666667"/>
+      <Point X="80.0" Y="1646.6666666666667" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="ae26e">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="0000ff">
+      <Point X="63.333333333333336" Y="1476.6666666666667"/>
+      <Point X="70.0" Y="1483.3333333333333" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e5607">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="ff00ff">
+      <Point X="1396.6666666666667" Y="113.33333333333333"/>
+      <Point X="1396.6666666666667" Y="170.0" ArrowHead="LigandRound"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="a2cce">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="0080ff">
+      <Point X="1396.6666666666667" Y="203.33333333333334"/>
+      <Point X="1396.6666666666667" Y="170.0" ArrowHead="ReceptorRound"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="abe14">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="ff00ff">
+      <Point X="1233.3333333333333" Y="113.33333333333333"/>
+      <Point X="1233.3333333333333" Y="170.0" ArrowHead="LigandRound"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="dbb9e">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="ff00ff">
+      <Point X="1350.0" Y="113.33333333333333"/>
+      <Point X="1350.0" Y="170.0" ArrowHead="LigandRound"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e7256">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="ff8000">
+      <Point X="1233.3333333333333" Y="203.33333333333334"/>
+      <Point X="1233.3333333333333" Y="170.0" ArrowHead="ReceptorRound"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="bfbde">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="0080ff">
+      <Point X="1350.0" Y="203.33333333333334"/>
+      <Point X="1350.0" Y="170.0" ArrowHead="ReceptorRound"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="c1ec9">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="008000">
+      <Point X="1270.0" Y="213.33333333333334"/>
+      <Point X="1326.6666666666667" Y="213.33333333333334" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e11ae">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="008000">
+      <Point X="790.0" Y="100.0"/>
+      <Point X="790.0" Y="410.0" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="d92dc">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="008000">
+      <Point X="750.0" Y="100.0"/>
+      <Point X="750.0" Y="450.0" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="a2844">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="008000">
+      <Point X="646.6666666666666" Y="100.0"/>
+      <Point X="646.6666666666666" Y="283.3333333333333" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="afc41">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="008000">
+      <Point X="1133.3333333333333" Y="100.0"/>
+      <Point X="646.6666666666666" Y="100.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="b26fe">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="008000">
+      <Point X="1356.6666666666667" Y="223.33333333333334"/>
+      <Point X="1356.6666666666667" Y="400.0" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="a436f">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="008000">
+      <Point X="1330.0" Y="223.33333333333334"/>
+      <Point X="1330.0" Y="470.0" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="a813f">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="008000">
+      <Point X="1263.3333333333333" Y="223.33333333333334"/>
+      <Point X="1263.3333333333333" Y="476.6666666666667"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="f1a51">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="008000">
+      <Point X="1263.3333333333333" Y="476.6666666666667"/>
+      <Point X="1290.0" Y="476.6666666666667" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="a0495">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="008000">
+      <Point X="1266.6666666666667" Y="223.33333333333334"/>
+      <Point X="1266.6666666666667" Y="410.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e0e2c">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="008000">
+      <Point X="1266.6666666666667" Y="410.0"/>
+      <Point X="1353.3333333333333" Y="410.0" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="facf4">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="008000">
+      <Point X="1126.6666666666667" Y="223.33333333333334"/>
+      <Point X="1126.6666666666667" Y="270.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e886f">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="008000">
+      <Point X="1126.6666666666667" Y="270.0"/>
+      <Point X="143.33333333333334" Y="270.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="a2a6b">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="008000">
+      <Point X="143.33333333333334" Y="270.0"/>
+      <Point X="143.33333333333334" Y="493.3333333333333" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="c1d50">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="008000">
+      <Point X="1800.0" Y="630.0"/>
+      <Point X="1246.6666666666667" Y="630.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="c6230">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="008000">
+      <Point X="1246.6666666666667" Y="630.0"/>
+      <Point X="1246.6666666666667" Y="223.33333333333334" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="f51ff">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="008000">
+      <Point X="1820.0" Y="600.0"/>
+      <Point X="1820.0" Y="626.6666666666666" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="fd3d0">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="008000">
+      <Point X="1696.6666666666667" Y="660.0"/>
+      <Point X="1240.0" Y="660.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="b9e64">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="008000">
+      <Point X="1240.0" Y="660.0"/>
+      <Point X="1240.0" Y="223.33333333333334" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="ba701">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="008000">
+      <Point X="1523.3333333333333" Y="730.0"/>
+      <Point X="1226.6666666666667" Y="730.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="c613c">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="008000">
+      <Point X="1226.6666666666667" Y="730.0"/>
+      <Point X="1226.6666666666667" Y="223.33333333333334" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="b858e">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="008000">
+      <Point X="1233.3333333333333" Y="223.33333333333334"/>
+      <Point X="1233.3333333333333" Y="696.6666666666666"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="ce268">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="008000">
+      <Point X="1233.3333333333333" Y="696.6666666666666"/>
+      <Point X="1666.6666666666667" Y="696.6666666666666" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="fb5d0">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="008000">
+      <Point X="1223.3333333333333" Y="223.33333333333334"/>
+      <Point X="1223.3333333333333" Y="753.3333333333334"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="d1dcb">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="008000">
+      <Point X="1223.3333333333333" Y="753.3333333333334"/>
+      <Point X="1513.3333333333333" Y="753.3333333333334"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="eec6f">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="008000">
+      <Point X="1513.3333333333333" Y="753.3333333333334"/>
+      <Point X="1513.3333333333333" Y="816.6666666666666" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="c4297">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="008000">
+      <Point X="1210.0" Y="336.6666666666667"/>
+      <Point X="1210.0" Y="223.33333333333334"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="c6741">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="008000">
+      <Point X="1210.0" Y="336.6666666666667"/>
+      <Point X="1100.0" Y="336.6666666666667" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="f6ed0">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="008000">
+      <Point X="1210.0" Y="313.3333333333333"/>
+      <Point X="1096.6666666666667" Y="313.3333333333333" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="b48f8">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="0000ff">
+      <Point X="1133.3333333333333" Y="420.0"/>
+      <Point X="1216.6666666666667" Y="420.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="fee0f">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="0000ff">
+      <Point X="1216.6666666666667" Y="420.0"/>
+      <Point X="1216.6666666666667" Y="223.33333333333334" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="ea0f6">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="008000">
+      <Point X="396.6666666666667" Y="393.3333333333333"/>
+      <Point X="1133.3333333333333" Y="393.3333333333333"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="d23cb">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="ff00ff">
+      <Point X="1053.3333333333333" Y="480.0"/>
+      <Point X="1153.3333333333333" Y="480.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="b8d0b">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="ff00ff">
+      <Point X="1153.3333333333333" Y="480.0"/>
+      <Point X="1153.3333333333333" Y="223.33333333333334" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="f0df9">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="008000">
+      <Point X="1133.3333333333333" Y="393.3333333333333"/>
+      <Point X="1133.3333333333333" Y="223.33333333333334" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="c6421">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="ff00ff">
+      <Point X="1030.0" Y="593.3333333333334"/>
+      <Point X="1190.0" Y="593.3333333333334"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="d9848">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="ff00ff">
+      <Point X="1190.0" Y="593.3333333333334"/>
+      <Point X="1190.0" Y="223.33333333333334" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="fc443">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="008000">
+      <Point X="373.3333333333333" Y="406.6666666666667"/>
+      <Point X="373.3333333333333" Y="493.3333333333333" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="c5c7b">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="008000">
+      <Point X="313.3333333333333" Y="503.3333333333333"/>
+      <Point X="313.3333333333333" Y="396.6666666666667"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="c20cd">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="008000">
+      <Point X="313.3333333333333" Y="396.6666666666667"/>
+      <Point X="356.6666666666667" Y="396.6666666666667" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="d7ac3">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="008000">
+      <Point X="386.6666666666667" Y="386.6666666666667"/>
+      <Point X="386.6666666666667" Y="303.3333333333333"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="b787d">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="008000">
+      <Point X="386.6666666666667" Y="303.3333333333333"/>
+      <Point X="480.0" Y="303.3333333333333" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="d64b1">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="008000">
+      <Point X="363.3333333333333" Y="386.6666666666667"/>
+      <Point X="363.3333333333333" Y="370.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="d6988">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="008000">
+      <Point X="266.6666666666667" Y="370.0"/>
+      <Point X="266.6666666666667" Y="346.6666666666667" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="d1223">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="008000">
+      <Point X="396.6666666666667" Y="403.3333333333333"/>
+      <Point X="436.6666666666667" Y="403.3333333333333"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="bb729">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="008000">
+      <Point X="436.6666666666667" Y="403.3333333333333"/>
+      <Point X="436.6666666666667" Y="503.3333333333333" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="aa6b6">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="008000">
+      <Point X="393.3333333333333" Y="386.6666666666667"/>
+      <Point X="393.3333333333333" Y="373.3333333333333"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="aac30">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="008000">
+      <Point X="393.3333333333333" Y="373.3333333333333"/>
+      <Point X="500.0" Y="373.3333333333333" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="b8ddc">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="008000">
+      <Point X="980.0" Y="470.0"/>
+      <Point X="980.0" Y="576.6666666666666" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="bf24c">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="008000">
+      <Point X="846.6666666666666" Y="470.0"/>
+      <Point X="980.0" Y="470.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="f5cc8">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="008000">
+      <Point X="820.0" Y="463.3333333333333"/>
+      <Point X="820.0" Y="396.6666666666667"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="b8dd8">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="008000">
+      <Point X="820.0" Y="396.6666666666667"/>
+      <Point X="396.6666666666667" Y="396.6666666666667" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="f769e">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="008000">
+      <Point X="826.6666666666666" Y="463.3333333333333"/>
+      <Point X="826.6666666666666" Y="376.6666666666667"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="a829d">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="008000">
+      <Point X="826.6666666666666" Y="376.6666666666667"/>
+      <Point X="570.0" Y="376.6666666666667" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="be9e6">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="008000">
+      <Point X="1033.3333333333333" Y="733.3333333333334"/>
+      <Point X="810.0" Y="733.3333333333334"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="f5b73">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="008000">
+      <Point X="810.0" Y="733.3333333333334"/>
+      <Point X="810.0" Y="606.6666666666666" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="a289c">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="008000">
+      <Point X="846.6666666666666" Y="476.6666666666667"/>
+      <Point X="966.6666666666666" Y="476.6666666666667"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="a1971">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="008000">
+      <Point X="966.6666666666666" Y="500.0"/>
+      <Point X="1053.3333333333333" Y="500.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e391a">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="008000">
+      <Point X="1053.3333333333333" Y="500.0"/>
+      <Point X="1053.3333333333333" Y="730.0" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e44bb">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="008000">
+      <Point X="1033.3333333333333" Y="740.0"/>
+      <Point X="670.0" Y="740.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="b5d5c">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="008000">
+      <Point X="670.0" Y="740.0"/>
+      <Point X="670.0" Y="566.6666666666666" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="fc28e">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="008000">
+      <Point X="320.0" Y="523.3333333333334"/>
+      <Point X="320.0" Y="746.6666666666666"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e4baa">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="008000">
+      <Point X="320.0" Y="746.6666666666666"/>
+      <Point X="1033.3333333333333" Y="746.6666666666666" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="a58e5">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="008000">
+      <Point X="1073.3333333333333" Y="736.6666666666666"/>
+      <Point X="1523.3333333333333" Y="736.6666666666666" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="b4be2">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="008000">
+      <Point X="1070.0" Y="730.0"/>
+      <Point X="1070.0" Y="666.6666666666666"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="abd68">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="008000">
+      <Point X="1070.0" Y="666.6666666666666"/>
+      <Point X="1696.6666666666667" Y="666.6666666666666" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="b1970">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="008000">
+      <Point X="406.6666666666667" Y="513.3333333333334"/>
+      <Point X="340.0" Y="513.3333333333334" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="c6a9f">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="008000">
+      <Point X="753.3333333333334" Y="470.0"/>
+      <Point X="753.3333333333334" Y="576.6666666666666" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="d12b8">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="008000">
+      <Point X="763.3333333333334" Y="470.0"/>
+      <Point X="763.3333333333334" Y="533.3333333333334"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="c7eb0">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="008000">
+      <Point X="763.3333333333334" Y="533.3333333333334"/>
+      <Point X="850.0" Y="533.3333333333334"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="a906a">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="008000">
+      <Point X="850.0" Y="533.3333333333334"/>
+      <Point X="850.0" Y="576.6666666666666" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="f788d">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="008000">
+      <Point X="740.0" Y="450.0"/>
+      <Point X="740.0" Y="293.3333333333333"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="a4289">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="008000">
+      <Point X="740.0" Y="293.3333333333333"/>
+      <Point X="670.0" Y="293.3333333333333" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="f5907">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="008000">
+      <Point X="966.6666666666666" Y="476.6666666666667"/>
+      <Point X="966.6666666666666" Y="500.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="d16fa">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="008000">
+      <Point X="726.6666666666666" Y="493.3333333333333"/>
+      <Point X="930.0" Y="493.3333333333333"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="a28ea">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="008000">
+      <Point X="930.0" Y="493.3333333333333"/>
+      <Point X="930.0" Y="566.6666666666666" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="cd604">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="008000">
+      <Point X="260.0" Y="510.0"/>
+      <Point X="300.0" Y="510.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="a97f5">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="008000">
+      <Point X="260.0" Y="510.0"/>
+      <Point X="260.0" Y="346.6666666666667" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="a5312">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="008000">
+      <Point X="1800.0" Y="636.6666666666666"/>
+      <Point X="246.66666666666666" Y="636.6666666666666"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="ed96e">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="008000">
+      <Point X="246.66666666666666" Y="636.6666666666666"/>
+      <Point X="246.66666666666666" Y="346.6666666666667" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e3bf2">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="008000">
+      <Point X="280.0" Y="343.3333333333333"/>
+      <Point X="863.3333333333334" Y="343.3333333333333"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="f520c">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="008000">
+      <Point X="863.3333333333334" Y="343.3333333333333"/>
+      <Point X="863.3333333333334" Y="576.6666666666666" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e7948">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="008000">
+      <Point X="996.6666666666666" Y="336.6666666666667"/>
+      <Point X="996.6666666666666" Y="576.6666666666666"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="ce5ab">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="008000">
+      <Point X="996.6666666666666" Y="336.6666666666667"/>
+      <Point X="280.0" Y="336.6666666666667" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="c4927">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="008000">
+      <Point X="1020.0" Y="330.0"/>
+      <Point X="1020.0" Y="473.3333333333333"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="b970f">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="008000">
+      <Point X="1020.0" Y="330.0"/>
+      <Point X="280.0" Y="330.0" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="c832d">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="008000">
+      <Point X="446.6666666666667" Y="510.0"/>
+      <Point X="1003.3333333333334" Y="510.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="db644">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="008000">
+      <Point X="1003.3333333333334" Y="510.0"/>
+      <Point X="1003.3333333333334" Y="576.6666666666666" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="ba127">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="008000">
+      <Point X="483.3333333333333" Y="310.0"/>
+      <Point X="483.3333333333333" Y="623.3333333333334"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e5a6e">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="008000">
+      <Point X="483.3333333333333" Y="623.3333333333334"/>
+      <Point X="980.0" Y="623.3333333333334"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="cd1f8">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="008000">
+      <Point X="980.0" Y="623.3333333333334"/>
+      <Point X="980.0" Y="596.6666666666666" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="c60df">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="008000">
+      <Point X="1006.6666666666666" Y="473.3333333333333"/>
+      <Point X="1006.6666666666666" Y="313.3333333333333" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="eb6a5">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="008000">
+      <Point X="993.3333333333334" Y="576.6666666666666"/>
+      <Point X="993.3333333333334" Y="313.3333333333333" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="b8b68">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="008000">
+      <Point X="260.0" Y="793.3333333333334"/>
+      <Point X="220.0" Y="793.3333333333334" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e86a7">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="008000">
+      <Point X="283.3333333333333" Y="846.6666666666666"/>
+      <Point X="360.0" Y="846.6666666666666" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="f3479">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="008000">
+      <Point X="283.3333333333333" Y="846.6666666666666"/>
+      <Point X="283.3333333333333" Y="933.3333333333334"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="c82ea">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="008000">
+      <Point X="253.33333333333334" Y="933.3333333333334"/>
+      <Point X="253.33333333333334" Y="833.3333333333334"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="d0d98">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="008000">
+      <Point X="253.33333333333334" Y="833.3333333333334"/>
+      <Point X="123.33333333333333" Y="833.3333333333334" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="cf1ac">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="008000">
+      <Point X="373.3333333333333" Y="856.6666666666666"/>
+      <Point X="373.3333333333333" Y="966.6666666666666" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="b9eec">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="008000">
+      <Point X="113.33333333333333" Y="983.3333333333334"/>
+      <Point X="113.33333333333333" Y="883.3333333333334" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="df4b1">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="008000">
+      <Point X="346.6666666666667" Y="233.33333333333334"/>
+      <Point X="346.6666666666667" Y="260.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="f6824">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="008000">
+      <Point X="346.6666666666667" Y="260.0"/>
+      <Point X="876.6666666666666" Y="260.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="b2922">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="008000">
+      <Point X="876.6666666666666" Y="260.0"/>
+      <Point X="876.6666666666666" Y="576.6666666666666" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="ee715">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="008000">
+      <Point X="266.6666666666667" Y="370.0"/>
+      <Point X="363.3333333333333" Y="370.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e78b2">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="008000">
+      <Point X="970.0" Y="586.6666666666666"/>
+      <Point X="886.6666666666666" Y="586.6666666666666" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="d0239">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="008000">
+      <Point X="333.3333333333333" Y="523.3333333333334"/>
+      <Point X="333.3333333333333" Y="626.6666666666666"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="b21e3">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="008000">
+      <Point X="333.3333333333333" Y="626.6666666666666"/>
+      <Point X="990.0" Y="626.6666666666666"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="b5412">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="008000">
+      <Point X="990.0" Y="626.6666666666666"/>
+      <Point X="990.0" Y="596.6666666666666" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="a6e65">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="008000">
+      <Point X="1273.3333333333333" Y="1030.0"/>
+      <Point X="1273.3333333333333" Y="1200.0" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="f125b">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="008000">
+      <Point X="226.66666666666666" Y="220.0"/>
+      <Point X="206.66666666666666" Y="220.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="d37e5">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="008000">
+      <Point X="206.66666666666666" Y="220.0"/>
+      <Point X="206.66666666666666" Y="516.6666666666666"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="af5d8">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="008000">
+      <Point X="206.66666666666666" Y="516.6666666666666"/>
+      <Point X="300.0" Y="516.6666666666666" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="d6e98">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="008000">
+      <Point X="1300.0" Y="846.6666666666666"/>
+      <Point X="1300.0" Y="550.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="dac67">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="008000">
+      <Point X="1300.0" Y="550.0"/>
+      <Point X="1160.0" Y="550.0" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="b72bd">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="008000">
+      <Point X="1236.6666666666667" Y="1013.3333333333334"/>
+      <Point X="1176.6666666666667" Y="1013.3333333333334"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e3847">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="008000">
+      <Point X="1176.6666666666667" Y="1013.3333333333334"/>
+      <Point X="1176.6666666666667" Y="556.6666666666666"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="b5cab">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="008000">
+      <Point X="1176.6666666666667" Y="556.6666666666666"/>
+      <Point X="1160.0" Y="556.6666666666666" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="d2df0">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="008000">
+      <Point X="796.6666666666666" Y="946.6666666666666"/>
+      <Point X="943.3333333333334" Y="946.6666666666666" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="f4318">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="008000">
+      <Point X="1100.0" Y="1103.3333333333333"/>
+      <Point X="1013.3333333333334" Y="1103.3333333333333" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="b4b5b">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="008000">
+      <Point X="1396.6666666666667" Y="806.6666666666666"/>
+      <Point X="1396.6666666666667" Y="923.3333333333334" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="edc62">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="008000">
+      <Point X="1500.0" Y="890.0"/>
+      <Point X="1500.0" Y="1006.6666666666666" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="c27d2">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="008000">
+      <Point X="1110.0" Y="690.0"/>
+      <Point X="873.3333333333334" Y="690.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="efcbd">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="008000">
+      <Point X="873.3333333333334" Y="690.0"/>
+      <Point X="873.3333333333334" Y="596.6666666666666" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="b08bd">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="008000">
+      <Point X="996.6666666666666" Y="1113.3333333333333"/>
+      <Point X="996.6666666666666" Y="1176.6666666666667" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="af3e2">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="008000">
+      <Point X="360.0" Y="233.33333333333334"/>
+      <Point X="360.0" Y="250.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="b3211">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="008000">
+      <Point X="360.0" Y="250.0"/>
+      <Point X="1296.6666666666667" Y="250.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="f9c25">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="008000">
+      <Point X="1296.6666666666667" Y="250.0"/>
+      <Point X="1296.6666666666667" Y="470.0" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="a6cd2">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="008000">
+      <Point X="523.3333333333334" Y="480.0"/>
+      <Point X="523.3333333333334" Y="820.0" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e60c7">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="0000ff">
+      <Point X="326.6666666666667" Y="226.66666666666666"/>
+      <Point X="266.6666666666667" Y="226.66666666666666" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="d7f8f">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="0000ff">
+      <Point X="1800.0" Y="586.6666666666666"/>
+      <Point X="1256.6666666666667" Y="586.6666666666666"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="edf96">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="0000ff">
+      <Point X="1256.6666666666667" Y="586.6666666666666"/>
+      <Point X="1256.6666666666667" Y="223.33333333333334" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="d3067">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="ff00ff">
+      <Point X="1013.3333333333334" Y="596.6666666666666"/>
+      <Point X="1013.3333333333334" Y="1020.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="fef9a">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="ff00ff">
+      <Point X="1013.3333333333334" Y="1020.0"/>
+      <Point X="1236.6666666666667" Y="1020.0" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="d9abf">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="ff00ff">
+      <Point X="1020.0" Y="596.6666666666666"/>
+      <Point X="1020.0" Y="853.3333333333334"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="bd51e">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="ff00ff">
+      <Point X="1020.0" Y="853.3333333333334"/>
+      <Point X="1280.0" Y="853.3333333333334" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="d9cbc">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="0000ff">
+      <Point X="503.3333333333333" Y="480.0"/>
+      <Point X="503.3333333333333" Y="940.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="ee201">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="0000ff">
+      <Point X="503.3333333333333" Y="940.0"/>
+      <Point X="286.6666666666667" Y="940.0" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="ba84e">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="0000ff">
+      <Point X="753.3333333333334" Y="946.6666666666666"/>
+      <Point X="286.6666666666667" Y="946.6666666666666" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="f18fe">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="0000ff">
+      <Point X="443.3333333333333" Y="1063.3333333333333"/>
+      <Point X="276.6666666666667" Y="1063.3333333333333"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e201f">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="0000ff">
+      <Point X="276.6666666666667" Y="1063.3333333333333"/>
+      <Point X="276.6666666666667" Y="953.3333333333334" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="a5eb3">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="0000ff">
+      <Point X="860.0" Y="596.6666666666666"/>
+      <Point X="860.0" Y="700.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e1472">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="0000ff">
+      <Point X="860.0" Y="700.0"/>
+      <Point X="1043.3333333333333" Y="700.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="d4749">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="0000ff">
+      <Point X="1043.3333333333333" Y="700.0"/>
+      <Point X="1043.3333333333333" Y="730.0" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="b9d15">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="0000ff">
+      <Point X="740.0" Y="476.6666666666667"/>
+      <Point X="746.6666666666666" Y="470.0" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="c5e61">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="0000ff">
+      <Point X="560.0" Y="886.6666666666666"/>
+      <Point X="390.0" Y="886.6666666666666"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="bca59">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="0000ff">
+      <Point X="603.3333333333334" Y="846.6666666666666"/>
+      <Point X="396.6666666666667" Y="846.6666666666666" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="c11da">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="0000ff">
+      <Point X="390.0" Y="886.6666666666666"/>
+      <Point X="390.0" Y="856.6666666666666" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="efd37">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="0000ff">
+      <Point X="1290.0" Y="486.6666666666667"/>
+      <Point X="1136.6666666666667" Y="486.6666666666667"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="dfe95">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="0000ff">
+      <Point X="1136.6666666666667" Y="486.6666666666667"/>
+      <Point X="1136.6666666666667" Y="543.3333333333334" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="c4378">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="ff00ff">
+      <Point X="996.6666666666666" Y="596.6666666666666"/>
+      <Point X="996.6666666666666" Y="633.3333333333334"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e5b91">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="ff00ff">
+      <Point X="996.6666666666666" Y="633.3333333333334"/>
+      <Point X="253.33333333333334" Y="633.3333333333334"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e66cb">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="ff00ff">
+      <Point X="253.33333333333334" Y="633.3333333333334"/>
+      <Point X="253.33333333333334" Y="346.6666666666667" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="ebb88">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="0000ff">
+      <Point X="770.0" Y="960.0"/>
+      <Point X="770.0" Y="993.3333333333334"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="ed775">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="0000ff">
+      <Point X="770.0" Y="993.3333333333334"/>
+      <Point X="150.0" Y="993.3333333333334" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="b6a98">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="0000ff">
+      <Point X="596.6666666666666" Y="896.6666666666666"/>
+      <Point X="596.6666666666666" Y="1203.3333333333333" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="efb48">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="0000ff">
+      <Point X="616.6666666666666" Y="856.6666666666666"/>
+      <Point X="616.6666666666666" Y="1203.3333333333333" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="c7d72">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="0000ff">
+      <Point X="640.0" Y="856.6666666666666"/>
+      <Point X="640.0" Y="1246.6666666666667" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="be9d1">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="0000ff">
+      <Point X="1383.3333333333333" Y="813.3333333333334"/>
+      <Point X="1390.0" Y="806.6666666666666" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e583c">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="0000ff">
+      <Point X="1406.6666666666667" Y="803.3333333333334"/>
+      <Point X="1406.6666666666667" Y="923.3333333333334" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="adad2">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="0000ff">
+      <Point X="380.0" Y="800.0"/>
+      <Point X="380.0" Y="836.6666666666666" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="d86c5">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="0000ff">
+      <Point X="346.6666666666667" Y="793.3333333333334"/>
+      <Point X="266.6666666666667" Y="793.3333333333334"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="ee22a">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="0000ff">
+      <Point X="266.6666666666667" Y="793.3333333333334"/>
+      <Point X="266.6666666666667" Y="933.3333333333334" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="fa375">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="0000ff">
+      <Point X="406.6666666666667" Y="793.3333333333334"/>
+      <Point X="496.6666666666667" Y="793.3333333333334"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="b3175">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="0000ff">
+      <Point X="496.6666666666667" Y="793.3333333333334"/>
+      <Point X="496.6666666666667" Y="480.0" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="b6f44">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="0000ff">
+      <Point X="403.3333333333333" Y="1106.6666666666667"/>
+      <Point X="266.6666666666667" Y="1106.6666666666667"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="ec09b">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="0000ff">
+      <Point X="266.6666666666667" Y="1106.6666666666667"/>
+      <Point X="266.6666666666667" Y="953.3333333333334" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="edb15">
+    <Graphics ZOrder="12288" LineStyle="Broken" LineThickness="1.0" Color="800040">
+      <Point X="373.3333333333333" Y="386.6666666666667"/>
+      <Point X="373.3333333333333" Y="286.6666666666667"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="d4494">
+    <Graphics ZOrder="12288" LineStyle="Broken" LineThickness="1.0" Color="800040">
+      <Point X="373.3333333333333" Y="286.6666666666667"/>
+      <Point X="173.33333333333334" Y="286.6666666666667"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="f999e">
+    <Graphics ZOrder="12288" LineStyle="Broken" LineThickness="1.0" Color="800040">
+      <Point X="173.33333333333334" Y="286.6666666666667"/>
+      <Point X="173.33333333333334" Y="230.0" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e19b4">
+    <Graphics ZOrder="12288" LineStyle="Broken" LineThickness="1.0" Color="800040">
+      <Point X="90.0" Y="593.3333333333334"/>
+      <Point X="90.0" Y="230.0" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e6a71">
+    <Graphics ZOrder="12288" LineStyle="Broken" LineThickness="1.0" Color="800040">
+      <Point X="783.3333333333334" Y="1030.0"/>
+      <Point X="783.3333333333334" Y="1300.0" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="d1c1c">
+    <Graphics ZOrder="12288" LineStyle="Broken" LineThickness="1.0" Color="800040">
+      <Point X="1643.3333333333333" Y="720.0"/>
+      <Point X="1643.3333333333333" Y="220.0" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="ad689">
+    <Graphics ZOrder="12288" LineStyle="Broken" LineThickness="1.0" Color="800040">
+      <Point X="156.66666666666666" Y="706.6666666666666"/>
+      <Point X="156.66666666666666" Y="943.3333333333334"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="a78bb">
+    <Graphics ZOrder="12288" LineStyle="Broken" LineThickness="1.0" Color="800040">
+      <Point X="156.66666666666666" Y="943.3333333333334"/>
+      <Point X="246.66666666666666" Y="943.3333333333334" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="cc5f9">
+    <Graphics ZOrder="12288" LineStyle="Broken" LineThickness="1.0" Color="800040">
+      <Point X="570.0" Y="896.6666666666666"/>
+      <Point X="570.0" Y="1306.6666666666667" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="b5b33">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="1313.3333333333333" Y="220.0"/>
+      <Point X="1313.3333333333333" Y="360.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="c97c8">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="0000ff">
+      <Point X="1336.6666666666667" Y="326.6666666666667"/>
+      <Point X="1336.6666666666667" Y="470.0" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="d15bd">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="1313.3333333333333" Y="260.0"/>
+      <Point X="1546.6666666666667" Y="260.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e520b">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="0000ff">
+      <Point X="1433.3333333333333" Y="326.6666666666667"/>
+      <Point X="1433.3333333333333" Y="440.0" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="c43e7">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="1313.3333333333333" Y="360.0"/>
+      <Point X="456.6666666666667" Y="360.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e94f3">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="0000ff">
+      <Point X="980.0" Y="793.3333333333334"/>
+      <Point X="980.0" Y="936.6666666666666" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="d706e">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="953.3333333333334" Y="360.0"/>
+      <Point X="953.3333333333334" Y="756.6666666666666"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="b6a59">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="1200.0" Y="756.6666666666666"/>
+      <Point X="276.6666666666667" Y="756.6666666666666"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="d2038">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="0000ff">
+      <Point X="686.6666666666666" Y="793.3333333333334"/>
+      <Point X="686.6666666666666" Y="1123.3333333333333" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="eebd2">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="0000ff">
+      <Point X="793.3333333333334" Y="793.3333333333334"/>
+      <Point X="793.3333333333334" Y="860.0" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="dc8dd">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="0000ff">
+      <Point X="763.3333333333334" Y="793.3333333333334"/>
+      <Point X="763.3333333333334" Y="940.0" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="cfed4">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="720.0" Y="756.6666666666666"/>
+      <Point X="720.0" Y="770.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="d6c2c">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="0000ff">
+      <Point X="720.0" Y="780.0"/>
+      <Point X="720.0" Y="793.3333333333334"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="cb965">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="0000ff">
+      <Point X="980.0" Y="793.3333333333334"/>
+      <Point X="1290.0" Y="793.3333333333334"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="c44ac">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="0000ff">
+      <Point X="553.3333333333334" Y="793.3333333333334"/>
+      <Point X="553.3333333333334" Y="820.0" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="c5f6c">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="0000ff">
+      <Point X="583.3333333333334" Y="793.3333333333334"/>
+      <Point X="583.3333333333334" Y="876.6666666666666" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="fca84">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="0000ff">
+      <Point X="630.0" Y="793.3333333333334"/>
+      <Point X="630.0" Y="836.6666666666666" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="d6b62">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="0000ff">
+      <Point X="710.0" Y="793.3333333333334"/>
+      <Point X="710.0" Y="1176.6666666666667" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="b2536">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="0000ff">
+      <Point X="740.0" Y="793.3333333333334"/>
+      <Point X="740.0" Y="1073.3333333333333" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="d5131">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="0000ff">
+      <Point X="1000.0" Y="793.3333333333334"/>
+      <Point X="1000.0" Y="1093.3333333333333" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="bb9cf">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="1383.3333333333333" Y="260.0"/>
+      <Point X="1383.3333333333333" Y="280.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="cca42">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="0000ff">
+      <Point X="1383.3333333333333" Y="293.3333333333333"/>
+      <Point X="1383.3333333333333" Y="326.6666666666667"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="ba5bd">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="0000ff">
+      <Point X="1336.6666666666667" Y="326.6666666666667"/>
+      <Point X="1433.3333333333333" Y="326.6666666666667"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="b8c09">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="0000ff">
+      <Point X="1370.0" Y="326.6666666666667"/>
+      <Point X="1370.0" Y="400.0" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="d5567">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="0000ff">
+      <Point X="1510.0" Y="433.3333333333333"/>
+      <Point X="1510.0" Y="526.6666666666666" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="f42d1">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="0000ff">
+      <Point X="1563.3333333333333" Y="433.3333333333333"/>
+      <Point X="1563.3333333333333" Y="526.6666666666666" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="a2c98">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="923.3333333333334" Y="360.0"/>
+      <Point X="923.3333333333334" Y="406.6666666666667"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="ca23f">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="0000ff">
+      <Point X="923.3333333333334" Y="420.0"/>
+      <Point X="923.3333333333334" Y="436.6666666666667"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="b9820">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="0000ff">
+      <Point X="516.6666666666666" Y="436.6666666666667"/>
+      <Point X="706.6666666666666" Y="436.6666666666667"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e4132">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="0000ff">
+      <Point X="706.6666666666666" Y="436.6666666666667"/>
+      <Point X="706.6666666666666" Y="483.3333333333333" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="d3442">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="0000ff">
+      <Point X="516.6666666666666" Y="436.6666666666667"/>
+      <Point X="516.6666666666666" Y="460.0" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="cef63">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="0000ff">
+      <Point X="663.3333333333334" Y="436.6666666666667"/>
+      <Point X="663.3333333333334" Y="546.6666666666666" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="b444c">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="0000ff">
+      <Point X="836.6666666666666" Y="436.6666666666667"/>
+      <Point X="836.6666666666666" Y="463.3333333333333" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="def6d">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="0000ff">
+      <Point X="986.6666666666666" Y="436.6666666666667"/>
+      <Point X="986.6666666666666" Y="576.6666666666666" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="b5fbd">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="0000ff">
+      <Point X="1060.0" Y="436.6666666666667"/>
+      <Point X="1060.0" Y="730.0" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="ee250">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="0000ff">
+      <Point X="1290.0" Y="793.3333333333334"/>
+      <Point X="1290.0" Y="843.3333333333334" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="bd060">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="0000ff">
+      <Point X="1246.6666666666667" Y="793.3333333333334"/>
+      <Point X="1246.6666666666667" Y="1010.0" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="f848f">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="0000ff">
+      <Point X="276.6666666666667" Y="783.3333333333334"/>
+      <Point X="276.6666666666667" Y="933.3333333333334" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="bdf5c">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="0000ff">
+      <Point X="383.3333333333333" Y="436.6666666666667"/>
+      <Point X="383.3333333333333" Y="406.6666666666667" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="ff77c">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="0000ff">
+      <Point X="230.0" Y="436.6666666666667"/>
+      <Point X="230.0" Y="233.33333333333334" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="c2a31">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="0000ff">
+      <Point X="336.6666666666667" Y="436.6666666666667"/>
+      <Point X="336.6666666666667" Y="233.33333333333334" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="cb534">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="0000ff">
+      <Point X="1603.3333333333333" Y="433.3333333333333"/>
+      <Point X="1603.3333333333333" Y="483.3333333333333" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="f6f2f">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="593.3333333333334" Y="756.6666666666666"/>
+      <Point X="593.3333333333334" Y="770.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e97d1">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="0000ff">
+      <Point X="593.3333333333334" Y="780.0"/>
+      <Point X="593.3333333333334" Y="793.3333333333334"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="a8aa9">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="0000ff">
+      <Point X="553.3333333333334" Y="793.3333333333334"/>
+      <Point X="630.0" Y="793.3333333333334"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="cf761">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="0000ff">
+      <Point X="686.6666666666666" Y="793.3333333333334"/>
+      <Point X="763.3333333333334" Y="793.3333333333334"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="cd8a8">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="1123.3333333333333" Y="756.6666666666666"/>
+      <Point X="1123.3333333333333" Y="770.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="bb7f0">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="0000ff">
+      <Point X="1123.3333333333333" Y="780.0"/>
+      <Point X="1123.3333333333333" Y="793.3333333333334"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e414c">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="1546.6666666666667" Y="260.0"/>
+      <Point X="1546.6666666666667" Y="383.3333333333333"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="d0a45">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="0000ff">
+      <Point X="1550.0" Y="400.0"/>
+      <Point X="1550.0" Y="433.3333333333333"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="d73b0">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="0000ff">
+      <Point X="1510.0" Y="433.3333333333333"/>
+      <Point X="1603.3333333333333" Y="433.3333333333333"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="cec02">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="676.6666666666666" Y="360.0"/>
+      <Point X="676.6666666666666" Y="406.6666666666667"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="c6d68">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="0000ff">
+      <Point X="676.6666666666666" Y="420.0"/>
+      <Point X="676.6666666666666" Y="436.6666666666667"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e1cf7">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="0000ff">
+      <Point X="836.6666666666666" Y="436.6666666666667"/>
+      <Point X="1060.0" Y="436.6666666666667"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="a832b">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="008000">
+      <Point X="260.0" Y="793.3333333333334"/>
+      <Point X="260.0" Y="933.3333333333334"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="f4894">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="276.6666666666667" Y="756.6666666666666"/>
+      <Point X="276.6666666666667" Y="770.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="ad544">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="456.6666666666667" Y="360.0"/>
+      <Point X="456.6666666666667" Y="406.6666666666667"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="a8070">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="0000ff">
+      <Point X="456.6666666666667" Y="420.0"/>
+      <Point X="456.6666666666667" Y="436.6666666666667"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="c1ba5">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="0000ff">
+      <Point X="456.6666666666667" Y="436.6666666666667"/>
+      <Point X="230.0" Y="436.6666666666667"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="d7f30">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="620.0" Y="360.0"/>
+      <Point X="620.0" Y="453.3333333333333"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="d1a1f">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="8000ff">
+      <Point X="620.0" Y="473.3333333333333"/>
+      <Point X="620.0" Y="530.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="f05ff">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="8000ff">
+      <Point X="466.6666666666667" Y="530.0"/>
+      <Point X="100.0" Y="530.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="df58b">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="8000ff">
+      <Point X="546.6666666666666" Y="530.0"/>
+      <Point X="630.0" Y="530.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e63bf">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="8000ff">
+      <Point X="630.0" Y="530.0"/>
+      <Point X="630.0" Y="566.6666666666666" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="d5f62">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="8000ff">
+      <Point X="580.0" Y="530.0"/>
+      <Point X="580.0" Y="596.6666666666666" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e4681">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="8000ff">
+      <Point X="546.6666666666666" Y="530.0"/>
+      <Point X="546.6666666666666" Y="693.3333333333334" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="bab48">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="466.6666666666667" Y="360.0"/>
+      <Point X="466.6666666666667" Y="453.3333333333333"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="a55b4">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="8000ff">
+      <Point X="466.6666666666667" Y="473.3333333333333"/>
+      <Point X="466.6666666666667" Y="530.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="b1e8d">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="8000ff">
+      <Point X="370.0" Y="530.0"/>
+      <Point X="370.0" Y="576.6666666666666" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="a3e32">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="8000ff">
+      <Point X="410.0" Y="530.0"/>
+      <Point X="410.0" Y="660.0" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="b6134">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="8000ff">
+      <Point X="463.3333333333333" Y="530.0"/>
+      <Point X="463.3333333333333" Y="1053.3333333333333" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="de3ca">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="833.3333333333334" Y="910.0"/>
+      <Point X="833.3333333333334" Y="923.3333333333334"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e88ba">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="8000ff">
+      <Point X="833.3333333333334" Y="933.3333333333334"/>
+      <Point X="833.3333333333334" Y="976.6666666666666" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="aa489">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="830.0" Y="756.6666666666666"/>
+      <Point X="830.0" Y="770.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="b3890">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="0000ff">
+      <Point X="830.0" Y="780.0"/>
+      <Point X="830.0" Y="793.3333333333334"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="d7a9d">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="0000ff">
+      <Point X="793.3333333333334" Y="793.3333333333334"/>
+      <Point X="866.6666666666666" Y="793.3333333333334"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="dc05a">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="0000ff">
+      <Point X="836.6666666666666" Y="793.3333333333334"/>
+      <Point X="836.6666666666666" Y="890.0" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="b2f75">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="910.0" Y="756.6666666666666"/>
+      <Point X="910.0" Y="986.6666666666666"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="fd4bf">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="8000ff">
+      <Point X="910.0" Y="996.6666666666666"/>
+      <Point X="910.0" Y="1083.3333333333333"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="f1a24">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="8000ff">
+      <Point X="830.0" Y="1083.3333333333333"/>
+      <Point X="940.0" Y="1083.3333333333333"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="b108d">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="8000ff">
+      <Point X="940.0" Y="1083.3333333333333"/>
+      <Point X="940.0" Y="1130.0" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="c37ab">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="8000ff">
+      <Point X="903.3333333333334" Y="1083.3333333333333"/>
+      <Point X="903.3333333333334" Y="1190.0" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e0a61">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="8000ff">
+      <Point X="866.6666666666666" Y="1083.3333333333333"/>
+      <Point X="866.6666666666666" Y="1233.3333333333333" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="ecb5a">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="8000ff">
+      <Point X="830.0" Y="1083.3333333333333"/>
+      <Point X="830.0" Y="1160.0" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e7a9d">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="1200.0" Y="756.6666666666666"/>
+      <Point X="1200.0" Y="810.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="fbfc2">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="8000ff">
+      <Point X="1200.0" Y="826.6666666666666"/>
+      <Point X="1200.0" Y="876.6666666666666"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="c7521">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="8000ff">
+      <Point X="1046.6666666666667" Y="876.6666666666666"/>
+      <Point X="1383.3333333333333" Y="876.6666666666666"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="fc4eb">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="8000ff">
+      <Point X="1046.6666666666667" Y="876.6666666666666"/>
+      <Point X="1046.6666666666667" Y="946.6666666666666" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="f083e">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="8000ff">
+      <Point X="1096.6666666666667" Y="876.6666666666666"/>
+      <Point X="1096.6666666666667" Y="910.0" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="df6b0">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="8000ff">
+      <Point X="1136.6666666666667" Y="876.6666666666666"/>
+      <Point X="1136.6666666666667" Y="966.6666666666666" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="f3466">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="8000ff">
+      <Point X="1163.3333333333333" Y="876.6666666666666"/>
+      <Point X="1163.3333333333333" Y="1146.6666666666667" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="fc15d">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="8000ff">
+      <Point X="1190.0" Y="876.6666666666666"/>
+      <Point X="1190.0" Y="1066.6666666666667" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="edd6e">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="8000ff">
+      <Point X="1323.3333333333333" Y="876.6666666666666"/>
+      <Point X="1323.3333333333333" Y="966.6666666666666" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="ba28a">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="8000ff">
+      <Point X="1283.3333333333333" Y="876.6666666666666"/>
+      <Point X="1283.3333333333333" Y="933.3333333333334" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="d3034">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="8000ff">
+      <Point X="1383.3333333333333" Y="876.6666666666666"/>
+      <Point X="1383.3333333333333" Y="923.3333333333334" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="d531f">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="8000ff">
+      <Point X="826.6666666666666" Y="320.0"/>
+      <Point X="826.6666666666666" Y="296.6666666666667" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="d5776">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="770.0" Y="360.0"/>
+      <Point X="770.0" Y="323.3333333333333"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="bcb8c">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="8000ff">
+      <Point X="646.6666666666666" Y="320.0"/>
+      <Point X="646.6666666666666" Y="303.3333333333333" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="b4ac9">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="8000ff">
+      <Point X="903.3333333333334" Y="320.0"/>
+      <Point X="903.3333333333334" Y="296.6666666666667" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="ede46">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="0000ff">
+      <Point X="866.6666666666666" Y="793.3333333333334"/>
+      <Point X="866.6666666666666" Y="856.6666666666666" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="d6d8c">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="8000ff">
+      <Point X="433.3333333333333" Y="530.0"/>
+      <Point X="433.3333333333333" Y="1096.6666666666667" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="dd66f">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="1476.6666666666667" Y="260.0"/>
+      <Point X="1476.6666666666667" Y="526.6666666666666"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="b887c">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="8000ff">
+      <Point X="1476.6666666666667" Y="540.0"/>
+      <Point X="1476.6666666666667" Y="556.6666666666666"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="fdd3d">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="8000ff">
+      <Point X="1386.6666666666667" Y="556.6666666666666"/>
+      <Point X="1813.3333333333333" Y="556.6666666666666"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="d6c48">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="8000ff">
+      <Point X="1466.6666666666667" Y="556.6666666666666"/>
+      <Point X="1466.6666666666667" Y="843.3333333333334" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="daa77">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="8000ff">
+      <Point X="1386.6666666666667" Y="556.6666666666666"/>
+      <Point X="1386.6666666666667" Y="786.6666666666666" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="b27e2">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="8000ff">
+      <Point X="1533.3333333333333" Y="556.6666666666666"/>
+      <Point X="1533.3333333333333" Y="723.3333333333334" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="f1a2b">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="8000ff">
+      <Point X="1713.3333333333333" Y="556.6666666666666"/>
+      <Point X="1713.3333333333333" Y="653.3333333333334" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="c334d">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="8000ff">
+      <Point X="1813.3333333333333" Y="556.6666666666666"/>
+      <Point X="1813.3333333333333" Y="580.0" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="d6d15">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="1546.6666666666667" Y="370.0"/>
+      <Point X="1736.6666666666667" Y="370.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="b36e5">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="1736.6666666666667" Y="370.0"/>
+      <Point X="1736.6666666666667" Y="360.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="a8e9b">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="8000ff">
+      <Point X="1736.6666666666667" Y="343.3333333333333"/>
+      <Point X="1736.6666666666667" Y="330.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="a286b">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="8000ff">
+      <Point X="1710.0" Y="330.0"/>
+      <Point X="1766.6666666666667" Y="330.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="f592f">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="8000ff">
+      <Point X="1710.0" Y="330.0"/>
+      <Point X="1710.0" Y="253.33333333333334" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="ecb7a">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="8000ff">
+      <Point X="1766.6666666666667" Y="330.0"/>
+      <Point X="1766.6666666666667" Y="253.33333333333334" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="bb398">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="1270.0" Y="220.0"/>
+      <Point X="1313.3333333333333" Y="220.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="bde34">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="8000ff">
+      <Point X="1580.0" Y="940.0"/>
+      <Point X="1500.0" Y="940.0" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="c6bec">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="0000ff">
+      <Point X="1320.0" Y="490.0"/>
+      <Point X="1320.0" Y="843.3333333333334" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e34ae">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="0000ff">
+      <Point X="1343.3333333333333" Y="490.0"/>
+      <Point X="1343.3333333333333" Y="1020.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="ed3be">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="0000ff">
+      <Point X="1343.3333333333333" Y="1020.0"/>
+      <Point X="1296.6666666666667" Y="1020.0" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="d7683">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="8000ff">
+      <Point X="1580.0" Y="556.6666666666666"/>
+      <Point X="1580.0" Y="940.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="f1c31">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="8000ff">
+      <Point X="100.0" Y="530.0"/>
+      <Point X="100.0" Y="593.3333333333334" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="fc0cd">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="8000ff">
+      <Point X="910.0" Y="1053.3333333333333"/>
+      <Point X="783.3333333333334" Y="1053.3333333333333" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="f6c76">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="56.666666666666664" Y="1196.6666666666667"/>
+      <Point X="56.666666666666664" Y="1180.0" ArrowHead="ReceptorRound"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="d8317">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="56.666666666666664" Y="1246.6666666666667"/>
+      <Point X="56.666666666666664" Y="1293.3333333333333" ArrowHead="LigandRound"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="fc24e">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="30.0" Y="1456.6666666666667"/>
+      <Point X="63.333333333333336" Y="1456.6666666666667"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="b4a95">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="ff0000">
+      <Point X="26.666666666666668" Y="1833.3333333333333"/>
+      <Point X="80.0" Y="1833.3333333333333" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="d93b2">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="ff8000">
+      <Point X="1163.3333333333333" Y="203.33333333333334"/>
+      <Point X="1163.3333333333333" Y="170.0" ArrowHead="ReceptorRound"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="aa856">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="8000ff">
+      <Point X="776.6666666666666" Y="320.0"/>
+      <Point X="903.3333333333334" Y="320.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="efaad">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="8000ff">
+      <Point X="763.3333333333334" Y="320.0"/>
+      <Point X="646.6666666666666" Y="320.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="a0932">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="bfbf00">
+      <Point X="26.666666666666668" Y="1506.6666666666667"/>
+      <Point X="80.0" Y="1506.6666666666667" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="b56ab">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="00eaea">
+      <Point X="26.666666666666668" Y="1530.0"/>
+      <Point X="80.0" Y="1530.0" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="d8a31">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="8080ff">
+      <Point X="26.666666666666668" Y="1553.3333333333333"/>
+      <Point X="80.0" Y="1553.3333333333333" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="b974c">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="00ff00">
+      <Point X="26.666666666666668" Y="1576.6666666666667"/>
+      <Point X="80.0" Y="1576.6666666666667" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="bb92e">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="a400a4">
+      <Point X="26.666666666666668" Y="1600.0"/>
+      <Point X="80.0" Y="1600.0" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="ab73f">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="ff80c0">
+      <Point X="26.666666666666668" Y="1623.3333333333333"/>
+      <Point X="80.0" Y="1623.3333333333333" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="ac441">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="0080c0">
+      <Point X="26.666666666666668" Y="1693.3333333333333"/>
+      <Point X="80.0" Y="1693.3333333333333" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="c681f">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="ff00ff">
+      <Point X="26.666666666666668" Y="1670.0"/>
+      <Point X="80.0" Y="1670.0" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="fb3ad">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="808000">
+      <Point X="26.666666666666668" Y="1716.6666666666667"/>
+      <Point X="80.0" Y="1716.6666666666667" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="a148c">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="afafaf">
+      <Point X="26.666666666666668" Y="1740.0"/>
+      <Point X="80.0" Y="1740.0" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="a0655">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="ff8000">
+      <Point X="26.666666666666668" Y="1763.3333333333333"/>
+      <Point X="80.0" Y="1763.3333333333333" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="f7f79">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="eaea00">
+      <Point X="26.666666666666668" Y="1786.6666666666667"/>
+      <Point X="80.0" Y="1786.6666666666667" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="c6ad5">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="8000ff">
+      <Point X="26.666666666666668" Y="1810.0"/>
+      <Point X="80.0" Y="1810.0" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="da56c">
+    <Graphics ZOrder="12288" LineStyle="Broken" LineThickness="1.0" Color="00ffff">
+      <Point X="26.666666666666668" Y="1856.6666666666667"/>
+      <Point X="80.0" Y="1856.6666666666667" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="c4c5c">
+    <Graphics ZOrder="12288" LineStyle="Broken" LineThickness="1.0" Color="0080ff">
+      <Point X="30.0" Y="1880.0"/>
+      <Point X="80.0" Y="1880.0" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="ad14b">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="ff00ff">
+      <Point X="1163.3333333333333" Y="113.33333333333333"/>
+      <Point X="1163.3333333333333" Y="170.0" ArrowHead="LigandRound"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Label TextLabel="Molecular Association" GraphId="d21">
+    <Graphics CenterX="163.33333333333334" CenterY="1433.3333333333333" Width="144.33333333333334" Height="16.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="10" Valign="Middle"/>
+  </Label>
+  <Label TextLabel="Cytoplasm" GraphId="d78">
+    <Graphics CenterX="163.33333333333334" CenterY="1933.3333333333333" Width="71.33333333333333" Height="16.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="10" Valign="Middle"/>
+  </Label>
+  <Label TextLabel="Nucleus" GraphId="d2c">
+    <Graphics CenterX="156.66666666666666" CenterY="2090.0" Width="55.333333333333336" Height="16.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="10" Valign="Middle"/>
+  </Label>
+  <Label TextLabel="Autophosphorylation" GraphId="d42">
+    <Graphics CenterX="160.0" CenterY="1480.0" Width="136.33333333333334" Height="16.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="10" Valign="Middle"/>
+  </Label>
+  <Label TextLabel="Phosphorylation" GraphId="ead">
+    <Graphics CenterX="146.66666666666666" CenterY="1646.6666666666667" Width="108.33333333333333" Height="16.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="10" Valign="Middle"/>
+  </Label>
+  <Label TextLabel="D" GraphId="f94">
+    <Graphics CenterX="73.33333333333333" CenterY="1456.6666666666667" Width="14.333333333333334" Height="16.0" ZOrder="28672" FillColor="ffffff" FontName="Symbol" FontWeight="Bold" FontSize="10" Valign="Middle"/>
+  </Label>
+  <Label TextLabel="CY-&gt;PM" GraphId="ff9">
+    <Graphics CenterX="263.3333333333333" CenterY="296.6666666666667" Width="44.333333333333336" Height="12.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="8" Valign="Middle" Color="ff00ff"/>
+  </Label>
+  <Label TextLabel="CY-&gt;NU" GraphId="bbd">
+    <Graphics CenterX="806.6666666666666" CenterY="1213.3333333333333" Width="42.333333333333336" Height="12.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="8" Valign="Middle" Color="ff00ff"/>
+  </Label>
+  <Label TextLabel="CY-&gt;PM" GraphId="c62">
+    <Graphics CenterX="1666.6666666666667" CenterY="460.0" Width="44.333333333333336" Height="12.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="8" Valign="Middle" Color="ff00ff"/>
+  </Label>
+  <Label TextLabel="CY-&gt;NU" GraphId="cfe">
+    <Graphics CenterX="543.3333333333334" CenterY="1120.0" Width="42.333333333333336" Height="12.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="8" Valign="Middle" Color="ff00ff"/>
+  </Label>
+  <Label TextLabel="D" GraphId="fd0">
+    <Graphics CenterX="1383.3333333333333" CenterY="286.6666666666667" Width="14.333333333333334" Height="16.0" ZOrder="28672" FillColor="ffffff" FontName="Symbol" FontWeight="Bold" FontSize="10" Valign="Middle"/>
+  </Label>
+  <Label TextLabel="D" GraphId="b09">
+    <Graphics CenterX="720.0" CenterY="773.3333333333334" Width="14.333333333333334" Height="16.0" ZOrder="28672" FillColor="ffffff" FontName="Symbol" FontWeight="Bold" FontSize="10" Valign="Middle"/>
+  </Label>
+  <Label TextLabel="Activation" GraphId="cc3">
+    <Graphics CenterX="126.66666666666667" CenterY="1810.0" Width="68.33333333333333" Height="16.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="10" Valign="Middle"/>
+  </Label>
+  <Label TextLabel="Plasma membrane" GraphId="c45">
+    <Graphics CenterX="190.0" CenterY="2116.6666666666665" Width="125.33333333333333" Height="16.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="10" Valign="Middle"/>
+  </Label>
+  <Label TextLabel="CY-&gt;PM" GraphId="aad">
+    <Graphics CenterX="63.333333333333336" CenterY="416.6666666666667" Width="44.333333333333336" Height="12.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="8" Valign="Middle" Color="ff00ff"/>
+  </Label>
+  <Label TextLabel="D" GraphId="d58">
+    <Graphics CenterX="923.3333333333334" CenterY="413.3333333333333" Width="14.333333333333334" Height="16.0" ZOrder="28672" FillColor="ffffff" FontName="Symbol" FontWeight="Bold" FontSize="10" Valign="Middle"/>
+  </Label>
+  <Label TextLabel="MT-&gt;CY" GraphId="cfc">
+    <Graphics CenterX="183.33333333333334" CenterY="876.6666666666666" Width="42.333333333333336" Height="12.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="8" Valign="Middle" Color="ff00ff"/>
+  </Label>
+  <Label TextLabel="D" GraphId="a38">
+    <Graphics CenterX="593.3333333333334" CenterY="773.3333333333334" Width="14.333333333333334" Height="16.0" ZOrder="28672" FillColor="ffffff" FontName="Symbol" FontWeight="Bold" FontSize="10" Valign="Middle"/>
+  </Label>
+  <Label TextLabel="D" GraphId="c4e">
+    <Graphics CenterX="1123.3333333333333" CenterY="773.3333333333334" Width="14.333333333333334" Height="16.0" ZOrder="28672" FillColor="ffffff" FontName="Symbol" FontWeight="Bold" FontSize="10" Valign="Middle"/>
+  </Label>
+  <Label TextLabel="D" GraphId="edd">
+    <Graphics CenterX="1550.0" CenterY="393.3333333333333" Width="14.333333333333334" Height="16.0" ZOrder="28672" FillColor="ffffff" FontName="Symbol" FontWeight="Bold" FontSize="10" Valign="Middle"/>
+  </Label>
+  <Label TextLabel="D" GraphId="d71">
+    <Graphics CenterX="676.6666666666666" CenterY="413.3333333333333" Width="14.333333333333334" Height="16.0" ZOrder="28672" FillColor="ffffff" FontName="Symbol" FontWeight="Bold" FontSize="10" Valign="Middle"/>
+  </Label>
+  <Label TextLabel="D" GraphId="f95">
+    <Graphics CenterX="276.6666666666667" CenterY="773.3333333333334" Width="14.333333333333334" Height="16.0" ZOrder="28672" FillColor="ffffff" FontName="Symbol" FontWeight="Bold" FontSize="10" Valign="Middle"/>
+  </Label>
+  <Label TextLabel="D" GraphId="dae">
+    <Graphics CenterX="456.6666666666667" CenterY="413.3333333333333" Width="14.333333333333334" Height="16.0" ZOrder="28672" FillColor="ffffff" FontName="Symbol" FontWeight="Bold" FontSize="10" Valign="Middle"/>
+  </Label>
+  <Label TextLabel="D" GraphId="db0">
+    <Graphics CenterX="620.0" CenterY="463.3333333333333" Width="14.333333333333334" Height="16.0" ZOrder="28672" FillColor="ffffff" FontName="Symbol" FontWeight="Bold" FontSize="10" Valign="Middle"/>
+  </Label>
+  <Label TextLabel="D" GraphId="a8d">
+    <Graphics CenterX="466.6666666666667" CenterY="463.3333333333333" Width="14.333333333333334" Height="16.0" ZOrder="28672" FillColor="ffffff" FontName="Symbol" FontWeight="Bold" FontSize="10" Valign="Middle"/>
+  </Label>
+  <Label TextLabel="D" GraphId="c91">
+    <Graphics CenterX="833.3333333333334" CenterY="926.6666666666666" Width="14.333333333333334" Height="16.0" ZOrder="28672" FillColor="ffffff" FontName="Symbol" FontWeight="Bold" FontSize="10" Valign="Middle"/>
+  </Label>
+  <Label TextLabel="D" GraphId="b2e">
+    <Graphics CenterX="830.0" CenterY="773.3333333333334" Width="14.333333333333334" Height="16.0" ZOrder="28672" FillColor="ffffff" FontName="Symbol" FontWeight="Bold" FontSize="10" Valign="Middle"/>
+  </Label>
+  <Label TextLabel="D" GraphId="d72">
+    <Graphics CenterX="910.0" CenterY="990.0" Width="14.333333333333334" Height="16.0" ZOrder="28672" FillColor="ffffff" FontName="Symbol" FontWeight="Bold" FontSize="10" Valign="Middle"/>
+  </Label>
+  <Label TextLabel="D" GraphId="f17">
+    <Graphics CenterX="1200.0" CenterY="816.6666666666666" Width="14.333333333333334" Height="16.0" ZOrder="28672" FillColor="ffffff" FontName="Symbol" FontWeight="Bold" FontSize="10" Valign="Middle"/>
+  </Label>
+  <Label TextLabel="D" GraphId="d84">
+    <Graphics CenterX="770.0" CenterY="320.0" Width="14.333333333333334" Height="16.0" ZOrder="28672" FillColor="ffffff" FontName="Symbol" FontWeight="Bold" FontSize="10" Valign="Middle"/>
+  </Label>
+  <Label TextLabel="D" GraphId="eb5">
+    <Graphics CenterX="1476.6666666666667" CenterY="533.3333333333334" Width="14.333333333333334" Height="16.0" ZOrder="28672" FillColor="ffffff" FontName="Symbol" FontWeight="Bold" FontSize="10" Valign="Middle"/>
+  </Label>
+  <Label TextLabel="D" GraphId="e3e">
+    <Graphics CenterX="1736.6666666666667" CenterY="353.3333333333333" Width="14.333333333333334" Height="16.0" ZOrder="28672" FillColor="ffffff" FontName="Symbol" FontWeight="Bold" FontSize="10" Valign="Middle"/>
+  </Label>
+  <Label TextLabel="Mitochondrion" GraphId="c00">
+    <Graphics CenterX="176.66666666666666" CenterY="2063.3333333333335" Width="96.33333333333333" Height="16.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="10" Valign="Middle"/>
+  </Label>
+  <Label TextLabel="Accession Number: NetPath 15" GraphId="a01">
+    <Graphics CenterX="136.66666666666666" CenterY="1136.6666666666667" Width="248.33333333333334" Height="19.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="12" Valign="Middle"/>
+  </Label>
+  <Label TextLabel="Molecule in the pathway" GraphId="edf">
+    <Graphics CenterX="226.66666666666666" CenterY="1303.3333333333333" Width="161.33333333333334" Height="16.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="10" Valign="Middle"/>
+  </Label>
+  <Label TextLabel="Receptor" GraphId="eab">
+    <Graphics CenterX="136.66666666666666" CenterY="1203.3333333333333" Width="62.333333333333336" Height="16.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="10" Valign="Middle"/>
+  </Label>
+  <Label TextLabel="Ligand" GraphId="cf2">
+    <Graphics CenterX="130.0" CenterY="1236.6666666666667" Width="49.333333333333336" Height="16.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="10" Valign="Middle"/>
+  </Label>
+  <Label TextLabel="Proteins in a complex interaction" GraphId="e3c">
+    <Graphics CenterX="256.6666666666667" CenterY="1346.6666666666667" Width="216.33333333333334" Height="16.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="10" Valign="Middle"/>
+  </Label>
+  <Label TextLabel="(Protein-protein interaction)" GraphId="af3">
+    <Graphics CenterX="320.0" CenterY="1433.3333333333333" Width="180.33333333333334" Height="16.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="10" Valign="Middle"/>
+  </Label>
+  <Label TextLabel="Reaction through unknown mechanisms/molecules" GraphId="b74">
+    <Graphics CenterX="253.33333333333334" CenterY="1456.6666666666667" Width="328.3333333333333" Height="16.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="10" Valign="Middle"/>
+  </Label>
+  <Label TextLabel="Translocation" GraphId="ea0">
+    <Graphics CenterX="136.66666666666666" CenterY="1903.3333333333333" Width="91.33333333333333" Height="16.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="10" Valign="Middle"/>
+  </Label>
+  <Label TextLabel="Inhibition" GraphId="d23">
+    <Graphics CenterX="123.33333333333333" CenterY="1833.3333333333333" Width="65.33333333333333" Height="16.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="10" Valign="Middle"/>
+  </Label>
+  <Label TextLabel="PM" GraphId="b81">
+    <Graphics CenterX="103.33333333333333" CenterY="2116.6666666666665" Width="25.333333333333332" Height="16.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="10" Valign="Middle" Color="ff00ff"/>
+  </Label>
+  <Label TextLabel="CY" GraphId="db2">
+    <Graphics CenterX="103.33333333333333" CenterY="1933.3333333333333" Width="22.333333333333332" Height="16.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="10" Valign="Middle" Color="ff00ff"/>
+  </Label>
+  <Label TextLabel="NU" GraphId="b17">
+    <Graphics CenterX="103.33333333333333" CenterY="2090.0" Width="23.333333333333332" Height="16.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="10" Valign="Middle" Color="ff00ff"/>
+  </Label>
+  <Label TextLabel="MT" GraphId="d95">
+    <Graphics CenterX="103.33333333333333" CenterY="2063.3333333333335" Width="24.333333333333332" Height="16.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="10" Valign="Middle" Color="ff00ff"/>
+  </Label>
+  <Label TextLabel="Enzyme complex" GraphId="e42">
+    <Graphics CenterX="206.66666666666666" CenterY="1393.3333333333333" Width="114.33333333333333" Height="16.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="10" Valign="Middle"/>
+  </Label>
+  <Label TextLabel="Glycosylation" GraphId="cd4">
+    <Graphics CenterX="136.66666666666666" CenterY="1553.3333333333333" Width="90.33333333333333" Height="16.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="10" Valign="Middle"/>
+  </Label>
+  <Label TextLabel="Methylation" GraphId="cd0">
+    <Graphics CenterX="133.33333333333334" CenterY="1576.6666666666667" Width="79.33333333333333" Height="16.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="10" Valign="Middle"/>
+  </Label>
+  <Label TextLabel="Demethylation" GraphId="c2d">
+    <Graphics CenterX="140.0" CenterY="1600.0" Width="97.33333333333333" Height="16.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="10" Valign="Middle"/>
+  </Label>
+  <Label TextLabel="Palmitoylation" GraphId="ec1">
+    <Graphics CenterX="140.0" CenterY="1623.3333333333333" Width="97.33333333333333" Height="16.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="10" Valign="Middle"/>
+  </Label>
+  <Label TextLabel="Proteolytic cleavage" GraphId="efa">
+    <Graphics CenterX="160.0" CenterY="1693.3333333333333" Width="135.33333333333334" Height="16.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="10" Valign="Middle"/>
+  </Label>
+  <Label TextLabel="Dephosphorylation" GraphId="de5">
+    <Graphics CenterX="153.33333333333334" CenterY="1670.0" Width="124.33333333333333" Height="16.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="10" Valign="Middle"/>
+  </Label>
+  <Label TextLabel="Sumoylation" GraphId="e41">
+    <Graphics CenterX="133.33333333333334" CenterY="1716.6666666666667" Width="85.33333333333333" Height="16.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="10" Valign="Middle"/>
+  </Label>
+  <Label TextLabel="Desumoylation" GraphId="c2a">
+    <Graphics CenterX="143.33333333333334" CenterY="1740.0" Width="99.33333333333333" Height="16.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="10" Valign="Middle"/>
+  </Label>
+  <Label TextLabel="Ubiquitination" GraphId="af7">
+    <Graphics CenterX="140.0" CenterY="1763.3333333333333" Width="94.33333333333333" Height="16.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="10" Valign="Middle"/>
+  </Label>
+  <Label TextLabel="Deubiquitination" GraphId="d64">
+    <Graphics CenterX="146.66666666666666" CenterY="1786.6666666666667" Width="110.33333333333333" Height="16.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="10" Valign="Middle"/>
+  </Label>
+  <Label TextLabel="Recruitment" GraphId="c98">
+    <Graphics CenterX="133.33333333333334" CenterY="1856.6666666666667" Width="82.33333333333333" Height="16.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="10" Valign="Middle"/>
+  </Label>
+  <Label TextLabel="Control" GraphId="a6f">
+    <Graphics CenterX="116.66666666666667" CenterY="1880.0" Width="51.333333333333336" Height="16.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="10" Valign="Middle"/>
+  </Label>
+  <Label TextLabel="Deacetylation" GraphId="a43">
+    <Graphics CenterX="136.66666666666666" CenterY="1530.0" Width="92.33333333333333" Height="16.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="10" Valign="Middle"/>
+  </Label>
+  <Label TextLabel="Acetylation" GraphId="df7">
+    <Graphics CenterX="130.0" CenterY="1506.6666666666667" Width="76.33333333333333" Height="16.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="10" Valign="Middle"/>
+  </Label>
+  <Label TextLabel="Extracellular" GraphId="b1c">
+    <Graphics CenterX="170.0" CenterY="1956.6666666666667" Width="86.33333333333333" Height="16.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="10" Valign="Middle"/>
+  </Label>
+  <Label TextLabel="EC" GraphId="d25">
+    <Graphics CenterX="103.33333333333333" CenterY="1956.6666666666667" Width="22.333333333333332" Height="16.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="10" Valign="Middle" Color="ff00ff"/>
+  </Label>
+  <Label TextLabel="Endosome" GraphId="f2d">
+    <Graphics CenterX="163.33333333333334" CenterY="1983.3333333333333" Width="71.33333333333333" Height="16.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="10" Valign="Middle"/>
+  </Label>
+  <Label TextLabel="EN" GraphId="f3a">
+    <Graphics CenterX="103.33333333333333" CenterY="1983.3333333333333" Width="22.333333333333332" Height="16.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="10" Valign="Middle" Color="ff00ff"/>
+  </Label>
+  <Label TextLabel="Endoplasmic reticulum" GraphId="e43">
+    <Graphics CenterX="203.33333333333334" CenterY="2010.0" Width="150.33333333333334" Height="16.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="10" Valign="Middle"/>
+  </Label>
+  <Label TextLabel="ER" GraphId="a66">
+    <Graphics CenterX="103.33333333333333" CenterY="2010.0" Width="22.333333333333332" Height="16.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="10" Valign="Middle" Color="ff00ff"/>
+  </Label>
+  <Label TextLabel="Golgi apparatus" GraphId="a9d">
+    <Graphics CenterX="180.0" CenterY="2036.6666666666667" Width="106.33333333333333" Height="16.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="10" Valign="Middle"/>
+  </Label>
+  <Label TextLabel="GO" GraphId="ca1">
+    <Graphics CenterX="103.33333333333333" CenterY="2036.6666666666667" Width="25.333333333333332" Height="16.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="10" Valign="Middle" Color="ff00ff"/>
+  </Label>
+  <Label TextLabel="MA" GraphId="c8f">
+    <Graphics CenterX="1410.0" CenterY="586.6666666666666" Width="21.333333333333332" Height="12.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="8" Valign="Middle" Color="008000"/>
+  </Label>
+  <Label TextLabel="MA" GraphId="c8e">
+    <Graphics CenterX="1136.6666666666667" CenterY="510.0" Width="21.333333333333332" Height="12.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="8" Valign="Middle" Color="008000"/>
+  </Label>
+  <Label TextLabel="MA" GraphId="f47">
+    <Graphics CenterX="1173.3333333333333" CenterY="420.0" Width="21.333333333333332" Height="12.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="8" Valign="Middle" Color="008000"/>
+  </Label>
+  <Label TextLabel="MA" GraphId="b75">
+    <Graphics CenterX="300.0" CenterY="226.66666666666666" Width="21.333333333333332" Height="12.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="8" Valign="Middle" Color="008000"/>
+  </Label>
+  <Label TextLabel="MA" GraphId="efd">
+    <Graphics CenterX="1090.0" CenterY="593.3333333333334" Width="21.333333333333332" Height="12.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="8" Valign="Middle" Color="008000"/>
+  </Label>
+  <Label TextLabel="MA" GraphId="ee5">
+    <Graphics CenterX="1096.6666666666667" CenterY="480.0" Width="21.333333333333332" Height="12.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="8" Valign="Middle" Color="008000"/>
+  </Label>
+  <Shape GraphId="ab6">
+    <Graphics CenterX="220.0" CenterY="1646.6666666666667" Width="413.3333333333333" Height="993.444" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="Rectangle" Rotation="0.0"/>
+  </Shape>
+  <Shape GraphId="e6e">
+    <Graphics CenterX="60.0" CenterY="1486.6666666666667" Width="20.0" Height="40.286973333333336" ZOrder="16384" FillColor="000000" FontSize="10" Valign="Middle" ShapeType="Arc" Color="0000ff" Rotation="2.677945"/>
+  </Shape>
+  <Shape GraphId="ef8">
+    <Graphics CenterX="810.0" CenterY="606.6666666666666" Width="60.0" Height="8.666666666666666" ZOrder="16384" FillColor="000000" FontSize="10" Valign="Middle" ShapeType="Brace" Color="0000ff" Rotation="3.141592653589793"/>
+  </Shape>
+  <Shape GraphId="edb">
+    <Graphics CenterX="930.0" CenterY="566.6666666666666" Width="94.57773333333333" Height="8.666666666666666" ZOrder="16384" FillColor="000000" FontSize="10" Valign="Middle" ShapeType="Brace" Color="0000ff" Rotation="0.0"/>
+  </Shape>
+  <Shape GraphId="a58">
+    <Graphics CenterX="373.3333333333333" CenterY="493.3333333333333" Width="93.33333333333333" Height="8.666666666666666" ZOrder="16384" FillColor="000000" FontSize="10" Valign="Middle" ShapeType="Brace" Color="0000ff" Rotation="0.0"/>
+  </Shape>
+  <Shape GraphId="cc2">
+    <Graphics CenterX="1273.3333333333333" CenterY="1200.0" Width="46.666666666666664" Height="8.666666666666666" ZOrder="16384" FillColor="000000" FontSize="10" Valign="Middle" ShapeType="Brace" Color="0000ff" Rotation="0.0"/>
+  </Shape>
+  <Shape GraphId="ca8">
+    <Graphics CenterX="736.6666666666666" CenterY="466.6666666666667" Width="20.0" Height="33.333333333333336" ZOrder="16384" FillColor="000000" FontSize="10" Valign="Middle" ShapeType="Arc" Color="0000ff" Rotation="0.7853982"/>
+  </Shape>
+  <Shape GraphId="dab">
+    <Graphics CenterX="1380.0" CenterY="803.3333333333334" Width="20.0" Height="33.333333333333336" ZOrder="16384" FillColor="000000" FontSize="10" Valign="Middle" ShapeType="Arc" Color="0000ff" Rotation="0.7853982"/>
+  </Shape>
+  <Shape GraphId="c4b">
+    <Graphics CenterX="80.0" CenterY="1366.6666666666667" Width="40.0" Height="8.666666666666666" ZOrder="16384" FillColor="000000" FontSize="10" Valign="Middle" ShapeType="Brace" Color="0000ff" Rotation="3.141592653589793"/>
+  </Shape>
+  <Shape GraphId="f74">
+    <Graphics CenterX="110.0" CenterY="1346.6666666666667" Width="45.93602666666666" Height="21.081853333333335" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="Rectangle" Rotation="0.0"/>
+  </Shape>
+  <Shape GraphId="c09">
+    <Graphics CenterX="56.666666666666664" CenterY="1236.6666666666667" Width="53.333333333333336" Height="21.081853333333335" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="Rectangle" Rotation="0.0"/>
+  </Shape>
+  <Shape GraphId="fe5">
+    <Graphics CenterX="56.666666666666664" CenterY="1206.6666666666667" Width="53.333333333333336" Height="21.081853333333335" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="Rectangle" Rotation="0.0"/>
+  </Shape>
+  <Shape GraphId="e9e">
+    <Graphics CenterX="80.0" CenterY="1326.6666666666667" Width="40.0" Height="8.666666666666666" ZOrder="16384" FillColor="000000" FontSize="10" Valign="Middle" ShapeType="Brace" Color="0000ff" Rotation="0.0"/>
+  </Shape>
+  <Shape GraphId="cc5">
+    <Graphics CenterX="53.333333333333336" CenterY="1346.6666666666667" Width="45.93602666666666" Height="21.081853333333335" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="Rectangle" Rotation="0.0"/>
+  </Shape>
+  <Shape GraphId="f1b">
+    <Graphics CenterX="80.0" CenterY="1413.3333333333333" Width="40.0" Height="8.666666666666666" ZOrder="16384" FillColor="000000" FontSize="10" Valign="Middle" ShapeType="Brace" Color="ff00ff" Rotation="3.141592653589793"/>
+  </Shape>
+  <Shape GraphId="c41">
+    <Graphics CenterX="80.0" CenterY="1373.3333333333333" Width="40.0" Height="8.666666666666666" ZOrder="16384" FillColor="000000" FontSize="10" Valign="Middle" ShapeType="Brace" Color="ff00ff" Rotation="0.0"/>
+  </Shape>
+  <Shape GraphId="e44">
+    <Graphics CenterX="110.0" CenterY="1393.3333333333333" Width="45.93602666666666" Height="21.081853333333335" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="Rectangle" Rotation="0.0"/>
+  </Shape>
+  <Shape GraphId="b9d">
+    <Graphics CenterX="53.333333333333336" CenterY="1393.3333333333333" Width="45.93602666666666" Height="21.081853333333335" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="Rectangle" Rotation="0.0"/>
+  </Shape>
+  <InfoBox CenterX="5.0" CenterY="5.0"/>
+  <Legend CenterX="0.0" CenterY="0.0"/>
+</Pathway>

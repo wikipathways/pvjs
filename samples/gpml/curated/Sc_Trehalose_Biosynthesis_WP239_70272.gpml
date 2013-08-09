@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Pathway xmlns="http://pathvisio.org/GPML/2013a" Name="Trehalose Biosynthesis" Organism="Saccharomyces cerevisiae">
+  <Comment Source="GenMAPP remarks">Based on http://pathway.yeastgenome.org/biocyc/</Comment>
+  <Comment Source="WikiPathways-category">Metabolic Process</Comment>
+  <Comment Source="WikiPathways-description">In Saccharomyces cerevisiae, trehalose is a major reserve carbohydrate that has been shown to stabilize proteins during heat shock and to suppress the aggregation of denatured proteins (CITS:9660948). Trehalose has also been shown to be important for surviving osmotic, ethanol, and oxidative stresses (CITS:11483159).  Trehalose biosynthesis also influences glycolysis because trehalose-6-phosphate inhibits hexokinases, which restricts the influx of sugars into glycolysis during a switch to fermentative metabolism (CITS:8809751). Trehalose biosynthesis is a two step process in which glucose 6-phosphate plus UDP-glucose is converted to alpha,alpha-trehalose 6-phosphate by trehalose-6-phosphate synthase (TPS), and then alpha,alpha-trehalose 6-phosphate and water are converted to trehalose and phosphate by trehalose-6-phosphate phosphatase (TPP) (CITS:11152943). In S. cerevisiae, both of these steps occur in a single alpha,alpha-trehalose-phosphate synthase complex which is composed of four protein subunits, Tps1p (CITS:1425702), Tps2p (CITS:8444170), Tsl1p (CITS:8404905), and Tps3p (CITS:9837904). Tps1p contains the TPS catalytic activity, Tps2p contains the TPP activity, and Tps3p and Tsl1p are regulatory proteins with partially overlapping functions (CITS:9837904). Deletion of TPS1 results in loss of both TPS activity and trehalose biosynthesis while deletion of TPS2 results in loss of TPP activity. Deletion of either TSL1 or TPS3 result in mild effects, but deletion of both TSL1 and TSL3 results in significant reductions in TPS and TPP activities as well as reduced trehalose biosynthesis (CITS:9837904). 
+SOURCE: SGD pathways, http://pathway.yeastgenome.org/server.html</Comment>
+  <BiopaxRef>e6m</BiopaxRef>
+  <Graphics BoardWidth="1094.8333333333335" BoardHeight="206.85128666666665" />
+  <DataNode TextLabel="TPS1" GraphId="d08" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="TPS1" />
+    <Graphics CenterX="293.3333333333333" CenterY="83.33333333333333" Width="40.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="SGD" ID="S000000330" />
+  </DataNode>
+  <DataNode TextLabel="TPS3" GraphId="d2e" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="TPS3" />
+    <Graphics CenterX="293.3333333333333" CenterY="103.33333333333333" Width="40.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="SGD" ID="S000004874" />
+  </DataNode>
+  <DataNode TextLabel="TSL1" GraphId="d58" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="TSL1" />
+    <Graphics CenterX="293.3333333333333" CenterY="63.333333333333336" Width="40.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="SGD" ID="S000004566" />
+  </DataNode>
+  <DataNode TextLabel="TPS2" GraphId="ce7" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="TPS2" />
+    <Graphics CenterX="843.3333333333334" CenterY="103.33333333333333" Width="40.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="SGD" ID="S000002481" />
+  </DataNode>
+  <DataNode TextLabel="glucose-6-phosphate" GraphId="bf7" Type="Metabolite">
+    <Graphics CenterX="86.66666666666667" CenterY="116.66666666666667" Width="167.33333333333334" Height="19.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Xref Database="CAS" ID="59-56-3" />
+  </DataNode>
+  <DataNode TextLabel="phosphate" GraphId="f79" Type="Metabolite">
+    <Graphics CenterX="900.0" CenterY="156.66666666666666" Width="87.33333333333333" Height="19.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Xref Database="CAS" ID="14265-44-2" />
+  </DataNode>
+  <DataNode TextLabel="trehalose" GraphId="c93" Type="Metabolite">
+    <Graphics CenterX="1026.6666666666667" CenterY="116.66666666666667" Width="76.33333333333333" Height="19.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Xref Database="CAS" ID="99-20-7" />
+  </DataNode>
+  <Interaction GraphId="id82975254">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="170.0" Y="116.66666666666667" />
+      <Point X="446.6666666666667" Y="116.66666666666667" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="idb54d8e24">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="350.0" Y="136.66666666666666" />
+      <Point X="353.3333333333333" Y="140.0" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="ida0c880ac">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="716.6666666666666" Y="116.66666666666667" />
+      <Point X="986.6666666666666" Y="116.66666666666667" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Label TextLabel="UDP-D-glucose" GraphId="b9b">
+    <Graphics CenterX="226.66666666666666" CenterY="150.0" Width="123.33333333333333" Height="19.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="12" Valign="Middle" />
+  </Label>
+  <Label TextLabel="UDP" GraphId="e6b">
+    <Graphics CenterX="350.0" CenterY="150.0" Width="40.333333333333336" Height="19.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="12" Valign="Middle" />
+  </Label>
+  <Label TextLabel="alpha,alpha-trehalose 6-phosphate" GraphId="cbb">
+    <Graphics CenterX="583.3333333333334" CenterY="116.66666666666667" Width="269.3333333333333" Height="19.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="12" Valign="Middle" />
+  </Label>
+  <Label TextLabel="H2O" GraphId="daa">
+    <Graphics CenterX="786.6666666666666" CenterY="156.66666666666666" Width="38.333333333333336" Height="19.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="12" Valign="Middle" />
+  </Label>
+  <Shape GraphId="e33">
+    <Graphics CenterX="293.3333333333333" CenterY="140.0" Width="113.52924" Height="46.666666666666664" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="Arc" Rotation="3.141593" />
+  </Shape>
+  <Shape GraphId="a4b">
+    <Graphics CenterX="843.3333333333334" CenterY="146.66666666666666" Width="113.52924" Height="60.36924" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="Arc" Rotation="3.141593" />
+  </Shape>
+  <InfoBox CenterX="1.6666666666666667" CenterY="1.6666666666666667" />
+  <Legend CenterX="0.0" CenterY="0.0" />
+  <Biopax>
+    <bp:openControlledVocabulary xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#">
+      <bp:TERM xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">trehalose biosynthetic pathway</bp:TERM>
+      <bp:ID xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PW:0001299</bp:ID>
+      <bp:Ontology xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Pathway Ontology</bp:Ontology>
+    </bp:openControlledVocabulary>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="e6m">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">11152943</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Reserve carbohydrates metabolism in the yeast Saccharomyces cerevisiae.</bp:TITLE>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">FEMS Microbiol Rev</bp:SOURCE>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2001</bp:YEAR>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">FranÃ§ois J</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Parrou JL</bp:AUTHORS>
+    </bp:PublicationXref>
+  </Biopax>
+</Pathway>

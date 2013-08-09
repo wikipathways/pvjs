@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Pathway xmlns="http://pathvisio.org/GPML/2013a" Name="Matrix Metalloproteinases" Organism="Mus musculus">
+  <Comment Source="WikiPathways-category">Molecular Function</Comment>
+  <Comment Source="HomologyConvert">This pathway was inferred from Homo sapiens pathway [http://www.wikipathways.org/index.php?title=Pathway:WP129&amp;amp;amp;amp;oldid=20953 WP129(r20953)] with a 93% conversion rate.</Comment>
+  <Comment Source="WikiPathways-description">Matrix metalloproteinases (MMPs) are zinc-dependent endopeptidases; other family members are adamalysins, serralysins, and astacins. The MMPs belong to a larger family of proteases known as the metzincin superfamily.
+Collectively they are capable of degrading all kinds of extracellular matrix proteins, but also can process a number of bioactive molecules. They are known to be involved in the cleavage of cell surface receptors, the release of apoptotic ligands (such as the FAS ligand), and chemokine/cytokine in/activation. MMPs are also thought to play a major role on cell behaviors such as cell proliferation, migration (adhesion/dispersion), differentiation, angiogenesis, apoptosis and host defense.
+
+Source: [[wikipedia:Matrix_metalloproteinase|Wikipedia]]</Comment>
+  <BiopaxRef>b1e</BiopaxRef>
+  <Graphics BoardWidth="897.5000000000001" BoardHeight="581.3333333333334"/>
+  <DataNode TextLabel="Mmp2" GraphId="a14" Type="GeneProduct" GroupRef="ecc72">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="Mmp2"/>
+    <Graphics CenterX="263.3333333333333" CenterY="120.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="17390"/>
+  </DataNode>
+  <DataNode TextLabel="Mmp9" GraphId="b03" Type="GeneProduct" GroupRef="ecc72">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="Mmp9"/>
+    <Graphics CenterX="263.3333333333333" CenterY="140.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="17395"/>
+  </DataNode>
+  <DataNode TextLabel="Mmp7" GraphId="bb1" Type="GeneProduct" GroupRef="f9175">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="Mmp7"/>
+    <Graphics CenterX="100.66666666666667" CenterY="266.3333333333333" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="17393"/>
+  </DataNode>
+  <DataNode TextLabel="Mmp12" GraphId="d23" Type="GeneProduct" GroupRef="faf96">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="Mmp12"/>
+    <Graphics CenterX="100.66666666666667" CenterY="357.6666666666667" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="17381"/>
+  </DataNode>
+  <DataNode TextLabel="Mmp20" GraphId="d7e" Type="GeneProduct" GroupRef="e0ed6">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="Mmp20"/>
+    <Graphics CenterX="263.3333333333333" CenterY="223.33333333333334" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="30800"/>
+  </DataNode>
+  <DataNode TextLabel="Mmp10" GraphId="bbe" Type="GeneProduct" GroupRef="e75ce">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="Mmp10"/>
+    <Graphics CenterX="420.0" CenterY="140.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="17384"/>
+  </DataNode>
+  <DataNode TextLabel="Mmp3" GraphId="b11" Type="GeneProduct" GroupRef="e75ce">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="Mmp3"/>
+    <Graphics CenterX="420.0" CenterY="120.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="17392"/>
+  </DataNode>
+  <DataNode TextLabel="Mmp11" GraphId="a4e" Type="GeneProduct" GroupRef="e75ce">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="Mmp11"/>
+    <Graphics CenterX="420.0" CenterY="160.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="17385"/>
+  </DataNode>
+  <DataNode TextLabel="Mmp19" GraphId="c23" Type="GeneProduct" GroupRef="ed0f8">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="Mmp19"/>
+    <Graphics CenterX="420.0" CenterY="233.33333333333334" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="58223"/>
+  </DataNode>
+  <DataNode TextLabel="Mmp14" GraphId="d30" Type="GeneProduct" GroupRef="fdc10">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="Mmp14"/>
+    <Graphics CenterX="616.6666666666666" CenterY="120.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="17387"/>
+  </DataNode>
+  <DataNode TextLabel="Mmp15" GraphId="a77" Type="GeneProduct" GroupRef="fdc10">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="Mmp15"/>
+    <Graphics CenterX="616.6666666666666" CenterY="140.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="17388"/>
+  </DataNode>
+  <DataNode TextLabel="Mmp16" GraphId="d25" Type="GeneProduct" GroupRef="fdc10">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="Mmp16"/>
+    <Graphics CenterX="616.6666666666666" CenterY="160.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="17389"/>
+  </DataNode>
+  <DataNode TextLabel="Mmp17" GraphId="be5" Type="GeneProduct" GroupRef="fdc10">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="Mmp17"/>
+    <Graphics CenterX="616.6666666666666" CenterY="180.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="23948"/>
+  </DataNode>
+  <DataNode TextLabel="Mmp24" GraphId="e85" Type="GeneProduct" GroupRef="fdc10">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="Mmp24"/>
+    <Graphics CenterX="616.6666666666666" CenterY="200.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="17391"/>
+  </DataNode>
+  <DataNode TextLabel="Timp2" GraphId="b9e" Type="GeneProduct" GroupRef="fb39f">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="Timp2"/>
+    <Graphics CenterX="259.3333333333333" CenterY="331.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="21858"/>
+  </DataNode>
+  <DataNode TextLabel="Timp3" GraphId="e00" Type="GeneProduct" GroupRef="fb39f">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="Timp3"/>
+    <Graphics CenterX="259.3333333333333" CenterY="351.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="21859"/>
+  </DataNode>
+  <DataNode TextLabel="Timp4" GraphId="ff7" Type="GeneProduct" GroupRef="fb39f">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="Timp4"/>
+    <Graphics CenterX="259.3333333333333" CenterY="371.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="110595"/>
+  </DataNode>
+  <DataNode TextLabel="Bsg" GraphId="c49" Type="GeneProduct" GroupRef="ef37f">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="Bsg"/>
+    <Graphics CenterX="516.6666666666666" CenterY="400.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="12215"/>
+  </DataNode>
+  <DataNode TextLabel="Tnf" GraphId="eb0" Type="GeneProduct" GroupRef="ef37f">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="Tnf"/>
+    <Graphics CenterX="516.6666666666666" CenterY="446.6666666666667" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="21926"/>
+  </DataNode>
+  <DataNode TextLabel="MMP26" GraphId="fc8" Type="GeneProduct" GroupRef="f9175">
+    <Graphics CenterX="100.66666666666667" CenterY="286.3333333333333" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="" ID=""/>
+  </DataNode>
+  <DataNode TextLabel="Mmp28" GraphId="b8a" Type="GeneProduct" GroupRef="ed0f8">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="Mmp28"/>
+    <Graphics CenterX="420.0" CenterY="333.3333333333333" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="118453"/>
+  </DataNode>
+  <DataNode TextLabel="MMP23A" GraphId="efd" Type="GeneProduct" GroupRef="ed0f8">
+    <Graphics CenterX="420.0" CenterY="273.3333333333333" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="" ID=""/>
+  </DataNode>
+  <DataNode TextLabel="Mmp25" GraphId="b00" Type="GeneProduct" GroupRef="fdc10">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="Mmp25"/>
+    <Graphics CenterX="616.6666666666666" CenterY="220.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="240047"/>
+  </DataNode>
+  <DataNode TextLabel="Mmp27" GraphId="a12" Type="GeneProduct" GroupRef="ed0f8">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="Mmp27"/>
+    <Graphics CenterX="420.0" CenterY="313.3333333333333" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="234911"/>
+  </DataNode>
+  <DataNode TextLabel="Tcf20" GraphId="d26" Type="GeneProduct" GroupRef="ef37f">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="Tcf20"/>
+    <Graphics CenterX="516.6666666666666" CenterY="423.3333333333333" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="21411"/>
+  </DataNode>
+  <DataNode TextLabel="Mmp21" GraphId="d77" Type="GeneProduct" GroupRef="ed0f8">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="Mmp21"/>
+    <Graphics CenterX="420.0" CenterY="253.33333333333334" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="214766"/>
+  </DataNode>
+  <DataNode TextLabel="Mmp1a" GraphId="ee0" Type="GeneProduct" GroupRef="b2044">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="Mmp1a"/>
+    <Graphics CenterX="100.66666666666667" CenterY="153.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="83995"/>
+  </DataNode>
+  <DataNode TextLabel="Mmp8" GraphId="dca" Type="GeneProduct" GroupRef="b2044">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="Mmp8"/>
+    <Graphics CenterX="100.66666666666667" CenterY="173.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="17394"/>
+  </DataNode>
+  <DataNode TextLabel="Mmp13" GraphId="de9" Type="GeneProduct" GroupRef="b2044">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="Mmp13"/>
+    <Graphics CenterX="100.66666666666667" CenterY="193.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="17386"/>
+  </DataNode>
+  <DataNode TextLabel="Timp1" GraphId="dbd" Type="GeneProduct" GroupRef="fb39f">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="Timp1"/>
+    <Graphics CenterX="259.3333333333333" CenterY="311.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="21857"/>
+  </DataNode>
+  <DataNode TextLabel="Mmp23" GraphId="a11" Type="GeneProduct" GroupRef="ed0f8">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="Mmp23"/>
+    <Graphics CenterX="420.0" CenterY="293.3333333333333" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="26561"/>
+  </DataNode>
+  <Label TextLabel="Gelatinases" GraphId="b07" GroupRef="ecc72">
+    <Graphics CenterX="263.3333333333333" CenterY="93.33333333333333" Width="94.33333333333333" Height="19.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="12" Valign="Middle"/>
+  </Label>
+  <Label TextLabel="Collagenases" GraphId="b2a" GroupRef="b2044">
+    <Graphics CenterX="100.66666666666667" CenterY="126.33333333333333" Width="109.33333333333333" Height="19.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="12" Valign="Middle"/>
+  </Label>
+  <Label TextLabel="Stromelysins" GraphId="c64" GroupRef="e75ce">
+    <Graphics CenterX="420.0" CenterY="93.33333333333333" Width="105.33333333333333" Height="19.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="12" Valign="Middle"/>
+  </Label>
+  <Label TextLabel="Membrane-type MMPs" GraphId="e5c" GroupRef="fdc10">
+    <Graphics CenterX="616.6666666666666" CenterY="93.33333333333333" Width="173.33333333333334" Height="19.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="12" Valign="Middle"/>
+  </Label>
+  <Label TextLabel="Matrilysin" GraphId="eb5" GroupRef="f9175">
+    <Graphics CenterX="100.66666666666667" CenterY="239.66666666666666" Width="78.33333333333333" Height="19.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="12" Valign="Middle"/>
+  </Label>
+  <Label TextLabel="Inhibitors" GraphId="ca7" GroupRef="fb39f">
+    <Graphics CenterX="259.3333333333333" CenterY="287.6666666666667" Width="77.33333333333333" Height="19.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="12" Valign="Middle"/>
+  </Label>
+  <Label TextLabel="Enamelysin" GraphId="ee4" GroupRef="e0ed6">
+    <Graphics CenterX="263.3333333333333" CenterY="196.66666666666666" Width="94.33333333333333" Height="19.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="12" Valign="Middle"/>
+  </Label>
+  <Label TextLabel="Other" GraphId="f8b" GroupRef="ed0f8">
+    <Graphics CenterX="420.0" CenterY="206.66666666666666" Width="47.333333333333336" Height="19.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="12" Valign="Middle"/>
+  </Label>
+  <Label TextLabel="Potential Inducers of Transcription" GraphId="ecd" GroupRef="ef37f">
+    <Graphics CenterX="516.6666666666666" CenterY="376.6666666666667" Width="223.33333333333334" Height="16.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="10" Valign="Middle"/>
+  </Label>
+  <Label TextLabel="Metalloelastase" GraphId="d0f" GroupRef="faf96">
+    <Graphics CenterX="100.66666666666667" CenterY="331.0" Width="122.33333333333333" Height="19.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="12" Valign="Middle"/>
+  </Label>
+  <Label TextLabel="Based on Vu &amp; Werb (2000)" GraphId="e28">
+    <Graphics CenterX="706.6666666666666" CenterY="493.3333333333333" Width="176.33333333333334" Height="16.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="10" Valign="Middle"/>
+  </Label>
+  <Label TextLabel="Matrix metalloproteinases: effectors of" GraphId="cf0">
+    <Graphics CenterX="743.3333333333334" CenterY="510.0" Width="248.33333333333334" Height="16.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="10" Valign="Middle"/>
+  </Label>
+  <Label TextLabel="development and normal physiology." GraphId="f1c">
+    <Graphics CenterX="740.0" CenterY="526.6666666666666" Width="241.33333333333334" Height="16.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="10" Valign="Middle"/>
+  </Label>
+  <Label TextLabel="Genes Dev 14:2123-2133" GraphId="db4">
+    <Graphics CenterX="696.6666666666666" CenterY="543.3333333333334" Width="155.33333333333334" Height="16.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="10" Valign="Middle"/>
+  </Label>
+  <Group GroupId="b2044" GraphId="c93f1"/>
+  <Group GroupId="ecc72" GraphId="b1384"/>
+  <Group GroupId="e75ce" GraphId="f9b7a"/>
+  <Group GroupId="fdc10" GraphId="dfa3b"/>
+  <Group GroupId="ed0f8" GraphId="c8615"/>
+  <Group GroupId="e0ed6" GraphId="a21e5"/>
+  <Group GroupId="f9175" GraphId="b33dc"/>
+  <Group GroupId="faf96" GraphId="aae53"/>
+  <Group GroupId="fb39f" GraphId="cc3e8"/>
+  <Group GroupId="ef37f" GraphId="cf251"/>
+  <InfoBox CenterX="0.0" CenterY="494.5"/>
+  <Legend CenterX="680.7" CenterY="318.53333333333336"/>
+  <Biopax>
+    <bp:PublicationXref xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" rdf:id="b1e">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">10970876</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Matrix metalloproteinases: effectors of development and normal physiology.</bp:TITLE>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Genes Dev</bp:SOURCE>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2000</bp:YEAR>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Vu TH</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Werb Z</bp:AUTHORS>
+    </bp:PublicationXref>
+    <bp:openControlledVocabulary xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#">
+      <bp:TERM xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">cell-extracellular matrix signaling pathway</bp:TERM>
+      <bp:ID xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PW:0000646</bp:ID>
+      <bp:Ontology xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Pathway Ontology</bp:Ontology>
+    </bp:openControlledVocabulary>
+  </Biopax>
+</Pathway>

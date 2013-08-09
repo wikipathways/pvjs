@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Pathway xmlns="http://pathvisio.org/GPML/2013a" Name="Galactose Metabolism" Organism="Saccharomyces cerevisiae">
+  <Comment Source="GenMAPP notes"/>
+  <Comment Source="GenMAPP remarks">Based on http://pathway.yeastgenome.org/biocyc/</Comment>
+  <Comment Source="WikiPathways-category">Metabolic Process</Comment>
+  <Graphics BoardWidth="606.6666666666666" BoardHeight="562.8333333333334"/>
+  <DataNode TextLabel="GAL10" GraphId="a70" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="GAL10"/>
+    <Graphics CenterX="213.33333333333334" CenterY="93.33333333333333" Width="46.666666666666664" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="SGD" ID="S000000223"/>
+  </DataNode>
+  <DataNode TextLabel="GAL1" GraphId="ea2" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="GAL1"/>
+    <Graphics CenterX="210.0" CenterY="210.0" Width="40.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="SGD" ID="S000000224"/>
+  </DataNode>
+  <DataNode TextLabel="GAL10" GraphId="fb4" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="GAL10"/>
+    <Graphics CenterX="553.3333333333334" CenterY="360.0" Width="46.666666666666664" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="SGD" ID="S000000223"/>
+  </DataNode>
+  <DataNode TextLabel="GAL7" GraphId="d86" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="GAL7"/>
+    <Graphics CenterX="276.6666666666667" CenterY="360.0" Width="46.666666666666664" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="SGD" ID="S000000222"/>
+  </DataNode>
+  <DataNode TextLabel="PGM2" GraphId="eb0" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="PGM2"/>
+    <Graphics CenterX="176.66666666666666" CenterY="473.3333333333333" Width="46.666666666666664" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="SGD" ID="S000004711"/>
+  </DataNode>
+  <DataNode TextLabel="PGM1" GraphId="e51" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="PGM1"/>
+    <Graphics CenterX="176.66666666666666" CenterY="493.3333333333333" Width="46.666666666666664" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="SGD" ID="S000001610"/>
+  </DataNode>
+  <DataNode TextLabel="ATP" GraphId="b89" Type="Metabolite">
+    <Graphics CenterX="136.66666666666666" CenterY="186.66666666666666" Width="37.333333333333336" Height="19.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff"/>
+    <Xref Database="CAS" ID="1927-31-7"/>
+  </DataNode>
+  <DataNode TextLabel="ADP" GraphId="ca5" Type="Metabolite">
+    <Graphics CenterX="136.66666666666666" CenterY="233.33333333333334" Width="39.333333333333336" Height="19.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff"/>
+    <Xref Database="CAS" ID="58-64-0"/>
+  </DataNode>
+  <DataNode TextLabel="glucose-1-phosphate" GraphId="be4" Type="Metabolite">
+    <Graphics CenterX="163.33333333333334" CenterY="440.0" Width="167.33333333333334" Height="19.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff"/>
+    <Xref Database="CAS" ID="59-56-3"/>
+  </DataNode>
+  <DataNode TextLabel="glucose-6-phosphate" GraphId="f9e" Type="Metabolite">
+    <Graphics CenterX="86.66666666666667" CenterY="523.3333333333334" Width="167.33333333333334" Height="19.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff"/>
+    <Xref Database="CAS" ID="59-56-3"/>
+  </DataNode>
+  <Interaction GraphId="idba86bf03">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="186.66666666666666" Y="56.666666666666664"/>
+      <Point X="186.66666666666666" Y="143.33333333333334" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="idbcfe1505">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="186.66666666666666" Y="170.0"/>
+      <Point X="186.66666666666666" Y="260.0" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="idf3407464">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="160.0" Y="233.33333333333334"/>
+      <Point X="156.66666666666666" Y="233.33333333333334" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="idf13ee70e">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="256.6666666666667" Y="440.0"/>
+      <Point X="250.0" Y="440.0" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="ida9dc3d1e">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="413.3333333333333" Y="446.6666666666667"/>
+      <Point X="423.3333333333333" Y="446.6666666666667" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="ide24b89de">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="453.3333333333333" Y="286.6666666666667"/>
+      <Point X="440.0" Y="286.6666666666667" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="id95dcf0a5">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="163.33333333333334" Y="453.3333333333333"/>
+      <Point X="86.66666666666667" Y="513.3333333333334" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Label TextLabel="beta-D-galactose" GraphId="b84">
+    <Graphics CenterX="196.66666666666666" CenterY="46.666666666666664" Width="134.33333333333334" Height="19.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="12" Valign="Middle"/>
+  </Label>
+  <Label TextLabel="alpha-D-galactose" GraphId="cd3">
+    <Graphics CenterX="186.66666666666666" CenterY="153.33333333333334" Width="143.33333333333334" Height="19.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="12" Valign="Middle"/>
+  </Label>
+  <Label TextLabel="alpha-D-galactose-1-phosphate" GraphId="d9c">
+    <Graphics CenterX="213.33333333333334" CenterY="273.3333333333333" Width="244.33333333333334" Height="19.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="12" Valign="Middle"/>
+  </Label>
+  <Label TextLabel="UDP-galactose" GraphId="fc8">
+    <Graphics CenterX="433.3333333333333" CenterY="463.3333333333333" Width="119.33333333333333" Height="19.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="12" Valign="Middle"/>
+  </Label>
+  <Label TextLabel="UDP-D-glucose" GraphId="b1e">
+    <Graphics CenterX="420.0" CenterY="273.3333333333333" Width="123.33333333333333" Height="19.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="12" Valign="Middle"/>
+  </Label>
+  <Shape GraphId="a32">
+    <Graphics CenterX="253.33333333333334" CenterY="360.0" Width="160.1388" Height="166.71773333333334" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="Arc" Rotation="4.712389"/>
+  </Shape>
+  <Shape GraphId="fe6">
+    <Graphics CenterX="420.0" CenterY="366.6666666666667" Width="160.01093333333336" Height="166.76253333333335" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="Arc" Rotation="1.570796"/>
+  </Shape>
+  <Shape GraphId="f23">
+    <Graphics CenterX="440.0" CenterY="366.6666666666667" Width="160.18613333333332" Height="166.71773333333334" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="Arc" Rotation="4.712389"/>
+  </Shape>
+  <Shape GraphId="f09">
+    <Graphics CenterX="153.33333333333334" CenterY="210.0" Width="46.666666666666664" Height="66.66666666666667" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="Arc" Rotation="4.712389"/>
+  </Shape>
+  <InfoBox CenterX="558.3333333333334" CenterY="231.66666666666666"/>
+  <Legend CenterX="558.3333333333334" CenterY="55.0"/>
+  <Biopax>
+    <bp:openControlledVocabulary xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#">
+      <bp:TERM xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">galactose metabolic pathway</bp:TERM>
+      <bp:ID xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PW:0000042</bp:ID>
+      <bp:Ontology xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Pathway Ontology</bp:Ontology>
+    </bp:openControlledVocabulary>
+  </Biopax>
+</Pathway>

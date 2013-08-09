@@ -1,0 +1,339 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Pathway xmlns="http://pathvisio.org/GPML/2013a" Name="Biogenic Amine Synthesis" Organism="Drosophila melanogaster">
+  <Comment Source="WikiPathways-category">Metabolic Process</Comment>
+  <Comment Source="WikiPathways-description">Biogenic amines are one of two broad classes of classical neurotransmitters (the other being amino acids) and include: acetylcholine, serotonin, histamine, and the catecholamines epinephrine, norepinephrine, and dopamine. 
+
+Source: http://www.whatislife.com/reader2/Metabolism/pathway/Neurotransmitter.html</Comment>
+  <BiopaxRef>e98</BiopaxRef>
+  <Graphics BoardWidth="1067.3855243722305" BoardHeight="707.3948054720984" />
+  <DataNode TextLabel="Tyrosine" GraphId="ac2" Type="Metabolite">
+    <Graphics CenterX="573.5318704284222" CenterY="156.66666666666666" Width="72.33333333333333" Height="19.0" ZOrder="28672" FontWeight="Bold" FontSize="12" Valign="Middle" />
+    <Xref Database="" ID="" />
+  </DataNode>
+  <DataNode TextLabel="L-DOPA" GraphId="edf" Type="Metabolite">
+    <Graphics CenterX="573.2094497263037" CenterY="249.13569576490926" Width="66.33333333333333" Height="19.0" ZOrder="28672" FontWeight="Bold" FontSize="12" Valign="Middle" />
+    <Xref Database="" ID="" />
+  </DataNode>
+  <DataNode TextLabel="Dopamine" GraphId="a72" Type="Metabolite">
+    <Graphics CenterX="573.2094497263037" CenterY="333.3333333333333" Width="83.33333333333333" Height="19.0" ZOrder="28672" FontWeight="Bold" FontSize="12" Valign="Middle" Color="000080" />
+    <Xref Database="" ID="" />
+  </DataNode>
+  <DataNode TextLabel="Norepinephrine" GraphId="bda" Type="Metabolite">
+    <Graphics CenterX="573.3333333333334" CenterY="423.3333333333333" Width="124.33333333333333" Height="19.0" ZOrder="28672" FontWeight="Bold" FontSize="12" Valign="Middle" Color="000080" />
+    <Xref Database="" ID="" />
+  </DataNode>
+  <DataNode TextLabel="Epinephrine" GraphId="a1d" Type="Metabolite">
+    <Graphics CenterX="573.3333333333334" CenterY="520.0" Width="98.33333333333333" Height="19.0" ZOrder="28672" FontWeight="Bold" FontSize="12" Valign="Middle" Color="000080" />
+    <Xref Database="" ID="" />
+  </DataNode>
+  <DataNode TextLabel="Phenylalanine" GraphId="d0c" Type="Metabolite">
+    <Graphics CenterX="573.5318704284222" CenterY="60.0" Width="113.33333333333333" Height="19.0" ZOrder="28672" FontWeight="Bold" FontSize="12" Valign="Middle" />
+    <Xref Database="" ID="" />
+  </DataNode>
+  <DataNode TextLabel="Tryptophan" GraphId="f26" Type="Metabolite">
+    <Graphics CenterX="413.53187042842217" CenterY="155.88296760710554" Width="94.33333333333333" Height="19.0" ZOrder="28672" FontWeight="Bold" FontSize="12" Valign="Middle" />
+    <Xref Database="" ID="" />
+  </DataNode>
+  <DataNode TextLabel="5-hydroxy-tryptophan" GraphId="fc8" Type="Metabolite">
+    <Graphics CenterX="413.3333333333333" CenterY="250.0" Width="171.33333333333334" Height="19.0" ZOrder="28672" FontWeight="Bold" FontSize="12" Valign="Middle" />
+    <Xref Database="" ID="" />
+  </DataNode>
+  <DataNode TextLabel="Serotonin" GraphId="f80" Type="Metabolite">
+    <Graphics CenterX="413.3333333333333" CenterY="333.3333333333333" Width="80.33333333333333" Height="19.0" ZOrder="28672" FontWeight="Bold" FontSize="12" Valign="Middle" Color="000080" />
+    <Xref Database="" ID="" />
+  </DataNode>
+  <DataNode TextLabel="Acetylserotonin" GraphId="e44" Type="Metabolite">
+    <Graphics CenterX="413.3333333333333" CenterY="423.3333333333333" Width="125.33333333333333" Height="19.0" ZOrder="28672" FontWeight="Bold" FontSize="12" Valign="Middle" />
+    <Xref Database="" ID="" />
+  </DataNode>
+  <DataNode TextLabel="Melatonin" GraphId="f57" Type="Metabolite">
+    <Graphics CenterX="413.3333333333333" CenterY="520.0" Width="79.33333333333333" Height="19.0" ZOrder="28672" FontWeight="Bold" FontSize="12" Valign="Middle" Color="000080" />
+    <Xref Database="" ID="" />
+  </DataNode>
+  <DataNode TextLabel="Histidine" GraphId="ca9" Type="Metabolite">
+    <Graphics CenterX="166.66666666666666" CenterY="250.0" Width="72.33333333333333" Height="19.0" ZOrder="28672" FontWeight="Bold" FontSize="12" Valign="Middle" />
+    <Xref Database="" ID="" />
+  </DataNode>
+  <DataNode TextLabel="Histamine" GraphId="e57" Type="Metabolite">
+    <Graphics CenterX="166.66666666666666" CenterY="333.3333333333333" Width="81.33333333333333" Height="19.0" ZOrder="28672" FontWeight="Bold" FontSize="12" Valign="Middle" Color="000080" />
+    <Xref Database="" ID="" />
+  </DataNode>
+  <DataNode TextLabel="Glutamate" GraphId="d56" Type="Metabolite">
+    <Graphics CenterX="264.9380581964852" CenterY="250.0" Width="82.33333333333333" Height="19.0" ZOrder="28672" FontWeight="Bold" FontSize="12" Valign="Middle" />
+    <Xref Database="" ID="" />
+  </DataNode>
+  <DataNode TextLabel="GABA" GraphId="cd4" Type="Metabolite">
+    <Graphics CenterX="263.3333333333333" CenterY="333.3333333333333" Width="51.333333333333336" Height="19.0" ZOrder="28672" FontWeight="Bold" FontSize="12" Valign="Middle" Color="000080" />
+    <Xref Database="" ID="" />
+  </DataNode>
+  <DataNode TextLabel="Choline" GraphId="e0b" Type="Metabolite">
+    <Graphics CenterX="63.333333333333336" CenterY="250.0" Width="64.33333333333333" Height="19.0" ZOrder="28672" FontWeight="Bold" FontSize="12" Valign="Middle" />
+    <Xref Database="" ID="" />
+  </DataNode>
+  <DataNode TextLabel="Acetylcholine" GraphId="eef" Type="Metabolite">
+    <Graphics CenterX="63.333333333333336" CenterY="333.3333333333333" Width="108.33333333333333" Height="19.0" ZOrder="28672" FontWeight="Bold" FontSize="12" Valign="Middle" Color="000080" />
+    <Xref Database="" ID="" />
+  </DataNode>
+  <DataNode TextLabel="ple" GraphId="c00" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="ple | pale" />
+    <Graphics CenterX="573.3333333333334" CenterY="196.66666666666666" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Entrez Gene" ID="38746" />
+  </DataNode>
+  <DataNode TextLabel="Ddc" GraphId="b4f" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="Ddc | Dopa decarboxylase" />
+    <Graphics CenterX="573.3333333333334" CenterY="286.6666666666667" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Entrez Gene" ID="35190" />
+  </DataNode>
+  <DataNode TextLabel="Tbh" GraphId="d90" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="Tbh | Tyramine  hydroxylase" />
+    <Graphics CenterX="573.3333333333334" CenterY="376.6666666666667" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Entrez Gene" ID="31718" />
+  </DataNode>
+  <DataNode TextLabel="PNMT" GraphId="aee" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="PNMT | phenylethanolamine N-methyltransferase" />
+    <Graphics CenterX="573.3333333333334" CenterY="466.6666666666667" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Entrez Gene" ID="" />
+  </DataNode>
+  <DataNode TextLabel="Hn" GraphId="b87" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="Hn | Henna" />
+    <Graphics CenterX="573.3333333333334" CenterY="103.33333333333333" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Entrez Gene" ID="38871" />
+  </DataNode>
+  <DataNode TextLabel="Trh" GraphId="a6c" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="Trh | Tryptophan hydroxylase" />
+    <Graphics CenterX="413.3333333333333" CenterY="193.33333333333334" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Entrez Gene" ID="38121" />
+  </DataNode>
+  <DataNode TextLabel="Ddc" GraphId="a69" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="Ddc | Dopa decarboxylase" />
+    <Graphics CenterX="413.3333333333333" CenterY="286.6666666666667" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Entrez Gene" ID="35190" />
+  </DataNode>
+  <DataNode TextLabel="AANAT" GraphId="e05" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="AANAT | arylalkylamine N-acetyltransferase" />
+    <Graphics CenterX="413.3333333333333" CenterY="370.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Entrez Gene" ID="" />
+  </DataNode>
+  <DataNode TextLabel="ASMT" GraphId="ee2" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="ASMT | acetylserotonin O-methyltransferase" />
+    <Graphics CenterX="413.3333333333333" CenterY="466.6666666666667" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Entrez Gene" ID="" />
+  </DataNode>
+  <DataNode TextLabel="Hdc" GraphId="dd3" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="Hdc | Histidine decarboxylase" />
+    <Graphics CenterX="166.66666666666666" CenterY="273.3333333333333" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Entrez Gene" ID="36076" />
+  </DataNode>
+  <DataNode TextLabel="Ddc" GraphId="f02" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="Ddc | Dopa decarboxylase" />
+    <Graphics CenterX="166.66666666666666" CenterY="293.3333333333333" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Entrez Gene" ID="35190" />
+  </DataNode>
+  <DataNode TextLabel="Gad1" GraphId="fea" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="Gad1 | Glutamic acid decarboxylase 1" />
+    <Graphics CenterX="264.38375350140075" CenterY="278.5854341736695" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Entrez Gene" ID="38484" />
+  </DataNode>
+  <DataNode TextLabel="GAD2" GraphId="e2b" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="GAD2 | glutamate decarboxylase 2 (pancreatic is..." />
+    <Graphics CenterX="264.38375350140075" CenterY="298.5854341736695" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Entrez Gene" ID="" />
+  </DataNode>
+  <DataNode TextLabel="Cha" GraphId="f50" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="Cha | Choline acetyltransferase" />
+    <Graphics CenterX="63.333333333333336" CenterY="283.3333333333333" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Entrez Gene" ID="42249" />
+  </DataNode>
+  <DataNode TextLabel="COMT" GraphId="fee" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="comt" />
+    <Graphics CenterX="553.3333333333334" CenterY="596.6666666666666" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Entrez Gene" ID="47091" />
+  </DataNode>
+  <DataNode TextLabel="MAOA" GraphId="e80" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="MAOA | monoamine oxidase A" />
+    <Graphics CenterX="553.3333333333334" CenterY="576.6666666666666" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Entrez Gene" ID="" />
+  </DataNode>
+  <DataNode TextLabel="ACHE" GraphId="a5a" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="ACHE | acetylcholinesterase (YT blood group)" />
+    <Graphics CenterX="62.12277651532492" CenterY="374.27055214100176" Width="60.0" Height="20.93837535013995" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Entrez Gene" ID="" />
+  </DataNode>
+  <DataNode TextLabel="MAOA" GraphId="f07" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="MAOA | monoamine oxidase A" />
+    <Graphics CenterX="413.3333333333333" CenterY="586.6666666666666" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Entrez Gene" ID="" />
+  </DataNode>
+  <Interaction GraphId="id354ffaa9">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="573.5318704284223" Y="166.16666666666666" GraphRef="ac2" RelX="0.0" RelY="1.0" />
+      <Point X="573.2094497263038" Y="239.63569576490926" GraphRef="edf" RelX="0.0" RelY="-1.0" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="id18f6eb19">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="573.2094497263038" Y="258.63569576490926" GraphRef="edf" RelX="0.0" RelY="1.0" />
+      <Point X="573.2094497263038" Y="323.8333333333333" GraphRef="a72" RelX="0.0" RelY="-1.0" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="id2c149275">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="573.2094497263038" Y="342.8333333333333" GraphRef="a72" RelX="0.0" RelY="1.0" />
+      <Point X="573.3333333333334" Y="413.8333333333333" GraphRef="bda" RelX="0.0" RelY="-1.0" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="idd104962a">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="573.3333333333334" Y="432.8333333333333" GraphRef="bda" RelX="0.0" RelY="1.0" />
+      <Point X="573.3333333333335" Y="510.5" GraphRef="a1d" RelX="0.0" RelY="-1.0" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="id92136dc9">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="573.5318704284223" Y="69.5" GraphRef="d0c" RelX="0.0" RelY="1.0" />
+      <Point X="573.5318704284223" Y="147.16666666666666" GraphRef="ac2" RelX="0.0" RelY="-1.0" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="idc4a54dad">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="413.53187042842217" Y="165.38296760710554" GraphRef="f26" RelX="0.0" RelY="1.0" />
+      <Point X="413.3333333333333" Y="240.5" GraphRef="fc8" RelX="0.0" RelY="-1.0" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="ida84c3e1d">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="413.3333333333333" Y="259.5" GraphRef="fc8" RelX="0.0" RelY="1.0" />
+      <Point X="413.33333333333326" Y="323.8333333333333" GraphRef="f80" RelX="0.0" RelY="-1.0" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="iddb8b7e6f">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="413.33333333333326" Y="342.8333333333333" GraphRef="f80" RelX="0.0" RelY="1.0" />
+      <Point X="413.33333333333326" Y="413.8333333333333" GraphRef="e44" RelX="0.0" RelY="-1.0" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="id6059e92e">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="413.33333333333326" Y="432.8333333333333" GraphRef="e44" RelX="0.0" RelY="1.0" />
+      <Point X="413.33333333333326" Y="510.5" GraphRef="f57" RelX="0.0" RelY="-1.0" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="id2f13564f">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="166.66666666666666" Y="259.5" GraphRef="ca9" RelX="0.0" RelY="1.0" />
+      <Point X="166.66666666666666" Y="323.8333333333333" GraphRef="e57" RelX="0.0" RelY="-1.0" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="ida2e721d3">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="264.9380581964852" Y="259.5" GraphRef="d56" RelX="0.0" RelY="1.0" />
+      <Point X="263.3333333333333" Y="323.8333333333333" GraphRef="cd4" RelX="0.0" RelY="-1.0" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="id673b19a9">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="63.333333333333336" Y="259.5" GraphRef="e0b" RelX="0.0" RelY="1.0" />
+      <Point X="63.333333333333336" Y="323.8333333333333" GraphRef="eef" RelX="0.0" RelY="-1.0" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="idf88410e9">
+    <Graphics ZOrder="12288" LineStyle="Broken" LineThickness="1.0">
+      <Point X="63.333333333333336" Y="342.8333333333333" GraphRef="eef" RelX="0.0" RelY="1.0" />
+      <Point X="62.61343012704174" Y="412.4047186932849" GraphRef="ef2ad" RelX="0.0" RelY="-1.0" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction>
+    <Graphics ConnectorType="Elbow" ZOrder="12288" LineStyle="Broken" LineThickness="1.0">
+      <Point X="373.16666666666663" Y="333.3333333333333" GraphRef="f80" RelX="-1.0" RelY="0.0" />
+      <Point X="335.08403361344534" Y="438.20028011204477" />
+      <Point X="375.2835943814912" Y="543.0672268907563" />
+      <Point X="415.4831551495371" Y="647.3948054720984" GraphRef="a9859" RelX="0.0" RelY="-1.0" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction>
+    <Graphics ConnectorType="Elbow" ZOrder="12288" LineStyle="Broken" LineThickness="1.0">
+      <Point X="614.8761163929705" Y="333.3333333333333" GraphRef="a72" RelX="1.0" RelY="0.0" />
+      <Point X="655.4621848739496" Y="439.7759103641456" />
+      <Point X="606.123930515945" Y="546.218487394958" />
+      <Point X="556.7856761579402" Y="647.3948054720983" GraphRef="c1de1" RelX="0.0" RelY="-1.0" ArrowHead="Arrow" />
+      <Anchor Position="0.5012103784783762" Shape="None" GraphId="dfdc4" />
+      <Anchor Position="0.28803250802613006" Shape="None" GraphId="dd07a" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction>
+    <Graphics ZOrder="12288" LineStyle="Broken" LineThickness="1.0">
+      <Point X="655.4621848739496" Y="519.9579831932773" GraphRef="dfdc4" RelX="0.0" RelY="0.0" />
+      <Point X="622.5000000000002" Y="520.0" GraphRef="a1d" RelX="1.0" RelY="0.0" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction>
+    <Graphics ZOrder="12288" LineStyle="Broken" LineThickness="1.0">
+      <Point X="635.5" Y="423.3333333333333" GraphRef="bda" RelX="1.0" RelY="0.0" />
+      <Point X="655.4621848739496" Y="423.3193277310924" GraphRef="dd07a" RelX="0.0" RelY="0.0" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Label TextLabel="Synthesis pathways for biogenic amines (in blue)" GraphId="a6b">
+    <Graphics CenterX="170.0" CenterY="163.33333333333334" Width="315.3333333333333" Height="16.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="10" Valign="Middle" />
+  </Label>
+  <Label TextLabel="follow solid arrows through enzymatic steps," GraphId="cf2">
+    <Graphics CenterX="156.66666666666666" CenterY="180.0" Width="287.3333333333333" Height="16.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="10" Valign="Middle" />
+  </Label>
+  <Label TextLabel="while degradation steps follow dashed arrows." GraphId="b01">
+    <Graphics CenterX="163.33333333333334" CenterY="196.66666666666666" Width="301.3333333333333" Height="16.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="10" Valign="Middle" />
+  </Label>
+  <Label TextLabel="HOMOLOGY MAPP" GraphId="fc0">
+    <Graphics CenterX="91.32773109243689" CenterY="58.34243697478992" Width="156.0" Height="32.65126050420169" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="12" Valign="Middle" Color="008000" />
+  </Label>
+  <Shape GraphId="b69">
+    <Graphics CenterX="170.0" CenterY="180.0" Width="320.0" Height="60.0" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="Rectangle" Rotation="0.0" />
+  </Shape>
+  <Shape GraphId="ef2ad">
+    <Graphics CenterX="62.613430127041745" CenterY="427.4047186932849" Width="30.0" Height="30.0" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="mim-degradation" Rotation="0.0" />
+  </Shape>
+  <Shape GraphId="a9859">
+    <Graphics CenterX="415.4831551495371" CenterY="662.3948054720984" Width="30.0" Height="30.0" ZOrder="32769" FontSize="10" Valign="Middle" ShapeType="mim-degradation" Rotation="0.0" />
+  </Shape>
+  <Shape GraphId="c1de1">
+    <Graphics CenterX="556.7856761579402" CenterY="662.3948054720983" Width="30.0" Height="30.0" ZOrder="32770" FontSize="10" Valign="Middle" ShapeType="mim-degradation" Rotation="0.0" />
+  </Shape>
+  <InfoBox CenterX="11.666666666666666" CenterY="48.333333333333336" />
+  <Legend CenterX="128.72655777374473" CenterY="468.5571687840292" />
+  <Biopax>
+    <bp:openControlledVocabulary xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#">
+      <bp:TERM xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">biogenic amine biosynthetic pathway</bp:TERM>
+      <bp:ID xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PW:0001234 </bp:ID>
+      <bp:Ontology xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Pathway Ontology</bp:Ontology>
+    </bp:openControlledVocabulary>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="e98">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string"></bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Neuroscience</bp:TITLE>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">http://www.ncbi.nlm.nih.gov/bookshelf/br.fcgi?book=neurosci&amp;part=A405</bp:SOURCE>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2001</bp:YEAR>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Purves, Dale</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Augustine, George J.</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Fitzpatrick, David</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Katz, Lawrence C.</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">LaMantia, Anthony-Samuel</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">McNamara, James O.</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Williams, S. Mark.</bp:AUTHORS>
+    </bp:PublicationXref>
+  </Biopax>
+</Pathway>

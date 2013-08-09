@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Pathway xmlns="http://pathvisio.org/GPML/2013a" Name="Tryptophan Biosynthesis" Organism="Saccharomyces cerevisiae">
+  <Comment Source="GenMAPP remarks">Based on http://pathway.yeastgenome.org/biocyc/</Comment>
+  <Comment Source="WikiPathways-category">Metabolic Process</Comment>
+  <Comment Source="WikiPathways-description">Biosynthesis of the aromatic amino acids tryptophan, tyrosine, and phenylalanine proceeds via a common pathway to chorismate, at which point the pathway branches (CITS:[Jones][1943992]).  One branch proceeds to tryptophan, and the other to tyrosine and phenylalanine (CITS:[Jones]).  The series of reactions to chorismate, called the shikimate pathway, and the series of reactions from chorismate to tryptophan have been found to be common to all eukaryotes and prokaryotes studied thus far (as reported in (CITS:[1943992])). In contrast, there appears to be two separate routes from chorismate to tyrosine and phenylalanine, only one of which has been found in S. cerevisiae (CITS:[1943992]).  Aromatic amino acid biosynthesis in S. cerevisiae is controlled by a combination of feedback inhibition, activation of enzyme activity, and regulation of enzyme synthesis (CITS:[Jones][1943992]).  The first step in the tryptophan branch is feedback inhibited by tryptophan, and the first step in the phenylalanine-tyrosine branch is feedback inhibited by tyrosine and activated by tryptophan (CITS:[1943992]).  The transcriptional activator GCN4 regulates most of the genes encoding for the aromatic amino acid biosynthetic enzymes; however, no GCN4 regulation was found for TRP1 of the tryptophan branch, TYR1 of the tyrosine branch or ARO7 of the tyrosine and phenylalanine branch (CITS:[1943992]). 
+SOURCE: SGD pathways, http://pathway.yeastgenome.org/server.html</Comment>
+  <BiopaxRef>r3w</BiopaxRef>
+  <BiopaxRef>fvx</BiopaxRef>
+  <BiopaxRef>po0</BiopaxRef>
+  <Graphics BoardWidth="953.1666666666667" BoardHeight="462.8333333333333" />
+  <DataNode TextLabel="TRP2" GraphId="aa9" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="TRP2" />
+    <Graphics CenterX="190.0" CenterY="50.0" Width="40.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="SGD" ID="S000000892" />
+  </DataNode>
+  <DataNode TextLabel="TRP3" GraphId="aec" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="TRP3" />
+    <Graphics CenterX="190.0" CenterY="70.0" Width="40.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="SGD" ID="S000001694" />
+  </DataNode>
+  <DataNode TextLabel="TRP4" GraphId="d04" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="TRP4" />
+    <Graphics CenterX="496.6666666666667" CenterY="70.0" Width="40.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="SGD" ID="S000002762" />
+  </DataNode>
+  <DataNode TextLabel="TRP1" GraphId="d88" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="TRP1" />
+    <Graphics CenterX="746.6666666666666" CenterY="163.33333333333334" Width="40.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="SGD" ID="S000002414" />
+  </DataNode>
+  <DataNode TextLabel="TRP3" GraphId="bca" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="TRP3" />
+    <Graphics CenterX="546.6666666666666" CenterY="243.33333333333334" Width="40.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="SGD" ID="S000001694" />
+  </DataNode>
+  <DataNode TextLabel="TRP5" GraphId="e91" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="TRP5" />
+    <Graphics CenterX="353.3333333333333" CenterY="333.3333333333333" Width="40.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="SGD" ID="S000002994" />
+  </DataNode>
+  <DataNode TextLabel="chorismate" GraphId="c79" Type="Metabolite">
+    <Graphics CenterX="46.666666666666664" CenterY="83.33333333333333" Width="90.33333333333333" Height="19.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Xref Database="CAS" ID="55508-12-8" />
+  </DataNode>
+  <DataNode TextLabel="L-glutamine" GraphId="f31" Type="Metabolite">
+    <Graphics CenterX="126.66666666666667" CenterY="123.33333333333333" Width="95.33333333333333" Height="19.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Xref Database="CAS" ID="56-85-9" />
+  </DataNode>
+  <DataNode TextLabel="L-glutamate" GraphId="fda" Type="Metabolite">
+    <Graphics CenterX="253.33333333333334" CenterY="123.33333333333333" Width="95.33333333333333" Height="19.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Xref Database="CAS" ID="56-86-0" />
+  </DataNode>
+  <DataNode TextLabel="PRPP" GraphId="b31" Type="Metabolite">
+    <Graphics CenterX="446.6666666666667" CenterY="130.0" Width="50.333333333333336" Height="19.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Xref Database="CAS" ID="97-55-2" />
+  </DataNode>
+  <DataNode TextLabel="pyrophosphate" GraphId="c09" Type="Metabolite">
+    <Graphics CenterX="546.6666666666666" CenterY="130.0" Width="122.33333333333333" Height="19.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Xref Database="CAS" ID="2466-09-3" />
+  </DataNode>
+  <DataNode TextLabel="L-serine" GraphId="db8" Type="Metabolite">
+    <Graphics CenterX="266.6666666666667" CenterY="303.3666666666667" Width="67.33333333333333" Height="19.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Xref Database="CAS" ID="56-45-1" />
+  </DataNode>
+  <DataNode TextLabel="glyceraldehyde-3-phosphate" GraphId="dd3">
+    <Graphics CenterX="186.66666666666666" CenterY="373.3666666666667" Width="223.33333333333334" Height="19.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Xref Database="CAS" ID="591-57-1" />
+  </DataNode>
+  <DataNode TextLabel="L-tryptophan" GraphId="eb7" Type="Metabolite">
+    <Graphics CenterX="330.0" CenterY="423.3333333333333" Width="104.33333333333333" Height="19.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Xref Database="CAS" ID="73-22-3" />
+  </DataNode>
+  <Interaction GraphId="id5660f2f">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="90.0" Y="83.33333333333333" />
+      <Point X="300.0" Y="83.33333333333333" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="idd06dbed4">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="396.6666666666667" Y="83.33333333333333" />
+      <Point X="653.3333333333334" Y="83.33333333333333" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="idcbc6606">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="250.0" Y="106.66666666666667" />
+      <Point X="250.0" Y="116.66666666666667" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="idf0bd431b">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="546.6666666666666" Y="113.33333333333333" />
+      <Point X="546.6666666666666" Y="120.0" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="idfb9fb71d">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="770.0" Y="93.33333333333333" />
+      <Point X="770.0" Y="246.66666666666666" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="idfb3f6361">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="660.0" Y="256.6666666666667" />
+      <Point X="436.6666666666667" Y="256.6666666666667" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="id623cd86e">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="623.3333333333334" Y="256.6666666666667" />
+      <Point X="533.3333333333334" Y="300.0" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="id4309bead">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="330.0" Y="266.6666666666667" />
+      <Point X="330.0" Y="406.6666666666667" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="id83b5554">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="306.6666666666667" Y="363.3333333333333" />
+      <Point X="300.0" Y="363.3333333333333" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Label TextLabel="pyruvate" GraphId="f53">
+    <Graphics CenterX="253.33333333333334" CenterY="143.33333333333334" Width="72.33333333333333" Height="19.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="12" Valign="Middle" />
+  </Label>
+  <Label TextLabel="anthranilate" GraphId="dc0">
+    <Graphics CenterX="350.0" CenterY="83.36666666666666" Width="95.33333333333333" Height="19.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="12" Valign="Middle" />
+  </Label>
+  <Label TextLabel="N-(5ÃÂ¢ÃÂÃÂ-phosphoribosyl)-anthranilate" GraphId="ad5">
+    <Graphics CenterX="790.0" CenterY="83.33333333333333" Width="266.3333333333333" Height="19.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="12" Valign="Middle" />
+  </Label>
+  <Label TextLabel="1-(o-carboxyphenylamino)-" GraphId="f11">
+    <Graphics CenterX="770.0" CenterY="256.6666666666667" Width="210.33333333333334" Height="19.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="12" Valign="Middle" />
+  </Label>
+  <Label TextLabel="1ÃÂ¢ÃÂÃÂ-deoxyribulose-5ÃÂ¢ÃÂÃÂ-phosphate" GraphId="e9e">
+    <Graphics CenterX="770.0" CenterY="276.6666666666667" Width="237.33333333333334" Height="19.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="12" Valign="Middle" />
+  </Label>
+  <Label TextLabel="H2O" GraphId="c63">
+    <Graphics CenterX="513.3333333333334" CenterY="303.3333333333333" Width="38.333333333333336" Height="19.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="12" Valign="Middle" />
+  </Label>
+  <Label TextLabel="CO2" GraphId="e8f">
+    <Graphics CenterX="513.3333333333334" CenterY="320.0" Width="38.333333333333336" Height="19.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="12" Valign="Middle" />
+  </Label>
+  <Label TextLabel="indole-3-glycerol-phosphate" GraphId="d31">
+    <Graphics CenterX="326.6666666666667" CenterY="256.6666666666667" Width="219.33333333333334" Height="19.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="12" Valign="Middle" />
+  </Label>
+  <Label TextLabel="H2O" GraphId="b15">
+    <Graphics CenterX="279.96666666666664" CenterY="356.7" Width="38.333333333333336" Height="19.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="12" Valign="Middle" />
+  </Label>
+  <Shape GraphId="f1b">
+    <Graphics CenterX="190.0" CenterY="113.30506666666666" Width="120.00001333333333" Height="60.36924" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="Arc" Rotation="3.141593" />
+  </Shape>
+  <Shape GraphId="f99">
+    <Graphics CenterX="496.6424666666666" CenterY="120.00219999999999" Width="100.88497333333333" Height="73.63574666666666" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="Arc" Rotation="3.141593" />
+  </Shape>
+  <Shape GraphId="c47">
+    <Graphics CenterX="300.0178666666667" CenterY="333.3179333333334" Width="60.36924" Height="60.0" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="Arc" Rotation="4.712389" />
+  </Shape>
+  <InfoBox CenterX="728.3333333333334" CenterY="365.0" />
+  <Legend CenterX="0.0" CenterY="0.0" />
+  <Biopax>
+    <bp:openControlledVocabulary xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#">
+      <bp:TERM xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">tryptophan biosynthetic pathway</bp:TERM>
+      <bp:ID xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PW:0001280</bp:ID>
+      <bp:Ontology xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Pathway Ontology</bp:Ontology>
+    </bp:openControlledVocabulary>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="fvx">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">10790693</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">A counterselection for the tryptophan pathway in yeast: 5-fluoroanthranilic acid resistance.</bp:TITLE>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Yeast</bp:SOURCE>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2000</bp:YEAR>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Toyn JH</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Gunyuzlu PL</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">White WH</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Thompson LA</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Hollis GF</bp:AUTHORS>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="po0">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1943992</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Aromatic amino acid biosynthesis in the yeast Saccharomyces cerevisiae: a model system for the regulation of a eukaryotic biosynthetic pathway.</bp:TITLE>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Microbiol Rev</bp:SOURCE>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1991</bp:YEAR>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Braus GH</bp:AUTHORS>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="r3w">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">6323449</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Nucleotide sequence of Saccharomyces cerevisiae genes TRP2 and TRP3 encoding bifunctional anthranilate synthase: indole-3-glycerol phosphate synthase.</bp:TITLE>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">J Biol Chem</bp:SOURCE>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1984</bp:YEAR>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Zalkin H</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Paluh JL</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">van Cleemput M</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Moye WS</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Yanofsky C</bp:AUTHORS>
+    </bp:PublicationXref>
+  </Biopax>
+</Pathway>

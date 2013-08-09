@@ -1,0 +1,1542 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Pathway xmlns="http://pathvisio.org/GPML/2013a" Name="Cell Division: First embryonic mitosis" Organism="Caenorhabditis elegans">
+  <Comment Source="WikiPathways-category">Cellular Process</Comment>
+  <Comment Source="WikiPathways-description">"Prior to fertilization, C. elegans oocytes are arrested in meiotic prophase with nuclei containing two copies of the diploid genome packaged into recombined bivalent chromosomes. The two rounds of meiotic chromosome segregation that generate the haploid oocyte pronucleus are completed in the zygote after the oocytes are fertilized. During each meiotic division, chromosome segregation is accomplished by a small acentriolar meiotic spindle that forms in the embryo anterior. During anaphase of meiosis I and again in meiosis II, the meiotic spindle associates with the cortex in an end-on fashion, and a highly asymmetric cytokinesis-like event extrudes a polar body (Figure 2; Albertson and Thomson, 1993; Clark-Maguire and Mains, 1994; Yang et al., 2003). In addition to the haploid pronucleus, the sperm brings a pair of centrioles into the oocyte, which lacks centrioles due to their degradation during oogenesis. As meiosis completes, the haploid oocyte and sperm-derived pronuclei, located at opposite ends of the embryo increase in size, becoming visible by DIC microscopy. After entering the oocyte, the sperm-derived centriole pair recruits pericentriolar material and acquires the ability to nucleate microtubules (O'Connell, 2000; Pelletier et al., 2004). Subsequently, the two sperm-derived centrioles separate, forming two centrosomes positioned on either side of the paternal pronucleus. Coincident with chromosome condensation during mitotic prophase, the pronuclei migrate towards each other. After the pronuclei meet, the nuclear-centrosome complex moves to the center of the embryo and rotates to align with the long axis of the embryo (Albertson, 1984; Hyman and White, 1987). The miotitc spindle begins to move towards the embryo posterior during metaphase (Labbe et al., 2004; Oegema et al., 2001), and asymmetric elongation during anaphase contributes to its posterior displacement (Albertson, 1984; Grill et al., 2001). Since the cleavage furrow bisects the mitotic spindle, this displacement results in an asymmetric first cleavage (For more on the mechanisms that generate this asymmetry see Asymmetric cell division and axis formation in the embryo). "  From "Cell division" by Karen Oegema, WormBook</Comment>
+  <BiopaxRef>cf7</BiopaxRef>
+  <Graphics BoardWidth="1215.0" BoardHeight="1481.0" />
+  <DataNode TextLabel="CYK-4" GraphId="e2f72" Type="GeneProduct" GroupRef="e8b03">
+    <Comment>GO:0000003
+GO:0000003
+GO:0002009
+GO:0000910
+GO:0007109
+GO:0009792
+GO:0000281
+GO:0051301
+GO:0040011
+GO:0040035
+GO:0010171
+GO:0040038</Comment>
+    <Graphics CenterX="75.5" CenterY="364.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="WormBase" ID="K08E3.6" />
+  </DataNode>
+  <DataNode TextLabel="DHC-1" GraphId="ebcb4" Type="GeneProduct" GroupRef="e26da">
+    <BiopaxRef>cb0</BiopaxRef>
+    <BiopaxRef>ca3</BiopaxRef>
+    <BiopaxRef>db9</BiopaxRef>
+    <BiopaxRef>cfa</BiopaxRef>
+    <Graphics CenterX="185.0" CenterY="577.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="WormBase" ID="T21E12.4" />
+  </DataNode>
+  <DataNode TextLabel="PLK-1" GraphId="ee5a6" Type="GeneProduct" GroupRef="e8b03">
+    <Comment>GO:0000003
+GO:0000003
+GO:0007077
+GO:0000910
+GO:0009792
+GO:0008340
+GO:0051301
+GO:0040035
+GO:0040038
+GO:0051726
+GO:0002119
+GO:0045132</Comment>
+    <Graphics CenterX="75.49999593098958" CenterY="304.98333333333335" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="WormBase" ID="C14B9.4" />
+  </DataNode>
+  <DataNode TextLabel="ANI-1" GraphId="d9232" Type="GeneProduct" GroupRef="e8b03">
+    <Comment>GO:0040002
+GO:0030865
+GO:0009792</Comment>
+    <Graphics CenterX="75.49999593098958" CenterY="276.98333333333335" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="WormBase" ID="Y49E10.19" />
+  </DataNode>
+  <DataNode TextLabel="ZEN-4" GraphId="c306d" Type="GeneProduct" GroupRef="e8b03">
+    <Comment>GO:0035046
+GO:0031991
+GO:0051301
+GO:0000910
+GO:0040038
+GO:0009792
+GO:0051256</Comment>
+    <Graphics CenterX="75.5" CenterY="334.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="WormBase" ID="M03D4.1" />
+  </DataNode>
+  <DataNode TextLabel="DLI-1" GraphId="e6ead" Type="GeneProduct" GroupRef="e26da">
+    <BiopaxRef>ca3</BiopaxRef>
+    <Graphics CenterX="186.0" CenterY="633.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="WormBase" ID="C39E9.14" />
+  </DataNode>
+  <DataNode TextLabel="CYK-1" GraphId="c4cf1" Type="GeneProduct" GroupRef="e26da">
+    <Comment>GO:0000003	WBPaper00006395
+GO:0002009	WBPaper00005654;WBPaper00006395;WBPaper00029258
+GO:0000910	WBPaper00025054
+GO:0009792	WBPaper00004403;WBPaper00005654;WBPaper00006395;WBPaper00024497;WBPaper00025054;WBPaper00029258;WBPaper00004509
+GO:0008340	WBPaper00005654
+GO:0035046	WBPaper00004544
+GO:0040011	WBPaper00006395
+GO:0040035	WBPaper00029258
+GO:0040015	WBPaper00006395
+GO:0040007	WBPaper00024497;WBPaper00029258
+GO:0002119	WBPaper00024497;WBPaper00029258</Comment>
+    <Graphics CenterX="186.0" CenterY="550.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="WormBase" ID="F11H8.4" />
+  </DataNode>
+  <DataNode TextLabel="DLC-1" GraphId="ab9d6" Type="GeneProduct" GroupRef="e26da">
+    <BiopaxRef>ca3</BiopaxRef>
+    <Graphics CenterX="186.0" CenterY="606.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="WormBase" ID="T26A5.9" />
+  </DataNode>
+  <DataNode TextLabel="CUL-3" GraphId="f86b5" Type="GeneProduct" GroupRef="e26da">
+    <Comment>GO:0035046	WBPaper00025054
+GO:0009792	WBPaper00004651;WBPaper00025054;WBPaper00026821
+GO:0044254	WBPaper00026631</Comment>
+    <BiopaxRef>ca3</BiopaxRef>
+    <Graphics CenterX="186.0" CenterY="522.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="WormBase" ID="Y108G3AL.1" />
+  </DataNode>
+  <DataNode TextLabel="BEN-1" GraphId="e5ba8" Type="GeneProduct" GroupRef="e26da">
+    <Comment>GO:0035046	WBPaper00025054
+GO:0002009	WBPaper00029258
+GO:0040035	WBPaper00029258
+GO:0040018	WBPaper00029258
+GO:0007635	WBPaper00001228
+GO:0040007	WBPaper00029258
+GO:0002119	WBPaper00029258
+GO:0009792	WBPaper00025054</Comment>
+    <BiopaxRef>ca3</BiopaxRef>
+    <Graphics CenterX="186.0" CenterY="460.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="WormBase" ID="C54C6.2" />
+  </DataNode>
+  <DataNode TextLabel="CAP-2" GraphId="e2677" Type="GeneProduct" GroupRef="e26da">
+    <Comment>GO:0000578	WBPaper00002000
+GO:0040010	WBPaper00005654
+GO:0035046	WBPaper00006060
+GO:0040022	WBPaper00001883
+GO:0010171	WBPaper00005654;WBPaper00029258
+GO:0040035	WBPaper00029258
+GO:0040007	WBPaper00024497;WBPaper00029258
+GO:0002119	WBPaper00005654;WBPaper00024497;WBPaper00029258
+GO:0009792	WBPaper00005654;WBPaper00025054;WBPaper00024497;WBPaper00029258</Comment>
+    <BiopaxRef>ef0</BiopaxRef>
+    <Graphics CenterX="186.0" CenterY="491.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="WormBase" ID="M106.5" />
+  </DataNode>
+  <DataNode TextLabel="21ur-15150" GraphId="e0b94" Type="GeneProduct" GroupRef="e26da">
+    <Comment>GO:0035046
+GO:0051301
+GO:0000910</Comment>
+    <Comment>WBPaper0006352</Comment>
+    <BiopaxRef>fee</BiopaxRef>
+    <Graphics CenterX="186.0" CenterY="404.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="WormBase" ID="K10D11.8" />
+  </DataNode>
+  <DataNode TextLabel="ARP-1" GraphId="d3e70" Type="GeneProduct" GroupRef="e26da">
+    <Comment>GO:0002009	WBPaper00006395
+GO:0002119	WBPaper00006395;WBPaper00024497
+GO:0009792	WBPaper00005654;WBPaper00025054;WBPaper00006395
+GO:0035046	WBPaper00006060;WBPaper00025054
+GO:0040007	WBPaper00006395;WBPaper00024497
+GO:0040010	WBPaper00024497
+GO:0040011	WBPaper00006395;WBPaper00005654</Comment>
+    <BiopaxRef>ef0</BiopaxRef>
+    <BiopaxRef>ca3</BiopaxRef>
+    <Graphics CenterX="186.0" CenterY="432.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="WormBase" ID="Y53F4B.22" />
+  </DataNode>
+  <DataNode TextLabel="21ur-13952" GraphId="d9b78" Type="GeneProduct" GroupRef="e26da">
+    <Comment>C36E8.9</Comment>
+    <Comment>GO:0035046  	WBPaper00025054
+GO:0007052	WBPaper00006305
+GO:0009792	WBPaper00004403; WBPaper00025054; WBPaper00006305; WBPaper00013420</Comment>
+    <BiopaxRef>ca3</BiopaxRef>
+    <Graphics CenterX="186.0" CenterY="376.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="WormBase" ID="C36E8.9" />
+  </DataNode>
+  <DataNode TextLabel="PLL-1" GraphId="a2731" Type="GeneProduct" GroupRef="e26da">
+    <BiopaxRef>ca3</BiopaxRef>
+    <Graphics CenterX="277.0" CenterY="660.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="WormBase" ID="K10F12.3" />
+  </DataNode>
+  <DataNode TextLabel="LET-754" GraphId="bcd0d" Type="GeneProduct" GroupRef="e26da">
+    <BiopaxRef>ca3</BiopaxRef>
+    <Graphics CenterX="277.0" CenterY="404.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="WormBase" ID="C29E4.8" />
+  </DataNode>
+  <DataNode TextLabel="LET-99" GraphId="d6baa" Type="GeneProduct" GroupRef="e26da">
+    <BiopaxRef>ca3</BiopaxRef>
+    <Graphics CenterX="277.0" CenterY="376.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="WormBase" ID="K08E7.3" />
+  </DataNode>
+  <DataNode TextLabel="F54B3.3" GraphId="c0afe" Type="GeneProduct" GroupRef="e26da">
+    <BiopaxRef>ca3</BiopaxRef>
+    <Graphics CenterX="277.0" CenterY="491.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="WormBase" ID="F54B3.3" />
+  </DataNode>
+  <DataNode TextLabel="GPC-2" GraphId="e9c9b" Type="GeneProduct" GroupRef="e26da">
+    <BiopaxRef>ca3</BiopaxRef>
+    <Graphics CenterX="277.0" CenterY="522.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="WormBase" ID="F08B6.2" />
+  </DataNode>
+  <DataNode TextLabel="DYRB-1" GraphId="a5d58" Type="GeneProduct" GroupRef="e26da">
+    <BiopaxRef>ca3</BiopaxRef>
+    <Graphics CenterX="277.0" CenterY="460.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="WormBase" ID="T24H10.6" />
+  </DataNode>
+  <DataNode TextLabel="GPB-1" GraphId="c21c9" Type="GeneProduct" GroupRef="e26da">
+    <BiopaxRef>ca3</BiopaxRef>
+    <Graphics CenterX="277.0" CenterY="432.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="WormBase" ID="F13D12.7" />
+  </DataNode>
+  <DataNode TextLabel="DNC-4" GraphId="ddefc" Type="GeneProduct" GroupRef="e26da">
+    <BiopaxRef>ca3</BiopaxRef>
+    <Graphics CenterX="186.0" CenterY="687.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="WormBase" ID="C26B2.1" />
+  </DataNode>
+  <DataNode TextLabel="DYCI-1" GraphId="d6275" Type="GeneProduct" GroupRef="e26da">
+    <BiopaxRef>ca3</BiopaxRef>
+    <BiopaxRef>ef0</BiopaxRef>
+    <Graphics CenterX="186.0" CenterY="714.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="WormBase" ID="C17H12.1" />
+  </DataNode>
+  <DataNode TextLabel="DNC-2" GraphId="ec414" Type="GeneProduct" GroupRef="e26da">
+    <BiopaxRef>ca3</BiopaxRef>
+    <BiopaxRef>a83</BiopaxRef>
+    <Graphics CenterX="186.0" CenterY="660.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="WormBase" ID="C28H8.12" />
+  </DataNode>
+  <DataNode TextLabel="PFD-5" GraphId="e499f" Type="GeneProduct" GroupRef="e26da">
+    <BiopaxRef>ca3</BiopaxRef>
+    <Graphics CenterX="277.0" CenterY="633.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="WormBase" ID="R151.9" />
+  </DataNode>
+  <DataNode TextLabel="PFD-2" GraphId="bf527" Type="GeneProduct" GroupRef="e26da">
+    <BiopaxRef>ef0</BiopaxRef>
+    <Graphics CenterX="277.0" CenterY="714.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="WormBase" ID="H20J04.5" />
+  </DataNode>
+  <DataNode TextLabel="NUD-1" GraphId="bae7c" Type="GeneProduct" GroupRef="e26da">
+    <BiopaxRef>bba</BiopaxRef>
+    <Graphics CenterX="456.0" CenterY="635.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="WormBase" ID="F53A2.4" />
+  </DataNode>
+  <DataNode TextLabel="PAR-5" GraphId="ff470" Type="GeneProduct" GroupRef="e26da">
+    <BiopaxRef>ef9</BiopaxRef>
+    <Graphics CenterX="277.0" CenterY="687.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="WormBase" ID="M117.2" />
+  </DataNode>
+  <DataNode TextLabel="MEL-28" GraphId="fd98c" Type="GeneProduct" GroupRef="e26da">
+    <BiopaxRef>ca3</BiopaxRef>
+    <Graphics CenterX="456.0" CenterY="608.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="WormBase" ID="C38D4.3" />
+  </DataNode>
+  <DataNode TextLabel="LIS-1" GraphId="d512b" Type="GeneProduct" GroupRef="e26da">
+    <BiopaxRef>ca3</BiopaxRef>
+    <BiopaxRef>bba</BiopaxRef>
+    <BiopaxRef>a1a</BiopaxRef>
+    <Graphics CenterX="277.0" CenterY="550.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="WormBase" ID="T03F6.5" />
+  </DataNode>
+  <DataNode TextLabel="LRG-1" GraphId="d0f0d" Type="GeneProduct" GroupRef="e26da">
+    <BiopaxRef>ca3</BiopaxRef>
+    <Graphics CenterX="277.0" CenterY="578.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="WormBase" ID="F55H2.4" />
+  </DataNode>
+  <DataNode TextLabel="MBK-2" GraphId="ff0c3" Type="GeneProduct" GroupRef="e26da">
+    <BiopaxRef>ca3</BiopaxRef>
+    <BiopaxRef>ef0</BiopaxRef>
+    <BiopaxRef>fee</BiopaxRef>
+    <Graphics CenterX="277.0" CenterY="606.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="WormBase" ID="F49E11.1" />
+  </DataNode>
+  <DataNode TextLabel="PUF-3" GraphId="f94a6" Type="GeneProduct" GroupRef="e26da">
+    <BiopaxRef>b12</BiopaxRef>
+    <Graphics CenterX="367.0" CenterY="376.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="WormBase" ID="Y45F10A.2" />
+  </DataNode>
+  <DataNode TextLabel="SPD-5" GraphId="e4ec3" Type="GeneProduct" GroupRef="e26da">
+    <BiopaxRef>ca3</BiopaxRef>
+    <BiopaxRef>cf2</BiopaxRef>
+    <Graphics CenterX="367.0" CenterY="432.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="WormBase" ID="F56A3.4" />
+  </DataNode>
+  <DataNode TextLabel="RBX-1" GraphId="e15aa" Type="GeneProduct" GroupRef="e26da">
+    <BiopaxRef>ca3</BiopaxRef>
+    <Graphics CenterX="367.0" CenterY="404.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="WormBase" ID="ZK287.5" />
+  </DataNode>
+  <DataNode TextLabel="T13E8.2" GraphId="a2b36" Type="GeneProduct" GroupRef="e26da">
+    <BiopaxRef>fee</BiopaxRef>
+    <Graphics CenterX="367.0" CenterY="460.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="WormBase" ID="T13E8.2" />
+  </DataNode>
+  <DataNode TextLabel="T16G12.1" GraphId="c1fd5" Type="GeneProduct" GroupRef="e26da">
+    <BiopaxRef>ca3</BiopaxRef>
+    <Graphics CenterX="367.0" CenterY="522.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="WormBase" ID="T16G12.1" />
+  </DataNode>
+  <DataNode TextLabel="T13E8.3" GraphId="a2c55" Type="GeneProduct" GroupRef="e26da">
+    <BiopaxRef>fee</BiopaxRef>
+    <Graphics CenterX="367.0" CenterY="492.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="WormBase" ID="T13E8.3" />
+  </DataNode>
+  <DataNode TextLabel="TBA-1" GraphId="a3dba" Type="GeneProduct" GroupRef="e26da">
+    <BiopaxRef>ca3</BiopaxRef>
+    <Graphics CenterX="367.0" CenterY="633.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="WormBase" ID="F26E4.8" />
+  </DataNode>
+  <DataNode TextLabel="T26A5.8" GraphId="ef1f2" Type="GeneProduct" GroupRef="e26da">
+    <BiopaxRef>ca3</BiopaxRef>
+    <Graphics CenterX="367.0" CenterY="550.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="WormBase" ID="T26A5.8" />
+  </DataNode>
+  <DataNode TextLabel="TAC-1" GraphId="bbb81" Type="GeneProduct" GroupRef="e26da">
+    <BiopaxRef>ca3</BiopaxRef>
+    <BiopaxRef>ef0</BiopaxRef>
+    <BiopaxRef>a8e</BiopaxRef>
+    <Graphics CenterX="367.0" CenterY="578.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="WormBase" ID="Y54E2A.3" />
+  </DataNode>
+  <DataNode TextLabel="TAG-170" GraphId="d8a63" Type="GeneProduct" GroupRef="e26da">
+    <BiopaxRef>ca3</BiopaxRef>
+    <BiopaxRef>f9c</BiopaxRef>
+    <Graphics CenterX="367.0" CenterY="606.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="WormBase" ID="C05D11.3" />
+  </DataNode>
+  <DataNode TextLabel="TBB-1" GraphId="a7577" Type="GeneProduct" GroupRef="e26da">
+    <BiopaxRef>ca3</BiopaxRef>
+    <Graphics CenterX="367.0" CenterY="714.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="WormBase" ID="K01G5.7" />
+  </DataNode>
+  <DataNode TextLabel="TBB-2" GraphId="ef25e" Type="GeneProduct" GroupRef="e26da">
+    <BiopaxRef>ca3</BiopaxRef>
+    <Graphics CenterX="456.0" CenterY="580.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="WormBase" ID="C36E8.5" />
+  </DataNode>
+  <DataNode TextLabel="TBA-4" GraphId="b478d" Type="GeneProduct" GroupRef="e26da">
+    <BiopaxRef>ca3</BiopaxRef>
+    <Graphics CenterX="367.0" CenterY="687.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="WormBase" ID="F44F4.11" />
+  </DataNode>
+  <DataNode TextLabel="TBA-2" GraphId="d8050" Type="GeneProduct" GroupRef="e26da">
+    <BiopaxRef>ca3</BiopaxRef>
+    <Graphics CenterX="368.0" CenterY="661.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="WormBase" ID="C47B2.3" />
+  </DataNode>
+  <DataNode TextLabel="UNC-37" GraphId="ff760" Type="GeneProduct" GroupRef="e26da">
+    <BiopaxRef>ca3</BiopaxRef>
+    <Graphics CenterX="456.0" CenterY="375.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="WormBase" ID="W02D3.9" />
+  </DataNode>
+  <DataNode TextLabel="Y19D2B.1" GraphId="af4ac" Type="GeneProduct" GroupRef="e26da">
+    <BiopaxRef>ca3</BiopaxRef>
+    <Graphics CenterX="456.0" CenterY="406.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="WormBase" ID="Y19D2B.1" />
+  </DataNode>
+  <DataNode TextLabel="Y47D3A.29" GraphId="c0d1f" Type="GeneProduct" GroupRef="e26da">
+    <BiopaxRef>ca3</BiopaxRef>
+    <Graphics CenterX="456.0" CenterY="434.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="WormBase" ID="Y47D3A.29" />
+  </DataNode>
+  <DataNode TextLabel="Y71F9AL.14" GraphId="a972b" Type="GeneProduct" GroupRef="e26da">
+    <BiopaxRef>ca3</BiopaxRef>
+    <Graphics CenterX="456.0" CenterY="462.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="WormBase" ID="Y71F9AL.14" />
+  </DataNode>
+  <DataNode TextLabel="ZYG-12" GraphId="e6fed" Type="GeneProduct" GroupRef="e26da">
+    <BiopaxRef>db7</BiopaxRef>
+    <Graphics CenterX="456.0" CenterY="524.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="WormBase" ID="ZK546.1" />
+  </DataNode>
+  <DataNode TextLabel="ZYG-9" GraphId="e130f" Type="GeneProduct" GroupRef="e26da">
+    <BiopaxRef>ca3</BiopaxRef>
+    <Graphics CenterX="456.0" CenterY="552.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="WormBase" ID="F22B5.7" />
+  </DataNode>
+  <DataNode TextLabel="PLK-2" GraphId="c193a" Type="GeneProduct" GroupRef="f580a">
+    <Comment>GO:0000003
+GO:0000003
+GO:0007077
+GO:0000910
+GO:0009792
+GO:0008340
+GO:0051301
+GO:0040035
+GO:0040038
+GO:0051726
+GO:0002119
+GO:0045132</Comment>
+    <BiopaxRef>ab9</BiopaxRef>
+    <Graphics CenterX="611.9999959309896" CenterY="214.98333333333332" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="WormBase" ID="C14B9.4" />
+  </DataNode>
+  <DataNode TextLabel="DNC-1" GraphId="cb388" Type="GeneProduct" GroupRef="e26da">
+    <BiopaxRef>ca3</BiopaxRef>
+    <BiopaxRef>a83</BiopaxRef>
+    <Graphics CenterX="456.0" CenterY="493.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="WormBase" ID="ZK593.5" />
+  </DataNode>
+  <DataNode TextLabel="PFD-3" GraphId="c0b11" Type="GeneProduct" GroupRef="e26da">
+    <BiopaxRef>cb0</BiopaxRef>
+    <Graphics CenterX="456.0" CenterY="661.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="WormBase" ID="T06G6.9" />
+  </DataNode>
+  <DataNode TextLabel="DNC-1" GraphId="b2fa5" Type="GeneProduct" GroupRef="fe129">
+    <BiopaxRef>a83</BiopaxRef>
+    <Graphics CenterX="770.0" CenterY="215.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="WormBase" ID="ZK593.5" />
+  </DataNode>
+  <DataNode TextLabel="NUD-1" GraphId="c95a3" Type="GeneProduct" GroupRef="fe129">
+    <BiopaxRef>bba</BiopaxRef>
+    <Graphics CenterX="770.0" CenterY="271.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="" ID="F53A2.4" />
+  </DataNode>
+  <DataNode TextLabel="IMA-2" GraphId="b6965" Type="GeneProduct" GroupRef="cd01c">
+    <Comment>GO:0007084</Comment>
+    <BiopaxRef>faf</BiopaxRef>
+    <Graphics CenterX="927.0" CenterY="215.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="WormBase" ID="F26B1.3" />
+  </DataNode>
+  <DataNode TextLabel="DNC-2" GraphId="f4f54" Type="GeneProduct" GroupRef="fe129">
+    <BiopaxRef>a83</BiopaxRef>
+    <Graphics CenterX="770.0" CenterY="243.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="WormBase" ID="C28H8.12" />
+  </DataNode>
+  <DataNode TextLabel="LET-92" GraphId="ddcd3" Type="GeneProduct" GroupRef="e8b03">
+    <BiopaxRef>ad1</BiopaxRef>
+    <Graphics CenterX="73.0" CenterY="444.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="WormBase" ID="F38H4.9" />
+  </DataNode>
+  <DataNode TextLabel="SPD-2" GraphId="f7fb7" Type="GeneProduct" GroupRef="cc716">
+    <Graphics CenterX="463.0" CenterY="211.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="WormBase" ID="F32H2.3" />
+  </DataNode>
+  <DataNode TextLabel="SPD-5" GraphId="a334d" Type="GeneProduct" GroupRef="cc716">
+    <Graphics CenterX="463.0" CenterY="239.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="WormBase" ID="F56A3.4" />
+  </DataNode>
+  <DataNode TextLabel="AIR-1" GraphId="aa229" Type="GeneProduct" GroupRef="cc716">
+    <Graphics CenterX="463.0" CenterY="268.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="WormBase" ID="K07C11.2" />
+  </DataNode>
+  <DataNode TextLabel="Ce-emerin/EMR-1" GraphId="cd71d" Type="GeneProduct" GroupRef="dfbe2">
+    <BiopaxRef>cf7</BiopaxRef>
+    <Graphics CenterX="310.9999959309896" CenterY="910.9999959309896" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="WormBase" ID="M01D7.6" />
+  </DataNode>
+  <DataNode TextLabel="CeLamin/LMN-1" GraphId="fb969" Type="GeneProduct" GroupRef="dfbe2">
+    <BiopaxRef>cf7</BiopaxRef>
+    <Graphics CenterX="310.9999959309896" CenterY="886.9999959309896" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="WormBase" ID="DY3.2" />
+  </DataNode>
+  <DataNode TextLabel="Ce-BAF-1" GraphId="bfa97" Type="GeneProduct" GroupRef="dfbe2">
+    <BiopaxRef>cf7</BiopaxRef>
+    <Graphics CenterX="310.9999959309896" CenterY="958.9999959309896" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="WormBase" ID="B0464.7" />
+  </DataNode>
+  <DataNode TextLabel="Ce-MAN1/LEM-2" GraphId="e3cd5" Type="GeneProduct" GroupRef="dfbe2">
+    <BiopaxRef>cf7</BiopaxRef>
+    <Graphics CenterX="310.9999959309896" CenterY="934.9999959309896" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="WormBase" ID="W01G7.5" />
+  </DataNode>
+  <DataNode TextLabel="ANC-1" GraphId="a335d" Type="GeneProduct" GroupRef="dfbe2">
+    <BiopaxRef>cf7</BiopaxRef>
+    <Graphics CenterX="311.9999959309896" CenterY="1078.9999959309896" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="WormBase" ID="ZK973.6" />
+  </DataNode>
+  <DataNode TextLabel="Matefin/SUN-1" GraphId="bd3e5" Type="GeneProduct" GroupRef="dfbe2">
+    <BiopaxRef>cf7</BiopaxRef>
+    <Graphics CenterX="311.9999959309896" CenterY="1006.9999959309896" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="WormBase" ID="F57B1.2" />
+  </DataNode>
+  <DataNode TextLabel="UNC-83" GraphId="b2e0b" Type="GeneProduct" GroupRef="dfbe2">
+    <BiopaxRef>cf7</BiopaxRef>
+    <Graphics CenterX="311.9999959309896" CenterY="1030.9999959309896" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="WormBase" ID="W01A11.3" />
+  </DataNode>
+  <DataNode TextLabel="UNC-84" GraphId="f4d07" Type="GeneProduct" GroupRef="dfbe2">
+    <BiopaxRef>cf7</BiopaxRef>
+    <Graphics CenterX="311.9999959309896" CenterY="1054.9999959309896" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="WormBase" ID="F54B11.3" />
+  </DataNode>
+  <DataNode TextLabel="SAS-4" GraphId="f04c4" Type="GeneProduct">
+    <BiopaxRef>cf7</BiopaxRef>
+    <BiopaxRef>f77</BiopaxRef>
+    <Graphics CenterX="426.9999959309896" CenterY="1093.9999959309896" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="WormBase" ID="F10E9.8" />
+  </DataNode>
+  <DataNode TextLabel="ZYG-12" GraphId="be7f9" Type="GeneProduct" GroupRef="dfbe2">
+    <BiopaxRef>cf7</BiopaxRef>
+    <Graphics CenterX="310.9999959309896" CenterY="982.9999959309896" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="WormBase" ID="ZK546.1" />
+  </DataNode>
+  <DataNode TextLabel="ZYG-1" GraphId="a27e3" Type="GeneProduct">
+    <BiopaxRef>cf7</BiopaxRef>
+    <BiopaxRef>f77</BiopaxRef>
+    <BiopaxRef>ef3</BiopaxRef>
+    <Graphics CenterX="426.9999959309896" CenterY="1189.9999959309896" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="WormBase" ID="F59E12.2" />
+  </DataNode>
+  <DataNode TextLabel="SAS-5" GraphId="e815d" Type="GeneProduct">
+    <BiopaxRef>cf7</BiopaxRef>
+    <BiopaxRef>f77</BiopaxRef>
+    <Graphics CenterX="426.9999959309896" CenterY="1117.9999959309896" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="WormBase" ID="F35B12.5" />
+  </DataNode>
+  <DataNode TextLabel="SAS-6" GraphId="d6a85" Type="GeneProduct">
+    <BiopaxRef>cf7</BiopaxRef>
+    <BiopaxRef>f6f</BiopaxRef>
+    <Graphics CenterX="426.9999959309896" CenterY="1141.9999959309896" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="WormBase" ID="Y45F10D.9" />
+  </DataNode>
+  <DataNode TextLabel="AIR-1" GraphId="c42e6" Type="GeneProduct">
+    <BiopaxRef>cf7</BiopaxRef>
+    <BiopaxRef>e53</BiopaxRef>
+    <Graphics CenterX="426.9999959309896" CenterY="906.9999959309896" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="WormBase" ID="K07C11.2" />
+  </DataNode>
+  <DataNode TextLabel="SPD-5" GraphId="ff37f" Type="GeneProduct">
+    <BiopaxRef>cf7</BiopaxRef>
+    <Graphics CenterX="426.9999959309896" CenterY="882.9999959309896" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="WormBase" ID="F56A3.4" />
+  </DataNode>
+  <DataNode TextLabel="SPD-2" GraphId="e9de0" Type="GeneProduct">
+    <BiopaxRef>cf7</BiopaxRef>
+    <BiopaxRef>ef3</BiopaxRef>
+    <BiopaxRef>ce4</BiopaxRef>
+    <BiopaxRef>ec3</BiopaxRef>
+    <BiopaxRef>a98</BiopaxRef>
+    <Graphics CenterX="426.9999959309896" CenterY="1165.9999959309896" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="WormBase" ID="F32H2.3" />
+  </DataNode>
+  <DataNode TextLabel="TAC-1" GraphId="a8d60" Type="GeneProduct">
+    <BiopaxRef>cf7</BiopaxRef>
+    <BiopaxRef>b60</BiopaxRef>
+    <BiopaxRef>a8e</BiopaxRef>
+    <Graphics CenterX="426.9999959309896" CenterY="1026.9999959309896" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="WormBase" ID="Y54E2A.3" />
+  </DataNode>
+  <DataNode TextLabel="CeGrip-2/GIP-2" GraphId="fdb4f" Type="GeneProduct">
+    <BiopaxRef>cf7</BiopaxRef>
+    <Graphics CenterX="426.9999959309896" CenterY="978.9999959309896" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="WormBase" ID="C45G3.3" />
+  </DataNode>
+  <DataNode TextLabel="CeGrip-1/GIP-1" GraphId="f2373" Type="GeneProduct">
+    <BiopaxRef>cf7</BiopaxRef>
+    <Graphics CenterX="426.9999959309896" CenterY="954.9999959309896" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="WormBase" ID="H04J21.3" />
+  </DataNode>
+  <DataNode TextLabel="ZYG-9" GraphId="cb128" Type="GeneProduct">
+    <BiopaxRef>cf7</BiopaxRef>
+    <BiopaxRef>b64</BiopaxRef>
+    <Graphics CenterX="426.9999959309896" CenterY="1002.9999959309896" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="WormBase" ID="F22B5.7" />
+  </DataNode>
+  <DataNode TextLabel="g-tubulin/TBG-1" GraphId="cde97" Type="GeneProduct">
+    <BiopaxRef>cf7</BiopaxRef>
+    <BiopaxRef>d9e</BiopaxRef>
+    <Graphics CenterX="426.9999959309896" CenterY="930.9999959309896" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="WormBase" ID="F58A4.8" />
+  </DataNode>
+  <DataNode TextLabel="TIM-1" GraphId="c0021" Type="GeneProduct" GroupRef="e03fa">
+    <BiopaxRef>cf7</BiopaxRef>
+    <BiopaxRef>fab</BiopaxRef>
+    <Graphics CenterX="563.0" CenterY="1154.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="WormBase" ID="Y75B8A.22" />
+  </DataNode>
+  <DataNode TextLabel="SCC-3" GraphId="f27a2" Type="GeneProduct" GroupRef="c1ebc">
+    <BiopaxRef>cf7</BiopaxRef>
+    <BiopaxRef>fab</BiopaxRef>
+    <Graphics CenterX="563.0" CenterY="931.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="WormBase" ID="F18E2.3" />
+  </DataNode>
+  <DataNode TextLabel="SMC-3" GraphId="b166a" Type="GeneProduct" GroupRef="c1ebc">
+    <BiopaxRef>cf7</BiopaxRef>
+    <BiopaxRef>e00</BiopaxRef>
+    <Graphics CenterX="563.0" CenterY="1081.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="WormBase" ID="Y47D3A.26" />
+  </DataNode>
+  <DataNode TextLabel="SMC-4" GraphId="f5feb" Type="GeneProduct" GroupRef="c1ebc">
+    <BiopaxRef>cf7</BiopaxRef>
+    <BiopaxRef>faa</BiopaxRef>
+    <Graphics CenterX="563.0" CenterY="884.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="WormBase" ID="F35G12.8" />
+  </DataNode>
+  <DataNode TextLabel="SCC-1" GraphId="a0b83" Type="GeneProduct" GroupRef="bbc99">
+    <BiopaxRef>cf7</BiopaxRef>
+    <BiopaxRef>fab</BiopaxRef>
+    <Graphics CenterX="564.0" CenterY="1219.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="WormBase" ID="F10G7.4" />
+  </DataNode>
+  <DataNode TextLabel="ICP-1/CeINCENP" GraphId="dc5e6" Type="GeneProduct">
+    <BiopaxRef>cf7</BiopaxRef>
+    <Graphics CenterX="564.0" CenterY="1339.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="WormBase" ID="Y39G10AR.13" />
+  </DataNode>
+  <DataNode TextLabel="MIX-1" GraphId="ae8df" Type="GeneProduct" GroupRef="c1ebc">
+    <BiopaxRef>cf7</BiopaxRef>
+    <BiopaxRef>faa</BiopaxRef>
+    <BiopaxRef>e00</BiopaxRef>
+    <Graphics CenterX="563.0" CenterY="956.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="WormBase" ID="M106.1" />
+  </DataNode>
+  <DataNode TextLabel="BIR-1" GraphId="f203e" Type="GeneProduct">
+    <BiopaxRef>cf7</BiopaxRef>
+    <Graphics CenterX="563.0" CenterY="1391.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="WormBase" ID="T27F2.3" />
+  </DataNode>
+  <DataNode TextLabel="HCP-6" GraphId="d9e2e" Type="GeneProduct" GroupRef="c1ebc">
+    <BiopaxRef>cf7</BiopaxRef>
+    <BiopaxRef>e00</BiopaxRef>
+    <BiopaxRef>f15</BiopaxRef>
+    <Graphics CenterX="563.0" CenterY="980.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="WormBase" ID="Y110A7A.1" />
+  </DataNode>
+  <DataNode TextLabel="KLP-19" GraphId="f4b6b" Type="GeneProduct">
+    <BiopaxRef>cf7</BiopaxRef>
+    <Graphics CenterX="564.0" CenterY="1441.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="WormBase" ID="Y43F4B.6" />
+  </DataNode>
+  <DataNode TextLabel="KLE-2" GraphId="e8924" Type="GeneProduct">
+    <BiopaxRef>cf7</BiopaxRef>
+    <Graphics CenterX="564.0" CenterY="1283.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="WormBase" ID="C29E4.2" />
+  </DataNode>
+  <DataNode TextLabel="CeCENP-A" GraphId="df5e5" Type="GeneProduct" GroupRef="d31cd">
+    <BiopaxRef>cf7</BiopaxRef>
+    <Graphics CenterX="719.0" CenterY="853.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="WormBase" ID="F58A4.3" />
+  </DataNode>
+  <DataNode TextLabel="AIR-2" GraphId="e04d7" Type="GeneProduct" GroupRef="c1ebc">
+    <BiopaxRef>cf7</BiopaxRef>
+    <BiopaxRef>a64</BiopaxRef>
+    <Graphics CenterX="563.0" CenterY="908.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="WormBase" ID="B0207.4" />
+  </DataNode>
+  <DataNode TextLabel="CAP-G" GraphId="e2396" Type="GeneProduct">
+    <BiopaxRef>cf7</BiopaxRef>
+    <Graphics CenterX="564.0" CenterY="1259.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="WormBase" ID="F55C5.4" />
+  </DataNode>
+  <DataNode TextLabel="CeCENP-C" GraphId="bed29" Type="GeneProduct" GroupRef="d31cd">
+    <BiopaxRef>cf7</BiopaxRef>
+    <Graphics CenterX="719.0" CenterY="877.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="WormBase" ID="T03F1.9" />
+  </DataNode>
+  <DataNode TextLabel="KNL-3" GraphId="c02d8" Type="GeneProduct" GroupRef="d31cd">
+    <BiopaxRef>cf7</BiopaxRef>
+    <Graphics CenterX="719.0" CenterY="901.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="WormBase" ID="T10B5.6" />
+  </DataNode>
+  <DataNode TextLabel="KNL-1" GraphId="ffefc" Type="GeneProduct" GroupRef="d31cd">
+    <BiopaxRef>cf7</BiopaxRef>
+    <Graphics CenterX="719.0" CenterY="925.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="WormBase" ID="C02F5.1" />
+  </DataNode>
+  <DataNode TextLabel="KBP-2" GraphId="e782f" Type="GeneProduct" GroupRef="d31cd">
+    <BiopaxRef>cf7</BiopaxRef>
+    <Graphics CenterX="719.0" CenterY="997.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="WormBase" ID="F26F4.13" />
+  </DataNode>
+  <DataNode TextLabel="KBP-1" GraphId="d94f5" Type="GeneProduct" GroupRef="d31cd">
+    <BiopaxRef>cf7</BiopaxRef>
+    <Graphics CenterX="719.0" CenterY="973.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="WormBase" ID="R13F6.1" />
+  </DataNode>
+  <DataNode TextLabel="MIS-12" GraphId="c1c9a" Type="GeneProduct" GroupRef="d31cd">
+    <BiopaxRef>cf7</BiopaxRef>
+    <Graphics CenterX="719.0" CenterY="949.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="WormBase" ID="Y47G6A.24" />
+  </DataNode>
+  <DataNode TextLabel="NDC-80" GraphId="b735d" Type="GeneProduct" GroupRef="d31cd">
+    <BiopaxRef>c8e</BiopaxRef>
+    <Graphics CenterX="719.0" CenterY="1021.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="WormBase" ID="W01B6.9" />
+  </DataNode>
+  <DataNode TextLabel="Spc25/KBP-3" GraphId="daa5b" Type="GeneProduct" GroupRef="d31cd">
+    <BiopaxRef>cf7</BiopaxRef>
+    <Graphics CenterX="719.0" CenterY="1069.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="WormBase" ID="F26H11.1" />
+  </DataNode>
+  <DataNode TextLabel="nuf-2/HIM-10" GraphId="ea4cc" Type="GeneProduct" GroupRef="d31cd">
+    <BiopaxRef>cf7</BiopaxRef>
+    <Graphics CenterX="719.0" CenterY="1045.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="WormBase" ID="R12B2.4" />
+  </DataNode>
+  <DataNode TextLabel="KBP-5" GraphId="da6fd" Type="GeneProduct" GroupRef="d31cd">
+    <BiopaxRef>cf7</BiopaxRef>
+    <Graphics CenterX="719.0" CenterY="1093.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="WormBase" ID="C34B2.2" />
+  </DataNode>
+  <DataNode TextLabel="HCP-1" GraphId="e9d70" Type="GeneProduct">
+    <BiopaxRef>a45</BiopaxRef>
+    <BiopaxRef>d37</BiopaxRef>
+    <BiopaxRef>cf7</BiopaxRef>
+    <Graphics CenterX="769.5" CenterY="1202.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="WormBase" ID="ZK1055.1" />
+  </DataNode>
+  <DataNode TextLabel="CLASP" GraphId="b4ee3" Type="GeneProduct" GroupRef="d31cd">
+    <BiopaxRef>cf7</BiopaxRef>
+    <Graphics CenterX="812.0" CenterY="853.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="WormBase" ID="R107.6" />
+  </DataNode>
+  <DataNode TextLabel="KBP-1" GraphId="bfe9d" Type="GeneProduct" GroupRef="d31cd">
+    <BiopaxRef>cf7</BiopaxRef>
+    <Graphics CenterX="812.0" CenterY="1093.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="WormBase" ID="Y92C3B.1" />
+  </DataNode>
+  <DataNode TextLabel="LIS-1" GraphId="b9279" Type="GeneProduct" GroupRef="d31cd">
+    <BiopaxRef>cf7</BiopaxRef>
+    <Graphics CenterX="812.0" CenterY="901.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="WormBase" ID="T03F6.5" />
+  </DataNode>
+  <DataNode TextLabel="CeMCAK" GraphId="d2ef4" Type="GeneProduct" GroupRef="d31cd">
+    <BiopaxRef>cf7</BiopaxRef>
+    <Graphics CenterX="812.0" CenterY="877.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="WormBase" ID="K11D9.1" />
+  </DataNode>
+  <DataNode TextLabel="CZW-1" GraphId="eb260" Type="GeneProduct" GroupRef="d31cd">
+    <BiopaxRef>cf7</BiopaxRef>
+    <Graphics CenterX="812.0" CenterY="925.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="WormBase" ID="F20D12.4" />
+  </DataNode>
+  <DataNode TextLabel="BUB-1" GraphId="e9ee3" Type="GeneProduct" GroupRef="d31cd">
+    <BiopaxRef>cf7</BiopaxRef>
+    <Graphics CenterX="812.0" CenterY="973.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="WormBase" ID="R06C7.8" />
+  </DataNode>
+  <DataNode TextLabel="ROD-1" GraphId="cce00" Type="GeneProduct" GroupRef="d31cd">
+    <BiopaxRef>cf7</BiopaxRef>
+    <Graphics CenterX="812.0" CenterY="949.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="WormBase" ID="F55G1.4" />
+  </DataNode>
+  <DataNode TextLabel="BUB-3" GraphId="d8a35" Type="GeneProduct" GroupRef="d31cd">
+    <BiopaxRef>cf7</BiopaxRef>
+    <Graphics CenterX="812.0" CenterY="997.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="WormBase" ID="Y54G9A.6" />
+  </DataNode>
+  <DataNode TextLabel="MFDF-1" GraphId="b32a0" Type="GeneProduct" GroupRef="d31cd">
+    <BiopaxRef>cf7</BiopaxRef>
+    <Graphics CenterX="812.0" CenterY="1021.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="WormBase" ID="C50F4.11" />
+  </DataNode>
+  <DataNode TextLabel="MDF-2" GraphId="d3264" Type="GeneProduct" GroupRef="d31cd">
+    <BiopaxRef>cf7</BiopaxRef>
+    <Graphics CenterX="812.0" CenterY="1045.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="WormBase" ID="Y69A2AR.30" />
+  </DataNode>
+  <DataNode TextLabel="SAN-1" GraphId="b0b1f" Type="GeneProduct" GroupRef="d31cd">
+    <BiopaxRef>cf7</BiopaxRef>
+    <Graphics CenterX="812.0" CenterY="1069.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="WormBase" ID="ZC328.4" />
+  </DataNode>
+  <DataNode TextLabel="HCP-2" GraphId="e8517" Type="GeneProduct" GroupRef="d31cd">
+    <BiopaxRef>cf7</BiopaxRef>
+    <Graphics CenterX="719.0" CenterY="1117.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="WormBase" ID="T06E4.1" />
+  </DataNode>
+  <DataNode TextLabel="KNL-2" GraphId="f74fc" Type="GeneProduct">
+    <BiopaxRef>e38</BiopaxRef>
+    <Graphics CenterX="770.5" CenterY="1286.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="WormBase" ID="K06A5.4" />
+  </DataNode>
+  <DataNode TextLabel="NMY-2" GraphId="f0b69" Type="GeneProduct" GroupRef="a53ab">
+    <BiopaxRef>cf7</BiopaxRef>
+    <BiopaxRef>c1f</BiopaxRef>
+    <Graphics CenterX="961.0" CenterY="1098.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="WormBase" ID="F20G4.3" />
+  </DataNode>
+  <DataNode TextLabel="RHO-1" GraphId="dafac" Type="GeneProduct" GroupRef="a53ab">
+    <BiopaxRef>cf7</BiopaxRef>
+    <BiopaxRef>ac0</BiopaxRef>
+    <Graphics CenterX="961.0" CenterY="1122.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="WormBase" ID="Y51H4A.3" />
+  </DataNode>
+  <DataNode TextLabel="LET-21/Ect-2" GraphId="e78f8" Type="GeneProduct" GroupRef="a53ab">
+    <BiopaxRef>cf7</BiopaxRef>
+    <Graphics CenterX="915.0" CenterY="927.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="WormBase" ID="T19E10.1" />
+  </DataNode>
+  <DataNode TextLabel="PFN-1" GraphId="ee1bb" Type="GeneProduct" GroupRef="a53ab">
+    <BiopaxRef>cf7</BiopaxRef>
+    <Graphics CenterX="915.0" CenterY="951.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="WormBase" ID="Y18D10A.20" />
+  </DataNode>
+  <DataNode TextLabel="CYK-1" GraphId="a62c7" Type="GeneProduct" GroupRef="a53ab">
+    <BiopaxRef>cf7</BiopaxRef>
+    <BiopaxRef>c1f</BiopaxRef>
+    <Graphics CenterX="961.0" CenterY="1050.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="WormBase" ID="F11H8.4" />
+  </DataNode>
+  <DataNode TextLabel="ANI-1" GraphId="c3be3" Type="GeneProduct" GroupRef="a53ab">
+    <BiopaxRef>cf7</BiopaxRef>
+    <BiopaxRef>c1f</BiopaxRef>
+    <Graphics CenterX="961.0" CenterY="1074.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="WormBase" ID="Y49E10.19" />
+  </DataNode>
+  <DataNode TextLabel="UNC-61" GraphId="f5bc0" Type="GeneProduct" GroupRef="a53ab">
+    <BiopaxRef>cf7</BiopaxRef>
+    <BiopaxRef>ac0</BiopaxRef>
+    <Graphics CenterX="961.0" CenterY="1170.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="WormBase" ID="Y50E8A.4" />
+  </DataNode>
+  <DataNode TextLabel="UNC-59" GraphId="dcb70" Type="GeneProduct" GroupRef="a53ab">
+    <BiopaxRef>cf7</BiopaxRef>
+    <BiopaxRef>ac0</BiopaxRef>
+    <Graphics CenterX="961.0" CenterY="1146.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="WormBase" ID="W09C5.2" />
+  </DataNode>
+  <DataNode TextLabel="MLC-4" GraphId="f83b2" Type="GeneProduct" GroupRef="a53ab">
+    <BiopaxRef>cf7</BiopaxRef>
+    <Graphics CenterX="915.0" CenterY="855.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="WormBase" ID="C56G7.1" />
+  </DataNode>
+  <DataNode TextLabel="LET-502" GraphId="ef06a" Type="GeneProduct" GroupRef="a53ab">
+    <BiopaxRef>cf7</BiopaxRef>
+    <Graphics CenterX="915.0" CenterY="879.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="WormBase" ID="C10H11.9" />
+  </DataNode>
+  <DataNode TextLabel="ZEN-4" GraphId="f0176" Type="GeneProduct" GroupRef="a53ab">
+    <BiopaxRef>cf7</BiopaxRef>
+    <BiopaxRef>ac0</BiopaxRef>
+    <Graphics CenterX="961.0" CenterY="1194.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="WormBase" ID="M03D4.1" />
+  </DataNode>
+  <DataNode TextLabel="UNC-60A" GraphId="a5a60" Type="GeneProduct" GroupRef="a53ab">
+    <BiopaxRef>cf7</BiopaxRef>
+    <Graphics CenterX="915.0" CenterY="975.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="WormBase" ID="C38C3.5" />
+  </DataNode>
+  <DataNode TextLabel="BIR-1" GraphId="c3a16" Type="GeneProduct" GroupRef="a53ab">
+    <BiopaxRef>cf7</BiopaxRef>
+    <Graphics CenterX="1005.0" CenterY="927.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="WormBase" ID="T27F2.3" />
+  </DataNode>
+  <DataNode TextLabel="ICP-1/CeINCEP" GraphId="b5374" Type="GeneProduct" GroupRef="a53ab">
+    <BiopaxRef>cf7</BiopaxRef>
+    <Graphics CenterX="1005.0" CenterY="903.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="WormBase" ID="Y39G10AR.13" />
+  </DataNode>
+  <DataNode TextLabel="AIR-2" GraphId="b2daf" Type="GeneProduct" GroupRef="a53ab">
+    <BiopaxRef>cf7</BiopaxRef>
+    <Graphics CenterX="1005.0" CenterY="879.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="WormBase" ID="B0207.4" />
+  </DataNode>
+  <DataNode TextLabel="CYK-4" GraphId="e9920" Type="GeneProduct" GroupRef="a53ab">
+    <BiopaxRef>cf7</BiopaxRef>
+    <Graphics CenterX="1005.0" CenterY="855.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="WormBase" ID="K08E3.6" />
+  </DataNode>
+  <DataNode TextLabel="SPD-1" GraphId="b6879" Type="GeneProduct" GroupRef="a53ab">
+    <BiopaxRef>cf7</BiopaxRef>
+    <Graphics CenterX="1005.0" CenterY="975.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="WormBase" ID="Y34D9A.4" />
+  </DataNode>
+  <DataNode TextLabel="CSC-1" GraphId="d5e53" Type="GeneProduct" GroupRef="a53ab">
+    <BiopaxRef>cf7</BiopaxRef>
+    <Graphics CenterX="1005.0" CenterY="951.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="WormBase" ID="Y48E1B.12" />
+  </DataNode>
+  <DataNode TextLabel="MEL-11" GraphId="ae004" Type="GeneProduct" GroupRef="a53ab">
+    <BiopaxRef>cf7</BiopaxRef>
+    <Graphics CenterX="915.0" CenterY="903.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="WormBase" ID="C06C3.1" />
+  </DataNode>
+  <DataNode TextLabel="HIM-1" GraphId="b37b4" Type="GeneProduct" GroupRef="c1ebc">
+    <BiopaxRef>cf7</BiopaxRef>
+    <BiopaxRef>fab</BiopaxRef>
+    <Graphics CenterX="563.0" CenterY="1058.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="WormBase" ID="F28B3.7" />
+  </DataNode>
+  <DataNode TextLabel="BIR-1" GraphId="ca894" Type="GeneProduct" GroupRef="e67ca">
+    <BiopaxRef>cf7</BiopaxRef>
+    <Graphics CenterX="772.0" CenterY="1361.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="WormBase" ID="T27F2.3" />
+  </DataNode>
+  <Interaction GraphId="ffa77">
+    <Graphics ZOrder="12288" LineStyle="Broken" LineThickness="1.0">
+      <Point X="530.0" Y="1243.0" />
+      <Point X="600.0" Y="1243.0" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <GraphicalLine>
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="162.26415094339623" Y="101.88679245283018" />
+      <Point X="1007.5471698113207" Y="101.88679245283018" ArrowHead="Arrow" />
+    </Graphics>
+  </GraphicalLine>
+  <GraphicalLine>
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="149.31650893796004" Y="352.260778128286" />
+      <Point X="495.26813880126184" Y="352.260778128286" />
+    </Graphics>
+  </GraphicalLine>
+  <GraphicalLine>
+    <Graphics ZOrder="12288" LineStyle="Broken" LineThickness="1.0">
+      <Point X="149.31650893796004" Y="351.20925341745533" />
+      <Point X="227.0" Y="198.0" GraphRef="cfff2" RelX="0.0" RelY="1.0" />
+    </Graphics>
+  </GraphicalLine>
+  <GraphicalLine>
+    <Graphics ZOrder="12288" LineStyle="Broken" LineThickness="1.0">
+      <Point X="494.21661409043116" Y="353.31230283911674" />
+      <Point X="227.0" Y="198.0" GraphRef="cfff2" RelX="0.0" RelY="1.0" />
+    </Graphics>
+  </GraphicalLine>
+  <Label TextLabel="GO:0040038&#xA;Polar body extrusion &#xA;after meiotic division" GraphId="d40a7" GroupRef="e8b03">
+    <Graphics CenterX="77.5" CenterY="249.5" Width="115.0" Height="49.0" ZOrder="28672" FillColor="ffffff" FontSize="10" Valign="Middle" />
+  </Label>
+  <Label TextLabel="GO:0007084&#xA;mitotic nuclear envelope&#xA;reassembly" GraphId="c9cc3" GroupRef="cd01c">
+    <Graphics CenterX="926.0" CenterY="181.5" Width="123.0" Height="35.0" ZOrder="28672" FillColor="ffffff" FontSize="10" Valign="Middle" />
+  </Label>
+  <Label TextLabel="GO:0005813&#xA;centrosome&#xA;proteins&#xA;" GraphId="e0d45">
+    <Graphics CenterX="427.0" CenterY="850.0" Width="80.0" Height="34.0" ZOrder="28672" FillColor="ffffff" FontSize="10" Valign="Middle" />
+  </Label>
+  <Label TextLabel="Cytokinesis&#xA;cytoskeletal proteins&#xA;" GraphId="f1bee" GroupRef="a53ab">
+    <Graphics CenterX="962.0" CenterY="814.5" Width="114.0" Height="31.0" ZOrder="28672" FillColor="ffffff" FontSize="10" Valign="Middle" ShapeType="RoundedRectangle" />
+  </Label>
+  <Label TextLabel="GO:0035046&#xA;Pronuclear migration" GraphId="cfff2">
+    <Comment>21ur-13952
+21ur-15150
+arp-1
+ben-1
+cap-2
+cul-3
+cyk-1
+dhc-1
+dlc-1
+dli-1
+dnc-1
+dnc-2
+dnc-4
+dyci-1
+dyrb-1
+F54B3.3
+gpb-1
+gpc-2
+let-754
+let-99
+lis-1
+lrg-1
+mbk-2
+mel-28
+nud-1
+par-5
+pfd-2
+pfd-3
+pfd-5
+pll-1
+puf-3
+rbx-1
+spd-5
+T13E8.2
+T13E8.3
+T16G12.1
+T26A5.8
+tac-1
+tag-170
+tba-1
+tba-2
+tba-4
+tbb-1
+tbb-2
+unc-37
+Y19D2B.1
+Y47D3A.29
+Y71F9AL.14
+zen-4
+zyg-12
+zyg-9</Comment>
+    <Graphics CenterX="227.0" CenterY="180.0" Width="98.0" Height="36.0" ZOrder="28672" FillColor="ffffff" FontSize="10" Valign="Middle" />
+  </Label>
+  <Label TextLabel="GO:0007077&#xA;mitotic nuclear envelope&#xA;disassembly" GraphId="b4481" GroupRef="f580a">
+    <Graphics CenterX="612.0" CenterY="180.5" Width="123.0" Height="35.0" ZOrder="28672" FillColor="ffffff" FontSize="10" Valign="Middle" />
+  </Label>
+  <Label TextLabel="GO:0018985&#xA;pronuclear envelope&#xA;synthesis" GraphId="aafff" GroupRef="e8b03">
+    <Graphics CenterX="73.0" CenterY="411.5" Width="110.0" Height="43.0" ZOrder="28672" FillColor="ffffff" FontSize="10" Valign="Middle" />
+  </Label>
+  <Label TextLabel="Pronuclei formation" GraphId="f7b2b" GroupRef="e8b03">
+    <Graphics CenterX="78.0" CenterY="203.5" Width="106.0" Height="25.0" ZOrder="28672" FillColor="ffffff" FontSize="10" Valign="Middle" ShapeType="RoundedRectangle" />
+  </Label>
+  <Label TextLabel="GO:0035047&#xA;centrosomal and pronuclear &#xA;rotation" GraphId="d950b" GroupRef="fe129">
+    <Graphics CenterX="771.0" CenterY="186.5" Width="150.0" Height="47.0" ZOrder="28672" FillColor="ffffff" FontSize="10" Valign="Middle" />
+  </Label>
+  <Label TextLabel="Nuclear envelope&#xA;proteins" GraphId="feeaf" GroupRef="dfbe2">
+    <Graphics CenterX="311.0" CenterY="813.25" Width="102.0" Height="27.5" ZOrder="28672" FillColor="ffffff" FontSize="10" Valign="Middle" ShapeType="RoundedRectangle" />
+  </Label>
+  <Label TextLabel="Mitotic chromosome&#xA;proteins" GraphId="b38ec" GroupRef="c1ebc">
+    <Graphics CenterX="563.0" CenterY="813.0" Width="113.5" Height="28.0" ZOrder="28672" FillColor="ffffff" FontSize="10" Valign="Middle" ShapeType="RoundedRectangle" />
+  </Label>
+  <Label TextLabel="GO:0005635&#xA;nuclear envelope&#xA;proteins" GraphId="bce46" GroupRef="dfbe2">
+    <Graphics CenterX="311.0" CenterY="853.0" Width="108.0" Height="40.0" ZOrder="28672" FillColor="ffffff" FontSize="10" Valign="Middle" />
+  </Label>
+  <Label TextLabel="Centrosome &#xA;proteins&#xA;" GraphId="e8ad4">
+    <Graphics CenterX="427.0" CenterY="813.25" Width="94.0" Height="27.5" ZOrder="28672" FillColor="ffffff" FontSize="10" Valign="Middle" ShapeType="RoundedRectangle" />
+  </Label>
+  <Label TextLabel="GO:0051297&#xA;centrosome organization" GraphId="a5959" GroupRef="cc716">
+    <Graphics CenterX="465.5" CenterY="178.0" Width="125.0" Height="30.0" ZOrder="28672" FillColor="ffffff" FontSize="10" Valign="Middle" />
+  </Label>
+  <Label TextLabel="GO:0008278&#xA;cohesin complex&#xA;proteins" GraphId="a87f7" GroupRef="c1ebc">
+    <Graphics CenterX="563.0" CenterY="1020.5" Width="95.0" Height="39.0" ZOrder="28672" FillColor="ffffff" FontSize="10" Valign="Middle" />
+  </Label>
+  <Label TextLabel="Kinetochore &#xA;proteins" GraphId="ad3a9" GroupRef="d31cd">
+    <Graphics CenterX="767.0" CenterY="813.5" Width="92.0" Height="27.0" ZOrder="28672" FillColor="ffffff" FontSize="10" Valign="Middle" ShapeType="RoundedRectangle" />
+  </Label>
+  <Label TextLabel="GO:0000777&#xA;condensed chromosome &#xA;kinetochore protein" GraphId="d2c5f">
+    <Graphics CenterX="769.5" CenterY="1165.5" Width="131.0" Height="41.0" ZOrder="28672" FillColor="ffffff" FontSize="10" Valign="Middle" />
+  </Label>
+  <Label TextLabel="GO:0000776&#xA;kinetochore" GraphId="eee52">
+    <Graphics CenterX="564.5" CenterY="1319.0" Width="137.0" Height="42.0" ZOrder="28672" FillColor="ffffff" FontSize="10" Valign="Middle" />
+  </Label>
+  <Label TextLabel="GO:0032154&#xA;cleavage furrow" GraphId="c23de" GroupRef="a53ab">
+    <Graphics CenterX="961.0" CenterY="1015.0" Width="95.0" Height="28.0" ZOrder="28672" FillColor="ffffff" FontSize="10" Valign="Middle" />
+  </Label>
+  <Label TextLabel="GO:0000793&#xA;condensed chromosome &#xA;proteins" GraphId="e0e44" GroupRef="c1ebc">
+    <Graphics CenterX="563.0" CenterY="854.5" Width="132.0" Height="43.0" ZOrder="28672" FillColor="ffffff" FontSize="10" Valign="Middle" />
+  </Label>
+  <Label TextLabel="GO:0005634&#xA;nucleus" GraphId="d2b54" GroupRef="bbc99">
+    <Graphics CenterX="563.0" CenterY="1199.5" Width="122.0" Height="41.0" ZOrder="28672" FillColor="ffffff" FontSize="10" Valign="Middle" />
+  </Label>
+  <Label TextLabel="GO:0005814&#xA;centriole" GraphId="df2eb">
+    <Graphics CenterX="427.0" CenterY="1067.5" Width="76.0" Height="29.0" ZOrder="28672" FillColor="ffffff" FontSize="10" Valign="Middle" />
+  </Label>
+  <Label TextLabel="GO:0030892&#xA;mitotic cohesin complex &#xA;proteins" GraphId="a60a1" GroupRef="e03fa">
+    <Graphics CenterX="563.0" CenterY="1125.5" Width="122.0" Height="41.0" ZOrder="28672" FillColor="ffffff" FontSize="10" Valign="Middle" />
+  </Label>
+  <Label TextLabel="GO:0005694&#xA;chromosome" GraphId="dc7b8">
+    <Graphics CenterX="564.5" CenterY="1421.996996996997" Width="137.0" Height="42.0" ZOrder="28672" FillColor="ffffff" FontSize="10" Valign="Middle" />
+  </Label>
+  <Label TextLabel="GO:0000778&#xA;condensed nuclear &#xA;chromosome kinetochore" GraphId="bbd75">
+    <Graphics CenterX="772.5" CenterY="1256.0" Width="137.0" Height="42.0" ZOrder="28672" FillColor="ffffff" FontSize="10" Valign="Middle" />
+  </Label>
+  <Label TextLabel="GO:0000793&#xA;condensed chromosome" GraphId="d5534">
+    <Graphics CenterX="566.5" CenterY="1369.994994994995" Width="137.0" Height="42.0" ZOrder="28672" FillColor="ffffff" FontSize="10" Valign="Middle" />
+  </Label>
+  <Label TextLabel="GO:0051233&#xA;spindle midzone" GraphId="aa777" GroupRef="e67ca">
+    <Graphics CenterX="772.5" CenterY="1337.0" Width="137.0" Height="42.0" ZOrder="28672" FillColor="ffffff" FontSize="10" Valign="Middle" />
+  </Label>
+  <Shape GraphId="ec04f">
+    <Graphics CenterX="86.48333333333333" CenterY="103.48333333333333" Width="111.03333333333333" Height="75.03333333333333" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="Oval" Rotation="0.0" />
+  </Shape>
+  <Shape GraphId="c9bef">
+    <Graphics CenterX="59.483333333333334" CenterY="94.0" Width="11.033333333333333" Height="8.0" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="Oval" Rotation="0.0" />
+  </Shape>
+  <Shape GraphId="c9e50">
+    <Graphics CenterX="1109.4833333333333" CenterY="105.98333333333333" Width="151.03333333333333" Height="90.03333333333333" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="Oval" Rotation="0.0" />
+  </Shape>
+  <Shape GraphId="a21f7">
+    <Graphics CenterX="1066.9833333333333" CenterY="105.0" Width="16.033333333333335" Height="14.0" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="Oval" Rotation="0.0" />
+  </Shape>
+  <Shape GraphId="c61cf">
+    <Graphics CenterX="1158.0" CenterY="107.0" Width="16.0" Height="16.0" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="Oval" Rotation="0.0" />
+  </Shape>
+  <Shape GraphId="be478">
+    <Graphics CenterX="133.98333333333332" CenterY="101.75" Width="11.033333333333333" Height="7.5" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="Oval" Rotation="0.0" />
+  </Shape>
+  <Shape GraphId="be06e">
+    <Graphics CenterX="1140.9177509613348" CenterY="104.56619730961964" Width="81.0931092151698" Height="27.836545979058148" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="Arc" Rotation="1.509706007736461" />
+  </Shape>
+  <Shape GraphId="cf6f2">
+    <Graphics CenterX="44.76715176715177" CenterY="104.03170478170478" Width="48.990646249650716" Height="14.427979069903731" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="Arc" Rotation="1.5385494443596428" />
+  </Shape>
+  <Shape GraphId="f2771">
+    <Graphics CenterX="33.233333333333334" CenterY="104.0" Width="4.533333333333333" Height="6.0" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="Oval" Rotation="0.0" />
+  </Shape>
+  <Shape GraphId="e94aa">
+    <Graphics CenterX="35.233333333333334" CenterY="97.5" Width="4.533333333333333" Height="6.0" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="Oval" Rotation="0.0" />
+  </Shape>
+  <Group GroupId="e8b03" GraphId="ccb87" Style="Group" />
+  <Group GroupId="fe129" GraphId="cb3d0" Style="Group" />
+  <Group GroupId="e26da" GraphId="a1d6f" Style="Group" />
+  <Group GroupId="a53ab" GraphId="ae96a" Style="Group" />
+  <Group GroupId="dfbe2" GraphId="cd401" Style="Group" />
+  <Group GroupId="bbc99" GraphId="d5da4" Style="Group" />
+  <Group GroupId="e03fa" GraphId="ec4da" Style="Group" />
+  <Group GroupId="e67ca" GraphId="c6d75" Style="Group" />
+  <Group GroupId="f580a" Style="Group" TextLabel="Group object" />
+  <Group GroupId="cd01c" Style="Group" TextLabel="Group object" />
+  <Group GroupId="cc716" Style="Group" TextLabel="Group object" />
+  <Group GroupId="d31cd" Style="Group" TextLabel="Group object" />
+  <Group GroupId="c1ebc" Style="Group" TextLabel="Group object" />
+  <InfoBox CenterX="0.0" CenterY="0.0" />
+  <Biopax>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="ac0">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">16580995</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Two phases of astral microtubule activity during cytokinesis in C. elegans embryos.</bp:TITLE>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Dev Cell</bp:SOURCE>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2006</bp:YEAR>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Motegi F</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Velarde NV</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Piano F</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Sugimoto A</bp:AUTHORS>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="cb0">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">11099033</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Functional genomic analysis of C. elegans chromosome I by systematic RNA interference.</bp:TITLE>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Nature</bp:SOURCE>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2000</bp:YEAR>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Fraser AG</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Kamath RS</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Zipperlen P</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Martinez-Campos M</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Sohrmann M</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Ahringer J</bp:AUTHORS>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="a98">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">15186742</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">The Caenorhabditis elegans centrosomal protein SPD-2 is required for both pericentriolar material recruitment and centriole duplication.</bp:TITLE>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Curr Biol</bp:SOURCE>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2004</bp:YEAR>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Pelletier L</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">OzlÂ N</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Hannak E</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Cowan C</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Habermann B</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Ruer M</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">MÂller-Reichert T</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Hyman AA</bp:AUTHORS>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="f6f">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">15665853</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">SAS-6 defines a protein family required for centrosome duplication in C. elegans and in human cells.</bp:TITLE>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Nat Cell Biol</bp:SOURCE>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2005</bp:YEAR>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Leidel S</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Delattre M</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Cerutti L</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Baumer K</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">GÂnczy P</bp:AUTHORS>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="cf7">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">18050484</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Cell Division</bp:TITLE>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">WormBook</bp:SOURCE>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2006</bp:YEAR>
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">18050484</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Cell Division</bp:TITLE>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">WormBook</bp:SOURCE>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2006</bp:YEAR>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Karen Oegema</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Anthony Hyman</bp:AUTHORS>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="ca3">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">15791247</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Full-genome RNAi profiling of early embryogenesis in Caenorhabditis elegans.</bp:TITLE>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Nature</bp:SOURCE>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2005</bp:YEAR>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">SÂnnichsen B</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Koski LB</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Walsh A</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Marschall P</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Neumann B</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Brehm M</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Alleaume AM</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Artelt J</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Bettencourt P</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Cassin E</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Hewitson M</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Holz C</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Khan M</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Lazik S</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Martin C</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Nitzsche B</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Ruer M</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Stamford J</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Winzi M</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Heinkel R</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">RÂder M</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Finell J</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">HÂntsch H</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Jones SJ</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Jones M</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Piano F</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Gunsalus KC</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Oegema K</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">GÂnczy P</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Coulson A</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Hyman AA</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Echeverri CJ</bp:AUTHORS>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="b64">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">9606208</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">ZYG-9, a Caenorhabditis elegans protein required for microtubule organization and function, is a component of meiotic and mitotic spindle poles.</bp:TITLE>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">J Cell Biol</bp:SOURCE>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1998</bp:YEAR>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Matthews LR</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Carter P</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Thierry-Mieg D</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Kemphues K</bp:AUTHORS>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="ef3">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">17446307</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Suppressors of zyg-1 define regulators of centrosome duplication and nuclear association in Caenorhabditis elegans.</bp:TITLE>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Genetics</bp:SOURCE>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2007</bp:YEAR>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Kemp CA</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Song MH</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Addepalli MK</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Hunter G</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">O'Connell K</bp:AUTHORS>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="f9c">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">15009089</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">An evolutionarily conserved gene required for proper microtubule architecture in Caenorhabditis elegans.</bp:TITLE>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Genes Cells</bp:SOURCE>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2004</bp:YEAR>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Ogawa S</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Matsubayashi Y</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Nishida E</bp:AUTHORS>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="ce4">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">16979563</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Sequential protein recruitment in C. elegans centriole formation.</bp:TITLE>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Curr Biol</bp:SOURCE>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2006</bp:YEAR>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Delattre M</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Canard C</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">GÂnczy P</bp:AUTHORS>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="d37">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">10545493</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">HCP-1, a protein involved in chromosome segregation, is localized to the centromere of mitotic chromosomes in Caenorhabditis elegans.</bp:TITLE>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">J Cell Biol</bp:SOURCE>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1999</bp:YEAR>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Moore LL</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Morrison M</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Roth MB</bp:AUTHORS>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="f15">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">12080088</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Characterization of HCP-6, a C. elegans protein required to prevent chromosome twisting and merotelic attachment.</bp:TITLE>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Genes Dev</bp:SOURCE>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2002</bp:YEAR>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Stear JH</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Roth MB</bp:AUTHORS>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="a83">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">9778526</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">The dynactin complex is required for cleavage plane specification in early Caenorhabditis elegans embryos.</bp:TITLE>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Curr Biol</bp:SOURCE>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1998</bp:YEAR>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Skop AR</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">White JG</bp:AUTHORS>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="cf2">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">12431374</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string"></bp:TITLE>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string"></bp:SOURCE>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string"></bp:YEAR>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="a45">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">15371539</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">The Caenorhabditis elegans kinetochore reorganizes at prometaphase and in response to checkpoint stimuli.</bp:TITLE>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Mol Biol Cell</bp:SOURCE>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2004</bp:YEAR>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Stear JH</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Roth MB</bp:AUTHORS>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="ef9">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">11784094</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string"></bp:TITLE>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string"></bp:SOURCE>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string"></bp:YEAR>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="b60">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">12956952</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Caenorhabditis elegans TAC-1 and ZYG-9 form a complex that is essential for long astral and spindle microtubules.</bp:TITLE>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Curr Biol</bp:SOURCE>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2003</bp:YEAR>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Srayko M</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Quintin S</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Schwager A</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Hyman AA</bp:AUTHORS>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="ab9">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">10660671</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">The polo-like kinase PLK-1 is required for nuclear envelope breakdown and the completion of meiosis in Caenorhabditis elegans.</bp:TITLE>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Genesis</bp:SOURCE>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2000</bp:YEAR>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Chase D</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Serafinas C</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Ashcroft N</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Kosinski M</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Longo D</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Ferris DK</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Golden A</bp:AUTHORS>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="ec3">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">17136092</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Centriole assembly in Caenorhabditis elegans.</bp:TITLE>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Nature</bp:SOURCE>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2006</bp:YEAR>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Pelletier L</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">O'Toole E</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Schwager A</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Hyman AA</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">MÂller-Reichert T</bp:AUTHORS>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="a64">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">10983970</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">The survivin-like C. elegans BIR-1 protein acts with the Aurora-like kinase AIR-2 to affect chromosomes and the spindle midzone.</bp:TITLE>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Mol Cell</bp:SOURCE>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2000</bp:YEAR>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Speliotes EK</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Uren A</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Vaux D</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Horvitz HR</bp:AUTHORS>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="e00">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">15557118</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Condensin restructures chromosomes in preparation for meiotic divisions.</bp:TITLE>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">J Cell Biol</bp:SOURCE>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2004</bp:YEAR>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Chan RC</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Severson AF</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Meyer BJ</bp:AUTHORS>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="f77">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">15572125</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Centriole assembly requires both centriolar and pericentriolar material proteins.</bp:TITLE>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Dev Cell</bp:SOURCE>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2004</bp:YEAR>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Dammermann A</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">MÂller-Reichert T</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Pelletier L</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Habermann B</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Desai A</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Oegema K</bp:AUTHORS>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="faa">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">11914278</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">C. elegans condensin promotes mitotic chromosome architecture, centromere organization, and sister chromatid segregation during mitosis and meiosis.</bp:TITLE>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Genes Dev</bp:SOURCE>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2002</bp:YEAR>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Hagstrom KA</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Holmes VF</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Cozzarelli NR</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Meyer BJ</bp:AUTHORS>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="a1a">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">15331665</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">lis-1 is required for dynein-dependent cell division processes in C. elegans embryos.</bp:TITLE>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">J Cell Sci</bp:SOURCE>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2004</bp:YEAR>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Cockell MM</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Baumer K</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">GÂnczy P</bp:AUTHORS>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="cfa">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">15866166</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Computer simulations and image processing reveal length-dependent pulling force as the primary mechanism for C. elegans male pronuclear migration.</bp:TITLE>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Dev Cell</bp:SOURCE>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2005</bp:YEAR>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Kimura A</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Onami S</bp:AUTHORS>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="e38">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">17339379</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Functional genomics identifies a Myb domain-containing protein family required for assembly of CENP-A chromatin.</bp:TITLE>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">J Cell Biol</bp:SOURCE>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2007</bp:YEAR>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Maddox PS</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Hyndman F</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Monen J</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Oegema K</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Desai A</bp:AUTHORS>
+    </bp:PublicationXref>
+    <bp:openControlledVocabulary xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#">
+      <bp:TERM xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">zygote</bp:TERM>
+      <bp:ID xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">CL:0000365</bp:ID>
+      <bp:Ontology xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Cell Type</bp:Ontology>
+    </bp:openControlledVocabulary>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="faf">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">12221121</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">A role for Caenorhabditis elegans importin IMA-2 in germ line and embryonic mitosis.</bp:TITLE>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Mol Biol Cell</bp:SOURCE>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2002</bp:YEAR>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Geles KG</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Johnson JJ</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Jong S</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Adam SA</bp:AUTHORS>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="ad1">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">17218259</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string"></bp:TITLE>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string"></bp:SOURCE>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string"></bp:YEAR>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="fab">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">12827206</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Chromosome cohesion is regulated by a clock gene paralogue TIM-1.</bp:TITLE>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Nature</bp:SOURCE>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2003</bp:YEAR>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Chan RC</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Chan A</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Jeon M</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Wu TF</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Pasqualone D</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Rougvie AE</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Meyer BJ</bp:AUTHORS>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="e53">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">16054030</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">An essential function of the C. elegans ortholog of TPX2 is to localize activated aurora A kinase to mitotic spindles.</bp:TITLE>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Dev Cell</bp:SOURCE>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2005</bp:YEAR>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">OzlÂ N</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Srayko M</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Kinoshita K</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Habermann B</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">O'toole ET</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">MÂller-Reichert T</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Schmalz N</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Desai A</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Hyman AA</bp:AUTHORS>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="fee">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">14634695</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">The mbk-2 kinase is required for inactivation of MEI-1/katanin in the one-cell Caenorhabditis elegans embryo.</bp:TITLE>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">EMBO Rep</bp:SOURCE>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2003</bp:YEAR>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Quintin S</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Mains PE</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Zinke A</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Hyman AA</bp:AUTHORS>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="c8e">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">ndc-80</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">The binding of organic phosphates to human methaemoglobin A. Perturbation of the polymerization of proteins by effectors.</bp:TITLE>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Biochim Biophys Acta</bp:SOURCE>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1975</bp:YEAR>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Baghurst PA</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Nichol LW</bp:AUTHORS>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="db7">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">14697201</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">The C. elegans hook protein, ZYG-12, mediates the essential attachment between the centrosome and nucleus.</bp:TITLE>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Cell</bp:SOURCE>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2003</bp:YEAR>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Malone CJ</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Misner L</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Le Bot N</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Tsai MC</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Campbell JM</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Ahringer J</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">White JG</bp:AUTHORS>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="db9">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">15616192</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Functional analysis of cytoplasmic dynein heavy chain in Caenorhabditis elegans with fast-acting temperature-sensitive mutations.</bp:TITLE>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Mol Biol Cell</bp:SOURCE>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2005</bp:YEAR>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Schmidt DJ</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Rose DJ</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Saxton WM</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Strome S</bp:AUTHORS>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="ef0">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">12956951</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">TAC-1, a regulator of microtubule length in the C. elegans embryo.</bp:TITLE>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Curr Biol</bp:SOURCE>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2003</bp:YEAR>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Le Bot N</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Tsai MC</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Andrews RK</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Ahringer J</bp:AUTHORS>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="a8e">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">12956950</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">TAC-1 and ZYG-9 form a complex that promotes microtubule assembly in C. elegans embryos.</bp:TITLE>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Curr Biol</bp:SOURCE>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2003</bp:YEAR>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Bellanger JM</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">GÂnczy P</bp:AUTHORS>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="bba">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">11685578</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Evolutionarily conserved nuclear migration genes required for early embryonic development in Caenorhabditis elegans.</bp:TITLE>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Dev Genes Evol</bp:SOURCE>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2001</bp:YEAR>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Dawe AL</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Caldwell KA</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Harris PM</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Morris NR</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Caldwell GA</bp:AUTHORS>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="b12">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">11137018</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string"></bp:TITLE>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string"></bp:SOURCE>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string"></bp:YEAR>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="d9e">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">11408582</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Spindle dynamics and the role of gamma-tubulin in early Caenorhabditis elegans embryos.</bp:TITLE>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Mol Biol Cell</bp:SOURCE>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2001</bp:YEAR>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Strome S</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Powers J</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Dunn M</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Reese K</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Malone CJ</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">White J</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Seydoux G</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Saxton W</bp:AUTHORS>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="c1f">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">9645949</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">cyk-1: a C. elegans FH gene required for a late step in embryonic cytokinesis.</bp:TITLE>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">J Cell Sci</bp:SOURCE>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1998</bp:YEAR>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Swan KA</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Severson AF</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Carter JC</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Martin PR</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Schnabel H</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Schnabel R</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Bowerman B</bp:AUTHORS>
+    </bp:PublicationXref>
+  </Biopax>
+</Pathway>

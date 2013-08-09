@@ -1,0 +1,266 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Pathway xmlns="http://pathvisio.org/GPML/2013a" Name="Chlorophyll b Degradation" Author="Pankaj Jaiswal" Organism="Arabidopsis thaliana">
+  <Comment Source="WikiPathways-category">Metabolic Process</Comment>
+  <Comment Source="WikiPathways-category">Cellular Process</Comment>
+  <Comment Source="WikiPathways-description">In plants the light harvesting complex around the photosystems contain chlorophyll a and b pigment molecules. both Chlorophyll and b helps in photosynthesis by absorbing light energy. Chlorophyll b is degraded into chlorophyll a and ultimately into phenophytins and pheophorbides.</Comment>
+  <BiopaxRef>a03</BiopaxRef>
+  <Graphics BoardWidth="818.0" BoardHeight="425.0"/>
+  <DataNode TextLabel="chlorophyll b&#10;(chlb)" GraphId="a651b" Type="Metabolite">
+    <Graphics CenterX="100.0" CenterY="82.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff"/>
+    <Xref Database="ChEBI" ID="27888"/>
+  </DataNode>
+  <DataNode TextLabel="7-Hydroxymethylchlorophyll a&#10;(HMChl a)" GraphId="c9498" Type="Metabolite">
+    <Graphics CenterX="274.5" CenterY="82.0" Width="141.0" Height="24.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff"/>
+    <Xref Database="PubChem" ID="96024368"/>
+  </DataNode>
+  <DataNode TextLabel="Chlorophyll b reductase (CBR)&#10;EC:1.1.1.294" GraphId="cc36e" Type="GeneProduct">
+    <Graphics CenterX="174.0" CenterY="154.0" Width="152.0" Height="26.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Enzyme Nomenclature" ID="1.1.1.294"/>
+  </DataNode>
+  <DataNode TextLabel="chlorophyll a" GraphId="e0cef" Type="Metabolite">
+    <Graphics CenterX="455.0" CenterY="82.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff"/>
+    <Xref Database="ChEBI" ID="18230"/>
+  </DataNode>
+  <DataNode TextLabel="7-hydroxymethyl chlorophyll a reductase&#10;(HCAR) EC:1.17.7.2" GraphId="af405" Type="GeneProduct">
+    <Graphics CenterX="381.5" CenterY="150.5" Width="203.0" Height="27.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Enzyme Nomenclature" ID="1.17.7.2"/>
+  </DataNode>
+  <DataNode TextLabel="pheophytin a&#10;(phein a)" GraphId="d8373" Type="Metabolite">
+    <Graphics CenterX="618.0" CenterY="82.0" Width="80.0" Height="24.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff"/>
+    <Xref Database="ChEBI" ID="44898"/>
+  </DataNode>
+  <DataNode TextLabel="Mg-dechelatase&#10;(MDC)" GraphId="f968c" Type="GeneProduct">
+    <Graphics CenterX="540.5" CenterY="149.0" Width="105.0" Height="24.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="" ID=""/>
+  </DataNode>
+  <DataNode TextLabel="pheophorbide a&#10;(pheide a)" GraphId="c7f66" Type="Metabolite">
+    <Graphics CenterX="748.0" CenterY="82.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff"/>
+    <Xref Database="ChEBI" ID="38257"/>
+  </DataNode>
+  <DataNode TextLabel="pheophytinase&#10;(PPH) EC:3.1.1.14" GraphId="a11cf" Type="GeneProduct">
+    <Graphics CenterX="683.0" CenterY="149.0" Width="104.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Enzyme Nomenclature" ID="3.1.1.14"/>
+  </DataNode>
+  <DataNode TextLabel="pheophorbide b&#10;(pheide b)" GraphId="c50e8" Type="Metabolite">
+    <Graphics CenterX="100.0" CenterY="385.0" Width="86.0" Height="20.0" ZOrder="32770" FontSize="10" Valign="Middle" Color="0000ff"/>
+    <Xref Database="ChEBI" ID="38258"/>
+  </DataNode>
+  <DataNode TextLabel="pheophytin b&#10;(phein b)" GraphId="bfa15" Type="Metabolite">
+    <Graphics CenterX="100.0" CenterY="268.0" Width="80.0" Height="24.0" ZOrder="32771" FontSize="10" Valign="Middle" Color="0000ff"/>
+    <Xref Database="ChEBI" ID="38256"/>
+  </DataNode>
+  <DataNode TextLabel="7-Hydroxymethyl pheophytin a&#10;(HMPhein a)" GraphId="b9d22" Type="Metabolite">
+    <Graphics CenterX="313.5" CenterY="268.0" Width="155.0" Height="24.0" ZOrder="32774" FontSize="10" Valign="Middle" Color="0000ff"/>
+    <Xref Database="PubChem" ID=""/>
+  </DataNode>
+  <DataNode TextLabel="7-Hydroxymethyl pheophorbide a&#10;(HMPheide a)" GraphId="cef9a" Type="Metabolite">
+    <Graphics CenterX="533.0" CenterY="268.0" Width="174.0" Height="24.0" ZOrder="32778" FontSize="10" Valign="Middle" Color="0000ff"/>
+    <Xref Database="PubChem" ID=""/>
+  </DataNode>
+  <Interaction GraphId="idbcc1023e">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="140.0" Y="82.0" GraphRef="a651b" RelX="1.0" RelY="0.0"/>
+      <Point X="204.0" Y="82.0" GraphRef="c9498" RelX="-1.0" RelY="0.0" ArrowHead="Arrow"/>
+      <Anchor Position="0.53125" Shape="None" GraphId="b9db7"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="id8a883a3f">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="ff0033">
+      <Point X="174.0" Y="167.0" GraphRef="cc36e" RelX="0.0" RelY="1.0"/>
+      <Point X="174.0" Y="82.0" GraphRef="b9db7" RelX="0.0" RelY="0.0" ArrowHead="mim-catalysis"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="id8f760fa3">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="345.0" Y="82.0" GraphRef="c9498" RelX="1.0" RelY="0.0"/>
+      <Point X="415.0" Y="82.0" GraphRef="e0cef" RelX="-1.0" RelY="0.0" ArrowHead="Arrow"/>
+      <Anchor Position="0.5285714285714286" Shape="None" GraphId="e57db"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="ide3c92fa">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="00cccc">
+      <Point X="381.5" Y="164.0" GraphRef="af405" RelX="0.0" RelY="1.0"/>
+      <Point X="382.0" Y="82.0" GraphRef="e57db" RelX="0.0" RelY="0.0" ArrowHead="mim-catalysis"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="id7430e041">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="495.0" Y="82.0" GraphRef="e0cef" RelX="1.0" RelY="0.0"/>
+      <Point X="578.0" Y="82.0" GraphRef="d8373" RelX="-1.0" RelY="0.0" ArrowHead="Arrow"/>
+      <Anchor Position="0.5465116279069767" Shape="None" GraphId="d9e53"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="id8150163a">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="ff00ff">
+      <Point X="540.5" Y="137.0" GraphRef="f968c" RelX="0.0" RelY="-1.0"/>
+      <Point X="540.3604651162791" Y="82.0" GraphRef="d9e53" RelX="0.0" RelY="0.0" ArrowHead="mim-catalysis"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="iddf1abe81">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="658.0" Y="82.0" GraphRef="d8373" RelX="1.0" RelY="0.0"/>
+      <Point X="708.0" Y="82.0" GraphRef="c7f66" RelX="-1.0" RelY="0.0" ArrowHead="Arrow"/>
+      <Anchor Position="0.5" Shape="None" GraphId="b4696"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="id8d5b97de">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="0066ff">
+      <Point X="683.0" Y="139.0" GraphRef="a11cf" RelX="0.0" RelY="-1.0"/>
+      <Point X="683.0" Y="82.0" GraphRef="b4696" RelX="0.0" RelY="0.0" ArrowHead="mim-catalysis"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="id4a526921">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="140.0" Y="268.0" GraphRef="bfa15" RelX="1.0" RelY="0.0"/>
+      <Point X="236.0" Y="268.0" GraphRef="b9d22" RelX="-1.0" RelY="0.0" ArrowHead="Arrow"/>
+      <Anchor Position="0.3645833333333333" Shape="None" GraphId="ccb0c"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="af9a3">
+    <Graphics ZOrder="32772" LineThickness="1.0">
+      <Point X="80.0" Y="92.0" GraphRef="a651b" RelX="-0.5" RelY="1.0"/>
+      <Point X="80.0" Y="256.0" GraphRef="bfa15" RelX="-0.5" RelY="-1.0" ArrowHead="Arrow"/>
+      <Anchor Position="0.5670731707317073" Shape="None" GraphId="d39e0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e3321">
+    <Graphics ConnectorType="Elbow" ZOrder="32773" LineThickness="1.0" Color="ff00ff">
+      <Point X="514.25" Y="161.0" GraphRef="f968c" RelX="-0.5" RelY="1.0"/>
+      <Point X="80.0" Y="185.0" GraphRef="d39e0" RelX="0.0" RelY="0.0" ArrowHead="mim-catalysis"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="f28f2">
+    <Graphics ZOrder="32775" LineThickness="1.0">
+      <Point X="274.5" Y="94.0" GraphRef="c9498" RelX="0.0" RelY="1.0"/>
+      <Point X="274.75" Y="256.0" GraphRef="b9d22" RelX="-0.5" RelY="-1.0" ArrowHead="Arrow"/>
+      <Anchor Position="0.6419690168014192" Shape="None" GraphId="d7d68"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="f40a4">
+    <Graphics ConnectorType="Elbow" ZOrder="32776" LineThickness="1.0" Color="ff00ff">
+      <Point X="540.5" Y="161.0" GraphRef="f968c" RelX="0.0" RelY="1.0"/>
+      <Point X="274.66049225420034" Y="197.99898072182992" GraphRef="d7d68" RelX="0.0" RelY="0.0" ArrowHead="mim-catalysis"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e988c">
+    <Graphics ZOrder="32777" LineThickness="1.0" Color="ff0033">
+      <Point X="174.0" Y="167.0" GraphRef="cc36e" RelX="0.0" RelY="1.0"/>
+      <Point X="175.0" Y="268.0" GraphRef="ccb0c" RelX="0.0" RelY="0.0" ArrowHead="mim-catalysis"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="b937e">
+    <Graphics ZOrder="32779" LineThickness="1.0">
+      <Point X="391.0" Y="268.0" GraphRef="b9d22" RelX="1.0" RelY="0.0"/>
+      <Point X="446.0" Y="268.0" GraphRef="cef9a" RelX="-1.0" RelY="0.0" ArrowHead="Arrow"/>
+      <Anchor Position="0.34375" Shape="None" GraphId="f8964"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e3c9e">
+    <Graphics ConnectorType="Elbow" ZOrder="32780" LineThickness="1.0">
+      <Point X="352.25" Y="256.0" GraphRef="b9d22" RelX="0.5" RelY="-1.0"/>
+      <Point X="485.125" Y="228.0"/>
+      <Point X="618.0" Y="94.0" GraphRef="d8373" RelX="0.0" RelY="1.0" ArrowHead="Arrow"/>
+      <Anchor Position="0.13333027931966032" Shape="None" GraphId="cab7a"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="ec5b5">
+    <Graphics ZOrder="32781" LineThickness="1.0" Color="00cccc">
+      <Point X="381.5" Y="164.0" GraphRef="af405" RelX="0.0" RelY="1.0"/>
+      <Point X="381.28202697898473" Y="228.0" GraphRef="cab7a" RelX="0.0" RelY="0.0" ArrowHead="mim-catalysis"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="b57f6">
+    <Graphics ConnectorType="Elbow" ZOrder="32782" LineThickness="1.0">
+      <Point X="620.0" Y="268.0" GraphRef="cef9a" RelX="1.0" RelY="0.0"/>
+      <Point X="748.0" Y="92.0" GraphRef="c7f66" RelX="0.0" RelY="1.0" ArrowHead="Arrow"/>
+      <Anchor Position="0.1189189189189188" Shape="None" GraphId="fad4a"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="b408b">
+    <Graphics ConnectorType="Elbow" ZOrder="32783" LineThickness="1.0" Color="00cccc">
+      <Point X="432.25" Y="164.0" GraphRef="af405" RelX="0.5" RelY="1.0"/>
+      <Point X="544.2006756756757" Y="242.0"/>
+      <Point X="656.1513513513513" Y="268.0" GraphRef="fad4a" RelX="0.0" RelY="0.0" ArrowHead="mim-catalysis"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e5a1c">
+    <Graphics ConnectorType="Elbow" ZOrder="32784" LineThickness="1.0" Color="0066ff">
+      <Point X="683.0" Y="159.0" GraphRef="a11cf" RelX="0.0" RelY="1.0"/>
+      <Point X="546.453125" Y="331.0"/>
+      <Point X="409.90625" Y="268.0" GraphRef="f8964" RelX="0.0" RelY="0.0" ArrowHead="mim-catalysis"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="ab9a2">
+    <Graphics ZOrder="32785" LineThickness="1.0">
+      <Point X="100.0" Y="280.0" GraphRef="bfa15" RelX="0.0" RelY="1.0"/>
+      <Point X="100.0" Y="375.0" GraphRef="c50e8" RelX="0.0" RelY="-1.0" ArrowHead="Arrow"/>
+      <Anchor Position="0.6947368421052632" Shape="None" GraphId="ad331"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="c2eba">
+    <Graphics ConnectorType="Elbow" ZOrder="32786" LineThickness="1.0" Color="0066ff">
+      <Point X="709.0" Y="159.0" GraphRef="a11cf" RelX="0.5" RelY="1.0"/>
+      <Point X="100.0" Y="346.0" GraphRef="ad331" RelX="0.0" RelY="0.0" ArrowHead="mim-catalysis"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="fbbd8">
+    <Graphics ZOrder="32787" LineThickness="1.0" Color="ff0033">
+      <Point X="212.0" Y="167.0" GraphRef="cc36e" RelX="0.5" RelY="1.0"/>
+      <Point X="212.59586206896552" Y="385.0" GraphRef="ff65d" RelX="0.0" RelY="0.0" ArrowHead="mim-catalysis"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="ededa">
+    <Graphics ConnectorType="Elbow" ZOrder="32788" LineThickness="1.0">
+      <Point X="143.0" Y="385.0" GraphRef="c50e8" RelX="1.0" RelY="0.0"/>
+      <Point X="533.0" Y="280.0" GraphRef="cef9a" RelX="0.0" RelY="1.0" ArrowHead="Arrow"/>
+      <Anchor Position="0.14059770114942532" Shape="None" GraphId="ff65d"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <InfoBox CenterX="0.0" CenterY="0.0"/>
+  <Biopax>
+    <bp:PublicationXref xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" rdf:id="a03">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">22762131</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Conversion of chlorophyll b to chlorophyll a precedes magnesium dechelation for protection against necrosis in Arabidopsis.</bp:TITLE>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Plant J</bp:SOURCE>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2012</bp:YEAR>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Shimoda Y</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Ito H</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Tanaka A</bp:AUTHORS>
+    </bp:PublicationXref>
+    <bp:openControlledVocabulary xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#">
+      <bp:TERM xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">plant cell</bp:TERM>
+      <bp:ID xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">CL:0000610</bp:ID>
+      <bp:Ontology xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Cell Type</bp:Ontology>
+    </bp:openControlledVocabulary>
+    <bp:openControlledVocabulary xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#">
+      <bp:TERM xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">porphyrin and chlorophyll metabolic pathway</bp:TERM>
+      <bp:ID xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PW:0000190</bp:ID>
+      <bp:Ontology xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Pathway Ontology</bp:Ontology>
+    </bp:openControlledVocabulary>
+  </Biopax>
+</Pathway>

@@ -370,11 +370,7 @@ function convertGpml2Json(xmlDoc){
               delete element.graphref;
 
               var relx = (Math.round(element.relx * 2)/2).toString()
-              console.log('relx');
-              console.log(relx);
               element.relX = parseFloat(anchorPositionMappings[relx]);
-              console.log('element.relX');
-              console.log(element.relX);
               delete element.relx;
               delete element.x;
 
@@ -695,48 +691,53 @@ function convertGpml2Json(xmlDoc){
       // textLabel data
 
       if (element.hasOwnProperty("textlabel")) {
-        var text = element.textlabel.toString().replace("&#xA;","\r\n");
-        delete element.textlabel;
-
-        element.textLabel = {};
-
-        element.textLabel.text = text;
-
-        if (element.hasOwnProperty('groupref')) {
-          element.groupRef = element.groupref;
-          delete element.groupref;
-        };
-
-        if (element.graphics.hasOwnProperty("color")) {
-
-          // element stroke and text color appear to be the same property in the Java PathVisio code
-
-          element.textLabel.color = element.stroke;
-        };	
-
-        if (element.graphics.hasOwnProperty("fontsize")) {
-          var fontSize = element.graphics.fontsize;
+        if (element.textlabel === null) {
+          delete element.textlabel;
         }
         else {
-          var fontSize = 10;
-        };
+          var text = element.textlabel.toString().replace("&#xA;","\r\n");
+          delete element.textlabel;
 
-        element.textLabel.fontSize = fontSize;
+          element.textLabel = {};
 
-        if (element.graphics.hasOwnProperty("fontname")) {
-          element.textLabel.fontFamily = element.graphics.fontname;
-        };
+          element.textLabel.text = text;
 
-        if (element.graphics.hasOwnProperty("fontweight")) {
-          element.textLabel.fontWeight = element.graphics.fontweight.toLowerCase();
-        };
+          if (element.hasOwnProperty('groupref')) {
+            element.groupRef = element.groupref;
+            delete element.groupref;
+          };
 
-        if (element.graphics.hasOwnProperty("fontstyle")) {
-          element.textLabel.fontStyle = element.graphics.fontstyle.toLowerCase();
-        };
+          if (element.graphics.hasOwnProperty("color")) {
 
-        if (alignToAnchorMappings.hasOwnProperty(element.graphics.align)) {
-          element.textLabel.textAnchor = alignToAnchorMappings[element.graphics.align];
+            // element stroke and text color appear to be the same property in the Java PathVisio code
+
+            element.textLabel.color = element.stroke;
+          };	
+
+          if (element.graphics.hasOwnProperty("fontsize")) {
+            var fontSize = element.graphics.fontsize;
+          }
+          else {
+            var fontSize = 10;
+          };
+
+          element.textLabel.fontSize = fontSize;
+
+          if (element.graphics.hasOwnProperty("fontname")) {
+            element.textLabel.fontFamily = element.graphics.fontname;
+          };
+
+          if (element.graphics.hasOwnProperty("fontweight")) {
+            element.textLabel.fontWeight = element.graphics.fontweight.toLowerCase();
+          };
+
+          if (element.graphics.hasOwnProperty("fontstyle")) {
+            element.textLabel.fontStyle = element.graphics.fontstyle.toLowerCase();
+          };
+
+          if (alignToAnchorMappings.hasOwnProperty(element.graphics.align)) {
+            element.textLabel.textAnchor = alignToAnchorMappings[element.graphics.align];
+          };
         };
       }
 

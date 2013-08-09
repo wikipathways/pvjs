@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Pathway xmlns="http://pathvisio.org/GPML/2013a" Name="Glycogen Catabolism" Organism="Saccharomyces cerevisiae">
+  <Comment Source="GenMAPP remarks">Based on http://pathway.yeastgenome.org/biocyc/</Comment>
+  <Comment Source="WikiPathways-category">Metabolic Process</Comment>
+  <Comment Source="WikiPathways-description">Glycogen, a branched polymer of glucose, is a storage molecule whose accumulation is under rigorous control in many cells (CITS: 11152943). Glycogen metabolism increases in response to a wide variety of environmental stresses, including heat stress or exposure to sodium chloride, hydrogen peroxide, copper sulfate, high levels of ethanol, or weak organic acids, such as sorbate or benzoate (CITS: 11152943). Glycogen metabolism also increases in response to conditions of nutrient starvation, such as limited nitrogen, carbon, phosphorous, or sulfur, and during diauxic growth on glucose (CITS: 11152943).  Under all of the above conditions, glycogen is degraded by Gph1p and Gdb1p enzymes, which are phosphorylase and debranching enzymes respectively (CITS: 11152943).   GPH1 progressively releases glucose-1-phosphate from linear alpha (1,4)-glucosidic bonds in glycogen (CITS: 2657401)(CITS: 1092346) but is not able to break alpha (1,4)-glucosidic bonds that are close to alpha (1,6)-branch linkages (CITS: 11152943). The branches are resolved by Gdb1p, which eliminates branch points in a two-step process. The first step of the process is the transfer of a maltotriosyl (or maltosyl) unit from the branch to an adjacent alpha-1,4-glucosyl chain by the oligo-1,4 to 1,4-glucanotransferase activity (EC 2.4.1.25) of Gdb1p (CITS: 11094287). The second step is the subsequent hydrolysis of the residual alpha-1,6-linked glucose residue by the alpha-1,6-glucosidase activity (EC 3.2.1.33) of Gdb1p (CITS: 11094287). Once the branch is resolved, Gph1p can continue glycogen degradation (CITS: 11152943).  In sporulating cells, glycogen can also be degraded by Sga1p, which is a glucoamylase enzyme only expressed during late sporulation (CITS: 11152943). SGA1 encodes an amylo (1,4-1,6)-glucosidase (CITS: 11152943) capable of degrading glycogen, starch, maltotriose, and maltose into glucose, with maximum activity against glycogen at pH 5.5 (CITS: 2493265). The role of glycogen degradation during sporulation is not fully understood, since glycogen is rapidly degraded during sporulation in wild-type cells, but approximately 90% of all sga1 homozygous null mutants are able to produce viable spores (CITS: 11152943).  Thus far, none of the phenotypes seen in S. cerevisiae glycogen catabolism mutants correspond to the mammalian glycogen storage diseases associated with mutations in human genes involved in glycogen catabolism (CITS: 11152943).  
+SOURCE: SGD pathways, http://pathway.yeastgenome.org/server.html</Comment>
+  <BiopaxRef>yh4</BiopaxRef>
+  <Graphics BoardWidth="840.4000000000001" BoardHeight="582.8333333333334" />
+  <DataNode TextLabel="GPH1" GraphId="ef0" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="glycogen phosphorylase" />
+    <Graphics CenterX="503.4" CenterY="136.66666666666666" Width="43.333333333333336" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="SGD" ID="S000006364" />
+  </DataNode>
+  <DataNode TextLabel="PGM2" GraphId="a35" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="phosphoglucomutase 2" />
+    <Graphics CenterX="763.4" CenterY="290.0" Width="46.666666666666664" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="SGD" ID="S000004711" />
+  </DataNode>
+  <DataNode TextLabel="PGM1" GraphId="d6a" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="phosphoglucomutase 1" />
+    <Graphics CenterX="763.4" CenterY="316.6666666666667" Width="46.666666666666664" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="SGD" ID="S000001610" />
+  </DataNode>
+  <DataNode TextLabel="GDB1" GraphId="b61" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="glucanotransferase" />
+    <Graphics CenterX="113.4" CenterY="250.0" Width="43.333333333333336" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="SGD" ID="S000006388" />
+  </DataNode>
+  <DataNode TextLabel="maltodextrin" GraphId="c16" Type="Metabolite">
+    <Graphics CenterX="206.73333333333332" CenterY="190.0" Width="100.33333333333333" Height="19.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Xref Database="CAS" ID="9050-36-6" />
+  </DataNode>
+  <DataNode TextLabel="phosphate" GraphId="d18" Type="Metabolite">
+    <Graphics CenterX="273.4" CenterY="266.6666666666667" Width="87.33333333333333" Height="19.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Xref Database="CAS" ID="14265-44-2" />
+  </DataNode>
+  <DataNode TextLabel="glucose-1-phosphate" GraphId="f0d" Type="Metabolite">
+    <Graphics CenterX="226.73333333333332" CenterY="300.0" Width="167.33333333333334" Height="19.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Xref Database="CAS" ID="59-56-3" />
+  </DataNode>
+  <DataNode TextLabel="glucose-1-phosphate" GraphId="d6e" Type="Metabolite">
+    <Graphics CenterX="456.73333333333335" CenterY="190.0" Width="167.33333333333334" Height="19.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Xref Database="CAS" ID="59-56-3" />
+  </DataNode>
+  <DataNode TextLabel="phosphate" GraphId="a5a" Type="Metabolite">
+    <Graphics CenterX="573.4" CenterY="166.66666666666666" Width="87.33333333333333" Height="19.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Xref Database="CAS" ID="14265-44-2" />
+  </DataNode>
+  <DataNode TextLabel="glucose-1-phosphate" GraphId="f97" Type="Metabolite">
+    <Graphics CenterX="726.7333333333333" CenterY="263.3333333333333" Width="167.33333333333334" Height="19.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Xref Database="CAS" ID="59-56-3" />
+  </DataNode>
+  <DataNode TextLabel="phosphate" GraphId="c70" Type="Metabolite">
+    <Graphics CenterX="676.7333333333333" CenterY="190.0" Width="87.33333333333333" Height="19.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Xref Database="CAS" ID="14265-44-2" />
+  </DataNode>
+  <DataNode TextLabel="glucose-6-phosphate" GraphId="c69" Type="Metabolite">
+    <Graphics CenterX="726.7333333333333" CenterY="366.6666666666667" Width="167.33333333333334" Height="19.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Xref Database="CAS" ID="59-56-3" />
+  </DataNode>
+  <DataNode TextLabel="maltotriose" GraphId="f2a" Type="Metabolite">
+    <Graphics CenterX="440.06666666666666" CenterY="533.3333333333334" Width="90.33333333333333" Height="19.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Xref Database="CAS" ID="1109-28-0" />
+  </DataNode>
+  <DataNode TextLabel="maltose" GraphId="aea" Type="Metabolite">
+    <Graphics CenterX="36.733333333333334" CenterY="543.3333333333334" Width="65.33333333333333" Height="19.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Xref Database="CAS" ID="69-79-4" />
+  </DataNode>
+  <Interaction GraphId="idf77210b8">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="206.73333333333332" Y="120.0" />
+      <Point X="206.73333333333332" Y="176.66666666666666" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="id85290751">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="256.73333333333335" Y="193.33333333333334" />
+      <Point X="333.4" Y="213.33333333333334" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="ida294262c">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="333.4" Y="213.33333333333334" />
+      <Point X="333.4" Y="343.3333333333333" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="id8e989b4f">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="333.4" Y="343.3333333333333" />
+      <Point X="273.4" Y="370.0" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="id2f739f75">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="316.73333333333335" Y="296.6666666666667" />
+      <Point X="310.06666666666666" Y="296.6666666666667" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="id16beba20">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="726.7333333333333" Y="123.33333333333333" />
+      <Point X="260.06666666666666" Y="186.66666666666666" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="idc68094a6">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="516.7333333333333" Y="163.33333333333334" />
+      <Point X="516.7333333333333" Y="173.33333333333334" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="iddcfa39a9">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="726.7333333333333" Y="123.33333333333333" />
+      <Point X="726.7333333333333" Y="246.66666666666666" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="id9fd84ecd">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="726.7333333333333" Y="280.0" />
+      <Point X="726.7333333333333" Y="353.3333333333333" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="id4f011312">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="726.7333333333333" Y="226.66666666666666" />
+      <Point X="253.4" Y="360.0" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="iddd02bd5b">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="203.4" Y="383.3333333333333" />
+      <Point X="203.4" Y="506.6666666666667" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="idb0c0e626">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="203.4" Y="386.6666666666667" />
+      <Point X="436.73333333333335" Y="520.0" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="ide1abe3e4">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="326.73333333333335" Y="466.6666666666667" />
+      <Point X="323.4" Y="473.3333333333333" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="ida923c3f6">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="203.4" Y="506.6666666666667" />
+      <Point X="420.06666666666666" Y="523.3333333333334" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="id8a41c43f">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="203.4" Y="506.6666666666667" />
+      <Point X="73.4" Y="540.0" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Label TextLabel="1,4-alpha-D-glucan" GraphId="d72">
+    <Graphics CenterX="203.4" CenterY="110.0" Width="148.33333333333334" Height="19.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="12" Valign="Middle" />
+  </Label>
+  <Label TextLabel="maltotetratose" GraphId="e91">
+    <Graphics CenterX="210.06666666666666" CenterY="373.3333333333333" Width="114.33333333333333" Height="19.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="12" Valign="Middle" />
+  </Label>
+  <Label TextLabel="glycogens" GraphId="fb7">
+    <Graphics CenterX="727.7333333333333" CenterY="113.33333333333333" Width="85.33333333333333" Height="19.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="12" Valign="Middle" />
+  </Label>
+  <Label TextLabel="H2O" GraphId="aab">
+    <Graphics CenterX="286.73333333333335" CenterY="463.3333333333333" Width="38.333333333333336" Height="19.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="12" Valign="Middle" />
+  </Label>
+  <Label TextLabel="beta-D-glucose" GraphId="c26">
+    <Graphics CenterX="300.06666666666666" CenterY="490.0" Width="121.33333333333333" Height="19.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="12" Valign="Middle" />
+  </Label>
+  <Label TextLabel="beta-D-glucose" GraphId="d33">
+    <Graphics CenterX="110.06666666666666" CenterY="463.3333333333333" Width="121.33333333333333" Height="19.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="12" Valign="Middle" />
+  </Label>
+  <Shape GraphId="ba7">
+    <Graphics CenterX="320.06666666666666" CenterY="283.3333333333333" Width="26.666666666666668" Height="26.666666666666668" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="Arc" Rotation="4.712389" />
+  </Shape>
+  <Shape GraphId="b6c">
+    <Graphics CenterX="530.0666666666667" CenterY="163.33333333333334" Width="26.666666666666668" Height="26.666666666666668" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="Arc" Rotation="2.944197" />
+  </Shape>
+  <Shape GraphId="e6f">
+    <Graphics CenterX="710.0666666666667" CenterY="206.66666666666666" Width="42.687493333333336" Height="6.666666666666667" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="Arc" Rotation="3.785094" />
+  </Shape>
+  <Shape GraphId="c85">
+    <Graphics CenterX="146.73333333333332" CenterY="280.0" Width="187.73506666666665" Height="126.84198666666666" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="Arc" Rotation="1.535097" />
+  </Shape>
+  <Shape GraphId="f6a">
+    <Graphics CenterX="313.4" CenterY="463.3333333333333" Width="26.666666666666668" Height="26.666666666666668" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="Arc" Rotation="3.700192" />
+  </Shape>
+  <Shape GraphId="c59">
+    <Graphics CenterX="183.4" CenterY="466.6666666666667" Width="42.687493333333336" Height="26.666666666666668" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="Arc" Rotation="3.306741" />
+  </Shape>
+  <InfoBox CenterX="0.0" CenterY="0.0" />
+  <Legend CenterX="0.0" CenterY="0.0" />
+  <Biopax>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="yh4">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">11152943</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Reserve carbohydrates metabolism in the yeast Saccharomyces cerevisiae.</bp:TITLE>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">FEMS Microbiol Rev</bp:SOURCE>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2001</bp:YEAR>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">FranÃ§ois J</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Parrou JL</bp:AUTHORS>
+    </bp:PublicationXref>
+    <bp:openControlledVocabulary xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#">
+      <bp:TERM xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">glycogen degradation pathway</bp:TERM>
+      <bp:ID xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PW:0000534</bp:ID>
+      <bp:Ontology xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Pathway Ontology</bp:Ontology>
+    </bp:openControlledVocabulary>
+  </Biopax>
+</Pathway>

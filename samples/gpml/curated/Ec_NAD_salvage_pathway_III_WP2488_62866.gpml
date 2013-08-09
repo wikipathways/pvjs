@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Pathway xmlns="http://pathvisio.org/GPML/2013a" Name="NAD salvage pathway III" Version="20130409" Organism="Escherichia coli"><Comment Source="WikiPathways-category">Metabolic Process</Comment>
+  <Comment Source="WikiPathways-description">In addition to de novo synthesis of NAD (NAD biosynthesis II (from tryptophan)) and regeneration from nicotinamide degradation products and extracellular nicotinate (NAD salvage pathway I), yeast posseses an additional route for synthesizing NAD, called the nicotinamide riboside salvage pathway [Bieganowsk04]. In this pathway 1-(β-D ribofuranosyl)nicotinamide is converted to β-nicotinamide D-ribonucleotide and subsequently to NAD+, in reactions catalyzed by the enzymes nicotinamide riboside kinase and nicotinamide mononucleotide adenylyltransferase [Bieganowsk04].
+
+Bacteria that lack the enzymes for de novo NAD biosynthesis are able to convert extracellular NAD to less polar degradation products, which are then imported into the cell and processed back to NAD via 1-(β-D ribofuranosyl)nicotinamide (see NAD salvage pathway II) [Bieganowsk04]. However, the genes that those bacteria utilize to convert the extracellular NAD into 1-(β-D ribofuranosyl)nicotinamide have not been identified in fungi or animals, which may have only the later part of the pathway, as described here [Bieganowsk04].</Comment>
+  <Comment>source: http://biocyc.org/ECOLI/NEW-IMAGE?type=PATHWAY&amp;object=PWY3O-4106&amp;detail-level=3</Comment>
+  <BiopaxRef>f33</BiopaxRef>
+  <BiopaxRef>ef9</BiopaxRef>
+  <BiopaxRef>dd6</BiopaxRef>
+  <BiopaxRef>bab</BiopaxRef>
+  <BiopaxRef>e04</BiopaxRef>
+  <BiopaxRef>a5f</BiopaxRef>
+  <BiopaxRef>bf7</BiopaxRef>
+  <BiopaxRef>aee</BiopaxRef>
+  <BiopaxRef>eea</BiopaxRef>
+  <Graphics BoardWidth="599.4779084486913" BoardHeight="541.0"/>
+  <DataNode TextLabel="nadR" GraphId="ccb07" Type="GeneProduct">
+    <Graphics CenterX="362.0" CenterY="244.0" Width="80.0" Height="20.0" ZOrder="32833" FontSize="10" Valign="Middle"/>
+    <Xref Database="Ensembl" ID="EBESCG00000001171"/>
+  </DataNode>
+  <DataNode TextLabel="Adenosine&#10;triphosphate" GraphId="a2e41" Type="Metabolite">
+    <Graphics CenterX="507.5" CenterY="210.0" Width="85.0" Height="26.0" ZOrder="32834" FontSize="10" Valign="Middle" Color="0000ff"/>
+    <Xref Database="HMDB" ID="HMDB00538"/>
+  </DataNode>
+  <DataNode TextLabel="Nicotinamide&#10;riboside" GraphId="b3e50" Type="Metabolite">
+    <Graphics CenterX="429.0324074074074" CenterY="134.78240740740736" Width="105.93518518518522" Height="24.435185185185276" ZOrder="32835" FontSize="10" Valign="Middle" Color="0000ff"/>
+    <Xref Database="HMDB" ID="HMDB00855"/>
+  </DataNode>
+  <DataNode TextLabel="Nicotinamide ribotide" GraphId="a007c" Type="Metabolite">
+    <Graphics CenterX="429.5" CenterY="351.0" Width="135.0" Height="20.0" ZOrder="32836" FontSize="10" Valign="Middle" Color="0000ff"/>
+    <Xref Database="HMDB" ID="HMDB00229"/>
+  </DataNode>
+  <DataNode TextLabel="Hydrogen Ion" GraphId="e9898" Type="Metabolite" GroupRef="acfcc">
+    <Graphics CenterX="507.7759912613827" CenterY="293.09069378088066" Width="85.0" Height="20.0" ZOrder="32837" FontSize="10" Valign="Middle" Color="0000ff"/>
+    <Xref Database="HMDB" ID="HMDB59597"/>
+  </DataNode>
+  <DataNode TextLabel="ADP" GraphId="c1244" Type="Metabolite" GroupRef="acfcc">
+    <Graphics CenterX="507.7759912613827" CenterY="274.6990740740743" Width="85.0" Height="20.0" ZOrder="32838" FontSize="10" Valign="Middle" Color="0000ff"/>
+    <Xref Database="HMDB" ID="HMDB01341"/>
+  </DataNode>
+  <DataNode TextLabel="Hydrogen Ion" GraphId="fa996" Type="Metabolite" GroupRef="e8be1">
+    <Graphics CenterX="509.6666666666665" CenterY="413.09069378088066" Width="87.0" Height="20.0" ZOrder="32839" FontSize="10" Valign="Middle" Color="0000ff"/>
+    <Xref Database="HMDB" ID="HMDB59597"/>
+  </DataNode>
+  <DataNode TextLabel="Adenosine&#10;triphosphate" GraphId="fe249" Type="Metabolite" GroupRef="e8be1">
+    <Graphics CenterX="509.6666666666665" CenterY="389.8240740740739" Width="87.0" Height="28.0" ZOrder="32840" FontSize="10" Valign="Middle" Color="0000ff"/>
+    <Xref Database="HMDB" ID="HMDB00538"/>
+  </DataNode>
+  <DataNode TextLabel="Pyrophosphate" GraphId="fe8a9" Type="Metabolite">
+    <Graphics CenterX="511.0185185185188" CenterY="448.27819263496224" Width="87.0" Height="20.0" ZOrder="32841" FontSize="10" Valign="Middle" Color="0000ff"/>
+    <Xref Database="HMDB" ID="HMDB00250"/>
+  </DataNode>
+  <DataNode TextLabel="nadR" GraphId="b8533" Type="GeneProduct">
+    <Graphics CenterX="362.0" CenterY="412.0" Width="80.0" Height="20.0" ZOrder="32842" FontSize="10" Valign="Middle"/>
+    <Xref Database="Ensembl" ID="EBESCG00000001171"/>
+  </DataNode>
+  <DataNode TextLabel="NAD" GraphId="c2159" Type="Metabolite">
+    <Graphics CenterX="429.5648148148148" CenterY="500.7824074074074" Width="43.0" Height="20.43518518518522" ZOrder="32843" FontSize="10" Valign="Middle" Color="0000ff"/>
+    <Xref Database="HMDB" ID="HMDB00902"/>
+  </DataNode>
+  <Interaction GraphId="id775698e8">
+    <Graphics ConnectorType="Curved" ZOrder="12288" LineThickness="1.0">
+      <Point X="429.5259259259259" Y="412.8259259259259" GraphRef="ab321" RelX="0.0" RelY="0.0"/>
+      <Point X="429.0" Y="406.14165492670156"/>
+      <Point X="458.1666666666665" Y="399.4573839274773" GraphRef="c7b85" RelX="-1.0" RelY="0.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="c91bd">
+    <Graphics ConnectorType="Curved" ZOrder="32826" LineThickness="1.0">
+      <Point X="429.26860660494776" Y="244.9969423141681" GraphRef="ddbc1" RelX="0.0" RelY="0.0"/>
+      <Point X="430.0" Y="264.4459131208228"/>
+      <Point X="457.2759912613827" Y="283.8948839274775" GraphRef="f486a" RelX="-1.0" RelY="0.0" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="fa4f7">
+    <Graphics ZOrder="32827" LineThickness="1.0">
+      <Point X="429.5" Y="361.0" GraphRef="a007c" RelX="0.0" RelY="1.0"/>
+      <Point X="429.5648148148148" Y="490.5648148148148" GraphRef="c2159" RelX="0.0" RelY="-1.0" ArrowHead="mim-conversion"/>
+      <Anchor Position="0.4" Shape="None" GraphId="ab321"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="cd63a">
+    <Graphics ConnectorType="Curved" ZOrder="32828" LineThickness="1.0">
+      <Point X="429.5259259259259" Y="412.8259259259259" GraphRef="ab321" RelX="0.0" RelY="0.0"/>
+      <Point X="430.0" Y="430.55205928044404"/>
+      <Point X="467.5185185185188" Y="448.27819263496224" GraphRef="fe8a9" RelX="-1.0" RelY="0.0" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="eb74f">
+    <Graphics ConnectorType="Curved" ZOrder="32829" LineThickness="1.0">
+      <Point X="465.0" Y="210.0" GraphRef="a2e41" RelX="-1.0" RelY="0.0"/>
+      <Point X="430.0" Y="227.49847115708405"/>
+      <Point X="429.26860660494776" Y="244.9969423141681" GraphRef="ddbc1" RelX="0.0" RelY="0.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="caff5">
+    <Graphics ZOrder="32830" LineThickness="1.0">
+      <Point X="402.0" Y="412.0" GraphRef="b8533" RelX="1.0" RelY="0.0"/>
+      <Point X="429.5259259259259" Y="412.8259259259259" GraphRef="ab321" RelX="0.0" RelY="0.0" ArrowHead="mim-catalysis"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="cab23">
+    <Graphics ZOrder="32831" LineThickness="1.0">
+      <Point X="429.0324074074074" Y="147.0" GraphRef="b3e50" RelX="0.0" RelY="1.0"/>
+      <Point X="429.5" Y="341.0" GraphRef="a007c" RelX="0.0" RelY="-1.0" ArrowHead="mim-conversion"/>
+      <Anchor Position="0.5051388779080831" Shape="None" GraphId="ddbc1"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e32bb">
+    <Graphics ZOrder="32832" LineThickness="1.0">
+      <Point X="402.0" Y="244.0" GraphRef="ccb07" RelX="1.0" RelY="0.0"/>
+      <Point X="429.26860660494776" Y="244.9969423141681" GraphRef="ddbc1" RelX="0.0" RelY="0.0" ArrowHead="mim-catalysis"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Group GroupId="acfcc" GraphId="f486a" Style="Group"/>
+  <Group GroupId="e8be1" GraphId="c7b85" Style="Group"/>
+  <InfoBox CenterX="0.0" CenterY="0.0"/>
+  <Biopax>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="e04">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">16078372</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Evolution of the NadR regulon in Enterobacteriaceae.</bp:TITLE>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">J Bioinform Comput Biol</bp:SOURCE>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2005</bp:YEAR>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Gerasimova AV</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Gelfand MS</bp:AUTHORS>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="bab">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">8086213</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">[The study of deafness in patients with facioscapulohumeral dystrophy].</bp:TITLE>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Acta Otorrinolaringol Esp</bp:SOURCE>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1994</bp:YEAR>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Sánchez-Alcón MD</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Pérez Garrigues H</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Vílchez J</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Casanova B</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Morera C</bp:AUTHORS>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="aee">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">10464228</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">The Escherichia coli NadR regulator is endowed with nicotinamide mononucleotide adenylyltransferase activity.</bp:TITLE>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">J Bacteriol</bp:SOURCE>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1999</bp:YEAR>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Raffaelli N</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Lorenzi T</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Mariani PL</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Emanuelli M</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Amici A</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Ruggieri S</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Magni G</bp:AUTHORS>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="ef9">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">12648681</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Nicotinamide adenine dinucleotide, a metabolic regulator of transcription, longevity and disease.</bp:TITLE>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Curr Opin Cell Biol</bp:SOURCE>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2003</bp:YEAR>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Lin SJ</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Guarente L</bp:AUTHORS>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="dd6">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">14724176</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Calorie restriction extends yeast life span by lowering the level of NADH.</bp:TITLE>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Genes Dev</bp:SOURCE>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2004</bp:YEAR>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Lin SJ</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Ford E</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Haigis M</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Liszt G</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Guarente L</bp:AUTHORS>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="bf7">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">18029306</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">The genetic basis of parallel and divergent phenotypic responses in evolving populations of Escherichia coli.</bp:TITLE>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Proc Biol Sci</bp:SOURCE>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2008</bp:YEAR>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Ostrowski EA</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Woods RJ</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Lenski RE</bp:AUTHORS>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="a5f">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">12446641</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Ribosylnicotinamide kinase domain of NadR protein: identification and implications in NAD biosynthesis.</bp:TITLE>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">J Bacteriol</bp:SOURCE>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2002</bp:YEAR>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Kurnasov OV</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Polanuyer BM</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Ananta S</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Sloutsky R</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Tam A</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Gerdes SY</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Osterman AL</bp:AUTHORS>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="eea">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">4349027</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Recognition of a gene involved in the regulation of nicotinamide adenine dinucleotide biosynthesis.</bp:TITLE>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">J Bacteriol</bp:SOURCE>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1973</bp:YEAR>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Tritz GJ</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Chandler JL</bp:AUTHORS>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="f33">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">15137942</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Discoveries of nicotinamide riboside as a nutrient and conserved NRK genes establish a Preiss-Handler independent route to NAD+ in fungi and humans.</bp:TITLE>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Cell</bp:SOURCE>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2004</bp:YEAR>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Bieganowski P</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Brenner C</bp:AUTHORS>
+    </bp:PublicationXref>
+  <bp:openControlledVocabulary xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#"><bp:TERM>purine salvage pathway</bp:TERM><bp:ID>PW:0000868</bp:ID><bp:Ontology>Pathway Ontology</bp:Ontology></bp:openControlledVocabulary><bp:openControlledVocabulary xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#"><bp:TERM>NAD biosynthetic pathway</bp:TERM><bp:ID>PW:0000219</bp:ID><bp:Ontology>Pathway Ontology</bp:Ontology></bp:openControlledVocabulary><bp:openControlledVocabulary xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#"><bp:TERM>pyridine nucleotide biosynthetic pathway</bp:TERM><bp:ID>PW:0000220</bp:ID><bp:Ontology>Pathway Ontology</bp:Ontology></bp:openControlledVocabulary></Biopax>
+</Pathway>
