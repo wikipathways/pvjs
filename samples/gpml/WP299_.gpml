@@ -3,7 +3,7 @@
   <Comment Source="WikiPathways-category">Metabolic Process</Comment>
   <Comment Source="WikiPathways-description">Nuclear receptors are transcription factors that are activated upon binding to its ligands. Initially, they had been classified as classic endocrine nuclear hormone receptors and orphan receptors. However, further studies have led to the identification of lipid ligands for some of these adopted orphan receptors, which are responsible for lipid metabolism, storage or elimination. One of the characteristics of these receptors is that they act by forming heterodimers with retinoid X receptor (RXR). The receptors include peroxisome proliferators-Activated receptors (PPARs) for fatty acids, liver X receptor (LCR) for oxysterols, Farnesoid X receptors (FXR) for bile acids and steroid xenobiotic receptor/X receptor (SXR/PXR or Nsil2) for xenobiotics. Other orphan receptors also require RXR for its functions are vitamin D receptor (VDR) for vitamin D and retinoic acid receptor (RAR) for retinoid acids, although these receptors are not involved in lipid metabolism. Upon binding to various ligands, three classes of proteins are synthesized including lipid binding proteins, the ATP-binding cassette (ABC) transporters and cytochrome P450 member proteins which catalyzes lipid anabolism, metabolism and elimination.
 In addition to lipid metabolism, some members of the cytochrome P450 family genes are responsible for activation of procarcinogens, detoxification of environmental toxins and metabolism of drugs and xenobiotics. In particular, CAR, Nsil2 and recently identified VDR are important in up-regulation of these cytochromes. Of all the human cytochrome P450 genes, only a few CYP1A2, CYP2C9, CYP2C19, CYP2D6, CYP2E1 and CYP3A4 account for most toxicity effects, specifically CYP3A is responsible for clearing approximately half of the clinically prescribed drugs. For instance, acetaminophen, one of the most commonly used drug, is toxic in high doses due to the activation of CAR and the drugs subsequent conversion to acetyl-p-benzoquinone imine (NAPQI) by CYP1A2, CYP2E1 and CYP3A. </Comment>
-  <Graphics BoardWidth="929.5398230088498" BoardHeight="738.3333333333334" />
+  <Graphics BoardWidth="937.5398230088498" BoardHeight="745.0" />
   <DataNode TextLabel="Xenobiotics" GraphId="c87" Type="Metabolite">
     <Graphics CenterX="226.66666666666666" CenterY="473.3333333333333" Width="79.33333333333333" Height="16.0" ZOrder="28672" FontWeight="Bold" FontSize="10" Valign="Middle" Color="ff0000" />
     <Xref Database="ChEBI" ID="CHEBI:35703" />
@@ -351,7 +351,6 @@ In addition to lipid metabolism, some members of the cytochrome P450 family gene
     <Graphics ConnectorType="Elbow" ZOrder="12288" LineThickness="1.0">
       <Point X="437.33333333333337" Y="356.6666666666667" GraphRef="b79" RelX="1.0" RelY="0.0" />
       <Point X="526.0" Y="320.0" GraphRef="c148e" RelX="0.0" RelY="1.0" ArrowHead="Arrow" />
-      <Anchor Position="0.4" Shape="None" GraphId="d9b46" />
     </Graphics>
     <Xref Database="" ID="" />
   </Interaction>
@@ -582,7 +581,7 @@ In addition to lipid metabolism, some members of the cytochrome P450 family gene
   <Interaction GraphId="adaeb">
     <Graphics ZOrder="12288" LineThickness="1.0">
       <Point X="487.33333333333337" Y="373.3333333333333" GraphRef="d4b" RelX="0.0" RelY="-1.0" />
-      <Point X="487.4666666666667" Y="356.6666666666667" GraphRef="d9b46" RelX="0.0" RelY="0.0" ArrowHead="mim-catalysis" />
+      <Point X="487.4666666666667" Y="356.6666666666667" ArrowHead="mim-catalysis" />
     </Graphics>
     <Xref Database="" ID="" />
   </Interaction>

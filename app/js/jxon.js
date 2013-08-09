@@ -1,13 +1,13 @@
 /*\
- |*|
- |*|    JXON framework - Copyleft 2011 by Mozilla Developer Network
- |*|
- |*|    https://developer.mozilla.org/en-US/docs/JXON
- |*|
- |*|    This framework is released under the GNU Public License, version 3 or later.
- |*|    http://www.gnu.org/licenses/gpl-3.0-standalone.html
- |*|
- \*/
+|*|
+|*|    JXON framework - Copyleft 2011 by Mozilla Developer Network
+|*|
+|*|    https://developer.mozilla.org/en-US/docs/JXON
+|*|
+|*|    This framework is released under the GNU Public License, version 3 or later.
+|*|    http://www.gnu.org/licenses/gpl-3.0-standalone.html
+|*|
+\*/
 
 var JXON = new (function () {
 
@@ -18,7 +18,10 @@ var JXON = new (function () {
   function parseText (sValue) {
     if (rIsNull.test(sValue)) { return null; }
     if (rIsBool.test(sValue)) { return sValue.toLowerCase() === "true"; }
-    if (isFinite(sValue)) { return parseFloat(sValue); }
+
+    // had to disable this because it was turning the color value "008080" into "8080"
+
+    //if (isFinite(sValue)) { return parseFloat(sValue); }
 
     // had to disable this because it was turning the value "Ca+2" into a date
 

@@ -103,15 +103,24 @@ function getEdgeTerminusRef(point) {
 function getGroupDimensions(groupId) {
   var groupMembers = pathway.labelableElements.filter(function(el) {return (el.groupRef === groupId)});
   var group = {};
-  group.x = (d3.min(groupMembers, function(el) {return el.x})) - 15;
-  group.y = (d3.min(groupMembers, function(el) {return el.y})) - 15;
 
-  group.width = (d3.max(groupMembers, function(el) {return el.x + el.width})) - group.x + 15;
-  group.height = (d3.max(groupMembers, function(el) {return el.y + el.height})) - group.y + 15;
+  // I think this is margin, not padding, but I'm not sure
 
-  return group;
+  var margin = 12;
+  group.x = (d3.min(groupMembers, function(el) {return el.x})) - margin;
+  group.y = (d3.min(groupMembers, function(el) {return el.y})) - margin;
+
+  group.width = (d3.max(groupMembers, function(el) {return el.x + el.width})) - group.x + margin;
+  group.height = (d3.max(groupMembers, function(el) {return el.y + el.height})) - group.y + margin;
+
   console.log('group');
   console.log(group);
+  console.log(group.x);
+  console.log(group.y);
+  console.log(group.width);
+  console.log(group.height);
+
+  return group;
 };
 
 function getBBoxPortCoordinates(boxDimensions, relX, relY) {
@@ -444,46 +453,68 @@ function drawPathway() {
 
     // This section for the Title/Organism/etc needs to be updated. TODO
 
-    var pathwayNameText = svg.append('text')
-    .attr("id", 'pathway-name-text')
-    .attr("x", 80)
-    .attr("y", 10)
-    .text(function (d) { return 'Title: ' + pathway.name });
+    var titleBlock = [];
+    if (pathway.hasOwnProperty('name')) {
+      titleBlock.push({'key':'Name', 'value':pathway.name});
+    };
 
-    var pathwayOrganismText = svg.append('text')
-    .attr("id", 'pathway-organism-text')
-    .attr("x", 80)
-    .attr("y", 30)
-    .text(function (d) { return 'Organism: ' + pathway.organism });
+    if (pathway.hasOwnProperty('availability')) {
+      titleBlock.push({'key':'Availability', 'value':pathway.availability});
+    };
 
-    // Draw Complexes
+    if (pathway.hasOwnProperty('lastModified')) {
+      titleBlock.push({'key':'Last Modified', 'value':pathway.lastModified});
+    };
+
+    if (pathway.hasOwnProperty('organism')) {
+      titleBlock.push({'key':'Organism', 'value':pathway.organism});
+    };
+    
+    console.log('titleBlock');
+    console.log(titleBlock);
+    self.titleBlock = titleBlock;
+
+    var titleBlockElements = svg.selectAll("text.title-block")
+    .data(titleBlock)
+    .enter()
+    .append("text")
+    .attr("id", function (d,i) { return "titleBlock-" + i; })
+    .attr("x", 12)
+    .attr("y", function(d,i) {return 12 + 14 * i; })
+    .attr("class", "title-block")
+    .text(function (d) { return d.key + ": " + d.value });
+    //.text(function (d) { return '&lt;span class="title-block-property-name"&gt;' + d.key + ':&lt;/span&gt; ' + d.value });
+
+    // Draw Groups 
 
     if (pathway.hasOwnProperty('groups')) {
-      var complexesContainer = svg.selectAll("use.complex")	
-      .data(pathway.groups.filter(function(d, i) { return (d.style === 'Complex'); }))
+
+      var groupsContainer = svg.selectAll("use.group")	
+      .data(pathway.groups)
       .enter()
       .append("use")
-      .attr("id", function (d) { return 'complex-' + d.graphId })
+      .attr("id", function (d) { return 'group-' + d.graphId })
       .attr('transform', function(d) { 
-        var groupMembers = pathway.labelableElements.filter(function(el) {return (el.groupRef === d.groupId)});
-        var groupX = (d3.min(groupMembers, function(el) {return el.x})) - 15;
-        var groupY = (d3.min(groupMembers, function(el) {return el.y})) - 15;
-        return 'translate(' + groupX + ' ' + groupY + ')'; 
+
+        // TODO refactor the code below to not repeat itself using getGroupDimensions
+
+        var groupDimensions = getGroupDimensions(d.groupId);
+        console.log('groupDimensions');
+        console.log(groupDimensions);
+        self.d = d;
+        self.groupDimensions = groupDimensions;
+        return 'translate(' + groupDimensions.x + ' ' + groupDimensions.y + ')'; 
       })
       .attr("width", function (d) {
-        var groupMembers = pathway.labelableElements.filter(function(el) {return (el.groupRef === d.groupId)});
-        var groupX = (d3.min(groupMembers, function(el) {return el.x})) - 15;
-        var groupWidth = (d3.max(groupMembers, function(el) {return el.x + el.width})) - groupX + 15;
-        return groupWidth; 
+        var groupDimensions = getGroupDimensions(d.groupId);
+        return groupDimensions.width; 
       })
       .attr("height", function (d) { 
-        var groupMembers = pathway.labelableElements.filter(function(el) {return (el.groupRef === d.groupId)});
-        var groupY = (d3.min(groupMembers, function(el) {return el.y})) - 15;
-        var groupHeight = (d3.max(groupMembers, function(el) {return el.y + el.height})) - groupY + 15;
-        return groupHeight; 
+        var groupDimensions = getGroupDimensions(d.groupId);
+        return groupDimensions.height; 
       })
-      .attr("class", "complex")
-      .attr("xlink:xlink:href", "#complex")
+      .attr("class", function(d) { return 'group group-' +  d.style; })
+      .attr("xlink:xlink:href", function(d) { return '#group-' +  d.style; })
       .call(drag);
     };
 
