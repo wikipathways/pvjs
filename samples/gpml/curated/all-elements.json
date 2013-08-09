@@ -1,0 +1,2599 @@
+{
+  "xmlns": "http://pathvisio.org/GPML/2013a",
+  "name": "All Elements",
+  "version": 20130430,
+  "author": "Anders Riutta",
+  "organism": "Mus musculus",
+  "boardWidth": 2040.1401606843162,
+  "boardHeight": 1481.3381500219289,
+  "infoBox": {
+    "x": 0,
+    "y": 0
+  },
+  "labelableElements": [
+    {
+      "graphId": "b8b67",
+      "x": 11.71,
+      "y": 36.25,
+      "width": 133.5,
+      "height": 82.5,
+      "textLabel": {
+        "text": "GeneProduct",
+        "fontSize": 10
+      },
+      "symbolType": "rectangle",
+      "elementType": "data-node",
+      "dataNodeType": "gene-product"
+    },
+    {
+      "graphId": "f96fc",
+      "x": 15.99,
+      "y": 130.71,
+      "width": 132.27,
+      "height": 85.41,
+      "stroke": "#0000ff",
+      "textLabel": {
+        "text": "Metabolite",
+        "color": "#0000ff",
+        "fontSize": 10
+      },
+      "symbolType": "rectangle",
+      "elementType": "data-node",
+      "dataNodeType": "metabolite"
+    },
+    {
+      "graphId": "a2ded",
+      "x": 8.41,
+      "y": 445.26,
+      "width": 147.42,
+      "height": 92.34,
+      "textLabel": {
+        "text": "Rna",
+        "fontSize": 40
+      },
+      "symbolType": "rectangle",
+      "elementType": "data-node",
+      "dataNodeType": "rna"
+    },
+    {
+      "graphId": "b551f",
+      "x": 21.88,
+      "y": 553.2,
+      "width": 120.48,
+      "height": 67.49,
+      "textLabel": {
+        "text": "Unknown",
+        "fontSize": 10
+      },
+      "symbolType": "rectangle",
+      "elementType": "data-node",
+      "dataNodeType": "unknown"
+    },
+    {
+      "graphId": "bc38a",
+      "x": 23.82,
+      "y": 246.25,
+      "width": 116.62,
+      "height": 65.57,
+      "stroke": "#14961e",
+      "textLabel": {
+        "text": "Pathway",
+        "color": "#14961e",
+        "fontSize": 12,
+        "fontWeight": "bold"
+      },
+      "elementType": "data-node",
+      "dataNodeType": "pathway"
+    },
+    {
+      "graphId": "eba08",
+      "x": 34.62,
+      "y": 368.59,
+      "width": 95.01,
+      "height": 63.08,
+      "textLabel": {
+        "text": "Protein",
+        "fontSize": 10
+      },
+      "symbolType": "rectangle",
+      "elementType": "data-node",
+      "dataNodeType": "protein"
+    },
+    {
+      "graphId": "f6058",
+      "groupRef": "d516a",
+      "x": 56.17,
+      "y": 1034.7,
+      "width": 80,
+      "height": 20,
+      "textLabel": {
+        "text": "GeneProduct",
+        "fontSize": 10
+      },
+      "symbolType": "rectangle",
+      "elementType": "data-node",
+      "dataNodeType": "gene-product"
+    },
+    {
+      "graphId": "d6943",
+      "groupRef": "d516a",
+      "x": 56.17,
+      "y": 1075.57,
+      "width": 80,
+      "height": 20,
+      "stroke": "#0000ff",
+      "textLabel": {
+        "text": "Metabolite",
+        "color": "#0000ff",
+        "fontSize": 10
+      },
+      "symbolType": "rectangle",
+      "elementType": "data-node",
+      "dataNodeType": "metabolite"
+    },
+    {
+      "graphId": "e21de",
+      "groupRef": "b8b92",
+      "x": 24.55,
+      "y": 676.21,
+      "width": 80,
+      "height": 20,
+      "stroke": "#14961e",
+      "textLabel": {
+        "text": "Pathway",
+        "color": "#14961e",
+        "fontSize": 12,
+        "fontWeight": "bold"
+      },
+      "elementType": "data-node",
+      "dataNodeType": "pathway"
+    },
+    {
+      "graphId": "c4cf8",
+      "groupRef": "b8b92",
+      "x": 85.53,
+      "y": 793.39,
+      "width": 80,
+      "height": 20,
+      "textLabel": {
+        "text": "Protein",
+        "fontSize": 10
+      },
+      "symbolType": "rectangle",
+      "elementType": "data-node",
+      "dataNodeType": "protein"
+    },
+    {
+      "graphId": "fc358",
+      "x": 213.99,
+      "y": 27.81,
+      "width": 80,
+      "height": 20,
+      "textLabel": {
+        "text": "GeneProduct",
+        "fontSize": 10
+      },
+      "symbolType": "rectangle",
+      "elementType": "data-node",
+      "dataNodeType": "gene-product"
+    },
+    {
+      "graphId": "c2e83",
+      "x": 467.73,
+      "y": 314.41,
+      "width": 80,
+      "height": 20,
+      "stroke": "#0000ff",
+      "textLabel": {
+        "text": "Metabolite",
+        "color": "#0000ff",
+        "fontSize": 10
+      },
+      "symbolType": "rectangle",
+      "elementType": "data-node",
+      "dataNodeType": "metabolite"
+    },
+    {
+      "graphId": "eed79",
+      "x": 648.66,
+      "y": 70.48,
+      "width": 101.7,
+      "height": 34.23,
+      "textLabel": {
+        "text": "GeneProduct",
+        "fontSize": 10
+      },
+      "symbolType": "rectangle",
+      "elementType": "data-node",
+      "dataNodeType": "gene-product"
+    },
+    {
+      "graphId": "e0df1",
+      "x": 982.42,
+      "y": 155.79,
+      "width": 80,
+      "height": 20,
+      "textLabel": {
+        "text": "GeneProduct",
+        "fontSize": 10
+      },
+      "symbolType": "rectangle",
+      "elementType": "data-node",
+      "dataNodeType": "gene-product"
+    },
+    {
+      "graphId": "d7754",
+      "x": 481.15,
+      "y": 49.4,
+      "width": 80,
+      "height": 20,
+      "textLabel": {
+        "text": "GeneProduct",
+        "fontSize": 10
+      },
+      "symbolType": "rectangle",
+      "elementType": "data-node",
+      "dataNodeType": "gene-product"
+    },
+    {
+      "graphId": "e3417",
+      "x": 467.32,
+      "y": 122.13,
+      "width": 80,
+      "height": 20,
+      "textLabel": {
+        "text": "GeneProduct",
+        "fontSize": 10
+      },
+      "symbolType": "rectangle",
+      "elementType": "data-node",
+      "dataNodeType": "gene-product"
+    },
+    {
+      "graphId": "cbeb9",
+      "x": 213.03,
+      "y": 106.12,
+      "width": 80,
+      "height": 20,
+      "textLabel": {
+        "text": "GeneProduct",
+        "fontSize": 10
+      },
+      "symbolType": "rectangle",
+      "elementType": "data-node",
+      "dataNodeType": "gene-product"
+    },
+    {
+      "graphId": "d5b00",
+      "x": 467.32,
+      "y": 185.93,
+      "width": 80,
+      "height": 20,
+      "textLabel": {
+        "text": "GeneProduct",
+        "fontSize": 10
+      },
+      "symbolType": "rectangle",
+      "elementType": "data-node",
+      "dataNodeType": "gene-product"
+    },
+    {
+      "graphId": "ce632",
+      "x": 212.99,
+      "y": 184.81,
+      "width": 80,
+      "height": 20,
+      "textLabel": {
+        "text": "GeneProduct",
+        "fontSize": 10
+      },
+      "symbolType": "rectangle",
+      "elementType": "data-node",
+      "dataNodeType": "gene-product"
+    },
+    {
+      "graphId": "a8a4e",
+      "x": 466.46,
+      "y": 245.4,
+      "width": 80,
+      "height": 20,
+      "textLabel": {
+        "text": "GeneProduct",
+        "fontSize": 10
+      },
+      "symbolType": "rectangle",
+      "elementType": "data-node",
+      "dataNodeType": "gene-product"
+    },
+    {
+      "graphId": "e9886",
+      "x": 212.99,
+      "y": 256.68,
+      "width": 80,
+      "height": 20,
+      "textLabel": {
+        "text": "GeneProduct",
+        "fontSize": 10
+      },
+      "symbolType": "rectangle",
+      "elementType": "data-node",
+      "dataNodeType": "gene-product"
+    },
+    {
+      "graphId": "ef324",
+      "x": 212.99,
+      "y": 311.78,
+      "width": 80,
+      "height": 20,
+      "textLabel": {
+        "text": "GeneProduct",
+        "fontSize": 10
+      },
+      "symbolType": "rectangle",
+      "elementType": "data-node",
+      "dataNodeType": "gene-product"
+    },
+    {
+      "graphId": "f49f1",
+      "x": 484.61,
+      "y": 356.99,
+      "width": 80,
+      "height": 20,
+      "textLabel": {
+        "text": "GeneProduct",
+        "fontSize": 10
+      },
+      "symbolType": "rectangle",
+      "elementType": "data-node",
+      "dataNodeType": "gene-product"
+    },
+    {
+      "graphId": "be7c3",
+      "x": 466.46,
+      "y": 435.89,
+      "width": 80,
+      "height": 20,
+      "textLabel": {
+        "text": "GeneProduct",
+        "fontSize": 10
+      },
+      "symbolType": "rectangle",
+      "elementType": "data-node",
+      "dataNodeType": "gene-product"
+    },
+    {
+      "graphId": "b5660",
+      "x": 212.99,
+      "y": 360.13,
+      "width": 80,
+      "height": 20,
+      "textLabel": {
+        "text": "GeneProduct",
+        "fontSize": 10
+      },
+      "symbolType": "rectangle",
+      "elementType": "data-node",
+      "dataNodeType": "gene-product"
+    },
+    {
+      "graphId": "e66fa",
+      "x": 212.99,
+      "y": 434.18,
+      "width": 80,
+      "height": 20,
+      "textLabel": {
+        "text": "GeneProduct",
+        "fontSize": 10
+      },
+      "symbolType": "rectangle",
+      "elementType": "data-node",
+      "dataNodeType": "gene-product"
+    },
+    {
+      "graphId": "df9b6",
+      "x": 212.99,
+      "y": 496.54,
+      "width": 80,
+      "height": 20,
+      "textLabel": {
+        "text": "GeneProduct",
+        "fontSize": 10
+      },
+      "symbolType": "rectangle",
+      "elementType": "data-node",
+      "dataNodeType": "gene-product"
+    },
+    {
+      "graphId": "ea27d",
+      "x": 466.46,
+      "y": 500.15,
+      "width": 80,
+      "height": 20,
+      "textLabel": {
+        "text": "GeneProduct",
+        "fontSize": 10
+      },
+      "symbolType": "rectangle",
+      "elementType": "data-node",
+      "dataNodeType": "gene-product"
+    },
+    {
+      "graphId": "fecfe",
+      "x": 212.99,
+      "y": 563.79,
+      "width": 80,
+      "height": 20,
+      "textLabel": {
+        "text": "GeneProduct",
+        "fontSize": 10
+      },
+      "symbolType": "rectangle",
+      "elementType": "data-node",
+      "dataNodeType": "gene-product"
+    },
+    {
+      "graphId": "b693a",
+      "x": 466.46,
+      "y": 566.13,
+      "width": 80,
+      "height": 20,
+      "textLabel": {
+        "text": "GeneProduct",
+        "fontSize": 10
+      },
+      "symbolType": "rectangle",
+      "elementType": "data-node",
+      "dataNodeType": "gene-product"
+    },
+    {
+      "graphId": "cb3af",
+      "x": 212.99,
+      "y": 629.77,
+      "width": 80,
+      "height": 20,
+      "textLabel": {
+        "text": "GeneProduct",
+        "fontSize": 10
+      },
+      "symbolType": "rectangle",
+      "elementType": "data-node",
+      "dataNodeType": "gene-product"
+    },
+    {
+      "graphId": "bac65",
+      "x": 212.99,
+      "y": 1030.57,
+      "width": 80,
+      "height": 20,
+      "textLabel": {
+        "text": "GeneProduct",
+        "fontSize": 10
+      },
+      "symbolType": "rectangle",
+      "elementType": "data-node",
+      "dataNodeType": "gene-product"
+    },
+    {
+      "graphId": "b7fec",
+      "x": 466.46,
+      "y": 1032.91,
+      "width": 80,
+      "height": 20,
+      "textLabel": {
+        "text": "GeneProduct",
+        "fontSize": 10
+      },
+      "symbolType": "rectangle",
+      "elementType": "data-node",
+      "dataNodeType": "gene-product"
+    },
+    {
+      "graphId": "ad257",
+      "x": 212.99,
+      "y": 952.23,
+      "width": 80,
+      "height": 20,
+      "textLabel": {
+        "text": "GeneProduct",
+        "fontSize": 10
+      },
+      "symbolType": "rectangle",
+      "elementType": "data-node",
+      "dataNodeType": "gene-product"
+    },
+    {
+      "graphId": "bce80",
+      "x": 466.46,
+      "y": 943.08,
+      "width": 80,
+      "height": 20,
+      "textLabel": {
+        "text": "GeneProduct",
+        "fontSize": 10
+      },
+      "symbolType": "rectangle",
+      "elementType": "data-node",
+      "dataNodeType": "gene-product"
+    },
+    {
+      "graphId": "c1a38",
+      "x": 212.99,
+      "y": 880.28,
+      "width": 80,
+      "height": 20,
+      "textLabel": {
+        "text": "GeneProduct",
+        "fontSize": 10
+      },
+      "symbolType": "rectangle",
+      "elementType": "data-node",
+      "dataNodeType": "gene-product"
+    },
+    {
+      "graphId": "c3970",
+      "x": 466.46,
+      "y": 882.62,
+      "width": 80,
+      "height": 20,
+      "textLabel": {
+        "text": "GeneProduct",
+        "fontSize": 10
+      },
+      "symbolType": "rectangle",
+      "elementType": "data-node",
+      "dataNodeType": "gene-product"
+    },
+    {
+      "graphId": "c98cf",
+      "x": 466.46,
+      "y": 798.11,
+      "width": 80,
+      "height": 20,
+      "textLabel": {
+        "text": "GeneProduct",
+        "fontSize": 10
+      },
+      "symbolType": "rectangle",
+      "elementType": "data-node",
+      "dataNodeType": "gene-product"
+    },
+    {
+      "graphId": "af61c",
+      "x": 212.99,
+      "y": 795.34,
+      "width": 80,
+      "height": 20,
+      "textLabel": {
+        "text": "GeneProduct",
+        "fontSize": 10
+      },
+      "symbolType": "rectangle",
+      "elementType": "data-node",
+      "dataNodeType": "gene-product"
+    },
+    {
+      "graphId": "e7616",
+      "x": 212.99,
+      "y": 696.78,
+      "width": 80,
+      "height": 20,
+      "textLabel": {
+        "text": "GeneProduct",
+        "fontSize": 10
+      },
+      "symbolType": "rectangle",
+      "elementType": "data-node",
+      "dataNodeType": "gene-product"
+    },
+    {
+      "graphId": "d90c2",
+      "x": 466.46,
+      "y": 694.01,
+      "width": 80,
+      "height": 20,
+      "textLabel": {
+        "text": "GeneProduct",
+        "fontSize": 10
+      },
+      "symbolType": "rectangle",
+      "elementType": "data-node",
+      "dataNodeType": "gene-product"
+    },
+    {
+      "graphId": "f1d48",
+      "x": 466.46,
+      "y": 629.94,
+      "width": 80,
+      "height": 20,
+      "textLabel": {
+        "text": "GeneProduct",
+        "fontSize": 10
+      },
+      "symbolType": "rectangle",
+      "elementType": "data-node",
+      "dataNodeType": "gene-product"
+    },
+    {
+      "graphId": "af2ae",
+      "x": 212.99,
+      "y": 1078.89,
+      "width": 80,
+      "height": 20,
+      "textLabel": {
+        "text": "GeneProduct",
+        "fontSize": 10
+      },
+      "symbolType": "rectangle",
+      "elementType": "data-node",
+      "dataNodeType": "gene-product"
+    },
+    {
+      "graphId": "a40d0",
+      "x": 466.46,
+      "y": 1190.82,
+      "width": 80,
+      "height": 20,
+      "textLabel": {
+        "text": "ENSMUSG00000017167",
+        "fontSize": 10
+      },
+      "symbolType": "rectangle",
+      "elementType": "data-node",
+      "dataNodeType": "gene-product",
+      "xRef": {
+        "database": "Ensembl Mouse",
+        "id": "ENSMUSG00000017167"
+      }
+    },
+    {
+      "graphId": "e71ac",
+      "x": 212.99,
+      "y": 1186.8,
+      "width": 80,
+      "height": 20,
+      "textLabel": {
+        "text": "ENSMUSG00000041147",
+        "fontSize": 10
+      },
+      "symbolType": "rectangle",
+      "elementType": "data-node",
+      "dataNodeType": "gene-product",
+      "xRef": {
+        "database": "Ensembl Mouse",
+        "id": "ENSMUSG00000041147"
+      }
+    },
+    {
+      "graphId": "e3bb5",
+      "x": 466.46,
+      "y": 1107.61,
+      "width": 80,
+      "height": 20,
+      "textLabel": {
+        "text": "GeneProduct",
+        "fontSize": 10
+      },
+      "symbolType": "rectangle",
+      "elementType": "data-node",
+      "dataNodeType": "gene-product"
+    },
+    {
+      "graphId": "cb003",
+      "x": 626.61,
+      "y": 459.53,
+      "width": 101.7,
+      "height": 34.23,
+      "textLabel": {
+        "text": "GeneProduct",
+        "fontSize": 10
+      },
+      "symbolType": "rectangle",
+      "elementType": "data-node",
+      "dataNodeType": "gene-product"
+    },
+    {
+      "graphId": "b0b2e",
+      "x": 960.37,
+      "y": 544.84,
+      "width": 80,
+      "height": 20,
+      "textLabel": {
+        "text": "GeneProduct",
+        "fontSize": 10
+      },
+      "symbolType": "rectangle",
+      "elementType": "data-node",
+      "dataNodeType": "gene-product"
+    },
+    {
+      "graphId": "df48e",
+      "x": 637.28,
+      "y": 765.36,
+      "width": 101.7,
+      "height": 34.23,
+      "textLabel": {
+        "text": "GeneProduct",
+        "fontSize": 10
+      },
+      "symbolType": "rectangle",
+      "elementType": "data-node",
+      "dataNodeType": "gene-product"
+    },
+    {
+      "graphId": "f6207",
+      "x": 655.06,
+      "y": 1069.06,
+      "width": 101.7,
+      "height": 34.23,
+      "textLabel": {
+        "text": "GeneProduct",
+        "fontSize": 10
+      },
+      "symbolType": "rectangle",
+      "elementType": "data-node",
+      "dataNodeType": "gene-product"
+    },
+    {
+      "graphId": "cdfb7",
+      "x": 988.82,
+      "y": 1154.37,
+      "width": 80,
+      "height": 20,
+      "textLabel": {
+        "text": "GeneProduct",
+        "fontSize": 10
+      },
+      "symbolType": "rectangle",
+      "elementType": "data-node",
+      "dataNodeType": "gene-product"
+    },
+    {
+      "graphId": "ee2a9",
+      "x": 658.75,
+      "y": 1256.41,
+      "width": 101.7,
+      "height": 34.23,
+      "textLabel": {
+        "text": "GeneProduct",
+        "fontSize": 10
+      },
+      "symbolType": "rectangle",
+      "elementType": "data-node",
+      "dataNodeType": "gene-product"
+    },
+    {
+      "graphId": "dd17b",
+      "groupRef": "ce917",
+      "x": 99.51,
+      "y": 1294.48,
+      "width": 80,
+      "height": 20,
+      "textLabel": {
+        "text": "Protein",
+        "fontSize": 10
+      },
+      "symbolType": "rectangle",
+      "elementType": "data-node",
+      "dataNodeType": "protein"
+    },
+    {
+      "graphId": "fe239",
+      "groupRef": "ce917",
+      "x": 38.52,
+      "y": 1177.31,
+      "width": 80,
+      "height": 20,
+      "stroke": "#14961e",
+      "textLabel": {
+        "text": "Pathway",
+        "color": "#14961e",
+        "fontSize": 12,
+        "fontWeight": "bold"
+      },
+      "elementType": "data-node",
+      "dataNodeType": "pathway"
+    },
+    {
+      "graphId": "afff7",
+      "x": 1133.95,
+      "y": 32.6,
+      "width": 80,
+      "height": 20,
+      "fill": "#99ffff",
+      "textLabel": {
+        "text": "Label",
+        "fontSize": 10
+      },
+      "symbolType": "rectangle",
+      "elementType": "label"
+    },
+    {
+      "graphId": "e8a51",
+      "x": 1133.95,
+      "y": 68.75,
+      "width": 80,
+      "height": 86.82,
+      "fill": "#99ffff",
+      "textLabel": {
+        "text": "Label (font: \nCopperplate)",
+        "fontSize": 10,
+        "fontFamily": "Copperplate"
+      },
+      "symbolType": "rectangle",
+      "elementType": "label"
+    },
+    {
+      "graphId": "e2efc",
+      "x": 350.03,
+      "y": 7.43,
+      "width": 103.97,
+      "height": 42.48,
+      "fill": "#ffffff",
+      "textLabel": {
+        "text": "Interaction\nStart: Line\nEnd: Line\nConnectorType: Elbow",
+        "fontSize": 10
+      },
+      "symbolType": "rectangle",
+      "elementType": "label"
+    },
+    {
+      "graphId": "fc71a",
+      "x": 58.73,
+      "y": 987.57,
+      "width": 80,
+      "height": 20,
+      "fill": "#ffffff",
+      "textLabel": {
+        "text": "Complex",
+        "fontSize": 10
+      },
+      "symbolType": "rectangle",
+      "elementType": "label"
+    },
+    {
+      "graphId": "e897b",
+      "x": 1104.54,
+      "y": 189.77,
+      "width": 138.83,
+      "height": 53.43,
+      "fill": "#99ffff",
+      "textLabel": {
+        "text": "Label for the\nrendering of text\n(bold, italic, right)",
+        "fontSize": 12,
+        "fontWeight": "bold",
+        "fontStyle": "italic",
+        "textAnchor": "end"
+      },
+      "symbolType": "rectangle",
+      "elementType": "label"
+    },
+    {
+      "graphId": "f4e47",
+      "x": 345.41,
+      "y": 62.7,
+      "width": 111.8,
+      "height": 51.39,
+      "fill": "#ffffff",
+      "textLabel": {
+        "text": "Interaction\nStart: Line\nEnd: Arrow\nConnectorType: Curved",
+        "fontSize": 10
+      },
+      "symbolType": "rectangle",
+      "elementType": "label"
+    },
+    {
+      "graphId": "e8ac2",
+      "x": 314.08,
+      "y": 139.85,
+      "width": 127.05,
+      "height": 47.76,
+      "fill": "#ffffff",
+      "textLabel": {
+        "text": "Interaction\nDouble Line\nStart: Arrow\nEnd: tbar/inhibition",
+        "fontSize": 10
+      },
+      "symbolType": "rectangle",
+      "elementType": "label"
+    },
+    {
+      "graphId": "a4f3e",
+      "x": 307.18,
+      "y": 204.29,
+      "width": 157.65,
+      "height": 50,
+      "fill": "#ffffff",
+      "textLabel": {
+        "text": "Interaction\nDashed Line\nStart: tbar/inhibition\nEnd: mim-necessary-stimulation",
+        "fontSize": 10
+      },
+      "symbolType": "rectangle",
+      "elementType": "label"
+    },
+    {
+      "graphId": "be5a6",
+      "x": 322.08,
+      "y": 263.47,
+      "width": 143.53,
+      "height": 50.73,
+      "fill": "#ffffff",
+      "textLabel": {
+        "text": "Interaction\nDouble Line\nStart: mim-necessary-stimulation\nEnd: mim-binding",
+        "fontSize": 10
+      },
+      "symbolType": "rectangle",
+      "elementType": "label"
+    },
+    {
+      "graphId": "a1e77",
+      "x": 318.67,
+      "y": 341.85,
+      "width": 129.9,
+      "height": 47.95,
+      "fill": "#ffffff",
+      "textLabel": {
+        "text": "Interaction\nStart: mim-binding\nEnd: mim-conversion\nConnectorType: Segmented",
+        "fontSize": 10
+      },
+      "symbolType": "rectangle",
+      "elementType": "label"
+    },
+    {
+      "graphId": "fda37",
+      "x": 330.21,
+      "y": 403.27,
+      "width": 109.8,
+      "height": 34.29,
+      "fill": "#ffffff",
+      "textLabel": {
+        "text": "Interaction\nStart: mim-conversion\nEnd: mim-stimulation",
+        "fontSize": 10
+      },
+      "symbolType": "rectangle",
+      "elementType": "label"
+    },
+    {
+      "graphId": "a2e30",
+      "x": 345.83,
+      "y": 456.67,
+      "width": 106.44,
+      "height": 34.29,
+      "fill": "#ffffff",
+      "textLabel": {
+        "text": "Interaction\nStart: mim-stimulation\nEnd: mim-modification",
+        "fontSize": 10
+      },
+      "symbolType": "rectangle",
+      "elementType": "label"
+    },
+    {
+      "graphId": "e0b15",
+      "x": 336.98,
+      "y": 515.67,
+      "width": 108.72,
+      "height": 48.58,
+      "fill": "#ffffff",
+      "textLabel": {
+        "text": "Interaction\nDashed Line\nStart: mim-modification\nEnd: mim-catalysis",
+        "fontSize": 10
+      },
+      "symbolType": "rectangle",
+      "elementType": "label"
+    },
+    {
+      "graphId": "d14ef",
+      "x": 339.48,
+      "y": 588.08,
+      "width": 93.81,
+      "height": 34.29,
+      "fill": "#ffffff",
+      "textLabel": {
+        "text": "Interaction\nStart: mim-catalysis\nEnd: mim-inhibition",
+        "fontSize": 10
+      },
+      "symbolType": "rectangle",
+      "elementType": "label"
+    },
+    {
+      "graphId": "a78f5",
+      "x": 348.26,
+      "y": 644.27,
+      "width": 93.81,
+      "height": 34.29,
+      "fill": "#ffffff",
+      "textLabel": {
+        "text": "Interaction\nStart: mim-inhibition\nEnd: mim-cleavage",
+        "fontSize": 10
+      },
+      "symbolType": "rectangle",
+      "elementType": "label"
+    },
+    {
+      "graphId": "c4524",
+      "x": 329.57,
+      "y": 742.01,
+      "width": 129.86,
+      "height": 34.29,
+      "fill": "#ffffff",
+      "textLabel": {
+        "text": "Interaction\nStart: mim-cleavage\nEnd: mim-covalent-bond",
+        "fontSize": 10
+      },
+      "symbolType": "rectangle",
+      "elementType": "label"
+    },
+    {
+      "graphId": "bfb78",
+      "x": 324.48,
+      "y": 826.62,
+      "width": 113.03,
+      "height": 34.29,
+      "fill": "#ffffff",
+      "textLabel": {
+        "text": "Interaction\nStart: mim-covalent-bond\nEnd: mim-branching-left",
+        "fontSize": 10
+      },
+      "symbolType": "rectangle",
+      "elementType": "label"
+    },
+    {
+      "graphId": "e95f5",
+      "x": 327.24,
+      "y": 909.4,
+      "width": 123.04,
+      "height": 34.29,
+      "fill": "#ffffff",
+      "textLabel": {
+        "text": "Interaction\nStart: mim-branching-left\nEnd: mim-branching-right",
+        "fontSize": 10
+      },
+      "symbolType": "rectangle",
+      "elementType": "label"
+    },
+    {
+      "graphId": "c43a2",
+      "x": 321.39,
+      "y": 977.43,
+      "width": 156.08,
+      "height": 34.29,
+      "fill": "#ffffff",
+      "textLabel": {
+        "text": "Interaction\nStart: mim-branching-right\nEnd: mim-transcription-translation",
+        "fontSize": 10
+      },
+      "symbolType": "rectangle",
+      "elementType": "label"
+    },
+    {
+      "graphId": "e40e9",
+      "x": 315.02,
+      "y": 1060.46,
+      "width": 161.6,
+      "height": 34.29,
+      "fill": "#ffffff",
+      "textLabel": {
+        "text": "Interaction\nStart: mim-transcription-translation\nEnd: mim-gap",
+        "fontSize": 10
+      },
+      "symbolType": "rectangle",
+      "elementType": "label"
+    },
+    {
+      "graphId": "c7aa8",
+      "x": 356.44,
+      "y": 1149.45,
+      "width": 93.81,
+      "height": 34.29,
+      "fill": "#ffffff",
+      "textLabel": {
+        "text": "Interaction\nStart: mim-gap\nEnd: Line",
+        "fontSize": 10
+      },
+      "symbolType": "rectangle",
+      "elementType": "label"
+    },
+    {
+      "graphId": "f6adb",
+      "groupRef": "b8b92",
+      "x": 46.63,
+      "y": 655.62,
+      "width": 80,
+      "height": 20,
+      "fill": "#ffffff",
+      "textLabel": {
+        "text": "Group",
+        "fontSize": 10
+      },
+      "symbolType": "rectangle",
+      "elementType": "label"
+    },
+    {
+      "graphId": "e51df",
+      "x": 1104.54,
+      "y": 327.08,
+      "width": 138.83,
+      "height": 53.43,
+      "fill": "#99ffff",
+      "textLabel": {
+        "text": "Label for the\nrendering of text\n(bold, italic, left)",
+        "fontSize": 12,
+        "fontWeight": "bold",
+        "fontStyle": "italic",
+        "textAnchor": "start"
+      },
+      "symbolType": "rectangle",
+      "elementType": "label"
+    },
+    {
+      "graphId": "a895a",
+      "x": 1104.54,
+      "y": 255.32,
+      "width": 138.83,
+      "height": 53.43,
+      "fill": "#99ffff",
+      "textLabel": {
+        "text": "Label for the\nrendering of text\n(bold, italic, center)",
+        "fontSize": 12,
+        "fontWeight": "bold",
+        "fontStyle": "italic"
+      },
+      "symbolType": "rectangle",
+      "elementType": "label"
+    },
+    {
+      "graphId": "ff411",
+      "x": 782.79,
+      "y": 21.29,
+      "width": 134.63,
+      "height": 60.5,
+      "fill": "#ffffff",
+      "textLabel": {
+        "text": "Graphical Line\n    Curved\n    Connected to data nodes\nStart: Line\nEnd: Arrow",
+        "fontSize": 10,
+        "textAnchor": "start"
+      },
+      "symbolType": "rectangle",
+      "elementType": "label"
+    },
+    {
+      "graphId": "bdc73",
+      "x": 798.46,
+      "y": 164.44,
+      "width": 115.74,
+      "height": 40.19,
+      "fill": "#ffffff",
+      "textLabel": {
+        "text": "Graphical Line (Curved)\nStart: Arrow\nEnd: tbar",
+        "fontSize": 10,
+        "textAnchor": "start"
+      },
+      "symbolType": "rectangle",
+      "elementType": "label"
+    },
+    {
+      "graphId": "fd3a2",
+      "x": 755.63,
+      "y": 245.03,
+      "width": 149.05,
+      "height": 76.97,
+      "fill": "#ffffff",
+      "textLabel": {
+        "text": "Graphical Line\n    Elbow\n    Greenish color\n    Dashed\nStart: tbar\nEnd: mim-necessary-stimulation",
+        "fontSize": 10,
+        "textAnchor": "start"
+      },
+      "symbolType": "rectangle",
+      "elementType": "label"
+    },
+    {
+      "graphId": "f1aa7",
+      "x": 758.43,
+      "y": 405.16,
+      "width": 149.05,
+      "height": 56.81,
+      "fill": "#ffffff",
+      "textLabel": {
+        "text": "Graphical Line\n    Elbow\n    Connected to data nodes\nStart: mim-necessary-stimulation\nEnd: mim-binding",
+        "fontSize": 10,
+        "textAnchor": "start"
+      },
+      "symbolType": "rectangle",
+      "elementType": "label"
+    },
+    {
+      "graphId": "bea69",
+      "x": 783.88,
+      "y": 577.86,
+      "width": 149.05,
+      "height": 60.73,
+      "fill": "#ffffff",
+      "textLabel": {
+        "text": "Graphical Line\n    Segmented\n    Double\nStart: mim-binding\nEnd: mim-conversion",
+        "fontSize": 10,
+        "textAnchor": "start"
+      },
+      "symbolType": "rectangle",
+      "elementType": "label"
+    },
+    {
+      "graphId": "b9d0a",
+      "x": 769.1,
+      "y": 719.06,
+      "width": 191.4,
+      "height": 60.29,
+      "fill": "#ffffff",
+      "textLabel": {
+        "text": "Graphical Line\n    Segmented\n    Connected to data node and shape\nStart: mim-conversion\nEnd: mim-stimulation",
+        "fontSize": 10,
+        "textAnchor": "start"
+      },
+      "symbolType": "rectangle",
+      "elementType": "label"
+    },
+    {
+      "graphId": "ae9a7",
+      "x": 796.79,
+      "y": 884.62,
+      "width": 112.35,
+      "height": 46.73,
+      "fill": "#ffffff",
+      "textLabel": {
+        "text": "Graphical Line\n    Straight\nStart: mim-stimulation\nEnd: mim-modification",
+        "fontSize": 10,
+        "textAnchor": "start"
+      },
+      "symbolType": "rectangle",
+      "elementType": "label"
+    },
+    {
+      "graphId": "f496d",
+      "x": 786.88,
+      "y": 1011.61,
+      "width": 181.83,
+      "height": 68.27,
+      "fill": "#ffffff",
+      "textLabel": {
+        "text": "Graphical Line\n    Straight\n    Connected to data nodes\n    Reddish color\nStart: mim-modification\nEnd: mim-catalysis",
+        "fontSize": 10,
+        "textAnchor": "start"
+      },
+      "symbolType": "rectangle",
+      "elementType": "label"
+    },
+    {
+      "graphId": "c4bf8",
+      "x": 790.57,
+      "y": 1198.96,
+      "width": 181.83,
+      "height": 68.27,
+      "fill": "#ffffff",
+      "textLabel": {
+        "text": "Graphical Line\n    Straight\n    Connected to one data node\nStart: Arrow\nEnd: Line",
+        "fontSize": 10,
+        "textAnchor": "start"
+      },
+      "symbolType": "rectangle",
+      "elementType": "label"
+    },
+    {
+      "graphId": "bcb18",
+      "x": 772.4,
+      "y": 1332.12,
+      "width": 97.64,
+      "height": 65.56,
+      "fill": "#ffffff",
+      "textLabel": {
+        "text": "Graphical Line\n    Straight\n    Thickness: 5\nStart: Line\nEnd: Line",
+        "fontSize": 10,
+        "textAnchor": "start"
+      },
+      "symbolType": "rectangle",
+      "elementType": "label"
+    },
+    {
+      "graphId": "be9b6",
+      "groupRef": "b8b92",
+      "x": 23.79,
+      "y": 924.71,
+      "width": 65.89,
+      "height": 25.53,
+      "fill": "#ffffff",
+      "textLabel": {
+        "text": "Sample note",
+        "fontSize": 10,
+        "textAnchor": "start"
+      },
+      "symbolType": "rectangle",
+      "elementType": "label"
+    },
+    {
+      "graphId": "e3cb5",
+      "groupRef": "ce917",
+      "x": 37.76,
+      "y": 1425.81,
+      "width": 65.89,
+      "height": 25.53,
+      "fill": "#ffffff",
+      "textLabel": {
+        "text": "Sample note",
+        "fontSize": 10,
+        "textAnchor": "start"
+      },
+      "symbolType": "rectangle",
+      "elementType": "label"
+    },
+    {
+      "graphId": "aac68",
+      "x": 53.69,
+      "y": 1130.66,
+      "width": 80,
+      "height": 20,
+      "fill": "#ffffff",
+      "textLabel": {
+        "text": "Complex",
+        "fontSize": 10
+      },
+      "symbolType": "rectangle",
+      "elementType": "label"
+    },
+    {
+      "graphId": "f98a6",
+      "x": 1355.46,
+      "y": 71.36,
+      "width": 97.93,
+      "height": 62.3,
+      "rotation": 0,
+      "textLabel": {
+        "text": "Arc",
+        "fontSize": 10
+      },
+      "symbolType": "arc",
+      "elementType": "shape"
+    },
+    {
+      "graphId": "db0b7",
+      "x": 1324.94,
+      "y": 196,
+      "width": 152.98,
+      "height": 105.47,
+      "rotation": 237.74,
+      "textLabel": {
+        "text": "Rectangle (Rotated)",
+        "fontSize": 10
+      },
+      "symbolType": "rectangle",
+      "elementType": "shape"
+    },
+    {
+      "graphId": "d9aa0",
+      "x": 1331.69,
+      "y": 363.73,
+      "width": 145.47,
+      "height": 36,
+      "rotation": 0,
+      "textLabel": {
+        "text": "oval",
+        "fontSize": 10
+      },
+      "symbolType": "oval",
+      "elementType": "shape"
+    },
+    {
+      "graphId": "cb9b8",
+      "x": 1339.83,
+      "y": 438.28,
+      "width": 129.2,
+      "height": 49.32,
+      "rotation": 0,
+      "textLabel": {
+        "text": "rounded rectangle",
+        "fontSize": 10
+      },
+      "symbolType": "rounded-rectangle",
+      "elementType": "shape"
+    },
+    {
+      "graphId": "a771e",
+      "x": 1296.25,
+      "y": 529.2,
+      "width": 141.03,
+      "height": 58.19,
+      "rotation": 0,
+      "textLabel": {
+        "text": "triangle",
+        "fontSize": 10
+      },
+      "symbolType": "triangle",
+      "elementType": "shape"
+    },
+    {
+      "graphId": "c7853",
+      "x": 1346.6,
+      "y": 818.96,
+      "width": 105.58,
+      "height": 52.17,
+      "rotation": 0,
+      "textLabel": {
+        "text": "pentagon",
+        "fontSize": 10
+      },
+      "symbolType": "pentagon",
+      "elementType": "shape"
+    },
+    {
+      "graphId": "dbd9b",
+      "x": 1376.17,
+      "y": 897.43,
+      "width": 56.51,
+      "height": 40.6,
+      "rotation": 0,
+      "textLabel": {
+        "text": "hexagon",
+        "fontSize": 10
+      },
+      "symbolType": "hexagon",
+      "elementType": "shape"
+    },
+    {
+      "graphId": "b973a",
+      "x": 1369.42,
+      "y": 739.64,
+      "width": 70.03,
+      "height": 55.23,
+      "rotation": 0,
+      "textLabel": {
+        "text": "brace",
+        "fontSize": 10
+      },
+      "symbolType": "brace",
+      "elementType": "shape"
+    },
+    {
+      "graphId": "b46fd",
+      "x": 1357.45,
+      "y": 620.67,
+      "width": 94.9,
+      "height": 85.28,
+      "rotation": 0,
+      "textLabel": {
+        "text": "mim-degradation",
+        "fontSize": 10
+      },
+      "symbolType": "mim-degradation",
+      "elementType": "shape"
+    },
+    {
+      "graphId": "e31c4",
+      "x": 1556.72,
+      "y": 27.73,
+      "width": 87.78,
+      "height": 75.94,
+      "stroke": "#c0c0c0",
+      "strokeWidth": 3,
+      "rotation": 0,
+      "textLabel": {
+        "text": "cell",
+        "color": "#c0c0c0",
+        "fontSize": 10
+      },
+      "symbolType": "cell",
+      "elementType": "shape"
+    },
+    {
+      "graphId": "de1ed",
+      "x": 1543.49,
+      "y": 146.52,
+      "width": 126.24,
+      "height": 78.9,
+      "stroke": "#c0c0c0",
+      "strokeWidth": 3,
+      "rotation": 0,
+      "textLabel": {
+        "text": "nucleus",
+        "color": "#c0c0c0",
+        "fontSize": 10
+      },
+      "symbolType": "nucleus",
+      "elementType": "shape"
+    },
+    {
+      "graphId": "b977c",
+      "x": 1538.36,
+      "y": 259.5,
+      "width": 124.76,
+      "height": 81.86,
+      "stroke": "#c0c0c0",
+      "strokeWidth": 3,
+      "rotation": 0,
+      "textLabel": {
+        "text": "endoplasmic reticulum",
+        "color": "#c0c0c0",
+        "fontSize": 10
+      },
+      "symbolType": "endoplasmic-reticulum",
+      "elementType": "shape"
+    },
+    {
+      "graphId": "cc6a6",
+      "x": 1541.37,
+      "y": 467.8,
+      "width": 135.12,
+      "height": 87.78,
+      "stroke": "#c0c0c0",
+      "strokeWidth": 3,
+      "rotation": 0,
+      "textLabel": {
+        "text": "golgi apparatus",
+        "color": "#c0c0c0",
+        "fontSize": 10
+      },
+      "symbolType": "golgi-apparatus",
+      "elementType": "shape"
+    },
+    {
+      "graphId": "c85fa",
+      "x": 1541.35,
+      "y": 374.2,
+      "width": 118.84,
+      "height": 71.51,
+      "stroke": "#c0c0c0",
+      "strokeWidth": 3,
+      "rotation": 356.61,
+      "textLabel": {
+        "text": "mitochondria",
+        "color": "#c0c0c0",
+        "fontSize": 10
+      },
+      "symbolType": "mitochondria",
+      "elementType": "shape"
+    },
+    {
+      "graphId": "af875",
+      "x": 1555.93,
+      "y": 678.7,
+      "width": 89.26,
+      "height": 72.99,
+      "stroke": "#c0c0c0",
+      "strokeWidth": 3,
+      "rotation": 0,
+      "textLabel": {
+        "text": "sarcoplasmic reticulum",
+        "color": "#c0c0c0",
+        "fontSize": 10
+      },
+      "symbolType": "sarcoplasmic-reticulum",
+      "elementType": "shape"
+    },
+    {
+      "graphId": "d1405",
+      "x": 1534.53,
+      "y": 581.24,
+      "width": 132.16,
+      "height": 56.71,
+      "stroke": "#c0c0c0",
+      "strokeWidth": 3,
+      "rotation": 0,
+      "textLabel": {
+        "text": "organelle",
+        "color": "#c0c0c0",
+        "fontSize": 10
+      },
+      "symbolType": "organelle",
+      "elementType": "shape"
+    },
+    {
+      "graphId": "cebed",
+      "x": 1549.33,
+      "y": 779.24,
+      "width": 102.57,
+      "height": 86.3,
+      "stroke": "#c0c0c0",
+      "strokeWidth": 3,
+      "rotation": 0,
+      "textLabel": {
+        "text": "vesicle",
+        "color": "#c0c0c0",
+        "fontSize": 10
+      },
+      "symbolType": "vesicle",
+      "elementType": "shape"
+    },
+    {
+      "graphId": "a5b67",
+      "x": 1558.54,
+      "y": 897.36,
+      "width": 84.15,
+      "height": 66.18,
+      "stroke": "#c0c0c0",
+      "strokeStyle": "broken",
+      "rotation": 0,
+      "textLabel": {
+        "text": "extracellular\nregion",
+        "color": "#c0c0c0",
+        "fontSize": 10
+      },
+      "symbolType": "extracellular-region",
+      "elementType": "shape"
+    },
+    {
+      "graphId": "df14e",
+      "x": 997.28,
+      "y": 812.42,
+      "width": 50.97,
+      "height": 44.66,
+      "rotation": 0,
+      "symbolType": "triangle",
+      "elementType": "shape"
+    },
+    {
+      "graphId": "db1e0",
+      "groupRef": "b8b92",
+      "x": 96.54,
+      "y": 867.73,
+      "width": 38.35,
+      "height": 50.97,
+      "rotation": 0,
+      "symbolType": "brace",
+      "elementType": "shape"
+    },
+    {
+      "graphId": "f4077",
+      "x": 1805.16,
+      "y": 51.72,
+      "width": 129.2,
+      "height": 49.32,
+      "strokeStyle": "broken",
+      "rotation": 0,
+      "textLabel": {
+        "text": "rectangle (dashed)",
+        "fontSize": 10
+      },
+      "symbolType": "rectangle",
+      "elementType": "shape"
+    },
+    {
+      "graphId": "c14df",
+      "x": 1805.16,
+      "y": 127.77,
+      "width": 129.2,
+      "height": 49.32,
+      "rotation": 0,
+      "textLabel": {
+        "text": "rectangle (double)",
+        "fontSize": 10
+      },
+      "symbolType": "rectangle",
+      "elementType": "shape"
+    },
+    {
+      "graphId": "c49f9",
+      "x": 1805.16,
+      "y": 199.61,
+      "width": 129.2,
+      "height": 49.32,
+      "stroke": "#ff0033",
+      "strokeStyle": "broken",
+      "rotation": 0,
+      "textLabel": {
+        "text": "rectangle (dashed)\nstroke: red",
+        "color": "#ff0033",
+        "fontSize": 10
+      },
+      "symbolType": "rounded-rectangle",
+      "elementType": "shape"
+    },
+    {
+      "graphId": "dbe31",
+      "x": 1805.16,
+      "y": 271.02,
+      "width": 129.2,
+      "height": 49.32,
+      "fill": "#ffffcc",
+      "stroke": "#ff0033",
+      "strokeStyle": "broken",
+      "rotation": 0,
+      "textLabel": {
+        "text": "rectangle (dashed)\nstroke: red\nfill: yellow",
+        "color": "#ff0033",
+        "fontSize": 10
+      },
+      "symbolType": "rectangle",
+      "elementType": "shape"
+    },
+    {
+      "graphId": "be803",
+      "x": 1729.39,
+      "y": 351.58,
+      "width": 280.75,
+      "height": 160.55,
+      "fill": "#ffffcc",
+      "stroke": "#ff0033",
+      "strokeStyle": "broken",
+      "rotation": 0,
+      "textLabel": {
+        "text": "rectangle w/ mitochondria\n(dashed)\nstroke: red\nfill: yellow",
+        "color": "#ff0033",
+        "fontSize": 20
+      },
+      "symbolType": "mitochondria",
+      "elementType": "shape"
+    },
+    {
+      "graphId": "a2cb4",
+      "groupRef": "ce917",
+      "x": 110.51,
+      "y": 1368.82,
+      "width": 38.35,
+      "height": 50.97,
+      "rotation": 0,
+      "symbolType": "brace",
+      "elementType": "shape"
+    }
+  ],
+  "groups": [
+    {
+      "style": "Complex",
+      "groupId": "d516a"
+    },
+    {
+      "style": "Group",
+      "groupId": "b8b92"
+    },
+    {
+      "style": "Complex",
+      "groupId": "ce917"
+    }
+  ],
+  "graphicalLines": [
+    {
+      "strokeWidth": 1,
+      "connectorType": "curved",
+      "zIndex": 12288,
+      "points": [
+        {
+          "x": 750.3655807896919,
+          "y": 87.6004811735277,
+          "relx": 1,
+          "rely": 0,
+          "graphRef": "eed79"
+        },
+        {
+          "x": 858.4637268847796,
+          "y": 126.69518111149297
+        },
+        {
+          "x": 982.4180181815336,
+          "y": 165.78988104945824,
+          "relx": -1,
+          "rely": 0,
+          "graphRef": "e0df1"
+        }
+      ],
+      "markerStart": "none",
+      "markerEnd": "arrow"
+    },
+    {
+      "strokeWidth": 1,
+      "connectorType": "curved",
+      "zIndex": 12288,
+      "points": [
+        {
+          "x": 749.3168955320305,
+          "y": 208.54034425292667
+        },
+        {
+          "x": 816.5007112375534,
+          "y": 220.4758281238945
+        },
+        {
+          "x": 866.457190481566,
+          "y": 232.41131199486233
+        },
+        {
+          "x": 916.4136697255786,
+          "y": 248.54034425292676
+        },
+        {
+          "x": 978.349153596546,
+          "y": 264.6693765109912
+        }
+      ],
+      "markerStart": "arrow",
+      "markerEnd": "t-bar"
+    },
+    {
+      "strokeWidth": 1,
+      "zIndex": 12288,
+      "points": [
+        {
+          "x": 1284.9056603773583,
+          "y": 1071.698113207547
+        },
+        {
+          "x": 1483.0188679245282,
+          "y": 1084.9056603773583
+        }
+      ],
+      "markerStart": "none",
+      "markerEnd": "none"
+    },
+    {
+      "graphId": "a863a",
+      "stroke": "#00cc33",
+      "strokeWidth": 1,
+      "connectorType": "elbow",
+      "strokeStyle": "broken",
+      "zIndex": 32834,
+      "points": [
+        {
+          "x": 724.4662554182327,
+          "y": 329.49340257440576
+        },
+        {
+          "x": 791.6500711237557,
+          "y": 341.42888644537356
+        },
+        {
+          "x": 841.6065503677682,
+          "y": 353.3643703163413
+        },
+        {
+          "x": 891.5630296117808,
+          "y": 369.4934025744057
+        },
+        {
+          "x": 953.4985134827482,
+          "y": 385.6224348324701
+        }
+      ],
+      "markerStart": "t-bar",
+      "markerEnd": "mim-necessary-stimulation"
+    },
+    {
+      "graphId": "b3b96",
+      "strokeWidth": 1,
+      "connectorType": "elbow",
+      "zIndex": 32838,
+      "points": [
+        {
+          "x": 728.3172166360646,
+          "y": 476.64742285204795,
+          "relx": 1,
+          "rely": 0,
+          "graphRef": "cb003"
+        },
+        {
+          "x": 839.2603129445237,
+          "y": 515.7421227900131
+        },
+        {
+          "x": 960.3696540279066,
+          "y": 554.8368227279782,
+          "relx": -1,
+          "rely": 0,
+          "graphRef": "b0b2e"
+        }
+      ],
+      "markerStart": "mim-necessary-stimulation",
+      "markerEnd": "mim-binding"
+    },
+    {
+      "graphId": "d98f1",
+      "strokeWidth": 1,
+      "connectorType": "segmented",
+      "strokeStyle": "double",
+      "zIndex": 32841,
+      "points": [
+        {
+          "x": 735.1348187183748,
+          "y": 635.3255505118166
+        },
+        {
+          "x": 805.1209103840683,
+          "y": 679.2318634423898
+        },
+        {
+          "x": 911.8065433854908,
+          "y": 655.7610241820769
+        },
+        {
+          "x": 891.891891891892,
+          "y": 686.3442389758179
+        },
+        {
+          "x": 964.1670767828904,
+          "y": 691.454582769881
+        }
+      ],
+      "markerStart": "mim-binding",
+      "markerEnd": "mim-conversion"
+    },
+    {
+      "graphId": "b6c47",
+      "strokeWidth": 1,
+      "connectorType": "segmented",
+      "zIndex": 32844,
+      "points": [
+        {
+          "x": 738.9857799362069,
+          "y": 782.4795707894589,
+          "relx": 1,
+          "rely": 0,
+          "graphRef": "df48e"
+        },
+        {
+          "x": 831.4366998577525,
+          "y": 847.7951635846373
+        },
+        {
+          "x": 1010.0200103950116,
+          "y": 812.4247908427722,
+          "relx": -0.5,
+          "rely": -1,
+          "graphRef": "df14e"
+        }
+      ],
+      "markerStart": "mim-conversion",
+      "markerEnd": "mim-stimulation"
+    },
+    {
+      "graphId": "a61b8",
+      "strokeWidth": 1,
+      "zIndex": 32847,
+      "points": [
+        {
+          "x": 752.9157575519451,
+          "y": 939.023985789199
+        },
+        {
+          "x": 981.9480156164607,
+          "y": 995.1530180472633
+        }
+      ],
+      "markerStart": "mim-stimulation",
+      "markerEnd": "mim-modification"
+    },
+    {
+      "graphId": "ffb2b",
+      "stroke": "#ff3333",
+      "strokeWidth": 1,
+      "zIndex": 32850,
+      "points": [
+        {
+          "x": 756.7667187697771,
+          "y": 1086.1780060668416,
+          "relx": 1,
+          "rely": 0,
+          "graphRef": "f6207"
+        },
+        {
+          "x": 988.8191561616193,
+          "y": 1164.3674059427722,
+          "relx": -1,
+          "rely": 0,
+          "graphRef": "cdfb7"
+        }
+      ],
+      "markerStart": "mim-modification",
+      "markerEnd": "mim-catalysis"
+    },
+    {
+      "graphId": "e769e",
+      "strokeWidth": 1,
+      "zIndex": 32858,
+      "points": [
+        {
+          "x": 760.4522224552807,
+          "y": 1273.5244434132787,
+          "relx": 1,
+          "rely": 0,
+          "graphRef": "ee2a9"
+        },
+        {
+          "x": 992.5046598471231,
+          "y": 1351.7138432892093
+        }
+      ],
+      "markerStart": "arrow",
+      "markerEnd": "none"
+    },
+    {
+      "graphId": "aa8e7",
+      "strokeWidth": 5,
+      "zIndex": 32861,
+      "points": [
+        {
+          "x": 716.8304668304664,
+          "y": 1406.8229068229084
+        },
+        {
+          "x": 1006.7567567567563,
+          "y": 1406.8229068229084
+        }
+      ],
+      "markerStart": "none",
+      "markerEnd": "none"
+    },
+    {
+      "graphId": "b36fc",
+      "groupRef": "b8b92",
+      "strokeWidth": 1,
+      "zIndex": 32862,
+      "points": [
+        {
+          "x": 56.02894311694485,
+          "y": 776.7423683881835
+        },
+        {
+          "x": 56.73235246920998,
+          "y": 924.7132757322311,
+          "relx": 0,
+          "rely": -1,
+          "graphRef": "be9b6"
+        }
+      ],
+      "markerStart": "arrow",
+      "markerEnd": "none"
+    },
+    {
+      "graphId": "af4a5",
+      "groupRef": "ce917",
+      "strokeWidth": 1,
+      "zIndex": 32869,
+      "points": [
+        {
+          "x": 70.00092663097128,
+          "y": 1277.836572734863
+        },
+        {
+          "x": 70.70433598323638,
+          "y": 1425.8074800789132,
+          "relx": 0,
+          "rely": -1,
+          "graphRef": "e3cb5"
+        }
+      ],
+      "markerStart": "arrow",
+      "markerEnd": "none"
+    }
+  ],
+  "interactions": [
+    {
+      "graphId": "id968f3436",
+      "strokeWidth": 1,
+      "connectorType": "elbow",
+      "zIndex": 12288,
+      "xRef": {
+        "database": null,
+        "id": null
+      },
+      "points": [
+        {
+          "x": 253.9885057471264,
+          "y": 47.80842911877395,
+          "relx": 0,
+          "rely": 1,
+          "graphRef": "fc358"
+        },
+        {
+          "x": 481.15042282318404,
+          "y": 59.39559414569101,
+          "relx": -1,
+          "rely": 0,
+          "graphRef": "d7754"
+        }
+      ],
+      "markerStart": "none",
+      "markerEnd": "none"
+    },
+    {
+      "graphId": "idcdccad3",
+      "strokeWidth": 1,
+      "connectorType": "curved",
+      "zIndex": 12288,
+      "xRef": {
+        "database": null,
+        "id": null
+      },
+      "points": [
+        {
+          "x": 293.0316425283696,
+          "y": 116.11664336699506,
+          "relx": 1,
+          "rely": 0,
+          "graphRef": "cbeb9"
+        },
+        {
+          "x": 372.0508166969147,
+          "y": 124.1232979344482
+        },
+        {
+          "x": 467.3215550617324,
+          "y": 132.12995250190136,
+          "relx": -1,
+          "rely": 0,
+          "graphRef": "e3417"
+        }
+      ],
+      "markerStart": "none",
+      "markerEnd": "arrow"
+    },
+    {
+      "graphId": "idd669b8f0",
+      "stroke": "#0000ff",
+      "strokeWidth": 1,
+      "strokeStyle": "double",
+      "zIndex": 12288,
+      "xRef": {
+        "database": null,
+        "id": null
+      },
+      "points": [
+        {
+          "x": 292.9885057471264,
+          "y": 194.80683407455973,
+          "relx": 1,
+          "rely": 0,
+          "graphRef": "ce632"
+        },
+        {
+          "x": 467.3215550617323,
+          "y": 195.92688626396472,
+          "relx": -1,
+          "rely": 0,
+          "graphRef": "d5b00"
+        }
+      ],
+      "markerStart": "arrow",
+      "markerEnd": "t-bar"
+    },
+    {
+      "graphId": "id5ae9a761",
+      "strokeWidth": 1,
+      "strokeStyle": "broken",
+      "zIndex": 12288,
+      "xRef": {
+        "database": null,
+        "id": null
+      },
+      "points": [
+        {
+          "x": 292.98850574712634,
+          "y": 266.6794380587483,
+          "relx": 1,
+          "rely": 0,
+          "graphRef": "e9886"
+        },
+        {
+          "x": 466.4572508266415,
+          "y": 255.40229885057465,
+          "relx": -1,
+          "rely": 0,
+          "graphRef": "a8a4e"
+        }
+      ],
+      "markerStart": "t-bar",
+      "markerEnd": "mim-necessary-stimulation"
+    },
+    {
+      "graphId": "idb908a573",
+      "strokeWidth": 3,
+      "strokeStyle": "double",
+      "zIndex": 12288,
+      "xRef": {
+        "database": null,
+        "id": null
+      },
+      "points": [
+        {
+          "x": 292.98850574712634,
+          "y": 321.78161963267127,
+          "relx": 1,
+          "rely": 0,
+          "graphRef": "ef324"
+        },
+        {
+          "x": 467.73293096944553,
+          "y": 324.4058845718596,
+          "relx": -1,
+          "rely": 0,
+          "graphRef": "c2e83"
+        }
+      ],
+      "markerStart": "mim-necessary-stimulation",
+      "markerEnd": "mim-binding"
+    },
+    {
+      "graphId": "id6a717d56",
+      "strokeWidth": 1,
+      "connectorType": "segmented",
+      "zIndex": 12288,
+      "xRef": {
+        "database": null,
+        "id": null
+      },
+      "points": [
+        {
+          "x": 292.9885057471264,
+          "y": 370.1261133574191,
+          "relx": 1,
+          "rely": 0,
+          "graphRef": "b5660"
+        },
+        {
+          "x": 326.70700086430423,
+          "y": 401.90146931719966
+        },
+        {
+          "x": 457.2169403630078,
+          "y": 394.9870354364736
+        },
+        {
+          "x": 484.60763976354724,
+          "y": 366.9872208810606,
+          "relx": -1,
+          "rely": 0,
+          "graphRef": "f49f1"
+        }
+      ],
+      "markerStart": "mim-binding",
+      "markerEnd": "mim-conversion"
+    },
+    {
+      "graphId": "id41954dd5",
+      "strokeWidth": 1,
+      "zIndex": 12288,
+      "xRef": {
+        "database": null,
+        "id": null
+      },
+      "points": [
+        {
+          "x": 292.98850574712634,
+          "y": 444.1762452107279,
+          "relx": 1,
+          "rely": 0,
+          "graphRef": "e66fa"
+        },
+        {
+          "x": 466.4572508266415,
+          "y": 445.88761174968045,
+          "relx": -1,
+          "rely": 0,
+          "graphRef": "be7c3"
+        }
+      ],
+      "markerStart": "mim-conversion",
+      "markerEnd": "mim-stimulation"
+    },
+    {
+      "graphId": "id801fef43",
+      "strokeWidth": 1,
+      "zIndex": 12288,
+      "xRef": {
+        "database": null,
+        "id": null
+      },
+      "points": [
+        {
+          "x": 292.9885057471264,
+          "y": 506.5389527458493,
+          "relx": 1,
+          "rely": 0,
+          "graphRef": "df9b6"
+        },
+        {
+          "x": 466.4572508266415,
+          "y": 510.1532567049808,
+          "relx": -1,
+          "rely": 0,
+          "graphRef": "ea27d"
+        }
+      ],
+      "markerStart": "mim-stimulation",
+      "markerEnd": "mim-modification"
+    },
+    {
+      "graphId": "idabc602a6",
+      "strokeWidth": 1,
+      "strokeStyle": "broken",
+      "zIndex": 12288,
+      "xRef": {
+        "database": null,
+        "id": null
+      },
+      "points": [
+        {
+          "x": 292.98850574712634,
+          "y": 573.793103448275,
+          "relx": 1,
+          "rely": 0,
+          "graphRef": "fecfe"
+        },
+        {
+          "x": 466.4572508266417,
+          "y": 576.1302681992341,
+          "relx": -1,
+          "rely": 0,
+          "graphRef": "b693a"
+        }
+      ],
+      "markerStart": "mim-modification",
+      "markerEnd": "mim-catalysis"
+    },
+    {
+      "graphId": "id7af2310d",
+      "strokeWidth": 1,
+      "zIndex": 12288,
+      "xRef": {
+        "database": null,
+        "id": null
+      },
+      "points": [
+        {
+          "x": 292.9885057471264,
+          "y": 639.7701149425291,
+          "relx": 1,
+          "rely": 0,
+          "graphRef": "cb3af"
+        },
+        {
+          "x": 466.4572508266416,
+          "y": 639.936143039591,
+          "relx": -1,
+          "rely": 0,
+          "graphRef": "f1d48"
+        }
+      ],
+      "markerStart": "mim-catalysis",
+      "markerEnd": "mim-inhibition"
+    },
+    {
+      "graphId": "ide3aad202",
+      "strokeWidth": 1,
+      "zIndex": 12288,
+      "xRef": {
+        "database": null,
+        "id": null
+      },
+      "points": [
+        {
+          "x": 292.98850574712634,
+          "y": 706.7816091954022,
+          "relx": 1,
+          "rely": 0,
+          "graphRef": "e7616"
+        },
+        {
+          "x": 466.4572508266415,
+          "y": 704.010217113666,
+          "relx": -1,
+          "rely": 0,
+          "graphRef": "d90c2"
+        }
+      ],
+      "markerStart": "mim-inhibition",
+      "markerEnd": "mim-cleavage"
+    },
+    {
+      "graphId": "id11f26d85",
+      "strokeWidth": 1,
+      "zIndex": 12288,
+      "xRef": {
+        "database": null,
+        "id": null
+      },
+      "points": [
+        {
+          "x": 292.9885057471264,
+          "y": 805.3384418901666,
+          "relx": 1,
+          "rely": 0,
+          "graphRef": "af61c"
+        },
+        {
+          "x": 466.4572508266417,
+          "y": 808.1098339719034,
+          "relx": -1,
+          "rely": 0,
+          "graphRef": "c98cf"
+        }
+      ],
+      "markerStart": "mim-cleavage",
+      "markerEnd": "mim-covalent-bond"
+    },
+    {
+      "graphId": "id5466fc56",
+      "strokeWidth": 1,
+      "zIndex": 12288,
+      "xRef": {
+        "database": null,
+        "id": null
+      },
+      "points": [
+        {
+          "x": 292.9885057471264,
+          "y": 890.2809706257984,
+          "relx": 1,
+          "rely": 0,
+          "graphRef": "c1a38"
+        },
+        {
+          "x": 466.4572508266417,
+          "y": 892.6181353767562,
+          "relx": -1,
+          "rely": 0,
+          "arrowhead": "mim-branching-left",
+          "graphRef": "c3970"
+        }
+      ],
+      "markerStart": "mim-covalent-bond",
+      "markerEnd": "none"
+    },
+    {
+      "graphId": "id51574d78",
+      "strokeWidth": 1,
+      "zIndex": 12288,
+      "xRef": {
+        "database": null,
+        "id": null
+      },
+      "points": [
+        {
+          "x": 292.9885057471264,
+          "y": 962.2349936143041,
+          "relx": 1,
+          "rely": 0,
+          "arrowhead": "mim-branching-left",
+          "graphRef": "ad257"
+        },
+        {
+          "x": 466.4572508266416,
+          "y": 953.0779054916985,
+          "relx": -1,
+          "rely": 0,
+          "arrowhead": "mim-branching-right",
+          "graphRef": "bce80"
+        }
+      ],
+      "markerStart": "none",
+      "markerEnd": "none"
+    },
+    {
+      "graphId": "idf0c9962f",
+      "strokeWidth": 1,
+      "zIndex": 12288,
+      "xRef": {
+        "database": null,
+        "id": null
+      },
+      "points": [
+        {
+          "x": 292.9885057471264,
+          "y": 1040.5747126436788,
+          "relx": 1,
+          "rely": 0,
+          "arrowhead": "mim-branching-right",
+          "graphRef": "bac65"
+        },
+        {
+          "x": 466.4572508266416,
+          "y": 1042.911877394637,
+          "relx": -1,
+          "rely": 0,
+          "graphRef": "b7fec"
+        }
+      ],
+      "markerStart": "none",
+      "markerEnd": "mim-transcription-translation"
+    },
+    {
+      "graphId": "id81eddd48",
+      "strokeWidth": 1,
+      "zIndex": 12288,
+      "xRef": {
+        "database": null,
+        "id": null
+      },
+      "points": [
+        {
+          "x": 292.9885057471264,
+          "y": 1088.8888888888887,
+          "relx": 1,
+          "rely": 0,
+          "graphRef": "af2ae"
+        },
+        {
+          "x": 466.4572508266416,
+          "y": 1117.6117496807153,
+          "relx": -1,
+          "rely": 0,
+          "graphRef": "e3bb5"
+        }
+      ],
+      "markerStart": "mim-transcription-translation",
+      "markerEnd": "mim-gap"
+    },
+    {
+      "graphId": "id38ca81bd",
+      "strokeWidth": 1,
+      "zIndex": 12288,
+      "xRef": {
+        "database": null,
+        "id": null
+      },
+      "points": [
+        {
+          "x": 292.9885057471264,
+          "y": 1196.803740443325,
+          "relx": 1,
+          "rely": 0,
+          "graphRef": "e71ac"
+        },
+        {
+          "x": 466.4572508266417,
+          "y": 1200.8238422645616,
+          "relx": -1,
+          "rely": 0,
+          "graphRef": "a40d0"
+        }
+      ],
+      "markerStart": "mim-gap",
+      "markerEnd": "none"
+    },
+    {
+      "groupRef": "b8b92",
+      "strokeWidth": 1,
+      "zIndex": 12288,
+      "xRef": {
+        "database": null,
+        "id": null
+      },
+      "points": [
+        {
+          "x": 125.53449115534127,
+          "y": 793.3903519244041,
+          "relx": 0,
+          "rely": -1,
+          "graphRef": "c4cf8"
+        },
+        {
+          "x": 64.5460579271604,
+          "y": 696.2118223668936,
+          "relx": 0,
+          "rely": 1,
+          "graphRef": "e21de"
+        }
+      ],
+      "markerStart": "none",
+      "markerEnd": "arrow"
+    },
+    {
+      "graphId": "ceb83",
+      "groupRef": "ce917",
+      "strokeWidth": 1,
+      "zIndex": 32865,
+      "xRef": {
+        "database": null,
+        "id": null
+      },
+      "points": [
+        {
+          "x": 139.50647466936783,
+          "y": 1294.4845562710836,
+          "relx": 0,
+          "rely": -1,
+          "graphRef": "dd17b"
+        },
+        {
+          "x": 78.51804144118678,
+          "y": 1197.3060267135731,
+          "relx": 0,
+          "rely": 1,
+          "graphRef": "fe239"
+        }
+      ],
+      "markerStart": "none",
+      "markerEnd": "arrow"
+    }
+  ]
+}

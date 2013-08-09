@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Pathway xmlns="http://pathvisio.org/GPML/2013a" Name="Synthesis and Degradation of Ketone Bodies" Organism="Danio rerio">
+  <Comment Source="GenMAPP notes">Ketogenesis (Human)</Comment>
+  <Comment Source="GenMAPP remarks">Adapted from KEGG</Comment>
+  <Comment Source="WikiPathways-category">Metabolic Process</Comment>
+  <Comment Source="WikiPathways-description">Ketone bodies are three water-soluble compounds that are produced as by-products when fatty acids are broken down for energy in the liver and kidney. They are used as a source of energy in the heart and brain. In the brain, they are a vital source of energy during fasting.
+
+Source: [[wikipedia:Ketone_bodies|Wikipedia]]</Comment>
+  <BiopaxRef>b0a</BiopaxRef>
+  <Graphics BoardWidth="945.0" BoardHeight="681.3333333333334"/>
+  <DataNode TextLabel="zgc:86832" GraphId="e032a" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="zgc:86832 | zgc:86832"/>
+    <Graphics CenterX="660.0" CenterY="376.6666666666667" Width="66.66666666666667" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="445290"/>
+  </DataNode>
+  <DataNode TextLabel="HMGCS2" GraphId="e6663" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="3-hydroxy-3-methylglutaryl coenzyme A  synthase"/>
+    <Graphics CenterX="396.6666666666667" CenterY="460.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID=""/>
+  </DataNode>
+  <DataNode TextLabel="zgc:56248" GraphId="a9f9e" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="zgc:56248 | zgc:56248"/>
+    <Graphics CenterX="380.0" CenterY="293.3333333333333" Width="66.66666666666667" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="394190"/>
+  </DataNode>
+  <DataNode TextLabel="oxct1" GraphId="d177a" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="oxct1 | 3-oxoacid CoA transferase 1"/>
+    <Graphics CenterX="110.0" CenterY="380.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="442923"/>
+  </DataNode>
+  <DataNode TextLabel="BDH" GraphId="f1108" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="3-hydroxybutyrate dehydrogenase"/>
+    <Graphics CenterX="323.3333333333333" CenterY="153.33333333333334" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID=""/>
+  </DataNode>
+  <Interaction GraphId="id91b928df">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="323.3333333333333" Y="196.66666666666666"/>
+      <Point X="323.3333333333333" Y="110.0" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="id3d31082">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="453.3333333333333" Y="220.0"/>
+      <Point X="480.0" Y="220.0" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="ide5f42aad">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="383.3333333333333" Y="216.66666666666666"/>
+      <Point X="376.6666666666667" Y="213.33333333333334" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="idf9047d61">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="596.6666666666666" Y="520.0"/>
+      <Point X="586.6666666666666" Y="520.0" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="id943a32cd">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="383.3333333333333" Y="400.0"/>
+      <Point X="383.3333333333333" Y="390.0" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="id8d73ceea">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="593.3333333333334" Y="216.66666666666666"/>
+      <Point X="586.6666666666666" Y="216.66666666666666" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="id77b24559">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="323.3333333333333" Y="186.66666666666666"/>
+      <Point X="323.3333333333333" Y="196.66666666666666" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="ida458435e">
+    <Graphics ZOrder="12288" LineStyle="Broken" LineThickness="1.0" Color="ff0000">
+      <Point X="670.0" Y="526.6666666666666"/>
+      <Point X="600.0" Y="523.3333333333334" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="id3387636c">
+    <Graphics ZOrder="12288" LineStyle="Broken" LineThickness="1.0" Color="ff0000">
+      <Point X="293.3333333333333" Y="490.0"/>
+      <Point X="320.0" Y="496.6666666666667" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="ide8217868">
+    <Graphics ZOrder="12288" LineStyle="Broken" LineThickness="1.0" Color="ff0000">
+      <Point X="506.6666666666667" Y="530.0"/>
+      <Point X="506.6666666666667" Y="560.0" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="idea0de6a">
+    <Graphics ZOrder="12288" LineStyle="Broken" LineThickness="1.0" Color="ff0000">
+      <Point X="236.66666666666666" Y="360.0"/>
+      <Point X="223.33333333333334" Y="353.3333333333333" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="id7b3341a2">
+    <Graphics ZOrder="12288" LineStyle="Broken" LineThickness="1.0" Color="ff0000">
+      <Point X="236.66666666666666" Y="360.0"/>
+      <Point X="260.0" Y="370.0" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="idd14c19f3">
+    <Graphics ZOrder="12288" LineStyle="Broken" LineThickness="1.0" Color="ff0000">
+      <Point X="566.6666666666666" Y="170.0"/>
+      <Point X="540.0" Y="203.33333333333334" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="id19a2bc0b">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="183.33333333333334" Y="523.3333333333334"/>
+      <Point X="450.0" Y="523.3333333333334" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="id2efc2076">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="183.33333333333334" Y="210.0"/>
+      <Point X="270.0" Y="210.0" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Label TextLabel="3-Hydroxy-butyrate" GraphId="aaea2">
+    <Graphics CenterX="340.0" CenterY="100.0" Width="152.33333333333334" Height="19.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="12" Valign="Middle" Color="0000ff"/>
+  </Label>
+  <Label TextLabel="Acetyl-CoA" GraphId="a4b69">
+    <Graphics CenterX="530.0" CenterY="216.66666666666666" Width="90.33333333333333" Height="19.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="12" Valign="Middle" Color="0000ff"/>
+  </Label>
+  <Label TextLabel="Acetoacetyl-CoA" GraphId="fd8b7">
+    <Graphics CenterX="520.0" CenterY="520.0" Width="132.33333333333334" Height="19.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="12" Valign="Middle" Color="0000ff"/>
+  </Label>
+  <Label TextLabel="3-Hydroxy-3-methylglutaryl-CoA" GraphId="c8bbe">
+    <Graphics CenterX="380.0" CenterY="380.0" Width="249.33333333333334" Height="19.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="12" Valign="Middle" Color="0000ff"/>
+  </Label>
+  <Label TextLabel="Acetyl-CoA" GraphId="b1073">
+    <Graphics CenterX="350.0" CenterY="506.6666666666667" Width="90.33333333333333" Height="19.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="12" Valign="Middle" Color="0000ff"/>
+  </Label>
+  <Label TextLabel="Pyruvate metabolism" GraphId="dce58">
+    <Graphics CenterX="753.3333333333334" CenterY="526.6666666666666" Width="139.33333333333334" Height="16.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="10" Valign="Middle" Color="ff0000"/>
+  </Label>
+  <Label TextLabel="Fatty acid metabolism" GraphId="ed437">
+    <Graphics CenterX="513.3333333333334" CenterY="576.6666666666666" Width="145.33333333333334" Height="16.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="10" Valign="Middle" Color="ff0000"/>
+  </Label>
+  <Label TextLabel="Sterol biosynthesis" GraphId="e68f6">
+    <Graphics CenterX="213.33333333333334" CenterY="336.6666666666667" Width="124.33333333333333" Height="16.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="10" Valign="Middle" Color="ff0000"/>
+  </Label>
+  <Label TextLabel="Acetoacetate" GraphId="be54c">
+    <Graphics CenterX="323.3333333333333" CenterY="206.66666666666666" Width="104.33333333333333" Height="19.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="12" Valign="Middle" Color="0000ff"/>
+  </Label>
+  <Label TextLabel="Fatty acid beta-oxidation" GraphId="d4e3f">
+    <Graphics CenterX="576.6666666666666" CenterY="153.33333333333334" Width="163.33333333333334" Height="16.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="10" Valign="Middle" Color="ff0000"/>
+  </Label>
+  <Label TextLabel="Glycolysis" GraphId="fdf31">
+    <Graphics CenterX="226.66666666666666" CenterY="486.6666666666667" Width="68.33333333333333" Height="16.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="10" Valign="Middle" Color="ff0000"/>
+  </Label>
+  <Label TextLabel="(HMG-CoA cycle)" GraphId="e3dc6">
+    <Graphics CenterX="417.3333333333333" CenterY="42.0" Width="174.33333333333334" Height="24.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="16" Valign="Middle" Color="ff0000"/>
+  </Label>
+  <Label TextLabel="* pathway-regulated enzymes: HMG-CoA synthase, mt" GraphId="e7f26">
+    <Graphics CenterX="753.3333333333334" CenterY="643.3333333333334" Width="323.3333333333333" Height="16.0" ZOrder="28672" FillColor="ffffff" FontSize="10" Valign="Middle"/>
+  </Label>
+  <Label TextLabel="HOMOLOGY MAPP" GraphId="faddd">
+    <Graphics CenterX="297.5" CenterY="12.0" Width="119.0" Height="18.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="12" Valign="Middle" Color="008000"/>
+  </Label>
+  <Shape GraphId="c3344">
+    <Graphics CenterX="590.0" CenterY="366.6666666666667" Width="303.3333333333333" Height="151.66666666666666" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="Arc" Rotation="4.712389"/>
+  </Shape>
+  <Shape GraphId="e5c14">
+    <Graphics CenterX="403.3333333333333" CenterY="373.3333333333333" Width="6.666666666666667" Height="6.666666666666667" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="Arc" Rotation="3.141593"/>
+  </Shape>
+  <Shape GraphId="b7ae6">
+    <Graphics CenterX="456.6666666666667" CenterY="370.0" Width="300.0" Height="150.0" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="Arc" Rotation="1.570796"/>
+  </Shape>
+  <Shape GraphId="a845b">
+    <Graphics CenterX="380.0" CenterY="256.6666666666667" Width="80.0" Height="40.0" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="Arc" Rotation="4.712389"/>
+  </Shape>
+  <Shape GraphId="bcb88">
+    <Graphics CenterX="393.3333333333333" CenterY="483.3333333333333" Width="40.0" Height="20.0" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="Arc" Rotation="4.712389"/>
+  </Shape>
+  <Shape GraphId="a8d8f">
+    <Graphics CenterX="183.33333333333334" CenterY="366.6666666666667" Width="313.3333333333333" Height="158.33333333333334" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="Arc" Rotation="1.570796"/>
+  </Shape>
+  <Shape GraphId="aa24a">
+    <Graphics CenterX="753.3333333333334" CenterY="526.6666666666666" Width="167.1992" Height="26.666666666666668" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="Oval" Rotation="0.0"/>
+  </Shape>
+  <Shape GraphId="d1ecb">
+    <Graphics CenterX="223.33333333333334" CenterY="486.6666666666667" Width="134.82493333333335" Height="26.666666666666668" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="Oval" Rotation="0.0"/>
+  </Shape>
+  <Shape GraphId="bdf47">
+    <Graphics CenterX="510.0" CenterY="576.6666666666666" Width="166.8" Height="26.666666666666668" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="Oval" Rotation="0.0"/>
+  </Shape>
+  <Shape GraphId="f44dd">
+    <Graphics CenterX="216.66666666666666" CenterY="336.6666666666667" Width="200.1110666666667" Height="26.666666666666668" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="Oval" Rotation="0.0"/>
+  </Shape>
+  <Shape GraphId="f6aac">
+    <Graphics CenterX="563.3333333333334" CenterY="153.33333333333334" Width="220.0" Height="26.666666666666668" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="Oval" Rotation="0.0"/>
+  </Shape>
+  <InfoBox CenterX="615.0" CenterY="45.0"/>
+  <Legend CenterX="698.2666666666667" CenterY="36.6"/>
+  <Biopax>
+    <bp:openControlledVocabulary xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#">
+      <bp:TERM xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">ketone bodies metabolic pathway</bp:TERM>
+      <bp:ID xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PW:0000069</bp:ID>
+      <bp:Ontology xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Pathway Ontology</bp:Ontology>
+    </bp:openControlledVocabulary>
+    <bp:PublicationXref xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" rdf:id="b0a">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">14769483</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Pathways and control of ketone body metabolism: on the fringe of lipid biochemistry.</bp:TITLE>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Prostaglandins Leukot Essent Fatty Acids</bp:SOURCE>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2004</bp:YEAR>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Fukao T</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Lopaschuk GD</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Mitchell GA</bp:AUTHORS>
+    </bp:PublicationXref>
+  </Biopax>
+</Pathway>

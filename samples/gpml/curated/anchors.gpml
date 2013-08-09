@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Pathway xmlns="http://pathvisio.org/GPML/2013a" Name="New Pathway" Version="20130715">
+  <Graphics BoardWidth="1138.0" BoardHeight="611.0" />
+  <DataNode TextLabel="Metabolite" GraphId="c8d90" Type="Metabolite" GroupRef="b1bd1">
+    <Graphics CenterX="595.75" CenterY="253.75" Width="382.5" Height="214.5" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Xref Database="" ID="" />
+  </DataNode>
+  <DataNode TextLabel="Metabolite" GraphId="ba19a" Type="Metabolite">
+    <Graphics CenterX="758.75" CenterY="530.75" Width="210.5" Height="100.5" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Xref Database="" ID="" />
+  </DataNode>
+  <DataNode TextLabel="GeneProduct" GraphId="ca19d" Type="GeneProduct">
+    <Graphics CenterX="1009.713768115942" CenterY="495.6739130434782" Width="158.108695652174" Height="61.18840579710138" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="" ID="" />
+  </DataNode>
+  <DataNode TextLabel="Pathway" GraphId="b5167" Type="Pathway">
+    <Graphics CenterX="480.2753623188405" CenterY="477.55797101449275" Width="117.3478260869565" Height="72.05797101449275" ZOrder="32768" FontWeight="Bold" FontSize="12" Valign="Middle" ShapeType="None" Color="14961e" />
+    <Xref Database="" ID="" />
+  </DataNode>
+  <Interaction>
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="758.75" Y="480.5" GraphRef="ba19a" RelX="0.0" RelY="-1.0" />
+      <Point X="595.75" Y="361.0" GraphRef="c8d90" RelX="0.0" RelY="1.0" />
+      <Anchor Position="0.4" Shape="Circle" GraphId="a32cc" />
+      <Anchor Position="0.7399397022970551" Shape="None" GraphId="df37d" />
+      <Anchor Position="0.4" Shape="None" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction>
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="693.55" Y="432.7" GraphRef="a32cc" RelX="0.0" RelY="0.0" />
+      <Point X="930.659420289855" Y="480.3768115942029" GraphRef="ca19d" RelX="-1.0" RelY="-0.5" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction>
+    <Graphics ZOrder="12288" LineStyle="Broken" LineThickness="1.0">
+      <Point X="638.13982852558" Y="392.0772055755019" GraphRef="df37d" RelX="0.0" RelY="0.0" />
+      <Point X="509.61231884057963" Y="441.5289855072464" GraphRef="b5167" RelX="0.5" RelY="-1.0" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Label TextLabel="Label1" GraphId="fea78" Href="http://www.wikipathways.com">
+    <Comment>rr</Comment>
+    <Comment>rr</Comment>
+    <Comment>Type your comment here</Comment>
+    <Graphics CenterX="919.0" CenterY="87.0" Width="80.0" Height="20.0" ZOrder="28672" FillColor="ccffff" FontSize="10" Valign="Middle" Color="ff6633" />
+  </Label>
+  <Shape TextLabel="heo" GraphId="d5d4e" GroupRef="b1bd1">
+    <Attribute Key="org.pathvisio.CellularComponentProperty" Value="Endoplasmic Reticulum" />
+    <Graphics CenterX="1007.75" CenterY="291.25" Width="200.5" Height="55.5" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="Endoplasmic Reticulum" LineThickness="3.0" Color="c0c0c0" Rotation="0.0" />
+  </Shape>
+  <Group GroupId="b1bd1" Style="Complex" />
+  <InfoBox CenterX="0.0" CenterY="0.0" />
+  <Biopax />
+</Pathway>
+

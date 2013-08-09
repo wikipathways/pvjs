@@ -1,0 +1,689 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Pathway xmlns="http://pathvisio.org/GPML/2013a" Name="Long-Day Flowering Time Pathway" Organism="Arabidopsis thaliana" License="CC BY 2.0">
+  <Comment Source="WikiPathways-category">Cellular Process</Comment>
+  <Comment Source="WikiPathways-description">Flowering time in a plant is associated often with the property of when the plant flowers. However, this property is dependent on several components of environment (light, photoperiod and temperature), gene regulation and several biological processes besides the genetic makeup of the plant. The time taken by the plant to flower also depends on the when the vegetative shoot apical meristem transitions into the reproductive shoot apical meristem. The correct timing and perception of the signal is essential to successful flower development in a timely manner. In Arabidopsis the day length (photoperiod) can control several plant processes including the flowering time. Arabidopsis is a facultative long-day plant since its flowering is promoted by the long days (~16 hours light; 8 hours dark), and delayed, in shortday conditions (8 hours light, 16 hours dark). As compared to rice which is a short day plant. Flowering in rice is induced by short day length photoperiod.</Comment>
+  <Comment Source="WikiPathways-category">Physiological Process</Comment>
+  <Comment>Flowering time</Comment>
+  <Comment>This connects to Flower Development Pathway [WP618]</Comment>
+  <BiopaxRef>a17</BiopaxRef>
+  <Graphics BoardWidth="876.0" BoardHeight="836.0"/>
+  <DataNode TextLabel="PHYA" GraphId="b2a16" Type="GeneProduct">
+    <Graphics CenterX="260.0" CenterY="113.25" Width="42.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000cc"/>
+    <Xref Database="Gramene Arabidopsis" ID="AT1G09570-TAIR-G"/>
+  </DataNode>
+  <DataNode TextLabel="CRY2" GraphId="fa6a7" Type="GeneProduct">
+    <Graphics CenterX="509.48333740234375" CenterY="113.25" Width="42.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000cc"/>
+    <Xref Database="Gramene Arabidopsis" ID="AT1G04400-TAIR-G"/>
+  </DataNode>
+  <DataNode TextLabel="SOC1" GraphId="ba58a" Type="GeneProduct">
+    <Graphics CenterX="475.0" CenterY="709.5" Width="40.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Gramene Arabidopsis" ID="AT2G45660-TAIR-G"/>
+  </DataNode>
+  <DataNode TextLabel="CRY1" GraphId="e665e" Type="GeneProduct">
+    <BiopaxRef>a5b</BiopaxRef>
+    <Graphics CenterX="456.98333740234375" CenterY="113.25" Width="42.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000cc"/>
+    <Xref Database="Gramene Arabidopsis" ID="AT4G08920-TAIR-G"/>
+  </DataNode>
+  <DataNode TextLabel="PHYB" GraphId="fb21f" Type="GeneProduct">
+    <Graphics CenterX="309.0" CenterY="113.25" Width="42.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000cc"/>
+    <Xref Database="Gramene Arabidopsis" ID="AT2G18790-TAIR-G"/>
+  </DataNode>
+  <DataNode TextLabel="PHYD" GraphId="dcd1a" Type="GeneProduct">
+    <Graphics CenterX="357.5" CenterY="113.25" Width="42.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000cc"/>
+    <Xref Database="Gramene Arabidopsis" ID="AT4G16250-TAIR-G"/>
+  </DataNode>
+  <DataNode TextLabel="CO" GraphId="c5959" Type="GeneProduct">
+    <Graphics CenterX="484.5" CenterY="626.5" Width="26.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Gramene Arabidopsis" ID="AT5G15840-TAIR-G"/>
+  </DataNode>
+  <DataNode TextLabel="PHYE" GraphId="b707e" Type="GeneProduct">
+    <Graphics CenterX="404.0" CenterY="113.25" Width="42.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000cc"/>
+    <Xref Database="Gramene Arabidopsis" ID="AT4G18130-TAIR-G"/>
+  </DataNode>
+  <DataNode TextLabel="FT" GraphId="fef87" Type="GeneProduct">
+    <Graphics CenterX="541.0" CenterY="664.5" Width="26.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Gramene Arabidopsis" ID="AT1G65480-TAIR-G"/>
+  </DataNode>
+  <DataNode TextLabel="GI" GraphId="a14f0" Type="GeneProduct">
+    <Comment>promotes flowering by acting upstream of CO (CONSTANS), FT (FLOWERING TIME) and SOC1 (SUPPRESSOR OF OVEREXPRESSION OF CO1)</Comment>
+    <Graphics CenterX="418.98333740234375" CenterY="571.0" Width="26.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Gramene Arabidopsis" ID="AT1G22770-TAIR-G"/>
+  </DataNode>
+  <DataNode TextLabel="ELF3" GraphId="cb82d" Type="GeneProduct" GroupRef="eb761">
+    <Comment>EARLY FLOWERING 3 interacts with PHYB</Comment>
+    <Graphics CenterX="355.48333740234375" CenterY="629.0" Width="40.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Gramene Arabidopsis" ID="AT2G25930-TAIR-G"/>
+  </DataNode>
+  <DataNode TextLabel="FKF1" GraphId="d296d" Type="GeneProduct">
+    <Comment>FLAVIN-BINDING, KELCH REPEAT, F BOX 1 is clock-controlled and regulates transition to flowering.</Comment>
+    <Graphics CenterX="469.98333740234375" CenterY="554.5" Width="40.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Gramene Arabidopsis" ID="AT1G68050-TAIR-G"/>
+  </DataNode>
+  <DataNode TextLabel="CCA1" GraphId="e8a34" Type="GeneProduct" GroupRef="d8380">
+    <Comment>CIRCADIAN CLOCK ASSOCIATED 1 is a transcriptional repressor and works similar to LHY in a regulatory feedback loop.</Comment>
+    <Graphics CenterX="430.5" CenterY="265.0" Width="40.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Gramene Arabidopsis" ID="AT2G46830-TAIR-G"/>
+  </DataNode>
+  <DataNode TextLabel="PIF6" GraphId="ef102" Type="GeneProduct">
+    <Comment>PHYTOCHROME INTERACTING FACTOR 6 is a Myc-related bHLH transcription factor and physically interacts with TOC1.</Comment>
+    <Graphics CenterX="222.98333740234375" CenterY="358.5" Width="40.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Gramene Arabidopsis" ID="AT3G62090-TAIR-G"/>
+  </DataNode>
+  <DataNode TextLabel="TOC-1" GraphId="ec3a6" Type="GeneProduct" GroupRef="d8380">
+    <Comment>TIMING OF CAB EXPRESSION 1 is involved in generating circadian rythm and shortens the span of circumnutation rate. TOC1 interacts with ZTL.</Comment>
+    <Graphics CenterX="357.48333740234375" CenterY="312.5" Width="40.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Gramene Arabidopsis" ID="AT5G61380-TAIR-G"/>
+  </DataNode>
+  <DataNode TextLabel="LHY" GraphId="fe391" Type="GeneProduct" GroupRef="d8380">
+    <Comment>LATE ELONGATED HYPOCOTYL 1 is a transcription factor involved in circadian rythm along with MYB transcription factor.</Comment>
+    <Graphics CenterX="391.0703192407247" CenterY="263.637187230371" Width="40.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Gramene Arabidopsis" ID="AT1G01060-TAIR-G"/>
+  </DataNode>
+  <DataNode TextLabel="ELF4" GraphId="cc426" Type="GeneProduct">
+    <Comment>EARLY FLOWERING 4 controls circadian rhythms and flowering time</Comment>
+    <Graphics CenterX="298.1803278688524" CenterY="286.85720448662636" Width="40.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Gramene Arabidopsis" ID="AT2G40080-TAIR-G"/>
+  </DataNode>
+  <DataNode TextLabel="CK2 alpha A" GraphId="b039e" Type="GeneProduct" GroupRef="f10d6">
+    <BiopaxRef>c72</BiopaxRef>
+    <Graphics CenterX="606.0" CenterY="403.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Gramene Arabidopsis" ID="AT5G67380-TAIR-G"/>
+  </DataNode>
+  <DataNode TextLabel="CK2 alpha B" GraphId="a52eb" Type="GeneProduct" GroupRef="f10d6">
+    <BiopaxRef>c72</BiopaxRef>
+    <Graphics CenterX="606.0" CenterY="423.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Gramene Arabidopsis" ID="AT3G50000-TAIR-G"/>
+  </DataNode>
+  <DataNode TextLabel="CK2B1" GraphId="bae7c" Type="GeneProduct" GroupRef="f10d6">
+    <BiopaxRef>c72</BiopaxRef>
+    <Graphics CenterX="711.0" CenterY="403.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Gramene Arabidopsis" ID="AT5G47080-TAIR-G"/>
+  </DataNode>
+  <DataNode TextLabel="CK2 alpha C" GraphId="dd95d" Type="GeneProduct" GroupRef="f10d6">
+    <BiopaxRef>c72</BiopaxRef>
+    <Graphics CenterX="606.0" CenterY="443.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Gramene Arabidopsis" ID="AT2G23080-TAIR-G"/>
+  </DataNode>
+  <DataNode TextLabel="CK2B4" GraphId="bf94c" Type="GeneProduct" GroupRef="f10d6">
+    <BiopaxRef>c72</BiopaxRef>
+    <Graphics CenterX="711.0" CenterY="463.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Gramene Arabidopsis" ID="AT2G44680-TAIR-G"/>
+  </DataNode>
+  <DataNode TextLabel="CK2B2" GraphId="e60d1" Type="GeneProduct" GroupRef="f10d6">
+    <BiopaxRef>c72</BiopaxRef>
+    <Graphics CenterX="711.0" CenterY="423.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Gramene Arabidopsis" ID="AT4G17640-TAIR-G"/>
+  </DataNode>
+  <DataNode TextLabel="CK2B3" GraphId="bc768" Type="GeneProduct" GroupRef="f10d6">
+    <BiopaxRef>c72</BiopaxRef>
+    <Graphics CenterX="711.0" CenterY="443.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Gramene Arabidopsis" ID="AT3G60250-TAIR-G"/>
+  </DataNode>
+  <DataNode TextLabel="CK2 alpha Cp" GraphId="afd66" Type="GeneProduct" GroupRef="f10d6">
+    <Comment>Found localized to plastid/chloroplast</Comment>
+    <BiopaxRef>c72</BiopaxRef>
+    <Graphics CenterX="606.0" CenterY="463.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Gramene Arabidopsis" ID="AT2G23070-TAIR-G"/>
+  </DataNode>
+  <DataNode TextLabel="COP1" GraphId="e08f4" Type="GeneProduct" GroupRef="eb761">
+    <BiopaxRef>af1</BiopaxRef>
+    <Graphics CenterX="342.98333333333335" CenterY="663.9833333333333" Width="60.03333333333333" Height="22.033333333333335" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Gramene Arabidopsis" ID="AT2G32950-TAIR-G"/>
+  </DataNode>
+  <DataNode TextLabel="FLC" GraphId="b66af" Type="GeneProduct">
+    <Comment>FLOWERING LOCUS C (FLC) is a transcription factor that functions as a repressor of floral transition and contributes to temperature compensation of the circadian clock. Its expression is downregulated during cold treatment. </Comment>
+    <Graphics CenterX="635.9833333333333" CenterY="682.4833333333333" Width="54.03333333333337" Height="25.033333333333303" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Gramene Arabidopsis" ID="AT5G10140-TAIR-G"/>
+  </DataNode>
+  <DataNode TextLabel="FRI" GraphId="a3ee5" Type="GeneProduct" GroupRef="cf8fa">
+    <Comment>Loss of function of FRIGIDA (FRI) results in early flowering.</Comment>
+    <Graphics CenterX="635.9833333333333" CenterY="619.4833333333333" Width="54.03333333333337" Height="25.033333333333303" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Gramene Arabidopsis" ID="AT4G00650-TAIR-G"/>
+  </DataNode>
+  <DataNode TextLabel="FCA" GraphId="e0d35" Type="GeneProduct" GroupRef="d2c56">
+    <Comment>It is an RNA-binding protein that promotes transition of vegetative meristem to reproductive mesitem and is involved in RNA-mediated chromatin silencing.</Comment>
+    <Graphics CenterX="635.9833333333333" CenterY="750.4833333333333" Width="54.03333333333333" Height="25.033333333333335" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Gramene Arabidopsis" ID="AT4G16280-TAIR-G"/>
+  </DataNode>
+  <DataNode TextLabel="SPY" GraphId="b5512" Type="GeneProduct">
+    <Comment>SPINDLY (SPY) encodes for the enzyme N-acetyl glucosamine transferase that may glycosylate molecules involved in GA signaling. SPY acts as both a repressor of GA responses and as a positive regulation of cytokinin signalling. [imported from TAIR http://arabidopsis.org/servlets/TairObject?id=36698&amp;type=locus]</Comment>
+    <Graphics CenterX="338.98333333333335" CenterY="729.9833333333333" Width="54.03333333333337" Height="25.033333333333303" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Gramene Arabidopsis" ID="AT3G11540-TAIR-G"/>
+  </DataNode>
+  <DataNode TextLabel="LD" GraphId="b68da" Type="GeneProduct" GroupRef="d2c56">
+    <Comment>LUMINIDEPENDENS (LD) is a positive regulator of flowering in the autonomous pathway. Its functional disruption results in delayed flowering.  </Comment>
+    <Graphics CenterX="702.0" CenterY="748.4833333333333" Width="54.03333333333337" Height="25.033333333333303" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Gramene Arabidopsis" ID="AT4G02560-TAIR-G"/>
+  </DataNode>
+  <DataNode TextLabel="Gibberellic Acid" GraphId="bcdbe" Type="Metabolite">
+    <Graphics CenterX="208.48333333333332" CenterY="728.9833333333333" Width="79.03333333333333" Height="32.03333333333333" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff"/>
+    <Xref Database="CAS" ID="77-06-5"/>
+  </DataNode>
+  <DataNode TextLabel="ELF3" GraphId="b1e5a" Type="GeneProduct">
+    <Graphics CenterX="276.9628990509058" CenterY="268.33477135461595" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="" ID=""/>
+  </DataNode>
+  <DataNode TextLabel="LUX" GraphId="f7c88" Type="GeneProduct">
+    <Graphics CenterX="243.31320103537536" CenterY="286.45383951682504" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="" ID=""/>
+  </DataNode>
+  <DataNode TextLabel="PRR9" GraphId="b41e8" Type="GeneProduct">
+    <Graphics CenterX="339.0854184641932" CenterY="229.5081967213115" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="" ID=""/>
+  </DataNode>
+  <DataNode TextLabel="PRR7" GraphId="c3fd3" Type="GeneProduct">
+    <Graphics CenterX="407.24762726488353" CenterY="227.78257118205343" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="" ID=""/>
+  </DataNode>
+  <DataNode TextLabel="GI" GraphId="b1ef2" Type="GeneProduct">
+    <Graphics CenterX="442.62295081967216" CenterY="330.45729076790343" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="" ID=""/>
+  </DataNode>
+  <Interaction GraphId="d1b47">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="442.48333333333335" Y="56.0" GraphRef="d68ae" RelX="0.0" RelY="1.0"/>
+      <Point X="456.98333740234375" Y="103.25" GraphRef="e665e" RelX="0.0" RelY="-1.0" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e9d33">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="442.48333333333335" Y="56.0" GraphRef="d68ae" RelX="0.0" RelY="1.0"/>
+      <Point X="260.0" Y="103.25" GraphRef="b2a16" RelX="0.0" RelY="-1.0" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="b4aca">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="442.48333333333335" Y="56.0" GraphRef="d68ae" RelX="0.0" RelY="1.0"/>
+      <Point X="404.0" Y="103.25" GraphRef="b707e" RelX="0.0" RelY="-1.0" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="ff675">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="442.48333333333335" Y="56.0" GraphRef="d68ae" RelX="0.0" RelY="1.0"/>
+      <Point X="357.5" Y="103.25" GraphRef="dcd1a" RelX="0.0" RelY="-1.0" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="df8f0">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="442.48333333333335" Y="56.0" GraphRef="d68ae" RelX="0.0" RelY="1.0"/>
+      <Point X="319.5" Y="103.25" GraphRef="fb21f" RelX="0.5" RelY="-1.0" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="bbd36">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="442.48333333333335" Y="56.0" GraphRef="d68ae" RelX="0.0" RelY="1.0"/>
+      <Point X="498.98333740234375" Y="103.25" GraphRef="fa6a7" RelX="-0.5" RelY="-1.0" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="c0936">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="509.48333740234375" Y="123.25" GraphRef="fa6a7" RelX="0.0" RelY="1.0"/>
+      <Point X="491.0" Y="616.5" GraphRef="c5959" RelX="0.5" RelY="-1.0" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="c49e8">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="484.5" Y="636.5" GraphRef="c5959" RelX="0.0" RelY="1.0"/>
+      <Point X="475.0" Y="699.5" GraphRef="ba58a" RelX="0.0" RelY="-1.0" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="da47d">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="484.5" Y="636.5" GraphRef="c5959" RelX="0.0" RelY="1.0"/>
+      <Point X="534.5" Y="654.5" GraphRef="fef87" RelX="-0.5" RelY="-1.0" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e21e2">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="475.0" Y="719.5" GraphRef="ba58a" RelX="0.0" RelY="1.0"/>
+      <Point X="492.5" Y="765.9666666666667" GraphRef="dcba6" RelX="0.0" RelY="-1.0" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="eb838">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="541.0" Y="674.5" GraphRef="fef87" RelX="0.0" RelY="1.0"/>
+      <Point X="525.25" Y="765.9666666666667" GraphRef="dcba6" RelX="0.5" RelY="-1.0" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="b0e6c">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="431.98333740234375" Y="571.0" GraphRef="a14f0" RelX="1.0" RelY="0.0"/>
+      <Point X="471.5" Y="621.5" GraphRef="c5959" RelX="-1.0" RelY="-0.5" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="bc2c4">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="373.0" Y="663.9833333333333" GraphRef="e08f4" RelX="1.0" RelY="0.0"/>
+      <Point X="471.5" Y="626.5" GraphRef="c5959" RelX="-1.0" RelY="0.0" ArrowHead="TBar"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="a4d19">
+    <Graphics ConnectorType="Curved" ZOrder="12288" LineThickness="1.0">
+      <Point X="335.48333740234375" Y="629.0" GraphRef="cb82d" RelX="-1.0" RelY="0.0"/>
+      <Point X="37.0" Y="350.0"/>
+      <Point X="167.75" Y="66.0"/>
+      <Point X="298.5" Y="103.25" GraphRef="fb21f" RelX="-0.5" RelY="-1.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="bc325">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="469.98333740234375" Y="564.5" GraphRef="d296d" RelX="0.0" RelY="1.0"/>
+      <Point X="484.5" Y="616.5" GraphRef="c5959" RelX="0.0" RelY="-1.0" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="efe7c">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="202.98333740234375" Y="358.5" GraphRef="ef102" RelX="-1.0" RelY="0.0"/>
+      <Point X="337.48333740234375" Y="312.5" GraphRef="ec3a6" RelX="-1.0" RelY="0.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="efe2c">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="420.18981880931835" Y="382.0" GraphRef="dae4a" RelX="0.0" RelY="1.0"/>
+      <Point X="418.98333740234375" Y="561.0" GraphRef="a14f0" RelX="0.0" RelY="-1.0" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e643b">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="420.18981880931835" Y="382.0" GraphRef="dae4a" RelX="0.0" RelY="1.0"/>
+      <Point X="355.48333740234375" Y="619.0" GraphRef="cb82d" RelX="0.0" RelY="-1.0" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="b3e8e">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="420.18981880931835" Y="382.0" GraphRef="dae4a" RelX="0.0" RelY="1.0"/>
+      <Point X="459.98333740234375" Y="544.5" GraphRef="d296d" RelX="-0.5" RelY="-1.0" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="cc841">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="345.48333740234375" Y="619.0" GraphRef="cb82d" RelX="-0.5" RelY="-1.0"/>
+      <Point X="368.0" Y="378.0" GraphRef="c220f" RelX="-0.5" RelY="1.0" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="da3b2">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="0000cc">
+      <Point X="498.98333740234375" Y="123.25" GraphRef="fa6a7" RelX="-0.5" RelY="1.0"/>
+      <Point X="515.5306298533218" Y="215.0" GraphRef="dae4a" RelX="0.5" RelY="-1.0" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="c099f">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="0000cc">
+      <Point X="467.48333740234375" Y="123.25" GraphRef="e665e" RelX="0.5" RelY="1.0"/>
+      <Point X="420.18981880931835" Y="207.0" GraphRef="af31e" RelX="0.0" RelY="-1.0" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="b7acc">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="0000cc">
+      <Point X="414.5" Y="123.25" GraphRef="b707e" RelX="0.5" RelY="1.0"/>
+      <Point X="420.18981880931835" Y="207.0" GraphRef="af31e" RelX="0.0" RelY="-1.0" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="dfe7c">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="0000cc">
+      <Point X="357.5" Y="123.25" GraphRef="dcd1a" RelX="0.0" RelY="1.0"/>
+      <Point X="420.18981880931835" Y="207.0" GraphRef="af31e" RelX="0.0" RelY="-1.0" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="bbf29">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="0000cc">
+      <Point X="309.0" Y="123.25" GraphRef="fb21f" RelX="0.0" RelY="1.0"/>
+      <Point X="324.8490077653149" Y="215.0" GraphRef="dae4a" RelX="-0.5" RelY="-1.0" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e1059">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="0000cc">
+      <Point X="260.0" Y="123.25" GraphRef="b2a16" RelX="0.0" RelY="1.0"/>
+      <Point X="229.5081967213115" Y="256.75" GraphRef="dae4a" RelX="-1.0" RelY="-0.5" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e9e85">
+    <Graphics ConnectorType="Curved" ZOrder="12288" LineThickness="1.0">
+      <Point X="659.0" Y="320.0" GraphRef="f5a88" RelX="0.0" RelY="-1.0"/>
+      <Point X="450.5" Y="265.0" GraphRef="e8a34" RelX="1.0" RelY="0.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="dfb8c" GroupRef="de7f3">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="640.0" Y="78.0"/>
+      <Point X="682.0" Y="78.0" ArrowHead="TBar"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="dc934" GroupRef="de7f3">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="640.0" Y="100.0"/>
+      <Point X="674.0" Y="100.0" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="d9eaa" GroupRef="de7f3">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="641.0" Y="122.0"/>
+      <Point X="675.0" Y="122.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="c8649">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="387.48333740234375" Y="627.0" GraphRef="a54a0" RelX="1.0" RelY="-0.5"/>
+      <Point X="412.48333740234375" Y="581.0" GraphRef="a14f0" RelX="-0.5" RelY="1.0" ArrowHead="TBar"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="fb81c">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="528.0" Y="664.5" GraphRef="fef87" RelX="-1.0" RelY="0.0"/>
+      <Point X="485.0" Y="699.5" GraphRef="ba58a" RelX="0.5" RelY="-1.0" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="ffe93">
+    <Graphics ConnectorType="Curved" ZOrder="12288" LineThickness="1.0">
+      <Point X="425.48333740234375" Y="561.0" GraphRef="a14f0" RelX="0.5" RelY="-1.0"/>
+      <Point X="467.23333740234375" Y="515.0"/>
+      <Point X="508.98333740234375" Y="534.25"/>
+      <Point X="489.98333740234375" Y="554.5" GraphRef="d296d" RelX="1.0" RelY="0.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="c7885">
+    <Graphics ConnectorType="Curved" ZOrder="12288" LineThickness="1.0">
+      <Point X="312.9666666666667" Y="663.9833333333333" GraphRef="e08f4" RelX="-1.0" RelY="0.0"/>
+      <Point X="335.48333740234375" Y="629.0" GraphRef="cb82d" RelX="-1.0" RelY="0.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="a00e6">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="531.0" Y="116.0"/>
+      <Point X="365.8541697184245" Y="607.0" GraphRef="a54a0" RelX="0.5" RelY="-1.0" ArrowHead="TBar"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="ed158">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="608.9666666666667" Y="682.4833333333333" GraphRef="b66af" RelX="-1.0" RelY="0.0"/>
+      <Point X="554.0" Y="664.5" GraphRef="fef87" RelX="1.0" RelY="0.0" ArrowHead="TBar"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="bf03d">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="605.0" Y="684.0"/>
+      <Point X="495.0" Y="709.5" GraphRef="ba58a" RelX="1.0" RelY="0.0" ArrowHead="TBar"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="cc34f">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="635.9833333333333" Y="632.0" GraphRef="a3ee5" RelX="0.0" RelY="1.0"/>
+      <Point X="635.9833333333333" Y="669.9666666666667" GraphRef="b66af" RelX="0.0" RelY="-1.0" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="ccac9">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="366.0" Y="723.725" GraphRef="b5512" RelX="1.0" RelY="-0.5"/>
+      <Point X="455.0" Y="709.5" GraphRef="ba58a" RelX="-1.0" RelY="0.0" ArrowHead="TBar"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="a2cb2">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="247.99999999999994" Y="728.9833333333333" GraphRef="bcdbe" RelX="1.0" RelY="0.0"/>
+      <Point X="311.9666666666667" Y="729.9833333333333" GraphRef="b5512" RelX="-1.0" RelY="0.0" ArrowHead="TBar"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="d186f">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="635.9833333333333" Y="737.9666666666667" GraphRef="e0d35" RelX="0.0" RelY="-1.0"/>
+      <Point X="635.9833333333333" Y="695.0" GraphRef="b66af" RelX="0.0" RelY="1.0" ArrowHead="TBar"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="f8adb">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="703.0" Y="732.0"/>
+      <Point X="649.4916666666667" Y="695.0" GraphRef="b66af" RelX="0.5" RelY="1.0" ArrowHead="TBar"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="ef57f">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="410.5" Y="265.0" GraphRef="e8a34" RelX="-1.0" RelY="0.0"/>
+      <Point X="367.48333740234375" Y="302.5" GraphRef="ec3a6" RelX="0.5" RelY="-1.0" ArrowHead="TBar"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="id83c8e9b8">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="295.94477998274374" Y="257.98101811906815"/>
+      <Point X="319.0854184641932" Y="239.5081967213115" GraphRef="b41e8" RelX="-0.5" RelY="1.0" ArrowHead="mim-inhibition"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="idafdf9075">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="354.6160483175151" Y="226.0569456427955"/>
+      <Point X="391.0703192407247" Y="273.637187230371" GraphRef="fe391" RelX="0.0" RelY="1.0" ArrowHead="mim-inhibition"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="id9a4f383a">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="425.3666954270923" Y="231.23382226056944"/>
+      <Point X="430.5" Y="275.0" GraphRef="e8a34" RelX="0.0" RelY="1.0" ArrowHead="mim-inhibition"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="id90ae840b">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="384.81449525452973" Y="260.5694564279551"/>
+      <Point X="296.9628990509058" Y="278.33477135461595" GraphRef="b1e5a" RelX="0.5" RelY="1.0" ArrowHead="mim-inhibition"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="id21df52ee">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="369.28386540120795" Y="320.96635030198445"/>
+      <Point X="422.62295081967216" Y="340.45729076790343" GraphRef="b1ef2" RelX="-0.5" RelY="1.0" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="id39947686">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="416.7385677308024" Y="323.5547886108714"/>
+      <Point X="367.48333740234375" Y="322.5" GraphRef="ec3a6" RelX="0.5" RelY="1.0" ArrowHead="mim-inhibition"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="id4126a096">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="346.8507333908542" Y="317.5150992234685"/>
+      <Point X="430.5" Y="275.0" GraphRef="e8a34" RelX="0.0" RelY="1.0" ArrowHead="mim-modification"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Label TextLabel="Photoperiod&#10;Long Day" GraphId="fedcc" GroupRef="a5e36">
+    <Graphics CenterX="442.0" CenterY="37.5" Width="82.0" Height="31.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="12" Valign="Middle"/>
+  </Label>
+  <Label TextLabel="Circadian clock entrainment" GraphId="a776c" GroupRef="f84e0">
+    <Graphics CenterX="383.5" CenterY="165.0" Width="183.0" Height="18.0" ZOrder="28672" FillColor="ffffff" FontSize="14" Valign="Middle" Color="0000cc"/>
+  </Label>
+  <Label TextLabel="Flower Development&#10;[Pathway WP618]" GraphId="dd012" GroupRef="a7143">
+    <Comment>This connects to Flower Development Pathway [WP618]</Comment>
+    <Graphics CenterX="491.0" CenterY="788.5" Width="118.0" Height="35.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="12" Valign="Middle"/>
+  </Label>
+  <Label TextLabel="CIRCADIAN &#10;CLOCK" GraphId="c220f" GroupRef="d8380">
+    <Graphics CenterX="386.0" CenterY="361.0" Width="72.0" Height="34.0" ZOrder="28672" FillColor="ffffff" FontSize="10" Valign="Middle"/>
+  </Label>
+  <Label TextLabel="CK2 Casein Kinase Complex" GraphId="ee2a3" GroupRef="f10d6">
+    <Comment>The Casein Kinase 2 (CK2) compex has 2 alpha and 2 beta subunits.</Comment>
+    <BiopaxRef>c72</BiopaxRef>
+    <Graphics CenterX="655.0" CenterY="342.0" Width="182.0" Height="20.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="12" Valign="Middle"/>
+  </Label>
+  <Label TextLabel="beta subunit&#10;paralogs" GraphId="eea7e" GroupRef="f10d6">
+    <Comment>There are two beta subunits in the complex. However no beta subnuits were found localized to the plastid/chloroplast even though there is an alpha subunit (CK2 alpa Cp) localized to plastid.</Comment>
+    <BiopaxRef>c72</BiopaxRef>
+    <Graphics CenterX="712.0" CenterY="377.0" Width="120.0" Height="24.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="10" Valign="Middle" Color="000099"/>
+  </Label>
+  <Label TextLabel="alpha subunit&#10;paralogs" GraphId="b45b6" GroupRef="f10d6">
+    <Comment>There are two alpha subunits</Comment>
+    <BiopaxRef>c72</BiopaxRef>
+    <Graphics CenterX="606.0" CenterY="377.0" Width="120.0" Height="24.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="10" Valign="Middle" Color="cc0000"/>
+  </Label>
+  <Label TextLabel="Inhibits/down_regulates/represses" GraphId="a8af1" GroupRef="de7f3">
+    <Graphics CenterX="761.5" CenterY="73.0" Width="169.0" Height="20.0" ZOrder="28672" FillColor="ffffff" FontSize="10" Valign="Middle"/>
+  </Label>
+  <Label TextLabel="Activates/upregulates" GraphId="fc13a" GroupRef="de7f3">
+    <Graphics CenterX="736.0" CenterY="99.0" Width="116.0" Height="20.0" ZOrder="28672" FillColor="ffffff" FontSize="10" Valign="Middle"/>
+  </Label>
+  <Label TextLabel="protein-protein interaction" GraphId="ffd44" GroupRef="de7f3">
+    <Graphics CenterX="749.0" CenterY="119.0" Width="132.0" Height="20.0" ZOrder="28672" FillColor="ffffff" FontSize="10" Valign="Middle"/>
+  </Label>
+  <Label TextLabel="Autonomous &#10;flowering time pathway" GraphId="b82bc" GroupRef="d2c56">
+    <Graphics CenterX="671.0" CenterY="781.0" Width="118.0" Height="30.0" ZOrder="28672" FillColor="ffffff" FontSize="10" Valign="Middle"/>
+  </Label>
+  <Label TextLabel="Vernalization Pathway" GraphId="ae4ed" GroupRef="cf8fa">
+    <Graphics CenterX="641.0" CenterY="591.0" Width="106.0" Height="20.0" ZOrder="28672" FillColor="ffffff" FontSize="10" Valign="Middle"/>
+  </Label>
+  <Shape GraphId="d68ae" GroupRef="a5e36">
+    <Graphics CenterX="442.48333333333335" CenterY="36.983333333333334" Width="85.03333333333333" Height="38.03333333333333" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="Rectangle" Rotation="0.0"/>
+  </Shape>
+  <Shape GraphId="b0335" GroupRef="f84e0">
+    <Graphics CenterX="384.0" CenterY="168.0" Width="184.0" Height="20.0" ZOrder="16384" FillColor="ffffff" FontSize="10" Valign="Middle" ShapeType="Rectangle" Color="ffffff" Rotation="0.0"/>
+  </Shape>
+  <Shape GraphId="dcba6" GroupRef="a7143">
+    <Graphics CenterX="492.5" CenterY="783.4833333333333" Width="131.0" Height="35.03333333333333" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="Rectangle" Rotation="0.0"/>
+  </Shape>
+  <Shape GraphId="dae4a" GroupRef="d8380">
+    <Graphics CenterX="420.18981880931835" CenterY="298.5" Width="381.3632441760137" Height="167.0" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="Oval" Rotation="0.0"/>
+  </Shape>
+  <Shape GraphId="f16fb" GroupRef="f10d6">
+    <Graphics CenterX="604.9833333333333" CenterY="420.5" Width="96.03333333333333" Height="113.0" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="Rectangle" Rotation="0.0"/>
+  </Shape>
+  <Shape GraphId="fccae" GroupRef="f10d6">
+    <Graphics CenterX="710.9833333333333" CenterY="420.5" Width="96.03333333333333" Height="113.0" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="Rectangle" Rotation="0.0"/>
+  </Shape>
+  <Group GroupId="f84e0" GraphId="ea618" Style="Group"/>
+  <Group GroupId="d8380" GraphId="af31e" Style="Group"/>
+  <Group GroupId="f10d6" GraphId="f5a88" Style="Complex">
+    <Comment>CK2 complex has 2 alpha subunits and 2 beta subunits. In Arabidopsis, there are 4 genes coding for alpha and 4 for beta subunits. All 8 genes are expressed at the same time, but the proteins are assembled in the complex dynamically. Thus, any of the alpha subunit gene products can get together to form the 2 alpha subunits, along with any any 2 of the beta subunits.</Comment>
+  </Group>
+  <Group GroupId="de7f3" GraphId="c080b" Style="Group"/>
+  <Group GroupId="a7143" GraphId="d4d4a" Style="Group"/>
+  <Group GroupId="a5e36" GraphId="f174c" Style="Group"/>
+  <Group GroupId="eb761" GraphId="a54a0" Style="Complex"/>
+  <Group GroupId="cf8fa" GraphId="bd455" Style="Complex"/>
+  <Group GroupId="d2c56" GraphId="e7b3a" Style="Complex"/>
+  <InfoBox CenterX="0.0" CenterY="0.0"/>
+  <Biopax>
+    <bp:PublicationXref xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" rdf:id="dbd">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">19286557</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">A functional genomics approach reveals CHE as a component of the Arabidopsis circadian clock.</bp:TITLE>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Science</bp:SOURCE>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2009</bp:YEAR>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Pruneda-Paz JL</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Breton G</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Para A</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Kay SA</bp:AUTHORS>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" rdf:id="f74">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">14978263</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">CK2 phosphorylation of CCA1 is necessary for its circadian oscillator function in Arabidopsis.</bp:TITLE>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Proc Natl Acad Sci U S A</bp:SOURCE>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2004</bp:YEAR>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Daniel X</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Sugano S</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Tobin EM</bp:AUTHORS>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" rdf:id="af1">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">19061637</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">COP1 and ELF3 control circadian function and photoperiodic flowering by regulating GI stability.</bp:TITLE>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Mol Cell</bp:SOURCE>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2008</bp:YEAR>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Yu JW</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Rubio V</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Lee NY</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Bai S</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Lee SY</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Kim SS</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Liu L</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Zhang Y</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Irigoyen ML</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Sullivan JA</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Lee I</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Xie Q</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Paek NC</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Deng XW</bp:AUTHORS>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" rdf:id="c72">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">16926165</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">An extensive survey of CK2 alpha and beta subunits in Arabidopsis: multiple isoforms exhibit differential subcellular localization.</bp:TITLE>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Plant Cell Physiol</bp:SOURCE>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2006</bp:YEAR>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Salinas P</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Fuentes D</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Vidal E</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Jordana X</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Echeverria M</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Holuigue L</bp:AUTHORS>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" rdf:id="a5b">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">20202166 </bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Role of the phytochrome and cryptochrome signaling pathways in hypocotyl phototropism.</bp:TITLE>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Plant J</bp:SOURCE>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2010</bp:YEAR>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Tsuchida-Mayama T</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Sakai T</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Hanada A</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Uehara Y</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Asami T</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Yamaguchi S</bp:AUTHORS>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" rdf:id="a17">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">19121031</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Why does elevated CO2 affect time of flowering? An exploratory study using the photoperiodic flowering mutants of Arabidopsis thaliana.</bp:TITLE>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">New Phytol</bp:SOURCE>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2009</bp:YEAR>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Song X</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Kristie DN</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Reekie EG</bp:AUTHORS>
+    </bp:PublicationXref>
+  </Biopax>
+</Pathway>

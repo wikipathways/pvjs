@@ -1,0 +1,278 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Pathway xmlns="http://pathvisio.org/GPML/2013a" Name="Tryptophan Degradation" Organism="Saccharomyces cerevisiae">
+  <Comment Source="GenMAPP remarks">
+Based on http://pathway.yeastgenome.org/biocyc/
+  </Comment>
+  <Comment Source="WikiPathways-category">
+Metabolic Process
+  </Comment>
+  <Comment Source="WikiPathways-description">While Saccharomyces cerevisiae can use most amino acids as their sole nitrogen source, they can only use a few amino acids as a carbon source to support growth (CITS:[Large86][Cooper82]).  This is in contrast to most eukaryotes and some fungi, which can metabolize amino acids completely, utilizing them as sole sources of carbon and nitrogen (CITS:[Stryer88][Large 86]). S. cerevisiae degrade the aromatic amino acids (tryptophan, phenylalanine, and tyrosine) and the branched-chain amino acids (valine, leucine, and iso-leucine) via the Ehrlich pathway (CITS:[Sentheshanmuganathan60][10989420]).  This pathway is comprised of the following steps:  1) deamination of the amino acid to the corresponding alpha-keto acid; 2) decarboxylation of the resulting alpha-keto acid to the respective aldehyde; and, 3) reduction of the aldehyde to form the corresponding long chain or complex alcohol, known as a fusel alcohol or fusel oil (CITS:[10989420][Large 86]).  Fusel alcohols are important flavor and aroma compounds in yeast-fermented food products and beverages (as reported in (CITS:[9546164]).  The primary aminotransferase in tryptophan degradation is postulated to be Aro9p (CITS:[6763508]).  In vitro studies demonstrated that Aro9p is active with phenylpyruvate, pyruvate, or p-hydroxyphenylpyruvate, but not 2-oxoglutarate as the amino acceptor (CITS:[6763508]).  Aro9p is induced by aromatic amino acids and is subject to nitrogen regulation (CITS:[6763508][10207060]). The decarboxylase encoding gene ARO10 appears to be transcriptionally regulated in a similar fashion(CITS:[10207060]).  Gap1p, a general amino acid permease,  and Wap1p, an inducible amino acid permease with wide substrate specificity, appear to be the main uptake systems for utilizing aromatic amino acids (CITS:[10207060]). 
+SOURCE: SGD pathways, http://pathway.yeastgenome.org/server.html</Comment>
+  <BiopaxRef>pc9</BiopaxRef>
+  <BiopaxRef>tir</BiopaxRef>
+  <BiopaxRef>yor</BiopaxRef>
+  <BiopaxRef>v24</BiopaxRef>
+  <Graphics BoardWidth="843.6625514403291" BoardHeight="660.5761316872428"/>
+  <DataNode TextLabel="PDC1" GraphId="b3e" Type="GeneProduct" GroupRef="b66d6">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="PDC1"/>
+    <Graphics CenterX="500.8641975308642" CenterY="75.43209876543197" Width="46.666666666666664" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="SGD" ID="S000004034"/>
+  </DataNode>
+  <DataNode TextLabel="PDC5" GraphId="cc0" Type="GeneProduct" GroupRef="b66d6">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="PDC5"/>
+    <Graphics CenterX="500.8641975308642" CenterY="95.432098765432" Width="46.666666666666664" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="SGD" ID="S000004124"/>
+  </DataNode>
+  <DataNode TextLabel="ARO10" GraphId="ef3" Type="GeneProduct" GroupRef="b66d6">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="ARO10"/>
+    <Graphics CenterX="500.8641975308642" CenterY="55.43209876543215" Width="46.666666666666664" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="SGD" ID="S000002788"/>
+  </DataNode>
+  <DataNode TextLabel="PDC6" GraphId="d64" Type="GeneProduct" GroupRef="b66d6">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="PDC6"/>
+    <Graphics CenterX="500.8641975308642" CenterY="115.43209876543214" Width="46.666666666666664" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="SGD" ID="S000003319"/>
+  </DataNode>
+  <DataNode TextLabel="SFA1" GraphId="d99" Type="GeneProduct" GroupRef="e236d">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="SFA1"/>
+    <Graphics CenterX="560.6172839506165" CenterY="261.27572016460925" Width="40.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="SGD" ID="S000002327"/>
+  </DataNode>
+  <DataNode TextLabel="ADH1" GraphId="add" Type="GeneProduct" GroupRef="e236d">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="ADH1"/>
+    <Graphics CenterX="560.6172839506165" CenterY="281.2757201646091" Width="40.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="SGD" ID="S000005446"/>
+  </DataNode>
+  <DataNode TextLabel="ADH2" GraphId="dbe" Type="GeneProduct" GroupRef="e236d">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="ADH2"/>
+    <Graphics CenterX="560.6172839506165" CenterY="301.2757201646089" Width="40.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="SGD" ID="S000004918"/>
+  </DataNode>
+  <DataNode TextLabel="ADH3" GraphId="ef1" Type="GeneProduct" GroupRef="e236d">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="ADH3"/>
+    <Graphics CenterX="600.1234567901231" CenterY="261.1934156378603" Width="40.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="SGD" ID="S000004688"/>
+  </DataNode>
+  <DataNode TextLabel="ADH5" GraphId="b32" Type="GeneProduct" GroupRef="e236d">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="ADH5"/>
+    <Graphics CenterX="600.1234567901232" CenterY="301.1934156378604" Width="40.000000000000014" Height="20.000000000000007" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="SGD" ID="S000000349"/>
+  </DataNode>
+  <DataNode TextLabel="ADH4" GraphId="e7e" Type="GeneProduct" GroupRef="e236d">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="ADH4"/>
+    <Graphics CenterX="600.1234567901231" CenterY="281.19341563786037" Width="40.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="SGD" ID="S000003225"/>
+  </DataNode>
+  <DataNode TextLabel="ARO8" GraphId="bbc" Type="GeneProduct">
+    <Graphics CenterX="201.522633744856" CenterY="181.97530864197532" Width="40.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Ensembl" ID="YGL202W"/>
+  </DataNode>
+  <DataNode TextLabel="ARO9" GraphId="cdb" Type="GeneProduct">
+    <Graphics CenterX="205.63786008230448" CenterY="142.1810699588477" Width="40.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Ensembl" ID="YHR137W"/>
+  </DataNode>
+  <DataNode TextLabel="L-tryptophan" GraphId="bdf" Type="Metabolite">
+    <Graphics CenterX="53.33333333333335" CenterY="162.13991769547332" Width="104.33333333333336" Height="20.000000000000007" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff"/>
+    <Xref Database="CAS" ID="73-22-3"/>
+  </DataNode>
+  <DataNode TextLabel="L-glutamate" GraphId="c29" Type="Metabolite">
+    <Graphics CenterX="280.43524885725384" CenterY="265.8436213991773" Width="95.33333333333331" Height="20.000000000000007" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff"/>
+    <Xref Database="CAS" ID="56-86-0"/>
+  </DataNode>
+  <DataNode TextLabel="NADH" GraphId="ff5" Type="Metabolite">
+    <Graphics CenterX="730.0" CenterY="320.8230452674897" Width="52.33333333333336" Height="20.000000000000007" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff"/>
+    <Xref Database="CAS" ID="53-84-9"/>
+  </DataNode>
+  <DataNode TextLabel="L-phenylalanine" GraphId="e68" Type="Metabolite">
+    <Graphics CenterX="298.9300411522632" CenterY="65.02057613168724" Width="127.33333333333336" Height="19.999999999999996" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff"/>
+    <Xref Database="CAS" ID="63-91-2"/>
+  </DataNode>
+  <DataNode TextLabel="CO2" GraphId="a41af" Type="Metabolite">
+    <Graphics CenterX="534.4670781893005" CenterY="200.40740740740733" Width="46.711934156378874" Height="20.000000000000007" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff"/>
+    <Xref Database="" ID=""/>
+  </DataNode>
+  <DataNode TextLabel="Phenylpyruvate" GraphId="ad252" Type="Metabolite">
+    <Graphics CenterX="107.98353909465018" CenterY="65.02057613168725" Width="98.43621399176952" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff"/>
+    <Xref Database="" ID=""/>
+  </DataNode>
+  <DataNode TextLabel="2-oxoglutarate" GraphId="aa967" Type="Metabolite">
+    <Graphics CenterX="123.70370370370374" CenterY="265.8436213991771" Width="86.09053497942386" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff"/>
+    <Xref Database="" ID=""/>
+  </DataNode>
+  <DataNode TextLabel="Indolepyruvate" GraphId="baeb1" Type="Metabolite">
+    <Graphics CenterX="367.0781893004116" CenterY="162.13991769547332" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff"/>
+    <Xref Database="" ID=""/>
+  </DataNode>
+  <DataNode TextLabel="Indole acetaldehyde" GraphId="ce4fb" Type="Metabolite">
+    <Graphics CenterX="659.1754115226333" CenterY="162.71296296296285" Width="118.35082304526746" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff"/>
+    <Xref Database="" ID=""/>
+  </DataNode>
+  <DataNode TextLabel="Indole-3-ethanol" GraphId="c99fe" Type="Metabolite">
+    <Graphics CenterX="659.423868312757" CenterY="400.0" Width="96.79012345679013" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff"/>
+    <Xref Database="" ID=""/>
+  </DataNode>
+  <DataNode TextLabel="NAD" GraphId="d2418" Type="Metabolite">
+    <Graphics CenterX="718.271604938271" CenterY="237.03703703703698" Width="52.33333333333336" Height="20.000000000000007" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff"/>
+    <Xref Database="HMDB" ID="HMDB00902"/>
+  </DataNode>
+  <Interaction GraphId="idf67372e0">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="407.0781893004116" Y="162.13991769547332" GraphRef="baeb1" RelX="1.0" RelY="0.0"/>
+      <Point X="599.9999999999995" Y="162.71296296296285" GraphRef="ce4fb" RelX="-1.0" RelY="0.0" ArrowHead="mim-conversion"/>
+      <Anchor Position="0.488088317538723" Shape="None" GraphId="d0c73"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="id452e3709">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="659.1754115226333" Y="172.71296296296285" GraphRef="ce4fb" RelX="0.0" RelY="1.0"/>
+      <Point X="659.423868312757" Y="390.0" GraphRef="c99fe" RelX="0.0" RelY="-1.0" ArrowHead="Arrow"/>
+      <Anchor Position="0.4967872426375637" Shape="None" GraphId="acb7e"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="id9d63eabb">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="79.41666666666669" Y="152.13991769547332" GraphRef="bdf" RelX="0.5" RelY="-1.0"/>
+      <Point X="145.679012345679" Y="106.99588477366254"/>
+      <Point X="273.2510288065844" Y="106.99588477366254"/>
+      <Point X="347.0781893004116" Y="152.13991769547332" GraphRef="baeb1" RelX="-0.5" RelY="-1.0" ArrowHead="mim-conversion"/>
+      <Anchor Position="0.4749890868389786" Shape="None" GraphId="b9466"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="idff51e508">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="501.2410713012975" Y="162.41961439595582" GraphRef="d0c73" RelX="0.0" RelY="0.0"/>
+      <Point X="534.4670781893005" Y="190.40740740740733" GraphRef="a41af" RelX="0.0" RelY="-1.0" ArrowHead="mim-conversion"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction>
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="132.59259259259255" Y="75.02057613168725" GraphRef="ad252" RelX="0.5" RelY="1.0"/>
+      <Point X="205.2829742843686" Y="106.99588477366254" GraphRef="b9466" RelX="0.0" RelY="0.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction>
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="201.522633744856" Y="191.97530864197532" GraphRef="bbc" RelX="0.0" RelY="1.0"/>
+      <Point X="201.11353408898944" Y="216.79390215757363" GraphRef="b6010" RelX="0.0" RelY="0.0" ArrowHead="mim-catalysis"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction>
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="205.63786008230448" Y="132.1810699588477" GraphRef="cdb" RelX="0.0" RelY="-1.0"/>
+      <Point X="205.2829742843686" Y="106.99588477366254" GraphRef="b9466" RelX="0.0" RelY="0.0" ArrowHead="mim-catalysis"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction>
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="500.8641975308642" Y="133.43209876543216" GraphRef="c3da0" RelX="0.0" RelY="1.0"/>
+      <Point X="501.2410713012975" Y="162.41961439595582" GraphRef="d0c73" RelX="0.0" RelY="0.0" ArrowHead="mim-catalysis"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction>
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="628.1234567901232" Y="281.23456790123464" GraphRef="fc6d0" RelX="1.0" RelY="0.0"/>
+      <Point X="659.2988416863135" Y="280.6583909534787" GraphRef="acb7e" RelX="0.0" RelY="0.0" ArrowHead="mim-catalysis"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction>
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="692.1049382716044" Y="237.03703703703698" GraphRef="d2418" RelX="-1.0" RelY="0.0"/>
+      <Point X="659.2988416863135" Y="280.6583909534787" GraphRef="acb7e" RelX="0.0" RelY="0.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction>
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="659.2988416863135" Y="280.6583909534787" GraphRef="acb7e" RelX="0.0" RelY="0.0"/>
+      <Point X="703.8333333333333" Y="320.8230452674897" GraphRef="ff5" RelX="-1.0" RelY="0.0" ArrowHead="mim-conversion"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="be96c">
+    <Graphics ConnectorType="Segmented" ZOrder="32769" LineThickness="1.0">
+      <Point X="79.41666666666667" Y="172.83333333333334"/>
+      <Point X="146.50205761316872" Y="216.46090534979422"/>
+      <Point X="281.48148148148147" Y="217.28395061728395"/>
+      <Point X="347.0781893004116" Y="172.13991769547332" GraphRef="baeb1" RelX="-0.5" RelY="1.0" ArrowHead="mim-conversion"/>
+      <Anchor Position="0.45695877823685543" Shape="None" GraphId="b6010"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e3067">
+    <Graphics ZOrder="32770" LineThickness="1.0">
+      <Point X="205.2829742843686" Y="106.99588477366254" GraphRef="b9466" RelX="0.0" RelY="0.0"/>
+      <Point X="267.0967078189299" Y="75.02057613168724" GraphRef="e68" RelX="-0.5" RelY="1.0" ArrowHead="mim-conversion"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="a0f29">
+    <Graphics ZOrder="32771" LineThickness="1.0">
+      <Point X="145.22633744855972" Y="255.8436213991771" GraphRef="aa967" RelX="0.5" RelY="-1.0"/>
+      <Point X="201.11353408898944" Y="216.79390215757363" GraphRef="b6010" RelX="0.0" RelY="0.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="eae22">
+    <Graphics ZOrder="32772" LineThickness="1.0">
+      <Point X="201.11353408898944" Y="216.79390215757363" GraphRef="b6010" RelX="0.0" RelY="0.0"/>
+      <Point X="256.6019155239205" Y="255.84362139917732" GraphRef="c29" RelX="-0.5" RelY="-1.0" ArrowHead="mim-conversion"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Group GroupId="b66d6" GraphId="c3da0"/>
+  <Group GroupId="e236d" GraphId="fc6d0"/>
+  <InfoBox CenterX="15.0" CenterY="341.6666666666667"/>
+  <Biopax>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="v24">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">6763508</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Tryptophan degradation in Saccharomyces cerevisiae: characterization of two aromatic aminotransferases.</bp:TITLE>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Arch Microbiol</bp:SOURCE>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1982</bp:YEAR>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Kradolfer P</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Niederberger P</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">HÃ¼tter R</bp:AUTHORS>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="yor">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">9491083</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Characterisation of Saccharomyces cerevisiae ARO8 and ARO9 genes encoding aromatic aminotransferases I and II reveals a new aminotransferase subfamily.</bp:TITLE>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Mol Gen Genet</bp:SOURCE>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1998</bp:YEAR>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Iraqui I</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Vissers S</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Cartiaux M</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Urrestarazu A</bp:AUTHORS>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="pc9">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">12499363</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">The catabolism of amino acids to long chain and complex alcohols in Saccharomyces cerevisiae.</bp:TITLE>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">J Biol Chem</bp:SOURCE>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2003</bp:YEAR>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Dickinson JR</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Salgado LE</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Hewlins MJ</bp:AUTHORS>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="tir">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">9491082</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Phenylalanine- and tyrosine-auxotrophic mutants of Saccharomyces cerevisiae impaired in transamination.</bp:TITLE>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Mol Gen Genet</bp:SOURCE>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1998</bp:YEAR>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Urrestarazu A</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Vissers S</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Iraqui I</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Grenson M</bp:AUTHORS>
+    </bp:PublicationXref>
+  <bp:openControlledVocabulary xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#"><bp:TERM>tryptophan degradation pathway</bp:TERM><bp:ID>PW:0001281</bp:ID><bp:Ontology>Pathway Ontology</bp:Ontology></bp:openControlledVocabulary></Biopax>
+</Pathway>

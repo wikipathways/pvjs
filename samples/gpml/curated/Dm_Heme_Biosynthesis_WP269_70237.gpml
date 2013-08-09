@@ -1,0 +1,294 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Pathway xmlns="http://pathvisio.org/GPML/2013a" Name="Heme Biosynthesis" Organism="Drosophila melanogaster">
+  <Comment Source="GenMAPP notes"></Comment>
+  <Comment Source="GenMAPP remarks"></Comment>
+  <Comment Source="WikiPathways-category">Metabolic Process</Comment>
+  <Comment Source="WikiPathways-description">The enzymatic process that produces heme is properly called porphyrin synthesis, as all the intermediates are tetrapyrroles that are chemically classified are porphyrins. The process is highly conserved across biology. In humans, this pathway serves almost exclusively to form heme. In other species, it also produces similar substances such as cobalamin (vitamin B12).
+
+The pathway is initiated by the synthesis of D-Aminolevulinic acid (dALA or Î´ALA) from the amino acid glycine and succinyl-CoA from the citric acid cycle (Krebs cycle). The rate-limiting enzyme responsible for this reaction, ALA synthase, is strictly regulated by intracellular iron levels and heme concentration. A low-iron level, e.g., in iron deficiency, leads to decreased porphyrin synthesis, which prevents accumulation of the toxic intermediates. This mechanism is of therapeutic importance: infusion of heme arginate or hematin can abort attacks of porphyria in patients with an inborn error of metabolism of this process, by reducing transcription of ALA synthase.
+
+The organs mainly involved in heme synthesis are the liver and the bone marrow, although every cell requires heme to function properly. Heme is seen as an intermediate molecule in catabolism of haemoglobin in the process of bilirubin metabolism.
+
+Source: WIkipedia
+http://en.wikipedia.org/wiki/Heme</Comment>
+  <Graphics BoardWidth="820.5000000000001" BoardHeight="768.0" />
+  <DataNode TextLabel="Pbgs" GraphId="fae" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="Pbgs | Porphobilinogen synthase" />
+    <Graphics CenterX="316.6666666666667" CenterY="173.33333333333334" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Entrez Gene" ID="39402" />
+  </DataNode>
+  <DataNode TextLabel="l(3)02640" GraphId="e5d" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="l(3)02640 | lethal (3) 02640" />
+    <Graphics CenterX="316.6666666666667" CenterY="266.6666666666667" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Entrez Gene" ID="46140" />
+  </DataNode>
+  <DataNode TextLabel="CG1885" GraphId="d96" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="CG1885 | CG1885" />
+    <Graphics CenterX="316.6666666666667" CenterY="343.3333333333333" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Entrez Gene" ID="31817" />
+  </DataNode>
+  <DataNode TextLabel="Updo" GraphId="a8c" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="Updo | Updo" />
+    <Graphics CenterX="316.6666666666667" CenterY="416.6666666666667" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Entrez Gene" ID="35986" />
+  </DataNode>
+  <DataNode TextLabel="Coprox" GraphId="ad8" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="Coprox | Coproporphyrinogen oxidase" />
+    <Graphics CenterX="316.6666666666667" CenterY="506.6666666666667" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Entrez Gene" ID="44701" />
+  </DataNode>
+  <DataNode TextLabel="Ppox" GraphId="bcc" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="Ppox | Protoporphyrinogen oxidase" />
+    <Graphics CenterX="316.6666666666667" CenterY="596.6666666666666" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Entrez Gene" ID="42939" />
+  </DataNode>
+  <DataNode TextLabel="ferrochelatase" GraphId="adb" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="ferrochelatase | ferrochelatase" />
+    <Graphics CenterX="316.6666666666667" CenterY="683.3333333333334" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Entrez Gene" ID="43757" />
+  </DataNode>
+  <DataNode TextLabel="Alas" GraphId="c35" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="Alas | Aminolevulinate synthase" />
+    <Graphics CenterX="316.6666666666667" CenterY="93.33333333333333" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Entrez Gene" ID="37815" />
+  </DataNode>
+  <DataNode TextLabel="ALAS1" GraphId="b9d" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="ALAS1 | aminolevulinate delta- synthase 1" />
+    <Graphics CenterX="316.6666666666667" CenterY="73.33333333333333" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Entrez Gene" ID=" " />
+  </DataNode>
+  <Interaction GraphId="id812cbd63">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="316.6666666666667" Y="53.333333333333336" />
+      <Point X="316.6666666666667" Y="126.66666666666667" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="id921fa7c9">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="316.6666666666667" Y="150.0" />
+      <Point X="316.6666666666667" Y="213.33333333333334" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="id92d2ae62">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="316.6666666666667" Y="323.3333333333333" />
+      <Point X="316.6666666666667" Y="380.0" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="id7290a487">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="316.6666666666667" Y="400.0" />
+      <Point X="316.6666666666667" Y="453.3333333333333" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="id3083b50">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="316.6666666666667" Y="473.3333333333333" />
+      <Point X="316.6666666666667" Y="540.0" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="idbbd09792">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="316.6666666666667" Y="653.3333333333334" />
+      <Point X="316.6666666666667" Y="723.3333333333334" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="idd4091496">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="316.6666666666667" Y="563.3333333333334" />
+      <Point X="316.6666666666667" Y="630.0" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="id463ea41f">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="316.6666666666667" Y="233.33333333333334" />
+      <Point X="316.6666666666667" Y="306.6666666666667" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="id6f086c87">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="193.33333333333334" Y="133.33333333333334" />
+      <Point X="316.6666666666667" Y="160.0" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="idb6b79b9c">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="193.33333333333334" Y="463.3333333333333" />
+      <Point X="316.6666666666667" Y="490.0" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="id838dcfa3">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="ff0000">
+      <Point X="316.6666666666667" Y="193.33333333333334" />
+      <Point X="423.3333333333333" Y="213.33333333333334" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="id11742a1c">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="ff0000">
+      <Point X="316.6666666666667" Y="106.66666666666667" />
+      <Point X="423.3333333333333" Y="126.66666666666667" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="id549569a8">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="ff0000">
+      <Point X="316.6666666666667" Y="360.0" />
+      <Point X="423.3333333333333" Y="380.0" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="ida0f21168">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="ff0000">
+      <Point X="316.6666666666667" Y="433.3333333333333" />
+      <Point X="423.3333333333333" Y="453.3333333333333" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="id15b443b4">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="ff0000">
+      <Point X="316.6666666666667" Y="283.3333333333333" />
+      <Point X="423.3333333333333" Y="303.3333333333333" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="idf2ea1df9">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="ff0000">
+      <Point X="316.6666666666667" Y="523.3333333333334" />
+      <Point X="423.3333333333333" Y="543.3333333333334" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="id97b6a934">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="ff0000">
+      <Point X="316.6666666666667" Y="613.3333333333334" />
+      <Point X="423.3333333333333" Y="633.3333333333334" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="id423eda3e">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="ff0000">
+      <Point X="316.6666666666667" Y="703.3333333333334" />
+      <Point X="423.3333333333333" Y="723.3333333333334" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="id6d845281">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="193.33333333333334" Y="223.33333333333334" />
+      <Point X="316.6666666666667" Y="250.0" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="id16df3d01">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="193.33333333333334" Y="553.3333333333334" />
+      <Point X="316.6666666666667" Y="580.0" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="idf3c80585">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="193.33333333333334" Y="640.0" />
+      <Point X="316.6666666666667" Y="666.6666666666666" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Label TextLabel="3 porphobilinogens + H2O" GraphId="a6d">
+    <Graphics CenterX="96.66666666666667" CenterY="223.33333333333334" Width="187.33333333333334" Height="16.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="11" Valign="Middle" />
+  </Label>
+  <Label TextLabel="succinyl-CoA + glycine" GraphId="fc6">
+    <Graphics CenterX="316.6666666666667" CenterY="46.666666666666664" Width="161.33333333333334" Height="16.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="11" Valign="Middle" />
+  </Label>
+  <Label TextLabel="delta-aminolevulinate" GraphId="aa0">
+    <Graphics CenterX="316.6666666666667" CenterY="133.33333333333334" Width="157.33333333333334" Height="16.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="11" Valign="Middle" />
+  </Label>
+  <Label TextLabel="porphobilinogen" GraphId="e56">
+    <Graphics CenterX="316.6666666666667" CenterY="223.33333333333334" Width="122.33333333333333" Height="16.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="11" Valign="Middle" />
+  </Label>
+  <Label TextLabel="hydroxymethylbilane" GraphId="d22">
+    <Graphics CenterX="316.6666666666667" CenterY="313.3333333333333" Width="149.33333333333334" Height="16.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="11" Valign="Middle" />
+  </Label>
+  <Label TextLabel="uroporphyrinogen III" GraphId="ec7">
+    <Graphics CenterX="316.6666666666667" CenterY="386.6666666666667" Width="149.33333333333334" Height="16.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="11" Valign="Middle" />
+  </Label>
+  <Label TextLabel="coproporphyrinogen III" GraphId="dcc">
+    <Graphics CenterX="316.6666666666667" CenterY="460.0" Width="166.33333333333334" Height="16.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="11" Valign="Middle" />
+  </Label>
+  <Label TextLabel="protoporphyrinogen IX" GraphId="ec2">
+    <Graphics CenterX="316.6666666666667" CenterY="550.0" Width="164.33333333333334" Height="16.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="11" Valign="Middle" />
+  </Label>
+  <Label TextLabel="protoporphyrin IX" GraphId="b49">
+    <Graphics CenterX="316.6666666666667" CenterY="640.0" Width="128.33333333333334" Height="16.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="11" Valign="Middle" />
+  </Label>
+  <Label TextLabel="protoheme" GraphId="e36">
+    <Graphics CenterX="316.6666666666667" CenterY="730.0" Width="82.33333333333333" Height="16.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="11" Valign="Middle" />
+  </Label>
+  <Label TextLabel="CoA + CO2" GraphId="af6">
+    <Graphics CenterX="466.6666666666667" CenterY="126.66666666666667" Width="78.33333333333333" Height="16.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="11" Valign="Middle" Color="ff0000" />
+  </Label>
+  <Label TextLabel="2 H2O" GraphId="aa4">
+    <Graphics CenterX="450.0" CenterY="213.33333333333334" Width="46.333333333333336" Height="16.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="11" Valign="Middle" Color="ff0000" />
+  </Label>
+  <Label TextLabel="4 NH3" GraphId="a77">
+    <Graphics CenterX="450.0" CenterY="303.3333333333333" Width="45.333333333333336" Height="16.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="11" Valign="Middle" Color="ff0000" />
+  </Label>
+  <Label TextLabel="H2O" GraphId="d78">
+    <Graphics CenterX="443.3333333333333" CenterY="380.0" Width="34.333333333333336" Height="16.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="11" Valign="Middle" Color="ff0000" />
+  </Label>
+  <Label TextLabel="4 CO2" GraphId="dcb">
+    <Graphics CenterX="450.0" CenterY="453.3333333333333" Width="46.333333333333336" Height="16.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="11" Valign="Middle" Color="ff0000" />
+  </Label>
+  <Label TextLabel="2 CO2" GraphId="a3b">
+    <Graphics CenterX="450.0" CenterY="543.3333333333334" Width="46.333333333333336" Height="16.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="11" Valign="Middle" Color="ff0000" />
+  </Label>
+  <Label TextLabel="H2O2" GraphId="f19">
+    <Graphics CenterX="446.6666666666667" CenterY="633.3333333333334" Width="42.333333333333336" Height="16.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="11" Valign="Middle" Color="ff0000" />
+  </Label>
+  <Label TextLabel="2 H+" GraphId="ff2">
+    <Graphics CenterX="443.3333333333333" CenterY="723.3333333333334" Width="35.333333333333336" Height="16.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="11" Valign="Middle" Color="ff0000" />
+  </Label>
+  <Label TextLabel="O2" GraphId="a76">
+    <Graphics CenterX="180.0" CenterY="550.0" Width="24.333333333333332" Height="16.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="11" Valign="Middle" />
+  </Label>
+  <Label TextLabel="Fe2+" GraphId="b65">
+    <Graphics CenterX="173.33333333333334" CenterY="640.0" Width="39.333333333333336" Height="16.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="11" Valign="Middle" />
+  </Label>
+  <Label TextLabel="delta-aminolevulinate" GraphId="bbf">
+    <Graphics CenterX="113.33333333333333" CenterY="133.33333333333334" Width="157.33333333333334" Height="16.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="11" Valign="Middle" />
+  </Label>
+  <Label TextLabel="O2" GraphId="f71">
+    <Graphics CenterX="180.0" CenterY="460.0" Width="24.333333333333332" Height="16.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="11" Valign="Middle" />
+  </Label>
+  <Label TextLabel="rate limiting step" GraphId="e2e">
+    <Graphics CenterX="130.0" CenterY="83.33333333333333" Width="123.33333333333333" Height="16.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="11" Valign="Middle" Color="0000ff" />
+  </Label>
+  <Label TextLabel="Black - reactants" GraphId="acf">
+    <Graphics CenterX="700.0" CenterY="50.0" Width="132.33333333333334" Height="19.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="12" Valign="Middle" />
+  </Label>
+  <Label TextLabel="Red - side products" GraphId="c66">
+    <Graphics CenterX="713.3333333333334" CenterY="70.0" Width="154.33333333333334" Height="19.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="12" Valign="Middle" Color="ff0000" />
+  </Label>
+  <Label TextLabel="HOMOLOGY MAPP" GraphId="ffc">
+    <Graphics CenterX="56.666666666666664" CenterY="20.0" Width="85.33333333333333" Height="18.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="12" Valign="Middle" Color="008000" />
+  </Label>
+  <InfoBox CenterX="638.9" CenterY="98.16666666666667" />
+  <Legend CenterX="639.5666666666667" CenterY="175.36666666666667" />
+  <Biopax>
+    <bp:openControlledVocabulary xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#">
+      <bp:TERM xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">heme biosynthetic pathway</bp:TERM>
+      <bp:ID xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PW:0000218</bp:ID>
+      <bp:Ontology xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Pathway Ontology</bp:Ontology>
+    </bp:openControlledVocabulary>
+  </Biopax>
+</Pathway>

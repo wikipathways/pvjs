@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Pathway xmlns="http://pathvisio.org/GPML/2013a" Name="Pyruvate Dehydrogenase Pathway" Organism="Saccharomyces cerevisiae">
+  <Comment Source="GenMAPP notes"/>
+  <Comment Source="GenMAPP remarks">Based on http://pathway.yeastgenome.org/biocyc/</Comment>
+  <Comment Source="WikiPathways-category">Metabolic Process</Comment>
+  <Graphics BoardWidth="816.2" BoardHeight="342.8333333333333"/>
+  <DataNode TextLabel="PDA1" GraphId="b10" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="pyruvate dehydrogenase E1 component alpha subunit"/>
+    <Graphics CenterX="163.36666666666667" CenterY="106.66666666666667" Width="40.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="SGD" ID="S000000980"/>
+  </DataNode>
+  <DataNode TextLabel="PDB1" GraphId="cf2" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="pyruvate dehydrogenase E1 component beta subunit"/>
+    <Graphics CenterX="163.36666666666667" CenterY="130.0" Width="40.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="SGD" ID="S000000425"/>
+  </DataNode>
+  <DataNode TextLabel="LAT1" GraphId="e80" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="dihydrolipoamide acetyltransferase"/>
+    <Graphics CenterX="526.7" CenterY="120.0" Width="40.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="SGD" ID="S000005015"/>
+  </DataNode>
+  <DataNode TextLabel="LPD1" GraphId="e19" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="dihydrolipoyl dehydrogenase"/>
+    <Graphics CenterX="680.0333333333333" CenterY="223.33333333333334" Width="40.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="SGD" ID="S000001876"/>
+  </DataNode>
+  <DataNode TextLabel="lipoamide" GraphId="c86" Type="Metabolite">
+    <Graphics CenterX="126.7" CenterY="173.33333333333334" Width="79.33333333333333" Height="19.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff"/>
+    <Xref Database="CAS" ID="940-69-2"/>
+  </DataNode>
+  <DataNode TextLabel="dihydrolipoamide" GraphId="fbe" Type="Metabolite">
+    <Graphics CenterX="670.0333333333333" CenterY="143.33333333333334" Width="138.33333333333334" Height="19.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff"/>
+    <Xref Database="CAS" ID="3884-47-7"/>
+  </DataNode>
+  <DataNode TextLabel="Coenzyme A" GraphId="b02" Type="Metabolite">
+    <Graphics CenterX="466.7" CenterY="170.0" Width="102.33333333333333" Height="19.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff"/>
+    <Xref Database="CAS" ID="64885-97-8"/>
+  </DataNode>
+  <DataNode TextLabel="acetyl-CoA" GraphId="df8" Type="Metabolite">
+    <Graphics CenterX="573.3666666666667" CenterY="170.0" Width="88.33333333333333" Height="19.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff"/>
+    <Xref Database="CAS" ID="72-89-9"/>
+  </DataNode>
+  <DataNode TextLabel="lipoamide" GraphId="cb6" Type="Metabolite">
+    <Graphics CenterX="710.0333333333333" CenterY="303.3333333333333" Width="79.33333333333333" Height="19.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff"/>
+    <Xref Database="CAS" ID="940-69-2"/>
+  </DataNode>
+  <DataNode TextLabel="NADH" GraphId="c03" Type="Metabolite">
+    <Graphics CenterX="760.0333333333333" CenterY="230.0" Width="52.333333333333336" Height="19.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff"/>
+    <Xref Database="CAS" ID="53-84-9"/>
+  </DataNode>
+  <Interaction GraphId="id90efd0e7">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="103.36666666666666" Y="143.33333333333334"/>
+      <Point X="246.7" Y="143.33333333333334" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="idae2640fd">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="180.03333333333333" Y="153.33333333333334"/>
+      <Point X="183.36666666666667" Y="156.66666666666666" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="ida768ecf2">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="460.03333333333336" Y="143.33333333333334"/>
+      <Point X="596.7" Y="143.33333333333334" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="id82f21c92">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="533.3666666666667" Y="153.33333333333334"/>
+      <Point X="540.0333333333333" Y="160.0" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="id59729e35">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="710.0333333333333" Y="153.33333333333334"/>
+      <Point X="710.0333333333333" Y="283.3333333333333" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="idf5254a0">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="720.0333333333333" Y="230.0"/>
+      <Point X="726.7" Y="230.0" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Label TextLabel="pyruvate" GraphId="cbc">
+    <Graphics CenterX="66.7" CenterY="143.33333333333334" Width="72.33333333333333" Height="19.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="12" Valign="Middle"/>
+  </Label>
+  <Label TextLabel="S-acetyldihydrolipoamide" GraphId="ecb">
+    <Graphics CenterX="356.7" CenterY="143.33333333333334" Width="199.33333333333334" Height="19.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="12" Valign="Middle"/>
+  </Label>
+  <Label TextLabel="CO2" GraphId="da6">
+    <Graphics CenterX="200.03333333333333" CenterY="166.66666666666666" Width="38.333333333333336" Height="19.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="12" Valign="Middle"/>
+  </Label>
+  <Label TextLabel="NAD" GraphId="dc1">
+    <Graphics CenterX="750.0333333333333" CenterY="200.0" Width="40.333333333333336" Height="19.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="12" Valign="Middle"/>
+  </Label>
+  <Label TextLabel="H+" GraphId="ae1">
+    <Graphics CenterX="760.0333333333333" CenterY="246.66666666666666" Width="26.333333333333332" Height="19.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="12" Valign="Middle"/>
+  </Label>
+  <Shape GraphId="acc">
+    <Graphics CenterX="166.7" CenterY="156.66666666666666" Width="26.666666666666668" Height="26.666666666666668" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="Arc" Rotation="3.141593"/>
+  </Shape>
+  <Shape GraphId="be7">
+    <Graphics CenterX="523.3666666666667" CenterY="156.66666666666666" Width="26.666666666666668" Height="26.666666666666668" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="Arc" Rotation="3.141593"/>
+  </Shape>
+  <Shape GraphId="b21">
+    <Graphics CenterX="723.3666666666667" CenterY="216.66666666666666" Width="26.666666666666668" Height="26.666666666666668" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="Arc" Rotation="1.428899"/>
+  </Shape>
+  <InfoBox CenterX="0.0" CenterY="0.0"/>
+  <Legend CenterX="0.0" CenterY="0.0"/>
+  <Biopax>
+    <bp:openControlledVocabulary xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#">
+      <bp:TERM xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">pyruvate metabolic pathway</bp:TERM>
+      <bp:ID xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PW:0000043</bp:ID>
+      <bp:Ontology xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Pathway Ontology</bp:Ontology>
+    </bp:openControlledVocabulary>
+  </Biopax>
+</Pathway>

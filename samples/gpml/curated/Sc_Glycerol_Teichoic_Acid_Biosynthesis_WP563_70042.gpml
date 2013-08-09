@@ -1,0 +1,303 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Pathway xmlns="http://pathvisio.org/GPML/2013a" Name="Glycerol Teichoic Acid Biosynthesis" Organism="Saccharomyces cerevisiae">
+  <Comment Source="GenMAPP notes"/>
+  <Comment Source="GenMAPP remarks">Based on http://pathway.yeastgenome.org/biocyc/</Comment>
+  <Comment Source="WikiPathways-category">Metabolic Process</Comment>
+  <Graphics BoardWidth="1981.8333333333333" BoardHeight="922.8333333333334"/>
+  <DataNode TextLabel="UGP1" GraphId="cd1" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="UGP1"/>
+    <Graphics CenterX="486.6666666666667" CenterY="123.33333333333333" Width="66.66666666666667" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="SGD" ID="S000001518"/>
+  </DataNode>
+  <DataNode TextLabel="YHL012W" GraphId="f4d" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="YHL012W"/>
+    <Graphics CenterX="486.6666666666667" CenterY="143.33333333333334" Width="66.66666666666667" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="SGD" ID="S000001004"/>
+  </DataNode>
+  <DataNode TextLabel="PGM2" GraphId="b1a" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="PGM2"/>
+    <Graphics CenterX="963.3333333333334" CenterY="126.66666666666667" Width="46.666666666666664" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="SGD" ID="S000004711"/>
+  </DataNode>
+  <DataNode TextLabel="PGM1" GraphId="f2d" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="PGM1"/>
+    <Graphics CenterX="963.3333333333334" CenterY="146.66666666666666" Width="46.666666666666664" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="SGD" ID="S000001610"/>
+  </DataNode>
+  <DataNode TextLabel="pyrophosphate" GraphId="ecf" Type="Metabolite">
+    <Graphics CenterX="63.333333333333336" CenterY="156.66666666666666" Width="122.33333333333333" Height="19.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff"/>
+    <Xref Database="CAS" ID="2466-09-3"/>
+  </DataNode>
+  <DataNode TextLabel="pyrophosphate" GraphId="d1d" Type="Metabolite">
+    <Graphics CenterX="373.3333333333333" CenterY="143.33333333333334" Width="122.33333333333333" Height="19.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff"/>
+    <Xref Database="CAS" ID="2466-09-3"/>
+  </DataNode>
+  <DataNode TextLabel="glucose-1-phosphate" GraphId="f83" Type="Metabolite">
+    <Graphics CenterX="943.3333333333334" CenterY="93.33333333333333" Width="167.33333333333334" Height="19.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff"/>
+    <Xref Database="CAS" ID="59-56-3"/>
+  </DataNode>
+  <DataNode TextLabel="glucose-6-phosphate" GraphId="b79" Type="Metabolite">
+    <Graphics CenterX="936.6666666666666" CenterY="186.66666666666666" Width="167.33333333333334" Height="19.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff"/>
+    <Xref Database="CAS" ID="59-56-3"/>
+  </DataNode>
+  <Interaction GraphId="id271edd21">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="170.0" Y="86.66666666666667"/>
+      <Point X="170.0" Y="186.66666666666666" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="id795e30db">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="136.66666666666666" Y="156.66666666666666"/>
+      <Point X="126.66666666666667" Y="156.66666666666666" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="id3ce9e153">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="450.0" Y="86.66666666666667"/>
+      <Point X="450.0" Y="183.33333333333334" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="id17a2b518">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="450.0" Y="106.66666666666667"/>
+      <Point X="423.3333333333333" Y="133.33333333333334" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="id24aac7b4">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="450.0" Y="100.0"/>
+      <Point X="853.3333333333334" Y="93.33333333333333"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="idc2232e81">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="936.6666666666666" Y="106.66666666666667"/>
+      <Point X="936.6666666666666" Y="176.66666666666666" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="id55229eb3">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="1310.0" Y="90.0"/>
+      <Point X="1310.0" Y="210.0" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="iddbf04a58">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="1290.0" Y="166.66666666666666"/>
+      <Point X="1280.0" Y="166.66666666666666" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="iddae22999">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="1313.3333333333333" Y="233.33333333333334"/>
+      <Point X="1313.3333333333333" Y="356.6666666666667" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="ida0e7ebda">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="1286.6666666666667" Y="316.6666666666667"/>
+      <Point X="1280.0" Y="316.6666666666667" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="ida071fce8">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="1313.3333333333333" Y="376.6666666666667"/>
+      <Point X="1313.3333333333333" Y="496.6666666666667" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="id3c9da7ae">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="1280.0" Y="466.6666666666667"/>
+      <Point X="1273.3333333333333" Y="466.6666666666667" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="id227a3026">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="1316.6666666666667" Y="536.6666666666666"/>
+      <Point X="1316.6666666666667" Y="636.6666666666666" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="idcf008768">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="1290.0" Y="613.3333333333334"/>
+      <Point X="1280.0" Y="613.3333333333334" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="id3f83c062">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="1320.0" Y="676.6666666666666"/>
+      <Point X="1320.0" Y="706.6666666666666"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="idfcbd27d1">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="1320.0" Y="746.6666666666666"/>
+      <Point X="1320.0" Y="830.0" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="id7121451a">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="1296.6666666666667" Y="806.6666666666666"/>
+      <Point X="1290.0" Y="806.6666666666666" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="idf97e9c68">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="1780.0" Y="110.0"/>
+      <Point X="1780.0" Y="230.0" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Label TextLabel="glycerol-3-phosphate" GraphId="be7">
+    <Graphics CenterX="183.33333333333334" CenterY="76.66666666666667" Width="167.33333333333334" Height="19.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="12" Valign="Middle"/>
+  </Label>
+  <Label TextLabel="CDPglycerol" GraphId="f79">
+    <Graphics CenterX="170.0" CenterY="196.66666666666666" Width="101.33333333333333" Height="19.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="12" Valign="Middle"/>
+  </Label>
+  <Label TextLabel="CTP" GraphId="fa7">
+    <Graphics CenterX="106.66666666666667" CenterY="110.0" Width="38.333333333333336" Height="19.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="12" Valign="Middle"/>
+  </Label>
+  <Label TextLabel="UTP" GraphId="bec">
+    <Graphics CenterX="450.0" CenterY="76.66666666666667" Width="38.333333333333336" Height="19.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="12" Valign="Middle"/>
+  </Label>
+  <Label TextLabel="UDP-D-glucose" GraphId="ff7">
+    <Graphics CenterX="450.0" CenterY="196.66666666666666" Width="123.33333333333333" Height="19.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="12" Valign="Middle"/>
+  </Label>
+  <Label TextLabel="UDP" GraphId="f59">
+    <Graphics CenterX="743.3333333333334" CenterY="43.333333333333336" Width="34.333333333333336" Height="16.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="11" Valign="Middle"/>
+  </Label>
+  <Label TextLabel="undecanyl-diphospho-GlcNAc-ManNAc-" GraphId="b03">
+    <Graphics CenterX="743.3333333333334" CenterY="60.0" Width="279.3333333333333" Height="16.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="11" Valign="Middle"/>
+  </Label>
+  <Label TextLabel="(P-Gol)3(P-Gol-Glc)N+1" GraphId="de9">
+    <Graphics CenterX="743.3333333333334" CenterY="80.0" Width="163.33333333333334" Height="16.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="11" Valign="Middle"/>
+  </Label>
+  <Label TextLabel="UDP-D-glucose" GraphId="d6b">
+    <Graphics CenterX="833.3333333333334" CenterY="233.33333333333334" Width="123.33333333333333" Height="19.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="12" Valign="Middle"/>
+  </Label>
+  <Label TextLabel="undecaprenyl phosphate" GraphId="f69">
+    <Graphics CenterX="1316.6666666666667" CenterY="76.66666666666667" Width="196.33333333333334" Height="19.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="12" Valign="Middle"/>
+  </Label>
+  <Label TextLabel="UDP-acetyl-D-glucosamine" GraphId="f92">
+    <Graphics CenterX="1176.6666666666667" CenterY="120.0" Width="210.33333333333334" Height="19.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="12" Valign="Middle"/>
+  </Label>
+  <Label TextLabel="UMP" GraphId="de3">
+    <Graphics CenterX="1256.6666666666667" CenterY="166.66666666666666" Width="41.333333333333336" Height="19.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="12" Valign="Middle"/>
+  </Label>
+  <Label TextLabel="undecanyl-diphospho-GlcNAc" GraphId="d95">
+    <Graphics CenterX="1310.0" CenterY="220.0" Width="235.33333333333334" Height="19.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="12" Valign="Middle"/>
+  </Label>
+  <Label TextLabel="UDP-acetylmannosamine" GraphId="cd4">
+    <Graphics CenterX="1183.3333333333333" CenterY="270.0" Width="198.33333333333334" Height="19.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="12" Valign="Middle"/>
+  </Label>
+  <Label TextLabel="UDP" GraphId="f24">
+    <Graphics CenterX="1260.0" CenterY="316.6666666666667" Width="40.333333333333336" Height="19.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="12" Valign="Middle"/>
+  </Label>
+  <Label TextLabel="undecanyl-diphospho-GlcNAc-ManNAc" GraphId="c23">
+    <Graphics CenterX="1313.3333333333333" CenterY="366.6666666666667" Width="304.3333333333333" Height="19.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="12" Valign="Middle"/>
+  </Label>
+  <Label TextLabel="3 CDPglycerol" GraphId="fbb">
+    <Graphics CenterX="1220.0" CenterY="406.6666666666667" Width="114.33333333333333" Height="19.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="12" Valign="Middle"/>
+  </Label>
+  <Label TextLabel="3 CMP" GraphId="a2d">
+    <Graphics CenterX="1246.6666666666667" CenterY="466.6666666666667" Width="54.333333333333336" Height="19.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="12" Valign="Middle"/>
+  </Label>
+  <Label TextLabel="undecanyl-diphospho-GlcNAc" GraphId="b2b">
+    <Graphics CenterX="1313.3333333333333" CenterY="506.6666666666667" Width="235.33333333333334" Height="19.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="12" Valign="Middle"/>
+  </Label>
+  <Label TextLabel="ManNAc-(P-Gol)3" GraphId="be6">
+    <Graphics CenterX="1313.3333333333333" CenterY="526.6666666666666" Width="135.33333333333334" Height="19.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="12" Valign="Middle"/>
+  </Label>
+  <Label TextLabel="UDP-D-glucose" GraphId="dcd">
+    <Graphics CenterX="1220.0" CenterY="560.0" Width="123.33333333333333" Height="19.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="12" Valign="Middle"/>
+  </Label>
+  <Label TextLabel="UDP" GraphId="fe3">
+    <Graphics CenterX="1260.0" CenterY="613.3333333333334" Width="40.333333333333336" Height="19.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="12" Valign="Middle"/>
+  </Label>
+  <Label TextLabel="undecanyl-diphospho-GlcNAc-ManNAc-(P-" GraphId="f3a">
+    <Graphics CenterX="1316.6666666666667" CenterY="646.6666666666666" Width="330.3333333333333" Height="19.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="12" Valign="Middle"/>
+  </Label>
+  <Label TextLabel="Gol)3(P-Gol-Glc)1" GraphId="a52">
+    <Graphics CenterX="1316.6666666666667" CenterY="666.6666666666666" Width="136.33333333333334" Height="19.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="12" Valign="Middle"/>
+  </Label>
+  <Label TextLabel="undecanyl-diphospho-GlcNAc-ManNAc-(P-" GraphId="e66">
+    <Graphics CenterX="1320.0" CenterY="716.6666666666666" Width="330.3333333333333" Height="19.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="12" Valign="Middle"/>
+  </Label>
+  <Label TextLabel="Gol)3(P-Gol-Glc)n" GraphId="d91">
+    <Graphics CenterX="1320.0" CenterY="736.6666666666666" Width="137.33333333333334" Height="19.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="12" Valign="Middle"/>
+  </Label>
+  <Label TextLabel="undecanyl-diphospho-GlcNAc-ManNAc-" GraphId="a86">
+    <Graphics CenterX="1320.0" CenterY="843.3333333333334" Width="309.3333333333333" Height="19.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="12" Valign="Middle"/>
+  </Label>
+  <Label TextLabel="CDPglycerol" GraphId="d14">
+    <Graphics CenterX="1240.0" CenterY="773.3333333333334" Width="101.33333333333333" Height="19.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="12" Valign="Middle"/>
+  </Label>
+  <Label TextLabel="CMP" GraphId="b31">
+    <Graphics CenterX="1270.0" CenterY="806.6666666666666" Width="41.333333333333336" Height="19.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="12" Valign="Middle"/>
+  </Label>
+  <Label TextLabel="(P-Gol)3(P-Gol)n+1" GraphId="cb0">
+    <Graphics CenterX="1320.0" CenterY="863.3333333333334" Width="146.33333333333334" Height="19.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="12" Valign="Middle"/>
+  </Label>
+  <Label TextLabel="(Glc)n" GraphId="d0a">
+    <Graphics CenterX="1320.0" CenterY="883.3333333333334" Width="50.333333333333336" Height="19.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="12" Valign="Middle"/>
+  </Label>
+  <Label TextLabel="undecanyl-diphospho-GlcNAc-ManNAc-(P-" GraphId="c3e">
+    <Graphics CenterX="1786.6666666666667" CenterY="76.66666666666667" Width="330.3333333333333" Height="19.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="12" Valign="Middle"/>
+  </Label>
+  <Label TextLabel="Gol)3(P-Gol-Glc)m" GraphId="eec">
+    <Graphics CenterX="1786.6666666666667" CenterY="96.66666666666667" Width="141.33333333333334" Height="19.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="12" Valign="Middle"/>
+  </Label>
+  <Label TextLabel="peptidoglycan" GraphId="d0f">
+    <Graphics CenterX="1683.3333333333333" CenterY="136.66666666666666" Width="114.33333333333333" Height="19.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="12" Valign="Middle"/>
+  </Label>
+  <Label TextLabel="peptidoglycan-GlcNAc-ManNAc-(P-" GraphId="a24">
+    <Graphics CenterX="1606.6666666666667" CenterY="196.66666666666666" Width="271.3333333333333" Height="19.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="12" Valign="Middle"/>
+  </Label>
+  <Label TextLabel="Gol)3(P-Gol-Glc)m" GraphId="cd0">
+    <Graphics CenterX="1606.6666666666667" CenterY="216.66666666666666" Width="141.33333333333334" Height="19.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="12" Valign="Middle"/>
+  </Label>
+  <Label TextLabel="undecaprenyl phosphate" GraphId="e62">
+    <Graphics CenterX="1780.0" CenterY="240.0" Width="196.33333333333334" Height="19.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="12" Valign="Middle"/>
+  </Label>
+  <Shape GraphId="fac">
+    <Graphics CenterX="126.66666666666667" CenterY="133.33333333333334" Width="46.66670666666666" Height="86.92269333333334" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="Arc" Rotation="4.712389"/>
+  </Shape>
+  <Shape GraphId="db5">
+    <Graphics CenterX="1283.3333333333333" CenterY="143.33333333333334" Width="48.59126666666667" Height="55.02525333333333" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="Arc" Rotation="4.659806"/>
+  </Shape>
+  <Shape GraphId="c36">
+    <Graphics CenterX="1283.3333333333333" CenterY="293.3333333333333" Width="46.666666666666664" Height="60.062506666666664" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="Arc" Rotation="4.712389"/>
+  </Shape>
+  <Shape GraphId="f5c">
+    <Graphics CenterX="1276.6666666666667" CenterY="436.6666666666667" Width="60.36924" Height="73.33333333333333" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="Arc" Rotation="4.712389"/>
+  </Shape>
+  <Shape GraphId="a4a">
+    <Graphics CenterX="1283.3333333333333" CenterY="586.6666666666666" Width="53.333333333333336" Height="66.99917333333333" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="Arc" Rotation="4.712389"/>
+  </Shape>
+  <Shape GraphId="c9b">
+    <Graphics CenterX="1290.0" CenterY="790.0" Width="33.333333333333336" Height="60.0" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="Arc" Rotation="4.712389"/>
+  </Shape>
+  <Shape GraphId="a89">
+    <Graphics CenterX="1743.3333333333333" CenterY="166.66666666666666" Width="60.0" Height="73.33333333333333" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="Arc" Rotation="4.712389"/>
+  </Shape>
+  <InfoBox CenterX="30.0" CenterY="630.0"/>
+  <Legend CenterX="0.0" CenterY="105.0"/>
+</Pathway>

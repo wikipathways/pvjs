@@ -1,0 +1,254 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Pathway xmlns="http://pathvisio.org/GPML/2013a" Name="Deoxyribose phosphate metabolism" Organism="Saccharomyces cerevisiae">
+  <Comment Source="GenMAPP notes"/>
+  <Comment Source="GenMAPP remarks">Based on http://pathway.yeastgenome.org/biocyc/</Comment>
+  <Comment Source="WikiPathways-category">Metabolic Process</Comment>
+  <Graphics BoardWidth="1043.2666666666667" BoardHeight="746.1666666666666"/>
+  <DataNode TextLabel="CDD1" GraphId="c31" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="cytidine deaminase"/>
+    <Graphics CenterX="186.6" CenterY="150.0" Width="40.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="SGD" ID="S000004235"/>
+  </DataNode>
+  <DataNode TextLabel="CDD1" GraphId="cc1" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="cytidine deaminase"/>
+    <Graphics CenterX="993.2666666666667" CenterY="250.0" Width="40.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="SGD" ID="S000004235"/>
+  </DataNode>
+  <DataNode TextLabel="TKL1" GraphId="af6" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="transketolase 1"/>
+    <Graphics CenterX="823.2666666666667" CenterY="586.6666666666666" Width="40.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="SGD" ID="S000006278"/>
+  </DataNode>
+  <DataNode TextLabel="TKL2" GraphId="d67" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="transketolase 2"/>
+    <Graphics CenterX="823.2666666666667" CenterY="610.0" Width="40.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="SGD" ID="S000000321"/>
+  </DataNode>
+  <DataNode TextLabel="deoxycytidine" GraphId="b01" Type="Metabolite">
+    <Graphics CenterX="159.93333333333334" CenterY="93.33333333333333" Width="112.33333333333333" Height="19.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff"/>
+    <Xref Database="CAS" ID="951-77-9"/>
+  </DataNode>
+  <DataNode TextLabel="deoxyuridine" GraphId="ee2" Type="Metabolite">
+    <Graphics CenterX="156.6" CenterY="216.66666666666666" Width="105.33333333333333" Height="19.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff"/>
+    <Xref Database="CAS" ID="951-78-0"/>
+  </DataNode>
+  <DataNode TextLabel="phosphate" GraphId="f11" Type="Metabolite">
+    <Graphics CenterX="96.6" CenterY="273.3333333333333" Width="87.33333333333333" Height="19.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff"/>
+    <Xref Database="CAS" ID="14265-44-2"/>
+  </DataNode>
+  <DataNode TextLabel="uracil" GraphId="c57" Type="Metabolite">
+    <Graphics CenterX="106.6" CenterY="303.3333333333333" Width="47.333333333333336" Height="19.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff"/>
+    <Xref Database="CAS" ID="66-22-8"/>
+  </DataNode>
+  <DataNode TextLabel="thymidine" GraphId="fc1" Type="Metabolite">
+    <Graphics CenterX="493.26666666666665" CenterY="200.0" Width="80.33333333333333" Height="19.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff"/>
+    <Xref Database="CAS" ID="50-89-5"/>
+  </DataNode>
+  <DataNode TextLabel="thymine" GraphId="d2e" Type="Metabolite">
+    <Graphics CenterX="286.6" CenterY="246.66666666666666" Width="66.33333333333333" Height="19.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff"/>
+    <Xref Database="CAS" ID="65-71-4"/>
+  </DataNode>
+  <DataNode TextLabel="phosphate" GraphId="c76" Type="Metabolite">
+    <Graphics CenterX="373.26666666666665" CenterY="233.33333333333334" Width="87.33333333333333" Height="19.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff"/>
+    <Xref Database="CAS" ID="14265-44-2"/>
+  </DataNode>
+  <DataNode TextLabel="deoxyribose-5-phosphate" GraphId="f81" Type="Metabolite">
+    <Graphics CenterX="156.6" CenterY="483.3333333333333" Width="201.33333333333334" Height="19.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff"/>
+    <Xref Database="CAS" ID="17210-42-3"/>
+  </DataNode>
+  <DataNode TextLabel="acetaldehyde" GraphId="dab" Type="Metabolite">
+    <Graphics CenterX="76.6" CenterY="630.0" Width="107.33333333333333" Height="19.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff"/>
+    <Xref Database="CAS" ID="75-07-0"/>
+  </DataNode>
+  <DataNode TextLabel="glyceraldehyde-3-phosphate" GraphId="a3d" Type="Metabolite">
+    <Graphics CenterX="273.26666666666665" CenterY="636.6666666666666" Width="223.33333333333334" Height="19.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff"/>
+    <Xref Database="CAS" ID="591-57-1"/>
+  </DataNode>
+  <DataNode TextLabel="cytidine" GraphId="e94" Type="Metabolite">
+    <Graphics CenterX="959.9333333333333" CenterY="216.66666666666666" Width="65.33333333333333" Height="19.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff"/>
+    <Xref Database="CAS" ID="65-46-3"/>
+  </DataNode>
+  <DataNode TextLabel="uridine" GraphId="f10" Type="Metabolite">
+    <Graphics CenterX="959.9333333333333" CenterY="296.6666666666667" Width="58.333333333333336" Height="19.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff"/>
+    <Xref Database="CAS" ID="58-96-8"/>
+  </DataNode>
+  <DataNode TextLabel="ribose-1-phosphate" GraphId="b42" Type="Metabolite">
+    <Graphics CenterX="819.9333333333333" CenterY="443.3333333333333" Width="154.33333333333334" Height="19.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff"/>
+    <Xref Database="CAS" ID="3615-55-2"/>
+  </DataNode>
+  <DataNode TextLabel="uracil" GraphId="c85" Type="Metabolite">
+    <Graphics CenterX="953.2666666666667" CenterY="463.3333333333333" Width="47.333333333333336" Height="19.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff"/>
+    <Xref Database="CAS" ID="66-22-8"/>
+  </DataNode>
+  <DataNode TextLabel="phosphate" GraphId="c26" Type="Metabolite">
+    <Graphics CenterX="879.9333333333333" CenterY="370.0" Width="87.33333333333333" Height="19.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff"/>
+    <Xref Database="CAS" ID="14265-44-2"/>
+  </DataNode>
+  <DataNode TextLabel="ribose-5-phosphate" GraphId="f66" Type="Metabolite">
+    <Graphics CenterX="786.6" CenterY="533.3333333333334" Width="154.33333333333334" Height="19.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff"/>
+    <Xref Database="CAS" ID="3615-55-2"/>
+  </DataNode>
+  <DataNode TextLabel="sedoheptulose-7-phosphate" GraphId="fd2" Type="Metabolite">
+    <Graphics CenterX="783.2666666666667" CenterY="706.6666666666666" Width="220.33333333333334" Height="19.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff"/>
+    <Xref Database="CAS" ID="2646-35-7"/>
+  </DataNode>
+  <DataNode TextLabel="xylulose-5-phosphate" GraphId="a30" Type="Metabolite">
+    <Graphics CenterX="693.2666666666667" CenterY="586.6666666666666" Width="170.33333333333334" Height="19.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff"/>
+    <Xref Database="CAS" ID="60802-29-1"/>
+  </DataNode>
+  <Interaction GraphId="idb563cb27">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="156.6" Y="103.33333333333333"/>
+      <Point X="156.6" Y="203.33333333333334" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="idec6f9216">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="146.6" Y="166.66666666666666"/>
+      <Point X="133.26666666666668" Y="170.0" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="idf3ba1df9">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="156.6" Y="230.0"/>
+      <Point X="156.6" Y="340.0" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="idcfb20a49">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="146.6" Y="300.0"/>
+      <Point X="133.26666666666668" Y="303.3333333333333" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="id913b00ed">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="486.6" Y="216.66666666666666"/>
+      <Point X="173.26666666666668" Y="330.0" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="id79984d72">
+    <Graphics ZOrder="12288" LineStyle="Broken" LineThickness="1.0">
+      <Point X="326.6" Y="266.6666666666667"/>
+      <Point X="323.26666666666665" Y="260.0" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="id421a5b77">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="156.6" Y="363.3333333333333"/>
+      <Point X="156.6" Y="470.0" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="idab5ab634">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="159.93333333333334" Y="490.0"/>
+      <Point X="159.93333333333334" Y="603.3333333333334" ArrowHead="Receptor"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="idd29ab4b5">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="146.6" Y="616.6666666666666"/>
+      <Point X="133.26666666666668" Y="623.3333333333334" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="idfc9cfefc">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="173.26666666666668" Y="616.6666666666666"/>
+      <Point X="179.93333333333334" Y="623.3333333333334" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="id837495df">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="959.9333333333333" Y="223.33333333333334"/>
+      <Point X="959.9333333333333" Y="280.0" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="id980cf8e5">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="949.9333333333333" Y="263.3333333333333"/>
+      <Point X="936.6" Y="266.6666666666667" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="idf82a7c10">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="959.9333333333333" Y="303.3333333333333"/>
+      <Point X="923.2666666666667" Y="423.3333333333333" ArrowHead="Receptor"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="idf4f5227f">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="906.6" Y="430.0"/>
+      <Point X="896.6" Y="433.3333333333333" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="id6f513198">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="929.9333333333333" Y="436.6666666666667"/>
+      <Point X="933.2666666666667" Y="443.3333333333333" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="id91303dfb">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="786.6" Y="450.0"/>
+      <Point X="786.6" Y="520.0" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="idab83be63">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="789.9333333333333" Y="543.3333333333334"/>
+      <Point X="789.9333333333333" Y="680.0" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="ide5fe54a1">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="789.9333333333333" Y="643.3333333333334"/>
+      <Point X="383.26666666666665" Y="636.6666666666666" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Label TextLabel="H2O" GraphId="d24">
+    <Graphics CenterX="113.26666666666667" CenterY="136.66666666666666" Width="38.333333333333336" Height="19.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="12" Valign="Middle"/>
+  </Label>
+  <Label TextLabel="NH3" GraphId="af7">
+    <Graphics CenterX="109.93333333333334" CenterY="170.0" Width="38.333333333333336" Height="19.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="12" Valign="Middle"/>
+  </Label>
+  <Label TextLabel="deoxy-ribose-1-phosphate" GraphId="dc8">
+    <Graphics CenterX="156.6" CenterY="353.3333333333333" Width="206.33333333333334" Height="19.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="12" Valign="Middle"/>
+  </Label>
+  <Shape GraphId="f28">
+    <Graphics CenterX="143.26666666666668" CenterY="153.33333333333334" Width="26.666666666666668" Height="26.666666666666668" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="Arc" Rotation="4.712389"/>
+  </Shape>
+  <Shape GraphId="ecd">
+    <Graphics CenterX="143.26666666666668" CenterY="286.6666666666667" Width="26.666666666666668" Height="26.666666666666668" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="Arc" Rotation="4.712389"/>
+  </Shape>
+  <Shape GraphId="f8c">
+    <Graphics CenterX="336.6" CenterY="256.6666666666667" Width="26.666666666666668" Height="26.666666666666668" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="Arc" Rotation="5.961435"/>
+  </Shape>
+  <Shape GraphId="ece">
+    <Graphics CenterX="946.6" CenterY="250.0" Width="26.666666666666668" Height="26.666666666666668" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="Arc" Rotation="4.712389"/>
+  </Shape>
+  <Shape GraphId="d0d">
+    <Graphics CenterX="919.9333333333333" CenterY="396.6666666666667" Width="26.666666666666668" Height="26.666666666666668" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="Arc" Rotation="4.068888"/>
+  </Shape>
+  <Shape GraphId="aa8">
+    <Graphics CenterX="769.9333333333333" CenterY="620.0" Width="57.32828" Height="26.666666666666668" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="Arc" Rotation="4.068888"/>
+  </Shape>
+  <InfoBox CenterX="0.0" CenterY="0.0"/>
+  <Legend CenterX="0.0" CenterY="0.0"/>
+</Pathway>

@@ -1,0 +1,2493 @@
+{
+  "xmlns": "http://pathvisio.org/GPML/2013a",
+  "name": "Nuclear receptors in lipid metabolism and toxicity",
+  "last-modified": "2013-02-22T08:00:00.000Z",
+  "organism": "Homo sapiens",
+  "license": "CC BY 2.0",
+  "boardWidth": 929.5398230088498,
+  "boardHeight": 738.3333333333334,
+  "infoBox": {
+    "x": 11.666666666666666,
+    "y": 708.3333333333334
+  },
+  "comments": [
+    {
+      "source": "WikiPathways-category",
+      "keyValue": "Metabolic Process"
+    },
+    {
+      "source": "WikiPathways-description",
+      "keyValue": "Nuclear receptors are transcription factors that are activated upon binding to its ligands. Initially, they had been classified as classic endocrine nuclear hormone receptors and orphan receptors. However, further studies have led to the identification of lipid ligands for some of these adopted orphan receptors, which are responsible for lipid metabolism, storage or elimination. One of the characteristics of these receptors is that they act by forming heterodimers with retinoid X receptor (RXR). The receptors include peroxisome proliferators-Activated receptors (PPARs) for fatty acids, liver X receptor (LCR) for oxysterols, Farnesoid X receptors (FXR) for bile acids and steroid xenobiotic receptor/X receptor (SXR/PXR or Nsil2) for xenobiotics. Other orphan receptors also require RXR for its functions are vitamin D receptor (VDR) for vitamin D and retinoic acid receptor (RAR) for retinoid acids, although these receptors are not involved in lipid metabolism. Upon binding to various ligands, three classes of proteins are synthesized including lipid binding proteins, the ATP-binding cassette (ABC) transporters and cytochrome P450 member proteins which catalyzes lipid anabolism, metabolism and elimination.\nIn addition to lipid metabolism, some members of the cytochrome P450 family genes are responsible for activation of procarcinogens, detoxification of environmental toxins and metabolism of drugs and xenobiotics. In particular, CAR, Nsil2 and recently identified VDR are important in up-regulation of these cytochromes. Of all the human cytochrome P450 genes, only a few CYP1A2, CYP2C9, CYP2C19, CYP2D6, CYP2E1 and CYP3A4 account for most toxicity effects, specifically CYP3A is responsible for clearing approximately half of the clinically prescribed drugs. For instance, acetaminophen, one of the most commonly used drug, is toxic in high doses due to the activation of CAR and the drugs subsequent conversion to acetyl-p-benzoquinone imine (NAPQI) by CYP1A2, CYP2E1 and CYP3A."
+    }
+  ],
+  "labelableElements": [
+    {
+      "graphId": "c87",
+      "x": 187,
+      "y": 465.33,
+      "width": 79.33,
+      "height": 16,
+      "stroke": "#ff0000",
+      "textLabel": {
+        "text": "Xenobiotics",
+        "color": "#ff0000",
+        "fontSize": 10,
+        "fontWeight": "bold"
+      },
+      "symbolType": "rectangle",
+      "elementType": "data-node",
+      "dataNodeType": "metabolite",
+      "xRef": {
+        "database": "ChEBI",
+        "id": "+035703-01-01T08:00:00.000Z"
+      }
+    },
+    {
+      "graphId": "ca9",
+      "x": 421.33,
+      "y": 435.67,
+      "width": 53.33,
+      "height": 20,
+      "textLabel": {
+        "text": "CYP7A1",
+        "fontSize": 10
+      },
+      "symbolType": "rectangle",
+      "elementType": "data-node",
+      "dataNodeType": "gene-product",
+      "xRef": {
+        "database": "Entrez Gene",
+        "id": 1581
+      }
+    },
+    {
+      "graphId": "cfb",
+      "groupRef": "d8c33",
+      "x": 456.67,
+      "y": 540,
+      "width": 93.33,
+      "height": 20,
+      "textLabel": {
+        "text": "CYP7A1",
+        "fontSize": 10
+      },
+      "symbolType": "rectangle",
+      "elementType": "data-node",
+      "dataNodeType": "gene-product",
+      "xRef": {
+        "database": "Entrez Gene",
+        "id": 1581
+      }
+    },
+    {
+      "graphId": "e5c",
+      "groupRef": "d70c0",
+      "x": 746.67,
+      "y": 450,
+      "width": 60,
+      "height": 20,
+      "textLabel": {
+        "text": "CYP7A1",
+        "fontSize": 10
+      },
+      "symbolType": "rectangle",
+      "elementType": "data-node",
+      "dataNodeType": "gene-product",
+      "xRef": {
+        "database": "Entrez Gene",
+        "id": 1581
+      }
+    },
+    {
+      "graphId": "c68",
+      "groupRef": "d1222",
+      "x": 726.67,
+      "y": 106.67,
+      "width": 66.67,
+      "height": 20,
+      "textLabel": {
+        "text": "CYP4A11",
+        "fontSize": 10
+      },
+      "symbolType": "rectangle",
+      "elementType": "data-node",
+      "dataNodeType": "gene-product",
+      "xRef": {
+        "database": "Entrez Gene",
+        "id": 1579
+      }
+    },
+    {
+      "graphId": "a3d",
+      "x": 452,
+      "y": 60,
+      "width": 53.33,
+      "height": 20,
+      "textLabel": {
+        "text": "PPARG",
+        "fontSize": 10
+      },
+      "symbolType": "rectangle",
+      "elementType": "data-node",
+      "dataNodeType": "gene-product",
+      "xRef": {
+        "database": "Entrez Gene",
+        "id": 5468
+      }
+    },
+    {
+      "graphId": "a22",
+      "x": 616.67,
+      "y": 136.67,
+      "width": 53.33,
+      "height": 20,
+      "textLabel": {
+        "text": "PPARA",
+        "fontSize": 10
+      },
+      "symbolType": "rectangle",
+      "elementType": "data-node",
+      "dataNodeType": "gene-product",
+      "xRef": {
+        "database": "Entrez Gene",
+        "id": 5465
+      }
+    },
+    {
+      "graphId": "ef7",
+      "x": 519.33,
+      "y": 60,
+      "width": 53.33,
+      "height": 20,
+      "textLabel": {
+        "text": "PPARD",
+        "fontSize": 10
+      },
+      "symbolType": "rectangle",
+      "elementType": "data-node",
+      "dataNodeType": "gene-product",
+      "xRef": {
+        "database": "Entrez Gene",
+        "id": 5467
+      }
+    },
+    {
+      "graphId": "f9d",
+      "groupRef": "d1222",
+      "x": 726.67,
+      "y": 166.67,
+      "width": 66.67,
+      "height": 20,
+      "textLabel": {
+        "text": "ABCD3",
+        "fontSize": 10
+      },
+      "symbolType": "rectangle",
+      "elementType": "data-node",
+      "dataNodeType": "gene-product",
+      "xRef": {
+        "database": "Entrez Gene",
+        "id": 5825
+      }
+    },
+    {
+      "graphId": "edf",
+      "groupRef": "d1222",
+      "x": 726.67,
+      "y": 146.67,
+      "width": 66.67,
+      "height": 20,
+      "textLabel": {
+        "text": "ABCD2",
+        "fontSize": 10
+      },
+      "symbolType": "rectangle",
+      "elementType": "data-node",
+      "dataNodeType": "gene-product",
+      "xRef": {
+        "database": "Entrez Gene",
+        "id": 225
+      }
+    },
+    {
+      "graphId": "a19",
+      "groupRef": "e3f0a",
+      "x": 283.33,
+      "y": 70,
+      "width": 80,
+      "height": 20,
+      "textLabel": {
+        "text": "ABCA1",
+        "fontSize": 10
+      },
+      "symbolType": "rectangle",
+      "elementType": "data-node",
+      "dataNodeType": "gene-product",
+      "xRef": {
+        "database": "Entrez Gene",
+        "id": 19
+      }
+    },
+    {
+      "graphId": "bdc",
+      "x": 614.67,
+      "y": 60.67,
+      "width": 53.33,
+      "height": 20,
+      "textLabel": {
+        "text": "ABCA1",
+        "fontSize": 10
+      },
+      "symbolType": "rectangle",
+      "elementType": "data-node",
+      "dataNodeType": "gene-product",
+      "xRef": {
+        "database": "Entrez Gene",
+        "id": 19
+      }
+    },
+    {
+      "graphId": "d05",
+      "groupRef": "d8c33",
+      "x": 456.67,
+      "y": 560,
+      "width": 93.33,
+      "height": 20,
+      "textLabel": {
+        "text": "ABCA1",
+        "fontSize": 10
+      },
+      "symbolType": "rectangle",
+      "elementType": "data-node",
+      "dataNodeType": "gene-product",
+      "xRef": {
+        "database": "Entrez Gene",
+        "id": 19
+      }
+    },
+    {
+      "graphId": "dd3",
+      "groupRef": "d1222",
+      "x": 726.67,
+      "y": 126.67,
+      "width": 66.67,
+      "height": 20,
+      "textLabel": {
+        "text": "ABCB4",
+        "fontSize": 10
+      },
+      "symbolType": "rectangle",
+      "elementType": "data-node",
+      "dataNodeType": "gene-product",
+      "xRef": {
+        "database": "Entrez Gene",
+        "id": 5244
+      }
+    },
+    {
+      "graphId": "a80",
+      "groupRef": "d70c0",
+      "x": 746.67,
+      "y": 490,
+      "width": 60,
+      "height": 20,
+      "textLabel": {
+        "text": "ABCB11",
+        "fontSize": 10
+      },
+      "symbolType": "rectangle",
+      "elementType": "data-node",
+      "dataNodeType": "gene-product",
+      "xRef": {
+        "database": "Entrez Gene",
+        "id": 8647
+      }
+    },
+    {
+      "graphId": "e71",
+      "groupRef": "aabe3",
+      "x": 40,
+      "y": 584,
+      "width": 60,
+      "height": 20,
+      "textLabel": {
+        "text": "ABCB1a",
+        "fontSize": 10
+      },
+      "symbolType": "rectangle",
+      "elementType": "data-node",
+      "dataNodeType": "gene-product"
+    },
+    {
+      "graphId": "fd4",
+      "groupRef": "aabe3",
+      "x": 40,
+      "y": 604,
+      "width": 60,
+      "height": 20,
+      "textLabel": {
+        "text": "ABCB1",
+        "fontSize": 10
+      },
+      "symbolType": "rectangle",
+      "elementType": "data-node",
+      "dataNodeType": "gene-product",
+      "xRef": {
+        "database": "Entrez Gene",
+        "id": 5243
+      }
+    },
+    {
+      "graphId": "a23",
+      "groupRef": "aabe3",
+      "x": 40,
+      "y": 564,
+      "width": 60,
+      "height": 20,
+      "textLabel": {
+        "text": "ABCC2",
+        "fontSize": 10
+      },
+      "symbolType": "rectangle",
+      "elementType": "data-node",
+      "dataNodeType": "gene-product",
+      "xRef": {
+        "database": "Entrez Gene",
+        "id": 1244
+      }
+    },
+    {
+      "graphId": "c61",
+      "groupRef": "f0476",
+      "x": 30,
+      "y": 410,
+      "width": 53.33,
+      "height": 20,
+      "textLabel": {
+        "text": "ABCC3",
+        "fontSize": 10
+      },
+      "symbolType": "rectangle",
+      "elementType": "data-node",
+      "dataNodeType": "gene-product",
+      "xRef": {
+        "database": "Entrez Gene",
+        "id": 8714
+      }
+    },
+    {
+      "graphId": "afd",
+      "groupRef": "d8c33",
+      "x": 456.67,
+      "y": 580,
+      "width": 93.33,
+      "height": 20,
+      "textLabel": {
+        "text": "ABCG1",
+        "fontSize": 10
+      },
+      "symbolType": "rectangle",
+      "elementType": "data-node",
+      "dataNodeType": "gene-product",
+      "xRef": {
+        "database": "Entrez Gene",
+        "id": 9619
+      }
+    },
+    {
+      "graphId": "acd",
+      "groupRef": "d8c33",
+      "x": 456.67,
+      "y": 600,
+      "width": 93.33,
+      "height": 20,
+      "textLabel": {
+        "text": "ABCG5",
+        "fontSize": 10
+      },
+      "symbolType": "rectangle",
+      "elementType": "data-node",
+      "dataNodeType": "gene-product",
+      "xRef": {
+        "database": "Entrez Gene",
+        "id": 64240
+      }
+    },
+    {
+      "graphId": "dd8",
+      "groupRef": "d8c33",
+      "x": 456.67,
+      "y": 620,
+      "width": 93.33,
+      "height": 20,
+      "textLabel": {
+        "text": "abcg6",
+        "fontSize": 10
+      },
+      "symbolType": "rectangle",
+      "elementType": "data-node",
+      "dataNodeType": "gene-product"
+    },
+    {
+      "graphId": "e8c",
+      "comments": [
+        {
+          "source": "GenMAPP remarks",
+          "keyValue": "Farnesoid X-activated receptor"
+        }
+      ],
+      "x": 648,
+      "y": 470.67,
+      "width": 46.67,
+      "height": 20,
+      "textLabel": {
+        "text": "NR1H4",
+        "fontSize": 10
+      },
+      "symbolType": "rectangle",
+      "elementType": "data-node",
+      "dataNodeType": "gene-product",
+      "xRef": {
+        "database": "Entrez Gene",
+        "id": 9971
+      }
+    },
+    {
+      "graphId": "e53",
+      "x": 342.67,
+      "y": 580,
+      "width": 46.67,
+      "height": 20,
+      "textLabel": {
+        "text": "NR1H3",
+        "fontSize": 10
+      },
+      "symbolType": "rectangle",
+      "elementType": "data-node",
+      "dataNodeType": "gene-product",
+      "xRef": {
+        "database": "Entrez Gene",
+        "id": 10062
+      }
+    },
+    {
+      "graphId": "ac3",
+      "groupRef": "d70c0",
+      "x": 746.67,
+      "y": 470,
+      "width": 60,
+      "height": 20,
+      "textLabel": {
+        "text": "CYP8B1",
+        "fontSize": 10
+      },
+      "symbolType": "rectangle",
+      "elementType": "data-node",
+      "dataNodeType": "gene-product",
+      "xRef": {
+        "database": "Entrez Gene",
+        "id": 1582
+      }
+    },
+    {
+      "graphId": "a6f",
+      "x": 161,
+      "y": 564.33,
+      "width": 46.67,
+      "height": 20,
+      "textLabel": {
+        "text": "NR1I2",
+        "fontSize": 10
+      },
+      "symbolType": "rectangle",
+      "elementType": "data-node",
+      "dataNodeType": "gene-product",
+      "xRef": {
+        "database": "Entrez Gene",
+        "id": 8856
+      }
+    },
+    {
+      "graphId": "c47",
+      "x": 106,
+      "y": 463.67,
+      "width": 46.67,
+      "height": 20,
+      "textLabel": {
+        "text": "NR1I3",
+        "fontSize": 10
+      },
+      "symbolType": "rectangle",
+      "elementType": "data-node",
+      "dataNodeType": "gene-product",
+      "xRef": {
+        "database": "Entrez Gene",
+        "id": 9970
+      }
+    },
+    {
+      "graphId": "dbd",
+      "groupRef": "e3f0a",
+      "x": 283.33,
+      "y": 50,
+      "width": 80,
+      "height": 20,
+      "textLabel": {
+        "text": "CYP4B1",
+        "fontSize": 10
+      },
+      "symbolType": "rectangle",
+      "elementType": "data-node",
+      "dataNodeType": "gene-product",
+      "xRef": {
+        "database": "Entrez Gene",
+        "id": 1580
+      }
+    },
+    {
+      "graphId": "a97",
+      "x": 109.33,
+      "y": 233.33,
+      "width": 46.67,
+      "height": 20,
+      "textLabel": {
+        "text": "RARA",
+        "fontSize": 10
+      },
+      "symbolType": "rectangle",
+      "elementType": "data-node",
+      "dataNodeType": "gene-product",
+      "xRef": {
+        "database": "Entrez Gene",
+        "id": 5914
+      }
+    },
+    {
+      "graphId": "db3",
+      "x": 26.67,
+      "y": 156,
+      "width": 46.67,
+      "height": 20,
+      "textLabel": {
+        "text": "RARG",
+        "fontSize": 10
+      },
+      "symbolType": "rectangle",
+      "elementType": "data-node",
+      "dataNodeType": "gene-product",
+      "xRef": {
+        "database": "Entrez Gene",
+        "id": 5916
+      }
+    },
+    {
+      "graphId": "a1e",
+      "groupRef": "f0476",
+      "x": 30,
+      "y": 390,
+      "width": 53.33,
+      "height": 20,
+      "textLabel": {
+        "text": "CYP3A4",
+        "fontSize": 10
+      },
+      "symbolType": "rectangle",
+      "elementType": "data-node",
+      "dataNodeType": "gene-product",
+      "xRef": {
+        "database": "Entrez Gene",
+        "id": 1576
+      }
+    },
+    {
+      "graphId": "c5d",
+      "x": 670.33,
+      "y": 300.33,
+      "width": 40,
+      "height": 20,
+      "textLabel": {
+        "text": "VDR",
+        "fontSize": 10
+      },
+      "symbolType": "rectangle",
+      "elementType": "data-node",
+      "dataNodeType": "gene-product",
+      "xRef": {
+        "database": "Entrez Gene",
+        "id": 7421
+      }
+    },
+    {
+      "graphId": "bfd",
+      "groupRef": "a209f",
+      "x": 760,
+      "y": 290,
+      "width": 66.67,
+      "height": 20,
+      "textLabel": {
+        "text": "CYP3A4",
+        "fontSize": 10
+      },
+      "symbolType": "rectangle",
+      "elementType": "data-node",
+      "dataNodeType": "gene-product",
+      "xRef": {
+        "database": "Entrez Gene",
+        "id": 1576
+      }
+    },
+    {
+      "graphId": "c25",
+      "x": 0,
+      "y": 233.33,
+      "width": 66.67,
+      "height": 20,
+      "textLabel": {
+        "text": "CYP26A1",
+        "fontSize": 10
+      },
+      "symbolType": "rectangle",
+      "elementType": "data-node",
+      "dataNodeType": "gene-product",
+      "xRef": {
+        "database": "Entrez Gene",
+        "id": 1592
+      }
+    },
+    {
+      "graphId": "cdc",
+      "x": 119,
+      "y": 268.67,
+      "width": 46.67,
+      "height": 20,
+      "textLabel": {
+        "text": "RARB",
+        "fontSize": 10
+      },
+      "symbolType": "rectangle",
+      "elementType": "data-node",
+      "dataNodeType": "gene-product",
+      "xRef": {
+        "database": "Entrez Gene",
+        "id": 5915
+      }
+    },
+    {
+      "graphId": "e9f",
+      "groupRef": "f0476",
+      "x": 30,
+      "y": 370,
+      "width": 53.33,
+      "height": 20,
+      "textLabel": {
+        "text": "CYP2E1",
+        "fontSize": 10
+      },
+      "symbolType": "rectangle",
+      "elementType": "data-node",
+      "dataNodeType": "gene-product",
+      "xRef": {
+        "database": "Entrez Gene",
+        "id": 1571
+      }
+    },
+    {
+      "graphId": "ec7",
+      "groupRef": "f0476",
+      "x": 30,
+      "y": 350,
+      "width": 53.33,
+      "height": 20,
+      "textLabel": {
+        "text": "CYP2C9",
+        "fontSize": 10
+      },
+      "symbolType": "rectangle",
+      "elementType": "data-node",
+      "dataNodeType": "gene-product",
+      "xRef": {
+        "database": "Entrez Gene",
+        "id": 1559
+      }
+    },
+    {
+      "graphId": "bbc",
+      "groupRef": "a209f",
+      "x": 760,
+      "y": 310,
+      "width": 66.67,
+      "height": 20,
+      "textLabel": {
+        "text": "CYP2C9",
+        "fontSize": 10
+      },
+      "symbolType": "rectangle",
+      "elementType": "data-node",
+      "dataNodeType": "gene-product",
+      "xRef": {
+        "database": "Entrez Gene",
+        "id": 1559
+      }
+    },
+    {
+      "graphId": "c70",
+      "groupRef": "f0476",
+      "x": 30,
+      "y": 330,
+      "width": 53.33,
+      "height": 20,
+      "textLabel": {
+        "text": "CYP2B6",
+        "fontSize": 10
+      },
+      "symbolType": "rectangle",
+      "elementType": "data-node",
+      "dataNodeType": "gene-product",
+      "xRef": {
+        "database": "Entrez Gene",
+        "id": 1555
+      }
+    },
+    {
+      "graphId": "db1",
+      "groupRef": "a209f",
+      "x": 760,
+      "y": 270,
+      "width": 66.67,
+      "height": 20,
+      "textLabel": {
+        "text": "CYP2B6",
+        "fontSize": 10
+      },
+      "symbolType": "rectangle",
+      "elementType": "data-node",
+      "dataNodeType": "gene-product",
+      "xRef": {
+        "database": "Entrez Gene",
+        "id": 1555
+      }
+    },
+    {
+      "graphId": "aca",
+      "groupRef": "f0476",
+      "x": 30,
+      "y": 310,
+      "width": 53.33,
+      "height": 20,
+      "textLabel": {
+        "text": "CYP1A2",
+        "fontSize": 10
+      },
+      "symbolType": "rectangle",
+      "elementType": "data-node",
+      "dataNodeType": "gene-product",
+      "xRef": {
+        "database": "Entrez Gene",
+        "id": 1544
+      }
+    },
+    {
+      "graphId": "ddc",
+      "groupRef": "a209f",
+      "x": 760,
+      "y": 330,
+      "width": 66.67,
+      "height": 20,
+      "textLabel": {
+        "text": "CYP24A1",
+        "fontSize": 10
+      },
+      "symbolType": "rectangle",
+      "elementType": "data-node",
+      "dataNodeType": "gene-product",
+      "xRef": {
+        "database": "Entrez Gene",
+        "id": 1591
+      }
+    },
+    {
+      "graphId": "fe0",
+      "groupRef": "aabe3",
+      "x": 40,
+      "y": 544,
+      "width": 60,
+      "height": 20,
+      "textLabel": {
+        "text": "CYP2C9",
+        "fontSize": 10
+      },
+      "symbolType": "rectangle",
+      "elementType": "data-node",
+      "dataNodeType": "gene-product",
+      "xRef": {
+        "database": "Entrez Gene",
+        "id": 1559
+      }
+    },
+    {
+      "graphId": "dd2",
+      "groupRef": "aabe3",
+      "x": 40,
+      "y": 524,
+      "width": 60,
+      "height": 20,
+      "textLabel": {
+        "text": "CYP3A4",
+        "fontSize": 10
+      },
+      "symbolType": "rectangle",
+      "elementType": "data-node",
+      "dataNodeType": "gene-product",
+      "xRef": {
+        "database": "Entrez Gene",
+        "id": 1576
+      }
+    },
+    {
+      "graphId": "d4b",
+      "x": 454,
+      "y": 373.33,
+      "width": 66.67,
+      "height": 20,
+      "textLabel": {
+        "text": "CYP27B1",
+        "fontSize": 10
+      },
+      "symbolType": "rectangle",
+      "elementType": "data-node",
+      "dataNodeType": "gene-product",
+      "xRef": {
+        "database": "Entrez Gene",
+        "id": 1594
+      }
+    },
+    {
+      "graphId": "d3d",
+      "x": 322,
+      "y": 137.17,
+      "width": 89.33,
+      "height": 19,
+      "stroke": "#0000ff",
+      "textLabel": {
+        "text": "Acetyl CoA",
+        "color": "#0000ff",
+        "fontSize": 10
+      },
+      "symbolType": "rectangle",
+      "elementType": "data-node",
+      "dataNodeType": "metabolite",
+      "xRef": {
+        "database": "CAS",
+        "id": "72-89-9"
+      }
+    },
+    {
+      "graphId": "b79",
+      "x": 296,
+      "y": 348.67,
+      "width": 141.33,
+      "height": 16,
+      "stroke": "#0000ff",
+      "textLabel": {
+        "text": "7-DehydroCholesterol",
+        "color": "#0000ff",
+        "fontSize": 10
+      },
+      "symbolType": "rectangle",
+      "elementType": "data-node",
+      "dataNodeType": "metabolite",
+      "xRef": {
+        "database": "CAS",
+        "id": "434-16-2"
+      }
+    },
+    {
+      "graphId": "b23",
+      "x": 319.33,
+      "y": 403.83,
+      "width": 93.33,
+      "height": 19,
+      "stroke": "#0000ff",
+      "textLabel": {
+        "text": "Cholesterol",
+        "color": "#0000ff",
+        "fontSize": 10
+      },
+      "symbolType": "rectangle",
+      "elementType": "data-node",
+      "dataNodeType": "metabolite",
+      "xRef": {
+        "database": "CAS",
+        "id": "57-88-5"
+      }
+    },
+    {
+      "graphId": "ec02d",
+      "x": 326,
+      "y": 514,
+      "width": 80,
+      "height": 20,
+      "stroke": "#0000ff",
+      "textLabel": {
+        "text": "Oxysterol",
+        "color": "#0000ff",
+        "fontSize": 10
+      },
+      "symbolType": "rectangle",
+      "elementType": "data-node",
+      "dataNodeType": "metabolite"
+    },
+    {
+      "graphId": "eb4c4",
+      "x": 326,
+      "y": 271,
+      "width": 80,
+      "height": 20,
+      "stroke": "#0000ff",
+      "textLabel": {
+        "text": "Lanosterol",
+        "color": "#0000ff",
+        "fontSize": 10
+      },
+      "symbolType": "rectangle",
+      "elementType": "data-node",
+      "dataNodeType": "metabolite",
+      "xRef": {
+        "database": "ChEBI",
+        "id": 6374
+      }
+    },
+    {
+      "graphId": "ffef8",
+      "x": 326,
+      "y": 216,
+      "width": 80,
+      "height": 20,
+      "stroke": "#0000ff",
+      "textLabel": {
+        "text": "Isoprenoids",
+        "color": "#0000ff",
+        "fontSize": 10
+      },
+      "symbolType": "rectangle",
+      "elementType": "data-node",
+      "dataNodeType": "metabolite",
+      "xRef": {
+        "database": "ChEBI",
+        "id": 24913
+      }
+    },
+    {
+      "graphId": "a1540",
+      "x": 486,
+      "y": 136,
+      "width": 80,
+      "height": 20,
+      "stroke": "#0000ff",
+      "textLabel": {
+        "text": "Fatty Acids",
+        "color": "#0000ff",
+        "fontSize": 10
+      },
+      "symbolType": "rectangle",
+      "elementType": "data-node",
+      "dataNodeType": "metabolite",
+      "xRef": {
+        "database": "ChEBI",
+        "id": 35366
+      }
+    },
+    {
+      "graphId": "c148e",
+      "x": 444,
+      "y": 300,
+      "width": 164,
+      "height": 20,
+      "stroke": "#0000ff",
+      "textLabel": {
+        "text": "1,25-Dihydroxy-Vitamins D3",
+        "color": "#0000ff",
+        "fontSize": 10
+      },
+      "symbolType": "rectangle",
+      "elementType": "data-node",
+      "dataNodeType": "metabolite"
+    },
+    {
+      "graphId": "d0c63",
+      "x": 186,
+      "y": 233.33,
+      "width": 80,
+      "height": 20,
+      "stroke": "#0000ff",
+      "textLabel": {
+        "text": "Retinoic acid",
+        "color": "#0000ff",
+        "fontSize": 10
+      },
+      "symbolType": "rectangle",
+      "elementType": "data-node",
+      "dataNodeType": "metabolite",
+      "xRef": {
+        "database": "HMDB",
+        "id": "HMDB01852"
+      }
+    },
+    {
+      "graphId": "cac80",
+      "x": 502,
+      "y": 403,
+      "width": 80,
+      "height": 20,
+      "stroke": "#0000ff",
+      "textLabel": {
+        "text": "Bile Acids",
+        "color": "#0000ff",
+        "fontSize": 10
+      },
+      "symbolType": "rectangle",
+      "elementType": "data-node",
+      "dataNodeType": "metabolite",
+      "xRef": {
+        "database": "ChEBI",
+        "id": 3098
+      }
+    },
+    {
+      "graphId": "ae4b8",
+      "x": 246,
+      "y": 564,
+      "width": 80,
+      "height": 20,
+      "stroke": "#0000ff",
+      "textLabel": {
+        "text": "Steroids",
+        "color": "#0000ff",
+        "fontSize": 10
+      },
+      "symbolType": "rectangle",
+      "elementType": "data-node",
+      "dataNodeType": "metabolite"
+    },
+    {
+      "graphId": "bb0f2",
+      "groupRef": "b3ef2",
+      "x": 596,
+      "y": 554,
+      "width": 80,
+      "height": 20,
+      "textLabel": {
+        "text": "MIR33A",
+        "fontSize": 10
+      },
+      "symbolType": "rectangle",
+      "elementType": "data-node",
+      "dataNodeType": "gene-product",
+      "xRef": {
+        "database": "Ensembl",
+        "id": "ENSG00000207932"
+      }
+    },
+    {
+      "graphId": "b23af",
+      "groupRef": "b3ef2",
+      "x": 596,
+      "y": 574,
+      "width": 80,
+      "height": 20,
+      "textLabel": {
+        "text": "MIR33B",
+        "fontSize": 10
+      },
+      "symbolType": "rectangle",
+      "elementType": "data-node",
+      "dataNodeType": "gene-product",
+      "xRef": {
+        "database": "Ensembl",
+        "id": "ENSG00000207839"
+      }
+    },
+    {
+      "graphId": "dcb6d",
+      "groupRef": "b87f9",
+      "x": 30,
+      "y": 667,
+      "width": 80,
+      "height": 20,
+      "textLabel": {
+        "text": "MIR33A",
+        "fontSize": 10
+      },
+      "symbolType": "rectangle",
+      "elementType": "data-node",
+      "dataNodeType": "gene-product",
+      "xRef": {
+        "database": "Ensembl",
+        "id": "ENSG00000207932"
+      }
+    },
+    {
+      "graphId": "c2aac",
+      "groupRef": "b87f9",
+      "x": 30,
+      "y": 687,
+      "width": 80,
+      "height": 20,
+      "textLabel": {
+        "text": "MIR33B",
+        "fontSize": 10
+      },
+      "symbolType": "rectangle",
+      "elementType": "data-node",
+      "dataNodeType": "gene-product",
+      "xRef": {
+        "database": "Ensembl",
+        "id": "ENSG00000207839"
+      }
+    },
+    {
+      "graphId": "a2766",
+      "groupRef": "e5675",
+      "x": 819.54,
+      "y": 50.4,
+      "width": 80,
+      "height": 20,
+      "textLabel": {
+        "text": "MIR33A",
+        "fontSize": 10
+      },
+      "symbolType": "rectangle",
+      "elementType": "data-node",
+      "dataNodeType": "gene-product",
+      "xRef": {
+        "database": "Ensembl",
+        "id": "ENSG00000207932"
+      }
+    },
+    {
+      "graphId": "a6898",
+      "groupRef": "e5675",
+      "x": 819.54,
+      "y": 70.4,
+      "width": 80,
+      "height": 20,
+      "textLabel": {
+        "text": "MIR33B",
+        "fontSize": 10
+      },
+      "symbolType": "rectangle",
+      "elementType": "data-node",
+      "dataNodeType": "gene-product",
+      "xRef": {
+        "database": "Ensembl",
+        "id": "ENSG00000207839"
+      }
+    },
+    {
+      "graphId": "ea8",
+      "x": 505.5,
+      "y": 240.5,
+      "width": 42.33,
+      "height": 19,
+      "fill": "#ffffff",
+      "textLabel": {
+        "text": "DIET",
+        "fontSize": 12,
+        "fontStyle": "italic"
+      },
+      "symbolType": "rectangle",
+      "elementType": "label"
+    },
+    {
+      "graphId": "db5",
+      "x": 205.5,
+      "y": 350.5,
+      "width": 42.33,
+      "height": 19,
+      "fill": "#ffffff",
+      "textLabel": {
+        "text": "DIET",
+        "fontSize": 12,
+        "fontStyle": "italic"
+      },
+      "symbolType": "rectangle",
+      "elementType": "label"
+    },
+    {
+      "graphId": "ec8",
+      "x": 460,
+      "y": 687.67,
+      "width": 133.33,
+      "height": 18,
+      "fill": "#ffffff",
+      "stroke": "#ff0000",
+      "textLabel": {
+        "text": "Gene expression",
+        "color": "#ff0000",
+        "fontSize": 12,
+        "fontWeight": "bold",
+        "fontStyle": "italic"
+      },
+      "symbolType": "rectangle",
+      "elementType": "label"
+    }
+  ],
+  "groups": [
+    {
+      "graphId": "ef0bc",
+      "groupId": "f0476"
+    },
+    {
+      "graphId": "e51ef",
+      "groupId": "aabe3"
+    },
+    {
+      "graphId": "ed18b",
+      "groupId": "d8c33"
+    },
+    {
+      "graphId": "d37e1",
+      "groupId": "d70c0"
+    },
+    {
+      "graphId": "ef1ae",
+      "groupId": "a209f"
+    },
+    {
+      "graphId": "b2195",
+      "groupId": "d1222"
+    },
+    {
+      "graphId": "fbc12",
+      "groupId": "e3f0a"
+    },
+    {
+      "style": "Group",
+      "groupId": "b3ef2"
+    },
+    {
+      "style": "Group",
+      "graphId": "e332b",
+      "groupId": "b87f9"
+    },
+    {
+      "style": "Group",
+      "graphId": "ec829",
+      "groupId": "e5675"
+    }
+  ],
+  "interactions": [
+    {
+      "graphId": "e5b95",
+      "strokeWidth": 1,
+      "zIndex": 12288,
+      "xRef": {
+        "database": null,
+        "id": null
+      },
+      "points": [
+        {
+          "x": 366.66666666666663,
+          "y": 156.16666666666666,
+          "relx": 0,
+          "rely": 1,
+          "graphRef": "d3d"
+        },
+        {
+          "x": 366,
+          "y": 216,
+          "relx": 0,
+          "rely": -1,
+          "graphRef": "ffef8"
+        }
+      ],
+      "markerStart": "none",
+      "markerEnd": "arrow"
+    },
+    {
+      "graphId": "bf6a0",
+      "strokeWidth": 1,
+      "zIndex": 12288,
+      "xRef": {
+        "database": null,
+        "id": null
+      },
+      "points": [
+        {
+          "x": 366,
+          "y": 236,
+          "relx": 0,
+          "rely": 1,
+          "graphRef": "ffef8"
+        },
+        {
+          "x": 366,
+          "y": 271,
+          "relx": 0,
+          "rely": -1,
+          "graphRef": "eb4c4"
+        }
+      ],
+      "markerStart": "none",
+      "markerEnd": "arrow"
+    },
+    {
+      "graphId": "b628c",
+      "strokeWidth": 1,
+      "zIndex": 12288,
+      "xRef": {
+        "database": null,
+        "id": null
+      },
+      "points": [
+        {
+          "x": 366,
+          "y": 291,
+          "relx": 0,
+          "rely": 1,
+          "graphRef": "eb4c4"
+        },
+        {
+          "x": 366.6666666666667,
+          "y": 348.6666666666667,
+          "relx": 0,
+          "rely": -1,
+          "graphRef": "b79"
+        }
+      ],
+      "markerStart": "none",
+      "markerEnd": "arrow"
+    },
+    {
+      "graphId": "f7fcd",
+      "strokeWidth": 1,
+      "zIndex": 12288,
+      "xRef": {
+        "database": null,
+        "id": null
+      },
+      "points": [
+        {
+          "x": 366.6666666666667,
+          "y": 364.6666666666667,
+          "relx": 0,
+          "rely": 1,
+          "graphRef": "b79"
+        },
+        {
+          "x": 366,
+          "y": 403.8333333333333,
+          "relx": 0,
+          "rely": -1,
+          "graphRef": "b23"
+        }
+      ],
+      "markerStart": "none",
+      "markerEnd": "arrow"
+    },
+    {
+      "graphId": "c1a75",
+      "strokeWidth": 1,
+      "zIndex": 12288,
+      "xRef": {
+        "database": null,
+        "id": null
+      },
+      "points": [
+        {
+          "x": 366,
+          "y": 422.8333333333333,
+          "relx": 0,
+          "rely": 1,
+          "graphRef": "b23"
+        },
+        {
+          "x": 366,
+          "y": 514,
+          "relx": 0,
+          "rely": -1,
+          "graphRef": "ec02d"
+        }
+      ],
+      "markerStart": "none",
+      "markerEnd": "arrow"
+    },
+    {
+      "graphId": "d5281",
+      "strokeWidth": 1,
+      "zIndex": 12288,
+      "xRef": {
+        "database": null,
+        "id": null
+      },
+      "points": [
+        {
+          "x": 412.66666666666663,
+          "y": 413.3333333333333,
+          "relx": 1,
+          "rely": 0,
+          "graphRef": "b23"
+        },
+        {
+          "x": 502,
+          "y": 413,
+          "relx": -1,
+          "rely": 0,
+          "graphRef": "cac80"
+        }
+      ],
+      "markerStart": "none",
+      "markerEnd": "arrow"
+    },
+    {
+      "graphId": "e193e",
+      "strokeWidth": 1,
+      "connectorType": "elbow",
+      "zIndex": 12288,
+      "xRef": {
+        "database": null,
+        "id": null
+      },
+      "points": [
+        {
+          "x": 562,
+          "y": 423,
+          "relx": 0.5,
+          "rely": 1,
+          "graphRef": "cac80"
+        },
+        {
+          "x": 648,
+          "y": 480.6666666666667,
+          "relx": -1,
+          "rely": 0,
+          "graphRef": "e8c"
+        }
+      ],
+      "markerStart": "none",
+      "markerEnd": "arrow"
+    },
+    {
+      "graphId": "d5976",
+      "strokeWidth": 1,
+      "connectorType": "elbow",
+      "zIndex": 12288,
+      "xRef": {
+        "database": null,
+        "id": null
+      },
+      "points": [
+        {
+          "x": 437.33333333333337,
+          "y": 356.6666666666667,
+          "relx": 1,
+          "rely": 0,
+          "graphRef": "b79"
+        },
+        {
+          "x": 526,
+          "y": 320,
+          "relx": 0,
+          "rely": 1,
+          "graphRef": "c148e"
+        }
+      ],
+      "markerStart": "none",
+      "markerEnd": "arrow"
+    },
+    {
+      "graphId": "d3edc",
+      "strokeWidth": 1,
+      "zIndex": 12288,
+      "xRef": {
+        "database": null,
+        "id": null
+      },
+      "points": [
+        {
+          "x": 411.33333333333326,
+          "y": 146.66666666666666,
+          "relx": 1,
+          "rely": 0,
+          "graphRef": "d3d"
+        },
+        {
+          "x": 486,
+          "y": 146,
+          "relx": -1,
+          "rely": 0,
+          "graphRef": "a1540"
+        }
+      ],
+      "markerStart": "none",
+      "markerEnd": "arrow"
+    },
+    {
+      "graphId": "df68e",
+      "strokeWidth": 1,
+      "zIndex": 12288,
+      "xRef": {
+        "database": null,
+        "id": null
+      },
+      "points": [
+        {
+          "x": 526,
+          "y": 156,
+          "relx": 0,
+          "rely": 1,
+          "graphRef": "a1540"
+        },
+        {
+          "x": 526.6666666666666,
+          "y": 240.5,
+          "relx": 0,
+          "rely": -1,
+          "graphRef": "ea8"
+        }
+      ],
+      "markerStart": "none",
+      "markerEnd": "arrow"
+    },
+    {
+      "graphId": "ece87",
+      "strokeWidth": 1,
+      "zIndex": 12288,
+      "xRef": {
+        "database": null,
+        "id": null
+      },
+      "points": [
+        {
+          "x": 526.6666666666666,
+          "y": 259.5,
+          "relx": 0,
+          "rely": 1,
+          "graphRef": "ea8"
+        },
+        {
+          "x": 526,
+          "y": 300,
+          "relx": 0,
+          "rely": -1,
+          "graphRef": "c148e"
+        }
+      ],
+      "markerStart": "none",
+      "markerEnd": "arrow"
+    },
+    {
+      "graphId": "db1af",
+      "strokeWidth": 1,
+      "zIndex": 12288,
+      "xRef": {
+        "database": null,
+        "id": null
+      },
+      "points": [
+        {
+          "x": 366,
+          "y": 534,
+          "relx": 0,
+          "rely": 1,
+          "graphRef": "ec02d"
+        },
+        {
+          "x": 366,
+          "y": 580,
+          "relx": 0,
+          "rely": -1,
+          "graphRef": "e53"
+        }
+      ],
+      "markerStart": "none",
+      "markerEnd": "arrow"
+    },
+    {
+      "graphId": "c5a77",
+      "stroke": "#ff0000",
+      "strokeWidth": 1,
+      "strokeStyle": "broken",
+      "zIndex": 12288,
+      "xRef": {
+        "database": null,
+        "id": null
+      },
+      "points": [
+        {
+          "x": 389.33333333333337,
+          "y": 590,
+          "relx": 1,
+          "rely": 0,
+          "graphRef": "e53"
+        },
+        {
+          "x": 451.66666666666663,
+          "y": 590,
+          "relx": -0.9451219512195121,
+          "rely": 0,
+          "graphRef": "ed18b"
+        }
+      ],
+      "markerStart": "none",
+      "markerEnd": "arrow"
+    },
+    {
+      "graphId": "a7fa0",
+      "stroke": "#ff0000",
+      "strokeWidth": 1,
+      "strokeStyle": "broken",
+      "zIndex": 12288,
+      "xRef": {
+        "database": null,
+        "id": null
+      },
+      "points": [
+        {
+          "x": 694.6666666666665,
+          "y": 480.6666666666667,
+          "relx": 1,
+          "rely": 0,
+          "graphRef": "e8c"
+        },
+        {
+          "x": 741.6666666666666,
+          "y": 480,
+          "relx": -0.9210526315789473,
+          "rely": 0,
+          "graphRef": "d37e1"
+        }
+      ],
+      "markerStart": "none",
+      "markerEnd": "arrow"
+    },
+    {
+      "graphId": "daabc",
+      "strokeWidth": 1,
+      "zIndex": 12288,
+      "xRef": {
+        "database": null,
+        "id": null
+      },
+      "points": [
+        {
+          "x": 226.66666666666669,
+          "y": 369.5,
+          "relx": 0,
+          "rely": 1,
+          "graphRef": "db5"
+        },
+        {
+          "x": 226.66666666666666,
+          "y": 465.3333333333333,
+          "relx": 0,
+          "rely": -1,
+          "graphRef": "c87"
+        }
+      ],
+      "markerStart": "none",
+      "markerEnd": "arrow"
+    },
+    {
+      "graphId": "acd6b",
+      "strokeWidth": 1,
+      "connectorType": "elbow",
+      "zIndex": 12288,
+      "xRef": {
+        "database": null,
+        "id": null
+      },
+      "points": [
+        {
+          "x": 226.66666666666669,
+          "y": 369.5,
+          "relx": 0,
+          "rely": 1,
+          "graphRef": "db5"
+        },
+        {
+          "x": 319.33333333333337,
+          "y": 413.3333333333333,
+          "relx": -1,
+          "rely": 0,
+          "graphRef": "b23"
+        }
+      ],
+      "markerStart": "none",
+      "markerEnd": "arrow"
+    },
+    {
+      "graphId": "d4da1",
+      "strokeWidth": 1,
+      "zIndex": 12288,
+      "xRef": {
+        "database": null,
+        "id": null
+      },
+      "points": [
+        {
+          "x": 226.66666666666669,
+          "y": 350.5,
+          "relx": 0,
+          "rely": -1,
+          "graphRef": "db5"
+        },
+        {
+          "x": 226,
+          "y": 253.33333333333334,
+          "relx": 0,
+          "rely": 1,
+          "graphRef": "d0c63"
+        }
+      ],
+      "markerStart": "none",
+      "markerEnd": "arrow"
+    },
+    {
+      "graphId": "c2ba7",
+      "strokeWidth": 1,
+      "connectorType": "elbow",
+      "zIndex": 12288,
+      "xRef": {
+        "database": null,
+        "id": null
+      },
+      "points": [
+        {
+          "x": 366,
+          "y": 422.8333333333333,
+          "relx": 0,
+          "rely": 1,
+          "graphRef": "b23"
+        },
+        {
+          "x": 286,
+          "y": 564,
+          "relx": 0,
+          "rely": -1,
+          "graphRef": "ae4b8"
+        }
+      ],
+      "markerStart": "none",
+      "markerEnd": "arrow"
+    },
+    {
+      "graphId": "aee11",
+      "strokeWidth": 1,
+      "zIndex": 12288,
+      "xRef": {
+        "database": null,
+        "id": null
+      },
+      "points": [
+        {
+          "x": 226.66666666666666,
+          "y": 481.3333333333333,
+          "relx": 0,
+          "rely": 1,
+          "graphRef": "c87"
+        },
+        {
+          "x": 184.33333333333331,
+          "y": 564.3333333333334,
+          "relx": 0,
+          "rely": -1,
+          "graphRef": "a6f"
+        }
+      ],
+      "markerStart": "none",
+      "markerEnd": "arrow"
+    },
+    {
+      "graphId": "d925e",
+      "stroke": "#ff0000",
+      "strokeWidth": 1,
+      "strokeStyle": "broken",
+      "zIndex": 12288,
+      "xRef": {
+        "database": null,
+        "id": null
+      },
+      "points": [
+        {
+          "x": 161,
+          "y": 574.3333333333334,
+          "relx": -1,
+          "rely": 0,
+          "graphRef": "a6f"
+        },
+        {
+          "x": 105,
+          "y": 574,
+          "relx": 0.9210526315789473,
+          "rely": 0,
+          "graphRef": "e51ef"
+        }
+      ],
+      "markerStart": "none",
+      "markerEnd": "arrow"
+    },
+    {
+      "graphId": "f80b2",
+      "strokeWidth": 1,
+      "zIndex": 12288,
+      "xRef": {
+        "database": null,
+        "id": null
+      },
+      "points": [
+        {
+          "x": 246,
+          "y": 574,
+          "relx": -1,
+          "rely": 0,
+          "graphRef": "ae4b8"
+        },
+        {
+          "x": 207.66666666666663,
+          "y": 574.3333333333334,
+          "relx": 1,
+          "rely": 0,
+          "graphRef": "a6f"
+        }
+      ],
+      "markerStart": "none",
+      "markerEnd": "arrow"
+    },
+    {
+      "graphId": "beca4",
+      "strokeWidth": 1,
+      "zIndex": 12288,
+      "xRef": {
+        "database": null,
+        "id": null
+      },
+      "points": [
+        {
+          "x": 187,
+          "y": 473.3333333333333,
+          "relx": -1,
+          "rely": 0,
+          "graphRef": "c87"
+        },
+        {
+          "x": 152.66666666666669,
+          "y": 473.6666666666667,
+          "relx": 1,
+          "rely": 0,
+          "graphRef": "c47"
+        }
+      ],
+      "markerStart": "none",
+      "markerEnd": "arrow"
+    },
+    {
+      "graphId": "efd5f",
+      "strokeWidth": 1,
+      "zIndex": 12288,
+      "xRef": {
+        "database": null,
+        "id": null
+      },
+      "points": [
+        {
+          "x": 266,
+          "y": 564,
+          "relx": -0.5,
+          "rely": -1,
+          "graphRef": "ae4b8"
+        },
+        {
+          "x": 141,
+          "y": 483.6666666666667,
+          "relx": 0.5,
+          "rely": 1,
+          "graphRef": "c47"
+        }
+      ],
+      "markerStart": "none",
+      "markerEnd": "arrow"
+    },
+    {
+      "graphId": "a4043",
+      "strokeWidth": 1,
+      "zIndex": 12288,
+      "xRef": {
+        "database": null,
+        "id": null
+      },
+      "points": [
+        {
+          "x": 566,
+          "y": 146,
+          "relx": 1,
+          "rely": 0,
+          "graphRef": "a1540"
+        },
+        {
+          "x": 616.6666666666667,
+          "y": 146.66666666666666,
+          "relx": -1,
+          "rely": 0,
+          "graphRef": "a22"
+        }
+      ],
+      "markerStart": "none",
+      "markerEnd": "arrow"
+    },
+    {
+      "graphId": "e8afc",
+      "stroke": "#ff0000",
+      "strokeWidth": 1,
+      "strokeStyle": "broken",
+      "zIndex": 12288,
+      "xRef": {
+        "database": null,
+        "id": null
+      },
+      "points": [
+        {
+          "x": 670.0000000000002,
+          "y": 146.66666666666666,
+          "relx": 1,
+          "rely": 0,
+          "graphRef": "a22"
+        },
+        {
+          "x": 721.6666666666667,
+          "y": 146.66666666666666,
+          "relx": -0.9274193548387096,
+          "rely": 0,
+          "graphRef": "b2195"
+        }
+      ],
+      "markerStart": "none",
+      "markerEnd": "arrow"
+    },
+    {
+      "graphId": "ed3a8",
+      "stroke": "#ff0000",
+      "strokeWidth": 1,
+      "strokeStyle": "broken",
+      "zIndex": 12288,
+      "xRef": {
+        "database": null,
+        "id": null
+      },
+      "points": [
+        {
+          "x": 572.6666666666667,
+          "y": 70,
+          "relx": 1,
+          "rely": 0,
+          "graphRef": "ef7"
+        },
+        {
+          "x": 614.6666666666667,
+          "y": 70.66666666666667,
+          "relx": -1,
+          "rely": 0,
+          "graphRef": "bdc"
+        }
+      ],
+      "markerStart": "none",
+      "markerEnd": "arrow"
+    },
+    {
+      "graphId": "acb04",
+      "strokeWidth": 1,
+      "zIndex": 12288,
+      "xRef": {
+        "database": null,
+        "id": null
+      },
+      "points": [
+        {
+          "x": 546,
+          "y": 136,
+          "relx": 0.5,
+          "rely": -1,
+          "graphRef": "a1540"
+        },
+        {
+          "x": 546,
+          "y": 80,
+          "relx": 0,
+          "rely": 1,
+          "graphRef": "ef7"
+        }
+      ],
+      "markerStart": "none",
+      "markerEnd": "arrow"
+    },
+    {
+      "graphId": "d2a6e",
+      "strokeWidth": 1,
+      "connectorType": "elbow",
+      "zIndex": 12288,
+      "xRef": {
+        "database": null,
+        "id": null
+      },
+      "points": [
+        {
+          "x": 526,
+          "y": 136,
+          "relx": 0,
+          "rely": -1,
+          "graphRef": "a1540"
+        },
+        {
+          "x": 478.66666666666663,
+          "y": 80,
+          "relx": 0,
+          "rely": 1,
+          "graphRef": "a3d"
+        }
+      ],
+      "markerStart": "none",
+      "markerEnd": "arrow"
+    },
+    {
+      "graphId": "c0c99",
+      "stroke": "#ff0000",
+      "strokeWidth": 1,
+      "strokeStyle": "broken",
+      "zIndex": 12288,
+      "xRef": {
+        "database": null,
+        "id": null
+      },
+      "points": [
+        {
+          "x": 452,
+          "y": 70,
+          "relx": -1,
+          "rely": 0,
+          "graphRef": "a3d"
+        },
+        {
+          "x": 368.3333333333333,
+          "y": 70,
+          "relx": 0.9375,
+          "rely": 0,
+          "graphRef": "fbc12"
+        }
+      ],
+      "markerStart": "none",
+      "markerEnd": "arrow"
+    },
+    {
+      "graphId": "b9c53",
+      "strokeWidth": 1,
+      "connectorType": "elbow",
+      "zIndex": 12288,
+      "xRef": {
+        "database": null,
+        "id": null
+      },
+      "points": [
+        {
+          "x": 226,
+          "y": 233.33333333333334,
+          "relx": 0,
+          "rely": -1,
+          "graphRef": "d0c63"
+        },
+        {
+          "x": 73.33333333333333,
+          "y": 166,
+          "relx": 1,
+          "rely": 0,
+          "graphRef": "db3"
+        }
+      ],
+      "markerStart": "none",
+      "markerEnd": "arrow"
+    },
+    {
+      "graphId": "f1c1d",
+      "strokeWidth": 1,
+      "zIndex": 12288,
+      "xRef": {
+        "database": null,
+        "id": null
+      },
+      "points": [
+        {
+          "x": 186,
+          "y": 243.33333333333334,
+          "relx": -1,
+          "rely": 0,
+          "graphRef": "d0c63"
+        },
+        {
+          "x": 156,
+          "y": 243.33333333333337,
+          "relx": 1,
+          "rely": 0,
+          "graphRef": "a97"
+        }
+      ],
+      "markerStart": "none",
+      "markerEnd": "arrow"
+    },
+    {
+      "graphId": "c3f58",
+      "strokeWidth": 1,
+      "zIndex": 12288,
+      "xRef": {
+        "database": null,
+        "id": null
+      },
+      "points": [
+        {
+          "x": 608,
+          "y": 310,
+          "relx": 1,
+          "rely": 0,
+          "graphRef": "c148e"
+        },
+        {
+          "x": 670.3333333333334,
+          "y": 310.3333333333333,
+          "relx": -1,
+          "rely": 0,
+          "graphRef": "c5d"
+        }
+      ],
+      "markerStart": "none",
+      "markerEnd": "arrow"
+    },
+    {
+      "graphId": "b05f1",
+      "stroke": "#ff0000",
+      "strokeWidth": 1,
+      "strokeStyle": "broken",
+      "zIndex": 12288,
+      "xRef": {
+        "database": null,
+        "id": null
+      },
+      "points": [
+        {
+          "x": 109.33333333333331,
+          "y": 243.33333333333337,
+          "relx": -1,
+          "rely": 0,
+          "graphRef": "a97"
+        },
+        {
+          "x": 66.66666666666667,
+          "y": 243.33333333333334,
+          "relx": 1,
+          "rely": 0,
+          "graphRef": "c25"
+        }
+      ],
+      "markerStart": "none",
+      "markerEnd": "arrow"
+    },
+    {
+      "graphId": "d3920",
+      "stroke": "#ff0000",
+      "strokeWidth": 1,
+      "strokeStyle": "broken",
+      "zIndex": 12288,
+      "xRef": {
+        "database": null,
+        "id": null
+      },
+      "points": [
+        {
+          "x": 50,
+          "y": 176,
+          "relx": 0,
+          "rely": 1,
+          "graphRef": "db3"
+        },
+        {
+          "x": 50,
+          "y": 233.33333333333334,
+          "relx": 0.5,
+          "rely": -1,
+          "graphRef": "c25"
+        }
+      ],
+      "markerStart": "none",
+      "markerEnd": "arrow"
+    },
+    {
+      "graphId": "b2d0f",
+      "strokeWidth": 1,
+      "connectorType": "elbow",
+      "zIndex": 12288,
+      "xRef": {
+        "database": null,
+        "id": null
+      },
+      "points": [
+        {
+          "x": 206,
+          "y": 253.33333333333334,
+          "relx": -0.5,
+          "rely": 1,
+          "graphRef": "d0c63"
+        },
+        {
+          "x": 165.66666666666669,
+          "y": 278.6666666666667,
+          "relx": 1,
+          "rely": 0,
+          "graphRef": "cdc"
+        }
+      ],
+      "markerStart": "none",
+      "markerEnd": "arrow"
+    },
+    {
+      "graphId": "ad991",
+      "stroke": "#ff0000",
+      "strokeWidth": 1,
+      "connectorType": "elbow",
+      "strokeStyle": "broken",
+      "zIndex": 12288,
+      "xRef": {
+        "database": null,
+        "id": null
+      },
+      "points": [
+        {
+          "x": 119,
+          "y": 278.6666666666667,
+          "relx": -1,
+          "rely": 0,
+          "graphRef": "cdc"
+        },
+        {
+          "x": 50,
+          "y": 253.33333333333334,
+          "relx": 0.5,
+          "rely": 1,
+          "graphRef": "c25"
+        }
+      ],
+      "markerStart": "none",
+      "markerEnd": "arrow"
+    },
+    {
+      "graphId": "a00e7",
+      "stroke": "#ff0000",
+      "strokeWidth": 1,
+      "connectorType": "elbow",
+      "strokeStyle": "broken",
+      "zIndex": 12288,
+      "xRef": {
+        "database": null,
+        "id": null
+      },
+      "points": [
+        {
+          "x": 106,
+          "y": 473.6666666666667,
+          "relx": -1,
+          "rely": 0,
+          "graphRef": "c47"
+        },
+        {
+          "x": 56.66666666666666,
+          "y": 435,
+          "relx": 0,
+          "rely": 0.9558823529411765,
+          "graphRef": "ef0bc"
+        }
+      ],
+      "markerStart": "none",
+      "markerEnd": "arrow"
+    },
+    {
+      "graphId": "f57d4",
+      "stroke": "#ff0000",
+      "strokeWidth": 1,
+      "strokeStyle": "broken",
+      "zIndex": 12288,
+      "xRef": {
+        "database": null,
+        "id": null
+      },
+      "points": [
+        {
+          "x": 710.3333333333334,
+          "y": 310.3333333333333,
+          "relx": 1,
+          "rely": 0,
+          "graphRef": "c5d"
+        },
+        {
+          "x": 755,
+          "y": 310,
+          "relx": -0.9274193548387096,
+          "rely": 0,
+          "graphRef": "ef1ae"
+        }
+      ],
+      "markerStart": "none",
+      "markerEnd": "arrow"
+    },
+    {
+      "graphId": "cb43e",
+      "stroke": "#ff0000",
+      "strokeWidth": 1,
+      "strokeStyle": "broken",
+      "zIndex": 12288,
+      "xRef": {
+        "database": null,
+        "id": null
+      },
+      "points": [
+        {
+          "x": 416.6666666666667,
+          "y": 696.6666666666666
+        },
+        {
+          "x": 453.3333333333333,
+          "y": 696.6666666666666
+        }
+      ],
+      "markerStart": "none",
+      "markerEnd": "arrow"
+    },
+    {
+      "graphId": "f391b",
+      "strokeWidth": 1,
+      "zIndex": 12288,
+      "xRef": {
+        "database": null,
+        "id": null
+      },
+      "points": [
+        {
+          "x": 448,
+          "y": 435.6666666666667,
+          "relx": 0,
+          "rely": -1,
+          "graphRef": "ca9"
+        },
+        {
+          "x": 448.4,
+          "y": 413.2,
+          "relx": 0,
+          "rely": 0,
+          "graphRef": "e223a"
+        }
+      ],
+      "markerStart": "none",
+      "markerEnd": "mim-catalysis"
+    },
+    {
+      "graphId": "adaeb",
+      "strokeWidth": 1,
+      "zIndex": 12288,
+      "xRef": {
+        "database": null,
+        "id": null
+      },
+      "points": [
+        {
+          "x": 487.33333333333337,
+          "y": 373.3333333333333,
+          "relx": 0,
+          "rely": -1,
+          "graphRef": "d4b"
+        },
+        {
+          "x": 487.4666666666667,
+          "y": 356.6666666666667,
+          "relx": 0,
+          "rely": 0,
+          "graphRef": "d9b46"
+        }
+      ],
+      "markerStart": "none",
+      "markerEnd": "mim-catalysis"
+    },
+    {
+      "graphId": "id42daa0bd",
+      "strokeWidth": 1,
+      "zIndex": 12288,
+      "xRef": {
+        "database": null,
+        "id": null
+      },
+      "points": [
+        {
+          "x": 587,
+          "y": 570
+        },
+        {
+          "x": 550,
+          "y": 570,
+          "relx": 1,
+          "rely": 0,
+          "graphRef": "d05"
+        }
+      ],
+      "markerStart": "none",
+      "markerEnd": "t-bar"
+    },
+    {
+      "graphId": "idd4e0c7e3",
+      "strokeWidth": 1,
+      "zIndex": 12288,
+      "xRef": {
+        "database": null,
+        "id": null
+      },
+      "points": [
+        {
+          "x": 70,
+          "y": 659,
+          "relx": 0,
+          "rely": -1,
+          "graphRef": "e332b"
+        },
+        {
+          "x": 70,
+          "y": 624,
+          "relx": 0,
+          "rely": 1,
+          "graphRef": "fd4"
+        }
+      ],
+      "markerStart": "none",
+      "markerEnd": "t-bar"
+    },
+    {
+      "graphId": "id81cb2c2c",
+      "strokeWidth": 1,
+      "zIndex": 12288,
+      "xRef": {
+        "database": null,
+        "id": null
+      },
+      "points": [
+        {
+          "x": 811.5398230088498,
+          "y": 70.40117994100285,
+          "relx": -1,
+          "rely": 0,
+          "graphRef": "ec829"
+        },
+        {
+          "x": 668.0000000000002,
+          "y": 70.66666666666667,
+          "relx": 1,
+          "rely": 0,
+          "graphRef": "bdc"
+        }
+      ],
+      "markerStart": "none",
+      "markerEnd": "t-bar"
+    }
+  ]
+}

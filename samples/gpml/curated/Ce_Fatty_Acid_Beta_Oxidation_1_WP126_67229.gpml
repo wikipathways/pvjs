@@ -1,0 +1,437 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Pathway xmlns="http://genmapp.org/GPML/2007" Name="Fatty Acid Beta Oxidation 1" Organism="Caenorhabditis elegans" License="CC BY 2.0">
+  <Comment Source="GenMAPP notes">Updated from Charles Redfern and Nathan Salomonisâ original by Magali Jaillard, Marijke Vermeer, Michiel Adrieans, Ron Schormans and Chris Evelo, see website.</Comment>
+  <Comment Source="GenMAPP remarks">http://www.bigcat.unimaas.nl/mapps</Comment>
+  <Comment Source="WikiPathways-category">Metabolic Process</Comment>
+  <Graphics BoardWidth="23273.0" BoardHeight="12474.0" WindowWidth="19380.0" WindowHeight="12465.0"/>
+  <DataNode TextLabel="tpi-1" Type="GeneProduct" BackpageHead="tpi-1 | Triose Phosphate Isomerase" GraphId="ac8">
+    <Graphics Color="Transparent" CenterX="2850.0" CenterY="5500.0" Width="800.0" Height="300.0"/>
+    <Xref Database="Entrez Gene" ID="174844"/>
+  </DataNode>
+  <DataNode TextLabel="R11F4.1" Type="GeneProduct" BackpageHead="R11F4.1 | R11F4.1" GraphId="c19">
+    <Comment Source="GenMAPP remarks"/>
+    <Graphics Color="Transparent" CenterX="2850.0" CenterY="2350.0" Width="800.0" Height="300.0"/>
+    <Xref Database="Entrez Gene" ID="173747"/>
+  </DataNode>
+  <DataNode TextLabel="GK2" Type="GeneProduct" BackpageHead="GK2 | glycerol kinase 2" GraphId="cc9">
+    <Graphics Color="Transparent" CenterX="2850.0" CenterY="2650.0" Width="800.0" Height="300.0"/>
+    <Xref Database="Entrez Gene" ID=" "/>
+  </DataNode>
+  <DataNode TextLabel="T25G3.4" Type="GeneProduct" BackpageHead="T25G3.4 | T25G3.4" GraphId="a46">
+    <Graphics Color="Transparent" CenterX="2850.0" CenterY="4100.0" Width="800.0" Height="300.0"/>
+    <Xref Database="Entrez Gene" ID="172509"/>
+  </DataNode>
+  <DataNode TextLabel="cpt-2" Type="GeneProduct" BackpageHead="cpt-2 | Carnitine Palmitoyl Transferase" GraphId="ebe">
+    <Graphics Color="Transparent" CenterX="6250.0" CenterY="5800.0" Width="800.0" Height="300.0"/>
+    <Xref Database="Entrez Gene" ID="178025"/>
+  </DataNode>
+  <DataNode TextLabel="cpt-1" Type="GeneProduct" BackpageHead="cpt-1 | Carnitine Palmitoyl Transferase" GraphId="fa7">
+    <Graphics Color="Transparent" CenterX="6250.0" CenterY="5200.0" Width="800.0" Height="300.0"/>
+    <Xref Database="Entrez Gene" ID="174912"/>
+  </DataNode>
+  <DataNode TextLabel="cka-1" Type="GeneProduct" BackpageHead="cka-1 | Choline Kinase A" GraphId="fa4">
+    <Graphics Color="Transparent" CenterX="6250.0" CenterY="5500.0" Width="800.0" Height="300.0"/>
+    <Xref Database="Entrez Gene" ID="177807"/>
+  </DataNode>
+  <DataNode TextLabel="dif-1" Type="GeneProduct" BackpageHead="dif-1 | DIFferentiation abnormal" GraphId="b19">
+    <Graphics Color="Transparent" CenterX="6250.0" CenterY="6100.0" Width="1100.0" Height="300.0"/>
+    <Xref Database="Entrez Gene" ID="177530"/>
+  </DataNode>
+  <DataNode TextLabel="B0395.3" Type="GeneProduct" BackpageHead="B0395.3 | B0395.3" GraphId="fd8">
+    <Graphics Color="Transparent" CenterX="6250.0" CenterY="4900.0" Width="800.0" Height="300.0"/>
+    <Xref Database="Entrez Gene" ID="181682"/>
+  </DataNode>
+  <DataNode TextLabel="Y65B4BL.5" Type="GeneProduct" BackpageHead="Y65B4BL.5 | Y65B4BL.5" GraphId="b5e">
+    <Graphics Color="Transparent" CenterX="6250.0" CenterY="2550.0" Width="800.0" Height="300.0"/>
+    <Xref Database="Entrez Gene" ID="171643"/>
+  </DataNode>
+  <DataNode TextLabel="C36A4.9" Type="GeneProduct" BackpageHead="C36A4.9 | C36A4.9a" GraphId="efd">
+    <Graphics Color="Transparent" CenterX="6250.0" CenterY="2250.0" Width="800.0" Height="300.0"/>
+    <Xref Database="Entrez Gene" ID="175500"/>
+  </DataNode>
+  <DataNode TextLabel="F37C12.7" Type="GeneProduct" BackpageHead="F37C12.7 | F37C12.7" GraphId="ab3">
+    <Graphics Color="Transparent" CenterX="6250.0" CenterY="2850.0" Width="800.0" Height="300.0"/>
+    <Xref Database="Entrez Gene" ID="176005"/>
+  </DataNode>
+  <DataNode TextLabel="acs-17" Type="GeneProduct" BackpageHead="acs-17 | fatty Acid CoA Synthetase family" GraphId="a11">
+    <Graphics Color="Transparent" CenterX="6250.0" CenterY="3150.0" Width="800.0" Height="300.0"/>
+    <Xref Database="Entrez Gene" ID="180859"/>
+  </DataNode>
+  <DataNode TextLabel="ACSL5" Type="GeneProduct" BackpageHead="ACSL5 | acyl-CoA synthetase long-chain family m..." GraphId="e9b">
+    <Graphics Color="Transparent" CenterX="6250.0" CenterY="3450.0" Width="800.0" Height="300.0"/>
+    <Xref Database="Entrez Gene" ID=" "/>
+  </DataNode>
+  <DataNode TextLabel="ACSL6" Type="GeneProduct" BackpageHead="ACSL6 | acyl-CoA synthetase long-chain family m..." GraphId="de4">
+    <Graphics Color="Transparent" CenterX="6250.0" CenterY="3750.0" Width="800.0" Height="300.0"/>
+    <Xref Database="Entrez Gene" ID=" "/>
+  </DataNode>
+  <DataNode TextLabel="CPT1B" Type="GeneProduct" BackpageHead="CPT1B | carnitine palmitoyltransferase 1B (musc..." GraphId="fc1">
+    <Graphics Color="Transparent" CenterX="6250.0" CenterY="6400.0" Width="800.0" Height="300.0"/>
+    <Xref Database="Entrez Gene" ID=" "/>
+  </DataNode>
+  <DataNode TextLabel="E04F6.5" Type="GeneProduct" BackpageHead="E04F6.5 | E04F6.5b" GraphId="bfb">
+    <Graphics Color="Transparent" CenterX="9400.0" CenterY="2100.0" Width="900.0" Height="300.0"/>
+    <Xref Database="Entrez Gene" ID="174180"/>
+  </DataNode>
+  <DataNode TextLabel="T08B2.7" Type="GeneProduct" BackpageHead="T08B2.7 | T08B2.7c" GraphId="a32">
+    <Graphics Color="Transparent" CenterX="9400.0" CenterY="3850.0" Width="800.0" Height="300.0"/>
+    <Xref Database="Entrez Gene" ID="172310"/>
+  </DataNode>
+  <DataNode TextLabel="B0303.3" Type="GeneProduct" BackpageHead="B0303.3 | B0303.3" GraphId="f16">
+    <Graphics Color="Transparent" CenterX="9400.0" CenterY="4150.0" Width="800.0" Height="300.0"/>
+    <Xref Database="Entrez Gene" ID="176216"/>
+  </DataNode>
+  <DataNode TextLabel="T08B2.7" Type="GeneProduct" BackpageHead="T08B2.7 | T08B2.7c" GraphId="e27">
+    <Graphics Color="Transparent" CenterX="9400.0" CenterY="6000.0" Width="800.0" Height="300.0"/>
+    <Xref Database="Entrez Gene" ID="172310"/>
+  </DataNode>
+  <DataNode TextLabel="B0303.3" Type="GeneProduct" BackpageHead="B0303.3 | B0303.3" GraphId="d3e">
+    <Graphics Color="Transparent" CenterX="9400.0" CenterY="5700.0" Width="800.0" Height="300.0"/>
+    <Xref Database="Entrez Gene" ID="176216"/>
+  </DataNode>
+  <DataNode TextLabel="B0303.3" Type="GeneProduct" BackpageHead="B0303.3 | B0303.3" GraphId="b83">
+    <Graphics Color="Transparent" CenterX="9400.0" CenterY="7750.0" Width="1200.0" Height="300.0"/>
+    <Xref Database="Entrez Gene" ID="176216"/>
+  </DataNode>
+  <DataNode TextLabel="ACADL" Type="GeneProduct" BackpageHead="ACADL | acyl-Coenzyme A dehydrogenase long cha..." GraphId="c24">
+    <Graphics Color="Transparent" CenterX="14950.0" CenterY="2550.0" Width="800.0" Height="300.0"/>
+    <Xref Database="Entrez Gene" ID=" "/>
+  </DataNode>
+  <DataNode TextLabel="B0303.3" Type="GeneProduct" BackpageHead="B0303.3 | B0303.3" GraphId="bd6">
+    <Graphics Color="Transparent" CenterX="14950.0" CenterY="4500.0" Width="800.0" Height="300.0"/>
+    <Xref Database="Entrez Gene" ID="176216"/>
+  </DataNode>
+  <DataNode TextLabel="T08B2.7" Type="GeneProduct" BackpageHead="T08B2.7 | T08B2.7c" GraphId="f55">
+    <Graphics Color="Transparent" CenterX="14900.0" CenterY="5950.0" Width="800.0" Height="300.0"/>
+    <Xref Database="Entrez Gene" ID="172310"/>
+  </DataNode>
+  <DataNode TextLabel="B0303.3" Type="GeneProduct" BackpageHead="B0303.3 | B0303.3" GraphId="ca3">
+    <Graphics Color="Transparent" CenterX="14900.0" CenterY="7900.0" Width="1200.0" Height="300.0"/>
+    <Xref Database="Entrez Gene" ID="176216"/>
+  </DataNode>
+  <DataNode TextLabel="ech-6" Type="GeneProduct" BackpageHead="ech-6 | Enoyl-CoA Hydratase" GraphId="bcc">
+    <Graphics Color="Transparent" CenterX="20050.0" CenterY="4400.0" Width="800.0" Height="300.0"/>
+    <Xref Database="Entrez Gene" ID="176376"/>
+  </DataNode>
+  <DataNode TextLabel="F54C8.1" Type="GeneProduct" BackpageHead="F54C8.1 | F54C8.1" GraphId="a9b">
+    <Graphics Color="Transparent" CenterX="20000.0" CenterY="6000.0" Width="1000.0" Height="300.0"/>
+    <Xref Database="Entrez Gene" ID="186222"/>
+  </DataNode>
+  <DataNode TextLabel="B0303.3" Type="GeneProduct" BackpageHead="B0303.3 | B0303.3" GraphId="bc2">
+    <Graphics Color="Transparent" CenterX="20000.0" CenterY="7850.0" Width="1200.0" Height="300.0"/>
+    <Xref Database="Entrez Gene" ID="176216"/>
+  </DataNode>
+  <DataNode TextLabel="C46C11.1" Type="GeneProduct" BackpageHead="C46C11.1 | C46C11.1" GraphId="dc0">
+    <Graphics Color="Transparent" CenterX="1000.0" CenterY="1200.0" Width="800.0" Height="300.0"/>
+    <Xref Database="Entrez Gene" ID="180737"/>
+  </DataNode>
+  <DataNode TextLabel="LIPC" Type="GeneProduct" BackpageHead="LIPC | lipase hepatic" GraphId="d17">
+    <Graphics Color="Transparent" CenterX="1000.0" CenterY="900.0" Width="800.0" Height="300.0"/>
+    <Xref Database="Entrez Gene" ID=" "/>
+  </DataNode>
+  <DataNode TextLabel="C05D11.7" Type="GeneProduct" BackpageHead="C05D11.7 | C05D11.7a" GraphId="d11">
+    <Graphics Color="Transparent" CenterX="1000.0" CenterY="1800.0" Width="900.0" Height="300.0"/>
+    <Xref Database="Entrez Gene" ID="175910"/>
+  </DataNode>
+  <DataNode TextLabel="lipase" Type="GeneProduct" BackpageHead="lipase | F54F3.3" GraphId="b38">
+    <Graphics Color="Transparent" CenterX="1000.0" CenterY="1500.0" Width="800.0" Height="300.0"/>
+    <Xref Database="Entrez Gene" ID="179771"/>
+  </DataNode>
+  <DataNode TextLabel="LPL" Type="GeneProduct" BackpageHead="LPL | lipoprotein lipase" GraphId="bc5">
+    <Graphics Color="Transparent" CenterX="4450.0" CenterY="1000.0" Width="1100.0" Height="300.0"/>
+    <Xref Database="Entrez Gene" ID=" "/>
+  </DataNode>
+  <DataNode TextLabel="T08B2.7" Type="GeneProduct" BackpageHead="T08B2.7 | T08B2.7c" GraphId="f89">
+    <Graphics Color="Transparent" CenterX="14900.0" CenterY="7600.0" Width="1200.0" Height="300.0"/>
+    <Xref Database="Entrez Gene" ID="172310"/>
+  </DataNode>
+  <DataNode TextLabel="T08B2.7" Type="GeneProduct" BackpageHead="T08B2.7 | T08B2.7c" GraphId="d75">
+    <Graphics Color="Transparent" CenterX="9400.0" CenterY="7450.0" Width="1200.0" Height="300.0"/>
+    <Xref Database="Entrez Gene" ID="172310"/>
+  </DataNode>
+  <DataNode TextLabel="ACADL" Type="GeneProduct" BackpageHead="ACADL | acyl-Coenzyme A dehydrogenase long cha..." GraphId="fad">
+    <Graphics Color="Transparent" CenterX="20050.0" CenterY="2900.0" Width="800.0" Height="300.0"/>
+    <Xref Database="Entrez Gene" ID=" "/>
+  </DataNode>
+  <DataNode TextLabel="T08B2.7" Type="GeneProduct" BackpageHead="T08B2.7 | T08B2.7c" GraphId="b4e">
+    <Graphics Color="Transparent" CenterX="14950.0" CenterY="4200.0" Width="800.0" Height="300.0"/>
+    <Xref Database="Entrez Gene" ID="172310"/>
+  </DataNode>
+  <DataNode TextLabel="B0303.3" Type="GeneProduct" BackpageHead="B0303.3 | B0303.3" GraphId="ba8">
+    <Graphics Color="Transparent" CenterX="14900.0" CenterY="6250.0" Width="800.0" Height="300.0"/>
+    <Xref Database="Entrez Gene" ID="176216"/>
+  </DataNode>
+  <DataNode TextLabel="T08B2.7" Type="GeneProduct" BackpageHead="T08B2.7 | T08B2.7c" GraphId="ef8">
+    <Graphics Color="Transparent" CenterX="20000.0" CenterY="7550.0" Width="1200.0" Height="300.0"/>
+    <Xref Database="Entrez Gene" ID="172310"/>
+  </DataNode>
+  <Line>
+    <Graphics Color="000000">
+      <Point x="2850.0" y="1950.0" Head="Arrow"/>
+      <Point x="2850.0" y="3250.0"/>
+    </Graphics>
+  </Line>
+  <Line>
+    <Graphics Color="000000">
+      <Point x="4750.0" y="750.0" Head="Arrow"/>
+      <Point x="5700.0" y="1700.0"/>
+    </Graphics>
+  </Line>
+  <Line>
+    <Graphics Color="000000">
+      <Point x="4200.0" y="750.0" Head="Arrow"/>
+      <Point x="3250.0" y="1700.0"/>
+    </Graphics>
+  </Line>
+  <Line Style="Broken">
+    <Graphics Color="000000">
+      <Point x="2850.0" y="6400.0" Head="Arrow"/>
+      <Point x="2850.0" y="6950.0"/>
+    </Graphics>
+  </Line>
+  <Line>
+    <Graphics Color="000000">
+      <Point x="2850.0" y="3650.0" Head="Arrow"/>
+      <Point x="2850.0" y="4650.0"/>
+    </Graphics>
+  </Line>
+  <Line>
+    <Graphics Color="000000">
+      <Point x="2850.0" y="5000.0" Head="Arrow"/>
+      <Point x="2850.0" y="6000.0"/>
+    </Graphics>
+  </Line>
+  <Line>
+    <Graphics Color="000000">
+      <Point x="6250.0" y="2000.0" Head="Arrow"/>
+      <Point x="6250.0" y="4200.0"/>
+    </Graphics>
+  </Line>
+  <Line>
+    <Graphics Color="000000">
+      <Point x="6250.0" y="4550.0" Head="Arrow"/>
+      <Point x="6250.0" y="6750.0"/>
+    </Graphics>
+  </Line>
+  <Line>
+    <Graphics Color="000000">
+      <Point x="6900.0" y="6750.0" Head="Arrow"/>
+      <Point x="8600.0" y="2250.0"/>
+    </Graphics>
+  </Line>
+  <Line>
+    <Graphics Color="000000">
+      <Point x="9400.0" y="2200.0" Head="Arrow"/>
+      <Point x="9400.0" y="2850.0"/>
+    </Graphics>
+  </Line>
+  <Line>
+    <Graphics Color="000000">
+      <Point x="9400.0" y="3200.0" Head="Arrow"/>
+      <Point x="9400.0" y="4750.0"/>
+    </Graphics>
+  </Line>
+  <Line>
+    <Graphics Color="000000">
+      <Point x="9400.0" y="5050.0" Head="Arrow"/>
+      <Point x="9400.0" y="6600.0"/>
+    </Graphics>
+  </Line>
+  <Line>
+    <Graphics Color="000000">
+      <Point x="9600.0" y="6950.0" Head="Arrow"/>
+      <Point x="10200.0" y="8500.0"/>
+    </Graphics>
+  </Line>
+  <Line>
+    <Graphics Color="000000">
+      <Point x="9200.0" y="6950.0" Head="Arrow"/>
+      <Point x="8600.0" y="8500.0"/>
+    </Graphics>
+  </Line>
+  <Line>
+    <Graphics Color="000000">
+      <Point x="11000.0" y="8500.0" Head="Arrow"/>
+      <Point x="14000.0" y="2600.0"/>
+    </Graphics>
+  </Line>
+  <Line>
+    <Graphics Color="000000">
+      <Point x="14950.0" y="2700.0" Head="Arrow"/>
+      <Point x="14950.0" y="3050.0"/>
+    </Graphics>
+  </Line>
+  <Line>
+    <Graphics Color="000000">
+      <Point x="14950.0" y="3400.0" Head="Arrow"/>
+      <Point x="14950.0" y="5000.0"/>
+    </Graphics>
+  </Line>
+  <Line>
+    <Graphics Color="000000">
+      <Point x="14900.0" y="5350.0" Head="Arrow"/>
+      <Point x="14900.0" y="6750.0"/>
+    </Graphics>
+  </Line>
+  <Line>
+    <Graphics Color="000000">
+      <Point x="14600.0" y="7150.0" Head="Arrow"/>
+      <Point x="14000.0" y="8950.0"/>
+    </Graphics>
+  </Line>
+  <Line>
+    <Graphics Color="000000">
+      <Point x="15200.0" y="7200.0" Head="Arrow"/>
+      <Point x="15700.0" y="8900.0"/>
+    </Graphics>
+  </Line>
+  <Line>
+    <Graphics Color="000000">
+      <Point x="16500.0" y="8950.0" Head="Arrow"/>
+      <Point x="19200.0" y="3000.0"/>
+    </Graphics>
+  </Line>
+  <Line>
+    <Graphics Color="000000">
+      <Point x="20050.0" y="3050.0" Head="Arrow"/>
+      <Point x="20050.0" y="3400.0"/>
+    </Graphics>
+  </Line>
+  <Line>
+    <Graphics Color="000000">
+      <Point x="20000.0" y="3750.0" Head="Arrow"/>
+      <Point x="20000.0" y="5050.0"/>
+    </Graphics>
+  </Line>
+  <Line>
+    <Graphics Color="000000">
+      <Point x="20000.0" y="5500.0" Head="Arrow"/>
+      <Point x="20000.0" y="6800.0"/>
+    </Graphics>
+  </Line>
+  <Line>
+    <Graphics Color="000000">
+      <Point x="19650.0" y="7100.0" Head="Arrow"/>
+      <Point x="19000.0" y="9250.0"/>
+    </Graphics>
+  </Line>
+  <Line>
+    <Graphics Color="000000">
+      <Point x="20350.0" y="7100.0" Head="Arrow"/>
+      <Point x="21100.0" y="9150.0"/>
+    </Graphics>
+  </Line>
+  <Line Style="Broken">
+    <Graphics Color="000000">
+      <Point x="21100.0" y="9550.0" Head="Arrow"/>
+      <Point x="20500.0" y="11150.0"/>
+    </Graphics>
+  </Line>
+  <Line Style="Broken">
+    <Graphics Color="000000">
+      <Point x="8450.0" y="8750.0" Head="Arrow"/>
+      <Point x="8300.0" y="9200.0"/>
+    </Graphics>
+  </Line>
+  <Line Style="Broken">
+    <Graphics Color="000000">
+      <Point x="14000.0" y="9250.0" Head="Arrow"/>
+      <Point x="13850.0" y="9700.0"/>
+    </Graphics>
+  </Line>
+  <Line Style="Broken">
+    <Graphics Color="000000">
+      <Point x="18900.0" y="9500.0" Head="Arrow"/>
+      <Point x="18750.0" y="9950.0"/>
+    </Graphics>
+  </Line>
+  <Label TextLabel="Triacylglycerol" GraphId="a8d">
+    <Graphics FontWeight="Bold" FontSize="180" Color="000000" CenterX="4550.0" CenterY="600.0" Width="1748.0" Height="288.0"/>
+  </Label>
+  <Label TextLabel="Glycerol" GraphId="aef">
+    <Graphics FontWeight="Bold" FontSize="180" Color="000000" CenterX="2850.0" CenterY="1850.0" Width="1028.0" Height="288.0"/>
+  </Label>
+  <Label TextLabel="Dihydroxyacetone Phosphate" GraphId="f21">
+    <Graphics FontWeight="Bold" FontSize="180" Color="000000" CenterX="2900.0" CenterY="4800.0" Width="3416.0" Height="288.0"/>
+  </Label>
+  <Label TextLabel="Fatty Acid" GraphId="ec1">
+    <Graphics FontWeight="Bold" FontSize="180" Color="000000" CenterX="6250.0" CenterY="1850.0" Width="1220.0" Height="288.0"/>
+  </Label>
+  <Label TextLabel="Acyl-CoA" GraphId="ad5">
+    <Graphics FontWeight="Bold" FontSize="180" Color="000000" CenterX="6250.0" CenterY="4400.0" Width="1112.0" Height="288.0"/>
+  </Label>
+  <Label TextLabel="Palmitoyl-CoA" GraphId="c32">
+    <Graphics FontWeight="Bold" FontSize="180" Color="000000" CenterX="6250.0" CenterY="6900.0" Width="1664.0" Height="288.0"/>
+  </Label>
+  <Label TextLabel="Glyceraldehyde-3-Phosphate" GraphId="acf">
+    <Graphics FontWeight="Bold" FontSize="180" Color="000000" CenterX="2950.0" CenterY="6200.0" Width="3356.0" Height="288.0"/>
+  </Label>
+  <Label TextLabel="L-Glycerol-3-Phosphate" GraphId="fcc">
+    <Graphics FontWeight="Bold" FontSize="180" Color="000000" CenterX="2900.0" CenterY="3450.0" Width="2768.0" Height="288.0"/>
+  </Label>
+  <Label TextLabel="See Glycolysis MAPP" GraphId="f27">
+    <Graphics FontWeight="Bold" FontSize="180" Color="0000ff" CenterX="2900.0" CenterY="7150.0" Width="2492.0" Height="288.0"/>
+  </Label>
+  <Label TextLabel="Trans-Hexadecanoyl-CoA" GraphId="ef7">
+    <Graphics FontWeight="Bold" FontSize="180" Color="000000" CenterX="9350.0" CenterY="3050.0" Width="2960.0" Height="288.0"/>
+  </Label>
+  <Label TextLabel="(S)-3-Hydroxyhexadecanoyl-CoA" GraphId="f58">
+    <Graphics FontWeight="Bold" FontSize="180" Color="000000" CenterX="9300.0" CenterY="4900.0" Width="3764.0" Height="288.0"/>
+  </Label>
+  <Label TextLabel="3-Oxopalmitoyl-CoA" GraphId="c58">
+    <Graphics FontWeight="Bold" FontSize="180" Color="000000" CenterX="9450.0" CenterY="6800.0" Width="2336.0" Height="288.0"/>
+  </Label>
+  <Label TextLabel="Myristoyl-CoA" GraphId="de5">
+    <Graphics FontWeight="Bold" FontSize="180" Color="000000" CenterX="10400.0" CenterY="8650.0" Width="1676.0" Height="288.0"/>
+  </Label>
+  <Label TextLabel="Acetyl-CoA" GraphId="c29">
+    <Graphics FontWeight="Bold" FontSize="180" Color="000000" CenterX="8400.0" CenterY="8650.0" Width="1328.0" Height="288.0"/>
+  </Label>
+  <Label TextLabel="Trans-Tetradex-2-enoyl-CoA" GraphId="c35">
+    <Graphics FontWeight="Bold" FontSize="180" Color="000000" CenterX="14950.0" CenterY="3250.0" Width="3296.0" Height="288.0"/>
+  </Label>
+  <Label TextLabel="(S)-3-Hydroxytetradecanoyl-CoA" GraphId="ab2">
+    <Graphics FontWeight="Bold" FontSize="180" Color="000000" CenterX="14950.0" CenterY="5150.0" Width="3752.0" Height="288.0"/>
+  </Label>
+  <Label TextLabel="Dxotetradecanoyl-CoA" GraphId="e08">
+    <Graphics FontWeight="Bold" FontSize="180" Color="000000" CenterX="15050.0" CenterY="6950.0" Width="2624.0" Height="288.0"/>
+  </Label>
+  <Label TextLabel="Acetyl-CoA" GraphId="b3d">
+    <Graphics FontWeight="Bold" FontSize="180" Color="000000" CenterX="13900.0" CenterY="9150.0" Width="1328.0" Height="288.0"/>
+  </Label>
+  <Label TextLabel="Lauroyl-CoA" GraphId="d92">
+    <Graphics FontWeight="Bold" FontSize="180" Color="000000" CenterX="16000.0" CenterY="9150.0" Width="1484.0" Height="288.0"/>
+  </Label>
+  <Label TextLabel="2-trans-dodecenoyl-CoA" GraphId="f92">
+    <Graphics FontWeight="Bold" FontSize="180" Color="000000" CenterX="20150.0" CenterY="3600.0" Width="2828.0" Height="288.0"/>
+  </Label>
+  <Label TextLabel="(S)-3-Hydroxydodexanonyl-CoA" GraphId="d35">
+    <Graphics FontWeight="Bold" FontSize="180" Color="000000" CenterX="20100.0" CenterY="5250.0" Width="3656.0" Height="288.0"/>
+  </Label>
+  <Label TextLabel="3-Oxododexanoyl-CoA" GraphId="f07">
+    <Graphics FontWeight="Bold" FontSize="180" Color="000000" CenterX="20000.0" CenterY="6900.0" Width="2624.0" Height="288.0"/>
+  </Label>
+  <Label TextLabel="Acetyl-CoA" GraphId="a0d">
+    <Graphics FontWeight="Bold" FontSize="180" Color="000000" CenterX="18800.0" CenterY="9400.0" Width="1328.0" Height="288.0"/>
+  </Label>
+  <Label TextLabel="Decanoyl-CoA" GraphId="e34">
+    <Graphics FontWeight="Bold" FontSize="180" Color="000000" CenterX="21400.0" CenterY="9350.0" Width="1676.0" Height="288.0"/>
+  </Label>
+  <Label TextLabel="See Beta Oxidation 2 MAPP" GraphId="d37">
+    <Graphics FontWeight="Bold" FontSize="180" Color="0000ff" CenterX="20100.0" CenterY="11350.0" Width="3200.0" Height="288.0"/>
+  </Label>
+  <Label TextLabel="Lipases" GraphId="a65">
+    <Graphics FontWeight="Bold" FontSize="165" Color="000000" CenterX="1000.0" CenterY="550.0" Width="896.0" Height="252.0"/>
+  </Label>
+  <Label TextLabel="See TCA Cycle MAPP" GraphId="aa2">
+    <Graphics FontWeight="Bold" FontSize="180" Color="0000ff" CenterX="8300.0" CenterY="9350.0" Width="3200.0" Height="285.0"/>
+  </Label>
+  <Label TextLabel="See TCA Cycle MAPP" GraphId="dee">
+    <Graphics FontWeight="Bold" FontSize="180" Color="0000ff" CenterX="13950.0" CenterY="9850.0" Width="3200.0" Height="285.0"/>
+  </Label>
+  <Label TextLabel="See TCA Cycle MAPP" GraphId="ff7">
+    <Graphics FontWeight="Bold" FontSize="180" Color="0000ff" CenterX="18750.0" CenterY="10150.0" Width="3200.0" Height="285.0"/>
+  </Label>
+  <InfoBox CenterX="4000.0" CenterY="10600.0"/>
+  <Legend CenterX="70.0" CenterY="7700.0"/>
+<Biopax><bp:openControlledVocabulary xmlns:bp="http://www.biopax.org/release/biopax-level2.owl#"><bp:TERM>fatty acid beta degradation pathway</bp:TERM><bp:ID>PW:0000738</bp:ID><bp:Ontology>Pathway Ontology</bp:Ontology></bp:openControlledVocabulary></Biopax></Pathway>

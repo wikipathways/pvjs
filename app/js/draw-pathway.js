@@ -70,6 +70,7 @@ function getMarker(name, position, color) {
 };
 
 function getEdgeTerminusRef(point) {
+  self.point=point;
   if (point.hasOwnProperty('graphRef')) {
     if (pathway.hasOwnProperty('labelableElements')) {
       var labelableElement = pathway.labelableElements.filter(function(element) {return element.graphId === point.graphRef})[0]
@@ -413,7 +414,7 @@ function getPathData(d, labelableElements) {
 
 function drawPathway() {
   // be sure server has set gpml mime type to application/gpml+xml
-  d3.xml("../../samples/gpml/" + getURLParameter("pathway"), "application/gpml+xml", function(response) {
+  d3.xml("../../samples/gpml/" + String(getURLParameter("pathway")), "application/gpml+xml", function(response) {
     //d3.xml("../../samples/gpml/" + getURLParameter("pathway"), "application/gpml+xml", function(error, response) {
     //d3.json("../../samples/gpml/WP673_63184.json", function(error, json) {
 
@@ -458,8 +459,8 @@ function drawPathway() {
       titleBlock.push({'key':'Name', 'value':pathway.name});
     };
 
-    if (pathway.hasOwnProperty('availability')) {
-      titleBlock.push({'key':'Availability', 'value':pathway.availability});
+    if (pathway.hasOwnProperty('license')) {
+      titleBlock.push({'key':'Availability', 'value':pathway.license});
     };
 
     if (pathway.hasOwnProperty('lastModified')) {

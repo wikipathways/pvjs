@@ -1,0 +1,525 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Pathway xmlns="http://pathvisio.org/GPML/2013a" Name="Cytoplasmic Ribosomal Proteins" Organism="Danio rerio">
+  <Comment Source="GenMAPP notes"/>
+  <Comment Source="GenMAPP remarks"/>
+  <Comment Source="WikiPathways-category">Molecular Function</Comment>
+  <Graphics BoardWidth="713.3333333333334" BoardHeight="653.3333333333334"/>
+  <DataNode TextLabel="RPL37A" GraphId="ab4b1" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="L37Ae"/>
+    <Graphics CenterX="156.66666666666666" CenterY="423.3333333333333" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID=""/>
+  </DataNode>
+  <DataNode TextLabel="rpl10a" GraphId="fa7b4" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">E. coli L1</Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="rpl10a | ribosomal protein L10a"/>
+    <Graphics CenterX="43.333333333333336" CenterY="283.3333333333333" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="323305"/>
+  </DataNode>
+  <DataNode TextLabel="rpl8" GraphId="be37a" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">E. coli L2</Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="rpl8 | ribosomal protein L8"/>
+    <Graphics CenterX="43.333333333333336" CenterY="223.33333333333334" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="393686"/>
+  </DataNode>
+  <DataNode TextLabel="rpl3" GraphId="b9dec" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">E. coli L3</Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="rpl3 | ribosomal protein L3"/>
+    <Graphics CenterX="43.333333333333336" CenterY="83.33333333333333" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="322571"/>
+  </DataNode>
+  <DataNode TextLabel="RPL3L" GraphId="b6ae3" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="L3e-like"/>
+    <Graphics CenterX="43.333333333333336" CenterY="103.33333333333333" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID=""/>
+  </DataNode>
+  <DataNode TextLabel="RPL9" GraphId="bbabe" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">E. coli L6</Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="rpl9"/>
+    <Graphics CenterX="43.333333333333336" CenterY="243.33333333333334" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="336702"/>
+  </DataNode>
+  <DataNode TextLabel="RPL12" GraphId="bdb4b" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Also known as L16e.  E. coli L11.</Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="rpl12"/>
+    <Graphics CenterX="43.333333333333336" CenterY="323.3333333333333" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="327089"/>
+  </DataNode>
+  <DataNode TextLabel="RPLP2" GraphId="b7111" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">E. coli L7/L12</Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="rplp2"/>
+    <Graphics CenterX="103.33333333333333" CenterY="593.3333333333334" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="335629"/>
+  </DataNode>
+  <DataNode TextLabel="rplp1" GraphId="d2785" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">E. coli L7/L12</Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="rplp1 | ribosomal protein large P1"/>
+    <Graphics CenterX="103.33333333333333" CenterY="573.3333333333334" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="336719"/>
+  </DataNode>
+  <DataNode TextLabel="rpl13a" GraphId="c3c53" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">E. coli L13</Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="rpl13a | ribosomal protein L13a"/>
+    <Graphics CenterX="43.333333333333336" CenterY="363.3333333333333" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="337766"/>
+  </DataNode>
+  <DataNode TextLabel="RPL23" GraphId="b2a48" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">E. coli L14</Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="rpl23"/>
+    <Graphics CenterX="156.66666666666666" CenterY="103.33333333333333" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="336812"/>
+  </DataNode>
+  <DataNode TextLabel="zgc:77235" GraphId="e6c3e" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">E. coli L15</Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="zgc:77235 | zgc:77235"/>
+    <Graphics CenterX="156.66666666666666" CenterY="203.33333333333334" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="336726"/>
+  </DataNode>
+  <DataNode TextLabel="zgc:100827" GraphId="e5425" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">E. coli L19</Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="zgc:100827 | zgc:100827"/>
+    <Graphics CenterX="103.33333333333333" CenterY="613.3333333333334" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="445150"/>
+  </DataNode>
+  <DataNode TextLabel="zgc:65996" GraphId="a3f94" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">E. coli L22</Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="zgc:65996 | zgc:65996"/>
+    <Graphics CenterX="43.333333333333336" CenterY="423.3333333333333" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="336641"/>
+  </DataNode>
+  <DataNode TextLabel="rpl23a" GraphId="f286e" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">E. coli L23</Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="rpl23a | ribosomal protein L23a"/>
+    <Graphics CenterX="156.66666666666666" CenterY="123.33333333333333" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="335539"/>
+  </DataNode>
+  <DataNode TextLabel="RPL26" GraphId="e07ce" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">E. coli L24</Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="rpl26"/>
+    <Graphics CenterX="156.66666666666666" CenterY="163.33333333333334" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="406387"/>
+  </DataNode>
+  <DataNode TextLabel="rpl35" GraphId="c1870" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">E. coli L29</Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="rpl35 | ribosomal protein L35"/>
+    <Graphics CenterX="156.66666666666666" CenterY="343.3333333333333" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="192299"/>
+  </DataNode>
+  <DataNode TextLabel="RPL7" GraphId="b48a2" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">E. coli L30</Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="rpl7"/>
+    <Graphics CenterX="43.333333333333336" CenterY="183.33333333333334" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="336710"/>
+  </DataNode>
+  <DataNode TextLabel="rpl4" GraphId="fb8c7" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">also known as L1e.  No E. coli homologue</Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="rpl4 | ribosomal protein L4"/>
+    <Graphics CenterX="43.333333333333336" CenterY="123.33333333333333" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="337090"/>
+  </DataNode>
+  <DataNode TextLabel="RPL6" GraphId="ae16d" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="rpl6"/>
+    <Graphics CenterX="43.333333333333336" CenterY="163.33333333333334" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="336727"/>
+  </DataNode>
+  <DataNode TextLabel="rpl7a" GraphId="b62f3" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="rpl7a | ribosomal protein L7a"/>
+    <Graphics CenterX="43.333333333333336" CenterY="203.33333333333334" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="337010"/>
+  </DataNode>
+  <DataNode TextLabel="rpl13" GraphId="cf0a5" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="rpl13 | ribosomal protein L13"/>
+    <Graphics CenterX="43.333333333333336" CenterY="343.3333333333333" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="378961"/>
+  </DataNode>
+  <DataNode TextLabel="RPL14" GraphId="b0b87" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="rpl14"/>
+    <Graphics CenterX="43.333333333333336" CenterY="383.3333333333333" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="323365"/>
+  </DataNode>
+  <DataNode TextLabel="zgc:92114" GraphId="dc966" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="zgc:92114 | zgc:92114"/>
+    <Graphics CenterX="43.333333333333336" CenterY="403.3333333333333" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="445053"/>
+  </DataNode>
+  <DataNode TextLabel="rpl18a" GraphId="c623f" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="rpl18a | ribosomal protein L18a"/>
+    <Graphics CenterX="43.333333333333336" CenterY="463.3333333333333" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="394035"/>
+  </DataNode>
+  <DataNode TextLabel="zgc:92872" GraphId="e961b" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="zgc:92872 | zgc:92872"/>
+    <Graphics CenterX="43.333333333333336" CenterY="443.3333333333333" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="445038"/>
+  </DataNode>
+  <DataNode TextLabel="rpl19" GraphId="bc9df" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="rpl19 | ribosomal protein L19"/>
+    <Graphics CenterX="43.333333333333336" CenterY="483.3333333333333" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="406489"/>
+  </DataNode>
+  <DataNode TextLabel="RPL21" GraphId="f9a8b" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="rpl21"/>
+    <Graphics CenterX="43.333333333333336" CenterY="503.3333333333333" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="336568"/>
+  </DataNode>
+  <DataNode TextLabel="RPL22" GraphId="b83a4" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="L22e"/>
+    <Graphics CenterX="156.66666666666666" CenterY="83.33333333333333" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID=""/>
+  </DataNode>
+  <DataNode TextLabel="rpl24" GraphId="b02dd" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="rpl24 | ribosomal protein L24"/>
+    <Graphics CenterX="156.66666666666666" CenterY="143.33333333333334" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="192301"/>
+  </DataNode>
+  <DataNode TextLabel="rpl27" GraphId="adbff" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="rpl27 | ribosomal protein L27"/>
+    <Graphics CenterX="156.66666666666666" CenterY="183.33333333333334" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="325618"/>
+  </DataNode>
+  <DataNode TextLabel="rpl28l" GraphId="b98b8" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="rpl28l | ribosomal protein L28-like"/>
+    <Graphics CenterX="156.66666666666666" CenterY="223.33333333333334" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="394036"/>
+  </DataNode>
+  <DataNode TextLabel="zgc:92868" GraphId="e0d20" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="zgc:92868 | zgc:92868"/>
+    <Graphics CenterX="156.66666666666666" CenterY="243.33333333333334" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="445040"/>
+  </DataNode>
+  <DataNode TextLabel="RPL31" GraphId="ecd52" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="L31e"/>
+    <Graphics CenterX="156.66666666666666" CenterY="283.3333333333333" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID=""/>
+  </DataNode>
+  <DataNode TextLabel="RPL32" GraphId="d164f" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Also known as S22e.</Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="L32e"/>
+    <Graphics CenterX="156.66666666666666" CenterY="303.3333333333333" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID=""/>
+  </DataNode>
+  <DataNode TextLabel="rpl34" GraphId="f70ee" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="rpl34 | ribosomal protein L34"/>
+    <Graphics CenterX="156.66666666666666" CenterY="323.3333333333333" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="394097"/>
+  </DataNode>
+  <DataNode TextLabel="zgc:92859" GraphId="b0ce9" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="zgc:92859 | zgc:92859"/>
+    <Graphics CenterX="156.66666666666666" CenterY="363.3333333333333" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="436760"/>
+  </DataNode>
+  <DataNode TextLabel="rpl36" GraphId="d302d" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="rpl36 | ribosomal protein L36"/>
+    <Graphics CenterX="156.66666666666666" CenterY="383.3333333333333" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="405888"/>
+  </DataNode>
+  <DataNode TextLabel="zgc:86733" GraphId="b410f" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="zgc:86733 | zgc:86733"/>
+    <Graphics CenterX="156.66666666666666" CenterY="403.3333333333333" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="415159"/>
+  </DataNode>
+  <DataNode TextLabel="zgc:92860" GraphId="e0908" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="zgc:92860 | zgc:92860"/>
+    <Graphics CenterX="156.66666666666666" CenterY="443.3333333333333" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="436759"/>
+  </DataNode>
+  <DataNode TextLabel="RPL39" GraphId="d01b1" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="rpl39"/>
+    <Graphics CenterX="156.66666666666666" CenterY="463.3333333333333" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="415168"/>
+  </DataNode>
+  <DataNode TextLabel="UBA52" GraphId="dcbda" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="uba52"/>
+    <Graphics CenterX="156.66666666666666" CenterY="483.3333333333333" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="641289"/>
+  </DataNode>
+  <DataNode TextLabel="RPL41" GraphId="efa7d" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="L41e"/>
+    <Graphics CenterX="156.66666666666666" CenterY="503.3333333333333" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID=""/>
+  </DataNode>
+  <DataNode TextLabel="RPL36A" GraphId="eb532" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="rpl36a"/>
+    <Graphics CenterX="156.66666666666666" CenterY="523.3333333333334" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="195819"/>
+  </DataNode>
+  <DataNode TextLabel="LAMR1" GraphId="db7d4" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">E. coli S2</Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="SAe"/>
+    <Graphics CenterX="533.3333333333334" CenterY="83.33333333333333" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID=""/>
+  </DataNode>
+  <DataNode TextLabel="RPS3" GraphId="c7f56" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">E. coli S3</Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="rps3"/>
+    <Graphics CenterX="533.3333333333334" CenterY="123.33333333333333" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="336550"/>
+  </DataNode>
+  <DataNode TextLabel="rps9" GraphId="e26af" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">E. coli S4</Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="rps9 | ribosomal protein S9"/>
+    <Graphics CenterX="533.3333333333334" CenterY="283.3333333333333" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="114420"/>
+  </DataNode>
+  <DataNode TextLabel="rps5" GraphId="cabc1" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">E. coli S7</Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="rps5 | ribosomal protein S5"/>
+    <Graphics CenterX="533.3333333333334" CenterY="203.33333333333334" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="192297"/>
+  </DataNode>
+  <DataNode TextLabel="RPS15A" GraphId="c7959" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">E. coli S8</Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="rps15a"/>
+    <Graphics CenterX="653.3333333333334" CenterY="103.33333333333333" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="336764"/>
+  </DataNode>
+  <DataNode TextLabel="RPS16" GraphId="d6712" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">E. coli S9</Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="rps16"/>
+    <Graphics CenterX="653.3333333333334" CenterY="123.33333333333333" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="767765"/>
+  </DataNode>
+  <DataNode TextLabel="zgc:77758" GraphId="be045" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">E. coli S10</Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="zgc:77758 | zgc:77758"/>
+    <Graphics CenterX="653.3333333333334" CenterY="203.33333333333334" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="406485"/>
+  </DataNode>
+  <DataNode TextLabel="rps14" GraphId="d0c99" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">E. coli S11</Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="rps14 | ribosomal protein S14"/>
+    <Graphics CenterX="533.3333333333334" CenterY="383.3333333333333" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="336687"/>
+  </DataNode>
+  <DataNode TextLabel="RPS23" GraphId="a914b" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">E. coli S12</Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="S23e"/>
+    <Graphics CenterX="653.3333333333334" CenterY="243.33333333333334" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID=""/>
+  </DataNode>
+  <DataNode TextLabel="RPS29" GraphId="d21e0" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">E. coli S14</Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="rps29"/>
+    <Graphics CenterX="653.3333333333334" CenterY="383.3333333333333" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="405889"/>
+  </DataNode>
+  <DataNode TextLabel="zgc:91809" GraphId="d3255" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">E. coli S15</Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="zgc:91809 | zgc:91809"/>
+    <Graphics CenterX="533.3333333333334" CenterY="363.3333333333333" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="415169"/>
+  </DataNode>
+  <DataNode TextLabel="rps11" GraphId="eb55f" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">E. coli S17</Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="rps11 | ribosomal protein S11"/>
+    <Graphics CenterX="533.3333333333334" CenterY="323.3333333333333" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="406686"/>
+  </DataNode>
+  <DataNode TextLabel="rps15" GraphId="c048f" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">E. coli S19</Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="rps15 | ribosomal protein S15"/>
+    <Graphics CenterX="653.3333333333334" CenterY="83.33333333333333" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="337148"/>
+  </DataNode>
+  <DataNode TextLabel="RPS3A" GraphId="b09e7" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">No E. coli homologue</Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="rps3a"/>
+    <Graphics CenterX="533.3333333333334" CenterY="143.33333333333334" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="337240"/>
+  </DataNode>
+  <DataNode TextLabel="zgc:92076" GraphId="ec59a" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">No E. coli homologue</Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="zgc:92076 | zgc:92076"/>
+    <Graphics CenterX="533.3333333333334" CenterY="163.33333333333334" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="449547"/>
+  </DataNode>
+  <DataNode TextLabel="RPS4Y" GraphId="b0bf6" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">No E. coli homologue</Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="S4e Y isoform"/>
+    <Graphics CenterX="533.3333333333334" CenterY="183.33333333333334" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID=""/>
+  </DataNode>
+  <DataNode TextLabel="zgc:92237" GraphId="f0a68" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">No E. coli homologue</Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="zgc:92237 | zgc:92237"/>
+    <Graphics CenterX="533.3333333333334" CenterY="223.33333333333334" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="445028"/>
+  </DataNode>
+  <DataNode TextLabel="rps7" GraphId="c4e07" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">No E. coli homologue</Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="rps7 | ribosomal protein S7"/>
+    <Graphics CenterX="533.3333333333334" CenterY="243.33333333333334" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="393725"/>
+  </DataNode>
+  <DataNode TextLabel="rps8" GraphId="b5ef7" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">No E. coli homologue</Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="rps8 | ribosomal protein S8"/>
+    <Graphics CenterX="533.3333333333334" CenterY="263.3333333333333" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="407690"/>
+  </DataNode>
+  <DataNode TextLabel="RPS10" GraphId="d5b21" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">No E. coli homologue</Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="rps10"/>
+    <Graphics CenterX="533.3333333333334" CenterY="303.3333333333333" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="394121"/>
+  </DataNode>
+  <DataNode TextLabel="rps12" GraphId="e0155" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">No E. coli homologue</Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="rps12 | ribosomal protein S12"/>
+    <Graphics CenterX="533.3333333333334" CenterY="343.3333333333333" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="337007"/>
+  </DataNode>
+  <DataNode TextLabel="RPS17" GraphId="f8c7a" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">No E. coli homologue</Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="S17e"/>
+    <Graphics CenterX="653.3333333333334" CenterY="143.33333333333334" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID=""/>
+  </DataNode>
+  <DataNode TextLabel="zgc:73211" GraphId="e449a" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">No E. coli homologue</Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="zgc:73211 | zgc:73211"/>
+    <Graphics CenterX="653.3333333333334" CenterY="183.33333333333334" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="393723"/>
+  </DataNode>
+  <DataNode TextLabel="rps21" GraphId="cd4ef" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">No E. coli homologue</Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="rps21 | ribosomal protein S21"/>
+    <Graphics CenterX="653.3333333333334" CenterY="223.33333333333334" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="394166"/>
+  </DataNode>
+  <DataNode TextLabel="rps24" GraphId="f71e2" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Also known as L33e.  No E. coli homologue.</Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="rps24 | ribosomal protein S24"/>
+    <Graphics CenterX="653.3333333333334" CenterY="263.3333333333333" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="394194"/>
+  </DataNode>
+  <DataNode TextLabel="rps25" GraphId="b29b0" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">No E. coli homologue</Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="rps25 | ribosomal protein S25"/>
+    <Graphics CenterX="653.3333333333334" CenterY="283.3333333333333" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="393788"/>
+  </DataNode>
+  <DataNode TextLabel="RPS26" GraphId="a1a5f" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">No E. coli homologue</Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="rps26"/>
+    <Graphics CenterX="653.3333333333334" CenterY="303.3333333333333" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="336662"/>
+  </DataNode>
+  <DataNode TextLabel="RPS27" GraphId="b56a9" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">No E. coli homologue</Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="S27e"/>
+    <Graphics CenterX="653.3333333333334" CenterY="323.3333333333333" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID=""/>
+  </DataNode>
+  <DataNode TextLabel="RPS27A" GraphId="b72bf" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">No E. coli homologue</Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="S27Ae"/>
+    <Graphics CenterX="653.3333333333334" CenterY="343.3333333333333" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID=""/>
+  </DataNode>
+  <DataNode TextLabel="RPS28" GraphId="ebcf4" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">No E. coli homologue</Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="rps28"/>
+    <Graphics CenterX="653.3333333333334" CenterY="363.3333333333333" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="406307"/>
+  </DataNode>
+  <DataNode TextLabel="FAU" GraphId="a879e" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">No E. coli homologue</Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="fau"/>
+    <Graphics CenterX="653.3333333333334" CenterY="403.3333333333333" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="393710"/>
+  </DataNode>
+  <DataNode TextLabel="RPLP0" GraphId="aca8f" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">E. coli L10.</Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="rplp0"/>
+    <Graphics CenterX="103.33333333333333" CenterY="553.3333333333334" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="58101"/>
+  </DataNode>
+  <DataNode TextLabel="RPS6KA2" GraphId="fce4e" Type="GeneProduct">
+    <Graphics CenterX="373.3333333333333" CenterY="236.66666666666666" Width="66.66666666666667" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID=""/>
+  </DataNode>
+  <DataNode TextLabel="RPS6KA1" GraphId="a0efe" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="rps6ka1"/>
+    <Graphics CenterX="373.3333333333333" CenterY="216.66666666666666" Width="66.66666666666667" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="777728"/>
+  </DataNode>
+  <DataNode TextLabel="zgc:56006" GraphId="fcc48" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="zgc:56006 | zgc:56006"/>
+    <Graphics CenterX="373.3333333333333" CenterY="256.6666666666667" Width="66.66666666666667" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="338219"/>
+  </DataNode>
+  <DataNode TextLabel="rps6kal" GraphId="e9b3c" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="rps6kal | ribosomal protein S6 kinase like"/>
+    <Graphics CenterX="373.3333333333333" CenterY="276.6666666666667" Width="66.66666666666667" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="337670"/>
+  </DataNode>
+  <DataNode TextLabel="rpl11" GraphId="b8785" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">E. coli L5</Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="rpl11 | ribosomal protein L11"/>
+    <Graphics CenterX="43.333333333333336" CenterY="303.3333333333333" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="415229"/>
+  </DataNode>
+  <DataNode TextLabel="RPL5" GraphId="a88dd" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">E. coli L18</Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="L5e"/>
+    <Graphics CenterX="43.333333333333336" CenterY="143.33333333333334" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID=""/>
+  </DataNode>
+  <DataNode TextLabel="rps6kb1" GraphId="c0a82" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="rps6kb1 | ribosomal protein S6 kinase polypep..."/>
+    <Graphics CenterX="373.3333333333333" CenterY="176.66666666666666" Width="66.66666666666667" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="406349"/>
+  </DataNode>
+  <DataNode TextLabel="RPL10" GraphId="aedce" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="rpl10"/>
+    <Graphics CenterX="43.333333333333336" CenterY="263.3333333333333" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="336712"/>
+  </DataNode>
+  <DataNode TextLabel="rpl30" GraphId="ff7ee" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Also known as L25e.</Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="rpl30 | ribosomal protein L30"/>
+    <Graphics CenterX="156.66666666666666" CenterY="263.3333333333333" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="336713"/>
+  </DataNode>
+  <DataNode TextLabel="RPS2" GraphId="eba98" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">E. coli S5</Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="rps2"/>
+    <Graphics CenterX="533.3333333333334" CenterY="103.33333333333333" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="406565"/>
+  </DataNode>
+  <DataNode TextLabel="rps18" GraphId="cf43c" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">E. coli S13</Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="rps18 | ribosomal protein S18"/>
+    <Graphics CenterX="653.3333333333334" CenterY="163.33333333333334" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="192300"/>
+  </DataNode>
+  <DataNode TextLabel="RPS6KB2" GraphId="b4589" Type="GeneProduct">
+    <Graphics CenterX="373.3333333333333" CenterY="196.66666666666666" Width="66.66666666666667" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID=""/>
+  </DataNode>
+  <Interaction GraphId="id5096a70c">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="423.3333333333333" Y="223.33333333333334"/>
+      <Point X="473.3333333333333" Y="223.33333333333334" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Label TextLabel="Large (60S) Subunit" GraphId="aec6f">
+    <Graphics CenterX="103.33333333333333" CenterY="56.666666666666664" Width="156.33333333333334" Height="19.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="12" Valign="Middle"/>
+  </Label>
+  <Label TextLabel="Small (40S) Subunit" GraphId="a590f">
+    <Graphics CenterX="583.3333333333334" CenterY="56.666666666666664" Width="154.33333333333334" Height="19.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="12" Valign="Middle"/>
+  </Label>
+  <Label TextLabel="HOMOLOGY MAPP" GraphId="d754f">
+    <Graphics CenterX="56.666666666666664" CenterY="20.0" Width="85.33333333333333" Height="18.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="12" Valign="Middle" Color="008000"/>
+  </Label>
+  <InfoBox CenterX="459.3666666666667" CenterY="584.6333333333333"/>
+  <Legend CenterX="229.13333333333333" CenterY="450.53333333333336"/>
+  <Biopax>
+    <bp:openControlledVocabulary xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#">
+      <bp:TERM xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">ribosome biogenesis pathway</bp:TERM>
+      <bp:ID xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PW:0001066</bp:ID>
+      <bp:Ontology xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Pathway Ontology</bp:Ontology>
+    </bp:openControlledVocabulary>
+  </Biopax>
+</Pathway>
