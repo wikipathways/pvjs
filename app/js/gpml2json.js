@@ -447,6 +447,13 @@ function convertGpml2Json(xmlDoc){
           element.groupId = element.groupid;
           delete element.groupid;
 
+          if (element.hasOwnProperty('style')) {
+            element.style = element.style.toLowerCase();
+          }
+          else {
+            element.style = 'none';
+          };
+
         });
       }
       else {
@@ -625,7 +632,6 @@ function convertGpml2Json(xmlDoc){
 
       if (element.graphics.hasOwnProperty("zorder")) {
         element.zIndex = parseFloat(element.graphics.zorder);
-        console.log('zoroder');
       };
 
       element.x = parseFloat(element.graphics.centerx) - parseFloat(element.graphics.width)/2;
@@ -642,8 +648,13 @@ function convertGpml2Json(xmlDoc){
 
       if (element.graphics.hasOwnProperty("color")) {
         var color = new RGBColor(element.graphics.color);
+        console.log('color');
+        console.log(color);
+        console.log(element.graphics.color);
         if (color.ok) { 
           element.stroke = color.toHex();
+          console.log('element.stroke');
+          console.log(element.stroke);
         }
       };	
 
