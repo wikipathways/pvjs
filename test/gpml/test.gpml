@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Pathway xmlns="http://pathvisio.org/GPML/2013a" Name="Nuclear receptors in lipid metabolism and toxicity" Last-Modified="2/22/2013" Organism="Homo sapiens" License="CC BY 2.0">
+  <Comment Source="WikiPathways-category">Metabolic Process</Comment>
+  <Comment Source="WikiPathways-description">Nuclear receptors are transcription factors that are activated upon binding to its ligands. Initially, they had been classified as classic endocrine nuclear hormone receptors and orphan receptors. However, further studies have led to the identification of lipid ligands for some of these adopted orphan receptors, which are responsible for lipid metabolism, storage or elimination. One of the characteristics of these receptors is that they act by forming heterodimers with retinoid X receptor (RXR). The receptors include peroxisome proliferators-Activated receptors (PPARs) for fatty acids, liver X receptor (LCR) for oxysterols, Farnesoid X receptors (FXR) for bile acids and steroid xenobiotic receptor/X receptor (SXR/PXR or Nsil2) for xenobiotics. Other orphan receptors also require RXR for its functions are vitamin D receptor (VDR) for vitamin D and retinoic acid receptor (RAR) for retinoid acids, although these receptors are not involved in lipid metabolism. Upon binding to various ligands, three classes of proteins are synthesized including lipid binding proteins, the ATP-binding cassette (ABC) transporters and cytochrome P450 member proteins which catalyzes lipid anabolism, metabolism and elimination.
+In addition to lipid metabolism, some members of the cytochrome P450 family genes are responsible for activation of procarcinogens, detoxification of environmental toxins and metabolism of drugs and xenobiotics. In particular, CAR, Nsil2 and recently identified VDR are important in up-regulation of these cytochromes. Of all the human cytochrome P450 genes, only a few CYP1A2, CYP2C9, CYP2C19, CYP2D6, CYP2E1 and CYP3A4 account for most toxicity effects, specifically CYP3A is responsible for clearing approximately half of the clinically prescribed drugs. For instance, acetaminophen, one of the most commonly used drug, is toxic in high doses due to the activation of CAR and the drugs subsequent conversion to acetyl-p-benzoquinone imine (NAPQI) by CYP1A2, CYP2E1 and CYP3A. </Comment>
+  <Graphics BoardWidth="929.5398230088498" BoardHeight="738.3333333333334" />
+  <Label TextLabel="aaa false" GraphId="db5">
+    <Graphics CenterX="210.24488619994236" CenterY="54.03630077787391" Width="42.333333333333336" Height="19.0" ZOrder="28672" FillColor="ffffff" FontStyle="Italic" FontSize="12" Valign="Middle" Color="008080" />
+  </Label>
+  <Label TextLabel="bbb true" GraphId="b9e9c">
+    <Graphics CenterX="233.43889885060437" CenterY="94.47232291438225" Width="80.0" Height="20.0" ZOrder="28672" FillColor="ffffff" FontStyle="Italic" FontSize="10" Valign="Middle" Color="ff0000" />
+  </Label>
+  <Label TextLabel="ccc false" GraphId="d4024">
+    <Graphics CenterX="341.88667724471844" CenterY="60.30495749429184" Width="42.333333333333336" Height="19.0" ZOrder="28673" FillColor="ffffff" FontStyle="Italic" FontSize="12" Valign="Middle" Color="006600" />
+  </Label>
+  <Label TextLabel="ddd true" GraphId="f979c">
+    <Graphics CenterX="407.11055784173345" CenterY="200.15570376294858" Width="42.333333333333336" Height="19.0" ZOrder="28674" FillColor="ffffff" FontStyle="Italic" FontSize="12" Valign="Middle" Color="33ff00" />
+  </Label>
+  <InfoBox CenterX="11.666666666666666" CenterY="708.3333333333334" />
+  <Biopax>
+    <bp:openControlledVocabulary xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#">
+      <bp:TERM xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">lipid metabolic pathway</bp:TERM>
+      <bp:ID xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PW:0000010</bp:ID>
+      <bp:Ontology xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Pathway Ontology</bp:Ontology>
+    </bp:openControlledVocabulary>
+  </Biopax>
+</Pathway>
+
