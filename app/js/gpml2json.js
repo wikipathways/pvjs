@@ -1,27 +1,37 @@
 // for doing this in Java, we could look at 
 // https://code.google.com/p/json-io/
 
-function getJson(gpmlUrl, callback) {
-  if (!(gpmlUrl)) {
-    gpmlUrl = "../../samples/gpml/error.gpml";
-  };
+function getJson(gpml, callback) {
+  if (gpml === undefined || !(gpml) || gpml === "") {
 
-  d3.xml(gpmlUrl, "application/gpml+xml", function(error, gpml) {
-    // be sure server has set gpml mime type to application/gpml+xml
+    //var gpmlUrl = "../../samples/gpml/error.gpml";
+    //d3.xml(gpmlUrl, "application/gpml+xml", function(error, gpml) {
 
-    var gpmlDoc = gpml.documentElement
+    d3.xml("../../samples/gpml/" + String(getURLParameter("pathway")), "application/gpml+xml", function(gpml) {
+      // be sure server has set gpml mime type to application/gpml+xml
 
-    var oSerializer = new XMLSerializer();
-    var sGpml = oSerializer.serializeToString(gpmlDoc);
+      /*
+      var oSerializer = new XMLSerializer();
+      var sGpml = oSerializer.serializeToString(gpmlDoc);
+      console.log('sGpml');
+      console.log(sGpml);
+      */
+
+      var pathway = convertGpml2Json(gpml);
+
+      //var sJson = self.sJson = JSON.stringify(pathway, undefined, 2);
+
+      callback(pathway);
 
 
+    });
+  }
+  else {
     var pathway = convertGpml2Json(gpml);
 
-    var sJson = self.sJson = JSON.stringify(pathway, undefined, 2);
+    callback(pathway);
+  };
 
-    callback(sGpml, sJson);
-
-  });
 };
 
 function convertToArray(object) {
@@ -106,7 +116,6 @@ function convertGpml2Json(xmlDoc){
   // JXON.js
 
   pathway = JXON.build(xmlDoc.documentElement);
-  console.log(pathway);
   try {
     xmlns = pathway["xmlns"]
   }
@@ -144,6 +153,11 @@ function convertGpml2Json(xmlDoc){
     pathway.boardHeight = pathway.graphics.boardheight;
     delete pathway.graphics;
 
+    if (pathway.hasOwnProperty('last-modified')) {
+      pathway.lastModified = pathway['last-modified'];
+      delete pathway['last-modified'];
+    };
+
     // infoBox
 
     pathway.infoBox = pathway.infobox;
@@ -178,10 +192,6 @@ function convertGpml2Json(xmlDoc){
       if (pathway.hasOwnProperty('biopaxref')) {
         pathway.biopaxRefs = convertToArray( pathway.biopaxref );
         delete pathway.biopaxref;
-
-        pathway.biopaxRefs.forEach(function(element, index, array) {
-          // modify data
-        });
       }
       else {
         console.log("No element(s) named 'biopaxref' found in this gpml file.");
@@ -644,15 +654,10 @@ function convertGpml2Json(xmlDoc){
 
       if (element.graphics.hasOwnProperty("color")) {
         var color = new RGBColor(element.graphics.color);
-        console.log('color');
-        console.log(color);
-        console.log(element.graphics.color);
         if (color.ok) { 
           element.stroke = color.toHex();
-          console.log('element.stroke');
-          console.log(element.stroke);
         }
-      };	
+      };
 
       if (element.graphics.hasOwnProperty("linethickness")) {
         element.strokeWidth = element.graphics.linethickness;
