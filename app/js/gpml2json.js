@@ -1,6 +1,33 @@
 // for doing this in Java, we could look at 
 // https://code.google.com/p/json-io/
 
+var xml_special_to_escaped_one_map = {
+    '&': '&amp;',
+    '"': '&quot;',
+    '<': '&lt;',
+    '>': '&gt;'
+};
+ 
+var escaped_one_to_xml_special_map = {
+    '&amp;': '&',
+    '&quot;': '"',
+    '&lt;': '<',
+    '&gt;': '>'
+};
+ 
+function encodeXml(string) {
+    return string.replace(/([\&"<>])/g, function(str, item) {
+        return xml_special_to_escaped_one_map[item];
+    });
+};
+ 
+function decodeXml(string) {
+    return string.replace(/(&quot;|&lt;|&gt;|&amp;)/g,
+        function(str, item) {
+            return escaped_one_to_xml_special_map[item];
+    });
+}
+
 function getJson(gpml, callback) {
   if (gpml === undefined || !(gpml) || gpml === "") {
 
@@ -47,7 +74,8 @@ function convertToArray(object) {
   };
 };
 
-function convertGpml2Json(xmlDoc){
+function convertGpml2Json(gpml){
+  self.gpml = gpml;
 
   // GPML to jGPML mappings: { 'OldName':'new-name' }
   // replace spaces with dashes
@@ -115,7 +143,7 @@ function convertGpml2Json(xmlDoc){
   // We can use xml2json.js or JXON.js. Which is better?
   // JXON.js
 
-  pathway = JXON.build(xmlDoc.documentElement);
+  pathway = JXON.build(gpml);
   try {
     xmlns = pathway["xmlns"]
   }

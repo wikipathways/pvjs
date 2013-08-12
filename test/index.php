@@ -25,8 +25,8 @@ http://google-styleguide.googlecode.com/svn/trunk/jsoncstyleguide.xml#General_Gu
   <h3>Pathways for testing purposes</h3>
   <ul>
     <?php
-      foreach (glob("../../samples/gpml/*.gpml") as $filename) {
-          echo "<li><a href='render-d3.html?pathway=".$filename."'>".$filename."</a></li>";
+      foreach (glob("gpml/*.gpml") as $filename) {
+          echo "<li><a href='../app/partials/render-d3.php?pathway=".$filename."'>".$filename."</a></li>";
       }
      ?>
   </ul>
@@ -49,12 +49,8 @@ http://google-styleguide.googlecode.com/svn/trunk/jsoncstyleguide.xml#General_Gu
 
       $i = 0;
       foreach ($ids as $id) {
-        echo "<li><a href='./render-d3.php?pwId=" . $id . "'>" . $id . ": " . $names[$i] . ", " . $species[$i] . "</a></li>";
+        echo "<li><a href='../app/partials/render-d3.php?pwId=" . $id . "'>" . $id . ": " . $names[$i] . ", " . $species[$i] . "</a></li>";
         $i = $i + 1;
-      }
-
-      foreach (glob("../../samples/gpml/curated/*.*") as $filename) {
-          echo "<li><a href='render-d3.html?pathway=".$filename."'>".$filename."</a></li>";
       }
      ?>
   </ul>

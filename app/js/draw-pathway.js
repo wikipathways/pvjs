@@ -378,22 +378,19 @@ function drawPathway() {
   //d3.xml("../../samples/gpml/" + getURLParameter("pathway"), "application/gpml+xml", function(error, response) {
   //d3.json("../../samples/gpml/WP673_63184.json", function(error, json) {
 
-  try {
-    var gpml = gpmlDiv.children[0].children[0].children[0].textContent;
-    var parser = new DOMParser();
-    var gpml = parser.parseFromString(gpml, "application/xml");
-  }
-  catch (e) {
-    var gpml = ""; 
+  var gpml = document.getElementsByTagName('pathway')[0];
+  console.log('gpml1');
+  console.log(gpml);
 
-    /*
-    d3.xml("../../samples/gpml/" + String(getURLParameter("pathway")), "application/gpml+xml", function(response) {
-      var gpml = response.documentElement;
-    })
-    */
-  };
+  /*
+  var parser = new DOMParser();
+  var gpmlDoc = parser.parseFromString(gpmlStr, "application/xml");
+  self.gpmlDoc = gpmlDoc;
+  var gpml = gpmlDoc.documentElement;
+*/
 
-  getJson(gpml, function(pathway) {
+  var pathway = convertGpml2Json(gpml);
+  //getJson(gpml, function(pathway) {
 
   var drag = d3.behavior.drag()
   .on("drag", dragmove);
@@ -773,5 +770,5 @@ function drawPathway() {
 
 };
 */
-  });});
+  });
 };

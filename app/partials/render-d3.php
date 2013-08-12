@@ -20,55 +20,93 @@ http://google-styleguide.googlecode.com/svn/trunk/jsoncstyleguide.xml#General_Gu
 </head>
 <body>
 
-<div><button class="link" onclick="toggleVisibility()">Toggle SVG Creator</button> Current SVG Creator: <span id="svgCreator">pathvisio.js</span></div> 
+<div id="toggle"><button class="link" onclick="toggleVisibility()">Toggle SVG Creator</button> Current SVG Creator: <span id="svgCreator">pathvisio.js</span></div> 
 
 <?php
-$pwId = $_GET['pwId'];
+if (isset($_GET['pwId'])) {
+  echo "<script>var local = false</script>";
+  $pwId = $_GET['pwId'];
 
-$url = "http://www.wikipathways.org//wpi/wpi.php?action=downloadFile&type=svg&pwTitle=Pathway:" . $pwId . "&revision=0";
-echo file_get_contents($url);
+  $svgUrl = "http://www.wikipathways.org//wpi/wpi.php?action=downloadFile&type=svg&pwTitle=Pathway:" . $pwId . "&revision=0";
+  $svg = simplexml_load_file($svgUrl);
 
-//imagecreatefrompng($url);
-//imagecreatefromstring(file_get_contents($url));
+  $display = $svg->addAttribute('display', 'none');
+  echo $svg->saveXML();
 
-$completeurl = "http://www.wikipathways.org/wpi/webservice/webservice.php/getPathway?pwId=" . $pwId . "&revision=0";
-$xml = simplexml_load_file($completeurl);
+  //imagecreatefrompng($url);
+  //imagecreatefromstring(file_get_contents($url));
 
-$xml->registerXPathNamespace('ns1', 'http://www.wso2.org/php/xsd');
-$xml->registerXPathNamespace('ns2', 'http://www.wikipathways.org/webservice');
-$gpml = $xml->xpath('//ns2:gpml');
+  //$gpmlUrl = "http://www.wikipathways.org/wpi/webservice/webservice.php/getPathway?pwId=" . $pwId . "&revision=0";
+  $gpmlUrl = "http://www.wikipathways.org//wpi/wpi.php?action=downloadFile&type=gpml&pwTitle=Pathway:" . $pwId;
+  //$gpml = simplexml_load_file($gpmlUrl);
 
-$sGpml = (String)$xml->AsXML();
-echo "<div id='gpml'>".$sGpml."</div>";
+  //$xml->registerXPathNamespace('ns1', 'http://www.wso2.org/php/xsd');
+  //$xml->registerXPathNamespace('ns2', 'http://www.wikipathways.org/webservice');
+  //$gpmlArr = $xml->xpath('//ns2:gpml');
+  //echo $gpmlStr = $gpmlArr[0]->asSTR();
+
+  // how do I make php parse this file? This below produces incorrect results.
+  //$gpml = new SimpleXMLElement($gpmlStr);
+  //echo $gpml->asXML();
+
+  //$gpmlArr = $xml->xpath('//ns2:gpml');
+  //$gpmlStr = $gpmlArr[0];
+  //$gpml = $gpmlStr->asXML();
+}
+elseif (isset($_GET['pathway'])) {
+  echo "<script>var local = true</script>";
+  $pathway = $_GET['pathway'];
+  $gpmlUrl = "../../test/" . $pathway;
+}
+
+//$content = file_get_contents($gpmlUrl);
+//$lines = explode("\n", $content);
+//echo $skipped_content = implode("\n", array_slice($lines, 1));
+
+$gpmlStr = file_get_contents($gpmlUrl);
+$doc = new DOMDocument();
+$doc->loadXML($gpmlStr);
+
+echo "<div id='gpml' style='display:none'>";
+
+// need to do this, because it appears Chrome will incorrectly close the self-closing tags in gpml.
+
+echo $doc->saveXML(null, LIBXML_NOEMPTYTAG);
+echo "</div>";
+
+//$gpml = simplexml_load_file($gpmlUrl);
+// output the result
+//echo $gpml->asXML();
 
 ?>
-
-<script>
-var gpmlDiv = document.getElementById('gpml');
-gpmlDiv.style.display = 'none';
-</script>
 
 <object id="pathway-container" data="pathwaydefs.svg" type="image/svg+xml" width="100%" height="100%" onload="drawPathway()"></object>
 
 <script>
-var batikSvg = document.getElementsByTagName('svg')[0];
-batikSvg.style.display = 'none';
+  function toggleVisibility() {
+    if(pathVisioJsObj.style.display === 'block') {
+      pathVisioJsObj.setAttribute('style','display: none');
+      batikSvg.style.display = 'block';
+      document.getElementById('svgCreator').textContent = 'Batik';
+    }
+    else {
+      pathVisioJsObj.setAttribute('style','display: block');
+      batikSvg.style.display = 'none';
+      document.getElementById('svgCreator').textContent = 'pathvisio.js';
+    };
+    console.log('toggled');
+  };
 
-var pathVisioJsObj = document.getElementById('pathway-container');
-pathVisioJsObj.setAttribute('style','display: block');
+  if (local === false) {
+    var batikSvg = document.getElementsByTagName('svg')[0];
+    batikSvg.style.display = 'none';
 
-function toggleVisibility() {
-  if(pathVisioJsObj.style.display === 'block') {
-    pathVisioJsObj.setAttribute('style','display: none');
-    batikSvg.style.display = 'block';
-    document.getElementById('svgCreator').textContent = 'Batik';
+    var pathVisioJsObj = document.getElementById('pathway-container');
+    pathVisioJsObj.setAttribute('style','display: block');
   }
   else {
-    pathVisioJsObj.setAttribute('style','display: block');
-    batikSvg.style.display = 'none';
-    document.getElementById('svgCreator').textContent = 'pathvisio.js';
+    var toggle = document.getElementById('toggle');
+    toggle.style.display = 'none';
   };
-  console.log('toggled');
-};
 </script>
 </body>
