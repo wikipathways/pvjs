@@ -126,7 +126,7 @@ Either convert SVG to PDF and import PDF into Illustrator or convert SVG to .ai 
 	}
 
 	.title-block {
-		font-family: Sans-Serif;
+		font-family: Times;
 		font-size: 10px;
 		fill: black;
 		stroke: none;
