@@ -22,18 +22,24 @@ http://google-styleguide.googlecode.com/svn/trunk/jsoncstyleguide.xml#General_Gu
 
 <div id="toggle"><button class="link" onclick="toggleVisibility()">Toggle SVG Creator</button> Current SVG Creator: <span id="svgCreator">pathvisio.js</span></div> 
 
+<div id="pathway-container">
 <?php
   //$pathwayDefsSvgUrl = "https://raw.github.com/wikipathways/pathvisio.js/dev/app/partials/pathwaydefs.svg";
   //$pathwayDefsSvg = file_get_contents($pathwayDefsSvgUrl);
   //$imageData = base64_encode($pathwayDefsSvg);
   //echo "<object id='pathway-container' type='image/svg+xml' data='" . $imageData . "' width='100%' height='100%' onload='drawPathway()'>";
 
-  $pathwayDefsSvgUrl = "https://raw.github.com/wikipathways/pathvisio.js/dev/app/partials/pathwaydefs.svg";
+  $repo = "wikipathways";
+  if (isset($_GET['repo'])) {
+    $repo = $_GET['repo'];
+  }
+
+  $pathwayDefsSvgUrl = "https://raw.github.com/" . $repo . "/pathvisio.js/dev/app/partials/pathwaydefs.svg";
   $pathwayDefsSvg = simplexml_load_file($pathwayDefsSvgUrl);
   echo $pathwayDefsSvg->saveXML();
 
 ?>
-</object>
+</div>
 
 <?php
 if (isset($_GET['pwId'])) {
@@ -44,7 +50,10 @@ if (isset($_GET['pwId'])) {
   $svg = simplexml_load_file($svgUrl);
 
   $display = $svg->addAttribute('display', 'none');
-  echo $svg->saveXML();
+
+  echo "<div id='batik-svg'>";
+    echo $svg->saveXML();
+  echo "</div>";
 
   //imagecreatefrompng($url);
   //imagecreatefromstring(file_get_contents($url));
@@ -114,7 +123,7 @@ window.onload = drawPathway();
   };
 
   if (local === false) {
-    var batikSvg = document.getElementsByTagName('svg')[0];
+    var batikSvg = document.getElementById('batik-svg').getElementsByTagName('svg')[0];
     batikSvg.style.display = 'none';
 
     var pathVisioJsObj = document.getElementById('pathway-image');
