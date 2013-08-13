@@ -23,6 +23,19 @@ http://google-styleguide.googlecode.com/svn/trunk/jsoncstyleguide.xml#General_Gu
 <div id="toggle"><button class="link" onclick="toggleVisibility()">Toggle SVG Creator</button> Current SVG Creator: <span id="svgCreator">pathvisio.js</span></div> 
 
 <?php
+  //$pathwayDefsSvgUrl = "https://raw.github.com/wikipathways/pathvisio.js/dev/app/partials/pathwaydefs.svg";
+  //$pathwayDefsSvg = file_get_contents($pathwayDefsSvgUrl);
+  //$imageData = base64_encode($pathwayDefsSvg);
+  //echo "<object id='pathway-container' type='image/svg+xml' data='" . $imageData . "' width='100%' height='100%' onload='drawPathway()'>";
+
+  $pathwayDefsSvgUrl = "https://raw.github.com/wikipathways/pathvisio.js/dev/app/partials/pathwaydefs.svg";
+  $pathwayDefsSvg = simplexml_load_file($pathwayDefsSvgUrl);
+  echo $pathwayDefsSvg->saveXML();
+
+?>
+</object>
+
+<?php
 if (isset($_GET['pwId'])) {
   echo "<script>var local = false</script>";
   $pwId = $_GET['pwId'];
@@ -80,9 +93,12 @@ echo "</div>";
 
 ?>
 
+<!--
 <object id="pathway-container" data="pathwaydefs.svg" type="image/svg+xml" width="100%" height="100%" onload="drawPathway()"></object>
+-->
 
 <script>
+window.onload = drawPathway();
   function toggleVisibility() {
     if(pathVisioJsObj.style.display === 'block') {
       pathVisioJsObj.setAttribute('style','display: none');
@@ -101,7 +117,7 @@ echo "</div>";
     var batikSvg = document.getElementsByTagName('svg')[0];
     batikSvg.style.display = 'none';
 
-    var pathVisioJsObj = document.getElementById('pathway-container');
+    var pathVisioJsObj = document.getElementById('pathway-image');
     pathVisioJsObj.setAttribute('style','display: block');
   }
   else {

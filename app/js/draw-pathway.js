@@ -40,9 +40,15 @@ function getMarker(name, position, color) {
     // else create a new marker with the desired color
 
     else {
+      /*
       var svg = d3.select("#pathway-container").select(function() {
         return this.contentDocument.documentElement;
       });
+      */
+
+      var svg = d3.select("#pathway-image");
+      console.log('svg');
+      console.log(svg);
 
       var markerElementBlack = svg.select('marker#' + name + '-' + position + '-black');
 
@@ -403,12 +409,23 @@ function drawPathway() {
       .attr("y", d3.event.y);
   }	
 
+
+  /*
   var svg = d3.select("#pathway-container").select(function() {
     return this.getSVGDocument().documentElement;
   });
+  */
 
+  var svg = d3.select("#pathway-image");
+  console.log('svg');
+  console.log(svg);
+  self.svg = svg;
   svg.attr('width', pathway.boardWidth);
   svg.attr('height', pathway.boardHeight);
+  /*
+  svg.setAttribute('width', pathway.boardWidth);
+  svg.setAttribute('height', pathway.boardHeight);
+  */
 
   var symbolsAvailable = svg.selectAll('symbol');
   var markersAvailable = svg.selectAll('marker');
