@@ -1,0 +1,15 @@
+p.authorerror {
+	background-color: #FFD5D4;
+	text-align: center;
+}
+
+div.authorprogress {
+	background-image:url("progress.gif");
+	background-repeat:no-repeat;
+	background-position: top center;
+}
+
+.author {
+	font-weight: bold;
+	font-size: larger;
+}
