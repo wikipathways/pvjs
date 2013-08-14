@@ -26,7 +26,7 @@ http://google-styleguide.googlecode.com/svn/trunk/jsoncstyleguide.xml#General_Gu
   <ul>
     <?php
       foreach (glob("gpml/*.gpml") as $filename) {
-          echo "<li><a href='../src/views/index.php?pathwayUrl=".$filename."'>".$filename."</a></li>";
+          echo "<li><a href='../src/views/index.php?pathwayUrl=../../test/".$filename."'>".$filename."</a></li>";
       }
      ?>
   </ul>
