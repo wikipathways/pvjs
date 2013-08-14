@@ -118,7 +118,7 @@ Either convert SVG to PDF and import PDF into Illustrator or convert SVG to .ai 
 	}
 
 	text {
-		font-family: Sans-Serif;
+		font-family: 'Open Sans Light',sans-serif;
 		font-size: 10px;
 		fill: black;
 		stroke: none;
@@ -127,7 +127,7 @@ Either convert SVG to PDF and import PDF into Illustrator or convert SVG to .ai 
 
 	.title-block {
 		font-family: Times;
-		font-size: 10px;
+		font-size: 12px;
 		fill: pink;
 		stroke: none;
 		text-anchor: start;
