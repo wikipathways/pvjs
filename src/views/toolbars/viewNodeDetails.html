@@ -1,0 +1,19 @@
+<div>
+	<div style="position:relative; float:left; margin-right:5;">
+		<span style="background-color:black; color:white; font-weight:bold; border:3px solid black;">Sulfate</span> (Metabolite)
+	</div>
+	<div style="position:relative; float:left; margin-right:5;">
+		<span ng-include src="'partials/buttons/selectDatabase.html'"></span>
+	</div>
+	<div style="position:relative; float:left; margin-right:5;">
+		<select>
+		    <option ng-repeat="identifier in identifiers" value="{{identifier}}">{{identifier}}</option>
+		</select>
+	</div>
+	<!-- The code below is an alternative version of displaying multiple identifiers. It is possible to add the links with data-html="true", but it appears that would require using the full bootstrap <http://twitter.github.io/bootstrap/javascript.html#popovers> instead of the angular bootstrap ui <http://angular-ui.github.io/bootstrap/> I have been using, because that might allow for XSS <https://github.com/angular-ui/bootstrap/issues/520> -->
+	<div style="position:relative; float:left; margin-right:5;">
+		<span id="moreIdentifiers"
+        popover="GO:0030528 GO:0004871 GO:0005634 GO:0007165" 
+	popover-trigger="click">...</span>
+	</div>
+</div>
