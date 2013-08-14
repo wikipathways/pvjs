@@ -31,8 +31,16 @@ http://google-styleguide.googlecode.com/svn/trunk/jsoncstyleguide.xml#General_Gu
 
   $repo = "wikipathways";
   if (isset($_GET['repo'])) {
-    $repo = $_GET['repo'];
+    if (($_GET['repo'] == 'AlexanderPico') || ($_GET['repo'] == 'ariutta')) {
+      $repo = $_GET['repo'];
+    }
   }
+
+  //Is the code below ok wrt to security?
+  //
+  //if (isset($_GET['repo'])) {
+  //  $repo = $_GET['repo'];
+  //}
 
   $pathwayDefsSvgUrl = "https://raw.github.com/" . $repo . "/pathvisio.js/dev/app/partials/pathwaydefs.svg";
   $pathwayDefsSvg = simplexml_load_file($pathwayDefsSvgUrl);

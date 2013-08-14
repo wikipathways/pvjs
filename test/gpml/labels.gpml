@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Pathway xmlns="http://pathvisio.org/GPML/2013a" Name="Labels" Version="20130813">
+  <Graphics BoardWidth="2374.73242392445" BoardHeight="866.3043343974562" />
+  <Label TextLabel="Label&#xA;font:  Times New Roman" GraphId="a14a0">
+    <Graphics CenterX="146.9477482258786" CenterY="205.0702304001955" Width="176.21451268746466" Height="86.8179688057132" ZOrder="32832" FillColor="99ffff" FontName="Times New Roman" FontSize="15" Valign="Middle" ShapeType="Rectangle" />
+  </Label>
+  <Label TextLabel="Label" GraphId="bd539">
+    <Graphics CenterX="152.35570699232505" CenterY="136.56092972067637" Width="80.0" Height="20.0" ZOrder="32833" FillColor="99ffff" FontSize="10" Valign="Middle" ShapeType="Rectangle" />
+  </Label>
+  <Label TextLabel="Label for the&#xA;rendering of text&#xA;bold, italic&#xA;bottom, right" GraphId="facfb">
+    <Graphics CenterX="152.35570699232497" CenterY="318.2364657903623" Width="138.8298740743348" Height="119.30921454152676" ZOrder="32834" FillColor="99ffff" FontWeight="Bold" FontStyle="Italic" FontSize="12" Valign="Bottom" Align="Right" ShapeType="Rectangle" />
+  </Label>
+  <Label TextLabel="Label for the&#xA;rendering of text&#xA;bold, italic&#xA;top, left" GraphId="f066f">
+    <Graphics CenterX="152.35570699232503" CenterY="596.0045658363698" Width="138.829874074335" Height="119.30921454152683" ZOrder="32835" FillColor="99ffff" FontWeight="Bold" FontStyle="Italic" FontSize="12" Align="Left" ShapeType="Rectangle" />
+  </Label>
+  <Label TextLabel="Label for the&#xA;rendering of text&#xA;bold, italic&#xA;middle, center" GraphId="c07b0">
+    <Graphics CenterX="152.3557069923253" CenterY="456.19642827572363" Width="138.82987407433464" Height="119.30921454152683" ZOrder="32836" FillColor="99ffff" FontWeight="Bold" FontStyle="Italic" FontSize="12" Valign="Middle" ShapeType="Rectangle" />
+  </Label>
+  <InfoBox CenterX="0.0" CenterY="0.0" />
+  <Biopax />
+</Pathway>
+
