@@ -19,8 +19,24 @@ http://google-styleguide.googlecode.com/svn/trunk/jsoncstyleguide.xml#General_Gu
 <script src="../js/draw-pathway.js"></script>
 </head>
 <body>
+<!--
+<script>
+function getUrlParameter(name) {
+  return decodeURIComponent((new RegExp('[?|&]' + name + '=' + '([^&;]+?)(&|#|;|$)').exec(location.search)||[,""])[1].replace(/\+/g, '%20'))||null
+};
+var repo = getUrlParameter('repo');
+</script>
+-->
 
 <div id="toggle"><button class="link" onclick="toggleVisibility()">Toggle SVG Creator</button> Current SVG Creator: <span id="svgCreator">pathvisio.js</span></div> 
+<p>To see results of editing pathway template SVG file, first let Anders or Alex know you want to be added. Then you can edit the file pathway-template.svg on your github fork of pathvisio.js, commit, enter URL parameter 'repo' above as "repo=YourGithubId" and refresh.</p>
+
+<!--
+<div>
+Repo from which to pull pathway template svg: <INPUT id="repo" type="text" SIZE="30" MAXLENGTH="30" VALUE="wikipathways">
+<button class="link" onclick="insertParam('repo', repo)">Reload pathway template svg</button> 
+</div>
+-->
 
 <div id="pathway-container">
 <?php
@@ -31,7 +47,7 @@ http://google-styleguide.googlecode.com/svn/trunk/jsoncstyleguide.xml#General_Gu
 
   $repo = "wikipathways";
   if (isset($_GET['repo'])) {
-    if (($_GET['repo'] == 'AlexanderPico') || ($_GET['repo'] == 'ariutta')) {
+    if (($_GET['repo'] == 'AlexanderPico') || ($_GET['repo'] == 'ariutta') || ($_GET['repo'] == 'khanspers')) {
       $repo = $_GET['repo'];
     }
   }
@@ -114,7 +130,33 @@ echo "</div>";
 -->
 
 <script>
-window.onload = drawPathway();
+  function insertParam(key, value)
+  {
+      key = encodeURI(key); value = encodeURI(value);
+
+      var kvp = document.location.search.substr(1).split('&');
+
+      var i=kvp.length; var x; while(i--) 
+      {
+          x = kvp[i].split('=');
+
+          if (x[0]==key)
+          {
+              x[1] = value;
+              kvp[i] = x.join('=');
+              break;
+          }
+      }
+
+      if(i<0) {kvp[kvp.length] = [key,value].join('=');}
+
+      //this will reload the page, it's likely better to store this until finished
+      document.location.search = kvp.join('&'); 
+      document.location.search = kvp.join('&'); 
+  }
+
+  window.onload = drawPathway();
+
   function toggleVisibility() {
     if(pathVisioJsObj.style.display === 'block') {
       pathVisioJsObj.setAttribute('style','display: none');
