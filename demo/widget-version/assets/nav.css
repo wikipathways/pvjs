@@ -1,0 +1,70 @@
+/* navigation stylesheet */
+
+#navcontainer { width:223px; padding:0 0 1em 0; margin-bottom:1em; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; font-weight:bold; letter-spacing:.05em; color:#333; }
+#navcontainer ul { list-style:none; margin:0; padding:0; border:none; }
+#navcontainer li { border-bottom:1px solid #e9f3fc; margin:0; }
+
+html>body #navcontainer li a { width:auto; }
+
+#navcontainer a { display:block; padding:5px 5px 5px 15px; border-left:7px solid #9bd; background-color:#9bd; color:#fff; text-decoration:none; width:100%; }
+#navcontainer a:hover { border-left:7px solid #9bd; background-color:#68a; color:#fff; }
+
+#home a { background-color:#9bd; border-left:7px solid #9bd; }
+#clinical a:hover { background-color:#e82; border-left:7px solid #ea5; }
+#patient a:hover { background-color:#6aa; border-left:7px solid #9cc; }
+#education a:hover { background-color:#88b; border-left:7px solid #aad; }
+#research a:hover { background-color:#fb2; border-left:7px solid #fd6; }
+#referrals a:hover { background-color:#c55; border-left:7px solid #e88; }
+#intranet a:hover { background-color:#777; border-left:7px solid #aaa; }
+
+
+#navcontainer2 { width:223px; font-family:Arial, Helvetica, sans-serif; font-size:0.9em; font-weight:bold; letter-spacing:.05em; color:#333; }
+#navcontainer2 ul { list-style:none; border:none; }
+#navcontainer2 li { border-bottom:1px solid #e9f3fc; margin:0; }
+html>body #navcontainer2 li a { width:auto; }
+
+#navcontainer2 a { display:block; padding:3px 5px 3px 25px; border-left:7px solid #9bd; background-color:#9bd; color:#fff; text-decoration:none; width:100%; }
+#navcontainer2 a:hover { border-left:7px solid #8ac; background-color:#68a; color:#fff; }
+
+#home a { background-color:#9bd; border-left:7px solid #9bd; }
+#clinical2 a { border-left:7px solid #e82; }
+#patient2 a { border-left:7px solid #599; }
+#education2 a { border-left:7px solid #88b; }
+#research2 a { border-left:7px solid #fb2; }
+#referrals2 a { border-left:7px solid #c55; }
+#intranet2 a { border-left:7px solid #777; }
+#clinical2 a:hover { background-color:#e82; border-left:7px solid #ea5; }
+#patient2 a:hover { background-color:#6aa; border-left:7px solid #9cc; }
+#education2 a:hover { background-color:#88b; border-left:7px solid #aad; }
+#research2 a:hover { background-color:#fb2; border-left:7px solid #fd6; }
+#referrals2 a:hover { background-color:#c55; border-left:7px solid #e88; }
+#intranet2 a:hover { background-color:#777; border-left:7px solid #aaa; }
+
+/* current section colors (top level) */
+#navcontainer a.current { background-color:#68a; border-left:7px solid #8ac; }
+#home a.current { background-color:#68a; border-left:7px solid #8ac; }
+#clinical a.current { background-color:#e82; border-left:7px solid #ea5; }
+#patient a.current { background-color:#6aa; border-left:7px solid #9cc; }
+#education a.current { background-color:#88b; border-left:7px solid #aad; }
+#research a.current { background-color:#fb2; border-left:7px solid #fd6; }
+#referrals a.current { background-color:#c55; border-left:7px solid #e88; }
+#intranet a.current { background-color:#777; border-left:7px solid #aaa; }
+
+/* current section colors (subsidiary levels) */
+#navcontainer a.sub { background-color:#68a; border-left:7px solid #68a; }
+#home a.sub { background-color:#68a; border-left:7px solid #68a; }
+#clinical a.sub { background-color:#e82; border-left:7px solid #e82; }
+#patient a.sub { background-color:#6aa; border-left:7px solid #6aa; }
+#education a.sub { background-color:#88b; border-left:7px solid #88b; }
+#research a.sub { background-color:#fb2; border-left:7px solid #fb2; }
+#referrals a.sub { background-color:#c55; border-left:7px solid #c55; }
+#intranet a.sub { background-color:#777; border-left:7px solid #777; }
+
+#navcontainer2 a.current { background-color:#68a; border-left:7px solid #8ac; }
+#clinical2 a.current { background-color:#e82; border-left:7px solid #ea5; }
+#patient2 a.current { background-color:#6aa; border-left:7px solid #9cc; }
+#education2 a.current { background-color:#88b; border-left:7px solid #aad; }
+#research2 a.current { background-color:#fb2; border-left:7px solid #fd6; }
+#referrals2 a.current { background-color:#c55; border-left:7px solid #e88; }
+#intranet2 a.current { background-color:#777; border-left:7px solid #aaa; }
+

@@ -26,7 +26,7 @@ http://google-styleguide.googlecode.com/svn/trunk/jsoncstyleguide.xml#General_Gu
   <ul>
     <?php
       foreach (glob("gpml/*.gpml") as $filename) {
-          echo "<li><a href='../app/partials/render-d3.php?pathway=".$filename."'>".$filename."</a></li>";
+          echo "<li><a href='../src/views/index.php?pathwayUrl=".$filename."'>".$filename."</a></li>";
       }
      ?>
   </ul>
@@ -49,7 +49,7 @@ http://google-styleguide.googlecode.com/svn/trunk/jsoncstyleguide.xml#General_Gu
 
       $i = 0;
       foreach ($ids as $id) {
-        echo "<li><a href='../app/partials/render-d3.php?pwId=" . $id . "'>" . $id . ": " . $names[$i] . ", " . $species[$i] . "</a></li>";
+        echo "<li><a href='../src/views/index.php?pwId=" . $id . "'>" . $id . ": " . $names[$i] . ", " . $species[$i] . "</a></li>";
         $i = $i + 1;
       }
      ?>
