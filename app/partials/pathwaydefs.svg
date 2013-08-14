@@ -188,6 +188,7 @@ Either convert SVG to PDF and import PDF into Illustrator or convert SVG to .ai 
 	.metabolite {
 		stroke: red;
 		fill: blue;
+		fill-opacity:0.3;
 	}
 
 	text.metabolite {
