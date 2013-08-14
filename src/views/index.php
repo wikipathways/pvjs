@@ -24,7 +24,7 @@ http://google-styleguide.googlecode.com/svn/trunk/jsoncstyleguide.xml#General_Gu
 
 <div id="pathway-container">
 <?php
-  //$pathwayDefsSvgUrl = "https://raw.github.com/wikipathways/pathvisio.js/dev/app/partials/pathway-template.svg";
+  //$pathwayDefsSvgUrl = "https://raw.github.com/wikipathways/pathvisio.js/dev/src/views/pathway-template.svg";
   //$pathwayDefsSvg = file_get_contents($pathwayDefsSvgUrl);
   //$imageData = base64_encode($pathwayDefsSvg);
   //echo "<object id='pathway-container' type='image/svg+xml' data='" . $imageData . "' width='100%' height='100%' onload='drawPathway()'>";
@@ -42,7 +42,7 @@ http://google-styleguide.googlecode.com/svn/trunk/jsoncstyleguide.xml#General_Gu
   //  $repo = $_GET['repo'];
   //}
 
-  $pathwayDefsSvgUrl = "https://raw.github.com/" . $repo . "/pathvisio.js/dev/app/partials/pathway-template.svg";
+  $pathwayDefsSvgUrl = "https://raw.github.com/" . $repo . "/pathvisio.js/dev/src/views/pathway-template.svg";
   $pathwayDefsSvg = simplexml_load_file($pathwayDefsSvgUrl);
   echo $pathwayDefsSvg->saveXML();
 
