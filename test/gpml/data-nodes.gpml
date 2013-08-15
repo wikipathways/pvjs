@@ -1,31 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Pathway xmlns="http://pathvisio.org/GPML/2013a" Name="Data Nodes" Version="20130813">
-  <Graphics BoardWidth="154.8898678414097" BoardHeight="374.8898678414097" />
-  <DataNode TextLabel="Metabolite" GraphId="decd6" Type="Metabolite">
-    <Graphics CenterX="84.88986784140971" CenterY="115.72687224669603" Width="80.0" Height="20.0" ZOrder="32769" FontSize="10" Valign="Middle" Color="0000ff" />
+<Pathway xmlns="http://pathvisio.org/GPML/2013a" Name="New Pathway" Version="20130815">
+  <Graphics BoardWidth="128.11965811965814" BoardHeight="412.6495726495727" />
+  <DataNode TextLabel="GeneProduct" GraphId="bbd97" Type="GeneProduct">
+    <Graphics CenterX="49.57264957264958" CenterY="71.7948717948718" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
     <Xref Database="" ID="" />
   </DataNode>
-  <DataNode TextLabel="Pathway" GraphId="ef8b4" Type="Pathway">
-    <Graphics CenterX="84.88986784140968" CenterY="174.09691629955952" Width="80.0" Height="20.0" ZOrder="32770" FontWeight="Bold" FontSize="12" Valign="Middle" ShapeType="None" Color="14961e" />
+  <DataNode TextLabel="Metabolite" GraphId="c7fc2" Type="Metabolite">
+    <Graphics CenterX="49.57264957264958" CenterY="123.0769230769231" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff" />
     <Xref Database="" ID="" />
   </DataNode>
-  <DataNode TextLabel="GeneProduct" GraphId="de018" Type="GeneProduct">
-    <Graphics CenterX="84.88986784140968" CenterY="78.2819383259912" Width="80.0" Height="20.0" ZOrder="32771" FontSize="10" Valign="Middle" />
+  <DataNode TextLabel="Pathway" GraphId="ec253" Type="Pathway">
+    <Graphics CenterX="49.572649572649574" CenterY="196.58119658119662" Width="80.0" Height="20.0" ZOrder="32768" FontWeight="Bold" FontSize="12" Valign="Middle" ShapeType="None" Color="14961e" />
     <Xref Database="" ID="" />
   </DataNode>
-  <DataNode TextlabeltLabel="Rna" GraphId="ff21c" Type="Rna">
-    <Graphics CenterX="84.88986784140968" CenterY="286.43171806167396" Width="80.0" Height="20.0" ZOrder="32772" FontSize="10" Valign="Middle" />
+  <DataNode TextLabel="Protein" GraphId="d4b93" Type="Protein">
+    <Graphics CenterX="49.57264957264958" CenterY="252.99145299145306" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
     <Xref Database="" ID="" />
   </DataNode>
-  <DataNode TextLabel="Protein" GraphId="ec23d" Type="Protein">
-    <Graphics CenterX="84.88986784140968" CenterY="232.46696035242294" Width="80.0" Height="20.0" ZOrder="32773" FontSize="10" Valign="Middle" />
+  <DataNode TextLabel="Rna" GraphId="a9150" Type="Rna">
+    <Graphics CenterX="49.57264957264958" CenterY="316.2393162393163" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
     <Xref Database="" ID="" />
   </DataNode>
-  <DataNode TextLabel="Unknown" GraphId="d8664">
-    <Graphics CenterX="84.88986784140971" CenterY="334.8898678414097" Width="80.0" Height="20.0" ZOrder="32774" FontSize="10" Valign="Middle" />
+  <DataNode TextLabel="Unknown" GraphId="fca47">
+    <Graphics CenterX="49.57264957264958" CenterY="365.8119658119659" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
     <Xref Database="" ID="" />
   </DataNode>
   <InfoBox CenterX="0.0" CenterY="0.0" />
-  <Biopax />
 </Pathway>
 
