@@ -13,7 +13,7 @@
     <Graphics CenterX="84.88986784140968" CenterY="78.2819383259912" Width="80.0" Height="20.0" ZOrder="32771" FontSize="10" Valign="Middle" />
     <Xref Database="" ID="" />
   </DataNode>
-  <DataNode TextLabel="Rna" GraphId="ff21c" Type="Rna">
+  <DataNode TextlabeltLabel="Rna" GraphId="ff21c" Type="Rna">
     <Graphics CenterX="84.88986784140968" CenterY="286.43171806167396" Width="80.0" Height="20.0" ZOrder="32772" FontSize="10" Valign="Middle" />
     <Xref Database="" ID="" />
   </DataNode>
