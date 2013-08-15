@@ -10,13 +10,26 @@ http://google-styleguide.googlecode.com/svn/trunk/javascriptguide.xml
 http://google-styleguide.googlecode.com/svn/trunk/jsoncstyleguide.xml#General_Guidelines
 -->
 
-<script src="../js/jxon.js"></script>
-<script src="../js/jquery-1.9.1.js"></script>
+<script src="../js/gpml2json/gpml2json.js"></script>
+<script src="../js/gpml2json/jxon.js"></script>
+
 <script src="../js/rgbcolor.js"></script>
-<script src="../js/d3.v3/d3.v3.js" charset="utf-8"></script>
-<script src="../js/gpml2json.js"></script>
-<script src="../js/rgbcolor.js"></script>
-<script src="../js/draw-pathway.js"></script>
+
+<script src="../js/draw-pathway/draw-pathway.js"></script>
+<script src="../js/draw-pathway/clone.js"></script>
+<script src="../js/draw-pathway/get-url-parameter.js"></script>
+<script src="../js/draw-pathway/get-marker.js"></script>
+<script src="../js/draw-pathway/edge-terminus.js"></script>
+<script src="../js/draw-pathway/get-path-data.js"></script>
+<script src="../js/draw-pathway/get-element-coordinates.js"></script>
+<script src="../js/draw-pathway/draw-edges.js"></script>
+<script src="../js/draw-pathway/draw-info-box.js"></script>
+<script src="../js/draw-pathway/draw-groups.js"></script>
+<script src="../js/draw-pathway/draw-labelable-elements.js"></script>
+
+
+<script src="../lib/jquery/jquery.js"></script>
+<script src="../lib/d3/d3.js" charset="utf-8"></script>
 </head>
 <body>
 <!--

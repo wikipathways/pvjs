@@ -125,7 +125,7 @@ Either convert SVG to PDF and import PDF into Illustrator or convert SVG to .ai 
 		text-anchor: middle;
 	}
 
-	.title-block {
+	.info-box {
 		font-family: Sans-Serif;
 		font-size: 10px;
 		fill: black;
@@ -133,7 +133,7 @@ Either convert SVG to PDF and import PDF into Illustrator or convert SVG to .ai 
 		text-anchor: start;
 	}
 
-	.title-block-property-name {
+	.info-box-property-name {
 		font-weight: bold;
 	}
 
