@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Pathway xmlns="http://pathvisio.org/GPML/2013a" Name="New Pathway" Version="20130809">
-  <Graphics BoardWidth="542.9680170575696" BoardHeight="390.01137171286433" />
+  <Graphics BoardWidth="807.7777777777778" BoardHeight="407.7777777777778" />
   <DataNode TextLabel="GeneProduct" GraphId="b0e11" Type="GeneProduct" GroupRef="af6f7">
     <Graphics CenterX="85.33759772565742" CenterY="105.23809523809524" Width="80.0" Height="20.0" ZOrder="32779" FontSize="10" Valign="Middle" />
     <Xref Database="" ID="" />
@@ -9,6 +9,9 @@
     <Graphics CenterX="102.9627655373923" CenterY="165.5269288478246" Width="80.0" Height="20.0" ZOrder="32780" FontSize="10" Valign="Middle" Color="0000ff" />
     <Xref Database="" ID="" />
   </DataNode>
+  <Label TextLabel="There is a bug PathVisio (Java) that&#xA;causes it to render the group as&#xA;including point 0,0 when it should not." GraphId="ba27a">
+    <Graphics CenterX="111.62393162393165" CenterY="252.26495726495727" Width="207.52136752136747" Height="69.82905982905982" ZOrder="28672" FillColor="ffffff" FontSize="10" Valign="Middle" />
+  </Label>
   <Group GroupId="af6f7" Style="Complex" />
   <Group GroupId="eda89" Style="Complex" />
   <Group GroupId="c28b1" Style="Group" />

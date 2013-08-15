@@ -61,8 +61,14 @@ function drawPathway() {
   var markersAvailable = markersAvailable = svg.selectAll('marker');
 
   drawEdges();
-  drawInfoBox();
-  drawGroups();
+  setTimeout(function(){
+    drawInfoBox();
+  }, 50);
+  setTimeout(function(){
+    drawGroups();
+  }, 10);
+  setTimeout(function(){
   drawLabelableElements();
+  }, 150);
 
 };
