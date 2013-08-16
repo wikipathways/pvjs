@@ -18,7 +18,7 @@ JS all inside this document.
 
 Doctypes are not needed for SVG, and jwatt discourages their use:
 https://jwatt.org/svg/authoring/.
-
+f
 Style guides can be arbitrary, but for consistency of SVG markup for the pathvisio.js project,
 	I suggest using JS Watt's SVG authoring advice and Google's HTML and JavaScript Guides:
 	https://jwatt.org/svg/authoring/
@@ -533,7 +533,7 @@ Markers (Arrowheads)
 	stroke="black"
 	viewBox="0 -6 12 12">
 	<line fill="none" stroke="#000000" stroke-width="1" x1="10.787" y1="-6" x2="10.787" y2="6"/>
-	<polygon fill="none" stroke="#000000" stroke-width="1" points="8.888,3.688 1.148,0.000 8.888,-4.328 "/>
+	<polygon fill="none" stroke="#000000" stroke-width="1" points="8.888,3.688 1.148,0.000 8.888,-5.800 "/>
 	</marker>
 
 	<marker id="mim-necessary-stimulation-end-black"
