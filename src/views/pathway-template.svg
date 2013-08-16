@@ -319,8 +319,8 @@ Markers (Arrowheads)
 	orient="auto"
 	refX="0" refY="0"
 	viewBox="0 -6 12 12">
-	<line fill="none" stroke="default-element-color-stroke" stroke-width="1.2" x1="-5" y1="-6" x2="-5" y2="6"/>
-	<polygon fill="default-background-color-fill" stroke-width="0" points="4.4,5 0,5 0,-5 4.4,-5"/>
+	<line fill="none" class="default-element-color-stroke" stroke-width="1.2" x1="-5" y1="-6" x2="-5" y2="6"/>
+	<polygon class="default-background-color-fill" stroke-width="0" points="4.4,5 0,5 0,-5 4.4,-5"/>
 	</marker>
 
 	<marker id="t-bar-end-black"
@@ -330,8 +330,8 @@ Markers (Arrowheads)
 	orient="auto"
 	refX="0" refY="0"
 	viewBox="-12 -6 12 12">
-	<line fill="none" stroke="default-element-color-stroke" stroke-width="1.2" x1="-5" y1="-6" x2="-5" y2="6"/>
-	<polygon fill="default-background-color-fill" stroke-width="0" points="-4.4,5 0,5 0,-5 -4.4,-5"/>
+	<line fill="none" class="default-element-color-stroke" stroke-width="1.2" x1="-5" y1="-6" x2="-5" y2="6"/>
+	<polygon class="default-background-color-fill" stroke-width="0" points="-4.4,5 0,5 0,-5 -4.4,-5"/>
 	</marker>
 
 	<!-- mim-binding markers -->
