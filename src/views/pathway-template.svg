@@ -363,7 +363,7 @@ Markers (Arrowheads)
 	markerUnits="strokeWidth"
 	orient="auto"
 	refX="0" refY="0"
-	stroke="default-element-color-stroke"
+	stroke="black" <!--"default-element-color-stroke"-->
 	viewBox="0 -6 12 12">
 	<circle cx="5" cy="0" r="5px" stroke-width="1px"/>
 	</marker>
@@ -375,7 +375,7 @@ Markers (Arrowheads)
 	markerWidth="10"
 	orient="auto"
 	refX="5" refY="0"
-	stroke="default-element-color-stroke"
+	stroke="black" <!--"default-element-color-stroke"-->
 	viewBox="-6 -6 12 12">
 	<circle cx="0" cy="0" r="5px" stroke-width="1px"/>
 	</marker>
