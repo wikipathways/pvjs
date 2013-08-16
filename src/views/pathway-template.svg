@@ -329,8 +329,8 @@ Markers (Arrowheads)
 	orient="auto"
 	refX="0" refY="0"
 	viewBox="0 -6 12 12">
-	<line fill="none" class="default-element-color-stroke" stroke-width="1.2" x1="-5" y1="-6" x2="-5" y2="6"/>
 	<polygon class="default-background-color-fill" stroke-width="0" points="4.4,5 0,5 0,-5 4.4,-5"/>
+	<line fill="none" class="default-element-color-stroke" stroke-width="1.2" x1="-5" y1="-6" x2="-5" y2="6"/>
 	</marker>
 
 	<marker id="t-bar-end-black"
@@ -340,8 +340,8 @@ Markers (Arrowheads)
 	orient="auto"
 	refX="0" refY="0"
 	viewBox="-12 -6 12 12">
-	<line fill="none" class="default-element-color-stroke" stroke-width="1.2" x1="-5" y1="-6" x2="-5" y2="6"/>
 	<polygon class="default-background-color-fill" stroke-width="0" points="-4.4,5 0,5 0,-5 -4.4,-5"/>
+	<line fill="none" class="default-element-color-stroke" stroke-width="1.2" x1="-5" y1="-6" x2="-5" y2="6"/>
 	</marker>
 
 	<!-- mim-binding markers -->
@@ -397,20 +397,21 @@ Markers (Arrowheads)
 	orient="auto"
 	refX="0" refY="0"
 	viewBox="-6 -6 12 12">
+	<polygon fill="default-background-color-fill" stroke-width="0" points="6,5 0,6 0,-6 6,-6"/>
 	<line fill="none" class="default-element-color-stroke" stroke-width="1" x1="6" y1="0" x2="6" y2="6"/>	
 	<line fill="none" class="default-element-color-stroke" stroke-width="1" x1="6" y1="6" x2="-6" y2="-6"/>	
 	</marker>
 
 	<marker id="mim-cleavage-end-black"
-	class="default-background-color-fill"
 	markerHeight="22"
 	markerWidth="22"
 	markerUnits="strokeWidth"
 	orient="auto"
 	refX="0" refY="0"
 	viewBox="-6 -6 12 12">
+	<polygon fill="default-background-color-fill" stroke-width="0" points="4.4,5 0,5 0,-5 4.4,-5"/>
 	<line fill="none" class="default-element-color-stroke" stroke-width="1" x1="-6" y1="0" x2="-6" y2="-6"/>	
-	<line fill="none" class="default-element-color-stroke" stroke-width="1" x1="6" y1="-6" x2="-6" y2="6"/>	
+	<line fill="none" class="default-element-color-stroke" stroke-width="1" x1="-6" y1="-6" x2="6" y2="6"/>	
 	</marker>
 
 	<!-- mim-conversion markers are incorrect. TODO Replace marker defs. -->
@@ -472,8 +473,8 @@ Markers (Arrowheads)
 	refX="0" refY="0"
 	stroke="black"
 	viewBox="0 -6 12 12">
-	<line fill="none" stroke="#000000" stroke-width="1.2" x1="5" y1="-6" x2="5" y2="6"/>
 	<polygon fill="default-background-color-fill" stroke="#000000" stroke-width="0" points="4.4,5 0,5 0,-5 4.4,-5"/>
+	<line fill="none" stroke="#000000" stroke-width="1.2" x1="5" y1="-6" x2="5" y2="6"/>
 	</marker>
 
 	<marker id="mim-inhibition-end-black"
@@ -484,8 +485,8 @@ Markers (Arrowheads)
 	refX="0" refY="0"
 	stroke="black"
 	viewBox="-12 -6 12 12">
-	<line fill="none" stroke="#000000" stroke-width="1.2" x1="-5" y1="-6" x2="-5" y2="6"/>
 	<polygon fill="default-background-color-fill" stroke="#000000" stroke-width="0" points="-4.4,5 0,5 0,-5 -4.4,-5"/>
+	<line fill="none" stroke="#000000" stroke-width="1.2" x1="-5" y1="-6" x2="-5" y2="6"/>
 	</marker>
 
 	<!-- mim-modification markers are incorrect. TODO Replace marker defs. -->
