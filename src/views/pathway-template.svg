@@ -298,7 +298,7 @@ Markers (Arrowheads)
 	orient="auto"
 	refX="0" refY="0"
 	viewBox="0 -6 12 12">
-	<polygon fill="default-element-color-fill" stroke="default-element-color-stroke" stroke-width="1" points="9,4 1,0 9,-4"/>
+	<polygon class="default-element-color-fill" stroke-width="0" points="10,5 0,0 10,-5"/>
 	</marker>
 
 	<marker id="arrow-end-black"
@@ -307,7 +307,7 @@ Markers (Arrowheads)
 	orient="auto"
 	refX="0" refY="0"
 	viewBox="-12 -6 12 12">
-	<polygon fill="default-element-color-fill" stroke="default-element-color-stroke" stroke-width="1" points="-9,4 1,0 -9,-4"/>
+	<polygon class="default-element-color-fill" stroke-width="0" points="-10,5 0,0 -10,-5"/>
 	</marker>
 
 	<!-- t-bar markers -->
@@ -342,7 +342,7 @@ Markers (Arrowheads)
 	orient="auto"
 	refX="0" refY="0"
 	viewBox="0 -6 12 12">
-	<polygon fill="default-element-color-fill" stroke-width="0" points="12,6 0,0 12,-6 5,0 "/>
+	<polygon class="default-element-color-fill" stroke-width="0" points="12,6 0,0 12,-6 5,0 "/>
 	</marker>
 
 	<marker id="mim-binding-end-black"
@@ -351,7 +351,7 @@ Markers (Arrowheads)
 	orient="auto"
 	refX="0" refY="0"
 	viewBox="-12 -6 12 12">
-	<polygon fill="default-element-color-fill" stroke-width="0" points="-12,6 0,0 -12,-6 -5,0 "/>
+	<polygon class="default-element-color-fill" stroke-width="0" points="-12,6 0,0 -12,-6 -5,0 "/>
 	</marker>
 
 	<!-- mim-catalysis markers -->
@@ -363,9 +363,8 @@ Markers (Arrowheads)
 	markerUnits="strokeWidth"
 	orient="auto"
 	refX="0" refY="0"
-	stroke="black" 
 	viewBox="0 -6 12 12">
-	<circle cx="5" cy="0" r="5px" stroke-width="1px"/>
+	<circle cx="5" cy="0" r="5px" class="default-element-color-stroke" stroke-width="1px"/>
 	</marker>
 
 	<marker id="mim-catalysis-end-black"
@@ -375,9 +374,8 @@ Markers (Arrowheads)
 	markerWidth="10"
 	orient="auto"
 	refX="5" refY="0"
-	stroke="black"
 	viewBox="-6 -6 12 12">
-	<circle cx="0" cy="0" r="5px" stroke-width="1px"/>
+	<circle cx="0" cy="0" r="5px" class="default-element-color-stroke" stroke-width="1px"/>
 	</marker>
 
 	<!-- mim-cleavage markers are incorrect. TODO Replace marker defs. -->
