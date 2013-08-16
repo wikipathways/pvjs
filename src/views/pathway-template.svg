@@ -368,24 +368,24 @@ Markers (Arrowheads)
 
 	<marker id="mim-catalysis-start-black"
 	class="default-background-color-fill"
-	markerHeight="12"
-	markerWidth="12"
+	markerHeight="10"
+	markerWidth="10"
 	markerUnits="strokeWidth"
 	orient="auto"
 	refX="0" refY="0"
 	viewBox="0 -6 12 12">
-	<circle cx="6" cy="0" r="6px" class="default-element-colors-open" stroke-width=".8px"/>
+	<circle cx="5.5" cy="0" r="5.5px" class="default-element-colors-open" stroke-width="1px"/>
 	</marker>
 
 	<marker id="mim-catalysis-end-black"
 	class="default-background-color-fill"
-	markerHeight="12"
+	markerHeight="10"
 	markerUnits="strokeWidth"
-	markerWidth="12"
+	markerWidth="10"
 	orient="auto"
 	refX="5" refY="0"
 	viewBox="-6 -6 12 12">
-	<circle cx="-1" cy="0" r="6px" class="default-element-colors-open" stroke-width=".8px"/>
+	<circle cx="-0.5" cy="0" r="5.5px" class="default-element-colors-open" stroke-width="1px"/>
 	</marker>
 
 	<!-- mim-cleavage markers are incorrect. TODO Replace marker defs. -->
