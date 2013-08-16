@@ -391,7 +391,6 @@ Markers (Arrowheads)
 	<!-- mim-cleavage markers are incorrect. TODO Replace marker defs. -->
 
 	<marker id="mim-cleavage-start-black" 
-	class="default-background-color-fill"
 	markerHeight="10"
 	markerWidth="10"
 	markerUnits="strokeWidth"
