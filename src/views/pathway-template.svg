@@ -397,7 +397,7 @@ Markers (Arrowheads)
 	orient="auto"
 	refX="0" refY="0"
 	viewBox="0 -6 12 12">
-	<line fill="none" class="default-element-color-stroke" stroke-width="1" x1="-6" y1="0" x2="-6" y2="6"/>	
+	<line fill="none" class="default-element-color-stroke" stroke-width="1" x1="6" y1="0" x2="6" y2="6"/>	
 	</marker>
 
 	<marker id="mim-cleavage-end-black"
@@ -407,9 +407,8 @@ Markers (Arrowheads)
 	markerUnits="strokeWidth"
 	orient="auto"
 	refX="0" refY="0"
-	viewBox="-1 -6 12 12">
-	<line stroke="#ff0000" id="svg_14" y2="-8.20383" x2="-8.19998" y1="9.79617" x1="9.80002" stroke-width="5" fill="none"/>
-	<line transform="rotate(-90 1.20001 1.6962)" id="svg_15" stroke="#ff0000" y2="-7.3038" x2="-7.79999" y1="10.6962" x1="10.20001" stroke-width="5" fill="none"/>
+	viewBox="-12 -6 12 12">
+	<line fill="none" class="default-element-color-stroke" stroke-width="1" x1="-6" y1="0" x2="-6" y2="6"/>	
 	</marker>
 
 	<!-- mim-conversion markers are incorrect. TODO Replace marker defs. -->
