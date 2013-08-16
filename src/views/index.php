@@ -46,7 +46,7 @@ var repo = getUrlParameter('repo');
   <button id="java-svg-pathway-button" class="pathway" onclick="usePathwayImgCreator('java-svg')" style="background-color: lightgray" title="Batik is currently used by PathVisio (Java) to create visual representations of GPML files in SVG and PDF">PathVisio (Java) SVG</button>
   <button id="java-png-pathway-button" class="pathway" onclick="usePathwayImgCreator('java-png')" style="background-color: lightgray" title="Batik is currently used by PathVisio (Java) to create visual representations of GPML files in SVG and PDF">PathVisio (Java) PNG</button>
 </div> 
-<p>To see the results of editing the pathway template SVG file (pathway-template.svg), first let Anders or Alex know you want to be added. Then you can edit the file on your github fork of pathvisio.js, commit, and enter URL parameter 'repo' above as "repo=YourGithubId" and load or refresh.</p>
+<p>To see the results of editing the pathway template SVG file (pathway-template.svg), first let Anders or Alex know you want to be added. Then you can edit the file in the <span style="font-weight: bold">DEV</span> branch of your github fork of pathvisio.js, commit, and enter URL parameter 'repo' above as "repo=YourGithubId" and load or refresh.</p>
 
 <!--
 <div>
@@ -112,6 +112,7 @@ Repo from which to pull pathway template svg: <INPUT id="repo" type="text" SIZE=
   
 
   echo "<div id='java-png-pathway-container' class='pathway' style='display: none;'>";
+  //echo "<div id='java-png-pathway-container' class='pathway'>";
     echo '<img id="img" src="' . $pngUrl . '"/>';
     //$server_response = base64_encode(file_get_contents($pngUrl));
     //echo '<img id="img" src="data:image/png;base64,' . $server_response . '"/>';
@@ -133,8 +134,6 @@ Repo from which to pull pathway template svg: <INPUT id="repo" type="text" SIZE=
   //echo $gpml->asXML();
 
 ?>
-
-<object id="pathway-container" data="pathway-template.svg" type="image/svg+xml" width="100%" height="100%" onload="drawPathway()"></object>
 
 <script>
   function insertParam(key, value)
@@ -162,16 +161,60 @@ Repo from which to pull pathway template svg: <INPUT id="repo" type="text" SIZE=
       //document.location.search = kvp.join('&'); 
   }
 
-  window.onload = drawPathway();
+  window.onload = function() {
+    drawPathway();
 
-  var width = $('#javascript-svg-pathway-container svg')[0].getAttribute('width');
-  var height = $('#javascript-svg-pathway-container svg')[0].getAttribute('height');
-  $('#java-png-pathway-container img')[0].setAttribute('width', parseFloat(width) + "px");
-  $('#java-png-pathway-container img')[0].setAttribute('height', parseFloat(height) + "px");
-  /*
-  $('#java-png-pathway-container img')[0].setAttribute('width', 0.985*width + "px");
-  $('#java-png-pathway-container img')[0].setAttribute('height', 0.985*height + "px");
-   */
+    var javaScriptSvgWidth = self.javaScriptSvgWidth = $('#javascript-svg-pathway-container svg')[0].getAttribute('width');
+    console.log('javaScriptSvgWidth');
+    console.log(javaScriptSvgWidth);
+    var javaScriptSvgHeight = self.javaScriptSvgHeight = $('#javascript-svg-pathway-container svg')[0].getAttribute('height');
+    //console.log('javaScriptSvgHeight');
+    //console.log(javaScriptSvgHeight);
+
+    var javaScriptSvgBBoxWidth = self.javaScriptSvgBBoxWidth = $('#javascript-svg-pathway-container svg')[0].getBBox().width;
+    console.log('javaScriptSvgBBoxWidth');
+    console.log(javaScriptSvgBBoxWidth);
+    var javaScriptSvgBBoxHeight = self.javaScriptSvgBBoxHeight = $('#javascript-svg-pathway-container svg')[0].getBBox().height;
+    //console.log('javaScriptSvgBBoxHeight');
+    //console.log(javaScriptSvgBBoxHeight);
+
+    var javaPngWidth = self.javaPngWidth =  $('#java-png-pathway-container img')[0].getAttribute('width');
+    var javaPngHeight = self.javaPngHeight =  $('#java-png-pathway-container img')[0].getAttribute('height');
+
+    var javaPngBBoxWidth = self.javaPngBBoxWidth = $('#java-png-pathway-container img')[0].getBoundingClientRect().width;
+    console.log('javaPngBBoxWidth');
+    console.log(javaPngBBoxWidth);
+    var javaPngBBoxHeight = self.javaPngBBoxHeight = $('#java-png-pathway-container img')[0].getBoundingClientRect().height;
+    var correctionFactor =  javaScriptSvgBBoxHeight / javaPngBBoxHeight;
+
+    if (local === true) {
+      //$('#java-png-pathway-container img')[0].setAttribute('width', (javaScriptSvgBBoxWidth) + "px");
+      //$('#java-png-pathway-container img')[0].setAttribute('height', (javaScriptSvgBBoxHeight) + "px");
+    }
+    else {
+      //$('#java-png-pathway-container img')[0].setAttribute('width', (javaScriptSvgWidth) + "px");
+      //$('#java-png-pathway-container img')[0].setAttribute('height', (javaScriptSvgHeight) + "px");
+      //$('#java-png-pathway-container img')[0].setAttribute('width', (2 * javaScriptSvgBBoxWidth) + "px");
+      //$('#java-png-pathway-container img')[0].setAttribute('height', (2 * javaScriptSvgBBoxHeight) + "px");
+      //$('#java-png-pathway-container img')[0].setAttribute('width', (javaPngBBoxWidth * (javaScriptSvgWidth / javaPngBBoxWidth)) + "px");
+      //$('#java-png-pathway-container img')[0].setAttribute('height', (javaPngBBoxHeight * (javaScriptSvgHeight / javaPngBBoxHeight)) + "px");
+    };
+
+    /*
+    $('#java-png-pathway-container img')[0].setAttribute('width', (javaPngWidth * correctionFactor) + "px");
+    $('#java-png-pathway-container img')[0].setAttribute('height', (javaPngHeight * correctionFactor) + "px");
+     */
+
+    /*
+    $('#java-png-pathway-container img')[0].setAttribute('width', (javaScriptSvgBBoxWidth) + "px");
+    $('#java-png-pathway-container img')[0].setAttribute('height', (javaScriptSvgBBoxHeight) + "px");
+
+    var javaScriptSvgWidth = $('#javascript-svg-pathway-container svg')[0].getAttribute('width');
+    var javaScriptSvgHeight = $('#javascript-svg-pathway-container svg')[0].getAttribute('height');
+    $('#java-png-pathway-container img')[0].setAttribute('width', 0.985*width + "px");
+    $('#java-png-pathway-container img')[0].setAttribute('height', 0.985*height + "px");
+     */
+  };
 
   function usePathwayImgCreator(creator) {
     $('button.pathway').each(function(i) {
