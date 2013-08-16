@@ -54,26 +54,16 @@ var pathvisio = function(){
 
     var markersAvailable = markersAvailable = svg.selectAll('marker');
 
+    pathvisio.groups.drawAll();
+
     pathvisio.edges.drawAll();
 
-    setTimeout(function(){
-      pathvisio.infoBox.draw();
-    }, 50);
-
-    setTimeout(function(){
-      pathvisio.groups.drawAll();
-    }, 10);
-
-    setTimeout(function(){
     pathvisio.labelableElements.drawAll();
-    }, 150);
+
+    pathvisio.infoBox.draw();
   };
-  function change(){
-  };
-  function verify(){
-  };
-  return{
-    init:init,
-    change:change
+
+  return {
+    init:init
   }
 }();
