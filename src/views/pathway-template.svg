@@ -323,8 +323,7 @@ Markers (Arrowheads)
 	refX="0" refY="0"
 	stroke="black"
 	viewBox="0 -6 12 12">
-	<path d="M0,0 L10,0" stroke-width="2px" class="default-background-color-stroke"/>
-	<path d="M10,-10 L10,10" stroke-width="2px"/>
+	<line fill="none" stroke="#000000" stroke-width="1.2" x1="-5" y1="-6" x2="-5" y2="6"/>
 	</marker>
 
 	<marker id="t-bar-end-black"
@@ -334,8 +333,7 @@ Markers (Arrowheads)
 	refX="0" refY="0"
 	stroke="black"
 	viewBox="-12 -6 12 12">
-	<path d="M0,0 L-10,0" stroke-width="2px" class="default-background-color-stroke"/>
-	<path d="M-10,-10 L-10,10" stroke-width="2px"/>
+	<line fill="none" stroke="#000000" stroke-width="1.2" x1="-5" y1="-6" x2="-5" y2="6"/>
 	</marker>
 
 	<!-- mim-binding markers -->
@@ -481,7 +479,8 @@ Markers (Arrowheads)
 	refX="0" refY="0"
 	stroke="black"
 	viewBox="0 -6 12 12">
-	<line fill="none" stroke="#000000" stroke-width="2" x1="5" y1="-6" x2="5" y2="6"/>
+	<line fill="none" stroke="#000000" stroke-width="1.2" x1="5" y1="-6" x2="5" y2="6"/>
+	<polygon fill="default-background-color-fill" stroke="#000000" stroke-width="0" points="5,4 0,0 5,-4"/>
 	</marker>
 
 	<marker id="mim-inhibition-end-black"
@@ -492,7 +491,8 @@ Markers (Arrowheads)
 	refX="0" refY="0"
 	stroke="black"
 	viewBox="-12 -6 12 12">
-	<line fill="none" stroke="#000000" stroke-width="2" x1="-5" y1="-6" x2="-5" y2="6"/>
+	<line fill="none" stroke="#000000" stroke-width="1.2" x1="-5" y1="-6" x2="-5" y2="6"/>
+	<polygon fill="default-background-color-fill" stroke="#000000" stroke-width="0" points="-5,4 0,0 -5,-4"/>
 	</marker>
 
 	<!-- mim-modification markers are incorrect. TODO Replace marker defs. -->
@@ -532,7 +532,7 @@ Markers (Arrowheads)
 	stroke="black"
 	viewBox="0 -6 12 12">
 	<line fill="none" stroke="#000000" stroke-width="1" x1="11" y1="-6" x2="11" y2="6"/>
-	<polygon fill="none" stroke="#000000" stroke-width="1" points="9,4 1,0 9,-4"/>
+	<polygon fill="default-background-color-fill" stroke="#000000" stroke-width="1" points="9,4 1,0 9,-4"/>
 	</marker>
 
 	<marker id="mim-necessary-stimulation-end-black"
@@ -544,7 +544,7 @@ Markers (Arrowheads)
 	stroke="black"
 	viewBox="-12 -6 12 12">
 	<line fill="none" stroke="#000000" stroke-width="1" x1="-11" y1="-6" x2="-11" y2="6"/>
-	<polygon fill="none" stroke="#000000" stroke-width="1" points="-9,4 -1,0 -9,-4"/>
+	<polygon fill="default-background-color-fill" stroke="#000000" stroke-width="1" points="-9,4 -1,0 -9,-4"/>
 	</marker>
 
 	<!-- mim-stimulation markers -->
