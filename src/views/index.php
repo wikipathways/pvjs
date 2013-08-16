@@ -10,26 +10,7 @@ http://google-styleguide.googlecode.com/svn/trunk/javascriptguide.xml
 http://google-styleguide.googlecode.com/svn/trunk/jsoncstyleguide.xml#General_Guidelines
 -->
 
-<script src="../js/gpml2json/gpml2json.js"></script>
-<script src="../js/gpml2json/jxon.js"></script>
 
-<script src="../js/rgbcolor.js"></script>
-
-<script src="../js/draw-pathway/draw-pathway.js"></script>
-<script src="../js/draw-pathway/clone.js"></script>
-<script src="../js/draw-pathway/get-url-parameter.js"></script>
-<script src="../js/draw-pathway/get-marker.js"></script>
-<script src="../js/draw-pathway/edge-terminus.js"></script>
-<script src="../js/draw-pathway/get-path-data.js"></script>
-<script src="../js/draw-pathway/get-element-coordinates.js"></script>
-<script src="../js/draw-pathway/draw-edges.js"></script>
-<script src="../js/draw-pathway/draw-info-box.js"></script>
-<script src="../js/draw-pathway/draw-groups.js"></script>
-<script src="../js/draw-pathway/draw-labelable-elements.js"></script>
-
-
-<script src="../lib/jquery/jquery.js"></script>
-<script src="../lib/d3/d3.js" charset="utf-8"></script>
 </head>
 <body>
 <!--
@@ -159,6 +140,26 @@ Repo from which to pull pathway template svg: <INPUT id="repo" type="text" SIZE=
 
 ?>
 
+<script src="../js/pathvisio.js"></script>
+
+<script src="../js/gpml2json/gpml2json.js"></script>
+<script src="../js/gpml2json/jxon.js"></script>
+
+<script src="../js/pathway-elements/edges/edges.js"></script>
+<script src="../js/pathway-elements/edges/edges.path-data.js"></script>
+<script src="../js/pathway-elements/edges/edges.markers.js"></script>
+<script src="../js/pathway-elements/edges/edges.end-points.js"></script>
+
+<script src="../js/pathway-elements/info-box.js"></script>
+<script src="../js/pathway-elements/groups.js"></script>
+<script src="../js/pathway-elements/labelable-elements.js"></script>
+
+<script src="../js/helpers.js"></script>
+<script src="../js/rgbcolor.js"></script>
+
+<script src="../lib/jquery/jquery.js"></script>
+<script src="../lib/d3/d3.js" charset="utf-8"></script>
+
 <script>
   function insertParam(key, value)
   {
@@ -186,7 +187,7 @@ Repo from which to pull pathway template svg: <INPUT id="repo" type="text" SIZE=
   }
 
   window.onload = function() {
-    drawPathway();
+    pathvisio.init();
 
     var javaScriptSvgWidth = self.javaScriptSvgWidth = $('#javascript-svg-pathway-container svg')[0].getAttribute('width');
     console.log('javaScriptSvgWidth');

@@ -10,13 +10,20 @@ http://google-styleguide.googlecode.com/svn/trunk/jsoncstyleguide.xml#General_Gu
 -->
 
 <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
-<script src="../js/gpml2json.js"></script>
-<script src="../js/jxon.js"></script>
-<script src="../js/jquery-1.9.1.js"></script>
-<script src="../js/rgbcolor.js"></script>
+<script src="../src/js/gpml2json/gpml2json.js"></script>
+<script src="../src/js/gpml2json/jxon.js"></script>
+<script src="../src/js/rgbcolor.js"></script>
+<script src="../src/js/helpers.js"></script>
+
+<script src="../src/lib/jquery/jquery.js"></script>
+<script src="../src/lib/d3/d3.js" charset="utf-8"></script>
 
 <body>
   <h1>pathvisio.js gpml2json interface</h1>
+
+  <h3>Pathways for testing purposes</h3>
+  <ul>
+  </ul>
 
   <form>
     GPML File Name (without .gpml extension): 
@@ -44,7 +51,7 @@ http://google-styleguide.googlecode.com/svn/trunk/jsoncstyleguide.xml#General_Gu
     // so it won't submit
 
     function submitRequest() {
-      var sGpmlUrl = '../../samples/gpml/' + $('#gpml-file-name').val() + '.gpml';
+      var sGpmlUrl = './gpml/' + $('#gpml-file-name').val() + '.gpml';
       getJson(sGpmlUrl, displayResults);
       };
 

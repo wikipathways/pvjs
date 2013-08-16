@@ -28,35 +28,30 @@ function decodeXml(string) {
     });
 }
 
-function getJson(gpml, callback) {
-  if (gpml === undefined || !(gpml) || gpml === "") {
+function getJson(gpmlUrl, callback) {
+  if (gpmlUrl === undefined || !(gpmlUrl) || gpmlUrl === "") {
 
     //var gpmlUrl = "../../samples/gpml/error.gpml";
     //d3.xml(gpmlUrl, "application/gpml+xml", function(error, gpml) {
 
-    d3.xml(String(getURLParameter("pathwayUrl")), "application/gpml+xml", function(gpml) {
+  }
+  else {
+    d3.xml(gpmlUrl, "application/gpml+xml", function(gpmlDoc) {
       // be sure server has set gpml mime type to application/gpml+xml
 
-      /*
       var oSerializer = new XMLSerializer();
       var sGpml = oSerializer.serializeToString(gpmlDoc);
-      console.log('sGpml');
-      console.log(sGpml);
-      */
+
+      var gpml = gpmlDoc.documentElement;
 
       var pathway = convertGpml2Json(gpml);
 
-      //var sJson = self.sJson = JSON.stringify(pathway, undefined, 2);
+      var sJson = self.sJson = JSON.stringify(pathway, undefined, 2);
 
-      callback(pathway);
+      callback(sGpml, sJson);
 
 
     });
-  }
-  else {
-    var pathway = convertGpml2Json(gpml);
-
-    callback(pathway);
   };
 
 };
