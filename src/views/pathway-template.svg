@@ -391,25 +391,26 @@ Markers (Arrowheads)
 	<!-- mim-cleavage markers are incorrect. TODO Replace marker defs. -->
 
 	<marker id="mim-cleavage-start-black" 
-	markerHeight="20"
-	markerWidth="20"
+	markerHeight="22"
+	markerWidth="22"
 	markerUnits="strokeWidth"
 	orient="auto"
 	refX="0" refY="0"
-	viewBox="-10 -10 20 20">
-	<line fill="none" class="default-element-color-stroke" stroke-width="1" x1="10" y1="0" x2="10" y2="10"/>	
-	<line fill="none" class="default-element-color-stroke" stroke-width="1" x1="10" y1="10" x2="-10" y2="-10"/>	
+	viewBox="-6 -6 12 12">
+	<line fill="none" class="default-element-color-stroke" stroke-width="1" x1="6" y1="0" x2="6" y2="6"/>	
+	<line fill="none" class="default-element-color-stroke" stroke-width="1" x1="6" y1="6" x2="-6" y2="-6"/>	
 	</marker>
 
 	<marker id="mim-cleavage-end-black"
 	class="default-background-color-fill"
-	markerHeight="10"
-	markerWidth="10"
+	markerHeight="22"
+	markerWidth="22"
 	markerUnits="strokeWidth"
 	orient="auto"
 	refX="0" refY="0"
-	viewBox="-12 -6 12 12">
-	<line fill="none" class="default-element-color-stroke" stroke-width="1" x1="-6" y1="0" x2="-6" y2="6"/>	
+	viewBox="-6 -6 12 12">
+	<line fill="none" class="default-element-color-stroke" stroke-width="1" x1="-6" y1="0" x2="-6" y2="-6"/>	
+	<line fill="none" class="default-element-color-stroke" stroke-width="1" x1="6" y1="-6" x2="-6" y2="6"/>	
 	</marker>
 
 	<!-- mim-conversion markers are incorrect. TODO Replace marker defs. -->
