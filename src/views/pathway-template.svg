@@ -521,8 +521,8 @@ Markers (Arrowheads)
 	orient="auto"
 	refX="0" refY="0"
 	viewBox="0 -6 12 12">
-	<line fill="none" stroke="default-element-color-stroke" stroke-width="1" x1="11" y1="-6" x2="11" y2="6"/>
-	<polygon fill="default-background-color-fill" stroke-width="1" points="9,4 1,0 9,-4"/>
+	<line fill="none" class="default-element-color-stroke" stroke-width="1" x1="11" y1="-6" x2="11" y2="6"/>
+	<polygon class="default-background-color-fill" stroke-width="0" points="10,5 0,0 10,-5"/>
 	</marker>
 
 	<marker id="mim-necessary-stimulation-end-black"
@@ -531,8 +531,8 @@ Markers (Arrowheads)
 	orient="auto"
 	refX="0" refY="0"
 	viewBox="-12 -6 12 12">
-	<line fill="none" stroke="default-element-color-stroke" stroke-width="1" x1="-11" y1="-6" x2="-11" y2="6"/>
-	<polygon fill="default-background-color-fill" stroke-width="1" points="-9,4 -1,0 -9,-4"/>
+	<line fill="none" class="default-element-color-stroke" stroke-width="1" x1="-11" y1="-6" x2="-11" y2="6"/>
+	<polygon class="default-background-color-fill" stroke-width="0" points="-10,5 0,0 -10,-5"/>
 	</marker>
 
 	<!-- mim-stimulation markers -->
