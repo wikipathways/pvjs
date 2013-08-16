@@ -494,27 +494,21 @@ Markers (Arrowheads)
 	<!-- mim-modification markers are incorrect. TODO Replace marker defs. -->
 
 	<marker id="mim-modification-start-black" 
-	fill="black"
 	markerUnits="strokeWidth"
 	markerWidth="10" markerHeight="10"
 	orient="auto"
 	refX="0" refY="0"
-	stroke="black"
 	viewBox="0 -6 12 12">
-	<line stroke="#ff0000" id="svg_14" y2="-8.20383" x2="-8.19998" y1="9.79617" x1="9.80002" stroke-width="5" fill="none"/>
-	<line transform="rotate(-90 1.20001 1.6962)" id="svg_15" stroke="#ff0000" y2="-7.3038" x2="-7.79999" y1="10.6962" x1="10.20001" stroke-width="5" fill="none"/>
+	<polygon class="default-element-colors-closed" stroke-width="0" points="12,6 0,0 12,-6 5,0 "/>
 	</marker>
 
 	<marker id="mim-modification-end-black"
-	fill="black"
 	markerUnits="strokeWidth"
 	markerWidth="10" markerHeight="10"
 	orient="auto"
 	refX="0" refY="0"
-	stroke="black"
 	viewBox="-12 -6 12 12">
-	<line stroke="#ff0000" id="svg_14" y2="-8.20383" x2="-8.19998" y1="9.79617" x1="9.80002" stroke-width="5" fill="none"/>
-	<line transform="rotate(-90 1.20001 1.6962)" id="svg_15" stroke="#ff0000" y2="-7.3038" x2="-7.79999" y1="10.6962" x1="10.20001" stroke-width="5" fill="none"/>
+	<polygon class="default-element-colors-closed" stroke-width="0" points="-12,6 0,0 -12,-6 -5,0 "/>
 	</marker>
 
 	<!-- mim-necessary-stimulation markers are incorrect. TODO Replace marker defs. -->
