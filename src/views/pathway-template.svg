@@ -376,7 +376,7 @@ Markers (Arrowheads)
 	orient="auto"
 	refX="5" refY="0"
 	stroke="black"
-	viewBox="-12 -6 12 12">
+	viewBox="-6 -6 12 12">
 	<circle cx="0" cy="0" r="5px" stroke-width="1px"/>
 	</marker>
 
