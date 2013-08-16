@@ -337,14 +337,12 @@ Markers (Arrowheads)
 	<!-- mim-binding markers -->
 
 	<marker id="mim-binding-start-black" 
-	fill="black"
 	markerUnits="strokeWidth"
 	markerWidth="10" markerHeight="10"
 	orient="auto"
 	refX="0" refY="0"
-	stroke="black"
 	viewBox="0 -6 12 12">
-	<path d="M0,0 L10,-5 L10,5 Z" stroke-width="1px"/>
+	<polygon fill="default-element-color-stroke" points="10,4 0,0 10,-4 4,0 "/>
 	</marker>
 
 	<marker id="mim-binding-end-black"
