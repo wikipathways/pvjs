@@ -398,8 +398,8 @@ Markers (Arrowheads)
 	refX="0" refY="0"
 	viewBox="-6 -6 12 12">
 	<polygon fill="default-background-color-fill" stroke-width="0" points="6,5 0,6 0,-6 6,-6"/>
-	<line fill="none" class="default-element-color-stroke" stroke-width="1" x1="5" y1="0" x2="5" y2="6"/>	
-	<line fill="none" class="default-element-color-stroke" stroke-width="1" x1="5" y1="6" x2="-6" y2="-6"/>	
+	<line fill="none" class="default-element-color-stroke" stroke-width=".31" x1="6" y1="0" x2="6" y2="6"/>	
+	<line fill="none" class="default-element-color-stroke" stroke-width=".31" x1="6" y1="6" x2="-6" y2="-6"/>	
 	</marker>
 
 	<marker id="mim-cleavage-end-black"
@@ -410,8 +410,8 @@ Markers (Arrowheads)
 	refX="0" refY="0"
 	viewBox="-6 -6 12 12">
 	<polygon fill="default-background-color-fill" stroke-width="0" points="-6,5 0,6 0,-6 -6,-6"/>
-	<line fill="none" class="default-element-color-stroke" stroke-width="1" x1="-5" y1="0" x2="-5" y2="-6"/>	
-	<line fill="none" class="default-element-color-stroke" stroke-width="1" x1="-5" y1="-6" x2="6" y2="6"/>	
+	<line fill="none" class="default-element-color-stroke" stroke-width=".31" x1="-6" y1="0" x2="-6" y2="-6"/>	
+	<line fill="none" class="default-element-color-stroke" stroke-width=".31" x1="-6" y1="-6" x2="6" y2="6"/>	
 	</marker>
 
 	<!-- mim-conversion markers are incorrect. TODO Replace marker defs. -->
