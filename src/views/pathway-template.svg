@@ -104,6 +104,10 @@ Either convert SVG to PDF and import PDF into Illustrator or convert SVG to .ai 
 		stroke: black;
 	}
 
+	.default-element-color-fill {
+		fill: black;
+	}
+
 	.default-element-colors-open {
 		stroke: black;
 		fill: white;
@@ -111,10 +115,6 @@ Either convert SVG to PDF and import PDF into Illustrator or convert SVG to .ai 
 
 	.default-element-colors-closed {
 		stroke: black;
-		fill: black;
-	}
-
-	.default-element-color-fill {
 		fill: black;
 	}
 
@@ -552,9 +552,8 @@ Markers (Arrowheads)
 	markerUnits="strokeWidth"
 	orient="auto"
 	refX="0" refY="0"
-	stroke="black"
 	viewBox="0 -6 12 12">
-	<path d="M0,0 L10,-5 L10,5 Z" stroke-width="1px"/>
+	<polygon class="default-background-colors-open" stroke-width="1" points="9,5 1,0 9,-5"/>
 	</marker>
 
 	<marker id="mim-stimulation-end-black"
@@ -562,9 +561,8 @@ Markers (Arrowheads)
 	markerWidth="10" markerHeight="10"
 	orient="auto"
 	refX="0" refY="0"
-	stroke="black"
 	viewBox="-12 -6 12 12">
-	<path d="M0,0 L-10,-5 L-10,5 Z" stroke-width="1px"/>
+	<polygon class="default-background-colors-open" stroke-width="1" points="-9,5 -1,0 -9,-5"/>
 	</marker>
 
 	<!-- mim-transcription-translation markers are incorrect. TODO Replace marker defs. -->
