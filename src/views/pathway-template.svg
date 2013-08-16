@@ -368,8 +368,8 @@ Markers (Arrowheads)
 
 	<marker id="mim-catalysis-start-black"
 	class="default-background-color-fill"
-	markerHeight="10"
-	markerWidth="10"
+	markerHeight="12"
+	markerWidth="12"
 	markerUnits="strokeWidth"
 	orient="auto"
 	refX="0" refY="0"
@@ -379,12 +379,12 @@ Markers (Arrowheads)
 
 	<marker id="mim-catalysis-end-black"
 	class="default-background-color-fill"
-	markerHeight="10"
+	markerHeight="12"
 	markerUnits="strokeWidth"
-	markerWidth="10"
+	markerWidth="12"
 	orient="auto"
 	refX="5" refY="0"
-	viewBox="-7 -6 12 12">
+	viewBox="-8 -6 12 12">
 	<circle cx="0" cy="0" r="6px" class="default-element-colors-open" stroke-width="1px"/>
 	</marker>
 
