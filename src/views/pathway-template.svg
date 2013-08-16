@@ -342,7 +342,7 @@ Markers (Arrowheads)
 	orient="auto"
 	refX="0" refY="0"
 	viewBox="0 -6 12 12">
-	<polygon fill="default-element-color-stroke" points="10,4 0,0 10,-4 4,0 "/>
+	<polygon fill="default-element-color-stroke" stroke-width="0" points="10,4 0,0 10,-4 4,0 "/>
 	</marker>
 
 	<marker id="mim-binding-end-black"
