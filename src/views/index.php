@@ -51,12 +51,13 @@ Repo:
   $repo = "wikipathways";
 
   if (isset($_GET['repo'])) {
-    if (($_GET['repo'] == 'AlexanderPico') || ($_GET['repo'] == 'ariutta') || ($_GET['repo'] == 'khanspers')) {
+    if (in_array($_GET['repo'], $authorizedRepos)) {
       $repo = htmlspecialchars($_GET['repo']);
     }
   }
 
   $pathwayTemplateSvgUrl = "https://raw.github.com/" . $repo . "/pathvisio.js/dev/src/views/pathway-template.svg";
+  $pathwayTemplateSvgUrlEditable = "https://github.com/" . $repo . "/pathvisio.js/blob/master/src/views/pathway-template.svg";
 
   if (isset($_GET['pwId'])) {
     echo "<script>var local = false</script>";
@@ -88,9 +89,9 @@ Repo:
   echo "<select name='repo' onChange='document.location = this.value' value='GO'>$html</select>";
 ?>
 </div> 
-<p>If you woule like to edit the symbols (shapes), markers (arrowheads), colors or other properties of the pathvisio.js pathway template, let Anders or Alex know. When you are added as an authorized user, you can edit your 
+<p>If you would like to edit the symbols (shapes), markers (arrowheads), colors or other properties of the pathvisio.js pathway template, let Anders or Alex know. When you are added as an authorized user, you can edit your 
 <?php
-  echo "<a href='" . $pathwayTemplateSvgUrl . "'>"
+  echo "<a href='" . $pathwayTemplateSvgUrlEditable . "'>"
 ?>
 SVG pathway template file</a> in the <span style="font-weight: bold">DEV</span> branch of your github fork of <a href="https://github.com/wikipathways/pathvisio.js">pathvisio.js</a>, commit, and view your changes on this page. Note that your commits on Github may take a few seconds before they show up here.</p>
 
