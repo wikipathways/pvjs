@@ -6,7 +6,6 @@ This file can be used for many purposes outside of pathvisio.js, including allow
 other projects to work better with GPML. For purposes of pathvisio.js, this file will
 be the starting point for our JavaScript rendering of pathways. Every time we want to
 render a GPML file on the browser, we will read a copy of this file into D3.js and
-modify the copy by adding "use" statements, cloning markers, etc. in order to create
 the desired pathway illustration in SVG.
 
 The XML declaration above is taken from an example from the W3C 
@@ -18,7 +17,7 @@ JS all inside this document.
 
 Doctypes are not needed for SVG, and jwatt discourages their use:
 https://jwatt.org/svg/authoring/.
-
+f
 Style guides can be arbitrary, but for consistency of SVG markup for the pathvisio.js project,
 	I suggest using JS Watt's SVG authoring advice and Google's HTML and JavaScript Guides:
 	https://jwatt.org/svg/authoring/
@@ -106,6 +105,16 @@ Either convert SVG to PDF and import PDF into Illustrator or convert SVG to .ai 
 	}
 
 	.default-element-color-fill {
+		fill: black;
+	}
+
+	.default-element-colors-open {
+		stroke: black;
+		fill: white;
+	}
+
+	.default-element-colors-closed {
+		stroke: black;
 		fill: black;
 	}
 
@@ -294,73 +303,65 @@ Markers (Arrowheads)
 	<!-- arrow markers -->
 
 	<marker id="arrow-start-black" 
-	fill="black"
 	markerUnits="strokeWidth"
 	markerWidth="10" markerHeight="10"
 	orient="auto"
 	refX="0" refY="0"
-	stroke="black"
 	viewBox="0 -6 12 12">
-	<path d="M0,0 L10,-5 L10,5 Z" stroke-width="1px"/>
+	<polygon class="default-element-colors-closed" stroke-width="0" points="10,5 0,0 10,-5"/>
 	</marker>
 
 	<marker id="arrow-end-black"
-	fill="black"
 	markerUnits="strokeWidth"
 	markerWidth="10" markerHeight="10"
 	orient="auto"
 	refX="0" refY="0"
-	stroke="black"
 	viewBox="-12 -6 12 12">
-	<path d="M0,0 L-10,-5 L-10,5 Z" stroke-width="1px"/>
+	<polygon class="default-element-colors-closed" stroke-width="0" points="-10,5 0,0 -10,-5"/>
 	</marker>
 
 	<!-- t-bar markers -->
 
 	<marker id="t-bar-start-black"
-	markerWidth="10" markerHeight="10"
+	markerWidth="10" 
+	markerHeight="10"
 	markerUnits="strokeWidth"
 	orient="auto"
 	refX="0" refY="0"
-	stroke="black"
 	viewBox="0 -6 12 12">
-	<path d="M0,0 L10,0" stroke-width="2px" class="default-background-color-stroke"/>
-	<path d="M10,-10 L10,10" stroke-width="2px"/>
+	<polygon class="default-background-color-fill" stroke-width="0" points="4.4,5 0,5 0,-5 4.4,-5"/>
+	<line fill="none" class="default-element-color-stroke" stroke-width="1.2" x1="-5" y1="-6" x2="-5" y2="6"/>
 	</marker>
 
 	<marker id="t-bar-end-black"
 	markerUnits="strokeWidth"
-	markerWidth="10" markerHeight="10"
+	markerWidth="10" 
+	markerHeight="10"
 	orient="auto"
 	refX="0" refY="0"
-	stroke="black"
 	viewBox="-12 -6 12 12">
-	<path d="M0,0 L-10,0" stroke-width="2px" class="default-background-color-stroke"/>
-	<path d="M-10,-10 L-10,10" stroke-width="2px"/>
+	<polygon class="default-background-color-fill" stroke-width="0" points="-4.4,5 0,5 0,-5 -4.4,-5"/>
+	<line fill="none" class="default-element-color-stroke" stroke-width="1.2" x1="-5" y1="-6" x2="-5" y2="6"/>
 	</marker>
 
 	<!-- mim-binding markers -->
 
 	<marker id="mim-binding-start-black" 
-	fill="black"
 	markerUnits="strokeWidth"
 	markerWidth="10" markerHeight="10"
 	orient="auto"
 	refX="0" refY="0"
-	stroke="black"
 	viewBox="0 -6 12 12">
-	<path d="M0,0 L10,-5 L10,5 Z" stroke-width="1px"/>
+	<polygon class="default-element-colors-closed" stroke-width="0" points="12,6 0,0 12,-6 5,0 "/>
 	</marker>
 
 	<marker id="mim-binding-end-black"
-	fill="black"
 	markerUnits="strokeWidth"
 	markerWidth="10" markerHeight="10"
 	orient="auto"
 	refX="0" refY="0"
-	stroke="black"
 	viewBox="-12 -6 12 12">
-	<path d="M0,0 L-10,-5 L-10,5 Z" stroke-width="1px"/>
+	<polygon class="default-element-colors-closed" stroke-width="0" points="-12,6 0,0 -12,-6 -5,0 "/>
 	</marker>
 
 	<!-- mim-catalysis markers -->
@@ -372,9 +373,8 @@ Markers (Arrowheads)
 	markerUnits="strokeWidth"
 	orient="auto"
 	refX="0" refY="0"
-	stroke="black"
-	viewBox="-1 -6 12 12">
-	<circle cx="5" cy="0" r="5px" stroke-width="1px"/>
+	viewBox="0 -6 12 12">
+	<circle cx="5.5" cy="0" r="5.5px" class="default-element-colors-open" stroke-width="1px"/>
 	</marker>
 
 	<marker id="mim-catalysis-end-black"
@@ -384,170 +384,124 @@ Markers (Arrowheads)
 	markerWidth="10"
 	orient="auto"
 	refX="5" refY="0"
-	stroke="black"
 	viewBox="-6 -6 12 12">
-	<circle cx="0" cy="0" r="5px" stroke-width="1px"/>
+	<circle cx="0.5" cy="0" r="5.5px" class="default-element-colors-open" stroke-width="1px"/>
 	</marker>
 
 	<!-- mim-cleavage markers are incorrect. TODO Replace marker defs. -->
 
 	<marker id="mim-cleavage-start-black" 
-	class="default-background-color-fill"
-	markerHeight="10"
-	markerWidth="10"
+	markerHeight="24"
+	markerWidth="24"
 	markerUnits="strokeWidth"
 	orient="auto"
 	refX="0" refY="0"
-	stroke="black"
-	viewBox="-1 -6 12 12">
-	<line stroke="#ff0000" id="svg_14" y2="-8.20383" x2="-8.19998" y1="9.79617" x1="9.80002" stroke-width="5" fill="none"/>
-	<line transform="rotate(-90 1.20001 1.6962)" id="svg_15" stroke="#ff0000" y2="-7.3038" x2="-7.79999" y1="10.6962" x1="10.20001" stroke-width="5" fill="none"/>
+	viewBox="-8 -6 12 12">
+	<polygon fill="default-background-color-fill" stroke-width="0" points="3.7,5 0,6 0,-6 3.7,-6"/>
+	<line fill="none" class="default-element-color-stroke" stroke-width=".4" x1="3.7" y1="0" x2="3.7" y2="6"/>	
+	<line fill="none" class="default-element-color-stroke" stroke-width=".4" x1="3.7" y1="6" x2="-8" y2="-6"/>	
 	</marker>
 
 	<marker id="mim-cleavage-end-black"
-	class="default-background-color-fill"
-	markerHeight="10"
-	markerWidth="10"
+	markerHeight="24"
+	markerWidth="24"
 	markerUnits="strokeWidth"
 	orient="auto"
 	refX="0" refY="0"
-	stroke="black"
-	viewBox="-1 -6 12 12">
-	<line stroke="#ff0000" id="svg_14" y2="-8.20383" x2="-8.19998" y1="9.79617" x1="9.80002" stroke-width="5" fill="none"/>
-	<line transform="rotate(-90 1.20001 1.6962)" id="svg_15" stroke="#ff0000" y2="-7.3038" x2="-7.79999" y1="10.6962" x1="10.20001" stroke-width="5" fill="none"/>
+	viewBox="-4 -6 12 12">
+	<polygon fill="default-background-color-fill" stroke-width="0" points="-3.7,5 0,6 0,-6 -3.7,-6"/>
+	<line fill="none" class="default-element-color-stroke" stroke-width=".4" x1="-3.7" y1="0" x2="-3.7" y2="-6"/>	
+	<line fill="none" class="default-element-color-stroke" stroke-width=".4" x1="-3.7" y1="-6" x2="8" y2="6"/>	
 	</marker>
 
 	<!-- mim-conversion markers are incorrect. TODO Replace marker defs. -->
 
 	<marker id="mim-conversion-start-black" 
-	fill="black"
 	markerUnits="strokeWidth"
 	markerWidth="10" markerHeight="10"
 	orient="auto"
 	refX="0" refY="0"
-	stroke="black"
 	viewBox="0 -6 12 12">
-	<line stroke="#ff0000" id="svg_14" y2="-8.20383" x2="-8.19998" y1="9.79617" x1="9.80002" stroke-width="5" fill="none"/>
-	<line transform="rotate(-90 1.20001 1.6962)" id="svg_15" stroke="#ff0000" y2="-7.3038" x2="-7.79999" y1="10.6962" x1="10.20001" stroke-width="5" fill="none"/>
+	<polygon class="default-element-colors-closed" stroke-width="0" points="10,5 0,0 10,-5"/>
 	</marker>
 
 	<marker id="mim-conversion-end-black"
-	fill="black"
 	markerUnits="strokeWidth"
 	markerWidth="10" markerHeight="10"
 	orient="auto"
 	refX="0" refY="0"
-	stroke="black"
 	viewBox="-12 -6 12 12">
-	<line stroke="#ff0000" id="svg_14" y2="-8.20383" x2="-8.19998" y1="9.79617" x1="9.80002" stroke-width="5" fill="none"/>
-	<line transform="rotate(-90 1.20001 1.6962)" id="svg_15" stroke="#ff0000" y2="-7.3038" x2="-7.79999" y1="10.6962" x1="10.20001" stroke-width="5" fill="none"/>
+	<polygon class="default-element-colors-closed" stroke-width="0" points="-10,5 0,0 -10,-5"/>
 	</marker>
 
-	<!-- mim-covalent-bond markers are incorrect. TODO Replace marker defs. -->
-
-	<marker id="mim-covalent-bond-start-black" 
-	class="default-background-color-fill"
-	markerHeight="10"
-	markerWidth="10"
-	markerUnits="strokeWidth"
-	orient="auto"
-	refX="0" refY="0"
-	stroke="black"
-	viewBox="-1 -6 12 12">
-	<line stroke="#ff0000" id="svg_14" y2="-8.20383" x2="-8.19998" y1="9.79617" x1="9.80002" stroke-width="5" fill="none"/>
-	<line transform="rotate(-90 1.20001 1.6962)" id="svg_15" stroke="#ff0000" y2="-7.3038" x2="-7.79999" y1="10.6962" x1="10.20001" stroke-width="5" fill="none"/>
-	</marker>
-
-	<marker id="mim-covalent-bond-end-black"
-	class="default-background-color-fill"
-	markerHeight="10"
-	markerWidth="10"
-	markerUnits="strokeWidth"
-	orient="auto"
-	refX="0" refY="0"
-	stroke="black"
-	viewBox="-1 -6 12 12">
-	<line stroke="#ff0000" id="svg_14" y2="-8.20383" x2="-8.19998" y1="9.79617" x1="9.80002" stroke-width="5" fill="none"/>
-	<line transform="rotate(-90 1.20001 1.6962)" id="svg_15" stroke="#ff0000" y2="-7.3038" x2="-7.79999" y1="10.6962" x1="10.20001" stroke-width="5" fill="none"/>
-	</marker>
 
 	<!-- mim-inhibition markers -->
 
 	<marker id="mim-inhibition-start-black" 
+	class="default-background-color-fill"
 	markerHeight="10"
 	markerWidth="10"
 	markerUnits="strokeWidth"
 	orient="auto"
 	refX="0" refY="0"
 	stroke="black"
-	viewBox="-1 -6 12 12">
-	<path d="M0,0 L10,0" stroke-width="2px" class="default-background-color-stroke"/>
-	<path d="M10,-10 L10,10" stroke-width="2px"/>
+	viewBox="0 -6 12 12">
+	<polygon fill="default-background-color-fill" stroke-width="0" points="4.4,5 0,5 0,-5 4.4,-5"/>
+	<line fill="none" stroke="#000000" stroke-width="1.2" x1="5" y1="-6" x2="5" y2="6"/>
 	</marker>
 
 	<marker id="mim-inhibition-end-black"
+	class="default-background-color-fill"
 	markerUnits="strokeWidth"
 	markerWidth="10" markerHeight="10"
 	orient="auto"
 	refX="0" refY="0"
 	stroke="black"
 	viewBox="-12 -6 12 12">
-	<path d="M0,0 L-10,0" stroke-width="2px" class="default-background-color-stroke"/>
-	<path d="M-10,-10 L-10,10" stroke-width="2px"/>
+	<polygon fill="default-background-color-fill" stroke-width="0" points="-4.4,5 0,5 0,-5 -4.4,-5"/>
+	<line fill="none" stroke="#000000" stroke-width="1.2" x1="-5" y1="-6" x2="-5" y2="6"/>
 	</marker>
 
 	<!-- mim-modification markers are incorrect. TODO Replace marker defs. -->
 
 	<marker id="mim-modification-start-black" 
-	fill="black"
 	markerUnits="strokeWidth"
 	markerWidth="10" markerHeight="10"
 	orient="auto"
 	refX="0" refY="0"
-	stroke="black"
 	viewBox="0 -6 12 12">
-	<line stroke="#ff0000" id="svg_14" y2="-8.20383" x2="-8.19998" y1="9.79617" x1="9.80002" stroke-width="5" fill="none"/>
-	<line transform="rotate(-90 1.20001 1.6962)" id="svg_15" stroke="#ff0000" y2="-7.3038" x2="-7.79999" y1="10.6962" x1="10.20001" stroke-width="5" fill="none"/>
+	<polygon class="default-element-colors-closed" stroke-width="0" points="12,6 0,0 12,-6 5,0 "/>
 	</marker>
 
 	<marker id="mim-modification-end-black"
-	fill="black"
 	markerUnits="strokeWidth"
 	markerWidth="10" markerHeight="10"
 	orient="auto"
 	refX="0" refY="0"
-	stroke="black"
 	viewBox="-12 -6 12 12">
-	<line stroke="#ff0000" id="svg_14" y2="-8.20383" x2="-8.19998" y1="9.79617" x1="9.80002" stroke-width="5" fill="none"/>
-	<line transform="rotate(-90 1.20001 1.6962)" id="svg_15" stroke="#ff0000" y2="-7.3038" x2="-7.79999" y1="10.6962" x1="10.20001" stroke-width="5" fill="none"/>
+	<polygon class="default-element-colors-closed" stroke-width="0" points="-12,6 0,0 -12,-6 -5,0 "/>
 	</marker>
 
 	<!-- mim-necessary-stimulation markers are incorrect. TODO Replace marker defs. -->
 
 	<marker id="mim-necessary-stimulation-start-black"
-	class="default-background-color-fill"
 	markerWidth="10" markerHeight="10"
 	markerUnits="strokeWidth"
 	orient="auto"
 	refX="0" refY="0"
-	stroke="black"
-	viewBox="0 -6 16 12">
-	<polygon fill="none" stroke="#000000" stroke-width="1" stroke-miterlimit="10" points="7.459,-4.286 0.82,0 7.459,3.712"/>
-	<line fill="none" stroke="#000000" stroke-width="1" stroke-miterlimit="10" x1="7.459" y1="0" x2="15.959" y2="0"/>
-	<line fill="none" stroke="#000000" stroke-width="1" stroke-miterlimit="10" x1="11.418" y1="4.458" x2="11.418" y2="-5.54"/>
+	viewBox="0 -6 12 12">
+	<line fill="none" class="default-element-color-stroke" stroke-width="1" x1="11" y1="-6" x2="11" y2="6"/>
+	<polygon class="default-background-colors-open" stroke-width="1" points="9,5 1,0 9,-5"/>
 	</marker>
 
 	<marker id="mim-necessary-stimulation-end-black"
-	class="default-background-color-fill"
 	markerUnits="strokeWidth"
 	markerWidth="10" markerHeight="10"
 	orient="auto"
 	refX="0" refY="0"
-	stroke="black"
-	viewBox="-16 -6 16 12">
-	<polygon fill="none" stroke="#000000" stroke-width="1" stroke-miterlimit="10" points="-7.459,-4.286 -0.82,0 -7.459,3.712"/>
-	<line fill="none" stroke="#000000" stroke-width="1" stroke-miterlimit="10" x1="-7.459" y1="0" x2="-15.959" y2="0"/>
-	<line fill="none" stroke="#000000" stroke-width="1" stroke-miterlimit="10" x1="-11.418" y1="4.458" x2="-11.418" y2="-5.54"/>
+	viewBox="-12 -6 12 12">
+	<line fill="none" class="default-element-color-stroke" stroke-width="1" x1="-11" y1="-6" x2="-11" y2="6"/>
+	<polygon class="default-background-colors-open" stroke-width="1" points="-9,5 1,0 -9,-5"/>
 	</marker>
 
 	<!-- mim-stimulation markers -->
@@ -557,9 +511,8 @@ Markers (Arrowheads)
 	markerUnits="strokeWidth"
 	orient="auto"
 	refX="0" refY="0"
-	stroke="black"
 	viewBox="0 -6 12 12">
-	<path d="M0,0 L10,-5 L10,5 Z" stroke-width="1px"/>
+	<polygon class="default-background-colors-open" stroke-width="1" points="9,5 1,0 9,-5"/>
 	</marker>
 
 	<marker id="mim-stimulation-end-black"
@@ -567,9 +520,8 @@ Markers (Arrowheads)
 	markerWidth="10" markerHeight="10"
 	orient="auto"
 	refX="0" refY="0"
-	stroke="black"
 	viewBox="-12 -6 12 12">
-	<path d="M0,0 L-10,-5 L-10,5 Z" stroke-width="1px"/>
+	<polygon class="default-background-colors-open" stroke-width="1" points="-9,5 -1,0 -9,-5"/>
 	</marker>
 
 	<!-- mim-transcription-translation markers are incorrect. TODO Replace marker defs. -->
@@ -606,25 +558,21 @@ Markers (Arrowheads)
 	-->
 
 	<marker id="mim-gap-start-black"
-	class="default-background-color-fill"
 	markerUnits="strokeWidth"
 	markerWidth="10" markerHeight="10"
 	orient="auto"
 	refX="0" refY="0"
-	stroke="none"
 	viewBox="0 -6 12 12">
-	<rect x="-7" y="-2.5" width="10" height="5" />
+	<rect class="default-background-color-fill" stroke="none" x="-6" y="-2.5" width="10" height="5" />
 	</marker>
 
 	<marker id="mim-gap-end-black"
-	class="default-background-color-fill"
 	markerUnits="strokeWidth"
 	markerWidth="10" markerHeight="10"
 	orient="auto"
 	refX="0" refY="0"
-	stroke="none"
 	viewBox="-12 -6 12 12">
-	<rect x="-3" y="-2.5" width="10" height="5" />
+	<rect class="default-background-color-fill" stroke="none" x="-4" y="-2.5" width="10" height="5" />
 	</marker>
 
 	<!-- ***************************
