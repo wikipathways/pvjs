@@ -396,8 +396,9 @@ Markers (Arrowheads)
 	markerUnits="strokeWidth"
 	orient="auto"
 	refX="0" refY="0"
-	viewBox="0 -6 12 12">
+	viewBox="-6 -6 12 12">
 	<line fill="none" class="default-element-color-stroke" stroke-width="1" x1="6" y1="0" x2="6" y2="6"/>	
+	<line fill="none" class="default-element-color-stroke" stroke-width="1" x1="6" y1="6" x2="-6" y2="-6"/>	
 	</marker>
 
 	<marker id="mim-cleavage-end-black"
