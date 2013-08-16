@@ -317,6 +317,7 @@ Markers (Arrowheads)
 	<!-- t-bar markers -->
 
 	<marker id="t-bar-start-black"
+	class="default-background-color-fill"
 	markerWidth="10" markerHeight="10"
 	markerUnits="strokeWidth"
 	orient="auto"
@@ -328,6 +329,7 @@ Markers (Arrowheads)
 	</marker>
 
 	<marker id="t-bar-end-black"
+	class="default-background-color-fill"
 	markerUnits="strokeWidth"
 	markerWidth="10" markerHeight="10"
 	orient="auto"
