@@ -6,7 +6,6 @@ This file can be used for many purposes outside of pathvisio.js, including allow
 other projects to work better with GPML. For purposes of pathvisio.js, this file will
 be the starting point for our JavaScript rendering of pathways. Every time we want to
 render a GPML file on the browser, we will read a copy of this file into D3.js and
-modify the copy by adding "use" statements, cloning markers, etc. in order to create
 the desired pathway illustration in SVG.
 
 The XML declaration above is taken from an example from the W3C 
@@ -532,8 +531,8 @@ Markers (Arrowheads)
 	refX="0" refY="0"
 	stroke="black"
 	viewBox="0 -6 12 12">
-	<line fill="none" stroke="#000000" stroke-width="1" x1="10.787" y1="-6" x2="10.787" y2="6"/>
-	<polygon fill="none" stroke="#000000" stroke-width="1" points="8.888,5 1.148,0.000 8.888,-4 "/>
+	<line fill="none" stroke="#000000" stroke-width="1" x1="11" y1="-6" x2="11" y2="6"/>
+	<polygon fill="none" stroke="#000000" stroke-width="1" points="9,4 1,0 9,-4 "/>
 	</marker>
 
 	<marker id="mim-necessary-stimulation-end-black"
