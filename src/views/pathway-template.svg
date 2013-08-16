@@ -397,7 +397,7 @@ Markers (Arrowheads)
 	orient="auto"
 	refX="0" refY="0"
 	viewBox="-8 -6 12 12">
-	<polygon fill="default-background-color-fill" stroke-width="0" points="4,5 0,6 0,-6 4,-6"/>
+	<polygon fill="default-background-color-fill" stroke-width="0" points="3.7,5 0,6 0,-6 3.7,-6"/>
 	<line fill="none" class="default-element-color-stroke" stroke-width=".4" x1="3.7" y1="0" x2="3.7" y2="6"/>	
 	<line fill="none" class="default-element-color-stroke" stroke-width=".4" x1="3.7" y1="6" x2="-8" y2="-6"/>	
 	</marker>
@@ -409,7 +409,7 @@ Markers (Arrowheads)
 	orient="auto"
 	refX="0" refY="0"
 	viewBox="-4 -6 12 12">
-	<polygon fill="default-background-color-fill" stroke-width="0" points="-4,5 0,6 0,-6 -4,-6"/>
+	<polygon fill="default-background-color-fill" stroke-width="0" points="-3.7,5 0,6 0,-6 -3.7,-6"/>
 	<line fill="none" class="default-element-color-stroke" stroke-width=".4" x1="-3.7" y1="0" x2="-3.7" y2="-6"/>	
 	<line fill="none" class="default-element-color-stroke" stroke-width=".4" x1="-3.7" y1="-6" x2="8" y2="6"/>	
 	</marker>
