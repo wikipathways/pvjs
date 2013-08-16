@@ -45,8 +45,54 @@ var repo = getUrlParameter('repo');
   <button id="javascript-svg-pathway-button" class="pathway" onclick="usePathwayImgCreator('javascript-svg')" style="background-color: yellow">pathvisio.js SVG</button>
   <button id="java-svg-pathway-button" class="pathway" onclick="usePathwayImgCreator('java-svg')" style="background-color: lightgray" title="Batik is currently used by PathVisio (Java) to create visual representations of GPML files in SVG and PDF">PathVisio (Java) SVG</button>
   <button id="java-png-pathway-button" class="pathway" onclick="usePathwayImgCreator('java-png')" style="background-color: lightgray" title="Batik is currently used by PathVisio (Java) to create visual representations of GPML files in SVG and PDF">PathVisio (Java) PNG</button>
+Repo: 
+<?php
+  $authorizedRepos = array("wikipathways", "AlexanderPico", "ariutta", "khanspers");
+  $repo = "wikipathways";
+
+  if (isset($_GET['repo'])) {
+    if (($_GET['repo'] == 'AlexanderPico') || ($_GET['repo'] == 'ariutta') || ($_GET['repo'] == 'khanspers')) {
+      $repo = htmlspecialchars($_GET['repo']);
+    }
+  }
+
+  $pathwayTemplateSvgUrl = "https://raw.github.com/" . $repo . "/pathvisio.js/dev/src/views/pathway-template.svg";
+
+  if (isset($_GET['pwId'])) {
+    echo "<script>var local = false</script>";
+    $pwId = htmlspecialchars($_GET['pwId']);
+    $pathwayUrlParamStr = "pwId=" . $pwId;
+
+    $batikSvgUrl = "http://www.wikipathways.org//wpi/wpi.php?action=downloadFile&type=svg&pwTitle=Pathway:" . $pwId . "&revision=0";
+    $pngUrl = "http://www.wikipathways.org//wpi/wpi.php?action=downloadFile&type=png&pwTitle=Pathway:" . $pwId . "&revision=0";
+
+    $pathwayUrl = "http://www.wikipathways.org//wpi/wpi.php?action=downloadFile&type=gpml&pwTitle=Pathway:" . $pwId;
+  }
+  elseif (isset($_GET['pathwayUrl'])) {
+    echo "<script>var local = true</script>";
+    $pathwayUrl = htmlspecialchars($_GET['pathwayUrl']);
+    $pathwayUrlParamStr = "pathwayUrl=" . $pathwayUrl;
+    $batikSvgUrl = str_replace(".gpml", ".svg", htmlspecialchars($_GET['pathwayUrl']));
+    $pngUrl = str_replace(".gpml", ".png", htmlspecialchars($_GET['pathwayUrl']));
+  }
+
+  foreach($authorizedRepos as $value){
+    if ($value == $repo) {
+        $html .= "<option value='./?" . $pathwayUrlParamStr . "&repo=" . $value . "' selected='selected'>$value</key>";
+    }
+    else {
+        $html .= "<option value='./?" . $pathwayUrlParamStr . "&repo=" . $value . "'>$value</key>";
+    }
+  }
+
+  echo "<select name='repo' onChange='document.location = this.value' value='GO'>$html</select>";
+?>
 </div> 
-<p>To see the results of editing the pathway template SVG file (pathway-template.svg), first let Anders or Alex know you want to be added. Then you can edit the file in the <span style="font-weight: bold">DEV</span> branch of your github fork of pathvisio.js, commit, and enter URL parameter 'repo' above as "repo=YourGithubId" and load or refresh.</p>
+<p>If you woule like to edit the symbols (shapes), markers (arrowheads), colors or other properties of the pathvisio.js pathway template, let Anders or Alex know. When you are added as an authorized user, you can edit your 
+<?php
+  echo "<a href='" . $pathwayTemplateSvgUrl . "'>"
+?>
+SVG pathway template file</a> in the <span style="font-weight: bold">DEV</span> branch of your github fork of <a href="https://github.com/wikipathways/pathvisio.js">pathvisio.js</a>, commit, and view your changes on this page. Note that your commits on Github may take a few seconds before they show up here.</p>
 
 <!--
 <div>
@@ -59,17 +105,10 @@ Repo from which to pull pathway template svg: <INPUT id="repo" type="text" SIZE=
 
 <div id="javascript-svg-pathway-container" class="pathway">
   <?php
-    //$pathwayDefsSvgUrl = "https://raw.github.com/wikipathways/pathvisio.js/dev/src/views/pathway-template.svg";
-    //$pathwayDefsSvg = file_get_contents($pathwayDefsSvgUrl);
-    //$imageData = base64_encode($pathwayDefsSvg);
+    //$pathwayTemplateSvgUrl = "https://raw.github.com/wikipathways/pathvisio.js/dev/src/views/pathway-template.svg";
+    //$pathwayTemplateSvg = file_get_contents($pathwayTemplateSvgUrl);
+    //$imageData = base64_encode($pathwayTemplateSvg);
     //echo "<object id='pathway-container' type='image/svg+xml' data='" . $imageData . "' width='100%' height='100%' onload='drawPathway()'>";
-
-    $repo = "wikipathways";
-    if (isset($_GET['repo'])) {
-      if (($_GET['repo'] == 'AlexanderPico') || ($_GET['repo'] == 'ariutta') || ($_GET['repo'] == 'khanspers')) {
-        $repo = $_GET['repo'];
-      }
-    }
 
     //Is the code below ok wrt to security?
     //
@@ -77,34 +116,18 @@ Repo from which to pull pathway template svg: <INPUT id="repo" type="text" SIZE=
     //  $repo = $_GET['repo'];
     //}
 
-    $pathwayDefsSvgUrl = "https://raw.github.com/" . $repo . "/pathvisio.js/dev/src/views/pathway-template.svg";
-    $pathwayDefsSvg = simplexml_load_file($pathwayDefsSvgUrl);
-    echo $pathwayDefsSvg->saveXML();
+    $pathwayTemplateSvg = simplexml_load_file($pathwayTemplateSvgUrl);
+    echo $pathwayTemplateSvg->saveXML();
 
   ?>
 </div>
 
 <?php
-  if (isset($_GET['pwId'])) {
-    echo "<script>var local = false</script>";
-    $pwId = $_GET['pwId'];
 
-    $svgUrl = "http://www.wikipathways.org//wpi/wpi.php?action=downloadFile&type=svg&pwTitle=Pathway:" . $pwId . "&revision=0";
-    $pngUrl = "http://www.wikipathways.org//wpi/wpi.php?action=downloadFile&type=png&pwTitle=Pathway:" . $pwId . "&revision=0";
-
-    $gpmlUrl = "http://www.wikipathways.org//wpi/wpi.php?action=downloadFile&type=gpml&pwTitle=Pathway:" . $pwId;
-  }
-  elseif (isset($_GET['pathwayUrl'])) {
-    echo "<script>var local = true</script>";
-    $gpmlUrl = $_GET['pathwayUrl'];
-    $svgUrl = str_replace(".gpml", ".svg", $_GET['pathwayUrl']);
-    $pngUrl = str_replace(".gpml", ".png", $_GET['pathwayUrl']);
-  }
-
-  $svg = simplexml_load_file($svgUrl);
+  $batikSvg = simplexml_load_file($batikSvgUrl);
 
   echo "<div id='java-svg-pathway-container' class='pathway' style='display: none;'>";
-    echo $svg->saveXML();
+    echo $batikSvg->saveXML();
   echo "</div>";
 
   //$im = imagecreatefrompng($pngUrl);
@@ -118,7 +141,7 @@ Repo from which to pull pathway template svg: <INPUT id="repo" type="text" SIZE=
     //echo '<img id="img" src="data:image/png;base64,' . $server_response . '"/>';
   echo "</div>";
 
-  $gpmlStr = file_get_contents($gpmlUrl);
+  $gpmlStr = file_get_contents($pathwayUrl);
   $doc = new DOMDocument();
   $doc->loadXML($gpmlStr);
 
@@ -129,7 +152,7 @@ Repo from which to pull pathway template svg: <INPUT id="repo" type="text" SIZE=
   echo $doc->saveXML(null, LIBXML_NOEMPTYTAG);
   echo "</div>";
 
-  //$gpml = simplexml_load_file($gpmlUrl);
+  //$gpml = simplexml_load_file($pathwayUrl);
   // output the result
   //echo $gpml->asXML();
 
