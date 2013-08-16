@@ -104,6 +104,16 @@ Either convert SVG to PDF and import PDF into Illustrator or convert SVG to .ai 
 		stroke: black;
 	}
 
+	.default-element-colors-open {
+		stroke: black;
+		fill: white;
+	}
+
+	.default-element-colors-closed {
+		stroke: black;
+		fill: black;
+	}
+
 	.default-element-color-fill {
 		fill: black;
 	}
@@ -298,7 +308,7 @@ Markers (Arrowheads)
 	orient="auto"
 	refX="0" refY="0"
 	viewBox="0 -6 12 12">
-	<polygon class="default-element-color-fill" stroke-width="0" points="10,5 0,0 10,-5"/>
+	<polygon class="default-element-colors-closed" stroke-width="0" points="10,5 0,0 10,-5"/>
 	</marker>
 
 	<marker id="arrow-end-black"
@@ -307,7 +317,7 @@ Markers (Arrowheads)
 	orient="auto"
 	refX="0" refY="0"
 	viewBox="-12 -6 12 12">
-	<polygon class="default-element-color-fill" stroke-width="0" points="-10,5 0,0 -10,-5"/>
+	<polygon class="default-element-colors-closed" stroke-width="0" points="-10,5 0,0 -10,-5"/>
 	</marker>
 
 	<!-- t-bar markers -->
@@ -342,7 +352,7 @@ Markers (Arrowheads)
 	orient="auto"
 	refX="0" refY="0"
 	viewBox="0 -6 12 12">
-	<polygon class="default-element-color-fill" stroke-width="0" points="12,6 0,0 12,-6 5,0 "/>
+	<polygon class="default-element-colors-closed" stroke-width="0" points="12,6 0,0 12,-6 5,0 "/>
 	</marker>
 
 	<marker id="mim-binding-end-black"
@@ -351,7 +361,7 @@ Markers (Arrowheads)
 	orient="auto"
 	refX="0" refY="0"
 	viewBox="-12 -6 12 12">
-	<polygon class="default-element-color-fill" stroke-width="0" points="-12,6 0,0 -12,-6 -5,0 "/>
+	<polygon class="default-element-colors-closed" stroke-width="0" points="-12,6 0,0 -12,-6 -5,0 "/>
 	</marker>
 
 	<!-- mim-catalysis markers -->
@@ -364,7 +374,7 @@ Markers (Arrowheads)
 	orient="auto"
 	refX="0" refY="0"
 	viewBox="0 -6 12 12">
-	<circle cx="5" cy="0" r="5px" class="default-element-color-stroke" stroke-width="1px"/>
+	<circle cx="5" cy="0" r="5px" class="default-element-colors-open" stroke-width="1px"/>
 	</marker>
 
 	<marker id="mim-catalysis-end-black"
@@ -375,7 +385,7 @@ Markers (Arrowheads)
 	orient="auto"
 	refX="5" refY="0"
 	viewBox="-6 -6 12 12">
-	<circle cx="0" cy="0" r="5px" class="default-element-color-stroke" stroke-width="1px"/>
+	<circle cx="0" cy="0" r="5px" class="default-element-colors-open" stroke-width="1px"/>
 	</marker>
 
 	<!-- mim-cleavage markers are incorrect. TODO Replace marker defs. -->
