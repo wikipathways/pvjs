@@ -425,7 +425,7 @@ Markers (Arrowheads)
 	refX="0" refY="0"
 	viewBox="0 -6 12 12">
 	<rect stroke="none" x="0" y="-2.5" width="3.7" height="5" />
-	<line fill="none" stroke-width=".4" x1="3.7" y1="0" x2="0" y2="6"/>	
+	<line fill="none" stroke-width=".4" x1="3.7" y1="0" x2="0" y2="-6"/>	
 	</marker>
 
 	<marker id="mim-branching-left-end-black"
@@ -438,7 +438,7 @@ Markers (Arrowheads)
 	refX="0" refY="0"
 	viewBox="-12 -6 12 12">
 	<rect stroke="none" x="-3.7" y="-2.5" width="3.7" height="5" />
-	<line fill="none" stroke-width=".4" x1="-3.7" y1="0" x2="0" y2="-6"/>	
+	<line fill="none" stroke-width=".4" x1="-3.7" y1="0" x2="0" y2="6"/>	
 	</marker>
 
 	<!-- mim-branching-right markers are incorrect. TODO Replace marker defs. -->
@@ -453,7 +453,7 @@ Markers (Arrowheads)
 	refX="0" refY="0"
 	viewBox="0 -6 12 12">
 	<rect stroke="none" x="0" y="-2.5" width="3.7" height="5" />
-	<line fill="none" stroke-width=".4" x1="3.7" y1="0" x2="0" y2="-6"/>
+	<line fill="none" stroke-width=".4" x1="3.7" y1="0" x2="0" y2="6"/>
 	</marker>
 
 	<marker id="mim-branching-right-end-black"
@@ -466,7 +466,7 @@ Markers (Arrowheads)
 	refX="0" refY="0"
 	viewBox="-12 -6 12 12">
 	<rect stroke="none" x="-3.7" y="-2.5" width="3.7" height="5" />
-	<line fill="none" stroke-width=".4" x1="-3.7" y1="0" x2="0" y2="6"/>	
+	<line fill="none" stroke-width=".4" x1="-3.7" y1="0" x2="0" y2="-6"/>	
 	</marker>
 
 	<!-- mim-conversion markers are incorrect. TODO Replace marker defs. -->
