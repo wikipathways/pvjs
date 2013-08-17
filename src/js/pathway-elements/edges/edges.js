@@ -51,24 +51,26 @@ pathvisio.edges = function(){
         };
         return style; 
       })
-//      .attr("marker-start", function (d) { 
-//        markerStart = pathvisio.edges.markers.draw(d.markerStart, 'start', d.stroke);
-//        if (d.hasOwnProperty('strokeStyle')) {
-//          if (d.strokeStyle === 'double') {
-//            markerStart = 'mim-gap-start-black';
-//          };
-//        };
-//        return 'url(#' + markerStart + ')'; 
-//      })
-//      .attr("marker-end", function (d) { 
-//        markerEnd = pathvisio.edges.markers.draw(d.markerEnd, 'end', d.stroke);
-//        if (d.hasOwnProperty('strokeStyle')) {
-//          if (d.strokeStyle === 'double') {
-//            markerEnd = 'mim-gap-end-black';
-//          };
-//        };
-//        return 'url(#' + markerEnd + ')'; 
-//      })
+      .attr("marker-start", function (d) { 
+        markerStart = pathvisio.edges.markers.draw(d.markerStart, 'start', d.stroke);
+        if (d.hasOwnProperty('strokeStyle')) {
+          if (d.strokeStyle === 'double') {
+            //hack to manage marker scaling; this marker should not have any features itself
+            markerStart = 'mim-covalent-bond-start-black';
+          };
+        };
+        return 'url(#' + markerStart + ')'; 
+      })
+      .attr("marker-end", function (d) { 
+        markerEnd = pathvisio.edges.markers.draw(d.markerEnd, 'end', d.stroke);
+        if (d.hasOwnProperty('strokeStyle')) {
+          if (d.strokeStyle === 'double') {
+            //hack to manage marker scaling; this marker should not have any features itself
+            markerEnd = 'mim-covalent-bond-end-black';
+          };
+        };
+        return 'url(#' + markerEnd + ')'; 
+      })
       .attr("fill", 'none');
     };
   };
