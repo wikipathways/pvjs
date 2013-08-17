@@ -380,7 +380,7 @@ Markers (Arrowheads)
 	refX="5" refY="0"
 	viewBox="-6 -6 12 12">
 	<rect class="default-background-color-fill" stroke="none" x="-5" y="-2.5" width="5" height="5" />
-	<circle cx="0.5" cy="0" r="5.5px" stroke-width="1px"/>
+	<circle cx="0" cy="0" r="5.5px" stroke-width="1px"/>
 	</marker>
 
 	<!-- mim-cleavage markers are incorrect. TODO Replace marker defs. -->
