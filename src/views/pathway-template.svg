@@ -282,12 +282,14 @@ Markers (Arrowheads)
 	<!-- arrow markers -->
 
 	<marker id="arrow-start-black" 
+	class="default-background-color-fill"
 	fill="black"
 	markerUnits="strokeWidth"
 	markerWidth="10" markerHeight="10"
 	orient="auto"
 	refX="0" refY="0"
 	viewBox="0 -5 10 10">
+	<rect stroke="none" x="0" y="-2.5" width="5" height="5" />
 	<polygon stroke-width="0" points="10,5 0,0 10,-5"/>
 	</marker>
 
@@ -546,6 +548,7 @@ Markers (Arrowheads)
 	orient="auto"
 	refX="0" refY="0"
 	viewBox="0 -6 15 12">
+	<rect stroke="none" x="-5" y="-2.5" width="5" height="5" />
 	<line fill="none" stroke-width="1" x1="14" y1="-6" x2="14" y2="6"/>
 	<polygon stroke-width="1" points="9,5 1,0 9,-5"/>
 	</marker>
