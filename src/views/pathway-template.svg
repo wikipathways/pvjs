@@ -353,62 +353,70 @@ Markers (Arrowheads)
 	<!-- mim-binding markers -->
 
 	<marker id="mim-binding-start-black" 
+	fill="black"
 	markerUnits="strokeWidth"
 	markerWidth="10" markerHeight="10"
 	orient="auto"
 	refX="0" refY="0"
 	viewBox="0 -6 12 12">
-	<polygon class="default-element-colors-closed" stroke-width="0" points="12,6 0,0 12,-6 5,0 "/>
+	<polygon stroke-width="0" points="12,6 0,0 12,-6 5,0 "/>
 	</marker>
 
 	<marker id="mim-binding-end-black"
+	fill="black"
 	markerUnits="strokeWidth"
 	markerWidth="10" markerHeight="10"
 	orient="auto"
 	refX="0" refY="0"
 	viewBox="-12 -6 12 12">
-	<polygon class="default-element-colors-closed" stroke-width="0" points="-12,6 0,0 -12,-6 -5,0 "/>
+	<polygon stroke-width="0" points="-12,6 0,0 -12,-6 -5,0 "/>
 	</marker>
 
 	<!-- mim-catalysis markers -->
 
 	<marker id="mim-catalysis-start-black"
 	class="default-background-color-fill"
+	stroke="black"
 	markerHeight="10"
 	markerWidth="10"
 	markerUnits="strokeWidth"
 	orient="auto"
 	refX="0" refY="0"
 	viewBox="0 -6 12 12">
-	<circle cx="5.5" cy="0" r="5.5px" class="default-element-colors-open" stroke-width="1px"/>
+	<circle cx="5.5" cy="0" r="5.5px" stroke-width="1px"/>
 	</marker>
 
 	<marker id="mim-catalysis-end-black"
 	class="default-background-color-fill"
+	stroke="black"
 	markerHeight="10"
 	markerUnits="strokeWidth"
 	markerWidth="10"
 	orient="auto"
 	refX="5" refY="0"
 	viewBox="-6 -6 12 12">
-	<circle cx="0.5" cy="0" r="5.5px" class="default-element-colors-open" stroke-width="1px"/>
+	<circle cx="0.5" cy="0" r="5.5px" stroke-width="1px"/>
 	</marker>
 
 	<!-- mim-cleavage markers are incorrect. TODO Replace marker defs. -->
 
 	<marker id="mim-cleavage-start-black" 
+	class="default-background-color-fill" 
+	stroke="black"
 	markerHeight="24"
 	markerWidth="24"
 	markerUnits="strokeWidth"
 	orient="auto"
 	refX="0" refY="0"
 	viewBox="-8 -6 12 12">
-	<polygon fill="default-background-color-fill" stroke-width="0" points="3.7,5 0,6 0,-6 3.7,-6"/>
-	<line fill="none" class="default-element-color-stroke" stroke-width=".4" x1="3.7" y1="0" x2="3.7" y2="6"/>	
-	<line fill="none" class="default-element-color-stroke" stroke-width=".4" x1="3.7" y1="6" x2="-8" y2="-6"/>	
+	<rect stroke="none" x="0" y="-2.5" width="3.7" height="5" />
+	<line fill="none" stroke-width=".4" x1="3.7" y1="0" x2="3.7" y2="6"/>	
+	<line fill="none" stroke-width=".4" x1="3.7" y1="6" x2="-8" y2="-6"/>	
 	</marker>
 
 	<marker id="mim-cleavage-end-black"
+	class="default-background-color-fill" 
+	stroke="black"
 	markerHeight="24"
 	markerWidth="24"
 	markerUnits="strokeWidth"
