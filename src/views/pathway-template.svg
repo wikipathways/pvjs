@@ -308,7 +308,7 @@ Markers (Arrowheads)
 	markerWidth="10" markerHeight="10"
 	orient="auto"
 	refX="0" refY="0"
-	viewBox="0 -6 12 12">
+	viewBox="0 -5 10 10">
 	<polygon stroke-width="0" points="10,5 0,0 10,-5"/>
 	</marker>
 
