@@ -51,22 +51,22 @@ pathvisio.edges = function(){
         };
         return style; 
       })
-      .attr("marker-start", function (d) { 
-        markerStart = pathvisio.edges.markers.draw(d.markerStart, 'start', d.stroke);
-        if (d.hasOwnProperty('strokeStyle')) {
-          if (d.strokeStyle === 'double') {
-            markerStart = 'mim-gap-start-black';
-          };
-        };
-        return 'url(#' + markerStart + ')'; 
-      })
-      .attr("marker-end", function (d) { 
-        markerEnd = pathvisio.edges.markers.draw(d.markerEnd, 'end', d.stroke);
-        if (d.hasOwnProperty('strokeStyle')) {
-          if (d.strokeStyle === 'double') {
-            markerEnd = 'mim-gap-end-black';
-          };
-        };
+//      .attr("marker-start", function (d) { 
+//        markerStart = pathvisio.edges.markers.draw(d.markerStart, 'start', d.stroke);
+//        if (d.hasOwnProperty('strokeStyle')) {
+//          if (d.strokeStyle === 'double') {
+//            markerStart = 'mim-gap-start-black';
+//          };
+//        };
+//        return 'url(#' + markerStart + ')'; 
+//      })
+//      .attr("marker-end", function (d) { 
+//        markerEnd = pathvisio.edges.markers.draw(d.markerEnd, 'end', d.stroke);
+//        if (d.hasOwnProperty('strokeStyle')) {
+//          if (d.strokeStyle === 'double') {
+//            markerEnd = 'mim-gap-end-black';
+//          };
+//        };
         return 'url(#' + markerEnd + ')'; 
       })
       .attr("fill", 'none');
