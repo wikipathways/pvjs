@@ -560,6 +560,7 @@ Markers (Arrowheads)
 	orient="auto"
 	refX="0" refY="0"
 	viewBox="-15 -6 15 12">
+	<rect stroke="none" x="-5" y="-2.5" width="5" height="5" />
 	<line fill="none" stroke-width="1" x1="-14" y1="-6" x2="-14" y2="6"/>
 	<polygon stroke-width="1" points="-9,5 1,0 -9,-5"/>
 	</marker>
@@ -613,6 +614,25 @@ Markers (Arrowheads)
 	<line stroke="#ff0000" id="svg_14" y2="-8.20383" x2="-8.19998" y1="9.79617" x1="9.80002" stroke-width="5" fill="none"/>
 	<line transform="rotate(-90 1.20001 1.6962)" id="svg_15" stroke="#ff0000" y2="-7.3038" x2="-7.79999" y1="10.6962" x1="10.20001" stroke-width="5" fill="none"/>
 	</marker>
+
+	<!-- mim-covalent-bond markers are incorrect. Not much to see here. This def is also used as "dummy" blank for double line handling -->
+
+	<marker id="mim-covalent-bond-start-black"
+	markerUnits="strokeWidth"
+	markerWidth="10" markerHeight="10"
+	orient="auto"
+	refX="0" refY="0"
+	viewBox="0 -6 12 12">
+	</marker>
+
+	<marker id="mim-covalent-bond-end-black"
+	markerUnits="strokeWidth"
+	markerWidth="10" markerHeight="10"
+	orient="auto"
+	refX="0" refY="0"
+	viewBox="-12 -6 12 12">
+	</marker>
+
 
 	<!-- mim-gap markers. Says "...-black", but there is actually no black color in the marker. -->
 	<!-- 
