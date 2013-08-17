@@ -303,6 +303,85 @@ Markers (Arrowheads)
 	<polygon stroke-width="0" points="-12,5 0,0 -12,-5"/>
 	</marker>
 
+
+	<!-- mim-conversion markers are incorrect. TODO Replace marker defs. -->
+
+	<marker id="mim-conversion-start-black" 
+	fill="black"
+	markerUnits="strokeWidth"
+	markerWidth="12" markerHeight="12"
+	orient="auto"
+	refX="0" refY="0"
+	viewBox="0 -6 12 12">
+	<rect class="default-background-color-fill" stroke="none" x="0" y="-2.5" width="5" height="5" />
+	<polygon stroke-width="0" points="12,5 0,0 12,-5"/>
+	</marker>
+
+	<marker id="mim-conversion-end-black"
+	fill="black"
+	markerUnits="strokeWidth"
+	markerWidth="12" markerHeight="12"
+	orient="auto"
+	refX="0" refY="0"
+	viewBox="-12 -6 12 12">
+	<rect class="default-background-color-fill" stroke="none" x="-5" y="-2.5" width="5" height="5" />
+	<polygon stroke-width="0" points="-12,5 0,0 -12,-5"/>
+	</marker>
+
+	<!-- mim-stimulation markers -->
+
+	<marker id="mim-stimulation-start-black"
+	class="default-background-color-fill"
+	stroke="black"
+	markerWidth="12" markerHeight="12"
+	markerUnits="strokeWidth"
+	orient="auto"
+	refX="0" refY="0"
+	viewBox="0 -6 12 12">
+	<rect stroke="none" x="0" y="-2.5" width="5" height="5" />
+	<polygon stroke-width="1" points="12,5 0,0 12,-5"/>
+	</marker>
+
+	<marker id="mim-stimulation-end-black"
+	class="default-background-color-fill"
+	stroke="black"
+	markerUnits="strokeWidth"
+	markerWidth="12" markerHeight="12"
+	orient="auto"
+	refX="0" refY="0"
+	viewBox="-12 -6 12 12">
+	<rect stroke="none" x="-5" y="-2.5" width="5" height="5" />
+	<polygon stroke-width="1" points="-12,5 0,0 -12,-5"/>
+	</marker>
+
+	<!-- mim-necessary-stimulation markers are incorrect. TODO Replace marker defs. -->
+
+	<marker id="mim-necessary-stimulation-start-black"
+	class="default-background-color-fill"
+	stroke="black"
+	markerWidth="12" markerHeight="12"
+	markerUnits="strokeWidth"
+	orient="auto"
+	refX="0" refY="0"
+	viewBox="0 -6 15 12">
+	<rect stroke="none" x="0" y="-2.5" width="5" height="5" />
+	<line fill="none" stroke-width="1" x1="14" y1="-6" x2="14" y2="6"/>
+	<polygon stroke-width="1" points="12,5 0,0 12,-5"/>
+	</marker>
+
+	<marker id="mim-necessary-stimulation-end-black"
+	class="default-background-color-fill"
+	stroke="black"
+	markerUnits="strokeWidth"
+	markerWidth="12" markerHeight="12"
+	orient="auto"
+	refX="0" refY="0"
+	viewBox="-15 -6 15 12">
+	<rect stroke="none" x="-5" y="-2.5" width="5" height="5" />
+	<line fill="none" stroke-width="1" x1="-14" y1="-6" x2="-14" y2="6"/>
+	<polygon stroke-width="1" points="-12,5 0,0 -12,-5"/>
+	</marker>
+
 	<!-- t-bar markers -->
 
 	<marker id="t-bar-start-black"
@@ -331,6 +410,35 @@ Markers (Arrowheads)
 	<line fill="none" stroke-width="1.6" x1="-5" y1="-6" x2="-5" y2="6"/>
 	</marker>
 	
+
+	<!-- mim-inhibition markers -->
+
+	<marker id="mim-inhibition-start-black"
+	class="default-background-color-fill"
+	stroke="black"
+	markerWidth="16" 
+	markerHeight="16"
+	markerUnits="strokeWidth"
+	orient="auto"
+	refX="0" refY="0"
+	viewBox="0 -6 12 12">
+	<rect stroke="none" x="0" y="-2.5" width="5" height="5" />
+	<line fill="none" stroke-width="1.6" x1="5" y1="-6" x2="5" y2="6"/>
+	</marker>
+
+	<marker id="mim-inhibition-end-black"
+	class="default-background-color-fill"
+	stroke="black"
+	markerUnits="strokeWidth"
+	markerWidth="16" 
+	markerHeight="16"
+	orient="auto"
+	refX="0" refY="0"
+	viewBox="-12 -6 12 12">
+	<rect stroke="none" x="-5" y="-2.5" width="5" height="5" />
+	<line fill="none" stroke-width="1.6" x1="-5" y1="-6" x2="-5" y2="6"/>
+	</marker>
+	
 	<!-- mim-binding markers -->
 
 	<marker id="mim-binding-start-black" 
@@ -345,6 +453,30 @@ Markers (Arrowheads)
 	</marker>
 
 	<marker id="mim-binding-end-black"
+	fill="black"
+	markerUnits="strokeWidth"
+	markerWidth="12" markerHeight="12"
+	orient="auto"
+	refX="0" refY="0"
+	viewBox="-12 -6 12 12">
+	<rect class="default-background-color-fill" stroke="none" x="-5" y="-2.5" width="5" height="5" />
+	<polygon stroke-width="0" points="-12,6 0,0 -12,-6 -5,0 "/>
+	</marker>
+
+	<!-- mim-modification markers are incorrect. TODO Replace marker defs. -->
+
+	<marker id="mim-modification-start-black" 
+	fill="black"
+	markerUnits="strokeWidth"
+	markerWidth="12" markerHeight="12"
+	orient="auto"
+	refX="0" refY="0"
+	viewBox="0 -6 12 12">
+	<rect class="default-background-color-fill" stroke="none" x="0" y="-2.5" width="5" height="5" />
+	<polygon stroke-width="0" points="12,6 0,0 12,-6 5,0 "/>
+	</marker>
+
+	<marker id="mim-modification-end-black"
 	fill="black"
 	markerUnits="strokeWidth"
 	markerWidth="12" markerHeight="12"
@@ -394,7 +526,7 @@ Markers (Arrowheads)
 	orient="auto"
 	refX="0" refY="0"
 	viewBox="-8 -6 12 12">
-	<rect stroke="none" x="0" y="-2.5" width="3.6" height="5" />
+	<rect stroke="none" x="0" y="-2.5" width="3.5" height="5" />
 	<line fill="none" stroke-width=".4" x1="3.7" y1="0" x2="3.7" y2="6"/>	
 	<line fill="none" stroke-width=".4" x1="3.7" y1="6" x2="-8" y2="-6"/>	
 	</marker>
@@ -408,7 +540,7 @@ Markers (Arrowheads)
 	orient="auto"
 	refX="0" refY="0"
 	viewBox="-4 -6 12 12">
-	<rect stroke="none" x="-3.6" y="-2.5" width="3.6" height="5" />
+	<rect stroke="none" x="-3.5" y="-2.5" width="3.5" height="5" />
 	<line fill="none" stroke-width=".4" x1="-3.7" y1="0" x2="-3.7" y2="-6"/>	
 	<line fill="none" stroke-width=".4" x1="-3.7" y1="-6" x2="8" y2="6"/>	
 	</marker>
@@ -424,7 +556,7 @@ Markers (Arrowheads)
 	orient="auto"
 	refX="0" refY="0"
 	viewBox="0 -6 12 12">
-	<rect stroke="none" x="0" y="-2.5" width="3.7" height="5" />
+	<rect stroke="none" x="0" y="-2.5" width="3.5" height="5" />
 	<line fill="none" stroke-width=".4" x1="3.7" y1="0" x2="0" y2="-6"/>	
 	</marker>
 
@@ -437,7 +569,7 @@ Markers (Arrowheads)
 	orient="auto"
 	refX="0" refY="0"
 	viewBox="-12 -6 12 12">
-	<rect stroke="none" x="-3.7" y="-2.5" width="3.7" height="5" />
+	<rect stroke="none" x="-3.5" y="-2.5" width="3.5" height="5" />
 	<line fill="none" stroke-width=".4" x1="-3.7" y1="0" x2="0" y2="6"/>	
 	</marker>
 
@@ -452,7 +584,7 @@ Markers (Arrowheads)
 	orient="auto"
 	refX="0" refY="0"
 	viewBox="0 -6 12 12">
-	<rect stroke="none" x="0" y="-2.5" width="3.7" height="5" />
+	<rect stroke="none" x="0" y="-2.5" width="3.5" height="5" />
 	<line fill="none" stroke-width=".4" x1="3.7" y1="0" x2="0" y2="6"/>
 	</marker>
 
@@ -465,139 +597,8 @@ Markers (Arrowheads)
 	orient="auto"
 	refX="0" refY="0"
 	viewBox="-12 -6 12 12">
-	<rect stroke="none" x="-3.7" y="-2.5" width="3.7" height="5" />
+	<rect stroke="none" x="-3.5" y="-2.5" width="3.5" height="5" />
 	<line fill="none" stroke-width=".4" x1="-3.7" y1="0" x2="0" y2="-6"/>	
-	</marker>
-
-	<!-- mim-conversion markers are incorrect. TODO Replace marker defs. -->
-
-	<marker id="mim-conversion-start-black" 
-	fill="black"
-	markerUnits="strokeWidth"
-	markerWidth="12" markerHeight="12"
-	orient="auto"
-	refX="0" refY="0"
-	viewBox="0 -6 12 12">
-	<rect class="default-background-color-fill" stroke="none" x="0" y="-2.5" width="5" height="5" />
-	<polygon stroke-width="0" points="12,5 0,0 12,-5"/>
-	</marker>
-
-	<marker id="mim-conversion-end-black"
-	fill="black"
-	markerUnits="strokeWidth"
-	markerWidth="12" markerHeight="12"
-	orient="auto"
-	refX="0" refY="0"
-	viewBox="-12 -6 12 12">
-	<rect class="default-background-color-fill" stroke="none" x="-5" y="-2.5" width="5" height="5" />
-	<polygon stroke-width="0" points="-12,5 0,0 -12,-5"/>
-	</marker>
-
-
-	<!-- mim-inhibition markers -->
-
-	<marker id="mim-inhibition-start-black"
-	class="default-background-color-fill"
-	stroke="black"
-	markerWidth="16" 
-	markerHeight="16"
-	markerUnits="strokeWidth"
-	orient="auto"
-	refX="0" refY="0"
-	viewBox="0 -6 12 12">
-	<rect stroke="none" x="0" y="-2.5" width="5" height="5" />
-	<line fill="none" stroke-width="1.6" x1="5" y1="-6" x2="5" y2="6"/>
-	</marker>
-
-	<marker id="mim-inhibition-end-black"
-	class="default-background-color-fill"
-	stroke="black"
-	markerUnits="strokeWidth"
-	markerWidth="16" 
-	markerHeight="16"
-	orient="auto"
-	refX="0" refY="0"
-	viewBox="-12 -6 12 12">
-	<rect stroke="none" x="-5" y="-2.5" width="5" height="5" />
-	<line fill="none" stroke-width="1.6" x1="-5" y1="-6" x2="-5" y2="6"/>
-	</marker>
-
-	<!-- mim-modification markers are incorrect. TODO Replace marker defs. -->
-
-	<marker id="mim-modification-start-black" 
-	fill="black"
-	markerUnits="strokeWidth"
-	markerWidth="12" markerHeight="12"
-	orient="auto"
-	refX="0" refY="0"
-	viewBox="0 -6 12 12">
-	<rect class="default-background-color-fill" stroke="none" x="0" y="-2.5" width="5" height="5" />
-	<polygon stroke-width="0" points="12,6 0,0 12,-6 5,0 "/>
-	</marker>
-
-	<marker id="mim-modification-end-black"
-	fill="black"
-	markerUnits="strokeWidth"
-	markerWidth="12" markerHeight="12"
-	orient="auto"
-	refX="0" refY="0"
-	viewBox="-12 -6 12 12">
-	<rect class="default-background-color-fill" stroke="none" x="-5" y="-2.5" width="5" height="5" />
-	<polygon stroke-width="0" points="-12,6 0,0 -12,-6 -5,0 "/>
-	</marker>
-
-	<!-- mim-necessary-stimulation markers are incorrect. TODO Replace marker defs. -->
-
-	<marker id="mim-necessary-stimulation-start-black"
-	class="default-background-color-fill"
-	stroke="black"
-	markerWidth="12" markerHeight="12"
-	markerUnits="strokeWidth"
-	orient="auto"
-	refX="0" refY="0"
-	viewBox="0 -6 15 12">
-	<rect stroke="none" x="0" y="-2.5" width="5" height="5" />
-	<line fill="none" stroke-width="1" x1="14" y1="-6" x2="14" y2="6"/>
-	<polygon stroke-width="1" points="12,5 0,0 12,-5"/>
-	</marker>
-
-	<marker id="mim-necessary-stimulation-end-black"
-	class="default-background-color-fill"
-	stroke="black"
-	markerUnits="strokeWidth"
-	markerWidth="12" markerHeight="12"
-	orient="auto"
-	refX="0" refY="0"
-	viewBox="-15 -6 15 12">
-	<rect stroke="none" x="-5" y="-2.5" width="5" height="5" />
-	<line fill="none" stroke-width="1" x1="-14" y1="-6" x2="-14" y2="6"/>
-	<polygon stroke-width="1" points="-12,5 0,0 -12,-5"/>
-	</marker>
-
-	<!-- mim-stimulation markers -->
-
-	<marker id="mim-stimulation-start-black"
-	class="default-background-color-fill"
-	stroke="black"
-	markerWidth="12" markerHeight="12"
-	markerUnits="strokeWidth"
-	orient="auto"
-	refX="0" refY="0"
-	viewBox="0 -6 12 12">
-	<rect stroke="none" x="0" y="-2.5" width="5" height="5" />
-	<polygon stroke-width="1" points="12,5 0,0 12,-5"/>
-	</marker>
-
-	<marker id="mim-stimulation-end-black"
-	class="default-background-color-fill"
-	stroke="black"
-	markerUnits="strokeWidth"
-	markerWidth="12" markerHeight="12"
-	orient="auto"
-	refX="0" refY="0"
-	viewBox="-12 -6 12 12">
-	<rect stroke="none" x="-5" y="-2.5" width="5" height="5" />
-	<polygon stroke-width="1" points="-12,5 0,0 -12,-5"/>
 	</marker>
 
 	<!-- mim-transcription-translation markers are incorrect. TODO Replace marker defs. -->
