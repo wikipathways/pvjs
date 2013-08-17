@@ -100,27 +100,6 @@ Either convert SVG to PDF and import PDF into Illustrator or convert SVG to .ai 
 		stroke-width: 2px;
 	}
 
-	.default-element-color-stroke {
-		stroke: black;
-	}
-
-	.default-element-color-fill {
-		fill: black;
-	}
-
-	.default-element-colors-open {
-		stroke: black;
-		fill: white;
-	}
-
-	.default-element-colors-closed {
-		stroke: black;
-		fill: black;
-	}
-
-	.default-background-color-stroke {
-		stroke: white;
-	}
 
 	.default-background-color-fill {
 		fill: white;
@@ -423,29 +402,31 @@ Markers (Arrowheads)
 	orient="auto"
 	refX="0" refY="0"
 	viewBox="-4 -6 12 12">
-	<polygon fill="default-background-color-fill" stroke-width="0" points="-3.7,5 0,6 0,-6 -3.7,-6"/>
-	<line fill="none" class="default-element-color-stroke" stroke-width=".4" x1="-3.7" y1="0" x2="-3.7" y2="-6"/>	
-	<line fill="none" class="default-element-color-stroke" stroke-width=".4" x1="-3.7" y1="-6" x2="8" y2="6"/>	
+	<rect stroke="none" x="-3.7" y="-2.5" width="3.7" height="5" />
+	<line fill="none" stroke-width=".4" x1="-3.7" y1="0" x2="-3.7" y2="-6"/>	
+	<line fill="none" stroke-width=".4" x1="-3.7" y1="-6" x2="8" y2="6"/>	
 	</marker>
 
 	<!-- mim-conversion markers are incorrect. TODO Replace marker defs. -->
 
 	<marker id="mim-conversion-start-black" 
+	fill="black"
 	markerUnits="strokeWidth"
 	markerWidth="10" markerHeight="10"
 	orient="auto"
 	refX="0" refY="0"
 	viewBox="0 -6 12 12">
-	<polygon class="default-element-colors-closed" stroke-width="0" points="10,5 0,0 10,-5"/>
+	<polygon stroke-width="0" points="10,5 0,0 10,-5"/>
 	</marker>
 
 	<marker id="mim-conversion-end-black"
+	fill="black"
 	markerUnits="strokeWidth"
 	markerWidth="10" markerHeight="10"
 	orient="auto"
 	refX="0" refY="0"
 	viewBox="-12 -6 12 12">
-	<polygon class="default-element-colors-closed" stroke-width="0" points="-10,5 0,0 -10,-5"/>
+	<polygon stroke-width="0" points="-10,5 0,0 -10,-5"/>
 	</marker>
 
 
@@ -480,63 +461,73 @@ Markers (Arrowheads)
 	<!-- mim-modification markers are incorrect. TODO Replace marker defs. -->
 
 	<marker id="mim-modification-start-black" 
+	fill="black"
 	markerUnits="strokeWidth"
 	markerWidth="10" markerHeight="10"
 	orient="auto"
 	refX="0" refY="0"
 	viewBox="0 -6 12 12">
-	<polygon class="default-element-colors-closed" stroke-width="0" points="12,6 0,0 12,-6 5,0 "/>
+	<polygon stroke-width="0" points="12,6 0,0 12,-6 5,0 "/>
 	</marker>
 
 	<marker id="mim-modification-end-black"
+	fill="black"
 	markerUnits="strokeWidth"
 	markerWidth="10" markerHeight="10"
 	orient="auto"
 	refX="0" refY="0"
 	viewBox="-12 -6 12 12">
-	<polygon class="default-element-colors-closed" stroke-width="0" points="-12,6 0,0 -12,-6 -5,0 "/>
+	<polygon stroke-width="0" points="-12,6 0,0 -12,-6 -5,0 "/>
 	</marker>
 
 	<!-- mim-necessary-stimulation markers are incorrect. TODO Replace marker defs. -->
 
 	<marker id="mim-necessary-stimulation-start-black"
+	class="default-background-color-fill"
+	stroke="black"
 	markerWidth="10" markerHeight="10"
 	markerUnits="strokeWidth"
 	orient="auto"
 	refX="0" refY="0"
 	viewBox="0 -6 12 12">
-	<line fill="none" class="default-element-color-stroke" stroke-width="1" x1="11" y1="-6" x2="11" y2="6"/>
-	<polygon class="default-background-colors-open" stroke-width="1" points="9,5 1,0 9,-5"/>
+	<line fill="none" stroke-width="1" x1="11" y1="-6" x2="11" y2="6"/>
+	<polygon stroke-width="1" points="9,5 1,0 9,-5"/>
 	</marker>
 
 	<marker id="mim-necessary-stimulation-end-black"
+	class="default-background-color-fill"
+	stroke="black"
 	markerUnits="strokeWidth"
 	markerWidth="10" markerHeight="10"
 	orient="auto"
 	refX="0" refY="0"
 	viewBox="-12 -6 12 12">
-	<line fill="none" class="default-element-color-stroke" stroke-width="1" x1="-11" y1="-6" x2="-11" y2="6"/>
-	<polygon class="default-background-colors-open" stroke-width="1" points="-9,5 1,0 -9,-5"/>
+	<line fill="none" stroke-width="1" x1="-11" y1="-6" x2="-11" y2="6"/>
+	<polygon stroke-width="1" points="-9,5 1,0 -9,-5"/>
 	</marker>
 
 	<!-- mim-stimulation markers -->
 
 	<marker id="mim-stimulation-start-black"
+	class="default-background-color-fill"
+	stroke="black"
 	markerWidth="10" markerHeight="10"
 	markerUnits="strokeWidth"
 	orient="auto"
 	refX="0" refY="0"
 	viewBox="0 -6 12 12">
-	<polygon class="default-background-colors-open" stroke-width="1" points="9,5 1,0 9,-5"/>
+	<polygon stroke-width="1" points="9,5 1,0 9,-5"/>
 	</marker>
 
 	<marker id="mim-stimulation-end-black"
+	class="default-background-color-fill"
+	stroke="black"
 	markerUnits="strokeWidth"
 	markerWidth="10" markerHeight="10"
 	orient="auto"
 	refX="0" refY="0"
 	viewBox="-12 -6 12 12">
-	<polygon class="default-background-colors-open" stroke-width="1" points="-9,5 -1,0 -9,-5"/>
+	<polygon stroke-width="1" points="-9,5 -1,0 -9,-5"/>
 	</marker>
 
 	<!-- mim-transcription-translation markers are incorrect. TODO Replace marker defs. -->
@@ -573,21 +564,23 @@ Markers (Arrowheads)
 	-->
 
 	<marker id="mim-gap-start-black"
+	class="default-background-color-fill"
 	markerUnits="strokeWidth"
 	markerWidth="10" markerHeight="10"
 	orient="auto"
 	refX="0" refY="0"
 	viewBox="0 -6 12 12">
-	<rect class="default-background-color-fill" stroke="none" x="-6" y="-2.5" width="10" height="5" />
+	<rect stroke="none" x="-2" y="-2.5" width="8" height="5" />
 	</marker>
 
 	<marker id="mim-gap-end-black"
+	class="default-background-color-fill"
 	markerUnits="strokeWidth"
 	markerWidth="10" markerHeight="10"
 	orient="auto"
 	refX="0" refY="0"
 	viewBox="-12 -6 12 12">
-	<rect class="default-background-color-fill" stroke="none" x="-4" y="-2.5" width="10" height="5" />
+	<rect stroke="none" x="-6" y="-2.5" width="8" height="5" />
 	</marker>
 
 	<!-- ***************************
