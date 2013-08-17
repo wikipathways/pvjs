@@ -103,7 +103,7 @@ function convertGpml2Json(gpml){
 
   // GPML to jGPML marker name mappings: { "oldName":"new-name" }
 
-  var markerMappings = { "Arrow":"arrow", "TBar":"t-bar", "mim-necessary-branching-left":"mim-necessary-branching-left", "mim-necessary-branching-right":"mim-necessary-branching-right", "mim-necessary-stimulation":"mim-necessary-stimulation", "mim-binding":"mim-binding", "mim-conversion":"mim-conversion", "mim-stimulation":"mim-stimulation", "mim-modification":"mim-modification", "mim-catalysis":"mim-catalysis", "mim-inhibition":"mim-inhibition", "mim-cleavage":"mim-cleavage", "mim-covalent-bond":"mim-covalent-bond", "mim-transcription-translation":"mim-transcription-translation", "mim-gap":"mim-gap" };
+  var markerMappings = { "Arrow":"arrow", "TBar":"t-bar", "mim-branching-left":"mim-branching-left", "mim-branching-right":"mim-branching-right", "mim-necessary-stimulation":"mim-necessary-stimulation", "mim-binding":"mim-binding", "mim-conversion":"mim-conversion", "mim-stimulation":"mim-stimulation", "mim-modification":"mim-modification", "mim-catalysis":"mim-catalysis", "mim-inhibition":"mim-inhibition", "mim-cleavage":"mim-cleavage", "mim-covalent-bond":"mim-covalent-bond", "mim-transcription-translation":"mim-transcription-translation", "mim-gap":"mim-gap" };
 
   var dataNodeTypeMappings = { "GeneProduct":"gene-product",  "Metabolite":"metabolite", "Pathway":"pathway", "Protein":"protein", "Rna":"rna" };
 
