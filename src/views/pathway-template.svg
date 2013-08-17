@@ -346,7 +346,7 @@ Markers (Arrowheads)
 	orient="auto"
 	refX="0" refY="0"
 	viewBox="-12 -6 12 12">
-	<rect stroke="none" x="5" y="-2.5" width="5" height="5" />
+	<rect stroke="none" x="-5" y="-2.5" width="5" height="5" />
 	<line fill="none" stroke-width="1.5" x1="-5" y1="-6" x2="-5" y2="6"/>
 	</marker>
 	
