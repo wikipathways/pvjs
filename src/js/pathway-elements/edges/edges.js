@@ -67,8 +67,8 @@ pathvisio.edges = function(){
 //            markerEnd = 'mim-gap-end-black';
 //          };
 //        };
-        return 'url(#' + markerEnd + ')'; 
-      })
+//        return 'url(#' + markerEnd + ')'; 
+//      })
       .attr("fill", 'none');
     };
   };
