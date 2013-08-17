@@ -303,21 +303,23 @@ Markers (Arrowheads)
 	<!-- arrow markers -->
 
 	<marker id="arrow-start-black" 
+	fill="black"
 	markerUnits="strokeWidth"
 	markerWidth="10" markerHeight="10"
 	orient="auto"
 	refX="0" refY="0"
 	viewBox="0 -6 12 12">
-	<polygon class="default-element-colors-closed" stroke-width="0" points="10,5 0,0 10,-5"/>
+	<polygon stroke-width="0" points="10,5 0,0 10,-5"/>
 	</marker>
 
 	<marker id="arrow-end-black"
+	fill="black"
 	markerUnits="strokeWidth"
 	markerWidth="10" markerHeight="10"
 	orient="auto"
 	refX="0" refY="0"
 	viewBox="-12 -6 12 12">
-	<polygon class="default-element-colors-closed" stroke-width="0" points="-10,5 0,0 -10,-5"/>
+	<polygon stroke-width="0" points="-10,5 0,0 -10,-5"/>
 	</marker>
 
 	<!-- t-bar markers -->
