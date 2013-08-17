@@ -485,7 +485,7 @@ Markers (Arrowheads)
 	<marker id="mim-necessary-stimulation-start-black"
 	class="default-background-color-fill"
 	stroke="black"
-	markerWidth="10" markerHeight="10"
+	markerWidth="12" markerHeight="12"
 	markerUnits="strokeWidth"
 	orient="auto"
 	refX="0" refY="0"
@@ -498,7 +498,7 @@ Markers (Arrowheads)
 	class="default-background-color-fill"
 	stroke="black"
 	markerUnits="strokeWidth"
-	markerWidth="10" markerHeight="10"
+	markerWidth="12" markerHeight="12"
 	orient="auto"
 	refX="0" refY="0"
 	viewBox="-17 -6 17 12">
