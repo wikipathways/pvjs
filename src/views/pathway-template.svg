@@ -351,7 +351,7 @@ Markers (Arrowheads)
 	orient="auto"
 	refX="0" refY="0"
 	viewBox="-12 -6 12 12">
-	<rect class="default-background-color-fill" stroke="none" x="-5" y="-6" width="5" height="12" />
+	<rect class="default-background-color-fill" stroke="none" x="-5" y="-2.5" width="5" height="5" />
 	<polygon stroke-width="0" points="-12,6 0,0 -12,-6 -5,0 "/>
 	</marker>
 
@@ -626,7 +626,7 @@ Markers (Arrowheads)
 	<line transform="rotate(-90 1.20001 1.6962)" id="svg_15" stroke="#ff0000" y2="-7.3038" x2="-7.79999" y1="10.6962" x1="10.20001" stroke-width="5" fill="none"/>
 	</marker>
 
-	<!-- mim-covalent-bond markers are incorrect. Not much to see here. This def is also used as "dummy" blank for double line handling -->
+	<!-- mim-covalent-bond markers are incorrect. Not much to see here. -->
 
 	<marker id="mim-covalent-bond-start-black"
 	markerUnits="strokeWidth"
@@ -637,6 +637,25 @@ Markers (Arrowheads)
 	</marker>
 
 	<marker id="mim-covalent-bond-end-black"
+	markerUnits="strokeWidth"
+	markerWidth="10" markerHeight="10"
+	orient="auto"
+	refX="0" refY="0"
+	viewBox="-12 -6 12 12">
+	</marker>
+
+
+	<!-- double-line-hack markers are used in double line handling; they have no features -->
+
+	<marker id="double-line-hack-start-black"
+	markerUnits="strokeWidth"
+	markerWidth="10" markerHeight="10"
+	orient="auto"
+	refX="0" refY="0"
+	viewBox="0 -6 12 12">
+	</marker>
+
+	<marker id="double-line-hack-end-black"
 	markerUnits="strokeWidth"
 	markerWidth="10" markerHeight="10"
 	orient="auto"
