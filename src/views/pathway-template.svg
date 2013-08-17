@@ -328,13 +328,13 @@ Markers (Arrowheads)
 	class="default-background-color-fill"
 	stroke="black"
 	markerWidth="10" 
-	markerHeight="12"
+	markerHeight="20"
 	markerUnits="strokeWidth"
 	orient="auto"
 	refX="0" refY="0"
 	viewBox="0 -6 12 12">
 	<rect stroke="none" x="0" y="-2.5" width="5" height="5" />
-	<line fill="none" stroke-width="1.5" x1="5" y1="-6" x2="5" y2="6"/>
+	<line fill="none" stroke-width="2" x1="5" y1="-6" x2="5" y2="6"/>
 	</marker>
 
 	<marker id="t-bar-end-black"
@@ -342,12 +342,12 @@ Markers (Arrowheads)
 	stroke="black"
 	markerUnits="strokeWidth"
 	markerWidth="10" 
-	markerHeight="12"
+	markerHeight="20"
 	orient="auto"
 	refX="0" refY="0"
 	viewBox="-12 -6 12 12">
 	<rect stroke="none" x="5" y="-2.5" width="5" height="5" />
-	<line fill="none" stroke-width="1.5" x1="-5" y1="-6" x2="-5" y2="6"/>
+	<line fill="none" stroke-width="2" x1="-5" y1="-6" x2="-5" y2="6"/>
 	</marker>
 	
 	<!-- mim-binding markers -->
