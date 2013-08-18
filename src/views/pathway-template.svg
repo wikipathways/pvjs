@@ -279,7 +279,12 @@ Markers (Arrowheads)
 	we need to clone the black marker and set the color for the clone to the desired color using d3.js.
 	I wish fill="currentColor" worked for markers, but that does not appear to be the case. -->
 
-	<!-- arrow markers -->
+	<!-- Each marker includes a small rectangle with a default-background-color-fill color to obscure the
+	ends of lines that might otherwise show up beneath the marker. Double lines require their own special
+	obscuring rects and are included as a double-line-hack-start/end marker, defined here and added in
+	gpml2json.js -->
+
+	<!-- arrow markers: triangular polygons, no stroke -->
 
 	<marker id="arrow-start-black" 
 	fill="black"
@@ -304,7 +309,7 @@ Markers (Arrowheads)
 	</marker>
 
 
-	<!-- mim-conversion markers are incorrect. TODO Replace marker defs. -->
+	<!-- mim-conversion markers: triangular polygons, no stroke -->
 
 	<marker id="mim-conversion-start-black" 
 	fill="black"
@@ -328,7 +333,7 @@ Markers (Arrowheads)
 	<polygon stroke-width="0" points="-11,5 0,0 -11,-5"/>
 	</marker>
 
-	<!-- mim-stimulation markers -->
+	<!-- mim-stimulation markers: triangular polygons, background fill, black stroke -->
 
 	<marker id="mim-stimulation-start-black"
 	class="default-background-color-fill"
@@ -354,7 +359,7 @@ Markers (Arrowheads)
 	<polygon stroke-width="1" points="-11,5 0,0 -11,-5"/>
 	</marker>
 
-	<!-- mim-necessary-stimulation markers are incorrect. TODO Replace marker defs. -->
+	<!-- mim-necessary-stimulation markers: triangular polygons, background fill, black stroke; and vertical line -->
 
 	<marker id="mim-necessary-stimulation-start-black"
 	class="default-background-color-fill"
@@ -382,7 +387,7 @@ Markers (Arrowheads)
 	<polygon stroke-width="1" points="-9,5 0,0 -9,-5"/>
 	</marker>
 
-	<!-- t-bar markers -->
+	<!-- t-bar markers: vertical line; and extended background rect -->
 
 	<marker id="t-bar-start-black"
 	class="default-background-color-fill"
@@ -411,7 +416,7 @@ Markers (Arrowheads)
 	</marker>
 	
 
-	<!-- mim-inhibition markers -->
+	<!-- mim-inhibition markers: vertical line; and extended background rect -->
 
 	<marker id="mim-inhibition-start-black"
 	class="default-background-color-fill"
@@ -439,7 +444,7 @@ Markers (Arrowheads)
 	<line fill="none" stroke-width="1.6" x1="-5" y1="-6" x2="-5" y2="6"/>
 	</marker>
 	
-	<!-- mim-binding markers -->
+	<!-- mim-binding markers: four-point polygon, no stroke -->
 
 	<marker id="mim-binding-start-black" 
 	fill="black"
@@ -463,7 +468,7 @@ Markers (Arrowheads)
 	<polygon stroke-width="0" points="-12,6 0,0 -12,-6 -5,0 "/>
 	</marker>
 
-	<!-- mim-modification markers are incorrect. TODO Replace marker defs. -->
+	<!-- mim-modification markers: four-point polygon, no stroke -->
 
 	<marker id="mim-modification-start-black" 
 	fill="black"
@@ -487,7 +492,7 @@ Markers (Arrowheads)
 	<polygon stroke-width="0" points="-12,6 0,0 -12,-6 -5,0 "/>
 	</marker>
 
-	<!-- mim-catalysis markers -->
+	<!-- mim-catalysis markers: circle, background fill and black stroke -->
 
 	<marker id="mim-catalysis-start-black"
 	class="default-background-color-fill"
@@ -513,7 +518,7 @@ Markers (Arrowheads)
 	<circle cx="-0.3" cy="0" r="5.3px" stroke-width="1px"/>
 	</marker>
 
-	<!-- mim-cleavage markers are incorrect. TODO Replace marker defs. -->
+	<!-- mim-cleavage markers: two lines and extended background rect -->
 
 	<marker id="mim-cleavage-start-black" 
 	class="default-background-color-fill" 
@@ -543,7 +548,7 @@ Markers (Arrowheads)
 	<line fill="none" stroke-width=".4" x1="-3.7" y1="-6" x2="8" y2="6"/>	
 	</marker>
 
-	<!-- mim-branching-left markers are incorrect. TODO Replace marker defs. -->
+	<!-- mim-branching-left markers: line and extended background rect -->
 
 	<marker id="mim-branching-left-start-black" 
 	class="default-background-color-fill" 
@@ -571,7 +576,7 @@ Markers (Arrowheads)
 	<line fill="none" stroke-width=".4" x1="-3.7" y1="0" x2="0" y2="6"/>	
 	</marker>
 
-	<!-- mim-branching-right markers are incorrect. TODO Replace marker defs. -->
+	<!-- mim-branching-right markers: line and extended background rect -->
 
 	<marker id="mim-branching-right-start-black" 
 	class="default-background-color-fill" 
@@ -599,7 +604,7 @@ Markers (Arrowheads)
 	<line fill="none" stroke-width=".4" x1="-3.7" y1="0" x2="0" y2="-6"/>	
 	</marker>
 
-	<!-- mim-transcription-translation markers are incorrect. TODO Replace marker defs. -->
+	<!-- mim-transcription-translation markers: two lines and an open trigular polygon, plus extended background rect -->
 
 	<marker id="mim-transcription-translation-start-black"
 	class="default-background-color-fill" 
@@ -630,7 +635,8 @@ Markers (Arrowheads)
 	<line fill="none" stroke-width=".4" x1="-9" y1="4" x2="-5" y2="4"/>
 	<polygon stroke-width=".4" points="-5,6 0,4 -5,2"/>	
 	</marker>
-	<!-- mim-covalent-bond markers are incorrect. Not much to see here. -->
+	
+	<!-- mim-covalent-bond markers: not much to see here! -->
 
 	<marker id="mim-covalent-bond-start-black"
 	markerUnits="strokeWidth"
@@ -649,7 +655,8 @@ Markers (Arrowheads)
 	</marker>
 
 
-	<!-- double-line-hack markers are used in double line handling; they include their own special blank rect to obscure the ends -->
+	<!-- double-line-hack markers are used in double line handling; they include their own 
+	special blank rect to obscure the ends -->
 
 	<marker id="double-line-hack-start"
 	markerUnits="strokeWidth"
@@ -670,9 +677,8 @@ Markers (Arrowheads)
 	</marker>
 
 
-	<!-- mim-gap markers. Says "...-black", but there is actually no black color in the marker. -->
+	<!-- mim-gap markers: just an extended background rect -->
 	<!-- 
-	Boxes filled with background color to blank out the end of lines, such as for double lines.
 	TODO This could be refactored to make the shape match the viewbox.
 	It can overlap the side of the shape, blanking out a small part of it when the edge is at an angle.
 	-->
