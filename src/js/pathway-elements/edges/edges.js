@@ -56,7 +56,7 @@ pathvisio.edges = function(){
         if (d.hasOwnProperty('strokeStyle')) {
           if (d.strokeStyle === 'double') {
             //hack to manage marker scaling; this marker should not have any features itself
-            markerStart = 'double-line-hack-start-black';
+            markerStart = 'double-line-hack-start';
           };
         };
         return 'url(#' + markerStart + ')'; 
@@ -66,7 +66,7 @@ pathvisio.edges = function(){
         if (d.hasOwnProperty('strokeStyle')) {
           if (d.strokeStyle === 'double') {
             //hack to manage marker scaling; this marker should not have any features itself
-            markerEnd = 'double-line-hack-end-black';
+            markerEnd = 'double-line-hack-end';
           };
         };
         return 'url(#' + markerEnd + ')'; 
