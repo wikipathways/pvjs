@@ -659,7 +659,7 @@ Markers (Arrowheads)
 	orient="auto"
 	refX="0" refY="0"
 	viewBox="0 -6 12 12">
-	<rect class="default-background-color-fill" stroke="none" x="0" y="-1.5" width="5" height="3" />
+	<rect class="default-background-color-fill" stroke="none" x="0" y="-1.5" width="2" height="3" />
 	</marker>
 
 	<marker id="double-line-hack-end-black"
@@ -668,7 +668,7 @@ Markers (Arrowheads)
 	orient="auto"
 	refX="0" refY="0"
 	viewBox="-12 -6 12 12">
-	<rect class="default-background-color-fill" stroke="none" x="-5" y="-1.5" width="5" height="3" />
+	<rect class="default-background-color-fill" stroke="none" x="-5" y="-1.5" width="2" height="3" />
 	</marker>
 
 
