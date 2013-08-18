@@ -288,7 +288,7 @@ Markers (Arrowheads)
 	orient="auto"
 	refX="0" refY="0"
 	viewBox="0 -6 12 12">
-	<rect class="default-background-color-fill" stroke="none" x="0" y="-0.6" width="5" height="1.2" />
+	<rect class="default-background-color-fill" stroke="none" x="0" y="-0.6" width="2" height="1.2" />
 	<polygon stroke-width="0" points="12,5 0,0 12,-5"/>
 	</marker>
 
@@ -299,7 +299,7 @@ Markers (Arrowheads)
 	orient="auto"
 	refX="0" refY="0"
 	viewBox="-12 -6 12 12">
-	<rect class="default-background-color-fill" stroke="none" x="-5" y="-0.6" width="5" height="1.2" />
+	<rect class="default-background-color-fill" stroke="none" x="-2" y="-0.6" width="2" height="1.2" />
 	<polygon stroke-width="0" points="-12,5 0,0 -12,-5"/>
 	</marker>
 
@@ -313,7 +313,7 @@ Markers (Arrowheads)
 	orient="auto"
 	refX="0" refY="0"
 	viewBox="0 -6 12 12">
-	<rect class="default-background-color-fill" stroke="none" x="0" y="-2.5" width="5" height="5" />
+	<rect class="default-background-color-fill" stroke="none" x="0" y="-0.6" width="2" height="1.2" />
 	<polygon stroke-width="0" points="12,5 0,0 12,-5"/>
 	</marker>
 
@@ -324,7 +324,7 @@ Markers (Arrowheads)
 	orient="auto"
 	refX="0" refY="0"
 	viewBox="-12 -6 12 12">
-	<rect class="default-background-color-fill" stroke="none" x="-5" y="-2.5" width="5" height="5" />
+	<rect class="default-background-color-fill" stroke="none" x="-2" y="-0.6" width="2" height="1.2" />
 	<polygon stroke-width="0" points="-12,5 0,0 -12,-5"/>
 	</marker>
 
@@ -338,7 +338,7 @@ Markers (Arrowheads)
 	orient="auto"
 	refX="0" refY="0"
 	viewBox="0 -6 12 12">
-	<rect stroke="none" x="0" y="-2.5" width="5" height="5" />
+	<rect stroke="none" x="0" y="-0.6" width="2" height="1.2" />
 	<polygon stroke-width="1" points="12,5 0,0 12,-5"/>
 	</marker>
 
@@ -350,7 +350,7 @@ Markers (Arrowheads)
 	orient="auto"
 	refX="0" refY="0"
 	viewBox="-12 -6 12 12">
-	<rect stroke="none" x="-5" y="-2.5" width="5" height="5" />
+	<rect stroke="none" x="-2" y="-0.6" width="2" height="1.2" />
 	<polygon stroke-width="1" points="-12,5 0,0 -12,-5"/>
 	</marker>
 
@@ -364,7 +364,7 @@ Markers (Arrowheads)
 	orient="auto"
 	refX="0" refY="0"
 	viewBox="0 -6 15 12">
-	<rect stroke="none" x="0" y="-0.6" width="5" height="1.2" />
+	<rect stroke="none" x="0" y="-0.6" width="2" height="1.2" />
 	<line fill="none" stroke-width="1" x1="14" y1="-6" x2="14" y2="6"/>
 	<polygon stroke-width="1" points="9,5 0,0 9,-5"/>
 	</marker>
@@ -377,7 +377,7 @@ Markers (Arrowheads)
 	orient="auto"
 	refX="0" refY="0"
 	viewBox="-15 -6 15 12">
-	<rect stroke="none" x="-5" y="-0.6" width="5" height="1.2" />
+	<rect stroke="none" x="-2" y="-0.6" width="2" height="1.2" />
 	<line fill="none" stroke-width="1" x1="-14" y1="-6" x2="-14" y2="6"/>
 	<polygon stroke-width="1" points="-9,5 0,0 -9,-5"/>
 	</marker>
@@ -448,7 +448,7 @@ Markers (Arrowheads)
 	orient="auto"
 	refX="0" refY="0"
 	viewBox="0 -6 12 12">
-	<rect class="default-background-color-fill" stroke="none" x="0" y="-2.5" width="5" height="5" />
+	<rect class="default-background-color-fill" stroke="none" x="0" y="-0.6" width="2" height="1.2" />
 	<polygon stroke-width="0" points="12,6 0,0 12,-6 5,0 "/>
 	</marker>
 
@@ -459,7 +459,7 @@ Markers (Arrowheads)
 	orient="auto"
 	refX="0" refY="0"
 	viewBox="-12 -6 12 12">
-	<rect class="default-background-color-fill" stroke="none" x="-5" y="-2.5" width="5" height="5" />
+	<rect class="default-background-color-fill" stroke="none" x="-2" y="-0.6" width="2" height="1.2" />
 	<polygon stroke-width="0" points="-12,6 0,0 -12,-6 -5,0 "/>
 	</marker>
 
@@ -472,7 +472,7 @@ Markers (Arrowheads)
 	orient="auto"
 	refX="0" refY="0"
 	viewBox="0 -6 12 12">
-	<rect class="default-background-color-fill" stroke="none" x="0" y="-2.5" width="5" height="5" />
+	<rect class="default-background-color-fill" stroke="none" x="0" y="-0.6" width="2" height="1.2" />
 	<polygon stroke-width="0" points="12,6 0,0 12,-6 5,0 "/>
 	</marker>
 
@@ -483,7 +483,7 @@ Markers (Arrowheads)
 	orient="auto"
 	refX="0" refY="0"
 	viewBox="-12 -6 12 12">
-	<rect class="default-background-color-fill" stroke="none" x="-5" y="-2.5" width="5" height="5" />
+	<rect class="default-background-color-fill" stroke="none" x="-5" y="-0.6" width="2" height="1.2" />
 	<polygon stroke-width="0" points="-12,6 0,0 -12,-6 -5,0 "/>
 	</marker>
 
@@ -498,7 +498,6 @@ Markers (Arrowheads)
 	orient="auto"
 	refX="0" refY="0"
 	viewBox="0 -6 12 12">
-	<rect class="default-background-color-fill" stroke="none" x="0" y="-2.5" width="5" height="5" />
 	<circle cx="5.5" cy="0" r="5.5px" stroke-width="1px"/>
 	</marker>
 
@@ -511,7 +510,6 @@ Markers (Arrowheads)
 	orient="auto"
 	refX="5" refY="0"
 	viewBox="-6.5 -6 12 12">
-	<rect class="default-background-color-fill" stroke="none" x="-5" y="-2.5" width="5" height="5" />
 	<circle cx="-0.5" cy="0" r="5.5px" stroke-width="1px"/>
 	</marker>
 
@@ -526,7 +524,7 @@ Markers (Arrowheads)
 	orient="auto"
 	refX="0" refY="0"
 	viewBox="-8 -6 12 12">
-	<rect stroke="none" x="0" y="-2.5" width="3.5" height="5" />
+	<rect stroke="none" x="0" y="-0.6" width="3.5" height="1.2" />
 	<line fill="none" stroke-width=".4" x1="3.7" y1="0" x2="3.7" y2="6"/>	
 	<line fill="none" stroke-width=".4" x1="3.7" y1="6" x2="-8" y2="-6"/>	
 	</marker>
@@ -540,7 +538,7 @@ Markers (Arrowheads)
 	orient="auto"
 	refX="0" refY="0"
 	viewBox="-4 -6 12 12">
-	<rect stroke="none" x="-3.5" y="-2.5" width="3.5" height="5" />
+	<rect stroke="none" x="-3.5" y="-0.6" width="3.5" height="1.2" />
 	<line fill="none" stroke-width=".4" x1="-3.7" y1="0" x2="-3.7" y2="-6"/>	
 	<line fill="none" stroke-width=".4" x1="-3.7" y1="-6" x2="8" y2="6"/>	
 	</marker>
@@ -556,7 +554,7 @@ Markers (Arrowheads)
 	orient="auto"
 	refX="0" refY="0"
 	viewBox="0 -6 12 12">
-	<rect stroke="none" x="0" y="-2.5" width="3.5" height="5" />
+	<rect stroke="none" x="0" y="-0.6" width="3.5" height="1.2" />
 	<line fill="none" stroke-width=".4" x1="3.7" y1="0" x2="0" y2="-6"/>	
 	</marker>
 
@@ -569,7 +567,7 @@ Markers (Arrowheads)
 	orient="auto"
 	refX="0" refY="0"
 	viewBox="-12 -6 12 12">
-	<rect stroke="none" x="-3.5" y="-2.5" width="3.5" height="5" />
+	<rect stroke="none" x="-3.5" y="-0.6" width="3.5" height="1.2" />
 	<line fill="none" stroke-width=".4" x1="-3.7" y1="0" x2="0" y2="6"/>	
 	</marker>
 
@@ -584,7 +582,7 @@ Markers (Arrowheads)
 	orient="auto"
 	refX="0" refY="0"
 	viewBox="0 -6 12 12">
-	<rect stroke="none" x="0" y="-2.5" width="3.5" height="5" />
+	<rect stroke="none" x="0" y="-0.6" width="3.5" height="1.2" />
 	<line fill="none" stroke-width=".4" x1="3.7" y1="0" x2="0" y2="6"/>
 	</marker>
 
@@ -597,7 +595,7 @@ Markers (Arrowheads)
 	orient="auto"
 	refX="0" refY="0"
 	viewBox="-12 -6 12 12">
-	<rect stroke="none" x="-3.5" y="-2.5" width="3.5" height="5" />
+	<rect stroke="none" x="-3.5" y="-0.6" width="3.5" height="1.2" />
 	<line fill="none" stroke-width=".4" x1="-3.7" y1="0" x2="0" y2="-6"/>	
 	</marker>
 
@@ -612,7 +610,7 @@ Markers (Arrowheads)
 	orient="auto"
 	refX="0" refY="0"
 	viewBox="0 -6 12 12">
-	<rect stroke="none" x="0" y="-2.5" width="6" height="5" />
+	<rect stroke="none" x="0" y="-0.6" width="6" height="1.2" />
 	<line fill="none" stroke-width=".4" x1="9" y1="0" x2="9" y2="-4"/>
 	<line fill="none" stroke-width=".4" x1="9" y1="-4" x2="5" y2="-4"/>
 	<polygon stroke-width=".4" points="5,-6 0,-4 5,-2"/>
@@ -627,7 +625,7 @@ Markers (Arrowheads)
 	orient="auto"
 	refX="0" refY="0"
 	viewBox="-12 -6 12 12">
-	<rect stroke="none" x="-6" y="-2.5" width="6" height="5" />
+	<rect stroke="none" x="-6" y="-0.6" width="6" height="1.2" />
 	<line fill="none" stroke-width=".4" x1="-9" y1="0" x2="-9" y2="4"/>
 	<line fill="none" stroke-width=".4" x1="-9" y1="4" x2="-5" y2="4"/>
 	<polygon stroke-width=".4" points="-5,6 0,4 -5,2"/>	
@@ -659,7 +657,7 @@ Markers (Arrowheads)
 	orient="auto"
 	refX="0" refY="0"
 	viewBox="0 -6 12 12">
-	<rect class="default-background-color-fill" stroke="none" x="0" y="-1.5" width="2.2" height="3" />
+	<rect class="default-background-color-fill" stroke="none" x="0" y="-1.5" width="2.3" height="3" />
 	</marker>
 
 	<marker id="double-line-hack-end"
@@ -668,7 +666,7 @@ Markers (Arrowheads)
 	orient="auto"
 	refX="0" refY="0"
 	viewBox="-12 -6 12 12">
-	<rect class="default-background-color-fill" stroke="none" x="-2.2" y="-1.5" width="2.2" height="3" />
+	<rect class="default-background-color-fill" stroke="none" x="-2.3" y="-1.5" width="2.3" height="3" />
 	</marker>
 
 
@@ -686,7 +684,7 @@ Markers (Arrowheads)
 	orient="auto"
 	refX="0" refY="0"
 	viewBox="0 -6 12 12">
-	<rect stroke="none" x="-2" y="-2.5" width="8" height="5" />
+	<rect stroke="none" x="-2" y="-0.6" width="8" height="1.2" />
 	</marker>
 
 	<marker id="mim-gap-end-black"
@@ -696,7 +694,7 @@ Markers (Arrowheads)
 	orient="auto"
 	refX="0" refY="0"
 	viewBox="-12 -6 12 12">
-	<rect stroke="none" x="-6" y="-2.5" width="8" height="5" />
+	<rect stroke="none" x="-6" y="-0.6" width="8" height="1.2" />
 	</marker>
 
 	<!-- ***************************
