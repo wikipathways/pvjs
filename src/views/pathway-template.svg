@@ -655,7 +655,7 @@ Markers (Arrowheads)
 	orient="auto"
 	refX="0" refY="0"
 	viewBox="0 -6 12 12">
-	<rect class="default-background-color-fill" stroke="none" x="0" y="-0.5" width="5" height="1" />
+	<rect class="default-background-color-fill" stroke="none" x="0" y="-0.6" width="5" height="1.2" />
 	</marker>
 
 	<marker id="single-line-hack-end"
@@ -664,7 +664,7 @@ Markers (Arrowheads)
 	orient="auto"
 	refX="0" refY="0"
 	viewBox="-12 -6 12 12">
-	<rect class="default-background-color-fill" stroke="none" x="-5" y="-0.5" width="5" height="1" />
+	<rect class="default-background-color-fill" stroke="none" x="-5" y="-0.6" width="5" height="1.2" />
 	</marker>
 
 	<!-- double-line-hack markers are used in double line handling; they include their own special blank rect to obscure the ends -->
