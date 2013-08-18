@@ -651,24 +651,44 @@ Markers (Arrowheads)
 	</marker>
 
 
-	<!-- double-line-hack markers are used in double line handling; they have no features -->
+	<!-- single-line-hack markers are used in line handling; they include a blank rect to obscure the ends -->
 
-	<marker id="double-line-hack-start-black"
+	<marker id="single-line-hack-start"
 	markerUnits="strokeWidth"
 	markerWidth="10" markerHeight="10"
 	orient="auto"
 	refX="0" refY="0"
 	viewBox="0 -6 12 12">
-	<rect class="default-background-color-fill" stroke="none" x="0" y="-1.5" width="2" height="3" />
+	<rect class="default-background-color-fill" stroke="none" x="0" y="-0.5" width="2.5" height="1" />
 	</marker>
 
-	<marker id="double-line-hack-end-black"
+	<marker id="single-line-hack-end"
 	markerUnits="strokeWidth"
 	markerWidth="10" markerHeight="10"
 	orient="auto"
 	refX="0" refY="0"
 	viewBox="-12 -6 12 12">
-	<rect class="default-background-color-fill" stroke="none" x="-2" y="-1.5" width="2" height="3" />
+	<rect class="default-background-color-fill" stroke="none" x="-2.5" y="-0.5" width="2.5" height="1" />
+	</marker>
+
+	<!-- double-line-hack markers are used in double line handling; they include their own special blank rect to obscure the ends -->
+
+	<marker id="double-line-hack-start"
+	markerUnits="strokeWidth"
+	markerWidth="10" markerHeight="10"
+	orient="auto"
+	refX="0" refY="0"
+	viewBox="0 -6 12 12">
+	<rect class="default-background-color-fill" stroke="none" x="0" y="-1.5" width="2.5" height="3" />
+	</marker>
+
+	<marker id="double-line-hack-end"
+	markerUnits="strokeWidth"
+	markerWidth="10" markerHeight="10"
+	orient="auto"
+	refX="0" refY="0"
+	viewBox="-12 -6 12 12">
+	<rect class="default-background-color-fill" stroke="none" x="-2.5" y="-1.5" width="2.5" height="3" />
 	</marker>
 
 
