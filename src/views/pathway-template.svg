@@ -655,8 +655,9 @@ Symbols (shapes)
 
 	<symbol id="brace" viewBox="0 0 100 50" preserveAspectRatio="none">
 	<desc>brace</desc>
-	<rect x="0" y="0" width="100" height="50" vector-effect="non-scaling-stroke"></rect>
-	<path d="m9.90539,9.46855l0,24.81445l30,0l0,-24.81445l-30,0zm25.27735,22.68503l-20.55551,0l0,-20.5556l20.55551,0l0,20.5556zm-15.5557,-12.49887c1.58443,0 2.8704,-1.28815 2.8704,-2.87552c0,-1.58035 -1.28598,-2.86841 -2.8704,-2.86841c-1.58524,0 -2.86949,1.28806 -2.86949,2.86841c0,1.58737 1.28425,2.87552 2.86949,2.87552zm14.44598,2.4957l-5.46353,-5.45935l-7.68539,7.68411l-2.13031,-2.12943l-3.05775,3.05859l0,5.73676l18.33698,0l0,-8.89069z" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="1px" stroke="#000000" fill="none"/>
+	<path d="m1490,1055c0,-1 -5,-3 -24,-3l-32,-4l-36,-13l-8,-7" vector-effect="non-scaling-stroke"/>
+  	<polyline points="1430,1051 1430,1050 " vector-effect="non-scaling-stroke"/>
+  	<path transform="rotate(90, 50.5312, 20.3125)" d="m58.36591,68.31439c-4.32813,0 -7.83624,-0.58405 -7.83624,-1.30634l0,-45.38824c0,-0.72241 -3.50806,-1.30646 -7.8363,-1.30646l0,0c4.32825,0 7.8363,-0.58386 7.8363,-1.30524l0,-45.38904l0,0c0,-0.72162 3.50812,-1.30536 7.83624,-1.30536" vector-effect="non-scaling-stroke"/>
 	</symbol>
 
 	<!-- Shape is placeholder until it can be replaced with correct shape. -->
