@@ -725,7 +725,7 @@ Symbols (shapes)
 
 	<symbol id="hexagon" viewBox="0 0 100 50" preserveAspectRatio="none">
 	<desc>hexagon</desc>
-	<polygon  points="850,75  958,137.5 958,262.5 850,325 742,262.6 742,137.5" vector-effect="non-scaling-stroke"/>
+	<polygon  points="49,49  100,33 100,17 49,1 1,17 1,33" vector-effect="non-scaling-stroke"/>
 	</symbol>
 
 	<!-- Shape is placeholder until it can be replaced with correct shape. -->
