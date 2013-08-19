@@ -777,7 +777,7 @@ Symbols (shapes)
 	<ellipse cx="49" cy="24" rx="49" ry="24" vector-effect="non-scaling-stroke"></ellipse>
 	</symbol>
 
-	<!-- Shape is placeholder until it can be replaced with correct shape. -->
+	<!-- pentagon -->
 
 	<symbol id="pentagon" viewBox="0 0 100 50" preserveAspectRatio="none">
 	<desc>pentagon</desc>
