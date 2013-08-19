@@ -774,7 +774,7 @@ Symbols (shapes)
 
 	<symbol id="oval" viewBox="0 0 100 50" preserveAspectRatio="none">
 	<desc>Ellipse</desc>
-	<ellipse cx="50" cy="25" rx="49" ry="23" vector-effect="non-scaling-stroke"></ellipse>
+	<ellipse cx="50" cy="25" rx="49" ry="22.5" vector-effect="non-scaling-stroke"></ellipse>
 	</symbol>
 
 	<!-- pentagon -->
