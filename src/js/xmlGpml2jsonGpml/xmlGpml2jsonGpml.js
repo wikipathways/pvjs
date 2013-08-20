@@ -120,11 +120,11 @@ pathvisio.xmlGpml2jsonGpml = function(){
       pathway.infoBox = pathway.infobox;
       delete pathway.infobox;
 
-      // what should these values actually be?
+      // These values are a legacy from GenMAPP. They are always forced to be equal to 0 in PathVisio (Java) so as to place the infobox in the upper lefthand corner.
 
-      pathway.infoBox.x = pathway.infoBox.centerx;
+      pathway.infoBox.x = 0;
       delete pathway.infoBox.centerx;
-      pathway.infoBox.y = pathway.infoBox.centery;
+      pathway.infoBox.y = 0;
       delete pathway.infoBox.centery;
 
       // Biopax
@@ -245,6 +245,39 @@ pathvisio.xmlGpml2jsonGpml = function(){
       catch (e) {
         console.log("Error converting edges to json: " + e.message);
         delete pathway.edges;
+      };
+
+      // Groups
+
+      try {
+        if (pathway.hasOwnProperty('group')) {
+          pathway.groups = convertToArray( pathway.group );
+          delete pathway.group;
+
+          pathway.groups.forEach(function(element, index, array) {
+
+            element.graphId = element.graphid;
+            delete element.graphid;
+
+            element.groupId = element.groupid;
+            delete element.groupid;
+
+            if (element.hasOwnProperty('style')) {
+              element.style = element.style.toLowerCase();
+            }
+            else {
+              element.style = 'none';
+            };
+
+          });
+        }
+        else {
+          console.log("No element(s) named 'datanode' found in this gpml file.");
+        }
+      }
+      catch (e) {
+        console.log("Error converting group to json: " + e.message);
+        delete pathway.groups;
       };
 
       // DataNodes 

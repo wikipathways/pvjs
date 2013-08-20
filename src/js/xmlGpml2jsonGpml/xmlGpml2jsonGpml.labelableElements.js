@@ -47,7 +47,7 @@ pathvisio.xmlGpml2jsonGpml.labelableElements = function(){
         };
 
         if (element.hasOwnProperty('comment')) {
-          element.comments = convertToArray( element.comment );
+          element.comments = pathvisio.xmlGpml2jsonGpml.convertToArray( element.comment );
           delete element.comment;
         };
 
@@ -137,7 +137,7 @@ pathvisio.xmlGpml2jsonGpml.labelableElements = function(){
         };	
 
         if (element.hasOwnProperty('attribute')) {
-          element.attributes = convertToArray( element.attribute );
+          element.attributes = pathvisio.xmlGpml2jsonGpml.convertToArray( element.attribute );
           delete element.attribute;
           element.attributes.forEach(function(el, index, array) {
             if ((el.key === "org.pathvisio.DoubleLineProperty") && (el.value === "Double")) {

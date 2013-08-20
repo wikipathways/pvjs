@@ -19,7 +19,7 @@ var pathvisio = function(){
     var gpml = gpmlDoc.documentElement;
   */
 
-    var pathway = convertGpml2Json(gpml);
+    var pathway = pathvisio.xmlGpml2jsonGpml.convert(gpml);
     //getJson(gpml, function(pathway) {
 
     var drag = d3.behavior.drag()
