@@ -800,10 +800,9 @@ Symbols (shapes)
 
 	<!-- Shape is placeholder until it can be replaced with correct shape. -->
 
-	<symbol id="sarcoplasmic-reticulum" viewBox="0 0 100 50" preserveAspectRatio="none">
+	<symbol id="sarcoplasmic-reticulum" viewBox="0 0 100 50" preserveAspectRatio="xMinYMin meet">
 	<desc>sarcoplasmic-reticulum</desc>
-	<rect x="0" y="0" width="100" height="50" vector-effect="non-scaling-stroke"></rect>
-	<path d="m9.90539,9.46855l0,24.81445l30,0l0,-24.81445l-30,0zm25.27735,22.68503l-20.55551,0l0,-20.5556l20.55551,0l0,20.5556zm-15.5557,-12.49887c1.58443,0 2.8704,-1.28815 2.8704,-2.87552c0,-1.58035 -1.28598,-2.86841 -2.8704,-2.86841c-1.58524,0 -2.86949,1.28806 -2.86949,2.86841c0,1.58737 1.28425,2.87552 2.86949,2.87552zm14.44598,2.4957l-5.46353,-5.45935l-7.68539,7.68411l-2.13031,-2.12943l-3.05775,3.05859l0,5.73676l18.33698,0l0,-8.89069z" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="1px" stroke="#000000" fill="none"/>
+	<path fill="none" d="m300.52325,-1231.10217c-109.60271,6.96252 -122.96878,118.18982 -89.73186,197.90491c31.54889,95.20801 -63.53479,156.49652 8.69969,256.30048c56.95184,68.07922 156.86539,31.68872 176.48422,-44.47424c19.97263,-79.14819 -37.0766,-135.09601 -11.14963,-212.61285c36.74615,-103.21094 -2.62775,-197.9187 -84.30243,-197.11829z" vector-effect="non-scaling-stroke"/>	
 	</symbol>
 
 	<!-- Shape is placeholder until it can be replaced with correct shape. -->
