@@ -1,23 +1,125 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Pathway xmlns="http://pathvisio.org/GPML/2013a" Name="Labels" Version="20130813">
-  <Graphics BoardWidth="329.89864948672385" BoardHeight="685.6591731071331" />
+  <Graphics BoardWidth="1651.1745585951926" BoardHeight="733.8211261664278" />
+  <Label TextLabel="English" GraphId="ae432">
+    <Graphics CenterX="161.3813875751895" CenterY="218.28188900820209" Width="80.0" Height="20.0" ZOrder="28672" FillColor="ffffff" FontSize="10" Valign="Middle" />
+  </Label>
   <Label TextLabel="Label&#xA;font:  Times New Roman" GraphId="a14a0">
-    <Graphics CenterX="146.9477482258786" CenterY="205.0702304001955" Width="176.21451268746466" Height="86.8179688057132" ZOrder="32832" FillColor="99ffff" FontName="Times New Roman" FontSize="15" Valign="Middle" ShapeType="Rectangle" />
+    <Graphics CenterX="135.38705458426008" CenterY="112.58468126724739" Width="176.21451268746466" Height="86.8179688057132" ZOrder="32832" FillColor="99ffff" FontName="Times New Roman" FontSize="15" Valign="Middle" ShapeType="Rectangle" />
   </Label>
   <Label TextLabel="Label" GraphId="bd539">
-    <Graphics CenterX="152.35570699232505" CenterY="136.56092972067637" Width="80.0" Height="20.0" ZOrder="32833" FillColor="99ffff" FontSize="10" Valign="Middle" ShapeType="Rectangle" />
+    <Graphics CenterX="329.3300451978405" CenterY="78.47028504632709" Width="80.0" Height="20.0" ZOrder="32833" FillColor="99ffff" FontSize="10" Valign="Middle" ShapeType="Rectangle" />
   </Label>
   <Label TextLabel="Label for the&#xA;rendering of text&#xA;bold, italic&#xA;bottom, right" GraphId="facfb">
-    <Graphics CenterX="152.35570699232497" CenterY="318.2364657903623" Width="138.8298740743348" Height="119.30921454152676" ZOrder="32834" FillColor="99ffff" FontWeight="Bold" FontStyle="Italic" FontSize="12" Valign="Bottom" Align="Right" ShapeType="Rectangle" />
+    <Graphics CenterX="161.3813875751895" CenterY="628.8211261664278" Width="200.0" Height="150.0" ZOrder="32834" FillColor="99ffff" FontName="Myriad Pro" FontWeight="Bold" FontStyle="Italic" FontSize="12" Valign="Bottom" Align="Right" ShapeType="Rectangle" />
   </Label>
   <Label TextLabel="Label for the&#xA;rendering of text&#xA;bold, italic&#xA;top, left" GraphId="f066f">
-    <Graphics CenterX="152.35570699232503" CenterY="596.0045658363698" Width="138.829874074335" Height="119.30921454152683" ZOrder="32835" FillColor="99ffff" FontWeight="Bold" FontStyle="Italic" FontSize="12" Align="Left" ShapeType="Rectangle" />
+    <Graphics CenterX="161.3813875751895" CenterY="306.59967353182594" Width="200.0" Height="150.0" ZOrder="32835" FillColor="99ffff" FontName="Myriad Pro" FontWeight="Bold" FontStyle="Italic" FontSize="12" Align="Left" ShapeType="Rectangle" />
   </Label>
   <Label TextLabel="Label for the&#xA;rendering of text&#xA;bold, italic&#xA;middle, center" GraphId="c07b0">
-    <Graphics CenterX="152.3557069923253" CenterY="456.19642827572363" Width="138.82987407433464" Height="119.30921454152683" ZOrder="32836" FillColor="99ffff" FontWeight="Bold" FontStyle="Italic" FontSize="12" Valign="Middle" ShapeType="Rectangle" />
+    <Graphics CenterX="161.3813875751895" CenterY="464.69684843309193" Width="200.0" Height="150.0" ZOrder="32836" FillColor="99ffff" FontName="Myriad Pro" FontWeight="Bold" FontStyle="Italic" FontSize="12" Valign="Middle" ShapeType="Rectangle" />
   </Label>
-  <Label TextLabel="Label" GraphId="b110c">
-    <Graphics CenterX="254.67086755991275" CenterY="136.56092972067648" Width="80.0" Height="20.0" ZOrder="32837" FillColor="333333" FontSize="10" Valign="Middle" ShapeType="Rectangle" Color="cccccc" />
+  <Label TextLabel="תווית עבור&#xA;עיבוד של טקסט&#xA;מודגש, נטוי&#xA;תחתון, ימין" GraphId="ad46c">
+    <Graphics CenterX="411.97676037417506" CenterY="628.8211261664278" Width="250.0" Height="150.0" ZOrder="32838" FillColor="99ffff" FontName="Myriad Hebrew" FontWeight="Bold" FontStyle="Italic" FontSize="12" Valign="Bottom" Align="Right" ShapeType="Rectangle" />
+  </Label>
+  <Label TextLabel="תווית עבור&#xA;עיבוד של טקסט&#xA;מודגש, נטוי&#xA;למעלה, משמאל" GraphId="e821e">
+    <Graphics CenterX="411.97676037417506" CenterY="306.59967353182594" Width="250.0" Height="150.0" ZOrder="32839" FillColor="99ffff" FontName="Myriad Hebrew" FontWeight="Bold" FontStyle="Italic" FontSize="12" Align="Left" ShapeType="Rectangle" />
+  </Label>
+  <Label TextLabel="תווית עבור&#xA;עיבוד של טקסט&#xA;מודגש, נטוי&#xA;מרכז, מרכז" GraphId="c68f3">
+    <Graphics CenterX="411.97676037417506" CenterY="464.6968484330918" Width="250.0" Height="150.0" ZOrder="32840" FillColor="99ffff" FontName="Myriad Hebrew" FontWeight="Bold" FontStyle="Italic" FontSize="12" Valign="Middle" ShapeType="Rectangle" />
+  </Label>
+  <Label TextLabel="Hebrew" GraphId="a0666">
+    <Graphics CenterX="389.09346517966713" CenterY="218.28188900820209" Width="80.0" Height="20.0" ZOrder="32841" FillColor="ffffff" FontSize="10" Valign="Middle" />
+  </Label>
+  <Label TextLabel="Chinese (Simplified)" GraphId="f6b77">
+    <Graphics CenterX="661.4774832849789" CenterY="218.2818890082021" Width="111.23348017621144" Height="20.0" ZOrder="32842" FillColor="ffffff" FontSize="10" Valign="Middle" />
+  </Label>
+  <Label TextLabel="标签&#xA;呈现文本&#xA;粗体，斜体&#xA;从上到下，从右" GraphId="f6033">
+    <Graphics CenterX="661.4774832849789" CenterY="628.8211261664278" Width="200.0" Height="150.0" ZOrder="32843" FillColor="99ffff" FontName="Myriad Pro" FontWeight="Bold" FontStyle="Italic" FontSize="12" Valign="Bottom" Align="Right" ShapeType="Rectangle" />
+  </Label>
+  <Label TextLabel="标签&#xA;呈现文本&#xA;粗体，斜体&#xA;顶部，左侧" GraphId="a8eb7">
+    <Graphics CenterX="661.4774832849789" CenterY="306.59967353182594" Width="200.0" Height="150.0" ZOrder="32844" FillColor="99ffff" FontName="Myriad Pro" FontWeight="Bold" FontStyle="Italic" FontSize="12" Align="Left" ShapeType="Rectangle" />
+  </Label>
+  <Label TextLabel="标签&#xA;呈现文本&#xA;粗体，斜体&#xA;中间中心" GraphId="c1198">
+    <Graphics CenterX="661.4774832849789" CenterY="464.6968484330918" Width="200.0" Height="150.0" ZOrder="32845" FillColor="99ffff" FontName="Myriad Pro" FontWeight="Bold" FontStyle="Italic" FontSize="12" Valign="Middle" ShapeType="Rectangle" />
+  </Label>
+  <Label TextLabel="Russian" GraphId="b445b">
+    <Graphics CenterX="874.3011698503759" CenterY="218.2818890082021" Width="80.0" Height="20.0" ZOrder="32846" FillColor="ffffff" FontSize="10" Valign="Middle" />
+  </Label>
+  <Label TextLabel="Этикетка для&#xA;Просмотр текста&#xA;полужирный, курсив&#xA;нижнее, правое" GraphId="fb0b4">
+    <Graphics CenterX="874.3011698503759" CenterY="628.8211261664278" Width="200.0" Height="150.0" ZOrder="32847" FillColor="99ffff" FontName="Myriad Pro" FontWeight="Bold" FontStyle="Italic" FontSize="12" Valign="Bottom" Align="Right" ShapeType="Rectangle" />
+  </Label>
+  <Label TextLabel="Этикетка для&#xA;Просмотр текста&#xA;полужирный, курсив&#xA;сверху, слева" GraphId="d8e30">
+    <Graphics CenterX="874.3011698503761" CenterY="306.59967353182594" Width="200.0" Height="150.0" ZOrder="32848" FillColor="99ffff" FontName="Myriad Pro" FontWeight="Bold" FontStyle="Italic" FontSize="12" Align="Left" ShapeType="Rectangle" />
+  </Label>
+  <Label TextLabel="Этикетка для&#xA;Просмотр текста&#xA;полужирный, курсив&#xA;середина, центр" GraphId="ce4c2">
+    <Graphics CenterX="874.301169850376" CenterY="464.6968484330918" Width="200.0" Height="150.0" ZOrder="32849" FillColor="99ffff" FontName="Myriad Pro" FontWeight="Bold" FontStyle="Italic" FontSize="12" Valign="Middle" ShapeType="Rectangle" />
+  </Label>
+  <Label TextLabel="Arabic" GraphId="bb0c4">
+    <Graphics CenterX="1521.1745585951926" CenterY="220.93062023882305" Width="80.0" Height="20.0" ZOrder="32850" FillColor="ffffff" FontSize="10" Valign="Middle" />
+  </Label>
+  <Label TextLabel="تسمية لل&#xA;جعل من النص&#xA;جريئة، مائل&#xA;أسفل، حق" GraphId="b5197">
+    <Graphics CenterX="1521.1745585951926" CenterY="628.8211261664277" Width="200.0" Height="150.0" ZOrder="32851" FillColor="99ffff" FontName="Myriad Arabic" FontWeight="Bold" FontStyle="Italic" FontSize="12" Valign="Bottom" Align="Right" ShapeType="Rectangle" />
+  </Label>
+  <Label TextLabel="تسمية لل&#xA;جعل من النص&#xA;جريئة، مائل&#xA;أعلى اليسار" GraphId="fafb4">
+    <Graphics CenterX="1521.1745585951926" CenterY="306.59967353182594" Width="200.0" Height="150.0" ZOrder="32852" FillColor="99ffff" FontName="Myriad Arabic" FontWeight="Bold" FontStyle="Italic" FontSize="12" Align="Left" ShapeType="Rectangle" />
+  </Label>
+  <Label TextLabel="تسمية لل&#xA;جعل من النص&#xA;جريئة، مائل&#xA;الأوسط، مركز" GraphId="a5c6d">
+    <Graphics CenterX="1521.1745585951926" CenterY="467.3455796637132" Width="200.0" Height="150.0" ZOrder="32853" FillColor="99ffff" FontName="Myriad Arabic" FontWeight="Bold" FontStyle="Italic" FontSize="12" Valign="Middle" ShapeType="Rectangle" />
+  </Label>
+  <Label TextLabel="Japanese" GraphId="b23a3">
+    <Graphics CenterX="1087.3763889978454" CenterY="223.84695031642184" Width="80.0" Height="20.0" ZOrder="32854" FillColor="ffffff" FontSize="10" Valign="Middle" />
+  </Label>
+  <Label TextLabel="のラベル&#xA;テキストのレンダリング&#xA;太字、斜体&#xA;下、右" GraphId="ab266">
+    <Graphics CenterX="1087.3763889978454" CenterY="628.8211261664278" Width="200.0" Height="150.0" ZOrder="32855" FillColor="99ffff" FontName="Hiragino Kaku Gothic Pro" FontWeight="Bold" FontStyle="Italic" FontSize="12" Valign="Bottom" Align="Right" ShapeType="Rectangle" />
+  </Label>
+  <Label TextLabel="のラベル&#xA;テキストのレンダリング&#xA;太字、斜体&#xA;上、左" GraphId="bd4c5">
+    <Graphics CenterX="1087.3763889978454" CenterY="306.59967353182594" Width="200.0" Height="150.0" ZOrder="32856" FillColor="99ffff" FontName="Hiragino Kaku Gothic Pro" FontWeight="Bold" FontStyle="Italic" FontSize="12" Align="Left" ShapeType="Rectangle" />
+  </Label>
+  <Label TextLabel="のラベル&#xA;テキストのレンダリング&#xA;太字、斜体&#xA;真ん中、中央" GraphId="cef98">
+    <Graphics CenterX="1087.3763889978454" CenterY="470.26190974131106" Width="200.0" Height="150.0" ZOrder="32857" FillColor="99ffff" FontName="Hiragino Kaku Gothic Pro" FontWeight="Bold" FontStyle="Italic" FontSize="12" Valign="Middle" ShapeType="Rectangle" />
+  </Label>
+  <Label TextLabel="Korean" GraphId="daabb">
+    <Graphics CenterX="1304.3480665577588" CenterY="220.77505489158523" Width="80.0" Height="20.0" ZOrder="32858" FillColor="ffffff" FontSize="10" Valign="Middle" />
+  </Label>
+  <Label TextLabel="에 대한 레이블&#xA;텍스트 렌더링&#xA;굵게, 기울임 꼴&#xA;하단 오른쪽" GraphId="cbc64">
+    <Graphics CenterX="1304.3480665577588" CenterY="628.8211261664277" Width="200.0" Height="150.0" ZOrder="32859" FillColor="99ffff" FontName="Myriad Pro" FontWeight="Bold" FontStyle="Italic" FontSize="12" Valign="Bottom" Align="Right" ShapeType="Rectangle" />
+  </Label>
+  <Label TextLabel="에 대한 레이블&#xA;텍스트 렌더링&#xA;굵게, 기울임 꼴&#xA;맨 왼쪽" GraphId="f3ce3">
+    <Graphics CenterX="1304.3480665577588" CenterY="306.59967353182594" Width="200.0" Height="150.0" ZOrder="32860" FillColor="99ffff" FontName="Myriad Pro" FontWeight="Bold" FontStyle="Italic" FontSize="12" Align="Left" ShapeType="Rectangle" />
+  </Label>
+  <Label TextLabel="에 대한 레이블&#xA;텍스트 렌더링&#xA;굵게, 기울임 꼴&#xA;중간 센터" GraphId="b61b6">
+    <Graphics CenterX="1304.3480665577588" CenterY="467.19001431647445" Width="200.0" Height="150.0" ZOrder="32861" FillColor="99ffff" FontName="Myriad Pro" FontWeight="Bold" FontStyle="Italic" FontSize="12" Valign="Middle" ShapeType="Rectangle" />
+  </Label>
+  <Label TextLabel="Label" GraphId="f4e58">
+    <Graphics CenterX="364.5465341408019" CenterY="128.97339819311014" Width="80.0" Height="20.0" ZOrder="32863" FillColor="99ffff" FontSize="10" Valign="Middle" ShapeType="Rectangle" />
+  </Label>
+  <Label TextLabel="Label" GraphId="ac5bb">
+    <Graphics CenterX="335.5083891468851" CenterY="115.22187740301501" Width="80.0" Height="20.0" ZOrder="32864" FontSize="10" Valign="Middle" ShapeType="Rectangle" />
+  </Label>
+  <Label TextLabel="Label" GraphId="f3bc5">
+    <Graphics CenterX="494.744057936694" CenterY="75.73143154314242" Width="80.0" Height="20.0" ZOrder="32865" FillColor="99ffff" FontWeight="Bold" FontSize="10" Valign="Middle" ShapeType="Rectangle" />
+  </Label>
+  <Label TextLabel="Label" GraphId="a2cca">
+    <Graphics CenterX="498.3746311851016" CenterY="120.4958360252928" Width="80.0" Height="20.0" ZOrder="32866" FillColor="99ffff" FontStyle="Italic" FontSize="10" Valign="Middle" ShapeType="Rectangle" />
+  </Label>
+  <Label TextLabel="Label" GraphId="fb9a8">
+    <Graphics CenterX="610.2854592105792" CenterY="80.44480733932077" Width="80.0" Height="20.0" ZOrder="32867" FillColor="99ffff" FontStyle="Italic" FontSize="10" Valign="Middle" ShapeType="Rectangle" Color="ff0000" />
+  </Label>
+  <Label TextLabel="Label" GraphId="dab04">
+    <Graphics CenterX="612.6421471086685" CenterY="126.11359714823796" Width="80.0" Height="20.0" ZOrder="32868" FillColor="99ffff" FontSize="10" Valign="Middle" ShapeType="Oval" Color="ff0000" />
+  </Label>
+  <Label TextLabel="Label" GraphId="fcadd">
+    <Graphics CenterX="734.3783983950985" CenterY="134.13960112188965" Width="93.02664270024869" Height="37.45328183265377" ZOrder="32870" FillColor="99ffff" FontSize="20" Valign="Middle" ShapeType="Rectangle" />
+  </Label>
+  <Label TextLabel="Label" GraphId="ff6ef">
+    <Graphics CenterX="882.4443112269889" CenterY="85.31096732814464" Width="86.23497305164017" Height="27.363507689997107" ZOrder="32871" FillColor="99ffff" FontSize="10" Valign="Middle" ShapeType="Rectangle" LineThickness="5.0" />
+  </Label>
+  <Label TextLabel="Label" GraphId="da678" Href="http://www.pathvisio.org">
+    <Graphics CenterX="881.8141216309621" CenterY="134.13907485524436" Width="80.0" Height="20.0" ZOrder="32872" FillColor="99ffff" FontSize="10" Valign="Middle" ShapeType="Rectangle" Color="0000ff" />
+  </Label>
+  <Label TextLabel="Label" GraphId="f83ef">
+    <Graphics CenterX="739.3300451978403" CenterY="75.46215496502629" Width="80.0" Height="20.0" ZOrder="32873" FillColor="99ffff" FontSize="10" Valign="Middle" ShapeType="Rectangle" LineStyle="Broken" />
   </Label>
   <InfoBox CenterX="0.0" CenterY="0.0" />
   <Biopax />
