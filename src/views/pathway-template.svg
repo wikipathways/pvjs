@@ -807,9 +807,9 @@ Symbols (shapes)
 
 	<!-- Shape is placeholder until it can be replaced with correct shape. -->
 
-	<symbol id="triangle" viewBox="0 0 100 50" preserveAspectRatio="none">
+	<symbol id="triangle" viewBox="0 0 50 50" preserveAspectRatio="xMinYMin meet">
 	<desc>triangle</desc>
-	<path d="m1.52419,48.7172l26.99694,-47.25142l27.00358,47.25142l-54.00052,0z" vector-effect="non-scaling-stroke"/>
+	<polygon points="1,49 49,24 1,1" vector-effect="non-scaling-stroke"/>
 	</symbol>
 
 	<!-- Shape is placeholder until it can be replaced with correct shape. -->
