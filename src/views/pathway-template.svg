@@ -723,7 +723,7 @@ Symbols (shapes)
 
 	<!-- Shape is placeholder until it can be replaced with correct shape. -->
 
-	<symbol id="hexagon" viewBox="0 0 100 100" preserveAspectRatio="none">
+	<symbol id="hexagon" viewBox="0 0 200 100" preserveAspectRatio="none">
 	<desc>hexagon</desc>
 	<polygon  points="49,114  100,76 100,38 49,1 1,38 1,76" vector-effect="non-scaling-stroke"/>
 	</symbol>
