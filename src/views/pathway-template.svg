@@ -814,10 +814,10 @@ Symbols (shapes)
 
 	<!-- Shape is placeholder until it can be replaced with correct shape. -->
 
-	<symbol id="vesicle" viewBox="0 0 50 50" preserveAspectRatio="xMinYMin meet">
+	<symbol id="vesicle" viewBox="0 0 64 64" preserveAspectRatio="xMinYMin meet">
 	<desc>vesicle</desc>
-	<circle cx="27" cy="27" r="25" stroke="grey"
-  	stroke-width="2" fill="grey"/>	</symbol>
+	<circle cx="32" cy="32" r="30" stroke-width="2"/>	
+	</symbol> 
 
 	<!-- TODO Update placeholders for SVG definitions of shapes.
 
