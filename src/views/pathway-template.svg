@@ -729,7 +729,7 @@ Symbols (shapes)
 
 	<!-- Shape is placeholder until it can be replaced with correct shape. -->
 
-	<symbol id="mim-degradation" viewBox="0 0 80 80" preserveAspectRatio="xMinYMin meet">
+	<symbol id="mim-degradation" viewBox="0 0 90 90" preserveAspectRatio="xMinYMin meet">
 	<desc>mim-degradation</desc>
 	<circle r="36.94531" cy="40.5" cx="47"/>
   	<line transform="rotate(10, 47.5, 41.9492)" y2="73.89744" x2="92" y1="10" x1="3" vector-effect="non-scaling-stroke"/>
