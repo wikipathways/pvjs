@@ -772,7 +772,7 @@ Symbols (shapes)
 
 	<!-- oval -->
 
-	<symbol id="oval" viewBox="0 0 100 50" preserveAspectRatio="none">
+	<symbol id="oval" viewBox="0 0 100 50" preserveAspectRatio="xMinYMin meet">
 	<desc>Ellipse</desc>
 	<ellipse cx="50" cy="25" rx="49" ry="22.5" vector-effect="non-scaling-stroke"></ellipse>
 	</symbol>
@@ -793,7 +793,7 @@ Symbols (shapes)
 
 	<!-- rounded-rectangle -->
 
-	<symbol id="rounded-rectangle" viewBox="0 0 100 50" preserveAspectRatio="none">
+	<symbol id="rounded-rectangle" viewBox="0 0 100 50" preserveAspectRatio="xMinYMin meet">
 	<desc>Rounded Rectangle</desc>
 	<rect x="1" y="1" rx="10" ry="10" width="98" height="48" vector-effect="non-scaling-stroke"></rect>
 	</symbol>
