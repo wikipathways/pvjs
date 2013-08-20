@@ -25,6 +25,13 @@ pathvisio.xmlGpml2jsonGpml.edges = function(){
 
   var anchorPositionMappings = { "-1":0, "-0.5":0.333, "0":0.5, "0.5":0.667, "1":1 };
 
+  // GPML to jGPML shape name mappings: { "OldName":"new-name" }
+  // replace spaces with dashes
+  // Add dashes before every capital letter except any capital letters at the beginning of the string
+  // Replace spaces with dashes
+  // Replace double dashes with single dashes
+  // replace capitals letters with lowercase. 
+
   var markerMappings = {
     "Arrow":"arrow",
     "mim-branching-left":"mim-branching-left",
@@ -47,7 +54,6 @@ pathvisio.xmlGpml2jsonGpml.edges = function(){
   function convert(rawJsonEdges) {
     try {
       rawJsonEdges.forEach(function(element, index, array) {
-
         element.graphId = element.graphid;
         delete element.graphid;
 
