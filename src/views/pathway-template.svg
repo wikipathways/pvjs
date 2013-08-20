@@ -738,7 +738,7 @@ Symbols (shapes)
 
 	<!-- mitochondria -->
 
-	<symbol id="mitochondria" viewBox="0 0 100 65.5" preserveAspectRatio="none">
+	<symbol id="mitochondria" viewBox="0 0 100 65.5" preserveAspectRatio="xMinYMin meet">
 	<desc>Mitochondria</desc>
 	<path
 	vector-effect="non-scaling-stroke"
