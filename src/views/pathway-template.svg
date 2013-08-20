@@ -772,7 +772,7 @@ Symbols (shapes)
 
 	<!-- oval -->
 
-	<symbol id="oval" viewBox="0 0 100 50" preserveAspectRatio="xMinYMin meet">
+	<symbol id="oval" viewBox="0 0 105 50" preserveAspectRatio="xMinYMin meet">
 	<desc>Ellipse</desc>
 	<ellipse cx="52" cy="26" rx="49" ry="22.5" vector-effect="non-scaling-stroke"></ellipse>
 	</symbol>
