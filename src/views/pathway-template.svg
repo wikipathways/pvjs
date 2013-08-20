@@ -690,7 +690,7 @@ Symbols (shapes)
 	<rect x="1" y="1" width="118" height="178" vector-effect="non-scaling-stroke"></rect>
 	</symbol>
 
-	<!-- Shape is placeholder until it can be replaced with correct shape. -->
+	<!-- Endoplasmic reticulum TO-DO: Shape looks distorted (wider) than original -->
 
 	<symbol id="endoplasmic-reticulum" viewBox="0 0 90 170" preserveAspectRatio="none">
 	<desc>endoplasmic-reticulum</desc>
@@ -707,10 +707,11 @@ Symbols (shapes)
 
 	<!-- Shape is placeholder until it can be replaced with correct shape. -->
 
-	<symbol id="golgi-apparatus" viewBox="0 0 100 50" preserveAspectRatio="none">
+	<symbol id="golgi-apparatus" viewBox="0 0 90 160" preserveAspectRatio="none">
 	<desc>golgi-apparatus</desc>
-	<rect x="0" y="0" width="100" height="50" vector-effect="non-scaling-stroke"></rect>
-	<path d="m9.90539,9.46855l0,24.81445l30,0l0,-24.81445l-30,0zm25.27735,22.68503l-20.55551,0l0,-20.5556l20.55551,0l0,20.5556zm-15.5557,-12.49887c1.58443,0 2.8704,-1.28815 2.8704,-2.87552c0,-1.58035 -1.28598,-2.86841 -2.8704,-2.86841c-1.58524,0 -2.86949,1.28806 -2.86949,2.86841c0,1.58737 1.28425,2.87552 2.86949,2.87552zm14.44598,2.4957l-5.46353,-5.45935l-7.68539,7.68411l-2.13031,-2.12943l-3.05775,3.05859l0,5.73676l18.33698,0l0,-8.89069z" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="1px" stroke="#000000" fill="none"/>
+	<path d="m58.65843,28.11755c-24.50516,-32.99763 41.17429,-33.39223 28.21526,-5.32301c-9.71986,20.5057 -18.83401,64.15632 -1.0392,109.49673c14.6937,29.87001 -46.07236,30.63614 -30.6302,-1.62207c12.52093,-32.46732 11.35227,-88.65689 3.45415,-102.55164z" vector-effect="non-scaling-stroke"/>
+   	<path d="m28.58309,37.49903c-11.90942,-23.6472 32.9941,-21.90384 20.31397,0.74038c-4.48815,8.19113 -6.38173,67.94992 1.28093,82.79956c9.41282,20.52358 -36.25558,21.36005 -22.62337,-2.48373c7.67286,-19.15643 11.55851,-57.707 1.02847,-81.05621z" vector-effect="non-scaling-stroke"/>
+   	<path d="m27.0266,55.09717c1.74825,12.66316 3.00553,18.47076 -1.63657,42.33447c-4.11847,14.33428 -3.9733,18.0331 -12.94746,21.42337c-7.37549,1.83031 -13.09368,-10.80333 -5.28974,-17.78268c5.35863,-6.20563 6.77712,-12.00945 7.34855,-25.33208c-0.26399,-10.50756 0.89887,-17.46264 -5.92277,-22.02575c-8.41397,-2.42252 -6.71858,-18.2471 5.32368,-15.29968c6.45518,1.13344 11.34736,9.44824 13.1243,16.68235z" vector-effect="non-scaling-stroke"/>
 	</symbol>
 
 	<!-- this is the dragbox shape for any set of elements that have been grouped. this only shows up in edit mode. -->
