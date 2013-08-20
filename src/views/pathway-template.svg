@@ -723,7 +723,7 @@ Symbols (shapes)
 
 	<!-- Shape is placeholder until it can be replaced with correct shape. -->
 
-	<symbol id="hexagon" viewBox="0 0 70 60" preserveAspectRatio="none">
+	<symbol id="hexagon" viewBox="0 0 75 65" preserveAspectRatio="none">
 	<desc>hexagon</desc>
 	<path d="m2.41939,30.71108l14.4293,-28.85462l38.47667,0l14.42524,28.85462l-14.42524,28.85848l-38.47667,0l-14.4293,-28.85848z" vector-effect="non-scaling-stroke"/>
 	</symbol>
