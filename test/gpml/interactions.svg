@@ -18,7 +18,7 @@
       ><path d="M128.2173 1043.6626 L128.2173 1067.3911 L315.4946 1067.3911 L315.4946 1043.6626 Z"
       /></clipPath
       ><clipPath clipPathUnits="userSpaceOnUse" id="clipPath5"
-      ><path d="M135.8798 1237.2223 L135.8798 1279.6809 L303.4239 1279.6809 L303.4239 1237.2223 Z"
+      ><path d="M135.3684 1258.9199 L135.3684 1294.0898 L303.3391 1294.0898 L303.3391 1258.9199 Z"
       /></clipPath
       ><clipPath clipPathUnits="userSpaceOnUse" id="clipPath6"
       ><path d="M136.1893 1203.2899 L136.1893 1222.2966 L317.7036 1222.2966 L317.7036 1203.2899 Z"
@@ -114,7 +114,7 @@
       ><path d="M167.1456 1140.0537 L167.1456 1175.3395 L324.2241 1175.3395 L324.2241 1140.0537 Z"
       /></clipPath
       ><clipPath clipPathUnits="userSpaceOnUse" id="clipPath37"
-      ><path d="M160.7773 1223.0864 L160.7773 1258.3721 L323.3812 1258.3721 L323.3812 1223.0864 Z"
+      ><path d="M170.6376 1227.1948 L170.6376 1262.4806 L333.2415 1262.4806 L333.2415 1227.1948 Z"
       /></clipPath
       ><clipPath clipPathUnits="userSpaceOnUse" id="clipPath38"
       ><path d="M202.1931 1312.0811 L202.1931 1347.3667 L297.0027 1347.3667 L297.0027 1312.0811 Z"
@@ -204,7 +204,7 @@
       ><path d="M312.2146 792.5639 L312.2146 813.5639 L393.2146 813.5639 L393.2146 792.5639 Z"
       /></clipPath
       ><clipPath clipPathUnits="userSpaceOnUse" id="clipPath67"
-      ><path d="M58.7458 1241.5167 L58.7458 1262.5167 L139.7458 1262.5167 L139.7458 1241.5167 Z"
+      ><path d="M58.7458 1263.7024 L58.7458 1284.7024 L139.7458 1284.7024 L139.7458 1263.7024 Z"
       /></clipPath
       ><clipPath clipPathUnits="userSpaceOnUse" id="clipPath68"
       ><path d="M312.2146 1353.4517 L312.2146 1374.4517 L393.2146 1374.4517 L393.2146 1353.4517 Z"
@@ -213,7 +213,7 @@
       ><path d="M58.7458 1349.4315 L58.7458 1370.4315 L139.7458 1370.4315 L139.7458 1349.4315 Z"
       /></clipPath
       ><clipPath clipPathUnits="userSpaceOnUse" id="clipPath70"
-      ><path d="M312.2146 1270.2395 L312.2146 1291.2395 L393.2146 1291.2395 L393.2146 1270.2395 Z"
+      ><path d="M312.2146 1284.2083 L312.2146 1305.2083 L393.2146 1305.2083 L393.2146 1284.2083 Z"
       /></clipPath
     ></defs
     ><g style="fill:white; stroke:white;"
@@ -237,10 +237,10 @@
       /><path d="M139.1232 1062.5079 L139.3684 1044.3096 M139.1232 1062.5079 L128.7242 1062.3678 M139.3684 1044.3096 L128.9694 1044.1694" style="fill:none; clip-path:url(#clipPath4);"
     /></g
     ><g style="text-rendering:geometricPrecision;"
-    ><path d="M152.0712 1254.1403 L302.8489 1279.106" style="fill:none; clip-path:url(#clipPath5);"
-      /><path d="M301.7871 1285.5187" style="fill:white; clip-path:url(#clipPath5); stroke:none;"
-      /><path d="M301.7871 1285.5187" style="fill:none; clip-path:url(#clipPath5);"
-      /><path d="M157.2013 1254.9897 L158.9002 1244.7295 L148.6399 1243.0305 L149.4894 1237.9004 L137.0971 1241.1193 L147.7905 1248.1606 L148.6399 1243.0305" style="fill:none; clip-path:url(#clipPath5);"
+    ><path d="M152.1559 1275.7285 L302.7837 1293.5344" style="fill:none; clip-path:url(#clipPath5);"
+      /><path d="M302.0207 1299.9894" style="fill:white; clip-path:url(#clipPath5); stroke:none;"
+      /><path d="M302.0207 1299.9894" style="fill:none; clip-path:url(#clipPath5);"
+      /><path d="M157.32 1276.339 L158.5409 1266.0109 L148.2128 1264.7899 L148.8232 1259.6259 L136.5937 1263.4165 L147.6023 1269.954 L148.2128 1264.7899" style="fill:none; clip-path:url(#clipPath5);"
     /></g
     ><g style="text-rendering:geometricPrecision;"
     ><path d="M147.2451 1203.8103 L299.7157 1205.8645" style="fill:none; clip-path:url(#clipPath6);"
@@ -477,11 +477,11 @@
       >End: mim-transcription-translation</text
     ></g
     ><g style="font-family:&apos;Arial&apos;; font-size:10; text-rendering:geometricPrecision;"
-    ><text x="219" xml:space="preserve" y="1231" style="clip-path:url(#clipPath37); stroke:none;"
+    ><text x="229" xml:space="preserve" y="1235" style="clip-path:url(#clipPath37); stroke:none;"
       >Interaction</text
-      ><text x="166" xml:space="preserve" y="1242" style="clip-path:url(#clipPath37); stroke:none;"
+      ><text x="176" xml:space="preserve" y="1246" style="clip-path:url(#clipPath37); stroke:none;"
       >Start: mim-transcription-translation</text
-      ><text x="211" xml:space="preserve" y="1253" style="clip-path:url(#clipPath37); stroke:none;"
+      ><text x="221" xml:space="preserve" y="1257" style="clip-path:url(#clipPath37); stroke:none;"
       >End: mim-gap</text
     ></g
     ><g style="font-family:&apos;Arial&apos;; font-size:10; text-rendering:geometricPrecision;"
@@ -717,11 +717,11 @@
       >GeneProduct</text
     ></g
     ><g style="fill:white; text-rendering:geometricPrecision; stroke:white;"
-    ><path d="M59.2458 1242.0167 L139.2458 1242.0167 L139.2458 1262.0167 L59.2458 1262.0167 L59.2458 1242.0167 Z" style="clip-path:url(#clipPath67); stroke:none;"
-      /><path d="M59.2458 1242.0167 L139.2458 1242.0167 L139.2458 1262.0167 L59.2458 1262.0167 L59.2458 1242.0167 Z" style="fill:none; clip-path:url(#clipPath67); stroke:black;"
+    ><path d="M59.2458 1264.2024 L139.2458 1264.2024 L139.2458 1284.2024 L59.2458 1284.2024 L59.2458 1264.2024 Z" style="clip-path:url(#clipPath67); stroke:none;"
+      /><path d="M59.2458 1264.2024 L139.2458 1264.2024 L139.2458 1284.2024 L59.2458 1284.2024 L59.2458 1264.2024 Z" style="fill:none; clip-path:url(#clipPath67); stroke:black;"
     /></g
     ><g style="font-family:&apos;Arial&apos;; font-size:10; text-rendering:geometricPrecision;"
-    ><text x="70" xml:space="preserve" y="1256" style="clip-path:url(#clipPath67); stroke:none;"
+    ><text x="70" xml:space="preserve" y="1278" style="clip-path:url(#clipPath67); stroke:none;"
       >GeneProduct</text
     ></g
     ><g style="fill:white; text-rendering:geometricPrecision; stroke:white;"
@@ -741,11 +741,11 @@
       >ENSMUSG00000041147</text
     ></g
     ><g style="fill:white; text-rendering:geometricPrecision; stroke:white;"
-    ><path d="M312.7146 1270.7395 L392.7146 1270.7395 L392.7146 1290.7395 L312.7146 1290.7395 L312.7146 1270.7395 Z" style="clip-path:url(#clipPath70); stroke:none;"
-      /><path d="M312.7146 1270.7395 L392.7146 1270.7395 L392.7146 1290.7395 L312.7146 1290.7395 L312.7146 1270.7395 Z" style="fill:none; clip-path:url(#clipPath70); stroke:black;"
+    ><path d="M312.7146 1284.7083 L392.7146 1284.7083 L392.7146 1304.7083 L312.7146 1304.7083 L312.7146 1284.7083 Z" style="clip-path:url(#clipPath70); stroke:none;"
+      /><path d="M312.7146 1284.7083 L392.7146 1284.7083 L392.7146 1304.7083 L312.7146 1304.7083 L312.7146 1284.7083 Z" style="fill:none; clip-path:url(#clipPath70); stroke:black;"
     /></g
     ><g style="font-family:&apos;Arial&apos;; font-size:10; text-rendering:geometricPrecision;"
-    ><text x="323" xml:space="preserve" y="1284" style="clip-path:url(#clipPath70); stroke:none;"
+    ><text x="323" xml:space="preserve" y="1298" style="clip-path:url(#clipPath70); stroke:none;"
       >GeneProduct</text
     ></g
   ></g

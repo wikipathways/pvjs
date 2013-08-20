@@ -122,7 +122,7 @@
     <Xref Database="" ID="" />
   </DataNode>
   <DataNode TextLabel="GeneProduct" GraphId="ba7b5" Type="GeneProduct">
-    <Graphics CenterX="99.24581568864699" CenterY="1252.016670782261" Width="80.0" Height="20.0" ZOrder="32894" FontSize="10" Valign="Middle" />
+    <Graphics CenterX="99.24581568864699" CenterY="1274.2023733295102" Width="80.0" Height="20.0" ZOrder="32894" FontSize="10" Valign="Middle" />
     <Xref Database="" ID="" />
   </DataNode>
   <DataNode TextLabel="ENSMUSG00000017167" GraphId="f40bf" Type="GeneProduct">
@@ -134,7 +134,7 @@
     <Xref Database="Ensembl Mouse" ID="ENSMUSG00000041147" />
   </DataNode>
   <DataNode TextLabel="GeneProduct" GraphId="d59e9" Type="GeneProduct">
-    <Graphics CenterX="352.7145607681622" CenterY="1280.7395315740876" Width="80.0" Height="20.0" ZOrder="32897" FontSize="10" Valign="Middle" />
+    <Graphics CenterX="352.7145607681622" CenterY="1294.7083072519852" Width="80.0" Height="20.0" ZOrder="32897" FontSize="10" Valign="Middle" />
     <Xref Database="" ID="" />
   </DataNode>
   <Interaction GraphId="c6782">
@@ -153,8 +153,8 @@
   </Interaction>
   <Interaction GraphId="c75d6">
     <Graphics ZOrder="32832" LineThickness="1.0">
-      <Point X="139.24581568864699" Y="1252.016670782261" GraphRef="ba7b5" RelX="1.0" RelY="0.0" ArrowHead="mim-transcription-translation" />
-      <Point X="312.7145607681622" Y="1280.7395315740876" GraphRef="d59e9" RelX="-1.0" RelY="0.0" ArrowHead="mim-gap" />
+      <Point X="139.24581568864699" Y="1274.2023733295102" GraphRef="ba7b5" RelX="1.0" RelY="0.0" ArrowHead="mim-transcription-translation" />
+      <Point X="312.7145607681622" Y="1294.7083072519852" GraphRef="d59e9" RelX="-1.0" RelY="0.0" ArrowHead="mim-gap" />
     </Graphics>
     <Xref Database="" ID="" />
   </Interaction>
@@ -307,7 +307,7 @@
     <Graphics CenterX="245.6848510729153" CenterY="1157.6965596855912" Width="156.07843137254918" Height="34.285714285714164" ZOrder="32863" FillColor="ffffff" FontSize="10" Valign="Middle" />
   </Label>
   <Label TextLabel="Interaction&#xA;Start: mim-transcription-translation&#xA;End: mim-gap" GraphId="c4b6c">
-    <Graphics CenterX="242.07926421237585" CenterY="1240.7292628925502" Width="161.6038882138518" Height="34.285714285714164" ZOrder="32864" FillColor="ffffff" FontSize="10" Valign="Middle" />
+    <Graphics CenterX="251.9395764555968" CenterY="1244.837726327226" Width="161.6038882138518" Height="34.285714285714164" ZOrder="32864" FillColor="ffffff" FontSize="10" Valign="Middle" />
   </Label>
   <Label TextLabel="Interaction&#xA;Start: mim-gap&#xA;End: Line" GraphId="d0b05">
     <Graphics CenterX="249.59788884855726" CenterY="1329.7238768961406" Width="93.80952380952397" Height="34.285714285714164" ZOrder="32865" FillColor="ffffff" FontSize="10" Valign="Middle" />
