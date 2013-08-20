@@ -100,9 +100,12 @@ Either convert SVG to PDF and import PDF into Illustrator or convert SVG to .ai 
 		stroke-width: 2px;
 	}
 
-
-	.background-color-fill {
+	.drawing-board-color-fill {
 		fill: white;
+	}
+
+	.drawing-board-color-stroke {
+		stroke: white;
 	}
 
 	text {
@@ -256,7 +259,7 @@ Either convert SVG to PDF and import PDF into Illustrator or convert SVG to .ai 
 	we need to clone the black marker and set the color for the clone to the desired color using d3.js.
 	I wish fill="currentColor" worked for markers, but that does not appear to be the case. -->
 
-	<!-- Each marker includes a small rectangle with a background-color-fill color to obscure the
+	<!-- Each marker includes a small rectangle with a drawing-board-color-fill color to obscure the
 	ends of lines that might otherwise show up beneath the marker. Double lines require their own special
 	obscuring rects and are included as a double-line-hack-start/end marker, defined here and added in
 	gpml2json.js -->
@@ -270,7 +273,7 @@ Either convert SVG to PDF and import PDF into Illustrator or convert SVG to .ai 
 	orient="auto"
 	refX="0" refY="0"
 	viewBox="0 -6 12 12">
-	<rect class="background-color-fill" stroke="none" x="0" y="-0.6" width="2" height="1.2" />
+	<rect class="drawing-board-color-fill" stroke="none" x="0" y="-0.6" width="2" height="1.2" />
 	<polygon stroke-width="0" points="12,5 0,0 12,-5"/>
 	</marker>
 
@@ -281,7 +284,7 @@ Either convert SVG to PDF and import PDF into Illustrator or convert SVG to .ai 
 	orient="auto"
 	refX="0" refY="0"
 	viewBox="-12 -6 12 12">
-	<rect class="background-color-fill" stroke="none" x="-2" y="-0.6" width="2" height="1.2" />
+	<rect class="drawing-board-color-fill" stroke="none" x="-2" y="-0.6" width="2" height="1.2" />
 	<polygon stroke-width="0" points="-12,5 0,0 -12,-5"/>
 	</marker>
 
@@ -295,7 +298,7 @@ Either convert SVG to PDF and import PDF into Illustrator or convert SVG to .ai 
 	orient="auto"
 	refX="0" refY="0"
 	viewBox="0 -6 12 12">
-	<rect class="background-color-fill" stroke="none" x="0" y="-0.6" width="2" height="1.2" />
+	<rect class="drawing-board-color-fill" stroke="none" x="0" y="-0.6" width="2" height="1.2" />
 	<polygon stroke-width="0" points="11,5 0,0 11,-5"/>
 	</marker>
 
@@ -306,14 +309,14 @@ Either convert SVG to PDF and import PDF into Illustrator or convert SVG to .ai 
 	orient="auto"
 	refX="0" refY="0"
 	viewBox="-12 -6 12 12">
-	<rect class="background-color-fill" stroke="none" x="-2" y="-0.6" width="2" height="1.2" />
+	<rect class="drawing-board-color-fill" stroke="none" x="-2" y="-0.6" width="2" height="1.2" />
 	<polygon stroke-width="0" points="-11,5 0,0 -11,-5"/>
 	</marker>
 
-	<!-- mim-stimulation markers: triangular polygons, background fill, black stroke -->
+	<!-- mim-stimulation markers: triangular polygons, drawing-board fill, black stroke -->
 
 	<marker id="mim-stimulation-start-black"
-	class="background-color-fill"
+	class="drawing-board-color-fill"
 	stroke="black"
 	markerWidth="12" markerHeight="12"
 	markerUnits="strokeWidth"
@@ -325,7 +328,7 @@ Either convert SVG to PDF and import PDF into Illustrator or convert SVG to .ai 
 	</marker>
 
 	<marker id="mim-stimulation-end-black"
-	class="background-color-fill"
+	class="drawing-board-color-fill"
 	stroke="black"
 	markerUnits="strokeWidth"
 	markerWidth="12" markerHeight="12"
@@ -336,10 +339,10 @@ Either convert SVG to PDF and import PDF into Illustrator or convert SVG to .ai 
 	<polygon stroke-width="1" points="-11,5 0,0 -11,-5"/>
 	</marker>
 
-	<!-- mim-necessary-stimulation markers: triangular polygons, background fill, black stroke; and vertical line -->
+	<!-- mim-necessary-stimulation markers: triangular polygons, drawing-board fill, black stroke; and vertical line -->
 
 	<marker id="mim-necessary-stimulation-start-black"
-	class="background-color-fill"
+	class="drawing-board-color-fill"
 	stroke="black"
 	markerWidth="12" markerHeight="12"
 	markerUnits="strokeWidth"
@@ -352,7 +355,7 @@ Either convert SVG to PDF and import PDF into Illustrator or convert SVG to .ai 
 	</marker>
 
 	<marker id="mim-necessary-stimulation-end-black"
-	class="background-color-fill"
+	class="drawing-board-color-fill"
 	stroke="black"
 	markerUnits="strokeWidth"
 	markerWidth="12" markerHeight="12"
@@ -364,10 +367,10 @@ Either convert SVG to PDF and import PDF into Illustrator or convert SVG to .ai 
 	<polygon stroke-width="1" points="-9,5 0,0 -9,-5"/>
 	</marker>
 
-	<!-- t-bar markers: vertical line; and extended background rect -->
+	<!-- t-bar markers: vertical line; and extended drawing-board rect -->
 
 	<marker id="t-bar-start-black"
-	class="background-color-fill"
+	class="drawing-board-color-fill"
 	stroke="black"
 	markerWidth="16" 
 	markerHeight="16"
@@ -380,7 +383,7 @@ Either convert SVG to PDF and import PDF into Illustrator or convert SVG to .ai 
 	</marker>
 
 	<marker id="t-bar-end-black"
-	class="background-color-fill"
+	class="drawing-board-color-fill"
 	stroke="black"
 	markerUnits="strokeWidth"
 	markerWidth="16" 
@@ -393,10 +396,10 @@ Either convert SVG to PDF and import PDF into Illustrator or convert SVG to .ai 
 	</marker>
 	
 
-	<!-- mim-inhibition markers: vertical line; and extended background rect -->
+	<!-- mim-inhibition markers: vertical line; and extended drawing-board rect -->
 
 	<marker id="mim-inhibition-start-black"
-	class="background-color-fill"
+	class="drawing-board-color-fill"
 	stroke="black"
 	markerWidth="16" 
 	markerHeight="16"
@@ -409,7 +412,7 @@ Either convert SVG to PDF and import PDF into Illustrator or convert SVG to .ai 
 	</marker>
 
 	<marker id="mim-inhibition-end-black"
-	class="background-color-fill"
+	class="drawing-board-color-fill"
 	stroke="black"
 	markerUnits="strokeWidth"
 	markerWidth="16" 
@@ -430,7 +433,7 @@ Either convert SVG to PDF and import PDF into Illustrator or convert SVG to .ai 
 	orient="auto"
 	refX="0" refY="0"
 	viewBox="0 -6 12 12">
-	<rect class="background-color-fill" stroke="none" x="0" y="-0.6" width="2" height="1.2" />
+	<rect class="drawing-board-color-fill" stroke="none" x="0" y="-0.6" width="2" height="1.2" />
 	<polygon stroke-width="0" points="12,6 0,0 12,-6 5,0 "/>
 	</marker>
 
@@ -441,7 +444,7 @@ Either convert SVG to PDF and import PDF into Illustrator or convert SVG to .ai 
 	orient="auto"
 	refX="0" refY="0"
 	viewBox="-12 -6 12 12">
-	<rect class="background-color-fill" stroke="none" x="-2" y="-0.6" width="2" height="1.2" />
+	<rect class="drawing-board-color-fill" stroke="none" x="-2" y="-0.6" width="2" height="1.2" />
 	<polygon stroke-width="0" points="-12,6 0,0 -12,-6 -5,0 "/>
 	</marker>
 
@@ -454,7 +457,7 @@ Either convert SVG to PDF and import PDF into Illustrator or convert SVG to .ai 
 	orient="auto"
 	refX="0" refY="0"
 	viewBox="0 -6 12 12">
-	<rect class="background-color-fill" stroke="none" x="0" y="-0.6" width="2" height="1.2" />
+	<rect class="drawing-board-color-fill" stroke="none" x="0" y="-0.6" width="2" height="1.2" />
 	<polygon stroke-width="0" points="12,6 0,0 12,-6 5,0 "/>
 	</marker>
 
@@ -465,14 +468,14 @@ Either convert SVG to PDF and import PDF into Illustrator or convert SVG to .ai 
 	orient="auto"
 	refX="0" refY="0"
 	viewBox="-12 -6 12 12">
-	<rect class="background-color-fill" stroke="none" x="-2" y="-0.6" width="2" height="1.2" />
+	<rect class="drawing-board-color-fill" stroke="none" x="-2" y="-0.6" width="2" height="1.2" />
 	<polygon stroke-width="0" points="-12,6 0,0 -12,-6 -5,0 "/>
 	</marker>
 
-	<!-- mim-catalysis markers: circle, background fill and black stroke -->
+	<!-- mim-catalysis markers: circle, drawing-board fill and black stroke -->
 
 	<marker id="mim-catalysis-start-black"
-	class="background-color-fill"
+	class="drawing-board-color-fill"
 	stroke="black"
 	markerHeight="12"
 	markerWidth="12"
@@ -484,7 +487,7 @@ Either convert SVG to PDF and import PDF into Illustrator or convert SVG to .ai 
 	</marker>
 
 	<marker id="mim-catalysis-end-black"
-	class="background-color-fill"
+	class="drawing-board-color-fill"
 	stroke="black"
 	markerHeight="12"
 	markerUnits="strokeWidth"
@@ -495,10 +498,10 @@ Either convert SVG to PDF and import PDF into Illustrator or convert SVG to .ai 
 	<circle cx="-0.3" cy="0" r="5.3px" stroke-width="1px"/>
 	</marker>
 
-	<!-- mim-cleavage markers: two lines and extended background rect -->
+	<!-- mim-cleavage markers: two lines and extended drawing-board rect -->
 
 	<marker id="mim-cleavage-start-black" 
-	class="background-color-fill" 
+	class="drawing-board-color-fill" 
 	stroke="black"
 	markerHeight="24"
 	markerWidth="24"
@@ -512,7 +515,7 @@ Either convert SVG to PDF and import PDF into Illustrator or convert SVG to .ai 
 	</marker>
 
 	<marker id="mim-cleavage-end-black"
-	class="background-color-fill" 
+	class="drawing-board-color-fill" 
 	stroke="black"
 	markerHeight="24"
 	markerWidth="24"
@@ -525,10 +528,10 @@ Either convert SVG to PDF and import PDF into Illustrator or convert SVG to .ai 
 	<line fill="none" stroke-width=".4" x1="-3.7" y1="-6" x2="8" y2="6"/>	
 	</marker>
 
-	<!-- mim-branching-left markers: line and extended background rect -->
+	<!-- mim-branching-left markers: line and extended drawing-board rect -->
 
 	<marker id="mim-branching-left-start-black" 
-	class="background-color-fill" 
+	class="drawing-board-color-fill" 
 	stroke="black"
 	markerHeight="24"
 	markerWidth="24"
@@ -541,7 +544,7 @@ Either convert SVG to PDF and import PDF into Illustrator or convert SVG to .ai 
 	</marker>
 
 	<marker id="mim-branching-left-end-black"
-	class="background-color-fill" 
+	class="drawing-board-color-fill" 
 	stroke="black"
 	markerHeight="24"
 	markerWidth="24"
@@ -553,10 +556,10 @@ Either convert SVG to PDF and import PDF into Illustrator or convert SVG to .ai 
 	<line fill="none" stroke-width=".4" x1="-3.7" y1="0" x2="0" y2="6"/>	
 	</marker>
 
-	<!-- mim-branching-right markers: line and extended background rect -->
+	<!-- mim-branching-right markers: line and extended drawing-board rect -->
 
 	<marker id="mim-branching-right-start-black" 
-	class="background-color-fill" 
+	class="drawing-board-color-fill" 
 	stroke="black"
 	markerHeight="24"
 	markerWidth="24"
@@ -569,7 +572,7 @@ Either convert SVG to PDF and import PDF into Illustrator or convert SVG to .ai 
 	</marker>
 
 	<marker id="mim-branching-right-end-black"
-	class="background-color-fill" 
+	class="drawing-board-color-fill" 
 	stroke="black"
 	markerHeight="24"
 	markerWidth="24"
@@ -581,10 +584,10 @@ Either convert SVG to PDF and import PDF into Illustrator or convert SVG to .ai 
 	<line fill="none" stroke-width=".4" x1="-3.7" y1="0" x2="0" y2="-6"/>	
 	</marker>
 
-	<!-- mim-transcription-translation markers: two lines and an open trigular polygon, plus extended background rect -->
+	<!-- mim-transcription-translation markers: two lines and an open trigular polygon, plus extended drawing-board rect -->
 
 	<marker id="mim-transcription-translation-start-black"
-	class="background-color-fill" 
+	class="drawing-board-color-fill" 
 	stroke="black"
 	markerHeight="24"
 	markerWidth="24"
@@ -599,7 +602,7 @@ Either convert SVG to PDF and import PDF into Illustrator or convert SVG to .ai 
 	</marker>
 
 	<marker id="mim-transcription-translation-end-black"
-	class="background-color-fill" 
+	class="drawing-board-color-fill" 
 	stroke="black"
 	markerHeight="24"
 	markerWidth="24"
@@ -641,7 +644,7 @@ Either convert SVG to PDF and import PDF into Illustrator or convert SVG to .ai 
 	orient="auto"
 	refX="0" refY="0"
 	viewBox="0 -6 12 12">
-	<rect class="background-color-fill" stroke="none" x="0" y="-1.5" width="2.3" height="3" />
+	<rect class="drawing-board-color-fill" stroke="none" x="0" y="-1.5" width="2.3" height="3" />
 	</marker>
 
 	<marker id="double-line-hack-end"
@@ -650,18 +653,18 @@ Either convert SVG to PDF and import PDF into Illustrator or convert SVG to .ai 
 	orient="auto"
 	refX="0" refY="0"
 	viewBox="-12 -6 12 12">
-	<rect class="background-color-fill" stroke="none" x="-2.3" y="-1.5" width="2.3" height="3" />
+	<rect class="drawing-board-color-fill" stroke="none" x="-2.3" y="-1.5" width="2.3" height="3" />
 	</marker>
 
 
-	<!-- mim-gap markers: just an extended background rect -->
+	<!-- mim-gap markers: just an extended drawing-board rect -->
 	<!-- 
 	TODO This could be refactored to make the shape match the viewbox.
 	It can overlap the side of the shape, blanking out a small part of it when the edge is at an angle.
 	-->
 
 	<marker id="mim-gap-start-black"
-	class="background-color-fill"
+	class="drawing-board-color-fill"
 	markerUnits="strokeWidth"
 	markerWidth="10" markerHeight="10"
 	orient="auto"
@@ -671,7 +674,7 @@ Either convert SVG to PDF and import PDF into Illustrator or convert SVG to .ai 
 	</marker>
 
 	<marker id="mim-gap-end-black"
-	class="background-color-fill"
+	class="drawing-board-color-fill"
 	markerUnits="strokeWidth"
 	markerWidth="10" markerHeight="10"
 	orient="auto"

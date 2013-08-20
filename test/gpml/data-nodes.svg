@@ -18,22 +18,22 @@
       ><path d="M8.0964 412.2406 L8.0964 755.9815 L114.152 755.9815 L114.152 412.2406 Z"
       /></clipPath
       ><clipPath clipPathUnits="userSpaceOnUse" id="clipPath5"
-      ><path d="M20.6242 168.4349 L20.6242 189.4349 L101.6242 189.4349 L101.6242 168.4349 Z"
+      ><path d="M20.6242 61.2949 L20.6242 82.2949 L101.6242 82.2949 L101.6242 61.2949 Z"
       /></clipPath
       ><clipPath clipPathUnits="userSpaceOnUse" id="clipPath6"
-      ><path d="M20.6242 220.5307 L20.6242 241.5307 L101.6242 241.5307 L101.6242 220.5307 Z"
+      ><path d="M20.6242 112.5769 L20.6242 133.5769 L101.6242 133.5769 L101.6242 112.5769 Z"
       /></clipPath
       ><clipPath clipPathUnits="userSpaceOnUse" id="clipPath7"
-      ><path d="M20.6242 61.2949 L20.6242 82.2949 L101.6242 82.2949 L101.6242 61.2949 Z"
+      ><path d="M20.6242 327.6613 L20.6242 348.6613 L101.6242 348.6613 L101.6242 327.6613 Z"
       /></clipPath
       ><clipPath clipPathUnits="userSpaceOnUse" id="clipPath8"
       ><path d="M20.6242 278.0886 L20.6242 299.0886 L101.6242 299.0886 L101.6242 278.0886 Z"
       /></clipPath
       ><clipPath clipPathUnits="userSpaceOnUse" id="clipPath9"
-      ><path d="M20.6242 327.6613 L20.6242 348.6613 L101.6242 348.6613 L101.6242 327.6613 Z"
+      ><path d="M20.6242 220.5307 L20.6242 241.5307 L101.6242 241.5307 L101.6242 220.5307 Z"
       /></clipPath
       ><clipPath clipPathUnits="userSpaceOnUse" id="clipPath10"
-      ><path d="M20.6242 112.5769 L20.6242 133.5769 L101.6242 133.5769 L101.6242 112.5769 Z"
+      ><path d="M20.6242 168.4349 L20.6242 189.4349 L101.6242 189.4349 L101.6242 168.4349 Z"
       /></clipPath
       ><clipPath clipPathUnits="userSpaceOnUse" id="clipPath11"
       ><path d="M20.6242 707.0801 L20.6242 728.0801 L101.6242 728.0801 L101.6242 707.0801 Z"
@@ -105,25 +105,29 @@
     ><path d="M8.5964 412.7406 L113.652 412.7406 L113.652 755.4815 L8.5964 755.4815 L8.5964 412.7406 Z" style="clip-path:url(#clipPath4); stroke:none;"
       /><path d="M8.5964 412.7406 L113.652 412.7406 L113.652 755.4815 L8.5964 755.4815 L8.5964 412.7406 Z" style="fill:none; clip-path:url(#clipPath4); stroke:black;"
     /></g
-    ><g style="fill:rgb(20,150,30); text-rendering:geometricPrecision; font-weight:bold; font-family:&apos;Arial&apos;; stroke:rgb(20,150,30);"
-    ><text x="37" xml:space="preserve" y="182" style="clip-path:url(#clipPath5); stroke:none;"
-      >Pathway</text
-    ></g
     ><g style="fill:white; text-rendering:geometricPrecision; stroke:white;"
-    ><path d="M21.1242 221.0307 L101.1242 221.0307 L101.1242 241.0307 L21.1242 241.0307 L21.1242 221.0307 Z" style="clip-path:url(#clipPath6); stroke:none;"
-      /><path d="M21.1242 221.0307 L101.1242 221.0307 L101.1242 241.0307 L21.1242 241.0307 L21.1242 221.0307 Z" style="fill:none; clip-path:url(#clipPath6); stroke:black;"
+    ><path d="M21.1242 61.7949 L101.1242 61.7949 L101.1242 81.7949 L21.1242 81.7949 L21.1242 61.7949 Z" style="clip-path:url(#clipPath5); stroke:none;"
+      /><path d="M21.1242 61.7949 L101.1242 61.7949 L101.1242 81.7949 L21.1242 81.7949 L21.1242 61.7949 Z" style="fill:none; clip-path:url(#clipPath5); stroke:black;"
     /></g
     ><g style="font-family:&apos;Arial&apos;; font-size:10; text-rendering:geometricPrecision;"
-    ><text x="46" xml:space="preserve" y="235" style="clip-path:url(#clipPath6); stroke:none;"
-      >Protein</text
-    ></g
-    ><g style="fill:white; text-rendering:geometricPrecision; stroke:white;"
-    ><path d="M21.1242 61.7949 L101.1242 61.7949 L101.1242 81.7949 L21.1242 81.7949 L21.1242 61.7949 Z" style="clip-path:url(#clipPath7); stroke:none;"
-      /><path d="M21.1242 61.7949 L101.1242 61.7949 L101.1242 81.7949 L21.1242 81.7949 L21.1242 61.7949 Z" style="fill:none; clip-path:url(#clipPath7); stroke:black;"
-    /></g
-    ><g style="font-family:&apos;Arial&apos;; font-size:10; text-rendering:geometricPrecision;"
-    ><text x="32" xml:space="preserve" y="75" style="clip-path:url(#clipPath7); stroke:none;"
+    ><text x="32" xml:space="preserve" y="75" style="clip-path:url(#clipPath5); stroke:none;"
       >GeneProduct</text
+    ></g
+    ><g style="fill:white; text-rendering:geometricPrecision; stroke:white;"
+    ><path d="M21.1242 113.0769 L101.1242 113.0769 L101.1242 133.0769 L21.1242 133.0769 L21.1242 113.0769 Z" style="clip-path:url(#clipPath6); stroke:none;"
+      /><path d="M21.1242 113.0769 L101.1242 113.0769 L101.1242 133.0769 L21.1242 133.0769 L21.1242 113.0769 Z" style="fill:none; clip-path:url(#clipPath6); stroke:blue;"
+    /></g
+    ><g style="fill:blue; text-rendering:geometricPrecision; font-size:10; font-family:&apos;Arial&apos;; stroke:blue;"
+    ><text x="38" xml:space="preserve" y="127" style="clip-path:url(#clipPath6); stroke:none;"
+      >Metabolite</text
+    ></g
+    ><g style="fill:white; text-rendering:geometricPrecision; stroke:white;"
+    ><path d="M21.1242 328.1613 L101.1242 328.1613 L101.1242 348.1613 L21.1242 348.1613 L21.1242 328.1613 Z" style="clip-path:url(#clipPath7); stroke:none;"
+      /><path d="M21.1242 328.1613 L101.1242 328.1613 L101.1242 348.1613 L21.1242 348.1613 L21.1242 328.1613 Z" style="fill:none; clip-path:url(#clipPath7); stroke:black;"
+    /></g
+    ><g style="font-family:&apos;Arial&apos;; font-size:10; text-rendering:geometricPrecision;"
+    ><text x="41" xml:space="preserve" y="342" style="clip-path:url(#clipPath7); stroke:none;"
+      >Unknown</text
     ></g
     ><g style="fill:white; text-rendering:geometricPrecision; stroke:white;"
     ><path d="M21.1242 278.5886 L101.1242 278.5886 L101.1242 298.5886 L21.1242 298.5886 L21.1242 278.5886 Z" style="clip-path:url(#clipPath8); stroke:none;"
@@ -134,20 +138,16 @@
       >Rna</text
     ></g
     ><g style="fill:white; text-rendering:geometricPrecision; stroke:white;"
-    ><path d="M21.1242 328.1613 L101.1242 328.1613 L101.1242 348.1613 L21.1242 348.1613 L21.1242 328.1613 Z" style="clip-path:url(#clipPath9); stroke:none;"
-      /><path d="M21.1242 328.1613 L101.1242 328.1613 L101.1242 348.1613 L21.1242 348.1613 L21.1242 328.1613 Z" style="fill:none; clip-path:url(#clipPath9); stroke:black;"
+    ><path d="M21.1242 221.0307 L101.1242 221.0307 L101.1242 241.0307 L21.1242 241.0307 L21.1242 221.0307 Z" style="clip-path:url(#clipPath9); stroke:none;"
+      /><path d="M21.1242 221.0307 L101.1242 221.0307 L101.1242 241.0307 L21.1242 241.0307 L21.1242 221.0307 Z" style="fill:none; clip-path:url(#clipPath9); stroke:black;"
     /></g
     ><g style="font-family:&apos;Arial&apos;; font-size:10; text-rendering:geometricPrecision;"
-    ><text x="41" xml:space="preserve" y="342" style="clip-path:url(#clipPath9); stroke:none;"
-      >Unknown</text
+    ><text x="46" xml:space="preserve" y="235" style="clip-path:url(#clipPath9); stroke:none;"
+      >Protein</text
     ></g
-    ><g style="fill:white; text-rendering:geometricPrecision; stroke:white;"
-    ><path d="M21.1242 113.0769 L101.1242 113.0769 L101.1242 133.0769 L21.1242 133.0769 L21.1242 113.0769 Z" style="clip-path:url(#clipPath10); stroke:none;"
-      /><path d="M21.1242 113.0769 L101.1242 113.0769 L101.1242 133.0769 L21.1242 133.0769 L21.1242 113.0769 Z" style="fill:none; clip-path:url(#clipPath10); stroke:blue;"
-    /></g
-    ><g style="fill:blue; text-rendering:geometricPrecision; font-size:10; font-family:&apos;Arial&apos;; stroke:blue;"
-    ><text x="38" xml:space="preserve" y="127" style="clip-path:url(#clipPath10); stroke:none;"
-      >Metabolite</text
+    ><g style="fill:rgb(20,150,30); text-rendering:geometricPrecision; font-weight:bold; font-family:&apos;Arial&apos;; stroke:rgb(20,150,30);"
+    ><text x="37" xml:space="preserve" y="182" style="clip-path:url(#clipPath10); stroke:none;"
+      >Pathway</text
     ></g
     ><g style="fill:white; text-rendering:geometricPrecision; stroke:white;"
     ><path d="M21.1242 707.5801 L101.1242 707.5801 L101.1242 727.5801 L21.1242 727.5801 L21.1242 707.5801 Z" style="clip-path:url(#clipPath11); stroke:none;"

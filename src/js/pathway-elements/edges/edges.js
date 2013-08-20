@@ -32,7 +32,8 @@ pathvisio.edges = function(){
             svg.append("path")
             .attr("class", d.edgeType + "-double")
             .attr("d", pathData)
-            .attr("style", "stroke:white; stroke-width:" + d.strokeWidth + '; ')
+            .attr("class", "drawing-board-color-stroke")
+            .attr("style", "stroke-width:" + d.strokeWidth + '; ')
             .attr("marker-start", 'url(#' + pathvisio.edges.markers.draw(d.markerStart, 'start', d.stroke) + ')')
             .attr("marker-end", 'url(#' + pathvisio.edges.markers.draw(d.markerEnd, 'end', d.stroke) + ')');
           };
