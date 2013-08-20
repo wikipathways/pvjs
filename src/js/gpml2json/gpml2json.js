@@ -154,7 +154,7 @@ function convertGpml2Json(gpml){
 
   // TODO What happens if we have right to left flowing text?
 
-  var alignToAnchorMappings = { "Left":"start",  "Center":"middle", "Right":"end" };
+  var alignToAnchorMappings = { "Left":"start", "Center":"middle", "Right":"end" };
 
   // We can use xml2json.js or JXON.js. Which is better?
   // JXON.js
@@ -356,6 +356,9 @@ function convertGpml2Json(gpml){
 
           if (element.graphics.hasOwnProperty('linestyle')) {
             element.strokeStyle = element.graphics.linestyle.toLowerCase();
+            if (element.strokeStyle === 'broken') {
+              element.strokeStyle = 'dashed';
+            };
             delete element.graphics.linestyle;
           }	
           else {
@@ -708,8 +711,11 @@ function convertGpml2Json(gpml){
 
       if (element.graphics.hasOwnProperty('linestyle')) {
         element.strokeStyle = element.graphics.linestyle.toLowerCase();
+        if (element.strokeStyle === 'broken') {
+          element.strokeStyle = 'dashed';
+        };
         delete element.graphics.linestyle;
-      }	
+      };	
 
       if (element.hasOwnProperty('attribute')) {
         element.attributes = convertToArray( element.attribute );
@@ -787,6 +793,16 @@ function convertGpml2Json(gpml){
 
           if (alignToAnchorMappings.hasOwnProperty(element.graphics.align)) {
             element.textLabel.textAnchor = alignToAnchorMappings[element.graphics.align];
+          }
+          else {
+            element.textLabel.textAnchor = 'middle';
+          };
+
+          if (element.graphics.hasOwnProperty("valign")) {
+            element.textLabel.vAlign = element.graphics.valign.toLowerCase();
+          }
+          else {
+            element.textLabel.vAlign = 'top';
           };
         };
       };

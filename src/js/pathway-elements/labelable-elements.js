@@ -29,12 +29,6 @@ pathvisio.labelableElements = function(){
         else {
           styleClass = "labelable-element " + d.elementType; 
         };
-        if (d.hasOwnProperty('strokeStyle')) {
-          if (d.strokeStyle === 'broken') {
-            styleClass += " broken-stroke"; 
-          };
-          // TODO currently cannot render double lines for linestyles for labelableElements.
-        };
         return styleClass })
         .attr("x", 0)
         .attr("y", 0)
@@ -45,11 +39,11 @@ pathvisio.labelableElements = function(){
           var style = '';
 
           if (d.hasOwnProperty('fill')) {
-            style += ' fill:' + d.fill + '; '; 
+            style += 'fill:' + d.fill + '; '; 
           };
 
           if (d.hasOwnProperty('fillOpacity')) {
-            style += ' fill-opacity:' + d.fillOpacity + '; '; 
+            style += 'fill-opacity:' + d.fillOpacity + '; '; 
           };
 
           if (d.hasOwnProperty('stroke')) {
@@ -67,6 +61,14 @@ pathvisio.labelableElements = function(){
               style += 'stroke-width: 2; '; 
             };
           };
+
+          if (d.hasOwnProperty('strokeStyle')) {
+            if (d.strokeStyle === 'dashed') {
+              style += 'stroke-dasharray: 5,3; '; 
+            };
+            // TODO currently cannot render double lines for linestyles for labelableElements.
+          };
+
           return style; 
         });
 
@@ -87,6 +89,9 @@ pathvisio.labelableElements = function(){
           .attr("x", 0)
           .attr("y", 0)
           .attr('transform', function(d) {
+
+            // tweak left, center, right horizontal alignment
+
             if (d.textLabel.hasOwnProperty('textAnchor')) {
 
               // giving padding of 5. maybe this should go into the CSS.
@@ -98,12 +103,33 @@ pathvisio.labelableElements = function(){
                 if (d.textLabel.textAnchor === 'end') {
                   var dx = d.width - 5;
                 }
+                else {
+                  var dx = d.width / 2;
+                };
               };
             }
             else {
               var dx = d.width / 2;
             };
-            var dy = (d.height / 2) + (0.3 * d.textLabel.fontSize) - (((pathvisio.helpers.splitStringByNewLine(d.textLabel.text).length - 1) * d.textLabel.fontSize)/2);
+
+            // set top, middle, bottom vertical alignment
+
+            if (d.textLabel.hasOwnProperty('vAlign')) {
+              if (d.textLabel.vAlign === 'top') {
+                var dy = 5 + (1 * d.textLabel.fontSize);
+              }
+              else {
+                if (d.textLabel.vAlign === 'bottom') {
+                  var dy = d.height - (5 + (0.3 * d.textLabel.fontSize) + ((pathvisio.helpers.splitStringByNewLine(d.textLabel.text).length - 1) * d.textLabel.fontSize));
+                }
+                else {
+                  var dy = (d.height / 2) + (0.3 * d.textLabel.fontSize) - (((pathvisio.helpers.splitStringByNewLine(d.textLabel.text).length - 1) * d.textLabel.fontSize)/2);
+                };
+              };
+            }
+            else {
+              var dy = (d.height / 2) + (0.3 * d.textLabel.fontSize) - (((pathvisio.helpers.splitStringByNewLine(d.textLabel.text).length - 1) * d.textLabel.fontSize)/2);
+            };
             return 'translate(' + dx + ' ' + dy + ')'; })
             .attr("class", function (d) { 
               var styleClass = ''; 
