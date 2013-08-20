@@ -43,15 +43,19 @@ pathvisio.labelableElements = function(){
         .attr("z-index", function (d) { return d.zIndex; })
         .attr("style", function (d) { 
           var style = '';
+
           if (d.hasOwnProperty('fill')) {
             style += ' fill:' + d.fill + '; '; 
           };
+
           if (d.hasOwnProperty('fillOpacity')) {
             style += ' fill-opacity:' + d.fillOpacity + '; '; 
           };
+
           if (d.hasOwnProperty('stroke')) {
             style += 'stroke:' + d.stroke + '; '; 
           };
+
           if (d.hasOwnProperty('strokeWidth')) {
 
             // doubling strokeWidth, because stroke is centered on bounding box, meaning half of it gets cut off.
@@ -104,49 +108,46 @@ pathvisio.labelableElements = function(){
             .attr("class", function (d) { 
               var styleClass = ''; 
               if (d.elementType === 'data-node') {
-                styleClass = "labelable-element " + d.elementType + ' ' + d.dataNodeType; 
-              }
-              else {
-                styleClass = "labelable-element " + d.elementType; 
+                styleClass = d.dataNodeType; 
               };
               return styleClass })
-              .attr("style", function (d) { 
-                var style = '';
-                var fontSize = d.fontSize;
-                if (d.textLabel.hasOwnProperty('color')) {
-                  style += 'fill:' + d.textLabel.color + '; '; 
-                };
-                if (d.textLabel.hasOwnProperty('fontFamily')) {
-                  style += 'font-family:' + d.textLabel.fontFamily + '; '; 
-                };
-                if (d.textLabel.hasOwnProperty('fontSize')) {
-                  style += 'font-size:' + d.textLabel.fontSize + 'px; '; 
-                };
-                if (d.textLabel.hasOwnProperty('fontWeight')) {
-                  style += 'font-weight:' + d.textLabel.fontWeight + '; '; 
-                };
-                if (d.textLabel.hasOwnProperty('fontStyle')) {
-                  style += 'font-style:' + d.textLabel.fontStyle + '; '; 
-                };
-                if (d.textLabel.hasOwnProperty('textAnchor')) {
-                  style += 'text-anchor:' + d.textLabel.textAnchor + '; '; 
-                };
-                return style; 
-              });
+            .attr("style", function (d) { 
+              var style = '';
+              var fontSize = d.fontSize;
+              if (d.textLabel.hasOwnProperty('fill')) {
+                style += 'fill:' + d.textLabel.fill + '; '; 
+              };
+              if (d.textLabel.hasOwnProperty('fontFamily')) {
+                style += 'font-family:' + d.textLabel.fontFamily + '; '; 
+              };
+              if (d.textLabel.hasOwnProperty('fontSize')) {
+                style += 'font-size:' + d.textLabel.fontSize + 'px; '; 
+              };
+              if (d.textLabel.hasOwnProperty('fontWeight')) {
+                style += 'font-weight:' + d.textLabel.fontWeight + '; '; 
+              };
+              if (d.textLabel.hasOwnProperty('fontStyle')) {
+                style += 'font-style:' + d.textLabel.fontStyle + '; '; 
+              };
+              if (d.textLabel.hasOwnProperty('textAnchor')) {
+                style += 'text-anchor:' + d.textLabel.textAnchor + '; '; 
+              };
+              return style; 
+            });
 
-              var labelableElementTspan = labelableElementText.each(function(d) {
-                var fontSize = d.textLabel.fontSize;
-                d3.select(this).selectAll('tspan')
-                .data(function (d) {
-                  var textArray = pathvisio.helpers.splitStringByNewLine(d.textLabel.text);
-                  return textArray;
-                })
-                .enter()
-                .append('tspan')
-                .attr("x", 0)
-                .attr("y", function (d, i) { return i * fontSize; })
-                .text(function (d) { return d; });
-              });
+            var labelableElementTspan = labelableElementText.each(function(d) {
+              var fontSize = d.textLabel.fontSize;
+              d3.select(this).selectAll('tspan')
+              .data(function (d) {
+                var textArray = pathvisio.helpers.splitStringByNewLine(d.textLabel.text);
+                return textArray;
+              })
+              .enter()
+              .append('tspan')
+              .attr("x", 0)
+              .attr("y", function (d, i) { return i * fontSize; })
+              .text(function (d) { return d; });
+            });
         };
 
         /*

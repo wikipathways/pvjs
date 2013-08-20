@@ -37,8 +37,14 @@ Repo:
     }
   }
 
-  $pathwayTemplateSvgUrl = "https://raw.github.com/" . $repo . "/pathvisio.js/dev/src/views/pathway-template.svg";
-  $pathwayTemplateSvgUrlEditable = "https://github.com/" . $repo . "/pathvisio.js/blob/dev/src/views/pathway-template.svg";
+  if ($_GET['repo'] == "local") {
+    $pathwayTemplateSvgUrl = "pathway-template.svg";
+    $pathwayTemplateSvgUrlEditable = "pathway-template.svg";
+  }
+  else {
+    $pathwayTemplateSvgUrl = "https://raw.github.com/" . $repo . "/pathvisio.js/dev/src/views/pathway-template.svg";
+    $pathwayTemplateSvgUrlEditable = "https://github.com/" . $repo . "/pathvisio.js/blob/dev/src/views/pathway-template.svg";
+  }
 
   if (isset($_GET['pwId'])) {
     echo "<script>var local = false</script>";

@@ -79,15 +79,17 @@ function convertGpml2Json(gpml){
   // Replace double dashes with single dashes
   // replace capitals letters with lowercase. 
 
-  // GPML to jGPML shape name mappings: { "oldName":"new-name" }
+  // GPML to jGPML shape name mappings: { "OldName":"new-name" }
 
-  var shapeMappings = { "Arc" : "arc",
+  var shapeMappings = {
+    "Arc" : "arc",
     "Brace" : "brace",
     "Cell" : "cell",
     "Endoplasmic Reticulum" : "endoplasmic-reticulum",
     "Extracellular region" : "extracellular-region",
     "Golgi Apparatus" : "golgi-apparatus",
     "Hexagon" : "hexagon",
+    "mim-degradation" : "mim-degradation",
     "Mitochondria" : "mitochondria",
     "Nucleus" : "nucleus",
     "Organelle" : "organelle",
@@ -97,15 +99,35 @@ function convertGpml2Json(gpml){
     "RoundedRectangle" : "rounded-rectangle",
     "Sarcoplasmic Reticulum" : "sarcoplasmic-reticulum",
     "Triangle" : "triangle",
-    "Vesicle" : "vesicle",
-    "mim-degradation" : "mim-degradation"
+    "Vesicle" : "vesicle"
   }; 
 
-  // GPML to jGPML marker name mappings: { "oldName":"new-name" }
+  var markerMappings = {
+    "Arrow":"arrow",
+    "mim-branching-left":"mim-branching-left",
+    "mim-branching-right":"mim-branching-right",
+    "mim-necessary-stimulation":"mim-necessary-stimulation",
+    "mim-binding":"mim-binding",
+    "mim-conversion":"mim-conversion",
+    "mim-stimulation":"mim-stimulation",
+    "mim-modification":"mim-modification",
+    "mim-catalysis":"mim-catalysis",
+    "mim-inhibition":"mim-inhibition",
+    "mim-cleavage":"mim-cleavage",
+    "mim-covalent-bond":"mim-covalent-bond",
+    "mim-transcription-translation":"mim-transcription-translation",
+    "mim-gap":"mim-gap",
+    "None":"none",
+    "TBar":"t-bar"
+  };
 
-  var markerMappings = { "Arrow":"arrow", "TBar":"t-bar", "mim-branching-left":"mim-branching-left", "mim-branching-right":"mim-branching-right", "mim-necessary-stimulation":"mim-necessary-stimulation", "mim-binding":"mim-binding", "mim-conversion":"mim-conversion", "mim-stimulation":"mim-stimulation", "mim-modification":"mim-modification", "mim-catalysis":"mim-catalysis", "mim-inhibition":"mim-inhibition", "mim-cleavage":"mim-cleavage", "mim-covalent-bond":"mim-covalent-bond", "mim-transcription-translation":"mim-transcription-translation", "mim-gap":"mim-gap" };
-
-  var dataNodeTypeMappings = { "GeneProduct":"gene-product",  "Metabolite":"metabolite", "Pathway":"pathway", "Protein":"protein", "Rna":"rna" };
+  var dataNodeTypeMappings = {
+    "GeneProduct":"gene-product",
+    "Metabolite":"metabolite",
+    "Pathway":"pathway",
+    "Protein":"protein",
+    "Rna":"rna"
+  };
 
   // pathvisio.js vs PathVisio (Java) specification of anchor position
   // -----------------------------------------
@@ -516,31 +538,6 @@ function convertGpml2Json(gpml){
             element.xRef = element.xref;
             delete element.xref;
           };
-
-          if (element.graphics.hasOwnProperty("fillcolor")) {
-
-            // RGBColor() from http://www.phpied.com/rgb-color-parser-in-javascript/
-            // license: Use it if you like it
-            
-            element.graphics.fillcolor = element.graphics.fillcolor.toLowerCase();
-
-            if (element.graphics.fillcolor = 'transparent') {
-              element.fillOpacity = 0;
-            }
-            else {
-              var fill = new RGBColor(element.graphics.fillcolor);
-              if (fill.ok) { 
-                element.fill = fill.toHex();
-                if (element.dataNodeType === 'pathway') {
-
-                  // default opacity in PathVisio (Java) is 0, which is specified in the CSS.
-                  
-                  element.fillOpacity = 1;
-                };
-              }
-            };
-
-          };
         });
 
         if (pathway.hasOwnProperty('labelableElements')) {
@@ -569,15 +566,6 @@ function convertGpml2Json(gpml){
 
         labels.forEach(function(element, index, array) {
           element.elementType = 'label';
-
-          if (element.graphics.hasOwnProperty("fillcolor")) {
-
-            element.fillOpacity = 1;
-            var fill = new RGBColor(element.graphics.fillcolor);
-            if (fill.ok) { 
-              element.fill = fill.toHex();
-            };
-          };
         });
 
         if (pathway.hasOwnProperty('labelableElements')) {
@@ -606,15 +594,6 @@ function convertGpml2Json(gpml){
 
         shapes.forEach(function(element, index, array) {
           element.elementType = 'shape';
-
-          if (element.graphics.hasOwnProperty("fillcolor")) {
-
-            element.fillOpacity = 1;
-            var fill = new RGBColor(element.graphics.fillcolor);
-            if (fill.ok) { 
-              element.fill = fill.toHex();
-            };
-          };
         });
 
         if (pathway.hasOwnProperty('labelableElements')) {
@@ -679,6 +658,48 @@ function convertGpml2Json(gpml){
         if (color.ok) { 
           element.stroke = color.toHex();
         }
+        else {
+          console.warn('Invalid Color encountered. Setting Color to black.');
+          element.fill = "#000000";
+        };
+      };
+
+      if ((!(element.graphics.hasOwnProperty("shapetype")))) {
+        if (element.elementType === 'data-node') {
+          element.symbolType = "rectangle";
+        }
+        else {
+          element.symbolType = "none";
+        }
+      }
+      else {
+        element.symbolType = shapeMappings[element.graphics.shapetype];
+      };	
+
+      if (element.graphics.hasOwnProperty("fillcolor")) {
+
+        // RGBColor() from http://www.phpied.com/rgb-color-parser-in-javascript/
+        // license: Use it if you like it
+        
+        element.graphics.fillcolor = element.graphics.fillcolor.toLowerCase();
+
+        if (element.graphics.fillcolor === 'transparent') {
+          element.fillOpacity = 0;
+        }
+        else {
+          var fill = new RGBColor(element.graphics.fillcolor);
+          if (fill.ok) { 
+            element.fill = fill.toHex();
+          }
+          else {
+            console.warn('Invalid FillColor encountered. Setting FillColor to gray.');
+            element.fill = "#999999";
+          };
+
+          if (element.symbolType !== 'none') {
+            element.fillOpacity = 1;
+          };
+        };
       };
 
       if (element.graphics.hasOwnProperty("linethickness")) {
@@ -734,12 +755,15 @@ function convertGpml2Json(gpml){
             delete element.groupref;
           };
 
-          if (element.graphics.hasOwnProperty("color")) {
+          if (element.hasOwnProperty("stroke")) {
 
-            // element stroke and text color appear to be the same property in the Java PathVisio code
+            // element stroke color (referring to the color of a border or line) and text fill color appear to be the same property in the Java PathVisio code
 
-            element.textLabel.color = element.stroke;
+            element.textLabel.fill = element.stroke;
           };	
+
+          // default fontsize is already specified in the CSS of pathway-template.svg, but I need the font size
+          // to calculate the vertical spacing. I could remove this if I could pull the value from the CSS.
 
           if (element.graphics.hasOwnProperty("fontsize")) {
             var fontSize = element.graphics.fontsize;
@@ -747,7 +771,6 @@ function convertGpml2Json(gpml){
           else {
             var fontSize = 10;
           };
-
           element.textLabel.fontSize = fontSize;
 
           if (element.graphics.hasOwnProperty("fontname")) {
@@ -766,19 +789,7 @@ function convertGpml2Json(gpml){
             element.textLabel.textAnchor = alignToAnchorMappings[element.graphics.align];
           };
         };
-      }
-
-      if ((!(element.graphics.hasOwnProperty("shapetype")))) {
-        if (element.elementType === 'data-node') {
-          element.symbolType = "rectangle";
-        }
-        else {
-          element.symbolType = "none";
-        }
-      }
-      else {
-        element.symbolType = shapeMappings[element.graphics.shapetype];
-      };	
+      };
 
       delete element.graphics;
     });
