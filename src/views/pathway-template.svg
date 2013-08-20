@@ -814,9 +814,9 @@ Symbols (shapes)
 
 	<!-- Shape is placeholder until it can be replaced with correct shape. -->
 
-	<symbol id="vesicle" viewBox="0 0 100 50" preserveAspectRatio="none">
+	<symbol id="vesicle" viewBox="0 0 50 50" preserveAspectRatio="xMinYMin meet">
 	<desc>vesicle</desc>
-	<circle cx="100" cy="50" r="40" stroke="grey"
+	<circle cx="27" cy="27" r="25" stroke="grey"
   	stroke-width="2" fill="grey"/>	</symbol>
 
 	<!-- TODO Update placeholders for SVG definitions of shapes.
