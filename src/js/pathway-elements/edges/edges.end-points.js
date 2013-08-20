@@ -16,7 +16,10 @@ pathvisio.edges.endPoints = function(){
         };
       };
 
+      self.pathwayInside = pathway;
+
       var edgesWithAnchors = pathway.edges.filter(function(element) {return element.hasOwnProperty('anchors')})
+      self.edgesWithAnchors = edgesWithAnchors;
       var i = -1;
       do {
         i += 1;

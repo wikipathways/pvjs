@@ -148,8 +148,10 @@ Repo from which to pull pathway template svg: <INPUT id="repo" type="text" SIZE=
 
 <script src="../js/pathvisio.js"></script>
 
-<script src="../js/gpml2json/gpml2json.js"></script>
-<script src="../js/gpml2json/jxon.js"></script>
+<script src="../js/xmlGpml2jsonGpml/jxon.js"></script>
+<script src="../js/xmlGpml2jsonGpml/xmlGpml2jsonGpml.js"></script>
+<script src="../js/xmlGpml2jsonGpml/xmlGpml2jsonGpml.edges.js"></script>
+<script src="../js/xmlGpml2jsonGpml/xmlGpml2jsonGpml.labelableElements.js"></script>
 
 <script src="../js/pathway-elements/edges/edges.js"></script>
 <script src="../js/pathway-elements/edges/edges.path-data.js"></script>
