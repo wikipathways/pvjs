@@ -798,9 +798,9 @@ Symbols (shapes)
 	<rect x="1" y="1" rx="10" ry="10" width="98" height="48" vector-effect="non-scaling-stroke"></rect>
 	</symbol>
 
-	<!-- Shape is placeholder until it can be replaced with correct shape. -->
+	<!-- Sarcoplasmic reticulum -->
 
-	<symbol id="sarcoplasmic-reticulum" viewBox="0 0 70 170" preserveAspectRatio="none">
+	<symbol id="sarcoplasmic-reticulum" viewBox="0 0 70 170" preserveAspectRatio="xMinYMin meet">
 	<desc>sarcoplasmic-reticulum</desc>
 	<path d="m36.4444,1.89558c-34.99915,2.22332 -39.2673,37.74125 -28.65384,63.19647c10.07443,30.40252 -20.2884,49.97363 2.77805,81.84377c18.18629,21.73956 50.09141,10.11908 56.35627,-14.20186c6.37779,-25.27418 -11.8396,-43.13985 -3.5604,-67.8931c11.73406,-32.95808 -0.83911,-63.20087 -26.92008,-62.94527z" vector-effect="non-scaling-stroke"/>	
 	</symbol>
