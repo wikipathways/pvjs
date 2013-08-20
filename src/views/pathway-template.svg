@@ -101,16 +101,19 @@ Either convert SVG to PDF and import PDF into Illustrator or convert SVG to .ai 
 	}
 
 
-	.default-background-color-fill {
+	.background-color-fill {
 		fill: white;
 	}
 
 	text {
-		font-family: Sans-Serif;
+		font-family: Sans-Serif, Helvetica, Arial;
 		font-size: 10px;
 		fill: black;
+		fill-opacity: 1;
 		stroke: none;
 		text-anchor: middle;
+		font-size: 10px;
+		stroke: none;
 	}
 
 	.info-box {
@@ -125,7 +128,7 @@ Either convert SVG to PDF and import PDF into Illustrator or convert SVG to .ai 
 		font-weight: bold;
 	}
 
-	.group {
+	use.group {
 		fill-opacity: 0.098;
 		stroke: gray;
 		stroke-dasharray: 4,2;
@@ -133,93 +136,69 @@ Either convert SVG to PDF and import PDF into Illustrator or convert SVG to .ai 
 		stroke-width: 1px;
 	}
 
-	.group:hover {
+	use.group:hover {
 		fill-opacity: 0.2;
 		stroke-width: 1px;
 	}
 
-	.group-none {
+	use.group-none {
 		fill: rgb(180,180,100);
 	}
 
-	.group-group {
+	use.group-group {
 		fill: lightblue;
-	      fill-opacity: 0;
-	      stroke-width: 0;
+		fill-opacity: 0;
+		stroke-width: 0;
 	}
 
-	.group-complex {
+	use.group-complex {
 		fill: rgb(180,180,100);
 		stroke-dasharray: 400000,1;
 	}
 
-	.group-pathway {
+	use.group-pathway {
 		fill: lightgreen;
 	}
 
-	.data-node {
+	use.data-node {
 		fill-opacity: 1;
 		stroke: black;
 		stroke-dasharray: 0;
 		stroke-miterlimit: 1;
 	}
 
-	.gene-product {
-		stroke: black;
+	use.gene-product {
 	}
 
-	text.gene-product {
-		fill: black;  
-		stroke: none;
-	}
-
-	.metabolite {
+	use.metabolite {
 		stroke: blue;
 	}
 
 	text.metabolite {
 		fill: blue;
-		stroke: none;
 	}
 
-	.pathway {
+	use.pathway {
 		stroke: rgb(20,150,30);
+		fill-opacity: 0;
 	}
 
 	text.pathway {
 		fill: rgb(20,150,30);
-		font-size: 10px;
+		fill-opacity: 1;
 		stroke: none;
 	}
 
-	.protein {
-		stroke: black;
+	use.protein {
 	}
 
-	text.protein {
-		fill: black;  
-		stroke: none;
+	use.rna {
 	}
 
-	.rna {
-		stroke: black;
+	use.unknown {
 	}
 
-	text.rna {
-		fill: black;  
-		stroke: none;
-	}
-
-	.unknown {
-		stroke: black;
-	}
-
-	text.unknown {
-		fill: black;  
-		stroke: none;
-	}
-
-	.label {
+	use.label {
 		stroke: black;
 		stroke-width: 0;
 		fill-opacity: 0;
@@ -227,24 +206,22 @@ Either convert SVG to PDF and import PDF into Illustrator or convert SVG to .ai 
 		stroke-miterlimit: 1;
 	}
 
-	text.label {
-		fill: black;  
-		fill-opacity: 1;
-		font-size: 10px;
-		stroke: none;
-	}
-
-	.shape {
+	use.shape {
 		fill-opacity: 0;
 		stroke: black;
 		stroke-dasharray: 0;
 		stroke-miterlimit: 1;
 	}
 
-	text.shape {
-		fill: black;  
-		fill-opacity: 1;
+	use.shape-none {
+		fill: none;
+		fill-opacity: 0;
 		stroke: none;
+	}
+
+	use.cellular-component {
+		fill-opacity: 0;
+		stroke: "#C0C0C0";
 	}
 
 	.graphical-line {
@@ -272,14 +249,14 @@ Either convert SVG to PDF and import PDF into Illustrator or convert SVG to .ai 
 ]]></style>
 
 	<!-- ***************************
-Markers (Arrowheads) 
+	Markers (Arrowheads) 
 	*************************** -->
 
 	<!-- Here we generate a set of interaction markers for the default color (black). If we need other colors,
 	we need to clone the black marker and set the color for the clone to the desired color using d3.js.
 	I wish fill="currentColor" worked for markers, but that does not appear to be the case. -->
 
-	<!-- Each marker includes a small rectangle with a default-background-color-fill color to obscure the
+	<!-- Each marker includes a small rectangle with a background-color-fill color to obscure the
 	ends of lines that might otherwise show up beneath the marker. Double lines require their own special
 	obscuring rects and are included as a double-line-hack-start/end marker, defined here and added in
 	gpml2json.js -->
@@ -293,7 +270,7 @@ Markers (Arrowheads)
 	orient="auto"
 	refX="0" refY="0"
 	viewBox="0 -6 12 12">
-	<rect class="default-background-color-fill" stroke="none" x="0" y="-0.6" width="2" height="1.2" />
+	<rect class="background-color-fill" stroke="none" x="0" y="-0.6" width="2" height="1.2" />
 	<polygon stroke-width="0" points="12,5 0,0 12,-5"/>
 	</marker>
 
@@ -304,7 +281,7 @@ Markers (Arrowheads)
 	orient="auto"
 	refX="0" refY="0"
 	viewBox="-12 -6 12 12">
-	<rect class="default-background-color-fill" stroke="none" x="-2" y="-0.6" width="2" height="1.2" />
+	<rect class="background-color-fill" stroke="none" x="-2" y="-0.6" width="2" height="1.2" />
 	<polygon stroke-width="0" points="-12,5 0,0 -12,-5"/>
 	</marker>
 
@@ -318,7 +295,7 @@ Markers (Arrowheads)
 	orient="auto"
 	refX="0" refY="0"
 	viewBox="0 -6 12 12">
-	<rect class="default-background-color-fill" stroke="none" x="0" y="-0.6" width="2" height="1.2" />
+	<rect class="background-color-fill" stroke="none" x="0" y="-0.6" width="2" height="1.2" />
 	<polygon stroke-width="0" points="11,5 0,0 11,-5"/>
 	</marker>
 
@@ -329,14 +306,14 @@ Markers (Arrowheads)
 	orient="auto"
 	refX="0" refY="0"
 	viewBox="-12 -6 12 12">
-	<rect class="default-background-color-fill" stroke="none" x="-2" y="-0.6" width="2" height="1.2" />
+	<rect class="background-color-fill" stroke="none" x="-2" y="-0.6" width="2" height="1.2" />
 	<polygon stroke-width="0" points="-11,5 0,0 -11,-5"/>
 	</marker>
 
 	<!-- mim-stimulation markers: triangular polygons, background fill, black stroke -->
 
 	<marker id="mim-stimulation-start-black"
-	class="default-background-color-fill"
+	class="background-color-fill"
 	stroke="black"
 	markerWidth="12" markerHeight="12"
 	markerUnits="strokeWidth"
@@ -348,7 +325,7 @@ Markers (Arrowheads)
 	</marker>
 
 	<marker id="mim-stimulation-end-black"
-	class="default-background-color-fill"
+	class="background-color-fill"
 	stroke="black"
 	markerUnits="strokeWidth"
 	markerWidth="12" markerHeight="12"
@@ -362,7 +339,7 @@ Markers (Arrowheads)
 	<!-- mim-necessary-stimulation markers: triangular polygons, background fill, black stroke; and vertical line -->
 
 	<marker id="mim-necessary-stimulation-start-black"
-	class="default-background-color-fill"
+	class="background-color-fill"
 	stroke="black"
 	markerWidth="12" markerHeight="12"
 	markerUnits="strokeWidth"
@@ -375,7 +352,7 @@ Markers (Arrowheads)
 	</marker>
 
 	<marker id="mim-necessary-stimulation-end-black"
-	class="default-background-color-fill"
+	class="background-color-fill"
 	stroke="black"
 	markerUnits="strokeWidth"
 	markerWidth="12" markerHeight="12"
@@ -390,7 +367,7 @@ Markers (Arrowheads)
 	<!-- t-bar markers: vertical line; and extended background rect -->
 
 	<marker id="t-bar-start-black"
-	class="default-background-color-fill"
+	class="background-color-fill"
 	stroke="black"
 	markerWidth="16" 
 	markerHeight="16"
@@ -403,7 +380,7 @@ Markers (Arrowheads)
 	</marker>
 
 	<marker id="t-bar-end-black"
-	class="default-background-color-fill"
+	class="background-color-fill"
 	stroke="black"
 	markerUnits="strokeWidth"
 	markerWidth="16" 
@@ -419,7 +396,7 @@ Markers (Arrowheads)
 	<!-- mim-inhibition markers: vertical line; and extended background rect -->
 
 	<marker id="mim-inhibition-start-black"
-	class="default-background-color-fill"
+	class="background-color-fill"
 	stroke="black"
 	markerWidth="16" 
 	markerHeight="16"
@@ -432,7 +409,7 @@ Markers (Arrowheads)
 	</marker>
 
 	<marker id="mim-inhibition-end-black"
-	class="default-background-color-fill"
+	class="background-color-fill"
 	stroke="black"
 	markerUnits="strokeWidth"
 	markerWidth="16" 
@@ -453,7 +430,7 @@ Markers (Arrowheads)
 	orient="auto"
 	refX="0" refY="0"
 	viewBox="0 -6 12 12">
-	<rect class="default-background-color-fill" stroke="none" x="0" y="-0.6" width="2" height="1.2" />
+	<rect class="background-color-fill" stroke="none" x="0" y="-0.6" width="2" height="1.2" />
 	<polygon stroke-width="0" points="12,6 0,0 12,-6 5,0 "/>
 	</marker>
 
@@ -464,7 +441,7 @@ Markers (Arrowheads)
 	orient="auto"
 	refX="0" refY="0"
 	viewBox="-12 -6 12 12">
-	<rect class="default-background-color-fill" stroke="none" x="-2" y="-0.6" width="2" height="1.2" />
+	<rect class="background-color-fill" stroke="none" x="-2" y="-0.6" width="2" height="1.2" />
 	<polygon stroke-width="0" points="-12,6 0,0 -12,-6 -5,0 "/>
 	</marker>
 
@@ -477,7 +454,7 @@ Markers (Arrowheads)
 	orient="auto"
 	refX="0" refY="0"
 	viewBox="0 -6 12 12">
-	<rect class="default-background-color-fill" stroke="none" x="0" y="-0.6" width="2" height="1.2" />
+	<rect class="background-color-fill" stroke="none" x="0" y="-0.6" width="2" height="1.2" />
 	<polygon stroke-width="0" points="12,6 0,0 12,-6 5,0 "/>
 	</marker>
 
@@ -488,14 +465,14 @@ Markers (Arrowheads)
 	orient="auto"
 	refX="0" refY="0"
 	viewBox="-12 -6 12 12">
-	<rect class="default-background-color-fill" stroke="none" x="-2" y="-0.6" width="2" height="1.2" />
+	<rect class="background-color-fill" stroke="none" x="-2" y="-0.6" width="2" height="1.2" />
 	<polygon stroke-width="0" points="-12,6 0,0 -12,-6 -5,0 "/>
 	</marker>
 
 	<!-- mim-catalysis markers: circle, background fill and black stroke -->
 
 	<marker id="mim-catalysis-start-black"
-	class="default-background-color-fill"
+	class="background-color-fill"
 	stroke="black"
 	markerHeight="12"
 	markerWidth="12"
@@ -507,7 +484,7 @@ Markers (Arrowheads)
 	</marker>
 
 	<marker id="mim-catalysis-end-black"
-	class="default-background-color-fill"
+	class="background-color-fill"
 	stroke="black"
 	markerHeight="12"
 	markerUnits="strokeWidth"
@@ -521,7 +498,7 @@ Markers (Arrowheads)
 	<!-- mim-cleavage markers: two lines and extended background rect -->
 
 	<marker id="mim-cleavage-start-black" 
-	class="default-background-color-fill" 
+	class="background-color-fill" 
 	stroke="black"
 	markerHeight="24"
 	markerWidth="24"
@@ -535,7 +512,7 @@ Markers (Arrowheads)
 	</marker>
 
 	<marker id="mim-cleavage-end-black"
-	class="default-background-color-fill" 
+	class="background-color-fill" 
 	stroke="black"
 	markerHeight="24"
 	markerWidth="24"
@@ -551,7 +528,7 @@ Markers (Arrowheads)
 	<!-- mim-branching-left markers: line and extended background rect -->
 
 	<marker id="mim-branching-left-start-black" 
-	class="default-background-color-fill" 
+	class="background-color-fill" 
 	stroke="black"
 	markerHeight="24"
 	markerWidth="24"
@@ -564,7 +541,7 @@ Markers (Arrowheads)
 	</marker>
 
 	<marker id="mim-branching-left-end-black"
-	class="default-background-color-fill" 
+	class="background-color-fill" 
 	stroke="black"
 	markerHeight="24"
 	markerWidth="24"
@@ -579,7 +556,7 @@ Markers (Arrowheads)
 	<!-- mim-branching-right markers: line and extended background rect -->
 
 	<marker id="mim-branching-right-start-black" 
-	class="default-background-color-fill" 
+	class="background-color-fill" 
 	stroke="black"
 	markerHeight="24"
 	markerWidth="24"
@@ -592,7 +569,7 @@ Markers (Arrowheads)
 	</marker>
 
 	<marker id="mim-branching-right-end-black"
-	class="default-background-color-fill" 
+	class="background-color-fill" 
 	stroke="black"
 	markerHeight="24"
 	markerWidth="24"
@@ -607,7 +584,7 @@ Markers (Arrowheads)
 	<!-- mim-transcription-translation markers: two lines and an open trigular polygon, plus extended background rect -->
 
 	<marker id="mim-transcription-translation-start-black"
-	class="default-background-color-fill" 
+	class="background-color-fill" 
 	stroke="black"
 	markerHeight="24"
 	markerWidth="24"
@@ -622,7 +599,7 @@ Markers (Arrowheads)
 	</marker>
 
 	<marker id="mim-transcription-translation-end-black"
-	class="default-background-color-fill" 
+	class="background-color-fill" 
 	stroke="black"
 	markerHeight="24"
 	markerWidth="24"
@@ -664,7 +641,7 @@ Markers (Arrowheads)
 	orient="auto"
 	refX="0" refY="0"
 	viewBox="0 -6 12 12">
-	<rect class="default-background-color-fill" stroke="none" x="0" y="-1.5" width="2.3" height="3" />
+	<rect class="background-color-fill" stroke="none" x="0" y="-1.5" width="2.3" height="3" />
 	</marker>
 
 	<marker id="double-line-hack-end"
@@ -673,7 +650,7 @@ Markers (Arrowheads)
 	orient="auto"
 	refX="0" refY="0"
 	viewBox="-12 -6 12 12">
-	<rect class="default-background-color-fill" stroke="none" x="-2.3" y="-1.5" width="2.3" height="3" />
+	<rect class="background-color-fill" stroke="none" x="-2.3" y="-1.5" width="2.3" height="3" />
 	</marker>
 
 
@@ -684,7 +661,7 @@ Markers (Arrowheads)
 	-->
 
 	<marker id="mim-gap-start-black"
-	class="default-background-color-fill"
+	class="background-color-fill"
 	markerUnits="strokeWidth"
 	markerWidth="10" markerHeight="10"
 	orient="auto"
@@ -694,7 +671,7 @@ Markers (Arrowheads)
 	</marker>
 
 	<marker id="mim-gap-end-black"
-	class="default-background-color-fill"
+	class="background-color-fill"
 	markerUnits="strokeWidth"
 	markerWidth="10" markerHeight="10"
 	orient="auto"
@@ -704,7 +681,7 @@ Markers (Arrowheads)
 	</marker>
 
 	<!-- ***************************
-Symbols (shapes) 
+	Symbols (shapes) 
 	*************************** -->
 
 	<!-- because of the viewbox, these symbols can be stretched to any size,
@@ -718,6 +695,11 @@ Symbols (shapes)
 	Some symbols such as "nucleus" appear to be cropped at the top and left sides in Chrome.
 	TODO redraw symbols so they are entirely within viewbox.
 	-->
+
+	<symbol id="none" class="shape-none" viewBox="0 0 100 50" preserveAspectRatio="none">
+	<desc>arc</desc>
+	<rect x="0" y="0" width="100" height="50" vector-effect="non-scaling-stroke"></rect>
+	</symbol>
 
 	<!-- Shape is placeholder until it can be replaced with correct shape. -->
 
@@ -872,7 +854,7 @@ Symbols (shapes)
 
 	<symbol id="rounded-rectangle" viewBox="0 0 100 50" preserveAspectRatio="none">
 	<desc>Rounded Rectangle</desc>
-	<rect x="0" y="0" rx="10" ry="10" width="100" height="50" vector-effect="non-scaling-stroke"></rect>
+	<rect x="0" y="0" rx="25" ry="25" width="100" height="50" vector-effect="non-scaling-stroke"></rect>
 	</symbol>
 
 	<!-- Shape is placeholder until it can be replaced with correct shape. -->

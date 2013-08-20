@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Pathway xmlns="http://pathvisio.org/GPML/2013a" Name="Labels" Version="20130813">
-  <Graphics BoardWidth="2374.73242392445" BoardHeight="866.3043343974562" />
+  <Graphics BoardWidth="329.89864948672385" BoardHeight="685.6591731071331" />
   <Label TextLabel="Label&#xA;font:  Times New Roman" GraphId="a14a0">
     <Graphics CenterX="146.9477482258786" CenterY="205.0702304001955" Width="176.21451268746466" Height="86.8179688057132" ZOrder="32832" FillColor="99ffff" FontName="Times New Roman" FontSize="15" Valign="Middle" ShapeType="Rectangle" />
   </Label>
@@ -15,6 +15,9 @@
   </Label>
   <Label TextLabel="Label for the&#xA;rendering of text&#xA;bold, italic&#xA;middle, center" GraphId="c07b0">
     <Graphics CenterX="152.3557069923253" CenterY="456.19642827572363" Width="138.82987407433464" Height="119.30921454152683" ZOrder="32836" FillColor="99ffff" FontWeight="Bold" FontStyle="Italic" FontSize="12" Valign="Middle" ShapeType="Rectangle" />
+  </Label>
+  <Label TextLabel="Label" GraphId="b110c">
+    <Graphics CenterX="254.67086755991275" CenterY="136.56092972067648" Width="80.0" Height="20.0" ZOrder="32837" FillColor="333333" FontSize="10" Valign="Middle" ShapeType="Rectangle" Color="cccccc" />
   </Label>
   <InfoBox CenterX="0.0" CenterY="0.0" />
   <Biopax />
