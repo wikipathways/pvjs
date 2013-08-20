@@ -707,7 +707,7 @@ Symbols (shapes)
 
 	<!-- Shape is placeholder until it can be replaced with correct shape. -->
 
-	<symbol id="golgi-apparatus" viewBox="0 0 90 160" preserveAspectRatio="none">
+	<symbol id="golgi-apparatus" viewBox="0 0 90 160" preserveAspectRatio="xMinYMin meet">
 	<desc>golgi-apparatus</desc>
 	<path d="m58.65843,28.11755c-24.50516,-32.99763 41.17429,-33.39223 28.21526,-5.32301c-9.71986,20.5057 -18.83401,64.15632 -1.0392,109.49673c14.6937,29.87001 -46.07236,30.63614 -30.6302,-1.62207c12.52093,-32.46732 11.35227,-88.65689 3.45415,-102.55164z" vector-effect="non-scaling-stroke"/>
    	<path d="m28.58309,37.49903c-11.90942,-23.6472 32.9941,-21.90384 20.31397,0.74038c-4.48815,8.19113 -6.38173,67.94992 1.28093,82.79956c9.41282,20.52358 -36.25558,21.36005 -22.62337,-2.48373c7.67286,-19.15643 11.55851,-57.707 1.02847,-81.05621z" vector-effect="non-scaling-stroke"/>
