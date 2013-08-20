@@ -779,7 +779,7 @@ Symbols (shapes)
 
 	<!-- pentagon -->
 
-	<symbol id="pentagon" viewBox="0 0 50 50" preserveAspectRatio="xMinYMin meet">
+	<symbol id="pentagon" viewBox="0 0 50 60" preserveAspectRatio="xMinYMin meet">
 	<desc>pentagon</desc>
 	<path transform="rotate(90, 23.4965, 25.5215)" d="m-0.00193,20.24006l23.50095,-17.09823l23.49858,17.09823l-8.97612,27.66264l-29.04728,0l-8.97613,-27.66264z" vector-effect="non-scaling-stroke"/>
 	</symbol>
