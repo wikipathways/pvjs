@@ -801,8 +801,6 @@ Either convert SVG to PDF and import PDF into Illustrator or convert SVG to .ai 
 	<desc>Mitochondria</desc>
 	<path
 	vector-effect="non-scaling-stroke"
-	stroke-linecap="square"
-	stroke-miterlimit="10"
 	d="M95.753,46.125  c0,7.808-5.905,14.14-13.189,14.14H17.442c-7.284,0-13.189-6.332-13.189-14.14v-26.22c0-7.81,5.905-14.141,13.189-14.141h65.122  c7.284,0,13.189,6.331,13.189,14.141V46.125z"/>
 	<g opacity="0.3" vector-effect="non-scaling-stroke">
 	<path
