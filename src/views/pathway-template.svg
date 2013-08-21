@@ -50,12 +50,12 @@ SVG-Edit (latest release)
 	Optional additional tests:
 	SvgWeb
 	Adobe Illustrator (CS6)
-Either convert SVG to PDF and import PDF into Illustrator or convert SVG to .ai (Illustrator format)
-	with a converter like Uniconverter, available for download at
-	http://sk1project.org/modules.php?name=Products&product=uniconvertor
-	Opening this SVG directly with Illustrator does not work well.
-	In the future, we could use Uniconverter on the server to make it possible to download pathway images in
-	.ai (Illustrator) and .cdr (CorelDraw) formats.
+		Either convert SVG to PDF and import PDF into Illustrator or convert SVG to .ai (Illustrator format)
+		with a converter like Uniconverter, available for download at
+		http://sk1project.org/modules.php?name=Products&product=uniconvertor
+		Opening this SVG directly with Illustrator does not work well.
+		In the future, we could use Uniconverter on the server to make it possible to download pathway images in
+		.ai (Illustrator) and .cdr (CorelDraw) formats.
 
 	For more information on SVG, these references are helpful:
 	[W3 Spec](http://www.w3.org/TR/SVG/expanded-toc.html)
