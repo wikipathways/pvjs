@@ -2,7 +2,7 @@
 
 <!-- 
 This file serves as our template for standardized GPML pathway visual representations.
-This file can be used for many purposes outside of pathvisio.js, including allowing
+This file can be used for many purposes outside of pathvisio.js, including allowingar
 other projects to work better with GPML. For purposes of pathvisio.js, this file will
 be the starting point for our JavaScript rendering of pathways. Every time we want to
 render a GPML file on the browser, we will read a copy of this file into D3.js and
@@ -722,8 +722,8 @@ Either convert SVG to PDF and import PDF into Illustrator or convert SVG to .ai 
 
 	<!-- Shape is placeholder until it can be replaced with correct shape. -->
 
-	<symbol id="cell" viewBox="0 0 100 50" preserveAspectRatio="none">
-	<desc>cell</desc>
+	<symbol id="nucleus" viewBox="0 0 100 50" preserveAspectRatio="xMinYMin meet">
+	<desc>nucleus</desc>
 	<rect x="0" y="0" width="100" height="50" vector-effect="non-scaling-stroke"></rect>
 	<path d="m9.90539,9.46855l0,24.81445l30,0l0,-24.81445l-30,0zm25.27735,22.68503l-20.55551,0l0,-20.5556l20.55551,0l0,20.5556zm-15.5557,-12.49887c1.58443,0 2.8704,-1.28815 2.8704,-2.87552c0,-1.58035 -1.28598,-2.86841 -2.8704,-2.86841c-1.58524,0 -2.86949,1.28806 -2.86949,2.86841c0,1.58737 1.28425,2.87552 2.86949,2.87552zm14.44598,2.4957l-5.46353,-5.45935l-7.68539,7.68411l-2.13031,-2.12943l-3.05775,3.05859l0,5.73676l18.33698,0l0,-8.89069z" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="1px" stroke="#000000" fill="none"/>
 	</symbol>
@@ -801,16 +801,9 @@ Either convert SVG to PDF and import PDF into Illustrator or convert SVG to .ai 
 	<desc>Mitochondria</desc>
 	<path
 	vector-effect="non-scaling-stroke"
-	stroke-linecap="square"
-	stroke-miterlimit="10"
 	d="M95.753,46.125  c0,7.808-5.905,14.14-13.189,14.14H17.442c-7.284,0-13.189-6.332-13.189-14.14v-26.22c0-7.81,5.905-14.141,13.189-14.141h65.122  c7.284,0,13.189,6.331,13.189,14.141V46.125z"/>
-	<g opacity="0.3" vector-effect="non-scaling-stroke">
 	<path
-	stroke-width="2"
-	stroke-linecap="square"
-	stroke-miterlimit="10"
-	d="M12.868,16.743    c4.516-0.482,3.961,11.073,8.468,10.519c8.562,0.02,3.086-18.296,10.245-18.418c7.211-0.122,2.325,19.465,9.526,19.135    c7.899-0.364,0.525-21.407,8.42-21.854c7.967-0.448,3.021,20.825,10.999,20.945c6.775,0.104,3.132-17.967,9.894-17.498    c7.443,0.516,0.688,19.397,8.053,20.583c4.914,0.79,4.575-11.867,9.525-11.336c11.517,4.925,8.929,24.503-2.256,29.018    c-3.248,0.454-4.104-6.826-7.361-6.438c-5.785,0.688-4.121,14.484-9.938,14.169c-5.422-0.297-2.304-14.063-7.731-14.124    c-7.204-0.076-3.475,18.8-10.676,18.521c-6.355-0.244-1.791-16.217-8.098-17.024c-5.88-0.752-5.566,14.41-11.412,13.442    c-6.467-1.069-0.486-17.337-6.995-18.112c-3.859-0.459-2.74,9.36-6.627,9.454C2.399,43.865,0.606,21.916,12.868,16.743z"/>
-	</g>
+	d="M12.868,16.743    c4.516-0.482,3.961,11.073,8.468,10.519c8.562,0.02,3.086-18.296,10.245-18.418c7.211-0.122,2.325,19.465,9.526,19.135    c7.899-0.364,0.525-21.407,8.42-21.854c7.967-0.448,3.021,20.825,10.999,20.945c6.775,0.104,3.132-17.967,9.894-17.498    c7.443,0.516,0.688,19.397,8.053,20.583c4.914,0.79,4.575-11.867,9.525-11.336c11.517,4.925,8.929,24.503-2.256,29.018    c-3.248,0.454-4.104-6.826-7.361-6.438c-5.785,0.688-4.121,14.484-9.938,14.169c-5.422-0.297-2.304-14.063-7.731-14.124    c-7.204-0.076-3.475,18.8-10.676,18.521c-6.355-0.244-1.791-16.217-8.098-17.024c-5.88-0.752-5.566,14.41-11.412,13.442    c-6.467-1.069-0.486-17.337-6.995-18.112c-3.859-0.459-2.74,9.36-6.627,9.454C2.399,43.865,0.606,21.916,12.868,16.743z" vector-effect="non-scaling-stroke"/>
 	</symbol>
 
 
@@ -848,14 +841,14 @@ Either convert SVG to PDF and import PDF into Illustrator or convert SVG to .ai 
 
 	<symbol id="rectangle" viewBox="0 0 100 50" preserveAspectRatio="xMinYMin meet">
 	<desc>Rectangle</desc>
-	<rect x="1" y="1" width="98" height="49" vector-effect="non-scaling-stroke"></rect>
+	<rect x="1" y="1" width="97" height="47" vector-effect="non-scaling-stroke"></rect>
 	</symbol>
 
 	<!-- rounded-rectangle -->
 
 	<symbol id="rounded-rectangle" viewBox="0 0 100 50" preserveAspectRatio="xMinYMin meet">
 	<desc>Rounded Rectangle</desc>
-	<rect x="1" y="1" rx="10" ry="10" width="98" height="49" vector-effect="non-scaling-stroke"></rect>
+	<rect x="1" y="1" rx="10" ry="10" width="98" height="48" vector-effect="non-scaling-stroke"></rect>
 	</symbol>
 
 	<!-- Sarcoplasmic reticulum -->
@@ -865,7 +858,7 @@ Either convert SVG to PDF and import PDF into Illustrator or convert SVG to .ai 
 	<path d="m36.4444,1.89558c-34.99915,2.22332 -39.2673,37.74125 -28.65384,63.19647c10.07443,30.40252 -20.2884,49.97363 2.77805,81.84377c18.18629,21.73956 50.09141,10.11908 56.35627,-14.20186c6.37779,-25.27418 -11.8396,-43.13985 -3.5604,-67.8931c11.73406,-32.95808 -0.83911,-63.20087 -26.92008,-62.94527z" vector-effect="non-scaling-stroke"/>	
 	</symbol>
 
-	<!-- Shape is placeholder until it can be replaced with correct shape. -->
+	<!-- triangle -->
 
 	<symbol id="triangle" viewBox="0 0 50 50" preserveAspectRatio="xMinYMin meet">
 	<desc>triangle</desc>
