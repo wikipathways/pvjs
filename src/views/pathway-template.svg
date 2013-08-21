@@ -740,7 +740,7 @@ Either convert SVG to PDF and import PDF into Illustrator or convert SVG to .ai 
 
 	<!-- Shape is placeholder until it can be replaced with correct shape. It should probably be a rect with stroke-line=miter and stroke-miter-limit=100 -->
 
-	<symbol id="group-complex" viewBox="0 0 1010 1010" preserveAspectRatio="none">
+	<symbol id="group-complex" viewBox="0 0 1010 1010" preserveAspectRatio="xMinYMin meet">
 	<desc>Group with style 'complex'</desc>
 	<path d="m250,0l500,0l250,250l0,500l-250,250l-500,0l-250,-250l0,-500l250,-250z" vector-effect="non-scaling-stroke"/>
 	</symbol>
