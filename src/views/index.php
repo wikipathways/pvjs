@@ -151,6 +151,7 @@ Repo from which to pull pathway template svg: <INPUT id="repo" type="text" SIZE=
 <script src="../js/xmlGpml2jsonGpml/jxon.js"></script>
 <script src="../js/xmlGpml2jsonGpml/xmlGpml2jsonGpml.js"></script>
 <script src="../js/xmlGpml2jsonGpml/xmlGpml2jsonGpml.edges.js"></script>
+<script src="../js/xmlGpml2jsonGpml/xmlGpml2jsonGpml.edges.points.js"></script>
 <script src="../js/xmlGpml2jsonGpml/xmlGpml2jsonGpml.labelableElements.js"></script>
 
 <script src="../js/pathway-elements/edges/edges.js"></script>
@@ -198,15 +199,15 @@ Repo from which to pull pathway template svg: <INPUT id="repo" type="text" SIZE=
     pathvisio.init();
 
     var javaScriptSvgWidth = self.javaScriptSvgWidth = $('#javascript-svg-pathway-container svg')[0].getAttribute('width');
-    console.log('javaScriptSvgWidth');
-    console.log(javaScriptSvgWidth);
+    //console.log('javaScriptSvgWidth');
+    //console.log(javaScriptSvgWidth);
     var javaScriptSvgHeight = self.javaScriptSvgHeight = $('#javascript-svg-pathway-container svg')[0].getAttribute('height');
     //console.log('javaScriptSvgHeight');
     //console.log(javaScriptSvgHeight);
 
     var javaScriptSvgBBoxWidth = self.javaScriptSvgBBoxWidth = $('#javascript-svg-pathway-container svg')[0].getBBox().width;
-    console.log('javaScriptSvgBBoxWidth');
-    console.log(javaScriptSvgBBoxWidth);
+    //console.log('javaScriptSvgBBoxWidth');
+    //console.log(javaScriptSvgBBoxWidth);
     var javaScriptSvgBBoxHeight = self.javaScriptSvgBBoxHeight = $('#javascript-svg-pathway-container svg')[0].getBBox().height;
     //console.log('javaScriptSvgBBoxHeight');
     //console.log(javaScriptSvgBBoxHeight);
@@ -215,8 +216,8 @@ Repo from which to pull pathway template svg: <INPUT id="repo" type="text" SIZE=
     var javaPngHeight = self.javaPngHeight =  $('#java-png-pathway-container img')[0].getAttribute('height');
 
     var javaPngBBoxWidth = self.javaPngBBoxWidth = $('#java-png-pathway-container img')[0].getBoundingClientRect().width;
-    console.log('javaPngBBoxWidth');
-    console.log(javaPngBBoxWidth);
+    //console.log('javaPngBBoxWidth');
+    //console.log(javaPngBBoxWidth);
     var javaPngBBoxHeight = self.javaPngBBoxHeight = $('#java-png-pathway-container img')[0].getBoundingClientRect().height;
     var correctionFactor =  javaScriptSvgBBoxHeight / javaPngBBoxHeight;
 

@@ -22,11 +22,7 @@ pathvisio.edges.markers = function(){
         */
 
         var svg = d3.select("#pathway-image");
-        console.log('svg');
-        console.log(svg);
-
         var markerElementBlack = svg.select('marker#' + name + '-' + position + '-black');
-
         var markerElement = pathvisio.helpers.cloneNode(markerElementBlack[0][0]);
 
         // define style of marker element
