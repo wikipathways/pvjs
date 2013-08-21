@@ -747,7 +747,7 @@ Either convert SVG to PDF and import PDF into Illustrator or convert SVG to .ai 
 
 	<symbol id="group-pathway" viewBox="0 0 120 180" preserveAspectRatio="none">
 	<desc>Group with style 'pathway'</desc>
-	<rect x="1" y="1" width="118" height="178" vector-effect="non-scaling-stroke"></rect>
+	<rect x="1" y="1" width="118" height="178" vector-effect="non-scaling-stroke" fill="lightgreen" stroke-weight="1"></rect>
 	</symbol>
 
 	<!-- Endoplasmic reticulum -->
