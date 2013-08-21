@@ -848,7 +848,7 @@ Either convert SVG to PDF and import PDF into Illustrator or convert SVG to .ai 
 
 	<symbol id="rectangle" viewBox="0 0 100 50" preserveAspectRatio="xMinYMin meet">
 	<desc>Rectangle</desc>
-	<rect x="1" y="1" width="98" height="48" vector-effect="non-scaling-stroke"></rect>
+	<rect x="1" y="1" width="97" height="47" vector-effect="non-scaling-stroke"></rect>
 	</symbol>
 
 	<!-- rounded-rectangle -->
