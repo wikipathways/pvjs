@@ -718,9 +718,9 @@ Either convert SVG to PDF and import PDF into Illustrator or convert SVG to .ai 
 	</symbol>
 	
 	<!-- group of style "none" -->
-	<symbol id="group-none" viewBox="0 0 1000 1000" preserveAspectRatio="none">
+	<symbol id="group-none" viewBox="0 0 120 180" preserveAspectRatio="none">
 	<desc>Group with style 'none'</desc>
-	<rect x="0" y="0" width="1000" height="1000" vector-effect="non-scaling-stroke"></rect>
+	<rect x="0" y="0" width="118" height="178" fill="rgb(180,180,100)" vector-effect="non-scaling-stroke"></rect>
 	</symbol>
 
 	<!-- group of style "group" -->
@@ -732,7 +732,7 @@ Either convert SVG to PDF and import PDF into Illustrator or convert SVG to .ai 
 	<!-- group of style "complex" -->
 	<symbol id="group-complex" viewBox="0 0 100 100" preserveAspectRatio="xMinYMin meet">
 	<desc>Group with style 'complex'</desc>
-	<path d="m26.75,3l47.50001,0l23.75,23.75l0,47.50001l-23.75,23.75l-47.50001,0l-23.75,-23.75l0,-47.50001l23.75,-23.75z" vector-effect="non-scaling-stroke"/>
+	<path d="m26.75,3l47.50001,0l23.75,23.75l0,47.50001l-23.75,23.75l-47.50001,0l-23.75,-23.75l0,-47.50001l23.75,-23.75z" fill="rgb(180,180,100)" vector-effect="non-scaling-stroke"/>
 	</symbol>
 
 	<!-- group of style "pathway" -->
