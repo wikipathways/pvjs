@@ -35,8 +35,8 @@ http://google-styleguide.googlecode.com/svn/trunk/jsoncstyleguide.xml#General_Gu
   <ul>
     
     <?php
-      $completeurl =
-        "http://www.wikipathways.org/wpi/webservice/webservice.php/listPathways";
+      $completeurl = "http://www.wikipathways.org/wpi/webservice/webservice.php/listPathways";
+      //$completeurl = "http://www.wikipathways.org/wpi/webservice/webservice.php/listPathways?organism=Homo%20sapiens";
       $xml = simplexml_load_file($completeurl);
 
       $xml->registerXPathNamespace('ns1', 'http://www.wso2.org/php/xsd');

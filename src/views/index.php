@@ -10,26 +10,7 @@ http://google-styleguide.googlecode.com/svn/trunk/javascriptguide.xml
 http://google-styleguide.googlecode.com/svn/trunk/jsoncstyleguide.xml#General_Guidelines
 -->
 
-<script src="../js/gpml2json/gpml2json.js"></script>
-<script src="../js/gpml2json/jxon.js"></script>
 
-<script src="../js/rgbcolor.js"></script>
-
-<script src="../js/draw-pathway/draw-pathway.js"></script>
-<script src="../js/draw-pathway/clone.js"></script>
-<script src="../js/draw-pathway/get-url-parameter.js"></script>
-<script src="../js/draw-pathway/get-marker.js"></script>
-<script src="../js/draw-pathway/edge-terminus.js"></script>
-<script src="../js/draw-pathway/get-path-data.js"></script>
-<script src="../js/draw-pathway/get-element-coordinates.js"></script>
-<script src="../js/draw-pathway/draw-edges.js"></script>
-<script src="../js/draw-pathway/draw-info-box.js"></script>
-<script src="../js/draw-pathway/draw-groups.js"></script>
-<script src="../js/draw-pathway/draw-labelable-elements.js"></script>
-
-
-<script src="../lib/jquery/jquery.js"></script>
-<script src="../lib/d3/d3.js" charset="utf-8"></script>
 </head>
 <body>
 <!--
@@ -41,8 +22,65 @@ var repo = getUrlParameter('repo');
 </script>
 -->
 
-<div id="toggle"><button class="link" onclick="toggleVisibility()">Toggle SVG Creator</button> Current SVG Creator: <span id="svgCreator">pathvisio.js</span></div> 
-<p>To see results of editing pathway template SVG file, first let Anders or Alex know you want to be added. Then you can edit the file pathway-template.svg on your github fork of pathvisio.js, commit, enter URL parameter 'repo' above as "repo=YourGithubId" and refresh.</p>
+<div id="choose-pathway-creator">
+  <button id="javascript-svg-pathway-button" class="pathway" onclick="usePathwayImgCreator('javascript-svg')" style="background-color: yellow">pathvisio.js SVG</button>
+  <button id="java-svg-pathway-button" class="pathway" onclick="usePathwayImgCreator('java-svg')" style="background-color: lightgray" title="Batik is currently used by PathVisio (Java) to create visual representations of GPML files in SVG and PDF">PathVisio (Java) SVG</button>
+  <button id="java-png-pathway-button" class="pathway" onclick="usePathwayImgCreator('java-png')" style="background-color: lightgray" title="Batik is currently used by PathVisio (Java) to create visual representations of GPML files in SVG and PDF">PathVisio (Java) PNG</button>
+Repo: 
+<?php
+  $authorizedRepos = array("wikipathways", "AlexanderPico", "ariutta", "khanspers");
+  $repo = "wikipathways";
+
+  if (isset($_GET['repo'])) {
+    if (in_array($_GET['repo'], $authorizedRepos)) {
+      $repo = htmlspecialchars($_GET['repo']);
+    }
+  }
+
+  if ($_GET['repo'] == "local") {
+    $pathwayTemplateSvgUrl = "pathway-template.svg";
+    $pathwayTemplateSvgUrlEditable = "pathway-template.svg";
+  }
+  else {
+    $pathwayTemplateSvgUrl = "https://raw.github.com/" . $repo . "/pathvisio.js/dev/src/views/pathway-template.svg";
+    $pathwayTemplateSvgUrlEditable = "https://github.com/" . $repo . "/pathvisio.js/blob/dev/src/views/pathway-template.svg";
+  }
+
+  if (isset($_GET['pwId'])) {
+    echo "<script>var local = false</script>";
+    $pwId = htmlspecialchars($_GET['pwId']);
+    $pathwayUrlParamStr = "pwId=" . $pwId;
+
+    $batikSvgUrl = "http://www.wikipathways.org//wpi/wpi.php?action=downloadFile&type=svg&pwTitle=Pathway:" . $pwId . "&revision=0";
+    $pngUrl = "http://www.wikipathways.org//wpi/wpi.php?action=downloadFile&type=png&pwTitle=Pathway:" . $pwId . "&revision=0";
+
+    $pathwayUrl = "http://www.wikipathways.org//wpi/wpi.php?action=downloadFile&type=gpml&pwTitle=Pathway:" . $pwId;
+  }
+  elseif (isset($_GET['pathwayUrl'])) {
+    echo "<script>var local = true</script>";
+    $pathwayUrl = htmlspecialchars($_GET['pathwayUrl']);
+    $pathwayUrlParamStr = "pathwayUrl=" . $pathwayUrl;
+    $batikSvgUrl = str_replace(".gpml", ".svg", htmlspecialchars($_GET['pathwayUrl']));
+    $pngUrl = str_replace(".gpml", ".png", htmlspecialchars($_GET['pathwayUrl']));
+  }
+
+  foreach($authorizedRepos as $value){
+    if ($value == $repo) {
+        $html .= "<option value='./?" . $pathwayUrlParamStr . "&repo=" . $value . "' selected='selected'>$value</key>";
+    }
+    else {
+        $html .= "<option value='./?" . $pathwayUrlParamStr . "&repo=" . $value . "'>$value</key>";
+    }
+  }
+
+  echo "<select name='repo' onChange='document.location = this.value' value='GO'>$html</select>";
+?>
+</div> 
+<p>If you would like to edit the symbols (shapes), markers (arrowheads), colors or other properties of the pathvisio.js pathway template, let Anders or Alex know. When you are added as an authorized user, you can edit your 
+<?php
+  echo "<a href='" . $pathwayTemplateSvgUrlEditable . "'>"
+?>
+SVG pathway template file</a> in the <span style="font-weight: bold">DEV</span> branch of your github fork of <a href="https://github.com/wikipathways/pathvisio.js">pathvisio.js</a>, commit, and view your changes on this page. Note that your commits on Github may take a few seconds before they show up here.</p>
 
 <!--
 <div>
@@ -51,96 +89,85 @@ Repo from which to pull pathway template svg: <INPUT id="repo" type="text" SIZE=
 </div>
 -->
 
-<div id="pathway-container">
-<?php
-  //$pathwayDefsSvgUrl = "https://raw.github.com/wikipathways/pathvisio.js/dev/src/views/pathway-template.svg";
-  //$pathwayDefsSvg = file_get_contents($pathwayDefsSvgUrl);
-  //$imageData = base64_encode($pathwayDefsSvg);
-  //echo "<object id='pathway-container' type='image/svg+xml' data='" . $imageData . "' width='100%' height='100%' onload='drawPathway()'>";
+<!--<div id="javascript-svg-pathway-container" class="pathway" onload="usePathwayImgCreator('javascript-svg')">-->
 
-  $repo = "wikipathways";
-  if (isset($_GET['repo'])) {
-    if (($_GET['repo'] == 'AlexanderPico') || ($_GET['repo'] == 'ariutta') || ($_GET['repo'] == 'khanspers')) {
-      $repo = $_GET['repo'];
-    }
-  }
+<div id="javascript-svg-pathway-container" class="pathway">
+  <?php
+    //$pathwayTemplateSvgUrl = "https://raw.github.com/wikipathways/pathvisio.js/dev/src/views/pathway-template.svg";
+    //$pathwayTemplateSvg = file_get_contents($pathwayTemplateSvgUrl);
+    //$imageData = base64_encode($pathwayTemplateSvg);
+    //echo "<object id='pathway-container' type='image/svg+xml' data='" . $imageData . "' width='100%' height='100%' onload='drawPathway()'>";
 
-  //Is the code below ok wrt to security?
-  //
-  //if (isset($_GET['repo'])) {
-  //  $repo = $_GET['repo'];
-  //}
+    //Is the code below ok wrt to security?
+    //
+    //if (isset($_GET['repo'])) {
+    //  $repo = $_GET['repo'];
+    //}
 
-  $pathwayDefsSvgUrl = "https://raw.github.com/" . $repo . "/pathvisio.js/dev/src/views/pathway-template.svg";
-  $pathwayDefsSvg = simplexml_load_file($pathwayDefsSvgUrl);
-  echo $pathwayDefsSvg->saveXML();
+    $pathwayTemplateSvg = simplexml_load_file($pathwayTemplateSvgUrl);
+    echo $pathwayTemplateSvg->saveXML();
 
-?>
+  ?>
 </div>
 
 <?php
-if (isset($_GET['pwId'])) {
-  echo "<script>var local = false</script>";
-  $pwId = $_GET['pwId'];
 
-  $svgUrl = "http://www.wikipathways.org//wpi/wpi.php?action=downloadFile&type=svg&pwTitle=Pathway:" . $pwId . "&revision=0";
-  $svg = simplexml_load_file($svgUrl);
+  $batikSvg = simplexml_load_file($batikSvgUrl);
 
-  $display = $svg->addAttribute('display', 'none');
-
-  echo "<div id='batik-svg'>";
-    echo $svg->saveXML();
+  echo "<div id='java-svg-pathway-container' class='pathway' style='display: none;'>";
+    echo $batikSvg->saveXML();
   echo "</div>";
 
-  //imagecreatefrompng($url);
-  //imagecreatefromstring(file_get_contents($url));
+  //$im = imagecreatefrompng($pngUrl);
+  //header('Content-Type: image/png');
+  
 
-  //$gpmlUrl = "http://www.wikipathways.org/wpi/webservice/webservice.php/getPathway?pwId=" . $pwId . "&revision=0";
-  $gpmlUrl = "http://www.wikipathways.org//wpi/wpi.php?action=downloadFile&type=gpml&pwTitle=Pathway:" . $pwId;
-  //$gpml = simplexml_load_file($gpmlUrl);
+  echo "<div id='java-png-pathway-container' class='pathway' style='display: none;'>";
+  //echo "<div id='java-png-pathway-container' class='pathway'>";
+    echo '<img id="img" src="' . $pngUrl . '"/>';
+    //$server_response = base64_encode(file_get_contents($pngUrl));
+    //echo '<img id="img" src="data:image/png;base64,' . $server_response . '"/>';
+  echo "</div>";
 
-  //$xml->registerXPathNamespace('ns1', 'http://www.wso2.org/php/xsd');
-  //$xml->registerXPathNamespace('ns2', 'http://www.wikipathways.org/webservice');
-  //$gpmlArr = $xml->xpath('//ns2:gpml');
-  //echo $gpmlStr = $gpmlArr[0]->asSTR();
+  $gpmlStr = file_get_contents($pathwayUrl);
+  $doc = new DOMDocument();
+  $doc->loadXML($gpmlStr);
 
-  // how do I make php parse this file? This below produces incorrect results.
-  //$gpml = new SimpleXMLElement($gpmlStr);
+  echo "<div id='gpml' style='display:none'>";
+
+  // need to do this, because it appears Chrome will incorrectly close the self-closing tags in gpml.
+
+  echo $doc->saveXML(null, LIBXML_NOEMPTYTAG);
+  echo "</div>";
+
+  //$gpml = simplexml_load_file($pathwayUrl);
+  // output the result
   //echo $gpml->asXML();
-
-  //$gpmlArr = $xml->xpath('//ns2:gpml');
-  //$gpmlStr = $gpmlArr[0];
-  //$gpml = $gpmlStr->asXML();
-}
-elseif (isset($_GET['pathwayUrl'])) {
-  echo "<script>var local = true</script>";
-  $gpmlUrl = $_GET['pathwayUrl'];
-}
-
-//$content = file_get_contents($gpmlUrl);
-//$lines = explode("\n", $content);
-//echo $skipped_content = implode("\n", array_slice($lines, 1));
-
-$gpmlStr = file_get_contents($gpmlUrl);
-$doc = new DOMDocument();
-$doc->loadXML($gpmlStr);
-
-echo "<div id='gpml' style='display:none'>";
-
-// need to do this, because it appears Chrome will incorrectly close the self-closing tags in gpml.
-
-echo $doc->saveXML(null, LIBXML_NOEMPTYTAG);
-echo "</div>";
-
-//$gpml = simplexml_load_file($gpmlUrl);
-// output the result
-//echo $gpml->asXML();
 
 ?>
 
-<!--
-<object id="pathway-container" data="pathway-template.svg" type="image/svg+xml" width="100%" height="100%" onload="drawPathway()"></object>
--->
+<script src="../js/pathvisio.js"></script>
+
+<script src="../js/xmlGpml2jsonGpml/jxon.js"></script>
+<script src="../js/xmlGpml2jsonGpml/xmlGpml2jsonGpml.js"></script>
+<script src="../js/xmlGpml2jsonGpml/xmlGpml2jsonGpml.edges.js"></script>
+<script src="../js/xmlGpml2jsonGpml/xmlGpml2jsonGpml.edges.points.js"></script>
+<script src="../js/xmlGpml2jsonGpml/xmlGpml2jsonGpml.labelableElements.js"></script>
+
+<script src="../js/pathway-elements/edges/edges.js"></script>
+<script src="../js/pathway-elements/edges/edges.path-data.js"></script>
+<script src="../js/pathway-elements/edges/edges.markers.js"></script>
+<script src="../js/pathway-elements/edges/edges.end-points.js"></script>
+
+<script src="../js/pathway-elements/info-box.js"></script>
+<script src="../js/pathway-elements/groups.js"></script>
+<script src="../js/pathway-elements/labelable-elements.js"></script>
+
+<script src="../js/helpers.js"></script>
+<script src="../js/rgbcolor.js"></script>
+
+<script src="../lib/jquery/jquery.js"></script>
+<script src="../lib/d3/d3.js" charset="utf-8"></script>
 
 <script>
   function insertParam(key, value)
@@ -165,35 +192,74 @@ echo "</div>";
 
       //this will reload the page, it's likely better to store this until finished
       document.location.search = kvp.join('&'); 
-      document.location.search = kvp.join('&'); 
+      //document.location.search = kvp.join('&'); 
   }
 
-  window.onload = drawPathway();
+  window.onload = function() {
+    pathvisio.init();
 
-  function toggleVisibility() {
-    if(pathVisioJsObj.style.display === 'block') {
-      pathVisioJsObj.setAttribute('style','display: none');
-      batikSvg.style.display = 'block';
-      document.getElementById('svgCreator').textContent = 'Batik';
+    var javaScriptSvgWidth = self.javaScriptSvgWidth = $('#javascript-svg-pathway-container svg')[0].getAttribute('width');
+    //console.log('javaScriptSvgWidth');
+    //console.log(javaScriptSvgWidth);
+    var javaScriptSvgHeight = self.javaScriptSvgHeight = $('#javascript-svg-pathway-container svg')[0].getAttribute('height');
+    //console.log('javaScriptSvgHeight');
+    //console.log(javaScriptSvgHeight);
+
+    var javaScriptSvgBBoxWidth = self.javaScriptSvgBBoxWidth = $('#javascript-svg-pathway-container svg')[0].getBBox().width;
+    //console.log('javaScriptSvgBBoxWidth');
+    //console.log(javaScriptSvgBBoxWidth);
+    var javaScriptSvgBBoxHeight = self.javaScriptSvgBBoxHeight = $('#javascript-svg-pathway-container svg')[0].getBBox().height;
+    //console.log('javaScriptSvgBBoxHeight');
+    //console.log(javaScriptSvgBBoxHeight);
+
+    var javaPngWidth = self.javaPngWidth =  $('#java-png-pathway-container img')[0].getAttribute('width');
+    var javaPngHeight = self.javaPngHeight =  $('#java-png-pathway-container img')[0].getAttribute('height');
+
+    var javaPngBBoxWidth = self.javaPngBBoxWidth = $('#java-png-pathway-container img')[0].getBoundingClientRect().width;
+    //console.log('javaPngBBoxWidth');
+    //console.log(javaPngBBoxWidth);
+    var javaPngBBoxHeight = self.javaPngBBoxHeight = $('#java-png-pathway-container img')[0].getBoundingClientRect().height;
+    var correctionFactor =  javaScriptSvgBBoxHeight / javaPngBBoxHeight;
+
+    if (local === true) {
+      //$('#java-png-pathway-container img')[0].setAttribute('width', (javaScriptSvgBBoxWidth) + "px");
+      //$('#java-png-pathway-container img')[0].setAttribute('height', (javaScriptSvgBBoxHeight) + "px");
     }
     else {
-      pathVisioJsObj.setAttribute('style','display: block');
-      batikSvg.style.display = 'none';
-      document.getElementById('svgCreator').textContent = 'pathvisio.js';
+      //$('#java-png-pathway-container img')[0].setAttribute('width', (javaScriptSvgWidth) + "px");
+      //$('#java-png-pathway-container img')[0].setAttribute('height', (javaScriptSvgHeight) + "px");
+      //$('#java-png-pathway-container img')[0].setAttribute('width', (2 * javaScriptSvgBBoxWidth) + "px");
+      //$('#java-png-pathway-container img')[0].setAttribute('height', (2 * javaScriptSvgBBoxHeight) + "px");
+      //$('#java-png-pathway-container img')[0].setAttribute('width', (javaPngBBoxWidth * (javaScriptSvgWidth / javaPngBBoxWidth)) + "px");
+      //$('#java-png-pathway-container img')[0].setAttribute('height', (javaPngBBoxHeight * (javaScriptSvgHeight / javaPngBBoxHeight)) + "px");
     };
-    console.log('toggled');
+
+    /*
+    $('#java-png-pathway-container img')[0].setAttribute('width', (javaPngWidth * correctionFactor) + "px");
+    $('#java-png-pathway-container img')[0].setAttribute('height', (javaPngHeight * correctionFactor) + "px");
+     */
+
+    /*
+    $('#java-png-pathway-container img')[0].setAttribute('width', (javaScriptSvgBBoxWidth) + "px");
+    $('#java-png-pathway-container img')[0].setAttribute('height', (javaScriptSvgBBoxHeight) + "px");
+
+    var javaScriptSvgWidth = $('#javascript-svg-pathway-container svg')[0].getAttribute('width');
+    var javaScriptSvgHeight = $('#javascript-svg-pathway-container svg')[0].getAttribute('height');
+    $('#java-png-pathway-container img')[0].setAttribute('width', 0.985*width + "px");
+    $('#java-png-pathway-container img')[0].setAttribute('height', 0.985*height + "px");
+     */
   };
 
-  if (local === false) {
-    var batikSvg = document.getElementById('batik-svg').getElementsByTagName('svg')[0];
-    batikSvg.style.display = 'none';
+  function usePathwayImgCreator(creator) {
+    $('button.pathway').each(function(i) {
+      this.style.backgroundColor = 'lightgray';
+    });
+    $('#' + creator + '-pathway-button')[0].style.backgroundColor = 'yellow';
 
-    var pathVisioJsObj = document.getElementById('pathway-image');
-    pathVisioJsObj.setAttribute('style','display: block');
-  }
-  else {
-    var toggle = document.getElementById('toggle');
-    toggle.style.display = 'none';
+    $('div.pathway').each(function(i) {
+      this.style.display = 'none';
+    });
+    $('#' + creator + "-pathway-container")[0].style.display = 'block';
   };
 </script>
 </body>

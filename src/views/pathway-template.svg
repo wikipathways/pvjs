@@ -6,7 +6,6 @@ This file can be used for many purposes outside of pathvisio.js, including allow
 other projects to work better with GPML. For purposes of pathvisio.js, this file will
 be the starting point for our JavaScript rendering of pathways. Every time we want to
 render a GPML file on the browser, we will read a copy of this file into D3.js and
-modify the copy by adding "use" statements, cloning markers, etc. in order to create
 the desired pathway illustration in SVG.
 
 The XML declaration above is taken from an example from the W3C 
@@ -18,7 +17,7 @@ JS all inside this document.
 
 Doctypes are not needed for SVG, and jwatt discourages their use:
 https://jwatt.org/svg/authoring/.
-
+f
 Style guides can be arbitrary, but for consistency of SVG markup for the pathvisio.js project,
 	I suggest using JS Watt's SVG authoring advice and Google's HTML and JavaScript Guides:
 	https://jwatt.org/svg/authoring/
@@ -101,28 +100,23 @@ SVG-Edit (latest release)
 		stroke-width: 2px;
 	}
 
-	.default-element-color-stroke {
-		stroke: black;
-	}
-
-	.default-element-color-fill {
-		fill: black;
-	}
-
-	.default-background-color-stroke {
-		stroke: white;
-	}
-
-	.default-background-color-fill {
+	.drawing-board-color-fill {
 		fill: white;
 	}
 
+	.drawing-board-color-stroke {
+		stroke: white;
+	}
+
 	text {
-		font-family: Sans-Serif;
+		font-family: Sans-Serif, Helvetica, Arial;
 		font-size: 10px;
 		fill: black;
+		fill-opacity: 1;
 		stroke: none;
 		text-anchor: middle;
+		font-size: 10px;
+		stroke: none;
 	}
 
 	.info-box {
@@ -137,7 +131,7 @@ SVG-Edit (latest release)
 		font-weight: bold;
 	}
 
-	.group {
+	use.group {
 		fill-opacity: 0.098;
 		stroke: gray;
 		stroke-dasharray: 4,2;
@@ -145,93 +139,69 @@ SVG-Edit (latest release)
 		stroke-width: 1px;
 	}
 
-	.group:hover {
+	use.group:hover {
 		fill-opacity: 0.2;
 		stroke-width: 1px;
 	}
 
-	.group-none {
+	use.group-none {
 		fill: rgb(180,180,100);
 	}
 
-	.group-group {
+	use.group-group {
 		fill: lightblue;
-	      fill-opacity: 0;
-	      stroke-width: 0;
+		fill-opacity: 0;
+		stroke-width: 0;
 	}
 
-	.group-complex {
+	use.group-complex {
 		fill: rgb(180,180,100);
 		stroke-dasharray: 400000,1;
 	}
 
-	.group-pathway {
+	use.group-pathway {
 		fill: lightgreen;
 	}
 
-	.data-node {
+	use.data-node {
 		fill-opacity: 1;
 		stroke: black;
 		stroke-dasharray: 0;
 		stroke-miterlimit: 1;
 	}
 
-	.gene-product {
-		stroke: black;
+	use.gene-product {
 	}
 
-	text.gene-product {
-		fill: black;  
-		stroke: none;
-	}
-
-	.metabolite {
+	use.metabolite {
 		stroke: blue;
 	}
 
 	text.metabolite {
 		fill: blue;
-		stroke: none;
 	}
 
-	.pathway {
+	use.pathway {
 		stroke: rgb(20,150,30);
+		fill-opacity: 0;
 	}
 
 	text.pathway {
 		fill: rgb(20,150,30);
-		font-size: 10px;
+		fill-opacity: 1;
 		stroke: none;
 	}
 
-	.protein {
-		stroke: black;
+	use.protein {
 	}
 
-	text.protein {
-		fill: black;  
-		stroke: none;
+	use.rna {
 	}
 
-	.rna {
-		stroke: black;
+	use.unknown {
 	}
 
-	text.rna {
-		fill: black;  
-		stroke: none;
-	}
-
-	.unknown {
-		stroke: black;
-	}
-
-	text.unknown {
-		fill: black;  
-		stroke: none;
-	}
-
-	.label {
+	use.label {
 		stroke: black;
 		stroke-width: 0;
 		fill-opacity: 0;
@@ -239,24 +209,22 @@ SVG-Edit (latest release)
 		stroke-miterlimit: 1;
 	}
 
-	text.label {
-		fill: black;  
-		fill-opacity: 1;
-		font-size: 10px;
-		stroke: none;
-	}
-
-	.shape {
+	use.shape {
 		fill-opacity: 0;
 		stroke: black;
 		stroke-dasharray: 0;
 		stroke-miterlimit: 1;
 	}
 
-	text.shape {
-		fill: black;  
-		fill-opacity: 1;
+	use.shape-none {
+		fill: none;
+		fill-opacity: 0;
 		stroke: none;
+	}
+
+	use.cellular-component {
+		fill-opacity: 0;
+		stroke: "#C0C0C0";
 	}
 
 	.graphical-line {
@@ -278,357 +246,445 @@ SVG-Edit (latest release)
 		stroke-dasharray: 9999999999999999999999999;
 	}
 
-	.broken-stroke {
+	.dashed-stroke {
 		stroke-dasharray: 5,3;
 	}
 ]]></style>
 
 	<!-- ***************************
-Markers (Arrowheads) 
+	Markers (Arrowheads) 
 	*************************** -->
 
 	<!-- Here we generate a set of interaction markers for the default color (black). If we need other colors,
 	we need to clone the black marker and set the color for the clone to the desired color using d3.js.
 	I wish fill="currentColor" worked for markers, but that does not appear to be the case. -->
 
-	<!-- arrow markers -->
+	<!-- Each marker includes a small rectangle with a drawing-board-color-fill color to obscure the
+	ends of lines that might otherwise show up beneath the marker. Double lines require their own special
+	obscuring rects and are included as a double-line-hack-start/end marker, defined here and added in
+	gpml2json.js -->
+
+	<!-- arrow markers: triangular polygons, no stroke -->
 
 	<marker id="arrow-start-black" 
 	fill="black"
 	markerUnits="strokeWidth"
-	markerWidth="10" markerHeight="10"
+	markerWidth="12" markerHeight="12"
 	orient="auto"
 	refX="0" refY="0"
-	stroke="black"
 	viewBox="0 -6 12 12">
-	<path d="M0,0 L10,-5 L10,5 Z" stroke-width="1px"/>
+	<rect class="drawing-board-color-fill" stroke="none" x="0" y="-0.6" width="2" height="1.2" />
+	<polygon stroke-width="0" points="12,5 0,0 12,-5"/>
 	</marker>
 
 	<marker id="arrow-end-black"
 	fill="black"
 	markerUnits="strokeWidth"
-	markerWidth="10" markerHeight="10"
+	markerWidth="12" markerHeight="12"
 	orient="auto"
 	refX="0" refY="0"
-	stroke="black"
 	viewBox="-12 -6 12 12">
-	<path d="M0,0 L-10,-5 L-10,5 Z" stroke-width="1px"/>
+	<rect class="drawing-board-color-fill" stroke="none" x="-2" y="-0.6" width="2" height="1.2" />
+	<polygon stroke-width="0" points="-12,5 0,0 -12,-5"/>
 	</marker>
 
-	<!-- t-bar markers -->
 
-	<marker id="t-bar-start-black"
-	markerWidth="10" markerHeight="10"
-	markerUnits="strokeWidth"
-	orient="auto"
-	refX="0" refY="0"
-	stroke="black"
-	viewBox="0 -6 12 12">
-	<path d="M0,0 L10,0" stroke-width="2px" class="default-background-color-stroke"/>
-	<path d="M10,-10 L10,10" stroke-width="2px"/>
-	</marker>
-
-	<marker id="t-bar-end-black"
-	markerUnits="strokeWidth"
-	markerWidth="10" markerHeight="10"
-	orient="auto"
-	refX="0" refY="0"
-	stroke="black"
-	viewBox="-12 -6 12 12">
-	<path d="M0,0 L-10,0" stroke-width="2px" class="default-background-color-stroke"/>
-	<path d="M-10,-10 L-10,10" stroke-width="2px"/>
-	</marker>
-
-	<!-- mim-binding markers -->
-
-	<marker id="mim-binding-start-black" 
-	fill="black"
-	markerUnits="strokeWidth"
-	markerWidth="10" markerHeight="10"
-	orient="auto"
-	refX="0" refY="0"
-	stroke="black"
-	viewBox="0 -6 12 12">
-	<path d="M0,0 L10,-5 L10,5 Z" stroke-width="1px"/>
-	</marker>
-
-	<marker id="mim-binding-end-black"
-	fill="black"
-	markerUnits="strokeWidth"
-	markerWidth="10" markerHeight="10"
-	orient="auto"
-	refX="0" refY="0"
-	stroke="black"
-	viewBox="-12 -6 12 12">
-	<path d="M0,0 L-10,-5 L-10,5 Z" stroke-width="1px"/>
-	</marker>
-
-	<!-- mim-catalysis markers -->
-
-	<marker id="mim-catalysis-start-black"
-	class="default-background-color-fill"
-	markerHeight="10"
-	markerWidth="10"
-	markerUnits="strokeWidth"
-	orient="auto"
-	refX="0" refY="0"
-	stroke="black"
-	viewBox="-1 -6 12 12">
-	<circle cx="5" cy="0" r="5px" stroke-width="1px"/>
-	</marker>
-
-	<marker id="mim-catalysis-end-black"
-	class="default-background-color-fill"
-	markerHeight="10"
-	markerUnits="strokeWidth"
-	markerWidth="10"
-	orient="auto"
-	refX="5" refY="0"
-	stroke="black"
-	viewBox="-6 -6 12 12">
-	<circle cx="0" cy="0" r="5px" stroke-width="1px"/>
-	</marker>
-
-	<!-- mim-cleavage markers are incorrect. TODO Replace marker defs. -->
-
-	<marker id="mim-cleavage-start-black" 
-	class="default-background-color-fill"
-	markerHeight="10"
-	markerWidth="10"
-	markerUnits="strokeWidth"
-	orient="auto"
-	refX="0" refY="0"
-	stroke="black"
-	viewBox="-1 -6 12 12">
-	<line stroke="#ff0000" id="svg_14" y2="-8.20383" x2="-8.19998" y1="9.79617" x1="9.80002" stroke-width="5" fill="none"/>
-	<line transform="rotate(-90 1.20001 1.6962)" id="svg_15" stroke="#ff0000" y2="-7.3038" x2="-7.79999" y1="10.6962" x1="10.20001" stroke-width="5" fill="none"/>
-	</marker>
-
-	<marker id="mim-cleavage-end-black"
-	class="default-background-color-fill"
-	markerHeight="10"
-	markerWidth="10"
-	markerUnits="strokeWidth"
-	orient="auto"
-	refX="0" refY="0"
-	stroke="black"
-	viewBox="-1 -6 12 12">
-	<line stroke="#ff0000" id="svg_14" y2="-8.20383" x2="-8.19998" y1="9.79617" x1="9.80002" stroke-width="5" fill="none"/>
-	<line transform="rotate(-90 1.20001 1.6962)" id="svg_15" stroke="#ff0000" y2="-7.3038" x2="-7.79999" y1="10.6962" x1="10.20001" stroke-width="5" fill="none"/>
-	</marker>
-
-	<!-- mim-conversion markers are incorrect. TODO Replace marker defs. -->
+	<!-- mim-conversion markers: triangular polygons, no stroke -->
 
 	<marker id="mim-conversion-start-black" 
 	fill="black"
 	markerUnits="strokeWidth"
-	markerWidth="10" markerHeight="10"
+	markerWidth="12" markerHeight="12"
 	orient="auto"
 	refX="0" refY="0"
-	stroke="black"
 	viewBox="0 -6 12 12">
-	<line stroke="#ff0000" id="svg_14" y2="-8.20383" x2="-8.19998" y1="9.79617" x1="9.80002" stroke-width="5" fill="none"/>
-	<line transform="rotate(-90 1.20001 1.6962)" id="svg_15" stroke="#ff0000" y2="-7.3038" x2="-7.79999" y1="10.6962" x1="10.20001" stroke-width="5" fill="none"/>
+	<rect class="drawing-board-color-fill" stroke="none" x="0" y="-0.6" width="2" height="1.2" />
+	<polygon stroke-width="0" points="11,5 0,0 11,-5"/>
 	</marker>
 
 	<marker id="mim-conversion-end-black"
 	fill="black"
 	markerUnits="strokeWidth"
-	markerWidth="10" markerHeight="10"
+	markerWidth="12" markerHeight="12"
 	orient="auto"
 	refX="0" refY="0"
-	stroke="black"
 	viewBox="-12 -6 12 12">
-	<line stroke="#ff0000" id="svg_14" y2="-8.20383" x2="-8.19998" y1="9.79617" x1="9.80002" stroke-width="5" fill="none"/>
-	<line transform="rotate(-90 1.20001 1.6962)" id="svg_15" stroke="#ff0000" y2="-7.3038" x2="-7.79999" y1="10.6962" x1="10.20001" stroke-width="5" fill="none"/>
+	<rect class="drawing-board-color-fill" stroke="none" x="-2" y="-0.6" width="2" height="1.2" />
+	<polygon stroke-width="0" points="-11,5 0,0 -11,-5"/>
 	</marker>
 
-	<!-- mim-covalent-bond markers are incorrect. TODO Replace marker defs. -->
+	<!-- mim-stimulation markers: triangular polygons, drawing-board fill, black stroke -->
 
-	<marker id="mim-covalent-bond-start-black" 
-	class="default-background-color-fill"
-	markerHeight="10"
-	markerWidth="10"
+	<marker id="mim-stimulation-start-black"
+	class="drawing-board-color-fill"
+	stroke="black"
+	markerWidth="12" markerHeight="12"
 	markerUnits="strokeWidth"
 	orient="auto"
 	refX="0" refY="0"
-	stroke="black"
-	viewBox="-1 -6 12 12">
-	<line stroke="#ff0000" id="svg_14" y2="-8.20383" x2="-8.19998" y1="9.79617" x1="9.80002" stroke-width="5" fill="none"/>
-	<line transform="rotate(-90 1.20001 1.6962)" id="svg_15" stroke="#ff0000" y2="-7.3038" x2="-7.79999" y1="10.6962" x1="10.20001" stroke-width="5" fill="none"/>
+	viewBox="0 -6 12 12">
+	<rect stroke="none" x="0" y="-0.6" width="2" height="1.2" />
+	<polygon stroke-width="1" points="11,5 0,0 11,-5"/>
 	</marker>
 
-	<marker id="mim-covalent-bond-end-black"
-	class="default-background-color-fill"
-	markerHeight="10"
-	markerWidth="10"
+	<marker id="mim-stimulation-end-black"
+	class="drawing-board-color-fill"
+	stroke="black"
+	markerUnits="strokeWidth"
+	markerWidth="12" markerHeight="12"
+	orient="auto"
+	refX="0" refY="0"
+	viewBox="-12 -6 12 12">
+	<rect stroke="none" x="-2" y="-0.6" width="2" height="1.2" />
+	<polygon stroke-width="1" points="-11,5 0,0 -11,-5"/>
+	</marker>
+
+	<!-- mim-necessary-stimulation markers: triangular polygons, drawing-board fill, black stroke; and vertical line -->
+
+	<marker id="mim-necessary-stimulation-start-black"
+	class="drawing-board-color-fill"
+	stroke="black"
+	markerWidth="12" markerHeight="12"
 	markerUnits="strokeWidth"
 	orient="auto"
 	refX="0" refY="0"
-	stroke="black"
-	viewBox="-1 -6 12 12">
-	<line stroke="#ff0000" id="svg_14" y2="-8.20383" x2="-8.19998" y1="9.79617" x1="9.80002" stroke-width="5" fill="none"/>
-	<line transform="rotate(-90 1.20001 1.6962)" id="svg_15" stroke="#ff0000" y2="-7.3038" x2="-7.79999" y1="10.6962" x1="10.20001" stroke-width="5" fill="none"/>
+	viewBox="0 -6 15 12">
+	<rect stroke="none" x="0" y="-0.6" width="2" height="1.2" />
+	<line fill="none" stroke-width="1" x1="14" y1="-6" x2="14" y2="6"/>
+	<polygon stroke-width="1" points="9,5 0,0 9,-5"/>
 	</marker>
 
-	<!-- mim-inhibition markers -->
+	<marker id="mim-necessary-stimulation-end-black"
+	class="drawing-board-color-fill"
+	stroke="black"
+	markerUnits="strokeWidth"
+	markerWidth="12" markerHeight="12"
+	orient="auto"
+	refX="0" refY="0"
+	viewBox="-15 -6 15 12">
+	<rect stroke="none" x="-2" y="-0.6" width="2" height="1.2" />
+	<line fill="none" stroke-width="1" x1="-14" y1="-6" x2="-14" y2="6"/>
+	<polygon stroke-width="1" points="-9,5 0,0 -9,-5"/>
+	</marker>
 
-	<marker id="mim-inhibition-start-black" 
-	markerHeight="10"
-	markerWidth="10"
+	<!-- t-bar markers: vertical line; and extended drawing-board rect -->
+
+	<marker id="t-bar-start-black"
+	class="drawing-board-color-fill"
+	stroke="black"
+	markerWidth="16" 
+	markerHeight="16"
 	markerUnits="strokeWidth"
 	orient="auto"
 	refX="0" refY="0"
+	viewBox="0 -6 12 12">
+	<rect stroke="none" x="0" y="-0.6" width="5" height="1.2" />
+	<line fill="none" stroke-width="1.6" x1="5" y1="-6" x2="5" y2="6"/>
+	</marker>
+
+	<marker id="t-bar-end-black"
+	class="drawing-board-color-fill"
 	stroke="black"
-	viewBox="-1 -6 12 12">
-	<path d="M0,0 L10,0" stroke-width="2px" class="default-background-color-stroke"/>
-	<path d="M10,-10 L10,10" stroke-width="2px"/>
+	markerUnits="strokeWidth"
+	markerWidth="16" 
+	markerHeight="16"
+	orient="auto"
+	refX="0" refY="0"
+	viewBox="-12 -6 12 12">
+	<rect stroke="none" x="-5" y="-0.6" width="5" height="1.2" />
+	<line fill="none" stroke-width="1.6" x1="-5" y1="-6" x2="-5" y2="6"/>
+	</marker>
+	
+
+	<!-- mim-inhibition markers: vertical line; and extended drawing-board rect -->
+
+	<marker id="mim-inhibition-start-black"
+	class="drawing-board-color-fill"
+	stroke="black"
+	markerWidth="16" 
+	markerHeight="16"
+	markerUnits="strokeWidth"
+	orient="auto"
+	refX="0" refY="0"
+	viewBox="0 -6 12 12">
+	<rect stroke="none" x="0" y="-0.6" width="5" height="1.2" />
+	<line fill="none" stroke-width="1.6" x1="5" y1="-6" x2="5" y2="6"/>
 	</marker>
 
 	<marker id="mim-inhibition-end-black"
+	class="drawing-board-color-fill"
+	stroke="black"
 	markerUnits="strokeWidth"
-	markerWidth="10" markerHeight="10"
+	markerWidth="16" 
+	markerHeight="16"
 	orient="auto"
 	refX="0" refY="0"
-	stroke="black"
 	viewBox="-12 -6 12 12">
-	<path d="M0,0 L-10,0" stroke-width="2px" class="default-background-color-stroke"/>
-	<path d="M-10,-10 L-10,10" stroke-width="2px"/>
+	<rect stroke="none" x="-5" y="-0.6" width="5" height="1.2" />
+	<line fill="none" stroke-width="1.6" x1="-5" y1="-6" x2="-5" y2="6"/>
+	</marker>
+	
+	<!-- mim-binding markers: four-point polygon, no stroke -->
+
+	<marker id="mim-binding-start-black" 
+	fill="black"
+	markerUnits="strokeWidth"
+	markerWidth="12" markerHeight="12"
+	orient="auto"
+	refX="0" refY="0"
+	viewBox="0 -6 12 12">
+	<rect class="drawing-board-color-fill" stroke="none" x="0" y="-0.6" width="2" height="1.2" />
+	<polygon stroke-width="0" points="12,6 0,0 12,-6 5,0 "/>
 	</marker>
 
-	<!-- mim-modification markers are incorrect. TODO Replace marker defs. -->
+	<marker id="mim-binding-end-black"
+	fill="black"
+	markerUnits="strokeWidth"
+	markerWidth="12" markerHeight="12"
+	orient="auto"
+	refX="0" refY="0"
+	viewBox="-12 -6 12 12">
+	<rect class="drawing-board-color-fill" stroke="none" x="-2" y="-0.6" width="2" height="1.2" />
+	<polygon stroke-width="0" points="-12,6 0,0 -12,-6 -5,0 "/>
+	</marker>
+
+	<!-- mim-modification markers: four-point polygon, no stroke -->
 
 	<marker id="mim-modification-start-black" 
 	fill="black"
 	markerUnits="strokeWidth"
-	markerWidth="10" markerHeight="10"
+	markerWidth="12" markerHeight="12"
 	orient="auto"
 	refX="0" refY="0"
-	stroke="black"
 	viewBox="0 -6 12 12">
-	<line stroke="#ff0000" id="svg_14" y2="-8.20383" x2="-8.19998" y1="9.79617" x1="9.80002" stroke-width="5" fill="none"/>
-	<line transform="rotate(-90 1.20001 1.6962)" id="svg_15" stroke="#ff0000" y2="-7.3038" x2="-7.79999" y1="10.6962" x1="10.20001" stroke-width="5" fill="none"/>
+	<rect class="drawing-board-color-fill" stroke="none" x="0" y="-0.6" width="2" height="1.2" />
+	<polygon stroke-width="0" points="12,6 0,0 12,-6 5,0 "/>
 	</marker>
 
 	<marker id="mim-modification-end-black"
 	fill="black"
 	markerUnits="strokeWidth"
-	markerWidth="10" markerHeight="10"
+	markerWidth="12" markerHeight="12"
 	orient="auto"
 	refX="0" refY="0"
-	stroke="black"
 	viewBox="-12 -6 12 12">
-	<line stroke="#ff0000" id="svg_14" y2="-8.20383" x2="-8.19998" y1="9.79617" x1="9.80002" stroke-width="5" fill="none"/>
-	<line transform="rotate(-90 1.20001 1.6962)" id="svg_15" stroke="#ff0000" y2="-7.3038" x2="-7.79999" y1="10.6962" x1="10.20001" stroke-width="5" fill="none"/>
+	<rect class="drawing-board-color-fill" stroke="none" x="-2" y="-0.6" width="2" height="1.2" />
+	<polygon stroke-width="0" points="-12,6 0,0 -12,-6 -5,0 "/>
 	</marker>
 
-	<!-- mim-necessary-stimulation markers are incorrect. TODO Replace marker defs. -->
+	<!-- mim-catalysis markers: circle, drawing-board fill and black stroke -->
 
-	<marker id="mim-necessary-stimulation-start-black"
-	class="default-background-color-fill"
-	markerWidth="10" markerHeight="10"
+	<marker id="mim-catalysis-start-black"
+	class="drawing-board-color-fill"
+	stroke="black"
+	markerHeight="12"
+	markerWidth="12"
 	markerUnits="strokeWidth"
 	orient="auto"
 	refX="0" refY="0"
-	stroke="black"
-	viewBox="0 -6 16 12">
-	<polygon fill="none" stroke="#000000" stroke-width="1" stroke-miterlimit="10" points="7.459,-4.286 0.82,0 7.459,3.712"/>
-	<line fill="none" stroke="#000000" stroke-width="1" stroke-miterlimit="10" x1="7.459" y1="0" x2="15.959" y2="0"/>
-	<line fill="none" stroke="#000000" stroke-width="1" stroke-miterlimit="10" x1="11.418" y1="4.458" x2="11.418" y2="-5.54"/>
-	</marker>
-
-	<marker id="mim-necessary-stimulation-end-black"
-	class="default-background-color-fill"
-	markerUnits="strokeWidth"
-	markerWidth="10" markerHeight="10"
-	orient="auto"
-	refX="0" refY="0"
-	stroke="black"
-	viewBox="-16 -6 16 12">
-	<polygon fill="none" stroke="#000000" stroke-width="1" stroke-miterlimit="10" points="-7.459,-4.286 -0.82,0 -7.459,3.712"/>
-	<line fill="none" stroke="#000000" stroke-width="1" stroke-miterlimit="10" x1="-7.459" y1="0" x2="-15.959" y2="0"/>
-	<line fill="none" stroke="#000000" stroke-width="1" stroke-miterlimit="10" x1="-11.418" y1="4.458" x2="-11.418" y2="-5.54"/>
-	</marker>
-
-	<!-- mim-stimulation markers -->
-
-	<marker id="mim-stimulation-start-black"
-	markerWidth="10" markerHeight="10"
-	markerUnits="strokeWidth"
-	orient="auto"
-	refX="0" refY="0"
-	stroke="black"
 	viewBox="0 -6 12 12">
-	<path d="M0,0 L10,-5 L10,5 Z" stroke-width="1px"/>
+	<circle cx="5.3" cy="0" r="5.3px" stroke-width="1px"/>
 	</marker>
 
-	<marker id="mim-stimulation-end-black"
+	<marker id="mim-catalysis-end-black"
+	class="drawing-board-color-fill"
+	stroke="black"
+	markerHeight="12"
 	markerUnits="strokeWidth"
-	markerWidth="10" markerHeight="10"
+	markerWidth="12"
+	orient="auto"
+	refX="5" refY="0"
+	viewBox="-6.5 -6 12 12">
+	<circle cx="-0.3" cy="0" r="5.3px" stroke-width="1px"/>
+	</marker>
+
+	<!-- mim-cleavage markers: two lines and extended drawing-board rect -->
+
+	<marker id="mim-cleavage-start-black" 
+	class="drawing-board-color-fill" 
+	stroke="black"
+	markerHeight="24"
+	markerWidth="24"
+	markerUnits="strokeWidth"
 	orient="auto"
 	refX="0" refY="0"
-	stroke="black"
-	viewBox="-12 -6 12 12">
-	<path d="M0,0 L-10,-5 L-10,5 Z" stroke-width="1px"/>
+	viewBox="-8 -6 12 12">
+	<rect stroke="none" x="0" y="-0.6" width="3.5" height="1.2" />
+	<line fill="none" stroke-width=".4" x1="3.7" y1="0" x2="3.7" y2="6"/>	
+	<line fill="none" stroke-width=".4" x1="3.7" y1="6" x2="-8" y2="-6"/>	
 	</marker>
 
-	<!-- mim-transcription-translation markers are incorrect. TODO Replace marker defs. -->
+	<marker id="mim-cleavage-end-black"
+	class="drawing-board-color-fill" 
+	stroke="black"
+	markerHeight="24"
+	markerWidth="24"
+	markerUnits="strokeWidth"
+	orient="auto"
+	refX="0" refY="0"
+	viewBox="-4 -6 12 12">
+	<rect stroke="none" x="-3.5" y="-0.6" width="3.5" height="1.2" />
+	<line fill="none" stroke-width=".4" x1="-3.7" y1="0" x2="-3.7" y2="-6"/>	
+	<line fill="none" stroke-width=".4" x1="-3.7" y1="-6" x2="8" y2="6"/>	
+	</marker>
+
+	<!-- mim-branching-left markers: line and extended drawing-board rect -->
+
+	<marker id="mim-branching-left-start-black" 
+	class="drawing-board-color-fill" 
+	stroke="black"
+	markerHeight="24"
+	markerWidth="24"
+	markerUnits="strokeWidth"
+	orient="auto"
+	refX="0" refY="0"
+	viewBox="0 -6 12 12">
+	<rect stroke="none" x="0" y="-0.6" width="3.5" height="1.2" />
+	<line fill="none" stroke-width=".4" x1="3.7" y1="0" x2="0" y2="-6"/>	
+	</marker>
+
+	<marker id="mim-branching-left-end-black"
+	class="drawing-board-color-fill" 
+	stroke="black"
+	markerHeight="24"
+	markerWidth="24"
+	markerUnits="strokeWidth"
+	orient="auto"
+	refX="0" refY="0"
+	viewBox="-12 -6 12 12">
+	<rect stroke="none" x="-3.5" y="-0.6" width="3.5" height="1.2" />
+	<line fill="none" stroke-width=".4" x1="-3.7" y1="0" x2="0" y2="6"/>	
+	</marker>
+
+	<!-- mim-branching-right markers: line and extended drawing-board rect -->
+
+	<marker id="mim-branching-right-start-black" 
+	class="drawing-board-color-fill" 
+	stroke="black"
+	markerHeight="24"
+	markerWidth="24"
+	markerUnits="strokeWidth"
+	orient="auto"
+	refX="0" refY="0"
+	viewBox="0 -6 12 12">
+	<rect stroke="none" x="0" y="-0.6" width="3.5" height="1.2" />
+	<line fill="none" stroke-width=".4" x1="3.7" y1="0" x2="0" y2="6"/>
+	</marker>
+
+	<marker id="mim-branching-right-end-black"
+	class="drawing-board-color-fill" 
+	stroke="black"
+	markerHeight="24"
+	markerWidth="24"
+	markerUnits="strokeWidth"
+	orient="auto"
+	refX="0" refY="0"
+	viewBox="-12 -6 12 12">
+	<rect stroke="none" x="-3.5" y="-0.6" width="3.5" height="1.2" />
+	<line fill="none" stroke-width=".4" x1="-3.7" y1="0" x2="0" y2="-6"/>	
+	</marker>
+
+	<!-- mim-transcription-translation markers: two lines and an open trigular polygon, plus extended drawing-board rect -->
 
 	<marker id="mim-transcription-translation-start-black"
-	class="default-background-color-fill"
-	markerWidth="10" markerHeight="10"
+	class="drawing-board-color-fill" 
+	stroke="black"
+	markerHeight="24"
+	markerWidth="24"
 	markerUnits="strokeWidth"
 	orient="auto"
 	refX="0" refY="0"
-	stroke="black"
 	viewBox="0 -6 12 12">
-	<line stroke="#ff0000" id="svg_14" y2="-8.20383" x2="-8.19998" y1="9.79617" x1="9.80002" stroke-width="5" fill="none"/>
-	<line transform="rotate(-90 1.20001 1.6962)" id="svg_15" stroke="#ff0000" y2="-7.3038" x2="-7.79999" y1="10.6962" x1="10.20001" stroke-width="5" fill="none"/>
+	<rect stroke="none" x="0" y="-0.6" width="6" height="1.2" />
+	<line fill="none" stroke-width=".4" x1="9" y1="0" x2="9" y2="-4"/>
+	<line fill="none" stroke-width=".4" x1="9" y1="-4" x2="5" y2="-4"/>
+	<polygon stroke-width=".4" points="5,-6 0,-4 5,-2"/>
 	</marker>
 
 	<marker id="mim-transcription-translation-end-black"
-	class="default-background-color-fill"
+	class="drawing-board-color-fill" 
+	stroke="black"
+	markerHeight="24"
+	markerWidth="24"
+	markerUnits="strokeWidth"
+	orient="auto"
+	refX="0" refY="0"
+	viewBox="-12 -6 12 12">
+	<rect stroke="none" x="-6" y="-0.6" width="6" height="1.2" />
+	<line fill="none" stroke-width=".4" x1="-9" y1="0" x2="-9" y2="4"/>
+	<line fill="none" stroke-width=".4" x1="-9" y1="4" x2="-5" y2="4"/>
+	<polygon stroke-width=".4" points="-5,6 0,4 -5,2"/>	
+	</marker>
+	
+	<!-- mim-covalent-bond markers: not much to see here! -->
+
+	<marker id="mim-covalent-bond-start-black"
 	markerUnits="strokeWidth"
 	markerWidth="10" markerHeight="10"
 	orient="auto"
 	refX="0" refY="0"
-	stroke="black"
-	viewBox="-12 -6 12 12">
-	<line stroke="#ff0000" id="svg_14" y2="-8.20383" x2="-8.19998" y1="9.79617" x1="9.80002" stroke-width="5" fill="none"/>
-	<line transform="rotate(-90 1.20001 1.6962)" id="svg_15" stroke="#ff0000" y2="-7.3038" x2="-7.79999" y1="10.6962" x1="10.20001" stroke-width="5" fill="none"/>
+	viewBox="0 -6 12 12">
 	</marker>
 
-	<!-- mim-gap markers. Says "...-black", but there is actually no black color in the marker. -->
+	<marker id="mim-covalent-bond-end-black"
+	markerUnits="strokeWidth"
+	markerWidth="10" markerHeight="10"
+	orient="auto"
+	refX="0" refY="0"
+	viewBox="-12 -6 12 12">
+	</marker>
+
+
+	<!-- double-line-hack markers are used in double line handling; they include their own 
+	special blank rect to obscure the ends -->
+
+	<marker id="double-line-hack-start"
+	markerUnits="strokeWidth"
+	markerWidth="10" markerHeight="10"
+	orient="auto"
+	refX="0" refY="0"
+	viewBox="0 -6 12 12">
+	<rect class="drawing-board-color-fill" stroke="none" x="0" y="-1.5" width="2.3" height="3" />
+	</marker>
+
+	<marker id="double-line-hack-end"
+	markerUnits="strokeWidth"
+	markerWidth="10" markerHeight="10"
+	orient="auto"
+	refX="0" refY="0"
+	viewBox="-12 -6 12 12">
+	<rect class="drawing-board-color-fill" stroke="none" x="-2.3" y="-1.5" width="2.3" height="3" />
+	</marker>
+
+
+	<!-- mim-gap markers: just an extended drawing-board rect -->
 	<!-- 
-	Boxes filled with background color to blank out the end of lines, such as for double lines.
 	TODO This could be refactored to make the shape match the viewbox.
 	It can overlap the side of the shape, blanking out a small part of it when the edge is at an angle.
 	-->
 
 	<marker id="mim-gap-start-black"
-	class="default-background-color-fill"
+	class="drawing-board-color-fill"
 	markerUnits="strokeWidth"
 	markerWidth="10" markerHeight="10"
 	orient="auto"
 	refX="0" refY="0"
-	stroke="none"
 	viewBox="0 -6 12 12">
-	<rect x="-7" y="-2.5" width="10" height="5" />
+	<rect stroke="none" x="-2" y="-0.7" width="8" height="1.4" />
 	</marker>
 
 	<marker id="mim-gap-end-black"
-	class="default-background-color-fill"
+	class="drawing-board-color-fill"
 	markerUnits="strokeWidth"
 	markerWidth="10" markerHeight="10"
 	orient="auto"
 	refX="0" refY="0"
-	stroke="none"
 	viewBox="-12 -6 12 12">
-	<rect x="-3" y="-2.5" width="10" height="5" />
+	<rect stroke="none" x="-6" y="-0.7" width="8" height="1.4" />
 	</marker>
 
 	<!-- ***************************
-Symbols (shapes) 
+	Symbols (shapes) 
 	*************************** -->
 
 	<!-- because of the viewbox, these symbols can be stretched to any size,
@@ -643,20 +699,22 @@ Symbols (shapes)
 	TODO redraw symbols so they are entirely within viewbox.
 	-->
 
-	<!-- Shape is placeholder until it can be replaced with correct shape. -->
-
-	<symbol id="arc" viewBox="0 0 100 50" preserveAspectRatio="none">
-	<desc>arc</desc>
-	<rect x="0" y="0" width="100" height="50" vector-effect="non-scaling-stroke"></rect>
-	<path d="m9.90539,9.46855l0,24.81445l30,0l0,-24.81445l-30,0zm25.27735,22.68503l-20.55551,0l0,-20.5556l20.55551,0l0,20.5556zm-15.5557,-12.49887c1.58443,0 2.8704,-1.28815 2.8704,-2.87552c0,-1.58035 -1.28598,-2.86841 -2.8704,-2.86841c-1.58524,0 -2.86949,1.28806 -2.86949,2.86841c0,1.58737 1.28425,2.87552 2.86949,2.87552zm14.44598,2.4957l-5.46353,-5.45935l-7.68539,7.68411l-2.13031,-2.12943l-3.05775,3.05859l0,5.73676l18.33698,0l0,-8.89069z" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="1px" stroke="#000000" fill="none"/>
+	<symbol id="none" class="shape-none" viewBox="0 0 100 50" preserveAspectRatio="none">
+	<desc>none</desc>
 	</symbol>
 
 	<!-- Shape is placeholder until it can be replaced with correct shape. -->
 
-	<symbol id="brace" viewBox="0 0 100 50" preserveAspectRatio="none">
+	<symbol id="arc" viewBox="0 0 100 50" preserveAspectRatio="none" stroke="black" class="drawing-board-color-fill">
+	<desc>arc</desc>
+	<path d="m-20.50001,-23.30002c0,-39.50276 31.99724,-71.5 71.5,-71.5c39.50276,0 71.50001,31.99724 71.50001,71.5c0,39.50276 -31.99725,71.5 -71.50001,71.5c-39.50276,0 -71.5,-31.99724 -71.5,-71.5z"/>
+	</symbol>
+
+	<!-- Shape is placeholder until it can be replaced with correct shape. -->
+
+	<symbol id="brace" viewBox="0 0 50 25" preserveAspectRatio="none" stroke="black" class="drawing-board-color-fill">
 	<desc>brace</desc>
-	<rect x="0" y="0" width="100" height="50" vector-effect="non-scaling-stroke"></rect>
-	<path d="m9.90539,9.46855l0,24.81445l30,0l0,-24.81445l-30,0zm25.27735,22.68503l-20.55551,0l0,-20.5556l20.55551,0l0,20.5556zm-15.5557,-12.49887c1.58443,0 2.8704,-1.28815 2.8704,-2.87552c0,-1.58035 -1.28598,-2.86841 -2.8704,-2.86841c-1.58524,0 -2.86949,1.28806 -2.86949,2.86841c0,1.58737 1.28425,2.87552 2.86949,2.87552zm14.44598,2.4957l-5.46353,-5.45935l-7.68539,7.68411l-2.13031,-2.12943l-3.05775,3.05859l0,5.73676l18.33698,0l0,-8.89069z" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="1px" stroke="#000000" fill="none"/>
+	<path d="m30.79014,29.10149c-4.33374,0 -7.84694,-0.24973 -7.84694,-0.55783l0,-19.38437c0,-0.30808 -3.51318,-0.55778 -7.84694,-0.55778l0,0c4.33374,0 7.84694,-0.24976 7.84694,-0.55784l0,-19.3844l0,0c0,-0.30807 3.5132,-0.55779 7.84694,-0.55779" stroke-width="1" transform="rotate(90 22.9432 8.88038)"/>
 	</symbol>
 
 	<!-- Shape is placeholder until it can be replaced with correct shape. -->
@@ -796,7 +854,7 @@ Symbols (shapes)
 
 	<symbol id="rounded-rectangle" viewBox="0 0 100 50" preserveAspectRatio="none">
 	<desc>Rounded Rectangle</desc>
-	<rect x="0" y="0" rx="10" ry="10" width="100" height="50" vector-effect="non-scaling-stroke"></rect>
+	<rect x="0" y="0" rx="25" ry="25" width="100" height="50" vector-effect="non-scaling-stroke"></rect>
 	</symbol>
 
 	<!-- Shape is placeholder until it can be replaced with correct shape. -->
