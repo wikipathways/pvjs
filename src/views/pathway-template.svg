@@ -702,6 +702,7 @@ Either convert SVG to PDF and import PDF into Illustrator or convert SVG to .ai 
 	</symbol>
 
 	<!-- Shape is placeholder until it can be replaced with correct shape. -->
+	<!-- TO-DO: change into half circle -->
 
 	<symbol id="arc" viewBox="0 0 100 50" preserveAspectRatio="none" stroke="black" class="drawing-board-color-fill">
 	<desc>arc</desc>
@@ -730,6 +731,7 @@ Either convert SVG to PDF and import PDF into Illustrator or convert SVG to .ai 
 	</symbol>
 
 	<!-- group of style "complex" -->
+	<!-- TO-DO: The current symbol doesn't scale properly -->
 	<symbol id="group-complex" viewBox="0 0 100 100" preserveAspectRatio="xMinYMin meet">
 	<desc>Group with style 'complex'</desc>
 	<path d="m26.75,3l47.50001,0l23.75,23.75l0,47.50001l-23.75,23.75l-47.50001,0l-23.75,-23.75l0,-47.50001l23.75,-23.75z" fill="rgb(180,180,100)" vector-effect="non-scaling-stroke"/>
