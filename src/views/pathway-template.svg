@@ -6,6 +6,7 @@ This file can be used for many purposes outside of pathvisio.js, including allow
 other projects to work better with GPML. For purposes of pathvisio.js, this file will
 be the starting point for our JavaScript rendering of pathways. Every time we want to
 render a GPML file on the browser, we will read a copy of this file into D3.js and
+modify the copy by adding "use" statements, cloning markers, etc. in order to create
 the desired pathway illustration in SVG.
 
 The XML declaration above is taken from an example from the W3C 
@@ -17,7 +18,7 @@ JS all inside this document.
 
 Doctypes are not needed for SVG, and jwatt discourages their use:
 https://jwatt.org/svg/authoring/.
-f
+
 Style guides can be arbitrary, but for consistency of SVG markup for the pathvisio.js project,
 	I suggest using JS Watt's SVG authoring advice and Google's HTML and JavaScript Guides:
 	https://jwatt.org/svg/authoring/
@@ -710,11 +711,13 @@ Either convert SVG to PDF and import PDF into Illustrator or convert SVG to .ai 
 	<path d="m-20.50001,-23.30002c0,-39.50276 31.99724,-71.5 71.5,-71.5c39.50276,0 71.50001,31.99724 71.50001,71.5c0,39.50276 -31.99725,71.5 -71.50001,71.5c-39.50276,0 -71.5,-31.99724 -71.5,-71.5z"/>
 	</symbol>
 
-	<!-- Shape is placeholder until it can be replaced with correct shape. -->
+	<!-- TO-DO: Brace style is not ideal -->
 
-	<symbol id="brace" viewBox="0 0 50 25" preserveAspectRatio="none" stroke="black" class="drawing-board-color-fill">
+	<symbol id="brace" viewBox="0 0 100 50" preserveAspectRatio="none">
 	<desc>brace</desc>
-	<path d="m30.79014,29.10149c-4.33374,0 -7.84694,-0.24973 -7.84694,-0.55783l0,-19.38437c0,-0.30808 -3.51318,-0.55778 -7.84694,-0.55778l0,0c4.33374,0 7.84694,-0.24976 7.84694,-0.55784l0,-19.3844l0,0c0,-0.30807 3.5132,-0.55779 7.84694,-0.55779" stroke-width="1" transform="rotate(90 22.9432 8.88038)"/>
+	<path d="m1490,1055c0,-1 -5,-3 -24,-3l-32,-4l-36,-13l-8,-7" vector-effect="non-scaling-stroke"/>
+  	<polyline points="1430,1051 1430,1050 " vector-effect="non-scaling-stroke"/>
+  	<path transform="rotate(90, 50.5312, 20.3125)" d="m58.36591,68.31439c-4.32813,0 -7.83624,-0.58405 -7.83624,-1.30634l0,-45.38824c0,-0.72241 -3.50806,-1.30646 -7.8363,-1.30646l0,0c4.32825,0 7.8363,-0.58386 7.8363,-1.30524l0,-45.38904l0,0c0,-0.72162 3.50812,-1.30536 7.83624,-1.30536" vector-effect="non-scaling-stroke"/>
 	</symbol>
 
 	<!-- Shape is placeholder until it can be replaced with correct shape. -->
@@ -747,28 +750,27 @@ Either convert SVG to PDF and import PDF into Illustrator or convert SVG to .ai 
 	<rect x="1" y="1" width="118" height="178" vector-effect="non-scaling-stroke"></rect>
 	</symbol>
 
-	<!-- Shape is placeholder until it can be replaced with correct shape. -->
+	<!-- Endoplasmic reticulum -->
 
-	<symbol id="endoplasmic-reticulum" viewBox="0 0 100 50" preserveAspectRatio="none">
+	<symbol id="endoplasmic-reticulum" viewBox="0 0 90 170" preserveAspectRatio="xMinYMin meet">
 	<desc>endoplasmic-reticulum</desc>
-	<rect x="0" y="0" width="100" height="50" vector-effect="non-scaling-stroke"></rect>
-	<path d="m9.90539,9.46855l0,24.81445l30,0l0,-24.81445l-30,0zm25.27735,22.68503l-20.55551,0l0,-20.5556l20.55551,0l0,20.5556zm-15.5557,-12.49887c1.58443,0 2.8704,-1.28815 2.8704,-2.87552c0,-1.58035 -1.28598,-2.86841 -2.8704,-2.86841c-1.58524,0 -2.86949,1.28806 -2.86949,2.86841c0,1.58737 1.28425,2.87552 2.86949,2.87552zm14.44598,2.4957l-5.46353,-5.45935l-7.68539,7.68411l-2.13031,-2.12943l-3.05775,3.05859l0,5.73676l18.33698,0l0,-8.89069z" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="1px" stroke="#000000" fill="none"/>
+	<path d="m65.40385,92.7533c-5.20141,-32.67866 21.74559,-56.96246 21.64119,-79.1486c-0.31837,-8.53732 -9.70022,-15.62638 -16.91378,-9.36792c-15.75915,13.83169 -14.47215,51.46785 -19.61002,74.17451c-0.32978,6.33932 -6.80883,4.33672 -7.16662,-0.8552c-5.411,-20.00175 15.84621,-43.00589 5.51232,-51.68005c-18.15753,-14.34845 -26.58879,37.1514 -20.40797,50.61221c6.93169,24.89706 -2.01553,42.86516 -6.23931,27.21597c-2.25837,-9.31905 5.60969,-19.4674 -0.74306,-28.41115c-3.99491,-4.91747 -10.87116,-1.13487 -14.93933,5.43445c-11.92135,18.85891 4.37376,71.97491 19.38746,63.48314c4.34487,-3.44214 -2.99258,-15.2823 3.61323,-16.85943c6.74865,-1.42706 4.78686,10.86941 7.10911,16.20504c2.13354,7.11452 4.46878,14.67438 9.95292,20.41447c4.42632,4.45609 14.14375,3.70969 15.50973,-3.43872c1.87894,-16.26825 -24.1469,-49.80544 -9.88488,-54.93908c17.15929,-4.76783 4.39141,41.87978 22.48117,52.15134c8.78703,3.56215 14.46247,-1.09232 13.69819,-7.08261c-2.5393,-19.78145 -23.24459,-39.83279 -23.0863,-58.22012" vector-effect="non-scaling-stroke"/>
 	</symbol>
 
-	<!-- Shape is placeholder until it can be replaced with correct shape. -->
+	<!-- Extracellular region -->
 
-	<symbol id="extracellular-region" viewBox="0 0 100 50" preserveAspectRatio="none">
+	<symbol id="extracellular-region" viewBox="0 0 100 50" preserveAspectRatio="xMinYMin meet" >
 	<desc>extracellular-region</desc>
-	<rect x="0" y="0" width="100" height="50" vector-effect="non-scaling-stroke"></rect>
-	<path d="m9.90539,9.46855l0,24.81445l30,0l0,-24.81445l-30,0zm25.27735,22.68503l-20.55551,0l0,-20.5556l20.55551,0l0,20.5556zm-15.5557,-12.49887c1.58443,0 2.8704,-1.28815 2.8704,-2.87552c0,-1.58035 -1.28598,-2.86841 -2.8704,-2.86841c-1.58524,0 -2.86949,1.28806 -2.86949,2.86841c0,1.58737 1.28425,2.87552 2.86949,2.87552zm14.44598,2.4957l-5.46353,-5.45935l-7.68539,7.68411l-2.13031,-2.12943l-3.05775,3.05859l0,5.73676l18.33698,0l0,-8.89069z" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="1px" stroke="#000000" fill="none"/>
+	<rect x="1" y="1" rx="10" ry="10" width="98" height="48" vector-effect="non-scaling-stroke"></rect>
 	</symbol>
 
-	<!-- Shape is placeholder until it can be replaced with correct shape. -->
+	<!-- Golgi apparatus -->
 
-	<symbol id="golgi-apparatus" viewBox="0 0 100 50" preserveAspectRatio="none">
+	<symbol id="golgi-apparatus" viewBox="0 0 90 160" preserveAspectRatio="xMinYMin meet">
 	<desc>golgi-apparatus</desc>
-	<rect x="0" y="0" width="100" height="50" vector-effect="non-scaling-stroke"></rect>
-	<path d="m9.90539,9.46855l0,24.81445l30,0l0,-24.81445l-30,0zm25.27735,22.68503l-20.55551,0l0,-20.5556l20.55551,0l0,20.5556zm-15.5557,-12.49887c1.58443,0 2.8704,-1.28815 2.8704,-2.87552c0,-1.58035 -1.28598,-2.86841 -2.8704,-2.86841c-1.58524,0 -2.86949,1.28806 -2.86949,2.86841c0,1.58737 1.28425,2.87552 2.86949,2.87552zm14.44598,2.4957l-5.46353,-5.45935l-7.68539,7.68411l-2.13031,-2.12943l-3.05775,3.05859l0,5.73676l18.33698,0l0,-8.89069z" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="1px" stroke="#000000" fill="none"/>
+	<path d="m58.65843,28.11755c-24.50516,-32.99763 41.17429,-33.39223 28.21526,-5.32301c-9.71986,20.5057 -18.83401,64.15632 -1.0392,109.49673c14.6937,29.87001 -46.07236,30.63614 -30.6302,-1.62207c12.52093,-32.46732 11.35227,-88.65689 3.45415,-102.55164z" vector-effect="non-scaling-stroke"/>
+   	<path d="m28.58309,37.49903c-11.90942,-23.6472 32.9941,-21.90384 20.31397,0.74038c-4.48815,8.19113 -6.38173,67.94992 1.28093,82.79956c9.41282,20.52358 -36.25558,21.36005 -22.62337,-2.48373c7.67286,-19.15643 11.55851,-57.707 1.02847,-81.05621z" vector-effect="non-scaling-stroke"/>
+   	<path d="m27.0266,55.09717c1.74825,12.66316 3.00553,18.47076 -1.63657,42.33447c-4.11847,14.33428 -3.9733,18.0331 -12.94746,21.42337c-7.37549,1.83031 -13.09368,-10.80333 -5.28974,-17.78268c5.35863,-6.20563 6.77712,-12.00945 7.34855,-25.33208c-0.26399,-10.50756 0.89887,-17.46264 -5.92277,-22.02575c-8.41397,-2.42252 -6.71858,-18.2471 5.32368,-15.29968c6.45518,1.13344 11.34736,9.44824 13.1243,16.68235z" vector-effect="non-scaling-stroke"/>
 	</symbol>
 
 	<!-- this is the dragbox shape for any set of elements that have been grouped. this only shows up in edit mode. -->
@@ -780,23 +782,22 @@ Either convert SVG to PDF and import PDF into Illustrator or convert SVG to .ai 
 
 	<!-- Shape is placeholder until it can be replaced with correct shape. -->
 
-	<symbol id="hexagon" viewBox="0 0 100 50" preserveAspectRatio="none">
+	<symbol id="hexagon" viewBox="0 0 75 65" preserveAspectRatio="xMinYMin meet">
 	<desc>hexagon</desc>
-	<rect x="0" y="0" width="100" height="50" vector-effect="non-scaling-stroke"></rect>
-	<path d="m9.90539,9.46855l0,24.81445l30,0l0,-24.81445l-30,0zm25.27735,22.68503l-20.55551,0l0,-20.5556l20.55551,0l0,20.5556zm-15.5557,-12.49887c1.58443,0 2.8704,-1.28815 2.8704,-2.87552c0,-1.58035 -1.28598,-2.86841 -2.8704,-2.86841c-1.58524,0 -2.86949,1.28806 -2.86949,2.86841c0,1.58737 1.28425,2.87552 2.86949,2.87552zm14.44598,2.4957l-5.46353,-5.45935l-7.68539,7.68411l-2.13031,-2.12943l-3.05775,3.05859l0,5.73676l18.33698,0l0,-8.89069z" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="1px" stroke="#000000" fill="none"/>
+	<path d="m2.41939,30.71108l14.4293,-28.85462l38.47667,0l14.42524,28.85462l-14.42524,28.85848l-38.47667,0l-14.4293,-28.85848z" vector-effect="non-scaling-stroke"/>
 	</symbol>
 
 	<!-- Shape is placeholder until it can be replaced with correct shape. -->
 
-	<symbol id="mim-degradation" viewBox="0 0 100 50" preserveAspectRatio="none">
+	<symbol id="mim-degradation" viewBox="0 0 90 90" preserveAspectRatio="xMinYMin meet">
 	<desc>mim-degradation</desc>
-	<rect x="0" y="0" width="100" height="50" vector-effect="non-scaling-stroke"></rect>
-	<path d="m9.90539,9.46855l0,24.81445l30,0l0,-24.81445l-30,0zm25.27735,22.68503l-20.55551,0l0,-20.5556l20.55551,0l0,20.5556zm-15.5557,-12.49887c1.58443,0 2.8704,-1.28815 2.8704,-2.87552c0,-1.58035 -1.28598,-2.86841 -2.8704,-2.86841c-1.58524,0 -2.86949,1.28806 -2.86949,2.86841c0,1.58737 1.28425,2.87552 2.86949,2.87552zm14.44598,2.4957l-5.46353,-5.45935l-7.68539,7.68411l-2.13031,-2.12943l-3.05775,3.05859l0,5.73676l18.33698,0l0,-8.89069z" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="1px" stroke="#000000" fill="none"/>
-	</symbol>
+	<circle r="36.94531" cy="40.5" cx="47" stroke-weight="2" vector-effect="non-scaling-stroke"/>
+  	<line transform="rotate(10, 47.5, 41.9492)" y2="73.89744" x2="92" y1="10" x1="3" stroke-weight="2" vector-effect="non-scaling-stroke"/>
+  	</symbol>
 
 	<!-- mitochondria -->
 
-	<symbol id="mitochondria" viewBox="0 0 100 65.5" preserveAspectRatio="none">
+	<symbol id="mitochondria" viewBox="0 0 100 65.5" preserveAspectRatio="xMinYMin meet">
 	<desc>Mitochondria</desc>
 	<path
 	vector-effect="non-scaling-stroke"
@@ -812,9 +813,10 @@ Either convert SVG to PDF and import PDF into Illustrator or convert SVG to .ai 
 	</g>
 	</symbol>
 
+
 	<!-- Shape is placeholder until it can be replaced with correct shape. -->
 
-	<symbol id="nucleus" viewBox="0 0 100 50" preserveAspectRatio="none">
+	<symbol id="nucleus" viewBox="0 0 100 50" preserveAspectRatio="xMinYMin meet">
 	<desc>nucleus</desc>
 	<rect x="0" y="0" width="100" height="50" vector-effect="non-scaling-stroke"></rect>
 	<path d="m9.90539,9.46855l0,24.81445l30,0l0,-24.81445l-30,0zm25.27735,22.68503l-20.55551,0l0,-20.5556l20.55551,0l0,20.5556zm-15.5557,-12.49887c1.58443,0 2.8704,-1.28815 2.8704,-2.87552c0,-1.58035 -1.28598,-2.86841 -2.8704,-2.86841c-1.58524,0 -2.86949,1.28806 -2.86949,2.86841c0,1.58737 1.28425,2.87552 2.86949,2.87552zm14.44598,2.4957l-5.46353,-5.45935l-7.68539,7.68411l-2.13031,-2.12943l-3.05775,3.05859l0,5.73676l18.33698,0l0,-8.89069z" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="1px" stroke="#000000" fill="none"/>
@@ -830,56 +832,52 @@ Either convert SVG to PDF and import PDF into Illustrator or convert SVG to .ai 
 
 	<!-- oval -->
 
-	<symbol id="oval" viewBox="0 0 100 50" preserveAspectRatio="none">
+	<symbol id="oval" viewBox="0 0 105 50" preserveAspectRatio="xMinYMin meet">
 	<desc>Ellipse</desc>
-	<ellipse cx="49" cy="24" rx="49" ry="24" vector-effect="non-scaling-stroke"></ellipse>
+	<ellipse cx="52" cy="26" rx="49" ry="22.5" vector-effect="non-scaling-stroke"></ellipse>
 	</symbol>
 
-	<!-- Shape is placeholder until it can be replaced with correct shape. -->
+	<!-- pentagon -->
 
-	<symbol id="pentagon" viewBox="0 0 100 50" preserveAspectRatio="none">
+	<symbol id="pentagon" viewBox="0 0 50 55" preserveAspectRatio="xMinYMin meet">
 	<desc>pentagon</desc>
-	<rect x="0" y="0" width="100" height="50" vector-effect="non-scaling-stroke"></rect>
-	<path d="m9.90539,9.46855l0,24.81445l30,0l0,-24.81445l-30,0zm25.27735,22.68503l-20.55551,0l0,-20.5556l20.55551,0l0,20.5556zm-15.5557,-12.49887c1.58443,0 2.8704,-1.28815 2.8704,-2.87552c0,-1.58035 -1.28598,-2.86841 -2.8704,-2.86841c-1.58524,0 -2.86949,1.28806 -2.86949,2.86841c0,1.58737 1.28425,2.87552 2.86949,2.87552zm14.44598,2.4957l-5.46353,-5.45935l-7.68539,7.68411l-2.13031,-2.12943l-3.05775,3.05859l0,5.73676l18.33698,0l0,-8.89069z" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="1px" stroke="#000000" fill="none"/>
+	<path transform="rotate(90, 23.4965, 25.5215)" d="m-0.00193,20.24006l23.50095,-17.09823l23.49858,17.09823l-8.97612,27.66264l-29.04728,0l-8.97613,-27.66264z" vector-effect="non-scaling-stroke"/>
 	</symbol>
 
 	<!-- rectangle -->
 
-	<symbol id="rectangle" viewBox="0 0 100 50" preserveAspectRatio="none">
+	<symbol id="rectangle" viewBox="0 0 100 50" preserveAspectRatio="xMinYMin meet">
 	<desc>Rectangle</desc>
-	<rect x="0" y="0" width="100" height="50" vector-effect="non-scaling-stroke"></rect>
+	<rect x="1" y="1" width="98" height="49" vector-effect="non-scaling-stroke"></rect>
 	</symbol>
 
 	<!-- rounded-rectangle -->
 
-	<symbol id="rounded-rectangle" viewBox="0 0 100 50" preserveAspectRatio="none">
+	<symbol id="rounded-rectangle" viewBox="0 0 100 50" preserveAspectRatio="xMinYMin meet">
 	<desc>Rounded Rectangle</desc>
-	<rect x="0" y="0" rx="25" ry="25" width="100" height="50" vector-effect="non-scaling-stroke"></rect>
+	<rect x="1" y="1" rx="10" ry="10" width="98" height="49" vector-effect="non-scaling-stroke"></rect>
 	</symbol>
 
-	<!-- Shape is placeholder until it can be replaced with correct shape. -->
+	<!-- Sarcoplasmic reticulum -->
 
-	<symbol id="sarcoplasmic-reticulum" viewBox="0 0 100 50" preserveAspectRatio="none">
+	<symbol id="sarcoplasmic-reticulum" viewBox="0 0 70 170" preserveAspectRatio="xMinYMin meet">
 	<desc>sarcoplasmic-reticulum</desc>
-	<rect x="0" y="0" width="100" height="50" vector-effect="non-scaling-stroke"></rect>
-	<path d="m9.90539,9.46855l0,24.81445l30,0l0,-24.81445l-30,0zm25.27735,22.68503l-20.55551,0l0,-20.5556l20.55551,0l0,20.5556zm-15.5557,-12.49887c1.58443,0 2.8704,-1.28815 2.8704,-2.87552c0,-1.58035 -1.28598,-2.86841 -2.8704,-2.86841c-1.58524,0 -2.86949,1.28806 -2.86949,2.86841c0,1.58737 1.28425,2.87552 2.86949,2.87552zm14.44598,2.4957l-5.46353,-5.45935l-7.68539,7.68411l-2.13031,-2.12943l-3.05775,3.05859l0,5.73676l18.33698,0l0,-8.89069z" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="1px" stroke="#000000" fill="none"/>
+	<path d="m36.4444,1.89558c-34.99915,2.22332 -39.2673,37.74125 -28.65384,63.19647c10.07443,30.40252 -20.2884,49.97363 2.77805,81.84377c18.18629,21.73956 50.09141,10.11908 56.35627,-14.20186c6.37779,-25.27418 -11.8396,-43.13985 -3.5604,-67.8931c11.73406,-32.95808 -0.83911,-63.20087 -26.92008,-62.94527z" vector-effect="non-scaling-stroke"/>	
 	</symbol>
 
 	<!-- Shape is placeholder until it can be replaced with correct shape. -->
 
-	<symbol id="triangle" viewBox="0 0 100 50" preserveAspectRatio="none">
+	<symbol id="triangle" viewBox="0 0 50 50" preserveAspectRatio="xMinYMin meet">
 	<desc>triangle</desc>
-	<rect x="0" y="0" width="100" height="50" vector-effect="non-scaling-stroke"></rect>
-	<path d="m9.90539,9.46855l0,24.81445l30,0l0,-24.81445l-30,0zm25.27735,22.68503l-20.55551,0l0,-20.5556l20.55551,0l0,20.5556zm-15.5557,-12.49887c1.58443,0 2.8704,-1.28815 2.8704,-2.87552c0,-1.58035 -1.28598,-2.86841 -2.8704,-2.86841c-1.58524,0 -2.86949,1.28806 -2.86949,2.86841c0,1.58737 1.28425,2.87552 2.86949,2.87552zm14.44598,2.4957l-5.46353,-5.45935l-7.68539,7.68411l-2.13031,-2.12943l-3.05775,3.05859l0,5.73676l18.33698,0l0,-8.89069z" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="1px" stroke="#000000" fill="none"/>
+	<polygon points="1,49 49,24 1,1" vector-effect="non-scaling-stroke"/>
 	</symbol>
 
 	<!-- Shape is placeholder until it can be replaced with correct shape. -->
 
-	<symbol id="vesicle" viewBox="0 0 100 50" preserveAspectRatio="none">
+	<symbol id="vesicle" viewBox="0 0 64 64" preserveAspectRatio="xMinYMin meet">
 	<desc>vesicle</desc>
-	<rect x="0" y="0" width="100" height="50" vector-effect="non-scaling-stroke"></rect>
-	<path d="m9.90539,9.46855l0,24.81445l30,0l0,-24.81445l-30,0zm25.27735,22.68503l-20.55551,0l0,-20.5556l20.55551,0l0,20.5556zm-15.5557,-12.49887c1.58443,0 2.8704,-1.28815 2.8704,-2.87552c0,-1.58035 -1.28598,-2.86841 -2.8704,-2.86841c-1.58524,0 -2.86949,1.28806 -2.86949,2.86841c0,1.58737 1.28425,2.87552 2.86949,2.87552zm14.44598,2.4957l-5.46353,-5.45935l-7.68539,7.68411l-2.13031,-2.12943l-3.05775,3.05859l0,5.73676l18.33698,0l0,-8.89069z" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="1px" stroke="#000000" fill="none"/>
-	</symbol>
+	<circle cx="32" cy="32" r="30" stroke-width="2"/>	
+	</symbol> 
 
 	<!-- TODO Update placeholders for SVG definitions of shapes.
 
