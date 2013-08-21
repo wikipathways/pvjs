@@ -855,7 +855,7 @@ Either convert SVG to PDF and import PDF into Illustrator or convert SVG to .ai 
 
 	<symbol id="rounded-rectangle" viewBox="0 0 100 50" preserveAspectRatio="xMinYMin meet">
 	<desc>Rounded Rectangle</desc>
-	<rect x="1" y="1" rx="10" ry="10" width="98" height="49" vector-effect="non-scaling-stroke"></rect>
+	<rect x="1" y="1" rx="10" ry="10" width="98" height="48" vector-effect="non-scaling-stroke"></rect>
 	</symbol>
 
 	<!-- Sarcoplasmic reticulum -->
