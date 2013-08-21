@@ -1,3 +1,16 @@
+// TODO Rewrite the code for getting elbow and curve edge points. For reference, see these links:
+//
+// Elbows:
+// [PathVisio Java code for elbows](http://svn.bigcat.unimaas.nl/pathvisio/trunk/modules/org.pathvisio.core/src/org/pathvisio/core/model/ElbowConnectorShape.java)
+// [jsPlumb JavaScript implemention of elbows](https://github.com/sporritt/jsPlumb/blob/master/src/connectors-flowchart.js)
+// [W3C documention on vertical and horizontal path movement - "lineto" commands - for SVG](http://www.w3.org/TR/SVG/paths.html#PathDataLinetoCommands)
+//
+// Bezier Curves:
+// [PathVisio Java code for cubic bezier curve](http://svn.bigcat.unimaas.nl/pathvisio/trunk/modules/org.pathvisio.core/src/org/pathvisio/core/model/CurvedConnectorShape.java)
+// [jsPlumb JavaScript implemention of bezier curves](https://github.com/sporritt/jsPlumb/blob/master/src/connectors-bezier.js)
+// [W3C documention on cubic bezier curves for SVG](http://www.w3.org/TR/SVG/paths.html#PathDataLinetoCommands)
+// There are other types of SVG curves, but I understand the Java code to use bezier curves.
+
 pathvisio.edges.pathData = function(){ 
   function get(d, labelableElements) {
     var sourcePoint = d.points[0];
@@ -152,12 +165,6 @@ pathvisio.edges.pathData = function(){
         else {
           if (d.connectorType === 'curved') {
             if (d.points.length === 3) {
-
-              // see here for PathVisio (Java) code for cubic bezier curve
-              // http://svn.bigcat.unimaas.nl/pathvisio/trunk/modules/org.pathvisio.core/src/org/pathvisio/core/model/CurvedConnectorShape.java
-
-              // and see W3C documention on cubic bezier curves for SVG:
-              // http://www.w3.org/TR/SVG/paths.html#PathDataLinetoCommands
 
               // what is here is just a starting point. It has not been tested to match the PathVisio (Java) implementation.
 

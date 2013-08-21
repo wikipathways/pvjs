@@ -1,113 +1,159 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Pathway xmlns="http://pathvisio.org/GPML/2013a" Name="New Pathway" Version="20130813">
-  <Graphics BoardWidth="1614.0130062939984" BoardHeight="4559.017070422529" />
-  <Interaction GraphId="ff7f4">
-    <Graphics ZOrder="32966" LineStyle="Broken" LineThickness="1.0" Color="999999">
-      <Point X="735.7785467128028" Y="272.580346069322" />
-      <Point X="710.0" Y="298.53190316274737" ArrowHead="Arrow" />
+  <Graphics BoardWidth="1610.0" BoardHeight="4804.444482440042" />
+  <GraphicalLine>
+    <Graphics ZOrder="-22" LineStyle="Broken" LineThickness="1.0" Color="cccccc">
+      <Point X="43.394489682048814" Y="4400.0" />
+      <Point X="1521.1722674598261" Y="4400.0" />
     </Graphics>
-    <Xref Database="" ID="" />
-  </Interaction>
-  <Interaction GraphId="a937e">
-    <Graphics ZOrder="32967" LineStyle="Broken" LineThickness="1.0" Color="999999">
-      <Point X="81.79930795847751" Y="269.9851903599794" />
-      <Point X="110.0" Y="298.53190316274737" ArrowHead="Arrow" />
+  </GraphicalLine>
+  <GraphicalLine GraphId="cbe54">
+    <Graphics ZOrder="-21" LineStyle="Broken" LineThickness="1.0" Color="cccccc">
+      <Point X="43.39448905987598" Y="3800.0" />
+      <Point X="1521.1722668376533" Y="3800.0" />
     </Graphics>
-    <Xref Database="" ID="" />
-  </Interaction>
-  <Interaction GraphId="a1505">
-    <Graphics ZOrder="32968" LineStyle="Broken" LineThickness="1.0" Color="999999">
-      <Point X="74.87889273356402" Y="923.9644291143077" />
-      <Point X="110.0" Y="898.5319031627496" ArrowHead="Arrow" />
+  </GraphicalLine>
+  <GraphicalLine GraphId="bd26b">
+    <Graphics ZOrder="-20" LineStyle="Broken" LineThickness="1.0" Color="cccccc">
+      <Point X="43.3945147731131" Y="300.0" />
+      <Point X="1521.172292550891" Y="297.1794871794882" />
     </Graphics>
-    <Xref Database="" ID="" />
-  </Interaction>
-  <Interaction GraphId="e410f">
-    <Graphics ZOrder="32970" LineStyle="Broken" LineThickness="1.0" Color="999999">
-      <Point X="738.3737024221454" Y="924.829481017422" />
-      <Point X="710.0" Y="898.5319031627496" ArrowHead="Arrow" />
+  </GraphicalLine>
+  <GraphicalLine GraphId="fbba0">
+    <Graphics ZOrder="-19" LineStyle="Broken" LineThickness="1.0" Color="cccccc">
+      <Point X="43.39450423506054" Y="3700.0" />
+      <Point X="1521.172282012838" Y="3700.0" />
     </Graphics>
-    <Xref Database="" ID="" />
-  </Interaction>
-  <Label TextLabel="The purpose of this file is to test the accuracy of pathvisio.js in&#xA;rendering symbols at their stated dimensions for x, y, width and&#xA;height.&#xA;&#xA;The light gray arrows and boxes indicate the bounding box&#xA;according to the GPML values. You can visually compare the&#xA;bounding box with the symbol in red. They should match." GraphId="fc106">
-    <Graphics CenterX="416.9426751592354" CenterY="206.4649681528662" Width="544.4585987261147" Height="114.45859872611476" ZOrder="28672" FillColor="ffffff" FontSize="16" Align="Left" />
+  </GraphicalLine>
+  <GraphicalLine GraphId="ea535">
+    <Graphics ZOrder="-18" LineStyle="Broken" LineThickness="1.0" Color="cccccc">
+      <Point X="43.39449541284401" Y="3100.0" />
+      <Point X="1521.1722731906216" Y="3100.0" />
+    </Graphics>
+  </GraphicalLine>
+  <GraphicalLine GraphId="bb9f7">
+    <Graphics ZOrder="-17" LineStyle="Broken" LineThickness="1.0" Color="cccccc">
+      <Point X="43.39448532683889" Y="3000.0" />
+      <Point X="1521.1722631046164" Y="3000.0" />
+    </Graphics>
+  </GraphicalLine>
+  <GraphicalLine GraphId="c3d22">
+    <Graphics ZOrder="-16" LineStyle="Broken" LineThickness="1.0" Color="cccccc">
+      <Point X="43.39453860038884" Y="2400.0" />
+      <Point X="1521.1723163781662" Y="2400.0" />
+    </Graphics>
+  </GraphicalLine>
+  <GraphicalLine GraphId="d0ad7">
+    <Graphics ZOrder="-15" LineStyle="Broken" LineThickness="1.0" Color="cccccc">
+      <Point X="43.394511341441" Y="2300.0" />
+      <Point X="1521.1722891192185" Y="2300.0" />
+    </Graphics>
+  </GraphicalLine>
+  <GraphicalLine GraphId="d3372">
+    <Graphics ZOrder="-14" LineStyle="Broken" LineThickness="1.0" Color="cccccc">
+      <Point X="43.39454416105866" Y="1700.0" />
+      <Point X="1521.1723219388361" Y="1700.0" />
+    </Graphics>
+  </GraphicalLine>
+  <GraphicalLine GraphId="c87b5">
+    <Graphics ZOrder="-13" LineStyle="Broken" LineThickness="1.0" Color="cccccc">
+      <Point X="43.394521879493624" Y="1600.0" />
+      <Point X="1521.172299657271" Y="1600.0" />
+    </Graphics>
+  </GraphicalLine>
+  <GraphicalLine GraphId="c70e2">
+    <Graphics ZOrder="-12" LineStyle="Broken" LineThickness="1.0" Color="cccccc">
+      <Point X="43.394485326838975" Y="1000.0" />
+      <Point X="1521.1722631046175" Y="1000.0" />
+    </Graphics>
+  </GraphicalLine>
+  <GraphicalLine GraphId="eca55">
+    <Graphics ZOrder="-11" LineStyle="Broken" LineThickness="1.0" Color="cccccc">
+      <Point X="43.39454759273079" Y="900.0" />
+      <Point X="1521.1723253705084" Y="900.0" />
+    </Graphics>
+  </GraphicalLine>
+  <GraphicalLine>
+    <Graphics ZOrder="-9" LineStyle="Broken" LineThickness="1.0" Color="cccccc">
+      <Point X="700.0" Y="185.55559355115136" />
+      <Point X="700.0" Y="4774.444482440042" />
+    </Graphics>
+  </GraphicalLine>
+  <GraphicalLine GraphId="fa68f">
+    <Graphics ZOrder="-8" LineStyle="Broken" LineThickness="1.0" Color="cccccc">
+      <Point X="100.0" Y="185.556" />
+      <Point X="100.0" Y="4774.4444980318585" />
+    </Graphics>
+  </GraphicalLine>
+  <GraphicalLine GraphId="ca2cc">
+    <Graphics ZOrder="-7" LineStyle="Broken" LineThickness="1.0" Color="cccccc">
+      <Point X="900.0" Y="185.5556247347877" />
+      <Point X="905.4700854700845" Y="4774.444513623677" />
+    </Graphics>
+  </GraphicalLine>
+  <GraphicalLine GraphId="ea33b">
+    <Graphics ZOrder="-6" LineStyle="Broken" LineThickness="1.0" Color="cccccc">
+      <Point X="1500.0" Y="185.55555555555554" />
+      <Point X="1501.794871794869" Y="4774.444444444444" />
+    </Graphics>
+  </GraphicalLine>
+  <Label TextLabel="The purpose of this file is to test the accuracy of pathvisio.js in&#xA;rendering symbols at their stated dimensions for x, y, width and&#xA;height.&#xA;&#xA;The light gray grid indicate the bounding boxes&#xA;according to the GPML values. You can visually compare the&#xA;bounding boxes with the symbol in red. The symbol should fit." GraphId="fc106">
+    <Graphics CenterX="416.1583614337452" CenterY="195.298910407708" Width="544.4585987261147" Height="133.40661946177812" ZOrder="28672" FillColor="ffffff" FontSize="16" Align="Left" />
   </Label>
   <Label TextLabel="I don't know why PathVisio (Java) sets different values for&#xA;centerx and centery when I align the horizontal or vertical&#xA;centers of multiple elements. Is this a bug in PathVisio&#xA;(Java) or is it intended to make the elements appear to be&#xA;aligned visually because our eyes don't see mathematically&#xA;aligned elements as looking perfectly aligned?" GraphId="bb5ba">
     <Graphics CenterX="1117.3885350318442" CenterY="203.82165605095534" Width="544.4585987261147" Height="94.26751592356692" ZOrder="33000" FillColor="ffffff" FontSize="16" Align="Left" />
   </Label>
-  <Shape GraphId="af5d8">
-    <Graphics CenterX="410.0" CenterY="3519.739070422533" Width="600.0" Height="600.0" ZOrder="-4" FontSize="10" Valign="Middle" ShapeType="Rectangle" LineStyle="Broken" Color="cccccc" Rotation="0.0" />
-  </Shape>
-  <Shape GraphId="c5a13">
-    <Graphics CenterX="410.0" CenterY="1347.5790704225356" Width="600.0" Height="600.0" ZOrder="-2" FontSize="10" Valign="Middle" ShapeType="Rectangle" LineStyle="Broken" Color="cccccc" Rotation="0.0" />
-  </Shape>
   <Shape GraphId="ba4c6">
-    <Graphics CenterX="410.0" CenterY="598.5319031627478" Width="600.0" Height="600.0" ZOrder="32969" FontSize="10" Valign="Middle" ShapeType="Rectangle" Color="ff0000" Rotation="0.0" />
+    <Graphics CenterX="400.0" CenterY="600.0" Width="600.0" Height="600.0" ZOrder="32969" FontSize="10" Valign="Middle" ShapeType="Rectangle" Color="ff0000" Rotation="0.0" />
   </Shape>
   <Shape GraphId="ad9d9">
-    <Graphics CenterX="410.0" CenterY="3519.739070422533" Width="600.0" Height="600.0" ZOrder="32979" FontSize="10" Valign="Middle" ShapeType="Oval" Color="ff0000" Rotation="0.0" />
+    <Graphics CenterX="400.0" CenterY="3400.0" Width="600.0" Height="600.0" ZOrder="32979" FontSize="10" Valign="Middle" ShapeType="Oval" Color="ff0000" Rotation="0.0" />
   </Shape>
   <Shape GraphId="ec998">
-    <Graphics CenterX="410.0" CenterY="1347.5790704225356" Width="600.0" Height="600.0" ZOrder="32981" FontSize="10" Valign="Middle" ShapeType="Arc" Color="ff0000" Rotation="0.0" />
-  </Shape>
-  <Shape GraphId="dcc3c">
-    <Graphics CenterX="1280.0" CenterY="1347.5790704225356" Width="600.0" Height="600.0" ZOrder="32982" FontSize="10" Valign="Middle" ShapeType="Rectangle" LineStyle="Broken" Color="cccccc" Rotation="0.0" />
+    <Graphics CenterX="400.0" CenterY="1300.0" Width="600.0" Height="600.0" ZOrder="32981" FontSize="10" Valign="Middle" ShapeType="Arc" Color="ff0000" Rotation="0.0" />
   </Shape>
   <Shape GraphId="ae3aa">
-    <Graphics CenterX="1280.0" CenterY="1347.5790704225356" Width="600.0" Height="600.0" ZOrder="32983" FontSize="10" Valign="Middle" ShapeType="Triangle" Color="ff0000" Rotation="0.0" />
-  </Shape>
-  <Shape GraphId="cf14c">
-    <Graphics CenterX="410.0" CenterY="4229.017070422529" Width="600.0" Height="600.0" ZOrder="32984" FontSize="10" Valign="Middle" ShapeType="Rectangle" LineStyle="Broken" Color="cccccc" Rotation="0.0" />
+    <Graphics CenterX="1200.0" CenterY="1300.0" Width="600.0" Height="600.0" ZOrder="32983" FontSize="10" Valign="Middle" ShapeType="Triangle" Color="ff0000" Rotation="0.0" />
   </Shape>
   <Shape GraphId="eafdf">
-    <Graphics CenterX="410.0" CenterY="4229.017070422529" Width="600.0" Height="600.0" ZOrder="32985" FontSize="10" Valign="Middle" ShapeType="Pentagon" Color="ff0000" Rotation="0.0" />
-  </Shape>
-  <Shape GraphId="cfefa">
-    <Graphics CenterX="410.0" CenterY="2067.5790704225356" Width="600.0" Height="600.0" ZOrder="32986" FontSize="10" Valign="Middle" ShapeType="Rectangle" LineStyle="Broken" Color="cccccc" Rotation="0.0" />
+    <Graphics CenterX="400.0" CenterY="4100.0" Width="600.0" Height="600.0" ZOrder="32985" FontSize="10" Valign="Middle" ShapeType="Pentagon" Color="ff0000" Rotation="0.0" />
   </Shape>
   <Shape GraphId="c3aac">
-    <Graphics CenterX="410.0" CenterY="2067.5790704225356" Width="600.0" Height="600.0" ZOrder="32987" FontSize="10" Valign="Middle" ShapeType="Hexagon" Color="ff0000" Rotation="0.0" />
-  </Shape>
-  <Shape GraphId="f5a9e">
-    <Graphics CenterX="1280.0" CenterY="2067.5790704225356" Width="600.0" Height="600.0" ZOrder="32988" FontSize="10" Valign="Middle" ShapeType="Rectangle" LineStyle="Broken" Color="cccccc" Rotation="0.0" />
+    <Graphics CenterX="400.0" CenterY="2000.0" Width="600.0" Height="600.0" ZOrder="32987" FontSize="10" Valign="Middle" ShapeType="Hexagon" Color="ff0000" Rotation="0.0" />
   </Shape>
   <Shape GraphId="fae6b">
-    <Graphics CenterX="1280.0" CenterY="2067.5790704225356" Width="600.0" Height="600.0" ZOrder="32989" FontSize="10" Valign="Middle" ShapeType="Brace" Color="ff0000" Rotation="0.0" />
-  </Shape>
-  <Shape GraphId="c3e5e">
-    <Graphics CenterX="1280.0" CenterY="3519.739070422533" Width="600.0" Height="600.0" ZOrder="32990" FontSize="10" Valign="Middle" ShapeType="Rectangle" LineStyle="Broken" Color="cccccc" Rotation="0.0" />
+    <Graphics CenterX="1200.0" CenterY="2000.0" Width="600.0" Height="600.0" ZOrder="32989" FontSize="10" Valign="Middle" ShapeType="Brace" Color="ff0000" Rotation="0.0" />
   </Shape>
   <Shape GraphId="ffa32">
     <Attribute Key="org.pathvisio.CellularComponentProperty" Value="Mitochondria" />
-    <Graphics CenterX="1280.0" CenterY="3519.739070422533" Width="600.0" Height="600.0" ZOrder="32991" FontSize="10" Valign="Middle" ShapeType="Mitochondria" Color="ff0000" Rotation="0.0" />
-  </Shape>
-  <Shape GraphId="ff7c1">
-    <Graphics CenterX="410.0" CenterY="2763.2940704225334" Width="600.0" Height="600.0" ZOrder="32992" FontSize="10" Valign="Middle" ShapeType="Rectangle" LineStyle="Broken" Color="cccccc" Rotation="0.0" />
+    <Graphics CenterX="1200.0" CenterY="3400.0" Width="600.0" Height="600.0" ZOrder="32991" FontSize="10" Valign="Middle" ShapeType="Mitochondria" Color="ff0000" Rotation="0.0" />
   </Shape>
   <Shape GraphId="a5963">
     <Attribute Key="org.pathvisio.CellularComponentProperty" Value="Sarcoplasmic Reticulum" />
-    <Graphics CenterX="410.0" CenterY="2763.2940704225334" Width="600.0" Height="600.0" ZOrder="32993" FontSize="10" Valign="Middle" ShapeType="Sarcoplasmic Reticulum" Color="ff0000" Rotation="0.0" />
-  </Shape>
-  <Shape GraphId="d2587">
-    <Graphics CenterX="1280.0" CenterY="2763.2940704225334" Width="600.0" Height="600.0" ZOrder="32994" FontSize="10" Valign="Middle" ShapeType="Rectangle" LineStyle="Broken" Color="cccccc" Rotation="0.0" />
+    <Graphics CenterX="400.0" CenterY="2700.0" Width="600.0" Height="600.0" ZOrder="32993" FontSize="10" Valign="Middle" ShapeType="Sarcoplasmic Reticulum" Color="ff0000" Rotation="0.0" />
   </Shape>
   <Shape GraphId="f2f16">
     <Attribute Key="org.pathvisio.CellularComponentProperty" Value="Endoplasmic Reticulum" />
-    <Graphics CenterX="1280.0" CenterY="2763.2940704225334" Width="600.0" Height="600.0" ZOrder="32995" FontSize="10" Valign="Middle" ShapeType="Endoplasmic Reticulum" Color="ff0000" Rotation="0.0" />
-  </Shape>
-  <Shape GraphId="f0806">
-    <Graphics CenterX="1280.0" CenterY="4229.017070422529" Width="600.0" Height="600.0" ZOrder="32996" FontSize="10" Valign="Middle" ShapeType="Rectangle" LineStyle="Broken" Color="cccccc" Rotation="0.0" />
+    <Graphics CenterX="1200.0" CenterY="2700.0" Width="600.0" Height="600.0" ZOrder="32995" FontSize="10" Valign="Middle" ShapeType="Endoplasmic Reticulum" Color="ff0000" Rotation="0.0" />
   </Shape>
   <Shape GraphId="d8736">
     <Attribute Key="org.pathvisio.CellularComponentProperty" Value="Golgi Apparatus" />
-    <Graphics CenterX="1280.0" CenterY="4229.017070422529" Width="600.0" Height="600.0" ZOrder="32997" FontSize="10" Valign="Middle" ShapeType="Golgi Apparatus" Color="ff0000" Rotation="0.0" />
-  </Shape>
-  <Shape GraphId="c9eb1">
-    <Graphics CenterX="1280.0" CenterY="604.7223793532239" Width="600.0" Height="600.0" ZOrder="32998" FontSize="10" Valign="Middle" ShapeType="Rectangle" LineStyle="Broken" Color="cccccc" Rotation="0.0" />
+    <Graphics CenterX="1200.0" CenterY="4100.0" Width="600.0" Height="600.0" ZOrder="32997" FontSize="10" Valign="Middle" ShapeType="Golgi Apparatus" Color="ff0000" Rotation="0.0" />
   </Shape>
   <Shape GraphId="c6ccb">
-    <Graphics CenterX="1280.0" CenterY="604.7223793532239" Width="600.0" Height="600.0" ZOrder="32999" FontSize="10" Valign="Middle" ShapeType="RoundedRectangle" Color="ff0000" Rotation="0.0" />
+    <Graphics CenterX="1200.0" CenterY="600.0" Width="600.0" Height="600.0" ZOrder="32999" FontSize="10" Valign="Middle" ShapeType="RoundedRectangle" Color="ff0000" Rotation="0.0" />
   </Shape>
+  <Group GroupId="df545" Style="Group" />
+  <Group GroupId="aa286" Style="Group" />
+  <Group GroupId="c0ad5" Style="Group" />
+  <Group GroupId="b6a2e" Style="Group" />
+  <Group GroupId="b712f" Style="Group" />
+  <Group GroupId="ca89d" Style="Group" />
+  <Group GroupId="db199" Style="Group" />
+  <Group GroupId="cda4c" Style="Group" />
+  <Group GroupId="f4675" Style="Group" />
+  <Group GroupId="f0744" Style="Group" />
+  <Group GroupId="d4e31" Style="Group" />
   <InfoBox CenterX="0.0" CenterY="0.0" />
   <Biopax />
 </Pathway>

@@ -233,7 +233,7 @@ pathvisio.xmlGpml2jsonGpml.labelableElements = function(){
       return validJsonLabelableElements;
     }
     catch (e) {
-      console.log("Error converting labelable elements to json: " + e.message);
+      console.log("Error //converting labelable elements to json: " + e.message);
       return e;
     };
   };

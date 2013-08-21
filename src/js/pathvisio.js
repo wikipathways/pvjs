@@ -3,21 +3,10 @@ var pathvisio = function(){
   function init(){
 
     var gpml = document.getElementsByTagName('pathway')[0];
-    console.log('gpml1');
+    console.log('XML GPML:');
     console.log(gpml);
 
     // be sure server has set gpml mime type to application/gpml+xml
-    //d3.xml("../../samples/gpml/" + String(getURLParameter("pathway")), "application/gpml+xml", function(response) {
-    //d3.xml("../../samples/gpml/" + getURLParameter("pathway"), "application/gpml+xml", function(error, response) {
-    //d3.json("../../samples/gpml/WP673_63184.json", function(error, json) {
-
-
-    /*
-    var parser = new DOMParser();
-    var gpmlDoc = parser.parseFromString(gpmlStr, "application/xml");
-    self.gpmlDoc = gpmlDoc;
-    var gpml = gpmlDoc.documentElement;
-  */
 
     var pathway = pathvisio.xmlGpml2jsonGpml.convert(gpml);
     //getJson(gpml, function(pathway) {
@@ -42,8 +31,6 @@ var pathvisio = function(){
     */
 
     var svg = d3.select("#pathway-image");
-    console.log('svg');
-    console.log(svg);
     self.svg = svg;
     svg.attr('width', pathway.boardWidth);
     svg.attr('height', pathway.boardHeight);

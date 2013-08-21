@@ -406,7 +406,7 @@ pathvisio.xmlGpml2jsonGpml = function(){
         delete pathway.labelableElements;
       };
 
-      console.log('jGPML pathway');
+      console.log('JSON GPML:');
       console.log(pathway);
 
       return pathway;

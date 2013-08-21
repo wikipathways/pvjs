@@ -66,26 +66,14 @@ pathvisio.edges.endPoints = function(){
 
   function getCoordinates(point) {
     var coordinates = {};
-    var edgeTerminusRef = getGraphRef(point);
+    var edgeTerminusRef = self.edgeTerminusRef = getGraphRef(point);
     if (edgeTerminusRef.type !== 'anchor') {
       return getCoordinatesNonAnchor(point);
     }
     else {
-
-      // this needs work to do more than one level deep of anchors
-
-      secondarySourcePoint = edgeTerminusRef.edge.points[0];
-      secondaryTargetPoint = edgeTerminusRef.edge.points[edgeTerminusRef.edge.points.length - 1];
-
-      if (getGraphRef(secondarySourcePoint).type !== 'anchor' && getGraphRef(secondaryTargetPoint).type !== 'anchor') {
-        secondarySourcePointCoordinates = getCoordinatesNonAnchor(secondarySourcePoint);
-        secondaryTargetPointCoordinates = getCoordinatesNonAnchor(secondaryTargetPoint);
-
-        coordinates.x = secondarySourcePointCoordinates.x + edgeTerminusRef.element.position * ( secondaryTargetPointCoordinates.x - secondarySourcePointCoordinates.x );
-        coordinates.y = secondarySourcePointCoordinates.y + edgeTerminusRef.element.position * ( secondaryTargetPointCoordinates.y - secondarySourcePointCoordinates.y );
-
-        return coordinates;
-      };
+      var path = d3.select("#interaction-" + edgeTerminusRef.edge.graphId)[0][0];
+      var coordinates = path.getPointAtLength(edgeTerminusRef.element.position * path.getTotalLength());
+      return coordinates;
     };
   };
 
