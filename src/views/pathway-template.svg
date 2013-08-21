@@ -149,7 +149,6 @@ Either convert SVG to PDF and import PDF into Illustrator or convert SVG to .ai 
 	}
 
 	use.group-group {
-		fill: lightblue;
 		fill-opacity: 0;
 		stroke-width: 0;
 	}
@@ -725,7 +724,7 @@ Either convert SVG to PDF and import PDF into Illustrator or convert SVG to .ai 
 
 	<symbol id="group-group" viewBox="0 0 120 180" preserveAspectRatio="none">
 	<desc>Group with style 'group'</desc>
-	<rect x="1" y="1" width="118" height="178" vector-effect="non-scaling-stroke"></rect>
+	<rect x="1" y="1" width="118" height="178" vector-effect="non-scaling-stroke" fill="lightblue"></rect>
 	</symbol>
 
 	<!-- Shape is placeholder until it can be replaced with correct shape. It should probably be a rect with stroke-line=miter and stroke-miter-limit=100 -->
