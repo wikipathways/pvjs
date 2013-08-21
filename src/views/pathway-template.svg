@@ -716,24 +716,26 @@ Either convert SVG to PDF and import PDF into Illustrator or convert SVG to .ai 
   	<polyline points="1430,1051 1430,1050 " vector-effect="non-scaling-stroke"/>
   	<path transform="rotate(90, 50.5312, 20.3125)" d="m58.36591,68.31439c-4.32813,0 -7.83624,-0.58405 -7.83624,-1.30634l0,-45.38824c0,-0.72241 -3.50806,-1.30646 -7.8363,-1.30646l0,0c4.32825,0 7.8363,-0.58386 7.8363,-1.30524l0,-45.38904l0,0c0,-0.72162 3.50812,-1.30536 7.83624,-1.30536" vector-effect="non-scaling-stroke"/>
 	</symbol>
-
+	
+	<!-- group of style "none" -->
 	<symbol id="group-none" viewBox="0 0 1000 1000" preserveAspectRatio="none">
 	<desc>Group with style 'none'</desc>
 	<rect x="0" y="0" width="1000" height="1000" vector-effect="non-scaling-stroke"></rect>
 	</symbol>
 
+	<!-- group of style "group" -->
+	<!-- Not sure about this. Should this deinition be empty since group of type group doesn't have an outline other than for mouse-over? -->
 	<symbol id="group-group" viewBox="0 0 120 180" preserveAspectRatio="none">
 	<desc>Group with style 'group'</desc>
-	<rect x="1" y="1" width="118" height="178" vector-effect="non-scaling-stroke" fill="lightblue"></rect>
 	</symbol>
 
-	<!-- Shape is placeholder until it can be replaced with correct shape. It should probably be a rect with stroke-line=miter and stroke-miter-limit=100 -->
-
+	<!-- group of style "complex" -->
 	<symbol id="group-complex" viewBox="0 0 100 100" preserveAspectRatio="xMinYMin meet">
 	<desc>Group with style 'complex'</desc>
 	<path d="m26.75,3l47.50001,0l23.75,23.75l0,47.50001l-23.75,23.75l-47.50001,0l-23.75,-23.75l0,-47.50001l23.75,-23.75z" vector-effect="non-scaling-stroke"/>
 	</symbol>
 
+	<!-- group of style "pathway" -->
 	<symbol id="group-pathway" viewBox="0 0 120 180" preserveAspectRatio="none">
 	<desc>Group with style 'pathway'</desc>
 	<rect x="1" y="1" width="118" height="178" vector-effect="non-scaling-stroke" fill="lightgreen" stroke-weight="1"></rect>
