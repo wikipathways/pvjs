@@ -2,7 +2,7 @@
 
 <!-- 
 This file serves as our template for standardized GPML pathway visual representations.
-This file can be used for many purposes outside of pathvisio.js, including allowing
+This file can be used for many purposes outside of pathvisio.js, including allowingar
 other projects to work better with GPML. For purposes of pathvisio.js, this file will
 be the starting point for our JavaScript rendering of pathways. Every time we want to
 render a GPML file on the browser, we will read a copy of this file into D3.js and
@@ -706,7 +706,7 @@ Either convert SVG to PDF and import PDF into Illustrator or convert SVG to .ai 
 
 	<!-- Shape is placeholder until it can be replaced with correct shape. -->
 
-	<symbol id="arc" viewBox="0 0 100 50" preserveAspectRatio="xMinYMin meet" stroke="black" class="drawing-board-color-fill">
+	<symbol id="arc" viewBox="0 0 100 50" preserveAspectRatio="none" stroke="black" class="drawing-board-color-fill">
 	<desc>arc</desc>
 	<path d="m-20.50001,-23.30002c0,-39.50276 31.99724,-71.5 71.5,-71.5c39.50276,0 71.50001,31.99724 71.50001,71.5c0,39.50276 -31.99725,71.5 -71.50001,71.5c-39.50276,0 -71.5,-31.99724 -71.5,-71.5z"/>
 	</symbol>
@@ -722,10 +722,9 @@ Either convert SVG to PDF and import PDF into Illustrator or convert SVG to .ai 
 
 	<!-- Shape is placeholder until it can be replaced with correct shape. -->
 
-	<symbol id="cell" viewBox="0 0 100 50" preserveAspectRatio="none">
+	<symbol id="cell" viewBox="0 0 100 50" preserveAspectRatio="xMinYMin meet">
 	<desc>cell</desc>
-	<rect x="0" y="0" width="100" height="50" vector-effect="non-scaling-stroke"></rect>
-	<path d="m9.90539,9.46855l0,24.81445l30,0l0,-24.81445l-30,0zm25.27735,22.68503l-20.55551,0l0,-20.5556l20.55551,0l0,20.5556zm-15.5557,-12.49887c1.58443,0 2.8704,-1.28815 2.8704,-2.87552c0,-1.58035 -1.28598,-2.86841 -2.8704,-2.86841c-1.58524,0 -2.86949,1.28806 -2.86949,2.86841c0,1.58737 1.28425,2.87552 2.86949,2.87552zm14.44598,2.4957l-5.46353,-5.45935l-7.68539,7.68411l-2.13031,-2.12943l-3.05775,3.05859l0,5.73676l18.33698,0l0,-8.89069z" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="1px" stroke="#000000" fill="none"/>
+	<rect x="1" y="1" rx="10" ry="10" width="98" height="49" vector-effect="non-scaling-stroke"></rect>	
 	</symbol>
 
 	<symbol id="group-none" viewBox="0 0 1000 1000" preserveAspectRatio="none">
