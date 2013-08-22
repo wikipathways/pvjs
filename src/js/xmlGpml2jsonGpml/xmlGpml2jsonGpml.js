@@ -424,17 +424,3 @@ pathvisio.xmlGpml2jsonGpml = function(){
     getJsonGpml:getJsonGpml
   }
 }();
-
-
-
-
-
-
-
-
-
-
-
-
-
-

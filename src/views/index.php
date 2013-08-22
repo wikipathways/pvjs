@@ -122,7 +122,7 @@ SVG pathway template file</a> in the <span style="font-weight: bold">DEV</span> 
 
     // need to use LIBXML_NOEMPTYTAG option, because it appears Chrome will incorrectly close the self-closing tags in gpml.
 
-    echo "<textarea name='gpml-for-reading' id='gpml-for-reading' rows='100' cols='200'>" . $doc->saveXML(null, LIBXML_NOEMPTYTAG) . "</textarea>";
+    echo "<textarea name='gpml-for-reading' id='gpml-for-reading' rows='40' cols='180'>" . $doc->saveXML(null, LIBXML_NOEMPTYTAG) . "</textarea>";
     echo "<div id='xml-gpml-in-dom' style='display:none'>";
       echo $doc->saveXML(null, LIBXML_NOEMPTYTAG);
     echo "</div>";
@@ -131,7 +131,7 @@ SVG pathway template file</a> in the <span style="font-weight: bold">DEV</span> 
   // JSON GPML 
 
   echo "<div id='json-gpml-pathway-container' class='pathway' style='display:none'>";
-    echo "<textarea name='json-gpml-for-reading' id='json-gpml-for-reading' rows='100' cols='200'>Not yet implemented.</textarea>";
+    echo "<textarea name='json-gpml-for-reading' id='json-gpml-for-reading' rows='40' cols='180'>Not yet implemented.</textarea>";
   echo "</div>";
 
 ?>
@@ -187,6 +187,8 @@ SVG pathway template file</a> in the <span style="font-weight: bold">DEV</span> 
 
   window.onload = function() {
     pathvisio.init();
+    var sJson = JSON.stringify(pathway, undefined, 2);
+    $('#json-gpml-for-reading').text(sJson);
 
     /*
 

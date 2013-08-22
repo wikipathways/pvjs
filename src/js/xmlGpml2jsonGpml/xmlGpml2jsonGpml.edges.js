@@ -118,7 +118,78 @@ pathvisio.xmlGpml2jsonGpml.edges = function(){
         delete element.graphics;
 
       });
-      var validJsonEdges = rawJsonEdges.sort(function(a,b) {return a.zIndex - b.zIndex});
+
+      // TODO this could be refactored to be more efficient
+      // When being drawn, edges with anchors use the SVG path method path.getPointAtLength() to find endpoints. That means
+      // a given path (edge) having an endpoint attached to an anchor requires that the path (edge) having that anchor be drawn
+      // before the given path can be drawn. This means that sometimes the ordering of the edges in the DOM may not match the
+      // z-index values specified in PathVisio. We could resort the edges after they are all drawn, but DOM operations are
+      // expensive, so I will not do that unless it is required.
+
+      rawJsonEdges.sort(function(a,b) {return a.zIndex - b.zIndex});
+
+      // edges with anchors will come before edges without anchors
+
+      var edgesWithAnchors = [];
+      var edgesWithoutAnchors = [];
+      rawJsonEdges.forEach(function(element) {
+        if (!element.hasOwnProperty('anchors')) {
+          edgesWithoutAnchors.push(element);
+        }
+        else {
+          edgesWithAnchors.push(element);
+        };
+      });
+
+      // edges with many anchors will probably come before edges few anchors
+      // TODO Does this really help to speed things up? Need to research it.
+      // I assume it does, because I think a sort like this is less expensive
+      // than the processes below, but I could be wrong, because I didn't spend
+      // much time on this item.
+
+      //edgesWithAnchors.sort(function(a,b) {return b.anchors.length - a.anchors.length});
+
+      // edges with endpoints not attached to anchors will come before edges with endpoints attached to anchors 
+
+      function attachedToAnchor(point, edges) {
+        var i = -1;
+        do {
+          i += 1;
+          var anchor = edges[i].anchors.filter(function(element) {return element.graphId === point.graphRef})[0]
+        } while (anchor === undefined && i < edges.length - 1);
+
+        return (anchor !== undefined);
+      };
+
+      var validJsonEdges = [];
+      var unsortedJsonEdges = edgesWithAnchors;
+
+      unsortedJsonEdges.forEach(function(element, index, array) {
+        if (!attachedToAnchor(element.points[0], edgesWithAnchors) && !attachedToAnchor(element.points[element.points.length - 1], edgesWithAnchors)) {
+          validJsonEdges.push(element);
+          array.splice(index, 1);
+        };
+      });
+
+      // Recursively iterate through the list of unsorted json edges and check for whether each edge's endpoints are defined (either not attached to an anchor
+      // or attached to an anchor on an edge that has already been defined in validJsonEdges. If true, add edge to validJsonEdges and remove it from unsortedJsonEdges.
+      // Repeat until all edges are sorted.
+
+      do {
+        unsortedJsonEdges.forEach(function(element, index, array) {
+
+          // TODO This is hard to read. It should be refactored.
+
+          if (((!attachedToAnchor(element.points[0], edgesWithAnchors)) || attachedToAnchor(element.points[0], validJsonEdges)) && (attachedToAnchor(element.points[element.points.length - 1], validJsonEdges) || (!attachedToAnchor(element.points[element.points.length - 1], edgesWithAnchors)))) {
+            validJsonEdges.push(element);
+            array.splice(index, 1);
+          };
+        });
+      } while (unsortedJsonEdges.length > 0);
+
+      // add back in the edges having no anchors 
+      
+      validJsonEdges = validJsonEdges.concat(edgesWithoutAnchors);
       return validJsonEdges;
     }
     catch (e) {

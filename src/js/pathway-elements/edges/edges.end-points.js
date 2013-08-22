@@ -16,8 +16,6 @@ pathvisio.edges.endPoints = function(){
         };
       };
 
-      self.pathwayInside = pathway;
-
       var edgesWithAnchors = pathway.edges.filter(function(element) {return element.hasOwnProperty('anchors')})
       self.edgesWithAnchors = edgesWithAnchors;
       var i = -1;
@@ -34,47 +32,40 @@ pathvisio.edges.endPoints = function(){
     };
   };
 
-  // This might be confusing and should be refactored. The reason for such an odd function is that I need to be able to get
-  // endpoint coordinates for endpoints with GraphRefs that do not refer to anchors. Anchors are special ports that are
-  // added to interactions and graphical lines.
-
-  function getCoordinatesNonAnchor(point) {
-    var coordinates = {};
-    var edgeTerminusRef = getGraphRef(point);
-    if (edgeTerminusRef.type === 'unconnected') {
-      coordinates.x = point.x;
-      coordinates.y = point.y;
-      return coordinates;
-    }
-    else {
-      if (edgeTerminusRef.type === 'labelableElement') {
-        var coordinates = pathvisio.labelableElements.getPortCoordinates(edgeTerminusRef.element, point.relX, point.relY);
-        return coordinates;
-      }
-      else {
-        if (edgeTerminusRef.type === 'group') {
-          var groupDimensions = pathvisio.groups.getDimensions(edgeTerminusRef.groupId);
-          var coordinates = pathvisio.labelableElements.getPortCoordinates(groupDimensions, point.relX, point.relY);
-          return coordinates;
-        }
-        else {
-          return 'error';
-        };
-      };
-    };
-  };
-
   function getCoordinates(point) {
+
+    // var point = pathway.edges.filter(function(element) {return element.graphId === "b9d61" })[0].points[2]
+    // pathvisio.edges.endPoints.getCoordinates(point)
+
     var coordinates = {};
     var edgeTerminusRef = self.edgeTerminusRef = getGraphRef(point);
     if (edgeTerminusRef.type !== 'anchor') {
-      return getCoordinatesNonAnchor(point);
+      if (edgeTerminusRef.type === 'unconnected') {
+        coordinates.x = point.x;
+        coordinates.y = point.y;
+
+      }
+      else {
+        if (edgeTerminusRef.type === 'labelableElement') {
+          var coordinates = pathvisio.labelableElements.getPortCoordinates(edgeTerminusRef.element, point.relX, point.relY);
+        }
+        else {
+          if (edgeTerminusRef.type === 'group') {
+            var groupDimensions = pathvisio.groups.getDimensions(edgeTerminusRef.groupId);
+            var coordinates = pathvisio.labelableElements.getPortCoordinates(groupDimensions, point.relX, point.relY);
+          }
+          else {
+            return 'error';
+          };
+        };
+      };
     }
     else {
       var path = d3.select("#interaction-" + edgeTerminusRef.edge.graphId)[0][0];
       var coordinates = path.getPointAtLength(edgeTerminusRef.element.position * path.getTotalLength());
-      return coordinates;
     };
+
+    return coordinates;
   };
 
   function isTwoPointElbow(source, target) {
@@ -86,7 +77,6 @@ pathvisio.edges.endPoints = function(){
 
   return { 
     getGraphRef:getGraphRef, 
-    getCoordinatesNonAnchor:getCoordinatesNonAnchor, 
     getCoordinates:getCoordinates, 
     isTwoPointElbow:isTwoPointElbow
   } 
