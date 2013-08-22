@@ -14,8 +14,8 @@ pathvisio.edges = function(){
       .attr("class", function (d) { 
         var styleClass = 'edge ' + d.edgeType + ' ';
         if (d.hasOwnProperty('strokeStyle')) {
-          if (d.strokeStyle === 'broken') {
-            styleClass += " broken-stroke"; 
+          if (d.strokeStyle === 'dashed') {
+            styleClass += " dashed-stroke"; 
           };
         };
         return styleClass; 
