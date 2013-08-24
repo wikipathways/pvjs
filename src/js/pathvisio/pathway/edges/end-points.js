@@ -1,22 +1,22 @@
-pathvisio.edges.endPoints = function(){ 
+pathway.edges.endPoints = function(){ 
   function getGraphRef(point) {
     self.point=point;
     if (point.hasOwnProperty('graphRef')) {
-      if (pathway.hasOwnProperty('labelableElements')) {
-        var labelableElement = pathway.labelableElements.filter(function(element) {return element.graphId === point.graphRef})[0]
+      if (pathway.data.hasOwnProperty('labelableElements')) {
+        var labelableElement = pathway.data.labelableElements.filter(function(element) {return element.graphId === point.graphRef})[0]
         if (labelableElement !== undefined) {
           return {'type':'labelableElement', 'element':labelableElement};
         };
       };
 
-      if (pathway.hasOwnProperty('groups')) {
-        var group = pathway.groups.filter(function(element) {return element.graphId === point.graphRef})[0]
+      if (pathway.data.hasOwnProperty('groups')) {
+        var group = pathway.data.groups.filter(function(element) {return element.graphId === point.graphRef})[0]
         if (group !== undefined) {
           return {'type':'group', 'groupId':group.groupId};
         };
       };
 
-      var edgesWithAnchors = pathway.edges.filter(function(element) {return element.hasOwnProperty('anchors')})
+      var edgesWithAnchors = pathway.data.edges.filter(function(element) {return element.hasOwnProperty('anchors')})
       self.edgesWithAnchors = edgesWithAnchors;
       var i = -1;
       do {
@@ -34,8 +34,8 @@ pathvisio.edges.endPoints = function(){
 
   function getCoordinates(point) {
 
-    // var point = pathway.edges.filter(function(element) {return element.graphId === "b9d61" })[0].points[2]
-    // pathvisio.edges.endPoints.getCoordinates(point)
+    // var point = pathway.data.edges.filter(function(element) {return element.graphId === "b9d61" })[0].points[2]
+    // pathway.data.edges.endPoints.getCoordinates(point)
 
     var coordinates = {};
     var edgeTerminusRef = self.edgeTerminusRef = getGraphRef(point);
@@ -47,12 +47,12 @@ pathvisio.edges.endPoints = function(){
       }
       else {
         if (edgeTerminusRef.type === 'labelableElement') {
-          var coordinates = pathvisio.labelableElements.getPortCoordinates(edgeTerminusRef.element, point.relX, point.relY);
+          var coordinates = pathway.labelableElements.getPortCoordinates(edgeTerminusRef.element, point.relX, point.relY);
         }
         else {
           if (edgeTerminusRef.type === 'group') {
-            var groupDimensions = pathvisio.groups.getDimensions(edgeTerminusRef.groupId);
-            var coordinates = pathvisio.labelableElements.getPortCoordinates(groupDimensions, point.relX, point.relY);
+            var groupDimensions = pathway.groups.getDimensions(edgeTerminusRef.groupId);
+            var coordinates = pathway.labelableElements.getPortCoordinates(groupDimensions, point.relX, point.relY);
           }
           else {
             return 'error';

@@ -26,10 +26,24 @@ pathvisio.helpers = function(){
     };
   };
 
+  function convertToArray(object) {
+    if (Object.prototype.toString.call( object ) === '[object Object]' ) {
+      var array = [];
+      array.push(object)
+      return array;
+    }
+    else {
+      if( Object.prototype.toString.call( object ) === '[object Array]' ) {
+        return object;
+      };
+    };
+  };
+
   return{
     splitStringByNewLine:splitStringByNewLine,
     getUrlParam:getUrlParam,
-    cloneNode:cloneNode
+    cloneNode:cloneNode,
+    convertToArray:convertToArray
   }
 }();
 

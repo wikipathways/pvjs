@@ -1,0 +1,2 @@
+var pathvisio = {};
+pathvisio.pathways = [];

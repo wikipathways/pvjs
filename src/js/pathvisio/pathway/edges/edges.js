@@ -1,13 +1,13 @@
 // Edges (interactions and graphical lines)
 
-pathvisio.edges = function(){
+pathway.edges = function(){
   var current = null;
   function drawAll() {
-    if (pathway.hasOwnProperty('edges')) {
+    if (pathway.data.hasOwnProperty('edges')) {
       var pathData = null;
 
-      var edges = svg.selectAll("pathway.edge")
-      .data(pathway.edges)
+      var edges = pathway.svg.selectAll("pathway.edge")
+      .data(pathway.data.edges)
       .enter()
       .append("path")
       .attr("id", function (d) { return d.edgeType + '-' + d.graphId; })
@@ -21,7 +21,7 @@ pathvisio.edges = function(){
         return styleClass; 
       })
       .attr("d", function (d) {
-        pathData = pathvisio.edges.pathData.get(d, pathway.labelableElements);
+        pathData = pathway.data.edges.pathData.get(d, pathway.data.labelableElements);
         if (d.hasOwnProperty('strokeStyle')) {
           if (d.strokeStyle === 'double') {
 
@@ -29,13 +29,13 @@ pathvisio.edges = function(){
             // what PathVisio (Java) does, but the white line (overlaying the
             // thick line to create a "double line") is hard to see at 1px.
 
-            svg.append("path")
+            pathway.svg.append("path")
             .attr("class", d.edgeType + "-double")
             .attr("d", pathData)
             .attr("class", "drawing-board-color-stroke")
             .attr("style", "stroke-width:" + d.strokeWidth + '; ')
-            .attr("marker-start", 'url(#' + pathvisio.edges.markers.draw(d.markerStart, 'start', d.stroke) + ')')
-            .attr("marker-end", 'url(#' + pathvisio.edges.markers.draw(d.markerEnd, 'end', d.stroke) + ')');
+            .attr("marker-start", 'url(#' + pathway.edges.markers.draw(d.markerStart, 'start', d.stroke) + ')')
+            .attr("marker-end", 'url(#' + pathway.edges.markers.draw(d.markerEnd, 'end', d.stroke) + ')');
           };
         };
         return pathData; 
@@ -53,7 +53,7 @@ pathvisio.edges = function(){
         return style; 
       })
       .attr("marker-start", function (d) { 
-        markerStart = pathvisio.edges.markers.draw(d.markerStart, 'start', d.stroke);
+        markerStart = pathway.edges.markers.draw(d.markerStart, 'start', d.stroke);
         if (d.hasOwnProperty('strokeStyle')) {
           if (d.strokeStyle === 'double') {
             //hack to manage marker scaling; this marker should not have any features itself
@@ -63,7 +63,7 @@ pathvisio.edges = function(){
         return 'url(#' + markerStart + ')'; 
       })
       .attr("marker-end", function (d) { 
-        markerEnd = pathvisio.edges.markers.draw(d.markerEnd, 'end', d.stroke);
+        markerEnd = pathway.edges.markers.draw(d.markerEnd, 'end', d.stroke);
         if (d.hasOwnProperty('strokeStyle')) {
           if (d.strokeStyle === 'double') {
             //hack to manage marker scaling; this marker should not have any features itself

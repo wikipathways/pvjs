@@ -1,4 +1,4 @@
-pathvisio.xmlGpml2jsonGpml.labelableElements = function(){
+pathvisio.gpml2json.labelableElements = function(){
 
     // GPML to jGPML shape name mappings: { "OldName":"new-name" }
     // replace spaces with dashes
@@ -47,7 +47,7 @@ pathvisio.xmlGpml2jsonGpml.labelableElements = function(){
         };
 
         if (element.hasOwnProperty('comment')) {
-          element.comments = pathvisio.xmlGpml2jsonGpml.convertToArray( element.comment );
+          element.comments = pathvisio.gpml2json.convertToArray( element.comment );
           delete element.comment;
         };
 
@@ -137,7 +137,7 @@ pathvisio.xmlGpml2jsonGpml.labelableElements = function(){
         };	
 
         if (element.hasOwnProperty('attribute')) {
-          element.attributes = pathvisio.xmlGpml2jsonGpml.convertToArray( element.attribute );
+          element.attributes = pathvisio.gpml2json.convertToArray( element.attribute );
           delete element.attribute;
           element.attributes.forEach(function(el, index, array) {
             if ((el.key === "org.pathvisio.DoubleLineProperty") && (el.value === "Double")) {

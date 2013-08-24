@@ -1,6 +1,6 @@
 // Edges (interactions and graphical lines)
 
-pathvisio.xmlGpml2jsonGpml.edges = function(){
+pathvisio.gpml2json.edges = function(){
 
   // pathvisio.js vs PathVisio (Java) specification of anchor position
   // -----------------------------------------
@@ -63,7 +63,7 @@ pathvisio.xmlGpml2jsonGpml.edges = function(){
         };
 
         if (element.graphics.hasOwnProperty('anchor')) {
-          element.anchors = pathvisio.xmlGpml2jsonGpml.convertToArray(element.graphics.anchor);
+          element.anchors = pathvisio.gpml2json.convertToArray(element.graphics.anchor);
           element.anchors.forEach(function(element) {
             element.graphId = element.graphid;
             delete element.graphid;
@@ -106,8 +106,8 @@ pathvisio.xmlGpml2jsonGpml.edges = function(){
 
         // Points
 
-        var points = pathvisio.xmlGpml2jsonGpml.convertToArray( element.graphics.point );
-        var pointsData = pathvisio.xmlGpml2jsonGpml.edges.points.convert( points );
+        var points = pathvisio.gpml2json.convertToArray( element.graphics.point );
+        var pointsData = pathvisio.gpml2json.edges.points.convert( points );
         element.points = pointsData.points;
 
         // Back to edges

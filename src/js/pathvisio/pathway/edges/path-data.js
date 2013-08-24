@@ -11,10 +11,10 @@
 // [W3C documention on cubic bezier curves for SVG](http://www.w3.org/TR/SVG/paths.html#PathDataLinetoCommands)
 // There are other types of SVG curves, but I understand the Java code to use bezier curves.
 
-pathvisio.edges.pathData = function(){ 
+pathway.edges.pathData = function(){ 
   function get(d, labelableElements) {
     var sourcePoint = d.points[0];
-    var source = pathvisio.edges.endPoints.getCoordinates(sourcePoint);
+    var source = pathway.data.edges.endPoints.getCoordinates(sourcePoint);
 
     if (sourcePoint.dx === undefined) {
       source.dx = 0;
@@ -31,7 +31,7 @@ pathvisio.edges.pathData = function(){
     };
 
     var targetPoint = d.points[d.points.length - 1];
-    var target = pathvisio.edges.endPoints.getCoordinates(targetPoint);
+    var target = pathway.data.edges.endPoints.getCoordinates(targetPoint);
 
     if (targetPoint.dx === undefined) {
       target.dx = 0;
@@ -83,7 +83,7 @@ pathvisio.edges.pathData = function(){
         //if (d.points.length === 2) {
         //doesn't quite work yet, so this works for most cases
 
-        if (( d.points.length === 2 && pathvisio.edges.endPoints.isTwoPointElbow(source, target)) ) {
+        if (( d.points.length === 2 && pathway.data.edges.endPoints.isTwoPointElbow(source, target)) ) {
         }
         else {
           if ( d.points.length > 2 ) {
