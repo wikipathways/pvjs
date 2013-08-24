@@ -5,23 +5,23 @@ pathway.infoBox = function(){
     // Although gpml has x and y values for infobox, we have decided to ignore them and always set it in the upper left.
 
     var infoBox = [];
-    if (pathway.hasOwnProperty('name')) {
-      infoBox.push({'key':'Title', 'value':pathway.name});
+    if (pathway.data.hasOwnProperty('name')) {
+      infoBox.push({'key':'Title', 'value':pathway.data.name});
     };
 
-    if (pathway.hasOwnProperty('license')) {
-      infoBox.push({'key':'Availability', 'value':pathway.license});
+    if (pathway.data.hasOwnProperty('license')) {
+      infoBox.push({'key':'Availability', 'value':pathway.data.license});
     };
 
-    if (pathway.hasOwnProperty('lastModified')) {
-      infoBox.push({'key':'Last modified', 'value':pathway.lastModified});
+    if (pathway.data.hasOwnProperty('lastModified')) {
+      infoBox.push({'key':'Last modified', 'value':pathway.data.lastModified});
     };
 
-    if (pathway.hasOwnProperty('organism')) {
-      infoBox.push({'key':'Organism', 'value':pathway.organism});
+    if (pathway.data.hasOwnProperty('organism')) {
+      infoBox.push({'key':'Organism', 'value':pathway.data.organism});
     };
 
-    var infoBoxElements = svg.selectAll("text.info-box")
+    var infoBoxElements = pathway.data.svg.selectAll("text.info-box")
     .data(infoBox)
     .enter()
     .append("text")

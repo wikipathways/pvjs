@@ -188,6 +188,8 @@ SVG pathway template file</a> in the <span style="font-weight: bold">DEV</span> 
 
   window.onload = function() {
     //pathway.load('#pathway-image', '../../test/gpml/fill-and-stroke-colors.gpml');
+    //pathway.load('#pathway-image', '../../test/gpml/shapes.gpml');
+    pathway.load('#pathway-image', url);
 
     //pathvisio.drawFromUrl('#pathway-image', url, 'gpml+xml');
     //var sJson = JSON.stringify(pathway, undefined, 2);

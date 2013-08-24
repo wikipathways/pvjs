@@ -24,8 +24,8 @@ pathway = function(){
           console.log('gpml');
           console.log(gpml);
 
-          pathvisio.gpml2json.convert(gpml);
-          var sJson = self.sJson = JSON.stringify(pathway, undefined, 2);
+          pathway.data = pathvisio.gpml2json.convert(gpml);
+          var sJson = self.sJson = JSON.stringify(pathway.data, undefined, 2);
 
           callback(pathway, sGpml, sJson);
         });
@@ -58,8 +58,8 @@ pathway = function(){
     */
   };
 
-  function draw(svgSelector, pathway){
-    pathway.svg = getSvg(svgSelector);
+  function draw(svgSelector, data){
+    data.svg = getSvg(svgSelector);
 
     /*
     // Use this code if you want to get the SVG using d3.xml
@@ -68,7 +68,7 @@ pathway = function(){
     });
     */
 
-    if (pathway === null) {
+    if (data === null) {
       return console.warn('Error: No url specified for GPML or JSON data.');
     };
 
@@ -83,12 +83,12 @@ pathway = function(){
         .attr("y", d3.event.y);
     };	
 
-    pathway.svg.attr('width', pathway.boardWidth);
-    pathway.svg.attr('height', pathway.boardHeight);
+    data.svg.attr('width', data.boardWidth);
+    data.svg.attr('height', data.boardHeight);
 
-    var symbolsAvailable = self.symbolsAvailable = pathway.svg.selectAll('symbol');
+    var symbolsAvailable = self.symbolsAvailable = data.svg.selectAll('symbol');
 
-    var markersAvailable = markersAvailable = pathway.svg.selectAll('marker');
+    var markersAvailable = markersAvailable = data.svg.selectAll('marker');
 
     pathvisio.pathways.push(pathway);
 
@@ -112,17 +112,17 @@ pathway = function(){
     var sGpml = get(url, mimeType, function(pathway, sGpml, sJson) {
     console.log('pathway js');
     console.log(pathway);
+    draw(svgSelector, pathway.data);
       return sGpml;
     });
 
-    var gpml = document.getElementsByTagName('pathway')[0];
-    console.log('XML GPML:');
-    console.log(gpml);
+    //var gpml = document.getElementsByTagName('pathway')[0];
+    //console.log('XML GPML:');
+    //console.log(gpml);
 
     // be sure server has set gpml mime type to application/gpml+xml
 
-    pathvisio.gpml2json.convert(gpml);
-    draw(svgSelector, pathway);
+    //pathvisio.gpml2json.convert(gpml);
   };
 
   return {

@@ -1,9 +1,9 @@
 pathway.groups = function(){ 
   function drawAll() {
-    if (pathway.hasOwnProperty('groups')) {
+    if (pathway.data.hasOwnProperty('groups')) {
 
-      var groupsContainer = pathway.svg.selectAll("use.group")	
-      .data(pathway.groups)
+      var groupsContainer = pathway.data.svg.selectAll("use.group")	
+      .data(pathway.data.groups)
       .enter()
       .append("use")
       .attr("id", function (d) { return 'group-' + d.graphId })
@@ -30,7 +30,7 @@ pathway.groups = function(){
   };
 
   function getDimensions(groupId) {
-    var groupMembers = pathway.labelableElements.filter(function(el) {return (el.groupRef === groupId)});
+    var groupMembers = pathway.data.labelableElements.filter(function(el) {return (el.groupRef === groupId)});
     var group = {};
 
     // I think this is margin, not padding, but I'm not sure

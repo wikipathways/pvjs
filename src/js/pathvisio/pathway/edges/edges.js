@@ -6,7 +6,7 @@ pathway.edges = function(){
     if (pathway.data.hasOwnProperty('edges')) {
       var pathData = null;
 
-      var edges = pathway.svg.selectAll("pathway.edge")
+      var edges = pathway.data.svg.selectAll("pathway.edge")
       .data(pathway.data.edges)
       .enter()
       .append("path")
@@ -21,7 +21,7 @@ pathway.edges = function(){
         return styleClass; 
       })
       .attr("d", function (d) {
-        pathData = pathway.data.edges.pathData.get(d, pathway.data.labelableElements);
+        pathData = pathway.edges.pathData.get(d);
         if (d.hasOwnProperty('strokeStyle')) {
           if (d.strokeStyle === 'double') {
 
@@ -29,7 +29,7 @@ pathway.edges = function(){
             // what PathVisio (Java) does, but the white line (overlaying the
             // thick line to create a "double line") is hard to see at 1px.
 
-            pathway.svg.append("path")
+            pathway.data.svg.append("path")
             .attr("class", d.edgeType + "-double")
             .attr("d", pathData)
             .attr("class", "drawing-board-color-stroke")

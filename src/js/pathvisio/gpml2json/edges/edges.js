@@ -62,11 +62,15 @@ pathvisio.gpml2json.edges = function(){
           delete element.groupref;
         };
 
+          console.log('element');
+          console.log(element);
         if (element.graphics.hasOwnProperty('anchor')) {
           element.anchors = pathvisio.gpml2json.convertToArray(element.graphics.anchor);
-          element.anchors.forEach(function(element) {
-            element.graphId = element.graphid;
-            delete element.graphid;
+          console.log('element');
+          console.log(element);
+          element.anchors.forEach(function(el) {
+            el.graphId = el.graphid;
+            delete el.graphid;
           });
         };
 
