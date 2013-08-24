@@ -1,4 +1,4 @@
-pathway.edges.markers = function(){ 
+pathvisio.pathway.edge.marker = function(){ 
   function draw(name, position, color) {
     var markerName = '';
     if (name === 'none') {
@@ -16,13 +16,12 @@ pathway.edges.markers = function(){
 
       else {
         /*
-        var pathway.svg = d3.select("#pathway-container").select(function() {
+        var pathvisio.pathways[pathvisio.current.svgSelector].svg = d3.select("#pathway-container").select(function() {
           return this.contentDocument.documentElement;
         });
         */
 
-        pathway.svg = d3.select("#pathway-image");
-        var markerElementBlack = pathway.svg.select('marker#' + name + '-' + position + '-black');
+        var markerElementBlack = pathvisio.current.svg.select('marker#' + name + '-' + position + '-black');
         var markerElement = pathvisio.helpers.cloneNode(markerElementBlack[0][0]);
 
         // define style of marker element

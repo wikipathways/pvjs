@@ -1,22 +1,22 @@
-pathway.edges.endPoints = function(){ 
+pathvisio.pathway.edge.endPoint = function(){ 
   function getGraphRef(point) {
     self.point=point;
     if (point.hasOwnProperty('graphRef')) {
-      if (pathway.data.hasOwnProperty('labelableElements')) {
-        var labelableElement = pathway.data.labelableElements.filter(function(element) {return element.graphId === point.graphRef})[0]
+      if (pathvisio.pathways[pathvisio.current.svgSelector].hasOwnProperty('labelableElements')) {
+        var labelableElement = pathvisio.pathways[pathvisio.current.svgSelector].labelableElements.filter(function(element) {return element.graphId === point.graphRef})[0]
         if (labelableElement !== undefined) {
           return {'type':'labelableElement', 'element':labelableElement};
         };
       };
 
-      if (pathway.data.hasOwnProperty('groups')) {
-        var group = pathway.data.groups.filter(function(element) {return element.graphId === point.graphRef})[0]
+      if (pathvisio.pathways[pathvisio.current.svgSelector].hasOwnProperty('groups')) {
+        var group = pathvisio.pathways[pathvisio.current.svgSelector].groups.filter(function(element) {return element.graphId === point.graphRef})[0]
         if (group !== undefined) {
           return {'type':'group', 'groupId':group.groupId};
         };
       };
 
-      var edgesWithAnchors = pathway.data.edges.filter(function(element) {return element.hasOwnProperty('anchors')})
+      var edgesWithAnchors = pathvisio.pathways[pathvisio.current.svgSelector].edges.filter(function(element) {return element.hasOwnProperty('anchors')})
       self.edgesWithAnchors = edgesWithAnchors;
       var i = -1;
       do {
@@ -34,8 +34,8 @@ pathway.edges.endPoints = function(){
 
   function getCoordinates(point) {
 
-    // var point = pathway.data.edges.filter(function(element) {return element.graphId === "b9d61" })[0].points[2]
-    // pathway.data.edges.endPoints.getCoordinates(point)
+    // var point = pathvisio.pathways[pathvisio.current.svgSelector].edges.filter(function(element) {return element.graphId === "b9d61" })[0].points[2]
+    // pathvisio.pathvisio.pathways[pathvisio.current.svgSelector].edges.endPoints.getCoordinates(point)
 
     var coordinates = {};
     var edgeTerminusRef = self.edgeTerminusRef = getGraphRef(point);
@@ -47,12 +47,12 @@ pathway.edges.endPoints = function(){
       }
       else {
         if (edgeTerminusRef.type === 'labelableElement') {
-          var coordinates = pathway.labelableElements.getPortCoordinates(edgeTerminusRef.element, point.relX, point.relY);
+          var coordinates = pathvisio.pathway.labelableElement.getPortCoordinates(edgeTerminusRef.element, point.relX, point.relY);
         }
         else {
           if (edgeTerminusRef.type === 'group') {
-            var groupDimensions = pathway.groups.getDimensions(edgeTerminusRef.groupId);
-            var coordinates = pathway.labelableElements.getPortCoordinates(groupDimensions, point.relX, point.relY);
+            var groupDimensions = pathvisio.pathway.group.getDimensions(edgeTerminusRef.groupId);
+            var coordinates = pathvisio.pathway.labelableElement.getPortCoordinates(groupDimensions, point.relX, point.relY);
           }
           else {
             return 'error';

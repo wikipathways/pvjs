@@ -1,6 +1,6 @@
 pathvisio.gpml2json.labelableElements = function(){
 
-    // GPML to jGPML shape name mappings: { "OldName":"new-name" }
+    // GPML to JSON shape name mappings: { "OldName":"new-name" }
     // replace spaces with dashes
     // Add dashes before every capital letter except any capital letters at the beginning of the string
     // Replace spaces with dashes
@@ -47,7 +47,7 @@ pathvisio.gpml2json.labelableElements = function(){
         };
 
         if (element.hasOwnProperty('comment')) {
-          element.comments = pathvisio.gpml2json.convertToArray( element.comment );
+          element.comments = pathvisio.helpers.convertToArray( element.comment );
           delete element.comment;
         };
 
@@ -137,7 +137,7 @@ pathvisio.gpml2json.labelableElements = function(){
         };	
 
         if (element.hasOwnProperty('attribute')) {
-          element.attributes = pathvisio.gpml2json.convertToArray( element.attribute );
+          element.attributes = pathvisio.helpers.convertToArray( element.attribute );
           delete element.attribute;
           element.attributes.forEach(function(el, index, array) {
             if ((el.key === "org.pathvisio.DoubleLineProperty") && (el.value === "Double")) {
