@@ -5,23 +5,23 @@ pathvisio.pathway.infoBox = function(){
     // Although gpml has x and y values for infobox, we have decided to ignore them and always set it in the upper left.
 
     var infoBox = [];
-    if (pathvisio.pathways[pathvisio.current.svgSelector].hasOwnProperty('name')) {
-      infoBox.push({'key':'Title', 'value':pathvisio.pathways[pathvisio.current.svgSelector].name});
+    if (pathvisio.data.pathways[pathvisio.data.current.svgSelector].hasOwnProperty('name')) {
+      infoBox.push({'key':'Title', 'value':pathvisio.data.pathways[pathvisio.data.current.svgSelector].name});
     };
 
-    if (pathvisio.pathways[pathvisio.current.svgSelector].hasOwnProperty('license')) {
-      infoBox.push({'key':'Availability', 'value':pathvisio.pathways[pathvisio.current.svgSelector].license});
+    if (pathvisio.data.pathways[pathvisio.data.current.svgSelector].hasOwnProperty('license')) {
+      infoBox.push({'key':'Availability', 'value':pathvisio.data.pathways[pathvisio.data.current.svgSelector].license});
     };
 
-    if (pathvisio.pathways[pathvisio.current.svgSelector].hasOwnProperty('lastModified')) {
-      infoBox.push({'key':'Last modified', 'value':pathvisio.pathways[pathvisio.current.svgSelector].lastModified});
+    if (pathvisio.data.pathways[pathvisio.data.current.svgSelector].hasOwnProperty('lastModified')) {
+      infoBox.push({'key':'Last modified', 'value':pathvisio.data.pathways[pathvisio.data.current.svgSelector].lastModified});
     };
 
-    if (pathvisio.pathways[pathvisio.current.svgSelector].hasOwnProperty('organism')) {
-      infoBox.push({'key':'Organism', 'value':pathvisio.pathways[pathvisio.current.svgSelector].organism});
+    if (pathvisio.data.pathways[pathvisio.data.current.svgSelector].hasOwnProperty('organism')) {
+      infoBox.push({'key':'Organism', 'value':pathvisio.data.pathways[pathvisio.data.current.svgSelector].organism});
     };
 
-    var infoBoxElements = pathvisio.current.svg.selectAll("text.info-box")
+    var infoBoxElements = pathvisio.data.current.svg.selectAll("text.info-box")
     .data(infoBox)
     .enter()
     .append("text")

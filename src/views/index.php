@@ -136,19 +136,11 @@ SVG pathway template file</a> in the <span style="font-weight: bold">DEV</span> 
 ?>
 
 <script src="../js/pathvisio/pathvisio.js"></script>
-
 <script src="../js/pathvisio/pathway/pathway.js"></script>
-
-<script src="../js/pathvisio/gpml2json/jxon.js"></script>
-<script src="../js/pathvisio/gpml2json/gpml2json.js"></script>
-<script src="../js/pathvisio/gpml2json/edges/edges.js"></script>
-<script src="../js/pathvisio/gpml2json/edges/points.js"></script>
-<script src="../js/pathvisio/gpml2json/labelableElements.js"></script>
-
 <script src="../js/pathvisio/pathway/edge/edge.js"></script>
 <script src="../js/pathvisio/pathway/edge/path-data.js"></script>
 <script src="../js/pathvisio/pathway/edge/marker.js"></script>
-<script src="../js/pathvisio/pathway/edge/end-point.js"></script>
+<script src="../js/pathvisio/pathway/edge/point.js"></script>
 
 <script src="../js/pathvisio/pathway/info-box.js"></script>
 <script src="../js/pathvisio/pathway/group.js"></script>
@@ -157,6 +149,7 @@ SVG pathway template file</a> in the <span style="font-weight: bold">DEV</span> 
 <script src="../js/pathvisio/helpers.js"></script>
 <script src="../js/rgbcolor.js"></script>
 
+<script src="../js/jxon.js"></script>
 <script src="../lib/jquery/jquery.js"></script>
 <script src="../lib/d3/d3.js" charset="utf-8"></script>
 

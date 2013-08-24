@@ -12,9 +12,10 @@
 // There are other types of SVG curves, but I understand the Java code to use bezier curves.
 
 pathvisio.pathway.edge.pathData = function(){ 
+
   function get(d) {
     var sourcePoint = d.points[0];
-    var source = pathvisio.pathway.edge.endPoint.getCoordinates(sourcePoint);
+    var source = pathvisio.pathway.edge.point.getCoordinates(sourcePoint);
 
     if (sourcePoint.dx === undefined) {
       source.dx = 0;
@@ -31,7 +32,7 @@ pathvisio.pathway.edge.pathData = function(){
     };
 
     var targetPoint = d.points[d.points.length - 1];
-    var target = pathvisio.pathway.edge.endPoint.getCoordinates(targetPoint);
+    var target = pathvisio.pathway.edge.point.getCoordinates(targetPoint);
 
     if (targetPoint.dx === undefined) {
       target.dx = 0;
@@ -83,7 +84,7 @@ pathvisio.pathway.edge.pathData = function(){
         //if (d.points.length === 2) {
         //doesn't quite work yet, so this works for most cases
 
-        if (( d.points.length === 2 && pathvisio.pathway.edge.endPoint.isTwoPointElbow(source, target)) ) {
+        if (( d.points.length === 2 && pathvisio.pathway.edge.point.isTwoPointElbow(source, target)) ) {
         }
         else {
           if ( d.points.length > 2 ) {
@@ -197,6 +198,6 @@ pathvisio.pathway.edge.pathData = function(){
   };
  
   return { 
-    get:get 
+    get:get
   } 
 }();
