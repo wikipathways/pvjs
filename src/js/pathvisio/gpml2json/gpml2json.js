@@ -264,7 +264,7 @@ pathvisio.gpml2json = function(){
           });
         }
         else {
-          console.log("No element(s) named 'datanode' found in this gpml file.");
+          console.log("No element(s) named 'group' found in this gpml file.");
         }
       }
       catch (e) {
@@ -310,8 +310,10 @@ pathvisio.gpml2json = function(){
               delete element.xref;
             };
           });
+          console.log('dataNodes');
+          console.log(dataNodes);
 
-          if (rawJson.hasOwnProperty('labelableElements')) {
+          if (pathway.data.hasOwnProperty('labelableElements')) {
             pathway.data.labelableElements = pathway.data.labelableElements.concat(dataNodes);
           }
           else {
@@ -338,7 +340,7 @@ pathvisio.gpml2json = function(){
             element.elementType = 'label';
           });
 
-          if (rawJson.hasOwnProperty('labelableElements')) {
+          if (pathway.data.hasOwnProperty('labelableElements')) {
             pathway.data.labelableElements = pathway.data.labelableElements.concat(labels);
           }
           else {
@@ -365,7 +367,7 @@ pathvisio.gpml2json = function(){
             element.elementType = 'shape';
           });
 
-          if (rawJson.hasOwnProperty('labelableElements')) {
+          if (pathway.data.hasOwnProperty('labelableElements')) {
             pathway.data.labelableElements = pathway.data.labelableElements.concat(shapes);
           }
           else {
