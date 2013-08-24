@@ -25,8 +25,8 @@ var url = getUrlParameter('pathwayUrl');
   <button id="javascript-svg-pathway-button" class="pathway" onclick="displayDiv('javascript-svg')" style="background-color: yellow">pathvisio.js SVG</button>
   <button id="java-svg-pathway-button" class="pathway" onclick="displayDiv('java-svg')" style="background-color: lightgray" title="SVG representation of GPML file, as created by PathVisio (Java), using Batik">PathVisio (Java) SVG</button>
   <button id="java-png-pathway-button" class="pathway" onclick="displayDiv('java-png')" style="background-color: lightgray" title="PNG representation of GPML file, as created by PathVisio (Java)">PathVisio (Java) PNG</button>
-  <button id="xml-gpml-pathway-button" class="pathway" onclick="displayDiv('xml-gpml')" style="background-color: lightgray" title="XML version of source GPML file">XML GPML</button>
-  <button id="json-gpml-pathway-button" class="pathway" onclick="displayDiv('json-gpml')" style="background-color: lightgray" title="JSON version of source GPML file">JSON GPML</button>
+  <button id="xml-gpml-pathway-button" class="pathway" onclick="displayDiv('xml-gpml')" style="background-color: lightgray" title="XML version of source GPML file">GPML (XML)</button>
+  <button id="json-gpml-pathway-button" class="pathway" onclick="displayDiv('json-gpml')" style="background-color: lightgray" title="JSON version of source GPML file">JSON</button>
 Repo: 
 <?php
   $authorizedRepos = array("wikipathways", "AlexanderPico", "ariutta", "khanspers");
@@ -145,14 +145,14 @@ SVG pathway template file</a> in the <span style="font-weight: bold">DEV</span> 
 <script src="../js/pathvisio/gpml2json/edges/points.js"></script>
 <script src="../js/pathvisio/gpml2json/labelableElements.js"></script>
 
-<script src="../js/pathvisio/pathway/edges/edges.js"></script>
-<script src="../js/pathvisio/pathway/edges/path-data.js"></script>
-<script src="../js/pathvisio/pathway/edges/markers.js"></script>
-<script src="../js/pathvisio/pathway/edges/end-points.js"></script>
+<script src="../js/pathvisio/pathway/edge/edge.js"></script>
+<script src="../js/pathvisio/pathway/edge/path-data.js"></script>
+<script src="../js/pathvisio/pathway/edge/marker.js"></script>
+<script src="../js/pathvisio/pathway/edge/end-point.js"></script>
 
 <script src="../js/pathvisio/pathway/info-box.js"></script>
-<script src="../js/pathvisio/pathway/groups.js"></script>
-<script src="../js/pathvisio/pathway/labelable-elements.js"></script>
+<script src="../js/pathvisio/pathway/group.js"></script>
+<script src="../js/pathvisio/pathway/labelable-element.js"></script>
 
 <script src="../js/pathvisio/helpers.js"></script>
 <script src="../js/rgbcolor.js"></script>
@@ -189,7 +189,7 @@ SVG pathway template file</a> in the <span style="font-weight: bold">DEV</span> 
   window.onload = function() {
     //pathway.load('#pathway-image', '../../test/gpml/fill-and-stroke-colors.gpml');
     //pathway.load('#pathway-image', '../../test/gpml/shapes.gpml');
-    pathway.load('#pathway-image', url);
+    pathvisio.pathway.load('#pathway-image', url);
 
     //pathvisio.drawFromUrl('#pathway-image', url, 'gpml+xml');
     //var sJson = JSON.stringify(pathway, undefined, 2);
@@ -264,6 +264,7 @@ SVG pathway template file</a> in the <span style="font-weight: bold">DEV</span> 
       this.style.display = 'none';
     });
     $('#' + creator + "-pathway-container")[0].style.display = 'block';
+    $('#json-gpml-for-reading').text(sJson);
   };
 </script>
 </body>

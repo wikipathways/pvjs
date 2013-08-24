@@ -62,12 +62,8 @@ pathvisio.gpml2json.edges = function(){
           delete element.groupref;
         };
 
-          console.log('element');
-          console.log(element);
         if (element.graphics.hasOwnProperty('anchor')) {
-          element.anchors = pathvisio.gpml2json.convertToArray(element.graphics.anchor);
-          console.log('element');
-          console.log(element);
+          element.anchors = pathvisio.helpers.convertToArray(element.graphics.anchor);
           element.anchors.forEach(function(el) {
             el.graphId = el.graphid;
             delete el.graphid;
@@ -110,7 +106,7 @@ pathvisio.gpml2json.edges = function(){
 
         // Points
 
-        var points = pathvisio.gpml2json.convertToArray( element.graphics.point );
+        var points = pathvisio.helpers.convertToArray( element.graphics.point );
         var pointsData = pathvisio.gpml2json.edges.points.convert( points );
         element.points = pointsData.points;
 

@@ -1,4 +1,4 @@
-pathway = function(){
+pathvisio.pathway = function(){
 
   var url = null;
 
@@ -21,53 +21,19 @@ pathway = function(){
           var sGpml = oSerializer.serializeToString(gpmlDoc);
 
           var gpml = gpmlDoc.documentElement;
-          console.log('gpml');
+          console.log('GPML');
           console.log(gpml);
 
-          pathway.data = pathvisio.gpml2json.convert(gpml);
-          var sJson = self.sJson = JSON.stringify(pathway.data, undefined, 2);
+          pathvisio.pathways[pathvisio.current.svgSelector] = pathvisio.gpml2json.convert(gpml, pathvisio.current.svgSelector);
+          var sJson = self.sJson = JSON.stringify(pathvisio.pathways[pathvisio.current.svgSelector], undefined, 2);
 
-          callback(pathway, sGpml, sJson);
+          callback(pathvisio.pathways[pathvisio.current.svgSelector], sGpml, sJson);
         });
       };
     };
   };
 
-  function getSvg(svgSelector){
-    if (svgSelector !== null) {
-      var svg = d3.select(svgSelector);
-      var svgCount = svg.length;
-      if (svgCount === 1) {
-        pathway.svgSelector = svgSelector;
-        console.log('Successfully loaded SVG pathway template.');
-        return svg;
-      }
-      else {
-        return console.warn('Error: ' + svgCount + ' SVG template(s) returned with selector "' + svgSelector + '". Please redefined selector so only 1 result is returned.');
-      };
-    }
-    else {
-      return console.warn('Error: No SVG template selector specified.');
-    };
-
-    /*
-    // Use this code if you want to get the SVG using d3.xml
-    var svg = d3.select("#pathway-container").select(function() {
-      return this.getSVGDocument().documentElement;
-    });
-    */
-  };
-
-  function draw(svgSelector, data){
-    data.svg = getSvg(svgSelector);
-
-    /*
-    // Use this code if you want to get the SVG using d3.xml
-    var svg = d3.select("#pathway-container").select(function() {
-      return this.getSVGDocument().documentElement;
-    });
-    */
-
+  function draw(data){
     if (data === null) {
       return console.warn('Error: No url specified for GPML or JSON data.');
     };
@@ -83,37 +49,53 @@ pathway = function(){
         .attr("y", d3.event.y);
     };	
 
-    data.svg.attr('width', data.boardWidth);
-    data.svg.attr('height', data.boardHeight);
+    pathvisio.current.svg.attr('width', data.boardWidth);
+    pathvisio.current.svg.attr('height', data.boardHeight);
 
-    var symbolsAvailable = self.symbolsAvailable = data.svg.selectAll('symbol');
+    var symbolsAvailable = self.symbolsAvailable = pathvisio.current.svg.selectAll('symbol');
 
-    var markersAvailable = markersAvailable = data.svg.selectAll('marker');
+    var markersAvailable = markersAvailable = pathvisio.current.svg.selectAll('marker');
 
-    pathvisio.pathways.push(pathway);
+    pathvisio.pathway.group.drawAll();
 
-    pathway.groups.drawAll();
+    pathvisio.pathway.edge.drawAll();
 
-    pathway.edges.drawAll();
+    pathvisio.pathway.labelableElement.drawAll();
 
-    pathway.labelableElements.drawAll();
-
-    pathway.infoBox.draw();
-
-    pathvisio.pathways.push(pathway);
+    pathvisio.pathway.infoBox.draw();
   };
 
   function load(svgSelector, url, mimeType){
+    if (svgSelector !== null) {
+      pathvisio.current = {};
+      pathvisio.current.svgSelector = svgSelector;
+      pathvisio.current.svg = d3.select(svgSelector);
+      var svgCount = pathvisio.current.svg.length;
+      if (svgCount === 1) {
+        console.log('Successfully loaded SVG pathway template.');
+        //return pathvisio.current.svg;
+      }
+      else {
+        return console.warn('Error: ' + svgCount + ' SVG template(s) returned with selector "' + svgSelector + '". Please redefined selector so only 1 result is returned.');
+      };
+    }
+    else {
+      return console.warn('Error: No SVG template selector specified.');
+    };
+
+    /*
+    // Use this code if you want to get the SVG using d3.xml
+    var svg = d3.select("#pathway-container").select(function() {
+      return this.getSVGDocument().documentElement;
+    });
+    */
 
     if (url === null) {
       return console.warn('Error: No url specified for GPML or JSON data.');
     };
 
-    var sGpml = get(url, mimeType, function(pathway, sGpml, sJson) {
-    console.log('pathway js');
-    console.log(pathway);
-    draw(svgSelector, pathway.data);
-      return sGpml;
+    get(url, mimeType, function(data, sGpml, sJson) {
+      draw(data);
     });
 
     //var gpml = document.getElementsByTagName('pathway')[0];

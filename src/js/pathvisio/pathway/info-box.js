@@ -1,27 +1,27 @@
-pathway.infoBox = function(){ 
+pathvisio.pathway.infoBox = function(){ 
     
   function draw() {
 
     // Although gpml has x and y values for infobox, we have decided to ignore them and always set it in the upper left.
 
     var infoBox = [];
-    if (pathway.data.hasOwnProperty('name')) {
-      infoBox.push({'key':'Title', 'value':pathway.data.name});
+    if (pathvisio.pathways[pathvisio.current.svgSelector].hasOwnProperty('name')) {
+      infoBox.push({'key':'Title', 'value':pathvisio.pathways[pathvisio.current.svgSelector].name});
     };
 
-    if (pathway.data.hasOwnProperty('license')) {
-      infoBox.push({'key':'Availability', 'value':pathway.data.license});
+    if (pathvisio.pathways[pathvisio.current.svgSelector].hasOwnProperty('license')) {
+      infoBox.push({'key':'Availability', 'value':pathvisio.pathways[pathvisio.current.svgSelector].license});
     };
 
-    if (pathway.data.hasOwnProperty('lastModified')) {
-      infoBox.push({'key':'Last modified', 'value':pathway.data.lastModified});
+    if (pathvisio.pathways[pathvisio.current.svgSelector].hasOwnProperty('lastModified')) {
+      infoBox.push({'key':'Last modified', 'value':pathvisio.pathways[pathvisio.current.svgSelector].lastModified});
     };
 
-    if (pathway.data.hasOwnProperty('organism')) {
-      infoBox.push({'key':'Organism', 'value':pathway.data.organism});
+    if (pathvisio.pathways[pathvisio.current.svgSelector].hasOwnProperty('organism')) {
+      infoBox.push({'key':'Organism', 'value':pathvisio.pathways[pathvisio.current.svgSelector].organism});
     };
 
-    var infoBoxElements = pathway.data.svg.selectAll("text.info-box")
+    var infoBoxElements = pathvisio.current.svg.selectAll("text.info-box")
     .data(infoBox)
     .enter()
     .append("text")

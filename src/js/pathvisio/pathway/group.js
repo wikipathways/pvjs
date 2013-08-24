@@ -1,9 +1,16 @@
-pathway.groups = function(){ 
+pathvisio.pathway.group = function(){ 
   function drawAll() {
-    if (pathway.data.hasOwnProperty('groups')) {
+    if (pathvisio.pathways[pathvisio.current.svgSelector].hasOwnProperty('groups')) {
 
-      var groupsContainer = pathway.data.svg.selectAll("use.group")	
-      .data(pathway.data.groups)
+      // only consider non-empty groups
+
+      var validGroups = pathvisio.pathways[pathvisio.current.svgSelector].groups.filter(function(el) {
+        var groupId = el.groupId
+        return (pathvisio.pathways[pathvisio.current.svgSelector].labelableElements.filter(function(el) {return (el.groupRef === groupId)}).length>0)
+      });
+
+      var groupsContainer = pathvisio.current.svg.selectAll("use.group")	
+      .data(validGroups)
       .enter()
       .append("use")
       .attr("id", function (d) { return 'group-' + d.graphId })
@@ -26,11 +33,10 @@ pathway.groups = function(){
       .attr("xlink:xlink:href", function(d) { return '#group-' +  d.style; });
       //.call(drag);
     };
-
   };
 
   function getDimensions(groupId) {
-    var groupMembers = pathway.data.labelableElements.filter(function(el) {return (el.groupRef === groupId)});
+    var groupMembers = pathvisio.pathways[pathvisio.current.svgSelector].labelableElements.filter(function(el) {return (el.groupRef === groupId)});
     var group = {};
 
     // I think this is margin, not padding, but I'm not sure

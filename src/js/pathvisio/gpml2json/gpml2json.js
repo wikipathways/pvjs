@@ -3,7 +3,9 @@
 
 pathvisio.gpml2json = function(){
 
-  pathway.data = {};
+  if (pathvisio.pathways === undefined) {
+    pathwayvisio.pathways = [];
+  };
 
   var xml_special_to_escaped_one_map = {
     '&': '&amp;',
@@ -31,45 +33,9 @@ pathvisio.gpml2json = function(){
     });
   };
 
-  function getJsonGpml(xmlGpmlUrl, callback) {
-    if (xmlGpmlUrl === undefined || !(xmlGpmlUrl) || xmlGpmlUrl === "") {
+  function convert(xmlGpml, svgSelector){
+    pathway = {};
 
-      //var xmlGpmlUrl = "../../samples/gpml/error.gpml";
-      //d3.xml(xmlGpmlUrl, "application/gpml+xml", function(error, gpml) {
-
-    }
-    else {
-      d3.xml(xmlGpmlUrl, "application/gpml+xml", function(xmlGpmlDoc) {
-        // be sure server has set gpml mime type to application/gpml+xml
-
-        var oSerializer = new XMLSerializer();
-        var sGpml = oSerializer.serializeToString(xmlGpmlDoc);
-
-        var xmlGpml = xmlGpmlDoc.documentElement;
-
-        pathway.data = convert(xmlGpml);
-
-        var sJson = self.sJson = JSON.stringify(pathway.data, undefined, 2);
-
-        callback(sGpml, sJson);
-      });
-    };
-  };
-
-  function convertToArray(object) {
-    if (Object.prototype.toString.call( object ) === '[object Object]' ) {
-      var array = [];
-      array.push(object)
-      return array;
-    }
-    else {
-      if( Object.prototype.toString.call( object ) === '[object Array]' ) {
-        return object;
-      };
-    };
-  };
-
-  function convert(xmlGpml){
     self.xmlGpml = xmlGpml;
 
     // We can use xml2json.js or JXON.js. Which is better?
@@ -108,21 +74,21 @@ pathvisio.gpml2json = function(){
 
       // Convert output from jxon.js into jsonGpml (well-formed JSON with all implied elements from xmlGpml explicitly filled in).
 
-      pathway.data.boardWidth = rawJson.graphics.boardwidth;
-      pathway.data.boardHeight = rawJson.graphics.boardheight;
+      pathway.boardWidth = rawJson.graphics.boardwidth;
+      pathway.boardHeight = rawJson.graphics.boardheight;
 
       if (rawJson.hasOwnProperty('last-modified')) {
-        pathway.data.lastModified = rawJson['last-modified'];
+        pathway.lastModified = rawJson['last-modified'];
       };
 
       // infoBox
 
-      pathway.data.infoBox = rawJson.infobox;
+      pathway.infoBox = rawJson.infobox;
 
       // These values are a legacy from GenMAPP. They are always forced to be equal to 0 in PathVisio (Java) so as to place the infobox in the upper lefthand corner.
 
-      pathway.data.infoBox.x = 0;
-      pathway.data.infoBox.y = 0;
+      pathway.infoBox.x = 0;
+      pathway.infoBox.y = 0;
 
       // Biopax
 
@@ -144,7 +110,7 @@ pathvisio.gpml2json = function(){
 
       try {
         if (rawJson.hasOwnProperty('biopaxref')) {
-          pathway.data.biopaxRefs = convertToArray( rawJson.biopaxref );
+          pathway.biopaxRefs = pathvisio.helpers.convertToArray( rawJson.biopaxref );
         }
         else {
           console.log("No element(s) named 'biopaxref' found in this gpml file.");
@@ -152,16 +118,16 @@ pathvisio.gpml2json = function(){
       }
       catch (e) {
         console.log("Error converting biopaxref to json: " + e.message);
-        //delete pathway.data.biopaxRefs;
+        //delete pathway.biopaxRefs;
       };
 
       // Comments 
 
       try {
         if (rawJson.hasOwnProperty('comment')) {
-          pathway.data.comments = convertToArray( rawJson.comment );
+          pathway.comments = pathvisio.helpers.convertToArray( rawJson.comment );
 
-          pathway.data.comments.forEach(function(element, index, array) {
+          pathway.comments.forEach(function(element, index, array) {
             // modify data
           });
         }
@@ -171,22 +137,22 @@ pathvisio.gpml2json = function(){
       }
       catch (e) {
         console.log("Error converting comment to json: " + e.message);
-        //delete pathway.data.comments;
+        //delete pathway.comments;
       };
 
       // Graphical Lines 
 
       try {
         if (rawJson.hasOwnProperty('graphicalline')) {
-          graphicalLines = convertToArray( rawJson.graphicalline );
+          graphicalLines = pathvisio.helpers.convertToArray( rawJson.graphicalline );
 
-          if (pathway.data.edges === undefined) {
-            pathway.data.edges = [];
+          if (pathway.edges === undefined) {
+            pathway.edges = [];
           };
 
           graphicalLines.forEach(function(element, index, array) {
             element.edgeType = 'graphical-line';
-            pathway.data.edges.push(element);
+            pathway.edges.push(element);
           });
         }
         else {
@@ -195,26 +161,26 @@ pathvisio.gpml2json = function(){
       }
       catch (e) {
         console.log("Error converting graphicalline to json: " + e.message);
-        //delete pathway.data.graphicalline;
+        //delete pathway.graphicalline;
       };
 
       // Interactions
 
       try {
         if (rawJson.hasOwnProperty('interaction')) {
-          var interactions = convertToArray( rawJson.interaction );
+          var interactions = pathvisio.helpers.convertToArray( rawJson.interaction );
 
-          if (pathway.data.edges === undefined) {
-            pathway.data.edges = [];
+          if (pathway.edges === undefined) {
+            pathway.edges = [];
           };
 
           interactions.forEach(function(element, index, array) {
             element.edgeType = 'interaction';
-            pathway.data.edges.push(element);
+            pathway.edges.push(element);
           });
 
           self.interactions = interactions;
-          self.edges = pathway.data.edges;
+          self.edges = pathway.edges;
         }
         else {
           console.log("No element(s) named 'interaction' found in this gpml file.");
@@ -222,14 +188,14 @@ pathvisio.gpml2json = function(){
       }
       catch (e) {
         console.log("Error converting interaction to json: " + e.message);
-        //delete pathway.data.interaction;
+        //delete pathway.interaction;
       };
 
       // Edges
 
       try {
-        if (pathway.data.hasOwnProperty('edges')) {
-          pathway.data.edges = pathvisio.gpml2json.edges.convert(pathway.data.edges);
+        if (pathway.hasOwnProperty('edges')) {
+          pathway.edges = pathvisio.gpml2json.edges.convert(pathway.edges);
         }
         else {
           console.log("No element(s) named 'edges' found in this gpml file.");
@@ -237,16 +203,16 @@ pathvisio.gpml2json = function(){
       }
       catch (e) {
         console.log("Error converting edges to json: " + e.message);
-        //delete pathway.data.edges;
+        //delete pathway.edges;
       };
 
       // Groups
 
       try {
         if (rawJson.hasOwnProperty('group')) {
-          pathway.data.groups = convertToArray( rawJson.group );
+          pathway.groups = pathvisio.helpers.convertToArray( rawJson.group );
 
-          pathway.data.groups.forEach(function(element, index, array) {
+          pathway.groups.forEach(function(element, index, array) {
 
             element.graphId = element.graphid;
             delete element.graphid;
@@ -269,7 +235,7 @@ pathvisio.gpml2json = function(){
       }
       catch (e) {
         console.log("Error converting group to json: " + e.message);
-        //delete pathway.data.groups;
+        //delete pathway.groups;
       };
 
       // DataNodes 
@@ -291,7 +257,7 @@ pathvisio.gpml2json = function(){
 
       try {
         if (rawJson.hasOwnProperty('datanode')) {
-          var dataNodes = convertToArray( rawJson.datanode );
+          var dataNodes = pathvisio.helpers.convertToArray( rawJson.datanode );
 
           dataNodes.forEach(function(element, index, array) {
 
@@ -310,14 +276,12 @@ pathvisio.gpml2json = function(){
               delete element.xref;
             };
           });
-          console.log('dataNodes');
-          console.log(dataNodes);
 
-          if (pathway.data.hasOwnProperty('labelableElements')) {
-            pathway.data.labelableElements = pathway.data.labelableElements.concat(dataNodes);
+          if (pathway.hasOwnProperty('labelableElements')) {
+            pathway.labelableElements = pathway.labelableElements.concat(dataNodes);
           }
           else {
-            pathway.data.labelableElements = dataNodes;
+            pathway.labelableElements = dataNodes;
           };
 
         }
@@ -327,24 +291,24 @@ pathvisio.gpml2json = function(){
       }
       catch (e) {
         console.log("Error converting datanode to json: " + e.message);
-        //delete pathway.data.datanode;
+        //delete pathway.datanode;
       };
 
       // Labels
 
       try {
         if (rawJson.hasOwnProperty('label')) {
-          var labels = self.labels = convertToArray( rawJson.label );
+          var labels = self.labels = pathvisio.helpers.convertToArray( rawJson.label );
 
           labels.forEach(function(element, index, array) {
             element.elementType = 'label';
           });
 
-          if (pathway.data.hasOwnProperty('labelableElements')) {
-            pathway.data.labelableElements = pathway.data.labelableElements.concat(labels);
+          if (pathway.hasOwnProperty('labelableElements')) {
+            pathway.labelableElements = pathway.labelableElements.concat(labels);
           }
           else {
-            pathway.data.labelableElements = labels;
+            pathway.labelableElements = labels;
           };
         }
         else {
@@ -353,25 +317,25 @@ pathvisio.gpml2json = function(){
       }
       catch (e) {
         console.log("Error converting label to json: " + e.message);
-        //delete pathway.data.label;
+        //delete pathway.label;
       };
 
       // Shapes
 
       try {
         if (rawJson.hasOwnProperty('shape')) {
-          var shapes = convertToArray( rawJson.shape );
+          var shapes = pathvisio.helpers.convertToArray( rawJson.shape );
           delete rawJson.shape;
 
           shapes.forEach(function(element, index, array) {
             element.elementType = 'shape';
           });
 
-          if (pathway.data.hasOwnProperty('labelableElements')) {
-            pathway.data.labelableElements = pathway.data.labelableElements.concat(shapes);
+          if (pathway.hasOwnProperty('labelableElements')) {
+            pathway.labelableElements = pathway.labelableElements.concat(shapes);
           }
           else {
-            pathway.data.labelableElements = shapes;
+            pathway.labelableElements = shapes;
           };
         }
         else {
@@ -380,14 +344,14 @@ pathvisio.gpml2json = function(){
       }
       catch (e) {
         console.log("Error converting shape to json: " + e.message);
-        //delete pathway.data.shape;
+        //delete pathway.shape;
       };
 
       // LabelableElements
 
       try {
-        if (pathway.data.hasOwnProperty('labelableElements')) {
-          pathway.data.labelableElements = pathvisio.gpml2json.labelableElements.convert(pathway.data.labelableElements);
+        if (pathway.hasOwnProperty('labelableElements')) {
+          pathway.labelableElements = pathvisio.gpml2json.labelableElements.convert(pathway.labelableElements);
         }
         else {
           console.log("No element(s) named 'labelableElements' found in this gpml file.");
@@ -395,13 +359,13 @@ pathvisio.gpml2json = function(){
       }
       catch (e) {
         console.log("Error converting labelableElements to json: " + e.message);
-        //delete pathway.data.labelableElements;
+        //delete pathway.labelableElements;
       };
 
-      console.log('JSON GPML:');
-      console.log(pathway.data);
+      console.log('JSON:');
+      console.log(pathway);
 
-      return pathway.data;
+      return pathway;
     }
     else {
       alert("Pathvisio.js does not support the data format provided. Please convert to GPML and retry.")
@@ -411,8 +375,6 @@ pathvisio.gpml2json = function(){
   };
 
   return {
-    convert:convert,
-    convertToArray:convertToArray,
-    getJsonGpml:getJsonGpml
+    convert:convert
   }
 }();

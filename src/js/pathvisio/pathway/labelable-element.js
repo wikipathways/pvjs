@@ -1,9 +1,9 @@
 // Draw Labelable Elements. Includes data nodes, shapes, labels, cellular components...
 
-pathway.labelableElements = function(){ 
+pathvisio.pathway.labelableElement = function(){ 
   function drawAll() {
-    var labelableElementsContainer = pathway.data.svg.selectAll("g.labelable-elements-container")	
-    .data(pathway.data.labelableElements)
+    var labelableElementsContainer = pathvisio.current.svg.selectAll("g.labelable-elements-container")	
+    .data(pathvisio.pathways[pathvisio.current.svgSelector].labelableElements)
     .enter()
     .append("g")
     .attr("id", function (d) { return 'labelable-elements-container-' + d.graphId })
@@ -72,13 +72,13 @@ pathway.labelableElements = function(){
           return style; 
         });
 
-        if (symbolsAvailable.filter(function(d, i) { return (symbolsAvailable[0][i].id === pathway.data.labelableElements[0].symbolType); }).length > 0) {
+        if (symbolsAvailable.filter(function(d, i) { return (symbolsAvailable[0][i].id === pathvisio.pathways[pathvisio.current.svgSelector].labelableElements[0].symbolType); }).length > 0) {
           // d3 bug strips 'xlink' so need to say 'xlink:xlink';
           labelableElement.attr("xlink:xlink:href", function (d) {return "#" + d.symbolType; });
         }
         else {
           labelableElement.attr("xlink:xlink:href", "#rectangle");
-          console.log('Pathvisio.js does not have access to the requested symbol: ' + pathway.data.labelableElements[0].symbolType + '. Rectangle used as placeholder.');
+          console.log('Pathvisio.js does not have access to the requested symbol: ' + pathvisio.pathways[pathvisio.current.svgSelector].labelableElements[0].symbolType + '. Rectangle used as placeholder.');
         };
 
         // use this for tspan option for rendering text, including multi-line
