@@ -1,8 +1,8 @@
-pathvisio.groups = function(){ 
+pathway.groups = function(){ 
   function drawAll() {
     if (pathway.hasOwnProperty('groups')) {
 
-      var groupsContainer = svg.selectAll("use.group")	
+      var groupsContainer = pathway.svg.selectAll("use.group")	
       .data(pathway.groups)
       .enter()
       .append("use")

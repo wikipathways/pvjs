@@ -1,6 +1,6 @@
 // Draw Labelable Elements. Includes data nodes, shapes, labels, cellular components...
 
-pathvisio.labelableElements = function(){ 
+pathway.labelableElements = function(){ 
   function drawAll() {
     var labelableElementsContainer = svg.selectAll("g.labelable-elements-container")	
     .data(pathway.labelableElements)

@@ -1,4 +1,4 @@
-pathvisio.edges.markers = function(){ 
+pathway.edges.markers = function(){ 
   function draw(name, position, color) {
     var markerName = '';
     if (name === 'none') {

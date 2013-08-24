@@ -1,7 +1,7 @@
 // I think much of the code from src/js/pathway-elements/edges/edges.path-data.js should go into this file so that any points
 // implied in XML GPML are explicitly included in JSON GPML in the conversion process rather than the drawing process.
 
-pathvisio.xmlGpml2jsonGpml.edges.points = function(){
+pathvisio.gpml2json.edges.points = function(){
 
   // pathvisio.js vs PathVisio (Java) specification of anchor position
   // -----------------------------------------

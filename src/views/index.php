@@ -13,14 +13,13 @@ http://google-styleguide.googlecode.com/svn/trunk/jsoncstyleguide.xml#General_Gu
 
 </head>
 <body>
-<!--
 <script>
 function getUrlParameter(name) {
   return decodeURIComponent((new RegExp('[?|&]' + name + '=' + '([^&;]+?)(&|#|;|$)').exec(location.search)||[,""])[1].replace(/\+/g, '%20'))||null
 };
 var repo = getUrlParameter('repo');
+var url = getUrlParameter('pathwayUrl');
 </script>
--->
 
 <div id="choose-pathway-creator">
   <button id="javascript-svg-pathway-button" class="pathway" onclick="displayDiv('javascript-svg')" style="background-color: yellow">pathvisio.js SVG</button>
@@ -136,24 +135,26 @@ SVG pathway template file</a> in the <span style="font-weight: bold">DEV</span> 
 
 ?>
 
-<script src="../js/pathvisio.js"></script>
+<script src="../js/pathvisio/pathvisio.js"></script>
 
-<script src="../js/xmlGpml2jsonGpml/jxon.js"></script>
-<script src="../js/xmlGpml2jsonGpml/xmlGpml2jsonGpml.js"></script>
-<script src="../js/xmlGpml2jsonGpml/xmlGpml2jsonGpml.edges.js"></script>
-<script src="../js/xmlGpml2jsonGpml/xmlGpml2jsonGpml.edges.points.js"></script>
-<script src="../js/xmlGpml2jsonGpml/xmlGpml2jsonGpml.labelableElements.js"></script>
+<script src="../js/pathvisio/pathway/pathway.js"></script>
 
-<script src="../js/pathway-elements/edges/edges.js"></script>
-<script src="../js/pathway-elements/edges/edges.path-data.js"></script>
-<script src="../js/pathway-elements/edges/edges.markers.js"></script>
-<script src="../js/pathway-elements/edges/edges.end-points.js"></script>
+<script src="../js/pathvisio/gpml2json/jxon.js"></script>
+<script src="../js/pathvisio/gpml2json/gpml2json.js"></script>
+<script src="../js/pathvisio/gpml2json/edges/edges.js"></script>
+<script src="../js/pathvisio/gpml2json/edges/points.js"></script>
+<script src="../js/pathvisio/gpml2json/labelableElements.js"></script>
 
-<script src="../js/pathway-elements/info-box.js"></script>
-<script src="../js/pathway-elements/groups.js"></script>
-<script src="../js/pathway-elements/labelable-elements.js"></script>
+<script src="../js/pathvisio/pathway/edges/edges.js"></script>
+<script src="../js/pathvisio/pathway/edges/path-data.js"></script>
+<script src="../js/pathvisio/pathway/edges/markers.js"></script>
+<script src="../js/pathvisio/pathway/edges/end-points.js"></script>
 
-<script src="../js/helpers.js"></script>
+<script src="../js/pathvisio/pathway/info-box.js"></script>
+<script src="../js/pathvisio/pathway/groups.js"></script>
+<script src="../js/pathvisio/pathway/labelable-elements.js"></script>
+
+<script src="../js/pathvisio/helpers.js"></script>
 <script src="../js/rgbcolor.js"></script>
 
 <script src="../lib/jquery/jquery.js"></script>
@@ -186,9 +187,11 @@ SVG pathway template file</a> in the <span style="font-weight: bold">DEV</span> 
   }
 
   window.onload = function() {
-    pathvisio.init();
-    var sJson = JSON.stringify(pathway, undefined, 2);
-    $('#json-gpml-for-reading').text(sJson);
+    //pathway.load('#pathway-image', '../../test/gpml/fill-and-stroke-colors.gpml');
+
+    //pathvisio.drawFromUrl('#pathway-image', url, 'gpml+xml');
+    //var sJson = JSON.stringify(pathway, undefined, 2);
+    //$('#json-gpml-for-reading').text(sJson);
 
     /*
 

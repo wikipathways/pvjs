@@ -1,4 +1,4 @@
-pathvisio.infoBox = function(){ 
+pathway.infoBox = function(){ 
     
   function draw() {
 
