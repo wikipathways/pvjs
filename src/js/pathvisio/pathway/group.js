@@ -1,15 +1,15 @@
 pathvisio.pathway.group = function(){ 
   function drawAll() {
-    if (pathvisio.pathways[pathvisio.current.svgSelector].hasOwnProperty('groups')) {
+    if (pathvisio.data.pathways[pathvisio.data.current.svgSelector].hasOwnProperty('groups')) {
 
       // only consider non-empty groups
 
-      var validGroups = pathvisio.pathways[pathvisio.current.svgSelector].groups.filter(function(el) {
+      var validGroups = pathvisio.data.pathways[pathvisio.data.current.svgSelector].groups.filter(function(el) {
         var groupId = el.groupId
-        return (pathvisio.pathways[pathvisio.current.svgSelector].labelableElements.filter(function(el) {return (el.groupRef === groupId)}).length>0)
+        return (pathvisio.data.pathways[pathvisio.data.current.svgSelector].labelableElements.filter(function(el) {return (el.groupRef === groupId)}).length>0)
       });
 
-      var groupsContainer = pathvisio.current.svg.selectAll("use.group")	
+      var groupsContainer = pathvisio.data.current.svg.selectAll("use.group")	
       .data(validGroups)
       .enter()
       .append("use")
@@ -36,7 +36,7 @@ pathvisio.pathway.group = function(){
   };
 
   function getDimensions(groupId) {
-    var groupMembers = pathvisio.pathways[pathvisio.current.svgSelector].labelableElements.filter(function(el) {return (el.groupRef === groupId)});
+    var groupMembers = pathvisio.data.pathways[pathvisio.data.current.svgSelector].labelableElements.filter(function(el) {return (el.groupRef === groupId)});
     var group = {};
 
     // I think this is margin, not padding, but I'm not sure
