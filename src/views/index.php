@@ -19,6 +19,7 @@ function getUrlParameter(name) {
 };
 var repo = getUrlParameter('repo');
 var url = getUrlParameter('pathwayUrl');
+var pwId = getUrlParameter('pwId');
 </script>
 
 <div id="choose-pathway-creator">
