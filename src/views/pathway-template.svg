@@ -706,8 +706,8 @@ Either convert SVG to PDF and import PDF into Illustrator or convert SVG to .ai 
 
 	<symbol id="arc" viewBox="0 0 100 50" preserveAspectRatio="none" stroke="black" class="drawing-board-color-fill">
 	<desc>arc</desc>
-	<path d="m-20.50001,-23.30002c0,-39.50276 31.99724,-71.5 71.5,-71.5c39.50276,0 71.50001,31.99724 71.50001,71.5c0,39.50276 -31.99725,71.5 -71.50001,71.5c-39.50276,0 -71.5,-31.99724 -71.5,-71.5z"/>
-	</symbol>
+31.99724,-71.5 71.5,-71.5c39.50276,0 71.50001,31.99724 71.50001,71.5c0,39.50276 -31.99725,71.5 -71.50001,71.5c-39.50276,0 -71.5,-31.99724 -71.5,-71.5z"/>
+	</symbol>	<path d="m-20.50001,-23.30002c0,-39.50276 
 
 	<!-- TO-DO: Brace style is not ideal -->
 
@@ -815,7 +815,7 @@ Either convert SVG to PDF and import PDF into Illustrator or convert SVG to .ai 
 
 	<!-- rectangle -->
 
-	<symbol id="rectangle" viewBox="0 0 100 50" preserveAspectRatio="xMinYMin meet">
+	<symbol id="rectangle" viewBox="0 0 100 50" preserveAspectRatio="none">
 	<desc>Rectangle</desc>
 	<rect x="1" y="1" width="97" height="47" vector-effect="non-scaling-stroke"></rect>
 	</symbol>
