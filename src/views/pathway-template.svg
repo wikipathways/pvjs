@@ -775,7 +775,7 @@ Either convert SVG to PDF and import PDF into Illustrator or convert SVG to .ai 
 
 	<!-- Shape is placeholder until it can be replaced with correct shape. -->
 
-	<symbol id="hexagon" viewBox="0 0 75 65" preserveAspectRatio="none">
+	<symbol id="hexagon" viewBox="0 0 100 100" preserveAspectRatio="none">
 	<desc>hexagon</desc>
 	<path d="m1.42004,50.99635l21.07262,-42.13943l56.19152,0l21.0667,42.13943l-21.0667,42.14507l-56.19152,0l-21.07262,-42.14507z" vector-effect="non-scaling-stroke"/>
 	</symbol>
