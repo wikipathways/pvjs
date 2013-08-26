@@ -801,14 +801,14 @@ Either convert SVG to PDF and import PDF into Illustrator or convert SVG to .ai 
 
 	<!-- oval -->
 
-	<symbol id="oval" viewBox="0 0 105 50" preserveAspectRatio="xMinYMin meet">
+	<symbol id="oval" viewBox="0 0 100 50" preserveAspectRatio="none">
 	<desc>Ellipse</desc>
-	<ellipse cx="52" cy="26" rx="49" ry="22.5" vector-effect="non-scaling-stroke"></ellipse>
+	<ellipse cx="50" cy="25" rx="50" ry="25" vector-effect="non-scaling-stroke"></ellipse>
 	</symbol>
 
 	<!-- pentagon -->
 
-	<symbol id="pentagon" viewBox="0 0 50 55" preserveAspectRatio="xMinYMin meet">
+	<symbol id="pentagon" viewBox="0 0 50 55" preserveAspectRatio="none">
 	<desc>pentagon</desc>
 	<path transform="rotate(90, 23.4965, 25.5215)" d="m-0.00193,20.24006l23.50095,-17.09823l23.49858,17.09823l-8.97612,27.66264l-29.04728,0l-8.97613,-27.66264z" vector-effect="non-scaling-stroke"/>
 	</symbol>
@@ -824,7 +824,7 @@ Either convert SVG to PDF and import PDF into Illustrator or convert SVG to .ai 
 
 	<symbol id="rounded-rectangle" viewBox="0 0 100 50" preserveAspectRatio="none">
 	<desc>Rounded Rectangle</desc>
-	<rect x="1" y="1" rx="10" ry="10" width="100" height="50" vector-effect="non-scaling-stroke"></rect>
+	<rect x="0" y="0" rx="10" ry="10" width="100" height="50" vector-effect="non-scaling-stroke"></rect>
 	</symbol>
 
 	<!-- Sarcoplasmic reticulum -->
@@ -836,7 +836,7 @@ Either convert SVG to PDF and import PDF into Illustrator or convert SVG to .ai 
 
 	<!-- triangle -->
 
-	<symbol id="triangle" viewBox="0 0 50 50" preserveAspectRatio="xMinYMin meet">
+	<symbol id="triangle" viewBox="0 0 50 50" preserveAspectRatio="none">
 	<desc>triangle</desc>
 	<polygon points="1,49 49,24 1,1" vector-effect="non-scaling-stroke"/>
 	</symbol>
