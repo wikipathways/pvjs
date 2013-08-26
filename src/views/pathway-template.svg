@@ -782,15 +782,15 @@ Either convert SVG to PDF and import PDF into Illustrator or convert SVG to .ai 
 
 	<!-- Shape is placeholder until it can be replaced with correct shape. -->
 
-	<symbol id="mim-degradation" viewBox="0 0 90 90" preserveAspectRatio="xMinYMin meet">
+	<symbol id="mim-degradation" viewBox="0 0 90 90" preserveAspectRatio="none">
 	<desc>mim-degradation</desc>
 	<circle r="36.94531" cy="40.5" cx="47" stroke-weight="2" vector-effect="non-scaling-stroke"/>
-  	<line transform="rotate(10, 47.5, 41.9492)" y2="73.89744" x2="92" y1="10" x1="3" stroke-weight="2" vector-effect="non-scaling-stroke"/>
+  	<line transform="rotate(10, 47.5, 41.9492)" y2="73.89744" x2="92" y1="10" x1="3" vector-effect="non-scaling-stroke"/>
   	</symbol>
 
 	<!-- mitochondria -->
 
-	<symbol id="mitochondria" viewBox="0 0 100 65.5" preserveAspectRatio="xMinYMin meet">
+	<symbol id="mitochondria" viewBox="0 0 100 65.5" preserveAspectRatio="none">
 	<desc>Mitochondria</desc>
 	<path
 	vector-effect="non-scaling-stroke"
@@ -829,7 +829,7 @@ Either convert SVG to PDF and import PDF into Illustrator or convert SVG to .ai 
 
 	<!-- Sarcoplasmic reticulum -->
 
-	<symbol id="sarcoplasmic-reticulum" viewBox="0 0 70 170" preserveAspectRatio="xMinYMin meet">
+	<symbol id="sarcoplasmic-reticulum" viewBox="0 0 70 170" preserveAspectRatio="none">
 	<desc>sarcoplasmic-reticulum</desc>
 	<path d="m36.4444,1.89558c-34.99915,2.22332 -39.2673,37.74125 -28.65384,63.19647c10.07443,30.40252 -20.2884,49.97363 2.77805,81.84377c18.18629,21.73956 50.09141,10.11908 56.35627,-14.20186c6.37779,-25.27418 -11.8396,-43.13985 -3.5604,-67.8931c11.73406,-32.95808 -0.83911,-63.20087 -26.92008,-62.94527z" vector-effect="non-scaling-stroke"/>	
 	</symbol>
@@ -843,7 +843,7 @@ Either convert SVG to PDF and import PDF into Illustrator or convert SVG to .ai 
 
 	<!-- Shape is placeholder until it can be replaced with correct shape. -->
 
-	<symbol id="vesicle" viewBox="0 0 64 64" preserveAspectRatio="xMinYMin meet">
+	<symbol id="vesicle" viewBox="0 0 64 64" preserveAspectRatio="none">
 	<desc>vesicle</desc>
 	<circle cx="32" cy="32" r="30" stroke-width="2"/>	
 	</symbol> 
