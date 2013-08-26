@@ -703,12 +703,12 @@ Either convert SVG to PDF and import PDF into Illustrator or convert SVG to .ai 
 
 	<!-- Shape is placeholder until it can be replaced with correct shape. -->
 	<!-- TO-DO: change into half circle -->
-
+<!--
 	<symbol id="arc" viewBox="0 0 100 50" preserveAspectRatio="none" stroke="black" class="drawing-board-color-fill">
 	<desc>arc</desc>
 31.99724,-71.5 71.5,-71.5c39.50276,0 71.50001,31.99724 71.50001,71.5c0,39.50276 -31.99725,71.5 -71.50001,71.5c-39.50276,0 -71.5,-31.99724 -71.5,-71.5z"/>
 	</symbol> 
-
+-->
 	<!-- TO-DO: Brace style is not ideal -->
 
 	<symbol id="brace" viewBox="0 0 100 50" preserveAspectRatio="none">
