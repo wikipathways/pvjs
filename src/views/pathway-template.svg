@@ -710,7 +710,7 @@ Either convert SVG to PDF and import PDF into Illustrator or convert SVG to .ai 
 
 	<!-- TO-DO: Brace style is not ideal -->
 
-	<symbol id="brace" viewBox="0 0 100 30" preserveAspectRatio="none">
+	<symbol id="brace" viewBox="0 0 100 50" preserveAspectRatio="none">
 	<desc>brace</desc>
 	<path d="m1.5,49.499996c0,-16.166668 8.166666,-24.249996 24.499998,-24.249996s24.499998,-8.083336 24.499998,-24.250002c0,16.166666 8.166664,24.250002 24.499996,24.250002s24.5,8.083328 24.5,24.249996" vector-effect="non-scaling-stroke"/>
   	</symbol>
