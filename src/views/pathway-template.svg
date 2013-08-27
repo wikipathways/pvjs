@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-
+r
 <!-- 
 This file serves as our template for standardized GPML pathway visual representations.
 This file can be used for many purposes outside of pathvisio.js, including allowingar
@@ -810,9 +810,9 @@ Either convert SVG to PDF and import PDF into Illustrator or convert SVG to .ai 
 
 	<!-- rectangle -->
 
-	<symbol id="rectangle" viewBox="0 0 100 50" preserveAspectRatio="none">
+	<symbol id="rectangle" viewBox="-0.5 -0.5 101 51" preserveAspectRatio="none">
 	<desc>Rectangle</desc>
-	<rect x="0.5" y="0.5" width="99" height="49" vector-effect="non-scaling-stroke"></rect>
+	<rect x="0" y="0" width="100" height="50" vector-effect="non-scaling-stroke"></rect>
 	</symbol>
 
 	<!-- rounded-rectangle -->
