@@ -247,7 +247,22 @@ pathvisio.pathway.labelableElement = function(){
     .append("g")
     .attr("id", function (d) { return 'labelable-elements-container-' + d.graphId })
     .attr('transform', function(d) { return 'translate(' + d.x + ' ' + d.y + ')'; })
-    .attr("class", "labelable-elements-container");
+    .attr("class", "labelable-elements-container")
+.on("click", function(d,i) {
+	if (d.elementType === 'data-node') {
+		var xrefDiv = $('.xrefinfo');
+
+		// (id, datasource, species, symbol)
+
+		var xrefHtml = XrefPanel.create(d.xRef.id, d.xRef.database, 'Homo sapiens', d.textLabel.text);
+		//var xrefHtml = XrefPanel.create('HMDB01397', 'HMDB', 'Mus musculus', d.textLabel.text);
+		window.setTimeout(function() {
+			xrefDiv.empty();
+			xrefDiv.append(xrefHtml);
+		}, 2000);
+	};
+});
+//.on("click", function(d,i) { alert(d.xRef.id); });
     //.call(drag);
 
     var labelableElements = labelableElementsContainer.each(function(d) {

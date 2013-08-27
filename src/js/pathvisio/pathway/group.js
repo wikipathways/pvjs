@@ -8,7 +8,12 @@ pathvisio.pathway.group = function(){
         var groupId = el.groupId
         return (pathvisio.data.pathways[pathvisio.data.current.svgSelector].labelableElements.filter(function(el) {return (el.groupRef === groupId)}).length>0)
       });
-
+console.log('validGroups');
+console.log(validGroups);
+console.log('hi');
+console.log(pathvisio.data.current.svg);
+console.log(pathvisio.data.current.svg.selectAll("use.group"));
+console.log('bye');
       var groupsContainer = pathvisio.data.current.svg.selectAll("use.group")	
       .data(validGroups)
       .enter()
@@ -18,6 +23,7 @@ pathvisio.pathway.group = function(){
 
         // TODO refactor the code below to call function getDimensions() one time instead of three times
 
+console.log('hmm');
         var groupDimensions = getDimensions(d.groupId);
         return 'translate(' + groupDimensions.x + ' ' + groupDimensions.y + ')'; 
       })
