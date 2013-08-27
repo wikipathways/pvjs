@@ -720,7 +720,7 @@ Either convert SVG to PDF and import PDF into Illustrator or convert SVG to .ai 
 	<!-- group of style "none" -->
 	<symbol id="group-none" viewBox="0 0 120 180" preserveAspectRatio="none">
 	<desc>Group with style 'none'</desc>
-	<rect x="0" y="0" width="118" height="178" fill="rgb(180,180,100)" vector-effect="non-scaling-stroke"></rect>
+	<rect x="0" y="0" width="118" height="178" fill="rgb(180,180,100)" stroke-dasharray="5,3 vector-effect="non-scaling-stroke"></rect>
 	</symbol>
 
 	<!-- group of style "group" -->
@@ -739,7 +739,7 @@ Either convert SVG to PDF and import PDF into Illustrator or convert SVG to .ai 
 	<!-- group of style "pathway" -->
 	<symbol id="group-pathway" viewBox="0 0 120 180" preserveAspectRatio="none">
 	<desc>Group with style 'pathway'</desc>
-	<rect x="1" y="1" width="118" height="178" vector-effect="non-scaling-stroke" fill="lightgreen" stroke-weight="1" stroke-dasharray="5,3"></rect>
+	<rect x="1" y="1" width="118" height="178" vector-effect="non-scaling-stroke" fill="lightgreen" stroke-dasharray="5,3"></rect>
 	</symbol>
 
 	<!-- Endoplasmic reticulum -->
