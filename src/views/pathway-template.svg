@@ -790,7 +790,7 @@ Either convert SVG to PDF and import PDF into Illustrator or convert SVG to .ai 
 
 	<!-- mitochondria -->
 
-	<symbol id="mitochondria" viewBox="0 0 100 65.5" preserveAspectRatio="none">
+	<symbol id="mitochondria" viewBox="0 0 100 100" preserveAspectRatio="none">
 	<desc>Mitochondria</desc>
 	<ellipse cx="50.499997" cy="50.666719" id="svg_1" rx="48.999997" ry="48.999997" vector-effect="non-scaling-stroke"/>
 	<path
