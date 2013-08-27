@@ -98,7 +98,7 @@ Either convert SVG to PDF and import PDF into Illustrator or convert SVG to .ai 
 		shape-rendering: auto;
 		vector-effect: non-scaling-stroke;
 		fill: white;
-		stroke-width: 1px;
+		stroke-width: 2px;
 	}
 
 	.drawing-board-color-fill {
