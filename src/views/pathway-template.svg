@@ -712,10 +712,8 @@ Either convert SVG to PDF and import PDF into Illustrator or convert SVG to .ai 
 
 	<symbol id="brace" viewBox="0 0 100 50" preserveAspectRatio="none">
 	<desc>brace</desc>
-	<path d="m1490,1055c0,-1 -5,-3 -24,-3l-32,-4l-36,-13l-8,-7" vector-effect="non-scaling-stroke"/>
-  	<polyline points="1430,1051 1430,1050 " vector-effect="non-scaling-stroke"/>
-  	<path transform="rotate(90, 50.5312, 20.3125)" d="m58.36591,68.31439c-4.32813,0 -7.83624,-0.58405 -7.83624,-1.30634l0,-45.38824c0,-0.72241 -3.50806,-1.30646 -7.8363,-1.30646l0,0c4.32825,0 7.8363,-0.58386 7.8363,-1.30524l0,-45.38904l0,0c0,-0.72162 3.50812,-1.30536 7.83624,-1.30536" vector-effect="non-scaling-stroke"/>
-	</symbol>
+	<path d="m1.5,29.499998c0,-8.166666 8.166666,-12.249998 24.499998,-12.249998s24.499998,-4.083334 24.499998,-12.25c0,8.166666 8.166664,12.25 24.499996,12.25s24.5,4.083332 24.5,12.249998" vector-effect="non-scaling-stroke"/>
+  	</symbol>
 	
 	<!-- group of style "none" -->
 	<symbol id="group-none" viewBox="0 0 120 180" preserveAspectRatio="none">
