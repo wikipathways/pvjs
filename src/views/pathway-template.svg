@@ -732,7 +732,7 @@ Either convert SVG to PDF and import PDF into Illustrator or convert SVG to .ai 
 
 	<!-- group of style "complex" -->
 	<!-- TO-DO: The current symbol doesn't scale properly -->
-	<symbol id="group-complex" viewBox="0 0 100 100" preserveAspectRatio="xMinYMin meet">
+	<symbol id="group-complex" viewBox="0 0 100 100" preserveAspectRatio="none">
 	<desc>Group with style 'complex'</desc>
 	<path d="m26.75,3l47.50001,0l23.75,23.75l0,47.50001l-23.75,23.75l-47.50001,0l-23.75,-23.75l0,-47.50001l23.75,-23.75z" fill="rgb(180,180,100)" vector-effect="non-scaling-stroke"/>
 	</symbol>
@@ -808,7 +808,7 @@ Either convert SVG to PDF and import PDF into Illustrator or convert SVG to .ai 
 
 	<symbol id="pentagon" viewBox="0 0 100 100" preserveAspectRatio="none">
 	<desc>pentagon</desc>
-	<path transform="rotate(90, 23.4965, 25.5215)" d="m-0.00193,20.24006l23.50095,-17.09823l23.49858,17.09823l-8.97612,27.66264l-29.04728,0l-8.97613,-27.66264z" vector-effect="non-scaling-stroke"/>
+	<polygon transform="rotate(90, 55.5734, 50.3837)" id="svg_1" points="55.574459075927734,5.925553321838379 102.320556640625,39.888580322265625 84.46514129638672,94.8419189453125 26.68378257751465,94.8419189453125 8.828362464904785,39.888580322265625 " vector-effect="non-scaling-stroke"/>
 	</symbol>
 
 	<!-- rectangle -->
@@ -838,13 +838,6 @@ Either convert SVG to PDF and import PDF into Illustrator or convert SVG to .ai 
 	<desc>triangle</desc>
 	<polygon points="1,49 49,24 1,1" vector-effect="non-scaling-stroke"/>
 	</symbol>
-
-	<!-- Shape is placeholder until it can be replaced with correct shape. -->
-
-	<symbol id="vesicle" viewBox="0 0 64 64" preserveAspectRatio="none">
-	<desc>vesicle</desc>
-	<circle cx="32" cy="32" r="30" stroke-width="2"/>	
-	</symbol> 
 
 	<!-- TODO Update placeholders for SVG definitions of shapes.
 
