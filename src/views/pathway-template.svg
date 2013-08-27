@@ -703,7 +703,7 @@ Either convert SVG to PDF and import PDF into Illustrator or convert SVG to .ai 
 
 	<!-- Shape is placeholder until it can be replaced with correct shape. -->
 
-	<symbol id="arc" viewBox="0 0 100 50" preserveAspectRatio="none">
+	<symbol id="arc" viewBox="0 0 100 100" preserveAspectRatio="none">
 	<desc>arc</desc>
 	<path d="m99.49999,1c0,27.06219 -21.93825,49 -49,49s-49,-21.93781 -49,-49" vector-effect="non-scaling-stroke"/>	
 </symbol> 
