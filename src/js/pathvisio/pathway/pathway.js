@@ -358,51 +358,50 @@ pathvisio.pathway = function(){
   };
 
   function get(url, mimeType, callback) {
-    function createJson(gpmlDoc) {
-      console.log('gpmlDoc');
-      console.log(gpmlDoc);
-      var oSerializer = new XMLSerializer();
-      var sGpml = oSerializer.serializeToString(gpmlDoc);
-
-      var gpml = gpmlDoc.documentElement;
-      console.log('GPML');
-      console.log(gpml);
-
-      pathvisio.pathway.gpml2json(gpml);
-      var sJson = self.sJson = JSON.stringify(pathvisio.data.pathways[pathvisio.data.current.svgSelector], undefined, 2);
-
-      callback(pathvisio.data.pathways[pathvisio.data.current.svgSelector], sGpml, sJson);
-    };
-
     if (url === undefined || !(url) || url === "") {
-
-      // when on a dev machine that is not on the same origin as the WP webservice, I can get the GPML from here, because
-      // JavaScript cross-origin request restrictions mean that I can't get it from the dev machine using JavaScript
-
-      if (pwId !== undefined) {
-        var gpmlDoc = document.implementation.createDocument(null, null, null);
-        var gpml = document.getElementsByTagName('pathway')[0];
-        gpmlDoc.appendChild(gpml);
-        createJson(gpmlDoc);
-      }
-      else {
-        //var url = "../../samples/gpml/error.gpml";
-        //d3.xml(url, "application/gpml+xml", function(error, gpml) {
-        return console.warn('Error: URL not specified.');
-      };
+      return console.warn('Error: URL not specified.');
     }
     else {
-      // be sure server has set gpml mime type to application/gpml+xml
-      d3.xml(url, "application/gpml+xml", function(gpmlDoc) {
-        createJson(gpmlDoc);
-      });
-    };
+      if (1!==1) {
+      }
+      else {
 
+// be sure server has set gpml mime type to application/gpml+xml or application/gpml+xml
+
+        d3.xml(url, "application/xml", function(gpmlDoc) {
+console.log('gpmlDoc');
+console.log(gpmlDoc);
+
+///* if from webservice
+
+var sGpml = gpmlDoc.getElementsByTagNameNS("http://www.wikipathways.org/webservice", "gpml")[0].textContent;
+var oParser = new DOMParser();
+var oDOM = oParser.parseFromString(sGpml, "text/xml");
+var gpml = oDOM.documentElement;
+
+//*/
+
+/* if  not from webservice
+
+          var oSerializer = new XMLSerializer();
+          var sGpml = oSerializer.serializeToString(gpmlDoc);
+          var gpml = gpmlDoc.documentElement;
+//*/
+          console.log('GPML');
+          console.log(gpml);
+
+          pathvisio.pathway.gpml2json(gpml);
+          var sJson = self.sJson = JSON.stringify(pathvisio.data.pathways[pathvisio.data.current.svgSelector], undefined, 2);
+
+          callback(pathvisio.data.pathways[pathvisio.data.current.svgSelector], sGpml, sJson);
+        });
+      };
+    };
   };
 
   function draw(data){
     if (data === null) {
-      return console.warn('Error: No data specified for GPML or JSON data.');
+      return console.warn('Error: No url specified for GPML or JSON data.');
     };
 
     var drag = d3.behavior.drag()
@@ -435,7 +434,6 @@ pathvisio.pathway = function(){
   function load(svgSelector, url, mimeType){
     if (svgSelector !== null) {
       pathvisio.data.current.svgSelector = svgSelector;
-      // TODO delete the line below
       pathvisio.data.current.svg = d3.select(svgSelector);
       var svgCount = pathvisio.data.current.svg.length;
       if (svgCount === 1) {
@@ -455,6 +453,10 @@ pathvisio.pathway = function(){
       return this.getSVGDocument().documentElement;
     });
     */
+
+    if (url === null) {
+      return console.warn('Error: No url specified for GPML or JSON data.');
+    };
 
     get(url, mimeType, function(data, sGpml, sJson) {
       draw(data);
