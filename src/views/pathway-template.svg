@@ -98,7 +98,6 @@ SVG-Edit (latest release)
 		shape-rendering: auto;
 		vector-effect: non-scaling-stroke;
 		fill: white;
-		stroke-width: 1px;
 	}
 
 	.drawing-board-color-fill {
