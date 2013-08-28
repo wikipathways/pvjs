@@ -815,7 +815,7 @@ SVG-Edit (latest release)
 	<rect x="0" y="0" width="100" height="50" vector-effect="non-scaling-stroke"></rect>
       </clipPath>
       
-	<symbol id="rectangle" viewBox="-0.5 -0.5 101 51" preserveAspectRatio="none">
+	<symbol id="rectangle" viewBox="0 0 100 50" preserveAspectRatio="none">
 	<desc>Rectangle</desc>
 	<rect x="0" y="0" width="100" height="50" style="clip-path: url(#rectangle-clip-path); " vector-effect="non-scaling-stroke"></rect>
 	</symbol>
