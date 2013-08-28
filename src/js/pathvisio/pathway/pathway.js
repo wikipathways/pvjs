@@ -372,16 +372,16 @@ pathvisio.pathway = function(){
 console.log('gpmlDoc');
 console.log(gpmlDoc);
 
-///* if from webservice
+/* if from webservice
 
 var sGpml = gpmlDoc.getElementsByTagNameNS("http://www.wikipathways.org/webservice", "gpml")[0].textContent;
 var oParser = new DOMParser();
 var oDOM = oParser.parseFromString(sGpml, "text/xml");
 var gpml = oDOM.documentElement;
 
-//*/
+*/
 
-/* if  not from webservice
+///* if  not from webservice
 
           var oSerializer = new XMLSerializer();
           var sGpml = oSerializer.serializeToString(gpmlDoc);
