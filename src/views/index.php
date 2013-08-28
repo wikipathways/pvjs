@@ -13,19 +13,20 @@ http://google-styleguide.googlecode.com/svn/trunk/jsoncstyleguide.xml#General_Gu
 
 </head>
 <body>
-<!--
 <script>
 function getUrlParameter(name) {
   return decodeURIComponent((new RegExp('[?|&]' + name + '=' + '([^&;]+?)(&|#|;|$)').exec(location.search)||[,""])[1].replace(/\+/g, '%20'))||null
 };
 var repo = getUrlParameter('repo');
+var url = getUrlParameter('pathwayUrl');
 </script>
--->
 
 <div id="choose-pathway-creator">
-  <button id="javascript-svg-pathway-button" class="pathway" onclick="usePathwayImgCreator('javascript-svg')" style="background-color: yellow">pathvisio.js SVG</button>
-  <button id="java-svg-pathway-button" class="pathway" onclick="usePathwayImgCreator('java-svg')" style="background-color: lightgray" title="Batik is currently used by PathVisio (Java) to create visual representations of GPML files in SVG and PDF">PathVisio (Java) SVG</button>
-  <button id="java-png-pathway-button" class="pathway" onclick="usePathwayImgCreator('java-png')" style="background-color: lightgray" title="Batik is currently used by PathVisio (Java) to create visual representations of GPML files in SVG and PDF">PathVisio (Java) PNG</button>
+  <button id="javascript-svg-pathway-button" class="pathway" onclick="displayDiv('javascript-svg')" style="background-color: yellow">pathvisio.js SVG</button>
+  <button id="java-svg-pathway-button" class="pathway" onclick="displayDiv('java-svg')" style="background-color: lightgray" title="SVG representation of GPML file, as created by PathVisio (Java), using Batik">PathVisio (Java) SVG</button>
+  <button id="java-png-pathway-button" class="pathway" onclick="displayDiv('java-png')" style="background-color: lightgray" title="PNG representation of GPML file, as created by PathVisio (Java)">PathVisio (Java) PNG</button>
+  <button id="xml-gpml-pathway-button" class="pathway" onclick="displayDiv('xml-gpml')" style="background-color: lightgray" title="XML version of source GPML file">GPML (XML)</button>
+  <button id="json-gpml-pathway-button" class="pathway" onclick="displayDiv('json-gpml')" style="background-color: lightgray" title="JSON version of source GPML file">JSON</button>
 Repo: 
 <?php
   $authorizedRepos = array("wikipathways", "AlexanderPico", "ariutta", "khanspers");
@@ -82,90 +83,73 @@ Repo:
 ?>
 SVG pathway template file</a> in the <span style="font-weight: bold">DEV</span> branch of your github fork of <a href="https://github.com/wikipathways/pathvisio.js">pathvisio.js</a>, commit, and view your changes on this page. Note that your commits on Github may take a few seconds before they show up here.</p>
 
-<!--
-<div>
-Repo from which to pull pathway template svg: <INPUT id="repo" type="text" SIZE="30" MAXLENGTH="30" VALUE="wikipathways">
-<button class="link" onclick="insertParam('repo', repo)">Reload pathway template svg</button> 
-</div>
--->
+<?php
 
-<!--<div id="javascript-svg-pathway-container" class="pathway" onload="usePathwayImgCreator('javascript-svg')">-->
+  // pathvisio.js SVG. This is the svg template file from the dev branch of wikipathways (or whichever repo is chosen)/pathvisio.js on github.
 
-<div id="javascript-svg-pathway-container" class="pathway">
-  <?php
-    //$pathwayTemplateSvgUrl = "https://raw.github.com/wikipathways/pathvisio.js/dev/src/views/pathway-template.svg";
-    //$pathwayTemplateSvg = file_get_contents($pathwayTemplateSvgUrl);
-    //$imageData = base64_encode($pathwayTemplateSvg);
-    //echo "<object id='pathway-container' type='image/svg+xml' data='" . $imageData . "' width='100%' height='100%' onload='drawPathway()'>";
+  // Is the code below ok wrt to security? I am using the other code block below with only approved repos, but it's more hassle to add new repos
+  // instead of them always working automatically.
+    
+  // if (isset($_GET['repo'])) {
+  //   $repo = $_GET['repo'];
+  // }
 
-    //Is the code below ok wrt to security?
-    //
-    //if (isset($_GET['repo'])) {
-    //  $repo = $_GET['repo'];
-    //}
-
+  echo "<div id='javascript-svg-pathway-container' class='pathway'>";
     $pathwayTemplateSvg = simplexml_load_file($pathwayTemplateSvgUrl);
     echo $pathwayTemplateSvg->saveXML();
+  echo "</div>";
 
-  ?>
-</div>
-
-<?php
+  // PathVisio (Java) SVG
 
   $batikSvg = simplexml_load_file($batikSvgUrl);
 
   echo "<div id='java-svg-pathway-container' class='pathway' style='display: none;'>";
     echo $batikSvg->saveXML();
   echo "</div>";
-
-  //$im = imagecreatefrompng($pngUrl);
-  //header('Content-Type: image/png');
-  
-
+ 
   echo "<div id='java-png-pathway-container' class='pathway' style='display: none;'>";
-  //echo "<div id='java-png-pathway-container' class='pathway'>";
     echo '<img id="img" src="' . $pngUrl . '"/>';
-    //$server_response = base64_encode(file_get_contents($pngUrl));
-    //echo '<img id="img" src="data:image/png;base64,' . $server_response . '"/>';
   echo "</div>";
+
+  // XML GPML (from either wikipathways.org REST API or local /test/gpml/ folder)
 
   $gpmlStr = file_get_contents($pathwayUrl);
   $doc = new DOMDocument();
   $doc->loadXML($gpmlStr);
 
-  echo "<div id='gpml' style='display:none'>";
+  echo "<div id='xml-gpml-pathway-container' class='pathway' style='display:none'>";
 
-  // need to do this, because it appears Chrome will incorrectly close the self-closing tags in gpml.
+    // need to use LIBXML_NOEMPTYTAG option, because it appears Chrome will incorrectly close the self-closing tags in gpml.
 
-  echo $doc->saveXML(null, LIBXML_NOEMPTYTAG);
+    echo "<textarea name='gpml-for-reading' id='gpml-for-reading' rows='40' cols='180'>" . $doc->saveXML(null, LIBXML_NOEMPTYTAG) . "</textarea>";
+    echo "<div id='xml-gpml-in-dom' style='display:none'>";
+      echo $doc->saveXML(null, LIBXML_NOEMPTYTAG);
+    echo "</div>";
   echo "</div>";
 
-  //$gpml = simplexml_load_file($pathwayUrl);
-  // output the result
-  //echo $gpml->asXML();
+  // JSON GPML 
+
+  echo "<div id='json-gpml-pathway-container' class='pathway' style='display:none'>";
+    echo "<textarea name='json-gpml-for-reading' id='json-gpml-for-reading' rows='40' cols='180'>Not yet implemented.</textarea>";
+  echo "</div>";
 
 ?>
 
-<script src="../js/pathvisio.js"></script>
+<script src="../js/pathvisio/pathvisio.js"></script>
+<script src="../js/pathvisio/pathway/pathway.js"></script>
+<script src="../js/pathvisio/pathway/edge/edge.js"></script>
+<script src="../js/pathvisio/pathway/edge/path-data.js"></script>
+<script src="../js/pathvisio/pathway/edge/marker.js"></script>
+<script src="../js/pathvisio/pathway/edge/point.js"></script>
 
-<script src="../js/xmlGpml2jsonGpml/jxon.js"></script>
-<script src="../js/xmlGpml2jsonGpml/xmlGpml2jsonGpml.js"></script>
-<script src="../js/xmlGpml2jsonGpml/xmlGpml2jsonGpml.edges.js"></script>
-<script src="../js/xmlGpml2jsonGpml/xmlGpml2jsonGpml.edges.points.js"></script>
-<script src="../js/xmlGpml2jsonGpml/xmlGpml2jsonGpml.labelableElements.js"></script>
+<script src="../js/pathvisio/pathway/info-box.js"></script>
+<script src="../js/pathvisio/pathway/group.js"></script>
+<script src="../js/pathvisio/pathway/labelable-element.js"></script>
 
-<script src="../js/pathway-elements/edges/edges.js"></script>
-<script src="../js/pathway-elements/edges/edges.path-data.js"></script>
-<script src="../js/pathway-elements/edges/edges.markers.js"></script>
-<script src="../js/pathway-elements/edges/edges.end-points.js"></script>
-
-<script src="../js/pathway-elements/info-box.js"></script>
-<script src="../js/pathway-elements/groups.js"></script>
-<script src="../js/pathway-elements/labelable-elements.js"></script>
-
-<script src="../js/helpers.js"></script>
+<script src="../js/pathvisio/helpers.js"></script>
 <script src="../js/rgbcolor.js"></script>
 
+<script src="../js/jxon.js"></script>
 <script src="../lib/jquery/jquery.js"></script>
 <script src="../lib/d3/d3.js" charset="utf-8"></script>
 
@@ -196,7 +180,18 @@ Repo from which to pull pathway template svg: <INPUT id="repo" type="text" SIZE=
   }
 
   window.onload = function() {
-    pathvisio.init();
+    //pathway.load('#pathway-image', '../../test/gpml/fill-and-stroke-colors.gpml');
+    //pathway.load('#pathway-image', '../../test/gpml/shapes.gpml');
+    pathvisio.pathway.load('#pathway-image', url);
+
+    //pathvisio.drawFromUrl('#pathway-image', url, 'gpml+xml');
+    //var sJson = JSON.stringify(pathway, undefined, 2);
+    //$('#json-gpml-for-reading').text(sJson);
+
+    /*
+
+    // I wanted to make the pathvisio.js SVG, the PathVisio (Java) SVG and the PathVisio (Java) PNG all the same size.
+    // But the code below does not work.
 
     var javaScriptSvgWidth = self.javaScriptSvgWidth = $('#javascript-svg-pathway-container svg')[0].getAttribute('width');
     //console.log('javaScriptSvgWidth');
@@ -247,10 +242,12 @@ Repo from which to pull pathway template svg: <INPUT id="repo" type="text" SIZE=
     var javaScriptSvgHeight = $('#javascript-svg-pathway-container svg')[0].getAttribute('height');
     $('#java-png-pathway-container img')[0].setAttribute('width', 0.985*width + "px");
     $('#java-png-pathway-container img')[0].setAttribute('height', 0.985*height + "px");
-     */
+
+    //*/
+
   };
 
-  function usePathwayImgCreator(creator) {
+  function displayDiv(creator) {
     $('button.pathway').each(function(i) {
       this.style.backgroundColor = 'lightgray';
     });
@@ -260,6 +257,7 @@ Repo from which to pull pathway template svg: <INPUT id="repo" type="text" SIZE=
       this.style.display = 'none';
     });
     $('#' + creator + "-pathway-container")[0].style.display = 'block';
+    $('#json-gpml-for-reading').text(sJson);
   };
 </script>
 </body>
