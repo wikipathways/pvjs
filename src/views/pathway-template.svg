@@ -731,7 +731,10 @@ SVG-Edit (latest release)
 	<!-- TO-DO: The current symbol doesn't scale properly -->
 	<symbol id="group-complex" viewBox="0 0 100 100" preserveAspectRatio="none">
 	<desc>Group with style 'complex'</desc>
+	<!--
 	<path d="m26.75,3l47.50001,0l23.75,23.75l0,47.50001l-23.75,23.75l-47.50001,0l-23.75,-23.75l0,-47.50001l23.75,-23.75z" fill="rgb(180,180,100)" vector-effect="non-scaling-stroke"/>
+	-->
+	<rect x="1" y="1" width="118" height="178" stroke-linejoin:"miter"; stroke-miterlimit:"1"; vector-effect="non-scaling-stroke" fill="rgb(180,180,100)"></rect>
 	</symbol>
 
 	<!-- group of style "pathway" -->
