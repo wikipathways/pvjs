@@ -4,22 +4,22 @@ module.exports = function(grunt) {
   grunt.initConfig({
     concat: {
       options: {
-        separator: ';',
+        separator: ';\n\n',
       },
       dist: {
         src: [
           'src/js/jxon.js',
           'src/js/rgbcolor.js',
-          'src/js/pathvisio/helpers.js',
           'src/js/pathvisio/pathvisio.js',
+          'src/js/pathvisio/helpers.js',
           'src/js/pathvisio/pathway/pathway.js',
           'src/js/pathvisio/pathway/group.js',
           'src/js/pathvisio/pathway/info-box.js',
           'src/js/pathvisio/pathway/labelable-element.js',
           'src/js/pathvisio/pathway/edge/edge.js',
           'src/js/pathvisio/pathway/edge/marker.js',
-          'src/js/pathvisio/pathway/edge/path-data.js',
           'src/js/pathvisio/pathway/edge/point.js',
+          'src/js/pathvisio/pathway/edge/path-data.js',
         ],
         dest: 'build/js/pathvisio-js.js'
       },
