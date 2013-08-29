@@ -1,0 +1,39 @@
+{
+  "name": "pathvisio-js",
+  "version": "0.0.1",
+  "description": "Biological pathway viewer and editor.",
+  "main": "Gruntfile.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/wikipathways/pathvisio.js.git"
+  },
+  "keywords": [
+    "pathway",
+    "network",
+    "biology",
+    "node",
+    "edge",
+    "diagram"
+  ],
+  "author": "Anders Riutta",
+  "license": "",
+  "gitHead": "044be6618ee72b932fcb90f4369eb61706f3cfb9",
+  "readmeFilename": "README.md",
+  "devDependencies": {
+    "connect-livereload": "~0.2.0",
+    "grunt-open": "~0.2.2",
+    "matchdep": "~0.1.2",
+    "grunt": "~0.4.1",
+    "grunt-contrib-watch": "~0.5.3",
+    "grunt-contrib-connect": "~0.3.0",
+    "grunt-contrib-less": "~0.7.0",
+    "grunt-contrib-concat": "~0.3.0",
+    "grunt-contrib-uglify": "~0.2.2"
+  }
+}
