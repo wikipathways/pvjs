@@ -358,15 +358,15 @@ pathvisio.pathway = function(){
   };
 
   function get(url, mimeType, callback) {
-    if (!!url || !!mimeType) {
+    if (!url || !mimeType) {
 
       // TODO throw a proper error here
 
       var error = null;
-      if (!!url) {
+      if (!url) {
         error += 'Error: URL not specified.';
       };
-      if (!!mimeType) {
+      if (!mimeType) {
         error += 'Error: URL not specified.';
       };
       return console.warn(error);
@@ -438,7 +438,7 @@ pathvisio.pathway = function(){
     pathvisio.pathway.infoBox.draw();
   };
 
-  function load(svgSelector, id, url, mimeType){
+  function load(svgSelector, url, mimeType){
     if (!!svgSelector) {
       pathvisio.data.current.svgSelector = svgSelector;
       pathvisio.data.current.svg = d3.select(svgSelector);
