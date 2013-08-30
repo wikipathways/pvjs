@@ -1,6 +1,4 @@
-// Draw Labelable Elements. Includes data nodes, shapes, labels, cellular components...
-
-pathvisio.pathway.labelableElement = function(){ 
+pathvisio.pathway.xref = function(){ 
 
     // GPML to JSON shape name mappings: { "OldName":"new-name" }
     // replace spaces with dashes
@@ -228,26 +226,6 @@ pathvisio.pathway.labelableElement = function(){
           };
         };
 
-        // BiopaxRefs 
-
-        try {
-          if (element.hasOwnProperty('biopaxref')) {
-            element.biopaxRefs = pathvisio.helpers.convertToArray( element.biopaxref );
-            delete element.biopaxref;
-
-            //biopaxRefs.forEach(function(element, index, array) {
-              // do something
-            //});
-          }
-          else {
-            console.log("No element(s) named 'biopaxref' found for this node in this gpml file.");
-          };
-        }
-        catch (e) {
-          console.log("Error converting node's biopaxref to json: " + e.message);
-          //delete d.biopaxRef;
-        };
-
         delete element.graphics;
       });
 
@@ -448,28 +426,6 @@ pathvisio.pathway.labelableElement = function(){
               .attr("y", function (d, i) { return i * fontSize; })
               .text(function (d) { return d; });
             });
-
-            if (d.hasOwnProperty('biopaxRefs')) {
-              var nodePublicationXrefs = d3.select(this).selectAll(".node-publication-xref-text")	
-              .data(d.biopaxRefs)
-              .enter()
-              .append("text")
-              .attr("id", function (d) { return 'node-publication-xref-text-' + d; })
-              .attr("x", 0)
-              .attr("y", 0)
-              .attr('transform', function(d,i) { return 'translate(' + (i*12) + ' ' + (-12) + ')'; })
-              .attr("class", 'node-publication-xref-text')
-              .attr("style", "")
-              .text(function (d) {
-                var index = 0;
-                var gpmlId = null;
-                do {
-                  gpmlId = pathvisio.data.pathways[pathvisio.data.current.svgSelector].biopax.publicationXrefs[index].gpmlId;
-                  index += 1;
-                } while (gpmlId !== d && index < pathvisio.data.pathways[pathvisio.data.current.svgSelector].biopax.publicationXrefs.length);
-                return index});
-            };
-
         };
 
         /*
