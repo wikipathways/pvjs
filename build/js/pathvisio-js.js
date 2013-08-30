@@ -496,6 +496,13 @@ pathvisio.helpers = function(){
     else {
       if( Object.prototype.toString.call( object ) === '[object Array]' ) {
         return object;
+      }
+      else {
+        if( Object.prototype.toString.call( object ) === '[object String]' ) {
+          var array = [];
+          array.push(object)
+          return array;
+        };
       };
     };
   };
@@ -513,17 +520,21 @@ pathvisio.helpers = function(){
 ;
 
 pathvisio.pathway = function(){
-  function gpml2json(xmlGpml){
+  function gpml2json(gpml){
 
     // for doing this in Java, we could look at 
     // https://code.google.com/p/json-io/
 
-    self.xmlGpml = xmlGpml;
+    self.gpml = gpml;
 
     // We can use xml2json.js or JXON.js. Which is better?
     // JXON.js
     var pathway = pathvisio.data.pathways[pathvisio.data.current.svgSelector];
-    pathway = JXON.build(xmlGpml);
+    pathway = JXON.build(gpml);
+    
+    console.log('raw json from JXON');
+    console.log(JXON.build(gpml));
+
     try {
       xmlns = pathway["xmlns"]
     }
@@ -554,7 +565,7 @@ pathvisio.pathway = function(){
         alert("Pathvisio.js may not fully support the version of GPML provided (xmlns: " + xmlns + "). Please convert to the supported version of GPML (xmlns: " + gpmlXmlnsSupported + ").")
       };
 
-      // Convert output from jxon.js into jsonGpml (well-formed JSON with all implied elements from xmlGpml explicitly filled in).
+      // Convert output from jxon.js into jsonGpml (well-formed JSON with all implied elements from gpml explicitly filled in).
 
       pathway.boardWidth = pathway.graphics.boardwidth;
       delete pathway.graphics.boardwidth;
@@ -590,24 +601,6 @@ pathvisio.pathway = function(){
       }
       catch (e) {
         console.log("Biopax error: " + e.message);
-      };
-
-      // BiopaxRefs
-
-      // We should look at available standardized implementations of json Biopax.
-
-      try {
-        if (pathway.hasOwnProperty('biopaxref')) {
-          pathway.biopaxRefs = pathvisio.helpers.convertToArray( pathway.biopaxref );
-          delete pathway.biopaxref;
-        }
-        else {
-          console.log("No element(s) named 'biopaxref' found in this gpml file.");
-        };
-      }
-      catch (e) {
-        console.log("Error converting biopaxref to json: " + e.message);
-        //delete pathway.biopaxRefs;
       };
 
       // Comments 
@@ -859,10 +852,66 @@ pathvisio.pathway = function(){
 
       delete pathway.graphics;
 
+      // BiopaxRefs 
+
+      try {
+        if (pathway.hasOwnProperty('biopaxref')) {
+          pathway.biopaxRefs = pathvisio.helpers.convertToArray( pathway.biopaxref );
+          delete pathway.biopaxref;
+
+          //biopaxRefs.forEach(function(element, index, array) {
+            // do something
+          //});
+        }
+        else {
+          console.log("No element(s) named 'biopaxref' found in this gpml file.");
+        };
+      }
+      catch (e) {
+        console.log("Error converting biopaxref to json: " + e.message);
+        //delete pathway.biopaxRef;
+      };
+
+      // Biopax 
+
+      try {
+        var publicationXrefs = d3.select(gpml).selectAll('PublicationXref');
+        if (publicationXrefs.length > 0) {
+          pathway.biopax = {};
+          pathway.biopax.publicationXrefs = [];
+          publicationXrefs[0].forEach(function(element, index, array) {
+            var publicationXref = {};
+            self.element = element;
+            publicationXref.gpmlId = element.getAttribute('rdf:id');
+            publicationXref.id = element.getElementsByTagName('ID')[0].textContent;
+            publicationXref.db = element.getElementsByTagName('DB')[0].textContent;
+            publicationXref.title = element.getElementsByTagName('TITLE')[0].textContent;
+            publicationXref.source = element.getElementsByTagName('SOURCE')[0].textContent;
+            publicationXref.year = element.getElementsByTagName('YEAR')[0].textContent;
+            authors = d3.select(element).selectAll('AUTHORS');
+            if (authors.length > 0) {
+            publicationXref.authors = [];
+              authors[0].forEach(function(element, index, array) {
+                publicationXref.authors.push(element.textContent);
+              });
+            };
+            publicationXref.id = element.getElementsByTagName('ID')[0].textContent;
+            pathway.biopax.publicationXrefs.push(publicationXref); 
+          });
+        }
+        else {
+          console.log("No element(s) named 'biopax' found in this gpml file.");
+        };
+      }
+      catch (e) {
+        console.log("Error converting biopax to json: " + e.message);
+        //delete pathway.biopax;
+      };
+
       console.log('JSON:');
       console.log(pathway);
 
-      pathvisio.data.pathways[pathvisio.data.current.svgSelector] = pathway;
+      return pathvisio.data.pathways[pathvisio.data.current.svgSelector] = pathway;
     }
     else {
       alert("Pathvisio.js does not support the data format provided. Please convert to GPML and retry.")
@@ -872,50 +921,55 @@ pathvisio.pathway = function(){
   };
 
   function get(url, mimeType, callback) {
-    if (url === undefined || !(url) || url === "") {
-      return console.warn('Error: URL not specified.');
+    if (!url || !mimeType) {
+
+      // TODO throw a proper error here
+
+      var error = null;
+      if (!url) {
+        error += 'Error: URL not specified.';
+      };
+      if (!mimeType) {
+        error += 'Error: URL not specified.';
+      };
+      return console.warn(error);
     }
     else {
-      if (1!==1) {
-      }
-      else {
+      // be sure server has set gpml mime type to application/gpml+xml or application/gpml+xml
 
-// be sure server has set gpml mime type to application/gpml+xml or application/gpml+xml
+      d3.xml(url, "application/xml", function(gpmlDoc) {
 
-        d3.xml(url, "application/xml", function(gpmlDoc) {
-console.log('gpmlDoc');
-console.log(gpmlDoc);
+        /* if from webservice, we would have used this code, but now, we've decided that the proper format
+         * for the response (gpmlDoc) is GPML as an XML document. If the response would be anything else,
+         * such as the XML document that the webservice gives as a response, the parsing and manipulation must
+         * happen before calling get().
 
-/* if from webservice
+         var sGpml = gpmlDoc.getElementsByTagNameNS("http://www.wikipathways.org/webservice", "gpml")[0].textContent;
+         var oParser = new DOMParser();
+         var oDOM = oParser.parseFromString(sGpml, "text/xml");
+         var gpml = oDOM.documentElement;
 
-var sGpml = gpmlDoc.getElementsByTagNameNS("http://www.wikipathways.org/webservice", "gpml")[0].textContent;
-var oParser = new DOMParser();
-var oDOM = oParser.parseFromString(sGpml, "text/xml");
-var gpml = oDOM.documentElement;
+        */
 
-*/
+        // if the response is a valid GPML document (ie, not from webservice)
 
-///* if  not from webservice
+        var oSerializer = new XMLSerializer();
+        var sGpml = oSerializer.serializeToString(gpmlDoc);
+        var gpml = gpmlDoc.documentElement;
+        console.log('GPML');
+        console.log(gpml);
 
-          var oSerializer = new XMLSerializer();
-          var sGpml = oSerializer.serializeToString(gpmlDoc);
-          var gpml = gpmlDoc.documentElement;
-//*/
-          console.log('GPML');
-          console.log(gpml);
+        pathvisio.pathway.gpml2json(gpml);
+        var sJson = self.sJson = JSON.stringify(pathvisio.data.pathways[pathvisio.data.current.svgSelector], undefined, 2);
 
-          pathvisio.pathway.gpml2json(gpml);
-          var sJson = self.sJson = JSON.stringify(pathvisio.data.pathways[pathvisio.data.current.svgSelector], undefined, 2);
-
-          callback(pathvisio.data.pathways[pathvisio.data.current.svgSelector], sGpml, sJson);
-        });
-      };
+        callback(pathvisio.data.pathways[pathvisio.data.current.svgSelector], sGpml, sJson);
+      });
     };
   };
 
   function draw(data){
-    if (data === null) {
-      return console.warn('Error: No url specified for GPML or JSON data.');
+    if (!data) {
+      return console.warn('Error: No data entered as input.');
     };
 
     var drag = d3.behavior.drag()
@@ -932,6 +986,27 @@ var gpml = oDOM.documentElement;
     pathvisio.data.current.svg.attr('width', data.boardWidth);
     pathvisio.data.current.svg.attr('height', data.boardHeight);
 
+    if (!!pathvisio.data.pathways[pathvisio.data.current.svgSelector].biopaxRefs) {
+      var pathwayPublicationXrefs = pathvisio.data.current.svg.selectAll(".pathway-publication-xref-text")	
+      .data(pathvisio.data.pathways[pathvisio.data.current.svgSelector].biopaxRefs)
+      .enter()
+      .append("text")
+      .attr("id", function (d) { return 'pathway-publication-xref-text-' + d; })
+      .attr("x", 0)
+      .attr("y", 0)
+      .attr('transform', function(d,i) { return 'translate(' + (200 + i*12) + ' ' + 12 + ')'; })
+      .attr("class", 'pathway-publication-xref-text')
+      .attr("style", "")
+      .text(function (d) {
+        var index = 0;
+        var gpmlId = null;
+        do {
+          gpmlId = pathvisio.data.pathways[pathvisio.data.current.svgSelector].biopax.publicationXrefs[index].gpmlId;
+          index += 1;
+        } while (gpmlId !== d && index < pathvisio.data.pathways[pathvisio.data.current.svgSelector].biopax.publicationXrefs.length);
+        return index});
+    };
+
     var symbolsAvailable = self.symbolsAvailable = pathvisio.data.current.svg.selectAll('symbol');
 
     var markersAvailable = markersAvailable = pathvisio.data.current.svg.selectAll('marker');
@@ -946,7 +1021,7 @@ var gpml = oDOM.documentElement;
   };
 
   function load(svgSelector, url, mimeType){
-    if (svgSelector !== null) {
+    if (!!svgSelector) {
       pathvisio.data.current.svgSelector = svgSelector;
       pathvisio.data.current.svg = d3.select(svgSelector);
       var svgCount = pathvisio.data.current.svg.length;
@@ -964,23 +1039,21 @@ var gpml = oDOM.documentElement;
     /*
     // Use this code if you want to get the SVG using d3.xml
     pathvisio.data.current.svg = d3.select("#pathway-container").select(function() {
-      return this.getSVGDocument().documentElement;
+    return this.getSVGDocument().documentElement;
     });
     */
 
-    if (url === null) {
+    if (!url) {
       return console.warn('Error: No url specified for GPML or JSON data.');
+    };
+
+    if (!mimeType) {
+      mimeType = 'application/xml';
     };
 
     get(url, mimeType, function(data, sGpml, sJson) {
       draw(data);
     });
-
-    //var gpml = document.getElementsByTagName('pathway')[0];
-    //console.log('XML GPML:');
-    //console.log(gpml);
-
-    // be sure server has set gpml mime type to application/gpml+xml
   };
 
   return {
@@ -1002,12 +1075,6 @@ pathvisio.pathway.group = function(){
         var groupId = el.groupId
         return (pathvisio.data.pathways[pathvisio.data.current.svgSelector].labelableElements.filter(function(el) {return (el.groupRef === groupId)}).length>0)
       });
-console.log('validGroups');
-console.log(validGroups);
-console.log('hi');
-console.log(pathvisio.data.current.svg);
-console.log(pathvisio.data.current.svg.selectAll("use.group"));
-console.log('bye');
       var groupsContainer = pathvisio.data.current.svg.selectAll("use.group")	
       .data(validGroups)
       .enter()
@@ -1017,7 +1084,6 @@ console.log('bye');
 
         // TODO refactor the code below to call function getDimensions() one time instead of three times
 
-console.log('hmm');
         var groupDimensions = getDimensions(d.groupId);
         return 'translate(' + groupDimensions.x + ' ' + groupDimensions.y + ')'; 
       })
@@ -1341,6 +1407,26 @@ pathvisio.pathway.labelableElement = function(){
           };
         };
 
+        // BiopaxRefs 
+
+        try {
+          if (element.hasOwnProperty('biopaxref')) {
+            element.biopaxRefs = pathvisio.helpers.convertToArray( element.biopaxref );
+            delete element.biopaxref;
+
+            //biopaxRefs.forEach(function(element, index, array) {
+              // do something
+            //});
+          }
+          else {
+            console.log("No element(s) named 'biopaxref' found for this node in this gpml file.");
+          };
+        }
+        catch (e) {
+          console.log("Error converting node's biopaxref to json: " + e.message);
+          //delete d.biopaxRef;
+        };
+
         delete element.graphics;
       });
 
@@ -1541,6 +1627,28 @@ pathvisio.pathway.labelableElement = function(){
               .attr("y", function (d, i) { return i * fontSize; })
               .text(function (d) { return d; });
             });
+
+            if (d.hasOwnProperty('biopaxRefs')) {
+              var nodePublicationXrefs = d3.select(this).selectAll(".node-publication-xref-text")	
+              .data(d.biopaxRefs)
+              .enter()
+              .append("text")
+              .attr("id", function (d) { return 'node-publication-xref-text-' + d; })
+              .attr("x", 0)
+              .attr("y", 0)
+              .attr('transform', function(d,i) { return 'translate(' + (i*12) + ' ' + (-12) + ')'; })
+              .attr("class", 'node-publication-xref-text')
+              .attr("style", "")
+              .text(function (d) {
+                var index = 0;
+                var gpmlId = null;
+                do {
+                  gpmlId = pathvisio.data.pathways[pathvisio.data.current.svgSelector].biopax.publicationXrefs[index].gpmlId;
+                  index += 1;
+                } while (gpmlId !== d && index < pathvisio.data.pathways[pathvisio.data.current.svgSelector].biopax.publicationXrefs.length);
+                return index});
+            };
+
         };
 
         /*
