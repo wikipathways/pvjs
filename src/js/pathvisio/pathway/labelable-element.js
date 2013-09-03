@@ -35,6 +35,8 @@ pathvisio.pathway.labelableElement = function(){
     var alignToAnchorMappings = { "Left":"start", "Center":"middle", "Right":"end" };
 
   function gpml2json(rawJsonLabelableElements) {
+    console.log('rawJsonLabelableElements');
+    console.log(rawJsonLabelableElements);
     try {
 
       // LabelableElements
@@ -143,7 +145,9 @@ pathvisio.pathway.labelableElement = function(){
           delete element.attribute;
           element.attributes.forEach(function(el, index, array) {
             if ((el.key === "org.pathvisio.DoubleLineProperty") && (el.value === "Double")) {
-              el.strokeStyle = 'double';
+              console.log('double');
+              console.log(el);
+              element.strokeStyle = 'double';
             }
             else {
               if ((el.key === "org.pathvisio.CellularComponentProperty") && (el.value !== "None")) {
@@ -286,8 +290,10 @@ pathvisio.pathway.labelableElement = function(){
     //.call(drag);
 
     var labelableElements = labelableElementsContainer.each(function(d) {
+      console.log('labelableElementsContainer');
+      console.log(d);
       var labelableElement = d3.select(this).append('use')
-      .attr("id", function (d) {return 'labelable-element-' + d["@GraphId"]})
+      .attr("id", function (d) {return 'labelable-element-' + d.graphId})
       .attr('transform', function(d) { 
         var transform = 'none';
         if (d.hasOwnProperty('rotation')) {
@@ -339,7 +345,44 @@ pathvisio.pathway.labelableElement = function(){
           if (d.hasOwnProperty('strokeStyle')) {
             if (d.strokeStyle === 'dashed') {
               style += 'stroke-dasharray: 5,3; '; 
+            }
+            else {
+              if (d.strokeStyle === 'double') {
+
+                // draw second element
+
+                //labelableElement.append("use")
+                labelableElementsContainer.append("use")
+                .attr("id", function (d) {return 'labelable-element-double' + d.graphId})
+                .attr('transform', function(d) { 
+                  var transform = 'none';
+                  if (d.hasOwnProperty('rotation')) {
+                    transform = 'rotate(' + d.rotation + ' ' + d.width / 2 + ' ' + d.height / 2 + ')';
+                  };
+                  return transform;
+                })
+                .attr("class", function (d) { 
+                  var styleClass = ''; 
+                  if (d.elementType === 'data-node') {
+                    styleClass = "labelable-element " + d.elementType + ' ' + d.dataNodeType; 
+                  }
+                  else {
+                    styleClass = "labelable-element " + d.elementType; 
+                  };
+                  return styleClass })
+                .attr("x", 0)
+                .attr("y", 0)
+                .attr("width", function (d) { return d.width; })
+                .attr("height", function (d) { return d.height; })
+                //.attr("class", "drawing-board-color-stroke")
+                .attr("style", "stroke-width:" + 2*d.strokeWidth + '; stroke: red');
+              };
             };
+
+
+
+
+
             // TODO currently cannot render double lines for linestyles for labelableElements.
           };
 

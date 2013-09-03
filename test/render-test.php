@@ -84,8 +84,6 @@ Repo:
 
   if (isset($_GET['id'])) {
     $id = htmlspecialchars($_GET['id']);
-    $pathwayUrl = "/wpi/PathwayWidget.php?id=" . $id;
-
     $batikSvgUrl = "http://test3.wikipathways.org//wpi/wpi.php?action=downloadFile&type=svg&pwTitle=Pathway:" . $id . "&revision=0";
     $pngUrl = "http://test3.wikipathways.org/wpi//wpi.php?action=downloadFile&type=png&pwTitle=Pathway:" . $id . "&revision=0";
     $pathwayUrl = "http://test3.wikipathways.org/wpi/PathwayWidget.php?id=" . $id . "&repo=" . $repo;
