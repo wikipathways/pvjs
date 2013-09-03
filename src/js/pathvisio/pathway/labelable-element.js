@@ -289,9 +289,7 @@ pathvisio.pathway.labelableElement = function(){
 //.on("click", function(d,i) { alert(d.xRef.id); });
     //.call(drag);
 
-    var labelableElements = labelableElementsContainer.each(function(d) {
-      console.log('labelableElementsContainer');
-      console.log(d);
+    var labelableElements = labelableElementsContainer.each(function(d, i) {
       var labelableElement = d3.select(this).append('use')
       .attr("id", function (d) {return 'labelable-element-' + d.graphId})
       .attr('transform', function(d) { 
@@ -332,58 +330,62 @@ pathvisio.pathway.labelableElement = function(){
 
           if (d.hasOwnProperty('strokeWidth')) {
 
-            // doubling strokeWidth, because stroke is centered on bounding box, meaning half of it gets cut off.
+            // Doubling strokeWidth. Reason: stroke is centered on perimeter of node, requiring us to use an SVG clipping Path to clip off the outermost half
+            // of the stroke so that the stroke does not go outside its bounding box. Because the outer half of the stroke is not displayed, we need to
+            // double the stroke width so that the stroke's apparent width matches the value specified in GPML.
 
-            style += 'stroke-width:' + 2 * d.strokeWidth + '; '; 
+            var strokeWidthEffective = 2 * d.strokeWidth; 
           }
           else {
-            if (d.symbolType !== 'none') {
-              style += 'stroke-width: 2; '; 
-            };
+            var strokeWidthEffective = 2; 
           };
 
           if (d.hasOwnProperty('strokeStyle')) {
             if (d.strokeStyle === 'dashed') {
               style += 'stroke-dasharray: 5,3; '; 
-            }
-            else {
-              if (d.strokeStyle === 'double') {
-
-                // draw second element
-
-                //labelableElement.append("use")
-                labelableElementsContainer.append("use")
-                .attr("id", function (d) {return 'labelable-element-double' + d.graphId})
-                .attr('transform', function(d) { 
-                  var transform = 'none';
-                  if (d.hasOwnProperty('rotation')) {
-                    transform = 'rotate(' + d.rotation + ' ' + d.width / 2 + ' ' + d.height / 2 + ')';
-                  };
-                  return transform;
-                })
-                .attr("class", function (d) { 
-                  var styleClass = ''; 
-                  if (d.elementType === 'data-node') {
-                    styleClass = "labelable-element " + d.elementType + ' ' + d.dataNodeType; 
-                  }
-                  else {
-                    styleClass = "labelable-element " + d.elementType; 
-                  };
-                  return styleClass })
-                .attr("x", 0)
-                .attr("y", 0)
-                .attr("width", function (d) { return d.width; })
-                .attr("height", function (d) { return d.height; })
-                //.attr("class", "drawing-board-color-stroke")
-                .attr("style", "stroke-width:" + 2*d.strokeWidth + '; stroke: red');
-              };
             };
 
+            if (d.strokeStyle === 'double') {
 
+                // doubling strokeWidthEffective to accommodate double line.
 
+                var strokeWidthEffectiveDouble = 2*strokeWidthEffective;
+                style += 'stroke-width:' + strokeWidthEffectiveDouble + '; '; 
 
+              console.log('draw double');
+              console.log(d);
+              console.log(labelableElementsContainer[0][i]);
 
-            // TODO currently cannot render double lines for linestyles for labelableElements.
+              // draw second element
+
+              //labelableElement.append("use")
+              d3.select(labelableElementsContainer[0][i]).append("use")
+              .attr("id", function (d) {return 'labelable-element-double' + d.graphId})
+              .attr('transform', function(d) { 
+                var transform = 'none';
+                if (d.hasOwnProperty('rotation')) {
+                  transform = 'rotate(' + d.rotation + ' ' + (d.width/2 - strokeWidthEffective/2) + ' ' + (d.height/2 - strokeWidthEffective/2) + ')';
+                };
+                return transform;
+              })
+              .attr("x", function(d) {return strokeWidthEffective/2; })
+              .attr("y", function(d) {return strokeWidthEffective/2; })
+              .attr("width", function (d) { return d.width - strokeWidthEffective; })
+              .attr("height", function (d) { return d.height - strokeWidthEffective; })
+              .attr("xlink:xlink:href", function (d) {return "#" + d.symbolType; })
+              //.attr("class", "drawing-board-color-stroke")
+              .attr("style", "stroke-width:" + d.strokeWidth + '; stroke:red; fill-opacity:0');
+            }
+            else {
+              if (d.hasOwnProperty('strokeWidth')) {
+                style += 'stroke-width:' + 2 * d.strokeWidth + '; '; 
+              };
+            };
+          }
+          else {
+            if (d.hasOwnProperty('strokeWidth')) {
+              style += 'stroke-width:' + 2 * d.strokeWidth + '; '; 
+            };
           };
 
           return style; 
