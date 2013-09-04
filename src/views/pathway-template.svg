@@ -684,18 +684,6 @@ SVG-Edit (latest release)
 	Symbols (shapes) 
 	*************************** -->
 
-	<!-- because of the viewbox, these symbols can be stretched to any size,
-	but the stroke width will appear to increase as the symbol increases
-	in height or width, ie., some SVG renderers display the E and W sides of 
-	a rect transformed with "scale(2, 1)" as thicker than the N and S sides.
-	I need to figure out how to correct this. Using the vector-effect attribute set to
-	"non-scaling-stroke" works in Chrome, but not all renderers support this attribute.
-	TODO Is there a better way to address this?
-
-	Some symbols such as "nucleus" appear to be cropped at the top and left sides in Chrome.
-	TODO redraw symbols so they are entirely within viewbox.
-	-->
-
 	<symbol id="none" class="shape-none" viewBox="0 0 100 50" preserveAspectRatio="none">
 	<desc>none</desc>
 	</symbol>
@@ -705,7 +693,7 @@ SVG-Edit (latest release)
 	<symbol id="arc" viewBox="0 0 100 100" preserveAspectRatio="none">
 	<desc>arc</desc>
 	<path d="m99.5,50c0,27.338341 -22.162117,49.5 -49.5,49.5s-49.5,-22.161659 -49.5,-49.5" vector-effect="non-scaling-stroke"/>	
-</symbol> 
+	</symbol> 
 
 	<!-- brace -->
 
@@ -715,40 +703,16 @@ SVG-Edit (latest release)
   	</symbol>
 	
 	<!-- group of style "none" -->
-	<!--
-	     see group.js for shape definition. Note that the style definition is still in this SVG template file.
-	<symbol id="group-none" viewBox="0 0 120 180" preserveAspectRatio="none">
-	<desc>Group with style 'none'</desc>
-	<rect x="0" y="0" width="118" height="178" fill="rgb(180,180,100)" stroke-dasharray="5,3" vector-effect="non-scaling-stroke"></rect>
-	</symbol>
-	-->
+	<!-- see group.js for symbol definition. Note that the style definition is still in this SVG template file. -->
 
 	<!-- group of style "group" -->
-	<!--
-	     see group.js for shape definition. Note that the style definition is still in this SVG template file.
-	Not sure about this. Should this deinition be empty since group of type group doesn't have an outline other than for mouse-over?
-	<symbol id="group-group" viewBox="0 0 120 180" preserveAspectRatio="none">
-	<desc>Group with style 'group'</desc>
-	</symbol>
-	-->
+	<!-- see group.js for symbol definition. Note that the style definition is still in this SVG template file. -->
 
 	<!-- group of style "complex" -->
-	<!--
-	     see group.js for shape definition. Note that the style definition is still in this SVG template file.
-	<symbol id="group-complex" viewBox="0 0 100 100" preserveAspectRatio="none">
-	<desc>Group with style 'complex'</desc>
-	<path d="m26.75,3l47.50001,0l23.75,23.75l0,47.50001l-23.75,23.75l-47.50001,0l-23.75,-23.75l0,-47.50001l23.75,-23.75z" fill="rgb(180,180,100)" vector-effect="non-scaling-stroke"/>
-	</symbol>
-	-->
+	<!-- see group.js for symbol definition. Note that the style definition is still in this SVG template file. -->
 
 	<!-- group of style "pathway" -->
-	<!--
-	     see group.js for shape definition. Note that the style definition is still in this SVG template file.
-	<symbol id="group-pathway" viewBox="0 0 120 180" preserveAspectRatio="none">
-	<desc>Group with style 'pathway'</desc>
-	<rect x="1" y="1" width="118" height="178" vector-effect="non-scaling-stroke" fill="lightgreen" stroke-dasharray="5,3"></rect>
-	</symbol>
-	-->
+	<!-- see group.js for symbol definition. Note that the style definition is still in this SVG template file. -->
 
 	<!-- Endoplasmic reticulum -->
 
@@ -832,6 +796,7 @@ SVG-Edit (latest release)
 	</symbol>
 
 	<!-- rounded-rectangle -->
+	<!-- TODO the rounded corners need to be constant in size, meaning they will probably have to be defined in JavaScript. -->
       <clipPath id="rounded-rectangle-clip-path">
 	<rect x="0" y="0" rx="2.5" ry="2.5"  width="100" height="50" vector-effect="non-scaling-stroke"></rect>
       </clipPath>
