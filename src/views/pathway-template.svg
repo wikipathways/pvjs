@@ -131,32 +131,32 @@ SVG-Edit (latest release)
 		font-weight: bold;
 	}
 
-	use.group {
+	path.group {
 		fill-opacity: 0.098;
 		stroke: gray;
 		stroke-miterlimit: 1;
 		stroke-width: 1px;
 	}
 
-	use.group:hover {
+	path.group:hover {
 		fill-opacity: 0.2;
 		stroke-width: 1px;
 	}
 
-	use.group-none {
+	path.group-none {
 		fill: rgb(180,180,100);
 	}
 
-	use.group-group {
+	path.group-group {
 		fill-opacity: 0;
 		stroke-width: 0;
 	}
 
-	use.group-complex {
+	path.group-complex {
 		fill: rgb(180,180,100);
 	}
 
-	use.group-pathway {
+	path.group-pathway {
 		fill: lightgreen;
 	}
 
