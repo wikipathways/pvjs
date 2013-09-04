@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <meta charset="utf-8">
-<title>pathvisio.js xmlGpml2jsonGpml interface</title>
+<title>pathvisio.js gpml2json testing</title>
 
 <!-- 
 Style guides can be arbitrary, but for sake of consistency within this project, let's use these:
@@ -10,21 +10,21 @@ http://google-styleguide.googlecode.com/svn/trunk/jsoncstyleguide.xml#General_Gu
 -->
 
 <body>
-  <h1>pathvisio.js gpml2json interface</h1>
+  <h1>pathvisio.js gpml2json testing</h1>
 
   <form>
     <input type="submit" onclick="submitRequest()" />
   </form>
 
   <h2>GPML</h2>
-  <textarea id="gpml-text-area" rows="20" cols="150" placeholder="Write something here"></textarea>
+  <textarea id="gpml-text-area" rows="20" cols="150" placeholder="Paste some GPML here and click submit"></textarea>
   <h2>json</h2>
   <textarea id="json-text-area" rows="20" cols="150"></textarea>
 
   <script src="../src/lib/jquery/jquery.js"></script>
   <script src="../src/lib/d3/d3.js" charset="utf-8"></script>
 
-  <script src="../build/js/pathvisio-js.js"></script>
+  <script src="../build/js/pathvisio.js"></script>
 
   <script>
 
