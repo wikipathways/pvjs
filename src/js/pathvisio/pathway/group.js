@@ -11,7 +11,7 @@ pathvisio.pathway.group = function(){
       var groupsContainer = pathvisio.data.current.svg.selectAll("use.group")	
       .data(validGroups)
       .enter()
-      .append("use")
+      .append("path")
       .attr("id", function (d) { return 'group-' + d.graphId })
       .attr('transform', function(d) { 
 
@@ -20,16 +20,22 @@ pathvisio.pathway.group = function(){
         var groupDimensions = getDimensions(d.groupId);
         return 'translate(' + groupDimensions.x + ' ' + groupDimensions.y + ')'; 
       })
-      .attr("width", function (d) {
-        var groupDimensions = getDimensions(d.groupId);
-        return groupDimensions.width; 
-      })
-      .attr("height", function (d) { 
-        var groupDimensions = getDimensions(d.groupId);
-        return groupDimensions.height; 
-      })
       .attr("class", function(d) { return 'group group-' +  d.style; })
-      .attr("xlink:xlink:href", function(d) { return '#group-' +  d.style; });
+      .attr("d", function(d) {
+        var groupDimensions = getDimensions(d.groupId);
+        if (d.style === 'none' || d.style === 'group' || d.style === 'pathway') {
+          var pathData = 'M ' + groupDimensions.x + ' ' + groupDimensions.y + ' L ' + (groupDimensions.x + groupDimensions.width) + ' ' + groupDimensions.y + ' L ' + (groupDimensions.x + groupDimensions.width) + ' ' + (groupDimensions.y + groupDimensions.height) + ' L ' + groupDimensions.x + ' ' + (groupDimensions.y + groupDimensions.height) + ' Z';
+        }
+        else {
+          if (d.style === 'complex') {
+            var pathData = 'M ' + (groupDimensions.x + 20) + ' ' + groupDimensions.y + ' L ' + (groupDimensions.x + groupDimensions.width - 20) + ' ' + groupDimensions.y + ' L ' + (groupDimensions.x + groupDimensions.width) + ' ' + (groupDimensions.y + 20) + ' L ' + (groupDimensions.x + groupDimensions.width) + ' ' + (groupDimensions.y + groupDimensions.height - 20) + ' L ' + (groupDimensions.x + groupDimensions.width - 20) + ' ' + (groupDimensions.y + groupDimensions.height) + ' L ' + (groupDimensions.x - 20) + ' ' + (groupDimensions.y + groupDimensions.height) + ' L ' + (groupDimensions.x) + ' ' + (groupDimensions.y + groupDimensions.height - 20) + ' L ' + (groupDimensions.x) + ' ' + (groupDimensions.y + 20) + ' Z';
+          }
+          else {
+            var pathData = 'M ' + groupDimensions.x + ' ' + groupDimensions.y + ' L ' + (groupDimensions.x + groupDimensions.width) + ' ' + groupDimensions.y + ' L ' + (groupDimensions.x + groupDimensions.width) + ' ' + (groupDimensions.y + groupDimensions.height) + ' L ' + groupDimensions.x + ' ' + (groupDimensions.y + groupDimensions.height) + ' Z';
+          };
+        };
+        return pathData;
+      });
       //.call(drag);
     };
   };
