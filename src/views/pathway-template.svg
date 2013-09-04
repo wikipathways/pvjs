@@ -774,10 +774,13 @@ SVG-Edit (latest release)
 	</symbol>
 
 	<!-- Shape is placeholder until it can be replaced with correct shape. -->
-
+	<clipPath id="hexagon-clip-path">
+	<path d="m1.42004,50.99635l21.07262,-42.13943l56.19152,0l21.0667,42.13943l-21.0667,42.14507l-56.19152,0l-21.07262,-42.14507z" vector-effect="non-scaling-stroke"/>
+        </clipPath>
+      
 	<symbol id="hexagon" viewBox="0 0 100 100" preserveAspectRatio="none">
 	<desc>hexagon</desc>
-	<path d="m1.42004,50.99635l21.07262,-42.13943l56.19152,0l21.0667,42.13943l-21.0667,42.14507l-56.19152,0l-21.07262,-42.14507z" vector-effect="non-scaling-stroke"/>
+	<path d="m1.42004,50.99635l21.07262,-42.13943l56.19152,0l21.0667,42.13943l-21.0667,42.14507l-56.19152,0l-21.07262,-42.14507z" style="clip-path: url(#hexagon-clip-path); " vector-effect="non-scaling-stroke"/>
 	</symbol>
 
 	<!-- Shape is placeholder until it can be replaced with correct shape. -->
@@ -808,10 +811,13 @@ SVG-Edit (latest release)
 	</symbol>
 
 	<!-- pentagon -->
-
+	<clipPath id="pentagon-clip-path">
+	<polygon transform="rotate(90, 55.5734, 50.3837)" points="55.574459075927734,5.925553321838379 102.320556640625,39.888580322265625 84.46514129638672,94.8419189453125 26.68378257751465,94.8419189453125 8.828362464904785,39.888580322265625 " vector-effect="non-scaling-stroke"/>
+        </clipPath> 
+        
 	<symbol id="pentagon" viewBox="0 0 100 100" preserveAspectRatio="none">
 	<desc>pentagon</desc>
-	<polygon transform="rotate(90, 55.5734, 50.3837)" points="55.574459075927734,5.925553321838379 102.320556640625,39.888580322265625 84.46514129638672,94.8419189453125 26.68378257751465,94.8419189453125 8.828362464904785,39.888580322265625 " vector-effect="non-scaling-stroke"/>
+	<polygon transform="rotate(90, 55.5734, 50.3837)" points="55.574459075927734,5.925553321838379 102.320556640625,39.888580322265625 84.46514129638672,94.8419189453125 26.68378257751465,94.8419189453125 8.828362464904785,39.888580322265625 " style="clip-path: url(#pentagon-clip-path); " vector-effect="non-scaling-stroke"/>
 	</symbol>
 
 	<!-- rectangle -->
