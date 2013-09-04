@@ -21,7 +21,7 @@ module.exports = function(grunt) {
           'src/js/pathvisio/pathway/edge/point.js',
           'src/js/pathvisio/pathway/edge/path-data.js',
         ],
-        dest: 'build/js/pathvisio-js.js'
+        dest: 'build/js/pathvisio.js'
       },
     },
     uglify: {
@@ -30,7 +30,7 @@ module.exports = function(grunt) {
       },
       my_target: {
         files: {
-          'build/js/pathvisio-js.min.js': ['build/js/pathvisio-js.js']
+          'build/js/pathvisio.min.js': ['build/js/pathvisio.js']
         }
       }
     }
