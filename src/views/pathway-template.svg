@@ -145,6 +145,7 @@ SVG-Edit (latest release)
 
 	path.group-none {
 		fill: rgb(180,180,100);
+		stroke-dasharray: 5,3;
 	}
 
 	path.group-group {
@@ -158,6 +159,7 @@ SVG-Edit (latest release)
 
 	path.group-pathway {
 		fill: lightgreen;
+		stroke-dasharray: 5,3;
 	}
 
 	use.data-node {
