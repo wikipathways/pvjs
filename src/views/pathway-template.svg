@@ -839,9 +839,13 @@ SVG-Edit (latest release)
 
 	<!-- triangle -->
 
+	clipPath id="triangle-clip-path">
+	<polygon points="1,49 49,24 1,1" vector-effect="non-scaling-stroke"/>
+      </clipPath>
+
 	<symbol id="triangle" viewBox="0 0 50 50" preserveAspectRatio="none">
 	<desc>triangle</desc>
-	<polygon points="1,49 49,24 1,1" vector-effect="non-scaling-stroke"/>
+	<polygon points="1,49 49,24 1,1" style="clip-path: url(#triangle-clip-path);" vector-effect="non-scaling-stroke"/>
 	</symbol>
 
 	<!-- TODO Update placeholders for SVG definitions of shapes.
