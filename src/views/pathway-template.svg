@@ -839,7 +839,7 @@ SVG-Edit (latest release)
 
 	<!-- triangle -->
 
-	clipPath id="triangle-clip-path">
+	<clipPath id="triangle-clip-path">
 	<polygon points="1,49 49,24 1,1" vector-effect="non-scaling-stroke"/>
       </clipPath>
 
