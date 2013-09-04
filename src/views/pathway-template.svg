@@ -715,29 +715,40 @@ SVG-Edit (latest release)
   	</symbol>
 	
 	<!-- group of style "none" -->
+	<!--
+	     see group.js for shape definition. Note that the style definition is still in this SVG template file.
 	<symbol id="group-none" viewBox="0 0 120 180" preserveAspectRatio="none">
 	<desc>Group with style 'none'</desc>
 	<rect x="0" y="0" width="118" height="178" fill="rgb(180,180,100)" stroke-dasharray="5,3" vector-effect="non-scaling-stroke"></rect>
 	</symbol>
+	-->
 
 	<!-- group of style "group" -->
-	<!-- Not sure about this. Should this deinition be empty since group of type group doesn't have an outline other than for mouse-over? -->
+	<!--
+	     see group.js for shape definition. Note that the style definition is still in this SVG template file.
+	Not sure about this. Should this deinition be empty since group of type group doesn't have an outline other than for mouse-over?
 	<symbol id="group-group" viewBox="0 0 120 180" preserveAspectRatio="none">
 	<desc>Group with style 'group'</desc>
 	</symbol>
+	-->
 
 	<!-- group of style "complex" -->
-	<!-- TO-DO: The current symbol doesn't scale properly -->
+	<!--
+	     see group.js for shape definition. Note that the style definition is still in this SVG template file.
 	<symbol id="group-complex" viewBox="0 0 100 100" preserveAspectRatio="none">
 	<desc>Group with style 'complex'</desc>
 	<path d="m26.75,3l47.50001,0l23.75,23.75l0,47.50001l-23.75,23.75l-47.50001,0l-23.75,-23.75l0,-47.50001l23.75,-23.75z" fill="rgb(180,180,100)" vector-effect="non-scaling-stroke"/>
 	</symbol>
+	-->
 
 	<!-- group of style "pathway" -->
+	<!--
+	     see group.js for shape definition. Note that the style definition is still in this SVG template file.
 	<symbol id="group-pathway" viewBox="0 0 120 180" preserveAspectRatio="none">
 	<desc>Group with style 'pathway'</desc>
 	<rect x="1" y="1" width="118" height="178" vector-effect="non-scaling-stroke" fill="lightgreen" stroke-dasharray="5,3"></rect>
 	</symbol>
+	-->
 
 	<!-- Endoplasmic reticulum -->
 
