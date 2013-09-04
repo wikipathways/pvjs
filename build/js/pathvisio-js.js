@@ -770,7 +770,6 @@ pathvisio.pathway = function(){
           else {
             pathway.labelableElements = dataNodes;
           };
-          console.log(dataNodes);
 
         }
         else {
@@ -1079,31 +1078,36 @@ pathvisio.pathway.group = function(){
       var groupsContainer = pathvisio.data.current.svg.selectAll("use.group")	
       .data(validGroups)
       .enter()
-      .append("use")
+      .append("path")
       .attr("id", function (d) { return 'group-' + d.graphId })
-      .attr('transform', function(d) { 
-
-        // TODO refactor the code below to call function getDimensions() one time instead of three times
-
-        var groupDimensions = getDimensions(d.groupId);
-        return 'translate(' + groupDimensions.x + ' ' + groupDimensions.y + ')'; 
-      })
-      .attr("width", function (d) {
-        var groupDimensions = getDimensions(d.groupId);
-        return groupDimensions.width; 
-      })
-      .attr("height", function (d) { 
-        var groupDimensions = getDimensions(d.groupId);
-        return groupDimensions.height; 
-      })
       .attr("class", function(d) { return 'group group-' +  d.style; })
-      .attr("xlink:xlink:href", function(d) { return '#group-' +  d.style; });
+
+      // We tried using symbols for the group shapes, but this wasn't possible because the symbols scaled uniformly, and the beveled corners of the complex group
+      // are supposed to remain constant in size, regardless of changes in group size.
+
+      .attr("d", function(d) {
+        var groupDimensions = getDimensions(d.groupId);
+        if (d.style === 'none' || d.style === 'group' || d.style === 'pathway') {
+          var pathData = 'M ' + groupDimensions.x + ' ' + groupDimensions.y + ' L ' + (groupDimensions.x + groupDimensions.width) + ' ' + groupDimensions.y + ' L ' + (groupDimensions.x + groupDimensions.width) + ' ' + (groupDimensions.y + groupDimensions.height) + ' L ' + groupDimensions.x + ' ' + (groupDimensions.y + groupDimensions.height) + ' Z';
+        }
+        else {
+          if (d.style === 'complex') {
+            var pathData = 'M ' + (groupDimensions.x + 20) + ' ' + groupDimensions.y + ' L ' + (groupDimensions.x + groupDimensions.width - 20) + ' ' + groupDimensions.y + ' L ' + (groupDimensions.x + groupDimensions.width) + ' ' + (groupDimensions.y + 20) + ' L ' + (groupDimensions.x + groupDimensions.width) + ' ' + (groupDimensions.y + groupDimensions.height - 20) + ' L ' + (groupDimensions.x + groupDimensions.width - 20) + ' ' + (groupDimensions.y + groupDimensions.height) + ' L ' + (groupDimensions.x + 20) + ' ' + (groupDimensions.y + groupDimensions.height) + ' L ' + (groupDimensions.x) + ' ' + (groupDimensions.y + groupDimensions.height - 20) + ' L ' + (groupDimensions.x) + ' ' + (groupDimensions.y + 20) + ' Z';
+          }
+          else {
+            var pathData = 'M ' + groupDimensions.x + ' ' + groupDimensions.y + ' L ' + (groupDimensions.x + groupDimensions.width) + ' ' + groupDimensions.y + ' L ' + (groupDimensions.x + groupDimensions.width) + ' ' + (groupDimensions.y + groupDimensions.height) + ' L ' + groupDimensions.x + ' ' + (groupDimensions.y + groupDimensions.height) + ' Z';
+          };
+        };
+        return pathData;
+      });
       //.call(drag);
     };
   };
 
   function getDimensions(groupId) {
     var groupMembers = pathvisio.data.pathways[pathvisio.data.current.svgSelector].labelableElements.filter(function(el) {return (el.groupRef === groupId)});
+    console.log('groupMembers');
+    console.log(groupMembers);
     var group = {};
 
     // I think this is margin, not padding, but I'm not sure
@@ -1114,6 +1118,9 @@ pathvisio.pathway.group = function(){
 
     group.width = (d3.max(groupMembers, function(el) {return el.x + el.width})) - group.x + margin;
     group.height = (d3.max(groupMembers, function(el) {return el.y + el.height})) - group.y + margin;
+
+    console.log('group');
+    console.log(group);
 
     return group;
   };
@@ -1182,39 +1189,41 @@ pathvisio.pathway.infoBox = function(){
 
 pathvisio.pathway.labelableElement = function(){ 
 
-    // GPML to JSON shape name mappings: { "OldName":"new-name" }
-    // replace spaces with dashes
-    // Add dashes before every capital letter except any capital letters at the beginning of the string
-    // Replace spaces with dashes
-    // Replace double dashes with single dashes
-    // replace capitals letters with lowercase. 
+  // GPML to JSON shape name mappings: { "OldName":"new-name" }
+  // replace spaces with dashes
+  // Add dashes before every capital letter except any capital letters at the beginning of the string
+  // Replace spaces with dashes
+  // Replace double dashes with single dashes
+  // replace capitals letters with lowercase. 
 
-    var shapeMappings = {
-      "Arc" : "arc",
-      "Brace" : "brace",
-      "Cell" : "cell",
-      "Endoplasmic Reticulum" : "endoplasmic-reticulum",
-      "Extracellular region" : "extracellular-region",
-      "Golgi Apparatus" : "golgi-apparatus",
-      "Hexagon" : "hexagon",
-      "mim-degradation" : "mim-degradation",
-      "Mitochondria" : "mitochondria",
-      "Nucleus" : "nucleus",
-      "Organelle" : "organelle",
-      "Oval" : "oval",
-      "Pentagon" : "pentagon",
-      "Rectangle" : "rectangle",
-      "RoundedRectangle" : "rounded-rectangle",
-      "Sarcoplasmic Reticulum" : "sarcoplasmic-reticulum",
-      "Triangle" : "triangle",
-      "Vesicle" : "vesicle"
-    }; 
+  var shapeMappings = {
+    "Arc" : "arc",
+    "Brace" : "brace",
+    "Cell" : "cell",
+    "Endoplasmic Reticulum" : "endoplasmic-reticulum",
+    "Extracellular region" : "extracellular-region",
+    "Golgi Apparatus" : "golgi-apparatus",
+    "Hexagon" : "hexagon",
+    "mim-degradation" : "mim-degradation",
+    "Mitochondria" : "mitochondria",
+    "Nucleus" : "nucleus",
+    "Organelle" : "organelle",
+    "Oval" : "oval",
+    "Pentagon" : "pentagon",
+    "Rectangle" : "rectangle",
+    "RoundedRectangle" : "rounded-rectangle",
+    "Sarcoplasmic Reticulum" : "sarcoplasmic-reticulum",
+    "Triangle" : "triangle",
+    "Vesicle" : "vesicle"
+  }; 
 
-    // TODO What happens if we have right to left flowing text?
+  // TODO What happens if we have right to left flowing text?
 
-    var alignToAnchorMappings = { "Left":"start", "Center":"middle", "Right":"end" };
+  var alignToAnchorMappings = { "Left":"start", "Center":"middle", "Right":"end" };
 
   function gpml2json(rawJsonLabelableElements) {
+    console.log('rawJsonLabelableElements');
+    console.log(rawJsonLabelableElements);
     try {
 
       // LabelableElements
@@ -1418,7 +1427,7 @@ pathvisio.pathway.labelableElement = function(){
             delete element.biopaxref;
 
             //biopaxRefs.forEach(function(element, index, array) {
-              // do something
+            // do something
             //});
           }
           else {
@@ -1450,25 +1459,25 @@ pathvisio.pathway.labelableElement = function(){
     .attr("id", function (d) { return 'labelable-elements-container-' + d.graphId })
     .attr('transform', function(d) { return 'translate(' + d.x + ' ' + d.y + ')'; })
     .attr("class", "labelable-elements-container")
-.on("click", function(d,i) {
-	if (d.elementType === 'data-node') {
-		var xrefDiv = $('.xrefinfo');
+    .on("click", function(d,i) {
+      if (d.elementType === 'data-node') {
+        var xrefDiv = $('.xrefinfo');
 
-		// (id, datasource, species, symbol)
+        // (id, datasource, species, symbol)
 
-		var xrefHtml = XrefPanel.create(d.xRef.id, d.xRef.database, 'Homo sapiens', d.textLabel.text);
-		//var xrefHtml = XrefPanel.create('HMDB01397', 'HMDB', 'Mus musculus', d.textLabel.text);
-		window.setTimeout(function() {
-			xrefDiv.empty();
-			xrefDiv.append(xrefHtml);
-		}, 2000);
-	};
-});
-//.on("click", function(d,i) { alert(d.xRef.id); });
+        var xrefHtml = XrefPanel.create(d.xRef.id, d.xRef.database, 'Homo sapiens', d.textLabel.text);
+        //var xrefHtml = XrefPanel.create('HMDB01397', 'HMDB', 'Mus musculus', d.textLabel.text);
+        window.setTimeout(function() {
+          xrefDiv.empty();
+          xrefDiv.append(xrefHtml);
+        }, 2000);
+      };
+    });
+    //.on("click", function(d,i) { alert(d.xRef.id); });
     //.call(drag);
 
-    var labelableElements = labelableElementsContainer.each(function(d) {
-      var labelableElement = d[0].append('use')
+    var labelableElements = labelableElementsContainer.each(function(d, i) {
+      var labelableElement = d3.select(this).append('use')
       .attr("id", function (d) {return 'labelable-element-' + d.graphId})
       .attr('transform', function(d) { 
         var transform = 'none';
@@ -1485,150 +1494,155 @@ pathvisio.pathway.labelableElement = function(){
         else {
           styleClass = "labelable-element " + d.elementType; 
         };
-        return styleClass })
-        .attr("x", 0)
-        .attr("y", 0)
-        .attr("width", function (d) { return d.width; })
-        .attr("height", function (d) { return d.height; })
-        .attr("z-index", function (d) { return d.zIndex; })
-        .attr("style", function (d) { 
-          var style = '';
+        return styleClass;
+      })
+      .attr("x", 0)
+      .attr("y", 0)
+      .attr("width", function (d) { return d.width; })
+      .attr("height", function (d) { return d.height; })
+      .attr("z-index", function (d) { return d.zIndex; })
+      .attr("style", function (d) { 
+        var style = '';
 
-          if (d.hasOwnProperty('fill')) {
-            style += 'fill:' + d.fill + '; '; 
-          };
-
-          if (d.hasOwnProperty('fillOpacity')) {
-            style += 'fill-opacity:' + d.fillOpacity + '; '; 
-          };
-
-          if (d.hasOwnProperty('stroke')) {
-            style += 'stroke:' + d.stroke + '; '; 
-          };
-
-          if (d.hasOwnProperty('strokeWidth')) {
-
-            // doubling strokeWidth, because stroke is centered on bounding box, meaning half of it gets cut off.
-
-            style += 'stroke-width:' + 2 * d.strokeWidth + '; '; 
-          }
-          else {
-            if (d.symbolType !== 'none') {
-              style += 'stroke-width: 2; '; 
-            };
-          };
-
-          if (d.hasOwnProperty('strokeStyle')) {
-            if (d.strokeStyle === 'dashed') {
-              style += 'stroke-dasharray: 5,3; '; 
-            }
-            else {
-              if (d.strokeStyle === 'double') {
-
-                // draw second element
-
-                d[0].append("use")
-                .attr("id", function (d) {return 'labelable-element-double' + d.graphId})
-                .attr('transform', function(d) { 
-                  var transform = 'none';
-                  if (d.hasOwnProperty('rotation')) {
-                    transform = 'rotate(' + d.rotation + ' ' + d.width / 2 + ' ' + d.height / 2 + ')';
-                  };
-                  return transform;
-                })
-                .attr("class", function (d) { 
-                  var styleClass = ''; 
-                  if (d.elementType === 'data-node') {
-                    styleClass = "labelable-element " + d.elementType + ' ' + d.dataNodeType; 
-                  }
-                  else {
-                    styleClass = "labelable-element " + d.elementType; 
-                  };
-                  return styleClass })
-                .attr("x", 0)
-                .attr("y", 0)
-                .attr("width", function (d) { return d.width; })
-                .attr("height", function (d) { return d.height; })
-                //.attr("class", "drawing-board-color-stroke")
-                .attr("style", "stroke-width:" + 2*d.strokeWidth + '; stroke: red');
-              };
-            };
-
-
-
-
-
-            // TODO currently cannot render double lines for linestyles for labelableElements.
-          };
-
-          return style; 
-        });
-
-        if (symbolsAvailable.filter(function(d, i) { return (symbolsAvailable[0][i].id === pathvisio.data.pathways[pathvisio.data.current.svgSelector].labelableElements[0].symbolType); }).length > 0) {
-          // d3 bug strips 'xlink' so need to say 'xlink:xlink';
-          labelableElement.attr("xlink:xlink:href", function (d) {return "#" + d.symbolType; });
-        }
-        else {
-          labelableElement.attr("xlink:xlink:href", "#rectangle");
-          console.log('Pathvisio.js does not have access to the requested symbol: ' + pathvisio.data.pathways[pathvisio.data.current.svgSelector].labelableElements[0].symbolType + '. Rectangle used as placeholder.');
+        if (d.hasOwnProperty('fill')) {
+          style += 'fill:' + d.fill + '; '; 
         };
 
-        // use this for tspan option for rendering text, including multi-line
+        if (d.hasOwnProperty('fillOpacity')) {
+          style += 'fill-opacity:' + d.fillOpacity + '; '; 
+        };
 
-        if (d.hasOwnProperty('textLabel')) {
-          var labelableElementText = d3.select(this).append('text')
-          .attr("id", function (d) { return 'labelable-element-text-' + d.graphId; })
-          .attr("x", 0)
-          .attr("y", 0)
-          .attr('transform', function(d) {
+        if (d.hasOwnProperty('stroke')) {
+          style += 'stroke:' + d.stroke + '; '; 
+        };
 
-            // tweak left, center, right horizontal alignment
+        if (d.hasOwnProperty('strokeWidth')) {
 
-            if (d.textLabel.hasOwnProperty('textAnchor')) {
+          // Doubling strokeWidth to create strokeWidthEffective.
+          // Reason: stroke is centered on perimeter of node, requiring us to use an SVG clipping Path to clip off the outermost half
+          // of the stroke so that the stroke does not go outside its bounding box. Because the outer half of the stroke is not displayed, we need to
+          // double the stroke width so that the stroke's apparent width matches the value specified in GPML.
 
-              // giving padding of 5. maybe this should go into the CSS.
+          var strokeWidthEffective = 2 * d.strokeWidth; 
+        }
+        else {
+          var strokeWidthEffective = 2; 
+        };
 
-              if (d.textLabel.textAnchor === 'start') {
-                var dx = 5;
-              }
-              else {
-                if (d.textLabel.textAnchor === 'end') {
-                  var dx = d.width - 5;
-                }
-                else {
-                  var dx = d.width / 2;
-                };
-              };
-            }
-            else {
-              var dx = d.width / 2;
-            };
+        style += 'stroke-width:' + strokeWidthEffective + '; '; 
 
-            // set top, middle, bottom vertical alignment
+        if (d.hasOwnProperty('strokeStyle')) {
+          if (d.strokeStyle === 'dashed') {
+            style += 'stroke-dasharray: 5,3; '; 
+          };
 
-            if (d.textLabel.hasOwnProperty('vAlign')) {
-              if (d.textLabel.vAlign === 'top') {
-                var dy = 5 + (1 * d.textLabel.fontSize);
-              }
-              else {
-                if (d.textLabel.vAlign === 'bottom') {
-                  var dy = d.height - (5 + (0.3 * d.textLabel.fontSize) + ((pathvisio.helpers.splitStringByNewLine(d.textLabel.text).length - 1) * d.textLabel.fontSize));
-                }
-                else {
-                  var dy = (d.height / 2) + (0.3 * d.textLabel.fontSize) - (((pathvisio.helpers.splitStringByNewLine(d.textLabel.text).length - 1) * d.textLabel.fontSize)/2);
-                };
-              };
-            }
-            else {
-              var dy = (d.height / 2) + (0.3 * d.textLabel.fontSize) - (((pathvisio.helpers.splitStringByNewLine(d.textLabel.text).length - 1) * d.textLabel.fontSize)/2);
-            };
-            return 'translate(' + dx + ' ' + dy + ')'; })
+          if (d.strokeStyle === 'double') {
+
+            // draw second element
+
+            d3.select(labelableElementsContainer[0][i]).append("use")
+            .attr("id", function (d) {return 'labelable-element-double' + d.graphId})
             .attr("class", function (d) { 
               var styleClass = ''; 
               if (d.elementType === 'data-node') {
-                styleClass = d.dataNodeType; 
+                styleClass = "labelable-element " + d.elementType + ' ' + d.dataNodeType; 
+              }
+              else {
+                styleClass = "labelable-element " + d.elementType; 
               };
-              return styleClass })
+              return styleClass;
+            })
+            .attr('transform', function(d) { 
+              var transform = 'none';
+              if (d.hasOwnProperty('rotation')) {
+
+                // the reference to width and height here is to specify the center of rotation as the center of the second element
+
+                transform = 'rotate(' + d.rotation + ' ' + (d.width/2) + ' ' + (d.height/2) + ')';
+              };
+              return transform;
+            })
+            .attr("x", function(d) {return strokeWidthEffective; })
+            .attr("y", function(d) {return strokeWidthEffective; })
+            .attr("width", function (d) { return d.width - 2*strokeWidthEffective; })
+            .attr("height", function (d) { return d.height - 2*strokeWidthEffective; })
+            .attr("xlink:xlink:href", function (d) {return "#" + d.symbolType; })
+            //.attr("class", "drawing-board-color-stroke")
+            .attr("style", function(d) { return style + 'fill-opacity:0; '});
+          };
+        };
+
+        // be careful that all additions to 'style' go above the 'double-line second element' above
+        // so that they are applied to both the first and second elements.
+
+        return style; 
+      });
+
+      if (symbolsAvailable.filter(function(d, i) { return (symbolsAvailable[0][i].id === pathvisio.data.pathways[pathvisio.data.current.svgSelector].labelableElements[0].symbolType); }).length > 0) {
+        // d3 bug strips 'xlink' so need to say 'xlink:xlink';
+        labelableElement.attr("xlink:xlink:href", function (d) {return "#" + d.symbolType; });
+      }
+      else {
+        labelableElement.attr("xlink:xlink:href", "#rectangle");
+        console.log('Pathvisio.js does not have access to the requested symbol: ' + pathvisio.data.pathways[pathvisio.data.current.svgSelector].labelableElements[0].symbolType + '. Rectangle used as placeholder.');
+      };
+
+      // use this for tspan option for rendering text, including multi-line
+
+      if (d.hasOwnProperty('textLabel')) {
+        var labelableElementText = d3.select(this).append('text')
+        .attr("id", function (d) { return 'labelable-element-text-' + d.graphId; })
+        .attr("x", 0)
+        .attr("y", 0)
+        .attr('transform', function(d) {
+
+          // tweak left, center, right horizontal alignment
+
+          if (d.textLabel.hasOwnProperty('textAnchor')) {
+
+            // giving padding of 5. maybe this should go into the CSS.
+
+            if (d.textLabel.textAnchor === 'start') {
+              var dx = 5;
+            }
+            else {
+              if (d.textLabel.textAnchor === 'end') {
+                var dx = d.width - 5;
+              }
+              else {
+                var dx = d.width / 2;
+              };
+            };
+          }
+          else {
+            var dx = d.width / 2;
+          };
+
+          // set top, middle, bottom vertical alignment
+
+          if (d.textLabel.hasOwnProperty('vAlign')) {
+            if (d.textLabel.vAlign === 'top') {
+              var dy = 5 + (1 * d.textLabel.fontSize);
+            }
+            else {
+              if (d.textLabel.vAlign === 'bottom') {
+                var dy = d.height - (5 + (0.3 * d.textLabel.fontSize) + ((pathvisio.helpers.splitStringByNewLine(d.textLabel.text).length - 1) * d.textLabel.fontSize));
+              }
+              else {
+                var dy = (d.height / 2) + (0.3 * d.textLabel.fontSize) - (((pathvisio.helpers.splitStringByNewLine(d.textLabel.text).length - 1) * d.textLabel.fontSize)/2);
+              };
+            };
+          }
+          else {
+            var dy = (d.height / 2) + (0.3 * d.textLabel.fontSize) - (((pathvisio.helpers.splitStringByNewLine(d.textLabel.text).length - 1) * d.textLabel.fontSize)/2);
+          };
+          return 'translate(' + dx + ' ' + dy + ')'; })
+          .attr("class", function (d) { 
+            var styleClass = ''; 
+            if (d.elementType === 'data-node') {
+              styleClass = d.dataNodeType; 
+            };
+            return styleClass })
             .attr("style", function (d) { 
               var style = '';
               var fontSize = d.fontSize;
@@ -1688,101 +1702,101 @@ pathvisio.pathway.labelableElement = function(){
                 return index});
             };
 
-        };
+      };
 
-        /*
+      /*
 
-        // use this for foreignObject object option for rendering text, including multi-line
+      // use this for foreignObject object option for rendering text, including multi-line
 
-        if (d.hasOwnProperty('textLabel')) {
-        var labelableElementSwitch = d3.select(this).append('switch');
+      if (d.hasOwnProperty('textLabel')) {
+      var labelableElementSwitch = d3.select(this).append('switch');
 
-        var labelableElementForeignObject = labelableElementSwitch.append('foreignObject') 
-        //.attr("x", 0)
-        //.attr("y", 0)
-        .attr("width", function (d) { return d.width + 'px'; })
-        .attr("height", function (d) { return d.height + 'px'; });
+      var labelableElementForeignObject = labelableElementSwitch.append('foreignObject') 
+      //.attr("x", 0)
+      //.attr("y", 0)
+      .attr("width", function (d) { return d.width + 'px'; })
+      .attr("height", function (d) { return d.height + 'px'; });
 
-        var labelableElementBody = labelableElementForeignObject.append('xhtml:body') 
-        .attr("xmlns", "http://www.w3.org/1999/xhtml")
-        .attr("id", function (d) { return 'labelable-element-text-' + d.graphId; })
-        .attr("style", function (d) { return 'height:' + d.height + 'px'; });
+      var labelableElementBody = labelableElementForeignObject.append('xhtml:body') 
+      .attr("xmlns", "http://www.w3.org/1999/xhtml")
+      .attr("id", function (d) { return 'labelable-element-text-' + d.graphId; })
+      .attr("style", function (d) { return 'height:' + d.height + 'px'; });
 
-        var labelableElementLink = labelableElementBody.append('link') 
-        .attr("rel", "stylesheet")
-        .attr("href", "pathways.css")
-        .attr("type", "text/css");
+      var labelableElementLink = labelableElementBody.append('link') 
+      .attr("rel", "stylesheet")
+      .attr("href", "pathways.css")
+      .attr("type", "text/css");
 
-        var labelableElementOuter = labelableElementBody.append('div') 
-        .attr("class", "outer") 
-        .attr("style", function (d) { return 'height:' + d.height + 'px'; });
+      var labelableElementOuter = labelableElementBody.append('div') 
+      .attr("class", "outer") 
+      .attr("style", function (d) { return 'height:' + d.height + 'px'; });
 
-        var labelableElementP = labelableElementOuter.append('p') 
-        .attr("style", function (d) { 
-        var style = 'height:' + d.height + 'px; ';
-        if (d.textLabel.hasOwnProperty('color')) {
-        style += 'color:' + d.textLabel.color + '; '; 
-        };
-        if (d.textLabel.hasOwnProperty('fontWeight')) {
-        style += 'font-weight:' + d.textLabel.fontWeight + '; '; 
-        };
-        if (d.textLabel.hasOwnProperty('fontStyle')) {
-        style += 'font-style:' + d.textLabel.fontStyle + '; '; 
-        };
-        return style; 
-        })
-        .text(function (d) {
-        var text = d.textLabel.text;
-        return text; 
-        })
-        .attr("class", function (d) { 
-        var styleClass = ''; 
-        if (d.elementType === 'data-node') {
-        styleClass = "labelable-element " + d.elementType + ' ' + d.dataNodeType; 
-        }
-        else {
-        styleClass = "labelable-element " + d.elementType; 
-        };
-        return styleClass });
+      var labelableElementP = labelableElementOuter.append('p') 
+      .attr("style", function (d) { 
+      var style = 'height:' + d.height + 'px; ';
+      if (d.textLabel.hasOwnProperty('color')) {
+      style += 'color:' + d.textLabel.color + '; '; 
+      };
+      if (d.textLabel.hasOwnProperty('fontWeight')) {
+      style += 'font-weight:' + d.textLabel.fontWeight + '; '; 
+      };
+      if (d.textLabel.hasOwnProperty('fontStyle')) {
+      style += 'font-style:' + d.textLabel.fontStyle + '; '; 
+      };
+      return style; 
+      })
+      .text(function (d) {
+      var text = d.textLabel.text;
+      return text; 
+      })
+      .attr("class", function (d) { 
+      var styleClass = ''; 
+      if (d.elementType === 'data-node') {
+      styleClass = "labelable-element " + d.elementType + ' ' + d.dataNodeType; 
+      }
+      else {
+      styleClass = "labelable-element " + d.elementType; 
+      };
+      return styleClass });
 
-        var labelableElementText = labelableElementSwitch.append('text')
-        .attr("id", function (d) { return 'labelable-element-text-' + d.graphId; })
-        .attr("x", function (d) { return d.width / 2; })
-        .attr("y", function (d) { return d.height / 2 + 0.3 * d.textLabel.fontSize; })
-        //.attr("style", function (d) { return 'stroke:' + 'red'; })
-        .attr("style", function (d) { 
-        var style = '';
-        if (d.textLabel.hasOwnProperty('color')) {
-        style += 'fill:' + d.textLabel.color + '; '; 
-        };
-        if (d.textLabel.hasOwnProperty('fontWeight')) {
-        style += 'font-weight:' + d.textLabel.fontWeight + '; '; 
-        };
-        if (d.textLabel.hasOwnProperty('fontStyle')) {
-        style += 'font-style:' + d.textLabel.fontStyle + '; '; 
-        };
-        return style; 
-  })
-  .text(function (d) { return d.textLabel.text; });
+      var labelableElementText = labelableElementSwitch.append('text')
+      .attr("id", function (d) { return 'labelable-element-text-' + d.graphId; })
+      .attr("x", function (d) { return d.width / 2; })
+      .attr("y", function (d) { return d.height / 2 + 0.3 * d.textLabel.fontSize; })
+      //.attr("style", function (d) { return 'stroke:' + 'red'; })
+      .attr("style", function (d) { 
+      var style = '';
+      if (d.textLabel.hasOwnProperty('color')) {
+      style += 'fill:' + d.textLabel.color + '; '; 
+      };
+      if (d.textLabel.hasOwnProperty('fontWeight')) {
+      style += 'font-weight:' + d.textLabel.fontWeight + '; '; 
+      };
+      if (d.textLabel.hasOwnProperty('fontStyle')) {
+      style += 'font-style:' + d.textLabel.fontStyle + '; '; 
+      };
+      return style; 
+})
+.text(function (d) { return d.textLabel.text; });
 
-  };
-  */
-    });
+};
+*/
+});
 
-  };
+};
 
-  function getPortCoordinates(boxDimensions, relX, relY) {
-    var port = {};
-    port.x = boxDimensions.x + (relX * boxDimensions.width);
-    port.y = boxDimensions.y + (relY * boxDimensions.height);
-    return port;
-  };
- 
-  return { 
-    drawAll:drawAll,
-    getPortCoordinates:getPortCoordinates, 
-    gpml2json:gpml2json
-  } 
+function getPortCoordinates(boxDimensions, relX, relY) {
+  var port = {};
+  port.x = boxDimensions.x + (relX * boxDimensions.width);
+  port.y = boxDimensions.y + (relY * boxDimensions.height);
+  return port;
+};
+
+return { 
+drawAll:drawAll,
+          getPortCoordinates:getPortCoordinates, 
+          gpml2json:gpml2json
+} 
 }();
 ;
 
