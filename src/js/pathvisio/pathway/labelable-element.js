@@ -35,8 +35,6 @@ pathvisio.pathway.labelableElement = function(){
   var alignToAnchorMappings = { "Left":"start", "Center":"middle", "Right":"end" };
 
   function gpml2json(rawJsonLabelableElements) {
-    console.log('rawJsonLabelableElements');
-    console.log(rawJsonLabelableElements);
     try {
 
       // LabelableElements
