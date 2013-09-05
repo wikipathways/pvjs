@@ -54,20 +54,8 @@ pathvisio.pathway.edge = function(){
   function gpml2json(rawJsonEdges) {
     try {
       rawJsonEdges.forEach(function(element, index, array) {
-        element.graphId = element.graphid;
-        delete element.graphid;
-
-        if (element.hasOwnProperty('groupref')) {
-          element.groupRef = element.groupref;
-          delete element.groupref;
-        };
-
         if (element.graphics.hasOwnProperty('anchor')) {
           element.anchors = pathvisio.helpers.convertToArray(element.graphics.anchor);
-          element.anchors.forEach(function(el) {
-            el.graphId = el.graphid;
-            delete el.graphid;
-          });
         };
 
         if (element.graphics.hasOwnProperty('color')) {
@@ -79,16 +67,16 @@ pathvisio.pathway.edge = function(){
 
         element.strokeWidth = element.graphics.linethickness;
 
-        if (element.graphics.hasOwnProperty('connectortype')) {
-          element.connectorType = element.graphics.connectortype.toLowerCase();
+        if (element.graphics.hasOwnProperty('connectorType')) {
+          element.connectorType = element.graphics.connectorType.toLowerCase();
         }	
 
-        if (element.graphics.hasOwnProperty('linestyle')) {
-          element.strokeStyle = element.graphics.linestyle.toLowerCase();
+        if (element.graphics.hasOwnProperty('lineStyle')) {
+          element.strokeStyle = element.graphics.lineStyle.toLowerCase();
           if (element.strokeStyle === 'broken') {
             element.strokeStyle = 'dashed';
           };
-          delete element.graphics.linestyle;
+          delete element.graphics.lineStyle;
         }	
         else {
           if (element.hasOwnProperty('attribute')) {
