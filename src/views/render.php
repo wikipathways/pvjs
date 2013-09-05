@@ -68,7 +68,8 @@ else {
 <script src="../js/pathvisio/helpers.js"></script>
 <script src="../js/rgbcolor.js"></script>
 
-<script src="../js/jxon.js"></script>
+<script src="../js/case-converter.js"></script>
+<script src="../js/xml2json.js"></script>
 <script src="../lib/jquery/jquery.js"></script>
 <script src="../lib/d3/d3.js" charset="utf-8"></script>
 

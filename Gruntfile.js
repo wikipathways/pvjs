@@ -8,7 +8,8 @@ module.exports = function(grunt) {
       },
       dist: {
         src: [
-          'src/js/jxon.js',
+          'src/js/case-converter.js',
+          'src/js/xml2json.js',
           'src/js/rgbcolor.js',
           'src/js/pathvisio/pathvisio.js',
           'src/js/pathvisio/helpers.js',

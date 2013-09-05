@@ -1,162 +1,293 @@
-/*\
-|*|
-|*|    JXON framework - Copyleft 2011 by Mozilla Developer Network
-|*|
-|*|    https://developer.mozilla.org/en-US/docs/JXON
-|*|
-|*|    This framework is released under the GNU Public License, version 3 or later.
-|*|    http://www.gnu.org/licenses/gpl-3.0-standalone.html
-|*|
-\*/
+caseConverter = function(){ 
 
-var JXON = new (function () {
+/**
+ * "dot.case"
+ */
 
-  var
-  sValProp = "keyValue", sAttrProp = "keyAttributes", sAttrsPref = "", /* you can customize these values */
-  aCache = [], rIsNull = /^\s*$/, rIsBool = /^(?:true|false)$/i;
+var dotCase = function(string) {
+  return separatorCase(string, '.');
+}
 
-  function parseText (sValue) {
-    if (rIsNull.test(sValue)) { return null; }
-    if (rIsBool.test(sValue)) { return sValue.toLowerCase() === "true"; }
+/**
+ * "ClassCase"
+ */
 
-    // had to disable this because it was turning the color value "008080" into "8080"
+var classCase = function(string) {
+  return separatorCase(string, '_').replace(/(?:^|_|\-|\/)(.)/g, function(match, c) {
+    return c.toUpperCase();
+  });
+}
 
-    //if (isFinite(sValue)) { return parseFloat(sValue); }
+/**
+ * "Namespace.Case"
+ */
 
-    // had to disable this because it was turning the value "Ca+2" into a date
+var namespaceCase = function(string) {
+  return separatorCase(string, '.').replace(/(^|_|\.|\-|\/)(.)/g, function(match, p, c) {
+    return p + c.toUpperCase();
+  });
+}
 
-    //if (isFinite(Date.parse(sValue))) { return new Date(sValue); }
-    return sValue;
-  }
+/**
+ * "CONSTANT_CASE"
+ */
 
-  function EmptyTree () {}
+var constantCase = function(string) {
+  return separatorCase(string, '_').replace(/[a-z]/g, function(c) {
+    return c.toUpperCase();
+  });
+}
 
-  EmptyTree.prototype.toString = function () { return "null"; };
+/**
+ * "camelCase"
+ */
 
-  EmptyTree.prototype.valueOf = function () { return null; };
+var camelCase = function(string) {
+  return separatorCase(string, '_').replace(/[-_\.\/\s]+(.)?/g, function(match, c) {
+    return c.toUpperCase();
+  });
+}
 
-  function objectify (vVal) {
-    return vVal === null ? new EmptyTree() : vVal instanceof Object ? vVal : new vVal.constructor(vVal);
-  }
+/**
+ * "Title Case"
+ */
 
-  function createObjTree (oParentNode, nVerb, bFreeze, bNesteAttr) {
+var titleCase = function(string) {
+  return separatorCase(string, ' ').replace(/(?:^|\s)\S/g, function(c) {
+    return c.toUpperCase();
+  });
+}
 
-    var
-    nLevelStart = aCache.length, bChildren = oParentNode.hasChildNodes(),
-    bAttributes = oParentNode.hasAttributes(), bHighVerb = Boolean(nVerb & 2);
+/**
+ * "snake_case"
+ */
 
-    var
-    sProp, vContent, nLength = 0, sCollectedTxt = "",
-    vResult = bHighVerb ? {} : /* put here the default value for empty nodes: */ true;
+var snakeCase = function(string) {
+  return separatorCase(string, '_');
+}
 
-    if (bChildren) {
-      for (var oNode, nItem = 0; nItem < oParentNode.childNodes.length; nItem++) {
-        oNode = oParentNode.childNodes.item(nItem);
-        if (oNode.nodeType === 4) { sCollectedTxt += oNode.nodeValue; } /* nodeType is "CDATASection" (4) */
-        else if (oNode.nodeType === 3) { sCollectedTxt += oNode.nodeValue.trim(); } /* nodeType is "Text" (3) */
-        else if (oNode.nodeType === 1 && !oNode.prefix) { aCache.push(oNode); } /* nodeType is "Element" (1) */
-      }
-    }
+/**
+ * "path/case"
+ */
 
-    var nLevelEnd = aCache.length, vBuiltVal = parseText(sCollectedTxt);
+var pathCase = function(string) {
+  return this.separatorCase(string, '/');
+}
 
-    if (!bHighVerb && (bChildren || bAttributes)) { vResult = nVerb === 0 ? objectify(vBuiltVal) : {}; }
+/**
+ * "param-case"
+ */
 
-    for (var nElId = nLevelStart; nElId < nLevelEnd; nElId++) {
-      sProp = aCache[nElId].nodeName.toLowerCase();
-      vContent = createObjTree(aCache[nElId], nVerb, bFreeze, bNesteAttr);
-      if (vResult.hasOwnProperty(sProp)) {
-        if (vResult[sProp].constructor !== Array) { vResult[sProp] = [vResult[sProp]]; }
-        vResult[sProp].push(vContent);
-      } else {
-        vResult[sProp] = vContent;
-        nLength++;
-      }
-    }
+var paramCase = function(string) {
+  return this.separatorCase(string, '-');
+}
 
-    if (bAttributes) {
+/**
+ * Generic string transform.
+ */
 
-      var
-      nAttrLen = oParentNode.attributes.length,
-      sAPrefix = bNesteAttr ? "" : sAttrsPref, oAttrParent = bNesteAttr ? {} : vResult;
+var separatorCase = function(string, separator) {
+  return clean(trim(string), separator).replace(/([a-z\d])([A-Z]+)/g, '$1' + separator + '$2').replace(/[-\.\/\_\s]+/g, separator).toLowerCase();
+}
 
-      for (var oAttrib, nAttrib = 0; nAttrib < nAttrLen; nLength++, nAttrib++) {
-        oAttrib = oParentNode.attributes.item(nAttrib);
-        oAttrParent[sAPrefix + oAttrib.name.toLowerCase()] = parseText(oAttrib.value.trim());
-      }
+/**
+ * Remove non-word characters.
+ */
 
-      if (bNesteAttr) {
-        if (bFreeze) { Object.freeze(oAttrParent); }
-        vResult[sAttrProp] = oAttrParent;
-        nLength -= nAttrLen - 1;
-      }
+var clean = function(string, separator) {
+  return string.replace(/\W+/g, separator || ' ');
+}
 
-    }
+/**
+ * Remove non-word from the start/end of the string only.
+ */
 
-    if (nVerb === 3 || (nVerb === 2 || nVerb === 1 && nLength > 0) && sCollectedTxt) {
-      vResult[sValProp] = vBuiltVal;
-    } else if (!bHighVerb && nLength === 0 && sCollectedTxt) {
-      vResult = vBuiltVal;
-    }
+var trim = function(string) {
+  return string.replace(/^\W+|\W+$/g, '');
+}
 
-    if (bFreeze && (bHighVerb || nLength > 0)) { Object.freeze(vResult); }
+return { 
+  camelCase:camelCase
+} 
+}();
+;
 
-    aCache.length = nLevelStart;
+/**
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * Copyright (c) 2012 Sam Tsvilik
+ * Licensed under the MIT, GPL licenses.
+ *
+ * @name xml
+ * @version 1.1
+ * @author Sam Tsvilik
+ * @description
+ * This is a super light and simple XML to JSON converter.
+ * All it does is scans through child elements of your XML and builds out a JSON structure.
+ * To avoid attribute vs. node name conflicts - All attribute entities are prefixed with "@" (i.e. <node attr="1"/> == {node: {"@attr":"1"}} )
+ * text or CDATA value will always be inside a "text" property (i.e. myNodeObj.text == <myNodeObj>Hello</myNodeObj> - Hello)
+ * Node siblings with the same name will be automatically converted into arrays, else if node is singular it will just be an Object
+ */
 
-    return vResult;
+(function(window, undef) { /** @lends xml */
+    //Trim polyfill (thanks gist: 1035982)
+    ''.trim || (String.prototype.trim = function() {
+        return this.replace(/^[\s\uFEFF]+|[\s\uFEFF]+$/g, '');
+    });
 
-  }
+    var NULL = null,
+        FALSE = !1,
+        TRUE = !0,
+        NODE_TYPES = {
+            Element: 1,
+            Attribute: 2,
+            text: 3,
+            CDATA: 4,
+            Root: 9,
+            Fragment: 11
+        },
+        XMLConverter, module;
 
-  function loadObjTree (oXMLDoc, oParentEl, oParentObj) {
+    /**
+     * Parses XML string and returns an XMLDocument object
+     * @param  {String} strXML XML Formatted string
+     * @return {XMLDocument|XMLElement}
+     */
 
-    var vValue, oChild;
-
-    if (oParentObj instanceof String || oParentObj instanceof Number || oParentObj instanceof Boolean) {
-      oParentEl.appendChild(oXMLDoc.createTextNode(oParentObj.toString())); /* verbosity level is 0 */
-    } else if (oParentObj.constructor === Date) {
-      oParentEl.appendChild(oXMLDoc.createTextNode(oParentObj.toGMTString()));
-    }
-
-    for (var sName in oParentObj) {
-      vValue = oParentObj[sName];
-      if (isFinite(sName) || vValue instanceof Function) { continue; } /* verbosity level is 0 */
-      if (sName === sValProp) {
-        if (vValue !== null && vValue !== true) { oParentEl.appendChild(oXMLDoc.createTextNode(vValue.constructor === Date ? vValue.toGMTString() : String(vValue))); }
-      } else if (sName === sAttrProp) { /* verbosity level is 3 */
-      for (var sAttrib in vValue) { oParentEl.setAttribute(sAttrib, vValue[sAttrib]); }
-      } else if (sName.charAt(0) === sAttrsPref) {
-        oParentEl.setAttribute(sName.slice(1), vValue);
-      } else if (vValue.constructor === Array) {
-        for (var nItem = 0; nItem < vValue.length; nItem++) {
-          oChild = oXMLDoc.createElement(sName);
-          loadObjTree(oXMLDoc, oChild, vValue[nItem]);
-          oParentEl.appendChild(oChild);
+    function parseXMLString(strXML) {
+        var xmlDoc = NULL,
+            out = NULL,
+            isParsed = TRUE;
+        try {
+            xmlDoc = ("DOMParser" in window) ? new DOMParser() : new ActiveXObject("MSXML2.DOMDocument");
+            xmlDoc.async = FALSE;
+        } catch(e) {
+            throw new Error("XML Parser could not be instantiated");
         }
-      } else {
-        oChild = oXMLDoc.createElement(sName);
-        if (vValue instanceof Object) {
-          loadObjTree(oXMLDoc, oChild, vValue);
-        } else if (vValue !== null && vValue !== true) {
-          oChild.appendChild(oXMLDoc.createTextNode(vValue.toString()));
+
+        if("parseFromString" in xmlDoc) {
+            out = xmlDoc.parseFromString(strXML, "text/xml");
+            isParsed = (out.documentElement.tagName !== "parsererror");
+        } else { //If old IE
+            isParsed = xmlDoc.loadXML(strXML);
+            out = (isParsed) ? xmlDoc : FALSE;
         }
-        oParentEl.appendChild(oChild);
-      }
+        if(!isParsed) {
+            throw new Error("Error parsing XML string");
+        }
+        return out;
     }
 
-  }
+    XMLConverter = {
+        isUnsafe: FALSE,
+        isXML: function(o) {
+            return(typeof(o) === "object" && o.nodeType !== undef);
+        },
+        getRoot: function(doc) {
+            return(doc.nodeType === NODE_TYPES.Root) ? doc.documentElement : (doc.nodeType === NODE_TYPES.Fragment) ? doc.firstChild : doc;
+        },
+        /**
+         * Begins the conversion process. Will automatically convert XML string into XMLDocument
+         * @param  {String|XMLDocument|XMLNode|XMLElement} xml XML you want to convert to JSON
+         * @return {JSON} JSON object representing the XML data tree
+         */
+        convert: function(xml) {
+            var out = {},
+                xdoc = typeof(xml) === "string" ? parseXMLString(xml) : this.isXML(xml) ? xml : undef,
+                root;
+            if(!xdoc) {
+                throw new Error("Unable to parse XML");
+            }
+            //If xdoc is just a text or CDATA return value
+            if(xdoc.nodeType === NODE_TYPES.text || xdoc.nodeType === NODE_TYPES.CDATA) {
+                return xdoc.nodeValue;
+            }
+            //Extract root node
+            root = this.getRoot(xdoc);
+            //Create first root node
+            out[caseConverter.camelCase(root.nodeName)] = {};
+            //Start assembling the JSON tree (recursive)
+            this.process(root, out[caseConverter.camelCase(root.nodeName)]);
+            //Parse JSON string and attempt to return it as an Object
+            return out;
+        },
+        /**
+         * Recursive xmlNode processor. It determines the node type and processes it accordingly.
+         * @param  {XMLNode} node Any XML node
+         * @param  {Object} buff Buffer object which will contain the JSON equivalent properties
+         */
+        process: function(node, buff) {
+            var child, attr, name, att_name, value, i, j, tmp, iMax, jMax;
+            if(node.hasChildNodes()) {
+                iMax = node.childNodes.length;
+                for(i = 0; i < iMax; i++) {
+                    child = node.childNodes[i];
+                    //Check nodeType of each child node
+                    switch(child.nodeType) {
+                    case NODE_TYPES.text:
+                        //If parent node has both CDATA and text nodes, we just concatinate them together
+                        buff.text = buff.text ? buff.text + child.nodeValue.trim() : child.nodeValue.trim();
+                        break;
+                    case NODE_TYPES.CDATA:
+                        //If parent node has both CDATA and text nodes, we just concatinate them together
+                        value = child[child.text ? "text" : "nodeValue"]; //IE attributes support
+                        buff.text = buff.text ? buff.text + value : value;
+                        break;
+                    case NODE_TYPES.Element:
+                        name = caseConverter.camelCase(child.nodeName);
+                        tmp = {};
+                        //Node name already exists in the buffer and it's a NodeSet
+                        if(name in buff) {
+                            if(buff[name].length) {
+                                this.process(child, tmp);
+                                buff[name].push(tmp);
+                            } else { //If node exists in the parent as a single entity
+                                this.process(child, tmp);
+                                buff[name] = [buff[name], tmp];
+                            }
+                        } else { //If node does not exist in the parent
+                            this.process(child, tmp);
+                            buff[name] = tmp;
+                        }
+                        break;
+                    }
+                }
+            }
+            //Populate attributes
+            if(node.attributes.length) {
+                for(j = node.attributes.length - 1; j >= 0; j--) {
+                    attr = node.attributes[j];
+                    att_name = caseConverter.camelCase(attr.name.trim());
+                    value = attr.value;
+                    buff[(this.isUnsafe ? "" : "@") + att_name] = value;
+                }
+            }
+        }
+    };
 
-  this.build = function (oXMLParent, nVerbosity /* optional */, bFreeze /* optional */, bNesteAttributes /* optional */) {
-    var nVerbMask = arguments.length > 1 && typeof nVerbosity === "number" ? nVerbosity & 3 : /* put here the default verbosity level: */ 1;
-    return createObjTree(oXMLParent, nVerbMask, bFreeze || false, arguments.length > 3 ? bNesteAttributes : nVerbMask === 3);
-  };
-
-  this.unbuild = function (oObjTree) {
-    var oNewDoc = document.implementation.createDocument("", "", null);
-    loadObjTree(oNewDoc, oNewDoc, oObjTree);
-    return oNewDoc;
-  };
-
-})();
+    module = {
+        /**
+         * Public API to convert XML to JSON
+         * @param  {String | XMLDocument} xml Any XML type
+         * @param {Boolean} unsafe Allows unsafe processing that does not prefixes attributes with '@' character. It is considered unsafe bacause attribute names may collide with node names.
+         * @return {JSON}     JSON object
+         */
+        xmlToJSON: function(xml, unsafe) {
+            XMLConverter.isUnsafe = (unsafe !== undef) ? unsafe : FALSE;
+            return XMLConverter.convert(xml);
+        }
+    };
+    //Expose public Api
+    window.xml = window.xml || module;
+})(window);
 ;
 
 /**
@@ -526,14 +657,16 @@ pathvisio.pathway = function(){
     // https://code.google.com/p/json-io/
 
     self.gpml = gpml;
+    console.log('GPML')
+    console.log(gpml)
 
     // We can use xml2json.js or JXON.js. Which is better?
     // JXON.js
     var pathway = pathvisio.data.pathways[pathvisio.data.current.svgSelector];
-    pathway = JXON.build(gpml);
+    pathway = self.pathway = xml.xmlToJSON(gpml, true).pathway;
     
-    console.log('raw json from JXON');
-    console.log(JXON.build(gpml));
+    console.log('raw json from xml2json');
+    console.log(xml.xmlToJSON(gpml, true).pathway);
 
     try {
       xmlns = pathway["xmlns"]
@@ -565,29 +698,20 @@ pathvisio.pathway = function(){
         alert("Pathvisio.js may not fully support the version of GPML provided (xmlns: " + xmlns + "). Please convert to the supported version of GPML (xmlns: " + gpmlXmlnsSupported + ").")
       };
 
-      // Convert output from jxon.js into jsonGpml (well-formed JSON with all implied elements from gpml explicitly filled in).
+      // Convert output from xml2json.js into jsonGpml (well-formed JSON with all implied elements from gpml explicitly filled in).
 
-      pathway.boardWidth = pathway.graphics.boardwidth;
-      delete pathway.graphics.boardwidth;
-      pathway.boardHeight = pathway.graphics.boardheight;
-      delete pathway.graphics.boardheight;
-
-      if (pathway.hasOwnProperty('last-modified')) {
-        pathway.lastModified = pathway['last-modified'];
-        delete pathway['last-modified'];
-      };
+      pathway.boardWidth = pathway.graphics.boardWidth;
+      delete pathway.graphics.boardWidth;
+      pathway.boardHeight = pathway.graphics.boardHeight;
+      delete pathway.graphics.boardHeight;
 
       // infoBox
-
-      pathway.infoBox = pathway.infobox;
-      delete pathway.infobox;
-
       // These values are a legacy from GenMAPP. They are always forced to be equal to 0 in PathVisio (Java) so as to place the infobox in the upper lefthand corner.
 
       pathway.infoBox.x = 0;
-      delete pathway.infoBox.centerx;
+      delete pathway.infoBox.centerX;
       pathway.infoBox.y = 0;
-      delete pathway.infoBox.centery;
+      delete pathway.infoBox.centerY;
 
       // Biopax
 
@@ -631,13 +755,6 @@ pathvisio.pathway = function(){
           delete pathway.group;
 
           pathway.groups.forEach(function(element, index, array) {
-
-            element.graphId = element.graphid;
-            delete element.graphid;
-
-            element.groupId = element.groupid;
-            delete element.groupid;
-
             if (element.hasOwnProperty('style')) {
               element.style = element.style.toLowerCase();
             }
@@ -659,9 +776,9 @@ pathvisio.pathway = function(){
       // Graphical Lines 
 
       try {
-        if (pathway.hasOwnProperty('graphicalline')) {
-          graphicalLines = pathvisio.helpers.convertToArray( pathway.graphicalline );
-          delete pathway.graphicalline;
+        if (pathway.hasOwnProperty('graphicalLine')) {
+          graphicalLines = pathvisio.helpers.convertToArray( pathway.graphicalLine );
+          delete pathway.graphicalLine;
 
           if (pathway.edges === undefined) {
             pathway.edges = [];
@@ -673,12 +790,12 @@ pathvisio.pathway = function(){
           });
         }
         else {
-          console.log("No element(s) named 'graphicalline' found in this gpml file.");
+          console.log("No element(s) named 'graphicalLine' found in this gpml file.");
         };
       }
       catch (e) {
-        console.log("Error converting graphicalline to json: " + e.message);
-        //delete pathway.graphicalline;
+        console.log("Error converting graphicalLine to json: " + e.message);
+        //delete pathway.graphicalLine;
       };
 
       // Interactions
@@ -742,9 +859,9 @@ pathvisio.pathway = function(){
       };
 
       try {
-        if (pathway.hasOwnProperty('datanode')) {
-          var dataNodes = pathvisio.helpers.convertToArray( pathway.datanode );
-          delete pathway.datanode;
+        if (pathway.hasOwnProperty('dataNode')) {
+          var dataNodes = pathvisio.helpers.convertToArray( pathway.dataNode );
+          delete pathway.dataNode;
 
           dataNodes.forEach(function(element, index, array) {
 
@@ -773,12 +890,12 @@ pathvisio.pathway = function(){
 
         }
         else {
-          console.log("No element(s) named 'datanode' found in this gpml file.");
+          console.log("No element(s) named 'dataNode' found in this gpml file.");
         };
       }
       catch (e) {
-        console.log("Error converting datanode to json: " + e.message);
-        //delete pathway.datanode;
+        console.log("Error converting dataNode to json: " + e.message);
+        //delete pathway.dataNode;
       };
 
       // Labels
@@ -864,7 +981,7 @@ pathvisio.pathway = function(){
           //});
         }
         else {
-          console.log("No element(s) named 'biopaxref' found in this gpml file.");
+          console.log("No element(s) named 'biopaxref' for the element 'pathway' found in this gpml file.");
         };
       }
       catch (e) {
@@ -875,29 +992,8 @@ pathvisio.pathway = function(){
       // Biopax 
 
       try {
-        var publicationXrefs = d3.select(gpml).selectAll('PublicationXref');
-        if (publicationXrefs.length > 0) {
-          pathway.biopax = {};
-          pathway.biopax.publicationXrefs = [];
-          publicationXrefs[0].forEach(function(element, index, array) {
-            var publicationXref = {};
-            self.element = element;
-            publicationXref.gpmlId = element.getAttribute('rdf:id');
-            publicationXref.id = element.getElementsByTagName('ID')[0].textContent;
-            publicationXref.db = element.getElementsByTagName('DB')[0].textContent;
-            publicationXref.title = element.getElementsByTagName('TITLE')[0].textContent;
-            publicationXref.source = element.getElementsByTagName('SOURCE')[0].textContent;
-            publicationXref.year = element.getElementsByTagName('YEAR')[0].textContent;
-            authors = d3.select(element).selectAll('AUTHORS');
-            if (authors.length > 0) {
-            publicationXref.authors = [];
-              authors[0].forEach(function(element, index, array) {
-                publicationXref.authors.push(element.textContent);
-              });
-            };
-            publicationXref.id = element.getElementsByTagName('ID')[0].textContent;
-            pathway.biopax.publicationXrefs.push(publicationXref); 
-          });
+        if (pathway.hasOwnProperty('biopax')) {
+          //do something
         }
         else {
           console.log("No element(s) named 'biopax' found in this gpml file.");
@@ -910,6 +1006,8 @@ pathvisio.pathway = function(){
 
       console.log('JSON:');
       console.log(pathway);
+      console.log('pathvisio.data.pathways[pathvisio.data.current.svgSelector]');
+      console.log(pathvisio.data.pathways[pathvisio.data.current.svgSelector]);
 
       return pathvisio.data.pathways[pathvisio.data.current.svgSelector] = pathway;
     }
@@ -954,7 +1052,7 @@ pathvisio.pathway = function(){
         // if the response is a valid GPML document (ie, not from webservice)
 
         var oSerializer = new XMLSerializer();
-        var sGpml = oSerializer.serializeToString(gpmlDoc);
+        var sGpml = self.sGpml = oSerializer.serializeToString(gpmlDoc);
         var gpml = gpmlDoc.documentElement;
         console.log('GPML');
         console.log(gpml);
@@ -1222,22 +1320,14 @@ pathvisio.pathway.labelableElement = function(){
       // LabelableElements
 
       rawJsonLabelableElements.forEach(function(element, index, array) {
-        element.graphId = element.graphid;
-        delete element.graphid;
-
-        if (element.hasOwnProperty('groupref')) {
-          element.groupRef = element.groupref;
-          delete element.groupref;
-        };
-
         if (element.hasOwnProperty('comment')) {
           element.comments = pathvisio.helpers.convertToArray( element.comment );
           delete element.comment;
         };
 
         if (element.hasOwnProperty('xref')) {
-          if ((element.xref.database === null) && (element.xref.id === null)) {
-            delete element.xref;
+          if ((element.xRef.database === null) && (element.xRef.id === null)) {
+            delete element.xRef;
           };
         };
 
@@ -1247,10 +1337,10 @@ pathvisio.pathway.labelableElement = function(){
           element.zIndex = parseFloat(element.graphics.zorder);
         };
 
-        element.x = parseFloat(element.graphics.centerx) - parseFloat(element.graphics.width)/2;
+        element.x = parseFloat(element.graphics.centerX) - parseFloat(element.graphics.width)/2;
         //element.x = Math.round( element.x * 100 ) / 100;
 
-        element.y = parseFloat(element.graphics.centery) - parseFloat(element.graphics.height)/2;
+        element.y = parseFloat(element.graphics.centerY) - parseFloat(element.graphics.height)/2;
         //element.y = Math.round( element.y * 100 ) / 100;
 
         element.width = parseFloat(element.graphics.width);
@@ -1270,7 +1360,7 @@ pathvisio.pathway.labelableElement = function(){
           };
         };
 
-        if ((!(element.graphics.hasOwnProperty("shapetype")))) {
+        if ((!(element.graphics.hasOwnProperty("shapeType")))) {
           if (element.elementType === 'data-node') {
             element.symbolType = "rectangle";
           }
@@ -1279,21 +1369,21 @@ pathvisio.pathway.labelableElement = function(){
           };
         }
         else {
-          element.symbolType = shapeMappings[element.graphics.shapetype];
+          element.symbolType = shapeMappings[element.graphics.shapeType];
         };	
 
-        if (element.graphics.hasOwnProperty("fillcolor")) {
+        if (element.graphics.hasOwnProperty("fillColor")) {
 
           // RGBColor() from http://www.phpied.com/rgb-color-parser-in-javascript/
           // license: Use it if you like it
 
-          element.graphics.fillcolor = element.graphics.fillcolor.toLowerCase();
+          element.graphics.fillColor = element.graphics.fillColor.toLowerCase();
 
-          if (element.graphics.fillcolor === 'transparent') {
+          if (element.graphics.fillColor === 'transparent') {
             element.fillOpacity = 0;
           }
           else {
-            var fill = new RGBColor(element.graphics.fillcolor);
+            var fill = new RGBColor(element.graphics.fillColor);
             if (fill.ok) { 
               element.fill = fill.toHex();
             }
@@ -1308,12 +1398,12 @@ pathvisio.pathway.labelableElement = function(){
           };
         };
 
-        if (element.graphics.hasOwnProperty("linethickness")) {
-          element.strokeWidth = element.graphics.linethickness;
+        if (element.graphics.hasOwnProperty("lineThickness")) {
+          element.strokeWidth = element.graphics.lineThickness;
         };	
 
-        if (element.graphics.hasOwnProperty('linestyle')) {
-          element.strokeStyle = element.graphics.linestyle.toLowerCase();
+        if (element.graphics.hasOwnProperty('lineStyle')) {
+          element.strokeStyle = element.graphics.lineStyle.toLowerCase();
           if (element.strokeStyle === 'broken') {
             element.strokeStyle = 'dashed';
           };
@@ -1349,21 +1439,21 @@ pathvisio.pathway.labelableElement = function(){
 
         // textLabel data
 
-        if (element.hasOwnProperty("textlabel")) {
-          if (element.textlabel === null) {
-            delete element.textlabel;
+        if (element.hasOwnProperty("textLabel")) {
+          if (element.textLabel === null) {
+            delete element.textLabel;
           }
           else {
-            var text = element.textlabel.toString().replace("&#xA;","\r\n");
-            delete element.textlabel;
+            var text = element.textLabel.toString().replace("&#xA;","\r\n");
+            delete element.textLabel;
 
             element.textLabel = {};
 
             element.textLabel.text = text;
 
-            if (element.hasOwnProperty('groupref')) {
-              element.groupRef = element.groupref;
-              delete element.groupref;
+            if (element.hasOwnProperty('groupRef')) {
+              element.groupRef = element.groupRef;
+              delete element.groupRef;
             };
 
             if (element.hasOwnProperty("stroke")) {
@@ -1373,27 +1463,27 @@ pathvisio.pathway.labelableElement = function(){
               element.textLabel.fill = element.stroke;
             };	
 
-            // default fontsize is already specified in the CSS of pathway-template.svg, but I need the font size
+            // default fontSize is already specified in the CSS of pathway-template.svg, but I need the font size
             // to calculate the vertical spacing. I could remove this if I could pull the value from the CSS.
 
-            if (element.graphics.hasOwnProperty("fontsize")) {
-              var fontSize = element.graphics.fontsize;
+            if (element.graphics.hasOwnProperty("fontSize")) {
+              var fontSize = element.graphics.fontSize;
             }
             else {
               var fontSize = 10;
             };
             element.textLabel.fontSize = fontSize;
 
-            if (element.graphics.hasOwnProperty("fontname")) {
-              element.textLabel.fontFamily = element.graphics.fontname;
+            if (element.graphics.hasOwnProperty("fontName")) {
+              element.textLabel.fontFamily = element.graphics.fontName;
             };
 
-            if (element.graphics.hasOwnProperty("fontweight")) {
-              element.textLabel.fontWeight = element.graphics.fontweight.toLowerCase();
+            if (element.graphics.hasOwnProperty("fontWeight")) {
+              element.textLabel.fontWeight = element.graphics.fontWeight.toLowerCase();
             };
 
-            if (element.graphics.hasOwnProperty("fontstyle")) {
-              element.textLabel.fontStyle = element.graphics.fontstyle.toLowerCase();
+            if (element.graphics.hasOwnProperty("fontStyle")) {
+              element.textLabel.fontStyle = element.graphics.fontStyle.toLowerCase();
             };
 
             if (alignToAnchorMappings.hasOwnProperty(element.graphics.align)) {
@@ -1415,20 +1505,20 @@ pathvisio.pathway.labelableElement = function(){
         // BiopaxRefs 
 
         try {
-          if (element.hasOwnProperty('biopaxref')) {
-            element.biopaxRefs = pathvisio.helpers.convertToArray( element.biopaxref );
-            delete element.biopaxref;
+          if (element.hasOwnProperty('biopaxRef')) {
+            element.biopaxRefs = pathvisio.helpers.convertToArray( element.biopaxRef );
+            delete element.biopaxRef;
 
             //biopaxRefs.forEach(function(element, index, array) {
             // do something
             //});
           }
           else {
-            console.log("No element(s) named 'biopaxref' found for this node in this gpml file.");
+            console.log("No element(s) named 'biopaxRef' found for this node in this gpml file.");
           };
         }
         catch (e) {
-          console.log("Error converting node's biopaxref to json: " + e.message);
+          console.log("Error converting node's biopaxRef to json: " + e.message);
           //delete d.biopaxRef;
         };
 
@@ -1849,20 +1939,8 @@ pathvisio.pathway.edge = function(){
   function gpml2json(rawJsonEdges) {
     try {
       rawJsonEdges.forEach(function(element, index, array) {
-        element.graphId = element.graphid;
-        delete element.graphid;
-
-        if (element.hasOwnProperty('groupref')) {
-          element.groupRef = element.groupref;
-          delete element.groupref;
-        };
-
         if (element.graphics.hasOwnProperty('anchor')) {
           element.anchors = pathvisio.helpers.convertToArray(element.graphics.anchor);
-          element.anchors.forEach(function(el) {
-            el.graphId = el.graphid;
-            delete el.graphid;
-          });
         };
 
         if (element.graphics.hasOwnProperty('color')) {
@@ -1874,16 +1952,16 @@ pathvisio.pathway.edge = function(){
 
         element.strokeWidth = element.graphics.linethickness;
 
-        if (element.graphics.hasOwnProperty('connectortype')) {
-          element.connectorType = element.graphics.connectortype.toLowerCase();
+        if (element.graphics.hasOwnProperty('connectorType')) {
+          element.connectorType = element.graphics.connectorType.toLowerCase();
         }	
 
-        if (element.graphics.hasOwnProperty('linestyle')) {
-          element.strokeStyle = element.graphics.linestyle.toLowerCase();
+        if (element.graphics.hasOwnProperty('lineStyle')) {
+          element.strokeStyle = element.graphics.lineStyle.toLowerCase();
           if (element.strokeStyle === 'broken') {
             element.strokeStyle = 'dashed';
           };
-          delete element.graphics.linestyle;
+          delete element.graphics.lineStyle;
         }	
         else {
           if (element.hasOwnProperty('attribute')) {
@@ -2137,7 +2215,7 @@ pathvisio.pathway.edge.point = function(){
   // pathvisio.js vs PathVisio (Java) specification of anchor position
   // -----------------------------------------
   // pathvisio.js |  PathVisio  | Meaning
-  //  relX | relY | relx | rely |
+  //  relX | relY | relX | relY |
   // -----------------------------------------
   // 0.333   0      -0.5   -1.0   top side at left third-point 
   // 0.5     0       0.0   -1.0   top side at center 
@@ -2152,7 +2230,7 @@ pathvisio.pathway.edge.point = function(){
   // 0       0.5    -1.0    0.0   left side at middle 
   // 0       0.333  -1.0   -0.5   left side at top third-point 
   //
-  // PathVisio (Java) also sometimes comes up with other values for relx and rely.
+  // PathVisio (Java) also sometimes comes up with other values for relX and relY.
   // I don't know what those mean.
 
   var anchorPositionMappings = { "-1":0, "-0.5":0.333, "0":0.5, "0.5":0.667, "1":1 };
@@ -2227,18 +2305,13 @@ pathvisio.pathway.edge.point = function(){
         //  adapted from jsPlumb implementation:
         //  https://github.com/sporritt/jsPlumb/wiki/anchors
 
-        if (element.graphref !== undefined) {
-          element.graphRef = element.graphref;
-          delete element.graphref;
-
-          var relx = (Math.round(element.relx * 2)/2).toString()
-          element.relX = parseFloat(anchorPositionMappings[relx]);
-          delete element.relx;
+        if (element.graphRef !== undefined) {
+          var relX = (Math.round(element.relX * 2)/2).toString()
+          element.relX = parseFloat(anchorPositionMappings[relX]);
           delete element.x;
 
-          var rely = (Math.round(element.rely * 2)/2).toString()
-          element.relY = parseFloat(anchorPositionMappings[rely]);
-          delete element.rely;
+          var relY = (Math.round(element.relY * 2)/2).toString()
+          element.relY = parseFloat(anchorPositionMappings[relY]);
           delete element.y;
 
           if (element.relX === 0) {
@@ -2261,16 +2334,16 @@ pathvisio.pathway.edge.point = function(){
           };
         };
 
-        // This is probably unreliable. We need to establish a way to ensure we identify start and end markers correctly, and we should not rely on the order of elements in XML.
+        // This is probably unreliable. We need to establish a way to ensure we identify start and end markers correctly, and we should not relY on the order of elements in XML.
 
-        if ((index === 0) && (markerMappings.hasOwnProperty(element.arrowhead))) {
-          markerStart = markerMappings[element.arrowhead];
-          delete element.arrowhead;
+        if ((index === 0) && (markerMappings.hasOwnProperty(element.arrowHead))) {
+          markerStart = markerMappings[element.arrowHead];
+          delete element.arrowHead;
         }
         else {
-          if ((index === array.length - 1) && (markerMappings.hasOwnProperty(element.arrowhead))) {
-            markerEnd = markerMappings[element.arrowhead];
-            delete element.arrowhead;
+          if ((index === array.length - 1) && (markerMappings.hasOwnProperty(element.arrowHead))) {
+            markerEnd = markerMappings[element.arrowHead];
+            delete element.arrowHead;
           }
         };
       });
@@ -2308,7 +2381,7 @@ pathvisio.pathway.edge.point = function(){
       do {
         i += 1;
         var anchor = edgesWithAnchors[i].anchors.filter(function(element) {return element.graphId === point.graphRef})[0]
-      } while (anchor === undefined && i < edgesWithAnchors.length);
+      } while (anchor === undefined && i < edgesWithAnchors.length );
 
       return {'type':'anchor', 'element':anchor, 'edge':edgesWithAnchors[i]};
 

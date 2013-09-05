@@ -40,22 +40,14 @@ pathvisio.pathway.labelableElement = function(){
       // LabelableElements
 
       rawJsonLabelableElements.forEach(function(element, index, array) {
-        element.graphId = element.graphid;
-        delete element.graphid;
-
-        if (element.hasOwnProperty('groupref')) {
-          element.groupRef = element.groupref;
-          delete element.groupref;
-        };
-
         if (element.hasOwnProperty('comment')) {
           element.comments = pathvisio.helpers.convertToArray( element.comment );
           delete element.comment;
         };
 
         if (element.hasOwnProperty('xref')) {
-          if ((element.xref.database === null) && (element.xref.id === null)) {
-            delete element.xref;
+          if ((element.xRef.database === null) && (element.xRef.id === null)) {
+            delete element.xRef;
           };
         };
 
@@ -65,10 +57,10 @@ pathvisio.pathway.labelableElement = function(){
           element.zIndex = parseFloat(element.graphics.zorder);
         };
 
-        element.x = parseFloat(element.graphics.centerx) - parseFloat(element.graphics.width)/2;
+        element.x = parseFloat(element.graphics.centerX) - parseFloat(element.graphics.width)/2;
         //element.x = Math.round( element.x * 100 ) / 100;
 
-        element.y = parseFloat(element.graphics.centery) - parseFloat(element.graphics.height)/2;
+        element.y = parseFloat(element.graphics.centerY) - parseFloat(element.graphics.height)/2;
         //element.y = Math.round( element.y * 100 ) / 100;
 
         element.width = parseFloat(element.graphics.width);
@@ -88,7 +80,7 @@ pathvisio.pathway.labelableElement = function(){
           };
         };
 
-        if ((!(element.graphics.hasOwnProperty("shapetype")))) {
+        if ((!(element.graphics.hasOwnProperty("shapeType")))) {
           if (element.elementType === 'data-node') {
             element.symbolType = "rectangle";
           }
@@ -97,21 +89,21 @@ pathvisio.pathway.labelableElement = function(){
           };
         }
         else {
-          element.symbolType = shapeMappings[element.graphics.shapetype];
+          element.symbolType = shapeMappings[element.graphics.shapeType];
         };	
 
-        if (element.graphics.hasOwnProperty("fillcolor")) {
+        if (element.graphics.hasOwnProperty("fillColor")) {
 
           // RGBColor() from http://www.phpied.com/rgb-color-parser-in-javascript/
           // license: Use it if you like it
 
-          element.graphics.fillcolor = element.graphics.fillcolor.toLowerCase();
+          element.graphics.fillColor = element.graphics.fillColor.toLowerCase();
 
-          if (element.graphics.fillcolor === 'transparent') {
+          if (element.graphics.fillColor === 'transparent') {
             element.fillOpacity = 0;
           }
           else {
-            var fill = new RGBColor(element.graphics.fillcolor);
+            var fill = new RGBColor(element.graphics.fillColor);
             if (fill.ok) { 
               element.fill = fill.toHex();
             }
@@ -126,12 +118,12 @@ pathvisio.pathway.labelableElement = function(){
           };
         };
 
-        if (element.graphics.hasOwnProperty("linethickness")) {
-          element.strokeWidth = element.graphics.linethickness;
+        if (element.graphics.hasOwnProperty("lineThickness")) {
+          element.strokeWidth = element.graphics.lineThickness;
         };	
 
-        if (element.graphics.hasOwnProperty('linestyle')) {
-          element.strokeStyle = element.graphics.linestyle.toLowerCase();
+        if (element.graphics.hasOwnProperty('lineStyle')) {
+          element.strokeStyle = element.graphics.lineStyle.toLowerCase();
           if (element.strokeStyle === 'broken') {
             element.strokeStyle = 'dashed';
           };
@@ -167,21 +159,21 @@ pathvisio.pathway.labelableElement = function(){
 
         // textLabel data
 
-        if (element.hasOwnProperty("textlabel")) {
-          if (element.textlabel === null) {
-            delete element.textlabel;
+        if (element.hasOwnProperty("textLabel")) {
+          if (element.textLabel === null) {
+            delete element.textLabel;
           }
           else {
-            var text = element.textlabel.toString().replace("&#xA;","\r\n");
-            delete element.textlabel;
+            var text = element.textLabel.toString().replace("&#xA;","\r\n");
+            delete element.textLabel;
 
             element.textLabel = {};
 
             element.textLabel.text = text;
 
-            if (element.hasOwnProperty('groupref')) {
-              element.groupRef = element.groupref;
-              delete element.groupref;
+            if (element.hasOwnProperty('groupRef')) {
+              element.groupRef = element.groupRef;
+              delete element.groupRef;
             };
 
             if (element.hasOwnProperty("stroke")) {
@@ -191,27 +183,27 @@ pathvisio.pathway.labelableElement = function(){
               element.textLabel.fill = element.stroke;
             };	
 
-            // default fontsize is already specified in the CSS of pathway-template.svg, but I need the font size
+            // default fontSize is already specified in the CSS of pathway-template.svg, but I need the font size
             // to calculate the vertical spacing. I could remove this if I could pull the value from the CSS.
 
-            if (element.graphics.hasOwnProperty("fontsize")) {
-              var fontSize = element.graphics.fontsize;
+            if (element.graphics.hasOwnProperty("fontSize")) {
+              var fontSize = element.graphics.fontSize;
             }
             else {
               var fontSize = 10;
             };
             element.textLabel.fontSize = fontSize;
 
-            if (element.graphics.hasOwnProperty("fontname")) {
-              element.textLabel.fontFamily = element.graphics.fontname;
+            if (element.graphics.hasOwnProperty("fontName")) {
+              element.textLabel.fontFamily = element.graphics.fontName;
             };
 
-            if (element.graphics.hasOwnProperty("fontweight")) {
-              element.textLabel.fontWeight = element.graphics.fontweight.toLowerCase();
+            if (element.graphics.hasOwnProperty("fontWeight")) {
+              element.textLabel.fontWeight = element.graphics.fontWeight.toLowerCase();
             };
 
-            if (element.graphics.hasOwnProperty("fontstyle")) {
-              element.textLabel.fontStyle = element.graphics.fontstyle.toLowerCase();
+            if (element.graphics.hasOwnProperty("fontStyle")) {
+              element.textLabel.fontStyle = element.graphics.fontStyle.toLowerCase();
             };
 
             if (alignToAnchorMappings.hasOwnProperty(element.graphics.align)) {
@@ -233,20 +225,20 @@ pathvisio.pathway.labelableElement = function(){
         // BiopaxRefs 
 
         try {
-          if (element.hasOwnProperty('biopaxref')) {
-            element.biopaxRefs = pathvisio.helpers.convertToArray( element.biopaxref );
-            delete element.biopaxref;
+          if (element.hasOwnProperty('biopaxRef')) {
+            element.biopaxRefs = pathvisio.helpers.convertToArray( element.biopaxRef );
+            delete element.biopaxRef;
 
             //biopaxRefs.forEach(function(element, index, array) {
             // do something
             //});
           }
           else {
-            console.log("No element(s) named 'biopaxref' found for this node in this gpml file.");
+            console.log("No element(s) named 'biopaxRef' found for this node in this gpml file.");
           };
         }
         catch (e) {
-          console.log("Error converting node's biopaxref to json: " + e.message);
+          console.log("Error converting node's biopaxRef to json: " + e.message);
           //delete d.biopaxRef;
         };
 
