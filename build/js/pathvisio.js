@@ -701,9 +701,7 @@ pathvisio.pathway = function(){
       // Convert output from xml2json.js into jsonGpml (well-formed JSON with all implied elements from gpml explicitly filled in).
 
       pathway.boardWidth = pathway.graphics.boardWidth;
-      delete pathway.graphics.boardWidth;
       pathway.boardHeight = pathway.graphics.boardHeight;
-      delete pathway.graphics.boardHeight;
 
       // infoBox
       // These values are a legacy from GenMAPP. They are always forced to be equal to 0 in PathVisio (Java) so as to place the infobox in the upper lefthand corner.
@@ -712,20 +710,6 @@ pathvisio.pathway = function(){
       delete pathway.infoBox.centerX;
       pathway.infoBox.y = 0;
       delete pathway.infoBox.centerY;
-
-      // Biopax
-
-      // For now, we don't need the biopax in json format for displaying a pathway.
-      // This will require further research if we decide to add it. It doesn't work
-      // right now.
-      // We should look at available standardized implementations of json Biopax.
-
-      try {
-        delete pathway.biopax;
-      }
-      catch (e) {
-        console.log("Biopax error: " + e.message);
-      };
 
       // Comments 
 
@@ -744,7 +728,6 @@ pathvisio.pathway = function(){
       }
       catch (e) {
         console.log("Error converting comment to json: " + e.message);
-        //delete pathway.comments;
       };
 
       // Groups
@@ -770,7 +753,6 @@ pathvisio.pathway = function(){
       }
       catch (e) {
         console.log("Error converting group to json: " + e.message);
-        //delete pathway.groups;
       };
 
       // Graphical Lines 
@@ -795,7 +777,6 @@ pathvisio.pathway = function(){
       }
       catch (e) {
         console.log("Error converting graphicalLine to json: " + e.message);
-        //delete pathway.graphicalLine;
       };
 
       // Interactions
@@ -823,7 +804,6 @@ pathvisio.pathway = function(){
       }
       catch (e) {
         console.log("Error converting interaction to json: " + e.message);
-        //delete pathway.interaction;
       };
 
       // Edges
@@ -838,7 +818,6 @@ pathvisio.pathway = function(){
       }
       catch (e) {
         console.log("Error converting edges to json: " + e.message);
-        //delete pathway.edges;
       };
 
       // DataNodes 
@@ -876,8 +855,13 @@ pathvisio.pathway = function(){
             delete element.type;
 
             if (element.hasOwnProperty('xref')) {
-              element.xRef = element.xref;
-              delete element.xref;
+              if ((!element.xref.database) && (!element.xref.id)) {
+                delete element.xref;
+              }
+              else {
+                element.xref = element.xRef;
+                delete element.xref;
+              };
             };
           });
 
@@ -895,7 +879,6 @@ pathvisio.pathway = function(){
       }
       catch (e) {
         console.log("Error converting dataNode to json: " + e.message);
-        //delete pathway.dataNode;
       };
 
       // Labels
@@ -922,7 +905,6 @@ pathvisio.pathway = function(){
       }
       catch (e) {
         console.log("Error converting label to json: " + e.message);
-        //delete pathway.label;
       };
 
       // Shapes
@@ -949,7 +931,6 @@ pathvisio.pathway = function(){
       }
       catch (e) {
         console.log("Error converting shape to json: " + e.message);
-        //delete pathway.shape;
       };
 
       // LabelableElements
@@ -964,17 +945,15 @@ pathvisio.pathway = function(){
       }
       catch (e) {
         console.log("Error converting labelableElements to json: " + e.message);
-        //delete pathway.labelableElements;
       };
 
-      delete pathway.graphics;
 
       // BiopaxRefs 
 
       try {
         if (pathway.hasOwnProperty('biopaxref')) {
-          pathway.biopaxRefs = pathvisio.helpers.convertToArray( pathway.biopaxref );
-          delete pathway.biopaxref;
+          pathway.biopaxRefs = pathvisio.helpers.convertToArray( pathway.biopaxRef );
+          delete pathway.biopaxRef;
 
           //biopaxRefs.forEach(function(element, index, array) {
             // do something
@@ -985,8 +964,7 @@ pathvisio.pathway = function(){
         };
       }
       catch (e) {
-        console.log("Error converting biopaxref to json: " + e.message);
-        //delete pathway.biopaxRef;
+        console.log("Error converting biopaxRef to json: " + e.message);
       };
 
       // Biopax 
@@ -1001,7 +979,6 @@ pathvisio.pathway = function(){
       }
       catch (e) {
         console.log("Error converting biopax to json: " + e.message);
-        //delete pathway.biopax;
       };
 
       console.log('JSON:');
@@ -1009,6 +986,7 @@ pathvisio.pathway = function(){
       console.log('pathvisio.data.pathways[pathvisio.data.current.svgSelector]');
       console.log(pathvisio.data.pathways[pathvisio.data.current.svgSelector]);
 
+      delete pathway.graphics;
       return pathvisio.data.pathways[pathvisio.data.current.svgSelector] = pathway;
     }
     else {
@@ -1326,8 +1304,12 @@ pathvisio.pathway.labelableElement = function(){
         };
 
         if (element.hasOwnProperty('xref')) {
-          if ((element.xRef.database === null) && (element.xRef.id === null)) {
-            delete element.xRef;
+          if ((!element.xref.database) && (!element.xref.id)) {
+            delete element.xref;
+          }
+          else {
+            element.xref = element.xRef;
+            delete element.xref;
           };
         };
 
@@ -1407,7 +1389,6 @@ pathvisio.pathway.labelableElement = function(){
           if (element.strokeStyle === 'broken') {
             element.strokeStyle = 'dashed';
           };
-          delete element.graphics.linestyle;
         };	
 
         if (element.hasOwnProperty('attribute')) {
@@ -1440,7 +1421,7 @@ pathvisio.pathway.labelableElement = function(){
         // textLabel data
 
         if (element.hasOwnProperty("textLabel")) {
-          if (element.textLabel === null) {
+          if (!element.textLabel) {
             delete element.textLabel;
           }
           else {
@@ -1450,11 +1431,6 @@ pathvisio.pathway.labelableElement = function(){
             element.textLabel = {};
 
             element.textLabel.text = text;
-
-            if (element.hasOwnProperty('groupRef')) {
-              element.groupRef = element.groupRef;
-              delete element.groupRef;
-            };
 
             if (element.hasOwnProperty("stroke")) {
 
@@ -1519,7 +1495,6 @@ pathvisio.pathway.labelableElement = function(){
         }
         catch (e) {
           console.log("Error converting node's biopaxRef to json: " + e.message);
-          //delete d.biopaxRef;
         };
 
         delete element.graphics;
@@ -1529,7 +1504,7 @@ pathvisio.pathway.labelableElement = function(){
       return validJsonLabelableElements;
     }
     catch (e) {
-      console.log("Error //converting labelable elements to json: " + e.message);
+      console.log("Error converting labelable elements to json: " + e.message);
       return e;
     };
   };
@@ -1950,7 +1925,7 @@ pathvisio.pathway.edge = function(){
           }
         };	
 
-        element.strokeWidth = element.graphics.linethickness;
+        element.strokeWidth = element.graphics.lineThickness;
 
         if (element.graphics.hasOwnProperty('connectorType')) {
           element.connectorType = element.graphics.connectorType.toLowerCase();
@@ -1961,7 +1936,6 @@ pathvisio.pathway.edge = function(){
           if (element.strokeStyle === 'broken') {
             element.strokeStyle = 'dashed';
           };
-          delete element.graphics.lineStyle;
         }	
         else {
           if (element.hasOwnProperty('attribute')) {
@@ -1974,8 +1948,15 @@ pathvisio.pathway.edge = function(){
 
         element.zIndex = element.graphics.zorder;
 
-        element.xRef = element.xref;
-        delete element.xref;
+        if (element.hasOwnProperty('xref')) {
+          if ((!element.xref.database) && (!element.xref.id)) {
+            delete element.xref;
+          }
+          else {
+            element.xref = element.xRef;
+            delete element.xref;
+          };
+        };
 
         // Points
 
@@ -1989,7 +1970,6 @@ pathvisio.pathway.edge = function(){
         element.markerEnd = pointsData.markerEnd;
 
         delete element.graphics;
-
       });
 
       // TODO this could be refactored to be more efficient
@@ -2070,6 +2050,7 @@ pathvisio.pathway.edge = function(){
       return e;
     };
   };
+
   function drawAll() {
     if (pathvisio.data.pathways[pathvisio.data.current.svgSelector].hasOwnProperty('edges')) {
       var pathData = null;
@@ -2306,13 +2287,14 @@ pathvisio.pathway.edge.point = function(){
         //  https://github.com/sporritt/jsPlumb/wiki/anchors
 
         if (element.graphRef !== undefined) {
+          delete element.x;
+          delete element.y;
+
           var relX = (Math.round(element.relX * 2)/2).toString()
           element.relX = parseFloat(anchorPositionMappings[relX]);
-          delete element.x;
 
           var relY = (Math.round(element.relY * 2)/2).toString()
           element.relY = parseFloat(anchorPositionMappings[relY]);
-          delete element.y;
 
           if (element.relX === 0) {
             element.dx = -1;

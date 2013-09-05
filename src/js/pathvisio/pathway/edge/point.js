@@ -94,13 +94,14 @@ pathvisio.pathway.edge.point = function(){
         //  https://github.com/sporritt/jsPlumb/wiki/anchors
 
         if (element.graphRef !== undefined) {
+          delete element.x;
+          delete element.y;
+
           var relX = (Math.round(element.relX * 2)/2).toString()
           element.relX = parseFloat(anchorPositionMappings[relX]);
-          delete element.x;
 
           var relY = (Math.round(element.relY * 2)/2).toString()
           element.relY = parseFloat(anchorPositionMappings[relY]);
-          delete element.y;
 
           if (element.relX === 0) {
             element.dx = -1;

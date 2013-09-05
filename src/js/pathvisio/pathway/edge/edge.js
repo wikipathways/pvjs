@@ -65,7 +65,7 @@ pathvisio.pathway.edge = function(){
           }
         };	
 
-        element.strokeWidth = element.graphics.linethickness;
+        element.strokeWidth = element.graphics.lineThickness;
 
         if (element.graphics.hasOwnProperty('connectorType')) {
           element.connectorType = element.graphics.connectorType.toLowerCase();
@@ -76,7 +76,6 @@ pathvisio.pathway.edge = function(){
           if (element.strokeStyle === 'broken') {
             element.strokeStyle = 'dashed';
           };
-          delete element.graphics.lineStyle;
         }	
         else {
           if (element.hasOwnProperty('attribute')) {
@@ -89,8 +88,15 @@ pathvisio.pathway.edge = function(){
 
         element.zIndex = element.graphics.zorder;
 
-        element.xRef = element.xref;
-        delete element.xref;
+        if (element.hasOwnProperty('xref')) {
+          if ((!element.xref.database) && (!element.xref.id)) {
+            delete element.xref;
+          }
+          else {
+            element.xref = element.xRef;
+            delete element.xref;
+          };
+        };
 
         // Points
 
@@ -104,7 +110,6 @@ pathvisio.pathway.edge = function(){
         element.markerEnd = pointsData.markerEnd;
 
         delete element.graphics;
-
       });
 
       // TODO this could be refactored to be more efficient
@@ -185,6 +190,7 @@ pathvisio.pathway.edge = function(){
       return e;
     };
   };
+
   function drawAll() {
     if (pathvisio.data.pathways[pathvisio.data.current.svgSelector].hasOwnProperty('edges')) {
       var pathData = null;
