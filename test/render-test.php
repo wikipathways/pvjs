@@ -56,7 +56,8 @@ function getUrlParameter(name) {
       this.style.display = 'none';
     });
     $('#' + creator + "-pathway-container")[0].style.display = 'block';
-//    $('#json-gpml-for-reading').text(sJson);
+    $('#gpml-for-reading').text(sGpml);
+    $('#json-for-reading').text(sJson);
   };
 var repo = getUrlParameter('repo');
 var id = getUrlParameter('id');
@@ -66,10 +67,8 @@ var id = getUrlParameter('id');
   <button id="javascript-svg-pathway-button" class="pathway" onclick="displayDiv('javascript-svg')" style="background-color: yellow">pathvisio.js SVG</button>
 <!--  <button id="java-svg-pathway-button" class="pathway" onclick="displayDiv('java-svg')" style="background-color: lightgray" title="SVG representation of GPML file, as created by PathVisio (Java), using Batik">PathVisio (Java) SVG</button>-->
   <button id="java-png-pathway-button" class="pathway" onclick="displayDiv('java-png')" style="background-color: lightgray" title="PNG representation of GPML file, as created by PathVisio (Java)">PathVisio (Java) PNG</button>
-<!--
-  <button id="xml-gpml-pathway-button" class="pathway" onclick="displayDiv('xml-gpml')" style="background-color: lightgray" title="XML version of source GPML file">GPML (XML)</button>
-  <button id="json-gpml-pathway-button" class="pathway" onclick="displayDiv('json-gpml')" style="background-color: lightgray" title="JSON version of source GPML file">JSON</button>
--->
+  <button id="gpml-pathway-button" class="pathway" onclick="displayDiv('gpml')" style="background-color: lightgray" title="Source GPML">GPML (XML)</button>
+  <button id="json-pathway-button" class="pathway" onclick="displayDiv('json')" style="background-color: lightgray" title="Formatted JSON">JSON</button>
 Repo: 
 <?php
 
@@ -80,12 +79,14 @@ Repo:
       $repo = htmlspecialchars($_GET['repo']);
     }
   }
+  $pathwayTemplateSvgUrl = "https://raw.github.com/" . $repo . "/pathvisio.js/dev/src/views/pathway-template.svg";
   $pathwayTemplateSvgUrlEditable = "https://github.com/" . $repo . "/pathvisio.js/blob/dev/src/views/pathway-template.svg";
 
   if (isset($_GET['id'])) {
     $id = htmlspecialchars($_GET['id']);
     $batikSvgUrl = "http://test3.wikipathways.org//wpi/wpi.php?action=downloadFile&type=svg&pwTitle=Pathway:" . $id . "&revision=0";
     $pngUrl = "http://test3.wikipathways.org/wpi//wpi.php?action=downloadFile&type=png&pwTitle=Pathway:" . $id . "&revision=0";
+    $gpmlUrl = "http://test3.wikipathways.org/wpi//wpi.php?action=downloadFile&type=gpml&pwTitle=Pathway:" . $id . "&revision=0";
     $pathwayUrl = "http://test3.wikipathways.org/wpi/PathwayWidget.php?id=" . $id . "&repo=" . $repo;
   }
 
@@ -109,37 +110,58 @@ SVG pathway template file</a> in the <span style="font-weight: bold">DEV</span> 
 
 <?php
 
-// pathvisio.js pathway SVG
+  // pathvisio.js pathway SVG
 
+  echo "<div id='javascript-svg-pathway-container' class='pathway''>";
+    $pathwayTemplateSvg = file_get_contents($pathwayTemplateSvgUrl);
+    echo $pathwayTemplateSvg;
+  echo "</div>";
+  
+  /*
   echo "<div id='javascript-svg-pathway-container' class='pathway''>";
 	echo '<iframe src="' . $pathwayUrl . '" width="100%" height="800">';
 	 echo '<p>Your browser does not support iframes.</p>';
 	echo '</iframe>';
   echo "</div>";
+  */
  
+  // PathVisio (Java) PNG
+
   echo "<div id='java-png-pathway-container' class='pathway' style='display: none;'>";
     echo '<img id="img" src="' . $pngUrl . '"/>';
   echo "</div>";
 
   // PathVisio (Java) SVG
 
+  /*
   $batikSvg = simplexml_load_file($batikSvg);
   echo "<div id='java-svg-pathway-container' class='pathway' style='display: none;'>";
     echo $batikSvg->saveXML();
   echo "</div>";
+   */
 
-  echo "<div id='xml-gpml-pathway-container' class='pathway' style='display:none'>";
+  echo "<div id='gpml-pathway-container' class='pathway' style='display:none'>";
 
     // need to use LIBXML_NOEMPTYTAG option, because it appears Chrome will incorrectly close the self-closing tags in gpml.
 
-    echo "<textarea name='gpml-for-reading' id='gpml-for-reading' rows='40' cols='180'>" . $doc->saveXML(null, LIBXML_NOEMPTYTAG) . "</textarea>";
+    $gpml = simplexml_load_file($gpmlUrl);
+    echo "<textarea id='gpml-for-reading' rows='40' cols='180'>" . $gpml->saveXML(null, LIBXML_NOEMPTYTAG) . "</textarea>";
   echo "</div>";
 
   // JSON GPML 
 
-  echo "<div id='json-gpml-pathway-container' class='pathway' style='display:none'>";
-    echo "<textarea name='json-gpml-for-reading' id='json-gpml-for-reading' rows='40' cols='180'>Not yet implemented.</textarea>";
+  echo "<div id='json-pathway-container' class='pathway' style='display:none'>";
+    echo "<textarea id='json-for-reading' rows='40' cols='180'>Not yet implemented.</textarea>";
   echo "</div>";
 
 ?>
+  <script src="../src/lib/jquery/jquery.js"></script>
+  <script src="../src/lib/d3/d3.js" charset="utf-8"></script>
+
+  <script src="../build/js/pathvisio.js"></script>
+<script>
+  window.onload = function() {
+<?php echo "pathvisio.pathway.load('#pathway-image', '" . $gpmlUrl . "');"; ?>
+  };
+</script>
 </body>
