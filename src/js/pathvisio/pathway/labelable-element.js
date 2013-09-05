@@ -46,8 +46,12 @@ pathvisio.pathway.labelableElement = function(){
         };
 
         if (element.hasOwnProperty('xref')) {
-          if ((element.xRef.database === null) && (element.xRef.id === null)) {
-            delete element.xRef;
+          if ((!element.xref.database) && (!element.xref.id)) {
+            delete element.xref;
+          }
+          else {
+            element.xref = element.xRef;
+            delete element.xref;
           };
         };
 
@@ -127,7 +131,6 @@ pathvisio.pathway.labelableElement = function(){
           if (element.strokeStyle === 'broken') {
             element.strokeStyle = 'dashed';
           };
-          delete element.graphics.linestyle;
         };	
 
         if (element.hasOwnProperty('attribute')) {
@@ -160,7 +163,7 @@ pathvisio.pathway.labelableElement = function(){
         // textLabel data
 
         if (element.hasOwnProperty("textLabel")) {
-          if (element.textLabel === null) {
+          if (!element.textLabel) {
             delete element.textLabel;
           }
           else {
@@ -170,11 +173,6 @@ pathvisio.pathway.labelableElement = function(){
             element.textLabel = {};
 
             element.textLabel.text = text;
-
-            if (element.hasOwnProperty('groupRef')) {
-              element.groupRef = element.groupRef;
-              delete element.groupRef;
-            };
 
             if (element.hasOwnProperty("stroke")) {
 
@@ -239,7 +237,6 @@ pathvisio.pathway.labelableElement = function(){
         }
         catch (e) {
           console.log("Error converting node's biopaxRef to json: " + e.message);
-          //delete d.biopaxRef;
         };
 
         delete element.graphics;
@@ -249,7 +246,7 @@ pathvisio.pathway.labelableElement = function(){
       return validJsonLabelableElements;
     }
     catch (e) {
-      console.log("Error //converting labelable elements to json: " + e.message);
+      console.log("Error converting labelable elements to json: " + e.message);
       return e;
     };
   };
