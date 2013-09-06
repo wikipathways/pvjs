@@ -3,7 +3,7 @@ pathvisio.pathway.edge.point = function(){
   // pathvisio.js vs PathVisio (Java) specification of anchor position
   // -----------------------------------------
   // pathvisio.js |  PathVisio  | Meaning
-  //  relX | relY | relx | rely |
+  //  relX | relY | relX | relY |
   // -----------------------------------------
   // 0.333   0      -0.5   -1.0   top side at left third-point 
   // 0.5     0       0.0   -1.0   top side at center 
@@ -18,7 +18,7 @@ pathvisio.pathway.edge.point = function(){
   // 0       0.5    -1.0    0.0   left side at middle 
   // 0       0.333  -1.0   -0.5   left side at top third-point 
   //
-  // PathVisio (Java) also sometimes comes up with other values for relx and rely.
+  // PathVisio (Java) also sometimes comes up with other values for relX and relY.
   // I don't know what those mean.
 
   var anchorPositionMappings = { "-1":0, "-0.5":0.333, "0":0.5, "0.5":0.667, "1":1 };
@@ -93,19 +93,15 @@ pathvisio.pathway.edge.point = function(){
         //  adapted from jsPlumb implementation:
         //  https://github.com/sporritt/jsPlumb/wiki/anchors
 
-        if (element.graphref !== undefined) {
-          element.graphRef = element.graphref;
-          delete element.graphref;
-
-          var relx = (Math.round(element.relx * 2)/2).toString()
-          element.relX = parseFloat(anchorPositionMappings[relx]);
-          delete element.relx;
+        if (element.graphRef !== undefined) {
           delete element.x;
-
-          var rely = (Math.round(element.rely * 2)/2).toString()
-          element.relY = parseFloat(anchorPositionMappings[rely]);
-          delete element.rely;
           delete element.y;
+
+          var relX = (Math.round(element.relX * 2)/2).toString()
+          element.relX = parseFloat(anchorPositionMappings[relX]);
+
+          var relY = (Math.round(element.relY * 2)/2).toString()
+          element.relY = parseFloat(anchorPositionMappings[relY]);
 
           if (element.relX === 0) {
             element.dx = -1;
@@ -127,16 +123,16 @@ pathvisio.pathway.edge.point = function(){
           };
         };
 
-        // This is probably unreliable. We need to establish a way to ensure we identify start and end markers correctly, and we should not rely on the order of elements in XML.
+        // This is probably unreliable. We need to establish a way to ensure we identify start and end markers correctly, and we should not relY on the order of elements in XML.
 
-        if ((index === 0) && (markerMappings.hasOwnProperty(element.arrowhead))) {
-          markerStart = markerMappings[element.arrowhead];
-          delete element.arrowhead;
+        if ((index === 0) && (markerMappings.hasOwnProperty(element.arrowHead))) {
+          markerStart = markerMappings[element.arrowHead];
+          delete element.arrowHead;
         }
         else {
-          if ((index === array.length - 1) && (markerMappings.hasOwnProperty(element.arrowhead))) {
-            markerEnd = markerMappings[element.arrowhead];
-            delete element.arrowhead;
+          if ((index === array.length - 1) && (markerMappings.hasOwnProperty(element.arrowHead))) {
+            markerEnd = markerMappings[element.arrowHead];
+            delete element.arrowHead;
           }
         };
       });
@@ -174,7 +170,7 @@ pathvisio.pathway.edge.point = function(){
       do {
         i += 1;
         var anchor = edgesWithAnchors[i].anchors.filter(function(element) {return element.graphId === point.graphRef})[0]
-      } while (anchor === undefined && i < edgesWithAnchors.length);
+      } while (anchor === undefined && i < edgesWithAnchors.length );
 
       return {'type':'anchor', 'element':anchor, 'edge':edgesWithAnchors[i]};
 

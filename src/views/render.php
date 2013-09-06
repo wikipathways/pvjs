@@ -18,7 +18,14 @@ function getUrlParameter(name) {
   return decodeURIComponent((new RegExp('[?|&]' + name + '=' + '([^&;]+?)(&|#|;|$)').exec(location.search)||[,""])[1].replace(/\+/g, '%20'))||null
 };
 var repo = getUrlParameter('repo');
-var url = getUrlParameter('pathwayUrl');
+if (!!url) {
+  var url = getUrlParameter('url');
+}
+else {
+  if (!!getUrlParameter('id')) {
+    var url = 'http://pointer.ucsf.edu/d3/r/pathvisio.js/src/views/gpml.php?id=' + getUrlParameter('id');
+  };
+};
 </script>
 
 <?php
@@ -61,7 +68,8 @@ var url = getUrlParameter('pathwayUrl');
 <script src="../js/pathvisio/helpers.js"></script>
 <script src="../js/rgbcolor.js"></script>
 
-<script src="../js/jxon.js"></script>
+<script src="../js/case-converter.js"></script>
+<script src="../js/xml2json.js"></script>
 <script src="../lib/jquery/jquery.js"></script>
 <script src="../lib/d3/d3.js" charset="utf-8"></script>
 
