@@ -299,7 +299,7 @@ pathvisio.pathway = function(){
       // BiopaxRefs 
 
       try {
-        if (pathway.hasOwnProperty('biopaxref')) {
+        if (pathway.hasOwnProperty('biopaxRef')) {
           pathway.biopaxRefs = pathvisio.helpers.convertToArray( pathway.biopaxRef );
           delete pathway.biopaxRef;
 
@@ -308,7 +308,7 @@ pathvisio.pathway = function(){
           //});
         }
         else {
-          console.log("No element(s) named 'biopaxref' for the element 'pathway' found in this gpml file.");
+          console.log("No element(s) named 'biopaxRef' for the element 'pathway' found in this gpml file.");
         };
       }
       catch (e) {
@@ -319,7 +319,8 @@ pathvisio.pathway = function(){
 
       try {
         if (pathway.hasOwnProperty('biopax')) {
-          //do something
+          pathway.biopax.bpPublicationXrefs = pathvisio.helpers.convertToArray( pathway.biopax.bpPublicationXref );
+          delete pathway.biopax.bpPublicationXref;
         }
         else {
           console.log("No element(s) named 'biopax' found in this gpml file.");
@@ -354,7 +355,7 @@ pathvisio.pathway = function(){
         error += 'Error: URL not specified.';
       };
       if (!mimeType) {
-        error += 'Error: URL not specified.';
+        error += '\rError: mime type not specified.';
       };
       return console.warn(error);
     }
@@ -379,6 +380,9 @@ pathvisio.pathway = function(){
 
         //var oSerializer = new XMLSerializer();
         //var sGpml = self.sGpml = oSerializer.serializeToString(gpmlDoc);
+        self.gpmlDoc = gpmlDoc;
+        console.log('gpmlDoc');
+        console.log(gpmlDoc);
         var gpml = self.gpml = gpmlDoc.documentElement;
         var sGpml = null;
         console.log('GPML');
@@ -424,12 +428,15 @@ pathvisio.pathway = function(){
       .attr("class", 'pathway-publication-xref-text')
       .attr("style", "")
       .text(function (d) {
+
+        // d is an array of biopaxRefs
+
         var index = 0;
-        var gpmlId = null;
+        var displayedCitationNumber = null;
         do {
-          gpmlId = pathvisio.data.pathways[pathvisio.data.current.svgSelector].biopax.publicationXrefs[index].gpmlId;
+          rdfId = pathvisio.data.pathways[pathvisio.data.current.svgSelector].biopax.bpPublicationXrefs[index].rdfId;
           index += 1;
-        } while (gpmlId !== d && index < pathvisio.data.pathways[pathvisio.data.current.svgSelector].biopax.publicationXrefs.length);
+        } while (rdfId !== d.Text && index < pathvisio.data.pathways[pathvisio.data.current.svgSelector].biopax.bpPublicationXrefs.length);
         return index});
     };
 

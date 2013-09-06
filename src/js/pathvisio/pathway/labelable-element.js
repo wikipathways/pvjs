@@ -493,12 +493,17 @@ pathvisio.pathway.labelableElement = function(){
               .attr("class", 'node-publication-xref-text')
               .attr("style", "")
               .text(function (d) {
+
+                // d is an array of biopaxRefs
+
                 var index = 0;
-                var gpmlId = null;
+                var rdfId = null;
                 do {
-                  gpmlId = pathvisio.data.pathways[pathvisio.data.current.svgSelector].biopax.publicationXrefs[index].gpmlId;
+                  console.log('pathvisio.data.pathways[pathvisio.data.current.svgSelector].biopax');
+                  console.log(pathvisio.data.pathways[pathvisio.data.current.svgSelector].biopax);
+                  rdfId = pathvisio.data.pathways[pathvisio.data.current.svgSelector].biopax.bpPublicationXrefs[index].rdfId;
                   index += 1;
-                } while (gpmlId !== d && index < pathvisio.data.pathways[pathvisio.data.current.svgSelector].biopax.publicationXrefs.length);
+                } while (rdfId !== d.Text && index < pathvisio.data.pathways[pathvisio.data.current.svgSelector].biopax.bpPublicationXrefs.length);
                 return index});
             };
 
