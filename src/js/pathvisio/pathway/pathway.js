@@ -377,14 +377,16 @@ pathvisio.pathway = function(){
 
         // if the response is a valid GPML document (ie, not from webservice)
 
-        var oSerializer = new XMLSerializer();
-        var sGpml = self.sGpml = oSerializer.serializeToString(gpmlDoc);
-        var gpml = gpmlDoc.documentElement;
+        //var oSerializer = new XMLSerializer();
+        //var sGpml = self.sGpml = oSerializer.serializeToString(gpmlDoc);
+        var gpml = self.gpml = gpmlDoc.documentElement;
+        var sGpml = null;
         console.log('GPML');
         console.log(gpml);
 
         pathvisio.pathway.gpml2json(gpml);
-        var sJson = self.sJson = JSON.stringify(pathvisio.data.pathways[pathvisio.data.current.svgSelector], undefined, 2);
+        //var sJson = self.sJson = JSON.stringify(pathvisio.data.pathways[pathvisio.data.current.svgSelector], undefined, 2);
+        var sJson = null;
 
         callback(pathvisio.data.pathways[pathvisio.data.current.svgSelector], sGpml, sJson);
       });
