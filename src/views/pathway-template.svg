@@ -780,11 +780,11 @@ SVG-Edit (latest release)
   	</clipPath>
   	
   	<clipPath id="mim-degradation-line1-clip-path" >
-  	<line  x1="2.5" y1="1" x2="50.5" y2="50" vector-effect="non-scaling-stroke"/>
+  	<line  x1="3" y1="1" x2="51" y2="50" vector-effect="non-scaling-stroke"/>
   	</clipPath>
   	
   	<clipPath id="mim-degradation-line2-clip-path" >
-  	<line  x1="1.5" y1="1" x2="49.5" y2="50" vector-effect="non-scaling-stroke"/>
+  	<line  x1="1" y1="1" x2="49" y2="50" vector-effect="non-scaling-stroke"/>
   	</clipPath>
   	
 	<symbol id="mim-degradation" viewBox="0 0 50 50" preserveAspectRatio="none">
