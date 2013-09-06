@@ -271,14 +271,6 @@ function getUrlParameter(name) {
 };
 
 var repo = getUrlParameter('repo');
-if (!!url) {
-  var url = getUrlParameter('url');
-}
-else {
-  if (!!getUrlParameter('id')) {
-    var url = 'http://pointer.ucsf.edu/d3/r/pathvisio.js/src/views/gpml.php?id=' + getUrlParameter('id');
-  };
-};
 </script>
 
 <?php
@@ -318,7 +310,20 @@ else {
 
 <script>
   window.onload = function() {
+    if (!!getUrlParameter('id')) {
+      var url = 'http://pointer.ucsf.edu/d3/r/pathvisio.js/src/views/gpml.php?id=' + getUrlParameter('id');
+    }
+    else {
+      if (!!getUrlParameter('url')) {
+        var url = getUrlParameter('url');
+      }
+      else {
+        console.log('Error: No GPML data source specified.');
+      };
+    };
     pathvisio.pathway.load('#pathway-image', url);
+    console.log('url');
+    console.log(url);
   };
 </script>
     <div>
