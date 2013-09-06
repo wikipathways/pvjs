@@ -133,7 +133,7 @@ return {
  * This is a super light and simple XML to JSON converter.
  * All it does is scans through child elements of your XML and builds out a JSON structure.
  * To avoid attribute vs. node name conflicts - All attribute entities are prefixed with "@" (i.e. <node attr="1"/> == {node: {"@attr":"1"}} )
- * text or CDATA value will always be inside a "text" property (i.e. myNodeObj.text == <myNodeObj>Hello</myNodeObj> - Hello)
+ * Text or CDATA value will always be inside a "Text" property (i.e. myNodeObj.Text == <myNodeObj>Hello</myNodeObj> - Hello)
  * Node siblings with the same name will be automatically converted into arrays, else if node is singular it will just be an Object
  */
 
@@ -149,7 +149,7 @@ return {
         NODE_TYPES = {
             Element: 1,
             Attribute: 2,
-            text: 3,
+            Text: 3,
             CDATA: 4,
             Root: 9,
             Fragment: 11
@@ -207,7 +207,7 @@ return {
                 throw new Error("Unable to parse XML");
             }
             //If xdoc is just a text or CDATA return value
-            if(xdoc.nodeType === NODE_TYPES.text || xdoc.nodeType === NODE_TYPES.CDATA) {
+            if(xdoc.nodeType === NODE_TYPES.Text || xdoc.nodeType === NODE_TYPES.CDATA) {
                 return xdoc.nodeValue;
             }
             //Extract root node
@@ -232,14 +232,14 @@ return {
                     child = node.childNodes[i];
                     //Check nodeType of each child node
                     switch(child.nodeType) {
-                    case NODE_TYPES.text:
-                        //If parent node has both CDATA and text nodes, we just concatinate them together
-                        buff.text = buff.text ? buff.text + child.nodeValue.trim() : child.nodeValue.trim();
+                    case NODE_TYPES.Text:
+                        //If parent node has both CDATA and Text nodes, we just concatinate them together
+                        buff.Text = buff.Text ? buff.Text + child.nodeValue.trim() : child.nodeValue.trim();
                         break;
                     case NODE_TYPES.CDATA:
-                        //If parent node has both CDATA and text nodes, we just concatinate them together
+                        //If parent node has both CDATA and Text nodes, we just concatinate them together
                         value = child[child.text ? "text" : "nodeValue"]; //IE attributes support
-                        buff.text = buff.text ? buff.text + value : value;
+                        buff.Text = buff.Text ? buff.Text + value : value;
                         break;
                     case NODE_TYPES.Element:
                         name = caseConverter.camelCase(child.nodeName);
@@ -951,7 +951,7 @@ pathvisio.pathway = function(){
       // BiopaxRefs 
 
       try {
-        if (pathway.hasOwnProperty('biopaxref')) {
+        if (pathway.hasOwnProperty('biopaxRef')) {
           pathway.biopaxRefs = pathvisio.helpers.convertToArray( pathway.biopaxRef );
           delete pathway.biopaxRef;
 
@@ -960,7 +960,7 @@ pathvisio.pathway = function(){
           //});
         }
         else {
-          console.log("No element(s) named 'biopaxref' for the element 'pathway' found in this gpml file.");
+          console.log("No element(s) named 'biopaxRef' for the element 'pathway' found in this gpml file.");
         };
       }
       catch (e) {
@@ -971,7 +971,8 @@ pathvisio.pathway = function(){
 
       try {
         if (pathway.hasOwnProperty('biopax')) {
-          //do something
+          pathway.biopax.bpPublicationXrefs = pathvisio.helpers.convertToArray( pathway.biopax.bpPublicationXref );
+          delete pathway.biopax.bpPublicationXref;
         }
         else {
           console.log("No element(s) named 'biopax' found in this gpml file.");
@@ -1006,7 +1007,7 @@ pathvisio.pathway = function(){
         error += 'Error: URL not specified.';
       };
       if (!mimeType) {
-        error += 'Error: URL not specified.';
+        error += '\rError: mime type not specified.';
       };
       return console.warn(error);
     }
@@ -1031,6 +1032,9 @@ pathvisio.pathway = function(){
 
         //var oSerializer = new XMLSerializer();
         //var sGpml = self.sGpml = oSerializer.serializeToString(gpmlDoc);
+        self.gpmlDoc = gpmlDoc;
+        console.log('gpmlDoc');
+        console.log(gpmlDoc);
         var gpml = self.gpml = gpmlDoc.documentElement;
         var sGpml = null;
         console.log('GPML');
@@ -1076,12 +1080,15 @@ pathvisio.pathway = function(){
       .attr("class", 'pathway-publication-xref-text')
       .attr("style", "")
       .text(function (d) {
+
+        // d is an array of biopaxRefs
+
         var index = 0;
-        var gpmlId = null;
+        var displayedCitationNumber = null;
         do {
-          gpmlId = pathvisio.data.pathways[pathvisio.data.current.svgSelector].biopax.publicationXrefs[index].gpmlId;
+          rdfId = pathvisio.data.pathways[pathvisio.data.current.svgSelector].biopax.bpPublicationXrefs[index].rdfId;
           index += 1;
-        } while (gpmlId !== d && index < pathvisio.data.pathways[pathvisio.data.current.svgSelector].biopax.publicationXrefs.length);
+        } while (rdfId !== d.Text && index < pathvisio.data.pathways[pathvisio.data.current.svgSelector].biopax.bpPublicationXrefs.length);
         return index});
     };
 
@@ -1753,12 +1760,17 @@ pathvisio.pathway.labelableElement = function(){
               .attr("class", 'node-publication-xref-text')
               .attr("style", "")
               .text(function (d) {
+
+                // d is an array of biopaxRefs
+
                 var index = 0;
-                var gpmlId = null;
+                var rdfId = null;
                 do {
-                  gpmlId = pathvisio.data.pathways[pathvisio.data.current.svgSelector].biopax.publicationXrefs[index].gpmlId;
+                  console.log('pathvisio.data.pathways[pathvisio.data.current.svgSelector].biopax');
+                  console.log(pathvisio.data.pathways[pathvisio.data.current.svgSelector].biopax);
+                  rdfId = pathvisio.data.pathways[pathvisio.data.current.svgSelector].biopax.bpPublicationXrefs[index].rdfId;
                   index += 1;
-                } while (gpmlId !== d && index < pathvisio.data.pathways[pathvisio.data.current.svgSelector].biopax.publicationXrefs.length);
+                } while (rdfId !== d.Text && index < pathvisio.data.pathways[pathvisio.data.current.svgSelector].biopax.bpPublicationXrefs.length);
                 return index});
             };
 

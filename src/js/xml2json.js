@@ -19,7 +19,7 @@
  * This is a super light and simple XML to JSON converter.
  * All it does is scans through child elements of your XML and builds out a JSON structure.
  * To avoid attribute vs. node name conflicts - All attribute entities are prefixed with "@" (i.e. <node attr="1"/> == {node: {"@attr":"1"}} )
- * text or CDATA value will always be inside a "text" property (i.e. myNodeObj.text == <myNodeObj>Hello</myNodeObj> - Hello)
+ * Text or CDATA value will always be inside a "Text" property (i.e. myNodeObj.Text == <myNodeObj>Hello</myNodeObj> - Hello)
  * Node siblings with the same name will be automatically converted into arrays, else if node is singular it will just be an Object
  */
 
@@ -35,7 +35,7 @@
         NODE_TYPES = {
             Element: 1,
             Attribute: 2,
-            text: 3,
+            Text: 3,
             CDATA: 4,
             Root: 9,
             Fragment: 11
@@ -93,7 +93,7 @@
                 throw new Error("Unable to parse XML");
             }
             //If xdoc is just a text or CDATA return value
-            if(xdoc.nodeType === NODE_TYPES.text || xdoc.nodeType === NODE_TYPES.CDATA) {
+            if(xdoc.nodeType === NODE_TYPES.Text || xdoc.nodeType === NODE_TYPES.CDATA) {
                 return xdoc.nodeValue;
             }
             //Extract root node
@@ -118,14 +118,14 @@
                     child = node.childNodes[i];
                     //Check nodeType of each child node
                     switch(child.nodeType) {
-                    case NODE_TYPES.text:
-                        //If parent node has both CDATA and text nodes, we just concatinate them together
-                        buff.text = buff.text ? buff.text + child.nodeValue.trim() : child.nodeValue.trim();
+                    case NODE_TYPES.Text:
+                        //If parent node has both CDATA and Text nodes, we just concatinate them together
+                        buff.Text = buff.Text ? buff.Text + child.nodeValue.trim() : child.nodeValue.trim();
                         break;
                     case NODE_TYPES.CDATA:
-                        //If parent node has both CDATA and text nodes, we just concatinate them together
+                        //If parent node has both CDATA and Text nodes, we just concatinate them together
                         value = child[child.text ? "text" : "nodeValue"]; //IE attributes support
-                        buff.text = buff.text ? buff.text + value : value;
+                        buff.Text = buff.Text ? buff.Text + value : value;
                         break;
                     case NODE_TYPES.Element:
                         name = caseConverter.camelCase(child.nodeName);
