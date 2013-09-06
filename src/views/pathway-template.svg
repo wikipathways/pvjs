@@ -790,7 +790,7 @@ SVG-Edit (latest release)
 	<symbol id="mim-degradation" viewBox="0 0 100 100" preserveAspectRatio="none">
 	<desc>mim-degradation</desc>
 	<circle cx="50" cy="50" r="50" style="clip-path: url(#mim-degradation-circle-clip-path); " vector-effect="non-scaling-stroke"/>
-  	<line  x1="1" y1="1" x2="100" y2="100" style="clip-path: url(#mim-degradation-line1-clip-path);" style="clip-path: url(#mim-degradation-line2-clip-path);"  vector-effect="non-scaling-stroke"/>
+  	<line  x1="1" y1="1" x2="100" y2="100"  vector-effect="non-scaling-stroke"/>
   	</symbol>
 	
 	<!-- mitochondria -->
