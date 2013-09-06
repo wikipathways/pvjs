@@ -775,11 +775,22 @@ SVG-Edit (latest release)
 	</symbol>
 
 	<!-- Shape is placeholder until it can be replaced with correct shape. -->
-
-	<symbol id="mim-degradation" viewBox="0 0 90 90" preserveAspectRatio="none">
-	<desc>mim-degradation</desc>
+	<clipPath id="mim-degradation-circle-clip-path" >
 	<circle cx="25" cy="26" r="24.40234" vector-effect="non-scaling-stroke"/>
-  	<line  x1="2" y1="1" x2="50" y2="50" vector-effect="non-scaling-stroke"/>
+  	</clipPath>
+  	
+  	<clipPath id="mim-degradation-line1-clip-path" >
+  	<line  x1="2.5" y1="1" x2="50.5" y2="50" vector-effect="non-scaling-stroke"/>
+  	</clipPath>
+  	
+  	<clipPath id="mim-degradation-line2-clip-path" >
+  	<line  x1="1.5" y1="1" x2="49.5" y2="50" vector-effect="non-scaling-stroke"/>
+  	</clipPath>
+  	
+	<symbol id="mim-degradation" viewBox="0 0 50 50" preserveAspectRatio="none">
+	<desc>mim-degradation</desc>
+	<circle cx="25" cy="26" r="24.40234" style="clip-path: url(#mim-degradation-circle-clip-path); " vector-effect="non-scaling-stroke"/>
+  	<line  x1="2" y1="1" x2="50" y2="50" style="clip-path: url(#mim-degradation-line1-clip-path);" style="clip-path: url(#mim-degradation-line2-clip-path);"  vector-effect="non-scaling-stroke"/>
   	</symbol>
 	
 	<!-- mitochondria -->
