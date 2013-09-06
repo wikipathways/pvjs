@@ -54,20 +54,8 @@ pathvisio.pathway.edge = function(){
   function gpml2json(rawJsonEdges) {
     try {
       rawJsonEdges.forEach(function(element, index, array) {
-        element.graphId = element.graphid;
-        delete element.graphid;
-
-        if (element.hasOwnProperty('groupref')) {
-          element.groupRef = element.groupref;
-          delete element.groupref;
-        };
-
         if (element.graphics.hasOwnProperty('anchor')) {
           element.anchors = pathvisio.helpers.convertToArray(element.graphics.anchor);
-          element.anchors.forEach(function(el) {
-            el.graphId = el.graphid;
-            delete el.graphid;
-          });
         };
 
         if (element.graphics.hasOwnProperty('color')) {
@@ -77,18 +65,17 @@ pathvisio.pathway.edge = function(){
           }
         };	
 
-        element.strokeWidth = element.graphics.linethickness;
+        element.strokeWidth = element.graphics.lineThickness;
 
-        if (element.graphics.hasOwnProperty('connectortype')) {
-          element.connectorType = element.graphics.connectortype.toLowerCase();
+        if (element.graphics.hasOwnProperty('connectorType')) {
+          element.connectorType = element.graphics.connectorType.toLowerCase();
         }	
 
-        if (element.graphics.hasOwnProperty('linestyle')) {
-          element.strokeStyle = element.graphics.linestyle.toLowerCase();
+        if (element.graphics.hasOwnProperty('lineStyle')) {
+          element.strokeStyle = element.graphics.lineStyle.toLowerCase();
           if (element.strokeStyle === 'broken') {
             element.strokeStyle = 'dashed';
           };
-          delete element.graphics.linestyle;
         }	
         else {
           if (element.hasOwnProperty('attribute')) {
@@ -101,8 +88,15 @@ pathvisio.pathway.edge = function(){
 
         element.zIndex = element.graphics.zorder;
 
-        element.xRef = element.xref;
-        delete element.xref;
+        if (element.hasOwnProperty('xref')) {
+          if ((!element.xref.database) && (!element.xref.id)) {
+            delete element.xref;
+          }
+          else {
+            element.xref = element.xRef;
+            delete element.xref;
+          };
+        };
 
         // Points
 
@@ -116,7 +110,6 @@ pathvisio.pathway.edge = function(){
         element.markerEnd = pointsData.markerEnd;
 
         delete element.graphics;
-
       });
 
       // TODO this could be refactored to be more efficient
@@ -197,6 +190,7 @@ pathvisio.pathway.edge = function(){
       return e;
     };
   };
+
   function drawAll() {
     if (pathvisio.data.pathways[pathvisio.data.current.svgSelector].hasOwnProperty('edges')) {
       var pathData = null;

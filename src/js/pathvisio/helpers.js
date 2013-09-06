@@ -35,6 +35,13 @@ pathvisio.helpers = function(){
     else {
       if( Object.prototype.toString.call( object ) === '[object Array]' ) {
         return object;
+      }
+      else {
+        if( Object.prototype.toString.call( object ) === '[object String]' ) {
+          var array = [];
+          array.push(object)
+          return array;
+        };
       };
     };
   };

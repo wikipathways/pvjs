@@ -47,15 +47,15 @@ Repo:
     $pathwayTemplateSvgUrlEditable = "https://github.com/" . $repo . "/pathvisio.js/blob/dev/src/views/pathway-template.svg";
   }
 
-  if (isset($_GET['pwId'])) {
+  if (isset($_GET['id'])) {
     echo "<script>var local = false</script>";
-    $pwId = htmlspecialchars($_GET['pwId']);
-    $pathwayUrlParamStr = "pwId=" . $pwId;
+    $id = htmlspecialchars($_GET['id']);
+    $pathwayUrlParamStr = "id=" . $id;
 
-    $batikSvgUrl = "http://www.wikipathways.org//wpi/wpi.php?action=downloadFile&type=svg&pwTitle=Pathway:" . $pwId . "&revision=0";
-    $pngUrl = "http://www.wikipathways.org//wpi/wpi.php?action=downloadFile&type=png&pwTitle=Pathway:" . $pwId . "&revision=0";
+    $batikSvgUrl = "http://www.wikipathways.org//wpi/wpi.php?action=downloadFile&type=svg&pwTitle=Pathway:" . $id . "&revision=0";
+    $pngUrl = "http://www.wikipathways.org//wpi/wpi.php?action=downloadFile&type=png&pwTitle=Pathway:" . $id . "&revision=0";
 
-    $pathwayUrl = "http://www.wikipathways.org//wpi/wpi.php?action=downloadFile&type=gpml&pwTitle=Pathway:" . $pwId;
+    $pathwayUrl = "http://www.wikipathways.org//wpi/wpi.php?action=downloadFile&type=gpml&pwTitle=Pathway:" . $id;
   }
   elseif (isset($_GET['pathwayUrl'])) {
     echo "<script>var local = true</script>";

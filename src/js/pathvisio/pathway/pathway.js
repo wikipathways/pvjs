@@ -1,15 +1,21 @@
 pathvisio.pathway = function(){
-  function gpml2json(xmlGpml){
+  function gpml2json(gpml){
 
     // for doing this in Java, we could look at 
     // https://code.google.com/p/json-io/
 
-    self.xmlGpml = xmlGpml;
+    self.gpml = gpml;
+    console.log('GPML')
+    console.log(gpml)
 
     // We can use xml2json.js or JXON.js. Which is better?
     // JXON.js
     var pathway = pathvisio.data.pathways[pathvisio.data.current.svgSelector];
-    pathway = JXON.build(xmlGpml);
+    pathway = self.pathway = xml.xmlToJSON(gpml, true).pathway;
+    
+    console.log('raw json from xml2json');
+    console.log(xml.xmlToJSON(gpml, true).pathway);
+
     try {
       xmlns = pathway["xmlns"]
     }
@@ -40,61 +46,18 @@ pathvisio.pathway = function(){
         alert("Pathvisio.js may not fully support the version of GPML provided (xmlns: " + xmlns + "). Please convert to the supported version of GPML (xmlns: " + gpmlXmlnsSupported + ").")
       };
 
-      // Convert output from jxon.js into jsonGpml (well-formed JSON with all implied elements from xmlGpml explicitly filled in).
+      // Convert output from xml2json.js into jsonGpml (well-formed JSON with all implied elements from gpml explicitly filled in).
 
-      pathway.boardWidth = pathway.graphics.boardwidth;
-      delete pathway.graphics.boardwidth;
-      pathway.boardHeight = pathway.graphics.boardheight;
-      delete pathway.graphics.boardheight;
-
-      if (pathway.hasOwnProperty('last-modified')) {
-        pathway.lastModified = pathway['last-modified'];
-        delete pathway['last-modified'];
-      };
+      pathway.boardWidth = pathway.graphics.boardWidth;
+      pathway.boardHeight = pathway.graphics.boardHeight;
 
       // infoBox
-
-      pathway.infoBox = pathway.infobox;
-      delete pathway.infobox;
-
       // These values are a legacy from GenMAPP. They are always forced to be equal to 0 in PathVisio (Java) so as to place the infobox in the upper lefthand corner.
 
       pathway.infoBox.x = 0;
-      delete pathway.infoBox.centerx;
+      delete pathway.infoBox.centerX;
       pathway.infoBox.y = 0;
-      delete pathway.infoBox.centery;
-
-      // Biopax
-
-      // For now, we don't need the biopax in json format for displaying a pathway.
-      // This will require further research if we decide to add it. It doesn't work
-      // right now.
-      // We should look at available standardized implementations of json Biopax.
-
-      try {
-        delete pathway.biopax;
-      }
-      catch (e) {
-        console.log("Biopax error: " + e.message);
-      };
-
-      // BiopaxRefs
-
-      // We should look at available standardized implementations of json Biopax.
-
-      try {
-        if (pathway.hasOwnProperty('biopaxref')) {
-          pathway.biopaxRefs = pathvisio.helpers.convertToArray( pathway.biopaxref );
-          delete pathway.biopaxref;
-        }
-        else {
-          console.log("No element(s) named 'biopaxref' found in this gpml file.");
-        };
-      }
-      catch (e) {
-        console.log("Error converting biopaxref to json: " + e.message);
-        //delete pathway.biopaxRefs;
-      };
+      delete pathway.infoBox.centerY;
 
       // Comments 
 
@@ -113,7 +76,6 @@ pathvisio.pathway = function(){
       }
       catch (e) {
         console.log("Error converting comment to json: " + e.message);
-        //delete pathway.comments;
       };
 
       // Groups
@@ -124,13 +86,6 @@ pathvisio.pathway = function(){
           delete pathway.group;
 
           pathway.groups.forEach(function(element, index, array) {
-
-            element.graphId = element.graphid;
-            delete element.graphid;
-
-            element.groupId = element.groupid;
-            delete element.groupid;
-
             if (element.hasOwnProperty('style')) {
               element.style = element.style.toLowerCase();
             }
@@ -146,15 +101,14 @@ pathvisio.pathway = function(){
       }
       catch (e) {
         console.log("Error converting group to json: " + e.message);
-        //delete pathway.groups;
       };
 
       // Graphical Lines 
 
       try {
-        if (pathway.hasOwnProperty('graphicalline')) {
-          graphicalLines = pathvisio.helpers.convertToArray( pathway.graphicalline );
-          delete pathway.graphicalline;
+        if (pathway.hasOwnProperty('graphicalLine')) {
+          graphicalLines = pathvisio.helpers.convertToArray( pathway.graphicalLine );
+          delete pathway.graphicalLine;
 
           if (pathway.edges === undefined) {
             pathway.edges = [];
@@ -166,12 +120,11 @@ pathvisio.pathway = function(){
           });
         }
         else {
-          console.log("No element(s) named 'graphicalline' found in this gpml file.");
+          console.log("No element(s) named 'graphicalLine' found in this gpml file.");
         };
       }
       catch (e) {
-        console.log("Error converting graphicalline to json: " + e.message);
-        //delete pathway.graphicalline;
+        console.log("Error converting graphicalLine to json: " + e.message);
       };
 
       // Interactions
@@ -199,7 +152,6 @@ pathvisio.pathway = function(){
       }
       catch (e) {
         console.log("Error converting interaction to json: " + e.message);
-        //delete pathway.interaction;
       };
 
       // Edges
@@ -214,7 +166,6 @@ pathvisio.pathway = function(){
       }
       catch (e) {
         console.log("Error converting edges to json: " + e.message);
-        //delete pathway.edges;
       };
 
       // DataNodes 
@@ -235,9 +186,9 @@ pathvisio.pathway = function(){
       };
 
       try {
-        if (pathway.hasOwnProperty('datanode')) {
-          var dataNodes = pathvisio.helpers.convertToArray( pathway.datanode );
-          delete pathway.datanode;
+        if (pathway.hasOwnProperty('dataNode')) {
+          var dataNodes = pathvisio.helpers.convertToArray( pathway.dataNode );
+          delete pathway.dataNode;
 
           dataNodes.forEach(function(element, index, array) {
 
@@ -252,8 +203,13 @@ pathvisio.pathway = function(){
             delete element.type;
 
             if (element.hasOwnProperty('xref')) {
-              element.xRef = element.xref;
-              delete element.xref;
+              if ((!element.xref.database) && (!element.xref.id)) {
+                delete element.xref;
+              }
+              else {
+                element.xref = element.xRef;
+                delete element.xref;
+              };
             };
           });
 
@@ -266,12 +222,11 @@ pathvisio.pathway = function(){
 
         }
         else {
-          console.log("No element(s) named 'datanode' found in this gpml file.");
+          console.log("No element(s) named 'dataNode' found in this gpml file.");
         };
       }
       catch (e) {
-        console.log("Error converting datanode to json: " + e.message);
-        //delete pathway.datanode;
+        console.log("Error converting dataNode to json: " + e.message);
       };
 
       // Labels
@@ -298,7 +253,6 @@ pathvisio.pathway = function(){
       }
       catch (e) {
         console.log("Error converting label to json: " + e.message);
-        //delete pathway.label;
       };
 
       // Shapes
@@ -325,7 +279,6 @@ pathvisio.pathway = function(){
       }
       catch (e) {
         console.log("Error converting shape to json: " + e.message);
-        //delete pathway.shape;
       };
 
       // LabelableElements
@@ -340,15 +293,49 @@ pathvisio.pathway = function(){
       }
       catch (e) {
         console.log("Error converting labelableElements to json: " + e.message);
-        //delete pathway.labelableElements;
       };
 
-      delete pathway.graphics;
+
+      // BiopaxRefs 
+
+      try {
+        if (pathway.hasOwnProperty('biopaxref')) {
+          pathway.biopaxRefs = pathvisio.helpers.convertToArray( pathway.biopaxRef );
+          delete pathway.biopaxRef;
+
+          //biopaxRefs.forEach(function(element, index, array) {
+            // do something
+          //});
+        }
+        else {
+          console.log("No element(s) named 'biopaxref' for the element 'pathway' found in this gpml file.");
+        };
+      }
+      catch (e) {
+        console.log("Error converting biopaxRef to json: " + e.message);
+      };
+
+      // Biopax 
+
+      try {
+        if (pathway.hasOwnProperty('biopax')) {
+          //do something
+        }
+        else {
+          console.log("No element(s) named 'biopax' found in this gpml file.");
+        };
+      }
+      catch (e) {
+        console.log("Error converting biopax to json: " + e.message);
+      };
 
       console.log('JSON:');
       console.log(pathway);
+      console.log('pathvisio.data.pathways[pathvisio.data.current.svgSelector]');
+      console.log(pathvisio.data.pathways[pathvisio.data.current.svgSelector]);
 
-      pathvisio.data.pathways[pathvisio.data.current.svgSelector] = pathway;
+      delete pathway.graphics;
+      return pathvisio.data.pathways[pathvisio.data.current.svgSelector] = pathway;
     }
     else {
       alert("Pathvisio.js does not support the data format provided. Please convert to GPML and retry.")
@@ -358,50 +345,55 @@ pathvisio.pathway = function(){
   };
 
   function get(url, mimeType, callback) {
-    if (url === undefined || !(url) || url === "") {
-      return console.warn('Error: URL not specified.');
+    if (!url || !mimeType) {
+
+      // TODO throw a proper error here
+
+      var error = null;
+      if (!url) {
+        error += 'Error: URL not specified.';
+      };
+      if (!mimeType) {
+        error += 'Error: URL not specified.';
+      };
+      return console.warn(error);
     }
     else {
-      if (1!==1) {
-      }
-      else {
+      // be sure server has set gpml mime type to application/gpml+xml or application/gpml+xml
 
-// be sure server has set gpml mime type to application/gpml+xml or application/gpml+xml
+      d3.xml(url, "application/xml", function(gpmlDoc) {
 
-        d3.xml(url, "application/xml", function(gpmlDoc) {
-console.log('gpmlDoc');
-console.log(gpmlDoc);
+        /* if from webservice, we would have used this code, but now, we've decided that the proper format
+         * for the response (gpmlDoc) is GPML as an XML document. If the response would be anything else,
+         * such as the XML document that the webservice gives as a response, the parsing and manipulation must
+         * happen before calling get().
 
-/* if from webservice
+         var sGpml = gpmlDoc.getElementsByTagNameNS("http://www.wikipathways.org/webservice", "gpml")[0].textContent;
+         var oParser = new DOMParser();
+         var oDOM = oParser.parseFromString(sGpml, "text/xml");
+         var gpml = oDOM.documentElement;
 
-var sGpml = gpmlDoc.getElementsByTagNameNS("http://www.wikipathways.org/webservice", "gpml")[0].textContent;
-var oParser = new DOMParser();
-var oDOM = oParser.parseFromString(sGpml, "text/xml");
-var gpml = oDOM.documentElement;
+        */
 
-*/
+        // if the response is a valid GPML document (ie, not from webservice)
 
-///* if  not from webservice
+        var oSerializer = new XMLSerializer();
+        var sGpml = self.sGpml = oSerializer.serializeToString(gpmlDoc);
+        var gpml = gpmlDoc.documentElement;
+        console.log('GPML');
+        console.log(gpml);
 
-          var oSerializer = new XMLSerializer();
-          var sGpml = oSerializer.serializeToString(gpmlDoc);
-          var gpml = gpmlDoc.documentElement;
-//*/
-          console.log('GPML');
-          console.log(gpml);
+        pathvisio.pathway.gpml2json(gpml);
+        var sJson = self.sJson = JSON.stringify(pathvisio.data.pathways[pathvisio.data.current.svgSelector], undefined, 2);
 
-          pathvisio.pathway.gpml2json(gpml);
-          var sJson = self.sJson = JSON.stringify(pathvisio.data.pathways[pathvisio.data.current.svgSelector], undefined, 2);
-
-          callback(pathvisio.data.pathways[pathvisio.data.current.svgSelector], sGpml, sJson);
-        });
-      };
+        callback(pathvisio.data.pathways[pathvisio.data.current.svgSelector], sGpml, sJson);
+      });
     };
   };
 
   function draw(data){
-    if (data === null) {
-      return console.warn('Error: No url specified for GPML or JSON data.');
+    if (!data) {
+      return console.warn('Error: No data entered as input.');
     };
 
     var drag = d3.behavior.drag()
@@ -418,6 +410,27 @@ var gpml = oDOM.documentElement;
     pathvisio.data.current.svg.attr('width', data.boardWidth);
     pathvisio.data.current.svg.attr('height', data.boardHeight);
 
+    if (!!pathvisio.data.pathways[pathvisio.data.current.svgSelector].biopaxRefs) {
+      var pathwayPublicationXrefs = pathvisio.data.current.svg.selectAll(".pathway-publication-xref-text")	
+      .data(pathvisio.data.pathways[pathvisio.data.current.svgSelector].biopaxRefs)
+      .enter()
+      .append("text")
+      .attr("id", function (d) { return 'pathway-publication-xref-text-' + d; })
+      .attr("x", 0)
+      .attr("y", 0)
+      .attr('transform', function(d,i) { return 'translate(' + (200 + i*12) + ' ' + 12 + ')'; })
+      .attr("class", 'pathway-publication-xref-text')
+      .attr("style", "")
+      .text(function (d) {
+        var index = 0;
+        var gpmlId = null;
+        do {
+          gpmlId = pathvisio.data.pathways[pathvisio.data.current.svgSelector].biopax.publicationXrefs[index].gpmlId;
+          index += 1;
+        } while (gpmlId !== d && index < pathvisio.data.pathways[pathvisio.data.current.svgSelector].biopax.publicationXrefs.length);
+        return index});
+    };
+
     var symbolsAvailable = self.symbolsAvailable = pathvisio.data.current.svg.selectAll('symbol');
 
     var markersAvailable = markersAvailable = pathvisio.data.current.svg.selectAll('marker');
@@ -432,7 +445,7 @@ var gpml = oDOM.documentElement;
   };
 
   function load(svgSelector, url, mimeType){
-    if (svgSelector !== null) {
+    if (!!svgSelector) {
       pathvisio.data.current.svgSelector = svgSelector;
       pathvisio.data.current.svg = d3.select(svgSelector);
       var svgCount = pathvisio.data.current.svg.length;
@@ -450,23 +463,21 @@ var gpml = oDOM.documentElement;
     /*
     // Use this code if you want to get the SVG using d3.xml
     pathvisio.data.current.svg = d3.select("#pathway-container").select(function() {
-      return this.getSVGDocument().documentElement;
+    return this.getSVGDocument().documentElement;
     });
     */
 
-    if (url === null) {
+    if (!url) {
       return console.warn('Error: No url specified for GPML or JSON data.');
+    };
+
+    if (!mimeType) {
+      mimeType = 'application/xml';
     };
 
     get(url, mimeType, function(data, sGpml, sJson) {
       draw(data);
     });
-
-    //var gpml = document.getElementsByTagName('pathway')[0];
-    //console.log('XML GPML:');
-    //console.log(gpml);
-
-    // be sure server has set gpml mime type to application/gpml+xml
   };
 
   return {
