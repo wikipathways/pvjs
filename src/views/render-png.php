@@ -43,6 +43,145 @@ http://google-styleguide.googlecode.com/svn/trunk/jsoncstyleguide.xml#General_Gu
       <script src="../src/lib/es5-shim/es5-shim.js"></script>
       <script src="../src/lib/Xccessors/xccessors-standard.js"></script>
       <script>
+// From https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/forEach
+// Production steps of ECMA-262, Edition 5, 15.4.4.18
+// Reference: http://es5.github.com/#x15.4.4.18
+if (!Array.prototype.forEach) {
+
+  Array.prototype.forEach = function forEach(callback, thisArg) {
+    'use strict';
+    var T, k;
+
+    if (this == null) {
+      throw new TypeError("this is null or not defined");
+    }
+
+    var kValue,
+        // 1. Let O be the result of calling ToObject passing the |this| value as the argument.
+        O = Object(this),
+
+        // 2. Let lenValue be the result of calling the Get internal method of O with the argument "length".
+        // 3. Let len be ToUint32(lenValue).
+        len = O.length >>> 0; // Hack to convert O.length to a UInt32
+
+    // 4. If IsCallable(callback) is false, throw a TypeError exception.
+    // See: http://es5.github.com/#x9.11
+    if ({}.toString.call(callback) !== "[object Function]") {
+      throw new TypeError(callback + " is not a function");
+    }
+
+    // 5. If thisArg was supplied, let T be thisArg; else let T be undefined.
+    if (arguments.length >= 2) {
+      T = thisArg;
+    }
+
+    // 6. Let k be 0
+    k = 0;
+
+    // 7. Repeat, while k < len
+    while (k < len) {
+
+      // a. Let Pk be ToString(k).
+      //   This is implicit for LHS operands of the in operator
+      // b. Let kPresent be the result of calling the HasProperty internal method of O with argument Pk.
+      //   This step can be combined with c
+      // c. If kPresent is true, then
+      if (k in O) {
+
+        // i. Let kValue be the result of calling the Get internal method of O with argument Pk.
+        kValue = O[k];
+
+        // ii. Call the Call internal method of callback with T as the this value and
+        // argument list containing kValue, k, and O.
+        callback.call(T, kValue, k, O);
+      }
+      // d. Increase k by 1.
+      k++;
+    }
+    // 8. return undefined
+  };
+}
+      </script>
+
+      <script>
+// from https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map
+
+// Production steps of ECMA-262, Edition 5, 15.4.4.19
+// Reference: http://es5.github.com/#x15.4.4.19
+if (!Array.prototype.map) {
+  Array.prototype.map = function(callback, thisArg) {
+
+    var T, A, k;
+
+    if (this == null) {
+      throw new TypeError(" this is null or not defined");
+    }
+
+    // 1. Let O be the result of calling ToObject passing the |this| value as the argument.
+    var O = Object(this);
+
+    // 2. Let lenValue be the result of calling the Get internal method of O with the argument "length".
+    // 3. Let len be ToUint32(lenValue).
+    var len = O.length >>> 0;
+
+    // 4. If IsCallable(callback) is false, throw a TypeError exception.
+    // See: http://es5.github.com/#x9.11
+    if (typeof callback !== "function") {
+      throw new TypeError(callback + " is not a function");
+    }
+
+    // 5. If thisArg was supplied, let T be thisArg; else let T be undefined.
+    if (thisArg) {
+      T = thisArg;
+    }
+
+    // 6. Let A be a new array created as if by the expression new Array(len) where Array is
+    // the standard built-in constructor with that name and len is the value of len.
+    A = new Array(len);
+
+    // 7. Let k be 0
+    k = 0;
+
+    // 8. Repeat, while k < len
+    while(k < len) {
+
+      var kValue, mappedValue;
+
+      // a. Let Pk be ToString(k).
+      //   This is implicit for LHS operands of the in operator
+      // b. Let kPresent be the result of calling the HasProperty internal method of O with argument Pk.
+      //   This step can be combined with c
+      // c. If kPresent is true, then
+      if (k in O) {
+
+        // i. Let kValue be the result of calling the Get internal method of O with argument Pk.
+        kValue = O[ k ];
+
+        // ii. Let mappedValue be the result of calling the Call internal method of callback
+        // with T as the this value and argument list containing kValue, k, and O.
+        mappedValue = callback.call(T, kValue, k, O);
+
+        // iii. Call the DefineOwnProperty internal method of A with arguments
+        // Pk, Property Descriptor {Value: mappedValue, : true, Enumerable: true, Configurable: true},
+        // and false.
+
+        // In browsers that support Object.defineProperty, use the following:
+        // Object.defineProperty(A, Pk, { value: mappedValue, writable: true, enumerable: true, configurable: true });
+
+        // For best browser support, use the following:
+        A[ k ] = mappedValue;
+      }
+      // d. Increase k by 1.
+      k++;
+    }
+
+    // 9. return A
+    return A;
+  };      
+}
+      </script>
+
+      <script>
 
         // https://developer.mozilla.org/en-US/docs/Web/API/EventTarget.addEventListener
 
@@ -122,7 +261,7 @@ http://google-styleguide.googlecode.com/svn/trunk/jsoncstyleguide.xml#General_Gu
 
 </head>
 <body>
-<img id="details-frame" src="../img/sample-details-frame.png" style="width:175px; height:250px; position: absolute; top: 20px; left: 155px; visibility:hidden;" alt="image alternative text" />
+<img id="details-frame" src="../img/sample-details-frame.png" style="width:175px; height:250px; position: absolute; top: 20px; left: 155px; visibility:hidden; z-index: 289;" alt="image alternative text" />
     <div>
         Pathvisio.js SVG viewer.
     </div>
@@ -130,6 +269,7 @@ http://google-styleguide.googlecode.com/svn/trunk/jsoncstyleguide.xml#General_Gu
 function getUrlParameter(name) {
   return decodeURIComponent((new RegExp('[?|&]' + name + '=' + '([^&;]+?)(&|#|;|$)').exec(location.search)||[,""])[1].replace(/\+/g, '%20'))||null
 };
+
 var repo = getUrlParameter('repo');
 if (!!url) {
   var url = getUrlParameter('url');
@@ -167,25 +307,14 @@ else {
 
 ?>
 
-<script src="../js/pathvisio/pathvisio.js"></script>
-<script src="../js/pathvisio/pathway/pathway.js"></script>
-<script src="../js/pathvisio/pathway/edge/edge.js"></script>
-<script src="../js/pathvisio/pathway/edge/path-data.js"></script>
-<script src="../js/pathvisio/pathway/edge/marker.js"></script>
-<script src="../js/pathvisio/pathway/edge/point.js"></script>
-
-<script src="../js/pathvisio/pathway/info-box.js"></script>
-<script src="../js/pathvisio/pathway/group.js"></script>
-<script src="../js/pathvisio/pathway/labelable-element.js"></script>
-
-<script src="../js/pathvisio/helpers.js"></script>
-<script src="../js/rgbcolor.js"></script>
+<script src="../lib/d3/d3.js" charset="utf-8"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.js"></script>
 
 <script src="../js/case-converter.js"></script>
 <script src="../js/xml2json.js"></script>
 <script src="../lib/openseadragon/openseadragon.js"></script>
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.js"></script>
-<script src="../lib/d3/d3.js" charset="utf-8"></script>
+
+<script src="../../build/js/pathvisio.js"></script>
 
 <script>
   window.onload = function() {
@@ -240,6 +369,7 @@ else {
               window.setTimeout(function() {
                 $("#example-overlay").click(function() {
                   $("#details-frame")[0].style.visibility = 'visible';
+                  //$("#details-frame")[0].style.z-index = 289;
                   console.log('click');
                 });
                 console.log('clicker');
