@@ -1031,7 +1031,7 @@ pathvisio.pathway = function(){
       // I would prefer to use d3.xml for the http request in order to not depend on jQuery,
       // but d3.xml doesn't seem to work with IE8. TODO remove dependency on jQuery
 
-      $.get(url, function(data) {
+      $.get(url, mimeType, function(data) {
         callback(pathvisio.pathway.gpml2json(data));
       });
     };
