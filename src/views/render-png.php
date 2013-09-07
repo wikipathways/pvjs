@@ -274,7 +274,8 @@ if (!Array.prototype.map) {
     $pathwayTemplateSvgUrlEditable = "pathway-template.svg";
   }
   else {
-    $pathwayTemplateSvgUrl = "https://raw.github.com/" . $repo . "/pathvisio.js/dev/src/views/pathway-template.svg";
+    //$pathwayTemplateSvgUrl = "https://raw.github.com/" . $repo . "/pathvisio.js/dev/src/views/pathway-template.svg";
+    $pathwayTemplateSvgUrl = "./pathway-template.svg";
     $pathwayTemplateSvgUrlEditable = "https://github.com/" . $repo . "/pathvisio.js/blob/dev/src/views/pathway-template.svg";
   }
 
