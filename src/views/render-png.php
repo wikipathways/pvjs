@@ -298,7 +298,8 @@ if (!Array.prototype.map) {
   var repo = pathvisio.helpers.getUrlParameter('repo');
 
   if (!!pathvisio.helpers.getUrlParameter('id')) {
-    var url = 'http://pointer.ucsf.edu/d3/r/pathvisio.js/src/views/gpml.php?id=' + pathvisio.helpers.getUrlParameter('id');
+    var id = pathvisio.helpers.getUrlParameter('id');
+    var url = 'http://pointer.ucsf.edu/d3/r/pathvisio.js/src/views/gpml.php?id=' + id;
   }
   else {
     if (!!pathvisio.helpers.getUrlParameter('url')) {
@@ -309,7 +310,7 @@ if (!Array.prototype.map) {
     };
   };
 
-  if (Modernizr.svg) {
+  if (!Modernizr.svg) {
     // Supports SVG
     console.log('yes on svg');
     pathvisio.pathway.load('#pathway-image', url);
@@ -317,13 +318,30 @@ if (!Array.prototype.map) {
     // Doesn't support SVG (Fallback)
     console.log('no on svg');
 
-    var pathwayContainer = d3.select('#pathway-container');
-    pathwayContainer.empty();
-    pathwayContainer.attr('style', 'width:668.3333333333335px; height:678.0px')
-    //pathwayContainer.width = '668.3333333333335px';
-    //pathwayContainer.height = '678.0px';
-
     function onZoomitResponse(resp) {
+      console.log(pathvisio.data.pathways[null].boardHeight);
+      var pathway = pathvisio.data.pathways[null];
+      var overlays = self.overlays = [];
+      var overlayItem = null;
+      pathway.labelableElements.forEach(function(element) {
+        console.log(element);
+        overlayItem = {
+          'id':element.graphId,
+          'x':element.x / pathvisio.data.pathways[null].boardWidth,
+          'y':element.y / pathvisio.data.pathways[null].boardHeight,
+          'width':element.width / pathvisio.data.pathways[null].boardWidth,
+          'height':element.height / pathvisio.data.pathways[null].boardHeight,
+          'className': 'highlight'
+        };
+        if (element.elementType === 'data-node') {
+          overlays.push(overlayItem);
+        };
+      });
+      var pathwayContainer = d3.select('#pathway-container');
+      //pathwayContainer.empty();
+      pathwayContainer.select('svg').remove()
+      pathwayContainer.attr('style', 'width:' + pathvisio.data.pathways[null].boardWidth + 'px; height:' + pathvisio.data.pathways[null].boardHeight + 'px')
+        self.resp = resp;
         if (resp.error) {
             // e.g. the URL is malformed or the service is down
             alert(resp.error);
@@ -341,24 +359,30 @@ if (!Array.prototype.map) {
                 tileSources:   [{ 
                     Image:  {
                         xmlns: "http://schemas.microsoft.com/deepzoom/2009",
-                        Url: "http://cache.zoom.it/content/LrQA_files/",
+                        Url: 'http://cache.zoom.it/content/' + content.id + '_files/',
+                        //Url: "http://cache.zoom.it/content/3U5d_files/",
+                        //Url: "http://test3.wikipathways.org//wpi/wpi.php?action=downloadFile&type=png&pwTitle=Pathway:WP253",
+                        //Url: "http://cache.zoom.it/content/LrQA_files/",
                         TileSize: "254", 
                         Overlap: "1", 
                         Format: "png", 
                         ServerFormat: "Default",
                         Size: { 
-                            Width: "1000",
-                            Height: "1121"
+                            Width: pathvisio.data.pathways[null].boardWidth,
+                            Height: pathvisio.data.pathways[null].boardHeight
                         }
                     },
-                    overlays: [{
-                      id: 'example-overlay',
-                      x: 0.046, 
-                      y: 0.337, 
-                      width: 0.098, 
-                      height: 0.029,
-                      className: 'highlight'
+                    overlays:overlays 
+/*
+                  overlays: [{
+                    id: 'example-overlay',
+                    x: 0.046, 
+                    y: 0.337, 
+                    width: 0.098, 
+                    height: 0.029,
+                    className: 'highlight'
                   }]
+*/
                 }]
             });
             console.log('viewer');
@@ -378,13 +402,33 @@ if (!Array.prototype.map) {
                 Math.round(100 * content.progress) + "% done.");
         }
     }
-     
+    /* 
     $.ajax({
         url: "http://api.zoom.it/v1/content/LrQA",
         dataType: "jsonp",
         success: onZoomitResponse
     });
   };
+  //*/
+
+    function getPng() {
+      $.ajax({
+          url: 'http://api.zoom.it/v1/content/?url=' + encodeURIComponent('http://test3.wikipathways.org//wpi/wpi.php?action=downloadFile&type=png&pwTitle=Pathway:' + id),
+          dataType: "jsonp",
+          success: onZoomitResponse
+      });
+    };
+
+    pathvisio.pathway.getJson(url, 'application/xml', getPng());
+  };
+
+/*
+  $.ajax({
+      url: "http://api.zoom.it/v1/content/?url=" + encodeURIComponent("http://test3.wikipathways.org//wpi/wpi.php?action=downloadFile&type=png&pwTitle=Pathway:WP522"),
+      dataType: "jsonp",
+      success: onZoomitResponse
+  });
+*/
   console.log('url');
   console.log(url);
 </script>
