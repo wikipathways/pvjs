@@ -14,16 +14,13 @@ http://google-styleguide.googlecode.com/svn/trunk/jsoncstyleguide.xml#General_Gu
 </head>
 <body>
 <script>
-function getUrlParameter(name) {
-  return decodeURIComponent((new RegExp('[?|&]' + name + '=' + '([^&;]+?)(&|#|;|$)').exec(location.search)||[,""])[1].replace(/\+/g, '%20'))||null
-};
-var repo = getUrlParameter('repo');
+var repo = pathvisio.helpers.getUrlParameter('repo');
 if (!!url) {
-  var url = getUrlParameter('url');
+  var url = pathvisio.helpers.getUrlParameter('url');
 }
 else {
-  if (!!getUrlParameter('id')) {
-    var url = 'http://pointer.ucsf.edu/d3/r/pathvisio.js/src/views/gpml.php?id=' + getUrlParameter('id');
+  if (!!pathvisio.helpers.getUrlParameter('id')) {
+    var url = 'http://pointer.ucsf.edu/d3/r/pathvisio.js/src/views/gpml.php?id=' + pathvisio.helpers.getUrlParameter('id');
   };
 };
 </script>
