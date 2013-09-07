@@ -392,7 +392,7 @@ pathvisio.pathway = function(){
     pathvisio.data.current.svg.attr('height', data.boardHeight);
 
     if (!!pathvisio.data.pathways[pathvisio.data.current.svgSelector].biopaxRefs) {
-      var pathwayPublicationXrefs = pathvisio.data.current.svg.selectAll(".pathway-publication-xref-text")	
+      var pathwayPublicationXrefs = pathvisio.data.current.svg.select('viewport').selectAll(".pathway-publication-xref-text")	
       .data(pathvisio.data.pathways[pathvisio.data.current.svgSelector].biopaxRefs)
       .enter()
       .append("text")
