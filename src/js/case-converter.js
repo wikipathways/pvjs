@@ -107,6 +107,14 @@ var trim = function(string) {
 }
 
 return { 
-  camelCase:camelCase
+  dotCase:dotCase,
+  classCase:classCase,
+  namespaceCase:namespaceCase,
+  constantCase:constantCase,
+  camelCase:camelCase,
+  titleCase:titleCase,
+  snakeCase:snakeCase,
+  pathCase:pathCase,
+  paramCase:paramCase
 } 
 }();

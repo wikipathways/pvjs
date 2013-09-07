@@ -113,6 +113,36 @@ http://google-styleguide.googlecode.com/svn/trunk/jsoncstyleguide.xml#General_Gu
   <script src="../build/js/pathvisio.js"></script>
 
   <script>
+    if (!!pathvisio.helpers.getUrlParameter('id')) {
+      var url = 'http://pointer.ucsf.edu/d3/r/pathvisio.js/src/views/gpml.php?id=' + pathvisio.helpers.getUrlParameter('id');
+    }
+    else {
+      if (!!pathvisio.helpers.getUrlParameter('url')) {
+        var url = pathvisio.helpers.getUrlParameter('url');
+      }
+      else {
+        console.log('Error: No GPML data source specified.');
+      };
+    };
+
+    pathvisio.pathway.getJson(url, "application/xml", function(json) {
+      console.log('json');
+      console.log(json);
+    });
+
+/*
+    $.get(url, function(data) {
+      alert('Load was performed.');
+      self.data = data;
+      //pathvisio.pathway.gpml2json(data.getElementsByTagName('Pathway'));
+      pathvisio.pathway.gpml2json(data);
+    });
+    console.log('url');
+    console.log(url);
+//*/
+
+    $('#gpml-text-area')[0].value = "hi";
+
     $("form").submit( function () {
       return false;
       } );
@@ -120,9 +150,31 @@ http://google-styleguide.googlecode.com/svn/trunk/jsoncstyleguide.xml#General_Gu
     function submitRequest() {
       var sGpml = self.sGpml = $('#gpml-text-area')[0].value;
 
-      var json = pathvisio.pathway.gpml2json(sGpml);
-      var sJson = self.sJson = JSON.stringify(pathvisio.data.pathways[null], undefined, 2);
+        /*
+      //if ($.browser.msie) {
+        var xmlDoc = new ActiveXObject("Microsoft.XMLDOM");
+        xmlDoc.loadXML(sGpml)
+
+        if (xmlDoc.parseError.errorCode != 0) {
+           var myErr = xmlDoc.parseError;
+           console.log("You have error " + myErr.reason);
+        } else {
+           //console.log(xmlDoc.xml);
+           var gpml = self.gpml = xmlDoc;
+        }
+      }
+      else {
+        var oParser = new DOMParser();
+        var oDOM = oParser.parseFromString(sGpml, "text/xml");
+      };
+
+      */
+      //var json = pathvisio.pathway.gpml2json(sGpml);
+      //var json = $.xml2json(gpml);
+      //var sJson = self.sJson = JSON.stringify(pathvisio.data.pathways[null], undefined, 2);
       $('#json-text-area').text(sJson)
     };
+
   </script>
 </body>
+
