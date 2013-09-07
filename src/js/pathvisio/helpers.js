@@ -1,4 +1,8 @@
 pathvisio.helpers = function(){
+  function getUrlParameter(name) {
+    return decodeURIComponent((new RegExp('[?|&]' + name + '=' + '([^&;]+?)(&|#|;|$)').exec(location.search)||[,""])[1].replace(/\+/g, '%20'))||null
+  };
+
   function splitStringByNewLine(str) {
 
     // PathVisio (Java) uses '&#xA;' for indicating newline, and browsers convert this into '\r\n' or '\n' in JavaScript.
@@ -50,7 +54,8 @@ pathvisio.helpers = function(){
     splitStringByNewLine:splitStringByNewLine,
     getUrlParam:getUrlParam,
     cloneNode:cloneNode,
-    convertToArray:convertToArray
+    convertToArray:convertToArray,
+    getUrlParameter:getUrlParameter
   }
 }();
 

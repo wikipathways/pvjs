@@ -18,9 +18,6 @@ http://google-styleguide.googlecode.com/svn/trunk/jsoncstyleguide.xml#General_Gu
 <script src="../src/lib/d3/d3.js" charset="utf-8"></script>
 
 <script>
-function getUrlParameter(name) {
-  return decodeURIComponent((new RegExp('[?|&]' + name + '=' + '([^&;]+?)(&|#|;|$)').exec(location.search)||[,""])[1].replace(/\+/g, '%20'))||null
-};
   function insertParam(key, value)
   {
       key = encodeURI(key); value = encodeURI(value);
@@ -59,8 +56,8 @@ function getUrlParameter(name) {
     $('#gpml-for-reading').text(sGpml);
     $('#json-for-reading').text(sJson);
   };
-var repo = getUrlParameter('repo');
-var id = getUrlParameter('id');
+var repo = pathvisio.helpers.getUrlParameter('repo');
+var id = pathvisio.helpers.getUrlParameter('id');
 </script>
 
 <div id="choose-pathway-creator">

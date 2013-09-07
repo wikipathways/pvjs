@@ -107,7 +107,15 @@ var trim = function(string) {
 }
 
 return { 
-  camelCase:camelCase
+  dotCase:dotCase,
+  classCase:classCase,
+  namespaceCase:namespaceCase,
+  constantCase:constantCase,
+  camelCase:camelCase,
+  titleCase:titleCase,
+  snakeCase:snakeCase,
+  pathCase:pathCase,
+  paramCase:paramCase
 } 
 }();
 ;
@@ -591,6 +599,10 @@ pathvisio.data.pathways = [];
 ;
 
 pathvisio.helpers = function(){
+  function getUrlParameter(name) {
+    return decodeURIComponent((new RegExp('[?|&]' + name + '=' + '([^&;]+?)(&|#|;|$)').exec(location.search)||[,""])[1].replace(/\+/g, '%20'))||null
+  };
+
   function splitStringByNewLine(str) {
 
     // PathVisio (Java) uses '&#xA;' for indicating newline, and browsers convert this into '\r\n' or '\n' in JavaScript.
@@ -642,7 +654,8 @@ pathvisio.helpers = function(){
     splitStringByNewLine:splitStringByNewLine,
     getUrlParam:getUrlParam,
     cloneNode:cloneNode,
-    convertToArray:convertToArray
+    convertToArray:convertToArray,
+    getUrlParameter:getUrlParameter
   }
 }();
 
@@ -651,6 +664,10 @@ pathvisio.helpers = function(){
 ;
 
 pathvisio.pathway = function(){
+
+  // first pass GPML (pathway XML) through an automatic XML to JSON converter, 
+  // then make specific modifications to make the JSON well-formatted, then return the JSON
+
   function gpml2json(gpml){
 
     // for doing this in Java, we could look at 
@@ -660,8 +677,6 @@ pathvisio.pathway = function(){
     console.log('GPML')
     console.log(gpml)
 
-    // We can use xml2json.js or JXON.js. Which is better?
-    // JXON.js
     var pathway = pathvisio.data.pathways[pathvisio.data.current.svgSelector];
     pathway = self.pathway = xml.xmlToJSON(gpml, true).pathway;
     
@@ -689,7 +704,7 @@ pathvisio.pathway = function(){
 
     if ( xmlns.indexOf(gpmlXmlnsIdentifier) !== -1 ) {
 
-      // test for whether the GPML file version matches the current version supported by pathvisio.js
+      // test for whether the GPML file version matches the latest version (only the latest version will be supported by pathvisio.js). As of this writing, the latest version is 2013a.
 
       if (xmlns != gpmlXmlnsSupported) {
 
@@ -697,8 +712,6 @@ pathvisio.pathway = function(){
 
         alert("Pathvisio.js may not fully support the version of GPML provided (xmlns: " + xmlns + "). Please convert to the supported version of GPML (xmlns: " + gpmlXmlnsSupported + ").")
       };
-
-      // Convert output from xml2json.js into jsonGpml (well-formed JSON with all implied elements from gpml explicitly filled in).
 
       pathway.boardWidth = pathway.graphics.boardWidth;
       pathway.boardHeight = pathway.graphics.boardHeight;
@@ -822,12 +835,12 @@ pathvisio.pathway = function(){
 
       // DataNodes 
 
-      // GPML to jGPML shape name mappings: { "OldName":"new-name" }
+      // GPML to JSON shape name mappings: { "OldName":"new-name" }
       // replace spaces with dashes
       // Add dashes before every capital letter except any capital letters at the beginning of the string
-      // Replace spaces with dashes
       // Replace double dashes with single dashes
       // replace capitals letters with lowercase. 
+      // TODO use caseConverter.paramCase() instead of this mapping. Eventually, implement and enforce conventions for GPML data node type names
 
       var dataNodeTypeMappings = {
         "GeneProduct":"gene-product",
@@ -947,7 +960,6 @@ pathvisio.pathway = function(){
         console.log("Error converting labelableElements to json: " + e.message);
       };
 
-
       // BiopaxRefs 
 
       try {
@@ -997,54 +1009,30 @@ pathvisio.pathway = function(){
     }
   };
 
-  function get(url, mimeType, callback) {
-    if (!url || !mimeType) {
+  // get GPML (pathway XML) from WikiPathways (by ID) or a URL (could be a local file or any other accessible GPML source),
+  // convert to formatted JSON and return the JSON to the function that called getJson()
+
+  function getJson(url, mimeType, callback) {
+    if (!url) {
 
       // TODO throw a proper error here
 
-      var error = null;
-      if (!url) {
-        error += 'Error: URL not specified.';
-      };
-      if (!mimeType) {
-        error += '\rError: mime type not specified.';
-      };
+      var error = 'Error: URL not specified.';
       return console.warn(error);
     }
     else {
-      // be sure server has set gpml mime type to application/gpml+xml or application/gpml+xml
 
-      d3.xml(url, "application/xml", function(gpmlDoc) {
+      // be sure server has set gpml mime type to application/xml or application/gpml+xml
 
-        /* if from webservice, we would have used this code, but now, we've decided that the proper format
-         * for the response (gpmlDoc) is GPML as an XML document. If the response would be anything else,
-         * such as the XML document that the webservice gives as a response, the parsing and manipulation must
-         * happen before calling get().
+      if (!mimeType) {
+        mimeType = 'application/xml';
+      };
 
-         var sGpml = gpmlDoc.getElementsByTagNameNS("http://www.wikipathways.org/webservice", "gpml")[0].textContent;
-         var oParser = new DOMParser();
-         var oDOM = oParser.parseFromString(sGpml, "text/xml");
-         var gpml = oDOM.documentElement;
+      // I would prefer to use d3.xml for the http request in order to not depend on jQuery,
+      // but d3.xml doesn't seem to work with IE8. TODO remove dependency on jQuery
 
-        */
-
-        // if the response is a valid GPML document (ie, not from webservice)
-
-        //var oSerializer = new XMLSerializer();
-        //var sGpml = self.sGpml = oSerializer.serializeToString(gpmlDoc);
-        self.gpmlDoc = gpmlDoc;
-        console.log('gpmlDoc');
-        console.log(gpmlDoc);
-        var gpml = self.gpml = gpmlDoc.documentElement;
-        var sGpml = null;
-        console.log('GPML');
-        console.log(gpml);
-
-        pathvisio.pathway.gpml2json(gpml);
-        //var sJson = self.sJson = JSON.stringify(pathvisio.data.pathways[pathvisio.data.current.svgSelector], undefined, 2);
-        var sJson = null;
-
-        callback(pathvisio.data.pathways[pathvisio.data.current.svgSelector], sGpml, sJson);
+      $.get(url, function(data) {
+        callback(pathvisio.pathway.gpml2json(data));
       });
     };
   };
@@ -1081,10 +1069,13 @@ pathvisio.pathway = function(){
       .attr("style", "")
       .text(function (d) {
 
-        // d is an array of biopaxRefs
+        // d is an array of biopaxRefs. There are several IDs for biopaxRefs, but rdfId (rdf:id) is the one used for
+        // GPML to link pathway elements with biopaxRefs.
+        // TODO I set rdfId to null here because I think not doing so could result in errors if the rdfId value for
+        // a previous instance of biopaxRefs had a value that was used when evaluating a later instance
 
         var index = 0;
-        var displayedCitationNumber = null;
+        var rdfId = null;
         do {
           rdfId = pathvisio.data.pathways[pathvisio.data.current.svgSelector].biopax.bpPublicationXrefs[index].rdfId;
           index += 1;
@@ -1105,6 +1096,8 @@ pathvisio.pathway = function(){
     pathvisio.pathway.infoBox.draw();
   };
 
+  // get JSON and draw SVG representation of pathway
+
   function load(svgSelector, url, mimeType){
     if (!!svgSelector) {
       pathvisio.data.current.svgSelector = svgSelector;
@@ -1122,9 +1115,10 @@ pathvisio.pathway = function(){
     };
 
     /*
-    // Use this code if you want to get the SVG using d3.xml
+    // Use this code if you want to get the SVG using d3.xml.
+    // I think this would be used if the SVG were included in the document as an embedded object instead of included directly in the DOM.
     pathvisio.data.current.svg = d3.select("#pathway-container").select(function() {
-    return this.getSVGDocument().documentElement;
+      return this.getSVGDocument().documentElement;
     });
     */
 
@@ -1132,11 +1126,7 @@ pathvisio.pathway = function(){
       return console.warn('Error: No url specified for GPML or JSON data.');
     };
 
-    if (!mimeType) {
-      mimeType = 'application/xml';
-    };
-
-    get(url, mimeType, function(data, sGpml, sJson) {
+    getJson(url, null, function(data, sGpml, sJson) {
       draw(data);
     });
   };
@@ -1144,7 +1134,7 @@ pathvisio.pathway = function(){
   return {
     draw:draw,
     load:load,
-    get:get,
+    getJson:getJson,
     gpml2json:gpml2json
   }
 }();
