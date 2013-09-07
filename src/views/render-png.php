@@ -299,7 +299,8 @@ if (!Array.prototype.map) {
 
   if (!!pathvisio.helpers.getUrlParameter('id')) {
     var id = pathvisio.helpers.getUrlParameter('id');
-    var url = 'http://pointer.ucsf.edu/d3/r/pathvisio.js/src/views/gpml.php?id=' + id;
+    var url = './gpml.php?id=' + id;
+    //var url = 'http://pointer.ucsf.edu/d3/r/pathvisio.js/src/views/gpml.php?id=' + id;
   }
   else {
     if (!!pathvisio.helpers.getUrlParameter('url')) {
@@ -310,9 +311,12 @@ if (!Array.prototype.map) {
     };
   };
 
-  if (!Modernizr.svg) {
+  if (Modernizr.svg) {
     // Supports SVG
     console.log('yes on svg');
+    var pathwayContainer = d3.select('#pathway-container');
+    //pathwayContainer.empty();
+    pathwayContainer.attr('style', 'width: 100%; height:500px')
     pathvisio.pathway.load('#pathway-image', url);
   } else {
     // Doesn't support SVG (Fallback)
@@ -328,9 +332,9 @@ if (!Array.prototype.map) {
         overlayItem = {
           'id':element.graphId,
           'x':element.x / pathvisio.data.pathways[null].boardWidth,
-          'y':element.y / pathvisio.data.pathways[null].boardHeight,
+          'y':2.565 * element.y / pathvisio.data.pathways[null].boardHeight,
           'width':element.width / pathvisio.data.pathways[null].boardWidth,
-          'height':element.height / pathvisio.data.pathways[null].boardHeight,
+          'height':2.565 * element.height / pathvisio.data.pathways[null].boardHeight,
           'className': 'highlight'
         };
         if (element.elementType === 'data-node') {
@@ -340,7 +344,7 @@ if (!Array.prototype.map) {
       var pathwayContainer = d3.select('#pathway-container');
       //pathwayContainer.empty();
       pathwayContainer.select('svg').remove()
-      pathwayContainer.attr('style', 'width:' + pathvisio.data.pathways[null].boardWidth + 'px; height:' + pathvisio.data.pathways[null].boardHeight + 'px')
+      pathwayContainer.attr('style', 'width: 100%; height:500px')
         self.resp = resp;
         if (resp.error) {
             // e.g. the URL is malformed or the service is down
@@ -368,8 +372,8 @@ if (!Array.prototype.map) {
                         Format: "png", 
                         ServerFormat: "Default",
                         Size: { 
-                            Width: pathvisio.data.pathways[null].boardWidth,
-                            Height: pathvisio.data.pathways[null].boardHeight
+                            Width: content.dzi.width,
+                            Height: content.dzi.height
                         }
                     },
                     overlays:overlays 
