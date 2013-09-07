@@ -262,17 +262,7 @@ if (!Array.prototype.map) {
 </head>
 <body>
 <img id="details-frame" src="../img/sample-details-frame.png" style="width:175px; height:250px; position: absolute; top: 20px; left: 155px; visibility:hidden; z-index: 289;" alt="image alternative text" />
-    <div>
-        Pathvisio.js SVG viewer.
-    </div>
-<script>
-function getUrlParameter(name) {
-  return decodeURIComponent((new RegExp('[?|&]' + name + '=' + '([^&;]+?)(&|#|;|$)').exec(location.search)||[,""])[1].replace(/\+/g, '%20'))||null
-};
-
-var repo = getUrlParameter('repo');
-</script>
-
+<!-- Pathvisio.js SVG viewer.-->
 <?php
   $authorizedRepos = array("wikipathways", "AlexanderPico", "ariutta", "khanspers");
   $repo = "wikipathways";
@@ -298,6 +288,8 @@ var repo = getUrlParameter('repo');
   echo "</div>";
 
 ?>
+<!-- Dynamic PNG viewer. -->
+<div id="container" class="openseadragon1"></div>
 
 <script src="../lib/d3/d3.js" charset="utf-8"></script>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.js"></script>
@@ -305,32 +297,32 @@ var repo = getUrlParameter('repo');
 <script src="../js/case-converter.js"></script>
 <script src="../js/xml2json.js"></script>
 <script src="../lib/openseadragon/openseadragon.js"></script>
+<script src="../lib/modernizr/modernizr.js"></script>
 
 <script src="../../build/js/pathvisio.js"></script>
 
 <script>
-  window.onload = function() {
-    if (!!getUrlParameter('id')) {
-      var url = 'http://pointer.ucsf.edu/d3/r/pathvisio.js/src/views/gpml.php?id=' + getUrlParameter('id');
+  var repo = pathvisio.helpers.getUrlParameter('repo');
+
+  if (!!pathvisio.helpers.getUrlParameter('id')) {
+    var url = 'http://pointer.ucsf.edu/d3/r/pathvisio.js/src/views/gpml.php?id=' + pathvisio.helpers.getUrlParameter('id');
+  }
+  else {
+    if (!!pathvisio.helpers.getUrlParameter('url')) {
+      var url = pathvisio.helpers.getUrlParameter('url');
     }
     else {
-      if (!!getUrlParameter('url')) {
-        var url = getUrlParameter('url');
-      }
-      else {
-        console.log('Error: No GPML data source specified.');
-      };
+      console.log('Error: No GPML data source specified.');
     };
-    pathvisio.pathway.load('#pathway-image', url);
-    console.log('url');
-    console.log(url);
   };
-</script>
-    <div>
-        Dynamic PNG viewer.
-    </div>
-    <div id="container" class="openseadragon1"></div>
-    <script type="text/javascript">
+
+  if (Modernizr.svg) {
+    // Supports SVG
+    console.log('yes on svg');
+    pathvisio.pathway.load('#pathway-image', url);
+  } else {
+    // Doesn't support SVG (Fallback)
+    console.log('no on svg');
       function onZoomitResponse(resp) {
           if (resp.error) {
               // e.g. the URL is malformed or the service is down
@@ -392,5 +384,8 @@ var repo = getUrlParameter('repo');
           dataType: "jsonp",
           success: onZoomitResponse
       });
-   </script>
+  };
+  console.log('url');
+  console.log(url);
+</script>
 </body>
