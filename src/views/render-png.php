@@ -10,10 +10,6 @@ http://google-styleguide.googlecode.com/svn/trunk/javascriptguide.xml
 http://google-styleguide.googlecode.com/svn/trunk/jsoncstyleguide.xml#General_Guidelines
 -->
     <style type="text/css">
-      .openseadragon1 {
-          width: 668.3333333333335px;
-          height: 678.0px;
-      }
       .navigator .highlight{
           opacity:    0.4;
           filter:     alpha(opacity=40);
@@ -262,7 +258,7 @@ if (!Array.prototype.map) {
 </head>
 <body>
 <img id="details-frame" src="../img/sample-details-frame.png" style="width:175px; height:250px; position: absolute; top: 20px; left: 155px; visibility:hidden; z-index: 289;" alt="image alternative text" />
-<!-- Pathvisio.js SVG viewer.-->
+<!-- Pathvisio.js SVG viewer -->
 <?php
   $authorizedRepos = array("wikipathways", "AlexanderPico", "ariutta", "khanspers");
   $repo = "wikipathways";
@@ -282,17 +278,14 @@ if (!Array.prototype.map) {
     $pathwayTemplateSvgUrlEditable = "https://github.com/" . $repo . "/pathvisio.js/blob/dev/src/views/pathway-template.svg";
   }
 
-  echo "<div id='javascript-svg-pathway-container' class='pathway'>";
+  echo "<div id='pathway-container' class='pathway'>";
     $pathwayTemplateSvg = simplexml_load_file($pathwayTemplateSvgUrl);
     echo $pathwayTemplateSvg->saveXML();
   echo "</div>";
 
 ?>
-<!-- Dynamic PNG viewer. -->
-<div id="container" class="openseadragon1"></div>
-
 <script src="../lib/d3/d3.js" charset="utf-8"></script>
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.js"></script>
+<script src="../lib/jquery/jquery.js"></script>
 
 <script src="../js/case-converter.js"></script>
 <script src="../js/xml2json.js"></script>
@@ -323,67 +316,74 @@ if (!Array.prototype.map) {
   } else {
     // Doesn't support SVG (Fallback)
     console.log('no on svg');
-      function onZoomitResponse(resp) {
-          if (resp.error) {
-              // e.g. the URL is malformed or the service is down
-              alert(resp.error);
-              return;
-          }
-           
-          var content = resp.content;
-           
-          if (content.ready) {
-              var viewer = self.viewer = OpenSeadragon({
-                  // debugMode: true,
-                  id: "container",
-                  prefixUrl: "../lib/openseadragon/images/",
-                  showNavigator:true,
-                  tileSources:   [{ 
-                      Image:  {
-                          xmlns: "http://schemas.microsoft.com/deepzoom/2009",
-                          Url: "http://cache.zoom.it/content/LrQA_files/",
-                          TileSize: "254", 
-                          Overlap: "1", 
-                          Format: "png", 
-                          ServerFormat: "Default",
-                          Size: { 
-                              Width: "1000",
-                              Height: "1121"
-                          }
-                      },
-                      overlays: [{
-                        id: 'example-overlay',
-                        x: 0.046, 
-                        y: 0.337, 
-                        width: 0.098, 
-                        height: 0.029,
-                        className: 'highlight'
-                    }]
-                  }]
-              });
-              console.log('viewer');
 
-              window.setTimeout(function() {
-                $("#example-overlay").click(function() {
-                  $("#details-frame")[0].style.visibility = 'visible';
-                  //$("#details-frame")[0].style.z-index = 289;
-                  console.log('click');
-                });
-                console.log('clicker');
-                }, 1000);
-          } else if (content.failed) {
-              alert(content.url + " failed to convert.");
-          } else {
-              alert(content.url + " is " +
-                  Math.round(100 * content.progress) + "% done.");
-          }
-      }
-       
-      $.ajax({
-          url: "http://api.zoom.it/v1/content/LrQA",
-          dataType: "jsonp",
-          success: onZoomitResponse
-      });
+    var pathwayContainer = d3.select('#pathway-container');
+    pathwayContainer.empty();
+    pathwayContainer.attr('style', 'width:668.3333333333335px; height:678.0px')
+    //pathwayContainer.width = '668.3333333333335px';
+    //pathwayContainer.height = '678.0px';
+
+    function onZoomitResponse(resp) {
+        if (resp.error) {
+            // e.g. the URL is malformed or the service is down
+            alert(resp.error);
+            return;
+        }
+         
+        var content = resp.content;
+         
+        if (content.ready) {
+            var viewer = self.viewer = OpenSeadragon({
+                // debugMode: true,
+                id: "pathway-container",
+                prefixUrl: "../lib/openseadragon/images/",
+                showNavigator:true,
+                tileSources:   [{ 
+                    Image:  {
+                        xmlns: "http://schemas.microsoft.com/deepzoom/2009",
+                        Url: "http://cache.zoom.it/content/LrQA_files/",
+                        TileSize: "254", 
+                        Overlap: "1", 
+                        Format: "png", 
+                        ServerFormat: "Default",
+                        Size: { 
+                            Width: "1000",
+                            Height: "1121"
+                        }
+                    },
+                    overlays: [{
+                      id: 'example-overlay',
+                      x: 0.046, 
+                      y: 0.337, 
+                      width: 0.098, 
+                      height: 0.029,
+                      className: 'highlight'
+                  }]
+                }]
+            });
+            console.log('viewer');
+
+            window.setTimeout(function() {
+              $("#example-overlay").click(function() {
+                $("#details-frame")[0].style.visibility = 'visible';
+                //$("#details-frame")[0].style.z-index = 289;
+                console.log('click');
+              });
+              console.log('clicker');
+              }, 1000);
+        } else if (content.failed) {
+            alert(content.url + " failed to convert.");
+        } else {
+            alert(content.url + " is " +
+                Math.round(100 * content.progress) + "% done.");
+        }
+    }
+     
+    $.ajax({
+        url: "http://api.zoom.it/v1/content/LrQA",
+        dataType: "jsonp",
+        success: onZoomitResponse
+    });
   };
   console.log('url');
   console.log(url);
