@@ -425,7 +425,7 @@ else {
           'py':element.y * scalingFactor,
           'width':element.width * scalingFactor,
           'height':element.height * scalingFactor,
-          'className': 'highlight'
+          'className': 'highlight',
       };
       if (element.elementType === 'data-node') {
         overlays.push(overlayItem);
@@ -439,31 +439,31 @@ else {
     //pathwayContainer.attr('style', 'width: 100%; height:500px');
 
     if (content.ready) {
-      var viewer = OpenSeadragon({
+      var viewer = self.viewer = OpenSeadragon({
         //debugMode: true,
         id: "pathway-container",
-          prefixUrl: "../lib/openseadragon/images/",
-          showNavigator:true,
-          //minPixelRatio: 1.5,
-          minZoomImageRatio: 0.8,
-          maxZoomPixelRatio: 2,
-          tileSources:   [{ 
-            Image:  {
-              xmlns: "http://schemas.microsoft.com/deepzoom/2009",
-                Url: 'http://cache.zoom.it/content/' + content.id + '_files/',
-                //Url: "http://cache.zoom.it/content/3U5d_files/",
-                //Url: "http://test3.wikipathways.org//wpi/wpi.php?action=downloadFile&type=png&pwTitle=Pathway:WP253",
-                //Url: "http://cache.zoom.it/content/LrQA_files/",
-                TileSize: "254", 
-                Overlap: "1", 
-                Format: "png", 
-                ServerFormat: "Default",
-                Size: { 
-                  Width: content.dzi.width,
-                    Height: content.dzi.height
-                }
-            },
-              overlays:overlays 
+        prefixUrl: "../lib/openseadragon/images/",
+        showNavigator:true,
+        //minPixelRatio: 1.5,
+        minZoomImageRatio: 0.8,
+        maxZoomPixelRatio: 2,
+        tileSources:   [{ 
+          Image:  {
+            xmlns: "http://schemas.microsoft.com/deepzoom/2009",
+            Url: 'http://cache.zoom.it/content/' + content.id + '_files/',
+            //Url: "http://cache.zoom.it/content/3U5d_files/",
+            //Url: "http://test3.wikipathways.org//wpi/wpi.php?action=downloadFile&type=png&pwTitle=Pathway:WP253",
+            //Url: "http://cache.zoom.it/content/LrQA_files/",
+            TileSize: "254", 
+            Overlap: "1", 
+            Format: "png", 
+            ServerFormat: "Default",
+            Size: { 
+              Width: content.dzi.width,
+              Height: content.dzi.height
+            }
+          },
+          overlays:overlays 
 /*
           overlays: [{
             id: 'example-overlay',
@@ -474,18 +474,62 @@ else {
             className: 'highlight'
           }],
  */
-          }],
-          visibilityRatio: 1.0,
-          constrainDuringPan: true
+        }],
+        visibilityRatio: 1.0,
+        constrainDuringPan: true
       });
 
       window.setTimeout(function() {
-        $("#example-overlay").click(function() {
-          $("#details-frame")[0].style.visibility = 'visible';
-          //$("#details-frame")[0].style.z-index = 289;
-          console.log('click');
+        $(".highlight").click(function() {
+          var features = {
+            "id": this.getAttribute('id'),
+            "description":"Uncharacterized protein Rv0893c/MT0917",
+            "Gene-Name":"Rv0893c",
+            "%GC":" 60.63",
+            "Location":" Unknown",
+            "Chrom-Location":" 946",
+            "Strand-Direction":" -1",
+            "Cordon-Bias":" 0.07692",
+            "Funct-Class":" unknown",
+            "Degree":" 15",
+            "Betweenness":" 784.68",
+            "Closeness":" 0.24790",
+            "Eigen":" 0.00003",
+            "Hub":" N",
+            "Sass-Infect":" 0",
+            "Sass-Growth":" 0",
+            "GO-Growth":" 0",
+            "TDR":" 0",
+            "UniProt":" 0",
+            "DDTRP":" 0",
+            "Gas-Nic":" 0",
+            "#-Paralogs":" 11",
+            "Mtb-cplx":" 11",
+            "Mtb":" 7",
+            "Corynebacterineae":" 0",
+            "Actinomycetales":" 0",
+            "Actinobacteridae":" 0",
+            "Bacteria":"0",
+            "Non-bacteria":"0",
+            "H.sapiens":"0",
+            "in_leprae":"0",
+            "DN/DS":"0.48",
+            "Codon-Volatility":"0.1"
+          };
+
+          if (!Biojs.DetailsFrame.instance) {
+            Biojs.DetailsFrame.instance = new Biojs.DetailsFrame({
+              target: "detailsFrame",
+              features: features 
+            });
+          }
+          else {
+            Biojs.DetailsFrame.instance.updateFeatures({id: this.getAttribute('id'),
+              description:"new description",
+              newFeature:"its value",
+              otherFeature:"another value"});
+          };
         });
-        console.log('clicker');
       }, 1000);
     }
     else {
