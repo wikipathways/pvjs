@@ -307,10 +307,6 @@ echo "</div>";
 
 ?>
     </div>
-<script>
-enableZoom = 0;	
-var svgView = 0;
-</script>
   </div>
   <div style="position:relative; min-width: 300px; width:30%; height:auto; float:right;">
     <div ng-include src="'partials/editorToolbar.html'"></div>
@@ -319,7 +315,7 @@ var svgView = 0;
 <div style="position:relative">
   <!-- from http://xme.im/display-fullscreen-website-using-javascript -->
   <button style="float:left;" onclick="enableZoom = 0;">Disable Zoom</button>
-  <button style="float:left;" onclick="svgView = null;">SVG</button>
+  <button style="float:left;" onclick="svgView = 1;">SVG</button>
   <button style="float:left;" onclick="svgView = 0;">PNG</button>
   <i id="fullscreen" class="icon-fullscreen"></i>
   <!-- Button to trigger modal 
@@ -343,16 +339,25 @@ var svgView = 0;
 <script src="../../build/js/pathvisio.js"></script>
 
 <script>
-var repo = pathvisio.helpers.getUrlParameter('repo');
+enableZoom = 0;	
 
-if (!!pathvisio.helpers.getUrlParameter('id')) {
-  var id = pathvisio.helpers.getUrlParameter('id');
+if (!pathvisio.helpers.getUrlParam('svgView')) {
+  var svgView = 1;
+}
+else {
+  var svgView = pathvisio.helpers.getUrlParam('svgView');
+};
+
+var repo = pathvisio.helpers.getUrlParam('repo');
+
+if (!!pathvisio.helpers.getUrlParam('id')) {
+  var id = pathvisio.helpers.getUrlParam('id');
   var url = './gpml.php?id=' + id;
   //var url = 'http://pointer.ucsf.edu/d3/r/pathvisio.js/src/views/gpml.php?id=' + id;
 }
 else {
-  if (!!pathvisio.helpers.getUrlParameter('url')) {
-    var url = pathvisio.helpers.getUrlParameter('url');
+  if (!!pathvisio.helpers.getUrlParam('url')) {
+    var url = pathvisio.helpers.getUrlParam('url');
   }
   else {
     console.log('Error: No GPML data source specified.');
@@ -360,7 +365,7 @@ else {
 };
 
 
-if (Modernizr.svg && svgView === null) {
+if (Modernizr.svg && svgView != 0) {
   // Supports SVG
   console.log('SVG is supported');
   var pathwayContainer = d3.select('#pathway-container');

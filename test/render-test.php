@@ -56,8 +56,8 @@ http://google-styleguide.googlecode.com/svn/trunk/jsoncstyleguide.xml#General_Gu
     $('#gpml-for-reading').text(sGpml);
     $('#json-for-reading').text(sJson);
   };
-var repo = pathvisio.helpers.getUrlParameter('repo');
-var id = pathvisio.helpers.getUrlParameter('id');
+var repo = pathvisio.helpers.getUrlParam('repo');
+var id = pathvisio.helpers.getUrlParam('id');
 </script>
 
 <div id="choose-pathway-creator">
