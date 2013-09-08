@@ -34,11 +34,9 @@ http://google-styleguide.googlecode.com/svn/trunk/jsoncstyleguide.xml#General_Gu
       }
     </style>
 
-  <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
-    <!--[if lt IE 9]>
-<script src="http://ie7-js.googlecode.com/svn/version/2.1(beta4)/IE9.js"></script>
-<![endif]-->
+<!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
 <!--[if lt IE 9]>
+<script src="http://ie7-js.googlecode.com/svn/version/2.1(beta4)/IE9.js"></script>
 <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
 <script src="../src/lib/es5-shim/es5-shim.js"></script>
 <script src="../src/lib/Xccessors/xccessors-standard.js"></script>
@@ -182,6 +180,8 @@ if (!Array.prototype.map) {
 </script>
 
 <script>
+/*
+// This causes a stackoverflow when clicking to zoom in too far with openseadragon
 
 // https://developer.mozilla.org/en-US/docs/Web/API/EventTarget.addEventListener
 
@@ -255,9 +255,23 @@ if (!Array.prototype.map) {
               Window.prototype.removeEventListener=removeEventListener;
             }
           }
-        })();
-      </script>
-    <![endif]-->
+  })();
+//*/
+</script>
+
+<script>
+
+// IE8 only allows console.log when Developer Tools is open. This will prevent errors
+// from showing up if I use console.log without DevTools being open.
+
+if(typeof console === "undefined") {
+  console = {
+    log: function() { },
+    debug: function() { },
+  };
+}
+</script>
+<![endif]-->
 
 </head>
 <body>
@@ -322,7 +336,9 @@ var svgView = 0;
 <script src="../lib/openseadragon/openseadragon.js"></script>
 <script src="../lib/modernizr/modernizr.js"></script>
 <script src="../lib/screenfull/dist/screenfull.js"></script>
+<!--
 <script src="../lib/async/lib/async.js"></script>
+-->
 
 <script src="../../build/js/pathvisio.js"></script>
 
@@ -386,16 +402,16 @@ else {
       overlayItem = {
         'id':element.graphId,
 /*
-        'x':element.x / pathvisio.data.pathways[pathvisio.data.current.svgSelector].boardWidth,
+'x':element.x / pathvisio.data.pathways[pathvisio.data.current.svgSelector].boardWidth,
         'y':element.y / pathvisio.data.pathways[pathvisio.data.current.svgSelector].boardHeight,
         'width':element.width / pathvisio.data.pathways[pathvisio.data.current.svgSelector].boardWidth,
         'height':element.height / pathvisio.data.pathways[pathvisio.data.current.svgSelector].boardHeight,
-*/
-        'px':element.x * scalingFactor,
-        'py':element.y * scalingFactor,
-        'width':element.width * scalingFactor,
-        'height':element.height * scalingFactor,
-        'className': 'highlight'
+ */
+          'px':element.x * scalingFactor,
+          'py':element.y * scalingFactor,
+          'width':element.width * scalingFactor,
+          'height':element.height * scalingFactor,
+          'className': 'highlight'
       };
       if (element.elementType === 'data-node') {
         overlays.push(overlayItem);
@@ -405,32 +421,35 @@ else {
     var pathwayContainer = d3.select('#pathway-container');
     //pathwayContainer.empty();
     pathwayContainer.select('svg').remove();
-    pathwayContainer.attr('style', 'width:100%; height:693px');
+    pathwayContainer.attr('style', 'width:1000px; height:693px');
     //pathwayContainer.attr('style', 'width: 100%; height:500px');
 
     if (content.ready) {
-      var viewer = self.viewer = OpenSeadragon({
-        // debugMode: true,
+      var viewer = OpenSeadragon({
+        //debugMode: true,
         id: "pathway-container",
-        prefixUrl: "../lib/openseadragon/images/",
-        showNavigator:true,
-        tileSources:   [{ 
-          Image:  {
-            xmlns: "http://schemas.microsoft.com/deepzoom/2009",
-              Url: 'http://cache.zoom.it/content/' + content.id + '_files/',
-              //Url: "http://cache.zoom.it/content/3U5d_files/",
-              //Url: "http://test3.wikipathways.org//wpi/wpi.php?action=downloadFile&type=png&pwTitle=Pathway:WP253",
-              //Url: "http://cache.zoom.it/content/LrQA_files/",
-              TileSize: "254", 
-              Overlap: "1", 
-              Format: "png", 
-              ServerFormat: "Default",
-              Size: { 
-                Width: content.dzi.width,
-                Height: content.dzi.height
-              }
-          },
-          overlays:overlays 
+          prefixUrl: "../lib/openseadragon/images/",
+          showNavigator:true,
+          //minPixelRatio: 1.5,
+          minZoomImageRatio: 0.8,
+          maxZoomPixelRatio: 2,
+          tileSources:   [{ 
+            Image:  {
+              xmlns: "http://schemas.microsoft.com/deepzoom/2009",
+                Url: 'http://cache.zoom.it/content/' + content.id + '_files/',
+                //Url: "http://cache.zoom.it/content/3U5d_files/",
+                //Url: "http://test3.wikipathways.org//wpi/wpi.php?action=downloadFile&type=png&pwTitle=Pathway:WP253",
+                //Url: "http://cache.zoom.it/content/LrQA_files/",
+                TileSize: "254", 
+                Overlap: "1", 
+                Format: "png", 
+                ServerFormat: "Default",
+                Size: { 
+                  Width: content.dzi.width,
+                    Height: content.dzi.height
+                }
+            },
+              overlays:overlays 
 /*
           overlays: [{
             id: 'example-overlay',
@@ -440,10 +459,11 @@ else {
             height: 20,
             className: 'highlight'
           }],
-*/
-        }]
+ */
+          }],
+          visibilityRatio: 1.0,
+          constrainDuringPan: true
       });
-      console.log('viewer');
 
       window.setTimeout(function() {
         $("#example-overlay").click(function() {
@@ -468,8 +488,8 @@ else {
   function getPng() {
     $.ajax({
       url: 'http://api.zoom.it/v1/content/?url=' + encodeURIComponent('http://test3.wikipathways.org//wpi/wpi.php?action=downloadFile&type=png&pwTitle=Pathway:' + id),
-      dataType: "jsonp",
-      success: onZoomitResponse
+        dataType: "jsonp",
+        success: onZoomitResponse
     });
   };
 
