@@ -71,6 +71,7 @@ SVG-Edit (latest release)
 	width="100%"
 	height="100%">
 				<!-- ECMAScript to change the radius with each click -->
+<!--
 				<script type="application/ecmascript"> <![CDATA[
 /// CONFIGURATION 
 /// ====>
@@ -293,7 +294,7 @@ function handleMouseUp(evt) {
 	}
 }
   ]]> </script>
-
+-->
 	<g>
 	<title>pathway defs for pathvisio.js</title>
 	<desc>

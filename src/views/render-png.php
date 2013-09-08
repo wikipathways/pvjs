@@ -281,7 +281,7 @@ if(typeof console === "undefined") {
   <div style="position:relative; width:70%; height:auto; float:left;">
     <div style="width:100%; height:100%" id="pathwayViewer">
       <img id="details-frame" src="../img/sample-details-frame.png" style="width:175px; height:250px; position: absolute; top: 20px; left: 155px; visibility:hidden; z-index: 289;" alt="image alternative text" />
-      <div id="YourOwnDivId" class="protein ui-draggable">
+      <div id="detailsFrame" class="protein ui-draggable">
       </div>
 <!-- Pathvisio.js SVG viewer -->
 <?php
@@ -318,6 +318,7 @@ echo "</div>";
 </div>
 <div style="position:relative">
   <!-- from http://xme.im/display-fullscreen-website-using-javascript -->
+  <button style="float:left;" onclick="enableZoom = 1;">Enable Zoom</button>
   <button style="float:left;" onclick="enableZoom = 0;">Disable Zoom</button>
   <button style="float:left;" onclick="svgView = 1;">SVG</button>
   <button style="float:left;" onclick="svgView = 0;">PNG</button>
@@ -379,9 +380,12 @@ if (Modernizr.svg && svgView != 0) {
   //pathwayContainer.empty();
   pathwayContainer.attr('style', 'width: 100%; height:500px');
   pathvisio.pathway.load('#pathway-image', url);
+
+/*
   document.getElementById('pathway-image').addEventListener('click', function () {
     enableZoom = 1;
   });
+*/
   document.getElementById('fullscreen').addEventListener('click', function () {
     if (screenfull.enabled) {
       screenfull.request(pathwayContainer[0][0]);
@@ -507,47 +511,6 @@ else {
 
   pathvisio.pathway.getJson(url, 'application/xml', function() {
     getPng();
-  });
-};
-
-window.onload = function() {
-  var instance = new Biojs.DetailsFrame({
-    target: "YourOwnDivId",
-    features: {
-      "id":"P64747",
-      "description":"Uncharacterized protein Rv0893c/MT0917",
-      "Gene-Name":"Rv0893c",
-      "%GC":" 60.63",
-      "Location":" Unknown",
-      "Chrom-Location":" 946",
-      "Strand-Direction":" -1",
-      "Cordon-Bias":" 0.07692",
-      "Funct-Class":" unknown",
-      "Degree":" 15",
-      "Betweenness":" 784.68",
-      "Closeness":" 0.24790",
-      "Eigen":" 0.00003",
-      "Hub":" N",
-      "Sass-Infect":" 0",
-      "Sass-Growth":" 0",
-      "GO-Growth":" 0",
-      "TDR":" 0",
-      "UniProt":" 0",
-      "DDTRP":" 0",
-      "Gas-Nic":" 0",
-      "#-Paralogs":" 11",
-      "Mtb-cplx":" 11",
-      "Mtb":" 7",
-      "Corynebacterineae":" 0",
-      "Actinomycetales":" 0",
-      "Actinobacteridae":" 0",
-      "Bacteria":"0",
-      "Non-bacteria":"0",
-      "H.sapiens":"0",
-      "in_leprae":"0",
-      "DN/DS":"0.48",
-      "Codon-Volatility":"0.1"
-    }
   });
 };
 
