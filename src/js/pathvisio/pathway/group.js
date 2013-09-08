@@ -8,7 +8,7 @@ pathvisio.pathway.group = function(){
         var groupId = el.groupId
         return (pathvisio.data.pathways[pathvisio.data.current.svgSelector].labelableElements.filter(function(el) {return (el.groupRef === groupId)}).length>0)
       });
-      var groupsContainer = pathvisio.data.current.svg.select('viewport').selectAll("use.group")	
+      var groupsContainer = pathvisio.data.current.svg.select('#viewport').selectAll("use.group")	
       .data(validGroups)
       .enter()
       .append("path")

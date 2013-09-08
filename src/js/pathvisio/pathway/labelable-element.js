@@ -252,7 +252,7 @@ pathvisio.pathway.labelableElement = function(){
   };
 
   function drawAll() {
-    var labelableElementsContainer = pathvisio.data.current.svg.select('viewport').selectAll("g.labelable-elements-container")	
+    var labelableElementsContainer = pathvisio.data.current.svg.select('#viewport').selectAll("g.labelable-elements-container")	
     .data(pathvisio.data.pathways[pathvisio.data.current.svgSelector].labelableElements)
     .enter()
     .append("g")

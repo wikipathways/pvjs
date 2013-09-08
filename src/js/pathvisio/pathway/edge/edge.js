@@ -195,7 +195,7 @@ pathvisio.pathway.edge = function(){
     if (pathvisio.data.pathways[pathvisio.data.current.svgSelector].hasOwnProperty('edges')) {
       var pathData = null;
 
-      var edges = pathvisio.data.current.svg.select('viewport').selectAll("pathway.edge")
+      var edges = pathvisio.data.current.svg.select('#viewport').selectAll("pathway.edge")
       .data(pathvisio.data.pathways[pathvisio.data.current.svgSelector].edges)
       .enter()
       .append("path")
@@ -218,7 +218,7 @@ pathvisio.pathway.edge = function(){
             // what PathVisio (Java) does, but the white line (overlaying the
             // thick line to create a "double line") is hard to see at 1px.
 
-            pathvisio.data.current.svg.select('viewport').append("path")
+            pathvisio.data.current.svg.select('#viewport').append("path")
             .attr("class", d.edgeType + "-double")
             .attr("d", pathData)
             .attr("class", "drawing-board-color-stroke")
