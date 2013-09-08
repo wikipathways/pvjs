@@ -11,23 +11,26 @@ http://google-styleguide.googlecode.com/svn/trunk/jsoncstyleguide.xml#General_Gu
 -->
 <link href="../js/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
     <style type="text/css">
+      body {
+        background-color: red;
+      }
       .navigator .highlight{
-          opacity:    0.4;
-          filter:     alpha(opacity=40);
-          border:     2px solid #900;
-          outline:    none;
-          background-color: #900;
+        opacity:    0.4;
+        filter:     alpha(opacity=40);
+        border:     2px solid #900;
+        outline:    none;
+        background-color: #900;
       }
       .highlight{
-          filter:     alpha(opacity=40);
-          border:     4px solid transparent;
-          outline:    10px auto transparent;
-          background-color: white;
+        filter:     alpha(opacity=40);
+        border:     4px solid transparent;
+        outline:    10px auto transparent;
+        background-color: white;
       }
       .highlight:hover, .highlight:focus{
-          border:     4px solid gold;
-          outline:    10px auto gold;
-          background-color: white;
+        border:     4px solid gold;
+        outline:    10px auto gold;
+        background-color: white;
       }
     </style>
 
@@ -362,6 +365,15 @@ else {
   console.log('SVG is not supported');
 
   function onZoomitResponse(resp) {
+    self.resp = resp;
+    if (resp.error) {
+      // e.g. the URL is malformed or the service is down
+      alert(resp.error);
+      return;
+    };
+
+    var content = resp.content;
+
     var pathway = pathvisio.data.pathways[pathvisio.data.current.svgSelector];
     console.log('pathway');
     console.log(pathway);
@@ -370,13 +382,20 @@ else {
 
     pathway.labelableElements.forEach(function(element) {
       console.log(element);
+      var scalingFactor =  content.dzi.width / pathvisio.data.pathways[pathvisio.data.current.svgSelector].boardWidth;
       overlayItem = {
         'id':element.graphId,
-          'x':element.x / pathvisio.data.pathways[pathvisio.data.current.svgSelector].boardWidth,
-          'y':2.565 * element.y / pathvisio.data.pathways[pathvisio.data.current.svgSelector].boardHeight,
-          'width':element.width / pathvisio.data.pathways[pathvisio.data.current.svgSelector].boardWidth,
-          'height':2.565 * element.height / pathvisio.data.pathways[pathvisio.data.current.svgSelector].boardHeight,
-          'className': 'highlight'
+/*
+        'x':element.x / pathvisio.data.pathways[pathvisio.data.current.svgSelector].boardWidth,
+        'y':element.y / pathvisio.data.pathways[pathvisio.data.current.svgSelector].boardHeight,
+        'width':element.width / pathvisio.data.pathways[pathvisio.data.current.svgSelector].boardWidth,
+        'height':element.height / pathvisio.data.pathways[pathvisio.data.current.svgSelector].boardHeight,
+*/
+        'px':element.x * scalingFactor,
+        'py':element.y * scalingFactor,
+        'width':element.width * scalingFactor,
+        'height':element.height * scalingFactor,
+        'className': 'highlight'
       };
       if (element.elementType === 'data-node') {
         overlays.push(overlayItem);
@@ -386,41 +405,43 @@ else {
     var pathwayContainer = d3.select('#pathway-container');
     //pathwayContainer.empty();
     pathwayContainer.select('svg').remove();
-    pathwayContainer.attr('style', 'width: 100%; height:500px');
-
-    self.resp = resp;
-    if (resp.error) {
-      // e.g. the URL is malformed or the service is down
-      alert(resp.error);
-      return;
-    }
-
-    var content = resp.content;
+    pathwayContainer.attr('style', 'width:100%; height:693px');
+    //pathwayContainer.attr('style', 'width: 100%; height:500px');
 
     if (content.ready) {
       var viewer = self.viewer = OpenSeadragon({
         // debugMode: true,
         id: "pathway-container",
-          prefixUrl: "../lib/openseadragon/images/",
-          showNavigator:true,
-          tileSources:   [{ 
-            Image:  {
-              xmlns: "http://schemas.microsoft.com/deepzoom/2009",
-                Url: 'http://cache.zoom.it/content/' + content.id + '_files/',
-                //Url: "http://cache.zoom.it/content/3U5d_files/",
-                //Url: "http://test3.wikipathways.org//wpi/wpi.php?action=downloadFile&type=png&pwTitle=Pathway:WP253",
-                //Url: "http://cache.zoom.it/content/LrQA_files/",
-                TileSize: "254", 
-                Overlap: "1", 
-                Format: "png", 
-                ServerFormat: "Default",
-                Size: { 
-                  Width: content.dzi.width,
-                    Height: content.dzi.height
-                }
-            },
-              overlays:overlays 
-          }]
+        prefixUrl: "../lib/openseadragon/images/",
+        showNavigator:true,
+        tileSources:   [{ 
+          Image:  {
+            xmlns: "http://schemas.microsoft.com/deepzoom/2009",
+              Url: 'http://cache.zoom.it/content/' + content.id + '_files/',
+              //Url: "http://cache.zoom.it/content/3U5d_files/",
+              //Url: "http://test3.wikipathways.org//wpi/wpi.php?action=downloadFile&type=png&pwTitle=Pathway:WP253",
+              //Url: "http://cache.zoom.it/content/LrQA_files/",
+              TileSize: "254", 
+              Overlap: "1", 
+              Format: "png", 
+              ServerFormat: "Default",
+              Size: { 
+                Width: content.dzi.width,
+                Height: content.dzi.height
+              }
+          },
+          overlays:overlays 
+/*
+          overlays: [{
+            id: 'example-overlay',
+            px: 50, 
+            py: 50, 
+            width: 50, 
+            height: 20,
+            className: 'highlight'
+          }],
+*/
+        }]
       });
       console.log('viewer');
 
@@ -453,7 +474,8 @@ else {
   };
 
   pathvisio.pathway.getJson(url, 'application/xml', function() {
-  getPng()});
+    getPng();
+  });
 };
 
 console.log('url');
