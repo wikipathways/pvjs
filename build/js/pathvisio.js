@@ -1019,7 +1019,8 @@ pathvisio.pathway = function(){
       // TODO throw a proper error here
 
       var error = 'Error: URL not specified.';
-      return console.warn(error);
+      console.warn(error);
+      return error;
     }
     else {
 
@@ -1050,7 +1051,8 @@ pathvisio.pathway = function(){
 
   function draw(data){
     if (!data) {
-      return console.warn('Error: No data entered as input.');
+      console.warn('Error: No data entered as input.');
+      return 'Error';
     };
 
     var drag = d3.behavior.drag()
@@ -1118,11 +1120,13 @@ pathvisio.pathway = function(){
         console.log('Successfully loaded SVG pathway template.');
       }
       else {
-        return console.warn('Error: ' + svgCount + ' SVG template(s) returned with selector "' + svgSelector + '". Please redefined selector so only 1 result is returned.');
+        console.warn('Error: ' + svgCount + ' SVG template(s) returned with selector "' + svgSelector + '". Please redefined selector so only 1 result is returned.');
+        return 'Error';
       };
     }
     else {
-      return console.warn('Error: No SVG template selector specified.');
+      console.warn('Error: No SVG template selector specified.');
+      return 'Error';
     };
 
     /*
@@ -1134,7 +1138,8 @@ pathvisio.pathway = function(){
     */
 
     if (!url) {
-      return console.warn('Error: No url specified for GPML or JSON data.');
+      console.warn('Error: No url specified for GPML or JSON data.');
+      return 'No URL specified.';
     };
 
     getJson(url, null, function(data, sGpml, sJson) {

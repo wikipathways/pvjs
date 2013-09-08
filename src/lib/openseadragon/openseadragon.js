@@ -1,6 +1,6 @@
 //! OpenSeadragon 0.9.130
-//! Built on 2013-09-05
-//! Git commit: v0.9.130-18-gea16668
+//! Built on 2013-08-26
+//! Git commit: v0.9.130-0-g4d006d6
 //! http://openseadragon.github.io
 //! License: http://openseadragon.github.io/license/
 
@@ -1351,25 +1351,7 @@ window.OpenSeadragon = window.OpenSeadragon || function( options ){
                 request.open( "GET", url, true );
                 request.send( null );
             } catch (e) {
-                var msg = e.message;
-
-                /*
-                    IE < 10 does not support CORS and an XHR request to a different origin will fail as soon
-                    as send() is called. This is particularly easy to miss during development and appear in
-                    production if you use a CDN or domain sharding and the security policy is likely to break
-                    exception handlers since any attempt to access a property of the request object will
-                    raise an access denied TypeError inside the catch block.
-
-                    To be friendlier, we'll check for this specific error and add a documentation pointer
-                    to point developers in the right direction. We test the exception number because IE's
-                    error messages are localized.
-                */
-                var oldIE = $.Browser.vendor == $.BROWSERS.IE && $.Browser.version < 10;
-                if ( oldIE && typeof( e.number ) != "undefined" && e.number == -2147024891 ) {
-                    msg += "\nSee http://msdn.microsoft.com/en-us/library/ms537505(v=vs.85).aspx#xdomain";
-                }
-
-                $.console.log( "%s while making AJAX request: %s", e.name, msg );
+                $.console.log( "%s while making AJAX request: %s", e.name, e.message );
 
                 request.onreadystatechange = function(){};
 
@@ -2129,7 +2111,7 @@ window.OpenSeadragon = window.OpenSeadragon || function( options ){
 
 /**
  * For use by classes which want to support custom, non-browser events.
- * TODO: This is an awful name!  This thing represents an "event source",
+ * TODO: This is an aweful name!  This thing represents an "event source",
  *       not an "event handler".  PLEASE change the to EventSource. Also please
  *       change 'addHandler', 'removeHandler' and 'raiseEvent' to 'bind',
  *       'unbind', and 'trigger' respectively.  Finally add a method 'one' which
@@ -2148,15 +2130,14 @@ $.EventHandler.prototype = {
      * @function
      * @param {String} eventName - Name of event to register.
      * @param {Function} handler - Function to call when event is triggered.
-     * @param {Object} optional userData - Arbitrary object to be passed to the handler.
      */
-    addHandler: function ( eventName, handler, userData ) {
+    addHandler: function( eventName, handler ) {
         var events = this.events[ eventName ];
-        if ( !events ) {
+        if( !events ){
             this.events[ eventName ] = events = [];
         }
-        if ( handler && $.isFunction( handler ) ) {
-            events[ events.length ] = { handler: handler, userData: userData || null };
+        if( handler && $.isFunction( handler ) ){
+            events[ events.length ] = handler;
         }
     },
 
@@ -2166,16 +2147,16 @@ $.EventHandler.prototype = {
      * @param {String} eventName - Name of event for which the handler is to be removed.
      * @param {Function} handler - Function to be removed.
      */
-    removeHandler: function ( eventName, handler ) {
+    removeHandler: function( eventName, handler ) {
         var events = this.events[ eventName ],
             handlers = [],
             i;
-        if ( !events ) {
+        if ( !events ){
             return;
         }
-        if ( $.isArray( events ) ) {
-            for ( i = 0; i < events.length; i++ ) {
-                if ( events[i].handler !== handler ) {
+        if( $.isArray( events ) ){
+            for( i = 0; i < events.length; i++ ){
+                if( events[ i ] !== handler ){
                     handlers.push( events[ i ] );
                 }
             }
@@ -2191,11 +2172,11 @@ $.EventHandler.prototype = {
      * @param {String} eventName - Name of event for which all handlers are to be removed.
      */
     removeAllHandlers: function( eventName ) {
-        if ( eventName ){
+        if (eventName){
             this.events[ eventName ] = [];
         } else{
-            for ( var eventType in this.events ) {
-                this.events[ eventType ] = [];
+            for (var eventType in this.events) {
+                this.events[eventType] = [];
             }
         }
     },
@@ -2205,21 +2186,20 @@ $.EventHandler.prototype = {
      * @function
      * @param {String} eventName - Name of event to get handlers for.
      */
-    getHandler: function ( eventName ) {
+    getHandler: function( eventName ) {
         var events = this.events[ eventName ];
-        if ( !events || !events.length ) {
+        if ( !events || !events.length ){
             return null;
         }
         events = events.length === 1 ?
             [ events[ 0 ] ] :
             Array.apply( null, events );
-        return function ( source, args ) {
+        return function( source, args ) {
             var i,
                 length = events.length;
             for ( i = 0; i < length; i++ ) {
-                if ( events[ i ] ) {
-                    args.userData = events[ i ].userData;
-                    events[ i ].handler( source, args );
+                if( events[ i ] ){
+                    events[ i ]( source, args );
                 }
             }
         };
@@ -5218,7 +5198,7 @@ function onCanvasDrag( tracker, position, delta, shift ) {
             this.viewport.applyConstraints();
         }
     }
-    this.raiseEvent( 'canvas-drag', {
+    this.raiseEvent( 'canvas-click', {
         tracker: tracker,
         position: position,
         delta: delta,
@@ -6264,19 +6244,12 @@ $.TileSource = function( width, height, tileSize, tileOverlap, minLevel, maxLeve
 
     //Any functions that are passed as arguments are bound to the ready callback
     /*jshint loopfunc:true*/
-    for ( i = 0; i < arguments.length; i++ ) {
-        if ( $.isFunction( arguments[ i ] ) ) {
+    for( i = 0; i < arguments.length; i++ ){
+        if( $.isFunction( arguments[i] ) ){
             callback = arguments[ i ];
-            // TODO Send generic object wrapping readySource as a property (breaking change)
-            // TODO Maybe placeHolderSource should be passed to callback as well for consistency
-            //      with event handler signature?
-            //  Should be this (although technically it works as-is):
-            //this.addHandler( 'ready', function ( placeHolderSource, placeHolderArgs ) {
-            //    callback( placeHolderArgs );
-            //} );
-            this.addHandler( 'ready', function ( placeHolderSource, readySource ) {
+            this.addHandler( 'ready', function( placeHolderSource, readySource ){
                 callback( readySource );
-            } );
+            });
             //only one callback per constructor
             break;
         }
@@ -6458,9 +6431,6 @@ $.TileSource.prototype = {
             options = $TileSource.prototype.configure.apply( _this, [ data, url ]);
             readySource = new $TileSource( options );
             _this.ready = true;
-            // TODO Send generic object wrapping readySource as a property (breaking change)
-            //  Should be this:
-            //_this.raiseEvent( 'ready', { tileSource: readySource } );
             _this.raiseEvent( 'ready', readySource );
         };
 
@@ -6480,29 +6450,9 @@ $.TileSource.prototype = {
             $.makeAjaxRequest( url, function( xhr ) {
                 var data = processResponse( xhr );
                 callback( data );
-            }, function ( xhr, exc ) {
-                var msg;
-
-                /*
-                    IE < 10 will block XHR requests to different origins. Any property access on the request
-                    object will raise an exception which we'll attempt to handle by formatting the original
-                    exception rather than the second one raised when we try to access xhr.status
-                 */
-                try {
-                    msg = "HTTP " + xhr.status + " attempting to load TileSource";
-                } catch ( e ) {
-                    var formattedExc;
-                    if ( typeof( exc ) == "undefined" || !exc.toString ) {
-                        formattedExc = "Unknown error";
-                    } else {
-                        formattedExc = exc.toString();
-                    }
-
-                    msg = formattedExc + " attempting to load TileSource";
-                }
-
+            }, function ( xhr ) {
                 _this.raiseEvent( 'open-failed', {
-                    message: msg,
+                    message: "HTTP " + xhr.status + " attempting to load TileSource",
                     source: url
                 });
             });
@@ -7698,25 +7648,17 @@ $.LegacyTileSource = function( levels ) {
 
     //clean up the levels to make sure we support all formats
     options.levels = filterFiles( options.levels );
+    width = options.levels[ options.levels.length - 1 ].width;
+    height = options.levels[ options.levels.length - 1 ].height;
 
-    if ( options.levels.length > 0 ) {
-        width = options.levels[ options.levels.length - 1 ].width;
-        height = options.levels[ options.levels.length - 1 ].height;
-    }
-    else {
-        width = 0;
-        height = 0;
-        $.console.error( "No supported image formats found" );
-    }
-
-    $.extend( true, options, {
-        width: width,
-        height: height,
-        tileSize: Math.max( height, width ),
+    $.extend( true,  options, {
+        width:       width,
+        height:      height,
+        tileSize:    Math.max( height, width ),
         tileOverlap: 0,
-        minLevel: 0,
-        maxLevel: options.levels.length > 0 ? options.levels.length - 1 : 0
-    } );
+        minLevel:    0,
+        maxLevel:    options.levels.length - 1
+    });
 
     $.TileSource.apply( this, [ options ] );
 
@@ -7774,9 +7716,9 @@ $.extend( $.LegacyTileSource.prototype, $.TileSource.prototype, {
      * @name OpenSeadragon.LegacyTileSource.prototype.getLevelScale
      * @param {Number} level
      */
-    getLevelScale: function ( level ) {
+    getLevelScale: function( level ) {
         var levelScale = NaN;
-        if ( this.levels.length > 0 && level >= this.minLevel && level <= this.maxLevel ) {
+        if (  level >= this.minLevel && level <= this.maxLevel ){
             levelScale =
                 this.levels[ level ].width /
                 this.levels[ this.maxLevel ].width;
@@ -7821,14 +7763,14 @@ $.extend( $.LegacyTileSource.prototype, $.TileSource.prototype, {
      * @param {Number} y
      * @throws {Error}
      */
-    getTileUrl: function ( level, x, y ) {
+    getTileUrl: function( level, x, y ) {
         var url = null;
-        if ( this.levels.length > 0 && level >= this.minLevel && level <= this.maxLevel ) {
+        if( level >= this.minLevel && level <= this.maxLevel ){
             url = this.levels[ level ].url;
         }
         return url;
     }
-} );
+});
 
 /**
  * This method removes any files from the Array which dont conform to our
@@ -7857,9 +7799,6 @@ function filterFiles( files ){
                 width: Number( file.width ),
                 height: Number( file.height )
             });
-        }
-        else {
-            $.console.error( 'Unsupported image format: %s', file.url ? file.url : '<no URL>' );
         }
     }
 
