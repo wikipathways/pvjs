@@ -14,13 +14,13 @@ http://google-styleguide.googlecode.com/svn/trunk/jsoncstyleguide.xml#General_Gu
 </head>
 <body>
 <script>
-var repo = pathvisio.helpers.getUrlParameter('repo');
+var repo = pathvisio.helpers.getUrlParam('repo');
 if (!!url) {
-  var url = pathvisio.helpers.getUrlParameter('url');
+  var url = pathvisio.helpers.getUrlParam('url');
 }
 else {
-  if (!!pathvisio.helpers.getUrlParameter('id')) {
-    var url = 'http://pointer.ucsf.edu/d3/r/pathvisio.js/src/views/gpml.php?id=' + pathvisio.helpers.getUrlParameter('id');
+  if (!!pathvisio.helpers.getUrlParam('id')) {
+    var url = 'http://pointer.ucsf.edu/d3/r/pathvisio.js/src/views/gpml.php?id=' + pathvisio.helpers.getUrlParam('id');
   };
 };
 </script>
