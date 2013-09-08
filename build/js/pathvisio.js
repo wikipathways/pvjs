@@ -668,7 +668,7 @@ pathvisio.pathway = function(){
   // first pass GPML (pathway XML) through an automatic XML to JSON converter, 
   // then make specific modifications to make the JSON well-formatted, then return the JSON
 
-  function gpml2json(gpml){
+  function gpml2json(gpml, callback){
 
     // for doing this in Java, we could look at 
     // https://code.google.com/p/json-io/
@@ -676,7 +676,7 @@ pathvisio.pathway = function(){
     self.gpml = gpml;
     console.log('GPML')
     console.log(gpml)
-
+    
     var pathway = pathvisio.data.pathways[pathvisio.data.current.svgSelector];
     pathway = self.pathway = xml.xmlToJSON(gpml, true).pathway;
     
@@ -1000,7 +1000,8 @@ pathvisio.pathway = function(){
       console.log(pathvisio.data.pathways[pathvisio.data.current.svgSelector]);
 
       delete pathway.graphics;
-      return pathvisio.data.pathways[pathvisio.data.current.svgSelector] = pathway;
+      pathvisio.data.pathways[pathvisio.data.current.svgSelector] = pathway;
+      callback(pathvisio.data.pathways[pathvisio.data.current.svgSelector] = pathway);
     }
     else {
       alert("Pathvisio.js does not support the data format provided. Please convert to GPML and retry.")
@@ -1028,11 +1029,21 @@ pathvisio.pathway = function(){
         mimeType = 'application/xml';
       };
 
+      if (!pathvisio.data.current.svgSelector) {
+        pathvisio.data.current.svgSelector = new Date().toString();
+      };
+
+
       // I would prefer to use d3.xml for the http request in order to not depend on jQuery,
       // but d3.xml doesn't seem to work with IE8. TODO remove dependency on jQuery
 
+      console.log('callback');
+      console.log(callback);
+
       $.get(url, mimeType, function(data) {
-        callback(pathvisio.pathway.gpml2json(data));
+        pathvisio.pathway.gpml2json(data, function(json) {
+          callback(json);
+        });
       });
     };
   };
@@ -1057,7 +1068,7 @@ pathvisio.pathway = function(){
     pathvisio.data.current.svg.attr('height', data.boardHeight);
 
     if (!!pathvisio.data.pathways[pathvisio.data.current.svgSelector].biopaxRefs) {
-      var pathwayPublicationXrefs = pathvisio.data.current.svg.selectAll(".pathway-publication-xref-text")	
+      var pathwayPublicationXrefs = pathvisio.data.current.svg.select('#viewport').selectAll(".pathway-publication-xref-text")	
       .data(pathvisio.data.pathways[pathvisio.data.current.svgSelector].biopaxRefs)
       .enter()
       .append("text")
@@ -1150,7 +1161,7 @@ pathvisio.pathway.group = function(){
         var groupId = el.groupId
         return (pathvisio.data.pathways[pathvisio.data.current.svgSelector].labelableElements.filter(function(el) {return (el.groupRef === groupId)}).length>0)
       });
-      var groupsContainer = pathvisio.data.current.svg.selectAll("use.group")	
+      var groupsContainer = pathvisio.data.current.svg.select('#viewport').selectAll("use.group")	
       .data(validGroups)
       .enter()
       .append("path")
@@ -1227,7 +1238,7 @@ pathvisio.pathway.infoBox = function(){
       infoBox.push({'key':'Organism', 'value':pathvisio.data.pathways[pathvisio.data.current.svgSelector].organism});
     };
 
-    var infoBoxElements = pathvisio.data.current.svg.selectAll("text.info-box")
+    var infoBoxElements = pathvisio.data.current.svg.select('#viewport').selectAll("text.info-box")
     .data(infoBox)
     .enter()
     .append("text")
@@ -1509,7 +1520,7 @@ pathvisio.pathway.labelableElement = function(){
   };
 
   function drawAll() {
-    var labelableElementsContainer = pathvisio.data.current.svg.selectAll("g.labelable-elements-container")	
+    var labelableElementsContainer = pathvisio.data.current.svg.select('#viewport').selectAll("g.labelable-elements-container")	
     .data(pathvisio.data.pathways[pathvisio.data.current.svgSelector].labelableElements)
     .enter()
     .append("g")
@@ -2059,7 +2070,7 @@ pathvisio.pathway.edge = function(){
     if (pathvisio.data.pathways[pathvisio.data.current.svgSelector].hasOwnProperty('edges')) {
       var pathData = null;
 
-      var edges = pathvisio.data.current.svg.selectAll("pathway.edge")
+      var edges = pathvisio.data.current.svg.select('#viewport').selectAll("pathway.edge")
       .data(pathvisio.data.pathways[pathvisio.data.current.svgSelector].edges)
       .enter()
       .append("path")
@@ -2082,7 +2093,7 @@ pathvisio.pathway.edge = function(){
             // what PathVisio (Java) does, but the white line (overlaying the
             // thick line to create a "double line") is hard to see at 1px.
 
-            pathvisio.data.current.svg.append("path")
+            pathvisio.data.current.svg.select('#viewport').append("path")
             .attr("class", d.edgeType + "-double")
             .attr("d", pathData)
             .attr("class", "drawing-board-color-stroke")
