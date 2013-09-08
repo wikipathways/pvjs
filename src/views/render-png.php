@@ -10,6 +10,8 @@ http://google-styleguide.googlecode.com/svn/trunk/javascriptguide.xml
 http://google-styleguide.googlecode.com/svn/trunk/jsoncstyleguide.xml#General_Guidelines
 -->
 <link href="../js/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
+<link rel="stylesheet" href="../lib/biojs/src/main/resources/css/biojs.detailsFrame.css">
+<link rel="stylesheet" href="../lib/jquery-ui/themes/base/jquery-ui.css">
     <style type="text/css">
       body {
         background-color: red;
@@ -278,7 +280,9 @@ if(typeof console === "undefined") {
 <div style="position:relative; width:100%; height:90%;" id="pathwayEditor" class="pathwayEditor">
   <div style="position:relative; width:70%; height:auto; float:left;">
     <div style="width:100%; height:100%" id="pathwayViewer">
-<img id="details-frame" src="../img/sample-details-frame.png" style="width:175px; height:250px; position: absolute; top: 20px; left: 155px; visibility:hidden; z-index: 289;" alt="image alternative text" />
+      <img id="details-frame" src="../img/sample-details-frame.png" style="width:175px; height:250px; position: absolute; top: 20px; left: 155px; visibility:hidden; z-index: 289;" alt="image alternative text" />
+      <div id="YourOwnDivId" class="protein ui-draggable">
+      </div>
 <!-- Pathvisio.js SVG viewer -->
 <?php
 $authorizedRepos = array("wikipathways", "AlexanderPico", "ariutta", "khanspers");
@@ -325,6 +329,7 @@ echo "</div>";
 
 <script src="../lib/d3/d3.js" charset="utf-8"></script>
 <script src="../lib/jquery/jquery.js"></script>
+<script src="../lib/jquery-ui/ui/jquery-ui.js"></script>
 
 <script src="../js/case-converter.js"></script>
 <script src="../js/xml2json.js"></script>
@@ -332,6 +337,8 @@ echo "</div>";
 <script src="../lib/openseadragon/openseadragon.js"></script>
 <script src="../lib/modernizr/modernizr.js"></script>
 <script src="../lib/screenfull/dist/screenfull.js"></script>
+<script src="../lib/biojs/src/main/javascript/Biojs.js"></script>
+<script src="../lib/biojs/src/main/javascript/Biojs.DetailsFrame.js"></script>
 <!--
 <script src="../lib/async/lib/async.js"></script>
 -->
@@ -500,6 +507,47 @@ else {
 
   pathvisio.pathway.getJson(url, 'application/xml', function() {
     getPng();
+  });
+};
+
+window.onload = function() {
+  var instance = new Biojs.DetailsFrame({
+    target: "YourOwnDivId",
+    features: {
+      "id":"P64747",
+      "description":"Uncharacterized protein Rv0893c/MT0917",
+      "Gene-Name":"Rv0893c",
+      "%GC":" 60.63",
+      "Location":" Unknown",
+      "Chrom-Location":" 946",
+      "Strand-Direction":" -1",
+      "Cordon-Bias":" 0.07692",
+      "Funct-Class":" unknown",
+      "Degree":" 15",
+      "Betweenness":" 784.68",
+      "Closeness":" 0.24790",
+      "Eigen":" 0.00003",
+      "Hub":" N",
+      "Sass-Infect":" 0",
+      "Sass-Growth":" 0",
+      "GO-Growth":" 0",
+      "TDR":" 0",
+      "UniProt":" 0",
+      "DDTRP":" 0",
+      "Gas-Nic":" 0",
+      "#-Paralogs":" 11",
+      "Mtb-cplx":" 11",
+      "Mtb":" 7",
+      "Corynebacterineae":" 0",
+      "Actinomycetales":" 0",
+      "Actinobacteridae":" 0",
+      "Bacteria":"0",
+      "Non-bacteria":"0",
+      "H.sapiens":"0",
+      "in_leprae":"0",
+      "DN/DS":"0.48",
+      "Codon-Volatility":"0.1"
+    }
   });
 };
 
