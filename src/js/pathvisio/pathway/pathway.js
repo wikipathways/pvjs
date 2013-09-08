@@ -3,7 +3,7 @@ pathvisio.pathway = function(){
   // first pass GPML (pathway XML) through an automatic XML to JSON converter, 
   // then make specific modifications to make the JSON well-formatted, then return the JSON
 
-  function gpml2json(gpml){
+  function gpml2json(gpml, callback){
 
     // for doing this in Java, we could look at 
     // https://code.google.com/p/json-io/
@@ -11,7 +11,7 @@ pathvisio.pathway = function(){
     self.gpml = gpml;
     console.log('GPML')
     console.log(gpml)
-
+    
     var pathway = pathvisio.data.pathways[pathvisio.data.current.svgSelector];
     pathway = self.pathway = xml.xmlToJSON(gpml, true).pathway;
     
@@ -335,7 +335,8 @@ pathvisio.pathway = function(){
       console.log(pathvisio.data.pathways[pathvisio.data.current.svgSelector]);
 
       delete pathway.graphics;
-      return pathvisio.data.pathways[pathvisio.data.current.svgSelector] = pathway;
+      pathvisio.data.pathways[pathvisio.data.current.svgSelector] = pathway;
+      callback(pathvisio.data.pathways[pathvisio.data.current.svgSelector] = pathway);
     }
     else {
       alert("Pathvisio.js does not support the data format provided. Please convert to GPML and retry.")
@@ -363,11 +364,21 @@ pathvisio.pathway = function(){
         mimeType = 'application/xml';
       };
 
+      if (!pathvisio.data.current.svgSelector) {
+        pathvisio.data.current.svgSelector = new Date().toString();
+      };
+
+
       // I would prefer to use d3.xml for the http request in order to not depend on jQuery,
       // but d3.xml doesn't seem to work with IE8. TODO remove dependency on jQuery
 
+      console.log('callback');
+      console.log(callback);
+
       $.get(url, mimeType, function(data) {
-        callback(pathvisio.pathway.gpml2json(data));
+        pathvisio.pathway.gpml2json(data, function(json) {
+          callback(json);
+        });
       });
     };
   };
@@ -392,7 +403,7 @@ pathvisio.pathway = function(){
     pathvisio.data.current.svg.attr('height', data.boardHeight);
 
     if (!!pathvisio.data.pathways[pathvisio.data.current.svgSelector].biopaxRefs) {
-      var pathwayPublicationXrefs = pathvisio.data.current.svg.select('viewport').selectAll(".pathway-publication-xref-text")	
+      var pathwayPublicationXrefs = pathvisio.data.current.svg.select('#viewport').selectAll(".pathway-publication-xref-text")	
       .data(pathvisio.data.pathways[pathvisio.data.current.svgSelector].biopaxRefs)
       .enter()
       .append("text")

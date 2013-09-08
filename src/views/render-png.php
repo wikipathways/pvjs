@@ -9,6 +9,7 @@ http://google-styleguide.googlecode.com/svn/trunk/htmlcssguide.xml
 http://google-styleguide.googlecode.com/svn/trunk/javascriptguide.xml
 http://google-styleguide.googlecode.com/svn/trunk/jsoncstyleguide.xml#General_Guidelines
 -->
+<link href="../js/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
     <style type="text/css">
       .navigator .highlight{
           opacity:    0.4;
@@ -32,13 +33,13 @@ http://google-styleguide.googlecode.com/svn/trunk/jsoncstyleguide.xml#General_Gu
 
   <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
-    <script src="http://ie7-js.googlecode.com/svn/version/2.1(beta4)/IE9.js"></script>
-    <![endif]-->
-    <!--[if lt IE 9]>
-      <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
-      <script src="../src/lib/es5-shim/es5-shim.js"></script>
-      <script src="../src/lib/Xccessors/xccessors-standard.js"></script>
-      <script>
+<script src="http://ie7-js.googlecode.com/svn/version/2.1(beta4)/IE9.js"></script>
+<![endif]-->
+<!--[if lt IE 9]>
+<script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+<script src="../src/lib/es5-shim/es5-shim.js"></script>
+<script src="../src/lib/Xccessors/xccessors-standard.js"></script>
+<script>
 // From https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/forEach
 // Production steps of ECMA-262, Edition 5, 15.4.4.18
 // Reference: http://es5.github.com/#x15.4.4.18
@@ -53,8 +54,8 @@ if (!Array.prototype.forEach) {
     }
 
     var kValue,
-        // 1. Let O be the result of calling ToObject passing the |this| value as the argument.
-        O = Object(this),
+      // 1. Let O be the result of calling ToObject passing the |this| value as the argument.
+      O = Object(this),
 
         // 2. Let lenValue be the result of calling the Get internal method of O with the argument "length".
         // 3. Let len be ToUint32(lenValue).
@@ -97,9 +98,9 @@ if (!Array.prototype.forEach) {
     // 8. return undefined
   };
 }
-      </script>
+</script>
 
-      <script>
+<script>
 // from https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map
 
 // Production steps of ECMA-262, Edition 5, 15.4.4.19
@@ -175,16 +176,16 @@ if (!Array.prototype.map) {
     return A;
   };      
 }
-      </script>
+</script>
 
-      <script>
+<script>
 
-        // https://developer.mozilla.org/en-US/docs/Web/API/EventTarget.addEventListener
+// https://developer.mozilla.org/en-US/docs/Web/API/EventTarget.addEventListener
 
-        (function() {
-          if (!Event.prototype.preventDefault) {
-            Event.prototype.preventDefault=function() {
-              this.returnValue=false;
+(function() {
+  if (!Event.prototype.preventDefault) {
+    Event.prototype.preventDefault=function() {
+      this.returnValue=false;
             };
           }
           if (!Event.prototype.stopPropagation) {
@@ -194,7 +195,7 @@ if (!Array.prototype.map) {
           }
           if (!Element.prototype.addEventListener) {
             var eventListeners=[];
-            
+
             var addEventListener=function(type,listener /*, useCapture (will be ignored) */) {
               var self=this;
               var wrapper=function(e) {
@@ -214,7 +215,7 @@ if (!Array.prototype.map) {
                 };
                 document.attachEvent("onreadystatechange",wrapper2);
                 eventListeners.push({object:this,type:type,listener:listener,wrapper:wrapper2});
-                
+
                 if (document.readyState=="complete") {
                   var e=new Event();
                   e.srcElement=window;
@@ -257,184 +258,205 @@ if (!Array.prototype.map) {
 
 </head>
 <body>
+<div style="position:relative; width:100%; height:90%;" id="pathwayEditor" class="pathwayEditor">
+  <div style="position:relative; width:70%; height:auto; float:left;">
+    <div style="width:100%; height:100%" id="pathwayViewer">
 <img id="details-frame" src="../img/sample-details-frame.png" style="width:175px; height:250px; position: absolute; top: 20px; left: 155px; visibility:hidden; z-index: 289;" alt="image alternative text" />
 <!-- Pathvisio.js SVG viewer -->
 <?php
-  $authorizedRepos = array("wikipathways", "AlexanderPico", "ariutta", "khanspers");
-  $repo = "wikipathways";
+$authorizedRepos = array("wikipathways", "AlexanderPico", "ariutta", "khanspers");
+$repo = "wikipathways";
 
-  if (isset($_GET['repo'])) {
-    if (in_array($_GET['repo'], $authorizedRepos)) {
-      $repo = htmlspecialchars($_GET['repo']);
-    }
+if (isset($_GET['repo'])) {
+  if (in_array($_GET['repo'], $authorizedRepos)) {
+    $repo = htmlspecialchars($_GET['repo']);
   }
+}
 
-  if ($_GET['repo'] == "local") {
-    $pathwayTemplateSvgUrl = "pathway-template.svg";
-    $pathwayTemplateSvgUrlEditable = "pathway-template.svg";
-  }
-  else {
-    //$pathwayTemplateSvgUrl = "https://raw.github.com/" . $repo . "/pathvisio.js/dev/src/views/pathway-template.svg";
-    $pathwayTemplateSvgUrl = "./pathway-template.svg";
-    $pathwayTemplateSvgUrlEditable = "https://github.com/" . $repo . "/pathvisio.js/blob/dev/src/views/pathway-template.svg";
-  }
+if ($_GET['repo'] == "local") {
+  $pathwayTemplateSvgUrl = "pathway-template.svg";
+  $pathwayTemplateSvgUrlEditable = "pathway-template.svg";
+}
+else {
+  //$pathwayTemplateSvgUrl = "https://raw.github.com/" . $repo . "/pathvisio.js/dev/src/views/pathway-template.svg";
+  $pathwayTemplateSvgUrl = "./pathway-template.svg";
+  $pathwayTemplateSvgUrlEditable = "https://github.com/" . $repo . "/pathvisio.js/blob/dev/src/views/pathway-template.svg";
+}
 
-  echo "<div id='pathway-container' class='pathway'>";
-    $pathwayTemplateSvg = simplexml_load_file($pathwayTemplateSvgUrl);
-    echo $pathwayTemplateSvg->saveXML();
-  echo "</div>";
+echo "<div id='pathway-container' class='pathway'>";
+$pathwayTemplateSvg = simplexml_load_file($pathwayTemplateSvgUrl);
+echo $pathwayTemplateSvg->saveXML();
+echo "</div>";
 
 ?>
+    </div>
+<script>
+enableZoom = 0;	
+var svgView = 0;
+</script>
+  </div>
+  <div style="position:relative; min-width: 300px; width:30%; height:auto; float:right;">
+    <div ng-include src="'partials/editorToolbar.html'"></div>
+  </div>
+</div>
+<div style="position:relative">
+  <!-- from http://xme.im/display-fullscreen-website-using-javascript -->
+  <button style="float:left;" onclick="enableZoom = 0;">Disable Zoom</button>
+  <button style="float:left;" onclick="svgView = null;">SVG</button>
+  <button style="float:left;" onclick="svgView = 0;">PNG</button>
+  <i id="fullscreen" class="icon-fullscreen"></i>
+  <!-- Button to trigger modal 
+  <a href="#myModal" role="button" onclick="editable = true" ng-init="editable = false" class="btn" data-toggle="modal">Edit Pathway</a>
+  -->
+</div>
+
 <script src="../lib/d3/d3.js" charset="utf-8"></script>
 <script src="../lib/jquery/jquery.js"></script>
 
 <script src="../js/case-converter.js"></script>
 <script src="../js/xml2json.js"></script>
+<script src="../js/bootstrap/js/bootstrap.js"></script>
 <script src="../lib/openseadragon/openseadragon.js"></script>
 <script src="../lib/modernizr/modernizr.js"></script>
+<script src="../lib/screenfull/dist/screenfull.js"></script>
+<script src="../lib/async/lib/async.js"></script>
 
 <script src="../../build/js/pathvisio.js"></script>
 
 <script>
-  var repo = pathvisio.helpers.getUrlParameter('repo');
+var repo = pathvisio.helpers.getUrlParameter('repo');
 
-  if (!!pathvisio.helpers.getUrlParameter('id')) {
-    var id = pathvisio.helpers.getUrlParameter('id');
-    var url = './gpml.php?id=' + id;
-    //var url = 'http://pointer.ucsf.edu/d3/r/pathvisio.js/src/views/gpml.php?id=' + id;
+if (!!pathvisio.helpers.getUrlParameter('id')) {
+  var id = pathvisio.helpers.getUrlParameter('id');
+  var url = './gpml.php?id=' + id;
+  //var url = 'http://pointer.ucsf.edu/d3/r/pathvisio.js/src/views/gpml.php?id=' + id;
+}
+else {
+  if (!!pathvisio.helpers.getUrlParameter('url')) {
+    var url = pathvisio.helpers.getUrlParameter('url');
   }
   else {
-    if (!!pathvisio.helpers.getUrlParameter('url')) {
-      var url = pathvisio.helpers.getUrlParameter('url');
-    }
-    else {
-      console.log('Error: No GPML data source specified.');
-    };
+    console.log('Error: No GPML data source specified.');
   };
+};
 
-  if (Modernizr.svg) {
-    // Supports SVG
-    console.log('yes on svg');
+
+if (Modernizr.svg && svgView === null) {
+  // Supports SVG
+  console.log('SVG is supported');
+  var pathwayContainer = d3.select('#pathway-container');
+  //pathwayContainer.empty();
+  pathwayContainer.attr('style', 'width: 100%; height:500px');
+  pathvisio.pathway.load('#pathway-image', url);
+  document.getElementById('pathway-image').addEventListener('click', function () {
+    enableZoom = 1;
+  });
+  document.getElementById('fullscreen').addEventListener('click', function () {
+    if (screenfull.enabled) {
+      screenfull.request(pathwayContainer[0][0]);
+    }
+  });
+}
+else {
+  // Doesn't support SVG (Fallback)
+  console.log('SVG is not supported');
+
+  function onZoomitResponse(resp) {
+    var pathway = pathvisio.data.pathways[pathvisio.data.current.svgSelector];
+    console.log('pathway');
+    console.log(pathway);
+    var overlays = self.overlays = [];
+    var overlayItem = null;
+
+    pathway.labelableElements.forEach(function(element) {
+      console.log(element);
+      overlayItem = {
+        'id':element.graphId,
+          'x':element.x / pathvisio.data.pathways[pathvisio.data.current.svgSelector].boardWidth,
+          'y':2.565 * element.y / pathvisio.data.pathways[pathvisio.data.current.svgSelector].boardHeight,
+          'width':element.width / pathvisio.data.pathways[pathvisio.data.current.svgSelector].boardWidth,
+          'height':2.565 * element.height / pathvisio.data.pathways[pathvisio.data.current.svgSelector].boardHeight,
+          'className': 'highlight'
+      };
+      if (element.elementType === 'data-node') {
+        overlays.push(overlayItem);
+      };
+    });
+
     var pathwayContainer = d3.select('#pathway-container');
     //pathwayContainer.empty();
-    pathwayContainer.attr('style', 'width: 100%; height:500px')
-    pathvisio.pathway.load('#pathway-image', url);
-  } else {
-    // Doesn't support SVG (Fallback)
-    console.log('no on svg');
+    pathwayContainer.select('svg').remove();
+    pathwayContainer.attr('style', 'width: 100%; height:500px');
 
-    function onZoomitResponse(resp) {
-      console.log(pathvisio.data.pathways[null].boardHeight);
-      var pathway = pathvisio.data.pathways[null];
-      var overlays = self.overlays = [];
-      var overlayItem = null;
-      pathway.labelableElements.forEach(function(element) {
-        console.log(element);
-        overlayItem = {
-          'id':element.graphId,
-          'x':element.x / pathvisio.data.pathways[null].boardWidth,
-          'y':2.565 * element.y / pathvisio.data.pathways[null].boardHeight,
-          'width':element.width / pathvisio.data.pathways[null].boardWidth,
-          'height':2.565 * element.height / pathvisio.data.pathways[null].boardHeight,
-          'className': 'highlight'
-        };
-        if (element.elementType === 'data-node') {
-          overlays.push(overlayItem);
-        };
-      });
-      var pathwayContainer = d3.select('#pathway-container');
-      //pathwayContainer.empty();
-      pathwayContainer.select('svg').remove()
-      pathwayContainer.attr('style', 'width: 100%; height:500px')
-        self.resp = resp;
-        if (resp.error) {
-            // e.g. the URL is malformed or the service is down
-            alert(resp.error);
-            return;
-        }
-         
-        var content = resp.content;
-         
-        if (content.ready) {
-            var viewer = self.viewer = OpenSeadragon({
-                // debugMode: true,
-                id: "pathway-container",
-                prefixUrl: "../lib/openseadragon/images/",
-                showNavigator:true,
-                tileSources:   [{ 
-                    Image:  {
-                        xmlns: "http://schemas.microsoft.com/deepzoom/2009",
-                        Url: 'http://cache.zoom.it/content/' + content.id + '_files/',
-                        //Url: "http://cache.zoom.it/content/3U5d_files/",
-                        //Url: "http://test3.wikipathways.org//wpi/wpi.php?action=downloadFile&type=png&pwTitle=Pathway:WP253",
-                        //Url: "http://cache.zoom.it/content/LrQA_files/",
-                        TileSize: "254", 
-                        Overlap: "1", 
-                        Format: "png", 
-                        ServerFormat: "Default",
-                        Size: { 
-                            Width: content.dzi.width,
-                            Height: content.dzi.height
-                        }
-                    },
-                    overlays:overlays 
-/*
-                  overlays: [{
-                    id: 'example-overlay',
-                    x: 0.046, 
-                    y: 0.337, 
-                    width: 0.098, 
-                    height: 0.029,
-                    className: 'highlight'
-                  }]
-*/
-                }]
-            });
-            console.log('viewer');
-
-            window.setTimeout(function() {
-              $("#example-overlay").click(function() {
-                $("#details-frame")[0].style.visibility = 'visible';
-                //$("#details-frame")[0].style.z-index = 289;
-                console.log('click');
-              });
-              console.log('clicker');
-              }, 1000);
-        } else if (content.failed) {
-            alert(content.url + " failed to convert.");
-        } else {
-            alert(content.url + " is " +
-                Math.round(100 * content.progress) + "% done.");
-        }
+    self.resp = resp;
+    if (resp.error) {
+      // e.g. the URL is malformed or the service is down
+      alert(resp.error);
+      return;
     }
-    /* 
-    $.ajax({
-        url: "http://api.zoom.it/v1/content/LrQA",
-        dataType: "jsonp",
-        success: onZoomitResponse
-    });
-  };
-  //*/
 
-    function getPng() {
-      $.ajax({
-          url: 'http://api.zoom.it/v1/content/?url=' + encodeURIComponent('http://test3.wikipathways.org//wpi/wpi.php?action=downloadFile&type=png&pwTitle=Pathway:' + id),
-          dataType: "jsonp",
-          success: onZoomitResponse
+    var content = resp.content;
+
+    if (content.ready) {
+      var viewer = self.viewer = OpenSeadragon({
+        // debugMode: true,
+        id: "pathway-container",
+          prefixUrl: "../lib/openseadragon/images/",
+          showNavigator:true,
+          tileSources:   [{ 
+            Image:  {
+              xmlns: "http://schemas.microsoft.com/deepzoom/2009",
+                Url: 'http://cache.zoom.it/content/' + content.id + '_files/',
+                //Url: "http://cache.zoom.it/content/3U5d_files/",
+                //Url: "http://test3.wikipathways.org//wpi/wpi.php?action=downloadFile&type=png&pwTitle=Pathway:WP253",
+                //Url: "http://cache.zoom.it/content/LrQA_files/",
+                TileSize: "254", 
+                Overlap: "1", 
+                Format: "png", 
+                ServerFormat: "Default",
+                Size: { 
+                  Width: content.dzi.width,
+                    Height: content.dzi.height
+                }
+            },
+              overlays:overlays 
+          }]
       });
-    };
+      console.log('viewer');
 
-    pathvisio.pathway.getJson(url, 'application/xml', getPng());
+      window.setTimeout(function() {
+        $("#example-overlay").click(function() {
+          $("#details-frame")[0].style.visibility = 'visible';
+          //$("#details-frame")[0].style.z-index = 289;
+          console.log('click');
+        });
+        console.log('clicker');
+      }, 1000);
+    }
+    else {
+      if (content.failed) {
+        alert(content.url + " failed to convert.");
+      }
+      else {
+        alert(content.url + " is " +
+          Math.round(100 * content.progress) + "% done.");
+      };
+    };
   };
 
-/*
-  $.ajax({
-      url: "http://api.zoom.it/v1/content/?url=" + encodeURIComponent("http://test3.wikipathways.org//wpi/wpi.php?action=downloadFile&type=png&pwTitle=Pathway:WP522"),
+  function getPng() {
+    $.ajax({
+      url: 'http://api.zoom.it/v1/content/?url=' + encodeURIComponent('http://test3.wikipathways.org//wpi/wpi.php?action=downloadFile&type=png&pwTitle=Pathway:' + id),
       dataType: "jsonp",
       success: onZoomitResponse
-  });
-*/
-  console.log('url');
-  console.log(url);
+    });
+  };
+
+  pathvisio.pathway.getJson(url, 'application/xml', function() {
+  getPng()});
+};
+
+console.log('url');
+console.log(url);
 </script>
 </body>
