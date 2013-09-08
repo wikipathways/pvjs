@@ -381,11 +381,9 @@ if (Modernizr.svg && svgView != 0) {
   pathwayContainer.attr('style', 'width: 100%; height:500px');
   pathvisio.pathway.load('#pathway-image', url);
 
-/*
   document.getElementById('pathway-image').addEventListener('click', function () {
     enableZoom = 1;
   });
-*/
   document.getElementById('fullscreen').addEventListener('click', function () {
     if (screenfull.enabled) {
       screenfull.request(pathwayContainer[0][0]);
