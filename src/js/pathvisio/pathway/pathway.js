@@ -213,11 +213,11 @@ pathvisio.pathway = function(){
             };
           });
 
-          if (pathway.hasOwnProperty('labelableElements')) {
-            pathway.labelableElements = pathway.labelableElements.concat(dataNodes);
+          if (pathway.hasOwnProperty('nodes')) {
+            pathway.nodes = pathway.nodes.concat(dataNodes);
           }
           else {
-            pathway.labelableElements = dataNodes;
+            pathway.nodes = dataNodes;
           };
 
         }
@@ -240,11 +240,11 @@ pathvisio.pathway = function(){
             element.elementType = 'label';
           });
 
-          if (pathway.hasOwnProperty('labelableElements')) {
-            pathway.labelableElements = pathway.labelableElements.concat(labels);
+          if (pathway.hasOwnProperty('nodes')) {
+            pathway.nodes = pathway.nodes.concat(labels);
           }
           else {
-            pathway.labelableElements = labels;
+            pathway.nodes = labels;
           };
         }
         else {
@@ -266,11 +266,11 @@ pathvisio.pathway = function(){
             element.elementType = 'shape';
           });
 
-          if (pathway.hasOwnProperty('labelableElements')) {
-            pathway.labelableElements = pathway.labelableElements.concat(shapes);
+          if (pathway.hasOwnProperty('nodes')) {
+            pathway.nodes = pathway.nodes.concat(shapes);
           }
           else {
-            pathway.labelableElements = shapes;
+            pathway.nodes = shapes;
           };
         }
         else {
@@ -281,18 +281,18 @@ pathvisio.pathway = function(){
         console.log("Error converting shape to json: " + e.message);
       };
 
-      // LabelableElements
+      // Nodes
 
       try {
-        if (pathway.hasOwnProperty('labelableElements')) {
-          pathway.labelableElements = pathvisio.pathway.labelableElement.gpml2json(pathway.labelableElements);
+        if (pathway.hasOwnProperty('nodes')) {
+          pathway.nodes = pathvisio.pathway.node.gpml2json(pathway.nodes);
         }
         else {
-          console.log("No element(s) named 'labelableElements' found in this gpml file.");
+          console.log("No element(s) named 'nodes' found in this gpml file.");
         };
       }
       catch (e) {
-        console.log("Error converting labelableElements to json: " + e.message);
+        console.log("Error converting nodes to json: " + e.message);
       };
 
       // BiopaxRefs 
@@ -439,7 +439,7 @@ pathvisio.pathway = function(){
 
     pathvisio.pathway.edge.drawAll();
 
-    pathvisio.pathway.labelableElement.drawAll();
+    pathvisio.pathway.node.drawAll();
 
     pathvisio.pathway.infoBox.draw();
   };

@@ -145,7 +145,7 @@ SVG pathway template file</a> in the <span style="font-weight: bold">DEV</span> 
 
 <script src="../js/pathvisio/pathway/info-box.js"></script>
 <script src="../js/pathvisio/pathway/group.js"></script>
-<script src="../js/pathvisio/pathway/labelable-element.js"></script>
+<script src="../js/pathvisio/pathway/node.js"></script>
 
 <script src="../js/pathvisio/helpers.js"></script>
 <script src="../js/rgbcolor.js"></script>
