@@ -2779,7 +2779,7 @@ pathvisio.pathway.xRef = function(){
 
     function getData(species, database, id, callback) {
       var databaseId = dataSources.filter(function(element) {return element.database === database})[0].id;
-      var url = 'http://127.0.0.1/~andersriutta/pathvisio.js/src/data/xrefs.php?species=' + encodeURIComponent(species) + '&database=' + encodeURIComponent(databaseId) + '&id=' + encodeURIComponent(id);
+      var url = './src/data/xrefs.php?species=' + encodeURIComponent(species) + '&database=' + encodeURIComponent(databaseId) + '&id=' + encodeURIComponent(id);
       console.log('url');
       console.log(url);
       $.ajax({
