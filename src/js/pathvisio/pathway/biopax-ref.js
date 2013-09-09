@@ -1,4 +1,4 @@
-pathvisio.pathway.xref = function(){ 
+pathvisio.pathway.biopax-ref = function(){ 
 
     // GPML to JSON shape name mappings: { "OldName":"new-name" }
     // replace spaces with dashes

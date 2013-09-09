@@ -261,57 +261,9 @@ pathvisio.pathway.node = function(){
     .attr("class", "nodes-container")
     .on("click", function(d,i) {
       if (d.elementType === 'data-node') {
-        var features = {
-          "id": d.textLabel.text,
-          "description":"Uncharacterized protein Rv0893c/MT0917",
-          "Gene-Name":"Rv0893c",
-          "%GC":" 60.63",
-          "Location":" Unknown",
-          "Chrom-Location":" 946",
-          "Strand-Direction":" -1",
-          "Cordon-Bias":" 0.07692",
-          "Funct-Class":" unknown",
-          "Degree":" 15",
-          "Betweenness":" 784.68",
-          "Closeness":" 0.24790",
-          "Eigen":" 0.00003",
-          "Hub":" N",
-          "Sass-Infect":" 0",
-          "Sass-Growth":" 0",
-          "GO-Growth":" 0",
-          "TDR":" 0",
-          "UniProt":" 0",
-          "DDTRP":" 0",
-          "Gas-Nic":" 0",
-          "#-Paralogs":" 11",
-          "Mtb-cplx":" 11",
-          "Mtb":" 7",
-          "Corynebacterineae":" 0",
-          "Actinomycetales":" 0",
-          "Actinobacteridae":" 0",
-          "Bacteria":"0",
-          "Non-bacteria":"0",
-          "H.sapiens":"0",
-          "in_leprae":"0",
-          "DN/DS":"0.48",
-          "Codon-Volatility":"0.1"
-        };
-
-        if (!Biojs.DetailsFrame.instance) {
-          Biojs.DetailsFrame.instance = new Biojs.DetailsFrame({
-            target: "detailsFrame",
-            features: features 
-          });
-        }
-        else {
-          Biojs.DetailsFrame.instance.updateFeatures({id: d.textLabel.text,
-            description:"new description",
-            newFeature:"its value",
-            otherFeature:"another value"});
-        };
+        pathvisio.pathway.xRef.displayData(d.graphId);
       };
-
-/*
+        /*
         var xrefDiv = $('.xrefinfo');
 
         // (id, datasource, species, symbol)
@@ -322,11 +274,8 @@ pathvisio.pathway.node = function(){
           xrefDiv.empty();
           xrefDiv.append(xrefHtml);
         }, 2000);
-*/
+        //*/
   });
-
-    //.on("click", function(d,i) { alert(d.xRef.id); });
-    //.call(drag);
 
     var nodes = nodesContainer.each(function(d, i) {
       var node = d3.select(this).append('use')

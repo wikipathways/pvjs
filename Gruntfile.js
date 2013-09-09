@@ -8,9 +8,9 @@ module.exports = function(grunt) {
       },
       dist: {
         src: [
-          'src/js/case-converter.js',
-          'src/js/xml2json.js',
-          'src/js/rgbcolor.js',
+          'src/lib/case-converter/case-converter.js',
+          'src/lib/xml2json/xml2json.js',
+          'src/lib/rgb-color/rgb-color.js',
           'src/js/pathvisio/pathvisio.js',
           'src/js/pathvisio/helpers.js',
           'src/js/pathvisio/pathway/pathway.js',
@@ -21,6 +21,7 @@ module.exports = function(grunt) {
           'src/js/pathvisio/pathway/edge/marker.js',
           'src/js/pathvisio/pathway/edge/point.js',
           'src/js/pathvisio/pathway/edge/path-data.js',
+          'src/js/pathvisio/pathway/x-ref.js',
         ],
         dest: 'build/js/pathvisio.js'
       },
