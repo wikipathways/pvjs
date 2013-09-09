@@ -9,278 +9,58 @@ http://google-styleguide.googlecode.com/svn/trunk/htmlcssguide.xml
 http://google-styleguide.googlecode.com/svn/trunk/javascriptguide.xml
 http://google-styleguide.googlecode.com/svn/trunk/jsoncstyleguide.xml#General_Guidelines
 -->
+
 <link href="../js/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
 <link rel="stylesheet" href="../lib/biojs/src/main/resources/css/biojs.detailsFrame.css">
 <link rel="stylesheet" href="../lib/jquery-ui/themes/base/jquery-ui.css">
-    <style type="text/css">
-      body {
-        background-color: red;
-      }
-      .navigator .highlight{
-        opacity:    0.4;
-        filter:     alpha(opacity=40);
-        border:     2px solid #900;
-        outline:    none;
-        background-color: #900;
-      }
-      .highlight{
-        filter:     alpha(opacity=40);
-        border:     4px solid transparent;
-        outline:    10px auto transparent;
-        background-color: white;
-      }
-      .highlight:hover, .highlight:focus{
-        border:     4px solid gold;
-        outline:    10px auto gold;
-        background-color: white;
-      }
-    </style>
+<style type="text/css">
+body {
+  background-color: red;
+}
+.navigator .highlight{
+  opacity:    0.4;
+  filter:     alpha(opacity=40);
+  border:     2px solid #900;
+  outline:    none;
+  background-color: #900;
+}
+.highlight{
+  filter:     alpha(opacity=40);
+  border:     4px solid transparent;
+  outline:    10px auto transparent;
+  background-color: white;
+}
+.highlight:hover, .highlight:focus{
+  border:     4px solid gold;
+  outline:    10px auto gold;
+  background-color: white;
+}
+</style>
 
 <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
 <!--[if lt IE 9]>
-<script src="http://ie7-js.googlecode.com/svn/version/2.1(beta4)/IE9.js"></script>
-<script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
-<script src="../src/lib/es5-shim/es5-shim.js"></script>
-<script src="../src/lib/Xccessors/xccessors-standard.js"></script>
-<script>
-// From https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/forEach
-// Production steps of ECMA-262, Edition 5, 15.4.4.18
-// Reference: http://es5.github.com/#x15.4.4.18
-if (!Array.prototype.forEach) {
+  <script src="http://ie7-js.googlecode.com/svn/version/2.1(beta4)/IE9.js"></script>
+  <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+  <script src="../lib/es5-shim/es5-shim.js"></script>
+  <script src="../lib/Xccessors/xccessors-standard.js"></script>
 
-  Array.prototype.forEach = function forEach(callback, thisArg) {
-    'use strict';
-    var T, k;
-
-    if (this == null) {
-      throw new TypeError("this is null or not defined");
-    }
-
-    var kValue,
-      // 1. Let O be the result of calling ToObject passing the |this| value as the argument.
-      O = Object(this),
-
-        // 2. Let lenValue be the result of calling the Get internal method of O with the argument "length".
-        // 3. Let len be ToUint32(lenValue).
-        len = O.length >>> 0; // Hack to convert O.length to a UInt32
-
-    // 4. If IsCallable(callback) is false, throw a TypeError exception.
-    // See: http://es5.github.com/#x9.11
-    if ({}.toString.call(callback) !== "[object Function]") {
-      throw new TypeError(callback + " is not a function");
-    }
-
-    // 5. If thisArg was supplied, let T be thisArg; else let T be undefined.
-    if (arguments.length >= 2) {
-      T = thisArg;
-    }
-
-    // 6. Let k be 0
-    k = 0;
-
-    // 7. Repeat, while k < len
-    while (k < len) {
-
-      // a. Let Pk be ToString(k).
-      //   This is implicit for LHS operands of the in operator
-      // b. Let kPresent be the result of calling the HasProperty internal method of O with argument Pk.
-      //   This step can be combined with c
-      // c. If kPresent is true, then
-      if (k in O) {
-
-        // i. Let kValue be the result of calling the Get internal method of O with argument Pk.
-        kValue = O[k];
-
-        // ii. Call the Call internal method of callback with T as the this value and
-        // argument list containing kValue, k, and O.
-        callback.call(T, kValue, k, O);
-      }
-      // d. Increase k by 1.
-      k++;
-    }
-    // 8. return undefined
-  };
-}
-</script>
-
-<script>
-// from https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map
-
-// Production steps of ECMA-262, Edition 5, 15.4.4.19
-// Reference: http://es5.github.com/#x15.4.4.19
-if (!Array.prototype.map) {
-  Array.prototype.map = function(callback, thisArg) {
-
-    var T, A, k;
-
-    if (this == null) {
-      throw new TypeError(" this is null or not defined");
-    }
-
-    // 1. Let O be the result of calling ToObject passing the |this| value as the argument.
-    var O = Object(this);
-
-    // 2. Let lenValue be the result of calling the Get internal method of O with the argument "length".
-    // 3. Let len be ToUint32(lenValue).
-    var len = O.length >>> 0;
-
-    // 4. If IsCallable(callback) is false, throw a TypeError exception.
-    // See: http://es5.github.com/#x9.11
-    if (typeof callback !== "function") {
-      throw new TypeError(callback + " is not a function");
-    }
-
-    // 5. If thisArg was supplied, let T be thisArg; else let T be undefined.
-    if (thisArg) {
-      T = thisArg;
-    }
-
-    // 6. Let A be a new array created as if by the expression new Array(len) where Array is
-    // the standard built-in constructor with that name and len is the value of len.
-    A = new Array(len);
-
-    // 7. Let k be 0
-    k = 0;
-
-    // 8. Repeat, while k < len
-    while(k < len) {
-
-      var kValue, mappedValue;
-
-      // a. Let Pk be ToString(k).
-      //   This is implicit for LHS operands of the in operator
-      // b. Let kPresent be the result of calling the HasProperty internal method of O with argument Pk.
-      //   This step can be combined with c
-      // c. If kPresent is true, then
-      if (k in O) {
-
-        // i. Let kValue be the result of calling the Get internal method of O with argument Pk.
-        kValue = O[ k ];
-
-        // ii. Let mappedValue be the result of calling the Call internal method of callback
-        // with T as the this value and argument list containing kValue, k, and O.
-        mappedValue = callback.call(T, kValue, k, O);
-
-        // iii. Call the DefineOwnProperty internal method of A with arguments
-        // Pk, Property Descriptor {Value: mappedValue, : true, Enumerable: true, Configurable: true},
-        // and false.
-
-        // In browsers that support Object.defineProperty, use the following:
-        // Object.defineProperty(A, Pk, { value: mappedValue, writable: true, enumerable: true, configurable: true });
-
-        // For best browser support, use the following:
-        A[ k ] = mappedValue;
-      }
-      // d. Increase k by 1.
-      k++;
-    }
-
-    // 9. return A
-    return A;
-  };      
-}
-</script>
-
-<script>
-/*
-// This causes a stackoverflow when clicking to zoom in too far with openseadragon
-
-// https://developer.mozilla.org/en-US/docs/Web/API/EventTarget.addEventListener
-
-(function() {
-  if (!Event.prototype.preventDefault) {
-    Event.prototype.preventDefault=function() {
-      this.returnValue=false;
-            };
-          }
-          if (!Event.prototype.stopPropagation) {
-            Event.prototype.stopPropagation=function() {
-              this.cancelBubble=true;
-            };
-          }
-          if (!Element.prototype.addEventListener) {
-            var eventListeners=[];
-
-            var addEventListener=function(type,listener /*, useCapture (will be ignored) */) {
-              var self=this;
-              var wrapper=function(e) {
-                e.target=e.srcElement;
-                e.currentTarget=self;
-                if (listener.handleEvent) {
-                  listener.handleEvent(e);
-                } else {
-                  listener.call(self,e);
-                }
-              };
-              if (type=="DOMContentLoaded") {
-                var wrapper2=function(e) {
-                  if (document.readyState=="complete") {
-                    wrapper(e);
-                  }
-                };
-                document.attachEvent("onreadystatechange",wrapper2);
-                eventListeners.push({object:this,type:type,listener:listener,wrapper:wrapper2});
-
-                if (document.readyState=="complete") {
-                  var e=new Event();
-                  e.srcElement=window;
-                  wrapper2(e);
-                }
-              } else {
-                this.attachEvent("on"+type,wrapper);
-                eventListeners.push({object:this,type:type,listener:listener,wrapper:wrapper});
-              }
-            };
-            var removeEventListener=function(type,listener /*, useCapture (will be ignored) */) {
-              var counter=0;
-              while (counter<eventListeners.length) {
-                var eventListener=eventListeners[counter];
-                if (eventListener.object==this && eventListener.type==type && eventListener.listener==listener) {
-                  if (type=="DOMContentLoaded") {
-                    this.detachEvent("onreadystatechange",eventListener.wrapper);
-                  } else {
-                    this.detachEvent("on"+type,eventListener.wrapper);
-                  }
-                  break;
-                }
-                ++counter;
-              }
-            };
-            Element.prototype.addEventListener=addEventListener;
-            Element.prototype.removeEventListener=removeEventListener;
-            if (HTMLDocument) {
-              HTMLDocument.prototype.addEventListener=addEventListener;
-              HTMLDocument.prototype.removeEventListener=removeEventListener;
-            }
-            if (Window) {
-              Window.prototype.addEventListener=addEventListener;
-              Window.prototype.removeEventListener=removeEventListener;
-            }
-          }
-  })();
-//*/
-</script>
-
-<script>
-
-// IE8 only allows console.log when Developer Tools is open. This will prevent errors
-// from showing up if I use console.log without DevTools being open.
-
-if(typeof console === "undefined") {
-  console = {
-    log: function() { },
-    debug: function() { },
-  };
-}
-</script>
 <![endif]-->
+
+  <script>
+
+    // IE8 only allows console.log when Developer Tools is open. This will prevent errors
+    // from showing up if I use console.log without DevTools being open.
+
+if (typeof console == "undefined") {
+    this.console = {log: function() {}};
+}
+  </script>
 
 </head>
 <body>
 <div style="position:relative; width:100%; height:90%;" id="pathwayEditor" class="pathwayEditor">
   <div style="position:relative; width:70%; height:auto; float:left;">
     <div style="width:100%; height:100%" id="pathwayViewer">
-      <img id="details-frame" src="../img/sample-details-frame.png" style="width:175px; height:250px; position: absolute; top: 20px; left: 155px; visibility:hidden; z-index: 289;" alt="image alternative text" />
       <div id="detailsFrame" class="protein ui-draggable">
       </div>
 <!-- Pathvisio.js SVG viewer -->
@@ -374,10 +154,11 @@ else {
 
 
 if (Modernizr.svg && svgView != 0) {
-  // Supports SVG
-  console.log('SVG is supported');
+
+  // browser supports SVG.
+
+  console.log('Your browser supports SVG.');
   var pathwayContainer = d3.select('#pathway-container');
-  //pathwayContainer.empty();
   pathwayContainer.attr('style', 'width: 100%; height:500px');
   pathvisio.pathway.load('#pathway-image', url);
 
@@ -391,8 +172,10 @@ if (Modernizr.svg && svgView != 0) {
   });
 }
 else {
-  // Doesn't support SVG (Fallback)
-  console.log('SVG is not supported');
+
+  // browser does not support SVG. Fall back to PNG.
+
+  console.log('Your browser does not support SVG. Falling back to PNG.');
 
   function onZoomitResponse(resp) {
     self.resp = resp;
@@ -415,17 +198,11 @@ else {
       var scalingFactor =  content.dzi.width / pathvisio.data.pathways[pathvisio.data.current.svgSelector].boardWidth;
       overlayItem = {
         'id':element.graphId,
-/*
-'x':element.x / pathvisio.data.pathways[pathvisio.data.current.svgSelector].boardWidth,
-        'y':element.y / pathvisio.data.pathways[pathvisio.data.current.svgSelector].boardHeight,
-        'width':element.width / pathvisio.data.pathways[pathvisio.data.current.svgSelector].boardWidth,
-        'height':element.height / pathvisio.data.pathways[pathvisio.data.current.svgSelector].boardHeight,
- */
-          'px':element.x * scalingFactor,
-          'py':element.y * scalingFactor,
-          'width':element.width * scalingFactor,
-          'height':element.height * scalingFactor,
-          'className': 'highlight',
+        'px':element.x * scalingFactor,
+        'py':element.y * scalingFactor,
+        'width':element.width * scalingFactor,
+        'height':element.height * scalingFactor,
+        'className': 'highlight',
       };
       if (element.elementType === 'data-node') {
         overlays.push(overlayItem);
@@ -433,10 +210,9 @@ else {
     });
 
     var pathwayContainer = d3.select('#pathway-container');
-    //pathwayContainer.empty();
     pathwayContainer.select('svg').remove();
-    pathwayContainer.attr('style', 'width:1000px; height:693px');
-    //pathwayContainer.attr('style', 'width: 100%; height:500px');
+    pathwayContainer.attr('style', 'width: 100%; height:500px');
+    //pathwayContainer.attr('style', 'width:1000px; height:693px');
 
     if (content.ready) {
       var viewer = self.viewer = OpenSeadragon({
@@ -451,9 +227,6 @@ else {
           Image:  {
             xmlns: "http://schemas.microsoft.com/deepzoom/2009",
             Url: 'http://cache.zoom.it/content/' + content.id + '_files/',
-            //Url: "http://cache.zoom.it/content/3U5d_files/",
-            //Url: "http://test3.wikipathways.org//wpi/wpi.php?action=downloadFile&type=png&pwTitle=Pathway:WP253",
-            //Url: "http://cache.zoom.it/content/LrQA_files/",
             TileSize: "254", 
             Overlap: "1", 
             Format: "png", 
@@ -464,22 +237,13 @@ else {
             }
           },
           overlays:overlays 
-/*
-          overlays: [{
-            id: 'example-overlay',
-            px: 50, 
-            py: 50, 
-            width: 50, 
-            height: 20,
-            className: 'highlight'
-          }],
- */
         }],
         visibilityRatio: 1.0,
         constrainDuringPan: true
       });
 
       window.setTimeout(function() {
+var detailsFrameSet = null;
         $(".highlight").click(function() {
           var features = {
             "id": this.getAttribute('id'),
@@ -516,18 +280,30 @@ else {
             "DN/DS":"0.48",
             "Codon-Volatility":"0.1"
           };
-
-          if (!Biojs.DetailsFrame.instance) {
+          if (!detailsFrameSet) {
+            detailsFrameSet = true;
             Biojs.DetailsFrame.instance = new Biojs.DetailsFrame({
               target: "detailsFrame",
               features: features 
             });
           }
           else {
+
+            // hack for making this work in IE8.
+            // Biojs.detailsFrame.instance.updateFeatures() did not appear to work in IE8,
+            // so I am just emptying the detailsFrame div and building a new one.
+
+            d3.select('#detailsFrame').selectAll('*').remove();
+            Biojs.DetailsFrame.instance = new Biojs.DetailsFrame({
+              target: "detailsFrame",
+              features: features 
+            });
+/*
             Biojs.DetailsFrame.instance.updateFeatures({id: this.getAttribute('id'),
               description:"new description",
               newFeature:"its value",
               otherFeature:"another value"});
+*/
           };
         });
       }, 1000);
@@ -555,8 +331,5 @@ else {
     getPng();
   });
 };
-
-console.log('url');
-console.log(url);
 </script>
 </body>
