@@ -10,9 +10,25 @@ http://google-styleguide.googlecode.com/svn/trunk/javascriptguide.xml
 http://google-styleguide.googlecode.com/svn/trunk/jsoncstyleguide.xml#General_Guidelines
 -->
 
-<link href="../lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" media="screen">
-<link rel="stylesheet" href="../lib/biojs/src/main/resources/css/biojs.detailsFrame.css">
-<link rel="stylesheet" href="../lib/jquery-ui/themes/base/jquery-ui.css">
+<?php
+function getUrl() {
+  $url  = @( $_SERVER["HTTPS"] != 'on' ) ? 'http://'.$_SERVER["SERVER_NAME"] :  'https://'.$_SERVER["SERVER_NAME"];
+  $url .= ( $_SERVER["SERVER_PORT"] !== 80 ) ? ":".$_SERVER["SERVER_PORT"] : "";
+  $url .= $_SERVER["REQUEST_URI"];
+  return $url;
+}
+
+$currentUrl = getUrl();
+$base = str_replace("?", "/../../../?", getUrl());
+
+echo '<base href="' . $base . '">';
+
+?>
+
+
+<link href="./src/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" media="screen">
+<link rel="stylesheet" href="./src/lib/biojs/src/main/resources/css/biojs.detailsFrame.css">
+<link rel="stylesheet" href="./src/lib/jquery-ui/themes/base/jquery-ui.css">
 <style type="text/css">
 body {
   background-color: red;
@@ -37,12 +53,15 @@ body {
 }
 </style>
 
-<!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+<!--[if lte IE 9]>
+<base href="http://172.24.1.195/~andersriutta/pathvisio.js/">
+<![endif]-->
+
 <!--[if lt IE 9]>
   <script src="http://ie7-js.googlecode.com/svn/version/2.1(beta4)/IE9.js"></script>
   <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
-  <script src="../lib/es5-shim/es5-shim.js"></script>
-  <script src="../lib/Xccessors/xccessors-standard.js"></script>
+  <script src="./src/lib/es5-shim/es5-shim.js"></script>
+  <script src="./src/lib/Xccessors/xccessors-standard.js"></script>
 
   <script>
 
@@ -72,7 +91,6 @@ body {
       } 
     })();
   </script>
-
 <![endif]-->
 
 </head>
@@ -127,25 +145,25 @@ echo "</div>";
 <div id="detailsFrame" class="protein ui-draggable">
 </div>
 
-<script src="../lib/d3/d3.js" charset="utf-8"></script>
-<script src="../lib/jquery/jquery.js"></script>
-<script src="../lib/jquery-ui/ui/jquery-ui.js"></script>
+<script src="./src/lib/d3/d3.js" charset="utf-8"></script>
+<script src="./src/lib/jquery/jquery.js"></script>
+<script src="./src/lib/jquery-ui/ui/jquery-ui.js"></script>
 
-<script src="../lib/case-converter/case-converter.js"></script>
-<script src="../lib/xml2json/xml2json.js"></script>
-<script src="../lib/bootstrap/dist/js/bootstrap.js"></script>
-<script src="../lib/openseadragon/openseadragon.js"></script>
-<script src="../lib/modernizr/modernizr.js"></script>
-<script src="../lib/screenfull/dist/screenfull.js"></script>
-<script src="../lib/biojs/src/main/javascript/Biojs.js"></script>
-<script src="../lib/biojs/src/main/javascript/Biojs.DetailsFrame.js"></script>
-<script src="../lib/mr-data-converter/CSVParser.js"></script>
-<script src="../lib/mr-data-converter/DataGridRenderer.js"></script>
+<script src="./src/lib/case-converter/case-converter.js"></script>
+<script src="./src/lib/xml2json/xml2json.js"></script>
+<script src="./src/lib/bootstrap/dist/js/bootstrap.js"></script>
+<script src="./src/lib/openseadragon/openseadragon.js"></script>
+<script src="./src/lib/modernizr/modernizr.js"></script>
+<script src="./src/lib/screenfull/dist/screenfull.js"></script>
+<script src="./src/lib/biojs/src/main/javascript/Biojs.js"></script>
+<script src="./src/lib/biojs/src/main/javascript/Biojs.DetailsFrame.js"></script>
+<script src="./src/lib/mr-data-converter/CSVParser.js"></script>
+<script src="./src/lib/mr-data-converter/DataGridRenderer.js"></script>
 <!--
-<script src="../lib/async/lib/async.js"></script>
+<script src="./src/lib/async/lib/async.js"></script>
 -->
 
-<script src="../../build/js/pathvisio.js"></script>
+<script src="./build/js/pathvisio.js"></script>
 
 <script>
 enableZoom = 0;	
@@ -161,7 +179,7 @@ var repo = pathvisio.helpers.getUrlParam('repo');
 
 if (!!pathvisio.helpers.getUrlParam('id')) {
   var id = pathvisio.helpers.getUrlParam('id');
-  var url = '../data/gpml.php?id=' + id;
+  var url = './src/data/gpml.php?id=' + id;
   //var url = 'http://pointer.ucsf.edu/d3/r/pathvisio.js/src/data/gpml.php?id=' + id;
 }
 else {
@@ -240,7 +258,7 @@ else {
       var viewer = self.viewer = OpenSeadragon({
         //debugMode: true,
         id: "pathway-container",
-        prefixUrl: "../lib/openseadragon/images/",
+        prefixUrl: "./src/lib/openseadragon/images/",
         showNavigator:true,
         //minPixelRatio: 1.5,
         minZoomImageRatio: 0.8,
