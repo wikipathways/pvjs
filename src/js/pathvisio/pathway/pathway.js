@@ -207,7 +207,7 @@ pathvisio.pathway = function(){
                 delete element.xref;
               }
               else {
-                element.xref = element.xRef;
+                element.xRef = element.xref;
                 delete element.xref;
               };
             };
