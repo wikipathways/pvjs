@@ -297,7 +297,7 @@ function handleMouseUp(evt) {
 	<title>pathway defs for pathvisio.js</title>
 	<desc>
 	This SVG file contains all the graphical elements (markers and symbols in defs as well as
-			style data) used by the program pathvisio.js, which has two components: 
+	style data) used by the program pathvisio.js, which has two components: 
 	1) a viewer for transforming GPML biological pathway data into an SVG visual representation and 
 	2) an editor for creating both views and models for biological pathways.
 	</desc>
