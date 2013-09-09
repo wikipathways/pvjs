@@ -214,7 +214,7 @@ else {
     var overlays = self.overlays = [];
     var overlayItem = null;
 
-    pathway.labelableElements.forEach(function(element) {
+    pathway.nodes.forEach(function(element) {
       console.log(element);
       var scalingFactor =  content.dzi.width / pathvisio.data.pathways[pathvisio.data.current.svgSelector].boardWidth;
       overlayItem = {
@@ -427,7 +427,7 @@ else {
 
   function displayXrefData(id, detailsFrameSet) {
     var pathway = pathvisio.data.pathways[pathvisio.data.current.svgSelector];
-    var node = pathway.labelableElements.filter(function(element) {return element.graphId === id })[0];
+    var node = pathway.nodes.filter(function(element) {return element.graphId === id })[0];
     var xRefData = getXrefData(pathway.organism, node.xRef.database, node.xRef.id, function(data) {
       var parser = CSVParser.parse(data, true, ' ', false, false, '.');
       var parsed = DataGridRenderer.json(parser.dataGrid, parser.headerNames, parser.headerTypes,'\t','\n');

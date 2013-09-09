@@ -32,12 +32,12 @@ pathvisio.pathway.xref = function(){
 
     var alignToAnchorMappings = { "Left":"start", "Center":"middle", "Right":"end" };
 
-  function gpml2json(rawJsonLabelableElements) {
+  function gpml2json(rawJsonNodes) {
     try {
 
-      // LabelableElements
+      // Nodes
 
-      rawJsonLabelableElements.forEach(function(element, index, array) {
+      rawJsonNodes.forEach(function(element, index, array) {
         element.graphId = element.graphid;
         delete element.graphid;
 
@@ -229,8 +229,8 @@ pathvisio.pathway.xref = function(){
         delete element.graphics;
       });
 
-      var validJsonLabelableElements = rawJsonLabelableElements.sort(function(a,b) {return a.zIndex - b.zIndex});
-      return validJsonLabelableElements;
+      var validJsonNodes = rawJsonNodes.sort(function(a,b) {return a.zIndex - b.zIndex});
+      return validJsonNodes;
     }
     catch (e) {
       console.log("Error //converting labelable elements to json: " + e.message);
@@ -239,13 +239,13 @@ pathvisio.pathway.xref = function(){
   };
 
   function drawAll() {
-    var labelableElementsContainer = pathvisio.data.current.svg.selectAll("g.labelable-elements-container")	
-    .data(pathvisio.data.pathways[pathvisio.data.current.svgSelector].labelableElements)
+    var nodesContainer = pathvisio.data.current.svg.selectAll("g.nodes-container")	
+    .data(pathvisio.data.pathways[pathvisio.data.current.svgSelector].nodes)
     .enter()
     .append("g")
-    .attr("id", function (d) { return 'labelable-elements-container-' + d.graphId })
+    .attr("id", function (d) { return 'nodes-container-' + d.graphId })
     .attr('transform', function(d) { return 'translate(' + d.x + ' ' + d.y + ')'; })
-    .attr("class", "labelable-elements-container")
+    .attr("class", "nodes-container")
 .on("click", function(d,i) {
 	if (d.elementType === 'data-node') {
 		var xrefDiv = $('.xrefinfo');
@@ -263,9 +263,9 @@ pathvisio.pathway.xref = function(){
 //.on("click", function(d,i) { alert(d.xRef.id); });
     //.call(drag);
 
-    var labelableElements = labelableElementsContainer.each(function(d) {
-      var labelableElement = d3.select(this).append('use')
-      .attr("id", function (d) {return 'labelable-element-' + d["@GraphId"]})
+    var nodes = nodesContainer.each(function(d) {
+      var node = d3.select(this).append('use')
+      .attr("id", function (d) {return 'node-' + d["@GraphId"]})
       .attr('transform', function(d) { 
         var transform = 'none';
         if (d.hasOwnProperty('rotation')) {
@@ -276,10 +276,10 @@ pathvisio.pathway.xref = function(){
       .attr("class", function (d) { 
         var styleClass = ''; 
         if (d.elementType === 'data-node') {
-          styleClass = "labelable-element " + d.elementType + ' ' + d.dataNodeType; 
+          styleClass = "node " + d.elementType + ' ' + d.dataNodeType; 
         }
         else {
-          styleClass = "labelable-element " + d.elementType; 
+          styleClass = "node " + d.elementType; 
         };
         return styleClass })
         .attr("x", 0)
@@ -318,26 +318,26 @@ pathvisio.pathway.xref = function(){
             if (d.strokeStyle === 'dashed') {
               style += 'stroke-dasharray: 5,3; '; 
             };
-            // TODO currently cannot render double lines for linestyles for labelableElements.
+            // TODO currently cannot render double lines for linestyles for nodes.
           };
 
           return style; 
         });
 
-        if (symbolsAvailable.filter(function(d, i) { return (symbolsAvailable[0][i].id === pathvisio.data.pathways[pathvisio.data.current.svgSelector].labelableElements[0].symbolType); }).length > 0) {
+        if (symbolsAvailable.filter(function(d, i) { return (symbolsAvailable[0][i].id === pathvisio.data.pathways[pathvisio.data.current.svgSelector].nodes[0].symbolType); }).length > 0) {
           // d3 bug strips 'xlink' so need to say 'xlink:xlink';
-          labelableElement.attr("xlink:xlink:href", function (d) {return "#" + d.symbolType; });
+          node.attr("xlink:xlink:href", function (d) {return "#" + d.symbolType; });
         }
         else {
-          labelableElement.attr("xlink:xlink:href", "#rectangle");
-          console.log('Pathvisio.js does not have access to the requested symbol: ' + pathvisio.data.pathways[pathvisio.data.current.svgSelector].labelableElements[0].symbolType + '. Rectangle used as placeholder.');
+          node.attr("xlink:xlink:href", "#rectangle");
+          console.log('Pathvisio.js does not have access to the requested symbol: ' + pathvisio.data.pathways[pathvisio.data.current.svgSelector].nodes[0].symbolType + '. Rectangle used as placeholder.');
         };
 
         // use this for tspan option for rendering text, including multi-line
 
         if (d.hasOwnProperty('textLabel')) {
-          var labelableElementText = d3.select(this).append('text')
-          .attr("id", function (d) { return 'labelable-element-text-' + d.graphId; })
+          var nodeText = d3.select(this).append('text')
+          .attr("id", function (d) { return 'node-text-' + d.graphId; })
           .attr("x", 0)
           .attr("y", 0)
           .attr('transform', function(d) {
@@ -413,7 +413,7 @@ pathvisio.pathway.xref = function(){
               return style; 
             });
 
-            var labelableElementTspan = labelableElementText.each(function(d) {
+            var nodeTspan = nodeText.each(function(d) {
               var fontSize = d.textLabel.fontSize;
               d3.select(this).selectAll('tspan')
               .data(function (d) {
@@ -433,29 +433,29 @@ pathvisio.pathway.xref = function(){
         // use this for foreignObject object option for rendering text, including multi-line
 
         if (d.hasOwnProperty('textLabel')) {
-        var labelableElementSwitch = d3.select(this).append('switch');
+        var nodeSwitch = d3.select(this).append('switch');
 
-        var labelableElementForeignObject = labelableElementSwitch.append('foreignObject') 
+        var nodeForeignObject = nodeSwitch.append('foreignObject') 
         //.attr("x", 0)
         //.attr("y", 0)
         .attr("width", function (d) { return d.width + 'px'; })
         .attr("height", function (d) { return d.height + 'px'; });
 
-        var labelableElementBody = labelableElementForeignObject.append('xhtml:body') 
+        var nodeBody = nodeForeignObject.append('xhtml:body') 
         .attr("xmlns", "http://www.w3.org/1999/xhtml")
-        .attr("id", function (d) { return 'labelable-element-text-' + d.graphId; })
+        .attr("id", function (d) { return 'node-text-' + d.graphId; })
         .attr("style", function (d) { return 'height:' + d.height + 'px'; });
 
-        var labelableElementLink = labelableElementBody.append('link') 
+        var nodeLink = nodeBody.append('link') 
         .attr("rel", "stylesheet")
         .attr("href", "pathways.css")
         .attr("type", "text/css");
 
-        var labelableElementOuter = labelableElementBody.append('div') 
+        var nodeOuter = nodeBody.append('div') 
         .attr("class", "outer") 
         .attr("style", function (d) { return 'height:' + d.height + 'px'; });
 
-        var labelableElementP = labelableElementOuter.append('p') 
+        var nodeP = nodeOuter.append('p') 
         .attr("style", function (d) { 
         var style = 'height:' + d.height + 'px; ';
         if (d.textLabel.hasOwnProperty('color')) {
@@ -476,15 +476,15 @@ pathvisio.pathway.xref = function(){
         .attr("class", function (d) { 
         var styleClass = ''; 
         if (d.elementType === 'data-node') {
-        styleClass = "labelable-element " + d.elementType + ' ' + d.dataNodeType; 
+        styleClass = "node " + d.elementType + ' ' + d.dataNodeType; 
         }
         else {
-        styleClass = "labelable-element " + d.elementType; 
+        styleClass = "node " + d.elementType; 
         };
         return styleClass });
 
-        var labelableElementText = labelableElementSwitch.append('text')
-        .attr("id", function (d) { return 'labelable-element-text-' + d.graphId; })
+        var nodeText = nodeSwitch.append('text')
+        .attr("id", function (d) { return 'node-text-' + d.graphId; })
         .attr("x", function (d) { return d.width / 2; })
         .attr("y", function (d) { return d.height / 2 + 0.3 * d.textLabel.fontSize; })
         //.attr("style", function (d) { return 'stroke:' + 'red'; })
