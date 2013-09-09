@@ -64,7 +64,7 @@ function getGpml(url, callback) {
 					"y":0.0
 					},
 				"biopax":null,
-				"labelableElement":[ // includes data nodes, shapes (lines, arcs, braces, rectangles, cellular compartments...) and labels
+				"node":[ // includes data nodes, shapes (lines, arcs, braces, rectangles, cellular compartments...) and labels
 					{
 					       	"comments":[
 					       		"abc",
