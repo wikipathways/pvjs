@@ -21,8 +21,8 @@ pathvisio.helpers = function(){
       return parameter;
     }
     else {
-      warn.log('Error: URL not given');
-      return 'Error';
+      console.warn('Warning: URL parameter is null.');
+      return null;
     };
   };
 
@@ -46,11 +46,32 @@ pathvisio.helpers = function(){
     };
   };
 
+  function getWindowDimensions(object) {
+    var winW = 630, winH = 460;
+    if (document.body && document.body.offsetWidth) {
+     winW = document.body.offsetWidth;
+     winH = document.body.offsetHeight;
+    }
+    if (document.compatMode=='CSS1Compat' &&
+        document.documentElement &&
+        document.documentElement.offsetWidth ) {
+     winW = document.documentElement.offsetWidth;
+     winH = document.documentElement.offsetHeight;
+    }
+    if (window.innerWidth && window.innerHeight) {
+     winW = window.innerWidth;
+     winH = window.innerHeight;
+    }
+    return {'width':winW, 'height':winH};
+  };
+
   return{
     splitStringByNewLine:splitStringByNewLine,
     getUrlParam:getUrlParam,
     cloneNode:cloneNode,
-    convertToArray:convertToArray
+    convertToArray:convertToArray,
+    getUrlParam:getUrlParam,
+    getWindowDimensions:getWindowDimensions,
   }
 }();
 
