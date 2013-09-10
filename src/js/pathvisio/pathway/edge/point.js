@@ -150,10 +150,10 @@ pathvisio.pathway.edge.point = function(){
   function getGraphRef(point) {
     self.point=point;
     if (point.hasOwnProperty('graphRef')) {
-      if (pathvisio.data.pathways[pathvisio.data.current.svgSelector].hasOwnProperty('labelableElements')) {
-        var labelableElement = pathvisio.data.pathways[pathvisio.data.current.svgSelector].labelableElements.filter(function(element) {return element.graphId === point.graphRef})[0]
-        if (labelableElement !== undefined) {
-          return {'type':'labelableElement', 'element':labelableElement};
+      if (pathvisio.data.pathways[pathvisio.data.current.svgSelector].hasOwnProperty('nodes')) {
+        var node = pathvisio.data.pathways[pathvisio.data.current.svgSelector].nodes.filter(function(element) {return element.graphId === point.graphRef})[0]
+        if (node !== undefined) {
+          return {'type':'node', 'element':node};
         };
       };
 
@@ -190,13 +190,13 @@ pathvisio.pathway.edge.point = function(){
 
       }
       else {
-        if (edgeTerminusRef.type === 'labelableElement') {
-          var coordinates = pathvisio.pathway.labelableElement.getPortCoordinates(edgeTerminusRef.element, point.relX, point.relY);
+        if (edgeTerminusRef.type === 'node') {
+          var coordinates = pathvisio.pathway.node.getPortCoordinates(edgeTerminusRef.element, point.relX, point.relY);
         }
         else {
           if (edgeTerminusRef.type === 'group') {
             var groupDimensions = pathvisio.pathway.group.getDimensions(edgeTerminusRef.groupId);
-            var coordinates = pathvisio.pathway.labelableElement.getPortCoordinates(groupDimensions, point.relX, point.relY);
+            var coordinates = pathvisio.pathway.node.getPortCoordinates(groupDimensions, point.relX, point.relY);
           }
           else {
             return 'error';

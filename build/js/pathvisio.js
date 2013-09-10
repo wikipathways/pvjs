@@ -107,7 +107,15 @@ var trim = function(string) {
 }
 
 return { 
-  camelCase:camelCase
+  dotCase:dotCase,
+  classCase:classCase,
+  namespaceCase:namespaceCase,
+  constantCase:constantCase,
+  camelCase:camelCase,
+  titleCase:titleCase,
+  snakeCase:snakeCase,
+  pathCase:pathCase,
+  paramCase:paramCase
 } 
 }();
 ;
@@ -133,7 +141,7 @@ return {
  * This is a super light and simple XML to JSON converter.
  * All it does is scans through child elements of your XML and builds out a JSON structure.
  * To avoid attribute vs. node name conflicts - All attribute entities are prefixed with "@" (i.e. <node attr="1"/> == {node: {"@attr":"1"}} )
- * text or CDATA value will always be inside a "text" property (i.e. myNodeObj.text == <myNodeObj>Hello</myNodeObj> - Hello)
+ * Text or CDATA value will always be inside a "Text" property (i.e. myNodeObj.Text == <myNodeObj>Hello</myNodeObj> - Hello)
  * Node siblings with the same name will be automatically converted into arrays, else if node is singular it will just be an Object
  */
 
@@ -149,7 +157,7 @@ return {
         NODE_TYPES = {
             Element: 1,
             Attribute: 2,
-            text: 3,
+            Text: 3,
             CDATA: 4,
             Root: 9,
             Fragment: 11
@@ -207,7 +215,7 @@ return {
                 throw new Error("Unable to parse XML");
             }
             //If xdoc is just a text or CDATA return value
-            if(xdoc.nodeType === NODE_TYPES.text || xdoc.nodeType === NODE_TYPES.CDATA) {
+            if(xdoc.nodeType === NODE_TYPES.Text || xdoc.nodeType === NODE_TYPES.CDATA) {
                 return xdoc.nodeValue;
             }
             //Extract root node
@@ -232,14 +240,14 @@ return {
                     child = node.childNodes[i];
                     //Check nodeType of each child node
                     switch(child.nodeType) {
-                    case NODE_TYPES.text:
-                        //If parent node has both CDATA and text nodes, we just concatinate them together
-                        buff.text = buff.text ? buff.text + child.nodeValue.trim() : child.nodeValue.trim();
+                    case NODE_TYPES.Text:
+                        //If parent node has both CDATA and Text nodes, we just concatinate them together
+                        buff.Text = buff.Text ? buff.Text + child.nodeValue.trim() : child.nodeValue.trim();
                         break;
                     case NODE_TYPES.CDATA:
-                        //If parent node has both CDATA and text nodes, we just concatinate them together
+                        //If parent node has both CDATA and Text nodes, we just concatinate them together
                         value = child[child.text ? "text" : "nodeValue"]; //IE attributes support
-                        buff.text = buff.text ? buff.text + value : value;
+                        buff.Text = buff.Text ? buff.Text + value : value;
                         break;
                     case NODE_TYPES.Element:
                         name = caseConverter.camelCase(child.nodeName);
@@ -613,8 +621,8 @@ pathvisio.helpers = function(){
       return parameter;
     }
     else {
-      warn.log('Error: URL not given');
-      return 'Error';
+      console.warn('Warning: URL parameter is null.');
+      return null;
     };
   };
 
@@ -638,11 +646,32 @@ pathvisio.helpers = function(){
     };
   };
 
+  function getWindowDimensions(object) {
+    var winW = 630, winH = 460;
+    if (document.body && document.body.offsetWidth) {
+     winW = document.body.offsetWidth;
+     winH = document.body.offsetHeight;
+    }
+    if (document.compatMode=='CSS1Compat' &&
+        document.documentElement &&
+        document.documentElement.offsetWidth ) {
+     winW = document.documentElement.offsetWidth;
+     winH = document.documentElement.offsetHeight;
+    }
+    if (window.innerWidth && window.innerHeight) {
+     winW = window.innerWidth;
+     winH = window.innerHeight;
+    }
+    return {'width':winW, 'height':winH};
+  };
+
   return{
     splitStringByNewLine:splitStringByNewLine,
     getUrlParam:getUrlParam,
     cloneNode:cloneNode,
-    convertToArray:convertToArray
+    convertToArray:convertToArray,
+    getUrlParam:getUrlParam,
+    getWindowDimensions:getWindowDimensions,
   }
 }();
 
@@ -651,7 +680,11 @@ pathvisio.helpers = function(){
 ;
 
 pathvisio.pathway = function(){
-  function gpml2json(gpml){
+
+  // first pass GPML (pathway XML) through an automatic XML to JSON converter, 
+  // then make specific modifications to make the JSON well-formatted, then return the JSON
+
+  function gpml2json(gpml, callback){
 
     // for doing this in Java, we could look at 
     // https://code.google.com/p/json-io/
@@ -659,9 +692,7 @@ pathvisio.pathway = function(){
     self.gpml = gpml;
     console.log('GPML')
     console.log(gpml)
-
-    // We can use xml2json.js or JXON.js. Which is better?
-    // JXON.js
+    
     var pathway = pathvisio.data.pathways[pathvisio.data.current.svgSelector];
     pathway = self.pathway = xml.xmlToJSON(gpml, true).pathway;
     
@@ -689,7 +720,7 @@ pathvisio.pathway = function(){
 
     if ( xmlns.indexOf(gpmlXmlnsIdentifier) !== -1 ) {
 
-      // test for whether the GPML file version matches the current version supported by pathvisio.js
+      // test for whether the GPML file version matches the latest version (only the latest version will be supported by pathvisio.js). As of this writing, the latest version is 2013a.
 
       if (xmlns != gpmlXmlnsSupported) {
 
@@ -697,8 +728,6 @@ pathvisio.pathway = function(){
 
         alert("Pathvisio.js may not fully support the version of GPML provided (xmlns: " + xmlns + "). Please convert to the supported version of GPML (xmlns: " + gpmlXmlnsSupported + ").")
       };
-
-      // Convert output from xml2json.js into jsonGpml (well-formed JSON with all implied elements from gpml explicitly filled in).
 
       pathway.boardWidth = pathway.graphics.boardWidth;
       pathway.boardHeight = pathway.graphics.boardHeight;
@@ -822,12 +851,12 @@ pathvisio.pathway = function(){
 
       // DataNodes 
 
-      // GPML to jGPML shape name mappings: { "OldName":"new-name" }
+      // GPML to JSON shape name mappings: { "OldName":"new-name" }
       // replace spaces with dashes
       // Add dashes before every capital letter except any capital letters at the beginning of the string
-      // Replace spaces with dashes
       // Replace double dashes with single dashes
       // replace capitals letters with lowercase. 
+      // TODO use caseConverter.paramCase() instead of this mapping. Eventually, implement and enforce conventions for GPML data node type names
 
       var dataNodeTypeMappings = {
         "GeneProduct":"gene-product",
@@ -859,17 +888,17 @@ pathvisio.pathway = function(){
                 delete element.xref;
               }
               else {
-                element.xref = element.xRef;
+                element.xRef = element.xref;
                 delete element.xref;
               };
             };
           });
 
-          if (pathway.hasOwnProperty('labelableElements')) {
-            pathway.labelableElements = pathway.labelableElements.concat(dataNodes);
+          if (pathway.hasOwnProperty('nodes')) {
+            pathway.nodes = pathway.nodes.concat(dataNodes);
           }
           else {
-            pathway.labelableElements = dataNodes;
+            pathway.nodes = dataNodes;
           };
 
         }
@@ -892,11 +921,11 @@ pathvisio.pathway = function(){
             element.elementType = 'label';
           });
 
-          if (pathway.hasOwnProperty('labelableElements')) {
-            pathway.labelableElements = pathway.labelableElements.concat(labels);
+          if (pathway.hasOwnProperty('nodes')) {
+            pathway.nodes = pathway.nodes.concat(labels);
           }
           else {
-            pathway.labelableElements = labels;
+            pathway.nodes = labels;
           };
         }
         else {
@@ -918,11 +947,11 @@ pathvisio.pathway = function(){
             element.elementType = 'shape';
           });
 
-          if (pathway.hasOwnProperty('labelableElements')) {
-            pathway.labelableElements = pathway.labelableElements.concat(shapes);
+          if (pathway.hasOwnProperty('nodes')) {
+            pathway.nodes = pathway.nodes.concat(shapes);
           }
           else {
-            pathway.labelableElements = shapes;
+            pathway.nodes = shapes;
           };
         }
         else {
@@ -933,25 +962,24 @@ pathvisio.pathway = function(){
         console.log("Error converting shape to json: " + e.message);
       };
 
-      // LabelableElements
+      // Nodes
 
       try {
-        if (pathway.hasOwnProperty('labelableElements')) {
-          pathway.labelableElements = pathvisio.pathway.labelableElement.gpml2json(pathway.labelableElements);
+        if (pathway.hasOwnProperty('nodes')) {
+          pathway.nodes = pathvisio.pathway.node.gpml2json(pathway.nodes);
         }
         else {
-          console.log("No element(s) named 'labelableElements' found in this gpml file.");
+          console.log("No element(s) named 'nodes' found in this gpml file.");
         };
       }
       catch (e) {
-        console.log("Error converting labelableElements to json: " + e.message);
+        console.log("Error converting nodes to json: " + e.message);
       };
-
 
       // BiopaxRefs 
 
       try {
-        if (pathway.hasOwnProperty('biopaxref')) {
+        if (pathway.hasOwnProperty('biopaxRef')) {
           pathway.biopaxRefs = pathvisio.helpers.convertToArray( pathway.biopaxRef );
           delete pathway.biopaxRef;
 
@@ -960,7 +988,7 @@ pathvisio.pathway = function(){
           //});
         }
         else {
-          console.log("No element(s) named 'biopaxref' for the element 'pathway' found in this gpml file.");
+          console.log("No element(s) named 'biopaxRef' for the element 'pathway' found in this gpml file.");
         };
       }
       catch (e) {
@@ -971,7 +999,8 @@ pathvisio.pathway = function(){
 
       try {
         if (pathway.hasOwnProperty('biopax')) {
-          //do something
+          pathway.biopax.bpPublicationXrefs = pathvisio.helpers.convertToArray( pathway.biopax.bpPublicationXref );
+          delete pathway.biopax.bpPublicationXref;
         }
         else {
           console.log("No element(s) named 'biopax' found in this gpml file.");
@@ -987,7 +1016,8 @@ pathvisio.pathway = function(){
       console.log(pathvisio.data.pathways[pathvisio.data.current.svgSelector]);
 
       delete pathway.graphics;
-      return pathvisio.data.pathways[pathvisio.data.current.svgSelector] = pathway;
+      pathvisio.data.pathways[pathvisio.data.current.svgSelector] = pathway;
+      callback(pathvisio.data.pathways[pathvisio.data.current.svgSelector] = pathway);
     }
     else {
       alert("Pathvisio.js does not support the data format provided. Please convert to GPML and retry.")
@@ -996,56 +1026,49 @@ pathvisio.pathway = function(){
     }
   };
 
-  function get(url, mimeType, callback) {
-    if (!url || !mimeType) {
+  // get GPML (pathway XML) from WikiPathways (by ID) or a URL (could be a local file or any other accessible GPML source),
+  // convert to formatted JSON and return the JSON to the function that called getJson()
+
+  function getJson(url, mimeType, callback) {
+    if (!url) {
 
       // TODO throw a proper error here
 
-      var error = null;
-      if (!url) {
-        error += 'Error: URL not specified.';
-      };
-      if (!mimeType) {
-        error += 'Error: URL not specified.';
-      };
-      return console.warn(error);
+      var error = 'Error: URL not specified.';
+      console.warn(error);
+      return error;
     }
     else {
-      // be sure server has set gpml mime type to application/gpml+xml or application/gpml+xml
 
-      d3.xml(url, "application/xml", function(gpmlDoc) {
+      // be sure server has set gpml mime type to application/xml or application/gpml+xml
 
-        /* if from webservice, we would have used this code, but now, we've decided that the proper format
-         * for the response (gpmlDoc) is GPML as an XML document. If the response would be anything else,
-         * such as the XML document that the webservice gives as a response, the parsing and manipulation must
-         * happen before calling get().
+      if (!mimeType) {
+        mimeType = 'application/xml';
+      };
 
-         var sGpml = gpmlDoc.getElementsByTagNameNS("http://www.wikipathways.org/webservice", "gpml")[0].textContent;
-         var oParser = new DOMParser();
-         var oDOM = oParser.parseFromString(sGpml, "text/xml");
-         var gpml = oDOM.documentElement;
+      if (!pathvisio.data.current.svgSelector) {
+        pathvisio.data.current.svgSelector = new Date().toString();
+      };
 
-        */
 
-        // if the response is a valid GPML document (ie, not from webservice)
+      // I would prefer to use d3.xml for the http request in order to not depend on jQuery,
+      // but d3.xml doesn't seem to work with IE8. TODO remove dependency on jQuery
 
-        var oSerializer = new XMLSerializer();
-        var sGpml = self.sGpml = oSerializer.serializeToString(gpmlDoc);
-        var gpml = gpmlDoc.documentElement;
-        console.log('GPML');
-        console.log(gpml);
+      console.log('callback');
+      console.log(callback);
 
-        pathvisio.pathway.gpml2json(gpml);
-        var sJson = self.sJson = JSON.stringify(pathvisio.data.pathways[pathvisio.data.current.svgSelector], undefined, 2);
-
-        callback(pathvisio.data.pathways[pathvisio.data.current.svgSelector], sGpml, sJson);
+      $.get(url, mimeType, function(data) {
+        pathvisio.pathway.gpml2json(data, function(json) {
+          callback(json);
+        });
       });
     };
   };
 
   function draw(data){
     if (!data) {
-      return console.warn('Error: No data entered as input.');
+      console.warn('Error: No data entered as input.');
+      return 'Error';
     };
 
     var drag = d3.behavior.drag()
@@ -1063,7 +1086,7 @@ pathvisio.pathway = function(){
     pathvisio.data.current.svg.attr('height', data.boardHeight);
 
     if (!!pathvisio.data.pathways[pathvisio.data.current.svgSelector].biopaxRefs) {
-      var pathwayPublicationXrefs = pathvisio.data.current.svg.selectAll(".pathway-publication-xref-text")	
+      var pathwayPublicationXrefs = pathvisio.data.current.svg.select('#viewport').selectAll(".pathway-publication-xref-text")	
       .data(pathvisio.data.pathways[pathvisio.data.current.svgSelector].biopaxRefs)
       .enter()
       .append("text")
@@ -1074,12 +1097,18 @@ pathvisio.pathway = function(){
       .attr("class", 'pathway-publication-xref-text')
       .attr("style", "")
       .text(function (d) {
+
+        // d is an array of biopaxRefs. There are several IDs for biopaxRefs, but rdfId (rdf:id) is the one used for
+        // GPML to link pathway elements with biopaxRefs.
+        // TODO I set rdfId to null here because I think not doing so could result in errors if the rdfId value for
+        // a previous instance of biopaxRefs had a value that was used when evaluating a later instance
+
         var index = 0;
-        var gpmlId = null;
+        var rdfId = null;
         do {
-          gpmlId = pathvisio.data.pathways[pathvisio.data.current.svgSelector].biopax.publicationXrefs[index].gpmlId;
+          rdfId = pathvisio.data.pathways[pathvisio.data.current.svgSelector].biopax.bpPublicationXrefs[index].rdfId;
           index += 1;
-        } while (gpmlId !== d && index < pathvisio.data.pathways[pathvisio.data.current.svgSelector].biopax.publicationXrefs.length);
+        } while (rdfId !== d.Text && index < pathvisio.data.pathways[pathvisio.data.current.svgSelector].biopax.bpPublicationXrefs.length);
         return index});
     };
 
@@ -1091,10 +1120,12 @@ pathvisio.pathway = function(){
 
     pathvisio.pathway.edge.drawAll();
 
-    pathvisio.pathway.labelableElement.drawAll();
+    pathvisio.pathway.node.drawAll();
 
     pathvisio.pathway.infoBox.draw();
   };
+
+  // get JSON and draw SVG representation of pathway
 
   function load(svgSelector, url, mimeType){
     if (!!svgSelector) {
@@ -1105,29 +1136,29 @@ pathvisio.pathway = function(){
         console.log('Successfully loaded SVG pathway template.');
       }
       else {
-        return console.warn('Error: ' + svgCount + ' SVG template(s) returned with selector "' + svgSelector + '". Please redefined selector so only 1 result is returned.');
+        console.warn('Error: ' + svgCount + ' SVG template(s) returned with selector "' + svgSelector + '". Please redefined selector so only 1 result is returned.');
+        return 'Error';
       };
     }
     else {
-      return console.warn('Error: No SVG template selector specified.');
+      console.warn('Error: No SVG template selector specified.');
+      return 'Error';
     };
 
     /*
-    // Use this code if you want to get the SVG using d3.xml
+    // Use this code if you want to get the SVG using d3.xml.
+    // I think this would be used if the SVG were included in the document as an embedded object instead of included directly in the DOM.
     pathvisio.data.current.svg = d3.select("#pathway-container").select(function() {
-    return this.getSVGDocument().documentElement;
+      return this.getSVGDocument().documentElement;
     });
     */
 
     if (!url) {
-      return console.warn('Error: No url specified for GPML or JSON data.');
+      console.warn('Error: No url specified for GPML or JSON data.');
+      return 'No URL specified.';
     };
 
-    if (!mimeType) {
-      mimeType = 'application/xml';
-    };
-
-    get(url, mimeType, function(data, sGpml, sJson) {
+    getJson(url, null, function(data, sGpml, sJson) {
       draw(data);
     });
   };
@@ -1135,7 +1166,7 @@ pathvisio.pathway = function(){
   return {
     draw:draw,
     load:load,
-    get:get,
+    getJson:getJson,
     gpml2json:gpml2json
   }
 }();
@@ -1149,9 +1180,9 @@ pathvisio.pathway.group = function(){
 
       var validGroups = pathvisio.data.pathways[pathvisio.data.current.svgSelector].groups.filter(function(el) {
         var groupId = el.groupId
-        return (pathvisio.data.pathways[pathvisio.data.current.svgSelector].labelableElements.filter(function(el) {return (el.groupRef === groupId)}).length>0)
+        return (pathvisio.data.pathways[pathvisio.data.current.svgSelector].nodes.filter(function(el) {return (el.groupRef === groupId)}).length>0)
       });
-      var groupsContainer = pathvisio.data.current.svg.selectAll("use.group")	
+      var groupsContainer = pathvisio.data.current.svg.select('#viewport').selectAll("use.group")	
       .data(validGroups)
       .enter()
       .append("path")
@@ -1181,7 +1212,7 @@ pathvisio.pathway.group = function(){
   };
 
   function getDimensions(groupId) {
-    var groupMembers = pathvisio.data.pathways[pathvisio.data.current.svgSelector].labelableElements.filter(function(el) {return (el.groupRef === groupId)});
+    var groupMembers = pathvisio.data.pathways[pathvisio.data.current.svgSelector].nodes.filter(function(el) {return (el.groupRef === groupId)});
     var group = {};
 
     // I think this is margin, not padding, but I'm not sure
@@ -1228,7 +1259,7 @@ pathvisio.pathway.infoBox = function(){
       infoBox.push({'key':'Organism', 'value':pathvisio.data.pathways[pathvisio.data.current.svgSelector].organism});
     };
 
-    var infoBoxElements = pathvisio.data.current.svg.selectAll("text.info-box")
+    var infoBoxElements = pathvisio.data.current.svg.select('#viewport').selectAll("text.info-box")
     .data(infoBox)
     .enter()
     .append("text")
@@ -1256,9 +1287,9 @@ pathvisio.pathway.infoBox = function(){
 
 ;
 
-// Draw Labelable Elements. Includes data nodes, shapes, labels, cellular components...
+// Draw nodes. Includes data nodes, shapes, labels, cellular components...
 
-pathvisio.pathway.labelableElement = function(){ 
+pathvisio.pathway.node = function(){ 
 
   // GPML to JSON shape name mappings: { "OldName":"new-name" }
   // replace spaces with dashes
@@ -1292,12 +1323,12 @@ pathvisio.pathway.labelableElement = function(){
 
   var alignToAnchorMappings = { "Left":"start", "Center":"middle", "Right":"end" };
 
-  function gpml2json(rawJsonLabelableElements) {
+  function gpml2json(rawJsonNodes) {
     try {
 
-      // LabelableElements
+      // Nodes
 
-      rawJsonLabelableElements.forEach(function(element, index, array) {
+      rawJsonNodes.forEach(function(element, index, array) {
         if (element.hasOwnProperty('comment')) {
           element.comments = pathvisio.helpers.convertToArray( element.comment );
           delete element.comment;
@@ -1500,8 +1531,8 @@ pathvisio.pathway.labelableElement = function(){
         delete element.graphics;
       });
 
-      var validJsonLabelableElements = rawJsonLabelableElements.sort(function(a,b) {return a.zIndex - b.zIndex});
-      return validJsonLabelableElements;
+      var validJsonNodes = rawJsonNodes.sort(function(a,b) {return a.zIndex - b.zIndex});
+      return validJsonNodes;
     }
     catch (e) {
       console.log("Error converting labelable elements to json: " + e.message);
@@ -1510,15 +1541,18 @@ pathvisio.pathway.labelableElement = function(){
   };
 
   function drawAll() {
-    var labelableElementsContainer = pathvisio.data.current.svg.selectAll("g.labelable-elements-container")	
-    .data(pathvisio.data.pathways[pathvisio.data.current.svgSelector].labelableElements)
+    var nodesContainer = pathvisio.data.current.svg.select('#viewport').selectAll("g.nodes-container")	
+    .data(pathvisio.data.pathways[pathvisio.data.current.svgSelector].nodes)
     .enter()
     .append("g")
-    .attr("id", function (d) { return 'labelable-elements-container-' + d.graphId })
+    .attr("id", function (d) { return 'nodes-container-' + d.graphId })
     .attr('transform', function(d) { return 'translate(' + d.x + ' ' + d.y + ')'; })
-    .attr("class", "labelable-elements-container")
+    .attr("class", "nodes-container")
     .on("click", function(d,i) {
       if (d.elementType === 'data-node') {
+        pathvisio.pathway.xRef.displayData(d.graphId);
+      };
+        /*
         var xrefDiv = $('.xrefinfo');
 
         // (id, datasource, species, symbol)
@@ -1529,16 +1563,14 @@ pathvisio.pathway.labelableElement = function(){
           xrefDiv.empty();
           xrefDiv.append(xrefHtml);
         }, 2000);
-      };
-    });
-    //.on("click", function(d,i) { alert(d.xRef.id); });
-    //.call(drag);
+        //*/
+  });
 
-    var labelableElements = labelableElementsContainer.each(function(d, i) {
-      var labelableElement = d3.select(this).append('use')
-      .attr("id", function (d) {return 'labelable-element-' + d.graphId})
+    var nodes = nodesContainer.each(function(d, i) {
+      var node = d3.select(this).append('use')
+      .attr("id", function (d) {return 'node-' + d.graphId})
       .attr('transform', function(d) { 
-        var transform = 'none';
+        var transform = 'scale(1)';
         if (d.hasOwnProperty('rotation')) {
           transform = 'rotate(' + d.rotation + ' ' + d.width / 2 + ' ' + d.height / 2 + ')';
         };
@@ -1547,10 +1579,10 @@ pathvisio.pathway.labelableElement = function(){
       .attr("class", function (d) { 
         var styleClass = ''; 
         if (d.elementType === 'data-node') {
-          styleClass = "labelable-element " + d.elementType + ' ' + d.dataNodeType; 
+          styleClass = "node " + d.elementType + ' ' + d.dataNodeType; 
         }
         else {
-          styleClass = "labelable-element " + d.elementType; 
+          styleClass = "node " + d.elementType; 
         };
         return styleClass;
       })
@@ -1598,20 +1630,20 @@ pathvisio.pathway.labelableElement = function(){
 
             // draw second element
 
-            d3.select(labelableElementsContainer[0][i]).append("use")
-            .attr("id", function (d) {return 'labelable-element-double' + d.graphId})
+            d3.select(nodesContainer[0][i]).append("use")
+            .attr("id", function (d) {return 'node-double' + d.graphId})
             .attr("class", function (d) { 
               var styleClass = ''; 
               if (d.elementType === 'data-node') {
-                styleClass = "labelable-element " + d.elementType + ' ' + d.dataNodeType; 
+                styleClass = "node " + d.elementType + ' ' + d.dataNodeType; 
               }
               else {
-                styleClass = "labelable-element " + d.elementType; 
+                styleClass = "node " + d.elementType; 
               };
               return styleClass;
             })
             .attr('transform', function(d) { 
-              var transform = 'none';
+              var transform = 'scale(1)';
               if (d.hasOwnProperty('rotation')) {
 
                 // the reference to width and height here is to specify the center of rotation as the center of the second element
@@ -1636,20 +1668,20 @@ pathvisio.pathway.labelableElement = function(){
         return style; 
       });
 
-      if (symbolsAvailable.filter(function(d, i) { return (symbolsAvailable[0][i].id === pathvisio.data.pathways[pathvisio.data.current.svgSelector].labelableElements[0].symbolType); }).length > 0) {
+      if (symbolsAvailable.filter(function(d, i) { return (symbolsAvailable[0][i].id === pathvisio.data.pathways[pathvisio.data.current.svgSelector].nodes[0].symbolType); }).length > 0) {
         // d3 bug strips 'xlink' so need to say 'xlink:xlink';
-        labelableElement.attr("xlink:xlink:href", function (d) {return "#" + d.symbolType; });
+        node.attr("xlink:xlink:href", function (d) {return "#" + d.symbolType; });
       }
       else {
-        labelableElement.attr("xlink:xlink:href", "#rectangle");
-        console.log('Pathvisio.js does not have access to the requested symbol: ' + pathvisio.data.pathways[pathvisio.data.current.svgSelector].labelableElements[0].symbolType + '. Rectangle used as placeholder.');
+        node.attr("xlink:xlink:href", "#rectangle");
+        console.log('Pathvisio.js does not have access to the requested symbol: ' + pathvisio.data.pathways[pathvisio.data.current.svgSelector].nodes[0].symbolType + '. Rectangle used as placeholder.');
       };
 
       // use this for tspan option for rendering text, including multi-line
 
       if (d.hasOwnProperty('textLabel')) {
-        var labelableElementText = d3.select(this).append('text')
-        .attr("id", function (d) { return 'labelable-element-text-' + d.graphId; })
+        var nodeText = d3.select(this).append('text')
+        .attr("id", function (d) { return 'node-text-' + d.graphId; })
         .attr("x", 0)
         .attr("y", 0)
         .attr('transform', function(d) {
@@ -1725,7 +1757,7 @@ pathvisio.pathway.labelableElement = function(){
               return style; 
             });
 
-            var labelableElementTspan = labelableElementText.each(function(d) {
+            var nodeTspan = nodeText.each(function(d) {
               var fontSize = d.textLabel.fontSize;
               d3.select(this).selectAll('tspan')
               .data(function (d) {
@@ -1751,12 +1783,17 @@ pathvisio.pathway.labelableElement = function(){
               .attr("class", 'node-publication-xref-text')
               .attr("style", "")
               .text(function (d) {
+
+                // d is an array of biopaxRefs
+
                 var index = 0;
-                var gpmlId = null;
+                var rdfId = null;
                 do {
-                  gpmlId = pathvisio.data.pathways[pathvisio.data.current.svgSelector].biopax.publicationXrefs[index].gpmlId;
+                  console.log('pathvisio.data.pathways[pathvisio.data.current.svgSelector].biopax');
+                  console.log(pathvisio.data.pathways[pathvisio.data.current.svgSelector].biopax);
+                  rdfId = pathvisio.data.pathways[pathvisio.data.current.svgSelector].biopax.bpPublicationXrefs[index].rdfId;
                   index += 1;
-                } while (gpmlId !== d && index < pathvisio.data.pathways[pathvisio.data.current.svgSelector].biopax.publicationXrefs.length);
+                } while (rdfId !== d.Text && index < pathvisio.data.pathways[pathvisio.data.current.svgSelector].biopax.bpPublicationXrefs.length);
                 return index});
             };
 
@@ -1767,29 +1804,29 @@ pathvisio.pathway.labelableElement = function(){
       // use this for foreignObject object option for rendering text, including multi-line
 
       if (d.hasOwnProperty('textLabel')) {
-      var labelableElementSwitch = d3.select(this).append('switch');
+      var nodeSwitch = d3.select(this).append('switch');
 
-      var labelableElementForeignObject = labelableElementSwitch.append('foreignObject') 
+      var nodeForeignObject = nodeSwitch.append('foreignObject') 
       //.attr("x", 0)
       //.attr("y", 0)
       .attr("width", function (d) { return d.width + 'px'; })
       .attr("height", function (d) { return d.height + 'px'; });
 
-      var labelableElementBody = labelableElementForeignObject.append('xhtml:body') 
+      var nodeBody = nodeForeignObject.append('xhtml:body') 
       .attr("xmlns", "http://www.w3.org/1999/xhtml")
-      .attr("id", function (d) { return 'labelable-element-text-' + d.graphId; })
+      .attr("id", function (d) { return 'node-text-' + d.graphId; })
       .attr("style", function (d) { return 'height:' + d.height + 'px'; });
 
-      var labelableElementLink = labelableElementBody.append('link') 
+      var nodeLink = nodeBody.append('link') 
       .attr("rel", "stylesheet")
       .attr("href", "pathways.css")
       .attr("type", "text/css");
 
-      var labelableElementOuter = labelableElementBody.append('div') 
+      var nodeOuter = nodeBody.append('div') 
       .attr("class", "outer") 
       .attr("style", function (d) { return 'height:' + d.height + 'px'; });
 
-      var labelableElementP = labelableElementOuter.append('p') 
+      var nodeP = nodeOuter.append('p') 
       .attr("style", function (d) { 
       var style = 'height:' + d.height + 'px; ';
       if (d.textLabel.hasOwnProperty('color')) {
@@ -1810,15 +1847,15 @@ pathvisio.pathway.labelableElement = function(){
       .attr("class", function (d) { 
       var styleClass = ''; 
       if (d.elementType === 'data-node') {
-      styleClass = "labelable-element " + d.elementType + ' ' + d.dataNodeType; 
+      styleClass = "node " + d.elementType + ' ' + d.dataNodeType; 
       }
       else {
-      styleClass = "labelable-element " + d.elementType; 
+      styleClass = "node " + d.elementType; 
       };
       return styleClass });
 
-      var labelableElementText = labelableElementSwitch.append('text')
-      .attr("id", function (d) { return 'labelable-element-text-' + d.graphId; })
+      var nodeText = nodeSwitch.append('text')
+      .attr("id", function (d) { return 'node-text-' + d.graphId; })
       .attr("x", function (d) { return d.width / 2; })
       .attr("y", function (d) { return d.height / 2 + 0.3 * d.textLabel.fontSize; })
       //.attr("style", function (d) { return 'stroke:' + 'red'; })
@@ -2055,7 +2092,7 @@ pathvisio.pathway.edge = function(){
     if (pathvisio.data.pathways[pathvisio.data.current.svgSelector].hasOwnProperty('edges')) {
       var pathData = null;
 
-      var edges = pathvisio.data.current.svg.selectAll("pathway.edge")
+      var edges = pathvisio.data.current.svg.select('#viewport').selectAll("pathway.edge")
       .data(pathvisio.data.pathways[pathvisio.data.current.svgSelector].edges)
       .enter()
       .append("path")
@@ -2078,7 +2115,7 @@ pathvisio.pathway.edge = function(){
             // what PathVisio (Java) does, but the white line (overlaying the
             // thick line to create a "double line") is hard to see at 1px.
 
-            pathvisio.data.current.svg.append("path")
+            pathvisio.data.current.svg.select('#viewport').append("path")
             .attr("class", d.edgeType + "-double")
             .attr("d", pathData)
             .attr("class", "drawing-board-color-stroke")
@@ -2343,10 +2380,10 @@ pathvisio.pathway.edge.point = function(){
   function getGraphRef(point) {
     self.point=point;
     if (point.hasOwnProperty('graphRef')) {
-      if (pathvisio.data.pathways[pathvisio.data.current.svgSelector].hasOwnProperty('labelableElements')) {
-        var labelableElement = pathvisio.data.pathways[pathvisio.data.current.svgSelector].labelableElements.filter(function(element) {return element.graphId === point.graphRef})[0]
-        if (labelableElement !== undefined) {
-          return {'type':'labelableElement', 'element':labelableElement};
+      if (pathvisio.data.pathways[pathvisio.data.current.svgSelector].hasOwnProperty('nodes')) {
+        var node = pathvisio.data.pathways[pathvisio.data.current.svgSelector].nodes.filter(function(element) {return element.graphId === point.graphRef})[0]
+        if (node !== undefined) {
+          return {'type':'node', 'element':node};
         };
       };
 
@@ -2383,13 +2420,13 @@ pathvisio.pathway.edge.point = function(){
 
       }
       else {
-        if (edgeTerminusRef.type === 'labelableElement') {
-          var coordinates = pathvisio.pathway.labelableElement.getPortCoordinates(edgeTerminusRef.element, point.relX, point.relY);
+        if (edgeTerminusRef.type === 'node') {
+          var coordinates = pathvisio.pathway.node.getPortCoordinates(edgeTerminusRef.element, point.relX, point.relY);
         }
         else {
           if (edgeTerminusRef.type === 'group') {
             var groupDimensions = pathvisio.pathway.group.getDimensions(edgeTerminusRef.groupId);
-            var coordinates = pathvisio.pathway.labelableElement.getPortCoordinates(groupDimensions, point.relX, point.relY);
+            var coordinates = pathvisio.pathway.node.getPortCoordinates(groupDimensions, point.relX, point.relY);
           }
           else {
             return 'error';
@@ -2623,4 +2660,205 @@ pathvisio.pathway.edge.pathData = function(){
   return { 
     get:get
   } 
+}();
+;
+
+pathvisio.pathway.xRef = function(){ 
+
+  var dataSources = [{"database":"Affy","id":"X","url":"https://www.affymetrix.com/LinkServlet?probeset=$id","name":"Affymetrix Probeset"},
+    {"database":"Agilent","id":"Ag","url":"","name":"Agilent"},
+    {"database":"BIND","id":"Bi","url":"http://www.bind.ca/Action?identifier=bindid&idsearch=$id","name":"BIND"},
+    {"database":"BioCyc","id":"Bc","url":"http://biocyc.org/getid?id=$id","name":"BioCyc"},
+    {"database":"BioGrid","id":"Bg","url":"http://thebiogrid.org/$id","name":"BioGRID"},
+    {"database":"BioModels Database","id":"Bm","url":"http://www.ebi.ac.uk/biomodels-main/$id","name":"BioModels Database"},
+    {"database":"BioSystems","id":"Bs","url":"http://www.ncbi.nlm.nih.gov/biosystems/$id","name":"BioSystems"},
+    {"database":"BRENDA","id":"Br","url":"http://www.brenda-enzymes.org/php/result_flat.php4?ecno=$id","name":"BRENDA"},
+    {"database":"CAS","id":"Ca","url":"http://commonchemistry.org/ChemicalDetail.aspx?ref=$id","name":"CAS"},
+    {"database":"CCDS","id":"Cc","url":"http://www.ncbi.nlm.nih.gov/CCDS/CcdsBrowse.cgi?REQUEST=ALLFIELDS&DATA=$id","name":"CCDS"},
+    {"database":"ChEBI","id":"Ce","url":"http://www.ebi.ac.uk/chebi/searchId.do?chebiId=$id","name":"ChEBI"},
+    {"database":"Chemspider","id":"Cs","url":"http://www.chemspider.com/Chemical-Structure.$id.html","name":"ChemSpider"},
+    {"database":"CodeLink","id":"Ge","url":"","name":"CodeLink"},
+    {"database":"Database of Interacting Proteins","id":"Dip","url":"http://dip.doe-mbi.ucla.edu/dip/DIPview.cgi?ID=$id","name":"Database of Interacting Proteins"},
+    {"database":"dbSNP","id":"Sn","url":"http://www.ncbi.nlm.nih.gov/projects/SNP/snp_ref.cgi?rs=$id","name":"dbSNP"},
+    {"database":"DrugBank","id":"Dr","url":"http://www.drugbank.ca/drugs/$id","name":"DrugBank"},
+    {"database":"EcoCyc","id":"Eco","url":"http://ecocyc.org/ECOLI/NEW-IMAGE?type=NIL&object=$id","name":"EcoCyc"},
+    {"database":"EcoGene","id":"Ec","url":"http://ecogene.org/geneInfo.php?eg_id=$id","name":"EcoGene"},
+    {"database":"EMBL","id":"Em","url":"http://www.ebi.ac.uk/ena/data/view/$id","name":"European Nucleotide Archive"},
+    {"database":"Ensembl","id":"En","url":"http://www.ensembl.org/id/$id","name":"Ensembl"},
+    {"database":"Ensembl B. subtilis","id":"EnBs","url":"http://bacteria.ensembl.org/Bacillus/B_subtilis/Gene/Summary?g=$id","name":"Ensembl"},
+    {"database":"Ensembl C. elegans","id":"EnCe","url":"http://www.ensembl.org/Caenorhabditis_elegans/Gene/Summary?g=$id","name":"Ensembl"},
+    {"database":"Ensembl Chicken","id":"EnGg","url":"http://www.ensembl.org/Gallus_gallus/Gene/Summary?g=$id","name":"Ensembl"},
+    {"database":"Ensembl Chimp","id":"EnPt","url":"http://www.ensembl.org/Pan_troglodytes/Gene/Summary?g=$id","name":"Ensembl"},
+    {"database":"Ensembl Cow","id":"EnBt","url":"http://www.ensembl.org/Bos_taurus/Gene/Summary?g=$id","name":"Ensembl"},
+    {"database":"Ensembl Dog","id":"EnCf","url":"http://www.ensembl.org/Canis_familiaris/Gene/Summary?g=$id","name":"Ensembl"},
+    {"database":"Ensembl E. coli","id":"EnEc","url":"http://bacteria.ensembl.org/Escherichia_Shigella/E_coli_K12/Gene/Summary?g=$id","name":"Ensembl"},
+    {"database":"Ensembl Fruitfly","id":"EnDm","url":"http://www.ensembl.org/Drosophila_melanogaster/Gene/Summary?g=$id","name":"Ensembl"},
+    {"database":"Ensembl Horse","id":"EnQc","url":"http://www.ensembl.org/Equus_caballus/Gene/Summary?g=$id","name":"Ensembl"},
+    {"database":"Ensembl Human","id":"EnHs","url":"http://www.ensembl.org/Homo_sapiens/Gene/Summary?g=$id","name":"Ensembl"},
+    {"database":"Ensembl M. tuberculosis","id":"EnMx","url":"http://bacteria.ensembl.org/Mycobacterium/M_tuberculosis_H37Rv/Gene/Summary?g=$id","name":"Ensembl"},
+    {"database":"Ensembl Mosquito","id":"EnAg","url":"http://www.ensembl.org/Anopheles_gambiae/Gene/Summary?_q=$id","name":"Ensembl"},
+    {"database":"Ensembl Mouse","id":"EnMm","url":"http://www.ensembl.org/Mus_musculus/Gene/Summary?g=$id","name":"Ensembl"},
+    {"database":"Ensembl Pig","id":"EnSs","url":"http://www.ensembl.org/Sus_scrofa/Gene/Summary?g=$id","name":"Ensembl"},
+    {"database":"Ensembl Plants","id":"EP","url":"http://plants.ensembl.org/id/$id","name":"Ensembl Plants"},
+    {"database":"Ensembl Rat","id":"EnRn","url":"http://www.ensembl.org/Rattus_norvegicus/Gene/Summary?g=$id","name":"Ensembl"},
+    {"database":"Ensembl Xenopus","id":"EnXt","url":"http://www.ensembl.org/Xenopus_tropicalis/Gene/Summary?g=$id","name":"Ensembl"},
+    {"database":"Ensembl Yeast","id":"EnSc","url":"http://www.ensembl.org/Saccharomyces_cerevisiae/Gene/Summary?g=$id","name":"Ensembl"},
+    {"database":"Ensembl Zebrafish","id":"EnDr","url":"http://www.ensembl.org/Danio_rerio/Gene/Summary?g=$id","name":"Ensembl"},
+    {"database":"Entrez Gene","id":"L","url":"http://www.ncbi.nlm.nih.gov/gene/$id","name":"Entrez Gene"},
+    {"database":"Enzyme Nomenclature","id":"E","url":"http://www.ebi.ac.uk/intenz/query?cmd=SearchEC&ec=$id","name":"Enzyme Nomenclature"},
+    {"database":"FlyBase","id":"F","url":"http://flybase.org/reports/$id.html","name":"FlyBase"},
+    {"database":"GenBank","id":"G","url":"http://www.ncbi.nlm.nih.gov/nuccore/$id","name":"GenBank"},
+    {"database":"Gene Wiki","id":"Gw","url":"http://plugins.biogps.org/cgi-bin/wp.cgi?id=$id","name":"Gene Wiki"},
+    {"database":"GeneOntology","id":"T","url":"http://www.ebi.ac.uk/QuickGO/GTerm?id=$id","name":"Gene Ontology"},
+    {"database":"Gramene Arabidopsis","id":"EnAt","url":"http://www.gramene.org/Arabidopsis_thaliana/Gene/Summary?g=$id","name":"Grameen Arabidopsis"},
+    {"database":"Gramene Genes DB","id":"Gg","url":"http://www.gramene.org/db/genes/search_gene?acc=$id","name":"Gramene Genes"},
+    {"database":"Gramene Literature","id":"Gl","url":"http://www.gramene.org/db/literature/pub_search?ref_id=$id","name":"Gramene Literature"},
+    {"database":"Gramene Maize","id":"EnZm","url":"http://www.maizesequence.org/Zea_mays/Gene/Summary?g=$id","name":"Gramene Maize"},
+    {"database":"Gramene Pathway","id":"Gp","url":"","name":"Gramene Pathway"},
+    {"database":"Gramene Rice","id":"EnOj","url":"http://www.gramene.org/Oryza_sativa/Gene/Summary?db=core;g=$id","name":"Gramene Rice"},
+    {"database":"HGNC","id":"H","url":"http://www.genenames.org/data/hgnc_data.php?match=$id","name":"HGNC Symbol"},
+    {"database":"HGNC Accession number","id":"Hac","url":"http://www.genenames.org/data/hgnc_data.php?hgnc_id=$id","name":"HGNC"},
+    {"database":"HMDB","id":"Ch","url":"http://www.hmdb.ca/metabolites/$id","name":"HMDB"},
+    {"database":"HomoloGene","id":"Hg","url":"http://www.ncbi.nlm.nih.gov/homologene/$id","name":"HomoloGene"},
+    {"database":"HPRD","id":"Hp","url":"","name":"HPRD"},
+    {"database":"Illumina","id":"Il","url":"","name":"Illumina"},
+    {"database":"IntAct","id":"Ia","url":"http://www.ebi.ac.uk/intact/pages/details/details.xhtml?interactionAc=$id","name":"IntAct"},
+    {"database":"InterPro","id":"I","url":"http://www.ebi.ac.uk/interpro/DisplayIproEntry?ac=$id","name":"InterPro"},
+    {"database":"IPI","id":"Ip","url":"http://www.ebi.ac.uk/cgi-bin/dbfetch?db=IPI&id=$id&format=default","name":"IPI"},
+    {"database":"IRGSP Gene","id":"Ir","url":"","name":"IRGSP Gene"},
+    {"database":"Kegg Compound","id":"Ck","url":"http://www.genome.jp/dbget-bin/www_bget?cpd:$id","name":"KEGG Compound"},
+    {"database":"KEGG Drug","id":"Kd","url":"http://www.genome.jp/dbget-bin/www_bget?dr:$id","name":"KEGG Drug"},
+    {"database":"KEGG Genes","id":"Kg","url":"http://www.genome.jp/dbget-bin/www_bget?$id","name":"KEGG Genes"},
+    {"database":"KEGG Glycan","id":"Kgl","url":"http://www.genome.jp/dbget-bin/www_bget?gl:$id","name":"KEGG Glycan"},
+    {"database":"KEGG Pathway","id":"Kp","url":"http://www.genome.jp/dbget-bin/www_bget?pathway+$id","name":"KEGG Pathway"},
+    {"database":"KEGG Reaction","id":"Kr","url":"http://www.genome.jp/dbget-bin/www_bget?rn:$id","name":"KEGG Reaction"},
+    {"database":"LIPID MAPS","id":"Lm","url":"http://www.lipidmaps.org/data/get_lm_lipids_dbgif.php?LM_ID=$id","name":"LIPID MAPS"},
+    {"database":"LipidBank","id":"Lb","url":"http://lipidbank.jp/cgi-bin/detail.cgi?id=$id","name":"LipidBank"},
+    {"database":"MACiE","id":"Ma","url":"http://www.ebi.ac.uk/thornton-srv/databases/cgi-bin/MACiE/entry/getPage.pl?id=$id","name":"MACiE"},
+    {"database":"MaizeGDB","id":"Mg","url":"http://www.maizegdb.org/cgi-bin/displaylocusresults.cgi?term=$id","name":"MaizeGDB"},
+    {"database":"MatrixDB","id":"Md","url":"http://matrixdb.ibcp.fr/cgi-bin/model/report/default?name=$id&class=Association","name":"MatrixDB"},
+    {"database":"MetaCyc","id":"Mc","url":"http://www.metacyc.org/META/NEW-IMAGE?type=NIL&object=$id","name":"MetaCyc"},
+    {"database":"MGI","id":"M","url":"http://www.informatics.jax.org/marker/$id","name":"Mouse Genome Database"},
+    {"database":"MINT","id":"Mi","url":"http://mint.bio.uniroma2.it/mint/search/inFrameInteraction.do?interactionAc=$id","name":"MINT"},
+    {"database":"miRBase mature sequence","id":"Mbm","url":"http://www.mirbase.org/cgi-bin/mature.pl?mature_acc=$id","name":"miRBase mature sequence"},
+    {"database":"miRBase Sequence","id":"Mb","url":"http://microrna.sanger.ac.uk/cgi-bin/sequences/mirna_entry.pl?acc=$id","name":"miRBase Sequence"},
+    {"database":"NASC Gene","id":"N","url":"","name":"NASC Gene"},
+    {"database":"NCBI Protein","id":"Np","url":"http://www.ncbi.nlm.nih.gov/protein/$id","name":"NCBI Protein"},
+    {"database":"NCI Pathway Interaction Database","id":"Pid","url":"http://pid.nci.nih.gov/search/pathway_landing.shtml?what=graphic&jpg=on&pathway_id=$id","name":"NCI Pathway Interaction Database"},
+    {"database":"NuGO wiki","id":"Nw","url":"http://wiki.nugo.org/index.php/$id","name":"NuGO wiki"},
+    {"database":"OMIM","id":"Om","url":"http://omim.org/entry/$id","name":"OMIM"},
+    {"database":"Oryzabase","id":"Ob","url":"http://www.shigen.nig.ac.jp/rice/oryzabase/gateway/gatewayAction.do?target=symbol&id=$id","name":"Oryzabase"},
+    {"database":"Other","id":"O","url":"","name":"Other"},
+    {"database":"Pathway Commons","id":"Pc","url":"http://www.pathwaycommons.org/pc/record2.do?id=$id","name":"Pathway Commons"},
+    {"database":"PDB","id":"Pd","url":"http://www.rcsb.org/pdb/explore/explore.do?structureId=$id","name":"Protein Data Bank"},
+    {"database":"Pfam","id":"Pf","url":"http://pfam.sanger.ac.uk/family/$id/","name":"Pfam"},
+    {"database":"PharmGKB Drug","id":"Pgd","url":"http://www.pharmgkb.org/drug/$id","name":"PharmGKB Drug"},
+    {"database":"PharmGKB Gene","id":"Pgg","url":"http://www.pharmgkb.org/gene/$id","name":"PharmGKB Gene"},
+    {"database":"PharmGKB Pathways","id":"Pgp","url":"http://www.pharmgkb.org/pathway/$id","name":"PharmGKB Pathways"},
+    {"database":"PhosphoSite Protein","id":"Pp","url":"http://www.phosphosite.org/proteinAction.do?id=$id","name":"PhosphoSite Protein"},
+    {"database":"PINA","id":"Pi","url":"http://cbg.garvan.unsw.edu.au/pina/interactome.oneP.do?ac=$id&showExtend=null","name":"PINA"},
+    {"database":"PlantGDB","id":"Pl","url":"","name":"PlantGDB"},
+    {"database":"PubChem-bioassay","id":"Cpb","url":"http://pubchem.ncbi.nlm.nih.gov/assay/assay.cgi?aid=$id","name":"PubChem-bioassay"},
+    {"database":"PubChem-compound","id":"Cpc","url":"http://pubchem.ncbi.nlm.nih.gov/summary/summary.cgi?cid=$id","name":"PubChem-compound"},
+    {"database":"PubChem-substance","id":"Cps","url":"http://pubchem.ncbi.nlm.nih.gov/summary/summary.cgi?sid=$id","name":"PubChem-substance"},
+    {"database":"Reactome","id":"Re","url":"http://www.reactome.org/cgi-bin/eventbrowser_st_id?FROM_REACTOME=1&ST_ID=$id","name":"Reactome"},
+    {"database":"RefSeq","id":"Q","url":"http://www.ncbi.nlm.nih.gov/entrez/viewer.fcgi?val=$id","name":"RefSeq"},
+    {"database":"RESID","id":"Res","url":"http://srs.ebi.ac.uk/srsbin/cgi-bin/wgetz?-id+6JSUg1NA6u4+-e+[RESID:'$id']","name":"RESID"},
+    {"database":"Rfam","id":"Rf","url":"http://www.sanger.ac.uk/cgi-bin/Rfam/getacc?$id","name":"RFAM"},
+    {"database":"RGD","id":"R","url":"http://rgd.mcw.edu/tools/genes/genes_view.cgi?id=$id","name":"Rat Genome Database"},
+    {"database":"Rhea","id":"Rh","url":"http://www.ebi.ac.uk/rhea/reaction.xhtml?id=$id","name":"Rhea"},
+    {"database":"Rice Ensembl Gene","id":"Os","url":"http://www.gramene.org/Oryza_sativa/geneview?gene=$id","name":"Rice Ensembl Gene"},
+    {"database":"SGD","id":"D","url":"http://www.yeastgenome.org/cgi-bin/locus.fpl?dbid=$id","name":"SGD"},
+    {"database":"Small Molecule Pathway Database","id":"Sm","url":"http://pathman.smpdb.ca/pathways/$id/pathway","name":"Small Molecule Pathway Database"},
+    {"database":"SMART","id":"Sma","url":"http://smart.embl-heidelberg.de/smart/do_annotation.pl?DOMAIN=$id","name":"SMART"},
+    {"database":"SPIKE","id":"Sk","url":"http://www.cs.tau.ac.il/~spike/maps/$id.html","name":"SPIKE Map"},
+    {"database":"SPRINT","id":"Spr","url":"http://www.bioinf.manchester.ac.uk/cgi-bin/dbbrowser/sprint/searchprintss.cgi?prints_accn=$id&display_opts=Prints&category=None&queryform=false&regexpr=off","name":"SPRINT"},
+    {"database":"STRING","id":"Str","url":"http://string.embl.de/interactions/$id","name":"STRING"},
+    {"database":"SubstrateDB","id":"Sdb","url":"http://substrate.burnham.org/protein/annotation/$id/html","name":"SubstrateDB"},
+    {"database":"SubtiWiki","id":"Sw","url":"http://www.subtiwiki.uni-goettingen.de/wiki/index.php/$id","name":"SubtiWiki"},
+    {"database":"SUPFAM","id":"Sf","url":"http://supfam.org/SUPERFAMILY/cgi-bin/scop.cgi?ipid=$id","name":"SUPFAM"},
+    {"database":"SWISS-MODEL","id":"Sw","url":"http://swissmodel.expasy.org/repository/smr.php?sptr_ac=$id","name":"SWISS-MODEL"},
+    {"database":"Systems Biology Ontology","id":"Sbo","url":"http://www.ebi.ac.uk/sbo/main/$id","name":"Systems Biology Ontology"},
+    {"database":"TAIR","id":"A","url":"http://arabidopsis.org/servlets/TairObject?type=locus&name=$id","name":"TAIR Locus"},
+    {"database":"TIGR","id":"Ti","url":"","name":"TIGR"},
+    {"database":"TTD Drug","id":"Td","url":"http://bidd.nus.edu.sg/group/cjttd/ZFTTDDRUG.asp?ID=$id","name":"TTD Drug"},
+    {"database":"TTD Target","id":"Tt","url":"http://bidd.nus.edu.sg/group/cjttd/ZFTTDDetail.asp?ID=$id","name":"TTD Target"},
+    {"database":"TubercuList","id":"Tb","url":"http://tuberculist.epfl.ch/quicksearch.php?gene+name=$id","name":"TubercuList"},
+    {"database":"UCSC Genome Browser","id":"Uc","url":"http://genome.ucsc.edu/cgi-bin/hgTracks?position=$id","name":"UCSC Genome Browser"},
+    {"database":"UniGene","id":"U","url":"http://www.ncbi.nlm.nih.gov/UniGene/clust.cgi?UGID=1548618&SEARCH=$id","name":"UniGene"},
+    {"database":"Unipathway","id":"Up","url":"http://www.grenoble.prabi.fr/obiwarehouse/unipathway/upa?upid=$id","name":"Unipathway"},
+    {"database":"Uniprot-TrEMBL","id":"S","url":"http://www.uniprot.org/uniprot/$id","name":"UniProtKB/TrEMBL"},
+    {"database":"Uniprot-SwissProt","id":"Sp","url":"http://www.uniprot.org/uniprot/$id","name":"UniProtKB/Swiss-Prot"},
+    {"database":"Wheat gene names","id":"Wn","url":"http://wheat.pw.usda.gov/report?class=gene;name=$id","name":"Wheat gene names"},
+    {"database":"Wheat gene refs","id":"Wr","url":"http://wheat.pw.usda.gov/cgi-bin/graingenes/report.cgi?class=reference&name=$id","name":"Wheat gene refs"},
+    {"database":"WikiGenes","id":"Wg","url":"http://www.wikigenes.org/e/gene/e/$id.html","name":"WikiGenes"},
+    {"database":"WikiPathways","id":"Wp","url":"http://www.wikipathways.org/index.php/Pathway:$id","name":"WikiPathways"},
+    {"database":"Wikipedia","id":"Wi","url":"http://en.wikipedia.org/wiki/$id","name":"Wikipedia"},
+    {"database":"WormBase","id":"W","url":"http://www.wormbase.org/db/gene/gene?name=$id;class=Gene","name":"WormBase"},
+    {"database":"ZFIN","id":"Z","url":"http://zfin.org/action/marker/view/$id","name":"ZFIN Gene"}];
+
+    function getData(species, database, id, callback) {
+      var databaseId = dataSources.filter(function(element) {return element.database === database})[0].id;
+      var url = '../data/xrefs.php?species=' + encodeURIComponent(species) + '&database=' + encodeURIComponent(databaseId) + '&id=' + encodeURIComponent(id);
+      console.log('url');
+      console.log(url);
+      $.ajax({
+        url: url,
+        dataType: "text",
+        success: function(data) {console.log(data); self.data = data; callback(data);}
+      });
+    };
+
+    function displayData(id) {
+      var pathway = pathvisio.data.pathways[pathvisio.data.current.svgSelector];
+      var node = pathway.nodes.filter(function(element) {return element.graphId == id })[0];
+      var xRefData = getData(pathway.organism, node.xRef.database, node.xRef.id, function(data) {
+        var parser = CSVParser.parse(data, true, ' ', false, false, '.');
+        var parsed = DataGridRenderer.json(parser.dataGrid, parser.headerNames, parser.headerTypes,'\t','\n');
+        var xRefDataParsed = self.xRefDataParsed = JSON.parse(parsed);
+        console.log(xRefDataParsed);
+        var features = {
+          "id": node.dataNodeType + ' ' + node.textLabel.text,
+          "description": node.xRef.database + ' ' + node.xRef.id
+        };
+
+        xRefDataParsed.forEach(function(element) {
+          features[element.database] = element.id;
+        });
+
+        var detailsFrame = d3.select('#detailsFrame');
+        detailsFrame[0][0].style.visibility = 'visible';
+
+        if (!Biojs.DetailsFrame.set) {
+          Biojs.DetailsFrame.set = true;
+          Biojs.DetailsFrame.instance = new Biojs.DetailsFrame({
+            target: "detailsFrame",
+            features: features 
+          });
+        }
+        else {
+
+          // hack for making this work in IE8.
+          // Biojs.detailsFrame.instance.updateFeatures() did not appear to work in IE8,
+          // so I am just emptying the detailsFrame div and building a new one.
+
+          detailsFrame.selectAll('*').remove();
+          Biojs.DetailsFrame.instance = new Biojs.DetailsFrame({
+            target: "detailsFrame",
+            features: features 
+          });
+          /*
+             Biojs.DetailsFrame.instance.updateFeatures({id: this.getAttribute('id'),
+description:"new description",
+newFeature:"its value",
+otherFeature:"another value"});
+*/
+        };
+      });
+    };
+
+    return { 
+      getData:getData,
+      displayData:displayData, 
+    } 
 }();

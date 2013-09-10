@@ -6,9 +6,9 @@ pathvisio.pathway.group = function(){
 
       var validGroups = pathvisio.data.pathways[pathvisio.data.current.svgSelector].groups.filter(function(el) {
         var groupId = el.groupId
-        return (pathvisio.data.pathways[pathvisio.data.current.svgSelector].labelableElements.filter(function(el) {return (el.groupRef === groupId)}).length>0)
+        return (pathvisio.data.pathways[pathvisio.data.current.svgSelector].nodes.filter(function(el) {return (el.groupRef === groupId)}).length>0)
       });
-      var groupsContainer = pathvisio.data.current.svg.selectAll("use.group")	
+      var groupsContainer = pathvisio.data.current.svg.select('#viewport').selectAll("use.group")	
       .data(validGroups)
       .enter()
       .append("path")
@@ -38,7 +38,7 @@ pathvisio.pathway.group = function(){
   };
 
   function getDimensions(groupId) {
-    var groupMembers = pathvisio.data.pathways[pathvisio.data.current.svgSelector].labelableElements.filter(function(el) {return (el.groupRef === groupId)});
+    var groupMembers = pathvisio.data.pathways[pathvisio.data.current.svgSelector].nodes.filter(function(el) {return (el.groupRef === groupId)});
     var group = {};
 
     // I think this is margin, not padding, but I'm not sure
