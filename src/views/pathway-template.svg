@@ -80,10 +80,16 @@ var enableZoom = 0; // 1 or 0: enable or disable zooming (default enabled)
 var enableDrag = 0; // 1 or 0: enable or disable dragging (default disabled)
 var zoomScale = 0.2; // Zoom sensitivity
 
+
 /// <====
 /// END OF CONFIGURATION 
 
 var root = document.documentElement.getElementsByTagName("svg")[0];
+
+root.addEventListener('click', function () {
+  enableZoom = 1;
+});
+
 var state = 'none', svgRoot = null, stateTarget, stateOrigin, stateTf;
 
 setupHandlers(root);
