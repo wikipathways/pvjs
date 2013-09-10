@@ -21,7 +21,7 @@ pathvisio.pathway.infoBox = function(){
       infoBox.push({'key':'Organism', 'value':pathvisio.data.pathways[pathvisio.data.current.svgSelector].organism});
     };
 
-    var infoBoxElements = pathvisio.data.current.svg.selectAll("text.info-box")
+    var infoBoxElements = pathvisio.data.current.svg.select('#viewport').selectAll("text.info-box")
     .data(infoBox)
     .enter()
     .append("text")
