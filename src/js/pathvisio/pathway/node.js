@@ -281,7 +281,7 @@ pathvisio.pathway.node = function(){
       var node = d3.select(this).append('use')
       .attr("id", function (d) {return 'node-' + d.graphId})
       .attr('transform', function(d) { 
-        var transform = 'none';
+        var transform = 'scale(1)';
         if (d.hasOwnProperty('rotation')) {
           transform = 'rotate(' + d.rotation + ' ' + d.width / 2 + ' ' + d.height / 2 + ')';
         };
@@ -354,7 +354,7 @@ pathvisio.pathway.node = function(){
               return styleClass;
             })
             .attr('transform', function(d) { 
-              var transform = 'none';
+              var transform = 'scale(1)';
               if (d.hasOwnProperty('rotation')) {
 
                 // the reference to width and height here is to specify the center of rotation as the center of the second element
