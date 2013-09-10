@@ -134,7 +134,7 @@ pathvisio.pathway.xRef = function(){
 
     function getData(species, database, id, callback) {
       var databaseId = dataSources.filter(function(element) {return element.database === database})[0].id;
-      var url = './src/data/xrefs.php?species=' + encodeURIComponent(species) + '&database=' + encodeURIComponent(databaseId) + '&id=' + encodeURIComponent(id);
+      var url = '../data/xrefs.php?species=' + encodeURIComponent(species) + '&database=' + encodeURIComponent(databaseId) + '&id=' + encodeURIComponent(id);
       console.log('url');
       console.log(url);
       $.ajax({
@@ -156,10 +156,14 @@ pathvisio.pathway.xRef = function(){
           "id": node.dataNodeType + ' ' + node.textLabel.text,
           "description": node.xRef.database + ' ' + node.xRef.id
         };
+
         xRefDataParsed.forEach(function(element) {
-          console.log(element);
           features[element.database] = element.id;
         });
+
+        var detailsFrame = d3.select('#detailsFrame');
+        detailsFrame[0][0].style.visibility = 'visible';
+
         if (!Biojs.DetailsFrame.set) {
           Biojs.DetailsFrame.set = true;
           Biojs.DetailsFrame.instance = new Biojs.DetailsFrame({
@@ -173,7 +177,7 @@ pathvisio.pathway.xRef = function(){
           // Biojs.detailsFrame.instance.updateFeatures() did not appear to work in IE8,
           // so I am just emptying the detailsFrame div and building a new one.
 
-          d3.select('#detailsFrame').selectAll('*').remove();
+          detailsFrame.selectAll('*').remove();
           Biojs.DetailsFrame.instance = new Biojs.DetailsFrame({
             target: "detailsFrame",
             features: features 
