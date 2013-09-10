@@ -646,12 +646,32 @@ pathvisio.helpers = function(){
     };
   };
 
+  function getWindowDimensions(object) {
+    var winW = 630, winH = 460;
+    if (document.body && document.body.offsetWidth) {
+     winW = document.body.offsetWidth;
+     winH = document.body.offsetHeight;
+    }
+    if (document.compatMode=='CSS1Compat' &&
+        document.documentElement &&
+        document.documentElement.offsetWidth ) {
+     winW = document.documentElement.offsetWidth;
+     winH = document.documentElement.offsetHeight;
+    }
+    if (window.innerWidth && window.innerHeight) {
+     winW = window.innerWidth;
+     winH = window.innerHeight;
+    }
+    return {'width':winW, 'height':winH};
+  };
+
   return{
     splitStringByNewLine:splitStringByNewLine,
     getUrlParam:getUrlParam,
     cloneNode:cloneNode,
     convertToArray:convertToArray,
-    getUrlParam:getUrlParam
+    getUrlParam:getUrlParam,
+    getWindowDimensions:getWindowDimensions,
   }
 }();
 
@@ -1550,7 +1570,7 @@ pathvisio.pathway.node = function(){
       var node = d3.select(this).append('use')
       .attr("id", function (d) {return 'node-' + d.graphId})
       .attr('transform', function(d) { 
-        var transform = 'none';
+        var transform = 'scale(1)';
         if (d.hasOwnProperty('rotation')) {
           transform = 'rotate(' + d.rotation + ' ' + d.width / 2 + ' ' + d.height / 2 + ')';
         };
@@ -1623,7 +1643,7 @@ pathvisio.pathway.node = function(){
               return styleClass;
             })
             .attr('transform', function(d) { 
-              var transform = 'none';
+              var transform = 'scale(1)';
               if (d.hasOwnProperty('rotation')) {
 
                 // the reference to width and height here is to specify the center of rotation as the center of the second element
@@ -2779,7 +2799,7 @@ pathvisio.pathway.xRef = function(){
 
     function getData(species, database, id, callback) {
       var databaseId = dataSources.filter(function(element) {return element.database === database})[0].id;
-      var url = './src/data/xrefs.php?species=' + encodeURIComponent(species) + '&database=' + encodeURIComponent(databaseId) + '&id=' + encodeURIComponent(id);
+      var url = '../data/xrefs.php?species=' + encodeURIComponent(species) + '&database=' + encodeURIComponent(databaseId) + '&id=' + encodeURIComponent(id);
       console.log('url');
       console.log(url);
       $.ajax({
@@ -2801,10 +2821,14 @@ pathvisio.pathway.xRef = function(){
           "id": node.dataNodeType + ' ' + node.textLabel.text,
           "description": node.xRef.database + ' ' + node.xRef.id
         };
+
         xRefDataParsed.forEach(function(element) {
-          console.log(element);
           features[element.database] = element.id;
         });
+
+        var detailsFrame = d3.select('#detailsFrame');
+        detailsFrame[0][0].style.visibility = 'visible';
+
         if (!Biojs.DetailsFrame.set) {
           Biojs.DetailsFrame.set = true;
           Biojs.DetailsFrame.instance = new Biojs.DetailsFrame({
@@ -2818,7 +2842,7 @@ pathvisio.pathway.xRef = function(){
           // Biojs.detailsFrame.instance.updateFeatures() did not appear to work in IE8,
           // so I am just emptying the detailsFrame div and building a new one.
 
-          d3.select('#detailsFrame').selectAll('*').remove();
+          detailsFrame.selectAll('*').remove();
           Biojs.DetailsFrame.instance = new Biojs.DetailsFrame({
             target: "detailsFrame",
             features: features 

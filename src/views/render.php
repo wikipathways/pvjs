@@ -21,17 +21,16 @@ function getUrl() {
 $currentUrl = getUrl();
 $base = str_replace("?", "/../../../?", getUrl());
 
-echo '<base href="' . $base . '">';
+//echo '<base href="' . $base . '">';
 
 ?>
 
-
-<link href="./src/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" media="screen">
-<link rel="stylesheet" href="./src/lib/biojs/src/main/resources/css/biojs.detailsFrame.css">
-<link rel="stylesheet" href="./src/lib/jquery-ui/themes/base/jquery-ui.css">
+<link href="../lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" media="screen">
+<link rel="stylesheet" href="../lib/biojs/src/main/resources/css/biojs.detailsFrame.css">
+<link rel="stylesheet" href="../lib/jquery-ui/themes/base/jquery-ui.css">
 <style type="text/css">
 body {
-  background-color: red;
+  background-color: white;
 }
 .navigator .highlight{
   opacity:    0.4;
@@ -53,15 +52,11 @@ body {
 }
 </style>
 
-<!--[if lte IE 9]>
-<base href="http://172.24.1.195/~andersriutta/pathvisio.js/">
-<![endif]-->
-
 <!--[if lt IE 9]>
   <script src="http://ie7-js.googlecode.com/svn/version/2.1(beta4)/IE9.js"></script>
   <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
-  <script src="./src/lib/es5-shim/es5-shim.js"></script>
-  <script src="./src/lib/Xccessors/xccessors-standard.js"></script>
+  <script src="../lib/es5-shim/es5-shim.js"></script>
+  <script src="../lib/Xccessors/xccessors-standard.js"></script>
 
   <script>
 
@@ -131,39 +126,58 @@ echo "</div>";
     <div ng-include src="'partials/editorToolbar.html'"></div>
   </div>
 </div>
-<div style="position:relative">
-  <!-- from http://xme.im/display-fullscreen-website-using-javascript -->
-  <button id="enable-zoom" style="float:left;" onclick="enableZoom = 1;">Enable Zoom</button>
-  <button style="float:left;" onclick="enableZoom = 0;">Disable Zoom</button>
-  <button style="float:left;" onclick="svgView = 1;">SVG</button>
-  <button style="float:left;" onclick="svgView = 0;">PNG</button>
-  <i id="fullscreen" class="icon-fullscreen"></i>
-  <!-- Button to trigger modal 
-  <a href="#myModal" role="button" onclick="editable = true" ng-init="editable = false" class="btn" data-toggle="modal">Edit Pathway</a>
-  -->
+<div id="viewertoolbar" style="float:right;">
+  <fieldgroup id="svg-toolbar" style="background-image: none; background-color: transparent; border: none; margin: 0px; padding: 0px; position: relative; display: inline-block; background-position: initial initial; background-repeat: initial initial;">
+    <label style="background-image: none; background-color: transparent; border: none; margin: 0px; padding: 0px; position: static; background-position: initial initial; background-repeat: initial initial;">
+    </label>
+    <button title="Zoom in" onclick="d3.select('svg').select('#viewport').attr('transform', 'scale(1.5)')" style="background-image: none; background-color: transparent; border: none; margin: 0px; padding: 0px; position: relative; display: inline-block; background-position: initial initial; background-repeat: initial initial;">
+      <img src="../lib/openseadragon/images/zoomin_rest.png" style="background-image: none; background-color: transparent; border: none; margin: 0px; padding: 0px; position: static; background-position: initial initial; background-repeat: initial initial;">
+      <img src="../lib/openseadragon/images/zoomin_grouphover.png" style="background-image: none; background-color: transparent; border: none; margin: 0px; padding: 0px; position: absolute; top: 0px; left: 0px; opacity: 0; background-position: initial initial; background-repeat: initial initial;">
+      <img src="../lib/openseadragon/images/zoomin_hover.png" style="background-image: none; background-color: transparent; border: none; margin: 0px; padding: 0px; position: absolute; top: 0px; left: 0px; visibility: hidden; background-position: initial initial; background-repeat: initial initial;">
+      <img src="../lib/openseadragon/images/zoomin_pressed.png" style="background-image: none; background-color: transparent; border: none; margin: 0px; padding: 0px; position: absolute; top: 0px; left: 0px; visibility: hidden; background-position: initial initial; background-repeat: initial initial;">
+    </button>
+    <button title="Zoom out" onclick="d3.select('svg').select('#viewport').attr('transform', 'scale(0.75)')" style="background-image: none; background-color: transparent; border: none; margin: 0px; padding: 0px; position: relative; display: inline-block; background-position: initial initial; background-repeat: initial initial;">
+      <img src="../lib/openseadragon/images/zoomout_rest.png" style="background-image: none; background-color: transparent; border: none; margin: 0px; padding: 0px; position: static; background-position: initial initial; background-repeat: initial initial;">
+      <img src="../lib/openseadragon/images/zoomout_grouphover.png" style="background-image: none; background-color: transparent; border: none; margin: 0px; padding: 0px; position: absolute; top: 0px; left: 0px; opacity: 0; background-position: initial initial; background-repeat: initial initial;">
+      <img src="../lib/openseadragon/images/zoomout_hover.png" style="background-image: none; background-color: transparent; border: none; margin: 0px; padding: 0px; position: absolute; top: 0px; left: 0px; visibility: hidden; background-position: initial initial; background-repeat: initial initial;">
+      <img src="../lib/openseadragon/images/zoomout_pressed.png" style="background-image: none; background-color: transparent; border: none; margin: 0px; padding: 0px; position: absolute; top: 0px; left: 0px; visibility: hidden; background-position: initial initial; background-repeat: initial initial;">
+    </button>
+    <button title="Go home" onclick="d3.select('svg').select('#viewport').attr('transform', 'scale(1)')" style="background-image: none; background-color: transparent; border: none; margin: 0px; padding: 0px; position: relative; display: inline-block; background-position: initial initial; background-repeat: initial initial;">
+      <img src="../lib/openseadragon/images/home_rest.png" style="background-image: none; background-color: transparent; border: none; margin: 0px; padding: 0px; position: static; background-position: initial initial; background-repeat: initial initial;">
+      <img src="../lib/openseadragon/images/home_grouphover.png" style="background-image: none; background-color: transparent; border: none; margin: 0px; padding: 0px; position: absolute; top: 0px; left: 0px; opacity: 0; background-position: initial initial; background-repeat: initial initial;">
+      <img src="../lib/openseadragon/images/home_hover.png" style="background-image: none; background-color: transparent; border: none; margin: 0px; padding: 0px; position: absolute; top: 0px; left: 0px; visibility: hidden; background-position: initial initial; background-repeat: initial initial;">
+      <img src="../lib/openseadragon/images/home_pressed.png" style="background-image: none; background-color: transparent; border: none; margin: 0px; padding: 0px; position: absolute; top: 0px; left: 0px; visibility: hidden; background-position: initial initial; background-repeat: initial initial;">
+    </button>
+    <button title="Toggle full page" id="full-screen-btn" style="background-image: none; background-color: transparent; border: none; margin: 0px; padding: 0px; position: relative; display: inline-block; background-position: initial initial; background-repeat: initial initial;">
+      <img src="../lib/openseadragon/images/fullpage_rest.png" style="background-image: none; background-color: transparent; border: none; margin: 0px; padding: 0px; position: static; background-position: initial initial; background-repeat: initial initial;">
+      <img src="../lib/openseadragon/images/fullpage_grouphover.png" style="background-image: none; background-color: transparent; border: none; margin: 0px; padding: 0px; position: absolute; top: 0px; left: 0px; opacity: 0; background-position: initial initial; background-repeat: initial initial;">
+      <img src="../lib/openseadragon/images/fullpage_hover.png" style="background-image: none; background-color: transparent; border: none; margin: 0px; padding: 0px; position: absolute; top: 0px; left: 0px; visibility: hidden; background-position: initial initial; background-repeat: initial initial;">
+      <img src="../lib/openseadragon/images/fullpage_pressed.png" style="background-image: none; background-color: transparent; border: none; margin: 0px; padding: 0px; position: absolute; top: 0px; left: 0px; visibility: hidden; background-position: initial initial; background-repeat: initial initial;">
+    </button>
+  </fieldgroup>
 </div>
-<div id="detailsFrame" class="protein ui-draggable">
+<div id="detailsFrame" style="visibility:hidden" class="protein ui-draggable">
 </div>
 
-<script src="./src/lib/d3/d3.js" charset="utf-8"></script>
-<script src="./src/lib/jquery/jquery.js"></script>
-<script src="./src/lib/jquery-ui/ui/jquery-ui.js"></script>
+<script src="../lib/d3/d3.js" charset="utf-8"></script>
+<script src="../lib/jquery/jquery.js"></script>
+<script src="../lib/jquery-ui/ui/jquery-ui.js"></script>
 
-<script src="./src/lib/case-converter/case-converter.js"></script>
-<script src="./src/lib/xml2json/xml2json.js"></script>
-<script src="./src/lib/bootstrap/dist/js/bootstrap.js"></script>
-<script src="./src/lib/openseadragon/openseadragon.js"></script>
-<script src="./src/lib/modernizr/modernizr.js"></script>
-<script src="./src/lib/screenfull/dist/screenfull.js"></script>
-<script src="./src/lib/biojs/src/main/javascript/Biojs.js"></script>
-<script src="./src/lib/biojs/src/main/javascript/Biojs.DetailsFrame.js"></script>
-<script src="./src/lib/mr-data-converter/CSVParser.js"></script>
-<script src="./src/lib/mr-data-converter/DataGridRenderer.js"></script>
+<script src="../lib/case-converter/case-converter.js"></script>
+<script src="../lib/xml2json/xml2json.js"></script>
+<script src="../lib/bootstrap/dist/js/bootstrap.js"></script>
+<script src="../lib/openseadragon/openseadragon.js"></script>
+<script src="../lib/modernizr/modernizr.js"></script>
+<script src="../lib/screenfull/dist/screenfull.js"></script>
+<script src="../lib/biojs/src/main/javascript/Biojs.js"></script>
+<script src="../lib/biojs/src/main/javascript/Biojs.DetailsFrame.js"></script>
+<script src="../lib/mr-data-converter/CSVParser.js"></script>
+<script src="../lib/mr-data-converter/DataGridRenderer.js"></script>
 <!--
-<script src="./src/lib/async/lib/async.js"></script>
+<script src="../lib/async/lib/async.js"></script>
 -->
 
-<script src="./build/js/pathvisio.js"></script>
+<script src="../../build/js/pathvisio.js"></script>
 
 <script>
 enableZoom = 0;	
@@ -179,7 +193,7 @@ var repo = pathvisio.helpers.getUrlParam('repo');
 
 if (!!pathvisio.helpers.getUrlParam('id')) {
   var id = pathvisio.helpers.getUrlParam('id');
-  var url = './src/data/gpml.php?id=' + id;
+  var url = '../data/gpml.php?id=' + id;
   //var url = 'http://pointer.ucsf.edu/d3/r/pathvisio.js/src/data/gpml.php?id=' + id;
 }
 else {
@@ -197,6 +211,7 @@ if (Modernizr.svg && svgView != 0) {
   // browser supports SVG.
 
   console.log('Your browser supports SVG.');
+
   var pathwayContainer = d3.select('#pathway-container');
   pathwayContainer.attr('style', 'width: 100%; height:500px');
   pathvisio.pathway.load('#pathway-image', url);
@@ -205,7 +220,7 @@ if (Modernizr.svg && svgView != 0) {
     enableZoom = 1;
   });
  //*/
-  document.getElementById('fullscreen').addEventListener('click', function () {
+  document.getElementById('full-screen-btn').addEventListener('click', function () {
     if (screenfull.enabled) {
       screenfull.request(pathwayContainer[0][0]);
     }
@@ -216,6 +231,14 @@ else {
   // browser does not support SVG. Fall back to PNG.
 
   console.log('Your browser does not support SVG. Falling back to PNG.');
+
+  var windowDimensions = pathvisio.helpers.getWindowDimensions();
+  var pathwayContainer = d3.select('#pathway-container');
+  pathwayContainer.select('#pathway-image').remove();
+  //pathwayContainer.attr('style', function() {return 'width: 100%; height:' + windowDimensions.height + 'px'});
+  pathwayContainer.attr('style', 'width: 100%; height:1000px');
+  var svgToolbar = d3.select('#svg-toolbar')[0][0].style.visibility="hidden";
+  var loadingImg = $("#pathway-container").append("<img id='loadingImg' src='../img/loading.gif' width='100' height='100' />");
 
   function onZoomitResponse(resp) {
     self.resp = resp;
@@ -249,20 +272,18 @@ else {
       };
     });
 
-    var pathwayContainer = d3.select('#pathway-container');
-    pathwayContainer.select('#pathway-image').remove();
-    pathwayContainer.attr('style', 'width: 100%; height:500px');
-    //pathwayContainer.attr('style', 'width:1000px; height:693px');
+    loadingImg.empty();
 
     if (content.ready) {
       var viewer = self.viewer = OpenSeadragon({
         //debugMode: true,
         id: "pathway-container",
-        prefixUrl: "./src/lib/openseadragon/images/",
+        prefixUrl: "../lib/openseadragon/images/",
         showNavigator:true,
         //minPixelRatio: 1.5,
         minZoomImageRatio: 0.8,
         maxZoomPixelRatio: 2,
+        //toolbar: 'viewertoolbar',
         tileSources:   [{ 
           Image:  {
             xmlns: "http://schemas.microsoft.com/deepzoom/2009",

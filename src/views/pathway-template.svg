@@ -84,11 +84,6 @@ var zoomScale = 0.2; // Zoom sensitivity
 /// END OF CONFIGURATION 
 
 var root = document.documentElement.getElementsByTagName("svg")[0];
-console.log("document.documentElement.getElementsByTagName('svg')[0]");
-console.log(document.documentElement.getElementsByTagName('svg')[0]);
-	console.log("root");
-	console.log(root);
-
 var state = 'none', svgRoot = null, stateTarget, stateOrigin, stateTf;
 
 setupHandlers(root);
