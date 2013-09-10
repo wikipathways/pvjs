@@ -33,22 +33,23 @@ body {
   background-color: white;
 }
 .navigator .highlight{
-  opacity:    0.4;
-  filter:     alpha(opacity=40);
-  border:     2px solid #900;
-  outline:    none;
-  background-color: #900;
+    opacity:    0.4;
+    filter:     alpha(opacity=40);
+    border:     2px solid #900;
+    outline:    none;
+    background-color: #900;
 }
 .highlight{
-  filter:     alpha(opacity=40);
-  border:     4px solid transparent;
-  outline:    10px auto transparent;
-  background-color: white;
+    opacity:    0.1;
+    filter:     alpha(opacity=40);
+    background-color: white;
 }
 .highlight:hover, .highlight:focus{
-  border:     4px solid gold;
-  outline:    10px auto gold;
-  background-color: white;
+    filter:     alpha(opacity=70);
+    opacity:    0.7;
+    border:     2px solid gold;
+    outline:    10px auto gold;
+    background-color: transparent;
 }
 </style>
 
