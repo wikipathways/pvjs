@@ -118,8 +118,6 @@ else {
 };
 
 var pngUrl = encodeURIComponent('http://test3.wikipathways.org//wpi/wpi.php?action=downloadFile&type=png&pwTitle=Pathway:' + gpmlSource);
-console.log('pngUrl');
-console.log(pngUrl);
 
 d3.select('#fallback-image').attr('src', pngUrl);
 </script>
@@ -131,42 +129,45 @@ d3.select('#fallback-image').attr('src', pngUrl);
     <object id='pathway-container' data="pathway-template.svg" type="image/svg+xml">
       <img id="fallback-image" />
     </object>
+      <div id="viewertoolbar" style="float:right;">
+        <fieldgroup id="svg-toolbar" style="background-image: none; background-color: transparent; border: none; margin: 0px; padding: 0px; position: relative; display: inline-block; background-position: initial initial; background-repeat: initial initial;">
+          <label style="background-image: none; background-color: transparent; border: none; margin: 0px; padding: 0px; position: static; background-position: initial initial; background-repeat: initial initial;">
+          </label>
+          <button title="Zoom in" onclick="d3.select('svg').select('#viewport').attr('transform', 'scale(1.5)')" style="background-image: none; background-color: transparent; border: none; margin: 0px; padding: 0px; position: relative; display: inline-block; background-position: initial initial; background-repeat: initial initial;">
+            <img src="../lib/openseadragon/images/zoomin_rest.png" style="background-image: none; background-color: transparent; border: none; margin: 0px; padding: 0px; position: static; background-position: initial initial; background-repeat: initial initial;">
+            <img src="../lib/openseadragon/images/zoomin_grouphover.png" style="background-image: none; background-color: transparent; border: none; margin: 0px; padding: 0px; position: absolute; top: 0px; left: 0px; opacity: 0; background-position: initial initial; background-repeat: initial initial;">
+            <img src="../lib/openseadragon/images/zoomin_hover.png" style="background-image: none; background-color: transparent; border: none; margin: 0px; padding: 0px; position: absolute; top: 0px; left: 0px; visibility: hidden; background-position: initial initial; background-repeat: initial initial;">
+            <img src="../lib/openseadragon/images/zoomin_pressed.png" style="background-image: none; background-color: transparent; border: none; margin: 0px; padding: 0px; position: absolute; top: 0px; left: 0px; visibility: hidden; background-position: initial initial; background-repeat: initial initial;">
+          </button>
+          <button title="Zoom out" onclick="d3.select('svg').select('#viewport').attr('transform', 'scale(0.75)')" style="background-image: none; background-color: transparent; border: none; margin: 0px; padding: 0px; position: relative; display: inline-block; background-position: initial initial; background-repeat: initial initial;">
+            <img src="../lib/openseadragon/images/zoomout_rest.png" style="background-image: none; background-color: transparent; border: none; margin: 0px; padding: 0px; position: static; background-position: initial initial; background-repeat: initial initial;">
+            <img src="../lib/openseadragon/images/zoomout_grouphover.png" style="background-image: none; background-color: transparent; border: none; margin: 0px; padding: 0px; position: absolute; top: 0px; left: 0px; opacity: 0; background-position: initial initial; background-repeat: initial initial;">
+            <img src="../lib/openseadragon/images/zoomout_hover.png" style="background-image: none; background-color: transparent; border: none; margin: 0px; padding: 0px; position: absolute; top: 0px; left: 0px; visibility: hidden; background-position: initial initial; background-repeat: initial initial;">
+            <img src="../lib/openseadragon/images/zoomout_pressed.png" style="background-image: none; background-color: transparent; border: none; margin: 0px; padding: 0px; position: absolute; top: 0px; left: 0px; visibility: hidden; background-position: initial initial; background-repeat: initial initial;">
+          </button>
+          <button title="Go home" onclick="d3.select('svg').select('#viewport').attr('transform', 'scale(1)')" style="background-image: none; background-color: transparent; border: none; margin: 0px; padding: 0px; position: relative; display: inline-block; background-position: initial initial; background-repeat: initial initial;">
+            <img src="../lib/openseadragon/images/home_rest.png" style="background-image: none; background-color: transparent; border: none; margin: 0px; padding: 0px; position: static; background-position: initial initial; background-repeat: initial initial;">
+            <img src="../lib/openseadragon/images/home_grouphover.png" style="background-image: none; background-color: transparent; border: none; margin: 0px; padding: 0px; position: absolute; top: 0px; left: 0px; opacity: 0; background-position: initial initial; background-repeat: initial initial;">
+            <img src="../lib/openseadragon/images/home_hover.png" style="background-image: none; background-color: transparent; border: none; margin: 0px; padding: 0px; position: absolute; top: 0px; left: 0px; visibility: hidden; background-position: initial initial; background-repeat: initial initial;">
+            <img src="../lib/openseadragon/images/home_pressed.png" style="background-image: none; background-color: transparent; border: none; margin: 0px; padding: 0px; position: absolute; top: 0px; left: 0px; visibility: hidden; background-position: initial initial; background-repeat: initial initial;">
+          </button>
+          <button title="Toggle full page" id="full-screen-btn" style="background-image: none; background-color: transparent; border: none; margin: 0px; padding: 0px; position: relative; display: inline-block; background-position: initial initial; background-repeat: initial initial;">
+            <img src="../lib/openseadragon/images/fullpage_rest.png" style="background-image: none; background-color: transparent; border: none; margin: 0px; padding: 0px; position: static; background-position: initial initial; background-repeat: initial initial;">
+            <img src="../lib/openseadragon/images/fullpage_grouphover.png" style="background-image: none; background-color: transparent; border: none; margin: 0px; padding: 0px; position: absolute; top: 0px; left: 0px; opacity: 0; background-position: initial initial; background-repeat: initial initial;">
+            <img src="../lib/openseadragon/images/fullpage_hover.png" style="background-image: none; background-color: transparent; border: none; margin: 0px; padding: 0px; position: absolute; top: 0px; left: 0px; visibility: hidden; background-position: initial initial; background-repeat: initial initial;">
+            <img src="../lib/openseadragon/images/fullpage_pressed.png" style="background-image: none; background-color: transparent; border: none; margin: 0px; padding: 0px; position: absolute; top: 0px; left: 0px; visibility: hidden; background-position: initial initial; background-repeat: initial initial;">
+          </button>
+        </fieldgroup>
+      </div>
+      <div id="details-frame" style="visibility: visible; left: 175px; top: 56px;" class="data-node ui-draggable">
+        <div class="minimize to_minimize"></div>
+
+        <div class="dragger" src="../../main/resources/css/images/draggable.png"></div>
+
+        <ul>
+        </ul>
+      </div>
   </div>
-</div>
-<div style="position:relative; min-width: 300px; width:30%; height:auto; float:right;">
-  <div ng-include src="'partials/editorToolbar.html'"></div>
-</div>
-<div id="viewertoolbar" style="float:right;">
-  <fieldgroup id="svg-toolbar" style="background-image: none; background-color: transparent; border: none; margin: 0px; padding: 0px; position: relative; display: inline-block; background-position: initial initial; background-repeat: initial initial;">
-    <label style="background-image: none; background-color: transparent; border: none; margin: 0px; padding: 0px; position: static; background-position: initial initial; background-repeat: initial initial;">
-    </label>
-    <button title="Zoom in" onclick="d3.select('svg').select('#viewport').attr('transform', 'scale(1.5)')" style="background-image: none; background-color: transparent; border: none; margin: 0px; padding: 0px; position: relative; display: inline-block; background-position: initial initial; background-repeat: initial initial;">
-      <img src="../lib/openseadragon/images/zoomin_rest.png" style="background-image: none; background-color: transparent; border: none; margin: 0px; padding: 0px; position: static; background-position: initial initial; background-repeat: initial initial;">
-      <img src="../lib/openseadragon/images/zoomin_grouphover.png" style="background-image: none; background-color: transparent; border: none; margin: 0px; padding: 0px; position: absolute; top: 0px; left: 0px; opacity: 0; background-position: initial initial; background-repeat: initial initial;">
-      <img src="../lib/openseadragon/images/zoomin_hover.png" style="background-image: none; background-color: transparent; border: none; margin: 0px; padding: 0px; position: absolute; top: 0px; left: 0px; visibility: hidden; background-position: initial initial; background-repeat: initial initial;">
-      <img src="../lib/openseadragon/images/zoomin_pressed.png" style="background-image: none; background-color: transparent; border: none; margin: 0px; padding: 0px; position: absolute; top: 0px; left: 0px; visibility: hidden; background-position: initial initial; background-repeat: initial initial;">
-    </button>
-    <button title="Zoom out" onclick="d3.select('svg').select('#viewport').attr('transform', 'scale(0.75)')" style="background-image: none; background-color: transparent; border: none; margin: 0px; padding: 0px; position: relative; display: inline-block; background-position: initial initial; background-repeat: initial initial;">
-      <img src="../lib/openseadragon/images/zoomout_rest.png" style="background-image: none; background-color: transparent; border: none; margin: 0px; padding: 0px; position: static; background-position: initial initial; background-repeat: initial initial;">
-      <img src="../lib/openseadragon/images/zoomout_grouphover.png" style="background-image: none; background-color: transparent; border: none; margin: 0px; padding: 0px; position: absolute; top: 0px; left: 0px; opacity: 0; background-position: initial initial; background-repeat: initial initial;">
-      <img src="../lib/openseadragon/images/zoomout_hover.png" style="background-image: none; background-color: transparent; border: none; margin: 0px; padding: 0px; position: absolute; top: 0px; left: 0px; visibility: hidden; background-position: initial initial; background-repeat: initial initial;">
-      <img src="../lib/openseadragon/images/zoomout_pressed.png" style="background-image: none; background-color: transparent; border: none; margin: 0px; padding: 0px; position: absolute; top: 0px; left: 0px; visibility: hidden; background-position: initial initial; background-repeat: initial initial;">
-    </button>
-    <button title="Go home" onclick="d3.select('svg').select('#viewport').attr('transform', 'scale(1)')" style="background-image: none; background-color: transparent; border: none; margin: 0px; padding: 0px; position: relative; display: inline-block; background-position: initial initial; background-repeat: initial initial;">
-      <img src="../lib/openseadragon/images/home_rest.png" style="background-image: none; background-color: transparent; border: none; margin: 0px; padding: 0px; position: static; background-position: initial initial; background-repeat: initial initial;">
-      <img src="../lib/openseadragon/images/home_grouphover.png" style="background-image: none; background-color: transparent; border: none; margin: 0px; padding: 0px; position: absolute; top: 0px; left: 0px; opacity: 0; background-position: initial initial; background-repeat: initial initial;">
-      <img src="../lib/openseadragon/images/home_hover.png" style="background-image: none; background-color: transparent; border: none; margin: 0px; padding: 0px; position: absolute; top: 0px; left: 0px; visibility: hidden; background-position: initial initial; background-repeat: initial initial;">
-      <img src="../lib/openseadragon/images/home_pressed.png" style="background-image: none; background-color: transparent; border: none; margin: 0px; padding: 0px; position: absolute; top: 0px; left: 0px; visibility: hidden; background-position: initial initial; background-repeat: initial initial;">
-    </button>
-    <button title="Toggle full page" id="full-screen-btn" style="background-image: none; background-color: transparent; border: none; margin: 0px; padding: 0px; position: relative; display: inline-block; background-position: initial initial; background-repeat: initial initial;">
-      <img src="../lib/openseadragon/images/fullpage_rest.png" style="background-image: none; background-color: transparent; border: none; margin: 0px; padding: 0px; position: static; background-position: initial initial; background-repeat: initial initial;">
-      <img src="../lib/openseadragon/images/fullpage_grouphover.png" style="background-image: none; background-color: transparent; border: none; margin: 0px; padding: 0px; position: absolute; top: 0px; left: 0px; opacity: 0; background-position: initial initial; background-repeat: initial initial;">
-      <img src="../lib/openseadragon/images/fullpage_hover.png" style="background-image: none; background-color: transparent; border: none; margin: 0px; padding: 0px; position: absolute; top: 0px; left: 0px; visibility: hidden; background-position: initial initial; background-repeat: initial initial;">
-      <img src="../lib/openseadragon/images/fullpage_pressed.png" style="background-image: none; background-color: transparent; border: none; margin: 0px; padding: 0px; position: absolute; top: 0px; left: 0px; visibility: hidden; background-position: initial initial; background-repeat: initial initial;">
-    </button>
-  </fieldgroup>
-</div>
-<div id="detailsFrame" style="visibility:hidden" class="protein ui-draggable">
 </div>
 
 <script src="../lib/jquery/jquery.js"></script>
@@ -178,8 +179,6 @@ d3.select('#fallback-image').attr('src', pngUrl);
 <script src="../lib/openseadragon/openseadragon.js"></script>
 <script src="../lib/modernizr/modernizr.js"></script>
 <script src="../lib/screenfull/dist/screenfull.js"></script>
-<script src="../lib/biojs/src/main/javascript/Biojs.js"></script>
-<script src="../lib/biojs/src/main/javascript/Biojs.DetailsFrame.js"></script>
 <script src="../lib/mr-data-converter/CSVParser.js"></script>
 <script src="../lib/mr-data-converter/DataGridRenderer.js"></script>
 <!--
