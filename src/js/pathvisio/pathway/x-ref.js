@@ -69,7 +69,7 @@ pathvisio.pathway.xRef = function(){
         specifiedFeature.ids = pathvisio.helpers.moveArrayItem(specifiedFeature.ids, currentXRefIdIndex, 0);
 
         var pathwayViewer = d3.select('#pathway-viewer');
-        var detailsFrame = pathwayViewer.append('div');
+        var detailsFrame = pathwayViewer.insert('div');
         var detailsList = detailsFrame.append('ul');
         detailsListItems = detailsList.selectAll('li')
         .data(featuresSorted)
@@ -85,7 +85,7 @@ pathvisio.pathway.xRef = function(){
         detailsListItems[0].forEach(function(detailsListItem) {
           console.log('detailsListItem');
           console.log(detailsListItem);
-          var featureTitle = d3.select(detailsListItem).insert('span')
+          var featureTitle = d3.select(detailsListItem).append('span')
           .attr('class', 'feature-title')
           .text(function(d) {return d.database});
           
@@ -94,19 +94,7 @@ pathvisio.pathway.xRef = function(){
           .enter()
           .append('span')
           .attr('class', 'feature-text')
-          .text(function(d) {return d});
-          
-
-
-          /*
-          detailsListItems.forEach(function(d) {
-            var featureItem = detailsListItem.selectAll('span.feature-item')
-            .data(d.
-            .append('span')
-            .attr('class', 'feature-title')
-            .text(d.database);
-            */
-
+          .text(function(d) {return d + ', '});
         });
 
         //detailsFrame[0][0].style.visibility = 'visible';
