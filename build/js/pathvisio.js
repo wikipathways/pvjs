@@ -673,15 +673,15 @@ pathvisio.helpers = function(){
 
   // from http://stackoverflow.com/questions/5306680/move-an-array-element-from-one-array-position-to-another
 
-  Array.prototype.move = function (old_index, new_index) {
-    if (new_index >= this.length) {
-      var k = new_index - this.length;
+  function moveArrayItem(arr, old_index, new_index) {
+    if (new_index >= arr.length) {
+      var k = new_index - arr.length;
       while ((k--) + 1) {
-        this.push(undefined);
+        arr.push(undefined);
       }
     }
-    this.splice(new_index, 0, this.splice(old_index, 1)[0]);
-    return this; // for testing purposes
+    arr.splice(new_index, 0, arr.splice(old_index, 1)[0]);
+    return arr; // for testing purposes
   };
 
   return{
@@ -692,6 +692,7 @@ pathvisio.helpers = function(){
     convertToArray:convertToArray,
     getUrlParam:getUrlParam,
     getWindowDimensions:getWindowDimensions,
+    moveArrayItem:moveArrayItem,
   }
 }();
 
@@ -4447,56 +4448,65 @@ pathvisio.pathway.xRef = function(){
         });
         var specifiedXRef = xRefDataSorted.filter(function(element) {return (element.database == node.xRef.database && element. id == node.xRef.id)});
         var currentIndex = xRefDataSorted.indexOf(specifiedXRef[0]);
-        xRefDataSorted.move(currentIndex, 0);
+        xRefDataSorted = pathvisio.helpers.moveArrayItem(xRefDataSorted, currentIndex, 0);
         var features = {
           "id": node.textLabel.text,
           "description": node.dataNodeType
         };
 
+        var idsByDatabase = xRefDataSorted;
+        var feature = {};
+        idsByDatabase.ids = [];
         var features = [];
-        xRefDataSorted.forEach(function(element) {
-          console.log(element);
-          if (element.id !== 'move' ) {
-            if (!features[element.database]) {
-              features[element.database] = [element.id];
-            }
-            else {
-              features[element.database].push(element.id);
-            };
-          };
+
+        xRefDataSorted.forEach(function(xRefForEach, index, array) {
+          feature.database = xRefForEach.database;
+          feature.ids = [];          
+          if (features.filter(function(featureFilter) {return featureFilter.database === xRefForEach.database}).length === 0) {
+            array.filter(function(xRefFilter) {return xRefFilter.database === xRefForEach.database}).forEach(function(element) {feature.ids.push(element.id)});
+            features.push({'database':xRefForEach.database, 'ids': feature.ids});
+            console.log(features);
+          };    
         });
-        console.log(features);
-        console.log(d3.map(features));
-        console.log(d3.set(features));
+        self.features = features;
 
-        var detailsFrame = d3.select('#detailsFrame');
-        detailsFrame[0][0].style.visibility = 'visible';
+        var pathwayContainer = d3.select('#pathway-container');
+        var detailsFrame = pathwayContainer.append('div');
+        var detailsList = detailsFrame.select('ul');
+        detailsListItems = detailsList.selectAll('li')
+        .data(features)
+        .enter()
+        .append('li');
 
-        if (!Biojs.DetailsFrame.set) {
-          Biojs.DetailsFrame.set = true;
-          Biojs.DetailsFrame.instance = new Biojs.DetailsFrame({
-            target: "detailsFrame",
-            features: features 
-          });
-        }
-        else {
+        /*
+        [{'database':'a','ids':[1,2,3]},{'database':'b','ids':[1,2,3]}]
+        <li><span class='feature-title'></span><span class='feature-item'></span></li>
+        features[element.database] = [element.id];
+        */
 
-          // hack for making this work in IE8.
-          // Biojs.detailsFrame.instance.updateFeatures() did not appear to work in IE8,
-          // so I am just emptying the detailsFrame div and building a new one.
+        detailsListItems.forEach(function(d) {
+          var detailsListItem = d3.select(this);
 
-          detailsFrame.selectAll('*').remove();
-          Biojs.DetailsFrame.instance = new Biojs.DetailsFrame({
-            target: "detailsFrame",
-            features: features 
-          });
+          var featureTitle = detailsListItem.append('span')
+          .attr('class', 'feature-title')
+          .text(function(d) {return d.database});
+
+
           /*
-             Biojs.DetailsFrame.instance.updateFeatures({id: this.getAttribute('id'),
-description:"new description",
-newFeature:"its value",
-otherFeature:"another value"});
-*/
-        };
+          detailsListItems.forEach(function(d) {
+            var featureItem = detailsListItem.selectAll('span.feature-item')
+            .data(d.
+            .append('span')
+            .attr('class', 'feature-title')
+            .text(d.database);
+            */
+
+        });
+
+        console.log(features);
+
+        //detailsFrame[0][0].style.visibility = 'visible';
+
       });
     };
 
