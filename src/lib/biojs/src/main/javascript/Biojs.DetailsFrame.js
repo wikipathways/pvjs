@@ -163,7 +163,7 @@ Biojs.DetailsFrame = Biojs.extend (
 			}
 		else
 			for (var i=0; i<order.length; i++){
-				html +=	'			<li><b>'+order[i]+':</b>'+self.opt.features[order[i]]+'</li>';
+				html +=	'			<li><b>'+order[i]+':</b><span style="color: blue; text-decoration: underline;" class="feature-item"'+self.opt.features[order[i]]+'</span></li>';
 			}
 		$("#"+self.opt.target+" ul").html(html);
 		self.raiseEvent('onFeaturesUpdated', {});

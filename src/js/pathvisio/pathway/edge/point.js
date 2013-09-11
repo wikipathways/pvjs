@@ -147,24 +147,25 @@ pathvisio.pathway.edge.point = function(){
       return e;
     };
   };
+
   function getGraphRef(point) {
     self.point=point;
     if (point.hasOwnProperty('graphRef')) {
-      if (pathvisio.data.pathways[pathvisio.data.current.svgSelector].hasOwnProperty('nodes')) {
-        var node = pathvisio.data.pathways[pathvisio.data.current.svgSelector].nodes.filter(function(element) {return element.graphId === point.graphRef})[0]
+      if (pathway.hasOwnProperty('nodes')) {
+        var node = pathway.nodes.filter(function(element) {return element.graphId === point.graphRef})[0]
         if (node !== undefined) {
           return {'type':'node', 'element':node};
         };
       };
 
-      if (pathvisio.data.pathways[pathvisio.data.current.svgSelector].hasOwnProperty('groups')) {
-        var group = pathvisio.data.pathways[pathvisio.data.current.svgSelector].groups.filter(function(element) {return element.graphId === point.graphRef})[0]
+      if (pathway.hasOwnProperty('groups')) {
+        var group = pathway.groups.filter(function(element) {return element.graphId === point.graphRef})[0]
         if (group !== undefined) {
           return {'type':'group', 'groupId':group.groupId};
         };
       };
 
-      var edgesWithAnchors = pathvisio.data.pathways[pathvisio.data.current.svgSelector].edges.filter(function(element) {return element.hasOwnProperty('anchors')})
+      var edgesWithAnchors = pathway.edges.filter(function(element) {return element.hasOwnProperty('anchors')})
       self.edgesWithAnchors = edgesWithAnchors;
       var i = -1;
       do {
@@ -180,7 +181,7 @@ pathvisio.pathway.edge.point = function(){
     };
   };
 
-  function getCoordinates(point) {
+  function getCoordinates(svg, point) {
     var coordinates = {};
     var edgeTerminusRef = self.edgeTerminusRef = getGraphRef(point);
     if (edgeTerminusRef.type !== 'anchor') {
@@ -205,7 +206,7 @@ pathvisio.pathway.edge.point = function(){
       };
     }
     else {
-      var path = d3.select("#interaction-" + edgeTerminusRef.edge.graphId)[0][0];
+      var path = svg.select("#interaction-" + edgeTerminusRef.edge.graphId)[0][0];
       var coordinates = path.getPointAtLength(edgeTerminusRef.element.position * path.getTotalLength());
     };
 

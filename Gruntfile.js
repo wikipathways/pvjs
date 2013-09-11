@@ -21,6 +21,7 @@ module.exports = function(grunt) {
           'src/js/pathvisio/pathway/edge/marker.js',
           'src/js/pathvisio/pathway/edge/point.js',
           'src/js/pathvisio/pathway/edge/path-data.js',
+          'src/js/pathvisio/pathway/data-sources.js',
           'src/js/pathvisio/pathway/x-ref.js',
         ],
         dest: 'build/js/pathvisio.js'
