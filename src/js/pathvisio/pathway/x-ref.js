@@ -16,36 +16,13 @@ pathvisio.pathway.xRef = function(){
         var parser = CSVParser.parse(data, true, ' ', false, false, '.');
         var parsed = DataGridRenderer.json(parser.dataGrid, parser.headerNames, parser.headerTypes,'\t','\n');
         var xRefDataParsed = self.xRefDataParsed = JSON.parse(parsed);
-        xRefDataSorted = self.xRefDataSorted = [];
-        xRefDataParsed.forEach(function(xRef) {
-          try {
-            var priority = pathvisio.pathway.dataSources.filter(function(dataSource) {return dataSource.database.replace(/[^a-z0-9]/gi,'').toLowerCase() == xRef.database.replace(/[^a-z0-9]/gi,'').toLowerCase() })[0].priority;
-          }
-          catch (e) {
-            console.warn(e);
-            console.warn('Error: No database found for external reference database "' + xRef.database + '".');
-          };
-          if (priority == 1) {
-            xRefDataSorted.unshift(xRef);
-          }
-          else {
-            xRefDataSorted.push(xRef);
-          };
-        });
-        var specifiedXRef = xRefDataSorted.filter(function(element) {return (element.database == node.xRef.database && element. id == node.xRef.id)});
-        var currentIndex = xRefDataSorted.indexOf(specifiedXRef[0]);
-        xRefDataSorted = pathvisio.helpers.moveArrayItem(xRefDataSorted, currentIndex, 0);
-        var features = {
-          "id": node.textLabel.text,
-          "description": node.dataNodeType
-        };
 
-        var idsByDatabase = xRefDataSorted;
+        xRefDataSorted = self.xRefDataSorted = [];
+        var idsByDatabase = xRefDataParsed;
         var feature = {};
         idsByDatabase.ids = [];
         var features = [];
-
-        xRefDataSorted.forEach(function(xRefForEach, index, array) {
+        xRefDataParsed.forEach(function(xRefForEach, index, array) {
           feature.database = xRefForEach.database;
           feature.ids = [];          
           if (features.filter(function(featureFilter) {return featureFilter.database === xRefForEach.database}).length === 0) {
@@ -54,6 +31,32 @@ pathvisio.pathway.xRef = function(){
             console.log(features);
           };    
         });
+
+        featuresSorted.forEach(function(feature) {
+          try {
+            var priority = pathvisio.pathway.dataSources.filter(function(dataSource) {return dataSource.database.replace(/[^a-z0-9]/gi,'').toLowerCase() == feature.database.replace(/[^a-z0-9]/gi,'').toLowerCase() })[0].priority;
+          }
+          catch (e) {
+            console.warn(e);
+            console.warn('Error: No database found for external reference database "' + feature.database + '".');
+          };
+          if (priority == 1) {
+            featuresSorted.unshift(feature);
+          }
+          else {
+            featuresSorted.push(feature);
+          };
+        });
+
+        var specifiedfeature = featuresSorted.filter(function(element) {return (element.database == node.xRef.database)});
+        var currentFeatureIndex = featuresSorted.indexOf(specifiedfeature[0]);
+
+        var specifiedXRefId = specifiedfeature.ids.filter(function(element) {return (element == node.xRef.id)});
+        var currentXRefIdIndex = specifiedfeature.ids.indexOf(specifiedXRefId);
+
+        featuresSorted = pathvisio.helpers.moveArrayItem(featuresSorted, currentFeatureIndex, 0);
+        featuresSorted.ids = pathvisio.helpers.moveArrayItem(featuresSorted.ids, currentXRefIdIndex, 0);
+
         self.features = features;
 
         var pathwayContainer = d3.select('#pathway-container');
