@@ -34,81 +34,65 @@ pathvisio.pathway.xRef = function(){
         });
         var specifiedXRef = xRefDataSorted.filter(function(element) {return (element.database == node.xRef.database && element. id == node.xRef.id)});
         var currentIndex = xRefDataSorted.indexOf(specifiedXRef[0]);
-        xRefDataSorted = pathvisio.helpers(xRefDataSorted, currentIndex, 0);
+        xRefDataSorted = pathvisio.helpers.moveArrayItem(xRefDataSorted, currentIndex, 0);
         var features = {
           "id": node.textLabel.text,
           "description": node.dataNodeType
         };
 
-        var database = null;
-        var ids = [];
-        var features = [{database:ids}];
-        xRefDataSorted.forEach(function(element) {
-          database = element.database;
+        var idsByDatabase = xRefDataSorted;
+        var feature = {};
+        idsByDatabase.ids = [];
+        var features = [];
 
-          if (!features[element.database]) {
-            <li><span class='feature-title'></span><span class='feature-item'></span></li>
-            features[element.database] = [element.id];
-          }
-          else {
-            features[element.database].push(element.id);
-          };
+        xRefDataSorted.forEach(function(xRefForEach, index, array) {
+          feature.database = xRefForEach.database;
+          feature.ids = [];          
+          if (features.filter(function(featureFilter) {return featureFilter.database === xRefForEach.database}).length === 0) {
+            array.filter(function(xRefFilter) {return xRefFilter.database === xRefForEach.database}).forEach(function(element) {feature.ids.push(element.id)});
+            features.push({'database':xRefForEach.database, 'ids': feature.ids});
+            console.log(features);
+          };    
         });
+        self.features = features;
 
-        var detailsFrame = d3.select('#details-frame');
+        var pathwayContainer = d3.select('#pathway-container');
+        var detailsFrame = pathwayContainer.append('div');
         var detailsList = detailsFrame.select('ul');
         detailsListItems = detailsList.selectAll('li')
         .data(features)
         .enter()
         .append('li');
 
+        /*
+        [{'database':'a','ids':[1,2,3]},{'database':'b','ids':[1,2,3]}]
+        <li><span class='feature-title'></span><span class='feature-item'></span></li>
+        features[element.database] = [element.id];
+        */
+
         detailsListItems.forEach(function(d) {
           var detailsListItem = d3.select(this);
 
           var featureTitle = detailsListItem.append('span')
           .attr('class', 'feature-title')
-          .text(d);
+          .text(function(d) {return d.database});
 
-          var featureItem = detailsListItem.selectAll('span.feature-item')
-          .data(d.
-          .append('span')
-          .attr('class', 'feature-title')
-          .text(d.database);
+
+          /*
+          detailsListItems.forEach(function(d) {
+            var featureItem = detailsListItem.selectAll('span.feature-item')
+            .data(d.
+            .append('span')
+            .attr('class', 'feature-title')
+            .text(d.database);
+            */
 
         });
 
         console.log(features);
-        console.log(d3.map(features));
-        console.log(d3.set(features));
 
-        var detailsFrame = d3.select('#detailsFrame');
-        detailsFrame[0][0].style.visibility = 'visible';
+        //detailsFrame[0][0].style.visibility = 'visible';
 
-        if (!Biojs.DetailsFrame.set) {
-          Biojs.DetailsFrame.set = true;
-          Biojs.DetailsFrame.instance = new Biojs.DetailsFrame({
-            target: "detailsFrame",
-            features: features 
-          });
-        }
-        else {
-
-          // hack for making this work in IE8.
-          // Biojs.detailsFrame.instance.updateFeatures() did not appear to work in IE8,
-          // so I am just emptying the detailsFrame div and building a new one.
-
-          detailsFrame.selectAll('*').remove();
-          Biojs.DetailsFrame.instance = new Biojs.DetailsFrame({
-            target: "detailsFrame",
-            features: features 
-          });
-          /*
-             Biojs.DetailsFrame.instance.updateFeatures({id: this.getAttribute('id'),
-description:"new description",
-newFeature:"its value",
-otherFeature:"another value"});
-*/
-        };
       });
     };
 
