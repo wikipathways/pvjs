@@ -69,7 +69,7 @@ pathvisio.pathway.xRef = function(){
         specifiedFeature.ids = pathvisio.helpers.moveArrayItem(specifiedFeature.ids, currentXRefIdIndex, 0);
 
         var pathwayViewer = d3.select('#pathway-viewer');
-        var detailsFrame = pathwayViewer.insert('div');
+        var detailsFrame = pathwayViewer.append('div');
         var detailsList = detailsFrame.append('ul');
         detailsListItems = detailsList.selectAll('li')
         .data(featuresSorted)
