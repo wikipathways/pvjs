@@ -10,21 +10,6 @@ http://google-styleguide.googlecode.com/svn/trunk/javascriptguide.xml
 http://google-styleguide.googlecode.com/svn/trunk/jsoncstyleguide.xml#General_Guidelines
 -->
 
-<?php
-function getUrl() {
-  $url  = @( $_SERVER["HTTPS"] != 'on' ) ? 'http://'.$_SERVER["SERVER_NAME"] :  'https://'.$_SERVER["SERVER_NAME"];
-  $url .= ( $_SERVER["SERVER_PORT"] !== 80 ) ? ":".$_SERVER["SERVER_PORT"] : "";
-  $url .= $_SERVER["REQUEST_URI"];
-  return $url;
-}
-
-$currentUrl = getUrl();
-$base = str_replace("?", "/../../../?", getUrl());
-
-//echo '<base href="' . $base . '">';
-
-?>
-
 <link href="../lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" media="screen">
 <link rel="stylesheet" href="../lib/biojs/src/main/resources/css/biojs.detailsFrame.css">
 <link rel="stylesheet" href="../lib/jquery-ui/themes/base/jquery-ui.css">
@@ -89,43 +74,67 @@ body {
   </script>
 <![endif]-->
 
-</head>
-<body>
-<div style="position:relative; width:100%; height:90%;" id="pathwayEditor" class="pathwayEditor">
-  <div style="position:relative; width:70%; height:auto; float:left;">
-    <div style="width:100%; height:100%" id="pathwayViewer">
-<!-- Pathvisio.js SVG viewer -->
-<?php
-$authorizedRepos = array("wikipathways", "AlexanderPico", "ariutta", "khanspers");
-$repo = "wikipathways";
+<script src="../../build/js/pathvisio.js"></script>
+<script src="../lib/d3/d3.js" charset="utf-8"></script>
+<script>
+var currentUrlWithoutQueryString = window.location.href.split("?")[0].split("#")[0];
 
-if (isset($_GET['repo'])) {
-  if (in_array($_GET['repo'], $authorizedRepos)) {
-    $repo = htmlspecialchars($_GET['repo']);
-  }
-}
-
-if ($_GET['repo'] == "local") {
-  $pathwayTemplateSvgUrl = "pathway-template.svg";
-  $pathwayTemplateSvgUrlEditable = "pathway-template.svg";
+if (!pathvisio.helpers.getUrlParam('svgView')) {
+  var svgView = 1;
 }
 else {
-  $pathwayTemplateSvgUrl = "https://raw.github.com/" . $repo . "/pathvisio.js/dev/src/views/pathway-template.svg";
-  //$pathwayTemplateSvgUrl = "./pathway-template.svg";
-  $pathwayTemplateSvgUrlEditable = "https://github.com/" . $repo . "/pathvisio.js/blob/dev/src/views/pathway-template.svg";
+  var svgView = pathvisio.helpers.getUrlParam('svgView');
+};
+
+var repo = pathvisio.helpers.getUrlParam('repo');
+var branch = pathvisio.helpers.getUrlParam('branch');
+
+if (!!pathvisio.helpers.getUrlParam('svg')) {
+  var svgSource = pathvisio.helpers.getUrlParam('svg');
+  if (pathvisio.helpers.isUrl(svgSource)) {
+    console.log('SVG Source');
+    console.log(svgSource);
+    var svgUrl = svgSource;
+  }
+  else {
+    var svgUrl = currentUrlWithoutQueryString + '/../../remote-data-sources/php/github.php?data=svg&repo=' + repo + '&branch=' + branch;
+  };
 }
+else {
+  console.warn('Error: No SVG data source specified.');
+};
 
-echo "<div id='pathway-container' class='pathway'>";
-$pathwayTemplateSvg = simplexml_load_file($pathwayTemplateSvgUrl);
-echo $pathwayTemplateSvg->saveXML();
-echo "</div>";
+if (!!pathvisio.helpers.getUrlParam('gpml')) {
+  var gpmlSource = pathvisio.helpers.getUrlParam('gpml');
+  if (pathvisio.helpers.isUrl(gpmlSource)) {
+    var gpmlUrl = gpmlSource;
+  }
+  else {
+    var gpmlUrl = currentUrlWithoutQueryString + '/../../../remote-data-sources/php/wikipathways.php?data=gpml&id=' + gpmlSource;
+  };
+}
+else {
+  console.warn('Error: No GPML data source specified.');
+};
 
-?>
-    </div>
+var pngUrl = encodeURIComponent('http://test3.wikipathways.org//wpi/wpi.php?action=downloadFile&type=png&pwTitle=Pathway:' + gpmlSource);
+console.log('pngUrl');
+console.log(pngUrl);
+
+d3.select('#fallback-image').attr('src', pngUrl);
+</script>
+
+</head>
+<body>
+<div style="position:relative; width:70%; height:auto; float:left;">
+  <div style="width:100%; height:100%" id="pathway-viewer">
+    <object id='pathway-container' data="pathway-template.svg" type="image/svg+xml">
+      <img id="fallback-image" />
+    </object>
   </div>
-  <div style="position:relative; min-width: 300px; width:30%; height:auto; float:right;">
-    <div ng-include src="'partials/editorToolbar.html'"></div>
-  </div>
+</div>
+<div style="position:relative; min-width: 300px; width:30%; height:auto; float:right;">
+  <div ng-include src="'partials/editorToolbar.html'"></div>
 </div>
 <div id="viewertoolbar" style="float:right;">
   <fieldgroup id="svg-toolbar" style="background-image: none; background-color: transparent; border: none; margin: 0px; padding: 0px; position: relative; display: inline-block; background-position: initial initial; background-repeat: initial initial;">
@@ -160,7 +169,6 @@ echo "</div>";
 <div id="detailsFrame" style="visibility:hidden" class="protein ui-draggable">
 </div>
 
-<script src="../lib/d3/d3.js" charset="utf-8"></script>
 <script src="../lib/jquery/jquery.js"></script>
 <script src="../lib/jquery-ui/ui/jquery-ui.js"></script>
 
@@ -178,34 +186,15 @@ echo "</div>";
 <script src="../lib/async/lib/async.js"></script>
 -->
 
-<script src="../../build/js/pathvisio.js"></script>
 
 <script>
-enableZoom = 0;	
-
-if (!pathvisio.helpers.getUrlParam('svgView')) {
-  var svgView = 1;
-}
-else {
-  var svgView = pathvisio.helpers.getUrlParam('svgView');
+function getPng(pathway) {
+  $.ajax({
+    url: 'http://api.zoom.it/v1/content/?url=' + pngUrl,
+    dataType: "jsonp",
+    success: function(resp) { onZoomitResponse(resp, pathway); }
+  });
 };
-
-var repo = pathvisio.helpers.getUrlParam('repo');
-
-if (!!pathvisio.helpers.getUrlParam('id')) {
-  var id = pathvisio.helpers.getUrlParam('id');
-  var url = '../data/gpml.php?id=' + id;
-  //var url = 'http://pointer.ucsf.edu/d3/r/pathvisio.js/src/data/gpml.php?id=' + id;
-}
-else {
-  if (!!pathvisio.helpers.getUrlParam('url')) {
-    var url = pathvisio.helpers.getUrlParam('url');
-  }
-  else {
-    console.log('Error: No GPML data source specified.');
-  };
-};
-
 
 if (Modernizr.svg && svgView != 0) {
 
@@ -213,11 +202,10 @@ if (Modernizr.svg && svgView != 0) {
 
   console.log('Your browser supports SVG.');
 
-  var pathwayContainer = d3.select('#pathway-container');
-  pathwayContainer.attr('style', 'width: 100%; height:500px');
-  pathvisio.pathway.load('#pathway-image', url);
-  ///*
- //*/
+  d3.select('#pathway-container').attr('style', 'width: 100%; height:500px');
+
+  pathvisio.pathway.load('#pathway-container', svgUrl, gpmlUrl);
+
   document.getElementById('full-screen-btn').addEventListener('click', function () {
     if (screenfull.enabled) {
       screenfull.request(pathwayContainer[0][0]);
@@ -231,14 +219,14 @@ else {
   console.log('Your browser does not support SVG. Falling back to PNG.');
 
   var windowDimensions = pathvisio.helpers.getWindowDimensions();
-  var pathwayContainer = d3.select('#pathway-container');
+  var pathwayContainer = d3.select('#pathway-viewer');
   pathwayContainer.select('#pathway-image').remove();
   //pathwayContainer.attr('style', function() {return 'width: 100%; height:' + windowDimensions.height + 'px'});
   pathwayContainer.attr('style', 'width: 100%; height:1000px');
   var svgToolbar = d3.select('#svg-toolbar')[0][0].style.visibility="hidden";
-  var loadingImg = $("#pathway-container").append("<img id='loadingImg' src='../img/loading.gif' width='100' height='100' />");
+  var loadingImg = $("#pathway-viewer").append("<img id='loadingImg' src='../img/loading.gif' width='100' height='100' />");
 
-  function onZoomitResponse(resp) {
+  function onZoomitResponse(resp, pathway) {
     self.resp = resp;
     if (resp.error) {
       // e.g. the URL is malformed or the service is down
@@ -248,7 +236,6 @@ else {
 
     var content = resp.content;
 
-    var pathway = pathvisio.data.pathways[pathvisio.data.current.svgSelector];
     console.log('pathway');
     console.log(pathway);
     var overlays = self.overlays = [];
@@ -256,7 +243,7 @@ else {
 
     pathway.nodes.forEach(function(element) {
       console.log(element);
-      var scalingFactor =  content.dzi.width / pathvisio.data.pathways[pathvisio.data.current.svgSelector].boardWidth;
+      var scalingFactor =  content.dzi.width / pathway.boardWidth;
       overlayItem = {
         'id':element.graphId,
         'px':element.x * scalingFactor,
@@ -275,12 +262,13 @@ else {
     if (content.ready) {
       var viewer = self.viewer = OpenSeadragon({
         //debugMode: true,
-        id: "pathway-container",
+        id: "pathway-viewer",
         prefixUrl: "../lib/openseadragon/images/",
         showNavigator:true,
         //minPixelRatio: 1.5,
         minZoomImageRatio: 0.8,
         maxZoomPixelRatio: 2,
+        showNavigator:  false,
         //toolbar: 'viewertoolbar',
         tileSources:   [{ 
           Image:  {
@@ -304,7 +292,8 @@ else {
       window.setTimeout(function() {
         $(".highlight").click(function() {
           var id = this.getAttribute('id');
-          pathvisio.pathway.xRef.displayData(id);
+          var node = pathway.nodes.filter(function(element) {return element.graphId == id })[0];
+          pathvisio.pathway.xRef.displayData(node);
         });
       }, 1000);
     }
@@ -319,16 +308,8 @@ else {
     };
   };
 
-  function getPng() {
-    $.ajax({
-      url: 'http://api.zoom.it/v1/content/?url=' + encodeURIComponent('http://test3.wikipathways.org//wpi/wpi.php?action=downloadFile&type=png&pwTitle=Pathway:' + id),
-      dataType: "jsonp",
-      success: onZoomitResponse
-    });
-  };
-
-  pathvisio.pathway.getJson(url, 'application/xml', function() {
-    getPng();
+  pathvisio.pathway.getJson(gpmlUrl, function(pathway) {
+    getPng(pathway);
   });
 };
 </script>

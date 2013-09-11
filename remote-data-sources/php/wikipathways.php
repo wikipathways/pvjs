@@ -4,7 +4,7 @@ header("Content-Type: application/xml");
 header("Access-Control-Allow-Origin: *");
   if (isset($_GET['id'])) {
     $id = htmlspecialchars($_GET['id']);
-    $pathwayUrl = "http://www.wikipathways.org//wpi/wpi.php?action=downloadFile&type=gpml&pwTitle=Pathway:" . $id;
+    $pathwayUrl = "http://test3.wikipathways.org//wpi/wpi.php?action=downloadFile&type=gpml&pwTitle=Pathway:" . $id;
   }
 
   // XML GPML (from either wikipathways.org REST API or local /test/gpml/ folder)

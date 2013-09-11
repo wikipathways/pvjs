@@ -12,14 +12,14 @@ pathvisio.pathway = function(){
     console.log('GPML')
     console.log(gpml)
     
-    var pathway = pathvisio.data.pathways[pathvisio.data.current.svgSelector];
+    //var pathway = pathvisio.data.pathways[url];
     pathway = self.pathway = xml.xmlToJSON(gpml, true).pathway;
     
     console.log('raw json from xml2json');
     console.log(xml.xmlToJSON(gpml, true).pathway);
 
     try {
-      xmlns = pathway["xmlns"]
+      xmlns = pathway.xmlns;
     }
     catch (e) {
       console.log(e.message);
@@ -331,12 +331,12 @@ pathvisio.pathway = function(){
 
       console.log('JSON:');
       console.log(pathway);
-      console.log('pathvisio.data.pathways[pathvisio.data.current.svgSelector]');
-      console.log(pathvisio.data.pathways[pathvisio.data.current.svgSelector]);
+      console.log('pathway');
+      console.log(pathway);
 
       delete pathway.graphics;
-      pathvisio.data.pathways[pathvisio.data.current.svgSelector] = pathway;
-      callback(pathvisio.data.pathways[pathvisio.data.current.svgSelector] = pathway);
+      pathvisio.data.pathways.push(pathway);
+      callback(pathway);
     }
     else {
       alert("Pathvisio.js does not support the data format provided. Please convert to GPML and retry.")
@@ -348,7 +348,7 @@ pathvisio.pathway = function(){
   // get GPML (pathway XML) from WikiPathways (by ID) or a URL (could be a local file or any other accessible GPML source),
   // convert to formatted JSON and return the JSON to the function that called getJson()
 
-  function getJson(url, mimeType, callback) {
+  function getJson(url, callback) {
     if (!url) {
 
       // TODO throw a proper error here
@@ -359,33 +359,25 @@ pathvisio.pathway = function(){
     }
     else {
 
-      // be sure server has set gpml mime type to application/xml or application/gpml+xml
-
-      if (!mimeType) {
-        mimeType = 'application/xml';
-      };
-
-      if (!pathvisio.data.current.svgSelector) {
-        pathvisio.data.current.svgSelector = new Date().toString();
-      };
-
-
       // I would prefer to use d3.xml for the http request in order to not depend on jQuery,
       // but d3.xml doesn't seem to work with IE8. TODO remove dependency on jQuery
 
       console.log('callback');
       console.log(callback);
 
-      $.get(url, mimeType, function(data) {
-        pathvisio.pathway.gpml2json(data, function(json) {
+      // be sure server has set gpml mime type to application/xml or application/gpml+xml
+      $.get(url, 'application/xml', function(gpml) {
+        pathvisio.pathway.gpml2json(gpml, function(json) {
           callback(json);
         });
       });
     };
   };
 
-  function draw(data){
-    if (!data) {
+  function draw(svg, pathway){
+    console.log('svg');
+    console.log(svg);
+    if (!pathway) {
       console.warn('Error: No data entered as input.');
       return 'Error';
     };
@@ -401,12 +393,12 @@ pathvisio.pathway = function(){
       .attr("y", d3.event.y);
     };	
 
-    pathvisio.data.current.svg.attr('width', data.boardWidth);
-    pathvisio.data.current.svg.attr('height', data.boardHeight);
+    svg.attr('width', pathway.boardWidth);
+    svg.attr('height', pathway.boardHeight);
 
-    if (!!pathvisio.data.pathways[pathvisio.data.current.svgSelector].biopaxRefs) {
-      var pathwayPublicationXrefs = pathvisio.data.current.svg.select('#viewport').selectAll(".pathway-publication-xref-text")	
-      .data(pathvisio.data.pathways[pathvisio.data.current.svgSelector].biopaxRefs)
+    if (!!pathway.biopaxRefs) {
+      var pathwayPublicationXrefs = svg.select('#viewport').selectAll(".pathway-publication-xref-text")	
+      .data(pathway.biopaxRefs)
       .enter()
       .append("text")
       .attr("id", function (d) { return 'pathway-publication-xref-text-' + d; })
@@ -425,60 +417,89 @@ pathvisio.pathway = function(){
         var index = 0;
         var rdfId = null;
         do {
-          rdfId = pathvisio.data.pathways[pathvisio.data.current.svgSelector].biopax.bpPublicationXrefs[index].rdfId;
+          rdfId = pathway.biopax.bpPublicationXrefs[index].rdfId;
           index += 1;
-        } while (rdfId !== d.Text && index < pathvisio.data.pathways[pathvisio.data.current.svgSelector].biopax.bpPublicationXrefs.length);
+        } while (rdfId !== d.Text && index < pathway.biopax.bpPublicationXrefs.length);
         return index});
     };
 
-    var symbolsAvailable = self.symbolsAvailable = pathvisio.data.current.svg.selectAll('symbol');
+    var symbolsAvailable = self.symbolsAvailable = svg.selectAll('symbol');
 
-    var markersAvailable = markersAvailable = pathvisio.data.current.svg.selectAll('marker');
+    var markersAvailable = markersAvailable = svg.selectAll('marker');
 
-    pathvisio.pathway.group.drawAll();
+    if (pathway.hasOwnProperty('groups')) {
+      pathvisio.pathway.group.drawAll(svg, pathway);
+    };
 
-    pathvisio.pathway.edge.drawAll();
+    if (pathway.hasOwnProperty('edges')) {
+      pathvisio.pathway.edge.drawAll(svg, pathway);
+    };
 
-    pathvisio.pathway.node.drawAll();
+    if (pathway.hasOwnProperty('nodes')) {
+      pathvisio.pathway.node.drawAll(svg, pathway);
+    };
 
-    pathvisio.pathway.infoBox.draw();
+    if (pathway.hasOwnProperty('infoBox')) {
+      pathvisio.pathway.infoBox.draw(svg, pathway);
+    };
   };
 
-  // get JSON and draw SVG representation of pathway
+  function getSvg(url, callback) {
 
-  function load(svgSelector, url, mimeType){
-    if (!!svgSelector) {
-      pathvisio.data.current.svgSelector = svgSelector;
-      pathvisio.data.current.svg = d3.select(svgSelector);
-      var svgCount = pathvisio.data.current.svg.length;
-      if (svgCount === 1) {
-        console.log('Successfully loaded SVG pathway template.');
-      }
-      else {
-        console.warn('Error: ' + svgCount + ' SVG template(s) returned with selector "' + svgSelector + '". Please redefined selector so only 1 result is returned.');
-        return 'Error';
-      };
+    // from http://stackoverflow.com/questions/8188645/javascript-regex-to-match-a-url-in-a-field-of-text
+    
+    if (pathvisio.helpers.isUrl(url)) {
+      var pathwayTemplateSvgUrl = url;
     }
     else {
-      console.warn('Error: No SVG template selector specified.');
-      return 'Error';
+      var pathwayTemplateSvgUrl = "pathway-template.svg";
     };
 
     /*
     // Use this code if you want to get the SVG using d3.xml.
-    // I think this would be used if the SVG were included in the document as an embedded object instead of included directly in the DOM.
-    pathvisio.data.current.svg = d3.select("#pathway-container").select(function() {
-      return this.getSVGDocument().documentElement;
+    d3.xml(url, 'image/svg+xml', function(svgDoc) {
+      var importedNode = document.importNode(svgDoc.documentElement, true);
+      callback(importedNode);
     });
-    */
+    //*/
 
-    if (!url) {
-      console.warn('Error: No url specified for GPML or JSON data.');
-      return 'No URL specified.';
-    };
 
-    getJson(url, null, function(data, sGpml, sJson) {
-      draw(data);
+    ///*
+    // I think this would be used if the SVG were included in the document as an embedded object instead of included directly in the DOM.
+    svg = d3.select("#pathway-container").select(function() {
+      callback(d3.select(this.getSVGDocument().documentElement));
+    });
+    //*/
+
+    /*
+     * get using jquery
+    $.ajax({
+      url: pathwayTemplateSvgUrl,
+      dataType: "application/xml",
+      success: callback 
+    });
+    //*/
+  };
+
+  // get JSON and draw SVG representation of pathway
+
+  function load(targetSelector, svgUrl, gpmlUrl) {
+    if (!targetSelector) { return console.warn('Error: No pathway container selector specified as target.') };
+    if (d3.select(targetSelector).length !== 1) { return console.warn('pathway container selector must be unique.') };
+    if (!pathvisio.helpers.isUrl(svgUrl)) { return console.warn('Error: No URL specified for SVG pathway template.') };
+    if (!pathvisio.helpers.isUrl(gpmlUrl)) { return console.warn('Error: No URL specified for GPML data source.') };
+
+    getSvg(svgUrl, function(svg) {
+      console.log('svg');
+      console.log(svg);
+      var target = d3.select(targetSelector);
+
+      // this does not work
+      //target.append(svg);
+
+      getJson(gpmlUrl, function(pathway, sGpml, sJson) {
+        draw(svg, pathway);
+      });
     });
   };
 

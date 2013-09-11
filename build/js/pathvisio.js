@@ -592,13 +592,19 @@ function RGBColor(color_string)
 
 var pathvisio = {};
 pathvisio.data = {};
-pathvisio.data.current = {};
-pathvisio.data.current.svgSelector = null;
-pathvisio.data.current.svg = null;
 pathvisio.data.pathways = [];
 ;
 
 pathvisio.helpers = function(){
+
+  function isUrl(str) {
+
+    // from http://forums.devshed.com/javascript-development-115/regexp-to-match-url-pattern-493764.html
+
+    var urlPattern = new RegExp("((http|https)(:\/\/))?([a-zA-Z0-9]+[.]{1}){2}[a-zA-z0-9]+(\/{1}[a-zA-Z0-9]+)*\/?", "i");
+    return urlPattern.test(str);
+  };
+
   function splitStringByNewLine(str) {
 
     // PathVisio (Java) uses '&#xA;' for indicating newline, and browsers convert this into '\r\n' or '\n' in JavaScript.
@@ -621,7 +627,7 @@ pathvisio.helpers = function(){
       return parameter;
     }
     else {
-      console.warn('Warning: URL parameter is null.');
+      console.warn('Warning: URL parameter "' + name + '" is null.');
       return null;
     };
   };
@@ -665,7 +671,21 @@ pathvisio.helpers = function(){
     return {'width':winW, 'height':winH};
   };
 
+  // from http://stackoverflow.com/questions/5306680/move-an-array-element-from-one-array-position-to-another
+
+  Array.prototype.move = function (old_index, new_index) {
+    if (new_index >= this.length) {
+      var k = new_index - this.length;
+      while ((k--) + 1) {
+        this.push(undefined);
+      }
+    }
+    this.splice(new_index, 0, this.splice(old_index, 1)[0]);
+    return this; // for testing purposes
+  };
+
   return{
+    isUrl:isUrl,
     splitStringByNewLine:splitStringByNewLine,
     getUrlParam:getUrlParam,
     cloneNode:cloneNode,
@@ -693,14 +713,14 @@ pathvisio.pathway = function(){
     console.log('GPML')
     console.log(gpml)
     
-    var pathway = pathvisio.data.pathways[pathvisio.data.current.svgSelector];
+    //var pathway = pathvisio.data.pathways[url];
     pathway = self.pathway = xml.xmlToJSON(gpml, true).pathway;
     
     console.log('raw json from xml2json');
     console.log(xml.xmlToJSON(gpml, true).pathway);
 
     try {
-      xmlns = pathway["xmlns"]
+      xmlns = pathway.xmlns;
     }
     catch (e) {
       console.log(e.message);
@@ -1012,12 +1032,12 @@ pathvisio.pathway = function(){
 
       console.log('JSON:');
       console.log(pathway);
-      console.log('pathvisio.data.pathways[pathvisio.data.current.svgSelector]');
-      console.log(pathvisio.data.pathways[pathvisio.data.current.svgSelector]);
+      console.log('pathway');
+      console.log(pathway);
 
       delete pathway.graphics;
-      pathvisio.data.pathways[pathvisio.data.current.svgSelector] = pathway;
-      callback(pathvisio.data.pathways[pathvisio.data.current.svgSelector] = pathway);
+      pathvisio.data.pathways.push(pathway);
+      callback(pathway);
     }
     else {
       alert("Pathvisio.js does not support the data format provided. Please convert to GPML and retry.")
@@ -1029,7 +1049,7 @@ pathvisio.pathway = function(){
   // get GPML (pathway XML) from WikiPathways (by ID) or a URL (could be a local file or any other accessible GPML source),
   // convert to formatted JSON and return the JSON to the function that called getJson()
 
-  function getJson(url, mimeType, callback) {
+  function getJson(url, callback) {
     if (!url) {
 
       // TODO throw a proper error here
@@ -1040,33 +1060,25 @@ pathvisio.pathway = function(){
     }
     else {
 
-      // be sure server has set gpml mime type to application/xml or application/gpml+xml
-
-      if (!mimeType) {
-        mimeType = 'application/xml';
-      };
-
-      if (!pathvisio.data.current.svgSelector) {
-        pathvisio.data.current.svgSelector = new Date().toString();
-      };
-
-
       // I would prefer to use d3.xml for the http request in order to not depend on jQuery,
       // but d3.xml doesn't seem to work with IE8. TODO remove dependency on jQuery
 
       console.log('callback');
       console.log(callback);
 
-      $.get(url, mimeType, function(data) {
-        pathvisio.pathway.gpml2json(data, function(json) {
+      // be sure server has set gpml mime type to application/xml or application/gpml+xml
+      $.get(url, 'application/xml', function(gpml) {
+        pathvisio.pathway.gpml2json(gpml, function(json) {
           callback(json);
         });
       });
     };
   };
 
-  function draw(data){
-    if (!data) {
+  function draw(svg, pathway){
+    console.log('svg');
+    console.log(svg);
+    if (!pathway) {
       console.warn('Error: No data entered as input.');
       return 'Error';
     };
@@ -1082,12 +1094,12 @@ pathvisio.pathway = function(){
       .attr("y", d3.event.y);
     };	
 
-    pathvisio.data.current.svg.attr('width', data.boardWidth);
-    pathvisio.data.current.svg.attr('height', data.boardHeight);
+    svg.attr('width', pathway.boardWidth);
+    svg.attr('height', pathway.boardHeight);
 
-    if (!!pathvisio.data.pathways[pathvisio.data.current.svgSelector].biopaxRefs) {
-      var pathwayPublicationXrefs = pathvisio.data.current.svg.select('#viewport').selectAll(".pathway-publication-xref-text")	
-      .data(pathvisio.data.pathways[pathvisio.data.current.svgSelector].biopaxRefs)
+    if (!!pathway.biopaxRefs) {
+      var pathwayPublicationXrefs = svg.select('#viewport').selectAll(".pathway-publication-xref-text")	
+      .data(pathway.biopaxRefs)
       .enter()
       .append("text")
       .attr("id", function (d) { return 'pathway-publication-xref-text-' + d; })
@@ -1106,60 +1118,89 @@ pathvisio.pathway = function(){
         var index = 0;
         var rdfId = null;
         do {
-          rdfId = pathvisio.data.pathways[pathvisio.data.current.svgSelector].biopax.bpPublicationXrefs[index].rdfId;
+          rdfId = pathway.biopax.bpPublicationXrefs[index].rdfId;
           index += 1;
-        } while (rdfId !== d.Text && index < pathvisio.data.pathways[pathvisio.data.current.svgSelector].biopax.bpPublicationXrefs.length);
+        } while (rdfId !== d.Text && index < pathway.biopax.bpPublicationXrefs.length);
         return index});
     };
 
-    var symbolsAvailable = self.symbolsAvailable = pathvisio.data.current.svg.selectAll('symbol');
+    var symbolsAvailable = self.symbolsAvailable = svg.selectAll('symbol');
 
-    var markersAvailable = markersAvailable = pathvisio.data.current.svg.selectAll('marker');
+    var markersAvailable = markersAvailable = svg.selectAll('marker');
 
-    pathvisio.pathway.group.drawAll();
+    if (pathway.hasOwnProperty('groups')) {
+      pathvisio.pathway.group.drawAll(svg, pathway);
+    };
 
-    pathvisio.pathway.edge.drawAll();
+    if (pathway.hasOwnProperty('edges')) {
+      pathvisio.pathway.edge.drawAll(svg, pathway);
+    };
 
-    pathvisio.pathway.node.drawAll();
+    if (pathway.hasOwnProperty('nodes')) {
+      pathvisio.pathway.node.drawAll(svg, pathway);
+    };
 
-    pathvisio.pathway.infoBox.draw();
+    if (pathway.hasOwnProperty('infoBox')) {
+      pathvisio.pathway.infoBox.draw(svg, pathway);
+    };
   };
 
-  // get JSON and draw SVG representation of pathway
+  function getSvg(url, callback) {
 
-  function load(svgSelector, url, mimeType){
-    if (!!svgSelector) {
-      pathvisio.data.current.svgSelector = svgSelector;
-      pathvisio.data.current.svg = d3.select(svgSelector);
-      var svgCount = pathvisio.data.current.svg.length;
-      if (svgCount === 1) {
-        console.log('Successfully loaded SVG pathway template.');
-      }
-      else {
-        console.warn('Error: ' + svgCount + ' SVG template(s) returned with selector "' + svgSelector + '". Please redefined selector so only 1 result is returned.');
-        return 'Error';
-      };
+    // from http://stackoverflow.com/questions/8188645/javascript-regex-to-match-a-url-in-a-field-of-text
+    
+    if (pathvisio.helpers.isUrl(url)) {
+      var pathwayTemplateSvgUrl = url;
     }
     else {
-      console.warn('Error: No SVG template selector specified.');
-      return 'Error';
+      var pathwayTemplateSvgUrl = "pathway-template.svg";
     };
 
     /*
     // Use this code if you want to get the SVG using d3.xml.
-    // I think this would be used if the SVG were included in the document as an embedded object instead of included directly in the DOM.
-    pathvisio.data.current.svg = d3.select("#pathway-container").select(function() {
-      return this.getSVGDocument().documentElement;
+    d3.xml(url, 'image/svg+xml', function(svgDoc) {
+      var importedNode = document.importNode(svgDoc.documentElement, true);
+      callback(importedNode);
     });
-    */
+    //*/
 
-    if (!url) {
-      console.warn('Error: No url specified for GPML or JSON data.');
-      return 'No URL specified.';
-    };
 
-    getJson(url, null, function(data, sGpml, sJson) {
-      draw(data);
+    ///*
+    // I think this would be used if the SVG were included in the document as an embedded object instead of included directly in the DOM.
+    svg = d3.select("#pathway-container").select(function() {
+      callback(d3.select(this.getSVGDocument().documentElement));
+    });
+    //*/
+
+    /*
+     * get using jquery
+    $.ajax({
+      url: pathwayTemplateSvgUrl,
+      dataType: "application/xml",
+      success: callback 
+    });
+    //*/
+  };
+
+  // get JSON and draw SVG representation of pathway
+
+  function load(targetSelector, svgUrl, gpmlUrl) {
+    if (!targetSelector) { return console.warn('Error: No pathway container selector specified as target.') };
+    if (d3.select(targetSelector).length !== 1) { return console.warn('pathway container selector must be unique.') };
+    if (!pathvisio.helpers.isUrl(svgUrl)) { return console.warn('Error: No URL specified for SVG pathway template.') };
+    if (!pathvisio.helpers.isUrl(gpmlUrl)) { return console.warn('Error: No URL specified for GPML data source.') };
+
+    getSvg(svgUrl, function(svg) {
+      console.log('svg');
+      console.log(svg);
+      var target = d3.select(targetSelector);
+
+      // this does not work
+      //target.append(svg);
+
+      getJson(gpmlUrl, function(pathway, sGpml, sJson) {
+        draw(svg, pathway);
+      });
     });
   };
 
@@ -1173,46 +1214,45 @@ pathvisio.pathway = function(){
 ;
 
 pathvisio.pathway.group = function(){ 
-  function drawAll() {
-    if (pathvisio.data.pathways[pathvisio.data.current.svgSelector].hasOwnProperty('groups')) {
+  function drawAll(svg, groups) {
+    if (!groups) { return console.warn('Error: No group data available.')};
 
-      // only consider non-empty groups
+    // only consider non-empty groups
 
-      var validGroups = pathvisio.data.pathways[pathvisio.data.current.svgSelector].groups.filter(function(el) {
-        var groupId = el.groupId
-        return (pathvisio.data.pathways[pathvisio.data.current.svgSelector].nodes.filter(function(el) {return (el.groupRef === groupId)}).length>0)
-      });
-      var groupsContainer = pathvisio.data.current.svg.select('#viewport').selectAll("use.group")	
-      .data(validGroups)
-      .enter()
-      .append("path")
-      .attr("id", function (d) { return 'group-' + d.graphId })
-      .attr("class", function(d) { return 'group group-' +  d.style; })
+    var validGroups = pathway.groups.filter(function(el) {
+      var groupId = el.groupId
+      return (pathway.nodes.filter(function(el) {return (el.groupRef === groupId)}).length>0)
+    });
+    var groupsContainer = svg.select('#viewport').selectAll("use.group")	
+    .data(validGroups)
+    .enter()
+    .append("path")
+    .attr("id", function (d) { return 'group-' + d.graphId })
+    .attr("class", function(d) { return 'group group-' +  d.style; })
 
-      // We tried using symbols for the group shapes, but this wasn't possible because the symbols scaled uniformly, and the beveled corners of the complex group
-      // are supposed to remain constant in size, regardless of changes in group size.
+    // We tried using symbols for the group shapes, but this wasn't possible because the symbols scaled uniformly, and the beveled corners of the complex group
+    // are supposed to remain constant in size, regardless of changes in group size.
 
-      .attr("d", function(d) {
-        var groupDimensions = getDimensions(d.groupId);
-        if (d.style === 'none' || d.style === 'group' || d.style === 'pathway') {
-          var pathData = 'M ' + groupDimensions.x + ' ' + groupDimensions.y + ' L ' + (groupDimensions.x + groupDimensions.width) + ' ' + groupDimensions.y + ' L ' + (groupDimensions.x + groupDimensions.width) + ' ' + (groupDimensions.y + groupDimensions.height) + ' L ' + groupDimensions.x + ' ' + (groupDimensions.y + groupDimensions.height) + ' Z';
+    .attr("d", function(d) {
+      var groupDimensions = getDimensions(d.groupId);
+      if (d.style === 'none' || d.style === 'group' || d.style === 'pathway') {
+        var pathData = 'M ' + groupDimensions.x + ' ' + groupDimensions.y + ' L ' + (groupDimensions.x + groupDimensions.width) + ' ' + groupDimensions.y + ' L ' + (groupDimensions.x + groupDimensions.width) + ' ' + (groupDimensions.y + groupDimensions.height) + ' L ' + groupDimensions.x + ' ' + (groupDimensions.y + groupDimensions.height) + ' Z';
+      }
+      else {
+        if (d.style === 'complex') {
+          var pathData = 'M ' + (groupDimensions.x + 20) + ' ' + groupDimensions.y + ' L ' + (groupDimensions.x + groupDimensions.width - 20) + ' ' + groupDimensions.y + ' L ' + (groupDimensions.x + groupDimensions.width) + ' ' + (groupDimensions.y + 20) + ' L ' + (groupDimensions.x + groupDimensions.width) + ' ' + (groupDimensions.y + groupDimensions.height - 20) + ' L ' + (groupDimensions.x + groupDimensions.width - 20) + ' ' + (groupDimensions.y + groupDimensions.height) + ' L ' + (groupDimensions.x + 20) + ' ' + (groupDimensions.y + groupDimensions.height) + ' L ' + (groupDimensions.x) + ' ' + (groupDimensions.y + groupDimensions.height - 20) + ' L ' + (groupDimensions.x) + ' ' + (groupDimensions.y + 20) + ' Z';
         }
         else {
-          if (d.style === 'complex') {
-            var pathData = 'M ' + (groupDimensions.x + 20) + ' ' + groupDimensions.y + ' L ' + (groupDimensions.x + groupDimensions.width - 20) + ' ' + groupDimensions.y + ' L ' + (groupDimensions.x + groupDimensions.width) + ' ' + (groupDimensions.y + 20) + ' L ' + (groupDimensions.x + groupDimensions.width) + ' ' + (groupDimensions.y + groupDimensions.height - 20) + ' L ' + (groupDimensions.x + groupDimensions.width - 20) + ' ' + (groupDimensions.y + groupDimensions.height) + ' L ' + (groupDimensions.x + 20) + ' ' + (groupDimensions.y + groupDimensions.height) + ' L ' + (groupDimensions.x) + ' ' + (groupDimensions.y + groupDimensions.height - 20) + ' L ' + (groupDimensions.x) + ' ' + (groupDimensions.y + 20) + ' Z';
-          }
-          else {
-            var pathData = 'M ' + groupDimensions.x + ' ' + groupDimensions.y + ' L ' + (groupDimensions.x + groupDimensions.width) + ' ' + groupDimensions.y + ' L ' + (groupDimensions.x + groupDimensions.width) + ' ' + (groupDimensions.y + groupDimensions.height) + ' L ' + groupDimensions.x + ' ' + (groupDimensions.y + groupDimensions.height) + ' Z';
-          };
+          var pathData = 'M ' + groupDimensions.x + ' ' + groupDimensions.y + ' L ' + (groupDimensions.x + groupDimensions.width) + ' ' + groupDimensions.y + ' L ' + (groupDimensions.x + groupDimensions.width) + ' ' + (groupDimensions.y + groupDimensions.height) + ' L ' + groupDimensions.x + ' ' + (groupDimensions.y + groupDimensions.height) + ' Z';
         };
-        return pathData;
-      });
-      //.call(drag);
-    };
+      };
+      return pathData;
+    });
+    //.call(drag);
   };
 
   function getDimensions(groupId) {
-    var groupMembers = pathvisio.data.pathways[pathvisio.data.current.svgSelector].nodes.filter(function(el) {return (el.groupRef === groupId)});
+    var groupMembers = pathway.nodes.filter(function(el) {return (el.groupRef === groupId)});
     var group = {};
 
     // I think this is margin, not padding, but I'm not sure
@@ -1238,28 +1278,28 @@ pathvisio.pathway.group = function(){
 
 pathvisio.pathway.infoBox = function(){ 
     
-  function draw() {
+  function draw(svg, pathway) {
 
     // Although gpml has x and y values for infobox, we have decided to ignore them and always set it in the upper left.
 
     var infoBox = [];
-    if (pathvisio.data.pathways[pathvisio.data.current.svgSelector].hasOwnProperty('name')) {
-      infoBox.push({'key':'Title', 'value':pathvisio.data.pathways[pathvisio.data.current.svgSelector].name});
+    if (pathway.hasOwnProperty('name')) {
+      infoBox.push({'key':'Title', 'value':pathway.name});
     };
 
-    if (pathvisio.data.pathways[pathvisio.data.current.svgSelector].hasOwnProperty('license')) {
-      infoBox.push({'key':'Availability', 'value':pathvisio.data.pathways[pathvisio.data.current.svgSelector].license});
+    if (pathway.hasOwnProperty('license')) {
+      infoBox.push({'key':'Availability', 'value':pathway.license});
     };
 
-    if (pathvisio.data.pathways[pathvisio.data.current.svgSelector].hasOwnProperty('lastModified')) {
-      infoBox.push({'key':'Last modified', 'value':pathvisio.data.pathways[pathvisio.data.current.svgSelector].lastModified});
+    if (pathway.hasOwnProperty('lastModified')) {
+      infoBox.push({'key':'Last modified', 'value':pathway.lastModified});
     };
 
-    if (pathvisio.data.pathways[pathvisio.data.current.svgSelector].hasOwnProperty('organism')) {
-      infoBox.push({'key':'Organism', 'value':pathvisio.data.pathways[pathvisio.data.current.svgSelector].organism});
+    if (pathway.hasOwnProperty('organism')) {
+      infoBox.push({'key':'Organism', 'value':pathway.organism});
     };
 
-    var infoBoxElements = pathvisio.data.current.svg.select('#viewport').selectAll("text.info-box")
+    var infoBoxElements = svg.select('#viewport').selectAll("text.info-box")
     .data(infoBox)
     .enter()
     .append("text")
@@ -1540,9 +1580,9 @@ pathvisio.pathway.node = function(){
     };
   };
 
-  function drawAll() {
-    var nodesContainer = pathvisio.data.current.svg.select('#viewport').selectAll("g.nodes-container")	
-    .data(pathvisio.data.pathways[pathvisio.data.current.svgSelector].nodes)
+  function drawAll(svg, pathway) {
+    var nodesContainer = svg.select('#viewport').selectAll("g.nodes-container")	
+    .data(pathway.nodes)
     .enter()
     .append("g")
     .attr("id", function (d) { return 'nodes-container-' + d.graphId })
@@ -1550,7 +1590,7 @@ pathvisio.pathway.node = function(){
     .attr("class", "nodes-container")
     .on("click", function(d,i) {
       if (d.elementType === 'data-node') {
-        pathvisio.pathway.xRef.displayData(d.graphId);
+        pathvisio.pathway.xRef.displayData(d, d.graphId);
       };
         /*
         var xrefDiv = $('.xrefinfo');
@@ -1668,13 +1708,13 @@ pathvisio.pathway.node = function(){
         return style; 
       });
 
-      if (symbolsAvailable.filter(function(d, i) { return (symbolsAvailable[0][i].id === pathvisio.data.pathways[pathvisio.data.current.svgSelector].nodes[0].symbolType); }).length > 0) {
+      if (symbolsAvailable.filter(function(d, i) { return (symbolsAvailable[0][i].id === pathway.nodes[0].symbolType); }).length > 0) {
         // d3 bug strips 'xlink' so need to say 'xlink:xlink';
         node.attr("xlink:xlink:href", function (d) {return "#" + d.symbolType; });
       }
       else {
         node.attr("xlink:xlink:href", "#rectangle");
-        console.log('Pathvisio.js does not have access to the requested symbol: ' + pathvisio.data.pathways[pathvisio.data.current.svgSelector].nodes[0].symbolType + '. Rectangle used as placeholder.');
+        console.log('Pathvisio.js does not have access to the requested symbol: ' + pathway.nodes[0].symbolType + '. Rectangle used as placeholder.');
       };
 
       // use this for tspan option for rendering text, including multi-line
@@ -1789,11 +1829,11 @@ pathvisio.pathway.node = function(){
                 var index = 0;
                 var rdfId = null;
                 do {
-                  console.log('pathvisio.data.pathways[pathvisio.data.current.svgSelector].biopax');
-                  console.log(pathvisio.data.pathways[pathvisio.data.current.svgSelector].biopax);
-                  rdfId = pathvisio.data.pathways[pathvisio.data.current.svgSelector].biopax.bpPublicationXrefs[index].rdfId;
+                  console.log('pathway.biopax');
+                  console.log(pathway.biopax);
+                  rdfId = pathway.biopax.bpPublicationXrefs[index].rdfId;
                   index += 1;
-                } while (rdfId !== d.Text && index < pathvisio.data.pathways[pathvisio.data.current.svgSelector].biopax.bpPublicationXrefs.length);
+                } while (rdfId !== d.Text && index < pathway.biopax.bpPublicationXrefs.length);
                 return index});
             };
 
@@ -1998,7 +2038,7 @@ pathvisio.pathway.edge = function(){
         // Points
 
         var points = pathvisio.helpers.convertToArray( element.graphics.point );
-        var pointsData = pathvisio.pathway.edge.point.gpml2json( points );
+        var pointsData = pathvisio.pathway.edge.point.gpml2json(points);
         element.points = pointsData.points;
 
         // Back to edges
@@ -2088,12 +2128,12 @@ pathvisio.pathway.edge = function(){
     };
   };
 
-  function drawAll() {
-    if (pathvisio.data.pathways[pathvisio.data.current.svgSelector].hasOwnProperty('edges')) {
+  function drawAll(svg, pathway) {
+    if (pathway.hasOwnProperty('edges')) {
       var pathData = null;
 
-      var edges = pathvisio.data.current.svg.select('#viewport').selectAll("pathway.edge")
-      .data(pathvisio.data.pathways[pathvisio.data.current.svgSelector].edges)
+      var edges = svg.select('#viewport').selectAll("pathway.edge")
+      .data(pathway.edges)
       .enter()
       .append("path")
       .attr("id", function (d) { return d.edgeType + '-' + d.graphId; })
@@ -2107,7 +2147,7 @@ pathvisio.pathway.edge = function(){
         return styleClass; 
       })
       .attr("d", function (d) {
-        pathData = pathvisio.pathway.edge.pathData.get(d);
+        pathData = pathvisio.pathway.edge.pathData.get(svg, d);
         if (d.hasOwnProperty('strokeStyle')) {
           if (d.strokeStyle === 'double') {
 
@@ -2115,7 +2155,7 @@ pathvisio.pathway.edge = function(){
             // what PathVisio (Java) does, but the white line (overlaying the
             // thick line to create a "double line") is hard to see at 1px.
 
-            pathvisio.data.current.svg.select('#viewport').append("path")
+            svg.select('#viewport').append("path")
             .attr("class", d.edgeType + "-double")
             .attr("d", pathData)
             .attr("class", "drawing-board-color-stroke")
@@ -2188,12 +2228,12 @@ pathvisio.pathway.edge.marker = function(){
 
       else {
         /*
-        var pathvisio.data.pathways[pathvisio.data.current.svgSelector].svg = d3.select("#pathway-container").select(function() {
+        var pathway.svg = d3.select("#pathway-container").select(function() {
           return this.contentDocument.documentElement;
         });
         */
 
-        var markerElementBlack = pathvisio.data.current.svg.select('marker#' + name + '-' + position + '-black');
+        var markerElementBlack = svg.select('marker#' + name + '-' + position + '-black');
         var markerElement = pathvisio.helpers.cloneNode(markerElementBlack[0][0]);
 
         // define style of marker element
@@ -2377,24 +2417,25 @@ pathvisio.pathway.edge.point = function(){
       return e;
     };
   };
+
   function getGraphRef(point) {
     self.point=point;
     if (point.hasOwnProperty('graphRef')) {
-      if (pathvisio.data.pathways[pathvisio.data.current.svgSelector].hasOwnProperty('nodes')) {
-        var node = pathvisio.data.pathways[pathvisio.data.current.svgSelector].nodes.filter(function(element) {return element.graphId === point.graphRef})[0]
+      if (pathway.hasOwnProperty('nodes')) {
+        var node = pathway.nodes.filter(function(element) {return element.graphId === point.graphRef})[0]
         if (node !== undefined) {
           return {'type':'node', 'element':node};
         };
       };
 
-      if (pathvisio.data.pathways[pathvisio.data.current.svgSelector].hasOwnProperty('groups')) {
-        var group = pathvisio.data.pathways[pathvisio.data.current.svgSelector].groups.filter(function(element) {return element.graphId === point.graphRef})[0]
+      if (pathway.hasOwnProperty('groups')) {
+        var group = pathway.groups.filter(function(element) {return element.graphId === point.graphRef})[0]
         if (group !== undefined) {
           return {'type':'group', 'groupId':group.groupId};
         };
       };
 
-      var edgesWithAnchors = pathvisio.data.pathways[pathvisio.data.current.svgSelector].edges.filter(function(element) {return element.hasOwnProperty('anchors')})
+      var edgesWithAnchors = pathway.edges.filter(function(element) {return element.hasOwnProperty('anchors')})
       self.edgesWithAnchors = edgesWithAnchors;
       var i = -1;
       do {
@@ -2410,7 +2451,7 @@ pathvisio.pathway.edge.point = function(){
     };
   };
 
-  function getCoordinates(point) {
+  function getCoordinates(svg, point) {
     var coordinates = {};
     var edgeTerminusRef = self.edgeTerminusRef = getGraphRef(point);
     if (edgeTerminusRef.type !== 'anchor') {
@@ -2435,7 +2476,7 @@ pathvisio.pathway.edge.point = function(){
       };
     }
     else {
-      var path = d3.select("#interaction-" + edgeTerminusRef.edge.graphId)[0][0];
+      var path = svg.select("#interaction-" + edgeTerminusRef.edge.graphId)[0][0];
       var coordinates = path.getPointAtLength(edgeTerminusRef.element.position * path.getTotalLength());
     };
 
@@ -2473,9 +2514,9 @@ pathvisio.pathway.edge.point = function(){
 
 pathvisio.pathway.edge.pathData = function(){ 
 
-  function get(d) {
-    var sourcePoint = d.points[0];
-    var source = pathvisio.pathway.edge.point.getCoordinates(sourcePoint);
+  function get(svg, edges) {
+    var sourcePoint = edges.points[0];
+    var source = pathvisio.pathway.edge.point.getCoordinates(svg, sourcePoint);
 
     if (sourcePoint.dx === undefined) {
       source.dx = 0;
@@ -2491,8 +2532,8 @@ pathvisio.pathway.edge.pathData = function(){
       source.dy = sourcePoint.dy;
     };
 
-    var targetPoint = d.points[d.points.length - 1];
-    var target = pathvisio.pathway.edge.point.getCoordinates(targetPoint);
+    var targetPoint = edges.points[edges.points.length - 1];
+    var target = pathvisio.pathway.edge.point.getCoordinates(svg, targetPoint);
 
     if (targetPoint.dx === undefined) {
       target.dx = 0;
@@ -2510,7 +2551,7 @@ pathvisio.pathway.edge.pathData = function(){
 
     var pathData = 'M ' + source.x + ' ' + source.y;
 
-    if ((!d.connectorType) || (d.connectorType === undefined) || (d.connectorType === 'straight')) {
+    if ((!edges.connectorType) || (edges.connectorType === undefined) || (edges.connectorType === 'straight')) {
       pathData += " L " + target.x + " " + target.y; 
     }
     else {
@@ -2519,7 +2560,7 @@ pathvisio.pathway.edge.pathData = function(){
       // It doesn't make sense for an unconnected interaction or graphical line to be an elbow, so any that are
       // so specified will be drawn as segmented lines.
 
-      if (d.connectorType === 'elbow' && d.points[0].hasOwnProperty('graphRef') && d.points[d.points.length - 1].hasOwnProperty('graphRef')) {
+      if (edges.connectorType === 'elbow' && edges.points[0].hasOwnProperty('graphRef') && edges.points[edges.points.length - 1].hasOwnProperty('graphRef')) {
 
         function switchDirection(currentDirection) {
           if (currentDirection === 'H') {
@@ -2541,14 +2582,14 @@ pathvisio.pathway.edge.pathData = function(){
           currentDirection = 'V';
         };
 
-        //if (d.points.length === 2) {
+        //if (edges.points.length === 2) {
         //doesn't quite work yet, so this works for most cases
 
-        if (( d.points.length === 2 && pathvisio.pathway.edge.point.isTwoPointElbow(source, target)) ) {
+        if (( edges.points.length === 2 && pathvisio.pathway.edge.point.isTwoPointElbow(source, target)) ) {
         }
         else {
-          if ( d.points.length > 2 ) {
-            d.points.forEach(function(element, index, array) {
+          if ( edges.points.length > 2 ) {
+            edges.points.forEach(function(element, index, array) {
               if ((index > 0) && (index < (array.length - 1))) {
                 if (currentDirection === 'H') {
                   pathData += ' ' + currentDirection + ' ' + element.x; 
@@ -2615,8 +2656,8 @@ pathvisio.pathway.edge.pathData = function(){
            */
       }
       else {
-        if (d.connectorType === 'segmented') {
-          d.points.forEach(function(element, index, array) {
+        if (edges.connectorType === 'segmented') {
+          edges.points.forEach(function(element, index, array) {
             if ((index > 0) && (index < (array.length -1))) {
               pathData += " L " + element.x + " " + element.y; 
             };
@@ -2624,12 +2665,12 @@ pathvisio.pathway.edge.pathData = function(){
           pathData += " L " + target.x + " " + target.y; 
         }
         else {
-          if (d.connectorType === 'curved') {
-            if (d.points.length === 3) {
+          if (edges.connectorType === 'curved') {
+            if (edges.points.length === 3) {
 
               // what is here is just a starting point. It has not been tested to match the PathVisio (Java) implementation.
 
-              var pointControl = d.points[1];
+              var pointControl = edges.points[1];
 
               pathData += " S" + pointControl.x + "," + pointControl.y + " " + target.x + "," + target.y; 
               return pathData;
@@ -2643,8 +2684,8 @@ pathvisio.pathway.edge.pathData = function(){
             };
           }
           else {
-            console.log('Warning: pathvisio.js does not support connector type: ' + d.connectorType);
-            d.points.forEach(function(element, index, array) {
+            console.log('Warning: pathvisio.js does not support connector type: ' + edges.connectorType);
+            edges.points.forEach(function(element, index, array) {
               if ((index > 0) && (index < (array.length -1))) {
                 pathData += " L " + element.x + " " + element.y; 
               };
@@ -2663,145 +2704,1718 @@ pathvisio.pathway.edge.pathData = function(){
 }();
 ;
 
+pathvisio.pathway.dataSources = [
+   {
+      "database":"Affy",
+      "id":"X",
+      "homePage":"http://www.affymetrix.com/",
+      "linkOut":"https://www.affymetrix.com/LinkServlet?probeset=$id",
+      "example":"1851_s_at",
+      "dataNodeType":"probe",
+      "species":"",
+      "priority":0,
+      "unknown":"urn:miriam:affy.probeset",
+      "regex":"\d{4,}((_[asx])?_at)?",
+      "fullName":"Affymetrix Probeset"
+   },
+   {
+      "database":"Agilent",
+      "id":"Ag",
+      "homePage":"http://agilent.com",
+      "linkOut":"",
+      "example":"A_24_P98555",
+      "dataNodeType":"probe",
+      "species":"",
+      "priority":0,
+      "unknown":"Ag",
+      "regex":"A_\d+_.+",
+      "fullName":"Agilent"
+   },
+   {
+      "database":"BIND",
+      "id":"Bi",
+      "homePage":"http://www.bind.ca/",
+      "linkOut":"http://www.bind.ca/Action?identifier=bindid&idsearch=$id",
+      "example":"",
+      "dataNodeType":"interaction",
+      "species":"",
+      "priority":1,
+      "unknown":"urn:miriam:bind",
+      "regex":"^\d+$",
+      "fullName":"BIND"
+   },
+   {
+      "database":"BioCyc",
+      "id":"Bc",
+      "homePage":"http://biocyc.org",
+      "linkOut":"http://biocyc.org/getid?id=$id",
+      "example":"ECOLI:CYT-D-UBIOX-CPLX",
+      "dataNodeType":"gene",
+      "species":"",
+      "priority":1,
+      "unknown":"urn:miriam:biocyc",
+      "regex":"^\w+\:[A-Za-z0-9-]+$",
+      "fullName":"BioCyc"
+   },
+   {
+      "database":"BioGrid",
+      "id":"Bg",
+      "homePage":"http://thebiogrid.org/",
+      "linkOut":"http://thebiogrid.org/$id",
+      "example":"31623",
+      "dataNodeType":"interaction",
+      "species":"",
+      "priority":1,
+      "unknown":"urn:miriam:biogrid",
+      "regex":"^\d+$",
+      "fullName":"BioGRID"
+   },
+   {
+      "database":"BioModels Database",
+      "id":"Bm",
+      "homePage":"http://www.ebi.ac.uk/biomodels/",
+      "linkOut":"http://www.ebi.ac.uk/biomodels-main/$id",
+      "example":"BIOMD0000000048",
+      "dataNodeType":"pathway",
+      "species":"",
+      "priority":1,
+      "unknown":"urn:miriam:biomodels.db",
+      "regex":"^((BIOMD|MODEL)\d{10})|(BMID\d{12})$",
+      "fullName":"BioModels Database"
+   },
+   {
+      "database":"BioSystems",
+      "id":"Bs",
+      "homePage":"http://www.ncbi.nlm.nih.gov/biosystems/",
+      "linkOut":"http://www.ncbi.nlm.nih.gov/biosystems/$id",
+      "example":"1",
+      "dataNodeType":"pathway",
+      "species":"",
+      "priority":1,
+      "unknown":"urn:miriam:biosystems",
+      "regex":"^\d+$",
+      "fullName":"BioSystems"
+   },
+   {
+      "database":"BRENDA",
+      "id":"Br",
+      "homePage":"http://www.brenda-enzymes.org/",
+      "linkOut":"http://www.brenda-enzymes.org/php/result_flat.php4?ecno=$id",
+      "example":"1.1.1.1",
+      "dataNodeType":"",
+      "species":"",
+      "priority":1,
+      "unknown":"urn:miriam:brenda",
+      "regex":"^((\d+\.-\.-\.-)|(\d+\.\d+\.-\.-)|(\d+\.\d+\.\d+\.-)|(\d+\.\d+\.\d+\.\d+))$",
+      "fullName":"BRENDA"
+   },
+   {
+      "database":"CAS",
+      "id":"Ca",
+      "homePage":"http://commonchemistry.org",
+      "linkOut":"http://commonchemistry.org/ChemicalDetail.aspx?ref=$id",
+      "example":"50-00-0",
+      "dataNodeType":"metabolite",
+      "species":"",
+      "priority":1,
+      "unknown":"urn:miriam:cas",
+      "regex":"^\d{1,7}\-\d{2}\-\d$",
+      "fullName":"CAS"
+   },
+   {
+      "database":"CCDS",
+      "id":"Cc",
+      "homePage":"http://identifiers.org/ccds/",
+      "linkOut":"http://www.ncbi.nlm.nih.gov/CCDS/CcdsBrowse.cgi?REQUEST=ALLFIELDS&DATA=$id",
+      "example":"CCDS33337",
+      "dataNodeType":"gene",
+      "species":"",
+      "priority":0,
+      "unknown":"",
+      "regex":"^CCDS\d+\.\d+$",
+      "fullName":"Consensus CDS"
+   },
+   {
+      "database":"ChEBI",
+      "id":"Ce",
+      "homePage":"http://www.ebi.ac.uk/chebi/",
+      "linkOut":"http://www.ebi.ac.uk/chebi/searchId.do?chebiId=$id",
+      "example":"CHEBI:36927",
+      "dataNodeType":"metabolite",
+      "species":"",
+      "priority":1,
+      "unknown":"urn:miriam:obo.chebi",
+      "regex":"^CHEBI:\d+$",
+      "fullName":"ChEBI"
+   },
+   {
+      "database":"Chemspider",
+      "id":"Cs",
+      "homePage":"http://www.chemspider.com/",
+      "linkOut":"http://www.chemspider.com/Chemical-Structure.$id.html",
+      "example":"56586",
+      "dataNodeType":"metabolite",
+      "species":"",
+      "priority":1,
+      "unknown":"urn:miriam:chemspider",
+      "regex":"^\d+$",
+      "fullName":"ChemSpider"
+   },
+   {
+      "database":"CodeLink",
+      "id":"Ge",
+      "homePage":"http://www.appliedmicroarrays.com/",
+      "linkOut":"",
+      "example":"GE86325",
+      "dataNodeType":"probe",
+      "species":"",
+      "priority":0,
+      "unknown":"Ge",
+      "regex":"",
+      "fullName":"CodeLink"
+   },
+   {
+      "database":"Database of Interacting Proteins",
+      "id":"Dip",
+      "homePage":"http://dip.doe-mbi.ucla.edu/",
+      "linkOut":"http://dip.doe-mbi.ucla.edu/dip/DIPview.cgi?ID=$id",
+      "example":"DIP-743N",
+      "dataNodeType":"interaction",
+      "species":"",
+      "priority":1,
+      "unknown":"urn:miriam:dip",
+      "regex":"^DIP[\:\-]\d{3}[EN]$",
+      "fullName":"Database of Interacting Proteins"
+   },
+   {
+      "database":"dbSNP",
+      "id":"Sn",
+      "homePage":"http://www.ncbi.nlm.nih.gov/sites/entrez?db=snp",
+      "linkOut":"http://www.ncbi.nlm.nih.gov/projects/SNP/snp_ref.cgi?rs=$id",
+      "example":"121909098",
+      "dataNodeType":"gene",
+      "species":"",
+      "priority":1,
+      "unknown":"",
+      "regex":"^\d+$",
+      "fullName":"dbSNP"
+   },
+   {
+      "database":"DrugBank",
+      "id":"Dr",
+      "homePage":"http://www.drugbank.ca/",
+      "linkOut":"http://www.drugbank.ca/drugs/$id",
+      "example":"DB00001",
+      "dataNodeType":"metabolite",
+      "species":"",
+      "priority":1,
+      "unknown":"urn:miriam:drugbank",
+      "regex":"^DB\d{5}$",
+      "fullName":"DrugBank"
+   },
+   {
+      "database":"EcoCyc",
+      "id":"Eco",
+      "homePage":"http://ecocyc.org/",
+      "linkOut":"http://ecocyc.org/ECOLI/NEW-IMAGE?type=NIL&object=$id",
+      "example":"325-BISPHOSPHATE-NUCLEOTIDASE-RXN",
+      "dataNodeType":"interaction",
+      "species":"Escherichia coli",
+      "priority":1,
+      "unknown":"Eco",
+      "regex":"",
+      "fullName":"EcoCyc"
+   },
+   {
+      "database":"EcoGene",
+      "id":"Ec",
+      "homePage":"http://ecogene.org/",
+      "linkOut":"http://ecogene.org/geneInfo.php?eg_id=$id",
+      "example":"EG10173",
+      "dataNodeType":"gene",
+      "species":"Escherichia coli",
+      "priority":1,
+      "unknown":"urn:miriam:ecogene",
+      "regex":"^EG\d+$",
+      "fullName":"EcoGene"
+   },
+   {
+      "database":"EMBL",
+      "id":"Em",
+      "homePage":"http://www.ebi.ac.uk/embl/",
+      "linkOut":"http://www.ebi.ac.uk/ena/data/view/$id",
+      "example":"X58356",
+      "dataNodeType":"gene",
+      "species":"",
+      "priority":1,
+      "unknown":"urn:miriam:ena.embl",
+      "regex":"^[A-Z]+[0-9]+$",
+      "fullName":"European Nucleotide Archive"
+   },
+   {
+      "database":"Ensembl",
+      "id":"En",
+      "homePage":"http://www.ensembl.org/",
+      "linkOut":"http://www.ensembl.org/id/$id",
+      "example":"ENSG00000139618",
+      "dataNodeType":"gene",
+      "species":"",
+      "priority":1,
+      "unknown":"urn:miriam:ensembl",
+      "regex":"^ENS[A-Z]*[FPTG]\d{11}$",
+      "fullName":"Ensembl"
+   },
+   {
+      "database":"Ensembl B. subtilis",
+      "id":"EnBs",
+      "homePage":"http://www.ensembl.org",
+      "linkOut":"http://bacteria.ensembl.org/Bacillus/B_subtilis/Gene/Summary?g=$id",
+      "example":"EBBACG00000000013",
+      "dataNodeType":"gene",
+      "species":"Bacillus subtilis",
+      "priority":1,
+      "unknown":"EnBs",
+      "regex":"EBBACG\d{11}",
+      "fullName":"Ensembl"
+   },
+   {
+      "database":"Ensembl C. elegans",
+      "id":"EnCe",
+      "homePage":"http://www.ensembl.org",
+      "linkOut":"http://www.ensembl.org/Caenorhabditis_elegans/Gene/Summary?g=$id",
+      "example":"Y42H9B.1",
+      "dataNodeType":"gene",
+      "species":"Caenorhabditis elegans",
+      "priority":1,
+      "unknown":"EnCe",
+      "regex":"",
+      "fullName":"Ensembl"
+   },
+   {
+      "database":"Ensembl Chicken",
+      "id":"EnGg",
+      "homePage":"http://www.ensembl.org",
+      "linkOut":"http://www.ensembl.org/Gallus_gallus/Gene/Summary?g=$id",
+      "example":"ENSGALG00000021736",
+      "dataNodeType":"gene",
+      "species":"Gallus gallus",
+      "priority":1,
+      "unknown":"EnGg",
+      "regex":"ENSGALG\d{11}",
+      "fullName":"Ensembl"
+   },
+   {
+      "database":"Ensembl Chimp",
+      "id":"EnPt",
+      "homePage":"http://www.ensembl.org",
+      "linkOut":"http://www.ensembl.org/Pan_troglodytes/Gene/Summary?g=$id",
+      "example":"ENSPTRG00000036034",
+      "dataNodeType":"gene",
+      "species":"Pan troglodytes",
+      "priority":1,
+      "unknown":"EnPt",
+      "regex":"ENSPTRG\d{11}",
+      "fullName":"Ensembl"
+   },
+   {
+      "database":"Ensembl Cow",
+      "id":"EnBt",
+      "homePage":"http://www.ensembl.org",
+      "linkOut":"http://www.ensembl.org/Bos_taurus/Gene/Summary?g=$id",
+      "example":"ENSBTAG00000043548",
+      "dataNodeType":"gene",
+      "species":"Bos taurus",
+      "priority":1,
+      "unknown":"EnBt",
+      "regex":"ENSBTAG\d{11}",
+      "fullName":"Ensembl"
+   },
+   {
+      "database":"Ensembl Dog",
+      "id":"EnCf",
+      "homePage":"http://www.ensembl.org",
+      "linkOut":"http://www.ensembl.org/Canis_familiaris/Gene/Summary?g=$id",
+      "example":"ENSCAFG00000025860",
+      "dataNodeType":"gene",
+      "species":"Canis familiaris",
+      "priority":1,
+      "unknown":"EnCf",
+      "regex":"ENSCAFG\d{11}",
+      "fullName":"Ensembl"
+   },
+   {
+      "database":"Ensembl E. coli",
+      "id":"EnEc",
+      "homePage":"http://www.ensembl.org",
+      "linkOut":"http://bacteria.ensembl.org/Escherichia_Shigella/E_coli_K12/Gene/Summary?g=$id",
+      "example":"EBESCG00000000010",
+      "dataNodeType":"gene",
+      "species":"Escherichia coli",
+      "priority":1,
+      "unknown":"EnEc",
+      "regex":"EBESCG\d{11}",
+      "fullName":"Ensembl"
+   },
+   {
+      "database":"Ensembl Fruitfly",
+      "id":"EnDm",
+      "homePage":"http://www.ensembl.org",
+      "linkOut":"http://www.ensembl.org/Drosophila_melanogaster/Gene/Summary?g=$id",
+      "example":"FBgn0032956",
+      "dataNodeType":"gene",
+      "species":"Drosophila melanogaster",
+      "priority":1,
+      "unknown":"EnDm",
+      "regex":"FBgn\d{7}",
+      "fullName":"Ensembl"
+   },
+   {
+      "database":"Ensembl Horse",
+      "id":"EnQc",
+      "homePage":"http://www.ensembl.org",
+      "linkOut":"http://www.ensembl.org/Equus_caballus/Gene/Summary?g=$id",
+      "example":"ENSECAG00000026160",
+      "dataNodeType":"gene",
+      "species":"Equus caballus",
+      "priority":1,
+      "unknown":"EnQc",
+      "regex":"ENSECAG\d{11}",
+      "fullName":"Ensembl"
+   },
+   {
+      "database":"Ensembl Human",
+      "id":"EnHs",
+      "homePage":"http://www.ensembl.org",
+      "linkOut":"http://www.ensembl.org/Homo_sapiens/Gene/Summary?g=$id",
+      "example":"ENSG00000139618",
+      "dataNodeType":"gene",
+      "species":"Homo sapiens",
+      "priority":1,
+      "unknown":"EnHs",
+      "regex":"ENSG\d{11}",
+      "fullName":"Ensembl"
+   },
+   {
+      "database":"Ensembl M. tuberculosis",
+      "id":"EnMx",
+      "homePage":"http://www.ensembl.org",
+      "linkOut":"http://bacteria.ensembl.org/Mycobacterium/M_tuberculosis_H37Rv/Gene/Summary?g=$id",
+      "example":"EBMYCG00000003122",
+      "dataNodeType":"gene",
+      "species":"Mycobacterium tuberculosis",
+      "priority":1,
+      "unknown":"EnMx",
+      "regex":"EBMYCG\d{11}",
+      "fullName":"Ensembl"
+   },
+   {
+      "database":"Ensembl Mosquito",
+      "id":"EnAg",
+      "homePage":"http://www.ensembl.org",
+      "linkOut":"http://www.ensembl.org/Anopheles_gambiae/Gene/Summary?_q=$id",
+      "example":"AGAP006864",
+      "dataNodeType":"gene",
+      "species":"Anopheles gambiae",
+      "priority":1,
+      "unknown":"EnAg",
+      "regex":"AGAP\d{6}",
+      "fullName":"Ensembl"
+   },
+   {
+      "database":"Ensembl Mouse",
+      "id":"EnMm",
+      "homePage":"http://www.ensembl.org",
+      "linkOut":"http://www.ensembl.org/Mus_musculus/Gene/Summary?g=$id",
+      "example":"ENSMUSG00000017167",
+      "dataNodeType":"gene",
+      "species":"Mus musculus",
+      "priority":1,
+      "unknown":"EnMm",
+      "regex":"ENSMUSG\d{11}",
+      "fullName":"Ensembl"
+   },
+   {
+      "database":"Ensembl Pig",
+      "id":"EnSs",
+      "homePage":"http://www.ensembl.org",
+      "linkOut":"http://www.ensembl.org/Sus_scrofa/Gene/Summary?g=$id",
+      "example":"ENSSSCG00000004244",
+      "dataNodeType":"gene",
+      "species":"Sus scrofa",
+      "priority":1,
+      "unknown":"EnSs",
+      "regex":"ENSSSCG\d{11}",
+      "fullName":"Ensembl"
+   },
+   {
+      "database":"Ensembl Plants",
+      "id":"EP",
+      "homePage":"http://plants.ensembl.org/",
+      "linkOut":"http://plants.ensembl.org/id/$id",
+      "example":"AT1G73965",
+      "dataNodeType":"gene",
+      "species":"",
+      "priority":1,
+      "unknown":"urn:miriam:ensembl.plant",
+      "regex":"^\w+$",
+      "fullName":"Ensembl Plants"
+   },
+   {
+      "database":"Ensembl Rat",
+      "id":"EnRn",
+      "homePage":"http://www.ensembl.org",
+      "linkOut":"http://www.ensembl.org/Rattus_norvegicus/Gene/Summary?g=$id",
+      "example":"ENSRNOG00000016648",
+      "dataNodeType":"gene",
+      "species":"Rattus norvegicus",
+      "priority":1,
+      "unknown":"EnRn",
+      "regex":"ENSRNOG\d{11}",
+      "fullName":"Ensembl"
+   },
+   {
+      "database":"Ensembl Xenopus",
+      "id":"EnXt",
+      "homePage":"http://www.ensembl.org",
+      "linkOut":"http://www.ensembl.org/Xenopus_tropicalis/Gene/Summary?g=$id",
+      "example":"ENSXETG00000029448",
+      "dataNodeType":"gene",
+      "species":"Xenopus tropicalis",
+      "priority":1,
+      "unknown":"EnXt",
+      "regex":"ENSXETG\d{11}",
+      "fullName":"Ensembl"
+   },
+   {
+      "database":"Ensembl Yeast",
+      "id":"EnSc",
+      "homePage":"http://www.ensembl.org",
+      "linkOut":"http://www.ensembl.org/Saccharomyces_cerevisiae/Gene/Summary?g=$id",
+      "example":"YGR147C",
+      "dataNodeType":"gene",
+      "species":"Saccharomyces cerevisiae",
+      "priority":1,
+      "unknown":"EnSc",
+      "regex":"Y[A-Z][RL]\d{3}[WC](?:\-[A-Z])?",
+      "fullName":"Ensembl"
+   },
+   {
+      "database":"Ensembl Zebrafish",
+      "id":"EnDr",
+      "homePage":"http://www.ensembl.org",
+      "linkOut":"http://www.ensembl.org/Danio_rerio/Gene/Summary?g=$id",
+      "example":"ENSDARG00000024771",
+      "dataNodeType":"gene",
+      "species":"Danio rerio",
+      "priority":1,
+      "unknown":"EnDr",
+      "regex":"ENSDARG\d{11}",
+      "fullName":"Ensembl"
+   },
+   {
+      "database":"Entrez Gene",
+      "id":"L",
+      "homePage":"http://www.ncbi.nlm.nih.gov/gene",
+      "linkOut":"http://www.ncbi.nlm.nih.gov/gene/$id",
+      "example":"100010",
+      "dataNodeType":"gene",
+      "species":"",
+      "priority":1,
+      "unknown":"urn:miriam:ncbigene",
+      "regex":"^\d+$",
+      "fullName":"Entrez Gene"
+   },
+   {
+      "database":"Enzyme Nomenclature",
+      "id":"E",
+      "homePage":"http://www.ebi.ac.uk/intenz/",
+      "linkOut":"http://www.ebi.ac.uk/intenz/query?cmd=SearchEC&ec=$id",
+      "example":"1.1.1.1",
+      "dataNodeType":"gene",
+      "species":"",
+      "priority":1,
+      "unknown":"urn:miriam:ec-code",
+      "regex":"^\d+\.-\.-\.-|\d+\.\d+\.-\.-|\d+\.\d+\.\d+\.-|\d+\.\d+\.\d+\.(n)?\d+$",
+      "fullName":"Enzyme Nomenclature"
+   },
+   {
+      "database":"FlyBase",
+      "id":"F",
+      "homePage":"http://flybase.org/",
+      "linkOut":"http://flybase.org/reports/$id.html",
+      "example":"FBgn0011293",
+      "dataNodeType":"gene",
+      "species":"Drosophila melanogaster",
+      "priority":1,
+      "unknown":"urn:miriam:flybase",
+      "regex":"^FB\w{2}\d{7}$",
+      "fullName":"FlyBase"
+   },
+   {
+      "database":"GenBank",
+      "id":"G",
+      "homePage":"http://www.ncbi.nlm.nih.gov/genbank/",
+      "linkOut":"http://www.ncbi.nlm.nih.gov/nuccore/$id",
+      "example":"NW_004190323",
+      "dataNodeType":"gene",
+      "species":"",
+      "priority":0,
+      "unknown":"G",
+      "regex":"(\w\d{5})|(\w{2}\d{6})|(\w{3}\d{5})",
+      "fullName":"GenBank"
+   },
+   {
+      "database":"Gene Wiki",
+      "id":"Gw",
+      "homePage":"http://en.wikipedia.org/wiki/Portal:Gene_Wiki",
+      "linkOut":"http://plugins.biogps.org/cgi-bin/wp.cgi?id=$id",
+      "example":"1017",
+      "dataNodeType":"gene",
+      "species":"",
+      "priority":0,
+      "unknown":"Gw",
+      "regex":"\d+",
+      "fullName":"Gene Wiki"
+   },
+   {
+      "database":"GeneOntology",
+      "id":"T",
+      "homePage":"http://www.ebi.ac.uk/QuickGO/",
+      "linkOut":"http://www.ebi.ac.uk/QuickGO/GTerm?id=$id",
+      "example":"GO:0006915",
+      "dataNodeType":"gene",
+      "species":"",
+      "priority":0,
+      "unknown":"urn:miriam:obo.go",
+      "regex":"^GO:\d{7}$",
+      "fullName":"Gene Ontology"
+   },
+   {
+      "database":"Gramene Arabidopsis",
+      "id":"EnAt",
+      "homePage":"http://www.gramene.org/",
+      "linkOut":"http://www.gramene.org/Arabidopsis_thaliana/Gene/Summary?g=$id",
+      "example":"ATMG01360-TAIR-G",
+      "dataNodeType":"gene",
+      "species":"Arabidopsis thaliana",
+      "priority":1,
+      "unknown":"EnAt",
+      "regex":"AT[\dCM]G\d{5}\-TAIR\-G",
+      "fullName":"Grameen Arabidopsis"
+   },
+   {
+      "database":"Gramene Genes DB",
+      "id":"Gg",
+      "homePage":"http://www.gramene.org/",
+      "linkOut":"http://www.gramene.org/db/genes/search_gene?acc=$id",
+      "example":"GR:0060184",
+      "dataNodeType":"gene",
+      "species":"",
+      "priority":1,
+      "unknown":"Gg",
+      "regex":"GR:\d+",
+      "fullName":"Gramene Genes"
+   },
+   {
+      "database":"Gramene Literature",
+      "id":"Gl",
+      "homePage":"http://www.gramene.org/",
+      "linkOut":"http://www.gramene.org/db/literature/pub_search?ref_id=$id",
+      "example":"6200",
+      "dataNodeType":"gene",
+      "species":"",
+      "priority":0,
+      "unknown":"Gl",
+      "regex":"",
+      "fullName":"Gramene Literature"
+   },
+   {
+      "database":"Gramene Maize",
+      "id":"EnZm",
+      "homePage":"http://www.ensembl.org",
+      "linkOut":"http://www.maizesequence.org/Zea_mays/Gene/Summary?g=$id",
+      "example":"GRMZM2G174107",
+      "dataNodeType":"gene",
+      "species":"",
+      "priority":1,
+      "unknown":"EnZm",
+      "regex":"",
+      "fullName":"Gramene Maize"
+   },
+   {
+      "database":"Gramene Pathway",
+      "id":"Gp",
+      "homePage":"http://www.gramene.org/pathway",
+      "linkOut":"",
+      "example":"AAH72400",
+      "dataNodeType":"pathway",
+      "species":"",
+      "priority":1,
+      "unknown":"Gp",
+      "regex":"",
+      "fullName":"Gramene Pathway"
+   },
+   {
+      "database":"Gramene Rice",
+      "id":"EnOj",
+      "homePage":"http://www.gramene.org/",
+      "linkOut":"http://www.gramene.org/Oryza_sativa/Gene/Summary?db=core;g=$id",
+      "example":"osa-MIR171a",
+      "dataNodeType":"gene",
+      "species":"",
+      "priority":1,
+      "unknown":"EnOj",
+      "regex":"",
+      "fullName":"Gramene Rice"
+   },
+   {
+      "database":"HGNC",
+      "id":"H",
+      "homePage":"http://www.genenames.org",
+      "linkOut":"http://www.genenames.org/data/hgnc_data.php?match=$id",
+      "example":"DAPK1",
+      "dataNodeType":"gene",
+      "species":"Homo sapiens",
+      "priority":1,
+      "unknown":"urn:miriam:hgnc.symbol",
+      "regex":"^[A-Za-z0-9]+",
+      "fullName":"HGNC Symbol"
+   },
+   {
+      "database":"HGNC Accession number",
+      "id":"Hac",
+      "homePage":"http://www.genenames.org",
+      "linkOut":"http://www.genenames.org/data/hgnc_data.php?hgnc_id=$id",
+      "example":"HGNC:2674",
+      "dataNodeType":"gene",
+      "species":"Homo sapiens",
+      "priority":1,
+      "unknown":"urn:miriam:hgnc",
+      "regex":"^(HGNC:)?\d{1,5}$",
+      "fullName":"HGNC"
+   },
+   {
+      "database":"HMDB",
+      "id":"Ch",
+      "homePage":"http://www.hmdb.ca/",
+      "linkOut":"http://www.hmdb.ca/metabolites/$id",
+      "example":"HMDB00001",
+      "dataNodeType":"metabolite",
+      "species":"",
+      "priority":1,
+      "unknown":"urn:miriam:hmdb",
+      "regex":"^HMDB\d{5}$",
+      "fullName":"HMDB"
+   },
+   {
+      "database":"HomoloGene",
+      "id":"Hg",
+      "homePage":"http://www.ncbi.nlm.nih.gov/homologene/",
+      "linkOut":"http://www.ncbi.nlm.nih.gov/homologene/$id",
+      "example":"1000",
+      "dataNodeType":"gene",
+      "species":"",
+      "priority":1,
+      "unknown":"urn:miriam:homologene",
+      "regex":"^\d+$",
+      "fullName":"HomoloGene"
+   },
+   {
+      "database":"HPRD",
+      "id":"Hp",
+      "homePage":"http://www.hprd.org/",
+      "linkOut":"",
+      "example":"",
+      "dataNodeType":"interaction",
+      "species":"Homo sapiens",
+      "priority":1,
+      "unknown":"urn:miriam:hprd",
+      "regex":"",
+      "fullName":"HPRD"
+   },
+   {
+      "database":"Illumina",
+      "id":"Il",
+      "homePage":"http://www.illumina.com/",
+      "linkOut":"",
+      "example":"ILMN_5668",
+      "dataNodeType":"probe",
+      "species":"",
+      "priority":0,
+      "unknown":"Il",
+      "regex":"ILMN_\d+",
+      "fullName":"Illumina"
+   },
+   {
+      "database":"IntAct",
+      "id":"Ia",
+      "homePage":"http://www.ebi.ac.uk/intact/",
+      "linkOut":"http://www.ebi.ac.uk/intact/pages/details/details.xhtml?interactionAc=$id",
+      "example":"EBI-2307691",
+      "dataNodeType":"interaction",
+      "species":"",
+      "priority":1,
+      "unknown":"urn:miriam:intact",
+      "regex":"^EBI\-[0-9]+$",
+      "fullName":"IntAct"
+   },
+   {
+      "database":"InterPro",
+      "id":"I",
+      "homePage":"http://www.ebi.ac.uk/interpro/",
+      "linkOut":"http://www.ebi.ac.uk/interpro/DisplayIproEntry?ac=$id",
+      "example":"IPR000100",
+      "dataNodeType":"protein",
+      "species":"",
+      "priority":1,
+      "unknown":"urn:miriam:interpro",
+      "regex":"^IPR\d{6}$",
+      "fullName":"InterPro"
+   },
+   {
+      "database":"IPI",
+      "id":"Ip",
+      "homePage":"http://www.ebi.ac.uk/IPI",
+      "linkOut":"http://www.ebi.ac.uk/cgi-bin/dbfetch?db=IPI&id=$id&format=default",
+      "example":"IPI00000001",
+      "dataNodeType":"protein",
+      "species":"",
+      "priority":1,
+      "unknown":"urn:miriam:ipi",
+      "regex":"^IPI\d{8}$",
+      "fullName":"IPI"
+   },
+   {
+      "database":"IRGSP Gene",
+      "id":"Ir",
+      "homePage":"http://rgp.dna.affrc.go.jp/IRGSP/",
+      "linkOut":"",
+      "example":"Os12g0561000",
+      "dataNodeType":"gene",
+      "species":"",
+      "priority":1,
+      "unknown":"Ir",
+      "regex":"Os\d{2}g\d+",
+      "fullName":"IRGSP Gene"
+   },
+   {
+      "database":"Kegg Compound",
+      "id":"Ck",
+      "homePage":"http://www.genome.jp/kegg/ligand.html",
+      "linkOut":"http://www.genome.jp/dbget-bin/www_bget?cpd:$id",
+      "example":"C12345",
+      "dataNodeType":"metabolite",
+      "species":"",
+      "priority":1,
+      "unknown":"urn:miriam:kegg.compound",
+      "regex":"^C\d+$",
+      "fullName":"KEGG Compound"
+   },
+   {
+      "database":"KEGG Drug",
+      "id":"Kd",
+      "homePage":"http://www.genome.jp/kegg/drug/",
+      "linkOut":"http://www.genome.jp/dbget-bin/www_bget?dr:$id",
+      "example":"D00123",
+      "dataNodeType":"metabolite",
+      "species":"",
+      "priority":1,
+      "unknown":"urn:miriam:kegg.drug",
+      "regex":"^D\d+$",
+      "fullName":"KEGG Drug"
+   },
+   {
+      "database":"KEGG Genes",
+      "id":"Kg",
+      "homePage":"http://www.genome.jp/kegg/genes.html",
+      "linkOut":"http://www.genome.jp/dbget-bin/www_bget?$id",
+      "example":"syn:ssr3451",
+      "dataNodeType":"gene",
+      "species":"",
+      "priority":1,
+      "unknown":"urn:miriam:kegg.genes",
+      "regex":"^\w+:[\w\d\.-]*$",
+      "fullName":"KEGG Genes"
+   },
+   {
+      "database":"KEGG Glycan",
+      "id":"Kgl",
+      "homePage":"http://www.genome.jp/kegg/glycan/",
+      "linkOut":"http://www.genome.jp/dbget-bin/www_bget?gl:$id",
+      "example":"G00123",
+      "dataNodeType":"metabolite",
+      "species":"",
+      "priority":1,
+      "unknown":"urn:miriam:kegg.glycan",
+      "regex":"^G\d+$",
+      "fullName":"KEGG Glycan"
+   },
+   {
+      "database":"KEGG Pathway",
+      "id":"Kp",
+      "homePage":"http://www.genome.jp/kegg/pathway.html",
+      "linkOut":"http://www.genome.jp/dbget-bin/www_bget?pathway+$id",
+      "example":"hsa00620",
+      "dataNodeType":"pathway",
+      "species":"",
+      "priority":1,
+      "unknown":"urn:miriam:kegg.pathway",
+      "regex":"^\w{2,4}\d{5}$",
+      "fullName":"KEGG Pathway"
+   },
+   {
+      "database":"KEGG Reaction",
+      "id":"Kr",
+      "homePage":"http://www.genome.jp/kegg/reaction/",
+      "linkOut":"http://www.genome.jp/dbget-bin/www_bget?rn:$id",
+      "example":"R00100",
+      "dataNodeType":"protein",
+      "species":"",
+      "priority":1,
+      "unknown":"urn:miriam:kegg.reaction",
+      "regex":"^R\d+$",
+      "fullName":"KEGG Reaction"
+   },
+   {
+      "database":"LIPID MAPS",
+      "id":"Lm",
+      "homePage":"http://www.lipidmaps.org",
+      "linkOut":"http://www.lipidmaps.org/data/get_lm_lipids_dbgif.php?LM_ID=$id",
+      "example":"LMPR0102010012",
+      "dataNodeType":"metabolite",
+      "species":"",
+      "priority":1,
+      "unknown":"urn:miriam:lipidmaps",
+      "regex":"^LM(FA|GL|GP|SP|ST|PR|SL|PK)[0-9]{4}([0-9a-zA-Z]{4,6})?$",
+      "fullName":"LIPID MAPS"
+   },
+   {
+      "database":"LipidBank",
+      "id":"Lb",
+      "homePage":"http://lipidbank.jp/index.html",
+      "linkOut":"http://lipidbank.jp/cgi-bin/detail.cgi?id=$id",
+      "example":"BBA0001",
+      "dataNodeType":"metabolite",
+      "species":"",
+      "priority":1,
+      "unknown":"urn:miriam:lipidbank",
+      "regex":"^\w+\d+$",
+      "fullName":"LipidBank"
+   },
+   {
+      "database":"MACiE",
+      "id":"Ma",
+      "homePage":"http://www.ebi.ac.uk/thornton-srv/databases/MACiE/index.html",
+      "linkOut":"http://www.ebi.ac.uk/thornton-srv/databases/cgi-bin/MACiE/entry/getPage.pl?id=$id",
+      "example":"M0001",
+      "dataNodeType":"protein",
+      "species":"",
+      "priority":1,
+      "unknown":"urn:miriam:macie",
+      "regex":"^M\d{4}$",
+      "fullName":"MACiE"
+   },
+   {
+      "database":"MaizeGDB",
+      "id":"Mg",
+      "homePage":"",
+      "linkOut":"http://www.maizegdb.org/cgi-bin/displaylocusresults.cgi?term=$id",
+      "example":"acc1",
+      "dataNodeType":"gene",
+      "species":"Zea mays",
+      "priority":1,
+      "unknown":"Mg",
+      "regex":"",
+      "fullName":"MaizeGDB"
+   },
+   {
+      "database":"MatrixDB",
+      "id":"Md",
+      "homePage":"http://matrixdb.ibcp.fr/",
+      "linkOut":"http://matrixdb.ibcp.fr/cgi-bin/model/report/default?name=$id&class=Association",
+      "example":"P00747_P07355",
+      "dataNodeType":"interaction",
+      "species":"",
+      "priority":1,
+      "unknown":"urn:miriam:matrixdb.association",
+      "regex":"^([A-N,R-Z][0-9][A-Z][A-Z, 0-9][A-Z, 0-9][0-9])_.*|([O,P,Q][0-9][A-Z, 0-9][A-Z, 0-9][A-Z, 0-9][0-9]_.*)|(GAG_.*)|(MULT_.*)|(PFRAG_.*)|(LIP_.*)|(CAT_.*)$",
+      "fullName":"MatrixDB"
+   },
+   {
+      "database":"MetaCyc",
+      "id":"Mc",
+      "homePage":"http://www.metacyc.org/",
+      "linkOut":"http://www.metacyc.org/META/NEW-IMAGE?type=NIL&object=$id",
+      "example":"D-GLUTAMATE-OXIDASE-RXN",
+      "dataNodeType":"interaction",
+      "species":"",
+      "priority":1,
+      "unknown":"Mc",
+      "regex":"",
+      "fullName":"MetaCyc"
+   },
+   {
+      "database":"MGI",
+      "id":"M",
+      "homePage":"http://www.informatics.jax.org/",
+      "linkOut":"http://www.informatics.jax.org/marker/$id",
+      "example":"MGI:2442292",
+      "dataNodeType":"gene",
+      "species":"Mus musculus",
+      "priority":1,
+      "unknown":"urn:miriam:mgd",
+      "regex":"^MGI:\d+$",
+      "fullName":"Mouse Genome Database"
+   },
+   {
+      "database":"MINT",
+      "id":"Mi",
+      "homePage":"http://mint.bio.uniroma2.it/mint/",
+      "linkOut":"http://mint.bio.uniroma2.it/mint/search/inFrameInteraction.do?interactionAc=$id",
+      "example":"MINT-10000",
+      "dataNodeType":"interaction",
+      "species":"",
+      "priority":1,
+      "unknown":"urn:miriam:mint",
+      "regex":"^MINT\-\d{1,5}$",
+      "fullName":"MINT"
+   },
+   {
+      "database":"miRBase mature sequence",
+      "id":"Mbm",
+      "homePage":"http://www.mirbase.org/",
+      "linkOut":"http://www.mirbase.org/cgi-bin/mature.pl?mature_acc=$id",
+      "example":"MIMAT0000001",
+      "dataNodeType":"gene",
+      "species":"",
+      "priority":1,
+      "unknown":"urn:miriam:mirbase.mature",
+      "regex":"MIMAT\d{7}",
+      "fullName":"miRBase mature sequence"
+   },
+   {
+      "database":"miRBase Sequence",
+      "id":"Mb",
+      "homePage":"http://microrna.sanger.ac.uk/",
+      "linkOut":"http://microrna.sanger.ac.uk/cgi-bin/sequences/mirna_entry.pl?acc=$id",
+      "example":"MI0000001",
+      "dataNodeType":"gene",
+      "species":"",
+      "priority":1,
+      "unknown":"urn:miriam:mirbase",
+      "regex":"MI\d{7}",
+      "fullName":"miRBase Sequence"
+   },
+   {
+      "database":"NASC Gene",
+      "id":"N",
+      "homePage":"http://arabidopsis.info/",
+      "linkOut":"",
+      "example":"ATMG00960-TAIR-G",
+      "dataNodeType":"gene",
+      "species":"Arabidopsis thaliana",
+      "priority":1,
+      "unknown":"N",
+      "regex":"AT[\dCM]G\d{5}\-TAIR\-G",
+      "fullName":"NASC Gene"
+   },
+   {
+      "database":"NCBI Protein",
+      "id":"Np",
+      "homePage":"http://www.ncbi.nlm.nih.gov/protein",
+      "linkOut":"http://www.ncbi.nlm.nih.gov/protein/$id",
+      "example":"CAA71118.1",
+      "dataNodeType":"protein",
+      "species":"",
+      "priority":1,
+      "unknown":"urn:miriam:ncbiprotein",
+      "regex":"^\w+\d+(\.\d+)?$",
+      "fullName":"NCBI Protein"
+   },
+   {
+      "database":"NCI Pathway Interaction Database",
+      "id":"Pid",
+      "homePage":"http://pid.nci.nih.gov/",
+      "linkOut":"http://pid.nci.nih.gov/search/pathway_landing.shtml?what=graphic&jpg=on&pathway_id=$id",
+      "example":"pi3kcipathway",
+      "dataNodeType":"pathway",
+      "species":"",
+      "priority":1,
+      "unknown":"urn:miriam:pid.pathway",
+      "regex":"^\w+$",
+      "fullName":"NCI Pathway Interaction Database"
+   },
+   {
+      "database":"NuGO wiki",
+      "id":"Nw",
+      "homePage":"http://wiki.nugo.org",
+      "linkOut":"http://wiki.nugo.org/index.php/$id",
+      "example":"HMDB00001",
+      "dataNodeType":"metabolite",
+      "species":"",
+      "priority":0,
+      "unknown":"Nw",
+      "regex":"",
+      "fullName":"NuGO wiki"
+   },
+   {
+      "database":"OMIM",
+      "id":"Om",
+      "homePage":"http://omim.org/",
+      "linkOut":"http://omim.org/entry/$id",
+      "example":"603903",
+      "dataNodeType":"gene",
+      "species":"",
+      "priority":0,
+      "unknown":"urn:miriam:omim",
+      "regex":"^[*#+%^]?\d{6}$",
+      "fullName":"OMIM"
+   },
+   {
+      "database":"Oryzabase",
+      "id":"Ob",
+      "homePage":"http://www.shigen.nig.ac.jp/rice/oryzabase",
+      "linkOut":"http://www.shigen.nig.ac.jp/rice/oryzabase/gateway/gatewayAction.do?target=symbol&id=$id",
+      "example":"468",
+      "dataNodeType":"gene",
+      "species":"Oryza sativa",
+      "priority":1,
+      "unknown":"Ob",
+      "regex":"",
+      "fullName":"Oryzabase"
+   },
+   {
+      "database":"Other",
+      "id":"O",
+      "homePage":"",
+      "linkOut":"",
+      "example":"",
+      "dataNodeType":"gene",
+      "species":"",
+      "priority":1,
+      "unknown":"O",
+      "regex":"",
+      "fullName":"Other"
+   },
+   {
+      "database":"Pathway Commons",
+      "id":"Pc",
+      "homePage":"http://www.pathwaycommons.org/pc/",
+      "linkOut":"http://www.pathwaycommons.org/pc/record2.do?id=$id",
+      "example":"485991",
+      "dataNodeType":"pathway",
+      "species":"",
+      "priority":1,
+      "unknown":"urn:miriam:pathwaycommons",
+      "regex":"^\d+$",
+      "fullName":"Pathway Commons"
+   },
+   {
+      "database":"PDB",
+      "id":"Pd",
+      "homePage":"http://www.pdb.org/",
+      "linkOut":"http://www.rcsb.org/pdb/explore/explore.do?structureId=$id",
+      "example":"2gc4",
+      "dataNodeType":"protein",
+      "species":"",
+      "priority":0,
+      "unknown":"urn:miriam:pdb",
+      "regex":"^[0-9][A-Za-z0-9]{3}$",
+      "fullName":"Protein Data Bank"
+   },
+   {
+      "database":"Pfam",
+      "id":"Pf",
+      "homePage":"http://pfam.sanger.ac.uk/",
+      "linkOut":"http://pfam.sanger.ac.uk/family/$id/",
+      "example":"PF01234",
+      "dataNodeType":"protein",
+      "species":"",
+      "priority":1,
+      "unknown":"urn:miriam:pfam",
+      "regex":"^PF\d{5}$",
+      "fullName":"Pfam"
+   },
+   {
+      "database":"PharmGKB Drug",
+      "id":"Pgd",
+      "homePage":"http://www.pharmgkb.org/",
+      "linkOut":"http://www.pharmgkb.org/drug/$id",
+      "example":"PA448710",
+      "dataNodeType":"metabolite",
+      "species":"",
+      "priority":1,
+      "unknown":"urn:miriam:pharmgkb.drug",
+      "regex":"^PA\d+$",
+      "fullName":"PharmGKB Drug"
+   },
+   {
+      "database":"PharmGKB Gene",
+      "id":"Pgg",
+      "homePage":"http://www.pharmgkb.org/",
+      "linkOut":"http://www.pharmgkb.org/gene/$id",
+      "example":"PA131",
+      "dataNodeType":"gene",
+      "species":"",
+      "priority":1,
+      "unknown":"urn:miriam:pharmgkb.gene",
+      "regex":"^PA\w+$",
+      "fullName":"PharmGKB Gene"
+   },
+   {
+      "database":"PharmGKB Pathways",
+      "id":"Pgp",
+      "homePage":"http://www.pharmgkb.org/",
+      "linkOut":"http://www.pharmgkb.org/pathway/$id",
+      "example":"PA146123006",
+      "dataNodeType":"pathway",
+      "species":"",
+      "priority":1,
+      "unknown":"urn:miriam:pharmgkb.pathways",
+      "regex":"^PA\d+$",
+      "fullName":"PharmGKB Pathways"
+   },
+   {
+      "database":"PhosphoSite Protein",
+      "id":"Pp",
+      "homePage":"http://www.phosphosite.org/homeAction.do",
+      "linkOut":"http://www.phosphosite.org/proteinAction.do?id=$id",
+      "example":"12300",
+      "dataNodeType":"protein",
+      "species":"",
+      "priority":1,
+      "unknown":"urn:miriam:phosphosite.protein",
+      "regex":"^\d{5}$",
+      "fullName":"PhosphoSite Protein"
+   },
+   {
+      "database":"PINA",
+      "id":"Pi",
+      "homePage":"http://cbg.garvan.unsw.edu.au/pina/",
+      "linkOut":"http://cbg.garvan.unsw.edu.au/pina/interactome.oneP.do?ac=$id&showExtend=null",
+      "example":"Q13485",
+      "dataNodeType":"interaction",
+      "species":"",
+      "priority":1,
+      "unknown":"urn:miriam:pina",
+      "regex":"^([A-N,R-Z][0-9][A-Z][A-Z, 0-9][A-Z, 0-9][0-9])|([O,P,Q][0-9][A-Z, 0-9][A-Z, 0-9][A-Z, 0-9][0-9])$",
+      "fullName":"PINA"
+   },
+   {
+      "database":"PlantGDB",
+      "id":"Pl",
+      "homePage":"http://www.plantgdb.org/",
+      "linkOut":"",
+      "example":"PUT-157a-Vitis_vinifera-37378",
+      "dataNodeType":"gene",
+      "species":"",
+      "priority":1,
+      "unknown":"Pl",
+      "regex":"PUT-[\w\d-]+",
+      "fullName":"PlantGDB"
+   },
+   {
+      "database":"PubChem-bioassay",
+      "id":"Cpb",
+      "homePage":"http://www.ncbi.nlm.nih.gov/sites/entrez?db=pcassay ",
+      "linkOut":"http://pubchem.ncbi.nlm.nih.gov/assay/assay.cgi?aid=$id",
+      "example":"1018",
+      "dataNodeType":"metabolite",
+      "species":"",
+      "priority":1,
+      "unknown":"urn:miriam:pubchem.bioassay",
+      "regex":"^\d+$",
+      "fullName":"PubChem-bioassay"
+   },
+   {
+      "database":"PubChem-compound",
+      "id":"Cpc",
+      "homePage":"http://pubchem.ncbi.nlm.nih.gov/",
+      "linkOut":"http://pubchem.ncbi.nlm.nih.gov/summary/summary.cgi?cid=$id",
+      "example":"100101",
+      "dataNodeType":"metabolite",
+      "species":"",
+      "priority":1,
+      "unknown":"urn:miriam:pubchem.compound",
+      "regex":"^\d+$",
+      "fullName":"PubChem-compound"
+   },
+   {
+      "database":"PubChem-substance",
+      "id":"Cps",
+      "homePage":"http://pubchem.ncbi.nlm.nih.gov/",
+      "linkOut":"http://pubchem.ncbi.nlm.nih.gov/summary/summary.cgi?sid=$id",
+      "example":"100101",
+      "dataNodeType":"metabolite",
+      "species":"",
+      "priority":1,
+      "unknown":"urn:miriam:pubchem.substance",
+      "regex":"^\d+$",
+      "fullName":"PubChem-substance"
+   },
+   {
+      "database":"Reactome",
+      "id":"Re",
+      "homePage":"http://www.reactome.org/",
+      "linkOut":"http://www.reactome.org/cgi-bin/eventbrowser_st_id?FROM_REACTOME=1&ST_ID=$id",
+      "example":"REACT_1590",
+      "dataNodeType":"pathway",
+      "species":"",
+      "priority":1,
+      "unknown":"urn:miriam:reactome",
+      "regex":"^REACT_\d+(\.\d+)?$",
+      "fullName":"Reactome"
+   },
+   {
+      "database":"RefSeq",
+      "id":"Q",
+      "homePage":"http://www.ncbi.nlm.nih.gov/projects/RefSeq/",
+      "linkOut":"http://www.ncbi.nlm.nih.gov/entrez/viewer.fcgi?val=$id",
+      "example":"NP_012345",
+      "dataNodeType":"gene",
+      "species":"",
+      "priority":1,
+      "unknown":"urn:miriam:refseq",
+      "regex":"^(NC|AC|NG|NT|NW|NZ|NM|NR|XM|XR|NP|AP|XP|ZP)_\d+$",
+      "fullName":"RefSeq"
+   },
+   {
+      "database":"RESID",
+      "id":"Res",
+      "homePage":"http://www.ebi.ac.uk/RESID/",
+      "linkOut":"http://srs.ebi.ac.uk/srsbin/cgi-bin/wgetz?-id+6JSUg1NA6u4+-e+[RESID:'$id']",
+      "example":"AA0001",
+      "dataNodeType":"protein",
+      "species":"",
+      "priority":1,
+      "unknown":"urn:miriam:resid",
+      "regex":"^AA\d{4}$",
+      "fullName":"RESID"
+   },
+   {
+      "database":"Rfam",
+      "id":"Rf",
+      "homePage":"",
+      "linkOut":"http://www.sanger.ac.uk/cgi-bin/Rfam/getacc?$id",
+      "example":"RF00066",
+      "dataNodeType":"gene",
+      "species":"",
+      "priority":1,
+      "unknown":"Rf",
+      "regex":"RF\d+",
+      "fullName":"RFAM"
+   },
+   {
+      "database":"RGD",
+      "id":"R",
+      "homePage":"http://rgd.mcw.edu/",
+      "linkOut":"http://rgd.mcw.edu/tools/genes/genes_view.cgi?id=$id",
+      "example":"2018",
+      "dataNodeType":"gene",
+      "species":"Rattus norvegicus",
+      "priority":1,
+      "unknown":"urn:miriam:rgd",
+      "regex":"^\d{4,7}$",
+      "fullName":"Rat Genome Database"
+   },
+   {
+      "database":"Rhea",
+      "id":"Rh",
+      "homePage":"http://www.ebi.ac.uk/rhea/",
+      "linkOut":"http://www.ebi.ac.uk/rhea/reaction.xhtml?id=$id",
+      "example":"12345",
+      "dataNodeType":"interaction",
+      "species":"",
+      "priority":1,
+      "unknown":"urn:miriam:rhea",
+      "regex":"^\d{5}$",
+      "fullName":"Rhea"
+   },
+   {
+      "database":"Rice Ensembl Gene",
+      "id":"Os",
+      "homePage":"http://www.gramene.org/Oryza_sativa",
+      "linkOut":"http://www.gramene.org/Oryza_sativa/geneview?gene=$id",
+      "example":"LOC_Os04g54800",
+      "dataNodeType":"gene",
+      "species":"Oryza sativa",
+      "priority":1,
+      "unknown":"Os",
+      "regex":"",
+      "fullName":"Rice Ensembl Gene"
+   },
+   {
+      "database":"SGD",
+      "id":"D",
+      "homePage":"http://www.yeastgenome.org/",
+      "linkOut":"http://www.yeastgenome.org/cgi-bin/locus.fpl?dbid=$id",
+      "example":"S000028457",
+      "dataNodeType":"gene",
+      "species":"Saccharomyces cerevisiae",
+      "priority":1,
+      "unknown":"urn:miriam:sgd",
+      "regex":"^S\d+$",
+      "fullName":"SGD"
+   },
+   {
+      "database":"Small Molecule Pathway Database",
+      "id":"Sm",
+      "homePage":"http://www.smpdb.ca/pathways",
+      "linkOut":"http://pathman.smpdb.ca/pathways/$id/pathway",
+      "example":"SMP00001",
+      "dataNodeType":"pathway",
+      "species":"",
+      "priority":1,
+      "unknown":"urn:miriam:smpdb",
+      "regex":"^SMP\d{5}$",
+      "fullName":"Small Molecule Pathway Database"
+   },
+   {
+      "database":"SMART",
+      "id":"Sma",
+      "homePage":"http://smart.embl-heidelberg.de/",
+      "linkOut":"http://smart.embl-heidelberg.de/smart/do_annotation.pl?DOMAIN=$id",
+      "example":"SM00015",
+      "dataNodeType":"protein",
+      "species":"",
+      "priority":1,
+      "unknown":"urn:miriam:smart",
+      "regex":"^SM\d{5}$",
+      "fullName":"SMART"
+   },
+   {
+      "database":"SPIKE",
+      "id":"Sk",
+      "homePage":"http://www.cs.tau.ac.il/~spike/",
+      "linkOut":"http://www.cs.tau.ac.il/~spike/maps/$id.html",
+      "example":"spike00001",
+      "dataNodeType":"interaction",
+      "species":"",
+      "priority":1,
+      "unknown":"urn:miriam:spike.map",
+      "regex":"^spike\d{5}$",
+      "fullName":"SPIKE Map"
+   },
+   {
+      "database":"SPRINT",
+      "id":"Spr",
+      "homePage":"http://www.bioinf.manchester.ac.uk/dbbrowser/sprint/",
+      "linkOut":"http://www.bioinf.manchester.ac.uk/cgi-bin/dbbrowser/sprint/searchprintss.cgi?prints_accn=$id&display_opts=Prints&category=None&queryform=false&regexpr=off",
+      "example":"PR00001",
+      "dataNodeType":"protein",
+      "species":"",
+      "priority":1,
+      "unknown":"urn:miriam:sprint",
+      "regex":"^PR\d{5}$",
+      "fullName":"SPRINT"
+   },
+   {
+      "database":"STRING",
+      "id":"Str",
+      "homePage":"http://string.embl.de/",
+      "linkOut":"http://string.embl.de/interactions/$id",
+      "example":"P53350",
+      "dataNodeType":"protein",
+      "species":"",
+      "priority":1,
+      "unknown":"urn:miriam:string",
+      "regex":"^([A-N,R-Z][0-9][A-Z][A-Z, 0-9][A-Z, 0-9][0-9])|([O,P,Q][0-9][A-Z, 0-9][A-Z, 0-9][A-Z, 0-9][0-9])|([0-9][A-Za-z0-9]{3})$",
+      "fullName":"STRING"
+   },
+   {
+      "database":"SubstrateDB",
+      "id":"Sdb",
+      "homePage":"http://substrate.burnham.org/",
+      "linkOut":"http://substrate.burnham.org/protein/annotation/$id/html",
+      "example":"1915",
+      "dataNodeType":"protein",
+      "species":"",
+      "priority":0,
+      "unknown":"urn:miriam:pmap.substratedb",
+      "regex":"^\d+$",
+      "fullName":"SubstrateDB"
+   },
+   {
+      "database":"SubtiWiki",
+      "id":"Sw",
+      "homePage":"http://www.subtiwiki.uni-goettingen.de/wiki/index.php/Main_Page",
+      "linkOut":"http://www.subtiwiki.uni-goettingen.de/wiki/index.php/$id",
+      "example":"BSU29180",
+      "dataNodeType":"gene",
+      "species":"Bacillus subtilis",
+      "priority":1,
+      "unknown":"urn:miriam:subtiwiki",
+      "regex":"^BSU\d{5}$",
+      "fullName":"SubtiWiki"
+   },
+   {
+      "database":"SUPFAM",
+      "id":"Sf",
+      "homePage":"http://supfam.org/SUPERFAMILY/",
+      "linkOut":"http://supfam.org/SUPERFAMILY/cgi-bin/scop.cgi?ipid=$id",
+      "example":"SSF57615",
+      "dataNodeType":"protein",
+      "species":"",
+      "priority":1,
+      "unknown":"urn:miriam:supfam",
+      "regex":"^\w+$",
+      "fullName":"SUPFAM"
+   },
+   {
+      "database":"SWISS-MODEL",
+      "id":"Sw",
+      "homePage":"http://swissmodel.expasy.org/",
+      "linkOut":"http://swissmodel.expasy.org/repository/smr.php?sptr_ac=$id",
+      "example":"P23298",
+      "dataNodeType":"protein",
+      "species":"",
+      "priority":1,
+      "unknown":"urn:miriam:swiss-model",
+      "regex":"^\w+$",
+      "fullName":"SWISS-MODEL"
+   },
+   {
+      "database":"Systems Biology Ontology",
+      "id":"Sbo",
+      "homePage":"http://www.ebi.ac.uk/sbo/",
+      "linkOut":"http://www.ebi.ac.uk/sbo/main/$id",
+      "example":"SBO:0000262",
+      "dataNodeType":"ontology",
+      "species":"",
+      "priority":1,
+      "unknown":"urn:miriam:biomodels.sbo",
+      "regex":"^SBO:\d{7}$",
+      "fullName":"Systems Biology Ontology"
+   },
+   {
+      "database":"TAIR",
+      "id":"A",
+      "homePage":"http://arabidopsis.org/index.jsp",
+      "linkOut":"http://arabidopsis.org/servlets/TairObject?type=locus&name=$id",
+      "example":"AT1G01030",
+      "dataNodeType":"gene",
+      "species":"",
+      "priority":1,
+      "unknown":"urn:miriam:tair.locus",
+      "regex":"^AT[1-5]G\d{5}$",
+      "fullName":"TAIR Locus"
+   },
+   {
+      "database":"TIGR",
+      "id":"Ti",
+      "homePage":"http://www.jcvi.org/",
+      "linkOut":"",
+      "example":"12012.t00308",
+      "dataNodeType":"gene",
+      "species":"",
+      "priority":1,
+      "unknown":"Ti",
+      "regex":"",
+      "fullName":"TIGR"
+   },
+   {
+      "database":"TTD Drug",
+      "id":"Td",
+      "homePage":"http://bidd.nus.edu.sg/group/cjttd/TTD_HOME.asp",
+      "linkOut":"http://bidd.nus.edu.sg/group/cjttd/ZFTTDDRUG.asp?ID=$id",
+      "example":"DAP000773",
+      "dataNodeType":"metabolite",
+      "species":"",
+      "priority":1,
+      "unknown":"urn:miriam:ttd.drug",
+      "regex":"^DAP\d+$",
+      "fullName":"TTD Drug"
+   },
+   {
+      "database":"TTD Target",
+      "id":"Tt",
+      "homePage":"http://bidd.nus.edu.sg/group/cjttd/TTD_HOME.asp",
+      "linkOut":"http://bidd.nus.edu.sg/group/cjttd/ZFTTDDetail.asp?ID=$id",
+      "example":"TTDS00056",
+      "dataNodeType":"protein",
+      "species":"",
+      "priority":1,
+      "unknown":"urn:miriam:ttd.target",
+      "regex":"^TTDS\d+$",
+      "fullName":"TTD Target"
+   },
+   {
+      "database":"TubercuList",
+      "id":"Tb",
+      "homePage":"http://tuberculist.epfl.ch",
+      "linkOut":"http://tuberculist.epfl.ch/quicksearch.php?gene+name=$id",
+      "example":"Rv0064",
+      "dataNodeType":"gene",
+      "species":"Mycobacterium tuberculosis",
+      "priority":1,
+      "unknown":"Tb",
+      "regex":"Rv\d{4}(A|B|c|\.\d)?",
+      "fullName":"TubercuList"
+   },
+   {
+      "database":"UCSC Genome Browser",
+      "id":"Uc",
+      "homePage":"http://genome.ucsc.edu/",
+      "linkOut":"http://genome.ucsc.edu/cgi-bin/hgTracks?position=$id",
+      "example":"uc001tyh.1",
+      "dataNodeType":"gene",
+      "species":"",
+      "priority":1,
+      "unknown":"Uc",
+      "regex":"uc\d{3}[a-z]{3}\.\d",
+      "fullName":"UCSC Genome Browser"
+   },
+   {
+      "database":"UniGene",
+      "id":"U",
+      "homePage":"http://www.ncbi.nlm.nih.gov/sites/entrez?db=unigene",
+      "linkOut":"http://www.ncbi.nlm.nih.gov/UniGene/clust.cgi?UGID=1548618&SEARCH=$id",
+      "example":"Hs.553708",
+      "dataNodeType":"gene",
+      "species":"",
+      "priority":1,
+      "unknown":"U",
+      "regex":"[A-Z][a-z][a-z]?\.\d+",
+      "fullName":"UniGene"
+   },
+   {
+      "database":"Unipathway",
+      "id":"Up",
+      "homePage":"http://www.grenoble.prabi.fr/obiwarehouse/unipathway",
+      "linkOut":"http://www.grenoble.prabi.fr/obiwarehouse/unipathway/upa?upid=$id",
+      "example":"UPA00206",
+      "dataNodeType":"pathway",
+      "species":"",
+      "priority":1,
+      "unknown":"urn:miriam:unipathway",
+      "regex":"^UPA\d{5}$",
+      "fullName":"Unipathway"
+   },
+   {
+      "database":"Uniprot-TrEMBL",
+      "id":"S",
+      "homePage":"http://www.uniprot.org/",
+      "linkOut":"http://www.uniprot.org/uniprot/$id",
+      "example":"P62158",
+      "dataNodeType":"protein",
+      "species":"",
+      "priority":1,
+      "unknown":"urn:miriam:uniprot",
+      "regex":"^([A-N,R-Z][0-9][A-Z][A-Z, 0-9][A-Z, 0-9][0-9])|([O,P,Q][0-9][A-Z, 0-9][A-Z, 0-9][A-Z, 0-9][0-9])|($",
+      "fullName":"UniProtKB/TrEMBL"
+   },
+   {
+      "database":"Uniprot-SwissProt",
+      "id":"Sp",
+      "homePage":"http://www.uniprot.org/",
+      "linkOut":"http://www.uniprot.org/uniprot/$id",
+      "example":"CALM_HUMAN",
+      "dataNodeType":"protein",
+      "species":"",
+      "priority":1,
+      "unknown":"Sp",
+      "regex":"^[A-Z0-9]+_[A-Z]+$",
+      "fullName":"UniProtKB/Swiss-Prot"
+   },
+   {
+      "database":"Wheat gene names",
+      "id":"Wn",
+      "homePage":"http://wheat.pw.usda.gov/",
+      "linkOut":"http://wheat.pw.usda.gov/report?class=gene;name=$id",
+      "example":"5S-Rrna-D1_(Triticum)",
+      "dataNodeType":"gene",
+      "species":"Triticum aestivum",
+      "priority":1,
+      "unknown":"Wn",
+      "regex":"",
+      "fullName":"Wheat gene names"
+   },
+   {
+      "database":"Wheat gene refs",
+      "id":"Wr",
+      "homePage":"http://wheat.pw.usda.gov/",
+      "linkOut":"http://wheat.pw.usda.gov/cgi-bin/graingenes/report.cgi?class=reference&name=$id",
+      "example":"WGS-95-1333",
+      "dataNodeType":"probe",
+      "species":"Triticum aestivum",
+      "priority":0,
+      "unknown":"Wr",
+      "regex":"",
+      "fullName":"Wheat gene refs"
+   },
+   {
+      "database":"WikiGenes",
+      "id":"Wg",
+      "homePage":"http://www.wikigenes.org/",
+      "linkOut":"http://www.wikigenes.org/e/gene/e/$id.html",
+      "example":"7157",
+      "dataNodeType":"gene",
+      "species":"",
+      "priority":0,
+      "unknown":"Wg",
+      "regex":"",
+      "fullName":"WikiGenes"
+   },
+   {
+      "database":"WikiPathways",
+      "id":"Wp",
+      "homePage":"http://www.wikipathways.org/",
+      "linkOut":"http://www.wikipathways.org/index.php/Pathway:$id",
+      "example":"WP100",
+      "dataNodeType":"pathway",
+      "species":"",
+      "priority":1,
+      "unknown":"urn:miriam:wikipathways",
+      "regex":"WP\d{1,5}",
+      "fullName":"WikiPathways"
+   },
+   {
+      "database":"Wikipedia",
+      "id":"Wi",
+      "homePage":"http://www.wikipedia.org",
+      "linkOut":"http://en.wikipedia.org/wiki/$id",
+      "example":"Acetate",
+      "dataNodeType":"metabolite",
+      "species":"",
+      "priority":0,
+      "unknown":"Wi",
+      "regex":"",
+      "fullName":"Wikipedia"
+   },
+   {
+      "database":"WormBase",
+      "id":"W",
+      "homePage":"http://www.wormbase.org/",
+      "linkOut":"http://www.wormbase.org/db/gene/gene?name=$id;class=Gene",
+      "example":"WBGene00000001",
+      "dataNodeType":"gene",
+      "species":"Caenorhabditis elegans",
+      "priority":1,
+      "unknown":"urn:miriam:wormbase",
+      "regex":"^WBGene\d{8}$",
+      "fullName":"WormBase"
+   },
+   {
+      "database":"ZFIN",
+      "id":"Z",
+      "homePage":"http://zfin.org",
+      "linkOut":"http://zfin.org/action/marker/view/$id",
+      "example":"ZDB-GENE-041118-11",
+      "dataNodeType":"gene",
+      "species":"Danio rerio",
+      "priority":1,
+      "unknown":"urn:miriam:zfin",
+      "regex":"ZDB\-GENE\-\d+\-\d+",
+      "fullName":"ZFIN Gene"
+   }
+];
+;
+
 pathvisio.pathway.xRef = function(){ 
 
-  var dataSources = [{"database":"Affy","id":"X","url":"https://www.affymetrix.com/LinkServlet?probeset=$id","name":"Affymetrix Probeset"},
-    {"database":"Agilent","id":"Ag","url":"","name":"Agilent"},
-    {"database":"BIND","id":"Bi","url":"http://www.bind.ca/Action?identifier=bindid&idsearch=$id","name":"BIND"},
-    {"database":"BioCyc","id":"Bc","url":"http://biocyc.org/getid?id=$id","name":"BioCyc"},
-    {"database":"BioGrid","id":"Bg","url":"http://thebiogrid.org/$id","name":"BioGRID"},
-    {"database":"BioModels Database","id":"Bm","url":"http://www.ebi.ac.uk/biomodels-main/$id","name":"BioModels Database"},
-    {"database":"BioSystems","id":"Bs","url":"http://www.ncbi.nlm.nih.gov/biosystems/$id","name":"BioSystems"},
-    {"database":"BRENDA","id":"Br","url":"http://www.brenda-enzymes.org/php/result_flat.php4?ecno=$id","name":"BRENDA"},
-    {"database":"CAS","id":"Ca","url":"http://commonchemistry.org/ChemicalDetail.aspx?ref=$id","name":"CAS"},
-    {"database":"CCDS","id":"Cc","url":"http://www.ncbi.nlm.nih.gov/CCDS/CcdsBrowse.cgi?REQUEST=ALLFIELDS&DATA=$id","name":"CCDS"},
-    {"database":"ChEBI","id":"Ce","url":"http://www.ebi.ac.uk/chebi/searchId.do?chebiId=$id","name":"ChEBI"},
-    {"database":"Chemspider","id":"Cs","url":"http://www.chemspider.com/Chemical-Structure.$id.html","name":"ChemSpider"},
-    {"database":"CodeLink","id":"Ge","url":"","name":"CodeLink"},
-    {"database":"Database of Interacting Proteins","id":"Dip","url":"http://dip.doe-mbi.ucla.edu/dip/DIPview.cgi?ID=$id","name":"Database of Interacting Proteins"},
-    {"database":"dbSNP","id":"Sn","url":"http://www.ncbi.nlm.nih.gov/projects/SNP/snp_ref.cgi?rs=$id","name":"dbSNP"},
-    {"database":"DrugBank","id":"Dr","url":"http://www.drugbank.ca/drugs/$id","name":"DrugBank"},
-    {"database":"EcoCyc","id":"Eco","url":"http://ecocyc.org/ECOLI/NEW-IMAGE?type=NIL&object=$id","name":"EcoCyc"},
-    {"database":"EcoGene","id":"Ec","url":"http://ecogene.org/geneInfo.php?eg_id=$id","name":"EcoGene"},
-    {"database":"EMBL","id":"Em","url":"http://www.ebi.ac.uk/ena/data/view/$id","name":"European Nucleotide Archive"},
-    {"database":"Ensembl","id":"En","url":"http://www.ensembl.org/id/$id","name":"Ensembl"},
-    {"database":"Ensembl B. subtilis","id":"EnBs","url":"http://bacteria.ensembl.org/Bacillus/B_subtilis/Gene/Summary?g=$id","name":"Ensembl"},
-    {"database":"Ensembl C. elegans","id":"EnCe","url":"http://www.ensembl.org/Caenorhabditis_elegans/Gene/Summary?g=$id","name":"Ensembl"},
-    {"database":"Ensembl Chicken","id":"EnGg","url":"http://www.ensembl.org/Gallus_gallus/Gene/Summary?g=$id","name":"Ensembl"},
-    {"database":"Ensembl Chimp","id":"EnPt","url":"http://www.ensembl.org/Pan_troglodytes/Gene/Summary?g=$id","name":"Ensembl"},
-    {"database":"Ensembl Cow","id":"EnBt","url":"http://www.ensembl.org/Bos_taurus/Gene/Summary?g=$id","name":"Ensembl"},
-    {"database":"Ensembl Dog","id":"EnCf","url":"http://www.ensembl.org/Canis_familiaris/Gene/Summary?g=$id","name":"Ensembl"},
-    {"database":"Ensembl E. coli","id":"EnEc","url":"http://bacteria.ensembl.org/Escherichia_Shigella/E_coli_K12/Gene/Summary?g=$id","name":"Ensembl"},
-    {"database":"Ensembl Fruitfly","id":"EnDm","url":"http://www.ensembl.org/Drosophila_melanogaster/Gene/Summary?g=$id","name":"Ensembl"},
-    {"database":"Ensembl Horse","id":"EnQc","url":"http://www.ensembl.org/Equus_caballus/Gene/Summary?g=$id","name":"Ensembl"},
-    {"database":"Ensembl Human","id":"EnHs","url":"http://www.ensembl.org/Homo_sapiens/Gene/Summary?g=$id","name":"Ensembl"},
-    {"database":"Ensembl M. tuberculosis","id":"EnMx","url":"http://bacteria.ensembl.org/Mycobacterium/M_tuberculosis_H37Rv/Gene/Summary?g=$id","name":"Ensembl"},
-    {"database":"Ensembl Mosquito","id":"EnAg","url":"http://www.ensembl.org/Anopheles_gambiae/Gene/Summary?_q=$id","name":"Ensembl"},
-    {"database":"Ensembl Mouse","id":"EnMm","url":"http://www.ensembl.org/Mus_musculus/Gene/Summary?g=$id","name":"Ensembl"},
-    {"database":"Ensembl Pig","id":"EnSs","url":"http://www.ensembl.org/Sus_scrofa/Gene/Summary?g=$id","name":"Ensembl"},
-    {"database":"Ensembl Plants","id":"EP","url":"http://plants.ensembl.org/id/$id","name":"Ensembl Plants"},
-    {"database":"Ensembl Rat","id":"EnRn","url":"http://www.ensembl.org/Rattus_norvegicus/Gene/Summary?g=$id","name":"Ensembl"},
-    {"database":"Ensembl Xenopus","id":"EnXt","url":"http://www.ensembl.org/Xenopus_tropicalis/Gene/Summary?g=$id","name":"Ensembl"},
-    {"database":"Ensembl Yeast","id":"EnSc","url":"http://www.ensembl.org/Saccharomyces_cerevisiae/Gene/Summary?g=$id","name":"Ensembl"},
-    {"database":"Ensembl Zebrafish","id":"EnDr","url":"http://www.ensembl.org/Danio_rerio/Gene/Summary?g=$id","name":"Ensembl"},
-    {"database":"Entrez Gene","id":"L","url":"http://www.ncbi.nlm.nih.gov/gene/$id","name":"Entrez Gene"},
-    {"database":"Enzyme Nomenclature","id":"E","url":"http://www.ebi.ac.uk/intenz/query?cmd=SearchEC&ec=$id","name":"Enzyme Nomenclature"},
-    {"database":"FlyBase","id":"F","url":"http://flybase.org/reports/$id.html","name":"FlyBase"},
-    {"database":"GenBank","id":"G","url":"http://www.ncbi.nlm.nih.gov/nuccore/$id","name":"GenBank"},
-    {"database":"Gene Wiki","id":"Gw","url":"http://plugins.biogps.org/cgi-bin/wp.cgi?id=$id","name":"Gene Wiki"},
-    {"database":"GeneOntology","id":"T","url":"http://www.ebi.ac.uk/QuickGO/GTerm?id=$id","name":"Gene Ontology"},
-    {"database":"Gramene Arabidopsis","id":"EnAt","url":"http://www.gramene.org/Arabidopsis_thaliana/Gene/Summary?g=$id","name":"Grameen Arabidopsis"},
-    {"database":"Gramene Genes DB","id":"Gg","url":"http://www.gramene.org/db/genes/search_gene?acc=$id","name":"Gramene Genes"},
-    {"database":"Gramene Literature","id":"Gl","url":"http://www.gramene.org/db/literature/pub_search?ref_id=$id","name":"Gramene Literature"},
-    {"database":"Gramene Maize","id":"EnZm","url":"http://www.maizesequence.org/Zea_mays/Gene/Summary?g=$id","name":"Gramene Maize"},
-    {"database":"Gramene Pathway","id":"Gp","url":"","name":"Gramene Pathway"},
-    {"database":"Gramene Rice","id":"EnOj","url":"http://www.gramene.org/Oryza_sativa/Gene/Summary?db=core;g=$id","name":"Gramene Rice"},
-    {"database":"HGNC","id":"H","url":"http://www.genenames.org/data/hgnc_data.php?match=$id","name":"HGNC Symbol"},
-    {"database":"HGNC Accession number","id":"Hac","url":"http://www.genenames.org/data/hgnc_data.php?hgnc_id=$id","name":"HGNC"},
-    {"database":"HMDB","id":"Ch","url":"http://www.hmdb.ca/metabolites/$id","name":"HMDB"},
-    {"database":"HomoloGene","id":"Hg","url":"http://www.ncbi.nlm.nih.gov/homologene/$id","name":"HomoloGene"},
-    {"database":"HPRD","id":"Hp","url":"","name":"HPRD"},
-    {"database":"Illumina","id":"Il","url":"","name":"Illumina"},
-    {"database":"IntAct","id":"Ia","url":"http://www.ebi.ac.uk/intact/pages/details/details.xhtml?interactionAc=$id","name":"IntAct"},
-    {"database":"InterPro","id":"I","url":"http://www.ebi.ac.uk/interpro/DisplayIproEntry?ac=$id","name":"InterPro"},
-    {"database":"IPI","id":"Ip","url":"http://www.ebi.ac.uk/cgi-bin/dbfetch?db=IPI&id=$id&format=default","name":"IPI"},
-    {"database":"IRGSP Gene","id":"Ir","url":"","name":"IRGSP Gene"},
-    {"database":"Kegg Compound","id":"Ck","url":"http://www.genome.jp/dbget-bin/www_bget?cpd:$id","name":"KEGG Compound"},
-    {"database":"KEGG Drug","id":"Kd","url":"http://www.genome.jp/dbget-bin/www_bget?dr:$id","name":"KEGG Drug"},
-    {"database":"KEGG Genes","id":"Kg","url":"http://www.genome.jp/dbget-bin/www_bget?$id","name":"KEGG Genes"},
-    {"database":"KEGG Glycan","id":"Kgl","url":"http://www.genome.jp/dbget-bin/www_bget?gl:$id","name":"KEGG Glycan"},
-    {"database":"KEGG Pathway","id":"Kp","url":"http://www.genome.jp/dbget-bin/www_bget?pathway+$id","name":"KEGG Pathway"},
-    {"database":"KEGG Reaction","id":"Kr","url":"http://www.genome.jp/dbget-bin/www_bget?rn:$id","name":"KEGG Reaction"},
-    {"database":"LIPID MAPS","id":"Lm","url":"http://www.lipidmaps.org/data/get_lm_lipids_dbgif.php?LM_ID=$id","name":"LIPID MAPS"},
-    {"database":"LipidBank","id":"Lb","url":"http://lipidbank.jp/cgi-bin/detail.cgi?id=$id","name":"LipidBank"},
-    {"database":"MACiE","id":"Ma","url":"http://www.ebi.ac.uk/thornton-srv/databases/cgi-bin/MACiE/entry/getPage.pl?id=$id","name":"MACiE"},
-    {"database":"MaizeGDB","id":"Mg","url":"http://www.maizegdb.org/cgi-bin/displaylocusresults.cgi?term=$id","name":"MaizeGDB"},
-    {"database":"MatrixDB","id":"Md","url":"http://matrixdb.ibcp.fr/cgi-bin/model/report/default?name=$id&class=Association","name":"MatrixDB"},
-    {"database":"MetaCyc","id":"Mc","url":"http://www.metacyc.org/META/NEW-IMAGE?type=NIL&object=$id","name":"MetaCyc"},
-    {"database":"MGI","id":"M","url":"http://www.informatics.jax.org/marker/$id","name":"Mouse Genome Database"},
-    {"database":"MINT","id":"Mi","url":"http://mint.bio.uniroma2.it/mint/search/inFrameInteraction.do?interactionAc=$id","name":"MINT"},
-    {"database":"miRBase mature sequence","id":"Mbm","url":"http://www.mirbase.org/cgi-bin/mature.pl?mature_acc=$id","name":"miRBase mature sequence"},
-    {"database":"miRBase Sequence","id":"Mb","url":"http://microrna.sanger.ac.uk/cgi-bin/sequences/mirna_entry.pl?acc=$id","name":"miRBase Sequence"},
-    {"database":"NASC Gene","id":"N","url":"","name":"NASC Gene"},
-    {"database":"NCBI Protein","id":"Np","url":"http://www.ncbi.nlm.nih.gov/protein/$id","name":"NCBI Protein"},
-    {"database":"NCI Pathway Interaction Database","id":"Pid","url":"http://pid.nci.nih.gov/search/pathway_landing.shtml?what=graphic&jpg=on&pathway_id=$id","name":"NCI Pathway Interaction Database"},
-    {"database":"NuGO wiki","id":"Nw","url":"http://wiki.nugo.org/index.php/$id","name":"NuGO wiki"},
-    {"database":"OMIM","id":"Om","url":"http://omim.org/entry/$id","name":"OMIM"},
-    {"database":"Oryzabase","id":"Ob","url":"http://www.shigen.nig.ac.jp/rice/oryzabase/gateway/gatewayAction.do?target=symbol&id=$id","name":"Oryzabase"},
-    {"database":"Other","id":"O","url":"","name":"Other"},
-    {"database":"Pathway Commons","id":"Pc","url":"http://www.pathwaycommons.org/pc/record2.do?id=$id","name":"Pathway Commons"},
-    {"database":"PDB","id":"Pd","url":"http://www.rcsb.org/pdb/explore/explore.do?structureId=$id","name":"Protein Data Bank"},
-    {"database":"Pfam","id":"Pf","url":"http://pfam.sanger.ac.uk/family/$id/","name":"Pfam"},
-    {"database":"PharmGKB Drug","id":"Pgd","url":"http://www.pharmgkb.org/drug/$id","name":"PharmGKB Drug"},
-    {"database":"PharmGKB Gene","id":"Pgg","url":"http://www.pharmgkb.org/gene/$id","name":"PharmGKB Gene"},
-    {"database":"PharmGKB Pathways","id":"Pgp","url":"http://www.pharmgkb.org/pathway/$id","name":"PharmGKB Pathways"},
-    {"database":"PhosphoSite Protein","id":"Pp","url":"http://www.phosphosite.org/proteinAction.do?id=$id","name":"PhosphoSite Protein"},
-    {"database":"PINA","id":"Pi","url":"http://cbg.garvan.unsw.edu.au/pina/interactome.oneP.do?ac=$id&showExtend=null","name":"PINA"},
-    {"database":"PlantGDB","id":"Pl","url":"","name":"PlantGDB"},
-    {"database":"PubChem-bioassay","id":"Cpb","url":"http://pubchem.ncbi.nlm.nih.gov/assay/assay.cgi?aid=$id","name":"PubChem-bioassay"},
-    {"database":"PubChem-compound","id":"Cpc","url":"http://pubchem.ncbi.nlm.nih.gov/summary/summary.cgi?cid=$id","name":"PubChem-compound"},
-    {"database":"PubChem-substance","id":"Cps","url":"http://pubchem.ncbi.nlm.nih.gov/summary/summary.cgi?sid=$id","name":"PubChem-substance"},
-    {"database":"Reactome","id":"Re","url":"http://www.reactome.org/cgi-bin/eventbrowser_st_id?FROM_REACTOME=1&ST_ID=$id","name":"Reactome"},
-    {"database":"RefSeq","id":"Q","url":"http://www.ncbi.nlm.nih.gov/entrez/viewer.fcgi?val=$id","name":"RefSeq"},
-    {"database":"RESID","id":"Res","url":"http://srs.ebi.ac.uk/srsbin/cgi-bin/wgetz?-id+6JSUg1NA6u4+-e+[RESID:'$id']","name":"RESID"},
-    {"database":"Rfam","id":"Rf","url":"http://www.sanger.ac.uk/cgi-bin/Rfam/getacc?$id","name":"RFAM"},
-    {"database":"RGD","id":"R","url":"http://rgd.mcw.edu/tools/genes/genes_view.cgi?id=$id","name":"Rat Genome Database"},
-    {"database":"Rhea","id":"Rh","url":"http://www.ebi.ac.uk/rhea/reaction.xhtml?id=$id","name":"Rhea"},
-    {"database":"Rice Ensembl Gene","id":"Os","url":"http://www.gramene.org/Oryza_sativa/geneview?gene=$id","name":"Rice Ensembl Gene"},
-    {"database":"SGD","id":"D","url":"http://www.yeastgenome.org/cgi-bin/locus.fpl?dbid=$id","name":"SGD"},
-    {"database":"Small Molecule Pathway Database","id":"Sm","url":"http://pathman.smpdb.ca/pathways/$id/pathway","name":"Small Molecule Pathway Database"},
-    {"database":"SMART","id":"Sma","url":"http://smart.embl-heidelberg.de/smart/do_annotation.pl?DOMAIN=$id","name":"SMART"},
-    {"database":"SPIKE","id":"Sk","url":"http://www.cs.tau.ac.il/~spike/maps/$id.html","name":"SPIKE Map"},
-    {"database":"SPRINT","id":"Spr","url":"http://www.bioinf.manchester.ac.uk/cgi-bin/dbbrowser/sprint/searchprintss.cgi?prints_accn=$id&display_opts=Prints&category=None&queryform=false&regexpr=off","name":"SPRINT"},
-    {"database":"STRING","id":"Str","url":"http://string.embl.de/interactions/$id","name":"STRING"},
-    {"database":"SubstrateDB","id":"Sdb","url":"http://substrate.burnham.org/protein/annotation/$id/html","name":"SubstrateDB"},
-    {"database":"SubtiWiki","id":"Sw","url":"http://www.subtiwiki.uni-goettingen.de/wiki/index.php/$id","name":"SubtiWiki"},
-    {"database":"SUPFAM","id":"Sf","url":"http://supfam.org/SUPERFAMILY/cgi-bin/scop.cgi?ipid=$id","name":"SUPFAM"},
-    {"database":"SWISS-MODEL","id":"Sw","url":"http://swissmodel.expasy.org/repository/smr.php?sptr_ac=$id","name":"SWISS-MODEL"},
-    {"database":"Systems Biology Ontology","id":"Sbo","url":"http://www.ebi.ac.uk/sbo/main/$id","name":"Systems Biology Ontology"},
-    {"database":"TAIR","id":"A","url":"http://arabidopsis.org/servlets/TairObject?type=locus&name=$id","name":"TAIR Locus"},
-    {"database":"TIGR","id":"Ti","url":"","name":"TIGR"},
-    {"database":"TTD Drug","id":"Td","url":"http://bidd.nus.edu.sg/group/cjttd/ZFTTDDRUG.asp?ID=$id","name":"TTD Drug"},
-    {"database":"TTD Target","id":"Tt","url":"http://bidd.nus.edu.sg/group/cjttd/ZFTTDDetail.asp?ID=$id","name":"TTD Target"},
-    {"database":"TubercuList","id":"Tb","url":"http://tuberculist.epfl.ch/quicksearch.php?gene+name=$id","name":"TubercuList"},
-    {"database":"UCSC Genome Browser","id":"Uc","url":"http://genome.ucsc.edu/cgi-bin/hgTracks?position=$id","name":"UCSC Genome Browser"},
-    {"database":"UniGene","id":"U","url":"http://www.ncbi.nlm.nih.gov/UniGene/clust.cgi?UGID=1548618&SEARCH=$id","name":"UniGene"},
-    {"database":"Unipathway","id":"Up","url":"http://www.grenoble.prabi.fr/obiwarehouse/unipathway/upa?upid=$id","name":"Unipathway"},
-    {"database":"Uniprot-TrEMBL","id":"S","url":"http://www.uniprot.org/uniprot/$id","name":"UniProtKB/TrEMBL"},
-    {"database":"Uniprot-SwissProt","id":"Sp","url":"http://www.uniprot.org/uniprot/$id","name":"UniProtKB/Swiss-Prot"},
-    {"database":"Wheat gene names","id":"Wn","url":"http://wheat.pw.usda.gov/report?class=gene;name=$id","name":"Wheat gene names"},
-    {"database":"Wheat gene refs","id":"Wr","url":"http://wheat.pw.usda.gov/cgi-bin/graingenes/report.cgi?class=reference&name=$id","name":"Wheat gene refs"},
-    {"database":"WikiGenes","id":"Wg","url":"http://www.wikigenes.org/e/gene/e/$id.html","name":"WikiGenes"},
-    {"database":"WikiPathways","id":"Wp","url":"http://www.wikipathways.org/index.php/Pathway:$id","name":"WikiPathways"},
-    {"database":"Wikipedia","id":"Wi","url":"http://en.wikipedia.org/wiki/$id","name":"Wikipedia"},
-    {"database":"WormBase","id":"W","url":"http://www.wormbase.org/db/gene/gene?name=$id;class=Gene","name":"WormBase"},
-    {"database":"ZFIN","id":"Z","url":"http://zfin.org/action/marker/view/$id","name":"ZFIN Gene"}];
-
     function getData(species, database, id, callback) {
-      var databaseId = dataSources.filter(function(element) {return element.database === database})[0].id;
-      var url = '../data/xrefs.php?species=' + encodeURIComponent(species) + '&database=' + encodeURIComponent(databaseId) + '&id=' + encodeURIComponent(id);
-      console.log('url');
-      console.log(url);
+      var databaseId = pathvisio.pathway.dataSources.filter(function(element) {return element.database === database})[0].id;
+      var url = '../../remote-data-sources/php/bridgedb.php?species=' + encodeURIComponent(species) + '&database=' + encodeURIComponent(databaseId) + '&id=' + encodeURIComponent(id);
       $.ajax({
         url: url,
         dataType: "text",
@@ -2809,22 +4423,51 @@ pathvisio.pathway.xRef = function(){
       });
     };
 
-    function displayData(id) {
-      var pathway = pathvisio.data.pathways[pathvisio.data.current.svgSelector];
-      var node = pathway.nodes.filter(function(element) {return element.graphId == id })[0];
+    function displayData(node) {
+      self.node = node;
       var xRefData = getData(pathway.organism, node.xRef.database, node.xRef.id, function(data) {
         var parser = CSVParser.parse(data, true, ' ', false, false, '.');
         var parsed = DataGridRenderer.json(parser.dataGrid, parser.headerNames, parser.headerTypes,'\t','\n');
         var xRefDataParsed = self.xRefDataParsed = JSON.parse(parsed);
-        console.log(xRefDataParsed);
+        xRefDataSorted = self.xRefDataSorted = [];
+        xRefDataParsed.forEach(function(xRef) {
+          try {
+            var priority = pathvisio.pathway.dataSources.filter(function(dataSource) {return dataSource.database.replace(/[^a-z0-9]/gi,'').toLowerCase() == xRef.database.replace(/[^a-z0-9]/gi,'').toLowerCase() })[0].priority;
+          }
+          catch (e) {
+            console.warn(e);
+            console.warn('Error: No database found for external reference database "' + xRef.database + '".');
+          };
+          if (priority == 1) {
+            xRefDataSorted.unshift(xRef);
+          }
+          else {
+            xRefDataSorted.push(xRef);
+          };
+        });
+        var specifiedXRef = xRefDataSorted.filter(function(element) {return (element.database == node.xRef.database && element. id == node.xRef.id)});
+        var currentIndex = xRefDataSorted.indexOf(specifiedXRef[0]);
+        xRefDataSorted.move(currentIndex, 0);
         var features = {
-          "id": node.dataNodeType + ' ' + node.textLabel.text,
-          "description": node.xRef.database + ' ' + node.xRef.id
+          "id": node.textLabel.text,
+          "description": node.dataNodeType
         };
 
-        xRefDataParsed.forEach(function(element) {
-          features[element.database] = element.id;
+        var features = [];
+        xRefDataSorted.forEach(function(element) {
+          console.log(element);
+          if (element.id !== 'move' ) {
+            if (!features[element.database]) {
+              features[element.database] = [element.id];
+            }
+            else {
+              features[element.database].push(element.id);
+            };
+          };
         });
+        console.log(features);
+        console.log(d3.map(features));
+        console.log(d3.set(features));
 
         var detailsFrame = d3.select('#detailsFrame');
         detailsFrame[0][0].style.visibility = 'visible';

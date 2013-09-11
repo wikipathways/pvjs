@@ -101,7 +101,7 @@ pathvisio.pathway.edge = function(){
         // Points
 
         var points = pathvisio.helpers.convertToArray( element.graphics.point );
-        var pointsData = pathvisio.pathway.edge.point.gpml2json( points );
+        var pointsData = pathvisio.pathway.edge.point.gpml2json(points);
         element.points = pointsData.points;
 
         // Back to edges
@@ -191,12 +191,12 @@ pathvisio.pathway.edge = function(){
     };
   };
 
-  function drawAll() {
-    if (pathvisio.data.pathways[pathvisio.data.current.svgSelector].hasOwnProperty('edges')) {
+  function drawAll(svg, pathway) {
+    if (pathway.hasOwnProperty('edges')) {
       var pathData = null;
 
-      var edges = pathvisio.data.current.svg.select('#viewport').selectAll("pathway.edge")
-      .data(pathvisio.data.pathways[pathvisio.data.current.svgSelector].edges)
+      var edges = svg.select('#viewport').selectAll("pathway.edge")
+      .data(pathway.edges)
       .enter()
       .append("path")
       .attr("id", function (d) { return d.edgeType + '-' + d.graphId; })
@@ -210,7 +210,7 @@ pathvisio.pathway.edge = function(){
         return styleClass; 
       })
       .attr("d", function (d) {
-        pathData = pathvisio.pathway.edge.pathData.get(d);
+        pathData = pathvisio.pathway.edge.pathData.get(svg, d);
         if (d.hasOwnProperty('strokeStyle')) {
           if (d.strokeStyle === 'double') {
 
@@ -218,7 +218,7 @@ pathvisio.pathway.edge = function(){
             // what PathVisio (Java) does, but the white line (overlaying the
             // thick line to create a "double line") is hard to see at 1px.
 
-            pathvisio.data.current.svg.select('#viewport').append("path")
+            svg.select('#viewport').append("path")
             .attr("class", d.edgeType + "-double")
             .attr("d", pathData)
             .attr("class", "drawing-board-color-stroke")

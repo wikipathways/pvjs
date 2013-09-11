@@ -233,34 +233,34 @@ pathvisio.pathway.biopax-ref = function(){
       return validJsonNodes;
     }
     catch (e) {
-      console.log("Error //converting labelable elements to json: " + e.message);
+      console.log("Error converting labelable elements to json: " + e.message);
       return e;
     };
   };
 
-  function drawAll() {
-    var nodesContainer = pathvisio.data.current.svg.selectAll("g.nodes-container")	
-    .data(pathvisio.data.pathways[pathvisio.data.current.svgSelector].nodes)
+  function drawAll(svg, pathway) {
+    var nodesContainer = svg.selectAll("g.nodes-container")	
+    .data(pathway.nodes)
     .enter()
     .append("g")
     .attr("id", function (d) { return 'nodes-container-' + d.graphId })
     .attr('transform', function(d) { return 'translate(' + d.x + ' ' + d.y + ')'; })
     .attr("class", "nodes-container")
-.on("click", function(d,i) {
-	if (d.elementType === 'data-node') {
-		var xrefDiv = $('.xrefinfo');
+    .on("click", function(d,i) {
+      if (d.elementType === 'data-node') {
+        var xrefDiv = $('.xrefinfo');
 
-		// (id, datasource, species, symbol)
+        // (id, datasource, species, symbol)
 
-		var xrefHtml = XrefPanel.create(d.xRef.id, d.xRef.database, 'Homo sapiens', d.textLabel.text);
-		//var xrefHtml = XrefPanel.create('HMDB01397', 'HMDB', 'Mus musculus', d.textLabel.text);
-		window.setTimeout(function() {
-			xrefDiv.empty();
-			xrefDiv.append(xrefHtml);
-		}, 2000);
-	};
-});
-//.on("click", function(d,i) { alert(d.xRef.id); });
+        var xrefHtml = XrefPanel.create(d.xRef.id, d.xRef.database, 'Homo sapiens', d.textLabel.text);
+        //var xrefHtml = XrefPanel.create('HMDB01397', 'HMDB', 'Mus musculus', d.textLabel.text);
+        window.setTimeout(function() {
+          xrefDiv.empty();
+          xrefDiv.append(xrefHtml);
+        }, 2000);
+      };
+    });
+    //.on("click", function(d,i) { alert(d.xRef.id); });
     //.call(drag);
 
     var nodes = nodesContainer.each(function(d) {
@@ -324,13 +324,13 @@ pathvisio.pathway.biopax-ref = function(){
           return style; 
         });
 
-        if (symbolsAvailable.filter(function(d, i) { return (symbolsAvailable[0][i].id === pathvisio.data.pathways[pathvisio.data.current.svgSelector].nodes[0].symbolType); }).length > 0) {
+        if (symbolsAvailable.filter(function(d, i) { return (symbolsAvailable[0][i].id === pathway.nodes[0].symbolType); }).length > 0) {
           // d3 bug strips 'xlink' so need to say 'xlink:xlink';
           node.attr("xlink:xlink:href", function (d) {return "#" + d.symbolType; });
         }
         else {
           node.attr("xlink:xlink:href", "#rectangle");
-          console.log('Pathvisio.js does not have access to the requested symbol: ' + pathvisio.data.pathways[pathvisio.data.current.svgSelector].nodes[0].symbolType + '. Rectangle used as placeholder.');
+          console.log('Pathvisio.js does not have access to the requested symbol: ' + pathway.nodes[0].symbolType + '. Rectangle used as placeholder.');
         };
 
         // use this for tspan option for rendering text, including multi-line
