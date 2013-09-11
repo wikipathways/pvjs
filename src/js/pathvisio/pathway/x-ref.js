@@ -34,24 +34,49 @@ pathvisio.pathway.xRef = function(){
         });
         var specifiedXRef = xRefDataSorted.filter(function(element) {return (element.database == node.xRef.database && element. id == node.xRef.id)});
         var currentIndex = xRefDataSorted.indexOf(specifiedXRef[0]);
-        xRefDataSorted.move(currentIndex, 0);
+        xRefDataSorted = pathvisio.helpers(xRefDataSorted, currentIndex, 0);
         var features = {
           "id": node.textLabel.text,
           "description": node.dataNodeType
         };
 
-        var features = [];
+        var database = null;
+        var ids = [];
+        var features = [{database:ids}];
         xRefDataSorted.forEach(function(element) {
-          console.log(element);
-          if (element.id !== 'move' ) {
-            if (!features[element.database]) {
-              features[element.database] = [element.id];
-            }
-            else {
-              features[element.database].push(element.id);
-            };
+          database = element.database;
+
+          if (!features[element.database]) {
+            <li><span class='feature-title'></span><span class='feature-item'></span></li>
+            features[element.database] = [element.id];
+          }
+          else {
+            features[element.database].push(element.id);
           };
         });
+
+        var detailsFrame = d3.select('#details-frame');
+        var detailsList = detailsFrame.select('ul');
+        detailsListItems = detailsList.selectAll('li')
+        .data(features)
+        .enter()
+        .append('li');
+
+        detailsListItems.forEach(function(d) {
+          var detailsListItem = d3.select(this);
+
+          var featureTitle = detailsListItem.append('span')
+          .attr('class', 'feature-title')
+          .text(d);
+
+          var featureItem = detailsListItem.selectAll('span.feature-item')
+          .data(d.
+          .append('span')
+          .attr('class', 'feature-title')
+          .text(d.database);
+
+        });
+
         console.log(features);
         console.log(d3.map(features));
         console.log(d3.set(features));
