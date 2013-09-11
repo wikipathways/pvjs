@@ -63,7 +63,7 @@ pathvisio.pathway.xRef = function(){
         var detailsFrame = pathwayContainer.append('div');
         var detailsList = detailsFrame.select('ul');
         detailsListItems = detailsList.selectAll('li')
-        .data(features)
+        .data(featuresSorted)
         .enter()
         .append('li');
 
