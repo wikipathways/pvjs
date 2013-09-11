@@ -251,9 +251,9 @@ pathvisio.pathway.node = function(){
     };
   };
 
-  function drawAll() {
-    var nodesContainer = pathvisio.data.current.svg.select('#viewport').selectAll("g.nodes-container")	
-    .data(pathvisio.data.pathways[pathvisio.data.current.svgSelector].nodes)
+  function drawAll(svg, pathway) {
+    var nodesContainer = svg.select('#viewport').selectAll("g.nodes-container")	
+    .data(pathway.nodes)
     .enter()
     .append("g")
     .attr("id", function (d) { return 'nodes-container-' + d.graphId })
@@ -261,7 +261,7 @@ pathvisio.pathway.node = function(){
     .attr("class", "nodes-container")
     .on("click", function(d,i) {
       if (d.elementType === 'data-node') {
-        pathvisio.pathway.xRef.displayData(d.graphId);
+        pathvisio.pathway.xRef.displayData(d, d.graphId);
       };
         /*
         var xrefDiv = $('.xrefinfo');
@@ -379,13 +379,13 @@ pathvisio.pathway.node = function(){
         return style; 
       });
 
-      if (symbolsAvailable.filter(function(d, i) { return (symbolsAvailable[0][i].id === pathvisio.data.pathways[pathvisio.data.current.svgSelector].nodes[0].symbolType); }).length > 0) {
+      if (symbolsAvailable.filter(function(d, i) { return (symbolsAvailable[0][i].id === pathway.nodes[0].symbolType); }).length > 0) {
         // d3 bug strips 'xlink' so need to say 'xlink:xlink';
         node.attr("xlink:xlink:href", function (d) {return "#" + d.symbolType; });
       }
       else {
         node.attr("xlink:xlink:href", "#rectangle");
-        console.log('Pathvisio.js does not have access to the requested symbol: ' + pathvisio.data.pathways[pathvisio.data.current.svgSelector].nodes[0].symbolType + '. Rectangle used as placeholder.');
+        console.log('Pathvisio.js does not have access to the requested symbol: ' + pathway.nodes[0].symbolType + '. Rectangle used as placeholder.');
       };
 
       // use this for tspan option for rendering text, including multi-line
@@ -500,11 +500,11 @@ pathvisio.pathway.node = function(){
                 var index = 0;
                 var rdfId = null;
                 do {
-                  console.log('pathvisio.data.pathways[pathvisio.data.current.svgSelector].biopax');
-                  console.log(pathvisio.data.pathways[pathvisio.data.current.svgSelector].biopax);
-                  rdfId = pathvisio.data.pathways[pathvisio.data.current.svgSelector].biopax.bpPublicationXrefs[index].rdfId;
+                  console.log('pathway.biopax');
+                  console.log(pathway.biopax);
+                  rdfId = pathway.biopax.bpPublicationXrefs[index].rdfId;
                   index += 1;
-                } while (rdfId !== d.Text && index < pathvisio.data.pathways[pathvisio.data.current.svgSelector].biopax.bpPublicationXrefs.length);
+                } while (rdfId !== d.Text && index < pathway.biopax.bpPublicationXrefs.length);
                 return index});
             };
 

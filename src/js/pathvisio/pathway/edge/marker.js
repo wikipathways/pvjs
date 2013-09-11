@@ -16,12 +16,12 @@ pathvisio.pathway.edge.marker = function(){
 
       else {
         /*
-        var pathvisio.data.pathways[pathvisio.data.current.svgSelector].svg = d3.select("#pathway-container").select(function() {
+        var pathway.svg = d3.select("#pathway-container").select(function() {
           return this.contentDocument.documentElement;
         });
         */
 
-        var markerElementBlack = pathvisio.data.current.svg.select('marker#' + name + '-' + position + '-black');
+        var markerElementBlack = svg.select('marker#' + name + '-' + position + '-black');
         var markerElement = pathvisio.helpers.cloneNode(markerElementBlack[0][0]);
 
         // define style of marker element

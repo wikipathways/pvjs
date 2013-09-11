@@ -45,12 +45,22 @@ header.protein-label {
     overflow: auto;
 }
 
+.feature-item {
+	padding: 0px;
+	display: block;
+	margin: 0 auto 0 auto;
+	color: blue;
+  text-decoration: underline;
+}
+
 .protein li {
 	padding: 0px;
 	display: block;
 	margin: 0 auto 0 auto;
-	color: gray;
+	color: blue;
+  //text-decoration: underline;
 }
+
 .protein .protein-description{
 	text-align: center;
 	margin: 0 0 0 auto;

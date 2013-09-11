@@ -1,4 +1,13 @@
 pathvisio.helpers = function(){
+
+  function isUrl(str) {
+
+    // from http://forums.devshed.com/javascript-development-115/regexp-to-match-url-pattern-493764.html
+
+    var urlPattern = new RegExp("((http|https)(:\/\/))?([a-zA-Z0-9]+[.]{1}){2}[a-zA-z0-9]+(\/{1}[a-zA-Z0-9]+)*\/?", "i");
+    return urlPattern.test(str);
+  };
+
   function splitStringByNewLine(str) {
 
     // PathVisio (Java) uses '&#xA;' for indicating newline, and browsers convert this into '\r\n' or '\n' in JavaScript.
@@ -21,7 +30,7 @@ pathvisio.helpers = function(){
       return parameter;
     }
     else {
-      console.warn('Warning: URL parameter is null.');
+      console.warn('Warning: URL parameter "' + name + '" is null.');
       return null;
     };
   };
@@ -65,7 +74,21 @@ pathvisio.helpers = function(){
     return {'width':winW, 'height':winH};
   };
 
+  // from http://stackoverflow.com/questions/5306680/move-an-array-element-from-one-array-position-to-another
+
+  Array.prototype.move = function (old_index, new_index) {
+    if (new_index >= this.length) {
+      var k = new_index - this.length;
+      while ((k--) + 1) {
+        this.push(undefined);
+      }
+    }
+    this.splice(new_index, 0, this.splice(old_index, 1)[0]);
+    return this; // for testing purposes
+  };
+
   return{
+    isUrl:isUrl,
     splitStringByNewLine:splitStringByNewLine,
     getUrlParam:getUrlParam,
     cloneNode:cloneNode,
