@@ -95,6 +95,7 @@ pathvisio.helpers = function(){
     convertToArray:convertToArray,
     getUrlParam:getUrlParam,
     getWindowDimensions:getWindowDimensions,
+    moveArrayItem:moveArrayItem,
   }
 }();
 
