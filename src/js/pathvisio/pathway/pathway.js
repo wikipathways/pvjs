@@ -374,6 +374,25 @@ pathvisio.pathway = function(){
     };
   };
 
+  function highlightByLabel(nodeLabel) {
+    console.log('nodeLabel');
+    console.log(nodeLabel);
+    svg = d3.select("#pathway-object").select(function() {
+      return (d3.select(this.getSVGDocument().documentElement));
+    });
+    var selectedNodes = self.selectedNodes = pathvisio.data.pathways[0].nodes.filter(function(element) {return element.textLabel.text.indexOf(nodeLabel) !== -1})
+    selectedNodes.forEach(function(node) {
+      console.log('node');
+      console.log(node);
+
+      var nodeDomElement = svg[0][0].select('#nodes-container-' + node.graphId);
+      nodeDomElement.attr('style', 'fill:yellow');
+      console.log('nodeDomElement');
+      console.log(nodeDomElement);
+      self. nodeDomElement= nodeDomElement;
+    });
+  };
+
   function draw(svg, pathway){
     console.log('svg');
     console.log(svg);
@@ -483,7 +502,7 @@ pathvisio.pathway = function(){
 
   // get JSON and draw SVG representation of pathway
 
-  function load(targetSelector, svgUrl, gpmlUrl) {
+  function load(targetSelector, svgUrl, gpmlUrl, highlightByLabelSelector) {
     if (!targetSelector) { return console.warn('Error: No pathway container selector specified as target.') };
     if (d3.select(targetSelector).length !== 1) { return console.warn('pathway container selector must be unique.') };
     if (!pathvisio.helpers.isUrl(svgUrl)) { return console.warn('Error: No URL specified for SVG pathway template.') };
@@ -499,6 +518,31 @@ pathvisio.pathway = function(){
 
       getJson(gpmlUrl, function(pathway, sGpml, sJson) {
         draw(svg, pathway);
+
+        var nodeLabels = [];
+        pathvisio.data.pathways[0].nodes.forEach(function(node) {
+          nodeLabels.push(node.textLabel.text);
+        });
+
+        console.log
+        $(highlightByLabelSelector).typeahead({                                
+          name: 'Find in pathway',                                                          
+          local: nodeLabels,
+          //prefetch: '../data/countries.json',                                         
+          limit: 10                                                                   
+        });
+        $('.icon-eye-open').click(function(){
+          var nodeLabel = $("#highlight-by-label").val(); 
+          if (!nodeLabel) {
+            pathvisio.data.pathways[0].nodes.forEach(function(node) {
+              self.node = node;
+              node.attr('style', '');
+            });
+          }
+          else {
+            pathvisio.pathway.highlightByLabel(nodeLabel); 
+          };
+        });
       });
     });
   };
@@ -507,6 +551,7 @@ pathvisio.pathway = function(){
     draw:draw,
     load:load,
     getJson:getJson,
-    gpml2json:gpml2json
+    gpml2json:gpml2json,
+    highlightByLabel:highlightByLabel,
   }
 }();

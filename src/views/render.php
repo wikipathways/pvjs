@@ -136,7 +136,7 @@ d3.select('#fallback-image').attr('src', pngUrl);
     <div id="viewertoolbar" style="position:absolute; right: 0px; top: 20px;">
       <div class="ui-widget ui-corner-all" style="position: absolute; right: 5px; top: 5px; z-index: 1001; background-color: rgb(221, 221, 221); border: 1px solid rgb(170, 170, 170); width:130px">
         <span class="icon icon-eye-open"></span>
-        <input placeholder="Find in pathway" class="ui-autocomplete-input ui-corner-all" autocomplete="off" role="textbox" aria-autocomplete="list" aria-haspopup="true" style="float:right; width: 100px;">
+        <input id="highlight-by-label" placeholder="Find in pathway" class="ui-autocomplete-input ui-corner-all" autocomplete="off" role="textbox" aria-autocomplete="list" aria-haspopup="true" style="float:right; width: 100px;">
         <div class="ui-corner-all" style="position: absolute; font-size: 75%; background-color: white; display: none;">
         </div>
       </div>
@@ -182,6 +182,7 @@ d3.select('#fallback-image').attr('src', pngUrl);
 
 <script src="../lib/jquery/jquery.js"></script>
 <script src="../lib/jquery-ui/ui/jquery-ui.js"></script>
+<script src="../lib/typeahead.js/dist/typeahead.js"></script>
 
 <script src="../lib/case-converter/case-converter.js"></script>
 <script src="../lib/xml2json/xml2json.js"></script>
@@ -213,9 +214,9 @@ if (Modernizr.svg && svgView != 0) {
 
   d3.select('#pathway-object').attr('style', 'width: 100%; height:500px');
 
-  pathvisio.pathway.load('#pathway-container', svgUrl, gpmlUrl);
+  pathvisio.pathway.load('#pathway-container', svgUrl, gpmlUrl, '#highlight-by-label');
 
-  document.getElementById('full-screen-btn').addEventListener('click', function () {
+  $( ".icon-resize-full" )[0].click(function() {
     if (screenfull.enabled) {
       screenfull.request(pathwayContainer[0][0]);
     }

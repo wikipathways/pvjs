@@ -473,6 +473,12 @@ function handleMouseUp(evt) {
 	}
 ]]></style>
 
+    <filter id = "highlight" width = "150%" height = "150%">
+        <feOffset result = "offOut" in = "SourceGraphic" dx = "30" dy = "30"/>
+        <feGaussianBlur result = "blurOut" in = "offOut" stdDeviation = "10"/>
+        <feBlend in = "SourceGraphic" in2 = "blurOut" mode = "normal"/>
+    </filter>
+
 	<!-- ***************************
 	Markers (Arrowheads) 
 	*************************** -->
