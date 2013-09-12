@@ -49,8 +49,7 @@ header.data-node-label {
 	padding: 0px;
 	display: block;
 	margin: 0 auto 0 auto;
-	color: blue;
-  text-decoration: underline;
+	color: gray;
 }
 
 
@@ -58,8 +57,7 @@ header.data-node-label {
 	padding: 0px;
 	display: block;
 	margin: 0 auto 0 auto;
-	color: blue;
-  text-decoration: underline;
+	color: gray;
 }
 
 .data-node li {
