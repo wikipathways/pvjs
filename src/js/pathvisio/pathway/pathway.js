@@ -466,7 +466,7 @@ pathvisio.pathway = function(){
 
     ///*
     // I think this would be used if the SVG were included in the document as an embedded object instead of included directly in the DOM.
-    svg = d3.select("#pathway-container").select(function() {
+    svg = d3.select("#pathway-object").select(function() {
       callback(d3.select(this.getSVGDocument().documentElement));
     });
     //*/
