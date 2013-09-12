@@ -31,48 +31,87 @@ pathvisio.pathway.xRef = function(){
           };    
         });
 
-        var featuresSorted = [];
         features.forEach(function(feature) {
           try {
-            var priority = pathvisio.pathway.dataSources.filter(function(dataSource) {return dataSource.database.replace(/[^a-z0-9]/gi,'').toLowerCase() == feature.database.replace(/[^a-z0-9]/gi,'').toLowerCase() })[0].priority;
+            var dataSource = pathvisio.pathway.dataSources.filter(function(dataSource) {return dataSource.database.replace(/[^a-z0-9]/gi,'').toLowerCase() == feature.database.replace(/[^a-z0-9]/gi,'').toLowerCase() })[0];
+            feature.dataSourceId = dataSource.id;
+            feature.linkOut = dataSource.linkOut;
+            feature.priority = dataSource.priority;
           }
           catch (e) {
             console.warn(e);
             console.warn('Error: No database found for external reference database "' + feature.database + '".');
           };
-          if (priority == 1) {
-            featuresSorted.unshift(feature);
-          }
-          else {
-            featuresSorted.push(feature);
-          };
         });
-        console.log('featuresSorted1');
-        console.log(featuresSorted);
-        self.featuresSorted = featuresSorted;
 
-        var specifiedFeature = featuresSorted.filter(function(element) {return (element.database == node.xRef.database)})[0];
-        console.log('specifiedFeature');
-        console.log(specifiedFeature);
-        var currentFeatureIndex = featuresSorted.indexOf(specifiedFeature);
-        console.log('currentFeatureIndex');
-        console.log(currentFeatureIndex);
+        features.sort(function(a, b) {
+            if (a.priority === b.priority)
+            {
+                var x = a.database.toLowerCase(), y = b.database.toLowerCase();
+                
+                return x < y ? -1 : x > y ? 1 : 0;
+            }
+            return b.priority - a.priority;
+        });
+
+        var specifiedFeature = features.filter(function(element) {return (element.database == node.xRef.database)})[0];
+        var currentFeatureIndex = features.indexOf(specifiedFeature);
 
         var specifiedXRefId = specifiedFeature.ids.filter(function(element) {return (element == node.xRef.id)})[0];
-        console.log('specifiedXRefId');
-        console.log(specifiedXRefId);
         var currentXRefIdIndex = specifiedFeature.ids.indexOf(specifiedXRefId);
-        console.log('currentXRefIdIndex');
-        console.log(currentXRefIdIndex);
 
-        featuresSorted = pathvisio.helpers.moveArrayItem(featuresSorted, currentFeatureIndex, 0);
+        features = pathvisio.helpers.moveArrayItem(features, currentFeatureIndex, 0);
         specifiedFeature.ids = pathvisio.helpers.moveArrayItem(specifiedFeature.ids, currentXRefIdIndex, 0);
 
-        var pathwayViewer = d3.select('#pathway-viewer');
-        var detailsFrame = pathwayViewer.append('div');
-        var detailsList = detailsFrame.append('ul');
+        var detailsFrame = d3.select('#details-frame')
+        //.attr('style', 'visibility:visible');
+
+        var detailsHeader = detailsFrame.append('header')
+        .attr('class', 'data-node-label');
+
+        var detailsPullLeftSpan = detailsHeader.append('span')
+        .attr('class', 'pull-left');
+        var detailsMoveSpan = detailsPullLeftSpan.append('span')
+        .attr('class', 'header-move');
+        var detailsMoveIcon = detailsMoveSpan.append('i')
+        .attr('class', 'icon-move')
+        .attr('style', 'color:#aaa');
+
+        var detailsHeaderLabelSpan = detailsHeader.append('span')
+        .attr('style', 'font-size: 120%;')
+        .text(function(d) {return node.textLabel.text + ' '});
+        
+        var detailsSearchSpan = detailsHeaderLabelSpan.append('span')
+        .attr('class', 'header-search')
+        .attr('title', function(d) {return 'Search for pathways containing ' + node.textLabel.text });
+        var detailsSearchLink = detailsSearchSpan.append('a')
+        .attr('href', function(d) {return 'http://wikipathways.org//index.php?title=Special:SearchPathways&doSearch=1&ids=' + node.xRef.id + '&codes=' + pathvisio.pathway.dataSources.filter(function(dataSource) {return dataSource.database.replace(/[^a-z0-9]/gi,'').toLowerCase() == node.xRef.database.replace(/[^a-z0-9]/gi,'').toLowerCase() })[0].id + '&type=xref'});
+        var detailsSearchIcon = detailsSearchLink.append('i')
+        .attr('class', 'icon-search')
+        .attr('style', 'color:blue; font-size:50%');
+        
+        var detailsPullRightSpan = detailsHeader.append('span')
+        .attr('class', 'pull-right');
+        var detailsCloseSpan = detailsPullRightSpan.append('span')
+        .attr('class', 'header-close')
+        .on("click", function(d, i){
+          detailsFrame.selectAll('*').remove();
+          detailsFrame[0][0].style.visibility = 'hidden';
+        });
+        var detailsCloseIcon = detailsCloseSpan.append('i')
+        .attr('class', 'icon-remove')
+        .attr('style', 'color:#aaa; font-size:120%');
+
+        var dataNodeTypeDiv = detailsHeader.append('div')
+        .attr('class', 'data-node-description');
+        var dataNodeType = dataNodeTypeDiv.append('h2')
+        .text(node.dataNodeType);
+        
+        var detailsList = detailsFrame.append('ul')
+        .attr('class', 'data-node');
+
         detailsListItems = detailsList.selectAll('li')
-        .data(featuresSorted)
+        .data(features)
         .enter()
         .append('li');
 
@@ -83,21 +122,42 @@ pathvisio.pathway.xRef = function(){
         */
 
         detailsListItems[0].forEach(function(detailsListItem) {
-          console.log('detailsListItem');
-          console.log(detailsListItem);
           var featureTitle = d3.select(detailsListItem).append('span')
           .attr('class', 'feature-title')
-          .text(function(d) {return d.database});
+          .text(function(d) {return d.database + ': '});
           
-          var featureText = d3.select(detailsListItem).selectAll('span.feature-text')
-          .data(function(d) {return d.ids})
+          var linkOuts = d3.select(detailsListItem).selectAll('a')
+          .data(function(d) {
+            var featuresFilled = [];
+            console.log('d');
+            console.log(d);
+            d.ids.forEach(function(id) {
+              console.log('id');
+              console.log(id);
+              var linkOut = d.linkOut.replace('$id', id);
+              featuresFilled.push({'id':id, 'linkOut':linkOut});
+              console.log(featuresFilled);
+            });
+            return featuresFilled;
+          })
           .enter()
-          .append('span')
+          .append('a')
+          .attr('href', function(d) {return d.linkOut});
+          
+          var featureText = linkOuts.append('span')
           .attr('class', 'feature-text')
-          .text(function(d) {return d + ', '});
+          .attr('style', function(d) {
+            if (!!d.linkOut) {
+              return '';
+            }
+            else {
+              return 'color: #696969;';
+            };
+          })
+          .text(function(d) {return ' ' + d.id});
         });
 
-        //detailsFrame[0][0].style.visibility = 'visible';
+        detailsFrame[0][0].style.visibility = 'visible';
 
       });
     };
