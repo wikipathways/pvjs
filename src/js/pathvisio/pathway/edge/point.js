@@ -1,4 +1,4 @@
-pathvisio.pathway.edge.point = function(){ 
+pathvisio.pathway.edge.point = function(){
 
   // pathvisio.js vs PathVisio (Java) specification of anchor position
   // -----------------------------------------
@@ -97,10 +97,10 @@ pathvisio.pathway.edge.point = function(){
           delete element.x;
           delete element.y;
 
-          var relX = (Math.round(element.relX * 2)/2).toString()
+          var relX = (Math.round(element.relX * 2)/2).toString();
           element.relX = parseFloat(anchorPositionMappings[relX]);
 
-          var relY = (Math.round(element.relY * 2)/2).toString()
+          var relY = (Math.round(element.relY * 2)/2).toString();
           element.relY = parseFloat(anchorPositionMappings[relY]);
 
           if (element.relX === 0) {
@@ -117,11 +117,11 @@ pathvisio.pathway.edge.point = function(){
               else {
                 if (element.relY === 1) {
                   element.dy = 1;
-                };
-              };
-            };
-          };
-        };
+                }
+              }
+            }
+          }
+        }
 
         // This is probably unreliable. We need to establish a way to ensure we identify start and end markers correctly, and we should not relY on the order of elements in XML.
 
@@ -134,7 +134,7 @@ pathvisio.pathway.edge.point = function(){
             markerEnd = markerMappings[element.arrowHead];
             delete element.arrowHead;
           }
-        };
+        }
       });
 
       // This seems clumsy. I added it so it's clear that we are returning the points array after it has been processed.
@@ -145,45 +145,54 @@ pathvisio.pathway.edge.point = function(){
     catch (e) {
       console.log("Error converting point to json: " + e.message);
       return e;
-    };
-  };
+    }
+  }
 
-  function getGraphRef(point) {
+
+
+  function getGraphRef(pathway, point) {
     self.point=point;
     if (point.hasOwnProperty('graphRef')) {
       if (pathway.hasOwnProperty('nodes')) {
-        var node = pathway.nodes.filter(function(element) {return element.graphId === point.graphRef})[0]
+        var node = pathway.nodes.filter(function(element) {return element.graphId === point.graphRef;})[0];
         if (node !== undefined) {
           return {'type':'node', 'element':node};
-        };
-      };
+        }
+      }
 
       if (pathway.hasOwnProperty('groups')) {
-        var group = pathway.groups.filter(function(element) {return element.graphId === point.graphRef})[0]
+        var group = pathway.groups.filter(function(element) {return element.graphId === point.graphRef;})[0];
         if (group !== undefined) {
           return {'type':'group', 'groupId':group.groupId};
-        };
-      };
+        }
+      }
 
-      var edgesWithAnchors = pathway.edges.filter(function(element) {return element.hasOwnProperty('anchors')})
+      var edgesWithAnchors = pathway.edges.filter(function(element) {return element.hasOwnProperty('anchors');});
       self.edgesWithAnchors = edgesWithAnchors;
+      var anchor = null;
       var i = -1;
       do {
         i += 1;
-        var anchor = edgesWithAnchors[i].anchors.filter(function(element) {return element.graphId === point.graphRef})[0]
-      } while (anchor === undefined && i < edgesWithAnchors.length );
+        anchor = edgesWithAnchors[i].anchors.filter(function(element) {
+
+            // jshint doesn't like this. how can I refactor?
+
+            return element.graphId === point.graphRef;
+          }
+        )[0];
+      } while (!anchor && i < edgesWithAnchors.length );
 
       return {'type':'anchor', 'element':anchor, 'edge':edgesWithAnchors[i]};
 
     }
     else {
       return {'type':'unconnected'};
-    };
-  };
+    }
+  }
 
-  function getCoordinates(svg, point) {
+  function getCoordinates(svg, pathway, point) {
     var coordinates = {};
-    var edgeTerminusRef = self.edgeTerminusRef = getGraphRef(point);
+    var edgeTerminusRef = self.edgeTerminusRef = getGraphRef(pathway, point);
     if (edgeTerminusRef.type !== 'anchor') {
       if (edgeTerminusRef.type === 'unconnected') {
         coordinates.x = point.x;
@@ -192,38 +201,38 @@ pathvisio.pathway.edge.point = function(){
       }
       else {
         if (edgeTerminusRef.type === 'node') {
-          var coordinates = pathvisio.pathway.node.getPortCoordinates(edgeTerminusRef.element, point.relX, point.relY);
+          coordinates = pathvisio.pathway.node.getPortCoordinates(edgeTerminusRef.element, point.relX, point.relY);
         }
         else {
           if (edgeTerminusRef.type === 'group') {
-            var groupDimensions = pathvisio.pathway.group.getDimensions(edgeTerminusRef.groupId);
-            var coordinates = pathvisio.pathway.node.getPortCoordinates(groupDimensions, point.relX, point.relY);
+            var groupDimensions = pathvisio.pathway.group.getDimensions(pathway, edgeTerminusRef.groupId);
+            coordinates = pathvisio.pathway.node.getPortCoordinates(groupDimensions, point.relX, point.relY);
           }
           else {
             return 'error';
-          };
-        };
-      };
+          }
+        }
+      }
     }
     else {
       var path = svg.select("#interaction-" + edgeTerminusRef.edge.graphId)[0][0];
-      var coordinates = path.getPointAtLength(edgeTerminusRef.element.position * path.getTotalLength());
-    };
+      coordinates = path.getPointAtLength(edgeTerminusRef.element.position * path.getTotalLength());
+    }
 
     return coordinates;
-  };
+  }
 
   function isTwoPointElbow(source, target) {
-    var isRightAngle = ( Math.abs(source.dx) === Math.abs(target.dy) && Math.abs(source.dy) === Math.abs(target.dx) ); 
+    var isRightAngle = ( Math.abs(source.dx) === Math.abs(target.dy) && Math.abs(source.dy) === Math.abs(target.dx) );
     var sourcePasses = ( (((target.x - source.x)/Math.abs(target.x - source.x) === source.dx) || ((target.y - source.y)/Math.abs(target.y - source.y) === source.dy)) );
     var targetPasses = ( ((source.x - target.x)/Math.abs(source.x - target.x) === target.dx) || ((source.y - target.y)/Math.abs(source.y - target.y) === target.dy) );
     return ( isRightAngle && sourcePasses && targetPasses );
-  }; 
+  }
 
-  return { 
-    getGraphRef:getGraphRef, 
-    getCoordinates:getCoordinates, 
+  return {
+    getGraphRef:getGraphRef,
+    getCoordinates:getCoordinates,
     isTwoPointElbow:isTwoPointElbow,
     gpml2json:gpml2json
-  } 
+  };
 }();

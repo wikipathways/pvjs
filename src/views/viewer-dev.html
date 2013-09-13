@@ -76,7 +76,21 @@ body {
   </script>
 <![endif]-->
 
-<script src="../../build/js/pathvisio.js"></script>
+<script src="../lib/rgb-color/rgb-color.js"></script>
+<script src="../lib/case-converter/case-converter.js"></script>
+<script src="../lib/xml2json/xml2json.js"></script>
+<script src="../js/pathvisio/pathvisio.js"></script>
+<script src="../js/pathvisio/helpers.js"></script>
+<script src="../js/pathvisio/pathway/pathway.js"></script>
+<script src="../js/pathvisio/pathway/group.js"></script>
+<script src="../js/pathvisio/pathway/info-box.js"></script>
+<script src="../js/pathvisio/pathway/node.js"></script>
+<script src="../js/pathvisio/pathway/edge/edge.js"></script>
+<script src="../js/pathvisio/pathway/edge/marker.js"></script>
+<script src="../js/pathvisio/pathway/edge/point.js"></script>
+<script src="../js/pathvisio/pathway/edge/path-data.js"></script>
+<script src="../js/pathvisio/pathway/data-sources.js"></script>
+<script src="../js/pathvisio/pathway/x-ref.js"></script>
 <script src="../lib/d3/d3.js" charset="utf-8"></script>
 <script>
 var currentUrlWithoutQueryString = window.location.href.split("?")[0].split("#")[0];
@@ -88,32 +102,57 @@ else {
   var svgView = pathvisio.helpers.getUrlParam('svgView');
 };
 
-var repo = pathvisio.helpers.getUrlParam('repo');
-var branch = pathvisio.helpers.getUrlParam('branch');
-
-if (!!pathvisio.helpers.getUrlParam('svg')) {
-  var svgSource = pathvisio.helpers.getUrlParam('svg');
-  if (pathvisio.helpers.isUrl(svgSource)) {
-    console.log('SVG Source');
-    console.log(svgSource);
-    var svgUrl = svgSource;
+var svgUrl = null;
+var repo = 'wikipathways';
+console.log(pathvisio.helpers.getUrlParam('svg'));
+if (!!pathvisio.helpers.getUrlParam('repo')) {
+  repo = pathvisio.helpers.getUrlParam('repo');
+  var branch = 'master';
+  if (!!pathvisio.helpers.getUrlParam('repo')) {
+    branch = pathvisio.helpers.getUrlParam('branch');
   }
-  else {
-    var svgUrl = currentUrlWithoutQueryString + '/../../remote-data-sources/php/github.php?data=svg&repo=' + repo + '&branch=' + branch;
-  };
+  svgUrl = '../../remote-data-sources/php/github.php?data=svg&repo=' + repo + '&branch=' + branch;
 }
 else {
-  console.warn('Error: No SVG data source specified.');
-};
+  if (!!pathvisio.helpers.getUrlParam('svg')) {
+    var svgSource = pathvisio.helpers.getUrlParam('svg');
+    console.log('SVG Source');
+    console.log(svgSource);
+    svgUrl = svgSource;
+  }
+  else {
+    svgUrl = "./pathway-template.svg";
+    console.log('Error: No URL or repo specified as SVG template source.');
+    console.log('Using local pathway-template.svg as last resort.');
+  }
+}
 
 if (!!pathvisio.helpers.getUrlParam('gpml')) {
+  var rev = 0;
+  if (!!pathvisio.helpers.getUrlParam('rev')) {
+    rev = pathvisio.helpers.getUrlParam('rev');
+  }
+
   var gpmlSource = pathvisio.helpers.getUrlParam('gpml');
+  ///*
+  // gpmlSource is a WikiPathways ID
+  if (gpmlSource.indexOf('.gpml') === -1 && gpmlSource.indexOf('.xml') === -1) { // if gpmlSource is a WikiPathways ID
+    var gpmlUrl = currentUrlWithoutQueryString + '/../../../remote-data-sources/php/wikipathways.php?data=gpml&id=' + gpmlSource + '&rev=' + rev;
+  }
+  
+  else { // if gpmlSource is a url to a gpml file
+    var gpmlUrl = gpmlSource;
+  };
+  //*/
+
+  /*
   if (pathvisio.helpers.isUrl(gpmlSource)) {
     var gpmlUrl = gpmlSource;
   }
   else {
     var gpmlUrl = currentUrlWithoutQueryString + '/../../../remote-data-sources/php/wikipathways.php?data=gpml&id=' + gpmlSource;
   };
+  //*/
 }
 else {
   console.warn('Error: No GPML data source specified.');
@@ -127,11 +166,8 @@ d3.select('#fallback-image').attr('src', pngUrl);
 </head>
 <body>
 <div style="position:relative; width:70%; height:auto; float:left;">
-  <div style="width:100%; height:100%" id="pathway-viewer" style="float:right; clear:both;">
+  <div style="width:100%; height:100%; float:right; clear:both;" id="pathway-viewer">
     <div style="width:80%; height:500px" id="pathway-container">
-      <object id='pathway-object' data="pathway-template.svg" type="image/svg+xml">
-        <img id="fallback-image" />
-      </object>
     </div>
     <div id="viewertoolbar" style="position:absolute; right: 0px; top: 20px;">
       <div class="ui-widget ui-corner-all" style="position: absolute; right: 5px; top: 5px; z-index: 1001; background-color: rgb(221, 221, 221); border: 1px solid rgb(170, 170, 170); width:130px">
@@ -140,6 +176,7 @@ d3.select('#fallback-image').attr('src', pngUrl);
         <div class="ui-corner-all" style="position: absolute; font-size: 75%; background-color: white; display: none;">
         </div>
       </div>
+      <!-- see http://bumbu.github.io/cytoscape.js/debug/ for example of cytoscape.js -->
       <div class="ui-cytoscape-panzoom">
           <div class="ui-cytoscape-panzoom-zoom-in ui-cytoscape-panzoom-zoom-button">
             <span class="icon icon-plus"></span>
@@ -192,17 +229,25 @@ d3.select('#fallback-image').attr('src', pngUrl);
 <script src="../lib/screenfull/dist/screenfull.js"></script>
 <script src="../lib/mr-data-converter/CSVParser.js"></script>
 <script src="../lib/mr-data-converter/DataGridRenderer.js"></script>
+<script src="../lib/svg-pan/svg-pan1.js"></script>
 <!--
 <script src="../lib/async/lib/async.js"></script>
 -->
 
 
 <script>
-function getPng(pathway) {
+function getPng(pathway, attemptCount) {
+  if (!attemptCount) {
+    attemptCount = 1;
+  }
+  else {
+    attemptCount += 1;
+  }
+  
   $.ajax({
     url: 'http://api.zoom.it/v1/content/?url=' + pngUrl,
       dataType: "jsonp",
-      success: function(resp) { onZoomitResponse(resp, pathway); }
+      success: function(resp) { onZoomitResponse(resp, pathway, attemptCount); }
   });
 };
 
@@ -212,7 +257,9 @@ if (Modernizr.svg && svgView != 0) {
 
   console.log('Your browser supports SVG.');
 
-  d3.select('#pathway-object').attr('style', 'width: 100%; height:500px');
+  d3.select('#pathway-object')
+  //.attr('style', 'width: 100%; height:500px')
+  //.attr('src', svgUrl);
 
   pathvisio.pathway.load('#pathway-container', svgUrl, gpmlUrl, '#highlight-by-label');
 
@@ -233,10 +280,10 @@ else {
   //pathwayContainer.select('#pathway-image').remove();
   //pathwayContainer.attr('style', function() {return 'width: 100%; height:' + windowDimensions.height + 'px'});
   pathwayContainer.attr('style', 'width: 100%; height:1000px');
-  var svgToolbar = d3.select('#svg-toolbar')[0][0].style.visibility="hidden";
+  var svgToolbar = d3.select('#viewertoolbar')[0][0].style.visibility="hidden";
   var loadingImg = $("#pathway-container").append("<img id='loadingImg' src='../img/loading.gif' width='100' height='100' />");
 
-  function onZoomitResponse(resp, pathway) {
+  function onZoomitResponse(resp, pathway, attemptCount) {
     self.resp = resp;
     if (resp.error) {
       // e.g. the URL is malformed or the service is down
@@ -244,15 +291,24 @@ else {
       return;
     };
 
+    if (resp.content.progress < 1) {
+      return window.setTimeout(function() {
+        if (attemptCount < 5) {
+          console.log('Pathway image is ' + (100*resp.content.progress) + '% complete. Status check #' + (attemptCount + 1) + ' in ' + 3*(attemptCount + 0) + ' seconds.');
+          getPng(pathway, attemptCount);
+        }
+        else {
+          console.warn('Error: Pathway image server appears to be unavailable.');
+        }
+      }, 3000 * attemptCount);
+    }
+
     var content = resp.content;
 
-    console.log('pathway');
-    console.log(pathway);
     var overlays = self.overlays = [];
     var overlayItem = null;
 
     pathway.nodes.forEach(function(element) {
-      console.log(element);
       var scalingFactor =  content.dzi.width / pathway.boardWidth;
       overlayItem = {
         'id':element.graphId,
@@ -303,7 +359,7 @@ else {
         $(".highlight").click(function() {
           var id = this.getAttribute('id');
           var node = pathway.nodes.filter(function(element) {return element.graphId == id })[0];
-          pathvisio.pathway.xRef.displayData(node);
+          pathvisio.pathway.xRef.displayData(pathway.organism, node);
         });
       }, 1000);
     }
