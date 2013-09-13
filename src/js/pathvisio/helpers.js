@@ -6,19 +6,19 @@ pathvisio.helpers = function(){
 
     var urlPattern = new RegExp("((http|https)(:\/\/))?([a-zA-Z0-9]+[.]{1}){2}[a-zA-z0-9]+(\/{1}[a-zA-Z0-9]+)*\/?", "i");
     return urlPattern.test(str);
-  };
+  }
 
   function splitStringByNewLine(str) {
 
     // PathVisio (Java) uses '&#xA;' for indicating newline, and browsers convert this into '\r\n' or '\n' in JavaScript.
 
     return str.split(/\r\n|\r|\n/g);
-  };
+  }
 
   function cloneNode(selector) {
     var node = d3.select(selector).node();
     return d3.select(node.parentNode.insertBefore(node.cloneNode(true), node.nextSibling));
-  };
+  }
 
   function getUrlParam(name) {
 
@@ -32,13 +32,14 @@ pathvisio.helpers = function(){
     else {
       console.warn('Warning: URL parameter "' + name + '" is null.');
       return null;
-    };
-  };
+    }
+  }
 
   function convertToArray(object) {
+    var array = null;
     if (Object.prototype.toString.call( object ) === '[object Object]' ) {
-      var array = [];
-      array.push(object)
+      array = [];
+      array.push(object);
       return array;
     }
     else {
@@ -47,13 +48,13 @@ pathvisio.helpers = function(){
       }
       else {
         if( Object.prototype.toString.call( object ) === '[object String]' ) {
-          var array = [];
-          array.push(object)
+          array = [];
+          array.push(object);
           return array;
-        };
-      };
-    };
-  };
+        }
+      }
+    }
+  }
 
   function getWindowDimensions(object) {
     var winW = 630, winH = 460;
@@ -72,7 +73,7 @@ pathvisio.helpers = function(){
      winH = window.innerHeight;
     }
     return {'width':winW, 'height':winH};
-  };
+  }
 
   // from http://stackoverflow.com/questions/5306680/move-an-array-element-from-one-array-position-to-another
 
@@ -85,7 +86,7 @@ pathvisio.helpers = function(){
     }
     arr.splice(new_index, 0, arr.splice(old_index, 1)[0]);
     return arr; // for testing purposes
-  };
+  }
 
   return{
     isUrl:isUrl,
@@ -93,10 +94,9 @@ pathvisio.helpers = function(){
     getUrlParam:getUrlParam,
     cloneNode:cloneNode,
     convertToArray:convertToArray,
-    getUrlParam:getUrlParam,
     getWindowDimensions:getWindowDimensions,
-    moveArrayItem:moveArrayItem,
-  }
+    moveArrayItem:moveArrayItem
+  };
 }();
 
 

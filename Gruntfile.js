@@ -3,14 +3,11 @@ module.exports = function(grunt) {
 // ----------
 var packageJson = grunt.file.readJSON("package.json"),
     distribution = "build/js/pathvisio.js",
-    minified = "build/js/pathvisio.js.min.js",
+    minified = "build/js/pathvisio.min.js",
     packageDirName = "pathvisio.js-" + packageJson.version,
     packageDir = "build/" + packageDirName + "/",
     releaseRoot = "../site-build/built-pathvisio.js/",
     sources = [
-      'src/lib/case-converter/case-converter.js',
-      'src/lib/xml2json/xml2json.js',
-      'src/lib/rgb-color/rgb-color.js',
       'src/js/pathvisio/pathvisio.js',
       'src/js/pathvisio/helpers.js',
       'src/js/pathvisio/pathway/pathway.js',
@@ -44,7 +41,7 @@ grunt.initConfig({
           separator: ';\n\n',
           banner: "//! <%= pkg.name %> <%= pkg.version %>\n"
               + "//! Built on <%= grunt.template.today('yyyy-mm-dd') %>\n"
-              + "//! Git commit: <%= gitInfo %>\n"
+              //+ "//! Git commit: <%= gitInfo %>\n"
               + "//! https://github.com/wikipathways/pathvisio.js\n"
               + "//! License: http://www.apache.org/licenses/LICENSE-2.0/\n\n",
           process: true
@@ -92,7 +89,10 @@ grunt.initConfig({
   grunt.loadNpmTasks("grunt-git-describe");
 
   // build 
-  grunt.registerTask('build', ["clean:build", "git-describe", "concat", "jshint:afterconcat", 'uglify']);
+  grunt.registerTask('build', ["clean:build", "git-describe", "jshint:beforeconcat", "concat", "jshint:afterconcat", 'uglify']);
+
+  // build 
+  grunt.registerTask('quick-build', ["clean:build", "git-describe", "concat", 'uglify']);
 
   // test
   //grunt.registerTask('test', ['build']);
