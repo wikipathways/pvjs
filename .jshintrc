@@ -9,6 +9,15 @@
     "unused": false,
 
     "globals": {
-        "OpenSeadragon": true
+        "xml": true,
+        "alert": true,
+        "pathvisio": true,
+        "DataGridRenderer": true,
+        "CSVParser": true,
+        "$": true,
+        "console": true,
+        "self": true,
+        "d3": true,
+	"RGBColor": true
     }
 }

@@ -70,29 +70,40 @@ SVG-Edit (latest release)
 	xmlns:ev="http://www.w3.org/2001/xml-events"
 	width="100%"
 	height="100%">
-				<!-- ECMAScript to change the radius with each click -->
+	<g>
+	<title>pathway defs for pathvisio.js</title>
+	<desc>
+	This SVG file contains all the graphical elements (markers and symbols in defs as well as
+	style data) used by the program pathvisio.js, which has two components: 
+	1) a viewer for transforming GPML biological pathway data into an SVG visual representation and 
+	2) an editor for creating both views and models for biological pathways.
+	</desc>
+	</g>
+<!-- ECMAScript to change the radius with each click -->
 				<script type="application/ecmascript"> <![CDATA[
-/// CONFIGURATION 
-/// ====>
+function init() {
+	/// CONFIGURATION 
+	/// ====>
 
-var enablePan = 1; // 1 or 0: enable or disable panning (default enabled)
-var enableZoom = 0; // 1 or 0: enable or disable zooming (default enabled)
-var enableDrag = 0; // 1 or 0: enable or disable dragging (default disabled)
-var zoomScale = 0.2; // Zoom sensitivity
+	var enablePan = 1; // 1 or 0: enable or disable panning (default enabled)
+	var enableZoom = 1; // 1 or 0: enable or disable zooming (default enabled)
+	var enableDrag = 0; // 1 or 0: enable or disable dragging (default disabled)
+	var zoomScale = 0.2; // Zoom sensitivity
 
 
-/// <====
-/// END OF CONFIGURATION 
+	/// <====
+	/// END OF CONFIGURATION 
 
-var root = document.documentElement;
+	var root = document.documentElement.getElementsByTagName("svg")[0];
 
-root.addEventListener('click', function () {
-  enableZoom = 1;
-});
+	root.addEventListener('click', function () {
+	  enableZoom = 1;
+	});
 
-var state = 'none', svgRoot = null, stateTarget, stateOrigin, stateTf;
+	var state = 'none', svgRoot = null, stateTarget, stateOrigin, stateTf;
 
-setupHandlers(root);
+	setupHandlers(root);
+}
 
 /**
  * Register handlers
@@ -294,15 +305,6 @@ function handleMouseUp(evt) {
 	}
 }
   ]]> </script>
-	<g>
-	<title>pathway defs for pathvisio.js</title>
-	<desc>
-	This SVG file contains all the graphical elements (markers and symbols in defs as well as
-	style data) used by the program pathvisio.js, which has two components: 
-	1) a viewer for transforming GPML biological pathway data into an SVG visual representation and 
-	2) an editor for creating both views and models for biological pathways.
-	</desc>
-	</g>
 
 	<defs>
 

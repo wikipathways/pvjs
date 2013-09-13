@@ -1,5 +1,5 @@
-pathvisio.pathway.edge.marker = function(){ 
-  function draw(name, position, color) {
+pathvisio.pathway.edge.marker = function(){
+  function draw(svg, name, position, color) {
     var markerName = '';
     if (name === 'none') {
       markerName = name;
@@ -30,27 +30,22 @@ pathvisio.pathway.edge.marker = function(){
 
         if (markerElement[0][0].getAttribute('stroke') === 'black') {
           markerElementStyle += 'stroke:' + color + '; ';
-        };
+        }
 
         if (markerElement[0][0].getAttribute('fill') === 'black') {
           markerElementStyle += 'fill:' + color + '; ';
-        };
+        }
 
         markerElement[0][0].setAttribute('id', name + '-' + position + '-' + color );
         markerElement[0][0].setAttribute('style', markerElementStyle);
 
         markerName = name + '-' + position + '-' + color;
-      };
-    };
+      }
+    }
     return markerName;
-  };
+  }
  
-  return { 
-    draw:draw 
-  } 
-}(); 
-   
-
-
-
-
+  return {
+    draw:draw
+  };
+}();
