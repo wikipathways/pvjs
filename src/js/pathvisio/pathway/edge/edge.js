@@ -243,7 +243,7 @@ pathvisio.pathway.edge = function(){
         return style;
       })
       .attr("marker-start", function (d) {
-        var markerStart = pathvisio.pathway.edge.marker.draw(d.markerStart, 'start', d.stroke);
+        var markerStart = pathvisio.pathway.edge.marker.draw(svg, d.markerStart, 'start', d.stroke);
         if (d.hasOwnProperty('strokeStyle')) {
           if (d.strokeStyle === 'double') {
             //hack to manage marker scaling; this marker should not have any features itself
@@ -253,7 +253,7 @@ pathvisio.pathway.edge = function(){
         return 'url(#' + markerStart + ')';
       })
       .attr("marker-end", function (d) {
-        var markerEnd = pathvisio.pathway.edge.marker.draw(d.markerEnd, 'end', d.stroke);
+        var markerEnd = pathvisio.pathway.edge.marker.draw(svg, d.markerEnd, 'end', d.stroke);
         if (d.hasOwnProperty('strokeStyle')) {
           if (d.strokeStyle === 'double') {
             //hack to manage marker scaling; this marker should not have any features itself
