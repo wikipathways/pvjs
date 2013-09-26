@@ -2,34 +2,6 @@
 
 pathvisio.pathway.node = function(){
 
-  // GPML to JSON shape name mappings: { "OldName":"new-name" }
-  // replace spaces with dashes
-  // Add dashes before every capital letter except any capital letters at the beginning of the string
-  // Replace spaces with dashes
-  // Replace double dashes with single dashes
-  // replace capitals letters with lowercase. 
-
-  var shapeMappings = {
-    "Arc" : "arc",
-    "Brace" : "brace",
-    "Cell" : "cell",
-    "Endoplasmic Reticulum" : "endoplasmic-reticulum",
-    "Extracellular region" : "extracellular-region",
-    "Golgi Apparatus" : "golgi-apparatus",
-    "Hexagon" : "hexagon",
-    "mim-degradation" : "mim-degradation",
-    "Mitochondria" : "mitochondria",
-    "Nucleus" : "nucleus",
-    "Organelle" : "organelle",
-    "Oval" : "oval",
-    "Pentagon" : "pentagon",
-    "Rectangle" : "rectangle",
-    "RoundedRectangle" : "rounded-rectangle",
-    "Sarcoplasmic Reticulum" : "sarcoplasmic-reticulum",
-    "Triangle" : "triangle",
-    "Vesicle" : "vesicle"
-  };
-
   // TODO What happens if we have right to left flowing text?
 
   var alignToAnchorMappings = { "Left":"start", "Center":"middle", "Right":"end" };
@@ -93,7 +65,7 @@ pathvisio.pathway.node = function(){
           }
         }
         else {
-          element.symbolType = shapeMappings[element.graphics.shapeType];
+          element.symbolType = caseConverter.paramCase(element.graphics.shapeType);
         }
 
         if (element.graphics.hasOwnProperty("fillColor")) {
@@ -253,9 +225,9 @@ pathvisio.pathway.node = function(){
     }
   }
 
-  function drawAll(svg, pathway, symbolsAvailable, markersAvailable) {
+  function drawAll(svg) {
     var nodesContainer = svg.select('#viewport').selectAll("g.nodes-container")
-    .data(pathway.nodes)
+    .data(svg.datum().nodes)
     .enter()
     .append("g")
     .attr("id", function (d) { return 'nodes-container-' + d.graphId;})
@@ -263,7 +235,7 @@ pathvisio.pathway.node = function(){
     .attr("class", "nodes-container")
     .on("click", function(d,i) {
       if (d.elementType === 'data-node') {
-        pathvisio.pathway.xRef.displayData(pathway.organism, d);
+        pathvisio.pathway.xRef.displayData(svg.datum().organism, d);
       }
         /*
         var xrefDiv = $('.xrefinfo');
@@ -382,13 +354,15 @@ pathvisio.pathway.node = function(){
         return style;
       });
 
-      if (symbolsAvailable.filter(function(d, i) { return (symbolsAvailable[0][i].id === pathway.nodes[0].symbolType);}).length > 0) {
+      if (svg.datum().symbolsAvailable[0].filter(function(element) { return (element.id === d.symbolType);}).length === 1) {
+
         // d3 bug strips 'xlink' so need to say 'xlink:xlink';
+        
         node.attr("xlink:xlink:href", function (d) {return "#" + d.symbolType;});
       }
       else {
         node.attr("xlink:xlink:href", "#rectangle");
-        console.log('Pathvisio.js does not have access to the requested symbol: ' + pathway.nodes[0].symbolType + '. Rectangle used as placeholder.');
+        console.warn('Pathvisio.js does not have access to the requested symbol: ' + svg.datum().nodes[0].symbolType + '. Rectangle used as placeholder.');
       }
 
       // use this for tspan option for rendering text, including multi-line
@@ -507,11 +481,11 @@ pathvisio.pathway.node = function(){
                 var index = 0;
                 var rdfId = null;
                 do {
-                  console.log('pathway.biopax');
-                  console.log(pathway.biopax);
-                  rdfId = pathway.biopax.bpPublicationXrefs[index].rdfId;
+                  console.log('svg.datum().biopax');
+                  console.log(svg.datum().biopax);
+                  rdfId = svg.datum().biopax.bpPublicationXrefs[index].rdfId;
                   index += 1;
-                } while (rdfId !== d.Text && index < pathway.biopax.bpPublicationXrefs.length);
+                } while (rdfId !== d.Text && index < svg.datum().biopax.bpPublicationXrefs.length);
                 return index;});
             }
 
