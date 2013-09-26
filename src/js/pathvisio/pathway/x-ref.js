@@ -11,6 +11,8 @@ pathvisio.pathway.xRef = function(){
     }
 
     function displayData(organism, node) {
+      console.log('organism');
+      console.log(organism);
       self.node = node;
       var xRefData = getData(organism, node.xRef.database, node.xRef.id, function(data) {
         var parser = CSVParser.parse(data, true, ' ', false, false, '.');
