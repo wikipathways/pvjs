@@ -184,12 +184,15 @@ pathvisio.pathway = function(){
             delete element.type;
 
             if (element.hasOwnProperty('xref')) {
-              if ((!element.xref.database) && (!element.xref.id)) {
+              if ((!element.xref.database) && (!element.xref.iD)) {
                 delete element.xref;
               }
               else {
                 element.xRef = element.xref;
                 delete element.xref;
+
+                element.xRef.id = element.xRef.iD;
+                delete element.xRef.iD;
               }
             }
           });
