@@ -192,12 +192,12 @@ pathvisio.pathway.edge = function(){
     }
   }
 
-  function drawAll(svg, pathway) {
-    if (pathway.hasOwnProperty('edges')) {
+  function drawAll(svg) {
+    if (svg.datum().hasOwnProperty('edges')) {
       var pathData = null;
 
       var edges = svg.select('#viewport').selectAll("pathway.edge")
-      .data(pathway.edges)
+      .data(svg.datum().edges)
       .enter()
       .append("path")
       .attr("id", function (d) { return d.edgeType + '-' + d.graphId; })
@@ -211,7 +211,7 @@ pathvisio.pathway.edge = function(){
         return styleClass;
       })
       .attr("d", function (d) {
-        pathData = pathvisio.pathway.edge.pathData.get(svg, pathway, d);
+        pathData = pathvisio.pathway.edge.pathData.get(svg, d);
         if (d.hasOwnProperty('strokeStyle')) {
           if (d.strokeStyle === 'double') {
 

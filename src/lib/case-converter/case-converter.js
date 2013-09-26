@@ -71,7 +71,7 @@ var snakeCase = function(string) {
  */
 
 var pathCase = function(string) {
-  return this.separatorCase(string, '/');
+  return separatorCase(string, '/');
 }
 
 /**
@@ -79,7 +79,7 @@ var pathCase = function(string) {
  */
 
 var paramCase = function(string) {
-  return this.separatorCase(string, '-');
+  return separatorCase(string, '-');
 }
 
 /**
@@ -87,7 +87,7 @@ var paramCase = function(string) {
  */
 
 var separatorCase = function(string, separator) {
-  return clean(trim(string), separator).replace(/([a-z\d])([A-Z]+)/g, '$1' + separator + '$2').replace(/[-\.\/\_\s]+/g, separator).toLowerCase();
+  return clean(trim(string), separator).replace(/([a-z\d])([A-Z]+)/g, '$1' + separator + '$2').replace(/([A-Z](?=[A-Z]))/g, '$1' + separator).replace(/[-\.\/\_\s]+/g, separator).toLowerCase();
 }
 
 /**

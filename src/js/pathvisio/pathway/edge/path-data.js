@@ -24,9 +24,9 @@ pathvisio.pathway.edge.pathData = function(){
     }
   }
 
-  function get(svg, pathway, edges) {
-    var sourcePoint = edges.points[0];
-    var source = pathvisio.pathway.edge.point.getCoordinates(svg, pathway, sourcePoint);
+  function get(svg, edge) {
+    var sourcePoint = edge.points[0];
+    var source = pathvisio.pathway.edge.point.getCoordinates(svg, sourcePoint);
 
     if (sourcePoint.dx === undefined) {
       source.dx = 0;
@@ -42,8 +42,8 @@ pathvisio.pathway.edge.pathData = function(){
       source.dy = sourcePoint.dy;
     }
 
-    var targetPoint = edges.points[edges.points.length - 1];
-    var target = pathvisio.pathway.edge.point.getCoordinates(svg, pathway, targetPoint);
+    var targetPoint = edge.points[edge.points.length - 1];
+    var target = pathvisio.pathway.edge.point.getCoordinates(svg, targetPoint);
 
     if (targetPoint.dx === undefined) {
       target.dx = 0;
@@ -61,7 +61,7 @@ pathvisio.pathway.edge.pathData = function(){
 
     var pathData = 'M ' + source.x + ' ' + source.y;
 
-    if ((!edges.connectorType) || (edges.connectorType === undefined) || (edges.connectorType === 'straight')) {
+    if ((!edge.connectorType) || (edge.connectorType === undefined) || (edge.connectorType === 'straight')) {
       pathData += " L " + target.x + " " + target.y;
     }
     else {
@@ -70,7 +70,7 @@ pathvisio.pathway.edge.pathData = function(){
       // It doesn't make sense for an unconnected interaction or graphical line to be an elbow, so any that are
       // so specified will be drawn as segmented lines.
 
-      if (edges.connectorType === 'elbow' && edges.points[0].hasOwnProperty('graphRef') && edges.points[edges.points.length - 1].hasOwnProperty('graphRef')) {
+      if (edge.connectorType === 'elbow' && edge.points[0].hasOwnProperty('graphRef') && edge.points[edge.points.length - 1].hasOwnProperty('graphRef')) {
 
         // distance to move away from node when we can't go directly to the next node
 
@@ -83,14 +83,14 @@ pathvisio.pathway.edge.pathData = function(){
           currentDirection = 'V';
         }
 
-        //if (edges.points.length === 2) {
+        //if (edge.points.length === 2) {
         //doesn't quite work yet, so this works for most cases
 
-        if (( edges.points.length === 2 && pathvisio.pathway.edge.point.isTwoPointElbow(source, target)) ) {
+        if (( edge.points.length === 2 && pathvisio.pathway.edge.point.isTwoPointElbow(source, target)) ) {
         }
         else {
-          if ( edges.points.length > 2 ) {
-            edges.points.forEach(function(element, index, array) {
+          if ( edge.points.length > 2 ) {
+            edge.points.forEach(function(element, index, array) {
               if ((index > 0) && (index < (array.length - 1))) {
                 if (currentDirection === 'H') {
                   pathData += ' ' + currentDirection + ' ' + element.x;
@@ -157,8 +157,8 @@ pathvisio.pathway.edge.pathData = function(){
            */
       }
       else {
-        if (edges.connectorType === 'segmented') {
-          edges.points.forEach(function(element, index, array) {
+        if (edge.connectorType === 'segmented') {
+          edge.points.forEach(function(element, index, array) {
             if ((index > 0) && (index < (array.length -1))) {
               pathData += " L " + element.x + " " + element.y;
             }
@@ -166,12 +166,12 @@ pathvisio.pathway.edge.pathData = function(){
           pathData += " L " + target.x + " " + target.y;
         }
         else {
-          if (edges.connectorType === 'curved') {
-            if (edges.points.length === 3) {
+          if (edge.connectorType === 'curved') {
+            if (edge.points.length === 3) {
 
               // what is here is just a starting point. It has not been tested to match the PathVisio (Java) implementation.
 
-              var pointControl = edges.points[1];
+              var pointControl = edge.points[1];
 
               pathData += " S" + pointControl.x + "," + pointControl.y + " " + target.x + "," + target.y;
               return pathData;
@@ -185,8 +185,8 @@ pathvisio.pathway.edge.pathData = function(){
             }
           }
           else {
-            console.log('Warning: pathvisio.js does not support connector type: ' + edges.connectorType);
-            edges.points.forEach(function(element, index, array) {
+            console.log('Warning: pathvisio.js does not support connector type: ' + edge.connectorType);
+            edge.points.forEach(function(element, index, array) {
               if ((index > 0) && (index < (array.length -1))) {
                 pathData += " L " + element.x + " " + element.y;
               }

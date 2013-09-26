@@ -175,7 +175,7 @@ pathvisio.pathway.edge.point = function(){
         i += 1;
         anchor = edgesWithAnchors[i].anchors.filter(function(element) {
 
-            // jshint doesn't like this. how can I refactor?
+            // js hint linter doesn't like this. how can I refactor?
 
             return element.graphId === point.graphRef;
           }
@@ -190,9 +190,9 @@ pathvisio.pathway.edge.point = function(){
     }
   }
 
-  function getCoordinates(svg, pathway, point) {
+  function getCoordinates(svg, point) {
     var coordinates = {};
-    var edgeTerminusRef = self.edgeTerminusRef = getGraphRef(pathway, point);
+    var edgeTerminusRef = self.edgeTerminusRef = getGraphRef(svg.datum(), point);
     if (edgeTerminusRef.type !== 'anchor') {
       if (edgeTerminusRef.type === 'unconnected') {
         coordinates.x = point.x;
@@ -205,7 +205,7 @@ pathvisio.pathway.edge.point = function(){
         }
         else {
           if (edgeTerminusRef.type === 'group') {
-            var groupDimensions = pathvisio.pathway.group.getDimensions(pathway, edgeTerminusRef.groupId);
+            var groupDimensions = pathvisio.pathway.group.getDimensions(svg.datum(), edgeTerminusRef.groupId);
             coordinates = pathvisio.pathway.node.getPortCoordinates(groupDimensions, point.relX, point.relY);
           }
           else {

@@ -10,8 +10,10 @@
 
     "globals": {
         "xml": true,
+        "root": true,
         "alert": true,
         "pathvisio": true,
+        "caseConverter": true,
         "DataGridRenderer": true,
         "CSVParser": true,
         "$": true,

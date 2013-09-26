@@ -1,11 +1,9 @@
 //! pathvisio-js 0.0.1
-//! Built on 2013-09-13
+//! Built on 2013-09-25
 //! https://github.com/wikipathways/pathvisio.js
 //! License: http://www.apache.org/licenses/LICENSE-2.0/
 
 var pathvisio = {};
-pathvisio.data = {};
-pathvisio.data.pathways = [];
 ;
 
 pathvisio.helpers = function(){
@@ -36,7 +34,7 @@ pathvisio.helpers = function(){
     // This will be replaced once we get the backend php to get the json
 
     var parameter = decodeURIComponent((new RegExp('[?|&]' + name + '=' + '([^&;]+?)(&|#|;|$)').exec(location.search)||[,""])[1].replace(/\+/g, '%20'))||null;
-    if (parameter !== null) {
+    if (!!parameter) {
       return parameter;
     }
     else {
@@ -286,21 +284,6 @@ pathvisio.pathway = function(){
 
       // DataNodes 
 
-      // GPML to JSON shape name mappings: { "OldName":"new-name" }
-      // replace spaces with dashes
-      // Add dashes before every capital letter except any capital letters at the beginning of the string
-      // Replace double dashes with single dashes
-      // replace capitals letters with lowercase. 
-      // TODO use caseConverter.paramCase() instead of this mapping. Eventually, implement and enforce conventions for GPML data node type names
-
-      var dataNodeTypeMappings = {
-        "GeneProduct":"gene-product",
-        "Metabolite":"metabolite",
-        "Pathway":"pathway",
-        "Protein":"protein",
-        "Rna":"rna"
-      };
-
       try {
         if (pathway.hasOwnProperty('dataNode')) {
           var dataNodes = pathvisio.helpers.convertToArray( pathway.dataNode );
@@ -310,12 +293,7 @@ pathvisio.pathway = function(){
 
             element.elementType = 'data-node';
 
-            if (dataNodeTypeMappings.hasOwnProperty(element.type)) {
-              element.dataNodeType = dataNodeTypeMappings[element.type];
-            }
-            else {
-              element.dataNodeType = 'unknown';
-            }
+            element.dataNodeType = caseConverter.paramCase(element.type);
             delete element.type;
 
             if (element.hasOwnProperty('xref')) {
@@ -451,7 +429,7 @@ pathvisio.pathway = function(){
       console.log(pathway);
 
       delete pathway.graphics;
-      pathvisio.data.pathways.push(pathway);
+      //pathvisio.data.pathways.push(pathway);
       callback(pathway);
     }
     else {
@@ -478,10 +456,8 @@ pathvisio.pathway = function(){
       // I would prefer to use d3.xml for the http request in order to not depend on jQuery,
       // but d3.xml doesn't seem to work with IE8. TODO remove dependency on jQuery
 
-      console.log('callback');
-      console.log(callback);
-
       // be sure server has set gpml mime type to application/xml or application/gpml+xml
+
       $.get(url, 'application/xml', function(gpml) {
         pathvisio.pathway.gpml2json(gpml, function(json) {
           callback(json);
@@ -496,7 +472,7 @@ pathvisio.pathway = function(){
     var svg = d3.select("#pathway-image");
     svg.selectAll('g.nodes-container')
     .attr('style', '');
-    var dataNodes = self.dataNodes = pathvisio.data.pathways[0].nodes.filter(function(element) {return element.elementType === 'data-node';});
+    var dataNodes = self.dataNodes = svg.datum().nodes.filter(function(element) {return element.elementType === 'data-node';});
     var dataNodesWithText = self.dataNodesWithText = dataNodes.filter(function(element) {return (!!element.textLabel);});
     var selectedNodes = self.selectedNodes = dataNodesWithText.filter(function(element) {return element.textLabel.text.indexOf(nodeLabel) !== -1;});
     selectedNodes.forEach(function(node) {
@@ -511,12 +487,14 @@ pathvisio.pathway = function(){
     });
   }
 
-  function draw(svg, pathway){
-    console.log('svg');
-    console.log(svg);
-    if (!pathway) {
+  function draw(svg){
+    var pathway = null;
+    if (!svg.datum()) {
       console.warn('Error: No data entered as input.');
       return 'Error';
+    }
+    else {
+      pathway = svg.datum();
     }
 
     var drag = d3.behavior.drag()
@@ -528,13 +506,13 @@ pathvisio.pathway = function(){
       d3.select(this)
       .attr("x", d3.event.x)
       .attr("y", d3.event.y);
-    }	
+    }
 
     svg.attr('width', pathway.boardWidth);
     svg.attr('height', pathway.boardHeight);
 
     if (!!pathway.biopaxRefs) {
-      var pathwayPublicationXrefs = svg.select('#viewport').selectAll(".pathway-publication-xref-text")	
+      var pathwayPublicationXrefs = svg.select('#viewport').selectAll(".pathway-publication-xref-text")
       .data(pathway.biopaxRefs)
       .enter()
       .append("text")
@@ -560,32 +538,32 @@ pathvisio.pathway = function(){
         return index;});
     }
 
-    var symbolsAvailable = svg.selectAll('symbol');
+    svg.datum().symbolsAvailable = svg.selectAll('symbol');
 
-    var markersAvailable = svg.selectAll('marker');
+    svg.datum().markersAvailable = svg.selectAll('marker');
 
     if (pathway.hasOwnProperty('groups')) {
-      pathvisio.pathway.group.drawAll(svg, pathway);
+      pathvisio.pathway.group.drawAll(svg);
     }
 
     if (pathway.hasOwnProperty('edges')) {
-      pathvisio.pathway.edge.drawAll(svg, pathway);
+      pathvisio.pathway.edge.drawAll(svg);
     }
 
     if (pathway.hasOwnProperty('nodes')) {
-      pathvisio.pathway.node.drawAll(svg, pathway, symbolsAvailable, markersAvailable);
+      pathvisio.pathway.node.drawAll(svg);
     }
 
     if (pathway.hasOwnProperty('infoBox')) {
-      pathvisio.pathway.infoBox.draw(svg, pathway);
+      pathvisio.pathway.infoBox.draw(svg);
     }
     window.setTimeout(function() {
-    	window.root = document.documentElement.getElementsByTagName("svg")[0];
+      window.root = document.documentElement.getElementsByTagName("svg")[0];
       root.addEventListener('click', function () {
         enableZoom = 1;
       });
       setupHandlers(root);
-    }, 1000)
+    }, 1000);
   }
 
   function getSvg(url, attemptCount, callback) {
@@ -605,9 +583,6 @@ pathvisio.pathway = function(){
     ///*
     // Use this code if you want to get the SVG using d3.xml.
     d3.text(url, 'text/plain', function(svg) {
-      console.log('svg');
-      console.log(svg);
-      self.svg = svg;
       d3.select('#pathway-container')[0][0].innerHTML = svg;
       callback(d3.select('#pathway-image'));
     });
@@ -654,8 +629,6 @@ pathvisio.pathway = function(){
     //if (!pathvisio.helpers.isUrl(gpmlUrl)) { return console.warn('Error: No URL specified for GPML data source.'); }
 
     getSvg(svgUrl, 1, function(svg) {
-      console.log('svg');
-      console.log(svg);
       var target = d3.select(targetSelector);
       //svgPanZoom.init();
 
@@ -663,11 +636,12 @@ pathvisio.pathway = function(){
       // this does not work
       //target.append(svg);
 
-      getJson(gpmlUrl, function(pathway, sGpml, sJson) {
-        draw(svg, pathway);
+      getJson(gpmlUrl, function(pathway) {
+        svg.datum(pathway);
+        draw(svg);
 
         var nodeLabels = [];
-        pathvisio.data.pathways[0].nodes.forEach(function(node) {
+        pathway.nodes.forEach(function(node) {
           if (!!node.textLabel && node.elementType === 'data-node') {
             nodeLabels.push(node.textLabel.text);
           }
@@ -676,18 +650,17 @@ pathvisio.pathway = function(){
         // see http://twitter.github.io/typeahead.js/
 
         $(highlightByLabelSelector).typeahead({
-          name: 'Find in pathway',                                                          
+          name: 'Find in pathway',
           local: nodeLabels,
-          //prefetch: '../data/countries.json',                                         
-          limit: 10                                                                   
+          limit: 10
         });
         $('.icon-eye-open').click(function(){
-          var nodeLabel = $("#highlight-by-label").val(); 
+          var nodeLabel = $("#highlight-by-label").val();
           if (!nodeLabel) {
             console.warn('Error: No data node value entered.');
           }
           else {
-            pathvisio.pathway.highlightByLabel(nodeLabel); 
+            pathvisio.pathway.highlightByLabel(nodeLabel);
           }
         });
       });
@@ -704,16 +677,16 @@ pathvisio.pathway = function(){
 }();
 ;
 
-pathvisio.pathway.group = function(){ 
-  function drawAll(svg, pathway) {
-    var groups = pathway.groups;
+pathvisio.pathway.group = function(){
+  function drawAll(svg) {
+    var groups = svg.datum().groups;
     if (!groups) { return console.warn('Error: No group data available.');}
 
     // only consider non-empty groups
 
-    var validGroups = pathway.groups.filter(function(el) {
+    var validGroups = groups.filter(function(el) {
       var groupId = el.groupId;
-      return (pathway.nodes.filter(function(el) {return (el.groupRef === groupId);}).length>0);
+      return (svg.datum().nodes.filter(function(el) {return (el.groupRef === groupId);}).length>0);
     });
 
     var pathData = null;
@@ -728,7 +701,7 @@ pathvisio.pathway.group = function(){
     // are supposed to remain constant in size, regardless of changes in group size.
 
     .attr("d", function(d) {
-      var groupDimensions = getDimensions(pathway, d.groupId);
+      var groupDimensions = getDimensions(svg.datum(), d.groupId);
       if (d.style === 'none' || d.style === 'group' || d.style === 'pathway') {
         pathData = 'M ' + groupDimensions.x + ' ' + groupDimensions.y + ' L ' + (groupDimensions.x + groupDimensions.width) + ' ' + groupDimensions.y + ' L ' + (groupDimensions.x + groupDimensions.width) + ' ' + (groupDimensions.y + groupDimensions.height) + ' L ' + groupDimensions.x + ' ' + (groupDimensions.y + groupDimensions.height) + ' Z';
       }
@@ -761,7 +734,7 @@ pathvisio.pathway.group = function(){
     return group;
   }
  
-  return { 
+  return {
     drawAll:drawAll,
     getDimensions:getDimensions
   };
@@ -770,25 +743,25 @@ pathvisio.pathway.group = function(){
 
 pathvisio.pathway.infoBox = function(){
     
-  function draw(svg, pathway) {
+  function draw(svg) {
 
     // Although gpml has x and y values for infobox, we have decided to ignore them and always set it in the upper left.
 
     var infoBox = [];
-    if (pathway.hasOwnProperty('name')) {
-      infoBox.push({'key':'Title', 'value':pathway.name});
+    if (svg.datum().hasOwnProperty('name')) {
+      infoBox.push({'key':'Title', 'value':svg.datum().name});
     }
 
-    if (pathway.hasOwnProperty('license')) {
-      infoBox.push({'key':'Availability', 'value':pathway.license});
+    if (svg.datum().hasOwnProperty('license')) {
+      infoBox.push({'key':'Availability', 'value':svg.datum().license});
     }
 
-    if (pathway.hasOwnProperty('lastModified')) {
-      infoBox.push({'key':'Last modified', 'value':pathway.lastModified});
+    if (svg.datum().hasOwnProperty('lastModified')) {
+      infoBox.push({'key':'Last modified', 'value':svg.datum().lastModified});
     }
 
-    if (pathway.hasOwnProperty('organism')) {
-      infoBox.push({'key':'Organism', 'value':pathway.organism});
+    if (svg.datum().hasOwnProperty('organism')) {
+      infoBox.push({'key':'Organism', 'value':svg.datum().organism});
     }
 
     var infoBoxElements = svg.select('#viewport').selectAll("text.info-box")
@@ -822,34 +795,6 @@ pathvisio.pathway.infoBox = function(){
 // Draw nodes. Includes data nodes, shapes, labels, cellular components...
 
 pathvisio.pathway.node = function(){
-
-  // GPML to JSON shape name mappings: { "OldName":"new-name" }
-  // replace spaces with dashes
-  // Add dashes before every capital letter except any capital letters at the beginning of the string
-  // Replace spaces with dashes
-  // Replace double dashes with single dashes
-  // replace capitals letters with lowercase. 
-
-  var shapeMappings = {
-    "Arc" : "arc",
-    "Brace" : "brace",
-    "Cell" : "cell",
-    "Endoplasmic Reticulum" : "endoplasmic-reticulum",
-    "Extracellular region" : "extracellular-region",
-    "Golgi Apparatus" : "golgi-apparatus",
-    "Hexagon" : "hexagon",
-    "mim-degradation" : "mim-degradation",
-    "Mitochondria" : "mitochondria",
-    "Nucleus" : "nucleus",
-    "Organelle" : "organelle",
-    "Oval" : "oval",
-    "Pentagon" : "pentagon",
-    "Rectangle" : "rectangle",
-    "RoundedRectangle" : "rounded-rectangle",
-    "Sarcoplasmic Reticulum" : "sarcoplasmic-reticulum",
-    "Triangle" : "triangle",
-    "Vesicle" : "vesicle"
-  };
 
   // TODO What happens if we have right to left flowing text?
 
@@ -914,7 +859,7 @@ pathvisio.pathway.node = function(){
           }
         }
         else {
-          element.symbolType = shapeMappings[element.graphics.shapeType];
+          element.symbolType = caseConverter.paramCase(element.graphics.shapeType);
         }
 
         if (element.graphics.hasOwnProperty("fillColor")) {
@@ -1074,9 +1019,9 @@ pathvisio.pathway.node = function(){
     }
   }
 
-  function drawAll(svg, pathway, symbolsAvailable, markersAvailable) {
+  function drawAll(svg) {
     var nodesContainer = svg.select('#viewport').selectAll("g.nodes-container")
-    .data(pathway.nodes)
+    .data(svg.datum().nodes)
     .enter()
     .append("g")
     .attr("id", function (d) { return 'nodes-container-' + d.graphId;})
@@ -1084,7 +1029,7 @@ pathvisio.pathway.node = function(){
     .attr("class", "nodes-container")
     .on("click", function(d,i) {
       if (d.elementType === 'data-node') {
-        pathvisio.pathway.xRef.displayData(pathway.organism, d);
+        pathvisio.pathway.xRef.displayData(svg.datum().organism, d);
       }
         /*
         var xrefDiv = $('.xrefinfo');
@@ -1203,13 +1148,15 @@ pathvisio.pathway.node = function(){
         return style;
       });
 
-      if (symbolsAvailable.filter(function(d, i) { return (symbolsAvailable[0][i].id === pathway.nodes[0].symbolType);}).length > 0) {
+      if (svg.datum().symbolsAvailable[0].filter(function(element) { return (element.id === d.symbolType);}).length === 1) {
+
         // d3 bug strips 'xlink' so need to say 'xlink:xlink';
+        
         node.attr("xlink:xlink:href", function (d) {return "#" + d.symbolType;});
       }
       else {
         node.attr("xlink:xlink:href", "#rectangle");
-        console.log('Pathvisio.js does not have access to the requested symbol: ' + pathway.nodes[0].symbolType + '. Rectangle used as placeholder.');
+        console.warn('Pathvisio.js does not have access to the requested symbol: ' + svg.datum().nodes[0].symbolType + '. Rectangle used as placeholder.');
       }
 
       // use this for tspan option for rendering text, including multi-line
@@ -1328,11 +1275,11 @@ pathvisio.pathway.node = function(){
                 var index = 0;
                 var rdfId = null;
                 do {
-                  console.log('pathway.biopax');
-                  console.log(pathway.biopax);
-                  rdfId = pathway.biopax.bpPublicationXrefs[index].rdfId;
+                  console.log('svg.datum().biopax');
+                  console.log(svg.datum().biopax);
+                  rdfId = svg.datum().biopax.bpPublicationXrefs[index].rdfId;
                   index += 1;
-                } while (rdfId !== d.Text && index < pathway.biopax.bpPublicationXrefs.length);
+                } while (rdfId !== d.Text && index < svg.datum().biopax.bpPublicationXrefs.length);
                 return index;});
             }
 
@@ -1628,12 +1575,12 @@ pathvisio.pathway.edge = function(){
     }
   }
 
-  function drawAll(svg, pathway) {
-    if (pathway.hasOwnProperty('edges')) {
+  function drawAll(svg) {
+    if (svg.datum().hasOwnProperty('edges')) {
       var pathData = null;
 
       var edges = svg.select('#viewport').selectAll("pathway.edge")
-      .data(pathway.edges)
+      .data(svg.datum().edges)
       .enter()
       .append("path")
       .attr("id", function (d) { return d.edgeType + '-' + d.graphId; })
@@ -1647,7 +1594,7 @@ pathvisio.pathway.edge = function(){
         return styleClass;
       })
       .attr("d", function (d) {
-        pathData = pathvisio.pathway.edge.pathData.get(svg, pathway, d);
+        pathData = pathvisio.pathway.edge.pathData.get(svg, d);
         if (d.hasOwnProperty('strokeStyle')) {
           if (d.strokeStyle === 'double') {
 
@@ -1679,7 +1626,7 @@ pathvisio.pathway.edge = function(){
         return style;
       })
       .attr("marker-start", function (d) {
-        var markerStart = pathvisio.pathway.edge.marker.draw(d.markerStart, 'start', d.stroke);
+        var markerStart = pathvisio.pathway.edge.marker.draw(svg, d.markerStart, 'start', d.stroke);
         if (d.hasOwnProperty('strokeStyle')) {
           if (d.strokeStyle === 'double') {
             //hack to manage marker scaling; this marker should not have any features itself
@@ -1689,7 +1636,7 @@ pathvisio.pathway.edge = function(){
         return 'url(#' + markerStart + ')';
       })
       .attr("marker-end", function (d) {
-        var markerEnd = pathvisio.pathway.edge.marker.draw(d.markerEnd, 'end', d.stroke);
+        var markerEnd = pathvisio.pathway.edge.marker.draw(svg, d.markerEnd, 'end', d.stroke);
         if (d.hasOwnProperty('strokeStyle')) {
           if (d.strokeStyle === 'double') {
             //hack to manage marker scaling; this marker should not have any features itself
@@ -1711,50 +1658,69 @@ pathvisio.pathway.edge = function(){
 ;
 
 pathvisio.pathway.edge.marker = function(){
+
+  // the way SVG works makes this code more complex than it should need to be. Essentially, we
+  // are trying to reuse the markers defined in the SVG template, but we also need to be able
+  // to handle whether any marker is desired, whether the desired marker exists in the pathway
+  // template svg, whether it is at the start or end of a path and whether
+  // a color other than black (the color specified in the template) is desired.
+
   function draw(svg, name, position, color) {
-    var markerName = '';
+    var markerUrl = '';
+
+    // if no marker is to be used, JSON data will specify 'none'.
+
     if (name === 'none') {
-      markerName = name;
+      markerUrl = name;
     }
     else {
 
-      // if it's black, use the default
+      // check for whether the desired marker is defined once in the pathway template svg.
 
-      if ( (color === '#000') || (color === '#000000') || (!(color)) ) {
-        markerName = name + '-' + position + '-black';
+      if (svg.datum().markersAvailable[0].filter(function(element) { return (element.id === name + '-' + position + '-black');}).length === 1) {
+
+        // if the desired stroke color is black, use the marker specified in the pathway template svg.
+
+        if ( (color === '#000') || (color === '#000000') || (!(color)) ) {
+          markerUrl = name + '-' + position + '-black';
+        }
+
+        // else create a new marker with the desired color
+
+        else {
+          /*
+          var pathway.svg = d3.select("#pathway-container").select(function() {
+            return this.contentDocument.documentElement;
+          });
+          */
+
+          var markerElementBlack = svg.select('marker#' + name + '-' + position + '-black');
+          var markerElement = pathvisio.helpers.cloneNode(markerElementBlack[0][0]);
+
+          // define style of marker element
+
+          var markerElementStyle = '';
+
+          if (markerElement[0][0].getAttribute('stroke') === 'black') {
+            markerElementStyle += 'stroke:' + color + '; ';
+          }
+
+          if (markerElement[0][0].getAttribute('fill') === 'black') {
+            markerElementStyle += 'fill:' + color + '; ';
+          }
+
+          markerElement[0][0].setAttribute('id', name + '-' + position + '-' + color );
+          markerElement[0][0].setAttribute('style', markerElementStyle);
+
+          markerUrl = name + '-' + position + '-' + color;
+        }
       }
-
-      // else create a new marker with the desired color
-
       else {
-        /*
-        var pathway.svg = d3.select("#pathway-container").select(function() {
-          return this.contentDocument.documentElement;
-        });
-        */
-
-        var markerElementBlack = svg.select('marker#' + name + '-' + position + '-black');
-        var markerElement = pathvisio.helpers.cloneNode(markerElementBlack[0][0]);
-
-        // define style of marker element
-
-        var markerElementStyle = '';
-
-        if (markerElement[0][0].getAttribute('stroke') === 'black') {
-          markerElementStyle += 'stroke:' + color + '; ';
-        }
-
-        if (markerElement[0][0].getAttribute('fill') === 'black') {
-          markerElementStyle += 'fill:' + color + '; ';
-        }
-
-        markerElement[0][0].setAttribute('id', name + '-' + position + '-' + color );
-        markerElement[0][0].setAttribute('style', markerElementStyle);
-
-        markerName = name + '-' + position + '-' + color;
+        markerUrl = 'none';
+        console.warn('Pathvisio.js does not have access to the requested marker: ' + name);
       }
     }
-    return markerName;
+    return markerUrl;
   }
  
   return {
@@ -1940,7 +1906,7 @@ pathvisio.pathway.edge.point = function(){
         i += 1;
         anchor = edgesWithAnchors[i].anchors.filter(function(element) {
 
-            // jshint doesn't like this. how can I refactor?
+            // js hint linter doesn't like this. how can I refactor?
 
             return element.graphId === point.graphRef;
           }
@@ -1955,9 +1921,9 @@ pathvisio.pathway.edge.point = function(){
     }
   }
 
-  function getCoordinates(svg, pathway, point) {
+  function getCoordinates(svg, point) {
     var coordinates = {};
-    var edgeTerminusRef = self.edgeTerminusRef = getGraphRef(pathway, point);
+    var edgeTerminusRef = self.edgeTerminusRef = getGraphRef(svg.datum(), point);
     if (edgeTerminusRef.type !== 'anchor') {
       if (edgeTerminusRef.type === 'unconnected') {
         coordinates.x = point.x;
@@ -1970,7 +1936,7 @@ pathvisio.pathway.edge.point = function(){
         }
         else {
           if (edgeTerminusRef.type === 'group') {
-            var groupDimensions = pathvisio.pathway.group.getDimensions(pathway, edgeTerminusRef.groupId);
+            var groupDimensions = pathvisio.pathway.group.getDimensions(svg.datum(), edgeTerminusRef.groupId);
             coordinates = pathvisio.pathway.node.getPortCoordinates(groupDimensions, point.relX, point.relY);
           }
           else {
@@ -2029,9 +1995,9 @@ pathvisio.pathway.edge.pathData = function(){
     }
   }
 
-  function get(svg, pathway, edges) {
-    var sourcePoint = edges.points[0];
-    var source = pathvisio.pathway.edge.point.getCoordinates(svg, pathway, sourcePoint);
+  function get(svg, edge) {
+    var sourcePoint = edge.points[0];
+    var source = pathvisio.pathway.edge.point.getCoordinates(svg, sourcePoint);
 
     if (sourcePoint.dx === undefined) {
       source.dx = 0;
@@ -2047,8 +2013,8 @@ pathvisio.pathway.edge.pathData = function(){
       source.dy = sourcePoint.dy;
     }
 
-    var targetPoint = edges.points[edges.points.length - 1];
-    var target = pathvisio.pathway.edge.point.getCoordinates(svg, pathway, targetPoint);
+    var targetPoint = edge.points[edge.points.length - 1];
+    var target = pathvisio.pathway.edge.point.getCoordinates(svg, targetPoint);
 
     if (targetPoint.dx === undefined) {
       target.dx = 0;
@@ -2066,7 +2032,7 @@ pathvisio.pathway.edge.pathData = function(){
 
     var pathData = 'M ' + source.x + ' ' + source.y;
 
-    if ((!edges.connectorType) || (edges.connectorType === undefined) || (edges.connectorType === 'straight')) {
+    if ((!edge.connectorType) || (edge.connectorType === undefined) || (edge.connectorType === 'straight')) {
       pathData += " L " + target.x + " " + target.y;
     }
     else {
@@ -2075,7 +2041,7 @@ pathvisio.pathway.edge.pathData = function(){
       // It doesn't make sense for an unconnected interaction or graphical line to be an elbow, so any that are
       // so specified will be drawn as segmented lines.
 
-      if (edges.connectorType === 'elbow' && edges.points[0].hasOwnProperty('graphRef') && edges.points[edges.points.length - 1].hasOwnProperty('graphRef')) {
+      if (edge.connectorType === 'elbow' && edge.points[0].hasOwnProperty('graphRef') && edge.points[edge.points.length - 1].hasOwnProperty('graphRef')) {
 
         // distance to move away from node when we can't go directly to the next node
 
@@ -2088,14 +2054,14 @@ pathvisio.pathway.edge.pathData = function(){
           currentDirection = 'V';
         }
 
-        //if (edges.points.length === 2) {
+        //if (edge.points.length === 2) {
         //doesn't quite work yet, so this works for most cases
 
-        if (( edges.points.length === 2 && pathvisio.pathway.edge.point.isTwoPointElbow(source, target)) ) {
+        if (( edge.points.length === 2 && pathvisio.pathway.edge.point.isTwoPointElbow(source, target)) ) {
         }
         else {
-          if ( edges.points.length > 2 ) {
-            edges.points.forEach(function(element, index, array) {
+          if ( edge.points.length > 2 ) {
+            edge.points.forEach(function(element, index, array) {
               if ((index > 0) && (index < (array.length - 1))) {
                 if (currentDirection === 'H') {
                   pathData += ' ' + currentDirection + ' ' + element.x;
@@ -2162,8 +2128,8 @@ pathvisio.pathway.edge.pathData = function(){
            */
       }
       else {
-        if (edges.connectorType === 'segmented') {
-          edges.points.forEach(function(element, index, array) {
+        if (edge.connectorType === 'segmented') {
+          edge.points.forEach(function(element, index, array) {
             if ((index > 0) && (index < (array.length -1))) {
               pathData += " L " + element.x + " " + element.y;
             }
@@ -2171,12 +2137,12 @@ pathvisio.pathway.edge.pathData = function(){
           pathData += " L " + target.x + " " + target.y;
         }
         else {
-          if (edges.connectorType === 'curved') {
-            if (edges.points.length === 3) {
+          if (edge.connectorType === 'curved') {
+            if (edge.points.length === 3) {
 
               // what is here is just a starting point. It has not been tested to match the PathVisio (Java) implementation.
 
-              var pointControl = edges.points[1];
+              var pointControl = edge.points[1];
 
               pathData += " S" + pointControl.x + "," + pointControl.y + " " + target.x + "," + target.y;
               return pathData;
@@ -2190,8 +2156,8 @@ pathvisio.pathway.edge.pathData = function(){
             }
           }
           else {
-            console.log('Warning: pathvisio.js does not support connector type: ' + edges.connectorType);
-            edges.points.forEach(function(element, index, array) {
+            console.log('Warning: pathvisio.js does not support connector type: ' + edge.connectorType);
+            edge.points.forEach(function(element, index, array) {
               if ((index > 0) && (index < (array.length -1))) {
                 pathData += " L " + element.x + " " + element.y;
               }
