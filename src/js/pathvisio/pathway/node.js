@@ -17,16 +17,6 @@ pathvisio.pathway.node = function(){
           delete element.comment;
         }
 
-        if (element.hasOwnProperty('xref')) {
-          if ((!element.xref.database) && (!element.xref.id)) {
-            delete element.xref;
-          }
-          else {
-            element.xref = element.xRef;
-            delete element.xref;
-          }
-        }
-
         // Be warned that support for zIndex in SVG is spotty. It's best to rely on ordering in the DOM as well.
 
         if (element.graphics.hasOwnProperty("zorder")) {

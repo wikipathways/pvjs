@@ -297,12 +297,15 @@ pathvisio.pathway = function(){
             delete element.type;
 
             if (element.hasOwnProperty('xref')) {
-              if ((!element.xref.database) && (!element.xref.id)) {
+              if ((!element.xref.database) && (!element.xref.iD)) {
                 delete element.xref;
               }
               else {
                 element.xRef = element.xref;
                 delete element.xref;
+
+                element.xRef.id = element.xRef.iD;
+                delete element.xRef.iD;
               }
             }
           });
@@ -809,16 +812,6 @@ pathvisio.pathway.node = function(){
         if (element.hasOwnProperty('comment')) {
           element.comments = pathvisio.helpers.convertToArray( element.comment );
           delete element.comment;
-        }
-
-        if (element.hasOwnProperty('xref')) {
-          if ((!element.xref.database) && (!element.xref.id)) {
-            delete element.xref;
-          }
-          else {
-            element.xref = element.xRef;
-            delete element.xref;
-          }
         }
 
         // Be warned that support for zIndex in SVG is spotty. It's best to rely on ordering in the DOM as well.
@@ -3896,6 +3889,8 @@ pathvisio.pathway.xRef = function(){
     }
 
     function displayData(organism, node) {
+      console.log('organism');
+      console.log(organism);
       self.node = node;
       var xRefData = getData(organism, node.xRef.database, node.xRef.id, function(data) {
         var parser = CSVParser.parse(data, true, ' ', false, false, '.');
