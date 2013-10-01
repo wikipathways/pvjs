@@ -76,22 +76,13 @@ body {
   </script>
 <![endif]-->
 
-<script src="../lib/rgb-color/rgb-color.js"></script>
-<script src="../lib/case-converter/case-converter.js"></script>
-<script src="../lib/xml2json/xml2json.js"></script>
-<script src="../js/pathvisio/pathvisio.js"></script>
-<script src="../js/pathvisio/helpers.js"></script>
-<script src="../js/pathvisio/pathway/pathway.js"></script>
-<script src="../js/pathvisio/pathway/group.js"></script>
-<script src="../js/pathvisio/pathway/info-box.js"></script>
-<script src="https://raw.github.com/wikipathways/pathvisio.js/master/src/js/pathvisio/pathway/node.js"></script>
-<script src="../js/pathvisio/pathway/edge/edge.js"></script>
-<script src="../js/pathvisio/pathway/edge/marker.js"></script>
-<script src="../js/pathvisio/pathway/edge/point.js"></script>
-<script src="../js/pathvisio/pathway/edge/path-data.js"></script>
-<script src="../js/pathvisio/pathway/data-sources.js"></script>
-<script src="../js/pathvisio/pathway/x-ref.js"></script>
-<script src="../lib/d3/d3.js" charset="utf-8"></script>
+<script src="../lib/rgb-color/rgb-color.min.js"></script>
+<script src="../lib/case-converter/case-converter.min.js"></script>
+<script src="../lib/xml2json/xml2json.min.js"></script>
+
+<script id="pathvisio-js" src="../../build/js/pathvisio.min.js"></script>
+
+<script src="../lib/d3/d3.min.js" charset="utf-8"></script>
 <script>
 var currentUrlWithoutQueryString = window.location.href.split("?")[0].split("#")[0];
 
@@ -217,18 +208,15 @@ d3.select('#fallback-image').attr('src', pngUrl);
   </div>
 </div>
 
-<script src="../lib/jquery/jquery.js"></script>
-<script src="../lib/jquery-ui/ui/jquery-ui.js"></script>
-<script src="../lib/typeahead.js/dist/typeahead.js"></script>
+<script src="../lib/jquery/jquery.min.js"></script>
+<script src="../lib/jquery-ui/ui/minified/jquery-ui.min.js"></script>
+<script src="../lib/typeahead.js/dist/typeahead.min.js"></script>
 
-<script src="../lib/case-converter/case-converter.js"></script>
-<script src="../lib/xml2json/xml2json.js"></script>
-<script src="../lib/bootstrap/dist/js/bootstrap.js"></script>
-<script src="../lib/openseadragon/openseadragon.js"></script>
-<script src="../lib/modernizr/modernizr.js"></script>
-<script src="../lib/screenfull/dist/screenfull.js"></script>
-<script src="../lib/mr-data-converter/CSVParser.js"></script>
-<script src="../lib/mr-data-converter/DataGridRenderer.js"></script>
+<script src="../lib/openseadragon/openseadragon.min.js"></script>
+<script src="../lib/modernizr/modernizr.min.js"></script>
+<script src="../lib/screenfull/dist/screenfull.min.js"></script>
+<script src="../lib/mr-data-converter/CSVParser.min.js"></script>
+<script src="../lib/mr-data-converter/DataGridRenderer.min.js"></script>
 <script src="../lib/svg-pan/svg-pan1.js"></script>
 <!--
 <script src="../lib/async/lib/async.js"></script>

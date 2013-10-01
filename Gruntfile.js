@@ -9,6 +9,7 @@ var packageJson = grunt.file.readJSON("package.json"),
     releaseRoot = "../site-build/built-pathvisio.js/",
     sources = [
       'src/js/pathvisio/pathvisio.js',
+      'tmp/viewer.js',
       'src/js/pathvisio/helpers.js',
       'src/js/pathvisio/pathway/pathway.js',
       'src/js/pathvisio/pathway/group.js',
@@ -71,6 +72,9 @@ grunt.initConfig({
         beforeconcat: sources,
         afterconcat: [ distribution ]
     },
+    str2js: {
+      pathvisioNS: { 'tmp/viewer.js': ['src/views/viewer.html', 'src/views/error.html', 'src/views/pathway-template.svg']}
+    },
     "git-describe": {
         build: {
             options: {
@@ -81,6 +85,7 @@ grunt.initConfig({
   });
 
   // Load the plugin that provides the "uglify" task.
+  grunt.loadNpmTasks("grunt-string-to-js");
   grunt.loadNpmTasks("grunt-contrib-clean");
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-concat');
@@ -89,10 +94,10 @@ grunt.initConfig({
   grunt.loadNpmTasks("grunt-git-describe");
 
   // build 
-  grunt.registerTask('build', ["clean:build", "git-describe", "jshint:beforeconcat", "concat", "jshint:afterconcat", 'uglify']);
+  grunt.registerTask('build', ['str2js', 'clean:build', 'git-describe', 'jshint:beforeconcat', 'concat', 'jshint:afterconcat', 'uglify']);
 
-  // build 
-  grunt.registerTask('quick-build', ["clean:build", "git-describe", "concat", 'uglify']);
+  // quick-build 
+  grunt.registerTask('quick-build', ['str2js', 'clean:build', 'git-describe', 'concat', 'uglify']);
 
   // test
   //grunt.registerTask('test', ['build']);

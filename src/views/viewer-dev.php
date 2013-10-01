@@ -84,7 +84,7 @@ body {
 <script src="../js/pathvisio/pathway/pathway.js"></script>
 <script src="../js/pathvisio/pathway/group.js"></script>
 <script src="../js/pathvisio/pathway/info-box.js"></script>
-<script src="https://raw.github.com/wikipathways/pathvisio.js/master/src/js/pathvisio/pathway/node.js"></script>
+<script src="../js/pathvisio/pathway/node.js"></script>
 <script src="../js/pathvisio/pathway/edge/edge.js"></script>
 <script src="../js/pathvisio/pathway/edge/marker.js"></script>
 <script src="../js/pathvisio/pathway/edge/point.js"></script>
