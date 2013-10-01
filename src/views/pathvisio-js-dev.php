@@ -3,9 +3,9 @@
 // it would be nice to automate this so we don't have to remember to update it.
 
 $cssRelativeUrls = array(
-  'pathvisio-js-css'=>'src/css/pathvisio-js.css',
-  'details-frame-css'=>'src/css/details-frame.css',
-  'pan-zoom-css'=>'src/css/pan-zoom.css'
+  'pathvisio-js-css'=>'/src/css/pathvisio-js.css',
+  'details-frame-css'=>'/src/css/details-frame.css',
+  'pan-zoom-css'=>'/src/css/pan-zoom.css'
 );
 
 $jsRelativeUrls = array(
