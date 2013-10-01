@@ -102,7 +102,7 @@ if (!!pathvisio.helpers.getUrlParam('repo')) {
   if (!!pathvisio.helpers.getUrlParam('repo')) {
     branch = pathvisio.helpers.getUrlParam('branch');
   }
-  svgUrl = '../../remote-data-sources/php/github.php?data=svg&repo=' + repo + '&branch=' + branch;
+  svgUrl = '../../remote-data-sources/php/github.php?repo=' + repo + '&branch=' + branch . "&relativeUrl=/src/views/pathway-template.svg&mimeType=image/svg+xml;
 }
 else {
   if (!!pathvisio.helpers.getUrlParam('svg')) {
