@@ -3,9 +3,9 @@
 // it would be nice to automate this so we don't have to remember to update it.
 
 $cssRelativeUrls = array(
-  'pathvisio-js'=>'src/css/pathvisio-js.css',
-  'details-frame'=>'src/css/details-frame.css',
-  'pan-zoom'=>'src/css/pan-zoom.css'
+  'pathvisio-js-css'=>'src/css/pathvisio-js.css',
+  'details-frame-css'=>'src/css/details-frame.css',
+  'pan-zoom-css'=>'src/css/pan-zoom.css'
 );
 
 $jsRelativeUrls = array(
@@ -42,14 +42,14 @@ $doc->loadHTMLFile("https://raw.github.com/" . $repo . "/pathvisio.js/" . $branc
 
 foreach ($cssRelativeUrls as $key => $value) {
   $element = $doc->getElementById($key);
-  $element->setAttribute("src", "../../remote-data-sources/php/github.php?repo=" . $repo . "&branch=" . $branch . "&relativeUrl=" . $value . "&mimeType=text/css");
+  $element->removeAttribute("href");
+  $element->setAttribute("href", "../../remote-data-sources/php/github.php?repo=" . $repo . "&branch=" . $branch . "&relativeUrl=" . $value . "&mimeType=text/css");
 }
 
 $pathvisioJsScriptElement = $doc->getElementById('pathvisio-js');
 
 foreach ($jsRelativeUrls as &$jsRelativeUrl) {
   $element = $doc->createElement('script');
-  //$element->setAttribute("src", "https://raw.github.com/" . $repo . "/pathvisio.js/" . $branch . "/" . $pathvisioJsScriptUrl);
   $element->setAttribute("src", "../../remote-data-sources/php/github.php?repo=" . $repo . "&branch=" . $branch . "&relativeUrl=" . $jsRelativeUrl . "&mimeType=application/javascript");
   $pathvisioJsScriptElement->parentNode->insertBefore($element, $pathvisioJsScriptElement);
 }
