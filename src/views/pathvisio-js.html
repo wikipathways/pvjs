@@ -10,10 +10,12 @@ http://google-styleguide.googlecode.com/svn/trunk/javascriptguide.xml
 http://google-styleguide.googlecode.com/svn/trunk/jsoncstyleguide.xml#General_Guidelines
 -->
 
-<link href="http://netdna.bootstrapcdn.com/font-awesome/3.0.2/css/font-awesome.css" rel="stylesheet" media="screen">
-<link rel="stylesheet" href="../css/details-frame.css">
-<link rel="stylesheet" href="http://bumbu.github.io/cytoscape.js/src/plugins/jquery.cytoscape-panzoom.css">
-<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css">
+<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" media="screen">
+<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css" media="screen">
+
+<link rel="stylesheet" href="../css/details-frame.css" media="screen">
+<link rel="stylesheet" href="../css/pan-zoom.css" media="screen">
+<link rel="stylesheet" href="../css/highlight-by-label.css" media="screen">
 
 <style type="text/css">
 body {
@@ -80,7 +82,7 @@ body {
 <script src="../lib/case-converter/case-converter.min.js"></script>
 <script src="../lib/xml2json/xml2json.min.js"></script>
 
-<script id="pathvisio-js" src="../../build/js/pathvisio.min.js"></script>
+<script src="../../build/js/pathvisio.min.js"></script>
 
 <script src="../lib/d3/d3.min.js" charset="utf-8"></script>
 <script>
@@ -102,7 +104,7 @@ if (!!pathvisio.helpers.getUrlParam('repo')) {
   if (!!pathvisio.helpers.getUrlParam('repo')) {
     branch = pathvisio.helpers.getUrlParam('branch');
   }
-  svgUrl = '../../remote-data-sources/php/github.php?data=svg&repo=' + repo + '&branch=' + branch;
+  svgUrl = '../../remote-data-sources/php/github.php?repo=' + repo + '&branch=' + branch . "&relativeUrl=/src/views/pathway-template.svg&mimeType=image/svg+xml;
 }
 else {
   if (!!pathvisio.helpers.getUrlParam('svg')) {
