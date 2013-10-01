@@ -9,7 +9,7 @@ var packageJson = grunt.file.readJSON("package.json"),
     releaseRoot = "../site-build/built-pathvisio.js/",
     sources = [
       'src/js/pathvisio/pathvisio.js',
-      'tmp/viewer.js',
+      'tmp/pathvisio-js.js',
       'src/js/pathvisio/helpers.js',
       'src/js/pathvisio/pathway/pathway.js',
       'src/js/pathvisio/pathway/group.js',
@@ -73,7 +73,7 @@ grunt.initConfig({
         afterconcat: [ distribution ]
     },
     str2js: {
-      pathvisioNS: { 'tmp/viewer.js': ['src/views/viewer.html', 'src/views/error.html', 'src/views/pathway-template.svg']}
+      pathvisioNS: { 'tmp/pathvisio-js.js': ['src/views/pathvisio-js.html', 'src/views/error.html', 'src/views/pathway-template.svg']}
     },
     "git-describe": {
         build: {
