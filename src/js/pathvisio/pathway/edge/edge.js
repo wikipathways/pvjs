@@ -56,35 +56,35 @@ pathvisio.pathway.edge = function(){
       rawJsonEdges.forEach(function(element, index, array) {
         if (element.graphics.hasOwnProperty('anchor')) {
           element.anchors = pathvisio.helpers.convertToArray(element.graphics.anchor);
-        };
+        }
 
         if (element.graphics.hasOwnProperty('color')) {
           var color = new RGBColor(element.graphics.color);
-          if (color.ok) { 
+          if (color.ok) {
             element.stroke = color.toHex();
           }
-        };	
+        }
 
         element.strokeWidth = element.graphics.lineThickness;
 
         if (element.graphics.hasOwnProperty('connectorType')) {
           element.connectorType = element.graphics.connectorType.toLowerCase();
-        }	
+        }
 
         if (element.graphics.hasOwnProperty('lineStyle')) {
           element.strokeStyle = element.graphics.lineStyle.toLowerCase();
           if (element.strokeStyle === 'broken') {
             element.strokeStyle = 'dashed';
-          };
-        }	
+          }
+        }
         else {
           if (element.hasOwnProperty('attribute')) {
             if ((element.attribute.key === "org.pathvisio.DoubleLineProperty") && (element.attribute.value === "Double")) {
               element.strokeStyle = 'double';
               delete element.attribute;
-            };
-          };	
-        };
+            }
+          }
+        }
 
         element.zIndex = element.graphics.zorder;
 
@@ -95,13 +95,13 @@ pathvisio.pathway.edge = function(){
           else {
             element.xref = element.xRef;
             delete element.xref;
-          };
-        };
+          }
+        }
 
         // Points
 
         var points = pathvisio.helpers.convertToArray( element.graphics.point );
-        var pointsData = pathvisio.pathway.edge.point.gpml2json( points );
+        var pointsData = pathvisio.pathway.edge.point.gpml2json(points);
         element.points = pointsData.points;
 
         // Back to edges
@@ -119,7 +119,7 @@ pathvisio.pathway.edge = function(){
       // z-index values specified in PathVisio. We could resort the edges after they are all drawn, but DOM operations are
       // expensive, so I will not do that unless it is required.
 
-      rawJsonEdges.sort(function(a,b) {return a.zIndex - b.zIndex});
+      rawJsonEdges.sort(function(a,b) {return a.zIndex - b.zIndex;});
 
       // edges with anchors will come before edges without anchors
 
@@ -131,7 +131,7 @@ pathvisio.pathway.edge = function(){
         }
         else {
           edgesWithAnchors.push(element);
-        };
+        }
       });
 
       // edges with many anchors will probably come before edges few anchors
@@ -140,19 +140,20 @@ pathvisio.pathway.edge = function(){
       // than the processes below, but I could be wrong, because I didn't spend
       // much time on this item.
 
-      //edgesWithAnchors.sort(function(a,b) {return b.anchors.length - a.anchors.length});
+      //edgesWithAnchors.sort(function(a,b) {return b.anchors.length - a.anchors.length;});
 
       // edges with endpoints not attached to anchors will come before edges with endpoints attached to anchors 
 
       function attachedToAnchor(point, edges) {
+        var anchor = null;
         var i = -1;
         do {
           i += 1;
-          var anchor = edges[i].anchors.filter(function(element) {return element.graphId === point.graphRef})[0]
-        } while (anchor === undefined && i < edges.length - 1);
+          anchor = edges[i].anchors.filter(function(element) {return element.graphId === point.graphRef;})[0];
+        } while (!anchor && i < edges.length - 1);
 
         return (anchor !== undefined);
-      };
+      }
 
       var validJsonEdges = [];
       var unsortedJsonEdges = edgesWithAnchors;
@@ -161,7 +162,7 @@ pathvisio.pathway.edge = function(){
         if (!attachedToAnchor(element.points[0], edgesWithAnchors) && !attachedToAnchor(element.points[element.points.length - 1], edgesWithAnchors)) {
           validJsonEdges.push(element);
           array.splice(index, 1);
-        };
+        }
       });
 
       // Recursively iterate through the list of unsorted json edges and check for whether each edge's endpoints are defined (either not attached to an anchor
@@ -176,7 +177,7 @@ pathvisio.pathway.edge = function(){
           if (((!attachedToAnchor(element.points[0], edgesWithAnchors)) || attachedToAnchor(element.points[0], validJsonEdges)) && (attachedToAnchor(element.points[element.points.length - 1], validJsonEdges) || (!attachedToAnchor(element.points[element.points.length - 1], edgesWithAnchors)))) {
             validJsonEdges.push(element);
             array.splice(index, 1);
-          };
+          }
         });
       } while (unsortedJsonEdges.length > 0);
 
@@ -188,29 +189,29 @@ pathvisio.pathway.edge = function(){
     catch (e) {
       console.log("Error converting edge to json: " + e.message);
       return e;
-    };
-  };
+    }
+  }
 
-  function drawAll() {
-    if (pathvisio.data.pathways[pathvisio.data.current.svgSelector].hasOwnProperty('edges')) {
+  function drawAll(svg) {
+    if (svg.datum().hasOwnProperty('edges')) {
       var pathData = null;
 
-      var edges = pathvisio.data.current.svg.select('#viewport').selectAll("pathway.edge")
-      .data(pathvisio.data.pathways[pathvisio.data.current.svgSelector].edges)
+      var edges = svg.select('#viewport').selectAll("pathway.edge")
+      .data(svg.datum().edges)
       .enter()
       .append("path")
       .attr("id", function (d) { return d.edgeType + '-' + d.graphId; })
-      .attr("class", function (d) { 
+      .attr("class", function (d) {
         var styleClass = 'edge ' + d.edgeType + ' ';
         if (d.hasOwnProperty('strokeStyle')) {
           if (d.strokeStyle === 'dashed') {
-            styleClass += " dashed-stroke"; 
-          };
-        };
-        return styleClass; 
+            styleClass += " dashed-stroke";
+          }
+        }
+        return styleClass;
       })
       .attr("d", function (d) {
-        pathData = pathvisio.pathway.edge.pathData.get(d);
+        pathData = pathvisio.pathway.edge.pathData.get(svg, d);
         if (d.hasOwnProperty('strokeStyle')) {
           if (d.strokeStyle === 'double') {
 
@@ -218,56 +219,56 @@ pathvisio.pathway.edge = function(){
             // what PathVisio (Java) does, but the white line (overlaying the
             // thick line to create a "double line") is hard to see at 1px.
 
-            pathvisio.data.current.svg.select('#viewport').append("path")
+            svg.select('#viewport').append("path")
             .attr("class", d.edgeType + "-double")
             .attr("d", pathData)
             .attr("class", "drawing-board-color-stroke")
             .attr("style", "stroke-width:" + d.strokeWidth + '; ')
-            .attr("marker-start", 'url(#' + pathvisio.pathway.edge.marker.draw(d.markerStart, 'start', d.stroke) + ')')
-            .attr("marker-end", 'url(#' + pathvisio.pathway.edge.marker.draw(d.markerEnd, 'end', d.stroke) + ')');
-          };
-        };
-        return pathData; 
+            .attr("marker-start", 'url(#' + pathvisio.pathway.edge.marker.draw(svg, d.markerStart, 'start', d.stroke) + ')')
+            .attr("marker-end", 'url(#' + pathvisio.pathway.edge.marker.draw(svg, d.markerEnd, 'end', d.stroke) + ')');
+          }
+        }
+        return pathData;
       })
-      .attr("style", function (d) { 
+      .attr("style", function (d) {
         var style = 'stroke-width:' + d.strokeWidth + '; ';
         if (d.hasOwnProperty('stroke')) {
-          style += 'stroke:' + d.stroke + '; '; 
-        };
+          style += 'stroke:' + d.stroke + '; ';
+        }
         if (d.hasOwnProperty('strokeStyle')) {
           if (d.strokeStyle === 'double') {
-            style += 'stroke-width:' + (3 * d.strokeWidth) + '; '; 
-          };
-        };
-        return style; 
+            style += 'stroke-width:' + (3 * d.strokeWidth) + '; ';
+          }
+        }
+        return style;
       })
-      .attr("marker-start", function (d) { 
-        markerStart = pathvisio.pathway.edge.marker.draw(d.markerStart, 'start', d.stroke);
+      .attr("marker-start", function (d) {
+        var markerStart = pathvisio.pathway.edge.marker.draw(svg, d.markerStart, 'start', d.stroke);
         if (d.hasOwnProperty('strokeStyle')) {
           if (d.strokeStyle === 'double') {
             //hack to manage marker scaling; this marker should not have any features itself
             markerStart = 'double-line-hack-start';
-          };
-        };
-        return 'url(#' + markerStart + ')'; 
+          }
+        }
+        return 'url(#' + markerStart + ')';
       })
-      .attr("marker-end", function (d) { 
-        markerEnd = pathvisio.pathway.edge.marker.draw(d.markerEnd, 'end', d.stroke);
+      .attr("marker-end", function (d) {
+        var markerEnd = pathvisio.pathway.edge.marker.draw(svg, d.markerEnd, 'end', d.stroke);
         if (d.hasOwnProperty('strokeStyle')) {
           if (d.strokeStyle === 'double') {
             //hack to manage marker scaling; this marker should not have any features itself
             markerEnd = 'double-line-hack-end';
-          };
-        };
-        return 'url(#' + markerEnd + ')'; 
+          }
+        }
+        return 'url(#' + markerEnd + ')';
       })
       .attr("fill", 'none');
-    };
-  };
+    }
+  }
 
   return {
     gpml2json:gpml2json,
     drawAll:drawAll
-  }
+  };
 }();
   

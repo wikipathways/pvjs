@@ -1,3 +1,5 @@
+svgPanZoom = function(){
+
 /** 
  *  SVGPan library 1.2.2
  * ======================
@@ -69,32 +71,33 @@
 
 "use strict";
 
-/// CONFIGURATION 
-/// ====>
+function init() {
+  /// CONFIGURATION 
+  /// ====>
 
-var enablePan = 1; // 1 or 0: enable or disable panning (default enabled)
-var enableZoom = 1; // 1 or 0: enable or disable zooming (default enabled)
-var enableDrag = 0; // 1 or 0: enable or disable dragging (default disabled)
-var zoomScale = 0.2; // Zoom sensitivity
+  var enablePan = 1; // 1 or 0: enable or disable panning (default enabled)
+  var enableZoom = 1; // 1 or 0: enable or disable zooming (default enabled)
+  var enableDrag = 0; // 1 or 0: enable or disable dragging (default disabled)
+  var zoomScale = 0.2; // Zoom sensitivity
 
-/// <====
-/// END OF CONFIGURATION 
+  /// <====
+  /// END OF CONFIGURATION 
 
-var root = document.documentElement.getElementsByTagName("svg")[0];
+  var root = document.documentElement.getElementsByTagName("svg")[0];
 
-var state = 'none', svgRoot = null, stateTarget, stateOrigin, stateTf;
+  var state = 'none', svgRoot = null, stateTarget, stateOrigin, stateTf;
 
-setupHandlers(root);
-
+  setupHandlers(root);
+}
 /**
  * Register handlers
  */
 function setupHandlers(root){
 	setAttributes(root, {
-		"onmouseup" : "handleMouseUp(evt)",
-		"onmousedown" : "handleMouseDown(evt)",
-		"onmousemove" : "handleMouseMove(evt)",
-		//"onmouseout" : "handleMouseUp(evt)", // Decomment this to stop the pan functionality when dragging out of the SVG element
+		"onmouseup" : "svgPanZoom.handleMouseUp(evt)",
+		"onmousedown" : "svgPanZoom.handleMouseDown(evt)",
+		"onmousemove" : "svgPanZoom.handleMouseMove(evt)",
+		//"onmouseout" : "svgPanZoom.handleMouseUp(evt)", // Decomment this to stop the pan functionality when dragging out of the SVG element
 	});
 
 	if(navigator.userAgent.toLowerCase().indexOf('webkit') >= 0)
@@ -109,8 +112,10 @@ function setupHandlers(root){
 function getRoot(root) {
 	console.log("root");
 	console.log(root);
-	if(svgRoot == null) {
+	if(!svgRoot) {
 		var r = root.getElementById("viewport") ? root.getElementById("viewport") : root.documentElement, t = r;
+    console.log('r');
+    console.log(r);
 
 		while(t != root) {
 			if(t.getAttribute("viewBox")) {
@@ -122,7 +127,7 @@ function getRoot(root) {
 			t = t.parentNode;
 		}
 
-		svgRoot = r;
+		window.svgRoot = svgRoot = r;
 	}
 
 	return svgRoot;
@@ -178,7 +183,7 @@ function handleMouseWheel(evt) {
 
 	evt.returnValue = false;
 
-	var svgDoc = evt.target.ownerDocument;
+	var svgDoc = document.getElementById("pathway-image"); //evt.target.ownerDocument;
 
 	var delta;
 
@@ -215,7 +220,7 @@ function handleMouseMove(evt) {
 
 	evt.returnValue = false;
 
-	var svgDoc = evt.target.ownerDocument;
+	var svgDoc = document.getElementById("pathway-image"); //evt.target.ownerDocument;
 
 	var g = getRoot(svgDoc);
 
@@ -243,7 +248,7 @@ function handleMouseDown(evt) {
 
 	evt.returnValue = false;
 
-	var svgDoc = evt.target.ownerDocument;
+	var svgDoc = document.getElementById("pathway-image"); //evt.target.ownerDocument;
 
 	var g = getRoot(svgDoc);
 
@@ -278,11 +283,17 @@ function handleMouseUp(evt) {
 
 	evt.returnValue = false;
 
-	var svgDoc = evt.target.ownerDocument;
+	var svgDoc = document.getElementById("pathway-image"); //evt.target.ownerDocument;
 
 	if(state == 'pan' || state == 'drag') {
 		// Quit pan mode
 		state = '';
 	}
 }
-
+  return{
+   init:init,
+   handleMouseUp:handleMouseUp,
+   handleMouseDown:handleMouseDown,
+   handleMouseMove:handleMouseMove
+  };
+}();

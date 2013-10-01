@@ -34,6 +34,12 @@
     "grunt-contrib-connect": "~0.3.0",
     "grunt-contrib-less": "~0.7.0",
     "grunt-contrib-concat": "~0.3.0",
-    "grunt-contrib-uglify": "~0.2.2"
+    "grunt-contrib-uglify": "~0.2.2",
+    "grunt-contrib-jshint": "~0.6.4",
+    "grunt-contrib-clean": "~0.5.0",
+    "grunt-git-describe": "~2.3.2"
+  },
+  "dependencies": {
+    "grunt-string-to-js": "0.0.3"
   }
 }

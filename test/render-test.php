@@ -56,12 +56,12 @@ http://google-styleguide.googlecode.com/svn/trunk/jsoncstyleguide.xml#General_Gu
     $('#gpml-for-reading').text(sGpml);
     $('#json-for-reading').text(sJson);
   };
-var repo = pathvisio.helpers.getUrlParam('repo');
-var id = pathvisio.helpers.getUrlParam('id');
 </script>
 
 <div id="choose-pathway-creator">
-  <button id="javascript-svg-pathway-button" class="pathway" onclick="displayDiv('javascript-svg')" style="background-color: yellow">pathvisio.js SVG</button>
+  <button id="javascript-dev-svg-pathway-button" class="pathway" title="SVG viewer for all modern browsers (Dev Version)" onclick="displayDiv('javascript-dev-svg')" style="background-color: yellow">pathvisio.js DEV SVG</button>
+  <button id="javascript-svg-pathway-button" class="pathway" title="SVG viewer for all modern browsers" onclick="displayDiv('javascript-svg')" style="background-color: lightgray">pathvisio.js SVG</button>
+  <button id="javascript-png-pathway-button" class="pathway" title="PNG viewer for old browsers like IE8" onclick="displayDiv('javascript-png')" style="background-color: lightgray">pathvisio.js PNG</button>
 <!--  <button id="java-svg-pathway-button" class="pathway" onclick="displayDiv('java-svg')" style="background-color: lightgray" title="SVG representation of GPML file, as created by PathVisio (Java), using Batik">PathVisio (Java) SVG</button>-->
   <button id="java-png-pathway-button" class="pathway" onclick="displayDiv('java-png')" style="background-color: lightgray" title="PNG representation of GPML file, as created by PathVisio (Java)">PathVisio (Java) PNG</button>
 <!--
@@ -70,6 +70,16 @@ var id = pathvisio.helpers.getUrlParam('id');
 -->
 Repo: 
 <?php
+// http://127.0.0.1/~andersriutta/pathvisio.js/test/render-test.php?gpml=WP290&repo=wikipathways&branch=dev&svgView=1
+
+// Values for pathvisio.pathway.load()
+
+  if (isset($_GET['gpml'])) {
+    $gpml = htmlspecialchars($_GET['gpml']);
+  }
+  else {
+    $gpml = "WP4";
+  }
 
   $authorizedRepos = array("wikipathways", "AlexanderPico", "ariutta", "khanspers");
   $repo = "wikipathways";
@@ -78,28 +88,31 @@ Repo:
       $repo = htmlspecialchars($_GET['repo']);
     }
   }
-  $pathwayTemplateSvgUrl = "https://raw.github.com/" . $repo . "/pathvisio.js/dev/src/views/pathway-template.svg";
-  $pathwayTemplateSvgUrlEditable = "https://github.com/" . $repo . "/pathvisio.js/blob/dev/src/views/pathway-template.svg";
-
-  if (isset($_GET['id'])) {
-    $id = htmlspecialchars($_GET['id']);
-    $batikSvgUrl = "http://test3.wikipathways.org//wpi/wpi.php?action=downloadFile&type=svg&pwTitle=Pathway:" . $id . "&revision=0";
-    $pngUrl = "http://test3.wikipathways.org/wpi//wpi.php?action=downloadFile&type=png&pwTitle=Pathway:" . $id . "&revision=0";
-    $gpmlUrl = "http://test3.wikipathways.org/wpi//wpi.php?action=downloadFile&type=gpml&pwTitle=Pathway:" . $id . "&revision=0";
-    $pathwayUrl = "http://test3.wikipathways.org/wpi/PathwayWidget.php?id=" . $id . "&repo=" . $repo;
-    $iframeUrl = "http://test3.wikipathways.org/wpi/js/pathvisio.js/src/views/render.php?id=" . $id . "&repo=" . $repo;
-  }
-
   foreach($authorizedRepos as $value){
     if ($value == $repo) {
-        $html .= "<option value='./render-test.php?id=" . $id . "&repo=" . $value . "' selected='selected'>$value</key>";
+        $html .= "<option value='./render-test.php?gpml=" . $gpml . "&repo=" . $value . "&branch=dev&svgView=1" . "' selected='selected'>$value</key>";
     }
     else {
-        $html .= "<option value='./render-test.php?id=" . $id . "&repo=" . $value . "'>$value</key>";
+        $html .= "<option value='./render-test.php?gpml=" . $gpml . "&repo=" . $value . "&branch=dev&svgView=1" . "'>$value</key>";
     }
   }
-
   echo "<select name='repo' onChange='document.location = this.value' value='GO'>$html</select>";
+
+  if (isset($_GET['branch'])) {
+    $branch = htmlspecialchars($_GET['branch']);
+  }
+  else {
+    $branch = "dev";
+  }
+
+  $pathwayTemplateSvgUrl = "https://raw.github.com/" . $repo . "/pathvisio.js/dev/src/views/pathway-template.svg";
+  $pathwayTemplateSvgUrlEditable = "https://github.com/" . $repo . "/pathvisio.js/blob/dev/src/views/pathway-template.svg";
+  $gpmlUrl = "http://test3.wikipathways.org/wpi//wpi.php?action=downloadFile&type=gpml&pwTitle=Pathway:" . $gpml . "&revision=0";
+  $javascriptDevSvgViewerUrl = "../src/views/viewer-dev.html?gpml=" . $_GET['gpml'] . "&svg=" . $_GET['svg'] . "&repo=" . $_GET['repo'] . "&branch=" . $_GET['branch'] . "&svgView=1";
+  $javascriptSvgViewerUrl = "../src/views/viewer.html?gpml=" . $_GET['gpml'] . "&repo=" . $_GET['repo'] . "&branch=" . $_GET['branch'] . "&svgView=1";
+  $javascriptPngViewerUrl = "../src/views/viewer.html?gpml=" . $_GET['gpml'] . "&repo=" . $_GET['repo'] . "&branch=" . $_GET['branch'] . "&svgView=0";
+  $batikSvgUrl = "http://test3.wikipathways.org//wpi/wpi.php?action=downloadFile&type=svg&pwTitle=Pathway:" . $gpml . "&revision=0";
+  $pngUrl = "http://test3.wikipathways.org/wpi//wpi.php?action=downloadFile&type=png&pwTitle=Pathway:" . $gpml . "&revision=0";
 ?>
 </div> 
 <p>If you would like to edit the symbols (shapes), markers (arrowheads), colors or other properties of the pathvisio.js pathway template, let Anders or Alex know. When you are added as an authorized user, you can edit your 
@@ -120,9 +133,24 @@ SVG pathway template file</a> in the <span style="font-weight: bold">DEV</span> 
   //*/
   
   ///*
-  echo "<div id='javascript-svg-pathway-container' class='pathway''>";
-	echo '<iframe src="' . $iframeUrl . '" width="100%" height="1000">';
-	//echo '<iframe src="' . $pathwayUrl . '" width="100%" height="800">';
+  echo "<div id='javascript-dev-svg-pathway-container' class='pathway'>";
+	echo '<iframe src="' . $javascriptDevSvgViewerUrl . '" width="100%" height="1000">';
+	 echo '<p>Your browser does not support iframes.</p>';
+	echo '</iframe>';
+  echo "</div>";
+  //*/
+
+   ///*
+  echo "<div id='javascript-svg-pathway-container' class='pathway' style='display: none;'>";
+	echo '<iframe src="' . $javascriptSvgViewerUrl . '" width="100%" height="1000">';
+	 echo '<p>Your browser does not support iframes.</p>';
+	echo '</iframe>';
+  echo "</div>";
+  //*/
+  
+  ///*
+  echo "<div id='javascript-png-pathway-container' class='pathway' style='display: none;'>";
+	echo '<iframe src="' . $javascriptPngViewerUrl . '" width="100%" height="1000">';
 	 echo '<p>Your browser does not support iframes.</p>';
 	echo '</iframe>';
   echo "</div>";
@@ -158,13 +186,18 @@ SVG pathway template file</a> in the <span style="font-weight: bold">DEV</span> 
   echo "</div>";
 
 ?>
-  <script src="../src/lib/jquery/jquery.js"></script>
-  <script src="../src/lib/d3/d3.js" charset="utf-8"></script>
+<script src="../src/lib/rgb-color/rgb-color.min.js"></script>
+<script src="../src/lib/case-converter/case-converter.min.js"></script>
+<script src="../src/lib/xml2json/xml2json.min.js"></script>
 
-  <script src="../build/js/pathvisio.js"></script>
+<script src="../build/js/pathvisio.min.js"></script>
+
+<script src="../src/lib/d3/d3.min.js" charset="utf-8"></script>
 <script>
-  window.onload = function() {
-<?php echo "pathvisio.pathway.load('#pathway-image', '" . $gpmlUrl . "');"; ?>
-  };
+/*
+  pathvisio.pathway.getJson(gpmlUrl, function(pathway) {
+    //getPng(pathway);
+  });
+//*/
 </script>
 </body>
