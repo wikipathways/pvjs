@@ -69,10 +69,6 @@ http://google-styleguide.googlecode.com/svn/trunk/jsoncstyleguide.xml#General_Gu
   <button id="json-pathway-button" class="pathway" onclick="displayDiv('json')" style="background-color: lightgray" title="Formatted JSON">JSON</button>
 -->
 <?php
-// http://127.0.0.1/~andersriutta/pathvisio.js/test/render-test.php?gpml=WP290&repo=wikipathways&branch=dev&svgView=1
-
-// Values for pathvisio.pathway.load()
-
   $gpml = "WP4";
   if (isset($_GET['gpml'])) {
     $gpmlParam = htmlspecialchars($_GET['gpml']);
@@ -96,8 +92,8 @@ http://google-styleguide.googlecode.com/svn/trunk/jsoncstyleguide.xml#General_Gu
     $branch = "dev";
   }
 
-  $pathwayTemplateSvgUrl = "https://raw.github.com/" . $repo . "/pathvisio.js/dev/src/views/pathway-template.svg";
-  $pathwayTemplateSvgUrlEditable = "https://github.com/" . $repo . "/pathvisio.js/blob/dev/src/views/pathway-template.svg";
+  $pathwayTemplateSvgUrl = "https://raw.github.com/" . $repo . "/pathvisio.js/" . $branch . "/src/views/pathway-template.svg";
+  $srcFolderUrl = "https://github.com/" . $repo . "/pathvisio.js/tree/" . $branch . "/src/";
   $gpmlUrl = "http://test3.wikipathways.org/wpi//wpi.php?action=downloadFile&type=gpml&pwTitle=Pathway:" . $gpml . "&revision=0";
   $javascriptDevSvgViewerUrl = "../src/views/pathvisio-js-dev.php?gpml=" . $_GET['gpml'] . "&svg=" . $_GET['svg'] . "&repo=" . $repo . "&branch=" . $branch . "&svgView=1";
   $javascriptSvgViewerUrl = "../src/views/pathvisio-js.html?gpml=" . $_GET['gpml'] . "&repo=" . $repo . "&branch=" . $branch . "&svgView=1";
@@ -105,7 +101,7 @@ http://google-styleguide.googlecode.com/svn/trunk/jsoncstyleguide.xml#General_Gu
   $batikSvgUrl = "http://test3.wikipathways.org//wpi/wpi.php?action=downloadFile&type=svg&pwTitle=Pathway:" . $gpml . "&revision=0";
   $pngUrl = "http://test3.wikipathways.org/wpi//wpi.php?action=downloadFile&type=png&pwTitle=Pathway:" . $gpml . "&revision=0";
 
-  echo '<form action="./compare.php" method="get">';
+  echo '<form action="#" method="get">';
       echo 'GPML: <input type="text" name="gpml" value="' . $gpml . '" />';
       echo 'Repo: <input type="text" name="repo" value="' . $repo . '" />';
       echo 'Branch: <input type="text" name="branch" value="' . $branch . '" />';
@@ -113,11 +109,11 @@ http://google-styleguide.googlecode.com/svn/trunk/jsoncstyleguide.xml#General_Gu
   echo '</form>';
 ?>
 </div> 
-<p>If you would like to edit the symbols (shapes), markers (arrowheads), colors or other properties of the pathvisio.js pathway template, let Anders or Alex know. When you are added as an authorized user, you can edit your 
+<p>If you would like to use this pathvisio.js test and development site, let Anders or Alex know. Once you're an authorized user, you can edit the files in the <a href="
 <?php
-  echo "<a href='" . $pathwayTemplateSvgUrlEditable . "'>"
+ echo $srcFolderUrl;
 ?>
-SVG pathway template file</a> in the <span style="font-weight: bold">DEV</span> branch of your github fork of <a href="https://github.com/wikipathways/pathvisio.js">pathvisio.js</a>, commit, and view your changes on this page. Note that your commits on Github may take a few seconds before they show up here.</p>
+">"src" folder</a> of your Github fork of pathvisio.js, commit your changes, and view the result here. Note that Github can have a few second delay before your commits take effect.</p>
 
 <?php
 
