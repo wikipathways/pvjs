@@ -60,6 +60,13 @@ http://google-styleguide.googlecode.com/svn/trunk/jsoncstyleguide.xml#General_Gu
   };
 
   function displayDiv(creator) {
+    var chooseSourceDataForm = $('#choose-source-data');
+    if (creator === 'pathvisio-js-dev') {
+      chooseSourceDataForm.show();
+    }
+    else {
+      chooseSourceDataForm.hide();
+    }
     $('button.pathway').each(function(i) {
       this.style.backgroundColor = 'lightgray';
     });
@@ -119,7 +126,7 @@ http://google-styleguide.googlecode.com/svn/trunk/jsoncstyleguide.xml#General_Gu
   $pathvisioJavaSvgUrl = "http://test3.wikipathways.org//wpi/wpi.php?action=downloadFile&type=svg&pwTitle=Pathway:" . $gpml . "&revision=0";
   $pathvisioJavaPngUrl = "http://test3.wikipathways.org/wpi//wpi.php?action=downloadFile&type=png&pwTitle=Pathway:" . $gpml . "&revision=0";
 
-  echo '<form action="#" method="get">';
+  echo '<form id="choose-source-data" action="#" method="get">';
       echo 'GPML: <input type="text" id="gpml" name="gpml" value="' . $gpml . '" />';
       echo 'Repo: <input type="text" id="repo" name="repo" value="' . $repo . '" />';
       echo 'Branch: <input type="text" id="branch" name="branch" value="' . $branch . '" />';
