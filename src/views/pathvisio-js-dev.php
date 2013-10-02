@@ -25,15 +25,17 @@ $jsRelativeUrls = array(
 
 $repo = "wikipathways";
 if (isset($_GET['repo'])) {
-  if ($_GET['repo'] != "null") {
-    $repo = htmlspecialchars($_GET['repo']);
+  $repoParam = htmlspecialchars($_GET['repo']);
+  if ($repoParam != "null") {
+    $repo = $repoParam;
   }
 }
 
 $branch = "dev";
 if (isset($_GET['branch'])) {
-  if ($_GET['branch'] != "null") {
-    $branch = htmlspecialchars($_GET['branch']);
+  $branchParam = htmlspecialchars($_GET['branch']);
+  if ($branchParam != "null") {
+    $branch = $branchParam;
   }
 }
 
