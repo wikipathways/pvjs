@@ -1,9 +1,13 @@
 pathvisio.js
 ============
 
-JavaScript viewer and editor for biological pathways. All code is in alpha stage and is subject to large and rapid changes.
+JavaScript viewer and editor for biological pathways. All code is in beta stage and is subject to substantial change.
 
-[Demo on JSBin](http://jsbin.com/iJUTEjU/latest)
+Demos
+=====
+
+[JSBin](http://jsbin.com/iJUTEjU/latest)
+[Widget example on JSFiddle](http://jsfiddle.net/ariutta/RzeKd/)
 
 License
 =======
