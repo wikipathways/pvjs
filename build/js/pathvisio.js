@@ -1,5 +1,5 @@
 //! pathvisio-js 0.0.1
-//! Built on 2013-10-01
+//! Built on 2013-10-02
 //! https://github.com/wikipathways/pathvisio.js
 //! License: http://www.apache.org/licenses/LICENSE-2.0/
 
