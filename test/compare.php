@@ -18,6 +18,22 @@ http://google-styleguide.googlecode.com/svn/trunk/jsoncstyleguide.xml#General_Gu
 <script src="../src/lib/d3/d3.js" charset="utf-8"></script>
 
 <script>
+
+  $(window).on('load', function () {
+    var repoInput = $( "#repo" );
+    var branchInput = $( "#branch" );
+    repoInput.change(function() {
+      if (branchInput.val() != 'master') {
+        branchInput.val('master');
+        branchInput.attr('placeholder', 'e.g., master');
+        branchInput.attr('style', 'background-color: pink');
+      }
+    });
+    branchInput.focus(function() {
+      branchInput.attr('style', '');
+    });
+  });
+
   function insertParam(key, value)
   {
       key = encodeURI(key); value = encodeURI(value);
@@ -47,26 +63,27 @@ http://google-styleguide.googlecode.com/svn/trunk/jsoncstyleguide.xml#General_Gu
     $('button.pathway').each(function(i) {
       this.style.backgroundColor = 'lightgray';
     });
-    $('#' + creator + '-pathway-button')[0].style.backgroundColor = 'yellow';
+    $('#' + creator + '-button')[0].style.backgroundColor = 'yellow';
 
     $('div.pathway').each(function(i) {
       this.style.display = 'none';
     });
-    $('#' + creator + "-pathway-container")[0].style.display = 'block';
+    $('#' + creator + "-container")[0].style.display = 'block';
     $('#gpml-for-reading').text(sGpml);
     $('#json-for-reading').text(sJson);
   };
 </script>
 
-<div id="choose-pathway-creator">
-  <button id="javascript-dev-svg-pathway-button" class="pathway" title="SVG viewer for all modern browsers (Dev Version)" onclick="displayDiv('javascript-dev-svg')" style="background-color: yellow">pathvisio.js DEV SVG</button>
-  <button id="javascript-svg-pathway-button" class="pathway" title="SVG viewer for all modern browsers" onclick="displayDiv('javascript-svg')" style="background-color: lightgray">pathvisio.js SVG</button>
-  <button id="javascript-png-pathway-button" class="pathway" title="PNG viewer for old browsers like IE8" onclick="displayDiv('javascript-png')" style="background-color: lightgray">pathvisio.js PNG</button>
-<!--  <button id="java-svg-pathway-button" class="pathway" onclick="displayDiv('java-svg')" style="background-color: lightgray" title="SVG representation of GPML file, as created by PathVisio (Java), using Batik">PathVisio (Java) SVG</button>-->
-  <button id="java-png-pathway-button" class="pathway" onclick="displayDiv('java-png')" style="background-color: lightgray" title="PNG representation of GPML file, as created by PathVisio (Java)">PathVisio (Java) PNG</button>
+<div id="choose-viewer">
+  <button id="pathvisio-js-dev-button" class="pathway" title="SVG viewer for all modern browsers (Dev Version)" onclick="displayDiv('pathvisio-js-dev')" style="background-color: yellow">pathvisio.js (DEV)</button>
+  <button id="pathvisio-js-prod-button" class="pathway" title="SVG viewer for all modern browsers" onclick="displayDiv('pathvisio-js-prod')" style="background-color: lightgray">pathvisio.js (PROD)</button>
+  <button id="pathvisio-js-prod-old-browsers-button" class="pathway" title="PNG viewer for old browsers like IE8" onclick="displayDiv('pathvisio-js-prod-old-browsers')" style="background-color: lightgray">pathvisio.js (PROD for old browsers)</button>
+  <button id="current-wiki-pathways-widget-button" class="pathway" title="Pathway widget currently in use on www.wikipathways.org" onclick="displayDiv('current-wiki-pathways-widget')" style="background-color: lightgray">Current WP Viewer</button>
+<!--  <button id="pathvisio-java-svg-button" class="pathway" onclick="displayDiv('pathvisio-java-svg')" style="background-color: lightgray" title="SVG representation of GPML file, as created by PathVisio (Java), using Batik">PathVisio (Java) SVG</button>-->
+  <button id="pathvisio-java-png-button" class="pathway" onclick="displayDiv('pathvisio-java-png')" style="background-color: lightgray" title="PNG representation of GPML file, as created by PathVisio (Java)">PathVisio (Java) PNG</button>
 <!--
-  <button id="gpml-pathway-button" class="pathway" onclick="displayDiv('gpml')" style="background-color: lightgray" title="Source GPML">GPML (XML)</button>
-  <button id="json-pathway-button" class="pathway" onclick="displayDiv('json')" style="background-color: lightgray" title="Formatted JSON">JSON</button>
+  <button id="gpml-button" class="pathway" onclick="displayDiv('gpml')" style="background-color: lightgray" title="Source GPML">GPML (XML)</button>
+  <button id="json-button" class="pathway" onclick="displayDiv('json')" style="background-color: lightgray" title="Formatted JSON">JSON</button>
 -->
 <?php
   $gpml = "WP4";
@@ -95,16 +112,17 @@ http://google-styleguide.googlecode.com/svn/trunk/jsoncstyleguide.xml#General_Gu
   $pathwayTemplateSvgUrl = "https://raw.github.com/" . $repo . "/pathvisio.js/" . $branch . "/src/views/pathway-template.svg";
   $srcFolderUrl = "https://github.com/" . $repo . "/pathvisio.js/tree/" . $branch . "/src/";
   $gpmlUrl = "http://test3.wikipathways.org/wpi//wpi.php?action=downloadFile&type=gpml&pwTitle=Pathway:" . $gpml . "&revision=0";
-  $javascriptDevSvgViewerUrl = "../src/views/pathvisio-js-dev.php?gpml=" . $_GET['gpml'] . "&svg=" . $_GET['svg'] . "&repo=" . $repo . "&branch=" . $branch . "&svgView=1";
-  $javascriptSvgViewerUrl = "../src/views/pathvisio-js.html?gpml=" . $_GET['gpml'] . "&repo=" . $repo . "&branch=" . $branch . "&svgView=1";
-  $javascriptPngViewerUrl = "../src/views/pathvisio-js.html?gpml=" . $_GET['gpml'] . "&repo=" . $repo . "&branch=" . $branch . "&svgView=0";
-  $batikSvgUrl = "http://test3.wikipathways.org//wpi/wpi.php?action=downloadFile&type=svg&pwTitle=Pathway:" . $gpml . "&revision=0";
-  $pngUrl = "http://test3.wikipathways.org/wpi//wpi.php?action=downloadFile&type=png&pwTitle=Pathway:" . $gpml . "&revision=0";
+  $pathvisioJsDevUrl = "../src/views/pathvisio-js-dev.php?gpml=" . $_GET['gpml'] . "&svg=" . $_GET['svg'] . "&repo=" . $repo . "&branch=" . $branch . "&svgView=1";
+  $pathvisioJsProdUrl = "../src/views/pathvisio-js.html?gpml=" . $_GET['gpml'] . "&repo=" . $repo . "&branch=" . $branch . "&svgView=1";
+  $pathvisioJsProdOldBrowsersUrl = "../src/views/pathvisio-js.html?gpml=" . $_GET['gpml'] . "&repo=" . $repo . "&branch=" . $branch . "&svgView=0";
+  $currentWikiPathwaysWidgetUrl = "http://www.wikipathways.org/wpi/PathwayWidget.php?id=" . $gpml;
+  $pathvisioJavaSvgUrl = "http://test3.wikipathways.org//wpi/wpi.php?action=downloadFile&type=svg&pwTitle=Pathway:" . $gpml . "&revision=0";
+  $pathvisioJavaPngUrl = "http://test3.wikipathways.org/wpi//wpi.php?action=downloadFile&type=png&pwTitle=Pathway:" . $gpml . "&revision=0";
 
   echo '<form action="#" method="get">';
-      echo 'GPML: <input type="text" name="gpml" value="' . $gpml . '" />';
-      echo 'Repo: <input type="text" name="repo" value="' . $repo . '" />';
-      echo 'Branch: <input type="text" name="branch" value="' . $branch . '" />';
+      echo 'GPML: <input type="text" id="gpml" name="gpml" value="' . $gpml . '" />';
+      echo 'Repo: <input type="text" id="repo" name="repo" value="' . $repo . '" />';
+      echo 'Branch: <input type="text" id="branch" name="branch" value="' . $branch . '" />';
   echo '<input type="submit" value="Submit" />';
   echo '</form>';
 ?>
@@ -120,31 +138,31 @@ http://google-styleguide.googlecode.com/svn/trunk/jsoncstyleguide.xml#General_Gu
   // pathvisio.js pathway SVG
 
   /*
-  echo "<div id='javascript-svg-pathway-container' class='pathway''>";
+  echo "<div id='pathvisio-js-prod-container' class='pathway''>";
     $pathwayTemplateSvg = file_get_contents($pathwayTemplateSvgUrl);
     echo $pathwayTemplateSvg;
   echo "</div>";
   //*/
   
   ///*
-  echo "<div id='javascript-dev-svg-pathway-container' class='pathway'>";
-	echo '<iframe src="' . $javascriptDevSvgViewerUrl . '" width="100%" height="1000">';
+  echo "<div id='pathvisio-js-dev-container' class='pathway'>";
+	echo '<iframe src="' . $pathvisioJsDevUrl . '" width="100%" height="1000">';
 	 echo '<p>Your browser does not support iframes.</p>';
 	echo '</iframe>';
   echo "</div>";
   //*/
 
    ///*
-  echo "<div id='javascript-svg-pathway-container' class='pathway' style='display: none;'>";
-	echo '<iframe src="' . $javascriptSvgViewerUrl . '" width="100%" height="1000">';
+  echo "<div id='pathvisio-js-prod-container' class='pathway' style='display: none;'>";
+	echo '<iframe src="' . $pathvisioJsProdUrl . '" width="100%" height="1000">';
 	 echo '<p>Your browser does not support iframes.</p>';
 	echo '</iframe>';
   echo "</div>";
   //*/
-  
+ 
   ///*
-  echo "<div id='javascript-png-pathway-container' class='pathway' style='display: none;'>";
-	echo '<iframe src="' . $javascriptPngViewerUrl . '" width="100%" height="1000">';
+  echo "<div id='pathvisio-js-prod-old-browsers-container' class='pathway' style='display: none;'>";
+	echo '<iframe src="' . $pathvisioJsProdOldBrowsersUrl . '" width="100%" height="1000">';
 	 echo '<p>Your browser does not support iframes.</p>';
 	echo '</iframe>';
   echo "</div>";
@@ -152,20 +170,28 @@ http://google-styleguide.googlecode.com/svn/trunk/jsoncstyleguide.xml#General_Gu
  
   // PathVisio (Java) PNG
 
-  echo "<div id='java-png-pathway-container' class='pathway' style='display: none;'>";
-    echo '<img id="img" src="' . $pngUrl . '"/>';
+  echo "<div id='pathvisio-java-png-container' class='pathway' style='display: none;'>";
+    echo '<img id="img" src="' . $pathvisioJavaPngUrl . '"/>';
   echo "</div>";
 
   // PathVisio (Java) SVG
 
   /*
-  $batikSvg = simplexml_load_file($batikSvg);
-  echo "<div id='java-svg-pathway-container' class='pathway' style='display: none;'>";
-    echo $batikSvg->saveXML();
+  $pathvisioJavaSvg = simplexml_load_file($pathvisioJavaSvg);
+  echo "<div id='pathvisio-java-svg-container' class='pathway' style='display: none;'>";
+    echo $pathvisioJavaSvg->saveXML();
   echo "</div>";
    */
+  
+  ///*
+  echo "<div id='current-wiki-pathways-widget-container' class='pathway'>";
+	echo '<iframe src="' . $currentWikiPathwaysWidgetUrl . '" width="100%" height="1000" style="overflow:hidden;">';
+	 echo '<p>Your browser does not support iframes.</p>';
+	echo '</iframe>';
+  echo "</div>";
+  //*/
 
-  echo "<div id='gpml-pathway-container' class='pathway' style='display:none'>";
+  echo "<div id='gpml-container' class='pathway' style='display:none'>";
 
     // need to use LIBXML_NOEMPTYTAG option, because it appears Chrome will incorrectly close the self-closing tags in gpml.
 
@@ -175,7 +201,7 @@ http://google-styleguide.googlecode.com/svn/trunk/jsoncstyleguide.xml#General_Gu
 
   // JSON GPML 
 
-  echo "<div id='json-pathway-container' class='pathway' style='display:none'>";
+  echo "<div id='json-container' class='pathway' style='display:none'>";
     echo "<textarea id='json-for-reading' rows='40' cols='180'>Not yet implemented.</textarea>";
   echo "</div>";
 
