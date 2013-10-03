@@ -10,19 +10,20 @@ http://google-styleguide.googlecode.com/svn/trunk/javascriptguide.xml
 http://google-styleguide.googlecode.com/svn/trunk/jsoncstyleguide.xml#General_Guidelines
 -->
 
-
 </head>
-<body>
 
+<body>
 <script src="../lib/jquery/jquery.js"></script>
 <script src="../lib/d3/d3.js" charset="utf-8"></script>
-
 <script>
-
   $(window).on('load', function () {
-    var repoInput = $( "#repo" );
+    $('div.pathway').each(function(i) {
+      this.style.display = 'none';
+    });
+    $('#pathvisio-js-dev-container').show();
+    var accountInput = $( "#account" );
     var branchInput = $( "#branch" );
-    repoInput.change(function() {
+    accountInput.change(function() {
       if (branchInput.val() != 'master') {
         branchInput.val('master');
         branchInput.attr('placeholder', 'e.g., master');
@@ -33,31 +34,6 @@ http://google-styleguide.googlecode.com/svn/trunk/jsoncstyleguide.xml#General_Gu
       branchInput.attr('style', '');
     });
   });
-
-  function insertParam(key, value)
-  {
-      key = encodeURI(key); value = encodeURI(value);
-
-      var kvp = document.location.search.substr(1).split('&');
-
-      var i=kvp.length; var x; while(i--) 
-      {
-          x = kvp[i].split('=');
-
-          if (x[0]==key)
-          {
-              x[1] = value;
-              kvp[i] = x.join('=');
-              break;
-          }
-      }
-
-      if(i<0) {kvp[kvp.length] = [key,value].join('=');}
-
-      //this will reload the page, it's likely better to store this until finished
-      document.location.search = kvp.join('&'); 
-      //document.location.search = kvp.join('&'); 
-  };
 
   function displayDiv(creator) {
     var chooseSourceDataForm = $('#choose-source-data');
@@ -101,11 +77,11 @@ http://google-styleguide.googlecode.com/svn/trunk/jsoncstyleguide.xml#General_Gu
     }
   }
 
-  $repo = "wikipathways";
-  if (isset($_GET['repo'])) {
-    $repoParam = htmlspecialchars($_GET['repo']);
-    if ($repoParam != "null") {
-      $repo = $repoParam;
+  $account = "wikipathways";
+  if (isset($_GET['account'])) {
+    $accountParam = htmlspecialchars($_GET['account']);
+    if ($accountParam != "null") {
+      $account = $accountParam;
     }
   }
 
@@ -116,29 +92,30 @@ http://google-styleguide.googlecode.com/svn/trunk/jsoncstyleguide.xml#General_Gu
     $branch = "dev";
   }
 
-  $pathwayTemplateSvgUrl = "https://raw.github.com/" . $repo . "/pathvisio.js/" . $branch . "/src/views/pathway-template.svg";
-  $srcFolderUrl = "https://github.com/" . $repo . "/pathvisio.js/tree/" . $branch . "/src/";
+  $pathwayTemplateSvgUrl = "https://raw.github.com/" . $account . "/pathvisio.js/" . $branch . "/src/views/pathway-template.svg";
+  $srcFolderUrl = "https://github.com/" . $account . "/pathvisio.js/tree/" . $branch . "/src/";
   $gpmlUrl = "http://test3.wikipathways.org/wpi//wpi.php?action=downloadFile&type=gpml&pwTitle=Pathway:" . $gpml . "&revision=0";
-  $pathvisioJsDevUrl = "../src/views/pathvisio-js-dev.php?gpml=" . $_GET['gpml'] . "&svg=" . $_GET['svg'] . "&repo=" . $repo . "&branch=" . $branch . "&svgView=1";
-  $pathvisioJsProdUrl = "../src/views/pathvisio-js.html?gpml=" . $_GET['gpml'] . "&repo=" . $repo . "&branch=" . $branch . "&svgView=1";
-  $pathvisioJsProdOldBrowsersUrl = "../src/views/pathvisio-js.html?gpml=" . $_GET['gpml'] . "&repo=" . $repo . "&branch=" . $branch . "&svgView=0";
+  $pathvisioJsDevUrl = "../src/views/pathvisio-js-dev.php?gpml=" . $_GET['gpml'] . "&svg=" . $_GET['svg'] . "&account=" . $account . "&branch=" . $branch . "&svgView=1";
+  $pathvisioJsProdUrl = "../src/views/pathvisio-js.html?gpml=" . $_GET['gpml'] . "&account=" . $account . "&branch=" . $branch . "&svgView=1";
+  $pathvisioJsProdOldBrowsersUrl = "../src/views/pathvisio-js.html?gpml=" . $_GET['gpml'] . "&account=" . $account . "&branch=" . $branch . "&svgView=0";
   $currentWikiPathwaysWidgetUrl = "http://www.wikipathways.org/wpi/PathwayWidget.php?id=" . $gpml;
   $pathvisioJavaSvgUrl = "http://test3.wikipathways.org//wpi/wpi.php?action=downloadFile&type=svg&pwTitle=Pathway:" . $gpml . "&revision=0";
   $pathvisioJavaPngUrl = "http://test3.wikipathways.org/wpi//wpi.php?action=downloadFile&type=png&pwTitle=Pathway:" . $gpml . "&revision=0";
 
   echo '<form id="choose-source-data" action="#" method="get">';
       echo 'GPML: <input type="text" id="gpml" name="gpml" value="' . $gpml . '" />';
-      echo 'Repo: <input type="text" id="repo" name="repo" value="' . $repo . '" />';
+      echo 'Account: <input type="text" id="account" name="account" value="' . $account . '" />';
       echo 'Branch: <input type="text" id="branch" name="branch" value="' . $branch . '" />';
   echo '<input type="submit" value="Submit" />';
   echo '</form>';
 ?>
 </div> 
-<p>If you would like to use this pathvisio.js test and development site, let Anders or Alex know. Once you're an authorized user, you can edit the files in the <a href="
+
+<p>This pathvisio.js test and development site allows you to edit the pathvisio.js code online at Github and view the results right here in the <b>pathvisio.js (DEV)</b> frame below. To get started, fork the <a href="https://github.com/wikipathways/pathvisio.js">pathvisio.js repo</a> and ask Anders or Alex to add you as an authorized user (authorized users array is in <a href="https://github.com/wikipathways/pathvisio.js/blob/master/remote-data-sources/php/github.php">github.php</a>). If you've already forked the pathvisio.js repo, be sure to pull the latest changes from the master branch of the wikipathways pathvisio.js repo (yourAccount::yourBranch ... wikipathways::master). Then edit the code in any of the files in the <a href="
 <?php
  echo $srcFolderUrl;
 ?>
-">"src" folder</a> of your Github fork of pathvisio.js, commit your changes, and view the result here. Note that Github can have a few second delay before your commits take effect.</p>
+">"src" folder</a> of your Github fork of pathvisio.js and commit your changes on Github. (You may need to wait a second after committing for Github to apply your changes.) To see the result, return to this page, enter your Account and Branch above and click "Submit." When you're done editing, you can create a pull request on Github (wikipathways::master ... yourAccount::yourBranch) to merge your changes into the master branch of the wikipathways pathvisio.js repo.</p>
 
 <?php
 
@@ -160,7 +137,7 @@ http://google-styleguide.googlecode.com/svn/trunk/jsoncstyleguide.xml#General_Gu
   //*/
 
    ///*
-  echo "<div id='pathvisio-js-prod-container' class='pathway' style='display: none;'>";
+  echo "<div id='pathvisio-js-prod-container' class='pathway'>";
 	echo '<iframe src="' . $pathvisioJsProdUrl . '" width="100%" height="1000">';
 	 echo '<p>Your browser does not support iframes.</p>';
 	echo '</iframe>';
@@ -168,7 +145,7 @@ http://google-styleguide.googlecode.com/svn/trunk/jsoncstyleguide.xml#General_Gu
   //*/
  
   ///*
-  echo "<div id='pathvisio-js-prod-old-browsers-container' class='pathway' style='display: none;'>";
+  echo "<div id='pathvisio-js-prod-old-browsers-container' class='pathway'>";
 	echo '<iframe src="' . $pathvisioJsProdOldBrowsersUrl . '" width="100%" height="1000">';
 	 echo '<p>Your browser does not support iframes.</p>';
 	echo '</iframe>';
@@ -177,7 +154,7 @@ http://google-styleguide.googlecode.com/svn/trunk/jsoncstyleguide.xml#General_Gu
  
   // PathVisio (Java) PNG
 
-  echo "<div id='pathvisio-java-png-container' class='pathway' style='display: none;'>";
+  echo "<div id='pathvisio-java-png-container' class='pathway'>";
     echo '<img id="img" src="' . $pathvisioJavaPngUrl . '"/>';
   echo "</div>";
 
@@ -198,7 +175,7 @@ http://google-styleguide.googlecode.com/svn/trunk/jsoncstyleguide.xml#General_Gu
   echo "</div>";
   //*/
 
-  echo "<div id='gpml-container' class='pathway' style='display:none'>";
+  echo "<div id='gpml-container' class='pathway'>";
 
     // need to use LIBXML_NOEMPTYTAG option, because it appears Chrome will incorrectly close the self-closing tags in gpml.
 
@@ -208,7 +185,7 @@ http://google-styleguide.googlecode.com/svn/trunk/jsoncstyleguide.xml#General_Gu
 
   // JSON GPML 
 
-  echo "<div id='json-container' class='pathway' style='display:none'>";
+  echo "<div id='json-container' class='pathway'>";
     echo "<textarea id='json-for-reading' rows='40' cols='180'>Not yet implemented.</textarea>";
   echo "</div>";
 
