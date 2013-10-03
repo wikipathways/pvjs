@@ -14,8 +14,8 @@ http://google-styleguide.googlecode.com/svn/trunk/jsoncstyleguide.xml#General_Gu
 </head>
 <body>
 
-<script src="../src/lib/jquery/jquery.js"></script>
-<script src="../src/lib/d3/d3.js" charset="utf-8"></script>
+<script src="../lib/jquery/jquery.js"></script>
+<script src="../lib/d3/d3.js" charset="utf-8"></script>
 
 <script>
 
@@ -213,13 +213,13 @@ http://google-styleguide.googlecode.com/svn/trunk/jsoncstyleguide.xml#General_Gu
   echo "</div>";
 
 ?>
-<script src="../src/lib/rgb-color/rgb-color.min.js"></script>
-<script src="../src/lib/case-converter/case-converter.min.js"></script>
-<script src="../src/lib/xml2json/xml2json.min.js"></script>
+<script src="../lib/rgb-color/rgb-color.min.js"></script>
+<script src="../lib/case-converter/case-converter.min.js"></script>
+<script src="../lib/xml2json/xml2json.min.js"></script>
 
 <script src="../build/js/pathvisio.min.js"></script>
 
-<script src="../src/lib/d3/d3.min.js" charset="utf-8"></script>
+<script src="../lib/d3/d3.min.js" charset="utf-8"></script>
 <script>
 /*
   pathvisio.pathway.getJson(gpmlUrl, function(pathway) {
