@@ -512,14 +512,23 @@ pathvisio.pathway = function(){
 
   // get JSON and draw SVG representation of pathway
 
-  function load(targetSelector, svgUrl, gpmlUrl, highlightByLabelSelector) {
+  //function load(targetSelector, svgUrl, gpmlUrl, highlightByLabelSelector) {
+  function load(options) {
+    self.options = options;
+    var targetSelector = options.container;
+    //var svgUrl = options.svgUrl;
+    var gpmlUrl = options.gpmlUrl;
+    var highlightByLabelSelector = options.highlightByLabelSelector;
     if (!targetSelector) { return console.warn('Error: No pathway container selector specified as target.'); }
     if (d3.select(targetSelector).length !== 1) { return console.warn('pathway container selector must be unique.'); }
     //if (!pathvisio.helpers.isUrl(svgUrl)) { return console.warn('Error: No URL specified for SVG pathway template.'); }
     //if (!pathvisio.helpers.isUrl(gpmlUrl)) { return console.warn('Error: No URL specified for GPML data source.'); }
 
-    getSvg(svgUrl, 1, function(svg) {
-      var target = d3.select(targetSelector);
+    var pathvisioJsContainer = d3.select(options.container);
+    pathvisioJsContainer.html(pathvisioNS['tmp/pathvisio-js.html']);
+
+    //getSvg(svgUrl, 1, function(svg) {
+      //var target = d3.select(targetSelector);
       //svgPanZoom.init();
 
 
@@ -527,6 +536,7 @@ pathvisio.pathway = function(){
       //target.append(svg);
 
       getJson(gpmlUrl, function(pathway) {
+        var svg = d3.select('body').select('svg');
         svg.datum(pathway);
         draw(svg);
 
@@ -554,7 +564,7 @@ pathvisio.pathway = function(){
           }
         });
       });
-    });
+   // });
   }
 
   return {
