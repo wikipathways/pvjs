@@ -73,7 +73,8 @@ grunt.initConfig({
         afterconcat: [ distribution ]
     },
     str2js: {
-      pathvisioNS: { 'tmp/pathvisio-js.js': ['src/views/pathvisio-js.html', 'src/views/error.html', 'src/views/pathway-template.svg']}
+      //pathvisioNS: { 'tmp/pathvisio-js.js': ['src/views/pathvisio-js.html', 'src/views/error.html', 'src/views/pathway-template.svg']}
+      pathvisioNS: { 'tmp/pathvisio-js.js': ['tmp/pathvisio-js.html']}
     },
     "git-describe": {
         build: {

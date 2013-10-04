@@ -10,7 +10,9 @@ http://google-styleguide.googlecode.com/svn/trunk/javascriptguide.xml
 http://google-styleguide.googlecode.com/svn/trunk/jsoncstyleguide.xml#General_Guidelines
 -->
 
+<!--
 <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" media="screen">
+-->
 <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css" media="screen">
 
 <link id="pathvisio-js-css" rel="stylesheet" href="../css/pathvisio-js.css" media="screen">
@@ -70,7 +72,7 @@ else {
   var svgView = pathvisio.helpers.getUrlParam('svgView');
 };
 
-var svgUrl = null;
+var svgUrl = self.svgUrl = null;
 var repo = 'wikipathways';
 console.log(pathvisio.helpers.getUrlParam('svg'));
 if (!!pathvisio.helpers.getUrlParam('repo')) {
