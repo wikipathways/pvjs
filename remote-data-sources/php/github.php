@@ -1,6 +1,6 @@
 <?php
 
-$approvedRepos = array(
+$approvedAccounts = array(
   'wikipathways',
   'AlexanderPico',
   'andrawaag',
@@ -9,11 +9,11 @@ $approvedRepos = array(
   'mkutmon'
 );
 
-$repo = "wikipathways";
-if (isset($_GET['repo'])) {
-  $repoParam = htmlspecialchars($_GET['repo']);
-  if (($repoParam != "null") && (in_array($repoParam, $approvedRepos))) {
-    $repo = $repoParam;
+$account = "wikipathways";
+if (isset($_GET['account'])) {
+  $accountParam = htmlspecialchars($_GET['account']);
+  if (($accountParam != "null") && (in_array($accountParam, $approvedAccounts))) {
+    $account = $accountParam;
   }
 }
 
@@ -43,7 +43,7 @@ if (isset($_GET['mimeType'])) {
 }
 
 //header("Access-Control-Allow-Origin: *");
-$fileUrl = "https://raw.github.com/" . $repo . "/pathvisio.js/" . $branch . $relativeUrl;
+$fileUrl = "https://raw.github.com/" . $account . "/pathvisio.js/" . $branch . $relativeUrl;
 $fileContents = file_get_contents($fileUrl);
 
 header("Content-Type: " . $mimeType);
