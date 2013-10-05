@@ -138,6 +138,17 @@ else {
 
 
 <script>
+
+  var account = 'wikipathways';
+  if (!!pathvisio.helpers.getUrlParam('account')) {
+    account = pathvisio.helpers.getUrlParam('account');
+  }
+
+  var branch = 'master';
+  if (!!pathvisio.helpers.getUrlParam('branch')) {
+    branch = pathvisio.helpers.getUrlParam('branch');
+  }
+
   //pathvisio.pathway.load('#pathway-container', svgUrl, gpmlUrl, '#highlight-by-label');
   var pathvisioNS = [];
   var pvDocumentFragment = null;
@@ -163,18 +174,18 @@ else {
         cssUrl: '',
         customShapes: [
           //{'id': 'mitochondria','url': 'http://127.0.0.1/~andersriutta/pathvisio.js/remote-data-sources/php/github.php?relativeUrl=/src/views/symbols/mitochondria.svg'},
-          {'id': 'arc', 'url': '../remote-data-sources/php/github.php?relativeUrl=/src/views/symbols/arc.svg'},
-          {'id': 'brace', 'url': '../remote-data-sources/php/github.php?relativeUrl=/src/views/symbols/brace.svg'},
-          {'id': 'endoplasmic-reticulum', 'url': '../remote-data-sources/php/github.php?relativeUrl=/src/views/symbols/endoplasmic-reticulum.svg'},
-          {'id': 'golgi-apparatus', 'url': '../remote-data-sources/php/github.php?relativeUrl=/src/views/symbols/golgi-apparatus.svg'},
-          {'id': 'hexagon', 'url': '../remote-data-sources/php/github.php?relativeUrl=/src/views/symbols/hexagon.svg'},
-          {'id': 'mim-degradation', 'url': '../remote-data-sources/php/github.php?relativeUrl=/src/views/symbols/mim-degradation.svg'},
-          {'id': 'mitochondria', 'url': '../remote-data-sources/php/github.php?relativeUrl=/src/views/symbols/mitochondria.svg'},
-          {'id': 'oval', 'url': '../remote-data-sources/php/github.php?relativeUrl=/src/views/symbols/oval.svg'},
-          {'id': 'pentagon', 'url': '../remote-data-sources/php/github.php?relativeUrl=/src/views/symbols/pentagon.svg'},
-          {'id': 'rectangle', 'url': '../remote-data-sources/php/github.php?relativeUrl=/src/views/symbols/rectangle.svg'},
-          {'id': 'sarcoplasmic-reticulum','url': '../remote-data-sources/php/github.php?relativeUrl=/src/views/symbols/sarcoplasmic-reticulum.svg'},
-          {'id': 'triangle', 'url': '../remote-data-sources/php/github.php?relativeUrl=/src/views/symbols/triangle.svg'}
+          {'id': 'arc', 'url': '../remote-data-sources/php/github.php?relativeUrl=/src/views/symbols/arc.svg?account=' + account + '&branch=' + branch},
+          {'id': 'brace', 'url': '../remote-data-sources/php/github.php?relativeUrl=/src/views/symbols/brace.svg?account=' + account + '&branch=' + branch},
+          {'id': 'endoplasmic-reticulum', 'url': '../remote-data-sources/php/github.php?relativeUrl=/src/views/symbols/endoplasmic-reticulum.svg?account=' + account + '&branch=' + branch},
+          {'id': 'golgi-apparatus', 'url': '../remote-data-sources/php/github.php?relativeUrl=/src/views/symbols/golgi-apparatus.svg?account=' + account + '&branch=' + branch},
+          {'id': 'hexagon', 'url': '../remote-data-sources/php/github.php?relativeUrl=/src/views/symbols/hexagon.svg?account=' + account + '&branch=' + branch},
+          {'id': 'mim-degradation', 'url': '../remote-data-sources/php/github.php?relativeUrl=/src/views/symbols/mim-degradation.svg?account=' + account + '&branch=' + branch},
+          {'id': 'mitochondria', 'url': '../remote-data-sources/php/github.php?relativeUrl=/src/views/symbols/mitochondria.svg?account=' + account + '&branch=' + branch},
+          {'id': 'oval', 'url': '../remote-data-sources/php/github.php?relativeUrl=/src/views/symbols/oval.svg?account=' + account + '&branch=' + branch},
+          {'id': 'pentagon', 'url': '../remote-data-sources/php/github.php?relativeUrl=/src/views/symbols/pentagon.svg?account=' + account + '&branch=' + branch},
+          {'id': 'rectangle', 'url': '../remote-data-sources/php/github.php?relativeUrl=/src/views/symbols/rectangle.svg?account=' + account + '&branch=' + branch},
+          {'id': 'sarcoplasmic-reticulum','url': '../remote-data-sources/php/github.php?relativeUrl=/src/views/symbols/sarcoplasmic-reticulum.svg?account=' + account + '&branch=' + branch},
+          {'id': 'triangle', 'url': '../remote-data-sources/php/github.php?relativeUrl=/src/views/symbols/triangle.svg?account=' + account + '&branch=' + branch}
         ],
         highlightNodes: [
           {'parameter': 'label', 'parameterValue': 'CRH', 'color': 'red'},
