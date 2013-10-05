@@ -512,59 +512,61 @@ pathvisio.pathway = function(){
 
   // get JSON and draw SVG representation of pathway
 
-  //function load(targetSelector, svgUrl, gpmlUrl, highlightByLabelSelector) {
-  function load(options) {
-    self.options = options;
-    var targetSelector = options.container;
-    //var svgUrl = options.svgUrl;
-    var gpmlUrl = options.gpmlUrl;
-    var highlightByLabelSelector = options.highlightByLabelSelector;
-    if (!targetSelector) { return console.warn('Error: No pathway container selector specified as target.'); }
-    if (d3.select(targetSelector).length !== 1) { return console.warn('pathway container selector must be unique.'); }
-    //if (!pathvisio.helpers.isUrl(svgUrl)) { return console.warn('Error: No URL specified for SVG pathway template.'); }
-    //if (!pathvisio.helpers.isUrl(gpmlUrl)) { return console.warn('Error: No URL specified for GPML data source.'); }
+  function load(args) {
+    self.args = args;
+    if (!args.container) { return console.warn('Error: No container selector specified as target for pathvisio.js.'); }
+    if (!args.gpmlUrl) { return console.warn('Error: No gpml URL specified as data source for pathvisio.js.'); }
+    var container = d3.select(args.container);
+    if (container.length !== 1) { return console.warn('Error: Container selector must be matched by exactly one element.'); }
 
-    var pathvisioJsContainer = d3.select(options.container);
-    pathvisioJsContainer.html(pathvisioNS['tmp/pathvisio-js.html']);
+    container.html(pathvisioNS['tmp/pathvisio-js.html']);
 
-    //getSvg(svgUrl, 1, function(svg) {
-      //var target = d3.select(targetSelector);
-      //svgPanZoom.init();
+    getJson(args.gpmlUrl, function(pathway) {
+      var svg = container.select('#pathway-image');
 
-
-      // this does not work
-      //target.append(svg);
-
-      getJson(gpmlUrl, function(pathway) {
-        var svg = d3.select('body').select('svg');
-        svg.datum(pathway);
-        draw(svg);
-
-        var nodeLabels = [];
-        pathway.nodes.forEach(function(node) {
-          if (!!node.textLabel && node.elementType === 'data-node') {
-            nodeLabels.push(node.textLabel.text);
-          }
-        });
-
-        // see http://twitter.github.io/typeahead.js/
-
-        $(highlightByLabelSelector).typeahead({
-          name: 'Find in pathway',
-          local: nodeLabels,
-          limit: 10
-        });
-        $('.icon-eye-open').click(function(){
-          var nodeLabel = $("#highlight-by-label").val();
-          if (!nodeLabel) {
-            console.warn('Error: No data node value entered.');
-          }
-          else {
-            pathvisio.pathway.highlightByLabel(nodeLabel);
-          }
-        });
+      var def = null;
+      var dimensions = null;
+      args.customShapes.forEach(function(customShape) {
+        def = d3.select('svg').select('defs').select('#' + customShape.id);
+        if (!def[0][0]) {
+          def = d3.select('svg').select('defs').append('symbol').attr('id', customShape.id)
+          .attr('viewBox', '0 0 100 100')
+          .attr('preserveAspectRatio', 'none');
+        }
+        else {
+          def.selectAll('*').remove();
+        }
+        dimensions = def.attr('viewBox').split(' ');
+        def.append('image').attr('xlink:xlink:href', customShape.url).attr('x', dimensions[0]).attr('y', dimensions[1]).attr('width', dimensions[2]).attr('height', dimensions[3]);
       });
-   // });
+
+      svg.datum(pathway);
+      draw(svg);
+
+      var nodeLabels = [];
+      pathway.nodes.forEach(function(node) {
+        if (!!node.textLabel && node.elementType === 'data-node') {
+          nodeLabels.push(node.textLabel.text);
+        }
+      });
+
+      // see http://twitter.github.io/typeahead.js/
+
+      $('#highlight-by-label').typeahead({
+        name: 'Find in pathway',
+        local: nodeLabels,
+        limit: 10
+      });
+      $('.icon-eye-open').click(function(){
+        var nodeLabel = $("#highlight-by-label").val();
+        if (!nodeLabel) {
+          console.warn('Error: No data node value entered.');
+        }
+        else {
+          pathvisio.pathway.highlightByLabel(nodeLabel);
+        }
+      });
+    });
   }
 
   return {
