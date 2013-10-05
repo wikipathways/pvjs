@@ -92,11 +92,10 @@ http://google-styleguide.googlecode.com/svn/trunk/jsoncstyleguide.xml#General_Gu
     $branch = "dev";
   }
 
-  $pathwayTemplateSvgUrl = "https://raw.github.com/" . $account . "/pathvisio.js/" . $branch . "/src/views/pathway-template.svg";
   $srcFolderUrl = "https://github.com/" . $account . "/pathvisio.js/tree/" . $branch . "/src/";
   $gpmlUrl = "http://test3.wikipathways.org/wpi//wpi.php?action=downloadFile&type=gpml&pwTitle=Pathway:" . $gpml . "&revision=0";
-  $pathvisioJsDevUrl = "../src/views/pathvisio-js-dev.php?gpml=" . $_GET['gpml'] . "&svg=" . $_GET['svg'] . "&account=" . $account . "&branch=" . $branch . "&svgView=1";
-  $pathvisioJsProdUrl = "../src/views/pathvisio-js.html?gpml=" . $_GET['gpml'] . "&account=" . $account . "&branch=" . $branch . "&svgView=1";
+  $pathvisioJsDevUrl = "pathvisio-js-dev.html?gpml=" . $_GET['gpml'] . "&account=" . $account . "&branch=" . $branch . "&svgView=1";
+  $pathvisioJsProdUrl = "pathvisio-js-prod.html?gpml=" . $_GET['gpml'] . "&account=" . $account . "&branch=" . $branch . "&svgView=1";
   $pathvisioJsProdOldBrowsersUrl = "../src/views/pathvisio-js.html?gpml=" . $_GET['gpml'] . "&account=" . $account . "&branch=" . $branch . "&svgView=0";
   $currentWikiPathwaysWidgetUrl = "http://www.wikipathways.org/wpi/PathwayWidget.php?id=" . $gpml;
   $pathvisioJavaSvgUrl = "http://test3.wikipathways.org//wpi/wpi.php?action=downloadFile&type=svg&pwTitle=Pathway:" . $gpml . "&revision=0";

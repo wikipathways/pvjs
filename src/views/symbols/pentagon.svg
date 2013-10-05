@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<?xml-stylesheet type="text/css" href="../../css/pathway-template.css"?>
+
+<svg id="pentagon"
+	version="1.1"
+	baseProfile="full"
+	xmlns="http://www.w3.org/2000/svg"
+	xmlns:xlink="http://www.w3.org/1999/xlink"
+	xmlns:ev="http://www.w3.org/2001/xml-events"
+	width="100"
+	height="100"
+	viewBox="0 0 100 100"
+	preserveAspectRatio="none"
+	class="node shape">
+
+        <clipPath id="pentagon-clip-path">
+		<polygon points="59.159732818603516,99.61322021484375 95,50.28331756591797 59.159732818603516,0.9534196853637695 1.168962001800537,19.795764923095703 1.168962001800537,80.7708740234375 " vector-effect="non-scaling-stroke"/>
+	</clipPath>
+	
+	<polygon points="59.159732818603516,99.61322021484375 95,50.28331756591797 59.159732818603516,0.9534196853637695 1.168962001800537,19.795764923095703 1.168962001800537,80.7708740234375 " style="clip-path: url(#pentagon-clip-path); " vector-effect="non-scaling-stroke"/>
+
+</svg>

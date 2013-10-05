@@ -68,17 +68,17 @@
 		stroke-dasharray: 5,3;
 	}
 
-	data-node {
+	.data-node {
 		fill-opacity: 1;
 		stroke: black;
 		stroke-dasharray: 0;
 		stroke-miterlimit: 1;
 	}
 
-	gene-product {
+	.gene-product {
 	}
 
-	metabolite {
+	.metabolite {
 		stroke: blue;
 	}
 
@@ -86,7 +86,7 @@
 		fill: blue;
 	}
 
-	pathway {
+	.pathway {
 		stroke: rgb(20,150,30);
 		fill-opacity: 0;
 	}
@@ -97,16 +97,16 @@
 		stroke: none;
 	}
 
-	protein {
+	.protein {
 	}
 
-	rna {
+	.rna {
 	}
 
-	unknown {
+	.unknown {
 	}
 
-	label {
+	.label {
 		stroke: black;
 		stroke-width: 0;
 		fill-opacity: 0;
@@ -114,22 +114,22 @@
 		stroke-miterlimit: 1;
 	}
 
-	shape {
+	.shape {
 		fill-opacity: 0;
 		stroke: black;
 		stroke-dasharray: 0;
 		stroke-miterlimit: 1;
 	}
 
-	shape-none {
+	.shape-none {
 		fill: none;
 		fill-opacity: 0;
 		stroke: none;
 	}
 
-	cellular-component {
+	.cellular-component {
 		fill-opacity: 0;
-		stroke: "#C0C0C0";
+		stroke: gray;
 	}
 
 	.graphical-line {

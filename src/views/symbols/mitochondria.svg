@@ -1,9 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-
 <?xml-stylesheet type="text/css" href="../../css/pathway-template.css"?>
-
-<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
-  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
 
 <svg id="mitochondria"
 	version="1.1"
@@ -15,8 +11,7 @@
 	height="100"
 	viewBox="0 0 100 100"
 	preserveAspectRatio="none"
-	class="node shape"
-	style="stroke:#c0c0c0; stroke-width:6; ">
+	class="node shape cellular-component">
 
         <clipPath id="oval-clip-path">
 		<ellipse cx="50" cy="50" rx="50" ry="50" vector-effect="non-scaling-stroke"></ellipse>
