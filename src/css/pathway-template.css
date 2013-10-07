@@ -115,7 +115,7 @@
 	}
 
 	.shape {
-		fill-opacity: 0.5;
+		fill-opacity: 0;
 		stroke: black;
 		stroke-dasharray: 0;
 		stroke-miterlimit: 1;
