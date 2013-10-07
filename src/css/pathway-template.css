@@ -115,10 +115,11 @@
 	}
 
 	.shape {
-		fill-opacity: 0;
+		fill-opacity: 0.5;
 		stroke: black;
 		stroke-dasharray: 0;
 		stroke-miterlimit: 1;
+		fill: red;
 	}
 
 	.shape-none {
