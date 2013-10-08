@@ -25,8 +25,9 @@ if (isset($_GET['branch'])) {
   }
 }
 
+$baseUrl = "https://raw.github.com/" . $account . "/pathvisio.js/" . $branch . '/src/';
 
-$relativeUrl = "/src/views/pathway-template.svg";
+$relativeUrl = "views/pathway-template.svg";
 if (isset($_GET['relativeUrl'])) {
   $relativeUrlParam = htmlspecialchars($_GET['relativeUrl']);
   if ($relativeUrlParam != "null") {
@@ -44,13 +45,11 @@ if (isset($_GET['mimeType'])) {
 header("Content-Type: " . $mimeType);
 //header("Access-Control-Allow-Origin: *");
 
-$fileUrl = "https://raw.github.com/" . $account . "/pathvisio.js/" . $branch . $relativeUrl;
+$fileUrl = $baseUrl . $relativeUrl;
 $fileContents = file_get_contents($fileUrl);
 
 if ($mimeType == "image/svg+xml") {
-  //$cssUrl = "../../src/css/pathway-template.css";
-  $cssUrl = "https://rawgithub.com/" . $account . "/pathvisio.js/" . $branch . "/src/css/pathway-template.css";
-  //$cssUrl = "http://127.0.0.1/~andersriutta/pathvisio.js/remote-data-sources/php/github-css.php?account=wikipathways&branch=dev&relativeUrl=/src/css/pathway-template.css";
+  $cssUrl = $baseUrl . "css/pathway-template.css";
   $fileContents = preg_replace("/\.\.\/\.\.\/css\/pathway-template\.css/", $cssUrl, $fileContents);
   $xml = simplexml_load_string($fileContents);
   echo $xml->saveXML();

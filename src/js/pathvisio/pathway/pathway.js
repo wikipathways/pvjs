@@ -378,6 +378,7 @@ pathvisio.pathway = function(){
   }
 
   function draw(svg){
+    self.svg = svg;
     var pathway = null;
     if (!svg.datum()) {
       console.warn('Error: No data entered as input.');
@@ -510,63 +511,104 @@ pathvisio.pathway = function(){
     //*/
   }
 
+  function appendCustomShape(customShape, callback) {
+    img = document.createElement('img');
+    img.src = customShape.url;
+    img.onload = function() {
+      def = d3.select('svg').select('defs').select('#' + customShape.id);
+      if (!def[0][0]) {
+        def = d3.select('svg').select('defs').append('symbol').attr('id', customShape.id)
+        .attr('viewBox', '0 0 ' + this.width + ' ' + this.height)
+        .attr('preserveAspectRatio', 'none');
+      }
+      else {
+        def.selectAll('*').remove();
+      }
+      dimensions = def.attr('viewBox').split(' ');
+      def.append('image').attr('xlink:xlink:href', customShape.url).attr('x', dimensions[0]).attr('y', dimensions[1]).attr('width', dimensions[2]).attr('height', dimensions[3]);
+      callback(null);
+    }
+  }
+
+  function loadCustomShapes(args, callback) {
+    var image = null;
+    var img = null;
+    var def = null;
+    var dimensions = null;
+    var dimensionSet = self.dimensionSet = [];
+
+    if (!!args.customShapes) {
+      async.each(args.customShapes, appendCustomShape, function(err){
+          // if any of the saves produced an error, err would equal that error
+        callback(null);
+      });
+    }
+  }
+
   // get JSON and draw SVG representation of pathway
 
   function load(args) {
     self.args = args;
     if (!args.container) { return console.warn('Error: No container selector specified as target for pathvisio.js.'); }
     if (!args.gpmlUrl) { return console.warn('Error: No gpml URL specified as data source for pathvisio.js.'); }
+
     var container = d3.select(args.container);
     if (container.length !== 1) { return console.warn('Error: Container selector must be matched by exactly one element.'); }
+    async.series([
+      function(callback){
+        container.html(pathvisioNS['tmp/pathvisio-js.html']);
+        callback(null);
+      },
+      function(callback){
+        container.html(pathvisioNS['tmp/pathvisio-js.html']);
+        callback(null);
+      },
+      function(callback) {
+        loadCustomShapes(args, function() {
+          callback(null);
+        })
+      },
+      function(callback) {
+        getJson(args.gpmlUrl, function() {
+          var svg = container.select('#pathway-image');
+          svg.datum(pathway);
 
-    container.html(pathvisioNS['tmp/pathvisio-js.html']);
+          d3.text('http://127.0.0.1/~andersriutta/pathvisio.js/src/css/pathway-template.css', 'text/css', function(data) {
+          var svg = d3.select('svg');
+          var defs = svg.select('defs');
+          var style = defs.append('style').attr('type', "text/css");
+          style.text(data);
+          })
 
-    getJson(args.gpmlUrl, function(pathway) {
-      var svg = container.select('#pathway-image');
+          draw(svg);
 
-      var def = null;
-      var dimensions = null;
-      args.customShapes.forEach(function(customShape) {
-        def = d3.select('svg').select('defs').select('#' + customShape.id);
-        if (!def[0][0]) {
-          def = d3.select('svg').select('defs').append('symbol').attr('id', customShape.id)
-          .attr('viewBox', '0 0 100 100')
-          .attr('preserveAspectRatio', 'none');
-        }
-        else {
-          def.selectAll('*').remove();
-        }
-        dimensions = def.attr('viewBox').split(' ');
-        def.append('image').attr('xlink:xlink:href', customShape.url).attr('x', dimensions[0]).attr('y', dimensions[1]).attr('width', dimensions[2]).attr('height', dimensions[3]);
-      });
+          var nodeLabels = [];
+          pathway.nodes.forEach(function(node) {
+            if (!!node.textLabel && node.elementType === 'data-node') {
+              nodeLabels.push(node.textLabel.text);
+            }
+          });
 
-      svg.datum(pathway);
-      draw(svg);
+          // see http://twitter.github.io/typeahead.js/
 
-      var nodeLabels = [];
-      pathway.nodes.forEach(function(node) {
-        if (!!node.textLabel && node.elementType === 'data-node') {
-          nodeLabels.push(node.textLabel.text);
-        }
-      });
-
-      // see http://twitter.github.io/typeahead.js/
-
-      $('#highlight-by-label').typeahead({
-        name: 'Find in pathway',
-        local: nodeLabels,
-        limit: 10
-      });
-      $('.icon-eye-open').click(function(){
-        var nodeLabel = $("#highlight-by-label").val();
-        if (!nodeLabel) {
-          console.warn('Error: No data node value entered.');
-        }
-        else {
-          pathvisio.pathway.highlightByLabel(nodeLabel);
-        }
-      });
-    });
+          $('#highlight-by-label').typeahead({
+            name: 'Find in pathway',
+            local: nodeLabels,
+            limit: 10
+          });
+          $('.icon-eye-open').click(function(){
+            var nodeLabel = $("#highlight-by-label").val();
+            if (!nodeLabel) {
+              console.warn('Error: No data node value entered.');
+            }
+            else {
+              pathvisio.pathway.highlightByLabel(nodeLabel);
+            }
+          });
+          callback(null);
+        })  
+      }
+    ]);
   }
 
   return {

@@ -210,26 +210,6 @@ pathvisio.pathway.edge = function(){
         }
         return styleClass;
       })
-      .attr("d", function (d) {
-        pathData = pathvisio.pathway.edge.pathData.get(svg, d);
-        if (d.hasOwnProperty('strokeStyle')) {
-          if (d.strokeStyle === 'double') {
-
-            // setting stroke-width equal to its specified line value is
-            // what PathVisio (Java) does, but the white line (overlaying the
-            // thick line to create a "double line") is hard to see at 1px.
-
-            svg.select('#viewport').append("path")
-            .attr("class", d.edgeType + "-double")
-            .attr("d", pathData)
-            .attr("class", "drawing-board-color-stroke")
-            .attr("style", "stroke-width:" + d.strokeWidth + '; ')
-            .attr("marker-start", 'url(#' + pathvisio.pathway.edge.marker.draw(svg, d.markerStart, 'start', d.stroke) + ')')
-            .attr("marker-end", 'url(#' + pathvisio.pathway.edge.marker.draw(svg, d.markerEnd, 'end', d.stroke) + ')');
-          }
-        }
-        return pathData;
-      })
       .attr("style", function (d) {
         var style = 'stroke-width:' + d.strokeWidth + '; ';
         if (d.hasOwnProperty('stroke')) {
@@ -262,7 +242,31 @@ pathvisio.pathway.edge = function(){
         }
         return 'url(#' + markerEnd + ')';
       })
-      .attr("fill", 'none');
+      .attr("fill", 'none')
+
+      // this attr needs to be last, because of the confusion over the meaning of 'd' as 1) the data for the d3 selection and 2) the path data.
+      // Somehow, d (the d3 selection data) gets redefined after this attr is defined.
+
+      .attr("d", function (d) {
+        pathData = pathvisio.pathway.edge.pathData.get(svg, d);
+        if (d.hasOwnProperty('strokeStyle')) {
+          if (d.strokeStyle === 'double') {
+
+            // setting stroke-width equal to its specified line value is
+            // what PathVisio (Java) does, but the white line (overlaying the
+            // thick line to create a "double line") is hard to see at 1px.
+
+            svg.select('#viewport').append("path")
+            .attr("class", d.edgeType + "-double")
+            .attr("d", pathData)
+            .attr("class", "drawing-board-color-stroke")
+            .attr("style", "stroke-width:" + d.strokeWidth + '; ')
+            .attr("marker-start", 'url(#' + pathvisio.pathway.edge.marker.draw(svg, d.markerStart, 'start', d.stroke) + ')')
+            .attr("marker-end", 'url(#' + pathvisio.pathway.edge.marker.draw(svg, d.markerEnd, 'end', d.stroke) + ')');
+          }
+        }
+        return pathData;
+      });
     }
   }
 
