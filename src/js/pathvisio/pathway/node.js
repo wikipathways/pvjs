@@ -344,6 +344,9 @@ pathvisio.pathway.node = function(){
         return style;
       });
 
+      console.log('d');
+      console.log(d.symbolType);
+
       if (svg.datum().symbolsAvailable[0].filter(function(element) { return (element.id === d.symbolType);}).length === 1) {
 
         // d3 bug strips 'xlink' so need to say 'xlink:xlink';
