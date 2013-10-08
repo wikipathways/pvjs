@@ -135,11 +135,13 @@ http://google-styleguide.googlecode.com/svn/trunk/jsoncstyleguide.xml#General_Gu
     console.warn('Error: No GPML data source specified.');
   };
 
-  var baseUrl = 'http://127.0.0.1/~andersriutta/pathvisio.js/remote-data-sources/php/local.php?relativeUrl=';
+  var path = document.location.origin + document.location.pathname;
+  path = path.replace("pathvisio.js/test/pathvisio-js-dev.html", "pathvisio.js/")
+  var baseUrl = path + 'remote-data-sources/php/local.php?relativeUrl=';
   if (!!pathvisio.helpers.getUrlParam('account') && !!pathvisio.helpers.getUrlParam('branch')) {
     account = pathvisio.helpers.getUrlParam('account');
     branch = pathvisio.helpers.getUrlParam('branch');
-    baseUrl = '../remote-data-sources/php/github.php?account=' + account + '&branch=' + branch + '&relativeUrl=';
+    baseUrl = path + 'remote-data-sources/php/github.php?account=' + account + '&branch=' + branch + '&relativeUrl=';
   }
 
   //pathvisio.pathway.load('#pathway-container', svgUrl, gpmlUrl, '#highlight-by-label');
