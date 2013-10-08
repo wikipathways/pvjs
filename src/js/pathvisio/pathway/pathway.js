@@ -573,7 +573,7 @@ pathvisio.pathway = function(){
           var svg = container.select('#pathway-image');
           svg.datum(pathway);
 
-          d3.text('http://127.0.0.1/~andersriutta/pathvisio.js/src/css/pathway-template.css', 'text/css', function(data) {
+          d3.text(args.cssUrl, 'text/css', function(data) {
           var svg = d3.select('svg');
           var defs = svg.select('defs');
           var style = defs.append('style').attr('type', "text/css");

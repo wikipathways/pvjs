@@ -68,17 +68,17 @@
 		stroke-dasharray: 5,3;
 	}
 
-	.data-node {
+	use.data-node {
 		fill-opacity: 1;
 		stroke: black;
 		stroke-dasharray: 0;
 		stroke-miterlimit: 1;
 	}
 
-	.gene-product {
+	use.gene-product {
 	}
 
-	.metabolite {
+	use.metabolite {
 		stroke: blue;
 	}
 
@@ -86,7 +86,7 @@
 		fill: blue;
 	}
 
-	.pathway {
+	use.pathway {
 		stroke: rgb(20,150,30);
 		fill-opacity: 0;
 	}
@@ -97,13 +97,13 @@
 		stroke: none;
 	}
 
-	.protein {
+	use.protein {
 	}
 
-	.rna {
+	use.rna {
 	}
 
-	.unknown {
+	use.unknown {
 	}
 
 	.label {
