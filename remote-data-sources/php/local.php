@@ -1,6 +1,8 @@
 <?php
 
-$baseUrl = "http://127.0.0.1/~andersriutta/pathvisio.js/src/";
+$baseUrl = "http://" . $_SERVER['SERVER_NAME'] . $_SERVER['PHP_SELF'];
+$baseUrl = preg_replace("/remote-data-sources\/php\/local\.php/", "src/", $baseUrl);
+
 $relativeUrl = "views/pathway-template.svg";
 if (isset($_GET['relativeUrl'])) {
   $relativeUrlParam = htmlspecialchars($_GET['relativeUrl']);
@@ -46,5 +48,4 @@ if ($mimeType == "image/svg+xml") {
 else {
   echo $fileContents;
 }
-
 ?>
