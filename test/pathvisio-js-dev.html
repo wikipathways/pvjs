@@ -18,7 +18,6 @@ http://google-styleguide.googlecode.com/svn/trunk/jsoncstyleguide.xml#General_Gu
 <link id="pathvisio-js-css" rel="stylesheet" href="../src/css/pathvisio-js.css" media="screen">
 <link id="details-frame-css" rel="stylesheet" href="../src/css/details-frame.css" media="screen">
 <link id="pan-zoom-css" rel="stylesheet" href="../src/css/pan-zoom.css" media="screen">
-<link rel="stylesheet" href="../src/css/pathway-template.css" media="screen">
 
 <!--[if lt IE 9]>
 <script src="http://ie7-js.googlecode.com/svn/version/2.1(beta4)/IE9.js"></script>
@@ -59,6 +58,7 @@ http://google-styleguide.googlecode.com/svn/trunk/jsoncstyleguide.xml#General_Gu
 <script src="../lib/rgb-color/rgb-color.min.js"></script>
 <script src="../lib/case-converter/case-converter.min.js"></script>
 <script src="../lib/xml2json/xml2json.min.js"></script>
+<script src="../lib/async/lib/async.js"></script>
 
 <script src="../src/js/pathvisio/pathvisio.js"></script>
 <script src="../src/js/pathvisio/helpers.js"></script>
@@ -74,49 +74,6 @@ http://google-styleguide.googlecode.com/svn/trunk/jsoncstyleguide.xml#General_Gu
 <script src="../src/js/pathvisio/pathway/x-ref.js"></script>
 
 <script src="../lib/d3/d3.min.js" charset="utf-8"></script>
-<script>
-var currentUrlWithoutQueryString = window.location.href.split("?")[0].split("#")[0];
-
-if (!pathvisio.helpers.getUrlParam('svgView')) {
-  var svgView = 1;
-}
-else {
-  var svgView = pathvisio.helpers.getUrlParam('svgView');
-};
-
-if (!!pathvisio.helpers.getUrlParam('gpml')) {
-  var rev = 0;
-  if (!!pathvisio.helpers.getUrlParam('rev')) {
-    rev = pathvisio.helpers.getUrlParam('rev');
-  }
-
-  var gpmlSource = pathvisio.helpers.getUrlParam('gpml');
-  ///*
-  // gpmlSource is a WikiPathways ID
-  if (gpmlSource.indexOf('.gpml') === -1 && gpmlSource.indexOf('.xml') === -1) { // if gpmlSource is a WikiPathways ID
-    var gpmlUrl = currentUrlWithoutQueryString + '/../../remote-data-sources/php/wikipathways.php?data=gpml&id=' + gpmlSource + '&rev=' + rev;
-  }
-  
-  else { // if gpmlSource is a url to a gpml file
-    var gpmlUrl = gpmlSource;
-  };
-  //*/
-
-  /*
-  if (pathvisio.helpers.isUrl(gpmlSource)) {
-    var gpmlUrl = gpmlSource;
-  }
-  else {
-    var gpmlUrl = currentUrlWithoutQueryString + '/../../../remote-data-sources/php/wikipathways.php?data=gpml&id=' + gpmlSource;
-  };
-  //*/
-}
-else {
-  console.warn('Error: No GPML data source specified.');
-};
-
-</script>
-
 </head>
 <body>
     <div id="pathvisio-js-container">
@@ -138,15 +95,51 @@ else {
 
 
 <script>
+  var currentUrlWithoutQueryString = window.location.href.split("?")[0].split("#")[0];
 
-  var account = 'wikipathways';
-  if (!!pathvisio.helpers.getUrlParam('account')) {
-    account = pathvisio.helpers.getUrlParam('account');
+  if (!pathvisio.helpers.getUrlParam('svgView')) {
+    var svgView = 1;
   }
+  else {
+    var svgView = pathvisio.helpers.getUrlParam('svgView');
+  };
 
-  var branch = 'master';
-  if (!!pathvisio.helpers.getUrlParam('branch')) {
+  if (!!pathvisio.helpers.getUrlParam('gpml')) {
+    var rev = 0;
+    if (!!pathvisio.helpers.getUrlParam('rev')) {
+      rev = pathvisio.helpers.getUrlParam('rev');
+    }
+
+    var gpmlSource = pathvisio.helpers.getUrlParam('gpml');
+    ///*
+    // gpmlSource is a WikiPathways ID
+    if (gpmlSource.indexOf('.gpml') === -1 && gpmlSource.indexOf('.xml') === -1) { // if gpmlSource is a WikiPathways ID
+      var gpmlUrl = currentUrlWithoutQueryString + '/../../remote-data-sources/php/wikipathways.php?data=gpml&id=' + gpmlSource + '&rev=' + rev;
+    }
+    
+    else { // if gpmlSource is a url to a gpml file
+      var gpmlUrl = gpmlSource;
+    };
+    //*/
+
+    /*
+    if (pathvisio.helpers.isUrl(gpmlSource)) {
+      var gpmlUrl = gpmlSource;
+    }
+    else {
+      var gpmlUrl = currentUrlWithoutQueryString + '/../../../remote-data-sources/php/wikipathways.php?data=gpml&id=' + gpmlSource;
+    };
+    //*/
+  }
+  else {
+    console.warn('Error: No GPML data source specified.');
+  };
+
+  var baseUrl = 'http://127.0.0.1/~andersriutta/pathvisio.js/remote-data-sources/php/local.php?relativeUrl=';
+  if (!!pathvisio.helpers.getUrlParam('account') && !!pathvisio.helpers.getUrlParam('branch')) {
+    account = pathvisio.helpers.getUrlParam('account');
     branch = pathvisio.helpers.getUrlParam('branch');
+    baseUrl = '../remote-data-sources/php/github.php?account=' + account + '&branch=' + branch + '&relativeUrl=';
   }
 
   //pathvisio.pathway.load('#pathway-container', svgUrl, gpmlUrl, '#highlight-by-label');
@@ -154,14 +147,15 @@ else {
   var pvDocumentFragment = null;
   var oSerializer = new XMLSerializer();
   //var pathvisioNS['tmp/pathvisio-js.html'];
-  var appendPartialHtml = function(partialHtmlUrl, svgUrl) {
+  function appendPartialHtml(partialHtmlUrl, callback) {
     d3.html(partialHtmlUrl, function(html) {
       pvDocumentFragment = html;
-      appendSvg(svgUrl);
+      callback(baseUrl + 'views/pathway-template.svg');
     });
   }
 
-  var appendSvg = function(svgUrl) {
+  var load = function() {
+    appendPartialHtml(baseUrl + 'views/pathvisio-js.html', function(svgUrl) {
     d3.text(svgUrl, 'text/plain', function(svg) {
       d3.select(pvDocumentFragment).select('#pathway-container')[0][0].innerHTML = svg;
       pathvisioNS['tmp/pathvisio-js.html'] = oSerializer.serializeToString(pvDocumentFragment);
@@ -173,19 +167,19 @@ else {
         gpmlUrl: gpmlUrl,
         cssUrl: '',
         customShapes: [
-          //{'id': 'mitochondria','url': 'http://127.0.0.1/~andersriutta/pathvisio.js/remote-data-sources/php/github.php?relativeUrl=/src/views/symbols/mitochondria.svg'},
-          {'id': 'arc', 'url': '../remote-data-sources/php/github.php?relativeUrl=/src/views/symbols/arc.svg?account=' + account + '&branch=' + branch},
-          {'id': 'brace', 'url': '../remote-data-sources/php/github.php?relativeUrl=/src/views/symbols/brace.svg?account=' + account + '&branch=' + branch},
-          {'id': 'endoplasmic-reticulum', 'url': '../remote-data-sources/php/github.php?relativeUrl=/src/views/symbols/endoplasmic-reticulum.svg?account=' + account + '&branch=' + branch},
-          {'id': 'golgi-apparatus', 'url': '../remote-data-sources/php/github.php?relativeUrl=/src/views/symbols/golgi-apparatus.svg?account=' + account + '&branch=' + branch},
-          {'id': 'hexagon', 'url': '../remote-data-sources/php/github.php?relativeUrl=/src/views/symbols/hexagon.svg?account=' + account + '&branch=' + branch},
-          {'id': 'mim-degradation', 'url': '../remote-data-sources/php/github.php?relativeUrl=/src/views/symbols/mim-degradation.svg?account=' + account + '&branch=' + branch},
-          {'id': 'mitochondria', 'url': '../remote-data-sources/php/github.php?relativeUrl=/src/views/symbols/mitochondria.svg?account=' + account + '&branch=' + branch},
-          {'id': 'oval', 'url': '../remote-data-sources/php/github.php?relativeUrl=/src/views/symbols/oval.svg?account=' + account + '&branch=' + branch},
-          {'id': 'pentagon', 'url': '../remote-data-sources/php/github.php?relativeUrl=/src/views/symbols/pentagon.svg?account=' + account + '&branch=' + branch},
-          {'id': 'rectangle', 'url': '../remote-data-sources/php/github.php?relativeUrl=/src/views/symbols/rectangle.svg?account=' + account + '&branch=' + branch},
-          {'id': 'sarcoplasmic-reticulum','url': '../remote-data-sources/php/github.php?relativeUrl=/src/views/symbols/sarcoplasmic-reticulum.svg?account=' + account + '&branch=' + branch},
-          {'id': 'triangle', 'url': '../remote-data-sources/php/github.php?relativeUrl=/src/views/symbols/triangle.svg?account=' + account + '&branch=' + branch}
+          {'id': 'arc', 'url': baseUrl + 'views/symbols/arc.svg'},
+          {'id': 'brace', 'url': baseUrl + 'views/symbols/brace.svg'},
+          {'id': 'endoplasmic-reticulum', 'url': baseUrl + 'views/symbols/endoplasmic-reticulum.svg'},
+          {'id': 'golgi-apparatus', 'url': baseUrl + 'views/symbols/golgi-apparatus.svg'},
+          {'id': 'hexagon', 'url': baseUrl + 'views/symbols/hexagon.svg'},
+          {'id': 'mim-degradation', 'url': baseUrl + 'views/symbols/mim-degradation.svg'},
+          {'id': 'mitochondria', 'url': baseUrl + 'views/symbols/mitochondria.svg'},
+          {'id': 'oval', 'url': baseUrl + 'views/symbols/oval.svg'},
+          {'id': 'pentagon', 'url': baseUrl + 'views/symbols/pentagon.svg'},
+          {'id': 'rectangle', 'url': baseUrl + 'views/symbols/rectangle.svg'},
+          {'id': 'rounded-rectangle', 'url': baseUrl + 'views/symbols/rounded-rectangle.svg'},
+          {'id': 'sarcoplasmic-reticulum','url': baseUrl + 'views/symbols/sarcoplasmic-reticulum.svg'},
+          {'id': 'triangle', 'url': baseUrl + 'views/symbols/triangle.svg'}
         ],
         highlightNodes: [
           {'parameter': 'label', 'parameterValue': 'CRH', 'color': 'red'},
@@ -197,9 +191,10 @@ else {
         ]
       });
     });
-  }
+  })
+}
 
-  appendPartialHtml('../src/views/pathvisio-js.html', '../src/views/pathway-template.svg');
+  load();
 
 </script>
 </body>
