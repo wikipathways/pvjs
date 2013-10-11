@@ -554,61 +554,97 @@ pathvisio.pathway = function(){
 
     var container = d3.select(args.container);
     if (container.length !== 1) { return console.warn('Error: Container selector must be matched by exactly one element.'); }
-    async.series([
-      function(callback){
-        container.html(pathvisioNS['tmp/pathvisio-js.html']);
-        callback(null);
-      },
-      function(callback){
-        container.html(pathvisioNS['tmp/pathvisio-js.html']);
-        callback(null);
-      },
-      function(callback) {
-        loadCustomShapes(args, function() {
-          callback(null);
-        })
-      },
-      function(callback) {
-        getJson(args.gpmlUrl, function() {
-          var svg = container.select('#pathway-image');
-          svg.datum(pathway);
 
-          d3.text(args.cssUrl, 'text/css', function(data) {
-          var svg = d3.select('svg');
-          var defs = svg.select('defs');
-          var style = defs.append('style').attr('type', "text/css");
-          style.text(data);
+    if (!!args.customShapes) {
+      async.series([
+        function(callback){
+          container.html(pathvisioNS['tmp/pathvisio-js.html']);
+          callback(null);
+        },
+        function(callback){
+          container.html(pathvisioNS['tmp/pathvisio-js.html']);
+          callback(null);
+        },
+        function(callback) {
+          loadCustomShapes(args, function() {
+            callback(null);
           })
+        },
+        function(callback) {
+          getJson(args.gpmlUrl, function() {
+            var svg = container.select('#pathway-image');
+            svg.datum(pathway);
 
-          draw(svg);
+            d3.text(args.cssUrl, 'text/css', function(data) {
+            var svg = d3.select('svg');
+            var defs = svg.select('defs');
+            var style = defs.append('style').attr('type', "text/css");
+            style.text(data);
+            })
 
-          var nodeLabels = [];
-          pathway.nodes.forEach(function(node) {
-            if (!!node.textLabel && node.elementType === 'data-node') {
-              nodeLabels.push(node.textLabel.text);
-            }
-          });
+            draw(svg);
 
-          // see http://twitter.github.io/typeahead.js/
+            var nodeLabels = [];
+            pathway.nodes.forEach(function(node) {
+              if (!!node.textLabel && node.elementType === 'data-node') {
+                nodeLabels.push(node.textLabel.text);
+              }
+            });
 
-          $('#highlight-by-label').typeahead({
-            name: 'Find in pathway',
-            local: nodeLabels,
-            limit: 10
-          });
-          $('.icon-eye-open').click(function(){
-            var nodeLabel = $("#highlight-by-label").val();
-            if (!nodeLabel) {
-              console.warn('Error: No data node value entered.');
-            }
-            else {
-              pathvisio.pathway.highlightByLabel(nodeLabel);
-            }
-          });
-          callback(null);
-        })  
-      }
-    ]);
+            // see http://twitter.github.io/typeahead.js/
+
+            $('#highlight-by-label').typeahead({
+              name: 'Find in pathway',
+              local: nodeLabels,
+              limit: 10
+            });
+            $('.icon-eye-open').click(function(){
+              var nodeLabel = $("#highlight-by-label").val();
+              if (!nodeLabel) {
+                console.warn('Error: No data node value entered.');
+              }
+              else {
+                pathvisio.pathway.highlightByLabel(nodeLabel);
+              }
+            });
+            callback(null);
+          })  
+        }
+      ]);
+    }
+    else {
+      getJson(args.gpmlUrl, function() {
+        var svg = container.select('#pathway-image');
+        console.log(svg);
+        svg.datum(pathway);
+
+        draw(svg);
+
+        var nodeLabels = [];
+        pathway.nodes.forEach(function(node) {
+          if (!!node.textLabel && node.elementType === 'data-node') {
+            nodeLabels.push(node.textLabel.text);
+          }
+        });
+
+        // see http://twitter.github.io/typeahead.js/
+
+        $('#highlight-by-label').typeahead({
+          name: 'Find in pathway',
+          local: nodeLabels,
+          limit: 10
+        });
+        $('.icon-eye-open').click(function(){
+          var nodeLabel = $("#highlight-by-label").val();
+          if (!nodeLabel) {
+            console.warn('Error: No data node value entered.');
+          }
+          else {
+            pathvisio.pathway.highlightByLabel(nodeLabel);
+          }
+        });
+      })  
+    }
   }
 
   return {
