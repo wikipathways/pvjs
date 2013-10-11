@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <head>
 <meta charset="utf-8">
-<title>pathvisio.js renderer</title>
+<title>pathvisio.js dev</title>
 
 <!-- 
 Style guides can be arbitrary, but for sake of consistency within this project, let's use these:
@@ -10,9 +10,7 @@ http://google-styleguide.googlecode.com/svn/trunk/javascriptguide.xml
 http://google-styleguide.googlecode.com/svn/trunk/jsoncstyleguide.xml#General_Guidelines
 -->
 
-<!--
 <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" media="screen">
--->
 <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css" media="screen">
 
 <link id="pathvisio-js-css" rel="stylesheet" href="../src/css/pathvisio-js.css" media="screen">
@@ -144,11 +142,11 @@ http://google-styleguide.googlecode.com/svn/trunk/jsoncstyleguide.xml#General_Gu
     baseUrl = path + 'remote-data-sources/php/github.php?account=' + account + '&branch=' + branch + '&relativeUrl=';
   }
 
-  //pathvisio.pathway.load('#pathway-container', svgUrl, gpmlUrl, '#highlight-by-label');
+  // convert partial html and svg template to a string and insert into pathvisioNS array
+
   var pathvisioNS = [];
   var pvDocumentFragment = null;
   var oSerializer = new XMLSerializer();
-  //var pathvisioNS['tmp/pathvisio-js.html'];
   function appendPartialHtml(partialHtmlUrl, callback) {
     d3.html(partialHtmlUrl, function(html) {
       pvDocumentFragment = html;
@@ -158,43 +156,43 @@ http://google-styleguide.googlecode.com/svn/trunk/jsoncstyleguide.xml#General_Gu
 
   var load = function() {
     appendPartialHtml(baseUrl + 'views/pathvisio-js.html', function(svgUrl) {
-    d3.text(svgUrl, 'text/plain', function(svg) {
-      d3.select(pvDocumentFragment).select('#pathway-container')[0][0].innerHTML = svg;
-      pathvisioNS['tmp/pathvisio-js.html'] = oSerializer.serializeToString(pvDocumentFragment);
-      pathvisio.pathway.load({
-        container: '#pathvisio-js-container',
-        width: 1000,
-        height: 500,
-        zoom: 'fit',
-        gpmlUrl: gpmlUrl,
-        cssUrl: baseUrl + 'css/pathway-template.css',
-        customShapes: [
-          {'id': 'arc', 'url': baseUrl + 'views/symbols/arc.svg'},
-          {'id': 'brace', 'url': baseUrl + 'views/symbols/brace.svg'},
-          {'id': 'endoplasmic-reticulum', 'url': baseUrl + 'views/symbols/endoplasmic-reticulum.svg'},
-          {'id': 'golgi-apparatus', 'url': baseUrl + 'views/symbols/golgi-apparatus.svg'},
-          {'id': 'hexagon', 'url': baseUrl + 'views/symbols/hexagon.svg'},
-          {'id': 'mim-degradation', 'url': baseUrl + 'views/symbols/mim-degradation.svg'},
-          {'id': 'mitochondria', 'url': baseUrl + 'views/symbols/mitochondria.svg'},
-          {'id': 'oval', 'url': baseUrl + 'views/symbols/oval.svg'},
-          {'id': 'pentagon', 'url': baseUrl + 'views/symbols/pentagon.svg'},
-          {'id': 'rectangle', 'url': baseUrl + 'views/symbols/rectangle.svg'},
-          {'id': 'rounded-rectangle', 'url': baseUrl + 'views/symbols/rounded-rectangle.svg'},
-          {'id': 'sarcoplasmic-reticulum','url': baseUrl + 'views/symbols/sarcoplasmic-reticulum.svg'},
-          {'id': 'triangle', 'url': baseUrl + 'views/symbols/triangle.svg'}
-        ],
-        highlightNodes: [
-          {'parameter': 'label', 'parameterValue': 'CRH', 'color': 'red'},
-          {'parameter': 'xref', 'parameterValue': '8525,Entrez%20Gene', 'color': '#FF0000'}
-        ],
-        hiddenElements: [
-          'find',
-          'wikipathways-link'
-        ]
+      d3.text(svgUrl, 'text/plain', function(svg) {
+        d3.select(pvDocumentFragment).select('#pathway-container')[0][0].innerHTML = svg;
+        pathvisioNS['tmp/pathvisio-js.html'] = oSerializer.serializeToString(pvDocumentFragment);
+        pathvisio.pathway.load({
+          container: '#pathvisio-js-container',
+          width: 1000,
+          height: 500,
+          zoom: 'fit',
+          gpmlUrl: gpmlUrl,
+          cssUrl: baseUrl + 'css/pathway-template.css',
+          customShapes: [
+            {'id': 'arc', 'url': baseUrl + 'views/symbols/arc.svg'},
+            {'id': 'brace', 'url': baseUrl + 'views/symbols/brace.svg'},
+            {'id': 'endoplasmic-reticulum', 'url': baseUrl + 'views/symbols/endoplasmic-reticulum.svg'},
+            {'id': 'golgi-apparatus', 'url': baseUrl + 'views/symbols/golgi-apparatus.svg'},
+            {'id': 'hexagon', 'url': baseUrl + 'views/symbols/hexagon.svg'},
+            {'id': 'mim-degradation', 'url': baseUrl + 'views/symbols/mim-degradation.svg'},
+            {'id': 'mitochondria', 'url': baseUrl + 'views/symbols/mitochondria.svg'},
+            {'id': 'oval', 'url': baseUrl + 'views/symbols/oval.svg'},
+            {'id': 'pentagon', 'url': baseUrl + 'views/symbols/pentagon.svg'},
+            {'id': 'rectangle', 'url': baseUrl + 'views/symbols/rectangle.svg'},
+            {'id': 'rounded-rectangle', 'url': baseUrl + 'views/symbols/rounded-rectangle.svg'},
+            {'id': 'sarcoplasmic-reticulum','url': baseUrl + 'views/symbols/sarcoplasmic-reticulum.svg'},
+            {'id': 'triangle', 'url': baseUrl + 'views/symbols/triangle.svg'}
+          ],
+          highlightNodes: [
+            {'parameter': 'label', 'parameterValue': 'CRH', 'color': 'red'},
+            {'parameter': 'xref', 'parameterValue': '8525,Entrez%20Gene', 'color': '#FF0000'}
+          ],
+          hiddenElements: [
+            'find',
+            'wikipathways-link'
+          ]
+        });
       });
-    });
-  })
-}
+    })
+  }
 
   load();
 
