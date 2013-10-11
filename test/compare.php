@@ -129,7 +129,7 @@ http://google-styleguide.googlecode.com/svn/trunk/jsoncstyleguide.xml#General_Gu
   
   ///*
   echo "<div id='pathvisio-js-dev-container' class='pathway'>";
-	echo '<iframe src="' . $pathvisioJsDevUrl . '" width="100%" height="1000">';
+	echo '<iframe src="' . $pathvisioJsDevUrl . '" width="70%" height="1000">';
 	 echo '<p>Your browser does not support iframes.</p>';
 	echo '</iframe>';
   echo "</div>";
@@ -137,7 +137,7 @@ http://google-styleguide.googlecode.com/svn/trunk/jsoncstyleguide.xml#General_Gu
 
    ///*
   echo "<div id='pathvisio-js-prod-container' class='pathway'>";
-	echo '<iframe src="' . $pathvisioJsProdUrl . '" width="100%" height="1000">';
+	echo '<iframe src="' . $pathvisioJsProdUrl . '" width="70%" height="1000">';
 	 echo '<p>Your browser does not support iframes.</p>';
 	echo '</iframe>';
   echo "</div>";
@@ -145,7 +145,7 @@ http://google-styleguide.googlecode.com/svn/trunk/jsoncstyleguide.xml#General_Gu
  
   ///*
   echo "<div id='pathvisio-js-prod-old-browsers-container' class='pathway'>";
-	echo '<iframe src="' . $pathvisioJsProdOldBrowsersUrl . '" width="100%" height="1000">';
+	echo '<iframe src="' . $pathvisioJsProdOldBrowsersUrl . '" width="70%" height="1000">';
 	 echo '<p>Your browser does not support iframes.</p>';
 	echo '</iframe>';
   echo "</div>";
@@ -168,7 +168,7 @@ http://google-styleguide.googlecode.com/svn/trunk/jsoncstyleguide.xml#General_Gu
   
   ///*
   echo "<div id='current-wiki-pathways-widget-container' class='pathway'>";
-	echo '<iframe src="' . $currentWikiPathwaysWidgetUrl . '" width="100%" height="1000" style="overflow:hidden;">';
+	echo '<iframe src="' . $currentWikiPathwaysWidgetUrl . '" width="70%" height="1000" style="overflow:hidden;">';
 	 echo '<p>Your browser does not support iframes.</p>';
 	echo '</iframe>';
   echo "</div>";
