@@ -192,12 +192,16 @@ pathvisio.pathway.edge = function(){
     }
   }
 
-  function drawAll(svg) {
-    if (svg.datum().hasOwnProperty('edges')) {
+  function drawAll(svg, pathway) {
+    if (!svg || !pathway) {
+      return console.warn('Error: Missing one or more required parameters: svg, pathway.');
+    }
+
+    if (pathway.hasOwnProperty('edges')) {
       var pathData = null;
 
       var edges = svg.select('#viewport').selectAll("pathway.edge")
-      .data(svg.datum().edges)
+      .data(pathway.edges)
       .enter()
       .append("path")
       .attr("id", function (d) { return d.edgeType + '-' + d.graphId; })
@@ -247,22 +251,22 @@ pathvisio.pathway.edge = function(){
       // this attr needs to be last, because of the confusion over the meaning of 'd' as 1) the data for the d3 selection and 2) the path data.
       // Somehow, d (the d3 selection data) gets redefined after this attr is defined.
 
-      .attr("d", function (d) {
-        pathData = pathvisio.pathway.edge.pathData.get(svg, d);
-        if (d.hasOwnProperty('strokeStyle')) {
-          if (d.strokeStyle === 'double') {
+      .attr("d", function (data) {
+        pathData = pathvisio.pathway.edge.pathData.get(svg, pathway, data);
+        if (data.hasOwnProperty('strokeStyle')) {
+          if (data.strokeStyle === 'double') {
 
             // setting stroke-width equal to its specified line value is
             // what PathVisio (Java) does, but the white line (overlaying the
             // thick line to create a "double line") is hard to see at 1px.
 
             svg.select('#viewport').append("path")
-            .attr("class", d.edgeType + "-double")
+            .attr("class", data.edgeType + "-double")
             .attr("d", pathData)
             .attr("class", "drawing-board-color-stroke")
-            .attr("style", "stroke-width:" + d.strokeWidth + '; ')
-            .attr("marker-start", 'url(#' + pathvisio.pathway.edge.marker.draw(svg, d.markerStart, 'start', d.stroke) + ')')
-            .attr("marker-end", 'url(#' + pathvisio.pathway.edge.marker.draw(svg, d.markerEnd, 'end', d.stroke) + ')');
+            .attr("style", "stroke-width:" + data.strokeWidth + '; ')
+            .attr("marker-start", 'url(#' + pathvisio.pathway.edge.marker.draw(svg, data.markerStart, 'start', data.stroke) + ')')
+            .attr("marker-end", 'url(#' + pathvisio.pathway.edge.marker.draw(svg, data.markerEnd, 'end', data.stroke) + ')');
           }
         }
         return pathData;

@@ -93,6 +93,9 @@ http://google-styleguide.googlecode.com/svn/trunk/jsoncstyleguide.xml#General_Gu
 
 
 <script>
+
+  // get parameters for calling load in dev version
+
   var currentUrlWithoutQueryString = window.location.href.split("?")[0].split("#")[0];
 
   if (!pathvisio.helpers.getUrlParam('svgView')) {
@@ -109,8 +112,9 @@ http://google-styleguide.googlecode.com/svn/trunk/jsoncstyleguide.xml#General_Gu
     }
 
     var gpmlSource = pathvisio.helpers.getUrlParam('gpml');
-    ///*
+
     // gpmlSource is a WikiPathways ID
+
     if (gpmlSource.indexOf('.gpml') === -1 && gpmlSource.indexOf('.xml') === -1) { // if gpmlSource is a WikiPathways ID
       var gpmlUrl = currentUrlWithoutQueryString + '/../../remote-data-sources/php/wikipathways.php?data=gpml&id=' + gpmlSource + '&rev=' + rev;
     }
@@ -118,16 +122,7 @@ http://google-styleguide.googlecode.com/svn/trunk/jsoncstyleguide.xml#General_Gu
     else { // if gpmlSource is a url to a gpml file
       var gpmlUrl = gpmlSource;
     };
-    //*/
 
-    /*
-    if (pathvisio.helpers.isUrl(gpmlSource)) {
-      var gpmlUrl = gpmlSource;
-    }
-    else {
-      var gpmlUrl = currentUrlWithoutQueryString + '/../../../remote-data-sources/php/wikipathways.php?data=gpml&id=' + gpmlSource;
-    };
-    //*/
   }
   else {
     console.warn('Error: No GPML data source specified.');
@@ -142,59 +137,63 @@ http://google-styleguide.googlecode.com/svn/trunk/jsoncstyleguide.xml#General_Gu
     baseUrl = path + 'remote-data-sources/php/github.php?account=' + account + '&branch=' + branch + '&relativeUrl=';
   }
 
-  // convert partial html and svg template to a string and insert into pathvisioNS array
+  // convert partial html and svg template to a string and insert into pathvisioNS array.
+  // This work is only for the dev version. The pathvisioNS array with the data from partial
+  // html and svg template is included in the production version through a grunt build process.
 
   var pathvisioNS = [];
-  var pvDocumentFragment = null;
-  var oSerializer = new XMLSerializer();
+
   function appendPartialHtml(partialHtmlUrl, callback) {
     d3.html(partialHtmlUrl, function(html) {
-      pvDocumentFragment = html;
-      callback(baseUrl + 'views/pathway-template.svg');
+      appendSvgTemplate(html, baseUrl + 'views/pathway-template.svg', callback);
     });
   }
 
-  var load = function() {
-    appendPartialHtml(baseUrl + 'views/pathvisio-js.html', function(svgUrl) {
-      d3.text(svgUrl, 'text/plain', function(svg) {
-        d3.select(pvDocumentFragment).select('#pathway-container')[0][0].innerHTML = svg;
-        pathvisioNS['tmp/pathvisio-js.html'] = oSerializer.serializeToString(pvDocumentFragment);
-        pathvisio.pathway.load({
-          container: '#pathvisio-js-container',
-          width: 1000,
-          height: 500,
-          zoom: 'fit',
-          gpmlUrl: gpmlUrl,
-          cssUrl: baseUrl + 'css/pathway-template.css',
-          customShapes: [
-            {'id': 'arc', 'url': baseUrl + 'views/symbols/arc.svg'},
-            {'id': 'brace', 'url': baseUrl + 'views/symbols/brace.svg'},
-            {'id': 'endoplasmic-reticulum', 'url': baseUrl + 'views/symbols/endoplasmic-reticulum.svg'},
-            {'id': 'golgi-apparatus', 'url': baseUrl + 'views/symbols/golgi-apparatus.svg'},
-            {'id': 'hexagon', 'url': baseUrl + 'views/symbols/hexagon.svg'},
-            {'id': 'mim-degradation', 'url': baseUrl + 'views/symbols/mim-degradation.svg'},
-            {'id': 'mitochondria', 'url': baseUrl + 'views/symbols/mitochondria.svg'},
-            {'id': 'oval', 'url': baseUrl + 'views/symbols/oval.svg'},
-            {'id': 'pentagon', 'url': baseUrl + 'views/symbols/pentagon.svg'},
-            {'id': 'rectangle', 'url': baseUrl + 'views/symbols/rectangle.svg'},
-            {'id': 'rounded-rectangle', 'url': baseUrl + 'views/symbols/rounded-rectangle.svg'},
-            {'id': 'sarcoplasmic-reticulum','url': baseUrl + 'views/symbols/sarcoplasmic-reticulum.svg'},
-            {'id': 'triangle', 'url': baseUrl + 'views/symbols/triangle.svg'}
-          ],
-          highlightNodes: [
-            {'parameter': 'label', 'parameterValue': 'CRH', 'color': 'red'},
-            {'parameter': 'xref', 'parameterValue': '8525,Entrez%20Gene', 'color': '#FF0000'}
-          ],
-          hiddenElements: [
-            'find',
-            'wikipathways-link'
-          ]
-        });
-      });
-    })
+  function appendSvgTemplate(partialHtml, svgTemplateUrl, callback) {
+    d3.text(svgTemplateUrl, 'text/plain', function(svg) {
+      d3.select(partialHtml).select('#pathway-container')[0][0].innerHTML = svg;
+      var oSerializer = new XMLSerializer();
+      pathvisioNS['tmp/pathvisio-js.html'] = oSerializer.serializeToString(partialHtml);
+      callback();
+    });
   }
 
-  load();
+  appendPartialHtml(baseUrl + 'views/pathvisio-js.html', function() {
+
+    // pathvisio.pathway.load(parameters) is all that's required for the production version
+
+    pathvisio.pathway.load({
+      container: '#pathvisio-js-container',
+      width: 1000,
+      height: 500,
+      zoom: 'fit',
+      gpmlUrl: gpmlUrl,
+      cssUrl: baseUrl + 'css/pathway-template.css',
+      customShapes: [
+        {'id': 'arc', 'url': baseUrl + 'views/symbols/arc.svg'},
+        {'id': 'brace', 'url': baseUrl + 'views/symbols/brace.svg'},
+        {'id': 'endoplasmic-reticulum', 'url': baseUrl + 'views/symbols/endoplasmic-reticulum.svg'},
+        {'id': 'golgi-apparatus', 'url': baseUrl + 'views/symbols/golgi-apparatus.svg'},
+        {'id': 'hexagon', 'url': baseUrl + 'views/symbols/hexagon.svg'},
+        {'id': 'mim-degradation', 'url': baseUrl + 'views/symbols/mim-degradation.svg'},
+        {'id': 'mitochondria', 'url': baseUrl + 'views/symbols/mitochondria.svg'},
+        {'id': 'oval', 'url': baseUrl + 'views/symbols/oval.svg'},
+        {'id': 'pentagon', 'url': baseUrl + 'views/symbols/pentagon.svg'},
+        {'id': 'rectangle', 'url': baseUrl + 'views/symbols/rectangle.svg'},
+        {'id': 'rounded-rectangle', 'url': baseUrl + 'views/symbols/rounded-rectangle.svg'},
+        {'id': 'sarcoplasmic-reticulum','url': baseUrl + 'views/symbols/sarcoplasmic-reticulum.svg'},
+        {'id': 'triangle', 'url': baseUrl + 'views/symbols/triangle.svg'}
+      ],
+      highlightNodes: [
+        {'parameter': 'label', 'parameterValue': 'CRH', 'color': 'red'},
+        {'parameter': 'xref', 'parameterValue': '8525,Entrez%20Gene', 'color': '#FF0000'}
+      ],
+      hiddenElements: [
+        'find',
+        'wikipathways-link'
+      ]
+    });
+  });
 
 </script>
 </body>

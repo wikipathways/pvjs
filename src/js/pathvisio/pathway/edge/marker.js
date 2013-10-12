@@ -18,7 +18,9 @@ pathvisio.pathway.edge.marker = function(){
 
       // check for whether the desired marker is defined once in the pathway template svg.
 
-      if (svg.datum().markersAvailable[0].filter(function(element) { return (element.id === name + '-' + position + '-black');}).length === 1) {
+      var markerElementBlack = svg.select('marker#' + name + '-' + position + '-black');
+
+      if (markerElementBlack.length === 1) {
 
         // if the desired stroke color is black, use the marker specified in the pathway template svg.
 
@@ -35,7 +37,6 @@ pathvisio.pathway.edge.marker = function(){
           });
           */
 
-          var markerElementBlack = svg.select('marker#' + name + '-' + position + '-black');
           var markerElement = pathvisio.helpers.cloneNode(markerElementBlack[0][0]);
 
           // define style of marker element
