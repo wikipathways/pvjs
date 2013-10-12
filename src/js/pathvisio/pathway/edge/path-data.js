@@ -24,9 +24,13 @@ pathvisio.pathway.edge.pathData = function(){
     }
   }
 
-  function get(svg, edge) {
+  function get(svg, pathway, edge) {
+    if (!svg || !edge) {
+      return console.warn('Error: Missing input parameters.');
+    }
+
     var sourcePoint = edge.points[0];
-    var source = pathvisio.pathway.edge.point.getCoordinates(svg, sourcePoint);
+    var source = pathvisio.pathway.edge.point.getCoordinates(svg, pathway, sourcePoint);
 
     if (sourcePoint.dx === undefined) {
       source.dx = 0;
@@ -43,7 +47,7 @@ pathvisio.pathway.edge.pathData = function(){
     }
 
     var targetPoint = edge.points[edge.points.length - 1];
-    var target = pathvisio.pathway.edge.point.getCoordinates(svg, targetPoint);
+    var target = pathvisio.pathway.edge.point.getCoordinates(svg, pathway, targetPoint);
 
     if (targetPoint.dx === undefined) {
       target.dx = 0;
