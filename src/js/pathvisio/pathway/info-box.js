@@ -1,24 +1,27 @@
 pathvisio.pathway.infoBox = function(){
     
-  function draw(svg) {
+  function draw(svg, pathway) {
+    if (!svg || !pathway) {
+      return console.warn('Error: Missing input parameters.');
+    }
 
     // Although gpml has x and y values for infobox, we have decided to ignore them and always set it in the upper left.
 
     var infoBox = [];
-    if (svg.datum().hasOwnProperty('name')) {
-      infoBox.push({'key':'Title', 'value':svg.datum().name});
+    if (pathway.hasOwnProperty('name')) {
+      infoBox.push({'key':'Title', 'value':pathway.name});
     }
 
-    if (svg.datum().hasOwnProperty('license')) {
-      infoBox.push({'key':'Availability', 'value':svg.datum().license});
+    if (pathway.hasOwnProperty('license')) {
+      infoBox.push({'key':'Availability', 'value':pathway.license});
     }
 
-    if (svg.datum().hasOwnProperty('lastModified')) {
-      infoBox.push({'key':'Last modified', 'value':svg.datum().lastModified});
+    if (pathway.hasOwnProperty('lastModified')) {
+      infoBox.push({'key':'Last modified', 'value':pathway.lastModified});
     }
 
-    if (svg.datum().hasOwnProperty('organism')) {
-      infoBox.push({'key':'Organism', 'value':svg.datum().organism});
+    if (pathway.hasOwnProperty('organism')) {
+      infoBox.push({'key':'Organism', 'value':pathway.organism});
     }
 
     var infoBoxElements = svg.select('#viewport').selectAll("text.info-box")

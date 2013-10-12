@@ -215,9 +215,19 @@ pathvisio.pathway.node = function(){
     }
   }
 
-  function drawAll(svg) {
+  function drawAll(svg, pathway) {
+    if (!svg || !pathway) {
+      if (!svg) {
+        console.log('svg');
+      }
+      if (!pathway) {
+        console.log('pathway');
+      }
+      return console.warn('Error: Missing one or more required parameters: svg, pathway.');
+    }
+
     var nodesContainer = svg.select('#viewport').selectAll("g.nodes-container")
-    .data(svg.datum().nodes)
+    .data(pathway.nodes)
     .enter()
     .append("g")
     .attr("id", function (d) { return 'nodes-container-' + d.graphId;})
@@ -225,7 +235,7 @@ pathvisio.pathway.node = function(){
     .attr("class", "nodes-container")
     .on("click", function(d,i) {
       if (d.elementType === 'data-node') {
-        pathvisio.pathway.xRef.displayData(svg.datum().organism, d);
+        pathvisio.pathway.xRef.displayData(pathway.organism, d);
       }
         /*
         var xrefDiv = $('.xrefinfo');
@@ -344,10 +354,8 @@ pathvisio.pathway.node = function(){
         return style;
       });
 
-      console.log('d');
-      console.log(d.symbolType);
-
-      if (svg.datum().symbolsAvailable[0].filter(function(element) { return (element.id === d.symbolType);}).length === 1) {
+      var symbol = svg.select('symbol#' + d.symbolType)
+      if (symbol.length === 1) {
 
         // d3 bug strips 'xlink' so need to say 'xlink:xlink';
         
@@ -355,7 +363,7 @@ pathvisio.pathway.node = function(){
       }
       else {
         node.attr("xlink:xlink:href", "#rectangle");
-        console.warn('Pathvisio.js does not have access to the requested symbol: ' + svg.datum().nodes[0].symbolType + '. Rectangle used as placeholder.');
+        console.warn('Pathvisio.js does not have access to the requested symbol: ' + pathway.nodes[0].symbolType + '. Rectangle used as placeholder.');
       }
 
       // use this for tspan option for rendering text, including multi-line
@@ -474,11 +482,11 @@ pathvisio.pathway.node = function(){
                 var index = 0;
                 var rdfId = null;
                 do {
-                  console.log('svg.datum().biopax');
-                  console.log(svg.datum().biopax);
-                  rdfId = svg.datum().biopax.bpPublicationXrefs[index].rdfId;
+                  console.log('pathway.biopax');
+                  console.log(pathway.biopax);
+                  rdfId = pathway.biopax.bpPublicationXrefs[index].rdfId;
                   index += 1;
-                } while (rdfId !== d.Text && index < svg.datum().biopax.bpPublicationXrefs.length);
+                } while (rdfId !== d.Text && index < pathway.biopax.bpPublicationXrefs.length);
                 return index;});
             }
 
