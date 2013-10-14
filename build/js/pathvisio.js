@@ -3949,7 +3949,9 @@ pathvisio.pathway.xRef = function(){
 
     function getData(species, database, id, callback) {
       var databaseId = pathvisio.pathway.dataSources.filter(function(element) {return element.database === database;})[0].id;
-      var url = '../../remote-data-sources/php/bridgedb.php?species=' + encodeURIComponent(species) + '&database=' + encodeURIComponent(databaseId) + '&id=' + encodeURIComponent(id);
+      var currentUrl = document.location.origin + document.location.pathname;
+      var rootDirectoryUrl = document.location.origin + document.location.pathname.split("pathvisio.js/")[0] + 'pathvisio.js/';
+      var url = rootDirectoryUrl + 'remote-data-sources/php/bridgedb.php?species=' + encodeURIComponent(species) + '&database=' + encodeURIComponent(databaseId) + '&id=' + encodeURIComponent(id);
       $.ajax({
         url: url,
         dataType: "text",
@@ -3958,8 +3960,6 @@ pathvisio.pathway.xRef = function(){
     }
 
     function displayData(organism, node) {
-      console.log('organism');
-      console.log(organism);
       self.node = node;
       var xRefData = getData(organism, node.xRef.database, node.xRef.id, function(data) {
         var parser = CSVParser.parse(data, true, ' ', false, false, '.');
