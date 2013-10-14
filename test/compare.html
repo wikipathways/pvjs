@@ -96,6 +96,27 @@
     return urlParamList;
   }
 
+function loadScripts(array, callback){  
+    var loader = function(src,handler){  
+        var script = document.createElement("script");  
+        script.src = src;  
+        script.onload = script.onreadystatechange = function(){  
+          script.onreadystatechange = script.onload = null;  
+          if(/MSIE ([6-9]+\.\d+);/.test(navigator.userAgent))window.setTimeout(function(){handler();},8,this);  
+          else handler();  
+        }  
+        var head = document.getElementsByTagName("head")[0];  
+        (head || document.body).appendChild( script );  
+    };  
+    (function(){  
+        if(array.length!=0){  
+                loader(array.shift(),arguments.callee);  
+        }else{  
+                callback && callback();  
+        }  
+    })();  
+}
+
   function loadJsCssFile(filename, filetype, callback){
     if (filetype=="js") {
       var fileref=document.createElement('script')
@@ -111,9 +132,7 @@
     if (typeof fileref!="undefined") {
       document.getElementsByTagName("head")[0].appendChild(fileref)
     }
-    window.setTimeout(function() {
-      callback();
-    }, 50);
+    callback();
   }
 
   function appendPartialHtml(partialHtmlUrl, callback) {
@@ -166,6 +185,25 @@
       },
       function(callback) {
       if (urlParamList.creator === 'pathvisio-js-dev') {
+
+        loadScripts([
+          srcDirectoryUrl + "js/pathvisio/pathvisio.js",
+          srcDirectoryUrl + "js/pathvisio/helpers.js",
+          srcDirectoryUrl + 'js/pathvisio/pathway/pathway.js',
+          srcDirectoryUrl + 'js/pathvisio/pathway/group.js',
+          srcDirectoryUrl + 'js/pathvisio/pathway/info-box.js',
+          srcDirectoryUrl + 'js/pathvisio/pathway/node.js',
+          srcDirectoryUrl + 'js/pathvisio/pathway/edge/edge.js',
+          srcDirectoryUrl + 'js/pathvisio/pathway/edge/marker.js',
+          srcDirectoryUrl + 'js/pathvisio/pathway/edge/point.js',
+          srcDirectoryUrl + 'js/pathvisio/pathway/edge/path-data.js',
+          srcDirectoryUrl + 'js/pathvisio/pathway/data-sources.js',
+          srcDirectoryUrl + 'js/pathvisio/pathway/x-ref.js'
+        ], function(){
+          callback(null);
+        });
+
+          /*
           async.series([
             function(callback) {
               loadJsCssFile(srcDirectoryUrl + "js/pathvisio/pathvisio.js", "js", callback);
@@ -217,16 +255,20 @@
             console.log(err);
             callback(null);
           });
+          //*/
         }
         else {
-          loadJsCssFile(rootDirectoryUrl + "build/js/pathvisio.min.js", "js", callback)
+          //loadJsCssFile(rootDirectoryUrl + "build/js/pathvisio.min.js", "js", callback)
+          loadScripts([
+            rootDirectoryUrl + "build/js/pathvisio.min.js"
+          ], function(){
+            callback(null);
+          });
         }
       }
     ],
     function(err, results){
-      window.setTimeout(function(){
-        callbackOutside();
-      }, 100)
+      callbackOutside();
     })
   }
 
@@ -318,7 +360,7 @@
   var urlParamList = getUrlParamList();
 
   var currentUrl = document.location.origin + document.location.pathname;
-  var rootDirectoryUrl = currentUrl.replace("pathvisio.js/test/compare.html", "pathvisio.js/")
+  var rootDirectoryUrl = document.location.origin + document.location.pathname.split("pathvisio.js/")[0] + 'pathvisio.js/';
   var srcDirectoryUrl = rootDirectoryUrl + 'remote-data-sources/php/local.php?account=' + urlParamList.account + '&branch=' + urlParamList.branch + '&relativeUrl=';
   //var srcDirectoryUrl = rootDirectoryUrl + 'src/';
 
