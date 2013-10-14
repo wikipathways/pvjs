@@ -26,6 +26,9 @@ elseif (substr($relativeUrl, -3) == "css") {
 elseif (substr($relativeUrl, -3) == "svg") {
   $mimeType = "image/svg+xml";
 }
+elseif (substr($relativeUrl, -2) == "js") {
+  $mimeType = "text/javascript";
+}
 elseif (substr($relativeUrl, -4) == "json") {
   $mimeType = "text/plain";
 }
