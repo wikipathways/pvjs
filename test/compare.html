@@ -59,7 +59,6 @@
   </script>
 <![endif]-->
 
-</head>
 <script>
   function getUrlParam(name) {
 
@@ -114,7 +113,7 @@
     }
     window.setTimeout(function() {
       callback();
-    }, 10);
+    }, 50);
   }
 
   function appendPartialHtml(partialHtmlUrl, callback) {
@@ -384,7 +383,7 @@
   }, 50)
 
 </script>
-
+</head>
 <body>
   <div id="choose-viewer">
     <button id="pathvisio-js-dev-button" class="pathway" title="SVG viewer for all modern browsers (Dev Version)" onclick="displayCreator('pathvisio-js-dev')" style="background-color: yellow">pathvisio.js (DEV)</button>
