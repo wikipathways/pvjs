@@ -378,7 +378,7 @@ pathvisio.pathway = function(){
     });
   }
 
-  function draw(svg, pathway){
+  function draw(svg, pathway, callback){
     if (!pathway) {
       console.warn('Error: No data entered as input.');
       return 'Error';
@@ -440,6 +440,9 @@ pathvisio.pathway = function(){
     if (pathway.hasOwnProperty('infoBox')) {
       pathvisio.pathway.infoBox.draw(svg, pathway);
     }
+
+    callback();
+
     /*
     window.setTimeout(function() {
       window.root = document.documentElement.getElementsByTagName("svg")[0];
@@ -546,7 +549,21 @@ pathvisio.pathway = function(){
     function(err, results){
       console.log('5');
       console.log(err);
-      draw(svg, pathway);
+
+      async.series([
+        function(callbackInside){
+          draw(svg, pathway, function() {
+            callbackInside(null);
+          })
+        },
+        function(callbackInside) {
+          svgPanZoom.init();
+          callbackInside(null);
+        }
+      ],
+      function(err, results) {
+        console.log(err);
+      });
 
       var nodeLabels = [];
       pathway.nodes.forEach(function(node) {
