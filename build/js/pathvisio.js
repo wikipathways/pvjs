@@ -1,5 +1,5 @@
 //! pathvisio-js 0.0.1
-//! Built on 2013-10-11
+//! Built on 2013-10-14
 //! https://github.com/wikipathways/pathvisio.js
 //! License: http://www.apache.org/licenses/LICENSE-2.0/
 
@@ -495,7 +495,7 @@ pathvisio.pathway = function(){
     });
   }
 
-  function draw(svg, pathway){
+  function draw(svg, pathway, callback){
     if (!pathway) {
       console.warn('Error: No data entered as input.');
       return 'Error';
@@ -557,6 +557,9 @@ pathvisio.pathway = function(){
     if (pathway.hasOwnProperty('infoBox')) {
       pathvisio.pathway.infoBox.draw(svg, pathway);
     }
+
+    callback();
+
     /*
     window.setTimeout(function() {
       window.root = document.documentElement.getElementsByTagName("svg")[0];
@@ -663,7 +666,21 @@ pathvisio.pathway = function(){
     function(err, results){
       console.log('5');
       console.log(err);
-      draw(svg, pathway);
+
+      async.series([
+        function(callbackInside){
+          draw(svg, pathway, function() {
+            callbackInside(null);
+          })
+        },
+        function(callbackInside) {
+          svgPanZoom.init();
+          callbackInside(null);
+        }
+      ],
+      function(err, results) {
+        console.log(err);
+      });
 
       var nodeLabels = [];
       pathway.nodes.forEach(function(node) {
@@ -1609,12 +1626,6 @@ pathvisio.pathway.edge = function(){
 
   function drawAll(svg, pathway) {
     if (!svg || !pathway) {
-      if (!svg) {
-        console.log('svg');
-      }
-      if (!pathway) {
-        console.log('pathway');
-      }
       return console.warn('Error: Missing one or more required parameters: svg, pathway.');
     }
 
@@ -1673,8 +1684,6 @@ pathvisio.pathway.edge = function(){
       // Somehow, d (the d3 selection data) gets redefined after this attr is defined.
 
       .attr("d", function (data) {
-        console.log('prob svg');
-        console.log(svg);
         pathData = pathvisio.pathway.edge.pathData.get(svg, pathway, data);
         if (data.hasOwnProperty('strokeStyle')) {
           if (data.strokeStyle === 'double') {
