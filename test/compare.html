@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<head>
+<meta charset="utf-8">
+<title>pathvisio.js comparisons</title>
+
+<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" media="screen">
+<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css" media="screen">
+
+<script src="../lib/rgb-color/rgb-color.min.js"></script>
+<script src="../lib/case-converter/case-converter.min.js"></script>
+<script src="../lib/xml2json/xml2json.min.js"></script>
+<script src="../lib/async/lib/async.js"></script>
+<script src="../lib/d3/d3.min.js"></script>
+<script src="../lib/jquery/jquery.min.js"></script>
+<script src="../lib/jquery-ui/ui/minified/jquery-ui.min.js"></script>
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+<script src="../lib/typeahead.js/dist/typeahead.min.js"></script>
+<script src="../lib/openseadragon/openseadragon.min.js"></script>
+<script src="../lib/modernizr/modernizr.min.js"></script>
+<script src="../lib/screenfull/dist/screenfull.min.js"></script>
+<script src="../lib/mr-data-converter/CSVParser.min.js"></script>
+<script src="../lib/mr-data-converter/DataGridRenderer.min.js"></script>
+<script src="../lib/svg-pan/svg-pan1.js"></script>
+
+
+<!--[if lt IE 9]>
+<script src="http://ie7-js.googlecode.com/svn/version/2.1(beta4)/IE9.js"></script>
+<script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+<script src="../lib/es5-shim/es5-shim.js"></script>
+<script src="../lib/Xccessors/xccessors-standard.js"></script>
+
+<script>
+
+// IE8 only allows console.log when Developer Tools is open. This will prevent errors
+// from showing up if I use console.log without DevTools being open.
+// from http://stackoverflow.com/questions/3326650/console-is-undefined-error-for-internet-explorer
+
+/**
+ * Protect window.console method calls, e.g. console is not defined on IE
+ * unless dev tools are open, and IE doesn't define console.debug
+ */
+(function() {
+  if (!window.console) {
+    window.console = {};
+      }
+      // union of Chrome, FF, IE, and Safari console methods
+      var m = [
+        "log", "info", "warn", "error", "debug", "trace", "dir", "group",
+        "groupCollapsed", "groupEnd", "time", "timeEnd", "profile", "profileEnd",
+        "dirxml", "assert", "count", "markTimeline", "timeStamp", "clear"
+        ];
+      // define undefined methods as noops to prevent errors
+      for (var i = 0; i < m.length; i++) {
+        if (!window.console[m[i]]) {
+          window.console[m[i]] = function() {};
+        }    
+      } 
+    })();
+  </script>
+<![endif]-->
+
+</head>
+<script>
+  function getUrlParam(name) {
+
+    // Thanks to http://stackoverflow.com/questions/11582512/how-to-get-url-parameters-with-javascript
+    // This will be replaced once we get the backend php to get the json
+
+    var parameter = decodeURIComponent((new RegExp('[?|&]' + name + '=' + '([^&;]+?)(&|#|;|$)').exec(location.search)||[,""])[1].replace(/\+/g, '%20'))||null;
+    if (!!parameter) {
+      return parameter;
+    }
+    else {
+      return null;
+    }
+  }
+
+  function getUrlParamList() {
+    urlParamList = {
+      'svg': false,
+      'gpml': null,
+      'gpmlRev': 0,
+      'creator': 'pathvisio-js-dev',
+      'account': '',
+      'branch': ''
+      };
+
+    Object.keys(urlParamList).forEach(function(element) {
+      if (!!getUrlParam(element)) {
+        urlParamList[element] = getUrlParam(element);
+      }
+      window.setTimeout(function() {
+        $('#' + element).val(urlParamList[element]);
+      }, 50)
+    });
+
+    return urlParamList;
+  }
+
+  function loadJsCssFile(filename, filetype, callback){
+   if (filetype=="js"){
+    var fileref=document.createElement('script')
+    fileref.setAttribute("type","text/javascript")
+    fileref.setAttribute("src", filename)
+   }
+   else if (filetype=="css"){
+    var fileref=document.createElement("link")
+    fileref.setAttribute("rel", "stylesheet")
+    fileref.setAttribute("type", "text/css")
+    fileref.setAttribute("href", filename)
+   }
+   if (typeof fileref!="undefined")
+    document.getElementsByTagName("head")[0].appendChild(fileref)
+
+    callback();
+  }
+
+  function appendPartialHtml(partialHtmlUrl, callback) {
+    d3.html(partialHtmlUrl, function(html) {
+      appendSvgTemplate(html, srcDirectoryUrl + 'views/pathway-template.svg', callback);
+    });
+  }
+
+  function appendSvgTemplate(partialHtml, svgTemplateUrl, callback) {
+    d3.text(svgTemplateUrl, 'text/plain', function(svg) {
+      d3.select(partialHtml).select('#pathway-container')[0][0].innerHTML = svg;
+      var oSerializer = new XMLSerializer();
+      pathvisioNS['tmp/pathvisio-js.html'] = oSerializer.serializeToString(partialHtml);
+      callback();
+    });
+  }
+
+  function displayCreator(creator) {
+
+    updateParams({'key': 'creator', 'value': creator});
+
+    //$('#gpml-for-reading').text(sGpml);
+    //$('#json-for-reading').text(sJson);
+  };
+
+  function updateParams(updatedParam) {
+    var targetUrl = currentUrl + '?' + updatedParam.key + '=' + updatedParam.value;
+
+    Object.keys(urlParamList).forEach(function(element) {
+      if (element === updatedParam.key) {
+        urlParamList[element] = updatedParam.value;
+      }
+      else {
+        targetUrl += '&' + element + '=' + urlParamList[element];
+      }
+    });
+
+    location.href = targetUrl;
+  }
+
+  var pathvisioNS;
+  if (!pathvisioNS) {
+    pathvisioNS = [];
+  }
+
+  var urlParamList = getUrlParamList();
+
+  var chooseSourceDataForm = $('#choose-source-data');
+  if (urlParamList.creator === 'pathvisio-js-dev') {
+    chooseSourceDataForm.show();
+  }
+  else {
+    chooseSourceDataForm.hide();
+  }
+  window.setTimeout(function() {
+    $('button.pathway').each(function(i) {
+      this.style.backgroundColor = 'lightgray';
+    });
+    $('#' + urlParamList.creator + '-button')[0].style.backgroundColor = 'yellow';
+  }, 50)
+
+  var currentUrl = document.location.origin + document.location.pathname;
+  var rootDirectoryUrl = currentUrl.replace("pathvisio.js/test/compare.html", "pathvisio.js/")
+  var srcDirectoryUrl = rootDirectoryUrl + 'src/';
+
+  if (urlParamList.creator === 'pathvisio-js-dev') {
+    if (!!urlParamList.account && !!urlParamList.branch && urlParamList.acount !== 'null' && urlParamList.branch !== 'null') {
+      //srcDirectoryUrl = rootDirectoryUrl + 'remote-data-sources/php/github.php?account=' + urlParamList.account + '&branch=' + urlParamList.branch + '&relativeUrl=';
+      srcDirectoryUrl = 'https://rawgithub.com/' + urlParamList.account + '/pathvisio.js/' + urlParamList.branch + '/src/';
+    }
+  }
+
+  if (!!urlParamList.gpml) {
+    var gpmlSource = urlParamList.gpml;
+
+    // gpmlSource is a WikiPathways ID
+
+    if (gpmlSource.indexOf('.gpml') === -1 && gpmlSource.indexOf('.xml') === -1) { // if gpmlSource is a WikiPathways ID
+      var gpmlUrl = rootDirectoryUrl + 'remote-data-sources/php/wikipathways.php?data=gpml&id=' + gpmlSource + '&rev=' + urlParamList.gpmlRev;
+    }
+    else { // if gpmlSource is a url to a gpml file
+      var gpmlUrl = gpmlSource;
+    };
+  }
+  else {
+    console.warn('Error: No GPML data source specified.');
+  };
+
+  function loadExtJsCss(callbackOutside) {
+    async.parallel([
+      function(callback) {
+        loadJsCssFile(srcDirectoryUrl + "css/pathvisio-js.css", "css", callback);
+      },
+      function(callback) {
+        loadJsCssFile(srcDirectoryUrl + "css/details-frame.css", "css", callback);
+      },
+      function(callback) {
+        loadJsCssFile(srcDirectoryUrl + "css/pan-zoom.css", "css", callback);
+      },
+      function(callback) {
+      if (urlParamList.creator === 'pathvisio-js-dev') {
+          async.series([
+            function(callback) {
+              loadJsCssFile(srcDirectoryUrl + "js/pathvisio/pathvisio.js", "js", callback);
+            },
+            function(callback) {
+              loadJsCssFile(srcDirectoryUrl + "js/pathvisio/helpers.js", "js", callback);
+            },
+            function(callback) {
+              loadJsCssFile(srcDirectoryUrl + "js/pathvisio/pathway/pathway.js", "js", callback);
+            },
+            function(callback) {
+              loadJsCssFile(srcDirectoryUrl + "js/pathvisio/pathway/group.js", "js", callback);
+            },
+            function(callback) {
+              loadJsCssFile(srcDirectoryUrl + "js/pathvisio/pathway/info-box.js", "js", callback);
+            },
+            function(callback) {
+              loadJsCssFile(srcDirectoryUrl + "js/pathvisio/pathway/node.js", "js", callback);
+            },
+            function(callback) {
+              loadJsCssFile(srcDirectoryUrl + "js/pathvisio/pathway/edge/edge.js", "js", callback);
+            },
+            function(callback) {
+              loadJsCssFile(srcDirectoryUrl + "js/pathvisio/pathway/edge/marker.js", "js", callback);
+            },
+            function(callback) {
+              loadJsCssFile(srcDirectoryUrl + "js/pathvisio/pathway/edge/point.js", "js", callback);
+            },
+            function(callback) {
+              loadJsCssFile(srcDirectoryUrl + "js/pathvisio/pathway/edge/path-data.js", "js", callback);
+            },
+            function(callback) {
+              loadJsCssFile(srcDirectoryUrl + "js/pathvisio/pathway/data-sources.js", "js", callback);
+            },
+            function(callback) {
+              console.log(1);
+              loadJsCssFile(srcDirectoryUrl + "js/pathvisio/pathway/x-ref.js", "js", callback)
+            }
+          ],
+          function(err, results) {
+            console.log(err);
+            callback(null);
+          });
+        }
+        else {
+          loadJsCssFile(rootDirectoryUrl + "build/js/pathvisio.min.js", "js", callback)
+        }
+      }
+    ],
+    function(err, results){
+      console.log(2);
+      window.setTimeout(function(){
+        console.log('2a');
+        callbackOutside();
+      }, 200)
+    })
+  }
+
+  async.series([
+    function(callbackInside) {
+      loadExtJsCss(callbackInside);
+    },
+    function(callbackInside) {
+      if (urlParamList.creator === 'pathvisio-js-dev') {
+
+        // convert partial html and svg template to a string and insert into pathvisioNS array.
+        // This work is only for the dev version. The pathvisioNS array with the data from partial
+        // html and svg template is included in the production version through a grunt build process.
+
+        appendPartialHtml(srcDirectoryUrl + 'views/pathvisio-js.html', function() {
+          callbackInside(null);
+        })
+      }
+      else {
+        callbackInside(null);
+      }
+    },
+    function(callbackInside) {
+      if (urlParamList.creator === 'pathvisio-js-dev') {
+        pathvisio.pathway.load({
+          container: '#pathway-container',
+          width: 1000,
+          height: 500,
+          zoom: 'fit',
+          gpmlUrl: gpmlUrl,
+          cssUrl: srcDirectoryUrl + 'css/pathway-template.css',
+          customShapes: [
+            {'id': 'arc', 'url': srcDirectoryUrl + 'views/symbols/arc.svg'},
+            {'id': 'brace', 'url': srcDirectoryUrl + 'views/symbols/brace.svg'},
+            {'id': 'endoplasmic-reticulum', 'url': srcDirectoryUrl + 'views/symbols/endoplasmic-reticulum.svg'},
+            {'id': 'golgi-apparatus', 'url': srcDirectoryUrl + 'views/symbols/golgi-apparatus.svg'},
+            {'id': 'hexagon', 'url': srcDirectoryUrl + 'views/symbols/hexagon.svg'},
+            {'id': 'mim-degradation', 'url': srcDirectoryUrl + 'views/symbols/mim-degradation.svg'},
+            {'id': 'mitochondria', 'url': srcDirectoryUrl + 'views/symbols/mitochondria.svg'},
+            {'id': 'oval', 'url': srcDirectoryUrl + 'views/symbols/oval.svg'},
+            {'id': 'pentagon', 'url': srcDirectoryUrl + 'views/symbols/pentagon.svg'},
+            {'id': 'rectangle', 'url': srcDirectoryUrl + 'views/symbols/rectangle.svg'},
+            {'id': 'rounded-rectangle', 'url': srcDirectoryUrl + 'views/symbols/rounded-rectangle.svg'},
+            {'id': 'sarcoplasmic-reticulum','url': srcDirectoryUrl + 'views/symbols/sarcoplasmic-reticulum.svg'},
+            {'id': 'triangle', 'url': srcDirectoryUrl + 'views/symbols/triangle.svg'}
+          ],
+          highlightNodes: [
+            {'parameter': 'label', 'parameterValue': 'CRH', 'color': 'red'},
+            {'parameter': 'xref', 'parameterValue': '8525,Entrez%20Gene', 'color': '#FF0000'}
+          ],
+          hiddenElements: [
+            'find',
+            'wikipathways-link'
+          ]
+        });
+      }
+      else {
+        pathvisio.pathway.load({
+          container: '#pathway-container',
+          width: 1000,
+          height: 500,
+          zoom: 'fit',
+          gpmlUrl: gpmlUrl,
+          highlightNodes: [
+            {'parameter': 'label', 'parameterValue': 'CRH', 'color': 'red'},
+            {'parameter': 'xref', 'parameterValue': '8525,Entrez%20Gene', 'color': '#FF0000'}
+          ],
+          hiddenElements: [
+            'find',
+            'wikipathways-link'
+          ]
+        });
+      }
+    }
+  ],
+  function(err, results) {
+    console.log(err);
+  });
+</script>
+
+<body>
+  <div id="choose-viewer">
+    <button id="pathvisio-js-dev-button" class="pathway" title="SVG viewer for all modern browsers (Dev Version)" onclick="displayCreator('pathvisio-js-dev')" style="background-color: yellow">pathvisio.js (DEV)</button>
+    <button id="pathvisio-js-prod-button" class="pathway" title="SVG viewer for all modern browsers" onclick="displayCreator('pathvisio-js-prod')" style="background-color: lightgray">pathvisio.js (PROD)</button>
+    <button id="pathvisio-js-prod-old-browsers-button" class="pathway" title="PNG viewer for old browsers like IE8" onclick="displayCreator('pathvisio-js-prod-old-browsers')" style="background-color: lightgray">pathvisio.js (PROD for old browsers)</button>
+    <button id="current-wiki-pathways-widget-button" class="pathway" title="Pathway widget currently in use on www.wikipathways.org" onclick="displayCreator('current-wiki-pathways-widget')" style="background-color: lightgray">Current WP Viewer</button>
+  <!--  <button id="pathvisio-java-svg-button" class="pathway" onclick="displayCreator('pathvisio-java-svg')" style="background-color: lightgray" title="SVG representation of GPML file, as created by PathVisio (Java), using Batik">PathVisio (Java) SVG</button>-->
+    <button id="pathvisio-java-png-button" class="pathway" onclick="displayCreator('pathvisio-java-png')" style="background-color: lightgray" title="PNG representation of GPML file, as created by PathVisio (Java)">PathVisio (Java) PNG</button>
+  <!--
+    <button id="gpml-button" class="pathway" onclick="displayCreator('gpml')" style="background-color: lightgray" title="Source GPML">GPML (XML)</button>
+    <button id="json-button" class="pathway" onclick="displayCreator('json')" style="background-color: lightgray" title="Formatted JSON">JSON</button>
+  -->
+
+  <form id="choose-source-data" action="#" method="get">
+        GPML: <input type="text" id="gpml" name="gpml" />
+        Account: <input type="text" id="account" name="account" />
+        Branch: <input type="text" id="branch" name="branch" />
+        <input type="text" id="creator" name="creator" />
+        <input type="text" id="svg" name="svg" />
+    <input type="submit" value="Submit" />
+    </form>
+  </div> 
+
+  <p>
+  This pathvisio.js test and development site allows you to edit the pathvisio.js code online at Github and view the results right here in the <b>pathvisio.js (DEV)</b> frame below. To get started, fork the <a href="https://github.com/wikipathways/pathvisio.js">pathvisio.js repo</a> and ask Anders or Alex to add you as an authorized user (authorized users array is in <a href="https://github.com/wikipathways/pathvisio.js/blob/master/remote-data-sources/php/github.php">github.php</a>). If you've already forked the pathvisio.js repo, be sure to pull the latest changes from the master branch of the wikipathways pathvisio.js repo (yourAccount::yourBranch ... wikipathways::master). Then edit the code in any of the files in the "src" folder of your Github fork of pathvisio.js and commit your changes on Github. (You may need to wait a second after committing for Github to apply your changes.) To see the result, return to this page, enter your Account and Branch above and click "Submit." When you're done editing, you can create a pull request on Github (wikipathways::master ... yourAccount::yourBranch) to merge your changes into the master branch of the wikipathways pathvisio.js repo.
+  </p>
+  <div id="pathway-container">
+  </div>
+</body>
