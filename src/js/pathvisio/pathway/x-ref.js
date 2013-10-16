@@ -64,66 +64,37 @@ pathvisio.pathway.xRef = function(){
         var specifiedXRefId = specifiedFeature.ids.filter(function(element) {return (element == node.xRef.id);})[0];
         var currentXRefIdIndex = specifiedFeature.ids.indexOf(specifiedXRefId);
 
-        features = pathvisio.helpers.moveArrayItem(features, currentFeatureIndex, 0);
+        features = self.features = pathvisio.helpers.moveArrayItem(features, currentFeatureIndex, 0);
         specifiedFeature.ids = pathvisio.helpers.moveArrayItem(specifiedFeature.ids, currentXRefIdIndex, 0);
 
-        var detailsFrame = d3.select('#details-frame');
+        var detailsFrame = self.detailsFrame = d3.select('#details-frame');
         //.attr('style', 'visibility:visible');
         
-        detailsFrame.selectAll('*').remove();
+        //detailsFrame.selectAll('*').remove();
 
-        var detailsHeader = detailsFrame.append('header')
-        .attr('class', 'data-node-label');
+        var detailsHeaderText = detailsFrame.select('#details-frame-header-text')
+        .text(node.textLabel.text);
 
-        var detailsPullLeftSpan = detailsHeader.append('span')
-        .attr('class', 'pull-left');
-        var detailsMoveSpan = detailsPullLeftSpan.append('span')
-        .attr('class', 'header-move');
-        var detailsMoveIcon = detailsMoveSpan.append('i')
-        .attr('class', 'icon-move')
-        .attr('style', 'color:#aaa');
-
-        var detailsHeaderLabelSpan = detailsHeader.append('span')
-        .attr('style', 'font-size: 120%;')
-        .text(function(d) {return node.textLabel.text + ' ';});
-        
-        var detailsSearchSpan = detailsHeaderLabelSpan.append('span')
-        .attr('class', 'header-search')
-        .attr('title', function(d) {return 'Search for pathways containing ' + node.textLabel.text; });
-        var detailsSearchLink = detailsSearchSpan.append('a')
-        .attr('href', function(d) {
+        var detailsSearchUri = detailsFrame.select('#details-frame-header-search').select('a')
+        .attr('href', function() {
           return 'http://wikipathways.org//index.php?title=Special:SearchPathways&doSearch=1&ids=' + node.xRef.id + '&codes=' + pathvisio.pathway.dataSources.filter(function(dataSource) {
             return dataSource.database.replace(/[^a-z0-9]/gi,'').toLowerCase() == node.xRef.database.replace(/[^a-z0-9]/gi,'').toLowerCase();
           })[0].id + '&type=xref';
-        });
-        var detailsSearchIcon = detailsSearchLink.append('i')
-        .attr('class', 'icon-search')
-        .attr('style', 'color:blue; font-size:50%');
-        
-        var detailsPullRightSpan = detailsHeader.append('span')
-        .attr('class', 'pull-right');
-        var detailsCloseSpan = detailsPullRightSpan.append('span')
-        .attr('class', 'header-close')
-        .on("click", function(d, i){
-          detailsFrame.selectAll('*').remove();
-          detailsFrame[0][0].style.visibility = 'hidden';
-        });
-        var detailsCloseIcon = detailsCloseSpan.append('i')
-        .attr('class', 'icon-remove')
-        .attr('style', 'color:#aaa; font-size:120%');
+        })
+        .attr('title', function() {return 'Search for pathways containing ' + node.textLabel.text; });
 
-        var dataNodeTypeDiv = detailsHeader.append('div')
-        .attr('class', 'data-node-description');
-        var dataNodeType = dataNodeTypeDiv.append('h2')
+        var dataNodeType = detailsFrame.select('#details-frame-description')
         .text(node.dataNodeType);
         
-        var detailsList = detailsFrame.append('ul')
-        .attr('class', 'data-node');
-
-        var detailsListItems = detailsList.selectAll('li')
+        var detailsFrameItems = self.detailsFrameItems = detailsFrame.select('#details-frame-items-container').selectAll('li')
+        .remove()
         .data(features)
         .enter()
         .append('li');
+
+        var detailsFrameItemTitles = detailsFrameItems.append('span')
+        .attr('class', 'details-frame-item-title')
+        .text(function(d) {return d.database + ': ';});
 
         /*
         [{'database':'a','ids':[1,2,3]},{'database':'b','ids':[1,2,3]}]
@@ -131,35 +102,40 @@ pathvisio.pathway.xRef = function(){
         features[element.database] = [element.id];
         */
 
-        detailsListItems[0].forEach(function(detailsListItem) {
-          var featureTitle = d3.select(detailsListItem).append('span')
-          .attr('class', 'feature-title')
-          .text(function(d) {return d.database + ': ';});
-          
-          var linkOuts = d3.select(detailsListItem).selectAll('a')
+        detailsFrameItems[0].forEach(function(detailsFrameItem) {
+          var detailsFrameItemTextNonLink = d3.select(detailsFrameItem).selectAll('.details-frame-item-text')
           .data(function(d) {
             var featuresFilled = [];
             d.ids.forEach(function(id) {
               var linkOut = d.linkOut.replace('$id', id);
-              featuresFilled.push({'id':id, 'linkOut':linkOut});
+              if (!d.linkOut) {
+                featuresFilled.push({'id':id});
+              }
+            });
+            return featuresFilled;
+          })
+          .enter()
+          .append('span')
+          .attr('class', 'details-frame-item-text')
+          .text(function(d) { return ' ' + d.id; })
+
+          var detailsFrameItemTextLinkOuts = d3.select(detailsFrameItem).selectAll('.details-frame-item-text')
+          .data(function(d) {
+            var featuresFilled = [];
+            d.ids.forEach(function(id) {
+              var linkOut = d.linkOut.replace('$id', id);
+              if (!!d.linkOut) {
+                featuresFilled.push({'id':id, 'linkOut':linkOut});
+              }
             });
             return featuresFilled;
           })
           .enter()
           .append('a')
-          .attr('href', function(d) {return d.linkOut;});
-          
-          var featureText = linkOuts.append('span')
-          .attr('class', 'feature-text')
-          .attr('style', function(d) {
-            if (!!d.linkOut) {
-              return '';
-            }
-            else {
-              return 'color: #696969;';
-            }
-          })
-          .text(function(d) {return ' ' + d.id;});
+          .attr('class', 'details-frame-item-text')
+          .attr('href', function(d) {return d.linkOut;})
+          .text(function(d) { return ' ' + d.id; })
+
         });
 
         detailsFrame[0][0].style.visibility = 'visible';
