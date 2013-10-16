@@ -76,7 +76,7 @@
 
   function getUrlParamList() {
     urlParamList = {
-      'svg': false,
+      'svgDisabled': false,
       'gpml': null,
       'gpmlRev': 0,
       'creator': 'pathvisio-js-dev',
@@ -391,13 +391,13 @@ function loadScripts(array, callback){
   var currentWikiPathwaysWidgetUrl = 'http://www.wikipathways.org/wpi/PathwayWidget.php?id=' + urlParamList.gpml;
 
   window.setTimeout(function() {
-    $('#choose-source-data').hide();
+    $('#github-container').hide();
   }, 50);
   if (urlParamList.creator === 'pathvisio-js-dev' || urlParamList.creator === 'pathvisio-js-prod') {
     loadPathvisioJs();
     if (urlParamList.creator === 'pathvisio-js-dev') {
       window.setTimeout(function() {
-        $('#choose-source-data').show();
+        $('#github-container').show();
       }, 50);
     }
   }
@@ -443,10 +443,10 @@ function loadScripts(array, callback){
 
   <form id="choose-source-data" action="#" method="get">
         GPML: <input type="text" id="gpml" name="gpml" />
-        Account: <input type="text" id="account" name="account" />
-        Branch: <input type="text" id="branch" name="branch" />
-        <input type="text" id="creator" name="creator" />
-        <input type="text" id="svg" name="svg" />
+        <span id="github-container">GitHub Account: <input type="text" id="account" name="account" placeholder="e.g., wikipathways" />
+        Branch: <input type="text" id="branch" name="branch" placeholder="e.g., master or dev" /></span>
+        <input type="hidden" id="creator" name="creator" />
+        SVG Disabled: <input type="checkbox" id="svg-disabled" name="svg-disabled" />
     <input type="submit" value="Submit" />
     </form>
   </div> 
