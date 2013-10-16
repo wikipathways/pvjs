@@ -45,7 +45,41 @@
           </div>
       </div>
     </div>
-    <div id="details-frame" style="visibility: hidden; position:absolute; right: 75px; top: 100px;" class="data-node ui-draggable">
+    <!--
+    <div id="details-frame" style="visibility: hidden; position:absolute; right: 75px; top: 100px;" class="details-frame ui-draggable">
     </div>
+    -->
+
+
+    <div id="details-frame" class="details-frame ui-draggable" style="visibility: visible; position: absolute; right: 75px; top: 100px;">
+      <header class="details-frame-header">
+        <span id="details-frame-move" class="details-frame-header-move pull-left">
+          <i class="icon-move" style="color:#aaa"></i>
+        </span>
+        <span id="details-frame-header-text" class="details-frame-header-text">
+          Header Text
+        </span> 
+        <span id="details-frame-header-search" class="details-frame-header-search" title="Search for pathways containing 'Header Text'">
+          <a href="http://wikipathways.org//index.php?title=Special:SearchPathways">
+            <i class="icon-search" style="color:blue; font-size:50%"></i>
+          </a>
+        </span>
+        <span class="details-frame-close pull-right" class="">
+          <i class="icon-remove" style="color:#aaa; font-size:120%"></i>
+        </span>
+        <div id="details-frame-description" class="details-frame-description">
+          <h2>datanode type</h2>
+        </div>
+      </header>
+      <ul id="details-frame-items-container" class="details-frame-items-container">
+        <li>
+          <span class="details-frame-item-title">Title: </span>
+          <span class="details-frame-item-text"> <a href="http://www.example.com/">LinkText</a></span>
+          <span class="details-frame-item-text"> NonLinkText</span>
+         </li>
+      </ul>
+    </div>
+
+
   </div>
 </div>
