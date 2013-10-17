@@ -603,17 +603,6 @@ pathvisio.pathway = function(){
       });
 
     });
-// listen for newMessage event
-$('#highlight-by-label').addEventListener("typeahead:selected", newMessageHandler, false);
-
-// newMessage event handler
-function newMessageHandler(e) {
-	LogEvent(
-		"Event subscriber on "+e.currentTarget.nodeName+", "
-		+e.detail.time.toLocaleString()+": "+e.detail.message
-	);
-}
-
   }
 
   return {
