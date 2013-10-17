@@ -588,7 +588,32 @@ pathvisio.pathway = function(){
           pathvisio.pathway.highlightByLabel(nodeLabel);
         }
       });
+
+      // see http://api.jquery.com/bind/
+      // TODO get selected value better and make function to handle
+
+      $( "#highlight-by-label" ).bind( "typeahead:selected", function() {
+        var nodeLabel = $("#highlight-by-label").val();
+        if (!nodeLabel) {
+          console.warn('Error: No data node value entered.');
+        }
+        else {
+          pathvisio.pathway.highlightByLabel(nodeLabel);
+        }
+      });
+
     });
+// listen for newMessage event
+$('#highlight-by-label').addEventListener("typeahead:selected", newMessageHandler, false);
+
+// newMessage event handler
+function newMessageHandler(e) {
+	LogEvent(
+		"Event subscriber on "+e.currentTarget.nodeName+", "
+		+e.detail.time.toLocaleString()+": "+e.detail.message
+	);
+}
+
   }
 
   return {
