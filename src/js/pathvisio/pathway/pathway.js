@@ -7,6 +7,8 @@ pathvisio.pathway = function(){
   var pathway = null;
   var symbolsAvailable = null;
 
+  self.pathway = pathway;
+
   function gpml2json(gpml, callback){
 
     // for doing this in Java, we could look at 
