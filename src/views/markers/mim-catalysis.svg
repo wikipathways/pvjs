@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<?xml-stylesheet type="text/css" href="../../css/pathway-template.css"?>
+
+<!-- mim-catalysis markers: circle, drawing-board fill and default stroke -->
+
+<svg id="mim-catalysis"
+	version="1.1"
+	baseProfile="full"
+	xmlns="http://www.w3.org/2000/svg"
+	xmlns:xlink="http://www.w3.org/1999/xlink"
+	xmlns:ev="http://www.w3.org/2001/xml-events"
+	width="12"
+	height="12"
+	class="drawing-board-color-fill solid-stroke"
+	viewBox="-6 -6 12 12">
+
+	<circle cx="0" cy="0" r="5.3px" stroke-width="1px"/>
+
+</svg>

@@ -4,6 +4,7 @@
 		shape-rendering: auto;
 		vector-effect: non-scaling-stroke;
 		fill: white;
+    stroke: black;
 	}
 
 	.drawing-board-color-fill {
@@ -115,7 +116,7 @@
 	}
 
 	.shape {
-		fill-opacity: 0;
+		fill-opacity: 1;
 		stroke: black;
 		stroke-dasharray: 0;
 		stroke-miterlimit: 1;
@@ -145,6 +146,25 @@
 	}
 
 	marker {
+		/* this is what should work per the spec
+		   stroke-dasharray: none; */
+		/* but I need to add this to make it work in Safari */
+		stroke-dasharray: 9999999999999999999999999;
+	}
+
+
+  .marker-end {
+    -webkit-transform: rotate(180deg);
+    -webkit-transform-origin: 50% 50%;
+
+    -o-transform: rotate(180deg); 
+    -o-transform-origin: 50% 50%;
+
+    transform: rotate(180deg);
+    transform-origin: 50% 50%;
+  }
+
+	.solid-stroke {
 		/* this is what should work per the spec
 		   stroke-dasharray: none; */
 		/* but I need to add this to make it work in Safari */
