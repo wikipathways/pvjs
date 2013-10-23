@@ -1,0 +1,393 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<?xml-stylesheet type="text/css" href="../css/pathway-template.css"?>
+
+<!-- 
+This file serves as our template for standardized GPML pathway visual representations.
+This file can be used for many purposes outside of pathvisio.js, including allowingar
+other projects to work better with GPML. For purposes of pathvisio.js, this file will
+be the starting point for our JavaScript rendering of pathways. Every time we want to
+render a GPML file on the browser, we will read a copy of this file into D3.js and
+modify the copy by adding "use" statements, cloning markers, etc. in order to create
+the desired pathway illustration in SVG.
+
+The XML declaration above is taken from an example from the W3C 
+<http://www.w3.org/TR/SVG/images/struct/use04.svg>,
+except I added:
+encoding="UTF-8" 
+We will want to change standalone to yes if we keep the CSS and
+JS all inside this document.
+
+Doctypes are not needed for SVG, and jwatt discourages their use:
+https://jwatt.org/svg/authoring/.
+
+Style guides can be arbitrary, but for consistency of SVG markup for the pathvisio.js project,
+	I suggest using JS Watt's SVG authoring advice and Google's HTML and JavaScript Guides:
+	https://jwatt.org/svg/authoring/
+	http://google-styleguide.googlecode.com/svn/trunk/htmlcssguide.xml
+	http://google-styleguide.googlecode.com/svn/trunk/javascriptguide.xml
+
+JS Watt's advice is referenced from MDN:
+https://developer.mozilla.org/en-US/docs/Web/SVG
+
+For testing, we will ensure this SVG file renders correctly with the following browsers and graphics programs:
+Chrome (latest release)
+	Uses Skia graphics library
+Firefox (latest release)
+	Uses Azure graphics library
+	Safari (latest release)
+	Android Browser (latest release)
+	iOS Browser (latest release)
+	Internet Explorer (IE9 and subsequent versions)
+Squiggle SVG browser (latest release)
+	Uses Batik 
+	Available for download at http://xmlgraphics.apache.org/batik/download.html
+SVG-Edit (latest release)
+	Version 2.6 (latest release as of 2013-07-08) available for download at 
+	http://svg-edit.googlecode.com/svn/branches/2.6/editor/svg-editor.html
+	Inkscape
+	Uses livarot rendering engine but is in process of transitioning to Cairo
+	Available for download at http://inkscape.org/
+
+	Optional additional tests:
+	SvgWeb
+	Adobe Illustrator (CS6)
+		Either convert SVG to PDF and import PDF into Illustrator or convert SVG to .ai (Illustrator format)
+		with a converter like Uniconverter, available for download at
+		http://sk1project.org/modules.php?name=Products&product=uniconvertor
+		Opening this SVG directly with Illustrator does not work well.
+		In the future, we could use Uniconverter on the server to make it possible to download pathway images in
+		.ai (Illustrator) and .cdr (CorelDraw) formats.
+
+	For more information on SVG, these references are helpful:
+	[W3 Spec](http://www.w3.org/TR/SVG/expanded-toc.html)
+	[MDN on SVG](https://developer.mozilla.org/en-US/docs/Web/SVG)
+	-->
+
+	<svg id="pathway-image"
+	version="1.1"
+	baseProfile="full"
+	xmlns="http://www.w3.org/2000/svg"
+	xmlns:xlink="http://www.w3.org/1999/xlink"
+	xmlns:ev="http://www.w3.org/2001/xml-events"
+	width="100%"
+	height="100%">
+	<g>
+	<title>pathway defs for pathvisio.js</title>
+	<desc>
+	This SVG file contains all the graphical elements (markers and symbols in defs as well as
+	style data) used by the program pathvisio.js, which has two components: 
+	1) a viewer for transforming GPML biological pathway data into an SVG visual representation and 
+	2) an editor for creating both views and models for biological pathways.
+	</desc>
+	</g>
+	<defs>
+
+    <filter id = "highlight" width = "150%" height = "150%">
+        <feOffset result = "offOut" in = "SourceGraphic" dx = "30" dy = "30"/>
+        <feGaussianBlur result = "blurOut" in = "offOut" stdDeviation = "10"/>
+        <feBlend in = "SourceGraphic" in2 = "blurOut" mode = "normal"/>
+    </filter>
+
+	<!-- ***************************
+	Markers (Arrowheads) 
+	*************************** -->
+
+	<!-- Here we generate a set of interaction markers for the default color (black). If we need other colors,
+	we need to clone the black marker and set the color for the clone to the desired color using d3.js.
+	I wish fill="currentColor" worked for markers, but that does not appear to be the case. -->
+
+	<!-- Each marker includes a small rectangle with a drawing-board-color-fill color to obscure the
+	ends of lines that might otherwise show up beneath the marker. Double lines require their own special
+	obscuring rects and are included as a double-line-hack-start/end marker, defined here and added in
+	gpml2json.js -->
+
+
+
+	
+
+	<!-- mim-inhibition markers: vertical line; and extended drawing-board rect -->
+
+	<marker id="mim-inhibition-start-black"
+	class="drawing-board-color-fill"
+	stroke="black"
+	markerWidth="16" 
+	markerHeight="16"
+	markerUnits="strokeWidth"
+	orient="auto"
+	refX="0" refY="0"
+	viewBox="0 -6 12 12">
+	<rect stroke="none" x="0" y="-0.6" width="5" height="1.2" />
+	<line fill="none" stroke-width="1.6" x1="5" y1="-6" x2="5" y2="6"/>
+	</marker>
+
+	<marker id="mim-inhibition-end-black"
+	class="drawing-board-color-fill"
+	stroke="black"
+	markerUnits="strokeWidth"
+	markerWidth="16" 
+	markerHeight="16"
+	orient="auto"
+	refX="0" refY="0"
+	viewBox="-12 -6 12 12">
+	<rect stroke="none" x="-5" y="-0.6" width="5" height="1.2" />
+	<line fill="none" stroke-width="1.6" x1="-5" y1="-6" x2="-5" y2="6"/>
+	</marker>
+	
+	<!-- mim-binding markers: four-point polygon, no stroke -->
+
+	<marker id="mim-binding-start-black" 
+	fill="black"
+	markerUnits="strokeWidth"
+	markerWidth="12" markerHeight="12"
+	orient="auto"
+	refX="0" refY="0"
+	viewBox="0 -6 12 12">
+	<rect class="drawing-board-color-fill" stroke="none" x="0" y="-0.6" width="2" height="1.2" />
+	<polygon stroke-width="0" points="12,6 0,0 12,-6 5,0 "/>
+	</marker>
+
+	<marker id="mim-binding-end-black"
+	fill="black"
+	markerUnits="strokeWidth"
+	markerWidth="12" markerHeight="12"
+	orient="auto"
+	refX="0" refY="0"
+	viewBox="-12 -6 12 12">
+	<rect class="drawing-board-color-fill" stroke="none" x="-2" y="-0.6" width="2" height="1.2" />
+	<polygon stroke-width="0" points="-12,6 0,0 -12,-6 -5,0 "/>
+	</marker>
+
+	<!-- mim-modification markers: four-point polygon, no stroke -->
+
+	<marker id="mim-modification-start-black" 
+	fill="black"
+	markerUnits="strokeWidth"
+	markerWidth="12" markerHeight="12"
+	orient="auto"
+	refX="0" refY="0"
+	viewBox="0 -6 12 12">
+	<rect class="drawing-board-color-fill" stroke="none" x="0" y="-0.6" width="2" height="1.2" />
+	<polygon stroke-width="0" points="12,6 0,0 12,-6 5,0 "/>
+	</marker>
+
+	<marker id="mim-modification-end-black"
+	fill="black"
+	markerUnits="strokeWidth"
+	markerWidth="12" markerHeight="12"
+	orient="auto"
+	refX="0" refY="0"
+	viewBox="-12 -6 12 12">
+	<rect class="drawing-board-color-fill" stroke="none" x="-2" y="-0.6" width="2" height="1.2" />
+	<polygon stroke-width="0" points="-12,6 0,0 -12,-6 -5,0 "/>
+	</marker>
+
+	<!-- mim-catalysis markers: circle, drawing-board fill and black stroke -->
+
+
+
+	<marker id="mim-catalysis-end-black"
+	class="drawing-board-color-fill"
+	stroke="black"
+	markerHeight="12"
+	markerUnits="strokeWidth"
+	markerWidth="12"
+	orient="auto"
+	refX="5" refY="0"
+	viewBox="">
+	</marker>
+
+	<!-- mim-cleavage markers: two lines and extended drawing-board rect -->
+
+	<marker id="mim-cleavage-start-black" 
+	class="drawing-board-color-fill" 
+	stroke="black"
+	markerHeight="24"
+	markerWidth="24"
+	markerUnits="strokeWidth"
+	orient="auto"
+	refX="0" refY="0"
+	viewBox="-8 -6 12 12">
+	<rect stroke="none" x="0" y="-0.6" width="3.5" height="1.2" />
+	<line fill="none" stroke-width=".4" x1="3.7" y1="0" x2="3.7" y2="6"/>	
+	<line fill="none" stroke-width=".4" x1="3.7" y1="6" x2="-8" y2="-6"/>	
+	</marker>
+
+	<marker id="mim-cleavage-end-black"
+	class="drawing-board-color-fill" 
+	stroke="black"
+	markerHeight="24"
+	markerWidth="24"
+	markerUnits="strokeWidth"
+	orient="auto"
+	refX="0" refY="0"
+	viewBox="-4 -6 12 12">
+	<rect stroke="none" x="-3.5" y="-0.6" width="3.5" height="1.2" />
+	<line fill="none" stroke-width=".4" x1="-3.7" y1="0" x2="-3.7" y2="-6"/>	
+	<line fill="none" stroke-width=".4" x1="-3.7" y1="-6" x2="8" y2="6"/>	
+	</marker>
+
+	<!-- mim-branching-left markers: line and extended drawing-board rect -->
+
+	<marker id="mim-branching-left-start-black" 
+	class="drawing-board-color-fill" 
+	stroke="black"
+	markerHeight="24"
+	markerWidth="24"
+	markerUnits="strokeWidth"
+	orient="auto"
+	refX="0" refY="0"
+	viewBox="0 -6 12 12">
+	<rect stroke="none" x="0" y="-0.6" width="3.5" height="1.2" />
+	<line fill="none" stroke-width=".4" x1="3.7" y1="0" x2="0" y2="-6"/>	
+	</marker>
+
+	<marker id="mim-branching-left-end-black"
+	class="drawing-board-color-fill" 
+	stroke="black"
+	markerHeight="24"
+	markerWidth="24"
+	markerUnits="strokeWidth"
+	orient="auto"
+	refX="0" refY="0"
+	viewBox="-12 -6 12 12">
+	<rect stroke="none" x="-3.5" y="-0.6" width="3.5" height="1.2" />
+	<line fill="none" stroke-width=".4" x1="-3.7" y1="0" x2="0" y2="6"/>	
+	</marker>
+
+	<!-- mim-branching-right markers: line and extended drawing-board rect -->
+
+	<marker id="mim-branching-right-start-black" 
+	class="drawing-board-color-fill" 
+	stroke="black"
+	markerHeight="24"
+	markerWidth="24"
+	markerUnits="strokeWidth"
+	orient="auto"
+	refX="0" refY="0"
+	viewBox="0 -6 12 12">
+	<rect stroke="none" x="0" y="-0.6" width="3.5" height="1.2" />
+	<line fill="none" stroke-width=".4" x1="3.7" y1="0" x2="0" y2="6"/>
+	</marker>
+
+	<marker id="mim-branching-right-end-black"
+	class="drawing-board-color-fill" 
+	stroke="black"
+	markerHeight="24"
+	markerWidth="24"
+	markerUnits="strokeWidth"
+	orient="auto"
+	refX="0" refY="0"
+	viewBox="-12 -6 12 12">
+	<rect stroke="none" x="-3.5" y="-0.6" width="3.5" height="1.2" />
+	<line fill="none" stroke-width=".4" x1="-3.7" y1="0" x2="0" y2="-6"/>	
+	</marker>
+
+	<!-- mim-transcription-translation markers: two lines and an open trigular polygon, plus extended drawing-board rect -->
+
+	<marker id="mim-transcription-translation-start-black"
+	class="drawing-board-color-fill" 
+	stroke="black"
+	markerHeight="24"
+	markerWidth="24"
+	markerUnits="strokeWidth"
+	orient="auto"
+	refX="0" refY="0"
+	viewBox="0 -6 12 12">
+	<rect stroke="none" x="0" y="-0.6" width="6" height="1.2" />
+	<line fill="none" stroke-width=".4" x1="9" y1="0" x2="9" y2="-4"/>
+	<line fill="none" stroke-width=".4" x1="9" y1="-4" x2="5" y2="-4"/>
+	<polygon stroke-width=".4" points="5,-6 0,-4 5,-2"/>
+	</marker>
+
+	<marker id="mim-transcription-translation-end-black"
+	class="drawing-board-color-fill" 
+	stroke="black"
+	markerHeight="24"
+	markerWidth="24"
+	markerUnits="strokeWidth"
+	orient="auto"
+	refX="0" refY="0"
+	viewBox="-12 -6 12 12">
+	<rect stroke="none" x="-6" y="-0.6" width="6" height="1.2" />
+	<line fill="none" stroke-width=".4" x1="-9" y1="0" x2="-9" y2="4"/>
+	<line fill="none" stroke-width=".4" x1="-9" y1="4" x2="-5" y2="4"/>
+	<polygon stroke-width=".4" points="-5,6 0,4 -5,2"/>	
+	</marker>
+	
+	<!-- mim-covalent-bond markers: not much to see here! -->
+
+	<marker id="mim-covalent-bond-start-black"
+	markerUnits="strokeWidth"
+	markerWidth="10" markerHeight="10"
+	orient="auto"
+	refX="0" refY="0"
+	viewBox="0 -6 12 12">
+	</marker>
+
+	<marker id="mim-covalent-bond-end-black"
+	markerUnits="strokeWidth"
+	markerWidth="10" markerHeight="10"
+	orient="auto"
+	refX="0" refY="0"
+	viewBox="-12 -6 12 12">
+	</marker>
+
+
+	<!-- double-line-hack markers are used in double line handling; they include their own 
+	special blank rect to obscure the ends -->
+
+	<marker id="double-line-hack-start"
+	markerUnits="strokeWidth"
+	markerWidth="10" markerHeight="10"
+	orient="auto"
+	refX="0" refY="0"
+	viewBox="0 -6 12 12">
+	<rect class="drawing-board-color-fill" stroke="none" x="0" y="-1.5" width="2.3" height="3" />
+	</marker>
+
+	<marker id="double-line-hack-end"
+	markerUnits="strokeWidth"
+	markerWidth="10" markerHeight="10"
+	orient="auto"
+	refX="0" refY="0"
+	viewBox="-12 -6 12 12">
+	<rect class="drawing-board-color-fill" stroke="none" x="-2.3" y="-1.5" width="2.3" height="3" />
+	</marker>
+
+
+	<!-- mim-gap markers: just an extended drawing-board rect -->
+	<!-- 
+	TODO This could be refactored to make the shape match the viewbox.
+	It can overlap the side of the shape, blanking out a small part of it when the edge is at an angle.
+	-->
+
+	<marker id="mim-gap-start-black"
+	class="drawing-board-color-fill"
+	markerUnits="strokeWidth"
+	markerWidth="10" markerHeight="10"
+	orient="auto"
+	refX="0" refY="0"
+	viewBox="0 -6 12 12">
+	<rect stroke="none" x="-2" y="-0.7" width="8" height="1.4" />
+	</marker>
+
+	<marker id="mim-gap-end-black"
+	class="drawing-board-color-fill"
+	markerUnits="strokeWidth"
+	markerWidth="10" markerHeight="10"
+	orient="auto"
+	refX="0" refY="0"
+	viewBox="-12 -6 12 12">
+	<rect stroke="none" x="-6" y="-0.7" width="8" height="1.4" />
+	</marker>
+
+	<symbol id="none"
+	viewBox="0 0 100 100"
+	preserveAspectRatio="none" />
+
+	</defs>
+
+	<g id="viewport">
+	</g>
+
+</svg>

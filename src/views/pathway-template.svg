@@ -103,6 +103,7 @@ SVG-Edit (latest release)
 
 	<!-- arrow markers: triangular polygons, no stroke -->
 
+<!--
 	<marker id="arrow-start-black" 
 	fill="black"
 	markerUnits="strokeWidth"
@@ -124,145 +125,34 @@ SVG-Edit (latest release)
 	<rect class="drawing-board-color-fill" stroke="none" x="-2" y="-0.6" width="2" height="1.2" />
 	<polygon stroke-width="0" points="-12,5 0,0 -12,-5"/>
 	</marker>
-
-
-	<!-- mim-conversion markers: triangular polygons, no stroke -->
-
-	<marker id="mim-conversion-start-black" 
-	fill="black"
-	markerUnits="strokeWidth"
-	markerWidth="12" markerHeight="12"
-	orient="auto"
-	refX="0" refY="0"
-	viewBox="0 -6 12 12">
-	<rect class="drawing-board-color-fill" stroke="none" x="0" y="-0.6" width="2" height="1.2" />
-	<polygon stroke-width="0" points="11,5 0,0 11,-5"/>
-	</marker>
-
-	<marker id="mim-conversion-end-black"
-	fill="black"
-	markerUnits="strokeWidth"
-	markerWidth="12" markerHeight="12"
-	orient="auto"
-	refX="0" refY="0"
-	viewBox="-12 -6 12 12">
-	<rect class="drawing-board-color-fill" stroke="none" x="-2" y="-0.6" width="2" height="1.2" />
-	<polygon stroke-width="0" points="-11,5 0,0 -11,-5"/>
-	</marker>
-
-	<!-- mim-stimulation markers: triangular polygons, drawing-board fill, black stroke -->
-
-	<marker id="mim-stimulation-start-black"
-	class="drawing-board-color-fill"
+  -->
+	<marker id="arrow-start-black" 
+	class="drawing-board-color-fill" 
 	stroke="black"
-	markerWidth="12" markerHeight="12"
+	markerHeight="12"
+	markerWidth="12"
 	markerUnits="strokeWidth"
 	orient="auto"
-	refX="0" refY="0"
-	viewBox="0 -6 12 12">
-	<rect stroke="none" x="0" y="-0.6" width="2" height="1.2" />
-	<polygon stroke-width="1" points="11,5 0,0 11,-5"/>
+	refX="0" refY="6"
+	viewBox="0 0 12 12">
+  <image xlink:href="../remote-data-sources/php/local.php?relativeUrl=views/markers/arrow.svg" x="0" y="0" width="12" height="12"></image>
 	</marker>
 
-	<marker id="mim-stimulation-end-black"
-	class="drawing-board-color-fill"
+	<marker id="arrow-end-black" 
+	class="drawing-board-color-fill" 
 	stroke="black"
-	markerUnits="strokeWidth"
-	markerWidth="12" markerHeight="12"
-	orient="auto"
-	refX="0" refY="0"
-	viewBox="-12 -6 12 12">
-	<rect stroke="none" x="-2" y="-0.6" width="2" height="1.2" />
-	<polygon stroke-width="1" points="-11,5 0,0 -11,-5"/>
-	</marker>
-
-	<!-- mim-necessary-stimulation markers: triangular polygons, drawing-board fill, black stroke; and vertical line -->
-
-	<marker id="mim-necessary-stimulation-start-black"
-	class="drawing-board-color-fill"
-	stroke="black"
-	markerWidth="12" markerHeight="12"
+	markerHeight="12"
+	markerWidth="12"
 	markerUnits="strokeWidth"
 	orient="auto"
-	refX="0" refY="0"
-	viewBox="0 -6 15 12">
-	<rect stroke="none" x="0" y="-0.6" width="2" height="1.2" />
-	<line fill="none" stroke-width="1" x1="14" y1="-6" x2="14" y2="6"/>
-	<polygon stroke-width="1" points="9,5 0,0 9,-5"/>
+	refX="12" refY="6"
+	viewBox="0 0 12 12">
+  <image xlink:href="../remote-data-sources/php/local.php?relativeUrl=views/markers/arrow.svg" x="0" y="0" width="12" height="12" class="marker-end"></image>
 	</marker>
 
-	<marker id="mim-necessary-stimulation-end-black"
-	class="drawing-board-color-fill"
-	stroke="black"
-	markerUnits="strokeWidth"
-	markerWidth="12" markerHeight="12"
-	orient="auto"
-	refX="0" refY="0"
-	viewBox="-15 -6 15 12">
-	<rect stroke="none" x="-2" y="-0.6" width="2" height="1.2" />
-	<line fill="none" stroke-width="1" x1="-14" y1="-6" x2="-14" y2="6"/>
-	<polygon stroke-width="1" points="-9,5 0,0 -9,-5"/>
-	</marker>
 
-	<!-- t-bar markers: vertical line; and extended drawing-board rect -->
-
-	<marker id="t-bar-start-black"
-	class="drawing-board-color-fill"
-	stroke="black"
-	markerWidth="16" 
-	markerHeight="16"
-	markerUnits="strokeWidth"
-	orient="auto"
-	refX="0" refY="0"
-	viewBox="0 -6 12 12">
-	<rect stroke="none" x="0" y="-0.6" width="5" height="1.2" />
-	<line fill="none" stroke-width="1.6" x1="5" y1="-6" x2="5" y2="6"/>
-	</marker>
-
-	<marker id="t-bar-end-black"
-	class="drawing-board-color-fill"
-	stroke="black"
-	markerUnits="strokeWidth"
-	markerWidth="16" 
-	markerHeight="16"
-	orient="auto"
-	refX="0" refY="0"
-	viewBox="-12 -6 12 12">
-	<rect stroke="none" x="-5" y="-0.6" width="5" height="1.2" />
-	<line fill="none" stroke-width="1.6" x1="-5" y1="-6" x2="-5" y2="6"/>
-	</marker>
-	
-
-	<!-- mim-inhibition markers: vertical line; and extended drawing-board rect -->
-
-	<marker id="mim-inhibition-start-black"
-	class="drawing-board-color-fill"
-	stroke="black"
-	markerWidth="16" 
-	markerHeight="16"
-	markerUnits="strokeWidth"
-	orient="auto"
-	refX="0" refY="0"
-	viewBox="0 -6 12 12">
-	<rect stroke="none" x="0" y="-0.6" width="5" height="1.2" />
-	<line fill="none" stroke-width="1.6" x1="5" y1="-6" x2="5" y2="6"/>
-	</marker>
-
-	<marker id="mim-inhibition-end-black"
-	class="drawing-board-color-fill"
-	stroke="black"
-	markerUnits="strokeWidth"
-	markerWidth="16" 
-	markerHeight="16"
-	orient="auto"
-	refX="0" refY="0"
-	viewBox="-12 -6 12 12">
-	<rect stroke="none" x="-5" y="-0.6" width="5" height="1.2" />
-	<line fill="none" stroke-width="1.6" x1="-5" y1="-6" x2="-5" y2="6"/>
-	</marker>
-	
 	<!-- mim-binding markers: four-point polygon, no stroke -->
-
+<!--
 	<marker id="mim-binding-start-black" 
 	fill="black"
 	markerUnits="strokeWidth"
@@ -284,33 +174,140 @@ SVG-Edit (latest release)
 	<rect class="drawing-board-color-fill" stroke="none" x="-2" y="-0.6" width="2" height="1.2" />
 	<polygon stroke-width="0" points="-12,6 0,0 -12,-6 -5,0 "/>
 	</marker>
-
-	<!-- mim-modification markers: four-point polygon, no stroke -->
-
-	<marker id="mim-modification-start-black" 
-	fill="black"
+-->
+	<marker id="mim-binding-start-black" 
+	class="drawing-board-color-fill" 
+	stroke="black"
+	markerHeight="12"
+	markerWidth="12"
 	markerUnits="strokeWidth"
-	markerWidth="12" markerHeight="12"
+	orient="auto"
+	refX="0" refY="6"
+	viewBox="0 0 12 12">
+  <image xlink:href="../remote-data-sources/php/local.php?relativeUrl=views/markers/mim-binding.svg" x="0" y="0" width="12" height="12"></image>
+	</marker>
+
+	<marker id="mim-binding-end-black" 
+	class="drawing-board-color-fill" 
+	stroke="black"
+	markerHeight="12"
+	markerWidth="12"
+	markerUnits="strokeWidth"
+	orient="auto"
+	refX="12" refY="6"
+	viewBox="0 0 12 12">
+  <image xlink:href="../remote-data-sources/php/local.php?relativeUrl=views/markers/mim-binding.svg" x="0" y="0" width="12" height="12" class="marker-end"></image>
+	</marker>
+
+	<!-- mim-branching-left markers: line and extended drawing-board rect -->
+
+<!--
+	<marker id="mim-branching-left-start-black" 
+	class="drawing-board-color-fill" 
+	stroke="black"
+	markerHeight="24"
+	markerWidth="24"
+	markerUnits="strokeWidth"
 	orient="auto"
 	refX="0" refY="0"
 	viewBox="0 -6 12 12">
-	<rect class="drawing-board-color-fill" stroke="none" x="0" y="-0.6" width="2" height="1.2" />
-	<polygon stroke-width="0" points="12,6 0,0 12,-6 5,0 "/>
+	<rect stroke="none" x="0" y="-0.6" width="3.5" height="1.2" />
+	<line fill="none" stroke-width=".4" x1="3.7" y1="0" x2="0" y2="-6"/>	
 	</marker>
 
-	<marker id="mim-modification-end-black"
-	fill="black"
+	<marker id="mim-branching-left-end-black"
+	class="drawing-board-color-fill" 
+	stroke="black"
+	markerHeight="24"
+	markerWidth="24"
 	markerUnits="strokeWidth"
-	markerWidth="12" markerHeight="12"
 	orient="auto"
 	refX="0" refY="0"
 	viewBox="-12 -6 12 12">
-	<rect class="drawing-board-color-fill" stroke="none" x="-2" y="-0.6" width="2" height="1.2" />
-	<polygon stroke-width="0" points="-12,6 0,0 -12,-6 -5,0 "/>
+	<rect stroke="none" x="-3.5" y="-0.6" width="3.5" height="1.2" />
+	<line fill="none" stroke-width=".4" x1="-3.7" y1="0" x2="0" y2="6"/>	
+	</marker>
+-->
+	<marker id="mim-branching-left-start-black" 
+	class="drawing-board-color-fill" 
+	stroke="black"
+	markerHeight="24"
+	markerWidth="24"
+	markerUnits="strokeWidth"
+	orient="auto"
+	refX="0" refY="6"
+	viewBox="0 0 12 12">
+  <image xlink:href="../remote-data-sources/php/local.php?relativeUrl=views/markers/mim-branching-left.svg" x="0" y="0" width="12" height="12"></image>
+	</marker>
+
+	<marker id="mim-branching-left-end-black" 
+	class="drawing-board-color-fill" 
+	stroke="black"
+	markerHeight="24"
+	markerWidth="24"
+	markerUnits="strokeWidth"
+	orient="auto"
+	refX="12" refY="6"
+	viewBox="0 0 12 12">
+  <image xlink:href="../remote-data-sources/php/local.php?relativeUrl=views/markers/mim-branching-left.svg" x="0" y="0" width="12" height="12" class="marker-end"></image>
+	</marker>
+
+
+	<!-- mim-branching-right markers: line and extended drawing-board rect -->
+
+  <!--
+	<marker id="mim-branching-right-start-black" 
+	class="drawing-board-color-fill" 
+	stroke="black"
+	markerHeight="24"
+	markerWidth="24"
+	markerUnits="strokeWidth"
+	orient="auto"
+	refX="0" refY="0"
+	viewBox="0 -6 12 12">
+	<rect stroke="none" x="0" y="-0.6" width="3.5" height="1.2" />
+	<line fill="none" stroke-width=".4" x1="3.7" y1="0" x2="0" y2="6"/>
+	</marker>
+
+	<marker id="mim-branching-right-end-black"
+	class="drawing-board-color-fill" 
+	stroke="black"
+	markerHeight="24"
+	markerWidth="24"
+	markerUnits="strokeWidth"
+	orient="auto"
+	refX="0" refY="0"
+	viewBox="-12 -6 12 12">
+	<rect stroke="none" x="-3.5" y="-0.6" width="3.5" height="1.2" />
+	<line fill="none" stroke-width=".4" x1="-3.7" y1="0" x2="0" y2="-6"/>	
+	</marker>
+-->
+	<marker id="mim-branching-right-start-black" 
+	class="drawing-board-color-fill" 
+	stroke="black"
+	markerHeight="24"
+	markerWidth="24"
+	markerUnits="strokeWidth"
+	orient="auto"
+	refX="0" refY="6"
+	viewBox="0 0 12 12">
+  <image xlink:href="../remote-data-sources/php/local.php?relativeUrl=views/markers/mim-branching-right.svg" x="0" y="0" width="12" height="12"></image>
+	</marker>
+
+	<marker id="mim-branching-right-end-black" 
+	class="drawing-board-color-fill" 
+	stroke="black"
+	markerHeight="24"
+	markerWidth="24"
+	markerUnits="strokeWidth"
+	orient="auto"
+	refX="12" refY="6"
+	viewBox="0 0 12 12">
+  <image xlink:href="../remote-data-sources/php/local.php?relativeUrl=views/markers/mim-branching-right.svg" x="0" y="0" width="12" height="12" class="marker-end"></image>
 	</marker>
 
 	<!-- mim-catalysis markers: circle, drawing-board fill and black stroke -->
-
+<!--
 	<marker id="mim-catalysis-start-black"
 	class="drawing-board-color-fill"
 	stroke="black"
@@ -334,9 +331,34 @@ SVG-Edit (latest release)
 	viewBox="-6.5 -6 12 12">
 	<circle cx="-0.3" cy="0" r="5.3px" stroke-width="1px"/>
 	</marker>
+-->
+
+	<marker id="mim-catalysis-start-black" 
+	class="drawing-board-color-fill" 
+	stroke="black"
+	markerHeight="12"
+	markerWidth="12"
+	markerUnits="strokeWidth"
+	orient="auto"
+	refX="0" refY="6"
+	viewBox="0 0 12 12">
+  <image xlink:href="../remote-data-sources/php/local.php?relativeUrl=views/markers/mim-catalysis.svg" x="0" y="0" width="12" height="12"></image>
+	</marker>
+
+	<marker id="mim-catalysis-end-black" 
+	class="drawing-board-color-fill" 
+	stroke="black"
+	markerHeight="12"
+	markerWidth="12"
+	markerUnits="strokeWidth"
+	orient="auto"
+	refX="12" refY="6"
+	viewBox="0 0 12 12">
+  <image xlink:href="../remote-data-sources/php/local.php?relativeUrl=views/markers/mim-catalysis.svg" x="0" y="0" width="12" height="12" class="marker-end"></image>
+	</marker>
 
 	<!-- mim-cleavage markers: two lines and extended drawing-board rect -->
-
+  <!--
 	<marker id="mim-cleavage-start-black" 
 	class="drawing-board-color-fill" 
 	stroke="black"
@@ -364,65 +386,377 @@ SVG-Edit (latest release)
 	<line fill="none" stroke-width=".4" x1="-3.7" y1="0" x2="-3.7" y2="-6"/>	
 	<line fill="none" stroke-width=".4" x1="-3.7" y1="-6" x2="8" y2="6"/>	
 	</marker>
-
-	<!-- mim-branching-left markers: line and extended drawing-board rect -->
-
-	<marker id="mim-branching-left-start-black" 
+  -->
+	<marker id="mim-cleavage-start-black" 
 	class="drawing-board-color-fill" 
 	stroke="black"
 	markerHeight="24"
 	markerWidth="24"
+	markerUnits="strokeWidth"
+	orient="auto"
+	refX="8" refY="6"
+	viewBox="0 0 12 12">
+  <image xlink:href="../remote-data-sources/php/local.php?relativeUrl=views/markers/mim-cleavage.svg" x="0" y="0" width="12" height="12"></image>
+	</marker>
+
+	<marker id="mim-cleavage-end-black" 
+	class="drawing-board-color-fill" 
+	stroke="black"
+	markerHeight="24"
+	markerWidth="24"
+	markerUnits="strokeWidth"
+	orient="auto"
+	refX="4" refY="6"
+	viewBox="0 0 12 12">
+  <image xlink:href="../remote-data-sources/php/local.php?relativeUrl=views/markers/mim-cleavage.svg" x="0" y="0" width="12" height="12" class="marker-end"></image>
+	</marker>
+
+	<!-- mim-conversion markers: triangular polygons, no stroke -->
+<!--
+	<marker id="mim-conversion-start-black" 
+	fill="black"
+	markerUnits="strokeWidth"
+	markerWidth="12" markerHeight="12"
+	orient="auto"
+	refX="0" refY="0"
+	viewBox="0 -6 12 12">
+	<rect class="drawing-board-color-fill" stroke="none" x="0" y="-0.6" width="2" height="1.2" />
+	<polygon stroke-width="0" points="11,5 0,0 11,-5"/>
+	</marker>
+
+	<marker id="mim-conversion-end-black"
+	fill="black"
+	markerUnits="strokeWidth"
+	markerWidth="12" markerHeight="12"
+	orient="auto"
+	refX="0" refY="0"
+	viewBox="-12 -6 12 12">
+	<rect class="drawing-board-color-fill" stroke="none" x="-2" y="-0.6" width="2" height="1.2" />
+	<polygon stroke-width="0" points="-11,5 0,0 -11,-5"/>
+	</marker>
+-->
+	<marker id="mim-conversion-start-black" 
+	class="drawing-board-color-fill" 
+	stroke="black"
+	markerHeight="12"
+	markerWidth="12"
+	markerUnits="strokeWidth"
+	orient="auto"
+	refX="0" refY="6"
+	viewBox="0 0 12 12">
+  <image xlink:href="../remote-data-sources/php/local.php?relativeUrl=views/markers/mim-conversion.svg" x="0" y="0" width="12" height="12"></image>
+	</marker>
+
+	<marker id="mim-conversion-end-black" 
+	class="drawing-board-color-fill" 
+	stroke="black"
+	markerHeight="12"
+	markerWidth="12"
+	markerUnits="strokeWidth"
+	orient="auto"
+	refX="12" refY="6"
+	viewBox="0 0 12 12">
+  <image xlink:href="../remote-data-sources/php/local.php?relativeUrl=views/markers/mim-conversion.svg" x="0" y="0" width="12" height="12" class="marker-end"></image>
+	</marker>
+
+	<!-- mim-covalent-bond markers: not much to see here! -->
+<!--
+	<marker id="mim-covalent-bond-start-black"
+	markerUnits="strokeWidth"
+	markerWidth="10" markerHeight="10"
+	orient="auto"
+	refX="0" refY="0"
+	viewBox="0 -6 12 12">
+	</marker>
+
+	<marker id="mim-covalent-bond-end-black"
+	markerUnits="strokeWidth"
+	markerWidth="10" markerHeight="10"
+	orient="auto"
+	refX="0" refY="0"
+	viewBox="-12 -6 12 12">
+	</marker>
+-->
+	<marker id="mim-covalent-bond-start-black" 
+	class="drawing-board-color-fill" 
+	stroke="black"
+	markerHeight="12"
+	markerWidth="12"
+	markerUnits="strokeWidth"
+	orient="auto"
+	refX="0" refY="6"
+	viewBox="0 0 12 12">
+  <image xlink:href="../remote-data-sources/php/local.php?relativeUrl=views/markers/mim-covalent-bond.svg" x="0" y="0" width="12" height="12"></image>
+	</marker>
+
+	<marker id="mim-covalent-bond-end-black" 
+	class="drawing-board-color-fill" 
+	stroke="black"
+	markerHeight="12"
+	markerWidth="12"
+	markerUnits="strokeWidth"
+	orient="auto"
+	refX="12" refY="6"
+	viewBox="0 0 12 12">
+  <image xlink:href="../remote-data-sources/php/local.php?relativeUrl=views/markers/mim-covalent-bond.svg" x="0" y="0" width="12" height="12" class="marker-end"></image>
+	</marker>
+
+	<!-- mim-gap markers: just an extended drawing-board rect -->
+	<!-- 
+	TODO This could be refactored to make the shape match the viewbox.
+	It can overlap the side of the shape, blanking out a small part of it when the edge is at an angle.
+	-->
+<!--
+	<marker id="mim-gap-start-black"
+	class="drawing-board-color-fill"
+	markerUnits="strokeWidth"
+	markerWidth="10" markerHeight="10"
+	orient="auto"
+	refX="0" refY="0"
+	viewBox="0 -6 12 12">
+	<rect stroke="none" x="-2" y="-0.7" width="8" height="1.4" />
+	</marker>
+
+	<marker id="mim-gap-end-black"
+	class="drawing-board-color-fill"
+	markerUnits="strokeWidth"
+	markerWidth="10" markerHeight="10"
+	orient="auto"
+	refX="0" refY="0"
+	viewBox="-12 -6 12 12">
+	<rect stroke="none" x="-6" y="-0.7" width="8" height="1.4" />
+	</marker>
+-->
+	<marker id="mim-gap-start-black" 
+	class="drawing-board-color-fill" 
+	stroke="black"
+	markerHeight="10"
+	markerWidth="10"
+	markerUnits="strokeWidth"
+	orient="auto"
+	refX="2" refY="6"
+	viewBox="0 0 12 12">
+  <image xlink:href="../remote-data-sources/php/local.php?relativeUrl=views/markers/mim-gap.svg" x="0" y="0" width="12" height="12"></image>
+	</marker>
+
+	<marker id="mim-gap-end-black" 
+	class="drawing-board-color-fill" 
+	stroke="black"
+	markerHeight="10"
+	markerWidth="10"
+	markerUnits="strokeWidth"
+	orient="auto"
+	refX="10" refY="6"
+	viewBox="0 0 12 12">
+  <image xlink:href="../remote-data-sources/php/local.php?relativeUrl=views/markers/mim-gap.svg" x="0" y="0" width="12" height="12" class="marker-end"></image>
+	</marker>
+
+	<!-- mim-inhibition markers: vertical line; and extended drawing-board rect -->
+
+  <!--
+	<marker id="mim-inhibition-start-black"
+	class="drawing-board-color-fill"
+	stroke="black"
+	markerWidth="16" 
+	markerHeight="16"
 	markerUnits="strokeWidth"
 	orient="auto"
 	refX="0" refY="0"
 	viewBox="0 -6 12 12">
-	<rect stroke="none" x="0" y="-0.6" width="3.5" height="1.2" />
-	<line fill="none" stroke-width=".4" x1="3.7" y1="0" x2="0" y2="-6"/>	
-	</marker>
+	<rect stroke="none" x="0" y="-0.6" width="5" height="1.2" />
+	<line fill="none" stroke-width="1.6" x1="5" y1="-6" x2="5" y2="6"/>
+  </marker>
 
-	<marker id="mim-branching-left-end-black"
-	class="drawing-board-color-fill" 
+	<marker id="mim-inhibition-end-black"
+	class="drawing-board-color-fill"
 	stroke="black"
-	markerHeight="24"
-	markerWidth="24"
 	markerUnits="strokeWidth"
+	markerWidth="16" 
+	markerHeight="16"
 	orient="auto"
 	refX="0" refY="0"
 	viewBox="-12 -6 12 12">
-	<rect stroke="none" x="-3.5" y="-0.6" width="3.5" height="1.2" />
-	<line fill="none" stroke-width=".4" x1="-3.7" y1="0" x2="0" y2="6"/>	
+	<rect stroke="none" x="-5" y="-0.6" width="5" height="1.2" />
+	<line fill="none" stroke-width="1.6" x1="-5" y1="-6" x2="-5" y2="6"/>
+	</marker>
+	-->
+  
+	<marker id="mim-inhibition-start-black"
+	class="drawing-board-color-fill"
+	stroke="black"
+	markerWidth="16" 
+	markerHeight="16"
+	markerUnits="strokeWidth"
+	orient="auto"
+	refX="0" refY="6"
+	viewBox="0 0 12 12">
+  <image xlink:href="../remote-data-sources/php/local.php?relativeUrl=views/markers/mim-inhibition.svg" x="0" y="0" width="12" height="12"></image>
+  </marker>
+  
+	<marker id="mim-inhibition-end-black"
+	class="drawing-board-color-fill"
+	stroke="black"
+	markerWidth="16" 
+	markerHeight="16"
+	markerUnits="strokeWidth"
+	orient="auto"
+	refX="12" refY="6"
+	viewBox="0 0 12 12">
+  <image xlink:href="../remote-data-sources/php/local.php?relativeUrl=views/markers/mim-inhibition.svg" x="0" y="0" width="12" height="12" class="marker-end"></image>
+  </marker>
+
+	<!-- mim-modification markers: four-point polygon, no stroke -->
+<!-- TODO
+	<marker id="mim-modification-start-black" 
+	fill="black"
+	markerUnits="strokeWidth"
+	markerWidth="12" markerHeight="12"
+	orient="auto"
+	refX="0" refY="0"
+	viewBox="0 -6 12 12">
+	<rect class="drawing-board-color-fill" stroke="none" x="0" y="-0.6" width="2" height="1.2" />
+	<polygon stroke-width="0" points="12,6 0,0 12,-6 5,0 "/>
 	</marker>
 
-	<!-- mim-branching-right markers: line and extended drawing-board rect -->
-
-	<marker id="mim-branching-right-start-black" 
+	<marker id="mim-modification-end-black"
+	fill="black"
+	markerUnits="strokeWidth"
+	markerWidth="12" markerHeight="12"
+	orient="auto"
+	refX="0" refY="0"
+	viewBox="-12 -6 12 12">
+	<rect class="drawing-board-color-fill" stroke="none" x="-2" y="-0.6" width="2" height="1.2" />
+	<polygon stroke-width="0" points="-12,6 0,0 -12,-6 -5,0 "/>
+	</marker>
+  -->
+	<marker id="mim-modification-start-black" 
 	class="drawing-board-color-fill" 
 	stroke="black"
-	markerHeight="24"
-	markerWidth="24"
+	markerHeight="12"
+	markerWidth="12"
+	markerUnits="strokeWidth"
+	orient="auto"
+	refX="0" refY="6"
+	viewBox="0 0 12 12">
+  <image xlink:href="../remote-data-sources/php/local.php?relativeUrl=views/markers/mim-modification.svg" x="0" y="0" width="12" height="12"></image>
+	</marker>
+
+	<marker id="mim-modification-end-black" 
+	class="drawing-board-color-fill" 
+	stroke="black"
+	markerHeight="12"
+	markerWidth="12"
+	markerUnits="strokeWidth"
+	orient="auto"
+	refX="12" refY="6"
+	viewBox="0 0 12 12">
+  <image xlink:href="../remote-data-sources/php/local.php?relativeUrl=views/markers/mim-modification.svg" x="0" y="0" width="12" height="12" class="marker-end"></image>
+	</marker>
+
+	<!-- mim-necessary-stimulation markers: triangular polygons, drawing-board fill, black stroke; and vertical line -->
+<!--
+	<marker id="mim-necessary-stimulation-start-black"
+	class="drawing-board-color-fill"
+	stroke="black"
+	markerWidth="12" markerHeight="12"
+	markerUnits="strokeWidth"
+	orient="auto"
+	refX="0" refY="0"
+	viewBox="0 -6 15 12">
+	<rect stroke="none" x="0" y="-0.6" width="2" height="1.2" />
+	<line fill="none" stroke-width="1" x1="14" y1="-6" x2="14" y2="6"/>
+	<polygon stroke-width="1" points="9,5 0,0 9,-5"/>
+	</marker>
+
+	<marker id="mim-necessary-stimulation-end-black"
+	class="drawing-board-color-fill"
+	stroke="black"
+	markerUnits="strokeWidth"
+	markerWidth="12" markerHeight="12"
+	orient="auto"
+	refX="0" refY="0"
+	viewBox="-15 -6 15 12">
+	<rect stroke="none" x="-2" y="-0.6" width="2" height="1.2" />
+	<line fill="none" stroke-width="1" x1="-14" y1="-6" x2="-14" y2="6"/>
+	<polygon stroke-width="1" points="-9,5 0,0 -9,-5"/>
+	</marker>
+  -->
+	<marker id="mim-necessary-stimulation-start-black" 
+	class="drawing-board-color-fill" 
+	stroke="black"
+	markerHeight="12"
+	markerWidth="12"
+	markerUnits="strokeWidth"
+	orient="auto"
+	refX="0" refY="6"
+	viewBox="0 0 15 12">
+  <image xlink:href="../remote-data-sources/php/local.php?relativeUrl=views/markers/mim-necessary-stimulation.svg" x="0" y="0" width="15" height="12"></image>
+	</marker>
+
+	<marker id="mim-necessary-stimulation-end-black" 
+	class="drawing-board-color-fill" 
+	stroke="black"
+	markerHeight="12"
+	markerWidth="12"
+	markerUnits="strokeWidth"
+	orient="auto"
+	refX="15" refY="6"
+	viewBox="0 0 15 12">
+  <image xlink:href="../remote-data-sources/php/local.php?relativeUrl=views/markers/mim-necessary-stimulation.svg" x="0" y="0" width="15" height="12" class="marker-end"></image>
+	</marker>
+
+	<!-- mim-stimulation markers: triangular polygons, drawing-board fill, black stroke -->
+<!--
+	<marker id="mim-stimulation-start-black"
+	class="drawing-board-color-fill"
+	stroke="black"
+	markerWidth="12" markerHeight="12"
 	markerUnits="strokeWidth"
 	orient="auto"
 	refX="0" refY="0"
 	viewBox="0 -6 12 12">
-	<rect stroke="none" x="0" y="-0.6" width="3.5" height="1.2" />
-	<line fill="none" stroke-width=".4" x1="3.7" y1="0" x2="0" y2="6"/>
+	<rect stroke="none" x="0" y="-0.6" width="2" height="1.2" />
+	<polygon stroke-width="1" points="11,5 0,0 11,-5"/>
 	</marker>
 
-	<marker id="mim-branching-right-end-black"
-	class="drawing-board-color-fill" 
+	<marker id="mim-stimulation-end-black"
+	class="drawing-board-color-fill"
 	stroke="black"
-	markerHeight="24"
-	markerWidth="24"
 	markerUnits="strokeWidth"
+	markerWidth="12" markerHeight="12"
 	orient="auto"
 	refX="0" refY="0"
 	viewBox="-12 -6 12 12">
-	<rect stroke="none" x="-3.5" y="-0.6" width="3.5" height="1.2" />
-	<line fill="none" stroke-width=".4" x1="-3.7" y1="0" x2="0" y2="-6"/>	
+	<rect stroke="none" x="-2" y="-0.6" width="2" height="1.2" />
+	<polygon stroke-width="1" points="-11,5 0,0 -11,-5"/>
+	</marker>
+  -->
+	<marker id="mim-stimulation-start-black" 
+	class="drawing-board-color-fill" 
+	stroke="black"
+	markerHeight="12"
+	markerWidth="12"
+	markerUnits="strokeWidth"
+	orient="auto"
+	refX="0" refY="6"
+	viewBox="0 0 12 12">
+  <image xlink:href="../remote-data-sources/php/local.php?relativeUrl=views/markers/mim-stimulation.svg" x="0" y="0" width="12" height="12"></image>
+	</marker>
+
+	<marker id="mim-stimulation-end-black" 
+	class="drawing-board-color-fill" 
+	stroke="black"
+	markerHeight="12"
+	markerWidth="12"
+	markerUnits="strokeWidth"
+	orient="auto"
+	refX="12" refY="6"
+	viewBox="0 0 12 12">
+  <image xlink:href="../remote-data-sources/php/local.php?relativeUrl=views/markers/mim-stimulation.svg" x="0" y="0" width="12" height="12" class="marker-end"></image>
 	</marker>
 
 	<!-- mim-transcription-translation markers: two lines and an open trigular polygon, plus extended drawing-board rect -->
-
+<!--
 	<marker id="mim-transcription-translation-start-black"
 	class="drawing-board-color-fill" 
 	stroke="black"
@@ -452,29 +786,86 @@ SVG-Edit (latest release)
 	<line fill="none" stroke-width=".4" x1="-9" y1="4" x2="-5" y2="4"/>
 	<polygon stroke-width=".4" points="-5,6 0,4 -5,2"/>	
 	</marker>
-	
-	<!-- mim-covalent-bond markers: not much to see here! -->
-
-	<marker id="mim-covalent-bond-start-black"
+  -->
+	<marker id="mim-transcription-translation-start-black" 
+	class="drawing-board-color-fill" 
+	stroke="black"
+	markerHeight="24"
+	markerWidth="24"
 	markerUnits="strokeWidth"
-	markerWidth="10" markerHeight="10"
+	orient="auto"
+	refX="0" refY="6"
+	viewBox="0 0 12 12">
+  <image xlink:href="../remote-data-sources/php/local.php?relativeUrl=views/markers/mim-transcription-translation.svg" x="0" y="0" width="12" height="12"></image>
+	</marker>
+
+	<marker id="mim-transcription-translation-end-black" 
+	class="drawing-board-color-fill" 
+	stroke="black"
+	markerHeight="24"
+	markerWidth="24"
+	markerUnits="strokeWidth"
+	orient="auto"
+	refX="12" refY="6"
+	viewBox="0 0 12 12">
+  <image xlink:href="../remote-data-sources/php/local.php?relativeUrl=views/markers/mim-transcription-translation.svg" x="0" y="0" width="12" height="12" class="marker-end"></image>
+	</marker>
+
+	<!-- t-bar markers: vertical line; and extended drawing-board rect -->
+<!--
+	<marker id="t-bar-start-black"
+	class="drawing-board-color-fill"
+	stroke="black"
+	markerWidth="16" 
+	markerHeight="16"
+	markerUnits="strokeWidth"
 	orient="auto"
 	refX="0" refY="0"
 	viewBox="0 -6 12 12">
+	<rect stroke="none" x="0" y="-0.6" width="5" height="1.2" />
+	<line fill="none" stroke-width="1.6" x1="5" y1="-6" x2="5" y2="6"/>
 	</marker>
 
-	<marker id="mim-covalent-bond-end-black"
+	<marker id="t-bar-end-black"
+	class="drawing-board-color-fill"
+	stroke="black"
 	markerUnits="strokeWidth"
-	markerWidth="10" markerHeight="10"
+	markerWidth="16" 
+	markerHeight="16"
 	orient="auto"
 	refX="0" refY="0"
 	viewBox="-12 -6 12 12">
+	<rect stroke="none" x="-5" y="-0.6" width="5" height="1.2" />
+	<line fill="none" stroke-width="1.6" x1="-5" y1="-6" x2="-5" y2="6"/>
+	</marker>
+  -->
+	<marker id="t-bar-start-black" 
+	class="drawing-board-color-fill" 
+	stroke="black"
+	markerHeight="16"
+	markerWidth="16"
+	markerUnits="strokeWidth"
+	orient="auto"
+	refX="0" refY="6"
+	viewBox="0 0 12 12">
+  <image xlink:href="../remote-data-sources/php/local.php?relativeUrl=views/markers/t-bar.svg" x="0" y="0" width="12" height="12"></image>
 	</marker>
 
-
+	<marker id="t-bar-end-black" 
+	class="drawing-board-color-fill" 
+	stroke="black"
+	markerHeight="16"
+	markerWidth="16"
+	markerUnits="strokeWidth"
+	orient="auto"
+	refX="12" refY="6"
+	viewBox="0 0 12 12">
+  <image xlink:href="../remote-data-sources/php/local.php?relativeUrl=views/markers/t-bar.svg" x="0" y="0" width="12" height="12" class="marker-end"></image>
+	</marker>
+	
 	<!-- double-line-hack markers are used in double line handling; they include their own 
 	special blank rect to obscure the ends -->
-
+<!--
 	<marker id="double-line-hack-start"
 	markerUnits="strokeWidth"
 	markerWidth="10" markerHeight="10"
@@ -492,33 +883,31 @@ SVG-Edit (latest release)
 	viewBox="-12 -6 12 12">
 	<rect class="drawing-board-color-fill" stroke="none" x="-2.3" y="-1.5" width="2.3" height="3" />
 	</marker>
-
-
-	<!-- mim-gap markers: just an extended drawing-board rect -->
-	<!-- 
-	TODO This could be refactored to make the shape match the viewbox.
-	It can overlap the side of the shape, blanking out a small part of it when the edge is at an angle.
-	-->
-
-	<marker id="mim-gap-start-black"
-	class="drawing-board-color-fill"
+  -->
+	<marker id="double-line-hack-start" 
+	class="drawing-board-color-fill" 
+	stroke="black"
+	markerHeight="10"
+	markerWidth="10"
 	markerUnits="strokeWidth"
-	markerWidth="10" markerHeight="10"
 	orient="auto"
-	refX="0" refY="0"
-	viewBox="0 -6 12 12">
-	<rect stroke="none" x="-2" y="-0.7" width="8" height="1.4" />
+	refX="0" refY="6"
+	viewBox="0 0 12 12">
+  <image xlink:href="../remote-data-sources/php/local.php?relativeUrl=views/markers/double-line-hack.svg" x="0" y="0" width="12" height="12"></image>
 	</marker>
 
-	<marker id="mim-gap-end-black"
-	class="drawing-board-color-fill"
+	<marker id="double-line-hack-end" 
+	class="drawing-board-color-fill" 
+	stroke="black"
+	markerHeight="10"
+	markerWidth="10"
 	markerUnits="strokeWidth"
-	markerWidth="10" markerHeight="10"
 	orient="auto"
-	refX="0" refY="0"
-	viewBox="-12 -6 12 12">
-	<rect stroke="none" x="-6" y="-0.7" width="8" height="1.4" />
+	refX="12" refY="6"
+	viewBox="0 0 12 12">
+  <image xlink:href="../remote-data-sources/php/local.php?relativeUrl=views/markers/double-line-hack.svg" x="0" y="0" width="12" height="12" class="marker-end"></image>
 	</marker>
+
 
 	<symbol id="none"
 	viewBox="0 0 100 100"
