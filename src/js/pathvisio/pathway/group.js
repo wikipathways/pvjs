@@ -1,13 +1,17 @@
 pathvisio.pathway.group = function(){
-  function drawAll(svg) {
-    var groups = svg.datum().groups;
+  function drawAll(svg, pathway) {
+    if (!svg || !pathway) {
+      return console.warn('Error: Missing input parameters.');
+    }
+
+    var groups = pathway.groups;
     if (!groups) { return console.warn('Error: No group data available.');}
 
     // only consider non-empty groups
 
     var validGroups = groups.filter(function(el) {
       var groupId = el.groupId;
-      return (svg.datum().nodes.filter(function(el) {return (el.groupRef === groupId);}).length>0);
+      return (pathway.nodes.filter(function(el) {return (el.groupRef === groupId);}).length>0);
     });
 
     var pathData = null;
@@ -22,7 +26,7 @@ pathvisio.pathway.group = function(){
     // are supposed to remain constant in size, regardless of changes in group size.
 
     .attr("d", function(d) {
-      var groupDimensions = getDimensions(svg.datum(), d.groupId);
+      var groupDimensions = getDimensions(pathway, d.groupId);
       if (d.style === 'none' || d.style === 'group' || d.style === 'pathway') {
         pathData = 'M ' + groupDimensions.x + ' ' + groupDimensions.y + ' L ' + (groupDimensions.x + groupDimensions.width) + ' ' + groupDimensions.y + ' L ' + (groupDimensions.x + groupDimensions.width) + ' ' + (groupDimensions.y + groupDimensions.height) + ' L ' + groupDimensions.x + ' ' + (groupDimensions.y + groupDimensions.height) + ' Z';
       }

@@ -148,10 +148,7 @@ pathvisio.pathway.edge.point = function(){
     }
   }
 
-
-
   function getGraphRef(pathway, point) {
-    self.point=point;
     if (point.hasOwnProperty('graphRef')) {
       if (pathway.hasOwnProperty('nodes')) {
         var node = pathway.nodes.filter(function(element) {return element.graphId === point.graphRef;})[0];
@@ -168,7 +165,6 @@ pathvisio.pathway.edge.point = function(){
       }
 
       var edgesWithAnchors = pathway.edges.filter(function(element) {return element.hasOwnProperty('anchors');});
-      self.edgesWithAnchors = edgesWithAnchors;
       var anchor = null;
       var i = -1;
       do {
@@ -190,9 +186,13 @@ pathvisio.pathway.edge.point = function(){
     }
   }
 
-  function getCoordinates(svg, point) {
+  function getCoordinates(svg, pathway, point) {
+    if (!svg || !pathway || !point) {
+      return console.warn('Error: Missing input parameters.');
+    }
+
     var coordinates = {};
-    var edgeTerminusRef = self.edgeTerminusRef = getGraphRef(svg.datum(), point);
+    var edgeTerminusRef = getGraphRef(pathway, point);
     if (edgeTerminusRef.type !== 'anchor') {
       if (edgeTerminusRef.type === 'unconnected') {
         coordinates.x = point.x;
@@ -205,7 +205,7 @@ pathvisio.pathway.edge.point = function(){
         }
         else {
           if (edgeTerminusRef.type === 'group') {
-            var groupDimensions = pathvisio.pathway.group.getDimensions(svg.datum(), edgeTerminusRef.groupId);
+            var groupDimensions = pathvisio.pathway.group.getDimensions(pathway, edgeTerminusRef.groupId);
             coordinates = pathvisio.pathway.node.getPortCoordinates(groupDimensions, point.relX, point.relY);
           }
           else {
