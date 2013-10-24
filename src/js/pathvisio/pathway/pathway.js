@@ -2,18 +2,23 @@ pathvisio.pathway = function(){
 
   // first pass GPML (pathway XML) through an automatic XML to JSON converter, 
   // then make specific modifications to make the JSON well-formatted, then return the JSON
+  
+  var svg = null;
+  var pathway = null;
+  var symbolsAvailable = null;
+
+  self.pathway = pathway;
 
   function gpml2json(gpml, callback){
 
     // for doing this in Java, we could look at 
     // https://code.google.com/p/json-io/
 
-    self.gpml = gpml;
     console.log('GPML');
     console.log(gpml);
     
     //var pathway = pathvisio.data.pathways[url];
-    var pathway = self.pathway = xml.xmlToJSON(gpml, true).pathway;
+    pathway = xml.xmlToJSON(gpml, true).pathway;
     
     console.log('raw json from xml2json');
     console.log(xml.xmlToJSON(gpml, true).pathway);
@@ -144,8 +149,8 @@ pathvisio.pathway = function(){
             pathway.edges.push(element);
           });
 
-          self.interactions = interactions;
-          self.edges = pathway.edges;
+          interactions;
+          pathway.edges;
         }
         else {
           console.log("No element(s) named 'interaction' found in this gpml file.");
@@ -217,7 +222,7 @@ pathvisio.pathway = function(){
 
       try {
         if (pathway.hasOwnProperty('label')) {
-          var labels = self.labels = pathvisio.helpers.convertToArray( pathway.label );
+          var labels = pathvisio.helpers.convertToArray( pathway.label );
           delete pathway.label;
 
           labels.forEach(function(element, index, array) {
@@ -359,12 +364,11 @@ pathvisio.pathway = function(){
   function highlightByLabel(nodeLabel) {
     console.log('nodeLabel');
     console.log(nodeLabel);
-    var svg = d3.select("#pathway-image");
     svg.selectAll('g.nodes-container')
     .attr('style', '');
-    var dataNodes = self.dataNodes = svg.datum().nodes.filter(function(element) {return element.elementType === 'data-node';});
-    var dataNodesWithText = self.dataNodesWithText = dataNodes.filter(function(element) {return (!!element.textLabel);});
-    var selectedNodes = self.selectedNodes = dataNodesWithText.filter(function(element) {return element.textLabel.text.indexOf(nodeLabel) !== -1;});
+    var dataNodes = pathway.nodes.filter(function(element) {return element.elementType === 'data-node';});
+    var dataNodesWithText = dataNodes.filter(function(element) {return (!!element.textLabel);});
+    var selectedNodes = dataNodesWithText.filter(function(element) {return element.textLabel.text.indexOf(nodeLabel) !== -1;});
     selectedNodes.forEach(function(node) {
       console.log('node');
       console.log(node);
@@ -373,18 +377,13 @@ pathvisio.pathway = function(){
       nodeDomElement.attr('style', 'fill:yellow');
       console.log('nodeDomElement');
       console.log(nodeDomElement);
-      self. nodeDomElement= nodeDomElement;
     });
   }
 
-  function draw(svg){
-    var pathway = null;
-    if (!svg.datum()) {
+  function draw(svg, pathway, callback){
+    if (!pathway) {
       console.warn('Error: No data entered as input.');
       return 'Error';
-    }
-    else {
-      pathway = svg.datum();
     }
 
     var drag = d3.behavior.drag()
@@ -428,25 +427,25 @@ pathvisio.pathway = function(){
         return index;});
     }
 
-    svg.datum().symbolsAvailable = svg.selectAll('symbol');
-
-    svg.datum().markersAvailable = svg.selectAll('marker');
-
     if (pathway.hasOwnProperty('groups')) {
-      pathvisio.pathway.group.drawAll(svg);
+      pathvisio.pathway.group.drawAll(svg, pathway);
     }
 
     if (pathway.hasOwnProperty('edges')) {
-      pathvisio.pathway.edge.drawAll(svg);
+      pathvisio.pathway.edge.drawAll(svg, pathway);
     }
 
     if (pathway.hasOwnProperty('nodes')) {
-      pathvisio.pathway.node.drawAll(svg);
+      pathvisio.pathway.node.drawAll(svg, pathway);
     }
 
     if (pathway.hasOwnProperty('infoBox')) {
-      pathvisio.pathway.infoBox.draw(svg);
+      pathvisio.pathway.infoBox.draw(svg, pathway);
     }
+
+    callback();
+
+    /*
     window.setTimeout(function() {
       window.root = document.documentElement.getElementsByTagName("svg")[0];
       root.addEventListener('click', function () {
@@ -454,106 +453,157 @@ pathvisio.pathway = function(){
       });
       setupHandlers(root);
     }, 1000);
+    //*/
   }
 
-  function getSvg(url, attemptCount, callback) {
-
-    /*
-    // from http://stackoverflow.com/questions/8188645/javascript-regex-to-match-a-url-in-a-field-of-text
-    
-    var pathwayTemplateSvgUrl = null;
-    if (pathvisio.helpers.isUrl(url)) {
-      pathwayTemplateSvgUrl = url;
-    }
-    else {
-      pathwayTemplateSvgUrl = "pathway-template.svg";
-    }
-    //*/
-
-    ///*
-    // Use this code if you want to get the SVG using d3.xml.
-    d3.text(url, 'text/plain', function(svg) {
-      d3.select('#pathway-container')[0][0].innerHTML = svg;
-      callback(d3.select('#pathway-image'));
-    });
-    //*/
-
-
-    /*
-    // I think this would be used if the SVG were included in the document as an embedded object instead of included directly in the DOM.
-
-    var svg = d3.select("#pathway-object").select(function() {
-
-      if (!this.getSVGDocument()) {
-        return window.setTimeout(function() {
-          if (attemptCount < 15) {
-            console.log('Pathway image is loading. Status check #' + (attemptCount + 1) + ' in ' + 0.25*(attemptCount + 0) + ' seconds.');
-            attemptCount += 1;
-            getSvg(url, attemptCount, callback);
-          }
-          else {
-            console.warn('Error: Pathway image appears to be unavailable.');
-          }
-        }, 250 * attemptCount);
+  function appendCustomShape(customShape, callback) {
+    img = document.createElement('img');
+    img.src = customShape.url;
+    img.onload = function() {
+      def = svg.select('defs').select('#' + customShape.id);
+      if (!def[0][0]) {
+        def = d3.select('svg').select('defs').append('symbol').attr('id', customShape.id)
+        .attr('viewBox', '0 0 ' + this.width + ' ' + this.height)
+        .attr('preserveAspectRatio', 'none');
       }
-      callback(d3.select(this.getSVGDocument().documentElement));
-    });
-    //*/
-
-    /*
-     * get using jquery
-    $.ajax({
-      url: pathwayTemplateSvgUrl,
-      dataType: "application/xml",
-      success: callback 
-    });
-    //*/
+      else {
+        def.selectAll('*').remove();
+      }
+      dimensions = def.attr('viewBox').split(' ');
+      def.append('image').attr('xlink:xlink:href', customShape.url).attr('x', dimensions[0]).attr('y', dimensions[1]).attr('width', dimensions[2]).attr('height', dimensions[3]);
+      callback(null);
+    }
   }
+
+  function loadCustomShapes(args, callback) {
+    var image = null;
+    var img = null;
+    var def = null;
+    var dimensions = null;
+    var dimensionSet = [];
+
+    if (!!args.customShapes) {
+      async.each(args.customShapes, appendCustomShape, function(err){
+          // if any of the saves produced an error, err would equal that error
+        callback(null);
+      });
+    }
+  }
+
+  function loadPartials(args, callback) {
+    async.series([
+      function(callbackInside){
+        console.log('2');
+        args.containerElement.html(pathvisioNS['tmp/pathvisio-js.html']);
+        svg = args.containerElement.select('#pathway-image');
+        callbackInside(null);
+      },
+      function(callbackInside) {
+        console.log('3');
+        loadCustomShapes(args, function() {
+          callbackInside(null);
+        })
+      },
+      function(callbackInside) {
+        console.log('4');
+        if (!!args.cssUrl) {
+          d3.text(args.cssUrl, 'text/css', function(data) {
+            var defs = svg.select('defs');
+            var style = defs.append('style').attr('type', "text/css");
+            style.text(data);
+            callbackInside(null);
+          })
+        }
+        else {
+          callbackInside(null);
+        }
+      }
+    ],
+    function(err, results) {
+      console.log(err);
+      callback();
+    });
+  }
+
 
   // get JSON and draw SVG representation of pathway
 
-  function load(targetSelector, svgUrl, gpmlUrl, highlightByLabelSelector) {
-    if (!targetSelector) { return console.warn('Error: No pathway container selector specified as target.'); }
-    if (d3.select(targetSelector).length !== 1) { return console.warn('pathway container selector must be unique.'); }
-    //if (!pathvisio.helpers.isUrl(svgUrl)) { return console.warn('Error: No URL specified for SVG pathway template.'); }
-    //if (!pathvisio.helpers.isUrl(gpmlUrl)) { return console.warn('Error: No URL specified for GPML data source.'); }
+  function load(args) {
 
-    getSvg(svgUrl, 1, function(svg) {
-      var target = d3.select(targetSelector);
-      //svgPanZoom.init();
+    // Check for minimum required parameters
 
+    if (!args.gpmlUrl) { return console.warn('Error: No gpml URL specified as data source for pathvisio.js.'); }
 
-      // this does not work
-      //target.append(svg);
+    if (!args.container) { return console.warn('Error: No container selector specified as target for pathvisio.js.'); }
+    args.containerElement = d3.select(args.container);
+    if (args.containerElement.length !== 1) { return console.warn('Error: Container selector must be matched by exactly one element.'); }
 
-      getJson(gpmlUrl, function(pathway) {
-        svg.datum(pathway);
-        draw(svg);
+    async.parallel([
+      function(callback) {
+        console.log('1a');
+        loadPartials(args, callback);
+      },
+      function(callback){
+        console.log('1b');
+        getJson(args.gpmlUrl, callback);
+      }
+    ],
+    function(err, results){
+      console.log('5');
+      console.log(err);
 
-        var nodeLabels = [];
-        pathway.nodes.forEach(function(node) {
-          if (!!node.textLabel && node.elementType === 'data-node') {
-            nodeLabels.push(node.textLabel.text);
-          }
-        });
-
-        // see http://twitter.github.io/typeahead.js/
-
-        $(highlightByLabelSelector).typeahead({
-          name: 'Find in pathway',
-          local: nodeLabels,
-          limit: 10
-        });
-        $('.icon-eye-open').click(function(){
-          var nodeLabel = $("#highlight-by-label").val();
-          if (!nodeLabel) {
-            console.warn('Error: No data node value entered.');
-          }
-          else {
-            pathvisio.pathway.highlightByLabel(nodeLabel);
-          }
-        });
+      async.series([
+        function(callbackInside){
+          draw(svg, pathway, function() {
+            callbackInside(null);
+          })
+        },
+        function(callbackInside) {
+          svgPanZoom.init();
+          callbackInside(null);
+        }
+      ],
+      function(err, results) {
+        console.log(err);
       });
+
+      var nodeLabels = [];
+      pathway.nodes.forEach(function(node) {
+        if (!!node.textLabel && node.elementType === 'data-node') {
+          nodeLabels.push(node.textLabel.text);
+        }
+      });
+
+      // see http://twitter.github.io/typeahead.js/
+
+      $('#highlight-by-label').typeahead({
+        name: 'Find in pathway',
+        local: nodeLabels,
+        limit: 10
+      });
+      $('.icon-eye-open').click(function(){
+        var nodeLabel = $("#highlight-by-label").val();
+        if (!nodeLabel) {
+          console.warn('Error: No data node value entered.');
+        }
+        else {
+          pathvisio.pathway.highlightByLabel(nodeLabel);
+        }
+      });
+
+      // see http://api.jquery.com/bind/
+      // TODO get selected value better and make function to handle
+
+      $( "#highlight-by-label" ).bind( "typeahead:selected", function() {
+        var nodeLabel = $("#highlight-by-label").val();
+        if (!nodeLabel) {
+          console.warn('Error: No data node value entered.');
+        }
+        else {
+          pathvisio.pathway.highlightByLabel(nodeLabel);
+        }
+      });
+
     });
   }
 

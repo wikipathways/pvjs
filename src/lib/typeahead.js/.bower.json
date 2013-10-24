@@ -15,6 +15,5 @@
     "commit": "04068560b2ee15e60a7a8122039fc5b4375612a3"
   },
   "_source": "git://github.com/twitter/typeahead.js.git",
-  "_target": "~0.9.3",
-  "_direct": true
+  "_target": "~0.9.3"
 }
