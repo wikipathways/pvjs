@@ -1,0 +1,182 @@
+	svg {
+		color-interpolation: auto;
+		image-rendering: auto;
+		shape-rendering: auto;
+		vector-effect: non-scaling-stroke;
+		fill: white;
+    stroke: black;
+	}
+
+	.default-fill {
+		fill: white;
+	}
+
+	.stroke-color-equals-default-fill-color {
+		stroke: white;
+	}
+
+	text {
+		font-family: Sans-Serif, Helvetica, Arial;
+		font-size: 10px;
+		fill: black;
+		fill-opacity: 1;
+		stroke: none;
+		text-anchor: middle;
+		font-size: 10px;
+		stroke: none;
+	}
+
+	.info-box {
+		font-family: Sans-Serif;
+		font-size: 10px;
+		fill: black;
+		stroke: none;
+		text-anchor: start;
+	}
+
+	.info-box-property-name {
+		font-weight: bold;
+	}
+
+	path.group {
+		fill-opacity: 0.098;
+		stroke: gray;
+		stroke-miterlimit: 1;
+		stroke-width: 1px;
+	}
+
+	path.group:hover {
+		fill-opacity: 0.2;
+		stroke-width: 1px;
+	}
+
+	path.group-none {
+		fill: rgb(180,180,100);
+		stroke-dasharray: 5,3;
+	}
+
+	path.group-group {
+		fill-opacity: 0;
+		stroke-width: 0;
+	}
+
+	path.group-complex {
+		fill: rgb(180,180,100);
+	}
+
+	path.group-pathway {
+		fill: lightgreen;
+		stroke-dasharray: 5,3;
+	}
+
+	use.data-node {
+		fill-opacity: 1;
+		stroke: black;
+		stroke-dasharray: 0;
+		stroke-miterlimit: 1;
+	}
+
+	use.gene-product {
+	}
+
+	use.metabolite {
+		stroke: blue;
+	}
+
+	text.metabolite {
+		fill: blue;
+	}
+
+	use.pathway {
+		stroke: rgb(20,150,30);
+		fill-opacity: 0;
+	}
+
+	text.pathway {
+		fill: rgb(20,150,30);
+		fill-opacity: 1;
+		stroke: none;
+	}
+
+	use.protein {
+	}
+
+	use.rna {
+	}
+
+	use.unknown {
+	}
+
+	.label {
+		stroke: black;
+		stroke-width: 0;
+		fill-opacity: 0;
+		stroke-dasharray: 0;
+		stroke-miterlimit: 1;
+	}
+
+	.shape {
+		fill-opacity: 1;
+		stroke: black;
+		stroke-dasharray: 0;
+		stroke-miterlimit: 1;
+	}
+
+	.shape-none {
+		fill: none;
+		fill-opacity: 0;
+		stroke: none;
+	}
+
+	.cellular-component {
+		fill-opacity: 0;
+		stroke: gray;
+	}
+
+	.graphical-line {
+		fill:none;
+		stroke: black; 
+		stroke-width: 1px; 
+	}
+
+	.interaction {
+		fill:none;
+		stroke: black; 
+		stroke-width: 1px; 
+	}
+
+	marker {
+		/* this is what should work per the spec
+		   stroke-dasharray: none; */
+		/* but I need to add this to make it work in Safari */
+		stroke-dasharray: 9999999999999999999999999;
+	}
+
+  .marker-end {
+    -webkit-transform: rotate(180deg);
+    -webkit-transform-origin: 50% 50%;
+
+    -o-transform: rotate(180deg); 
+    -o-transform-origin: 50% 50%;
+
+    transform: rotate(180deg);
+    transform-origin: 50% 50%;
+  }
+
+	.solid-stroke {
+		/* this is what should work per the spec
+		   stroke-dasharray: none; */
+		/* but I need to add this to make it work in Safari */
+		stroke-dasharray: 9999999999999999999999999;
+	}
+
+	.dashed-stroke {
+		stroke-dasharray: 5,3;
+	}
+
+  .highlighted-node {
+		fill: yellow;
+    fill-opacity: 0.2;
+		stroke: orange; 
+    stroke-width: 3px;
+  }

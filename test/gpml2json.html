@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <meta charset="utf-8">
-<title>pathvisio.js gpml2json interface</title>
+<title>pathvisio.js gpml2json testing</title>
 
 <!-- 
 Style guides can be arbitrary, but for sake of consistency within this project, let's use these:
@@ -9,43 +9,120 @@ http://google-styleguide.googlecode.com/svn/trunk/javascriptguide.xml
 http://google-styleguide.googlecode.com/svn/trunk/jsoncstyleguide.xml#General_Guidelines
 -->
 
-<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
-<script src="../js/gpml2json.js"></script>
-<script src="../js/jxon.js"></script>
-<script src="../js/jquery-1.9.1.js"></script>
-<script src="../js/rgbcolor.js"></script>
-
 <body>
-  <h1>pathvisio.js gpml2json interface</h1>
+  <h1>pathvisio.js gpml2json testing</h1>
 
   <form>
-    GPML File Name (without .gpml extension): 
-    <input type="text" id="gpml-file-name" />
     <input type="submit" onclick="submitRequest()" />
   </form>
 
   <h2>GPML</h2>
-  <textarea name="gpml" id="gpml" rows="20" cols="150">Write something here</textarea>
+  <textarea id="gpml-text-area" rows="20" cols="150" placeholder="Paste some GPML here and click submit"></textarea>
   <h2>json</h2>
-  <textarea name="json" id="json" rows="20" cols="150">Write something here</textarea>
-</body>
+  <textarea id="json-text-area" rows="20" cols="150"></textarea>
 
-<script>
 
-  $("form").submit( function () {
-    return false;
-    } );
+  <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+    <script src="http://ie7-js.googlecode.com/svn/version/2.1(beta4)/IE9.js"></script>
+    <![endif]-->
+    <!--[if lt IE 9]>
+      <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+      <script src="../src/lib/es5-shim/es5-shim.js"></script>
+      <script src="../src/lib/Xccessors/xccessors-standard.js"></script>
+      <script>
 
-    function displayResults(sGpml, sJson) {
-      $('#gpml').text(sGpml)
-      $('#json').text(sJson)
-    }
+        // https://developer.mozilla.org/en-US/docs/Web/API/EventTarget.addEventListener
 
-    // so it won't submit
+        (function() {
+          if (!Event.prototype.preventDefault) {
+            Event.prototype.preventDefault=function() {
+              this.returnValue=false;
+            };
+          }
+          if (!Event.prototype.stopPropagation) {
+            Event.prototype.stopPropagation=function() {
+              this.cancelBubble=true;
+            };
+          }
+          if (!Element.prototype.addEventListener) {
+            var eventListeners=[];
+            
+            var addEventListener=function(type,listener /*, useCapture (will be ignored) */) {
+              var self=this;
+              var wrapper=function(e) {
+                e.target=e.srcElement;
+                e.currentTarget=self;
+                if (listener.handleEvent) {
+                  listener.handleEvent(e);
+                } else {
+                  listener.call(self,e);
+                }
+              };
+              if (type=="DOMContentLoaded") {
+                var wrapper2=function(e) {
+                  if (document.readyState=="complete") {
+                    wrapper(e);
+                  }
+                };
+                document.attachEvent("onreadystatechange",wrapper2);
+                eventListeners.push({object:this,type:type,listener:listener,wrapper:wrapper2});
+                
+                if (document.readyState=="complete") {
+                  var e=new Event();
+                  e.srcElement=window;
+                  wrapper2(e);
+                }
+              } else {
+                this.attachEvent("on"+type,wrapper);
+                eventListeners.push({object:this,type:type,listener:listener,wrapper:wrapper});
+              }
+            };
+            var removeEventListener=function(type,listener /*, useCapture (will be ignored) */) {
+              var counter=0;
+              while (counter<eventListeners.length) {
+                var eventListener=eventListeners[counter];
+                if (eventListener.object==this && eventListener.type==type && eventListener.listener==listener) {
+                  if (type=="DOMContentLoaded") {
+                    this.detachEvent("onreadystatechange",eventListener.wrapper);
+                  } else {
+                    this.detachEvent("on"+type,eventListener.wrapper);
+                  }
+                  break;
+                }
+                ++counter;
+              }
+            };
+            Element.prototype.addEventListener=addEventListener;
+            Element.prototype.removeEventListener=removeEventListener;
+            if (HTMLDocument) {
+              HTMLDocument.prototype.addEventListener=addEventListener;
+              HTMLDocument.prototype.removeEventListener=removeEventListener;
+            }
+            if (Window) {
+              Window.prototype.addEventListener=addEventListener;
+              Window.prototype.removeEventListener=removeEventListener;
+            }
+          }
+        })();
+      </script>
+    <![endif]-->
+
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.js"></script>
+  <script src="../src/lib/d3/d3.js" charset="utf-8"></script>
+  <script src="../build/js/pathvisio.js"></script>
+
+  <script>
+    $("form").submit( function () {
+      return false;
+      } );
 
     function submitRequest() {
-      var sGpmlUrl = '../../samples/gpml/' + $('#gpml-file-name').val() + '.gpml';
-      getJson(sGpmlUrl, displayResults);
-      };
+      var sGpml = self.sGpml = $('#gpml-text-area')[0].value;
 
-    </script>
+      var json = pathvisio.pathway.gpml2json(sGpml);
+      var sJson = self.sJson = JSON.stringify(pathvisio.data.pathways[null], undefined, 2);
+      $('#json-text-area').text(sJson)
+    };
+  </script>
+</body>

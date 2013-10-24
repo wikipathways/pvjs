@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Pathway xmlns="http://pathvisio.org/GPML/2013a" Name="New Pathway" Version="20130809">
-  <Graphics BoardWidth="978.9370816599733" BoardHeight="648.4738955823293" />
+<Pathway xmlns="http://pathvisio.org/GPML/2013a" Name="groups" Version="20130809" Organism="Anopheles gambiae">
+  <Graphics BoardWidth="978.9370816599733" BoardHeight="525.9437751004016" />
   <DataNode TextLabel="GeneProduct" GraphId="c98ed" Type="GeneProduct" GroupRef="f9c9c">
     <Graphics CenterX="137.88487282463188" CenterY="123.15930388219545" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
     <Xref Database="" ID="" />
@@ -57,28 +57,28 @@
     <Graphics CenterX="352.70414993306576" CenterY="169.30388219544844" Width="80.0" Height="20.0" ZOrder="32772" FontSize="10" Valign="Middle" Color="0000ff" />
     <Xref Database="" ID="" />
   </DataNode>
-  <Interaction>
+  <Interaction GraphId="id19b2180">
     <Graphics ConnectorType="Elbow" ZOrder="12288" LineThickness="1.0">
       <Point X="189.88487282463188" Y="159.30388219544847" GraphRef="aaa70" RelX="1.0" RelY="0.0" />
       <Point X="329.3734939759038" Y="187.3038821954484" GraphRef="cb201" RelX="-0.5" RelY="1.0" ArrowHead="Arrow" />
     </Graphics>
     <Xref Database="" ID="" />
   </Interaction>
-  <Interaction>
+  <Interaction GraphId="id4a5d9e1">
     <Graphics ConnectorType="Elbow" ZOrder="12288" LineThickness="1.0">
       <Point X="355.38152610441784" Y="124.41767068273089" GraphRef="c6681" RelX="0.0" RelY="1.0" />
       <Point X="598.5542168674701" Y="196.07764390896926" GraphRef="e27a4" RelX="-1.0" RelY="0.0" ArrowHead="Arrow" />
     </Graphics>
     <Xref Database="" ID="" />
   </Interaction>
-  <Interaction>
+  <Interaction GraphId="idcecadf02">
     <Graphics ZOrder="12288" LineThickness="1.0">
       <Point X="690.5542168674701" Y="152.92904953145916" GraphRef="fa2a3" RelX="1.0" RelY="-0.5" ArrowHead="mim-catalysis" />
       <Point X="848.9210174029452" Y="437.08165997322635" GraphRef="a2c9b" RelX="-1.0" RelY="0.0" ArrowHead="Arrow" />
     </Graphics>
     <Xref Database="" ID="" />
   </Interaction>
-  <Interaction>
+  <Interaction GraphId="id82d0ad08">
     <Graphics ConnectorType="Segmented" ZOrder="12288" LineStyle="Broken" LineThickness="1.0">
       <Point X="948.9370816599733" Y="459.80321285140565" GraphRef="a2c9b" RelX="1.0" RelY="0.5" />
       <Point X="1045.5153949129854" Y="582.3293172690763" />
@@ -87,13 +87,19 @@
     </Graphics>
     <Xref Database="" ID="" />
   </Interaction>
-  <Interaction>
+  <Interaction GraphId="id3bea2e99">
     <Graphics ConnectorType="Curved" ZOrder="12288" LineThickness="1.0">
       <Point X="417.86345381526104" Y="436.7831325301205" GraphRef="fabb3" RelX="-1.0" RelY="-0.5" />
       <Point X="145.91700133868807" Y="368.88085676037485" GraphRef="c5880" RelX="0.0" RelY="-1.0" ArrowHead="Arrow" />
     </Graphics>
     <Xref Database="" ID="" />
   </Interaction>
+  <Label TextLabel="SAVE" GraphId="de9e2">
+    <Graphics CenterX="212.78721278721278" CenterY="28.986013986013994" Width="95.94405594405595" Height="27.982017982017986" ZOrder="33015" FillColor="ffffff" FontWeight="Bold" FontSize="30" Valign="Middle" />
+  </Label>
+  <Label TextLabel="This pathway is to be saved long-term to test the ability of&#xA;GPML renderers to handle the element type named in the title." GraphId="d4185">
+    <Graphics CenterX="414.08591408591417" CenterY="25.489510489510494" Width="290.7492507492508" Height="32.977022977022976" ZOrder="33016" FillColor="ffffff" FontSize="10" Align="Left" />
+  </Label>
   <Group GroupId="f9c9c" GraphId="aaa70" Style="Complex" />
   <Group GroupId="a7abb" GraphId="cb201" Style="Group" />
   <Group GroupId="dff2b" GraphId="fa2a3" Style="Complex" />
