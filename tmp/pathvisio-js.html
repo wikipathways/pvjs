@@ -95,11 +95,11 @@ SVG-Edit (latest release)
 		fill: white;
 	}
 
-	.drawing-board-color-fill {
+	.default-fill {
 		fill: white;
 	}
 
-	.drawing-board-color-stroke {
+	.stroke-color-equals-default-fill-color {
 		stroke: white;
 	}
 
@@ -259,7 +259,7 @@ SVG-Edit (latest release)
 	we need to clone the black marker and set the color for the clone to the desired color using d3.js.
 	I wish fill="currentColor" worked for markers, but that does not appear to be the case. -->
 
-	<!-- Each marker includes a small rectangle with a drawing-board-color-fill color to obscure the
+	<!-- Each marker includes a small rectangle with a default-fill color to obscure the
 	ends of lines that might otherwise show up beneath the marker. Double lines require their own special
 	obscuring rects and are included as a double-line-hack-start/end marker, defined here and added in
 	gpml2json.js -->
@@ -267,12 +267,12 @@ SVG-Edit (latest release)
 	<!-- arrow markers: triangular polygons, no stroke -->
 
 	<marker id="arrow-start-black" fill="black" markerUnits="strokeWidth" markerWidth="12" markerHeight="12" orient="auto" refX="0" refY="0" viewBox="0 -6 12 12">
-	<rect class="drawing-board-color-fill" stroke="none" x="0" y="-0.6" width="2" height="1.2"></rect>
+	<rect class="default-fill" stroke="none" x="0" y="-0.6" width="2" height="1.2"></rect>
 	<polygon stroke-width="0" points="12,5 0,0 12,-5"></polygon>
 	</marker>
 
 	<marker id="arrow-end-black" fill="black" markerUnits="strokeWidth" markerWidth="12" markerHeight="12" orient="auto" refX="0" refY="0" viewBox="-12 -6 12 12">
-	<rect class="drawing-board-color-fill" stroke="none" x="-2" y="-0.6" width="2" height="1.2"></rect>
+	<rect class="default-fill" stroke="none" x="-2" y="-0.6" width="2" height="1.2"></rect>
 	<polygon stroke-width="0" points="-12,5 0,0 -12,-5"></polygon>
 	</marker>
 
@@ -280,36 +280,36 @@ SVG-Edit (latest release)
 	<!-- mim-conversion markers: triangular polygons, no stroke -->
 
 	<marker id="mim-conversion-start-black" fill="black" markerUnits="strokeWidth" markerWidth="12" markerHeight="12" orient="auto" refX="0" refY="0" viewBox="0 -6 12 12">
-	<rect class="drawing-board-color-fill" stroke="none" x="0" y="-0.6" width="2" height="1.2"></rect>
+	<rect class="default-fill" stroke="none" x="0" y="-0.6" width="2" height="1.2"></rect>
 	<polygon stroke-width="0" points="11,5 0,0 11,-5"></polygon>
 	</marker>
 
 	<marker id="mim-conversion-end-black" fill="black" markerUnits="strokeWidth" markerWidth="12" markerHeight="12" orient="auto" refX="0" refY="0" viewBox="-12 -6 12 12">
-	<rect class="drawing-board-color-fill" stroke="none" x="-2" y="-0.6" width="2" height="1.2"></rect>
+	<rect class="default-fill" stroke="none" x="-2" y="-0.6" width="2" height="1.2"></rect>
 	<polygon stroke-width="0" points="-11,5 0,0 -11,-5"></polygon>
 	</marker>
 
 	<!-- mim-stimulation markers: triangular polygons, drawing-board fill, black stroke -->
 
-	<marker id="mim-stimulation-start-black" class="drawing-board-color-fill" stroke="black" markerWidth="12" markerHeight="12" markerUnits="strokeWidth" orient="auto" refX="0" refY="0" viewBox="0 -6 12 12">
+	<marker id="mim-stimulation-start-black" class="default-fill" stroke="black" markerWidth="12" markerHeight="12" markerUnits="strokeWidth" orient="auto" refX="0" refY="0" viewBox="0 -6 12 12">
 	<rect stroke="none" x="0" y="-0.6" width="2" height="1.2"></rect>
 	<polygon stroke-width="1" points="11,5 0,0 11,-5"></polygon>
 	</marker>
 
-	<marker id="mim-stimulation-end-black" class="drawing-board-color-fill" stroke="black" markerUnits="strokeWidth" markerWidth="12" markerHeight="12" orient="auto" refX="0" refY="0" viewBox="-12 -6 12 12">
+	<marker id="mim-stimulation-end-black" class="default-fill" stroke="black" markerUnits="strokeWidth" markerWidth="12" markerHeight="12" orient="auto" refX="0" refY="0" viewBox="-12 -6 12 12">
 	<rect stroke="none" x="-2" y="-0.6" width="2" height="1.2"></rect>
 	<polygon stroke-width="1" points="-11,5 0,0 -11,-5"></polygon>
 	</marker>
 
 	<!-- mim-necessary-stimulation markers: triangular polygons, drawing-board fill, black stroke; and vertical line -->
 
-	<marker id="mim-necessary-stimulation-start-black" class="drawing-board-color-fill" stroke="black" markerWidth="12" markerHeight="12" markerUnits="strokeWidth" orient="auto" refX="0" refY="0" viewBox="0 -6 15 12">
+	<marker id="mim-necessary-stimulation-start-black" class="default-fill" stroke="black" markerWidth="12" markerHeight="12" markerUnits="strokeWidth" orient="auto" refX="0" refY="0" viewBox="0 -6 15 12">
 	<rect stroke="none" x="0" y="-0.6" width="2" height="1.2"></rect>
 	<line fill="none" stroke-width="1" x1="14" y1="-6" x2="14" y2="6"></line>
 	<polygon stroke-width="1" points="9,5 0,0 9,-5"></polygon>
 	</marker>
 
-	<marker id="mim-necessary-stimulation-end-black" class="drawing-board-color-fill" stroke="black" markerUnits="strokeWidth" markerWidth="12" markerHeight="12" orient="auto" refX="0" refY="0" viewBox="-15 -6 15 12">
+	<marker id="mim-necessary-stimulation-end-black" class="default-fill" stroke="black" markerUnits="strokeWidth" markerWidth="12" markerHeight="12" orient="auto" refX="0" refY="0" viewBox="-15 -6 15 12">
 	<rect stroke="none" x="-2" y="-0.6" width="2" height="1.2"></rect>
 	<line fill="none" stroke-width="1" x1="-14" y1="-6" x2="-14" y2="6"></line>
 	<polygon stroke-width="1" points="-9,5 0,0 -9,-5"></polygon>
@@ -317,12 +317,12 @@ SVG-Edit (latest release)
 
 	<!-- t-bar markers: vertical line; and extended drawing-board rect -->
 
-	<marker id="t-bar-start-black" class="drawing-board-color-fill" stroke="black" markerWidth="16" markerHeight="16" markerUnits="strokeWidth" orient="auto" refX="0" refY="0" viewBox="0 -6 12 12">
+	<marker id="t-bar-start-black" class="default-fill" stroke="black" markerWidth="16" markerHeight="16" markerUnits="strokeWidth" orient="auto" refX="0" refY="0" viewBox="0 -6 12 12">
 	<rect stroke="none" x="0" y="-0.6" width="5" height="1.2"></rect>
 	<line fill="none" stroke-width="1.6" x1="5" y1="-6" x2="5" y2="6"></line>
 	</marker>
 
-	<marker id="t-bar-end-black" class="drawing-board-color-fill" stroke="black" markerUnits="strokeWidth" markerWidth="16" markerHeight="16" orient="auto" refX="0" refY="0" viewBox="-12 -6 12 12">
+	<marker id="t-bar-end-black" class="default-fill" stroke="black" markerUnits="strokeWidth" markerWidth="16" markerHeight="16" orient="auto" refX="0" refY="0" viewBox="-12 -6 12 12">
 	<rect stroke="none" x="-5" y="-0.6" width="5" height="1.2"></rect>
 	<line fill="none" stroke-width="1.6" x1="-5" y1="-6" x2="-5" y2="6"></line>
 	</marker>
@@ -330,12 +330,12 @@ SVG-Edit (latest release)
 
 	<!-- mim-inhibition markers: vertical line; and extended drawing-board rect -->
 
-	<marker id="mim-inhibition-start-black" class="drawing-board-color-fill" stroke="black" markerWidth="16" markerHeight="16" markerUnits="strokeWidth" orient="auto" refX="0" refY="0" viewBox="0 -6 12 12">
+	<marker id="mim-inhibition-start-black" class="default-fill" stroke="black" markerWidth="16" markerHeight="16" markerUnits="strokeWidth" orient="auto" refX="0" refY="0" viewBox="0 -6 12 12">
 	<rect stroke="none" x="0" y="-0.6" width="5" height="1.2"></rect>
 	<line fill="none" stroke-width="1.6" x1="5" y1="-6" x2="5" y2="6"></line>
 	</marker>
 
-	<marker id="mim-inhibition-end-black" class="drawing-board-color-fill" stroke="black" markerUnits="strokeWidth" markerWidth="16" markerHeight="16" orient="auto" refX="0" refY="0" viewBox="-12 -6 12 12">
+	<marker id="mim-inhibition-end-black" class="default-fill" stroke="black" markerUnits="strokeWidth" markerWidth="16" markerHeight="16" orient="auto" refX="0" refY="0" viewBox="-12 -6 12 12">
 	<rect stroke="none" x="-5" y="-0.6" width="5" height="1.2"></rect>
 	<line fill="none" stroke-width="1.6" x1="-5" y1="-6" x2="-5" y2="6"></line>
 	</marker>
@@ -343,46 +343,46 @@ SVG-Edit (latest release)
 	<!-- mim-binding markers: four-point polygon, no stroke -->
 
 	<marker id="mim-binding-start-black" fill="black" markerUnits="strokeWidth" markerWidth="12" markerHeight="12" orient="auto" refX="0" refY="0" viewBox="0 -6 12 12">
-	<rect class="drawing-board-color-fill" stroke="none" x="0" y="-0.6" width="2" height="1.2"></rect>
+	<rect class="default-fill" stroke="none" x="0" y="-0.6" width="2" height="1.2"></rect>
 	<polygon stroke-width="0" points="12,6 0,0 12,-6 5,0 "></polygon>
 	</marker>
 
 	<marker id="mim-binding-end-black" fill="black" markerUnits="strokeWidth" markerWidth="12" markerHeight="12" orient="auto" refX="0" refY="0" viewBox="-12 -6 12 12">
-	<rect class="drawing-board-color-fill" stroke="none" x="-2" y="-0.6" width="2" height="1.2"></rect>
+	<rect class="default-fill" stroke="none" x="-2" y="-0.6" width="2" height="1.2"></rect>
 	<polygon stroke-width="0" points="-12,6 0,0 -12,-6 -5,0 "></polygon>
 	</marker>
 
 	<!-- mim-modification markers: four-point polygon, no stroke -->
 
 	<marker id="mim-modification-start-black" fill="black" markerUnits="strokeWidth" markerWidth="12" markerHeight="12" orient="auto" refX="0" refY="0" viewBox="0 -6 12 12">
-	<rect class="drawing-board-color-fill" stroke="none" x="0" y="-0.6" width="2" height="1.2"></rect>
+	<rect class="default-fill" stroke="none" x="0" y="-0.6" width="2" height="1.2"></rect>
 	<polygon stroke-width="0" points="12,6 0,0 12,-6 5,0 "></polygon>
 	</marker>
 
 	<marker id="mim-modification-end-black" fill="black" markerUnits="strokeWidth" markerWidth="12" markerHeight="12" orient="auto" refX="0" refY="0" viewBox="-12 -6 12 12">
-	<rect class="drawing-board-color-fill" stroke="none" x="-2" y="-0.6" width="2" height="1.2"></rect>
+	<rect class="default-fill" stroke="none" x="-2" y="-0.6" width="2" height="1.2"></rect>
 	<polygon stroke-width="0" points="-12,6 0,0 -12,-6 -5,0 "></polygon>
 	</marker>
 
 	<!-- mim-catalysis markers: circle, drawing-board fill and black stroke -->
 
-	<marker id="mim-catalysis-start-black" class="drawing-board-color-fill" stroke="black" markerHeight="12" markerWidth="12" markerUnits="strokeWidth" orient="auto" refX="0" refY="0" viewBox="0 -6 12 12">
+	<marker id="mim-catalysis-start-black" class="default-fill" stroke="black" markerHeight="12" markerWidth="12" markerUnits="strokeWidth" orient="auto" refX="0" refY="0" viewBox="0 -6 12 12">
 	<circle cx="5.3" cy="0" r="5.3px" stroke-width="1px"></circle>
 	</marker>
 
-	<marker id="mim-catalysis-end-black" class="drawing-board-color-fill" stroke="black" markerHeight="12" markerUnits="strokeWidth" markerWidth="12" orient="auto" refX="5" refY="0" viewBox="-6.5 -6 12 12">
+	<marker id="mim-catalysis-end-black" class="default-fill" stroke="black" markerHeight="12" markerUnits="strokeWidth" markerWidth="12" orient="auto" refX="5" refY="0" viewBox="-6.5 -6 12 12">
 	<circle cx="-0.3" cy="0" r="5.3px" stroke-width="1px"></circle>
 	</marker>
 
 	<!-- mim-cleavage markers: two lines and extended drawing-board rect -->
 
-	<marker id="mim-cleavage-start-black" class="drawing-board-color-fill" stroke="black" markerHeight="24" markerWidth="24" markerUnits="strokeWidth" orient="auto" refX="0" refY="0" viewBox="-8 -6 12 12">
+	<marker id="mim-cleavage-start-black" class="default-fill" stroke="black" markerHeight="24" markerWidth="24" markerUnits="strokeWidth" orient="auto" refX="0" refY="0" viewBox="-8 -6 12 12">
 	<rect stroke="none" x="0" y="-0.6" width="3.5" height="1.2"></rect>
 	<line fill="none" stroke-width=".4" x1="3.7" y1="0" x2="3.7" y2="6"></line>	
 	<line fill="none" stroke-width=".4" x1="3.7" y1="6" x2="-8" y2="-6"></line>	
 	</marker>
 
-	<marker id="mim-cleavage-end-black" class="drawing-board-color-fill" stroke="black" markerHeight="24" markerWidth="24" markerUnits="strokeWidth" orient="auto" refX="0" refY="0" viewBox="-4 -6 12 12">
+	<marker id="mim-cleavage-end-black" class="default-fill" stroke="black" markerHeight="24" markerWidth="24" markerUnits="strokeWidth" orient="auto" refX="0" refY="0" viewBox="-4 -6 12 12">
 	<rect stroke="none" x="-3.5" y="-0.6" width="3.5" height="1.2"></rect>
 	<line fill="none" stroke-width=".4" x1="-3.7" y1="0" x2="-3.7" y2="-6"></line>	
 	<line fill="none" stroke-width=".4" x1="-3.7" y1="-6" x2="8" y2="6"></line>	
@@ -390,38 +390,38 @@ SVG-Edit (latest release)
 
 	<!-- mim-branching-left markers: line and extended drawing-board rect -->
 
-	<marker id="mim-branching-left-start-black" class="drawing-board-color-fill" stroke="black" markerHeight="24" markerWidth="24" markerUnits="strokeWidth" orient="auto" refX="0" refY="0" viewBox="0 -6 12 12">
+	<marker id="mim-branching-left-start-black" class="default-fill" stroke="black" markerHeight="24" markerWidth="24" markerUnits="strokeWidth" orient="auto" refX="0" refY="0" viewBox="0 -6 12 12">
 	<rect stroke="none" x="0" y="-0.6" width="3.5" height="1.2"></rect>
 	<line fill="none" stroke-width=".4" x1="3.7" y1="0" x2="0" y2="-6"></line>	
 	</marker>
 
-	<marker id="mim-branching-left-end-black" class="drawing-board-color-fill" stroke="black" markerHeight="24" markerWidth="24" markerUnits="strokeWidth" orient="auto" refX="0" refY="0" viewBox="-12 -6 12 12">
+	<marker id="mim-branching-left-end-black" class="default-fill" stroke="black" markerHeight="24" markerWidth="24" markerUnits="strokeWidth" orient="auto" refX="0" refY="0" viewBox="-12 -6 12 12">
 	<rect stroke="none" x="-3.5" y="-0.6" width="3.5" height="1.2"></rect>
 	<line fill="none" stroke-width=".4" x1="-3.7" y1="0" x2="0" y2="6"></line>	
 	</marker>
 
 	<!-- mim-branching-right markers: line and extended drawing-board rect -->
 
-	<marker id="mim-branching-right-start-black" class="drawing-board-color-fill" stroke="black" markerHeight="24" markerWidth="24" markerUnits="strokeWidth" orient="auto" refX="0" refY="0" viewBox="0 -6 12 12">
+	<marker id="mim-branching-right-start-black" class="default-fill" stroke="black" markerHeight="24" markerWidth="24" markerUnits="strokeWidth" orient="auto" refX="0" refY="0" viewBox="0 -6 12 12">
 	<rect stroke="none" x="0" y="-0.6" width="3.5" height="1.2"></rect>
 	<line fill="none" stroke-width=".4" x1="3.7" y1="0" x2="0" y2="6"></line>
 	</marker>
 
-	<marker id="mim-branching-right-end-black" class="drawing-board-color-fill" stroke="black" markerHeight="24" markerWidth="24" markerUnits="strokeWidth" orient="auto" refX="0" refY="0" viewBox="-12 -6 12 12">
+	<marker id="mim-branching-right-end-black" class="default-fill" stroke="black" markerHeight="24" markerWidth="24" markerUnits="strokeWidth" orient="auto" refX="0" refY="0" viewBox="-12 -6 12 12">
 	<rect stroke="none" x="-3.5" y="-0.6" width="3.5" height="1.2"></rect>
 	<line fill="none" stroke-width=".4" x1="-3.7" y1="0" x2="0" y2="-6"></line>	
 	</marker>
 
 	<!-- mim-transcription-translation markers: two lines and an open trigular polygon, plus extended drawing-board rect -->
 
-	<marker id="mim-transcription-translation-start-black" class="drawing-board-color-fill" stroke="black" markerHeight="24" markerWidth="24" markerUnits="strokeWidth" orient="auto" refX="0" refY="0" viewBox="0 -6 12 12">
+	<marker id="mim-transcription-translation-start-black" class="default-fill" stroke="black" markerHeight="24" markerWidth="24" markerUnits="strokeWidth" orient="auto" refX="0" refY="0" viewBox="0 -6 12 12">
 	<rect stroke="none" x="0" y="-0.6" width="6" height="1.2"></rect>
 	<line fill="none" stroke-width=".4" x1="9" y1="0" x2="9" y2="-4"></line>
 	<line fill="none" stroke-width=".4" x1="9" y1="-4" x2="5" y2="-4"></line>
 	<polygon stroke-width=".4" points="5,-6 0,-4 5,-2"></polygon>
 	</marker>
 
-	<marker id="mim-transcription-translation-end-black" class="drawing-board-color-fill" stroke="black" markerHeight="24" markerWidth="24" markerUnits="strokeWidth" orient="auto" refX="0" refY="0" viewBox="-12 -6 12 12">
+	<marker id="mim-transcription-translation-end-black" class="default-fill" stroke="black" markerHeight="24" markerWidth="24" markerUnits="strokeWidth" orient="auto" refX="0" refY="0" viewBox="-12 -6 12 12">
 	<rect stroke="none" x="-6" y="-0.6" width="6" height="1.2"></rect>
 	<line fill="none" stroke-width=".4" x1="-9" y1="0" x2="-9" y2="4"></line>
 	<line fill="none" stroke-width=".4" x1="-9" y1="4" x2="-5" y2="4"></line>
@@ -441,11 +441,11 @@ SVG-Edit (latest release)
 	special blank rect to obscure the ends -->
 
 	<marker id="double-line-hack-start" markerUnits="strokeWidth" markerWidth="10" markerHeight="10" orient="auto" refX="0" refY="0" viewBox="0 -6 12 12">
-	<rect class="drawing-board-color-fill" stroke="none" x="0" y="-1.5" width="2.3" height="3"></rect>
+	<rect class="default-fill" stroke="none" x="0" y="-1.5" width="2.3" height="3"></rect>
 	</marker>
 
 	<marker id="double-line-hack-end" markerUnits="strokeWidth" markerWidth="10" markerHeight="10" orient="auto" refX="0" refY="0" viewBox="-12 -6 12 12">
-	<rect class="drawing-board-color-fill" stroke="none" x="-2.3" y="-1.5" width="2.3" height="3"></rect>
+	<rect class="default-fill" stroke="none" x="-2.3" y="-1.5" width="2.3" height="3"></rect>
 	</marker>
 
 
@@ -455,11 +455,11 @@ SVG-Edit (latest release)
 	It can overlap the side of the shape, blanking out a small part of it when the edge is at an angle.
 	-->
 
-	<marker id="mim-gap-start-black" class="drawing-board-color-fill" markerUnits="strokeWidth" markerWidth="10" markerHeight="10" orient="auto" refX="0" refY="0" viewBox="0 -6 12 12">
+	<marker id="mim-gap-start-black" class="default-fill" markerUnits="strokeWidth" markerWidth="10" markerHeight="10" orient="auto" refX="0" refY="0" viewBox="0 -6 12 12">
 	<rect stroke="none" x="-2" y="-0.7" width="8" height="1.4"></rect>
 	</marker>
 
-	<marker id="mim-gap-end-black" class="drawing-board-color-fill" markerUnits="strokeWidth" markerWidth="10" markerHeight="10" orient="auto" refX="0" refY="0" viewBox="-12 -6 12 12">
+	<marker id="mim-gap-end-black" class="default-fill" markerUnits="strokeWidth" markerWidth="10" markerHeight="10" orient="auto" refX="0" refY="0" viewBox="-12 -6 12 12">
 	<rect stroke="none" x="-6" y="-0.7" width="8" height="1.4"></rect>
 	</marker>
 

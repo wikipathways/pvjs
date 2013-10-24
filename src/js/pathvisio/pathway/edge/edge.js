@@ -263,7 +263,7 @@ pathvisio.pathway.edge = function(){
             svg.select('#viewport').append("path")
             .attr("class", data.edgeType + "-double")
             .attr("d", pathData)
-            .attr("class", "drawing-board-color-stroke")
+            .attr("class", "stroke-color-equals-default-fill-color")
             .attr("style", "stroke-width:" + data.strokeWidth + '; ')
             .attr("marker-start", 'url(#' + pathvisio.pathway.edge.marker.draw(svg, data.markerStart, 'start', data.stroke) + ')')
             .attr("marker-end", 'url(#' + pathvisio.pathway.edge.marker.draw(svg, data.markerEnd, 'end', data.stroke) + ')');

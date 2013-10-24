@@ -1,0 +1,41 @@
+{
+  "name": "jsPlumb",
+  "version": "1.5.3",
+  "ignore": [
+    "ant",
+    "demo",
+    "dist/apidocs",
+    "dist/demo",
+    "dist/doc",
+    "dist/lib",
+    "dist/tests",
+    "dist/index.html",
+    "doc",
+    "img",
+    "lib",
+    "node_modules",
+    "src",
+    "tests",
+    "Gruntfile.js",
+    "Languages.txt",
+    "Menu.txt",
+    "README.md",
+    "Topics.txt",
+    "build.properties",
+    "changelog.txt",
+    "index.html",
+    "jsdoc.json",
+    "package.json",
+    "todo.txt"
+  ],
+  "homepage": "https://github.com/sporritt/jsPlumb",
+  "_release": "1.5.3",
+  "_resolution": {
+    "type": "version",
+    "tag": "1.5.3",
+    "commit": "2d7e42eafb4905ab7a283a0bb4cd120b260d7bac"
+  },
+  "_source": "git://github.com/sporritt/jsPlumb.git",
+  "_target": "~1.5.3",
+  "_originalSource": "jsPlumb"
+}
