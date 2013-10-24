@@ -16,5 +16,5 @@
   },
   "_source": "git://github.com/components/jqueryui.git",
   "_target": "~1.10.3",
-  "_direct": true
+  "_originalSource": "jquery-ui"
 }

@@ -12,7 +12,7 @@
 	class="solid-stroke"
 	style="fill:black"
 	viewBox="0 0 12 12">
-	<rect class="drawing-board-color-fill" stroke="none" x="0" y="5.4" width="2" height="1.2" />
+	<rect class="default-fill" stroke="none" x="0" y="5.4" width="2" height="1.2" />
 	<polygon fill="black" stroke-width="0" points="12,11 0,6 12,1"/>
 
 </svg>

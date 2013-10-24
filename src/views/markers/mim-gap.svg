@@ -15,7 +15,7 @@ It can overlap the side of the shape, blanking out a small part of it when the e
 	xmlns:ev="http://www.w3.org/2001/xml-events"
 	width="12"
 	height="12"
-	class="drawing-board-color-fill solid-stroke"
+	class="default-fill solid-stroke"
 	viewBox="0 0 12 12">
 
 	<rect stroke="none" x="0" y="5.3" width="8" height="1.4" />

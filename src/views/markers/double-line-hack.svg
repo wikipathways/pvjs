@@ -9,8 +9,8 @@
 	xmlns:ev="http://www.w3.org/2001/xml-events"
 	width="12"
 	height="12"
-	class="drawing-board-color-fill solid-stroke">
+	class="default-fill solid-stroke">
 
-	<rect class="drawing-board-color-fill" stroke="none" x="0" y="4.5" width="2.3" height="3" />
+	<rect class="default-fill" stroke="none" x="0" y="4.5" width="2.3" height="3" />
 
 </svg>

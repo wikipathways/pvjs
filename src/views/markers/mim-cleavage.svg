@@ -12,7 +12,7 @@
 	width="12"
 	height="12"
 	viewBox="0 0 12 12"
-	class="drawing-board-color-fill solid-stroke">
+	class="default-fill solid-stroke">
 
 	<rect stroke="none" x="8" y="5.4" width="3.5" height="1.2" />
 	<line fill="none" stroke-width=".4" x1="11.7" y1="6" x2="11.7" y2="12"/>	

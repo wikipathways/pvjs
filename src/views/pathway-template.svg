@@ -96,7 +96,7 @@ SVG-Edit (latest release)
 	we need to clone the black marker and set the color for the clone to the desired color using d3.js.
 	I wish fill="currentColor" worked for markers, but that does not appear to be the case. -->
 
-	<!-- Each marker includes a small rectangle with a drawing-board-color-fill color to obscure the
+	<!-- Each marker includes a small rectangle with a default-fill color to obscure the
 	ends of lines that might otherwise show up beneath the marker. Double lines require their own special
 	obscuring rects and are included as a double-line-hack-start/end marker, defined here and added in
 	gpml2json.js -->
@@ -111,7 +111,7 @@ SVG-Edit (latest release)
 	orient="auto"
 	refX="0" refY="0"
 	viewBox="0 -6 12 12">
-	<rect class="drawing-board-color-fill" stroke="none" x="0" y="-0.6" width="2" height="1.2" />
+	<rect class="default-fill" stroke="none" x="0" y="-0.6" width="2" height="1.2" />
 	<polygon stroke-width="0" points="12,5 0,0 12,-5"/>
 	</marker>
 
@@ -122,12 +122,12 @@ SVG-Edit (latest release)
 	orient="auto"
 	refX="0" refY="0"
 	viewBox="-12 -6 12 12">
-	<rect class="drawing-board-color-fill" stroke="none" x="-2" y="-0.6" width="2" height="1.2" />
+	<rect class="default-fill" stroke="none" x="-2" y="-0.6" width="2" height="1.2" />
 	<polygon stroke-width="0" points="-12,5 0,0 -12,-5"/>
 	</marker>
   -->
 	<marker id="arrow-start-black" 
-	class="drawing-board-color-fill" 
+	class="default-fill" 
 	stroke="black"
 	markerHeight="12"
 	markerWidth="12"
@@ -139,7 +139,7 @@ SVG-Edit (latest release)
 	</marker>
 
 	<marker id="arrow-end-black" 
-	class="drawing-board-color-fill" 
+	class="default-fill" 
 	stroke="black"
 	markerHeight="12"
 	markerWidth="12"
@@ -160,7 +160,7 @@ SVG-Edit (latest release)
 	orient="auto"
 	refX="0" refY="0"
 	viewBox="0 -6 12 12">
-	<rect class="drawing-board-color-fill" stroke="none" x="0" y="-0.6" width="2" height="1.2" />
+	<rect class="default-fill" stroke="none" x="0" y="-0.6" width="2" height="1.2" />
 	<polygon stroke-width="0" points="12,6 0,0 12,-6 5,0 "/>
 	</marker>
 
@@ -171,12 +171,12 @@ SVG-Edit (latest release)
 	orient="auto"
 	refX="0" refY="0"
 	viewBox="-12 -6 12 12">
-	<rect class="drawing-board-color-fill" stroke="none" x="-2" y="-0.6" width="2" height="1.2" />
+	<rect class="default-fill" stroke="none" x="-2" y="-0.6" width="2" height="1.2" />
 	<polygon stroke-width="0" points="-12,6 0,0 -12,-6 -5,0 "/>
 	</marker>
 -->
 	<marker id="mim-binding-start-black" 
-	class="drawing-board-color-fill" 
+	class="default-fill" 
 	stroke="black"
 	markerHeight="12"
 	markerWidth="12"
@@ -188,7 +188,7 @@ SVG-Edit (latest release)
 	</marker>
 
 	<marker id="mim-binding-end-black" 
-	class="drawing-board-color-fill" 
+	class="default-fill" 
 	stroke="black"
 	markerHeight="12"
 	markerWidth="12"
@@ -203,7 +203,7 @@ SVG-Edit (latest release)
 
 <!--
 	<marker id="mim-branching-left-start-black" 
-	class="drawing-board-color-fill" 
+	class="default-fill" 
 	stroke="black"
 	markerHeight="24"
 	markerWidth="24"
@@ -216,7 +216,7 @@ SVG-Edit (latest release)
 	</marker>
 
 	<marker id="mim-branching-left-end-black"
-	class="drawing-board-color-fill" 
+	class="default-fill" 
 	stroke="black"
 	markerHeight="24"
 	markerWidth="24"
@@ -229,7 +229,7 @@ SVG-Edit (latest release)
 	</marker>
 -->
 	<marker id="mim-branching-left-start-black" 
-	class="drawing-board-color-fill" 
+	class="default-fill" 
 	stroke="black"
 	markerHeight="24"
 	markerWidth="24"
@@ -241,7 +241,7 @@ SVG-Edit (latest release)
 	</marker>
 
 	<marker id="mim-branching-left-end-black" 
-	class="drawing-board-color-fill" 
+	class="default-fill" 
 	stroke="black"
 	markerHeight="24"
 	markerWidth="24"
@@ -257,7 +257,7 @@ SVG-Edit (latest release)
 
   <!--
 	<marker id="mim-branching-right-start-black" 
-	class="drawing-board-color-fill" 
+	class="default-fill" 
 	stroke="black"
 	markerHeight="24"
 	markerWidth="24"
@@ -270,7 +270,7 @@ SVG-Edit (latest release)
 	</marker>
 
 	<marker id="mim-branching-right-end-black"
-	class="drawing-board-color-fill" 
+	class="default-fill" 
 	stroke="black"
 	markerHeight="24"
 	markerWidth="24"
@@ -283,7 +283,7 @@ SVG-Edit (latest release)
 	</marker>
 -->
 	<marker id="mim-branching-right-start-black" 
-	class="drawing-board-color-fill" 
+	class="default-fill" 
 	stroke="black"
 	markerHeight="24"
 	markerWidth="24"
@@ -295,7 +295,7 @@ SVG-Edit (latest release)
 	</marker>
 
 	<marker id="mim-branching-right-end-black" 
-	class="drawing-board-color-fill" 
+	class="default-fill" 
 	stroke="black"
 	markerHeight="24"
 	markerWidth="24"
@@ -309,7 +309,7 @@ SVG-Edit (latest release)
 	<!-- mim-catalysis markers: circle, drawing-board fill and black stroke -->
 <!--
 	<marker id="mim-catalysis-start-black"
-	class="drawing-board-color-fill"
+	class="default-fill"
 	stroke="black"
 	markerHeight="12"
 	markerWidth="12"
@@ -321,7 +321,7 @@ SVG-Edit (latest release)
 	</marker>
 
 	<marker id="mim-catalysis-end-black"
-	class="drawing-board-color-fill"
+	class="default-fill"
 	stroke="black"
 	markerHeight="12"
 	markerUnits="strokeWidth"
@@ -334,7 +334,7 @@ SVG-Edit (latest release)
 -->
 
 	<marker id="mim-catalysis-start-black" 
-	class="drawing-board-color-fill" 
+	class="default-fill" 
 	stroke="black"
 	markerHeight="12"
 	markerWidth="12"
@@ -346,7 +346,7 @@ SVG-Edit (latest release)
 	</marker>
 
 	<marker id="mim-catalysis-end-black" 
-	class="drawing-board-color-fill" 
+	class="default-fill" 
 	stroke="black"
 	markerHeight="12"
 	markerWidth="12"
@@ -360,7 +360,7 @@ SVG-Edit (latest release)
 	<!-- mim-cleavage markers: two lines and extended drawing-board rect -->
   <!--
 	<marker id="mim-cleavage-start-black" 
-	class="drawing-board-color-fill" 
+	class="default-fill" 
 	stroke="black"
 	markerHeight="24"
 	markerWidth="24"
@@ -374,7 +374,7 @@ SVG-Edit (latest release)
 	</marker>
 
 	<marker id="mim-cleavage-end-black"
-	class="drawing-board-color-fill" 
+	class="default-fill" 
 	stroke="black"
 	markerHeight="24"
 	markerWidth="24"
@@ -388,7 +388,7 @@ SVG-Edit (latest release)
 	</marker>
   -->
 	<marker id="mim-cleavage-start-black" 
-	class="drawing-board-color-fill" 
+	class="default-fill" 
 	stroke="black"
 	markerHeight="24"
 	markerWidth="24"
@@ -400,7 +400,7 @@ SVG-Edit (latest release)
 	</marker>
 
 	<marker id="mim-cleavage-end-black" 
-	class="drawing-board-color-fill" 
+	class="default-fill" 
 	stroke="black"
 	markerHeight="24"
 	markerWidth="24"
@@ -420,7 +420,7 @@ SVG-Edit (latest release)
 	orient="auto"
 	refX="0" refY="0"
 	viewBox="0 -6 12 12">
-	<rect class="drawing-board-color-fill" stroke="none" x="0" y="-0.6" width="2" height="1.2" />
+	<rect class="default-fill" stroke="none" x="0" y="-0.6" width="2" height="1.2" />
 	<polygon stroke-width="0" points="11,5 0,0 11,-5"/>
 	</marker>
 
@@ -431,12 +431,12 @@ SVG-Edit (latest release)
 	orient="auto"
 	refX="0" refY="0"
 	viewBox="-12 -6 12 12">
-	<rect class="drawing-board-color-fill" stroke="none" x="-2" y="-0.6" width="2" height="1.2" />
+	<rect class="default-fill" stroke="none" x="-2" y="-0.6" width="2" height="1.2" />
 	<polygon stroke-width="0" points="-11,5 0,0 -11,-5"/>
 	</marker>
 -->
 	<marker id="mim-conversion-start-black" 
-	class="drawing-board-color-fill" 
+	class="default-fill" 
 	stroke="black"
 	markerHeight="12"
 	markerWidth="12"
@@ -448,7 +448,7 @@ SVG-Edit (latest release)
 	</marker>
 
 	<marker id="mim-conversion-end-black" 
-	class="drawing-board-color-fill" 
+	class="default-fill" 
 	stroke="black"
 	markerHeight="12"
 	markerWidth="12"
@@ -478,7 +478,7 @@ SVG-Edit (latest release)
 	</marker>
 -->
 	<marker id="mim-covalent-bond-start-black" 
-	class="drawing-board-color-fill" 
+	class="default-fill" 
 	stroke="black"
 	markerHeight="12"
 	markerWidth="12"
@@ -490,7 +490,7 @@ SVG-Edit (latest release)
 	</marker>
 
 	<marker id="mim-covalent-bond-end-black" 
-	class="drawing-board-color-fill" 
+	class="default-fill" 
 	stroke="black"
 	markerHeight="12"
 	markerWidth="12"
@@ -508,7 +508,7 @@ SVG-Edit (latest release)
 	-->
 <!--
 	<marker id="mim-gap-start-black"
-	class="drawing-board-color-fill"
+	class="default-fill"
 	markerUnits="strokeWidth"
 	markerWidth="10" markerHeight="10"
 	orient="auto"
@@ -518,7 +518,7 @@ SVG-Edit (latest release)
 	</marker>
 
 	<marker id="mim-gap-end-black"
-	class="drawing-board-color-fill"
+	class="default-fill"
 	markerUnits="strokeWidth"
 	markerWidth="10" markerHeight="10"
 	orient="auto"
@@ -528,7 +528,7 @@ SVG-Edit (latest release)
 	</marker>
 -->
 	<marker id="mim-gap-start-black" 
-	class="drawing-board-color-fill" 
+	class="default-fill" 
 	stroke="black"
 	markerHeight="10"
 	markerWidth="10"
@@ -540,7 +540,7 @@ SVG-Edit (latest release)
 	</marker>
 
 	<marker id="mim-gap-end-black" 
-	class="drawing-board-color-fill" 
+	class="default-fill" 
 	stroke="black"
 	markerHeight="10"
 	markerWidth="10"
@@ -555,7 +555,7 @@ SVG-Edit (latest release)
 
   <!--
 	<marker id="mim-inhibition-start-black"
-	class="drawing-board-color-fill"
+	class="default-fill"
 	stroke="black"
 	markerWidth="16" 
 	markerHeight="16"
@@ -568,7 +568,7 @@ SVG-Edit (latest release)
   </marker>
 
 	<marker id="mim-inhibition-end-black"
-	class="drawing-board-color-fill"
+	class="default-fill"
 	stroke="black"
 	markerUnits="strokeWidth"
 	markerWidth="16" 
@@ -582,7 +582,7 @@ SVG-Edit (latest release)
 	-->
   
 	<marker id="mim-inhibition-start-black"
-	class="drawing-board-color-fill"
+	class="default-fill"
 	stroke="black"
 	markerWidth="16" 
 	markerHeight="16"
@@ -594,7 +594,7 @@ SVG-Edit (latest release)
   </marker>
   
 	<marker id="mim-inhibition-end-black"
-	class="drawing-board-color-fill"
+	class="default-fill"
 	stroke="black"
 	markerWidth="16" 
 	markerHeight="16"
@@ -614,7 +614,7 @@ SVG-Edit (latest release)
 	orient="auto"
 	refX="0" refY="0"
 	viewBox="0 -6 12 12">
-	<rect class="drawing-board-color-fill" stroke="none" x="0" y="-0.6" width="2" height="1.2" />
+	<rect class="default-fill" stroke="none" x="0" y="-0.6" width="2" height="1.2" />
 	<polygon stroke-width="0" points="12,6 0,0 12,-6 5,0 "/>
 	</marker>
 
@@ -625,12 +625,12 @@ SVG-Edit (latest release)
 	orient="auto"
 	refX="0" refY="0"
 	viewBox="-12 -6 12 12">
-	<rect class="drawing-board-color-fill" stroke="none" x="-2" y="-0.6" width="2" height="1.2" />
+	<rect class="default-fill" stroke="none" x="-2" y="-0.6" width="2" height="1.2" />
 	<polygon stroke-width="0" points="-12,6 0,0 -12,-6 -5,0 "/>
 	</marker>
   -->
 	<marker id="mim-modification-start-black" 
-	class="drawing-board-color-fill" 
+	class="default-fill" 
 	stroke="black"
 	markerHeight="12"
 	markerWidth="12"
@@ -642,7 +642,7 @@ SVG-Edit (latest release)
 	</marker>
 
 	<marker id="mim-modification-end-black" 
-	class="drawing-board-color-fill" 
+	class="default-fill" 
 	stroke="black"
 	markerHeight="12"
 	markerWidth="12"
@@ -656,7 +656,7 @@ SVG-Edit (latest release)
 	<!-- mim-necessary-stimulation markers: triangular polygons, drawing-board fill, black stroke; and vertical line -->
 <!--
 	<marker id="mim-necessary-stimulation-start-black"
-	class="drawing-board-color-fill"
+	class="default-fill"
 	stroke="black"
 	markerWidth="12" markerHeight="12"
 	markerUnits="strokeWidth"
@@ -669,7 +669,7 @@ SVG-Edit (latest release)
 	</marker>
 
 	<marker id="mim-necessary-stimulation-end-black"
-	class="drawing-board-color-fill"
+	class="default-fill"
 	stroke="black"
 	markerUnits="strokeWidth"
 	markerWidth="12" markerHeight="12"
@@ -682,7 +682,7 @@ SVG-Edit (latest release)
 	</marker>
   -->
 	<marker id="mim-necessary-stimulation-start-black" 
-	class="drawing-board-color-fill" 
+	class="default-fill" 
 	stroke="black"
 	markerHeight="12"
 	markerWidth="12"
@@ -694,7 +694,7 @@ SVG-Edit (latest release)
 	</marker>
 
 	<marker id="mim-necessary-stimulation-end-black" 
-	class="drawing-board-color-fill" 
+	class="default-fill" 
 	stroke="black"
 	markerHeight="12"
 	markerWidth="12"
@@ -708,7 +708,7 @@ SVG-Edit (latest release)
 	<!-- mim-stimulation markers: triangular polygons, drawing-board fill, black stroke -->
 <!--
 	<marker id="mim-stimulation-start-black"
-	class="drawing-board-color-fill"
+	class="default-fill"
 	stroke="black"
 	markerWidth="12" markerHeight="12"
 	markerUnits="strokeWidth"
@@ -720,7 +720,7 @@ SVG-Edit (latest release)
 	</marker>
 
 	<marker id="mim-stimulation-end-black"
-	class="drawing-board-color-fill"
+	class="default-fill"
 	stroke="black"
 	markerUnits="strokeWidth"
 	markerWidth="12" markerHeight="12"
@@ -732,7 +732,7 @@ SVG-Edit (latest release)
 	</marker>
   -->
 	<marker id="mim-stimulation-start-black" 
-	class="drawing-board-color-fill" 
+	class="default-fill" 
 	stroke="black"
 	markerHeight="12"
 	markerWidth="12"
@@ -744,7 +744,7 @@ SVG-Edit (latest release)
 	</marker>
 
 	<marker id="mim-stimulation-end-black" 
-	class="drawing-board-color-fill" 
+	class="default-fill" 
 	stroke="black"
 	markerHeight="12"
 	markerWidth="12"
@@ -758,7 +758,7 @@ SVG-Edit (latest release)
 	<!-- mim-transcription-translation markers: two lines and an open trigular polygon, plus extended drawing-board rect -->
 <!--
 	<marker id="mim-transcription-translation-start-black"
-	class="drawing-board-color-fill" 
+	class="default-fill" 
 	stroke="black"
 	markerHeight="24"
 	markerWidth="24"
@@ -773,7 +773,7 @@ SVG-Edit (latest release)
 	</marker>
 
 	<marker id="mim-transcription-translation-end-black"
-	class="drawing-board-color-fill" 
+	class="default-fill" 
 	stroke="black"
 	markerHeight="24"
 	markerWidth="24"
@@ -788,7 +788,7 @@ SVG-Edit (latest release)
 	</marker>
   -->
 	<marker id="mim-transcription-translation-start-black" 
-	class="drawing-board-color-fill" 
+	class="default-fill" 
 	stroke="black"
 	markerHeight="24"
 	markerWidth="24"
@@ -800,7 +800,7 @@ SVG-Edit (latest release)
 	</marker>
 
 	<marker id="mim-transcription-translation-end-black" 
-	class="drawing-board-color-fill" 
+	class="default-fill" 
 	stroke="black"
 	markerHeight="24"
 	markerWidth="24"
@@ -814,7 +814,7 @@ SVG-Edit (latest release)
 	<!-- t-bar markers: vertical line; and extended drawing-board rect -->
 <!--
 	<marker id="t-bar-start-black"
-	class="drawing-board-color-fill"
+	class="default-fill"
 	stroke="black"
 	markerWidth="16" 
 	markerHeight="16"
@@ -827,7 +827,7 @@ SVG-Edit (latest release)
 	</marker>
 
 	<marker id="t-bar-end-black"
-	class="drawing-board-color-fill"
+	class="default-fill"
 	stroke="black"
 	markerUnits="strokeWidth"
 	markerWidth="16" 
@@ -840,7 +840,7 @@ SVG-Edit (latest release)
 	</marker>
   -->
 	<marker id="t-bar-start-black" 
-	class="drawing-board-color-fill" 
+	class="default-fill" 
 	stroke="black"
 	markerHeight="16"
 	markerWidth="16"
@@ -852,7 +852,7 @@ SVG-Edit (latest release)
 	</marker>
 
 	<marker id="t-bar-end-black" 
-	class="drawing-board-color-fill" 
+	class="default-fill" 
 	stroke="black"
 	markerHeight="16"
 	markerWidth="16"
@@ -872,7 +872,7 @@ SVG-Edit (latest release)
 	orient="auto"
 	refX="0" refY="0"
 	viewBox="0 -6 12 12">
-	<rect class="drawing-board-color-fill" stroke="none" x="0" y="-1.5" width="2.3" height="3" />
+	<rect class="default-fill" stroke="none" x="0" y="-1.5" width="2.3" height="3" />
 	</marker>
 
 	<marker id="double-line-hack-end"
@@ -881,11 +881,11 @@ SVG-Edit (latest release)
 	orient="auto"
 	refX="0" refY="0"
 	viewBox="-12 -6 12 12">
-	<rect class="drawing-board-color-fill" stroke="none" x="-2.3" y="-1.5" width="2.3" height="3" />
+	<rect class="default-fill" stroke="none" x="-2.3" y="-1.5" width="2.3" height="3" />
 	</marker>
   -->
 	<marker id="double-line-hack-start" 
-	class="drawing-board-color-fill" 
+	class="default-fill" 
 	stroke="black"
 	markerHeight="10"
 	markerWidth="10"
@@ -897,7 +897,7 @@ SVG-Edit (latest release)
 	</marker>
 
 	<marker id="double-line-hack-end" 
-	class="drawing-board-color-fill" 
+	class="default-fill" 
 	stroke="black"
 	markerHeight="10"
 	markerWidth="10"
