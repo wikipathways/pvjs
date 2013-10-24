@@ -20,5 +20,5 @@
   },
   "_source": "git://github.com/twbs/bootstrap.git",
   "_target": "~3.0.0",
-  "_direct": true
+  "_originalSource": "bootstrap"
 }

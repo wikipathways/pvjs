@@ -10,5 +10,5 @@
   },
   "_source": "git://github.com/caolan/async.git",
   "_target": "~0.2.5",
-  "_direct": true
+  "_originalSource": "async"
 }

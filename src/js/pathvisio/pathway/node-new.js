@@ -375,7 +375,7 @@ pathvisio.pathway.node = function(){
             .attr("height", function (d) { return d.height - 2*strokeWidthEffective;})
             .attr("xlink:xlink:href", function (d) {return "#none";})
             //.attr("xlink:xlink:href", function (d) {return "#" + d.symbolType;})
-            //.attr("class", "drawing-board-color-stroke")
+            //.attr("class", "stroke-color-equals-default-fill-color")
             .attr("style", function(d) { return style + 'fill-opacity:0; ';});
           }
         }

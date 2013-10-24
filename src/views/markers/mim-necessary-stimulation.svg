@@ -9,7 +9,7 @@
 	xmlns:ev="http://www.w3.org/2001/xml-events"
 	width="15"
 	height="12"
-	class="drawing-board-color-fill solid-stroke"
+	class="default-fill solid-stroke"
 	style="stroke:black"
 	viewBox="0 0 15 12">
 

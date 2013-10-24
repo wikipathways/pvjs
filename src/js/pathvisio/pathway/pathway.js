@@ -368,21 +368,20 @@ pathvisio.pathway = function(){
   }
 
   function highlightByLabel(nodeLabel) {
-    console.log('nodeLabel');
-    console.log(nodeLabel);
-    svg.selectAll('g.nodes-container')
-    .attr('style', '');
+    svg.selectAll('.highlighted-node').remove();
     var dataNodes = pathway.nodes.filter(function(element) {return element.elementType === 'data-node';});
     var dataNodesWithText = dataNodes.filter(function(element) {return (!!element.textLabel);});
     var selectedNodes = dataNodesWithText.filter(function(element) {return element.textLabel.text.indexOf(nodeLabel) !== -1;});
     selectedNodes.forEach(function(node) {
-      console.log('node');
-      console.log(node);
-
       var nodeDomElement = svg.select('#nodes-container-' + node.graphId);
-      nodeDomElement.attr('style', 'fill:yellow');
-      console.log('nodeDomElement');
-      console.log(nodeDomElement);
+      var height = nodeDomElement[0][0].getBBox().height;
+      var width = nodeDomElement[0][0].getBBox().width;
+      nodeDomElement.append('rect')
+      .attr('class', 'highlighted-node')
+      .attr('x', -2.5)
+      .attr('y', -2.5)
+      .attr('width', width + 5)
+      .attr('height', height + 5);
     });
   }
 
@@ -585,13 +584,14 @@ pathvisio.pathway = function(){
 
       // see http://twitter.github.io/typeahead.js/
 
-      $('#highlight-by-label').typeahead({
-        name: 'Find in pathway',
+      $('#highlight-by-label-input').typeahead({
+        name: 'Highlight node in pathway',
         local: nodeLabels,
         limit: 10
       });
+      /*
       $('.icon-eye-open').click(function(){
-        var nodeLabel = $("#highlight-by-label").val();
+        var nodeLabel = $("#highlight-by-label-input").val();
         if (!nodeLabel) {
           console.warn('Error: No data node value entered.');
         }
@@ -599,12 +599,12 @@ pathvisio.pathway = function(){
           pathvisio.pathway.highlightByLabel(nodeLabel);
         }
       });
-
+//*/
       // see http://api.jquery.com/bind/
       // TODO get selected value better and make function to handle
 
-      $( "#highlight-by-label" ).bind( "typeahead:selected", function() {
-        var nodeLabel = $("#highlight-by-label").val();
+      $( "#highlight-by-label-input" ).bind( "typeahead:selected", function() {
+        var nodeLabel = $("#highlight-by-label-input").val();
         if (!nodeLabel) {
           console.warn('Error: No data node value entered.');
         }

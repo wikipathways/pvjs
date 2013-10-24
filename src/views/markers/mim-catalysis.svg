@@ -11,7 +11,7 @@
 	xmlns:ev="http://www.w3.org/2001/xml-events"
 	width="12"
 	height="12"
-	class="drawing-board-color-fill solid-stroke"
+	class="default-fill solid-stroke"
 	viewBox="-6 -6 12 12">
 
 	<circle cx="0" cy="0" r="5.3px" stroke-width="1px"/>

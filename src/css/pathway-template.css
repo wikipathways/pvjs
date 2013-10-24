@@ -7,11 +7,11 @@
     stroke: black;
 	}
 
-	.drawing-board-color-fill {
+	.default-fill {
 		fill: white;
 	}
 
-	.drawing-board-color-stroke {
+	.stroke-color-equals-default-fill-color {
 		stroke: white;
 	}
 
@@ -152,7 +152,6 @@
 		stroke-dasharray: 9999999999999999999999999;
 	}
 
-
   .marker-end {
     -webkit-transform: rotate(180deg);
     -webkit-transform-origin: 50% 50%;
@@ -174,3 +173,10 @@
 	.dashed-stroke {
 		stroke-dasharray: 5,3;
 	}
+
+  .highlighted-node {
+		fill: yellow;
+    fill-opacity: 0.2;
+		stroke: orange; 
+    stroke-width: 3px;
+  }
