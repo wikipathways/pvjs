@@ -45,8 +45,3 @@ pathvisio.pathway.infoBox = function(){
     draw:draw
   };
 }();
-
-
-
-
-

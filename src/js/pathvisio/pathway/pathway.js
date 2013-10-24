@@ -351,6 +351,12 @@ pathvisio.pathway = function(){
       // I would prefer to use d3.xml for the http request in order to not depend on jQuery,
       // but d3.xml doesn't seem to work with IE8. TODO remove dependency on jQuery
 
+      d3.xml(url, function(gpml) {
+        pathvisio.converter.gpml.toRenderableJson(gpml, function(json) {
+          //callback(json);
+        });
+      });
+
       // be sure server has set gpml mime type to application/xml or application/gpml+xml
 
       $.get(url, 'application/xml', function(gpml) {
@@ -559,7 +565,10 @@ pathvisio.pathway = function(){
           })
         },
         function(callbackInside) {
-          svgPanZoom.init();
+          svgPanZoom.init({
+            'root':args.container + ' svg',
+            'enableZoom': false
+          });
           callbackInside(null);
         }
       ],
