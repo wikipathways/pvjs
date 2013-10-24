@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<?xml-stylesheet type="text/css" href="../../css/pathway-template.css"?>
+
+<svg id="double-line-hack"
+	version="1.1"
+	baseProfile="full"
+	xmlns="http://www.w3.org/2000/svg"
+	xmlns:xlink="http://www.w3.org/1999/xlink"
+	xmlns:ev="http://www.w3.org/2001/xml-events"
+	width="12"
+	height="12"
+	class="default-fill solid-stroke">
+
+	<rect class="default-fill" stroke="none" x="0" y="4.5" width="2.3" height="3" />
+
+</svg>
