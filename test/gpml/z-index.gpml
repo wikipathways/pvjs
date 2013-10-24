@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Pathway xmlns="http://pathvisio.org/GPML/2013a" Name="New Pathway" Version="20130807">
-  <Graphics BoardWidth="2370.5229532521726" BoardHeight="1533.3436123347917" />
+<Pathway xmlns="http://pathvisio.org/GPML/2013a" Name="z-index" Version="20130807" Organism="Anopheles gambiae">
+  <Graphics BoardWidth="918.5027512319709" BoardHeight="995.4648244560025" />
   <DataNode TextLabel="GeneProduct" GraphId="cabbf" Type="GeneProduct">
     <Graphics CenterX="309.6885813148789" CenterY="309.6885813148789" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
     <Xref Database="" ID="" />
@@ -49,6 +49,12 @@
   </Label>
   <Label TextLabel="Label&#xA;Stroke: black&#xA;Fill: transparent&#xA;z-order to be in front" GraphId="c77d0">
     <Graphics CenterX="810.1010300538353" CenterY="123.0213300394353" Width="138.829874074335" Height="119.30921454152683" ZOrder="32976" FontSize="12" Valign="Middle" ShapeType="Rectangle" />
+  </Label>
+  <Label TextLabel="SAVE" GraphId="df2c4">
+    <Graphics CenterX="212.78721278721278" CenterY="21.704460587955737" Width="95.94405594405595" Height="27.982017982017986" ZOrder="33015" FillColor="ffffff" FontWeight="Bold" FontSize="30" Valign="Middle" />
+  </Label>
+  <Label TextLabel="This pathway is to be saved long-term to test the ability of&#xA;GPML renderers to handle the element type named in the title." GraphId="c575b">
+    <Graphics CenterX="414.08591408591417" CenterY="18.207957091452236" Width="290.7492507492508" Height="32.977022977022976" ZOrder="33016" FillColor="ffffff" FontSize="10" Align="Left" />
   </Label>
   <Shape TextLabel="pink" GraphId="ee9c8">
     <Graphics CenterX="369.33990772756266" CenterY="500.0" Width="106.45500567225967" Height="900.0" ZOrder="-10" FillColor="ff0066" FontSize="10" Valign="Middle" ShapeType="Rectangle" Rotation="0.0" />

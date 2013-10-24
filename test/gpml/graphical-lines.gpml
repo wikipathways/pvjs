@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Pathway xmlns="http://pathvisio.org/GPML/2013a" Name="New Pathway" Version="20130813">
-  <Graphics BoardWidth="1059.5608753243903" BoardHeight="1495.6812213505825" />
+<Pathway xmlns="http://pathvisio.org/GPML/2013a" Name="graphical-lines" Version="20130813" Organism="Anopheles gambiae">
+  <Graphics BoardWidth="589.4605394605396" BoardHeight="1483.985314917834" />
   <DataNode TextLabel="GeneProduct" GraphId="dc130" Type="GeneProduct">
     <Graphics CenterX="72.08627056633884" CenterY="132.68820047177329" Width="101.70481927710847" Height="34.23493975903643" ZOrder="32865" FontSize="10" Valign="Middle" />
     <Xref Database="" ID="" />
@@ -138,9 +138,16 @@
   <Label TextLabel="Graphical Line&#xA;    Straight&#xA;    Thickness: 5&#xA;Start: Line&#xA;End: Line" GraphId="c88f9">
     <Graphics CenterX="193.7946113181983" CenterY="1409.9853405401452" Width="97.64078927052229" Height="65.56166584146415" ZOrder="32889" FillColor="ffffff" FontSize="10" Valign="Middle" Align="Left" />
   </Label>
+  <Label TextLabel="SAVE" GraphId="df735">
+    <Graphics CenterX="212.78721278721278" CenterY="28.986013986013994" Width="95.94405594405595" Height="27.982017982017986" ZOrder="33015" FillColor="ffffff" FontWeight="Bold" FontSize="30" Valign="Middle" />
+  </Label>
+  <Label TextLabel="This pathway is to be saved long-term to test the ability of&#xA;GPML renderers to handle the element type named in the title." GraphId="e0dbd">
+    <Graphics CenterX="414.08591408591417" CenterY="25.489510489510494" Width="290.7492507492508" Height="32.977022977022976" ZOrder="33016" FillColor="ffffff" FontSize="10" Align="Left" />
+  </Label>
   <Shape GraphId="d6ff7">
     <Graphics CenterX="265.7901100438864" CenterY="861.1130475869816" Width="50.97318611987393" Height="44.664037854889585" ZOrder="32864" FontSize="10" Valign="Middle" ShapeType="Triangle" Rotation="0.0" />
   </Shape>
   <InfoBox CenterX="0.0" CenterY="0.0" />
+  <Biopax />
 </Pathway>
 

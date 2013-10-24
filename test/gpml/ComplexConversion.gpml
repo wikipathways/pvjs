@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Pathway xmlns="http://pathvisio.org/GPML/2013a" Name="Statin Pathway" Last-Modified="10/16/2013" Organism="Homo sapiens" License="CC BY 2.0">
+  <Comment Source="WikiPathways-category">Cellular Process</Comment>
+  <Comment Source="WikiPathways-description">Statins inhibit endogenous cholesterol production by competitive inhibition of HMG-CoA reductase (HMGCR), the enzyme that catalyzes conversion of HMG-CoA to mevalonate, an early rate-limiting step in cholesterol synthesis. This pathway delineates genes involved in statin pharmacogenomics, including genes involved in mediating the effects of statins on plasma lipoprotein metabolism. 
+
+Sources: [https://www.pharmgkb.org/do/serve?objId=PA2031&amp;amp;objCls=Pathway PharmGKB] and [http://en.wikipedia.org/wiki/Statin Wikipedia]
+
+</Comment>
+  <Graphics BoardWidth="828.0" BoardHeight="735.7912447684621" />
+  <DataNode TextLabel="DGAT1" GraphId="d4e" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="DGAT1 | diacylglycerol O-acyltransferase homolo..." />
+    <Graphics CenterX="694.0" CenterY="151.83333333333334" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Entrez Gene" ID="8694" />
+  </DataNode>
+  <DataNode TextLabel="Phospholipid" GraphId="aceb7" Type="Metabolite">
+    <Graphics CenterX="596.25" CenterY="204.0" Width="74.5" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Xref Database="KEGG Compound" ID="C00865" />
+  </DataNode>
+  <DataNode TextLabel="Triglyceride" GraphId="fc934" Type="Metabolite">
+    <Graphics CenterX="694.5" CenterY="228.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Xref Database="KEGG Compound" ID="C00422" />
+  </DataNode>
+  <DataNode TextLabel="DAG" GraphId="b209b" Type="Metabolite">
+    <Graphics CenterX="608.5" CenterY="105.5" Width="46.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Xref Database="KEGG Compound" ID="C00165" />
+  </DataNode>
+  <DataNode TextLabel="Acyl-CoA" GraphId="a47e8" Type="Metabolite">
+    <Graphics CenterX="524.625" CenterY="123.75" Width="53.75" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Xref Database="HMDB" ID="HMDB03419" />
+  </DataNode>
+  <Interaction GraphId="d870f">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="008040">
+      <Point X="608.5" Y="115.5" GraphRef="b209b" RelX="0.0" RelY="1.0" />
+      <Point X="674.5" Y="218.0" GraphRef="fc934" RelX="-0.5" RelY="-1.0" ArrowHead="Arrow" />
+      <Anchor Position="0.4" Shape="None" GraphId="edbc5" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="idb248dd5c">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="664.0" Y="151.83333333333334" GraphRef="d4e" RelX="-1.0" RelY="0.0" />
+      <Point X="634.9" Y="156.5" GraphRef="edbc5" RelX="0.0" RelY="0.0" ArrowHead="mim-catalysis" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="id52ac424a">
+    <Graphics ConnectorType="Curved" ZOrder="12288" LineThickness="1.0" Color="006633">
+      <Point X="538.0625" Y="133.75" GraphRef="a47e8" RelX="0.5" RelY="1.0" />
+      <Point X="634.9" Y="156.5" GraphRef="edbc5" RelX="0.0" RelY="0.0" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="idb3964d3f">
+    <Graphics ConnectorType="Curved" ZOrder="12288" LineThickness="1.0" Color="006633">
+      <Point X="634.9" Y="156.5" GraphRef="edbc5" RelX="0.0" RelY="0.0" />
+      <Point X="620.6875" Y="194.5" />
+      <Point X="614.875" Y="194.0" GraphRef="aceb7" RelX="0.5" RelY="-1.0" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <InfoBox CenterX="5.1" CenterY="8.333333333333334" />
+  <Biopax>
+    <bp:openControlledVocabulary xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#">
+      <bp:TERM xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">hepatocyte</bp:TERM>
+      <bp:ID xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">CL:0000182</bp:ID>
+      <bp:Ontology xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Cell Type</bp:Ontology>
+    </bp:openControlledVocabulary>
+    <bp:openControlledVocabulary xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#">
+      <bp:TERM xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">statin drug pathway</bp:TERM>
+      <bp:ID xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PW:0000724</bp:ID>
+      <bp:Ontology xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Pathway Ontology</bp:Ontology>
+    </bp:openControlledVocabulary>
+    <bp:openControlledVocabulary xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#">
+      <bp:TERM xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">cardiovascular system disease</bp:TERM>
+      <bp:ID xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">DOID:1287</bp:ID>
+      <bp:Ontology xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Disease</bp:Ontology>
+    </bp:openControlledVocabulary>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="a6b">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">9106493</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Microsomal triglyceride transfer protein.</bp:TITLE>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Biochim Biophys Acta</bp:SOURCE>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1997</bp:YEAR>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Wetterau JR</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Lin MC</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Jamil H</bp:AUTHORS>
+    </bp:PublicationXref>
+  </Biopax>
+</Pathway>
+

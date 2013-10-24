@@ -1,0 +1,107 @@
+<div style="position:relative; width:70%; height:auto; float:left;">
+  <div id="pathvisio-js" style="width:100%; height:100%; float:right; clear:both;">
+
+    <!-- **********************************************************************
+    Pathway Container (JavaScript inserts pathway image inside this div)
+    *********************************************************************** -->
+
+    <div id="pathway-container" style="width:80%; height:500px">
+    </div>
+    <div id="viewer-toolbar" style="position:absolute; right: 0px; top: 20px;">
+
+      <!-- **********************************************************************
+      Highlight Element by Label Control
+      *********************************************************************** -->
+
+      <!-- old version
+      <div id="highlight-by-label-control" style="position: absolute; right: 5px; top: 5px; z-index: 1001; background-color: rgb(221, 221, 221); border: 1px solid rgb(170, 170, 170); width:160px">
+        <input id="highlight-by-label" placeholder="Highlight element by label" class="ui-autocomplete-input ui-corner-all" autocomplete="off" role="textbox" aria-autocomplete="list" aria-haspopup="true" style="float:left; width: 100px;">
+        <span class="icon icon-eye-open" style="position: absolute; right:0px"></span>
+      </div>
+      -->
+
+      <input id="highlight-by-label-input" placeholder="Enter node name to highlight." role="textbox" aria-autocomplete="list" aria-haspopup="true" style="float:right; width:200px;">
+
+      <!-- **********************************************************************
+      Pan Zoom Control
+      see http://bumbu.github.io/cytoscape.js/debug/ for example of cytoscape.js 
+      *********************************************************************** -->
+
+      <div id="pan-zoom-control" class="ui-cytoscape-panzoom" style="position: absolute; right: 5px; top: 150px;">
+        <div class="ui-cytoscape-panzoom-zoom-in ui-cytoscape-panzoom-zoom-button">
+          <span class="icon icon-plus"></span>
+        </div>
+        <div class="ui-cytoscape-panzoom-zoom-out ui-cytoscape-panzoom-zoom-button">
+          <span class="icon icon-minus"></span>
+        </div>
+        <div class="ui-cytoscape-panzoom-reset ui-cytoscape-panzoom-zoom-button">
+          <span class="icon icon-resize-full"></span>
+        </div>
+        <div class="ui-cytoscape-panzoom-slider">
+          <div class="ui-cytoscape-panzoom-slider-background">
+          </div>
+          <div class="ui-cytoscape-panzoom-slider-handle" style="top: 42.80000001192093px;">
+            <span class="icon icon-minus"></span>
+          </div>
+          <div class="ui-cytoscape-panzoom-no-zoom-tick" style="top: 42.80000001192093px;">
+          </div>
+        </div>
+        <div class="ui-cytoscape-panzoom-panner">
+          <div class="ui-cytoscape-panzoom-panner-handle">
+          </div>
+          <div class="ui-cytoscape-panzoom-pan-up ui-cytoscape-panzoom-pan-button">
+          </div>
+          <div class="ui-cytoscape-panzoom-pan-down ui-cytoscape-panzoom-pan-button">
+          </div>
+          <div class="ui-cytoscape-panzoom-pan-left ui-cytoscape-panzoom-pan-button">
+          </div>
+          <div class="ui-cytoscape-panzoom-pan-right ui-cytoscape-panzoom-pan-button">
+          </div>
+          <div class="ui-cytoscape-panzoom-pan-indicator" style="display: none; left: 22.424611085682006px; top: 0.12287108520014556px; background-color: rgb(127, 127, 127); background-position: initial initial; background-repeat: initial initial;">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- **********************************************************************
+    Fullscreen Control 
+    *********************************************************************** -->
+
+    <div id="fullscreen-control" style="position:absolute; right: 0px; bottom: 20px;">
+      <i class="icon-fullscreen" style="color:#aaa"></i>
+    </div>
+
+    <!-- **********************************************************************
+    Details Frame
+    *********************************************************************** -->
+
+    <div id="details-frame" class="details-frame ui-draggable" style="visibility: hidden; position: absolute; right: 75px; top: 100px;">
+      <header class="details-frame-header">
+      <span id="details-frame-move" class="details-frame-header-move">
+        <i class="icon-move" style="color:#aaa"></i>
+      </span>
+      <span id="details-frame-header-text" class="details-frame-header-text">
+        Header Text
+      </span> 
+      <span id="details-frame-header-search" class="details-frame-header-search" title="Search for pathways containing 'Header Text'">
+        <a href="http://wikipathways.org//index.php?title=Special:SearchPathways">
+          <i class="icon-search" style="color:blue; font-size:50%"></i>
+        </a>
+      </span>
+      <span class="details-frame-close" class="">
+        <i class="icon-remove" style="color:#aaa; font-size:120%"></i>
+      </span>
+      <div id="details-frame-description" class="details-frame-description">
+        <h2>description text</h2>
+      </div>
+      </header>
+      <ul id="details-frame-items-container" class="details-frame-items-container">
+        <!-- List items inside this ul element are generated automatically by JavaScript.
+        Each item will be composed of a title and text. The text can be set to be an href.
+        You can edit the styling of the title by editing CSS class "details-frame-item-title"
+        and the styling of the text by editing CSS class "details-frame-item-text."
+        -->
+      </ul>
+    </div>
+  </div>
+</div>
