@@ -11,7 +11,7 @@
 // [W3C documention on cubic bezier curves for SVG](http://www.w3.org/TR/SVG/paths.html#PathDataLinetoCommands)
 // There are other types of SVG curves, but I understand the Java code to use bezier curves.
 
-pathvisio.pathway.edge.pathData = function(){
+pathvisio.renderer.svg.edge.pathData = function(){
 
   var currentDirection = null;
 
@@ -31,14 +31,14 @@ pathvisio.pathway.edge.pathData = function(){
     }
 
     var sourcePoint = edge.points[0];
-    var source = pathvisio.pathway.edge.point.getCoordinates(svg, pathway, sourcePoint);
+    var source = pathvisio.renderer.svg.edge.point.getCoordinates(svg, pathway, sourcePoint);
 
     self.points = edge.points;
 
     var pointCoordinatesArray = self.pointCoordinatesArray = [];
     var pointCoordinates;
     edge.points.forEach(function(element) {
-      pointCoordinates = pathvisio.pathway.edge.point.getCoordinates(svg, pathway, element);
+      pointCoordinates = pathvisio.renderer.svg.edge.point.getCoordinates(svg, pathway, element);
       pointCoordinatesArray.push(pointCoordinates)
     })
 
@@ -57,7 +57,7 @@ pathvisio.pathway.edge.pathData = function(){
     }
 
     var targetPoint = edge.points[edge.points.length - 1];
-    var target = pathvisio.pathway.edge.point.getCoordinates(svg, pathway, targetPoint);
+    var target = pathvisio.renderer.svg.edge.point.getCoordinates(svg, pathway, targetPoint);
 
     if (targetPoint.dx === undefined) {
       target.dx = 0;
@@ -82,9 +82,9 @@ pathvisio.pathway.edge.pathData = function(){
 
       // just a start for the elbow connector type. still need to consider several other potential configurations.
       // It doesn't make sense for an unconnected interaction or graphical line to be an elbow, so any that are
-      // so specified will be drawn as segmented lines.
+      // so specified will be rendern as segmented lines.
 
-      if (edge.connectorType === 'elbow' && edge.points[0].hasOwnProperty('graphRef') && edge.points[edge.points.length - 1].hasOwnProperty('graphRef')) {
+      if (edge.connectorType === 'elbow' && edge.points[0].hasOwnProperty('anchorId') && edge.points[edge.points.length - 1].hasOwnProperty('anchorId')) {
 
         // distance to move away from node when we can't go directly to the next node
 
@@ -139,7 +139,7 @@ console.log((((pointCoordinatesArray[1].x - pointCoordinatesArray[0].x)/Math.abs
         // above doesn't quite work yet, so below works for most cases
 
         /*
-        if (( edge.points.length === 2 && pathvisio.pathway.edge.point.isTwoPointElbow(source, target)) ) {
+        if (( edge.points.length === 2 && pathvisio.renderer.svg.edge.point.isTwoPointElbow(source, target)) ) {
         }
         else {
           if ( edge.points.length > 2 ) {
