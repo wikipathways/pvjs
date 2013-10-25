@@ -1,4 +1,4 @@
-pathvisio = function(){
+pathvisio.renderer = function(){
 
   // first pass GPML (pathway XML) through an automatic XML to JSON converter, 
   // then make specific modifications to make the JSON well-formatted, then return the JSON
@@ -8,52 +8,6 @@ pathvisio = function(){
   var symbolsAvailable = null;
 
   self.pathway = pathway;
-
-  // get GPML (pathway XML) from WikiPathways (by ID) or a URL (could be a local file or any other accessible GPML source),
-  // convert to formatted JSON and return the JSON to the function that called getJson()
-
-  function getJson(url, callback) {
-    if (!url) {
-
-      // TODO throw a proper error here
-
-      var error = 'Error: URL not specified.';
-      console.warn(error);
-      return error;
-    }
-    else {
-
-      // I would prefer to use d3.xml for the http request in order to not depend on jQuery,
-      // but d3.xml doesn't seem to work with IE8. TODO remove dependency on jQuery
-
-      d3.xml(url, function(gpml) {
-        pathvisio.converter.gpml.toRenderableJson(gpml, function(json) {
-          //callback(json);
-        });
-      });
-
-      // be sure server has set gpml mime type to application/xml or application/gpml+xml
-
-    }
-  }
-
-  function highlightByLabel(nodeLabel) {
-    svg.selectAll('.highlighted-node').remove();
-    var dataNodes = pathway.nodes.filter(function(element) {return element.elementType === 'data-node';});
-    var dataNodesWithText = dataNodes.filter(function(element) {return (!!element.textLabel);});
-    var selectedNodes = dataNodesWithText.filter(function(element) {return element.textLabel.text.indexOf(nodeLabel) !== -1;});
-    selectedNodes.forEach(function(node) {
-      var nodeDomElement = svg.select('#nodes-container-' + node.graphId);
-      var height = nodeDomElement[0][0].getBBox().height;
-      var width = nodeDomElement[0][0].getBBox().width;
-      nodeDomElement.append('rect')
-      .attr('class', 'highlighted-node')
-      .attr('x', -2.5)
-      .attr('y', -2.5)
-      .attr('width', width + 5)
-      .attr('height', height + 5);
-    });
-  }
 
   function draw(svg, pathway, callback){
     if (!pathway) {
@@ -290,6 +244,7 @@ pathvisio = function(){
     draw:draw,
     load:load,
     getJson:getJson,
+    gpml2json:gpml2json,
     highlightByLabel:highlightByLabel
   };
 }();
