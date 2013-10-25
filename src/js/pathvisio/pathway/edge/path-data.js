@@ -16,6 +16,7 @@ pathvisio.pathway.edge.pathData = function(){
   var currentDirection = null;
 
   function switchDirection(currentDirection) {
+    currentDirection = currentDirection.toUpperCase();
     if (currentDirection === 'H') {
       return 'V';
     }
@@ -31,6 +32,15 @@ pathvisio.pathway.edge.pathData = function(){
 
     var sourcePoint = edge.points[0];
     var source = pathvisio.pathway.edge.point.getCoordinates(svg, pathway, sourcePoint);
+
+    self.points = edge.points;
+
+    var pointCoordinatesArray = self.pointCoordinatesArray = [];
+    var pointCoordinates;
+    edge.points.forEach(function(element) {
+      pointCoordinates = pathvisio.pathway.edge.point.getCoordinates(svg, pathway, element);
+      pointCoordinatesArray.push(pointCoordinates)
+    })
 
     if (sourcePoint.dx === undefined) {
       source.dx = 0;
@@ -78,7 +88,7 @@ pathvisio.pathway.edge.pathData = function(){
 
         // distance to move away from node when we can't go directly to the next node
 
-        var step = 15;
+        var stubLength = 15;
 
         if (Math.abs(source.dx) === 1) {
           currentDirection = 'H';
@@ -87,9 +97,48 @@ pathvisio.pathway.edge.pathData = function(){
           currentDirection = 'V';
         }
 
-        //if (edge.points.length === 2) {
-        //doesn't quite work yet, so this works for most cases
+        // first segment
 
+        console.log('test');
+console.log((((pointCoordinatesArray[1].x - pointCoordinatesArray[0].x)/Math.abs(pointCoordinatesArray[1].x - pointCoordinatesArray[0].x) !== edge.points[0].dx) || (edge.points.length === 2)));
+
+        if (edge.points[0].hasOwnProperty('dx')) {
+          // if the target is closer to the source than stubLength
+          if (Math.abs(pointCoordinatesArray[1].x - pointCoordinatesArray[0].x) < stubLength) {
+            pathData += ' ' + currentDirection.toLowerCase() + ' ' + String((pointCoordinatesArray[1].x - pointCoordinatesArray[0].x)/2);
+          }
+          else {
+            if (((pointCoordinatesArray[1].x - pointCoordinatesArray[0].x)/Math.abs(pointCoordinatesArray[1].x - pointCoordinatesArray[0].x) !== edge.points[0].dx) || (edge.points.length === 2)) {
+              pathData += ' ' + currentDirection.toLowerCase() + ' ' + String((-1) * edge.points[0].dx * stubLength);
+            }
+            else {
+              pathData += ' ' + currentDirection.toUpperCase() + ' ' + pointCoordinatesArray[1].x;
+            }
+          }
+
+
+
+
+
+        }
+        else {
+          // if the target is closer to the source than stubLength
+          if (Math.abs(pointCoordinatesArray[1].y - pointCoordinatesArray[0].y) < stubLength) {
+            pathData += ' ' + currentDirection.toLowerCase() + ' ' + String((pointCoordinatesArray[1].y - pointCoordinatesArray[0].y)/2);
+          }
+          else {
+            if (((pointCoordinatesArray[1].y - pointCoordinatesArray[0].y)/Math.abs(pointCoordinatesArray[1].y - pointCoordinatesArray[0].y) !== edge.points[0].dy) || (edge.points.length === 2)) {
+              pathData += ' ' + currentDirection.toLowerCase() + ' ' + String((-1) * edge.points[0].dy * stubLength);
+            }
+            else {
+              pathData += ' ' + currentDirection.toUpperCase() + ' ' + pointCoordinatesArray[1].y;
+            }
+          }
+        }
+
+        // above doesn't quite work yet, so below works for most cases
+
+        /*
         if (( edge.points.length === 2 && pathvisio.pathway.edge.point.isTwoPointElbow(source, target)) ) {
         }
         else {
@@ -146,7 +195,7 @@ pathvisio.pathway.edge.pathData = function(){
           pathData += ' ' + currentDirection + ' ' + target.x;
           currentDirection = switchDirection(currentDirection);
         }
-
+//*/
         /*
            if (Math.abs(target.dx) === 1) {
            pathData += " V " + target.y + " H " + target.x;

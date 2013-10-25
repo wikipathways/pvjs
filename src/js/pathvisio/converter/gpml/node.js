@@ -31,6 +31,17 @@ pathvisio.converter.gpml.node = function(){
       var centerY = parseFloat(gpmlNode.select('Graphics').attr('CenterY'));
       jsonNode.height = parseFloat(gpmlNode.select('Graphics').attr('Height'));
       jsonNode.y = centerY - jsonNode.height/2;
+
+      var jsonAnchorsFromThisNode = pathvisio.converter.gpml.anchor.getAllFromNode(gpmlNode);
+      console.log('jsonAnchorsFromThisNode');
+      console.log(jsonAnchorsFromThisNode);
+        /*
+      var jsonAnchorsFromThisNode = [];
+      pathvisio.converter.gpml.anchor.getAllFromNode(gpmlNode, function(jsonAnchorsFromThisNode) {
+        jsonAnchorsFromThisNode = jsonAnchorsFromThisNode;
+      })
+      //*/
+
 /*
 
       if (element.graphics.hasOwnProperty("color")) {
@@ -204,7 +215,7 @@ pathvisio.converter.gpml.node = function(){
       delete element.graphics;
       //*/
 
-      callback(jsonNode);
+      callback(jsonNode, jsonAnchorsFromThisNode);
     }
     catch (e) {
       console.log("Error converting labelable element to json: " + e.message);
