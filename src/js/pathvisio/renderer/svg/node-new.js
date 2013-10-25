@@ -1,6 +1,6 @@
 // Draw nodes. Includes data nodes, shapes, labels, cellular components...
 
-pathvisio.pathway.node = function(){
+pathvisio.renderer.svg.node = function(){
 
   // TODO What happens if we have right to left flowing text?
 
@@ -225,7 +225,7 @@ pathvisio.pathway.node = function(){
     }
   }
 
-  function drawAll(svg, pathway) {
+  function renderAll(svg, pathway) {
     if (!svg || !pathway) {
       if (!svg) {
         console.log('svg');
@@ -245,7 +245,7 @@ pathvisio.pathway.node = function(){
     .attr("class", "nodes-container")
     .on("click", function(d,i) {
       if (d.elementType === 'data-node') {
-        pathvisio.pathway.xRef.displayData(pathway.organism, d);
+        pathvisio.renderer.svg.xRef.displayData(pathway.organism, d);
       }
         /*
         var xrefDiv = $('.xrefinfo');
@@ -345,7 +345,7 @@ pathvisio.pathway.node = function(){
 
           if (d.strokeStyle === 'double') {
 
-            // draw second element
+            // render second element
 
             d3.select(nodesContainer[0][i]).append("use")
             .attr("id", function (d) {return 'node-double' + d.graphId;})
@@ -601,7 +601,7 @@ pathvisio.pathway.node = function(){
   }
 
   return {
-    drawAll:drawAll,
+    renderAll:renderAll,
     getPortCoordinates:getPortCoordinates,
     gpml2json:gpml2json
   };

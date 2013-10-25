@@ -1,6 +1,6 @@
-pathvisio.pathway.infoBox = function(){
+pathvisio.renderer.svg.infoBox = function(){
     
-  function draw(svg, pathway) {
+  function render(svg, pathway) {
     if (!svg || !pathway) {
       return console.warn('Error: Missing input parameters.');
     }
@@ -42,6 +42,6 @@ pathvisio.pathway.infoBox = function(){
   }
 
   return {
-    draw:draw
+    render:render
   };
 }();

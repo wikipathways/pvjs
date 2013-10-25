@@ -1,4 +1,4 @@
-pathvisio.pathway.edge.marker = function(){
+pathvisio.renderer.svg.edge.marker = function(){
 
   // the way SVG works makes this code more complex than it should need to be. Essentially, we
   // are trying to reuse the markers defined in the SVG template, but we also need to be able
@@ -6,7 +6,7 @@ pathvisio.pathway.edge.marker = function(){
   // template svg, whether it is at the start or end of a path and whether
   // a color other than black (the color specified in the template) is desired.
 
-  function draw(svg, name, position, color) {
+  function render(svg, name, position, color) {
     var markerUrl = '';
 
     // if no marker is to be used, JSON data will specify 'none'.
@@ -66,6 +66,6 @@ pathvisio.pathway.edge.marker = function(){
   }
  
   return {
-    draw:draw
+    render:render
   };
 }();
