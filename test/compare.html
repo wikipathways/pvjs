@@ -156,19 +156,27 @@
     location.href = targetUrl;
   }
 
-  function appendPartialHtml(partialHtmlUrl, callback) {
-    d3.html(partialHtmlUrl, function(html) {
-      appendSvgTemplate(html, srcDirectoryUrl + 'views/pathway-template.svg', callback);
-    });
-  }
-
-  function appendSvgTemplate(partialHtml, svgTemplateUrl, callback) {
-    d3.text(svgTemplateUrl, 'text/plain', function(svg) {
-      d3.select(partialHtml).select('#pathway-container')[0][0].innerHTML = svg;
-      var oSerializer = new XMLSerializer();
-      pathvisioNS['tmp/pathvisio-js.html'] = oSerializer.serializeToString(partialHtml);
-      callback();
-    });
+  function buildTemplatePartial(callback) {
+    async.parallel(
+      {
+        'html': function(callback) {
+          d3.html(srcDirectoryUrl + 'views/pathvisio-js.html', function(html) {
+            callback(null, html);
+          });
+        },
+        'svg': function(callback) {
+          d3.xml(srcDirectoryUrl + 'views/pathway-template.svg', 'image/svg+xml', function(svg) {
+            callback(null, svg);
+          });
+        }
+      },
+      function(err, results) {
+        results.html.querySelector('#pathway-container').appendChild(results.svg.documentElement)
+        var oSerializer = new XMLSerializer();
+        pathvisioNS['tmp/pathvisio-js.html'] = oSerializer.serializeToString(results.html);
+        callback();
+      }
+    )
   }
 
   function loadExtJsCss(callbackOutside) {
@@ -265,7 +273,7 @@
         ];
         var customMarkers = [];
         pathvisio.pathway.load({
-          container: '#pathway-container',
+          container: '#view',
           width: 1000,
           height: 500,
           zoom: 'fit',
@@ -306,41 +314,6 @@
   }
 
 
-  window.setTimeout(function() {
-    $('#github-container').hide();
-  }, 50);
-
-  if (urlParamList.creator === 'pathvisio-js-dev' || urlParamList.creator === 'pathvisio-js-prod') {
-    loadPathvisioJs();
-    if (urlParamList.creator === 'pathvisio-js-dev') {
-      window.setTimeout(function() {
-        $('#github-container').show();
-      }, 50);
-    }
-  }
-  else {
-    if (urlParamList.creator === 'pathvisio-java-png') {
-      $('#pathway-container').empty();
-      window.setTimeout(function() {
-        $('#pathway-container').prepend('<img id="pathvisio-java-png" src="' + pathvisioJavaPngUrl + '" />')
-      }, 50);
-    }
-    else {
-      if (urlParamList.creator === 'current-wiki-pathways-widget') {
-        $('#pathway-container').empty();
-        window.setTimeout(function() {
-          $('#pathway-container').prepend('<iframe id="current-wiki-pathways-widget" src="' + currentWikiPathwaysWidgetUrl + '" width="70%" height="1000" />')
-        }, 50);
-      }
-    }
-  }
-  window.setTimeout(function() {
-    $('button.pathway').each(function(i) {
-      this.style.backgroundColor = 'lightgray';
-    });
-    $('#' + urlParamList.creator + '-button')[0].style.backgroundColor = 'yellow';
-  }, 50)
-
 
   /*********************************************
      Load UI for this test/dev comparison page 
@@ -366,56 +339,128 @@
 
 
   /*********************************************
-     Load selected pathway renderer 
+     Load selected view 
   /********************************************/
 
-  if (urlParamList.creator === 'pathvisio-js-dev' || urlParamList.creator === 'pathvisio-js-prod') {
+  var pathvisioNS;
+  window.onload = function() {
+    var d3View = d3.select('#view');
+    var view = document.querySelector('#view');
 
-    var pathvisioNS;
-    if (urlParamList.creator === 'pathvisio-js-dev') {
-      pathvisioNS = [];
-    }
+    if (urlParamList.creator === 'pathvisio-js-dev' || urlParamList.creator === 'pathvisio-js-prod') {
+      $('#view').empty();
 
-    if (!!urlParamList.gpml) {
-      var gpmlSource = urlParamList.gpml;
+      if (!!urlParamList.gpml) {
+        var gpmlSource = urlParamList.gpml;
 
-      // gpmlSource is a WikiPathways ID
+        // gpmlSource is a WikiPathways ID
 
-      if (gpmlSource.indexOf('.gpml') === -1 && gpmlSource.indexOf('.xml') === -1) { // if gpmlSource is a WikiPathways ID
-        var gpmlUrl = rootDirectoryUrl + 'remote-data-sources/php/wikipathways.php?data=gpml&id=' + gpmlSource + '&rev=' + urlParamList.gpmlRev;
+        if (gpmlSource.indexOf('.gpml') === -1 && gpmlSource.indexOf('.xml') === -1) { // if gpmlSource is a WikiPathways ID
+          var gpmlUrl = rootDirectoryUrl + 'remote-data-sources/php/wikipathways.php?data=gpml&id=' + gpmlSource + '&rev=' + urlParamList.gpmlRev;
+        }
+        else { // if gpmlSource is a url to a gpml file
+          var gpmlUrl = gpmlSource;
+        };
       }
-      else { // if gpmlSource is a url to a gpml file
-        var gpmlUrl = gpmlSource;
+      else {
+        console.warn('Error: No GPML data source specified.');
       };
+
+
+      async.parallel(
+        [
+          function(callback) {
+            if (urlParamList.creator === 'pathvisio-js-dev') {
+              pathvisioNS = [];
+              buildTemplatePartial(function() {
+                callback(null);
+              });
+            }
+          },
+          function(callback) {
+            loadExtJsCss(function() {
+              callback(null);
+            });
+          }
+        ],
+        function(err) {
+            console.log('hi');
+          if (Modernizr.svg) {
+
+            var customShapes = [
+              {'id': 'arc', 'url': srcDirectoryUrl + 'views/symbols/arc.svg'},
+              {'id': 'brace', 'url': srcDirectoryUrl + 'views/symbols/brace.svg'},
+              {'id': 'endoplasmic-reticulum', 'url': srcDirectoryUrl + 'views/symbols/endoplasmic-reticulum.svg'},
+              {'id': 'golgi-apparatus', 'url': srcDirectoryUrl + 'views/symbols/golgi-apparatus.svg'},
+              {'id': 'hexagon', 'url': srcDirectoryUrl + 'views/symbols/hexagon.svg'},
+              {'id': 'mim-degradation', 'url': srcDirectoryUrl + 'views/symbols/mim-degradation.svg'},
+              {'id': 'mitochondria', 'url': srcDirectoryUrl + 'views/symbols/mitochondria.svg'},
+              {'id': 'oval', 'url': srcDirectoryUrl + 'views/symbols/oval.svg'},
+              {'id': 'pentagon', 'url': srcDirectoryUrl + 'views/symbols/pentagon.svg'},
+              {'id': 'rectangle', 'url': srcDirectoryUrl + 'views/symbols/rectangle.svg'},
+              {'id': 'rounded-rectangle', 'url': srcDirectoryUrl + 'views/symbols/rounded-rectangle.svg'},
+              {'id': 'sarcoplasmic-reticulum','url': srcDirectoryUrl + 'views/symbols/sarcoplasmic-reticulum.svg'},
+              {'id': 'triangle', 'url': srcDirectoryUrl + 'views/symbols/triangle.svg'}
+            ];
+            var customMarkers = [];
+            pathvisio.pathway.load({
+              container: '#view',
+              width: 1000,
+              height: 500,
+              zoom: 'fit',
+              gpmlUrl: gpmlUrl,
+              cssUrl: srcDirectoryUrl + 'css/pathway-template.css',
+              customMarkers: customMarkers,
+              customShapes: customShapes,
+              highlightNodes: [
+                {'parameter': 'label', 'parameterValue': 'CRH', 'color': 'red'},
+                {'parameter': 'xref', 'parameterValue': '8525,Entrez%20Gene', 'color': '#FF0000'}
+              ],
+              hiddenElements: [
+                'find',
+                'wikipathways-link'
+              ]
+            });
+
+
+
+
+            //loadPathvisioJs();
+          }
+          else {
+            window.setTimeout(function() {
+              $('#view').prepend('<img id="pathvisio-java-png" src="http://test3.wikipathways.org/wpi//wpi.php?action=downloadFile&type=png&pwTitle=Pathway:' +  + urlParamList.gpml + '&revision=' + urlParamList.gpmlRev + '" />')
+            }, 50);
+          }
+        }
+      );
+
+
+
+
+
+
+
+
+
     }
     else {
-      console.warn('Error: No GPML data source specified.');
-    };
-
-
-
-
-    $('#pathway-container').empty();
-
-    if (Modernizr.svg) {
-      loadPathvisioJs();
-    }
-    else {
-      window.setTimeout(function() {
-        $('#pathway-container').prepend('<img id="pathvisio-java-png" src="http://test3.wikipathways.org/wpi//wpi.php?action=downloadFile&type=png&pwTitle=Pathway:' +  + urlParamList.gpml + '&revision=' + urlParamList.gpmlRev + '" />')
-      }, 50);
-    }
-
-
-
-
-  }
-  else {
-    if (urlParamList.creator === 'current-wiki-pathways-widget') {
-      $('#pathway-container').empty();
-      window.setTimeout(function() {
-        $('#pathway-container').prepend('<iframe id="current-wiki-pathways-widget" src="http://www.wikipathways.org/wpi/PathwayWidget.php?id=' + urlParamList.gpml + '" width="70%" height="1000" />')
-      }, 50);
+      if (urlParamList.creator === 'current-wiki-pathways-widget') {
+        $('#view').empty();
+        window.setTimeout(function() {
+          $('#view').prepend('<iframe id="current-wiki-pathways-widget" src="http://www.wikipathways.org/wpi/PathwayWidget.php?id=' + urlParamList.gpml + '" width="70%" height="1000" />')
+        }, 50);
+      }
+      else {
+        if (urlParamList.creator === 'help') {
+          d3.select('#view').empty();
+          window.setTimeout(function() {
+            d3.html('./views/help.html', function(html) {
+              view.appendChild(html);
+            });
+          }, 50);
+        }
+      }
     }
   }
 </script>
@@ -425,14 +470,15 @@
     <button id="pathvisio-js-dev-button" class="pathway" title="SVG viewer for all modern browsers (Dev Version)" onclick="displayCreator('pathvisio-js-dev')" style="background-color: yellow">pathvisio.js (DEV)</button>
     <button id="pathvisio-js-prod-button" class="pathway" title="SVG viewer for all modern browsers" onclick="displayCreator('pathvisio-js-prod')" style="background-color: lightgray">pathvisio.js (PROD)</button>
     <button id="current-wiki-pathways-widget-button" class="pathway" title="Pathway widget currently in use on www.wikipathways.org" onclick="displayCreator('current-wiki-pathways-widget')" style="background-color: lightgray">Current WP Viewer</button>
+    <button id="help-button" class="pathway" title="How to use this test/dev page" onclick="displayCreator('help')" style="background-color: lightgray">Help</button>
   <!--
     <button id="gpml-button" class="pathway" onclick="displayCreator('gpml')" style="background-color: lightgray" title="Source GPML">GPML (XML)</button>
     <button id="json-button" class="pathway" onclick="displayCreator('json')" style="background-color: lightgray" title="Formatted JSON">JSON</button>
   -->
 
-  <form id="choose-source-data" action="#" method="get">
-        GPML (WP ID or a full URL): <input type="text" id="gpml" name="gpml" length="200" />
-        GPML REV: <input type="text" id="gpml-rev" name="gpml-rev" placeholder="optional" />
+    <form id="choose-source-data" action="#" method="get">
+        GPML (WP ID or a full URL): <input type="text" id="gpml" name="gpml" style="width: 300px;" />
+        GPML REV: <input type="text" id="gpml-rev" name="gpml-rev" placeholder="optional" style="width: 100px;" />
         <span id="github-container">GitHub Account: <input type="text" id="account" name="account" placeholder="e.g., wikipathways" />
         Branch: <input type="text" id="branch" name="branch" placeholder="e.g., master or dev" /></span>
         <input type="hidden" id="creator" name="creator" />
@@ -440,10 +486,6 @@
     <input type="submit" value="Submit" />
     </form>
   </div> 
-
-  <p>
-  This pathvisio.js test and development site allows you to edit the pathvisio.js code online at Github and view the results right here in the <b>pathvisio.js (DEV)</b> frame below. To get started, fork the <a href="https://github.com/wikipathways/pathvisio.js">pathvisio.js repo</a> and ask Anders or Alex to add you as an authorized user (authorized users array is in <a href="https://github.com/wikipathways/pathvisio.js/blob/master/remote-data-sources/php/github.php">github.php</a>). If you've already forked the pathvisio.js repo, be sure to pull the latest changes from the master branch of the wikipathways pathvisio.js repo (yourAccount::yourBranch ... wikipathways::master). Then edit the code in any of the files in the "src" folder of your Github fork of pathvisio.js and commit your changes on Github. (You may need to wait a second after committing for Github to apply your changes.) To see the result, return to this page, enter your Account and Branch above and click "Submit." When you're done editing, you can create a pull request on Github (wikipathways::master ... yourAccount::yourBranch) to merge your changes into the master branch of the wikipathways pathvisio.js repo.
-  </p>
-  <div id="pathway-container">
+  <div id="view">
   </div>
 </body>
