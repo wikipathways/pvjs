@@ -19,8 +19,9 @@ pathvisio.converter.gpml.anchor = function() {
 
     try {
       jsonAnchor.id = gpmlAnchor.attr('GraphId');
-      jsonAnchor.graphRef = gpmlAnchor[0][0].parentNode.parentNode.attributes['GraphId'].textContent;
+      jsonAnchor.parentId = gpmlAnchor[0][0].parentNode.parentNode.attributes['GraphId'].textContent;
       jsonAnchor.position = gpmlAnchor.attr('Position');
+      jsonAnchor.renderableType = 'anchor';
       callback(jsonAnchor);
 
     }
@@ -29,32 +30,37 @@ pathvisio.converter.gpml.anchor = function() {
     }
   }
 
-  function getAllFromNode(gpmlNode, callback) {
-    self.gpmlAnchor = gpmlAnchor;
+  function getAllFromNode(jsonNode, callback) {
     var jsonAnchor = {};
+    var elementSides = [
+      {'side': 'top', 'initialEdgeDirection': 90}, 
+      {'side': 'right', 'initialEdgeDirection': 0}, 
+      {'side': 'bottom', 'initialEdgeDirection': 270}, 
+      {'side': 'left', 'initialEdgeDirection': 180} 
+    ];
+    var anchorPositions = [0.25, 0.5, 0.75];
 
     try {
-      var jsonAnchors = [
-        { 'x': 12,
-          'y': 12,
-          'position': 0.4,
-          'side': 'top',
-          'initialEdgeDirection': 90,
-          'graphRef': gpmlNode.attr('GraphId'),
-          'id': 'guid'
-        },
-        { 'x': 12,
-          'y': 12,
-          'position': 0.4,
-          'side': 'top',
-          'initialEdgeDirection': 90,
-          'graphRef': gpmlNode.attr('GraphId'),
-          'id': 'guid'
-        }
-      ];
+      var jsonAnchors = [];
+      var jsonAnchor = {};
+
+      jsonAnchor.parentId = jsonNode.id;
+      jsonAnchor.renderableType = 'anchor';
+
+      elementSides.forEach(function(element) {
+        jsonAnchor.side = element.side;
+        jsonAnchor.initialEdgeDirection = element.initialEdgeDirection;
+
+        anchorPositions.forEach(function(position) {
+          jsonAnchor.id = String(jsonNode.id) + String(element.side) + String(position);
+          jsonAnchor.position = position;
+          jsonAnchor.x = jsonNode.x + position * jsonNode.width;
+          jsonAnchor.y = jsonNode.y + position * jsonNode.height;
+          jsonAnchors.push(jsonAnchor);
+        });
+
+      });
       //callback(jsonAnchors);
-      console.log('jsonAnchors');
-      console.log(jsonAnchors);
       return jsonAnchors;
     }
     catch (e) {
