@@ -195,16 +195,6 @@
           loadScripts([
             srcDirectoryUrl + "js/pathvisio/pathvisio.js",
             srcDirectoryUrl + "js/pathvisio/helpers.js",
-            srcDirectoryUrl + 'js/pathvisio/pathway/pathway.js',
-            srcDirectoryUrl + 'js/pathvisio/pathway/group.js',
-            srcDirectoryUrl + 'js/pathvisio/pathway/info-box.js',
-            srcDirectoryUrl + 'js/pathvisio/pathway/node.js',
-            srcDirectoryUrl + 'js/pathvisio/pathway/edge/edge.js',
-            srcDirectoryUrl + 'js/pathvisio/pathway/edge/marker.js',
-            srcDirectoryUrl + 'js/pathvisio/pathway/edge/point.js',
-            srcDirectoryUrl + 'js/pathvisio/pathway/edge/path-data.js',
-            srcDirectoryUrl + 'js/pathvisio/pathway/data-sources.js',
-            srcDirectoryUrl + 'js/pathvisio/pathway/x-ref.js',
             //hey
             srcDirectoryUrl + 'js/pathvisio/converter/converter.js',
             srcDirectoryUrl + 'js/pathvisio/converter/gpml/gpml.js',
@@ -235,76 +225,11 @@
     })
   }
 
-  function loadPathvisioJs() {
-    async.series([
-      function(callbackInside) {
-        loadExtJsCss(callbackInside);
-      },
-      function(callbackInside) {
-        if (urlParamList.creator === 'pathvisio-js-dev') {
-
-          // convert partial html and svg template to a string and insert into pathvisioNS array.
-          // This work is only for the dev version. The pathvisioNS array with the data from partial
-          // html and svg template is included in the production version through a grunt build process.
-
-          appendPartialHtml(srcDirectoryUrl + 'views/pathvisio-js.html', function() {
-            callbackInside(null);
-          })
-        }
-        else {
-          callbackInside(null);
-        }
-      },
-      function(callbackInside) {
-        var customShapes = [
-          {'id': 'arc', 'url': srcDirectoryUrl + 'views/symbols/arc.svg'},
-          {'id': 'brace', 'url': srcDirectoryUrl + 'views/symbols/brace.svg'},
-          {'id': 'endoplasmic-reticulum', 'url': srcDirectoryUrl + 'views/symbols/endoplasmic-reticulum.svg'},
-          {'id': 'golgi-apparatus', 'url': srcDirectoryUrl + 'views/symbols/golgi-apparatus.svg'},
-          {'id': 'hexagon', 'url': srcDirectoryUrl + 'views/symbols/hexagon.svg'},
-          {'id': 'mim-degradation', 'url': srcDirectoryUrl + 'views/symbols/mim-degradation.svg'},
-          {'id': 'mitochondria', 'url': srcDirectoryUrl + 'views/symbols/mitochondria.svg'},
-          {'id': 'oval', 'url': srcDirectoryUrl + 'views/symbols/oval.svg'},
-          {'id': 'pentagon', 'url': srcDirectoryUrl + 'views/symbols/pentagon.svg'},
-          {'id': 'rectangle', 'url': srcDirectoryUrl + 'views/symbols/rectangle.svg'},
-          {'id': 'rounded-rectangle', 'url': srcDirectoryUrl + 'views/symbols/rounded-rectangle.svg'},
-          {'id': 'sarcoplasmic-reticulum','url': srcDirectoryUrl + 'views/symbols/sarcoplasmic-reticulum.svg'},
-          {'id': 'triangle', 'url': srcDirectoryUrl + 'views/symbols/triangle.svg'}
-        ];
-        var customMarkers = [];
-        pathvisio.pathway.load({
-          container: '#view',
-          width: 1000,
-          height: 500,
-          zoom: 'fit',
-          gpmlUrl: gpmlUrl,
-          cssUrl: srcDirectoryUrl + 'css/pathway-template.css',
-          customMarkers: customMarkers,
-          customShapes: customShapes,
-          highlightNodes: [
-            {'parameter': 'label', 'parameterValue': 'CRH', 'color': 'red'},
-            {'parameter': 'xref', 'parameterValue': '8525,Entrez%20Gene', 'color': '#FF0000'}
-          ],
-          hiddenElements: [
-            'find',
-            'wikipathways-link'
-          ]
-        });
-      }
-    ],
-    function(err, results) {
-      if (!!err) {
-        console.log(err);
-      }
-    });
-  }
-
   var urlParamList = getUrlParamList();
 
   var currentUrl = document.location.origin + document.location.pathname;
   var rootDirectoryUrl = document.location.origin + document.location.pathname.split("pathvisio.js/")[0] + 'pathvisio.js/';
   var srcDirectoryUrl = rootDirectoryUrl + 'remote-data-sources/php/local.php?account=' + urlParamList.account + '&branch=' + urlParamList.branch + '&relativeUrl=';
-  //var srcDirectoryUrl = rootDirectoryUrl + 'src/';
 
   if (urlParamList.creator === 'pathvisio-js-dev') {
     if (!!urlParamList.account && !!urlParamList.branch && urlParamList.acount !== 'null' && urlParamList.branch !== 'null') {
@@ -343,6 +268,7 @@
   /********************************************/
 
   var pathvisioNS;
+  var gpmlUrl;
   window.onload = function() {
     var d3View = d3.select('#view');
     var view = document.querySelector('#view');
@@ -350,21 +276,6 @@
     if (urlParamList.creator === 'pathvisio-js-dev' || urlParamList.creator === 'pathvisio-js-prod') {
       $('#view').empty();
 
-      if (!!urlParamList.gpml) {
-        var gpmlSource = urlParamList.gpml;
-
-        // gpmlSource is a WikiPathways ID
-
-        if (gpmlSource.indexOf('.gpml') === -1 && gpmlSource.indexOf('.xml') === -1) { // if gpmlSource is a WikiPathways ID
-          var gpmlUrl = rootDirectoryUrl + 'remote-data-sources/php/wikipathways.php?data=gpml&id=' + gpmlSource + '&rev=' + urlParamList.gpmlRev;
-        }
-        else { // if gpmlSource is a url to a gpml file
-          var gpmlUrl = gpmlSource;
-        };
-      }
-      else {
-        console.warn('Error: No GPML data source specified.');
-      };
 
 
       async.parallel(
@@ -384,72 +295,70 @@
           }
         ],
         function(err) {
-            console.log('hi');
-          if (Modernizr.svg) {
-
-            var customShapes = [
-              {'id': 'arc', 'url': srcDirectoryUrl + 'views/symbols/arc.svg'},
-              {'id': 'brace', 'url': srcDirectoryUrl + 'views/symbols/brace.svg'},
-              {'id': 'endoplasmic-reticulum', 'url': srcDirectoryUrl + 'views/symbols/endoplasmic-reticulum.svg'},
-              {'id': 'golgi-apparatus', 'url': srcDirectoryUrl + 'views/symbols/golgi-apparatus.svg'},
-              {'id': 'hexagon', 'url': srcDirectoryUrl + 'views/symbols/hexagon.svg'},
-              {'id': 'mim-degradation', 'url': srcDirectoryUrl + 'views/symbols/mim-degradation.svg'},
-              {'id': 'mitochondria', 'url': srcDirectoryUrl + 'views/symbols/mitochondria.svg'},
-              {'id': 'oval', 'url': srcDirectoryUrl + 'views/symbols/oval.svg'},
-              {'id': 'pentagon', 'url': srcDirectoryUrl + 'views/symbols/pentagon.svg'},
-              {'id': 'rectangle', 'url': srcDirectoryUrl + 'views/symbols/rectangle.svg'},
-              {'id': 'rounded-rectangle', 'url': srcDirectoryUrl + 'views/symbols/rounded-rectangle.svg'},
-              {'id': 'sarcoplasmic-reticulum','url': srcDirectoryUrl + 'views/symbols/sarcoplasmic-reticulum.svg'},
-              {'id': 'triangle', 'url': srcDirectoryUrl + 'views/symbols/triangle.svg'}
-            ];
-            var customMarkers = [];
-            pathvisio.pathway.load({
-              container: '#view',
-              width: 1000,
-              height: 500,
-              zoom: 'fit',
-              gpmlUrl: gpmlUrl,
-              cssUrl: srcDirectoryUrl + 'css/pathway-template.css',
-              customMarkers: customMarkers,
-              customShapes: customShapes,
-              highlightNodes: [
-                {'parameter': 'label', 'parameterValue': 'CRH', 'color': 'red'},
-                {'parameter': 'xref', 'parameterValue': '8525,Entrez%20Gene', 'color': '#FF0000'}
-              ],
-              hiddenElements: [
-                'find',
-                'wikipathways-link'
-              ]
-            });
+          var customShapes = [
+            {'id': 'arc', 'url': srcDirectoryUrl + 'views/symbols/arc.svg'},
+            {'id': 'brace', 'url': srcDirectoryUrl + 'views/symbols/brace.svg'},
+            {'id': 'endoplasmic-reticulum', 'url': srcDirectoryUrl + 'views/symbols/endoplasmic-reticulum.svg'},
+            {'id': 'golgi-apparatus', 'url': srcDirectoryUrl + 'views/symbols/golgi-apparatus.svg'},
+            {'id': 'hexagon', 'url': srcDirectoryUrl + 'views/symbols/hexagon.svg'},
+            {'id': 'mim-degradation', 'url': srcDirectoryUrl + 'views/symbols/mim-degradation.svg'},
+            {'id': 'mitochondria', 'url': srcDirectoryUrl + 'views/symbols/mitochondria.svg'},
+            {'id': 'oval', 'url': srcDirectoryUrl + 'views/symbols/oval.svg'},
+            {'id': 'pentagon', 'url': srcDirectoryUrl + 'views/symbols/pentagon.svg'},
+            {'id': 'rectangle', 'url': srcDirectoryUrl + 'views/symbols/rectangle.svg'},
+            {'id': 'rounded-rectangle', 'url': srcDirectoryUrl + 'views/symbols/rounded-rectangle.svg'},
+            {'id': 'sarcoplasmic-reticulum','url': srcDirectoryUrl + 'views/symbols/sarcoplasmic-reticulum.svg'},
+            {'id': 'triangle', 'url': srcDirectoryUrl + 'views/symbols/triangle.svg'}
+          ];
+          var customMarkers = [];
+          pathvisio.load({
+            container: '#view',
+            width: 1000,
+            height: 500,
+            zoom: 'fit',
+            gpml: urlParamList.gpml,
+            //gpmlRev: urlParamList.gpmlRev,
+            cssUrl: srcDirectoryUrl + 'css/pathway-template.css',
+            customMarkers: customMarkers,
+            customShapes: customShapes,
+            highlightNodes: [
+              {'parameter': 'label', 'parameterValue': 'CRH', 'color': 'red'},
+              {'parameter': 'xref', 'parameterValue': '8525,Entrez%20Gene', 'color': '#FF0000'}
+            ],
+            hiddenElements: [
+              'find',
+              'wikipathways-link'
+            ]
+          });
 
 
 
 
-            //loadPathvisioJs();
-          }
-          else {
-            window.setTimeout(function() {
-              $('#view').prepend('<img id="pathvisio-java-png" src="http://test3.wikipathways.org/wpi//wpi.php?action=downloadFile&type=png&pwTitle=Pathway:' +  + urlParamList.gpml + '&revision=' + urlParamList.gpmlRev + '" />')
-            }, 50);
-          }
+
         }
       );
-
-
-
-
-
-
-
-
-
     }
     else {
       if (urlParamList.creator === 'current-wiki-pathways-widget') {
         $('#view').empty();
-        window.setTimeout(function() {
-          $('#view').prepend('<iframe id="current-wiki-pathways-widget" src="http://www.wikipathways.org/wpi/PathwayWidget.php?id=' + urlParamList.gpml + '" width="70%" height="1000" />')
-        }, 50);
+
+        if (!!urlParamList.gpml) {
+
+          // test for whether urlParamList.gpml is a WikiPathways ID
+
+          if (urlParamList.gpml.indexOf('.gpml') === -1 && urlParamList.gpml.indexOf('.xml') === -1) {
+            window.setTimeout(function() {
+              $('#view').prepend('<iframe id="current-wiki-pathways-widget" src="http://www.wikipathways.org/wpi/PathwayWidget.php?id=' + urlParamList.gpml + '" width="70%" height="1000" />')
+            }, 50);
+          }
+          else {
+            console.warn('Error: GPML data source specified is not a WP ID. WP widget cannot display this GPML data as a pathway image.');
+          };
+        }
+        else {
+          console.warn('Error: No GPML data source specified.');
+        };
+
       }
       else {
         if (urlParamList.creator === 'help') {
