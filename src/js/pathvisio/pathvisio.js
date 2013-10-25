@@ -119,7 +119,7 @@ pathvisio = function(){
     ],
     function(err, results) {
       console.log(err);
-      callback();
+      callback(args.svg);
     });
   }
 
@@ -159,14 +159,14 @@ pathvisio = function(){
 
 
 
-    async.parallel([
-      function(callback) {
+    async.parallel({
+      partials: function(callback) {
         console.log('1a');
         loadPartials(args, function() {
           callback(null);
         })
       },
-      function(callback){
+      pathway: function(callback){
         console.log('1b');
         getJson(args.gpml, function(json) {
           console.log('json');
@@ -174,7 +174,7 @@ pathvisio = function(){
           callback(null, json);
         })
       }
-    ],
+    },
     function(err, results){
       console.log(err);
       self.results = results;
@@ -184,7 +184,7 @@ pathvisio = function(){
         async.series([
           function(callback){
             //draw(svg, pathway, function() {
-            pathvisio.renderer.svg.render(svg, pathway, function() {
+            pathvisio.renderer.svg.render(svg, results.pathway, function() {
               callback(null);
             })
           },

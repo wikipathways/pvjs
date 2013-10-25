@@ -1,5 +1,5 @@
-pathvisio.pathway.group = function(){
-  function drawAll(svg, pathway) {
+pathvisio.renderer.svg.group = function(){
+  function renderAll(svg, pathway) {
     if (!svg || !pathway) {
       return console.warn('Error: Missing input parameters.');
     }
@@ -60,7 +60,7 @@ pathvisio.pathway.group = function(){
   }
  
   return {
-    drawAll:drawAll,
+    renderAll:renderAll,
     getDimensions:getDimensions
   };
 }();

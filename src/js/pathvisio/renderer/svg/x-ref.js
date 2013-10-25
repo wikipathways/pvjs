@@ -1,7 +1,7 @@
-pathvisio.pathway.xRef = function(){
+pathvisio.renderer.svg.xRef = function(){
 
     function getData(species, database, id, callback) {
-      var databaseId = pathvisio.pathway.dataSources.filter(function(element) {return element.database === database;})[0].id;
+      var databaseId = pathvisio.renderer.svg.dataSources.filter(function(element) {return element.database === database;})[0].id;
       var currentUrl = document.location.origin + document.location.pathname;
       var rootDirectoryUrl = document.location.origin + document.location.pathname.split("pathvisio.js/")[0] + 'pathvisio.js/';
       var url = rootDirectoryUrl + 'remote-data-sources/php/bridgedb.php?species=' + encodeURIComponent(species) + '&database=' + encodeURIComponent(databaseId) + '&id=' + encodeURIComponent(id);
@@ -37,7 +37,7 @@ pathvisio.pathway.xRef = function(){
 
         features.forEach(function(feature) {
           try {
-            var dataSource = pathvisio.pathway.dataSources.filter(function(dataSource) {return dataSource.database.replace(/[^a-z0-9]/gi,'').toLowerCase() == feature.database.replace(/[^a-z0-9]/gi,'').toLowerCase(); })[0];
+            var dataSource = pathvisio.renderer.svg.dataSources.filter(function(dataSource) {return dataSource.database.replace(/[^a-z0-9]/gi,'').toLowerCase() == feature.database.replace(/[^a-z0-9]/gi,'').toLowerCase(); })[0];
             feature.dataSourceId = dataSource.id;
             feature.linkOut = dataSource.linkOut;
             feature.priority = dataSource.priority;
@@ -77,7 +77,7 @@ pathvisio.pathway.xRef = function(){
 
         var detailsSearchUri = detailsFrame.select('#details-frame-header-search').select('a')
         .attr('href', function() {
-          return 'http://wikipathways.org//index.php?title=Special:SearchPathways&doSearch=1&ids=' + node.xRef.id + '&codes=' + pathvisio.pathway.dataSources.filter(function(dataSource) {
+          return 'http://wikipathways.org//index.php?title=Special:SearchPathways&doSearch=1&ids=' + node.xRef.id + '&codes=' + pathvisio.renderer.svg.dataSources.filter(function(dataSource) {
             return dataSource.database.replace(/[^a-z0-9]/gi,'').toLowerCase() == node.xRef.database.replace(/[^a-z0-9]/gi,'').toLowerCase();
           })[0].id + '&type=xref';
         })

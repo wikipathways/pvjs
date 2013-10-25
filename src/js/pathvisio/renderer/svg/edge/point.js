@@ -1,4 +1,4 @@
-pathvisio.pathway.edge.point = function(){
+pathvisio.renderer.svg.edge.point = function(){
 
   // pathvisio.js vs PathVisio (Java) specification of anchor position
   // -----------------------------------------
@@ -202,12 +202,12 @@ pathvisio.pathway.edge.point = function(){
       }
       else {
         if (edgeTerminusRef.type === 'node') {
-          coordinates = pathvisio.pathway.node.getPortCoordinates(edgeTerminusRef.element, point.relX, point.relY);
+          coordinates = pathvisio.renderer.svg.node.getPortCoordinates(edgeTerminusRef.element, point.relX, point.relY);
         }
         else {
           if (edgeTerminusRef.type === 'group') {
-            var groupDimensions = pathvisio.pathway.group.getDimensions(pathway, edgeTerminusRef.groupId);
-            coordinates = pathvisio.pathway.node.getPortCoordinates(groupDimensions, point.relX, point.relY);
+            var groupDimensions = pathvisio.renderer.svg.group.getDimensions(pathway, edgeTerminusRef.groupId);
+            coordinates = pathvisio.renderer.svg.node.getPortCoordinates(groupDimensions, point.relX, point.relY);
           }
           else {
             return 'error';
