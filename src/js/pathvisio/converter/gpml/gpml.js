@@ -51,18 +51,44 @@ pathvisio.converter.gpml = function(){
       delete pathway.infoBox.centerY;
 //*/
 
+
+
     async.parallel([
       function(callback) {
-        var gpmlDataNodes = gpmlPathway.selectAll('DataNode');
-        var jsonDataNodes;
-        if (gpmlDataNodes.length > 0) {
-          jsonDataNodes = [];
-          gpmlDataNodes.each(function() {
-            pathvisio.converter.gpml.dataNode.toRenderableJson(d3.select(this), function(renderableElement) {
-              jsonDataNodes.push(renderableElement);
+      var gpmlAnchors = gpmlPathway.selectAll('Anchor');
+        var jsonAnchors;
+        if (gpmlAnchors.length > 0) {
+          jsonAnchors = [];
+          gpmlAnchors.each(function() {
+            pathvisio.converter.gpml.anchor.getFromEdge(d3.select(this), function(renderableElement) {
+              jsonAnchors.push(renderableElement);
             });
           });
-          callback(jsonDataNodes);
+          callback(null,jsonAnchors);
+        }
+        else {
+          callback(null);
+        }
+      },
+      function(callback) {
+        var gpmlDataNodes = gpmlPathway.selectAll('DataNode');
+        var results = {};
+        results.jsonDataNodes;
+        results.jsonAnchors;
+        if (gpmlDataNodes.length > 0) {
+          results.jsonDataNodes = [];
+          results.jsonAnchors = [];
+          gpmlDataNodes.each(function() {
+            pathvisio.converter.gpml.dataNode.toRenderableJson(d3.select(this), function(jsonDataNode, jsonAnchorsFromLastDataNode) {
+              results.jsonDataNodes.push(jsonDataNode);
+              console.log('jsonAnchorsFromLastDataNode');
+              console.log(jsonAnchorsFromLastDataNode);
+              results.jsonAnchors = results.jsonAnchors.concat(jsonAnchorsFromLastDataNode);
+              console.log('results.jsonAnchors');
+              console.log(results.jsonAnchors);
+            });
+          });
+          callback(null,results);
         }
         else {
           callback(null);
@@ -74,6 +100,7 @@ pathvisio.converter.gpml = function(){
     ],
     function(err, results){
       console.log(err);
+      self.results = results;
     })
       // Data Nodes
 
