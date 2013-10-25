@@ -14,7 +14,6 @@ pathvisio = function(){
 
   function getJson(url, callback) {
     if (!url) {
-
       // TODO throw a proper error here
 
       var error = 'Error: URL not specified.';
@@ -28,7 +27,7 @@ pathvisio = function(){
 
       d3.xml(url, function(gpml) {
         pathvisio.converter.gpml.toRenderableJson(gpml, function(json) {
-          //callback(json);
+          callback(json);
         });
       });
 
@@ -53,82 +52,6 @@ pathvisio = function(){
       .attr('width', width + 5)
       .attr('height', height + 5);
     });
-  }
-
-  function draw(svg, pathway, callback){
-    if (!pathway) {
-      console.warn('Error: No data entered as input.');
-      return 'Error';
-    }
-
-    var drag = d3.behavior.drag()
-    .on("drag", dragmove);
-
-    function dragmove(d) {
-      d.x=d3.event.x;
-      d.y=d3.event.y;
-      d3.select(this)
-      .attr("x", d3.event.x)
-      .attr("y", d3.event.y);
-    }
-
-    svg.attr('width', pathway.boardWidth);
-    svg.attr('height', pathway.boardHeight);
-
-    if (!!pathway.biopaxRefs) {
-      var pathwayPublicationXrefs = svg.select('#viewport').selectAll(".pathway-publication-xref-text")
-      .data(pathway.biopaxRefs)
-      .enter()
-      .append("text")
-      .attr("id", function (d) { return 'pathway-publication-xref-text-' + d; })
-      .attr("x", 0)
-      .attr("y", 0)
-      .attr('transform', function(d,i) { return 'translate(' + (200 + i*12) + ' ' + 12 + ')'; })
-      .attr("class", 'pathway-publication-xref-text')
-      .attr("style", "")
-      .text(function (d) {
-
-        // d is an array of biopaxRefs. There are several IDs for biopaxRefs, but rdfId (rdf:id) is the one used for
-        // GPML to link pathway elements with biopaxRefs.
-        // TODO I set rdfId to null here because I think not doing so could result in errors if the rdfId value for
-        // a previous instance of biopaxRefs had a value that was used when evaluating a later instance
-
-        var index = 0;
-        var rdfId = null;
-        do {
-          rdfId = pathway.biopax.bpPublicationXrefs[index].rdfId;
-          index += 1;
-        } while (rdfId !== d.Text && index < pathway.biopax.bpPublicationXrefs.length);
-        return index;});
-    }
-
-    if (pathway.hasOwnProperty('groups')) {
-      pathvisio.pathway.group.drawAll(svg, pathway);
-    }
-
-    if (pathway.hasOwnProperty('edges')) {
-      pathvisio.pathway.edge.drawAll(svg, pathway);
-    }
-
-    if (pathway.hasOwnProperty('nodes')) {
-      pathvisio.pathway.node.drawAll(svg, pathway);
-    }
-
-    if (pathway.hasOwnProperty('infoBox')) {
-      pathvisio.pathway.infoBox.draw(svg, pathway);
-    }
-
-    callback();
-
-    /*
-    window.setTimeout(function() {
-      window.root = document.documentElement.getElementsByTagName("svg")[0];
-      root.addEventListener('click', function () {
-        enableZoom = 1;
-      });
-      setupHandlers(root);
-    }, 1000);
-    //*/
   }
 
   function appendCustomShape(customShape, callback) {
@@ -167,30 +90,30 @@ pathvisio = function(){
 
   function loadPartials(args, callback) {
     async.series([
-      function(callbackInside){
+      function(callback){
         console.log('2');
         args.containerElement.html(pathvisioNS['tmp/pathvisio-js.html']);
         svg = args.containerElement.select('#pathway-image');
-        callbackInside(null);
+        callback(null);
       },
-      function(callbackInside) {
+      function(callback) {
         console.log('3');
         loadCustomShapes(args, function() {
-          callbackInside(null);
+          callback(null);
         })
       },
-      function(callbackInside) {
+      function(callback) {
         console.log('4');
         if (!!args.cssUrl) {
           d3.text(args.cssUrl, 'text/css', function(data) {
             var defs = svg.select('defs');
             var style = defs.append('style').attr('type', "text/css");
             style.text(data);
-            callbackInside(null);
+            callback(null);
           })
         }
         else {
-          callbackInside(null);
+          callback(null);
         }
       }
     ],
@@ -207,43 +130,84 @@ pathvisio = function(){
 
     // Check for minimum required parameters
 
-    if (!args.gpmlUrl) { return console.warn('Error: No gpml URL specified as data source for pathvisio.js.'); }
+    if (!args.gpml) { return console.warn('Error: No gpml URL specified as data source for pathvisio.js.'); }
 
     if (!args.container) { return console.warn('Error: No container selector specified as target for pathvisio.js.'); }
     args.containerElement = d3.select(args.container);
     if (args.containerElement.length !== 1) { return console.warn('Error: Container selector must be matched by exactly one element.'); }
 
+    var gpmlUrl, gpmlSource;
+    var gpmlRev = 0;
+
+    // test for whether args.gpml is a WikiPathways ID or a URL
+
+    if (args.gpml.indexOf('.gpml') === -1 && args.gpml.indexOf('.xml') === -1) {
+      if (!!args.gpmlRev) {
+        gpmlRev = args.gpmlRev;
+      }
+      gpmlUrl = rootDirectoryUrl + 'remote-data-sources/php/wikipathways.php?data=gpml&id=' + gpmlSource + '&rev=' + gpmlRev;
+    }
+    else {
+      gpmlUrl = args.gpml;
+      if (!Modernizr.svg) {
+        return console.warn('Error: GPML data source specified is not a WikiPathways ID. WikiPathways does not have access to a visual representation of this GPML.');
+      }
+    };
+
+
+
+
+
+
     async.parallel([
       function(callback) {
         console.log('1a');
-        loadPartials(args, callback);
+        loadPartials(args, function() {
+          callback(null);
+        })
       },
       function(callback){
         console.log('1b');
-        getJson(args.gpmlUrl, callback);
+        getJson(args.gpml, function(json) {
+          console.log('json');
+          console.log(json);
+          callback(null, json);
+        })
       }
     ],
     function(err, results){
-      console.log('5');
       console.log(err);
+      self.results = results;
 
-      async.series([
-        function(callbackInside){
-          draw(svg, pathway, function() {
-            callbackInside(null);
-          })
-        },
-        function(callbackInside) {
-          svgPanZoom.init({
-            'root':args.container + ' svg',
-            'enableZoom': false
-          });
-          callbackInside(null);
-        }
-      ],
-      function(err, results) {
-        console.log(err);
-      });
+///*
+      if (Modernizr.svg) {
+        async.series([
+          function(callback){
+            //draw(svg, pathway, function() {
+            pathvisio.renderer.svg.render(svg, pathway, function() {
+              callback(null);
+            })
+          },
+          function(callback) {
+            svgPanZoom.init({
+              'root':args.container + ' svg',
+              'enableZoom': false
+            });
+            callback(null);
+          }
+        ],
+        function(err, results) {
+          console.log(err);
+        });
+      }
+      else {
+        // TODO use container selector and seadragon for this
+        window.setTimeout(function() {
+          $('#view').prepend('<img id="pathvisio-java-png" src="http://test3.wikipathways.org/wpi//wpi.php?action=downloadFile&type=png&pwTitle=Pathway:' +  + urlParamList.gpml + '&revision=' + urlParamList.gpmlRev + '" />')
+        }, 50);
+      }
+
+      /* Node Highlighter
 
       var nodeLabels = [];
       pathway.nodes.forEach(function(node) {
@@ -252,6 +216,7 @@ pathvisio = function(){
         }
       });
 
+
       // see http://twitter.github.io/typeahead.js/
 
       $('#highlight-by-label-input').typeahead({
@@ -259,6 +224,8 @@ pathvisio = function(){
         local: nodeLabels,
         limit: 10
       });
+//*/
+
       /*
       $('.icon-eye-open').click(function(){
         var nodeLabel = $("#highlight-by-label-input").val();
@@ -270,6 +237,7 @@ pathvisio = function(){
         }
       });
 //*/
+/*
       // see http://api.jquery.com/bind/
       // TODO get selected value better and make function to handle
 
@@ -282,12 +250,12 @@ pathvisio = function(){
           pathvisio.pathway.highlightByLabel(nodeLabel);
         }
       });
+    */
 
     });
   }
 
   return {
-    draw:draw,
     load:load,
     getJson:getJson,
     highlightByLabel:highlightByLabel

@@ -123,6 +123,7 @@ pathvisio.converter.gpml = function(){
       }
 
       self.p = pathway;
+      callback(pathway);
     })
       // Data Nodes
 
@@ -388,7 +389,6 @@ pathvisio.converter.gpml = function(){
       delete pathway.graphics;
       //pathvisio.data.pathways.push(pathway);
       //*/
-      callback(pathway);
     }
     else {
       alert("Pathvisio.js does not support the data format provided. Please convert to GPML and retry.");
