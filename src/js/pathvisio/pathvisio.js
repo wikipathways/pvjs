@@ -136,7 +136,7 @@ pathvisio = function(){
     args.containerElement = d3.select(args.container);
     if (args.containerElement.length !== 1) { return console.warn('Error: Container selector must be matched by exactly one element.'); }
 
-    var gpmlUrl, gpmlSource;
+    var gpmlUrl;
     var gpmlRev = 0;
 
     // test for whether args.gpml is a WikiPathways ID or a URL
@@ -145,7 +145,7 @@ pathvisio = function(){
       if (!!args.gpmlRev) {
         gpmlRev = args.gpmlRev;
       }
-      gpmlUrl = rootDirectoryUrl + 'remote-data-sources/php/wikipathways.php?data=gpml&id=' + gpmlSource + '&rev=' + gpmlRev;
+      gpmlUrl = rootDirectoryUrl + 'remote-data-sources/php/wikipathways.php?data=gpml&id=' + args.gpml + '&rev=' + gpmlRev;
     }
     else {
       gpmlUrl = args.gpml;
@@ -153,6 +153,7 @@ pathvisio = function(){
         return console.warn('Error: GPML data source specified is not a WikiPathways ID. WikiPathways does not have access to a visual representation of this GPML.');
       }
     };
+    console.log(gpmlUrl);
 
 
 
@@ -168,7 +169,7 @@ pathvisio = function(){
       },
       pathway: function(callback){
         console.log('1b');
-        getJson(args.gpml, function(json) {
+        getJson(gpmlUrl, function(json) {
           console.log('json');
           console.log(json);
           callback(null, json);

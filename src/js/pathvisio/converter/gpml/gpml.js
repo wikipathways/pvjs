@@ -1,8 +1,6 @@
 pathvisio.converter.gpml = function(){
     
   var jsonPathway = {};
-  jsonPathway.nodes = [];
-  jsonPathway.edges = [];
 
   function toRenderableJson(gpml, callback){
     self.gpml = gpml;
@@ -37,8 +35,9 @@ pathvisio.converter.gpml = function(){
         alert("Pathvisio.js may not fully support the version of GPML provided (xmlns: " + gpmlNamespace + "). Please convert to the supported version of GPML (xmlns: " + pathvisio.converter.gpml.namespaces[0] + ").");
       }
 
-      jsonPathway.boardWidth = parseFloat(gpmlPathway.select('Graphics').attr('BoardWidth'));
-      jsonPathway.boardHeight = parseFloat(gpmlPathway.select('Graphics').attr('BoardHeight'));
+      jsonPathway.metadata = {};
+      jsonPathway.metadata.boardWidth = parseFloat(gpmlPathway.select('Graphics').attr('BoardWidth'));
+      jsonPathway.metadata.boardHeight = parseFloat(gpmlPathway.select('Graphics').attr('BoardHeight'));
 
       /*
 
@@ -96,9 +95,7 @@ pathvisio.converter.gpml = function(){
     },
     function(err, results){
       self.results = results;
-      var pathway = {};
-      pathway.metadata = {};
-      pathway.elements = results.jsonAnchorsFromEdges.concat(results.elementsFromDataNodes);
+      jsonPathway.elements = results.jsonAnchorsFromEdges.concat(results.elementsFromDataNodes);
 
       var gpmlGraphicalLines = gpmlPathway.selectAll('GraphicalLine');
       var jsonGraphicalLines = [];
@@ -108,7 +105,7 @@ pathvisio.converter.gpml = function(){
             jsonGraphicalLines.push(jsonGraphicalLine);
           });
         });
-        pathway.elements = pathway.elements.concat(jsonGraphicalLines);
+        jsonPathway.elements = jsonPathway.elements.concat(jsonGraphicalLines);
       }
 
       var gpmlInteractions = gpmlPathway.selectAll('Interaction');
@@ -119,11 +116,11 @@ pathvisio.converter.gpml = function(){
             jsonInteractions.push(jsonInteraction);
           });
         });
-        pathway.elements = pathway.elements.concat(jsonInteractions);
+        jsonPathway.elements = jsonPathway.elements.concat(jsonInteractions);
       }
 
-      self.p = pathway;
-      callback(pathway);
+      self.pathway = jsonPathway;
+      callback(jsonPathway);
     })
       // Data Nodes
 

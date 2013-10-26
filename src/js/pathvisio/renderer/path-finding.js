@@ -1,4 +1,4 @@
-pathvisio.renderer.svg = function(){
+pathvisio.renderer.pathFinder = function(){
 
   // first pass GPML (pathway XML) through an automatic XML to JSON converter, 
   // then make specific modifications to make the JSON well-formatted, then return the JSON
@@ -44,8 +44,8 @@ pathvisio.renderer.svg = function(){
       .attr("y", d3.event.y);
     }
 
-    svg.attr('width', pathway.metadata.boardWidth);
-    svg.attr('height', pathway.metadata.boardHeight);
+    svg.attr('width', pathway.boardWidth);
+    svg.attr('height', pathway.boardHeight);
 
     if (!!pathway.biopaxRefs) {
       var pathwayPublicationXrefs = svg.select('#viewport').selectAll(".pathway-publication-xref-text")
@@ -87,6 +87,7 @@ pathvisio.renderer.svg = function(){
 
     pathway.elements.forEach(function(element) {
       if (element.renderableType === 'edge') {
+        console.log(element);
         pathvisio.renderer.svg.edge.render(svg, pathway, element);
       }
     });
