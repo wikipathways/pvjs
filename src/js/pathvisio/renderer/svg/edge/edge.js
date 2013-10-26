@@ -7,13 +7,10 @@ pathvisio.renderer.svg.edge = function(){
       return console.warn('Error: Missing one or more required parameters: svg, pathway, edge.');
     }
 
-    console.log('edge');
-    console.log(edge);
-
       var pathData = null;
 
       var edgeElement = svg.select('#viewport').append("path")
-      .attr("id", edge.edgeType + '-' + edge.graphId )
+      .attr("id", edge.edgeType + '-' + edge.id )
       .attr("class", function () {
         var styleClass = 'edge ' + edge.edgeType + ' ';
         if (edge.hasOwnProperty('strokeStyle')) {

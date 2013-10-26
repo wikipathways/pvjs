@@ -97,42 +97,29 @@ pathvisio.renderer.svg.edge.pathData = function(){
           currentDirection = 'V';
         }
 
-        // first segment
+        if (edge.points.length === 2) {
+          var pathCoordinatesArray = pathvisio.renderer.pathFinder.getPath(pathway, edge);
 
-        console.log('test');
-console.log((((pointCoordinatesArray[1].x - pointCoordinatesArray[0].x)/Math.abs(pointCoordinatesArray[1].x - pointCoordinatesArray[0].x) !== edge.points[0].dx) || (edge.points.length === 2)));
-
-        if (edge.points[0].hasOwnProperty('dx')) {
-          // if the target is closer to the source than stubLength
-          if (Math.abs(pointCoordinatesArray[1].x - pointCoordinatesArray[0].x) < stubLength) {
-            pathData += ' ' + currentDirection.toLowerCase() + ' ' + String((pointCoordinatesArray[1].x - pointCoordinatesArray[0].x)/2);
-          }
-          else {
-            if (((pointCoordinatesArray[1].x - pointCoordinatesArray[0].x)/Math.abs(pointCoordinatesArray[1].x - pointCoordinatesArray[0].x) !== edge.points[0].dx) || (edge.points.length === 2)) {
-              pathData += ' ' + currentDirection.toLowerCase() + ' ' + String((-1) * edge.points[0].dx * stubLength);
-            }
-            else {
-              pathData += ' ' + currentDirection.toUpperCase() + ' ' + pointCoordinatesArray[1].x;
-            }
-          }
-
-
-
-
-
+          var index = 0;
+          do {
+            index += 1;
+            pathData += ' L ' + pathCoordinatesArray[index][0] + ' ' + pathCoordinatesArray[index][1];
+          } while (index < pathCoordinatesArray.length - 1);
         }
+        /*
         else {
-          // if the target is closer to the source than stubLength
-          if (Math.abs(pointCoordinatesArray[1].y - pointCoordinatesArray[0].y) < stubLength) {
-            pathData += ' ' + currentDirection.toLowerCase() + ' ' + String((pointCoordinatesArray[1].y - pointCoordinatesArray[0].y)/2);
-          }
-          else {
-            if (((pointCoordinatesArray[1].y - pointCoordinatesArray[0].y)/Math.abs(pointCoordinatesArray[1].y - pointCoordinatesArray[0].y) !== edge.points[0].dy) || (edge.points.length === 2)) {
-              pathData += ' ' + currentDirection.toLowerCase() + ' ' + String((-1) * edge.points[0].dy * stubLength);
-            }
-            else {
-              pathData += ' ' + currentDirection.toUpperCase() + ' ' + pointCoordinatesArray[1].y;
-            }
+          if ( edge.points.length > 2 ) {
+            edge.points.forEach(function(element, index, array) {
+              if ((index > 0) && (index < (array.length - 1))) {
+                if (currentDirection === 'H') {
+                  pathData += ' ' + currentDirection + ' ' + element.x;
+                }
+                else {
+                  pathData += ' ' + currentDirection + ' ' + element.y;
+                }
+                currentDirection = switchDirection(currentDirection);
+              }
+            });
           }
         }
 
@@ -195,7 +182,8 @@ console.log((((pointCoordinatesArray[1].x - pointCoordinatesArray[0].x)/Math.abs
           pathData += ' ' + currentDirection + ' ' + target.x;
           currentDirection = switchDirection(currentDirection);
         }
-//*/
+
+        //*/
         /*
            if (Math.abs(target.dx) === 1) {
            pathData += " V " + target.y + " H " + target.x;
