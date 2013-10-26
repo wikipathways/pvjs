@@ -31,34 +31,49 @@ pathvisio.converter.gpml.anchor = function() {
   }
 
   function getAllFromNode(jsonNode, callback) {
-    var jsonAnchor = {};
+    self.jsonNode = jsonNode;
+    var jsonAnchors = [];
+    var parentId, renderableType, side, dx, dy, id, position, x, y;
+    /*
     var elementSides = [
       {'side': 'top', 'initialEdgeDirection': 90}, 
       {'side': 'right', 'initialEdgeDirection': 0}, 
       {'side': 'bottom', 'initialEdgeDirection': 270}, 
       {'side': 'left', 'initialEdgeDirection': 180} 
     ];
+    //*/
+    var elementSides = [
+      {'side': 'top', 'dx': 0, 'dy': -1}, 
+      {'side': 'right', 'dx': 1, 'dy': 0}, 
+      {'side': 'bottom', 'dx': 0, 'dy': 1}, 
+      {'side': 'left', 'dx': -1, 'dy': 0} 
+    ];
     var anchorPositions = [0.25, 0.5, 0.75];
 
     try {
-      var jsonAnchors = [];
-      var jsonAnchor = {};
-
-      jsonAnchor.parentId = jsonNode.id;
-      jsonAnchor.renderableType = 'anchor';
+      parentId = jsonNode.id;
+      renderableType = 'anchor';
 
       elementSides.forEach(function(element) {
-        jsonAnchor.side = element.side;
-        jsonAnchor.initialEdgeDirection = element.initialEdgeDirection;
-
+        side = element.side;
+        dx = element.dx;
+        dy = element.dy;
         anchorPositions.forEach(function(position) {
-          jsonAnchor.id = String(jsonNode.id) + String(element.side) + String(position);
-          jsonAnchor.position = position;
-          jsonAnchor.x = jsonNode.x + position * jsonNode.width;
-          jsonAnchor.y = jsonNode.y + position * jsonNode.height;
-          jsonAnchors.push(jsonAnchor);
+          id = String(jsonNode.id) + String(element.side) + String(position);
+          x = jsonNode.x + position * jsonNode.width;
+          y = jsonNode.y + position * jsonNode.height;
+          jsonAnchors.push({
+            'parentId': jsonNode.id,
+            'renderableType': 'anchor',
+            'side': element.side,
+            'dx': element.dx,
+            'dy': element.dy,
+            'id': String(jsonNode.id) + String(element.side) + String(position),
+            'position': position,
+            'x': jsonNode.x + position * jsonNode.width,
+            'y': jsonNode.y + position * jsonNode.height
+          });
         });
-
       });
       //callback(jsonAnchors);
       return jsonAnchors;
