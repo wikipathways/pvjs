@@ -183,6 +183,12 @@ pathvisio = function(){
 ///*
       if (Modernizr.svg) {
         async.series([
+          function(callback) {
+            pathvisioNS.grid = {};
+            pathvisio.renderer.pathFinder.generateGridData(results.pathway, function() {
+              callback(null);
+            });
+          },
           function(callback){
             //draw(svg, pathway, function() {
             pathvisio.renderer.svg.render(svg, results.pathway, function() {
@@ -192,7 +198,7 @@ pathvisio = function(){
           function(callback) {
             svgPanZoom.init({
               'root':args.container + ' svg',
-              'enableZoom': false
+              'enableZoom': true 
             });
             callback(null);
           }

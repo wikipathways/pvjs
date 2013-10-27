@@ -49,20 +49,23 @@ pathvisio.converter.gpml.node = function(){
         }
       }
 
-/*
-
-
-      if ((!(element.graphics.hasOwnProperty("shapeType")))) {
-        if (element.elementType === 'data-node') {
-          element.symbolType = "rectangle";
+      var shapeType = gpmlNode.select('Graphics').attr('ShapeType'); 
+      if (!shapeType) {
+        if (jsonNode.nodeType === 'data-node') {
+          jsonNode.shapeType = "rectangle";
         }
         else {
-          element.symbolType = "none";
+          jsonNode.shapeType = "none";
         }
       }
       else {
-        element.symbolType = caseConverter.paramCase(element.graphics.shapeType);
+        jsonNode.shapeType = caseConverter.paramCase(shapeType);
       }
+
+/*
+
+
+
 
       if (element.graphics.hasOwnProperty("fillColor")) {
 
@@ -215,7 +218,7 @@ pathvisio.converter.gpml.node = function(){
       callback(jsonNode, jsonAnchorsFromThisNode);
     }
     catch (e) {
-      console.log("Error converting labelable element to json: " + e.message);
+      console.log("Error converting node to json: " + e.message);
       return e;
     }
   }
