@@ -66,10 +66,10 @@ pathvisio.renderer.pathFinder = function(){
       }
     });
 
-
     var anchors = pathway.elements.filter(function(element) {
       return element.renderableType === 'anchor';
     });
+    console.log(anchors);
 
     var column1, column2, row1, row2, anchorPosition;
     anchors.forEach(function(anchor) {
@@ -84,8 +84,8 @@ pathvisio.renderer.pathFinder = function(){
       rowStart = Math.min(row1, row2);
       rowEnd = Math.max(row1, row2);
 
-      for(var currentRow=rowStart; currentRow<rowEnd; currentRow++) {
-        for(var currentColumn=columnStart; currentColumn < columnEnd; currentColumn++) {
+      for(var currentRow=rowStart; currentRow<rowEnd + 1; currentRow++) {
+        for(var currentColumn=columnStart; currentColumn < columnEnd + 1; currentColumn++) {
           matrix[currentRow][currentColumn] = 0;
           pathvisioNS.grid.gridRenderingData[currentRow * (totalColumnCount - 1) + currentColumn] = {
             'x': currentColumn * pathvisioNS.grid.squareLength,
@@ -104,18 +104,20 @@ pathvisio.renderer.pathFinder = function(){
   }
 
   function getPath(pathway, edge) {
-    var workingGrid = pathvisioNS.grid.pathFinderGrid.clone();
-    var finder = new PF.BiBreadthFirstFinder({
+    var workingGrid = self.workingGrid = pathvisioNS.grid.pathFinderGrid.clone();
+    var finder = self.finder = new PF.BiBreadthFirstFinder({
       allowDiagonal: false,
       dontCrossCorners: true
     });
     var points = edge.points;
     var pointStart = points[0];
     var pointEnd = points[points.length - 1];
-    startLocation = xYCoordinatesToMatrixLocation(pointStart.x, pointStart.y);
-    endLocation = xYCoordinatesToMatrixLocation(pointEnd.x, pointEnd.y);
+    startLocation = self.startLocation = xYCoordinatesToMatrixLocation(pointStart.x, pointStart.y);
+    endLocation = self.endLocation = xYCoordinatesToMatrixLocation(pointEnd.x, pointEnd.y);
 
     var blockyPath = self.blockyPath = finder.findPath(startLocation.column, startLocation.row, endLocation.column, endLocation.row, workingGrid);
+    console.log('blockyPath');
+    console.log(blockyPath);
 
     /*
        var newWorkingGrid = pathvisioNS.grid.pathFinderGrid.clone();
@@ -139,7 +141,6 @@ pathvisio.renderer.pathFinder = function(){
     }
     else {
       console.log('blockyPath too short');
-      compressedPath = blockyPath;
     }
 
     var fullXYPath = self.fullXYPath = [];
@@ -165,7 +166,6 @@ pathvisio.renderer.pathFinder = function(){
     }
     else {
       console.log('fullXYPath too short');
-      smootherPath = fullXYPath;
     }
     smootherPath.unshift({'x': pointStart.x, 'y': pointStart.y});
     smootherPath.push({'x': pointEnd.x, 'y': pointEnd.y});
