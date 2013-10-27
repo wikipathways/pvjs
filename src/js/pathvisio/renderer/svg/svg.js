@@ -85,12 +85,6 @@ pathvisio.renderer.svg = function(){
     console.log('none');
     }
 
-    pathway.elements.forEach(function(element) {
-      if (element.renderableType === 'edge') {
-        pathvisio.renderer.svg.edge.render(svg, pathway, element);
-      }
-    });
-
     if (pathway.hasOwnProperty('nodes')) {
       pathvisio.renderer.svg.node.renderAll(svg, pathway);
     }
@@ -98,6 +92,20 @@ pathvisio.renderer.svg = function(){
     if (pathway.hasOwnProperty('infoBox')) {
       pathvisio.renderer.svg.infoBox.render(svg, pathway);
     }
+
+    //pathvisio.renderer.svg.grid.render(svg);
+
+    pathway.elements.forEach(function(element) {
+      if (element.renderableType === 'edge') {
+        pathvisio.renderer.svg.edge.render(svg, pathway, element);
+      }
+      else {
+        if (element.renderableType === 'node') {
+          pathvisio.renderer.svg.node.render(svg, pathway, element);
+        }
+      }
+    });
+    //pathvisio.renderer.svg.anchor.renderAll(svg, pathway);
 
     callback();
 
@@ -217,7 +225,7 @@ pathvisio.renderer.svg = function(){
         function(callbackInside) {
           svgPanZoom.init({
             'root':args.container + ' svg',
-            'enableZoom': false
+            'enableZoom': true
           });
           callbackInside(null);
         }

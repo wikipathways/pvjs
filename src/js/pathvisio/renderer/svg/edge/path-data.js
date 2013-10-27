@@ -85,18 +85,33 @@ pathvisio.renderer.svg.edge.pathData = function(){
       // so specified will be rendern as segmented lines.
 
       if (edge.connectorType === 'elbow' && edge.points[0].hasOwnProperty('anchorId') && edge.points[edge.points.length - 1].hasOwnProperty('anchorId')) {
+        var anchor = pathway.elements.filter(function(element) {return element.id === edge.points[0].anchorId})[0];
+        self.anchor = anchor;
+        self.edge = edge;
 
         // distance to move away from node when we can't go directly to the next node
 
         var stubLength = 15;
 
-        if (Math.abs(source.dx) === 1) {
+        if (Math.abs(anchor.dx) === 1) {
           currentDirection = 'H';
+            console.log(anchor.dx);
+            console.log(anchor.dy);
         }
         else {
-          currentDirection = 'V';
+          if (Math.abs(anchor.dy) === 1) {
+            currentDirection = 'V';
+            console.log(anchor.dx);
+            console.log(anchor.dy);
+          }
+          else {
+            console.log('no direction specified.');
+            console.log(anchor.dx);
+            console.log(anchor.dy);
+          }
         }
 
+        /*
         if (edge.points.length === 2) {
           var pathCoordinatesArray = pathvisio.renderer.pathFinder.getPath(pathway, edge);
 
@@ -104,24 +119,39 @@ pathvisio.renderer.svg.edge.pathData = function(){
           do {
             index += 1;
             pathData += ' L ' + pathCoordinatesArray[index][0] + ' ' + pathCoordinatesArray[index][1];
+            console.log(pathData);
           } while (index < pathCoordinatesArray.length - 1);
         }
-        /*
-        else {
-          if ( edge.points.length > 2 ) {
-            edge.points.forEach(function(element, index, array) {
-              if ((index > 0) && (index < (array.length - 1))) {
-                if (currentDirection === 'H') {
-                  pathData += ' ' + currentDirection + ' ' + element.x;
-                }
-                else {
-                  pathData += ' ' + currentDirection + ' ' + element.y;
-                }
-                currentDirection = switchDirection(currentDirection);
-              }
-            });
-          }
-        }
+        //*/
+
+        ///*
+           //else {
+           //if ( edge.points.length > 2 ) {
+
+          var pathCoordinatesArray = pathvisio.renderer.pathFinder.getPath(pathway, edge);
+           pathCoordinatesArray.forEach(function(element, index, array) {
+             if ((index > 0) && (index < (array.length - 1))) {
+               if (currentDirection === 'H') {
+                 pathData += ' ' + currentDirection + ' ' + element.x;
+               }
+               else {
+                 pathData += ' ' + currentDirection + ' ' + element.y;
+               }
+               currentDirection = switchDirection(currentDirection);
+             }
+           });
+           pathData += ' L ' + target.x + ' ' + target.y;
+           /*
+           if (currentDirection === 'H') {
+             pathData += ' H ' + target.x + ' V ' + target.y;
+           }
+           else {
+             pathData += ' V ' + target.y + ' H ' + target.x;
+           }
+           //*/
+
+         //  }
+           //}
 
         // above doesn't quite work yet, so below works for most cases
 
@@ -129,58 +159,58 @@ pathvisio.renderer.svg.edge.pathData = function(){
         if (( edge.points.length === 2 && pathvisio.renderer.svg.edge.point.isTwoPointElbow(source, target)) ) {
         }
         else {
-          if ( edge.points.length > 2 ) {
-            edge.points.forEach(function(element, index, array) {
-              if ((index > 0) && (index < (array.length - 1))) {
-                if (currentDirection === 'H') {
-                  pathData += ' ' + currentDirection + ' ' + element.x;
-                }
-                else {
-                  pathData += ' ' + currentDirection + ' ' + element.y;
-                }
-                currentDirection = switchDirection(currentDirection);
-              }
-            });
-          }
-          else {
-            //if (source.dx === ((source.x - target.x) / Math.abs(source.x - target.x)) || source.dx === target.dy || source.dy === target.dx) {
-            if (Math.abs(source.dx) === 1) {
-              pathData += " H " + (source.x + source.dx * 15);
-            }
-            else {
-              //if (source.dy === ((source.y - target.y) / Math.abs(source.y - target.y)) || source.dx === target.dy || source.dy === target.dx) {
-              if (Math.abs(source.dy) === 1) {
-                pathData += " V " + (source.y + source.dy * 15);
-                currentDirection = switchDirection(currentDirection);
-              }
-            }
+        if ( edge.points.length > 2 ) {
+        edge.points.forEach(function(element, index, array) {
+        if ((index > 0) && (index < (array.length - 1))) {
+        if (currentDirection === 'H') {
+        pathData += ' ' + currentDirection + ' ' + element.x;
+        }
+        else {
+        pathData += ' ' + currentDirection + ' ' + element.y;
+        }
+        currentDirection = switchDirection(currentDirection);
+        }
+        });
+        }
+        else {
+        //if (source.dx === ((source.x - target.x) / Math.abs(source.x - target.x)) || source.dx === target.dy || source.dy === target.dx) {
+        if (Math.abs(source.dx) === 1) {
+        pathData += " H " + (source.x + source.dx * 15);
+        }
+        else {
+        //if (source.dy === ((source.y - target.y) / Math.abs(source.y - target.y)) || source.dx === target.dy || source.dy === target.dx) {
+        if (Math.abs(source.dy) === 1) {
+        pathData += " V " + (source.y + source.dy * 15);
+        currentDirection = switchDirection(currentDirection);
+        }
+        }
 
-            if (target.dx === ((target.x - source.x) / Math.abs(target.x - source.x)) || source.dx === target.dy || source.dy === target.dx) {
-              //if (Math.abs(target.dx) === 1) {
-              pathData += " H " + (target.x + target.dx * 15) + ' V ' + target.y + ' H ' + target.x;
-              currentDirection = switchDirection(currentDirection);
-            }
-            else {
-              if (target.dy === ((target.y - source.y) / Math.abs(target.y - source.y)) || source.dx === target.dy || source.dy === target.dx) {
-                //if (Math.abs(target.dy) === 1) {
-                pathData += " V " + (target.y + target.dy * 15) + ' H ' + target.x + ' V ' + target.y;
-                currentDirection = switchDirection(currentDirection);
-              }
-            }
-          }
+        if (target.dx === ((target.x - source.x) / Math.abs(target.x - source.x)) || source.dx === target.dy || source.dy === target.dx) {
+        //if (Math.abs(target.dx) === 1) {
+        pathData += " H " + (target.x + target.dx * 15) + ' V ' + target.y + ' H ' + target.x;
+        currentDirection = switchDirection(currentDirection);
+        }
+        else {
+        if (target.dy === ((target.y - source.y) / Math.abs(target.y - source.y)) || source.dx === target.dy || source.dy === target.dx) {
+        //if (Math.abs(target.dy) === 1) {
+        pathData += " V " + (target.y + target.dy * 15) + ' H ' + target.x + ' V ' + target.y;
+        currentDirection = switchDirection(currentDirection);
+        }
+        }
+        }
         }
 
         if (currentDirection === 'H') {
-          pathData += ' ' + currentDirection + ' ' + target.x;
-          currentDirection = switchDirection(currentDirection);
-          pathData += ' ' + currentDirection + ' ' + target.y;
-          currentDirection = switchDirection(currentDirection);
+        pathData += ' ' + currentDirection + ' ' + target.x;
+        currentDirection = switchDirection(currentDirection);
+        pathData += ' ' + currentDirection + ' ' + target.y;
+        currentDirection = switchDirection(currentDirection);
         }
         else {
-          pathData += ' ' + currentDirection + ' ' + target.y;
-          currentDirection = switchDirection(currentDirection);
-          pathData += ' ' + currentDirection + ' ' + target.x;
-          currentDirection = switchDirection(currentDirection);
+        pathData += ' ' + currentDirection + ' ' + target.y;
+        currentDirection = switchDirection(currentDirection);
+        pathData += ' ' + currentDirection + ' ' + target.x;
+        currentDirection = switchDirection(currentDirection);
         }
 
         //*/
@@ -239,7 +269,7 @@ pathvisio.renderer.svg.edge.pathData = function(){
     }
     return pathData;
   }
- 
+
   return {
     get:get
   };

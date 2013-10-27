@@ -908,6 +908,13 @@ SVG-Edit (latest release)
   <image xlink:href="../remote-data-sources/php/local.php?relativeUrl=views/markers/double-line-hack.svg" x="0" y="0" width="12" height="12" class="marker-end"></image>
 	</marker>
 
+	<symbol id="grid-square"
+	viewBox="0 0 100 100"
+	preserveAspectRatio="none">
+
+		<rect x="1" y="1" width="99" height="99"
+			stroke="gray" stroke-width="2"/>
+	</symbol>
 
 	<symbol id="none"
 	viewBox="0 0 100 100"

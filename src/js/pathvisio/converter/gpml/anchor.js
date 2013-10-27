@@ -33,7 +33,7 @@ pathvisio.converter.gpml.anchor = function() {
   function getAllFromNode(jsonNode, callback) {
     self.jsonNode = jsonNode;
     var jsonAnchors = [];
-    var parentId, renderableType, side, dx, dy, id, position, x, y;
+    var parentId, renderableType, id, position, x, y, sideOffsetX, sideOffsetY, positionOffsetX, positionOffsetY;
     /*
     var elementSides = [
       {'side': 'top', 'initialEdgeDirection': 90}, 
@@ -55,23 +55,24 @@ pathvisio.converter.gpml.anchor = function() {
       renderableType = 'anchor';
 
       elementSides.forEach(function(element) {
-        side = element.side;
-        dx = element.dx;
-        dy = element.dy;
+        sideOffsetX = Math.max(element.dx, 0) * jsonNode.width;
+        sideOffsetY = Math.max(element.dy, 0) * jsonNode.height;
         anchorPositions.forEach(function(position) {
           id = String(jsonNode.id) + String(element.side) + String(position);
-          x = jsonNode.x + position * jsonNode.width;
-          y = jsonNode.y + position * jsonNode.height;
+          positionOffsetX = Math.abs(element.dy) * position * jsonNode.width;
+          positionOffsetY = Math.abs(element.dx) * position * jsonNode.height;
+          x = jsonNode.x + sideOffsetX + positionOffsetX;
+          y = jsonNode.y + sideOffsetY + positionOffsetY;
           jsonAnchors.push({
             'parentId': jsonNode.id,
             'renderableType': 'anchor',
             'side': element.side,
             'dx': element.dx,
             'dy': element.dy,
-            'id': String(jsonNode.id) + String(element.side) + String(position),
+            'id': id,
             'position': position,
-            'x': jsonNode.x + position * jsonNode.width,
-            'y': jsonNode.y + position * jsonNode.height
+            'x': x,
+            'y': y 
           });
         });
       });
