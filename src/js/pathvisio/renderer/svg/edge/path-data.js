@@ -13,7 +13,7 @@
 
 pathvisio.renderer.svg.edge.pathData = function(){
 
-  var currentDirection = 'H', startDirection, endDirection, controlPoint;
+  var currentDirection, startDirection, endDirection, controlPoint;
 
   function switchDirection(currentDirection) {
     currentDirection = currentDirection.toUpperCase();
