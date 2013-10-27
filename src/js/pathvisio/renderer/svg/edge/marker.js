@@ -7,6 +7,11 @@ pathvisio.renderer.svg.edge.marker = function(){
   // a color other than black (the color specified in the template) is desired.
 
   function render(svg, name, position, color) {
+    console.log('marker args');
+    console.log(svg);
+    console.log(name);
+    console.log(position);
+    console.log(color);
     var markerUrl = '';
 
     // if no marker is to be used, JSON data will specify 'none'.
