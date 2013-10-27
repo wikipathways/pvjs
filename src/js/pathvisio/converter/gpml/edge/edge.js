@@ -69,13 +69,21 @@ pathvisio.converter.gpml.edge = function(){
       }
 
       var gpmlPoints = gpmlEdge.selectAll('Point');
+      self.gpmlPoints = gpmlPoints;
       var markerStart = markerMappings[gpmlPoints[0][0].getAttribute('ArrowHead')];
       if (!!markerStart) {
         jsonEdge.markerStart = markerStart;
       }
-      var markerEnd = markerMappings[gpmlPoints[0][gpmlPoints[0].length - 1].getAttribute('ArrowHead')];
+      else {
+        jsonEdge.markerStart = 'none';
+      }
+      var lastPointIndex = gpmlPoints[0].length - 1;
+      var markerEnd = markerMappings[gpmlPoints[0][lastPointIndex].getAttribute('ArrowHead')];
       if (!!markerEnd) {
         jsonEdge.markerEnd = markerEnd;
+      }
+      else {
+        jsonEdge.markerEnd = 'none';
       }
 
       var jsonPoints = [];
