@@ -13,7 +13,7 @@
 
 pathvisio.renderer.svg.edge.pathData = function(){
 
-  var currentDirection = null;
+  var currentDirection = 'H', startDirection, endDirection, controlPoint;
 
   function switchDirection(currentDirection) {
     currentDirection = currentDirection.toUpperCase();
@@ -81,7 +81,6 @@ pathvisio.renderer.svg.edge.pathData = function(){
     }
     else {
 
-      // just a start for the elbow connector type. still need to consider several other potential configurations.
       // It doesn't make sense for an unconnected interaction or graphical line to be an elbow, so any that are
       // so specified will be rendern as segmented lines.
 
@@ -96,22 +95,16 @@ pathvisio.renderer.svg.edge.pathData = function(){
 
         if (Math.abs(startAnchor.dx) === 1) {
           startDirection = 'H';
-            console.log(startAnchor.dx);
-            console.log(startAnchor.dy);
         }
         else {
           if (Math.abs(startAnchor.dy) === 1) {
             startDirection = 'V';
-            console.log(startAnchor.dx);
-            console.log(startAnchor.dy);
           }
           else {
             console.log('no direction specified.');
-            console.log(startAnchor.dx);
-            console.log(startAnchor.dy);
           }
         }
-        
+
         currentDirection = startDirection;
 
         var endAnchor = pathway.elements.filter(function(element) {return element.id === pointEnd.anchorId})[0];
@@ -119,19 +112,13 @@ pathvisio.renderer.svg.edge.pathData = function(){
 
         if (Math.abs(endAnchor.dx) === 1) {
           endDirection = 'H';
-            console.log(endAnchor.dx);
-            console.log(endAnchor.dy);
         }
         else {
           if (Math.abs(endAnchor.dy) === 1) {
             endDirection = 'V';
-            console.log(endAnchor.dx);
-            console.log(endAnchor.dy);
           }
           else {
             console.log('no direction specified.');
-            console.log(endAnchor.dx);
-            console.log(endAnchor.dy);
           }
         }
 
@@ -171,9 +158,9 @@ pathvisio.renderer.svg.edge.pathData = function(){
             'y': pointEnd.y
           });
         }
-        
 
-// reposition start and end point to match source and origin
+        // reposition start and end point to match source and origin
+
         if (pathCoordinatesArray.length === 3) {
           if (Math.abs(pathCoordinatesArray[1].x - pointStart.x) < Math.abs(pathCoordinatesArray[1].x - pointEnd.x)) {
             pathCoordinatesArray[1].x = pointStart.x;
@@ -200,143 +187,30 @@ pathvisio.renderer.svg.edge.pathData = function(){
           }
         }
 
-
-          ///*
-          if (startDirection === 'H') {
-            pathCoordinatesArray[1].y = pointStart.y;
+        if (startDirection === 'H') {
+          pathCoordinatesArray[1].y = pointStart.y;
+        }
+        else {
+          if (startDirection === 'V') {
+            pathCoordinatesArray[1].x = pointStart.x;
           }
-          else {
-            if (startDirection === 'V') {
-              pathCoordinatesArray[1].x = pointStart.x;
-            }
+        }
+
+        if (endDirection === 'H') {
+          pathCoordinatesArray[pathCoordinatesArray.length - 2].y = pointEnd.y;
+        }
+        else {
+          if (endDirection === 'V') {
+            pathCoordinatesArray[pathCoordinatesArray.length - 2].x = pointEnd.x;
           }
-          //*/
-
-          ///*
-          if (endDirection === 'H') {
-            pathCoordinatesArray[pathCoordinatesArray.length - 2].y = pointEnd.y;
-          }
-          else {
-            if (endDirection === 'V') {
-              pathCoordinatesArray[pathCoordinatesArray.length - 2].x = pointEnd.x;
-            }
-          }
-          //*/
-
-          index = 0;
-          do {
-            index += 1;
-            pathData += ' L ' + pathCoordinatesArray[index].x + ' ' + pathCoordinatesArray[index].y;
-            console.log(pathData);
-          } while (index < pathCoordinatesArray.length - 1);
-
-
-
-        //*/
-
-        ///*
-           //else {
-           //if ( edge.points.length > 2 ) {
-
-           /*
-          var pathCoordinatesArray = pathvisio.renderer.pathFinder.getPath(pathway, edge);
-           pathCoordinatesArray.forEach(function(element, index, array) {
-             if ((index > 0) && (index < (array.length - 1))) {
-               if (currentDirection === 'H') {
-                 pathData += ' ' + currentDirection + ' ' + element.x;
-               }
-               else {
-                 pathData += ' ' + currentDirection + ' ' + element.y;
-               }
-               currentDirection = switchDirection(currentDirection);
-             }
-           });
-           pathData += ' L ' + target.x + ' ' + target.y;
-           /*
-           if (currentDirection === 'H') {
-             pathData += ' H ' + target.x + ' V ' + target.y;
-           }
-           else {
-             pathData += ' V ' + target.y + ' H ' + target.x;
-           }
-           //*/
-
-         //  }
-           //}
-
-        // above doesn't quite work yet, so below works for most cases
-
-        /*
-        if (( edge.points.length === 2 && pathvisio.renderer.svg.edge.point.isTwoPointElbow(source, target)) ) {
-        }
-        else {
-        if ( edge.points.length > 2 ) {
-        edge.points.forEach(function(element, index, array) {
-        if ((index > 0) && (index < (array.length - 1))) {
-        if (currentDirection === 'H') {
-        pathData += ' ' + currentDirection + ' ' + element.x;
-        }
-        else {
-        pathData += ' ' + currentDirection + ' ' + element.y;
-        }
-        currentDirection = switchDirection(currentDirection);
-        }
-        });
-        }
-        else {
-        //if (source.dx === ((source.x - target.x) / Math.abs(source.x - target.x)) || source.dx === target.dy || source.dy === target.dx) {
-        if (Math.abs(source.dx) === 1) {
-        pathData += " H " + (source.x + source.dx * 15);
-        }
-        else {
-        //if (source.dy === ((source.y - target.y) / Math.abs(source.y - target.y)) || source.dx === target.dy || source.dy === target.dx) {
-        if (Math.abs(source.dy) === 1) {
-        pathData += " V " + (source.y + source.dy * 15);
-        currentDirection = switchDirection(currentDirection);
-        }
         }
 
-        if (target.dx === ((target.x - source.x) / Math.abs(target.x - source.x)) || source.dx === target.dy || source.dy === target.dx) {
-        //if (Math.abs(target.dx) === 1) {
-        pathData += " H " + (target.x + target.dx * 15) + ' V ' + target.y + ' H ' + target.x;
-        currentDirection = switchDirection(currentDirection);
-        }
-        else {
-        if (target.dy === ((target.y - source.y) / Math.abs(target.y - source.y)) || source.dx === target.dy || source.dy === target.dx) {
-        //if (Math.abs(target.dy) === 1) {
-        pathData += " V " + (target.y + target.dy * 15) + ' H ' + target.x + ' V ' + target.y;
-        currentDirection = switchDirection(currentDirection);
-        }
-        }
-        }
-        }
+        index = 0;
+        do {
+          index += 1;
+          pathData += ' L ' + pathCoordinatesArray[index].x + ' ' + pathCoordinatesArray[index].y;
+        } while (index < pathCoordinatesArray.length - 1);
 
-        if (currentDirection === 'H') {
-        pathData += ' ' + currentDirection + ' ' + target.x;
-        currentDirection = switchDirection(currentDirection);
-        pathData += ' ' + currentDirection + ' ' + target.y;
-        currentDirection = switchDirection(currentDirection);
-        }
-        else {
-        pathData += ' ' + currentDirection + ' ' + target.y;
-        currentDirection = switchDirection(currentDirection);
-        pathData += ' ' + currentDirection + ' ' + target.x;
-        currentDirection = switchDirection(currentDirection);
-        }
-
-        //*/
-        /*
-           if (Math.abs(target.dx) === 1) {
-           pathData += " V " + target.y + " H " + target.x;
-           console.log('pathData');
-           console.log(pathData);
-           }
-           else {
-           pathData += " H " + target.x + " V " + target.y;
-           console.log('pathData');
-           console.log(pathData);
-           }
-           */
       }
       else {
         if (edge.connectorType === 'segmented') {
@@ -349,13 +223,53 @@ pathvisio.renderer.svg.edge.pathData = function(){
         }
         else {
           if (edge.connectorType === 'curved') {
+
+
+            if (edge.points.length === 2) {
+              pathCoordinatesArray = pathvisio.renderer.pathFinder.getPath(pathway, edge);
+              console.log(pathCoordinatesArray);
+            }
+            else {
+              pathCoordinatesArray = edge.points;
+            }
+
+
+            pathCoordinatesArray.forEach(function(element, index, array) {
+              console.log(element);
+              if ((index > 0) && (index < (array.length - 1))) {
+                target.x = (array[index].x + array[index - 1].x)/2;
+                target.y = (array[index].y + array[index - 1].y)/2;
+                pathData += " T" + target.x + "," + target.y;
+              }
+            });
+
+            pathData += " T" + pathCoordinatesArray[pathCoordinatesArray.length - 1].x + "," + pathCoordinatesArray[pathCoordinatesArray.length - 1].y;
+
+            /*
+
+            controlPoint = {};
+            pathCoordinatesArray.forEach(function(element, index, array) {
+              console.log(element);
+              if ((index > 0) && (index < (array.length - 1))) {
+                controlPoint.x = element.x;
+                controlPoint.y = element.y;
+                target.x = (array[index].x + array[index - 1].x)/2;
+                target.y = (array[index].y + array[index - 1].y)/2;
+                pathData += " S" + controlPoint.x + "," + controlPoint.y + " " + target.x + "," + target.y;
+              }
+            });
+
+            pathData += " S" + controlPoint.x + "," + controlPoint.y + " " + pathCoordinatesArray[pathCoordinatesArray.length - 1].x + "," + pathCoordinatesArray[pathCoordinatesArray.length - 1].y;
+//*/
+
+            /*
             if (edge.points.length === 3) {
 
               // what is here is just a starting point. It has not been tested to match the PathVisio (Java) implementation.
 
-              var pointControl = edge.points[1];
+              var controlPoint = edge.points[1];
 
-              pathData += " S" + pointControl.x + "," + pointControl.y + " " + target.x + "," + target.y;
+              pathData += " S" + controlPoint.x + "," + controlPoint.y + " " + target.x + "," + target.y;
               return pathData;
             }
             else {
@@ -365,6 +279,11 @@ pathvisio.renderer.svg.edge.pathData = function(){
               pathData += " T" + target.x + "," + target.y;
               return pathData;
             }
+            //*/
+            
+
+
+
           }
           else {
             console.log('Warning: pathvisio.js does not support connector type: ' + edge.connectorType);
