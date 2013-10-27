@@ -117,64 +117,102 @@ pathvisio.renderer.pathFinder = function(){
         endLocation = xYCoordinatesToMatrixLocation(pointEnd.x, pointEnd.y);
 
         var blockyPath = self.blockyPath = finder.findPath(startLocation.column, startLocation.row, endLocation.column, endLocation.row, workingGrid);
-        var path = self.path = [];
 
         
+
+
+        /*
+        var newWorkingGrid = pathvisioNS.grid.pathFinderGrid.clone();
+        smoothPath = PF.Util.smoothenPath(newWorkingGrid, blockyPath);
+        //*/
+
+        // compress path data and extract points
+
+        var smoothPath = self.smoothPath = [];
+        var index = 0;
+        if (blockyPath.length > 2) {
+          do {
+            index += 1;
+            //console.log(blockyPath[index]);
+            if ((blockyPath[index - 1][0] - blockyPath[index + 1][0]) && (blockyPath[index - 1][1] !== blockyPath[index + 1][1])) {
+
+
+              smoothPath.push([
+                blockyPath[index][0],
+                blockyPath[index][1]
+              ]);
+            }
+          } while (index < blockyPath.length - 2);
+        }
+        else {
+          console.log('blockyPath too short');
+        }
+
+
+        var path = self.path = [];
+        smoothPath.forEach(function(element, index) {
+          path.push({
+            'x': smoothPath[index][0] * pathvisioNS.grid.squareLength,
+            'y': smoothPath[index][1] * pathvisioNS.grid.squareLength
+          });
+        });
+
+        path.unshift({'x': pointStart.x, 'y': pointStart.y});
+        path.push({'x': pointEnd.x, 'y': pointEnd.y});
+
+        var smootherPath = self.smootherPath = [];
+        index = 0;
+        if (path.length > 2) {
+          do {
+            index += 1;
+            if ((Math.abs(path[index].x - path[index - 1].x) > 2 * pathvisioNS.grid.squareLength || Math.abs(path[index + 1].x - path[index].x) > 2 * pathvisioNS.grid.squareLength) && (Math.abs(path[index].y - path[index - 1].y) > 2 * pathvisioNS.grid.squareLength || Math.abs(path[index + 1].y - path[index].y) > 2 * pathvisioNS.grid.squareLength)) {
+              smootherPath.push(path[index]);
+            }
+          } while (index < path.length - 2);
+        }
+        else {
+          console.log('path too short');
+        }
+        smootherPath.unshift({'x': pointStart.x, 'y': pointStart.y});
+        smootherPath.push({'x': pointEnd.x, 'y': pointEnd.y});
+
+
+
         /*
 // reposition start and end point to match source and origin
-        if (path.length === 1) {
-          if (Math.abs(blockyPath[0][0] - pointStart.x) < Math.abs(blockyPath[blockyPath.length - 1][1] - pointEnd.x)) {
-            path[0][0] = pointStart.x;
-            path[0][1] = pointEnd.y;
+        if (smootherPath.length === 2) {
+          if (Math.abs(smootherPath[1].x - pointStart.x) < Math.abs(smootherPath[1].x - pointEnd.x)) {
+            smootherPath[1].x = pointStart.x;
+            smootherPath[1].y = pointEnd.y;
           }
           else {
-            path[0][0] = pointEnd.x;
-            path[0][1] = pointStart.y;
+            smootherPath[1].x = pointEnd.x;
+            smootherPath[1].y = pointStart.y;
           }
         }
         else {
-          if (Math.abs(blockyPath[0][0] - pointStart.x) < Math.abs(blockyPath[0][1] - pointStart.y)) {
-            path[0][0] = pointStart.x;
+          if (Math.abs(smootherPath[1].x - pointStart.x) < Math.abs(smootherPath[1].y - pointStart.y)) {
+            smootherPath[1].x = pointStart.x;
           }
           else {
-            path[0][1] = pointStart.y;
+            smootherPath[1].y = pointStart.y;
           }
 
-          if (Math.abs(blockyPath[blockyPath.length - 1][0] - pointEnd.x) < Math.abs(blockyPath[blockyPath.length - 1][1] - pointEnd.y)) {
-            path[path.length - 1][0] = pointEnd.x;
+          if (Math.abs(smootherPath[smootherPath.length - 2].x - pointEnd.x) < Math.abs(smootherPath[smootherPath.length - 2].y - pointEnd.y)) {
+            smootherPath[smootherPath.length - 2].x = pointEnd.x;
           }
           else {
-            path[path.length - 1][1] = pointEnd.y;
+            smootherPath[smootherPath.length - 2].y = pointEnd.y;
           }
         }
         //*/
 
-        ///*
-        var newWorkingGrid = pathvisioNS.grid.pathFinderGrid.clone();
-        smoothPath = PF.Util.smoothenPath(newWorkingGrid, blockyPath);
 
-        // compress path data and extract points
 
-        var index = 0;
-        if (smoothPath.length > 2) {
-          do {
-            index += 1;
-            //console.log(smoothPath[index]);
-            //if ((smoothPath[index - 1][0] !== smoothPath[index + 1][0]) && (smoothPath[index - 1][1] !== smoothPath[index + 1][1])) {
-              path.push({
-                'x': smoothPath[index][0] * pathvisioNS.grid.squareLength,
-                'y': smoothPath[index][1] * pathvisioNS.grid.squareLength
-              });
-            //}
-          } while (index < smoothPath.length - 2);
-        }
-        else {
-          console.log('too short');
-        }
 
-        path.unshift({'x': pointStart.x, 'y': pointStart.y});
-        path.push({'x': pointEnd.x, 'y': pointEnd.y});
-        return path;
+
+
+        return smootherPath;
         //*/
 
   }
