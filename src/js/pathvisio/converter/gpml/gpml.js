@@ -51,29 +51,78 @@ pathvisio.converter.gpml = function(){
       delete pathway.infoBox.centerY;
 //*/
 
-    async.parallel([
-      function(callback) {
-        var gpmlDataNodes = gpmlPathway.selectAll('DataNode');
-        var jsonDataNodes;
-        if (gpmlDataNodes.length > 0) {
-          jsonDataNodes = [];
-          gpmlDataNodes.each(function() {
-            pathvisio.converter.gpml.dataNode.toRenderableJson(d3.select(this), function(renderableElement) {
-              jsonDataNodes.push(renderableElement);
+
+
+    async.parallel({
+      jsonAnchorsFromEdges: function(callback) {
+        var gpmlAnchors = gpmlPathway.selectAll('Anchor');
+        var jsonAnchors;
+        if (gpmlAnchors.length > 0) {
+          jsonAnchors = [];
+          gpmlAnchors.each(function() {
+            pathvisio.converter.gpml.anchor.getFromEdge(d3.select(this), function(renderableElement) {
+              jsonAnchors.push(renderableElement);
             });
           });
-          callback(jsonDataNodes);
+          callback(null,jsonAnchors);
         }
         else {
           callback(null);
         }
       },
-      function(callback){
+      elementsFromDataNodes: function(callback) {
+        var gpmlDataNodes = gpmlPathway.selectAll('DataNode');
+        var results = {};
+        var elements = [];
+        if (gpmlDataNodes.length > 0) {
+          jsonDataNodes = [];
+          jsonAnchors = [];
+          gpmlDataNodes.each(function() {
+            pathvisio.converter.gpml.dataNode.toRenderableJson(d3.select(this), function(jsonDataNode, jsonAnchorsFromLastDataNode) {
+              jsonDataNodes.push(jsonDataNode);
+              jsonAnchors = jsonAnchors.concat(jsonAnchorsFromLastDataNode);
+            });
+          });
+          elements = jsonAnchors.concat(jsonDataNodes);
+          callback(null, elements);
+        }
+        else {
+          callback(null);
+        }
+      },
+      next: function(callback){
         callback(null);
       }
-    ],
+    },
     function(err, results){
-      console.log(err);
+      self.results = results;
+      var pathway = {};
+      pathway.metadata = {};
+      pathway.elements = results.jsonAnchorsFromEdges.concat(results.elementsFromDataNodes);
+
+      var gpmlGraphicalLines = gpmlPathway.selectAll('GraphicalLine');
+      var jsonGraphicalLines = [];
+      if (gpmlGraphicalLines.length > 0) {
+        gpmlGraphicalLines.each(function() {
+          pathvisio.converter.gpml.graphicalLine.toRenderableJson(d3.select(this), function(jsonGraphicalLine) {
+            jsonGraphicalLines.push(jsonGraphicalLine);
+          });
+        });
+        pathway.elements = pathway.elements.concat(jsonGraphicalLines);
+      }
+
+      var gpmlInteractions = gpmlPathway.selectAll('Interaction');
+      var jsonInteractions = [];
+      if (gpmlInteractions.length > 0) {
+        gpmlInteractions.each(function() {
+          pathvisio.converter.gpml.interaction.toRenderableJson(d3.select(this), function(jsonInteraction) {
+            jsonInteractions.push(jsonInteraction);
+          });
+        });
+        pathway.elements = pathway.elements.concat(jsonInteractions);
+      }
+
+      self.p = pathway;
     })
       // Data Nodes
 

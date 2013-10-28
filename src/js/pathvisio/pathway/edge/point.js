@@ -56,6 +56,7 @@ pathvisio.pathway.edge.point = function(){
 
       rawJsonPoints.forEach(function(element, index, array) {
 
+
         // for anchor points, the data model for a point is
         // relX, relY, [dx], [dy]
         // with dx and dy only being used for the first and last point

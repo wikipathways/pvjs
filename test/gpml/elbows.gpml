@@ -5,183 +5,183 @@
     <Graphics CenterX="327.35799875505927" CenterY="146.83685841113413" Width="80.0" Height="20.0" ZOrder="32945" FontSize="10" Valign="Middle" />
     <Xref Database="" ID="" />
   </DataNode>
-  <DataNode TextLabel="GeneProduct" GraphId="f2465" Type="GeneProduct">
+  <DataNode TextLabel="1" GraphId="f2465" Type="GeneProduct">
     <Graphics CenterX="116.7390289449122" CenterY="112.89215686274555" Width="80.0" Height="20.0" ZOrder="32946" FontSize="10" Valign="Middle" />
     <Xref Database="" ID="" />
   </DataNode>
-  <DataNode TextLabel="GeneProduct" GraphId="ad716" Type="GeneProduct">
+  <DataNode TextLabel="2" GraphId="ad716" Type="GeneProduct">
     <Graphics CenterX="362.75132275132364" CenterY="570.9920634920632" Width="80.0" Height="20.0" ZOrder="32948" FontSize="10" Valign="Middle" />
     <Xref Database="" ID="" />
   </DataNode>
-  <DataNode TextLabel="GeneProduct" GraphId="ea3a3" Type="GeneProduct">
+  <DataNode TextLabel="3" GraphId="ea3a3" Type="GeneProduct">
     <Graphics CenterX="119.69576719576798" CenterY="503.86243386243314" Width="80.0" Height="20.0" ZOrder="32949" FontSize="10" Valign="Middle" />
     <Xref Database="" ID="" />
   </DataNode>
-  <DataNode TextLabel="GeneProduct" GraphId="bb674" Type="GeneProduct">
+  <DataNode TextLabel="4" GraphId="bb674" Type="GeneProduct">
     <Graphics CenterX="339.59971965569093" CenterY="960.4406538734817" Width="80.0" Height="20.0" ZOrder="32951" FontSize="10" Valign="Middle" />
     <Xref Database="" ID="" />
   </DataNode>
-  <DataNode TextLabel="GeneProduct" GraphId="b6b65" Type="GeneProduct">
+  <DataNode TextLabel="5" GraphId="b6b65" Type="GeneProduct">
     <Graphics CenterX="165.47727631682847" CenterY="886.9159164494924" Width="80.0" Height="20.0" ZOrder="32952" FontSize="10" Valign="Middle" />
     <Xref Database="" ID="" />
   </DataNode>
-  <DataNode TextLabel="GeneProduct" GraphId="af9e0" Type="GeneProduct">
+  <DataNode TextLabel="6" GraphId="af9e0" Type="GeneProduct">
     <Graphics CenterX="363.90873015873103" CenterY="646.2235449735439" Width="80.0" Height="20.0" ZOrder="32954" FontSize="10" Valign="Middle" />
     <Xref Database="" ID="" />
   </DataNode>
-  <DataNode TextLabel="GeneProduct" GraphId="a0723" Type="GeneProduct">
+  <DataNode TextLabel="7" GraphId="a0723" Type="GeneProduct">
     <Graphics CenterX="124.32539682539755" CenterY="693.6772486772469" Width="80.0" Height="20.0" ZOrder="32955" FontSize="10" Valign="Middle" />
     <Xref Database="" ID="" />
   </DataNode>
-  <DataNode TextLabel="GeneProduct" GraphId="ba4b6" Type="GeneProduct">
+  <DataNode TextLabel="8" GraphId="ba4b6" Type="GeneProduct">
     <Graphics CenterX="371.2503321804204" CenterY="798.566663084453" Width="62.42584945456363" Height="141.45573908682766" ZOrder="32957" FontSize="10" Valign="Middle" />
     <Xref Database="" ID="" />
   </DataNode>
-  <DataNode TextLabel="GeneProduct" GraphId="dc87f" Type="GeneProduct">
+  <DataNode TextLabel="9" GraphId="dc87f" Type="GeneProduct">
     <Graphics CenterX="123.16798941799016" CenterY="826.779100529097" Width="80.0" Height="20.0" ZOrder="32958" FontSize="10" Valign="Middle" />
     <Xref Database="" ID="" />
   </DataNode>
-  <DataNode TextLabel="GeneProduct" GraphId="e691a" Type="GeneProduct">
+  <DataNode TextLabel="10" GraphId="e691a" Type="GeneProduct">
     <Graphics CenterX="152.31572097775643" CenterY="1641.5603453603844" Width="80.0" Height="20.0" ZOrder="32960" FontSize="10" Valign="Middle" />
     <Xref Database="" ID="" />
   </DataNode>
-  <DataNode TextLabel="GeneProduct" GraphId="a00ff" Type="GeneProduct">
+  <DataNode TextLabel="11" GraphId="a00ff" Type="GeneProduct">
     <Graphics CenterX="365.91471575784044" CenterY="1694.0957632830657" Width="80.0" Height="20.0" ZOrder="32961" FontSize="10" Valign="Middle" />
     <Xref Database="" ID="" />
   </DataNode>
-  <DataNode TextLabel="GeneProduct" GraphId="fe768" Type="GeneProduct">
+  <DataNode TextLabel="12" GraphId="fe768" Type="GeneProduct">
     <Graphics CenterX="159.42863985538042" CenterY="1734.1934674052698" Width="80.0" Height="20.0" ZOrder="32963" FontSize="10" Valign="Middle" />
     <Xref Database="" ID="" />
   </DataNode>
-  <DataNode TextLabel="GeneProduct" GraphId="d5dea" Type="GeneProduct">
+  <DataNode TextLabel="13" GraphId="d5dea" Type="GeneProduct">
     <Graphics CenterX="370.5706321784621" CenterY="1779.357877956948" Width="80.0" Height="20.0" ZOrder="32964" FontSize="10" Valign="Middle" />
     <Xref Database="" ID="" />
   </DataNode>
-  <DataNode TextLabel="GeneProduct" GraphId="cf2f3" Type="GeneProduct">
+  <DataNode TextLabel="14" GraphId="cf2f3" Type="GeneProduct">
     <Graphics CenterX="327.35799875505927" CenterY="260.3980491498338" Width="80.0" Height="20.0" ZOrder="32966" FontSize="10" Valign="Middle" />
     <Xref Database="" ID="" />
   </DataNode>
-  <DataNode TextLabel="GeneProduct" GraphId="e3c5e" Type="GeneProduct">
+  <DataNode TextLabel="15" GraphId="e3c5e" Type="GeneProduct">
     <Graphics CenterX="116.7390289449122" CenterY="230.973234081089" Width="80.0" Height="20.0" ZOrder="32967" FontSize="10" Valign="Middle" />
     <Xref Database="" ID="" />
   </DataNode>
-  <DataNode TextLabel="GeneProduct" GraphId="c2913" Type="GeneProduct">
+  <DataNode TextLabel="16" GraphId="c2913" Type="GeneProduct">
     <Graphics CenterX="324.0503912578156" CenterY="348.6009157429986" Width="80.0" Height="20.0" ZOrder="32969" FontSize="10" Valign="Middle" />
     <Xref Database="" ID="" />
   </DataNode>
-  <DataNode TextLabel="GeneProduct" GraphId="a165e" Type="GeneProduct">
+  <DataNode TextLabel="17" GraphId="a165e" Type="GeneProduct">
     <Graphics CenterX="112.32888561525397" CenterY="318.07356484183924" Width="80.0" Height="20.0" ZOrder="32970" FontSize="10" Valign="Middle" />
     <Xref Database="" ID="" />
   </DataNode>
-  <DataNode TextLabel="GeneProduct" GraphId="fe12c" Type="GeneProduct">
+  <DataNode TextLabel="18" GraphId="fe12c" Type="GeneProduct">
     <Graphics CenterX="324.0503912578156" CenterY="439.0088540009923" Width="80.0" Height="20.0" ZOrder="32972" FontSize="10" Valign="Middle" />
     <Xref Database="" ID="" />
   </DataNode>
-  <DataNode TextLabel="GeneProduct" GraphId="fc22c" Type="GeneProduct">
+  <DataNode TextLabel="19" GraphId="fc22c" Type="GeneProduct">
     <Graphics CenterX="112.32888561525397" CenterY="408.48150309983293" Width="80.0" Height="20.0" ZOrder="32973" FontSize="10" Valign="Middle" />
     <Xref Database="" ID="" />
   </DataNode>
-  <DataNode TextLabel="GeneProduct" GraphId="ce66e" Type="GeneProduct">
+  <DataNode TextLabel="20" GraphId="ce66e" Type="GeneProduct">
     <Graphics CenterX="336.2035062781342" CenterY="1011.9953802416409" Width="80.0" Height="20.0" ZOrder="32975" FontSize="10" Valign="Middle" />
     <Xref Database="" ID="" />
   </DataNode>
-  <DataNode TextLabel="GeneProduct" GraphId="f1f5c" Type="GeneProduct">
+  <DataNode TextLabel="21" GraphId="f1f5c" Type="GeneProduct">
     <Graphics CenterX="160.2533957198134" CenterY="976.4681552554626" Width="80.0" Height="20.0" ZOrder="32976" FontSize="10" Valign="Middle" />
     <Xref Database="" ID="" />
   </DataNode>
-  <DataNode TextLabel="GeneProduct" GraphId="b4ae1" Type="GeneProduct">
+  <DataNode TextLabel="22" GraphId="b4ae1" Type="GeneProduct">
     <Graphics CenterX="336.2035062781342" CenterY="1067.2192608386558" Width="80.0" Height="20.0" ZOrder="32978" FontSize="10" Valign="Middle" />
     <Xref Database="" ID="" />
   </DataNode>
-  <DataNode TextLabel="GeneProduct" GraphId="e795e" Type="GeneProduct">
+  <DataNode TextLabel="23" GraphId="e795e" Type="GeneProduct">
     <Graphics CenterX="160.2533957198134" CenterY="1031.6920358524776" Width="80.0" Height="20.0" ZOrder="32979" FontSize="10" Valign="Middle" />
     <Xref Database="" ID="" />
   </DataNode>
-  <DataNode TextLabel="GeneProduct" GraphId="fb99b" Type="GeneProduct">
+  <DataNode TextLabel="24" GraphId="fb99b" Type="GeneProduct">
     <Graphics CenterX="342.7824004252848" CenterY="1151.2826835624342" Width="80.0" Height="20.0" ZOrder="32981" FontSize="10" Valign="Middle" />
     <Xref Database="" ID="" />
   </DataNode>
-  <DataNode TextLabel="GeneProduct" GraphId="baae2" Type="GeneProduct">
+  <DataNode TextLabel="25" GraphId="baae2" Type="GeneProduct">
     <Graphics CenterX="166.83228986696395" CenterY="1115.7554585762555" Width="80.0" Height="20.0" ZOrder="32982" FontSize="10" Valign="Middle" />
     <Xref Database="" ID="" />
   </DataNode>
-  <DataNode TextLabel="GeneProduct" GraphId="dfb9b" Type="GeneProduct">
+  <DataNode TextLabel="26" GraphId="dfb9b" Type="GeneProduct">
     <Graphics CenterX="355.10515591090484" CenterY="1258.8086910805741" Width="80.0" Height="20.0" ZOrder="32984" FontSize="10" Valign="Middle" />
     <Xref Database="" ID="" />
   </DataNode>
-  <DataNode TextLabel="GeneProduct" GraphId="d9b36" Type="GeneProduct">
+  <DataNode TextLabel="27" GraphId="d9b36" Type="GeneProduct">
     <Graphics CenterX="168.18730341709943" CenterY="1192.3137241589106" Width="80.0" Height="20.0" ZOrder="32985" FontSize="10" Valign="Middle" />
     <Xref Database="" ID="" />
   </DataNode>
-  <DataNode TextLabel="GeneProduct" GraphId="a97fd" Type="GeneProduct">
+  <DataNode TextLabel="28" GraphId="a97fd" Type="GeneProduct">
     <Graphics CenterX="352.52451074961414" CenterY="1352.357078177347" Width="80.0" Height="20.0" ZOrder="32987" FontSize="10" Valign="Middle" />
     <Xref Database="" ID="" />
   </DataNode>
-  <DataNode TextLabel="GeneProduct" GraphId="c3303" Type="GeneProduct">
+  <DataNode TextLabel="29" GraphId="c3303" Type="GeneProduct">
     <Graphics CenterX="170.7679485783899" CenterY="1298.7653370621354" Width="80.0" Height="20.0" ZOrder="32988" FontSize="10" Valign="Middle" />
     <Xref Database="" ID="" />
   </DataNode>
-  <DataNode TextLabel="GeneProduct" GraphId="b531e" Type="GeneProduct">
+  <DataNode TextLabel="30" GraphId="b531e" Type="GeneProduct">
     <Graphics CenterX="351.9102601353636" CenterY="1429.7526555729237" Width="80.0" Height="20.0" ZOrder="32990" FontSize="10" Valign="Middle" />
     <Xref Database="" ID="" />
   </DataNode>
-  <DataNode TextLabel="GeneProduct" GraphId="cfd74" Type="GeneProduct">
+  <DataNode TextLabel="31" GraphId="cfd74" Type="GeneProduct">
     <Graphics CenterX="170.15369796413938" CenterY="1376.1609144577121" Width="80.0" Height="20.0" ZOrder="32991" FontSize="10" Valign="Middle" />
     <Xref Database="" ID="" />
   </DataNode>
-  <DataNode TextLabel="GeneProduct" GraphId="cf394" Type="GeneProduct">
+  <DataNode TextLabel="32" GraphId="cf394" Type="GeneProduct">
     <Graphics CenterX="365.423773648876" CenterY="1512.6764884967567" Width="80.0" Height="20.0" ZOrder="32993" FontSize="10" Valign="Middle" />
     <Xref Database="" ID="" />
   </DataNode>
-  <DataNode TextLabel="GeneProduct" GraphId="fc9ba" Type="GeneProduct">
+  <DataNode TextLabel="33" GraphId="fc9ba" Type="GeneProduct">
     <Graphics CenterX="173.83920164964252" CenterY="1474.4410127378094" Width="80.0" Height="20.0" ZOrder="32994" FontSize="10" Valign="Middle" />
     <Xref Database="" ID="" />
   </DataNode>
-  <DataNode TextLabel="GeneProduct" GraphId="e1286" Type="GeneProduct">
+  <DataNode TextLabel="34" GraphId="e1286" Type="GeneProduct">
     <Graphics CenterX="367.8807761058781" CenterY="1612.1850880053555" Width="80.0" Height="20.0" ZOrder="32996" FontSize="10" Valign="Middle" />
     <Xref Database="" ID="" />
   </DataNode>
-  <DataNode TextLabel="GeneProduct" GraphId="c42ad" Type="GeneProduct">
+  <DataNode TextLabel="35" GraphId="c42ad" Type="GeneProduct">
     <Graphics CenterX="169.53944734988931" CenterY="1554.2935925903885" Width="80.0" Height="20.0" ZOrder="32997" FontSize="10" Valign="Middle" />
     <Xref Database="" ID="" />
   </DataNode>
-  <DataNode TextLabel="GeneProduct" GraphId="a9dcb" Type="GeneProduct">
+  <DataNode TextLabel="36" GraphId="a9dcb" Type="GeneProduct">
     <Graphics CenterX="158.20013862687938" CenterY="1807.9035411153413" Width="80.0" Height="20.0" ZOrder="32999" FontSize="10" Valign="Middle" />
     <Xref Database="" ID="" />
   </DataNode>
-  <DataNode TextLabel="GeneProduct" GraphId="a90f1" Type="GeneProduct">
+  <DataNode TextLabel="37" GraphId="a90f1" Type="GeneProduct">
     <Graphics CenterX="369.3421309499611" CenterY="1853.0679516670193" Width="80.0" Height="20.0" ZOrder="33000" FontSize="10" Valign="Middle" />
     <Xref Database="" ID="" />
   </DataNode>
-  <DataNode TextLabel="GeneProduct" GraphId="d2043" Type="GeneProduct">
+  <DataNode TextLabel="38" GraphId="d2043" Type="GeneProduct">
     <Graphics CenterX="148.98637941312063" CenterY="1888.9846221964222" Width="80.0" Height="20.0" ZOrder="33002" FontSize="10" Valign="Middle" />
     <Xref Database="" ID="" />
   </DataNode>
-  <DataNode TextLabel="GeneProduct" GraphId="d5d3a" Type="GeneProduct">
+  <DataNode TextLabel="39" GraphId="d5d3a" Type="GeneProduct">
     <Graphics CenterX="360.1283717362023" CenterY="1934.1490327481001" Width="80.0" Height="20.0" ZOrder="33003" FontSize="10" Valign="Middle" />
     <Xref Database="" ID="" />
   </DataNode>
-  <DataNode TextLabel="GeneProduct" GraphId="d5cad" Type="GeneProduct">
+  <DataNode TextLabel="40" GraphId="d5cad" Type="GeneProduct">
     <Graphics CenterX="378.7161091428504" CenterY="2096.665987772525" Width="80.0" Height="20.0" ZOrder="33005" FontSize="10" Valign="Middle" />
     <Xref Database="" ID="" />
   </DataNode>
-  <DataNode TextLabel="GeneProduct" GraphId="cf964" Type="GeneProduct">
+  <DataNode TextLabel="41" GraphId="cf964" Type="GeneProduct">
     <Graphics CenterX="144.58952461841" CenterY="1994.8819461125936" Width="80.0" Height="20.0" ZOrder="33006" FontSize="10" Valign="Middle" />
     <Xref Database="" ID="" />
   </DataNode>
-  <DataNode TextLabel="GeneProduct" GraphId="dd71a" Type="GeneProduct">
+  <DataNode TextLabel="42" GraphId="dd71a" Type="GeneProduct">
     <Graphics CenterX="395.0745728697352" CenterY="2231.0898853543213" Width="80.0" Height="20.0" ZOrder="33008" FontSize="10" Valign="Middle" />
     <Xref Database="" ID="" />
   </DataNode>
-  <DataNode TextLabel="GeneProduct" GraphId="bece9" Type="GeneProduct">
+  <DataNode TextLabel="43" GraphId="bece9" Type="GeneProduct">
     <Graphics CenterX="113.3289407262464" CenterY="2119.78203417058" Width="80.0" Height="20.0" ZOrder="33009" FontSize="10" Valign="Middle" />
     <Xref Database="" ID="" />
   </DataNode>
-  <DataNode TextLabel="GeneProduct" GraphId="a739c" Type="GeneProduct">
+  <DataNode TextLabel="44" GraphId="a739c" Type="GeneProduct">
     <Graphics CenterX="371.5766388454865" CenterY="2388.984622196427" Width="80.0" Height="20.0" ZOrder="33011" FontSize="10" Valign="Middle" />
     <Xref Database="" ID="" />
   </DataNode>
-  <DataNode TextLabel="GeneProduct" GraphId="d3ec7" Type="GeneProduct">
+  <DataNode TextLabel="45" GraphId="d3ec7" Type="GeneProduct">
     <Graphics CenterX="135.37730487987437" CenterY="2278.388008566027" Width="80.0" Height="20.0" ZOrder="33012" FontSize="10" Valign="Middle" />
     <Xref Database="" ID="" />
   </DataNode>
