@@ -30,14 +30,19 @@ pathvisio.renderer.pathFinder = function(){
       Math.min(node1.height, node1.width) - Math.min(node2.height, node2.width);
     });
     pathvisioNS.grid.squareLength = Math.min(nodes[0][0][0].height, nodes[0][0][0].width) / 7;
-    var totalColumnCount = Math.floor(pathway.metadata.boardWidth/pathvisioNS.grid.squareLength);
-    var totalRowCount = Math.floor(pathway.metadata.boardHeight/pathvisioNS.grid.squareLength);
+    var totalColumnCount = self.totalColumnCount = Math.ceil(pathway.metadata.boardWidth/pathvisioNS.grid.squareLength);
+    var totalRowCount = self.totalRowCount = Math.ceil(pathway.metadata.boardHeight/pathvisioNS.grid.squareLength);
 
     var matrix = self.matrix = [];
     pathvisioNS.grid.gridRenderingData = [];
-    for(var currentRow=0; currentRow<totalRowCount; currentRow++) {
+
+    // remember zero-based indexing means we want to go from 0 to totalRowCount - 1
+    // and 0 to totalColumnCount - 1
+    // last element is matrix[totalRowCount - 1][totalColumnCount - 1]
+
+    for(var currentRow = 0; currentRow < totalRowCount; currentRow++) {
       matrix[currentRow] = [];
-      for(var currentColumn=0; currentColumn<totalColumnCount; currentColumn++) {
+      for(var currentColumn = 0; currentColumn < totalColumnCount; currentColumn++) {
         matrix[currentRow][currentColumn] = 0;
       }
     }
@@ -49,13 +54,13 @@ pathvisio.renderer.pathFinder = function(){
       upperLeftCorner = xYCoordinatesToMatrixLocation(node.x, node.y, pathvisioNS.grid.squareLength);
       lowerRightCorner = xYCoordinatesToMatrixLocation(node.x + node.width, node.y + node.height, pathvisioNS.grid.squareLength);
 
-      columnStart = Math.max((upperLeftCorner.column - 5), 0);
-      columnEnd = Math.min((lowerRightCorner.column + 5), totalColumnCount);
-      rowStart = Math.max((upperLeftCorner.row - 5), 0);
-      rowEnd = Math.min((lowerRightCorner.row + 5), totalRowCount);
+      columnStart = self.columnStart = Math.max((upperLeftCorner.column - 5), 0);
+      columnEnd = self.columnEnd = Math.min((lowerRightCorner.column + 5), totalColumnCount - 1);
+      rowStart = self.rowStart = Math.max((upperLeftCorner.row - 5), 0);
+      rowEnd = self.rowEnd = Math.min((lowerRightCorner.row + 5), totalRowCount - 1);
 
-      for(var currentRow=rowStart; currentRow<rowEnd; currentRow++) {
-        for(var currentColumn=columnStart; currentColumn<columnEnd; currentColumn++) {
+      for(var currentRow=rowStart; currentRow<rowEnd + 1; currentRow++) {
+        for(var currentColumn=columnStart; currentColumn<columnEnd + 1; currentColumn++) {
           matrix[currentRow][currentColumn] = 1;
           pathvisioNS.grid.gridRenderingData[currentRow * (totalColumnCount - 1) + currentColumn] = {
             'x': currentColumn * pathvisioNS.grid.squareLength,
@@ -69,18 +74,17 @@ pathvisio.renderer.pathFinder = function(){
     var anchors = pathway.elements.filter(function(element) {
       return element.renderableType === 'anchor';
     });
-    console.log(anchors);
 
     var column1, column2, row1, row2, anchorPosition;
     anchors.forEach(function(anchor) {
       anchorPosition = xYCoordinatesToMatrixLocation(anchor.x, anchor.y);
       column1 = (anchorPosition.column);
-      column2 = Math.max(Math.min((anchorPosition.column + 5 * anchor.dx), totalColumnCount), 0);
+      column2 = Math.max(Math.min((anchorPosition.column + 5 * anchor.dx), totalColumnCount - 1), 0);
       columnStart = Math.min(column1, column2);
       columnEnd = Math.max(column1, column2);
 
       row1 = (anchorPosition.row);
-      row2 = Math.max(Math.min((anchorPosition.row + 5 * anchor.dy), totalRowCount), 0);
+      row2 = Math.max(Math.min((anchorPosition.row + 5 * anchor.dy), totalRowCount - 1), 0);
       rowStart = Math.min(row1, row2);
       rowEnd = Math.max(row1, row2);
 
@@ -116,8 +120,6 @@ pathvisio.renderer.pathFinder = function(){
     endLocation = self.endLocation = xYCoordinatesToMatrixLocation(pointEnd.x, pointEnd.y);
 
     var blockyPath = self.blockyPath = finder.findPath(startLocation.column, startLocation.row, endLocation.column, endLocation.row, workingGrid);
-    console.log('blockyPath');
-    console.log(blockyPath);
 
     /*
        var newWorkingGrid = pathvisioNS.grid.pathFinderGrid.clone();

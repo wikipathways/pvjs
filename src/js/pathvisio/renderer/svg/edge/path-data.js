@@ -13,7 +13,73 @@
 
 pathvisio.renderer.svg.edge.pathData = function(){
 
-  var currentDirection, startDirection, endDirection, controlPoint;
+  function getPathDirectionForElbowFromPoint(pathway, edge, point) {
+    var direction, otherEndDirection, otherEndPoint;
+
+    direction = getPathDirectionForElbowFromPointByAnchor(pathway, point); 
+    if (!direction) {
+      if (point === edge.points[0]) {
+        otherEndPoint = edge.points[edge.points.length - 1];
+      }
+      else {
+        otherEndPoint = edge.points[0];
+      }
+
+      otherEndDirection = getPathDirectionForElbowFromPointByAnchor(pathway, otherEndPoint); 
+      if (!!otherEndDirection) {
+        if (pathvisio.helpers.isOdd(edge.points.length)) {
+          direction = switchDirection(otherEndDirection);
+        }
+        else {
+          direction = otherEndDirection;
+        }
+      }
+      else {
+        direction = getPathDirectionForElbowFromPointByDistance(pathway, edge, point);
+      }
+    }
+    return direction;
+  }
+
+  function getPathDirectionForElbowFromPointByAnchor(pathway, point) {
+    var anchor = pathway.elements.filter(function(element) {return element.id === point.anchorId})[0];
+    if (!!anchor) {
+      if (Math.abs(anchor.dx) === 1 || Math.abs(anchor.dy) === 1) {
+        if (Math.abs(anchor.dx) === 1) {
+          direction = 'H';
+        }
+        else {
+          if (Math.abs(anchor.dy) === 1) {
+            direction = 'V';
+          }
+        }
+      }
+      else {
+        direction = undefined;
+      }
+    }
+    else {
+      direction = undefined;
+    }
+    return direction;
+  }
+
+  function getPathDirectionForElbowFromPointByDistance(pathway, edge, point) {
+    var direction, comparisonPoint;
+    if (point === edge.points[0]) {
+      comparisonPoint = edge.points[1];
+    }
+    else {
+      comparisonPoint = edge.points[edge.points.length - 1];
+    }
+    if (Math.abs(comparisonPoint.x - point.x) < Math.abs(comparisonPoint.y - point.y)) {
+      direction = 'V';
+    }
+    else {
+      direction = 'H';
+    }
+    return direction;
+  }
 
   function switchDirection(currentDirection) {
     currentDirection = currentDirection.toUpperCase();
@@ -30,11 +96,9 @@ pathvisio.renderer.svg.edge.pathData = function(){
       return console.warn('Error: Missing input parameters.');
     }
 
-    var index;
+    var currentDirection, startDirection, endDirection, controlPoint, index;
     var pointStart = edge.points[0];
     var source = pathvisio.renderer.svg.edge.point.getCoordinates(svg, pathway, pointStart);
-
-    self.points = edge.points;
 
     var pointCoordinatesArray = self.pointCoordinatesArray = [];
     var pointCoordinates;
@@ -80,47 +144,15 @@ pathvisio.renderer.svg.edge.pathData = function(){
       pathData += " L " + target.x + " " + target.y;
     }
     else {
-
-      // It doesn't make sense for an unconnected interaction or graphical line to be an elbow, so any that are
-      // so specified will be rendern as segmented lines.
-
-      if (edge.connectorType === 'elbow' && edge.points[0].hasOwnProperty('anchorId') && edge.points[edge.points.length - 1].hasOwnProperty('anchorId')) {
-        var startAnchor = pathway.elements.filter(function(element) {return element.id === edge.points[0].anchorId})[0];
-        self.startAnchor = startAnchor;
-        self.edge = edge;
+      if (edge.connectorType === 'elbow') {
 
         // distance to move away from node when we can't go directly to the next node
 
         var stubLength = 15;
 
-        if (Math.abs(startAnchor.dx) === 1) {
-          startDirection = 'H';
-        }
-        else {
-          if (Math.abs(startAnchor.dy) === 1) {
-            startDirection = 'V';
-          }
-          else {
-            console.log('no direction specified.');
-          }
-        }
-
-        currentDirection = startDirection;
-
-        var endAnchor = pathway.elements.filter(function(element) {return element.id === pointEnd.anchorId})[0];
-        self.endAnchor = endAnchor;
-
-        if (Math.abs(endAnchor.dx) === 1) {
-          endDirection = 'H';
-        }
-        else {
-          if (Math.abs(endAnchor.dy) === 1) {
-            endDirection = 'V';
-          }
-          else {
-            console.log('no direction specified.');
-          }
-        }
+        currentDirection = getPathDirectionForElbowFromPoint(pathway, edge, pointStart);
+        startDirection = currentDirection;
+        console.log(startDirection);
 
         ///*
 
@@ -227,7 +259,6 @@ pathvisio.renderer.svg.edge.pathData = function(){
 
             if (edge.points.length === 2) {
               pathCoordinatesArray = pathvisio.renderer.pathFinder.getPath(pathway, edge);
-              console.log(pathCoordinatesArray);
             }
             else {
               pathCoordinatesArray = edge.points;
@@ -235,7 +266,6 @@ pathvisio.renderer.svg.edge.pathData = function(){
 
 
             pathCoordinatesArray.forEach(function(element, index, array) {
-              console.log(element);
               if ((index > 0) && (index < (array.length - 1))) {
                 target.x = (array[index].x + array[index - 1].x)/2;
                 target.y = (array[index].y + array[index - 1].y)/2;
@@ -249,7 +279,6 @@ pathvisio.renderer.svg.edge.pathData = function(){
 
             controlPoint = {};
             pathCoordinatesArray.forEach(function(element, index, array) {
-              console.log(element);
               if ((index > 0) && (index < (array.length - 1))) {
                 controlPoint.x = element.x;
                 controlPoint.y = element.y;

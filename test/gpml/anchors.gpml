@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Pathway xmlns="http://pathvisio.org/GPML/2013a" Name="anchors" Version="20130715" Organism="Anopheles gambiae">
-  <Graphics BoardWidth="725.3046953046954" BoardHeight="692.9037843977742" />
+  <Graphics BoardWidth="677.5682683727534" BoardHeight="692.9037843977742" />
   <DataNode TextLabel="Metabolite" GraphId="c8d90" Type="Metabolite" GroupRef="b1bd1">
     <Graphics CenterX="128.86419332879615" CenterY="99.06516148551515" Width="174.90560471976374" Height="58.64011799410035" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff" />
     <Xref Database="" ID="" />

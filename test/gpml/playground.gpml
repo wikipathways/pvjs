@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Pathway xmlns="http://pathvisio.org/GPML/2013a" Name="elbows" Version="20130813" Organism="Anopheles gambiae">
+  <Graphics BoardWidth="589.4605394605396" BoardHeight="2428.984622196427" />
+  <DataNode TextLabel="GeneProduct" GraphId="cc766" Type="GeneProduct">
+    <Graphics CenterX="327.35799875505927" CenterY="146.83685841113413" Width="80.0" Height="20.0" ZOrder="32945" FontSize="10" Valign="Middle" />
+    <Xref Database="" ID="" />
+  </DataNode>
+  <DataNode TextLabel="1" GraphId="f2465" Type="GeneProduct">
+    <Graphics CenterX="116.7390289449122" CenterY="112.89215686274555" Width="80.0" Height="20.0" ZOrder="32946" FontSize="10" Valign="Middle" />
+    <Xref Database="" ID="" />
+  </DataNode>
+  <Interaction GraphId="c99cf">
+    <Graphics ConnectorType="Elbow" ZOrder="32944" LineThickness="1.0">
+      <Point X="116.7390289449122" Y="102.89215686274555" GraphRef="f2465" RelX="0.0" RelY="-1.0" ArrowHead="TBar" />
+      <Point X="212.04851384998574" Y="80.41666666666666" />
+      <Point X="307.35799875505927" Y="136.83685841113413" GraphRef="cc766" RelX="-0.5" RelY="-1.0" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Label TextLabel="SAVE" GraphId="bfc73">
+    <Graphics CenterX="212.78721278721278" CenterY="28.986013986013994" Width="95.94405594405595" Height="27.982017982017986" ZOrder="33015" FillColor="ffffff" FontWeight="Bold" FontSize="30" Valign="Middle" />
+  </Label>
+  <Label TextLabel="This pathway is to be saved long-term to test the ability of&#xA;GPML renderers to handle the element type named in the title." GraphId="acdee">
+    <Graphics CenterX="414.08591408591417" CenterY="25.489510489510494" Width="290.7492507492508" Height="32.977022977022976" ZOrder="33016" FillColor="ffffff" FontSize="10" Align="Left" />
+  </Label>
+  <InfoBox CenterX="0.0" CenterY="0.0" />
+  <Biopax />
+</Pathway>
+
