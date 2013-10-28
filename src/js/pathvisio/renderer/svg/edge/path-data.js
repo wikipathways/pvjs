@@ -91,7 +91,7 @@ pathvisio.renderer.svg.edge.pathData = function(){
     }
   }
 
-  function get(svg, pathway, edge) {
+  function get(svg, pathway, edge, callback) {
     if (!svg || !edge) {
       return console.warn('Error: Missing input parameters.');
     }
@@ -142,6 +142,7 @@ pathvisio.renderer.svg.edge.pathData = function(){
 
     if ((!edge.connectorType) || (edge.connectorType === undefined) || (edge.connectorType === 'straight')) {
       pathData += " L " + target.x + " " + target.y;
+      callback(pathData);
     }
     else {
       if (edge.connectorType === 'elbow') {
@@ -150,98 +151,125 @@ pathvisio.renderer.svg.edge.pathData = function(){
 
         var stubLength = 15;
 
-        currentDirection = getPathDirectionForElbowFromPoint(pathway, edge, pointStart);
-        startDirection = currentDirection;
+        startDirection = getPathDirectionForElbowFromPoint(pathway, edge, pointStart);
         console.log(startDirection);
-
-        ///*
+        currentDirection = startDirection;
+        endDirection = getPathDirectionForElbowFromPoint(pathway, edge, pointEnd);
 
         var pathCoordinatesArray = [];
-        if (edge.points.length === 2) {
-          pathCoordinatesArray = pathvisio.renderer.pathFinder.getPath(pathway, edge);
-        }
-        else {
-          pathCoordinatesArray.push({
-            'x': pointStart.x,
-            'y': pointStart.y
-          });
 
-          index = 0;
-          do {
-            index += 1;
 
-            if (currentDirection === 'H') {
-              pathCoordinatesArray.push({
-                'x': edge.points[index].x,
-                'y': edge.points[index - 1].y
+        async.series([
+          function(callback){
+            if (edge.points.length === 2) {
+              pathvisio.renderer.pathFinder.getPath(pathway, edge, function(data) {
+                pathCoordinatesArray = data;
+                callback(null);
               });
             }
             else {
               pathCoordinatesArray.push({
-                'x': edge.points[index - 1].x,
-                'y': edge.points[index].y
+                'x': pointStart.x,
+                'y': pointStart.y
               });
+
+              index = 0;
+              do {
+                index += 1;
+
+                if (currentDirection === 'H') {
+                  pathCoordinatesArray.push({
+                    'x': edge.points[index].x,
+                    'y': edge.points[index - 1].y
+                  });
+                }
+                else {
+                  pathCoordinatesArray.push({
+                    'x': edge.points[index - 1].x,
+                    'y': edge.points[index].y
+                  });
+                }
+                currentDirection = switchDirection(currentDirection);
+              } while (index < edge.points.length - 1);
+
+              pathCoordinatesArray.push({
+                'x': pointEnd.x,
+                'y': pointEnd.y
+              });
+              callback(null);
             }
-            currentDirection = switchDirection(currentDirection);
-          } while (index < edge.points.length - 1);
+          }
+        ],
+        function(err) {
+          // reposition start and end point to match source and origin
 
-          pathCoordinatesArray.push({
-            'x': pointEnd.x,
-            'y': pointEnd.y
-          });
-        }
-
-        // reposition start and end point to match source and origin
-
-        if (pathCoordinatesArray.length === 3) {
-          if (Math.abs(pathCoordinatesArray[1].x - pointStart.x) < Math.abs(pathCoordinatesArray[1].x - pointEnd.x)) {
-            pathCoordinatesArray[1].x = pointStart.x;
-            pathCoordinatesArray[1].y = pointEnd.y;
+          if (pathCoordinatesArray.length === 3) {
+            if (Math.abs(pathCoordinatesArray[1].x - pointStart.x) < Math.abs(pathCoordinatesArray[1].x - pointEnd.x)) {
+              pathCoordinatesArray[1].x = pointStart.x;
+              pathCoordinatesArray[1].y = pointEnd.y;
+            }
+            else {
+              pathCoordinatesArray[1].x = pointEnd.x;
+              pathCoordinatesArray[1].y = pointStart.y;
+            }
           }
           else {
-            pathCoordinatesArray[1].x = pointEnd.x;
+            if (Math.abs(pathCoordinatesArray[1].x - pointStart.x) < Math.abs(pathCoordinatesArray[1].y - pointStart.y)) {
+              pathCoordinatesArray[1].x = pointStart.x;
+            }
+            else {
+              pathCoordinatesArray[1].y = pointStart.y;
+            }
+
+            if (Math.abs(pathCoordinatesArray[pathCoordinatesArray.length - 2].x - pointEnd.x) < Math.abs(pathCoordinatesArray[pathCoordinatesArray.length - 2].y - pointEnd.y)) {
+              pathCoordinatesArray[pathCoordinatesArray.length - 2].x = pointEnd.x;
+            }
+            else {
+              pathCoordinatesArray[pathCoordinatesArray.length - 2].y = pointEnd.y;
+            }
+          }
+
+          if (startDirection === 'H') {
             pathCoordinatesArray[1].y = pointStart.y;
           }
-        }
-        else {
-          if (Math.abs(pathCoordinatesArray[1].x - pointStart.x) < Math.abs(pathCoordinatesArray[1].y - pointStart.y)) {
-            pathCoordinatesArray[1].x = pointStart.x;
-          }
           else {
-            pathCoordinatesArray[1].y = pointStart.y;
+            if (startDirection === 'V') {
+              pathCoordinatesArray[1].x = pointStart.x;
+            }
           }
 
-          if (Math.abs(pathCoordinatesArray[pathCoordinatesArray.length - 2].x - pointEnd.x) < Math.abs(pathCoordinatesArray[pathCoordinatesArray.length - 2].y - pointEnd.y)) {
-            pathCoordinatesArray[pathCoordinatesArray.length - 2].x = pointEnd.x;
-          }
-          else {
+          if (endDirection === 'H') {
             pathCoordinatesArray[pathCoordinatesArray.length - 2].y = pointEnd.y;
           }
-        }
-
-        if (startDirection === 'H') {
-          pathCoordinatesArray[1].y = pointStart.y;
-        }
-        else {
-          if (startDirection === 'V') {
-            pathCoordinatesArray[1].x = pointStart.x;
+          else {
+            if (endDirection === 'V') {
+              pathCoordinatesArray[pathCoordinatesArray.length - 2].x = pointEnd.x;
+            }
           }
-        }
 
-        if (endDirection === 'H') {
-          pathCoordinatesArray[pathCoordinatesArray.length - 2].y = pointEnd.y;
-        }
-        else {
-          if (endDirection === 'V') {
-            pathCoordinatesArray[pathCoordinatesArray.length - 2].x = pointEnd.x;
-          }
-        }
+                console.log('pathCoordinatesArray');
+                console.log(pathCoordinatesArray);
+                self.pathCoordinatesArray = pathCoordinatesArray;
+          index = 0;
+          do {
+            index += 1;
+            pathData += ' L ' + pathCoordinatesArray[index].x + ' ' + pathCoordinatesArray[index].y;
+          } while (index < pathCoordinatesArray.length - 1);
+                console.log('pathData');
+                console.log(pathData);
+                callback(pathData);
 
-        index = 0;
-        do {
-          index += 1;
-          pathData += ' L ' + pathCoordinatesArray[index].x + ' ' + pathCoordinatesArray[index].y;
-        } while (index < pathCoordinatesArray.length - 1);
+        });
+
+
+
+
+
+
+
+
+
+
 
       }
       else {
@@ -252,6 +280,7 @@ pathvisio.renderer.svg.edge.pathData = function(){
             }
           });
           pathData += " L " + target.x + " " + target.y;
+          callback(pathData);
         }
         else {
           if (edge.connectorType === 'curved') {
@@ -274,6 +303,7 @@ pathvisio.renderer.svg.edge.pathData = function(){
             });
 
             pathData += " T" + pathCoordinatesArray[pathCoordinatesArray.length - 1].x + "," + pathCoordinatesArray[pathCoordinatesArray.length - 1].y;
+            callback(pathData);
 
             /*
 
@@ -322,11 +352,16 @@ pathvisio.renderer.svg.edge.pathData = function(){
               }
             });
             pathData += " L " + target.x + " " + target.y;
+            callback(pathData);
           }
         }
       }
     }
+    /*
+    console.log('returned pathData');
+    console.log(pathData);
     return pathData;
+    //*/
   }
 
   return {
