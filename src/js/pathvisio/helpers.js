@@ -1,5 +1,35 @@
 pathvisio.helpers = function(){
 
+
+  // from here: http://www.cjboco.com/blog.cfm/post/determining-an-elements-width-and-height-using-javascript/
+  // TODO have not tested x-browser yet.
+  // could use jquery, but I want to remove it as a dependency for pv.js.
+
+  Element.prototype.getElementWidth = function() {
+    if (typeof this.clip !== "undefined") {
+      return this.clip.width;
+    } else {
+      if (this.style.pixelWidth) {
+        return this.style.pixelWidth;
+      } else {
+        return this.offsetWidth;
+      }
+    }
+  };
+
+  Element.prototype.getElementHeight = function() {
+    if (typeof this.clip !== "undefined") {
+      return this.clip.width;
+    } else {
+      if (this.style.pixelHeight) {
+        return this.style.pixelHeight;
+      } else {
+        return this.offsetHeight;
+      }
+    }
+  };
+
+
   function isUrl(str) {
 
     // from http://forums.devshed.com/javascript-development-115/regexp-to-match-url-pattern-493764.html
