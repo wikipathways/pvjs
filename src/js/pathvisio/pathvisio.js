@@ -3,11 +3,8 @@ pathvisio = function(){
   // first pass GPML (pathway XML) through an automatic XML to JSON converter, 
   // then make specific modifications to make the JSON well-formatted, then return the JSON
   
-  var svg = null;
-  var pathway = null;
-  var symbolsAvailable = null;
-
-  self.pathway = pathway;
+  var svg, pngUrl, pathway, symbolsAvailable, targetWidth, targetHeight;
+  self.svg = svg;
 
   // get GPML (pathway XML) from WikiPathways (by ID) or a URL (could be a local file or any other accessible GPML source),
   // convert to formatted JSON and return the JSON to the function that called getJson()
@@ -60,7 +57,7 @@ pathvisio = function(){
     img.onload = function() {
       def = svg.select('defs').select('#' + customShape.id);
       if (!def[0][0]) {
-        def = d3.select('svg').select('defs').append('symbol').attr('id', customShape.id)
+        def = svg.select('defs').append('symbol').attr('id', customShape.id)
         .attr('viewBox', '0 0 ' + this.width + ' ' + this.height)
         .attr('preserveAspectRatio', 'none');
       }
@@ -91,19 +88,62 @@ pathvisio = function(){
   function loadPartials(args, callback) {
     async.series([
       function(callback){
-        console.log('2');
-        args.containerElement.html(pathvisioNS['tmp/pathvisio-js.html']);
-        svg = args.containerElement.select('#pathway-image');
+        var pathwayContainer = args.targetElement.append('div')
+        .attr('id', 'pathway-container')
+        .attr('style', 'width: ' + targetWidth + 'px; ' + targetHeight + 'px; ');
+
+        var loadingPng = pathwayContainer.append('img')
+        .attr('src', pngUrl)
+        .on('load', function() {
+
+          loadingPngDimensions = fitElementWithinContainer(targetWidth, targetHeight, this.width, this.height, 'xMidYMin');
+
+          pathwayContainer.attr('class', loadingPngDimensions.yAlign);
+
+          loadingPng.attr('class', loadingPngDimensions.xAlign)
+          .attr('width', loadingPngDimensions.width + 'px')
+          .attr('height', loadingPngDimensions.height + 'px');
+        });
+
+
+        /*
+        // Update…
+        var pd3 = docfragd3.selectAll("p")
+            .data([3, 4, 8, 15, 16, 23, 42])
+            .text(String);
+
+        // Enter…
+        pd3.enter().append("p")
+            .text(String);
+
+        // Exit…
+        pd3.exit().remove();
+
+        d3.select('document').append(docfragd3);
+        //*/
+
+        //var loadingImage = args.targetElement.select('#pathway-image');
+
+
+
+
+        ///*
+        var docfrag = document.createDocumentFragment();
+        var div = d3.select(docfrag).append('div');
+        var template = div.html(pathvisioNS['tmp/pathvisio-js.html']);
+        self.template = template;
+        svg = template.select('#pathway-image');
+        //args.targetElement.html(pathvisioNS['tmp/pathvisio-js.html']);
+        ////*/
+
         callback(null);
       },
       function(callback) {
-        console.log('3');
         loadCustomShapes(args, function() {
           callback(null);
         })
       },
       function(callback) {
-        console.log('4');
         if (!!args.cssUrl) {
           d3.text(args.cssUrl, 'text/css', function(data) {
             var defs = svg.select('defs');
@@ -118,9 +158,91 @@ pathvisio = function(){
       }
     ],
     function(err, results) {
-      console.log(err);
       callback(args.svg);
     });
+  }
+
+  function fitElementWithinContainer(targetWidth, targetHeight, elementWidth, elementHeight, preserveAspectRatio) {
+
+    // following svg standards.
+    // see http://www.w3.org/TR/SVG/coords.html#PreserveAspectRatioAttribute
+
+    var align, meetOrSlice, xScale, yScale, scale, elementWidthScaled, elementHeightScaled;
+    var results = {};
+
+    if (!preserveAspectRatio.align) {
+      align = preserveAspectRatio;
+    }
+    else {
+      align = preserveAspectRatio.align;
+    }
+
+    xScale = targetWidth/elementWidth;
+    yScale = targetHeight/elementHeight;
+
+    if (align === 'none') {
+      results.x = 0;
+      results.y = 0;
+
+      results.xAlign = 'x-mid';
+      results.yAlign = 'y-mid';
+      
+      results.width = xScale * elementWidth;
+      results.height = yScale * elementHeight;
+    }
+    else {
+      meetOrSlice = 'meet';
+      if (!!preserveAspectRatio.meetOrSlice) {
+        meetOrSlice = preserveAspectRatio.meetOrSlice;
+      }
+
+      if (meetOrSlice === 'meet') {
+        scale = xScale = yScale = Math.min(xScale, yScale);
+      }
+      else {
+        scale = xScale = yScale = Math.max(xScale, yScale);
+      }
+
+      results.width = xScale * elementWidth;
+      results.height = yScale * elementHeight;
+
+      xMapping = [
+        {'x-min': 0},
+        {'x-mid': targetWidth/2 - results.width/2},
+        {'x-max': targetWidth - results.width}
+      ];
+
+      yMapping = [
+        {'y-min': 0},
+        {'y-mid': targetHeight/2 - results.height/2},
+        {'y-max': targetHeight - results.height}
+      ];
+
+      results.xAlign = 'x-' + align.substr(1, 3).toLowerCase();
+      results.yAlign = 'y-' + align.substr(align.length - 3, 3).toLowerCase();
+
+      results.x = xMapping[results.xAlign];
+      results.y = yMapping[results.yAlign];
+
+    }
+
+    var browserPrefixArray = [
+      '-webkit-transform: ',
+      '-o-transform: ',
+      'transform: '
+    ];
+
+    var translationMatrixCssString = 'matrix(' + xScale + ', 0, 0, ' + yScale + ', ' + results.x + ', ' + results.y + '); ';
+    
+    results.translationMatrixCss = ' ';
+    browserPrefixArray.forEach(function(element) {
+      results.translationMatrixCss += (element + translationMatrixCssString);
+    });
+
+    //var translationMatrix = matrix(a, c, b, d, tx, ty);
+    //var translationMatrix = matrix(xScale, rotation, skew, yScale, x translation, y translation);
+
+    return results;
   }
 
 
@@ -130,25 +252,34 @@ pathvisio = function(){
 
     // Check for minimum required parameters
 
-    if (!args.gpml) { return console.warn('Error: No gpml URL specified as data source for pathvisio.js.'); }
+    if (!args.gpml) { return console.warn('Error: No gpml (URL or WikiPathways ID) specified as data source for pathvisio.js.'); }
 
-    if (!args.container) { return console.warn('Error: No container selector specified as target for pathvisio.js.'); }
-    args.containerElement = d3.select(args.container);
-    if (args.containerElement.length !== 1) { return console.warn('Error: Container selector must be matched by exactly one element.'); }
+    if (!args.target) { return console.warn('Error: No target selector specified as target for pathvisio.js.'); }
+    args.targetElement = d3.select(args.target);
+    if (args.targetElement.length !== 1) { return console.warn('Error: Container selector must be matched by exactly one element.'); }
+    self.targetElement = args.targetElement;
+
+    targetWidth = targetElement[0][0].getElementWidth();
+    targetHeight = targetElement[0][0].getElementHeight();
 
     var gpmlUrl;
     var gpmlRev = 0;
 
-    // test for whether args.gpml is a WikiPathways ID or a URL
+    // test for whether args.gpml is a WikiPathways ID or a URL. 
+    // TODO This test cannot currently handle a webservice that delivers gpml if
+    // the request url does not include the string 'gpml' or 'xml' in it.
 
     if (args.gpml.indexOf('.gpml') === -1 && args.gpml.indexOf('.xml') === -1) {
       if (!!args.gpmlRev) {
         gpmlRev = args.gpmlRev;
       }
       gpmlUrl = rootDirectoryUrl + 'remote-data-sources/php/wikipathways.php?data=gpml&id=' + args.gpml + '&rev=' + gpmlRev;
+
+      pngUrl = encodeURI('http://test3.wikipathways.org/wpi//wpi.php?action=downloadFile&type=png&pwTitle=Pathway:' + urlParamList.gpml + '&revision=' + urlParamList.gpmlRev);
     }
     else {
       gpmlUrl = args.gpml;
+      pngUrl = encodeURI('http://wikipathways.org//wpi/extensions/PathwayViewer/img/loading.gif');
       if (!Modernizr.svg) {
         return console.warn('Error: GPML data source specified is not a WikiPathways ID. WikiPathways does not have access to a visual representation of this GPML.');
       }
@@ -162,13 +293,11 @@ pathvisio = function(){
 
     async.parallel({
       partials: function(callback) {
-        console.log('1a');
         loadPartials(args, function() {
           callback(null);
         })
       },
       pathway: function(callback){
-        console.log('1b');
         getJson(gpmlUrl, function(json) {
           console.log('json');
           console.log(json);
@@ -177,7 +306,6 @@ pathvisio = function(){
       }
     },
     function(err, results){
-      console.log(err);
       self.results = results;
 
 ///*
@@ -197,18 +325,17 @@ pathvisio = function(){
           },
           function(callback) {
             svgPanZoom.init({
-              'root':args.container + ' svg',
+              'root':args.target + ' svg',
               'enableZoom': true 
             });
             callback(null);
           }
         ],
         function(err, results) {
-          console.log(err);
         });
       }
       else {
-        // TODO use container selector and seadragon for this
+        // TODO use target selector and seadragon for this
         window.setTimeout(function() {
           $('#view').prepend('<img id="pathvisio-java-png" src="http://test3.wikipathways.org/wpi//wpi.php?action=downloadFile&type=png&pwTitle=Pathway:' +  + urlParamList.gpml + '&revision=' + urlParamList.gpmlRev + '" />')
         }, 50);
