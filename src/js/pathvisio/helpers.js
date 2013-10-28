@@ -88,6 +88,8 @@ pathvisio.helpers = function(){
     return arr; // for testing purposes
   }
 
+  function isOdd(num) { return num % 2;}
+
   return{
     isUrl:isUrl,
     splitStringByNewLine:splitStringByNewLine,
@@ -95,7 +97,8 @@ pathvisio.helpers = function(){
     cloneNode:cloneNode,
     convertToArray:convertToArray,
     getWindowDimensions:getWindowDimensions,
-    moveArrayItem:moveArrayItem
+    moveArrayItem:moveArrayItem,
+    isOdd:isOdd
   };
 }();
 
