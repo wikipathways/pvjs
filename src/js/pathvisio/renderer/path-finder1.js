@@ -1,9 +1,9 @@
 pathvisio.renderer.pathFinder = function(){
 
-  /*  Linear algebra conventions call for specifying an element of a matrix as row #, column #.
+  /*  Linear algebra conventions call for specifying an element of a paddedMatrix as row #, column #.
    *  The rows and columns use one-based indexing. Example: Element.1,2 is the element in the first row and the second column.
    *  The code in PathFinding.js uses x to refer to column # and y to refer to row #.
-   *  JavaScript uses zero-based indexing for matrices. Example: matrix[0][1] refers to the element in the first row and the second column.
+   *  JavaScript uses zero-based indexing for matrices. Example: paddedMatrix[0][1] refers to the element in the first row and the second column.
    *  This code will follow the PathFinding.js conventions and use zero-based indexing,
    *  so be careful to note this may differ from linear algebra conventions.
    * */
@@ -15,7 +15,7 @@ pathvisio.renderer.pathFinder = function(){
     return results;
   }
 
-  function matrixLocationToXYCoordinates(column, row) {
+  function paddedMatrixLocationToXYCoordinates(column, row) {
     var results = {};
     results.x = column * pathvisioNS.grid.squareLength;
     results.y = row * pathvisioNS.grid.squareLength;
@@ -33,12 +33,18 @@ pathvisio.renderer.pathFinder = function(){
     var totalColumnCount = self.totalColumnCount = Math.ceil(pathway.metadata.boardWidth/pathvisioNS.grid.squareLength);
     var totalRowCount = self.totalRowCount = Math.ceil(pathway.metadata.boardHeight/pathvisioNS.grid.squareLength);
 
-    var paddedMatrix = self.paddedMatrix = [];
+    // paddedMatrix gives the most space around the nodes.
+    // closeMatrix gives no extra space around nodes.
+    // emptyMatrix is used as a starting point for creating custom matrices for two nodes.
+
+    var paddedMatrix = [];
+    var closeMatrix = [];
+    var emptyMatrix = [];
     pathvisioNS.grid.gridRenderingData = [];
 
     // remember zero-based indexing means we want to go from 0 to totalRowCount - 1
     // and 0 to totalColumnCount - 1
-    // last element is matrix[totalRowCount - 1][totalColumnCount - 1]
+    // last element is paddedMatrix[totalRowCount - 1][totalColumnCount - 1]
 
     for(var currentRow = 0; currentRow < totalRowCount; currentRow++) {
       paddedMatrix[currentRow] = [];
@@ -46,38 +52,36 @@ pathvisio.renderer.pathFinder = function(){
         paddedMatrix[currentRow][currentColumn] = 0;
       }
     }
-    
-    var tightMatrix, emptyMatrix;
-    emptyMatrix = tightMatrix = paddedMatrix;
+    emptyMatrix = closeMatrix = paddedMatrix;
 
-    // mark off no-go non-walkable regions for path finder (regions under nodes)
+    // mark off no-go (non-walkable) regions for path finder (regions under nodes)
 
     var upperLeftCorner, lowerRightCorner, rowStart, rowEnd, columnStart, columnEnd;
     nodes[0][0].forEach(function(node) {
       upperLeftCorner = xYCoordinatesToMatrixLocation(node.x, node.y, pathvisioNS.grid.squareLength);
       lowerRightCorner = xYCoordinatesToMatrixLocation(node.x + node.width, node.y + node.height, pathvisioNS.grid.squareLength);
 
-      columnStartTight = self.columnStartTight = Math.max((upperLeftCorner.column), 0);
-      columnEndTight = self.columnEndTight = Math.min((lowerRightCorner.column), totalColumnCount - 1);
-      rowStartTight = self.rowStartTight = Math.max((upperLeftCorner.row), 0);
-      rowEndTight = self.rowEndTight = Math.min((lowerRightCorner.row), totalRowCount - 1);
+      columnStartClose = self.columnStartClose = Math.max((upperLeftCorner.column), 0);
+      columnEndClose = self.columnEndClose = Math.min((lowerRightCorner.column), totalColumnCount - 1);
+      rowStartClose = self.rowStartClose = Math.max((upperLeftCorner.row), 0);
+      rowEndClose = self.rowEndClose = Math.min((lowerRightCorner.row), totalRowCount - 1);
 
-      for(var currentRow=rowStartTight; currentRow<rowEndTight + 1; currentRow++) {
-        for(var currentColumn=columnStartTight; currentColumn<columnEndTight + 1; currentColumn++) {
-          tightMatrix[currentRow][currentColumn] = 1;
+      columnStartPadded = self.columnStartPadded = Math.max((upperLeftCorner.column - 5), 0);
+      columnEndPadded = self.columnEndPadded = Math.min((lowerRightCorner.column + 5), totalColumnCount - 1);
+      rowStartPadded = self.rowStartPadded = Math.max((upperLeftCorner.row - 5), 0);
+      rowEndPadded = self.rowEndPadded = Math.min((lowerRightCorner.row + 5), totalRowCount - 1);
+
+      for(var currentRow=rowStartPadded; currentRow < rowEndPadded + 1; currentRow++) {
+        for(var currentColumnClose = columnStartClose; currentColumnClose < columnEndClose + 1; currentColumnClose++) {
+          closeMatrix[currentRow][currentColumnClose] = 1;
         }
       }
 
-      columnStart = self.columnStart = Math.max((upperLeftCorner.column - 5), 0);
-      columnEnd = self.columnEnd = Math.min((lowerRightCorner.column + 5), totalColumnCount - 1);
-      rowStart = self.rowStart = Math.max((upperLeftCorner.row - 5), 0);
-      rowEnd = self.rowEnd = Math.min((lowerRightCorner.row + 5), totalRowCount - 1);
-
-      for(var currentRow=rowStart; currentRow<rowEnd + 1; currentRow++) {
-        for(var currentColumn=columnStart; currentColumn<columnEnd + 1; currentColumn++) {
+      for(var currentRow=rowStartPadded; currentRow < rowEndPadded + 1; currentRow++) {
+        for(var currentColumnPadded = columnStartPadded; currentColumnPadded < columnEndPadded + 1; currentColumnPadded++) {
           paddedMatrix[currentRow][currentColumn] = 1;
-          pathvisioNS.grid.gridRenderingData[currentRow * (totalColumnCount - 1) + currentColumn] = {
-            'x': currentColumn * pathvisioNS.grid.squareLength,
+          pathvisioNS.grid.gridRenderingData[currentRow * (totalColumnCount - 1) + currentColumnPadded] = {
+            'x': currentColumnPadded * pathvisioNS.grid.squareLength,
             'y': currentRow * pathvisioNS.grid.squareLength,
             'fill': 'blue'
           };
@@ -114,16 +118,16 @@ pathvisio.renderer.pathFinder = function(){
       }
     });
 
-    pathvisioNS.grid.paddedGrid = new PF.Grid(totalColumnCount, totalRowCount, paddedMatrix);
-    pathvisioNS.grid.tightGrid = new PF.Grid(totalColumnCount, totalRowCount, tightMatrix);
-    pathvisioNS.grid.emptyGrid = new PF.Grid(totalColumnCount, totalRowCount, emptyMatrix);
+    self.paddedMatrix = paddedMatrix;
+    pathvisioNS.grid.pathFinderGrid = new PF.Grid(totalColumnCount, totalRowCount, paddedMatrix);
+    pathvisioNS.grid.closeGrid = new PF.Grid(totalColumnCount, totalRowCount, closeMatrix);
     pathvisioNS.grid.gridRenderingData = pathvisioNS.grid.gridRenderingData.filter(function(element) {return !!element});
 
     callback();
   }
 
-  function getPath(pathway, edge, callbackOutside) {
-    var workingGrid = self.workingGrid = pathvisioNS.grid.paddedGrid.clone();
+  function getPath(pathway, edge) {
+    var workingGrid = self.workingGrid = pathvisioNS.grid.pathFinderGrid.clone();
     var finder = self.finder = new PF.BiBreadthFirstFinder({
       allowDiagonal: false,
       dontCrossCorners: true
@@ -133,59 +137,17 @@ pathvisio.renderer.pathFinder = function(){
     var pointEnd = points[points.length - 1];
     startLocation = self.startLocation = xYCoordinatesToMatrixLocation(pointStart.x, pointStart.y);
     endLocation = self.endLocation = xYCoordinatesToMatrixLocation(pointEnd.x, pointEnd.y);
-    var pathData;
-    async.series([
-      function(callback){
-        runPathFinder(pathway, edge, workingGrid, finder, points, pointStart, pointEnd, startLocation, endLocation, function(data) {
-          pathData = data;
-          console.log('padded');
-          console.log(pathData);
-          console.log(pathData.length);
-          callback(null);
-        });
-      },
-      function(callback){
-        if (pathData.length < 3) {
-          workingGrid = self.workingGrid = pathvisioNS.grid.tightGrid.clone();
-          runPathFinder(pathway, edge, workingGrid, finder, points, pointStart, pointEnd, startLocation, endLocation, function(data) {
-            pathData = data;
-            console.log('tight');
-            console.log(pathData);
-            console.log(pathData.length);
-            callback(null);
-          });
-        }
-      },
-      function(callback){
-        if (pathData.length < 3) {
-          workingGrid = self.workingGrid = pathvisioNS.grid.emptyGrid.clone();
-          runPathFinder(pathway, edge, workingGrid, finder, points, pointStart, pointEnd, startLocation, endLocation, function(data) {
-            pathData = data;
-            console.log('empty');
-            console.log(pathData);
-            console.log(pathData.length);
-            pathData.push({'x': pointEnd.x, 'y': pointEnd.y});
-            callback(null);
-          });
-        }
-      }
-    ],
-    function(err) {
-      console.log('returned');
-      console.log(pathData);
-      console.log(pathData.length);
-      callbackOutside(pathData);
-      //return pathData;
-    });
+    var pathData = self.pathData = getPathAttempt(pathway, edge, workingGrid, finder, points, pointStart, pointEnd, startLocation, endLocation);
+    console.log('pathData');
+    console.log(pathData);
+    return pathData;
   }
 
-  function runPathFinder(pathway, edge, workingGrid, finder, points, pointStart, pointEnd, startLocation, endLocation, callback) {
+  function getPathAttempt(pathway, edge, workingGrid, finder, points, pointStart, pointEnd, startLocation, endLocation) {
     var blockyPath = self.blockyPath = finder.findPath(startLocation.column, startLocation.row, endLocation.column, endLocation.row, workingGrid);
-    console.log('blockyPath');
-    console.log(blockyPath);
 
     /*
-       var newWorkingGrid = pathvisioNS.grid.paddedGrid.clone();
+       var newWorkingGrid = pathvisioNS.grid.pathFinderGrid.clone();
        compressedPath = PF.Util.smoothenPath(newWorkingGrid, blockyPath);
     //*/
 
@@ -205,11 +167,10 @@ pathvisio.renderer.pathFinder = function(){
       } while (index < blockyPath.length - 2);
     }
     else {
-      console.log('blockyPath too short to compress.');
+      console.log('blockyPath too short');
     }
 
     var fullXYPath = self.fullXYPath = [];
-
     compressedPath.forEach(function(element, index) {
       fullXYPath.push({
         'x': compressedPath[index][0] * pathvisioNS.grid.squareLength,
@@ -217,11 +178,8 @@ pathvisio.renderer.pathFinder = function(){
       });
     });
 
-
-    if (compressedPath.length > 2) {
-      fullXYPath.unshift({'x': pointStart.x, 'y': pointStart.y});
-      fullXYPath.push({'x': pointEnd.x, 'y': pointEnd.y});
-    }
+    fullXYPath.unshift({'x': pointStart.x, 'y': pointStart.y});
+    fullXYPath.push({'x': pointEnd.x, 'y': pointEnd.y});
 
     var smootherPath = self.smootherPath = [];
     index = 0;
@@ -234,11 +192,11 @@ pathvisio.renderer.pathFinder = function(){
       } while (index < fullXYPath.length - 2);
     }
     else {
-      console.log('fullXYPath too short to smooth.');
+      console.log('fullXYPath too short');
     }
-
     smootherPath.unshift({'x': pointStart.x, 'y': pointStart.y});
     smootherPath.push({'x': pointEnd.x, 'y': pointEnd.y});
+
 
 
     /*
@@ -274,14 +232,15 @@ pathvisio.renderer.pathFinder = function(){
 
 
 
-    callback(smootherPath);
-    //return smootherPath;
+
+    return smootherPath;
   }
 
   return {
     generateGridData:generateGridData,
     getPath:getPath,
     xYCoordinatesToMatrixLocation:xYCoordinatesToMatrixLocation,
-    matrixLocationToXYCoordinates:matrixLocationToXYCoordinates
+    paddedMatrixLocationToXYCoordinates:paddedMatrixLocationToXYCoordinates
   };
 }();
+

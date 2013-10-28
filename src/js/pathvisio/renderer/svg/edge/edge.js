@@ -58,24 +58,28 @@ pathvisio.renderer.svg.edge = function(){
       // Somehow, d (the d3 selection data) gets redefined after this attr is defined.
 
       .attr("d", function () {
-        pathData = pathvisio.renderer.svg.edge.pathData.get(svg, pathway, edge);
-        if (edge.hasOwnProperty('strokeStyle')) {
-          if (edge.strokeStyle === 'double') {
+        pathData = pathvisio.renderer.svg.edge.pathData.get(svg, pathway, edge, function(data) {
+          pathData = data;
+          if (edge.hasOwnProperty('strokeStyle')) {
+            if (edge.strokeStyle === 'double') {
 
-            // setting stroke-width equal to its specified line value is
-            // what PathVisio (Java) does, but the white line (overlaying the
-            // thick line to create a "double line") is hard to see at 1px.
+              // setting stroke-width equal to its specified line value is
+              // what PathVisio (Java) does, but the white line (overlaying the
+              // thick line to create a "double line") is hard to see at 1px.
 
-            svg.select('#viewport').append("path")
-            .attr("class", edge.edgeType + "-double")
-            .attr("d", pathData)
-            .attr("class", "stroke-color-equals-default-fill-color")
-            .attr("style", "stroke-width:" + edge.strokeWidth + '; ')
-            .attr("marker-start", 'url(#' + pathvisio.renderer.svg.edge.marker.render(svg, edge.markerStart, 'start', edge.stroke) + ')')
-            .attr("marker-end", 'url(#' + pathvisio.renderer.svg.edge.marker.render(svg, edge.markerEnd, 'end', edge.stroke) + ')');
+              svg.select('#viewport').append("path")
+              .attr("class", edge.edgeType + "-double")
+              .attr("d", pathData)
+              .attr("class", "stroke-color-equals-default-fill-color")
+              .attr("style", "stroke-width:" + edge.strokeWidth + '; ')
+              .attr("marker-start", 'url(#' + pathvisio.renderer.svg.edge.marker.render(svg, edge.markerStart, 'start', edge.stroke) + ')')
+              .attr("marker-end", 'url(#' + pathvisio.renderer.svg.edge.marker.render(svg, edge.markerEnd, 'end', edge.stroke) + ')');
+            }
           }
-        }
-        return pathData;
+          console.log('pathData used');
+          console.log(pathData);
+          return pathData;
+        });
       });
   }
 
