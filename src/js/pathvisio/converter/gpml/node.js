@@ -17,7 +17,7 @@ pathvisio.converter.gpml.node = function(){
         });
       }
 
-      // Be warned that support for zIndex in SVG is spotty (non-existent?). You need to rely on ordering in the DOM.
+      // Be warned that support for zIndex in SVG is spotty (non-existent? TODO check css cross-browser). You should rely on ordering in the DOM.
 
       var zIndex = gpmlNode.select('Graphics').attr('ZOrder');
       if (!!zIndex) {
@@ -31,18 +31,26 @@ pathvisio.converter.gpml.node = function(){
       var centerY = parseFloat(gpmlNode.select('Graphics').attr('CenterY'));
       jsonNode.height = parseFloat(gpmlNode.select('Graphics').attr('Height'));
       jsonNode.y = centerY - jsonNode.height/2;
-/*
 
-      if (element.graphics.hasOwnProperty("color")) {
-        var color = new RGBColor(element.graphics.color);
+      jsonNode.id = gpmlNode.attr('GraphId');
+
+      var jsonAnchorsFromThisNode = pathvisio.converter.gpml.anchor.getAllFromNode(jsonNode);
+
+      var color;
+      var colorValue = gpmlNode.select('Graphics').attr('Color');
+      if (!!colorValue) {
+        color = new RGBColor(colorValue);
         if (color.ok) {
-          element.stroke = color.toHex();
+          jsonNode.stroke = color.toHex();
         }
         else {
           console.warn('Invalid Color encountered. Setting Color to black.');
-          element.fill = "#000000";
+          jsonNode.stroke = "#000000";
         }
       }
+
+/*
+
 
       if ((!(element.graphics.hasOwnProperty("shapeType")))) {
         if (element.elementType === 'data-node') {
@@ -204,7 +212,7 @@ pathvisio.converter.gpml.node = function(){
       delete element.graphics;
       //*/
 
-      callback(jsonNode);
+      callback(jsonNode, jsonAnchorsFromThisNode);
     }
     catch (e) {
       console.log("Error converting labelable element to json: " + e.message);

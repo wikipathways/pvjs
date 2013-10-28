@@ -17,11 +17,13 @@ pathvisio.converter.gpml.dataNode = function() {
         jsonDataNode.xRef.id = xRef.attr('ID');
       }
 
-      pathvisio.converter.gpml.node.toRenderableJson(gpmlDataNode, jsonDataNode, function(jsonNode) {
+      var jsonAnchorsFromThisDataNode;
+      pathvisio.converter.gpml.node.toRenderableJson(gpmlDataNode, jsonDataNode, function(jsonNode, jsonAnchorsFromThisNode) {
         jsonDataNode = jsonNode;
+        jsonAnchorsFromThisDataNode = jsonAnchorsFromThisNode;
       });
 
-      callback(jsonDataNode);
+      callback(jsonDataNode, jsonAnchorsFromThisDataNode);
 
     }
     catch (e) {
