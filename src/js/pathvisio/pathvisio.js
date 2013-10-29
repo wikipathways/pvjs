@@ -93,6 +93,7 @@ pathvisio = function(){
         .attr('style', 'width: ' + targetWidth + 'px; ' + targetHeight + 'px; ');
 
         var loadingPng = pathwayContainer.append('img')
+        .attr('id', 'pathway-png')
         .attr('src', pngUrl)
         .on('load', function() {
 
@@ -130,7 +131,7 @@ pathvisio = function(){
         ///*
         //var docfrag = document.createDocumentFragment();
         //var div = d3.select(docfrag).append('div');
-        var div = d3.select('body').append('div');
+        var div = d3.select('#pathway-container').append('div');
         //var div = document.createElement('div');
         var template = div.html(pathvisioNS['tmp/pathvisio-js.html']);
         self.template = template;
@@ -326,8 +327,9 @@ pathvisio = function(){
             })
           },
           function(callback) {
+            d3.select('#pathway-png').remove();
             svgPanZoom.init({
-              'root':args.target + ' svg',
+              'root': 'svg',
               'enableZoom': true 
             });
             callback(null);
