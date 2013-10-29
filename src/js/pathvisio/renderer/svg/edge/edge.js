@@ -10,6 +10,8 @@ pathvisio.renderer.svg.edge = function(){
       var pathData = null;
         pathData = pathvisio.renderer.svg.edge.pathData.get(svg, pathway, edge, function(data) {
           pathData = data;
+          console.log('pathData');
+          console.log(pathData);
 
       var edgeElement = svg.select('#viewport').append("path")
       .attr("id", edge.edgeType + '-' + edge.id )
