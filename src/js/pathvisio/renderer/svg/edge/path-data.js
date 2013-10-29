@@ -160,11 +160,11 @@ pathvisio.renderer.svg.edge.pathData = function(){
 
 
         async.series([
-          function(callback){
+          function(callbackInside){
             if (edge.points.length === 2) {
               pathvisio.renderer.pathFinder.getPath(pathway, edge, function(data) {
                 pathCoordinatesArray = data;
-                callback(null);
+                callbackInside(null);
               });
             }
             else {
@@ -196,7 +196,7 @@ pathvisio.renderer.svg.edge.pathData = function(){
                 'x': pointEnd.x,
                 'y': pointEnd.y
               });
-              callback(null);
+              callbackInside(null);
             }
           }
         ],
