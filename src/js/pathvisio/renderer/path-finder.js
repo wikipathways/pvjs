@@ -155,6 +155,9 @@ pathvisio.renderer.pathFinder = function(){
             callback(null);
           });
         }
+        else {
+          callback(null);
+        }
       },
       function(callback){
         if (pathData.length < 3) {
@@ -167,6 +170,9 @@ pathvisio.renderer.pathFinder = function(){
             pathData.push({'x': pointEnd.x, 'y': pointEnd.y});
             callback(null);
           });
+        }
+        else {
+          callback(null);
         }
       }
     ],
