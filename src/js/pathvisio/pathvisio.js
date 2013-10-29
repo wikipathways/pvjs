@@ -288,7 +288,7 @@ pathvisio = function(){
       if (!!args.gpmlRev) {
         gpmlRev = args.gpmlRev;
       }
-      gpmlUrl = rootDirectoryUrl + 'remote-data-sources/php/wikipathways.php?data=gpml&id=' + args.gpml + '&rev=' + gpmlRev;
+      gpmlUrl = 'http://pointer.ucsf.edu/d3/r/gpml.php?id=' + args.gpml + '&rev=' + gpmlRev;
 
       pngUrl = encodeURI('http://test3.wikipathways.org/wpi//wpi.php?action=downloadFile&type=png&pwTitle=Pathway:' + urlParamList.gpml + '&revision=' + urlParamList.gpmlRev);
     }
