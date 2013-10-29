@@ -128,8 +128,10 @@ pathvisio = function(){
 
 
         ///*
-        var docfrag = document.createDocumentFragment();
-        var div = d3.select(docfrag).append('div');
+        //var docfrag = document.createDocumentFragment();
+        //var div = d3.select(docfrag).append('div');
+        var div = d3.select('body').append('div');
+        //var div = document.createElement('div');
         var template = div.html(pathvisioNS['tmp/pathvisio-js.html']);
         self.template = template;
         svg = template.select('#pathway-image');
