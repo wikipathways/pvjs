@@ -63,7 +63,7 @@ SVG-Edit (latest release)
 	[MDN on SVG](https://developer.mozilla.org/en-US/docs/Web/SVG)
 	-->
 
-	<svg id="pathway-image"
+	<svg id="pathway-svg"
 	version="1.1"
 	baseProfile="full"
 	xmlns="http://www.w3.org/2000/svg"
