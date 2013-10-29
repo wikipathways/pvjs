@@ -172,7 +172,7 @@
         }
       },
       function(err, results) {
-        results.html.querySelector('#pathway-container').appendChild(results.svg.documentElement)
+        results.html.querySelector('#y-alignment-container').appendChild(results.svg.documentElement)
         var oSerializer = new XMLSerializer();
         pathvisioNS['tmp/pathvisio-js.html'] = oSerializer.serializeToString(results.html);
         callback();
