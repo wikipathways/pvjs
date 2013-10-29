@@ -86,18 +86,32 @@ pathvisio = function(){
   }
 
   function loadPartials(args, callback) {
+    var pathvisioJsContainer, pathwayContainer, yAlignmentContainer;
     async.series([
-      function(callback){
-        var pathwayContainer = args.targetElement.append('div')
-        .attr('id', 'pathway-container')
-        .attr('style', 'width: ' + targetWidth + 'px; ' + targetHeight + 'px; ');
+      function(callback) {
 
-        var loadingPng = pathwayContainer.append('img')
+        args.targetElement.html(pathvisioNS['tmp/pathvisio-js.html']);
+        pathvisioJsContainer = args.targetElement.select('#pathvisio-js-container')
+        .attr('style', 'width: ' + targetWidth + '; height: ' + targetHeight + '; position: relative; ');
+
+        pathwayContainer = args.targetElement.select('#pathway-container')
+        .attr('style', 'width: ' + (targetWidth-100) + '; height: ' + targetHeight + '; ');
+
+        yAlignmentContainer = pathwayContainer.select('#y-alignment-container')
+        .attr('style', 'width: ' + (targetWidth-100) + '; height: ' + targetHeight + '; ');
+
+        svg = pathvisioJsContainer.select('#pathway-svg')
+        .attr('style', 'visibility: hidden; ');
+
+        callback();
+      },
+      function(callback){
+        var loadingPng = yAlignmentContainer.append('img')
         .attr('id', 'pathway-png')
         .attr('src', pngUrl)
         .on('load', function() {
 
-          loadingPngDimensions = fitElementWithinContainer(targetWidth, targetHeight, this.width, this.height, 'xMidYMin');
+          loadingPngDimensions = fitElementWithinContainer(targetWidth-100, targetHeight, this.width, this.height, 'xMidYMin');
 
           pathwayContainer.attr('class', loadingPngDimensions.yAlign);
 
@@ -105,6 +119,7 @@ pathvisio = function(){
           .attr('width', loadingPngDimensions.width + 'px')
           .attr('height', loadingPngDimensions.height + 'px');
         });
+
 
 
         /*
@@ -131,11 +146,7 @@ pathvisio = function(){
         ///*
         //var docfrag = document.createDocumentFragment();
         //var div = d3.select(docfrag).append('div');
-        var div = d3.select('#pathway-container').append('div');
         //var div = document.createElement('div');
-        var template = div.html(pathvisioNS['tmp/pathvisio-js.html']);
-        self.template = template;
-        svg = template.select('#pathway-image');
         //args.targetElement.html(pathvisioNS['tmp/pathvisio-js.html']);
         ////*/
 
@@ -180,7 +191,7 @@ pathvisio = function(){
       align = preserveAspectRatio.align;
     }
 
-    xScale = targetWidth/elementWidth;
+    xScale = scale = targetWidth/elementWidth;
     yScale = targetHeight/elementHeight;
 
     if (align === 'none') {
@@ -226,6 +237,7 @@ pathvisio = function(){
 
       results.x = xMapping[results.xAlign];
       results.y = yMapping[results.yAlign];
+      results.scale = scale;
 
     }
 
@@ -327,11 +339,52 @@ pathvisio = function(){
             })
           },
           function(callback) {
+            var svgDimensions = fitElementWithinContainer(targetWidth-100, targetHeight, results.pathway.metadata.boardWidth, results.pathway.metadata.boardHeight, 'xMidYMin');
+            self.svgDimensions = svgDimensions;
             d3.select('#pathway-png').remove();
+
+            svg.attr('style', 'visibility: visible; ');
+
+
+function setCTM(element, matrix) {
+	var s = "matrix(" + matrix.a + "," + matrix.b + "," + matrix.c + "," + matrix.d + "," + matrix.e + "," + matrix.f + ")";
+console.log(s);
+
+	element.setAttribute("transform", s);
+}
+var svgElement = document.querySelector('svg');
+var m1 = svgElement.getCTM();
+var p = {'x': m1.e, 'y': m1.f};
+var m2 = svgElement.createSVGMatrix().translate(p.x, p.y).scale(svgDimensions.scale).translate(-p.x, -p.y);
+var viewport = svgElement.querySelector('#viewport');
+setCTM(viewport, m2);
+
+/*
+ * function setCTM(element, matrix) {
+	var s = "matrix(" + matrix.a + "," + matrix.b + "," + matrix.c + "," + matrix.d + "," + matrix.e + "," + matrix.f + ")";
+console.log(s);
+
+	element.setAttribute("transform", s);
+}
+var svgElement = document.querySelector('svg');
+var m1 = svgElement.getCTM();
+var xScale1 = m1.a;
+var yScale1 = m1.d;
+var zoomFactor = 0.2;
+var p = {'x': m1.e, 'y': m1.f};
+var z = xScale1 * (1+zoomFactor);
+var m2 = svgElement.createSVGMatrix().translate(p.x, p.y).scale(z).translate(-p.x, -p.y);
+var viewport = svgElement.querySelector('#viewport');
+setCTM(viewport, m2);
+//*/
+
+
+            /*
             svgPanZoom.init({
               'root': 'svg',
               'enableZoom': true 
             });
+            //*/
             callback(null);
           }
         ],
