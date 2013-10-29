@@ -6,8 +6,8 @@ JavaScript viewer and editor for biological pathways. All code is in beta stage 
 Demos
 =====
 
-[JSBin](http://jsbin.com/iJUTEjU/latest)
-[Widget example on JSFiddle](http://jsfiddle.net/ariutta/RzeKd/)
+* [JSBin](http://jsbin.com/iJUTEjU/latest)
+* [Widget example on JSFiddle](http://jsfiddle.net/ariutta/RzeKd/)
 
 License
 =======
