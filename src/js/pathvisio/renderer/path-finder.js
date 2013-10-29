@@ -92,12 +92,12 @@ pathvisio.renderer.pathFinder = function(){
     var column1, column2, row1, row2, anchorPosition;
     anchors.forEach(function(anchor) {
       anchorPosition = xYCoordinatesToMatrixLocation(anchor.x, anchor.y);
-      column1 = (anchorPosition.column);
+      column1 = Math.max(Math.min((anchorPosition.column - 5 * anchor.dx), totalColumnCount - 1), 0);
       column2 = Math.max(Math.min((anchorPosition.column + 5 * anchor.dx), totalColumnCount - 1), 0);
       columnStart = Math.min(column1, column2);
       columnEnd = Math.max(column1, column2);
 
-      row1 = (anchorPosition.row);
+      row1 = Math.max(Math.min((anchorPosition.row - 5 * anchor.dy), totalRowCount - 1), 0);
       row2 = Math.max(Math.min((anchorPosition.row + 5 * anchor.dy), totalRowCount - 1), 0);
       rowStart = Math.min(row1, row2);
       rowEnd = Math.max(row1, row2);
@@ -180,24 +180,32 @@ pathvisio.renderer.pathFinder = function(){
   }
 
   function runPathFinder(pathway, edge, workingGrid, finder, points, pointStart, pointEnd, startLocation, endLocation, callback) {
+
+    /* 
+     * Get blockyPath
+     */
+
     var blockyPath = self.blockyPath = finder.findPath(startLocation.column, startLocation.row, endLocation.column, endLocation.row, workingGrid);
     console.log('blockyPath');
     console.log(blockyPath);
 
     /*
        var newWorkingGrid = pathvisioNS.grid.paddedGrid.clone();
-       compressedPath = PF.Util.smoothenPath(newWorkingGrid, blockyPath);
+       compressedMidpoints = PF.Util.smoothenPath(newWorkingGrid, blockyPath);
     //*/
 
+    /* 
+     * Get compressedMidpoints
+     */
     // compress path data and extract points
 
-    var compressedPath = self.compressedPath = [];
+    var compressedMidpoints = self.compressedMidpoints = [];
     var index = 0;
-    if (blockyPath.length > 2) {
+    if (blockyPath.length > 3) {
       do {
         index += 1;
         if ((blockyPath[index - 1][0] - blockyPath[index + 1][0]) && (blockyPath[index - 1][1] !== blockyPath[index + 1][1])) {
-          compressedPath.push([
+          compressedMidpoints.push([
             blockyPath[index][0],
             blockyPath[index][1]
           ]);
@@ -208,20 +216,25 @@ pathvisio.renderer.pathFinder = function(){
       console.log('blockyPath too short to compress.');
     }
 
+    /* 
+     * Get fullXYPath
+     */
+
     var fullXYPath = self.fullXYPath = [];
 
-    compressedPath.forEach(function(element, index) {
+    compressedMidpoints.forEach(function(element, index) {
       fullXYPath.push({
-        'x': compressedPath[index][0] * pathvisioNS.grid.squareLength,
-        'y': compressedPath[index][1] * pathvisioNS.grid.squareLength
+        'x': compressedMidpoints[index][0] * pathvisioNS.grid.squareLength,
+        'y': compressedMidpoints[index][1] * pathvisioNS.grid.squareLength
       });
     });
 
+    fullXYPath.unshift({'x': pointStart.x, 'y': pointStart.y});
+    fullXYPath.push({'x': pointEnd.x, 'y': pointEnd.y});
 
-    if (compressedPath.length > 2) {
-      fullXYPath.unshift({'x': pointStart.x, 'y': pointStart.y});
-      fullXYPath.push({'x': pointEnd.x, 'y': pointEnd.y});
-    }
+    /* 
+     * Get smootherPath
+     */
 
     var smootherPath = self.smootherPath = [];
     index = 0;
