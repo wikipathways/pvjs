@@ -33,8 +33,8 @@
 .ui-cytoscape-panzoom-pan-button {
 	position: absolute;
 	z-index: 1;
-	height: 160px;
-	width: 160px;
+	height: 16px;
+	width: 16px;
 }
 
 .ui-cytoscape-panzoom-reset {
@@ -46,7 +46,7 @@
 }
 
 .ui-cytoscape-panzoom-zoom-out {
-	top: 197px;
+	top: 300px;
 }
 
 .ui-cytoscape-panzoom-pan-up {
