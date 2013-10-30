@@ -172,7 +172,7 @@
         }
       },
       function(err, results) {
-        results.html.querySelector('#y-alignment-container').appendChild(results.svg.documentElement)
+        results.html.querySelector('#pathway-container').appendChild(results.svg.documentElement)
         var oSerializer = new XMLSerializer();
         pathvisioNS['tmp/pathvisio-js.html'] = oSerializer.serializeToString(results.html);
         callback();
@@ -331,7 +331,7 @@
             target: '#view',
             width: 1000,
             height: 500,
-            zoom: 'fit',
+            preserveAspectRatio: 'xMidYMid',
             gpml: urlParamList.gpml,
             //gpmlRev: urlParamList.gpmlRev,
             cssUrl: srcDirectoryUrl + 'css/pathway-template.css',
@@ -411,6 +411,6 @@
     <input type="submit" value="Submit" />
     </form>
   </div> 
-  <div id="view" style="width: 500px; height: 500px">
+  <div id="view" style="width: 500px; height: 500px; border:1px solid black; ">
   </div>
 </body>

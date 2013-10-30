@@ -3,7 +3,7 @@ pathvisio = function(){
   // first pass GPML (pathway XML) through an automatic XML to JSON converter, 
   // then make specific modifications to make the JSON well-formatted, then return the JSON
   
-  var svg, pngUrl, pathway, shapesAvailable, targetWidth, targetHeight;
+  var svg, pngUrl, pathway, shapesAvailable, targetWidth, targetHeight, args;
   self.svg = svg;
 
   // get GPML (pathway XML) from WikiPathways (by ID) or a URL (could be a local file or any other accessible GPML source),
@@ -48,131 +48,6 @@ pathvisio = function(){
       .attr('y', -2.5)
       .attr('width', width + 5)
       .attr('height', height + 5);
-    });
-  }
-
-  function appendCustomShape(customShape, callback) {
-    img = document.createElement('img');
-    img.src = customShape.url;
-    img.onload = function() {
-      def = svg.select('defs').select('#' + customShape.id);
-      if (!def[0][0]) {
-        def = svg.select('defs').append('symbol').attr('id', customShape.id)
-        .attr('viewBox', '0 0 ' + this.width + ' ' + this.height)
-        .attr('preserveAspectRatio', 'none');
-      }
-      else {
-        def.selectAll('*').remove();
-      }
-      dimensions = def.attr('viewBox').split(' ');
-      def.append('image').attr('xlink:xlink:href', customShape.url).attr('x', dimensions[0]).attr('y', dimensions[1]).attr('width', dimensions[2]).attr('height', dimensions[3]);
-      callback(null);
-    }
-  }
-
-  function loadCustomShapes(args, callback) {
-    var image = null;
-    var img = null;
-    var def = null;
-    var dimensions = null;
-    var dimensionSet = [];
-
-    if (!!args.customShapes) {
-      async.each(args.customShapes, appendCustomShape, function(err){
-          // if any of the saves produced an error, err would equal that error
-        callback(null);
-      });
-    }
-  }
-
-  function loadPartials(args, callback) {
-    var pathvisioJsContainer, pathwayContainer, yAlignmentContainer;
-    async.series([
-      function(callback) {
-
-        args.targetElement.html(pathvisioNS['tmp/pathvisio-js.html']);
-        pathvisioJsContainer = args.targetElement.select('#pathvisio-js-container')
-        .attr('style', 'width: ' + targetWidth + '; height: ' + targetHeight + '; position: relative; ');
-
-        pathwayContainer = args.targetElement.select('#pathway-container')
-        .attr('style', 'width: ' + (targetWidth-100) + '; height: ' + targetHeight + '; ');
-
-        yAlignmentContainer = pathwayContainer.select('#y-alignment-container')
-        .attr('style', 'width: ' + (targetWidth-100) + '; height: ' + targetHeight + '; ');
-
-        svg = pathvisioJsContainer.select('#pathway-svg')
-        .attr('style', 'visibility: hidden; ');
-
-        callback();
-      },
-      function(callback){
-        var loadingPng = yAlignmentContainer.append('img')
-        .attr('id', 'pathway-png')
-        .attr('src', pngUrl)
-        .on('load', function() {
-
-          loadingPngDimensions = fitElementWithinContainer(targetWidth-100, targetHeight, this.width, this.height, 'xMidYMin');
-
-          pathwayContainer.attr('class', loadingPngDimensions.yAlign);
-
-          loadingPng.attr('class', loadingPngDimensions.xAlign)
-          .attr('width', loadingPngDimensions.width + 'px')
-          .attr('height', loadingPngDimensions.height + 'px');
-        });
-
-
-
-        /*
-        // Update…
-        var pd3 = docfragd3.selectAll("p")
-            .data([3, 4, 8, 15, 16, 23, 42])
-            .text(String);
-
-        // Enter…
-        pd3.enter().append("p")
-            .text(String);
-
-        // Exit…
-        pd3.exit().remove();
-
-        d3.select('document').append(docfragd3);
-        //*/
-
-        //var loadingImage = args.targetElement.select('#pathway-image');
-
-
-
-
-        ///*
-        //var docfrag = document.createDocumentFragment();
-        //var div = d3.select(docfrag).append('div');
-        //var div = document.createElement('div');
-        //args.targetElement.html(pathvisioNS['tmp/pathvisio-js.html']);
-        ////*/
-
-        callback(null);
-      },
-      function(callback) {
-        loadCustomShapes(args, function() {
-          callback(null);
-        })
-      },
-      function(callback) {
-        if (!!args.cssUrl) {
-          d3.text(args.cssUrl, 'text/css', function(data) {
-            var defs = svg.select('defs');
-            var style = defs.append('style').attr('type', "text/css");
-            style.text(data);
-            callback(null);
-          })
-        }
-        else {
-          callback(null);
-        }
-      }
-    ],
-    function(err, results) {
-      callback(args.svg);
     });
   }
 
@@ -260,6 +135,129 @@ pathvisio = function(){
     return results;
   }
 
+  function appendCustomShape(customShape, callback) {
+    img = document.createElement('img');
+    img.src = customShape.url;
+    img.onload = function() {
+      def = svg.select('defs').select('#' + customShape.id);
+      if (!def[0][0]) {
+        def = svg.select('defs').append('symbol').attr('id', customShape.id)
+        .attr('viewBox', '0 0 ' + this.width + ' ' + this.height)
+        .attr('preserveAspectRatio', 'none');
+      }
+      else {
+        def.selectAll('*').remove();
+      }
+      dimensions = def.attr('viewBox').split(' ');
+      def.append('image').attr('xlink:xlink:href', customShape.url).attr('x', dimensions[0]).attr('y', dimensions[1]).attr('width', dimensions[2]).attr('height', dimensions[3]);
+      callback(null);
+    }
+  }
+
+  function loadCustomShapes(args, callback) {
+    var image = null;
+    var img = null;
+    var def = null;
+    var dimensions = null;
+    var dimensionSet = [];
+
+    if (!!args.customShapes) {
+      async.each(args.customShapes, appendCustomShape, function(err){
+          // if any of the saves produced an error, err would equal that error
+        callback(null);
+      });
+    }
+  }
+
+  function loadPartials(args, callback) {
+    var pathvisioJsContainer, pathwayContainer;
+    async.series([
+      function(callback) {
+
+        args.targetElement.html(pathvisioNS['tmp/pathvisio-js.html']);
+        pathvisioJsContainer = args.targetElement.select('#pathvisio-js-container');
+        pathwayContainer = args.targetElement.select('#pathway-container');
+
+        svg = pathvisioJsContainer.select('#pathway-svg')
+        .attr('style', 'display: none; ');
+
+        callback();
+      },
+      function(callback){
+        var loadingPng = pathwayContainer.append('img')
+        .attr('id', 'pathway-png')
+        //.attr('width', targetWidth)
+        //.attr('height', targetHeight)
+        .attr('src', pngUrl)
+        .on('load', function() {
+
+          loadingPngDimensions = fitElementWithinContainer(targetWidth, targetHeight, this.width, this.height, args.preserveAspectRatio);
+
+          pathwayContainer.attr('class', loadingPngDimensions.yAlign);
+
+          loadingPng.attr('class', loadingPngDimensions.xAlign)
+          .attr('width', loadingPngDimensions.width + 'px')
+          .attr('height', loadingPngDimensions.height + 'px');
+
+          svg.attr('class', loadingPngDimensions.xAlign);
+        });
+
+
+
+        /*
+        // Update…
+        var pd3 = docfragd3.selectAll("p")
+            .data([3, 4, 8, 15, 16, 23, 42])
+            .text(String);
+
+        // Enter…
+        pd3.enter().append("p")
+            .text(String);
+
+        // Exit…
+        pd3.exit().remove();
+
+        d3.select('document').append(docfragd3);
+        //*/
+
+        //var loadingImage = args.targetElement.select('#pathway-image');
+
+
+
+
+        ///*
+        //var docfrag = document.createDocumentFragment();
+        //var div = d3.select(docfrag).append('div');
+        //var div = document.createElement('div');
+        //args.targetElement.html(pathvisioNS['tmp/pathvisio-js.html']);
+        ////*/
+
+        callback(null);
+      },
+      function(callback) {
+        loadCustomShapes(args, function() {
+          callback(null);
+        })
+      },
+      function(callback) {
+        if (!!args.cssUrl) {
+          d3.text(args.cssUrl, 'text/css', function(data) {
+            var defs = svg.select('defs');
+            var style = defs.append('style').attr('type', "text/css");
+            style.text(data);
+            callback(null);
+          })
+        }
+        else {
+          callback(null);
+        }
+      }
+    ],
+    function(err, results) {
+      callback(args.svg);
+    });
+  }
+
 
   // get JSON and draw SVG representation of pathway
 
@@ -272,7 +270,10 @@ pathvisio = function(){
     if (!args.target) { return console.warn('Error: No target selector specified as target for pathvisio.js.'); }
     args.targetElement = d3.select(args.target);
     if (args.targetElement.length !== 1) { return console.warn('Error: Container selector must be matched by exactly one element.'); }
+
     self.targetElement = args.targetElement;
+
+    if (!args.preserveAspectRatio) { args.preserveAspectRatio = 'xMidYMid'; }
 
     targetWidth = targetElement[0][0].getElementWidth();
     targetHeight = targetElement[0][0].getElementHeight();
@@ -339,11 +340,11 @@ pathvisio = function(){
             })
           },
           function(callback) {
-            var svgDimensions = fitElementWithinContainer(targetWidth-100, targetHeight, results.pathway.metadata.boardWidth, results.pathway.metadata.boardHeight, 'xMidYMin');
+            var svgDimensions = fitElementWithinContainer(targetWidth, targetHeight, results.pathway.metadata.boardWidth, results.pathway.metadata.boardHeight, args.preserveAspectRatio);
             self.svgDimensions = svgDimensions;
             d3.select('#pathway-png').remove();
 
-            svg.attr('style', 'visibility: visible; ');
+            svg.attr('style', 'display: inline; ');
 
 
 function setCTM(element, matrix) {
