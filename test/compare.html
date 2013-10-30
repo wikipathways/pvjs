@@ -172,7 +172,9 @@
         }
       },
       function(err, results) {
-        results.html.querySelector('#pathway-container').appendChild(results.svg.documentElement)
+        results.svg.documentElement.setAttribute('style', 'display: none; ');
+        var pathwayContainer = results.html.querySelector('#pathway-container').appendChild(results.svg.documentElement)
+
         var oSerializer = new XMLSerializer();
         pathvisioNS['tmp/pathvisio-js.html'] = oSerializer.serializeToString(results.html);
         callback();
@@ -245,14 +247,16 @@
 
   var currentUrl = document.location.origin + document.location.pathname;
   var rootDirectoryUrl = document.location.origin + document.location.pathname.split("pathvisio.js/")[0] + 'pathvisio.js/';
-  var srcDirectoryUrl = rootDirectoryUrl + 'src/';
+  var srcDirectoryUrl = (rootDirectoryUrl + 'src/');
 
+  /*
   if (urlParamList.creator === 'pathvisio-js-dev') {
     if (!!urlParamList.account && !!urlParamList.branch && urlParamList.acount !== 'null' && urlParamList.branch !== 'null') {
       srcDirectoryUrl = 'src/';
       //srcDirectoryUrl = 'https://rawgithub.com/' + urlParamList.account + '/pathvisio.js/' + urlParamList.branch + '/src/';
     }
   }
+  //*/
 
 
 
@@ -326,7 +330,9 @@
             {'id': 'sarcoplasmic-reticulum','url': srcDirectoryUrl + 'views/shapes/sarcoplasmic-reticulum.svg'},
             {'id': 'triangle', 'url': srcDirectoryUrl + 'views/shapes/triangle.svg'}
           ];
-          var customMarkers = [];
+          var customMarkers = [
+            {'id': 'arc', 'url': srcDirectoryUrl + 'views/shapes/arc.svg'}
+          ];
           pathvisio.load({
             target: '#view',
             width: 1000,
