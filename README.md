@@ -31,7 +31,7 @@ Create gh-pages branch (if it doesn't exist)
 ----------------------
 1. From your fork of pathvisio.js, click the "branch" drop-down
 2. Type in "gh-pages" and select the "create" option from the drop-down
-3. Pull into your account from wikipathways account (your-github-account:gh-pages ... wikipathways:gh-pages)
+3. Pull the code into your fork from the wikipathways fork (your-github-account:gh-pages ... wikipathways:gh-pages)
 
 Make awesome updates
 --------------------
