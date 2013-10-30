@@ -2,7 +2,7 @@
 	position: absolute;
 	font-family: arial, helvetica, sans-serif;
 	line-height: 1;
-	color: #006;
+	color: #666;
 	font-size: 11px;
 	z-index: 99999;
 }
@@ -57,7 +57,7 @@
 	height: 0; 
 	border-left: 5px solid transparent;
 	border-right: 5px solid transparent;
-	border-bottom: 5px solid #666;
+	border-bottom: 5px solid #066;
 }
 
 .ui-cytoscape-panzoom-pan-down {
