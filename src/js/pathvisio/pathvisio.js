@@ -3,7 +3,7 @@ pathvisio = function(){
   // first pass GPML (pathway XML) through an automatic XML to JSON converter, 
   // then make specific modifications to make the JSON well-formatted, then return the JSON
   
-  var svg, pngUrl, pathway, shapesAvailable, targetWidth, targetHeight, args;
+  var svg, pngUrl, pathway, shapesAvailable, targetWidth, targetHeight, args, preserveAspectRatioValues;
   self.svg = svg;
 
   // get GPML (pathway XML) from WikiPathways (by ID) or a URL (could be a local file or any other accessible GPML source),
@@ -51,41 +51,53 @@ pathvisio = function(){
     });
   }
 
+  function getPreserveAspectRatioValues(preserveAspectRatio) {
+    var results = {};
+    if (!preserveAspectRatio.align) {
+      results.align = preserveAspectRatio;
+    }
+    else {
+      results.align = preserveAspectRatio.align;
+    }
+
+    if (results.align === 'none') {
+      results.xAlign = 'x-mid';
+      results.yAlign = 'y-mid';
+    }
+    else {
+      results.meetOrSlice = 'meet';
+      if (!!preserveAspectRatio.meetOrSlice) {
+        results.meetOrSlice = preserveAspectRatio.meetOrSlice;
+      }
+      
+      results.xAlign = 'x-' + results.align.substr(1, 3).toLowerCase();
+      results.yAlign = 'y-' + results.align.substr(results.align.length - 3, 3).toLowerCase();
+    }
+    return results;
+  }
+
+
+
   function fitElementWithinContainer(targetWidth, targetHeight, elementWidth, elementHeight, preserveAspectRatio) {
 
     // following svg standards.
     // see http://www.w3.org/TR/SVG/coords.html#PreserveAspectRatioAttribute
 
-    var align, meetOrSlice, xScale, yScale, scale, elementWidthScaled, elementHeightScaled;
+    var meetOrSlice, xScale, yScale, scale, elementWidthScaled, elementHeightScaled;
     var results = {};
-
-    if (!preserveAspectRatio.align) {
-      align = preserveAspectRatio;
-    }
-    else {
-      align = preserveAspectRatio.align;
-    }
 
     xScale = scale = targetWidth/elementWidth;
     yScale = targetHeight/elementHeight;
 
-    if (align === 'none') {
+    if (preserveAspectRatioValues.align === 'none') {
       results.x = 0;
       results.y = 0;
-
-      results.xAlign = 'x-mid';
-      results.yAlign = 'y-mid';
       
       results.width = xScale * elementWidth;
       results.height = yScale * elementHeight;
     }
     else {
-      meetOrSlice = 'meet';
-      if (!!preserveAspectRatio.meetOrSlice) {
-        meetOrSlice = preserveAspectRatio.meetOrSlice;
-      }
-
-      if (meetOrSlice === 'meet') {
+      if (preserveAspectRatioValues.meetOrSlice === 'meet') {
         scale = xScale = yScale = Math.min(xScale, yScale);
       }
       else {
@@ -107,13 +119,9 @@ pathvisio = function(){
         {'y-max': targetHeight - results.height}
       ];
 
-      results.xAlign = 'x-' + align.substr(1, 3).toLowerCase();
-      results.yAlign = 'y-' + align.substr(align.length - 3, 3).toLowerCase();
-
-      results.x = xMapping[results.xAlign];
-      results.y = yMapping[results.yAlign];
+      results.x = xMapping[preserveAspectRatioValues.xAlign];
+      results.y = yMapping[preserveAspectRatioValues.yAlign];
       results.scale = scale;
-
     }
 
     var browserPrefixArray = [
@@ -184,25 +192,9 @@ pathvisio = function(){
         callback();
       },
       function(callback){
-        var loadingPng = pathwayContainer.append('img')
-        .attr('id', 'pathway-png')
-        //.attr('width', targetWidth)
-        //.attr('height', targetHeight)
-        .attr('src', pngUrl)
-        .on('load', function() {
 
-          loadingPngDimensions = fitElementWithinContainer(targetWidth, targetHeight, this.width, this.height, args.preserveAspectRatio);
-
-          pathwayContainer.attr('class', loadingPngDimensions.yAlign);
-
-          loadingPng.attr('class', loadingPngDimensions.xAlign)
-          .attr('width', loadingPngDimensions.width + 'px')
-          .attr('height', loadingPngDimensions.height + 'px');
-
-          svg.attr('class', loadingPngDimensions.xAlign);
-        });
-
-
+        pathwayContainer.attr('class', preserveAspectRatioValues.yAlign);
+        svg.attr('class', preserveAspectRatioValues.xAlign);
 
         /*
         // Update…
@@ -274,6 +266,7 @@ pathvisio = function(){
     self.targetElement = args.targetElement;
 
     if (!args.preserveAspectRatio) { args.preserveAspectRatio = 'xMidYMid'; }
+    preserveAspectRatioValues = getPreserveAspectRatioValues(args.preserveAspectRatio);
 
     targetWidth = targetElement[0][0].getElementWidth();
     targetHeight = targetElement[0][0].getElementHeight();
@@ -295,7 +288,10 @@ pathvisio = function(){
     }
     else {
       gpmlUrl = args.gpml;
-      pngUrl = encodeURI('http://wikipathways.org//wpi/extensions/PathwayViewer/img/loading.gif');
+
+      // TODO update this link to a URL we control
+
+      pngUrl = 'http://upload.wikimedia.org/wikipedia/commons/3/3b/Picture_Not_Yet_Available.png';
       if (!Modernizr.svg) {
         return console.warn('Error: GPML data source specified is not a WikiPathways ID. WikiPathways does not have access to a visual representation of this GPML.');
       }
@@ -342,7 +338,7 @@ pathvisio = function(){
           function(callback) {
             var svgDimensions = fitElementWithinContainer(targetWidth, targetHeight, results.pathway.metadata.boardWidth, results.pathway.metadata.boardHeight, args.preserveAspectRatio);
             self.svgDimensions = svgDimensions;
-            d3.select('#pathway-png').remove();
+            d3.select('#loading-icon').remove();
 
             svg.attr('style', 'display: inline; ');
 
