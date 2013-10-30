@@ -24,7 +24,7 @@ Pull latest changes
 2. Select the "Compare and review" button to the left of the "branch" drop-down to pull from the wikipathways fork of pathvisio.js into your fork
 3. Select "Edit" and "compare across forks" as needed to make the drop-downs look like this: your-github-account:master ... wikipathways:master
 4. Create pull request
-5. Accept pull request (if github says that the pull request cannot be done automatically, you will need to merge the files from the command line. Let me know and I can help.)
+5. Accept pull request (if github says that the pull request cannot be done automatically, you will need to merge the files from the command line. Let Anders or Alex know and they can help.)
 
 Create gh-pages branch
 ----------------------
