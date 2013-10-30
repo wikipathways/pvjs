@@ -1,0 +1,1 @@
+pathvisio.renderer = {};

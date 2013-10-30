@@ -1,5 +1,4 @@
 pathvisio.converter.gpml.interaction = function() {
-
   function toRenderableJson(gpmlInteraction, callback) {
     var jsonInteraction = {};
 
