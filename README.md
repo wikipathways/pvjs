@@ -12,7 +12,7 @@ Demos
 How To Get Involved
 ===================
 
-Fork pathvisio.js (only needed if it doesn't exist yet)
+Fork pathvisio.js
 -----------------
 1. Go to https://github.com/wikipathways/pathvisio.js/
 2. Click "fork"
@@ -26,7 +26,7 @@ Pull latest changes
 4. Create pull request
 5. Accept pull request (if github says that the pull request cannot be done automatically, you will need to merge the files from the command line. Let me know and I can help.)
 
-Create gh-pages branch (only needed if it doesn't exist yet)
+Create gh-pages branch
 ----------------------
 1. From your fork of pathvisio.js, click the "branch" drop-down
 2. Type in "gh-pages" and select the "create" option from the drop-down
