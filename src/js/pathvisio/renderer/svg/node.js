@@ -32,7 +32,7 @@ pathvisio.renderer.svg.node = function(){
       /*
          var xrefDiv = $('.xrefinfo');
 
-      // (id, datasource, species, symbol)
+      // (id, datasource, species, shape)
 
       var xrefHtml = XrefPanel.create(node.xRef.id, node.xRef.database, 'Homo sapiens', node.textLabel.text);
       //var xrefHtml = XrefPanel.create('HMDB01397', 'HMDB', 'Mus musculus', node.textLabel.text);
@@ -145,8 +145,8 @@ pathvisio.renderer.svg.node = function(){
         return style;
       });
 
-      var symbol = svg.select('symbol#' + node.shapeType)
-      if (symbol.length === 1) {
+      var shape = svg.select('symbol#' + node.shapeType)
+      if (shape.length === 1) {
 
         // d3 bug strips 'xlink' so need to say 'xlink:xlink';
 
@@ -154,7 +154,7 @@ pathvisio.renderer.svg.node = function(){
       }
       else {
         nodeElement.attr("xlink:xlink:href", "#rectangle");
-        console.warn('Pathvisio.js does not have access to the requested symbol: ' + node.shapeType + '. Rectangle used as placeholder.');
+        console.warn('Pathvisio.js does not have access to the requested shape: ' + node.shapeType + '. Rectangle used as placeholder.');
       }
 
       // use this for tspan option for rendering text, including multi-line
@@ -317,7 +317,7 @@ pathvisio.renderer.svg.node = function(){
       /*
          var xrefDiv = $('.xrefinfo');
 
-      // (id, datasource, species, symbol)
+      // (id, datasource, species, shape)
 
       var xrefHtml = XrefPanel.create(d.xRef.id, d.xRef.database, 'Homo sapiens', d.textLabel.text);
       //var xrefHtml = XrefPanel.create('HMDB01397', 'HMDB', 'Mus musculus', d.textLabel.text);
@@ -431,8 +431,8 @@ pathvisio.renderer.svg.node = function(){
             return style;
         });
 
-    var symbol = svg.select('symbol#' + d.shapeType)
-      if (symbol.length === 1) {
+    var shape = svg.select('symbol#' + d.shapeType)
+      if (shape.length === 1) {
 
         // d3 bug strips 'xlink' so need to say 'xlink:xlink';
 
@@ -440,7 +440,7 @@ pathvisio.renderer.svg.node = function(){
       }
       else {
         node.attr("xlink:xlink:href", "#rectangle");
-        console.warn('Pathvisio.js does not have access to the requested symbol: ' + pathway.nodes[0].shapeType + '. Rectangle used as placeholder.');
+        console.warn('Pathvisio.js does not have access to the requested shape: ' + pathway.nodes[0].shapeType + '. Rectangle used as placeholder.');
       }
 
     // use this for tspan option for rendering text, including multi-line

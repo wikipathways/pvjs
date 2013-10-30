@@ -3,7 +3,7 @@ pathvisio = function(){
   // first pass GPML (pathway XML) through an automatic XML to JSON converter, 
   // then make specific modifications to make the JSON well-formatted, then return the JSON
   
-  var svg, pngUrl, pathway, symbolsAvailable, targetWidth, targetHeight;
+  var svg, pngUrl, pathway, shapesAvailable, targetWidth, targetHeight;
   self.svg = svg;
 
   // get GPML (pathway XML) from WikiPathways (by ID) or a URL (could be a local file or any other accessible GPML source),

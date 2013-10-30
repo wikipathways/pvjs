@@ -87,7 +87,7 @@ pathvisio.converter.gpml.node = function(){
             element.fill = "#999999";
           }
 
-          if (element.symbolType !== 'none') {
+          if (element.shapeType !== 'none') {
             element.fillOpacity = 1;
           }
         }

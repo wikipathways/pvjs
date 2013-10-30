@@ -5,7 +5,7 @@ pathvisio.renderer.svg = function(){
   
   var svg = null;
   var pathway = null;
-  var symbolsAvailable = null;
+  var shapesAvailable = null;
 
   self.pathway = pathway;
 
