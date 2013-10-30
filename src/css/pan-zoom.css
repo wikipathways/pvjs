@@ -1,5 +1,9 @@
 .ui-cytoscape-panzoom {
-	position: absolute;
+		position: absolute;
+
+	position:fixed;
+	top:30px;
+	right:5px;
 	font-family: arial, helvetica, sans-serif;
 	line-height: 1;
 	color: #666;
