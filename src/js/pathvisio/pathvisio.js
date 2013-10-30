@@ -143,6 +143,76 @@ pathvisio = function(){
     return results;
   }
 
+  function appendCustomMarker(customMarker, callback) {
+    if (1===1) {
+      d3.xml(customMarker.url, 'image/svg+xml', function(svgXml) {
+
+        def = svg.select('defs').select('#' + customMarker.id);
+        if (!def[0][0]) {
+          def = svg.select('defs').append('marker')
+          .attr('id', customMarker.id)
+          .attr('preserveAspectRatio', 'none');
+        }
+        else {
+          def.selectAll('*').remove();
+        }
+
+
+        var marker = d3.select(svgXml.documentElement)
+        var width = marker.attr('width');
+        var height = marker.attr('height');
+
+        def.attr('viewBox', '0 0 ' + width + ' ' + height);
+
+        var parent = document.querySelector('#' + customMarker.id);
+        parent.appendChild(svgXml.documentElement);
+        callback(null);
+      });
+    }
+    else {
+      img = document.createElement('img');
+      img.src = customMarker.url;
+      img.onload = function() {
+        def = svg.select('defs').select('#' + customMarker.id);
+        if (!def[0][0]) {
+          def = svg.select('defs').append('symbol')
+          .attr('id', customMarker.id)
+          .attr('viewBox', '0 0 ' + this.width + ' ' + this.height)
+          .attr('preserveAspectRatio', 'none');
+        }
+        else {
+          def.selectAll('*').remove();
+        }
+        dimensions = def.attr('viewBox').split(' ');
+
+        def.append('image').attr('xlink:xlink:href', customMarker.url)
+        .attr('x', dimensions[0])
+        .attr('y', dimensions[1])
+        .attr('width', dimensions[2])
+        .attr('height', dimensions[3])
+        .attr('externalResourcesRequired', "true");
+
+        callback(null);
+      }
+    }
+  }
+
+  function loadCustomMarkers(args, callback) {
+    var image = null;
+    var img = null;
+    var def = null;
+    var dimensions = null;
+    var dimensionSet = [];
+
+    if (!!args.customMarkers) {
+      async.each(args.customMarkers, appendCustomMarker, function(err){
+          // if any of the saves produced an error, err would equal that error
+        callback(null);
+      });
+    }
+  }
+
+
   function appendCustomShape(customShape, callback) {
     if (1===1) {
       d3.xml(customShape.url, 'image/svg+xml', function(svgXml) {
@@ -165,7 +235,12 @@ pathvisio = function(){
         def.attr('viewBox', '0 0 ' + width + ' ' + height);
 
         var parent = document.querySelector('#' + customShape.id);
-        parent.appendChild(svgXml.documentElement);
+
+
+        var d3Svg = d3.select(svgXml.documentElement).selectAll('*');
+        d3Svg[0].forEach(function(element){
+          parent.appendChild(element);
+        });
         callback(null);
       });
     }
@@ -273,6 +348,11 @@ pathvisio = function(){
         ////*/
 
         callback(null);
+      },
+      function(callback) {
+        loadCustomMarkers(args, function() {
+          callback(null);
+        })
       },
       function(callback) {
         loadCustomShapes(args, function() {
