@@ -122,7 +122,7 @@ pathvisio.pathway = function(){
   
   var svg = null;
   var pathway = null;
-  var symbolsAvailable = null;
+  var shapesAvailable = null;
 
   function gpml2json(gpml, callback){
 
