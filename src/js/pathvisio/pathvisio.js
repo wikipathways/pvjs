@@ -144,22 +144,70 @@ pathvisio = function(){
   }
 
   function appendCustomShape(customShape, callback) {
-    img = document.createElement('img');
-    img.src = customShape.url;
-    img.onload = function() {
-      def = svg.select('defs').select('#' + customShape.id);
-      if (!def[0][0]) {
-        def = svg.select('defs').append('symbol').attr('id', customShape.id)
-        .attr('viewBox', '0 0 ' + this.width + ' ' + this.height)
-        .attr('preserveAspectRatio', 'none');
-      }
-      else {
-        def.selectAll('*').remove();
-      }
-      dimensions = def.attr('viewBox').split(' ');
-      def.append('image').attr('xlink:xlink:href', customShape.url).attr('x', dimensions[0]).attr('y', dimensions[1]).attr('width', dimensions[2]).attr('height', dimensions[3]);
-      callback(null);
+    if (1===1) {
+      d3.xml(customShape.url, 'image/svg+xml', function(svgXml) {
+
+        def = svg.select('defs').select('#' + customShape.id);
+        if (!def[0][0]) {
+          def = svg.select('defs').append('symbol')
+          .attr('id', customShape.id)
+          .attr('preserveAspectRatio', 'none');
+        }
+        else {
+          def.selectAll('*').remove();
+        }
+
+
+        var shape = d3.select(svgXml.documentElement)
+        var width = shape.attr('width');
+        var height = shape.attr('height');
+
+        def.attr('viewBox', '0 0 ' + width + ' ' + height);
+
+        var parent = document.querySelector('#' + customShape.id);
+        parent.appendChild(svgXml.documentElement);
+        callback(null);
+      });
     }
+    else {
+      img = document.createElement('img');
+      img.src = customShape.url;
+      img.onload = function() {
+        def = svg.select('defs').select('#' + customShape.id);
+        if (!def[0][0]) {
+          def = svg.select('defs').append('symbol')
+          .attr('id', customShape.id)
+          .attr('viewBox', '0 0 ' + this.width + ' ' + this.height)
+          .attr('preserveAspectRatio', 'none');
+        }
+        else {
+          def.selectAll('*').remove();
+        }
+        dimensions = def.attr('viewBox').split(' ');
+
+        /*
+        def.append('image').attr('xlink:xlink:href', customShape.url)
+        .attr('x', dimensions[0])
+        .attr('y', dimensions[1])
+        .attr('width', dimensions[2])
+        .attr('height', dimensions[3])
+        .attr('externalResourcesRequired', "true");
+        //*/
+
+        callback(null);
+      }
+    }
+
+    /*
+    def.append('object').attr('data', customShape.url)
+    .attr('x', dimensions[0])
+    .attr('y', dimensions[1])
+    .attr('width', dimensions[2])
+    .attr('height', dimensions[3])
+    .attr('type', "image/svg+xml");
+    //*/
+
+
   }
 
   function loadCustomShapes(args, callback) {
@@ -184,17 +232,17 @@ pathvisio = function(){
 
         args.targetElement.html(pathvisioNS['tmp/pathvisio-js.html']);
         pathvisioJsContainer = args.targetElement.select('#pathvisio-js-container');
-        pathwayContainer = args.targetElement.select('#pathway-container');
+        pathwayContainer = pathvisioJsContainer.select('#pathway-container')
+        .attr('class', preserveAspectRatioValues.yAlign);
 
         svg = pathvisioJsContainer.select('#pathway-svg')
+        .attr('class', preserveAspectRatioValues.xAlign)
         .attr('style', 'display: none; ');
 
         callback();
       },
       function(callback){
 
-        pathwayContainer.attr('class', preserveAspectRatioValues.yAlign);
-        svg.attr('class', preserveAspectRatioValues.xAlign);
 
         /*
         // Update…
@@ -376,7 +424,7 @@ setCTM(viewport, m2);
 //*/
 
 
-            /*
+            ///*
             svgPanZoom.init({
               'root': 'svg',
               'enableZoom': true 
