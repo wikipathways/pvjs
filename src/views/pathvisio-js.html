@@ -1,33 +1,26 @@
-<div style="position:relative; width:70%; height:auto; float:left;">
-  <div id="pathvisio-js" style="width:100%; height:100%; float:right; clear:both;">
+  <div id="pathvisio-js-container" style="width: inherit; height: inherit; position: absolute; ">
 
     <!-- **********************************************************************
     Pathway Container (JavaScript inserts pathway image inside this div)
     *********************************************************************** -->
 
-    <div id="pathway-container" style="width:80%; height:500px">
+    <div id="pathway-container" style="width:inherit; height: inherit; " class="y-mid">
+      <img id="loading-icon" class="x-mid" src="http://wikipathways.org//wpi/extensions/PathwayViewer/img/loading.gif">
     </div>
-    <div id="viewer-toolbar" style="position:absolute; right: 0px; top: 20px;">
+    <div id="viewer-toolbar" style="position: absolute; top: 0px; right: 0px; height: inherit">
 
       <!-- **********************************************************************
       Highlight Element by Label Control
       *********************************************************************** -->
 
-      <!-- old version
-      <div id="highlight-by-label-control" style="position: absolute; right: 5px; top: 5px; z-index: 1001; background-color: rgb(221, 221, 221); border: 1px solid rgb(170, 170, 170); width:160px">
-        <input id="highlight-by-label" placeholder="Highlight element by label" class="ui-autocomplete-input ui-corner-all" autocomplete="off" role="textbox" aria-autocomplete="list" aria-haspopup="true" style="float:left; width: 100px;">
-        <span class="icon icon-eye-open" style="position: absolute; right:0px"></span>
-      </div>
-      -->
-
-      <input id="highlight-by-label-input" placeholder="Enter node name to highlight." role="textbox" aria-autocomplete="list" aria-haspopup="true" style="float:right; width:200px;">
+      <input id="highlight-by-label-input" placeholder="Enter node name to highlight." role="textbox" aria-autocomplete="list" aria-haspopup="true">
 
       <!-- **********************************************************************
       Pan Zoom Control
       see http://bumbu.github.io/cytoscape.js/debug/ for example of cytoscape.js 
       *********************************************************************** -->
 
-      <div id="pan-zoom-control" class="ui-cytoscape-panzoom" style="position: absolute; right: 5px; top: 150px;">
+      <div id="pan-zoom-control" class="ui-cytoscape-panzoom">
         <div class="ui-cytoscape-panzoom-zoom-in ui-cytoscape-panzoom-zoom-button">
           <span class="icon icon-plus"></span>
         </div>
@@ -61,14 +54,14 @@
           </div>
         </div>
       </div>
-    </div>
 
-    <!-- **********************************************************************
-    Fullscreen Control 
-    *********************************************************************** -->
+      <!-- **********************************************************************
+      Fullscreen Control 
+      *********************************************************************** -->
 
-    <div id="fullscreen-control" style="position:absolute; right: 0px; bottom: 20px;">
-      <i class="icon-fullscreen" style="color:#aaa"></i>
+      <div id="fullscreen-control" style="position: absolute; bottom: 5px; right: 5px;">
+        <i class="icon-fullscreen" style="color:#aaa"></i>
+      </div>
     </div>
 
     <!-- **********************************************************************
@@ -104,4 +97,3 @@
       </ul>
     </div>
   </div>
-</div>
