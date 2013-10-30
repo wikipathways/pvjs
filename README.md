@@ -25,18 +25,23 @@ Pull latest changes
 3. Select "Edit" and "compare across forks" as needed to make the drop-downs look like this: your-github-account:master ... wikipathways:master
 4. Create pull request
 5. Accept pull request (if github says that the pull request cannot be done automatically, you will need to merge the files from the command line. Let Anders or Alex know and they can help.)
+6. If your fork doesn't yet have a gh-pages branch, follow the step below. Otherwise, pull the latest changes into the gh-pages branch from the master branch of your fork (gh-pages ... master)
 
-Create gh-pages branch
+Create gh-pages branch (if it doesn't exist)
 ----------------------
 1. From your fork of pathvisio.js, click the "branch" drop-down
 2. Type in "gh-pages" and select the "create" option from the drop-down
 3. Pull into your account from wikipathways account (your-github-account:gh-pages ... wikipathways:gh-pages)
-4. Now you can edit the code in the gh-pages branch of your fork of pathvisio.js and view your changes live
-	at http://your-github-account.github.io/pathvisio.js/test/ (note the .IO)
+
+Make awesome updates
+--------------------
+1. You can edit any of the files in the "src" directory of the gh-pages branch of your fork (https://github.com/your-github-account/pathvisio.js/tree/gh-pages/src/)
+4. View your changes live at http://your-github-account.github.io/pathvisio.js/test/ (note the .IO)
 
 Send pull request
 -----------------
-1. When your changes to your gh-pages branch look good, merge them into master in your fork (master ... gh-pages)
+1. View each of the test pathways at http://your-github-account.github.io/pathvisio.js/test/ to ensure your code works well
+2. Merge your changes into the master branch of your fork (master ... gh-pages)
 2. Create a pull request to the master branch of the wikipathways fork of pathvisio.js (wikipathways:master ... your-github-account:master)
 
 License
