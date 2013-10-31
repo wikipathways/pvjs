@@ -44,8 +44,10 @@ pathvisio.renderer.svg = function(){
       .attr("y", d3.event.y);
     }
 
-    svg.attr('width', pathway.metadata.boardWidth);
-    svg.attr('height', pathway.metadata.boardHeight);
+    svg.attr('width', '500px');
+    svg.attr('height', '500px');
+    //svg.attr('width', pathway.metadata.boardWidth);
+    //svg.attr('height', pathway.metadata.boardHeight);
 
     if (!!pathway.biopaxRefs) {
       var pathwayPublicationXrefs = svg.select('#viewport').selectAll(".pathway-publication-xref-text")
@@ -106,6 +108,13 @@ pathvisio.renderer.svg = function(){
       }
     });
     //pathvisio.renderer.svg.anchor.renderAll(svg, pathway);
+
+    window.setTimeout(function() {
+      window.svg = document.documentElement.getElementsByTagName("svg")[0];
+      svg.setAttribute('width', '500px');
+      svg.setAttribute('height', '500px');
+      svg.setAttribute('style', 'width: 500px; height: 500px; ');
+    }, 1000);
 
     callback();
 

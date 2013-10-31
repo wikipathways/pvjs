@@ -312,8 +312,8 @@ pathvisio = function(){
 
         svg = pathvisioJsContainer.select('#pathway-svg')
         .attr('class', preserveAspectRatioValues.xAlign)
-        .attr('width', targetWidth)
-        .attr('height', targetHeight)
+        .attr('width', targetWidth + 'px') 
+        .attr('height', targetHeight + 'px')
         //.attr('viewBox', '0 0 ' + targetWidth + ' ' + targetHeight)
         .attr('style', 'display: none; ');
 
