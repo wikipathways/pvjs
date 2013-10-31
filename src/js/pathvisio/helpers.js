@@ -50,6 +50,12 @@ pathvisio.helpers = function(){
     return d3.select(node.parentNode.insertBefore(node.cloneNode(true), node.nextSibling));
   }
 
+  // see http://stackoverflow.com/questions/18082/validate-numbers-in-javascript-isnumeric
+
+  function isNumber(n) {
+    return !isNaN(parseFloat(n)) && isFinite(n);
+  }
+
   function getUrlParam(name) {
 
     // Thanks to http://stackoverflow.com/questions/11582512/how-to-get-url-parameters-with-javascript
@@ -65,25 +71,53 @@ pathvisio.helpers = function(){
     }
   }
 
+  function isWikiPathwaysId(data) {
+    data = data.trim();
+    if (data.substr(0,2).toUpperCase() === 'WP' && isNumber(data.substr(data.length - 1))) {
+      return true;
+    }
+    else {
+      return false;
+    }
+  }
+
   function convertToArray(object) {
     var array = null;
-    if (Object.prototype.toString.call( object ) === '[object Object]' ) {
+    if (getObjectType( object ) === 'Object' ) {
       array = [];
       array.push(object);
       return array;
     }
     else {
-      if( Object.prototype.toString.call( object ) === '[object Array]' ) {
+      if( getObjectType( object ) === 'Array' ) {
         return object;
       }
       else {
-        if( Object.prototype.toString.call( object ) === '[object String]' ) {
+        if( getObjectType( object ) === 'String' ) {
           array = [];
           array.push(object);
           return array;
         }
       }
     }
+  }
+
+  function getObjectType(object) {
+    var result;
+    if (Object.prototype.toString.call( object ) === '[object Object]' ) {
+      result = 'Object';
+    }
+    else {
+      if( Object.prototype.toString.call( object ) === '[object Array]' ) {
+        result = 'Array';
+      }
+      else {
+        if( Object.prototype.toString.call( object ) === '[object String]' ) {
+          result = 'String';
+        }
+      }
+    }
+    return result;
   }
 
   function getWindowDimensions(object) {
@@ -128,7 +162,10 @@ pathvisio.helpers = function(){
     convertToArray:convertToArray,
     getWindowDimensions:getWindowDimensions,
     moveArrayItem:moveArrayItem,
-    isOdd:isOdd
+    isOdd:isOdd,
+    isWikiPathwaysId:isWikiPathwaysId,
+    isNumber:isNumber,
+    getObjectType:getObjectType
   };
 }();
 

@@ -3,52 +3,81 @@ pathvisio = function(){
   // first pass GPML (pathway XML) through an automatic XML to JSON converter, 
   // then make specific modifications to make the JSON well-formatted, then return the JSON
   
-  var svg, pngUrl, pathway, shapesAvailable, targetWidth, targetHeight, args, preserveAspectRatioValues;
+  var svg, pngUrl, pathway, shapesAvailable, args;
   self.svg = svg;
 
-  // get GPML (pathway XML) from WikiPathways (by ID) or a URL (could be a local file or any other accessible GPML source),
-  // convert to formatted JSON and return the JSON to the function that called getJson()
+  function getUriFromWikiPathwaysId(wikiPathwaysId, revision) {
 
-  function getJson(url, callback) {
-    if (!url) {
-      // TODO throw a proper error here
+    // be sure server has set gpml mime type to application/xml or application/gpml+xml
 
-      var error = 'Error: URL not specified.';
-      console.warn(error);
-      return error;
+    return 'http://pointer.ucsf.edu/d3/r/gpml.php?id=' + wikiPathwaysId + '&rev=' + revision;
+  }
+
+  function getInputDataDetails(inputData) {
+
+    // inputData can be a WikiPathways ID (WP1), a uri for a GPML file (http://www.wikipathways.org/gpmlfile.gpml)
+    // or a uri for another type of file.
+
+    var results = {};
+    if (!inputData.revision) {
+      inputData.revision = 0;
+    }
+
+    if (pathvisio.helpers.getObjectType(inputData) === 'Object') {
+      results = inputData;
+      if (pathvisio.helpers.isWikiPathwaysId(inputData.wikiPathwaysId)) {
+        results.uri = getUriFromWikiPathwaysId(inputData.wikiPathwaysId, inputData.revision);
+        results.type = 'GPML';
+      }
     }
     else {
+      if (pathvisio.helpers.isUrl(inputData)) {
+        results.uri = inputData;
+        if (results.uri.indexOf('.gpml') > -1) {
+          results.type = 'GPML';
+        }
+      }
+      else {
+        if (pathvisio.helpers.isWikiPathwaysId(inputData)) {
+          results.uri = getUriFromWikiPathwaysId(inputData);
+          results.type = 'GPML';
+        }
+        else {
+          return new Error('Pathvisio.js cannot handle the data source type entered: ' + data);
+        }
+      }
+    }
+
+    return results;
+  }
+
+  function getJson(inputData, callback) {
+
+    // get GPML (pathway XML) from WikiPathways (by ID) or a URL (could be a local file or any other accessible GPML source),
+    // convert to formatted JSON and return the JSON to the function that called getJson()
+
+    var inputDataDetails = getInputDataDetails(inputData);
+
+    // For now, pathvisio.js will attempt to convert any input data, with a type of
+    // GPML or with no type specified, into JSON.
+    // TODO Later, this functionality can be extended to include other data types and
+    // to test for data type when it is not specified.
+
+    if (!!inputDataDetails.uri && (!inputDataDetails.type || inputDataDetails.type === 'GPML')) {
 
       // I would prefer to use d3.xml for the http request in order to not depend on jQuery,
       // but d3.xml doesn't seem to work with IE8. TODO remove dependency on jQuery
 
-      d3.xml(url, function(gpml) {
+      d3.xml(inputDataDetails.uri, function(gpml) {
         pathvisio.converter.gpml.toRenderableJson(gpml, function(json) {
           callback(json);
         });
       });
-
-      // be sure server has set gpml mime type to application/xml or application/gpml+xml
+    }
+    else {
+      return new Error('No data source specified or pathvisio.js cannot handle the data source specified.');
 
     }
-  }
-
-  function highlightByLabel(nodeLabel) {
-    svg.selectAll('.highlighted-node').remove();
-    var dataNodes = pathway.nodes.filter(function(element) {return element.elementType === 'data-node';});
-    var dataNodesWithText = dataNodes.filter(function(element) {return (!!element.textLabel);});
-    var selectedNodes = dataNodesWithText.filter(function(element) {return element.textLabel.text.indexOf(nodeLabel) !== -1;});
-    selectedNodes.forEach(function(node) {
-      var nodeDomElement = svg.select('#nodes-container-' + node.graphId);
-      var height = nodeDomElement[0][0].getBBox().height;
-      var width = nodeDomElement[0][0].getBBox().width;
-      nodeDomElement.append('rect')
-      .attr('class', 'highlighted-node')
-      .attr('x', -2.5)
-      .attr('y', -2.5)
-      .attr('width', width + 5)
-      .attr('height', height + 5);
-    });
   }
 
   function getPreserveAspectRatioValues(preserveAspectRatio) {
@@ -76,9 +105,7 @@ pathvisio = function(){
     return results;
   }
 
-
-
-  function fitElementWithinContainer(targetWidth, targetHeight, elementWidth, elementHeight, preserveAspectRatio) {
+  function fitElementWithinContainer(target, elementWidth, elementHeight, preserveAspectRatioValues) {
 
     // following svg standards.
     // see http://www.w3.org/TR/SVG/coords.html#PreserveAspectRatioAttribute
@@ -86,8 +113,8 @@ pathvisio = function(){
     var meetOrSlice, xScale, yScale, scale, elementWidthScaled, elementHeightScaled;
     var results = {};
 
-    xScale = scale = targetWidth/elementWidth;
-    yScale = targetHeight/elementHeight;
+    xScale = scale = target.width/elementWidth;
+    yScale = target.height/elementHeight;
 
     if (preserveAspectRatioValues.align === 'none') {
       results.x = 0;
@@ -109,14 +136,14 @@ pathvisio = function(){
 
       xMapping = [
         {'x-min': 0},
-        {'x-mid': targetWidth/2 - results.width/2},
-        {'x-max': targetWidth - results.width}
+        {'x-mid': target.width/2 - results.width/2},
+        {'x-max': target.width - results.width}
       ];
 
       yMapping = [
         {'y-min': 0},
-        {'y-mid': targetHeight/2 - results.height/2},
-        {'y-max': targetHeight - results.height}
+        {'y-mid': target.height/2 - results.height/2},
+        {'y-max': target.height - results.height}
       ];
 
       results.x = xMapping[preserveAspectRatioValues.xAlign];
@@ -143,305 +170,49 @@ pathvisio = function(){
     return results;
   }
 
-  function appendCustomMarker(customMarker, callback) {
-    if (1===1) {
-      d3.xml(customMarker.url, 'image/svg+xml', function(svgXml) {
-
-        def = svg.select('defs').select('#' + customMarker.id);
-        if (!def[0][0]) {
-          def = svg.select('defs').append('marker')
-          .attr('id', customMarker.id)
-          .attr('preserveAspectRatio', 'none');
-        }
-        else {
-          def.selectAll('*').remove();
-        }
-
-
-        var marker = d3.select(svgXml.documentElement)
-        var width = marker.attr('width');
-        var height = marker.attr('height');
-
-        def.attr('viewBox', '0 0 ' + width + ' ' + height);
-
-        var parent = document.querySelector('#' + customMarker.id);
-        parent.appendChild(svgXml.documentElement);
-        callback(null);
-      });
-    }
-    else {
-      img = document.createElement('img');
-      img.src = customMarker.url;
-      img.onload = function() {
-        def = svg.select('defs').select('#' + customMarker.id);
-        if (!def[0][0]) {
-          def = svg.select('defs').append('symbol')
-          .attr('id', customMarker.id)
-          .attr('viewBox', '0 0 ' + this.width + ' ' + this.height)
-          .attr('preserveAspectRatio', 'none');
-        }
-        else {
-          def.selectAll('*').remove();
-        }
-        dimensions = def.attr('viewBox').split(' ');
-
-        def.append('image').attr('xlink:xlink:href', customMarker.url)
-        .attr('x', dimensions[0])
-        .attr('y', dimensions[1])
-        .attr('width', dimensions[2])
-        .attr('height', dimensions[3])
-        .attr('externalResourcesRequired', "true");
-
-        callback(null);
-      }
-    }
-  }
-
-  function loadCustomMarkers(args, callback) {
-    var image = null;
-    var img = null;
-    var def = null;
-    var dimensions = null;
-    var dimensionSet = [];
-
-    if (!!args.customMarkers) {
-      async.each(args.customMarkers, appendCustomMarker, function(err){
-          // if any of the saves produced an error, err would equal that error
-        callback(null);
-      });
-    }
-  }
-
-
-  function appendCustomShape(customShape, callback) {
-    if (1===1) {
-      d3.xml(customShape.url, 'image/svg+xml', function(svgXml) {
-
-        def = svg.select('defs').select('#' + customShape.id);
-        if (!def[0][0]) {
-          def = svg.select('defs').append('symbol')
-          .attr('id', customShape.id)
-          .attr('preserveAspectRatio', 'none');
-        }
-        else {
-          def.selectAll('*').remove();
-        }
-
-
-        var shape = d3.select(svgXml.documentElement)
-        var width = shape.attr('width');
-        var height = shape.attr('height');
-
-        def.attr('viewBox', '0 0 ' + width + ' ' + height);
-
-        var parent = document.querySelector('#' + customShape.id);
-
-
-        var d3Svg = d3.select(svgXml.documentElement).selectAll('*');
-        d3Svg[0].forEach(function(element){
-          parent.appendChild(element);
-        });
-        callback(null);
-      });
-    }
-    else {
-      img = document.createElement('img');
-      img.src = customShape.url;
-      img.onload = function() {
-        def = svg.select('defs').select('#' + customShape.id);
-        if (!def[0][0]) {
-          def = svg.select('defs').append('symbol')
-          .attr('id', customShape.id)
-          .attr('viewBox', '0 0 ' + this.width + ' ' + this.height)
-          .attr('preserveAspectRatio', 'none');
-        }
-        else {
-          def.selectAll('*').remove();
-        }
-        dimensions = def.attr('viewBox').split(' ');
-
-        /*
-        def.append('image').attr('xlink:xlink:href', customShape.url)
-        .attr('x', dimensions[0])
-        .attr('y', dimensions[1])
-        .attr('width', dimensions[2])
-        .attr('height', dimensions[3])
-        .attr('externalResourcesRequired', "true");
-        //*/
-
-        callback(null);
-      }
-    }
-
-    /*
-    def.append('object').attr('data', customShape.url)
-    .attr('x', dimensions[0])
-    .attr('y', dimensions[1])
-    .attr('width', dimensions[2])
-    .attr('height', dimensions[3])
-    .attr('type', "image/svg+xml");
-    //*/
-
-
-  }
-
-  function loadCustomShapes(args, callback) {
-    var image = null;
-    var img = null;
-    var def = null;
-    var dimensions = null;
-    var dimensionSet = [];
-
-    if (!!args.customShapes) {
-      async.each(args.customShapes, appendCustomShape, function(err){
-          // if any of the saves produced an error, err would equal that error
-        callback(null);
-      });
-    }
-  }
-
-  function loadPartials(args, callback) {
-    var pathvisioJsContainer, pathwayContainer;
-    async.series([
-      function(callback) {
-
-        args.targetElement.html(pathvisioNS['tmp/pathvisio-js.html']);
-        pathvisioJsContainer = args.targetElement.select('#pathvisio-js-container');
-        pathwayContainer = pathvisioJsContainer.select('#pathway-container')
-        .attr('class', preserveAspectRatioValues.yAlign);
-
-        svg = pathvisioJsContainer.select('#pathway-svg')
-        .attr('class', preserveAspectRatioValues.xAlign)
-        .attr('width', targetWidth + 'px') 
-        .attr('height', targetHeight + 'px')
-        //.attr('viewBox', '0 0 ' + targetWidth + ' ' + targetHeight)
-        .attr('style', 'display: none; ');
-
-        callback();
-      },
-      function(callback){
-
-
-        /*
-        // Update…
-        var pd3 = docfragd3.selectAll("p")
-            .data([3, 4, 8, 15, 16, 23, 42])
-            .text(String);
-
-        // Enter…
-        pd3.enter().append("p")
-            .text(String);
-
-        // Exit…
-        pd3.exit().remove();
-
-        d3.select('document').append(docfragd3);
-        //*/
-
-        //var loadingImage = args.targetElement.select('#pathway-image');
-
-
-
-
-        ///*
-        //var docfrag = document.createDocumentFragment();
-        //var div = d3.select(docfrag).append('div');
-        //var div = document.createElement('div');
-        //args.targetElement.html(pathvisioNS['tmp/pathvisio-js.html']);
-        ////*/
-
-        callback(null);
-      },
-      function(callback) {
-        loadCustomMarkers(args, function() {
-          callback(null);
-        })
-      },
-      function(callback) {
-        loadCustomShapes(args, function() {
-          callback(null);
-        })
-      },
-      function(callback) {
-        if (!!args.cssUrl) {
-          d3.text(args.cssUrl, 'text/css', function(data) {
-            var defs = svg.select('defs');
-            var style = defs.append('style').attr('type', "text/css");
-            style.text(data);
-            callback(null);
-          })
-        }
-        else {
-          callback(null);
-        }
-      }
-    ],
-    function(err, results) {
-      callback(args.svg);
-    });
-  }
-
-
   // get JSON and draw SVG representation of pathway
 
   function load(args) {
 
-    // Check for minimum required parameters
-
-    if (!args.gpml) { return console.warn('Error: No gpml (URL or WikiPathways ID) specified as data source for pathvisio.js.'); }
+    // ********************************************
+    // Check for minimum required set of parameters
+    // ********************************************
 
     if (!args.target) { return console.warn('Error: No target selector specified as target for pathvisio.js.'); }
-    args.targetElement = d3.select(args.target);
-    if (args.targetElement.length !== 1) { return console.warn('Error: Container selector must be matched by exactly one element.'); }
+    if (!args.data) { return console.warn('Error: No input data source (URL or WikiPathways ID) specified.'); }
 
-    self.targetElement = args.targetElement;
+    // ********************************************
+    // Get and define required data 
+    // ********************************************
 
     if (!args.preserveAspectRatio) { args.preserveAspectRatio = 'xMidYMid'; }
     preserveAspectRatioValues = getPreserveAspectRatioValues(args.preserveAspectRatio);
+    args.targetElement = d3.select(args.target);
+    if (args.targetElement.length !== 1) { return console.warn('Error: Container selector must be matched by exactly one element.'); }
+    var target = {};
+    target.element = args.targetElement;
+    self.targetElement = args.targetElement;
 
-    targetWidth = targetElement[0][0].getElementWidth();
-    targetHeight = targetElement[0][0].getElementHeight();
-
-    var gpmlUrl;
-    var gpmlRev = 0;
-
-    // test for whether args.gpml is a WikiPathways ID or a URL. 
-    // TODO This test cannot currently handle a webservice that delivers gpml if
-    // the request url does not include the string 'gpml' or 'xml' in it.
-
-    if (args.gpml.indexOf('.gpml') === -1 && args.gpml.indexOf('.xml') === -1) {
-      if (!!args.gpmlRev) {
-        gpmlRev = args.gpmlRev;
-      }
-      gpmlUrl = 'http://pointer.ucsf.edu/d3/r/gpml.php?id=' + args.gpml + '&rev=' + gpmlRev;
-
-      pngUrl = encodeURI('http://test3.wikipathways.org/wpi//wpi.php?action=downloadFile&type=png&pwTitle=Pathway:' + urlParamList.gpml + '&revision=' + urlParamList.gpmlRev);
-    }
-    else {
-      gpmlUrl = args.gpml;
-
-      // TODO update this link to a URL we control
-
-      pngUrl = 'http://upload.wikimedia.org/wikipedia/commons/3/3b/Picture_Not_Yet_Available.png';
-      if (!Modernizr.svg) {
-        return console.warn('Error: GPML data source specified is not a WikiPathways ID. WikiPathways does not have access to a visual representation of this GPML.');
-      }
-    };
-    console.log(gpmlUrl);
-
-
-
-
-
+    target.width = targetElement[0][0].getElementWidth();
+    target.height = targetElement[0][0].getElementHeight();
 
     async.parallel({
       partials: function(callback) {
-        loadPartials(args, function() {
-          callback(null);
-        })
+        if (Modernizr.svg) {
+          pathvisio.renderer.svg.loadPartials(target, preserveAspectRatioValues, args.customMarkers, args.customShapes, args.cssUrl, function(svg) {
+            console.log(svg);
+            callback(null);
+          })
+        }
+        else {
+          // TODO use target selector and seadragon for this
+          window.setTimeout(function() {
+            $('#view').prepend('<img id="pathvisio-java-png" src="http://test3.wikipathways.org/wpi//wpi.php?action=downloadFile&type=png&pwTitle=Pathway:' +  + urlParamList.gpml + '&revision=' + urlParamList.gpmlRev + '" />')
+          }, 50);
+        }
       },
       pathway: function(callback){
-        getJson(gpmlUrl, function(json) {
+        getJson(args.data, function(json) {
           console.log('json');
           console.log(json);
           callback(null, json);
@@ -453,77 +224,12 @@ pathvisio = function(){
 
 ///*
       if (Modernizr.svg) {
-        async.series([
-          function(callback) {
-            pathvisioNS.grid = {};
-            pathvisio.renderer.pathFinder.generateGridData(results.pathway, function() {
-              callback(null);
-            });
-          },
-          function(callback){
-            //draw(svg, pathway, function() {
-            pathvisio.renderer.svg.render(svg, results.pathway, function() {
-              callback(null);
-            })
-          },
-          function(callback) {
-            var svgDimensions = fitElementWithinContainer(targetWidth, targetHeight, results.pathway.metadata.boardWidth, results.pathway.metadata.boardHeight, args.preserveAspectRatio);
-            self.svgDimensions = svgDimensions;
-            d3.select('#loading-icon').remove();
-
-            svg.attr('style', 'display: inline; ');
-
-
-function setCTM(element, matrix) {
-	var s = "matrix(" + matrix.a + "," + matrix.b + "," + matrix.c + "," + matrix.d + "," + matrix.e + "," + matrix.f + ")";
-console.log(s);
-
-	element.setAttribute("transform", s);
-}
-var svgElement = document.querySelector('svg');
-var m1 = svgElement.getCTM();
-var p = {'x': m1.e, 'y': m1.f};
-var m2 = svgElement.createSVGMatrix().translate(p.x, p.y).scale(svgDimensions.scale).translate(-p.x, -p.y);
-var viewport = svgElement.querySelector('#viewport');
-setCTM(viewport, m2);
-
-/*
- * function setCTM(element, matrix) {
-	var s = "matrix(" + matrix.a + "," + matrix.b + "," + matrix.c + "," + matrix.d + "," + matrix.e + "," + matrix.f + ")";
-console.log(s);
-
-	element.setAttribute("transform", s);
-}
-var svgElement = document.querySelector('svg');
-var m1 = svgElement.getCTM();
-var xScale1 = m1.a;
-var yScale1 = m1.d;
-var zoomFactor = 0.2;
-var p = {'x': m1.e, 'y': m1.f};
-var z = xScale1 * (1+zoomFactor);
-var m2 = svgElement.createSVGMatrix().translate(p.x, p.y).scale(z).translate(-p.x, -p.y);
-var viewport = svgElement.querySelector('#viewport');
-setCTM(viewport, m2);
-//*/
-
-
-            ///*
-            svgPanZoom.init({
-              'root': 'svg',
-              'enableZoom': true 
-            });
-            //*/
-            callback(null);
-          }
-        ],
-        function(err, results) {
+        pathvisio.renderer.svg.load(args, preserveAspectRatioValues, target, function() {
+          console.log('svg loaded');
         });
       }
       else {
-        // TODO use target selector and seadragon for this
-        window.setTimeout(function() {
-          $('#view').prepend('<img id="pathvisio-java-png" src="http://test3.wikipathways.org/wpi//wpi.php?action=downloadFile&type=png&pwTitle=Pathway:' +  + urlParamList.gpml + '&revision=' + urlParamList.gpmlRev + '" />')
-        }, 50);
+        // TODO add highlighter to seadragon
       }
 
       /* Node Highlighter
@@ -552,7 +258,7 @@ setCTM(viewport, m2);
           console.warn('Error: No data node value entered.');
         }
         else {
-          pathvisio.pathway.highlightByLabel(nodeLabel);
+          pathvisio.renderer.svg.node.highlightByLabel(svg, nodeLabel);
         }
       });
 //*/
@@ -566,7 +272,7 @@ setCTM(viewport, m2);
           console.warn('Error: No data node value entered.');
         }
         else {
-          pathvisio.pathway.highlightByLabel(nodeLabel);
+          pathvisio.renderer.svg.node.highlightByLabel(svg, nodeLabel);
         }
       });
     */
@@ -577,6 +283,6 @@ setCTM(viewport, m2);
   return {
     load:load,
     getJson:getJson,
-    highlightByLabel:highlightByLabel
+    fitElementWithinContainer:fitElementWithinContainer
   };
 }();
