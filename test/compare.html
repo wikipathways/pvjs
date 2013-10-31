@@ -76,7 +76,7 @@
 
   function getUrlParamList() {
     urlParamList = {
-      'svgDisabled': false,
+      'svg-disabled': false,
       'gpml': null,
       'gpmlRev': 0,
       'creator': 'pathvisio-js-dev',
@@ -293,6 +293,11 @@
     var d3View = d3.select('#view');
     var view = document.querySelector('#view');
 
+    if (urlParamList['svg-disabled']) {
+      Modernizr.svg = false;
+      $('#svg-disabled').prop('checked', true);
+    }
+
     if (urlParamList.creator === 'pathvisio-js-dev' || urlParamList.creator === 'pathvisio-js-prod') {
       $('#view').empty();
 
@@ -426,10 +431,12 @@
     <form id="choose-source-data" action="#" method="get">
         GPML (WP ID or a full URL): <input type="text" id="gpml" name="gpml" style="width: 300px;" />
         GPML REV: <input type="text" id="gpml-rev" name="gpml-rev" placeholder="optional" style="width: 100px;" />
+        <!--
         <span id="github-container">GitHub Account: <input type="text" id="account" name="account" placeholder="e.g., wikipathways" />
         Branch: <input type="text" id="branch" name="branch" placeholder="e.g., master or dev" /></span>
+      -->
         <input type="hidden" id="creator" name="creator" />
-        SVG Disabled: <input type="checkbox" id="svg-disabled" name="svg-disabled" />
+        SVG Disabled: <input type="checkbox" id="svg-disabled" name="svg-disabled" value="true" />
     <input type="submit" value="Submit" />
     </form>
   </div> 
