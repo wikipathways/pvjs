@@ -6,7 +6,6 @@ pathvisio.renderer.svg.node = function(){
 
   var alignToAnchorMappings = { "Left":"start", "Center":"middle", "Right":"end" };
 
-
   function appendCustom(customShape, callback) {
     // TODO don't select svg again
     var svg = d3.select('#pathway-svg');
