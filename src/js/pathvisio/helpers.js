@@ -1,6 +1,5 @@
 pathvisio.helpers = function(){
 
-
   // from here: http://www.cjboco.com/blog.cfm/post/determining-an-elements-width-and-height-using-javascript/
   // TODO have not tested x-browser yet.
   // could use jquery, but I want to remove it as a dependency for pv.js.
