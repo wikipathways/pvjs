@@ -58,6 +58,7 @@ header.details-frame-header {
   float: left;
   padding: 0 0 0 5px;
   color:#aaa;
+  font-size: 80%;
 }
 .details-frame-header-move:hover {
   cursor: move;
