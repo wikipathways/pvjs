@@ -47,6 +47,8 @@ header.details-frame-header {
 .details-frame-header-close {
   float: right;  
   padding: 0 5px 0 0;
+  color:#aaa; 
+  font-size:120%;
 }
 
 .details-frame-header-close:hover {
@@ -56,6 +58,7 @@ header.details-frame-header {
 .details-frame-header-move {
   float: left;
   padding: 0 0 0 5px;
+  color:#aaa;
 }
 .details-frame-header-move:hover {
   cursor: move;
