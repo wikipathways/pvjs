@@ -94,8 +94,23 @@ header.details-frame-header {
   margin: 0 auto 0 auto;
 }
 
-.details-frame-items-container .details-frame-description h2 {
+.details-frame-items-container {
   font-weight: normal;
+  font-variant: normal;
+  font-style:italic;
+  line-height: 1.5;
+  font-size: 14px;
+  color: #696969;
+  display: inline-block;
+  padding-bottom: 10px;
+  margin-top: 0px;
+  margin-bottom: 5px;
+  border-bottom: 0px;
+  zoom: 1;
+}
+
+.details-frame-description h2 {
+   font-weight: normal;
   font-variant: normal;
   font-style:italic;
   line-height: 1.5;
