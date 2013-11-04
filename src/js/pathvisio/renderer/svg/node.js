@@ -6,6 +6,95 @@ pathvisio.renderer.svg.node = function(){
 
   var alignToAnchorMappings = { "Left":"start", "Center":"middle", "Right":"end" };
 
+  function appendCustom(customShape, callback) {
+    // TODO don't select svg again
+    var svg = d3.select('#pathway-svg');
+    if (1===1) {
+      d3.xml(customShape.url, 'image/svg+xml', function(svgXml) {
+
+        def = svg.select('defs').select('#' + customShape.id);
+        if (!def[0][0]) {
+          def = svg.select('defs').append('symbol')
+          .attr('id', customShape.id)
+          .attr('preserveAspectRatio', 'none');
+        }
+        else {
+          def.selectAll('*').remove();
+        }
+
+
+        var shape = d3.select(svgXml.documentElement)
+        var width = shape.attr('width');
+        var height = shape.attr('height');
+
+        def.attr('viewBox', '0 0 ' + width + ' ' + height);
+
+        var parent = document.querySelector('#' + customShape.id);
+
+
+        var d3Svg = d3.select(svgXml.documentElement).selectAll('*');
+        d3Svg[0].forEach(function(element){
+          parent.appendChild(element);
+        });
+        callback(null);
+      });
+    }
+    else {
+      img = document.createElement('img');
+      img.src = customShape.url;
+      img.onload = function() {
+        def = svg.select('defs').select('#' + customShape.id);
+        if (!def[0][0]) {
+          def = svg.select('defs').append('symbol')
+          .attr('id', customShape.id)
+          .attr('viewBox', '0 0 ' + this.width + ' ' + this.height)
+          .attr('preserveAspectRatio', 'none');
+        }
+        else {
+          def.selectAll('*').remove();
+        }
+        dimensions = def.attr('viewBox').split(' ');
+
+        /*
+        def.append('image').attr('xlink:xlink:href', customShape.url)
+        .attr('x', dimensions[0])
+        .attr('y', dimensions[1])
+        .attr('width', dimensions[2])
+        .attr('height', dimensions[3])
+        .attr('externalResourcesRequired', "true");
+        //*/
+
+        callback(null);
+      }
+    }
+
+    /*
+    def.append('object').attr('data', customShape.url)
+    .attr('x', dimensions[0])
+    .attr('y', dimensions[1])
+    .attr('width', dimensions[2])
+    .attr('height', dimensions[3])
+    .attr('type', "image/svg+xml");
+    //*/
+
+
+  }
+
+  function loadAllCustom(customShapes, callback) {
+    var image = null;
+    var img = null;
+    var def = null;
+    var dimensions = null;
+    var dimensionSet = [];
+
+    async.each(customShapes, appendCustom, function(err){
+        // if any of the saves produced an error, err would equal that error
+      callback(null);
+    });
+  }
+
+
+
   function render(svg, pathway, node) {
     if (!svg || !pathway || !node) {
       if (!svg) {
@@ -657,9 +746,28 @@ pathvisio.renderer.svg.node = function(){
       return port;
     }
 
+    function highlightByLabel(svg, nodeLabel) {
+      svg.selectAll('.highlighted-node').remove();
+      var dataNodes = pathway.nodes.filter(function(element) {return element.elementType === 'data-node';});
+      var dataNodesWithText = dataNodes.filter(function(element) {return (!!element.textLabel);});
+      var selectedNodes = dataNodesWithText.filter(function(element) {return element.textLabel.text.indexOf(nodeLabel) !== -1;});
+      selectedNodes.forEach(function(node) {
+        var nodeDomElement = svg.select('#nodes-container-' + node.graphId);
+        var height = nodeDomElement[0][0].getBBox().height;
+        var width = nodeDomElement[0][0].getBBox().width;
+        nodeDomElement.append('rect')
+        .attr('class', 'highlighted-node')
+        .attr('x', -2.5)
+        .attr('y', -2.5)
+        .attr('width', width + 5)
+        .attr('height', height + 5);
+      });
+    }
     return {
       render:render,
       renderAll:renderAll,
-      getPortCoordinates:getPortCoordinates
+      getPortCoordinates:getPortCoordinates,
+      loadAllCustom:loadAllCustom,
+      highlightByLabel:highlightByLabel
     };
   }();
