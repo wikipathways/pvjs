@@ -44,10 +44,19 @@ header.details-frame-header {
   cursor: pointer;
 }
 
+.details-frame-header-close {
+  float: right;  
+  padding: 0 5px 0 0;
+}
+
 .details-frame-header-close:hover {
   cursor: pointer;  
 }
 
+.details-frame-header-move {
+  float: left;
+  padding: 0 0 0 5px;
+}
 .details-frame-header-move:hover {
   cursor: move;
 }
