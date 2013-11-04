@@ -45,8 +45,7 @@
 }
 
 .ui-cytoscape-panzoom-zoom-out {
-	/*top: 197px;*/
-	top: 300px;
+	top: 197px;
 }
 
 .ui-cytoscape-panzoom-pan-up {
@@ -100,8 +99,7 @@
 	width: 8px;
 	height: 8px;
 	border-radius: 8px;
-	/*background: #000;*/
-	background: #600;
+	background: #000;
 	border-radius: 8px;
 	margin-left: -5px;
 	margin-top: -5px;
@@ -114,8 +112,7 @@
 	position: absolute;
 	top: 97px;
 	left: 17px;
-	/*height: 100px;*/
-	height: 200px;
+	height: 100px;
 	width: 15px;
 }
 
