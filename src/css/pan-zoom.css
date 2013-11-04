@@ -1,5 +1,4 @@
 .ui-cytoscape-panzoom {
-	cursor: pointer;
 	position: absolute;
 	font-family: arial, helvetica, sans-serif;
 	line-height: 1;
@@ -40,14 +39,17 @@
 }
 
 .ui-cytoscape-panzoom-reset {
+	cursor: pointer;
 	top: 55px;
 }
 
 .ui-cytoscape-panzoom-zoom-in {
+	cursor: pointer;
 	top: 80px;
 }
 
 .ui-cytoscape-panzoom-zoom-out {
+	cursor: pointer;
 	top: 197px;
 }
 
@@ -112,6 +114,7 @@
 }
 
 .ui-cytoscape-panzoom-slider {
+	cursor: pointer;
 	position: absolute;
 	top: 97px;
 	left: 17px;
