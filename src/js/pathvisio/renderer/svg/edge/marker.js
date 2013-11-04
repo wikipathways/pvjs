@@ -6,6 +6,75 @@ pathvisio.renderer.svg.edge.marker = function(){
   // template svg, whether it is at the start or end of a path and whether
   // a color other than black (the color specified in the template) is desired.
 
+  function appendCustom(customMarker, callback) {
+    // TODO don't select svg again
+    var svg = d3.select('#pathway-svg');
+    if (1===1) {
+      d3.xml(customMarker.url, 'image/svg+xml', function(svgXml) {
+
+        def = svg.select('defs').select('#' + customMarker.id);
+        if (!def[0][0]) {
+          def = svg.select('defs').append('marker')
+          .attr('id', customMarker.id)
+          .attr('preserveAspectRatio', 'none');
+        }
+        else {
+          def.selectAll('*').remove();
+        }
+
+
+        var marker = d3.select(svgXml.documentElement)
+        var width = marker.attr('width');
+        var height = marker.attr('height');
+
+        def.attr('viewBox', '0 0 ' + width + ' ' + height);
+
+        var parent = document.querySelector('#' + customMarker.id);
+        parent.appendChild(svgXml.documentElement);
+        callback(null);
+      });
+    }
+    else {
+      img = document.createElement('img');
+      img.src = customMarker.url;
+      img.onload = function() {
+        def = svg.select('defs').select('#' + customMarker.id);
+        if (!def[0][0]) {
+          def = svg.select('defs').append('symbol')
+          .attr('id', customMarker.id)
+          .attr('viewBox', '0 0 ' + this.width + ' ' + this.height)
+          .attr('preserveAspectRatio', 'none');
+        }
+        else {
+          def.selectAll('*').remove();
+        }
+        dimensions = def.attr('viewBox').split(' ');
+
+        def.append('image').attr('xlink:xlink:href', customMarker.url)
+        .attr('x', dimensions[0])
+        .attr('y', dimensions[1])
+        .attr('width', dimensions[2])
+        .attr('height', dimensions[3])
+        .attr('externalResourcesRequired', "true");
+
+        callback(null);
+      }
+    }
+  }
+
+  function loadAllCustom(customMarkers, callback) {
+    var image = null;
+    var img = null;
+    var def = null;
+    var dimensions = null;
+    var dimensionSet = [];
+
+    async.each(customMarkers, appendCustom, function(err){
+        // if any of the saves produced an error, err would equal that error
+      callback(null);
+    });
+  }
+
   function render(svg, name, position, color) {
     var markerUrl = '';
 
@@ -66,6 +135,7 @@ pathvisio.renderer.svg.edge.marker = function(){
   }
  
   return {
-    render:render
+    render:render,
+    loadAllCustom:loadAllCustom
   };
 }();
