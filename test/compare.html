@@ -76,7 +76,7 @@
 
   function getUrlParamList() {
     urlParamList = {
-      'svgDisabled': false,
+      'svg-disabled': false,
       'gpml': null,
       'gpmlRev': 0,
       'creator': 'pathvisio-js-dev',
@@ -172,7 +172,11 @@
         }
       },
       function(err, results) {
-        results.html.querySelector('#pathway-container').appendChild(results.svg.documentElement)
+        results.svg.documentElement.setAttribute('style', 'display: none; ');
+        results.svg.documentElement.setAttribute('width', '500px');
+        results.svg.documentElement.setAttribute('height', '500px');
+        var pathwayContainer = results.html.querySelector('#pathway-container').appendChild(results.svg.documentElement)
+
         var oSerializer = new XMLSerializer();
         pathvisioNS['tmp/pathvisio-js.html'] = oSerializer.serializeToString(results.html);
         callback();
@@ -245,14 +249,16 @@
 
   var currentUrl = document.location.origin + document.location.pathname;
   var rootDirectoryUrl = document.location.origin + document.location.pathname.split("pathvisio.js/")[0] + 'pathvisio.js/';
-  var srcDirectoryUrl = rootDirectoryUrl + 'src/';
+  var srcDirectoryUrl = (rootDirectoryUrl + 'src/');
 
+  /*
   if (urlParamList.creator === 'pathvisio-js-dev') {
     if (!!urlParamList.account && !!urlParamList.branch && urlParamList.acount !== 'null' && urlParamList.branch !== 'null') {
       srcDirectoryUrl = 'src/';
       //srcDirectoryUrl = 'https://rawgithub.com/' + urlParamList.account + '/pathvisio.js/' + urlParamList.branch + '/src/';
     }
   }
+  //*/
 
 
 
@@ -288,6 +294,11 @@
   window.onload = function() {
     var d3View = d3.select('#view');
     var view = document.querySelector('#view');
+
+    if (urlParamList['svg-disabled']) {
+      Modernizr.svg = false;
+      $('#svg-disabled').prop('checked', true);
+    }
 
     if (urlParamList.creator === 'pathvisio-js-dev' || urlParamList.creator === 'pathvisio-js-prod') {
       $('#view').empty();
@@ -326,13 +337,31 @@
             {'id': 'sarcoplasmic-reticulum','url': srcDirectoryUrl + 'views/shapes/sarcoplasmic-reticulum.svg'},
             {'id': 'triangle', 'url': srcDirectoryUrl + 'views/shapes/triangle.svg'}
           ];
-          var customMarkers = [];
+
+          var customMarkers = [
+            {'id': 'arrow', 'url': srcDirectoryUrl + 'views/markers/arrow.svg'},
+            {'id': 'mim-branching-left', 'url': srcDirectoryUrl + 'views/markers/mim-branching-left.svg'},
+            {'id': 'mim-branching-right', 'url': srcDirectoryUrl + 'views/markers/mim-branching-right.svg'},
+            {'id': 'mim-necessary-stimulation', 'url': srcDirectoryUrl + 'views/markers/mim-necessary-stimulation.svg'},
+            {'id': 'mim-binding', 'url': srcDirectoryUrl + 'views/markers/mim-binding.svg'},
+            {'id': 'mim-conversion', 'url': srcDirectoryUrl + 'views/markers/mim-conversion.svg'},
+            {'id': 'mim-stimulation', 'url': srcDirectoryUrl + 'views/markers/mim-stimulation.svg'},
+            {'id': 'mim-modification', 'url': srcDirectoryUrl + 'views/markers/mim-modification.svg'},
+            {'id': 'mim-catalysis', 'url': srcDirectoryUrl + 'views/markers/mim-catalysis.svg'},
+            {'id': 'mim-inhibition', 'url': srcDirectoryUrl + 'views/markers/mim-inhibition.svg'},
+            {'id': 'mim-cleavage', 'url': srcDirectoryUrl + 'views/markers/mim-cleavage.svg'},
+            {'id': 'mim-covalent-bond', 'url': srcDirectoryUrl + 'views/markers/mim-covalent-bond.svg'},
+            {'id': 'mim-transcription-translation', 'url': srcDirectoryUrl + 'views/markers/mim-transcription-translation.svg'},
+            {'id': 'mim-gap', 'url': srcDirectoryUrl + 'views/markers/mim-gap.svg'},
+            {'id': 't-bar', 'url': srcDirectoryUrl + 'views/markers/t-bar.svg'}
+          ];
+
           pathvisio.load({
             target: '#view',
             width: 1000,
             height: 500,
             preserveAspectRatio: 'xMidYMid',
-            gpml: urlParamList.gpml,
+            data: urlParamList.gpml,
             //gpmlRev: urlParamList.gpmlRev,
             cssUrl: srcDirectoryUrl + 'css/pathway-template.css',
             customMarkers: customMarkers,
@@ -404,10 +433,12 @@
     <form id="choose-source-data" action="#" method="get">
         GPML (WP ID or a full URL): <input type="text" id="gpml" name="gpml" style="width: 300px;" />
         GPML REV: <input type="text" id="gpml-rev" name="gpml-rev" placeholder="optional" style="width: 100px;" />
+        <!--
         <span id="github-container">GitHub Account: <input type="text" id="account" name="account" placeholder="e.g., wikipathways" />
         Branch: <input type="text" id="branch" name="branch" placeholder="e.g., master or dev" /></span>
+      -->
         <input type="hidden" id="creator" name="creator" />
-        SVG Disabled: <input type="checkbox" id="svg-disabled" name="svg-disabled" />
+        SVG Disabled: <input type="checkbox" id="svg-disabled" name="svg-disabled" value="true" />
     <input type="submit" value="Submit" />
     </form>
   </div> 

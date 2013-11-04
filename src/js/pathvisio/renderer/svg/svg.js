@@ -1,33 +1,167 @@
 pathvisio.renderer.svg = function(){
 
-  // first pass GPML (pathway XML) through an automatic XML to JSON converter, 
-  // then make specific modifications to make the JSON well-formatted, then return the JSON
-  
-  var svg = null;
-  var pathway = null;
-  var shapesAvailable = null;
+  var svg, pathway, shapesAvailable, markersAvailable;
 
-  self.pathway = pathway;
+  function setCTM(element, matrix) {
+    var s = "matrix(" + matrix.a + "," + matrix.b + "," + matrix.c + "," + matrix.d + "," + matrix.e + "," + matrix.f + ")";
+    element.setAttribute("transform", s);
+  }
 
-  function highlightByLabel(nodeLabel) {
-    svg.selectAll('.highlighted-node').remove();
-    var dataNodes = pathway.nodes.filter(function(element) {return element.elementType === 'data-node';});
-    var dataNodesWithText = dataNodes.filter(function(element) {return (!!element.textLabel);});
-    var selectedNodes = dataNodesWithText.filter(function(element) {return element.textLabel.text.indexOf(nodeLabel) !== -1;});
-    selectedNodes.forEach(function(node) {
-      var nodeDomElement = svg.select('#nodes-container-' + node.graphId);
-      var height = nodeDomElement[0][0].getBBox().height;
-      var width = nodeDomElement[0][0].getBBox().width;
-      nodeDomElement.append('rect')
-      .attr('class', 'highlighted-node')
-      .attr('x', -2.5)
-      .attr('y', -2.5)
-      .attr('width', width + 5)
-      .attr('height', height + 5);
+  function load(args, callback) {
+    async.series([
+      function(callback) {
+        pathvisioNS.grid = {};
+        pathvisio.renderer.pathFinder.generateGridData(results.pathway, function() {
+          callback(null);
+        });
+      },
+      function(callback){
+        svg = d3.select('body').select('#pathway-svg')
+        //draw(svg, pathway, function() {
+        pathvisio.renderer.svg.render(svg, results.pathway, function() {
+          callback(null);
+        })
+      },
+      function(callback) {
+        var svgDimensions = self.svgDimensions = pathvisio.renderer.fitElementWithinContainer(args.target, results.pathway.metadata.boardWidth, results.pathway.metadata.boardHeight, args.preserveAspectRatio);
+        self.svgDimensions = svgDimensions;
+        d3.select('#loading-icon').remove();
+
+        svg.attr('style', 'display: inline; width: ' + args.target.width + 'px; height: ' + args.target.height + 'px; ')
+        .on("click", function(d, i){
+          svgPanZoom.toggleZoom();
+        });
+
+        // TODO avoid defining svg again
+
+        var svgElement = document.querySelector('svg');
+        var m1 = svgElement.getCTM();
+        var p = {'x': m1.e, 'y': m1.f};
+        var m2 = svgElement.createSVGMatrix().translate(p.x, p.y).scale(svgDimensions.scale).translate(-p.x, -p.y);
+        var viewport = svgElement.querySelector('#viewport');
+        setCTM(viewport, m2);
+
+        /*
+         * function setCTM(element, matrix) {
+         var s = "matrix(" + matrix.a + "," + matrix.b + "," + matrix.c + "," + matrix.d + "," + matrix.e + "," + matrix.f + ")";
+         console.log(s);
+
+         element.setAttribute("transform", s);
+         }
+         var svgElement = document.querySelector('svg');
+         var m1 = svgElement.getCTM();
+         var xScale1 = m1.a;
+         var yScale1 = m1.d;
+         var zoomFactor = 0.2;
+         var p = {'x': m1.e, 'y': m1.f};
+         var z = xScale1 * (1+zoomFactor);
+         var m2 = svgElement.createSVGMatrix().translate(p.x, p.y).scale(z).translate(-p.x, -p.y);
+         var viewport = svgElement.querySelector('#viewport');
+         setCTM(viewport, m2);
+        //*/
+
+        svgPanZoom.init({
+          'root': 'svg',
+          'enableZoom': false 
+        });
+        callback(null);
+      }
+    ],
+    function(err, results) {
+    });
+    callback();
+  }
+
+  function loadPartials(args, callbackOutside) {
+    var pathvisioJsContainer, pathwayContainer;
+    async.series([
+      function(callback) {
+        args.target.element.html(pathvisioNS['tmp/pathvisio-js.html']);
+        pathvisioJsContainer = args.target.element.select('#pathvisio-js-container');
+        pathwayContainer = pathvisioJsContainer.select('#pathway-container')
+        .attr('class', args.preserveAspectRatioValues.yAlign);
+
+        svg = pathvisioJsContainer.select('#pathway-svg')
+        .attr('class', args.preserveAspectRatioValues.xAlign)
+        //.attr('viewBox', '0 0 ' + args.target.width + ' ' + args.target.height)
+        .attr('style', 'display: none; ');
+
+        callback(null);
+      },
+      function(callback){
+
+
+        /*
+        // Update…
+        var pd3 = docfragd3.selectAll("p")
+            .data([3, 4, 8, 15, 16, 23, 42])
+            .text(String);
+
+        // Enter…
+        pd3.enter().append("p")
+            .text(String);
+
+        // Exit…
+        pd3.exit().remove();
+
+        d3.select('document').append(docfragd3);
+        //*/
+
+        //var loadingImage = targetElement.select('#pathway-image');
+
+
+
+
+        ///*
+        //var docfrag = document.createDocumentFragment();
+        //var div = d3.select(docfrag).append('div');
+        //var div = document.createElement('div');
+        //args.target.element.html(pathvisioNS['tmp/pathvisio-js.html']);
+        ////*/
+
+        callback(null);
+      },
+      function(callback) {
+        if (!!args.customMarkers) {
+          pathvisio.renderer.svg.edge.marker.loadAllCustom(args.customMarkers, function() {
+            callback(null);
+          })
+        }
+        else {
+          callback(null);
+        }
+      },
+      function(callback) {
+        if (!!args.customShapes) {
+          pathvisio.renderer.svg.node.loadAllCustom(args.customShapes, function() {
+            callback(null);
+          })
+        }
+        else {
+          callback(null);
+        }
+      },
+      function(callback) {
+        if (!!args.cssUrl) {
+          d3.text(args.cssUrl, 'text/css', function(data) {
+            var defs = svg.select('defs');
+            var style = defs.append('style').attr('type', "text/css");
+            style.text(data);
+            callback(null);
+          })
+        }
+        else {
+          callback(null);
+        }
+      }
+    ],
+    function(err, results) {
+      callbackOutside(svg);
     });
   }
 
   function render(svg, pathway, callback){
+    svg = d3.select('body').select('#pathway-svg')
     if (!pathway) {
       console.warn('Error: No data entered as input.');
       return 'Error';
@@ -44,8 +178,8 @@ pathvisio.renderer.svg = function(){
       .attr("y", d3.event.y);
     }
 
-    svg.attr('width', pathway.metadata.boardWidth);
-    svg.attr('height', pathway.metadata.boardHeight);
+    //svg.attr('width', pathway.metadata.boardWidth);
+    //svg.attr('height', pathway.metadata.boardHeight);
 
     if (!!pathway.biopaxRefs) {
       var pathwayPublicationXrefs = svg.select('#viewport').selectAll(".pathway-publication-xref-text")
@@ -107,177 +241,15 @@ pathvisio.renderer.svg = function(){
     });
     //pathvisio.renderer.svg.anchor.renderAll(svg, pathway);
 
+      window.svg = d3.select("svg")
+      .attr('style', 'width: 500px');
+
     callback();
-
-    /*
-    window.setTimeout(function() {
-      window.root = document.documentElement.getElementsByTagName("svg")[0];
-      root.addEventListener('click', function () {
-        enableZoom = 1;
-      });
-      setupHandlers(root);
-    }, 1000);
-    //*/
-  }
-
-  function appendCustomShape(customShape, callback) {
-    img = document.createElement('img');
-    img.src = customShape.url;
-    img.onload = function() {
-      def = svg.select('defs').select('#' + customShape.id);
-      if (!def[0][0]) {
-        def = d3.select('svg').select('defs').append('symbol').attr('id', customShape.id)
-        .attr('viewBox', '0 0 ' + this.width + ' ' + this.height)
-        .attr('preserveAspectRatio', 'none');
-      }
-      else {
-        def.selectAll('*').remove();
-      }
-      dimensions = def.attr('viewBox').split(' ');
-      def.append('image').attr('xlink:xlink:href', customShape.url).attr('x', dimensions[0]).attr('y', dimensions[1]).attr('width', dimensions[2]).attr('height', dimensions[3]);
-      callback(null);
-    }
-  }
-
-  function loadCustomShapes(args, callback) {
-    var image = null;
-    var img = null;
-    var def = null;
-    var dimensions = null;
-    var dimensionSet = [];
-
-    if (!!args.customShapes) {
-      async.each(args.customShapes, appendCustomShape, function(err){
-          // if any of the saves produced an error, err would equal that error
-        callback(null);
-      });
-    }
-  }
-
-  function loadPartials(args, callback) {
-    async.series([
-      function(callbackInside){
-        console.log('2');
-        args.containerElement.html(pathvisioNS['tmp/pathvisio-js.html']);
-        svg = args.containerElement.select('#pathway-image');
-        callbackInside(null);
-      },
-      function(callbackInside) {
-        console.log('3');
-        loadCustomShapes(args, function() {
-          callbackInside(null);
-        })
-      },
-      function(callbackInside) {
-        console.log('4');
-        if (!!args.cssUrl) {
-          d3.text(args.cssUrl, 'text/css', function(data) {
-            var defs = svg.select('defs');
-            var style = defs.append('style').attr('type', "text/css");
-            style.text(data);
-            callbackInside(null);
-          })
-        }
-        else {
-          callbackInside(null);
-        }
-      }
-    ],
-    function(err, results) {
-      console.log(err);
-      callback();
-    });
-  }
-
-
-  // get JSON and render SVG representation of pathway
-
-  function load(args) {
-
-    // Check for minimum required parameters
-
-    if (!args.gpmlUrl) { return console.warn('Error: No gpml URL specified as data source for pathvisio.js.'); }
-
-    if (!args.container) { return console.warn('Error: No container selector specified as target for pathvisio.js.'); }
-    args.containerElement = d3.select(args.container);
-    if (args.containerElement.length !== 1) { return console.warn('Error: Container selector must be matched by exactly one element.'); }
-
-    async.parallel([
-      function(callback) {
-        console.log('1a');
-        loadPartials(args, callback);
-      },
-      function(callback){
-        console.log('1b');
-        getJson(args.gpmlUrl, callback);
-      }
-    ],
-    function(err, results){
-      console.log('5');
-      console.log(err);
-
-      async.series([
-        function(callbackInside){
-          render(svg, pathway, function() {
-            callbackInside(null);
-          })
-        },
-        function(callbackInside) {
-          svgPanZoom.init({
-            'root':args.container + ' svg',
-            'enableZoom': true
-          });
-          callbackInside(null);
-        }
-      ],
-      function(err, results) {
-        console.log(err);
-      });
-
-      var nodeLabels = [];
-      pathway.nodes.forEach(function(node) {
-        if (!!node.textLabel && node.elementType === 'data-node') {
-          nodeLabels.push(node.textLabel.text);
-        }
-      });
-
-      // see http://twitter.github.io/typeahead.js/
-
-      $('#highlight-by-label-input').typeahead({
-        name: 'Highlight node in pathway',
-        local: nodeLabels,
-        limit: 10
-      });
-      /*
-      $('.icon-eye-open').click(function(){
-        var nodeLabel = $("#highlight-by-label-input").val();
-        if (!nodeLabel) {
-          console.warn('Error: No data node value entered.');
-        }
-        else {
-          pathvisio.renderer.svg.highlightByLabel(nodeLabel);
-        }
-      });
-//*/
-      // see http://api.jquery.com/bind/
-      // TODO get selected value better and make function to handle
-
-      $( "#highlight-by-label-input" ).bind( "typeahead:selected", function() {
-        var nodeLabel = $("#highlight-by-label-input").val();
-        if (!nodeLabel) {
-          console.warn('Error: No data node value entered.');
-        }
-        else {
-          pathvisio.renderer.svg.highlightByLabel(nodeLabel);
-        }
-      });
-
-    });
   }
 
   return {
     render:render,
     load:load,
-    highlightByLabel:highlightByLabel
+    loadPartials:loadPartials
   };
 }();
