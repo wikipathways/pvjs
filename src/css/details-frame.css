@@ -36,6 +36,10 @@ header.details-frame-header {
   padding-bottom: 0px;
 }
 
+.details-frame-header-search {
+  vertical-align: 10%;
+}
+
 .details-frame-header-search:hover {
   cursor: pointer;
 }
