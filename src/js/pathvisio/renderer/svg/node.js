@@ -392,6 +392,29 @@ pathvisio.renderer.svg.node = function(){
       return console.warn('Error: Missing one or more required parameters: svg, pathway.');
     }
 
+    // Update… 
+    var nodes = svg.selectAll("g.node")
+    .data(function(d) { return d.pathway.elements.filter(function(element) {return element.renderableType === 'node'})})
+    .attr('transform', function(d) {return 'translate(' + d.x + ' ' + d.y + ')';})
+    .attr('class', 'node')
+    .call(drag);
+
+    // Enter…
+    nodes.enter().append("g")
+    .attr('class', 'node')
+    .attr('transform', function(d) {return 'translate(' + d.x + ' ' + d.y + ')';})
+    .call(drag);
+
+    // Exit…
+    nodes.exit().remove();
+
+
+
+
+
+
+
+
     var nodesContainer = svg.select('#viewport').selectAll("g.nodes-container")
     .data(pathway.nodes)
     .enter()

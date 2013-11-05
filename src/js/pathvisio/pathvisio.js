@@ -103,8 +103,13 @@ pathvisio = function(){
     },
     function(err, results){
       self.results = results;
+      var rendererLoadArgs = results.preload;
+      rendererLoadArgs.pathway = results.pathway;
 
-      pathvisio.renderer.load(results.preload, results.pathway, function() {
+      console.log('rendererLoadArgs');
+      console.log(rendererLoadArgs);
+
+      pathvisio.renderer.load(rendererLoadArgs, function() {
         // do something here
       })
 
