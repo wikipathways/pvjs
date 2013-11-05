@@ -64,6 +64,11 @@ header.details-frame-header {
   cursor: move;
 }
 
+.details-frame-description {
+  text-align: center;
+  margin: 0 0 0 auto;
+}
+
 /*
 .details-frame-items-container {
   font-weight: normal;
@@ -79,6 +84,10 @@ header.details-frame-header {
   zoom: 1;
 }
 */
+
+.details-frame-items-container {
+  margin: 0 0 0 auto;
+}
 
 .details-frame-items-container ::-webkit-scrollbar-track {
   -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
