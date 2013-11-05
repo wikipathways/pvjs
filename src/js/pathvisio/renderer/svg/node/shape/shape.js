@@ -23,10 +23,8 @@ pathvisio.renderer.svg.node.shape = function(){
 
     //not sure whether to break this up into separate classes like immediately below
 
-    pathvisio.renderer.svg.node.shape.scalable.render(nodes, pathway, scalableShapesList);
-
-    // this doesn't work yet
-    //pathvisio.renderer.svg.node.shape.nonscalable.render(nodes, pathway, scalableShapesList);
+    pathvisio.renderer.svg.node.shape.scalable.renderAll(nodes, pathway, scalableShapesList);
+    pathvisio.renderer.svg.node.shape.nonscalable.renderAll(nodes, pathway, scalableShapesList);
 
     /*
     // or do it all here with functions for specifying element type, etc. (This doesn't work yet below.)

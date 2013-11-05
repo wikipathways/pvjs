@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Pathway xmlns="http://pathvisio.org/GPML/2013a" Name="elbows" Version="20130813" Organism="Anopheles gambiae">
-  <Graphics BoardWidth="2078.245370768712" BoardHeight="2428.984622196427" />
+  <Graphics BoardWidth="609.7918210195186" BoardHeight="601.1280116193159" />
   <DataNode TextLabel="Metabolite" GraphId="f156c" Type="Metabolite">
-    <Graphics CenterX="524.0810701662763" CenterY="320.4871284903986" Width="111.4215017064846" Height="131.89931740614338" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Graphics CenterX="524.0810701662763" CenterY="320.4871284903986" Width="111.4215017064846" Height="131.89931740614338" ZOrder="32768" FontSize="10" Valign="Middle" ShapeType="RoundedRectangle" Color="0000ff" />
     <Xref Database="" ID="" />
   </DataNode>
   <DataNode TextLabel="14" GraphId="cf2f3" Type="GeneProduct">
