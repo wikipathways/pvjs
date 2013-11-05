@@ -107,9 +107,10 @@ pathvisio.renderer = function(){
     args.target.height = args.targetElement[0][0].getElementHeight();
 
     if (Modernizr.svg) {
-      pathvisio.renderer.svg.loadPartials(args, function(svg) {
+      pathvisio.renderer.svg.loadPartials(args, function(svg, scalableShapesList) {
         console.log(svg);
         args.svg = svg;
+        args.scalableShapesList = scalableShapesList;
         callback(args);
       })
     }
@@ -136,11 +137,23 @@ pathvisio.renderer = function(){
     }
   }
 
-  function load(args, pathway, callback) {
+  function load(args, callback) {
+    if (!args || args == undefined) {
+      if (!args.svg || args.svg == undefined) {
+        return console.warn('Missing svg.');
+      }
+      if (!args.pathway || args.pathway == undefined) {
+        return console.warn('Missing pathway.');
+      }
+      return console.warn('Missing required input parameter.');
+    }
+    console.log('args.pathway');
+    console.log(args.pathway);
     if (Modernizr.svg) {
       pathvisio.renderer.svg.load(args, function(svg) {
-        console.log(svg);
-        callback(svg);
+        console.log('renderer.load args');
+        console.log(args);
+        callback(args);
       })
     }
     else {

@@ -8,6 +8,16 @@ pathvisio.renderer.svg = function(){
   }
 
   function load(args, callback) {
+    if (!args) {
+      if (!args.svg) {
+        return console.warn('Missing svg.');
+      }
+      if (!args.pathway) {
+        return console.warn('Missing pathway.');
+      }
+      return console.warn('Missing required input parameter.');
+    }
+    var svg = args.svg;
     async.series([
       function(callback) {
         pathvisioNS.grid = {};
@@ -18,7 +28,7 @@ pathvisio.renderer.svg = function(){
       function(callback){
         svg = d3.select('body').select('#pathway-svg')
         //draw(svg, pathway, function() {
-        pathvisio.renderer.svg.render(svg, results.pathway, function() {
+        pathvisio.renderer.svg.render(args, function() {
           callback(null);
         })
       },
@@ -68,12 +78,12 @@ pathvisio.renderer.svg = function(){
       }
     ],
     function(err, results) {
+      callback();
     });
-    callback();
   }
 
   function loadPartials(args, callbackOutside) {
-    var pathvisioJsContainer, pathwayContainer;
+    var pathvisioJsContainer, pathwayContainer, scalableShapesList;
     async.series([
       function(callback) {
         args.target.element.html(pathvisioNS['tmp/pathvisio-js.html']);
@@ -105,6 +115,76 @@ pathvisio.renderer.svg = function(){
         pd3.exit().remove();
 
         d3.select('document').append(docfragd3);
+
+
+
+// Update…
+var container = d3.select('div.test')
+.data([{'pathway':{'elements':[{'id':'node-a', 'label':'123', 'type':'node'}, {'id':'node-b', 'label':'456', 'type':'node'}, {'id':'edge-c', 'label':'79', 'type':'edge'}]}}])
+.attr('class', 'test');  
+
+// Enter…
+container.enter().append("div")
+.attr('class', 'test');  
+
+// Exit…
+container.exit().remove();
+
+// Update… 
+var nodes = container.selectAll("p.node")
+.data(function(d) { return d.pathway.elements.filter(function(element) {return element.type === 'node'})})
+.text(function(d) {
+  return d.label;
+});
+
+// Enter…
+nodes.enter().append("p")
+.attr('class', 'node')
+.text(function(d) {
+  return d.label;
+});
+
+// Exit…
+nodes.exit().remove();
+
+// Update… 
+var edges = container.selectAll("p.edge")
+.data(function(d) { return d.pathway.elements.filter(function(element) {return element.type === 'edge'}); })
+.text(function(d) {
+  return d.label;
+});
+
+// Enter…
+edges.enter().append("p")
+.attr('class', 'edge')
+.text(function(d) {
+  return d.label;
+});
+
+// Exit…
+edges.exit().remove();
+
+// doing this again
+
+
+
+
+// Update…
+var container = d3.select('div.test')
+.data([{'pathway':{'elements':[{'id':'node-a', 'label':'123', 'type':'node'}, {'id':'node-b', 'label':'456', 'type':'node'}, {'id':'edge-c', 'label':'79', 'type':'edge'}, {'id':'edge-c', 'label':'hi', 'type':'edge'}, {'id':'edge-c', 'label':'wow', 'type':'edge'}, {'id':'edge-c', 'label':'aaa', 'type':'edge'}, {'id':'edge-c', 'label':'bbb', 'type':'edge'}, {'id':'edge-c', 'label':'ccc', 'type':'edge'}]}}])
+.attr('class', 'test');  
+
+
+
+// Enter…
+edges.data(function(d) { return d.pathway.elements.filter(function(element) {return element.type === 'edge'}); })
+.enter().append("p")
+.attr('class', 'edge')
+.text(function(d) {
+  return d.label;
+});
+
+
         //*/
 
         //var loadingImage = targetElement.select('#pathway-image');
@@ -133,13 +213,19 @@ pathvisio.renderer.svg = function(){
       },
       function(callback) {
         if (!!args.customShapes) {
-          pathvisio.renderer.svg.node.loadAllCustom(args.customShapes, function() {
+          pathvisio.renderer.svg.node.shape.scalable.loadAllCustom(args.customShapes, function() {
             callback(null);
           })
         }
         else {
           callback(null);
         }
+      },
+      function(callback) {
+        pathvisio.renderer.svg.node.shape.scalable.getScalableShapesList(svg, function(data) {
+          scalableShapesList = data;
+          callback(null);
+        });
       },
       function(callback) {
         if (!!args.cssUrl) {
@@ -156,14 +242,25 @@ pathvisio.renderer.svg = function(){
       }
     ],
     function(err, results) {
-      callbackOutside(svg);
+      callbackOutside(svg, scalableShapesList);
     });
   }
 
-  function render(svg, pathway, callback){
-    svg = d3.select('body').select('#pathway-svg')
-    if (!pathway) {
-      console.warn('Error: No data entered as input.');
+  function render(args, callback){
+    if (!args) {
+      if (!args.svg) {
+        console.warn('Error: No svg specified.');
+        return 'Error';
+      }
+      if (!args.pathway) {
+        console.warn('Error: No data entered as input.');
+        return 'Error';
+      }
+      if (!args.scalableShapesList) {
+        console.warn('Error: No scalableShapesList specified.');
+        return 'Error';
+      }
+      console.warn('Error: Missing required input.');
       return 'Error';
     }
 
@@ -178,9 +275,42 @@ pathvisio.renderer.svg = function(){
       .attr("y", d3.event.y);
     }
 
+    // TODO refactor so that svg isn't redefined here
+    // Update…
+    var viewport = svg.select('#viewport')
+    .data([args.pathway]);
+
+    //.attr('transform', function(d) {return 'translate(' + d.x + ' ' + d.y + ')';})
+    /*
+    .on("click", function(d,i) {
+      if (d.elementType === 'data-node') {
+        pathvisio.renderer.svg.xRef.displayData(pathway.organism, d);
+      }
+    });
+    */
+
+    // Enter…
+    /*
+    viewport.enter().append("g")
+    .attr("id", function (d) { return 'node-' + d.id; })
+    .attr("id", 'viewport');
+    //*/
+
+    // Exit…
+    viewport.exit().remove();
+
+    console.log('viewport');
+    console.log(viewport);
+
+    console.log('args');
+    console.log(args);
+
+    pathvisio.renderer.svg.node.renderAll(viewport, args.pathway, args.scalableShapesList);
+
     //svg.attr('width', pathway.metadata.boardWidth);
     //svg.attr('height', pathway.metadata.boardHeight);
 
+    /*
     if (!!pathway.biopaxRefs) {
       var pathwayPublicationXrefs = svg.select('#viewport').selectAll(".pathway-publication-xref-text")
       .data(pathway.biopaxRefs)
@@ -219,9 +349,7 @@ pathvisio.renderer.svg = function(){
     console.log('none');
     }
 
-    if (pathway.hasOwnProperty('nodes')) {
-      pathvisio.renderer.svg.node.renderAll(svg, pathway);
-    }
+
 
     if (pathway.hasOwnProperty('infoBox')) {
       pathvisio.renderer.svg.infoBox.render(svg, pathway);
@@ -229,22 +357,12 @@ pathvisio.renderer.svg = function(){
 
     //pathvisio.renderer.svg.grid.render(svg);
 
-    pathway.elements.forEach(function(element) {
-      if (element.renderableType === 'edge') {
-        pathvisio.renderer.svg.edge.render(svg, pathway, element);
-      }
-      else {
-        if (element.renderableType === 'node') {
-          pathvisio.renderer.svg.node.render(svg, pathway, element);
-        }
-      }
-    });
     //pathvisio.renderer.svg.anchor.renderAll(svg, pathway);
 
       window.svg = d3.select("svg")
       .attr('style', 'width: 500px');
-
-    callback();
+//*/
+    callback(svg);
   }
 
   return {
