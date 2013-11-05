@@ -83,7 +83,7 @@ pathvisio.renderer.svg = function(){
   }
 
   function loadPartials(args, callbackOutside) {
-    var pathvisioJsContainer, pathwayContainer, scalableShapesList;
+    var pathvisioJsContainer, pathwayContainer, uniformlyScalingShapesList;
     async.series([
       function(callback) {
         args.target.element.html(pathvisioNS['tmp/pathvisio-js.html']);
@@ -213,7 +213,7 @@ edges.data(function(d) { return d.pathway.elements.filter(function(element) {ret
       },
       function(callback) {
         if (!!args.customShapes) {
-          pathvisio.renderer.svg.node.shape.scalable.loadAllCustom(args.customShapes, function() {
+          pathvisio.renderer.svg.node.shape.uniformlyScalingShape.loadAllCustom(args.customShapes, function() {
             callback(null);
           })
         }
@@ -222,8 +222,8 @@ edges.data(function(d) { return d.pathway.elements.filter(function(element) {ret
         }
       },
       function(callback) {
-        pathvisio.renderer.svg.node.shape.scalable.getScalableShapesList(svg, function(data) {
-          scalableShapesList = data;
+        pathvisio.renderer.svg.node.shape.uniformlyScalingShape.getUniformlyScalingShapesList(svg, function(data) {
+          uniformlyScalingShapesList = data;
           callback(null);
         });
       },
@@ -242,7 +242,7 @@ edges.data(function(d) { return d.pathway.elements.filter(function(element) {ret
       }
     ],
     function(err, results) {
-      callbackOutside(svg, scalableShapesList);
+      callbackOutside(svg, uniformlyScalingShapesList);
     });
   }
 
@@ -256,8 +256,8 @@ edges.data(function(d) { return d.pathway.elements.filter(function(element) {ret
         console.warn('Error: No data entered as input.');
         return 'Error';
       }
-      if (!args.scalableShapesList) {
-        console.warn('Error: No scalableShapesList specified.');
+      if (!args.uniformlyScalingShapesList) {
+        console.warn('Error: No uniformlyScalingShapesList specified.');
         return 'Error';
       }
       console.warn('Error: Missing required input.');
@@ -305,7 +305,7 @@ edges.data(function(d) { return d.pathway.elements.filter(function(element) {ret
     console.log('args');
     console.log(args);
 
-    pathvisio.renderer.svg.node.renderAll(viewport, args.pathway, args.scalableShapesList);
+    pathvisio.renderer.svg.node.renderAll(viewport, args.pathway, args.uniformlyScalingShapesList);
 
     //svg.attr('width', pathway.metadata.boardWidth);
     //svg.attr('height', pathway.metadata.boardHeight);
