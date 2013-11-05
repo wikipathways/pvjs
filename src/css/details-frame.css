@@ -90,6 +90,7 @@ header.details-frame-header {
 }
 
 .details-frame-item li {
+  list-style: none;
   padding: 0px;
   display: block;
   margin: 0 auto 0 auto;
@@ -98,7 +99,6 @@ header.details-frame-header {
 .details-frame-items-container {
   font-weight: normal;
   font-variant: normal;
-  font-style:italic;
   line-height: 1.5;
   font-size: 14px;
   color: #696969;
