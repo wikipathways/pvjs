@@ -1,4 +1,4 @@
-pathvisio.renderer.svg.node.shape.nonscalable = function(){
+pathvisio.renderer.svg.node.shape.nonuniformlyScalingShape = function(){
 
   // Be sure to specify style elements like default fill and stroke color!
   // This can be done in the JSON below, or it can be done via defining a CSS class. If you choose to use a CSS class,
@@ -34,12 +34,8 @@ pathvisio.renderer.svg.node.shape.nonscalable = function(){
     }
   };
 
-
-  function scalePathDataToFitNode(pathData, nodeWidth, nodeHeight) {
-  }
-
-  function setAttributesFromDefinition(nonscalableShape) {
-    nonscalableShape.attr("id", function (d) {return 'shape-' + d.id;})
+  function render(nonuniformlyScalingShape) {
+    nonuniformlyScalingShape.attr("id", function (d) {return 'shape-' + d.id;})
     .attr("class", function (d) {
       var styleClass = '';
       if (d.elementType === 'data-node') {
@@ -51,69 +47,47 @@ pathvisio.renderer.svg.node.shape.nonscalable = function(){
       return styleClass;
     })
 
-self.nonscalableShape = nonscalableShape;
-    var nonscalableShapeAttributes = definitions[nonscalableShape];
-    nonscalableShapeAttributes.forEach(function(attribute) {
-      nonscalableShape.attr(attribute.name, attribute.value)
+    // TODO there must be a cleaner, less brittle way of getting nodeData here
+
+    var nodeData = nonuniformlyScalingShape[0].parentNode.__data__;
+    var shapeType = caseConverter.camelCase(nodeData.shapeType);
+    var nonuniformlyScalingShapeAttributes = pathvisio.renderer.svg.node.shape.nonuniformlyScalingShape[shapeType].getAttributes(nodeData.width, nodeData.height);
+    nonuniformlyScalingShapeAttributes.forEach(function(attribute) {
+      nonuniformlyScalingShape.attr(attribute.name, attribute.value)
     });
 
   }
 
-  function render(nonscalableShape) {
-    nonscalableShape.attr("id", function (d) {return 'shape-' + d.id;})
-    .attr("class", function (d) {
-      var styleClass = '';
-      if (d.elementType === 'data-node') {
-        styleClass = 'shape nonscalable ' + d.dataNodeType + ' ' + d.shapeType;
-      }
-      else {
-        styleClass = 'shape nonscalable ' + d.shapeType;
-      }
-      return styleClass;
-    })
-
-    // TODO there must be a cleaner, less brittle way of getting the shapeType here
-
-    var shapeType = caseConverter.camelCase(nonscalableShape[0].parentNode.__data__.shapeType);
-    var nonscalableShapeDefinition = definitions[shapeType];
-    //var nonscalableShapeDefinition = definitions['roundedRectangle'];
-    var nonscalableShapeAttributes = nonscalableShapeDefinition.attributes;
-    nonscalableShapeAttributes.forEach(function(attribute) {
-      nonscalableShape.attr(attribute.name, attribute.value)
-    });
-
-  }
-
-  function renderAll(nodes, pathway, scalableShapesList) {
-    if (!nodes || !pathway || !scalableShapesList) {
-      console.log(scalableShapesList);
+  function renderAll(nodes, pathway, uniformlyScalingShapesList) {
+    if (!nodes || !pathway || !uniformlyScalingShapesList) {
+      console.log(uniformlyScalingShapesList);
       if (!nodes) {
         console.log('nodes not specified');
       }
       if (!pathway) {
         console.log('pathway not specified');
       }
-      if (!scalableShapesList) {
-        console.log('scalableShapesList not specified');
+      if (!uniformlyScalingShapesList) {
+        console.log('uniformlyScalingShapesList not specified');
       }
-      return console.warn('Error: Missing one or more required parameters: nodes, pathway or scalableShapesList.');
+      return console.warn('Error: Missing one or more required parameters: nodes, pathway or uniformlyScalingShapesList.');
     }
 
-    var nonscalableNodes = nodes.filter(function(d, i) { return scalableShapesList.indexOf(d.shapeType) === -1; });
+    var nonscalableNodes = nodes.filter(function(d, i) { return uniformlyScalingShapesList.indexOf(d.shapeType) === -1; });
 
     // Update… 
-    var nonscalableShapes = nonscalableNodes.selectAll("path.shape nonscalable")
+    var nonuniformlyScalingShapes = nonscalableNodes.selectAll("path.shape nonscalable")
     .data(function(d) {
       return [d];
     })
     .call(render);
 
     // Enter…
-    nonscalableShapes.enter().append("path")
+    nonuniformlyScalingShapes.enter().append("path")
     .call(render);
 
     // Exit…
-    nonscalableShapes.exit().remove();
+    nonuniformlyScalingShapes.exit().remove();
   }
 
   return {
