@@ -22,10 +22,13 @@ pathvisio.renderer.svg.node.shape = function(){
 
 
     //not sure whether to break this up into separate classes like immediately below
-    //pathvisio.renderer.svg.node.shape.scalable.render(nodes, pathway, scalableShapesList);
+
+    pathvisio.renderer.svg.node.shape.scalable.render(nodes, pathway, scalableShapesList);
+
     // this doesn't work yet
     //pathvisio.renderer.svg.node.shape.nonscalable.render(nodes, pathway, scalableShapesList);
 
+    /*
     // or do it all here with functions for specifying element type, etc. (This doesn't work yet below.)
     if (!nodes || !pathway || !scalableShapesList) {
       console.log(scalableShapesList);
@@ -43,17 +46,27 @@ pathvisio.renderer.svg.node.shape = function(){
 
     // Update… 
     var shapes = nodes.selectAll(".shape")
-    .data(function(d) {return d;})
+    .data([function(d) {
+      console.log('d inside here');
+      console.log(d);
+      return d;
+    }])
     .attr('class', 'shape')
 
     // Enter…
-    shapes.enter().append(function(d) { return getElementType(d.shapeType, scalableShapesList); })
+    //shapes.enter().append('path')
+    shapes.enter().append(function(d) {
+      var elementType = getElementType(d.shapeType, scalableShapesList);
+      console.log('elementType');
+      console.log(elementType);
+      return elementType;
+    })
     .attr('class', 'shape');
 
     // Exit…
     shapes.exit().remove();
 
-
+//*/
 
   }
 
