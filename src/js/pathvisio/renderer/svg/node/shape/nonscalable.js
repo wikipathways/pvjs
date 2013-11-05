@@ -72,9 +72,11 @@ self.nonscalableShape = nonscalableShape;
       return styleClass;
     })
 
-self.nonscalableShape = nonscalableShape;
-    //var nonscalableShapeAttributes = definitions[nonscalableShape];
-    var nonscalableShapeDefinition = definitions['roundedRectangle'];
+    // TODO there must be a cleaner, less brittle way of getting the shapeType here
+
+    var shapeType = caseConverter.camelCase(nonscalableShape[0].parentNode.__data__.shapeType);
+    var nonscalableShapeDefinition = definitions[shapeType];
+    //var nonscalableShapeDefinition = definitions['roundedRectangle'];
     var nonscalableShapeAttributes = nonscalableShapeDefinition.attributes;
     nonscalableShapeAttributes.forEach(function(attribute) {
       nonscalableShape.attr(attribute.name, attribute.value)
