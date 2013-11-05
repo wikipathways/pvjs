@@ -107,10 +107,10 @@ pathvisio.renderer = function(){
     args.target.height = args.targetElement[0][0].getElementHeight();
 
     if (Modernizr.svg) {
-      pathvisio.renderer.svg.loadPartials(args, function(svg, scalableShapesList) {
+      pathvisio.renderer.svg.loadPartials(args, function(svg, uniformlyScalingShapesList) {
         console.log(svg);
         args.svg = svg;
-        args.scalableShapesList = scalableShapesList;
+        args.uniformlyScalingShapesList = uniformlyScalingShapesList;
         callback(args);
       })
     }

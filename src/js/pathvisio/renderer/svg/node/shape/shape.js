@@ -1,6 +1,6 @@
 pathvisio.renderer.svg.node.shape = function(){
-  function getElementType(shapeType, scalableShapesList) {
-    if (scalableShapesList.indexOf(shapeType) > -1) {
+  function getElementType(shapeType, uniformlyScalingShapesList) {
+    if (uniformlyScalingShapesList.indexOf(shapeType) > -1) {
       elementType = 'use';
     }
     else {
@@ -9,7 +9,7 @@ pathvisio.renderer.svg.node.shape = function(){
     return elementType;
   }
 
-  function render(nodes, pathway, scalableShapesList) {
+  function render(nodes, pathway, uniformlyScalingShapesList) {
     if (!nodes || !pathway) {
       if (!nodes) {
         console.log('nodes not specified');
@@ -23,23 +23,23 @@ pathvisio.renderer.svg.node.shape = function(){
 
     //not sure whether to break this up into separate classes like immediately below
 
-    pathvisio.renderer.svg.node.shape.scalable.renderAll(nodes, pathway, scalableShapesList);
-    pathvisio.renderer.svg.node.shape.nonscalable.renderAll(nodes, pathway, scalableShapesList);
+    pathvisio.renderer.svg.node.shape.uniformlyScalingShape.renderAll(nodes, pathway, uniformlyScalingShapesList);
+    pathvisio.renderer.svg.node.shape.nonuniformlyScalingShape.renderAll(nodes, pathway, uniformlyScalingShapesList);
 
     /*
     // or do it all here with functions for specifying element type, etc. (This doesn't work yet below.)
-    if (!nodes || !pathway || !scalableShapesList) {
-      console.log(scalableShapesList);
+    if (!nodes || !pathway || !uniformlyScalingShapesList) {
+      console.log(uniformlyScalingShapesList);
       if (!nodes) {
         console.log('nodes not specified');
       }
       if (!pathway) {
         console.log('pathway not specified');
       }
-      if (!scalableShapesList) {
-        console.log('scalableShapesList not specified');
+      if (!uniformlyScalingShapesList) {
+        console.log('uniformlyScalingShapesList not specified');
       }
-      return console.warn('Error: Missing one or more required parameters: nodes, pathway or scalableShapesList.');
+      return console.warn('Error: Missing one or more required parameters: nodes, pathway or uniformlyScalingShapesList.');
     }
 
     // Update… 
@@ -54,7 +54,7 @@ pathvisio.renderer.svg.node.shape = function(){
     // Enter…
     //shapes.enter().append('path')
     shapes.enter().append(function(d) {
-      var elementType = getElementType(d.shapeType, scalableShapesList);
+      var elementType = getElementType(d.shapeType, uniformlyScalingShapesList);
       console.log('elementType');
       console.log(elementType);
       return elementType;

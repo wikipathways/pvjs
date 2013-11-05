@@ -1,4 +1,4 @@
-pathvisio.renderer.svg.node.shape.scalable = function(){
+pathvisio.renderer.svg.node.shape.uniformlyScalingShape = function(){
   function appendCustom(customShape, callback) {
     // TODO don't select svg again
     var svg = d3.select('#pathway-svg');
@@ -86,14 +86,14 @@ pathvisio.renderer.svg.node.shape.scalable = function(){
     });
   }
 
-  function getScalableShapesList(svg, callback) {
-    var scalableShapesList = [];
+  function getUniformlyScalingShapesList(svg, callback) {
+    var uniformlyScalingShapesList = [];
     svg.select('defs').selectAll('symbol')[0].forEach(function(element){
-      scalableShapesList.push(element.id);
+      uniformlyScalingShapesList.push(element.id);
     });
-    console.log('scalableShapesList');
-    console.log(scalableShapesList);
-    callback(scalableShapesList);
+    console.log('uniformlyScalingShapesList');
+    console.log(uniformlyScalingShapesList);
+    callback(uniformlyScalingShapesList);
   }
 
   function render(scalableShape) {
@@ -200,22 +200,22 @@ pathvisio.renderer.svg.node.shape.scalable = function(){
     .attr("xlink:xlink:href", function(d) {return '#' + d.shapeType;});
   }
 
-  function renderAll(nodes, pathway, scalableShapesList) {
-    if (!nodes || !pathway || !scalableShapesList) {
-      console.log(scalableShapesList);
+  function renderAll(nodes, pathway, uniformlyScalingShapesList) {
+    if (!nodes || !pathway || !uniformlyScalingShapesList) {
+      console.log(uniformlyScalingShapesList);
       if (!nodes) {
         console.log('nodes not specified');
       }
       if (!pathway) {
         console.log('pathway not specified');
       }
-      if (!scalableShapesList) {
-        console.log('scalableShapesList not specified');
+      if (!uniformlyScalingShapesList) {
+        console.log('uniformlyScalingShapesList not specified');
       }
-      return console.warn('Error: Missing one or more required parameters: nodes, pathway or scalableShapesList.');
+      return console.warn('Error: Missing one or more required parameters: nodes, pathway or uniformlyScalingShapesList.');
     }
 
-    var scalableNodes = nodes.filter(function(d, i) { return scalableShapesList.indexOf(d.shapeType) > -1; });
+    var scalableNodes = nodes.filter(function(d, i) { return uniformlyScalingShapesList.indexOf(d.shapeType) > -1; });
 
     // Update… 
     var scalableShapes = scalableNodes.selectAll("use.shape scalable")
@@ -235,6 +235,6 @@ pathvisio.renderer.svg.node.shape.scalable = function(){
   return {
     renderAll:renderAll,
     loadAllCustom:loadAllCustom,
-    getScalableShapesList:getScalableShapesList
+    getUniformlyScalingShapesList:getUniformlyScalingShapesList
   };
 }();

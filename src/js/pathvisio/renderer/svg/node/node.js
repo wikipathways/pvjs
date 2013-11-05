@@ -25,7 +25,7 @@ pathvisio.renderer.svg.node = function(){
     draw();
   }
 
-  function renderAll(viewport, pathway, scalableShapesList) {
+  function renderAll(viewport, pathway, uniformlyScalingShapesList) {
     if (!viewport || !pathway) {
       if (!viewport) {
         console.log('viewport');
@@ -73,7 +73,7 @@ pathvisio.renderer.svg.node = function(){
     nodes.exit().remove();
 
     // Shapes
-    pathvisio.renderer.svg.node.shape.render(nodes, pathway, scalableShapesList);
+    pathvisio.renderer.svg.node.shape.render(nodes, pathway, uniformlyScalingShapesList);
   }
 
   function getPortCoordinates(boxDimensions, relX, relY) {
