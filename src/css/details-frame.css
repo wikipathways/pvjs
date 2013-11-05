@@ -146,6 +146,7 @@ header.details-frame-header {
 }
 
 a.details-frame-item-text {
+  text-decoration: none;
   color: blue;
 }
 
