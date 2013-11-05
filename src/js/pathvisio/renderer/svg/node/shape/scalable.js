@@ -96,61 +96,8 @@ pathvisio.renderer.svg.node.shape.scalable = function(){
     callback(scalableShapesList);
   }
 
-
-
-
-  function render(nodes, pathway, scalableShapesList) {
-    if (!nodes || !pathway || !scalableShapesList) {
-      console.log(scalableShapesList);
-      if (!nodes) {
-        console.log('nodes not specified');
-      }
-      if (!pathway) {
-        console.log('pathway not specified');
-      }
-      if (!scalableShapesList) {
-        console.log('scalableShapesList not specified');
-      }
-      return console.warn('Error: Missing one or more required parameters: nodes, pathway or scalableShapesList.');
-    }
-
-    var scalableNodes = nodes.filter(function(d, i) { return scalableShapesList.indexOf(d.shapeType) > -1; });
-
-    // Update… 
-    var scalableShapes = scalableNodes.selectAll("use.shape scalable")
-    .data(function(d) {
-      self.hey = d;
-      console.log('d for scalableShapes');
-      console.log(d);
-      return [d];
-    })
-    .attr("id", function (d) {return 'shape-' + d.id;})
-    .attr('transform', function(d) {
-      var transform = 'scale(1)';
-      if (d.hasOwnProperty('rotation')) {
-        transform = 'rotate(' + d.rotation + ' ' + d.width / 2 + ' ' + d.height / 2 + ')';
-      }
-      return transform;
-    })
-    .attr("class", function (d) {
-      var styleClass = '';
-      if (d.elementType === 'data-node') {
-        styleClass = 'shape ' + d.dataNodeType;
-      }
-      else {
-        styleClass = 'shape';
-      }
-      return styleClass;
-    })
-    .attr("x", 0)
-    .attr("y", 0)
-    .attr("width", function (d) { return d.width;})
-    .attr("height", function (d) { return d.height;})
-    .attr("z-index", function (d) { return d.zIndex;})
-
-    // Enter…
-    scalableShapes.enter().append("use")
-    .attr("id", function (d) {return 'shape-' + d.id;})
+  function render(scalableShape) {
+    scalableShape.attr("id", function (d) {return 'shape-' + d.id;})
     .attr('transform', function(d) {
       var transform = 'scale(1)';
       if (d.hasOwnProperty('rotation')) {
@@ -251,136 +198,42 @@ pathvisio.renderer.svg.node.shape.scalable = function(){
       return style;
     })
     .attr("xlink:xlink:href", function(d) {return '#' + d.shapeType;});
+  }
+
+  function renderAll(nodes, pathway, scalableShapesList) {
+    if (!nodes || !pathway || !scalableShapesList) {
+      console.log(scalableShapesList);
+      if (!nodes) {
+        console.log('nodes not specified');
+      }
+      if (!pathway) {
+        console.log('pathway not specified');
+      }
+      if (!scalableShapesList) {
+        console.log('scalableShapesList not specified');
+      }
+      return console.warn('Error: Missing one or more required parameters: nodes, pathway or scalableShapesList.');
+    }
+
+    var scalableNodes = nodes.filter(function(d, i) { return scalableShapesList.indexOf(d.shapeType) > -1; });
+
+    // Update… 
+    var scalableShapes = scalableNodes.selectAll("use.shape scalable")
+    .data(function(d) {
+      return [d];
+    })
+    .call(render);
+
+    // Enter…
+    scalableShapes.enter().append("use")
+    .call(render);
 
     // Exit…
     scalableShapes.exit().remove();
-
-
-
-
-
-
-    /*
-      var nodeElement = nodeContainer.append('use')
-      .attr("id", function () {return 'node-' + node.id;})
-      .attr('transform', function() {
-        var transform = 'scale(1)';
-        if (node.hasOwnProperty('rotation')) {
-          transform = 'rotate(' + node.rotation + ' ' + node.width / 2 + ' ' + node.height / 2 + ')';
-        }
-        return transform;
-      })
-      .attr("class", function () {
-        var styleClass = '';
-        if (node.elementType === 'data-node') {
-          styleClass = "node " + node.elementType + ' ' + node.dataNodeType;
-        }
-        else {
-          styleClass = "node " + node.elementType;
-        }
-        return styleClass;
-      })
-      .attr("x", 0)
-      .attr("y", 0)
-      .attr("width", function () { return node.width;})
-      .attr("height", function () { return node.height;})
-      .attr("z-index", function () { return node.zIndex;})
-      .attr("style", function () {
-        var style = '';
-
-        if (node.hasOwnProperty('fill')) {
-          style += 'fill:' + node.fill + '; ';
-        }
-
-        if (node.hasOwnProperty('fillOpacity')) {
-          style += 'fill-opacity:' + node.fillOpacity + '; ';
-        }
-
-        if (node.hasOwnProperty('stroke')) {
-          style += 'stroke:' + node.stroke + '; ';
-        }
-
-        var strokeWidthEffective = null;
-        if (node.hasOwnProperty('strokeWidth')) {
-
-          // Doubling strokeWidth to create strokeWidthEffective.
-          // Reason: stroke is centered on perimeter of node, requiring us to use an SVG clipping Path to clip off the outermost half
-          // of the stroke so that the stroke does not go outside its bounding box. Because the outer half of the stroke is not displayed, we need to
-          // double the stroke width so that the stroke's apparent width matches the value specified in GPML.
-
-          strokeWidthEffective = 2 * node.strokeWidth;
-        }
-        else {
-          strokeWidthEffective = 2;
-        }
-
-        style += 'stroke-width:' + strokeWidthEffective + '; ';
-
-        if (node.hasOwnProperty('strokeStyle')) {
-          if (node.strokeStyle === 'dashed') {
-            style += 'stroke-dasharray: 5,3; ';
-          }
-
-          if (node.strokeStyle === 'double') {
-
-            // render second element
-
-            d3.select(nodesContainer[0][i]).append("use")
-            .attr("id", function () {return 'node-double' + node.id;})
-            .attr("class", function () {
-              var styleClass = '';
-              if (node.elementType === 'data-node') {
-                styleClass = "node " + node.elementType + ' ' + node.dataNodeType;
-              }
-              else {
-                styleClass = "node " + node.elementType;
-              }
-              return styleClass;
-            })
-            .attr('transform', function() {
-              var transform = 'scale(1)';
-              if (node.hasOwnProperty('rotation')) {
-
-                // the reference to width and height here is to specify the center of rotation as the center of the second element
-
-                transform = 'rotate(' + node.rotation + ' ' + (node.width/2) + ' ' + (node.height/2) + ')';
-              }
-              return transform;
-            })
-            .attr("x", function() {return strokeWidthEffective;})
-            .attr("y", function() {return strokeWidthEffective;})
-            .attr("width", function () { return node.width - 2*strokeWidthEffective;})
-            .attr("height", function () { return node.height - 2*strokeWidthEffective;})
-            .attr("xlink:xlink:href", function () {return "#" + node.shapeType;})
-            //.attr("class", "stroke-color-equals-default-fill-color")
-            .attr("style", function() { return style + 'fill-opacity:0; ';});
-          }
-        }
-
-        // be careful that all additions to 'style' go above the 'double-line second element' above
-        // so that they are applied to both the first and second elements.
-
-        return style;
-      });
-
-      var shape = svg.select('symbol#' + node.shapeType)
-      if (shape.length === 1) {
-
-        // d3 bug strips 'xlink' so need to say 'xlink:xlink';
-
-        nodeElement.attr("xlink:xlink:href", function () {return "#" + node.shapeType;});
-      }
-      else {
-        nodeElement.attr("xlink:xlink:href", "#rectangle");
-        console.warn('Pathvisio.js does not have access to the requested shape: ' + node.shapeType + '. Rectangle used as placeholder.');
-      }
-      //*/
-
   }
 
-
   return {
-    render:render,
+    renderAll:renderAll,
     loadAllCustom:loadAllCustom,
     getScalableShapesList:getScalableShapesList
   };
