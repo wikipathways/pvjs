@@ -26,16 +26,6 @@ header.details-frame-header {
   padding-bottom: 0px;
 }
 
-.details-frame-header-text {
-  font-size: 22px;
-  font-weight: bold;
-  font-style: normal;
-  color: #333;
-  letter-spacing: .8px;
-  text-align: center;
-  padding-bottom: 0px;
-}
-
 .details-frame-header-search {
   vertical-align: 10%;
 }
