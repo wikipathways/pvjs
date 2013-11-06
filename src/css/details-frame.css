@@ -20,8 +20,7 @@ header.details-frame-header {
   font-size: 22px;
   font-weight: bold;
   font-style: normal;
-  /*color: #333;*/
-  color: red;
+  color: #333;
   letter-spacing: .8px;
   text-align: center;
   padding-bottom: 0px;
