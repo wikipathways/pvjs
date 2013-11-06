@@ -122,14 +122,10 @@ header.details-frame-header {
   margin: 0 5px 0 auto;
   color: blue;
   font-size: 9pt;
-}
-
-a.details-frame-item-text {
   text-decoration: none;
-  color: blue;
 }
 
-a.details-frame-item-text:hover {
+.details-frame-item-text:hover {
   text-decoration: underline;
   cursor: pointer;
 }
