@@ -62,7 +62,7 @@ pathvisio.renderer.svg.edge.marker = function(){
     }
   }
 
-  function loadAllCustom(customMarkers, callback) {
+  function loadAllCustom(svg, customMarkers, callback) {
     var image = null;
     var img = null;
     var def = null;

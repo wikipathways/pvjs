@@ -9,7 +9,6 @@ pathvisio.renderer.svg.node.shape.nonuniformlyScalingShape.roundedRectangle = fu
       var attributes = [
         {
           name:'d',
-          //value: 'm0,2.5c0,-1.35845 1.14155,-2.5 2.5,-2.5l95,0c1.35844,0 2.5,1.14155 2.5,2.5l0,45c0,1.35845 -1.14156,2.5 -2.5,2.5l-95,0c-1.35845,0 -2.5,-1.14155 -2.5,-2.5l0,-45z'
           value: 'm0,2.5c0,-1.35845 1.14155,-2.5 2.5,-2.5l' + (nodeWidth - 5) + ',0c1.35844,0 2.5,1.14155 2.5,2.5l0,' + (nodeHeight - 5) + 'c0,1.35845 -1.14156,2.5 -2.5,2.5l' + (5 - nodeWidth) + ',0c-1.35845,0 -2.5,-1.14155 -2.5,-2.5l0,' + (5 - nodeHeight) + 'z'
         }
       ];
