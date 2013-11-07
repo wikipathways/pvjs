@@ -112,13 +112,12 @@ pathvisio.renderer.svg.node = function(){
     return port;
   }
 
-  function highlightByLabel(viewport, nodeLabel) {
-    viewport.selectAll('.highlighted-node').remove();
-    var dataNodes = pathway.nodes.filter(function(element) {return element.elementType === 'data-node';});
-    var dataNodesWithText = dataNodes.filter(function(element) {return (!!element.textLabel);});
-    var selectedNodes = dataNodesWithText.filter(function(element) {return element.textLabel.text.indexOf(nodeLabel) !== -1;});
+  function highlightByLabel(svg, pathway, nodeLabel) {
+    svg.selectAll('.highlighted-node').remove();
+    var dataNodesWithText = pathway.elements.filter(function(d, i) {return d.nodeType === 'data-node' && (!!d.textLabel);});
+    var selectedNodes = dataNodesWithText.filter(function(d, i) {return d.textLabel.text.indexOf(nodeLabel) !== -1;});
     selectedNodes.forEach(function(node) {
-      var nodeDomElement = viewport.select('#nodes-container-' + node.graphId);
+      var nodeDomElement = svg.select('#node-' + node.id);
       var height = nodeDomElement[0][0].getBBox().height;
       var width = nodeDomElement[0][0].getBBox().width;
       nodeDomElement.append('rect')
@@ -129,6 +128,7 @@ pathvisio.renderer.svg.node = function(){
       .attr('height', height + 5);
     });
   }
+
   return {
     renderAll:renderAll,
     getPortCoordinates:getPortCoordinates,

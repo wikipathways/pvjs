@@ -147,7 +147,6 @@ pathvisio = function(){
         }
       });
 //*/
-/*
       // see http://api.jquery.com/bind/
       // TODO get selected value better and make function to handle
 
@@ -157,10 +156,10 @@ pathvisio = function(){
           console.warn('Error: No data node value entered.');
         }
         else {
-          pathvisio.renderer.svg.node.highlightByLabel(svg, nodeLabel);
+          console.log('hi');
+          pathvisio.renderer.svg.node.highlightByLabel(results.preload.svg, results.pathway, nodeLabel);
         }
       });
-    */
 
     });
   }
