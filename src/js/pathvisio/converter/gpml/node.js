@@ -51,6 +51,11 @@ pathvisio.converter.gpml.node = function(){
 
       var shapeType = gpmlNode.select('Graphics').attr('ShapeType'); 
       if (!shapeType) {
+
+        // To display correctly, a data-node must have a shape type.
+        // If no shape type is specified in GPML, this code will
+        // make the default be 'rectangle'
+
         if (jsonNode.nodeType === 'data-node') {
           jsonNode.shapeType = "rectangle";
         }
@@ -62,65 +67,153 @@ pathvisio.converter.gpml.node = function(){
         jsonNode.shapeType = caseConverter.paramCase(shapeType);
       }
 
-/*
-
-
-
-
-      if (element.graphics.hasOwnProperty("fillColor")) {
+      var fillColor = gpmlNode.select('Graphics').attr('FillColor'); 
+      var validRGBFillColor;
+      if (!!fillColor) {
 
         // RGBColor() from http://www.phpied.com/rgb-color-parser-in-javascript/
         // license: Use it if you like it
 
-        element.graphics.fillColor = element.graphics.fillColor.toLowerCase();
+        fillColor = fillColor.toLowerCase();
 
-        if (element.graphics.fillColor === 'transparent') {
-          element.fillOpacity = 0;
+        if (fillColor === 'transparent') {
+          jsonNode.fillOpacity = 0;
         }
         else {
-          var fill = new RGBColor(element.graphics.fillColor);
-          if (fill.ok) {
-            element.fill = fill.toHex();
+          rGBFillColor = new RGBColor(fillColor);
+          if (rGBFillColor.ok) {
+            jsonNode.fill = rGBFillColor.toHex();
           }
           else {
             console.warn('Invalid FillColor encountered. Setting FillColor to gray.');
-            element.fill = "#999999";
+            jsonNode.fill = "#999999";
           }
 
-          if (element.shapeType !== 'none') {
-            element.fillOpacity = 1;
+          if (jsonNode.shapeType !== 'none') {
+            jsonNode.fillOpacity = 1;
           }
         }
       }
 
-      if (element.graphics.hasOwnProperty("lineThickness")) {
-        element.strokeWidth = element.graphics.lineThickness;
+      var strokeWidth = gpmlNode.select('Graphics').attr('LineThickness'); 
+      if (!!strokeWidth) {
+        jsonNode.strokeWidth = strokeWidth;
       }
 
-      if (element.graphics.hasOwnProperty('lineStyle')) {
-        element.strokeStyle = element.graphics.lineStyle.toLowerCase();
-        if (element.strokeStyle === 'broken') {
-          element.strokeStyle = 'dashed';
+      var attributes = gpmlNode.selectAll('Attribute');
+
+      var strokeStyle = gpmlNode.select('Graphics').attr('LineStyle'); 
+      if (!!strokeStyle) {
+        strokeStyle = strokeStyle.toLowerCase();
+        if (strokeStyle === 'broken') {
+          jsonNode.strokeStyle = 'dashed';
+        }
+        else {
+          jsonNode.strokeStyle = strokeStyle;
+        }
+      }
+      else {
+
+        // As currently specified, a given element can only have one strokeStyle.
+        // This one strokeStyle can be solid, dashed (broken) or double.
+        // If no value is specified in GPML for LineStyle, then we need to check
+        // for whether the element has strokeStyle of double.
+
+        if (attributes.length > 0) {
+          strokeStyle = attributes.filter(function(d, i) {
+            return d3.select(this).attr('Key') === 'org.pathvisio.DoubleLineProperty' && d3.select(this).attr('Value') === 'Double';
+          });
+
+          if (strokeStyle[0].length > 0) {
+            jsonNode.strokeStyle = 'double';
+          }
         }
       }
 
-      if (element.hasOwnProperty('attribute')) {
-        element.attributes = pathvisio.helpers.convertToArray( element.attribute );
-        delete element.attribute;
-        element.attributes.forEach(function(el, index, array) {
-          if ((el.key === "org.pathvisio.DoubleLineProperty") && (el.value === "Double")) {
-            console.log('double');
-            console.log(el);
-            element.strokeStyle = 'double';
+      ///*
+      if (attributes.length > 0) {
+        var cellularComponent = attributes.filter(function(d, i) {
+          return d3.select(this).attr('Key') === 'org.pathvisio.CellularComponentProperty' && d3.select(this).attr('Value') != 'None';
+        });
+        if (cellularComponent[0].length > 0) {
+          jsonNode.cellularComponent = cellularComponent.attr('Value');
+        }
+      }
+      //*/
+
+      // textLabel data
+
+      var textLabel = gpmlNode.attr('TextLabel');
+      self.gpmlNode = gpmlNode;
+      console.log('textLabel');
+      console.log(textLabel);
+      ///*
+      if (!!textLabel) {
+        var text = textLabel.toString().replace("&#xA;","\r\n");
+
+          jsonNode.textLabel = {};
+
+          jsonNode.textLabel.text = text;
+
+          if (jsonNode.hasOwnProperty("stroke")) {
+
+            // jsonNode stroke color (referring to the color of a border or line) and text fill color appear to be the same property in the Java PathVisio code
+
+            jsonNode.textLabel.fill = jsonNode.stroke;
+          }
+
+          // default fontSize is already specified in the CSS of pathway-template.svg, but I need the font size
+          // to calculate the vertical spacing. I could remove this if I could pull the value from the CSS.
+          
+          var fontSize;
+          fontSize = gpmlNode.select('Graphics').attr("FontSize");
+          if (!fontSize) {
+            fontSize = 10;
+          }
+
+          jsonNode.textLabel.fontSize = fontSize;
+
+          var fontName;
+          fontName = gpmlNode.select('Graphics').attr("FontName");
+          if (!!fontName) {
+            jsonNode.textLabel.fontFamily = fontName.toLowerCase();
+          }
+
+          var fontWeight;
+          fontWeight = gpmlNode.select('Graphics').attr("FontWeight");
+          if (!!fontWeight) {
+            jsonNode.textLabel.fontWeight = fontWeight.toLowerCase();
+          }
+
+          var fontStyle;
+          fontStyle = gpmlNode.select('Graphics').attr("FontStyle");
+          if (!!fontStyle) {
+            jsonNode.textLabel.fontStyle = fontStyle.toLowerCase();
+          }
+
+          var textAnchor;
+          textAnchor = gpmlNode.select('Graphics').attr("Align");
+          if (alignToAnchorMappings.hasOwnProperty(textAnchor)) {
+            jsonNode.textLabel.textAnchor = textAnchor.toLowerCase();
           }
           else {
-            if ((el.key === "org.pathvisio.CellularComponentProperty") && (el.value !== "None")) {
-              element.cellularComponent = el.value;
-            }
+            jsonNode.textLabel.textAnchor = 'middle';
           }
-        });
-        delete element.attributes;
-      }
+
+          var vAlign;
+          vAlign = gpmlNode.select('Graphics').attr("Valign");
+          if (!!vAlign) {
+            jsonNode.textLabel.vAlign = vAlign.toLowerCase();
+          }
+          else {
+            jsonNode.textLabel.vAlign = 'top';
+          }
+        }
+        //*/
+
+/*
+
+
 
       if (element.graphics.hasOwnProperty("rotation")) {
 
@@ -131,67 +224,6 @@ pathvisio.converter.gpml.node = function(){
         //element.rotation = Math.round( element.rotation * 100 ) / 100;
       }
 
-      // textLabel data
-
-      if (element.hasOwnProperty("textLabel")) {
-        if (!element.textLabel) {
-          delete element.textLabel;
-        }
-        else {
-          var text = element.textLabel.toString().replace("&#xA;","\r\n");
-          delete element.textLabel;
-
-          element.textLabel = {};
-
-          element.textLabel.text = text;
-
-          if (element.hasOwnProperty("stroke")) {
-
-            // element stroke color (referring to the color of a border or line) and text fill color appear to be the same property in the Java PathVisio code
-
-            element.textLabel.fill = element.stroke;
-          }
-
-          // default fontSize is already specified in the CSS of pathway-template.svg, but I need the font size
-          // to calculate the vertical spacing. I could remove this if I could pull the value from the CSS.
-          
-          var fontSize = null;
-
-          if (element.graphics.hasOwnProperty("fontSize")) {
-            fontSize = element.graphics.fontSize;
-          }
-          else {
-            fontSize = 10;
-          }
-          element.textLabel.fontSize = fontSize;
-
-          if (element.graphics.hasOwnProperty("fontName")) {
-            element.textLabel.fontFamily = element.graphics.fontName;
-          }
-
-          if (element.graphics.hasOwnProperty("fontWeight")) {
-            element.textLabel.fontWeight = element.graphics.fontWeight.toLowerCase();
-          }
-
-          if (element.graphics.hasOwnProperty("fontStyle")) {
-            element.textLabel.fontStyle = element.graphics.fontStyle.toLowerCase();
-          }
-
-          if (alignToAnchorMappings.hasOwnProperty(element.graphics.align)) {
-            element.textLabel.textAnchor = alignToAnchorMappings[element.graphics.align];
-          }
-          else {
-            element.textLabel.textAnchor = 'middle';
-          }
-
-          if (element.graphics.hasOwnProperty("valign")) {
-            element.textLabel.vAlign = element.graphics.valign.toLowerCase();
-          }
-          else {
-            element.textLabel.vAlign = 'top';
-          }
-        }
-      }
 
       // BiopaxRefs 
 

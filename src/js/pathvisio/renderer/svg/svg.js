@@ -38,10 +38,11 @@ pathvisio.renderer.svg = function(){
         d3.select('#loading-icon').remove();
 
         svg.attr('style', 'display: inline; width: ' + args.target.width + 'px; height: ' + args.target.height + 'px; ')
+        /*
         .on("click", function(d, i){
           svgPanZoom.toggleZoom();
         });
-
+//*/
         // TODO avoid defining svg again
 
         var svgElement = document.querySelector('svg');
@@ -203,7 +204,7 @@ edges.data(function(d) { return d.pathway.elements.filter(function(element) {ret
       },
       function(callback) {
         if (!!args.customMarkers) {
-          pathvisio.renderer.svg.edge.marker.loadAllCustom(args.customMarkers, function() {
+          pathvisio.renderer.svg.edge.marker.loadAllCustom(svg, args.customMarkers, function() {
             callback(null);
           })
         }
@@ -213,7 +214,7 @@ edges.data(function(d) { return d.pathway.elements.filter(function(element) {ret
       },
       function(callback) {
         if (!!args.customShapes) {
-          pathvisio.renderer.svg.node.shape.uniformlyScalingShape.loadAllCustom(args.customShapes, function() {
+          pathvisio.renderer.svg.node.shape.uniformlyScalingShape.loadAllCustom(svg, args.customShapes, function() {
             callback(null);
           })
         }

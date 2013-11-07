@@ -38,6 +38,10 @@ pathvisio.converter.gpml = function(){
       jsonPathway.metadata = {};
       jsonPathway.metadata.boardWidth = parseFloat(gpmlPathway.select('Graphics').attr('BoardWidth'));
       jsonPathway.metadata.boardHeight = parseFloat(gpmlPathway.select('Graphics').attr('BoardHeight'));
+      jsonPathway.metadata.name = d3.select(gpml).select('Pathway').attr('Name');
+      jsonPathway.metadata.xmlns = d3.select(gpml).select('Pathway').attr('xmlns');
+      jsonPathway.metadata.organism = d3.select(gpml).select('Pathway').attr('Organism');
+      
 
       /*
 

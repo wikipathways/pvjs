@@ -116,11 +116,12 @@ pathvisio = function(){
 
 ///*
 
-      /* Node Highlighter
+      ///* Node Highlighter
 
       var nodeLabels = [];
-      pathway.nodes.forEach(function(node) {
-        if (!!node.textLabel && node.elementType === 'data-node') {
+      var dataNodes = results.pathway.elements.filter(function(element) {return element.nodeType === 'data-node';});
+      dataNodes.forEach(function(node) {
+        if (!!node.textLabel) {
           nodeLabels.push(node.textLabel.text);
         }
       });
