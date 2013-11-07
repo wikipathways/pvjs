@@ -25,10 +25,12 @@ pathvisio.renderer.svg.node.shape.uniformlyScalingShape = function(){
         var parent = document.querySelector('#' + customShape.id);
 
 
-        var d3Svg = d3.select(svgXml.documentElement).selectAll('*');
-        d3Svg[0].forEach(function(element){
-          parent.appendChild(element);
-        });
+        var d3Svg = shape[0][0].children;
+        var i = -1;
+        do {
+          i += 1;
+          parent.appendChild(d3Svg[i]);
+        } while (i < d3Svg.length - 1);
         callback(null);
       });
     }
@@ -73,7 +75,7 @@ pathvisio.renderer.svg.node.shape.uniformlyScalingShape = function(){
 
   }
 
-  function loadAllCustom(customShapes, callback) {
+  function loadAllCustom(svg, customShapes, callback) {
     var image = null;
     var img = null;
     var def = null;
@@ -91,13 +93,11 @@ pathvisio.renderer.svg.node.shape.uniformlyScalingShape = function(){
     svg.select('defs').selectAll('symbol')[0].forEach(function(element){
       uniformlyScalingShapesList.push(element.id);
     });
-    console.log('uniformlyScalingShapesList');
-    console.log(uniformlyScalingShapesList);
     callback(uniformlyScalingShapesList);
   }
 
-  function render(scalableShape) {
-    scalableShape.attr("id", function (d) {return 'shape-' + d.id;})
+  function render(uniformlyScalingShape) {
+    uniformlyScalingShape.attr("id", function (d) {return 'shape-' + d.id;})
     .attr('transform', function(d) {
       var transform = 'scale(1)';
       if (d.hasOwnProperty('rotation')) {
@@ -106,12 +106,12 @@ pathvisio.renderer.svg.node.shape.uniformlyScalingShape = function(){
       return transform;
     })
     .attr("class", function (d) {
-      var styleClass = '';
+      var styleClass = 'shape ';
       if (d.elementType === 'data-node') {
-        styleClass = 'shape ' + d.dataNodeType;
+        styleClass += d.dataNodeType + ' ';
       }
-      else {
-        styleClass = 'shape';
+      if (d.strokeStyle === 'double') {
+        styleClass += 'double-original ';
       }
       return styleClass;
     })
@@ -156,6 +156,7 @@ pathvisio.renderer.svg.node.shape.uniformlyScalingShape = function(){
           style += 'stroke-dasharray: 5,3; ';
         }
 
+        /*
         if (d.strokeStyle === 'double') {
 
           // render second element
@@ -190,6 +191,7 @@ pathvisio.renderer.svg.node.shape.uniformlyScalingShape = function(){
           //.attr("class", "stroke-color-equals-default-fill-color")
           .attr("style", function(d) { return style + 'fill-opacity:0; ';});
         }
+        //*/
       }
 
       // be careful that all additions to 'style' go above the 'double-line second element' above
@@ -202,7 +204,6 @@ pathvisio.renderer.svg.node.shape.uniformlyScalingShape = function(){
 
   function renderAll(nodes, pathway, uniformlyScalingShapesList) {
     if (!nodes || !pathway || !uniformlyScalingShapesList) {
-      console.log(uniformlyScalingShapesList);
       if (!nodes) {
         console.log('nodes not specified');
       }
@@ -215,21 +216,21 @@ pathvisio.renderer.svg.node.shape.uniformlyScalingShape = function(){
       return console.warn('Error: Missing one or more required parameters: nodes, pathway or uniformlyScalingShapesList.');
     }
 
-    var scalableNodes = nodes.filter(function(d, i) { return uniformlyScalingShapesList.indexOf(d.shapeType) > -1; });
+    var uniformlyScalingNodes = nodes.filter(function(d, i) { return uniformlyScalingShapesList.indexOf(d.shapeType) > -1; });
 
     // Update… 
-    var scalableShapes = scalableNodes.selectAll("use.shape scalable")
+    var uniformlyScalingShapes = uniformlyScalingNodes.selectAll("use.shape")
     .data(function(d) {
       return [d];
     })
     .call(render);
 
     // Enter…
-    scalableShapes.enter().append("use")
+    uniformlyScalingShapes.enter().append("use")
     .call(render);
 
     // Exit…
-    scalableShapes.exit().remove();
+    uniformlyScalingShapes.exit().remove();
   }
 
   return {

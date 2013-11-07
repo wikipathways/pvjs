@@ -157,7 +157,7 @@
     location.href = targetUrl;
   }
 
-  function buildTemplatePartial(callback) {
+  function generateHtmlView(callback) {
     async.parallel(
       {
         'html': function(callback) {
@@ -167,6 +167,25 @@
         },
         'svg': function(callback) {
           d3.xml(srcDirectoryUrl + 'views/pathway-template.svg', 'image/svg+xml', function(svg) {
+
+
+
+
+
+            async.series(
+              {
+                'load': function(callback) {
+                  d3.xml(srcDirectoryUrl + 'views/pathway-template.svg', 'image/svg+xml', function(svg) {
+                    callback(null, svg);
+                  });
+                }
+              }
+            )
+
+
+
+
+
             callback(null, svg);
           });
         }
@@ -201,7 +220,7 @@
             srcDirectoryUrl + "js/pathvisio/pathvisio.js",
             srcDirectoryUrl + "js/pathvisio/helpers.js",
             srcDirectoryUrl + 'js/pathvisio/data-sources.js',
-
+            srcDirectoryUrl + 'js/pathvisio/x-ref.js',
             srcDirectoryUrl + 'js/pathvisio/renderer/renderer.js',
             srcDirectoryUrl + "js/pathvisio/renderer/path-finder.js",
             srcDirectoryUrl + 'js/pathvisio/renderer/svg/svg.js',
@@ -216,10 +235,8 @@
             srcDirectoryUrl + 'js/pathvisio/renderer/svg/edge/marker.js',
             srcDirectoryUrl + 'js/pathvisio/renderer/svg/edge/point.js',
             srcDirectoryUrl + 'js/pathvisio/renderer/svg/edge/path-data.js',
-            srcDirectoryUrl + 'js/pathvisio/renderer/svg/x-ref.js',
             srcDirectoryUrl + 'js/pathvisio/renderer/svg/anchor.js',
             srcDirectoryUrl + 'js/pathvisio/renderer/svg/grid.js',
-            //hey
             srcDirectoryUrl + 'js/pathvisio/converter/converter.js',
             srcDirectoryUrl + 'js/pathvisio/converter/gpml/gpml.js',
             srcDirectoryUrl + 'js/pathvisio/converter/gpml/namespaces.js',
@@ -314,7 +331,7 @@
           function(callback) {
             if (urlParamList.creator === 'pathvisio-js-dev') {
               pathvisioNS = [];
-              buildTemplatePartial(function() {
+              generateHtmlView(function() {
                 callback(null);
               });
             }

@@ -1,14 +1,19 @@
 // Draw nodes. Includes data nodes, shapes, labels, cellular components...
 
 pathvisio.renderer.svg.node = function(){
+  
+  var pathwayHere, uniformlyScalingShapesListHere;
 
   function dragmove(d) {
     console.log(d3.event.x);
     console.log('d');
     console.log(d);
+    console.log(d.id);
     console.log('this');
     console.log(this);
-    var changingAnchors = myData[0].pathway.elements.filter(function(element) {return element.parentId === d.id});
+    // don't have anchors rendered yet
+    /*
+    var changingAnchors = pathwayHere.elements.filter(function(element) {return element.parentId === d.id});
     var d3Node = self.d3Node = d3.select(this);
     console.log('changingAnchors');
     console.log(changingAnchors);
@@ -16,13 +21,23 @@ pathvisio.renderer.svg.node = function(){
     changingAnchors.forEach(function(anchor){
       console.log('anchor');
       console.log(anchor);
+      console.log(d3Node);
+      self.d3Node = d3Node;
       self.anchor = anchor;
       anchor.x = d3Node.select('#' + anchor.id)[0][0].getCTM().e;
       anchor.y = d3Node.select('#' + anchor.id)[0][0].getCTM().f; 
-    });
+    })
+    //*/
     d.x = d3.event.x;
     d.y = d3.event.y;
-    draw();
+
+
+    var args = {};
+    args.svg = d3.select('svg');
+    args.pathway = pathwayHere;
+    args.uniformlyScalingShapesList = uniformlyScalingShapesListHere;
+    pathvisio.renderer.svg.render(args, function(){console.log('rendered after drag');});
+
   }
 
   function renderAll(viewport, pathway, uniformlyScalingShapesList) {
@@ -36,6 +51,8 @@ pathvisio.renderer.svg.node = function(){
       return console.warn('Error: Missing one or more required parameters: viewport, pathway.');
     }
 
+    pathwayHere = pathway;
+    uniformlyScalingShapesListHere = uniformlyScalingShapesList;
     var drag = d3.behavior.drag()
       .origin(Object)
       .on("drag", dragmove);
@@ -50,24 +67,36 @@ pathvisio.renderer.svg.node = function(){
     .attr("id", function (d) { return 'node-' + d.id; })
     .attr('class', 'node')
     .attr('transform', function(d) {return 'translate(' + d.x + ' ' + d.y + ')';})
-    .call(drag)
     .on("click", function(d,i) {
-      if (d.elementType === 'data-node') {
-        pathvisio.renderer.svg.xRef.displayData(pathway.organism, d);
+      console.log('clicked a data node');
+      if (d.nodeType === 'data-node') {
+        console.log(pathway);
+        console.log(pathway.metadata.organism);
+        pathvisio.xRef.displayData(pathway.metadata.organism, d);
       }
-    });
+    })
+    .call(drag)
 
     // Enter…
     nodes.enter().append("g")
     .attr("id", function (d) { return 'node-' + d.id; })
-    .attr('class', 'node')
-    .attr('transform', function(d) {return 'translate(' + d.x + ' ' + d.y + ')';})
-    .call(drag)
-    .on("click", function(d,i) {
-      if (d.elementType === 'data-node') {
-        pathvisio.renderer.svg.xRef.displayData(pathway.organism, d);
+    .attr("class", function (d) {
+      var styleClass = 'node ';
+      if (d.strokeStyle === 'double') {
+        styleClass += 'double ';
       }
-    });
+      return styleClass;
+    })
+    .attr('transform', function(d) {return 'translate(' + d.x + ' ' + d.y + ')';})
+    .on("click", function(d,i) {
+      console.log('clicked a data node');
+      if (d.nodeType === 'data-node') {
+        console.log(pathway);
+        console.log(pathway.metadata.organism);
+        pathvisio.xRef.displayData(pathway.metadata.organism, d);
+      }
+    })
+    .call(drag);
 
     // Exit…
     nodes.exit().remove();
