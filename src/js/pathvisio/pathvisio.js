@@ -103,19 +103,25 @@ pathvisio = function(){
     },
     function(err, results){
       self.results = results;
+      var rendererLoadArgs = results.preload;
+      rendererLoadArgs.pathway = results.pathway;
 
-      pathvisio.renderer.load(results.preload, results.pathway, function() {
+      console.log('rendererLoadArgs');
+      console.log(rendererLoadArgs);
+
+      pathvisio.renderer.load(rendererLoadArgs, function() {
         // do something here
       })
 
 
 ///*
 
-      /* Node Highlighter
+      ///* Node Highlighter
 
       var nodeLabels = [];
-      pathway.nodes.forEach(function(node) {
-        if (!!node.textLabel && node.elementType === 'data-node') {
+      var dataNodes = results.pathway.elements.filter(function(element) {return element.nodeType === 'data-node';});
+      dataNodes.forEach(function(node) {
+        if (!!node.textLabel) {
           nodeLabels.push(node.textLabel.text);
         }
       });
@@ -141,7 +147,6 @@ pathvisio = function(){
         }
       });
 //*/
-/*
       // see http://api.jquery.com/bind/
       // TODO get selected value better and make function to handle
 
@@ -151,10 +156,13 @@ pathvisio = function(){
           console.warn('Error: No data node value entered.');
         }
         else {
-          pathvisio.renderer.svg.node.highlightByLabel(svg, nodeLabel);
+
+          // TODO refactor this so it calls a generic highlightDataNodeByLabel function that can call
+          // a highlighter for svg, png, etc. as appropriate.
+
+          pathvisio.renderer.svg.node.highlightByLabel(results.preload.svg, results.pathway, nodeLabel);
         }
       });
-    */
 
     });
   }
