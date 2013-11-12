@@ -58,6 +58,8 @@ header.details-frame-header {
 .details-frame-description {
   text-align: center;
   margin: 0 0 0 auto;
+  font-size: 14px;
+  font-style:italic;
 }
 
 .details-frame-items-container {
