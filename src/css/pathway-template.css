@@ -4,6 +4,7 @@
 		shape-rendering: auto;
 		vector-effect: non-scaling-stroke;
 		fill: white;
+		background: white;
     stroke: black;
 	}
 
