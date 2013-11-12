@@ -1,0 +1,438 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+  <title>Pathvisio.js Testing and Development</title>
+  <style type="text/css" media="screen, print, projection">
+    body {
+      margin:0;
+      padding:0;
+      color:#000;
+      background:#fff;
+    }
+    #body {
+      //width:960px;
+      margin:0 auto;
+      background:#ddd;
+    }
+    #header {
+      padding:10px;
+      background:#fdd;
+    }
+    #content-1 {
+      float:left;
+      //width:220px;
+      padding:10px;
+      background:#bfb;
+    }
+    #content-2 {
+      float:right;
+      //width:720px;
+    }
+    #content-2-1 {
+      float:left;
+      //width:460px;
+      padding:10px;
+      background:#ddf;
+    }
+    #content-2-2 {
+      float:right;
+      //width:220px;
+      padding:10px;
+      background:#dff;
+    }
+    #footer {
+      padding:10px;
+      background:#ff9;
+    }
+    /* Easy clearing of floats (see http://positioniseverything.net/easyclearing.html) */
+    .cf:after {
+      display:block;
+      clear:both;
+      height:0;
+      visibility:hidden;
+      content:" ";
+      font-size:0;
+    }
+    /* Does not validate – use conditional comments for this bit if you want valid CSS */
+    .cf {*zoom:1;}
+  </style>
+
+  <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css" media="screen">
+
+  <script src="../lib/rgb-color/rgb-color.min.js"></script>
+  <script src="../lib/case-converter/case-converter.min.js"></script>
+  <script src="../lib/xml2json/xml2json.min.js"></script>
+  <script src="../lib/async/lib/async.js"></script>
+  <script src="../lib/d3/d3.min.js"></script>
+  <script src="../lib/jquery/jquery.min.js"></script>
+  <script src="../lib/jquery-ui/ui/minified/jquery-ui.min.js"></script>
+  <script src="../lib/typeahead.js/dist/typeahead.min.js"></script>
+  <script src="../lib/openseadragon/openseadragon.min.js"></script>
+  <script src="../lib/modernizr/modernizr.js"></script>
+  <script src="../lib/screenfull/dist/screenfull.min.js"></script>
+  <script src="../lib/mr-data-converter/CSVParser.min.js"></script>
+  <script src="../lib/mr-data-converter/DataGridRenderer.min.js"></script>
+  <script src="../lib/svg-pan/svg-pan.js"></script>
+  <script src="../lib/jsPlumb/dist/js/jquery.jsPlumb-1.5.3.js"></script>
+  <script src="../lib/path-finding/pathfinding-browser.min.js"></script>
+
+
+  <!--[if lt IE 9]>
+  <script src="http://ie7-js.googlecode.com/svn/version/2.1(beta4)/IE9.js"></script>
+  <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+  <script src="../lib/es5-shim/es5-shim.js"></script>
+  <script src="../lib/Xccessors/xccessors-standard.js"></script>
+
+  <script>
+
+    // IE8 only allows console.log when Developer Tools is open. This will prevent errors
+    // from showing up if I use console.log without DevTools being open.
+    // from http://stackoverflow.com/questions/3326650/console-is-undefined-error-for-internet-explorer
+
+    /**
+    * Protect window.console method calls, e.g. console is not defined on IE
+    * unless dev tools are open, and IE doesn't define console.debug
+    */
+    (function() {
+    if (!window.console) {
+    window.console = {};
+    }
+    // union of Chrome, FF, IE, and Safari console methods
+    var m = [
+    "log", "info", "warn", "error", "debug", "trace", "dir", "group",
+    "groupCollapsed", "groupEnd", "time", "timeEnd", "profile", "profileEnd",
+    "dirxml", "assert", "count", "markTimeline", "timeStamp", "clear"
+    ];
+    // define undefined methods as noops to prevent errors
+    for (var i = 0; i < m.length; i++) {
+    if (!window.console[m[i]]) {
+    window.console[m[i]] = function() {};
+    }    
+    } 
+    })();
+  </script>
+  <![endif]-->
+
+  <script>
+    function getUrlParam(name) {
+
+      // Thanks to http://stackoverflow.com/questions/11582512/how-to-get-url-parameters-with-javascript
+      // This will be replaced once we get the backend php to get the json
+
+      var parameter = decodeURIComponent((new RegExp('[?|&]' + name + '=' + '([^&;]+?)(&|#|;|$)').exec(location.search)||[,""])[1].replace(/\+/g, '%20'))||null;
+      if (!!parameter) {
+        return parameter;
+      }
+      else {
+        return null;
+      }
+    }
+
+    function getUrlParamList() {
+      urlParamList = {
+        'svg-disabled': false,
+        'gpml': null,
+        'gpmlRev': 0,
+        'creator': 'pathvisio-js-dev',
+        'account': '',
+        'branch': ''
+        };
+
+        Object.keys(urlParamList).forEach(function(element) {
+          if (!!getUrlParam(element)) {
+            urlParamList[element] = getUrlParam(element);
+          }
+          window.setTimeout(function() {
+            $('#' + element).val(urlParamList[element]);
+          }, 50)
+          });
+
+          return urlParamList;
+        }
+
+        function loadScripts(array, callback){  
+          var loader = function(src,handler){  
+            var script = document.createElement("script");  
+            script.src = src;  
+            script.onload = script.onreadystatechange = function(){  
+              script.onreadystatechange = script.onload = null;  
+              if(/MSIE ([6-9]+\.\d+);/.test(navigator.userAgent))window.setTimeout(function(){handler();},8,this);  
+              else handler();  
+            }  
+            var head = document.getElementsByTagName("head")[0];  
+            (head || document.body).appendChild( script );  
+          };  
+          (function(){  
+            if(array.length!=0){  
+              loader(array.shift(),arguments.callee);  
+              }else{  
+              callback && callback();  
+            }  
+          })();  
+        }
+
+        function loadJsCssFile(filename, filetype, callback){
+          if (filetype=="js") {
+            var fileref=document.createElement('script')
+            fileref.setAttribute("type","text/javascript")
+            fileref.setAttribute("src", filename)
+          }
+          else if (filetype=="css") {
+            var fileref=document.createElement("link")
+            fileref.setAttribute("rel", "stylesheet")
+            fileref.setAttribute("type", "text/css")
+            fileref.setAttribute("href", filename)
+          }
+          if (typeof fileref!="undefined") {
+            document.getElementsByTagName("head")[0].appendChild(fileref)
+          }
+          callback();
+        }
+
+        function updateParams(updatedParam) {
+          var targetUrl = currentUrl + '?' + updatedParam.key + '=' + updatedParam.value;
+
+          Object.keys(urlParamList).forEach(function(element) {
+            if (element === updatedParam.key) {
+              urlParamList[element] = updatedParam.value;
+            }
+            else {
+              targetUrl += '&' + element + '=' + urlParamList[element];
+            }
+            });
+
+            location.href = targetUrl;
+          }
+
+          function generateHtmlView(callback) {
+            async.parallel(
+            {
+              'html': function(callback) {
+                d3.html(srcDirectoryUrl + 'views/pathvisio-js.html', function(html) {
+                  callback(null, html);
+                  });
+                  },
+                  'svg': function(callback) {
+                    d3.xml(srcDirectoryUrl + 'views/pathway-template.svg', 'image/svg+xml', function(svg) {
+                      async.series(
+                      {
+                        'load': function(callback) {
+                          d3.xml(srcDirectoryUrl + 'views/pathway-template.svg', 'image/svg+xml', function(svg) {
+                            callback(null, svg);
+                            });
+                          }
+                        }
+                        )
+                        callback(null, svg);
+                        });
+                      }
+                      },
+                      function(err, results) {
+                        results.svg.documentElement.setAttribute('style', 'display: none; ');
+                        results.svg.documentElement.setAttribute('width', '500px');
+                        results.svg.documentElement.setAttribute('height', '500px');
+                        var pathwayContainer = results.html.querySelector('#pathway-container').appendChild(results.svg.documentElement)
+
+                        var oSerializer = new XMLSerializer();
+                        pathvisioNS['tmp/pathvisio-js.html'] = oSerializer.serializeToString(results.html);
+                        callback();
+                      }
+                      )
+                    }
+
+                    function loadExtJsCss(callbackOutside) {
+                      async.parallel([
+                      function(callback) {
+                        loadJsCssFile(srcDirectoryUrl + "css/pathvisio-js.css", "css", callback);
+                        },
+                        function(callback) {
+                          loadJsCssFile(srcDirectoryUrl + "css/details-frame.css", "css", callback);
+                          },
+                          function(callback) {
+                            loadJsCssFile(srcDirectoryUrl + "css/pan-zoom.css", "css", callback);
+                            },
+                            function(callback) {
+                              loadScripts([
+                              srcDirectoryUrl + "js/pathvisio/pathvisio.js",
+                              srcDirectoryUrl + "js/pathvisio/helpers.js",
+                              srcDirectoryUrl + 'js/pathvisio/data-sources.js',
+                              srcDirectoryUrl + 'js/pathvisio/x-ref.js',
+                              srcDirectoryUrl + 'js/pathvisio/renderer/renderer.js',
+                              srcDirectoryUrl + "js/pathvisio/renderer/path-finder.js",
+                              srcDirectoryUrl + 'js/pathvisio/renderer/svg/svg.js',
+                              srcDirectoryUrl + 'js/pathvisio/renderer/svg/group.js',
+                              srcDirectoryUrl + 'js/pathvisio/renderer/svg/info-box.js',
+                              srcDirectoryUrl + 'js/pathvisio/renderer/svg/node/node.js',
+                              srcDirectoryUrl + 'js/pathvisio/renderer/svg/node/shape/shape.js',
+                              srcDirectoryUrl + 'js/pathvisio/renderer/svg/node/shape/uniformly-scaling-shape.js',
+                              srcDirectoryUrl + 'js/pathvisio/renderer/svg/node/shape/nonuniformly-scaling-shape/nonuniformly-scaling-shape.js',
+                              srcDirectoryUrl + 'js/pathvisio/renderer/svg/node/shape/nonuniformly-scaling-shape/rounded-rectangle.js',
+                              srcDirectoryUrl + 'js/pathvisio/renderer/svg/edge/edge.js',
+                              srcDirectoryUrl + 'js/pathvisio/renderer/svg/edge/marker.js',
+                              srcDirectoryUrl + 'js/pathvisio/renderer/svg/edge/point.js',
+                              srcDirectoryUrl + 'js/pathvisio/renderer/svg/edge/path-data.js',
+                              srcDirectoryUrl + 'js/pathvisio/renderer/svg/anchor.js',
+                              srcDirectoryUrl + 'js/pathvisio/renderer/svg/grid.js',
+                              srcDirectoryUrl + 'js/pathvisio/converter/converter.js',
+                              srcDirectoryUrl + 'js/pathvisio/converter/gpml/gpml.js',
+                              srcDirectoryUrl + 'js/pathvisio/converter/gpml/namespaces.js',
+                              srcDirectoryUrl + 'js/pathvisio/converter/gpml/data-node.js',
+                              srcDirectoryUrl + 'js/pathvisio/converter/gpml/node.js',
+                              srcDirectoryUrl + 'js/pathvisio/converter/gpml/anchor.js',
+                              srcDirectoryUrl + 'js/pathvisio/converter/gpml/interaction.js',
+                              srcDirectoryUrl + 'js/pathvisio/converter/gpml/graphical-line.js',
+                              srcDirectoryUrl + 'js/pathvisio/converter/gpml/edge/edge.js',
+                              srcDirectoryUrl + 'js/pathvisio/converter/gpml/edge/point.js'
+                              ], function(){
+                                callback(null);
+                                });
+                              }
+                              ],
+                              function(err, results){
+                                callbackOutside();
+                              })
+                            }
+
+                            var urlParamList = getUrlParamList();
+
+                            var currentUrl = document.location.origin + document.location.pathname;
+                            var rootDirectoryUrl = document.location.origin + document.location.pathname.split("pathvisio.js/")[0] + 'pathvisio.js/';
+                            var srcDirectoryUrl = (rootDirectoryUrl + 'src/');
+
+                            /*********************************************
+                            Load UI for this test/dev comparison page 
+                            /********************************************/
+
+                            var pathvisioNS;
+                            var gpmlUrl;
+                            window.onload = function() {
+                              if (urlParamList['svg-disabled']) {
+                                Modernizr.svg = false;
+                                $('#svg-disabled').prop('checked', true);
+                              }
+
+                              async.parallel(
+                              [
+                              function(callback) {
+                                pathvisioNS = [];
+                                generateHtmlView(function() {
+                                  callback(null);
+                                  });
+                                  },
+                                  function(callback) {
+                                    loadExtJsCss(function() {
+                                      callback(null);
+                                      });
+                                    }
+                                    ],
+                                    function(err) {
+                                      var customShapes = [
+                                      {'id': 'arc', 'url': srcDirectoryUrl + 'views/shapes/arc.svg'},
+                                      {'id': 'brace', 'url': srcDirectoryUrl + 'views/shapes/brace.svg'},
+                                      {'id': 'endoplasmic-reticulum', 'url': srcDirectoryUrl + 'views/shapes/endoplasmic-reticulum.svg'},
+                                      {'id': 'golgi-apparatus', 'url': srcDirectoryUrl + 'views/shapes/golgi-apparatus.svg'},
+                                      {'id': 'hexagon', 'url': srcDirectoryUrl + 'views/shapes/hexagon.svg'},
+                                      {'id': 'mim-degradation', 'url': srcDirectoryUrl + 'views/shapes/mim-degradation.svg'},
+                                      {'id': 'mitochondria', 'url': srcDirectoryUrl + 'views/shapes/mitochondria.svg'},
+                                      {'id': 'oval', 'url': srcDirectoryUrl + 'views/shapes/oval.svg'},
+                                      {'id': 'pentagon', 'url': srcDirectoryUrl + 'views/shapes/pentagon.svg'},
+                                      {'id': 'rectangle', 'url': srcDirectoryUrl + 'views/shapes/rectangle.svg'},
+                                      //{'id': 'rounded-rectangle', 'url': srcDirectoryUrl + 'views/shapes/rounded-rectangle.svg'},
+                                      {'id': 'sarcoplasmic-reticulum','url': srcDirectoryUrl + 'views/shapes/sarcoplasmic-reticulum.svg'},
+                                      {'id': 'triangle', 'url': srcDirectoryUrl + 'views/shapes/triangle.svg'}
+                                      ];
+
+                                      var customMarkers = [
+                                      {'id': 'arrow', 'url': srcDirectoryUrl + 'views/markers/arrow.svg'},
+                                      {'id': 'mim-branching-left', 'url': srcDirectoryUrl + 'views/markers/mim-branching-left.svg'},
+                                      {'id': 'mim-branching-right', 'url': srcDirectoryUrl + 'views/markers/mim-branching-right.svg'},
+                                      {'id': 'mim-necessary-stimulation', 'url': srcDirectoryUrl + 'views/markers/mim-necessary-stimulation.svg'},
+                                      {'id': 'mim-binding', 'url': srcDirectoryUrl + 'views/markers/mim-binding.svg'},
+                                      {'id': 'mim-conversion', 'url': srcDirectoryUrl + 'views/markers/mim-conversion.svg'},
+                                      {'id': 'mim-stimulation', 'url': srcDirectoryUrl + 'views/markers/mim-stimulation.svg'},
+                                      {'id': 'mim-modification', 'url': srcDirectoryUrl + 'views/markers/mim-modification.svg'},
+                                      {'id': 'mim-catalysis', 'url': srcDirectoryUrl + 'views/markers/mim-catalysis.svg'},
+                                      {'id': 'mim-inhibition', 'url': srcDirectoryUrl + 'views/markers/mim-inhibition.svg'},
+                                      {'id': 'mim-cleavage', 'url': srcDirectoryUrl + 'views/markers/mim-cleavage.svg'},
+                                      {'id': 'mim-covalent-bond', 'url': srcDirectoryUrl + 'views/markers/mim-covalent-bond.svg'},
+                                      {'id': 'mim-transcription-translation', 'url': srcDirectoryUrl + 'views/markers/mim-transcription-translation.svg'},
+                                      {'id': 'mim-gap', 'url': srcDirectoryUrl + 'views/markers/mim-gap.svg'},
+                                      {'id': 't-bar', 'url': srcDirectoryUrl + 'views/markers/t-bar.svg'}
+                                      ];
+
+                                      pathvisio.load({
+                                        target: '#pathvisio-js-dev',
+                                        width: 1000,
+                                        height: 500,
+                                        preserveAspectRatio: 'xMidYMid',
+                                        data: urlParamList.gpml,
+                                        //gpmlRev: urlParamList.gpmlRev,
+                                        cssUrl: srcDirectoryUrl + 'css/pathway-template.css',
+                                        customMarkers: customMarkers,
+                                        customShapes: customShapes,
+                                        highlightNodes: [
+                                        {'parameter': 'label', 'parameterValue': 'CRH', 'color': 'red'},
+                                        {'parameter': 'xref', 'parameterValue': '8525,Entrez%20Gene', 'color': '#FF0000'}
+                                        ],
+                                        hiddenElements: [
+                                        'find',
+                                        'wikipathways-link'
+                                        ]
+                                        });
+                                        });
+
+                                        // test for whether urlParamList.gpml is a WikiPathways ID
+
+                                        if (urlParamList.gpml.indexOf('.gpml') === -1 && urlParamList.gpml.indexOf('.xml') === -1) {
+                                          window.setTimeout(function() {
+                                            $('#current-wikipathways-viewer').prepend('<iframe id="current-wiki-pathways-widget" src="http://www.wikipathways.org/wpi/PathwayWidget.php?id=' + urlParamList.gpml + '" width="70%" height="1000" />')
+                                              }, 50);
+                                            }
+                                            else {
+                                              console.warn('Error: GPML data source specified is not a WP ID. WP widget cannot display this GPML data as a pathway image.');
+                                            }
+                                          }
+                                        </script>
+
+
+                                      </head>
+                                      <body>
+                                        <div id="body">
+                                          <div id="header" class="cf">
+                                            <h1>Pathvisio.js Testing and Development</h1>
+                                          </div>
+                                          <div id="main" class="cf">
+                                            <div id="content-1">
+                                              <div id="pathvisio-js-dev" style="width: 500px; height: 500px; border:1px solid black; ">
+                                              </div>
+                                            </div>
+                                            <div id="content-2">
+                                              <div id="content-2-1">
+                                                <div id="current-wikipathways-viewer" style="float:left; width: 500px; height: 500px; border:1px solid black; ">
+                                                </div>
+                                              </div>
+                                              <div id="content-2-2">
+                                                <form id="choose-source-data" action="#" method="get">
+                                                  GPML (WP ID or a full URL): <input type="text" id="gpml" name="gpml" style="width: 300px;" />
+                                                  <input type="hidden" id="gpml-rev" name="gpml-rev" value="0" placeholder="optional" style="width: 100px;" />
+                                                  <!--
+                                                  GPML REV: <input type="text" id="gpml-rev" name="gpml-rev" placeholder="optional" style="width: 100px;" />
+                                                  -->
+                                                  <!--
+                                                  <span id="github-container">GitHub Account: <input type="text" id="account" name="account" placeholder="e.g., wikipathways" />
+                                                    Branch: <input type="text" id="branch" name="branch" placeholder="e.g., master or dev" /></span>
+                                                  -->
+                                                  <input type="hidden" id="creator" name="creator" />
+                                                  SVG Disabled: <input type="checkbox" id="svg-disabled" name="svg-disabled" value="true" />
+                                                  <input type="submit" value="Submit" />
+                                                </form>
+                                              </div>
+                                            </div>
+                                          </div>
+                                          <div id="footer" class="cf">
+                                            <p>(c) WikiPathways 2013</p>
+                                          </div>
+                                        </div>
+
+                                      </body>

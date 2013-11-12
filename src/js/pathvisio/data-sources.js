@@ -1,4 +1,4 @@
-pathvisio.renderer.svg.dataSources = [
+pathvisio.dataSources = [
    {
       "database":"Affy",
       "id":"X",
