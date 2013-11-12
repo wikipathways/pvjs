@@ -1,10 +1,7 @@
-pathvisio.renderer.svg.xRef = function(){
-
+pathvisio.xRef = function(){
     function getData(species, database, id, callback) {
-      var databaseId = pathvisio.renderer.svg.dataSources.filter(function(element) {return element.database === database;})[0].id;
-      var currentUrl = document.location.origin + document.location.pathname;
-      var rootDirectoryUrl = document.location.origin + document.location.pathname.split("pathvisio.js/")[0] + 'pathvisio.js/';
-      var url = rootDirectoryUrl + 'remote-data-sources/php/bridgedb.php?species=' + encodeURIComponent(species) + '&database=' + encodeURIComponent(databaseId) + '&id=' + encodeURIComponent(id);
+      var databaseId = pathvisio.dataSources.filter(function(element) {return element.database === database;})[0].id;
+      var url = 'http://pointer.ucsf.edu/d3/r/pathvisio.js/src/views/bridgedb.php?species=' + encodeURIComponent(species) + '&database=' + encodeURIComponent(databaseId) + '&id=' + encodeURIComponent(id);
       $.ajax({
         url: url,
         dataType: "text",
@@ -18,6 +15,8 @@ pathvisio.renderer.svg.xRef = function(){
         var parser = CSVParser.parse(data, true, ' ', false, false, '.');
         var parsed = DataGridRenderer.json(parser.dataGrid, parser.headerNames, parser.headerTypes,'\t','\n');
         var xRefDataParsed = self.xRefDataParsed = JSON.parse(parsed);
+
+        if (xRefDataParsed.length === 0) {return console.log('No data available for this data node.')};
 
         var idsByDatabase = xRefDataParsed;
         var feature = {};
@@ -37,7 +36,7 @@ pathvisio.renderer.svg.xRef = function(){
 
         features.forEach(function(feature) {
           try {
-            var dataSource = pathvisio.renderer.svg.dataSources.filter(function(dataSource) {return dataSource.database.replace(/[^a-z0-9]/gi,'').toLowerCase() == feature.database.replace(/[^a-z0-9]/gi,'').toLowerCase(); })[0];
+            var dataSource = pathvisio.dataSources.filter(function(dataSource) {return dataSource.database.replace(/[^a-z0-9]/gi,'').toLowerCase() == feature.database.replace(/[^a-z0-9]/gi,'').toLowerCase(); })[0];
             feature.dataSourceId = dataSource.id;
             feature.linkOut = dataSource.linkOut;
             feature.priority = dataSource.priority;
@@ -77,7 +76,7 @@ pathvisio.renderer.svg.xRef = function(){
 
         var detailsSearchUri = detailsFrame.select('#details-frame-header-search').select('a')
         .attr('href', function() {
-          return 'http://wikipathways.org//index.php?title=Special:SearchPathways&doSearch=1&ids=' + node.xRef.id + '&codes=' + pathvisio.renderer.svg.dataSources.filter(function(dataSource) {
+          return 'http://wikipathways.org//index.php?title=Special:SearchPathways&doSearch=1&ids=' + node.xRef.id + '&codes=' + pathvisio.dataSources.filter(function(dataSource) {
             return dataSource.database.replace(/[^a-z0-9]/gi,'').toLowerCase() == node.xRef.database.replace(/[^a-z0-9]/gi,'').toLowerCase();
           })[0].id + '&type=xref';
         })

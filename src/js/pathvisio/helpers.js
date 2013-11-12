@@ -28,6 +28,11 @@ pathvisio.helpers = function(){
     }
   };
 
+  function strToHtmlId(str) {
+    var re = /\W/gi;
+    var id = str.replace(re, "");
+    return id;
+  }
 
   function isUrl(str) {
 
@@ -164,6 +169,7 @@ pathvisio.helpers = function(){
     isOdd:isOdd,
     isWikiPathwaysId:isWikiPathwaysId,
     isNumber:isNumber,
+    strToHtmlId:strToHtmlId,
     getObjectType:getObjectType
   };
 }();
