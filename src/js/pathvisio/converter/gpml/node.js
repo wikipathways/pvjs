@@ -141,6 +141,7 @@ pathvisio.converter.gpml.node = function(){
       }
       //*/
 
+      // TODO move this to label.js
       // textLabel data
 
       var textLabel = gpmlNode.attr('TextLabel');
