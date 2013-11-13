@@ -14,9 +14,8 @@ How To Get Involved
 
 Fork pathvisio.js
 -----------------
-1. Go to https://github.com/wikipathways/pathvisio.js/
-2. Click "fork"
-3. Go to your fork at https://github.com/your-github-account/pathvisio.js/
+1. Fork the WikiPathways repo for pathvisio.js [here](https://github.com/wikipathways/pathvisio.js/fork)
+2. Go to your fork at https://github.com/your-github-account/pathvisio.js/
 
 Pull latest changes
 -------------------
