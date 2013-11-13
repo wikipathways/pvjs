@@ -1,7 +1,7 @@
 pathvisiojs
 ============
 
-JavaScript viewer and editor for biological pathways. All code is in beta stage and is subject to substantial change.
+JavaScript viewer and editor for biological pathways. All code is in beta stage and is subject to change.
 
 Demos
 =====
@@ -22,7 +22,7 @@ If you have not forked pathvisiojs,
 
 If you've already forked pathvisiojs in the past,
 
-1. Go to your fork of pathvisio.js at https://github.com/your-github-account/pathvisiojs/ and select the "Compare and review" button to the left of the "branch" drop-down to pull from the wikipathways fork of pathvisiojs into your fork
+1. Go to your fork of pathvisiojs at https://github.com/your-github-account/pathvisiojs/ and select the "Compare and review" button to the left of the "branch" drop-down to pull from the wikipathways fork of pathvisiojs into your fork
 3. Select "Edit" and "compare across forks" as needed to make the drop-downs look like this: your-github-account:gh-pages ... wikipathways:gh-pages
 4. Create pull request
 5. Accept pull request (if github says that the pull request cannot be done automatically, you will need to merge the files from the command line. Let Anders or Alex know and they can help.)
