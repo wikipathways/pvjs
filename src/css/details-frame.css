@@ -83,8 +83,8 @@ header.details-frame-header {
   line-height: 150%;
   list-style: none;
   text-align: left;
-  padding: 10px 0 0 10px;
-  margin: -10px 0 0 -5px;
+  padding: 0 0 0 10px;
+  margin: 0 0 0 -5px;
   height: 20em;
   overflow: auto;
 }
