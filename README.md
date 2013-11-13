@@ -18,7 +18,7 @@ How To Get Involved
 If you have not forked pathvisiojs,
 
 1. Fork the WikiPathways repo for pathvisiojs [here](https://github.com/wikipathways/pathvisiojs/fork)
-2. Go to your fork at https://github.com/your-github-account/pathvisio.js/
+2. Go to your fork at https://github.com/your-github-account/pathvisiojs/
 
 If you've already forked pathvisiojs in the past,
 
