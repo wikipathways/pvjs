@@ -103,6 +103,9 @@ pathvisio.renderer.svg.node = function(){
 
     // Shapes
     pathvisio.renderer.svg.node.shape.render(nodes, pathway, uniformlyScalingShapesList);
+
+    // Labels
+    pathvisio.renderer.svg.node.label.renderAll(nodes, pathway);
   }
 
   function getPortCoordinates(boxDimensions, relX, relY) {

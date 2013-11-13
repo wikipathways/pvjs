@@ -1,0 +1,429 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Pathway xmlns="http://pathvisio.org/GPML/2013a" Name="New Pathway" Version="20131111">
+  <Graphics BoardWidth="1635.0" BoardHeight="4897.456860654346" />
+  <DataNode TextLabel="AX" GraphId="e6536" Type="Metabolite">
+    <Graphics CenterX="340.49683828669464" CenterY="1803.817933158124" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Xref Database="" ID="" />
+  </DataNode>
+  <DataNode TextLabel="Metabolite" GraphId="c46f6" Type="Metabolite">
+    <Graphics CenterX="1293.75" CenterY="1057.5" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Xref Database="" ID="" />
+  </DataNode>
+  <DataNode TextLabel="Metabolite" GraphId="d8a42" Type="Metabolite">
+    <Graphics CenterX="1540.0" CenterY="1062.5" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Xref Database="" ID="" />
+  </DataNode>
+  <DataNode TextLabel="Metabolite" GraphId="c786e" Type="Metabolite">
+    <Graphics CenterX="1393.75" CenterY="803.75" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Xref Database="" ID="" />
+  </DataNode>
+  <DataNode TextLabel="BX" GraphId="e14d0" Type="Metabolite">
+    <Graphics CenterX="748.3724939485287" CenterY="2169.4319411803413" Width="80.0" Height="20.0" ZOrder="32970" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Xref Database="" ID="" />
+  </DataNode>
+  <DataNode TextLabel="enzyme" GraphId="cf379" Type="GeneProduct">
+    <Comment>No identifier given, so I think this identifier best matches the given label. See also http://pathway.gramene.org/MAIZE/NEW-IMAGE?type=ENZYME&amp;object=GBWI-76117-MONOMER</Comment>
+    <Comment>Type your comment here</Comment>
+    <Graphics CenterX="292.567635236401" CenterY="2005.1092837501337" Width="146.8930463005911" Height="27.627198652721972" ZOrder="32985" FontSize="15" Valign="Middle" />
+    <Xref Database="MaizeGDB" ID="GRMZM2G057140" />
+  </DataNode>
+  <DataNode TextLabel="BY" GraphId="cbc51" Type="Metabolite">
+    <Graphics CenterX="737.1224939485287" CenterY="1866.3179331581239" Width="80.0" Height="20.0" ZOrder="32990" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Xref Database="" ID="" />
+  </DataNode>
+  <DataNode TextLabel="AY" GraphId="c1487" Type="Metabolite">
+    <Graphics CenterX="386.74683828669464" CenterY="2244.4319411803413" Width="80.0" Height="20.0" ZOrder="32991" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Xref Database="" ID="" />
+  </DataNode>
+  <DataNode TextLabel="AX" GraphId="b847c" Type="Metabolite">
+    <Graphics CenterX="255.34572163248265" CenterY="3081.5773168824753" Width="80.0" Height="20.0" ZOrder="32996" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Xref Database="" ID="" />
+  </DataNode>
+  <DataNode TextLabel="BX" GraphId="e109c" Type="Metabolite">
+    <Graphics CenterX="810.6177367746282" CenterY="3489.9547466880904" Width="80.0" Height="20.0" ZOrder="32997" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Xref Database="" ID="" />
+  </DataNode>
+  <DataNode TextLabel="enzyme" GraphId="fbc38" Type="GeneProduct">
+    <Comment>No identifier given, so I think this identifier best matches the given label. See also http://pathway.gramene.org/MAIZE/NEW-IMAGE?type=ENZYME&amp;object=GBWI-76117-MONOMER</Comment>
+    <Comment>Type your comment here</Comment>
+    <Graphics CenterX="222.53608044581006" CenterY="3281.405898781688" Width="146.8930463005911" Height="27.627198652721972" ZOrder="32999" FontSize="15" Valign="Middle" />
+    <Xref Database="MaizeGDB" ID="GRMZM2G057140" />
+  </DataNode>
+  <DataNode TextLabel="BY" GraphId="d50ac" Type="Metabolite">
+    <Graphics CenterX="447.80522487222396" CenterY="3081.577316882475" Width="80.0" Height="20.0" ZOrder="33000" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Xref Database="" ID="" />
+  </DataNode>
+  <DataNode TextLabel="AY" GraphId="b76cb" Type="Metabolite">
+    <Graphics CenterX="652.6081406389611" CenterY="3489.9547466880904" Width="80.0" Height="20.0" ZOrder="33001" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Xref Database="" ID="" />
+  </DataNode>
+  <DataNode TextLabel="AX" GraphId="f558d" Type="Metabolite">
+    <Graphics CenterX="500.8963286486595" CenterY="930.7010443306592" Width="80.0" Height="20.0" ZOrder="33005" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Xref Database="" ID="" />
+  </DataNode>
+  <DataNode TextLabel="BX" GraphId="cb2fc" Type="Metabolite">
+    <Graphics CenterX="674.6595873956846" CenterY="1333.3466562944513" Width="80.0" Height="20.0" ZOrder="33006" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Xref Database="" ID="" />
+  </DataNode>
+  <DataNode TextLabel="enzyme" GraphId="beef6" Type="GeneProduct">
+    <Comment>No identifier given, so I think this identifier best matches the given label. See also http://pathway.gramene.org/MAIZE/NEW-IMAGE?type=ENZYME&amp;object=GBWI-76117-MONOMER</Comment>
+    <Comment>Type your comment here</Comment>
+    <Graphics CenterX="229.99144936674912" CenterY="1129.6114425417095" Width="146.8930463005911" Height="27.627198652721972" ZOrder="33008" FontSize="15" Valign="Middle" />
+    <Xref Database="MaizeGDB" ID="GRMZM2G057140" />
+  </DataNode>
+  <DataNode TextLabel="BY" GraphId="a561c" Type="Metabolite">
+    <Graphics CenterX="667.9391652217358" CenterY="948.5923844520208" Width="80.0" Height="20.0" ZOrder="33009" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Xref Database="" ID="" />
+  </DataNode>
+  <DataNode TextLabel="AY" GraphId="b4a96" Type="Metabolite">
+    <Graphics CenterX="504.1111286075198" CenterY="1333.3983856862055" Width="80.0" Height="20.0" ZOrder="33010" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Xref Database="" ID="" />
+  </DataNode>
+  <DataNode TextLabel="AX" GraphId="cab4d" Type="Metabolite">
+    <Graphics CenterX="485.6412579756402" CenterY="215.44500721824937" Width="80.0" Height="20.0" ZOrder="33014" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Xref Database="" ID="" />
+  </DataNode>
+  <DataNode TextLabel="BX" GraphId="eb011" Type="Metabolite">
+    <Graphics CenterX="690.6007612153811" CenterY="602.7762744358824" Width="80.0" Height="20.0" ZOrder="33015" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Xref Database="" ID="" />
+  </DataNode>
+  <DataNode TextLabel="enzyme" GraphId="f24f9" Type="GeneProduct">
+    <Comment>No identifier given, so I think this identifier best matches the given label. See also http://pathway.gramene.org/MAIZE/NEW-IMAGE?type=ENZYME&amp;object=GBWI-76117-MONOMER</Comment>
+    <Comment>Type your comment here</Comment>
+    <Graphics CenterX="252.8316167889676" CenterY="443.2244530483471" Width="146.8930463005911" Height="27.627198652721972" ZOrder="33017" FontSize="15" Valign="Middle" />
+    <Xref Database="MaizeGDB" ID="GRMZM2G057140" />
+  </DataNode>
+  <DataNode TextLabel="BY" GraphId="aad7b" Type="Metabolite">
+    <Graphics CenterX="690.6007612153811" CenterY="239.6458711491349" Width="80.0" Height="20.0" ZOrder="33018" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Xref Database="" ID="" />
+  </DataNode>
+  <DataNode TextLabel="AY" GraphId="c1aa1" Type="Metabolite">
+    <Graphics CenterX="476.65367698211867" CenterY="649.2733009547528" Width="80.0" Height="20.0" ZOrder="33019" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Xref Database="" ID="" />
+  </DataNode>
+  <DataNode TextLabel="AX" GraphId="e6e90" Type="Metabolite">
+    <Graphics CenterX="287.5368417660228" CenterY="2434.2867259473023" Width="80.0" Height="20.0" ZOrder="33024" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Xref Database="" ID="" />
+  </DataNode>
+  <DataNode TextLabel="BX" GraphId="e9120" Type="Metabolite">
+    <Graphics CenterX="287.5368417660228" CenterY="2833.6671292340475" Width="80.0" Height="20.0" ZOrder="33025" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Xref Database="" ID="" />
+  </DataNode>
+  <DataNode TextLabel="enzyme" GraphId="ae83d" Type="GeneProduct">
+    <Comment>No identifier given, so I think this identifier best matches the given label. See also http://pathway.gramene.org/MAIZE/NEW-IMAGE?type=ENZYME&amp;object=GBWI-76117-MONOMER</Comment>
+    <Comment>Type your comment here</Comment>
+    <Graphics CenterX="264.45518543720425" CenterY="2631.615307846518" Width="146.8930463005911" Height="27.627198652721972" ZOrder="33027" FontSize="15" Valign="Middle" />
+    <Xref Database="MaizeGDB" ID="GRMZM2G057140" />
+  </DataNode>
+  <DataNode TextLabel="BY" GraphId="c24e5" Type="Metabolite">
+    <Graphics CenterX="688.4743298636175" CenterY="2434.2867259473023" Width="80.0" Height="20.0" ZOrder="33028" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Xref Database="" ID="" />
+  </DataNode>
+  <DataNode TextLabel="AY" GraphId="a875e" Type="Metabolite">
+    <Graphics CenterX="688.4743298636174" CenterY="2833.667129234047" Width="80.0" Height="20.0" ZOrder="33029" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Xref Database="" ID="" />
+  </DataNode>
+  <DataNode TextLabel="AX" GraphId="b6d45" Type="Metabolite">
+    <Graphics CenterX="311.56383878462555" CenterY="4450.576457367601" Width="80.0" Height="20.0" ZOrder="33033" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Xref Database="" ID="" />
+  </DataNode>
+  <DataNode TextLabel="BX" GraphId="a41ca" Type="Metabolite">
+    <Graphics CenterX="853.0858539267701" CenterY="4857.456860654346" Width="80.0" Height="20.0" ZOrder="33034" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Xref Database="" ID="" />
+  </DataNode>
+  <DataNode TextLabel="enzyme" GraphId="c9388" Type="GeneProduct">
+    <Comment>No identifier given, so I think this identifier best matches the given label. See also http://pathway.gramene.org/MAIZE/NEW-IMAGE?type=ENZYME&amp;object=GBWI-76117-MONOMER</Comment>
+    <Comment>Type your comment here</Comment>
+    <Graphics CenterX="278.7541975979534" CenterY="4652.905039266814" Width="146.8930463005911" Height="27.627198652721972" ZOrder="33036" FontSize="15" Valign="Middle" />
+    <Xref Database="MaizeGDB" ID="GRMZM2G057140" />
+  </DataNode>
+  <DataNode TextLabel="BY" GraphId="f3e64" Type="Metabolite">
+    <Graphics CenterX="439.0233420243672" CenterY="4450.576457367601" Width="80.0" Height="20.0" ZOrder="33037" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Xref Database="" ID="" />
+  </DataNode>
+  <DataNode TextLabel="AY" GraphId="f4638" Type="Metabolite">
+    <Graphics CenterX="451.63505643746606" CenterY="4857.456860654346" Width="80.0" Height="20.0" ZOrder="33038" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Xref Database="" ID="" />
+  </DataNode>
+  <DataNode TextLabel="AX" GraphId="e6d6d" Type="Metabolite">
+    <Graphics CenterX="293.62323359420503" CenterY="3718.050296651748" Width="80.0" Height="20.0" ZOrder="33042" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Xref Database="" ID="" />
+  </DataNode>
+  <DataNode TextLabel="BX" GraphId="add8c" Type="Metabolite">
+    <Graphics CenterX="848.8952487363507" CenterY="4124.131563869377" Width="80.0" Height="20.0" ZOrder="33043" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Xref Database="" ID="" />
+  </DataNode>
+  <DataNode TextLabel="enzyme" GraphId="d3eef" Type="GeneProduct">
+    <Comment>No identifier given, so I think this identifier best matches the given label. See also http://pathway.gramene.org/MAIZE/NEW-IMAGE?type=ENZYME&amp;object=GBWI-76117-MONOMER</Comment>
+    <Comment>Type your comment here</Comment>
+    <Graphics CenterX="260.81359240753255" CenterY="3914.5797424818466" Width="146.8930463005911" Height="27.627198652721972" ZOrder="33045" FontSize="15" Valign="Middle" />
+    <Xref Database="MaizeGDB" ID="GRMZM2G057140" />
+  </DataNode>
+  <DataNode TextLabel="BY" GraphId="dadbe" Type="Metabolite">
+    <Graphics CenterX="486.08273683394646" CenterY="3714.7511605826335" Width="80.0" Height="20.0" ZOrder="33046" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Xref Database="" ID="" />
+  </DataNode>
+  <DataNode TextLabel="AY" GraphId="cfa04" Type="Metabolite">
+    <Graphics CenterX="293.623233594205" CenterY="4094.3637849737015" Width="80.0" Height="20.0" ZOrder="33047" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Xref Database="" ID="" />
+  </DataNode>
+  <DataNode TextLabel="AX" GraphId="b8dd3" Type="Metabolite">
+    <Graphics CenterX="1370.6412579756402" CenterY="229.19500721824937" Width="80.0" Height="20.0" ZOrder="33049" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Xref Database="" ID="" />
+  </DataNode>
+  <DataNode TextLabel="enzyme" GraphId="db0d6" Type="GeneProduct">
+    <Comment>No identifier given, so I think this identifier best matches the given label. See also http://pathway.gramene.org/MAIZE/NEW-IMAGE?type=ENZYME&amp;object=GBWI-76117-MONOMER</Comment>
+    <Comment>Type your comment here</Comment>
+    <Graphics CenterX="1137.8316167889675" CenterY="456.9744530483471" Width="146.8930463005911" Height="27.627198652721972" ZOrder="33051" FontSize="15" Valign="Middle" />
+    <Xref Database="MaizeGDB" ID="GRMZM2G057140" />
+  </DataNode>
+  <DataNode TextLabel="AY" GraphId="e83b2" Type="Metabolite">
+    <Graphics CenterX="1361.6536769821187" CenterY="663.0233009547528" Width="80.0" Height="20.0" ZOrder="33052" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Xref Database="" ID="" />
+  </DataNode>
+  <DataNode TextLabel="BY" GraphId="e0d30" Type="Metabolite">
+    <Graphics CenterX="1514.292221270479" CenterY="325.0453201849477" Width="80.0" Height="20.0" ZOrder="33053" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Xref Database="" ID="" />
+  </DataNode>
+  <DataNode TextLabel="BX" GraphId="f7291" Type="Metabolite">
+    <Graphics CenterX="1505.0084747140036" CenterY="597.6247592843672" Width="80.0" Height="20.0" ZOrder="33054" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Xref Database="" ID="" />
+  </DataNode>
+  <Interaction GraphId="id69642ff4">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="340.49683828669464" Y="1813.817933158124" GraphRef="e6536" RelX="0.0" RelY="1.0" />
+      <Point X="517.0576989920056" Y="2006.6475495307611" />
+      <Point X="386.74683828669464" Y="2234.4319411803413" GraphRef="c1487" RelX="0.0" RelY="-1.0" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="idb6b749ee">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="737.1224939485287" Y="1876.3179331581239" GraphRef="cbc51" RelX="0.0" RelY="1.0" />
+      <Point X="519.438651372958" Y="2006.6475495307611" />
+      <Point X="748.3724939485287" Y="2159.4319411803413" GraphRef="e14d0" RelX="0.0" RelY="-1.0" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction>
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="1370.6412579756402" Y="239.19500721824937" GraphRef="b8dd3" RelX="0.0" RelY="1.0" />
+      <Point X="1361.6536769821187" Y="653.0233009547528" GraphRef="e83b2" RelX="0.0" RelY="-1.0" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction>
+    <Graphics ConnectorType="Elbow" ZOrder="12288" LineThickness="1.0">
+      <Point X="1293.75" Y="1047.5" GraphRef="c46f6" RelX="0.0" RelY="-1.0" ArrowHead="Arrow" />
+      <Point X="1416.875" Y="943.75" />
+      <Point X="1540.0" Y="1052.5" GraphRef="d8a42" RelX="0.0" RelY="-1.0" ArrowHead="Arrow" />
+      <Anchor Position="0.44141689373297005" Shape="None" GraphId="c8bbf" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction>
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="1392.5" Y="943.75" GraphRef="c8bbf" RelX="0.0" RelY="0.0" />
+      <Point X="1393.75" Y="813.75" GraphRef="c786e" RelX="0.0" RelY="1.0" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="a8fba">
+    <Graphics ZOrder="32984" LineThickness="1.0">
+      <Point X="366.0141583866965" Y="2005.1092837501337" GraphRef="cf379" RelX="1.0" RelY="0.0" />
+      <Point X="521.0974682695156" Y="2005.6834903757983" ArrowHead="mim-catalysis" />
+      <Anchor Position="0.4" Shape="None" GraphId="ece51" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="abc3c">
+    <Graphics ZOrder="32993" LineThickness="1.0">
+      <Point X="255.34572163248265" Y="3091.5773168824753" GraphRef="b847c" RelX="0.0" RelY="1.0" />
+      <Point X="652.6081406389611" Y="3479.9547466880904" GraphRef="b76cb" RelX="0.0" RelY="-1.0" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="a97bc">
+    <Graphics ConnectorType="Elbow" ZOrder="32994" LineThickness="1.0">
+      <Point X="447.80522487222396" Y="3091.577316882475" GraphRef="d50ac" RelX="0.0" RelY="1.0" />
+      <Point X="629.2114808234261" Y="3282.4622506879896" />
+      <Point X="810.6177367746282" Y="3479.9547466880904" GraphRef="e109c" RelX="0.0" RelY="-1.0" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="ff038">
+    <Graphics ZOrder="32998" LineThickness="1.0">
+      <Point X="295.9826035961056" Y="3281.405898781688" GraphRef="fbc38" RelX="1.0" RelY="0.0" />
+      <Point X="451.06591347892476" Y="3281.980105407358" ArrowHead="mim-catalysis" />
+      <Anchor Position="0.4" Shape="None" GraphId="af265" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="c2b0a">
+    <Graphics ZOrder="33002" LineThickness="1.0">
+      <Point X="500.8963286486595" Y="940.7010443306592" GraphRef="f558d" RelX="0.0" RelY="1.0" />
+      <Point X="504.11112860751973" Y="1323.3983856862055" GraphRef="b4a96" RelX="0.0" RelY="-1.0" ArrowHead="Arrow" />
+      <Anchor Position="0.4623404144361212" Shape="None" GraphId="ff974" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="e6fbc">
+    <Graphics ConnectorType="Curved" ZOrder="33003" LineThickness="1.0">
+      <Point X="627.9391652217358" Y="948.5923844520208" GraphRef="a561c" RelX="-1.0" RelY="0.0" />
+      <Point X="501.37741046831957" Y="1033.1149380943025" />
+      <Point X="502.3826605939682" Y="1117.6374917365843" GraphRef="ff974" RelX="0.0" RelY="0.0" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="acec5">
+    <Graphics ZOrder="33007" LineThickness="1.0">
+      <Point X="303.43797251704467" Y="1129.6114425417095" GraphRef="beef6" RelX="1.0" RelY="0.0" />
+      <Point X="504.76190476190476" Y="1129.7619047619048" ArrowHead="mim-catalysis" />
+      <Anchor Position="0.4" Shape="None" GraphId="faabf" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="e5f88">
+    <Graphics ZOrder="33011" LineThickness="1.0">
+      <Point X="485.6412579756402" Y="225.44500721824937" GraphRef="cab4d" RelX="0.0" RelY="1.0" />
+      <Point X="476.65367698211867" Y="639.2733009547528" GraphRef="c1aa1" RelX="0.0" RelY="-1.0" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="b7a1a">
+    <Graphics ConnectorType="Segmented" ZOrder="33012" LineThickness="1.0">
+      <Point X="690.6007612153811" Y="249.6458711491349" GraphRef="aad7b" RelX="0.0" RelY="1.0" />
+      <Point X="487.06742900806773" Y="442.77677080001445" />
+      <Point X="690.6007612153811" Y="592.7762744358824" GraphRef="eb011" RelX="0.0" RelY="-1.0" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="b2409">
+    <Graphics ZOrder="33016" LineThickness="1.0">
+      <Point X="326.27813993926316" Y="443.2244530483471" GraphRef="f24f9" RelX="1.0" RelY="0.0" />
+      <Point X="484.56742900806773" Y="444.02677080001445" ArrowHead="mim-catalysis" />
+      <Anchor Position="0.4" Shape="None" GraphId="cc82b" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="f0ff7">
+    <Graphics ZOrder="33021" LineThickness="1.0">
+      <Point X="287.5368417660228" Y="2444.2867259473023" GraphRef="e6e90" RelX="0.0" RelY="1.0" />
+      <Point X="688.4743298636174" Y="2823.667129234047" GraphRef="a875e" RelX="0.0" RelY="-1.0" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="a8a0d">
+    <Graphics ZOrder="33022" LineThickness="1.0">
+      <Point X="688.4743298636175" Y="2444.2867259473023" GraphRef="c24e5" RelX="0.0" RelY="1.0" />
+      <Point X="287.5368417660228" Y="2823.6671292340475" GraphRef="e9120" RelX="0.0" RelY="-1.0" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="cebfa">
+    <Graphics ZOrder="33026" LineThickness="1.0">
+      <Point X="337.9017085874998" Y="2631.615307846518" GraphRef="ae83d" RelX="1.0" RelY="0.0" />
+      <Point X="492.98501847031883" Y="2632.189514472186" ArrowHead="mim-catalysis" />
+      <Anchor Position="0.4" Shape="None" GraphId="d621a" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="c4107">
+    <Graphics ConnectorType="Segmented" ZOrder="33030" LineThickness="1.0">
+      <Point X="311.56383878462555" Y="4460.576457367601" GraphRef="b6d45" RelX="0.0" RelY="1.0" />
+      <Point X="504.2301184433164" Y="4653.976311336718" />
+      <Point X="451.63505643746606" Y="4847.456860654346" GraphRef="f4638" RelX="0.0" RelY="-1.0" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="b2d66">
+    <Graphics ConnectorType="Curved" ZOrder="33031" LineThickness="1.0">
+      <Point X="439.0233420243672" Y="4460.576457367601" GraphRef="f3e64" RelX="0.0" RelY="1.0" />
+      <Point X="646.0545979755686" Y="4743.092917277534" />
+      <Point X="853.0858539267701" Y="4847.456860654346" GraphRef="a41ca" RelX="0.0" RelY="-1.0" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="ff10a">
+    <Graphics ZOrder="33035" LineThickness="1.0">
+      <Point X="352.20072074824895" Y="4652.905039266814" GraphRef="c9388" RelX="1.0" RelY="0.0" />
+      <Point X="507.28403063106776" Y="4653.479245892485" ArrowHead="mim-catalysis" />
+      <Anchor Position="0.4" Shape="None" GraphId="a2931" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="ce088">
+    <Graphics ConnectorType="Segmented" ZOrder="33039" LineThickness="1.0">
+      <Point X="293.62323359420503" Y="3728.050296651748" GraphRef="e6d6d" RelX="0.0" RelY="1.0" />
+      <Point X="484.77157360406096" Y="3915.397631133672" />
+      <Point X="293.623233594205" Y="4084.3637849737015" GraphRef="cfa04" RelX="0.0" RelY="-1.0" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="c2675">
+    <Graphics ConnectorType="Elbow" ZOrder="33040" LineThickness="1.0">
+      <Point X="486.08273683394646" Y="3724.7511605826335" GraphRef="dadbe" RelX="0.0" RelY="1.0" />
+      <Point X="667.4889927851486" Y="3915.636094388148" />
+      <Point X="848.8952487363507" Y="4114.131563869377" GraphRef="add8c" RelX="0.0" RelY="-1.0" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="a5b29">
+    <Graphics ZOrder="33044" LineThickness="1.0">
+      <Point X="334.2601155578281" Y="3914.5797424818466" GraphRef="d3eef" RelX="1.0" RelY="0.0" />
+      <Point X="489.34342544064725" Y="3915.153949107517" ArrowHead="mim-catalysis" />
+      <Anchor Position="0.4" Shape="None" GraphId="c4354" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="d0ca7">
+    <Graphics ConnectorType="Curved" ZOrder="33048" LineThickness="1.0">
+      <Point X="502.3826605939682" Y="1117.6374917365843" />
+      <Point X="504.1322314049587" Y="1171.2358756684102" />
+      <Point X="589.3959094003217" Y="1224.834259600236" />
+      <Point X="674.6595873956846" Y="1323.3466562944513" GraphRef="cb2fc" RelX="0.0" RelY="-1.0" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="e523f">
+    <Graphics ZOrder="33050" LineThickness="1.0">
+      <Point X="1211.278139939263" Y="456.9744530483471" GraphRef="db0d6" RelX="1.0" RelY="0.0" />
+      <Point X="1369.5674290080678" Y="457.77677080001445" ArrowHead="mim-catalysis" />
+      <Anchor Position="0.4" Shape="None" GraphId="bd221" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Label TextLabel="LineTypes: 2 Segmented&#xA;Behavior on attempting to drag reactionAnchor:&#xA;  Free movement" GraphId="babcf">
+    <Graphics CenterX="341.3866911572327" CenterY="1727.225554343523" Width="437.11934156378607" Height="63.33627278071721" ZOrder="28672" FillColor="ffffff" FontSize="14" Valign="Middle" Align="Left" />
+  </Label>
+  <Label TextLabel="Compound of Interest: A" GraphId="e0404">
+    <Graphics CenterX="142.6807767227712" CenterY="56.75840377214257" Width="227.86194882187854" Height="21.769369561546156" ZOrder="32992" FillColor="ffffff" FontWeight="Bold" FontSize="14" Valign="Middle" Align="Left" />
+  </Label>
+  <Label TextLabel="LineTypes: 1 Straight, 1 Elbow&#xA;Behavior on attempting to drag anchor:&#xA;  Elbow is converted to segmented so&#xA;  reactionAnchor can move along straight line" GraphId="f515b">
+    <Graphics CenterX="299.03370779521435" CenterY="2980.9744033550946" Width="437.11934156378607" Height="84.07407407407408" ZOrder="32995" FillColor="ffffff" FontSize="14" Valign="Middle" Align="Left" />
+  </Label>
+  <Label TextLabel="LineTypes: 1 Straight, 1 Curve&#xA;Behavior on attempting to drag reactionAnchor:&#xA;  curved line is converted to two curves so&#xA;  reactionAnchor can move along straight line" GraphId="d36cc">
+    <Graphics CenterX="289.9962021940816" CenterY="808.6442328294052" Width="437.11934156378607" Height="84.07407407407408" ZOrder="33004" FillColor="ffffff" FontSize="14" Valign="Middle" Align="Left" />
+  </Label>
+  <Label TextLabel="LineTypes: 1 Straight, 1 Segmented&#xA;Behavior on attempting to drag reactionAnchor:&#xA;  Can move reactionAnchor up or down the straight line" GraphId="e7485">
+    <Graphics CenterX="287.9006727097992" CenterY="140.34072364174432" Width="437.11934156378607" Height="63.33627278071721" ZOrder="33013" FillColor="ffffff" FontSize="14" Valign="Middle" Align="Left" />
+  </Label>
+  <Label TextLabel="Compounds of Interest: A and B" GraphId="ff206">
+    <Graphics CenterX="188.07670219846125" CenterY="1599.8093735578816" Width="227.86194882187854" Height="21.769369561546156" ZOrder="33020" FillColor="ffffff" FontWeight="Bold" FontSize="14" Valign="Middle" Align="Left" />
+  </Label>
+  <Label TextLabel="LineTypes: 2 Straight&#xA;Don't worry about this one&#xA;Behavior on attempting to drag reactionAnchor:&#xA;  No movement OR&#xA;  Both lines are both converted to segmented,&#xA;  allowing free movement of reactionAnchor" GraphId="fdd5b">
+    <Graphics CenterX="313.27424135803585" CenterY="2334.714108370992" Width="437.11934156378607" Height="101.37121291855414" ZOrder="33023" FillColor="ffffff" FontSize="14" Valign="Middle" Align="Left" />
+  </Label>
+  <Label TextLabel="LineTypes: 1 Segmented, 1 Curved&#xA;Behavior on attempting to drag reactionAnchor:&#xA;  Can move along curve" GraphId="d9410">
+    <Graphics CenterX="338.75895042528543" CenterY="4335.509258125939" Width="437.11934156378607" Height="84.07407407407408" ZOrder="33032" FillColor="ffffff" FontSize="14" Valign="Middle" Align="Left" />
+  </Label>
+  <Label TextLabel="LineTypes: 1 Segmented, 1 Elbow&#xA;Behavior on attempting to drag reactionAnchor:&#xA;  Can move along elbow" GraphId="fee7a">
+    <Graphics CenterX="337.31121975693674" CenterY="3632.8982470552533" Width="437.11934156378607" Height="84.07407407407408" ZOrder="33041" FillColor="ffffff" FontSize="14" Valign="Middle" Align="Left" />
+  </Label>
+  <Shape GraphId="ea692">
+    <Graphics CenterX="1467.875" CenterY="462.25" Width="274.25" Height="205.5" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="Arc" Rotation="1.5994343285484702" />
+  </Shape>
+  <InfoBox CenterX="0.0" CenterY="0.0" />
+  <Biopax />
+</Pathway>
+
