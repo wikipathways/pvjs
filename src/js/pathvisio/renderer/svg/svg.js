@@ -26,6 +26,7 @@ pathvisio.renderer.svg = function(){
         });
       },
       function(callback){
+        // TODO get SVG from where it was already defined
         svg = d3.select('body').select('#pathway-svg')
         //draw(svg, pathway, function() {
         pathvisio.renderer.svg.render(args, function() {
@@ -38,11 +39,10 @@ pathvisio.renderer.svg = function(){
         d3.select('#loading-icon').remove();
 
         svg.attr('style', 'display: inline; width: ' + args.target.width + 'px; height: ' + args.target.height + 'px; ')
-        /*
         .on("click", function(d, i){
-          svgPanZoom.toggleZoom();
+          svgPanZoom.setZoom(1);
         });
-//*/
+
         // TODO avoid defining svg again
 
         var svgElement = document.querySelector('svg');
