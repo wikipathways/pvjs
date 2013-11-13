@@ -23,7 +23,7 @@ header.details-frame-header {
   color: #333;
   letter-spacing: .8px;
   text-align: center;
-  padding-bottom: 0px;
+  padding-bottom: 10px;
 }
 
 .details-frame-header-search {
@@ -84,7 +84,7 @@ header.details-frame-header {
   list-style: none;
   text-align: left;
   padding: 0 0 0 10px;
-  margin: 0 0 0 -5px;
+  margin: 10px 0 0 -5px;
   height: 20em;
   overflow: auto;
 }
