@@ -3,8 +3,8 @@
 
 <!-- 
 This file serves as our template for standardized GPML pathway visual representations.
-This file can be used for many purposes outside of pathvisio.js, including allowingar
-other projects to work better with GPML. For purposes of pathvisio.js, this file will
+This file can be used for many purposes outside of pathvisiojs, including allowingar
+other projects to work better with GPML. For purposes of pathvisiojs, this file will
 be the starting point for our JavaScript rendering of pathways. Every time we want to
 render a GPML file on the browser, we will read a copy of this file into D3.js and
 modify the copy by adding "use" statements, cloning markers, etc. in order to create
@@ -20,7 +20,7 @@ JS all inside this document.
 Doctypes are not needed for SVG, and jwatt discourages their use:
 https://jwatt.org/svg/authoring/.
 
-Style guides can be arbitrary, but for consistency of SVG markup for the pathvisio.js project,
+Style guides can be arbitrary, but for consistency of SVG markup for the pathvisiojs project,
 	I suggest using JS Watt's SVG authoring advice and Google's HTML and JavaScript Guides:
 	https://jwatt.org/svg/authoring/
 	http://google-styleguide.googlecode.com/svn/trunk/htmlcssguide.xml
@@ -72,10 +72,10 @@ SVG-Edit (latest release)
 	width="100%"
 	height="100%">
 	<g>
-	<title>pathway defs for pathvisio.js</title>
+	<title>pathway defs for pathvisiojs</title>
 	<desc>
 	This SVG file contains all the graphical elements (markers and symbols in defs as well as
-	style data) used by the program pathvisio.js, which has two components: 
+	style data) used by the program pathvisiojs, which has two components: 
 	1) a viewer for transforming GPML biological pathway data into an SVG visual representation and 
 	2) an editor for creating both views and models for biological pathways.
 	</desc>
@@ -135,7 +135,7 @@ SVG-Edit (latest release)
 	orient="auto"
 	refX="0" refY="6"
 	viewBox="0 0 12 12">
-  <image xlink:href="http://wikipathways.github.io/pathvisio.js/src/views/markers/arrow.svg" x="0" y="0" width="12" height="12"></image>
+  <image xlink:href="http://wikipathways.github.io/pathvisiojs/src/views/markers/arrow.svg" x="0" y="0" width="12" height="12"></image>
 	</marker>
 
 	<marker id="arrow-end-black" 
@@ -147,7 +147,7 @@ SVG-Edit (latest release)
 	orient="auto"
 	refX="12" refY="6"
 	viewBox="0 0 12 12">
-  <image xlink:href="http://wikipathways.github.io/pathvisio.js/src/views/markers/arrow.svg" x="0" y="0" width="12" height="12" class="marker-end"></image>
+  <image xlink:href="http://wikipathways.github.io/pathvisiojs/src/views/markers/arrow.svg" x="0" y="0" width="12" height="12" class="marker-end"></image>
 	</marker>
 
 
@@ -184,7 +184,7 @@ SVG-Edit (latest release)
 	orient="auto"
 	refX="0" refY="6"
 	viewBox="0 0 12 12">
-  <image xlink:href="http://wikipathways.github.io/pathvisio.js/src/views/markers/mim-binding.svg" x="0" y="0" width="12" height="12"></image>
+  <image xlink:href="http://wikipathways.github.io/pathvisiojs/src/views/markers/mim-binding.svg" x="0" y="0" width="12" height="12"></image>
 	</marker>
 
 	<marker id="mim-binding-end-black" 
@@ -196,7 +196,7 @@ SVG-Edit (latest release)
 	orient="auto"
 	refX="12" refY="6"
 	viewBox="0 0 12 12">
-  <image xlink:href="http://wikipathways.github.io/pathvisio.js/src/views/markers/mim-binding.svg" x="0" y="0" width="12" height="12" class="marker-end"></image>
+  <image xlink:href="http://wikipathways.github.io/pathvisiojs/src/views/markers/mim-binding.svg" x="0" y="0" width="12" height="12" class="marker-end"></image>
 	</marker>
 
 	<!-- mim-branching-left markers: line and extended drawing-board rect -->
@@ -237,7 +237,7 @@ SVG-Edit (latest release)
 	orient="auto"
 	refX="0" refY="6"
 	viewBox="0 0 12 12">
-  <image xlink:href="http://wikipathways.github.io/pathvisio.js/src/views/markers/mim-branching-left.svg" x="0" y="0" width="12" height="12"></image>
+  <image xlink:href="http://wikipathways.github.io/pathvisiojs/src/views/markers/mim-branching-left.svg" x="0" y="0" width="12" height="12"></image>
 	</marker>
 
 	<marker id="mim-branching-left-end-black" 
@@ -249,7 +249,7 @@ SVG-Edit (latest release)
 	orient="auto"
 	refX="12" refY="6"
 	viewBox="0 0 12 12">
-  <image xlink:href="http://wikipathways.github.io/pathvisio.js/src/views/markers/mim-branching-left.svg" x="0" y="0" width="12" height="12" class="marker-end"></image>
+  <image xlink:href="http://wikipathways.github.io/pathvisiojs/src/views/markers/mim-branching-left.svg" x="0" y="0" width="12" height="12" class="marker-end"></image>
 	</marker>
 
 
@@ -291,7 +291,7 @@ SVG-Edit (latest release)
 	orient="auto"
 	refX="0" refY="6"
 	viewBox="0 0 12 12">
-  <image xlink:href="http://wikipathways.github.io/pathvisio.js/src/views/markers/mim-branching-right.svg" x="0" y="0" width="12" height="12"></image>
+  <image xlink:href="http://wikipathways.github.io/pathvisiojs/src/views/markers/mim-branching-right.svg" x="0" y="0" width="12" height="12"></image>
 	</marker>
 
 	<marker id="mim-branching-right-end-black" 
@@ -303,7 +303,7 @@ SVG-Edit (latest release)
 	orient="auto"
 	refX="12" refY="6"
 	viewBox="0 0 12 12">
-  <image xlink:href="http://wikipathways.github.io/pathvisio.js/src/views/markers/mim-branching-right.svg" x="0" y="0" width="12" height="12" class="marker-end"></image>
+  <image xlink:href="http://wikipathways.github.io/pathvisiojs/src/views/markers/mim-branching-right.svg" x="0" y="0" width="12" height="12" class="marker-end"></image>
 	</marker>
 
 	<!-- mim-catalysis markers: circle, drawing-board fill and black stroke -->
@@ -342,7 +342,7 @@ SVG-Edit (latest release)
 	orient="auto"
 	refX="0" refY="6"
 	viewBox="0 0 12 12">
-  <image xlink:href="http://wikipathways.github.io/pathvisio.js/src/views/markers/mim-catalysis.svg" x="0" y="0" width="12" height="12"></image>
+  <image xlink:href="http://wikipathways.github.io/pathvisiojs/src/views/markers/mim-catalysis.svg" x="0" y="0" width="12" height="12"></image>
 	</marker>
 
 	<marker id="mim-catalysis-end-black" 
@@ -354,7 +354,7 @@ SVG-Edit (latest release)
 	orient="auto"
 	refX="12" refY="6"
 	viewBox="0 0 12 12">
-  <image xlink:href="http://wikipathways.github.io/pathvisio.js/src/views/markers/mim-catalysis.svg" x="0" y="0" width="12" height="12" class="marker-end"></image>
+  <image xlink:href="http://wikipathways.github.io/pathvisiojs/src/views/markers/mim-catalysis.svg" x="0" y="0" width="12" height="12" class="marker-end"></image>
 	</marker>
 
 	<!-- mim-cleavage markers: two lines and extended drawing-board rect -->
@@ -396,7 +396,7 @@ SVG-Edit (latest release)
 	orient="auto"
 	refX="8" refY="6"
 	viewBox="0 0 12 12">
-  <image xlink:href="http://wikipathways.github.io/pathvisio.js/src/views/markers/mim-cleavage.svg" x="0" y="0" width="12" height="12"></image>
+  <image xlink:href="http://wikipathways.github.io/pathvisiojs/src/views/markers/mim-cleavage.svg" x="0" y="0" width="12" height="12"></image>
 	</marker>
 
 	<marker id="mim-cleavage-end-black" 
@@ -408,7 +408,7 @@ SVG-Edit (latest release)
 	orient="auto"
 	refX="4" refY="6"
 	viewBox="0 0 12 12">
-  <image xlink:href="http://wikipathways.github.io/pathvisio.js/src/views/markers/mim-cleavage.svg" x="0" y="0" width="12" height="12" class="marker-end"></image>
+  <image xlink:href="http://wikipathways.github.io/pathvisiojs/src/views/markers/mim-cleavage.svg" x="0" y="0" width="12" height="12" class="marker-end"></image>
 	</marker>
 
 	<!-- mim-conversion markers: triangular polygons, no stroke -->
@@ -444,7 +444,7 @@ SVG-Edit (latest release)
 	orient="auto"
 	refX="0" refY="6"
 	viewBox="0 0 12 12">
-  <image xlink:href="http://wikipathways.github.io/pathvisio.js/src/views/markers/mim-conversion.svg" x="0" y="0" width="12" height="12"></image>
+  <image xlink:href="http://wikipathways.github.io/pathvisiojs/src/views/markers/mim-conversion.svg" x="0" y="0" width="12" height="12"></image>
 	</marker>
 
 	<marker id="mim-conversion-end-black" 
@@ -456,7 +456,7 @@ SVG-Edit (latest release)
 	orient="auto"
 	refX="12" refY="6"
 	viewBox="0 0 12 12">
-  <image xlink:href="http://wikipathways.github.io/pathvisio.js/src/views/markers/mim-conversion.svg" x="0" y="0" width="12" height="12" class="marker-end"></image>
+  <image xlink:href="http://wikipathways.github.io/pathvisiojs/src/views/markers/mim-conversion.svg" x="0" y="0" width="12" height="12" class="marker-end"></image>
 	</marker>
 
 	<!-- mim-covalent-bond markers: not much to see here! -->
@@ -486,7 +486,7 @@ SVG-Edit (latest release)
 	orient="auto"
 	refX="0" refY="6"
 	viewBox="0 0 12 12">
-  <image xlink:href="http://wikipathways.github.io/pathvisio.js/src/views/markers/mim-covalent-bond.svg" x="0" y="0" width="12" height="12"></image>
+  <image xlink:href="http://wikipathways.github.io/pathvisiojs/src/views/markers/mim-covalent-bond.svg" x="0" y="0" width="12" height="12"></image>
 	</marker>
 
 	<marker id="mim-covalent-bond-end-black" 
@@ -498,7 +498,7 @@ SVG-Edit (latest release)
 	orient="auto"
 	refX="12" refY="6"
 	viewBox="0 0 12 12">
-  <image xlink:href="http://wikipathways.github.io/pathvisio.js/src/views/markers/mim-covalent-bond.svg" x="0" y="0" width="12" height="12" class="marker-end"></image>
+  <image xlink:href="http://wikipathways.github.io/pathvisiojs/src/views/markers/mim-covalent-bond.svg" x="0" y="0" width="12" height="12" class="marker-end"></image>
 	</marker>
 
 	<!-- mim-gap markers: just an extended drawing-board rect -->
@@ -536,7 +536,7 @@ SVG-Edit (latest release)
 	orient="auto"
 	refX="2" refY="6"
 	viewBox="0 0 12 12">
-  <image xlink:href="http://wikipathways.github.io/pathvisio.js/src/views/markers/mim-gap.svg" x="0" y="0" width="12" height="12"></image>
+  <image xlink:href="http://wikipathways.github.io/pathvisiojs/src/views/markers/mim-gap.svg" x="0" y="0" width="12" height="12"></image>
 	</marker>
 
 	<marker id="mim-gap-end-black" 
@@ -548,7 +548,7 @@ SVG-Edit (latest release)
 	orient="auto"
 	refX="10" refY="6"
 	viewBox="0 0 12 12">
-  <image xlink:href="http://wikipathways.github.io/pathvisio.js/src/views/markers/mim-gap.svg" x="0" y="0" width="12" height="12" class="marker-end"></image>
+  <image xlink:href="http://wikipathways.github.io/pathvisiojs/src/views/markers/mim-gap.svg" x="0" y="0" width="12" height="12" class="marker-end"></image>
 	</marker>
 
 	<!-- mim-inhibition markers: vertical line; and extended drawing-board rect -->
@@ -590,7 +590,7 @@ SVG-Edit (latest release)
 	orient="auto"
 	refX="0" refY="6"
 	viewBox="0 0 12 12">
-  <image xlink:href="http://wikipathways.github.io/pathvisio.js/src/views/markers/mim-inhibition.svg" x="0" y="0" width="12" height="12"></image>
+  <image xlink:href="http://wikipathways.github.io/pathvisiojs/src/views/markers/mim-inhibition.svg" x="0" y="0" width="12" height="12"></image>
   </marker>
   
 	<marker id="mim-inhibition-end-black"
@@ -602,7 +602,7 @@ SVG-Edit (latest release)
 	orient="auto"
 	refX="12" refY="6"
 	viewBox="0 0 12 12">
-  <image xlink:href="http://wikipathways.github.io/pathvisio.js/src/views/markers/mim-inhibition.svg" x="0" y="0" width="12" height="12" class="marker-end"></image>
+  <image xlink:href="http://wikipathways.github.io/pathvisiojs/src/views/markers/mim-inhibition.svg" x="0" y="0" width="12" height="12" class="marker-end"></image>
   </marker>
 
 	<!-- mim-modification markers: four-point polygon, no stroke -->
@@ -638,7 +638,7 @@ SVG-Edit (latest release)
 	orient="auto"
 	refX="0" refY="6"
 	viewBox="0 0 12 12">
-  <image xlink:href="http://wikipathways.github.io/pathvisio.js/src/views/markers/mim-modification.svg" x="0" y="0" width="12" height="12"></image>
+  <image xlink:href="http://wikipathways.github.io/pathvisiojs/src/views/markers/mim-modification.svg" x="0" y="0" width="12" height="12"></image>
 	</marker>
 
 	<marker id="mim-modification-end-black" 
@@ -650,7 +650,7 @@ SVG-Edit (latest release)
 	orient="auto"
 	refX="12" refY="6"
 	viewBox="0 0 12 12">
-  <image xlink:href="http://wikipathways.github.io/pathvisio.js/src/views/markers/mim-modification.svg" x="0" y="0" width="12" height="12" class="marker-end"></image>
+  <image xlink:href="http://wikipathways.github.io/pathvisiojs/src/views/markers/mim-modification.svg" x="0" y="0" width="12" height="12" class="marker-end"></image>
 	</marker>
 
 	<!-- mim-necessary-stimulation markers: triangular polygons, drawing-board fill, black stroke; and vertical line -->
@@ -690,7 +690,7 @@ SVG-Edit (latest release)
 	orient="auto"
 	refX="0" refY="6"
 	viewBox="0 0 15 12">
-  <image xlink:href="http://wikipathways.github.io/pathvisio.js/src/views/markers/mim-necessary-stimulation.svg" x="0" y="0" width="15" height="12"></image>
+  <image xlink:href="http://wikipathways.github.io/pathvisiojs/src/views/markers/mim-necessary-stimulation.svg" x="0" y="0" width="15" height="12"></image>
 	</marker>
 
 	<marker id="mim-necessary-stimulation-end-black" 
@@ -702,7 +702,7 @@ SVG-Edit (latest release)
 	orient="auto"
 	refX="15" refY="6"
 	viewBox="0 0 15 12">
-  <image xlink:href="http://wikipathways.github.io/pathvisio.js/src/views/markers/mim-necessary-stimulation.svg" x="0" y="0" width="15" height="12" class="marker-end"></image>
+  <image xlink:href="http://wikipathways.github.io/pathvisiojs/src/views/markers/mim-necessary-stimulation.svg" x="0" y="0" width="15" height="12" class="marker-end"></image>
 	</marker>
 
 	<!-- mim-stimulation markers: triangular polygons, drawing-board fill, black stroke -->
@@ -740,7 +740,7 @@ SVG-Edit (latest release)
 	orient="auto"
 	refX="0" refY="6"
 	viewBox="0 0 12 12">
-  <image xlink:href="http://wikipathways.github.io/pathvisio.js/src/views/markers/mim-stimulation.svg" x="0" y="0" width="12" height="12"></image>
+  <image xlink:href="http://wikipathways.github.io/pathvisiojs/src/views/markers/mim-stimulation.svg" x="0" y="0" width="12" height="12"></image>
 	</marker>
 
 	<marker id="mim-stimulation-end-black" 
@@ -752,7 +752,7 @@ SVG-Edit (latest release)
 	orient="auto"
 	refX="12" refY="6"
 	viewBox="0 0 12 12">
-  <image xlink:href="http://wikipathways.github.io/pathvisio.js/src/views/markers/mim-stimulation.svg" x="0" y="0" width="12" height="12" class="marker-end"></image>
+  <image xlink:href="http://wikipathways.github.io/pathvisiojs/src/views/markers/mim-stimulation.svg" x="0" y="0" width="12" height="12" class="marker-end"></image>
 	</marker>
 
 	<!-- mim-transcription-translation markers: two lines and an open trigular polygon, plus extended drawing-board rect -->
@@ -796,7 +796,7 @@ SVG-Edit (latest release)
 	orient="auto"
 	refX="0" refY="6"
 	viewBox="0 0 12 12">
-  <image xlink:href="http://wikipathways.github.io/pathvisio.js/src/views/markers/mim-transcription-translation.svg" x="0" y="0" width="12" height="12"></image>
+  <image xlink:href="http://wikipathways.github.io/pathvisiojs/src/views/markers/mim-transcription-translation.svg" x="0" y="0" width="12" height="12"></image>
 	</marker>
 
 	<marker id="mim-transcription-translation-end-black" 
@@ -808,7 +808,7 @@ SVG-Edit (latest release)
 	orient="auto"
 	refX="12" refY="6"
 	viewBox="0 0 12 12">
-  <image xlink:href="http://wikipathways.github.io/pathvisio.js/src/views/markers/mim-transcription-translation.svg" x="0" y="0" width="12" height="12" class="marker-end"></image>
+  <image xlink:href="http://wikipathways.github.io/pathvisiojs/src/views/markers/mim-transcription-translation.svg" x="0" y="0" width="12" height="12" class="marker-end"></image>
 	</marker>
 
 	<!-- t-bar markers: vertical line; and extended drawing-board rect -->
@@ -848,7 +848,7 @@ SVG-Edit (latest release)
 	orient="auto"
 	refX="0" refY="6"
 	viewBox="0 0 12 12">
-  <image xlink:href="http://wikipathways.github.io/pathvisio.js/src/views/markers/t-bar.svg" x="0" y="0" width="12" height="12"></image>
+  <image xlink:href="http://wikipathways.github.io/pathvisiojs/src/views/markers/t-bar.svg" x="0" y="0" width="12" height="12"></image>
 	</marker>
 
 	<marker id="t-bar-end-black" 
@@ -860,7 +860,7 @@ SVG-Edit (latest release)
 	orient="auto"
 	refX="12" refY="6"
 	viewBox="0 0 12 12">
-  <image xlink:href="http://wikipathways.github.io/pathvisio.js/src/views/markers/t-bar.svg" x="0" y="0" width="12" height="12" class="marker-end"></image>
+  <image xlink:href="http://wikipathways.github.io/pathvisiojs/src/views/markers/t-bar.svg" x="0" y="0" width="12" height="12" class="marker-end"></image>
 	</marker>
 	
 	<!-- double-line-hack markers are used in double line handling; they include their own 
@@ -893,7 +893,7 @@ SVG-Edit (latest release)
 	orient="auto"
 	refX="0" refY="6"
 	viewBox="0 0 12 12">
-  <image xlink:href="http://wikipathways.github.io/pathvisio.js/src/views/markers/double-line-hack.svg" x="0" y="0" width="12" height="12"></image>
+  <image xlink:href="http://wikipathways.github.io/pathvisiojs/src/views/markers/double-line-hack.svg" x="0" y="0" width="12" height="12"></image>
 	</marker>
 
 	<marker id="double-line-hack-end" 
@@ -905,7 +905,7 @@ SVG-Edit (latest release)
 	orient="auto"
 	refX="12" refY="6"
 	viewBox="0 0 12 12">
-  <image xlink:href="http://wikipathways.github.io/pathvisio.js/src/views/markers/double-line-hack.svg" x="0" y="0" width="12" height="12" class="marker-end"></image>
+  <image xlink:href="http://wikipathways.github.io/pathvisiojs/src/views/markers/double-line-hack.svg" x="0" y="0" width="12" height="12" class="marker-end"></image>
 	</marker>
 
 	<symbol id="grid-square"

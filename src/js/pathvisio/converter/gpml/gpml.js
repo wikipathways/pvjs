@@ -26,7 +26,7 @@ pathvisio.converter.gpml = function(){
 
     if ( pathvisio.converter.gpml.namespaces.indexOf(gpmlNamespace) !== -1 ) {
 
-      // test for whether the GPML file version matches the latest version (only the latest version will be supported by pathvisio.js).
+      // test for whether the GPML file version matches the latest version (only the latest version will be supported by pathvisiojs).
 
       if (pathvisio.converter.gpml.namespaces.indexOf(gpmlNamespace) !== 0) {
 

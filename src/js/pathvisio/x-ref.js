@@ -1,7 +1,7 @@
 pathvisio.xRef = function(){
     function getData(species, database, id, callback) {
       var databaseId = pathvisio.dataSources.filter(function(element) {return element.database === database;})[0].id;
-      var url = 'http://pointer.ucsf.edu/d3/r/pathvisio.js/src/views/bridgedb.php?species=' + encodeURIComponent(species) + '&database=' + encodeURIComponent(databaseId) + '&id=' + encodeURIComponent(id);
+      var url = 'http://pointer.ucsf.edu/d3/r/pathvisiojs/src/views/bridgedb.php?species=' + encodeURIComponent(species) + '&database=' + encodeURIComponent(databaseId) + '&id=' + encodeURIComponent(id);
       $.ajax({
         url: url,
         dataType: "text",

@@ -55,7 +55,7 @@ pathvisio = function(){
 
     var inputDataDetails = getInputDataDetails(inputData);
 
-    // For now, pathvisio.js will attempt to convert any input data, as long as it is of type
+    // For now, pathvisiojs will attempt to convert any input data, as long as it is of type
     // GPML or has no type specified, into JSON.
     // TODO Later, this functionality can be extended to include other data types and
     // to test for data type when it is not specified.
@@ -71,7 +71,7 @@ pathvisio = function(){
       });
     }
     else {
-      return new Error('No data source specified or pathvisio.js cannot handle the data source specified.');
+      return new Error('No data source specified or pathvisiojs cannot handle the data source specified.');
 
     }
   }
@@ -84,7 +84,7 @@ pathvisio = function(){
     // Check for minimum required set of parameters
     // ********************************************
 
-    if (!args.target) { return console.warn('Error: No target selector specified as target for pathvisio.js.'); }
+    if (!args.target) { return console.warn('Error: No target selector specified as target for pathvisiojs.'); }
     if (!args.data) { return console.warn('Error: No input data source (URL or WikiPathways ID) specified.'); }
 
     async.parallel({

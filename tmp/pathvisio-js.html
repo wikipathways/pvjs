@@ -5,8 +5,8 @@
 
 <!-- 
 This file serves as our template for standardized GPML pathway visual representations.
-This file can be used for many purposes outside of pathvisio.js, including allowingar
-other projects to work better with GPML. For purposes of pathvisio.js, this file will
+This file can be used for many purposes outside of pathvisiojs, including allowingar
+other projects to work better with GPML. For purposes of pathvisiojs, this file will
 be the starting point for our JavaScript rendering of pathways. Every time we want to
 render a GPML file on the browser, we will read a copy of this file into D3.js and
 modify the copy by adding "use" statements, cloning markers, etc. in order to create
@@ -22,7 +22,7 @@ JS all inside this document.
 Doctypes are not needed for SVG, and jwatt discourages their use:
 https://jwatt.org/svg/authoring/.
 
-Style guides can be arbitrary, but for consistency of SVG markup for the pathvisio.js project,
+Style guides can be arbitrary, but for consistency of SVG markup for the pathvisiojs project,
 	I suggest using JS Watt's SVG authoring advice and Google's HTML and JavaScript Guides:
 	https://jwatt.org/svg/authoring/
 	http://google-styleguide.googlecode.com/svn/trunk/htmlcssguide.xml
@@ -67,10 +67,10 @@ SVG-Edit (latest release)
 
 	<svg id="pathway-image" version="1.1" baseProfile="full" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ev="http://www.w3.org/2001/xml-events" width="684.0" height="473.62184873949576" onmouseup="handleMouseUp(evt)" onmousedown="handleMouseDown(evt)" onmousemove="handleMouseMove(evt)">
 	<g>
-	<title>pathway defs for pathvisio.js</title>
+	<title>pathway defs for pathvisiojs</title>
 	<desc>
 	This SVG file contains all the graphical elements (markers and symbols in defs as well as
-	style data) used by the program pathvisio.js, which has two components: 
+	style data) used by the program pathvisiojs, which has two components: 
 	1) a viewer for transforming GPML biological pathway data into an SVG visual representation and 
 	2) an editor for creating both views and models for biological pathways.
 	</desc>
@@ -82,7 +82,7 @@ SVG-Edit (latest release)
 	CSS Style Sheet
 	***************************
 
-	Note: pathvisio.js assumes the default element color is black.
+	Note: pathvisiojs assumes the default element color is black.
 	-->
 
 	<style type="text/css">
