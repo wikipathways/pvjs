@@ -29,7 +29,7 @@ If you've already forked pathvisiojs in the past,
 
 2. Make Awesome Updates
 --------------------
-1. You can edit any of the files in the "src" directory of the gh-pages branch of your fork (https://github.com/your-github-account/pathvisio.js/tree/gh-pages/src/)
+1. You can edit any of the files in the "src" directory of the gh-pages branch of your fork (https://github.com/your-github-account/pathvisiojs/tree/gh-pages/src/)
 4. View your changes live at http://your-github-account.github.io/pathvisiojs/test/ (note the .IO)
 
 3. Send Us a Pull Request
