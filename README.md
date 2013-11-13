@@ -15,14 +15,14 @@ How To Get Involved
 Get the Latest Code
 -------------------
 
-If It's Your First Contribution to pathvisio.js,
+If you have not forked pathvisio.js,
 
 1. Fork the WikiPathways repo for pathvisio.js [here](https://github.com/wikipathways/pathvisio.js/fork)
 2. Go to your fork at https://github.com/your-github-account/pathvisio.js/
 
-If you've already forked pathvisio.js,
+If you've already forked pathvisio.js in the past,
 
-1. Go to your fork of pathvisio.js and select the "Compare and review" button to the left of the "branch" drop-down to pull from the wikipathways fork of pathvisio.js into your fork
+1. Go to your fork of pathvisio.js at https://github.com/your-github-account/pathvisio.js/ and select the "Compare and review" button to the left of the "branch" drop-down to pull from the wikipathways fork of pathvisio.js into your fork
 3. Select "Edit" and "compare across forks" as needed to make the drop-downs look like this: your-github-account:gh-pages ... wikipathways:gh-pages
 4. Create pull request
 5. Accept pull request (if github says that the pull request cannot be done automatically, you will need to merge the files from the command line. Let Anders or Alex know and they can help.)
