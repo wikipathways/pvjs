@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <meta charset="utf-8">
-<title>pathvisio.js testing home</title>
+<title>pathvisiojs testing home</title>
 
 <!-- 
 Style guides can be arbitrary, but for sake of consistency within this project, let's use these:
@@ -10,17 +10,17 @@ http://google-styleguide.googlecode.com/svn/trunk/jsoncstyleguide.xml#General_Gu
 -->
 
 <body>
-  <h1>pathvisio.js testing home</h1>
+  <h1>pathvisiojs testing home</h1>
 
   <h2>
-  <a href="https://github.com/wikipathways/pathvisio.js">Code on Github</a>
+  <a href="https://github.com/wikipathways/pathvisiojs">Code on Github</a>
   </h2>
 <!--
   <h2>
   <a href="./gpml2json.html">Convert GPML to JSON</a>
   </h2>
 -->
-  <h2>View sample pathways with pathvisio.js</h2>
+  <h2>View sample pathways with pathvisiojs</h2>
 
   <h3>Pathways for testing purposes</h3>
 <ul>

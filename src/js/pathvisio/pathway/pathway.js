@@ -45,7 +45,7 @@ pathvisio.pathway = function(){
 
     if ( xmlns.indexOf(gpmlXmlnsIdentifier) !== -1 ) {
 
-      // test for whether the GPML file version matches the latest version (only the latest version will be supported by pathvisio.js). As of this writing, the latest version is 2013a.
+      // test for whether the GPML file version matches the latest version (only the latest version will be supported by pathvisiojs). As of this writing, the latest version is 2013a.
 
       if (xmlns != gpmlXmlnsSupported) {
 
@@ -537,9 +537,9 @@ pathvisio.pathway = function(){
 
     // Check for minimum required parameters
 
-    if (!args.gpmlUrl) { return console.warn('Error: No gpml URL specified as data source for pathvisio.js.'); }
+    if (!args.gpmlUrl) { return console.warn('Error: No gpml URL specified as data source for pathvisiojs.'); }
 
-    if (!args.container) { return console.warn('Error: No container selector specified as target for pathvisio.js.'); }
+    if (!args.container) { return console.warn('Error: No container selector specified as target for pathvisiojs.'); }
     args.containerElement = d3.select(args.container);
     if (args.containerElement.length !== 1) { return console.warn('Error: Container selector must be matched by exactly one element.'); }
 
