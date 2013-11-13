@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <head>
 <meta charset="utf-8">
-<title>pathvisio.js renderer</title>
+<title>pathvisiojs renderer</title>
 
 <!-- 
 Style guides can be arbitrary, but for sake of consistency within this project, let's use these:
@@ -23,7 +23,7 @@ var pwId = getUrlParameter('pwId');
 </script>
 
 <div id="choose-pathway-creator">
-  <button id="javascript-svg-pathway-button" class="pathway" onclick="displayDiv('javascript-svg')" style="background-color: yellow">pathvisio.js SVG</button>
+  <button id="javascript-svg-pathway-button" class="pathway" onclick="displayDiv('javascript-svg')" style="background-color: yellow">pathvisiojs SVG</button>
   <button id="java-svg-pathway-button" class="pathway" onclick="displayDiv('java-svg')" style="background-color: lightgray" title="SVG representation of GPML file, as created by PathVisio (Java), using Batik">PathVisio (Java) SVG</button>
   <button id="java-png-pathway-button" class="pathway" onclick="displayDiv('java-png')" style="background-color: lightgray" title="PNG representation of GPML file, as created by PathVisio (Java)">PathVisio (Java) PNG</button>
   <button id="xml-gpml-pathway-button" class="pathway" onclick="displayDiv('xml-gpml')" style="background-color: lightgray" title="XML version of source GPML file">GPML (XML)</button>
@@ -44,8 +44,8 @@ Repo:
     $pathwayTemplateSvgUrlEditable = "pathway-template.svg";
   }
   else {
-    $pathwayTemplateSvgUrl = "https://raw.github.com/" . $repo . "/pathvisio.js/dev/src/views/pathway-template.svg";
-    $pathwayTemplateSvgUrlEditable = "https://github.com/" . $repo . "/pathvisio.js/blob/dev/src/views/pathway-template.svg";
+    $pathwayTemplateSvgUrl = "https://raw.github.com/" . $repo . "/pathvisiojs/dev/src/views/pathway-template.svg";
+    $pathwayTemplateSvgUrlEditable = "https://github.com/" . $repo . "/pathvisiojs/blob/dev/src/views/pathway-template.svg";
   }
 
   if (isset($_GET['pwId'])) {
@@ -78,15 +78,15 @@ Repo:
   echo "<select name='repo' onChange='document.location = this.value' value='GO'>$html</select>";
 ?>
 </div> 
-<p>If you would like to edit the symbols (shapes), markers (arrowheads), colors or other properties of the pathvisio.js pathway template, let Anders or Alex know. When you are added as an authorized user, you can edit your 
+<p>If you would like to edit the symbols (shapes), markers (arrowheads), colors or other properties of the pathvisiojs pathway template, let Anders or Alex know. When you are added as an authorized user, you can edit your 
 <?php
   echo "<a href='" . $pathwayTemplateSvgUrlEditable . "'>"
 ?>
-SVG pathway template file</a> in the <span style="font-weight: bold">DEV</span> branch of your github fork of <a href="https://github.com/wikipathways/pathvisio.js">pathvisio.js</a>, commit, and view your changes on this page. Note that your commits on Github may take a few seconds before they show up here.</p>
+SVG pathway template file</a> in the <span style="font-weight: bold">DEV</span> branch of your github fork of <a href="https://github.com/wikipathways/pathvisiojs">pathvisiojs</a>, commit, and view your changes on this page. Note that your commits on Github may take a few seconds before they show up here.</p>
 
 <?php
 
-  // pathvisio.js SVG. This is the svg template file from the dev branch of wikipathways (or whichever repo is chosen)/pathvisio.js on github.
+  // pathvisiojs SVG. This is the svg template file from the dev branch of wikipathways (or whichever repo is chosen)/pathvisiojs on github.
 
   // Is the code below ok wrt to security? I am using the other code block below with only approved repos, but it's more hassle to add new repos
   // instead of them always working automatically.
@@ -136,7 +136,7 @@ SVG pathway template file</a> in the <span style="font-weight: bold">DEV</span> 
 
 ?>
 
-<script src="../js/pathvisio/pathvisio.js"></script>
+<script src="../js/pathvisio/pathvisiojs"></script>
 <script src="../js/pathvisio/pathway/pathway.js"></script>
 <script src="../js/pathvisio/pathway/edge/edge.js"></script>
 <script src="../js/pathvisio/pathway/edge/path-data.js"></script>
@@ -191,7 +191,7 @@ SVG pathway template file</a> in the <span style="font-weight: bold">DEV</span> 
 
     /*
 
-    // I wanted to make the pathvisio.js SVG, the PathVisio (Java) SVG and the PathVisio (Java) PNG all the same size.
+    // I wanted to make the pathvisiojs SVG, the PathVisio (Java) SVG and the PathVisio (Java) PNG all the same size.
     // But the code below does not work.
 
     var javaScriptSvgWidth = self.javaScriptSvgWidth = $('#javascript-svg-pathway-container svg')[0].getAttribute('width');

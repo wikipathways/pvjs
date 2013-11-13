@@ -2,9 +2,9 @@
 
 pathvisio.pathway.edge = function(){
 
-  // pathvisio.js vs PathVisio (Java) specification of anchor position
+  // pathvisiojs vs PathVisio (Java) specification of anchor position
   // -----------------------------------------
-  // pathvisio.js |  PathVisio  | Meaning
+  // pathvisiojs |  PathVisio  | Meaning
   //  relX | relY | relx | rely |
   // -----------------------------------------
   // 0.333   0      -0.5   -1.0   top side at left third-point 

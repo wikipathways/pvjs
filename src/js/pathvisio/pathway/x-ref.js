@@ -3,7 +3,7 @@ pathvisio.pathway.xRef = function(){
     function getData(species, database, id, callback) {
       var databaseId = pathvisio.pathway.dataSources.filter(function(element) {return element.database === database;})[0].id;
       var currentUrl = document.location.origin + document.location.pathname;
-      var rootDirectoryUrl = document.location.origin + document.location.pathname.split("pathvisio.js/")[0] + 'pathvisio.js/';
+      var rootDirectoryUrl = document.location.origin + document.location.pathname.split("pathvisiojs/")[0] + 'pathvisiojs/';
       var url = rootDirectoryUrl + 'remote-data-sources/php/bridgedb.php?species=' + encodeURIComponent(species) + '&database=' + encodeURIComponent(databaseId) + '&id=' + encodeURIComponent(id);
       $.ajax({
         url: url,

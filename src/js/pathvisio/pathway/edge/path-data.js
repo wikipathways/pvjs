@@ -238,7 +238,7 @@ console.log((((pointCoordinatesArray[1].x - pointCoordinatesArray[0].x)/Math.abs
             }
           }
           else {
-            console.log('Warning: pathvisio.js does not support connector type: ' + edge.connectorType);
+            console.log('Warning: pathvisiojs does not support connector type: ' + edge.connectorType);
             edge.points.forEach(function(element, index, array) {
               if ((index > 0) && (index < (array.length -1))) {
                 pathData += " L " + element.x + " " + element.y;

@@ -159,7 +159,7 @@
     /></g
     ><g style="font-family:&apos;Arial&apos;; font-size:16; text-rendering:geometricPrecision;"
     ><text x="148" xml:space="preserve" y="148" style="clip-path:url(#clipPath19); stroke:none;"
-      >The purpose of this file is to test the accuracy of pathvisio.js in</text
+      >The purpose of this file is to test the accuracy of pathvisiojs in</text
       ><text x="148" xml:space="preserve" y="166" style="clip-path:url(#clipPath19); stroke:none;"
       >rendering symbols at their stated dimensions for x, y, width and</text
       ><text x="148" xml:space="preserve" y="184" style="clip-path:url(#clipPath19); stroke:none;"

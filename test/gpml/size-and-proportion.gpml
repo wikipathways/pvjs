@@ -97,7 +97,7 @@
       <Point X="1501.794871794869" Y="4774.444444444444" />
     </Graphics>
   </GraphicalLine>
-  <Label TextLabel="The purpose of this file is to test the accuracy of pathvisio.js in&#xA;rendering symbols at their stated dimensions for x, y, width and&#xA;height.&#xA;&#xA;The light gray grid indicate the bounding boxes&#xA;according to the GPML values. You can visually compare the&#xA;bounding boxes with the symbol in red. The symbol should fit." GraphId="fc106">
+  <Label TextLabel="The purpose of this file is to test the accuracy of pathvisiojs in&#xA;rendering symbols at their stated dimensions for x, y, width and&#xA;height.&#xA;&#xA;The light gray grid indicate the bounding boxes&#xA;according to the GPML values. You can visually compare the&#xA;bounding boxes with the symbol in red. The symbol should fit." GraphId="fc106">
     <Graphics CenterX="416.1583614337452" CenterY="195.298910407708" Width="544.4585987261147" Height="133.40661946177812" ZOrder="28672" FillColor="ffffff" FontSize="16" Align="Left" />
   </Label>
   <Label TextLabel="I don't know why PathVisio (Java) sets different values for&#xA;centerx and centery when I align the horizontal or vertical&#xA;centers of multiple elements. Is this a bug in PathVisio&#xA;(Java) or is it intended to make the elements appear to be&#xA;aligned visually because our eyes don't see mathematically&#xA;aligned elements as looking perfectly aligned?" GraphId="bb5ba">
