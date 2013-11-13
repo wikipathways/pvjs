@@ -12,7 +12,7 @@ Demos
 How To Get Involved
 ===================
 
-Get the Latest Code
+1. Get the Latest Code
 -------------------
 
 If you have not forked pathvisio.js,
@@ -27,12 +27,12 @@ If you've already forked pathvisio.js in the past,
 4. Create pull request
 5. Accept pull request (if github says that the pull request cannot be done automatically, you will need to merge the files from the command line. Let Anders or Alex know and they can help.)
 
-Make awesome updates
+2. Make Awesome Updates
 --------------------
 1. You can edit any of the files in the "src" directory of the gh-pages branch of your fork (https://github.com/your-github-account/pathvisio.js/tree/gh-pages/src/)
 4. View your changes live at http://your-github-account.github.io/pathvisio.js/test/ (note the .IO)
 
-Send pull request
+3. Send Pull Request
 -----------------
 1. View each of the test pathways at http://your-github-account.github.io/pathvisio.js/test/ to ensure your code works well
 2. Create a pull request to the wikipathways fork of pathvisio.js (wikipathways:gh-pages ... your-github-account:gh-pages)
