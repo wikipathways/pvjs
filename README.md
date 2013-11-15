@@ -24,7 +24,10 @@ If you have not forked pathvisiojs,
 If you've already forked pathvisiojs in the past,
 
 * Go to your fork of pathvisiojs at https://github.com/your-github-account/pathvisiojs/ and select the "Compare and review" button to the left of the "branch" drop-down to pull from the wikipathways fork of pathvisiojs into your fork
-* Select "Edit" and "compare across forks" as needed to make the drop-downs look like this: your-github-account:gh-pages ... wikipathways:gh-pages
+* Select "Edit" and "compare across forks" as needed to make the drop-downs look like this: 
+```
+your-github-account:gh-pages ... wikipathways:gh-pages
+```
 * Create pull request
 * Accept pull request (if github says that the pull request cannot be done automatically, you will need to merge the files from the command line. Let Anders or Alex know and they can help.)
 
@@ -36,7 +39,10 @@ If you've already forked pathvisiojs in the past,
 3. Send Us a Pull Request
 -------------------------
 * View each of the test pathways at http://your-github-account.github.io/pathvisiojs/test/ to ensure your code works well
-* Create a pull request to the wikipathways fork of pathvisiojs (wikipathways:gh-pages ... your-github-account:gh-pages)
+* Create a pull request to the wikipathways fork of pathvisiojs 
+```
+wikipathways:gh-pages ... your-github-account:gh-pages
+```
 
 License
 =======
