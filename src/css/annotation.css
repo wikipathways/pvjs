@@ -23,7 +23,7 @@ header.annotation-header {
   color: #333;
   letter-spacing: .8px;
   text-align: center;
-  padding-bottom: 0px;
+  padding-bottom: 10px;
 }
 
 .annotation-header-search {
@@ -80,11 +80,11 @@ header.annotation-header {
 }
 
 .annotation-items-container ul {
-  line-height: 150%;
+  line-height: 120%;
   list-style: none;
   text-align: left;
   padding: 0 0 0 10px;
-  margin: 0 0 0 -5px;
+  margin: 5px 0 0 -5px;
   height: 20em;
   overflow: auto;
 }
