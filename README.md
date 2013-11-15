@@ -6,6 +6,7 @@ JavaScript viewer and editor for biological pathways. All code is in beta stage 
 Demos
 =====
 
+* [gh-pages](http://wikipathways.github.io/pathvisiojs/test/)
 * [JSBin](http://jsbin.com/iJUTEjU/latest)
 * [Widget example on JSFiddle](http://jsfiddle.net/ariutta/RzeKd/)
 
