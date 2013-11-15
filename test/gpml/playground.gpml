@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Pathway xmlns="http://pathvisio.org/GPML/2013a" Name="elbows" Version="20130813" Organism="Anopheles gambiae">
+<Pathway xmlns="http://pathvisiojs.org/GPML/2013a" Name="elbows" Version="20130813" Organism="Anopheles gambiae">
   <Graphics BoardWidth="616.2434339227442" BoardHeight="601.1280116193159" />
   <DataNode TextLabel="Metabolite" GraphId="f156c" Type="Metabolite">
     <Graphics CenterX="344.61941281390665" CenterY="321.4277418521664" Width="470.3448164112234" Height="130.01809068260792" ZOrder="32768" FontSize="10" Valign="Middle" ShapeType="RoundedRectangle" Color="0000ff" />
@@ -10,7 +10,7 @@
     <Xref Database="" ID="" />
   </DataNode>
   <DataNode TextLabel="15" GraphId="e3c5e" Type="GeneProduct">
-    <Attribute Key="org.pathvisio.DoubleLineProperty" Value="Double" />
+    <Attribute Key="org.pathvisiojs.DoubleLineProperty" Value="Double" />
     <Graphics CenterX="123.85243052779158" CenterY="221.31936806454775" Width="114.70461886541747" Height="48.47383793278726" ZOrder="32967" FillColor="ff3366" FontSize="10" Valign="Middle" LineThickness="8.0" />
     <Xref Database="" ID="" />
   </DataNode>
@@ -22,8 +22,8 @@
     <Xref Database="" ID="" />
   </Interaction>
   <Shape GraphId="e217f">
-    <Attribute Key="org.pathvisio.CellularComponentProperty" Value="Cell" />
-    <Attribute Key="org.pathvisio.DoubleLineProperty" Value="Double" />
+    <Attribute Key="org.pathvisiojs.CellularComponentProperty" Value="Cell" />
+    <Attribute Key="org.pathvisiojs.DoubleLineProperty" Value="Double" />
     <Graphics CenterX="215.92840684660965" CenterY="242.91984858459512" Width="50.368334430546355" Height="21.072745227123107" ZOrder="16384" FillColor="ff3333" FontSize="10" Valign="Middle" ShapeType="RoundedRectangle" LineThickness="3.0" Color="330033" Rotation="0.0" />
   </Shape>
   <InfoBox CenterX="0.0" CenterY="0.0" />

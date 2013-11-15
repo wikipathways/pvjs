@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Pathway xmlns="http://pathvisio.org/GPML/2013a" Name="citations" Version="20130815" Organism="Anopheles gambiae">
+<Pathway xmlns="http://pathvisiojs.org/GPML/2013a" Name="citations" Version="20130815" Organism="Anopheles gambiae">
   <BiopaxRef>ee4</BiopaxRef>
   <Graphics BoardWidth="589.4605394605396" BoardHeight="378.76221498371376" />
   <DataNode TextLabel="GeneProduct" GraphId="e114e" Type="GeneProduct">
@@ -38,12 +38,12 @@
   <Label TextLabel="SAVE" GraphId="bf11d">
     <Graphics CenterX="212.78721278721278" CenterY="28.986013986013994" Width="95.94405594405595" Height="27.982017982017986" ZOrder="33015" FillColor="ffffff" FontWeight="Bold" FontSize="30" Valign="Middle" />
   </Label>
-  <Label TextLabel="This pathway is to be saved long-term to test the ability of&#xA;GPML renderers to handle the element type named in the title." GraphId="b2de4">
+  <Label TextLabel="This pathway is to be saved long-term to test the ability of&#xA;GPML views to handle the element type named in the title." GraphId="b2de4">
     <Graphics CenterX="414.08591408591417" CenterY="25.489510489510494" Width="290.7492507492508" Height="32.977022977022976" ZOrder="33016" FillColor="ffffff" FontSize="10" Align="Left" />
   </Label>
   <Shape GraphId="ed0ee">
     <BiopaxRef>b8e</BiopaxRef>
-    <Attribute Key="org.pathvisio.CellularComponentProperty" Value="Mitochondria" />
+    <Attribute Key="org.pathvisiojs.CellularComponentProperty" Value="Mitochondria" />
     <Graphics CenterX="331.18322475570034" CenterY="207.40472312703582" Width="80.3045602605863" Height="54.2459283387622" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="Mitochondria" LineThickness="3.0" Color="c0c0c0" Rotation="0.0" />
   </Shape>
   <InfoBox CenterX="0.0" CenterY="0.0" />

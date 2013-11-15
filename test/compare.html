@@ -71,8 +71,6 @@
   <script src="../lib/openseadragon/openseadragon.min.js"></script>
   <script src="../lib/modernizr/modernizr.js"></script>
   <script src="../lib/screenfull/dist/screenfull.min.js"></script>
-  <script src="../lib/mr-data-converter/CSVParser.min.js"></script>
-  <script src="../lib/mr-data-converter/DataGridRenderer.min.js"></script>
   <script src="../lib/svg-pan/svg-pan.js"></script>
   <script src="../lib/jsPlumb/dist/js/jquery.jsPlumb-1.5.3.js"></script>
   <script src="../lib/path-finding/pathfinding-browser.min.js"></script>
@@ -247,43 +245,48 @@
       loadJsCssFile(srcDirectoryUrl + "css/pathvisio-js.css", "css", callback);
       },
       function(callback) {
-      loadJsCssFile(srcDirectoryUrl + "css/details-frame.css", "css", callback);
+      loadJsCssFile(srcDirectoryUrl + "css/annotation.css", "css", callback);
       },
       function(callback) {
       loadJsCssFile(srcDirectoryUrl + "css/pan-zoom.css", "css", callback);
       },
       function(callback) {
       loadScripts([
-      srcDirectoryUrl + "js/pathvisio/pathvisio.js",
-      srcDirectoryUrl + "js/pathvisio/helpers.js",
-      srcDirectoryUrl + 'js/pathvisio/data-sources.js',
-      srcDirectoryUrl + 'js/pathvisio/x-ref.js',
-      srcDirectoryUrl + 'js/pathvisio/renderer/renderer.js',
-      srcDirectoryUrl + "js/pathvisio/renderer/path-finder.js",
-      srcDirectoryUrl + 'js/pathvisio/renderer/svg/svg.js',
-      srcDirectoryUrl + 'js/pathvisio/renderer/svg/group.js',
-      srcDirectoryUrl + 'js/pathvisio/renderer/svg/info-box.js',
-      srcDirectoryUrl + 'js/pathvisio/renderer/svg/node/node.js',
-      srcDirectoryUrl + 'js/pathvisio/renderer/svg/node/shape/shape.js',
-      srcDirectoryUrl + 'js/pathvisio/renderer/svg/node/shape/uniformly-scaling-shape.js',
-      srcDirectoryUrl + 'js/pathvisio/renderer/svg/node/shape/nonuniformly-scaling-shape/nonuniformly-scaling-shape.js',
-      srcDirectoryUrl + 'js/pathvisio/renderer/svg/node/shape/nonuniformly-scaling-shape/rounded-rectangle.js',
-      srcDirectoryUrl + 'js/pathvisio/renderer/svg/edge/edge.js',
-      srcDirectoryUrl + 'js/pathvisio/renderer/svg/edge/marker.js',
-      srcDirectoryUrl + 'js/pathvisio/renderer/svg/edge/point.js',
-      srcDirectoryUrl + 'js/pathvisio/renderer/svg/edge/path-data.js',
-      srcDirectoryUrl + 'js/pathvisio/renderer/svg/anchor.js',
-      srcDirectoryUrl + 'js/pathvisio/renderer/svg/grid.js',
-      srcDirectoryUrl + 'js/pathvisio/converter/converter.js',
-      srcDirectoryUrl + 'js/pathvisio/converter/gpml/gpml.js',
-      srcDirectoryUrl + 'js/pathvisio/converter/gpml/namespaces.js',
-      srcDirectoryUrl + 'js/pathvisio/converter/gpml/data-node.js',
-      srcDirectoryUrl + 'js/pathvisio/converter/gpml/node.js',
-      srcDirectoryUrl + 'js/pathvisio/converter/gpml/anchor.js',
-      srcDirectoryUrl + 'js/pathvisio/converter/gpml/interaction.js',
-      srcDirectoryUrl + 'js/pathvisio/converter/gpml/graphical-line.js',
-      srcDirectoryUrl + 'js/pathvisio/converter/gpml/edge/edge.js',
-      srcDirectoryUrl + 'js/pathvisio/converter/gpml/edge/point.js'
+      srcDirectoryUrl + "js/pathvisiojs/pathvisiojs.js",
+      srcDirectoryUrl + "js/pathvisiojs/utilities.js",
+      srcDirectoryUrl + 'js/pathvisiojs/data/data.js',
+      srcDirectoryUrl + 'js/pathvisiojs/data/bridgedb/bridgedb.js',
+      srcDirectoryUrl + 'js/pathvisiojs/data/bridgedb/data-sources.js',
+      srcDirectoryUrl + 'js/pathvisiojs/data/gpml/gpml.js',
+      srcDirectoryUrl + 'js/pathvisiojs/data/gpml/namespaces.js',
+      srcDirectoryUrl + 'js/pathvisiojs/data/gpml/data-node.js',
+      srcDirectoryUrl + 'js/pathvisiojs/data/gpml/node.js',
+      srcDirectoryUrl + 'js/pathvisiojs/data/gpml/anchor.js',
+      srcDirectoryUrl + 'js/pathvisiojs/data/gpml/interaction.js',
+      srcDirectoryUrl + 'js/pathvisiojs/data/gpml/graphical-line.js',
+      srcDirectoryUrl + 'js/pathvisiojs/data/gpml/edge/edge.js',
+      srcDirectoryUrl + 'js/pathvisiojs/data/gpml/edge/point.js',
+      srcDirectoryUrl + 'js/pathvisiojs/view/view.js',
+      srcDirectoryUrl + 'js/pathvisiojs/view/annotation/annotation.js',
+      srcDirectoryUrl + 'js/pathvisiojs/view/annotation/citation.js',
+      srcDirectoryUrl + 'js/pathvisiojs/view/annotation/x-ref.js',
+      srcDirectoryUrl + 'js/pathvisiojs/view/pathway-diagram/pathway-diagram.js',
+      srcDirectoryUrl + "js/pathvisiojs/view/pathway-diagram/path-finder.js",
+      srcDirectoryUrl + 'js/pathvisiojs/view/pathway-diagram/svg/svg.js',
+      srcDirectoryUrl + 'js/pathvisiojs/view/pathway-diagram/svg/group.js',
+      srcDirectoryUrl + 'js/pathvisiojs/view/pathway-diagram/svg/info-box.js',
+      srcDirectoryUrl + 'js/pathvisiojs/view/pathway-diagram/svg/node/node.js',
+      srcDirectoryUrl + 'js/pathvisiojs/view/pathway-diagram/svg/node/shape/shape.js',
+      srcDirectoryUrl + 'js/pathvisiojs/view/pathway-diagram/svg/node/shape/uniformly-scaling-shape.js',
+      srcDirectoryUrl + 'js/pathvisiojs/view/pathway-diagram/svg/node/shape/nonuniformly-scaling-shape/nonuniformly-scaling-shape.js',
+      srcDirectoryUrl + 'js/pathvisiojs/view/pathway-diagram/svg/node/shape/nonuniformly-scaling-shape/rounded-rectangle.js',
+      srcDirectoryUrl + 'js/pathvisiojs/view/pathway-diagram/svg/node/label.js',
+      srcDirectoryUrl + 'js/pathvisiojs/view/pathway-diagram/svg/edge/edge.js',
+      srcDirectoryUrl + 'js/pathvisiojs/view/pathway-diagram/svg/edge/marker.js',
+      srcDirectoryUrl + 'js/pathvisiojs/view/pathway-diagram/svg/edge/point.js',
+      srcDirectoryUrl + 'js/pathvisiojs/view/pathway-diagram/svg/edge/path-data.js',
+      srcDirectoryUrl + 'js/pathvisiojs/view/pathway-diagram/svg/anchor.js',
+      srcDirectoryUrl + 'js/pathvisiojs/view/pathway-diagram/svg/grid.js'
       ], function(){
       callback(null);
       });
@@ -297,7 +300,7 @@
       var urlParamList = getUrlParamList();
 
       var currentUrl = document.location.origin + document.location.pathname;
-      var rootDirectoryUrl = document.location.origin + document.location.pathname.split("pathvisio.js/")[0] + 'pathvisio.js/';
+      var rootDirectoryUrl = document.location.origin + document.location.pathname.split("pathvisiojs/")[0] + 'pathvisiojs/';
       var srcDirectoryUrl = (rootDirectoryUrl + 'src/');
 
       /*********************************************
@@ -361,7 +364,7 @@
       {'id': 't-bar', 'url': srcDirectoryUrl + 'views/markers/t-bar.svg'}
       ];
 
-      pathvisio.load({
+      pathvisiojs.load({
       target: '#pathvisio-js-dev',
       width: 1000,
       height: 500,
@@ -386,7 +389,7 @@
 
       if (urlParamList.gpml.indexOf('.gpml') === -1 && urlParamList.gpml.indexOf('.xml') === -1) {
       window.setTimeout(function() {
-      $('#current-wikipathways-viewer').prepend('<iframe id="current-wiki-pathways-widget" src="http://www.wikipathways.org/wpi/PathwayWidget.php?id=' + urlParamList.gpml + '" width="500px" height="500px" />')
+      $('#current-wikipathways-viewer').prepend('<iframe id="current-wiki-pathways-widget" src="http://test.wikipathways.org/wpi/PathwayWidget.php?id=' + urlParamList.gpml + '" width="500px" height="500px" />')
         }, 50);
         }
         else {

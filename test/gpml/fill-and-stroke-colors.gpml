@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Pathway xmlns="http://pathvisio.org/GPML/2013a" Name="fill-and-stroke-colors" Version="20130815" Organism="Anopheles gambiae">
+<Pathway xmlns="http://pathvisiojs.org/GPML/2013a" Name="fill-and-stroke-colors" Version="20130815" Organism="Anopheles gambiae">
   <Graphics BoardWidth="881.2293815298829" BoardHeight="656.165048543689" />
   <DataNode TextLabel="GeneProduct" GraphId="e3c6e" Type="GeneProduct">
     <Graphics CenterX="56.06044356136091" CenterY="109.29853181076673" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
@@ -239,47 +239,47 @@
   <Label TextLabel="SAVE" GraphId="d526f">
     <Graphics CenterX="209.31900469472723" CenterY="24.361736529366592" Width="95.94405594405595" Height="27.982017982017986" ZOrder="33015" FillColor="ffffff" FontWeight="Bold" FontSize="30" Valign="Middle" />
   </Label>
-  <Label TextLabel="This pathway is to be saved long-term to test the ability of&#xA;GPML renderers to handle the element type named in the title." GraphId="d3b82">
+  <Label TextLabel="This pathway is to be saved long-term to test the ability of&#xA;GPML views to handle the element type named in the title." GraphId="d3b82">
     <Graphics CenterX="410.6177059934286" CenterY="20.86523303286309" Width="290.7492507492508" Height="32.977022977022976" ZOrder="33016" FillColor="ffffff" FontSize="10" Align="Left" />
   </Label>
   <Shape TextLabel="Rectangle" GraphId="b1514">
     <Graphics CenterX="56.06044356136093" CenterY="304.7487735070671" Width="88.59135399673727" Height="49.43964110929852" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="Rectangle" Rotation="0.0" />
   </Shape>
   <Shape TextLabel="Cell" GraphId="efd68">
-    <Attribute Key="org.pathvisio.CellularComponentProperty" Value="Cell" />
-    <Attribute Key="org.pathvisio.DoubleLineProperty" Value="Double" />
+    <Attribute Key="org.pathvisiojs.CellularComponentProperty" Value="Cell" />
+    <Attribute Key="org.pathvisiojs.DoubleLineProperty" Value="Double" />
     <Graphics CenterX="56.0604435613609" CenterY="403.4437164108186" Width="104.9045676998366" Height="80.43474714518767" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="RoundedRectangle" LineThickness="3.0" Color="c0c0c0" Rotation="0.0" />
   </Shape>
   <Shape TextLabel="Rectangle" GraphId="d0405">
     <Graphics CenterX="207.9854027783263" CenterY="304.7487735070671" Width="88.59135399673727" Height="49.43964110929852" ZOrder="32787" FontSize="10" Valign="Middle" ShapeType="Rectangle" Rotation="0.0" />
   </Shape>
   <Shape TextLabel="Cell" GraphId="f53d5">
-    <Attribute Key="org.pathvisio.CellularComponentProperty" Value="Cell" />
-    <Attribute Key="org.pathvisio.DoubleLineProperty" Value="Double" />
+    <Attribute Key="org.pathvisiojs.CellularComponentProperty" Value="Cell" />
+    <Attribute Key="org.pathvisiojs.DoubleLineProperty" Value="Double" />
     <Graphics CenterX="207.98540277832623" CenterY="403.44371641081864" Width="104.9045676998366" Height="80.43474714518767" ZOrder="32788" FontSize="10" Valign="Middle" ShapeType="RoundedRectangle" LineThickness="3.0" Color="c0c0c0" Rotation="0.0" />
   </Shape>
   <Shape TextLabel="Rectangle" GraphId="d09a9">
     <Graphics CenterX="377.6428252905607" CenterY="303.5270887867342" Width="88.59135399673727" Height="49.43964110929852" ZOrder="32790" FillColor="00cc00" FontSize="10" Valign="Middle" ShapeType="Rectangle" Rotation="0.0" />
   </Shape>
   <Shape TextLabel="Cell" GraphId="c4e68">
-    <Attribute Key="org.pathvisio.CellularComponentProperty" Value="Cell" />
-    <Attribute Key="org.pathvisio.DoubleLineProperty" Value="Double" />
+    <Attribute Key="org.pathvisiojs.CellularComponentProperty" Value="Cell" />
+    <Attribute Key="org.pathvisiojs.DoubleLineProperty" Value="Double" />
     <Graphics CenterX="377.6428252905607" CenterY="402.2220316904857" Width="104.9045676998366" Height="80.43474714518767" ZOrder="32791" FillColor="00cc00" FontSize="10" Valign="Middle" ShapeType="RoundedRectangle" LineThickness="3.0" Color="c0c0c0" Rotation="0.0" />
   </Shape>
   <Shape TextLabel="Rectangle" GraphId="d12b3">
     <Graphics CenterX="517.6175369869645" CenterY="306.0982544759253" Width="88.59135399673727" Height="49.43964110929852" ZOrder="32797" FontSize="10" Valign="Middle" ShapeType="Rectangle" Color="ff0000" Rotation="0.0" />
   </Shape>
   <Shape TextLabel="Cell" GraphId="df72f">
-    <Attribute Key="org.pathvisio.CellularComponentProperty" Value="Cell" />
-    <Attribute Key="org.pathvisio.DoubleLineProperty" Value="Double" />
+    <Attribute Key="org.pathvisiojs.CellularComponentProperty" Value="Cell" />
+    <Attribute Key="org.pathvisiojs.DoubleLineProperty" Value="Double" />
     <Graphics CenterX="517.6175369869645" CenterY="404.79319737967666" Width="104.9045676998366" Height="80.43474714518767" ZOrder="32798" FontSize="10" Valign="Middle" ShapeType="RoundedRectangle" LineThickness="3.0" Color="ff0000" Rotation="0.0" />
   </Shape>
   <Shape TextLabel="Rectangle" GraphId="d9a1c">
     <Graphics CenterX="651.3199591322922" CenterY="303.98752783232646" Width="88.59135399673727" Height="49.43964110929852" ZOrder="32803" FillColor="00cc00" FontSize="10" Valign="Middle" ShapeType="Rectangle" Color="ff0000" Rotation="0.0" />
   </Shape>
   <Shape TextLabel="Cell" GraphId="fc702">
-    <Attribute Key="org.pathvisio.CellularComponentProperty" Value="Cell" />
-    <Attribute Key="org.pathvisio.DoubleLineProperty" Value="Double" />
+    <Attribute Key="org.pathvisiojs.CellularComponentProperty" Value="Cell" />
+    <Attribute Key="org.pathvisiojs.DoubleLineProperty" Value="Double" />
     <Graphics CenterX="651.3199591322922" CenterY="402.68247073607796" Width="104.9045676998366" Height="80.43474714518767" ZOrder="32804" FillColor="00cc00" FontSize="10" Valign="Middle" ShapeType="RoundedRectangle" LineThickness="3.0" Color="ff0000" Rotation="0.0" />
   </Shape>
   <Group GroupId="a2288" Style="Pathway" />
