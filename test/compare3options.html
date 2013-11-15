@@ -16,8 +16,8 @@
 <script src="../lib/openseadragon/openseadragon.min.js"></script>
 <script src="../lib/modernizr/modernizr.js"></script>
 <script src="../lib/screenfull/dist/screenfull.min.js"></script>
-<script src="../lib/mr-data-converter/CSVParser.min.js"></script>
-<script src="../lib/mr-data-converter/DataGridRenderer.min.js"></script>
+<script src="../lib/mr-data-data/CSVParser.min.js"></script>
+<script src="../lib/mr-data-data/DataGridRenderer.min.js"></script>
 <script src="../lib/svg-pan/svg-pan.js"></script>
 <script src="../lib/jsPlumb/dist/js/jquery.jsPlumb-1.5.3.js"></script>
 <script src="../lib/path-finding/pathfinding-browser.min.js"></script>
@@ -209,7 +209,7 @@
         loadJsCssFile(srcDirectoryUrl + "css/pathvisio-js.css", "css", callback);
       },
       function(callback) {
-        loadJsCssFile(srcDirectoryUrl + "css/details-frame.css", "css", callback);
+        loadJsCssFile(srcDirectoryUrl + "css/annotation.css", "css", callback);
       },
       function(callback) {
         loadJsCssFile(srcDirectoryUrl + "css/pan-zoom.css", "css", callback);
@@ -218,43 +218,43 @@
         if (urlParamList.creator === 'pathvisio-js-dev') {
           loadScripts([
             srcDirectoryUrl + "js/pathvisio/pathvisiojs",
-            srcDirectoryUrl + "js/pathvisio/helpers.js",
+            srcDirectoryUrl + "js/pathvisio/utilities.js",
             srcDirectoryUrl + 'js/pathvisio/data-sources.js',
             srcDirectoryUrl + 'js/pathvisio/x-ref.js',
-            srcDirectoryUrl + 'js/pathvisio/renderer/renderer.js',
-            srcDirectoryUrl + "js/pathvisio/renderer/path-finder.js",
-            srcDirectoryUrl + 'js/pathvisio/renderer/svg/svg.js',
-            srcDirectoryUrl + 'js/pathvisio/renderer/svg/group.js',
-            srcDirectoryUrl + 'js/pathvisio/renderer/svg/info-box.js',
-            srcDirectoryUrl + 'js/pathvisio/renderer/svg/node/node.js',
-            srcDirectoryUrl + 'js/pathvisio/renderer/svg/node/shape/shape.js',
-            srcDirectoryUrl + 'js/pathvisio/renderer/svg/node/shape/uniformly-scaling-shape.js',
-            srcDirectoryUrl + 'js/pathvisio/renderer/svg/node/shape/nonuniformly-scaling-shape/nonuniformly-scaling-shape.js',
-            srcDirectoryUrl + 'js/pathvisio/renderer/svg/node/shape/nonuniformly-scaling-shape/rounded-rectangle.js',
-            srcDirectoryUrl + 'js/pathvisio/renderer/svg/edge/edge.js',
-            srcDirectoryUrl + 'js/pathvisio/renderer/svg/edge/marker.js',
-            srcDirectoryUrl + 'js/pathvisio/renderer/svg/edge/point.js',
-            srcDirectoryUrl + 'js/pathvisio/renderer/svg/edge/path-data.js',
-            srcDirectoryUrl + 'js/pathvisio/renderer/svg/anchor.js',
-            srcDirectoryUrl + 'js/pathvisio/renderer/svg/grid.js',
-            srcDirectoryUrl + 'js/pathvisio/converter/converter.js',
-            srcDirectoryUrl + 'js/pathvisio/converter/gpml/gpml.js',
-            srcDirectoryUrl + 'js/pathvisio/converter/gpml/namespaces.js',
-            srcDirectoryUrl + 'js/pathvisio/converter/gpml/data-node.js',
-            srcDirectoryUrl + 'js/pathvisio/converter/gpml/node.js',
-            srcDirectoryUrl + 'js/pathvisio/converter/gpml/anchor.js',
-            srcDirectoryUrl + 'js/pathvisio/converter/gpml/interaction.js',
-            srcDirectoryUrl + 'js/pathvisio/converter/gpml/graphical-line.js',
-            srcDirectoryUrl + 'js/pathvisio/converter/gpml/edge/edge.js',
-            srcDirectoryUrl + 'js/pathvisio/converter/gpml/edge/point.js'
+            srcDirectoryUrl + 'js/pathvisio/view/view.js',
+            srcDirectoryUrl + "js/pathvisio/view/path-finder.js",
+            srcDirectoryUrl + 'js/pathvisio/view/svg/svg.js',
+            srcDirectoryUrl + 'js/pathvisio/view/svg/group.js',
+            srcDirectoryUrl + 'js/pathvisio/view/svg/info-box.js',
+            srcDirectoryUrl + 'js/pathvisio/view/svg/node/node.js',
+            srcDirectoryUrl + 'js/pathvisio/view/svg/node/shape/shape.js',
+            srcDirectoryUrl + 'js/pathvisio/view/svg/node/shape/uniformly-scaling-shape.js',
+            srcDirectoryUrl + 'js/pathvisio/view/svg/node/shape/nonuniformly-scaling-shape/nonuniformly-scaling-shape.js',
+            srcDirectoryUrl + 'js/pathvisio/view/svg/node/shape/nonuniformly-scaling-shape/rounded-rectangle.js',
+            srcDirectoryUrl + 'js/pathvisio/view/svg/edge/edge.js',
+            srcDirectoryUrl + 'js/pathvisio/view/svg/edge/marker.js',
+            srcDirectoryUrl + 'js/pathvisio/view/svg/edge/point.js',
+            srcDirectoryUrl + 'js/pathvisio/view/svg/edge/path-data.js',
+            srcDirectoryUrl + 'js/pathvisio/view/svg/anchor.js',
+            srcDirectoryUrl + 'js/pathvisio/view/svg/grid.js',
+            srcDirectoryUrl + 'js/pathvisio/data/data.js',
+            srcDirectoryUrl + 'js/pathvisio/data/gpml/gpml.js',
+            srcDirectoryUrl + 'js/pathvisio/data/gpml/namespaces.js',
+            srcDirectoryUrl + 'js/pathvisio/data/gpml/data-node.js',
+            srcDirectoryUrl + 'js/pathvisio/data/gpml/node.js',
+            srcDirectoryUrl + 'js/pathvisio/data/gpml/anchor.js',
+            srcDirectoryUrl + 'js/pathvisio/data/gpml/interaction.js',
+            srcDirectoryUrl + 'js/pathvisio/data/gpml/graphical-line.js',
+            srcDirectoryUrl + 'js/pathvisio/data/gpml/edge/edge.js',
+            srcDirectoryUrl + 'js/pathvisio/data/gpml/edge/point.js'
           ], function(){
             callback(null);
           });
         }
         else {
-          //loadJsCssFile(rootDirectoryUrl + "build/js/pathvisio.min.js", "js", callback)
+          //loadJsCssFile(rootDirectoryUrl + "build/js/pathvisiojs.min.js", "js", callback)
           loadScripts([
-            rootDirectoryUrl + "build/js/pathvisio.min.js"
+            rootDirectoryUrl + "build/js/pathvisiojs.min.js"
           ], function(){
             callback(null);
           });
@@ -377,7 +377,7 @@
             {'id': 't-bar', 'url': srcDirectoryUrl + 'views/markers/t-bar.svg'}
           ];
 
-          pathvisio.load({
+          pathvisiojs.load({
             target: '#view',
             width: 1000,
             height: 500,

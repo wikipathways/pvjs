@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Pathway xmlns="http://pathvisio.org/GPML/2013a" Name="New Pathway" Version="20131111">
+<Pathway xmlns="http://pathvisiojs.org/GPML/2013a" Name="New Pathway" Version="20131111">
   <Graphics BoardWidth="1268.6761629768346" BoardHeight="729.3182314982877" />
   <DataNode TextLabel="Inhibitor" GraphId="d7d46" Type="Metabolite">
     <Graphics CenterX="616.4452695384794" CenterY="182.59057555118812" Width="100.91084364548533" Height="36.9239599010279" ZOrder="32768" FontSize="20" Valign="Middle" Color="0000ff" />

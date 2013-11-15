@@ -3,14 +3,14 @@ module.exports = function(grunt) {
 // ----------
 var packageJson = grunt.file.readJSON("package.json"),
     distribution = "build/js/pathvisiojs",
-    minified = "build/js/pathvisio.min.js",
+    minified = "build/js/pathvisiojs.min.js",
     packageDirName = "pathvisiojs-" + packageJson.version,
     packageDir = "build/" + packageDirName + "/",
     releaseRoot = "../site-build/built-pathvisiojs/",
     sources = [
       'src/js/pathvisio/pathvisiojs',
       'tmp/pathvisio-js.js',
-      'src/js/pathvisio/helpers.js',
+      'src/js/pathvisio/utilities.js',
       'src/js/pathvisio/pathway/pathway.js',
       'src/js/pathvisio/pathway/group.js',
       'src/js/pathvisio/pathway/info-box.js',

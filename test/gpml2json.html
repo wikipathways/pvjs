@@ -120,8 +120,8 @@ http://google-styleguide.googlecode.com/svn/trunk/jsoncstyleguide.xml#General_Gu
     function submitRequest() {
       var sGpml = self.sGpml = $('#gpml-text-area')[0].value;
 
-      var json = pathvisio.pathway.gpml2json(sGpml);
-      var sJson = self.sJson = JSON.stringify(pathvisio.data.pathways[null], undefined, 2);
+      var json = pathvisiojs.pathway.gpml2json(sGpml);
+      var sJson = self.sJson = JSON.stringify(pathvisiojs.data.pathways[null], undefined, 2);
       $('#json-text-area').text(sJson)
     };
   </script>

@@ -1,6 +1,6 @@
 $.fn.drawPathway = function(args) {
   args.container = '#' + this[0].id;
-  pathvisio.pathway.load(args);
+  pathvisiojs.pathway.load(args);
 };
 
 // use like this:

@@ -3,7 +3,7 @@
 /* jasmine specs for filters go here */
 
 describe('filter', function() {
-  beforeEach(module('pathvisio.filters'));
+  beforeEach(module('pathvisiojs.filters'));
 
 
   describe('interpolate', function() {

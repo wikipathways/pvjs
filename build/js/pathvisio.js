@@ -7,10 +7,10 @@ var pathvisio = {};
 ;
 
 var pathvisioNS = pathvisioNS || {};
-pathvisioNS["tmp/pathvisio-js.html"] = '<div id="pathvisio-js-container" style="position:relative; width:70%; height:auto; float:left;">\n  <div style="width:100%; height:100%; float:right; clear:both;" id="pathway-viewer">\n    <div style="width:80%; height:500px" id="pathway-container">\n<!--?xml version="1.0" encoding="UTF-8" standalone="no"?-->\n\n<!-- \nThis file serves as our template for standardized GPML pathway visual representations.\nThis file can be used for many purposes outside of pathvisiojs, including allowingar\nother projects to work better with GPML. For purposes of pathvisiojs, this file will\nbe the starting point for our JavaScript rendering of pathways. Every time we want to\nrender a GPML file on the browser, we will read a copy of this file into D3.js and\nmodify the copy by adding "use" statements, cloning markers, etc. in order to create\nthe desired pathway illustration in SVG.\n\nThe XML declaration above is taken from an example from the W3C \n<http://www.w3.org/TR/SVG/images/struct/use04.svg>,\nexcept I added:\nencoding="UTF-8" \nWe will want to change standalone to yes if we keep the CSS and\nJS all inside this document.\n\nDoctypes are not needed for SVG, and jwatt discourages their use:\nhttps://jwatt.org/svg/authoring/.\n\nStyle guides can be arbitrary, but for consistency of SVG markup for the pathvisiojs project,\n	I suggest using JS Watt\'s SVG authoring advice and Google\'s HTML and JavaScript Guides:\n	https://jwatt.org/svg/authoring/\n	http://google-styleguide.googlecode.com/svn/trunk/htmlcssguide.xml\n	http://google-styleguide.googlecode.com/svn/trunk/javascriptguide.xml\n\nJS Watt\'s advice is referenced from MDN:\nhttps://developer.mozilla.org/en-US/docs/Web/SVG\n\nFor testing, we will ensure this SVG file renders correctly with the following browsers and graphics programs:\nChrome (latest release)\n	Uses Skia graphics library\nFirefox (latest release)\n	Uses Azure graphics library\n	Safari (latest release)\n	Android Browser (latest release)\n	iOS Browser (latest release)\n	Internet Explorer (IE9 and subsequent versions)\nSquiggle SVG browser (latest release)\n	Uses Batik \n	Available for download at http://xmlgraphics.apache.org/batik/download.html\nSVG-Edit (latest release)\n	Version 2.6 (latest release as of 2013-07-08) available for download at \n	http://svg-edit.googlecode.com/svn/branches/2.6/editor/svg-editor.html\n	Inkscape\n	Uses livarot rendering engine but is in process of transitioning to Cairo\n	Available for download at http://inkscape.org/\n\n	Optional additional tests:\n	SvgWeb\n	Adobe Illustrator (CS6)\n		Either convert SVG to PDF and import PDF into Illustrator or convert SVG to .ai (Illustrator format)\n		with a converter like Uniconverter, available for download at\n		http://sk1project.org/modules.php?name=Products&product=uniconvertor\n		Opening this SVG directly with Illustrator does not work well.\n		In the future, we could use Uniconverter on the server to make it possible to download pathway images in\n		.ai (Illustrator) and .cdr (CorelDraw) formats.\n\n	For more information on SVG, these references are helpful:\n	[W3 Spec](http://www.w3.org/TR/SVG/expanded-toc.html)\n	[MDN on SVG](https://developer.mozilla.org/en-US/docs/Web/SVG)\n	-->\n\n	<svg id="pathway-image" version="1.1" baseProfile="full" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ev="http://www.w3.org/2001/xml-events" width="684.0" height="473.62184873949576" onmouseup="handleMouseUp(evt)" onmousedown="handleMouseDown(evt)" onmousemove="handleMouseMove(evt)">\n	<g>\n	<title>pathway defs for pathvisiojs</title>\n	<desc>\n	This SVG file contains all the graphical elements (markers and symbols in defs as well as\n	style data) used by the program pathvisiojs, which has two components: \n	1) a viewer for transforming GPML biological pathway data into an SVG visual representation and \n	2) an editor for creating both views and models for biological pathways.\n	</desc>\n	</g>\n\n	<defs>\n\n	<!-- ***************************\n	CSS Style Sheet\n	***************************\n\n	Note: pathvisiojs assumes the default element color is black.\n	-->\n\n	<style type="text/css">\n\n	svg {\n		color-interpolation: auto;\n		image-rendering: auto;\n		shape-rendering: auto;\n		vector-effect: non-scaling-stroke;\n		fill: white;\n	}\n\n	.default-fill {\n		fill: white;\n	}\n\n	.stroke-color-equals-default-fill-color {\n		stroke: white;\n	}\n\n	text {\n		font-family: Sans-Serif, Helvetica, Arial;\n		font-size: 10px;\n		fill: black;\n		fill-opacity: 1;\n		stroke: none;\n		text-anchor: middle;\n		font-size: 10px;\n		stroke: none;\n	}\n\n	.info-box {\n		font-family: Sans-Serif;\n		font-size: 10px;\n		fill: black;\n		stroke: none;\n		text-anchor: start;\n	}\n\n	.info-box-property-name {\n		font-weight: bold;\n	}\n\n	path.group {\n		fill-opacity: 0.098;\n		stroke: gray;\n		stroke-miterlimit: 1;\n		stroke-width: 1px;\n	}\n\n	path.group:hover {\n		fill-opacity: 0.2;\n		stroke-width: 1px;\n	}\n\n	path.group-none {\n		fill: rgb(180,180,100);\n		stroke-dasharray: 5,3;\n	}\n\n	path.group-group {\n		fill-opacity: 0;\n		stroke-width: 0;\n	}\n\n	path.group-complex {\n		fill: rgb(180,180,100);\n	}\n\n	path.group-pathway {\n		fill: lightgreen;\n		stroke-dasharray: 5,3;\n	}\n\n	use.data-node {\n		fill-opacity: 1;\n		stroke: black;\n		stroke-dasharray: 0;\n		stroke-miterlimit: 1;\n	}\n\n	use.gene-product {\n	}\n\n	use.metabolite {\n		stroke: blue;\n	}\n\n	text.metabolite {\n		fill: blue;\n	}\n\n	use.pathway {\n		stroke: rgb(20,150,30);\n		fill-opacity: 0;\n	}\n\n	text.pathway {\n		fill: rgb(20,150,30);\n		fill-opacity: 1;\n		stroke: none;\n	}\n\n	use.protein {\n	}\n\n	use.rna {\n	}\n\n	use.unknown {\n	}\n\n	use.label {\n		stroke: black;\n		stroke-width: 0;\n		fill-opacity: 0;\n		stroke-dasharray: 0;\n		stroke-miterlimit: 1;\n	}\n\n	use.shape {\n		fill-opacity: 0;\n		stroke: black;\n		stroke-dasharray: 0;\n		stroke-miterlimit: 1;\n	}\n\n	use.shape-none {\n		fill: none;\n		fill-opacity: 0;\n		stroke: none;\n	}\n\n	use.cellular-component {\n		fill-opacity: 0;\n		stroke: "#C0C0C0";\n	}\n\n	.graphical-line {\n		fill:none;\n		stroke: black; \n		stroke-width: 1px; \n	}\n\n	.interaction {\n		fill:none;\n		stroke: black; \n		stroke-width: 1px; \n	}\n\n	marker {\n		/* this is what should work per the spec\n		   stroke-dasharray: none; */\n		/* but I need to add this to make it work in Safari */\n		stroke-dasharray: 9999999999999999999999999;\n	}\n\n	.dashed-stroke {\n		stroke-dasharray: 5,3;\n	}\n</style>\n\n    <filter id="highlight" width="150%" height="150%">\n        <feOffset result="offOut" in="SourceGraphic" dx="30" dy="30"></feOffset>\n        <feGaussianBlur result="blurOut" in="offOut" stdDeviation="10"></feGaussianBlur>\n        <feBlend in="SourceGraphic" in2="blurOut" mode="normal"></feBlend>\n    </filter>\n\n	<!-- ***************************\n	Markers (Arrowheads) \n	*************************** -->\n\n	<!-- Here we generate a set of interaction markers for the default color (black). If we need other colors,\n	we need to clone the black marker and set the color for the clone to the desired color using d3.js.\n	I wish fill="currentColor" worked for markers, but that does not appear to be the case. -->\n\n	<!-- Each marker includes a small rectangle with a default-fill color to obscure the\n	ends of lines that might otherwise show up beneath the marker. Double lines require their own special\n	obscuring rects and are included as a double-line-hack-start/end marker, defined here and added in\n	gpml2json.js -->\n\n	<!-- arrow markers: triangular polygons, no stroke -->\n\n	<marker id="arrow-start-black" fill="black" markerUnits="strokeWidth" markerWidth="12" markerHeight="12" orient="auto" refX="0" refY="0" viewBox="0 -6 12 12">\n	<rect class="default-fill" stroke="none" x="0" y="-0.6" width="2" height="1.2"></rect>\n	<polygon stroke-width="0" points="12,5 0,0 12,-5"></polygon>\n	</marker>\n\n	<marker id="arrow-end-black" fill="black" markerUnits="strokeWidth" markerWidth="12" markerHeight="12" orient="auto" refX="0" refY="0" viewBox="-12 -6 12 12">\n	<rect class="default-fill" stroke="none" x="-2" y="-0.6" width="2" height="1.2"></rect>\n	<polygon stroke-width="0" points="-12,5 0,0 -12,-5"></polygon>\n	</marker>\n\n\n	<!-- mim-conversion markers: triangular polygons, no stroke -->\n\n	<marker id="mim-conversion-start-black" fill="black" markerUnits="strokeWidth" markerWidth="12" markerHeight="12" orient="auto" refX="0" refY="0" viewBox="0 -6 12 12">\n	<rect class="default-fill" stroke="none" x="0" y="-0.6" width="2" height="1.2"></rect>\n	<polygon stroke-width="0" points="11,5 0,0 11,-5"></polygon>\n	</marker>\n\n	<marker id="mim-conversion-end-black" fill="black" markerUnits="strokeWidth" markerWidth="12" markerHeight="12" orient="auto" refX="0" refY="0" viewBox="-12 -6 12 12">\n	<rect class="default-fill" stroke="none" x="-2" y="-0.6" width="2" height="1.2"></rect>\n	<polygon stroke-width="0" points="-11,5 0,0 -11,-5"></polygon>\n	</marker>\n\n	<!-- mim-stimulation markers: triangular polygons, drawing-board fill, black stroke -->\n\n	<marker id="mim-stimulation-start-black" class="default-fill" stroke="black" markerWidth="12" markerHeight="12" markerUnits="strokeWidth" orient="auto" refX="0" refY="0" viewBox="0 -6 12 12">\n	<rect stroke="none" x="0" y="-0.6" width="2" height="1.2"></rect>\n	<polygon stroke-width="1" points="11,5 0,0 11,-5"></polygon>\n	</marker>\n\n	<marker id="mim-stimulation-end-black" class="default-fill" stroke="black" markerUnits="strokeWidth" markerWidth="12" markerHeight="12" orient="auto" refX="0" refY="0" viewBox="-12 -6 12 12">\n	<rect stroke="none" x="-2" y="-0.6" width="2" height="1.2"></rect>\n	<polygon stroke-width="1" points="-11,5 0,0 -11,-5"></polygon>\n	</marker>\n\n	<!-- mim-necessary-stimulation markers: triangular polygons, drawing-board fill, black stroke; and vertical line -->\n\n	<marker id="mim-necessary-stimulation-start-black" class="default-fill" stroke="black" markerWidth="12" markerHeight="12" markerUnits="strokeWidth" orient="auto" refX="0" refY="0" viewBox="0 -6 15 12">\n	<rect stroke="none" x="0" y="-0.6" width="2" height="1.2"></rect>\n	<line fill="none" stroke-width="1" x1="14" y1="-6" x2="14" y2="6"></line>\n	<polygon stroke-width="1" points="9,5 0,0 9,-5"></polygon>\n	</marker>\n\n	<marker id="mim-necessary-stimulation-end-black" class="default-fill" stroke="black" markerUnits="strokeWidth" markerWidth="12" markerHeight="12" orient="auto" refX="0" refY="0" viewBox="-15 -6 15 12">\n	<rect stroke="none" x="-2" y="-0.6" width="2" height="1.2"></rect>\n	<line fill="none" stroke-width="1" x1="-14" y1="-6" x2="-14" y2="6"></line>\n	<polygon stroke-width="1" points="-9,5 0,0 -9,-5"></polygon>\n	</marker>\n\n	<!-- t-bar markers: vertical line; and extended drawing-board rect -->\n\n	<marker id="t-bar-start-black" class="default-fill" stroke="black" markerWidth="16" markerHeight="16" markerUnits="strokeWidth" orient="auto" refX="0" refY="0" viewBox="0 -6 12 12">\n	<rect stroke="none" x="0" y="-0.6" width="5" height="1.2"></rect>\n	<line fill="none" stroke-width="1.6" x1="5" y1="-6" x2="5" y2="6"></line>\n	</marker>\n\n	<marker id="t-bar-end-black" class="default-fill" stroke="black" markerUnits="strokeWidth" markerWidth="16" markerHeight="16" orient="auto" refX="0" refY="0" viewBox="-12 -6 12 12">\n	<rect stroke="none" x="-5" y="-0.6" width="5" height="1.2"></rect>\n	<line fill="none" stroke-width="1.6" x1="-5" y1="-6" x2="-5" y2="6"></line>\n	</marker>\n	\n\n	<!-- mim-inhibition markers: vertical line; and extended drawing-board rect -->\n\n	<marker id="mim-inhibition-start-black" class="default-fill" stroke="black" markerWidth="16" markerHeight="16" markerUnits="strokeWidth" orient="auto" refX="0" refY="0" viewBox="0 -6 12 12">\n	<rect stroke="none" x="0" y="-0.6" width="5" height="1.2"></rect>\n	<line fill="none" stroke-width="1.6" x1="5" y1="-6" x2="5" y2="6"></line>\n	</marker>\n\n	<marker id="mim-inhibition-end-black" class="default-fill" stroke="black" markerUnits="strokeWidth" markerWidth="16" markerHeight="16" orient="auto" refX="0" refY="0" viewBox="-12 -6 12 12">\n	<rect stroke="none" x="-5" y="-0.6" width="5" height="1.2"></rect>\n	<line fill="none" stroke-width="1.6" x1="-5" y1="-6" x2="-5" y2="6"></line>\n	</marker>\n	\n	<!-- mim-binding markers: four-point polygon, no stroke -->\n\n	<marker id="mim-binding-start-black" fill="black" markerUnits="strokeWidth" markerWidth="12" markerHeight="12" orient="auto" refX="0" refY="0" viewBox="0 -6 12 12">\n	<rect class="default-fill" stroke="none" x="0" y="-0.6" width="2" height="1.2"></rect>\n	<polygon stroke-width="0" points="12,6 0,0 12,-6 5,0 "></polygon>\n	</marker>\n\n	<marker id="mim-binding-end-black" fill="black" markerUnits="strokeWidth" markerWidth="12" markerHeight="12" orient="auto" refX="0" refY="0" viewBox="-12 -6 12 12">\n	<rect class="default-fill" stroke="none" x="-2" y="-0.6" width="2" height="1.2"></rect>\n	<polygon stroke-width="0" points="-12,6 0,0 -12,-6 -5,0 "></polygon>\n	</marker>\n\n	<!-- mim-modification markers: four-point polygon, no stroke -->\n\n	<marker id="mim-modification-start-black" fill="black" markerUnits="strokeWidth" markerWidth="12" markerHeight="12" orient="auto" refX="0" refY="0" viewBox="0 -6 12 12">\n	<rect class="default-fill" stroke="none" x="0" y="-0.6" width="2" height="1.2"></rect>\n	<polygon stroke-width="0" points="12,6 0,0 12,-6 5,0 "></polygon>\n	</marker>\n\n	<marker id="mim-modification-end-black" fill="black" markerUnits="strokeWidth" markerWidth="12" markerHeight="12" orient="auto" refX="0" refY="0" viewBox="-12 -6 12 12">\n	<rect class="default-fill" stroke="none" x="-2" y="-0.6" width="2" height="1.2"></rect>\n	<polygon stroke-width="0" points="-12,6 0,0 -12,-6 -5,0 "></polygon>\n	</marker>\n\n	<!-- mim-catalysis markers: circle, drawing-board fill and black stroke -->\n\n	<marker id="mim-catalysis-start-black" class="default-fill" stroke="black" markerHeight="12" markerWidth="12" markerUnits="strokeWidth" orient="auto" refX="0" refY="0" viewBox="0 -6 12 12">\n	<circle cx="5.3" cy="0" r="5.3px" stroke-width="1px"></circle>\n	</marker>\n\n	<marker id="mim-catalysis-end-black" class="default-fill" stroke="black" markerHeight="12" markerUnits="strokeWidth" markerWidth="12" orient="auto" refX="5" refY="0" viewBox="-6.5 -6 12 12">\n	<circle cx="-0.3" cy="0" r="5.3px" stroke-width="1px"></circle>\n	</marker>\n\n	<!-- mim-cleavage markers: two lines and extended drawing-board rect -->\n\n	<marker id="mim-cleavage-start-black" class="default-fill" stroke="black" markerHeight="24" markerWidth="24" markerUnits="strokeWidth" orient="auto" refX="0" refY="0" viewBox="-8 -6 12 12">\n	<rect stroke="none" x="0" y="-0.6" width="3.5" height="1.2"></rect>\n	<line fill="none" stroke-width=".4" x1="3.7" y1="0" x2="3.7" y2="6"></line>	\n	<line fill="none" stroke-width=".4" x1="3.7" y1="6" x2="-8" y2="-6"></line>	\n	</marker>\n\n	<marker id="mim-cleavage-end-black" class="default-fill" stroke="black" markerHeight="24" markerWidth="24" markerUnits="strokeWidth" orient="auto" refX="0" refY="0" viewBox="-4 -6 12 12">\n	<rect stroke="none" x="-3.5" y="-0.6" width="3.5" height="1.2"></rect>\n	<line fill="none" stroke-width=".4" x1="-3.7" y1="0" x2="-3.7" y2="-6"></line>	\n	<line fill="none" stroke-width=".4" x1="-3.7" y1="-6" x2="8" y2="6"></line>	\n	</marker>\n\n	<!-- mim-branching-left markers: line and extended drawing-board rect -->\n\n	<marker id="mim-branching-left-start-black" class="default-fill" stroke="black" markerHeight="24" markerWidth="24" markerUnits="strokeWidth" orient="auto" refX="0" refY="0" viewBox="0 -6 12 12">\n	<rect stroke="none" x="0" y="-0.6" width="3.5" height="1.2"></rect>\n	<line fill="none" stroke-width=".4" x1="3.7" y1="0" x2="0" y2="-6"></line>	\n	</marker>\n\n	<marker id="mim-branching-left-end-black" class="default-fill" stroke="black" markerHeight="24" markerWidth="24" markerUnits="strokeWidth" orient="auto" refX="0" refY="0" viewBox="-12 -6 12 12">\n	<rect stroke="none" x="-3.5" y="-0.6" width="3.5" height="1.2"></rect>\n	<line fill="none" stroke-width=".4" x1="-3.7" y1="0" x2="0" y2="6"></line>	\n	</marker>\n\n	<!-- mim-branching-right markers: line and extended drawing-board rect -->\n\n	<marker id="mim-branching-right-start-black" class="default-fill" stroke="black" markerHeight="24" markerWidth="24" markerUnits="strokeWidth" orient="auto" refX="0" refY="0" viewBox="0 -6 12 12">\n	<rect stroke="none" x="0" y="-0.6" width="3.5" height="1.2"></rect>\n	<line fill="none" stroke-width=".4" x1="3.7" y1="0" x2="0" y2="6"></line>\n	</marker>\n\n	<marker id="mim-branching-right-end-black" class="default-fill" stroke="black" markerHeight="24" markerWidth="24" markerUnits="strokeWidth" orient="auto" refX="0" refY="0" viewBox="-12 -6 12 12">\n	<rect stroke="none" x="-3.5" y="-0.6" width="3.5" height="1.2"></rect>\n	<line fill="none" stroke-width=".4" x1="-3.7" y1="0" x2="0" y2="-6"></line>	\n	</marker>\n\n	<!-- mim-transcription-translation markers: two lines and an open trigular polygon, plus extended drawing-board rect -->\n\n	<marker id="mim-transcription-translation-start-black" class="default-fill" stroke="black" markerHeight="24" markerWidth="24" markerUnits="strokeWidth" orient="auto" refX="0" refY="0" viewBox="0 -6 12 12">\n	<rect stroke="none" x="0" y="-0.6" width="6" height="1.2"></rect>\n	<line fill="none" stroke-width=".4" x1="9" y1="0" x2="9" y2="-4"></line>\n	<line fill="none" stroke-width=".4" x1="9" y1="-4" x2="5" y2="-4"></line>\n	<polygon stroke-width=".4" points="5,-6 0,-4 5,-2"></polygon>\n	</marker>\n\n	<marker id="mim-transcription-translation-end-black" class="default-fill" stroke="black" markerHeight="24" markerWidth="24" markerUnits="strokeWidth" orient="auto" refX="0" refY="0" viewBox="-12 -6 12 12">\n	<rect stroke="none" x="-6" y="-0.6" width="6" height="1.2"></rect>\n	<line fill="none" stroke-width=".4" x1="-9" y1="0" x2="-9" y2="4"></line>\n	<line fill="none" stroke-width=".4" x1="-9" y1="4" x2="-5" y2="4"></line>\n	<polygon stroke-width=".4" points="-5,6 0,4 -5,2"></polygon>	\n	</marker>\n	\n	<!-- mim-covalent-bond markers: not much to see here! -->\n\n	<marker id="mim-covalent-bond-start-black" markerUnits="strokeWidth" markerWidth="10" markerHeight="10" orient="auto" refX="0" refY="0" viewBox="0 -6 12 12">\n	</marker>\n\n	<marker id="mim-covalent-bond-end-black" markerUnits="strokeWidth" markerWidth="10" markerHeight="10" orient="auto" refX="0" refY="0" viewBox="-12 -6 12 12">\n	</marker>\n\n\n	<!-- double-line-hack markers are used in double line handling; they include their own \n	special blank rect to obscure the ends -->\n\n	<marker id="double-line-hack-start" markerUnits="strokeWidth" markerWidth="10" markerHeight="10" orient="auto" refX="0" refY="0" viewBox="0 -6 12 12">\n	<rect class="default-fill" stroke="none" x="0" y="-1.5" width="2.3" height="3"></rect>\n	</marker>\n\n	<marker id="double-line-hack-end" markerUnits="strokeWidth" markerWidth="10" markerHeight="10" orient="auto" refX="0" refY="0" viewBox="-12 -6 12 12">\n	<rect class="default-fill" stroke="none" x="-2.3" y="-1.5" width="2.3" height="3"></rect>\n	</marker>\n\n\n	<!-- mim-gap markers: just an extended drawing-board rect -->\n	<!-- \n	TODO This could be refactored to make the shape match the viewbox.\n	It can overlap the side of the shape, blanking out a small part of it when the edge is at an angle.\n	-->\n\n	<marker id="mim-gap-start-black" class="default-fill" markerUnits="strokeWidth" markerWidth="10" markerHeight="10" orient="auto" refX="0" refY="0" viewBox="0 -6 12 12">\n	<rect stroke="none" x="-2" y="-0.7" width="8" height="1.4"></rect>\n	</marker>\n\n	<marker id="mim-gap-end-black" class="default-fill" markerUnits="strokeWidth" markerWidth="10" markerHeight="10" orient="auto" refX="0" refY="0" viewBox="-12 -6 12 12">\n	<rect stroke="none" x="-6" y="-0.7" width="8" height="1.4"></rect>\n	</marker>\n\n	<!-- ***************************\n	Symbols (shapes) \n	*************************** -->\n\n	<symbol id="none" class="shape-none" viewBox="0 0 100 50" preserveAspectRatio="none">\n	<desc>none</desc>\n	</symbol>\n\n	<!-- arc -->\n\n	<symbol id="arc" viewBox="0 0 100 100" preserveAspectRatio="none">\n	<desc>arc</desc>\n	<path d="m1.5,50.5c0,-16.16667 8.16667,-24.25 24.5,-24.25s24.5,-8.08334 24.5,-24.25c0,16.16666 8.16666,24.25 24.49999,24.25s24.50001,8.08333 24.50001,24.25" vector-effect="non-scaling-stroke"></path>	\n	</symbol> \n\n	<!-- brace -->\n\n	<clipPath id="brace-clip-path">\n	<path d="m1.5,49.499996c0,-16.166668 8.166666,-24.249996 24.499998,-24.249996s24.499998,-8.083336 24.499998,-24.250002c0,16.166666 8.166664,24.250002 24.499996,24.250002s24.5,8.083328 24.5,24.249996" vector-effect="non-scaling-stroke"></path>\n        </clipPath>\n\n	<symbol id="brace" viewBox="0 0 100 50" preserveAspectRatio="none">\n	<desc>brace</desc>\n	<path d="m1.5,49.499996c0,-16.166668 8.166666,-24.249996 24.499998,-24.249996s24.499998,-8.083336 24.499998,-24.250002c0,16.166666 8.166664,24.250002 24.499996,24.250002s24.5,8.083328 24.5,24.249996" style="clip-path: url(#brace-clip-path); " vector-effect="non-scaling-stroke"></path>\n  	</symbol>\n	\n	<!-- group of style "none" -->\n	<!-- see group.js for symbol definition. Note that the style definition is still in this SVG template file. -->\n\n	<!-- group of style "group" -->\n	<!-- see group.js for symbol definition. Note that the style definition is still in this SVG template file. -->\n\n	<!-- group of style "complex" -->\n	<!-- see group.js for symbol definition. Note that the style definition is still in this SVG template file. -->\n\n	<!-- group of style "pathway" -->\n	<!-- see group.js for symbol definition. Note that the style definition is still in this SVG template file. -->\n\n	<!-- Endoplasmic reticulum -->\n	<clipPath id="endoplasmic-reticulum-clip-path">\n	<path d="m73.52756,56.60967c-5.62457,-18.60675 23.51463,-32.43358 23.40173,-45.06604c-0.34426,-4.86102 -10.48934,-8.89743 -18.28974,-5.33395c-17.04119,7.87556 -15.64949,29.30503 -21.20533,42.23387c-0.35661,3.60951 -7.36274,2.46926 -7.74964,-0.48694c-5.8512,-11.38871 17.13534,-24.48692 5.96075,-29.42586c-19.63467,-8.16979 -28.75184,21.15346 -22.0682,28.81784c7.4956,14.17602 -2.17949,24.40679 -6.74689,15.49637c-2.44209,-5.30613 6.06605,-11.08445 -0.80351,-16.17689c-4.31991,-2.79993 -11.75555,-0.64618 -16.15468,3.0943c-12.89117,10.73799 4.72957,40.98145 20.96467,36.14635c4.69833,-1.95989 -3.23603,-8.70151 3.90717,-9.59951c7.29767,-0.81255 5.17628,6.18889 7.68745,9.22691c2.3071,4.0509 4.83232,8.35538 10.7626,11.6237c4.78642,2.53724 15.29437,2.11225 16.77148,-1.95795c2.0318,-9.26291 -26.11129,-28.35848 -10.68903,-31.2815c18.55524,-2.71473 4.74866,23.84573 24.31006,29.69419c9.50188,2.02824 15.63902,-0.62194 14.81255,-4.03272c-2.74586,-11.26327 -25.13557,-22.6802 -24.96441,-33.14968" vector-effect="non-scaling-stroke"></path>\n	</clipPath>\n	\n	<symbol id="endoplasmic-reticulum" viewBox="0 0 100 100" preserveAspectRatio="none">\n	<desc>endoplasmic-reticulum</desc>\n	<path d="m73.52756,56.60967c-5.62457,-18.60675 23.51463,-32.43358 23.40173,-45.06604c-0.34426,-4.86102 -10.48934,-8.89743 -18.28974,-5.33395c-17.04119,7.87556 -15.64949,29.30503 -21.20533,42.23387c-0.35661,3.60951 -7.36274,2.46926 -7.74964,-0.48694c-5.8512,-11.38871 17.13534,-24.48692 5.96075,-29.42586c-19.63467,-8.16979 -28.75184,21.15346 -22.0682,28.81784c7.4956,14.17602 -2.17949,24.40679 -6.74689,15.49637c-2.44209,-5.30613 6.06605,-11.08445 -0.80351,-16.17689c-4.31991,-2.79993 -11.75555,-0.64618 -16.15468,3.0943c-12.89117,10.73799 4.72957,40.98145 20.96467,36.14635c4.69833,-1.95989 -3.23603,-8.70151 3.90717,-9.59951c7.29767,-0.81255 5.17628,6.18889 7.68745,9.22691c2.3071,4.0509 4.83232,8.35538 10.7626,11.6237c4.78642,2.53724 15.29437,2.11225 16.77148,-1.95795c2.0318,-9.26291 -26.11129,-28.35848 -10.68903,-31.2815c18.55524,-2.71473 4.74866,23.84573 24.31006,29.69419c9.50188,2.02824 15.63902,-0.62194 14.81255,-4.03272c-2.74586,-11.26327 -25.13557,-22.6802 -24.96441,-33.14968" style="clip-path: url(#endoplasmic-reticulum-clip-path); " vector-effect="non-scaling-stroke"></path>\n	</symbol>\n\n	<!-- Golgi apparatus -->\n	<clipPath id="golgi-apparatus-clip-path1">\n	<path d="m58.46714,27.713327c-22.205345,-29.90079 37.310066,-30.258356 25.567245,-4.823446c-8.807655,18.581238 -17.066429,58.135235 -0.941673,99.22044c13.31469,27.066696 -41.748463,27.760925 -27.755554,-1.469849c11.345825,-29.420242 10.286858,-80.336422 3.129982,-92.927145z" vector-effect="non-scaling-stroke"></path>\n   	</clipPath> \n	\n	<clipPath id="golgi-apparatus-clip-path2">\n   	<path d="m31.214371,36.214363c-10.791712,-21.427903 29.897598,-19.848164 18.407501,0.670895c-4.066933,7.422386 -5.782803,61.572803 1.160713,75.028805c8.52943,18.597427 -32.852985,19.355408 -20.500162,-2.250633c6.952761,-17.358604 10.473742,-52.291187 0.931948,-73.449066z" vector-effect="non-scaling-stroke"></path>\n	</clipPath> \n	\n	<clipPath id="golgi-apparatus-clip-path3">\n   	<path d="m29.803959,52.160912c1.584177,11.474716 2.723461,16.737267 -1.482977,38.361366c-3.731956,12.989006 -3.600399,16.340691 -11.732334,19.412781c-6.683298,1.658531 -11.864832,-9.789436 -4.793299,-16.11377c4.855728,-5.623222 6.141087,-10.882362 6.658888,-22.954659c-0.239212,-9.521427 0.814508,-15.823826 -5.36692,-19.958626c-7.624315,-2.195171 -6.088041,-16.534611 4.824059,-13.863804c5.849354,1.027065 10.282408,8.561516 11.892582,15.116711z" vector-effect="non-scaling-stroke"></path>\n	</clipPath> \n	\n	<symbol id="golgi-apparatus" viewBox="0 0 90 150" preserveAspectRatio="none">\n	<desc>golgi-apparatus</desc>\n	<path d="m58.46714,27.713327c-22.205345,-29.90079 37.310066,-30.258356 25.567245,-4.823446c-8.807655,18.581238 -17.066429,58.135235 -0.941673,99.22044c13.31469,27.066696 -41.748463,27.760925 -27.755554,-1.469849c11.345825,-29.420242 10.286858,-80.336422 3.129982,-92.927145z" style="clip-path: url(#golgi-apparatus-clip-path1); " vector-effect="non-scaling-stroke"></path>\n   	<path d="m31.214371,36.214363c-10.791712,-21.427903 29.897598,-19.848164 18.407501,0.670895c-4.066933,7.422386 -5.782803,61.572803 1.160713,75.028805c8.52943,18.597427 -32.852985,19.355408 -20.500162,-2.250633c6.952761,-17.358604 10.473742,-52.291187 0.931948,-73.449066z" style="clip-path: url(#golgi-apparatus-clip-path2); " vector-effect="non-scaling-stroke"></path>\n   	<path d="m29.803959,52.160912c1.584177,11.474716 2.723461,16.737267 -1.482977,38.361366c-3.731956,12.989006 -3.600399,16.340691 -11.732334,19.412781c-6.683298,1.658531 -11.864832,-9.789436 -4.793299,-16.11377c4.855728,-5.623222 6.141087,-10.882362 6.658888,-22.954659c-0.239212,-9.521427 0.814508,-15.823826 -5.36692,-19.958626c-7.624315,-2.195171 -6.088041,-16.534611 4.824059,-13.863804c5.849354,1.027065 10.282408,8.561516 11.892582,15.116711z" style="clip-path: url(#golgi-apparatus-clip-path3); " vector-effect="non-scaling-stroke"></path>\n	</symbol>\n\n	<!-- this is the dragbox shape for any set of elements that have been grouped. this only shows up in edit mode. -->\n\n	<symbol id="group-drag-box" viewBox="0 0 120 180" preserveAspectRatio="none">\n	<desc>Group</desc>\n	<rect x="0" y="0" width="120" height="180" vector-effect="non-scaling-stroke"></rect>\n	</symbol>\n\n	<!-- Shape is placeholder until it can be replaced with correct shape. -->\n	<clipPath id="hexagon-clip-path">\n	<path d="m1.42004,50.99635l21.07262,-42.13943l56.19152,0l21.0667,42.13943l-21.0667,42.14507l-56.19152,0l-21.07262,-42.14507z" vector-effect="non-scaling-stroke"></path>\n        </clipPath>\n      \n	<symbol id="hexagon" viewBox="0 0 100 100" preserveAspectRatio="none">\n	<desc>hexagon</desc>\n	<path d="m1.42004,50.99635l21.07262,-42.13943l56.19152,0l21.0667,42.13943l-21.0667,42.14507l-56.19152,0l-21.07262,-42.14507z" style="clip-path: url(#hexagon-clip-path); " vector-effect="non-scaling-stroke"></path>\n	</symbol>\n\n	<!-- Shape is placeholder until it can be replaced with correct shape. -->\n	<!-- The line part of this shape has a stroke width set to 1, to make it the same as the circle after clip path is applied -->\n	<clipPath id="mim-degradation-circle-clip-path">\n	<circle cx="50" cy="50" r="49" vector-effect="non-scaling-stroke"></circle>\n  	</clipPath>\n  	\n	<symbol id="mim-degradation" viewBox="0 0 100 100" preserveAspectRatio="none">\n	<desc>mim-degradation</desc>\n	<circle cx="50" cy="50" r="49" style="clip-path: url(#mim-degradation-circle-clip-path); " vector-effect="non-scaling-stroke"></circle>\n  	<line x1="1" y1="1" x2="100" y2="100" stroke-width="1" vector-effect="non-scaling-stroke"></line>\n  	</symbol>\n	\n	<!-- mitochondria -->\n	<clipPath id="mitochondria-clip-path">\n	<path d="m14.894899,26.347357c4.363817,-0.741571 3.827518,17.036169 8.182638,16.183825c8.27347,0.030762 2.982006,-28.148991 9.899754,-28.336687c6.967995,-0.187704 2.246651,29.947527 9.204983,29.43981c7.632813,-0.560024 0.507309,-32.935357 8.136253,-33.623082c7.698521,-0.689259 2.919197,32.039941 10.628349,32.224557c6.546684,0.160011 3.026451,-27.642808 9.56057,-26.921232c7.192177,0.79388 0.664818,29.842905 7.781624,31.667604c4.748405,1.215439 4.420822,-18.257757 9.204018,-17.440804c11.128883,7.577278 8.628105,37.698658 -2.179977,44.645138c-3.138542,0.698479 -3.965698,-10.502029 -7.112938,-9.905075c-5.59005,1.058502 -3.982124,22.284088 -9.603096,21.799461c-5.239281,-0.456947 -2.226364,-21.636383 -7.47047,-21.730232c-6.961235,-0.116928 -3.357895,28.924408 -10.316231,28.495148c-6.140846,-0.375397 -1.73064,-24.950363 -7.825104,-26.191963c-5.681847,-1.156982 -5.378429,22.170242 -11.027426,20.680939c-6.249069,-1.644684 -0.469624,-26.673519 -6.759275,-27.865887c-3.728954,-0.706188 -2.647665,14.400654 -6.403677,14.545292c-14.016198,-5.938736 -15.748776,-39.707981 -3.899994,-47.666811z" vector-effect="non-scaling-stroke"></path>\n	</clipPath> \n	\n	<symbol id="mitochondria" viewBox="0 0 100 100" preserveAspectRatio="none">\n	<desc>Mitochondria</desc>\n	<use x="0" y="0" width="100" height="100" xlink:href="#oval"></use>\n	<path d="m14.894899,26.347357c4.363817,-0.741571 3.827518,17.036169 8.182638,16.183825c8.27347,0.030762 2.982006,-28.148991 9.899754,-28.336687c6.967995,-0.187704 2.246651,29.947527 9.204983,29.43981c7.632813,-0.560024 0.507309,-32.935357 8.136253,-33.623082c7.698521,-0.689259 2.919197,32.039941 10.628349,32.224557c6.546684,0.160011 3.026451,-27.642808 9.56057,-26.921232c7.192177,0.79388 0.664818,29.842905 7.781624,31.667604c4.748405,1.215439 4.420822,-18.257757 9.204018,-17.440804c11.128883,7.577278 8.628105,37.698658 -2.179977,44.645138c-3.138542,0.698479 -3.965698,-10.502029 -7.112938,-9.905075c-5.59005,1.058502 -3.982124,22.284088 -9.603096,21.799461c-5.239281,-0.456947 -2.226364,-21.636383 -7.47047,-21.730232c-6.961235,-0.116928 -3.357895,28.924408 -10.316231,28.495148c-6.140846,-0.375397 -1.73064,-24.950363 -7.825104,-26.191963c-5.681847,-1.156982 -5.378429,22.170242 -11.027426,20.680939c-6.249069,-1.644684 -0.469624,-26.673519 -6.759275,-27.865887c-3.728954,-0.706188 -2.647665,14.400654 -6.403677,14.545292c-14.016198,-5.938736 -15.748776,-39.707981 -3.899994,-47.666811z" style="clip-path: url(#mitochondria-clip-path); " vector-effect="non-scaling-stroke"></path>\n	</symbol>\n\n	<!-- oval -->\n        <clipPath id="oval-clip-path">\n      	<ellipse cx="50" cy="25" rx="50" ry="25" vector-effect="non-scaling-stroke"></ellipse>\n        </clipPath>\n\n	<symbol id="oval" viewBox="0 0 100 50" preserveAspectRatio="none">\n	<desc>Ellipse</desc>\n	<ellipse cx="50" cy="25" rx="50" ry="25" style="clip-path: url(#oval-clip-path); " vector-effect="non-scaling-stroke"></ellipse>\n	</symbol>\n\n	<!-- pentagon -->\n        <clipPath id="pentagon-clip-path">\n	<polygon points="59.159732818603516,99.61322021484375 95,50.28331756591797 59.159732818603516,0.9534196853637695 1.168962001800537,19.795764923095703 1.168962001800537,80.7708740234375 " vector-effect="non-scaling-stroke"></polygon>\n	</clipPath>\n	\n	<symbol id="pentagon" viewBox="0 0 100 100" preserveAspectRatio="none">\n	<desc>pentagon</desc>\n	<polygon points="59.159732818603516,99.61322021484375 95,50.28331756591797 59.159732818603516,0.9534196853637695 1.168962001800537,19.795764923095703 1.168962001800537,80.7708740234375 " style="clip-path: url(#pentagon-clip-path); " vector-effect="non-scaling-stroke"></polygon>\n	</symbol>\n\n	<!-- rectangle -->\n      	<clipPath id="rectangle-clip-path">\n	<rect x="0" y="0" width="100" height="50" vector-effect="non-scaling-stroke"></rect>\n      	</clipPath>\n      \n	<symbol id="rectangle" viewBox="0 0 100 50" preserveAspectRatio="none">\n	<desc>Rectangle</desc>\n	<rect x="0" y="0" width="100" height="50" style="clip-path: url(#rectangle-clip-path); " vector-effect="non-scaling-stroke"></rect>\n	</symbol>\n\n	<!-- rounded-rectangle -->\n	<!-- TODO the rounded corners need to be constant in size, meaning they will probably have to be defined in JavaScript. -->\n      	<clipPath id="rounded-rectangle-clip-path">\n	<rect x="0" y="0" rx="2.5" ry="2.5" width="100" height="50" vector-effect="non-scaling-stroke"></rect>\n      	</clipPath>\n      \n	<symbol id="rounded-rectangle" viewBox="0 0 100 50" preserveAspectRatio="none">\n	<desc>Rounded Rectangle</desc>\n	<rect x="0" y="0" rx="2.5" ry="2.5" width="100" height="50" overflow="hidden" vector-effect="non-scaling-stroke"></rect>\n	</symbol>\n\n	<!-- Sarcoplasmic reticulum -->\n	<clipPath id="sarcoplasmic-reticulum-clip-path">\n	<path d="m46.60182,1.40724c-32.37224,1.34138 -36.32004,22.77011 -26.50318,38.12777c9.31826,18.3425 -18.7656,30.15016 2.56955,49.37807c16.82126,13.11594 46.33175,6.10508 52.12638,-8.56826c5.89916,-15.24847 -10.95099,-26.0272 -3.29316,-40.96135c10.85342,-19.88432 -0.77615,-38.13043 -24.89959,-37.97624z" vector-effect="non-scaling-stroke"></path>	\n	</clipPath>\n	\n	<symbol id="sarcoplasmic-reticulum" viewBox="0 0 80 100" preserveAspectRatio="none">\n	<desc>sarcoplasmic-reticulum</desc>\n	<path d="m46.60182,1.40724c-32.37224,1.34138 -36.32004,22.77011 -26.50318,38.12777c9.31826,18.3425 -18.7656,30.15016 2.56955,49.37807c16.82126,13.11594 46.33175,6.10508 52.12638,-8.56826c5.89916,-15.24847 -10.95099,-26.0272 -3.29316,-40.96135c10.85342,-19.88432 -0.77615,-38.13043 -24.89959,-37.97624z" style="clip-path: url(#sarcoplasmic-reticulum-clip-path); " vector-effect="non-scaling-stroke"></path>	\n	</symbol>\n\n	<!-- triangle -->\n\n	<clipPath id="triangle-clip-path">\n	<polygon points="1,49 49,24 1,1" vector-effect="non-scaling-stroke"></polygon>\n        </clipPath>\n\n	<symbol id="triangle" viewBox="0 0 50 50" preserveAspectRatio="none">\n	<desc>triangle</desc>\n	<polygon points="1,49 49,24 1,1" style="clip-path: url(#triangle-clip-path);" vector-effect="non-scaling-stroke"></polygon>\n	</symbol>\n\n	<!-- TODO Update placeholders for SVG definitions of shapes.\n\n	For current symbols in GIF and/or BMP format, see\n	http://svn.bigcat.unimaas.nl/pathvisio/trunk/modules/org.pathvisio.core/resources/\n\n	Should we add SBGN? Available as SVG here: http://www.sbgn.org/Documents/Templates \n	Not sure about adding lines. Should they be only defined in CSS?\n	-->\n\n	</defs>\n		<g id="viewport">\n    </g>\n\n	</svg>\n</div>\n    <div id="viewertoolbar" style="position:absolute; right: 0px; top: 20px;">\n      <div class="ui-widget ui-corner-all" style="position: absolute; right: 5px; top: 5px; z-index: 1001; background-color: rgb(221, 221, 221); border: 1px solid rgb(170, 170, 170); width:130px">\n        <span class="icon icon-eye-open"></span>\n        <span class="twitter-typeahead" style="position: relative; display: inline-block;"><input class="tt-hint" type="text" autocomplete="off" spellcheck="off" disabled="" style="position: absolute; top: 0px; left: 0px; border-color: transparent; box-shadow: none; background-attachment: scroll; background-clip: border-box; background-color: rgb(255, 255, 255); background-image: none; background-origin: padding-box; background-size: auto; background-position: 0% 0%; background-repeat: repeat repeat;"><input id="highlight-by-label" placeholder="Find in pathway" class="ui-autocomplete-input ui-corner-all tt-query" autocomplete="off" role="textbox" aria-autocomplete="list" aria-haspopup="true" style="float: right; width: 100px; position: relative; vertical-align: top; background-color: transparent;" spellcheck="false" dir="auto"><span style="position: absolute; left: -9999px; visibility: hidden; white-space: nowrap; font-family: \'Lucida Grande\'; font-size: 11px; font-style: normal; font-variant: normal; font-weight: 400; word-spacing: 0px; letter-spacing: 0px; text-indent: 0px; text-rendering: auto; text-transform: none;"></span><span class="tt-dropdown-menu" style="position: absolute; top: 100%; left: 0px; z-index: 100; display: none;"></span></span>\n        <div class="ui-corner-all" style="position: absolute; font-size: 75%; background-color: white; display: none;">\n        </div>\n      </div>\n      <!-- see http://bumbu.github.io/cytoscape.js/debug/ for example of cytoscape.js -->\n      <div class="ui-cytoscape-panzoom">\n          <div class="ui-cytoscape-panzoom-zoom-in ui-cytoscape-panzoom-zoom-button">\n            <span class="icon icon-plus"></span>\n          </div>\n          <div class="ui-cytoscape-panzoom-zoom-out ui-cytoscape-panzoom-zoom-button">\n            <span class="icon icon-minus"></span>\n          </div>\n          <div class="ui-cytoscape-panzoom-reset ui-cytoscape-panzoom-zoom-button">\n            <span class="icon icon-resize-full"></span>\n          </div>\n          <div class="ui-cytoscape-panzoom-slider">\n              <div class="ui-cytoscape-panzoom-slider-background">\n              </div>\n              <div class="ui-cytoscape-panzoom-slider-handle" style="top: 42.80000001192093px;">\n                <span class="icon icon-minus"></span>\n              </div>\n              <div class="ui-cytoscape-panzoom-no-zoom-tick" style="top: 42.80000001192093px;">\n              </div>\n          </div>\n          <div class="ui-cytoscape-panzoom-panner">\n              <div class="ui-cytoscape-panzoom-panner-handle">\n              </div>\n              <div class="ui-cytoscape-panzoom-pan-up ui-cytoscape-panzoom-pan-button">\n              </div>\n              <div class="ui-cytoscape-panzoom-pan-down ui-cytoscape-panzoom-pan-button">\n              </div>\n              <div class="ui-cytoscape-panzoom-pan-left ui-cytoscape-panzoom-pan-button">\n              </div>\n              <div class="ui-cytoscape-panzoom-pan-right ui-cytoscape-panzoom-pan-button">\n              </div>\n              <div class="ui-cytoscape-panzoom-pan-indicator" style="display: none; left: 22.424611085682006px; top: 0.12287108520014556px; background-color: rgb(127, 127, 127); background-position: initial initial; background-repeat: initial initial;">\n              </div>\n          </div>\n      </div>\n    </div>\n    <div id="details-frame" style="visibility: hidden; position:absolute; right: 75px; top: 100px;" class="data-node ui-draggable">\n    </div>\n  </div>\n</div>\n';
+pathvisioNS["tmp/pathvisio-js.html"] = '<div id="pathvisio-js-container" style="position:relative; width:70%; height:auto; float:left;">\n  <div style="width:100%; height:100%; float:right; clear:both;" id="pathway-viewer">\n    <div style="width:80%; height:500px" id="pathway-container">\n<!--?xml version="1.0" encoding="UTF-8" standalone="no"?-->\n\n<!-- \nThis file serves as our template for standardized GPML pathway visual representations.\nThis file can be used for many purposes outside of pathvisiojs, including allowingar\nother projects to work better with GPML. For purposes of pathvisiojs, this file will\nbe the starting point for our JavaScript rendering of pathways. Every time we want to\nrender a GPML file on the browser, we will read a copy of this file into D3.js and\nmodify the copy by adding "use" statements, cloning markers, etc. in order to create\nthe desired pathway illustration in SVG.\n\nThe XML declaration above is taken from an example from the W3C \n<http://www.w3.org/TR/SVG/images/struct/use04.svg>,\nexcept I added:\nencoding="UTF-8" \nWe will want to change standalone to yes if we keep the CSS and\nJS all inside this document.\n\nDoctypes are not needed for SVG, and jwatt discourages their use:\nhttps://jwatt.org/svg/authoring/.\n\nStyle guides can be arbitrary, but for consistency of SVG markup for the pathvisiojs project,\n	I suggest using JS Watt\'s SVG authoring advice and Google\'s HTML and JavaScript Guides:\n	https://jwatt.org/svg/authoring/\n	http://google-styleguide.googlecode.com/svn/trunk/htmlcssguide.xml\n	http://google-styleguide.googlecode.com/svn/trunk/javascriptguide.xml\n\nJS Watt\'s advice is referenced from MDN:\nhttps://developer.mozilla.org/en-US/docs/Web/SVG\n\nFor testing, we will ensure this SVG file renders correctly with the following browsers and graphics programs:\nChrome (latest release)\n	Uses Skia graphics library\nFirefox (latest release)\n	Uses Azure graphics library\n	Safari (latest release)\n	Android Browser (latest release)\n	iOS Browser (latest release)\n	Internet Explorer (IE9 and subsequent versions)\nSquiggle SVG browser (latest release)\n	Uses Batik \n	Available for download at http://xmlgraphics.apache.org/batik/download.html\nSVG-Edit (latest release)\n	Version 2.6 (latest release as of 2013-07-08) available for download at \n	http://svg-edit.googlecode.com/svn/branches/2.6/editor/svg-editor.html\n	Inkscape\n	Uses livarot rendering engine but is in process of transitioning to Cairo\n	Available for download at http://inkscape.org/\n\n	Optional additional tests:\n	SvgWeb\n	Adobe Illustrator (CS6)\n		Either convert SVG to PDF and import PDF into Illustrator or convert SVG to .ai (Illustrator format)\n		with a data like Unidata, available for download at\n		http://sk1project.org/modules.php?name=Products&product=uniconvertor\n		Opening this SVG directly with Illustrator does not work well.\n		In the future, we could use Unidata on the server to make it possible to download pathway images in\n		.ai (Illustrator) and .cdr (CorelDraw) formats.\n\n	For more information on SVG, these references are helpful:\n	[W3 Spec](http://www.w3.org/TR/SVG/expanded-toc.html)\n	[MDN on SVG](https://developer.mozilla.org/en-US/docs/Web/SVG)\n	-->\n\n	<svg id="pathway-image" version="1.1" baseProfile="full" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ev="http://www.w3.org/2001/xml-events" width="684.0" height="473.62184873949576" onmouseup="handleMouseUp(evt)" onmousedown="handleMouseDown(evt)" onmousemove="handleMouseMove(evt)">\n	<g>\n	<title>pathway defs for pathvisiojs</title>\n	<desc>\n	This SVG file contains all the graphical elements (markers and symbols in defs as well as\n	style data) used by the program pathvisiojs, which has two components: \n	1) a viewer for transforming GPML biological pathway data into an SVG visual representation and \n	2) an editor for creating both views and models for biological pathways.\n	</desc>\n	</g>\n\n	<defs>\n\n	<!-- ***************************\n	CSS Style Sheet\n	***************************\n\n	Note: pathvisiojs assumes the default element color is black.\n	-->\n\n	<style type="text/css">\n\n	svg {\n		color-interpolation: auto;\n		image-rendering: auto;\n		shape-rendering: auto;\n		vector-effect: non-scaling-stroke;\n		fill: white;\n	}\n\n	.default-fill {\n		fill: white;\n	}\n\n	.stroke-color-equals-default-fill-color {\n		stroke: white;\n	}\n\n	text {\n		font-family: Sans-Serif, Helvetica, Arial;\n		font-size: 10px;\n		fill: black;\n		fill-opacity: 1;\n		stroke: none;\n		text-anchor: middle;\n		font-size: 10px;\n		stroke: none;\n	}\n\n	.info-box {\n		font-family: Sans-Serif;\n		font-size: 10px;\n		fill: black;\n		stroke: none;\n		text-anchor: start;\n	}\n\n	.info-box-property-name {\n		font-weight: bold;\n	}\n\n	path.group {\n		fill-opacity: 0.098;\n		stroke: gray;\n		stroke-miterlimit: 1;\n		stroke-width: 1px;\n	}\n\n	path.group:hover {\n		fill-opacity: 0.2;\n		stroke-width: 1px;\n	}\n\n	path.group-none {\n		fill: rgb(180,180,100);\n		stroke-dasharray: 5,3;\n	}\n\n	path.group-group {\n		fill-opacity: 0;\n		stroke-width: 0;\n	}\n\n	path.group-complex {\n		fill: rgb(180,180,100);\n	}\n\n	path.group-pathway {\n		fill: lightgreen;\n		stroke-dasharray: 5,3;\n	}\n\n	use.data-node {\n		fill-opacity: 1;\n		stroke: black;\n		stroke-dasharray: 0;\n		stroke-miterlimit: 1;\n	}\n\n	use.gene-product {\n	}\n\n	use.metabolite {\n		stroke: blue;\n	}\n\n	text.metabolite {\n		fill: blue;\n	}\n\n	use.pathway {\n		stroke: rgb(20,150,30);\n		fill-opacity: 0;\n	}\n\n	text.pathway {\n		fill: rgb(20,150,30);\n		fill-opacity: 1;\n		stroke: none;\n	}\n\n	use.protein {\n	}\n\n	use.rna {\n	}\n\n	use.unknown {\n	}\n\n	use.label {\n		stroke: black;\n		stroke-width: 0;\n		fill-opacity: 0;\n		stroke-dasharray: 0;\n		stroke-miterlimit: 1;\n	}\n\n	use.shape {\n		fill-opacity: 0;\n		stroke: black;\n		stroke-dasharray: 0;\n		stroke-miterlimit: 1;\n	}\n\n	use.shape-none {\n		fill: none;\n		fill-opacity: 0;\n		stroke: none;\n	}\n\n	use.cellular-component {\n		fill-opacity: 0;\n		stroke: "#C0C0C0";\n	}\n\n	.graphical-line {\n		fill:none;\n		stroke: black; \n		stroke-width: 1px; \n	}\n\n	.interaction {\n		fill:none;\n		stroke: black; \n		stroke-width: 1px; \n	}\n\n	marker {\n		/* this is what should work per the spec\n		   stroke-dasharray: none; */\n		/* but I need to add this to make it work in Safari */\n		stroke-dasharray: 9999999999999999999999999;\n	}\n\n	.dashed-stroke {\n		stroke-dasharray: 5,3;\n	}\n</style>\n\n    <filter id="highlight" width="150%" height="150%">\n        <feOffset result="offOut" in="SourceGraphic" dx="30" dy="30"></feOffset>\n        <feGaussianBlur result="blurOut" in="offOut" stdDeviation="10"></feGaussianBlur>\n        <feBlend in="SourceGraphic" in2="blurOut" mode="normal"></feBlend>\n    </filter>\n\n	<!-- ***************************\n	Markers (Arrowheads) \n	*************************** -->\n\n	<!-- Here we generate a set of interaction markers for the default color (black). If we need other colors,\n	we need to clone the black marker and set the color for the clone to the desired color using d3.js.\n	I wish fill="currentColor" worked for markers, but that does not appear to be the case. -->\n\n	<!-- Each marker includes a small rectangle with a default-fill color to obscure the\n	ends of lines that might otherwise show up beneath the marker. Double lines require their own special\n	obscuring rects and are included as a double-line-hack-start/end marker, defined here and added in\n	gpml2json.js -->\n\n	<!-- arrow markers: triangular polygons, no stroke -->\n\n	<marker id="arrow-start-black" fill="black" markerUnits="strokeWidth" markerWidth="12" markerHeight="12" orient="auto" refX="0" refY="0" viewBox="0 -6 12 12">\n	<rect class="default-fill" stroke="none" x="0" y="-0.6" width="2" height="1.2"></rect>\n	<polygon stroke-width="0" points="12,5 0,0 12,-5"></polygon>\n	</marker>\n\n	<marker id="arrow-end-black" fill="black" markerUnits="strokeWidth" markerWidth="12" markerHeight="12" orient="auto" refX="0" refY="0" viewBox="-12 -6 12 12">\n	<rect class="default-fill" stroke="none" x="-2" y="-0.6" width="2" height="1.2"></rect>\n	<polygon stroke-width="0" points="-12,5 0,0 -12,-5"></polygon>\n	</marker>\n\n\n	<!-- mim-conversion markers: triangular polygons, no stroke -->\n\n	<marker id="mim-conversion-start-black" fill="black" markerUnits="strokeWidth" markerWidth="12" markerHeight="12" orient="auto" refX="0" refY="0" viewBox="0 -6 12 12">\n	<rect class="default-fill" stroke="none" x="0" y="-0.6" width="2" height="1.2"></rect>\n	<polygon stroke-width="0" points="11,5 0,0 11,-5"></polygon>\n	</marker>\n\n	<marker id="mim-conversion-end-black" fill="black" markerUnits="strokeWidth" markerWidth="12" markerHeight="12" orient="auto" refX="0" refY="0" viewBox="-12 -6 12 12">\n	<rect class="default-fill" stroke="none" x="-2" y="-0.6" width="2" height="1.2"></rect>\n	<polygon stroke-width="0" points="-11,5 0,0 -11,-5"></polygon>\n	</marker>\n\n	<!-- mim-stimulation markers: triangular polygons, drawing-board fill, black stroke -->\n\n	<marker id="mim-stimulation-start-black" class="default-fill" stroke="black" markerWidth="12" markerHeight="12" markerUnits="strokeWidth" orient="auto" refX="0" refY="0" viewBox="0 -6 12 12">\n	<rect stroke="none" x="0" y="-0.6" width="2" height="1.2"></rect>\n	<polygon stroke-width="1" points="11,5 0,0 11,-5"></polygon>\n	</marker>\n\n	<marker id="mim-stimulation-end-black" class="default-fill" stroke="black" markerUnits="strokeWidth" markerWidth="12" markerHeight="12" orient="auto" refX="0" refY="0" viewBox="-12 -6 12 12">\n	<rect stroke="none" x="-2" y="-0.6" width="2" height="1.2"></rect>\n	<polygon stroke-width="1" points="-11,5 0,0 -11,-5"></polygon>\n	</marker>\n\n	<!-- mim-necessary-stimulation markers: triangular polygons, drawing-board fill, black stroke; and vertical line -->\n\n	<marker id="mim-necessary-stimulation-start-black" class="default-fill" stroke="black" markerWidth="12" markerHeight="12" markerUnits="strokeWidth" orient="auto" refX="0" refY="0" viewBox="0 -6 15 12">\n	<rect stroke="none" x="0" y="-0.6" width="2" height="1.2"></rect>\n	<line fill="none" stroke-width="1" x1="14" y1="-6" x2="14" y2="6"></line>\n	<polygon stroke-width="1" points="9,5 0,0 9,-5"></polygon>\n	</marker>\n\n	<marker id="mim-necessary-stimulation-end-black" class="default-fill" stroke="black" markerUnits="strokeWidth" markerWidth="12" markerHeight="12" orient="auto" refX="0" refY="0" viewBox="-15 -6 15 12">\n	<rect stroke="none" x="-2" y="-0.6" width="2" height="1.2"></rect>\n	<line fill="none" stroke-width="1" x1="-14" y1="-6" x2="-14" y2="6"></line>\n	<polygon stroke-width="1" points="-9,5 0,0 -9,-5"></polygon>\n	</marker>\n\n	<!-- t-bar markers: vertical line; and extended drawing-board rect -->\n\n	<marker id="t-bar-start-black" class="default-fill" stroke="black" markerWidth="16" markerHeight="16" markerUnits="strokeWidth" orient="auto" refX="0" refY="0" viewBox="0 -6 12 12">\n	<rect stroke="none" x="0" y="-0.6" width="5" height="1.2"></rect>\n	<line fill="none" stroke-width="1.6" x1="5" y1="-6" x2="5" y2="6"></line>\n	</marker>\n\n	<marker id="t-bar-end-black" class="default-fill" stroke="black" markerUnits="strokeWidth" markerWidth="16" markerHeight="16" orient="auto" refX="0" refY="0" viewBox="-12 -6 12 12">\n	<rect stroke="none" x="-5" y="-0.6" width="5" height="1.2"></rect>\n	<line fill="none" stroke-width="1.6" x1="-5" y1="-6" x2="-5" y2="6"></line>\n	</marker>\n	\n\n	<!-- mim-inhibition markers: vertical line; and extended drawing-board rect -->\n\n	<marker id="mim-inhibition-start-black" class="default-fill" stroke="black" markerWidth="16" markerHeight="16" markerUnits="strokeWidth" orient="auto" refX="0" refY="0" viewBox="0 -6 12 12">\n	<rect stroke="none" x="0" y="-0.6" width="5" height="1.2"></rect>\n	<line fill="none" stroke-width="1.6" x1="5" y1="-6" x2="5" y2="6"></line>\n	</marker>\n\n	<marker id="mim-inhibition-end-black" class="default-fill" stroke="black" markerUnits="strokeWidth" markerWidth="16" markerHeight="16" orient="auto" refX="0" refY="0" viewBox="-12 -6 12 12">\n	<rect stroke="none" x="-5" y="-0.6" width="5" height="1.2"></rect>\n	<line fill="none" stroke-width="1.6" x1="-5" y1="-6" x2="-5" y2="6"></line>\n	</marker>\n	\n	<!-- mim-binding markers: four-point polygon, no stroke -->\n\n	<marker id="mim-binding-start-black" fill="black" markerUnits="strokeWidth" markerWidth="12" markerHeight="12" orient="auto" refX="0" refY="0" viewBox="0 -6 12 12">\n	<rect class="default-fill" stroke="none" x="0" y="-0.6" width="2" height="1.2"></rect>\n	<polygon stroke-width="0" points="12,6 0,0 12,-6 5,0 "></polygon>\n	</marker>\n\n	<marker id="mim-binding-end-black" fill="black" markerUnits="strokeWidth" markerWidth="12" markerHeight="12" orient="auto" refX="0" refY="0" viewBox="-12 -6 12 12">\n	<rect class="default-fill" stroke="none" x="-2" y="-0.6" width="2" height="1.2"></rect>\n	<polygon stroke-width="0" points="-12,6 0,0 -12,-6 -5,0 "></polygon>\n	</marker>\n\n	<!-- mim-modification markers: four-point polygon, no stroke -->\n\n	<marker id="mim-modification-start-black" fill="black" markerUnits="strokeWidth" markerWidth="12" markerHeight="12" orient="auto" refX="0" refY="0" viewBox="0 -6 12 12">\n	<rect class="default-fill" stroke="none" x="0" y="-0.6" width="2" height="1.2"></rect>\n	<polygon stroke-width="0" points="12,6 0,0 12,-6 5,0 "></polygon>\n	</marker>\n\n	<marker id="mim-modification-end-black" fill="black" markerUnits="strokeWidth" markerWidth="12" markerHeight="12" orient="auto" refX="0" refY="0" viewBox="-12 -6 12 12">\n	<rect class="default-fill" stroke="none" x="-2" y="-0.6" width="2" height="1.2"></rect>\n	<polygon stroke-width="0" points="-12,6 0,0 -12,-6 -5,0 "></polygon>\n	</marker>\n\n	<!-- mim-catalysis markers: circle, drawing-board fill and black stroke -->\n\n	<marker id="mim-catalysis-start-black" class="default-fill" stroke="black" markerHeight="12" markerWidth="12" markerUnits="strokeWidth" orient="auto" refX="0" refY="0" viewBox="0 -6 12 12">\n	<circle cx="5.3" cy="0" r="5.3px" stroke-width="1px"></circle>\n	</marker>\n\n	<marker id="mim-catalysis-end-black" class="default-fill" stroke="black" markerHeight="12" markerUnits="strokeWidth" markerWidth="12" orient="auto" refX="5" refY="0" viewBox="-6.5 -6 12 12">\n	<circle cx="-0.3" cy="0" r="5.3px" stroke-width="1px"></circle>\n	</marker>\n\n	<!-- mim-cleavage markers: two lines and extended drawing-board rect -->\n\n	<marker id="mim-cleavage-start-black" class="default-fill" stroke="black" markerHeight="24" markerWidth="24" markerUnits="strokeWidth" orient="auto" refX="0" refY="0" viewBox="-8 -6 12 12">\n	<rect stroke="none" x="0" y="-0.6" width="3.5" height="1.2"></rect>\n	<line fill="none" stroke-width=".4" x1="3.7" y1="0" x2="3.7" y2="6"></line>	\n	<line fill="none" stroke-width=".4" x1="3.7" y1="6" x2="-8" y2="-6"></line>	\n	</marker>\n\n	<marker id="mim-cleavage-end-black" class="default-fill" stroke="black" markerHeight="24" markerWidth="24" markerUnits="strokeWidth" orient="auto" refX="0" refY="0" viewBox="-4 -6 12 12">\n	<rect stroke="none" x="-3.5" y="-0.6" width="3.5" height="1.2"></rect>\n	<line fill="none" stroke-width=".4" x1="-3.7" y1="0" x2="-3.7" y2="-6"></line>	\n	<line fill="none" stroke-width=".4" x1="-3.7" y1="-6" x2="8" y2="6"></line>	\n	</marker>\n\n	<!-- mim-branching-left markers: line and extended drawing-board rect -->\n\n	<marker id="mim-branching-left-start-black" class="default-fill" stroke="black" markerHeight="24" markerWidth="24" markerUnits="strokeWidth" orient="auto" refX="0" refY="0" viewBox="0 -6 12 12">\n	<rect stroke="none" x="0" y="-0.6" width="3.5" height="1.2"></rect>\n	<line fill="none" stroke-width=".4" x1="3.7" y1="0" x2="0" y2="-6"></line>	\n	</marker>\n\n	<marker id="mim-branching-left-end-black" class="default-fill" stroke="black" markerHeight="24" markerWidth="24" markerUnits="strokeWidth" orient="auto" refX="0" refY="0" viewBox="-12 -6 12 12">\n	<rect stroke="none" x="-3.5" y="-0.6" width="3.5" height="1.2"></rect>\n	<line fill="none" stroke-width=".4" x1="-3.7" y1="0" x2="0" y2="6"></line>	\n	</marker>\n\n	<!-- mim-branching-right markers: line and extended drawing-board rect -->\n\n	<marker id="mim-branching-right-start-black" class="default-fill" stroke="black" markerHeight="24" markerWidth="24" markerUnits="strokeWidth" orient="auto" refX="0" refY="0" viewBox="0 -6 12 12">\n	<rect stroke="none" x="0" y="-0.6" width="3.5" height="1.2"></rect>\n	<line fill="none" stroke-width=".4" x1="3.7" y1="0" x2="0" y2="6"></line>\n	</marker>\n\n	<marker id="mim-branching-right-end-black" class="default-fill" stroke="black" markerHeight="24" markerWidth="24" markerUnits="strokeWidth" orient="auto" refX="0" refY="0" viewBox="-12 -6 12 12">\n	<rect stroke="none" x="-3.5" y="-0.6" width="3.5" height="1.2"></rect>\n	<line fill="none" stroke-width=".4" x1="-3.7" y1="0" x2="0" y2="-6"></line>	\n	</marker>\n\n	<!-- mim-transcription-translation markers: two lines and an open trigular polygon, plus extended drawing-board rect -->\n\n	<marker id="mim-transcription-translation-start-black" class="default-fill" stroke="black" markerHeight="24" markerWidth="24" markerUnits="strokeWidth" orient="auto" refX="0" refY="0" viewBox="0 -6 12 12">\n	<rect stroke="none" x="0" y="-0.6" width="6" height="1.2"></rect>\n	<line fill="none" stroke-width=".4" x1="9" y1="0" x2="9" y2="-4"></line>\n	<line fill="none" stroke-width=".4" x1="9" y1="-4" x2="5" y2="-4"></line>\n	<polygon stroke-width=".4" points="5,-6 0,-4 5,-2"></polygon>\n	</marker>\n\n	<marker id="mim-transcription-translation-end-black" class="default-fill" stroke="black" markerHeight="24" markerWidth="24" markerUnits="strokeWidth" orient="auto" refX="0" refY="0" viewBox="-12 -6 12 12">\n	<rect stroke="none" x="-6" y="-0.6" width="6" height="1.2"></rect>\n	<line fill="none" stroke-width=".4" x1="-9" y1="0" x2="-9" y2="4"></line>\n	<line fill="none" stroke-width=".4" x1="-9" y1="4" x2="-5" y2="4"></line>\n	<polygon stroke-width=".4" points="-5,6 0,4 -5,2"></polygon>	\n	</marker>\n	\n	<!-- mim-covalent-bond markers: not much to see here! -->\n\n	<marker id="mim-covalent-bond-start-black" markerUnits="strokeWidth" markerWidth="10" markerHeight="10" orient="auto" refX="0" refY="0" viewBox="0 -6 12 12">\n	</marker>\n\n	<marker id="mim-covalent-bond-end-black" markerUnits="strokeWidth" markerWidth="10" markerHeight="10" orient="auto" refX="0" refY="0" viewBox="-12 -6 12 12">\n	</marker>\n\n\n	<!-- double-line-hack markers are used in double line handling; they include their own \n	special blank rect to obscure the ends -->\n\n	<marker id="double-line-hack-start" markerUnits="strokeWidth" markerWidth="10" markerHeight="10" orient="auto" refX="0" refY="0" viewBox="0 -6 12 12">\n	<rect class="default-fill" stroke="none" x="0" y="-1.5" width="2.3" height="3"></rect>\n	</marker>\n\n	<marker id="double-line-hack-end" markerUnits="strokeWidth" markerWidth="10" markerHeight="10" orient="auto" refX="0" refY="0" viewBox="-12 -6 12 12">\n	<rect class="default-fill" stroke="none" x="-2.3" y="-1.5" width="2.3" height="3"></rect>\n	</marker>\n\n\n	<!-- mim-gap markers: just an extended drawing-board rect -->\n	<!-- \n	TODO This could be refactored to make the shape match the viewbox.\n	It can overlap the side of the shape, blanking out a small part of it when the edge is at an angle.\n	-->\n\n	<marker id="mim-gap-start-black" class="default-fill" markerUnits="strokeWidth" markerWidth="10" markerHeight="10" orient="auto" refX="0" refY="0" viewBox="0 -6 12 12">\n	<rect stroke="none" x="-2" y="-0.7" width="8" height="1.4"></rect>\n	</marker>\n\n	<marker id="mim-gap-end-black" class="default-fill" markerUnits="strokeWidth" markerWidth="10" markerHeight="10" orient="auto" refX="0" refY="0" viewBox="-12 -6 12 12">\n	<rect stroke="none" x="-6" y="-0.7" width="8" height="1.4"></rect>\n	</marker>\n\n	<!-- ***************************\n	Symbols (shapes) \n	*************************** -->\n\n	<symbol id="none" class="shape-none" viewBox="0 0 100 50" preserveAspectRatio="none">\n	<desc>none</desc>\n	</symbol>\n\n	<!-- arc -->\n\n	<symbol id="arc" viewBox="0 0 100 100" preserveAspectRatio="none">\n	<desc>arc</desc>\n	<path d="m1.5,50.5c0,-16.16667 8.16667,-24.25 24.5,-24.25s24.5,-8.08334 24.5,-24.25c0,16.16666 8.16666,24.25 24.49999,24.25s24.50001,8.08333 24.50001,24.25" vector-effect="non-scaling-stroke"></path>	\n	</symbol> \n\n	<!-- brace -->\n\n	<clipPath id="brace-clip-path">\n	<path d="m1.5,49.499996c0,-16.166668 8.166666,-24.249996 24.499998,-24.249996s24.499998,-8.083336 24.499998,-24.250002c0,16.166666 8.166664,24.250002 24.499996,24.250002s24.5,8.083328 24.5,24.249996" vector-effect="non-scaling-stroke"></path>\n        </clipPath>\n\n	<symbol id="brace" viewBox="0 0 100 50" preserveAspectRatio="none">\n	<desc>brace</desc>\n	<path d="m1.5,49.499996c0,-16.166668 8.166666,-24.249996 24.499998,-24.249996s24.499998,-8.083336 24.499998,-24.250002c0,16.166666 8.166664,24.250002 24.499996,24.250002s24.5,8.083328 24.5,24.249996" style="clip-path: url(#brace-clip-path); " vector-effect="non-scaling-stroke"></path>\n  	</symbol>\n	\n	<!-- group of style "none" -->\n	<!-- see group.js for symbol definition. Note that the style definition is still in this SVG template file. -->\n\n	<!-- group of style "group" -->\n	<!-- see group.js for symbol definition. Note that the style definition is still in this SVG template file. -->\n\n	<!-- group of style "complex" -->\n	<!-- see group.js for symbol definition. Note that the style definition is still in this SVG template file. -->\n\n	<!-- group of style "pathway" -->\n	<!-- see group.js for symbol definition. Note that the style definition is still in this SVG template file. -->\n\n	<!-- Endoplasmic reticulum -->\n	<clipPath id="endoplasmic-reticulum-clip-path">\n	<path d="m73.52756,56.60967c-5.62457,-18.60675 23.51463,-32.43358 23.40173,-45.06604c-0.34426,-4.86102 -10.48934,-8.89743 -18.28974,-5.33395c-17.04119,7.87556 -15.64949,29.30503 -21.20533,42.23387c-0.35661,3.60951 -7.36274,2.46926 -7.74964,-0.48694c-5.8512,-11.38871 17.13534,-24.48692 5.96075,-29.42586c-19.63467,-8.16979 -28.75184,21.15346 -22.0682,28.81784c7.4956,14.17602 -2.17949,24.40679 -6.74689,15.49637c-2.44209,-5.30613 6.06605,-11.08445 -0.80351,-16.17689c-4.31991,-2.79993 -11.75555,-0.64618 -16.15468,3.0943c-12.89117,10.73799 4.72957,40.98145 20.96467,36.14635c4.69833,-1.95989 -3.23603,-8.70151 3.90717,-9.59951c7.29767,-0.81255 5.17628,6.18889 7.68745,9.22691c2.3071,4.0509 4.83232,8.35538 10.7626,11.6237c4.78642,2.53724 15.29437,2.11225 16.77148,-1.95795c2.0318,-9.26291 -26.11129,-28.35848 -10.68903,-31.2815c18.55524,-2.71473 4.74866,23.84573 24.31006,29.69419c9.50188,2.02824 15.63902,-0.62194 14.81255,-4.03272c-2.74586,-11.26327 -25.13557,-22.6802 -24.96441,-33.14968" vector-effect="non-scaling-stroke"></path>\n	</clipPath>\n	\n	<symbol id="endoplasmic-reticulum" viewBox="0 0 100 100" preserveAspectRatio="none">\n	<desc>endoplasmic-reticulum</desc>\n	<path d="m73.52756,56.60967c-5.62457,-18.60675 23.51463,-32.43358 23.40173,-45.06604c-0.34426,-4.86102 -10.48934,-8.89743 -18.28974,-5.33395c-17.04119,7.87556 -15.64949,29.30503 -21.20533,42.23387c-0.35661,3.60951 -7.36274,2.46926 -7.74964,-0.48694c-5.8512,-11.38871 17.13534,-24.48692 5.96075,-29.42586c-19.63467,-8.16979 -28.75184,21.15346 -22.0682,28.81784c7.4956,14.17602 -2.17949,24.40679 -6.74689,15.49637c-2.44209,-5.30613 6.06605,-11.08445 -0.80351,-16.17689c-4.31991,-2.79993 -11.75555,-0.64618 -16.15468,3.0943c-12.89117,10.73799 4.72957,40.98145 20.96467,36.14635c4.69833,-1.95989 -3.23603,-8.70151 3.90717,-9.59951c7.29767,-0.81255 5.17628,6.18889 7.68745,9.22691c2.3071,4.0509 4.83232,8.35538 10.7626,11.6237c4.78642,2.53724 15.29437,2.11225 16.77148,-1.95795c2.0318,-9.26291 -26.11129,-28.35848 -10.68903,-31.2815c18.55524,-2.71473 4.74866,23.84573 24.31006,29.69419c9.50188,2.02824 15.63902,-0.62194 14.81255,-4.03272c-2.74586,-11.26327 -25.13557,-22.6802 -24.96441,-33.14968" style="clip-path: url(#endoplasmic-reticulum-clip-path); " vector-effect="non-scaling-stroke"></path>\n	</symbol>\n\n	<!-- Golgi apparatus -->\n	<clipPath id="golgi-apparatus-clip-path1">\n	<path d="m58.46714,27.713327c-22.205345,-29.90079 37.310066,-30.258356 25.567245,-4.823446c-8.807655,18.581238 -17.066429,58.135235 -0.941673,99.22044c13.31469,27.066696 -41.748463,27.760925 -27.755554,-1.469849c11.345825,-29.420242 10.286858,-80.336422 3.129982,-92.927145z" vector-effect="non-scaling-stroke"></path>\n   	</clipPath> \n	\n	<clipPath id="golgi-apparatus-clip-path2">\n   	<path d="m31.214371,36.214363c-10.791712,-21.427903 29.897598,-19.848164 18.407501,0.670895c-4.066933,7.422386 -5.782803,61.572803 1.160713,75.028805c8.52943,18.597427 -32.852985,19.355408 -20.500162,-2.250633c6.952761,-17.358604 10.473742,-52.291187 0.931948,-73.449066z" vector-effect="non-scaling-stroke"></path>\n	</clipPath> \n	\n	<clipPath id="golgi-apparatus-clip-path3">\n   	<path d="m29.803959,52.160912c1.584177,11.474716 2.723461,16.737267 -1.482977,38.361366c-3.731956,12.989006 -3.600399,16.340691 -11.732334,19.412781c-6.683298,1.658531 -11.864832,-9.789436 -4.793299,-16.11377c4.855728,-5.623222 6.141087,-10.882362 6.658888,-22.954659c-0.239212,-9.521427 0.814508,-15.823826 -5.36692,-19.958626c-7.624315,-2.195171 -6.088041,-16.534611 4.824059,-13.863804c5.849354,1.027065 10.282408,8.561516 11.892582,15.116711z" vector-effect="non-scaling-stroke"></path>\n	</clipPath> \n	\n	<symbol id="golgi-apparatus" viewBox="0 0 90 150" preserveAspectRatio="none">\n	<desc>golgi-apparatus</desc>\n	<path d="m58.46714,27.713327c-22.205345,-29.90079 37.310066,-30.258356 25.567245,-4.823446c-8.807655,18.581238 -17.066429,58.135235 -0.941673,99.22044c13.31469,27.066696 -41.748463,27.760925 -27.755554,-1.469849c11.345825,-29.420242 10.286858,-80.336422 3.129982,-92.927145z" style="clip-path: url(#golgi-apparatus-clip-path1); " vector-effect="non-scaling-stroke"></path>\n   	<path d="m31.214371,36.214363c-10.791712,-21.427903 29.897598,-19.848164 18.407501,0.670895c-4.066933,7.422386 -5.782803,61.572803 1.160713,75.028805c8.52943,18.597427 -32.852985,19.355408 -20.500162,-2.250633c6.952761,-17.358604 10.473742,-52.291187 0.931948,-73.449066z" style="clip-path: url(#golgi-apparatus-clip-path2); " vector-effect="non-scaling-stroke"></path>\n   	<path d="m29.803959,52.160912c1.584177,11.474716 2.723461,16.737267 -1.482977,38.361366c-3.731956,12.989006 -3.600399,16.340691 -11.732334,19.412781c-6.683298,1.658531 -11.864832,-9.789436 -4.793299,-16.11377c4.855728,-5.623222 6.141087,-10.882362 6.658888,-22.954659c-0.239212,-9.521427 0.814508,-15.823826 -5.36692,-19.958626c-7.624315,-2.195171 -6.088041,-16.534611 4.824059,-13.863804c5.849354,1.027065 10.282408,8.561516 11.892582,15.116711z" style="clip-path: url(#golgi-apparatus-clip-path3); " vector-effect="non-scaling-stroke"></path>\n	</symbol>\n\n	<!-- this is the dragbox shape for any set of elements that have been grouped. this only shows up in edit mode. -->\n\n	<symbol id="group-drag-box" viewBox="0 0 120 180" preserveAspectRatio="none">\n	<desc>Group</desc>\n	<rect x="0" y="0" width="120" height="180" vector-effect="non-scaling-stroke"></rect>\n	</symbol>\n\n	<!-- Shape is placeholder until it can be replaced with correct shape. -->\n	<clipPath id="hexagon-clip-path">\n	<path d="m1.42004,50.99635l21.07262,-42.13943l56.19152,0l21.0667,42.13943l-21.0667,42.14507l-56.19152,0l-21.07262,-42.14507z" vector-effect="non-scaling-stroke"></path>\n        </clipPath>\n      \n	<symbol id="hexagon" viewBox="0 0 100 100" preserveAspectRatio="none">\n	<desc>hexagon</desc>\n	<path d="m1.42004,50.99635l21.07262,-42.13943l56.19152,0l21.0667,42.13943l-21.0667,42.14507l-56.19152,0l-21.07262,-42.14507z" style="clip-path: url(#hexagon-clip-path); " vector-effect="non-scaling-stroke"></path>\n	</symbol>\n\n	<!-- Shape is placeholder until it can be replaced with correct shape. -->\n	<!-- The line part of this shape has a stroke width set to 1, to make it the same as the circle after clip path is applied -->\n	<clipPath id="mim-degradation-circle-clip-path">\n	<circle cx="50" cy="50" r="49" vector-effect="non-scaling-stroke"></circle>\n  	</clipPath>\n  	\n	<symbol id="mim-degradation" viewBox="0 0 100 100" preserveAspectRatio="none">\n	<desc>mim-degradation</desc>\n	<circle cx="50" cy="50" r="49" style="clip-path: url(#mim-degradation-circle-clip-path); " vector-effect="non-scaling-stroke"></circle>\n  	<line x1="1" y1="1" x2="100" y2="100" stroke-width="1" vector-effect="non-scaling-stroke"></line>\n  	</symbol>\n	\n	<!-- mitochondria -->\n	<clipPath id="mitochondria-clip-path">\n	<path d="m14.894899,26.347357c4.363817,-0.741571 3.827518,17.036169 8.182638,16.183825c8.27347,0.030762 2.982006,-28.148991 9.899754,-28.336687c6.967995,-0.187704 2.246651,29.947527 9.204983,29.43981c7.632813,-0.560024 0.507309,-32.935357 8.136253,-33.623082c7.698521,-0.689259 2.919197,32.039941 10.628349,32.224557c6.546684,0.160011 3.026451,-27.642808 9.56057,-26.921232c7.192177,0.79388 0.664818,29.842905 7.781624,31.667604c4.748405,1.215439 4.420822,-18.257757 9.204018,-17.440804c11.128883,7.577278 8.628105,37.698658 -2.179977,44.645138c-3.138542,0.698479 -3.965698,-10.502029 -7.112938,-9.905075c-5.59005,1.058502 -3.982124,22.284088 -9.603096,21.799461c-5.239281,-0.456947 -2.226364,-21.636383 -7.47047,-21.730232c-6.961235,-0.116928 -3.357895,28.924408 -10.316231,28.495148c-6.140846,-0.375397 -1.73064,-24.950363 -7.825104,-26.191963c-5.681847,-1.156982 -5.378429,22.170242 -11.027426,20.680939c-6.249069,-1.644684 -0.469624,-26.673519 -6.759275,-27.865887c-3.728954,-0.706188 -2.647665,14.400654 -6.403677,14.545292c-14.016198,-5.938736 -15.748776,-39.707981 -3.899994,-47.666811z" vector-effect="non-scaling-stroke"></path>\n	</clipPath> \n	\n	<symbol id="mitochondria" viewBox="0 0 100 100" preserveAspectRatio="none">\n	<desc>Mitochondria</desc>\n	<use x="0" y="0" width="100" height="100" xlink:href="#oval"></use>\n	<path d="m14.894899,26.347357c4.363817,-0.741571 3.827518,17.036169 8.182638,16.183825c8.27347,0.030762 2.982006,-28.148991 9.899754,-28.336687c6.967995,-0.187704 2.246651,29.947527 9.204983,29.43981c7.632813,-0.560024 0.507309,-32.935357 8.136253,-33.623082c7.698521,-0.689259 2.919197,32.039941 10.628349,32.224557c6.546684,0.160011 3.026451,-27.642808 9.56057,-26.921232c7.192177,0.79388 0.664818,29.842905 7.781624,31.667604c4.748405,1.215439 4.420822,-18.257757 9.204018,-17.440804c11.128883,7.577278 8.628105,37.698658 -2.179977,44.645138c-3.138542,0.698479 -3.965698,-10.502029 -7.112938,-9.905075c-5.59005,1.058502 -3.982124,22.284088 -9.603096,21.799461c-5.239281,-0.456947 -2.226364,-21.636383 -7.47047,-21.730232c-6.961235,-0.116928 -3.357895,28.924408 -10.316231,28.495148c-6.140846,-0.375397 -1.73064,-24.950363 -7.825104,-26.191963c-5.681847,-1.156982 -5.378429,22.170242 -11.027426,20.680939c-6.249069,-1.644684 -0.469624,-26.673519 -6.759275,-27.865887c-3.728954,-0.706188 -2.647665,14.400654 -6.403677,14.545292c-14.016198,-5.938736 -15.748776,-39.707981 -3.899994,-47.666811z" style="clip-path: url(#mitochondria-clip-path); " vector-effect="non-scaling-stroke"></path>\n	</symbol>\n\n	<!-- oval -->\n        <clipPath id="oval-clip-path">\n      	<ellipse cx="50" cy="25" rx="50" ry="25" vector-effect="non-scaling-stroke"></ellipse>\n        </clipPath>\n\n	<symbol id="oval" viewBox="0 0 100 50" preserveAspectRatio="none">\n	<desc>Ellipse</desc>\n	<ellipse cx="50" cy="25" rx="50" ry="25" style="clip-path: url(#oval-clip-path); " vector-effect="non-scaling-stroke"></ellipse>\n	</symbol>\n\n	<!-- pentagon -->\n        <clipPath id="pentagon-clip-path">\n	<polygon points="59.159732818603516,99.61322021484375 95,50.28331756591797 59.159732818603516,0.9534196853637695 1.168962001800537,19.795764923095703 1.168962001800537,80.7708740234375 " vector-effect="non-scaling-stroke"></polygon>\n	</clipPath>\n	\n	<symbol id="pentagon" viewBox="0 0 100 100" preserveAspectRatio="none">\n	<desc>pentagon</desc>\n	<polygon points="59.159732818603516,99.61322021484375 95,50.28331756591797 59.159732818603516,0.9534196853637695 1.168962001800537,19.795764923095703 1.168962001800537,80.7708740234375 " style="clip-path: url(#pentagon-clip-path); " vector-effect="non-scaling-stroke"></polygon>\n	</symbol>\n\n	<!-- rectangle -->\n      	<clipPath id="rectangle-clip-path">\n	<rect x="0" y="0" width="100" height="50" vector-effect="non-scaling-stroke"></rect>\n      	</clipPath>\n      \n	<symbol id="rectangle" viewBox="0 0 100 50" preserveAspectRatio="none">\n	<desc>Rectangle</desc>\n	<rect x="0" y="0" width="100" height="50" style="clip-path: url(#rectangle-clip-path); " vector-effect="non-scaling-stroke"></rect>\n	</symbol>\n\n	<!-- rounded-rectangle -->\n	<!-- TODO the rounded corners need to be constant in size, meaning they will probably have to be defined in JavaScript. -->\n      	<clipPath id="rounded-rectangle-clip-path">\n	<rect x="0" y="0" rx="2.5" ry="2.5" width="100" height="50" vector-effect="non-scaling-stroke"></rect>\n      	</clipPath>\n      \n	<symbol id="rounded-rectangle" viewBox="0 0 100 50" preserveAspectRatio="none">\n	<desc>Rounded Rectangle</desc>\n	<rect x="0" y="0" rx="2.5" ry="2.5" width="100" height="50" overflow="hidden" vector-effect="non-scaling-stroke"></rect>\n	</symbol>\n\n	<!-- Sarcoplasmic reticulum -->\n	<clipPath id="sarcoplasmic-reticulum-clip-path">\n	<path d="m46.60182,1.40724c-32.37224,1.34138 -36.32004,22.77011 -26.50318,38.12777c9.31826,18.3425 -18.7656,30.15016 2.56955,49.37807c16.82126,13.11594 46.33175,6.10508 52.12638,-8.56826c5.89916,-15.24847 -10.95099,-26.0272 -3.29316,-40.96135c10.85342,-19.88432 -0.77615,-38.13043 -24.89959,-37.97624z" vector-effect="non-scaling-stroke"></path>	\n	</clipPath>\n	\n	<symbol id="sarcoplasmic-reticulum" viewBox="0 0 80 100" preserveAspectRatio="none">\n	<desc>sarcoplasmic-reticulum</desc>\n	<path d="m46.60182,1.40724c-32.37224,1.34138 -36.32004,22.77011 -26.50318,38.12777c9.31826,18.3425 -18.7656,30.15016 2.56955,49.37807c16.82126,13.11594 46.33175,6.10508 52.12638,-8.56826c5.89916,-15.24847 -10.95099,-26.0272 -3.29316,-40.96135c10.85342,-19.88432 -0.77615,-38.13043 -24.89959,-37.97624z" style="clip-path: url(#sarcoplasmic-reticulum-clip-path); " vector-effect="non-scaling-stroke"></path>	\n	</symbol>\n\n	<!-- triangle -->\n\n	<clipPath id="triangle-clip-path">\n	<polygon points="1,49 49,24 1,1" vector-effect="non-scaling-stroke"></polygon>\n        </clipPath>\n\n	<symbol id="triangle" viewBox="0 0 50 50" preserveAspectRatio="none">\n	<desc>triangle</desc>\n	<polygon points="1,49 49,24 1,1" style="clip-path: url(#triangle-clip-path);" vector-effect="non-scaling-stroke"></polygon>\n	</symbol>\n\n	<!-- TODO Update placeholders for SVG definitions of shapes.\n\n	For current symbols in GIF and/or BMP format, see\n	http://svn.bigcat.unimaas.nl/pathvisio/trunk/modules/org.pathvisiojs.core/resources/\n\n	Should we add SBGN? Available as SVG here: http://www.sbgn.org/Documents/Templates \n	Not sure about adding lines. Should they be only defined in CSS?\n	-->\n\n	</defs>\n		<g id="viewport">\n    </g>\n\n	</svg>\n</div>\n    <div id="viewertoolbar" style="position:absolute; right: 0px; top: 20px;">\n      <div class="ui-widget ui-corner-all" style="position: absolute; right: 5px; top: 5px; z-index: 1001; background-color: rgb(221, 221, 221); border: 1px solid rgb(170, 170, 170); width:130px">\n        <span class="icon icon-eye-open"></span>\n        <span class="twitter-typeahead" style="position: relative; display: inline-block;"><input class="tt-hint" type="text" autocomplete="off" spellcheck="off" disabled="" style="position: absolute; top: 0px; left: 0px; border-color: transparent; box-shadow: none; background-attachment: scroll; background-clip: border-box; background-color: rgb(255, 255, 255); background-image: none; background-origin: padding-box; background-size: auto; background-position: 0% 0%; background-repeat: repeat repeat;"><input id="highlight-by-label" placeholder="Find in pathway" class="ui-autocomplete-input ui-corner-all tt-query" autocomplete="off" role="textbox" aria-autocomplete="list" aria-haspopup="true" style="float: right; width: 100px; position: relative; vertical-align: top; background-color: transparent;" spellcheck="false" dir="auto"><span style="position: absolute; left: -9999px; visibility: hidden; white-space: nowrap; font-family: \'Lucida Grande\'; font-size: 11px; font-style: normal; font-variant: normal; font-weight: 400; word-spacing: 0px; letter-spacing: 0px; text-indent: 0px; text-rendering: auto; text-transform: none;"></span><span class="tt-dropdown-menu" style="position: absolute; top: 100%; left: 0px; z-index: 100; display: none;"></span></span>\n        <div class="ui-corner-all" style="position: absolute; font-size: 75%; background-color: white; display: none;">\n        </div>\n      </div>\n      <!-- see http://bumbu.github.io/cytoscape.js/debug/ for example of cytoscape.js -->\n      <div class="ui-cytoscape-panzoom">\n          <div class="ui-cytoscape-panzoom-zoom-in ui-cytoscape-panzoom-zoom-button">\n            <span class="icon icon-plus"></span>\n          </div>\n          <div class="ui-cytoscape-panzoom-zoom-out ui-cytoscape-panzoom-zoom-button">\n            <span class="icon icon-minus"></span>\n          </div>\n          <div class="ui-cytoscape-panzoom-reset ui-cytoscape-panzoom-zoom-button">\n            <span class="icon icon-resize-full"></span>\n          </div>\n          <div class="ui-cytoscape-panzoom-slider">\n              <div class="ui-cytoscape-panzoom-slider-background">\n              </div>\n              <div class="ui-cytoscape-panzoom-slider-handle" style="top: 42.80000001192093px;">\n                <span class="icon icon-minus"></span>\n              </div>\n              <div class="ui-cytoscape-panzoom-no-zoom-tick" style="top: 42.80000001192093px;">\n              </div>\n          </div>\n          <div class="ui-cytoscape-panzoom-panner">\n              <div class="ui-cytoscape-panzoom-panner-handle">\n              </div>\n              <div class="ui-cytoscape-panzoom-pan-up ui-cytoscape-panzoom-pan-button">\n              </div>\n              <div class="ui-cytoscape-panzoom-pan-down ui-cytoscape-panzoom-pan-button">\n              </div>\n              <div class="ui-cytoscape-panzoom-pan-left ui-cytoscape-panzoom-pan-button">\n              </div>\n              <div class="ui-cytoscape-panzoom-pan-right ui-cytoscape-panzoom-pan-button">\n              </div>\n              <div class="ui-cytoscape-panzoom-pan-indicator" style="display: none; left: 22.424611085682006px; top: 0.12287108520014556px; background-color: rgb(127, 127, 127); background-position: initial initial; background-repeat: initial initial;">\n              </div>\n          </div>\n      </div>\n    </div>\n    <div id="annotation" style="visibility: hidden; position:absolute; right: 75px; top: 100px;" class="data-node ui-draggable">\n    </div>\n  </div>\n</div>\n';
 ;
 
-pathvisio.helpers = function(){
+pathvisiojs.utilities = function(){
 
   function isUrl(str) {
 
@@ -115,9 +115,9 @@ pathvisio.helpers = function(){
 
 ;
 
-pathvisio.pathway = function(){
+pathvisiojs.pathway = function(){
 
-  // first pass GPML (pathway XML) through an automatic XML to JSON converter, 
+  // first pass GPML (pathway XML) through an automatic XML to JSON data, 
   // then make specific modifications to make the JSON well-formatted, then return the JSON
   
   var svg = null;
@@ -132,7 +132,7 @@ pathvisio.pathway = function(){
     console.log('GPML');
     console.log(gpml);
     
-    //var pathway = pathvisio.data.pathways[url];
+    //var pathway = pathvisiojs.data.pathways[url];
     pathway = xml.xmlToJSON(gpml, true).pathway;
     
     console.log('raw json from xml2json');
@@ -149,11 +149,11 @@ pathvisio.pathway = function(){
 
     // test for whether file is GPML based on xmlns without reference to version
 
-    var gpmlXmlnsSupported = "http://pathvisio.org/GPML/2013a";
+    var gpmlXmlnsSupported = "http://pathvisiojs.org/GPML/2013a";
     var gpmlXmlnsIdentifier = "/GPML/";
 
     // current and previous GPML xmlns values
-    // "http://pathvisio.org/GPML/2013a"
+    // "http://pathvisiojs.org/GPML/2013a"
     // "http://genmapp.org/GPML/2010a"
     // "http://genmapp.org/GPML/2008a"
     // "http://genmapp.org/GPML/2007"
@@ -184,7 +184,7 @@ pathvisio.pathway = function(){
 
       try {
         if (pathway.hasOwnProperty('comment')) {
-          pathway.comments = pathvisio.helpers.convertToArray( pathway.comment );
+          pathway.comments = pathvisiojs.utilities.convertToArray( pathway.comment );
           delete pathway.comment;
 
           pathway.comments.forEach(function(element, index, array) {
@@ -203,7 +203,7 @@ pathvisio.pathway = function(){
 
       try {
         if (pathway.hasOwnProperty('group')) {
-          pathway.groups = pathvisio.helpers.convertToArray( pathway.group );
+          pathway.groups = pathvisiojs.utilities.convertToArray( pathway.group );
           delete pathway.group;
 
           pathway.groups.forEach(function(element, index, array) {
@@ -228,7 +228,7 @@ pathvisio.pathway = function(){
 
       try {
         if (pathway.hasOwnProperty('graphicalLine')) {
-          var graphicalLines = pathvisio.helpers.convertToArray( pathway.graphicalLine );
+          var graphicalLines = pathvisiojs.utilities.convertToArray( pathway.graphicalLine );
           delete pathway.graphicalLine;
 
           if (pathway.edges === undefined) {
@@ -252,7 +252,7 @@ pathvisio.pathway = function(){
 
       try {
         if (pathway.hasOwnProperty('interaction')) {
-          var interactions = pathvisio.helpers.convertToArray( pathway.interaction );
+          var interactions = pathvisiojs.utilities.convertToArray( pathway.interaction );
           delete pathway.interaction;
 
           if (pathway.edges === undefined) {
@@ -279,7 +279,7 @@ pathvisio.pathway = function(){
 
       try {
         if (pathway.hasOwnProperty('edges')) {
-          pathway.edges = pathvisio.pathway.edge.gpml2json(pathway.edges);
+          pathway.edges = pathvisiojs.pathway.edge.gpml2json(pathway.edges);
         }
         else {
           console.log("No element(s) named 'edges' found in this gpml file.");
@@ -293,7 +293,7 @@ pathvisio.pathway = function(){
 
       try {
         if (pathway.hasOwnProperty('dataNode')) {
-          var dataNodes = pathvisio.helpers.convertToArray( pathway.dataNode );
+          var dataNodes = pathvisiojs.utilities.convertToArray( pathway.dataNode );
           delete pathway.dataNode;
 
           dataNodes.forEach(function(element, index, array) {
@@ -337,7 +337,7 @@ pathvisio.pathway = function(){
 
       try {
         if (pathway.hasOwnProperty('label')) {
-          var labels = pathvisio.helpers.convertToArray( pathway.label );
+          var labels = pathvisiojs.utilities.convertToArray( pathway.label );
           delete pathway.label;
 
           labels.forEach(function(element, index, array) {
@@ -363,7 +363,7 @@ pathvisio.pathway = function(){
 
       try {
         if (pathway.hasOwnProperty('shape')) {
-          var shapes = pathvisio.helpers.convertToArray( pathway.shape );
+          var shapes = pathvisiojs.utilities.convertToArray( pathway.shape );
           delete pathway.shape;
 
           shapes.forEach(function(element, index, array) {
@@ -389,7 +389,7 @@ pathvisio.pathway = function(){
 
       try {
         if (pathway.hasOwnProperty('nodes')) {
-          pathway.nodes = pathvisio.pathway.node.gpml2json(pathway.nodes);
+          pathway.nodes = pathvisiojs.pathway.node.gpml2json(pathway.nodes);
         }
         else {
           console.log("No element(s) named 'nodes' found in this gpml file.");
@@ -403,7 +403,7 @@ pathvisio.pathway = function(){
 
       try {
         if (pathway.hasOwnProperty('biopaxRef')) {
-          pathway.biopaxRefs = pathvisio.helpers.convertToArray( pathway.biopaxRef );
+          pathway.biopaxRefs = pathvisiojs.utilities.convertToArray( pathway.biopaxRef );
           delete pathway.biopaxRef;
 
           //biopaxRefs.forEach(function(element, index, array) {
@@ -422,7 +422,7 @@ pathvisio.pathway = function(){
 
       try {
         if (pathway.hasOwnProperty('biopax')) {
-          pathway.biopax.bpPublicationXrefs = pathvisio.helpers.convertToArray( pathway.biopax.bpPublicationXref );
+          pathway.biopax.bpPublicationXrefs = pathvisiojs.utilities.convertToArray( pathway.biopax.bpPublicationXref );
           delete pathway.biopax.bpPublicationXref;
         }
         else {
@@ -439,7 +439,7 @@ pathvisio.pathway = function(){
       console.log(pathway);
 
       delete pathway.graphics;
-      //pathvisio.data.pathways.push(pathway);
+      //pathvisiojs.data.pathways.push(pathway);
       callback(pathway);
     }
     else {
@@ -469,7 +469,7 @@ pathvisio.pathway = function(){
       // be sure server has set gpml mime type to application/xml or application/gpml+xml
 
       $.get(url, 'application/xml', function(gpml) {
-        pathvisio.pathway.gpml2json(gpml, function(json) {
+        pathvisiojs.pathway.gpml2json(gpml, function(json) {
           callback(json);
         });
       });
@@ -543,19 +543,19 @@ pathvisio.pathway = function(){
     }
 
     if (pathway.hasOwnProperty('groups')) {
-      pathvisio.pathway.group.drawAll(svg, pathway);
+      pathvisiojs.pathway.group.drawAll(svg, pathway);
     }
 
     if (pathway.hasOwnProperty('edges')) {
-      pathvisio.pathway.edge.drawAll(svg, pathway);
+      pathvisiojs.pathway.edge.drawAll(svg, pathway);
     }
 
     if (pathway.hasOwnProperty('nodes')) {
-      pathvisio.pathway.node.drawAll(svg, pathway);
+      pathvisiojs.pathway.node.drawAll(svg, pathway);
     }
 
     if (pathway.hasOwnProperty('infoBox')) {
-      pathvisio.pathway.infoBox.draw(svg, pathway);
+      pathvisiojs.pathway.infoBox.draw(svg, pathway);
     }
 
     callback();
@@ -702,7 +702,7 @@ pathvisio.pathway = function(){
           console.warn('Error: No data node value entered.');
         }
         else {
-          pathvisio.pathway.highlightByLabel(nodeLabel);
+          pathvisiojs.pathway.highlightByLabel(nodeLabel);
         }
       });
 
@@ -715,7 +715,7 @@ pathvisio.pathway = function(){
           console.warn('Error: No data node value entered.');
         }
         else {
-          pathvisio.pathway.highlightByLabel(nodeLabel);
+          pathvisiojs.pathway.highlightByLabel(nodeLabel);
         }
       });
 
@@ -732,7 +732,7 @@ pathvisio.pathway = function(){
 }();
 ;
 
-pathvisio.pathway.group = function(){
+pathvisiojs.pathway.group = function(){
   function drawAll(svg, pathway) {
     if (!svg || !pathway) {
       return console.warn('Error: Missing input parameters.');
@@ -800,7 +800,7 @@ pathvisio.pathway.group = function(){
 }();
 ;
 
-pathvisio.pathway.infoBox = function(){
+pathvisiojs.pathway.infoBox = function(){
     
   function draw(svg, pathway) {
     if (!svg || !pathway) {
@@ -856,7 +856,7 @@ pathvisio.pathway.infoBox = function(){
 
 // Draw nodes. Includes data nodes, shapes, labels, cellular components...
 
-pathvisio.pathway.node = function(){
+pathvisiojs.pathway.node = function(){
 
   // TODO What happens if we have right to left flowing text?
 
@@ -869,7 +869,7 @@ pathvisio.pathway.node = function(){
 
       rawJsonNodes.forEach(function(element, index, array) {
         if (element.hasOwnProperty('comment')) {
-          element.comments = pathvisio.helpers.convertToArray( element.comment );
+          element.comments = pathvisiojs.utilities.convertToArray( element.comment );
           delete element.comment;
         }
 
@@ -952,16 +952,16 @@ pathvisio.pathway.node = function(){
         }
 
         if (element.hasOwnProperty('attribute')) {
-          element.attributes = pathvisio.helpers.convertToArray( element.attribute );
+          element.attributes = pathvisiojs.utilities.convertToArray( element.attribute );
           delete element.attribute;
           element.attributes.forEach(function(el, index, array) {
-            if ((el.key === "org.pathvisio.DoubleLineProperty") && (el.value === "Double")) {
+            if ((el.key === "org.pathvisiojs.DoubleLineProperty") && (el.value === "Double")) {
               console.log('double');
               console.log(el);
               element.strokeStyle = 'double';
             }
             else {
-              if ((el.key === "org.pathvisio.CellularComponentProperty") && (el.value !== "None")) {
+              if ((el.key === "org.pathvisiojs.CellularComponentProperty") && (el.value !== "None")) {
                 element.cellularComponent = el.value;
               }
             }
@@ -1044,7 +1044,7 @@ pathvisio.pathway.node = function(){
 
         try {
           if (element.hasOwnProperty('biopaxRef')) {
-            element.biopaxRefs = pathvisio.helpers.convertToArray( element.biopaxRef );
+            element.biopaxRefs = pathvisiojs.utilities.convertToArray( element.biopaxRef );
             delete element.biopaxRef;
 
             //biopaxRefs.forEach(function(element, index, array) {
@@ -1091,7 +1091,7 @@ pathvisio.pathway.node = function(){
     .attr("class", "nodes-container")
     .on("click", function(d,i) {
       if (d.elementType === 'data-node') {
-        pathvisio.pathway.xRef.displayData(pathway.organism, d);
+        pathvisiojs.pathway.xRef.render(pathway.organism, d);
       }
         /*
         var xrefDiv = $('.xrefinfo');
@@ -1265,15 +1265,15 @@ pathvisio.pathway.node = function(){
             }
             else {
               if (d.textLabel.vAlign === 'bottom') {
-                dy = d.height - (5 + (0.3 * d.textLabel.fontSize) + ((pathvisio.helpers.splitStringByNewLine(d.textLabel.text).length - 1) * d.textLabel.fontSize));
+                dy = d.height - (5 + (0.3 * d.textLabel.fontSize) + ((pathvisiojs.utilities.splitStringByNewLine(d.textLabel.text).length - 1) * d.textLabel.fontSize));
               }
               else {
-                dy = (d.height / 2) + (0.3 * d.textLabel.fontSize) - (((pathvisio.helpers.splitStringByNewLine(d.textLabel.text).length - 1) * d.textLabel.fontSize)/2);
+                dy = (d.height / 2) + (0.3 * d.textLabel.fontSize) - (((pathvisiojs.utilities.splitStringByNewLine(d.textLabel.text).length - 1) * d.textLabel.fontSize)/2);
               }
             }
           }
           else {
-            dy = (d.height / 2) + (0.3 * d.textLabel.fontSize) - (((pathvisio.helpers.splitStringByNewLine(d.textLabel.text).length - 1) * d.textLabel.fontSize)/2);
+            dy = (d.height / 2) + (0.3 * d.textLabel.fontSize) - (((pathvisiojs.utilities.splitStringByNewLine(d.textLabel.text).length - 1) * d.textLabel.fontSize)/2);
           }
           return 'translate(' + dx + ' ' + dy + ')';})
           .attr("class", function (d) {
@@ -1310,7 +1310,7 @@ pathvisio.pathway.node = function(){
               var fontSize = d.textLabel.fontSize;
               d3.select(this).selectAll('tspan')
               .data(function (d) {
-                var textArray = pathvisio.helpers.splitStringByNewLine(d.textLabel.text);
+                var textArray = pathvisiojs.utilities.splitStringByNewLine(d.textLabel.text);
                 return textArray;
               })
               .enter()
@@ -1446,7 +1446,7 @@ pathvisio.pathway.node = function(){
 
 // Edges (interactions and graphical lines)
 
-pathvisio.pathway.edge = function(){
+pathvisiojs.pathway.edge = function(){
 
   // pathvisiojs vs PathVisio (Java) specification of anchor position
   // -----------------------------------------
@@ -1501,7 +1501,7 @@ pathvisio.pathway.edge = function(){
     try {
       rawJsonEdges.forEach(function(element, index, array) {
         if (element.graphics.hasOwnProperty('anchor')) {
-          element.anchors = pathvisio.helpers.convertToArray(element.graphics.anchor);
+          element.anchors = pathvisiojs.utilities.convertToArray(element.graphics.anchor);
         }
 
         if (element.graphics.hasOwnProperty('color')) {
@@ -1525,7 +1525,7 @@ pathvisio.pathway.edge = function(){
         }
         else {
           if (element.hasOwnProperty('attribute')) {
-            if ((element.attribute.key === "org.pathvisio.DoubleLineProperty") && (element.attribute.value === "Double")) {
+            if ((element.attribute.key === "org.pathvisiojs.DoubleLineProperty") && (element.attribute.value === "Double")) {
               element.strokeStyle = 'double';
               delete element.attribute;
             }
@@ -1546,8 +1546,8 @@ pathvisio.pathway.edge = function(){
 
         // Points
 
-        var points = pathvisio.helpers.convertToArray( element.graphics.point );
-        var pointsData = pathvisio.pathway.edge.point.gpml2json(points);
+        var points = pathvisiojs.utilities.convertToArray( element.graphics.point );
+        var pointsData = pathvisiojs.pathway.edge.point.gpml2json(points);
         element.points = pointsData.points;
 
         // Back to edges
@@ -1673,7 +1673,7 @@ pathvisio.pathway.edge = function(){
         return style;
       })
       .attr("marker-start", function (d) {
-        var markerStart = pathvisio.pathway.edge.marker.draw(svg, d.markerStart, 'start', d.stroke);
+        var markerStart = pathvisiojs.pathway.edge.marker.draw(svg, d.markerStart, 'start', d.stroke);
         if (d.hasOwnProperty('strokeStyle')) {
           if (d.strokeStyle === 'double') {
             //hack to manage marker scaling; this marker should not have any features itself
@@ -1683,7 +1683,7 @@ pathvisio.pathway.edge = function(){
         return 'url(#' + markerStart + ')';
       })
       .attr("marker-end", function (d) {
-        var markerEnd = pathvisio.pathway.edge.marker.draw(svg, d.markerEnd, 'end', d.stroke);
+        var markerEnd = pathvisiojs.pathway.edge.marker.draw(svg, d.markerEnd, 'end', d.stroke);
         if (d.hasOwnProperty('strokeStyle')) {
           if (d.strokeStyle === 'double') {
             //hack to manage marker scaling; this marker should not have any features itself
@@ -1698,7 +1698,7 @@ pathvisio.pathway.edge = function(){
       // Somehow, d (the d3 selection data) gets redefined after this attr is defined.
 
       .attr("d", function (data) {
-        pathData = pathvisio.pathway.edge.pathData.get(svg, pathway, data);
+        pathData = pathvisiojs.pathway.edge.pathData.get(svg, pathway, data);
         if (data.hasOwnProperty('strokeStyle')) {
           if (data.strokeStyle === 'double') {
 
@@ -1711,8 +1711,8 @@ pathvisio.pathway.edge = function(){
             .attr("d", pathData)
             .attr("class", "stroke-color-equals-default-fill-color")
             .attr("style", "stroke-width:" + data.strokeWidth + '; ')
-            .attr("marker-start", 'url(#' + pathvisio.pathway.edge.marker.draw(svg, data.markerStart, 'start', data.stroke) + ')')
-            .attr("marker-end", 'url(#' + pathvisio.pathway.edge.marker.draw(svg, data.markerEnd, 'end', data.stroke) + ')');
+            .attr("marker-start", 'url(#' + pathvisiojs.pathway.edge.marker.draw(svg, data.markerStart, 'start', data.stroke) + ')')
+            .attr("marker-end", 'url(#' + pathvisiojs.pathway.edge.marker.draw(svg, data.markerEnd, 'end', data.stroke) + ')');
           }
         }
         return pathData;
@@ -1728,7 +1728,7 @@ pathvisio.pathway.edge = function(){
   
 ;
 
-pathvisio.pathway.edge.marker = function(){
+pathvisiojs.pathway.edge.marker = function(){
 
   // the way SVG works makes this code more complex than it should need to be. Essentially, we
   // are trying to reuse the markers defined in the SVG template, but we also need to be able
@@ -1767,7 +1767,7 @@ pathvisio.pathway.edge.marker = function(){
           });
           */
 
-          var markerElement = pathvisio.helpers.cloneNode(markerElementBlack[0][0]);
+          var markerElement = pathvisiojs.utilities.cloneNode(markerElementBlack[0][0]);
 
           // define style of marker element
 
@@ -1801,7 +1801,7 @@ pathvisio.pathway.edge.marker = function(){
 }();
 ;
 
-pathvisio.pathway.edge.point = function(){
+pathvisiojs.pathway.edge.point = function(){
 
   // pathvisiojs vs PathVisio (Java) specification of anchor position
   // -----------------------------------------
@@ -2004,12 +2004,12 @@ pathvisio.pathway.edge.point = function(){
       }
       else {
         if (edgeTerminusRef.type === 'node') {
-          coordinates = pathvisio.pathway.node.getPortCoordinates(edgeTerminusRef.element, point.relX, point.relY);
+          coordinates = pathvisiojs.pathway.node.getPortCoordinates(edgeTerminusRef.element, point.relX, point.relY);
         }
         else {
           if (edgeTerminusRef.type === 'group') {
-            var groupDimensions = pathvisio.pathway.group.getDimensions(pathway, edgeTerminusRef.groupId);
-            coordinates = pathvisio.pathway.node.getPortCoordinates(groupDimensions, point.relX, point.relY);
+            var groupDimensions = pathvisiojs.pathway.group.getDimensions(pathway, edgeTerminusRef.groupId);
+            coordinates = pathvisiojs.pathway.node.getPortCoordinates(groupDimensions, point.relX, point.relY);
           }
           else {
             return 'error';
@@ -2044,17 +2044,17 @@ pathvisio.pathway.edge.point = function(){
 // TODO Rewrite the code for getting elbow and curve edge points. For reference, see these links:
 //
 // Elbows:
-// [PathVisio Java code for elbows](http://svn.bigcat.unimaas.nl/pathvisio/trunk/modules/org.pathvisio.core/src/org/pathvisio/core/model/ElbowConnectorShape.java)
+// [PathVisio Java code for elbows](http://svn.bigcat.unimaas.nl/pathvisio/trunk/modules/org.pathvisiojs.core/src/org/pathvisio/core/model/ElbowConnectorShape.java)
 // [jsPlumb JavaScript implemention of elbows](https://github.com/sporritt/jsPlumb/blob/master/src/connectors-flowchart.js)
 // [W3C documention on vertical and horizontal path movement - "lineto" commands - for SVG](http://www.w3.org/TR/SVG/paths.html#PathDataLinetoCommands)
 //
 // Bezier Curves:
-// [PathVisio Java code for cubic bezier curve](http://svn.bigcat.unimaas.nl/pathvisio/trunk/modules/org.pathvisio.core/src/org/pathvisio/core/model/CurvedConnectorShape.java)
+// [PathVisio Java code for cubic bezier curve](http://svn.bigcat.unimaas.nl/pathvisio/trunk/modules/org.pathvisiojs.core/src/org/pathvisio/core/model/CurvedConnectorShape.java)
 // [jsPlumb JavaScript implemention of bezier curves](https://github.com/sporritt/jsPlumb/blob/master/src/connectors-bezier.js)
 // [W3C documention on cubic bezier curves for SVG](http://www.w3.org/TR/SVG/paths.html#PathDataLinetoCommands)
 // There are other types of SVG curves, but I understand the Java code to use bezier curves.
 
-pathvisio.pathway.edge.pathData = function(){
+pathvisiojs.pathway.edge.pathData = function(){
 
   var currentDirection = null;
 
@@ -2073,7 +2073,7 @@ pathvisio.pathway.edge.pathData = function(){
     }
 
     var sourcePoint = edge.points[0];
-    var source = pathvisio.pathway.edge.point.getCoordinates(svg, pathway, sourcePoint);
+    var source = pathvisiojs.pathway.edge.point.getCoordinates(svg, pathway, sourcePoint);
 
     if (sourcePoint.dx === undefined) {
       source.dx = 0;
@@ -2090,7 +2090,7 @@ pathvisio.pathway.edge.pathData = function(){
     }
 
     var targetPoint = edge.points[edge.points.length - 1];
-    var target = pathvisio.pathway.edge.point.getCoordinates(svg, pathway, targetPoint);
+    var target = pathvisiojs.pathway.edge.point.getCoordinates(svg, pathway, targetPoint);
 
     if (targetPoint.dx === undefined) {
       target.dx = 0;
@@ -2133,7 +2133,7 @@ pathvisio.pathway.edge.pathData = function(){
         //if (edge.points.length === 2) {
         //doesn't quite work yet, so this works for most cases
 
-        if (( edge.points.length === 2 && pathvisio.pathway.edge.point.isTwoPointElbow(source, target)) ) {
+        if (( edge.points.length === 2 && pathvisiojs.pathway.edge.point.isTwoPointElbow(source, target)) ) {
         }
         else {
           if ( edge.points.length > 2 ) {
@@ -2252,7 +2252,7 @@ pathvisio.pathway.edge.pathData = function(){
 }();
 ;
 
-pathvisio.pathway.dataSources = [
+pathvisiojs.pathway.dataSources = [
    {
       "database":"Affy",
       "id":"X",
@@ -3959,10 +3959,10 @@ pathvisio.pathway.dataSources = [
 ];
 ;
 
-pathvisio.pathway.xRef = function(){
+pathvisiojs.pathway.xRef = function(){
 
     function getData(species, database, id, callback) {
-      var databaseId = pathvisio.pathway.dataSources.filter(function(element) {return element.database === database;})[0].id;
+      var databaseId = pathvisiojs.pathway.dataSources.filter(function(element) {return element.database === database;})[0].id;
       var currentUrl = document.location.origin + document.location.pathname;
       var rootDirectoryUrl = document.location.origin + document.location.pathname.split("pathvisiojs/")[0] + 'pathvisiojs/';
       var url = rootDirectoryUrl + 'remote-data-sources/php/bridgedb.php?species=' + encodeURIComponent(species) + '&database=' + encodeURIComponent(databaseId) + '&id=' + encodeURIComponent(id);
@@ -3973,7 +3973,7 @@ pathvisio.pathway.xRef = function(){
       });
     }
 
-    function displayData(organism, node) {
+    function render(organism, node) {
       self.node = node;
       var xRefData = getData(organism, node.xRef.database, node.xRef.id, function(data) {
         var parser = CSVParser.parse(data, true, ' ', false, false, '.');
@@ -3998,7 +3998,7 @@ pathvisio.pathway.xRef = function(){
 
         features.forEach(function(feature) {
           try {
-            var dataSource = pathvisio.pathway.dataSources.filter(function(dataSource) {return dataSource.database.replace(/[^a-z0-9]/gi,'').toLowerCase() == feature.database.replace(/[^a-z0-9]/gi,'').toLowerCase(); })[0];
+            var dataSource = pathvisiojs.pathway.dataSources.filter(function(dataSource) {return dataSource.database.replace(/[^a-z0-9]/gi,'').toLowerCase() == feature.database.replace(/[^a-z0-9]/gi,'').toLowerCase(); })[0];
             feature.dataSourceId = dataSource.id;
             feature.linkOut = dataSource.linkOut;
             feature.priority = dataSource.priority;
@@ -4025,36 +4025,36 @@ pathvisio.pathway.xRef = function(){
         var specifiedXRefId = specifiedFeature.ids.filter(function(element) {return (element == node.xRef.id);})[0];
         var currentXRefIdIndex = specifiedFeature.ids.indexOf(specifiedXRefId);
 
-        features = self.features = pathvisio.helpers.moveArrayItem(features, currentFeatureIndex, 0);
-        specifiedFeature.ids = pathvisio.helpers.moveArrayItem(specifiedFeature.ids, currentXRefIdIndex, 0);
+        features = self.features = pathvisiojs.utilities.moveArrayItem(features, currentFeatureIndex, 0);
+        specifiedFeature.ids = pathvisiojs.utilities.moveArrayItem(specifiedFeature.ids, currentXRefIdIndex, 0);
 
-        var detailsFrame = self.detailsFrame = d3.select('#details-frame');
+        var annotation = self.annotation = d3.select('#annotation');
         //.attr('style', 'visibility:visible');
         
-        //detailsFrame.selectAll('*').remove();
+        //annotation.selectAll('*').remove();
 
-        var detailsHeaderText = detailsFrame.select('#details-frame-header-text')
+        var detailsHeaderText = annotation.select('#annotation-header-text')
         .text(node.textLabel.text);
 
-        var detailsSearchUri = detailsFrame.select('#details-frame-header-search').select('a')
+        var detailsSearchUri = annotation.select('#annotation-header-search').select('a')
         .attr('href', function() {
-          return 'http://wikipathways.org//index.php?title=Special:SearchPathways&doSearch=1&ids=' + node.xRef.id + '&codes=' + pathvisio.pathway.dataSources.filter(function(dataSource) {
+          return 'http://wikipathways.org//index.php?title=Special:SearchPathways&doSearch=1&ids=' + node.xRef.id + '&codes=' + pathvisiojs.pathway.dataSources.filter(function(dataSource) {
             return dataSource.database.replace(/[^a-z0-9]/gi,'').toLowerCase() == node.xRef.database.replace(/[^a-z0-9]/gi,'').toLowerCase();
           })[0].id + '&type=xref';
         })
         .attr('title', function() {return 'Search for pathways containing ' + node.textLabel.text; });
 
-        var dataNodeType = detailsFrame.select('#details-frame-description')
+        var dataNodeType = annotation.select('#annotation-description')
         .text(node.dataNodeType);
         
-        var detailsFrameItems = self.detailsFrameItems = detailsFrame.select('#details-frame-items-container').selectAll('li')
+        var annotationItems = self.annotationItems = annotation.select('#annotation-items-container').selectAll('li')
         .remove()
         .data(features)
         .enter()
         .append('li');
 
-        var detailsFrameItemTitles = detailsFrameItems.append('span')
-        .attr('class', 'details-frame-item-title')
+        var annotationItemTitles = annotationItems.append('span')
+        .attr('class', 'annotation-item-title')
         .text(function(d) {return d.database + ': ';});
 
         /*
@@ -4063,8 +4063,8 @@ pathvisio.pathway.xRef = function(){
         features[element.database] = [element.id];
         */
 
-        detailsFrameItems[0].forEach(function(detailsFrameItem) {
-          var detailsFrameItemTextNonLink = d3.select(detailsFrameItem).selectAll('.details-frame-item-text')
+        annotationItems[0].forEach(function(annotationItem) {
+          var annotationItemTextNonLink = d3.select(annotationItem).selectAll('.annotation-item-text')
           .data(function(d) {
             var featuresFilled = [];
             d.ids.forEach(function(id) {
@@ -4077,10 +4077,10 @@ pathvisio.pathway.xRef = function(){
           })
           .enter()
           .append('span')
-          .attr('class', 'details-frame-item-text')
+          .attr('class', 'annotation-item-text')
           .text(function(d) { return ' ' + d.id; })
 
-          var detailsFrameItemTextLinkOuts = d3.select(detailsFrameItem).selectAll('.details-frame-item-text')
+          var annotationItemTextLinkOuts = d3.select(annotationItem).selectAll('.annotation-item-text')
           .data(function(d) {
             var featuresFilled = [];
             d.ids.forEach(function(id) {
@@ -4093,19 +4093,19 @@ pathvisio.pathway.xRef = function(){
           })
           .enter()
           .append('a')
-          .attr('class', 'details-frame-item-text')
+          .attr('class', 'annotation-item-text')
           .attr('href', function(d) {return d.linkOut;})
           .text(function(d) { return ' ' + d.id; })
 
         });
 
-        detailsFrame[0][0].style.visibility = 'visible';
+        annotation[0][0].style.visibility = 'visible';
 
       });
     }
 
     return {
       getData:getData,
-      displayData:displayData,
+      render:render,
     };
 }();
