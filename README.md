@@ -18,25 +18,25 @@ How To Get Involved
 
 If you have not forked pathvisiojs,
 
-a. Fork the WikiPathways repo for pathvisiojs [here](https://github.com/wikipathways/pathvisiojs/fork)
-b. Go to your fork at https://github.com/your-github-account/pathvisiojs/
+* Fork the WikiPathways repo for pathvisiojs [here](https://github.com/wikipathways/pathvisiojs/fork)
+* Go to your fork at https://github.com/your-github-account/pathvisiojs/
 
 If you've already forked pathvisiojs in the past,
 
-a. Go to your fork of pathvisiojs at https://github.com/your-github-account/pathvisiojs/ and select the "Compare and review" button to the left of the "branch" drop-down to pull from the wikipathways fork of pathvisiojs into your fork
-b. Select "Edit" and "compare across forks" as needed to make the drop-downs look like this: your-github-account:gh-pages ... wikipathways:gh-pages
-c. Create pull request
-d. Accept pull request (if github says that the pull request cannot be done automatically, you will need to merge the files from the command line. Let Anders or Alex know and they can help.)
+* Go to your fork of pathvisiojs at https://github.com/your-github-account/pathvisiojs/ and select the "Compare and review" button to the left of the "branch" drop-down to pull from the wikipathways fork of pathvisiojs into your fork
+* Select "Edit" and "compare across forks" as needed to make the drop-downs look like this: your-github-account:gh-pages ... wikipathways:gh-pages
+* Create pull request
+* Accept pull request (if github says that the pull request cannot be done automatically, you will need to merge the files from the command line. Let Anders or Alex know and they can help.)
 
 2. Make Awesome Updates
 -----------------------
-a. You can edit any of the files in the "src" directory of the gh-pages branch of your fork (https://github.com/your-github-account/pathvisiojs/tree/gh-pages/src/)
-b. View your changes live at http://your-github-account.github.io/pathvisiojs/test/ (note the .IO)
+* You can edit any of the files in the "src" directory of the gh-pages branch of your fork (https://github.com/your-github-account/pathvisiojs/tree/gh-pages/src/)
+* View your changes live at http://your-github-account.github.io/pathvisiojs/test/ (note the .IO)
 
 3. Send Us a Pull Request
 -------------------------
-a. View each of the test pathways at http://your-github-account.github.io/pathvisiojs/test/ to ensure your code works well
-b. Create a pull request to the wikipathways fork of pathvisiojs (wikipathways:gh-pages ... your-github-account:gh-pages)
+* View each of the test pathways at http://your-github-account.github.io/pathvisiojs/test/ to ensure your code works well
+* Create a pull request to the wikipathways fork of pathvisiojs (wikipathways:gh-pages ... your-github-account:gh-pages)
 
 License
 =======
