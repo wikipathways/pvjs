@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Pathway xmlns="http://pathvisio.org/GPML/2013a" Name="interactions-dark-background" Version="20130813" Organism="Anopheles gambiae">
+<Pathway xmlns="http://pathvisiojs.org/GPML/2013a" Name="interactions-dark-background" Version="20130813" Organism="Anopheles gambiae">
   <Graphics BoardWidth="589.4605394605396" BoardHeight="1533.6174061070328" />
   <DataNode TextLabel="Metabolite" GraphId="b48a3" Type="Metabolite">
     <Graphics CenterX="377.6108263283281" CenterY="398.7333699519765" Width="80.0" Height="20.0" ZOrder="32848" FontSize="10" Valign="Middle" Color="0000ff" />
@@ -246,7 +246,7 @@
     <Xref Database="" ID="" />
   </Interaction>
   <Interaction GraphId="f690e">
-    <Attribute Key="org.pathvisio.DoubleLineProperty" Value="Double" />
+    <Attribute Key="org.pathvisiojs.DoubleLineProperty" Value="Double" />
     <Graphics ZOrder="32841" LineThickness="1.0" Color="0000ff">
       <Point X="139.24581568864693" Y="269.13431945467664" GraphRef="eb86c" RelX="1.0" RelY="0.0" ArrowHead="Arrow" />
       <Point X="337.61082632832813" Y="270.25437164408163" GraphRef="be555" RelX="-1.0" RelY="0.0" ArrowHead="TBar" />
@@ -261,7 +261,7 @@
     <Xref Database="" ID="" />
   </Interaction>
   <Interaction GraphId="a6961">
-    <Attribute Key="org.pathvisio.DoubleLineProperty" Value="Double" />
+    <Attribute Key="org.pathvisiojs.DoubleLineProperty" Value="Double" />
     <Graphics ZOrder="32843" LineThickness="3.0" Color="cccccc">
       <Point X="139.24581568864693" Y="396.1091050127882" GraphRef="c1451" RelX="1.0" RelY="0.0" ArrowHead="mim-necessary-stimulation" />
       <Point X="337.6108263283281" Y="398.7333699519765" GraphRef="b48a3" RelX="-1.0" RelY="0.0" ArrowHead="mim-binding" />
@@ -343,7 +343,7 @@
   <Label TextLabel="SAVE" GraphId="e355e">
     <Graphics CenterX="212.78721278721278" CenterY="28.986013986013994" Width="95.94405594405595" Height="27.982017982017986" ZOrder="33015" FillColor="ffffff" FontWeight="Bold" FontSize="30" Valign="Middle" Color="ffffff" />
   </Label>
-  <Label TextLabel="This pathway is to be saved long-term to test the ability of&#xA;GPML renderers to handle the element type named in the title." GraphId="c3c51">
+  <Label TextLabel="This pathway is to be saved long-term to test the ability of&#xA;GPML views to handle the element type named in the title." GraphId="c3c51">
     <Graphics CenterX="414.08591408591417" CenterY="25.489510489510494" Width="290.7492507492508" Height="32.977022977022976" ZOrder="33016" FillColor="ffffff" FontSize="10" Align="Left" Color="ffffff" />
   </Label>
   <InfoBox CenterX="0.0" CenterY="0.0" />

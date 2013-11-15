@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Pathway xmlns="http://pathvisio.org/GPML/2013a" Name="New Pathway" Version="20130904">
+<Pathway xmlns="http://pathvisiojs.org/GPML/2013a" Name="New Pathway" Version="20130904">
   <Graphics BoardWidth="313.33333333333326" BoardHeight="157.07070707070707" />
   <DataNode TextLabel="GeneProduct" GraphId="acb40" Type="GeneProduct" GroupRef="aaf38">
     <Graphics CenterX="82.82828282828282" CenterY="68.68686868686869" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />

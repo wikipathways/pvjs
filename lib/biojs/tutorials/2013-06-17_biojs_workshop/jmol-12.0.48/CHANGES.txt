@@ -952,7 +952,7 @@ version=12.0.48
 #  In order to create U3D files, we start with IDTF, which is an ASCII-based format
 #  The sequence is:
 #  JMOL: write t.idtf
-#  SHELL: idtfconverter.exe -input t.idtf -output t.u3d
+#  SHELL: idtfdata.exe -input t.idtf -output t.u3d
 #  SHELL: pdfLatex t.idtf.tex t.pdf 
 #   (not sure about that last syntax -- I'm using the GUI MikTex TeXworks interface
 #    to load the t.idtf.tex file and run it.
@@ -1744,7 +1744,7 @@ version=12.0.48
 # code: preliminary PARALLEL {.... PROCESS {....} ....}
 # code: Normix3D refactoring
 # bug fix: set measureAllModels not working properly 
-# bug fix: isosurface renderer subtle improvement for almost-degenerate-vertex triangles
+# bug fix: isosurface view subtle improvement for almost-degenerate-vertex triangles
 # new feature: set monitorEnergy -- preliminary idea only
 # bug fix: UFF carbonyl out-of-plane calculation coding error does not minimize carbonyl groups correctly
 
@@ -1810,7 +1810,7 @@ version=12.0.48
 # bug fix: subtle cartoonRenderer error involving --i > 0;
 # bug fix: rockets miscalculation of sheet parameters since forever (load 1ag6.pdb;rockets on)
 # bug fix: atomSite incorrectly assigned in AtomSetCollection for BIOMOLECULE generation
-# code: hermite renderer did not need global integer -- causing exception when rendering threads clash
+# code: hermite view did not need global integer -- causing exception when rendering threads clash
 # bug fix: write PNG  does not properly indicate that it is going to the clipboard
 # code: better handling of VAR local variables
 # new feature: VAR variables are now local to FOR and WHILE loops, as in Java
@@ -5513,7 +5513,7 @@ version=12.0.48
 # bug fix: frame titles not positioning correctly for antialiased display
 # bug fix: quaternions created with extraneous atom lines
 # bug fix: select symop not behaving intuitively
-# code: meshrenderer debug line not removed
+# code: meshview debug line not removed
 
 # new feature: (popup menu) Biomolecules submenu added within title menu
 
