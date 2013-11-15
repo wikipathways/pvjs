@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Pathway xmlns="http://pathvisiojs.org/GPML/2013a" Name="New Pathway" Version="20131112">
+  <Graphics BoardWidth="931.25" BoardHeight="616.25" />
+  <DataNode TextLabel="GeneProduct" GraphId="e4375" Type="GeneProduct">
+    <Graphics CenterX="257.5" CenterY="325.625" Width="175.0" Height="78.75" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="" ID="" />
+  </DataNode>
+  <DataNode TextLabel="Metabolite" GraphId="e64d3" Type="Metabolite">
+    <Graphics CenterX="751.625" CenterY="329.75" Width="251.75" Height="85.5" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Xref Database="" ID="" />
+  </DataNode>
+  <DataNode TextLabel="Protein" GraphId="fd7fd" Type="Protein">
+    <Graphics CenterX="451.25" CenterY="576.25" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="" ID="" />
+  </DataNode>
+  <Interaction>
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="345.0" Y="325.625" GraphRef="e4375" RelX="1.0" RelY="0.0" />
+      <Point X="625.75" Y="329.75" GraphRef="e64d3" RelX="-1.0" RelY="0.0" ArrowHead="Arrow" />
+      <Anchor Position="0.4453687912549635" Shape="None" GraphId="abdad" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction>
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="470.037288144831" Y="327.46214626392674" GraphRef="abdad" RelX="0.0" RelY="0.0" />
+      <Point X="454.275" Y="446.7625" />
+      <Point X="451.25" Y="566.25" GraphRef="fd7fd" RelX="0.0" RelY="-1.0" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <InfoBox CenterX="0.0" CenterY="0.0" />
+  <Biopax />
+</Pathway>
+

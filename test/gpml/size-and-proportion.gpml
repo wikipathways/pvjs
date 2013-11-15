@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Pathway xmlns="http://pathvisio.org/GPML/2013a" Name="size-and-proportion" Version="20130813" Organism="Anopheles gambiae">
+<Pathway xmlns="http://pathvisiojs.org/GPML/2013a" Name="size-and-proportion" Version="20130813" Organism="Anopheles gambiae">
   <Graphics BoardWidth="1551.1722674598261" BoardHeight="4804.444482440042" />
   <GraphicalLine GraphId="id3b9f67a">
     <Graphics ZOrder="-22" LineStyle="Broken" LineThickness="1.0" Color="cccccc">
@@ -97,7 +97,7 @@
       <Point X="1501.794871794869" Y="4774.444444444444" />
     </Graphics>
   </GraphicalLine>
-  <Label TextLabel="The purpose of this file is to test the accuracy of pathvisio.js in&#xA;rendering symbols at their stated dimensions for x, y, width and&#xA;height.&#xA;&#xA;The light gray grid indicate the bounding boxes&#xA;according to the GPML values. You can visually compare the&#xA;bounding boxes with the symbol in red. The symbol should fit." GraphId="fc106">
+  <Label TextLabel="The purpose of this file is to test the accuracy of pathvisiojs in&#xA;rendering symbols at their stated dimensions for x, y, width and&#xA;height.&#xA;&#xA;The light gray grid indicate the bounding boxes&#xA;according to the GPML values. You can visually compare the&#xA;bounding boxes with the symbol in red. The symbol should fit." GraphId="fc106">
     <Graphics CenterX="416.1583614337452" CenterY="195.298910407708" Width="544.4585987261147" Height="133.40661946177812" ZOrder="28672" FillColor="ffffff" FontSize="16" Align="Left" />
   </Label>
   <Label TextLabel="I don't know why PathVisio (Java) sets different values for&#xA;centerx and centery when I align the horizontal or vertical&#xA;centers of multiple elements. Is this a bug in PathVisio&#xA;(Java) or is it intended to make the elements appear to be&#xA;aligned visually because our eyes don't see mathematically&#xA;aligned elements as looking perfectly aligned?" GraphId="bb5ba">
@@ -106,7 +106,7 @@
   <Label TextLabel="SAVE" GraphId="bb6c2">
     <Graphics CenterX="212.78721278721278" CenterY="28.986013986013994" Width="95.94405594405595" Height="27.982017982017986" ZOrder="33015" FillColor="ffffff" FontWeight="Bold" FontSize="30" Valign="Middle" />
   </Label>
-  <Label TextLabel="This pathway is to be saved long-term to test the ability of&#xA;GPML renderers to handle the element type named in the title." GraphId="ed227">
+  <Label TextLabel="This pathway is to be saved long-term to test the ability of&#xA;GPML views to handle the element type named in the title." GraphId="ed227">
     <Graphics CenterX="414.08591408591417" CenterY="25.489510489510494" Width="290.7492507492508" Height="32.977022977022976" ZOrder="33016" FillColor="ffffff" FontSize="10" Align="Left" />
   </Label>
   <Shape GraphId="ba4c6">
@@ -131,19 +131,19 @@
     <Graphics CenterX="1200.0" CenterY="2000.0" Width="600.0" Height="600.0" ZOrder="32989" FontSize="10" Valign="Middle" ShapeType="Brace" Color="ff0000" Rotation="0.0" />
   </Shape>
   <Shape GraphId="ffa32">
-    <Attribute Key="org.pathvisio.CellularComponentProperty" Value="Mitochondria" />
+    <Attribute Key="org.pathvisiojs.CellularComponentProperty" Value="Mitochondria" />
     <Graphics CenterX="1200.0" CenterY="3400.0" Width="600.0" Height="600.0" ZOrder="32991" FontSize="10" Valign="Middle" ShapeType="Mitochondria" Color="ff0000" Rotation="0.0" />
   </Shape>
   <Shape GraphId="a5963">
-    <Attribute Key="org.pathvisio.CellularComponentProperty" Value="Sarcoplasmic Reticulum" />
+    <Attribute Key="org.pathvisiojs.CellularComponentProperty" Value="Sarcoplasmic Reticulum" />
     <Graphics CenterX="400.0" CenterY="2700.0" Width="600.0" Height="600.0" ZOrder="32993" FontSize="10" Valign="Middle" ShapeType="Sarcoplasmic Reticulum" Color="ff0000" Rotation="0.0" />
   </Shape>
   <Shape GraphId="f2f16">
-    <Attribute Key="org.pathvisio.CellularComponentProperty" Value="Endoplasmic Reticulum" />
+    <Attribute Key="org.pathvisiojs.CellularComponentProperty" Value="Endoplasmic Reticulum" />
     <Graphics CenterX="1200.0" CenterY="2700.0" Width="600.0" Height="600.0" ZOrder="32995" FontSize="10" Valign="Middle" ShapeType="Endoplasmic Reticulum" Color="ff0000" Rotation="0.0" />
   </Shape>
   <Shape GraphId="d8736">
-    <Attribute Key="org.pathvisio.CellularComponentProperty" Value="Golgi Apparatus" />
+    <Attribute Key="org.pathvisiojs.CellularComponentProperty" Value="Golgi Apparatus" />
     <Graphics CenterX="1200.0" CenterY="4100.0" Width="600.0" Height="600.0" ZOrder="32997" FontSize="10" Valign="Middle" ShapeType="Golgi Apparatus" Color="ff0000" Rotation="0.0" />
   </Shape>
   <Shape GraphId="c6ccb">
