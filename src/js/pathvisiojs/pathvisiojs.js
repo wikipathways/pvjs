@@ -47,6 +47,34 @@ pathvisiojs = function(){
     return results;
   }
 
+  function getJson(inputData, callback) {
+
+    // inputData is a uri to a GPML or other pathway data file.
+    // This function converts data specified by inputData to formatted JSON
+    // and return the JSON to the function that called getJson()
+
+    var inputDataDetails = getInputDataDetails(inputData);
+
+    // For now, pathvisio.js will attempt to convert any input data, as long as it is of type
+    // GPML or has no type specified, into JSON.
+    // TODO Later, this functionality can be extended to include other data types and
+    // to test for data type when it is not specified.
+
+    if (!!inputDataDetails.uri && (!inputDataDetails.type || inputDataDetails.type === 'GPML')) {
+
+      // TODO d3.xml doesn't seem to work with IE8
+
+      d3.xml(inputDataDetails.uri, function(gpml) {
+        pathvisiojs.data.gpml.toRenderableJson(gpml, function(json) {
+          callback(json);
+        });
+      });
+    }
+    else {
+      return new Error('No data source specified or pathvisio.js cannot handle the data source specified.');
+
+    }
+  }
 
   function load(args) {
 
