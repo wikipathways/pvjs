@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <head>
 <meta charset="utf-8">
-<title>pathvisiojs renderer</title>
+<title>pathvisiojs.view.pathwayDiagram</title>
 
 <!-- 
 Style guides can be arbitrary, but for sake of consistency within this project, let's use these:
@@ -147,7 +147,7 @@ SVG pathway template file</a> in the <span style="font-weight: bold">DEV</span> 
 <script src="../js/pathvisio/pathway/group.js"></script>
 <script src="../js/pathvisio/pathway/node.js"></script>
 
-<script src="../js/pathvisio/helpers.js"></script>
+<script src="../js/pathvisio/utilities.js"></script>
 <script src="../lib/rgb-color/rgb-color.js"></script>
 
 <script src="../js/jxon.js"></script>
@@ -183,9 +183,9 @@ SVG pathway template file</a> in the <span style="font-weight: bold">DEV</span> 
   window.onload = function() {
     //pathway.load('#pathway-image', '../../test/gpml/fill-and-stroke-colors.gpml');
     //pathway.load('#pathway-image', '../../test/gpml/shapes.gpml');
-    pathvisio.pathway.load('#pathway-image', url);
+    pathvisiojs.pathway.load('#pathway-image', url);
 
-    //pathvisio.drawFromUrl('#pathway-image', url, 'gpml+xml');
+    //pathvisiojs.drawFromUrl('#pathway-image', url, 'gpml+xml');
     //var sJson = JSON.stringify(pathway, undefined, 2);
     //$('#json-gpml-for-reading').text(sJson);
 

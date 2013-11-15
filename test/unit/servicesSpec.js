@@ -3,7 +3,7 @@
 /* jasmine specs for services go here */
 
 describe('service', function() {
-	beforeEach(module('pathvisio.services'));
+	beforeEach(module('pathvisiojs.services'));
 	beforeEach(inject(function($rootScope) {
 
 		describe('PathwayService', function() {

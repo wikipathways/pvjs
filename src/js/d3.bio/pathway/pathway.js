@@ -1,1 +1,1 @@
-d3.bio.pathway = pathvisio.pathway;
+d3.bio.pathway = pathvisiojs.pathway;
