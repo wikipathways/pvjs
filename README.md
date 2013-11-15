@@ -39,7 +39,7 @@ your-github-account:gh-pages ... wikipathways:gh-pages
 3. Send Us a Pull Request
 -------------------------
 * View each of the test pathways at http://your-github-account.github.io/pathvisiojs/test/ to ensure your code works well
-* Create a pull request to the wikipathways fork of pathvisiojs 
+* Create a pull request to the wikipathways fork of pathvisiojs: 
 ```
 wikipathways:gh-pages ... your-github-account:gh-pages
 ```
