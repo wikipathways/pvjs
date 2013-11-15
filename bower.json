@@ -1,9 +1,9 @@
 {
   "author": "Pathvisio.js team",
-  "name": "pathvisio.js",
+  "name": "pathvisiojs",
   "description": "Biological pathway viewer and editor",
   "version": "0.0.1",
-  "homepage": "https://github.com/wikipathways/pathvisio.js",
+  "homepage": "https://github.com/wikipathways/pathvisiojs",
   "dependencies": {
     "jquery": "1.10.2",
     "requirejs": "latest",

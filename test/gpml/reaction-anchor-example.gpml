@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Pathway xmlns="http://pathvisiojs.org/GPML/2013a" Name="New Pathway" Version="20131111">
+  <Graphics BoardWidth="1268.6761629768346" BoardHeight="729.3182314982877" />
+  <DataNode TextLabel="Inhibitor" GraphId="d7d46" Type="Metabolite">
+    <Graphics CenterX="616.4452695384794" CenterY="182.59057555118812" Width="100.91084364548533" Height="36.9239599010279" ZOrder="32768" FontSize="20" Valign="Middle" Color="0000ff" />
+    <Xref Database="" ID="" />
+  </DataNode>
+  <DataNode TextLabel="Other product" GraphId="a79be" Type="Metabolite">
+    <Graphics CenterX="747.8849407783415" CenterY="397.63113367174276" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Xref Database="" ID="" />
+  </DataNode>
+  <DataNode TextLabel="thiamine monophosphate" GraphId="e95ec" Type="Metabolite">
+    <Graphics CenterX="841.8438207740295" CenterY="318.7913352533262" Width="247.6851851851856" Height="28.828348258985656" ZOrder="32962" FontSize="20" Valign="Middle" Color="0000ff" />
+    <Xref Database="ChEBI" ID="9533" />
+  </DataNode>
+  <DataNode TextLabel="thiamine" GraphId="d494c" Type="Metabolite">
+    <Graphics CenterX="842.4141374675343" CenterY="675.2765092013324" Width="90.44472451832507" Height="48.08344459391045" ZOrder="32965" FontSize="20" Valign="Middle" Color="0000ff" />
+    <Xref Database="ChEBI" ID="26948" />
+  </DataNode>
+  <DataNode TextLabel="thiamine monophosphate phosphatase (ThMPase)" GraphId="f4d55" Type="GeneProduct">
+    <Comment>No identifier given, so I think this identifier best matches the given label. See also http://pathway.gramene.org/MAIZE/NEW-IMAGE?type=ENZYME&amp;object=GBWI-76117-MONOMER</Comment>
+    <Comment>Type your comment here</Comment>
+    <Graphics CenterX="305.42059978776075" CenterY="473.60564082757014" Width="348.06560876804997" Height="27.627198652721972" ZOrder="32966" FontSize="15" Valign="Middle" />
+    <Xref Database="MaizeGDB" ID="GRMZM2G057140" />
+  </DataNode>
+  <DataNode TextLabel="phosphoric acid" GraphId="a65cf" Type="Metabolite">
+    <Graphics CenterX="1143.8774312168657" CenterY="565.2282677211018" Width="187.821264585657" Height="32.02047230717267" ZOrder="32968" FontSize="20" Valign="Middle" Color="0000ff" />
+    <Xref Database="ChEBI" ID="26078" />
+  </DataNode>
+  <DataNode TextLabel="water" GraphId="c8917" Type="Metabolite">
+    <Graphics CenterX="1120.483333968358" CenterY="371.8734795833655" Width="85.84503176785893" Height="34.683146449204756" ZOrder="32969" FontSize="20" Valign="Middle" Color="0000ff" />
+    <Xref Database="ChEBI" ID="15377" />
+  </DataNode>
+  <DataNode TextLabel="product1" GraphId="a3369" Type="Metabolite">
+    <Graphics CenterX="629.6678397426213" CenterY="676.2407011136416" Width="187.821264585657" Height="32.02047230717267" ZOrder="32972" FontSize="20" Valign="Middle" Color="0000ff" />
+    <Xref Database="ChEBI" ID="26078" />
+  </DataNode>
+  <DataNode TextLabel="substrate1" GraphId="b7019" Type="Metabolite">
+    <Graphics CenterX="629.2162464181507" CenterY="320.36371048922757" Width="109.23178235672763" Height="34.683146449204756" ZOrder="32973" FontSize="20" Valign="Middle" Color="0000ff" />
+    <Xref Database="ChEBI" ID="15377" />
+  </DataNode>
+  <Interaction GraphId="id3e7e4362">
+    <Graphics ConnectorType="Elbow" ZOrder="12288" LineThickness="1.0">
+      <Point X="666.900691361222" Y="182.59057555118812" GraphRef="d7d46" RelX="1.0" RelY="0.0" />
+      <Point X="715.7360406091371" Y="148.8248986046973" />
+      <Point X="626.524449784903" Y="115.05922165820644" />
+      <Point X="533.8535460741474" Y="474.11211717111" GraphRef="aa720" RelX="0.0" RelY="0.0" ArrowHead="TBar" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction>
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="656.5241920073328" Y="337.70528371382994" GraphRef="b7019" RelX="0.5" RelY="1.0" />
+      <Point X="707.8849407783415" Y="397.63113367174276" GraphRef="a79be" RelX="-1.0" RelY="0.0" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="abb2a">
+    <Graphics ZOrder="32961" LineThickness="1.0">
+      <Point X="841.2117135063967" Y="476.84414585466794" />
+      <Point X="1049.9667989240372" Y="565.2282677211018" GraphRef="a65cf" RelX="-1.0" RelY="0.0" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="a11de">
+    <Graphics ZOrder="32963" LineThickness="1.0">
+      <Point X="841.8438207740294" Y="333.20550938281906" GraphRef="e95ec" RelX="0.0" RelY="1.0" />
+      <Point X="842.4141374675343" Y="651.2347869043772" GraphRef="d494c" RelX="0.0" RelY="-1.0" ArrowHead="Arrow" />
+      <Anchor Position="0.4520856106027978" Shape="None" GraphId="d3204" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="e9df8">
+    <Graphics ZOrder="32967" LineThickness="1.0">
+      <Point X="1077.5608180844285" Y="371.8734795833655" GraphRef="c8917" RelX="-1.0" RelY="0.0" />
+      <Point X="841.2117135063967" Y="476.84414585466794" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="f44c1">
+    <Graphics ConnectorType="Segmented" ZOrder="32970" LineThickness="1.0">
+      <Point X="629.2162464181508" Y="337.70528371382994" GraphRef="b7019" RelX="0.0" RelY="1.0" />
+      <Point X="629.4416243654823" Y="409.4754653130288" />
+      <Point X="841.7935702199662" Y="478.00338409475467" />
+      <Point X="630.2876480541455" Y="598.1387478849408" />
+      <Point X="629.6678397426213" Y="660.2304649600553" GraphRef="a3369" RelX="0.0" RelY="-1.0" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="edf60">
+    <Graphics ZOrder="32974" LineThickness="1.0">
+      <Point X="479.45340417178573" Y="473.60564082757014" GraphRef="f4d55" RelX="1.0" RelY="0.0" />
+      <Point X="842.1016527446495" Y="476.9819695007193" GraphRef="d3204" RelX="0.0" RelY="0.0" ArrowHead="mim-catalysis" />
+      <Anchor Position="0.1500080094594239" Shape="None" GraphId="aa720" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <InfoBox CenterX="0.0" CenterY="0.0" />
+  <Biopax />
+</Pathway>
+

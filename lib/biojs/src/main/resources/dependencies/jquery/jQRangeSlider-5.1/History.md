@@ -86,12 +86,12 @@ jQRangeSlider
 * 2.1.1: 2011-05-20
   * Integrated Google Closure compiler and script for generating minified version of jQRangeSlider
 * 2.1: 2011-03-28 
-  * Changed helpers name to labels (API change)
+  * Changed utilities name to labels (API change)
   * Labels replaced inside the top level parent element
 * 2.0.2: 2011-03-23 bugfix
 * 2.0.1: 2011-03-17 bugfix
 * 2.0: 2011-03-14 
-	* Value helpers
+	* Value utilities
 	* New events: min/maxValueChanging and min/maxValueChanged
 	* Bugfixes
 	* Unit tests

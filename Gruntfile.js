@@ -2,15 +2,15 @@ module.exports = function(grunt) {
 
 // ----------
 var packageJson = grunt.file.readJSON("package.json"),
-    distribution = "build/js/pathvisio.js",
-    minified = "build/js/pathvisio.min.js",
-    packageDirName = "pathvisio.js-" + packageJson.version,
+    distribution = "build/js/pathvisiojs",
+    minified = "build/js/pathvisiojs.min.js",
+    packageDirName = "pathvisiojs-" + packageJson.version,
     packageDir = "build/" + packageDirName + "/",
-    releaseRoot = "../site-build/built-pathvisio.js/",
+    releaseRoot = "../site-build/built-pathvisiojs/",
     sources = [
-      'src/js/pathvisio/pathvisio.js',
+      'src/js/pathvisio/pathvisiojs',
       'tmp/pathvisio-js.js',
-      'src/js/pathvisio/helpers.js',
+      'src/js/pathvisio/utilities.js',
       'src/js/pathvisio/pathway/pathway.js',
       'src/js/pathvisio/pathway/group.js',
       'src/js/pathvisio/pathway/info-box.js',
@@ -43,7 +43,7 @@ grunt.initConfig({
           banner: "//! <%= pkg.name %> <%= pkg.version %>\n"
               + "//! Built on <%= grunt.template.today('yyyy-mm-dd') %>\n"
               //+ "//! Git commit: <%= gitInfo %>\n"
-              + "//! https://github.com/wikipathways/pathvisio.js\n"
+              + "//! https://github.com/wikipathways/pathvisiojs\n"
               + "//! License: http://www.apache.org/licenses/LICENSE-2.0/\n\n",
           process: true
         },
