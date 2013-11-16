@@ -24,10 +24,10 @@ body {
 .typeahead,
 .tt-query,
 .tt-hint {
-  width: 396px;
-  height: 30px;
-  padding: 8px 12px;
-  font-size: 24px;
+  width: 180px;
+  height: 20px;
+  padding: 4px 6px;
+  font-size: 12px;
   line-height: 30px;
   border: 2px solid #ccc;
   -webkit-border-radius: 8px;
