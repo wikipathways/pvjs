@@ -38,9 +38,21 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
         self.svgDimensions = svgDimensions;
         d3.select('#loading-icon').remove();
 
+        var initialClick = false;
         svg.attr('style', 'display: inline; width: ' + args.target.width + 'px; height: ' + args.target.height + 'px; ')
         .on("click", function(d, i){
-          svgPanZoom.setZoom(1);
+          svgPanZoom.setZoom(true);
+          initialClick = true;
+        })
+        .on("mouseover", function(d, i){
+          if (initialClick) {
+            svgPanZoom.setZoom(true);
+          }
+        })
+        .on("mouseout", function(d, i){
+          if (initialClick) {
+            svgPanZoom.setZoom(false);
+          }
         });
 
         // TODO avoid defining svg again
