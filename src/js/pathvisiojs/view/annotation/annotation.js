@@ -2,7 +2,7 @@ pathvisiojs.view.annotation = function(){
   function render(annotationData) {
     self.annotationData = annotationData;
     var annotation = d3.select("#annotation")
-    .data([annotationData]);
+    .data([annotationData])
 
     var annotationHeaderText = annotation.select('#annotation-header-text')
     .text(function(d) { return d.header; });
@@ -21,32 +21,6 @@ pathvisiojs.view.annotation = function(){
 
     var annotationDescription = annotation.select('#annotation-description')
     .text(function(d) { return d.description; });
-
-    /*
-var p = d3.select("#header").selectAll("p")
-    .data(annotationData.listItems)
-    .text(function(d) {return d.key;});
-
-// Enter…
-p.enter().append("p")
-    .text(function(d) {return d.key;});
-
-// Exit…
-p.exit().remove();
-//*/
-
-
-
-/*
-var tr = d3.select("body").append("table").selectAll("tr")
-    .data(matrix)
-  .enter().append("tr");
-
-var td = tr.selectAll("td")
-    .data(function(d) { return d; })
-  .enter().append("td")
-    .text(function(d) { return d; });
-//*/
 
     var annotationListItemsContainer = annotation.selectAll('#annotation-items-container')
     .data(function(d) {
@@ -72,8 +46,6 @@ var td = tr.selectAll("td")
     // Exit…
     annotationListItems.exit().remove();
 
-
-
     var annotationItemTitles = annotationListItems.selectAll('.annotation-item-title')
     .data(function(d) {
       console.log('d annotationListItems');
@@ -84,18 +56,9 @@ var td = tr.selectAll("td")
     .attr('class', 'annotation-item-title')
     .text(function(d) {return d + ': ';});
 
-
-
-
-
-
     // Update
     var annotationItemPlainTextElements = annotationListItems.selectAll('span.annotation-item-text')
     .data(function(d) {
-          console.log('d');
-          console.log(d);
-          return d.values;
-          /*
       return d.values.filter(function(element) {
         if (!element.hasOwnProperty('uri')) {
           console.log('annotationItemPlainTextElement');
@@ -103,7 +66,6 @@ var td = tr.selectAll("td")
           return element; 
         }
       });
-      //*/
     })
     .text(function(d) { return ' ' + d.text; });
 
@@ -116,9 +78,7 @@ var td = tr.selectAll("td")
     // Exit…
     annotationItemPlainTextElements.exit().remove();
 
-
-
-    /*
+    // Update
     var annotationItemLinkedTextElements = annotationListItems.selectAll('a.annotation-item-text')
     .data(function(d) {
       return d.values.filter(function(element) {
@@ -129,12 +89,20 @@ var td = tr.selectAll("td")
         }
       }); 
     })
-    .enter().append('a')
+    .text(function(d) { return ' ' + d.text; });
+
+    // Enter
+    annotationItemLinkedTextElements.enter()
+    .append('a')
     .attr('href', function(d) {return d.uri;})
     .attr('class', 'annotation-item-text')
     .text(function(d) { return ' ' + d.text; });
-//*/
+
+    // Exit…
+    annotationItemLinkedTextElements.exit().remove();
+
     annotation[0][0].style.visibility = 'visible';
+
   }
       
   return {
