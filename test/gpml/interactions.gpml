@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Pathway xmlns="http://pathvisiojs.org/GPML/2013a" Name="interactions" Version="20130813" Organism="Anopheles gambiae">
+<Pathway xmlns="http://pathvisio.org/GPML/2013a" Name="interactions" Version="20130813" Organism="Anopheles gambiae">
   <Graphics BoardWidth="589.4605394605396" BoardHeight="1403.9516241579338" />
   <DataNode TextLabel="Metabolite" GraphId="b48a3" Type="Metabolite">
     <Graphics CenterX="353.9902409109661" CenterY="473.69583148767674" Width="80.0" Height="20.0" ZOrder="32848" FontSize="10" Valign="Middle" Color="0000ff" />
@@ -218,7 +218,7 @@
     <Xref Database="" ID="" />
   </Interaction>
   <Interaction GraphId="f690e">
-    <Attribute Key="org.pathvisiojs.DoubleLineProperty" Value="Double" />
+    <Attribute Key="org.pathvisio.DoubleLineProperty" Value="Double" />
     <Graphics ZOrder="32841" LineThickness="1.0" Color="0000ff">
       <Point X="139.24581568864699" Y="269.13431945467664" GraphRef="eb86c" RelX="1.0" RelY="0.0" ArrowHead="Arrow" />
       <Point X="313.5788650032529" Y="270.25437164408163" GraphRef="be555" RelX="-1.0" RelY="0.0" ArrowHead="TBar" />
@@ -233,7 +233,7 @@
     <Xref Database="" ID="" />
   </Interaction>
   <Interaction GraphId="a6961">
-    <Attribute Key="org.pathvisiojs.DoubleLineProperty" Value="Double" />
+    <Attribute Key="org.pathvisio.DoubleLineProperty" Value="Double" />
     <Graphics ZOrder="32843" LineThickness="3.0">
       <Point X="139.24581568864693" Y="471.0715665484884" GraphRef="c1451" RelX="1.0" RelY="0.0" ArrowHead="mim-necessary-stimulation" />
       <Point X="313.9902409109661" Y="473.69583148767674" GraphRef="b48a3" RelX="-1.0" RelY="0.0" ArrowHead="mim-binding" />

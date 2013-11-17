@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <meta charset="utf-8">
-<title>pathvisiojs gpml2json testing</title>
+<title>pathvisio gpml2json testing</title>
 
 <!-- 
 Style guides can be arbitrary, but for sake of consistency within this project, let's use these:
@@ -10,7 +10,7 @@ http://google-styleguide.googlecode.com/svn/trunk/jsoncstyleguide.xml#General_Gu
 -->
 
 <body>
-  <h1>pathvisiojs gpml2json testing</h1>
+  <h1>pathvisio gpml2json testing</h1>
 
   <form>
     <input type="submit" onclick="submitRequest()" />
@@ -156,7 +156,7 @@ http://google-styleguide.googlecode.com/svn/trunk/jsoncstyleguide.xml#General_Gu
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.js"></script>
   <script src="../src/lib/d3/d3.js" charset="utf-8"></script>
 
-  <script src="../build/js/pathvisiojs"></script>
+  <script src="../build/js/pathvisio"></script>
 
   <script>
 
@@ -169,8 +169,8 @@ http://google-styleguide.googlecode.com/svn/trunk/jsoncstyleguide.xml#General_Gu
       var oParser = new DOMParser();
       var oDOM = oParser.parseFromString(sGpml, "text/xml");
       var gpml = self.gpml = oDOM.documentElement;
-      var json = pathvisiojs.pathway.gpml2json(gpml);
-      var sJson = self.sJson = JSON.stringify(pathvisiojs.data.pathways[null], undefined, 2);
+      var json = pathvisio.pathway.gpml2json(gpml);
+      var sJson = self.sJson = JSON.stringify(pathvisio.data.pathways[null], undefined, 2);
       $('#json-text-area').text(sJson)
     };
 
