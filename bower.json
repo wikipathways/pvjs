@@ -6,7 +6,7 @@
   "homepage": "https://github.com/wikipathways/pathvisiojs",
   "dependencies": {
     "jquery": "1.10.2",
-    "requirejs": "latest",
+    "requirejs": "~2.1.9",
     "d3": ">= 3.2.8",
     "screenfull": "~1.1.0",
     "bootstrap": "~3.0.0",
@@ -14,7 +14,8 @@
     "jquery-ui": "~1.10.3",
     "typeahead.js": "~0.9.3",
     "hogan": "~3.0.0",
-    "jsPlumb": "~1.5.3"
+    "jsPlumb": "~1.5.3",
+    "jsonld.js": "~0.1.25"
   },
   "devDependencies": {
     "jquery": "1.10.2"
