@@ -254,7 +254,7 @@
       },
       function(callback) {
       loadScripts([
-      srcDirectoryUrl + "/../../build/js/pathvisiojs.js",
+      srcDirectoryUrl + "/../../build/js/pathvisio.js",
       ], function(){
       callback(null);
       });
@@ -268,7 +268,7 @@
       var urlParamList = getUrlParamList();
 
       var currentUrl = document.location.origin + document.location.pathname;
-      var rootDirectoryUrl = document.location.origin + document.location.pathname.split("pathvisiojs/")[0] + 'pathvisiojs/';
+      var rootDirectoryUrl = document.location.origin + document.location.pathname.split("pathvisio/")[0] + 'pathvisio/';
       var srcDirectoryUrl = (rootDirectoryUrl + 'src/');
 
       /*********************************************
@@ -332,7 +332,7 @@
       {'id': 't-bar', 'url': srcDirectoryUrl + 'views/markers/t-bar.svg'}
       ];
 
-      pathvisiojs.load({
+      pathvisio.load({
         target: '#pathvisio-js-dev',
         width: 1000,
         height: 500,

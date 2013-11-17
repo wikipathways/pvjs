@@ -11,6 +11,9 @@ pathvisiojs = function(){
 
   function getInputDataDetails(inputData) {
 
+    console.log('inputData');
+    console.log(inputData);
+
     // inputData can be a WikiPathways ID (WP1), a uri for a GPML file (http://www.wikipathways.org/gpmlfile.gpml)
     // or a uri for another type of file.
 
@@ -24,6 +27,7 @@ pathvisiojs = function(){
       if (pathvisiojs.utilities.isWikiPathwaysId(inputData.wikiPathwaysId)) {
         results.uri = getUriFromWikiPathwaysId(inputData.wikiPathwaysId, inputData.revision);
         results.type = 'GPML';
+        results.pathwayIri = 'wpId:' + inputData.wikiPathwaysId;
       }
     }
     else {
@@ -31,12 +35,14 @@ pathvisiojs = function(){
         results.uri = inputData;
         if (results.uri.indexOf('.gpml') > -1) {
           results.type = 'GPML';
+          results.pathwayIri = inputData;
         }
       }
       else {
         if (pathvisiojs.utilities.isWikiPathwaysId(inputData)) {
           results.uri = getUriFromWikiPathwaysId(inputData);
           results.type = 'GPML';
+          results.pathwayIri = 'wpId:' + inputData;
         }
         else {
           return new Error('Pathvisio.js cannot handle the data source type entered: ' + data);
@@ -65,7 +71,7 @@ pathvisiojs = function(){
       // TODO d3.xml doesn't seem to work with IE8
 
       d3.xml(inputDataDetails.uri, function(gpml) {
-        pathvisiojs.data.gpml.toRenderableJson(gpml, function(json) {
+        pathvisiojs.data.gpml.toRenderableJson(gpml, inputDataDetails.pathwayIri, function(json) {
           callback(json);
         });
       });

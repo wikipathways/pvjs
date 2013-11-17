@@ -1,0 +1,36 @@
+"@context" {
+  "zIndexes": "http://example.com/",
+  "@container": "@list"
+},
+"zIndexes": [
+  "GraphId:123",
+  "GraphId:221"
+],
+"nodes": [
+  {
+    "gpml:GraphId":"substrate1",
+    "nodeType":"DataNode",
+    "dataNodeType":"GeneProduct"
+  }
+],
+"edges": [
+  {
+    "gpml:GraphId":"abc"
+    "gpml:GraphRefs":
+    [
+      123
+    ],
+    "gpml:Points":
+    [
+      {
+        "gpml:x":"50"
+        "gpml:y":10
+      },
+      {
+        "gpml:GraphRef":"123"
+        "gpml:RelX":1,
+        "gpml:RelY":0
+      }
+    ]
+  }
+]

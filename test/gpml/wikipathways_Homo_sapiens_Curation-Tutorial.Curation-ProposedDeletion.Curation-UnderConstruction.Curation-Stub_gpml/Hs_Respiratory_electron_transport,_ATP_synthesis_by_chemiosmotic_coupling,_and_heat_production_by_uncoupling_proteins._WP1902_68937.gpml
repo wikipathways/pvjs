@@ -1,0 +1,992 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Pathway xmlns="http://pathvisio.org/GPML/2013a" Name="Respiratory electron transport, ATP synthesis by chemiosmotic coupling, and heat production by uncoupling proteins." Data-Source="Reactome - http://www.reactome.org" Version="release 35" Author="Jassal, B" Organism="Homo sapiens">
+  <Comment Source="WikiPathways-description">Oxidation of fatty acids and pyruvate in the mitochondrial matrix yield large amounts of NADH. The respiratory electron transport chain couples the re-oxidation of this NADH to NAD+ to the export of protons from the mitochonrial matrix, generating a chemiosmotic gradient across the inner mitochondrial membrane. This gradient is used to drive the synthesis of ATP; it can also be bypassed by uncoupling proteins to generate heat, a reaction in brown fat that may be important in regulation of body temperature in newborn children.</Comment>
+  <Comment Source="WikiPathways-category">Cellular Process</Comment>
+  <Graphics BoardWidth="3902.5" BoardHeight="6380.0"/>
+  <DataNode TextLabel="Cytochrome c &#10;(oxidized)&#10;" GraphId="n4_REACTOME_352607" Type="Complex">
+    <Graphics CenterX="309.0" CenterY="253.0" Width="88.0" Height="36.0" ZOrder="32768" FillColor="ccffff" FontSize="12" Valign="Middle" ShapeType="RoundedRectangle" LineThickness="2.0"/>
+    <Xref Database="Reactome" ID="REACT_13953"/>
+  </DataNode>
+  <DataNode TextLabel="ubiquinol&#10;" GraphId="n5_REACTOME_76633" Type="Metabolite">
+    <Graphics CenterX="193.0" CenterY="287.0" Width="72.0" Height="26.0" ZOrder="32768" FillColor="ccffcc" FontSize="12" Valign="Middle" ShapeType="Oval"/>
+    <Xref Database="ChEBI" ID="17976"/>
+  </DataNode>
+  <DataNode TextLabel="ubiquinone&#10;" GraphId="n6_REACTOME_73663" Type="Metabolite">
+    <Graphics CenterX="191.5" CenterY="376.0" Width="77.0" Height="32.0" ZOrder="32768" FillColor="ccffcc" FontSize="12" Valign="Middle" ShapeType="Oval"/>
+    <Xref Database="ChEBI" ID="16389"/>
+  </DataNode>
+  <DataNode TextLabel="Cytochrome c &#10;(reduced)&#10;" GraphId="n9_REACTOME_352609" Type="Complex">
+    <Graphics CenterX="665.5" CenterY="252.0" Width="83.0" Height="38.0" ZOrder="32768" FillColor="ccffff" FontSize="12" Valign="Middle" ShapeType="RoundedRectangle" LineThickness="2.0"/>
+    <Xref Database="Reactome" ID="REACT_13858"/>
+  </DataNode>
+  <DataNode TextLabel="Ubiquinol-&#10;cytochrome c &#10;reductase&#10;" GraphId="n10_REACTOME_164317" Type="Complex">
+    <Graphics CenterX="481.0" CenterY="253.5" Width="120.0" Height="49.0" ZOrder="32768" FillColor="ccffff" FontSize="12" Valign="Middle" ShapeType="RoundedRectangle" LineThickness="2.0"/>
+    <Xref Database="Reactome" ID="REACT_6527"/>
+  </DataNode>
+  <DataNode TextLabel="ubiquinone&#10;" GraphId="n11_REACTOME_73663" Type="Metabolite">
+    <Graphics CenterX="776.5" CenterY="252.5" Width="79.0" Height="33.0" ZOrder="32768" FillColor="ccffcc" FontSize="12" Valign="Middle" ShapeType="Oval"/>
+    <Xref Database="ChEBI" ID="16389"/>
+  </DataNode>
+  <DataNode TextLabel="ubiquinol&#10;" GraphId="n12_REACTOME_76633" Type="Metabolite">
+    <Graphics CenterX="1020.5" CenterY="253.5" Width="61.0" Height="25.0" ZOrder="32768" FillColor="ccffcc" FontSize="12" Valign="Middle" ShapeType="Oval"/>
+    <Xref Database="ChEBI" ID="17976"/>
+  </DataNode>
+  <DataNode TextLabel="NADH&#10;" GraphId="n13_REACTOME_29362" Type="Metabolite">
+    <Graphics CenterX="332.5" CenterY="411.5" Width="47.0" Height="27.0" ZOrder="32768" FillColor="ccffcc" FontSize="12" Valign="Middle" ShapeType="Oval"/>
+    <Xref Database="ChEBI" ID="16908"/>
+  </DataNode>
+  <DataNode TextLabel="NAD+&#10;" GraphId="n14_REACTOME_113526" Type="Metabolite">
+    <Graphics CenterX="345.5" CenterY="548.0" Width="45.0" Height="24.0" ZOrder="32768" FillColor="ccffcc" FontSize="12" Valign="Middle" ShapeType="Oval"/>
+    <Xref Database="ChEBI" ID="15846"/>
+  </DataNode>
+  <DataNode TextLabel="Complex I - &#10;NADH:&#10;Ubiquinone &#10;oxidoreductase&#10;" GraphId="n15_REACTOME_163924" Type="Complex">
+    <Graphics CenterX="186.0" CenterY="485.0" Width="102.0" Height="66.0" ZOrder="32768" FillColor="ccffff" FontSize="12" Valign="Middle" ShapeType="RoundedRectangle" LineThickness="2.0"/>
+    <Xref Database="Reactome" ID="REACT_6533"/>
+  </DataNode>
+  <DataNode TextLabel="H+&#10;" GraphId="n16_REACTOME_163953" Type="Metabolite">
+    <Graphics CenterX="116.5" CenterY="739.0" Width="31.0" Height="32.0" ZOrder="32768" FillColor="ccffcc" FontSize="12" Valign="Middle" ShapeType="Oval"/>
+    <Xref Database="ChEBI" ID="15378"/>
+  </DataNode>
+  <DataNode TextLabel="Succinate &#10;dehydrogenase &#10;complex (reduced)&#10;" GraphId="n18_REACTOME_165631" Type="Complex">
+    <Graphics CenterX="895.5" CenterY="251.0" Width="113.0" Height="62.0" ZOrder="32768" FillColor="ccffff" FontSize="12" Valign="Middle" ShapeType="RoundedRectangle" LineThickness="2.0"/>
+    <Xref Database="Reactome" ID="REACT_6402"/>
+  </DataNode>
+  <DataNode TextLabel="Succinate &#10;dehydrogenase &#10;complex (oxidised)&#10;" GraphId="n19_REACTOME_70990" Type="Complex">
+    <Graphics CenterX="1129.5" CenterY="250.0" Width="113.0" Height="58.0" ZOrder="32768" FillColor="ccffff" FontSize="12" Valign="Middle" ShapeType="RoundedRectangle" LineThickness="2.0"/>
+    <Xref Database="Reactome" ID="REACT_3127"/>
+  </DataNode>
+  <DataNode TextLabel="ETF &#10;(reduced)&#10;" GraphId="n21_REACTOME_169268" Type="Complex">
+    <Graphics CenterX="732.5" CenterY="443.5" Width="71.0" Height="33.0" ZOrder="32768" FillColor="ccffff" FontSize="12" Valign="Middle" ShapeType="RoundedRectangle" LineThickness="2.0"/>
+    <Xref Database="Reactome" ID="REACT_6568"/>
+  </DataNode>
+  <DataNode TextLabel="ETF&#10;" GraphId="n22_REACTOME_169267" Type="Complex">
+    <Graphics CenterX="943.0" CenterY="441.0" Width="44.0" Height="22.0" ZOrder="32768" FillColor="ccffff" FontSize="12" Valign="Middle" ShapeType="RoundedRectangle" LineThickness="2.0"/>
+    <Xref Database="Reactome" ID="REACT_6490"/>
+  </DataNode>
+  <DataNode TextLabel="ETFDH&#10;" GraphId="n23_REACTOME_448210" Type="Protein">
+    <Graphics CenterX="842.5" CenterY="458.0" Width="55.0" Height="24.0" ZOrder="32768" FillColor="ccffcc" FontSize="12" Valign="Middle" ShapeType="RoundedRectangle"/>
+    <Xref Database="UniProt" ID="Q16134"/>
+  </DataNode>
+  <DataNode TextLabel="FADH2&#10;" GraphId="n24_REACTOME_31649" Type="Metabolite">
+    <Graphics CenterX="1041.0" CenterY="498.0" Width="50.0" Height="26.0" ZOrder="32768" FillColor="ccffcc" FontSize="12" Valign="Middle" ShapeType="Oval"/>
+    <Xref Database="ChEBI" ID="17877"/>
+  </DataNode>
+  <DataNode TextLabel="FAD&#10;" GraphId="n25_REACTOME_113596" Type="Metabolite">
+    <Graphics CenterX="786.5" CenterY="502.0" Width="39.0" Height="28.0" ZOrder="32768" FillColor="ccffcc" FontSize="12" Valign="Middle" ShapeType="Oval"/>
+    <Xref Database="ChEBI" ID="16238"/>
+  </DataNode>
+  <DataNode TextLabel="ubiquinol&#10;" GraphId="n31_REACTOME_76633" Type="Metabolite">
+    <Graphics CenterX="182.5" CenterY="551.5" Width="63.0" Height="31.0" ZOrder="32768" FillColor="ccffcc" FontSize="12" Valign="Middle" ShapeType="Oval"/>
+    <Xref Database="ChEBI" ID="17976"/>
+  </DataNode>
+  <DataNode TextLabel="ADP&#10;" GraphId="n67_REACTOME_113581" Type="Metabolite">
+    <Graphics CenterX="597.5" CenterY="759.0" Width="41.0" Height="24.0" ZOrder="32768" FillColor="ccffcc" FontSize="12" Valign="Middle" ShapeType="Oval"/>
+    <Xref Database="ChEBI" ID="16761"/>
+  </DataNode>
+  <DataNode TextLabel="Orthophosp&#10;hate&#10;" GraphId="n68_REACTOME_113548" Type="Metabolite">
+    <Graphics CenterX="575.0" CenterY="715.5" Width="70.0" Height="49.0" ZOrder="32768" FillColor="ccffcc" FontSize="12" Valign="Middle" ShapeType="Oval"/>
+    <Xref Database="ChEBI" ID="18367"/>
+  </DataNode>
+  <DataNode TextLabel="ATPase &#10;complex&#10;" GraphId="n69_REACTOME_74186" Type="Complex">
+    <Graphics CenterX="635.5" CenterY="801.5" Width="73.0" Height="35.0" ZOrder="32768" FillColor="ccffff" FontSize="12" Valign="Middle" ShapeType="RoundedRectangle" LineThickness="2.0"/>
+    <Xref Database="Reactome" ID="REACT_4862"/>
+  </DataNode>
+  <DataNode TextLabel="ATPase-ADP and &#10;Pi complex&#10;" GraphId="n70_REACTOME_164838" Type="Complex">
+    <Graphics CenterX="442.0" CenterY="799.5" Width="102.0" Height="47.0" ZOrder="32768" FillColor="ccffff" FontSize="12" Valign="Middle" ShapeType="RoundedRectangle" LineThickness="2.0"/>
+    <Xref Database="Reactome" ID="REACT_2435"/>
+  </DataNode>
+  <DataNode TextLabel="H2O&#10;" GraphId="n72_REACTOME_113521" Type="Metabolite">
+    <Graphics CenterX="290.5" CenterY="754.5" Width="47.0" Height="29.0" ZOrder="32768" FillColor="ccffcc" FontSize="12" Valign="Middle" ShapeType="Oval"/>
+    <Xref Database="ChEBI" ID="15377"/>
+  </DataNode>
+  <DataNode TextLabel="ATPase-ATP &#10;complex&#10;" GraphId="n73_REACTOME_164835" Type="Complex">
+    <Graphics CenterX="254.5" CenterY="799.0" Width="85.0" Height="38.0" ZOrder="32768" FillColor="ccffff" FontSize="12" Valign="Middle" ShapeType="RoundedRectangle" LineThickness="2.0"/>
+    <Xref Database="Reactome" ID="REACT_3945"/>
+  </DataNode>
+  <DataNode TextLabel="ATP&#10;" GraphId="n75_REACTOME_113593" Type="Metabolite">
+    <Graphics CenterX="307.0" CenterY="602.5" Width="44.0" Height="31.0" ZOrder="32768" FillColor="ccffcc" FontSize="12" Valign="Middle" ShapeType="Oval"/>
+    <Xref Database="ChEBI" ID="15422"/>
+  </DataNode>
+  <DataNode TextLabel="H+&#10;" GraphId="n76_REACTOME_113529" Type="Metabolite">
+    <Graphics CenterX="596.5" CenterY="577.0" Width="35.0" Height="30.0" ZOrder="32768" FillColor="ccffcc" FontSize="12" Valign="Middle" ShapeType="Oval"/>
+    <Xref Database="ChEBI" ID="15378"/>
+  </DataNode>
+  <DataNode TextLabel="Fatty Acid anion &#10;&quot;head-in&quot;&#10;" GraphId="n79_REACTOME_166213">
+    <Graphics CenterX="1663.5" CenterY="631.5" Width="99.0" Height="35.0" ZOrder="32768" FillColor="ccffcc" FontSize="12" Valign="Middle"/>
+    <Xref Database="Reactome" ID="REACT_6375"/>
+  </DataNode>
+  <DataNode TextLabel="UCP &#10;dimer&#10;" GraphId="n80_REACTOME_166389" Type="Complex">
+    <Graphics CenterX="1675.5" CenterY="683.5" Width="59.0" Height="37.0" ZOrder="32768" FillColor="ccffff" FontSize="12" Valign="Middle" ShapeType="RoundedRectangle" LineThickness="2.0"/>
+    <Xref Database="Reactome" ID="REACT_6463"/>
+  </DataNode>
+  <DataNode TextLabel="FA anion:UCP &#10;dimer &quot;head-in&quot; &#10;complex&#10;" GraphId="n81_REACTOME_166218" Type="Complex">
+    <Graphics CenterX="1674.0" CenterY="799.0" Width="94.0" Height="54.0" ZOrder="32768" FillColor="ccffff" FontSize="12" Valign="Middle" ShapeType="RoundedRectangle" LineThickness="2.0"/>
+    <Xref Database="Reactome" ID="REACT_6679"/>
+  </DataNode>
+  <DataNode TextLabel="FA anion:UCP &#10;dimer  &quot;head-&#10;out&quot; complex&#10;" GraphId="n83_REACTOME_166385" Type="Complex">
+    <Graphics CenterX="1450.0" CenterY="798.0" Width="98.0" Height="50.0" ZOrder="32768" FillColor="ccffff" FontSize="12" Valign="Middle" ShapeType="RoundedRectangle" LineThickness="2.0"/>
+    <Xref Database="Reactome" ID="REACT_6437"/>
+  </DataNode>
+  <DataNode TextLabel="Fatty Acid &#10;anion &#10;&quot;head-out&quot;&#10;" GraphId="n86_REACTOME_166216">
+    <Graphics CenterX="1281.0" CenterY="799.0" Width="74.0" Height="50.0" ZOrder="32768" FillColor="ccffcc" FontSize="12" Valign="Middle"/>
+    <Xref Database="Reactome" ID="REACT_6652"/>
+  </DataNode>
+  <DataNode TextLabel="Fatty Acid &#10;&quot;head-out&quot;&#10;" GraphId="n88_REACTOME_166217">
+    <Graphics CenterX="1099.5" CenterY="798.5" Width="73.0" Height="41.0" ZOrder="32768" FillColor="ccffcc" FontSize="12" Valign="Middle"/>
+    <Xref Database="Reactome" ID="REACT_6554"/>
+  </DataNode>
+  <DataNode TextLabel="Fatty Acid &#10;&quot;head-in&quot;&#10;" GraphId="n90_REACTOME_166226">
+    <Graphics CenterX="966.0" CenterY="801.5" Width="76.0" Height="39.0" ZOrder="32768" FillColor="ccffcc" FontSize="12" Valign="Middle"/>
+    <Xref Database="Reactome" ID="REACT_6592"/>
+  </DataNode>
+  <DataNode TextLabel="Long-chain &#10;fatty acid&#10;" GraphId="n95_REACTOME_30495">
+    <Graphics CenterX="1766.0" CenterY="476.0" Width="78.0" Height="40.0" ZOrder="32768" FillColor="ccffcc" FontSize="12" Valign="Middle"/>
+    <Xref Database="ChEBI" ID="15904"/>
+  </DataNode>
+  <DataNode TextLabel="Purine &#10;nucleotide&#10;" GraphId="n96_REACTOME_170037">
+    <Graphics CenterX="1775.0" CenterY="538.5" Width="68.0" Height="37.0" ZOrder="32768" FillColor="ccffcc" FontSize="12" Valign="Middle"/>
+    <Xref Database="Reactome" ID="REACT_6384"/>
+  </DataNode>
+  <DataNode TextLabel="UCP &#10;dimer&#10;" GraphId="n97_REACTOME_166389" Type="Complex">
+    <Graphics CenterX="1674.5" CenterY="508.5" Width="59.0" Height="37.0" ZOrder="32768" FillColor="ccffff" FontSize="12" Valign="Middle" ShapeType="RoundedRectangle" LineThickness="2.0"/>
+    <Xref Database="Reactome" ID="REACT_6463"/>
+  </DataNode>
+  <DataNode TextLabel="Oxygen&#10;" GraphId="n99_REACTOME_113533" Type="Metabolite">
+    <Graphics CenterX="642.5" CenterY="382.5" Width="61.0" Height="31.0" ZOrder="32768" FillColor="ccffcc" FontSize="12" Valign="Middle" ShapeType="Oval"/>
+    <Xref Database="ChEBI" ID="15379"/>
+  </DataNode>
+  <DataNode TextLabel="Cytochrome &#10;c oxidase&#10;" GraphId="n101_REACTOME_164316" Type="Complex">
+    <Graphics CenterX="486.5" CenterY="112.0" Width="75.0" Height="38.0" ZOrder="32768" FillColor="ccffff" FontSize="12" Valign="Middle" ShapeType="RoundedRectangle" LineThickness="2.0"/>
+    <Xref Database="Reactome" ID="REACT_6661"/>
+  </DataNode>
+  <DataNode TextLabel="H2O&#10;" GraphId="n115_REACTOME_113521" Type="Metabolite">
+    <Graphics CenterX="389.0" CenterY="294.5" Width="42.0" Height="29.0" ZOrder="32768" FillColor="ccffcc" FontSize="12" Valign="Middle" ShapeType="Oval"/>
+    <Xref Database="ChEBI" ID="15377"/>
+  </DataNode>
+  <Interaction GraphId="e_32_REACTOME_164651">
+    <Comment Source="WikiPathways-description">The &lt;b&gt;&lt;i&gt;Protonmotive Q cycle&lt;/i&gt;&lt;/b&gt; is the mechanism by which complex III transfers electrons from ubiquinol to cytochrome c, linking this process to translocation of protons across the membrane. This cycle is complicated by the fact that both ubiquinol is oxidised and ubiquinone is reduced during this process. Through a complex series of electron transfers, Complex III consumes two molecules of ubiquinol (QH2) and two molecules of oxidized cytochrome c, generates one molecule of ubiquinone (Q) and two molecules of reduced cytochrome c, regenerates one molecule of ubiquinol (QH2), and mediates the translocation of two protons from the mitochondrial matrix to the mitochondrial intermembrane space.&lt;br&gt;&lt;br&gt;The overall reaction can be summed up as below:&lt;br&gt;&lt;b&gt;2QH&lt;sub&gt;2&lt;/sub&gt;&lt;/b&gt; + &lt;b&gt;2cyt c&lt;/b&gt;&lt;sub&gt;(ox.)&lt;/sub&gt; + &lt;b&gt;Q&lt;/b&gt; + &lt;b&gt;2H&lt;sup&gt;+&lt;/sup&gt;&lt;/b&gt;&lt;sub&gt;matrix&lt;/sub&gt; -&gt; &lt;b&gt;2Q&lt;/b&gt; + &lt;b&gt;2cyt c&lt;/b&gt;&lt;sub&gt;(red.)&lt;/sub&gt; + &lt;b&gt;QH&lt;sub&gt;2&lt;/sub&gt;&lt;/b&gt; + &lt;b&gt;4H&lt;sup&gt;+&lt;/sup&gt;&lt;/b&gt;&lt;sub&gt;memb. space&lt;/sub&gt;</Comment>
+    <BiopaxRef>lit_164791</BiopaxRef>
+    <BiopaxRef>lit_164788</BiopaxRef>
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="337.0" Y="331.0"/>
+      <Point X="483.0" Y="331.0"/>
+      <Point X="563.0" Y="331.0"/>
+      <Anchor Position="0.0" Shape="None" GraphId="e_32_a_i"/>
+      <Anchor Position="0.6460176991150443" Shape="None" GraphId="e_32_a_p"/>
+      <Anchor Position="1.0" Shape="None" GraphId="e_32_a_o"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_32_i0">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="315.0" Y="274.0" GraphRef="n4_REACTOME_352607" RelX="0.13636363636363635" RelY="1.1666666666666667"/>
+      <Point X="337.0" Y="331.0" GraphRef="e_32_a_i" RelX="0.0" RelY="0.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_32_i1">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="232.0" Y="298.0" GraphRef="n5_REACTOME_76633" RelX="1.0833333333333333" RelY="0.8461538461538461"/>
+      <Point X="337.0" Y="331.0" GraphRef="e_32_a_i" RelX="0.0" RelY="0.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_32_i2">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="233.5" Y="364.0" GraphRef="n6_REACTOME_73663" RelX="1.0909090909090908" RelY="-0.75"/>
+      <Point X="337.0" Y="331.0" GraphRef="e_32_a_i" RelX="0.0" RelY="0.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_32_i3">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="580.5" Y="559.0" GraphRef="n76_REACTOME_113529" RelX="-0.9142857142857143" RelY="-1.2"/>
+      <Point X="337.0" Y="331.0" GraphRef="e_32_a_i" RelX="0.0" RelY="0.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_32_o0">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="640.5" Y="274.0" GraphRef="n9_REACTOME_352609" RelX="-0.6024096385542169" RelY="1.1578947368421053" ArrowHead="Arrow"/>
+      <Point X="563.0" Y="331.0" GraphRef="e_32_a_o" RelX="80.0" RelY="0.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_32_o1">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="734.5" Y="266.5" GraphRef="n11_REACTOME_73663" RelX="-1.0632911392405062" RelY="0.8484848484848485" ArrowHead="Arrow"/>
+      <Point X="563.0" Y="331.0" GraphRef="e_32_a_o" RelX="80.0" RelY="0.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_32_o2">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="1004.5" Y="269.5" GraphRef="n12_REACTOME_76633" RelX="-0.5245901639344263" RelY="1.28" ArrowHead="Arrow"/>
+      <Point X="926.0" Y="330.0"/>
+      <Point X="563.0" Y="331.0" GraphRef="e_32_a_o" RelX="80.0" RelY="0.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_32_o3">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="114.5" Y="720.0" GraphRef="n16_REACTOME_163953" RelX="-0.12903225806451613" RelY="-1.1875" ArrowHead="Arrow"/>
+      <Point X="105.0" Y="622.0"/>
+      <Point X="104.0" Y="203.0"/>
+      <Point X="563.0" Y="204.0"/>
+      <Point X="563.0" Y="331.0" GraphRef="e_32_a_o" RelX="80.0" RelY="0.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_32_c__0">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineStyle="Broken" LineThickness="1.0">
+      <Point X="481.0" Y="281.5" GraphRef="n10_REACTOME_164317" RelX="0.0" RelY="1.1428571428571428"/>
+      <Point X="483.0" Y="331.0" GraphRef="e_32_a_p" RelX="0.0" RelY="0.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_33_REACTOME_163217">
+    <Comment Source="WikiPathways-description">Complex I (NADH:ubiquinone oxidoreductase or NADH dehydrogenase) utilizes NADH formed from glycolysis and the TCA cycle to pump protons out of the mitochondrial matrix. It is the largest enzyme complex in the electron transport chain, containing  45 subunits.  Seven subunits (ND1-6, ND4L) are encoded by mitochondrial DNA (Loeffen et al [1998]), the remainder are encoded in the nucleus. The enzyme has a FMN prosthetic group and 8 Iron-Sulfur (Fe-S) clusters. The electrons from NADH oxidation pass through the flavin (FMN) and Fe-S clusters to ubiquinone (CoQ). This electron transfer is coupled with the translocation of protons from the mitochondrial matrix to the intermembrane space. For each electron transferred, 2 protons can be pumped out of the matrix. As there are 2 electrons transferred, 4  protons can be pumped out.&lt;br&gt;Complex I is made up of 3 sub-complexes - Iron-Sulfur protein fraction (IP), Flavoprotein fraction (FP) and the Hydrophobic protein fraction (HP), probably arranged in an L-shaped structure with the IP and FP fractions protruding into the mitochondrial matrix and the HP arm lying within the inner mitochondrial membrane. The overall reaction can be summed as below:&lt;br&gt;&lt;b&gt;NADH&lt;/b&gt; + &lt;b&gt;Ubiquinone&lt;/b&gt; + &lt;b&gt;5H&lt;sup&gt;+&lt;/sup&gt;&lt;/b&gt;&lt;sub&gt;matrix&lt;/sub&gt;&lt;b&gt; -&gt;&lt;/b&gt; &lt;b&gt;NAD&lt;sup&gt;+&lt;/sup&gt;&lt;/b&gt; + &lt;b&gt;Ubiquinol&lt;/b&gt; + &lt;b&gt;4H&lt;sup&gt;+&lt;/sup&gt;&lt;/b&gt;&lt;sub&gt;memb. space&lt;/sub&gt;&lt;br&gt;&lt;br&gt;The electrons from complex I are transferred to ubiquinone (Coenzyme Q, CoQ), a small mobile carrier of electrons located within the inner membrane. Ubiquinone is reduced to ubiquinol during this process.</Comment>
+    <BiopaxRef>lit_164765</BiopaxRef>
+    <BiopaxRef>lit_164787</BiopaxRef>
+    <BiopaxRef>lit_164782</BiopaxRef>
+    <BiopaxRef>lit_164775</BiopaxRef>
+    <BiopaxRef>lit_164786</BiopaxRef>
+    <BiopaxRef>lit_164774</BiopaxRef>
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="289.0" Y="455.0"/>
+      <Point X="289.0" Y="484.0"/>
+      <Point X="289.0" Y="528.0"/>
+      <Anchor Position="0.0" Shape="None" GraphId="e_33_a_i"/>
+      <Anchor Position="0.3972602739726027" Shape="None" GraphId="e_33_a_p"/>
+      <Anchor Position="1.0" Shape="None" GraphId="e_33_a_o"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_33_i0">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="210.5" Y="395.0" GraphRef="n6_REACTOME_73663" RelX="0.4935064935064935" RelY="1.1875"/>
+      <Point X="289.0" Y="455.0" GraphRef="e_33_a_i" RelX="0.0" RelY="0.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_33_i1">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="318.5" Y="428.5" GraphRef="n13_REACTOME_29362" RelX="-0.5957446808510638" RelY="1.2592592592592593"/>
+      <Point X="289.0" Y="455.0" GraphRef="e_33_a_i" RelX="0.0" RelY="0.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_33_i2">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="576.5" Y="570.0" GraphRef="n76_REACTOME_113529" RelX="-1.1428571428571428" RelY="-0.4666666666666667"/>
+      <Point X="289.0" Y="455.0" GraphRef="e_33_a_i" RelX="0.0" RelY="0.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_33_o0">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="320.5" Y="539.0" GraphRef="n14_REACTOME_113526" RelX="-1.1111111111111112" RelY="-0.75" ArrowHead="Arrow"/>
+      <Point X="289.0" Y="528.0" GraphRef="e_33_a_o" RelX="0.0" RelY="44.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_33_o1">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="120.5" Y="720.0" GraphRef="n16_REACTOME_163953" RelX="0.25806451612903225" RelY="-1.1875" ArrowHead="Arrow"/>
+      <Point X="148.0" Y="620.0"/>
+      <Point X="289.0" Y="528.0" GraphRef="e_33_a_o" RelX="0.0" RelY="44.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_33_o2">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="217.5" Y="544.5" GraphRef="n31_REACTOME_76633" RelX="1.1111111111111112" RelY="-0.45161290322580644" ArrowHead="Arrow"/>
+      <Point X="289.0" Y="528.0" GraphRef="e_33_a_o" RelX="0.0" RelY="44.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_33_c__0">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineStyle="Broken" LineThickness="1.0">
+      <Point X="240.0" Y="484.0" GraphRef="n15_REACTOME_163924" RelX="1.0588235294117647" RelY="-0.030303030303030304"/>
+      <Point X="289.0" Y="484.0" GraphRef="e_33_a_p" RelX="0.0" RelY="0.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_34_REACTOME_163213">
+    <Comment Source="WikiPathways-description">This event is deduced on the basis of bovine experimental data.&lt;br&gt;Complex II (succinate dehydrogenase) transfers electrons from the TCA cycle to ubiquinone. The 6th step in the TCA cycle is where succinate is dehydrogenated to fumarate with subsequent reduction of FAD to FADH&lt;sub&gt;2&lt;/sub&gt;. FADH&lt;sub&gt;2&lt;/sub&gt; provides the electrons for the transport chain. Succinate dehydrogenase belongs to subclass 1 of the SQR family (succinate:quinone reductase) (classified by Hagerhall, C and Hederstedt, L [1996]).&lt;br&gt;It consists of 4 subunits (referred to as A, B, C and D), all nuclear-encoded and is located on the matrix side of the inner mitochondrial membrane. Subunits A and B are hydrophilic whereas subunits C and D are integral proteins of the inner membrane. SQRs usually contain 3 Fe-S clusters bound by the B subunit. Succinate dehydrogenase contains one [2Fe-2S] cluster, one [4Fe-4S] cluster and one [3Fe-4S] cluster. Additionally, the A subunit has a covalently-bound FAD group. Reduced complex II has this FAD converted to FADH&lt;sub&gt;2&lt;/sub&gt;. The electrons from complex II are transferred to ubiquinone (also called Q, Coenzyme Q or CoQ), a small mobile carrier of electrons located within the inner membrane. Ubiquinone is reduced to ubiquinol during this process.</Comment>
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="867.0" Y="196.0"/>
+      <Point X="901.0" Y="196.0"/>
+      <Point X="974.0" Y="196.0"/>
+      <Anchor Position="0.0" Shape="None" GraphId="e_34_a_i"/>
+      <Anchor Position="0.3177570093457944" Shape="None" GraphId="e_34_a_p"/>
+      <Anchor Position="1.0" Shape="None" GraphId="e_34_a_o"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_34_i0">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="879.5" Y="217.0" GraphRef="n18_REACTOME_165631" RelX="-0.2831858407079646" RelY="-1.096774193548387"/>
+      <Point X="867.0" Y="196.0" GraphRef="e_34_a_i" RelX="0.0" RelY="0.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_34_i1">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="787.5" Y="233.5" GraphRef="n11_REACTOME_73663" RelX="0.27848101265822783" RelY="-1.1515151515151516"/>
+      <Point X="814.0" Y="197.0"/>
+      <Point X="867.0" Y="196.0" GraphRef="e_34_a_i" RelX="0.0" RelY="0.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_34_o0">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="1070.5" Y="230.0" GraphRef="n19_REACTOME_70990" RelX="-1.0442477876106195" RelY="-0.6896551724137931" ArrowHead="Arrow"/>
+      <Point X="974.0" Y="196.0" GraphRef="e_34_a_o" RelX="73.0" RelY="0.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_34_o1">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="1009.5" Y="238.5" GraphRef="n12_REACTOME_76633" RelX="-0.36065573770491804" RelY="-1.2" ArrowHead="Arrow"/>
+      <Point X="974.0" Y="196.0" GraphRef="e_34_a_o" RelX="73.0" RelY="0.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_34_c__0">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineStyle="Broken" LineThickness="1.0">
+      <Point X="898.5" Y="217.0" GraphRef="n18_REACTOME_165631" RelX="0.05309734513274336" RelY="-1.096774193548387"/>
+      <Point X="901.0" Y="196.0" GraphRef="e_34_a_p" RelX="0.0" RelY="0.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_35_REACTOME_169270">
+    <Comment Source="WikiPathways-description">ETF-ubiquinone oxidoreductase (ETF-QO), catalyzes the re-oxidation of reduced ETF, with ubiquinone as the electron acceptor.</Comment>
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="808.0" Y="415.0"/>
+      <Point X="842.0" Y="415.0"/>
+      <Point X="876.0" Y="415.0"/>
+      <Anchor Position="0.0" Shape="None" GraphId="e_35_a_i"/>
+      <Anchor Position="0.5" Shape="None" GraphId="e_35_a_p"/>
+      <Anchor Position="1.0" Shape="None" GraphId="e_35_a_o"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_35_i0">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="771.5" Y="429.5" GraphRef="n21_REACTOME_169268" RelX="1.0985915492957747" RelY="-0.8484848484848485"/>
+      <Point X="808.0" Y="415.0" GraphRef="e_35_a_i" RelX="0.0" RelY="0.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_35_i1">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="779.5" Y="272.5" GraphRef="n11_REACTOME_73663" RelX="0.0759493670886076" RelY="1.2121212121212122"/>
+      <Point X="808.0" Y="415.0" GraphRef="e_35_a_i" RelX="0.0" RelY="0.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_35_o0">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="918.0" Y="432.0" GraphRef="n22_REACTOME_169267" RelX="-1.1363636363636365" RelY="-0.8181818181818182" ArrowHead="Arrow"/>
+      <Point X="876.0" Y="415.0" GraphRef="e_35_a_o" RelX="34.0" RelY="0.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_35_o1">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="1008.5" Y="269.5" GraphRef="n12_REACTOME_76633" RelX="-0.39344262295081966" RelY="1.28" ArrowHead="Arrow"/>
+      <Point X="876.0" Y="415.0" GraphRef="e_35_a_o" RelX="34.0" RelY="0.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_35_c__0">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineStyle="Broken" LineThickness="1.0">
+      <Point X="842.5" Y="443.0" GraphRef="n23_REACTOME_448210" RelX="0.0" RelY="-1.25"/>
+      <Point X="842.0" Y="415.0" GraphRef="e_35_a_p" RelX="0.0" RelY="0.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_36_REACTOME_169260">
+    <Comment Source="WikiPathways-description">Electron transfer flavoprotein, ETF, a 63kDa heterodimer composed of alpha and beta subunit, binds one FAD and one AMP per dimer. ETF resides on the matrix face of the mitochondrial inner membrane. Reducing equivalents from the beta-oxidation of fatty acyl CoAs are transferred to ETF, reducing the ETF-bound FAD to FADH&lt;sub&gt;2&lt;/sub&gt;.</Comment>
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="984.0" Y="498.0"/>
+      <Point X="943.0" Y="496.0"/>
+      <Point X="866.0" Y="497.0"/>
+      <Anchor Position="0.0" Shape="None" GraphId="e_36_a_i"/>
+      <Anchor Position="0.34770798701278877" Shape="None" GraphId="e_36_a_p"/>
+      <Anchor Position="1.0" Shape="None" GraphId="e_36_a_o"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_36_i0">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="950.0" Y="455.0" GraphRef="n22_REACTOME_169267" RelX="0.3181818181818182" RelY="1.2727272727272727"/>
+      <Point X="984.0" Y="498.0" GraphRef="e_36_a_i" RelX="0.0" RelY="0.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_36_i1">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="1013.0" Y="498.0" GraphRef="n24_REACTOME_31649" RelX="-1.12" RelY="0.0"/>
+      <Point X="984.0" Y="498.0" GraphRef="e_36_a_i" RelX="0.0" RelY="0.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_36_o0">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="809.5" Y="500.0" GraphRef="n25_REACTOME_113596" RelX="1.1794871794871795" RelY="-0.14285714285714285" ArrowHead="Arrow"/>
+      <Point X="866.0" Y="497.0" GraphRef="e_36_a_o" RelX="-77.0" RelY="1.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_36_o1">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="771.5" Y="457.5" GraphRef="n21_REACTOME_169268" RelX="1.0985915492957747" RelY="0.8484848484848485" ArrowHead="Arrow"/>
+      <Point X="866.0" Y="497.0" GraphRef="e_36_a_o" RelX="-77.0" RelY="1.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_36_c__0">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineStyle="Broken" LineThickness="1.0">
+      <Point X="943.0" Y="455.0" GraphRef="n22_REACTOME_169267" RelX="0.0" RelY="1.2727272727272727"/>
+      <Point X="943.0" Y="496.0" GraphRef="e_36_a_p" RelX="0.0" RelY="0.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_66_REACTOME_164840">
+    <Comment Source="WikiPathways-description">The beta subunit has 3 conformations; &lt;i&gt;tight&lt;/i&gt;, &lt;i&gt;open&lt;/i&gt; and &lt;i&gt;loose&lt;/i&gt;. ADP and Pi bind to the subunit in the loose form. On binding, this subunit is converted to the tight configuration.</Comment>
+    <BiopaxRef>lit_164836</BiopaxRef>
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="545.0" Y="800.0"/>
+      <Point X="520.0" Y="799.0"/>
+      <Point X="496.0" Y="799.5" GraphRef="n70_REACTOME_164838" RelX="1.0588235294117647" RelY="0.0" ArrowHead="Arrow"/>
+      <Anchor Position="0.0" Shape="None" GraphId="e_66_a_i"/>
+      <Anchor Position="0.5104038369310686" Shape="None" GraphId="e_66_a_p"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_66_i0">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="581.5" Y="774.0" GraphRef="n67_REACTOME_113581" RelX="-0.7804878048780488" RelY="1.25"/>
+      <Point X="545.0" Y="800.0" GraphRef="e_66_a_i" RelX="0.0" RelY="0.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_66_i1">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="566.0" Y="743.5" GraphRef="n68_REACTOME_113548" RelX="-0.2571428571428571" RelY="1.1428571428571428"/>
+      <Point X="545.0" Y="800.0" GraphRef="e_66_a_i" RelX="0.0" RelY="0.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_66_i2">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="596.5" Y="800.5" GraphRef="n69_REACTOME_74186" RelX="-1.0684931506849316" RelY="-0.05714285714285714"/>
+      <Point X="545.0" Y="800.0" GraphRef="e_66_a_i" RelX="0.0" RelY="0.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_71_REACTOME_164832">
+    <Comment Source="WikiPathways-description">In the tight configuration, the beta subunit catalyzes the reaction of ADP + Pi to ATP + water. ATP is still tightly bound to the subunit at this stage.</Comment>
+    <BiopaxRef>lit_164836</BiopaxRef>
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="439.0" Y="773.5" GraphRef="n70_REACTOME_164838" RelX="-0.058823529411764705" RelY="-1.1063829787234043"/>
+      <Point X="438.0" Y="761.0"/>
+      <Point X="346.0" Y="760.0"/>
+      <Point X="346.0" Y="799.0"/>
+      <Point X="320.0" Y="799.0"/>
+      <Anchor Position="0.8461966464426691" Shape="None" GraphId="e_71_a_p"/>
+      <Anchor Position="1.0" Shape="None" GraphId="e_71_a_o"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_71_o0">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="299.5" Y="772.5" GraphRef="n72_REACTOME_113521" RelX="0.3829787234042553" RelY="1.2413793103448276" ArrowHead="Arrow"/>
+      <Point X="320.0" Y="799.0" GraphRef="e_71_a_o" RelX="0.0" RelY="0.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_71_o1">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="300.5" Y="799.0" GraphRef="n73_REACTOME_164835" RelX="1.0823529411764705" RelY="0.0" ArrowHead="Arrow"/>
+      <Point X="320.0" Y="799.0" GraphRef="e_71_a_o" RelX="0.0" RelY="0.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_71_c__0">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineStyle="Broken" LineThickness="1.0">
+      <Point X="388.0" Y="799.5" GraphRef="n70_REACTOME_164838" RelX="-1.0588235294117647" RelY="0.0"/>
+      <Point X="346.0" Y="799.0" GraphRef="e_71_a_p" RelX="0.0" RelY="0.07664661317176069"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_74_REACTOME_164834">
+    <Comment Source="WikiPathways-description">In the last step, the beta subunit is converted to the open form and ATP is released. Passage of protons through the Fo part causes a ring of approximately 10 subunits to rotate. This rotation in turn drives the rotation of the gamma subunits, which forms part of one of the stalks. The gamma subunit moves between the three beta subunits which are held in place by the second stalk which can be regarded as a stator. The polypeptide called OSCP connects the stator stalk to the assembly of alpha and beta subunits. It is this step that is coupled  to proton translocation as energy is required to break the strong bond between ATP and the protein.&lt;br&gt;&lt;br&gt;</Comment>
+    <BiopaxRef>lit_164836</BiopaxRef>
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="190.0" Y="722.0"/>
+      <Point X="191.0" Y="696.0"/>
+      <Point X="190.0" Y="666.0"/>
+      <Anchor Position="0.0" Shape="None" GraphId="e_74_a_i"/>
+      <Anchor Position="0.46433144290480566" Shape="None" GraphId="e_74_a_p"/>
+      <Anchor Position="1.0" Shape="None" GraphId="e_74_a_o"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_74_i0">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="135.5" Y="735.0" GraphRef="n16_REACTOME_163953" RelX="1.2258064516129032" RelY="-0.25"/>
+      <Point X="190.0" Y="722.0" GraphRef="e_74_a_i" RelX="0.0" RelY="0.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_74_i1">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="209.5" Y="797.0" GraphRef="n73_REACTOME_164835" RelX="-1.0588235294117647" RelY="-0.10526315789473684"/>
+      <Point X="191.0" Y="797.0"/>
+      <Point X="190.0" Y="722.0" GraphRef="e_74_a_i" RelX="0.0" RelY="0.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_74_o0">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="282.0" Y="614.5" GraphRef="n75_REACTOME_113593" RelX="-1.1363636363636365" RelY="0.7741935483870968" ArrowHead="Arrow"/>
+      <Point X="190.0" Y="666.0" GraphRef="e_74_a_o" RelX="0.0" RelY="0.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_74_o1">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="634.5" Y="781.5" GraphRef="n69_REACTOME_74186" RelX="-0.0273972602739726" RelY="-1.1428571428571428" ArrowHead="Arrow"/>
+      <Point X="633.0" Y="664.0"/>
+      <Point X="190.0" Y="666.0" GraphRef="e_74_a_o" RelX="0.0" RelY="0.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_74_o2">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="576.5" Y="580.0" GraphRef="n76_REACTOME_113529" RelX="-1.1428571428571428" RelY="0.2" ArrowHead="Arrow"/>
+      <Point X="190.0" Y="666.0" GraphRef="e_74_a_o" RelX="0.0" RelY="0.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_74_c__0">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineStyle="Broken" LineThickness="1.0">
+      <Point X="253.5" Y="777.0" GraphRef="n73_REACTOME_164835" RelX="-0.023529411764705882" RelY="-1.1578947368421053"/>
+      <Point X="253.0" Y="694.0"/>
+      <Point X="191.0" Y="696.0" GraphRef="e_74_a_p" RelX="0.0" RelY="0.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_78_REACTOME_166220">
+    <Comment Source="WikiPathways-description">A FA anion diffuses laterally within the membrane towards UCP. The membrane potential drives the FA anion to an energy well halfway up on UCP. The electric field created by the redox-linked proton ejection drives the head group to the energy well.</Comment>
+    <BiopaxRef>lit_166317</BiopaxRef>
+    <BiopaxRef>lit_166292</BiopaxRef>
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="1628.0" Y="716.0"/>
+      <Point X="1672.0" Y="734.0"/>
+      <Point X="1673.0" Y="769.0" GraphRef="n81_REACTOME_166218" RelX="-0.02127659574468085" RelY="-1.1111111111111112" ArrowHead="Arrow"/>
+      <Anchor Position="0.0" Shape="None" GraphId="e_78_a_i"/>
+      <Anchor Position="0.5758607331504546" Shape="None" GraphId="e_78_a_p"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_78_i0">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="1646.5" Y="652.5" GraphRef="n79_REACTOME_166213" RelX="-0.3434343434343434" RelY="1.2"/>
+      <Point X="1628.0" Y="668.0"/>
+      <Point X="1628.0" Y="716.0" GraphRef="e_78_a_i" RelX="0.0" RelY="0.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_78_i1">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="1648.5" Y="705.5" GraphRef="n80_REACTOME_166389" RelX="-0.9152542372881356" RelY="1.1891891891891893"/>
+      <Point X="1628.0" Y="716.0" GraphRef="e_78_a_i" RelX="0.0" RelY="0.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_82_REACTOME_166214">
+    <Comment Source="WikiPathways-description">The FA anion which was facing the matrix side of the inner mitochondrial membrane now  flip-flops over to the intermembrane space-side of the membrane.</Comment>
+    <BiopaxRef>lit_166317</BiopaxRef>
+    <BiopaxRef>lit_166292</BiopaxRef>
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="1639.0" Y="769.0" GraphRef="n81_REACTOME_166218" RelX="-0.7446808510638298" RelY="-1.1111111111111112"/>
+      <Point X="1616.0" Y="753.0"/>
+      <Point X="1534.0" Y="753.0"/>
+      <Point X="1535.0" Y="799.0"/>
+      <Point X="1502.0" Y="798.0" GraphRef="n83_REACTOME_166385" RelX="1.0612244897959184" RelY="0.0" ArrowHead="Arrow"/>
+      <Anchor Position="0.8253572124420434" Shape="None" GraphId="e_82_a_p"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_82_c__0">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineStyle="Broken" LineThickness="1.0">
+      <Point X="1624.0" Y="799.0" GraphRef="n81_REACTOME_166218" RelX="-1.0638297872340425" RelY="0.0"/>
+      <Point X="1535.0" Y="799.0" GraphRef="e_82_a_p" RelX="0.0" RelY="0.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_85_REACTOME_166387">
+    <Comment Source="WikiPathways-description">At the beginning of this reaction, 1 molecule of 'FA anion:UCP dimer  "head-out" complex' is present. At the end of this reaction, 1 molecule of 'UCP dimer', and 1 molecule of 'Fatty Acid anion "head-out"' are present.&lt;br&gt;&lt;br&gt; This reaction takes place in the 'mitochondrial inner membrane'.&lt;br&gt;</Comment>
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="1398.0" Y="798.0" GraphRef="n83_REACTOME_166385" RelX="-1.0612244897959184" RelY="0.0"/>
+      <Point X="1367.0" Y="798.0"/>
+      <Point X="1338.0" Y="799.0"/>
+      <Anchor Position="0.5165182859671569" Shape="None" GraphId="e_85_a_p"/>
+      <Anchor Position="1.0" Shape="None" GraphId="e_85_a_o"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_85_o0">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="1321.0" Y="799.0" GraphRef="n86_REACTOME_166216" RelX="1.0810810810810811" RelY="0.0" ArrowHead="Arrow"/>
+      <Point X="1338.0" Y="799.0" GraphRef="e_85_a_o" RelX="0.0" RelY="0.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_85_o1">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="1708.5" Y="694.5" GraphRef="n80_REACTOME_166389" RelX="1.11864406779661" RelY="0.5945945945945946" ArrowHead="Arrow"/>
+      <Point X="1742.0" Y="708.0"/>
+      <Point X="1742.0" Y="844.0"/>
+      <Point X="1339.0" Y="844.0"/>
+      <Point X="1338.0" Y="799.0" GraphRef="e_85_a_o" RelX="0.0" RelY="0.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_87_REACTOME_166219">
+    <Comment Source="WikiPathways-description">At the beginning of this reaction, 1 molecule of 'H+', and 1 molecule of 'Fatty Acid anion "head-out"' are present. At the end of this reaction, 1 molecule of 'Fatty Acid "head-out"' is present.&lt;br&gt;&lt;br&gt; This reaction takes place in the 'mitochondrial inner membrane'.&lt;br&gt;</Comment>
+    <BiopaxRef>lit_166317</BiopaxRef>
+    <BiopaxRef>lit_166292</BiopaxRef>
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="1205.0" Y="799.0"/>
+      <Point X="1169.0" Y="799.0"/>
+      <Point X="1139.5" Y="798.5" GraphRef="n88_REACTOME_166217" RelX="1.095890410958904" RelY="0.0" ArrowHead="Arrow"/>
+      <Anchor Position="0.0" Shape="None" GraphId="e_87_a_i"/>
+      <Anchor Position="0.5453168774028818" Shape="None" GraphId="e_87_a_p"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_87_i0">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="122.5" Y="758.0" GraphRef="n16_REACTOME_163953" RelX="0.3870967741935484" RelY="1.1875"/>
+      <Point X="163.0" Y="849.0"/>
+      <Point X="1204.0" Y="850.0"/>
+      <Point X="1205.0" Y="799.0" GraphRef="e_87_a_i" RelX="0.0" RelY="0.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_87_i1">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="1241.0" Y="799.0" GraphRef="n86_REACTOME_166216" RelX="-1.0810810810810811" RelY="0.0"/>
+      <Point X="1205.0" Y="799.0" GraphRef="e_87_a_i" RelX="0.0" RelY="0.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_89_REACTOME_166215">
+    <Comment Source="WikiPathways-description">At the beginning of this reaction, 1 molecule of 'Fatty Acid "head-out"' is present. At the end of this reaction, 1 molecule of 'Fatty Acid "head-in"' is present.&lt;br&gt;&lt;br&gt; This reaction takes place in the 'mitochondrial inner membrane'.&lt;br&gt;</Comment>
+    <BiopaxRef>lit_166317</BiopaxRef>
+    <BiopaxRef>lit_166292</BiopaxRef>
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="1060.5" Y="799.5" GraphRef="n88_REACTOME_166217" RelX="-1.0684931506849316" RelY="0.04878048780487805"/>
+      <Point X="1033.0" Y="800.0"/>
+      <Point X="1007.0" Y="800.5" GraphRef="n90_REACTOME_166226" RelX="1.0789473684210527" RelY="-0.05128205128205128" ArrowHead="Arrow"/>
+      <Anchor Position="0.5096052504161593" Shape="None" GraphId="e_89_a_p"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_91_REACTOME_166223">
+    <Comment Source="WikiPathways-description">At the beginning of this reaction, 1 molecule of 'Fatty Acid "head-in"' is present. At the end of this reaction, 1 molecule of 'H+', and 1 molecule of 'Fatty Acid anion "head-in"' are present.&lt;br&gt;&lt;br&gt; This reaction takes place in the 'mitochondrial inner membrane'.&lt;br&gt;</Comment>
+    <BiopaxRef>lit_166317</BiopaxRef>
+    <BiopaxRef>lit_166292</BiopaxRef>
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="966.0" Y="779.5" GraphRef="n90_REACTOME_166226" RelX="0.0" RelY="-1.1282051282051282"/>
+      <Point X="966.0" Y="746.0"/>
+      <Point X="965.0" Y="674.0"/>
+      <Anchor Position="0.3142649305703367" Shape="None" GraphId="e_91_a_p"/>
+      <Anchor Position="1.0" Shape="None" GraphId="e_91_a_o"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_91_o0">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="1611.5" Y="634.5" GraphRef="n79_REACTOME_166213" RelX="-1.0505050505050506" RelY="0.17142857142857143" ArrowHead="Arrow"/>
+      <Point X="965.0" Y="674.0" GraphRef="e_91_a_o" RelX="-1.0" RelY="-72.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_91_o1">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="617.5" Y="581.0" GraphRef="n76_REACTOME_113529" RelX="1.2" RelY="0.26666666666666666" ArrowHead="Arrow"/>
+      <Point X="965.0" Y="674.0" GraphRef="e_91_a_o" RelX="-1.0" RelY="-72.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_94_REACTOME_170026">
+    <Comment Source="WikiPathways-description">In this reaction, 1 molecule of  'H+' is translocated from mitochondrial intermembrane space to mitochondrial matrix.&lt;br&gt;&lt;br&gt;This reaction takes place in the 'mitochondrial inner membrane' and  is mediated by the 'hydrogen ion transporter activity' of 'UCP dimer'.</Comment>
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="119.5" Y="758.0" GraphRef="n16_REACTOME_163953" RelX="0.1935483870967742" RelY="1.1875"/>
+      <Point X="142.0" Y="861.0"/>
+      <Point X="1758.0" Y="862.0"/>
+      <Point X="1761.0" Y="574.0"/>
+      <Point X="1673.0" Y="574.0"/>
+      <Point X="617.5" Y="576.0" GraphRef="n76_REACTOME_113529" RelX="1.2" RelY="-0.06666666666666667" ArrowHead="Arrow"/>
+      <Anchor Position="0.6651391701870014" Shape="None" GraphId="e_94_a_p"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_94_c__0">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineStyle="Broken" LineThickness="1.0">
+      <Point X="1673.5" Y="530.5" GraphRef="n97_REACTOME_166389" RelX="-0.03389830508474576" RelY="1.1891891891891893"/>
+      <Point X="1673.0" Y="574.0" GraphRef="e_94_a_p" RelX="-0.2964584398177976" RelY="0.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_94_i__0">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="1738.0" Y="550.5" GraphRef="n96_REACTOME_170037" RelX="-1.088235294117647" RelY="0.6486486486486487"/>
+      <Point X="1673.0" Y="574.0" GraphRef="e_94_a_p" RelX="-0.2964584398177976" RelY="0.0" ArrowHead="TBar"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_94_a__0">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="1747.0" Y="499.0" GraphRef="n95_REACTOME_30495" RelX="-0.48717948717948717" RelY="1.15"/>
+      <Point X="1673.0" Y="574.0" GraphRef="e_94_a_p" RelX="-0.2964584398177976" RelY="0.0" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_98_REACTOME_163214">
+    <Comment Source="WikiPathways-description">Complex IV (cytochrome oxidase) contains the hemeprotein cytochrome a and  a3.  It also contains copper atoms which undergo a transition from Cu+ to Cu2+ during the transfer of electrons through the complex to molecular oxygen. A bimetallic centre containing a copper atom and a heme-linked iron protein binds oxygen after 4 electrons have been picked up. Water, the final product of oxygen reduction, is then released. Oxygen is the final electron acceptor in the respiratory chain. The overall reaction can be summed as below:&lt;br&gt;&lt;b&gt;4Cyt c&lt;/b&gt;&lt;sub&gt;(red.)&lt;/sub&gt; + &lt;b&gt;12H&lt;sup&gt;+&lt;/sup&gt;&lt;/b&gt;&lt;sub&gt;in&lt;/sub&gt; + &lt;b&gt;O&lt;sub&gt;2&lt;/sub&gt;&lt;/b&gt; -&gt; &lt;b&gt;4Cyt c&lt;/b&gt;&lt;sub&gt;(ox.)&lt;/sub&gt; + &lt;b&gt;2H&lt;sub&gt;2&lt;/sub&gt;O&lt;/b&gt; + &lt;b&gt;8H&lt;sup&gt;+&lt;/sup&gt;&lt;/b&gt;&lt;sub&gt;out&lt;/sub&gt;&lt;br&gt;&lt;br&gt;Four protons are taken up from the matrix side of the membrane to form the water (scalar protons). Wikstrom (1977) suggests 4 protons are additionally transferred out from the matrix to the intermembrane space.</Comment>
+    <BiopaxRef>lit_164825</BiopaxRef>
+    <BiopaxRef>lit_164819</BiopaxRef>
+    <BiopaxRef>lit_165626</BiopaxRef>
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="587.0" Y="175.0"/>
+      <Point X="487.0" Y="175.0"/>
+      <Point X="391.0" Y="175.0"/>
+      <Anchor Position="0.0" Shape="None" GraphId="e_98_a_i"/>
+      <Anchor Position="0.5102040816326531" Shape="None" GraphId="e_98_a_p"/>
+      <Anchor Position="1.0" Shape="None" GraphId="e_98_a_o"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_98_i0">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="637.5" Y="364.5" GraphRef="n99_REACTOME_113533" RelX="-0.16393442622950818" RelY="-1.1612903225806452"/>
+      <Point X="587.0" Y="175.0" GraphRef="e_98_a_i" RelX="0.0" RelY="0.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_98_i1">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="645.5" Y="230.0" GraphRef="n9_REACTOME_352609" RelX="-0.4819277108433735" RelY="-1.1578947368421053"/>
+      <Point X="587.0" Y="175.0" GraphRef="e_98_a_i" RelX="0.0" RelY="0.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_98_i2">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="595.5" Y="559.0" GraphRef="n76_REACTOME_113529" RelX="-0.05714285714285714" RelY="-1.2"/>
+      <Point X="587.0" Y="175.0" GraphRef="e_98_a_i" RelX="0.0" RelY="0.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_98_o0">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="109.5" Y="720.0" GraphRef="n16_REACTOME_163953" RelX="-0.45161290322580644" RelY="-1.1875" ArrowHead="Arrow"/>
+      <Point X="80.0" Y="649.0"/>
+      <Point X="80.0" Y="175.0"/>
+      <Point X="391.0" Y="175.0" GraphRef="e_98_a_o" RelX="-96.0" RelY="0.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_98_o1">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="389.0" Y="277.5" GraphRef="n115_REACTOME_113521" RelX="0.0" RelY="-1.1724137931034482" ArrowHead="Arrow"/>
+      <Point X="391.0" Y="175.0" GraphRef="e_98_a_o" RelX="-96.0" RelY="0.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_98_o2">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="327.0" Y="232.0" GraphRef="n4_REACTOME_352607" RelX="0.4090909090909091" RelY="-1.1666666666666667" ArrowHead="Arrow"/>
+      <Point X="391.0" Y="175.0" GraphRef="e_98_a_o" RelX="-96.0" RelY="0.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_98_c__0">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineStyle="Broken" LineThickness="1.0">
+      <Point X="486.5" Y="134.0" GraphRef="n101_REACTOME_164316" RelX="0.0" RelY="1.1578947368421053"/>
+      <Point X="487.0" Y="175.0" GraphRef="e_98_a_p" RelX="0.0" RelY="0.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Label TextLabel="mitochondrial intermembrane space" GraphId="comp_text_2" GroupRef="group_comp_2">
+    <Graphics CenterX="173.5" CenterY="892.5" Width="229.0" Height="33.0" ZOrder="28672" FontSize="12" Valign="Middle"/>
+  </Label>
+  <Label TextLabel="mitochondrial matrix" GraphId="comp_text_3" GroupRef="group_comp_3">
+    <Graphics CenterX="793.5" CenterY="769.5" Width="139.0" Height="33.0" ZOrder="28672" FontSize="12" Valign="Middle"/>
+  </Label>
+  <Shape GraphId="comp_2" GroupRef="group_comp_2">
+    <Graphics CenterX="945.0" CenterY="493.0" Width="1800.0" Height="842.0" ZOrder="16384" FontSize="12" Valign="Middle" ShapeType="Rectangle" LineThickness="2.0" Rotation="0.0"/>
+  </Shape>
+  <Shape GraphId="comp_3" GroupRef="group_comp_3">
+    <Graphics CenterX="931.0" CenterY="524.5" Width="1496.0" Height="559.0" ZOrder="16384" FontSize="12" Valign="Middle" ShapeType="Rectangle" LineThickness="2.0" Rotation="0.0"/>
+  </Shape>
+  <InfoBox CenterX="3872.5" CenterY="6350.0"/>
+  <Biopax>
+    <bp:PublicationXref xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" rdf:id="lit_164825">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">7979252</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Pubmed</bp:DB>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1994</bp:YEAR>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Energy transduction by cytochrome complexes in mitochondrial and bacterial</bp:TITLE>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Trumpower, BL</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Gennis, RB</bp:AUTHORS>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Annu Rev Biochem 63:675-716</bp:SOURCE>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" rdf:id="lit_164836">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">4517936</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Pubmed</bp:DB>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1973</bp:YEAR>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">A new concept for energy coupling in oxidative phosphorylation based on a</bp:TITLE>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Boyer, PD</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Cross, RL</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Momsen, W</bp:AUTHORS>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Proc Natl Acad Sci U S A 70:2837-9</bp:SOURCE>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" rdf:id="lit_164787">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">12837546</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Pubmed</bp:DB>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2003</bp:YEAR>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">The nuclear encoded subunits of complex I from bovine heart mitochondria</bp:TITLE>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Hirst, J</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Carroll, J</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Fearnley, IM</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Shannon, RJ</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Walker, JE</bp:AUTHORS>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Biochim Biophys Acta 1604:135-50</bp:SOURCE>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" rdf:id="lit_166292">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">8576230</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Pubmed</bp:DB>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1996</bp:YEAR>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">On the mechanism of fatty acid-induced proton transport by mitochondrial uncoupling protein</bp:TITLE>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Garlid, KD</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Orosz, DE</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Modriansky, M</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Vassanelli, S</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Jezek, P</bp:AUTHORS>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">J Biol Chem 271:2615-20</bp:SOURCE>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" rdf:id="lit_164791">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">186667</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Pubmed</bp:DB>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1976</bp:YEAR>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Possible molecular mechanisms of the protonmotive function of cytochrome</bp:TITLE>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Mitchell, P</bp:AUTHORS>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">J Theor Biol 62:327-67</bp:SOURCE>
+    </bp:PublicationXref>
+    <bp:openControlledVocabulary xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#">
+      <bp:TERM xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">energy metabolic pathway</bp:TERM>
+      <bp:ID xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PW:0000033</bp:ID>
+      <bp:Ontology xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Pathway Ontology</bp:Ontology>
+    </bp:openControlledVocabulary>
+    <bp:PublicationXref xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" rdf:id="lit_164765">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">9878551</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Pubmed</bp:DB>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1998</bp:YEAR>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">cDNA of eight nuclear encoded subunits of NADH:ubiquinone oxidoreductase:</bp:TITLE>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Loeffen, JL</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Triepels, RH</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">van den Heuvel, LP</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Schuelke, M</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Buskens, CA</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Smeets, RJ</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Trijbels, JM</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Smeitink, JA</bp:AUTHORS>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Biochem Biophys Res Commun 253:415-22</bp:SOURCE>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" rdf:id="lit_166317">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">11709078</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Pubmed</bp:DB>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2001</bp:YEAR>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Mechanism of uncoupling protein action</bp:TITLE>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Garlid, KD</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Jaburek, M</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Jezek, P</bp:AUTHORS>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Biochem Soc Trans 29:803-6</bp:SOURCE>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" rdf:id="lit_164774">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">12231006</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Pubmed</bp:DB>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2002</bp:YEAR>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">The energy-transducing NADH: quinone oxidoreductase, complex I</bp:TITLE>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Yano, T</bp:AUTHORS>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Mol Aspects Med 23:345-68</bp:SOURCE>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" rdf:id="lit_164788">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">239860</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Pubmed</bp:DB>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1975</bp:YEAR>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Protonmotive redox mechanism of the cytochrome b-c1 complex in the</bp:TITLE>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Mitchell, P</bp:AUTHORS>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">FEBS Lett 56:1-6</bp:SOURCE>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" rdf:id="lit_164786">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">11695836</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Pubmed</bp:DB>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2001</bp:YEAR>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Human NADH:ubiquinone oxidoreductase</bp:TITLE>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Smeitink, J</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Sengers, R</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Trijbels, F</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">van den Heuvel, L</bp:AUTHORS>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">J Bioenerg Biomembr 33:259-66</bp:SOURCE>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" rdf:id="lit_165626">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">15223</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Pubmed</bp:DB>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1977</bp:YEAR>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Proton pump coupled to cytochrome c oxidase in mitochondria</bp:TITLE>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Wikstrom, MK</bp:AUTHORS>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Nature 266:271-3</bp:SOURCE>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" rdf:id="lit_164775">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">14741580</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Pubmed</bp:DB>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2004</bp:YEAR>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">The gross structure of the respiratory complex I: a Lego System</bp:TITLE>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Friedrich, T</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Bottcher, B</bp:AUTHORS>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Biochim Biophys Acta 1608:1-9</bp:SOURCE>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" rdf:id="lit_164782">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">15250827</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Pubmed</bp:DB>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2004</bp:YEAR>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Structural organization of mitochondrial human complex I: role of the ND4</bp:TITLE>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Bourges, I</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Ramus, C</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Mousson de Camaret, B</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Beugnot, R</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Remacle, C</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Cardol, P</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Hofhaus, G</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Issartel, JP</bp:AUTHORS>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Biochem J 383:491-9</bp:SOURCE>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" rdf:id="lit_164819">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">11340051</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Pubmed</bp:DB>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2001</bp:YEAR>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Structures and proton-pumping strategies of mitochondrial respiratory</bp:TITLE>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Schultz, BE</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Chan, SI</bp:AUTHORS>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Annu Rev Biophys Biomol Struct 30:23-65</bp:SOURCE>
+    </bp:PublicationXref>
+  </Biopax>
+</Pathway>

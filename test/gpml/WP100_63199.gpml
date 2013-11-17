@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Pathway xmlns="http://pathvisiojs.org/GPML/2013a" Name="Glutathione metabolism" Organism="Homo sapiens">
+<Pathway xmlns="http://pathvisio.org/GPML/2013a" Name="Glutathione metabolism" Organism="Homo sapiens">
   <Comment Source="GenMAPP notes">Converted from rat to human using ortholog information.  Link to original KEGG map:  http://www.genome.ad.jp/dbget-bin/show pathway?rno00480</Comment>
   <Comment Source="GenMAPP remarks">Adapted from KEGG by Sebastien Burel</Comment>
   <Comment Source="WikiPathways-category">Metabolic Process</Comment>
@@ -9,17 +9,17 @@
     <Xref Database="Enzyme Nomenclature" ID="1.8.1.13" />
   </DataNode>
   <DataNode TextLabel="ANPEP" GraphId="e5c" Type="GeneProduct">
-    <Attribute Key="org.pathvisiojs.model.BackpageHead" Value="ANPEP | alanyl (membrane) aminopeptidase (amino..." />
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="ANPEP | alanyl (membrane) aminopeptidase (amino..." />
     <Graphics CenterX="850.6666666666666" CenterY="799.3333333333334" Width="55.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
     <Xref Database="Entrez Gene" ID="290" />
   </DataNode>
   <DataNode TextLabel="GGT1" GraphId="c9b" Type="GeneProduct" GroupRef="b5967">
-    <Attribute Key="org.pathvisiojs.model.BackpageHead" Value="GGT1 | gamma-glutamyltransferase 1" />
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="GGT1 | gamma-glutamyltransferase 1" />
     <Graphics CenterX="658.0" CenterY="775.3333333333334" Width="50.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
     <Xref Database="Entrez Gene" ID="2678" />
   </DataNode>
   <DataNode TextLabel="GPX3" GraphId="d1b" Type="GeneProduct" GroupRef="eaf70">
-    <Attribute Key="org.pathvisiojs.model.BackpageHead" Value="GPX3 | glutathione peroxidase 3 (plasma)" />
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="GPX3 | glutathione peroxidase 3 (plasma)" />
     <Graphics CenterX="243.33333333333334" CenterY="885.3333333333334" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
     <Xref Database="Entrez Gene" ID="2878" />
   </DataNode>
@@ -64,7 +64,7 @@
     <Xref Database="Enzyme Nomenclature" ID="1.5.4.1" />
   </DataNode>
   <DataNode TextLabel="G6PD" GraphId="fbb" Type="GeneProduct" GroupRef="cdf06">
-    <Attribute Key="org.pathvisiojs.model.BackpageHead" Value="G6PD | glucose-6-phosphate dehydrogenase" />
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="G6PD | glucose-6-phosphate dehydrogenase" />
     <Graphics CenterX="176.66666666666666" CenterY="743.3333333333334" Width="55.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
     <Xref Database="Entrez Gene" ID="2539" />
   </DataNode>
@@ -73,28 +73,28 @@
     <Xref Database="Enzyme Nomenclature" ID="1.1.1.43" />
   </DataNode>
   <DataNode TextLabel="IDH1" GraphId="c78" Type="GeneProduct" GroupRef="cdf06">
-    <Attribute Key="org.pathvisiojs.model.BackpageHead" Value="IDH1 | isocitrate dehydrogenase 1 (NADP+) solu..." />
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="IDH1 | isocitrate dehydrogenase 1 (NADP+) solu..." />
     <Graphics CenterX="176.66666666666666" CenterY="703.3333333333334" Width="55.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
     <Xref Database="Entrez Gene" ID="3417" />
   </DataNode>
   <DataNode TextLabel="GSR" GraphId="af2" Type="GeneProduct">
-    <Attribute Key="org.pathvisiojs.model.BackpageHead" Value="GSR | glutathione reductase" />
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="GSR | glutathione reductase" />
     <Graphics CenterX="182.66666666666666" CenterY="641.3333333333334" Width="46.666666666666664" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
     <Xref Database="Entrez Gene" ID="2936" />
   </DataNode>
   <DataNode TextLabel="GSS" GraphId="ba1" Type="GeneProduct">
-    <Attribute Key="org.pathvisiojs.model.BackpageHead" Value="GSS | glutathione synthetase" />
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="GSS | glutathione synthetase" />
     <Graphics CenterX="570.6666666666666" CenterY="644.0" Width="46.666666666666664" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
     <Xref Database="Entrez Gene" ID="2937" />
   </DataNode>
   <DataNode TextLabel="GCLC" GraphId="bae" Type="GeneProduct" GroupRef="effc5">
-    <Attribute Key="org.pathvisiojs.model.BackpageHead" Value="GCLC | glutamate-cysteine ligase catalytic sub..." />
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="GCLC | glutamate-cysteine ligase catalytic sub..." />
     <Graphics CenterX="736.3333333333334" CenterY="371.3333333333333" Width="50.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
     <Xref Database="Entrez Gene" ID="2729" />
   </DataNode>
   <DataNode TextLabel="GGT1" GraphId="a6d" Type="GeneProduct" GroupRef="e28d5">
     <Comment Source="GenMAPP remarks">(5-L-Glutamyl)-L-amino acid</Comment>
-    <Attribute Key="org.pathvisiojs.model.BackpageHead" Value="GGT1 | gamma-glutamyltransferase 1" />
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="GGT1 | gamma-glutamyltransferase 1" />
     <Graphics CenterX="418.0" CenterY="565.0" Width="55.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
     <Xref Database="Entrez Gene" ID="2678" />
   </DataNode>
@@ -103,12 +103,12 @@
     <Xref Database="Enzyme Nomenclature" ID="3.4.11.4" />
   </DataNode>
   <DataNode TextLabel="ANPEP" GraphId="b16" Type="GeneProduct">
-    <Attribute Key="org.pathvisiojs.model.BackpageHead" Value="ANPEP | alanyl (membrane) aminopeptidase (amino..." />
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="ANPEP | alanyl (membrane) aminopeptidase (amino..." />
     <Graphics CenterX="456.0" CenterY="412.0" Width="55.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
     <Xref Database="Entrez Gene" ID="290" />
   </DataNode>
   <DataNode TextLabel="OPLAH" GraphId="ec0" Type="GeneProduct">
-    <Attribute Key="org.pathvisiojs.model.BackpageHead" Value="OPLAH | 5-oxoprolinase (ATP-hydrolysing)" />
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="OPLAH | 5-oxoprolinase (ATP-hydrolysing)" />
     <Graphics CenterX="475.0" CenterY="159.66666666666666" Width="53.333333333333336" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
     <Xref Database="Entrez Gene" ID="26873" />
   </DataNode>
@@ -117,7 +117,7 @@
     <Xref Database="Enzyme Nomenclature" ID="2.3.2.4" />
   </DataNode>
   <DataNode TextLabel="GGT1" GraphId="d17" Type="GeneProduct" GroupRef="cc130">
-    <Attribute Key="org.pathvisiojs.model.BackpageHead" Value="GGT1 | gamma-glutamyltransferase 1" />
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="GGT1 | gamma-glutamyltransferase 1" />
     <Graphics CenterX="250.33333333333334" CenterY="514.6666666666666" Width="50.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
     <Xref Database="Entrez Gene" ID="2678" />
   </DataNode>
@@ -138,67 +138,67 @@
     <Xref Database="Enzyme Nomenclature" ID="3.5.1.78" />
   </DataNode>
   <DataNode TextLabel="GPX1" GraphId="ac2" Type="GeneProduct" GroupRef="eaf70">
-    <Attribute Key="org.pathvisiojs.model.BackpageHead" Value="GPX1 | glutathione peroxidase 1" />
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="GPX1 | glutathione peroxidase 1" />
     <Graphics CenterX="243.33333333333334" CenterY="845.3333333333334" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
     <Xref Database="Entrez Gene" ID="2876" />
   </DataNode>
   <DataNode TextLabel="GPX2" GraphId="b85" Type="GeneProduct" GroupRef="eaf70">
-    <Attribute Key="org.pathvisiojs.model.BackpageHead" Value="GPX2 | glutathione peroxidase 2 (gastrointestin..." />
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="GPX2 | glutathione peroxidase 2 (gastrointestin..." />
     <Graphics CenterX="243.33333333333334" CenterY="825.3333333333334" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
     <Xref Database="Entrez Gene" ID="2877" />
   </DataNode>
   <DataNode TextLabel="GPX4" GraphId="f5d" Type="GeneProduct" GroupRef="eaf70">
-    <Attribute Key="org.pathvisiojs.model.BackpageHead" Value="GPX4 | glutathione peroxidase 4 (phospholipid h..." />
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="GPX4 | glutathione peroxidase 4 (phospholipid h..." />
     <Graphics CenterX="243.33333333333334" CenterY="865.3333333333334" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
     <Xref Database="Entrez Gene" ID="2879" />
   </DataNode>
   <DataNode TextLabel="GSTA5" GraphId="bb7" Type="GeneProduct" GroupRef="e5049">
-    <Attribute Key="org.pathvisiojs.model.BackpageHead" Value="GSTA5 | glutathione S-transferase A5" />
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="GSTA5 | glutathione S-transferase A5" />
     <Graphics CenterX="484.3333333333333" CenterY="714.6666666666666" Width="53.333333333333336" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
     <Xref Database="Entrez Gene" ID="221357" />
   </DataNode>
   <DataNode TextLabel="GSTA1" GraphId="b5c" Type="GeneProduct" GroupRef="e5049">
-    <Attribute Key="org.pathvisiojs.model.BackpageHead" Value="GSTA1 | glutathione S-transferase A1" />
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="GSTA1 | glutathione S-transferase A1" />
     <Graphics CenterX="484.3333333333333" CenterY="734.6666666666666" Width="53.333333333333336" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
     <Xref Database="Entrez Gene" ID="2938" />
   </DataNode>
   <DataNode TextLabel="GSTM1" GraphId="fe8" Type="GeneProduct" GroupRef="e5049">
-    <Attribute Key="org.pathvisiojs.model.BackpageHead" Value="GSTM1 | glutathione S-transferase M1" />
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="GSTM1 | glutathione S-transferase M1" />
     <Graphics CenterX="484.3333333333333" CenterY="794.6666666666666" Width="53.333333333333336" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
     <Xref Database="Entrez Gene" ID="2944" />
   </DataNode>
   <DataNode TextLabel="GSTT1" GraphId="f4a" Type="GeneProduct" GroupRef="e5049">
-    <Attribute Key="org.pathvisiojs.model.BackpageHead" Value="GSTT1 | glutathione S-transferase theta 1" />
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="GSTT1 | glutathione S-transferase theta 1" />
     <Graphics CenterX="484.3333333333333" CenterY="774.6666666666666" Width="53.333333333333336" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
     <Xref Database="Entrez Gene" ID="2952" />
   </DataNode>
   <DataNode TextLabel="GSTT2" GraphId="de1" Type="GeneProduct" GroupRef="e5049">
-    <Attribute Key="org.pathvisiojs.model.BackpageHead" Value="GSTT2 | glutathione S-transferase theta 2" />
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="GSTT2 | glutathione S-transferase theta 2" />
     <Graphics CenterX="484.3333333333333" CenterY="754.6666666666666" Width="53.333333333333336" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
     <Xref Database="Entrez Gene" ID="2953" />
   </DataNode>
   <DataNode TextLabel="GSTM2" GraphId="b6c" Type="GeneProduct" GroupRef="e5049">
-    <Attribute Key="org.pathvisiojs.model.BackpageHead" Value="GSTM2 | glutathione S-transferase M2 (muscle)" />
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="GSTM2 | glutathione S-transferase M2 (muscle)" />
     <Graphics CenterX="484.3333333333333" CenterY="814.6666666666666" Width="53.333333333333336" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
     <Xref Database="Entrez Gene" ID="2946" />
   </DataNode>
   <DataNode TextLabel="GGTLA1" GraphId="a71" Type="GeneProduct" GroupRef="cc130">
-    <Attribute Key="org.pathvisiojs.model.BackpageHead" Value="GGTLA1 | gamma-glutamyltransferase-like activit..." />
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="GGTLA1 | gamma-glutamyltransferase-like activit..." />
     <Graphics CenterX="250.33333333333334" CenterY="494.6666666666667" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
     <Xref Database="Entrez Gene" ID="2687" />
   </DataNode>
   <DataNode TextLabel="GGTLA1" GraphId="a4b" Type="GeneProduct" GroupRef="e28d5">
-    <Attribute Key="org.pathvisiojs.model.BackpageHead" Value="GGTLA1 | gamma-glutamyltransferase-like activit..." />
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="GGTLA1 | gamma-glutamyltransferase-like activit..." />
     <Graphics CenterX="418.0" CenterY="585.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
     <Xref Database="Entrez Gene" ID="2687" />
   </DataNode>
   <DataNode TextLabel="GCLM" GraphId="cf9" Type="GeneProduct" GroupRef="effc5">
-    <Attribute Key="org.pathvisiojs.model.BackpageHead" Value="GCLM | glutamate-cysteine ligase modifier subu..." />
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="GCLM | glutamate-cysteine ligase modifier subu..." />
     <Graphics CenterX="736.3333333333334" CenterY="391.3333333333333" Width="46.666666666666664" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
     <Xref Database="Entrez Gene" ID="2730" />
   </DataNode>
   <DataNode TextLabel="GGTLA1" GraphId="f40" Type="GeneProduct" GroupRef="b5967">
-    <Attribute Key="org.pathvisiojs.model.BackpageHead" Value="GGTLA1 | gamma-glutamyltransferase-like activit..." />
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="GGTLA1 | gamma-glutamyltransferase-like activit..." />
     <Graphics CenterX="658.0" CenterY="795.3333333333334" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
     <Xref Database="Entrez Gene" ID="2687" />
   </DataNode>

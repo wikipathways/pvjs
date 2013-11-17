@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Pathway xmlns="http://pathvisio.org/GPML/2013a" Name="Transmission across Chemical Synapses" Data-Source="Reactome - http://www.reactome.org" Version="release 35" Author="Mahajan, SS" Maintainer="Mahajan, SS" Email="mahajs01@med.nyu.edu" Organism="Homo sapiens">
+  <Comment Source="WikiPathways-description">Chemical synapses are specialized junctions that are used for communication between neurons, neurons and muscle or gland cells. The synapse involves  a pre-synaptic neuron and a post-synaptic neuron, muscle cell or glad cell. The pre and the post-synaptic cell are separated by a gap of 20nm called the synaptic cleft. The signals pass in a unidirection from pre-synaptic to post-synaptic. The pre-synaptic neuron communicates via the release of neurotransmitter which bind the receptors on the post-synaptic cell.</Comment>
+  <Comment Source="WikiPathways-category">Cellular Process</Comment>
+  <BiopaxRef>lit_349540</BiopaxRef>
+  <Graphics BoardWidth="3902.5" BoardHeight="6380.0"/>
+  <DataNode TextLabel="Neuroransmitter &#10;Receptor Binding &#10;And Downstream &#10;Transmission In The  &#10;Postsynaptic Cell&#10;" GraphId="n42_REACTOME_112314" Type="Pathway">
+    <Comment Source="WikiPathways-description">The neurotransmitter in the synaptic cleft released by the pre-synaptic neuron binds specific receptors located on the post-synaptic terminal. These receptors are either ion channels or G protein coupled receptors that function to transmit the signals from the post-synaptic membrane to the cell body.</Comment>
+    <Graphics CenterX="215.5" CenterY="396.0" Width="121.0" Height="100.0" ZOrder="32768" FillColor="ccffcc" FontSize="12" Valign="Middle"/>
+    <Xref Database="Reactome" ID="REACT_15370"/>
+  </DataNode>
+  <DataNode TextLabel="Neurotransmitter &#10;uptake and &#10;Metabolism In Glial &#10;Cells&#10;" GraphId="n43_REACTOME_112313" Type="Pathway">
+    <Comment Source="WikiPathways-description">Neuotransmitter uptake by astrocytes is mediated by specific transporter located on the astrocytic membrane. The imported neurotransmitter in the astrocytes is metabolized and transported back to the neuron via specialized transporters.</Comment>
+    <Graphics CenterX="627.5" CenterY="407.0" Width="129.0" Height="72.0" ZOrder="32768" FillColor="ccffcc" FontSize="12" Valign="Middle"/>
+    <Xref Database="Reactome" ID="REACT_13594"/>
+  </DataNode>
+  <DataNode TextLabel="Neurotransmitter &#10;Release Cycle&#10;" GraphId="n44_REACTOME_112310" Type="Pathway">
+    <Comment Source="WikiPathways-description">Neurotransmitter is stored in the synaptic vesicle in the pre-synaptic terminal prior to its release in the synaptic cleft upon depolarization of the pre-synaptic membrane. The release of the neurotransmitter is a multi-step process that is controlled by electrical signals passing through the axons in form of action potential. Neurotransmitters include glutamate, acetylcholine, nor-epinephrine,  dopamine and seratonin. Each of the neurotransmitter cycle is independently described.</Comment>
+    <BiopaxRef>lit_349561</BiopaxRef>
+    <BiopaxRef>lit_379284</BiopaxRef>
+    <BiopaxRef>lit_379281</BiopaxRef>
+    <BiopaxRef>lit_379286</BiopaxRef>
+    <Graphics CenterX="404.0" CenterY="291.0" Width="118.0" Height="44.0" ZOrder="32768" FillColor="ccffcc" FontSize="12" Valign="Middle"/>
+    <Xref Database="Reactome" ID="REACT_13723"/>
+  </DataNode>
+  <DataNode TextLabel="Neurotransmitter &#10;Clearance In The &#10;Synaptic Cleft&#10;" GraphId="n45_REACTOME_112311" Type="Pathway">
+    <Comment Source="WikiPathways-description">Neurotransmitter released in the synaptic cleft binds to specific  receptors on the post-synaptic cell and the excess of the neurotransmitter is cleared to prevent over activation of the post-synaptic cell. The neurotransmitter is cleared by either re-uptake by the pre-synaptic neuron, diffusion in the perisynaptic area, uptake by astrocytes surrounding the synaptic cleft or enzymatic degradation of the neurotransmitter.&lt;BR&gt;This topic will be annotated in a future release.</Comment>
+    <Graphics CenterX="404.0" CenterY="416.0" Width="118.0" Height="58.0" ZOrder="32768" FillColor="ccffcc" FontSize="12" Valign="Middle"/>
+    <Xref Database="Reactome" ID="REACT_13583"/>
+  </DataNode>
+  <DataNode TextLabel="Depolarization of the &#10;Presynaptic Terminal &#10;Triggers the Opening &#10;of Calcium Channels&#10;" GraphId="n46_REACTOME_112308" Type="Pathway">
+    <Comment Source="WikiPathways-description">The action potential travels down the axon and reaches the pre-synaptic terminal depolarizing the membrane in the pre-synaptic terminal. The depolarization causes the voltage-gated Ca2+  channels to open allowing the influx of Ca2+ that signals the release of neurotransmitter into the synaptic cleft.</Comment>
+    <Graphics CenterX="405.5" CenterY="185.0" Width="123.0" Height="86.0" ZOrder="32768" FillColor="ccffcc" FontSize="12" Valign="Middle"/>
+    <Xref Database="Reactome" ID="REACT_13606"/>
+  </DataNode>
+  <Interaction GraphId="e_48">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="365.0" Y="316.0" GraphRef="n44_REACTOME_112310" RelX="-0.6610169491525424" RelY="1.1363636363636365"/>
+      <Point X="279.5" Y="363.0" GraphRef="n42_REACTOME_112314" RelX="1.0578512396694215" RelY="-0.66" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_49">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="445.0" Y="316.0" GraphRef="n44_REACTOME_112310" RelX="0.6949152542372882" RelY="1.1363636363636365"/>
+      <Point X="560.5" Y="374.0" GraphRef="n43_REACTOME_112313" RelX="-1.0387596899224807" RelY="-0.9166666666666666" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_50">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="560.5" Y="374.0" GraphRef="n43_REACTOME_112313" RelX="-1.0387596899224807" RelY="-0.9166666666666666"/>
+      <Point X="445.0" Y="316.0" GraphRef="n44_REACTOME_112310" RelX="0.6949152542372882" RelY="1.1363636363636365" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_51">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="396.0" Y="266.0" GraphRef="n44_REACTOME_112310" RelX="-0.13559322033898305" RelY="-1.1363636363636365"/>
+      <Point X="396.0" Y="269.0" GraphRef="n44_REACTOME_112310" RelX="-0.13559322033898305" RelY="-1.0" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_52">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="404.5" Y="231.0" GraphRef="n46_REACTOME_112308" RelX="-0.016260162601626018" RelY="1.069767441860465"/>
+      <Point X="404.0" Y="266.0" GraphRef="n44_REACTOME_112310" RelX="0.0" RelY="-1.1363636363636365" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_53">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="404.0" Y="316.0" GraphRef="n44_REACTOME_112310" RelX="0.0" RelY="1.1363636363636365"/>
+      <Point X="404.0" Y="384.0" GraphRef="n45_REACTOME_112311" RelX="0.0" RelY="-1.103448275862069" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <InfoBox CenterX="3872.5" CenterY="6350.0"/>
+  <Biopax>
+    <bp:PublicationXref xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" rdf:id="lit_349561">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">17880890</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Pubmed</bp:DB>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2007</bp:YEAR>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">The neurotransmitter cycle and quantal size</bp:TITLE>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Edwards, RH</bp:AUTHORS>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Neuron 55:835-58</bp:SOURCE>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" rdf:id="lit_379281">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">15217342</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Pubmed</bp:DB>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2004</bp:YEAR>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">The synaptic vesicle cycle</bp:TITLE>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Sudhof, TC</bp:AUTHORS>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Annu Rev Neurosci 27:509-47</bp:SOURCE>
+    </bp:PublicationXref>
+    <bp:openControlledVocabulary xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#">
+      <bp:TERM xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">neuron</bp:TERM>
+      <bp:ID xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">CL:0000540</bp:ID>
+      <bp:Ontology xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Cell Type</bp:Ontology>
+    </bp:openControlledVocabulary>
+    <bp:openControlledVocabulary xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#">
+      <bp:TERM xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">neuron-to-neuron signaling pathway via the chemical synapse</bp:TERM>
+      <bp:ID xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PW:0000274</bp:ID>
+      <bp:Ontology xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Pathway Ontology</bp:Ontology>
+    </bp:openControlledVocabulary>
+    <bp:PublicationXref xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" rdf:id="lit_379284">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">16819626</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Pubmed</bp:DB>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2006</bp:YEAR>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Vesicle pools, docking, priming, and release</bp:TITLE>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Becherer, U</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Rettig, J</bp:AUTHORS>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Cell Tissue Res 326:393-407</bp:SOURCE>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" rdf:id="lit_379286">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">16865347</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Pubmed</bp:DB>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2006</bp:YEAR>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Molecular organization of the presynaptic active zone</bp:TITLE>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Schoch, S</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Gundelfinger, ED</bp:AUTHORS>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Cell Tissue Res 326:379-91</bp:SOURCE>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" rdf:id="lit_349540">
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2001</bp:YEAR>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Neuroscience 2nd Edition</bp:TITLE>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PURVES, D</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">AUGUSTINE, DJ</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">FITZPATRICK, D</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">KATZ, LC</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">LaMANTIA, AS</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">McNamara, JO</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">WILLIAMS, JM</bp:AUTHORS>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Sinauer Associates, Inc., P.O. Box 407 23 Plumtree Road, Sunderland, MA 01375 U.S.A.</bp:SOURCE>
+    </bp:PublicationXref>
+  </Biopax>
+</Pathway>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Pathway xmlns="http://pathvisiojs.org/GPML/2013a" Name="citations" Version="20130815" Organism="Anopheles gambiae">
+<Pathway xmlns="http://pathvisio.org/GPML/2013a" Name="citations" Version="20130815" Organism="Anopheles gambiae">
   <BiopaxRef>ee4</BiopaxRef>
   <Graphics BoardWidth="656.0" BoardHeight="785.4815301392441" />
   <DataNode TextLabel="GeneProduct" GraphId="e114e" Type="GeneProduct">
@@ -42,7 +42,7 @@
   </Label>
   <Shape GraphId="ed0ee">
     <BiopaxRef>b8e</BiopaxRef>
-    <Attribute Key="org.pathvisiojs.CellularComponentProperty" Value="Mitochondria" />
+    <Attribute Key="org.pathvisio.CellularComponentProperty" Value="Mitochondria" />
     <Graphics CenterX="331.18322475570034" CenterY="207.40472312703582" Width="80.3045602605863" Height="54.2459283387622" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="Mitochondria" LineThickness="3.0" Color="c0c0c0" Rotation="0.0" />
   </Shape>
   <InfoBox CenterX="0.0" CenterY="0.0" />

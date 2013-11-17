@@ -1,0 +1,261 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Pathway xmlns="http://pathvisio.org/GPML/2013a" Name="ER Stress-Unfolded Protein Response" Author="kyook@caltech.edu" Organism="Caenorhabditis elegans">
+  <Comment Source="WikiPathways-description">Correctly folding proteins is a severely complicated process that fails at times, despite the controlled environment of the ER and numerous molecular helpers. Under normal conditions, these misfolded proteins are degraded through the ER-associated degradation (ERAD) mechanism. However, various physiological or environmental stressors can inhibit or overwhelm these normal mechanisms resulting in an increase in the amount of misfolded proteins, which trigger the Unfolded Protein Response (UPR). Organisms have evolved the UPR to handle this ER stress and suppress the toxicity of accumulated misfolded proteins (proteotoxicity). In mammals the UPR attenuates protein synthesis through PERK/PEK1 and increases transcription of folding and ERAD components through activation of potent transcription factors through IRE1 splicing of XBP1 mRNA and ER-stress cleavage of ATF-6. These events ultimately augment folding and enhance degradation capacity of the organelle. In C. elegans, the UPR also activates transcriptional regulators that reduce protein synthesis and increase the number of components necessary to deal with misfolded proteins.
+</Comment>
+  <BiopaxRef>e60</BiopaxRef>
+  <BiopaxRef>cc0</BiopaxRef>
+  <BiopaxRef>f25</BiopaxRef>
+  <BiopaxRef>e97</BiopaxRef>
+  <Graphics BoardWidth="1052.9226664474886" BoardHeight="844.7392371846947" />
+  <DataNode TextLabel="PEK-1" GraphId="d6116" Type="GeneProduct">
+    <Comment>UPR-transducer</Comment>
+    <BiopaxRef>f25</BiopaxRef>
+    <Graphics CenterX="557.5238695533377" CenterY="216.93739181429603" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" ShapeType="RoundedRectangle" />
+    <Xref Database="WormBase" ID="F46C3.1" />
+  </DataNode>
+  <DataNode TextLabel="IRE-1" GraphId="d1afc" Type="GeneProduct">
+    <Comment>UPR transducer</Comment>
+    <BiopaxRef>f25</BiopaxRef>
+    <Graphics CenterX="573.9337737975907" CenterY="289.9738359412814" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" ShapeType="RoundedRectangle" />
+    <Xref Database="WormBase" ID="C41C4.4" />
+  </DataNode>
+  <DataNode TextLabel="XBP-1" GraphId="d4275" Type="GeneProduct">
+    <Graphics CenterX="406.3092850252445" CenterY="307.1131071569113" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" ShapeType="RoundedRectangle" />
+    <Xref Database="WormBase" ID="R74.3" />
+  </DataNode>
+  <DataNode TextLabel="ATF-6" GraphId="e64d0" Type="GeneProduct">
+    <Comment>UPR transducer. Few genes depend on ATF-6 induction in response to ER-stress.</Comment>
+    <BiopaxRef>e97</BiopaxRef>
+    <BiopaxRef>f25</BiopaxRef>
+    <Graphics CenterX="568.1578045302027" CenterY="358.2246267740306" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" ShapeType="RoundedRectangle" />
+    <Xref Database="WormBase" ID="F45E6.2" />
+  </DataNode>
+  <DataNode TextLabel="cht-1" GraphId="ea064" Type="GeneProduct">
+    <Graphics CenterX="214.03032373739975" CenterY="339.6970675140265" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="WormBase" ID="C04F6.3" />
+  </DataNode>
+  <DataNode TextLabel="Tunicamycin" GraphId="ba64a" Type="Metabolite">
+    <Graphics CenterX="562.3878027589775" CenterY="97.47502712298004" Width="94.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="ChEBI" ID="29699" />
+  </DataNode>
+  <DataNode TextLabel="hsp-4" GraphId="e3ae6" Type="GeneProduct">
+    <Graphics CenterX="202.66965762384433" CenterY="395.49020410471" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="WormBase" ID="F43E2.8" />
+  </DataNode>
+  <DataNode TextLabel="ABU-1" GraphId="af0fb" Type="GeneProduct">
+    <Graphics CenterX="606.3378727019002" CenterY="399.36686575393674" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" ShapeType="RoundedRectangle" />
+    <Xref Database="WormBase" ID="AC3.3" />
+  </DataNode>
+  <DataNode TextLabel="SEL-1" GraphId="a2c65" Type="GeneProduct">
+    <Graphics CenterX="755.1539435422454" CenterY="480.9165863565415" Width="80.0" Height="20.0" ZOrder="32775" FontSize="10" Valign="Middle" ShapeType="RoundedRectangle" />
+    <Xref Database="WormBase" ID="F45D3.5" />
+  </DataNode>
+  <Interaction GraphId="id8a9d2d3">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="645.3892564008333" Y="293.06497157329295" GraphRef="c0358" RelX="-1.0" RelY="0.0" />
+      <Point X="597.5238695533377" Y="216.93739181429603" GraphRef="d6116" RelX="1.0" RelY="0.0" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="idc76595f7">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="645.3892564008333" Y="293.06497157329295" GraphRef="c0358" RelX="-1.0" RelY="0.0" />
+      <Point X="613.9337737975907" Y="289.9738359412814" GraphRef="d1afc" RelX="1.0" RelY="0.0" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="idf124f596">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="645.3892564008333" Y="293.06497157329295" GraphRef="c0358" RelX="-1.0" RelY="0.0" />
+      <Point X="608.1578045302027" Y="358.2246267740306" GraphRef="e64d0" RelX="1.0" RelY="0.0" ArrowHead="mim-cleavage" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="id57371fba">
+    <Comment>Activation of the UPR causes IRE1-dependent splicing of a small intron from the XBP-1 mRNA both in C. elegans and mice. </Comment>
+    <BiopaxRef>e96</BiopaxRef>
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="533.9337737975907" Y="289.9738359412814" GraphRef="d1afc" RelX="-1.0" RelY="0.0" />
+      <Point X="446.3092850252445" Y="307.1131071569113" GraphRef="d4275" RelX="1.0" RelY="0.0" ArrowHead="mim-necessary-stimulation" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="id704aa999">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="216.5234959655499" Y="262.26833115311854" GraphRef="ff1a5" RelX="0.5" RelY="-1.0" />
+      <Point X="139.5234959655499" Y="262.26833115311854" GraphRef="ff1a5" RelX="-0.5" RelY="-1.0" ArrowHead="mim-transcription-translation" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="id17c5ca5d">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="366.3092850252445" Y="307.1131071569113" GraphRef="d4275" RelX="-1.0" RelY="0.0" />
+      <Point X="255.0234959655499" Y="281.82790277293105" GraphRef="ff1a5" RelX="1.0" RelY="0.0" ArrowHead="mim-binding" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="id436f866c">
+    <Comment>abu-1 (AC3.3) activated the ER stress marker hsp-4::GFP</Comment>
+    <BiopaxRef>cc0</BiopaxRef>
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="566.3378727019002" Y="399.36686575393674" GraphRef="af0fb" RelX="-1.0" RelY="0.0" />
+      <Point X="242.66965762384433" Y="395.49020410471" GraphRef="e3ae6" RelX="1.0" RelY="0.0" ArrowHead="mim-binding" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="idf2bd2d9b">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="222.66965762384433" Y="385.49020410471" GraphRef="e3ae6" RelX="0.5" RelY="-1.0" />
+      <Point X="182.66965762384433" Y="385.49020410471" GraphRef="e3ae6" RelX="-0.5" RelY="-1.0" ArrowHead="mim-transcription-translation" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="f0274">
+    <Graphics ZOrder="32770" LineThickness="1.0">
+      <Point X="234.03032373739975" Y="329.6970675140265" GraphRef="ea064" RelX="0.5" RelY="-1.0" />
+      <Point X="194.03032373739975" Y="329.6970675140265" GraphRef="ea064" RelX="-0.5" RelY="-1.0" ArrowHead="mim-transcription-translation" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="e4998">
+    <Graphics ZOrder="32771" LineThickness="1.0">
+      <Point X="528.1578045302027" Y="358.2246267740306" GraphRef="e64d0" RelX="-1.0" RelY="0.0" />
+      <Point X="254.03032373739975" Y="339.6970675140265" GraphRef="ea064" RelX="1.0" RelY="0.0" ArrowHead="mim-binding" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="f24e9">
+    <Graphics ZOrder="32772" LineThickness="1.0">
+      <Point X="236.6701051456966" Y="183.59357812536888" GraphRef="c3248" RelX="0.5" RelY="-1.0" />
+      <Point X="184.54159108947175" Y="183.59357812536888" GraphRef="c3248" RelX="-0.5" RelY="-1.0" ArrowHead="mim-transcription-translation" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="c5fa6">
+    <Comment>In metazoans, ER stress activates PEK-1, which then phosphorylates the alpha subunit of eukaryotic translation initiation factor 2 (EIF2alpha). Phosphorylated EIF2alpha attenuates translation in general.</Comment>
+    <BiopaxRef>f25</BiopaxRef>
+    <Graphics ZOrder="32773" LineThickness="1.0">
+      <Point X="517.5238695533377" Y="216.93739181429603" GraphRef="d6116" RelX="-1.0" RelY="0.0" />
+      <Point X="262.734362173809" Y="206.3512755818615" GraphRef="c3248" RelX="1.0" RelY="0.0" ArrowHead="mim-binding" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Label TextLabel="Environmental stress" GraphId="c6a54">
+    <Graphics CenterX="729.6962306258672" CenterY="94.87184344367554" Width="154.15966386554618" Height="39.579831932773104" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="12" Valign="Middle" />
+  </Label>
+  <Label TextLabel="139 genes induced &#xA;by IRE-1/XBP-1 pathway" GraphId="ff1a5">
+    <Graphics CenterX="178.0234959655499" CenterY="281.82790277293105" Width="154.0" Height="39.11914323962503" ZOrder="28672" FillColor="ffffff" FontSize="10" Valign="Middle" />
+  </Label>
+  <Label TextLabel="ER homeostasis" GraphId="e3573">
+    <BiopaxRef>e60</BiopaxRef>
+    <Graphics CenterX="148.21018062397374" CenterY="541.1809696655432" Width="117.37274220032832" Height="33.79051075965755" ZOrder="28672" FillColor="ffffff" FontSize="10" Valign="Middle" />
+  </Label>
+  <Label TextLabel="INCREASE IN MISFOLDED PROTEINS &#xA;NORMAL ER-ASSOCIATED &#xA;DEGRADATION (ERAD) PATHWAY &#xA;OVERWHELMED" GraphId="c0358">
+    <Graphics CenterX="793.7214516159031" CenterY="293.06497157329295" Width="296.6643904301397" Height="74.0" ZOrder="32769" FillColor="ffffff" FontWeight="Bold" FontSize="12" Valign="Middle" />
+  </Label>
+  <Label TextLabel="21 genes induced &#xA;by PEK-1" GraphId="c3248">
+    <Graphics CenterX="210.60584811758415" CenterY="206.3512755818615" Width="104.25702811244969" Height="45.51539491298524" ZOrder="32774" FillColor="ffffff" FontSize="10" Valign="Middle" />
+  </Label>
+  <Label TextLabel="Development" GraphId="b66e2">
+    <BiopaxRef>e60</BiopaxRef>
+    <Graphics CenterX="149.13577046063423" CenterY="588.3860513352348" Width="117.37274220032832" Height="33.79051075965755" ZOrder="32776" FillColor="ffffff" FontSize="10" Valign="Middle" />
+  </Label>
+  <Shape GraphId="cad19">
+    <Attribute Key="org.pathvisio.CellularComponentProperty" Value="Nucleus" />
+    <Attribute Key="org.pathvisio.DoubleLineProperty" Value="Double" />
+    <Graphics CenterX="175.12313432835822" CenterY="283.33208955223887" Width="334.82835820895514" Height="330.3507462686565" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="Oval" LineThickness="3.0" Color="c0c0c0" Rotation="0.0" />
+  </Shape>
+  <Shape GraphId="e01ee">
+    <Attribute Key="org.pathvisio.CellularComponentProperty" Value="Endoplasmic Reticulum" />
+    <Graphics CenterX="712.62534245134" CenterY="399.4349194716534" Width="620.5946479922975" Height="830.6086354260826" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="Endoplasmic Reticulum" LineThickness="3.0" Color="c0c0c0" Rotation="3.323026588460871" />
+  </Shape>
+  <InfoBox CenterX="0.0" CenterY="0.0" />
+  <Biopax>
+    <bp:openControlledVocabulary xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#">
+      <bp:TERM xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">endoplasmic reticulum stress  - the unfolded protein response pathway</bp:TERM>
+      <bp:ID xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PW:0000379</bp:ID>
+      <bp:Ontology xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Pathway Ontology</bp:Ontology>
+    </bp:openControlledVocabulary>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="cc0">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">12186849</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">A survival pathway for Caenorhabditis elegans with a blocked unfolded protein response.</bp:TITLE>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">J Cell Biol</bp:SOURCE>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2002</bp:YEAR>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Urano F</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Calfon M</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Yoneda T</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Yun C</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Kiraly M</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Clark SG</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Ron D</bp:AUTHORS>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="e96">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">11780124</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">IRE1 couples endoplasmic reticulum load to secretory capacity by processing the XBP-1 mRNA.</bp:TITLE>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Nature</bp:SOURCE>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2002</bp:YEAR>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Calfon M</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Zeng H</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Urano F</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Till JH</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Hubbard SR</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Harding HP</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Clark SG</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Ron D</bp:AUTHORS>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="f25">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">19861400</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Signalling pathways in the unfolded protein response: development from yeast to mammals.</bp:TITLE>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">J Biochem</bp:SOURCE>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2009</bp:YEAR>
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">19861400</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Signalling pathways in the unfolded protein response: development from yeast to mammals.</bp:TITLE>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">J Biochem</bp:SOURCE>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2009</bp:YEAR>
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">19861400</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Signalling pathways in the unfolded protein response: development from yeast to mammals.</bp:TITLE>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">J Biochem</bp:SOURCE>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2009</bp:YEAR>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Mori K</bp:AUTHORS>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="e60">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">11779465</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Complementary signaling pathways regulate the unfolded protein response and are required for C. elegans development.</bp:TITLE>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Cell</bp:SOURCE>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2001</bp:YEAR>
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">11779465</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Complementary signaling pathways regulate the unfolded protein response and are required for C. elegans development.</bp:TITLE>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Cell</bp:SOURCE>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2001</bp:YEAR>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Shen X</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Ellis RE</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Lee K</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Liu CY</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Yang K</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Solomon A</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Yoshida H</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Morimoto R</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Kurnit DM</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Mori K</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Kaufman RJ</bp:AUTHORS>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="e97">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">16184190</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Genetic interactions due to constitutive and inducible gene regulation mediated by the unfolded protein response in C. elegans.</bp:TITLE>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PLoS Genet</bp:SOURCE>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2005</bp:YEAR>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Shen X</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Ellis RE</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Sakaki K</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Kaufman RJ</bp:AUTHORS>
+    </bp:PublicationXref>
+  </Biopax>
+</Pathway>

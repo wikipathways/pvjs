@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Pathway xmlns="http://pathvisio.org/GPML/2013a" Name="Heterochronic gene regulation of development" Author="kyook@caltech.edu" Organism="Caenorhabditis elegans">
+  <Comment Source="WikiPathways-category">Physiological Process</Comment>
+  <Comment Source="WikiPathways-description">"The heterochronic gene pathway of Caenorhabditis elegans. The heterochronic pathway regulating larval development is shown. The arrows indicate activation; bars indicate repression. Regulatory relationships shown here are supported by genetic data, but not all are direct. lin-42 is not shown, as its complex expression pattern and genetic interactions suggest that it acts at multiple steps in the pathways, and its precise placement is uncertain. Note that in absence of ligand DAF-12 represses let-7 family miRNAs."</Comment>
+  <BiopaxRef>ee6</BiopaxRef>
+  <Graphics BoardWidth="661.0" BoardHeight="601.0"/>
+  <DataNode TextLabel="lin-4" GraphId="e3be2" Type="Rna">
+    <Graphics CenterX="96.0" CenterY="164.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="WormBase" ID="F59G1.6"/>
+  </DataNode>
+  <DataNode TextLabel="LIN-66" GraphId="c23ef" Type="GeneProduct">
+    <Graphics CenterX="95.0" CenterY="229.0" Width="80.0" Height="20.0" ZOrder="32769" FontSize="10" Valign="Middle"/>
+    <Xref Database="WormBase" ID="B0513.1"/>
+  </DataNode>
+  <DataNode TextLabel="LIN-14" GraphId="d143e" Type="GeneProduct">
+    <Graphics CenterX="244.0" CenterY="103.0" Width="80.0" Height="20.0" ZOrder="32770" FontSize="10" Valign="Middle"/>
+    <Xref Database="WormBase" ID="T25C12.1"/>
+  </DataNode>
+  <DataNode TextLabel="LIN-28" GraphId="d8aaf" Type="GeneProduct">
+    <Graphics CenterX="246.0" CenterY="190.0" Width="80.0" Height="20.0" ZOrder="32771" FontSize="10" Valign="Middle"/>
+    <Xref Database="WormBase" ID="F02E9.2"/>
+  </DataNode>
+  <DataNode TextLabel="mir-48" GraphId="f5dcd" Type="Rna">
+    <Graphics CenterX="289.0" CenterY="303.0" Width="80.0" Height="20.0" ZOrder="32772" FontSize="10" Valign="Middle"/>
+    <Xref Database="WormBase" ID="F56A12.3 "/>
+  </DataNode>
+  <DataNode TextLabel="mir-241" GraphId="e030f" Type="Rna">
+    <Graphics CenterX="289.0" CenterY="323.0" Width="80.0" Height="20.0" ZOrder="32773" FontSize="10" Valign="Middle"/>
+    <Xref Database="WormBase" ID="F56A12.4  "/>
+  </DataNode>
+  <DataNode TextLabel="mir-84" GraphId="ef84a" Type="Rna">
+    <Graphics CenterX="289.0" CenterY="343.0" Width="80.0" Height="20.0" ZOrder="32774" FontSize="10" Valign="Middle"/>
+    <Xref Database="WormBase" ID="B0395.4"/>
+  </DataNode>
+  <DataNode TextLabel="DAF-12" GraphId="f9145" Type="GeneProduct">
+    <Graphics CenterX="158.0" CenterY="324.0" Width="80.0" Height="20.0" ZOrder="32775" FontSize="10" Valign="Middle"/>
+    <Xref Database="WormBase" ID="F11A1.3"/>
+  </DataNode>
+  <DataNode TextLabel="let-7" GraphId="f2559" Type="Rna">
+    <Graphics CenterX="140.0" CenterY="498.0" Width="80.0" Height="20.0" ZOrder="32776" FontSize="10" Valign="Middle"/>
+    <Xref Database="WormBase" ID="C05G5.6"/>
+  </DataNode>
+  <DataNode TextLabel="LIN-46" GraphId="ab126" Type="GeneProduct">
+    <Graphics CenterX="417.0" CenterY="201.0" Width="80.0" Height="20.0" ZOrder="32777" FontSize="10" Valign="Middle"/>
+    <Xref Database="WormBase" ID="R186.4"/>
+  </DataNode>
+  <DataNode TextLabel="HBL-1" GraphId="a71ad" Type="GeneProduct">
+    <Graphics CenterX="421.0" CenterY="321.0" Width="80.0" Height="20.0" ZOrder="32778" FontSize="10" Valign="Middle"/>
+    <Xref Database="WormBase" ID="F13D11.2"/>
+  </DataNode>
+  <DataNode TextLabel="LIN-41" GraphId="f210c" Type="GeneProduct">
+    <Graphics CenterX="296.0" CenterY="484.0" Width="80.0" Height="20.0" ZOrder="32792" FontSize="10" Valign="Middle"/>
+    <Xref Database="WormBase" ID="C12C8.3"/>
+  </DataNode>
+  <DataNode TextLabel="HBL-1" GraphId="fa303" Type="GeneProduct">
+    <Graphics CenterX="298.0" CenterY="534.0" Width="80.0" Height="20.0" ZOrder="32793" FontSize="10" Valign="Middle"/>
+    <Xref Database="WormBase" ID="F13D11.2"/>
+  </DataNode>
+  <DataNode TextLabel="LIN-29" GraphId="a4f01" Type="GeneProduct">
+    <Graphics CenterX="430.0" CenterY="508.0" Width="80.0" Height="20.0" ZOrder="32794" FontSize="10" Valign="Middle"/>
+    <Xref Database="WormBase" ID="W03C9.4"/>
+  </DataNode>
+  <Interaction GraphId="id74f3adfb">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="116.0" Y="154.0" GraphRef="e3be2" RelX="0.5" RelY="-1.0"/>
+      <Point X="204.0" Y="103.0" GraphRef="d143e" RelX="-1.0" RelY="0.0" ArrowHead="mim-inhibition"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="idc71e4c20">
+    <Graphics ZOrder="12288" LineThickness="3.0">
+      <Point X="284.0" Y="103.0" GraphRef="d143e" RelX="1.0" RelY="0.0"/>
+      <Point X="551.0" Y="101.0" GraphRef="b85f4" RelX="-1.0" RelY="0.0" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="id922211ca">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="114.0" Y="171.0"/>
+      <Point X="206.0" Y="190.0" GraphRef="d8aaf" RelX="-1.0" RelY="0.0" ArrowHead="mim-inhibition"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="ided1589f5">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="226.0" Y="180.0" GraphRef="d8aaf" RelX="-0.5" RelY="-1.0"/>
+      <Point X="224.0" Y="113.0" GraphRef="d143e" RelX="-0.5" RelY="1.0" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="id22a58723">
+    <Graphics ConnectorType="Curved" ZOrder="12288" LineThickness="1.0">
+      <Point X="226.0" Y="200.0" GraphRef="d8aaf" RelX="-0.5" RelY="1.0"/>
+      <Point X="137.5" Y="269.0"/>
+      <Point X="49.0" Y="383.5"/>
+      <Point X="100.0" Y="498.0" GraphRef="f2559" RelX="-1.0" RelY="0.0" ArrowHead="TBar"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="id3373814a">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="180.0" Y="498.0" GraphRef="f2559" RelX="1.0" RelY="0.0"/>
+      <Point X="256.0" Y="484.0" GraphRef="f210c" RelX="-1.0" RelY="0.0" ArrowHead="mim-inhibition"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="id6a8d3799">
+    <Graphics ConnectorType="Curved" ZOrder="12288" LineThickness="1.0">
+      <Point X="298.0" Y="544.0" GraphRef="fa303" RelX="0.0" RelY="1.0"/>
+      <Point X="140.0" Y="508.0" GraphRef="f2559" RelX="0.0" RelY="1.0" ArrowHead="TBar"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="b0411">
+    <Graphics ZOrder="32779" LineThickness="1.0">
+      <Point X="135.0" Y="229.0" GraphRef="c23ef" RelX="1.0" RelY="0.0"/>
+      <Point X="206.0" Y="190.0" GraphRef="d8aaf" RelX="-1.0" RelY="0.0" ArrowHead="mim-inhibition"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="fcb38">
+    <Graphics ZOrder="32780" LineThickness="1.0">
+      <Point X="289.0" Y="293.0" GraphRef="f5dcd" RelX="0.0" RelY="-1.0"/>
+      <Point X="266.0" Y="200.0" GraphRef="d8aaf" RelX="0.5" RelY="1.0" ArrowHead="mim-inhibition"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="a696a">
+    <Graphics ZOrder="32781" LineThickness="1.0">
+      <Point X="178.0" Y="314.0" GraphRef="f9145" RelX="0.5" RelY="-1.0"/>
+      <Point X="246.0" Y="200.0" GraphRef="d8aaf" RelX="0.0" RelY="1.0" ArrowHead="mim-inhibition"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="b03de">
+    <Graphics ZOrder="32782" LineThickness="1.0">
+      <Point X="417.0" Y="211.0" GraphRef="ab126" RelX="0.0" RelY="1.0"/>
+      <Point X="421.0" Y="311.0" GraphRef="a71ad" RelX="0.0" RelY="-1.0" ArrowHead="mim-inhibition"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="c4711">
+    <Graphics ZOrder="32783" LineThickness="1.0">
+      <Point X="329.0" Y="323.0" GraphRef="e030f" RelX="1.0" RelY="0.0"/>
+      <Point X="381.0" Y="321.0" GraphRef="a71ad" RelX="-1.0" RelY="0.0" ArrowHead="mim-inhibition"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="ffe8d">
+    <Graphics ZOrder="32784" LineThickness="3.0">
+      <Point X="461.0" Y="321.0" GraphRef="a71ad" RelX="1.0" RelY="0.0"/>
+      <Point X="551.0" Y="234.0" GraphRef="f243b" RelX="-1.0" RelY="0.0" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="c30e4">
+    <Graphics ZOrder="32789" LineThickness="3.0">
+      <Point X="461.0" Y="321.0" GraphRef="a71ad" RelX="1.0" RelY="0.0"/>
+      <Point X="571.0" Y="337.0" GraphRef="d4215" RelX="-0.5" RelY="-1.0" ArrowHead="TBar"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="c52e8">
+    <Graphics ZOrder="32790" LineThickness="1.0">
+      <Point X="264.0" Y="113.0" GraphRef="d143e" RelX="0.5" RelY="1.0"/>
+      <Point X="266.0" Y="180.0" GraphRef="d8aaf" RelX="0.5" RelY="-1.0" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="f20b7">
+    <Graphics ZOrder="32791" LineThickness="1.0">
+      <Point X="198.0" Y="324.0" GraphRef="f9145" RelX="1.0" RelY="0.0"/>
+      <Point X="249.0" Y="323.0" GraphRef="e030f" RelX="-1.0" RelY="0.0" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e717e">
+    <Graphics ZOrder="32795" LineThickness="1.0">
+      <Point X="180.0" Y="498.0" GraphRef="f2559" RelX="1.0" RelY="0.0"/>
+      <Point X="258.0" Y="534.0" GraphRef="fa303" RelX="-1.0" RelY="0.0" ArrowHead="mim-inhibition"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="c41f2">
+    <Graphics ZOrder="32796" LineThickness="1.0">
+      <Point X="336.0" Y="484.0" GraphRef="f210c" RelX="1.0" RelY="0.0"/>
+      <Point X="390.0" Y="508.0" ArrowHead="mim-inhibition"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="a7fbf">
+    <Graphics ZOrder="32797" LineThickness="1.0">
+      <Point X="338.0" Y="534.0" GraphRef="fa303" RelX="1.0" RelY="0.0"/>
+      <Point X="390.0" Y="508.0" GraphRef="a4f01" RelX="-1.0" RelY="0.0" ArrowHead="mim-inhibition"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="ce41e">
+    <Graphics ZOrder="32798" LineThickness="3.0">
+      <Point X="470.0" Y="508.0" GraphRef="a4f01" RelX="1.0" RelY="0.0"/>
+      <Point X="571.0" Y="466.0" GraphRef="ee982" RelX="-0.5" RelY="1.0" ArrowHead="mim-inhibition"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="bb086">
+    <Graphics ZOrder="32799" LineThickness="3.0">
+      <Point X="470.0" Y="508.0" GraphRef="a4f01" RelX="1.0" RelY="0.0"/>
+      <Point X="551.0" Y="561.0" GraphRef="fdb37" RelX="-1.0" RelY="0.0" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Label TextLabel="L1" GraphId="b85f4">
+    <Graphics CenterX="591.0" CenterY="101.0" Width="80.0" Height="20.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="14" Valign="Middle"/>
+  </Label>
+  <Label TextLabel="L2" GraphId="f243b">
+    <Graphics CenterX="591.0" CenterY="234.0" Width="80.0" Height="20.0" ZOrder="32785" FillColor="ffffff" FontWeight="Bold" FontSize="14" Valign="Middle"/>
+  </Label>
+  <Label TextLabel="L3" GraphId="d4215">
+    <Graphics CenterX="591.0" CenterY="347.0" Width="80.0" Height="20.0" ZOrder="32786" FillColor="ffffff" FontWeight="Bold" FontSize="14" Valign="Middle"/>
+  </Label>
+  <Label TextLabel="L4" GraphId="ee982">
+    <Graphics CenterX="591.0" CenterY="456.0" Width="80.0" Height="20.0" ZOrder="32787" FillColor="ffffff" FontWeight="Bold" FontSize="14" Valign="Middle"/>
+  </Label>
+  <Label TextLabel="ADULT" GraphId="fdb37">
+    <Graphics CenterX="591.0" CenterY="561.0" Width="80.0" Height="20.0" ZOrder="32788" FillColor="ffffff" FontWeight="Bold" FontSize="14" Valign="Middle"/>
+  </Label>
+  <InfoBox CenterX="0.0" CenterY="0.0"/>
+  <Biopax>
+    <bp:PublicationXref xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" rdf:id="ee6">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">20232378</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">miRNAs give worms the time of their lives: small RNAs and temporal control in Caenorhabditis elegans.</bp:TITLE>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Dev Dyn</bp:SOURCE>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2010</bp:YEAR>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Resnick TD</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">McCulloch KA</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Rougvie AE</bp:AUTHORS>
+    </bp:PublicationXref>
+    <bp:openControlledVocabulary xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#">
+      <bp:TERM xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">signaling pathway pertinent to development</bp:TERM>
+      <bp:ID xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PW:0000650</bp:ID>
+      <bp:Ontology xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Pathway Ontology</bp:Ontology>
+    </bp:openControlledVocabulary>
+  </Biopax>
+</Pathway>

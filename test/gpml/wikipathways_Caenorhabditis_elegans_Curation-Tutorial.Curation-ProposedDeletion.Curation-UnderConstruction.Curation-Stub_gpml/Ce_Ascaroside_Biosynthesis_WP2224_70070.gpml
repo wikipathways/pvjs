@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Pathway xmlns="http://pathvisio.org/GPML/2013a" Name="Ascaroside Biosynthesis" Author="kyook@caltech.edu" Last-Modified="2/20/2013" Organism="Caenorhabditis elegans">
+  <Comment Source="WikiPathways-category">Metabolic Process</Comment>
+  <Comment Source="WikiPathways-description">A proposed role of peroxisomal beta-oxidation enzymes in ascaroside biosynthesis in C. elegans.  Ascarosides are small-molecule pheromones that play a role in dauer formation, mating attraction, and social feeding behaviors.</Comment>
+  <BiopaxRef>b57</BiopaxRef>
+  <Graphics BoardWidth="514.0" BoardHeight="678.0" />
+  <DataNode TextLabel="very long chain&#xA;fatty acids&#xA;(VLCFAs)" GraphId="ef5eb" Type="Metabolite">
+    <Graphics CenterX="290.0" CenterY="29.5" Width="80.0" Height="47.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Xref Database="" ID="" />
+  </DataNode>
+  <DataNode TextLabel="ACOX-1" GraphId="a796b" Type="GeneProduct">
+    <Graphics CenterX="444.0" CenterY="80.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" ShapeType="RoundedRectangle" />
+    <Xref Database="Ensembl" ID="F08A8.1" />
+  </DataNode>
+  <DataNode TextLabel="Short chain &#xA;ascarosides" GraphId="dd7a5" Type="Metabolite">
+    <Graphics CenterX="291.0" CenterY="405.5" Width="80.0" Height="47.0" ZOrder="32772" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Xref Database="" ID="" />
+  </DataNode>
+  <DataNode TextLabel="MAOC-1" GraphId="ae7ba" Type="GeneProduct">
+    <Graphics CenterX="444.0" CenterY="182.0" Width="80.0" Height="20.0" ZOrder="32773" FontSize="10" Valign="Middle" ShapeType="RoundedRectangle" />
+    <Xref Database="WormBase" ID="E04F6.3" />
+  </DataNode>
+  <DataNode TextLabel="DHS-28" GraphId="ecabf" Type="GeneProduct">
+    <Graphics CenterX="444.0" CenterY="272.0" Width="80.0" Height="20.0" ZOrder="32774" FontSize="10" Valign="Middle" ShapeType="RoundedRectangle" />
+    <Xref Database="WormBase" ID="M03A8.1" />
+  </DataNode>
+  <DataNode TextLabel="DAF-22" GraphId="d20d5" Type="GeneProduct">
+    <Graphics CenterX="444.0" CenterY="361.0" Width="80.0" Height="20.0" ZOrder="32775" FontSize="10" Valign="Middle" ShapeType="RoundedRectangle" />
+    <Xref Database="WormBase" ID="Y57A10C.6" />
+  </DataNode>
+  <Interaction GraphId="id5caf4bc0">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="444.0" Y="90.0" GraphRef="a796b" RelX="0.0" RelY="1.0" />
+      <Point X="444.0" Y="172.0" GraphRef="ae7ba" RelX="0.0" RelY="-1.0" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="ideb46d2b7">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="444.0" Y="192.0" GraphRef="ae7ba" RelX="0.0" RelY="1.0" />
+      <Point X="444.0" Y="262.0" GraphRef="ecabf" RelX="0.0" RelY="-1.0" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="idec882d4">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="444.0" Y="282.0" GraphRef="ecabf" RelX="0.0" RelY="1.0" />
+      <Point X="444.0" Y="351.0" GraphRef="d20d5" RelX="0.0" RelY="-1.0" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="id6adc0bb9">
+    <Graphics ZOrder="12288" LineStyle="Broken" LineThickness="1.0">
+      <Point X="290.0" Y="53.0" GraphRef="ef5eb" RelX="0.0" RelY="1.0" />
+      <Point X="291.0" Y="382.0" GraphRef="dd7a5" RelX="0.0" RelY="-1.0" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <GraphicalLine>
+    <Graphics ConnectorType="Elbow" ZOrder="12288" LineThickness="1.0">
+      <Point X="253.0" Y="81.0" />
+      <Point X="253.0" Y="366.0" />
+    </Graphics>
+  </GraphicalLine>
+  <GraphicalLine>
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="347.0" Y="82.0" />
+      <Point X="347.0" Y="367.0" />
+    </Graphics>
+  </GraphicalLine>
+  <GraphicalLine>
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="329.0" Y="81.0" />
+      <Point X="347.0" Y="81.0" />
+    </Graphics>
+  </GraphicalLine>
+  <GraphicalLine GraphId="b73e8">
+    <Graphics ZOrder="32777" LineThickness="1.0">
+      <Point X="329.0" Y="368.0" />
+      <Point X="347.0" Y="368.0" />
+    </Graphics>
+  </GraphicalLine>
+  <Label TextLabel="beta peroxisomal &#xA;oxidation" GraphId="d851d">
+    <Graphics CenterX="291.0" CenterY="189.5" Width="98.0" Height="51.0" ZOrder="32776" FillColor="ffffff" FontStyle="Italic" FontSize="10" Valign="Middle" ShapeType="Rectangle" />
+  </Label>
+  <InfoBox CenterX="0.0" CenterY="0.0" />
+  <Biopax>
+    <bp:openControlledVocabulary xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#">
+      <bp:TERM xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">ascaroside biosynthetic pathway</bp:TERM>
+      <bp:ID xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PW:0001316</bp:ID>
+      <bp:Ontology xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Pathway Ontology</bp:Ontology>
+    </bp:openControlledVocabulary>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="b57">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">22239548</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Comparative metabolomics reveals biogenesis of ascarosides, a modular library of small-molecule signals in C. elegans.</bp:TITLE>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">J Am Chem Soc</bp:SOURCE>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2012</bp:YEAR>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">von Reuss SH</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Bose N</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Srinivasan J</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Yim JJ</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Judkins JC</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Sternberg PW</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Schroeder FC</bp:AUTHORS>
+    </bp:PublicationXref>
+    <bp:openControlledVocabulary xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#">
+      <bp:TERM xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">lipid metabolic pathway</bp:TERM>
+      <bp:ID xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PW:0000010</bp:ID>
+      <bp:Ontology xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Pathway Ontology</bp:Ontology>
+    </bp:openControlledVocabulary>
+  </Biopax>
+</Pathway>

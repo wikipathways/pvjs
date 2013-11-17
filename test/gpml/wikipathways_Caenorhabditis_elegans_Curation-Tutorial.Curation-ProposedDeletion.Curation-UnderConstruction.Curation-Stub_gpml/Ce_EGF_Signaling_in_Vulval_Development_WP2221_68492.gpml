@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Pathway xmlns="http://pathvisio.org/GPML/2013a" Name="EGF Signaling in Vulval Development" Author="kyook@caltech.edu" Organism="Caenorhabditis elegans">
+  <Comment Source="WikiPathways-description">EGF signaling is a key pathway involved in vulval patterning. Vulval precursor cell patterning requires input and cooperation between both EGF LIN-3 graded signaling through LET-23 as well as a sequential, subordinate signal involving DSL ligands acting via LIN-12.
+</Comment>
+  <Comment Source="WikiPathways-category">Cellular Process</Comment>
+  <Graphics BoardWidth="852.0" BoardHeight="269.0"/>
+  <DataNode TextLabel="LIN-3" GraphId="dc6fe" Type="GeneProduct">
+    <BiopaxRef>f02</BiopaxRef>
+    <Graphics CenterX="58.0" CenterY="161.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="WormBase" ID="F36H1.4"/>
+  </DataNode>
+  <DataNode TextLabel="LET-23" GraphId="ba08b" Type="GeneProduct">
+    <BiopaxRef>f02</BiopaxRef>
+    <Graphics CenterX="187.0" CenterY="161.0" Width="80.0" Height="20.0" ZOrder="32769" FontSize="10" Valign="Middle"/>
+    <Xref Database="WormBase" ID="ZK1067.1"/>
+  </DataNode>
+  <DataNode TextLabel="SEM-5" GraphId="b987a" Type="GeneProduct">
+    <BiopaxRef>f02</BiopaxRef>
+    <Graphics CenterX="309.0" CenterY="202.0" Width="80.0" Height="20.0" ZOrder="32770" FontSize="10" Valign="Middle"/>
+    <Xref Database="WormBase" ID="C14F5.5"/>
+  </DataNode>
+  <DataNode TextLabel="SOS-1" GraphId="c63f0" Type="GeneProduct">
+    <BiopaxRef>f02</BiopaxRef>
+    <Graphics CenterX="310.0" CenterY="229.0" Width="80.0" Height="20.0" ZOrder="32771" FontSize="10" Valign="Middle"/>
+    <Xref Database="WormBase" ID="T28F12.3"/>
+  </DataNode>
+  <DataNode TextLabel="LET-60" GraphId="bccf2" Type="GeneProduct">
+    <BiopaxRef>f02</BiopaxRef>
+    <Graphics CenterX="375.0" CenterY="133.0" Width="80.0" Height="20.0" ZOrder="32772" FontSize="10" Valign="Middle"/>
+    <Xref Database="WormBase" ID="ZK792.6"/>
+  </DataNode>
+  <DataNode TextLabel="LIN-45" GraphId="ce80d" Type="GeneProduct">
+    <BiopaxRef>f02</BiopaxRef>
+    <Graphics CenterX="488.0" CenterY="133.0" Width="80.0" Height="20.0" ZOrder="32773" FontSize="10" Valign="Middle"/>
+    <Xref Database="WormBase" ID="Y73B6A.5"/>
+  </DataNode>
+  <DataNode TextLabel="MEK-2" GraphId="a94ec" Type="GeneProduct">
+    <BiopaxRef>f02</BiopaxRef>
+    <Graphics CenterX="488.0" CenterY="162.0" Width="80.0" Height="20.0" ZOrder="32774" FontSize="10" Valign="Middle"/>
+    <Xref Database="WormBase" ID="Y54E10BL.6"/>
+  </DataNode>
+  <DataNode TextLabel="MPK-1" GraphId="b0a3f" Type="GeneProduct">
+    <BiopaxRef>f02</BiopaxRef>
+    <Graphics CenterX="488.0" CenterY="190.0" Width="80.0" Height="20.0" ZOrder="32775" FontSize="10" Valign="Middle"/>
+    <Xref Database="WormBase" ID="F43C1.2"/>
+  </DataNode>
+  <DataNode TextLabel="LIN-31" GraphId="f78e4" Type="GeneProduct">
+    <BiopaxRef>f02</BiopaxRef>
+    <Graphics CenterX="631.0" CenterY="172.0" Width="80.0" Height="20.0" ZOrder="32776" FontSize="10" Valign="Middle"/>
+    <Xref Database="WormBase" ID="K10G6.1"/>
+  </DataNode>
+  <DataNode TextLabel="LIN-1" GraphId="d1775" Type="GeneProduct">
+    <BiopaxRef>f02</BiopaxRef>
+    <Graphics CenterX="631.0" CenterY="201.0" Width="80.0" Height="20.0" ZOrder="32777" FontSize="10" Valign="Middle"/>
+    <Xref Database="WormBase" ID="C37F5.1"/>
+  </DataNode>
+  <DataNode TextLabel="lin-39" GraphId="ea2bc" Type="GeneProduct">
+    <BiopaxRef>f02</BiopaxRef>
+    <Graphics CenterX="782.0" CenterY="171.0" Width="80.0" Height="20.0" ZOrder="32779" FontSize="10" Valign="Middle"/>
+    <Xref Database="WormBase" ID="C07H6.7"/>
+  </DataNode>
+  <DataNode TextLabel="egl-17" GraphId="c0873" Type="GeneProduct">
+    <BiopaxRef>f02</BiopaxRef>
+    <Graphics CenterX="782.0" CenterY="200.0" Width="80.0" Height="20.0" ZOrder="32780" FontSize="10" Valign="Middle"/>
+    <Xref Database="WormBase" ID="F38G1.2"/>
+  </DataNode>
+  <Interaction GraphId="id4bcf3902">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="98.0" Y="161.0" GraphRef="dc6fe" RelX="1.0" RelY="0.0"/>
+      <Point X="147.0" Y="161.0" GraphRef="ba08b" RelX="-1.0" RelY="0.0" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="id52ba4f93">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="227.0" Y="161.0" GraphRef="ba08b" RelX="1.0" RelY="0.0"/>
+      <Point X="269.0" Y="202.0" GraphRef="b987a" RelX="-1.0" RelY="0.0" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="idfdabb89f">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="356.0" Y="209.0"/>
+      <Point X="395.0" Y="143.0" GraphRef="bccf2" RelX="0.5" RelY="1.0" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="id9ee58a91">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="412.0" Y="134.0"/>
+      <Point X="448.0" Y="133.0" GraphRef="ce80d" RelX="-1.0" RelY="0.0" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="id1d33157b">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="529.0" Y="186.0"/>
+      <Point X="590.0" Y="186.0" ArrowHead="TBar"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="df82e">
+    <Graphics ZOrder="32778" LineThickness="1.0">
+      <Point X="680.0" Y="186.0"/>
+      <Point X="741.0" Y="186.0" ArrowHead="TBar"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Label TextLabel="LIGAND" GraphId="db89a">
+    <Graphics CenterX="55.0" CenterY="69.0" Width="80.0" Height="20.0" ZOrder="28672" FillColor="ffffff" FontSize="10" Valign="Middle"/>
+  </Label>
+  <Label TextLabel="RECEPTOR" GraphId="c534d">
+    <Graphics CenterX="182.0" CenterY="69.0" Width="80.0" Height="20.0" ZOrder="32781" FillColor="ffffff" FontSize="10" Valign="Middle"/>
+  </Label>
+  <Label TextLabel="SIGNAL TRANSDUCTION" GraphId="cd04f">
+    <Graphics CenterX="415.0" CenterY="69.0" Width="260.0" Height="20.0" ZOrder="32782" FillColor="ffffff" FontSize="10" Valign="Middle"/>
+  </Label>
+  <Label TextLabel="TRANSCRIPTIONAL &#10;REGULATION" GraphId="e157d">
+    <Graphics CenterX="625.0" CenterY="69.0" Width="260.0" Height="20.0" ZOrder="32783" FillColor="ffffff" FontSize="10" Valign="Middle"/>
+  </Label>
+  <Label TextLabel="TARGET &#10;GENES" GraphId="da2de">
+    <Graphics CenterX="782.0" CenterY="69.0" Width="80.0" Height="20.0" ZOrder="32784" FillColor="ffffff" FontSize="10" Valign="Middle"/>
+  </Label>
+  <InfoBox CenterX="0.0" CenterY="0.0"/>
+  <Biopax>
+    <bp:openControlledVocabulary xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#">
+      <bp:TERM xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Ras mediated signaling pathway</bp:TERM>
+      <bp:ID xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PW:0000525</bp:ID>
+      <bp:Ontology xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Pathway Ontology</bp:Ontology>
+    </bp:openControlledVocabulary>
+    <bp:openControlledVocabulary xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#">
+      <bp:TERM xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">epidermal growth factor/neuregulin signaling pathway</bp:TERM>
+      <bp:ID xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PW:0000170</bp:ID>
+      <bp:Ontology xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Pathway Ontology</bp:Ontology>
+    </bp:openControlledVocabulary>
+    <bp:openControlledVocabulary xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#">
+      <bp:TERM xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">EGF/neuregulin signaling pathway</bp:TERM>
+      <bp:ID xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PW:0000170</bp:ID>
+      <bp:Ontology xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Pathway Ontology</bp:Ontology>
+    </bp:openControlledVocabulary>
+    <bp:PublicationXref xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" rdf:id="f02">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">18050418</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Vulval development.</bp:TITLE>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">WormBook</bp:SOURCE>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2005</bp:YEAR>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Sternberg PW</bp:AUTHORS>
+    </bp:PublicationXref>
+  </Biopax>
+</Pathway>

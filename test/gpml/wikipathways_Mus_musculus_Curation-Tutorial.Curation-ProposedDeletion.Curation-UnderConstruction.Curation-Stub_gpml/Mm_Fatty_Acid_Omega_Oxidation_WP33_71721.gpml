@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Pathway xmlns="http://pathvisio.org/GPML/2013a" Name="Fatty Acid Omega Oxidation" Last-Modified="10/17/2013" Organism="Mus musculus">
+  <Comment Source="GenMAPP notes">Created by Magali Jaillard, Marijke Vermeer, Michiel Adrieans, Ron Schormans and Chris Evelo, see website.</Comment>
+  <Comment Source="GenMAPP remarks">http://www.bigcat.unimaas.nl/mapps/</Comment>
+  <Comment Source="WikiPathways-category">Metabolic Process</Comment>
+  <Graphics BoardWidth="630.0" BoardHeight="869.5"/>
+  <DataNode TextLabel="Cyp1a1" GraphId="f56" Type="GeneProduct" GroupRef="daf66">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="CYP1A1 | cytochrome P450 family 1 subfamily A..."/>
+    <Graphics CenterX="316.6666666666667" CenterY="214.0" Width="66.66666666666667" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="13076"/>
+  </DataNode>
+  <DataNode TextLabel="Cyp1a2" GraphId="e07" Type="GeneProduct" GroupRef="daf66">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="CYP1A2 | cytochrome P450 family 1 subfamily A..."/>
+    <Graphics CenterX="316.6666666666667" CenterY="234.0" Width="66.66666666666667" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="13077"/>
+  </DataNode>
+  <DataNode TextLabel="CYP3A4" GraphId="b47" Type="GeneProduct" GroupRef="daf66">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="CYP3A4 | cytochrome P450 family 3 subfamily A..."/>
+    <Graphics CenterX="316.6666666666667" CenterY="254.0" Width="66.66666666666667" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="" ID=""/>
+  </DataNode>
+  <DataNode TextLabel="CYP4A11" GraphId="af0" Type="GeneProduct" GroupRef="daf66">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="CYP4A11 | cytochrome P450 family 4 subfamily ..."/>
+    <Graphics CenterX="316.6666666666667" CenterY="274.0" Width="66.66666666666667" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="" ID=""/>
+  </DataNode>
+  <DataNode TextLabel="CYP2A6" GraphId="d7b" Type="GeneProduct" GroupRef="daf66">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="CYP2A6 | cytochrome P450 family 2 subfamily A..."/>
+    <Graphics CenterX="316.6666666666667" CenterY="294.0" Width="66.66666666666667" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="" ID=""/>
+  </DataNode>
+  <DataNode TextLabel="CYP2D6" GraphId="a09" Type="GeneProduct" GroupRef="daf66">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="CYP2D6 | cytochrome P450 family 2 subfamily D..."/>
+    <Graphics CenterX="316.6666666666667" CenterY="314.0" Width="66.66666666666667" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="" ID=""/>
+  </DataNode>
+  <DataNode TextLabel="Cyp2e1" GraphId="b5e" Type="GeneProduct" GroupRef="daf66">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="CYP2E1 | cytochrome P450 family 2 subfamily E..."/>
+    <Graphics CenterX="316.6666666666667" CenterY="334.0" Width="66.66666666666667" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="13106"/>
+  </DataNode>
+  <DataNode TextLabel="ADH1A" GraphId="c69" Type="GeneProduct" GroupRef="bc5d2">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="ADH1A | alcohol dehydrogenase 1A (class I) alp..."/>
+    <Graphics CenterX="316.6666666666667" CenterY="461.6666666666667" Width="53.333333333333336" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="" ID=""/>
+  </DataNode>
+  <DataNode TextLabel="ADH1B" GraphId="e45" Type="GeneProduct" GroupRef="bc5d2">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="ADH1B | alcohol dehydrogenase IB (class I) bet..."/>
+    <Graphics CenterX="316.6666666666667" CenterY="481.6666666666667" Width="53.333333333333336" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="" ID=""/>
+  </DataNode>
+  <DataNode TextLabel="ADH1C" GraphId="f85" Type="GeneProduct" GroupRef="bc5d2">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="ADH1C | alcohol dehydrogenase 1C (class I) gam..."/>
+    <Graphics CenterX="316.6666666666667" CenterY="501.6666666666667" Width="53.333333333333336" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="" ID=""/>
+  </DataNode>
+  <DataNode TextLabel="Adh4" GraphId="aa6" Type="GeneProduct" GroupRef="bc5d2">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="ADH4 | alcohol dehydrogenase 4 (class II) pi p..."/>
+    <Graphics CenterX="316.6666666666667" CenterY="521.6666666666666" Width="53.333333333333336" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="26876"/>
+  </DataNode>
+  <DataNode TextLabel="ADH6" GraphId="ba6" Type="GeneProduct" GroupRef="bc5d2">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="ADH6 | alcohol dehydrogenase 6 (class V)"/>
+    <Graphics CenterX="316.6666666666667" CenterY="541.6666666666666" Width="53.333333333333336" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="" ID=""/>
+  </DataNode>
+  <DataNode TextLabel="Adh7" GraphId="cc1" Type="GeneProduct" GroupRef="bc5d2">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="ADH7 | alcohol dehydrogenase 7 (class IV) mu o..."/>
+    <Graphics CenterX="316.6666666666667" CenterY="561.6666666666666" Width="53.333333333333336" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="11529"/>
+  </DataNode>
+  <DataNode TextLabel="Aldh1a1" GraphId="e86" Type="GeneProduct" GroupRef="ba935">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="ALDH1A1 | aldehyde dehydrogenase 1 family memb..."/>
+    <Graphics CenterX="319.6666666666667" CenterY="666.3333333333334" Width="66.66666666666667" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="11668"/>
+  </DataNode>
+  <DataNode TextLabel="Aldh2" GraphId="eda" Type="GeneProduct" GroupRef="ba935">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="ALDH2 | aldehyde dehydrogenase 2 family (mitoch..."/>
+    <Graphics CenterX="319.6666666666667" CenterY="686.3333333333334" Width="66.66666666666667" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="11669"/>
+  </DataNode>
+  <Interaction GraphId="d170d">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="318.6666666666667" Y="161.5" GraphRef="eb3" RelX="0.0" RelY="1.0"/>
+      <Point X="316.6666666666667" Y="403.8333333333333" GraphRef="f84" RelX="0.0" RelY="-1.0" ArrowHead="Arrow"/>
+      <Anchor Position="0.4" Shape="None" GraphId="cffe9"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e7a6a">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="316.6666666666667" Y="422.8333333333333" GraphRef="f84" RelX="0.0" RelY="1.0"/>
+      <Point X="316.6666666666667" Y="607.1666666666666" GraphRef="b32" RelX="0.0" RelY="-1.0" ArrowHead="Arrow"/>
+      <Anchor Position="0.4" Shape="None" GraphId="dfcff"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="d5bbf">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="316.6666666666667" Y="626.1666666666666" GraphRef="b32" RelX="0.0" RelY="1.0"/>
+      <Point X="316.6666666666667" Y="737.1666666666666" GraphRef="d34" RelX="0.0" RelY="-1.0" ArrowHead="Arrow"/>
+      <Anchor Position="0.4" Shape="None" GraphId="afd25"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e10c2">
+    <Graphics ZOrder="12288" LineStyle="Broken" LineThickness="1.0">
+      <Point X="316.6666666666667" Y="756.1666666666666" GraphRef="d34" RelX="0.0" RelY="1.0"/>
+      <Point X="316.66666666666663" Y="820.5" GraphRef="dfd" RelX="0.0" RelY="-1.0" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="id96fab666">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="317.8666666666667" Y="258.43333333333334" GraphRef="cffe9" RelX="0.0" RelY="0.0"/>
+      <Point X="271.33333333333337" Y="274.0" GraphRef="dba4c" RelX="-1.0" RelY="0.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="idaeb22c3e">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="316.6666666666667" Y="496.56666666666666" GraphRef="dfcff" RelX="0.0" RelY="0.0"/>
+      <Point X="278.0" Y="511.66666666666663" GraphRef="b39b3" RelX="-1.0" RelY="0.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="idbb46d237">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="316.6666666666667" Y="670.5666666666666" GraphRef="afd25" RelX="0.0" RelY="0.0"/>
+      <Point X="274.33333333333337" Y="676.3333333333334" GraphRef="bf159" RelX="-1.0" RelY="0.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Label TextLabel="CH3-(CH2)10-COO-" GraphId="eb3">
+    <Graphics CenterX="318.6666666666667" CenterY="152.0" Width="150.33333333333334" Height="19.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="12" Valign="Middle"/>
+  </Label>
+  <Label TextLabel="HO-CH-(CH2)10-COO-" GraphId="f84">
+    <Graphics CenterX="316.6666666666667" CenterY="413.3333333333333" Width="170.33333333333334" Height="19.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="12" Valign="Middle"/>
+  </Label>
+  <Label TextLabel="HOC-(CH2)10-COO-" GraphId="b32">
+    <Graphics CenterX="316.6666666666667" CenterY="616.6666666666666" Width="153.33333333333334" Height="19.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="12" Valign="Middle"/>
+  </Label>
+  <Label TextLabel="-OOC-(CH2)10-COO-" GraphId="d34">
+    <Graphics CenterX="316.6666666666667" CenterY="746.6666666666666" Width="158.33333333333334" Height="19.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="12" Valign="Middle"/>
+  </Label>
+  <Label TextLabel="Beta Oxidation" GraphId="dfd">
+    <Graphics CenterX="316.6666666666667" CenterY="830.0" Width="117.33333333333333" Height="19.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="12" Valign="Middle" Color="0000ff"/>
+  </Label>
+  <Group GroupId="daf66" GraphId="dba4c" Style="Complex"/>
+  <Group GroupId="bc5d2" GraphId="b39b3" Style="Complex"/>
+  <Group GroupId="ba935" GraphId="bf159" Style="Complex"/>
+  <InfoBox CenterX="5.0" CenterY="78.33333333333333"/>
+  <Legend CenterX="600.0" CenterY="113.33333333333333"/>
+  <Biopax>
+    <bp:openControlledVocabulary xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#">
+      <bp:TERM xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">fatty acid omega degradation pathway</bp:TERM>
+      <bp:ID xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PW:0001253</bp:ID>
+      <bp:Ontology xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Pathway Ontology</bp:Ontology>
+    </bp:openControlledVocabulary>
+  </Biopax>
+</Pathway>

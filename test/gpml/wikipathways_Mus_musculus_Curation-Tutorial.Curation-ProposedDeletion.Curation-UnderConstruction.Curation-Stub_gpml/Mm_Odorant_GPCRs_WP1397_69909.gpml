@@ -1,0 +1,1444 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Pathway xmlns="http://pathvisio.org/GPML/2013a" Name="Odorant GPCRs" Organism="Mus musculus">
+  <Comment Source="GenMAPP notes">R. 20090827, derived from parsed Uniprot data using AltAnalyze (Nathan Salomonis).</Comment>
+  <Comment Source="GenMAPP remarks"></Comment>
+  <Comment Source="WikiPathways-category">Molecular Function</Comment>
+  <Graphics BoardWidth="1158.0" BoardHeight="752.0" />
+  <DataNode TextLabel="Olfr1" GraphId="f90be" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Olfactory receptor 1 </Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value=" " />
+    <Graphics CenterX="100.0" CenterY="137.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000069823" />
+  </DataNode>
+  <DataNode TextLabel="Olfr10" GraphId="b9d66" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Olfactory receptor 10 </Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value=" " />
+    <Graphics CenterX="100.0" CenterY="157.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000057168" />
+  </DataNode>
+  <DataNode TextLabel="Olfr1002" GraphId="ea1c7" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">olfactory receptor 1002 </Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value=" " />
+    <Graphics CenterX="100.0" CenterY="177.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000075214" />
+  </DataNode>
+  <DataNode TextLabel="Olfr1009" GraphId="cb65d" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Olfactory receptor 1009 </Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value=" " />
+    <Graphics CenterX="100.0" CenterY="197.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000043226" />
+  </DataNode>
+  <DataNode TextLabel="Olfr1019" GraphId="cce92" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Olfactory receptor 1019 </Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value=" " />
+    <Graphics CenterX="100.0" CenterY="217.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000075208" />
+  </DataNode>
+  <DataNode TextLabel="Olfr1020" GraphId="dffc3" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Olfactory receptor 1020 </Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value=" " />
+    <Graphics CenterX="100.0" CenterY="237.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000046975" />
+  </DataNode>
+  <DataNode TextLabel="Olfr1030" GraphId="f6d66" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Olfactory receptor 1030 </Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value=" " />
+    <Graphics CenterX="100.0" CenterY="257.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000044923" />
+  </DataNode>
+  <DataNode TextLabel="Olfr1038" GraphId="d723e" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Olfactory receptor 1038 </Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value=" " />
+    <Graphics CenterX="100.0" CenterY="277.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000050577" />
+  </DataNode>
+  <DataNode TextLabel="Olfr1044" GraphId="a6cb2" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Olfactory receptor 1044 </Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value=" " />
+    <Graphics CenterX="100.0" CenterY="297.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000075200" />
+  </DataNode>
+  <DataNode TextLabel="Olfr1052" GraphId="d3f68" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Olfactory receptor 1052 </Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value=" " />
+    <Graphics CenterX="100.0" CenterY="317.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000047149" />
+  </DataNode>
+  <DataNode TextLabel="Olfr1086" GraphId="bde6f" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Olfactory receptor 1086 </Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value=" " />
+    <Graphics CenterX="100.0" CenterY="337.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000075175" />
+  </DataNode>
+  <DataNode TextLabel="Olfr1094" GraphId="e2402" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Olfactory receptor 1094 </Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value=" " />
+    <Graphics CenterX="100.0" CenterY="357.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000044213" />
+  </DataNode>
+  <DataNode TextLabel="Olfr1095" GraphId="b5daf" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">olfactory receptor 1095 </Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value=" " />
+    <Graphics CenterX="100.0" CenterY="377.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000075171" />
+  </DataNode>
+  <DataNode TextLabel="Olfr11" GraphId="b257e" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Olfactory receptor 11 </Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value=" " />
+    <Graphics CenterX="100.0" CenterY="397.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000036658" />
+  </DataNode>
+  <DataNode TextLabel="Olfr1102" GraphId="dd697" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Olfactory receptor 1102 </Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value=" " />
+    <Graphics CenterX="100.0" CenterY="417.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000049843" />
+  </DataNode>
+  <DataNode TextLabel="Olfr12" GraphId="f09a5" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Olfactory receptor 12 </Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value=" " />
+    <Graphics CenterX="100.0" CenterY="437.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000061616" />
+  </DataNode>
+  <DataNode TextLabel="Olfr13" GraphId="ff6d2" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Olfactory receptor 13 </Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value=" " />
+    <Graphics CenterX="100.0" CenterY="457.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000043605" />
+  </DataNode>
+  <DataNode TextLabel="Olfr139" GraphId="a5dac" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Olfactory receptor 139 </Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value=" " />
+    <Graphics CenterX="100.0" CenterY="477.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000047444" />
+  </DataNode>
+  <DataNode TextLabel="Olfr140" GraphId="e1d6e" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Olfactory receptor 140 </Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value=" " />
+    <Graphics CenterX="100.0" CenterY="497.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000075068" />
+  </DataNode>
+  <DataNode TextLabel="Olfr142" GraphId="c29e2" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Olfactory receptor 142 </Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value=" " />
+    <Graphics CenterX="100.0" CenterY="517.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000075063" />
+  </DataNode>
+  <DataNode TextLabel="Olfr143" GraphId="f5d3a" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Olfactory receptor 143 </Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value=" " />
+    <Graphics CenterX="100.0" CenterY="537.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000070310" />
+  </DataNode>
+  <DataNode TextLabel="Olfr144" GraphId="a56ef" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Olfactory receptor 144 </Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value=" " />
+    <Graphics CenterX="100.0" CenterY="557.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000063670" />
+  </DataNode>
+  <DataNode TextLabel="Olfr1444" GraphId="ac873" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Olfactory receptor 1444 </Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value=" " />
+    <Graphics CenterX="100.0" CenterY="577.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000046272" />
+  </DataNode>
+  <DataNode TextLabel="Olfr145" GraphId="f2c92" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Olfactory receptor 145 </Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value=" " />
+    <Graphics CenterX="100.0" CenterY="597.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000066748" />
+  </DataNode>
+  <DataNode TextLabel="Olfr146" GraphId="f187e" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Olfactory receptor 146 </Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value=" " />
+    <Graphics CenterX="212.0" CenterY="136.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000058820" />
+  </DataNode>
+  <DataNode TextLabel="Olfr147" GraphId="f10f1" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Olfactory receptor 147 </Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value=" " />
+    <Graphics CenterX="212.0" CenterY="156.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000049098" />
+  </DataNode>
+  <DataNode TextLabel="Olfr148" GraphId="ed174" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Olfactory receptor 148 </Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value=" " />
+    <Graphics CenterX="212.0" CenterY="176.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000048299" />
+  </DataNode>
+  <DataNode TextLabel="Olfr149" GraphId="e9cb7" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Olfactory receptor 149 </Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value=" " />
+    <Graphics CenterX="212.0" CenterY="196.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000062121" />
+  </DataNode>
+  <DataNode TextLabel="Olfr15" GraphId="b38c5" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Olfactory receptor 15 </Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value=" " />
+    <Graphics CenterX="212.0" CenterY="216.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000059043" />
+  </DataNode>
+  <DataNode TextLabel="Olfr151" GraphId="aa1ab" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Olfactory receptor 151 </Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value=" " />
+    <Graphics CenterX="212.0" CenterY="236.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000061165" />
+  </DataNode>
+  <DataNode TextLabel="Olfr154" GraphId="c82a9" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Olfactory receptor 154 </Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value=" " />
+    <Graphics CenterX="212.0" CenterY="256.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000075212" />
+  </DataNode>
+  <DataNode TextLabel="Olfr18" GraphId="c79d0" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Olfactory receptor 18 </Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value=" " />
+    <Graphics CenterX="212.0" CenterY="276.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000066896" />
+  </DataNode>
+  <DataNode TextLabel="Olfr180" GraphId="f422d" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Olfactory receptor Olfr180 </Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value=" " />
+    <Graphics CenterX="212.0" CenterY="296.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000057987" />
+  </DataNode>
+  <DataNode TextLabel="Olfr181" GraphId="ac061" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Olfactory receptor 181 </Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value=" " />
+    <Graphics CenterX="212.0" CenterY="316.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000060007" />
+  </DataNode>
+  <DataNode TextLabel="Olfr183" GraphId="c07e5" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Olfactory receptor 183 </Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value=" " />
+    <Graphics CenterX="212.0" CenterY="336.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000062105" />
+  </DataNode>
+  <DataNode TextLabel="Olfr186" GraphId="d2dad" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Olfactory receptor 186 </Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value=" " />
+    <Graphics CenterX="212.0" CenterY="356.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000047960" />
+  </DataNode>
+  <DataNode TextLabel="Olfr187" GraphId="cf9a2" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Olfactory receptor 187 </Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value=" " />
+    <Graphics CenterX="212.0" CenterY="376.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000043357" />
+  </DataNode>
+  <DataNode TextLabel="Olfr19" GraphId="bb118" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Olfactory receptor 19 </Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value=" " />
+    <Graphics CenterX="212.0" CenterY="396.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000048101" />
+  </DataNode>
+  <DataNode TextLabel="Olfr24" GraphId="befb7" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Olfactory receptor 24 </Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value=" " />
+    <Graphics CenterX="212.0" CenterY="416.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000054141" />
+  </DataNode>
+  <DataNode TextLabel="Olfr3" GraphId="b9c42" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Olfactory receptor 3 </Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value=" " />
+    <Graphics CenterX="212.0" CenterY="436.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000075384" />
+  </DataNode>
+  <DataNode TextLabel="Olfr469" GraphId="b3a4b" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Olfactory receptor 469 </Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value=" " />
+    <Graphics CenterX="212.0" CenterY="456.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000057146" />
+  </DataNode>
+  <DataNode TextLabel="Olfr470" GraphId="b0436" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Olfactory receptor 470 </Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value=" " />
+    <Graphics CenterX="212.0" CenterY="476.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000066243" />
+  </DataNode>
+  <DataNode TextLabel="Olfr472" GraphId="c76ef" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Olfactory receptor 472 </Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value=" " />
+    <Graphics CenterX="212.0" CenterY="496.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000073893" />
+  </DataNode>
+  <DataNode TextLabel="Olfr473" GraphId="b1295" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Olfactory receptor 473 </Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value=" " />
+    <Graphics CenterX="212.0" CenterY="516.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000073892" />
+  </DataNode>
+  <DataNode TextLabel="Olfr474" GraphId="d5296" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Olfactory receptor 474 </Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value=" " />
+    <Graphics CenterX="212.0" CenterY="536.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000072312" />
+  </DataNode>
+  <DataNode TextLabel="Olfr476" GraphId="e129b" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Olfactory receptor 476 </Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value=" " />
+    <Graphics CenterX="212.0" CenterY="556.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000073891" />
+  </DataNode>
+  <DataNode TextLabel="Olfr477" GraphId="d5a44" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Olfactory receptor 477 </Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value=" " />
+    <Graphics CenterX="212.0" CenterY="576.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000073890" />
+  </DataNode>
+  <DataNode TextLabel="Olfr478" GraphId="ef70d" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Olfactory receptor 478 </Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value=" " />
+    <Graphics CenterX="212.0" CenterY="596.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000070415" />
+  </DataNode>
+  <DataNode TextLabel="Olfr480" GraphId="ec25c" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">olfactory receptor 480 </Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value=" " />
+    <Graphics CenterX="317.3333333333333" CenterY="135.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000063120" />
+  </DataNode>
+  <DataNode TextLabel="Olfr481" GraphId="a020e" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Olfactory receptor 481 </Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value=" " />
+    <Graphics CenterX="317.3333333333333" CenterY="155.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000054236" />
+  </DataNode>
+  <DataNode TextLabel="Olfr482" GraphId="d4309" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Olfactory receptor 482 </Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value=" " />
+    <Graphics CenterX="317.3333333333333" CenterY="175.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000059031" />
+  </DataNode>
+  <DataNode TextLabel="Olfr484" GraphId="ce819" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Olfactory receptor 484 </Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value=" " />
+    <Graphics CenterX="317.3333333333333" CenterY="195.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000059996" />
+  </DataNode>
+  <DataNode TextLabel="Olfr486" GraphId="d2510" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Olfactory receptor 486 </Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value=" " />
+    <Graphics CenterX="317.3333333333333" CenterY="215.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000063610" />
+  </DataNode>
+  <DataNode TextLabel="Olfr488" GraphId="a53d9" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Olfactory receptor 488 </Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value=" " />
+    <Graphics CenterX="317.3333333333333" CenterY="235.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000060549" />
+  </DataNode>
+  <DataNode TextLabel="Olfr490" GraphId="a08e6" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Olfactory receptor 490 </Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value=" " />
+    <Graphics CenterX="317.3333333333333" CenterY="255.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000058510" />
+  </DataNode>
+  <DataNode TextLabel="Olfr491" GraphId="b9429" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Olfactory receptor 491 </Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value=" " />
+    <Graphics CenterX="317.3333333333333" CenterY="275.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000049579" />
+  </DataNode>
+  <DataNode TextLabel="Olfr493" GraphId="e74f6" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Olfactory receptor 493 </Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value=" " />
+    <Graphics CenterX="317.3333333333333" CenterY="295.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000062710" />
+  </DataNode>
+  <DataNode TextLabel="Olfr494" GraphId="b603a" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Olfactory receptor 494 </Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value=" " />
+    <Graphics CenterX="317.3333333333333" CenterY="315.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000059227" />
+  </DataNode>
+  <DataNode TextLabel="Olfr495" GraphId="d2852" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Olfactory receptor 495 </Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value=" " />
+    <Graphics CenterX="317.3333333333333" CenterY="335.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000062147" />
+  </DataNode>
+  <DataNode TextLabel="Olfr497" GraphId="bbc21" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Olfactory receptor 497 </Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value=" " />
+    <Graphics CenterX="317.3333333333333" CenterY="355.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000060059" />
+  </DataNode>
+  <DataNode TextLabel="Olfr498" GraphId="a484c" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Olfactory receptor 498 </Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value=" " />
+    <Graphics CenterX="317.33333333333326" CenterY="375.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000058679" />
+  </DataNode>
+  <DataNode TextLabel="Olfr5" GraphId="db96d" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Olfactory receptor 5 </Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value=" " />
+    <Graphics CenterX="317.3333333333332" CenterY="395.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000066844" />
+  </DataNode>
+  <DataNode TextLabel="Olfr502" GraphId="b0272" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Olfactory receptor 502 </Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value=" " />
+    <Graphics CenterX="317.3333333333332" CenterY="415.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000058014" />
+  </DataNode>
+  <DataNode TextLabel="Olfr507" GraphId="f9660" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Olfactory receptor 507 </Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value=" " />
+    <Graphics CenterX="317.3333333333332" CenterY="435.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000061000" />
+  </DataNode>
+  <DataNode TextLabel="Olfr508" GraphId="c50f0" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Olfactory receptor 508 </Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value=" " />
+    <Graphics CenterX="317.3333333333332" CenterY="455.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000063764" />
+  </DataNode>
+  <DataNode TextLabel="Olfr510" GraphId="cae94" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Olfactory receptor 510 </Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value=" " />
+    <Graphics CenterX="317.3333333333332" CenterY="475.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000061782" />
+  </DataNode>
+  <DataNode TextLabel="Olfr6" GraphId="dcb3e" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Olfactory receptor 6 </Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value=" " />
+    <Graphics CenterX="317.3333333333332" CenterY="495.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000036647" />
+  </DataNode>
+  <DataNode TextLabel="Olfr63" GraphId="e91e9" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Olfactory receptor 63 </Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value=" " />
+    <Graphics CenterX="317.3333333333332" CenterY="515.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000054666" />
+  </DataNode>
+  <DataNode TextLabel="Olfr8" GraphId="abb22" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Olfactory receptor 8 </Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value=" " />
+    <Graphics CenterX="317.3333333333332" CenterY="535.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000058814" />
+  </DataNode>
+  <DataNode TextLabel="Olfr9" GraphId="e98fd" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Olfactory receptor 9 </Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value=" " />
+    <Graphics CenterX="317.3333333333332" CenterY="555.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000069430" />
+  </DataNode>
+  <DataNode TextLabel="Olfr958" GraphId="e8d0b" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Olfactory receptor 958 </Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value=" " />
+    <Graphics CenterX="317.3333333333332" CenterY="575.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000050853" />
+  </DataNode>
+  <DataNode TextLabel="Olfr998" GraphId="d86c1" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Olfactory receptor 998 </Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value=" " />
+    <Graphics CenterX="317.3333333333332" CenterY="595.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000046076" />
+  </DataNode>
+  <DataNode TextLabel="Cmklr1" GraphId="a30c5" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Chemokine receptor-like 1 </Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value=" " />
+    <Graphics CenterX="440.6666666666667" CenterY="130.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000042190" />
+  </DataNode>
+  <DataNode TextLabel="Gpr1" GraphId="ce466" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Probable G-protein coupled receptor 1 </Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value=" " />
+    <Graphics CenterX="440.6666666666667" CenterY="150.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000046856" />
+  </DataNode>
+  <DataNode TextLabel="Gpr101" GraphId="daa7a" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Probable G-protein coupled receptor 101 </Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value=" " />
+    <Graphics CenterX="440.6666666666667" CenterY="170.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000036357" />
+  </DataNode>
+  <DataNode TextLabel="Gpr110" GraphId="da481" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">G protein-coupled receptor 110 </Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value=" " />
+    <Graphics CenterX="440.6666666666667" CenterY="190.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000041293" />
+  </DataNode>
+  <DataNode TextLabel="Gpr113" GraphId="c46b3" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Probable G-protein coupled receptor 113 </Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value=" " />
+    <Graphics CenterX="440.6666666666667" CenterY="210.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000067642" />
+  </DataNode>
+  <DataNode TextLabel="Gpr114" GraphId="eef7a" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">G protein-coupled receptor 114 isoform 2 </Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value=" " />
+    <Graphics CenterX="440.6666666666667" CenterY="230.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000061577" />
+  </DataNode>
+  <DataNode TextLabel="Gpr115" GraphId="b5f06" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Probable G-protein coupled receptor 115 </Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value=" " />
+    <Graphics CenterX="440.6666666666667" CenterY="250.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000023918" />
+  </DataNode>
+  <DataNode TextLabel="Gpr12" GraphId="fe8f8" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Probable G-protein coupled receptor 12 </Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value=" " />
+    <Graphics CenterX="440.6666666666667" CenterY="270.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000041468" />
+  </DataNode>
+  <DataNode TextLabel="Gpr124" GraphId="d1f79" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Probable G-protein coupled receptor 124 </Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value=" " />
+    <Graphics CenterX="440.6666666666667" CenterY="290.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000031486" />
+  </DataNode>
+  <DataNode TextLabel="Gpr125" GraphId="d1c6f" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">G protein-coupled receptor 125 isoform 1 </Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value=" " />
+    <Graphics CenterX="440.6666666666667" CenterY="310.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000029090" />
+  </DataNode>
+  <DataNode TextLabel="Gpr126" GraphId="b74fa" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Probable G-protein coupled receptor 126 </Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value=" " />
+    <Graphics CenterX="440.6666666666667" CenterY="330.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000039116" />
+  </DataNode>
+  <DataNode TextLabel="Gpr128" GraphId="f6fe4" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Probable G-protein coupled receptor 128 </Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value=" " />
+    <Graphics CenterX="440.6666666666667" CenterY="350.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000022755" />
+  </DataNode>
+  <DataNode TextLabel="Gpr133" GraphId="f40af" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Probable G-protein coupled receptor 133 </Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value=" " />
+    <Graphics CenterX="440.6666666666667" CenterY="370.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000044017" />
+  </DataNode>
+  <DataNode TextLabel="Gpr135" GraphId="d62a9" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Probable G-protein coupled receptor 135 </Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value=" " />
+    <Graphics CenterX="440.6666666666667" CenterY="390.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000043398" />
+  </DataNode>
+  <DataNode TextLabel="Gpr139" GraphId="fc4a1" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Probable G-protein coupled receptor 139 </Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value=" " />
+    <Graphics CenterX="440.6666666666667" CenterY="410.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000066197" />
+  </DataNode>
+  <DataNode TextLabel="Gpr141" GraphId="d441d" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Probable G-protein coupled receptor 141 </Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value=" " />
+    <Graphics CenterX="440.6666666666667" CenterY="430.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000053101" />
+  </DataNode>
+  <DataNode TextLabel="Gpr142" GraphId="f6f8f" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Orphan G protein-coupled receptor TRHRL1 </Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value=" " />
+    <Graphics CenterX="440.6666666666667" CenterY="450.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000034677" />
+  </DataNode>
+  <DataNode TextLabel="Gpr146" GraphId="ecdb0" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">G protein-coupled receptor 146 </Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value=" " />
+    <Graphics CenterX="440.6666666666667" CenterY="470.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000044197" />
+  </DataNode>
+  <DataNode TextLabel="Gpr149" GraphId="b4f78" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Probable G-protein coupled receptor 149 </Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value=" " />
+    <Graphics CenterX="440.6666666666667" CenterY="490.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000043441" />
+  </DataNode>
+  <DataNode TextLabel="Gpr150" GraphId="a4a9b" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Probable G-protein coupled receptor 150 </Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value=" " />
+    <Graphics CenterX="440.6666666666667" CenterY="510.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000045509" />
+  </DataNode>
+  <DataNode TextLabel="Gpr152" GraphId="dcab9" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Probable G-protein coupled receptor 152 </Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value=" " />
+    <Graphics CenterX="440.6666666666667" CenterY="530.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000044724" />
+  </DataNode>
+  <DataNode TextLabel="Gpr153" GraphId="ce601" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Probable G-protein coupled receptor 153 </Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value=" " />
+    <Graphics CenterX="440.6666666666667" CenterY="550.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000042804" />
+  </DataNode>
+  <DataNode TextLabel="Gpr156" GraphId="f73db" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Probable G-protein coupled receptor 156 </Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value=" " />
+    <Graphics CenterX="440.6666666666667" CenterY="570.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000046961" />
+  </DataNode>
+  <DataNode TextLabel="Gpr157" GraphId="dd595" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">cdna:known chromosome:NCBIM37:4:149461612:149480036:1 </Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value=" " />
+    <Graphics CenterX="440.6666666666667" CenterY="590.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000047875" />
+  </DataNode>
+  <DataNode TextLabel="Gpr158" GraphId="cb0a9" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Probable G-protein coupled receptor 158 </Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value=" " />
+    <Graphics CenterX="440.6666666666667" CenterY="610.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000045967" />
+  </DataNode>
+  <DataNode TextLabel="Gpr160" GraphId="dba40" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Probable G-protein coupled receptor 160 </Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value=" " />
+    <Graphics CenterX="440.6666666666667" CenterY="630.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000037661" />
+  </DataNode>
+  <DataNode TextLabel="Gpr162" GraphId="bede5" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Probable G-protein coupled receptor 162 </Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value=" " />
+    <Graphics CenterX="545.0" CenterY="134.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000038390" />
+  </DataNode>
+  <DataNode TextLabel="Gpr171" GraphId="a7736" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Probable G-protein coupled receptor 171 </Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value=" " />
+    <Graphics CenterX="545.0" CenterY="154.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000050075" />
+  </DataNode>
+  <DataNode TextLabel="Gpr173" GraphId="d6646" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Probable G-protein coupled receptor 173 </Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value=" " />
+    <Graphics CenterX="545.0" CenterY="174.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000056679" />
+  </DataNode>
+  <DataNode TextLabel="Gpr176" GraphId="a18ab" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Probable G-protein coupled receptor 176 </Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value=" " />
+    <Graphics CenterX="545.0" CenterY="194.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000040133" />
+  </DataNode>
+  <DataNode TextLabel="Gpr182" GraphId="ef489" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">G-protein coupled receptor 182 </Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value=" " />
+    <Graphics CenterX="545.0" CenterY="214.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000058396" />
+  </DataNode>
+  <DataNode TextLabel="Gpr19" GraphId="eccea" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Isoform 2 of Probable G-protein coupled receptor 19 </Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value=" " />
+    <Graphics CenterX="545.0" CenterY="234.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000032641" />
+  </DataNode>
+  <DataNode TextLabel="Gpr20" GraphId="ffa22" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Probable G-protein coupled receptor 20 </Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value=" " />
+    <Graphics CenterX="545.0" CenterY="254.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000045281" />
+  </DataNode>
+  <DataNode TextLabel="Gpr21" GraphId="b52ea" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Probable G-protein coupled receptor 21 </Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value=" " />
+    <Graphics CenterX="545.0" CenterY="274.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000053164" />
+  </DataNode>
+  <DataNode TextLabel="Gpr22" GraphId="cf47f" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Putative uncharacterized protein </Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value=" " />
+    <Graphics CenterX="545.0" CenterY="294.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000044067" />
+  </DataNode>
+  <DataNode TextLabel="Gpr25" GraphId="b66e9" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Probable G-protein coupled receptor 25 </Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value=" " />
+    <Graphics CenterX="545.0" CenterY="314.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000052759" />
+  </DataNode>
+  <DataNode TextLabel="Gpr26" GraphId="a223b" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Probable G-protein coupled receptor 26 </Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value=" " />
+    <Graphics CenterX="545.0" CenterY="334.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000040125" />
+  </DataNode>
+  <DataNode TextLabel="Gpr27" GraphId="e98d5" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Probable G-protein coupled receptor 27 </Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value=" " />
+    <Graphics CenterX="545.0" CenterY="354.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000072875" />
+  </DataNode>
+  <DataNode TextLabel="Gpr33" GraphId="ac36b" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Probable G-protein coupled receptor 33 </Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value=" " />
+    <Graphics CenterX="545.0" CenterY="374.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000035148" />
+  </DataNode>
+  <DataNode TextLabel="Gpr34" GraphId="e79a3" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Putative uncharacterized protein </Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value=" " />
+    <Graphics CenterX="545.0" CenterY="394.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000040229" />
+  </DataNode>
+  <DataNode TextLabel="Gpr35" GraphId="cbc87" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Putative uncharacterized protein -Fragment </Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value=" " />
+    <Graphics CenterX="545.0" CenterY="414.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000026271" />
+  </DataNode>
+  <DataNode TextLabel="Gpr37" GraphId="bdd1b" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Isoform 3 of Probable G-protein coupled receptor 37 </Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value=" " />
+    <Graphics CenterX="545.0" CenterY="434.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000039904" />
+  </DataNode>
+  <DataNode TextLabel="Gpr37l1" GraphId="cae37" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Endothelin B receptor-like protein 2 </Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value=" " />
+    <Graphics CenterX="545.0" CenterY="454.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000026424" />
+  </DataNode>
+  <DataNode TextLabel="Gpr44" GraphId="ec159" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Putative G-protein coupled receptor 44 </Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value=" " />
+    <Graphics CenterX="545.0" CenterY="474.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000034117" />
+  </DataNode>
+  <DataNode TextLabel="Gpr55" GraphId="bc442" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Probable G-protein coupled receptor 55 </Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value=" " />
+    <Graphics CenterX="545.0" CenterY="494.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000049608" />
+  </DataNode>
+  <DataNode TextLabel="Gpr61" GraphId="d9f80" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Probable G-protein coupled receptor 61 </Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value=" " />
+    <Graphics CenterX="545.0" CenterY="514.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000046793" />
+  </DataNode>
+  <DataNode TextLabel="Gpr63" GraphId="e6725" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">G protein-coupled receptor 63 </Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value=" " />
+    <Graphics CenterX="545.0" CenterY="534.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000040372" />
+  </DataNode>
+  <DataNode TextLabel="Gpr75" GraphId="b7a99" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Probable G-protein coupled receptor 75 </Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value=" " />
+    <Graphics CenterX="545.0" CenterY="554.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000043999" />
+  </DataNode>
+  <DataNode TextLabel="Gpr81" GraphId="f14c9" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">G protein-coupled receptor 81 </Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value=" " />
+    <Graphics CenterX="545.0000000000001" CenterY="574.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000049241" />
+  </DataNode>
+  <DataNode TextLabel="Gpr82" GraphId="e3f83" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Probable G-protein coupled receptor 82 </Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value=" " />
+    <Graphics CenterX="545.0000000000001" CenterY="594.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000047678" />
+  </DataNode>
+  <DataNode TextLabel="Gpr83" GraphId="abaa4" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Isoform 4 of Probable G-protein coupled receptor 83 </Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value=" " />
+    <Graphics CenterX="545.0000000000001" CenterY="614.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000031932" />
+  </DataNode>
+  <DataNode TextLabel="Gpr84" GraphId="c792e" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Probable G-protein coupled receptor 84 </Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value=" " />
+    <Graphics CenterX="545.0000000000001" CenterY="634.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000063234" />
+  </DataNode>
+  <DataNode TextLabel="Gpr85" GraphId="ef602" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Probable G-protein coupled receptor 85 </Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value=" " />
+    <Graphics CenterX="650.3333333333334" CenterY="135.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000048216" />
+  </DataNode>
+  <DataNode TextLabel="Gpr87" GraphId="ec725" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">G protein-coupled receptor 87 </Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value=" " />
+    <Graphics CenterX="650.3333333333334" CenterY="155.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000051431" />
+  </DataNode>
+  <DataNode TextLabel="Gpr88" GraphId="cc540" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Probable G-protein coupled receptor 88 </Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value=" " />
+    <Graphics CenterX="650.3333333333334" CenterY="175.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000068696" />
+  </DataNode>
+  <DataNode TextLabel="Gpr97" GraphId="b89c1" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Probable G-protein coupled receptor 97 </Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value=" " />
+    <Graphics CenterX="650.3333333333334" CenterY="195.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000060470" />
+  </DataNode>
+  <DataNode TextLabel="Lgr4" GraphId="fe5a5" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Leucine-rich repeat-containing G-protein coupled receptor 4 </Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value=" " />
+    <Graphics CenterX="650.3333333333334" CenterY="215.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000050199" />
+  </DataNode>
+  <DataNode TextLabel="Lgr5" GraphId="bd051" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">leucine rich repeat containing G protein coupled receptor 5 </Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value=" " />
+    <Graphics CenterX="650.3333333333334" CenterY="235.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000020140" />
+  </DataNode>
+  <DataNode TextLabel="Lgr6" GraphId="db721" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Leucine-rich repeat-containing G-protein coupled receptor 6 </Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value=" " />
+    <Graphics CenterX="650.3333333333334" CenterY="255.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000042793" />
+  </DataNode>
+  <DataNode TextLabel="Mrgpra4" GraphId="e70cf" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Mas-related G-protein coupled receptor member A4 </Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value=" " />
+    <Graphics CenterX="650.3333333333334" CenterY="275.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000067173" />
+  </DataNode>
+  <DataNode TextLabel="Mrgpra6" GraphId="f3902" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Mas-related G-protein coupled receptor member A6 </Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value=" " />
+    <Graphics CenterX="650.3333333333334" CenterY="295.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000052303" />
+  </DataNode>
+  <DataNode TextLabel="Mrgprb1" GraphId="ce43e" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Mas-related G-protein coupled receptor member B1 </Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value=" " />
+    <Graphics CenterX="650.3333333333334" CenterY="315.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000070547" />
+  </DataNode>
+  <DataNode TextLabel="Mrgprb2" GraphId="c2d70" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Mas-related G-protein coupled receptor member B2 </Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value=" " />
+    <Graphics CenterX="650.3333333333334" CenterY="335.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000050425" />
+  </DataNode>
+  <DataNode TextLabel="Mrgprb3" GraphId="f1492" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Mas-related G-protein coupled receptor member B3 </Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value=" " />
+    <Graphics CenterX="650.3333333333334" CenterY="355.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000070546" />
+  </DataNode>
+  <DataNode TextLabel="Mrgprb4" GraphId="c381b" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Mas-related G-protein coupled receptor member B4 </Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value=" " />
+    <Graphics CenterX="650.3333333333334" CenterY="375.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000070550" />
+  </DataNode>
+  <DataNode TextLabel="Mrgprb5" GraphId="abe4e" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Mas-related G-protein coupled receptor member B5 </Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value=" " />
+    <Graphics CenterX="650.3333333333334" CenterY="395.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000070551" />
+  </DataNode>
+  <DataNode TextLabel="Mrgprb8" GraphId="df937" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Mas-related G-protein coupled receptor member B8 </Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value=" " />
+    <Graphics CenterX="650.3333333333334" CenterY="415.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000050870" />
+  </DataNode>
+  <DataNode TextLabel="Mrgpre" GraphId="f0521" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Mas-related G-protein coupled receptor member E </Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value=" " />
+    <Graphics CenterX="650.3333333333334" CenterY="435.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000048965" />
+  </DataNode>
+  <DataNode TextLabel="Mrgprf" GraphId="f626a" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Mas-related G-protein coupled receptor member F </Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value=" " />
+    <Graphics CenterX="650.3333333333334" CenterY="455.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000031070" />
+  </DataNode>
+  <DataNode TextLabel="Mrgprg" GraphId="cf331" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Mas-related G-protein coupled receptor member G </Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value=" " />
+    <Graphics CenterX="650.3333333333334" CenterY="475.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000050276" />
+  </DataNode>
+  <DataNode TextLabel="Mrgprh" GraphId="e0256" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Mas-related G-protein coupled receptor member H </Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value=" " />
+    <Graphics CenterX="650.3333333333334" CenterY="495.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000059408" />
+  </DataNode>
+  <DataNode TextLabel="Taar2" GraphId="c8773" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Trace amine-associated receptor 2 </Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value=" " />
+    <Graphics CenterX="650.3333333333334" CenterY="515.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000059763" />
+  </DataNode>
+  <DataNode TextLabel="Taar3" GraphId="a8b31" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Trace amine-associated receptor 3 </Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value=" " />
+    <Graphics CenterX="650.3333333333334" CenterY="535.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000069708" />
+  </DataNode>
+  <DataNode TextLabel="Taar5" GraphId="c5667" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Trace amine-associated receptor 5 </Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value=" " />
+    <Graphics CenterX="650.3333333333334" CenterY="555.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000069706" />
+  </DataNode>
+  <DataNode TextLabel="Taar6" GraphId="b64a1" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Trace amine-associated receptor 6 </Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value=" " />
+    <Graphics CenterX="650.3333333333334" CenterY="575.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000045111" />
+  </DataNode>
+  <DataNode TextLabel="Taar7b" GraphId="ed2df" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Trace amine-associated receptor 7b </Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value=" " />
+    <Graphics CenterX="650.3333333333334" CenterY="595.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000069705" />
+  </DataNode>
+  <DataNode TextLabel="Taar7d" GraphId="a2f7d" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Trace amine-associated receptor 7d </Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value=" " />
+    <Graphics CenterX="650.3333333333334" CenterY="615.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000069704" />
+  </DataNode>
+  <DataNode TextLabel="Taar7e" GraphId="ca1d2" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Trace amine-associated receptor 7e </Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value=" " />
+    <Graphics CenterX="650.3333333333334" CenterY="635.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000069703" />
+  </DataNode>
+  <DataNode TextLabel="Taar7f" GraphId="bcf8c" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Trace amine-associated receptor 7f </Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value=" " />
+    <Graphics CenterX="794.0" CenterY="572.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000060825" />
+  </DataNode>
+  <DataNode TextLabel="Taar8b" GraphId="f568c" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Trace amine-associated receptor 8b </Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value=" " />
+    <Graphics CenterX="794.0" CenterY="592.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000069702" />
+  </DataNode>
+  <DataNode TextLabel="Taar8c" GraphId="ac918" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Trace amine-associated receptor 8c </Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value=" " />
+    <Graphics CenterX="794.0" CenterY="612.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000069701" />
+  </DataNode>
+  <DataNode TextLabel="Taar9" GraphId="d5cb8" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Trace amine-associated receptor 9 </Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value=" " />
+    <Graphics CenterX="794.0" CenterY="632.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000037424" />
+  </DataNode>
+  <DataNode TextLabel="Oprl1" GraphId="a2b9d" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">âOpioid receptor-like 1, isoform CRA_i â</Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value=" " />
+    <Graphics CenterX="915.0" CenterY="612.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000027584" />
+  </DataNode>
+  <DataNode TextLabel="Mrgpra1" GraphId="a200c" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Mas-related G-protein coupled receptor member A1 </Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value=" " />
+    <Graphics CenterX="212.5" CenterY="674.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000050650" />
+  </DataNode>
+  <DataNode TextLabel="Mrgprx1" GraphId="be867" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">âMAS-related GPR, member X1â</Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value=" " />
+    <Graphics CenterX="212.5" CenterY="694.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000070552" />
+  </DataNode>
+  <DataNode TextLabel="Gpr3" GraphId="e4771" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Probable G-protein coupled receptor 3 </Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value=" " />
+    <Graphics CenterX="97.0" CenterY="672.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000049649" />
+  </DataNode>
+  <DataNode TextLabel="Taar4" GraphId="bd1ff" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Trace amine-associated receptor 4 </Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value=" " />
+    <Graphics CenterX="97.0" CenterY="692.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000069707" />
+  </DataNode>
+  <DataNode TextLabel="Gpr183" GraphId="d2407" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">G-protein coupled receptor 183 </Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value=" " />
+    <Graphics CenterX="547.0" CenterY="694.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000051212" />
+  </DataNode>
+  <DataNode TextLabel="V1ra1" GraphId="c5d29" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">âvomeronasal 1 receptor, A1 â</Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value=" " />
+    <Graphics CenterX="792.6666666666666" CenterY="130.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000062818" />
+  </DataNode>
+  <DataNode TextLabel="V1ra2" GraphId="d97eb" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Vomeronasal type-1 receptor A2 </Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value=" " />
+    <Graphics CenterX="792.6666666666666" CenterY="150.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000044248" />
+  </DataNode>
+  <DataNode TextLabel="V1ra3" GraphId="c6275" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Vomeronasal type-1 receptor A3 </Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value=" " />
+    <Graphics CenterX="792.6666666666666" CenterY="170.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000057592" />
+  </DataNode>
+  <DataNode TextLabel="V1ra4" GraphId="c8443" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Vomeronasal type-1 receptor A4 </Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value=" " />
+    <Graphics CenterX="792.6666666666666" CenterY="190.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000060724" />
+  </DataNode>
+  <DataNode TextLabel="V1ra5" GraphId="dadd2" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Vomeronasal type-1 receptor A5 </Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value=" " />
+    <Graphics CenterX="792.6666666666666" CenterY="210.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000068231" />
+  </DataNode>
+  <DataNode TextLabel="V1ra6" GraphId="c8231" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Vomeronasal type-1 receptor A6 </Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value=" " />
+    <Graphics CenterX="792.6666666666666" CenterY="230.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000068232" />
+  </DataNode>
+  <DataNode TextLabel="V1ra7" GraphId="ea0fa" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Vomeronasal type-1 receptor A7 </Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value=" " />
+    <Graphics CenterX="792.6666666666666" CenterY="250.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000060816" />
+  </DataNode>
+  <DataNode TextLabel="V1ra8" GraphId="c4668" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Vomeronasal type-1 receptor A8 </Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value=" " />
+    <Graphics CenterX="792.6666666666666" CenterY="270.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000062546" />
+  </DataNode>
+  <DataNode TextLabel="V1ra9" GraphId="d2c82" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Vomeronasal type-1 receptor A9 </Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value=" " />
+    <Graphics CenterX="792.6666666666666" CenterY="290.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000047203" />
+  </DataNode>
+  <DataNode TextLabel="V1rb1" GraphId="d3bbc" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Vomeronasal type-1 receptor B1 </Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value=" " />
+    <Graphics CenterX="792.6666666666666" CenterY="310.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000058595" />
+  </DataNode>
+  <DataNode TextLabel="V1rb2" GraphId="da1fc" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Vomeronasal type-1 receptor B2 </Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value=" " />
+    <Graphics CenterX="792.6666666666666" CenterY="330.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000060151" />
+  </DataNode>
+  <DataNode TextLabel="V1rb3" GraphId="e213b" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Vomeronasal type-1 receptor B3 </Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value=" " />
+    <Graphics CenterX="792.6666666666666" CenterY="350.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000057697" />
+  </DataNode>
+  <DataNode TextLabel="V1rb4" GraphId="fc74c" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">âvomeronasal 1 receptor, B4â</Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value=" " />
+    <Graphics CenterX="792.6666666666666" CenterY="370.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000068230" />
+  </DataNode>
+  <DataNode TextLabel="V1rb7" GraphId="db1d9" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Vomeronasal type-1 receptor B7 </Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value=" " />
+    <Graphics CenterX="792.6666666666666" CenterY="390.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000059546" />
+  </DataNode>
+  <DataNode TextLabel="V1rb8" GraphId="db120" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Vomeronasal type-1 receptor B8 </Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value=" " />
+    <Graphics CenterX="792.6666666666666" CenterY="410.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000061653" />
+  </DataNode>
+  <DataNode TextLabel="Vmn2r1" GraphId="ed79a" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Vomeronasal type-2 receptor 1 </Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value=" " />
+    <Graphics CenterX="792.6666666666666" CenterY="430.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000027824" />
+  </DataNode>
+  <DataNode TextLabel="Vmn2r19" GraphId="c1f89" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Vomeronasal type-2 receptor 26 </Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value=" " />
+    <Graphics CenterX="792.6666666666666" CenterY="450.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000030141" />
+  </DataNode>
+  <DataNode TextLabel="Vmn2r19" GraphId="b5ccb" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Vomeronasal type-2 receptor 26 </Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value=" " />
+    <Graphics CenterX="792.6666666666666" CenterY="470.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000030141" />
+  </DataNode>
+  <DataNode TextLabel="Vmn2r22" GraphId="a351f" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Vomeronasal type-2 receptor 26 </Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value=" " />
+    <Graphics CenterX="792.6666666666666" CenterY="490.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000030141" />
+  </DataNode>
+  <DataNode TextLabel="Vmn2r26" GraphId="b6557" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Vomeronasal type-2 receptor 26 </Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value=" " />
+    <Graphics CenterX="792.6666666666666" CenterY="510.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000030141" />
+  </DataNode>
+  <DataNode TextLabel="Olfr867" GraphId="d664f" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Olfactory receptor 867 </Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value=" " />
+    <Graphics CenterX="915.0" CenterY="132.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000044454" />
+  </DataNode>
+  <DataNode TextLabel="Tas1r1" GraphId="bf0a2" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">âTaste receptor, type 1, member 1 â</Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value=" " />
+    <Graphics CenterX="915.0" CenterY="152.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000028950" />
+  </DataNode>
+  <DataNode TextLabel="Tas1r2" GraphId="a2698" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">âtaste receptor, type 1, member 2â</Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value=" " />
+    <Graphics CenterX="915.0" CenterY="172.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000028738" />
+  </DataNode>
+  <DataNode TextLabel="Tas1r3" GraphId="dc243" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">âtaste receptor, type 1, member 3â</Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value=" " />
+    <Graphics CenterX="915.0" CenterY="192.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000029072" />
+  </DataNode>
+  <DataNode TextLabel="Tas2r102" GraphId="fe074" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">âtaste receptor, type 2, member 102 â</Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value=" " />
+    <Graphics CenterX="915.0" CenterY="212.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000056901" />
+  </DataNode>
+  <DataNode TextLabel="Tas2r104" GraphId="e0d6f" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">âtaste receptor, type 2, member 104â</Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value=" " />
+    <Graphics CenterX="915.0" CenterY="232.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000061977" />
+  </DataNode>
+  <DataNode TextLabel="Tas2r106" GraphId="f93eb" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">âtaste receptor, type 2, member 106â</Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value=" " />
+    <Graphics CenterX="915.0" CenterY="252.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000057754" />
+  </DataNode>
+  <DataNode TextLabel="Tas2r107" GraphId="ba000" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">âtaste receptor, type 2, member 107â</Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value=" " />
+    <Graphics CenterX="915.0" CenterY="272.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000053389" />
+  </DataNode>
+  <DataNode TextLabel="Tas2r109" GraphId="e7910" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">âtaste receptor, type 2, member 109â</Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value=" " />
+    <Graphics CenterX="915.0" CenterY="292.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000062528" />
+  </DataNode>
+  <DataNode TextLabel="Tas2r113" GraphId="b08a9" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">âtaste receptor, type 2, member 113â</Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value=" " />
+    <Graphics CenterX="915.0" CenterY="312.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000056926" />
+  </DataNode>
+  <DataNode TextLabel="Tas2r114" GraphId="db0fb" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">âtaste receptor, type 2, member 114â</Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value=" " />
+    <Graphics CenterX="915.0" CenterY="332.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000063478" />
+  </DataNode>
+  <DataNode TextLabel="Tas2r116" GraphId="d86c6" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">âtaste receptor, type 2, member 116â</Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value=" " />
+    <Graphics CenterX="915.0" CenterY="352.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000030194" />
+  </DataNode>
+  <DataNode TextLabel="Tas2r117" GraphId="fce0b" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">âtaste receptor, type 2, member 117â</Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value=" " />
+    <Graphics CenterX="915.0" CenterY="372.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000058349" />
+  </DataNode>
+  <DataNode TextLabel="Tas2r117" GraphId="b436b" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">âtaste receptor, type 2, member 117â</Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value=" " />
+    <Graphics CenterX="915.0" CenterY="392.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000058349" />
+  </DataNode>
+  <DataNode TextLabel="Tas2r120" GraphId="e6aa8" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">âtaste receptor, type 2, member 120â</Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value=" " />
+    <Graphics CenterX="915.0" CenterY="412.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000059382" />
+  </DataNode>
+  <DataNode TextLabel="Tas2r124" GraphId="ed252" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">âtaste receptor, type 2, member 124â</Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value=" " />
+    <Graphics CenterX="915.0" CenterY="432.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000060412" />
+  </DataNode>
+  <DataNode TextLabel="Tas2r125" GraphId="ffcd5" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">âtaste receptor, type 2, member 125â</Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value=" " />
+    <Graphics CenterX="915.0" CenterY="452.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000059410" />
+  </DataNode>
+  <DataNode TextLabel="Tas2r129" GraphId="cb464" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">âtaste receptor, type 2, member 129â</Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value=" " />
+    <Graphics CenterX="915.0" CenterY="472.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000063762" />
+  </DataNode>
+  <DataNode TextLabel="Tas2r134" GraphId="ecf52" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">âtaste receptor, type 2, member 134â</Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value=" " />
+    <Graphics CenterX="915.0" CenterY="492.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000056115" />
+  </DataNode>
+  <DataNode TextLabel="Tas2r135" GraphId="e7470" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">âTaste receptor, type 2, member 135 â</Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value=" " />
+    <Graphics CenterX="915.0" CenterY="512.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000056203" />
+  </DataNode>
+  <DataNode TextLabel="Tas2r136" GraphId="e4c30" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">âtaste receptor, type 2, member 136 â</Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value=" " />
+    <Graphics CenterX="915.0" CenterY="532.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000053217" />
+  </DataNode>
+  <DataNode TextLabel="Tas2r138" GraphId="fd898" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">âtaste receptor, type 2, member 138â</Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value=" " />
+    <Graphics CenterX="915.0" CenterY="552.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000058250" />
+  </DataNode>
+  <DataNode TextLabel="Tas2r139" GraphId="dca1f" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">âtaste receptor, type 2, member 139â</Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value=" " />
+    <Graphics CenterX="915.0" CenterY="572.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000047102" />
+  </DataNode>
+  <DataNode TextLabel="Tas2r143" GraphId="e0158" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">âtaste receptor, type 2, member 143â</Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value=" " />
+    <Graphics CenterX="915.0" CenterY="592.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000046652" />
+  </DataNode>
+  <DataNode TextLabel="Opn1mw" GraphId="eb5eb" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">âopsin 1 -cone pigments, medium-wave-sensitive -color blindness, deutanâ</Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value=" " />
+    <Graphics CenterX="318.0" CenterY="672.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000031394" />
+  </DataNode>
+  <DataNode TextLabel="Opn1sw" GraphId="c5852" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">âopsin 1 -cone pigments, short-wave-sensitive -color blindness, tritanâ</Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value=" " />
+    <Graphics CenterX="318.0" CenterY="692.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000058831" />
+  </DataNode>
+  <DataNode TextLabel="Rho" GraphId="b5315" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">âRhodopsin, isoform CRA_a â</Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value=" " />
+    <Graphics CenterX="318.0" CenterY="712.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000030324" />
+  </DataNode>
+  <DataNode TextLabel="Brs3" GraphId="a6832" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Bombesin receptor subtype-3 </Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value=" " />
+    <Graphics CenterX="439.0" CenterY="692.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000031130" />
+  </DataNode>
+  <DataNode TextLabel="Gpr161" GraphId="a935e" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">G protein-coupled receptor RE2</Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value=" " />
+    <Graphics CenterX="1060.0" CenterY="364.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000040836" />
+  </DataNode>
+  <DataNode TextLabel="Gpr165" GraphId="be879" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">G protein-coupled receptor 165</Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value=" " />
+    <Graphics CenterX="1060.0" CenterY="384.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000031210" />
+  </DataNode>
+  <DataNode TextLabel="Gpr108" GraphId="ca513" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">G protein-coupled receptor 108</Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value=" " />
+    <Graphics CenterX="1060.0" CenterY="164.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000005823" />
+  </DataNode>
+  <DataNode TextLabel="Gpr111" GraphId="e4971" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Putative uncharacterized protein</Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value=" " />
+    <Graphics CenterX="1060.0" CenterY="184.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000057899" />
+  </DataNode>
+  <DataNode TextLabel="Gpr175" GraphId="cdc76" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Integral membrane protein GPR175</Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value=" " />
+    <Graphics CenterX="1060.0" CenterY="424.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000002871" />
+  </DataNode>
+  <DataNode TextLabel="Gpr172b" GraphId="bbf8b" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Isoform 1 of Porcine endogenous retrovirus A receptor 2 homolog</Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value=" " />
+    <Graphics CenterX="1060.0" CenterY="404.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000022560" />
+  </DataNode>
+  <DataNode TextLabel="Gpr180" GraphId="bcf22" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Integral membrane protein GPR180</Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value=" " />
+    <Graphics CenterX="1060.0" CenterY="484.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000022131" />
+  </DataNode>
+  <DataNode TextLabel="Gpr137b" GraphId="e82bf" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Integral membrane protein GPR137B</Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value=" " />
+    <Graphics CenterX="1060.0" CenterY="284.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000021306" />
+  </DataNode>
+  <DataNode TextLabel="Gprc2a-rs5" GraphId="a388b" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">âG protein-coupled receptor, family C, group 2, member A, related sequence 5â</Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value=" " />
+    <Graphics CenterX="1060.0" CenterY="584.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000074164" />
+  </DataNode>
+  <DataNode TextLabel="Gpr31c" GraphId="ddfb8" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">cdna:known chromosome:NCBIM37:17:13244187:13245146:-1</Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value=" " />
+    <Graphics CenterX="1060.0" CenterY="524.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000071311" />
+  </DataNode>
+  <DataNode TextLabel="Gpr137b" GraphId="d7212" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">cdna:known chromosome:NCBIM37:13:12709610:12742553:-1</Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value=" " />
+    <Graphics CenterX="1060.0" CenterY="304.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000075118" />
+  </DataNode>
+  <DataNode TextLabel="Gpr112" GraphId="fcae5" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">G protein-coupled receptor 112</Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value=" " />
+    <Graphics CenterX="1060.0" CenterY="224.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000053852" />
+  </DataNode>
+  <DataNode TextLabel="Gpr107" GraphId="d29fe" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">G protein-coupled receptor 107</Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value=" " />
+    <Graphics CenterX="1060.0" CenterY="144.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000000194" />
+  </DataNode>
+  <DataNode TextLabel="Gpr155" GraphId="eff29" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">cdna:known chromosome:NCBIM37:2:73181514:73224455:-1</Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value=" " />
+    <Graphics CenterX="1060.0" CenterY="344.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000041762" />
+  </DataNode>
+  <DataNode TextLabel="Gpr4" GraphId="b4c55" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">G protein-coupled receptor 4</Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value=" " />
+    <Graphics CenterX="1060.0" CenterY="544.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000044317" />
+  </DataNode>
+  <DataNode TextLabel="Gpr89" GraphId="aadef" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">G protein-coupled receptor 89</Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value=" " />
+    <Graphics CenterX="1060.0" CenterY="564.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000028096" />
+  </DataNode>
+  <DataNode TextLabel="Gpr116" GraphId="b9c45" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">G protein-coupled receptor 116</Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value=" " />
+    <Graphics CenterX="1060.0" CenterY="244.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000056492" />
+  </DataNode>
+  <DataNode TextLabel="Gpr177" GraphId="b1f11" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Isoform 1 of Integral membrane protein GPR177</Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value=" " />
+    <Graphics CenterX="1060.0" CenterY="444.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000028173" />
+  </DataNode>
+  <DataNode TextLabel="Gpr137" GraphId="ba605" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Putative uncharacterized protein (Fragment)</Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value=" " />
+    <Graphics CenterX="1060.0" CenterY="264.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000024958" />
+  </DataNode>
+  <DataNode TextLabel="Gpr31c" GraphId="cceba" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">cdna:known chromosome:NCBIM37:17:13244187:13245146:-1</Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value=" " />
+    <Graphics CenterX="1060.0" CenterY="504.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000071311" />
+  </DataNode>
+  <DataNode TextLabel="Gprc2a-rs5" GraphId="f85c0" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">âG protein-coupled receptor, family C, group 2, member A, related sequence 5â</Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value=" " />
+    <Graphics CenterX="1060.0" CenterY="604.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000074164" />
+  </DataNode>
+  <DataNode TextLabel="Gpr137c" GraphId="eadf5" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">G protein-coupled receptor 137C</Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value=" " />
+    <Graphics CenterX="1060.0" CenterY="324.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000049092" />
+  </DataNode>
+  <DataNode TextLabel="Gpr112" GraphId="ccc5b" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">G protein-coupled receptor 112</Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value=" " />
+    <Graphics CenterX="1060.0" CenterY="204.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000053852" />
+  </DataNode>
+  <DataNode TextLabel="Gpr179" GraphId="f8f18" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">G protein-coupled receptor 179</Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value=" " />
+    <Graphics CenterX="1060.0" CenterY="464.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="ENSMUSG00000070337" />
+  </DataNode>
+  <Label TextLabel="Odorant" GraphId="c485c">
+    <Graphics CenterX="206.0" CenterY="109.0" Width="80.0" Height="20.0" ZOrder="28672" FillColor="ffffff" FontSize="13" Valign="Middle" />
+  </Label>
+  <Label TextLabel="Orphan" GraphId="a849e">
+    <Graphics CenterX="540.0" CenterY="104.0" Width="80.0" Height="20.0" ZOrder="28672" FillColor="ffffff" FontSize="13" Valign="Middle" />
+  </Label>
+  <Label TextLabel="Orphan, Gi" GraphId="ff698">
+    <Graphics CenterX="794.0" CenterY="552.0" Width="80.0" Height="20.0" ZOrder="28672" FillColor="ffffff" FontSize="13" Valign="Middle" />
+  </Label>
+  <Label TextLabel="Orphan, Gq, G11" GraphId="dc478">
+    <Graphics CenterX="212.5" CenterY="654.0" Width="105.0" Height="20.0" ZOrder="28672" FillColor="ffffff" FontSize="13" Valign="Middle" />
+  </Label>
+  <Label TextLabel="Orphan, Gs" GraphId="e725d">
+    <Graphics CenterX="97.0" CenterY="652.0" Width="80.0" Height="20.0" ZOrder="28672" FillColor="ffffff" FontSize="13" Valign="Middle" />
+  </Label>
+  <Label TextLabel="Orphan Gs, Gq, Gi" GraphId="d78c6">
+    <Graphics CenterX="547.0" CenterY="674.0" Width="112.0" Height="20.0" ZOrder="28672" FillColor="ffffff" FontSize="13" Valign="Middle" />
+  </Label>
+  <Label TextLabel="Pheromone" GraphId="dc84d">
+    <Graphics CenterX="787.0" CenterY="107.0" Width="80.0" Height="20.0" ZOrder="28672" FillColor="ffffff" FontSize="13" Valign="Middle" />
+  </Label>
+  <Label TextLabel="Taste" GraphId="e2499">
+    <Graphics CenterX="911.0" CenterY="105.0" Width="80.0" Height="20.0" ZOrder="28672" FillColor="ffffff" FontSize="13" Valign="Middle" />
+  </Label>
+  <Label TextLabel="Vision" GraphId="fa38e">
+    <Graphics CenterX="318.0" CenterY="652.0" Width="80.0" Height="20.0" ZOrder="28672" FillColor="ffffff" FontSize="13" Valign="Middle" />
+  </Label>
+  <Label TextLabel="Vision, Gq" GraphId="bfa2d">
+    <Graphics CenterX="439.0" CenterY="672.0" Width="80.0" Height="20.0" ZOrder="28672" FillColor="ffffff" FontSize="13" Valign="Middle" />
+  </Label>
+  <Label TextLabel="Odorant, Pheromone, Taste, and Orphan GPCRs" GraphId="d20c6">
+    <Graphics CenterX="519.5" CenterY="57.5" Width="557.0" Height="33.0" ZOrder="28672" FillColor="ffffff" FontSize="20" Valign="Middle" />
+  </Label>
+  <Label TextLabel="Orphan GPCRs&#xA;(Not GO Annotated)" GraphId="bf4ab">
+    <Graphics CenterX="1063.5" CenterY="116.5" Width="129.0" Height="35.0" ZOrder="28672" FillColor="ffffff" FontSize="13" Valign="Middle" />
+  </Label>
+  <InfoBox CenterX="5.1" CenterY="8.333333333333334" />
+  <Legend CenterX="1108.0" CenterY="118.53333333333333" />
+  <Biopax>
+    <bp:openControlledVocabulary xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#">
+      <bp:TERM xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">G protein mediated signaling pathway</bp:TERM>
+      <bp:ID xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PW:0000125</bp:ID>
+      <bp:Ontology xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Pathway Ontology</bp:Ontology>
+    </bp:openControlledVocabulary>
+  </Biopax>
+</Pathway>
