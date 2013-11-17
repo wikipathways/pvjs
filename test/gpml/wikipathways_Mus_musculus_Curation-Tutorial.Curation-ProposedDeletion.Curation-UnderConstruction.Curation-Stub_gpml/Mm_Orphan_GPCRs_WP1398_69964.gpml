@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Pathway xmlns="http://pathvisio.org/GPML/2013a" Name="Orphan GPCRs" Organism="Mus musculus">
+  <Comment Source="GenMAPP notes"/>
+  <Comment Source="GenMAPP remarks"/>
+  <Comment Source="WikiPathways-category">Molecular Function</Comment>
+  <Comment Source="WikiPathways-description">Orphan GPCRs with no Gene Ontology annotation.</Comment>
+  <Graphics BoardWidth="282.0" BoardHeight="590.0"/>
+  <DataNode TextLabel="Gpr107" GraphId="a0fed" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">G protein-coupled receptor 107</Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value=" "/>
+    <Graphics CenterX="100.0" CenterY="90.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Ensembl" ID="ENSMUSG00000000194"/>
+  </DataNode>
+  <DataNode TextLabel="Gpr108" GraphId="a4bfa" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">G protein-coupled receptor 108</Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value=" "/>
+    <Graphics CenterX="100.0" CenterY="110.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Ensembl" ID="ENSMUSG00000005823"/>
+  </DataNode>
+  <DataNode TextLabel="Gpr111" GraphId="cd82e" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Putative uncharacterized protein </Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value=" "/>
+    <Graphics CenterX="100.0" CenterY="130.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Ensembl" ID="ENSMUSG00000057899"/>
+  </DataNode>
+  <DataNode TextLabel="Gpr112" GraphId="ecd41" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">G protein-coupled receptor 112 </Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value=" "/>
+    <Graphics CenterX="100.0" CenterY="150.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Ensembl" ID="ENSMUSG00000053852"/>
+  </DataNode>
+  <DataNode TextLabel="Gpr112" GraphId="ac55b" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">G protein-coupled receptor 112 </Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value=" "/>
+    <Graphics CenterX="100.0" CenterY="170.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Ensembl" ID="ENSMUSG00000053852"/>
+  </DataNode>
+  <DataNode TextLabel="Gpr116" GraphId="dd82a" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">G protein-coupled receptor 116 </Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value=" "/>
+    <Graphics CenterX="100.0" CenterY="190.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Ensembl" ID="ENSMUSG00000056492"/>
+  </DataNode>
+  <DataNode TextLabel="Gpr137" GraphId="aa28f" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Putative uncharacterized protein (Fragment) </Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value=" "/>
+    <Graphics CenterX="100.0" CenterY="210.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Ensembl" ID="ENSMUSG00000024958"/>
+  </DataNode>
+  <DataNode TextLabel="Gpr137b" GraphId="c82fd" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Integral membrane protein GPR137B </Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value=" "/>
+    <Graphics CenterX="100.0" CenterY="230.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Ensembl" ID="ENSMUSG00000021306"/>
+  </DataNode>
+  <DataNode TextLabel="Gpr137b" GraphId="c084c" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">cdna:known chromosome:NCBIM37:13:12709610:12742553:-1 </Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value=" "/>
+    <Graphics CenterX="100.0" CenterY="250.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Ensembl" ID="ENSMUSG00000075118"/>
+  </DataNode>
+  <DataNode TextLabel="Gpr137c" GraphId="bc313" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">G protein-coupled receptor 137C </Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value=" "/>
+    <Graphics CenterX="100.0" CenterY="270.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Ensembl" ID="ENSMUSG00000049092"/>
+  </DataNode>
+  <DataNode TextLabel="Gpr155" GraphId="bfd3f" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">cdna:known chromosome:NCBIM37:2:73181514:73224455:-1 </Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value=" "/>
+    <Graphics CenterX="100.0" CenterY="290.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Ensembl" ID="ENSMUSG00000041762"/>
+  </DataNode>
+  <DataNode TextLabel="Gpr161" GraphId="c40c0" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">G protein-coupled receptor RE2 </Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value=" "/>
+    <Graphics CenterX="100.0" CenterY="310.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Ensembl" ID="ENSMUSG00000040836"/>
+  </DataNode>
+  <DataNode TextLabel="Gpr165" GraphId="b5afc" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">G protein-coupled receptor 165</Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value=" "/>
+    <Graphics CenterX="100.0" CenterY="330.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Ensembl" ID="ENSMUSG00000031210"/>
+  </DataNode>
+  <DataNode TextLabel="Gpr172b" GraphId="c2cad" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Isoform 1 of Porcine endogenous retrovirus A receptor 2 homolog </Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value=" "/>
+    <Graphics CenterX="100.0" CenterY="350.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Ensembl" ID="ENSMUSG00000022560"/>
+  </DataNode>
+  <DataNode TextLabel="Gpr175" GraphId="f7b9d" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Integral membrane protein GPR175 </Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value=" "/>
+    <Graphics CenterX="100.0" CenterY="370.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Ensembl" ID="ENSMUSG00000002871"/>
+  </DataNode>
+  <DataNode TextLabel="Gpr177" GraphId="b745c" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Isoform 1 of Integral membrane protein GPR177 </Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value=" "/>
+    <Graphics CenterX="100.0" CenterY="390.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Ensembl" ID="ENSMUSG00000028173"/>
+  </DataNode>
+  <DataNode TextLabel="Gpr179" GraphId="f6f7f" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">G protein-coupled receptor 179</Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value=" "/>
+    <Graphics CenterX="100.0" CenterY="410.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Ensembl" ID="ENSMUSG00000070337"/>
+  </DataNode>
+  <DataNode TextLabel="Gpr180" GraphId="bf638" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Integral membrane protein GPR180 </Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value=" "/>
+    <Graphics CenterX="100.0" CenterY="430.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Ensembl" ID="ENSMUSG00000022131"/>
+  </DataNode>
+  <DataNode TextLabel="Gpr31c" GraphId="ff3e1" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">cdna:known chromosome:NCBIM37:17:13244187:13245146:-1 </Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value=" "/>
+    <Graphics CenterX="100.0" CenterY="450.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Ensembl" ID="ENSMUSG00000071311"/>
+  </DataNode>
+  <DataNode TextLabel="Gpr31c" GraphId="dda66" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">cdna:known chromosome:NCBIM37:17:13244187:13245146:-1 </Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value=" "/>
+    <Graphics CenterX="100.0" CenterY="470.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Ensembl" ID="ENSMUSG00000071311"/>
+  </DataNode>
+  <DataNode TextLabel="Gpr4" GraphId="b1856" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">G protein-coupled receptor 4 </Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value=" "/>
+    <Graphics CenterX="100.0" CenterY="490.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Ensembl" ID="ENSMUSG00000044317"/>
+  </DataNode>
+  <DataNode TextLabel="Gpr89" GraphId="a8295" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">G protein-coupled receptor 89</Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value=" "/>
+    <Graphics CenterX="100.0" CenterY="510.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Ensembl" ID="ENSMUSG00000028096"/>
+  </DataNode>
+  <DataNode TextLabel="Gprc2a-rs5" GraphId="ed8cb" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">âG protein-coupled receptor, family C, group 2, member A, related sequence 5â</Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value=" "/>
+    <Graphics CenterX="100.0" CenterY="530.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Ensembl" ID="ENSMUSG00000074164"/>
+  </DataNode>
+  <DataNode TextLabel="Gprc2a-rs5" GraphId="d51b4" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">âG protein-coupled receptor, family C, group 2, member A, related sequence 5â</Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value=" "/>
+    <Graphics CenterX="100.0" CenterY="550.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Ensembl" ID="ENSMUSG00000074164"/>
+  </DataNode>
+  <Label TextLabel="Orphan GPCRs - No GO Annotation" GraphId="ef005">
+    <Graphics CenterX="138.5" CenterY="59.0" Width="223.0" Height="20.0" ZOrder="28672" FillColor="ffffff" FontSize="10" Valign="Middle"/>
+  </Label>
+  <InfoBox CenterX="5.1" CenterY="8.333333333333334"/>
+  <Legend CenterX="188.0" CenterY="118.53333333333333"/>
+</Pathway>

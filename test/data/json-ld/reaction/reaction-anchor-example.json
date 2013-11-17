@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Pathway xmlns="http://pathvisiojs.org/GPML/2013a" Name="New Pathway" Version="20131111">
+<Pathway xmlns="http://pathvisio.org/GPML/2013a" Name="New Pathway" Version="20131111">
   <Graphics BoardWidth="936.8582093643614" BoardHeight="1241.8006930063204" />
   <DataNode TextLabel="thiamine monophosphate" GraphId="e95ec" Type="Metabolite">
     <Graphics CenterX="488.4099849281335" CenterY="141.2368963923546" Width="247.6851851851856" Height="28.828348258985656" ZOrder="32962" FontSize="20" Valign="Middle" Color="0000ff" />

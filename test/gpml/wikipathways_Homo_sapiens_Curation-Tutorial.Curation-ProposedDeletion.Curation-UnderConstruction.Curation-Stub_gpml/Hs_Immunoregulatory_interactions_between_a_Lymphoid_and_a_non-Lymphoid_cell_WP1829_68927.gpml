@@ -1,0 +1,1471 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Pathway xmlns="http://pathvisio.org/GPML/2013a" Name="Immunoregulatory interactions between a Lymphoid and a non-Lymphoid cell" Data-Source="Reactome - http://www.reactome.org" Version="release 35" Author="de Bono, B" Organism="Homo sapiens">
+  <Comment Source="WikiPathways-description">A number of receptors and cell adhesion molecules play a key role in modifying the response of cells of lymphoid origin (such as B-, T- and NK cells) to self and tumor antigens, as well as to pathogenic organisms.&lt;p&gt;&lt;p&gt;Molecules such as KIRs and LILRs form part of a crucial surveillance system that looks out for any derangement, usually caused by cancer or viral infection, in MHC Class I presentation. Somatic cells are also able to report internal functional impairment by displaying surface stress markers such as MICA. The presence of these molecules on somatic cells is picked up by C-lectin NK immune receptors.&lt;p&gt;&lt;p&gt;Lymphoid cells are able to regulate their location and movement in accordance to their state of activation, and home in on tissues expressing the appropriate complementary ligands. For example, lymphoid cells may fine tune the presence and concentration of adhesion molecules belonging to the IgSF, Selectin and Integrin class that interact with a number of vascular markers of inflammation.&lt;p&gt;&lt;p&gt;Furthermore, there are a number of avenues through which lymphoid cells may interact with antigen. This may be presented directly to a specific T-cell receptor in the context of an MHC molecule. Antigen-antibody complexes may anchor to the cell via a small number of lymphoid-specific Fc receptors that may, in turn, influence cell function further. Activated complement factor C3d binds to both antigen and to cell surface receptor CD21. In such cases, the far-reaching influence of CD19 on B-lymphocyte function is tempered by its interaction with CD21.</Comment>
+  <Comment Source="WikiPathways-category">Cellular Process</Comment>
+  <Graphics BoardWidth="3902.5" BoardHeight="6380.0"/>
+  <DataNode TextLabel="VLA-4&#10;" GraphId="n9_REACTOME_198201" Type="Complex">
+    <Graphics CenterX="56.0" CenterY="71.5" Width="44.0" Height="23.0" ZOrder="32768" FillColor="ccffff" FontSize="12" Valign="Middle" ShapeType="RoundedRectangle" LineThickness="2.0"/>
+    <Xref Database="Reactome" ID="REACT_11798"/>
+  </DataNode>
+  <DataNode TextLabel="VCAM1&#10;" GraphId="n10_REACTOME_197834" Type="Protein">
+    <Graphics CenterX="55.5" CenterY="175.5" Width="79.0" Height="49.0" ZOrder="32768" FillColor="ccffcc" FontSize="12" Valign="Middle" ShapeType="RoundedRectangle"/>
+    <Xref Database="UniProt" ID="P19320"/>
+  </DataNode>
+  <DataNode TextLabel="VLA-4:VCAM-1&#10;" GraphId="n11_REACTOME_198199" Type="Complex">
+    <Graphics CenterX="156.0" CenterY="176.0" Width="104.0" Height="38.0" ZOrder="32768" FillColor="ccffff" FontSize="12" Valign="Middle" ShapeType="RoundedRectangle" LineThickness="2.0"/>
+    <Xref Database="Reactome" ID="REACT_11750"/>
+  </DataNode>
+  <DataNode TextLabel="T-cell receptor &#10;complex with &#10;CD8&#10;" GraphId="n13_REACTOME_198898" Type="Complex">
+    <Graphics CenterX="285.0" CenterY="75.5" Width="94.0" Height="53.0" ZOrder="32768" FillColor="ccffff" FontSize="12" Valign="Middle" ShapeType="RoundedRectangle" LineThickness="2.0"/>
+    <Xref Database="Reactome" ID="REACT_11534"/>
+  </DataNode>
+  <DataNode TextLabel="Antigen peptide &#10;bound class I &#10;MHC&#10;" GraphId="n14_REACTOME_198904" Type="Complex">
+    <Graphics CenterX="284.5" CenterY="169.5" Width="95.0" Height="53.0" ZOrder="32768" FillColor="ccffff" FontSize="12" Valign="Middle" ShapeType="RoundedRectangle" LineThickness="2.0"/>
+    <Xref Database="Reactome" ID="REACT_11766"/>
+  </DataNode>
+  <DataNode TextLabel="TCR interacting &#10;with antigen-&#10;bearing MHC &#10;Class I&#10;" GraphId="n15_REACTOME_198897" Type="Complex">
+    <Graphics CenterX="158.5" CenterY="76.5" Width="103.0" Height="67.0" ZOrder="32768" FillColor="ccffff" FontSize="12" Valign="Middle" ShapeType="RoundedRectangle" LineThickness="2.0"/>
+    <Xref Database="Reactome" ID="REACT_11723"/>
+  </DataNode>
+  <DataNode TextLabel="HLA-C Cw4 &#10;(group I)&#10;" GraphId="n18_REACTOME_198911" Type="Complex">
+    <BiopaxRef>lit_199529</BiopaxRef>
+    <BiopaxRef>lit_199545</BiopaxRef>
+    <Graphics CenterX="395.5" CenterY="70.0" Width="89.0" Height="38.0" ZOrder="32768" FillColor="ccffff" FontSize="12" Valign="Middle" ShapeType="RoundedRectangle" LineThickness="2.0"/>
+    <Xref Database="Reactome" ID="REACT_11388"/>
+  </DataNode>
+  <DataNode TextLabel="HLA-C &#10;group-I-&#10;interacting &#10;KIRs&#10;" GraphId="n19_REACTOME_199540" Type="Protein">
+    <BiopaxRef>lit_199529</BiopaxRef>
+    <BiopaxRef>lit_199545</BiopaxRef>
+    <Graphics CenterX="394.5" CenterY="173.5" Width="75.0" Height="65.0" ZOrder="32768" FillColor="ccffcc" FontSize="12" Valign="Middle" ShapeType="RoundedRectangle"/>
+    <Xref Database="Reactome" ID="REACT_11748"/>
+  </DataNode>
+  <DataNode TextLabel="HLA-C group 1 &#10;interacting with &#10;KIR2DL2/3&#10;" GraphId="n20_REACTOME_198909" Type="Complex">
+    <Graphics CenterX="493.5" CenterY="174.5" Width="103.0" Height="53.0" ZOrder="32768" FillColor="ccffff" FontSize="12" Valign="Middle" ShapeType="RoundedRectangle" LineThickness="2.0"/>
+    <Xref Database="Reactome" ID="REACT_11577"/>
+  </DataNode>
+  <DataNode TextLabel="NKG2D &#10;ligand&#10;" GraphId="n22_REACTOME_198916" Type="Protein">
+    <Graphics CenterX="1001.5" CenterY="511.0" Width="63.0" Height="34.0" ZOrder="32768" FillColor="ccffcc" FontSize="12" Valign="Middle" ShapeType="RoundedRectangle"/>
+    <Xref Database="Reactome" ID="REACT_11351"/>
+  </DataNode>
+  <DataNode TextLabel="NKG2D &#10;complexed &#10;with DAP10&#10;" GraphId="n23_REACTOME_198920" Type="Complex">
+    <Graphics CenterX="1004.5" CenterY="641.5" Width="81.0" Height="53.0" ZOrder="32768" FillColor="ccffff" FontSize="12" Valign="Middle" ShapeType="RoundedRectangle" LineThickness="2.0"/>
+    <Xref Database="Reactome" ID="REACT_11468"/>
+  </DataNode>
+  <DataNode TextLabel="Ligand &#10;interacting with &#10;NKG2D&#10;" GraphId="n24_REACTOME_198915" Type="Complex">
+    <Graphics CenterX="886.0" CenterY="513.0" Width="88.0" Height="56.0" ZOrder="32768" FillColor="ccffff" FontSize="12" Valign="Middle" ShapeType="RoundedRectangle" LineThickness="2.0"/>
+    <Xref Database="Reactome" ID="REACT_11751"/>
+  </DataNode>
+  <DataNode TextLabel="Poliovirus receptor &#10;precursor&#10;" GraphId="n26_REACTOME_197695" Type="Protein">
+    <Graphics CenterX="834.0" CenterY="70.5" Width="108.0" Height="49.0" ZOrder="32768" FillColor="ccffcc" FontSize="12" Valign="Middle" ShapeType="RoundedRectangle"/>
+    <Xref Database="UniProt" ID="P15151-1"/>
+  </DataNode>
+  <DataNode TextLabel="T-cell surface &#10;protein tactile &#10;precursor&#10;" GraphId="n27_REACTOME_197766" Type="Protein">
+    <Graphics CenterX="692.0" CenterY="176.5" Width="94.0" Height="53.0" ZOrder="32768" FillColor="ccffcc" FontSize="12" Valign="Middle" ShapeType="RoundedRectangle"/>
+    <Xref Database="UniProt" ID="P40200"/>
+  </DataNode>
+  <DataNode TextLabel="Nectin-like 5 bound &#10;to CD96&#10;" GraphId="n28_REACTOME_198194" Type="Complex">
+    <Graphics CenterX="708.0" CenterY="70.0" Width="126.0" Height="38.0" ZOrder="32768" FillColor="ccffff" FontSize="12" Valign="Middle" ShapeType="RoundedRectangle" LineThickness="2.0"/>
+    <Xref Database="Reactome" ID="REACT_11952"/>
+  </DataNode>
+  <DataNode TextLabel="Integrin &#10;alpha4beta7&#10;" GraphId="n30_REACTOME_198927" Type="Complex">
+    <Graphics CenterX="1274.5" CenterY="67.5" Width="81.0" Height="49.0" ZOrder="32768" FillColor="ccffff" FontSize="12" Valign="Middle" ShapeType="RoundedRectangle" LineThickness="2.0"/>
+    <Xref Database="Reactome" ID="REACT_11974"/>
+  </DataNode>
+  <DataNode TextLabel="MADCAM1&#10;" GraphId="n31_REACTOME_198095" Type="Protein">
+    <Graphics CenterX="1274.0" CenterY="171.0" Width="120.0" Height="68.0" ZOrder="32768" FillColor="ccffcc" FontSize="12" Valign="Middle" ShapeType="RoundedRectangle"/>
+    <Xref Database="UniProt" ID="Q13477-1"/>
+  </DataNode>
+  <DataNode TextLabel="Integrin &#10;alpha4beta7:&#10;MADCAM1&#10;" GraphId="n32_REACTOME_198925" Type="Complex">
+    <Graphics CenterX="1170.5" CenterY="74.0" Width="89.0" Height="66.0" ZOrder="32768" FillColor="ccffff" FontSize="12" Valign="Middle" ShapeType="RoundedRectangle" LineThickness="2.0"/>
+    <Xref Database="Reactome" ID="REACT_11447"/>
+  </DataNode>
+  <DataNode TextLabel="LILR set&#10;" GraphId="n34_REACTOME_198894" Type="Protein">
+    <Graphics CenterX="1395.5" CenterY="72.5" Width="55.0" Height="23.0" ZOrder="32768" FillColor="ccffcc" FontSize="12" Valign="Middle" ShapeType="RoundedRectangle"/>
+    <Xref Database="Reactome" ID="REACT_11576"/>
+  </DataNode>
+  <DataNode TextLabel="LILR-interacting &#10;MHC Class I &#10;molecules&#10;" GraphId="n35_REACTOME_199592" Type="Complex">
+    <Graphics CenterX="1398.0" CenterY="172.5" Width="106.0" Height="53.0" ZOrder="32768" FillColor="ccffff" FontSize="12" Valign="Middle" ShapeType="RoundedRectangle" LineThickness="2.0"/>
+    <Xref Database="Reactome" ID="REACT_11528"/>
+  </DataNode>
+  <DataNode TextLabel="MHC Class I &#10;interacting with &#10;LILRs&#10;" GraphId="n36_REACTOME_198896" Type="Complex">
+    <Graphics CenterX="1516.5" CenterY="170.5" Width="103.0" Height="53.0" ZOrder="32768" FillColor="ccffff" FontSize="12" Valign="Middle" ShapeType="RoundedRectangle" LineThickness="2.0"/>
+    <Xref Database="Reactome" ID="REACT_11656"/>
+  </DataNode>
+  <DataNode TextLabel="L-selectin ligands&#10;" GraphId="n38_REACTOME_198922" Type="Protein">
+    <Graphics CenterX="81.5" CenterY="283.5" Width="111.0" Height="23.0" ZOrder="32768" FillColor="ccffcc" FontSize="12" Valign="Middle" ShapeType="RoundedRectangle"/>
+    <Xref Database="Reactome" ID="REACT_11759"/>
+  </DataNode>
+  <DataNode TextLabel="L-selectin&#10;" GraphId="n39_REACTOME_198090" Type="Protein">
+    <Graphics CenterX="78.5" CenterY="392.5" Width="65.0" Height="23.0" ZOrder="32768" FillColor="ccffcc" FontSize="12" Valign="Middle" ShapeType="RoundedRectangle"/>
+    <Xref Database="UniProt" ID="P14151"/>
+  </DataNode>
+  <DataNode TextLabel="L-selectin &#10;interacting with &#10;known ligands&#10;" GraphId="n40_REACTOME_198924" Type="Complex">
+    <Graphics CenterX="196.5" CenterY="285.5" Width="103.0" Height="53.0" ZOrder="32768" FillColor="ccffff" FontSize="12" Valign="Middle" ShapeType="RoundedRectangle" LineThickness="2.0"/>
+    <Xref Database="Reactome" ID="REACT_11760"/>
+  </DataNode>
+  <DataNode TextLabel="Integrin &#10;alphaLbeta2 &#10;(LFA-1)&#10;" GraphId="n45_REACTOME_198196" Type="Complex">
+    <Graphics CenterX="318.0" CenterY="292.0" Width="100.0" Height="38.0" ZOrder="32768" FillColor="ccffff" FontSize="12" Valign="Middle" ShapeType="RoundedRectangle" LineThickness="2.0"/>
+    <Xref Database="Reactome" ID="REACT_11837"/>
+  </DataNode>
+  <DataNode TextLabel="ICAM 1-4&#10;" GraphId="n46_REACTOME_198193" Type="Protein">
+    <Graphics CenterX="316.5" CenterY="394.5" Width="63.0" Height="23.0" ZOrder="32768" FillColor="ccffcc" FontSize="12" Valign="Middle" ShapeType="RoundedRectangle"/>
+    <Xref Database="Reactome" ID="REACT_11859"/>
+  </DataNode>
+  <DataNode TextLabel="LFA-1:ICAM 1-4&#10;" GraphId="n47_REACTOME_198200" Type="Complex">
+    <Graphics CenterX="195.0" CenterY="385.5" Width="100.0" Height="53.0" ZOrder="32768" FillColor="ccffff" FontSize="12" Valign="Middle" ShapeType="RoundedRectangle" LineThickness="2.0"/>
+    <Xref Database="Reactome" ID="REACT_11942"/>
+  </DataNode>
+  <DataNode TextLabel="NKG2-&#10;A/NKG2-B &#10;type II integral &#10;membrane &#10;protein&#10;" GraphId="n50_REACTOME_198078" Type="Protein">
+    <Graphics CenterX="533.0" CenterY="393.5" Width="86.0" Height="81.0" ZOrder="32768" FillColor="ccffcc" FontSize="12" Valign="Middle" ShapeType="RoundedRectangle"/>
+    <Xref Database="UniProt" ID="P26715-1"/>
+  </DataNode>
+  <DataNode TextLabel="HLA-E&#10;" GraphId="n51_REACTOME_198912" Type="Complex">
+    <Graphics CenterX="540.5" CenterY="288.5" Width="45.0" Height="23.0" ZOrder="32768" FillColor="ccffff" FontSize="12" Valign="Middle" ShapeType="RoundedRectangle" LineThickness="2.0"/>
+    <Xref Database="Reactome" ID="REACT_11603"/>
+  </DataNode>
+  <DataNode TextLabel="Natural killer &#10;cells antigen &#10;CD94-1&#10;" GraphId="n52_REACTOME_199621" Type="Protein">
+    <Graphics CenterX="435.0" CenterY="394.0" Width="86.0" Height="50.0" ZOrder="32768" FillColor="ccffcc" FontSize="12" Valign="Middle" ShapeType="RoundedRectangle"/>
+    <Xref Database="UniProt" ID="Q13241-1"/>
+  </DataNode>
+  <DataNode TextLabel="HLA-E interacting &#10;with NKG2A-CD94 &#10;heterdimer&#10;" GraphId="n53_REACTOME_198914" Type="Complex">
+    <Graphics CenterX="442.5" CenterY="286.5" Width="119.0" Height="53.0" ZOrder="32768" FillColor="ccffff" FontSize="12" Valign="Middle" ShapeType="RoundedRectangle" LineThickness="2.0"/>
+    <Xref Database="Reactome" ID="REACT_11770"/>
+  </DataNode>
+  <DataNode TextLabel="Killer cell lectin-&#10;like receptor &#10;subfamily G &#10;member 1&#10;" GraphId="n55_REACTOME_198006" Type="Protein">
+    <Graphics CenterX="627.0" CenterY="289.5" Width="102.0" Height="67.0" ZOrder="32768" FillColor="ccffcc" FontSize="12" Valign="Middle" ShapeType="RoundedRectangle"/>
+    <Xref Database="UniProt" ID="Q96E93"/>
+  </DataNode>
+  <DataNode TextLabel="Cadherin-1&#10;" GraphId="n56_REACTOME_198003" Type="Protein">
+    <Graphics CenterX="627.0" CenterY="390.0" Width="82.0" Height="52.0" ZOrder="32768" FillColor="ccffcc" FontSize="12" Valign="Middle" ShapeType="RoundedRectangle"/>
+    <Xref Database="UniProt" ID="P12830"/>
+  </DataNode>
+  <DataNode TextLabel="E-cadherin &#10;bound to &#10;KLRG1&#10;" GraphId="n57_REACTOME_198192" Type="Complex">
+    <Graphics CenterX="720.5" CenterY="388.5" Width="91.0" Height="53.0" ZOrder="32768" FillColor="ccffff" FontSize="12" Valign="Middle" ShapeType="RoundedRectangle" LineThickness="2.0"/>
+    <Xref Database="Reactome" ID="REACT_11260"/>
+  </DataNode>
+  <DataNode TextLabel="Cytotoxic and &#10;regulatory T &#10;cell molecule&#10;" GraphId="n60_REACTOME_198163" Type="Protein">
+    <Graphics CenterX="1067.5" CenterY="174.5" Width="87.0" Height="57.0" ZOrder="32768" FillColor="ccffcc" FontSize="12" Valign="Middle" ShapeType="RoundedRectangle"/>
+    <Xref Database="UniProt" ID="O95727"/>
+  </DataNode>
+  <DataNode TextLabel="Poliovirus &#10;receptor &#10;related protein &#10;2 precursor&#10;" GraphId="n61_REACTOME_197700" Type="Protein">
+    <Graphics CenterX="1066.0" CenterY="72.5" Width="92.0" Height="73.0" ZOrder="32768" FillColor="ccffcc" FontSize="12" Valign="Middle" ShapeType="RoundedRectangle"/>
+    <Xref Database="UniProt" ID="Q92692-1"/>
+  </DataNode>
+  <DataNode TextLabel="CRTAM &#10;bound to &#10;NECL2&#10;" GraphId="n62_REACTOME_198195" Type="Complex">
+    <Graphics CenterX="1159.0" CenterY="176.0" Width="78.0" Height="52.0" ZOrder="32768" FillColor="ccffff" FontSize="12" Valign="Middle" ShapeType="RoundedRectangle" LineThickness="2.0"/>
+    <Xref Database="Reactome" ID="REACT_11356"/>
+  </DataNode>
+  <DataNode TextLabel="CD226 antigen &#10;precursor&#10;" GraphId="n65_REACTOME_197562" Type="Protein">
+    <Graphics CenterX="834.0" CenterY="182.0" Width="100.0" Height="38.0" ZOrder="32768" FillColor="ccffcc" FontSize="12" Valign="Middle" ShapeType="RoundedRectangle"/>
+    <Xref Database="UniProt" ID="Q15762"/>
+  </DataNode>
+  <DataNode TextLabel="CD226 bound to &#10;nectin-like 5&#10;" GraphId="n66_REACTOME_198197" Type="Complex">
+    <Graphics CenterX="952.0" CenterY="69.0" Width="108.0" Height="38.0" ZOrder="32768" FillColor="ccffff" FontSize="12" Valign="Middle" ShapeType="RoundedRectangle" LineThickness="2.0"/>
+    <Xref Database="Reactome" ID="REACT_11602"/>
+  </DataNode>
+  <DataNode TextLabel="CD226 bound &#10;to Nectin 2&#10;" GraphId="n69_REACTOME_198190" Type="Complex">
+    <Graphics CenterX="949.5" CenterY="179.0" Width="85.0" Height="38.0" ZOrder="32768" FillColor="ccffff" FontSize="12" Valign="Middle" ShapeType="RoundedRectangle" LineThickness="2.0"/>
+    <Xref Database="Reactome" ID="REACT_11703"/>
+  </DataNode>
+  <DataNode TextLabel="OX-2 membrane &#10;glycoprotein &#10;precursor&#10;" GraphId="n72_REACTOME_197760" Type="Protein">
+    <Graphics CenterX="834.5" CenterY="387.5" Width="109.0" Height="53.0" ZOrder="32768" FillColor="ccffcc" FontSize="12" Valign="Middle" ShapeType="RoundedRectangle"/>
+    <Xref Database="UniProt" ID="P41217"/>
+  </DataNode>
+  <DataNode TextLabel="Cell surface &#10;glycoprotein OX2 &#10;receptor precursor&#10;" GraphId="n73_REACTOME_197761" Type="Protein">
+    <Graphics CenterX="835.5" CenterY="284.5" Width="115.0" Height="53.0" ZOrder="32768" FillColor="ccffcc" FontSize="12" Valign="Middle" ShapeType="RoundedRectangle"/>
+    <Xref Database="UniProt" ID="Q8TD46"/>
+  </DataNode>
+  <DataNode TextLabel="CD200 &#10;bound to &#10;CD200R&#10;" GraphId="n74_REACTOME_198191" Type="Complex">
+    <Graphics CenterX="724.5" CenterY="282.5" Width="69.0" Height="55.0" ZOrder="32768" FillColor="ccffff" FontSize="12" Valign="Middle" ShapeType="RoundedRectangle" LineThickness="2.0"/>
+    <Xref Database="Reactome" ID="REACT_11641"/>
+  </DataNode>
+  <DataNode TextLabel="CD160 antigen &#10;precursor&#10;" GraphId="n77_REACTOME_198014" Type="Protein">
+    <Graphics CenterX="960.0" CenterY="282.0" Width="100.0" Height="38.0" ZOrder="32768" FillColor="ccffcc" FontSize="12" Valign="Middle" ShapeType="RoundedRectangle"/>
+    <Xref Database="UniProt" ID="O95971"/>
+  </DataNode>
+  <DataNode TextLabel="MHC Class I &#10;molecules &#10;interacting with &#10;CD160&#10;" GraphId="n78_REACTOME_199614" Type="Complex">
+    <Graphics CenterX="956.5" CenterY="387.0" Width="103.0" Height="68.0" ZOrder="32768" FillColor="ccffff" FontSize="12" Valign="Middle" ShapeType="RoundedRectangle" LineThickness="2.0"/>
+    <Xref Database="Reactome" ID="REACT_11830"/>
+  </DataNode>
+  <DataNode TextLabel="MHC Class I &#10;interacting with &#10;CD160&#10;" GraphId="n79_REACTOME_198906" Type="Complex">
+    <Graphics CenterX="1072.5" CenterY="389.5" Width="103.0" Height="53.0" ZOrder="32768" FillColor="ccffff" FontSize="12" Valign="Middle" ShapeType="RoundedRectangle" LineThickness="2.0"/>
+    <Xref Database="Reactome" ID="REACT_11275"/>
+  </DataNode>
+  <DataNode TextLabel="Lymphoid-&#10;expressed Fc-&#10;gamma receptors&#10;" GraphId="n81_REACTOME_200284" Type="Protein">
+    <BiopaxRef>lit_200282</BiopaxRef>
+    <Graphics CenterX="1213.5" CenterY="283.5" Width="111.0" Height="61.0" ZOrder="32768" FillColor="ccffcc" FontSize="12" Valign="Middle" ShapeType="RoundedRectangle"/>
+    <Xref Database="Reactome" ID="REACT_11814"/>
+  </DataNode>
+  <DataNode TextLabel="Antigen-bound &#10;Ig G Antibody&#10;" GraphId="n82_REACTOME_199174" Type="Complex">
+    <Comment Source="WikiPathways-description">In view of the highly variable nature of antibody proteins, this biological object is an approximate and fragmented representation of an IgM/IgD antibody, given the limitations of Ig chain enumeration in UniProt. A single mRNA transcript is alternatively spliced to give either IgM or IgD. Thus unactivated B cells contain both classes of antibody.</Comment>
+    <Graphics CenterX="1214.5" CenterY="392.0" Width="89.0" Height="46.0" ZOrder="32768" FillColor="ccffff" FontSize="12" Valign="Middle" ShapeType="RoundedRectangle" LineThickness="2.0"/>
+    <Xref Database="Reactome" ID="REACT_11894"/>
+  </DataNode>
+  <DataNode TextLabel="Antigen-bound &#10;antibody bound to &#10;lymphoid Fc gamma &#10;receptors&#10;" GraphId="n83_REACTOME_198877" Type="Complex">
+    <Graphics CenterX="1081.5" CenterY="287.0" Width="119.0" Height="68.0" ZOrder="32768" FillColor="ccffff" FontSize="12" Valign="Middle" ShapeType="RoundedRectangle" LineThickness="2.0"/>
+    <Xref Database="Reactome" ID="REACT_11822"/>
+  </DataNode>
+  <DataNode TextLabel="Tumor necrosis &#10;factor ligand &#10;superfamily &#10;member 5&#10;" GraphId="n85_REACTOME_198113" Type="Protein">
+    <Graphics CenterX="1342.5" CenterY="288.0" Width="101.0" Height="74.0" ZOrder="32768" FillColor="ccffcc" FontSize="12" Valign="Middle" ShapeType="RoundedRectangle"/>
+    <Xref Database="UniProt" ID="P29965"/>
+  </DataNode>
+  <DataNode TextLabel="Tumor necrosis &#10;factor receptor &#10;superfamily &#10;member 5&#10;" GraphId="n86_REACTOME_198117" Type="Protein">
+    <Graphics CenterX="1344.0" CenterY="397.0" Width="116.0" Height="70.0" ZOrder="32768" FillColor="ccffcc" FontSize="12" Valign="Middle" ShapeType="RoundedRectangle"/>
+    <Xref Database="UniProt" ID="P25942-1"/>
+  </DataNode>
+  <DataNode TextLabel="CD40 &#10;complexed &#10;with CD40L&#10;" GraphId="n87_REACTOME_199402" Type="Complex">
+    <Graphics CenterX="1458.5" CenterY="391.0" Width="81.0" Height="54.0" ZOrder="32768" FillColor="ccffff" FontSize="12" Valign="Middle" ShapeType="RoundedRectangle" LineThickness="2.0"/>
+    <Xref Database="Reactome" ID="REACT_11386"/>
+  </DataNode>
+  <DataNode TextLabel="Coxsackievirus and &#10;adenovirus receptor&#10;" GraphId="n90_REACTOME_197912" Type="Protein">
+    <Graphics CenterX="1576.0" CenterY="277.0" Width="124.0" Height="38.0" ZOrder="32768" FillColor="ccffcc" FontSize="12" Valign="Middle" ShapeType="RoundedRectangle"/>
+    <Xref Database="UniProt" ID="P78310"/>
+  </DataNode>
+  <DataNode TextLabel="Junctional adhesion &#10;molecule-like &#10;precursor&#10;" GraphId="n91_REACTOME_197893" Type="Protein">
+    <Graphics CenterX="1575.5" CenterY="386.5" Width="131.0" Height="53.0" ZOrder="32768" FillColor="ccffcc" FontSize="12" Valign="Middle" ShapeType="RoundedRectangle"/>
+    <Xref Database="UniProt" ID="Q86YT9-1"/>
+  </DataNode>
+  <DataNode TextLabel="CXADR &#10;bound to &#10;JAML&#10;" GraphId="n92_REACTOME_198198" Type="Complex">
+    <Graphics CenterX="1457.5" CenterY="287.0" Width="67.0" Height="56.0" ZOrder="32768" FillColor="ccffff" FontSize="12" Valign="Middle" ShapeType="RoundedRectangle" LineThickness="2.0"/>
+    <Xref Database="Reactome" ID="REACT_11619"/>
+  </DataNode>
+  <DataNode TextLabel="Complex of &#10;CD19, CD81, &#10;CD225 and &#10;CD21&#10;" GraphId="n94_REACTOME_198931" Type="Complex">
+    <Graphics CenterX="60.5" CenterY="522.0" Width="85.0" Height="66.0" ZOrder="32768" FillColor="ccffff" FontSize="12" Valign="Middle" ShapeType="RoundedRectangle" LineThickness="2.0"/>
+    <Xref Database="Reactome" ID="REACT_11777"/>
+  </DataNode>
+  <DataNode TextLabel="C3d &#10;complexed &#10;with antigen&#10;" GraphId="n95_REACTOME_199000" Type="Complex">
+    <Graphics CenterX="58.5" CenterY="647.5" Width="75.0" Height="55.0" ZOrder="32768" FillColor="ccffff" FontSize="12" Valign="Middle" ShapeType="RoundedRectangle" LineThickness="2.0"/>
+    <Xref Database="Reactome" ID="REACT_11562"/>
+  </DataNode>
+  <DataNode TextLabel="Complex of &#10;CD19, CD81, &#10;CD225 and &#10;CD21 with &#10;C3d-bound &#10;Antigen&#10;" GraphId="n96_REACTOME_198991" Type="Complex">
+    <Graphics CenterX="152.5" CenterY="637.5" Width="89.0" Height="95.0" ZOrder="32768" FillColor="ccffff" FontSize="12" Valign="Middle" ShapeType="RoundedRectangle" LineThickness="2.0"/>
+    <Xref Database="Reactome" ID="REACT_11584"/>
+  </DataNode>
+  <DataNode TextLabel="Killer cell &#10;immunoglob&#10;ulin-like &#10;receptor &#10;2DL1 &#10;precursor&#10;" GraphId="n98_REACTOME_199538" Type="Protein">
+    <Graphics CenterX="248.0" CenterY="639.0" Width="76.0" Height="92.0" ZOrder="32768" FillColor="ccffcc" FontSize="12" Valign="Middle" ShapeType="RoundedRectangle"/>
+    <Xref Database="UniProt" ID="P43626"/>
+  </DataNode>
+  <DataNode TextLabel="HLA-C Cw3 &#10;(group 2)&#10;" GraphId="n99_REACTOME_199562" Type="Complex">
+    <BiopaxRef>lit_199529</BiopaxRef>
+    <BiopaxRef>lit_199545</BiopaxRef>
+    <Graphics CenterX="248.5" CenterY="497.5" Width="73.0" Height="41.0" ZOrder="32768" FillColor="ccffff" FontSize="12" Valign="Middle" ShapeType="RoundedRectangle" LineThickness="2.0"/>
+    <Xref Database="Reactome" ID="REACT_11404"/>
+  </DataNode>
+  <DataNode TextLabel="HLA-C &#10;group 2 &#10;interacting &#10;with &#10;KIR2DL1&#10;" GraphId="n100_REACTOME_199560" Type="Complex">
+    <Graphics CenterX="149.5" CenterY="508.5" Width="75.0" Height="81.0" ZOrder="32768" FillColor="ccffff" FontSize="12" Valign="Middle" ShapeType="RoundedRectangle" LineThickness="2.0"/>
+    <Xref Database="Reactome" ID="REACT_11338"/>
+  </DataNode>
+  <DataNode TextLabel="HLA-Bw4&#10;" GraphId="n102_REACTOME_199567" Type="Complex">
+    <BiopaxRef>lit_199529</BiopaxRef>
+    <BiopaxRef>lit_199545</BiopaxRef>
+    <Graphics CenterX="456.5" CenterY="509.5" Width="61.0" Height="23.0" ZOrder="32768" FillColor="ccffff" FontSize="12" Valign="Middle" ShapeType="RoundedRectangle" LineThickness="2.0"/>
+    <Xref Database="Reactome" ID="REACT_11642"/>
+  </DataNode>
+  <DataNode TextLabel="Killer cell &#10;immunoglobulin-&#10;like receptor &#10;3DL1 precursor&#10;" GraphId="n103_REACTOME_197742" Type="Protein">
+    <Graphics CenterX="457.5" CenterY="640.0" Width="103.0" Height="86.0" ZOrder="32768" FillColor="ccffcc" FontSize="12" Valign="Middle" ShapeType="RoundedRectangle"/>
+    <Xref Database="UniProt" ID="P43629"/>
+  </DataNode>
+  <DataNode TextLabel="HLA Bw4 &#10;interacting with &#10;KIR3DL1&#10;" GraphId="n104_REACTOME_199565" Type="Complex">
+    <Graphics CenterX="566.5" CenterY="635.5" Width="95.0" Height="53.0" ZOrder="32768" FillColor="ccffff" FontSize="12" Valign="Middle" ShapeType="RoundedRectangle" LineThickness="2.0"/>
+    <Xref Database="Reactome" ID="REACT_11950"/>
+  </DataNode>
+  <DataNode TextLabel="HLA-A3&#10;" GraphId="n107_REACTOME_199571" Type="Complex">
+    <Graphics CenterX="668.5" CenterY="511.5" Width="53.0" Height="23.0" ZOrder="32768" FillColor="ccffff" FontSize="12" Valign="Middle" ShapeType="RoundedRectangle" LineThickness="2.0"/>
+    <Xref Database="Reactome" ID="REACT_11726"/>
+  </DataNode>
+  <DataNode TextLabel="Killer cell &#10;immunoglobulin-&#10;like receptor &#10;3DL2 precursor&#10;" GraphId="n108_REACTOME_197713" Type="Protein">
+    <Graphics CenterX="682.5" CenterY="633.0" Width="107.0" Height="78.0" ZOrder="32768" FillColor="ccffcc" FontSize="12" Valign="Middle" ShapeType="RoundedRectangle"/>
+    <Xref Database="UniProt" ID="P43630"/>
+  </DataNode>
+  <DataNode TextLabel="HLA-A3 interacting &#10;with KIR3DL2&#10;" GraphId="n109_REACTOME_199573" Type="Complex">
+    <Graphics CenterX="561.0" CenterY="511.0" Width="124.0" Height="38.0" ZOrder="32768" FillColor="ccffff" FontSize="12" Valign="Middle" ShapeType="RoundedRectangle" LineThickness="2.0"/>
+    <Xref Database="Reactome" ID="REACT_11887"/>
+  </DataNode>
+  <DataNode TextLabel="Killer cell &#10;immunoglobulin-&#10;like receptor &#10;2DL4 precursor&#10;" GraphId="n111_REACTOME_197726" Type="Protein">
+    <Graphics CenterX="802.0" CenterY="633.5" Width="100.0" Height="69.0" ZOrder="32768" FillColor="ccffcc" FontSize="12" Valign="Middle" ShapeType="RoundedRectangle"/>
+    <Xref Database="UniProt" ID="Q99706"/>
+  </DataNode>
+  <DataNode TextLabel="HLA-G&#10;" GraphId="n112_REACTOME_199581" Type="Complex">
+    <Graphics CenterX="798.0" CenterY="513.5" Width="46.0" Height="23.0" ZOrder="32768" FillColor="ccffff" FontSize="12" Valign="Middle" ShapeType="RoundedRectangle" LineThickness="2.0"/>
+    <Xref Database="Reactome" ID="REACT_11699"/>
+  </DataNode>
+  <DataNode TextLabel="HLA-G &#10;interacting with &#10;KIR2DL4&#10;" GraphId="n113_REACTOME_199578" Type="Complex">
+    <Graphics CenterX="908.0" CenterY="646.5" Width="94.0" Height="49.0" ZOrder="32768" FillColor="ccffff" FontSize="12" Valign="Middle" ShapeType="RoundedRectangle" LineThickness="2.0"/>
+    <Xref Database="Reactome" ID="REACT_11741"/>
+  </DataNode>
+  <DataNode TextLabel="KIR2DS1 &#10;complexed with &#10;DAP12&#10;" GraphId="n115_REACTOME_199586" Type="Complex">
+    <Graphics CenterX="345.0" CenterY="643.5" Width="92.0" Height="55.0" ZOrder="32768" FillColor="ccffff" FontSize="12" Valign="Middle" ShapeType="RoundedRectangle" LineThickness="2.0"/>
+    <Xref Database="Reactome" ID="REACT_11752"/>
+  </DataNode>
+  <DataNode TextLabel="HLA-C group 2 &#10;interacting with &#10;KIR2DS1&#10;" GraphId="n116_REACTOME_199585" Type="Complex">
+    <Graphics CenterX="365.5" CenterY="511.5" Width="93.0" Height="53.0" ZOrder="32768" FillColor="ccffff" FontSize="12" Valign="Middle" ShapeType="RoundedRectangle" LineThickness="2.0"/>
+    <Xref Database="Reactome" ID="REACT_11864"/>
+  </DataNode>
+  <DataNode TextLabel="KIR2DS2 &#10;complexed &#10;with DAP12&#10;" GraphId="n118_REACTOME_199584" Type="Complex">
+    <Graphics CenterX="592.5" CenterY="174.0" Width="77.0" Height="54.0" ZOrder="32768" FillColor="ccffff" FontSize="12" Valign="Middle" ShapeType="RoundedRectangle" LineThickness="2.0"/>
+    <Xref Database="Reactome" ID="REACT_11717"/>
+  </DataNode>
+  <DataNode TextLabel="HLA-C group 1 &#10;interacting with &#10;KIR2DS2&#10;" GraphId="n119_REACTOME_199588" Type="Complex">
+    <Graphics CenterX="584.0" CenterY="71.0" Width="92.0" Height="56.0" ZOrder="32768" FillColor="ccffff" FontSize="12" Valign="Middle" ShapeType="RoundedRectangle" LineThickness="2.0"/>
+    <Xref Database="Reactome" ID="REACT_11521"/>
+  </DataNode>
+  <Interaction GraphId="e_8_REACTOME_198941">
+    <Comment Source="WikiPathways-description">Integrins play a central role in mediating lymphocyte &#13;
+adhesion to a number of surfaces. LFA-1 interacts with ICAMs &#13;
+1-3 that are typically expressed on other immune system cells. &#13;
+ICAM-4 also interacts with LFA-1, and is known to be &#13;
+expressed on telencepahlic neurons.&lt;p&gt;&lt;p&gt;VCAM-1 regulates &#13;
+lymphocyte adhesion to activated endothelial cells via Very &#13;
+Late Antigen-4 (VLA-4).&lt;p&gt;&lt;p&gt;To function in a circulating mode, leukocytes express LFA-1 and VLA-4 in a low ligand binding capacity. When leukocytes reach sites of imflammation, these integrins are switched to a higher binding state to guide the complex process of transmigration, tethering, rolling, arrest, adhesion and shape change.&lt;p&gt;&lt;p&gt;Signal cascades between LFA-1 and VLA-4 may cross-talk affecting binding affinities in a reciprocal fashion.</Comment>
+    <BiopaxRef>lit_198943</BiopaxRef>
+    <BiopaxRef>lit_198938</BiopaxRef>
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="56.0" Y="115.0"/>
+      <Point X="85.0" Y="132.0"/>
+      <Point X="125.0" Y="154.0" GraphRef="n11_REACTOME_198199" RelX="-0.5961538461538461" RelY="-1.1578947368421053" ArrowHead="Arrow"/>
+      <Anchor Position="0.0" Shape="None" GraphId="e_8_a_i"/>
+      <Anchor Position="0.4240826621513801" Shape="None" GraphId="e_8_a_p"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_8_i0">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="56.0" Y="86.5" GraphRef="n9_REACTOME_198201" RelX="0.0" RelY="1.3043478260869565"/>
+      <Point X="56.0" Y="115.0" GraphRef="e_8_a_i" RelX="0.0" RelY="0.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_8_i1">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="55.5" Y="148.5" GraphRef="n10_REACTOME_197834" RelX="0.0" RelY="-1.1020408163265305"/>
+      <Point X="56.0" Y="115.0" GraphRef="e_8_a_i" RelX="0.0" RelY="0.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_12_REACTOME_198955">
+    <Comment Source="WikiPathways-description">T cells distinguish foreign material from self through presentation of fragments of the antigen by the MHC cell surface receptors. Only if an MHC molecule presents an appropriate antigenic peptide will a cellular immune response be triggered. The orchestration of recognition and signaling events, from the initial recognition of antigenic peptides to the lysis of the target cell, is performed in a localized environment on the T cell, called the immunological synapse, and requires the coordinated activities of several T-Cell Receptor (TCR)-associated molecules. This particular reaction depicts the interaction of the TCR with MHC Class I molecules on somatic cell, requiring the support of CD3 and CD8 proteins.</Comment>
+    <BiopaxRef>lit_198959</BiopaxRef>
+    <BiopaxRef>lit_199023</BiopaxRef>
+    <BiopaxRef>lit_199027</BiopaxRef>
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="285.0" Y="122.0"/>
+      <Point X="242.0" Y="113.0"/>
+      <Point X="213.5" Y="98.5" GraphRef="n15_REACTOME_198897" RelX="1.0679611650485437" RelY="0.6567164179104478" ArrowHead="Arrow"/>
+      <Anchor Position="0.0" Shape="None" GraphId="e_12_a_i"/>
+      <Anchor Position="0.5736608810211584" Shape="None" GraphId="e_12_a_p"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_12_i0">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="285.0" Y="105.5" GraphRef="n13_REACTOME_198898" RelX="0.0" RelY="1.1320754716981132"/>
+      <Point X="285.0" Y="122.0" GraphRef="e_12_a_i" RelX="0.0" RelY="0.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_12_i1">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="284.5" Y="140.5" GraphRef="n14_REACTOME_198904" RelX="0.0" RelY="-1.0943396226415094"/>
+      <Point X="285.0" Y="122.0" GraphRef="e_12_a_i" RelX="0.0" RelY="0.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_17_REACTOME_198958">
+    <Comment Source="WikiPathways-description">A hallmark of human NK cells is the expression of HLA class I-specific killer-cell immunoglobulin-like receptors (KIR). KIRs are not only variably expressed on the level of single NK cells but they are also highly polymorphic and polygenic (i.e. the gene content of the KIR cluster varies from individual to individual).&lt;p&gt;&lt;p&gt;There are 15 functional KIR genes known to date, 11 encoding receptors with two immunoglobulin domains (KIR2D genes) and 4 with three domains (KIR3D genes). Inhibitory KIR genes are characterized by long cytoplasmic tails featuring immunoreceptor tyrosine-based inhibitory motifs (ITIM), which upon engagement transmit inhibitory signals leading to the general shutdown of NK cell effector functions. There are six inhibitory KIRs with clearly defined specificities, all of the inhibitory kind and all for HLA class I allotypes: KIR2DL2 and KIR2DL3 for HLA-C group 1, KIR2DL1 for HLA-C group 2, KIR3DL1 for HLA-B (Bw4 epitope), KIR3DL2 with HLA-A3 and KIR2DL4 with HLA-G.&lt;p&gt;&lt;p&gt;In contrast, stimulatory KIR have short cytoplasmic tails lacking ITIM, but have a charged amino acid in the transmembrane region that provides a docking site for the activating adapter molecule DAP12. KIR2DS1 is known to bind HLA-C group 2 and KIR2DS2 binds HLA-C group 1.</Comment>
+    <BiopaxRef>lit_198960</BiopaxRef>
+    <BiopaxRef>lit_199529</BiopaxRef>
+    <BiopaxRef>lit_199570</BiopaxRef>
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="393.0" Y="115.0"/>
+      <Point X="421.0" Y="129.0"/>
+      <Point X="450.5" Y="145.5" GraphRef="n20_REACTOME_198909" RelX="-0.8349514563106796" RelY="-1.0943396226415094" ArrowHead="Arrow"/>
+      <Anchor Position="0.0" Shape="None" GraphId="e_17_a_i"/>
+      <Anchor Position="0.4859059985640116" Shape="None" GraphId="e_17_a_p"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_17_i0">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="394.5" Y="92.0" GraphRef="n18_REACTOME_198911" RelX="-0.02247191011235955" RelY="1.1578947368421053"/>
+      <Point X="393.0" Y="115.0" GraphRef="e_17_a_i" RelX="0.0" RelY="0.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_17_i1">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="393.5" Y="138.5" GraphRef="n19_REACTOME_199540" RelX="-0.02666666666666667" RelY="-1.0769230769230769"/>
+      <Point X="393.0" Y="115.0" GraphRef="e_17_a_i" RelX="0.0" RelY="0.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_21_REACTOME_198983">
+    <Comment Source="WikiPathways-description">NKG2D is an activating immunoreceptor. By engaging NKG2D, HlA Class I-like molecules such as MICA, MICB, ULBP1-4 and RAE-1 provide powerful costimulation for NK cells and T-cells and can determine the magnitude and outcome of certain effector functions. NKG2D ligands are upregulated on the surfaces of cells under conditions of stress, for example infection or tumorigenesis, and therefore act as molecular flags to the immune system that something is wrong.</Comment>
+    <BiopaxRef>lit_198984</BiopaxRef>
+    <BiopaxRef>lit_198985</BiopaxRef>
+    <BiopaxRef>lit_198986</BiopaxRef>
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="1002.0" Y="568.0"/>
+      <Point X="932.0" Y="570.0"/>
+      <Point X="908.0" Y="544.0" GraphRef="n24_REACTOME_198915" RelX="0.5" RelY="1.1071428571428572" ArrowHead="Arrow"/>
+      <Anchor Position="0.0" Shape="None" GraphId="e_21_a_i"/>
+      <Anchor Position="0.6643308883015041" Shape="None" GraphId="e_21_a_p"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_21_i0">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="1001.5" Y="531.0" GraphRef="n22_REACTOME_198916" RelX="0.0" RelY="1.1764705882352942"/>
+      <Point X="1002.0" Y="568.0" GraphRef="e_21_a_i" RelX="0.0" RelY="0.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_21_i1">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="1003.5" Y="612.5" GraphRef="n23_REACTOME_198920" RelX="-0.024691358024691357" RelY="-1.0943396226415094"/>
+      <Point X="1002.0" Y="568.0" GraphRef="e_21_a_i" RelX="0.0" RelY="0.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_25_REACTOME_199014">
+    <Comment Source="WikiPathways-description">NK cells express adhesion molecules that allow interaction with their tumour targets, promoting their lysis.&lt;p&gt;&lt;p&gt;For instance, the activating receptor CD226 is known to be involved in cytotoxic lymphocyte formation, as well as platelet adhesion to the endothelium. The cytoplasmic domain of CD226 contains binding motifs for members of the band 4.1 family of proteins, and for members of the membrane-associated guanylate kinase homolog (MAGUK) family. These proteins connect the CD226 receptor to the cytoskeleton and may promote clustering with LFA-1 integrin (also discussed in this pathway), which is known to participate in CD226's signaling cascade. CD226 plays a role in transendothelial migration, where it facilitates adherence to endothelial cells and migration between cell junctions. &lt;p&gt;&lt;p&gt;Nectin-2 binds CD226. It is ubiquitously expressed in cells of various tissues, especially in epithelial cells, neurons and fibroblasts. Like many other nectin and Necl proteins, nectin-2 serves as a viral entry receptor for alpha-herpesviruses including herpes simplex virus (HSV-1 and HSV-2). The other CD226 ligand, Necl-5, was initially identified as a receptor for poliovirus.&lt;p&gt;&lt;p&gt;CD96, another ligand for Necl-5, is strongly upregulated in activated NK cells.&lt;p&gt;&lt;p&gt;CRTAM is similarly up-regulated, and has been shown to to bind Necl-2, promoting NK cell cytotoxicity towards otherwise poorly immunogenic targets.</Comment>
+    <BiopaxRef>lit_199013</BiopaxRef>
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="763.0" Y="127.0"/>
+      <Point X="745.0" Y="110.0"/>
+      <Point X="725.0" Y="92.0" GraphRef="n28_REACTOME_198194" RelX="0.2698412698412698" RelY="1.1578947368421053" ArrowHead="Arrow"/>
+      <Anchor Position="0.0" Shape="None" GraphId="e_25_a_i"/>
+      <Anchor Position="0.47920868891064594" Shape="None" GraphId="e_25_a_p"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_25_i0">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="803.0" Y="98.5" GraphRef="n26_REACTOME_197695" RelX="-0.5740740740740741" RelY="1.1428571428571428"/>
+      <Point X="763.0" Y="127.0" GraphRef="e_25_a_i" RelX="0.0" RelY="0.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_25_i1">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="730.0" Y="147.5" GraphRef="n27_REACTOME_197766" RelX="0.8085106382978723" RelY="-1.0943396226415094"/>
+      <Point X="763.0" Y="127.0" GraphRef="e_25_a_i" RelX="0.0" RelY="0.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_29_REACTOME_199032">
+    <Comment Source="WikiPathways-description">Mucosal addressin cell adhesion molecule (MAdCAM-1) is present in the endothelium of mucosa, and binds alpha-4 beta-7 integrin and L-selectin, regulating both the passage and retention of leukocytes in mucosal tissues. MAdCAM-1 has been shown to be present as a homodimer.</Comment>
+    <BiopaxRef>lit_199031</BiopaxRef>
+    <BiopaxRef>lit_199030</BiopaxRef>
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="1274.0" Y="109.0"/>
+      <Point X="1240.0" Y="110.0"/>
+      <Point X="1218.5" Y="96.0" GraphRef="n32_REACTOME_198925" RelX="1.0786516853932584" RelY="0.6666666666666666" ArrowHead="Arrow"/>
+      <Anchor Position="0.0" Shape="None" GraphId="e_29_a_i"/>
+      <Anchor Position="0.5660483716881136" Shape="None" GraphId="e_29_a_p"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_29_i0">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="1274.5" Y="95.5" GraphRef="n30_REACTOME_198927" RelX="0.0" RelY="1.1428571428571428"/>
+      <Point X="1274.0" Y="109.0" GraphRef="e_29_a_i" RelX="0.0" RelY="0.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_29_i1">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="1274.0" Y="134.0" GraphRef="n31_REACTOME_198095" RelX="0.0" RelY="-1.088235294117647"/>
+      <Point X="1274.0" Y="109.0" GraphRef="e_29_a_i" RelX="0.0" RelY="0.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_33_REACTOME_199043">
+    <Comment Source="WikiPathways-description">Leukocyte immunoglobulin (Ig)-like receptors [LILRs, also known as Ig-like transcripts (ILTs)] are a family of inhibitory and stimulatory receptors encoded within the leukocyte receptor complex and are expressed by immune cell types of both myeloid and lymphoid lineage. Several members of the LILR family recognize major histocompatibility complex class I. The immunomodulatory role of LILR receptors indicates that they may exert an influence on signaling pathways of both innate and adaptive immune systems.&lt;p&gt;&lt;p&gt;Signaling mechanisms are employed that are similar to the ones adopted by the closely related killer cell inhibitory receptors (KIRs). ITIMs recruit inhibitory phosphatases that dephosphorylate ITIM and ITAM domains in order to influence intracellular signaling cascades. In contrast, activating LILRs, which lack any signaling domains of their own, rely on association with an adaptor protein such as FceRI-gamma to transmit their signal through its intracellular ITAMs.</Comment>
+    <BiopaxRef>lit_199042</BiopaxRef>
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="1395.0" Y="116.0"/>
+      <Point X="1424.0" Y="126.0"/>
+      <Point X="1462.5" Y="145.5" GraphRef="n36_REACTOME_198896" RelX="-1.0485436893203883" RelY="-0.9433962264150944" ArrowHead="Arrow"/>
+      <Anchor Position="0.0" Shape="None" GraphId="e_33_a_i"/>
+      <Anchor Position="0.4192905655241103" Shape="None" GraphId="e_33_a_p"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_33_i0">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="1395.5" Y="87.5" GraphRef="n34_REACTOME_198894" RelX="0.0" RelY="1.3043478260869565"/>
+      <Point X="1395.0" Y="116.0" GraphRef="e_33_a_i" RelX="0.0" RelY="0.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_33_i1">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="1396.0" Y="143.5" GraphRef="n35_REACTOME_199592" RelX="-0.03773584905660377" RelY="-1.0943396226415094"/>
+      <Point X="1395.0" Y="116.0" GraphRef="e_33_a_i" RelX="0.0" RelY="0.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_37_REACTOME_199046">
+    <Comment Source="WikiPathways-description">L-selectin plays a major role in leukocyte traffic through lymph node high endothelial venules.&lt;p&gt;&lt;p&gt;Both MAdCAM and GlyCAM-1 are major L-selectin ligands produced by these venules and mediate leukocyte rolling, particularly in lymphocytes. They are also expressed in mammary tissue and play an important role in the transfer of immune cells into milk secretions.&lt;p&gt;&lt;p&gt;The adhesive properties of CD34 and its potential role in homing lymphocytes to lymphoid tissues mimics the mechanims leukocytes adopt to travel to inflammatory sites.</Comment>
+    <BiopaxRef>lit_199048</BiopaxRef>
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="80.0" Y="338.0"/>
+      <Point X="108.0" Y="323.0"/>
+      <Point X="142.5" Y="307.5" GraphRef="n40_REACTOME_198924" RelX="-1.0485436893203883" RelY="0.8301886792452831" ArrowHead="Arrow"/>
+      <Anchor Position="0.0" Shape="None" GraphId="e_37_a_i"/>
+      <Anchor Position="0.45809262288834346" Shape="None" GraphId="e_37_a_p"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_37_i0">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="80.5" Y="298.5" GraphRef="n38_REACTOME_198922" RelX="-0.018018018018018018" RelY="1.3043478260869565"/>
+      <Point X="80.0" Y="338.0" GraphRef="e_37_a_i" RelX="0.0" RelY="0.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_37_i1">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="78.5" Y="378.5" GraphRef="n39_REACTOME_198090" RelX="0.0" RelY="-1.2173913043478262"/>
+      <Point X="80.0" Y="338.0" GraphRef="e_37_a_i" RelX="0.0" RelY="0.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_44_REACTOME_199050">
+    <Comment Source="WikiPathways-description">Integrins play a central role in mediating lymphocyte &#13;
+adhesion to a number of surfaces. LFA-1 interacts with ICAMs &#13;
+1-3 that are typically expressed on other immune system cells. &#13;
+ICAM-4 also interacts with LFA-1, and is known to be &#13;
+expressed on telencepahlic neurons.&lt;p&gt;&lt;p&gt;VCAM-1 regulates &#13;
+lymphocyte adhesion to activated endothelial cells via Very &#13;
+Late Antigen-4 (VLA-4).&lt;p&gt;&lt;p&gt;To function in a circulating mode, leukocytes express LFA-1 and VLA-4 in a low ligand binding capacity. When leukocytes reach sites of imflammation, these integrins are switched to a higher binding state to guide the complex process of transmigration, tethering, rolling, arrest, adhesion and shape change.&lt;p&gt;&lt;p&gt;Signal cascades between LFA-1 and VLA-4 may cross-talk affecting binding affinities in a reciprocal fashion.</Comment>
+    <BiopaxRef>lit_198938</BiopaxRef>
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="316.0" Y="344.0"/>
+      <Point X="279.0" Y="359.0"/>
+      <Point X="248.0" Y="369.5" GraphRef="n47_REACTOME_198200" RelX="1.06" RelY="-0.6037735849056604" ArrowHead="Arrow"/>
+      <Anchor Position="0.0" Shape="None" GraphId="e_44_a_i"/>
+      <Anchor Position="0.5507044488220242" Shape="None" GraphId="e_44_a_p"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_44_i0">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="317.0" Y="314.0" GraphRef="n45_REACTOME_198196" RelX="-0.02" RelY="1.1578947368421053"/>
+      <Point X="316.0" Y="344.0" GraphRef="e_44_a_i" RelX="0.0" RelY="0.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_44_i1">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="316.5" Y="380.5" GraphRef="n46_REACTOME_198193" RelX="0.0" RelY="-1.2173913043478262"/>
+      <Point X="316.0" Y="344.0" GraphRef="e_44_a_i" RelX="0.0" RelY="0.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_49_REACTOME_199062">
+    <Comment Source="WikiPathways-description">After interaction with its ligand HLA-E, which is expressed on normal cells, the C-type lectin inhibitory receptor CD94/NKG2A suppresses activation signaling processes. CD94/NKG2A receptors continuously recycle from the cell surface through endosomal compartments and back again in a process that requires energy and the cytoskeleton. This steady state process appears to be largely unaffected by exposure to ligand.</Comment>
+    <BiopaxRef>lit_199060</BiopaxRef>
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="490.0" Y="341.0"/>
+      <Point X="478.0" Y="328.0"/>
+      <Point X="464.5" Y="316.5" GraphRef="n53_REACTOME_198914" RelX="0.3697478991596639" RelY="1.1320754716981132" ArrowHead="Arrow"/>
+      <Anchor Position="0.0" Shape="None" GraphId="e_49_a_i"/>
+      <Anchor Position="0.4896586715727591" Shape="None" GraphId="e_49_a_p"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_49_i0">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="499.0" Y="350.5" GraphRef="n50_REACTOME_198078" RelX="-0.7906976744186046" RelY="-1.0617283950617284"/>
+      <Point X="490.0" Y="341.0" GraphRef="e_49_a_i" RelX="0.0" RelY="0.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_49_i1">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="529.5" Y="303.5" GraphRef="n51_REACTOME_198912" RelX="-0.4888888888888889" RelY="1.3043478260869565"/>
+      <Point X="490.0" Y="341.0" GraphRef="e_49_a_i" RelX="0.0" RelY="0.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_49_i2">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="460.0" Y="366.0" GraphRef="n52_REACTOME_199621" RelX="0.5813953488372093" RelY="-1.12"/>
+      <Point X="490.0" Y="341.0" GraphRef="e_49_a_i" RelX="0.0" RelY="0.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_54_REACTOME_199079">
+    <Comment Source="WikiPathways-description">The lectin-like NK cell receptor KLRG1 binds to cadherins on epithelial cells and transmits inhibitory signals to the leukocyte.</Comment>
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="625.0" Y="347.0"/>
+      <Point X="653.0" Y="351.0"/>
+      <Point X="672.5" Y="362.5" GraphRef="n57_REACTOME_198192" RelX="-1.054945054945055" RelY="-0.9811320754716981" ArrowHead="Arrow"/>
+      <Anchor Position="0.0" Shape="None" GraphId="e_54_a_i"/>
+      <Anchor Position="0.5629968935521983" Shape="None" GraphId="e_54_a_p"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_54_i0">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="625.0" Y="326.5" GraphRef="n55_REACTOME_198006" RelX="-0.0392156862745098" RelY="1.1044776119402986"/>
+      <Point X="625.0" Y="347.0" GraphRef="e_54_a_i" RelX="0.0" RelY="0.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_54_i1">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="625.0" Y="361.0" GraphRef="n56_REACTOME_198003" RelX="-0.04878048780487805" RelY="-1.1153846153846154"/>
+      <Point X="625.0" Y="347.0" GraphRef="e_54_a_i" RelX="0.0" RelY="0.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_59_REACTOME_199112">
+    <Comment Source="WikiPathways-description">NK cells express adhesion molecules that allow interaction with their tumour targets, promoting their lysis.&lt;p&gt;&lt;p&gt;For instance, the activating receptor CD226 is known to be involved in cytotoxic lymphocyte formation, as well as platelet adhesion to the endothelium. The cytoplasmic domain of CD226 contains binding motifs for members of the band 4.1 family of proteins, and for members of the membrane-associated guanylate kinase homolog (MAGUK) family. These proteins connect the CD226 receptor to the cytoskeleton and may promote clustering with LFA-1 integrin (also discussed in this pathway), which is known to participate in CD226's signaling cascade. CD226 plays a role in transendothelial migration, where it facilitates adherence to endothelial cells and migration between cell junctions. &lt;p&gt;&lt;p&gt;Nectin-2 binds CD226. It is ubiquitously expressed in cells of various tissues, especially in epithelial cells, neurons and fibroblasts. Like many other nectin and Necl proteins, nectin-2 serves as a viral entry receptor for alpha-herpesviruses including herpes simplex virus (HSV-1 and HSV-2). The other CD226 ligand, Necl-5, was initially identified as a receptor for poliovirus.&lt;p&gt;&lt;p&gt;CD96, another ligand for Necl-5, is strongly upregulated in activated NK cells.&lt;p&gt;&lt;p&gt;CRTAM is similarly up-regulated, and has been shown to to bind Necl-2, promoting NK cell cytotoxicity towards otherwise poorly immunogenic targets.</Comment>
+    <BiopaxRef>lit_199121</BiopaxRef>
+    <BiopaxRef>lit_199111</BiopaxRef>
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="1066.0" Y="126.0"/>
+      <Point X="1097.0" Y="129.0"/>
+      <Point X="1124.0" Y="147.0" GraphRef="n62_REACTOME_198195" RelX="-0.8974358974358975" RelY="-1.1153846153846154" ArrowHead="Arrow"/>
+      <Anchor Position="0.0" Shape="None" GraphId="e_59_a_i"/>
+      <Anchor Position="0.4897386359198214" Shape="None" GraphId="e_59_a_p"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_59_i0">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="1066.5" Y="143.5" GraphRef="n60_REACTOME_198163" RelX="-0.022988505747126436" RelY="-1.087719298245614"/>
+      <Point X="1066.0" Y="126.0" GraphRef="e_59_a_i" RelX="0.0" RelY="0.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_59_i1">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="1066.0" Y="112.5" GraphRef="n61_REACTOME_197700" RelX="0.0" RelY="1.095890410958904"/>
+      <Point X="1066.0" Y="126.0" GraphRef="e_59_a_i" RelX="0.0" RelY="0.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_64_REACTOME_199131">
+    <Comment Source="WikiPathways-description">NK cells express adhesion molecules that allow interaction with their tumour targets, promoting their lysis.&lt;p&gt;&lt;p&gt;For instance, the activating receptor CD226 is known to be involved in cytotoxic lymphocyte formation, as well as platelet adhesion to the endothelium. The cytoplasmic domain of CD226 contains binding motifs for members of the band 4.1 family of proteins, and for members of the membrane-associated guanylate kinase homolog (MAGUK) family. These proteins connect the CD226 receptor to the cytoskeleton and may promote clustering with LFA-1 integrin (also discussed in this pathway), which is known to participate in CD226's signaling cascade. CD226 plays a role in transendothelial migration, where it facilitates adherence to endothelial cells and migration between cell junctions. &lt;p&gt;&lt;p&gt;Nectin-2 binds CD226. It is ubiquitously expressed in cells of various tissues, especially in epithelial cells, neurons and fibroblasts. Like many other nectin and Necl proteins, nectin-2 serves as a viral entry receptor for alpha-herpesviruses including herpes simplex virus (HSV-1 and HSV-2). The other CD226 ligand, Necl-5, was initially identified as a receptor for poliovirus.&lt;p&gt;&lt;p&gt;CD96, another ligand for Necl-5, is strongly upregulated in activated NK cells.&lt;p&gt;&lt;p&gt;CRTAM is similarly up-regulated, and has been shown to to bind Necl-2, promoting NK cell cytotoxicity towards otherwise poorly immunogenic targets.</Comment>
+    <BiopaxRef>lit_199126</BiopaxRef>
+    <BiopaxRef>lit_199133</BiopaxRef>
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="835.0" Y="128.0"/>
+      <Point X="879.0" Y="112.0"/>
+      <Point X="919.0" Y="91.0" GraphRef="n66_REACTOME_198197" RelX="-0.6111111111111112" RelY="1.1578947368421053" ArrowHead="Arrow"/>
+      <Anchor Position="0.0" Shape="None" GraphId="e_64_a_i"/>
+      <Anchor Position="0.5089208638917314" Shape="None" GraphId="e_64_a_p"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_64_i0">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="834.0" Y="160.0" GraphRef="n65_REACTOME_197562" RelX="0.0" RelY="-1.1578947368421053"/>
+      <Point X="835.0" Y="128.0" GraphRef="e_64_a_i" RelX="0.0" RelY="0.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_64_i1">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="834.0" Y="98.5" GraphRef="n26_REACTOME_197695" RelX="0.0" RelY="1.1428571428571428"/>
+      <Point X="835.0" Y="128.0" GraphRef="e_64_a_i" RelX="0.0" RelY="0.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_68_REACTOME_199144">
+    <Comment Source="WikiPathways-description">NK cells express adhesion molecules that allow interaction with their tumour targets, promoting their lysis.&lt;p&gt;&lt;p&gt;For instance, the activating receptor CD226 is known to be involved in cytotoxic lymphocyte formation, as well as platelet adhesion to the endothelium. The cytoplasmic domain of CD226 contains binding motifs for members of the band 4.1 family of proteins, and for members of the membrane-associated guanylate kinase homolog (MAGUK) family. These proteins connect the CD226 receptor to the cytoskeleton and may promote clustering with LFA-1 integrin (also discussed in this pathway), which is known to participate in CD226's signaling cascade. CD226 plays a role in transendothelial migration, where it facilitates adherence to endothelial cells and migration between cell junctions. &lt;p&gt;&lt;p&gt;Nectin-2 binds CD226. It is ubiquitously expressed in cells of various tissues, especially in epithelial cells, neurons and fibroblasts. Like many other nectin and Necl proteins, nectin-2 serves as a viral entry receptor for alpha-herpesviruses including herpes simplex virus (HSV-1 and HSV-2). The other CD226 ligand, Necl-5, was initially identified as a receptor for poliovirus.&lt;p&gt;&lt;p&gt;CD96, another ligand for Necl-5, is strongly upregulated in activated NK cells.&lt;p&gt;&lt;p&gt;CRTAM is similarly up-regulated, and has been shown to to bind Necl-2, promoting NK cell cytotoxicity towards otherwise poorly immunogenic targets.</Comment>
+    <BiopaxRef>lit_199133</BiopaxRef>
+    <BiopaxRef>lit_199126</BiopaxRef>
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="880.0" Y="138.0"/>
+      <Point X="896.0" Y="148.0"/>
+      <Point X="916.5" Y="157.0" GraphRef="n69_REACTOME_198190" RelX="-0.7764705882352941" RelY="-1.1578947368421053" ArrowHead="Arrow"/>
+      <Anchor Position="0.0" Shape="None" GraphId="e_68_a_i"/>
+      <Anchor Position="0.46245374533461797" Shape="None" GraphId="e_68_a_p"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_68_i0">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="853.0" Y="160.0" GraphRef="n65_REACTOME_197562" RelX="0.38" RelY="-1.1578947368421053"/>
+      <Point X="880.0" Y="138.0" GraphRef="e_68_a_i" RelX="0.0" RelY="0.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_68_i1">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="1017.0" Y="88.5" GraphRef="n61_REACTOME_197700" RelX="-1.065217391304348" RelY="0.4383561643835616"/>
+      <Point X="880.0" Y="138.0" GraphRef="e_68_a_i" RelX="0.0" RelY="0.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_71_REACTOME_199154">
+    <Comment Source="WikiPathways-description">While not ubiquitously distributed, CD200 is expressed on a wide range of cell types including thymocytes, B-cells, activated T-cells, follicular dendritic cells,
+endothelium, CNS neurons in the central nervous system, cells in reproductive organs, keratinocytes and renal glomeruli. 
+
+CD200R is a myeloid-inhibitory receptor, despite the absence of classical ITIMs in the cytoplasmic portion of the protein. 
+
+Interestingly, CD200 is also expressed on neurons within the CNS and would be predicted to modulate activation of microglia through CD200R.</Comment>
+    <BiopaxRef>lit_199147</BiopaxRef>
+    <BiopaxRef>lit_199153</BiopaxRef>
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="831.0" Y="343.0"/>
+      <Point X="785.0" Y="331.0"/>
+      <Point X="758.5" Y="313.5" GraphRef="n74_REACTOME_198191" RelX="0.9855072463768116" RelY="1.1272727272727272" ArrowHead="Arrow"/>
+      <Anchor Position="0.0" Shape="None" GraphId="e_71_a_i"/>
+      <Anchor Position="0.5943218243606134" Shape="None" GraphId="e_71_a_p"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_71_i0">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="832.5" Y="358.5" GraphRef="n72_REACTOME_197760" RelX="-0.03669724770642202" RelY="-1.0943396226415094"/>
+      <Point X="831.0" Y="343.0" GraphRef="e_71_a_i" RelX="0.0" RelY="0.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_71_i1">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="833.5" Y="314.5" GraphRef="n73_REACTOME_197761" RelX="-0.034782608695652174" RelY="1.1320754716981132"/>
+      <Point X="831.0" Y="343.0" GraphRef="e_71_a_i" RelX="0.0" RelY="0.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_76_REACTOME_199169">
+    <Comment Source="WikiPathways-description">CD160 is a GPI-anchored lymphocyte surface receptor in which expression is mostly restricted to the highly cytotoxic NK cells. MHC class I molecules bind to CD160 receptors on circulating NK lymphocytes and this triggers their cytotoxic activity and cytokine production. NK cells stimulated by IL-15 secrete soluble CD160 protein that binds to MHC-I molecules, resulting in the inhibition of the cytotoxic CD8+ T lymphocyte activity and of the CD160-mediated NK cell
+cytotoxicity.</Comment>
+    <BiopaxRef>lit_199173</BiopaxRef>
+    <BiopaxRef>lit_199157</BiopaxRef>
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="957.0" Y="325.0"/>
+      <Point X="987.0" Y="342.0"/>
+      <Point X="1024.5" Y="360.5" GraphRef="n79_REACTOME_198906" RelX="-0.9320388349514563" RelY="-1.0943396226415094" ArrowHead="Arrow"/>
+      <Anchor Position="0.0" Shape="None" GraphId="e_76_a_i"/>
+      <Anchor Position="0.4559408856344296" Shape="None" GraphId="e_76_a_p"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_76_i0">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="958.0" Y="304.0" GraphRef="n77_REACTOME_198014" RelX="-0.04" RelY="1.1578947368421053"/>
+      <Point X="957.0" Y="325.0" GraphRef="e_76_a_i" RelX="0.0" RelY="0.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_76_i1">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="956.5" Y="350.0" GraphRef="n78_REACTOME_199614" RelX="0.0" RelY="-1.088235294117647"/>
+      <Point X="957.0" Y="325.0" GraphRef="e_76_a_i" RelX="0.0" RelY="0.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_80_REACTOME_199161">
+    <Comment Source="WikiPathways-description">Most cells of the immune system express receptors for the Fc region of IgG. This heterogeneous family of molecules plays a critical role in immunity, by linking the humoral to the cellular responses. NK cells and B  cells have been shown to express exclusively Fc-gamma RIIIa and  RIIb respectively.</Comment>
+    <BiopaxRef>lit_199171</BiopaxRef>
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="1213.0" Y="340.0"/>
+      <Point X="1173.0" Y="340.0"/>
+      <Point X="1140.5" Y="324.0" GraphRef="n83_REACTOME_198877" RelX="0.9915966386554622" RelY="1.088235294117647" ArrowHead="Arrow"/>
+      <Anchor Position="0.0" Shape="None" GraphId="e_80_a_i"/>
+      <Anchor Position="0.5216875856024319" Shape="None" GraphId="e_80_a_p"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_80_i0">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="1213.5" Y="317.5" GraphRef="n81_REACTOME_200284" RelX="0.0" RelY="1.1147540983606556"/>
+      <Point X="1213.0" Y="340.0" GraphRef="e_80_a_i" RelX="0.0" RelY="0.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_80_i1">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="1213.5" Y="366.0" GraphRef="n82_REACTOME_199174" RelX="-0.02247191011235955" RelY="-1.1304347826086956"/>
+      <Point X="1213.0" Y="340.0" GraphRef="e_80_a_i" RelX="0.0" RelY="0.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_84_REACTOME_199404">
+    <Comment Source="WikiPathways-description">CD40 is a member of the Tumour Necrosis Factor receptor family and its ligand CD40L is a type II transmembrane protein of the TNF superfamily. The latter is expressed preferentially on T-cells and platelets. In the immune system, CD40-CD40L interaction affects some key processes such as immune cell activation, differentiation, proliferation, and apoptosis. CD40-CD40L interaction also upregulates costimulatory molecules (ICAM-1, VCAM-1, E-selectin, LFA-3, B7.1, B7.2, class II MHC, and CD40 itself).</Comment>
+    <BiopaxRef>lit_199407</BiopaxRef>
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="1344.0" Y="342.0"/>
+      <Point X="1382.0" Y="342.0"/>
+      <Point X="1415.5" Y="364.0" GraphRef="n87_REACTOME_199402" RelX="-1.0617283950617284" RelY="-1.0" ArrowHead="Arrow"/>
+      <Anchor Position="0.0" Shape="None" GraphId="e_84_a_i"/>
+      <Anchor Position="0.4893056832864149" Shape="None" GraphId="e_84_a_p"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_84_i0">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="1343.5" Y="328.0" GraphRef="n85_REACTOME_198113" RelX="0.019801980198019802" RelY="1.0810810810810811"/>
+      <Point X="1344.0" Y="342.0" GraphRef="e_84_a_i" RelX="0.0" RelY="0.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_84_i1">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="1344.0" Y="359.0" GraphRef="n86_REACTOME_198117" RelX="0.0" RelY="-1.0857142857142856"/>
+      <Point X="1344.0" Y="342.0" GraphRef="e_84_a_i" RelX="0.0" RelY="0.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_89_REACTOME_199093">
+    <Comment Source="WikiPathways-description">JAM members, such as JAML,  bind coxsackie and adenovirus receptor (CXADR) on epithelial and endothelial cells.</Comment>
+    <BiopaxRef>lit_199095</BiopaxRef>
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="1574.0" Y="329.0"/>
+      <Point X="1532.0" Y="313.0"/>
+      <Point X="1494.5" Y="298.0" GraphRef="n92_REACTOME_198198" RelX="1.1044776119402986" RelY="0.39285714285714285" ArrowHead="Arrow"/>
+      <Anchor Position="0.0" Shape="None" GraphId="e_89_a_i"/>
+      <Anchor Position="0.5238410155330981" Shape="None" GraphId="e_89_a_p"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_89_i0">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="1575.0" Y="299.0" GraphRef="n90_REACTOME_197912" RelX="-0.016129032258064516" RelY="1.1578947368421053"/>
+      <Point X="1574.0" Y="329.0" GraphRef="e_89_a_i" RelX="0.0" RelY="0.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_89_i1">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="1574.5" Y="357.5" GraphRef="n91_REACTOME_197893" RelX="-0.015267175572519083" RelY="-1.0943396226415094"/>
+      <Point X="1574.0" Y="329.0" GraphRef="e_89_a_i" RelX="0.0" RelY="0.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_93_REACTOME_199518">
+    <Comment Source="WikiPathways-description">CD19 is a lymphocyte cell surface molecule that functions as a general response regulator or rheostat, which defnes signalling thresholds. These responses are infuenced by signals transduced through a CD19-CD21 cell surface receptor complex, where the binding of complement C3d to CD21 links humoral immune responses with the innate immune system. The CD19-CD21 complex is composed of at least four non-covalently associated proteins: CD19, CD21(complement receptor 2),CD81 and CD225.</Comment>
+    <BiopaxRef>lit_198998</BiopaxRef>
+    <BiopaxRef>lit_199001</BiopaxRef>
+    <BiopaxRef>lit_198993</BiopaxRef>
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="59.0" Y="580.0"/>
+      <Point X="76.0" Y="582.0"/>
+      <Point X="105.5" Y="604.5" GraphRef="n96_REACTOME_198991" RelX="-1.0561797752808988" RelY="-0.6947368421052632" ArrowHead="Arrow"/>
+      <Anchor Position="0.0" Shape="None" GraphId="e_93_a_i"/>
+      <Anchor Position="0.3198420947532595" Shape="None" GraphId="e_93_a_p"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_93_i0">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="59.5" Y="558.0" GraphRef="n94_REACTOME_198931" RelX="-0.023529411764705882" RelY="1.0909090909090908"/>
+      <Point X="59.0" Y="580.0" GraphRef="e_93_a_i" RelX="0.0" RelY="0.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_93_i1">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="58.5" Y="617.5" GraphRef="n95_REACTOME_199000" RelX="0.0" RelY="-1.0909090909090908"/>
+      <Point X="59.0" Y="580.0" GraphRef="e_93_a_i" RelX="0.0" RelY="0.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_97_REACTOME_199558">
+    <Comment Source="WikiPathways-description">A hallmark of human NK cells is the expression of HLA class I-specific killer-cell immunoglobulin-like receptors (KIR). KIRs are not only variably expressed on the level of single NK cells but they are also highly polymorphic and polygenic (i.e. the gene content of the KIR cluster varies from individual to individual).&lt;p&gt;&lt;p&gt;There are 15 functional KIR genes known to date, 11 encoding receptors with two immunoglobulin domains (KIR2D genes) and 4 with three domains (KIR3D genes). Inhibitory KIR genes are characterized by long cytoplasmic tails featuring immunoreceptor tyrosine-based inhibitory motifs (ITIM), which upon engagement transmit inhibitory signals leading to the general shutdown of NK cell effector functions. There are six inhibitory KIRs with clearly defined specificities, all of the inhibitory kind and all for HLA class I allotypes: KIR2DL2 and KIR2DL3 for HLA-C group 1, KIR2DL1 for HLA-C group 2, KIR3DL1 for HLA-B (Bw4 epitope), KIR3DL2 with HLA-A3 and KIR2DL4 with HLA-G.&lt;p&gt;&lt;p&gt;In contrast, stimulatory KIR have short cytoplasmic tails lacking ITIM, but have a charged amino acid in the transmembrane region that provides a docking site for the activating adapter molecule DAP12. KIR2DS1 is known to bind HLA-C group 2 and KIR2DS2 binds HLA-C group 1.</Comment>
+    <BiopaxRef>lit_198960</BiopaxRef>
+    <BiopaxRef>lit_199529</BiopaxRef>
+    <BiopaxRef>lit_199570</BiopaxRef>
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="247.0" Y="558.0"/>
+      <Point X="221.0" Y="544.0"/>
+      <Point X="190.5" Y="526.5" GraphRef="n100_REACTOME_199560" RelX="1.0933333333333333" RelY="0.4444444444444444" ArrowHead="Arrow"/>
+      <Anchor Position="0.0" Shape="None" GraphId="e_97_a_i"/>
+      <Anchor Position="0.4516856484838753" Shape="None" GraphId="e_97_a_p"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_97_i0">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="247.0" Y="590.0" GraphRef="n98_REACTOME_199538" RelX="-0.02631578947368421" RelY="-1.065217391304348"/>
+      <Point X="247.0" Y="558.0" GraphRef="e_97_a_i" RelX="0.0" RelY="0.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_97_i1">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="247.5" Y="521.5" GraphRef="n99_REACTOME_199562" RelX="-0.0273972602739726" RelY="1.170731707317073"/>
+      <Point X="247.0" Y="558.0" GraphRef="e_97_a_i" RelX="0.0" RelY="0.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_101_REACTOME_199566">
+    <Comment Source="WikiPathways-description">A hallmark of human NK cells is the expression of HLA class I-specific killer-cell immunoglobulin-like receptors (KIR). KIRs are not only variably expressed on the level of single NK cells but they are also highly polymorphic and polygenic (i.e. the gene content of the KIR cluster varies from individual to individual).&lt;p&gt;&lt;p&gt;There are 15 functional KIR genes known to date, 11 encoding receptors with two immunoglobulin domains (KIR2D genes) and 4 with three domains (KIR3D genes). Inhibitory KIR genes are characterized by long cytoplasmic tails featuring immunoreceptor tyrosine-based inhibitory motifs (ITIM), which upon engagement transmit inhibitory signals leading to the general shutdown of NK cell effector functions. There are six inhibitory KIRs with clearly defined specificities, all of the inhibitory kind and all for HLA class I allotypes: KIR2DL2 and KIR2DL3 for HLA-C group 1, KIR2DL1 for HLA-C group 2, KIR3DL1 for HLA-B (Bw4 epitope), KIR3DL2 with HLA-A3 and KIR2DL4 with HLA-G.&lt;p&gt;&lt;p&gt;In contrast, stimulatory KIR have short cytoplasmic tails lacking ITIM, but have a charged amino acid in the transmembrane region that provides a docking site for the activating adapter molecule DAP12. KIR2DS1 is known to bind HLA-C group 2 and KIR2DS2 binds HLA-C group 1.</Comment>
+    <BiopaxRef>lit_198960</BiopaxRef>
+    <BiopaxRef>lit_199529</BiopaxRef>
+    <BiopaxRef>lit_199570</BiopaxRef>
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="457.0" Y="567.0"/>
+      <Point X="492.0" Y="567.0"/>
+      <Point X="537.5" Y="606.5" GraphRef="n104_REACTOME_199565" RelX="-0.6105263157894737" RelY="-1.0943396226415094" ArrowHead="Arrow"/>
+      <Anchor Position="0.0" Shape="None" GraphId="e_101_a_i"/>
+      <Anchor Position="0.37018116774421234" Shape="None" GraphId="e_101_a_p"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_101_i0">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="456.5" Y="524.5" GraphRef="n102_REACTOME_199567" RelX="0.0" RelY="1.3043478260869565"/>
+      <Point X="457.0" Y="567.0" GraphRef="e_101_a_i" RelX="0.0" RelY="0.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_101_i1">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="457.5" Y="594.0" GraphRef="n103_REACTOME_197742" RelX="0.0" RelY="-1.069767441860465"/>
+      <Point X="457.0" Y="567.0" GraphRef="e_101_a_i" RelX="0.0" RelY="0.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_106_REACTOME_199576">
+    <Comment Source="WikiPathways-description">A hallmark of human NK cells is the expression of HLA class I-specific killer-cell immunoglobulin-like receptors (KIR). KIRs are not only variably expressed on the level of single NK cells but they are also highly polymorphic and polygenic (i.e. the gene content of the KIR cluster varies from individual to individual).&lt;p&gt;&lt;p&gt;There are 15 functional KIR genes known to date, 11 encoding receptors with two immunoglobulin domains (KIR2D genes) and 4 with three domains (KIR3D genes). Inhibitory KIR genes are characterized by long cytoplasmic tails featuring immunoreceptor tyrosine-based inhibitory motifs (ITIM), which upon engagement transmit inhibitory signals leading to the general shutdown of NK cell effector functions. There are six inhibitory KIRs with clearly defined specificities, all of the inhibitory kind and all for HLA class I allotypes: KIR2DL2 and KIR2DL3 for HLA-C group 1, KIR2DL1 for HLA-C group 2, KIR3DL1 for HLA-B (Bw4 epitope), KIR3DL2 with HLA-A3 and KIR2DL4 with HLA-G.&lt;p&gt;&lt;p&gt;In contrast, stimulatory KIR have short cytoplasmic tails lacking ITIM, but have a charged amino acid in the transmembrane region that provides a docking site for the activating adapter molecule DAP12. KIR2DS1 is known to bind HLA-C group 2 and KIR2DS2 binds HLA-C group 1.</Comment>
+    <BiopaxRef>lit_198960</BiopaxRef>
+    <BiopaxRef>lit_199529</BiopaxRef>
+    <BiopaxRef>lit_199570</BiopaxRef>
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="671.0" Y="558.0"/>
+      <Point X="595.0" Y="559.0"/>
+      <Point X="574.0" Y="533.0" GraphRef="n109_REACTOME_199573" RelX="0.20967741935483872" RelY="1.1578947368421053" ArrowHead="Arrow"/>
+      <Anchor Position="0.0" Shape="None" GraphId="e_106_a_i"/>
+      <Anchor Position="0.6945799004085189" Shape="None" GraphId="e_106_a_p"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_106_i0">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="668.5" Y="526.5" GraphRef="n107_REACTOME_199571" RelX="0.0" RelY="1.3043478260869565"/>
+      <Point X="671.0" Y="558.0" GraphRef="e_106_a_i" RelX="0.0" RelY="0.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_106_i1">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="676.5" Y="591.0" GraphRef="n108_REACTOME_197713" RelX="-0.11214953271028037" RelY="-1.0769230769230769"/>
+      <Point X="671.0" Y="558.0" GraphRef="e_106_a_i" RelX="0.0" RelY="0.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_110_REACTOME_199579">
+    <Comment Source="WikiPathways-description">A hallmark of human NK cells is the expression of HLA class I-specific killer-cell immunoglobulin-like receptors (KIR). KIRs are not only variably expressed on the level of single NK cells but they are also highly polymorphic and polygenic (i.e. the gene content of the KIR cluster varies from individual to individual).&lt;p&gt;&lt;p&gt;There are 15 functional KIR genes known to date, 11 encoding receptors with two immunoglobulin domains (KIR2D genes) and 4 with three domains (KIR3D genes). Inhibitory KIR genes are characterized by long cytoplasmic tails featuring immunoreceptor tyrosine-based inhibitory motifs (ITIM), which upon engagement transmit inhibitory signals leading to the general shutdown of NK cell effector functions. There are six inhibitory KIRs with clearly defined specificities, all of the inhibitory kind and all for HLA class I allotypes: KIR2DL2 and KIR2DL3 for HLA-C group 1, KIR2DL1 for HLA-C group 2, KIR3DL1 for HLA-B (Bw4 epitope), KIR3DL2 with HLA-A3 and KIR2DL4 with HLA-G.&lt;p&gt;&lt;p&gt;In contrast, stimulatory KIR have short cytoplasmic tails lacking ITIM, but have a charged amino acid in the transmembrane region that provides a docking site for the activating adapter molecule DAP12. KIR2DS1 is known to bind HLA-C group 2 and KIR2DS2 binds HLA-C group 1.</Comment>
+    <BiopaxRef>lit_198960</BiopaxRef>
+    <BiopaxRef>lit_199529</BiopaxRef>
+    <BiopaxRef>lit_199570</BiopaxRef>
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="799.0" Y="566.0"/>
+      <Point X="842.0" Y="566.0"/>
+      <Point X="887.0" Y="619.5" GraphRef="n113_REACTOME_199578" RelX="-0.44680851063829785" RelY="-1.1020408163265305" ArrowHead="Arrow"/>
+      <Anchor Position="0.0" Shape="None" GraphId="e_110_a_i"/>
+      <Anchor Position="0.3821306019672414" Shape="None" GraphId="e_110_a_p"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_110_i0">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="800.0" Y="596.5" GraphRef="n111_REACTOME_197726" RelX="-0.04" RelY="-1.0724637681159421"/>
+      <Point X="799.0" Y="566.0" GraphRef="e_110_a_i" RelX="0.0" RelY="0.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_110_i1">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="798.0" Y="528.5" GraphRef="n112_REACTOME_199581" RelX="0.0" RelY="1.3043478260869565"/>
+      <Point X="799.0" Y="566.0" GraphRef="e_110_a_i" RelX="0.0" RelY="0.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_114_REACTOME_199587">
+    <Comment Source="WikiPathways-description">A hallmark of human NK cells is the expression of HLA class I-specific killer-cell immunoglobulin-like receptors (KIR). KIRs are not only variably expressed on the level of single NK cells but they are also highly polymorphic and polygenic (i.e. the gene content of the KIR cluster varies from individual to individual).&lt;p&gt;&lt;p&gt;There are 15 functional KIR genes known to date, 11 encoding receptors with two immunoglobulin domains (KIR2D genes) and 4 with three domains (KIR3D genes). Inhibitory KIR genes are characterized by long cytoplasmic tails featuring immunoreceptor tyrosine-based inhibitory motifs (ITIM), which upon engagement transmit inhibitory signals leading to the general shutdown of NK cell effector functions. There are six inhibitory KIRs with clearly defined specificities, all of the inhibitory kind and all for HLA class I allotypes: KIR2DL2 and KIR2DL3 for HLA-C group 1, KIR2DL1 for HLA-C group 2, KIR3DL1 for HLA-B (Bw4 epitope), KIR3DL2 with HLA-A3 and KIR2DL4 with HLA-G.&lt;p&gt;&lt;p&gt;In contrast, stimulatory KIR have short cytoplasmic tails lacking ITIM, but have a charged amino acid in the transmembrane region that provides a docking site for the activating adapter molecule DAP12. KIR2DS1 is known to bind HLA-C group 2 and KIR2DS2 binds HLA-C group 1.</Comment>
+    <BiopaxRef>lit_198960</BiopaxRef>
+    <BiopaxRef>lit_199529</BiopaxRef>
+    <BiopaxRef>lit_199570</BiopaxRef>
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="297.0" Y="571.0"/>
+      <Point X="314.0" Y="561.0"/>
+      <Point X="337.5" Y="541.5" GraphRef="n116_REACTOME_199585" RelX="-0.6021505376344086" RelY="1.1320754716981132" ArrowHead="Arrow"/>
+      <Anchor Position="0.0" Shape="None" GraphId="e_114_a_i"/>
+      <Anchor Position="0.3928698736371462" Shape="None" GraphId="e_114_a_p"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_114_i0">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="326.0" Y="613.5" GraphRef="n115_REACTOME_199586" RelX="-0.41304347826086957" RelY="-1.0909090909090908"/>
+      <Point X="297.0" Y="571.0" GraphRef="e_114_a_i" RelX="0.0" RelY="0.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_114_i1">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="261.5" Y="521.5" GraphRef="n99_REACTOME_199562" RelX="0.3561643835616438" RelY="1.170731707317073"/>
+      <Point X="297.0" Y="571.0" GraphRef="e_114_a_i" RelX="0.0" RelY="0.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_117_REACTOME_199583">
+    <Comment Source="WikiPathways-description">A hallmark of human NK cells is the expression of HLA class I-specific killer-cell immunoglobulin-like receptors (KIR). KIRs are not only variably expressed on the level of single NK cells but they are also highly polymorphic and polygenic (i.e. the gene content of the KIR cluster varies from individual to individual).&lt;p&gt;&lt;p&gt;There are 15 functional KIR genes known to date, 11 encoding receptors with two immunoglobulin domains (KIR2D genes) and 4 with three domains (KIR3D genes). Inhibitory KIR genes are characterized by long cytoplasmic tails featuring immunoreceptor tyrosine-based inhibitory motifs (ITIM), which upon engagement transmit inhibitory signals leading to the general shutdown of NK cell effector functions. There are six inhibitory KIRs with clearly defined specificities, all of the inhibitory kind and all for HLA class I allotypes: KIR2DL2 and KIR2DL3 for HLA-C group 1, KIR2DL1 for HLA-C group 2, KIR3DL1 for HLA-B (Bw4 epitope), KIR3DL2 with HLA-A3 and KIR2DL4 with HLA-G.&lt;p&gt;&lt;p&gt;In contrast, stimulatory KIR have short cytoplasmic tails lacking ITIM, but have a charged amino acid in the transmembrane region that provides a docking site for the activating adapter molecule DAP12. KIR2DS1 is known to bind HLA-C group 2 and KIR2DS2 binds HLA-C group 1.</Comment>
+    <BiopaxRef>lit_198960</BiopaxRef>
+    <BiopaxRef>lit_199529</BiopaxRef>
+    <BiopaxRef>lit_199570</BiopaxRef>
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="489.0" Y="103.0"/>
+      <Point X="512.0" Y="93.0"/>
+      <Point X="535.0" Y="85.0" GraphRef="n119_REACTOME_199588" RelX="-1.065217391304348" RelY="0.5" ArrowHead="Arrow"/>
+      <Anchor Position="0.0" Shape="None" GraphId="e_117_a_i"/>
+      <Anchor Position="0.507366574133323" Shape="None" GraphId="e_117_a_p"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_117_i0">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="443.5" Y="85.0" GraphRef="n18_REACTOME_198911" RelX="1.0786516853932584" RelY="0.7894736842105263"/>
+      <Point X="489.0" Y="103.0" GraphRef="e_117_a_i" RelX="0.0" RelY="0.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_117_i1">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="551.5" Y="147.0" GraphRef="n118_REACTOME_199584" RelX="-1.0649350649350648" RelY="-1.0"/>
+      <Point X="489.0" Y="103.0" GraphRef="e_117_a_i" RelX="0.0" RelY="0.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Label TextLabel="cell" GraphId="comp_text_1" GroupRef="group_comp_1">
+    <Graphics CenterX="36.5" CenterY="226.5" Width="39.0" Height="33.0" ZOrder="28672" FontSize="12" Valign="Middle"/>
+  </Label>
+  <Label TextLabel="cell" GraphId="comp_text_7" GroupRef="group_comp_7">
+    <Graphics CenterX="41.5" CenterY="41.5" Width="39.0" Height="33.0" ZOrder="28672" FontSize="12" Valign="Middle"/>
+  </Label>
+  <Label TextLabel="cell" GraphId="comp_text_42" GroupRef="group_comp_42">
+    <Graphics CenterX="36.5" CenterY="694.5" Width="39.0" Height="33.0" ZOrder="28672" FontSize="12" Valign="Middle"/>
+  </Label>
+  <Label TextLabel="cell" GraphId="comp_text_43" GroupRef="group_comp_43">
+    <Graphics CenterX="35.5" CenterY="449.5" Width="39.0" Height="33.0" ZOrder="28672" FontSize="12" Valign="Middle"/>
+  </Label>
+  <Shape GraphId="comp_1" GroupRef="group_comp_1">
+    <Graphics CenterX="839.0" CenterY="231.0" Width="1662.0" Height="118.0" ZOrder="16384" FontSize="12" Valign="Middle" ShapeType="Rectangle" LineThickness="2.0" Rotation="0.0"/>
+  </Shape>
+  <Shape GraphId="comp_7" GroupRef="group_comp_7">
+    <Graphics CenterX="839.5" CenterY="50.5" Width="1663.0" Height="59.0" ZOrder="16384" FontSize="12" Valign="Middle" ShapeType="Rectangle" LineThickness="2.0" Rotation="0.0"/>
+  </Shape>
+  <Shape GraphId="comp_42" GroupRef="group_comp_42">
+    <Graphics CenterX="839.0" CenterY="679.0" Width="1666.0" Height="74.0" ZOrder="16384" FontSize="12" Valign="Middle" ShapeType="Rectangle" LineThickness="2.0" Rotation="0.0"/>
+  </Shape>
+  <Shape GraphId="comp_43" GroupRef="group_comp_43">
+    <Graphics CenterX="837.0" CenterY="452.5" Width="1656.0" Height="131.0" ZOrder="16384" FontSize="12" Valign="Middle" ShapeType="Rectangle" LineThickness="2.0" Rotation="0.0"/>
+  </Shape>
+  <InfoBox CenterX="3872.5" CenterY="6350.0"/>
+  <Biopax>
+    <bp:PublicationXref xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" rdf:id="lit_198993">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">14719373</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Pubmed</bp:DB>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2004</bp:YEAR>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Signaling by the CD19/CD21 complex on B cells</bp:TITLE>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Carter, RH</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Barrington, RA</bp:AUTHORS>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Curr Dir Autoimmun 7:4-32</bp:SOURCE>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" rdf:id="lit_199171">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">11955599</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Pubmed</bp:DB>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2002</bp:YEAR>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Recognition of immunoglobulins by Fcgamma receptors</bp:TITLE>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Radaev, S</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Sun, P</bp:AUTHORS>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Mol Immunol 38:1073-83</bp:SOURCE>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" rdf:id="lit_199121">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">16091383</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Pubmed</bp:DB>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2005</bp:YEAR>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Heterotypic interaction of CRTAM with Necl2 induces cell adhesion on activated NK cells and CD8+ T cells</bp:TITLE>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Arase, N</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Takeuchi, A</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Unno, M</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Hirano, S</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Yokosuka, T</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Arase, H</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Saito, T</bp:AUTHORS>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Int Immunol 17:1227-37</bp:SOURCE>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" rdf:id="lit_199013">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">15034010</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Pubmed</bp:DB>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2004</bp:YEAR>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Cutting edge: CD96 (tactile) promotes NK cell-target cell adhesion by interacting with the poliovirus receptor (CD155)</bp:TITLE>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Fuchs, A</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Cella, M</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Giurisato, E</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Shaw, AS</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Colonna, M</bp:AUTHORS>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">J Immunol 172:3994-8</bp:SOURCE>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" rdf:id="lit_198985">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">11955595</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Pubmed</bp:DB>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2002</bp:YEAR>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Asymmetric ligand recognition by the activating natural killer cell receptor NKG2D, a symmetric homodimer</bp:TITLE>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Strong, RK</bp:AUTHORS>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Mol Immunol 38:1029-37</bp:SOURCE>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" rdf:id="lit_199545">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">7629517</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Pubmed</bp:DB>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1995</bp:YEAR>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Amino acid substitutions can influence the natural killer (NK)-mediated recognition of HLA-C molecules. Role of serine-77 and lysine-80 in the target cell protection from lysis mediated by "group 2" or "group 1" NK clones.</bp:TITLE>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Biassoni, R</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Falco, M</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Cambiaggi, A</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Costa, P</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Verdiani, S</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Pende, D</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Conte, R</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Di Donato, C</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Parham, P</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Moretta, L</bp:AUTHORS>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">J Exp Med 182:605-9</bp:SOURCE>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" rdf:id="lit_198943">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">7531291</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Pubmed</bp:DB>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1995</bp:YEAR>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Crystal structure of an integrin-binding fragment of vascular cell adhesion molecule-1 at 1.8 A resolution.</bp:TITLE>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Jones, EY</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Harlos, K</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Bottomley, MJ</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Robinson, RC</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Driscoll, PC</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Edwards, RM</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Clements, JM</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Dudgeon, TJ</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Stuart, DI</bp:AUTHORS>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Nature 373:539-44</bp:SOURCE>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" rdf:id="lit_198986">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">11858820</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Pubmed</bp:DB>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2002</bp:YEAR>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Structure and function of major histocompatibility complex (MHC) class I specific receptors expressed on human natural killer (NK) cells</bp:TITLE>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Borrego, F</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Kabat, J</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Kim, DK</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Lieto, L</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Maasho, K</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Pena, J</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Solana, R</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Coligan, JE</bp:AUTHORS>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Mol Immunol 38:637-60</bp:SOURCE>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" rdf:id="lit_199133">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">15607800</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Pubmed</bp:DB>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2005</bp:YEAR>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PVR (CD155) and Nectin-2 (CD112) as ligands of the human DNAM-1 (CD226) activating receptor: involvement in tumor cell lysis</bp:TITLE>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Pende, D</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Bottino, C</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Castriconi, R</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Cantoni, C</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Marcenaro, S</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Rivera, P</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Spaggiari, GM</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Dondero, A</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Carnemolla, B</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Reymond, N</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Mingari, MC</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Lopez, M</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Moretta, L</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Moretta, A</bp:AUTHORS>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Mol Immunol 42:463-9</bp:SOURCE>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" rdf:id="lit_199111">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">15781451</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Pubmed</bp:DB>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2005</bp:YEAR>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Nectin-like protein 2 defines a subset of T-cell zone dendritic cells and is a ligand for class-I-restricted T-cell-associated molecule</bp:TITLE>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Galibert, L</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Diemer, GS</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Liu, Z</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Johnson, RS</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Smith, JL</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Walzer, T</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Comeau, MR</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Rauch, CT</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Wolfson, MF</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Sorensen, RA</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Van der Vuurst de Vries, AR</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Branstetter, DG</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Koelling, RM</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Scholler, J</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Fanslow, WC</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Baum, PR</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Derry, JM</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Yan, W</bp:AUTHORS>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">J Biol Chem 280:21955-64</bp:SOURCE>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" rdf:id="lit_199095">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">15800062</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Pubmed</bp:DB>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2005</bp:YEAR>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Neutrophil migration across tight junctions is mediated by adhesive interactions between epithelial coxsackie and adenovirus receptor and a junctional adhesion molecule-like protein on neutrophils</bp:TITLE>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Zen, K</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Liu, Y</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">McCall, IC</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Wu, T</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Lee, W</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Babbin, BA</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Nusrat, A</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Parkos, CA</bp:AUTHORS>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Mol Biol Cell 16:2694-703</bp:SOURCE>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" rdf:id="lit_199042">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">15304001</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Pubmed</bp:DB>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2004</bp:YEAR>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">The LILR family: modulators of innate and adaptive immune pathways in health and disease</bp:TITLE>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Brown, D</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Trowsdale, J</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Allen, R</bp:AUTHORS>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Tissue Antigens 64:215-25</bp:SOURCE>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" rdf:id="lit_198998">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">15778510</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Pubmed</bp:DB>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2005</bp:YEAR>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">CD19 function in central and peripheral B-cell development</bp:TITLE>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Del Nagro, CJ</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Otero, DC</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Anzelon, AN</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Omori, SA</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Kolla, RV</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Rickert, RC</bp:AUTHORS>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Immunol Res 31:119-31</bp:SOURCE>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" rdf:id="lit_199570">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">11861603</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Pubmed</bp:DB>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2002</bp:YEAR>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">KIR: diverse, rapidly evolving receptors of innate and adaptive immunity</bp:TITLE>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Vilches, C</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Parham, P</bp:AUTHORS>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Annu Rev Immunol 20:217-51</bp:SOURCE>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" rdf:id="lit_198959">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">16551255</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Pubmed</bp:DB>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2006</bp:YEAR>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">How TCRs bind MHCs, peptides, and coreceptors</bp:TITLE>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Rudolph, MG</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Stanfield, RL</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Wilson, IA</bp:AUTHORS>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Annu Rev Immunol 24:419-66</bp:SOURCE>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" rdf:id="lit_199031">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">11807247</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Pubmed</bp:DB>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2002</bp:YEAR>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">A reassessment of the MAdCAM-1 structure and its role in integrin recognition</bp:TITLE>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Dando, J</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Wilkinson, KW</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Ortlepp, S</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">King, DJ</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Brady, RL</bp:AUTHORS>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Acta Crystallogr D Biol Crystallogr 58:233-41</bp:SOURCE>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" rdf:id="lit_199147">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">15187158</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Pubmed</bp:DB>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2004</bp:YEAR>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">CD200 is a ligand for all members of the CD200R family of immunoregulatory molecules</bp:TITLE>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Gorczynski, R</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Chen, Z</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Kai, Y</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Lee, L</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Wong, S</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Marsden, PA</bp:AUTHORS>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">J Immunol 172:7744-9</bp:SOURCE>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" rdf:id="lit_199001">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">17337780</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Pubmed</bp:DB>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2006</bp:YEAR>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Complement-mediated activation of the adaptive immune responses: role of C3d in linking the innate and adaptive immunity</bp:TITLE>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Toapanta, FR</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Ross, TM</bp:AUTHORS>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Immunol Res 36:197-210</bp:SOURCE>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" rdf:id="lit_199126">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">16904340</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Pubmed</bp:DB>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2006</bp:YEAR>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">The role of NK cell recognition of nectin and nectin-like proteins in tumor immunosurveillance</bp:TITLE>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Fuchs, A</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Colonna, M</bp:AUTHORS>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Semin Cancer Biol 16:359-66</bp:SOURCE>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" rdf:id="lit_199027">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">15534202</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Pubmed</bp:DB>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2004</bp:YEAR>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Crystal structure of a human CD3-epsilon/delta dimer in complex with a UCHT1 single-chain antibody fragment</bp:TITLE>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Arnett, KL</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Harrison, SC</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Wiley, DC</bp:AUTHORS>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Proc Natl Acad Sci U S A 101:16268-73</bp:SOURCE>
+    </bp:PublicationXref>
+    <bp:openControlledVocabulary xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#">
+      <bp:TERM xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">signaling pathway pertinent to immunity</bp:TERM>
+      <bp:ID xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PW:0000818</bp:ID>
+      <bp:Ontology xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Pathway Ontology</bp:Ontology>
+    </bp:openControlledVocabulary>
+    <bp:PublicationXref xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" rdf:id="lit_200282">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">15081612</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Pubmed</bp:DB>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2004</bp:YEAR>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Fc gamma receptors</bp:TITLE>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Cohen-Solal, JF</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Cassard, L</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Fridman, WH</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Sautes-Fridman, C</bp:AUTHORS>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Immunol Lett 92:199-205</bp:SOURCE>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" rdf:id="lit_198984">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">16737824</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Pubmed</bp:DB>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2006</bp:YEAR>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Structural basis for recognition of MHC and MHC-like ligands by natural killer cell receptors</bp:TITLE>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Deng, L</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Mariuzza, RA</bp:AUTHORS>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Semin Immunol 18:159-66</bp:SOURCE>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" rdf:id="lit_198960">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">11955593</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Pubmed</bp:DB>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2002</bp:YEAR>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">A structural perspective on MHC class I recognition by killer cell immunoglobulin-like receptors</bp:TITLE>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Boyington, JC</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Sun, PD</bp:AUTHORS>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Mol Immunol 38:1007-21</bp:SOURCE>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" rdf:id="lit_199173">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">16129954</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Pubmed</bp:DB>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2005</bp:YEAR>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">HLA class I/NK cell receptor interaction in early human decidua basalis: possible functional consequences</bp:TITLE>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Rabot, M</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Tabiasco, J</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Polgar, B</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Aguerre-Girr, M</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Berrebi, A</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Bensussan, A</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Strbo, N</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Rukavina, D</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Le Bouteiller, P</bp:AUTHORS>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Chem Immunol Allergy 89:72-83</bp:SOURCE>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" rdf:id="lit_199529">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">15580655</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Pubmed</bp:DB>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2005</bp:YEAR>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">The KIR gene family: life in the fast lane of evolution</bp:TITLE>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Uhrberg, M</bp:AUTHORS>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Eur J Immunol 35:10-5</bp:SOURCE>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" rdf:id="lit_199153">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">16928187</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Pubmed</bp:DB>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2006</bp:YEAR>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Is the CD200/CD200 receptor interaction more than just a myeloid cell inhibitory signal?</bp:TITLE>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Minas, K</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Liversidge, J</bp:AUTHORS>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Crit Rev Immunol 26:213-30</bp:SOURCE>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" rdf:id="lit_199157">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">17237375</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Pubmed</bp:DB>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2007</bp:YEAR>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">A soluble form of the MHC class I-specific CD160 receptor is released from human activated NK lymphocytes and inhibits cell-mediated cytotoxicity</bp:TITLE>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Giustiniani, J</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Marie-Cardine, A</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Bensussan, A</bp:AUTHORS>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">J Immunol 178:1293-300</bp:SOURCE>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" rdf:id="lit_199030">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">9700512</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Pubmed</bp:DB>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1998</bp:YEAR>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Structural specializations of immunoglobulin superfamily members for adhesion to integrins and viruses</bp:TITLE>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Wang, J</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Springer, TA</bp:AUTHORS>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Immunol Rev 163:197-215</bp:SOURCE>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" rdf:id="lit_199407">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">16893496</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Pubmed</bp:DB>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2006</bp:YEAR>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">CD40/CD40L dyad in the inflammatory and immune responses in the central nervous system</bp:TITLE>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Chen, K</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Huang, J</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Gong, W</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Zhang, L</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Yu, P</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Wang, JM</bp:AUTHORS>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Cell Mol Immunol 3:163-9</bp:SOURCE>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" rdf:id="lit_199023">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">15136729</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Pubmed</bp:DB>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2004</bp:YEAR>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Crystal structure of the human T cell receptor CD3 epsilon gamma heterodimer complexed to the therapeutic mAb OKT3</bp:TITLE>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Kjer-Nielsen, L</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Dunstone, MA</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Kostenko, L</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Ely, LK</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Beddoe, T</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Mifsud, NA</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Purcell, AW</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Brooks, AG</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">McCluskey, J</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Rossjohn, J</bp:AUTHORS>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Proc Natl Acad Sci U S A 101:7675-80</bp:SOURCE>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" rdf:id="lit_198938">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">11857637</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Pubmed</bp:DB>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2002</bp:YEAR>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Inhibition of LFA-1/ICAM-1 and VLA-4/VCAM-1 as a therapeutic approach to inflammation and autoimmune diseases</bp:TITLE>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Yusuf-Makagiansar, H</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Anderson, ME</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Yakovleva, TV</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Murray, JS</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Siahaan, TJ</bp:AUTHORS>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Med Res Rev 22:146-67</bp:SOURCE>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" rdf:id="lit_199048">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">12588680</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Pubmed</bp:DB>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2003</bp:YEAR>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Expression of potential lymphocyte trafficking mediator molecules in the mammary gland</bp:TITLE>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Nishimura, T</bp:AUTHORS>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Vet Res 34:3-10</bp:SOURCE>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" rdf:id="lit_199060">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">11513152</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Pubmed</bp:DB>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2001</bp:YEAR>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Structural basis of MHC class I recognition by natural killer cell receptors</bp:TITLE>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Sawicki, MW</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Dimasi, N</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Natarajan, K</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Wang, J</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Margulies, DH</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Mariuzza, RA</bp:AUTHORS>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Immunol Rev 181:52-65</bp:SOURCE>
+    </bp:PublicationXref>
+  </Biopax>
+</Pathway>

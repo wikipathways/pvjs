@@ -1,0 +1,339 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Pathway xmlns="http://pathvisio.org/GPML/2013a" Name="Triacylglyceride Synthesis" Organism="Caenorhabditis elegans">
+  <Comment Source="GenMAPP notes">Created by Magali Jaillard, Marijke Vermeer, Michiel Adrieans, Ron Schormans and Chris Evelo, see website.</Comment>
+  <Comment Source="GenMAPP remarks">http://www.bigcat.unimaas.nl/mapps/</Comment>
+  <Comment Source="WikiPathways-category">Metabolic Process</Comment>
+  <Graphics BoardWidth="1038.8333333333333" BoardHeight="970.0"/>
+  <DataNode TextLabel="K11H3.1" GraphId="f72" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="K11H3.1 | K11H3.1b"/>
+    <Graphics CenterX="173.33333333333334" CenterY="176.66666666666666" Width="53.333333333333336" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="176399"/>
+  </DataNode>
+  <DataNode TextLabel="R11F4.1" GraphId="f91" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="R11F4.1 | R11F4.1"/>
+    <Graphics CenterX="356.6666666666667" CenterY="166.66666666666666" Width="53.333333333333336" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="173747"/>
+  </DataNode>
+  <DataNode TextLabel="acl-6" GraphId="dc5" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="acl-6 | ACyLtransferase-like"/>
+    <Graphics CenterX="276.6666666666667" CenterY="350.0" Width="53.333333333333336" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="178928"/>
+  </DataNode>
+  <DataNode TextLabel="acl-7" GraphId="bfc" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="acl-7 | ACyLtransferase-like"/>
+    <Graphics CenterX="696.6666666666666" CenterY="206.66666666666666" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="174916"/>
+  </DataNode>
+  <DataNode TextLabel="ads-1" GraphId="d95" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="ads-1 | Alkyl-Dihydroxyacetonephosphate Synthas..."/>
+    <Graphics CenterX="696.6666666666666" CenterY="186.66666666666666" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="175192"/>
+  </DataNode>
+  <DataNode TextLabel="AYR1" GraphId="af1" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Yeast</Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="Acyldihydroxyacetone phosphate reductase"/>
+    <Graphics CenterX="596.6666666666666" CenterY="350.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="" ID=""/>
+  </DataNode>
+  <DataNode TextLabel="acl-2" GraphId="a3c" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="acl-2 | ACyLtransferase-like"/>
+    <Graphics CenterX="493.3333333333333" CenterY="486.6666666666667" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="179398"/>
+  </DataNode>
+  <DataNode TextLabel="AGPAT2" GraphId="f0a" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="AGPAT2 | 1-acylglycerol-3-phosphate O-acyltrans..."/>
+    <Graphics CenterX="493.3333333333333" CenterY="506.6666666666667" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID=" "/>
+  </DataNode>
+  <DataNode TextLabel="AGPAT3" GraphId="fbf" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="AGPAT3 | 1-acylglycerol-3-phosphate O-acyltrans..."/>
+    <Graphics CenterX="493.3333333333333" CenterY="526.6666666666666" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID=" "/>
+  </DataNode>
+  <DataNode TextLabel="AGPAT4" GraphId="cae" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="AGPAT4 | 1-acylglycerol-3-phosphate O-acyltrans..."/>
+    <Graphics CenterX="493.3333333333333" CenterY="546.6666666666666" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID=" "/>
+  </DataNode>
+  <DataNode TextLabel="acl-11" GraphId="b3f" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="acl-11 | ACyLtransferase-like"/>
+    <Graphics CenterX="493.3333333333333" CenterY="566.6666666666666" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="185044"/>
+  </DataNode>
+  <DataNode TextLabel="F53C3.13" GraphId="c38" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="F53C3.13 | F53C3.13b"/>
+    <Graphics CenterX="496.6666666666667" CenterY="660.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="173734"/>
+  </DataNode>
+  <DataNode TextLabel="PPAP2B" GraphId="da1" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="PPAP2B | phosphatidic acid phosphatase type 2B"/>
+    <Graphics CenterX="496.6666666666667" CenterY="680.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID=" "/>
+  </DataNode>
+  <DataNode TextLabel="PPAP2C" GraphId="ddb" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="PPAP2C | phosphatidic acid phosphatase type 2C"/>
+    <Graphics CenterX="496.6666666666667" CenterY="700.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID=" "/>
+  </DataNode>
+  <DataNode TextLabel="DGAT1" GraphId="fa9" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="DGAT1 | diacylglycerol O-acyltransferase homolo..."/>
+    <Graphics CenterX="340.0" CenterY="826.6666666666666" Width="86.66666666666667" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID=" "/>
+  </DataNode>
+  <DataNode TextLabel="GK2" GraphId="d83" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="GK2 | glycerol kinase 2"/>
+    <Graphics CenterX="356.6666666666667" CenterY="186.66666666666666" Width="53.333333333333336" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID=" "/>
+  </DataNode>
+  <DataNode TextLabel="Y53G8B.2" GraphId="e88" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="Y53G8B.2 | Y53G8B.2"/>
+    <Graphics CenterX="340.0" CenterY="846.6666666666666" Width="86.66666666666667" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="175417"/>
+  </DataNode>
+  <DataNode TextLabel="gly-14" GraphId="d35" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="gly-14 | GLYcosylation related"/>
+    <Graphics CenterX="643.3333333333334" CenterY="730.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="175453"/>
+  </DataNode>
+  <DataNode TextLabel="gly-20" GraphId="af6" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="gly-20 | GLYcosylation related"/>
+    <Graphics CenterX="643.3333333333334" CenterY="750.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="179562"/>
+  </DataNode>
+  <DataNode TextLabel="LPL" GraphId="bd4" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="LPL | lipoprotein lipase"/>
+    <Graphics CenterX="540.0" CenterY="850.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID=" "/>
+  </DataNode>
+  <DataNode TextLabel="C46C11.1" GraphId="b1d" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="C46C11.1 | C46C11.1"/>
+    <Graphics CenterX="540.0" CenterY="870.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="180737"/>
+  </DataNode>
+  <DataNode TextLabel="LIPC" GraphId="de5" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="LIPC | lipase hepatic"/>
+    <Graphics CenterX="540.0" CenterY="890.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID=" "/>
+  </DataNode>
+  <DataNode TextLabel="lipase" GraphId="ee4" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="lipase | F54F3.3"/>
+    <Graphics CenterX="540.0" CenterY="910.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="179771"/>
+  </DataNode>
+  <DataNode TextLabel="C05D11.7" GraphId="a99" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="C05D11.7 | C05D11.7a"/>
+    <Graphics CenterX="540.0" CenterY="930.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="175910"/>
+  </DataNode>
+  <DataNode TextLabel="MGAT3" GraphId="b53" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="MGAT3 | monoacylglycerol O-acyltransferase 3"/>
+    <Graphics CenterX="643.3333333333334" CenterY="770.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID=" "/>
+  </DataNode>
+  <Interaction GraphId="id26e177c0">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="133.33333333333334" Y="130.0"/>
+      <Point X="226.66666666666666" Y="233.33333333333334" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="id5f624bea">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="376.6666666666667" Y="130.0"/>
+      <Point X="323.3333333333333" Y="236.66666666666666" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="id50003fb3">
+    <Graphics ZOrder="12288" LineStyle="Broken" LineThickness="1.0">
+      <Point X="33.333333333333336" Y="446.6666666666667"/>
+      <Point X="36.666666666666664" Y="263.3333333333333" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="id3afdc640">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="106.66666666666667" Y="260.0"/>
+      <Point X="406.6666666666667" Y="420.0" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="id64c8e4f3">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="273.3333333333333" Y="263.3333333333333"/>
+      <Point X="426.6666666666667" Y="420.0" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="id5238b591">
+    <Graphics ZOrder="12288" LineStyle="Broken" LineThickness="1.0">
+      <Point X="840.0" Y="63.333333333333336"/>
+      <Point X="810.0" Y="106.66666666666667" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="id2cd8b8a7">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="643.3333333333334" Y="130.0"/>
+      <Point X="683.3333333333334" Y="243.33333333333334" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="idb1c319b">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="783.3333333333334" Y="136.66666666666666"/>
+      <Point X="703.3333333333334" Y="243.33333333333334" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="id20abfda6">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="640.0" Y="273.3333333333333"/>
+      <Point X="550.0" Y="420.0" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="idb84ab3de">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="493.3333333333333" Y="450.0"/>
+      <Point X="493.3333333333333" Y="613.3333333333334" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="idc5dbcca">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="493.3333333333333" Y="636.6666666666666"/>
+      <Point X="493.3333333333333" Y="736.6666666666666" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="idc62f2a48">
+    <Graphics ZOrder="12288" LineStyle="Broken" LineThickness="1.0">
+      <Point X="33.333333333333336" Y="473.3333333333333"/>
+      <Point X="70.0" Y="693.3333333333334"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="ide513431a">
+    <Graphics ZOrder="12288" LineStyle="Broken" LineThickness="1.0">
+      <Point X="70.0" Y="693.3333333333334"/>
+      <Point X="126.66666666666667" Y="736.6666666666666" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="id29bc742e">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="223.33333333333334" Y="760.0"/>
+      <Point X="333.3333333333333" Y="873.3333333333334" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="ida9aa97f3">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="453.3333333333333" Y="746.6666666666666"/>
+      <Point X="350.0" Y="873.3333333333334" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="idd17c8fd9">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="643.3333333333334" Y="746.6666666666666"/>
+      <Point X="553.3333333333334" Y="746.6666666666666" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="id8277f0be">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="643.3333333333334" Y="823.3333333333334"/>
+      <Point X="643.3333333333334" Y="753.3333333333334"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="id1816e1fd">
+    <Graphics ZOrder="12288" LineStyle="Broken" LineThickness="1.0">
+      <Point X="643.3333333333334" Y="886.6666666666666"/>
+      <Point X="643.3333333333334" Y="846.6666666666666" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="id4ea6658">
+    <Comment Source="GenMAPP remarks">Triacylglycerol Degradation</Comment>
+    <Graphics ZOrder="12288" LineStyle="Broken" LineThickness="1.0">
+      <Point X="406.6666666666667" Y="886.6666666666666"/>
+      <Point X="643.3333333333334" Y="886.6666666666666"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Label TextLabel="Dihydroxyacetonephosphate" GraphId="cf4">
+    <Graphics CenterX="123.33333333333333" CenterY="120.0" Width="227.33333333333334" Height="19.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="12" Valign="Middle"/>
+  </Label>
+  <Label TextLabel="Glycerol" GraphId="e0e">
+    <Graphics CenterX="390.0" CenterY="120.0" Width="68.33333333333333" Height="19.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="12" Valign="Middle"/>
+  </Label>
+  <Label TextLabel="Glycerol-3-phosphate" GraphId="ce9">
+    <Graphics CenterX="273.3333333333333" CenterY="250.0" Width="169.33333333333334" Height="19.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="12" Valign="Middle"/>
+  </Label>
+  <Label TextLabel="Fatty Acyl CoA" GraphId="f29">
+    <Graphics CenterX="60.0" CenterY="250.0" Width="117.33333333333333" Height="19.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="12" Valign="Middle"/>
+  </Label>
+  <Label TextLabel="See Fatty Acid Synthesis MAPP" GraphId="f41">
+    <Graphics CenterX="130.0" CenterY="460.0" Width="244.33333333333334" Height="19.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="12" Valign="Middle" Color="0000ff"/>
+  </Label>
+  <Label TextLabel="Lysophosphatic Acid" GraphId="fc7">
+    <Graphics CenterX="493.3333333333333" CenterY="436.6666666666667" Width="167.33333333333334" Height="19.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="12" Valign="Middle"/>
+  </Label>
+  <Label TextLabel="Dihydroxyacetone phosphate" GraphId="cec">
+    <Graphics CenterX="610.0" CenterY="116.66666666666667" Width="231.33333333333334" Height="19.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="12" Valign="Middle"/>
+  </Label>
+  <Label TextLabel="Fatty acyl CoA" GraphId="ec1">
+    <Graphics CenterX="806.6666666666666" CenterY="120.0" Width="115.33333333333333" Height="19.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="12" Valign="Middle"/>
+  </Label>
+  <Label TextLabel="acyldihydroxyacetonephosphate" GraphId="ab5">
+    <Graphics CenterX="706.6666666666666" CenterY="260.0" Width="256.3333333333333" Height="19.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="12" Valign="Middle"/>
+  </Label>
+  <Label TextLabel="See Fatty Acid Synthesis MAPP" GraphId="cb8">
+    <Graphics CenterX="886.6666666666666" CenterY="50.0" Width="244.33333333333334" Height="19.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="12" Valign="Middle" Color="0000ff"/>
+  </Label>
+  <Label TextLabel="Phosphatic acid" GraphId="a9e">
+    <Graphics CenterX="493.3333333333333" CenterY="626.6666666666666" Width="128.33333333333334" Height="19.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="12" Valign="Middle"/>
+  </Label>
+  <Label TextLabel="Only 1 of these enzymes is needed" GraphId="d99">
+    <Graphics CenterX="290.0" CenterY="530.0" Width="225.33333333333334" Height="16.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="10" Valign="Middle"/>
+  </Label>
+  <Label TextLabel="Diacylglycerol" GraphId="cfa">
+    <Graphics CenterX="493.3333333333333" CenterY="746.6666666666666" Width="113.33333333333333" Height="19.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="12" Valign="Middle"/>
+  </Label>
+  <Label TextLabel="Only 1 of these enzymes is needed" GraphId="e12">
+    <Graphics CenterX="296.6666666666667" CenterY="680.0" Width="225.33333333333334" Height="16.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="10" Valign="Middle"/>
+  </Label>
+  <Label TextLabel="Triacylglycerol" GraphId="b2b">
+    <Graphics CenterX="340.0" CenterY="886.6666666666666" Width="117.33333333333333" Height="19.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="12" Valign="Middle"/>
+  </Label>
+  <Label TextLabel="Fatty Acyl CoA" GraphId="db5">
+    <Graphics CenterX="193.33333333333334" CenterY="746.6666666666666" Width="117.33333333333333" Height="19.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="12" Valign="Middle"/>
+  </Label>
+  <Label TextLabel="Monoacylglycerol" GraphId="c49">
+    <Graphics CenterX="653.3333333333334" CenterY="833.3333333333334" Width="140.33333333333334" Height="19.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="12" Valign="Middle"/>
+  </Label>
+  <Label TextLabel="Degradation" GraphId="a2d">
+    <Graphics CenterX="463.3333333333333" CenterY="896.6666666666666" Width="80.33333333333333" Height="16.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontStyle="Italic" FontSize="10" Valign="Middle"/>
+  </Label>
+  <Label TextLabel="Path" GraphId="b55">
+    <Graphics CenterX="460.0" CenterY="913.3333333333334" Width="32.333333333333336" Height="16.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontStyle="Italic" FontSize="10" Valign="Middle"/>
+  </Label>
+  <Shape GraphId="de8">
+    <Graphics CenterX="416.6666666666667" CenterY="530.0" Width="100.0" Height="8.666666666666666" ZOrder="16384" FillColor="000000" FontSize="10" Valign="Middle" ShapeType="Brace" Rotation="4.71238898038469"/>
+  </Shape>
+  <Shape GraphId="bc2">
+    <Graphics CenterX="416.6666666666667" CenterY="680.0" Width="53.333333333333336" Height="8.666666666666666" ZOrder="16384" FillColor="000000" FontSize="10" Valign="Middle" ShapeType="Brace" Rotation="4.71238898038469"/>
+  </Shape>
+  <InfoBox CenterX="0.0" CenterY="0.0"/>
+  <Legend CenterX="760.0" CenterY="293.3333333333333"/>
+  <Biopax>
+    <bp:openControlledVocabulary xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#">
+      <bp:TERM xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">triacylglycerol biosynthetic pathway</bp:TERM>
+      <bp:ID xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PW:0000736</bp:ID>
+      <bp:Ontology xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Pathway Ontology</bp:Ontology>
+    </bp:openControlledVocabulary>
+  </Biopax>
+</Pathway>
