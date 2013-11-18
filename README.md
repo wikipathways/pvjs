@@ -52,6 +52,7 @@ You can make it run in the browser by copying the following snippet:
   <script src="http://wikipathways.github.io/pathvisiojs/lib/modernizr/modernizr.js"></script>
   <script src="http://wikipathways.github.io/pathvisiojs/lib/screenfull/dist/screenfull.min.js"></script>
   <script src="http://wikipathways.github.io/pathvisiojs/lib/svg-pan/svg-pan.js"></script>
+  <script src="http://wikipathways.github.io/pathvisiojs/lib/path-finding/pathfinding-browser.min.js"></script>
   <script src="http://wikipathways.github.io/pathvisiojs/build/js/pathvisio.min.js"></script>
 ```
 
