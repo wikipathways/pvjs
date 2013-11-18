@@ -59,28 +59,23 @@
   </style>
 
   <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css" media="screen">
+  <link rel="stylesheet" href="http://wikipathways.github.io/pathvisiojs/src/css/pathvisio-js.css" media="screen">
+  <link rel="stylesheet" href="http://wikipathways.github.io/pathvisiojs/src/css/annotation.css" media="screen">
+  <link rel="stylesheet" href="http://wikipathways.github.io/pathvisiojs/src/css/pan-zoom.css" media="screen">
+  <link rel="stylesheet" href="http://wikipathways.github.io/pathvisiojs/src/css/pathway-template.css" media="screen">
 
-  <script src="../lib/rgb-color/rgb-color.min.js"></script>
-  <script src="../lib/case-converter/case-converter.min.js"></script>
-  <script src="../lib/async/lib/async.js"></script>
-  <script src="../lib/d3/d3.min.js"></script>
-  <script src="../lib/jquery/jquery.min.js"></script>
-  <script src="../lib/jquery-ui/ui/minified/jquery-ui.min.js"></script>
-  <script src="../lib/typeahead.js/dist/typeahead.min.js"></script>
-  <script src="../lib/openseadragon/openseadragon.min.js"></script>
-  <script src="../lib/modernizr/modernizr.js"></script>
-  <script src="../lib/screenfull/dist/screenfull.min.js"></script>
-  <script src="../lib/svg-pan/svg-pan.js"></script>
-  <script src="../lib/path-finding/pathfinding-browser.min.js"></script>
-  <!--
-  <script src="../lib/requirejs/require.js"></script>
-  -->
-  <script src="../lib/jsonld.js/js/jsonld.js"></script>
-  <script src="../lib/jsonld.js/js/Promise.js"></script>
-  <script src="../lib/jsonld.js/js/rdfa.js"></script>
-  <!--
-  <script src="../lib/jsonld.js/js/request.js"></script>
-  -->
+  <script src="http://wikipathways.github.io/pathvisiojs/lib/rgb-color/rgb-color.min.js"></script>
+  <script src="http://wikipathways.github.io/pathvisiojs/lib/case-converter/case-converter.min.js"></script>
+  <script src="http://wikipathways.github.io/pathvisiojs/lib/async/lib/async.js"></script>
+  <script src="http://wikipathways.github.io/pathvisiojs/lib/d3/d3.min.js"></script>
+  <script src="http://wikipathways.github.io/pathvisiojs/lib/jquery/jquery.min.js"></script>
+  <script src="http://wikipathways.github.io/pathvisiojs/lib/jquery-ui/ui/minified/jquery-ui.min.js"></script>
+  <script src="http://wikipathways.github.io/pathvisiojs/lib/typeahead.js/dist/typeahead.min.js"></script>
+  <script src="http://wikipathways.github.io/pathvisiojs/lib/openseadragon/openseadragon.min.js"></script>
+  <script src="http://wikipathways.github.io/pathvisiojs/lib/modernizr/modernizr.js"></script>
+  <script src="http://wikipathways.github.io/pathvisiojs/lib/screenfull/dist/screenfull.min.js"></script>
+  <script src="http://wikipathways.github.io/pathvisiojs/lib/svg-pan/svg-pan.js"></script>
+  <script src="http://wikipathways.github.io/pathvisiojs/build/js/pathvisio.min.js"></script>
 
 
   <!--[if lt IE 9]>
@@ -156,45 +151,6 @@
       return urlParamList;
       }
 
-      function loadScripts(array, callback){  
-      var loader = function(src,handler){  
-      var script = document.createElement("script");  
-      script.src = src;  
-      script.onload = script.onreadystatechange = function(){  
-      script.onreadystatechange = script.onload = null;  
-      if(/MSIE ([6-9]+\.\d+);/.test(navigator.userAgent))window.setTimeout(function(){handler();},8,this);  
-      else handler();  
-      }  
-      var head = document.getElementsByTagName("head")[0];  
-      (head || document.body).appendChild( script );  
-      };  
-      (function(){  
-      if(array.length!=0){  
-      loader(array.shift(),arguments.callee);  
-      }else{  
-      callback && callback();  
-      }  
-      })();  
-      }
-
-      function loadJsCssFile(filename, filetype, callback){
-      if (filetype=="js") {
-      var fileref=document.createElement('script')
-      fileref.setAttribute("type","text/javascript")
-      fileref.setAttribute("src", filename)
-      }
-      else if (filetype=="css") {
-      var fileref=document.createElement("link")
-      fileref.setAttribute("rel", "stylesheet")
-      fileref.setAttribute("type", "text/css")
-      fileref.setAttribute("href", filename)
-      }
-      if (typeof fileref!="undefined") {
-      document.getElementsByTagName("head")[0].appendChild(fileref)
-      }
-      callback();
-      }
-
       function updateParams(updatedParam) {
       var targetUrl = currentUrl + '?' + updatedParam.key + '=' + updatedParam.value;
 
@@ -210,77 +166,11 @@
       location.href = targetUrl;
       }
 
-      function generateHtmlView(callback) {
-      async.parallel(
-      {
-      'html': function(callback) {
-      d3.html(srcDirectoryUrl + 'views/pathvisio-js.html', function(html) {
-      callback(null, html);
-      });
-      },
-      'svg': function(callback) {
-      d3.xml(srcDirectoryUrl + 'views/pathway-template.svg', 'image/svg+xml', function(svg) {
-      async.series(
-      {
-      'load': function(callback) {
-      d3.xml(srcDirectoryUrl + 'views/pathway-template.svg', 'image/svg+xml', function(svg) {
-      callback(null, svg);
-      });
-      }
-      }
-      )
-      callback(null, svg);
-      });
-      }
-      },
-      function(err, results) {
-      results.svg.documentElement.setAttribute('style', 'display: none; ');
-      results.svg.documentElement.setAttribute('width', '500px');
-      results.svg.documentElement.setAttribute('height', '500px');
-      var pathwayContainer = results.html.querySelector('#pathway-container').appendChild(results.svg.documentElement)
-
-      var oSerializer = new XMLSerializer();
-      pathvisioNS['tmp/pathvisio-js.html'] = oSerializer.serializeToString(results.html);
-      callback();
-      }
-      )
-      }
-
-      function loadExtJsCss(callbackOutside) {
-      async.parallel([
-      function(callback) {
-        loadJsCssFile(srcDirectoryUrl + "css/pathvisio-js.css", "css", callback);
-      },
-      function(callback) {
-        loadJsCssFile(srcDirectoryUrl + "css/annotation.css", "css", callback);
-      },
-      function(callback) {
-        loadJsCssFile(srcDirectoryUrl + "css/pan-zoom.css", "css", callback);
-      },
-      function(callback) {
-        loadScripts([
-          srcDirectoryUrl + "/../../build/js/pathvisiojs.min.js"
-
-        ], function(){
-          callback(null);
-        }
-      );
-      }
-      ],
-      function(err, results){
-        callbackOutside();
-      })
-      }
-
       var urlParamList = getUrlParamList();
 
       var currentUrl = document.location.origin + document.location.pathname;
       var rootDirectoryUrl = document.location.origin + document.location.pathname.split("pathvisiojs/")[0] + 'pathvisiojs/';
       var srcDirectoryUrl = (rootDirectoryUrl + 'src/');
-
-      /*********************************************
-      Load UI for this test/dev comparison page 
-      /********************************************/
 
       var pathvisioNS;
       var gpmlUrl;
@@ -290,22 +180,6 @@
       $('#svg-disabled').prop('checked', true);
       }
 
-      async.parallel(
-      [
-      function(callback) {
-      pathvisioNS = [];
-      generateHtmlView(function() {
-      callback(null);
-      });
-      },
-      function(callback) {
-      loadExtJsCss(function() {
-      callback(null);
-      });
-      }
-      ],
-      function(err) {
-
       pathvisiojs.load({
         target: '#pathvisio-js-dev',
         width: 1000,
@@ -313,7 +187,7 @@
         preserveAspectRatio: 'xMidYMid',
         data: urlParamList.gpml,
         //gpmlRev: urlParamList.gpmlRev,
-        cssUrl: srcDirectoryUrl + 'css/pathway-template.css',
+        //cssUrl: srcDirectoryUrl + 'css/pathway-template.css',
         //customMarkers: customMarkers,
         //customShapes: customShapes,
         highlightNodes: [
@@ -324,7 +198,6 @@
         'find',
         'wikipathways-link'
         ]
-      });
       });
 
       // test for whether urlParamList.gpml is a WikiPathways ID

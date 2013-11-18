@@ -2,8 +2,8 @@ module.exports = function(grunt) {
 
 // ----------
 var packageJson = grunt.file.readJSON("package.json"),
-    distribution = "build/js/pathvisiojs",
-    minified = "build/js/pathvisiojs.min.js",
+    distribution = "build/js/pathvisio.js",
+    minified = "build/js/pathvisio.min.js",
     packageDirName = "pathvisiojs-" + packageJson.version,
     packageDir = "build/" + packageDirName + "/",
     releaseRoot = "../site-build/built-pathvisiojs/",
