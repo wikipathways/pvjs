@@ -18,7 +18,6 @@ Pathvisiojs depends on the following JS libraries:
   * async.js
   * d3.js
   * jquery
-  * jquery-ui
   * typeahead.js
   * openseadragon.js
   * modernizr.js
@@ -46,7 +45,6 @@ You can make it run in the browser by copying the following snippet:
   <script src="http://wikipathways.github.io/pathvisiojs/lib/async/lib/async.js"></script>
   <script src="http://wikipathways.github.io/pathvisiojs/lib/d3/d3.min.js"></script>
   <script src="http://wikipathways.github.io/pathvisiojs/lib/jquery/jquery.min.js"></script>
-  <script src="http://wikipathways.github.io/pathvisiojs/lib/jquery-ui/ui/minified/jquery-ui.min.js"></script>
   <script src="http://wikipathways.github.io/pathvisiojs/lib/typeahead.js/dist/typeahead.min.js"></script>
   <script src="http://wikipathways.github.io/pathvisiojs/lib/openseadragon/openseadragon.min.js"></script>
   <script src="http://wikipathways.github.io/pathvisiojs/lib/modernizr/modernizr.js"></script>
