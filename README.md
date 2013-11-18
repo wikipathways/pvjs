@@ -59,7 +59,29 @@ You can make it run in the browser by copying the following snippet:
   <script src="../lib/jsonld.js/js/rdfa.js"></script>
   <script src="http://wikipathways.github.io/pathvisiojs/build/js/pathvisio.min.js"></script>
 ```
+Or something like this in PHP:
 
+```
+$scripts = array(
+        "http://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css",
+        "$wgScriptPath/wpi/lib/css/pathvisio-js.css",                                                                                                                                                                      
+        "$wgScriptPath/wpi/lib/css/annotation.css",                                                                                                                                                                        
+        "$wgScriptPath/wpi/lib/css/pan-zoom.css",                                                                                                                                                                          
+        "$wgScriptPath/wpi/lib/css/pathway-template.css",
+        "$wgScriptPath/wpi/lib/js/rgb-color.min.js",
+        "$wgScriptPath/wpi/lib/js/case-converter.min.js",
+        "$wgScriptPath/wpi/lib/js/async.js",
+        "$wgScriptPath/wpi/lib/js/d3.min.js",
+        "$wgScriptPath/wpi/lib/js/jquery.min.js",                                                                                                                                                                          
+        "$wgScriptPath/wpi/lib/js/typeahead.min.js",
+        "$wgScriptPath/wpi/lib/js/openseadragon.min.js",
+        "$wgScriptPath/wpi/lib/js/modernizr.js",                                                                                                                                                                           
+        "$wgScriptPath/wpi/lib/js/screenfull.min.js",
+        "$wgScriptPath/wpi/lib/js/svg-pan.js",
+        "$wgScriptPath/wpi/lib/js/pathfinding-browser.min.js",
+        "$wgScriptPath/wpi/lib/js/pathvisio.min.js"
+); 
+```
 How To Get Involved
 ===================
 
