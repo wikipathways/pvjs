@@ -24,6 +24,9 @@ Pathvisiojs depends on the following JS libraries:
   * screenfull.js
   * svg-pan.js
   * path-finding
+  * jsonld.js
+  * Promise.js
+  * rdfa.js
 
 and the following stylesheets:
   * font-awesome
@@ -51,6 +54,9 @@ You can make it run in the browser by copying the following snippet:
   <script src="http://wikipathways.github.io/pathvisiojs/lib/screenfull/dist/screenfull.min.js"></script>
   <script src="http://wikipathways.github.io/pathvisiojs/lib/svg-pan/svg-pan.js"></script>
   <script src="http://wikipathways.github.io/pathvisiojs/lib/path-finding/pathfinding-browser.min.js"></script>
+  <script src="../lib/jsonld.js/js/jsonld.js"></script>
+  <script src="../lib/jsonld.js/js/Promise.js"></script>
+  <script src="../lib/jsonld.js/js/rdfa.js"></script>
   <script src="http://wikipathways.github.io/pathvisiojs/build/js/pathvisio.min.js"></script>
 ```
 
