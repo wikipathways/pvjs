@@ -67,20 +67,20 @@ pathvisiojs.data.gpml = function(){
         "entrezGene":"http://www.ncbi.nlm.nih.gov/gene/",
         "ChEBI":"http://www.ebi.ac.uk/chebi/searchId.do?chebiId=",
         "media":"http://www.w3.org/TR/mediaont-10/",
+        "ex":"http://www.example.com/",
         "pathwayElements": {
-          "@id": "http://www.example.com/pathwayElements/",
+          "@id": "ex:pathwayElements/",
           "@container": "@list"
         },
         "gpml:GraphRef": {
           "@type": "@id"
         },
-        "ex":"http://www.example.com/",
         "ex:IsRefedBy": { "@reverse": "gpml:GraphRef" },
         "wp:Interaction": {
           "@type": "@id"
         },
-        "point": {
-          "@id": "http://www.example.com/point/",
+        "gpml:Point": {
+          "@id": "gpml:Point",
           "@container": "@list"
         },
         "gpml:SnappedPoint": {
@@ -90,11 +90,11 @@ pathvisiojs.data.gpml = function(){
         },
         "gpml:GraphicalPoint": {
           "gpml:x": "xsd:integer",
-          "gpml:x": "xsd:integer"
+          "gpml:y": "xsd:integer"
         }
       };
 
-      var dataNode, elementIri;
+      var dataNode, elementIri, linestyle;
       jsonPathway.pathwayElements = {};
       gpmlPathway.selectAll('DataNode').each(function() {
         dataNode = d3.select(this);
@@ -107,10 +107,15 @@ pathvisiojs.data.gpml = function(){
         jsonPathway.pathwayElements[elementIri]["@type"] = "gpml:DataNode";
         jsonPathway.pathwayElements[elementIri]["gpml:DataNode"] = "wp:" + dataNode.attr('Type');
         jsonPathway.pathwayElements[elementIri]["gpml:textlabel"] = dataNode.attr('TextLabel');
-        jsonPathway.pathwayElements[elementIri]["gpml:centerx"] = dataNode.attr('CenterX');
-        jsonPathway.pathwayElements[elementIri]["gpml:centery"] = dataNode.attr('CenterY');
-        jsonPathway.pathwayElements[elementIri]["gpml:width"] = dataNode.attr('Width');
-        jsonPathway.pathwayElements[elementIri]["gpml:height"] = dataNode.attr('Height');
+        jsonPathway.pathwayElements[elementIri]["gpml:centerx"] = dataNode.select('Graphics').attr('CenterX');
+        jsonPathway.pathwayElements[elementIri]["gpml:centery"] = dataNode.select('Graphics').attr('CenterY');
+        jsonPathway.pathwayElements[elementIri]["gpml:width"] = dataNode.select('Graphics').attr('Width');
+        jsonPathway.pathwayElements[elementIri]["gpml:height"] = dataNode.select('Graphics').attr('Height');
+        linestyle = dataNode.select('Graphics').attr('LineStyle');
+        if (!!linestyle) {
+          linestyle = 'Solid';
+        };
+        jsonPathway.pathwayElements[elementIri]["gpml:linestyle"] = 'gpml:' + linestyle;
       })
 
       var interaction, anchor, points, interactionType;
