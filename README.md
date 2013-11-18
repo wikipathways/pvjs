@@ -26,9 +26,21 @@ Pathvisiojs depends on the following JS libraries:
   * svg-pan.js
   * path-finding
 
+and the following stylesheets:
+  * font-awesome
+  * pathvisio-js.css
+  * annotation.css
+  * pan-zoom.css
+  * pathway-template.css
+
 You can make it run in the browser by copying the following snippet:
 
 ```
+  <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css" media="screen">
+  <link rel="stylesheet" href="http://wikipathways.github.io/pathvisiojs/src/css/pathvisio-js.css" media="screen">
+  <link rel="stylesheet" href="http://wikipathways.github.io/pathvisiojs/src/css/annotation.css" media="screen">
+  <link rel="stylesheet" href="http://wikipathways.github.io/pathvisiojs/src/css/pan-zoom.css" media="screen">
+  <link rel="stylesheet" href="http://wikipathways.github.io/pathvisiojs/src/css/pathway-template.css" media="screen">
   <script src="http://wikipathways.github.io/pathvisiojs/lib/rgb-color/rgb-color.min.js"></script>
   <script src="http://wikipathways.github.io/pathvisiojs/lib/case-converter/case-converter.min.js"></script>
   <script src="http://wikipathways.github.io/pathvisiojs/lib/async/lib/async.js"></script>
