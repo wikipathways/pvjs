@@ -63,11 +63,6 @@ Or something like this in PHP:
 
 ```
 $scripts = array(
-        "http://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css",
-        "$wgScriptPath/wpi/lib/css/pathvisio-js.css",                                                                                                                                                                      
-        "$wgScriptPath/wpi/lib/css/annotation.css",                                                                                                                                                                        
-        "$wgScriptPath/wpi/lib/css/pan-zoom.css",                                                                                                                                                                          
-        "$wgScriptPath/wpi/lib/css/pathway-template.css",
         "$wgScriptPath/wpi/lib/js/rgb-color.min.js",
         "$wgScriptPath/wpi/lib/js/case-converter.min.js",
         "$wgScriptPath/wpi/lib/js/async.js",
@@ -81,6 +76,14 @@ $scripts = array(
         "$wgScriptPath/wpi/lib/js/pathfinding-browser.min.js",
         "$wgScriptPath/wpi/lib/js/pathvisio.min.js"
 ); 
+
+$libs = "<script type=\"text/javascript\">" . $scripts . "</script>
+ <link rel=\"stylesheet\" href=\"http://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css\" media=\"screen\" type=\"text/css\" />
+ <link rel=\"stylesheet\" href=\"http://wikipathways.github.io/pathvisiojs/src/css/pathvisio-js.css\" media=\"screen\" type=\"text/css\" />
+ <link rel=\"stylesheet\" href=\"http://wikipathways.github.io/pathvisiojs/src/css/annotation.css\" media=\"screen\" type=\"text/css\" />
+ <link rel=\"stylesheet\" href=\"http://wikipathways.github.io/pathvisiojs/src/css/pan-zoom.css\" media=\"screen\" type=\"text/css\" />
+ <link rel=\"stylesheet\" href=\"http://wikipathways.github.io/pathvisiojs/src/css/pathway-template.css\" media=\"screen\" type=\"text/css\" />\n";
+                        
 ```
 How To Get Involved
 ===================
