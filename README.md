@@ -26,25 +26,22 @@ Pathvisiojs depends on the following JS libraries:
   * svg-pan.js
   * path-finding
 
-You can make it run by copying the followign snippet:
+You can make it run in the browser by copying the following snippet:
 
-
-  <script src="../lib/rgb-color/rgb-color.min.js"></script>
-  <script src="../lib/case-converter/case-converter.min.js"></script>
-  <script src="../lib/async/lib/async.js"></script>
-  <script src="../lib/d3/d3.min.js"></script>
-  <script src="../lib/jquery/jquery.min.js"></script>
-  <script src="../lib/jquery-ui/ui/minified/jquery-ui.min.js"></script>
-  <script src="../lib/typeahead.js/dist/typeahead.min.js"></script>
-  <script src="../lib/openseadragon/openseadragon.min.js"></script>
-  <script src="../lib/modernizr/modernizr.js"></script>
-  <script src="../lib/screenfull/dist/screenfull.min.js"></script>
-  <script src="../lib/svg-pan/svg-pan.js"></script>
-  <script src="../build/js/pathvisio.min.js"></script>
-
-
-Include this snippet in your code:
-<script src="http://d3js.org/d3.v3.min.js"></script>
+```
+  <script src="http://wikipathways.github.io/pathvisiojs/lib/rgb-color/rgb-color.min.js"></script>
+  <script src="http://wikipathways.github.io/pathvisiojs/lib/case-converter/case-converter.min.js"></script>
+  <script src="http://wikipathways.github.io/pathvisiojs/lib/async/lib/async.js"></script>
+  <script src="http://wikipathways.github.io/pathvisiojs/lib/d3/d3.min.js"></script>
+  <script src="http://wikipathways.github.io/pathvisiojs/lib/jquery/jquery.min.js"></script>
+  <script src="http://wikipathways.github.io/pathvisiojs/lib/jquery-ui/ui/minified/jquery-ui.min.js"></script>
+  <script src="http://wikipathways.github.io/pathvisiojs/lib/typeahead.js/dist/typeahead.min.js"></script>
+  <script src="http://wikipathways.github.io/pathvisiojs/lib/openseadragon/openseadragon.min.js"></script>
+  <script src="http://wikipathways.github.io/pathvisiojs/lib/modernizr/modernizr.js"></script>
+  <script src="http://wikipathways.github.io/pathvisiojs/lib/screenfull/dist/screenfull.min.js"></script>
+  <script src="http://wikipathways.github.io/pathvisiojs/lib/svg-pan/svg-pan.js"></script>
+  <script src="http://wikipathways.github.io/pathvisiojs/build/js/pathvisio.min.js"></script>
+```
 
 How To Get Involved
 ===================
