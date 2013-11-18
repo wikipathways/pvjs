@@ -10,6 +10,42 @@ Demos
 * [JSBin](http://jsbin.com/iJUTEjU/latest)
 * [Widget example on JSFiddle](http://jsfiddle.net/ariutta/RzeKd/)
 
+Installing
+===================
+Pathvisiojs depends on the following JS libraries:
+  * rgb-color.js
+  * case-converter.js
+  * async.js
+  * d3.js
+  * jquery
+  * jquery-ui
+  * typeahead.js
+  * openseadragon.js
+  * modernizr.js
+  * screenfull.js
+  * svg-pan.js
+  * path-finding
+
+You can make it run by copying the followign snippet:
+
+
+  <script src="../lib/rgb-color/rgb-color.min.js"></script>
+  <script src="../lib/case-converter/case-converter.min.js"></script>
+  <script src="../lib/async/lib/async.js"></script>
+  <script src="../lib/d3/d3.min.js"></script>
+  <script src="../lib/jquery/jquery.min.js"></script>
+  <script src="../lib/jquery-ui/ui/minified/jquery-ui.min.js"></script>
+  <script src="../lib/typeahead.js/dist/typeahead.min.js"></script>
+  <script src="../lib/openseadragon/openseadragon.min.js"></script>
+  <script src="../lib/modernizr/modernizr.js"></script>
+  <script src="../lib/screenfull/dist/screenfull.min.js"></script>
+  <script src="../lib/svg-pan/svg-pan.js"></script>
+  <script src="../build/js/pathvisio.min.js"></script>
+
+
+Include this snippet in your code:
+<script src="http://d3js.org/d3.v3.min.js"></script>
+
 How To Get Involved
 ===================
 
