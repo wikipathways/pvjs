@@ -1,5 +1,5 @@
-//! pathvisio-js 0.0.1
-//! Built on 2013-11-18
+//! pathvisiojs 0.0.4
+//! Built on 2013-11-19
 //! https://github.com/wikipathways/pathvisiojs
 //! License: http://www.apache.org/licenses/LICENSE-2.0/
 
@@ -2601,7 +2601,7 @@ pathvisiojs.data.gpml.dataNode = function() {
 
       jsonDataNode.renderableType = 'node';
       jsonDataNode.nodeType = 'data-node';
-      jsonDataNode.dataNodeType = caseConverter.paramCase(gpmlDataNode.attr('Type'));
+      jsonDataNode.dataNodeType = strcase.paramCase(gpmlDataNode.attr('Type'));
 
       var xRef = gpmlDataNode.select('Xref');
       if ((!!xRef.attr('Database')) && (!!xRef.attr('ID'))) {
@@ -2696,7 +2696,7 @@ pathvisiojs.data.gpml.node = function(){
         }
       }
       else {
-        jsonNode.shapeType = caseConverter.paramCase(shapeType);
+        jsonNode.shapeType = strcase.paramCase(shapeType);
       }
 
       var fillColor = gpmlNode.select('Graphics').attr('FillColor'); 
@@ -3874,20 +3874,20 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
         self.svgDimensions = svgDimensions;
         d3.select('#loading-icon').remove();
 
-        var initialClick = false;
+        var initialClickHappened = false;
         svg.attr('style', 'display: inline; width: ' + args.target.width + 'px; height: ' + args.target.height + 'px; ')
         .on("click", function(d, i){
-          svgPanZoom.setZoom(true);
-          initialClick = true;
+          svgPanZoom.enableZoom();
+          initialClickHappened = true;
         })
         .on("mouseover", function(d, i){
-          if (initialClick) {
-            svgPanZoom.setZoom(true);
+          if (initialClickHappened) {
+            svgPanZoom.enableZoom();
           }
         })
         .on("mouseout", function(d, i){
-          if (initialClick) {
-            svgPanZoom.setZoom(false);
+          if (initialClickHappened) {
+            svgPanZoom.disableZoom();
           }
         });
 
@@ -3921,7 +3921,7 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
 
         svgPanZoom.init({
           'root': 'svg',
-          'enableZoom': false 
+          'zoomEnabled': false 
         });
         callback(null);
       }
