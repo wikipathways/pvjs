@@ -1,6 +1,6 @@
 {
   "name": "pathvisiojs",
-  "version": "0.0.1",
+  "version": "0.0.4",
   "description": "Biological pathway viewer and editor.",
   "main": "Gruntfile.js",
   "directories": {
@@ -37,7 +37,7 @@
     "grunt-contrib-uglify": "~0.2.2",
     "grunt-contrib-jshint": "~0.6.4",
     "grunt-contrib-clean": "~0.5.0",
-    "grunt-git-describe": "~2.3.2"
+    "grunt-git-describe": "~2.3.2",
     "utilities": "latest"
   },
   "dependencies": {
