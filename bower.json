@@ -1,9 +1,9 @@
 {
-  "author": "Pathvisio.js team",
+  "author": "Pathvisiojs team",
   "name": "pathvisiojs",
-  "description": "Biological pathway viewer and editor",
-  "version": "0.0.1",
-  "homepage": "https://github.com/wikipathways/pathvisiojs",
+  "description": "Biological pathway diagram viewer and editor",
+  "version": "0.0.2",
+  "homepage": "http://wikipathways.github.io/pathvisiojs/",
   "dependencies": {
     "jquery": "1.10.2",
     "requirejs": "~2.1.9",
@@ -11,11 +11,15 @@
     "screenfull": "~1.1.0",
     "bootstrap": "~3.0.0",
     "async": "~0.2.5",
-    "jquery-ui": "~1.10.3",
     "typeahead.js": "~0.9.3",
-    "hogan": "~3.0.0",
     "jsPlumb": "~1.5.3",
-    "jsonld.js": "~0.1.25"
+    "jsonld.js": "~0.1.25",
+    "strcase": "~0.5.0",
+    "svg-pan-zoom": "*",
+    "modernizr": "~2.7.0",
+    "PathFinding.js": "*",
+    "OpenSeadragon": "~0.9.131",
+    "rgb-color": "*"
   },
   "devDependencies": {
     "jquery": "1.10.2"

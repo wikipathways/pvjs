@@ -64,7 +64,7 @@ pathvisiojs.data.gpml.node = function(){
         }
       }
       else {
-        jsonNode.shapeType = caseConverter.paramCase(shapeType);
+        jsonNode.shapeType = strcase.paramCase(shapeType);
       }
 
       var fillColor = gpmlNode.select('Graphics').attr('FillColor'); 
