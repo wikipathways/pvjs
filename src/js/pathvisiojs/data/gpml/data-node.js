@@ -8,7 +8,7 @@ pathvisiojs.data.gpml.dataNode = function() {
 
       jsonDataNode.renderableType = 'node';
       jsonDataNode.nodeType = 'data-node';
-      jsonDataNode.dataNodeType = caseConverter.paramCase(gpmlDataNode.attr('Type'));
+      jsonDataNode.dataNodeType = strcase.paramCase(gpmlDataNode.attr('Type'));
 
       var xRef = gpmlDataNode.select('Xref');
       if ((!!xRef.attr('Database')) && (!!xRef.attr('ID'))) {

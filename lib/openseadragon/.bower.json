@@ -1,0 +1,15 @@
+{
+  "name": "OpenSeadragon",
+  "homepage": "https://github.com/openseadragon/openseadragon",
+  "version": "0.9.131",
+  "_release": "0.9.131",
+  "_resolution": {
+    "type": "version",
+    "tag": "v0.9.131",
+    "commit": "7d0e31337269343f9a17914d85e940ea86c11c8b"
+  },
+  "_source": "git://github.com/openseadragon/openseadragon.git",
+  "_target": "~0.9.131",
+  "_originalSource": "OpenSeadragon",
+  "_direct": true
+}
