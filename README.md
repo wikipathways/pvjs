@@ -57,7 +57,32 @@ You can make it run in the browser by copying the following snippet:
   <script src="http://wikipathways.github.io/pathvisiojs/lib/jsonld.js/js/rdfa.js"></script>
   <script src="http://wikipathways.github.io/pathvisiojs/build/js/pathvisio.min.js"></script>
 ```
+Or something like this in PHP:
 
+```
+$scripts = array(
+        "$wgScriptPath/wpi/lib/js/rgb-color.min.js",
+        "$wgScriptPath/wpi/lib/js/case-converter.min.js",
+        "$wgScriptPath/wpi/lib/js/async.js",
+        "$wgScriptPath/wpi/lib/js/d3.min.js",
+        "$wgScriptPath/wpi/lib/js/jquery.min.js",                                                                                                                                                                          
+        "$wgScriptPath/wpi/lib/js/typeahead.min.js",
+        "$wgScriptPath/wpi/lib/js/openseadragon.min.js",
+        "$wgScriptPath/wpi/lib/js/modernizr.js",                                                                                                                                                                           
+        "$wgScriptPath/wpi/lib/js/screenfull.min.js",
+        "$wgScriptPath/wpi/lib/js/svg-pan.js",
+        "$wgScriptPath/wpi/lib/js/pathfinding-browser.min.js",
+        "$wgScriptPath/wpi/lib/js/pathvisio.min.js"
+); 
+
+$libs = "<script type=\"text/javascript\">" . $scripts . "</script>
+ <link rel=\"stylesheet\" href=\"http://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css\" media=\"screen\" type=\"text/css\" />
+ <link rel=\"stylesheet\" href=\"http://wikipathways.github.io/pathvisiojs/src/css/pathvisio-js.css\" media=\"screen\" type=\"text/css\" />
+ <link rel=\"stylesheet\" href=\"http://wikipathways.github.io/pathvisiojs/src/css/annotation.css\" media=\"screen\" type=\"text/css\" />
+ <link rel=\"stylesheet\" href=\"http://wikipathways.github.io/pathvisiojs/src/css/pan-zoom.css\" media=\"screen\" type=\"text/css\" />
+ <link rel=\"stylesheet\" href=\"http://wikipathways.github.io/pathvisiojs/src/css/pathway-template.css\" media=\"screen\" type=\"text/css\" />\n";
+                        
+```
 How To Get Involved
 ===================
 
