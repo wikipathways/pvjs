@@ -38,20 +38,20 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
         self.svgDimensions = svgDimensions;
         d3.select('#loading-icon').remove();
 
-        var initialClick = false;
+        var initialClickHappened = false;
         svg.attr('style', 'display: inline; width: ' + args.target.width + 'px; height: ' + args.target.height + 'px; ')
         .on("click", function(d, i){
-          svgPanZoom.setZoom(true);
-          initialClick = true;
+          svgPanZoom.enableZoom();
+          initialClickHappened = true;
         })
         .on("mouseover", function(d, i){
-          if (initialClick) {
-            svgPanZoom.setZoom(true);
+          if (initialClickHappened) {
+            svgPanZoom.enableZoom();
           }
         })
         .on("mouseout", function(d, i){
-          if (initialClick) {
-            svgPanZoom.setZoom(false);
+          if (initialClickHappened) {
+            svgPanZoom.disableZoom();
           }
         });
 
@@ -85,7 +85,7 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
 
         svgPanZoom.init({
           'root': 'svg',
-          'enableZoom': false 
+          'zoomEnabled': false 
         });
         callback(null);
       }
