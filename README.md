@@ -13,20 +13,18 @@ Demos
 Installing
 ===================
 Pathvisiojs depends on the following JS libraries:
-  * rgb-color.js
-  * case-converter.js
-  * async.js
-  * d3.js
-  * jquery
-  * typeahead.js
-  * openseadragon.js
-  * modernizr.js
-  * screenfull.js
-  * svg-pan.js
-  * path-finding
-  * jsonld.js
-  * Promise.js
-  * rdfa.js
+  * [rgb-color](https://www.github.com/ariutta/rgb-color/)
+  * [strcase](https://www.github.com/tower/strcase/)
+  * [async](https://www.github.com/caolan/async/)
+  * [d3](https://www.github.com/mbostock/d3/)
+  * [jquery](https://www.github.com/components/jquery/)
+  * [typeahead.js](https://www.github.com/twitter/typeahead.js/)
+  * [OpenSeadragon](https://www.github.com/openseadragon/openseadragon)
+  * [Modernizr](https://www.github.com/Modernizr/Modernizr/)
+  * [screenfull.js](https://www.github.com/sindresorhus/screenfull.js)
+  * [svg-pan-zoom](https://www.github.com/ariutta/svg-pan-zoom/)
+  * [PathFinding.js](https://www.github.com/qiao/PathFinding.js/)
+  * [jsonld.js](https://www.github.com/digitalbazaar/jsonld.js/)
 
 and the following stylesheets:
   * font-awesome
@@ -44,19 +42,19 @@ You can make it run in the browser by copying the following snippet:
   <link rel="stylesheet" href="http://wikipathways.github.io/pathvisiojs/src/css/pan-zoom.css" media="screen">
   <link rel="stylesheet" href="http://wikipathways.github.io/pathvisiojs/src/css/pathway-template.css" media="screen">
   <script src="http://wikipathways.github.io/pathvisiojs/lib/rgb-color/rgb-color.min.js"></script>
-  <script src="http://wikipathways.github.io/pathvisiojs/lib/case-converter/case-converter.min.js"></script>
+  <script src="http://wikipathways.github.io/pathvisiojs/lib/strcase/build/build.js"></script>
   <script src="http://wikipathways.github.io/pathvisiojs/lib/async/lib/async.js"></script>
   <script src="http://wikipathways.github.io/pathvisiojs/lib/d3/d3.min.js"></script>
   <script src="http://wikipathways.github.io/pathvisiojs/lib/jquery/jquery.min.js"></script>
   <script src="http://wikipathways.github.io/pathvisiojs/lib/typeahead.js/dist/typeahead.min.js"></script>
-  <script src="http://wikipathways.github.io/pathvisiojs/lib/openseadragon/openseadragon.min.js"></script>
+  <script src="http://wikipathways.github.io/pathvisiojs/lib/OpenSeadragon/build/openseadragon/openseadragon.min.js"></script>
   <script src="http://wikipathways.github.io/pathvisiojs/lib/modernizr/modernizr.js"></script>
   <script src="http://wikipathways.github.io/pathvisiojs/lib/screenfull/dist/screenfull.min.js"></script>
-  <script src="http://wikipathways.github.io/pathvisiojs/lib/svg-pan/svg-pan.js"></script>
-  <script src="http://wikipathways.github.io/pathvisiojs/lib/path-finding/pathfinding-browser.min.js"></script>
-  <script src="../lib/jsonld.js/js/jsonld.js"></script>
-  <script src="../lib/jsonld.js/js/Promise.js"></script>
-  <script src="../lib/jsonld.js/js/rdfa.js"></script>
+  <script src="http://wikipathways.github.io/pathvisiojs/lib/svg-pan-zoom/svg-pan-zoom.js"></script>
+  <script src="http://wikipathways.github.io/pathvisiojs/lib/PathFinding.js/lib/pathfinding-browser.min.js"></script>
+  <script src="http://wikipathways.github.io/pathvisiojs/lib/jsonld.js/js/jsonld.js"></script>
+  <script src="http://wikipathways.github.io/pathvisiojs/lib/jsonld.js/js/Promise.js"></script>
+  <script src="http://wikipathways.github.io/pathvisiojs/lib/jsonld.js/js/rdfa.js"></script>
   <script src="http://wikipathways.github.io/pathvisiojs/build/js/pathvisio.min.js"></script>
 ```
 
