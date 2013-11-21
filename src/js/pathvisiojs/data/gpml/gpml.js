@@ -4,7 +4,9 @@ pathvisiojs.data.gpml = function(){
   // TODO this isn't getting the linetype info for determining whether activity is direct or indirect yet
   var gpmlArrowHeadToSemanticMappings = {
     'Arrow':'Activity',
-    'TBar':'InhibitoryActivity'
+    'TBar':'InhibitoryActivity',
+    'mim-catalysis':'Catalysis',
+    'mim-inhibition':'Inhibition'
   };
 
   function toRenderableJson(gpml, pathwayIri, callback){
@@ -76,8 +78,13 @@ pathvisiojs.data.gpml = function(){
           "@type": "@id"
         },
         "ex:IsRefedBy": { "@reverse": "gpml:GraphRef" },
-        "wp:Interaction": {
+        "wp:InteractionGraph": {
           "@type": "@id"
+        },
+        "wp:Interaction": {
+          "@id": "xsd:string",
+          "@type": "@id",
+          "ex:InteractsWith":"xsd:string"
         },
         "gpml:Point": {
           "@id": "gpml:Point",
@@ -94,13 +101,14 @@ pathvisiojs.data.gpml = function(){
         }
       };
 
-      var dataNode, elementIri, linestyle;
+      var dataNode, elementIri, linestyle, graphId;
       jsonPathway.pathwayElements = {};
       gpmlPathway.selectAll('DataNode').each(function() {
         dataNode = d3.select(this);
-        elementIri = pathwayIri + "#" + dataNode.attr('GraphId');
+        graphId = dataNode.attr('GraphId') || ('id' + uuid.v4());
+        elementIri = pathwayIri + "#" + graphId;
         jsonPathway.pathwayElements[elementIri] = {};
-        jsonPathway.pathwayElements[elementIri]["@id"] = pathwayIri + '#' + dataNode.attr('GraphId');
+        jsonPathway.pathwayElements[elementIri]["@id"] = elementIri;
         jsonPathway.pathwayElements[elementIri]["wp:DatasourceReference"] = {};
         jsonPathway.pathwayElements[elementIri]["wp:DatasourceReference"]["gpml:database"] = dataNode.select('Xref').attr('Database');
         jsonPathway.pathwayElements[elementIri]["wp:DatasourceReference"]["@id"] = dataNode.select('Xref').attr('ID')
@@ -118,25 +126,32 @@ pathvisiojs.data.gpml = function(){
         jsonPathway.pathwayElements[elementIri]["gpml:linestyle"] = 'gpml:' + linestyle;
       })
 
-      var interaction, anchor, points, interactionType;
+      var interaction, anchor, points, interactionType, target, targetId;
       gpmlPathway.selectAll('Interaction').each(function() {
         interaction = d3.select(this);
-        elementIri = pathwayIri + "#" + interaction.attr('GraphId');
+        console.log('interaction');
+        console.log(this);
+        graphId = interaction.attr('GraphId') || ('id' + uuid.v4());
+        elementIri = pathwayIri + "#" + graphId;
         jsonPathway.pathwayElements[elementIri] = {};
-        jsonPathway.pathwayElements[elementIri]["@id"] = pathwayIri + "#" + interaction.attr('GraphId');
+        jsonPathway.pathwayElements[elementIri]["@id"] = elementIri;
         jsonPathway.pathwayElements[elementIri]["@type"] = "wp:Interaction";
-        points = interaction.selectAll('Point');
+        points = self.points = interaction.selectAll('Point');
         interactionType = 'wp:' + gpmlArrowHeadToSemanticMappings[points[0][points[0].length - 1].getAttribute('ArrowHead')];
-        jsonPathway.pathwayElements[elementIri]["wp:Interaction"] = [];
-        jsonPathway.pathwayElements[elementIri]["wp:Interaction"]["@id"] = pathwayIri + "#" + interaction.select('Point').attr('GraphRef');
+        jsonPathway.pathwayElements[elementIri]["wp:InteractionGraph"] = {};
+        jsonPathway.pathwayElements[elementIri]["wp:InteractionGraph"]["@id"] = pathwayIri + "#" + points[0][0].getAttribute('GraphRef');
         // TODO this is very rudimentary - it needs to be much improved for checking where the arrowhead is located, etc.
-        jsonPathway.pathwayElements[elementIri]["wp:Interaction"]["@type"] = interactionType;
-        jsonPathway.pathwayElements[elementIri]["wp:Interaction"][interactionType] = pathwayIri + "#" + points[0][points[0].length - 1].getAttribute('GraphRef');
+        jsonPathway.pathwayElements[elementIri]["ex:InteractionType"] = interactionType;
+
+        targetId = points[0][points[0].length - 1].getAttribute('GraphRef');
+        target = gpml.querySelector('[GraphId=' + targetId + ']');
+        if (target.tagName === 'Anchor') {
+          targetId = target.parentElement.parentElement.getAttribute('GraphId');
+        }
+
+        jsonPathway.pathwayElements[elementIri]["wp:InteractionGraph"]["wp:interactsWith"] = pathwayIri + "#" + targetId;
         // TODO add the reaction, if it exists
         //"ex:reaction": pathwayIri + "#Reaction1"
-
-        var connectorType = interaction.select('Graphics').attr('ConnectorType') || 'Straight';
-        jsonPathway.pathwayElements[elementIri]["gpml:connectorType"] = "gpml:" + connectorType;
 
         var point, pointObj;
         jsonPathway.pathwayElements[elementIri]["gpml:Point"] = [];
@@ -147,6 +162,7 @@ pathvisiojs.data.gpml = function(){
           var relY = point.attr('RelY');
           if (!!relX && !!relY) {
             pointObj["@type"] = 'gpml:SnappedPoint';
+
             pointObj['gpml:SnappedPoint'] = {};
             pointObj['gpml:SnappedPoint']["gpml:GraphRef"] = pathwayIri + "#" + point.attr('GraphRef');
             pointObj['gpml:SnappedPoint']["gpml:RelX"] = relX;
@@ -154,12 +170,15 @@ pathvisiojs.data.gpml = function(){
           }
           else {
             pointObj["@type"] = 'gpml:GraphicalPoint';
-            pointObj['gpml:GraphicalPoint'] = {};
+            pointObj['gpml:GraphicalPoint']["gpml:X"] = {};
             pointObj['gpml:GraphicalPoint']["gpml:X"] = point.attr('X');
             pointObj['gpml:GraphicalPoint']["gpml:Y"] = point.attr('Y');
           }
           jsonPathway.pathwayElements[elementIri]["gpml:Point"].push(pointObj);
         })
+
+        var connectorType = interaction.select('Graphics').attr('ConnectorType') || 'Straight';
+        jsonPathway.pathwayElements[elementIri]["gpml:connectorType"] = "gpml:" + connectorType;
 
         interaction.selectAll('Anchor').each(function() {
           anchor = d3.select(this);
