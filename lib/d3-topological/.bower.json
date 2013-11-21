@@ -1,0 +1,14 @@
+{
+  "name": "d3-topological",
+  "homepage": "https://github.com/davidstutz/d3-topological",
+  "_release": "f836648f39",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "f836648f39d7b146d02b78f702405b3df2ce8aeb"
+  },
+  "_source": "git://github.com/davidstutz/d3-topological.git",
+  "_target": "*",
+  "_originalSource": "d3-topological",
+  "_direct": true
+}
