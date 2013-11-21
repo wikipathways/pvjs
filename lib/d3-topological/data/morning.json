@@ -1,0 +1,30 @@
+[
+	{
+		"label": "choosing clothes",
+		"dependencies": [8]
+	}, {
+		"label": "dress",
+		"dependencies": [0, 7]
+	}, {
+		"label": "eat breakfast",
+		"dependencies": [4, 5, 6]
+	}, {
+		"label": "leave",
+		"dependencies": [1, 2]
+	}, {
+		"label": "make office",
+		"dependencies": [8]
+	}, {
+		"label": "make toast",
+		"dependencies": [8]
+	}, {
+		"label": "pour juice",
+		"dependencies": [8]
+	}, {
+		"label": "shower",
+		"dependencies": [8]
+	}, {
+		"label": "wake up",
+		"dependencies": []
+	}
+]
