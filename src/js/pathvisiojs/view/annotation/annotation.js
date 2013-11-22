@@ -18,6 +18,8 @@ pathvisiojs.view.annotation = function(){
     .on("click", function(d, i){
       annotation.attr('style', 'visibility: hidden;');
     });
+    
+    annotation[0][0].style.visibility = 'visible';
 
     var annotationDescription = annotation.select('#annotation-description')
     .text(function(d) { return d.description; });
@@ -101,7 +103,6 @@ pathvisiojs.view.annotation = function(){
     // Exit…
     annotationItemLinkedTextElements.exit().remove();
 
-    annotation[0][0].style.visibility = 'visible';
 
   }
       
