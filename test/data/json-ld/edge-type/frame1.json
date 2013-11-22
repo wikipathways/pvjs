@@ -1,0 +1,29 @@
+{
+  "@context":{
+    "wp":"http://vocabularies.wikipathways.org/wp#",
+    "wpid":"http://wikipathways.org/index.php/Pathway:WP",
+    "gpmlFolder":"file://Users/andersriutta/Sites/pathvisiojs/test/gpml/",
+    "gpml":"http://vocabularies.wikipathways.org/gpml#",
+    "name":"http://xmlns.com/foaf/0.1/name",
+    "dcterms":"http://purl.org/dc/terms/",
+    "hMDB":"http://www.hmdb.ca/metabolites/HMDB",
+    "entrezGene":"http://www.ncbi.nlm.nih.gov/gene/",
+    "ChEBI":"http://www.ebi.ac.uk/chebi/searchId.do?chebiId=",
+    "media":"http://www.w3.org/TR/mediaont-10/",
+    "pathwayElements": {
+      "@id": "http://www.example.com/pathwayElements/",
+      "@container": "@list"
+    },
+    "ex":"http://www.example.com/",
+    "ex:interactionGraph": {
+      "@type": "@id"
+    },
+    "point": {
+      "@id": "http://www.example.com/point/",
+      "@container": "@list"
+    }
+  },
+  "@type": "wp:Interaction",
+  "ex:point": {}
+}
+

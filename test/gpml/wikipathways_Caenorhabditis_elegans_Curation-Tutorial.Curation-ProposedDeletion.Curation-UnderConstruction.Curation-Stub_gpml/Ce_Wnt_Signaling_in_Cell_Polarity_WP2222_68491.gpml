@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Pathway xmlns="http://pathvisio.org/GPML/2013a" Name="Wnt Signaling in Cell Polarity" Author="kyook@caltech.edu" Organism="Caenorhabditis elegans">
+  <Comment Source="WikiPathways-category">Cellular Process</Comment>
+  <Comment Source="WikiPathways-description">The Wnt pathway functions in many aspects of vulval development, it is required in the specification of vulval precursor cell competance, regulation of vulval induction, and the establishment of polarity of the P7.p cell, as diagrammed here. </Comment>
+  <Graphics BoardWidth="835.0" BoardHeight="256.0"/>
+  <DataNode TextLabel="LIN-44" GraphId="ed253" Type="GeneProduct">
+    <BiopaxRef>a8b</BiopaxRef>
+    <Graphics CenterX="65.0" CenterY="137.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="WormBase" ID="E01A2.3"/>
+  </DataNode>
+  <DataNode TextLabel="lin-11" GraphId="dcfb7" Type="GeneProduct">
+    <Graphics CenterX="741.0" CenterY="152.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="WormBase" ID="ZC247.3"/>
+  </DataNode>
+  <DataNode TextLabel="CWN-1" GraphId="a3424" Type="GeneProduct">
+    <BiopaxRef>a8b</BiopaxRef>
+    <Graphics CenterX="65.0" CenterY="176.0" Width="80.0" Height="20.0" ZOrder="32785" FontSize="10" Valign="Middle"/>
+    <Xref Database="WormBase" ID="K10B4.6"/>
+  </DataNode>
+  <DataNode TextLabel="MOM-2" GraphId="bf650" Type="GeneProduct">
+    <BiopaxRef>a8b</BiopaxRef>
+    <Graphics CenterX="65.0" CenterY="216.0" Width="80.0" Height="20.0" ZOrder="32786" FontSize="10" Valign="Middle"/>
+    <Xref Database="WormBase" ID="F38E1.7"/>
+  </DataNode>
+  <DataNode TextLabel="LIN-17" GraphId="f20ee" Type="GeneProduct">
+    <BiopaxRef>a8b</BiopaxRef>
+    <Graphics CenterX="249.0" CenterY="137.0" Width="80.0" Height="20.0" ZOrder="32787" FontSize="10" Valign="Middle"/>
+    <Xref Database="WormBase" ID="Y71F9B.5"/>
+  </DataNode>
+  <DataNode TextLabel="LIN-18" GraphId="d5bba" Type="GeneProduct">
+    <BiopaxRef>a8b</BiopaxRef>
+    <Graphics CenterX="249.0" CenterY="216.0" Width="80.0" Height="20.0" ZOrder="32788" FontSize="10" Valign="Middle"/>
+    <Xref Database="WormBase" ID="C16B8.1"/>
+  </DataNode>
+  <DataNode TextLabel="POP-1" GraphId="bbaaa" Type="GeneProduct">
+    <BiopaxRef>a8b</BiopaxRef>
+    <Graphics CenterX="526.0" CenterY="172.0" Width="80.0" Height="20.0" ZOrder="32789" FontSize="10" Valign="Middle"/>
+    <Xref Database="WormBase" ID="W10C8.2"/>
+  </DataNode>
+  <Interaction GraphId="id6cdb240e">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="105.0" Y="137.0" GraphRef="ed253" RelX="1.0" RelY="0.0"/>
+      <Point X="209.0" Y="137.0" GraphRef="f20ee" RelX="-1.0" RelY="0.0" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="idb64f8e0a">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="105.0" Y="216.0" GraphRef="bf650" RelX="1.0" RelY="0.0"/>
+      <Point X="209.0" Y="216.0" GraphRef="d5bba" RelX="-1.0" RelY="0.0" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="id819ac933">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="105.0" Y="176.0" GraphRef="a3424" RelX="1.0" RelY="0.0"/>
+      <Point X="209.0" Y="137.0" GraphRef="f20ee" RelX="-1.0" RelY="0.0" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="idc3e82c13">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="105.0" Y="176.0" GraphRef="a3424" RelX="1.0" RelY="0.0"/>
+      <Point X="105.0" Y="176.0" GraphRef="a3424" RelX="1.0" RelY="0.0" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="idcd9808f1">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="105.0" Y="176.0" GraphRef="a3424" RelX="1.0" RelY="0.0"/>
+      <Point X="209.0" Y="216.0" GraphRef="d5bba" RelX="-1.0" RelY="0.0" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="id17c30ceb">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="289.0" Y="137.0" GraphRef="f20ee" RelX="1.0" RelY="0.0"/>
+      <Point X="486.0" Y="172.0" GraphRef="bbaaa" RelX="-1.0" RelY="0.0" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="id153a3729">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="289.0" Y="216.0" GraphRef="d5bba" RelX="1.0" RelY="0.0"/>
+      <Point X="486.0" Y="172.0" GraphRef="bbaaa" RelX="-1.0" RelY="0.0" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Label TextLabel="LIGAND" GraphId="bda01">
+    <Graphics CenterX="65.0" CenterY="78.0" Width="80.0" Height="20.0" ZOrder="28672" FillColor="ffffff" FontSize="10" Valign="Middle"/>
+  </Label>
+  <Label TextLabel="RECEPTOR" GraphId="b04f8">
+    <Graphics CenterX="246.0" CenterY="78.0" Width="80.0" Height="20.0" ZOrder="32782" FillColor="ffffff" FontSize="10" Valign="Middle"/>
+  </Label>
+  <Label TextLabel="TRANSCRIPTIONAL&#10;REGULATOR" GraphId="fe1ae">
+    <Graphics CenterX="524.0" CenterY="78.0" Width="132.0" Height="20.0" ZOrder="32783" FillColor="ffffff" FontSize="10" Valign="Middle"/>
+  </Label>
+  <Label TextLabel="TARGET&#10;GENES" GraphId="cbc18">
+    <Graphics CenterX="739.0" CenterY="78.0" Width="132.0" Height="20.0" ZOrder="32784" FillColor="ffffff" FontSize="10" Valign="Middle"/>
+  </Label>
+  <InfoBox CenterX="0.0" CenterY="0.0"/>
+  <Biopax>
+    <bp:PublicationXref xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" rdf:id="a8b">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">18050418</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Vulval development.</bp:TITLE>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">WormBook</bp:SOURCE>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2005</bp:YEAR>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Sternberg PW</bp:AUTHORS>
+    </bp:PublicationXref>
+    <bp:openControlledVocabulary xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#">
+      <bp:TERM xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Wnt signaling pathway</bp:TERM>
+      <bp:ID xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PW:0000008</bp:ID>
+      <bp:Ontology xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Pathway Ontology</bp:Ontology>
+    </bp:openControlledVocabulary>
+    <bp:openControlledVocabulary xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#">
+      <bp:TERM xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">the planar cell polarity Wnt signaling pathway</bp:TERM>
+      <bp:ID xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PW:0000200</bp:ID>
+      <bp:Ontology xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Pathway Ontology</bp:Ontology>
+    </bp:openControlledVocabulary>
+  </Biopax>
+</Pathway>

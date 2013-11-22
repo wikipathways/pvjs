@@ -1,8 +1,13 @@
 pathvisiojs.data.gpml = function(){
     
   var jsonPathway = {};
+  // TODO this isn't getting the linetype info for determining whether activity is direct or indirect yet
+  var gpmlArrowHeadToSemanticMappings = {
+    'Arrow':'Activity',
+    'TBar':'InhibitoryActivity'
+  };
 
-  function toRenderableJson(gpml, callback){
+  function toRenderableJson(gpml, pathwayIri, callback){
     self.gpml = gpml;
     
     var gpmlPathway = d3.select(gpml).select('Pathway');
@@ -32,8 +37,167 @@ pathvisiojs.data.gpml = function(){
 
         // preferably, this would call the Java RPC updater for the file to be updated.
 
-        alert("Pathvisio.js may not fully support the version of GPML provided (xmlns: " + gpmlNamespace + "). Please convert to the supported version of GPML (xmlns: " + pathvisiojs.data.gpml.namespaces[0] + ").");
+        alert("Pathvisiojs may not fully support the version of GPML provided (xmlns: " + gpmlNamespace + "). Please convert to the supported version of GPML (xmlns: " + pathvisiojs.data.gpml.namespaces[0] + ").");
       }
+
+      jsonPathway = {
+        "@id":pathwayIri,
+        "wp:Author":
+        [
+          {"@id":"Khanspers"},
+          {"@id":"Pjaiswal"},
+          {"@id":"Ariutta"}
+        ],
+        "media:frameSize":{
+          "media:width":parseFloat(gpmlPathway.select('Graphics').attr('BoardWidth')),
+          "media:height":parseFloat(gpmlPathway.select('Graphics').attr('BoardHeight'))
+        }
+      };
+
+      jsonPathway['@context'] = {
+        "xsd": "http://www.w3.org/2001/XMLSchema#",
+        "wp":"http://vocabularies.wikipathways.org/wp#",
+        // TODO not taking into account revision, but it should be included in the IRI
+        "wpId":"http://wikipathways.org/index.php/Pathway:WP",
+        "gpmlFolder":"file://Users/andersriutta/Sites/pathvisiojs/test/gpml/",
+        "gpml":"http://vocabularies.wikipathways.org/gpml#",
+        "name":"http://xmlns.com/foaf/0.1/name",
+        "dcterms":"http://purl.org/dc/terms/",
+        "hMDB":"http://www.hmdb.ca/metabolites/HMDB",
+        "entrezGene":"http://www.ncbi.nlm.nih.gov/gene/",
+        "ChEBI":"http://www.ebi.ac.uk/chebi/searchId.do?chebiId=",
+        "media":"http://www.w3.org/TR/mediaont-10/",
+        "ex":"http://www.example.com/",
+        "pathwayElements": {
+          "@id": "ex:pathwayElements/",
+          "@container": "@list"
+        },
+        "gpml:GraphRef": {
+          "@type": "@id"
+        },
+        "ex:IsRefedBy": { "@reverse": "gpml:GraphRef" },
+        "wp:Interaction": {
+          "@type": "@id"
+        },
+        "gpml:Point": {
+          "@id": "gpml:Point",
+          "@container": "@list"
+        },
+        "gpml:SnappedPoint": {
+          "gpml:GraphRef": "@id",
+          "gpml:relX": "xsd:integer",
+          "gpml:relY": "xsd:integer"
+        },
+        "gpml:GraphicalPoint": {
+          "gpml:x": "xsd:integer",
+          "gpml:y": "xsd:integer"
+        }
+      };
+
+      var dataNode, elementIri, linestyle;
+      jsonPathway.pathwayElements = {};
+      gpmlPathway.selectAll('DataNode').each(function() {
+        dataNode = d3.select(this);
+        elementIri = pathwayIri + "#" + dataNode.attr('GraphId');
+        jsonPathway.pathwayElements[elementIri] = {};
+        jsonPathway.pathwayElements[elementIri]["@id"] = pathwayIri + '#' + dataNode.attr('GraphId');
+        jsonPathway.pathwayElements[elementIri]["wp:DatasourceReference"] = {};
+        jsonPathway.pathwayElements[elementIri]["wp:DatasourceReference"]["gpml:database"] = dataNode.select('Xref').attr('Database');
+        jsonPathway.pathwayElements[elementIri]["wp:DatasourceReference"]["@id"] = dataNode.select('Xref').attr('ID')
+        jsonPathway.pathwayElements[elementIri]["@type"] = "gpml:DataNode";
+        jsonPathway.pathwayElements[elementIri]["gpml:DataNode"] = "wp:" + dataNode.attr('Type');
+        jsonPathway.pathwayElements[elementIri]["gpml:textlabel"] = dataNode.attr('TextLabel');
+        jsonPathway.pathwayElements[elementIri]["gpml:centerx"] = dataNode.select('Graphics').attr('CenterX');
+        jsonPathway.pathwayElements[elementIri]["gpml:centery"] = dataNode.select('Graphics').attr('CenterY');
+        jsonPathway.pathwayElements[elementIri]["gpml:width"] = dataNode.select('Graphics').attr('Width');
+        jsonPathway.pathwayElements[elementIri]["gpml:height"] = dataNode.select('Graphics').attr('Height');
+        linestyle = dataNode.select('Graphics').attr('LineStyle');
+        if (!!linestyle) {
+          linestyle = 'Solid';
+        };
+        jsonPathway.pathwayElements[elementIri]["gpml:linestyle"] = 'gpml:' + linestyle;
+      })
+
+      var interaction, anchor, points, interactionType;
+      gpmlPathway.selectAll('Interaction').each(function() {
+        interaction = d3.select(this);
+        elementIri = pathwayIri + "#" + interaction.attr('GraphId');
+        jsonPathway.pathwayElements[elementIri] = {};
+        jsonPathway.pathwayElements[elementIri]["@id"] = pathwayIri + "#" + interaction.attr('GraphId');
+        jsonPathway.pathwayElements[elementIri]["@type"] = "wp:Interaction";
+        points = interaction.selectAll('Point');
+        interactionType = 'wp:' + gpmlArrowHeadToSemanticMappings[points[0][points[0].length - 1].getAttribute('ArrowHead')];
+        jsonPathway.pathwayElements[elementIri]["wp:Interaction"] = [];
+        jsonPathway.pathwayElements[elementIri]["wp:Interaction"]["@id"] = pathwayIri + "#" + interaction.select('Point').attr('GraphRef');
+        // TODO this is very rudimentary - it needs to be much improved for checking where the arrowhead is located, etc.
+        jsonPathway.pathwayElements[elementIri]["wp:Interaction"]["@type"] = interactionType;
+        jsonPathway.pathwayElements[elementIri]["wp:Interaction"][interactionType] = pathwayIri + "#" + points[0][points[0].length - 1].getAttribute('GraphRef');
+        // TODO add the reaction, if it exists
+        //"ex:reaction": pathwayIri + "#Reaction1"
+
+        var connectorType = interaction.select('Graphics').attr('ConnectorType') || 'Straight';
+        jsonPathway.pathwayElements[elementIri]["gpml:connectorType"] = "gpml:" + connectorType;
+
+        var point, pointObj;
+        jsonPathway.pathwayElements[elementIri]["gpml:Point"] = [];
+        points.each(function() {
+          point = d3.select(this);
+          pointObj = {};
+          var relX = point.attr('RelX');
+          var relY = point.attr('RelY');
+          if (!!relX && !!relY) {
+            pointObj["@type"] = 'gpml:SnappedPoint';
+            pointObj['gpml:SnappedPoint'] = {};
+            pointObj['gpml:SnappedPoint']["gpml:GraphRef"] = pathwayIri + "#" + point.attr('GraphRef');
+            pointObj['gpml:SnappedPoint']["gpml:RelX"] = relX;
+            pointObj['gpml:SnappedPoint']["gpml:RelY"] = relY;
+          }
+          else {
+            pointObj["@type"] = 'gpml:GraphicalPoint';
+            pointObj['gpml:GraphicalPoint'] = {};
+            pointObj['gpml:GraphicalPoint']["gpml:X"] = point.attr('X');
+            pointObj['gpml:GraphicalPoint']["gpml:Y"] = point.attr('Y');
+          }
+          jsonPathway.pathwayElements[elementIri]["gpml:Point"].push(pointObj);
+        })
+
+        interaction.selectAll('Anchor').each(function() {
+          anchor = d3.select(this);
+          elementIri = pathwayIri + "#" + anchor.attr('GraphId');
+          jsonPathway.pathwayElements[elementIri] = {};
+          jsonPathway.pathwayElements[elementIri]["@id"] = pathwayIri + "#" + anchor.attr('GraphId');
+          jsonPathway.pathwayElements[elementIri]["@type"] = "wp:Reaction";
+          jsonPathway.pathwayElements[elementIri]["gpml:GraphRef"] = interaction["@id"];
+          jsonPathway.pathwayElements[elementIri]["gpml:anchorPosition"] = anchor.attr('Position');
+        })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      })
+
+
+
+
+
+
+
 
       jsonPathway.metadata = {};
       jsonPathway.metadata.boardWidth = parseFloat(gpmlPathway.select('Graphics').attr('BoardWidth'));
@@ -240,8 +404,8 @@ pathvisiojs.data.gpml = function(){
       //*/
     }
     else {
-      alert("Pathvisio.js does not support the data format provided. Please convert to GPML and retry.");
-      console.log("Pathvisio.js does not support the data format provided. Please convert to GPML and retry.");
+      alert("Pathvisiojs does not support the data format provided. Please convert to GPML and retry.");
+      console.log("Pathvisiojs does not support the data format provided. Please convert to GPML and retry.");
       return;
     }
   }

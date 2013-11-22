@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Pathway xmlns="http://pathvisiojs.org/GPML/2013a" Name="anchors" Version="20130715" Organism="Anopheles gambiae">
+<Pathway xmlns="http://pathvisio.org/GPML/2013a" Name="anchors" Version="20130715" Organism="Anopheles gambiae">
   <Graphics BoardWidth="677.5682683727534" BoardHeight="692.9037843977742" />
   <DataNode TextLabel="Metabolite" GraphId="c8d90" Type="Metabolite" GroupRef="b1bd1">
     <Graphics CenterX="128.86419332879615" CenterY="99.06516148551515" Width="174.90560471976374" Height="58.64011799410035" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff" />
@@ -82,7 +82,7 @@
     <Xref Database="" ID="" />
   </Interaction>
   <Interaction GraphId="id785e01ae">
-    <Attribute Key="org.pathvisiojs.DoubleLineProperty" Value="Double" />
+    <Attribute Key="org.pathvisio.DoubleLineProperty" Value="Double" />
     <Graphics ZOrder="32769" LineThickness="5.0">
       <Point X="190.04777070063682" Y="562.4037843977742" GraphRef="ba19a" RelX="-0.5" RelY="-1.0" />
       <Point X="250.14250056728017" Y="140.38658195295375" GraphRef="fd415" RelX="0.0" RelY="1.0" />
@@ -100,7 +100,7 @@
     <Graphics CenterX="407.07292707292714" CenterY="19.475524475524477" Width="290.7492507492508" Height="32.977022977022976" ZOrder="28672" FillColor="ffffff" FontSize="10" Align="Left" />
   </Label>
   <Shape GraphId="d5d4e" GroupRef="b1bd1">
-    <Attribute Key="org.pathvisiojs.CellularComponentProperty" Value="Endoplasmic Reticulum" />
+    <Attribute Key="org.pathvisio.CellularComponentProperty" Value="Endoplasmic Reticulum" />
     <Graphics CenterX="358.6236101656461" CenterY="100.63658195295373" Width="200.5" Height="55.5" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="Endoplasmic Reticulum" LineThickness="3.0" Color="c0c0c0" Rotation="0.0" />
   </Shape>
   <Group GroupId="b1bd1" GraphId="fd415" Style="Complex" />

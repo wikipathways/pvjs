@@ -1,0 +1,14 @@
+{
+  "name": "strcase",
+  "homepage": "https://github.com/tower/strcase",
+  "version": "0.5.0",
+  "_release": "0.5.0",
+  "_resolution": {
+    "type": "version",
+    "tag": "0.5.0",
+    "commit": "176d0b0e40aa5f8897fe66fa257ae86752cc0e00"
+  },
+  "_source": "git://github.com/tower/strcase.git",
+  "_target": "~0.5.0",
+  "_originalSource": "strcase"
+}

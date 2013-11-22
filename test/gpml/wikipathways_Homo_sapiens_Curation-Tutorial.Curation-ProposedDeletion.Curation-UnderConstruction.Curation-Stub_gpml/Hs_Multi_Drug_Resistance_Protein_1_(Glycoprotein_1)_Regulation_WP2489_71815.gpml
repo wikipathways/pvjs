@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Pathway xmlns="http://pathvisio.org/GPML/2013a" Name="Multi Drug Resistance Protein 1 (Glycoprotein 1) Regulation" Author="Chris Evelo" Last-Modified="10/16/2013" Organism="Homo sapiens">
+  <Comment Source="WikiPathways-category">Cellular Process</Comment>
+  <Comment Source="WikiPathways-description">Multi Drug Response Protein 1 also know as Glycoprotein 1 plays an important role in multi drug resistance. Changes in its regulation may affect drug resistance. </Comment>
+  <Graphics BoardWidth="349.75" BoardHeight="307.75" />
+  <DataNode TextLabel="MDR1" GraphId="d7a55" Type="Protein">
+    <Graphics CenterX="279.75" CenterY="267.75" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="P08183" />
+  </DataNode>
+  <DataNode TextLabel="FOXO3" GraphId="c26c9" Type="Protein">
+    <Graphics CenterX="111.75" CenterY="127.25" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="FOXO3" />
+  </DataNode>
+  <Interaction GraphId="ide1d370d9">
+    <BiopaxRef>cfd</BiopaxRef>
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="111.75" Y="137.25" GraphRef="c26c9" RelX="0.0" RelY="1.0" />
+      <Point X="279.75" Y="257.75" GraphRef="d7a55" RelX="0.0" RelY="-1.0" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <InfoBox CenterX="0.0" CenterY="0.0" />
+  <Biopax>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="cfd">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">18347152</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Doxorubicin activates FOXO3a to induce the expression of multidrug resistance gene ABCB1 (MDR1) in K562 leukemic cells.</bp:TITLE>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Mol Cancer Ther</bp:SOURCE>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2008</bp:YEAR>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Hui RC</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Francis RE</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Guest SK</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Costa JR</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Gomes AR</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Myatt SS</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Brosens JJ</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Lam EW</bp:AUTHORS>
+    </bp:PublicationXref>
+  </Biopax>
+</Pathway>
