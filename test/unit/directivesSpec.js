@@ -3,7 +3,7 @@
 /* jasmine specs for directives go here */
 
 describe('directives', function() {
-  beforeEach(module('pathvisiojs.directives'));
+  beforeEach(module('pathvisio.directives'));
 
   describe('drawing-board', function(elm, attrs) {
     it('should print correct height and width', function() {

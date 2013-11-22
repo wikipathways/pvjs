@@ -1,0 +1,411 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Pathway xmlns="http://pathvisio.org/GPML/2013a" Name="Mitochondrial Unfolded-Protein Response" Organism="Caenorhabditis elegans">
+  <Comment Source="WikiPathways-description">hypothetical pathway based on a single review article. Input on alternatives is welcome</Comment>
+  <Comment Source="WikiPathways-category">Physiological Process</Comment>
+  <Comment Source="WikiPathways-category">Cellular Process</Comment>
+  <BiopaxRef>b31</BiopaxRef>
+  <Graphics BoardWidth="936.1833688699362" BoardHeight="565.9815209665966" />
+  <DataNode TextLabel="CLPP-1" GraphId="db0" Type="Protein">
+    <Graphics CenterX="155.0" CenterY="257.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="WormBase" ID="ZK970.2" />
+  </DataNode>
+  <DataNode TextLabel="HSP-60" GraphId="b6b" Type="Protein">
+    <Graphics CenterX="324.03269367448473" CenterY="426.6844349680171" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="WormBase" ID="Y22D7AL.5" />
+  </DataNode>
+  <DataNode TextLabel="HSP-6" GraphId="ff2" Type="Protein">
+    <Graphics CenterX="322.5614783226724" CenterY="458.2878464818764" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="WormBase" ID="C37H5.8" />
+  </DataNode>
+  <DataNode TextLabel="DVE-1" GraphId="fde" Type="Protein">
+    <Graphics CenterX="409.2504306930404" CenterY="198.8788690082998" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="WormBase" ID="ZK1193.5" />
+  </DataNode>
+  <DataNode TextLabel="UBL-5" GraphId="d1b" Type="Protein">
+    <Graphics CenterX="406.4002755228599" CenterY="266.6123159524659" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="WormBase" ID="F46F11.4" />
+  </DataNode>
+  <DataNode TextLabel="DVE-1" GraphId="f94" Type="GeneProduct" GroupRef="af52a">
+    <Graphics CenterX="608.3179864947816" CenterY="297.36648250460394" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="WormBase" ID="ZK1193.5" />
+  </DataNode>
+  <DataNode TextLabel="UBL-5" GraphId="da0" Type="Protein" GroupRef="af52a">
+    <Graphics CenterX="608.3179864947816" CenterY="277.36648250460394" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="WormBase" ID="F46F11.4" />
+  </DataNode>
+  <DataNode TextLabel="UBL-5" GraphId="d8a" Type="Protein">
+    <Graphics CenterX="547.0" CenterY="63.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="WormBase" ID="F46F11.4" />
+  </DataNode>
+  <DataNode TextLabel="hsp-60" GraphId="a23" Type="GeneProduct" GroupRef="d42ee">
+    <Graphics CenterX="713.6347452424795" CenterY="297.59422958870465" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="WormBase" ID="Y22D7AL.5" />
+  </DataNode>
+  <DataNode TextLabel="hsp-6" GraphId="eb5" Type="GeneProduct" GroupRef="bcc2f">
+    <Graphics CenterX="684.5248618784532" CenterY="402.04051565377523" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="WormBase" ID="C37H5.8" />
+  </DataNode>
+  <DataNode TextLabel="ubl-5" GraphId="d3c" Type="GeneProduct" GroupRef="a84e6">
+    <Graphics CenterX="691.0" CenterY="206.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="WormBase" ID="F46F11.4" />
+  </DataNode>
+  <DataNode TextLabel="SPG-7" GraphId="a7280" Type="Protein">
+    <Graphics CenterX="409.2395785616129" CenterY="63.76042143838757" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="WormBase" ID="Y47G6A.10" />
+  </DataNode>
+  <DataNode TextLabel="PHB-2" GraphId="d1a0d" Type="Protein">
+    <Graphics CenterX="400.36646816307837" CenterY="126.88960146587249" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="WormBase" ID="T24H7.1" />
+  </DataNode>
+  <DataNode TextLabel="HSP-60" GraphId="b0e0c" Type="Protein">
+    <Graphics CenterX="404.07650022904244" CenterY="94.01145213009626" Width="80.0" Height="20.0" ZOrder="32769" FontSize="10" Valign="Middle" />
+    <Xref Database="WormBase" ID="Y22D7AL.5" />
+  </DataNode>
+  <DataNode TextLabel="SPG-7" GraphId="ba3ea" Type="Protein">
+    <Graphics CenterX="396.5262575057505" CenterY="349.3896418189892" Width="80.0" Height="20.0" ZOrder="32777" FontSize="10" Valign="Middle" />
+    <Xref Database="WormBase" ID="Y47G6A.10" />
+  </DataNode>
+  <Interaction GraphId="f503e">
+    <BiopaxRef>c22</BiopaxRef>
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="329.4089801625073" Y="257.42304544569527" GraphRef="f6a" RelX="-1.0" RelY="0.5" ArrowHead="Arrow" />
+      <Point X="201.0" Y="259.0" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="f37ab" GroupRef="d42ee">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="551.6347452424795" Y="308.59422958870465" />
+      <Point X="771.6347452424795" Y="307.59422958870465" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="b768f" GroupRef="a84e6">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="588.0" Y="216.0" />
+      <Point X="765.0" Y="216.0" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="b3915" GroupRef="bcc2f">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="595.8612645794971" Y="412.65438919582556" />
+      <Point X="738.8612645794971" Y="412.65438919582556" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="e2d7b">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="117.0" Y="193.0" GraphRef="eb6" RelX="0.0" RelY="1.0" />
+      <Point X="135.0" Y="247.0" GraphRef="db0" RelX="-0.5" RelY="-1.0" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="fe813">
+    <BiopaxRef>c22</BiopaxRef>
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="449.2504306930404" Y="198.8788690082998" GraphRef="fde" RelX="1.0" RelY="0.0" />
+      <Point X="560.3179864947816" Y="273.36648250460394" GraphRef="f10f9" RelX="-1.0" RelY="-0.5" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="d0ab5">
+    <Comment>ubl-5 RNAi results in diminished expression of a hsp-60::GFP reporter</Comment>
+    <BiopaxRef>d96</BiopaxRef>
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="446.4002755228599" Y="266.6123159524659" GraphRef="d1b" RelX="1.0" RelY="0.0" />
+      <Point X="560.3179864947816" Y="287.36648250460394" GraphRef="f10f9" RelX="-1.0" RelY="0.0" ArrowHead="mim-stimulation" />
+    </Graphics>
+    <Xref Database="WormBase" ID="WBInteraction000502398" />
+  </Interaction>
+  <Interaction GraphId="fb567">
+    <Graphics ZOrder="12288" LineStyle="Broken" LineThickness="1.0">
+      <Point X="547.0" Y="73.0" GraphRef="d8a" RelX="0.0" RelY="1.0" />
+      <Point X="608.3179864947816" Y="259.36648250460394" GraphRef="f10f9" RelX="0.0" RelY="-1.0" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="b0cae">
+    <Graphics ZOrder="12288" LineStyle="Broken" LineThickness="1.0">
+      <Point X="711.0" Y="196.0" GraphRef="d3c" RelX="0.5" RelY="-1.0" />
+      <Point X="684.8233883976056" Y="78.42146410803127" GraphRef="d9b87" RelX="0.0" RelY="1.0" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="afa9f">
+    <Graphics ZOrder="12288" LineStyle="Broken" LineThickness="1.0">
+      <Point X="643.2253126871801" Y="43.51950984295948" GraphRef="d9b87" RelX="-1.0" RelY="0.0" />
+      <Point X="567.0" Y="53.0" GraphRef="d8a" RelX="0.5" RelY="-1.0" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="be484" GroupRef="d42ee">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="661.6347452424795" Y="279.59422958870465" />
+      <Point X="661.6347452424795" Y="308.59422958870465" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="b9291" GroupRef="d42ee">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="662.6347452424795" Y="280.59422958870465" />
+      <Point X="718.6347452424795" Y="280.59422958870465" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="d492c" GroupRef="a84e6">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="641.0" Y="189.0" />
+      <Point X="641.0" Y="218.0" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="c9ac2" GroupRef="a84e6">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="642.0" Y="190.0" />
+      <Point X="698.0" Y="190.0" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="d48c4" GroupRef="bcc2f">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="635.910988336403" Y="383.42664211172473" />
+      <Point X="635.910988336403" Y="412.42664211172473" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="a2d0e" GroupRef="bcc2f">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="635.6832412523023" Y="381.97114794352353" />
+      <Point X="691.6832412523023" Y="381.97114794352353" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="id86cfb3">
+    <Comment>RNAi of spg-7 induces expression of a ubl-5p::UBL-5::GFP reporter</Comment>
+    <BiopaxRef>d96</BiopaxRef>
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="449.2395785616129" Y="63.76042143838757" GraphRef="a7280" RelX="1.0" RelY="0.0" />
+      <Point X="620.0" Y="203.0" ArrowHead="mim-inhibition" />
+    </Graphics>
+    <Xref Database="WormBase" ID="WBInteraction000520486" />
+  </Interaction>
+  <Interaction GraphId="ide723c07b">
+    <Comment>RNAi of hsp-60 induces expression of a ubl-5p::UBL-5::GFP reporter</Comment>
+    <BiopaxRef>d96</BiopaxRef>
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="444.07650022904244" Y="94.01145213009626" GraphRef="b0e0c" RelX="1.0" RelY="0.0" />
+      <Point X="595.9688502061383" Y="203.84791571232248" ArrowHead="mim-inhibition" />
+    </Graphics>
+    <Xref Database="WormBase" ID="WBInteraction000520487" />
+  </Interaction>
+  <Interaction GraphId="a3a8c">
+    <Comment>RNAi of phb-2 induces expression of a ubl-5p::UBL-5::GFP reporter</Comment>
+    <BiopaxRef>d96</BiopaxRef>
+    <Graphics ZOrder="32770" LineThickness="1.0">
+      <Point X="440.36646816307837" Y="126.88960146587249" GraphRef="d1a0d" RelX="1.0" RelY="0.0" />
+      <Point X="580.3939532753092" Y="211.17727897388912" ArrowHead="mim-inhibition" />
+    </Graphics>
+    <Xref Database="WormBase" ID="WBInteraction000520488" />
+  </Interaction>
+  <Interaction GraphId="c011d">
+    <Graphics ZOrder="32771" LineStyle="Broken" LineThickness="1.0">
+      <Point X="664.5248618784532" Y="412.04051565377523" GraphRef="eb5" RelX="-0.5" RelY="1.0" />
+      <Point X="485.45415778251595" Y="491.62858956898816" GraphRef="bad0b" RelX="1.0" RelY="-0.5" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="cd398">
+    <Graphics ZOrder="32772" LineStyle="Broken" LineThickness="1.0">
+      <Point X="693.6347452424795" Y="307.59422958870465" GraphRef="a23" RelX="-0.5" RelY="1.0" />
+      <Point X="464.6551199273017" Y="474.177612436452" GraphRef="bad0b" RelX="0.5" RelY="-1.0" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="eb039">
+    <Graphics ZOrder="32773" LineStyle="Broken" LineThickness="1.0">
+      <Point X="402.258006361659" Y="491.62858956898816" GraphRef="bad0b" RelX="-1.0" RelY="-0.5" />
+      <Point X="362.5614783226724" Y="458.2878464818764" GraphRef="ff2" RelX="1.0" RelY="0.0" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="c917b">
+    <Graphics ZOrder="32774" LineStyle="Broken" LineThickness="1.0">
+      <Point X="423.05704421687324" Y="474.177612436452" GraphRef="bad0b" RelX="-0.5" RelY="-1.0" />
+      <Point X="364.03269367448473" Y="426.6844349680171" GraphRef="b6b" RelX="1.0" RelY="0.0" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="f7889">
+    <Graphics ZOrder="32775" LineThickness="1.0">
+      <Point X="284.03269367448473" Y="426.6844349680171" GraphRef="b6b" RelX="-1.0" RelY="0.0" />
+      <Point X="165.60056858564323" Y="324.0938166311301" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="c2715">
+    <Graphics ZOrder="32776" LineThickness="1.0">
+      <Point X="282.5614783226724" Y="458.2878464818764" GraphRef="ff2" RelX="-1.0" RelY="0.0" />
+      <Point X="147.83226723525232" Y="333.33333333333337" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="c4c34">
+    <Comment>RNAi of spg-7 induces expression of a hsp-60::GFP reporter</Comment>
+    <BiopaxRef>d96</BiopaxRef>
+    <Graphics ZOrder="32778" LineThickness="1.0">
+      <Point X="436.5262575057505" Y="349.3896418189892" GraphRef="ba3ea" RelX="1.0" RelY="0.0" />
+      <Point X="661.6347452424795" Y="316.59422958870465" GraphRef="cac43" RelX="0.0" RelY="1.0" ArrowHead="mim-inhibition" />
+    </Graphics>
+    <Xref Database="WormBase" ID="WBInteraction000520483" />
+  </Interaction>
+  <Interaction GraphId="c6ef1">
+    <Comment>RNAi of spg-7 induces expression of a hsp-6::GFP reporter</Comment>
+    <BiopaxRef>d96</BiopaxRef>
+    <Graphics ZOrder="32779" LineThickness="1.0">
+      <Point X="436.5262575057505" Y="349.3896418189892" GraphRef="ba3ea" RelX="1.0" RelY="0.0" />
+      <Point X="625.5371393492941" Y="398.4039287906691" ArrowHead="mim-inhibition" />
+    </Graphics>
+    <Xref Database="WormBase" ID="WBInteraction000520484" />
+  </Interaction>
+  <Interaction GraphId="ed8dc">
+    <Comment>ubl-5 RNAi results in diminished expression of a hsp-6::GFP reporter</Comment>
+    <BiopaxRef>d96</BiopaxRef>
+    <Graphics ZOrder="32780" LineThickness="1.0">
+      <Point X="446.4002755228599" Y="266.6123159524659" GraphRef="d1b" RelX="1.0" RelY="0.0" />
+      <Point X="612.0319214241866" Y="384.28483732351134" ArrowHead="mim-stimulation" />
+    </Graphics>
+    <Xref Database="WormBase" ID="WBInteraction000520482" />
+  </Interaction>
+  <Label TextLabel="Mitochondrion" GraphId="ce9">
+    <Graphics CenterX="136.01705756929636" CenterY="97.61904761904765" Width="80.0" Height="20.0" ZOrder="28672" FillColor="ffffff" FontSize="10" Valign="Middle" />
+  </Label>
+  <Label TextLabel="Nucleus" GraphId="fd6">
+    <Graphics CenterX="655.1087420042628" CenterY="121.92537313432837" Width="80.0" Height="20.0" ZOrder="28672" FillColor="ffffff" FontSize="10" Valign="Middle" />
+  </Label>
+  <Label TextLabel="Protein&#xA;Conformational &#xA;Stress&#xA;" GraphId="eb6">
+    <Graphics CenterX="117.0" CenterY="173.0" Width="80.0" Height="40.0" ZOrder="28672" FillColor="ffffff" FontSize="10" Valign="Middle" />
+  </Label>
+  <Label TextLabel="Stress signal" GraphId="dc0">
+    <Graphics CenterX="290.0" CenterY="240.0" Width="80.0" Height="20.0" ZOrder="28672" FillColor="ffffff" FontSize="10" Valign="Middle" />
+  </Label>
+  <Shape GraphId="da649">
+    <Attribute Key="org.pathvisio.CellularComponentProperty" Value="Nucleus" />
+    <Attribute Key="org.pathvisio.DoubleLineProperty" Value="Double" />
+    <Graphics CenterX="688.293974430522" CenterY="315.10002175031957" Width="435.77878887882844" Height="434.47657341478384" ZOrder="-4" FontSize="10" Valign="Middle" ShapeType="Oval" LineThickness="3.0" Color="c0c0c0" Rotation="0.0" />
+  </Shape>
+  <Shape GraphId="ec2e7">
+    <Attribute Key="org.pathvisio.CellularComponentProperty" Value="Mitochondria" />
+    <Graphics CenterX="133.98134915793497" CenterY="316.03865459874163" Width="471.87211269494753" Height="211.93588333477388" ZOrder="-2" FontSize="10" Valign="Middle" ShapeType="Mitochondria" LineThickness="3.0" Color="c0c0c0" Rotation="1.5666010760642382" />
+  </Shape>
+  <Shape GraphId="f6a">
+    <Graphics CenterX="345.15316964921993" CenterY="230.78413431177282" Width="106.3566956521857" Height="30.794063416402246" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="Brace" Rotation="4.718923387324656" />
+  </Shape>
+  <Shape GraphId="f23">
+    <Graphics CenterX="185.3450235872143" CenterY="186.81478685820036" Width="35.21784987087366" Height="14.378058615666834" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="Arc" Rotation="0.891601011894379" />
+  </Shape>
+  <Shape GraphId="c5b">
+    <Graphics CenterX="184.8806215859781" CenterY="190.9822414537579" Width="11.351361497993286" Height="33.67366022646938" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="Oval" Rotation="0.5055326179342952" />
+  </Shape>
+  <Shape GraphId="bce">
+    <Graphics CenterX="185.07679942509466" CenterY="191.20488646210518" Width="9.205124289015242" Height="24.68323496507121" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="Oval" Rotation="5.8856681284582635" />
+  </Shape>
+  <Shape GraphId="bc7">
+    <Graphics CenterX="181.6090711895761" CenterY="192.81294443130875" Width="27.556616533037577" Height="10.416245824855412" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="Oval" Rotation="1.3996298649653176" />
+  </Shape>
+  <Shape GraphId="dad">
+    <Graphics CenterX="143.3450235872143" CenterY="364.8147868582003" Width="35.21784987087366" Height="14.378058615666834" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="Arc" Rotation="0.891601011894379" />
+  </Shape>
+  <Shape GraphId="b0a">
+    <Graphics CenterX="142.8806215859781" CenterY="368.98224145375787" Width="11.351361497993286" Height="33.67366022646938" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="Oval" Rotation="0.5055326179342952" />
+  </Shape>
+  <Shape GraphId="b27">
+    <Graphics CenterX="143.07679942509466" CenterY="369.2048864621052" Width="9.205124289015242" Height="24.68323496507121" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="Oval" Rotation="5.8856681284582635" />
+  </Shape>
+  <Shape GraphId="df8">
+    <Graphics CenterX="139.6090711895761" CenterY="370.8129444313088" Width="27.556616533037577" Height="10.416245824855412" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="Oval" Rotation="1.3996298649653176" />
+  </Shape>
+  <Shape GraphId="c36">
+    <Graphics CenterX="75.34502358721433" CenterY="277.8147868582003" Width="35.21784987087366" Height="14.378058615666834" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="Arc" Rotation="0.891601011894379" />
+  </Shape>
+  <Shape GraphId="f8b">
+    <Graphics CenterX="74.8806215859781" CenterY="281.98224145375787" Width="11.351361497993286" Height="33.67366022646938" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="Oval" Rotation="0.5055326179342952" />
+  </Shape>
+  <Shape GraphId="f79">
+    <Graphics CenterX="75.07679942509466" CenterY="282.2048864621052" Width="9.205124289015242" Height="24.68323496507121" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="Oval" Rotation="5.8856681284582635" />
+  </Shape>
+  <Shape GraphId="fcc">
+    <Graphics CenterX="71.60907118957607" CenterY="283.8129444313088" Width="27.556616533037577" Height="10.416245824855412" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="Oval" Rotation="1.3996298649653176" />
+  </Shape>
+  <Shape GraphId="ce7" GroupRef="e615d">
+    <Graphics CenterX="440.43749111584935" CenterY="497.46485429992913" Width="18.033333333333335" Height="13.033333333333333" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="Oval" Rotation="0.0" />
+  </Shape>
+  <Shape GraphId="a1c" GroupRef="e615d">
+    <Graphics CenterX="440.43749111584935" CenterY="520.9648542999299" Width="34.03333333333333" Height="30.033333333333335" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="Oval" Rotation="0.0" />
+  </Shape>
+  <Shape GraphId="fc9" GroupRef="e615d">
+    <Graphics CenterX="425.871073181936" CenterY="512.7159497559451" Width="26.690628430153254" Height="16.534685082432144" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="Arc" Rotation="2.6914044817913503" />
+  </Shape>
+  <Shape GraphId="e76" GroupRef="e615d">
+    <Graphics CenterX="459.7619215861826" CenterY="494.53238022288554" Width="34.70411579219188" Height="9.905535796788262" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="Arc" Rotation="5.80708005843629" />
+  </Shape>
+  <Shape GraphId="f2a" GroupRef="b5416">
+    <Graphics CenterX="681.4047974413646" CenterY="31.904797441364607" Width="18.033333333333335" Height="13.033333333333333" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="Oval" Rotation="0.0" />
+  </Shape>
+  <Shape GraphId="bb5" GroupRef="b5416">
+    <Graphics CenterX="681.4047974413646" CenterY="55.40479744136461" Width="34.03333333333333" Height="30.033333333333335" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="Oval" Rotation="0.0" />
+  </Shape>
+  <Shape GraphId="ace" GroupRef="b5416">
+    <Graphics CenterX="666.8383795074571" CenterY="47.155892897380085" Width="26.690628430153254" Height="16.534685082432144" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="Arc" Rotation="2.6914044817913503" />
+  </Shape>
+  <Shape GraphId="c1d" GroupRef="b5416">
+    <Graphics CenterX="700.7292279116979" CenterY="28.97232336432111" Width="34.70411579219188" Height="9.905535796788262" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="Arc" Rotation="5.80708005843629" />
+  </Shape>
+  <Group GroupId="af52a" GraphId="f10f9" Style="Group" />
+  <Group GroupId="b5416" GraphId="d9b87" Style="Group" />
+  <Group GroupId="e615d" GraphId="bad0b" Style="Group" />
+  <Group GroupId="d42ee" GraphId="cac43" Style="Group" />
+  <Group GroupId="bcc2f" GraphId="d4429" Style="Group" />
+  <Group GroupId="a84e6" Style="Group" />
+  <InfoBox CenterX="0.0" CenterY="0.0" />
+  <Biopax>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="c22">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">17925224</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">ClpP mediates activation of a mitochondrial unfolded protein response in C. elegans.</bp:TITLE>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Dev Cell</bp:SOURCE>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2007</bp:YEAR>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Haynes CM</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Petrova K</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Benedetti C</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Yang Y</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Ron D</bp:AUTHORS>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="d96">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">16816413</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Ubiquitin-like protein 5 positively regulates chaperone gene expression in the mitochondrial unfolded protein response.</bp:TITLE>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Genetics</bp:SOURCE>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2006</bp:YEAR>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Benedetti C</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Haynes CM</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Yang Y</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Harding HP</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Ron D</bp:AUTHORS>
+    </bp:PublicationXref>
+    <bp:openControlledVocabulary xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#">
+      <bp:TERM xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">endoplasmic reticulum stress - the unfolded protein response pathway</bp:TERM>
+      <bp:ID xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PW:0000379</bp:ID>
+      <bp:Ontology xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Pathway Ontology</bp:Ontology>
+    </bp:openControlledVocabulary>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="b31">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">18068368</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Mitochondrial stress signaling: a pathway unfolds.</bp:TITLE>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Trends Cell Biol</bp:SOURCE>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2008</bp:YEAR>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Broadley SA</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Hartl FU</bp:AUTHORS>
+    </bp:PublicationXref>
+  </Biopax>
+</Pathway>

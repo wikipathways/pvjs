@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Pathway xmlns="http://pathvisio.org/GPML/2013a" Name="Notch signaling in Vulval Development" Author="kyook@caltech.edu" Organism="Caenorhabditis elegans">
+  <Comment Source="WikiPathways-category">Cellular Process</Comment>
+  <Graphics BoardWidth="797.0" BoardHeight="273.0"/>
+  <DataNode TextLabel="LAG-2" GraphId="d056c" Type="GeneProduct">
+    <BiopaxRef>a6c</BiopaxRef>
+    <Graphics CenterX="100.0" CenterY="108.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="WormBase" ID="Y73C8B.4"/>
+  </DataNode>
+  <DataNode TextLabel="APX-1" GraphId="a772e" Type="GeneProduct">
+    <BiopaxRef>a6c</BiopaxRef>
+    <Graphics CenterX="100.0" CenterY="144.0" Width="80.0" Height="20.0" ZOrder="32769" FontSize="10" Valign="Middle"/>
+    <Xref Database="WormBase" ID="K08D9.3"/>
+  </DataNode>
+  <DataNode TextLabel="DSL-1" GraphId="ddf72" Type="GeneProduct">
+    <BiopaxRef>a6c</BiopaxRef>
+    <Graphics CenterX="100.0" CenterY="184.0" Width="80.0" Height="20.0" ZOrder="32770" FontSize="10" Valign="Middle"/>
+    <Xref Database="WormBase" ID="W09G12.4"/>
+  </DataNode>
+  <DataNode TextLabel="LIN-12" GraphId="a0bf9" Type="GeneProduct">
+    <BiopaxRef>a6c</BiopaxRef>
+    <Graphics CenterX="271.0" CenterY="144.0" Width="80.0" Height="20.0" ZOrder="32771" FontSize="10" Valign="Middle"/>
+    <Xref Database="WormBase" ID="R107.8"/>
+  </DataNode>
+  <DataNode TextLabel="LAG-1" GraphId="b4424" Type="GeneProduct">
+    <BiopaxRef>a6c</BiopaxRef>
+    <Graphics CenterX="552.0" CenterY="144.0" Width="80.0" Height="20.0" ZOrder="32773" FontSize="10" Valign="Middle"/>
+    <Xref Database="WormBase" ID="K08B4.1"/>
+  </DataNode>
+  <DataNode TextLabel="ark-1" GraphId="cb91a" Type="GeneProduct">
+    <BiopaxRef>a6c</BiopaxRef>
+    <Graphics CenterX="727.0" CenterY="67.0" Width="80.0" Height="20.0" ZOrder="32774" FontSize="10" Valign="Middle"/>
+    <Xref Database="WormBase" ID="C01C7.1"/>
+  </DataNode>
+  <DataNode TextLabel="lip-1" GraphId="a5e0c" Type="GeneProduct">
+    <BiopaxRef>a6c</BiopaxRef>
+    <Graphics CenterX="727.0" CenterY="99.0" Width="80.0" Height="20.0" ZOrder="32775" FontSize="10" Valign="Middle"/>
+    <Xref Database="WormBase" ID="C05B10.1"/>
+  </DataNode>
+  <DataNode TextLabel="lst-1" GraphId="ab9cf" Type="GeneProduct">
+    <BiopaxRef>a6c</BiopaxRef>
+    <Graphics CenterX="727.0" CenterY="133.0" Width="80.0" Height="20.0" ZOrder="32776" FontSize="10" Valign="Middle"/>
+    <Xref Database="WormBase" ID="T22A3.3"/>
+  </DataNode>
+  <DataNode TextLabel="lst-2" GraphId="d7e75" Type="GeneProduct">
+    <BiopaxRef>a6c</BiopaxRef>
+    <Graphics CenterX="727.0" CenterY="166.0" Width="80.0" Height="20.0" ZOrder="32777" FontSize="10" Valign="Middle"/>
+    <Xref Database="WormBase" ID="R160.7"/>
+  </DataNode>
+  <DataNode TextLabel="lst-3" GraphId="b4315" Type="GeneProduct">
+    <BiopaxRef>a6c</BiopaxRef>
+    <Graphics CenterX="727.0" CenterY="199.0" Width="80.0" Height="20.0" ZOrder="32778" FontSize="10" Valign="Middle"/>
+    <Xref Database="WormBase" ID="Y37A1B.1"/>
+  </DataNode>
+  <DataNode TextLabel="lst-4" GraphId="b60f6" Type="GeneProduct">
+    <BiopaxRef>a6c</BiopaxRef>
+    <Graphics CenterX="727.0" CenterY="233.0" Width="80.0" Height="20.0" ZOrder="32779" FontSize="10" Valign="Middle"/>
+    <Xref Database="WormBase" ID="Y37A1B.2"/>
+  </DataNode>
+  <Interaction GraphId="idd4eabc85">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="154.0" Y="144.0"/>
+      <Point X="231.0" Y="144.0" GraphRef="a0bf9" RelX="-1.0" RelY="0.0" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="id128b17c6">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="592.0" Y="144.0" GraphRef="b4424" RelX="1.0" RelY="0.0"/>
+      <Point X="674.0" Y="144.0" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="baf45">
+    <Graphics ZOrder="32772" LineThickness="1.0">
+      <Point X="311.0" Y="144.0" GraphRef="a0bf9" RelX="1.0" RelY="0.0"/>
+      <Point X="512.0" Y="144.0" GraphRef="b4424" RelX="-1.0" RelY="0.0" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <InfoBox CenterX="0.0" CenterY="0.0"/>
+  <Biopax>
+    <bp:openControlledVocabulary xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#">
+      <bp:TERM xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Notch signaling pathway</bp:TERM>
+      <bp:ID xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PW:0000204</bp:ID>
+      <bp:Ontology xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Pathway Ontology</bp:Ontology>
+    </bp:openControlledVocabulary>
+    <bp:PublicationXref xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" rdf:id="a6c">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">18050418</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Vulval development.</bp:TITLE>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">WormBook</bp:SOURCE>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2005</bp:YEAR>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Sternberg PW</bp:AUTHORS>
+    </bp:PublicationXref>
+  </Biopax>
+</Pathway>

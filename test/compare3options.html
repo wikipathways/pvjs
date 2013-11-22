@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <head>
 <meta charset="utf-8">
-<title>pathvisiojs comparisons</title>
+<title>pathvisio comparisons</title>
 
 <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css" media="screen">
 
@@ -217,7 +217,7 @@
       function(callback) {
         if (urlParamList.creator === 'pathvisio-js-dev') {
           loadScripts([
-            srcDirectoryUrl + "js/pathvisio/pathvisiojs",
+            srcDirectoryUrl + "js/pathvisio/pathvisio",
             srcDirectoryUrl + "js/pathvisio/utilities.js",
             srcDirectoryUrl + 'js/pathvisio/data-sources.js',
             srcDirectoryUrl + 'js/pathvisio/x-ref.js',
@@ -252,9 +252,9 @@
           });
         }
         else {
-          //loadJsCssFile(rootDirectoryUrl + "build/js/pathvisiojs.min.js", "js", callback)
+          //loadJsCssFile(rootDirectoryUrl + "build/js/pathvisio.min.js", "js", callback)
           loadScripts([
-            rootDirectoryUrl + "build/js/pathvisiojs.min.js"
+            rootDirectoryUrl + "build/js/pathvisio.min.js"
           ], function(){
             callback(null);
           });
@@ -269,14 +269,14 @@
   var urlParamList = getUrlParamList();
 
   var currentUrl = document.location.origin + document.location.pathname;
-  var rootDirectoryUrl = document.location.origin + document.location.pathname.split("pathvisiojs/")[0] + 'pathvisiojs/';
+  var rootDirectoryUrl = document.location.origin + document.location.pathname.split("pathvisio/")[0] + 'pathvisio/';
   var srcDirectoryUrl = (rootDirectoryUrl + 'src/');
 
   /*
   if (urlParamList.creator === 'pathvisio-js-dev') {
     if (!!urlParamList.account && !!urlParamList.branch && urlParamList.acount !== 'null' && urlParamList.branch !== 'null') {
       srcDirectoryUrl = 'src/';
-      //srcDirectoryUrl = 'https://rawgithub.com/' + urlParamList.account + '/pathvisiojs/' + urlParamList.branch + '/src/';
+      //srcDirectoryUrl = 'https://rawgithub.com/' + urlParamList.account + '/pathvisio/' + urlParamList.branch + '/src/';
     }
   }
   //*/
@@ -377,7 +377,7 @@
             {'id': 't-bar', 'url': srcDirectoryUrl + 'views/markers/t-bar.svg'}
           ];
 
-          pathvisiojs.load({
+          pathvisio.load({
             target: '#view',
             width: 1000,
             height: 500,
@@ -442,8 +442,8 @@
 </head>
 <body>
   <div id="choose-viewer">
-    <button id="pathvisio-js-dev-button" class="pathway" title="SVG viewer for all modern browsers (Dev Version)" onclick="displayCreator('pathvisio-js-dev')" style="background-color: yellow">pathvisiojs (DEV)</button>
-    <button id="pathvisio-js-prod-button" class="pathway" title="SVG viewer for all modern browsers" onclick="displayCreator('pathvisio-js-prod')" style="background-color: lightgray">pathvisiojs (PROD)</button>
+    <button id="pathvisio-js-dev-button" class="pathway" title="SVG viewer for all modern browsers (Dev Version)" onclick="displayCreator('pathvisio-js-dev')" style="background-color: yellow">pathvisio (DEV)</button>
+    <button id="pathvisio-js-prod-button" class="pathway" title="SVG viewer for all modern browsers" onclick="displayCreator('pathvisio-js-prod')" style="background-color: lightgray">pathvisio (PROD)</button>
     <button id="current-wiki-pathways-widget-button" class="pathway" title="Pathway widget currently in use on www.wikipathways.org" onclick="displayCreator('current-wiki-pathways-widget')" style="background-color: lightgray">Current WP Viewer</button>
     <button id="help-button" class="pathway" title="How to use this test/dev page" onclick="displayCreator('help')" style="background-color: lightgray">Help</button>
   <!--

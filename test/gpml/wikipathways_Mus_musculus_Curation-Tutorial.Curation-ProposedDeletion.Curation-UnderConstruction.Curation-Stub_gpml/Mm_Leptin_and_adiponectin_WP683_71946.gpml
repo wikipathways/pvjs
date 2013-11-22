@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Pathway xmlns="http://pathvisio.org/GPML/2013a" Name="Leptin and adiponectin" Organism="Mus musculus">
+  <Comment Source="WikiPathways-category">Metabolic Process</Comment>
+  <Comment Source="WikiPathways-description">Proposed mechanism by which leptin and adiponectin stimulate fatty acid oxidation. Adapted from fig 1 in [http://www.ncbi.nlm.nih.gov/pubmed/16497175 Dyck et al.].</Comment>
+  <BiopaxRef>e92</BiopaxRef>
+  <Graphics BoardWidth="761.0" BoardHeight="703.0" />
+  <DataNode TextLabel="Leptin" GraphId="c4eeb" Type="GeneProduct">
+    <Graphics CenterX="314.0" CenterY="99.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Entrez Gene" ID="16846" />
+  </DataNode>
+  <DataNode TextLabel="Adiponectin" GraphId="f9953" Type="GeneProduct">
+    <Graphics CenterX="471.0" CenterY="99.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Entrez Gene" ID="11450" />
+  </DataNode>
+  <DataNode TextLabel="Lepr" GraphId="e4d8f" Type="GeneProduct">
+    <Graphics CenterX="314.0" CenterY="204.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Entrez Gene" ID="16847" />
+  </DataNode>
+  <DataNode TextLabel="Adipor2" GraphId="c7cbc" Type="GeneProduct">
+    <Graphics CenterX="528.0" CenterY="204.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Entrez Gene" ID="68465" />
+  </DataNode>
+  <DataNode TextLabel="Adipor1" GraphId="b383b" Type="GeneProduct">
+    <Graphics CenterX="415.0" CenterY="204.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Entrez Gene" ID="72674" />
+  </DataNode>
+  <DataNode TextLabel="Prkaa1" GraphId="bd895" Type="GeneProduct" GroupRef="bd2d8">
+    <Graphics CenterX="529.0" CenterY="310.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Entrez Gene" ID="105787" />
+  </DataNode>
+  <DataNode TextLabel="Prkag1" GraphId="e197d" Type="GeneProduct" GroupRef="bd2d8">
+    <Graphics CenterX="529.0" CenterY="350.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Entrez Gene" ID="19082" />
+  </DataNode>
+  <DataNode TextLabel="Prkab1" GraphId="be7c2" Type="GeneProduct" GroupRef="bd2d8">
+    <Graphics CenterX="529.0" CenterY="330.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Entrez Gene" ID="19079" />
+  </DataNode>
+  <DataNode TextLabel="Acc1" GraphId="d931c" Type="GeneProduct">
+    <Graphics CenterX="529.0" CenterY="420.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Entrez Gene" ID="107476" />
+  </DataNode>
+  <DataNode TextLabel="Acetyl-CoA" GraphId="de8e5" Type="Metabolite">
+    <Graphics CenterX="438.0" CenterY="470.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Xref Database="ChEBI" ID="15351" />
+  </DataNode>
+  <DataNode TextLabel="Malonyl-CoA" GraphId="fe4e5" Type="Metabolite">
+    <Graphics CenterX="624.0" CenterY="470.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Xref Database="ChEBI" ID="15531" />
+  </DataNode>
+  <DataNode TextLabel="Cpt1" GraphId="e683e" Type="GeneProduct">
+    <Graphics CenterX="506.0" CenterY="586.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Entrez Gene" ID="12894" />
+  </DataNode>
+  <DataNode TextLabel="Fatty acid" GraphId="c7407" Type="Metabolite">
+    <Graphics CenterX="663.0" CenterY="620.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Xref Database="ChEBI" ID="CHEBI:35366" />
+  </DataNode>
+  <DataNode TextLabel="Fatty acid" GraphId="b99a3" Type="Metabolite">
+    <Graphics CenterX="379.0" CenterY="620.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Xref Database="ChEBI" ID="CHEBI:35366" />
+  </DataNode>
+  <Interaction GraphId="dca61">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="314.0" Y="109.0" GraphRef="c4eeb" RelX="0.0" RelY="1.0" />
+      <Point X="314.0" Y="194.0" GraphRef="e4d8f" RelX="0.0" RelY="-1.0" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="de57c">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="471.0" Y="109.0" GraphRef="f9953" RelX="0.0" RelY="1.0" />
+      <Point X="415.0" Y="194.0" GraphRef="b383b" RelX="0.0" RelY="-1.0" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="cc93c">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="471.0" Y="109.0" GraphRef="f9953" RelX="0.0" RelY="1.0" />
+      <Point X="528.0" Y="194.0" GraphRef="c7cbc" RelX="0.0" RelY="-1.0" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="c173e">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="478.0" Y="470.0" GraphRef="de8e5" RelX="1.0" RelY="0.0" />
+      <Point X="584.0" Y="470.0" GraphRef="fe4e5" RelX="-1.0" RelY="0.0" ArrowHead="Arrow" />
+      <Anchor Position="0.4811320754716981" Shape="None" GraphId="ac231" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="ce400">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="528.0" Y="214.0" GraphRef="c7cbc" RelX="0.0" RelY="1.0" />
+      <Point X="529.0" Y="288.0" GraphRef="e8407" RelX="0.0" RelY="-1.0" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="d844c">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="415.0" Y="214.0" GraphRef="b383b" RelX="0.0" RelY="1.0" />
+      <Point X="503.0" Y="288.0" GraphRef="e8407" RelX="-0.5" RelY="-1.0" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="c4106">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="314.0" Y="214.0" GraphRef="e4d8f" RelX="0.0" RelY="1.0" />
+      <Point X="477.0" Y="330.0" GraphRef="e8407" RelX="-1.0" RelY="0.0" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="a609c">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="529.0" Y="372.0" GraphRef="e8407" RelX="0.0" RelY="1.0" />
+      <Point X="529.0" Y="410.0" GraphRef="d931c" RelX="0.0" RelY="-1.0" ArrowHead="TBar" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="a0e5a">
+    <Graphics ZOrder="12288" LineStyle="Broken" LineThickness="1.0">
+      <Point X="623.0" Y="620.0" GraphRef="c7407" RelX="-1.0" RelY="0.0" />
+      <Point X="419.0" Y="620.0" GraphRef="b99a3" RelX="1.0" RelY="0.0" ArrowHead="Arrow" />
+      <Anchor Position="0.47549019607843135" Shape="None" GraphId="c0729" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="d9fc6">
+    <Graphics ConnectorType="Elbow" ZOrder="12288" LineThickness="1.0">
+      <Point X="339.0" Y="620.0" GraphRef="b99a3" RelX="-1.0" RelY="0.0" />
+      <Point X="319.0" Y="574.0" GraphRef="afcbe" RelX="0.0" RelY="1.0" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="b5dcd">
+    <Graphics ConnectorType="Elbow" ZOrder="12288" LineThickness="1.0">
+      <Point X="624.0" Y="480.0" GraphRef="fe4e5" RelX="0.0" RelY="1.0" />
+      <Point X="546.0" Y="586.0" GraphRef="e683e" RelX="1.0" RelY="0.0" ArrowHead="TBar" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="b4625">
+    <Graphics ZOrder="32769" LineThickness="1.0">
+      <Point X="529.0" Y="430.0" GraphRef="d931c" RelX="0.0" RelY="1.0" />
+      <Point X="529.0" Y="470.0" GraphRef="ac231" RelX="0.0" RelY="0.0" ArrowHead="mim-catalysis" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="d8581">
+    <Graphics ZOrder="32770" LineThickness="1.0">
+      <Point X="526.0" Y="596.0" GraphRef="e683e" RelX="0.5" RelY="1.0" />
+      <Point X="526.0" Y="620.0" GraphRef="c0729" RelX="0.0" RelY="0.0" ArrowHead="mim-catalysis" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Label TextLabel="beta-oxidation" GraphId="afcbe">
+    <Graphics CenterX="319.0" CenterY="564.0" Width="106.0" Height="20.0" ZOrder="28672" FillColor="ffffff" FontSize="10" Valign="Middle" ShapeType="RoundedRectangle" />
+  </Label>
+  <Label TextLabel="Mitochondrion" GraphId="f8abd">
+    <Graphics CenterX="218.0" CenterY="532.0" Width="80.0" Height="20.0" ZOrder="28672" FillColor="ffffff" FontSize="10" Valign="Middle" />
+  </Label>
+  <Shape GraphId="e03a8">
+    <Graphics CenterX="375.98333333333335" CenterY="438.5" Width="710.0333333333333" Height="469.0" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="Rectangle" Rotation="0.0" />
+  </Shape>
+  <Shape GraphId="c8518">
+    <Attribute Key="org.pathvisio.CellularComponentProperty" Value="Mitochondria" />
+    <Graphics CenterX="329.5" CenterY="594.5" Width="365.0" Height="121.0" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="Mitochondria" LineThickness="3.0" Color="c0c0c0" Rotation="0.0" />
+  </Shape>
+  <Group GroupId="bd2d8" GraphId="e8407" Style="Complex" />
+  <InfoBox CenterX="0.0" CenterY="0.0" />
+  <Biopax>
+    <bp:openControlledVocabulary xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#">
+      <bp:TERM xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">glucose metabolism disease</bp:TERM>
+      <bp:ID xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">DOID:4194</bp:ID>
+      <bp:Ontology xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Disease</bp:Ontology>
+    </bp:openControlledVocabulary>
+    <bp:openControlledVocabulary xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#">
+      <bp:TERM xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">leptin system pathway</bp:TERM>
+      <bp:ID xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PW:0000363</bp:ID>
+      <bp:Ontology xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Pathway Ontology</bp:Ontology>
+    </bp:openControlledVocabulary>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="e92">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">16497175</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">The role of adipokines as regulators of skeletal muscle fatty acid metabolism and insulin sensitivity.</bp:TITLE>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Acta Physiol (Oxf)</bp:SOURCE>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2006</bp:YEAR>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Dyck DJ</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Heigenhauser GJ</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Bruce CR</bp:AUTHORS>
+    </bp:PublicationXref>
+    <bp:openControlledVocabulary xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#">
+      <bp:TERM xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">adiponectin signaling pathway</bp:TERM>
+      <bp:ID xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PW:0000563</bp:ID>
+      <bp:Ontology xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Pathway Ontology</bp:Ontology>
+    </bp:openControlledVocabulary>
+  </Biopax>
+</Pathway>

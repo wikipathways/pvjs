@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Pathway xmlns="http://pathvisio.org/GPML/2013a" Name="miR-1 in cardiac development" Organism="Mus musculus">
+  <Comment Source="WikiPathways-description">This pathway is an adaptation from figure 2.a in Stefani et al. (2008). miR-1 regulates cardiac morphogenesis by optimizing the level of the HAND2 transcription factor. Electric conduction is abnormal in mice that lack miR-1 as a consequence of de-inhibition of IRX5, a homeodomain-containing transcription factor that represses the expression of the KCND2 potassium channel.</Comment>
+  <Comment Source="WikiPathways-category">Physiological Process</Comment>
+  <BiopaxRef>f12</BiopaxRef>
+  <Graphics BoardWidth="578.0" BoardHeight="329.0"/>
+  <DataNode TextLabel="mmu-mir-1-1" GraphId="bdc06" Type="Rna" GroupRef="c8d9f">
+    <Graphics CenterX="254.0" CenterY="87.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="miRBase Sequence" ID="MI0000139"/>
+  </DataNode>
+  <DataNode TextLabel="mmu-mir-1-2" GraphId="a18de" Type="Rna" GroupRef="c8d9f">
+    <Graphics CenterX="254.0" CenterY="109.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="miRBase Sequence" ID="MI0000652"/>
+  </DataNode>
+  <DataNode TextLabel="Hand2" GraphId="f3a5a" Type="GeneProduct">
+    <Graphics CenterX="193.0" CenterY="197.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="15111"/>
+  </DataNode>
+  <DataNode TextLabel="Irx5" GraphId="e352b" Type="GeneProduct">
+    <Graphics CenterX="325.0" CenterY="197.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="54352"/>
+  </DataNode>
+  <DataNode TextLabel="Kcnd2" GraphId="d7557" Type="GeneProduct">
+    <Graphics CenterX="325.0" CenterY="286.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="16508"/>
+  </DataNode>
+  <Interaction GraphId="b555f">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="254.0" Y="127.0" GraphRef="a267a" RelX="0.0" RelY="1.0"/>
+      <Point X="325.0" Y="187.0" GraphRef="e352b" RelX="0.0" RelY="-1.0" ArrowHead="TBar"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="d0a62">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="230.0" Y="127.0" GraphRef="a267a" RelX="-0.5" RelY="1.0"/>
+      <Point X="193.0" Y="187.0" GraphRef="f3a5a" RelX="0.0" RelY="-1.0" ArrowHead="TBar"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="df4ac">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="193.0" Y="207.0" GraphRef="f3a5a" RelX="0.0" RelY="1.0"/>
+      <Point X="193.5" Y="279.0" GraphRef="fd757" RelX="0.0" RelY="-1.0" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="c5eb9">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="325.0" Y="207.0" GraphRef="e352b" RelX="0.0" RelY="1.0"/>
+      <Point X="325.0" Y="276.0" GraphRef="d7557" RelX="0.0" RelY="-1.0" ArrowHead="TBar"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="df705">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="365.0" Y="286.0" GraphRef="d7557" RelX="1.0" RelY="0.0"/>
+      <Point X="438.0" Y="286.0" GraphRef="e1558" RelX="-1.0" RelY="0.0" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Label TextLabel="miR-1" GraphId="b566a" GroupRef="c8d9f">
+    <Graphics CenterX="254.0" CenterY="65.0" Width="80.0" Height="20.0" ZOrder="28672" FillColor="ffffff" FontName="Dialog" FontWeight="Bold" FontSize="10" Valign="Middle"/>
+  </Label>
+  <Label TextLabel="Electric conduction" GraphId="e1558">
+    <Graphics CenterX="493.0" CenterY="286.0" Width="110.0" Height="20.0" ZOrder="28672" FillColor="ffffff" FontSize="10" Valign="Middle"/>
+  </Label>
+  <Label TextLabel="Heart morphogenesis" GraphId="fd757">
+    <Graphics CenterX="193.5" CenterY="289.0" Width="119.0" Height="20.0" ZOrder="28672" FillColor="ffffff" FontSize="10" Valign="Middle"/>
+  </Label>
+  <Group GroupId="c8d9f" GraphId="a267a" Style="Group"/>
+  <InfoBox CenterX="0.0" CenterY="0.0"/>
+  <Biopax>
+    <bp:openControlledVocabulary xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#">
+      <bp:TERM xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">microRNA pathway</bp:TERM>
+      <bp:ID xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PW:0000808</bp:ID>
+      <bp:Ontology xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Pathway Ontology</bp:Ontology>
+    </bp:openControlledVocabulary>
+    <bp:PublicationXref xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" rdf:id="f12">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">18270516</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Small non-coding RNAs in animal development.</bp:TITLE>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Nat Rev Mol Cell Biol</bp:SOURCE>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2008</bp:YEAR>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Stefani G</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Slack FJ</bp:AUTHORS>
+    </bp:PublicationXref>
+  </Biopax>
+</Pathway>

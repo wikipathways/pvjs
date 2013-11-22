@@ -1,14 +1,15 @@
 {
   "name": "modernizr",
   "homepage": "https://github.com/Modernizr/Modernizr",
-  "version": "2.6.2",
-  "_release": "2.6.2",
+  "version": "2.7.0",
+  "_release": "2.7.0",
   "_resolution": {
     "type": "version",
-    "tag": "v2.6.2",
-    "commit": "ca45d02757b83367d8455d477e3cbc42dfdee035"
+    "tag": "v2.7.0",
+    "commit": "71f8bc6e67b0f44b038957417e6e883c6fc53f36"
   },
   "_source": "git://github.com/Modernizr/Modernizr.git",
-  "_target": "~2.6.2",
-  "_originalSource": "git://github.com/Modernizr/Modernizr.git"
+  "_target": "~2.7.0",
+  "_originalSource": "modernizr",
+  "_direct": true
 }

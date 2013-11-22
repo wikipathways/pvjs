@@ -1,0 +1,591 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Pathway xmlns="http://pathvisio.org/GPML/2013a" Name="MAP kinase cascade" Data-Source="Reactome - http://www.reactome.org" Version="release 35" Author="Charalambous, M" Organism="Homo sapiens">
+  <Comment Source="WikiPathways-description">The MAP kinase cascade describes a sequence of phosphorylation events involving serine/threonine-specific protein kinases. Used by various signal transduction pathways, this cascade constitutes a common 'module' in the transmission of an extracellular signal into the nucleus.</Comment>
+  <Comment Source="WikiPathways-category">Cellular Process</Comment>
+  <Graphics BoardWidth="3902.5" BoardHeight="6380.0"/>
+  <DataNode TextLabel="MEK&#10;" GraphId="n1_REACTOME_112398" Type="Protein">
+    <Graphics CenterX="132.5" CenterY="351.5" Width="61.0" Height="27.0" ZOrder="32768" FillColor="ccffcc" FontSize="12" Valign="Middle" ShapeType="RoundedRectangle"/>
+    <Xref Database="Reactome" ID="REACT_2275"/>
+  </DataNode>
+  <DataNode TextLabel="Activated RAF1 &#10;complex:MEK&#10;" GraphId="n2_REACTOME_112406" Type="Complex">
+    <Graphics CenterX="66.0" CenterY="179.5" Width="98.0" Height="41.0" ZOrder="32768" FillColor="ccffff" FontSize="12" Valign="Middle" ShapeType="RoundedRectangle" LineThickness="2.0"/>
+    <Xref Database="Reactome" ID="REACT_3953"/>
+  </DataNode>
+  <DataNode TextLabel="Activated RAF1 &#10;complex&#10;" GraphId="n3_REACTOME_109793" Type="Complex">
+    <Graphics CenterX="63.5" CenterY="399.0" Width="97.0" Height="42.0" ZOrder="32768" FillColor="ccffff" FontSize="12" Valign="Middle" ShapeType="RoundedRectangle" LineThickness="2.0"/>
+    <Xref Database="Reactome" ID="REACT_4906"/>
+  </DataNode>
+  <DataNode TextLabel="phospho-&#10;MEK1&#10;" GraphId="n6_REACTOME_109837" Type="Protein">
+    <Graphics CenterX="552.5" CenterY="303.5" Width="87.0" Height="45.0" ZOrder="32768" FillColor="ccffcc" FontSize="12" Valign="Middle" ShapeType="RoundedRectangle"/>
+    <Xref Database="UniProt" ID="Q02750"/>
+  </DataNode>
+  <DataNode TextLabel="Activated RAF1 &#10;complex&#10;" GraphId="n8_REACTOME_109793" Type="Complex">
+    <Graphics CenterX="439.5" CenterY="167.0" Width="101.0" Height="40.0" ZOrder="32768" FillColor="ccffff" FontSize="12" Valign="Middle" ShapeType="RoundedRectangle" LineThickness="2.0"/>
+    <Xref Database="Reactome" ID="REACT_4906"/>
+  </DataNode>
+  <DataNode TextLabel="phospho-&#10;MEK2&#10;" GraphId="n9_REACTOME_109848" Type="Protein">
+    <Graphics CenterX="527.0" CenterY="80.5" Width="86.0" Height="41.0" ZOrder="32768" FillColor="ccffcc" FontSize="12" Valign="Middle" ShapeType="RoundedRectangle"/>
+    <Xref Database="UniProt" ID="P36507"/>
+  </DataNode>
+  <DataNode TextLabel="ERK1&#10;" GraphId="n13_REACTOME_59284" Type="Protein">
+    <Graphics CenterX="537.0" CenterY="202.0" Width="40.0" Height="32.0" ZOrder="32768" FillColor="ccffcc" FontSize="12" Valign="Middle" ShapeType="RoundedRectangle"/>
+    <Xref Database="UniProt" ID="P27361"/>
+  </DataNode>
+  <DataNode TextLabel="phospho-&#10;ERK-1 &#10;dimer&#10;" GraphId="n16_REACTOME_109845" Type="Complex">
+    <Graphics CenterX="1096.5" CenterY="482.5" Width="73.0" Height="53.0" ZOrder="32768" FillColor="ccffff" FontSize="12" Valign="Middle" ShapeType="RoundedRectangle" LineThickness="2.0"/>
+    <Xref Database="Reactome" ID="REACT_3152"/>
+  </DataNode>
+  <DataNode TextLabel="phospho-ERK-1:&#10;MEK1&#10;" GraphId="n17_REACTOME_109843" Type="Complex">
+    <Graphics CenterX="918.0" CenterY="222.5" Width="122.0" Height="41.0" ZOrder="32768" FillColor="ccffff" FontSize="12" Valign="Middle" ShapeType="RoundedRectangle" LineThickness="2.0"/>
+    <Xref Database="Reactome" ID="REACT_2796"/>
+  </DataNode>
+  <DataNode TextLabel="phospho-&#10;ERK-1 dimer&#10;" GraphId="n18_REACTOME_109844" Type="Complex">
+    <Graphics CenterX="1095.5" CenterY="363.0" Width="77.0" Height="50.0" ZOrder="32768" FillColor="ccffff" FontSize="12" Valign="Middle" ShapeType="RoundedRectangle" LineThickness="2.0"/>
+    <Xref Database="Reactome" ID="REACT_3932"/>
+  </DataNode>
+  <DataNode TextLabel="MEK1:&#10;ERK-1&#10;" GraphId="n19_REACTOME_109838" Type="Complex">
+    <Graphics CenterX="693.5" CenterY="220.0" Width="63.0" Height="38.0" ZOrder="32768" FillColor="ccffff" FontSize="12" Valign="Middle" ShapeType="RoundedRectangle" LineThickness="2.0"/>
+    <Xref Database="Reactome" ID="REACT_5539"/>
+  </DataNode>
+  <DataNode TextLabel="Activated &#10;ERK1&#10;" GraphId="n21_REACTOME_109842" Type="Protein">
+    <Graphics CenterX="1090.0" CenterY="242.0" Width="80.0" Height="48.0" ZOrder="32768" FillColor="ccffcc" FontSize="12" Valign="Middle" ShapeType="RoundedRectangle"/>
+    <Xref Database="UniProt" ID="P27361"/>
+  </DataNode>
+  <DataNode TextLabel="phospho-&#10;ERK-2 &#10;dimer&#10;" GraphId="n27_REACTOME_109855" Type="Complex">
+    <Graphics CenterX="1190.5" CenterY="363.0" Width="75.0" Height="50.0" ZOrder="32768" FillColor="ccffff" FontSize="12" Valign="Middle" ShapeType="RoundedRectangle" LineThickness="2.0"/>
+    <Xref Database="Reactome" ID="REACT_3688"/>
+  </DataNode>
+  <DataNode TextLabel="phospho-&#10;ERK-2 &#10;dimer&#10;" GraphId="n28_REACTOME_109856" Type="Complex">
+    <Graphics CenterX="1192.5" CenterY="484.5" Width="69.0" Height="51.0" ZOrder="32768" FillColor="ccffff" FontSize="12" Valign="Middle" ShapeType="RoundedRectangle" LineThickness="2.0"/>
+    <Xref Database="Reactome" ID="REACT_5046"/>
+  </DataNode>
+  <DataNode TextLabel="ADP&#10;" GraphId="n29_REACTOME_29370" Type="Metabolite">
+    <Graphics CenterX="864.0" CenterY="164.5" Width="38.0" Height="31.0" ZOrder="32768" FillColor="ccffcc" FontSize="12" Valign="Middle" ShapeType="Oval"/>
+    <Xref Database="ChEBI" ID="16761"/>
+  </DataNode>
+  <DataNode TextLabel="ERK2&#10;" GraphId="n30_REACTOME_59282" Type="Protein">
+    <Graphics CenterX="529.0" CenterY="123.5" Width="48.0" Height="23.0" ZOrder="32768" FillColor="ccffcc" FontSize="12" Valign="Middle" ShapeType="RoundedRectangle"/>
+    <Xref Database="UniProt" ID="P28482"/>
+  </DataNode>
+  <DataNode TextLabel="MEK2:&#10;ERK-2&#10;" GraphId="n31_REACTOME_109849" Type="Complex">
+    <Graphics CenterX="687.0" CenterY="97.0" Width="62.0" Height="38.0" ZOrder="32768" FillColor="ccffff" FontSize="12" Valign="Middle" ShapeType="RoundedRectangle" LineThickness="2.0"/>
+    <Xref Database="Reactome" ID="REACT_5435"/>
+  </DataNode>
+  <DataNode TextLabel="Activated &#10;ERK2&#10;" GraphId="n32_REACTOME_109853" Type="Protein">
+    <Graphics CenterX="1187.0" CenterY="243.0" Width="78.0" Height="48.0" ZOrder="32768" FillColor="ccffcc" FontSize="12" Valign="Middle" ShapeType="RoundedRectangle"/>
+    <Xref Database="UniProt" ID="P28482"/>
+  </DataNode>
+  <DataNode TextLabel="phospho-ERK-2:&#10;MEK2&#10;" GraphId="n33_REACTOME_109854" Type="Complex">
+    <Graphics CenterX="918.0" CenterY="93.5" Width="102.0" Height="37.0" ZOrder="32768" FillColor="ccffff" FontSize="12" Valign="Middle" ShapeType="RoundedRectangle" LineThickness="2.0"/>
+    <Xref Database="Reactome" ID="REACT_3199"/>
+  </DataNode>
+  <DataNode TextLabel="ATP&#10;" GraphId="n35_REACTOME_113592" Type="Metabolite">
+    <Graphics CenterX="697.5" CenterY="150.5" Width="37.0" Height="31.0" ZOrder="32768" FillColor="ccffcc" FontSize="12" Valign="Middle" ShapeType="Oval"/>
+    <Xref Database="ChEBI" ID="15422"/>
+  </DataNode>
+  <DataNode TextLabel="ADP&#10;" GraphId="n198_REACTOME_29370" Type="Metabolite">
+    <Graphics CenterX="338.0" CenterY="170.5" Width="38.0" Height="31.0" ZOrder="32768" FillColor="ccffcc" FontSize="12" Valign="Middle" ShapeType="Oval"/>
+    <Xref Database="ChEBI" ID="16761"/>
+  </DataNode>
+  <DataNode TextLabel="Activated RAF1 &#10;complex:MEK1&#10;" GraphId="n394_REACTOME_109794" Type="Complex">
+    <Graphics CenterX="200.0" CenterY="257.0" Width="92.0" Height="38.0" ZOrder="32768" FillColor="ccffff" FontSize="12" Valign="Middle" ShapeType="RoundedRectangle" LineThickness="2.0"/>
+    <Xref Database="Reactome" ID="REACT_4256"/>
+  </DataNode>
+  <DataNode TextLabel="ATP&#10;" GraphId="n396_REACTOME_113592" Type="Metabolite">
+    <Graphics CenterX="198.0" CenterY="179.5" Width="38.0" Height="31.0" ZOrder="32768" FillColor="ccffcc" FontSize="12" Valign="Middle" ShapeType="Oval"/>
+    <Xref Database="ChEBI" ID="15422"/>
+  </DataNode>
+  <DataNode TextLabel="Activated RAF1 &#10;complex:MEK2&#10;" GraphId="n397_REACTOME_109795" Type="Complex">
+    <Graphics CenterX="197.0" CenterY="111.0" Width="92.0" Height="38.0" ZOrder="32768" FillColor="ccffff" FontSize="12" Valign="Middle" ShapeType="RoundedRectangle" LineThickness="2.0"/>
+    <Xref Database="Reactome" ID="REACT_4223"/>
+  </DataNode>
+  <DataNode TextLabel="MEK1&#10;" GraphId="n509_REACTOME_112336">
+    <Graphics CenterX="419.5" CenterY="470.0" Width="45.0" Height="22.0" ZOrder="32768" FillColor="ccffcc" FontSize="12" Valign="Middle"/>
+    <Xref Database="Reactome" ID="REACT_2607"/>
+  </DataNode>
+  <DataNode TextLabel="ATP&#10;" GraphId="n510_REACTOME_113592" Type="Metabolite">
+    <Graphics CenterX="350.0" CenterY="470.5" Width="38.0" Height="31.0" ZOrder="32768" FillColor="ccffcc" FontSize="12" Valign="Middle" ShapeType="Oval"/>
+    <Xref Database="ChEBI" ID="15422"/>
+  </DataNode>
+  <DataNode TextLabel="ADP&#10;" GraphId="n511_REACTOME_29370" Type="Metabolite">
+    <Graphics CenterX="336.5" CenterY="359.5" Width="39.0" Height="31.0" ZOrder="32768" FillColor="ccffcc" FontSize="12" Valign="Middle" ShapeType="Oval"/>
+    <Xref Database="ChEBI" ID="16761"/>
+  </DataNode>
+  <DataNode TextLabel="phospho_MEK1&#10;" GraphId="n512_REACTOME_112340" Type="Protein">
+    <Graphics CenterX="433.0" CenterY="354.5" Width="98.0" Height="23.0" ZOrder="32768" FillColor="ccffcc" FontSize="12" Valign="Middle" ShapeType="RoundedRectangle"/>
+    <Xref Database="Reactome" ID="REACT_3339"/>
+  </DataNode>
+  <DataNode TextLabel="phospho-Cdc2 (Thr &#10;161)&#10;" GraphId="n513_REACTOME_157415" Type="Protein">
+    <Graphics CenterX="483.5" CenterY="420.0" Width="115.0" Height="38.0" ZOrder="32768" FillColor="ccffcc" FontSize="12" Valign="Middle" ShapeType="RoundedRectangle"/>
+    <Xref Database="UniProt" ID="P06493"/>
+  </DataNode>
+  <DataNode TextLabel="ATP&#10;" GraphId="n515_REACTOME_113592" Type="Metabolite">
+    <Graphics CenterX="736.5" CenterY="273.5" Width="37.0" Height="31.0" ZOrder="32768" FillColor="ccffcc" FontSize="12" Valign="Middle" ShapeType="Oval"/>
+    <Xref Database="ChEBI" ID="15422"/>
+  </DataNode>
+  <DataNode TextLabel="ADP&#10;" GraphId="n521_REACTOME_29370" Type="Metabolite">
+    <Graphics CenterX="826.0" CenterY="271.5" Width="38.0" Height="31.0" ZOrder="32768" FillColor="ccffcc" FontSize="12" Valign="Middle" ShapeType="Oval"/>
+    <Xref Database="ChEBI" ID="16761"/>
+  </DataNode>
+  <Interaction GraphId="e_4_REACTOME_109830">
+    <Comment Source="WikiPathways-description">MEK-1/2 have a proline rich domain (P) and critical Serine residues  (MEK-1 S218/222, MEK-2 unknown, S) upon which the molecules may be phosphorylated. MEK1/2 are found in the cytoplasm of unstimulated cells.&lt;br&gt;MEK-1/2 bind to active Raf-1 via the proline-rich domain. Active Raf-1 is able to phosphorylate target Serine and Threonine residues in the presence of ATP.</Comment>
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="67.0" Y="317.0"/>
+      <Point X="67.0" Y="282.0"/>
+      <Point X="66.0" Y="203.5" GraphRef="n2_REACTOME_112406" RelX="0.0" RelY="1.170731707317073" ArrowHead="Arrow"/>
+      <Anchor Position="0.0" Shape="None" GraphId="e_4_a_i"/>
+      <Anchor Position="0.30700050032180887" Shape="None" GraphId="e_4_a_p"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_4_i0">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="106.5" Y="335.5" GraphRef="n1_REACTOME_112398" RelX="-0.8524590163934426" RelY="-1.1851851851851851"/>
+      <Point X="67.0" Y="317.0" GraphRef="e_4_a_i" RelX="0.0" RelY="0.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_4_i1">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="64.5" Y="375.0" GraphRef="n3_REACTOME_109793" RelX="0.020618556701030927" RelY="-1.1428571428571428"/>
+      <Point X="67.0" Y="317.0" GraphRef="e_4_a_i" RelX="0.0" RelY="0.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_11_REACTOME_109841">
+    <Comment Source="WikiPathways-description">Active Raf-1 phosphorylates MEK-1/2 on Serine residues, converting ATP to ADP. The MEK-1/2 kinase is now active.</Comment>
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="268.0" Y="223.0"/>
+      <Point X="296.0" Y="224.0"/>
+      <Point X="319.0" Y="224.0"/>
+      <Anchor Position="0.0" Shape="None" GraphId="e_11_a_i"/>
+      <Anchor Position="0.5491774085874711" Shape="None" GraphId="e_11_a_p"/>
+      <Anchor Position="1.0" Shape="None" GraphId="e_11_a_o"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_11_i0">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="238.0" Y="235.0" GraphRef="n394_REACTOME_109794" RelX="0.8260869565217391" RelY="-1.1578947368421053"/>
+      <Point X="268.0" Y="223.0" GraphRef="e_11_a_i" RelX="0.0" RelY="0.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_11_i1">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="220.0" Y="190.5" GraphRef="n396_REACTOME_113592" RelX="1.1578947368421053" RelY="0.7096774193548387"/>
+      <Point X="268.0" Y="223.0" GraphRef="e_11_a_i" RelX="0.0" RelY="0.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_11_o0">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="506.5" Y="288.5" GraphRef="n6_REACTOME_109837" RelX="-1.0574712643678161" RelY="-0.6666666666666666" ArrowHead="Arrow"/>
+      <Point X="319.0" Y="224.0" GraphRef="e_11_a_o" RelX="23.0" RelY="0.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_11_o1">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="396.5" Y="190.0" GraphRef="n8_REACTOME_109793" RelX="-0.8514851485148515" RelY="1.15" ArrowHead="Arrow"/>
+      <Point X="319.0" Y="224.0" GraphRef="e_11_a_o" RelX="23.0" RelY="0.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_11_o2">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="332.0" Y="189.5" GraphRef="n198_REACTOME_29370" RelX="-0.3157894736842105" RelY="1.2258064516129032" ArrowHead="Arrow"/>
+      <Point X="319.0" Y="224.0" GraphRef="e_11_a_o" RelX="23.0" RelY="0.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_11_c__0">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineStyle="Broken" LineThickness="1.0">
+      <Point X="75.0" Y="203.5" GraphRef="n2_REACTOME_112406" RelX="0.1836734693877551" RelY="1.170731707317073"/>
+      <Point X="120.0" Y="299.0"/>
+      <Point X="295.0" Y="296.0"/>
+      <Point X="296.0" Y="224.0" GraphRef="e_11_a_p" RelX="0.0" RelY="0.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_12_REACTOME_109852">
+    <Comment Source="WikiPathways-description">Active Raf-1 phosphorylates MEK-1/2 on Serine residues, converting ATP to ADP. The MEK-1/2 kinase is now active.</Comment>
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="274.0" Y="124.0"/>
+      <Point X="300.0" Y="123.0"/>
+      <Point X="320.0" Y="124.0"/>
+      <Anchor Position="0.0" Shape="None" GraphId="e_12_a_i"/>
+      <Anchor Position="0.5650922181199421" Shape="None" GraphId="e_12_a_p"/>
+      <Anchor Position="1.0" Shape="None" GraphId="e_12_a_o"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_12_i0">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="220.0" Y="165.5" GraphRef="n396_REACTOME_113592" RelX="1.1578947368421053" RelY="-0.9032258064516129"/>
+      <Point X="274.0" Y="124.0" GraphRef="e_12_a_i" RelX="0.0" RelY="0.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_12_i1">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="246.0" Y="118.0" GraphRef="n397_REACTOME_109795" RelX="1.065217391304348" RelY="0.3684210526315789"/>
+      <Point X="274.0" Y="124.0" GraphRef="e_12_a_i" RelX="0.0" RelY="0.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_12_o0">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="481.0" Y="89.5" GraphRef="n9_REACTOME_109848" RelX="-1.069767441860465" RelY="0.43902439024390244" ArrowHead="Arrow"/>
+      <Point X="320.0" Y="124.0" GraphRef="e_12_a_o" RelX="20.0" RelY="1.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_12_o1">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="331.0" Y="152.5" GraphRef="n198_REACTOME_29370" RelX="-0.3684210526315789" RelY="-1.1612903225806452" ArrowHead="Arrow"/>
+      <Point X="320.0" Y="124.0" GraphRef="e_12_a_o" RelX="20.0" RelY="1.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_12_o2">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="386.5" Y="148.0" GraphRef="n8_REACTOME_109793" RelX="-1.0495049504950495" RelY="-0.95" ArrowHead="Arrow"/>
+      <Point X="320.0" Y="124.0" GraphRef="e_12_a_o" RelX="20.0" RelY="1.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_12_c__0">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineStyle="Broken" LineThickness="1.0">
+      <Point X="80.0" Y="156.5" GraphRef="n2_REACTOME_112406" RelX="0.2857142857142857" RelY="-1.1219512195121952"/>
+      <Point X="135.0" Y="83.0"/>
+      <Point X="299.0" Y="82.0"/>
+      <Point X="300.0" Y="123.0" GraphRef="e_12_a_p" RelX="0.0" RelY="0.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_22_REACTOME_109867">
+    <Comment Source="WikiPathways-description">Phospho-ERK-1 dimer is translocated from cytosol to nucleoplasm.</Comment>
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="1096.5" Y="391.0" GraphRef="n18_REACTOME_109844" RelX="0.025974025974025976" RelY="1.12"/>
+      <Point X="1097.0" Y="406.0"/>
+      <Point X="1096.5" Y="453.5" GraphRef="n16_REACTOME_109845" RelX="0.0" RelY="-1.0943396226415094" ArrowHead="Arrow"/>
+      <Anchor Position="0.24230082680082082" Shape="None" GraphId="e_22_a_p"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_23_REACTOME_109860">
+    <Comment Source="WikiPathways-description">MEK1 phosphorylates the critical Tyrosine and Threonine on ERK1, converting two ATP to ADP. Phosphorylation of ERK-1 activates its kinase activity.</Comment>
+    <BiopaxRef>lit_110054</BiopaxRef>
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="752.0" Y="218.0"/>
+      <Point X="776.0" Y="218.0"/>
+      <Point X="799.0" Y="218.0"/>
+      <Anchor Position="0.0" Shape="None" GraphId="e_23_a_i"/>
+      <Anchor Position="0.5106382978723404" Shape="None" GraphId="e_23_a_p"/>
+      <Anchor Position="1.0" Shape="None" GraphId="e_23_a_o"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_23_i0">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="728.5" Y="218.0" GraphRef="n19_REACTOME_109838" RelX="1.1111111111111112" RelY="-0.10526315789473684"/>
+      <Point X="752.0" Y="218.0" GraphRef="e_23_a_i" RelX="0.0" RelY="0.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_23_i1">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="740.5" Y="255.5" GraphRef="n515_REACTOME_113592" RelX="0.21621621621621623" RelY="-1.1612903225806452"/>
+      <Point X="752.0" Y="218.0" GraphRef="e_23_a_i" RelX="0.0" RelY="0.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_23_o0">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="854.0" Y="219.5" GraphRef="n17_REACTOME_109843" RelX="-1.0491803278688525" RelY="-0.14634146341463414" ArrowHead="Arrow"/>
+      <Point X="799.0" Y="218.0" GraphRef="e_23_a_o" RelX="23.0" RelY="0.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_23_o1">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="818.0" Y="253.5" GraphRef="n521_REACTOME_29370" RelX="-0.42105263157894735" RelY="-1.1612903225806452" ArrowHead="Arrow"/>
+      <Point X="799.0" Y="218.0" GraphRef="e_23_a_o" RelX="23.0" RelY="0.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_23_c__0">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineStyle="Broken" LineThickness="1.0">
+      <Point X="716.5" Y="198.0" GraphRef="n19_REACTOME_109838" RelX="0.7301587301587301" RelY="-1.1578947368421053"/>
+      <Point X="778.0" Y="152.0"/>
+      <Point X="776.0" Y="218.0" GraphRef="e_23_a_p" RelX="0.0" RelY="0.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_23_i__0">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="485.0" Y="354.5" GraphRef="n512_REACTOME_112340" RelX="1.0612244897959184" RelY="0.0"/>
+      <Point X="775.0" Y="354.0"/>
+      <Point X="776.0" Y="218.0" GraphRef="e_23_a_p" RelX="0.0" RelY="0.0" ArrowHead="TBar"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_24_REACTOME_109857">
+    <Comment Source="WikiPathways-description">In the cytoplasm activated MEK1 (Serine phosphorylated) may encounter monomeric, inactive ERK1. ERK1 in its inactive form is not phosphorylated on a critical Threonine (T) and a critical Tyrosine (Y).</Comment>
+    <BiopaxRef>lit_110054</BiopaxRef>
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="595.0" Y="223.0"/>
+      <Point X="659.5" Y="220.0" GraphRef="n19_REACTOME_109838" RelX="-1.0793650793650793" RelY="0.0" ArrowHead="Arrow"/>
+      <Anchor Position="0.0" Shape="None" GraphId="e_24_a_i"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_24_i0">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="560.0" Y="209.0" GraphRef="n13_REACTOME_59284" RelX="1.15" RelY="0.4375"/>
+      <Point X="595.0" Y="223.0" GraphRef="e_24_a_i" RelX="0.0" RelY="0.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_24_i1">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="564.5" Y="278.5" GraphRef="n6_REACTOME_109837" RelX="0.27586206896551724" RelY="-1.1111111111111112"/>
+      <Point X="595.0" Y="223.0" GraphRef="e_24_a_i" RelX="0.0" RelY="0.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_25_REACTOME_109865">
+    <Comment Source="WikiPathways-description">Two phospho-ERK1 molecules dimerise and enter the nucleus, where they may phosphorylate downstream targets.</Comment>
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="1091.0" Y="269.0" GraphRef="n21_REACTOME_109842" RelX="0.025" RelY="1.125"/>
+      <Point X="1093.0" Y="312.0"/>
+      <Point X="1094.5" Y="335.0" GraphRef="n18_REACTOME_109844" RelX="-0.025974025974025976" RelY="-1.12" ArrowHead="Arrow"/>
+      <Anchor Position="0.6515460764494279" Shape="None" GraphId="e_25_a_p"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_26_REACTOME_109863">
+    <Comment Source="WikiPathways-description">MEK1 dissociates from phospho-ERK1, allowing phospho-ERK1 to dimerise with another phospho-ERK1.</Comment>
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="918.0" Y="246.5" GraphRef="n17_REACTOME_109843" RelX="0.0" RelY="1.170731707317073"/>
+      <Point X="918.0" Y="271.0"/>
+      <Point X="919.0" Y="302.0"/>
+      <Anchor Position="0.44630006220635354" Shape="None" GraphId="e_26_a_p"/>
+      <Anchor Position="1.0" Shape="None" GraphId="e_26_a_o"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_26_o0">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="599.5" Y="302.5" GraphRef="n6_REACTOME_109837" RelX="1.0804597701149425" RelY="-0.044444444444444446" ArrowHead="Arrow"/>
+      <Point X="919.0" Y="302.0" GraphRef="e_26_a_o" RelX="0.0" RelY="0.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_26_o1">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="1047.0" Y="256.0" GraphRef="n21_REACTOME_109842" RelX="-1.075" RelY="0.5833333333333334" ArrowHead="Arrow"/>
+      <Point X="919.0" Y="302.0" GraphRef="e_26_a_o" RelX="0.0" RelY="0.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_36_REACTOME_109868">
+    <Comment Source="WikiPathways-description">Phospho-ERK-2 dimer is translocated from cytosol to nucleoplasm.</Comment>
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="1190.5" Y="391.0" GraphRef="n27_REACTOME_109855" RelX="0.0" RelY="1.12"/>
+      <Point X="1191.0" Y="408.0"/>
+      <Point X="1191.5" Y="456.5" GraphRef="n28_REACTOME_109856" RelX="-0.028985507246376812" RelY="-1.0980392156862746" ArrowHead="Arrow"/>
+      <Anchor Position="0.26187216760897086" Shape="None" GraphId="e_36_a_p"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_37_REACTOME_109864">
+    <Comment Source="WikiPathways-description">MEK2 dissociates from phospho-ERK2, allowing phospho-ERK2 to dimerise with another phospho-ERK2.</Comment>
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="972.0" Y="94.5" GraphRef="n33_REACTOME_109854" RelX="1.0588235294117647" RelY="0.05405405405405406"/>
+      <Point X="994.0" Y="95.0"/>
+      <Point X="1025.0" Y="94.0"/>
+      <Anchor Position="0.415218647053088" Shape="None" GraphId="e_37_a_p"/>
+      <Anchor Position="1.0" Shape="None" GraphId="e_37_a_o"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_37_o0">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="1160.0" Y="216.0" GraphRef="n32_REACTOME_109853" RelX="-0.6923076923076923" RelY="-1.125" ArrowHead="Arrow"/>
+      <Point X="1025.0" Y="94.0" GraphRef="e_37_a_o" RelX="31.0" RelY="-1.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_37_o1">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="573.0" Y="68.5" GraphRef="n9_REACTOME_109848" RelX="1.069767441860465" RelY="-0.5853658536585366" ArrowHead="Arrow"/>
+      <Point X="622.0" Y="54.0"/>
+      <Point X="1049.0" Y="54.0"/>
+      <Point X="1025.0" Y="94.0" GraphRef="e_37_a_o" RelX="31.0" RelY="-1.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_38_REACTOME_109862">
+    <Comment Source="WikiPathways-description">MEK2 phosphorylates the critical Tyrosine and Threonine on ERK2, converting two ATP to ADP. Phosphorylation of ERK-2 activates its kinase activity.</Comment>
+    <BiopaxRef>lit_110054</BiopaxRef>
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="749.0" Y="109.0"/>
+      <Point X="778.0" Y="110.0"/>
+      <Point X="805.0" Y="110.0"/>
+      <Anchor Position="0.0" Shape="None" GraphId="e_38_a_i"/>
+      <Anchor Position="0.5180054960926278" Shape="None" GraphId="e_38_a_p"/>
+      <Anchor Position="1.0" Shape="None" GraphId="e_38_a_o"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_38_i0">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="721.0" Y="103.0" GraphRef="n31_REACTOME_109849" RelX="1.096774193548387" RelY="0.3157894736842105"/>
+      <Point X="749.0" Y="109.0" GraphRef="e_38_a_i" RelX="0.0" RelY="0.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_38_i1">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="719.5" Y="135.5" GraphRef="n35_REACTOME_113592" RelX="1.1891891891891893" RelY="-0.967741935483871"/>
+      <Point X="749.0" Y="109.0" GraphRef="e_38_a_i" RelX="0.0" RelY="0.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_38_o0">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="847.0" Y="146.5" GraphRef="n29_REACTOME_29370" RelX="-0.8947368421052632" RelY="-1.1612903225806452" ArrowHead="Arrow"/>
+      <Point X="805.0" Y="110.0" GraphRef="e_38_a_o" RelX="0.0" RelY="0.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_38_o1">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="864.0" Y="100.5" GraphRef="n33_REACTOME_109854" RelX="-1.0588235294117647" RelY="0.3783783783783784" ArrowHead="Arrow"/>
+      <Point X="805.0" Y="110.0" GraphRef="e_38_a_o" RelX="0.0" RelY="0.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_38_c__0">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineStyle="Broken" LineThickness="1.0">
+      <Point X="721.0" Y="89.0" GraphRef="n31_REACTOME_109849" RelX="1.096774193548387" RelY="-0.42105263157894735"/>
+      <Point X="777.0" Y="75.0"/>
+      <Point X="778.0" Y="110.0" GraphRef="e_38_a_p" RelX="0.0" RelY="0.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_39_REACTOME_109866">
+    <Comment Source="WikiPathways-description">Two phospho-ERK2 molecules dimerise and enter the nucleus, where they may phosphorylate downstream targets.</Comment>
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="1187.0" Y="270.0" GraphRef="n32_REACTOME_109853" RelX="0.0" RelY="1.125"/>
+      <Point X="1187.0" Y="310.0"/>
+      <Point X="1188.5" Y="335.0" GraphRef="n27_REACTOME_109855" RelX="-0.05333333333333334" RelY="-1.12" ArrowHead="Arrow"/>
+      <Anchor Position="0.6151954001481065" Shape="None" GraphId="e_39_a_p"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_40_REACTOME_109858">
+    <Comment Source="WikiPathways-description">In the cytoplasm activated MEK2 (Serine phosphorylated) may encounter monomeric, inactive ERK2. ERK2 in its inactive form is not phosphorylated on a critical Threonine (T183) and a critical Tyrosine (Y185).</Comment>
+    <BiopaxRef>lit_110054</BiopaxRef>
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="606.0" Y="95.0"/>
+      <Point X="632.0" Y="96.0"/>
+      <Point X="653.0" Y="96.0" GraphRef="n31_REACTOME_109849" RelX="-1.096774193548387" RelY="-0.05263157894736842" ArrowHead="Arrow"/>
+      <Anchor Position="0.0" Shape="None" GraphId="e_40_a_i"/>
+      <Anchor Position="0.553374165623632" Shape="None" GraphId="e_40_a_p"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_40_i0">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="556.0" Y="114.5" GraphRef="n30_REACTOME_59282" RelX="1.125" RelY="-0.782608695652174"/>
+      <Point X="606.0" Y="95.0" GraphRef="e_40_a_i" RelX="0.0" RelY="0.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_40_i1">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="573.0" Y="88.5" GraphRef="n9_REACTOME_109848" RelX="1.069767441860465" RelY="0.3902439024390244"/>
+      <Point X="606.0" Y="95.0" GraphRef="e_40_a_i" RelX="0.0" RelY="0.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_508_REACTOME_112342">
+    <Comment Source="WikiPathways-description">At the beginning of this reaction, 2 molecules of 'ATP', and 1 molecule of 'MEK1' are present. At the end of this reaction, 1 molecule of 'phospho_MEK1', and 2 molecules of 'ADP' are present.&lt;br&gt;&lt;br&gt; This reaction takes place in the 'cytosol' and  is mediated by the 'protein serine/threonine kinase activity' of 'phospho-Cdc2 (Thr 161)'.&lt;br&gt;</Comment>
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="388.0" Y="441.0"/>
+      <Point X="388.0" Y="421.0"/>
+      <Point X="389.0" Y="396.0"/>
+      <Anchor Position="0.0" Shape="None" GraphId="e_508_a_i"/>
+      <Anchor Position="0.44424708021182363" Shape="None" GraphId="e_508_a_p"/>
+      <Anchor Position="1.0" Shape="None" GraphId="e_508_a_o"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_508_i0">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="407.5" Y="456.0" GraphRef="n509_REACTOME_112336" RelX="-0.5333333333333333" RelY="-1.2727272727272727"/>
+      <Point X="388.0" Y="441.0" GraphRef="e_508_a_i" RelX="0.0" RelY="0.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_508_i1">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="372.0" Y="455.5" GraphRef="n510_REACTOME_113592" RelX="1.1578947368421053" RelY="-0.967741935483871"/>
+      <Point X="388.0" Y="441.0" GraphRef="e_508_a_i" RelX="0.0" RelY="0.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_508_o0">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="359.5" Y="372.5" GraphRef="n511_REACTOME_29370" RelX="1.1794871794871795" RelY="0.8387096774193549" ArrowHead="Arrow"/>
+      <Point X="389.0" Y="396.0" GraphRef="e_508_a_o" RelX="1.0" RelY="-25.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_508_o1">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="420.0" Y="369.5" GraphRef="n512_REACTOME_112340" RelX="-0.2653061224489796" RelY="1.3043478260869565" ArrowHead="Arrow"/>
+      <Point X="389.0" Y="396.0" GraphRef="e_508_a_o" RelX="1.0" RelY="-25.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_508_c__0">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineStyle="Broken" LineThickness="1.0">
+      <Point X="423.5" Y="420.0" GraphRef="n513_REACTOME_157415" RelX="-1.0434782608695652" RelY="0.0"/>
+      <Point X="388.0" Y="421.0" GraphRef="e_508_a_p" RelX="0.0" RelY="0.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Label TextLabel="cytosol" GraphId="comp_text_65" GroupRef="group_comp_65">
+    <Graphics CenterX="677.5" CenterY="549.5" Width="59.0" Height="33.0" ZOrder="28672" FontSize="12" Valign="Middle"/>
+  </Label>
+  <Label TextLabel="nucleoplasm" GraphId="comp_text_393" GroupRef="group_comp_393">
+    <Graphics CenterX="1023.0" CenterY="520.5" Width="92.0" Height="33.0" ZOrder="28672" FontSize="12" Valign="Middle"/>
+  </Label>
+  <Shape GraphId="comp_65" GroupRef="group_comp_65">
+    <Graphics CenterX="677.5" CenterY="297.0" Width="1223.0" Height="548.0" ZOrder="16384" FontSize="12" Valign="Middle" ShapeType="Rectangle" LineThickness="2.0" Rotation="0.0"/>
+  </Shape>
+  <Shape GraphId="comp_393" GroupRef="group_comp_393">
+    <Graphics CenterX="1114.5" CenterY="489.0" Width="289.0" Height="116.0" ZOrder="16384" FontSize="12" Valign="Middle" ShapeType="Rectangle" LineThickness="2.0" Rotation="0.0"/>
+  </Shape>
+  <InfoBox CenterX="3872.5" CenterY="6350.0"/>
+  <Biopax>
+    <bp:openControlledVocabulary xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#">
+      <bp:TERM xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">mitogen activated protein kinase signaling pathway</bp:TERM>
+      <bp:ID xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PW:0000007</bp:ID>
+      <bp:Ontology xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Pathway Ontology</bp:Ontology>
+    </bp:openControlledVocabulary>
+    <bp:PublicationXref xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" rdf:id="lit_110054">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">8388392</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Pubmed</bp:DB>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1993</bp:YEAR>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Cloning and characterization of two distinct human extracellular signal-regulated kinase activator kinases, MEK1 and MEK2.</bp:TITLE>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Zheng, CF</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Guan, KL</bp:AUTHORS>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">J Biol Chem 268:11435-9</bp:SOURCE>
+    </bp:PublicationXref>
+  </Biopax>
+</Pathway>

@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Pathway xmlns="http://genmapp.org/GPML/2010a" Name="LIN-12/Notch Lateral Signaling" Author="kyook@caltech.edu" Organism="Caenorhabditis elegans"><Comment Source="WikiPathways-category">Cellular Process</Comment><Comment Source="WikiPathways-description">The LIN-12/Notch pathway plays two related roles in vulval development; to prevent adjacent induced vulval precursor cells (VPCs) from both becoming 1° VPCs and to induce VPCs adjacent to the 1°VPC to take a 2° cell fate.</Comment>
+  <Graphics BoardWidth="762.0" BoardHeight="450.0"/>
+  <DataNode TextLabel="LIN-12" GraphId="cbf8f" Type="GeneProduct">
+    <BiopaxRef>fa4</BiopaxRef>
+    <Graphics CenterX="83.0" CenterY="160.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="WormBase" ID="R107.8"/>
+  </DataNode>
+  <DataNode TextLabel="LET-23" GraphId="d91fe" Type="GeneProduct">
+    <BiopaxRef>fa4</BiopaxRef>
+    <Graphics CenterX="86.0" CenterY="355.0" Width="80.0" Height="20.0" ZOrder="32769" FontSize="10" Valign="Middle"/>
+    <Xref Database="WormBase" ID="ZK1067.1"/>
+  </DataNode>
+  <DataNode TextLabel="lst-1" GraphId="bef29" Type="GeneProduct">
+    <BiopaxRef>fa4</BiopaxRef>
+    <Graphics CenterX="312.0" CenterY="316.0" Width="80.0" Height="20.0" ZOrder="32770" FontSize="10" Valign="Middle"/>
+    <Xref Database="WormBase" ID="T22A3.3"/>
+  </DataNode>
+  <DataNode TextLabel="lst-2" GraphId="f7cc5" Type="GeneProduct">
+    <BiopaxRef>fa4</BiopaxRef>
+    <Graphics CenterX="312.0" CenterY="352.0" Width="80.0" Height="20.0" ZOrder="32771" FontSize="10" Valign="Middle"/>
+    <Xref Database="WormBase" ID="R160.7"/>
+  </DataNode>
+  <DataNode TextLabel="lst-4" GraphId="eab9e" Type="GeneProduct">
+    <BiopaxRef>fa4</BiopaxRef>
+    <Graphics CenterX="312.0" CenterY="386.0" Width="80.0" Height="20.0" ZOrder="32772" FontSize="10" Valign="Middle"/>
+    <Xref Database="WormBase" ID="Y37A1B.2"/>
+  </DataNode>
+  <DataNode TextLabel="ark-1" GraphId="b2902" Type="GeneProduct">
+    <BiopaxRef>fa4</BiopaxRef>
+    <Graphics CenterX="312.0" CenterY="146.0" Width="80.0" Height="20.0" ZOrder="32774" FontSize="10" Valign="Middle"/>
+    <Xref Database="WormBase" ID="C01C7.1"/>
+  </DataNode>
+  <DataNode TextLabel="lip-1" GraphId="a3f88" Type="GeneProduct">
+    <BiopaxRef>fa4</BiopaxRef>
+    <Graphics CenterX="312.0" CenterY="183.0" Width="80.0" Height="20.0" ZOrder="32775" FontSize="10" Valign="Middle"/>
+    <Xref Database="WormBase" ID="C05B10.1"/>
+  </DataNode>
+  <DataNode TextLabel="dpy-23" GraphId="ec4bd" Type="GeneProduct">
+    <BiopaxRef>fa4</BiopaxRef>
+    <Graphics CenterX="312.0" CenterY="217.0" Width="80.0" Height="20.0" ZOrder="32776" FontSize="10" Valign="Middle"/>
+    <Xref Database="WormBase" ID="R160.1"/>
+  </DataNode>
+  <DataNode TextLabel="lst-3" GraphId="fd955" Type="GeneProduct">
+    <BiopaxRef>fa4</BiopaxRef>
+    <Graphics CenterX="312.0" CenterY="248.0" Width="80.0" Height="20.0" ZOrder="32777" FontSize="10" Valign="Middle"/>
+    <Xref Database="WormBase" ID="Y37A1B.1"/>
+  </DataNode>
+  <DataNode TextLabel="LET-23" GraphId="f7a4a" Type="GeneProduct">
+    <BiopaxRef>fa4</BiopaxRef>
+    <Graphics CenterX="503.0" CenterY="131.0" Width="80.0" Height="20.0" ZOrder="32778" FontSize="10" Valign="Middle"/>
+    <Xref Database="WormBase" ID="ZK1067.1"/>
+  </DataNode>
+  <DataNode TextLabel="LET-60" GraphId="c5b29" Type="GeneProduct">
+    <BiopaxRef>fa4</BiopaxRef>
+    <Graphics CenterX="503.0" CenterY="227.0" Width="80.0" Height="20.0" ZOrder="32779" FontSize="10" Valign="Middle"/>
+    <Xref Database="WormBase" ID="ZK792.6"/>
+  </DataNode>
+  <DataNode TextLabel="MPK-1" GraphId="a3b9f" Type="GeneProduct">
+    <BiopaxRef>fa4</BiopaxRef>
+    <Graphics CenterX="503.0" CenterY="353.0" Width="80.0" Height="20.0" ZOrder="32780" FontSize="10" Valign="Middle"/>
+    <Xref Database="WormBase" ID="F43C1.2"/>
+  </DataNode>
+  <DataNode TextLabel="sli-1" GraphId="a7c35" Type="GeneProduct">
+    <BiopaxRef>fa4</BiopaxRef>
+    <Graphics CenterX="681.0" CenterY="149.0" Width="80.0" Height="20.0" ZOrder="32782" FontSize="10" Valign="Middle"/>
+    <Xref Database="WormBase" ID="M02A10.3"/>
+  </DataNode>
+  <DataNode TextLabel="unc-101" GraphId="a51a4" Type="GeneProduct">
+    <BiopaxRef>fa4</BiopaxRef>
+    <Graphics CenterX="681.0" CenterY="186.0" Width="80.0" Height="20.0" ZOrder="32783" FontSize="10" Valign="Middle"/>
+    <Xref Database="WormBase" ID="K11D2.3"/>
+  </DataNode>
+  <DataNode TextLabel="apm-1" GraphId="ac57a" Type="GeneProduct">
+    <BiopaxRef>fa4</BiopaxRef>
+    <Graphics CenterX="681.0" CenterY="220.0" Width="80.0" Height="20.0" ZOrder="32784" FontSize="10" Valign="Middle"/>
+    <Xref Database="WormBase" ID="F55A12.7"/>
+  </DataNode>
+  <DataNode TextLabel="gap-1" GraphId="b4884" Type="GeneProduct">
+    <BiopaxRef>fa4</BiopaxRef>
+    <Graphics CenterX="681.0" CenterY="251.0" Width="80.0" Height="20.0" ZOrder="32785" FontSize="10" Valign="Middle"/>
+    <Xref Database="WormBase" ID="T24C12.2"/>
+  </DataNode>
+  <Line GraphId="iddc0fcf4d">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="123.0" Y="160.0" GraphRef="cbf8f" RelX="1.0" RelY="0.0"/>
+      <Point X="254.0" Y="145.0" ArrowHead="Arrow"/>
+    </Graphics>
+  </Line>
+  <Line GraphId="idbf666215">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="123.0" Y="160.0" GraphRef="cbf8f" RelX="1.0" RelY="0.0"/>
+      <Point X="259.5" Y="323.0" GraphRef="d93e9" RelX="-1.0" RelY="-0.5" ArrowHead="Arrow"/>
+    </Graphics>
+  </Line>
+  <Line GraphId="idc9b440f8">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="126.0" Y="355.0" GraphRef="d91fe" RelX="1.0" RelY="0.0"/>
+      <Point X="259.5" Y="352.0" GraphRef="d93e9" RelX="-1.0" RelY="0.0" ArrowHead="TBar"/>
+    </Graphics>
+  </Line>
+  <Line GraphId="id8bad0f31">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="503.0" Y="141.0" GraphRef="f7a4a" RelX="0.0" RelY="1.0"/>
+      <Point X="503.0" Y="217.0" GraphRef="c5b29" RelX="0.0" RelY="-1.0" ArrowHead="Arrow"/>
+    </Graphics>
+  </Line>
+  <Line GraphId="id590c64af">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="503.0" Y="237.0" GraphRef="c5b29" RelX="0.0" RelY="1.0"/>
+      <Point X="503.0" Y="343.0" GraphRef="a3b9f" RelX="0.0" RelY="-1.0" ArrowHead="Arrow"/>
+    </Graphics>
+  </Line>
+  <Line GraphId="id7fb20fd5">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="503.0" Y="363.0" GraphRef="a3b9f" RelX="0.0" RelY="1.0"/>
+      <Point X="503.0" Y="420.0" ArrowHead="Arrow"/>
+    </Graphics>
+  </Line>
+  <Line GraphId="idfd3c96c6">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="352.0" Y="146.0" GraphRef="b2902" RelX="1.0" RelY="0.0"/>
+      <Point X="463.0" Y="131.0" GraphRef="f7a4a" RelX="-1.0" RelY="0.0" ArrowHead="TBar"/>
+    </Graphics>
+  </Line>
+  <Line GraphId="id10038c63">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="641.0" Y="149.0" GraphRef="a7c35" RelX="-1.0" RelY="0.0"/>
+      <Point X="543.0" Y="131.0" GraphRef="f7a4a" RelX="1.0" RelY="0.0" ArrowHead="TBar"/>
+    </Graphics>
+  </Line>
+  <Line GraphId="id4db865e3">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="641.0" Y="251.0" GraphRef="b4884" RelX="-1.0" RelY="0.0"/>
+      <Point X="543.0" Y="227.0" GraphRef="c5b29" RelX="1.0" RelY="0.0" ArrowHead="TBar"/>
+    </Graphics>
+  </Line>
+  <Line GraphId="id84acafa9">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="352.0" Y="352.0" GraphRef="f7cc5" RelX="1.0" RelY="0.0"/>
+      <Point X="411.0" Y="338.0" ArrowHead="TBar"/>
+    </Graphics>
+  </Line>
+  <Line GraphId="id2bcc0724">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="352.0" Y="352.0" GraphRef="f7cc5" RelX="1.0" RelY="0.0"/>
+      <Point X="477.0" Y="399.0" ArrowHead="TBar"/>
+    </Graphics>
+  </Line>
+  <Line GraphId="id67fe0239">
+    <Graphics ZOrder="32786" LineThickness="1.0">
+      <Point X="641.0" Y="186.0" GraphRef="a51a4" RelX="-1.0" RelY="0.0"/>
+      <Point X="523.0" Y="141.0" GraphRef="f7a4a" RelX="0.5" RelY="1.0" ArrowHead="TBar"/>
+    </Graphics>
+  </Line>
+  <Line GraphId="id1c9d7524">
+    <Graphics ZOrder="32787" LineThickness="1.0">
+      <Point X="352.0" Y="183.0" GraphRef="a3f88" RelX="1.0" RelY="0.0"/>
+      <Point X="483.0" Y="343.0" GraphRef="a3b9f" RelX="-0.5" RelY="-1.0" ArrowHead="TBar"/>
+    </Graphics>
+  </Line>
+  <Shape GraphId="d93e9">
+    <Graphics CenterX="311.25" CenterY="352.0" Width="103.5" Height="116.0" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="Rectangle" Rotation="0.0"/>
+  </Shape>
+  <Shape GraphId="bd057">
+    <Graphics CenterX="311.25" CenterY="199.0" Width="103.5" Height="148.0" ZOrder="32773" FontSize="10" Valign="Middle" ShapeType="Rectangle" Rotation="0.0"/>
+  </Shape>
+  <Shape GraphId="a917d">
+    <Graphics CenterX="680.25" CenterY="202.0" Width="103.5" Height="148.0" ZOrder="32781" FontSize="10" Valign="Middle" ShapeType="Rectangle" Rotation="0.0"/>
+  </Shape>
+  <InfoBox CenterX="0.0" CenterY="0.0"/>
+  <Biopax>
+    <bp:openControlledVocabulary xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#">
+      <bp:TERM>Notch signaling pathway</bp:TERM>
+      <bp:ID>PW:0000204</bp:ID>
+      <bp:Ontology>Pathway Ontology</bp:Ontology>
+    </bp:openControlledVocabulary>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="fa4">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">18050418</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Vulval development.</bp:TITLE>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">WormBook</bp:SOURCE>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2005</bp:YEAR>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Sternberg PW</bp:AUTHORS>
+    </bp:PublicationXref>
+  </Biopax>
+</Pathway>

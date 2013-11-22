@@ -1,0 +1,433 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Pathway xmlns="http://pathvisio.org/GPML/2013a" Name="mRNA Editing" Data-Source="Reactome - http://www.reactome.org" Version="release 35" Author="Carmichael, GG" Maintainer="Gopinathrao, G" Organism="Homo sapiens">
+  <Comment Source="WikiPathways-description">After transcription, some RNA molecules are altered to contain bases not encoded in the genome. Most often this involves the editing or modification of one base to another, but in some organisms can involve the insertion or deletion of a base. Such editing events alter the coding properties of mRNA.&lt;BR&gt;RNA editing can be generally defined as the co- or post transcriptional modification of  the primary sequence of RNA from that encoded in the genome through nucleotide deletion, insertion, or base modification mechanisms.&lt;BR&gt;There are two pathways of RNA editing:  the substitution/conversion pathway and the insertion/deletion pathway. The  insertion/deletion editing occurs in protozoans like Trypanosoma, Leishmania; in slime molds like Physarum spp., and in some viral categories like paramyxoviruses, Ebola virus etc. To date, the substitution/conversion pathway has been observed in human along with other mammals, Drosophila, and some plants. The  RNA editing processes are known to create diversity in proteins involved in various pathways like lipid transport, metabolism etc. and may act as potential targets for therapeutic intervention (Smith et al., 1997).&lt;BR&gt;The reaction mechanisms of cytidine and adenosine deaminases is represented below.  In both these reactions, NH3 is presumed to be released:&lt;BR&gt;</Comment>
+  <Comment Source="WikiPathways-category">Cellular Process</Comment>
+  <BiopaxRef>lit_77045</BiopaxRef>
+  <BiopaxRef>lit_77028</BiopaxRef>
+  <Graphics BoardWidth="3902.5" BoardHeight="6380.0"/>
+  <DataNode TextLabel="mRNA with spliced &#10;exons&#10;" GraphId="n3_REACTOME_72156">
+    <Graphics CenterX="220.0" CenterY="172.0" Width="120.0" Height="36.0" ZOrder="32768" FillColor="ccffcc" FontSize="12" Valign="Middle"/>
+    <Xref Database="Reactome" ID="REACT_2708"/>
+  </DataNode>
+  <DataNode TextLabel="Stem-looped mRNA&#10;" GraphId="n4_REACTOME_77601">
+    <Graphics CenterX="222.5" CenterY="287.0" Width="123.0" Height="22.0" ZOrder="32768" FillColor="ccffcc" FontSize="12" Valign="Middle"/>
+    <Xref Database="Reactome" ID="REACT_4094"/>
+  </DataNode>
+  <DataNode TextLabel="ACF&#10;" GraphId="n10_REACTOME_350790" Type="Protein">
+    <Graphics CenterX="373.0" CenterY="284.0" Width="30.0" Height="22.0" ZOrder="32768" FillColor="ccffcc" FontSize="12" Valign="Middle" ShapeType="RoundedRectangle"/>
+    <Xref Database="Reactome" ID="REACT_14019"/>
+  </DataNode>
+  <DataNode TextLabel="Stem-looped mRNA:&#10;ACF complex&#10;" GraphId="n11_REACTOME_77605" Type="Complex">
+    <Graphics CenterX="284.5" CenterY="441.0" Width="127.0" Height="36.0" ZOrder="32768" FillColor="ccffff" FontSize="12" Valign="Middle" ShapeType="RoundedRectangle" LineThickness="2.0"/>
+    <Xref Database="Reactome" ID="REACT_4484"/>
+  </DataNode>
+  <DataNode TextLabel="APOBEC-1, &#10;Apolipoprotein B &#10;mRNA editing &#10;enzyme&#10;" GraphId="n13_REACTOME_49459" Type="Protein">
+    <Graphics CenterX="422.0" CenterY="485.0" Width="108.0" Height="64.0" ZOrder="32768" FillColor="ccffcc" FontSize="12" Valign="Middle" ShapeType="RoundedRectangle"/>
+    <Xref Database="UniProt" ID="P41238"/>
+  </DataNode>
+  <DataNode TextLabel="Editosome for C to U &#10;editing&#10;" GraphId="n14_REACTOME_77606" Type="Complex">
+    <Graphics CenterX="312.5" CenterY="635.0" Width="131.0" Height="36.0" ZOrder="32768" FillColor="ccffff" FontSize="12" Valign="Middle" ShapeType="RoundedRectangle" LineThickness="2.0"/>
+    <Xref Database="Reactome" ID="REACT_2389"/>
+  </DataNode>
+  <DataNode TextLabel="H2O&#10;" GraphId="n16_REACTOME_113518" Type="Metabolite">
+    <Graphics CenterX="339.0" CenterY="736.0" Width="42.0" Height="30.0" ZOrder="32768" FillColor="ccffcc" FontSize="12" Valign="Middle" ShapeType="Oval"/>
+    <Xref Database="ChEBI" ID="15377"/>
+  </DataNode>
+  <DataNode TextLabel="C to U edited ApoB &#10;RNA:Editosome &#10;complex&#10;" GraphId="n17_REACTOME_83676" Type="Complex">
+    <Graphics CenterX="570.0" CenterY="751.0" Width="122.0" Height="50.0" ZOrder="32768" FillColor="ccffff" FontSize="12" Valign="Middle" ShapeType="RoundedRectangle" LineThickness="2.0"/>
+    <Xref Database="Reactome" ID="REACT_5264"/>
+  </DataNode>
+  <DataNode TextLabel="NH3&#10;" GraphId="n18_REACTOME_76230" Type="Metabolite">
+    <Graphics CenterX="740.0" CenterY="636.0" Width="42.0" Height="30.0" ZOrder="32768" FillColor="ccffcc" FontSize="12" Valign="Middle" ShapeType="Oval"/>
+    <Xref Database="ChEBI" ID="16134"/>
+  </DataNode>
+  <DataNode TextLabel="nascent pre-mRNA &#10;transcript&#10;" GraphId="n20_REACTOME_72084">
+    <Graphics CenterX="513.5" CenterY="378.0" Width="123.0" Height="36.0" ZOrder="32768" FillColor="ccffcc" FontSize="12" Valign="Middle"/>
+    <Xref Database="Reactome" ID="REACT_5393"/>
+  </DataNode>
+  <DataNode TextLabel="dsRNA duplex&#10;" GraphId="n21_REACTOME_75086">
+    <Graphics CenterX="732.5" CenterY="377.0" Width="91.0" Height="22.0" ZOrder="32768" FillColor="ccffcc" FontSize="12" Valign="Middle"/>
+    <Xref Database="Reactome" ID="REACT_4119"/>
+  </DataNode>
+  <DataNode TextLabel="ADAR1 homodimer&#10;" GraphId="n23_REACTOME_111236" Type="Complex">
+    <Graphics CenterX="749.5" CenterY="484.0" Width="119.0" Height="22.0" ZOrder="32768" FillColor="ccffff" FontSize="12" Valign="Middle" ShapeType="RoundedRectangle" LineThickness="2.0"/>
+    <Xref Database="Reactome" ID="REACT_4700"/>
+  </DataNode>
+  <DataNode TextLabel="Editosome (ADAR1) &#10;complex&#10;" GraphId="n24_REACTOME_75087" Type="Complex">
+    <Graphics CenterX="1039.5" CenterY="378.0" Width="125.0" Height="36.0" ZOrder="32768" FillColor="ccffff" FontSize="12" Valign="Middle" ShapeType="RoundedRectangle" LineThickness="2.0"/>
+    <Xref Database="Reactome" ID="REACT_3053"/>
+  </DataNode>
+  <DataNode TextLabel="ADAR2 homodimer&#10;" GraphId="n26_REACTOME_111235" Type="Complex">
+    <Graphics CenterX="725.5" CenterY="196.0" Width="119.0" Height="22.0" ZOrder="32768" FillColor="ccffff" FontSize="12" Valign="Middle" ShapeType="RoundedRectangle" LineThickness="2.0"/>
+    <Xref Database="Reactome" ID="REACT_3351"/>
+  </DataNode>
+  <DataNode TextLabel="Editosome (ADAR2) &#10;complex&#10;" GraphId="n27_REACTOME_77610" Type="Complex">
+    <Graphics CenterX="991.5" CenterY="295.0" Width="125.0" Height="36.0" ZOrder="32768" FillColor="ccffff" FontSize="12" Valign="Middle" ShapeType="RoundedRectangle" LineThickness="2.0"/>
+    <Xref Database="Reactome" ID="REACT_5072"/>
+  </DataNode>
+  <DataNode TextLabel="H2O&#10;" GraphId="n29_REACTOME_113518" Type="Metabolite">
+    <Graphics CenterX="1192.0" CenterY="373.0" Width="42.0" Height="30.0" ZOrder="32768" FillColor="ccffcc" FontSize="12" Valign="Middle" ShapeType="Oval"/>
+    <Xref Database="ChEBI" ID="15377"/>
+  </DataNode>
+  <DataNode TextLabel="A to I edited RNA:&#10;Editosome (ADAR1) &#10;complex&#10;" GraphId="n30_REACTOME_75089" Type="Complex">
+    <Graphics CenterX="1217.5" CenterY="603.0" Width="125.0" Height="50.0" ZOrder="32768" FillColor="ccffff" FontSize="12" Valign="Middle" ShapeType="RoundedRectangle" LineThickness="2.0"/>
+    <Xref Database="Reactome" ID="REACT_4604"/>
+  </DataNode>
+  <DataNode TextLabel="H2O&#10;" GraphId="n32_REACTOME_113518" Type="Metabolite">
+    <Graphics CenterX="1168.0" CenterY="290.0" Width="42.0" Height="30.0" ZOrder="32768" FillColor="ccffcc" FontSize="12" Valign="Middle" ShapeType="Oval"/>
+    <Xref Database="ChEBI" ID="15377"/>
+  </DataNode>
+  <DataNode TextLabel="A to I edited RNA:&#10;Editosome (ADAR2) &#10;complex&#10;" GraphId="n33_REACTOME_77611" Type="Complex">
+    <Graphics CenterX="1191.5" CenterY="117.0" Width="125.0" Height="50.0" ZOrder="32768" FillColor="ccffff" FontSize="12" Valign="Middle" ShapeType="RoundedRectangle" LineThickness="2.0"/>
+    <Xref Database="Reactome" ID="REACT_3344"/>
+  </DataNode>
+  <DataNode TextLabel="NH3&#10;" GraphId="n34_REACTOME_76230" Type="Metabolite">
+    <Graphics CenterX="981.0" CenterY="119.0" Width="42.0" Height="30.0" ZOrder="32768" FillColor="ccffcc" FontSize="12" Valign="Middle" ShapeType="Oval"/>
+    <Xref Database="ChEBI" ID="16134"/>
+  </DataNode>
+  <DataNode TextLabel="ADAR1 protein&#10;" GraphId="n36_REACTOME_53939" Type="Protein">
+    <Graphics CenterX="607.0" CenterY="577.0" Width="94.0" Height="22.0" ZOrder="32768" FillColor="ccffcc" FontSize="12" Valign="Middle" ShapeType="RoundedRectangle"/>
+    <Xref Database="UniProt" ID="P55265"/>
+  </DataNode>
+  <DataNode TextLabel="ADAR2 protein&#10;" GraphId="n38_REACTOME_62915" Type="Protein">
+    <Graphics CenterX="580.0" CenterY="93.0" Width="94.0" Height="22.0" ZOrder="32768" FillColor="ccffcc" FontSize="12" Valign="Middle" ShapeType="RoundedRectangle"/>
+    <Xref Database="UniProt" ID="P78563"/>
+  </DataNode>
+  <Interaction GraphId="e_2_REACTOME_77607">
+    <Comment Source="WikiPathways-description">It is predicted that the target RNA could form secondary structures including stem-loop confirmation prior to the formation of editosome.&lt;BR&gt;</Comment>
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="220.0" Y="193.0" GraphRef="n3_REACTOME_72156" RelX="0.0" RelY="1.1666666666666667"/>
+      <Point X="222.0" Y="227.0"/>
+      <Point X="222.5" Y="273.0" GraphRef="n4_REACTOME_77601" RelX="0.0" RelY="-1.2727272727272727" ArrowHead="Arrow"/>
+      <Anchor Position="0.425422118896683" Shape="None" GraphId="e_2_a_p"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_9_REACTOME_77608">
+    <Comment Source="WikiPathways-description">ACF protein is cytosolic in origin and is translocated to nucleus where it binds to the target RNA. The order of events in the formation of editosomes, namely, binding of ACF and APOBEC-1 are not will elucidated in human cells.&lt;BR&gt;</Comment>
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="281.0" Y="340.0"/>
+      <Point X="283.0" Y="377.0"/>
+      <Point X="283.5" Y="420.0" GraphRef="n11_REACTOME_77605" RelX="-0.015748031496062992" RelY="-1.1666666666666667" ArrowHead="Arrow"/>
+      <Anchor Position="0.0" Shape="None" GraphId="e_9_a_i"/>
+      <Anchor Position="0.46286266591135666" Shape="None" GraphId="e_9_a_p"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_9_i0">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="234.5" Y="301.0" GraphRef="n4_REACTOME_77601" RelX="0.1951219512195122" RelY="1.2727272727272727"/>
+      <Point X="281.0" Y="340.0" GraphRef="e_9_a_i" RelX="0.0" RelY="0.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_9_i1">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="355.0" Y="293.0" GraphRef="n10_REACTOME_350790" RelX="-1.2" RelY="0.8181818181818182"/>
+      <Point X="281.0" Y="340.0" GraphRef="e_9_a_i" RelX="0.0" RelY="0.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_12_REACTOME_77609">
+    <Comment Source="WikiPathways-description">APOBEC-1 binds to ACF:stem-looped mRNA complex forming the editosome.&lt;BR&gt;</Comment>
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="310.0" Y="520.0"/>
+      <Point X="311.0" Y="561.0"/>
+      <Point X="311.5" Y="614.0" GraphRef="n14_REACTOME_77606" RelX="-0.015267175572519083" RelY="-1.1666666666666667" ArrowHead="Arrow"/>
+      <Anchor Position="0.0" Shape="None" GraphId="e_12_a_i"/>
+      <Anchor Position="0.43624334105363544" Shape="None" GraphId="e_12_a_p"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_12_i0">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="365.0" Y="501.0" GraphRef="n13_REACTOME_49459" RelX="-1.0555555555555556" RelY="0.5"/>
+      <Point X="310.0" Y="520.0" GraphRef="e_12_a_i" RelX="0.0" RelY="0.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_12_i1">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="289.5" Y="462.0" GraphRef="n11_REACTOME_77605" RelX="0.07874015748031496" RelY="1.1666666666666667"/>
+      <Point X="310.0" Y="520.0" GraphRef="e_12_a_i" RelX="0.0" RelY="0.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_15_REACTOME_83677">
+    <Comment Source="WikiPathways-description">Hydrolytic deamination of cytidine leads to uridine. Ammonia is presumed to be released during this reaction.&lt;BR&gt;</Comment>
+    <BiopaxRef>lit_83819</BiopaxRef>
+    <BiopaxRef>lit_83820</BiopaxRef>
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="393.0" Y="684.0"/>
+      <Point X="425.0" Y="684.0"/>
+      <Point X="482.0" Y="683.0"/>
+      <Anchor Position="0.0" Shape="None" GraphId="e_15_a_i"/>
+      <Anchor Position="0.3595151303497847" Shape="None" GraphId="e_15_a_p"/>
+      <Anchor Position="1.0" Shape="None" GraphId="e_15_a_o"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_15_i0">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="354.0" Y="718.0" GraphRef="n16_REACTOME_113518" RelX="0.7142857142857143" RelY="-1.2"/>
+      <Point X="393.0" Y="684.0" GraphRef="e_15_a_i" RelX="0.0" RelY="0.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_15_i1">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="341.5" Y="656.0" GraphRef="n14_REACTOME_77606" RelX="0.44274809160305345" RelY="1.1666666666666667"/>
+      <Point X="393.0" Y="684.0" GraphRef="e_15_a_i" RelX="0.0" RelY="0.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_15_o0">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="537.0" Y="723.0" GraphRef="n17_REACTOME_83676" RelX="-0.5409836065573771" RelY="-1.12" ArrowHead="Arrow"/>
+      <Point X="482.0" Y="683.0" GraphRef="e_15_a_o" RelX="57.0" RelY="-1.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_15_o1">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="716.0" Y="639.0" GraphRef="n18_REACTOME_76230" RelX="-1.1428571428571428" RelY="0.2" ArrowHead="Arrow"/>
+      <Point X="482.0" Y="683.0" GraphRef="e_15_a_o" RelX="57.0" RelY="-1.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_15_c__0">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineStyle="Broken" LineThickness="1.0">
+      <Point X="422.0" Y="520.0" GraphRef="n13_REACTOME_49459" RelX="0.0" RelY="1.09375"/>
+      <Point X="425.0" Y="684.0" GraphRef="e_15_a_p" RelX="0.0" RelY="0.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_19_REACTOME_77612">
+    <Comment Source="WikiPathways-description">Site-specific A to I conversion requires dsRNA structures present around the editing site. These structures can be formed by exonic sequences and neighboring intronic sequences. An editing-site complementary sequence (ECS) has been identified in mice. Although minimal requirements for A to I editing have been identified, detailed mechanisms describing the individual steps are not yet well studied in humans.&lt;BR&gt;</Comment>
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="578.5" Y="376.0" GraphRef="n20_REACTOME_72084" RelX="1.056910569105691" RelY="-0.1111111111111111"/>
+      <Point X="635.0" Y="376.0"/>
+      <Point X="684.5" Y="376.0" GraphRef="n21_REACTOME_75086" RelX="-1.054945054945055" RelY="-0.09090909090909091" ArrowHead="Arrow"/>
+      <Anchor Position="0.5377358490566038" Shape="None" GraphId="e_19_a_p"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_22_REACTOME_75090">
+    <Comment Source="WikiPathways-description">At the beginning of this reaction, 1 molecule of 'dsRNA duplex', and 1 molecule of 'ADAR1 homodimer ' are present. At the end of this reaction, 1 molecule of 'Editosome (ADAR1) complex' is present.&lt;br&gt;&lt;br&gt; This reaction takes place in the 'nucleus'.&lt;br&gt;</Comment>
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="883.0" Y="379.0"/>
+      <Point X="931.0" Y="378.0"/>
+      <Point X="974.5" Y="378.0" GraphRef="n24_REACTOME_75087" RelX="-1.04" RelY="0.0" ArrowHead="Arrow"/>
+      <Anchor Position="0.0" Shape="None" GraphId="e_22_a_i"/>
+      <Anchor Position="0.5275266050983722" Shape="None" GraphId="e_22_a_p"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_22_i0">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="763.5" Y="470.0" GraphRef="n23_REACTOME_111236" RelX="0.23529411764705882" RelY="-1.2727272727272727"/>
+      <Point X="883.0" Y="379.0" GraphRef="e_22_a_i" RelX="0.0" RelY="0.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_22_i1">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="781.5" Y="377.0" GraphRef="n21_REACTOME_75086" RelX="1.0769230769230769" RelY="0.0"/>
+      <Point X="883.0" Y="379.0" GraphRef="e_22_a_i" RelX="0.0" RelY="0.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_25_REACTOME_77613">
+    <Comment Source="WikiPathways-description">At the beginning of this reaction, 1 molecule of 'dsRNA duplex', and 1 molecule of 'ADAR2 homodimer' are present. At the end of this reaction, 1 molecule of 'Editosome (ADAR2) complex' is present.&lt;br&gt;&lt;br&gt; This reaction takes place in the 'nucleus'.&lt;br&gt;</Comment>
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="824.0" Y="294.0"/>
+      <Point X="865.0" Y="294.0"/>
+      <Point X="926.5" Y="294.0" GraphRef="n27_REACTOME_77610" RelX="-1.04" RelY="-0.05555555555555555" ArrowHead="Arrow"/>
+      <Anchor Position="0.0" Shape="None" GraphId="e_25_a_i"/>
+      <Anchor Position="0.4019607843137255" Shape="None" GraphId="e_25_a_p"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_25_i0">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="736.5" Y="210.0" GraphRef="n26_REACTOME_111235" RelX="0.18487394957983194" RelY="1.2727272727272727"/>
+      <Point X="824.0" Y="294.0" GraphRef="e_25_a_i" RelX="0.0" RelY="0.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_25_i1">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="744.5" Y="363.0" GraphRef="n21_REACTOME_75086" RelX="0.26373626373626374" RelY="-1.2727272727272727"/>
+      <Point X="824.0" Y="294.0" GraphRef="e_25_a_i" RelX="0.0" RelY="0.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_28_REACTOME_77614">
+    <Comment Source="WikiPathways-description">At the beginning of this reaction, 1 molecule of 'Editosome (ADAR1) complex', and 1 molecule of 'H2O' are present. At the end of this reaction, 1 molecule of 'A to I edited RNA:Editosome (ADAR1) complex', and 1 molecule of 'NH3' are present.&lt;br&gt;&lt;br&gt; This reaction takes place in the 'nucleus' and  is mediated by the 'double-stranded RNA adenosine deaminase activity' of 'ADAR1 homodimer '.&lt;br&gt;</Comment>
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="1117.0" Y="447.0"/>
+      <Point X="1116.0" Y="484.0"/>
+      <Point X="1115.0" Y="539.0"/>
+      <Anchor Position="0.0" Shape="None" GraphId="e_28_a_i"/>
+      <Anchor Position="0.40222196028094775" Shape="None" GraphId="e_28_a_p"/>
+      <Anchor Position="1.0" Shape="None" GraphId="e_28_a_o"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_28_i0">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="1176.0" Y="391.0" GraphRef="n29_REACTOME_113518" RelX="-0.7619047619047619" RelY="1.2"/>
+      <Point X="1117.0" Y="447.0" GraphRef="e_28_a_i" RelX="0.0" RelY="0.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_28_i1">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="1059.5" Y="399.0" GraphRef="n24_REACTOME_75087" RelX="0.32" RelY="1.1666666666666667"/>
+      <Point X="1117.0" Y="447.0" GraphRef="e_28_a_i" RelX="0.0" RelY="0.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_28_o0">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="1177.5" Y="575.0" GraphRef="n30_REACTOME_75089" RelX="-0.64" RelY="-1.12" ArrowHead="Arrow"/>
+      <Point X="1115.0" Y="539.0" GraphRef="e_28_a_o" RelX="-1.0" RelY="55.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_28_o1">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="764.0" Y="630.0" GraphRef="n18_REACTOME_76230" RelX="1.1428571428571428" RelY="-0.4" ArrowHead="Arrow"/>
+      <Point X="1115.0" Y="539.0" GraphRef="e_28_a_o" RelX="-1.0" RelY="55.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_28_c__0">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineStyle="Broken" LineThickness="1.0">
+      <Point X="812.5" Y="484.0" GraphRef="n23_REACTOME_111236" RelX="1.0588235294117647" RelY="0.0"/>
+      <Point X="1116.0" Y="484.0" GraphRef="e_28_a_p" RelX="0.0" RelY="0.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_31_REACTOME_77615">
+    <Comment Source="WikiPathways-description">At the beginning of this reaction, 1 molecule of 'H2O', and 1 molecule of 'Editosome (ADAR2) complex' are present. At the end of this reaction, 1 molecule of 'NH3', and 1 molecule of 'A to I edited RNA:Editosome (ADAR2) complex' are present.&lt;br&gt;&lt;br&gt; This reaction takes place in the 'nucleus' and  is mediated by the 'double-stranded RNA adenosine deaminase activity' of 'ADAR2 homodimer'.&lt;br&gt;</Comment>
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="1081.0" Y="261.0"/>
+      <Point X="1080.0" Y="196.0"/>
+      <Point X="1077.0" Y="151.0"/>
+      <Anchor Position="0.0" Shape="None" GraphId="e_31_a_i"/>
+      <Anchor Position="0.59040159877677" Shape="None" GraphId="e_31_a_p"/>
+      <Anchor Position="1.0" Shape="None" GraphId="e_31_a_o"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_31_i0">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="1038.5" Y="274.0" GraphRef="n27_REACTOME_77610" RelX="0.752" RelY="-1.1666666666666667"/>
+      <Point X="1081.0" Y="261.0" GraphRef="e_31_a_i" RelX="0.0" RelY="0.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_31_i1">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="1144.0" Y="283.0" GraphRef="n32_REACTOME_113518" RelX="-1.1428571428571428" RelY="-0.4666666666666667"/>
+      <Point X="1081.0" Y="261.0" GraphRef="e_31_a_i" RelX="0.0" RelY="0.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_31_o0">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="1126.5" Y="135.0" GraphRef="n33_REACTOME_77611" RelX="-1.04" RelY="0.72" ArrowHead="Arrow"/>
+      <Point X="1077.0" Y="151.0" GraphRef="e_31_a_o" RelX="-3.0" RelY="-45.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_31_o1">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="1005.0" Y="126.0" GraphRef="n34_REACTOME_76230" RelX="1.1428571428571428" RelY="0.4666666666666667" ArrowHead="Arrow"/>
+      <Point X="1077.0" Y="151.0" GraphRef="e_31_a_o" RelX="-3.0" RelY="-45.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_31_c__0">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineStyle="Broken" LineThickness="1.0">
+      <Point X="788.5" Y="196.0" GraphRef="n26_REACTOME_111235" RelX="1.0588235294117647" RelY="0.0"/>
+      <Point X="1080.0" Y="196.0" GraphRef="e_31_a_p" RelX="0.0" RelY="0.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_35_REACTOME_111237">
+    <Comment Source="WikiPathways-description">At the beginning of this reaction, 2 molecules of 'ADAR1 protein' is present. At the end of this reaction, 1 molecule of 'ADAR1 homodimer ' is present.&lt;br&gt;&lt;br&gt; This reaction takes place in the 'nucleus'.&lt;br&gt;</Comment>
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="625.0" Y="563.0" GraphRef="n36_REACTOME_53939" RelX="0.3829787234042553" RelY="-1.2727272727272727"/>
+      <Point X="685.0" Y="530.0"/>
+      <Point X="733.5" Y="498.0" GraphRef="n23_REACTOME_111236" RelX="-0.2689075630252101" RelY="1.2727272727272727" ArrowHead="Arrow"/>
+      <Anchor Position="0.5427513369261586" Shape="None" GraphId="e_35_a_p"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_37_REACTOME_111238">
+    <Comment Source="WikiPathways-description">At the beginning of this reaction, 2 molecules of 'ADAR2 protein' is present. At the end of this reaction, 1 molecule of 'ADAR2 homodimer' is present.&lt;br&gt;&lt;br&gt; This reaction takes place in the 'nucleus'.&lt;br&gt;</Comment>
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="596.0" Y="107.0" GraphRef="n38_REACTOME_62915" RelX="0.3404255319148936" RelY="1.2727272727272727"/>
+      <Point X="660.0" Y="148.0"/>
+      <Point X="710.5" Y="182.0" GraphRef="n26_REACTOME_111235" RelX="-0.25210084033613445" RelY="-1.2727272727272727" ArrowHead="Arrow"/>
+      <Anchor Position="0.5569412630200562" Shape="None" GraphId="e_37_a_p"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Label TextLabel="nucleoplasm" GraphId="comp_text_1" GroupRef="group_comp_1">
+    <Graphics CenterX="118.0" CenterY="1698.5" Width="92.0" Height="33.0" ZOrder="28672" FontSize="12" Valign="Middle"/>
+  </Label>
+  <Shape GraphId="comp_1" GroupRef="group_comp_1">
+    <Graphics CenterX="1386.5" CenterY="894.0" Width="2655.0" Height="1710.0" ZOrder="16384" FontSize="12" Valign="Middle" ShapeType="Rectangle" LineThickness="2.0" Rotation="0.0"/>
+  </Shape>
+  <InfoBox CenterX="3872.5" CenterY="6350.0"/>
+  <Biopax>
+    <bp:PublicationXref xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" rdf:id="lit_77028">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">11092837</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Pubmed</bp:DB>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2001</bp:YEAR>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Functions and mechanisms of RNA editing.</bp:TITLE>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Gott, JM</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Emeson, RB</bp:AUTHORS>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Annu Rev Genet 34:499-531</bp:SOURCE>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" rdf:id="lit_83820">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">11718896</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Pubmed</bp:DB>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2001</bp:YEAR>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Isolation, characterization and developmental regulation of the human apobec-1 complementation factor (ACF) gene.</bp:TITLE>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Henderson, JO</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Blanc, V</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Davidson, NO</bp:AUTHORS>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Biochim Biophys Acta 1522:22-30</bp:SOURCE>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" rdf:id="lit_83819">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">8208612</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Pubmed</bp:DB>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1994</bp:YEAR>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Molecular cloning of a human small intestinal apolipoprotein B mRNA editing protein.</bp:TITLE>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Hadjiagapiou, C</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Giannoni, F</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Funahashi, T</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Skarosi, SF</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Davidson, NO</bp:AUTHORS>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Nucleic Acids Res 22:1874-9</bp:SOURCE>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" rdf:id="lit_77045">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">12139607</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Pubmed</bp:DB>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2002</bp:YEAR>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">RNA editing: complexity and complications.</bp:TITLE>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Stuart, K</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Panigrahi, AK</bp:AUTHORS>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Mol Microbiol 45:591-6</bp:SOURCE>
+    </bp:PublicationXref>
+    <bp:openControlledVocabulary xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#">
+      <bp:TERM xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">transcription pathway</bp:TERM>
+      <bp:ID xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PW:0000100</bp:ID>
+      <bp:Ontology xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Pathway Ontology</bp:Ontology>
+    </bp:openControlledVocabulary>
+  </Biopax>
+</Pathway>

@@ -1,0 +1,277 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Pathway xmlns="http://pathvisio.org/GPML/2013a" Name="Metapathway UDP-glucuronosyltransferases" Organism="Caenorhabditis elegans">
+  <Comment Source="WikiPathways-category">Molecular Function</Comment>
+  <Graphics BoardWidth="647.4833333333333" BoardHeight="282.48333333333335"/>
+  <DataNode TextLabel="ugt-1" GraphId="b45cd" Type="GeneProduct" GroupRef="cf7d4">
+    <Graphics CenterX="97.0" CenterY="70.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="179449"/>
+  </DataNode>
+  <DataNode TextLabel="ugt-26" GraphId="b77ec" Type="GeneProduct" GroupRef="d1b96">
+    <Graphics CenterX="257.0" CenterY="164.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="172085"/>
+  </DataNode>
+  <DataNode TextLabel="ugt-28" GraphId="bb278" Type="GeneProduct" GroupRef="d1b96">
+    <Graphics CenterX="257.0" CenterY="203.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="172086"/>
+  </DataNode>
+  <DataNode TextLabel="ugt-25" GraphId="bef94" Type="GeneProduct" GroupRef="d1b96">
+    <Graphics CenterX="257.0" CenterY="145.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="172087"/>
+  </DataNode>
+  <DataNode TextLabel="ugt-58" GraphId="b0c54" Type="GeneProduct" GroupRef="d6e92">
+    <Graphics CenterX="497.48333333333335" CenterY="201.98333333333332" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="174507"/>
+  </DataNode>
+  <DataNode TextLabel="ugt-62" GraphId="e4aec" Type="GeneProduct" GroupRef="eb268">
+    <Graphics CenterX="577.0" CenterY="86.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="175591"/>
+  </DataNode>
+  <DataNode TextLabel="ugtp-1" GraphId="c57dc" Type="GeneProduct">
+    <Graphics CenterX="577.4833333333333" CenterY="241.98333333333332" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="176227"/>
+  </DataNode>
+  <DataNode TextLabel="ugt-60" GraphId="d54f1" Type="GeneProduct" GroupRef="d6e92">
+    <Graphics CenterX="497.48333333333335" CenterY="241.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="176366"/>
+  </DataNode>
+  <DataNode TextLabel="ugt-52" GraphId="e6c9b" Type="GeneProduct" GroupRef="d6e92">
+    <Graphics CenterX="497.48333333333335" CenterY="84.48333333333333" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="176904"/>
+  </DataNode>
+  <DataNode TextLabel="ugt-45" GraphId="cc29e" Type="GeneProduct" GroupRef="bdfa9">
+    <Graphics CenterX="417.0" CenterY="145.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="177139"/>
+  </DataNode>
+  <DataNode TextLabel="ugt-24" GraphId="b1db8" Type="GeneProduct" GroupRef="d1b96">
+    <Graphics CenterX="257.0" CenterY="126.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="177380"/>
+  </DataNode>
+  <DataNode TextLabel="ugt-44" GraphId="d13ee" Type="GeneProduct" GroupRef="bdfa9">
+    <Graphics CenterX="417.0" CenterY="125.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="177939"/>
+  </DataNode>
+  <DataNode TextLabel="ugt-22" GraphId="c40e5" Type="GeneProduct" GroupRef="d1b96">
+    <Graphics CenterX="257.0" CenterY="87.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="178330"/>
+  </DataNode>
+  <DataNode TextLabel="ugt-29" GraphId="cb79b" Type="GeneProduct" GroupRef="d1b96">
+    <Graphics CenterX="257.0" CenterY="220.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="178581"/>
+  </DataNode>
+  <DataNode TextLabel="ugt-53" GraphId="ce0f3" Type="GeneProduct" GroupRef="d6e92">
+    <Graphics CenterX="497.48333333333335" CenterY="103.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="178744"/>
+  </DataNode>
+  <DataNode TextLabel="ugt-64" GraphId="b9f2d" Type="GeneProduct" GroupRef="eb268">
+    <Graphics CenterX="577.0" CenterY="125.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="178774"/>
+  </DataNode>
+  <DataNode TextLabel="ugt-12" GraphId="ef213" Type="GeneProduct" GroupRef="eb580">
+    <Graphics CenterX="177.0" CenterY="87.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="178880"/>
+  </DataNode>
+  <DataNode TextLabel="ugt-11" GraphId="f8fa3" Type="GeneProduct" GroupRef="eb580">
+    <Graphics CenterX="177.0" CenterY="67.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="178882"/>
+  </DataNode>
+  <DataNode TextLabel="ugt-9" GraphId="dd1be" Type="GeneProduct" GroupRef="cf7d4">
+    <Graphics CenterX="97.0" CenterY="219.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="178883"/>
+  </DataNode>
+  <DataNode TextLabel="ugt-51" GraphId="eeaff" Type="GeneProduct" GroupRef="d6e92">
+    <Graphics CenterX="497.48333333333335" CenterY="65.98333333333333" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="178905"/>
+  </DataNode>
+  <DataNode TextLabel="ugt-48" GraphId="b1020" Type="GeneProduct" GroupRef="bdfa9">
+    <Graphics CenterX="417.0" CenterY="204.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="178940"/>
+  </DataNode>
+  <DataNode TextLabel="ugt-17" GraphId="b1c34" Type="GeneProduct" GroupRef="eb580">
+    <Graphics CenterX="177.0" CenterY="182.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="179406"/>
+  </DataNode>
+  <DataNode TextLabel="ugt-49" GraphId="a3c3e" Type="GeneProduct" GroupRef="bdfa9">
+    <Graphics CenterX="417.0" CenterY="221.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="179446"/>
+  </DataNode>
+  <DataNode TextLabel="ugt-2" GraphId="a693a" Type="GeneProduct" GroupRef="cf7d4">
+    <Graphics CenterX="97.0" CenterY="89.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="179450"/>
+  </DataNode>
+  <DataNode TextLabel="ugt-33" GraphId="aac80" Type="GeneProduct" GroupRef="e57e6">
+    <Graphics CenterX="337.0" CenterY="106.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="179464"/>
+  </DataNode>
+  <DataNode TextLabel="ugt-6" GraphId="b1e82" Type="GeneProduct" GroupRef="cf7d4">
+    <Graphics CenterX="97.0" CenterY="164.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="179755"/>
+  </DataNode>
+  <DataNode TextLabel="ugt-5" GraphId="b32d5" Type="GeneProduct" GroupRef="cf7d4">
+    <Graphics CenterX="97.0" CenterY="144.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="179753"/>
+  </DataNode>
+  <DataNode TextLabel="ugt-18" GraphId="a816a" Type="GeneProduct" GroupRef="eb580">
+    <Graphics CenterX="177.0" CenterY="202.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="179759"/>
+  </DataNode>
+  <DataNode TextLabel="ugt-4" GraphId="d85d4" Type="GeneProduct" GroupRef="cf7d4">
+    <Graphics CenterX="97.0" CenterY="124.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="179754"/>
+  </DataNode>
+  <DataNode TextLabel="ugt-46" GraphId="c52c8" Type="GeneProduct" GroupRef="bdfa9">
+    <Graphics CenterX="417.0" CenterY="165.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="180404"/>
+  </DataNode>
+  <DataNode TextLabel="ugt-35" GraphId="bd1f9" Type="GeneProduct" GroupRef="e57e6">
+    <Graphics CenterX="337.0" CenterY="146.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="3565443"/>
+  </DataNode>
+  <DataNode TextLabel="ugt-57" GraphId="f2efa" Type="GeneProduct" GroupRef="d6e92">
+    <Graphics CenterX="497.48333333333335" CenterY="182.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="180969"/>
+  </DataNode>
+  <DataNode TextLabel="ugt-50" GraphId="f495a" Type="GeneProduct" GroupRef="bdfa9">
+    <Graphics CenterX="417.0" CenterY="240.48333333333332" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="181413"/>
+  </DataNode>
+  <DataNode TextLabel="ugt-63" GraphId="fb848" Type="GeneProduct" GroupRef="eb268">
+    <Graphics CenterX="577.0" CenterY="105.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="182223"/>
+  </DataNode>
+  <DataNode TextLabel="ugt-27" GraphId="b12f4" Type="GeneProduct" GroupRef="d1b96">
+    <Graphics CenterX="257.0" CenterY="183.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="182508"/>
+  </DataNode>
+  <DataNode TextLabel="ugt-7" GraphId="b8598" Type="GeneProduct" GroupRef="cf7d4">
+    <Graphics CenterX="97.0" CenterY="183.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="182577"/>
+  </DataNode>
+  <DataNode TextLabel="ugt-23" GraphId="f41e8" Type="GeneProduct" GroupRef="d1b96">
+    <Graphics CenterX="257.0" CenterY="107.98333333333333" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="181205"/>
+  </DataNode>
+  <DataNode TextLabel="ugt-21" GraphId="a1cc3" Type="GeneProduct" GroupRef="d1b96">
+    <Graphics CenterX="257.0" CenterY="67.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="183141"/>
+  </DataNode>
+  <DataNode TextLabel="ugt-15" GraphId="a44bc" Type="GeneProduct" GroupRef="eb580">
+    <Graphics CenterX="177.0" CenterY="143.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="183462"/>
+  </DataNode>
+  <DataNode TextLabel="ugt-43" GraphId="ecb0f" Type="GeneProduct" GroupRef="bdfa9">
+    <Graphics CenterX="417.0" CenterY="107.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="184052"/>
+  </DataNode>
+  <DataNode TextLabel="ugt-65" GraphId="dc2a7" Type="GeneProduct" GroupRef="eb268">
+    <Graphics CenterX="577.0" CenterY="145.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="184205"/>
+  </DataNode>
+  <DataNode TextLabel="ugt-36" GraphId="c2f1f" Type="GeneProduct" GroupRef="e57e6">
+    <Graphics CenterX="337.0" CenterY="165.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="184266"/>
+  </DataNode>
+  <DataNode TextLabel="ugt-40" GraphId="c25fd" Type="GeneProduct" GroupRef="e57e6">
+    <Graphics CenterX="337.0" CenterY="242.48333333333332" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="184292"/>
+  </DataNode>
+  <DataNode TextLabel="ugt-37" GraphId="cf308" Type="GeneProduct" GroupRef="e57e6">
+    <Graphics CenterX="337.0" CenterY="184.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="184293"/>
+  </DataNode>
+  <DataNode TextLabel="ugt-38" GraphId="b8f64" Type="GeneProduct" GroupRef="e57e6">
+    <Graphics CenterX="337.0" CenterY="202.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="184294"/>
+  </DataNode>
+  <DataNode TextLabel="ugt-41" GraphId="e5179" Type="GeneProduct" GroupRef="bdfa9">
+    <Graphics CenterX="417.0" CenterY="68.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="184295"/>
+  </DataNode>
+  <DataNode TextLabel="ugt-34" GraphId="f42b5" Type="GeneProduct" GroupRef="e57e6">
+    <Graphics CenterX="337.0" CenterY="126.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="185120"/>
+  </DataNode>
+  <DataNode TextLabel="ugt-42" GraphId="a224b" Type="GeneProduct" GroupRef="bdfa9">
+    <Graphics CenterX="417.0" CenterY="88.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="185168"/>
+  </DataNode>
+  <DataNode TextLabel="ugt-61" GraphId="b8253" Type="GeneProduct" GroupRef="eb268">
+    <Graphics CenterX="577.0" CenterY="66.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="185500"/>
+  </DataNode>
+  <DataNode TextLabel="ugt-32" GraphId="d4809" Type="GeneProduct" GroupRef="e57e6">
+    <Graphics CenterX="337.0" CenterY="86.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="185911"/>
+  </DataNode>
+  <DataNode TextLabel="ugt-13" GraphId="fbf06" Type="GeneProduct" GroupRef="eb580">
+    <Graphics CenterX="177.0" CenterY="106.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="186766"/>
+  </DataNode>
+  <DataNode TextLabel="ugt-14" GraphId="cdfe8" Type="GeneProduct" GroupRef="eb580">
+    <Graphics CenterX="177.0" CenterY="124.98333333333333" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="186767"/>
+  </DataNode>
+  <DataNode TextLabel="ugt-8" GraphId="ac7ef" Type="GeneProduct" GroupRef="cf7d4">
+    <Graphics CenterX="97.0" CenterY="201.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="186768"/>
+  </DataNode>
+  <DataNode TextLabel="ugt-19" GraphId="a1041" Type="GeneProduct" GroupRef="eb580">
+    <Graphics CenterX="177.0" CenterY="222.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="187129"/>
+  </DataNode>
+  <DataNode TextLabel="ugt-20" GraphId="eee36" Type="GeneProduct" GroupRef="eb580">
+    <Graphics CenterX="177.0" CenterY="240.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="187130"/>
+  </DataNode>
+  <DataNode TextLabel="ugt-47" GraphId="a3bd9" Type="GeneProduct" GroupRef="bdfa9">
+    <Graphics CenterX="417.0" CenterY="185.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="187570"/>
+  </DataNode>
+  <DataNode TextLabel="ugt-30" GraphId="e512f" Type="GeneProduct" GroupRef="d1b96">
+    <Graphics CenterX="257.0" CenterY="240.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="187955"/>
+  </DataNode>
+  <DataNode TextLabel="ugt-59" GraphId="e857e" Type="GeneProduct" GroupRef="d6e92">
+    <Graphics CenterX="497.48333333333335" CenterY="221.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="187799"/>
+  </DataNode>
+  <DataNode TextLabel="ugt-55" GraphId="c5599" Type="GeneProduct" GroupRef="d6e92">
+    <Graphics CenterX="497.48333333333335" CenterY="142.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="188072"/>
+  </DataNode>
+  <DataNode TextLabel="ugt-56" GraphId="f638e" Type="GeneProduct" GroupRef="d6e92">
+    <Graphics CenterX="497.48333333333335" CenterY="162.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="188073"/>
+  </DataNode>
+  <DataNode TextLabel="ugt-10" GraphId="b411a" Type="GeneProduct" GroupRef="cf7d4">
+    <Graphics CenterX="97.0" CenterY="239.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="188619"/>
+  </DataNode>
+  <DataNode TextLabel="ugt-54" GraphId="cc05d" Type="GeneProduct" GroupRef="d6e92">
+    <Graphics CenterX="497.48333333333335" CenterY="123.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="188885"/>
+  </DataNode>
+  <DataNode TextLabel="ugt-31" GraphId="c8fc7" Type="GeneProduct" GroupRef="e57e6">
+    <Graphics CenterX="337.0" CenterY="67.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="189771"/>
+  </DataNode>
+  <DataNode TextLabel="ugt-16" GraphId="df036" Type="GeneProduct" GroupRef="eb580">
+    <Graphics CenterX="177.0" CenterY="162.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="191171"/>
+  </DataNode>
+  <DataNode TextLabel="ugt-3" GraphId="eaabb" Type="GeneProduct" GroupRef="cf7d4">
+    <Graphics CenterX="97.0" CenterY="104.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="191174"/>
+  </DataNode>
+  <DataNode TextLabel="ugt-39" GraphId="a571e" Type="GeneProduct" GroupRef="e57e6">
+    <Graphics CenterX="337.0" CenterY="222.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="Entrez Gene" ID="3564933"/>
+  </DataNode>
+  <Group GroupId="bdfa9" Style="Group" TextLabel="Group object"/>
+  <Group GroupId="d1b96" Style="Group" TextLabel="Group object"/>
+  <Group GroupId="d6e92" Style="Group" TextLabel="Group object"/>
+  <Group GroupId="eb580" Style="Group" TextLabel="Group object"/>
+  <Group GroupId="cf7d4" Style="Group" TextLabel="Group object"/>
+  <Group GroupId="eb268" Style="Group" TextLabel="Group object"/>
+  <Group GroupId="e57e6" Style="Group" TextLabel="Group object"/>
+  <InfoBox CenterX="0.0" CenterY="0.0"/>
+</Pathway>
