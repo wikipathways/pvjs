@@ -8,9 +8,9 @@ pathvisiojs.view.annotation.xRef = function(){
     pathvisiojs.view.annotation.render(dummyData);
     
     //call a second time to display panel with bridgedb data
-//    var xRefData = pathvisiojs.data.bridgedb.getXrefAnnotationDataByDataNode(organism, node, function(annotationData) {
-//      pathvisiojs.view.annotation.render(annotationData);
-//    });
+    var xRefData = pathvisiojs.data.bridgedb.getXrefAnnotationDataByDataNode(organism, node, function(annotationData) {
+      pathvisiojs.view.annotation.render(annotationData);
+    });
   }
 
   return {
