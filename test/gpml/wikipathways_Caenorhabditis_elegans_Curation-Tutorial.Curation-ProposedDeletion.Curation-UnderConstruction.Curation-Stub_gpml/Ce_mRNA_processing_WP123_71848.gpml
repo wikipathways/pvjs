@@ -1,0 +1,1885 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Pathway xmlns="http://pathvisio.org/GPML/2013a" Name="mRNA processing" Organism="Caenorhabditis elegans">
+  <Comment Source="GenMAPP notes">Gene lists from obtained from InterPro 9-23-2003: Mm_RNA-binding region RNP-1  (RNA recognition motif)</Comment>
+  <Comment Source="GenMAPP remarks">Adapted from http://www.reactome.org.</Comment>
+  <Comment Source="WikiPathways-category">Cellular Process</Comment>
+  <Comment Source="WikiPathways-description">This process describes the conversion of precursor messenger RNA into mature messenger RNA (mRNA). The pre-mRNA molecule undergoes three main modifications. These modifications are 5' capping, 3' polyadenylation, and RNA splicing, which occur in the cell nucleus before the RNA is translated.
+
+5' Capping: Capping of the pre-mRNA involves the addition of 7-methylguanosine (m7G) to the 5' end. The cap protects the 5' end of the primary RNA transcript from attack by ribonucleases that have specificity to the 3'5' phosphodiester bonds.
+
+3' Processing: The pre-mRNA processing at the 3' end of the RNA molecule involves cleavage of its 3' end and then the addition of about 200 adenine residues to form a poly(A) tail. As the poly(A) tails is synthesised, it binds multiple copies of poly(A) binding protein, which protects the 3'end from ribonuclease digestion.
+
+Splicing: RNA splicing is the process by which introns, regions of RNA that do not code for protein, are removed from the pre-mRNA and the remaining exons connected to re-form a single continuous molecule.
+
+Description adapted from Wikipedia: http://en.wikipedia.org/wiki/Post-transcriptional_modification</Comment>
+  <Graphics BoardWidth="2106.6666666666665" BoardHeight="1040.0" />
+  <DataNode TextLabel="HNRPA1" GraphId="cf1" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="HNRPA1 | heterogeneous nuclear ribonucleoprotei..." />
+    <Graphics CenterX="323.3333333333333" CenterY="333.3333333333333" Width="73.33333333333333" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="" ID="" />
+  </DataNode>
+  <DataNode TextLabel="HNRPA2B1" GraphId="d79" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="HNRPA2B1 | heterogeneous nuclear ribonucleoprot..." />
+    <Graphics CenterX="323.3333333333333" CenterY="373.3333333333333" Width="76.6698" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="" ID="" />
+  </DataNode>
+  <DataNode TextLabel="HNRPAB" GraphId="f47" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="HNRPAB | heterogeneous nuclear ribonucleoprotei..." />
+    <Graphics CenterX="323.3333333333333" CenterY="393.3333333333333" Width="73.33333333333333" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="" ID="" />
+  </DataNode>
+  <DataNode TextLabel="HNRPC" GraphId="d9b" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="HNRPC | heterogeneous nuclear ribonucleoprotein..." />
+    <Graphics CenterX="323.3333333333333" CenterY="413.3333333333333" Width="73.33333333333333" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="" ID="" />
+  </DataNode>
+  <DataNode TextLabel="HNRPK" GraphId="c75" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="HNRPK | heterogeneous nuclear ribonucleoprotein..." />
+    <Graphics CenterX="423.3333333333333" CenterY="373.3333333333333" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="" ID="" />
+  </DataNode>
+  <DataNode TextLabel="C44B7.2" GraphId="dd7" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="C44B7.2 | C44B7.2a" />
+    <Graphics CenterX="423.3333333333333" CenterY="393.3333333333333" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Entrez Gene" ID="3565706" />
+  </DataNode>
+  <DataNode TextLabel="FUSIP1" GraphId="fe3" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="FUSIP1 | FUS interacting protein (serine-argini..." />
+    <Graphics CenterX="1616.6666666666667" CenterY="906.6666666666666" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="" ID="" />
+  </DataNode>
+  <DataNode TextLabel="snr-3" GraphId="fac" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="snr-3 | Small Nuclear Ribonucleoprotein" />
+    <Graphics CenterX="576.6666666666666" CenterY="286.6666666666667" Width="60.52876666666667" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Entrez Gene" ID="174072" />
+  </DataNode>
+  <DataNode TextLabel="snr-4" GraphId="b5f" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="snr-4 | Small Nuclear Ribonucleoprotein" />
+    <Graphics CenterX="576.6666666666666" CenterY="306.6666666666667" Width="60.52876666666667" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Entrez Gene" ID="179639" />
+  </DataNode>
+  <DataNode TextLabel="snr-6" GraphId="b60" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="snr-6 | Small Nuclear Ribonucleoprotein" />
+    <Graphics CenterX="670.0" CenterY="266.6666666666667" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Entrez Gene" ID="176668" />
+  </DataNode>
+  <DataNode TextLabel="snr-5" GraphId="ca6" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="snr-5 | Small Nuclear Ribonucleoprotein" />
+    <Graphics CenterX="670.0" CenterY="286.6666666666667" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Entrez Gene" ID="176103" />
+  </DataNode>
+  <DataNode TextLabel="snr-7" GraphId="f8f" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="snr-7 | Small Nuclear Ribonucleoprotein" />
+    <Graphics CenterX="670.0" CenterY="306.6666666666667" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Entrez Gene" ID="171834" />
+  </DataNode>
+  <DataNode TextLabel="cpf-1" GraphId="ff9" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="cpf-1 | Cleavage and Polyadenylation Factor" />
+    <Graphics CenterX="1536.6666666666667" CenterY="133.33333333333334" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Entrez Gene" ID="174378" />
+  </DataNode>
+  <DataNode TextLabel="CSTF2" GraphId="fa2" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="CSTF2 | cleavage stimulation factor 3â pre-RNA..." />
+    <Graphics CenterX="1536.6666666666667" CenterY="173.33333333333334" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="" ID="" />
+  </DataNode>
+  <DataNode TextLabel="Y67H2A.1" GraphId="fcc" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="Y67H2A.1 | Y67H2A.1" />
+    <Graphics CenterX="1303.3333333333333" CenterY="173.33333333333334" Width="66.66666666666667" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Entrez Gene" ID="178285" />
+  </DataNode>
+  <DataNode TextLabel="Y76B12C.7" GraphId="ac3" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="Y76B12C.7 | Y76B12C.7" />
+    <Graphics CenterX="1303.3333333333333" CenterY="133.33333333333334" Width="73.33333333333333" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Entrez Gene" ID="177003" />
+  </DataNode>
+  <DataNode TextLabel="F09G2.4" GraphId="c53" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="F09G2.4 | F09G2.4" />
+    <Graphics CenterX="1303.3333333333333" CenterY="153.33333333333334" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Entrez Gene" ID="179103" />
+  </DataNode>
+  <DataNode TextLabel="cpf-2" GraphId="a58" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="cpf-2 | Cleavage and Polyadenylation Factor" />
+    <Graphics CenterX="1536.6666666666667" CenterY="153.33333333333334" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Entrez Gene" ID="176742" />
+  </DataNode>
+  <DataNode TextLabel="pab-3" GraphId="d40" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="pab-3 | PolyA Binding protein" />
+    <Graphics CenterX="1423.3333333333333" CenterY="136.66666666666666" Width="60.52876666666667" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Entrez Gene" ID="172768" />
+  </DataNode>
+  <DataNode TextLabel="SFRS9" GraphId="bd5" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">PMID: 12738786, PMID: 12024014  (associated with hnRNP A1 splicing)</Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="SFRS9 | splicing factor arginine/serine-rich 9..." />
+    <Graphics CenterX="863.3333333333334" CenterY="290.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="" ID="" />
+  </DataNode>
+  <DataNode TextLabel="gut-2" GraphId="ddf" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="gut-2 | GUT differentiation defective" />
+    <Graphics CenterX="696.6666666666666" CenterY="683.3333333333334" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Entrez Gene" ID="179833" />
+  </DataNode>
+  <DataNode TextLabel="rsp-3" GraphId="cb9" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">Antagonist splicing factor</Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="rsp-3 | SR Protein (splicing factor)" />
+    <Graphics CenterX="773.3333333333334" CenterY="250.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Entrez Gene" ID="176688" />
+  </DataNode>
+  <DataNode TextLabel="rsp-4" GraphId="cf9" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="rsp-4 | SR Protein (splicing factor)" />
+    <Graphics CenterX="773.3333333333334" CenterY="270.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Entrez Gene" ID="173915" />
+  </DataNode>
+  <DataNode TextLabel="SFRS3" GraphId="b14" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="SFRS3 | splicing factor arginine/serine-rich 3..." />
+    <Graphics CenterX="773.3333333333334" CenterY="290.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="" ID="" />
+  </DataNode>
+  <DataNode TextLabel="SFRS5" GraphId="e7e" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="SFRS5 | splicing factor arginine/serine-rich 5..." />
+    <Graphics CenterX="773.3333333333334" CenterY="310.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="" ID="" />
+  </DataNode>
+  <DataNode TextLabel="rsr-1" GraphId="d03" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="rsr-1 | SR protein related" />
+    <Graphics CenterX="1616.6666666666667" CenterY="926.6666666666666" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Entrez Gene" ID="173013" />
+  </DataNode>
+  <DataNode TextLabel="CLK1" GraphId="baf" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">PMID: 15010457: Inhibitor                                    John C. Bell, PhD&#xD;
+&#xD;
+Professor, Depts. of Medicine and Biochemistry, Microbiology &amp; Immunology&#xD;
+University of Ottawa&#xD;
+Career Scientist, Ottawa Regional Cancer Centre&#xD;
+Associate Scientist, The Ottawa Hospital Research Institute&#xD;
+Telephone:    613-737-7700 ext 6893&#xD;
+Fax:              613-247-3524&#xD;
+Email:           John.Bell@orcc.on.ca&#xD;
+The control of pre-mRNA splicing by the Clk kinase family&#xD;
+We are studying a family of kinases which we believe provide an interface between intracellular signaling networks and the post-transcriptional mechanism of mRNA splicing. We are performing a structure:function analysis of the three Clk family members to identify domains in the three proteins which are involved in regulating splicing. Using homologous recombination we are generating null strains of mice which are lacking one, two or all three Clk genes. The Clk kinases all possess dual specificity kinase activity and yeast expression systems are being used to produce large amounts of the kinase to perform a detailed analysis of the sites of serine, threonine and tyrosine autophosphorylation within the kinase.</Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="CLK1 | CDC-like kinase 1" />
+    <Graphics CenterX="1616.6666666666667" CenterY="546.6666666666666" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="" ID="" />
+  </DataNode>
+  <DataNode TextLabel="CLK3" GraphId="e76" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="CLK3 | CDC-like kinase 3" />
+    <Graphics CenterX="1616.6666666666667" CenterY="586.6666666666666" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="" ID="" />
+  </DataNode>
+  <DataNode TextLabel="tag-172" GraphId="bcf" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="tag-172 | Temporarily Assigned Gene name" />
+    <Graphics CenterX="1616.6666666666667" CenterY="566.6666666666666" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Entrez Gene" ID="3565068" />
+  </DataNode>
+  <DataNode TextLabel="CLK4" GraphId="c19" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="CLK4 | CDC-like kinase 4" />
+    <Graphics CenterX="1616.6666666666667" CenterY="606.6666666666666" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="" ID="" />
+  </DataNode>
+  <DataNode TextLabel="uaf-1" GraphId="ec7" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="uaf-1 | U2AF splicing factor" />
+    <Graphics CenterX="820.0" CenterY="203.33333333333334" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Entrez Gene" ID="175270" />
+  </DataNode>
+  <DataNode TextLabel="prp-17" GraphId="b2d" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="prp-17 | yeast PRP (splicing factor) related" />
+    <Graphics CenterX="1060.0" CenterY="480.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Entrez Gene" ID="172999" />
+  </DataNode>
+  <DataNode TextLabel="SNRPN" GraphId="f4e" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="SNRPN | small nuclear ribonucleoprotein polypep..." />
+    <Graphics CenterX="1816.6666666666667" CenterY="873.3333333333334" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="" ID="" />
+  </DataNode>
+  <DataNode TextLabel="rsp-6" GraphId="afa" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="rsp-6 | SR Protein (splicing factor)" />
+    <Graphics CenterX="863.3333333333334" CenterY="270.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Entrez Gene" ID="177566" />
+  </DataNode>
+  <DataNode TextLabel="rsp-1" GraphId="b2b" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="rsp-1 | SR Protein (splicing factor)" />
+    <Graphics CenterX="863.3333333333334" CenterY="250.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Entrez Gene" ID="174748" />
+  </DataNode>
+  <DataNode TextLabel="SFRS10" GraphId="f11" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="SFRS10 | splicing factor arginine/serine-rich ..." />
+    <Graphics CenterX="1616.6666666666667" CenterY="806.6666666666666" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="" ID="" />
+  </DataNode>
+  <DataNode TextLabel="ama-1" GraphId="c72" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="ama-1 | AMAnitin resistant" />
+    <Graphics CenterX="100.0" CenterY="116.66666666666667" Width="60.52876666666667" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Entrez Gene" ID="177190" />
+  </DataNode>
+  <DataNode TextLabel="spt-5" GraphId="e6c" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="spt-5 | SPT transcription factor family" />
+    <Graphics CenterX="100.0" CenterY="156.66666666666666" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Entrez Gene" ID="178143" />
+  </DataNode>
+  <DataNode TextLabel="tag-72" GraphId="df1" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="tag-72 | Temporarily Assigned Gene name" />
+    <Graphics CenterX="100.0" CenterY="136.66666666666666" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Entrez Gene" ID="182875" />
+  </DataNode>
+  <DataNode TextLabel="cel-1" GraphId="e5a" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="cel-1 | mRNA Capping Enzyme Like" />
+    <Graphics CenterX="100.0" CenterY="176.66666666666666" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Entrez Gene" ID="172814" />
+  </DataNode>
+  <DataNode TextLabel="F37E3.1" GraphId="ac5" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="F37E3.1 | F37E3.1" />
+    <Graphics CenterX="366.6666666666667" CenterY="203.33333333333334" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Entrez Gene" ID="172345" />
+  </DataNode>
+  <DataNode TextLabel="NCBP2" GraphId="b95" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="NCBP2 | nuclear cap binding protein subunit 2 ..." />
+    <Graphics CenterX="366.6666666666667" CenterY="223.33333333333334" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="" ID="" />
+  </DataNode>
+  <DataNode TextLabel="METTL3" GraphId="d6d" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="METTL3 | methyltransferase like 3" />
+    <Graphics CenterX="366.6666666666667" CenterY="263.3333333333333" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="" ID="" />
+  </DataNode>
+  <DataNode TextLabel="HNRPA3P1" GraphId="f2f" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="HNRPA3P1 | heterogeneous nuclear ribonucleoprot..." />
+    <Graphics CenterX="323.3333333333333" CenterY="353.3333333333333" Width="73.33333333333333" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="" ID="" />
+  </DataNode>
+  <DataNode TextLabel="HNRPD" GraphId="e9a" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="HNRPD | heterogeneous nuclear ribonucleoprotein..." />
+    <Graphics CenterX="323.3333333333333" CenterY="433.3333333333333" Width="73.33333333333333" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="" ID="" />
+  </DataNode>
+  <DataNode TextLabel="RBMX" GraphId="f32" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="RBMX | RNA binding motif protein X-linked" />
+    <Graphics CenterX="323.3333333333333" CenterY="453.3333333333333" Width="73.33333333333333" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="" ID="" />
+  </DataNode>
+  <DataNode TextLabel="Y73B6BL.33" GraphId="fb5" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="Y73B6BL.33 | Y73B6BL.33" />
+    <Graphics CenterX="423.3333333333333" CenterY="333.3333333333333" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Entrez Gene" ID="177398" />
+  </DataNode>
+  <DataNode TextLabel="HNRPH2" GraphId="a1e" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="HNRPH2 | heterogeneous nuclear ribonucleoprotei..." />
+    <Graphics CenterX="423.3333333333333" CenterY="353.3333333333333" Width="60.52876666666667" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="" ID="" />
+  </DataNode>
+  <DataNode TextLabel="hrp-2" GraphId="bf3" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="hrp-2 | human HnRNP A1 homolog" />
+    <Graphics CenterX="423.3333333333333" CenterY="433.3333333333333" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Entrez Gene" ID="173086" />
+  </DataNode>
+  <DataNode TextLabel="C25A1.4" GraphId="c6e" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="C25A1.4 | C25A1.4" />
+    <Graphics CenterX="423.3333333333333" CenterY="413.3333333333333" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Entrez Gene" ID="172881" />
+  </DataNode>
+  <DataNode TextLabel="ptb-1" GraphId="d31" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="ptb-1 | human PTB (hnRNP) homolog" />
+    <Graphics CenterX="1060.0" CenterY="500.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Entrez Gene" ID="174647" />
+  </DataNode>
+  <DataNode TextLabel="U1 snRNA" GraphId="a9c" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">GenBank sequence: J00645</Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="U1 snRNA" />
+    <Graphics CenterX="620.0" CenterY="183.33333333333334" Width="73.33333333333333" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="" ID="" />
+  </DataNode>
+  <DataNode TextLabel="U4 snRNA" GraphId="daa" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">GenBank sequence: M10328, M18004</Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="U4 snRNA" />
+    <Graphics CenterX="596.6666666666666" CenterY="626.6666666666666" Width="73.33333333333333" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="" ID="" />
+  </DataNode>
+  <DataNode TextLabel="U5 snRNA" GraphId="f14" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">GenBank sequence: AB021173</Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="U5 snRNA" />
+    <Graphics CenterX="796.6666666666666" CenterY="623.3333333333334" Width="73.33333333333333" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="" ID="" />
+  </DataNode>
+  <DataNode TextLabel="Rnu6" GraphId="dad" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">GenBank sequence: M10329</Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="U6 snRNA" />
+    <Graphics CenterX="696.6666666666666" CenterY="623.3333333333334" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="" ID="" />
+  </DataNode>
+  <DataNode TextLabel="rnp-7" GraphId="f46" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="rnp-7 | RNP (RRM RNA binding domain) containing..." />
+    <Graphics CenterX="620.0" CenterY="203.33333333333334" Width="73.33333333333333" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Entrez Gene" ID="176002" />
+  </DataNode>
+  <DataNode TextLabel="rnp-2" GraphId="fff" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="rnp-2 | RNP (RRM RNA binding domain) containing..." />
+    <Graphics CenterX="620.0" CenterY="223.33333333333334" Width="73.33333333333333" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Entrez Gene" ID="177181" />
+  </DataNode>
+  <DataNode TextLabel="SNRPB" GraphId="dfb" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="SNRPB | small nuclear ribonucleoprotein polypep..." />
+    <Graphics CenterX="576.6666666666666" CenterY="266.6666666666667" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="" ID="" />
+  </DataNode>
+  <DataNode TextLabel="him-1" GraphId="b8e" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="him-1 | High Incidence of Males (increased X ch..." />
+    <Graphics CenterX="1053.3333333333333" CenterY="290.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Entrez Gene" ID="172116" />
+  </DataNode>
+  <DataNode TextLabel="teg-1" GraphId="edc" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="teg-1 | Tumorous Enhancer of Glp-1(gf)" />
+    <Graphics CenterX="1053.3333333333333" CenterY="270.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Entrez Gene" ID="176561" />
+  </DataNode>
+  <DataNode TextLabel="NSEP1" GraphId="bd1" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="NSEP1 | nuclease sensitive element binding prot..." />
+    <Graphics CenterX="966.6666666666666" CenterY="270.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="" ID="" />
+  </DataNode>
+  <DataNode TextLabel="rha-1" GraphId="c93" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="rha-1 | RNA HelicAse" />
+    <Graphics CenterX="1013.3333333333334" CenterY="190.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Entrez Gene" ID="174417" />
+  </DataNode>
+  <DataNode TextLabel="snr-1" GraphId="f71" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="snr-1 | Small Nuclear Ribonucleoprotein" />
+    <Graphics CenterX="576.6666666666666" CenterY="326.6666666666667" Width="60.52876666666667" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Entrez Gene" ID="178483" />
+  </DataNode>
+  <DataNode TextLabel="SFRS14" GraphId="f58" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="SFRS14 | splicing factor arginine/serine-rich ..." />
+    <Graphics CenterX="1616.6666666666667" CenterY="846.6666666666666" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="" ID="" />
+  </DataNode>
+  <DataNode TextLabel="F47G9.1" GraphId="f98" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="F47G9.1 | F47G9.1" />
+    <Graphics CenterX="1616.6666666666667" CenterY="886.6666666666666" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Entrez Gene" ID="179567" />
+  </DataNode>
+  <DataNode TextLabel="rsp-7" GraphId="ee5" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">PMID: 14559993.  SRrp86 is a unique member of the SR protein superfamily containing one RNA recognition motif and two serine-arginine (SR)-rich domains separated by an unusual glutamic acid-lysine (EK)-rich region. Previously, we showed that SRrp86 could regulate alternative splicing by both positively and negatively modulating the activity of other SR proteins and that the unique EK domain could inhibit both constitutive and alternative splicing. These functions were most consistent with the model in which SRrp86 functions by interacting with and thereby modulating the activity of target proteins. To identify the specific proteins that interact with SRrp86, we used a yeast two-hybrid library screen and immunoprecipitation coupled to mass spectrometry. We show that SRrp86 interacts with all of the core SR proteins, as well as a subset of other splicing regulatory proteins, including SAF-B, hnRNP G, YB-1, and p72. In contrast to previous results that showed activation of SRp20 by SRrp86, we now show that SAF-B, hnRNP G, and 9G8 all antagonize the activity of SRrp86. Overall, we conclude that not only does SRrp86 regulate SR protein activity but that it is, in turn, regulated by other splicing factors to control alternative splice site selection.</Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="rsp-7 | SR Protein (splicing factor)" />
+    <Graphics CenterX="1616.6666666666667" CenterY="826.6666666666666" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Entrez Gene" ID="174646" />
+  </DataNode>
+  <DataNode TextLabel="F28C1.1" GraphId="cb3" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="F28C1.1 | F28C1.1" />
+    <Graphics CenterX="1616.6666666666667" CenterY="866.6666666666666" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Entrez Gene" ID="179705" />
+  </DataNode>
+  <DataNode TextLabel="C27H5.3" GraphId="a26" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="C27H5.3 | C27H5.3" />
+    <Graphics CenterX="966.6666666666666" CenterY="250.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Entrez Gene" ID="174175" />
+  </DataNode>
+  <DataNode TextLabel="SF4" GraphId="ad8" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">inferred from: SURP 2, G patch protein, UniProt:O60378</Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="SF4 | splicing factor 4" />
+    <Graphics CenterX="966.6666666666666" CenterY="290.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="" ID="" />
+  </DataNode>
+  <DataNode TextLabel="T08B2.5" GraphId="c6a" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="T08B2.5 | T08B2.5c" />
+    <Graphics CenterX="1053.3333333333333" CenterY="250.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Entrez Gene" ID="172312" />
+  </DataNode>
+  <DataNode TextLabel="F43G9.5" GraphId="b4f" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="F43G9.5 | F43G9.5" />
+    <Graphics CenterX="1213.3333333333333" CenterY="133.33333333333334" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Entrez Gene" ID="172657" />
+  </DataNode>
+  <DataNode TextLabel="F11A10.8" GraphId="f37" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="F11A10.8 | F11A10.8" />
+    <Graphics CenterX="1303.3333333333333" CenterY="193.33333333333334" Width="66.66666666666667" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Entrez Gene" ID="178151" />
+  </DataNode>
+  <DataNode TextLabel="eft-1" GraphId="de8" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="eft-1 | Elongation FacTor" />
+    <Graphics CenterX="906.6666666666666" CenterY="623.3333333333334" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Entrez Gene" ID="175851" />
+  </DataNode>
+  <DataNode TextLabel="Y59A8B.6" GraphId="f40" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="Y59A8B.6 | Y59A8B.6" />
+    <Graphics CenterX="796.6666666666666" CenterY="683.3333333333334" Width="73.33333333333333" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Entrez Gene" ID="180180" />
+  </DataNode>
+  <DataNode TextLabel="F08G12.2" GraphId="ceb" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="F08G12.2 | F08G12.2" />
+    <Graphics CenterX="796.6666666666666" CenterY="663.3333333333334" Width="73.33333333333333" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Entrez Gene" ID="181319" />
+  </DataNode>
+  <DataNode TextLabel="TXNL4A" GraphId="b92" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="TXNL4A | thioredoxin-like 4A" />
+    <Graphics CenterX="796.6666666666666" CenterY="643.3333333333334" Width="73.33333333333333" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="" ID="" />
+  </DataNode>
+  <DataNode TextLabel="SSFA1" GraphId="d82" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="SSFA1 | sperm specific antigen 1" />
+    <Graphics CenterX="596.6666666666666" CenterY="646.6666666666666" Width="73.33333333333333" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="" ID="" />
+  </DataNode>
+  <DataNode TextLabel="SF3B5" GraphId="d97" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="SF3B5 | splicing factor 3b subunit 5 10kDa" />
+    <Graphics CenterX="806.6666666666666" CenterY="506.6666666666667" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="" ID="" />
+  </DataNode>
+  <DataNode TextLabel="rsp-2" GraphId="c41" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="rsp-2 | SR Protein (splicing factor)" />
+    <Graphics CenterX="933.3333333333334" CenterY="420.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Entrez Gene" ID="174747" />
+  </DataNode>
+  <DataNode TextLabel="RNU2" GraphId="b43" Type="GeneProduct">
+    <Comment Source="GenMAPP remarks">GenBank sequence: K00027</Comment>
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="RNU2 | RNA U2 small nuclear" />
+    <Graphics CenterX="596.6666666666666" CenterY="410.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="" ID="" />
+  </DataNode>
+  <DataNode TextLabel="rnp-3" GraphId="e01" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="rnp-3 | RNP (RRM RNA binding domain) containing..." />
+    <Graphics CenterX="700.0" CenterY="446.6666666666667" Width="60.52876666666667" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Entrez Gene" ID="177182" />
+  </DataNode>
+  <DataNode TextLabel="T13H5.4" GraphId="cb8" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="T13H5.4 | T13H5.4" />
+    <Graphics CenterX="596.6666666666666" CenterY="496.6666666666667" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Entrez Gene" ID="174364" />
+  </DataNode>
+  <DataNode TextLabel="sap-1" GraphId="c30" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="sap-1 | Spliceosome-Associated Protein" />
+    <Graphics CenterX="700.0" CenterY="426.6666666666667" Width="60.52876666666667" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Entrez Gene" ID="173767" />
+  </DataNode>
+  <DataNode TextLabel="prp-21" GraphId="a88" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="prp-21 | yeast PRP (splicing factor) related" />
+    <Graphics CenterX="596.6666666666666" CenterY="456.6666666666667" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Entrez Gene" ID="173440" />
+  </DataNode>
+  <DataNode TextLabel="F11A10.2" GraphId="b85" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="F11A10.2 | F11A10.2" />
+    <Graphics CenterX="596.6666666666666" CenterY="476.6666666666667" Width="66.66666666666667" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Entrez Gene" ID="178147" />
+  </DataNode>
+  <DataNode TextLabel="T08A11.2" GraphId="ce6" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="T08A11.2 | T08A11.2" />
+    <Graphics CenterX="806.6666666666666" CenterY="426.6666666666667" Width="66.66666666666667" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Entrez Gene" ID="175549" />
+  </DataNode>
+  <DataNode TextLabel="W03F9.10" GraphId="bc3" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="W03F9.10 | W03F9.10" />
+    <Graphics CenterX="806.6666666666666" CenterY="446.6666666666667" Width="66.66666666666667" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Entrez Gene" ID="178542" />
+  </DataNode>
+  <DataNode TextLabel="tag-203" GraphId="fd2" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="tag-203 | Temporarily Assigned Gene name" />
+    <Graphics CenterX="806.6666666666666" CenterY="466.6666666666667" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Entrez Gene" ID="172406" />
+  </DataNode>
+  <DataNode TextLabel="SF3B4" GraphId="d44" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="SF3B4 | splicing factor 3b subunit 4 49kDa" />
+    <Graphics CenterX="806.6666666666666" CenterY="486.6666666666667" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="" ID="" />
+  </DataNode>
+  <DataNode TextLabel="mog-1" GraphId="f2a" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="mog-1 | Masculinisation Of Germline" />
+    <Graphics CenterX="933.3333333333334" CenterY="460.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Entrez Gene" ID="176409" />
+  </DataNode>
+  <DataNode TextLabel="prp-17" GraphId="f20" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="prp-17 | yeast PRP (splicing factor) related" />
+    <Graphics CenterX="1060.0" CenterY="420.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Entrez Gene" ID="172999" />
+  </DataNode>
+  <DataNode TextLabel="dnj-30" GraphId="f30" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="dnj-30 | DNaJ domain (prokaryotic heat shock pr..." />
+    <Graphics CenterX="1060.0" CenterY="440.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Entrez Gene" ID="171833" />
+  </DataNode>
+  <DataNode TextLabel="prp-8" GraphId="fdf" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="prp-8 | yeast PRP (splicing factor) related" />
+    <Graphics CenterX="1060.0" CenterY="460.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Entrez Gene" ID="176153" />
+  </DataNode>
+  <DataNode TextLabel="phf-5" GraphId="f27" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="phf-5 | PHd Finger family" />
+    <Graphics CenterX="700.0" CenterY="493.3333333333333" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Entrez Gene" ID="3564851" />
+  </DataNode>
+  <DataNode TextLabel="C36B1.5" GraphId="ef4" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="C36B1.5 | C36B1.5" />
+    <Graphics CenterX="596.6666666666666" CenterY="666.6666666666666" Width="73.33333333333333" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Entrez Gene" ID="183250" />
+  </DataNode>
+  <DataNode TextLabel="SSFA1" GraphId="b3c" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="SSFA1 | sperm specific antigen 1" />
+    <Graphics CenterX="696.6666666666666" CenterY="643.3333333333334" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="" ID="" />
+  </DataNode>
+  <DataNode TextLabel="C36B1.5" GraphId="faa" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="C36B1.5 | C36B1.5" />
+    <Graphics CenterX="696.6666666666666" CenterY="663.3333333333334" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Entrez Gene" ID="183250" />
+  </DataNode>
+  <DataNode TextLabel="gut-2" GraphId="d8d" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="gut-2 | GUT differentiation defective" />
+    <Graphics CenterX="906.6666666666666" CenterY="643.3333333333334" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Entrez Gene" ID="179833" />
+  </DataNode>
+  <DataNode TextLabel="prp-8" GraphId="a03" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="prp-8 | yeast PRP (splicing factor) related" />
+    <Graphics CenterX="906.6666666666666" CenterY="683.3333333333334" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Entrez Gene" ID="176153" />
+  </DataNode>
+  <DataNode TextLabel="suf-1" GraphId="fea" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="suf-1 | SUppressor-of-Forked (Drosophila) homol..." />
+    <Graphics CenterX="1536.6666666666667" CenterY="193.33333333333334" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Entrez Gene" ID="174380" />
+  </DataNode>
+  <DataNode TextLabel="F59A2.4" GraphId="c2b" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="F59A2.4 | F59A2.4" />
+    <Graphics CenterX="1213.3333333333333" CenterY="176.66666666666666" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Entrez Gene" ID="175442" />
+  </DataNode>
+  <DataNode TextLabel="F43G6.5" GraphId="dc1" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="F43G6.5 | F43G6.5" />
+    <Graphics CenterX="1423.3333333333333" CenterY="183.33333333333334" Width="60.52876666666667" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Entrez Gene" ID="174816" />
+  </DataNode>
+  <DataNode TextLabel="Y55F3BR.1" GraphId="c92" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="Y55F3BR.1 | Y55F3BR.1" />
+    <Graphics CenterX="1816.6666666666667" CenterY="546.6666666666666" Width="73.33333333333333" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Entrez Gene" ID="176913" />
+  </DataNode>
+  <DataNode TextLabel="HRMT1L1" GraphId="bcb" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="HRMT1L1 | HMT1 hnRNP methyltransferase-like 1 (..." />
+    <Graphics CenterX="1816.6666666666667" CenterY="790.0" Width="66.66666666666667" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="" ID="" />
+  </DataNode>
+  <DataNode TextLabel="Y113G7B.17" GraphId="e3e" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="Y113G7B.17 | Y113G7B.17" />
+    <Graphics CenterX="1816.6666666666667" CenterY="770.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Entrez Gene" ID="180326" />
+  </DataNode>
+  <DataNode TextLabel="PCBP2" GraphId="ab3" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="PCBP2 | poly(rC) binding protein 2" />
+    <Graphics CenterX="1816.6666666666667" CenterY="810.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="" ID="" />
+  </DataNode>
+  <DataNode TextLabel="dcr-1" GraphId="ee2" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="dcr-1 | DiCer Related" />
+    <Graphics CenterX="2000.0" CenterY="546.6666666666666" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Entrez Gene" ID="176138" />
+  </DataNode>
+  <DataNode TextLabel="DDX20" GraphId="a07" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="DDX20 | DEAD (Asp-Glu-Ala-Asp) box polypeptide ..." />
+    <Graphics CenterX="1816.6666666666667" CenterY="566.6666666666666" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="" ID="" />
+  </DataNode>
+  <DataNode TextLabel="F56D2.6" GraphId="bc7" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="F56D2.6 | F56D2.6a" />
+    <Graphics CenterX="1816.6666666666667" CenterY="606.6666666666666" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Entrez Gene" ID="175771" />
+  </DataNode>
+  <DataNode TextLabel="mog-5" GraphId="f4c" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="mog-5 | Masculinisation Of Germline" />
+    <Graphics CenterX="1816.6666666666667" CenterY="586.6666666666666" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Entrez Gene" ID="173920" />
+  </DataNode>
+  <DataNode TextLabel="prp-4" GraphId="a6d" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="prp-4 | yeast PRP (splicing factor) related" />
+    <Graphics CenterX="1616.6666666666667" CenterY="626.6666666666666" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Entrez Gene" ID="172443" />
+  </DataNode>
+  <DataNode TextLabel="nxf-1" GraphId="c22" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="nxf-1 | Nuclear eXport Factor" />
+    <Graphics CenterX="2000.0" CenterY="810.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Entrez Gene" ID="191736" />
+  </DataNode>
+  <DataNode TextLabel="mog-4" GraphId="dc8" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="mog-4 | Masculinisation Of Germline" />
+    <Graphics CenterX="1816.6666666666667" CenterY="626.6666666666666" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Entrez Gene" ID="175117" />
+  </DataNode>
+  <DataNode TextLabel="etr-1" GraphId="d26" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="etr-1 | ELAV-Type RNA binding protein family" />
+    <Graphics CenterX="2000.0" CenterY="610.0" Width="60.52876666666667" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Entrez Gene" ID="173401" />
+  </DataNode>
+  <DataNode TextLabel="Y55F3AM.3" GraphId="f62" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="Y55F3AM.3 | Y55F3AM.3a" />
+    <Graphics CenterX="2000.0" CenterY="630.0" Width="73.33333333333333" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Entrez Gene" ID="176922" />
+  </DataNode>
+  <DataNode TextLabel="unc-75" GraphId="c1b" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="unc-75 | UNCoordinated" />
+    <Graphics CenterX="1816.6666666666667" CenterY="676.6666666666666" Width="68.59926666666667" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Entrez Gene" ID="182722" />
+  </DataNode>
+  <DataNode TextLabel="NONO" GraphId="e41" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="NONO | non-POU domain containing octamer-bindi..." />
+    <Graphics CenterX="2000.0" CenterY="650.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="" ID="" />
+  </DataNode>
+  <DataNode TextLabel="Y48B6A.3" GraphId="c39" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="Y48B6A.3 | Y48B6A.3" />
+    <Graphics CenterX="2000.0" CenterY="670.0" Width="66.66666666666667" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Entrez Gene" ID="175071" />
+  </DataNode>
+  <DataNode TextLabel="bath-43" GraphId="de2" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="bath-43 | BTB and MATH domain containing" />
+    <Graphics CenterX="2000.0" CenterY="690.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Entrez Gene" ID="176422" />
+  </DataNode>
+  <DataNode TextLabel="SNRPN" GraphId="e3a" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="SNRPN | small nuclear ribonucleoprotein polypep..." />
+    <Graphics CenterX="2000.0" CenterY="790.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="" ID="" />
+  </DataNode>
+  <DataNode TextLabel="CUGBP2" GraphId="c52" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="CUGBP2 | CUG triplet repeat RNA binding protei..." />
+    <Graphics CenterX="1816.6666666666667" CenterY="696.6666666666666" Width="60.52876666666667" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="" ID="" />
+  </DataNode>
+  <DataNode TextLabel="PTBP2" GraphId="b1e" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="PTBP2 | polypyrimidine tract binding protein 2" />
+    <Graphics CenterX="1816.6666666666667" CenterY="716.6666666666666" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="" ID="" />
+  </DataNode>
+  <DataNode TextLabel="M03C11.7" GraphId="a59" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="M03C11.7 | M03C11.7" />
+    <Graphics CenterX="2000.0" CenterY="710.0" Width="66.66666666666667" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Entrez Gene" ID="176461" />
+  </DataNode>
+  <DataNode TextLabel="FNBP3" GraphId="ccb" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="FNBP3 | formin binding protein 3" />
+    <Graphics CenterX="2000.0" CenterY="730.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="" ID="" />
+  </DataNode>
+  <DataNode TextLabel="F58B3.7" GraphId="d8c" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="F58B3.7 | F58B3.7" />
+    <Graphics CenterX="2000.0" CenterY="750.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Entrez Gene" ID="178091" />
+  </DataNode>
+  <DataNode TextLabel="lsm-7" GraphId="ebe" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="lsm-7 | LSM Sm-like protein" />
+    <Graphics CenterX="2000.0" CenterY="770.0" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Entrez Gene" ID="177988" />
+  </DataNode>
+  <Interaction GraphId="ide2072471">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="ff0000">
+      <Point X="223.33333333333334" Y="613.3333333333334" />
+      <Point X="380.0" Y="613.3333333333334" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="id95be3575">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="393.3333333333333" Y="606.6666666666666" />
+      <Point X="393.3333333333333" Y="610.0" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="idcb9f642c">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="183.33333333333334" Y="603.3333333333334" />
+      <Point X="183.33333333333334" Y="606.6666666666666" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="id211fba19">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="50.0" Y="460.0" />
+      <Point X="176.66666666666666" Y="460.0" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="id6f8f7484">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="196.66666666666666" Y="450.0" />
+      <Point X="196.66666666666666" Y="453.3333333333333" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="id16496840">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="40.0" Y="450.0" />
+      <Point X="40.0" Y="453.3333333333333" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="id3985dbfb">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="50.0" Y="470.0" />
+      <Point X="176.66666666666666" Y="470.0" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="id41f5e2f3">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="196.66666666666666" Y="466.6666666666667" />
+      <Point X="196.66666666666666" Y="470.0" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="id29c32e15">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="40.0" Y="466.6666666666667" />
+      <Point X="40.0" Y="470.0" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="id93a24bef">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="90.0" Y="413.3333333333333" />
+      <Point X="90.0" Y="416.6666666666667" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="ide94b7f1d">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="156.66666666666666" Y="363.3333333333333" />
+      <Point X="126.66666666666667" Y="393.3333333333333" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="id723e4d4">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="76.66666666666667" Y="390.0" />
+      <Point X="90.0" Y="403.3333333333333" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="id37deeb45">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="8f8f8f">
+      <Point X="193.33333333333334" Y="500.0" />
+      <Point X="250.0" Y="556.6666666666666" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="idf3b40860">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="ff0000">
+      <Point X="396.6666666666667" Y="826.6666666666666" />
+      <Point X="503.3333333333333" Y="826.6666666666666" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="idf6a72055">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="596.6666666666666" Y="796.6666666666666" />
+      <Point X="596.6666666666666" Y="800.0" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="id16496841">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="40.0" Y="450.0" />
+      <Point X="40.0" Y="453.3333333333333" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="id29c32e16">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="40.0" Y="466.6666666666667" />
+      <Point X="40.0" Y="470.0" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="idaabbcbc0">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="320.0" Y="803.3333333333334" />
+      <Point X="320.0" Y="806.6666666666666" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="id55bc9d3e">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="8f8f8f">
+      <Point X="100.0" Y="280.0" />
+      <Point X="100.0" Y="333.3333333333333" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="id69f3929e">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="306.6666666666667" Y="893.3333333333334" />
+      <Point X="350.0" Y="850.0" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="idfe7e5447">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="373.3333333333333" Y="850.0" />
+      <Point X="420.0" Y="896.6666666666666" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="id4abc891f">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="8f8f8f">
+      <Point X="346.6666666666667" Y="650.0" />
+      <Point X="416.6666666666667" Y="720.0" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="id733fcbc2">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="436.6666666666667" Y="803.3333333333334" />
+      <Point X="450.0" Y="813.3333333333334" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="id38955c90">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="ff0000">
+      <Point X="700.0" Y="866.6666666666666" />
+      <Point X="806.6666666666666" Y="866.6666666666666" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="id95fccca6">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="853.3333333333334" Y="803.3333333333334" />
+      <Point X="853.3333333333334" Y="806.6666666666666" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="idcd4f654d">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="870.0" Y="840.0" />
+      <Point X="870.0" Y="843.3333333333334" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="id109e0e66">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="ff0000">
+      <Point X="700.0" Y="793.3333333333334" />
+      <Point X="806.6666666666666" Y="793.3333333333334" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="idfe95bf8">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="0000ff">
+      <Point X="593.3333333333334" Y="680.0" />
+      <Point X="593.3333333333334" Y="703.3333333333334" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="id72a70d2a">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="0000ff">
+      <Point X="593.3333333333334" Y="703.3333333333334" />
+      <Point X="850.0" Y="703.3333333333334" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="id9a065174">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="0000ff">
+      <Point X="693.3333333333334" Y="680.0" />
+      <Point X="693.3333333333334" Y="703.3333333333334" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="id87408e3c">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="0000ff">
+      <Point X="850.0" Y="680.0" />
+      <Point X="850.0" Y="703.3333333333334" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="idf6b4bea3">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="ff0000">
+      <Point X="1000.0" Y="863.3333333333334" />
+      <Point X="1106.6666666666667" Y="863.3333333333334" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="ide1e31efb">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="1160.0" Y="813.3333333333334" />
+      <Point X="1160.0" Y="816.6666666666666" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="id1000aa42">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="1160.0" Y="836.6666666666666" />
+      <Point X="1160.0" Y="840.0" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="ide0b4b470">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="ff0000">
+      <Point X="1000.0" Y="803.3333333333334" />
+      <Point X="1113.3333333333333" Y="803.3333333333334" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="idb8418aa7">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="ff0000">
+      <Point X="1140.0" Y="686.6666666666666" />
+      <Point X="1246.6666666666667" Y="686.6666666666666" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="ida1f233c0">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="1293.3333333333333" Y="630.0" />
+      <Point X="1293.3333333333333" Y="633.3333333333334" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="id2a0296d3">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="1276.6666666666667" Y="680.0" />
+      <Point X="1276.6666666666667" Y="683.3333333333334" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="idc64be9f4">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="ff0000">
+      <Point X="1140.0" Y="613.3333333333334" />
+      <Point X="1216.6666666666667" Y="643.3333333333334" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="id74e757b">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="ff0000">
+      <Point X="1200.0" Y="536.6666666666666" />
+      <Point X="1280.0" Y="536.6666666666666" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="id3ded5ce0">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="1353.3333333333333" Y="510.0" />
+      <Point X="1353.3333333333333" Y="513.3333333333334" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="idbfb4f515">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="1356.6666666666667" Y="540.0" />
+      <Point X="1356.6666666666667" Y="543.3333333333334" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="id8970b0fb">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="ff0000">
+      <Point X="1200.0" Y="360.0" />
+      <Point X="1280.0" Y="360.0" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="id24436c80">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="1316.6666666666667" Y="336.6666666666667" />
+      <Point X="1316.6666666666667" Y="340.0" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="idaf6aafe0">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="1473.3333333333333" Y="336.6666666666667" />
+      <Point X="1473.3333333333333" Y="340.0" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="ideeb1ffd4">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="8f8f8f">
+      <Point X="610.0" Y="830.0" />
+      <Point X="660.0" Y="830.0" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="id62897157">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="8f8f8f">
+      <Point X="890.0" Y="833.3333333333334" />
+      <Point X="963.3333333333334" Y="833.3333333333334" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="idc900b506">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="8f8f8f">
+      <Point X="1066.6666666666667" Y="743.3333333333334" />
+      <Point X="1106.6666666666667" Y="703.3333333333334" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="idb246b2a7">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="8f8f8f">
+      <Point X="1186.6666666666667" Y="610.0" />
+      <Point X="1246.6666666666667" Y="550.0" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="idc0f5e384">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="8f8f8f">
+      <Point X="1266.6666666666667" Y="473.3333333333333" />
+      <Point X="1266.6666666666667" Y="383.3333333333333" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="id4382732d">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="8f8f8f">
+      <Point X="1493.3333333333333" Y="343.3333333333333" />
+      <Point X="1563.3333333333333" Y="343.3333333333333" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="ida0d63da0">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="1586.6666666666667" Y="336.6666666666667" />
+      <Point X="1586.6666666666667" Y="340.0" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="id2d3a54a0">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="1716.6666666666667" Y="336.6666666666667" />
+      <Point X="1716.6666666666667" Y="340.0" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="id9de7efcf">
+    <Graphics ZOrder="12288" LineStyle="Broken" LineThickness="1.0">
+      <Point X="1653.3333333333333" Y="370.0" />
+      <Point X="1670.0" Y="353.3333333333333" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="id7da672de">
+    <Graphics ZOrder="12288" LineStyle="Broken" LineThickness="1.0">
+      <Point X="1680.0" Y="356.6666666666667" />
+      <Point X="1693.3333333333333" Y="370.0" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="ide315798f">
+    <Graphics ZOrder="12288" LineStyle="Broken" LineThickness="1.0">
+      <Point X="1683.3333333333333" Y="336.6666666666667" />
+      <Point X="1693.3333333333333" Y="320.0" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="idec30ccb2">
+    <Graphics ZOrder="12288" LineStyle="Broken" LineThickness="1.0">
+      <Point X="1676.6666666666667" Y="323.3333333333333" />
+      <Point X="1683.3333333333333" Y="336.6666666666667" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="idcc89de1d">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="1683.3333333333333" Y="383.3333333333333" />
+      <Point X="1680.0" Y="380.0" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="id6ae3fae7">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="1690.0" Y="306.6666666666667" />
+      <Point X="1686.6666666666667" Y="310.0" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="id384cdf3c">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="1616.6666666666667" Y="293.3333333333333" />
+      <Point X="1653.3333333333333" Y="330.0" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="idf4990fc1">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="1616.6666666666667" Y="390.0" />
+      <Point X="1646.6666666666667" Y="363.3333333333333" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="id4f1f508b">
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="8f8f8f">
+      <Point X="1726.6666666666667" Y="343.3333333333333" />
+      <Point X="1773.3333333333333" Y="343.3333333333333" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="id353b68e0">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="1593.3333333333333" Y="343.3333333333333" />
+      <Point X="1593.3333333333333" Y="346.6666666666667" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="idae0a4240">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="1796.6666666666667" Y="336.6666666666667" />
+      <Point X="1796.6666666666667" Y="340.0" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="id72189e00">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="1950.0" Y="336.6666666666667" />
+      <Point X="1950.0" Y="340.0" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="idc0717bc0">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="1953.3333333333333" Y="336.6666666666667" />
+      <Point X="1953.3333333333333" Y="340.0" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="idab2c8787">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="1876.6666666666667" Y="323.3333333333333" />
+      <Point X="1876.6666666666667" Y="286.6666666666667" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="idc4a963bb">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="220.0" Y="1010.0" />
+      <Point X="220.0" Y="980.0" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="idb2519617">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="250.0" Y="950.0" />
+      <Point X="270.0" Y="930.0" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="id4e4dcfc1">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="186.66666666666666" Y="870.0" />
+      <Point X="166.66666666666666" Y="890.0" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="id1cb7951c">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="190.0" Y="950.0" />
+      <Point X="250.0" Y="950.0" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="idbc74a919">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="253.33333333333334" Y="870.0" />
+      <Point X="186.66666666666666" Y="870.0" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="id58e89085">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="190.0" Y="950.0" />
+      <Point X="170.0" Y="930.0" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="id7d6b528f">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="273.3333333333333" Y="890.0" />
+      <Point X="253.33333333333334" Y="870.0" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Label TextLabel="5  G cap" GraphId="d6a">
+    <Graphics CenterX="196.66666666666666" CenterY="613.3333333333334" Width="50.333333333333336" Height="15.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="9" Valign="Middle" />
+  </Label>
+  <Label TextLabel="3" GraphId="a98">
+    <Graphics CenterX="386.6666666666667" CenterY="613.3333333333334" Width="12.333333333333334" Height="15.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="9" Valign="Middle" />
+  </Label>
+  <Label TextLabel="5" GraphId="c14">
+    <Graphics CenterX="186.66666666666666" CenterY="456.6666666666667" Width="12.333333333333334" Height="15.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="9" Valign="Middle" />
+  </Label>
+  <Label TextLabel="3" GraphId="cf0">
+    <Graphics CenterX="30.0" CenterY="456.6666666666667" Width="12.333333333333334" Height="15.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="9" Valign="Middle" />
+  </Label>
+  <Label TextLabel="5" GraphId="a09">
+    <Graphics CenterX="30.0" CenterY="473.3333333333333" Width="12.333333333333334" Height="15.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="9" Valign="Middle" />
+  </Label>
+  <Label TextLabel="3" GraphId="f31">
+    <Graphics CenterX="186.66666666666666" CenterY="473.3333333333333" Width="12.333333333333334" Height="15.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="9" Valign="Middle" />
+  </Label>
+  <Label TextLabel="5" GraphId="f1d">
+    <Graphics CenterX="80.0" CenterY="420.0" Width="12.333333333333334" Height="15.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="9" Valign="Middle" />
+  </Label>
+  <Label TextLabel="Polr2a" GraphId="c33">
+    <Graphics CenterX="166.66666666666666" CenterY="443.3333333333333" Width="42.333333333333336" Height="15.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="9" Valign="Middle" />
+  </Label>
+  <Label TextLabel="Spt5" GraphId="cca">
+    <Graphics CenterX="63.333333333333336" CenterY="360.0" Width="31.333333333333332" Height="15.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="9" Valign="Middle" />
+  </Label>
+  <Label TextLabel="Rnmt (methyltransferase)" GraphId="aea">
+    <Graphics CenterX="186.66666666666666" CenterY="423.3333333333333" Width="127.33333333333333" Height="12.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="8" Valign="Middle" />
+  </Label>
+  <Label TextLabel="GMP" GraphId="b29">
+    <Graphics CenterX="166.66666666666666" CenterY="356.6666666666667" Width="33.333333333333336" Height="15.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontStyle="Italic" FontSize="9" Valign="Middle" Color="008080" />
+  </Label>
+  <Label TextLabel="mRNA Capping" GraphId="b38">
+    <Comment Source="GenMAPP remarks">The 5â-ends of all eukaryotic pre-mRNAs studied thus far are converted to cap structures. The cap is thought to influence splicing of the first intron, and is bound by âcap-bindingâ proteins, CBP80 and CBP20, in the nucleus. The cap is important for translation initiation, and it also interacts with the poly(A)terminus, via proteins, resulting in circularization of the mRNA to facilitate multiple rounds of translation. The cap is also important for mRNA stability, protecting it from 5â to 3â nucleases, and is required for mRNA export to the cytoplasm.&#xD;
+The capping reaction usually occurs very rapidly on nascent transcripts; after the synthesis of only a few nucleotides by RNA polymerase II. The capping reaction involves the conversion of the 5â-end of the nascent transcript from a triphosphate to a diphosphate by a RNA 5â-triphosphatase, followed by the addition of a guanosine monophosphate by the mRNA guanylyltransferase, to form a 5â-5â-triphosphate linkage. This cap is then methylated by 2â-O-methyltransferases. Buratowski, S, 2003-10-15</Comment>
+    <Graphics CenterX="103.33333333333333" CenterY="80.0" Width="123.33333333333333" Height="19.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="12" Valign="Middle" Color="0000ff" />
+  </Label>
+  <Label TextLabel="Processing of Intron-Containing Pre-mRNA" GraphId="fec">
+    <Comment Source="GenMAPP remarks">Any covalent change in a primary (nascent) mRNA transcript is mRNA Processing. For successful gene expression, the primary mRNA transcript needs to be converted to a mature mRNA prior to its translation into polypeptide. Eucaryotic mRNAs undergo a series of complex processing reactions; these begin on nascent transcripts as soon as a few ribonucleotides have been synthesized during transcription by RNA Polymerase II, through the export of the mature mRNA to the cytoplasm, and culminate with mRNA turnover in the cytoplasm. Carmichael, GG, Hammarskjold, ML, Hastings, M, Krainer, A, Marzluff, WF, 2003-06-05</Comment>
+    <Graphics CenterX="703.3333333333334" CenterY="80.0" Width="333.3333333333333" Height="19.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="12" Valign="Middle" Color="0000ff" />
+  </Label>
+  <Label TextLabel="iPo" GraphId="dd8">
+    <Comment Source="GenMAPP remarks">inorganic phosphate</Comment>
+    <Graphics CenterX="60.0" CenterY="430.0" Width="23.333333333333332" Height="15.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontStyle="Italic" FontSize="9" Valign="Middle" Color="008080" />
+  </Label>
+  <Label TextLabel="Cap Binding" GraphId="aff">
+    <Graphics CenterX="370.0" CenterY="180.0" Width="75.33333333333333" Height="16.0" ZOrder="28672" FillColor="ffffff" FontStyle="Italic" FontSize="10" Valign="Middle" />
+  </Label>
+  <Label TextLabel="Methylation of mRNA" GraphId="ec8">
+    <Graphics CenterX="366.6666666666667" CenterY="243.33333333333334" Width="127.33333333333333" Height="16.0" ZOrder="28672" FillColor="ffffff" FontStyle="Italic" FontSize="10" Valign="Middle" />
+  </Label>
+  <Label TextLabel="heterogeneous nuclear ribonucleoproteins" GraphId="ce2">
+    <Graphics CenterX="373.3333333333333" CenterY="310.0" Width="246.33333333333334" Height="16.0" ZOrder="28672" FillColor="ffffff" FontStyle="Italic" FontSize="10" Valign="Middle" />
+  </Label>
+  <Label TextLabel="Formation of pre-mRNPs" GraphId="ac4">
+    <Comment Source="GenMAPP remarks">After the nascent pre-mRNA undergoes the initial capping and methylation reactions, it gets associated with numerous factors, including the various heterogeneous nuclear ribonucleoproteins (hnRNPS), the nuclear Cap-Binding Complex, and many splicing factors that make the pre-mRNA a substrate for splicing, 3â-end processing, and in some cases editing. Krainer, A, 2003-06-05</Comment>
+    <Graphics CenterX="373.3333333333333" CenterY="293.3333333333333" Width="157.33333333333334" Height="16.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontStyle="Italic" FontSize="10" Valign="Middle" Color="0000ff" />
+  </Label>
+  <Label TextLabel="Internal methylation of mRNA" GraphId="b79">
+    <Comment Source="GenMAPP remarks">In addition to the methylation of the 5â-cap, there is methylation of internal nucleotides in the mRNA. This methylation can occur in translated and untranslated regions. One to three methyl groups have been seen per mRNA molecule, but methylation is non-stoichiometric. The most frequent methylation observed is at the N6 position of adenosine. The function of mRNA internal methylation, if any, is unknown. Krainer, A, 2003-06-05</Comment>
+    <Graphics CenterX="376.6666666666667" CenterY="163.33333333333334" Width="188.33333333333334" Height="16.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontStyle="Italic" FontSize="10" Valign="Middle" Color="0000ff" />
+  </Label>
+  <Label TextLabel="mRNA splicing (major pathway)" GraphId="e5f">
+    <Comment Source="GenMAPP remarks">The process in which excision of introns from the primary transcript of messenger RNA (mRNA) is followed by ligation of the two exon termini exposed by removal of each intron, is called mRNA splicing. Most of the mRNA is spliced by the major pathway, involving the U1, U2, U4, U5 and U6 snRNPs. A minor fraction, about 1 %, of the mRNAs are spliced via the U12 dependent pathway. Krainer, A, 2003-06-05</Comment>
+    <Graphics CenterX="840.0" CenterY="113.33333333333333" Width="242.33333333333334" Height="18.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontStyle="Italic" FontSize="12" Valign="Middle" Color="0000ff" />
+  </Label>
+  <Label TextLabel="pre-mRNA" GraphId="d52">
+    <Graphics CenterX="233.33333333333334" CenterY="630.0" Width="65.33333333333333" Height="16.0" ZOrder="28672" FillColor="ffffff" FontStyle="Italic" FontSize="10" Valign="Middle" />
+  </Label>
+  <Label TextLabel="Primary RNA transcript" GraphId="f16">
+    <Graphics CenterX="183.33333333333334" CenterY="490.0" Width="138.33333333333334" Height="16.0" ZOrder="28672" FillColor="ffffff" FontStyle="Italic" FontSize="10" Valign="Middle" />
+  </Label>
+  <Label TextLabel="hnRNPs" GraphId="ba0">
+    <Graphics CenterX="276.6666666666667" CenterY="570.0" Width="50.333333333333336" Height="15.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="9" Valign="Middle" />
+  </Label>
+  <Label TextLabel="Formation of the Spliceosomal E complex" GraphId="e75">
+    <Comment Source="GenMAPP remarks">Pre-mRNA transcripts become rapidly associated with many RNA-binding proteins, including hnRNP proteins, cap-binding proteins, SR proteins, etc; in the test tube this binding does not require splice sites or ATP. The E complex, or early complex, is the first detectable functional intermediate in spliceosome assembly in vitro. It is an ATP-independent complex. When a functional 5? splice site is present, it is bound by the U1 snRNP. The splicing factor U2AF (65 and 35 kDa subunits) binds to the polypyrimidine tract (Y)n and the AG dinucleotide at the 3â splice site, respectively. SF1/mBBP binds to the branch site. Binding of many of these factors is cooperative; e.g., SR proteins and U2AF apparently interact with each other, facilitating their binding to the pre-mRNA.In the presence of ATP, the E complex is converted to the first ATP-dependent spliceosomal complex, namely the A complex. Krainer, A, 2003-06-05</Comment>
+    <Graphics CenterX="823.3333333333334" CenterY="136.66666666666666" Width="266.3333333333333" Height="16.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontStyle="Italic" FontSize="10" Valign="Middle" Color="0000ff" />
+  </Label>
+  <Label TextLabel="snRNP Sm core complex" GraphId="d30">
+    <Graphics CenterX="620.0" CenterY="246.66666666666666" Width="151.33333333333334" Height="16.0" ZOrder="28672" FillColor="ffffff" FontStyle="Italic" FontSize="10" Valign="Middle" Color="ff0000" />
+  </Label>
+  <Label TextLabel="U1 snRNP" GraphId="ecb">
+    <Graphics CenterX="620.0" CenterY="163.33333333333334" Width="65.33333333333333" Height="16.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontStyle="Italic" FontSize="10" Valign="Middle" />
+  </Label>
+  <Label TextLabel="3" GraphId="fb1">
+    <Graphics CenterX="590.0" CenterY="806.6666666666666" Width="12.333333333333334" Height="15.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="9" Valign="Middle" />
+  </Label>
+  <Label TextLabel="exon 1" GraphId="de3">
+    <Graphics CenterX="346.6666666666667" CenterY="813.3333333333334" Width="38.333333333333336" Height="11.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontStyle="Italic" FontSize="8" Valign="Middle" />
+  </Label>
+  <Label TextLabel="exon 2" GraphId="ead">
+    <Graphics CenterX="560.0" CenterY="813.3333333333334" Width="38.333333333333336" Height="11.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontStyle="Italic" FontSize="8" Valign="Middle" />
+  </Label>
+  <Label TextLabel="intron" GraphId="bb2">
+    <Graphics CenterX="450.0" CenterY="850.0" Width="33.333333333333336" Height="11.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontStyle="Italic" FontSize="8" Valign="Middle" />
+  </Label>
+  <Label TextLabel="GU" GraphId="feb">
+    <Graphics CenterX="390.0" CenterY="826.6666666666666" Width="21.333333333333332" Height="15.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="9" Valign="Middle" />
+  </Label>
+  <Label TextLabel="A" GraphId="e61">
+    <Graphics CenterX="450.0" CenterY="826.6666666666666" Width="13.333333333333334" Height="15.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="9" Valign="Middle" />
+  </Label>
+  <Label TextLabel="YYYY" GraphId="c18">
+    <Graphics CenterX="480.0" CenterY="826.6666666666666" Width="33.333333333333336" Height="15.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="9" Valign="Middle" />
+  </Label>
+  <Label TextLabel="AG" GraphId="e71">
+    <Graphics CenterX="513.3333333333334" CenterY="826.6666666666666" Width="21.333333333333332" Height="15.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="9" Valign="Middle" />
+  </Label>
+  <Label TextLabel="5" GraphId="cdc">
+    <Graphics CenterX="310.0" CenterY="810.0" Width="12.333333333333334" Height="15.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="9" Valign="Middle" />
+  </Label>
+  <Label TextLabel="SR-binding sites" GraphId="cdd">
+    <Comment Source="GenMAPP remarks">Cis-regulatory nucleotide splicing motifs, regulated by the binding of SR-proteins.  Include exonic splicing enhancer (ESE) and exonic splicing silencer (ESS) motifs.</Comment>
+    <Graphics CenterX="363.3333333333333" CenterY="840.0" Width="85.33333333333333" Height="12.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="8" Valign="Middle" />
+  </Label>
+  <Label TextLabel="SR-binding sites" GraphId="dda">
+    <Graphics CenterX="550.0" CenterY="840.0" Width="85.33333333333333" Height="12.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="8" Valign="Middle" />
+  </Label>
+  <Label TextLabel="U1 snRNP" GraphId="b07">
+    <Graphics CenterX="393.3333333333333" CenterY="780.0" Width="61.333333333333336" Height="15.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="9" Valign="Middle" />
+  </Label>
+  <Label TextLabel="U2AF" GraphId="d76">
+    <Graphics CenterX="473.3333333333333" CenterY="790.0" Width="31.333333333333332" Height="12.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="8" Valign="Middle" />
+  </Label>
+  <Label TextLabel="65" GraphId="a21">
+    <Graphics CenterX="496.6666666666667" CenterY="793.3333333333334" Width="17.333333333333332" Height="12.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="8" Valign="Middle" />
+  </Label>
+  <Label TextLabel="35" GraphId="d32">
+    <Graphics CenterX="513.3333333333334" CenterY="793.3333333333334" Width="17.333333333333332" Height="12.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="8" Valign="Middle" />
+  </Label>
+  <Label TextLabel="RNA helicase A" GraphId="b89">
+    <Graphics CenterX="1016.6666666666666" CenterY="170.0" Width="97.33333333333333" Height="16.0" ZOrder="28672" FillColor="ffffff" FontStyle="Italic" FontSize="10" Valign="Middle" />
+  </Label>
+  <Label TextLabel="U2AF" GraphId="c26">
+    <Graphics CenterX="820.0" CenterY="163.33333333333334" Width="38.333333333333336" Height="16.0" ZOrder="28672" FillColor="ffffff" FontStyle="Italic" FontSize="10" Valign="Middle" />
+  </Label>
+  <Label TextLabel="Serine/Argenine Rich Proteins(SR)" GraphId="b36">
+    <Graphics CenterX="826.6666666666666" CenterY="226.66666666666666" Width="205.33333333333334" Height="16.0" ZOrder="28672" FillColor="ffffff" FontStyle="Italic" FontSize="10" Valign="Middle" />
+  </Label>
+  <Label TextLabel="mRNA capping" GraphId="def">
+    <Graphics CenterX="100.0" CenterY="266.6666666666667" Width="99.33333333333333" Height="16.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontStyle="Italic" FontSize="10" Valign="Middle" Color="808080" />
+  </Label>
+  <Label TextLabel="Internal methylation of mRNA" GraphId="eed">
+    <Graphics CenterX="100.0" CenterY="523.3333333333334" Width="188.33333333333334" Height="16.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontStyle="Italic" FontSize="10" Valign="Middle" Color="808080" />
+  </Label>
+  <Label TextLabel="Formation of pre-mRNPs" GraphId="b1d">
+    <Graphics CenterX="150.0" CenterY="546.6666666666666" Width="157.33333333333334" Height="16.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontStyle="Italic" FontSize="10" Valign="Middle" Color="808080" />
+  </Label>
+  <Label TextLabel="SR-proteins" GraphId="cd4">
+    <Graphics CenterX="290.0" CenterY="920.0" Width="72.33333333333333" Height="15.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="9" Valign="Middle" />
+  </Label>
+  <Label TextLabel="Regulation of" GraphId="b1f">
+    <Graphics CenterX="456.6666666666667" CenterY="913.3333333333334" Width="80.33333333333333" Height="15.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontStyle="Italic" FontSize="9" Valign="Middle" />
+  </Label>
+  <Label TextLabel="Alternative Splicing" GraphId="b87">
+    <Graphics CenterX="456.6666666666667" CenterY="930.0" Width="116.33333333333333" Height="15.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontStyle="Italic" FontSize="9" Valign="Middle" />
+  </Label>
+  <Label TextLabel="Additional Factors" GraphId="e48">
+    <Graphics CenterX="1016.6666666666666" CenterY="226.66666666666666" Width="110.33333333333333" Height="16.0" ZOrder="28672" FillColor="ffffff" FontStyle="Italic" FontSize="10" Valign="Middle" />
+  </Label>
+  <Label TextLabel="Regulators" GraphId="bb9">
+    <Graphics CenterX="1820.0" CenterY="853.3333333333334" Width="73.33333333333333" Height="16.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="10" Valign="Middle" />
+  </Label>
+  <Label TextLabel="splicing factor SF3A" GraphId="aa5">
+    <Graphics CenterX="596.6666666666666" CenterY="436.6666666666667" Width="123.33333333333333" Height="16.0" ZOrder="28672" FillColor="ffffff" FontStyle="Italic" FontSize="10" Valign="Middle" />
+  </Label>
+  <Label TextLabel="splicing factor SF3B" GraphId="ebc">
+    <Graphics CenterX="806.6666666666666" CenterY="406.6666666666667" Width="123.33333333333333" Height="16.0" ZOrder="28672" FillColor="ffffff" FontStyle="Italic" FontSize="10" Valign="Middle" />
+  </Label>
+  <Label TextLabel="U2 snRNPs" GraphId="f7b">
+    <Graphics CenterX="700.0" CenterY="406.6666666666667" Width="73.33333333333333" Height="16.0" ZOrder="28672" FillColor="ffffff" FontStyle="Italic" FontSize="10" Valign="Middle" />
+  </Label>
+  <Label TextLabel="SF3b14b" GraphId="ef3">
+    <Graphics CenterX="700.0" CenterY="473.3333333333333" Width="59.333333333333336" Height="16.0" ZOrder="28672" FillColor="ffffff" FontStyle="Italic" FontSize="10" Valign="Middle" />
+  </Label>
+  <Label TextLabel="SR-proteins" GraphId="ad9">
+    <Graphics CenterX="936.6666666666666" CenterY="400.0" Width="73.33333333333333" Height="16.0" ZOrder="28672" FillColor="ffffff" FontStyle="Italic" FontSize="10" Valign="Middle" />
+  </Label>
+  <Label TextLabel="Additional Factors" GraphId="eaf">
+    <Graphics CenterX="1060.0" CenterY="400.0" Width="110.33333333333333" Height="16.0" ZOrder="28672" FillColor="ffffff" FontStyle="Italic" FontSize="10" Valign="Middle" />
+  </Label>
+  <Label TextLabel="RNA helicase" GraphId="bd6">
+    <Graphics CenterX="933.3333333333334" CenterY="440.0" Width="84.33333333333333" Height="16.0" ZOrder="28672" FillColor="ffffff" FontStyle="Italic" FontSize="10" Valign="Middle" />
+  </Label>
+  <Label TextLabel="U2 snRNP" GraphId="a0b">
+    <Graphics CenterX="703.3333333333334" CenterY="386.6666666666667" Width="65.33333333333333" Height="16.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontStyle="Italic" FontSize="10" Valign="Middle" />
+  </Label>
+  <Label TextLabel="snRNP Sm core complex" GraphId="daf">
+    <Graphics CenterX="653.3333333333334" CenterY="516.6666666666666" Width="151.33333333333334" Height="16.0" ZOrder="28672" FillColor="ffffff" FontStyle="Italic" FontSize="10" Valign="Middle" Color="ff0000" />
+  </Label>
+  <Label TextLabel="Formation of the Spliceosomal A complex" GraphId="f9a">
+    <Comment Source="GenMAPP remarks">The A complex is the first ATP-dependent complex in spliceosome assembly. U2AF recruits the U2 snRNP to bind to the branch site in the E complex in an ATP-dependent fashion, to form the A complex. The U2 snRNA base-pairs with the branch site, causing the branch-site adenosine to bulge out, which later positions it for nucleophillic attack at the 5â splice site. The A complex serves as a substrate for formation of the B complex. Krainer, A, 2003-06-05</Comment>
+    <Graphics CenterX="826.6666666666666" CenterY="360.0" Width="267.3333333333333" Height="16.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontStyle="Italic" FontSize="10" Valign="Middle" Color="0000ff" />
+  </Label>
+  <Label TextLabel="Formation of the Spliceosomal E complex" GraphId="e21">
+    <Graphics CenterX="190.0" CenterY="666.6666666666666" Width="266.3333333333333" Height="16.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontStyle="Italic" FontSize="10" Valign="Middle" Color="808080" />
+  </Label>
+  <Label TextLabel="Formation of the Spliceosomal A complex" GraphId="efb">
+    <Graphics CenterX="230.0" CenterY="690.0" Width="267.3333333333333" Height="16.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontStyle="Italic" FontSize="10" Valign="Middle" Color="808080" />
+  </Label>
+  <Label TextLabel="U2 snRNP" GraphId="a57">
+    <Graphics CenterX="470.0" CenterY="736.6666666666666" Width="61.333333333333336" Height="15.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="9" Valign="Middle" />
+  </Label>
+  <Label TextLabel="3" GraphId="aaf">
+    <Graphics CenterX="860.0" CenterY="846.6666666666666" Width="12.333333333333334" Height="15.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="9" Valign="Middle" />
+  </Label>
+  <Label TextLabel="A" GraphId="dfd">
+    <Graphics CenterX="720.0" CenterY="866.6666666666666" Width="13.333333333333334" Height="15.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="9" Valign="Middle" />
+  </Label>
+  <Label TextLabel="YYYY" GraphId="f2c">
+    <Graphics CenterX="750.0" CenterY="866.6666666666666" Width="33.333333333333336" Height="15.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="9" Valign="Middle" />
+  </Label>
+  <Label TextLabel="AG" GraphId="b3d">
+    <Graphics CenterX="783.3333333333334" CenterY="866.6666666666666" Width="21.333333333333332" Height="15.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="9" Valign="Middle" />
+  </Label>
+  <Label TextLabel="5" GraphId="eb1">
+    <Graphics CenterX="843.3333333333334" CenterY="810.0" Width="12.333333333333334" Height="15.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="9" Valign="Middle" />
+  </Label>
+  <Label TextLabel="exon 1" GraphId="dd9">
+    <Graphics CenterX="816.6666666666666" CenterY="780.0" Width="38.333333333333336" Height="11.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontStyle="Italic" FontSize="8" Valign="Middle" />
+  </Label>
+  <Label TextLabel="exon 2" GraphId="f81">
+    <Graphics CenterX="830.0" CenterY="853.3333333333334" Width="38.333333333333336" Height="11.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontStyle="Italic" FontSize="8" Valign="Middle" />
+  </Label>
+  <Label TextLabel="U4/U6" GraphId="e2b">
+    <Graphics CenterX="723.3333333333334" CenterY="813.3333333333334" Width="38.333333333333336" Height="15.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="9" Valign="Middle" />
+  </Label>
+  <Label TextLabel="U5" GraphId="e91">
+    <Graphics CenterX="820.0" CenterY="833.3333333333334" Width="20.333333333333332" Height="15.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="9" Valign="Middle" />
+  </Label>
+  <Label TextLabel="Formation of the Spliceosomal B complex" GraphId="f45">
+    <Comment Source="GenMAPP remarks">The formation of the B complex is ATP-dependent, and both the 5â and 3â splice sites are essential for B complex assembly. The U4 and U6 snRNPS are extensively base-paired, and this U4:U6 complex associates with the U5 snRNP to form a tri-snRNP particle. This tri-snRNP particle then binds to the spliceosomal A complex, to form the spliceosomal B complex. Krainer, A, 2003-06-05</Comment>
+    <Graphics CenterX="826.6666666666666" CenterY="540.0" Width="266.3333333333333" Height="16.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontStyle="Italic" FontSize="10" Valign="Middle" Color="0000ff" />
+  </Label>
+  <Label TextLabel="U4 snRNP" GraphId="e13">
+    <Graphics CenterX="596.6666666666666" CenterY="596.6666666666666" Width="65.33333333333333" Height="16.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontStyle="Italic" FontSize="10" Valign="Middle" />
+  </Label>
+  <Label TextLabel="U6 snRNP" GraphId="dd5">
+    <Graphics CenterX="700.0" CenterY="596.6666666666666" Width="65.33333333333333" Height="16.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontStyle="Italic" FontSize="10" Valign="Middle" />
+  </Label>
+  <Label TextLabel="U5 snRNP" GraphId="ca4">
+    <Graphics CenterX="853.3333333333334" CenterY="596.6666666666666" Width="65.33333333333333" Height="16.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontStyle="Italic" FontSize="10" Valign="Middle" />
+  </Label>
+  <Label TextLabel="snRNP Sm core complex" GraphId="a2f">
+    <Graphics CenterX="720.0" CenterY="716.6666666666666" Width="151.33333333333334" Height="16.0" ZOrder="28672" FillColor="ffffff" FontStyle="Italic" FontSize="10" Valign="Middle" Color="ff0000" />
+  </Label>
+  <Label TextLabel="U4:U5:U6 tri-snRNP complex" GraphId="f0c">
+    <Graphics CenterX="746.6666666666666" CenterY="570.0" Width="200.33333333333334" Height="16.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="11" Valign="Middle" />
+  </Label>
+  <Label TextLabel="YYYY" GraphId="b72">
+    <Graphics CenterX="1040.0" CenterY="863.3333333333334" Width="33.333333333333336" Height="15.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="9" Valign="Middle" />
+  </Label>
+  <Label TextLabel="AG" GraphId="c9a">
+    <Graphics CenterX="1073.3333333333333" CenterY="863.3333333333334" Width="21.333333333333332" Height="15.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="9" Valign="Middle" />
+  </Label>
+  <Label TextLabel="5" GraphId="c4e">
+    <Graphics CenterX="1150.0" CenterY="820.0" Width="12.333333333333334" Height="15.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="9" Valign="Middle" />
+  </Label>
+  <Label TextLabel="exon 1" GraphId="f94">
+    <Graphics CenterX="1123.3333333333333" CenterY="790.0" Width="38.333333333333336" Height="11.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontStyle="Italic" FontSize="8" Valign="Middle" />
+  </Label>
+  <Label TextLabel="exon 2" GraphId="cf7">
+    <Graphics CenterX="1120.0" CenterY="850.0" Width="38.333333333333336" Height="11.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontStyle="Italic" FontSize="8" Valign="Middle" />
+  </Label>
+  <Label TextLabel="A" GraphId="d5d">
+    <Graphics CenterX="1010.0" CenterY="863.3333333333334" Width="13.333333333333334" Height="15.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="9" Valign="Middle" />
+  </Label>
+  <Label TextLabel="3" GraphId="ec0">
+    <Graphics CenterX="1150.0" CenterY="843.3333333333334" Width="12.333333333333334" Height="15.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="9" Valign="Middle" />
+  </Label>
+  <Label TextLabel="U5" GraphId="b6b">
+    <Graphics CenterX="1096.6666666666667" CenterY="830.0" Width="20.333333333333332" Height="15.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="9" Valign="Middle" />
+  </Label>
+  <Label TextLabel="Note: New participating members shown at each step" GraphId="bb4">
+    <Graphics CenterX="433.3333333333333" CenterY="10.0" Width="331.3333333333333" Height="16.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontStyle="Italic" FontSize="10" Valign="Middle" />
+  </Label>
+  <Label TextLabel="UG" GraphId="f44">
+    <Graphics CenterX="1076.6666666666667" CenterY="803.3333333333334" Width="21.333333333333332" Height="15.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="9" Valign="Middle" />
+  </Label>
+  <Label TextLabel="U6" GraphId="fae">
+    <Graphics CenterX="1046.6666666666667" CenterY="816.6666666666666" Width="20.333333333333332" Height="15.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="9" Valign="Middle" />
+  </Label>
+  <Label TextLabel="U2" GraphId="c67">
+    <Graphics CenterX="1016.6666666666666" CenterY="816.6666666666666" Width="20.333333333333332" Height="15.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="9" Valign="Middle" />
+  </Label>
+  <Label TextLabel="U4" GraphId="b4a">
+    <Graphics CenterX="1080.0" CenterY="753.3333333333334" Width="20.333333333333332" Height="15.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="9" Valign="Middle" />
+  </Label>
+  <Label TextLabel="U1" GraphId="f77">
+    <Graphics CenterX="1050.0" CenterY="760.0" Width="20.333333333333332" Height="15.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="9" Valign="Middle" />
+  </Label>
+  <Label TextLabel="Formation of the Spliceosomal C complex" GraphId="e4e">
+    <Comment Source="GenMAPP remarks">The spliceosomal C complex is a very short-lived intermediate; the splicing intermediates are rapidly converted to splicing products. Also, the spliced products are released very rapidly, and no complex containing both the splicing products has been isolated. Conversion of the spliceosomal B complex to the spliceosomal C complex requires ATP. The extensive base-pairing between the U4 and U6 snRNAs is disrupted during the formation of the C complex, which is thought to require helicase-type activity associated with the DEAD box factors. Krainer, A, 2003-06-05</Comment>
+    <Graphics CenterX="1080.0" CenterY="903.3333333333334" Width="266.3333333333333" Height="16.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontStyle="Italic" FontSize="10" Valign="Middle" Color="0000ff" />
+  </Label>
+  <Label TextLabel="Poly(A)-binding protein II" GraphId="e44">
+    <Graphics CenterX="1423.3333333333333" CenterY="113.33333333333333" Width="148.33333333333334" Height="16.0" ZOrder="28672" FillColor="ffffff" FontStyle="Italic" FontSize="10" Valign="Middle" />
+  </Label>
+  <Label TextLabel="CF II" GraphId="e86">
+    <Graphics CenterX="1213.3333333333333" CenterY="156.66666666666666" Width="34.333333333333336" Height="16.0" ZOrder="28672" FillColor="ffffff" FontStyle="Italic" FontSize="10" Valign="Middle" />
+  </Label>
+  <Label TextLabel="Poly(A) polymerase alpha" GraphId="fd8">
+    <Graphics CenterX="1423.3333333333333" CenterY="160.0" Width="152.33333333333334" Height="16.0" ZOrder="28672" FillColor="ffffff" FontStyle="Italic" FontSize="10" Valign="Middle" />
+  </Label>
+  <Label TextLabel="CF I" GraphId="d47">
+    <Graphics CenterX="1213.3333333333333" CenterY="113.33333333333333" Width="30.333333333333332" Height="16.0" ZOrder="28672" FillColor="ffffff" FontStyle="Italic" FontSize="10" Valign="Middle" />
+  </Label>
+  <Label TextLabel="YYYY" GraphId="f5a">
+    <Graphics CenterX="1180.0" CenterY="686.6666666666666" Width="33.333333333333336" Height="15.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="9" Valign="Middle" />
+  </Label>
+  <Label TextLabel="AG" GraphId="e6b">
+    <Graphics CenterX="1213.3333333333333" CenterY="686.6666666666666" Width="21.333333333333332" Height="15.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="9" Valign="Middle" />
+  </Label>
+  <Label TextLabel="5" GraphId="cad">
+    <Graphics CenterX="1283.3333333333333" CenterY="636.6666666666666" Width="12.333333333333334" Height="15.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="9" Valign="Middle" />
+  </Label>
+  <Label TextLabel="exon 2" GraphId="a5a">
+    <Graphics CenterX="1246.6666666666667" CenterY="710.0" Width="38.333333333333336" Height="11.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontStyle="Italic" FontSize="8" Valign="Middle" />
+  </Label>
+  <Label TextLabel="A" GraphId="d99">
+    <Graphics CenterX="1150.0" CenterY="686.6666666666666" Width="13.333333333333334" Height="15.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="9" Valign="Middle" />
+  </Label>
+  <Label TextLabel="3" GraphId="c2f">
+    <Graphics CenterX="1300.0" CenterY="686.6666666666666" Width="12.333333333333334" Height="15.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="9" Valign="Middle" />
+  </Label>
+  <Label TextLabel="UG" GraphId="fad">
+    <Graphics CenterX="1216.6666666666667" CenterY="640.0" Width="21.333333333333332" Height="15.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="9" Valign="Middle" />
+  </Label>
+  <Label TextLabel="exon 1" GraphId="cba">
+    <Graphics CenterX="1253.3333333333333" CenterY="613.3333333333334" Width="38.333333333333336" Height="11.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontStyle="Italic" FontSize="8" Valign="Middle" />
+  </Label>
+  <Label TextLabel="YYYY" GraphId="dee">
+    <Graphics CenterX="1240.0" CenterY="536.6666666666666" Width="33.333333333333336" Height="15.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="9" Valign="Middle" />
+  </Label>
+  <Label TextLabel="AG" GraphId="d85">
+    <Graphics CenterX="1273.3333333333333" CenterY="536.6666666666666" Width="21.333333333333332" Height="15.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="9" Valign="Middle" />
+  </Label>
+  <Label TextLabel="5" GraphId="fd4">
+    <Graphics CenterX="1343.3333333333333" CenterY="516.6666666666666" Width="12.333333333333334" Height="15.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="9" Valign="Middle" />
+  </Label>
+  <Label TextLabel="A" GraphId="ecd">
+    <Graphics CenterX="1210.0" CenterY="536.6666666666666" Width="13.333333333333334" Height="15.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="9" Valign="Middle" />
+  </Label>
+  <Label TextLabel="3" GraphId="d57">
+    <Graphics CenterX="1346.6666666666667" CenterY="546.6666666666666" Width="12.333333333333334" Height="15.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="9" Valign="Middle" />
+  </Label>
+  <Label TextLabel="exon 1" GraphId="cc9">
+    <Graphics CenterX="1313.3333333333333" CenterY="486.6666666666667" Width="38.333333333333336" Height="11.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontStyle="Italic" FontSize="8" Valign="Middle" />
+  </Label>
+  <Label TextLabel="exon 2" GraphId="ef2">
+    <Graphics CenterX="1290.0" CenterY="560.0" Width="38.333333333333336" Height="11.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontStyle="Italic" FontSize="8" Valign="Middle" />
+  </Label>
+  <Label TextLabel="YYYY" GraphId="d07">
+    <Graphics CenterX="1240.0" CenterY="360.0" Width="33.333333333333336" Height="15.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="9" Valign="Middle" />
+  </Label>
+  <Label TextLabel="AG" GraphId="ede">
+    <Graphics CenterX="1273.3333333333333" CenterY="360.0" Width="21.333333333333332" Height="15.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="9" Valign="Middle" />
+  </Label>
+  <Label TextLabel="A" GraphId="f5c">
+    <Graphics CenterX="1210.0" CenterY="360.0" Width="13.333333333333334" Height="15.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="9" Valign="Middle" />
+  </Label>
+  <Label TextLabel="5" GraphId="df9">
+    <Graphics CenterX="1306.6666666666667" CenterY="343.3333333333333" Width="12.333333333333334" Height="15.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="9" Valign="Middle" />
+  </Label>
+  <Label TextLabel="exon 2" GraphId="dca">
+    <Graphics CenterX="1420.0" CenterY="330.0" Width="38.333333333333336" Height="11.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontStyle="Italic" FontSize="8" Valign="Middle" />
+  </Label>
+  <Label TextLabel="CstF" GraphId="ce9">
+    <Graphics CenterX="1656.6666666666667" CenterY="253.33333333333334" Width="30.333333333333332" Height="15.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="9" Valign="Middle" />
+  </Label>
+  <Label TextLabel="CFI" GraphId="c3a">
+    <Graphics CenterX="1613.3333333333333" CenterY="423.3333333333333" Width="22.333333333333332" Height="15.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="9" Valign="Middle" />
+  </Label>
+  <Label TextLabel="CF II" GraphId="e2a">
+    <Graphics CenterX="1576.6666666666667" CenterY="406.6666666666667" Width="28.333333333333332" Height="15.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="9" Valign="Middle" />
+  </Label>
+  <Label TextLabel="Poly(A)pb II" GraphId="c5c">
+    <Graphics CenterX="1580.0" CenterY="270.0" Width="68.33333333333333" Height="15.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="9" Valign="Middle" />
+  </Label>
+  <Label TextLabel="Poly(A) pol" GraphId="b9f">
+    <Graphics CenterX="1556.6666666666667" CenterY="290.0" Width="65.33333333333333" Height="15.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="9" Valign="Middle" />
+  </Label>
+  <Label TextLabel="5" GraphId="c46">
+    <Graphics CenterX="1786.6666666666667" CenterY="343.3333333333333" Width="12.333333333333334" Height="15.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="9" Valign="Middle" />
+  </Label>
+  <Label TextLabel="3" GraphId="ae7">
+    <Graphics CenterX="1943.3333333333333" CenterY="343.3333333333333" Width="12.333333333333334" Height="15.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="9" Valign="Middle" />
+  </Label>
+  <Label TextLabel="AAAAAAA" GraphId="aef">
+    <Graphics CenterX="1906.6666666666667" CenterY="343.3333333333333" Width="54.333333333333336" Height="12.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="8" Valign="Middle" />
+  </Label>
+  <Label TextLabel="Pi" GraphId="f7a">
+    <Graphics CenterX="1896.6666666666667" CenterY="306.6666666666667" Width="16.333333333333332" Height="15.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontStyle="Italic" FontSize="9" Valign="Middle" Color="008080" />
+  </Label>
+  <Label TextLabel="P-" GraphId="f9e">
+    <Graphics CenterX="1856.6666666666667" CenterY="273.3333333333333" Width="15.333333333333334" Height="12.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="8" Valign="Middle" />
+  </Label>
+  <Label TextLabel="degraded" GraphId="f9d">
+    <Graphics CenterX="1850.0" CenterY="306.6666666666667" Width="51.333333333333336" Height="12.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="8" Valign="Middle" />
+  </Label>
+  <Label TextLabel="SR protein kinases" GraphId="ae0">
+    <Comment Source="GenMAPP remarks">Clk proteins can interact with and phosphorylate SR proteins.  These proteins are capable of autophosphorylation and may alter the subnuclear localization of SR proteins. While the Clk proteins phosphorylate RS domains, they themselves contain RS-like domains and are also known to be autophosphorylated on tyrosines.</Comment>
+    <Graphics CenterX="1616.6666666666667" CenterY="523.3333333333334" Width="123.33333333333333" Height="16.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="10" Valign="Middle" />
+  </Label>
+  <Label TextLabel="Additional SR proteins" GraphId="e9c">
+    <Graphics CenterX="1616.6666666666667" CenterY="763.3333333333334" Width="147.33333333333334" Height="16.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="10" Valign="Middle" />
+  </Label>
+  <Label TextLabel="Putative Alternative Splicing" GraphId="eb2">
+    <Graphics CenterX="1820.0" CenterY="836.6666666666666" Width="186.33333333333334" Height="16.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="10" Valign="Middle" />
+  </Label>
+  <Label TextLabel="Accessory Proteins" GraphId="bc5">
+    <Graphics CenterX="1813.3333333333333" CenterY="490.0" Width="154.33333333333334" Height="19.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="12" Valign="Middle" />
+  </Label>
+  <Label TextLabel="mRNA splice site selection" GraphId="f5e">
+    <Graphics CenterX="1816.6666666666667" CenterY="653.3333333333334" Width="172.33333333333334" Height="16.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="10" Valign="Middle" />
+  </Label>
+  <Label TextLabel="hnRNP regulators" GraphId="fa1">
+    <Graphics CenterX="1816.6666666666667" CenterY="746.6666666666666" Width="116.33333333333333" Height="16.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="10" Valign="Middle" />
+  </Label>
+  <Label TextLabel="RNAi pathway" GraphId="d46">
+    <Graphics CenterX="2000.0" CenterY="523.3333333333334" Width="94.33333333333333" Height="16.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="10" Valign="Middle" />
+  </Label>
+  <Label TextLabel="3" GraphId="ba6">
+    <Graphics CenterX="1463.3333333333333" CenterY="343.3333333333333" Width="12.333333333333334" Height="15.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="9" Valign="Middle" />
+  </Label>
+  <Label TextLabel="exon 1" GraphId="a28">
+    <Graphics CenterX="1356.6666666666667" CenterY="330.0" Width="38.333333333333336" Height="11.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontStyle="Italic" FontSize="8" Valign="Middle" />
+  </Label>
+  <Label TextLabel="Formation of the Spliceosomal B complex" GraphId="ad1">
+    <Graphics CenterX="743.3333333333334" CenterY="900.0" Width="266.3333333333333" Height="16.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontStyle="Italic" FontSize="10" Valign="Middle" Color="808080" />
+  </Label>
+  <Label TextLabel="Formation of the active Spliceosomal C complex" GraphId="a53">
+    <Comment Source="GenMAPP remarks">The active C complex is formed due to a conformational change in the intermediate C complex. After formation of the active C complex, the splicing reactions occur very rapidly.  Krainer, A, 2003-06-05</Comment>
+    <Graphics CenterX="1250.0" CenterY="733.3333333333334" Width="306.3333333333333" Height="16.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontStyle="Italic" FontSize="10" Valign="Middle" Color="0000ff" />
+  </Label>
+  <Shape GraphId="e26">
+    <Graphics CenterX="266.6666666666667" CenterY="613.3333333333334" Width="40.47506666666666" Height="6.666666666666667" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="Rectangle" Rotation="0.0" />
+  </Shape>
+  <Shape GraphId="e99">
+    <Graphics CenterX="333.3333333333333" CenterY="613.3333333333334" Width="40.47506666666666" Height="6.666666666666667" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="Rectangle" Rotation="0.0" />
+  </Shape>
+  <Shape GraphId="cfe">
+    <Graphics CenterX="133.33333333333334" CenterY="470.0" Width="53.266666666666666" Height="6.666666666666667" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="Rectangle" Rotation="0.0" />
+  </Shape>
+  <Shape GraphId="fb3">
+    <Graphics CenterX="133.33333333333334" CenterY="460.0" Width="53.266666666666666" Height="6.666666666666667" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="Rectangle" Rotation="0.0" />
+  </Shape>
+  <Shape GraphId="a74">
+    <Graphics CenterX="130.0" CenterY="456.6666666666667" Width="33.99346666666666" Height="26.666666666666668" ZOrder="16384" FillColor="7f7f7f" FontSize="10" Valign="Middle" ShapeType="Oval" Rotation="0.0" />
+  </Shape>
+  <Shape GraphId="b76">
+    <Graphics CenterX="110.0" CenterY="453.3333333333333" Width="33.99346666666666" Height="26.666666666666668" ZOrder="16384" FillColor="7f7f7f" FontSize="10" Valign="Middle" ShapeType="Oval" Rotation="0.0" />
+  </Shape>
+  <Shape GraphId="a7c">
+    <Graphics CenterX="133.33333333333334" CenterY="466.6666666666667" Width="33.99346666666666" Height="26.666666666666668" ZOrder="16384" FillColor="c0c0c0" FontSize="10" Valign="Middle" ShapeType="Oval" Rotation="0.0" />
+  </Shape>
+  <Shape GraphId="f84">
+    <Graphics CenterX="113.33333333333333" CenterY="463.3333333333333" Width="33.99346666666666" Height="26.666666666666668" ZOrder="16384" FillColor="c0c0c0" FontSize="10" Valign="Middle" ShapeType="Oval" Rotation="0.0" />
+  </Shape>
+  <Shape GraphId="b0b">
+    <Graphics CenterX="93.33333333333333" CenterY="453.3333333333333" Width="44.65296" Height="89.71617333333333" ZOrder="16384" FillColor="000000" FontSize="10" Valign="Middle" ShapeType="Arc" Color="ff0000" Rotation="1.137894" />
+  </Shape>
+  <Shape GraphId="c88">
+    <Graphics CenterX="66.66666666666667" CenterY="380.0" Width="20.0" Height="20.0" ZOrder="16384" FillColor="8080ff" FontSize="10" Valign="Middle" ShapeType="Oval" Rotation="0.0" />
+  </Shape>
+  <Shape GraphId="fc6">
+    <Graphics CenterX="103.33333333333333" CenterY="426.6666666666667" Width="20.0" Height="20.0" ZOrder="16384" FillColor="ff8080" FontSize="10" Valign="Middle" ShapeType="Oval" Rotation="0.0" />
+  </Shape>
+  <Shape GraphId="d7f">
+    <Graphics CenterX="110.0" CenterY="406.6666666666667" Width="20.0" Height="20.0" ZOrder="16384" FillColor="00ff00" FontSize="10" Valign="Middle" ShapeType="Oval" Rotation="0.0" />
+  </Shape>
+  <Shape GraphId="fc8">
+    <Graphics CenterX="233.33333333333334" CenterY="600.0" Width="14.907119999999999" Height="26.666666666666668" ZOrder="16384" FillColor="cbcb96" FontSize="10" Valign="Middle" ShapeType="Oval" Rotation="0.0" />
+  </Shape>
+  <Shape GraphId="dfa">
+    <Graphics CenterX="250.0" CenterY="600.0" Width="14.907119999999999" Height="26.666666666666668" ZOrder="16384" FillColor="cbcb96" FontSize="10" Valign="Middle" ShapeType="Oval" Rotation="0.0" />
+  </Shape>
+  <Shape GraphId="c97">
+    <Graphics CenterX="266.6666666666667" CenterY="600.0" Width="14.907119999999999" Height="26.666666666666668" ZOrder="16384" FillColor="cbcb96" FontSize="10" Valign="Middle" ShapeType="Oval" Rotation="0.0" />
+  </Shape>
+  <Shape GraphId="d5a">
+    <Graphics CenterX="283.3333333333333" CenterY="600.0" Width="14.907119999999999" Height="26.666666666666668" ZOrder="16384" FillColor="cbcb96" FontSize="10" Valign="Middle" ShapeType="Oval" Rotation="0.0" />
+  </Shape>
+  <Shape GraphId="b91">
+    <Graphics CenterX="300.0" CenterY="600.0" Width="14.907119999999999" Height="26.666666666666668" ZOrder="16384" FillColor="cbcb96" FontSize="10" Valign="Middle" ShapeType="Oval" Rotation="0.0" />
+  </Shape>
+  <Shape GraphId="b73">
+    <Graphics CenterX="316.6666666666667" CenterY="600.0" Width="14.907119999999999" Height="26.666666666666668" ZOrder="16384" FillColor="cbcb96" FontSize="10" Valign="Middle" ShapeType="Oval" Rotation="0.0" />
+  </Shape>
+  <Shape GraphId="b15">
+    <Graphics CenterX="343.3333333333333" CenterY="826.6666666666666" Width="66.66666666666667" Height="13.333333333333334" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="Rectangle" Rotation="0.0" />
+  </Shape>
+  <Shape GraphId="c7f">
+    <Graphics CenterX="560.0" CenterY="826.6666666666666" Width="66.66666666666667" Height="13.333333333333334" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="Rectangle" Rotation="0.0" />
+  </Shape>
+  <Shape GraphId="a79">
+    <Graphics CenterX="360.0" CenterY="826.6666666666666" Width="33.99346" Height="13.333333333333334" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="Rectangle" Rotation="0.0" />
+  </Shape>
+  <Shape GraphId="c48">
+    <Graphics CenterX="543.3333333333334" CenterY="826.6666666666666" Width="33.99346" Height="13.333333333333334" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="Rectangle" Rotation="0.0" />
+  </Shape>
+  <Shape GraphId="e20">
+    <Graphics CenterX="390.0" CenterY="803.3333333333334" Width="40.57664" Height="26.666666666666668" ZOrder="16384" FillColor="91c8ff" FontSize="10" Valign="Middle" ShapeType="Oval" Rotation="0.0" />
+  </Shape>
+  <Shape GraphId="cc0">
+    <Graphics CenterX="486.6666666666667" CenterY="810.0" Width="53.76438666666666" Height="14.856706666666666" ZOrder="16384" FillColor="beff7d" FontSize="10" Valign="Middle" ShapeType="Oval" Rotation="0.0" />
+  </Shape>
+  <Shape GraphId="e7d">
+    <Graphics CenterX="513.3333333333334" CenterY="810.0" Width="20.0" Height="20.0" ZOrder="16384" FillColor="ea00ea" FontSize="10" Valign="Middle" ShapeType="Oval" Rotation="0.0" />
+  </Shape>
+  <Shape GraphId="deb">
+    <Graphics CenterX="100.0" CenterY="90.0" Width="106.66666666666667" Height="8.666666666666666" ZOrder="16384" FillColor="000000" FontSize="10" Valign="Middle" ShapeType="Brace" Color="8f8f8f" Rotation="0.0" />
+  </Shape>
+  <Shape GraphId="e0b">
+    <Graphics CenterX="693.3333333333334" CenterY="93.33333333333333" Width="846.6666666666666" Height="8.666666666666666" ZOrder="16384" FillColor="000000" FontSize="10" Valign="Middle" ShapeType="Brace" Color="8f8f8f" Rotation="0.0" />
+  </Shape>
+  <Shape GraphId="a32">
+    <Graphics CenterX="290.0" CenterY="903.3333333333334" Width="14.907119999999999" Height="26.666666666666668" ZOrder="16384" FillColor="ffff00" FontSize="10" Valign="Middle" ShapeType="Oval" Rotation="1.572261" />
+  </Shape>
+  <Shape GraphId="a0f">
+    <Graphics CenterX="813.3333333333334" CenterY="146.66666666666666" Width="586.6666666666666" Height="8.666666666666666" ZOrder="16384" FillColor="000000" FontSize="10" Valign="Middle" ShapeType="Brace" Color="cfcfcf" Rotation="0.0" />
+  </Shape>
+  <Shape GraphId="adc">
+    <Graphics CenterX="626.6666666666666" CenterY="256.6666666666667" Width="193.44826666666668" Height="173.33333333333334" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="Rectangle" Rotation="0.0" />
+  </Shape>
+  <Shape GraphId="d4e">
+    <Graphics CenterX="703.3333333333334" CenterY="463.3333333333333" Width="346.6666666666667" Height="133.49986666666666" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="Rectangle" Rotation="0.0" />
+  </Shape>
+  <Shape GraphId="ee6">
+    <Graphics CenterX="816.6666666666666" CenterY="370.0" Width="586.6666666666666" Height="8.666666666666666" ZOrder="16384" FillColor="000000" FontSize="10" Valign="Middle" ShapeType="Brace" Color="cfcfcf" Rotation="0.0" />
+  </Shape>
+  <Shape GraphId="b51">
+    <Graphics CenterX="460.0" CenterY="783.3333333333334" Width="61.401266666666665" Height="47.14045333333333" ZOrder="16384" FillColor="000000" FontSize="10" Valign="Middle" ShapeType="Arc" Rotation="2.356194" />
+  </Shape>
+  <Shape GraphId="f82">
+    <Graphics CenterX="813.3333333333334" CenterY="793.3333333333334" Width="66.66666666666667" Height="13.333333333333334" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="Rectangle" Rotation="0.0" />
+  </Shape>
+  <Shape GraphId="d98">
+    <Graphics CenterX="830.0" CenterY="866.6666666666666" Width="66.66666666666667" Height="13.333333333333334" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="Rectangle" Rotation="0.0" />
+  </Shape>
+  <Shape GraphId="b25">
+    <Graphics CenterX="773.3333333333334" CenterY="786.6666666666666" Width="40.57664" Height="26.666666666666668" ZOrder="16384" FillColor="91c8ff" FontSize="10" Valign="Middle" ShapeType="Oval" Rotation="0.0" />
+  </Shape>
+  <Shape GraphId="d6f">
+    <Graphics CenterX="720.0" CenterY="843.3333333333334" Width="40.57664" Height="26.666666666666668" ZOrder="16384" FillColor="ffb9ff" FontSize="10" Valign="Middle" ShapeType="Oval" Rotation="0.0" />
+  </Shape>
+  <Shape GraphId="d3a">
+    <Graphics CenterX="700.0" CenterY="830.0" Width="73.63574666666666" Height="53.333333333333336" ZOrder="16384" FillColor="000000" FontSize="10" Valign="Middle" ShapeType="Arc" Color="ff0000" Rotation="1.570796" />
+  </Shape>
+  <Shape GraphId="a3a">
+    <Graphics CenterX="770.0" CenterY="820.0" Width="48.587880000000006" Height="60.0" ZOrder="16384" FillColor="80ffff" FontSize="10" Valign="Middle" ShapeType="Oval" Rotation="0.3217506" />
+  </Shape>
+  <Shape GraphId="be8">
+    <Graphics CenterX="796.6666666666666" CenterY="846.6666666666666" Width="26.666666666666668" Height="33.333333333333336" ZOrder="16384" FillColor="00ff00" FontSize="10" Valign="Middle" ShapeType="Oval" Rotation="0.0" />
+  </Shape>
+  <Shape GraphId="a0a">
+    <Graphics CenterX="763.3333333333334" CenterY="850.0" Width="53.674" Height="14.856706666666666" ZOrder="16384" FillColor="beff7d" FontSize="10" Valign="Middle" ShapeType="Oval" Rotation="0.0" />
+  </Shape>
+  <Shape GraphId="f3d">
+    <Graphics CenterX="786.6666666666666" CenterY="850.0" Width="20.0" Height="20.0" ZOrder="16384" FillColor="ea00ea" FontSize="10" Valign="Middle" ShapeType="Oval" Rotation="0.0" />
+  </Shape>
+  <Shape GraphId="c0f">
+    <Graphics CenterX="816.6666666666666" CenterY="550.0" Width="586.6666666666666" Height="8.666666666666666" ZOrder="16384" FillColor="000000" FontSize="10" Valign="Middle" ShapeType="Brace" Color="cfcfcf" Rotation="0.0" />
+  </Shape>
+  <Shape GraphId="b1a">
+    <Graphics CenterX="850.0" CenterY="603.3333333333334" Width="193.33333333333334" Height="8.666666666666666" ZOrder="16384" FillColor="000000" FontSize="10" Valign="Middle" ShapeType="Brace" Color="cfcfcf" Rotation="0.0" />
+  </Shape>
+  <Shape GraphId="aa6">
+    <Graphics CenterX="750.0" CenterY="656.6666666666666" Width="426.7187333333333" Height="146.66666666666666" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="Rectangle" Rotation="0.0" />
+  </Shape>
+  <Shape GraphId="e62">
+    <Graphics CenterX="1120.0" CenterY="803.3333333333334" Width="66.66666666666667" Height="13.333333333333334" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="Rectangle" Rotation="0.0" />
+  </Shape>
+  <Shape GraphId="be0">
+    <Graphics CenterX="1120.0" CenterY="863.3333333333334" Width="66.66666666666667" Height="13.333333333333334" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="Rectangle" Rotation="0.0" />
+  </Shape>
+  <Shape GraphId="a47">
+    <Graphics CenterX="1046.6666666666667" CenterY="840.0" Width="29.878653333333332" Height="46.72058666666667" ZOrder="16384" FillColor="00cece" FontSize="10" Valign="Middle" ShapeType="Oval" Rotation="1.569177" />
+  </Shape>
+  <Shape GraphId="e6a">
+    <Graphics CenterX="1073.3333333333333" CenterY="840.0" Width="26.666666666666668" Height="33.333333333333336" ZOrder="16384" FillColor="00ff00" FontSize="10" Valign="Middle" ShapeType="Oval" Rotation="0.0" />
+  </Shape>
+  <Shape GraphId="c34">
+    <Graphics CenterX="1000.0" CenterY="833.3333333333334" Width="60.0" Height="53.333333333333336" ZOrder="16384" FillColor="000000" FontSize="10" Valign="Middle" ShapeType="Arc" Color="ff0000" Rotation="1.570796" />
+  </Shape>
+  <Shape GraphId="d28">
+    <Graphics CenterX="1080.0" CenterY="780.0" Width="26.666666666666668" Height="33.335946666666665" ZOrder="16384" FillColor="64f9c9" FontSize="10" Valign="Middle" ShapeType="Oval" Rotation="5.819112" />
+  </Shape>
+  <Shape GraphId="c68">
+    <Graphics CenterX="1053.3333333333333" CenterY="783.3333333333334" Width="40.57664" Height="26.666666666666668" ZOrder="16384" FillColor="91c8ff" FontSize="10" Valign="Middle" ShapeType="Oval" Rotation="0.0" />
+  </Shape>
+  <Shape GraphId="b67">
+    <Graphics CenterX="1020.0" CenterY="840.0" Width="40.57664" Height="26.666666666666668" ZOrder="16384" FillColor="ffb9ff" FontSize="10" Valign="Middle" ShapeType="Oval" Rotation="0.0" />
+  </Shape>
+  <Shape GraphId="d3b">
+    <Graphics CenterX="1260.0" CenterY="693.3333333333334" Width="66.66666666666667" Height="13.333333333333334" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="Rectangle" Rotation="0.183228" />
+  </Shape>
+  <Shape GraphId="c9c">
+    <Graphics CenterX="1213.3333333333333" CenterY="663.3333333333334" Width="26.666666666666668" Height="33.333333333333336" ZOrder="16384" FillColor="00ff00" FontSize="10" Valign="Middle" ShapeType="Oval" Rotation="0.0" />
+  </Shape>
+  <Shape GraphId="ce4">
+    <Graphics CenterX="1140.0" CenterY="650.0" Width="73.63574666666666" Height="53.333333333333336" ZOrder="16384" FillColor="000000" FontSize="10" Valign="Middle" ShapeType="Arc" Color="ff0000" Rotation="1.570796" />
+  </Shape>
+  <Shape GraphId="fe6">
+    <Graphics CenterX="1186.6666666666667" CenterY="663.3333333333334" Width="29.878653333333332" Height="46.72058666666667" ZOrder="16384" FillColor="00cece" FontSize="10" Valign="Middle" ShapeType="Oval" Rotation="1.569177" />
+  </Shape>
+  <Shape GraphId="c11">
+    <Graphics CenterX="1160.0" CenterY="663.3333333333334" Width="40.57664" Height="26.666666666666668" ZOrder="16384" FillColor="ffb9ff" FontSize="10" Valign="Middle" ShapeType="Oval" Rotation="0.0" />
+  </Shape>
+  <Shape GraphId="b86">
+    <Graphics CenterX="1260.0" CenterY="630.0" Width="66.66666666666667" Height="13.333333333333334" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="Rectangle" Rotation="5.905735" />
+  </Shape>
+  <Shape GraphId="c62">
+    <Graphics CenterX="1273.3333333333333" CenterY="513.3333333333334" Width="26.666666666666668" Height="33.333333333333336" ZOrder="16384" FillColor="00ff00" FontSize="10" Valign="Middle" ShapeType="Oval" Rotation="0.0" />
+  </Shape>
+  <Shape GraphId="b9c">
+    <Graphics CenterX="1200.0" CenterY="500.0" Width="73.63574666666666" Height="53.333333333333336" ZOrder="16384" FillColor="000000" FontSize="10" Valign="Middle" ShapeType="Arc" Color="ff0000" Rotation="1.570796" />
+  </Shape>
+  <Shape GraphId="d67">
+    <Graphics CenterX="1246.6666666666667" CenterY="513.3333333333334" Width="29.878653333333332" Height="46.72058666666667" ZOrder="16384" FillColor="00cece" FontSize="10" Valign="Middle" ShapeType="Oval" Rotation="1.569177" />
+  </Shape>
+  <Shape GraphId="a68">
+    <Graphics CenterX="1316.6666666666667" CenterY="506.6666666666667" Width="66.66666666666667" Height="13.333333333333334" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="Rectangle" Rotation="5.905735" />
+  </Shape>
+  <Shape GraphId="b01">
+    <Graphics CenterX="1313.3333333333333" CenterY="546.6666666666666" Width="66.66666666666667" Height="13.333333333333334" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="Rectangle" Rotation="0.5122937" />
+  </Shape>
+  <Shape GraphId="b80">
+    <Graphics CenterX="1200.0" CenterY="490.0" Width="53.37202666666667" Height="53.333333333333336" ZOrder="16384" FillColor="000000" FontSize="10" Valign="Middle" ShapeType="Arc" Color="ff0000" Rotation="4.712389" />
+  </Shape>
+  <Shape GraphId="a16">
+    <Graphics CenterX="1216.6666666666667" CenterY="516.6666666666666" Width="40.57664" Height="26.666666666666668" ZOrder="16384" FillColor="ffb9ff" FontSize="10" Valign="Middle" ShapeType="Oval" Rotation="0.0" />
+  </Shape>
+  <Shape GraphId="ce7">
+    <Graphics CenterX="1273.3333333333333" CenterY="336.6666666666667" Width="26.666666666666668" Height="33.333333333333336" ZOrder="16384" FillColor="00ff00" FontSize="10" Valign="Middle" ShapeType="Oval" Rotation="0.0" />
+  </Shape>
+  <Shape GraphId="bd3">
+    <Graphics CenterX="1246.6666666666667" CenterY="336.6666666666667" Width="29.878653333333332" Height="46.72058666666667" ZOrder="16384" FillColor="00cece" FontSize="10" Valign="Middle" ShapeType="Oval" Rotation="1.569177" />
+  </Shape>
+  <Shape GraphId="e30">
+    <Graphics CenterX="1200.0" CenterY="313.3333333333333" Width="53.37202666666667" Height="53.333333333333336" ZOrder="16384" FillColor="000000" FontSize="10" Valign="Middle" ShapeType="Arc" Color="ff0000" Rotation="4.712389" />
+  </Shape>
+  <Shape GraphId="bd2">
+    <Graphics CenterX="1200.0" CenterY="323.3333333333333" Width="73.63574666666666" Height="53.333333333333336" ZOrder="16384" FillColor="000000" FontSize="10" Valign="Middle" ShapeType="Arc" Color="ff0000" Rotation="1.570796" />
+  </Shape>
+  <Shape GraphId="e7a">
+    <Graphics CenterX="1216.6666666666667" CenterY="340.0" Width="40.57664" Height="26.666666666666668" ZOrder="16384" FillColor="ffb9ff" FontSize="10" Valign="Middle" ShapeType="Oval" Rotation="0.0" />
+  </Shape>
+  <Shape GraphId="ec4">
+    <Graphics CenterX="1420.0" CenterY="343.3333333333333" Width="66.66666666666667" Height="13.333333333333334" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="Rectangle" Rotation="0.0" />
+  </Shape>
+  <Shape GraphId="eb8">
+    <Graphics CenterX="1680.0" CenterY="290.0" Width="37.677573333333335" Height="47.14045333333333" ZOrder="16384" FillColor="000000" FontSize="10" Valign="Middle" ShapeType="Arc" Rotation="3.926069" />
+  </Shape>
+  <Shape GraphId="ba5">
+    <Graphics CenterX="1666.6666666666667" CenterY="273.3333333333333" Width="26.666666666666668" Height="20.0" ZOrder="16384" FillColor="8080c0" FontSize="10" Valign="Middle" ShapeType="Oval" Rotation="0.0" />
+  </Shape>
+  <Shape GraphId="cbd">
+    <Graphics CenterX="1620.0" CenterY="410.0" Width="20.0" Height="13.333333333333334" ZOrder="16384" FillColor="80ff80" FontSize="10" Valign="Middle" ShapeType="Oval" Rotation="0.0" />
+  </Shape>
+  <Shape GraphId="fa6">
+    <Graphics CenterX="1593.3333333333333" CenterY="393.3333333333333" Width="20.0" Height="13.333333333333334" ZOrder="16384" FillColor="408080" FontSize="10" Valign="Middle" ShapeType="Oval" Rotation="0.0" />
+  </Shape>
+  <Shape GraphId="f15">
+    <Graphics CenterX="1600.0" CenterY="300.0" Width="20.0" Height="13.333333333333334" ZOrder="16384" FillColor="ff8080" FontSize="10" Valign="Middle" ShapeType="Oval" Rotation="0.0" />
+  </Shape>
+  <Shape GraphId="bf1">
+    <Graphics CenterX="1910.0" CenterY="336.6666666666667" Width="20.0" Height="13.333333333333334" ZOrder="16384" FillColor="ffff00" FontSize="10" Valign="Middle" ShapeType="Oval" Rotation="0.0" />
+  </Shape>
+  <Shape GraphId="a31">
+    <Graphics CenterX="1840.0" CenterY="343.3333333333333" Width="73.26666666666667" Height="13.333333333333334" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="Rectangle" Rotation="0.0" />
+  </Shape>
+  <Shape GraphId="bfb">
+    <Graphics CenterX="1620.0" CenterY="290.0" Width="20.0" Height="13.333333333333334" ZOrder="16384" FillColor="ffff00" FontSize="10" Valign="Middle" ShapeType="Oval" Rotation="0.0" />
+  </Shape>
+  <Shape GraphId="a27">
+    <Graphics CenterX="1923.3333333333333" CenterY="336.6666666666667" Width="20.0" Height="13.333333333333334" ZOrder="16384" FillColor="ff8080" FontSize="10" Valign="Middle" ShapeType="Oval" Rotation="0.0" />
+  </Shape>
+  <Shape GraphId="e2c">
+    <Graphics CenterX="1876.6666666666667" CenterY="273.3333333333333" Width="21.103026666666665" Height="13.333333333333334" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="Rectangle" Rotation="0.0" />
+  </Shape>
+  <Shape GraphId="c29">
+    <Graphics CenterX="1803.3333333333333" CenterY="750.0" Width="546.6666666666666" Height="493.51346666666666" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="Rectangle" Rotation="0.0" />
+  </Shape>
+  <Shape GraphId="c81">
+    <Graphics CenterX="1353.3333333333333" CenterY="343.3333333333333" Width="66.66666666666667" Height="13.333333333333334" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="Rectangle" Rotation="0.0" />
+  </Shape>
+  <Shape GraphId="f70">
+    <Graphics CenterX="463.3333333333333" CenterY="760.0" Width="40.57664" Height="26.666666666666668" ZOrder="16384" FillColor="ffb9ff" FontSize="10" Valign="Middle" ShapeType="Oval" Rotation="0.0" />
+  </Shape>
+  <InfoBox CenterX="5.0" CenterY="1.6666666666666667" />
+  <Legend CenterX="1218.3333333333333" CenterY="765.0" />
+  <Biopax>
+    <bp:openControlledVocabulary xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#">
+      <bp:TERM xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">spliceosome pathway</bp:TERM>
+      <bp:ID xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PW:0001073</bp:ID>
+      <bp:Ontology xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Pathway Ontology</bp:Ontology>
+    </bp:openControlledVocabulary>
+  </Biopax>
+</Pathway>

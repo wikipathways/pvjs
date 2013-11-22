@@ -2,81 +2,107 @@ pathvisiojs.view.annotation = function(){
   function render(annotationData) {
     self.annotationData = annotationData;
     var annotation = d3.select("#annotation")
-    .data([annotationData]);
+    .data([annotationData])
 
     var annotationHeaderText = annotation.select('#annotation-header-text')
     .text(function(d) { return d.header; });
 
+    var annotationIconMove = annotation.select('i.icon-move')
+    .on("drag", function(d, i){
+      // I think I need to play with absolute positioning for this
+      // it doesn't currently work.
+      //annotation.attr('transform', 'translate(10 10)');
+    });
+
+    var annotationIconRemove = annotation.select('i.icon-remove')
+    .on("click", function(d, i){
+      annotation.attr('style', 'visibility: hidden;');
+    });
+
     var annotationDescription = annotation.select('#annotation-description')
     .text(function(d) { return d.description; });
 
-    /*
-var p = d3.select("#header").selectAll("p")
-    .data(annotationData.listItems)
-    .text(function(d) {return d.key;});
-
-// Enter…
-p.enter().append("p")
-    .text(function(d) {return d.key;});
-
-// Exit…
-p.exit().remove();
-//*/
-
-
-    // Update…
-    var annotationListItems = annotation.select('ul#annotation-items-container').selectAll('li')
+    var annotationListItemsContainer = annotation.selectAll('#annotation-items-container')
     .data(function(d) {
-      self.ali = d;
-      return d.listItems;
+      console.log('d annotationListItemsContainer');
+      console.log(d);
+      console.log([d.listItems]);
+      return [d.listItems];
     });
 
-    // Enter…
-    annotationListItems.enter()
-    .append('li');
+    console.log(annotationListItemsContainer);
+
+    // Update
+    var annotationListItems = annotationListItemsContainer.selectAll('li')
+    .data(function(d) {
+      console.log('d annotationListItems');
+      console.log(d);
+      return d;
+    });
+
+    // Enter
+    annotationListItems.enter().append('li');
 
     // Exit…
     annotationListItems.exit().remove();
 
-    var annotationItemTitle = annotationListItems.append('span')
+    var annotationItemTitles = annotationListItems.selectAll('.annotation-item-title')
+    .data(function(d) {
+      console.log('d annotationListItems');
+      console.log(d);
+      return [d.key];
+    })
+    .enter().append('span')
     .attr('class', 'annotation-item-title')
-    .text(function(d) {return d.key + ': ';});
+    .text(function(d) {return d + ': ';});
 
-    // Update plain text…
+    // Update
     var annotationItemPlainTextElements = annotationListItems.selectAll('span.annotation-item-text')
     .data(function(d) {
       return d.values.filter(function(element) {
-        console.log(element);
         if (!element.hasOwnProperty('uri')) {
+          console.log('annotationItemPlainTextElement');
+          console.log(element);
           return element; 
         }
-      }); 
-    });
+      });
+    })
+    .text(function(d) { return ' ' + d.text; });
 
-    // Enter plain text…
+    // Enter
     annotationItemPlainTextElements.enter()
     .append('span')
     .attr('class', 'annotation-item-text')
     .text(function(d) { return ' ' + d.text; });
 
-    // Update linked text…
+    // Exit…
+    annotationItemPlainTextElements.exit().remove();
+
+    // Update
     var annotationItemLinkedTextElements = annotationListItems.selectAll('a.annotation-item-text')
     .data(function(d) {
       return d.values.filter(function(element) {
         if (element.hasOwnProperty('uri')) {
+          //console.log('annotationItemLinkedTextElement');
+          //console.log(element);
           return element; 
         }
       }); 
-    });
+    })
+    .text(function(d) { return ' ' + d.text; });
 
-    // Enter linked text…
+    // Enter
     annotationItemLinkedTextElements.enter()
     .append('a')
     .attr('href', function(d) {return d.uri;})
     .attr('class', 'annotation-item-text')
     .text(function(d) { return ' ' + d.text; });
 
+    // Exit…
+    annotationItemLinkedTextElements.exit().remove();
+
     annotation[0][0].style.visibility = 'visible';
+
   }
       
   return {

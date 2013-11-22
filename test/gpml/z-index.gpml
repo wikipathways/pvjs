@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Pathway xmlns="http://pathvisiojs.org/GPML/2013a" Name="z-index" Version="20130807" Organism="Anopheles gambiae">
+<Pathway xmlns="http://pathvisio.org/GPML/2013a" Name="z-index" Version="20130807" Organism="Anopheles gambiae">
   <Graphics BoardWidth="918.5027512319709" BoardHeight="995.4648244560025" />
   <DataNode TextLabel="GeneProduct" GraphId="cabbf" Type="GeneProduct">
     <Graphics CenterX="309.6885813148789" CenterY="309.6885813148789" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />

@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Pathway xmlns="http://pathvisio.org/GPML/2013a" Name="Metformin and HIF-1alpha" Author="Jean Gonzales" Organism="Anopheles gambiae">
+  <Graphics BoardWidth="674.9999999999997" BoardHeight="363.9999999999999" />
+  <DataNode TextLabel="Metformin" GraphId="c84f6" Type="Metabolite">
+    <Graphics CenterX="261.4166666666662" CenterY="30.75000000000003" Width="62.5" Height="34.5" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Xref Database="" ID="" />
+  </DataNode>
+  <DataNode TextLabel="AMPK " GraphId="f73d4" Type="Protein">
+    <Graphics CenterX="455.4166666666667" CenterY="104.75" Width="68.5" Height="20.5" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="" ID="" />
+  </DataNode>
+  <DataNode TextLabel="concentration O2 and ATP" GraphId="aa17e" Type="Pathway">
+    <Graphics CenterX="537.5833333333362" CenterY="54.4166666666668" Width="182.16666666666424" Height="33.833333333333314" ZOrder="32768" FontWeight="Bold" FontSize="12" Valign="Middle" ShapeType="None" Color="14961e" />
+    <Xref Database="" ID="" />
+  </DataNode>
+  <DataNode TextLabel="TSC2&#xA;" GraphId="a1061" Type="Protein">
+    <Graphics CenterX="456.75" CenterY="170.25" Width="56.5" Height="21.5" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="" ID="" />
+  </DataNode>
+  <DataNode TextLabel="mTOR" GraphId="c2ea2" Type="Protein">
+    <Graphics CenterX="457.25" CenterY="257.25" Width="101.5" Height="33.5" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="" ID="" />
+  </DataNode>
+  <DataNode TextLabel="Protein synthesis" GraphId="a9c79" Type="Metabolite">
+    <Graphics CenterX="457.99999999999994" CenterY="323.9999999999999" Width="118.6666666666666" Height="20.0" ZOrder="32768" FontWeight="Bold" FontSize="12" Valign="Middle" ShapeType="None" Color="14961e" />
+    <Xref Database="" ID="" />
+  </DataNode>
+  <DataNode TextLabel="Normoxia" GraphId="ad4be" Type="Pathway">
+    <Graphics CenterX="34.0000000000001" CenterY="62.000000000000085" Width="80.0" Height="20.0" ZOrder="32768" FontWeight="Bold" FontSize="12" Valign="Middle" ShapeType="None" Color="14961e" />
+    <Xref Database="" ID="" />
+  </DataNode>
+  <DataNode TextLabel="IGF-1" GraphId="b6c00" Type="Protein">
+    <Graphics CenterX="610.7499999999997" CenterY="104.75" Width="68.5" Height="20.5" ZOrder="32770" FontSize="10" Valign="Middle" />
+    <Xref Database="" ID="" />
+  </DataNode>
+  <DataNode TextLabel="TSC2&#xA;" GraphId="a6d3a" Type="Protein">
+    <Graphics CenterX="608.7500000000011" CenterY="171.8333333333333" Width="56.5" Height="20.999999999999893" ZOrder="32772" FontSize="10" Valign="Middle" />
+    <Xref Database="" ID="" />
+  </DataNode>
+  <Interaction>
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="492.04166666667015" Y="71.33333333333346" GraphRef="aa17e" RelX="-0.5" RelY="1.0" />
+      <Point X="455.4166666666667" Y="94.5" GraphRef="f73d4" RelX="0.0" RelY="-1.0" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction>
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="456.75" Y="181.0" GraphRef="a1061" RelX="0.0" RelY="1.0" />
+      <Point X="456.0" Y="243.0" ArrowHead="mim-inhibition" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction>
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="457.25" Y="274.0" GraphRef="c2ea2" RelX="0.0" RelY="1.0" />
+      <Point X="458.6666666666667" Y="313.3333333333333" ArrowHead="mim-stimulation" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction>
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="455.4166666666667" Y="115.0" GraphRef="f73d4" RelX="0.0" RelY="1.0" />
+      <Point X="454.6666666666667" Y="146.66666666666666" ArrowHead="Receptor" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction>
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="398.6666666666667" Y="246.66666666666666" />
+      <Point X="406.5" Y="248.875" GraphRef="c2ea2" RelX="-1.0" RelY="-0.5" ArrowHead="mim-inhibition" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction>
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="580.6666666666666" Y="182.0" />
+      <Point X="510.0" Y="258.6666666666667" ArrowHead="mim-stimulation" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="d1e34">
+    <Graphics ZOrder="32769" LineThickness="1.0">
+      <Point X="583.1250000000023" Y="71.33333333333346" GraphRef="aa17e" RelX="0.5" RelY="1.0" />
+      <Point X="610.6666666666666" Y="92.66666666666667" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="fe6fa">
+    <Graphics ZOrder="32773" LineThickness="1.0">
+      <Point X="610.7499999999997" Y="115.0" GraphRef="b6c00" RelX="0.0" RelY="1.0" />
+      <Point X="610.6666666666666" Y="148.66666666666666" ArrowHead="Receptor" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Shape GraphId="a7d8d">
+    <Graphics CenterX="620.8336387193181" CenterY="55.13117997124556" Width="17.0" Height="15.665388952627621" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="Triangle" Rotation="4.702642613472815" />
+  </Shape>
+  <Shape TextLabel="Raptor" GraphId="e1d1d">
+    <Graphics CenterX="409.4108175991875" CenterY="176.66678361201699" Width="144.04362806652512" Height="85.14297789167452" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="Arc" Rotation="1.7131548774452938" />
+  </Shape>
+  <Shape GraphId="cdae5">
+    <Graphics CenterX="396.4166666666668" CenterY="324.41666666666663" Width="20.49999999999995" Height="17.833333333333357" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="Triangle" Rotation="4.727616229761807" />
+  </Shape>
+  <Shape GraphId="ce8ab">
+    <Graphics CenterX="454.83333333333275" CenterY="49.83333333333292" Width="17.0" Height="17.00000000000005" ZOrder="32771" FontSize="10" Valign="Middle" ShapeType="Triangle" Rotation="1.6295521495105765" />
+  </Shape>
+  <InfoBox CenterX="0.0" CenterY="0.0" />
+  <Biopax />
+</Pathway>

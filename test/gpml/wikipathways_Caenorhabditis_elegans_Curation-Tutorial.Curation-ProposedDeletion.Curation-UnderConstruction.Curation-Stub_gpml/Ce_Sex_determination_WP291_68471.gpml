@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Pathway xmlns="http://pathvisio.org/GPML/2013a" Name="Sex determination" Organism="Caenorhabditis elegans">
+  <Comment Source="WikiPathways-category">Physiological Process</Comment>
+  <Comment Source="WikiPathways-description">Based on wormbook chapter.</Comment>
+  <BiopaxRef>af5</BiopaxRef>
+  <Graphics BoardWidth="997.0" BoardHeight="350.0"/>
+  <DataNode TextLabel="sex-1" GraphId="c3738" Type="GeneProduct" GroupRef="ea3d9">
+    <Graphics CenterX="113.0" CenterY="145.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="ff0033"/>
+    <Xref Database="WormBase" ID="F44A6.2"/>
+  </DataNode>
+  <DataNode TextLabel="fox-1" GraphId="e2a97" Type="GeneProduct" GroupRef="ea3d9">
+    <Graphics CenterX="113.0" CenterY="165.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="ff0033"/>
+    <Xref Database="WormBase" ID="T07D1.4"/>
+  </DataNode>
+  <DataNode TextLabel="xol-1" GraphId="f3eb8" Type="GeneProduct">
+    <Graphics CenterX="232.0" CenterY="213.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="3333ff"/>
+    <Xref Database="WormBase" ID="C18A11.5"/>
+  </DataNode>
+  <DataNode TextLabel="sea-3" GraphId="d7fe0" Type="GeneProduct" GroupRef="b70f1">
+    <Graphics CenterX="113.0" CenterY="264.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="3333ff"/>
+    <Xref Database="WormBase" ID="sea-3"/>
+  </DataNode>
+  <DataNode TextLabel="sea-1" GraphId="b467e" Type="GeneProduct" GroupRef="b70f1">
+    <Graphics CenterX="113.0" CenterY="224.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="3333ff"/>
+    <Xref Database="WormBase" ID="F19B10.9"/>
+  </DataNode>
+  <DataNode TextLabel="sea-2" GraphId="b47ae" Type="GeneProduct" GroupRef="b70f1">
+    <Graphics CenterX="113.0" CenterY="244.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="3333ff"/>
+    <Xref Database="WormBase" ID="K10G6.3"/>
+  </DataNode>
+  <DataNode TextLabel="sdc-1" GraphId="ebe9a" Type="GeneProduct" GroupRef="cddd2">
+    <Graphics CenterX="355.0" CenterY="193.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="ff0033"/>
+    <Xref Database="WormBase" ID="F52E10.1"/>
+  </DataNode>
+  <DataNode TextLabel="sdc-2" GraphId="de782" Type="GeneProduct" GroupRef="cddd2">
+    <Graphics CenterX="355.0" CenterY="213.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="ff0033"/>
+    <Xref Database="WormBase" ID="C35C5.1"/>
+  </DataNode>
+  <DataNode TextLabel="sdc-3" GraphId="ef1be" Type="GeneProduct" GroupRef="cddd2">
+    <Graphics CenterX="355.0" CenterY="233.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="ff0033"/>
+    <Xref Database="WormBase" ID="C25D7.3"/>
+  </DataNode>
+  <DataNode TextLabel="her-1" GraphId="fa2e3" Type="GeneProduct">
+    <Graphics CenterX="483.0" CenterY="213.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="3333ff"/>
+    <Xref Database="WormBase" ID="ZK287.8"/>
+  </DataNode>
+  <DataNode TextLabel="tra-3" GraphId="ad3a2" Type="GeneProduct">
+    <Graphics CenterX="595.0" CenterY="157.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="ff3333"/>
+    <Xref Database="WormBase" ID="LLC1.1"/>
+  </DataNode>
+  <DataNode TextLabel="tra-2" GraphId="e8994" Type="GeneProduct">
+    <Graphics CenterX="595.0" CenterY="213.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="ff3333"/>
+    <Xref Database="WormBase" ID="C15F1.3"/>
+  </DataNode>
+  <DataNode TextLabel="fem-1" GraphId="b9cbe" Type="GeneProduct" GroupRef="b75c4">
+    <Graphics CenterX="714.0" CenterY="213.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="3333ff"/>
+    <Xref Database="WormBase" ID="F35D6.1"/>
+  </DataNode>
+  <DataNode TextLabel="fem-2" GraphId="be80a" Type="GeneProduct" GroupRef="b75c4">
+    <Graphics CenterX="714.0" CenterY="233.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="3333ff"/>
+    <Xref Database="WormBase" ID="T19C3.8"/>
+  </DataNode>
+  <DataNode TextLabel="fem-3" GraphId="bfd5b" Type="GeneProduct" GroupRef="b75c4">
+    <Graphics CenterX="714.0" CenterY="193.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="3333ff"/>
+    <Xref Database="WormBase" ID="C01F6.4"/>
+  </DataNode>
+  <DataNode TextLabel="sel-10" GraphId="b06eb" Type="GeneProduct">
+    <Graphics CenterX="714.0" CenterY="127.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="ff3333"/>
+    <Xref Database="WormBase" ID="F55B12.3"/>
+  </DataNode>
+  <DataNode TextLabel="tra-1" GraphId="e1863" Type="GeneProduct">
+    <Graphics CenterX="824.0" CenterY="213.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="ff3333"/>
+    <Xref Database="WormBase" ID="Y47D3A.6"/>
+  </DataNode>
+  <Interaction GraphId="f0fdb">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="161.0" Y="245.5" GraphRef="a11a9" RelX="1.0" RelY="0.0"/>
+      <Point X="192.0" Y="213.0" GraphRef="f3eb8" RelX="-1.0" RelY="0.0" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="b5104">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="161.0" Y="157.46756163624616" GraphRef="bfce8" RelX="1.0" RelY="0.0"/>
+      <Point X="192.0" Y="213.0" GraphRef="f3eb8" RelX="-1.0" RelY="0.0" ArrowHead="TBar"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="b3c2a">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="272.0" Y="213.0" GraphRef="f3eb8" RelX="1.0" RelY="0.0"/>
+      <Point X="307.0" Y="213.0" GraphRef="bdf1b" RelX="-1.0" RelY="0.0" ArrowHead="TBar"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="cb174">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="355.0" Y="251.0" GraphRef="bdf1b" RelX="0.0" RelY="1.0"/>
+      <Point X="355.5" Y="299.0" GraphRef="a741d" RelX="0.0" RelY="-1.0" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="da6c2">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="403.0" Y="213.0" GraphRef="bdf1b" RelX="1.0" RelY="0.0"/>
+      <Point X="443.0" Y="213.0" GraphRef="fa2e3" RelX="-1.0" RelY="0.0" ArrowHead="TBar"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e3808">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="523.0" Y="213.0" GraphRef="fa2e3" RelX="1.0" RelY="0.0"/>
+      <Point X="555.0" Y="213.0" GraphRef="e8994" RelX="-1.0" RelY="0.0" ArrowHead="TBar"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="c4dbc">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="595.0" Y="167.0" GraphRef="ad3a2" RelX="0.0" RelY="1.0"/>
+      <Point X="595.0" Y="203.0" GraphRef="e8994" RelX="0.0" RelY="-1.0" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="b83dc">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="635.0" Y="213.0" GraphRef="e8994" RelX="1.0" RelY="0.0"/>
+      <Point X="666.0" Y="213.0" GraphRef="b7968" RelX="-1.0" RelY="0.0" ArrowHead="TBar"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="af146">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="714.0" Y="137.0" GraphRef="b06eb" RelX="0.0" RelY="1.0"/>
+      <Point X="714.0" Y="175.0" GraphRef="b7968" RelX="0.0" RelY="-1.0" ArrowHead="TBar"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="af4ed">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="762.0" Y="213.0" GraphRef="b7968" RelX="1.0" RelY="0.0"/>
+      <Point X="784.0" Y="213.0" GraphRef="e1863" RelX="-1.0" RelY="0.0" ArrowHead="TBar"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="cee84">
+    <Graphics ConnectorType="Curved" ZOrder="12288" LineThickness="1.0">
+      <Point X="864.0" Y="213.0" GraphRef="e1863" RelX="1.0" RelY="0.0"/>
+      <Point X="908.0" Y="187.0" GraphRef="e8ab1" RelX="-1.0" RelY="0.0" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="a83d8">
+    <Graphics ConnectorType="Curved" ZOrder="12288" LineThickness="1.0">
+      <Point X="864.0" Y="213.0" GraphRef="e1863" RelX="1.0" RelY="0.0"/>
+      <Point X="910.0" Y="237.0" GraphRef="afa61" RelX="-1.0" RelY="0.0" ArrowHead="TBar"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Label TextLabel="X" GraphId="c85db" GroupRef="ea3d9">
+    <Graphics CenterX="32.0" CenterY="152.0" Width="28.0" Height="44.0" ZOrder="28672" FillColor="ffffff" FontName="Dialog" FontWeight="Bold" FontSize="20" Valign="Middle"/>
+  </Label>
+  <Label TextLabel="A" GraphId="a2d76" GroupRef="b70f1">
+    <Graphics CenterX="33.0" CenterY="249.0" Width="28.0" Height="44.0" ZOrder="28672" FillColor="ffffff" FontName="Dialog" FontWeight="Bold" FontSize="20" Valign="Middle"/>
+  </Label>
+  <Label TextLabel="Dosage compensation" GraphId="a741d">
+    <Graphics CenterX="355.5" CenterY="309.5" Width="129.0" Height="21.0" ZOrder="28672" FillColor="ffffff" FontSize="10" Valign="Middle"/>
+  </Label>
+  <Label TextLabel="xol-1 is regulated by the X:A ratio&#10;(the ratio of X chromosomes relative to autosomal  chromosomes)" GraphId="e7627">
+    <Graphics CenterX="220.0" CenterY="99.5" Width="350.0" Height="39.0" ZOrder="28672" FillColor="ffffff" FontStyle="Italic" FontSize="10" Valign="Middle"/>
+  </Label>
+  <Label TextLabel="Blue: masculinizing factors" GraphId="ee075">
+    <Graphics CenterX="539.0" CenterY="64.0" Width="158.0" Height="20.0" ZOrder="28672" FillColor="ffffff" FontSize="10" Valign="Middle" Color="0000ff"/>
+  </Label>
+  <Label TextLabel="Red: feminizing factors" GraphId="ef27d">
+    <Graphics CenterX="530.0" CenterY="85.0" Width="158.0" Height="20.0" ZOrder="28672" FillColor="ffffff" FontSize="10" Valign="Middle" Color="ff3333"/>
+  </Label>
+  <Label TextLabel="Female" GraphId="e8ab1">
+    <Graphics CenterX="937.5" CenterY="187.0" Width="59.0" Height="20.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="10" Valign="Middle" Color="ff3333"/>
+  </Label>
+  <Label TextLabel="Male" GraphId="afa61">
+    <Graphics CenterX="935.5" CenterY="237.0" Width="51.0" Height="20.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="10" Valign="Middle" Color="3333ff"/>
+  </Label>
+  <Shape GraphId="ca5d5" GroupRef="ea3d9">
+    <Graphics CenterX="53.29553714724819" CenterY="157.46756163624616" Width="61.06487672750767" Height="15.408925705503615" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="Brace" Rotation="1.5707963267948966"/>
+  </Shape>
+  <Shape GraphId="e01ee" GroupRef="b70f1">
+    <Graphics CenterX="56.29553714724819" CenterY="246.46756163624616" Width="61.06487672750767" Height="15.408925705503615" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="Brace" Rotation="1.5707963267948966"/>
+  </Shape>
+  <Group GroupId="cddd2" GraphId="bdf1b"/>
+  <Group GroupId="ea3d9" GraphId="bfce8"/>
+  <Group GroupId="b70f1" GraphId="a11a9"/>
+  <Group GroupId="b75c4" GraphId="b7968"/>
+  <InfoBox CenterX="0.0" CenterY="0.0"/>
+  <Biopax>
+    <bp:PublicationXref xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" rdf:id="af5">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">18050479</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Somatic sex determination.</bp:TITLE>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">WormBook</bp:SOURCE>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2006</bp:YEAR>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Zarkower D</bp:AUTHORS>
+    </bp:PublicationXref>
+  </Biopax>
+</Pathway>

@@ -1,6 +1,6 @@
 {
-  "name": "pathvisio-js",
-  "version": "0.0.1",
+  "name": "pathvisiojs",
+  "version": "0.0.4",
   "description": "Biological pathway viewer and editor.",
   "main": "Gruntfile.js",
   "directories": {
@@ -22,7 +22,7 @@
     "diagram"
   ],
   "author": "Anders Riutta",
-  "license": "",
+  "license": "Apache 2.0",
   "gitHead": "044be6618ee72b932fcb90f4369eb61706f3cfb9",
   "readmeFilename": "README.md",
   "devDependencies": {
@@ -37,7 +37,8 @@
     "grunt-contrib-uglify": "~0.2.2",
     "grunt-contrib-jshint": "~0.6.4",
     "grunt-contrib-clean": "~0.5.0",
-    "grunt-git-describe": "~2.3.2"
+    "grunt-git-describe": "~2.3.2",
+    "utilities": "latest"
   },
   "dependencies": {
     "grunt-string-to-js": "0.0.3"

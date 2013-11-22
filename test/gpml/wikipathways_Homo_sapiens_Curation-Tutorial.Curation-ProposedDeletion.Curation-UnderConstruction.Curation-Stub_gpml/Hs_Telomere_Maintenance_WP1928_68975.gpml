@@ -1,0 +1,1284 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Pathway xmlns="http://pathvisio.org/GPML/2013a" Name="Telomere Maintenance" Data-Source="Reactome - http://www.reactome.org" Version="release 35" Author="Blackburn, EH, Seidel, J" Organism="Homo sapiens">
+  <Comment Source="WikiPathways-description">Telomeres are protein-DNA complexes at the ends of linear chromosomes that are important for genome stability.  Telomeric DNA in humans, as in many eukaryotic organisms, consists of tandem repeats (Blackburn and Gall 1978; Moyzis et al. 1988; Meyne et al. 1989).  The repeats at human telomeres are composed of TTAGGG sequences and stretch for several kilobase pairs.  Another feature of telomeric DNA in many eukaryotes is a G-rich 3' single strand overhang, which in humans is estimated to be approximately 50-300 bases long (Makarov et al. 1997; Wright et al. 1997; Huffman et al. 2000).  Telomeric DNA isolated from humans and several other organisms can form a lasso-type structure called a t-loop in which the 3' single-strand end is presumed to invade the double stranded telomeric DNA repeat tract (Griffith et al. 1999).  Telomeric DNA is bound by multiple protein factors that play important roles in regulating telomere length and in protecting the chromosome end from recombination, non-homologous end-joining, DNA damage signaling, and unregulated nucleolytic attack (reviewed in de Lange 2005).  &lt;br&gt;&lt;br&gt;&lt;br&gt;DNA attrition can occur at telomeres, which can impact cell viability.  Attrition can occur owing to the "end-replication problem", a consequence of the mechanism of lagging-strand synthesis (Watson 1972; Olovnikov 1973).  Besides incomplete replication, nucleolytic processing also likely contributes to telomere attrition (Huffman et al. 2000).  If telomeres become critically shortened, replicative senescence can result (Harley et al. 1990).  Thus, in order to undergo multiple divisions, cells need a mechanism to replenish the sequence at their chromosome ends.&lt;br&gt;&lt;br&gt;&lt;br&gt;The primary means for maintaining the sequence at chromosome ends in many eukaryotic organisms, including humans, is based on telomerase (Greider and Blackburn, 1985; Morin 1989).  Telomerase is a ribonucleoprotein complex minimally composed of a conserved protein subunit containing a reverse transcriptase domain (telomerase reverse transcriptase, TERT) (Lingner et al. 1997; Nakamura et al. 1997) and a template-containing RNA (telomerase RNA component, TERC, TR, TER) (Greider and Blackburn, 1987; Feng et al 1995).  Telomerase uses the RNA template to direct addition of multiple tandem repeats to the 3' G-rich single strand overhang.  Besides extension by telomerase, maintenance of telomeric DNA involves additional activities, including C-strand synthesis, which fills in the opposing strand, and nucleolytic processing, which likely contributes to the generation of the 3' overhang.&lt;br&gt;</Comment>
+  <Comment Source="WikiPathways-category">Cellular Process</Comment>
+  <BiopaxRef>lit_171036</BiopaxRef>
+  <BiopaxRef>lit_163093</BiopaxRef>
+  <BiopaxRef>lit_177199</BiopaxRef>
+  <BiopaxRef>lit_171312</BiopaxRef>
+  <BiopaxRef>lit_171313</BiopaxRef>
+  <BiopaxRef>lit_171307</BiopaxRef>
+  <BiopaxRef>lit_177806</BiopaxRef>
+  <BiopaxRef>lit_177805</BiopaxRef>
+  <Graphics BoardWidth="3902.5" BoardHeight="6380.0"/>
+  <DataNode TextLabel="dGTP&#10;" GraphId="n2_REACTOME_29892" Type="Metabolite">
+    <Graphics CenterX="742.0" CenterY="134.0" Width="48.0" Height="30.0" ZOrder="32768" FillColor="ccffcc" FontSize="12" Valign="Middle" ShapeType="Oval"/>
+    <Xref Database="ChEBI" ID="16497"/>
+  </DataNode>
+  <DataNode TextLabel="DKC1&#10;" GraphId="n3_REACTOME_163102" Type="Protein">
+    <Graphics CenterX="103.5" CenterY="268.0" Width="41.0" Height="22.0" ZOrder="32768" FillColor="ccffcc" FontSize="12" Valign="Middle" ShapeType="RoundedRectangle"/>
+    <Xref Database="UniProt" ID="O60832"/>
+  </DataNode>
+  <DataNode TextLabel="TCAB1&#10;" GraphId="n4_REACTOME_418386" Type="Protein">
+    <Graphics CenterX="288.5" CenterY="309.0" Width="47.0" Height="22.0" ZOrder="32768" FillColor="ccffcc" FontSize="12" Valign="Middle" ShapeType="RoundedRectangle"/>
+    <Xref Database="UniProt" ID="Q9BUR4"/>
+  </DataNode>
+  <DataNode TextLabel="G-strand Chromosome &#10;end with two additional &#10;single strand repeats - &#10;Telomeric&#10;" GraphId="n5_REACTOME_163085">
+    <Graphics CenterX="396.0" CenterY="344.0" Width="134.0" Height="78.0" ZOrder="32768" FillColor="ccffcc" FontSize="12" Valign="Middle"/>
+    <Xref Database="Reactome" ID="REACT_8670"/>
+  </DataNode>
+  <DataNode TextLabel="TERT&#10;" GraphId="n6_REACTOME_163076" Type="Protein">
+    <Graphics CenterX="75.5" CenterY="230.0" Width="39.0" Height="22.0" ZOrder="32768" FillColor="ccffcc" FontSize="12" Valign="Middle" ShapeType="RoundedRectangle"/>
+    <Xref Database="UniProt" ID="O14746"/>
+  </DataNode>
+  <DataNode TextLabel="Telomerase RNA &#10;Component (TERC)&#10;" GraphId="n7_REACTOME_163077" Type="Rna">
+    <Graphics CenterX="141.5" CenterY="177.0" Width="149.0" Height="52.0" ZOrder="32768" FillColor="ccffcc" FontSize="12" Valign="Middle"/>
+    <Xref Database="EMBL" ID="U86046"/>
+  </DataNode>
+  <DataNode TextLabel="dTTP&#10;" GraphId="n8_REACTOME_30187" Type="Metabolite">
+    <Graphics CenterX="733.5" CenterY="186.0" Width="47.0" Height="30.0" ZOrder="32768" FillColor="ccffcc" FontSize="12" Valign="Middle" ShapeType="Oval"/>
+    <Xref Database="ChEBI" ID="18077"/>
+  </DataNode>
+  <DataNode TextLabel="Telomerase RNP &#10;Bound to the &#10;Telomeric &#10;Chromosome End&#10;" GraphId="n9_REACTOME_163088" Type="Complex">
+    <Graphics CenterX="449.0" CenterY="127.0" Width="110.0" Height="64.0" ZOrder="32768" FillColor="ccffff" FontSize="12" Valign="Middle" ShapeType="RoundedRectangle" LineThickness="2.0"/>
+    <Xref Database="Reactome" ID="REACT_8788"/>
+  </DataNode>
+  <DataNode TextLabel="dCTP&#10;" GraphId="n10_REACTOME_30185" Type="Metabolite">
+    <Graphics CenterX="709.5" CenterY="223.0" Width="47.0" Height="30.0" ZOrder="32768" FillColor="ccffcc" FontSize="12" Valign="Middle" ShapeType="Oval"/>
+    <Xref Database="ChEBI" ID="16311"/>
+  </DataNode>
+  <DataNode TextLabel="Telomerase &#10;Holoenzyme Base-&#10;paired to the &#10;Telomeric &#10;Chromosome End &#10;with an Additional &#10;single Stranded &#10;Telomere repeat&#10;" GraphId="n11_REACTOME_164684" Type="Complex">
+    <Graphics CenterX="625.5" CenterY="487.5" Width="117.0" Height="121.0" ZOrder="32768" FillColor="ccffff" FontSize="12" Valign="Middle" ShapeType="RoundedRectangle" LineThickness="2.0"/>
+    <Xref Database="Reactome" ID="REACT_8180"/>
+  </DataNode>
+  <DataNode TextLabel="NHP2&#10;" GraphId="n12_REACTOME_418325" Type="Protein">
+    <Graphics CenterX="248.5" CenterY="347.0" Width="41.0" Height="22.0" ZOrder="32768" FillColor="ccffcc" FontSize="12" Valign="Middle" ShapeType="RoundedRectangle"/>
+    <Xref Database="UniProt" ID="Q9NX24"/>
+  </DataNode>
+  <DataNode TextLabel="RUVBL1&#10;" GraphId="n13_REACTOME_418323" Type="Protein">
+    <Graphics CenterX="161.5" CenterY="345.0" Width="53.0" Height="22.0" ZOrder="32768" FillColor="ccffcc" FontSize="12" Valign="Middle" ShapeType="RoundedRectangle"/>
+    <Xref Database="UniProt" ID="Q9Y265"/>
+  </DataNode>
+  <DataNode TextLabel="RUVBL2&#10;" GraphId="n14_REACTOME_418321" Type="Protein">
+    <Graphics CenterX="134.5" CenterY="305.0" Width="53.0" Height="22.0" ZOrder="32768" FillColor="ccffcc" FontSize="12" Valign="Middle" ShapeType="RoundedRectangle"/>
+    <Xref Database="UniProt" ID="Q9Y230"/>
+  </DataNode>
+  <DataNode TextLabel="Telomerase RNP:&#10;Telomeric &#10;Chromosome End &#10;with an Additional &#10;single Stranded &#10;Telomere repeat&#10;" GraphId="n15_REACTOME_163098" Type="Complex">
+    <Graphics CenterX="617.5" CenterY="330.0" Width="115.0" Height="92.0" ZOrder="32768" FillColor="ccffff" FontSize="12" Valign="Middle" ShapeType="RoundedRectangle" LineThickness="2.0"/>
+    <Xref Database="Reactome" ID="REACT_8663"/>
+  </DataNode>
+  <DataNode TextLabel="Telomerase RNP &#10;Bound and base-&#10;paired to the &#10;Telomeric &#10;Chromosome End&#10;" GraphId="n16_REACTOME_164683" Type="Complex">
+    <Graphics CenterX="619.0" CenterY="122.0" Width="110.0" Height="78.0" ZOrder="32768" FillColor="ccffff" FontSize="12" Valign="Middle" ShapeType="RoundedRectangle" LineThickness="2.0"/>
+    <Xref Database="Reactome" ID="REACT_8909"/>
+  </DataNode>
+  <DataNode TextLabel="Telomerase &#10;Holoenzyme:&#10;Telomeric RNP End &#10;with Two Additional &#10;Single Stranded &#10;Telomere Repeats&#10;" GraphId="n17_REACTOME_164619" Type="Complex">
+    <Graphics CenterX="801.5" CenterY="496.0" Width="125.0" Height="92.0" ZOrder="32768" FillColor="ccffff" FontSize="12" Valign="Middle" ShapeType="RoundedRectangle" LineThickness="2.0"/>
+    <Xref Database="Reactome" ID="REACT_8055"/>
+  </DataNode>
+  <DataNode TextLabel="dATP&#10;" GraphId="n18_REACTOME_29604" Type="Metabolite">
+    <Graphics CenterX="679.5" CenterY="258.0" Width="47.0" Height="30.0" ZOrder="32768" FillColor="ccffcc" FontSize="12" Valign="Middle" ShapeType="Oval"/>
+    <Xref Database="ChEBI" ID="16284"/>
+  </DataNode>
+  <DataNode TextLabel="G-strand &#10;chromosome end - &#10;Telomeric&#10;" GraphId="n19_REACTOME_163089">
+    <Graphics CenterX="298.5" CenterY="78.0" Width="123.0" Height="50.0" ZOrder="32768" FillColor="ccffcc" FontSize="12" Valign="Middle"/>
+    <Xref Database="Reactome" ID="REACT_8234"/>
+  </DataNode>
+  <DataNode TextLabel="Telomerase RNP&#10;" GraphId="n20_REACTOME_163101" Type="Complex">
+    <BiopaxRef>lit_417089</BiopaxRef>
+    <Graphics CenterX="295.0" CenterY="163.0" Width="104.0" Height="22.0" ZOrder="32768" FillColor="ccffff" FontSize="12" Valign="Middle" ShapeType="RoundedRectangle" LineThickness="2.0"/>
+    <Xref Database="Reactome" ID="REACT_8548"/>
+  </DataNode>
+  <DataNode TextLabel="DNA Polymerase &#10;delta tetramer&#10;" GraphId="n28_REACTOME_68450" Type="Complex">
+    <Graphics CenterX="1077.0" CenterY="414.0" Width="108.0" Height="36.0" ZOrder="32768" FillColor="ccffff" FontSize="12" Valign="Middle" ShapeType="RoundedRectangle" LineThickness="2.0"/>
+    <Xref Database="Reactome" ID="REACT_5801"/>
+  </DataNode>
+  <DataNode TextLabel="Extended And &#10;Processed Telomere &#10;End&#10;" GraphId="n29_REACTOME_176706" Type="Complex">
+    <Graphics CenterX="1195.0" CenterY="511.0" Width="130.0" Height="50.0" ZOrder="32768" FillColor="ccffff" FontSize="12" Valign="Middle" ShapeType="RoundedRectangle" LineThickness="2.0"/>
+    <Xref Database="Reactome" ID="REACT_8288"/>
+  </DataNode>
+  <DataNode TextLabel="PCNA homotrimer&#10;" GraphId="n30_REACTOME_68440" Type="Complex">
+    <Graphics CenterX="1466.5" CenterY="493.0" Width="111.0" Height="22.0" ZOrder="32768" FillColor="ccffff" FontSize="12" Valign="Middle" ShapeType="RoundedRectangle" LineThickness="2.0"/>
+    <Xref Database="Reactome" ID="REACT_2542"/>
+  </DataNode>
+  <DataNode TextLabel="Processive complex &#10;loaded on telomere:&#10;ligated C-strand &#10;Okazaki fragments&#10;" GraphId="n31_REACTOME_176394" Type="Complex">
+    <Graphics CenterX="1048.5" CenterY="553.0" Width="125.0" Height="64.0" ZOrder="32768" FillColor="ccffff" FontSize="12" Valign="Middle" ShapeType="RoundedRectangle" LineThickness="2.0"/>
+    <Xref Database="Reactome" ID="REACT_8541"/>
+  </DataNode>
+  <DataNode TextLabel="RNA primer-DNA &#10;primer:G-strand &#10;extended telomere&#10;" GraphId="n33_REACTOME_174433" Type="Complex">
+    <Graphics CenterX="920.0" CenterY="308.0" Width="118.0" Height="50.0" ZOrder="32768" FillColor="ccffff" FontSize="12" Valign="Middle" ShapeType="RoundedRectangle" LineThickness="2.0"/>
+    <Xref Database="Reactome" ID="REACT_8560"/>
+  </DataNode>
+  <DataNode TextLabel="DNA polymerase &#10;alpha:primase:DNA &#10;polymerase alpha:G-&#10;strand extended &#10;telomere end&#10;" GraphId="n34_REACTOME_174473" Type="Complex">
+    <Graphics CenterX="1126.5" CenterY="78.0" Width="125.0" Height="78.0" ZOrder="32768" FillColor="ccffff" FontSize="12" Valign="Middle" ShapeType="RoundedRectangle" LineThickness="2.0"/>
+    <Xref Database="Reactome" ID="REACT_8177"/>
+  </DataNode>
+  <DataNode TextLabel="DNA polymerase &#10;epsilon&#10;" GraphId="n35_REACTOME_68483" Type="Complex">
+    <BiopaxRef>lit_68474</BiopaxRef>
+    <Graphics CenterX="997.5" CenterY="186.0" Width="109.0" Height="36.0" ZOrder="32768" FillColor="ccffff" FontSize="12" Valign="Middle" ShapeType="RoundedRectangle" LineThickness="2.0"/>
+    <Xref Database="Reactome" ID="REACT_4621"/>
+  </DataNode>
+  <DataNode TextLabel="NTP&#10;" GraphId="n36_REACTOME_30595" Type="Metabolite">
+    <Graphics CenterX="1175.0" CenterY="250.0" Width="40.0" Height="30.0" ZOrder="32768" FillColor="ccffcc" FontSize="12" Valign="Middle" ShapeType="Oval"/>
+    <Xref Database="Reactome" ID="REACT_4491"/>
+  </DataNode>
+  <DataNode TextLabel="DNA polymerase &#10;alpha:primase&#10;" GraphId="n37_REACTOME_68507" Type="Complex">
+    <BiopaxRef>lit_68488</BiopaxRef>
+    <Graphics CenterX="984.5" CenterY="249.0" Width="109.0" Height="36.0" ZOrder="32768" FillColor="ccffff" FontSize="12" Valign="Middle" ShapeType="RoundedRectangle" LineThickness="2.0"/>
+    <Xref Database="Reactome" ID="REACT_3725"/>
+  </DataNode>
+  <DataNode TextLabel="RNA primer:G-&#10;strand extended &#10;telomere end:DNA &#10;polymerase alpha:&#10;primase complex&#10;" GraphId="n38_REACTOME_174434" Type="Complex">
+    <Graphics CenterX="869.5" CenterY="116.0" Width="119.0" Height="78.0" ZOrder="32768" FillColor="ccffff" FontSize="12" Valign="Middle" ShapeType="RoundedRectangle" LineThickness="2.0"/>
+    <Xref Database="Reactome" ID="REACT_8504"/>
+  </DataNode>
+  <DataNode TextLabel="RFC Heteropentamer&#10;" GraphId="n41_REACTOME_68436" Type="Complex">
+    <Graphics CenterX="1273.5" CenterY="229.0" Width="129.0" Height="22.0" ZOrder="32768" FillColor="ccffff" FontSize="12" Valign="Middle" ShapeType="RoundedRectangle" LineThickness="2.0"/>
+    <Xref Database="Reactome" ID="REACT_4881"/>
+  </DataNode>
+  <DataNode TextLabel="Processive complex &#10;loaded on telomere&#10;" GraphId="n42_REACTOME_174453" Type="Complex">
+    <Graphics CenterX="1316.5" CenterY="451.0" Width="125.0" Height="36.0" ZOrder="32768" FillColor="ccffff" FontSize="12" Valign="Middle" ShapeType="RoundedRectangle" LineThickness="2.0"/>
+    <Xref Database="Reactome" ID="REACT_8041"/>
+  </DataNode>
+  <DataNode TextLabel="RFC &#10;Heteropentamer:&#10;RNA primer-DNA &#10;primer:G-strand &#10;extended telomere &#10;end duplex:PCNA &#10;homotrimer&#10;" GraphId="n43_REACTOME_174449" Type="Complex">
+    <Graphics CenterX="1269.0" CenterY="135.0" Width="122.0" Height="106.0" ZOrder="32768" FillColor="ccffff" FontSize="12" Valign="Middle" ShapeType="RoundedRectangle" LineThickness="2.0"/>
+    <Xref Database="Reactome" ID="REACT_8208"/>
+  </DataNode>
+  <DataNode TextLabel="RNA primer-DNA &#10;primer:G-strand &#10;extended telomere:&#10;PCNA&#10;" GraphId="n44_REACTOME_174450" Type="Complex">
+    <Graphics CenterX="1395.0" CenterY="307.0" Width="122.0" Height="64.0" ZOrder="32768" FillColor="ccffff" FontSize="12" Valign="Middle" ShapeType="RoundedRectangle" LineThickness="2.0"/>
+    <Xref Database="Reactome" ID="REACT_8843"/>
+  </DataNode>
+  <DataNode TextLabel="ADP&#10;" GraphId="n45_REACTOME_113582" Type="Metabolite">
+    <Graphics CenterX="1467.0" CenterY="79.0" Width="40.0" Height="30.0" ZOrder="32768" FillColor="ccffcc" FontSize="12" Valign="Middle" ShapeType="Oval"/>
+    <Xref Database="ChEBI" ID="16761"/>
+  </DataNode>
+  <DataNode TextLabel="RFC &#10;Heteropentamer:&#10;RNA primer-DNA &#10;primer:G-strand &#10;extended telomere &#10;end&#10;" GraphId="n46_REACTOME_174454" Type="Complex">
+    <Graphics CenterX="1242.0" CenterY="362.0" Width="122.0" Height="92.0" ZOrder="32768" FillColor="ccffff" FontSize="12" Valign="Middle" ShapeType="RoundedRectangle" LineThickness="2.0"/>
+    <Xref Database="Reactome" ID="REACT_8972"/>
+  </DataNode>
+  <DataNode TextLabel="ATP&#10;" GraphId="n47_REACTOME_29358" Type="Metabolite">
+    <Graphics CenterX="1504.5" CenterY="411.0" Width="39.0" Height="30.0" ZOrder="32768" FillColor="ccffcc" FontSize="12" Valign="Middle" ShapeType="Oval"/>
+    <Xref Database="ChEBI" ID="15422"/>
+  </DataNode>
+  <DataNode TextLabel="Processive complex &#10;loaded on telomere:&#10;Okazaki fragment:&#10;Flap&#10;" GraphId="n52_REACTOME_174431" Type="Complex">
+    <Graphics CenterX="720.5" CenterY="681.0" Width="125.0" Height="64.0" ZOrder="32768" FillColor="ccffff" FontSize="12" Valign="Middle" ShapeType="RoundedRectangle" LineThickness="2.0"/>
+    <Xref Database="Reactome" ID="REACT_8956"/>
+  </DataNode>
+  <DataNode TextLabel="Processive complex &#10;loaded on telomere:&#10;Okazaki fragment &#10;complex&#10;" GraphId="n53_REACTOME_174435" Type="Complex">
+    <Graphics CenterX="904.5" CenterY="601.0" Width="125.0" Height="64.0" ZOrder="32768" FillColor="ccffff" FontSize="12" Valign="Middle" ShapeType="RoundedRectangle" LineThickness="2.0"/>
+    <Xref Database="Reactome" ID="REACT_8837"/>
+  </DataNode>
+  <DataNode TextLabel="Processive complex &#10;loaded on telomere:&#10;nicked DNA from &#10;adjacent Okazaki &#10;fragments&#10;" GraphId="n54_REACTOME_174432" Type="Complex">
+    <Graphics CenterX="1049.5" CenterY="697.0" Width="125.0" Height="78.0" ZOrder="32768" FillColor="ccffff" FontSize="12" Valign="Middle" ShapeType="RoundedRectangle" LineThickness="2.0"/>
+    <Xref Database="Reactome" ID="REACT_8309"/>
+  </DataNode>
+  <DataNode TextLabel="DNA ligase I&#10;" GraphId="n55_REACTOME_53787" Type="Protein">
+    <Graphics CenterX="1114.0" CenterY="629.0" Width="78.0" Height="22.0" ZOrder="32768" FillColor="ccffcc" FontSize="12" Valign="Middle" ShapeType="RoundedRectangle"/>
+    <Xref Database="UniProt" ID="P18858"/>
+  </DataNode>
+  <DataNode TextLabel="GMP&#10;" GraphId="n59_REACTOME_29626" Type="Metabolite">
+    <Graphics CenterX="1251.0" CenterY="799.0" Width="42.0" Height="30.0" ZOrder="32768" FillColor="ccffcc" FontSize="12" Valign="Middle" ShapeType="Oval"/>
+    <Xref Database="ChEBI" ID="17345"/>
+  </DataNode>
+  <DataNode TextLabel="CMP&#10;" GraphId="n60_REACTOME_418076" Type="Metabolite">
+    <Graphics CenterX="1287.5" CenterY="830.0" Width="41.0" Height="30.0" ZOrder="32768" FillColor="ccffcc" FontSize="12" Valign="Middle" ShapeType="Oval"/>
+    <Xref Database="ChEBI" ID="17361"/>
+  </DataNode>
+  <DataNode TextLabel="Processive complex &#10;loaded on telomere:&#10;Okazaki fragment:&#10;Flap:RPA &#10;heterotrimer:dna2&#10;" GraphId="n61_REACTOME_174442" Type="Complex">
+    <Graphics CenterX="1047.5" CenterY="887.0" Width="125.0" Height="78.0" ZOrder="32768" FillColor="ccffff" FontSize="12" Valign="Middle" ShapeType="RoundedRectangle" LineThickness="2.0"/>
+    <Xref Database="Reactome" ID="REACT_8321"/>
+  </DataNode>
+  <DataNode TextLabel="Processive complex &#10;loaded on telomere:&#10;Okazaki fragment:&#10;Flap:RPA &#10;heterotrimer&#10;" GraphId="n62_REACTOME_174436" Type="Complex">
+    <Graphics CenterX="907.5" CenterY="887.0" Width="125.0" Height="78.0" ZOrder="32768" FillColor="ccffff" FontSize="12" Valign="Middle" ShapeType="RoundedRectangle" LineThickness="2.0"/>
+    <Xref Database="Reactome" ID="REACT_8468"/>
+  </DataNode>
+  <DataNode TextLabel="RPA heterotrimer&#10;" GraphId="n63_REACTOME_68462" Type="Complex">
+    <Graphics CenterX="902.5" CenterY="823.0" Width="107.0" Height="22.0" ZOrder="32768" FillColor="ccffff" FontSize="12" Valign="Middle" ShapeType="RoundedRectangle" LineThickness="2.0"/>
+    <Xref Database="Reactome" ID="REACT_3427"/>
+  </DataNode>
+  <DataNode TextLabel="UMP&#10;" GraphId="n64_REACTOME_418075" Type="Metabolite">
+    <Graphics CenterX="1255.5" CenterY="865.0" Width="41.0" Height="30.0" ZOrder="32768" FillColor="ccffcc" FontSize="12" Valign="Middle" ShapeType="Oval"/>
+    <Xref Database="ChEBI" ID="16695"/>
+  </DataNode>
+  <DataNode TextLabel="Processive complex &#10;loaded on telomere:&#10;Okazaki fragments:&#10;Remaining Flap&#10;" GraphId="n65_REACTOME_174440" Type="Complex">
+    <Graphics CenterX="898.5" CenterY="752.0" Width="125.0" Height="64.0" ZOrder="32768" FillColor="ccffff" FontSize="12" Valign="Middle" ShapeType="RoundedRectangle" LineThickness="2.0"/>
+    <Xref Database="Reactome" ID="REACT_8363"/>
+  </DataNode>
+  <DataNode TextLabel="AMP&#10;" GraphId="n66_REACTOME_164121" Type="Metabolite">
+    <Graphics CenterX="1200.5" CenterY="882.0" Width="41.0" Height="30.0" ZOrder="32768" FillColor="ccffcc" FontSize="12" Valign="Middle" ShapeType="Oval"/>
+    <Xref Database="ChEBI" ID="16027"/>
+  </DataNode>
+  <DataNode TextLabel="dna2 endonuclease&#10;" GraphId="n67_REACTOME_68465" Type="Protein">
+    <Graphics CenterX="912.5" CenterY="966.0" Width="121.0" Height="22.0" ZOrder="32768" FillColor="ccffcc" FontSize="12" Valign="Middle" ShapeType="RoundedRectangle"/>
+    <Xref Database="UniProt" ID="P51530"/>
+  </DataNode>
+  <DataNode TextLabel="Flap endonuclease-1&#10;" GraphId="n68_REACTOME_54745" Type="Protein">
+    <Graphics CenterX="1133.0" CenterY="772.0" Width="130.0" Height="22.0" ZOrder="32768" FillColor="ccffcc" FontSize="12" Valign="Middle" ShapeType="RoundedRectangle"/>
+    <Xref Database="UniProt" ID="P39748"/>
+  </DataNode>
+  <DataNode TextLabel="Nucleosome&#10;" GraphId="n73_REACTOME_181921" Type="Complex">
+    <Comment Source="WikiPathways-description">This is a generic nucleosome created for the telomerase module. It contains Histones H2A, H2B, and H3 as candidate sets where all of the variants of each histone protein are entered as candidates (as opposed to members). The list for each is not exhaustive, but rather is a list of histones known to Reactome at the time of the creation of the nucleosome complex. Histone H4 is only documented once in Uniprot, so for now it is an EWAS.</Comment>
+    <Graphics CenterX="1278.0" CenterY="559.0" Width="78.0" Height="22.0" ZOrder="32768" FillColor="ccffff" FontSize="12" Valign="Middle" ShapeType="RoundedRectangle" LineThickness="2.0"/>
+    <Xref Database="Reactome" ID="REACT_8671"/>
+  </DataNode>
+  <DataNode TextLabel="Extended And &#10;Processed Telomere &#10;End and Associated &#10;DNA Binding and &#10;Packaging Protein &#10;Complex&#10;" GraphId="n74_REACTOME_176703" Type="Complex">
+    <Graphics CenterX="1446.0" CenterY="843.0" Width="130.0" Height="92.0" ZOrder="32768" FillColor="ccffff" FontSize="12" Valign="Middle" ShapeType="RoundedRectangle" LineThickness="2.0"/>
+    <Xref Database="Reactome" ID="REACT_8626"/>
+  </DataNode>
+  <DataNode TextLabel="POT1&#10;" GraphId="n75_REACTOME_174890" Type="Protein">
+    <Graphics CenterX="1164.0" CenterY="582.0" Width="40.0" Height="22.0" ZOrder="32768" FillColor="ccffcc" FontSize="12" Valign="Middle" ShapeType="RoundedRectangle"/>
+    <Xref Database="UniProt" ID="Q9NUX5"/>
+  </DataNode>
+  <DataNode TextLabel="Shelterin complex&#10;" GraphId="n76_REACTOME_174898" Type="Complex">
+    <Graphics CenterX="1350.0" CenterY="595.0" Width="110.0" Height="22.0" ZOrder="32768" FillColor="ccffff" FontSize="12" Valign="Middle" ShapeType="RoundedRectangle" LineThickness="2.0"/>
+    <Xref Database="Reactome" ID="REACT_8593"/>
+  </DataNode>
+  <DataNode TextLabel="Extended And &#10;Processed Telomere &#10;End and Associated &#10;DNA Binding and &#10;Packaging Protein &#10;Complex Folded Into &#10;Higher Order Structure&#10;" GraphId="n77_REACTOME_182751" Type="Complex">
+    <Graphics CenterX="1473.5" CenterY="686.5" Width="131.0" Height="121.0" ZOrder="32768" FillColor="ccffff" FontSize="12" Valign="Middle" ShapeType="RoundedRectangle" LineThickness="2.0"/>
+    <Xref Database="Reactome" ID="REACT_8525"/>
+  </DataNode>
+  <Interaction GraphId="e_21_REACTOME_163090">
+    <Comment Source="WikiPathways-description">The template of hTERC directs the sequential addition of nucleotides to the 3' telomeric DNA end.  Following addition of a nucleotide, the template and catalytic site must move relative to one another within the telomerase RNP to place the appropriate template residue in the active site.  As base-pairing and nucleotide addition occur at one end of the template, base pair melting occurs at the other (Collins and Greider 1993; Wang and Blackburn, 1997; Hammond and Cech 1998; Benjamin et al. 2000; Forstemann and Lingner 2005).  This un-pairing is thought to reduce the energy used for mediating the subsequent translocation step.  Nucleotide addition can occur up until the template boundary which in hTERC is defined by a helix called P1b (Chen and Greider 2003).&lt;br&gt;</Comment>
+    <BiopaxRef>lit_163093</BiopaxRef>
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="614.0" Y="195.0"/>
+      <Point X="617.0" Y="237.0"/>
+      <Point X="617.5" Y="281.0" GraphRef="n15_REACTOME_163098" RelX="0.0" RelY="-1.065217391304348" ArrowHead="Arrow"/>
+      <Anchor Position="0.0" Shape="None" GraphId="e_21_a_i"/>
+      <Anchor Position="0.4890079011386647" Shape="None" GraphId="e_21_a_p"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_21_i0">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="723.0" Y="152.0" GraphRef="n2_REACTOME_29892" RelX="-0.7916666666666666" RelY="1.2"/>
+      <Point X="686.0" Y="180.0"/>
+      <Point X="614.0" Y="195.0" GraphRef="e_21_a_i" RelX="0.0" RelY="0.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_21_i1">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="616.0" Y="164.0" GraphRef="n16_REACTOME_164683" RelX="-0.05454545454545454" RelY="1.0769230769230769"/>
+      <Point X="614.0" Y="195.0" GraphRef="e_21_a_i" RelX="0.0" RelY="0.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_21_i2">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="707.5" Y="187.0" GraphRef="n8_REACTOME_30187" RelX="-1.1063829787234043" RelY="0.06666666666666667"/>
+      <Point X="614.0" Y="195.0" GraphRef="e_21_a_i" RelX="0.0" RelY="0.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_21_i3">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="663.5" Y="240.0" GraphRef="n18_REACTOME_29604" RelX="-0.6808510638297872" RelY="-1.2"/>
+      <Point X="614.0" Y="195.0" GraphRef="e_21_a_i" RelX="0.0" RelY="0.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_21_i4">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="683.5" Y="216.0" GraphRef="n10_REACTOME_30185" RelX="-1.1063829787234043" RelY="-0.4666666666666667"/>
+      <Point X="614.0" Y="195.0" GraphRef="e_21_a_i" RelX="0.0" RelY="0.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_21_c__0">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineStyle="Broken" LineThickness="1.0">
+      <Point X="342.0" Y="177.0" GraphRef="n20_REACTOME_163101" RelX="0.9038461538461539" RelY="1.2727272727272727"/>
+      <Point X="617.0" Y="237.0" GraphRef="e_21_a_p" RelX="-1.5785141613378073E-5" RelY="-0.0013890924608688238"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_22_REACTOME_163120">
+    <Comment Source="WikiPathways-description">In vitro, telomerase can disassociate from the primer following addition of each nucleotide or during the translocation step.  The regulation of telomerase disassociation from the telomere in vivo is not well-characterized.  One factor that may be involved is a helicase termed hPIF1, which can unanneal the telomerase RNA/telomeric DNA hybrid (Boule et al., 2005; Zhang et al., 2006).&lt;br&gt;</Comment>
+    <BiopaxRef>lit_163093</BiopaxRef>
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="798.5" Y="545.0" GraphRef="n17_REACTOME_164619" RelX="-0.048" RelY="1.065217391304348"/>
+      <Point X="797.0" Y="572.0"/>
+      <Point X="487.0" Y="572.0"/>
+      <Point X="486.0" Y="282.0"/>
+      <Anchor Position="0.5374922413321721" Shape="None" GraphId="e_22_a_p"/>
+      <Anchor Position="1.0" Shape="None" GraphId="e_22_a_o"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_22_o0">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="312.0" Y="177.0" GraphRef="n20_REACTOME_163101" RelX="0.3269230769230769" RelY="1.2727272727272727" ArrowHead="Arrow"/>
+      <Point X="486.0" Y="282.0" GraphRef="e_22_a_o" RelX="0.0" RelY="-5.6843418860808015E-14"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_22_o1">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="452.0" Y="302.0" GraphRef="n5_REACTOME_163085" RelX="0.835820895522388" RelY="-1.0769230769230769" ArrowHead="Arrow"/>
+      <Point X="486.0" Y="282.0" GraphRef="e_22_a_o" RelX="0.0" RelY="-5.6843418860808015E-14"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_23_REACTOME_164617">
+    <Comment Source="WikiPathways-description">The elongation reaction proceeds as follows: The template of hTERC directs the sequential addition of nucleotides to the 3' telomeric DNA end.  Following addition of a nucleotide, the template and catalytic site must move relative to one another within the telomerase RNP to place the appropriate template residue in the active site.  As base-pairing and nucleotide addition occur at one end of the template, base pair melting occurs at the other (Collins and Greider 1993; Wang and Blackburn, 1997; Hammond and Cech 1998; Benjamin et al. 2000; Forstemann and Lingner 2005).  This un-pairing is thought to reduce the energy used for mediating the subsequent translocation step.  Nucleotide addition can occur up until the template boundary which in hTERC is defined by a helix called P1b (Chen and Greider 2003).&lt;br&gt;</Comment>
+    <BiopaxRef>lit_163093</BiopaxRef>
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="799.0" Y="282.0"/>
+      <Point X="799.0" Y="394.0"/>
+      <Point X="800.5" Y="447.0" GraphRef="n17_REACTOME_164619" RelX="-0.016" RelY="-1.065217391304348" ArrowHead="Arrow"/>
+      <Anchor Position="0.0" Shape="None" GraphId="e_23_a_i"/>
+      <Anchor Position="0.6787490744038462" Shape="None" GraphId="e_23_a_p"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_23_i0">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="747.0" Y="152.0" GraphRef="n2_REACTOME_29892" RelX="0.20833333333333334" RelY="1.2"/>
+      <Point X="799.0" Y="282.0" GraphRef="e_23_a_i" RelX="0.0" RelY="0.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_23_i1">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="743.5" Y="204.0" GraphRef="n8_REACTOME_30187" RelX="0.425531914893617" RelY="1.2"/>
+      <Point X="799.0" Y="282.0" GraphRef="e_23_a_i" RelX="0.0" RelY="0.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_23_i2">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="706.5" Y="262.0" GraphRef="n18_REACTOME_29604" RelX="1.148936170212766" RelY="0.26666666666666666"/>
+      <Point X="799.0" Y="282.0" GraphRef="e_23_a_i" RelX="0.0" RelY="0.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_23_i3">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="731.5" Y="241.0" GraphRef="n10_REACTOME_30185" RelX="0.9361702127659575" RelY="1.2"/>
+      <Point X="799.0" Y="282.0" GraphRef="e_23_a_i" RelX="0.0" RelY="0.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_23_i4">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="678.5" Y="314.0" GraphRef="n15_REACTOME_163098" RelX="1.0608695652173914" RelY="-0.34782608695652173"/>
+      <Point X="799.0" Y="282.0" GraphRef="e_23_a_i" RelX="0.0" RelY="0.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_23_c__0">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineStyle="Broken" LineThickness="1.0">
+      <Point X="319.0" Y="177.0" GraphRef="n20_REACTOME_163101" RelX="0.46153846153846156" RelY="1.2727272727272727"/>
+      <Point X="525.0" Y="265.0"/>
+      <Point X="527.0" Y="393.0"/>
+      <Point X="799.0" Y="394.0" GraphRef="e_23_a_p" RelX="-2.263754583964328E-4" RelY="-0.007998599530424144"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_24_REACTOME_164620">
+    <Comment Source="WikiPathways-description">The human telomerase RNP can catalyze multiple rounds of repeat addition on the same telomeric substrate in vitro.  Before initiating synthesis of another repeat, telomerase undergoes a translocation step to reposition itself on the telomere.  Base pairs in the DNA/RNA hybrid are unannealed, the RNA template is repositioned relative to the active site, and the template base-pairs at the 3' end of the newly synthesized DNA.  The anchor site interaction with DNA 5' of the RNA-DNA duplex is thought to maintain the interaction of telomerase with DNA during the translocation step.  &lt;br&gt;</Comment>
+    <BiopaxRef>lit_163093</BiopaxRef>
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="620.5" Y="379.0" GraphRef="n15_REACTOME_163098" RelX="0.05217391304347826" RelY="1.065217391304348"/>
+      <Point X="622.0" Y="404.0"/>
+      <Point X="622.5" Y="424.5" GraphRef="n11_REACTOME_164684" RelX="-0.05128205128205128" RelY="-1.0413223140495869" ArrowHead="Arrow"/>
+      <Anchor Position="0.5563430211380869" Shape="None" GraphId="e_24_a_p"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_25_REACTOME_163096">
+    <Comment Source="WikiPathways-description">Studies in yeast and humans indicate that recruitment of telomerase to a telomere may be influenced by multiple variables, including regulatory protein factors, hTERT domains, telomere length, and the cell cycle.  First, in yeast, the telomerase associated factor Est1 and the single-strand DNA binding protein Cdc13 play roles in telomerase recruitment (Pennock et al. 2001; Bianchi et al. 2004).  Analogous proteins exist in human cells (Est1A, Est1B, Est1C, and POT1, respectively); however, how or whether these proteins are directly involved in telomerase recruitment remains to be elucidated.  Second, N-terminal residues of hTERT within the DAT (dissociate the activities of telomerase) domain may have a role in binding single stranded telomeric DNA as the "anchor site" (Lee et al. 1993; Moriarty et al. 2005).  Third, a cis-acting mechanism in yeast and humans that regulates telomere length maintenance may modulate telomerase access to the telomere (reviewed in Blackburn 2001; Smogorzewska and de Lange, 2004).  Long telomeres, which have more associated protein factors, are in a state that is acted on by telomerase less frequently than that of short telomeres, which have fewer associated factors.  Whether short telomeres actively recruit telomerase remains to be determined.  Last, the recruitment of telomerase to telomeres shows cell-cycle regulation (Taggart et al. 2002; Smith et al. 2003; Fisher et al. 2004; Jady et al. 2006; Tomlinson et al. 2006).  Further studies will be needed to determine the details of how human telomerase is recruited to a telomere. &lt;br&gt;</Comment>
+    <BiopaxRef>lit_177183</BiopaxRef>
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="297.0" Y="129.0"/>
+      <Point X="354.0" Y="127.0"/>
+      <Point X="391.0" Y="127.0" GraphRef="n9_REACTOME_163088" RelX="-1.0545454545454545" RelY="0.0" ArrowHead="Arrow"/>
+      <Anchor Position="0.0" Shape="None" GraphId="e_25_a_i"/>
+      <Anchor Position="0.6065298055856256" Shape="None" GraphId="e_25_a_p"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_25_i0">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="297.5" Y="106.0" GraphRef="n19_REACTOME_163089" RelX="-0.016260162601626018" RelY="1.12"/>
+      <Point X="297.0" Y="129.0" GraphRef="e_25_a_i" RelX="0.0" RelY="0.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_25_i1">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="295.0" Y="149.0" GraphRef="n20_REACTOME_163101" RelX="0.0" RelY="-1.2727272727272727"/>
+      <Point X="297.0" Y="129.0" GraphRef="e_25_a_i" RelX="0.0" RelY="0.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_26_REACTOME_164616">
+    <Comment Source="WikiPathways-description">hTERC is transcribed as a precursor and is processed at its 3' end to yield a 451 nucleotide RNA (Zaug et al. 1996).  The accumulation of hTERC that has undergone this processing event requires a conserved region of sequence termed the box H/ACA motif (Mitchell et al. 1999a).  This motif is bound by a complex containing dyskerin, and mutations in dyskerin affect the processing and accumulation of hTERC (Mitchell et al. 1999b; Mitchell and Collins 2000; Fu and Collins 2003). Recent studies of purified, catalytically active telomerase indicate that the minimal structure that has telomerase activity in vitro is a complex of one molecule of hTERC RNA and two each of hTERT and DKC1 (dyskerin) proteins (Cohen et al. 2007). Several additional proteins may associate with this minimal complex and modulate its activity. RUVBL1 (pontin), RUVBL2 (reptin), and TCAB1 (telomere Cajal body protein 1) are found associated with human telomerase RNPs purified from HeLa cells, and activities of these proteins are required for telomerase RNP assembly in vivo (Venteicher et al. 2008, 2009). NHP2 (NOLA2) is likewise associated with telomerase ribonucleoprotein complexes (Pogacic et al. 2000) and homozygosity for NHP2 mutations is associated with telomerase failure (dyskeratosis congenita) in humans (Vuillamy et al. 2008). The exact roles of the additional proteins in the assembly and function of telomerase RNP in vivo remain unclear, however, so they are annotated simply as positively regulating telomerase RNP formation.&lt;br&gt;&lt;br&gt;&lt;br&gt;The core components hTERC and hTERT undergo trafficking in the cell that may be important for telomerase function.  hTERC has been found localized in multiple nuclear structures, including Cajal bodies, nucleoli, and at telomeres (Mitchell et al. 1999a; Jady et al. 2004; Zhu et al. 2004; Jady et al. 2006; Tomlinson et al. 2006).  hTERT is also reported localize in Cajal bodies, nucleoli, and to associate with telomeres (Etheridge et al. 2002; Wong et al. 2002; Yang et al. 2002; Zhu et al. 2004; Tomlinson et al. 2006).  Some of the factors that regulate trafficking of these two core components of telomerase have been identified, such as nucleolin (Khurts et al. 2004), SMN (Bachand et al. 2002), and 14-3-3 (Seimiya et al. 2000).  Cytological studies of HeLa cells suggest that the localization of the telomerase core components can change through the cell-cycle (Jady et al. 2006; Tomlinson et al. 2006).  Despite these studies, it is not clear in which compartment hTERT and hTERC assemble to form functional telomerase RNP.&lt;br&gt;&lt;br&gt;&lt;br&gt;The assembly of telomerase involves the chaperone proteins p23 and Hsp90, which stably associate with telomerase in vitro (Holt et al. 1999; Forsythe et al. 2001; Keppler et al. 2006).  A number of other proteins interact with the telomerase RNP, but it is not clear if they play a role in telomerase assembly.  Interestingly, assembled human telomerase RNP can multimerize, though the function of multimerization remains unclear (Beattie et al. 2001; Wenz et al. 2001; Arai et al. 2002).</Comment>
+    <BiopaxRef>lit_177185</BiopaxRef>
+    <BiopaxRef>lit_163113</BiopaxRef>
+    <BiopaxRef>lit_417089</BiopaxRef>
+    <BiopaxRef>lit_417080</BiopaxRef>
+    <BiopaxRef>lit_418237</BiopaxRef>
+    <BiopaxRef>lit_418255</BiopaxRef>
+    <BiopaxRef>lit_418381</BiopaxRef>
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="179.0" Y="209.0"/>
+      <Point X="217.0" Y="242.0"/>
+      <Point X="284.0" Y="177.0" GraphRef="n20_REACTOME_163101" RelX="-0.21153846153846154" RelY="1.2727272727272727" ArrowHead="Arrow"/>
+      <Anchor Position="0.0" Shape="None" GraphId="e_26_a_i"/>
+      <Anchor Position="0.35029032961720885" Shape="None" GraphId="e_26_a_p"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_26_i0">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="117.5" Y="254.0" GraphRef="n3_REACTOME_163102" RelX="0.6829268292682927" RelY="-1.2727272727272727"/>
+      <Point X="179.0" Y="209.0" GraphRef="e_26_a_i" RelX="0.0" RelY="0.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_26_i1">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="171.5" Y="198.0" GraphRef="n7_REACTOME_163077" RelX="0.40268456375838924" RelY="0.8076923076923077"/>
+      <Point X="179.0" Y="209.0" GraphRef="e_26_a_i" RelX="0.0" RelY="0.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_26_i2">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="98.5" Y="226.0" GraphRef="n6_REACTOME_163076" RelX="1.1794871794871795" RelY="-0.36363636363636365"/>
+      <Point X="179.0" Y="209.0" GraphRef="e_26_a_i" RelX="0.0" RelY="0.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_26_a__0">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="244.5" Y="333.0" GraphRef="n12_REACTOME_418325" RelX="-0.1951219512195122" RelY="-1.2727272727272727"/>
+      <Point X="217.0" Y="242.0" GraphRef="e_26_a_p" RelX="0.0" RelY="0.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_26_a__1">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="276.5" Y="295.0" GraphRef="n4_REACTOME_418386" RelX="-0.5106382978723404" RelY="-1.2727272727272727"/>
+      <Point X="217.0" Y="242.0" GraphRef="e_26_a_p" RelX="0.0" RelY="0.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_26_a__2">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="166.5" Y="331.0" GraphRef="n13_REACTOME_418323" RelX="0.18867924528301888" RelY="-1.2727272727272727"/>
+      <Point X="217.0" Y="242.0" GraphRef="e_26_a_p" RelX="0.0" RelY="0.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_26_a__3">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="148.5" Y="291.0" GraphRef="n14_REACTOME_418321" RelX="0.5283018867924528" RelY="-1.2727272727272727"/>
+      <Point X="217.0" Y="242.0" GraphRef="e_26_a_p" RelX="0.0" RelY="0.0" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_27_REACTOME_163099">
+    <Comment Source="WikiPathways-description">In vitro studies of telomerase complexes derived from multiple organisms indicate that at least two types of interactions are important for telomerase RNP catalytic site alignment at the 3' G-rich single-strand telomere end.  In one interaction, an alignment region in hTERC base-pairs with the 3' G-rich single-strand telomeric DNA end to form an RNA-DNA hybrid, which positions the template adjacent to the 3' end of the telomere.  In a second interaction, a portion of hTERT is proposed to interact with the DNA 5' of the telomerase RNA/DNA primer hybrid (Harrington and Greider 1991; Morin 1991; Moriarty et al. 2005), which is important for the catalytic rate (Lee and Blackburn, 1993) and presumably allows telomerase to maintain contact with the chromosome during the translocation step.  How the anchor site binding and template hybridization are coordinated is not known.&lt;br&gt;</Comment>
+    <BiopaxRef>lit_163093</BiopaxRef>
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="507.0" Y="127.0" GraphRef="n9_REACTOME_163088" RelX="1.0545454545454545" RelY="0.0"/>
+      <Point X="528.0" Y="128.0"/>
+      <Point X="561.0" Y="125.0" GraphRef="n16_REACTOME_164683" RelX="-1.0545454545454545" RelY="0.07692307692307693" ArrowHead="Arrow"/>
+      <Anchor Position="0.3881802617294244" Shape="None" GraphId="e_27_a_p"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_32_REACTOME_176702">
+    <Comment Source="WikiPathways-description">At some point in the extension process a sufficient number of regulatory factors that repress telomere extension become bound to the extending telomere. These factors include the TRF1 complexes, TRF2 complexes, telomerase, other factors, and the telomere itself. As repeats are added to the G-rich strand, and once lagging strand synthesis completes the duplex, new binding sites become available for these repressive factors. Once a balance is reached between telomere extension and the telomere repression factors, extension ceases. In this state extension machinery disassociates, leaving the telomere to be folded into a stable conformation.&lt;P&gt;This module details a single transit through the telomere extension process, detailing the addition of two repeats, and the corresponding synthesis of a section of lagging strand. An actual round of &lt;i&gt;in vivo&lt;/i&gt; telomere extension would require thousands of telomere repeat additions, and it is the repressive effect of the factors bound to these repeats that turns off telomere extension.</Comment>
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="1061.5" Y="518.0" GraphRef="n31_REACTOME_176394" RelX="0.208" RelY="-1.09375"/>
+      <Point X="1076.0" Y="486.0"/>
+      <Point X="1078.0" Y="462.0"/>
+      <Anchor Position="0.5947254672284075" Shape="None" GraphId="e_32_a_p"/>
+      <Anchor Position="1.0" Shape="None" GraphId="e_32_a_o"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_32_o0">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="1077.0" Y="435.0" GraphRef="n28_REACTOME_68450" RelX="0.0" RelY="1.1666666666666667" ArrowHead="Arrow"/>
+      <Point X="1078.0" Y="462.0" GraphRef="e_32_a_o" RelX="2.0" RelY="-24.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_32_o1">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="1135.0" Y="483.0" GraphRef="n29_REACTOME_176706" RelX="-0.9230769230769231" RelY="-1.12" ArrowHead="Arrow"/>
+      <Point X="1078.0" Y="462.0" GraphRef="e_32_a_o" RelX="2.0" RelY="-24.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_32_o2">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="1408.5" Y="492.0" GraphRef="n30_REACTOME_68440" RelX="-1.045045045045045" RelY="-0.09090909090909091" ArrowHead="Arrow"/>
+      <Point X="1261.0" Y="492.0"/>
+      <Point X="1247.0" Y="462.0"/>
+      <Point X="1078.0" Y="462.0" GraphRef="e_32_a_o" RelX="2.0" RelY="-24.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_39_REACTOME_174425">
+    <Comment Source="WikiPathways-description">The complementary strand is synthesized by the polymerase primase complex using conventional RNA priming.</Comment>
+    <BiopaxRef>lit_69330</BiopaxRef>
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="1126.0" Y="249.0"/>
+      <Point X="1091.0" Y="248.0"/>
+      <Point X="1092.0" Y="127.0"/>
+      <Point X="996.0" Y="127.0"/>
+      <Anchor Position="0.0" Shape="None" GraphId="e_39_a_i"/>
+      <Anchor Position="0.13893541392782568" Shape="None" GraphId="e_39_a_p"/>
+      <Anchor Position="1.0" Shape="None" GraphId="e_39_a_o"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_39_i0">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="1126.5" Y="120.0" GraphRef="n34_REACTOME_174473" RelX="0.0" RelY="1.0769230769230769"/>
+      <Point X="1126.0" Y="249.0" GraphRef="e_39_a_i" RelX="0.0" RelY="0.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_39_i1">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="1152.0" Y="249.0" GraphRef="n36_REACTOME_30595" RelX="-1.15" RelY="-0.06666666666666667"/>
+      <Point X="1126.0" Y="249.0" GraphRef="e_39_a_i" RelX="0.0" RelY="0.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_39_o0">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="996.5" Y="165.0" GraphRef="n35_REACTOME_68483" RelX="-0.01834862385321101" RelY="-1.1666666666666667" ArrowHead="Arrow"/>
+      <Point X="996.0" Y="127.0" GraphRef="e_39_a_o" RelX="-96.0" RelY="0.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_39_o1">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="932.5" Y="121.0" GraphRef="n38_REACTOME_174434" RelX="1.0588235294117647" RelY="0.1282051282051282" ArrowHead="Arrow"/>
+      <Point X="996.0" Y="127.0" GraphRef="e_39_a_o" RelX="-96.0" RelY="0.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_39_c__0">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineStyle="Broken" LineThickness="1.0">
+      <Point X="1042.5" Y="248.0" GraphRef="n37_REACTOME_68507" RelX="1.0642201834862386" RelY="-0.05555555555555555"/>
+      <Point X="1091.0" Y="248.0" GraphRef="e_39_a_p" RelX="0.0" RelY="0.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_40_REACTOME_174427">
+    <Comment Source="WikiPathways-description">The complementary strand is synthesized by the polymerase primase complex using conventional RNA priming.</Comment>
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="868.0" Y="199.0"/>
+      <Point X="868.0" Y="238.0"/>
+      <Point X="901.0" Y="280.0" GraphRef="n33_REACTOME_174433" RelX="-0.3220338983050847" RelY="-1.12" ArrowHead="Arrow"/>
+      <Anchor Position="0.0" Shape="None" GraphId="e_40_a_i"/>
+      <Anchor Position="0.4220163485942102" Shape="None" GraphId="e_40_a_p"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_40_i0">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="769.0" Y="146.0" GraphRef="n2_REACTOME_29892" RelX="1.125" RelY="0.8"/>
+      <Point X="868.0" Y="199.0" GraphRef="e_40_a_i" RelX="0.0" RelY="0.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_40_i1">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="760.5" Y="188.0" GraphRef="n8_REACTOME_30187" RelX="1.148936170212766" RelY="0.13333333333333333"/>
+      <Point X="868.0" Y="199.0" GraphRef="e_40_a_i" RelX="0.0" RelY="0.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_40_i2">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="706.5" Y="250.0" GraphRef="n18_REACTOME_29604" RelX="1.148936170212766" RelY="-0.5333333333333333"/>
+      <Point X="868.0" Y="199.0" GraphRef="e_40_a_i" RelX="0.0" RelY="0.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_40_i3">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="736.5" Y="219.0" GraphRef="n10_REACTOME_30185" RelX="1.148936170212766" RelY="-0.26666666666666666"/>
+      <Point X="868.0" Y="199.0" GraphRef="e_40_a_i" RelX="0.0" RelY="0.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_40_i4">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="868.5" Y="158.0" GraphRef="n38_REACTOME_174434" RelX="-0.01680672268907563" RelY="1.0769230769230769"/>
+      <Point X="868.0" Y="199.0" GraphRef="e_40_a_i" RelX="0.0" RelY="0.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_40_c__0">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineStyle="Broken" LineThickness="1.0">
+      <Point X="927.5" Y="243.0" GraphRef="n37_REACTOME_68507" RelX="-1.0458715596330275" RelY="-0.3333333333333333"/>
+      <Point X="868.0" Y="238.0" GraphRef="e_40_a_p" RelX="0.0" RelY="0.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_48_REACTOME_174439">
+    <Comment Source="WikiPathways-description">The binding of the primer recognition complex involves the loading of proliferating cell nuclear antigen (PCNA). Replication Factor C transiently opens the PCNA toroid in an ATP-dependent reaction, and then allows PCNA to re-close around the double helix adjacent to the primer terminus. This leads to the formation of the "sliding clamp".</Comment>
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="1466.0" Y="362.0"/>
+      <Point X="1467.0" Y="290.0"/>
+      <Point X="1467.0" Y="133.0"/>
+      <Anchor Position="0.0" Shape="None" GraphId="e_48_a_i"/>
+      <Anchor Position="0.31443126927681186" Shape="None" GraphId="e_48_a_p"/>
+      <Anchor Position="1.0" Shape="None" GraphId="e_48_a_o"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_48_i0">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="1466.5" Y="479.0" GraphRef="n30_REACTOME_68440" RelX="0.0" RelY="-1.2727272727272727"/>
+      <Point X="1466.0" Y="362.0" GraphRef="e_48_a_i" RelX="0.0" RelY="0.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_48_i1">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="1492.5" Y="393.0" GraphRef="n47_REACTOME_29358" RelX="-0.6153846153846154" RelY="-1.2"/>
+      <Point X="1466.0" Y="362.0" GraphRef="e_48_a_i" RelX="0.0" RelY="0.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_48_i2">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="1306.0" Y="362.0" GraphRef="n46_REACTOME_174454" RelX="1.0491803278688525" RelY="0.0"/>
+      <Point X="1466.0" Y="362.0" GraphRef="e_48_a_i" RelX="0.0" RelY="0.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_48_o0">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="1333.0" Y="134.0" GraphRef="n43_REACTOME_174449" RelX="1.0491803278688525" RelY="-0.018867924528301886" ArrowHead="Arrow"/>
+      <Point X="1467.0" Y="133.0" GraphRef="e_48_a_o" RelX="0.0" RelY="-157.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_48_o1">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="1467.0" Y="97.0" GraphRef="n45_REACTOME_113582" RelX="0.0" RelY="1.2" ArrowHead="Arrow"/>
+      <Point X="1467.0" Y="133.0" GraphRef="e_48_a_o" RelX="0.0" RelY="-157.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_49_REACTOME_174452">
+    <Comment Source="WikiPathways-description">Once the RNA-DNA primer is synthesized, replication factor C (RFC) initiates a reaction called "polymerase switching"; pol delta, the processive enzyme replaces pol alpha, the priming enzyme. RFC binds to the 3'-end of the RNA-DNA primer on the Primosome, to displace the pol alpha primase complex. The binding of RFC triggers the binding of the primer recognition complex.</Comment>
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="1132.0" Y="306.0"/>
+      <Point X="1133.0" Y="340.0"/>
+      <Point X="1134.0" Y="363.0"/>
+      <Anchor Position="0.0" Shape="None" GraphId="e_49_a_i"/>
+      <Anchor Position="0.5963680014193032" Shape="None" GraphId="e_49_a_p"/>
+      <Anchor Position="1.0" Shape="None" GraphId="e_49_a_o"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_49_i0">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="1252.5" Y="243.0" GraphRef="n41_REACTOME_68436" RelX="-0.32558139534883723" RelY="1.2727272727272727"/>
+      <Point X="1132.0" Y="306.0" GraphRef="e_49_a_i" RelX="0.0" RelY="0.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_49_i1">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="982.0" Y="307.0" GraphRef="n33_REACTOME_174433" RelX="1.0508474576271187" RelY="-0.04"/>
+      <Point X="1132.0" Y="306.0" GraphRef="e_49_a_i" RelX="0.0" RelY="0.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_49_o0">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="1178.0" Y="362.0" GraphRef="n46_REACTOME_174454" RelX="-1.0491803278688525" RelY="0.0" ArrowHead="Arrow"/>
+      <Point X="1134.0" Y="363.0" GraphRef="e_49_a_o" RelX="0.0" RelY="0.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_49_o1">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="1042.5" Y="261.0" GraphRef="n37_REACTOME_68507" RelX="1.0642201834862386" RelY="0.6666666666666666" ArrowHead="Arrow"/>
+      <Point X="1059.0" Y="266.0"/>
+      <Point X="1060.0" Y="363.0"/>
+      <Point X="1134.0" Y="363.0" GraphRef="e_49_a_o" RelX="0.0" RelY="0.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_50_REACTOME_174448">
+    <Comment Source="WikiPathways-description">The loading of proliferating cell nuclear antigen (PCNA) leads to recruitment of pol delta. Human PCNA is a homotrimer of 36 kDa subunits that form a toroidal structure. The loading of PCNA by RFC is a key event in the transition from the priming mode to the extension mode of DNA synthesis. The processive complex is composed of the pol delta holoenzyme and PCNA.</Comment>
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="1393.0" Y="416.0"/>
+      <Point X="1395.0" Y="454.0"/>
+      <Point X="1382.5" Y="453.0" GraphRef="n42_REACTOME_174453" RelX="1.056" RelY="0.1111111111111111" ArrowHead="Arrow"/>
+      <Anchor Position="0.0" Shape="None" GraphId="e_50_a_i"/>
+      <Anchor Position="0.7448003598945204" Shape="None" GraphId="e_50_a_p"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_50_i0">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="1134.0" Y="414.0" GraphRef="n28_REACTOME_68450" RelX="1.0555555555555556" RelY="0.0"/>
+      <Point X="1393.0" Y="416.0" GraphRef="e_50_a_i" RelX="0.0" RelY="0.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_50_i1">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="1394.0" Y="342.0" GraphRef="n44_REACTOME_174450" RelX="-0.01639344262295082" RelY="1.09375"/>
+      <Point X="1393.0" Y="416.0" GraphRef="e_50_a_i" RelX="0.0" RelY="0.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_51_REACTOME_174447">
+    <Comment Source="WikiPathways-description">Replication factor C is proposed to dissociate from PCNA following sliding clamp formation, and the DNA toroid alone tethers pol delta to the DNA.</Comment>
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="1333.0" Y="155.0" GraphRef="n43_REACTOME_174449" RelX="1.0491803278688525" RelY="0.37735849056603776"/>
+      <Point X="1394.0" Y="178.0"/>
+      <Point X="1394.0" Y="229.0"/>
+      <Anchor Position="0.5610714210713458" Shape="None" GraphId="e_51_a_p"/>
+      <Anchor Position="1.0" Shape="None" GraphId="e_51_a_o"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_51_o0">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="1341.5" Y="229.0" GraphRef="n41_REACTOME_68436" RelX="1.054263565891473" RelY="0.0" ArrowHead="Arrow"/>
+      <Point X="1394.0" Y="229.0" GraphRef="e_51_a_o" RelX="0.0" RelY="51.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_51_o1">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="1394.0" Y="272.0" GraphRef="n44_REACTOME_174450" RelX="-0.01639344262295082" RelY="-1.09375" ArrowHead="Arrow"/>
+      <Point X="1394.0" Y="229.0" GraphRef="e_51_a_o" RelX="0.0" RelY="51.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_56_REACTOME_174456">
+    <Comment Source="WikiPathways-description">Removal of the flap by FEN-1 leads to the generation of a nick between the 3'-end of the upstream Okazaki fragment and the 5'-end of the downstream Okazaki fragment. DNA ligase I then seals the nicks between adjacent processed Okazaki fragments to generate intact double-stranded DNA at the telomere.</Comment>
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="1044.5" Y="655.0" GraphRef="n54_REACTOME_174432" RelX="-0.08" RelY="-1.0769230769230769"/>
+      <Point X="1042.0" Y="629.0"/>
+      <Point X="1045.5" Y="588.0" GraphRef="n31_REACTOME_176394" RelX="-0.048" RelY="1.09375" ArrowHead="Arrow"/>
+      <Anchor Position="0.38812620065405123" Shape="None" GraphId="e_56_a_p"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_56_c__0">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineStyle="Broken" LineThickness="1.0">
+      <Point X="1072.0" Y="629.0" GraphRef="n55_REACTOME_53787" RelX="-1.0769230769230769" RelY="0.0"/>
+      <Point X="1042.0" Y="629.0" GraphRef="e_56_a_p" RelX="-0.0010567471836111508" RelY="-0.010990170710442726"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_57_REACTOME_174444">
+    <Comment Source="WikiPathways-description">After RFC initiates the assembly of the primer recognition complex, the complex of pol delta and PCNA is responsible for incorporating the additional nucleotides prior to the position of the next downstream initiator RNA primer. On the lagging strand, short discontinuous segments of DNA, called Okazaki fragments, are synthesized on RNA primers. The average length of the Okazaki fragments is 100 nucleotides. Polymerase switching is a key event that allows the processive synthesis of DNA by the pol delta and PCNA complex.</Comment>
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="817.0" Y="250.0"/>
+      <Point X="838.0" Y="249.0"/>
+      <Point X="838.0" Y="415.0"/>
+      <Point X="897.0" Y="415.0"/>
+      <Point X="896.0" Y="556.0"/>
+      <Point X="898.5" Y="566.0" GraphRef="n53_REACTOME_174435" RelX="-0.096" RelY="-1.09375" ArrowHead="Arrow"/>
+      <Anchor Position="0.0" Shape="None" GraphId="e_57_a_i"/>
+      <Anchor Position="0.6193556800065834" Shape="None" GraphId="e_57_a_p"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_57_i0">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="751.0" Y="152.0" GraphRef="n2_REACTOME_29892" RelX="0.375" RelY="1.2"/>
+      <Point X="817.0" Y="250.0" GraphRef="e_57_a_i" RelX="0.0" RelY="0.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_57_i1">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="752.5" Y="204.0" GraphRef="n8_REACTOME_30187" RelX="0.8085106382978723" RelY="1.2"/>
+      <Point X="817.0" Y="250.0" GraphRef="e_57_a_i" RelX="0.0" RelY="0.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_57_i2">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="706.5" Y="256.0" GraphRef="n18_REACTOME_29604" RelX="1.148936170212766" RelY="-0.13333333333333333"/>
+      <Point X="817.0" Y="250.0" GraphRef="e_57_a_i" RelX="0.0" RelY="0.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_57_i3">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="1251.5" Y="451.0" GraphRef="n42_REACTOME_174453" RelX="-1.04" RelY="0.0"/>
+      <Point X="975.0" Y="451.0"/>
+      <Point X="974.0" Y="366.0"/>
+      <Point X="818.0" Y="368.0"/>
+      <Point X="817.0" Y="250.0" GraphRef="e_57_a_i" RelX="0.0" RelY="0.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_57_i4">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="736.5" Y="228.0" GraphRef="n10_REACTOME_30185" RelX="1.148936170212766" RelY="0.3333333333333333"/>
+      <Point X="817.0" Y="250.0" GraphRef="e_57_a_i" RelX="0.0" RelY="0.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_57_c__0">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineStyle="Broken" LineThickness="1.0">
+      <Point X="1020.0" Y="414.0" GraphRef="n28_REACTOME_68450" RelX="-1.0555555555555556" RelY="0.0"/>
+      <Point X="897.0" Y="415.0" GraphRef="e_57_a_p" RelX="4.819653598815421E-4" RelY="-0.06795711574170582"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_58_REACTOME_174438">
+    <Comment Source="WikiPathways-description">When the polymerase delta:PCNA complex reaches a downstream Okazaki fragment, strand displacement synthesis occurs. The primer containing 5'-terminus of the downstream Okazaki fragment is folded into a single-stranded flap.</Comment>
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="903.5" Y="636.0" GraphRef="n53_REACTOME_174435" RelX="-0.016" RelY="1.09375"/>
+      <Point X="903.0" Y="680.0"/>
+      <Point X="786.5" Y="680.0" GraphRef="n52_REACTOME_174431" RelX="1.056" RelY="-0.03125" ArrowHead="Arrow"/>
+      <Anchor Position="0.2732919254658385" Shape="None" GraphId="e_58_a_p"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_69_REACTOME_174441">
+    <Comment Source="WikiPathways-description">The Dna2 endonuclease removes the initiator RNA along with several downstream deoxyribonucleotides. The cleavage of the single-stranded RNA substrate results in the disassembly of RPA and Dna2. The current data for the role of the Dna2 endonuclease has been derived from studies with yeast and Xenopus Dna2.</Comment>
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="1057.5" Y="845.0" GraphRef="n61_REACTOME_174442" RelX="0.16" RelY="-1.0769230769230769"/>
+      <Point X="1063.0" Y="827.0"/>
+      <Point X="1085.0" Y="808.0"/>
+      <Anchor Position="0.39493461716599393" Shape="None" GraphId="e_69_a_p"/>
+      <Anchor Position="1.0" Shape="None" GraphId="e_69_a_o"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_69_o0">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="964.5" Y="770.0" GraphRef="n65_REACTOME_174440" RelX="1.056" RelY="0.5625" ArrowHead="Arrow"/>
+      <Point X="1085.0" Y="808.0" GraphRef="e_69_a_o" RelX="22.0" RelY="-19.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_69_o1">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="1227.0" Y="800.0" GraphRef="n59_REACTOME_29626" RelX="-1.1428571428571428" RelY="0.06666666666666667" ArrowHead="Arrow"/>
+      <Point X="1085.0" Y="808.0" GraphRef="e_69_a_o" RelX="22.0" RelY="-19.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_69_o2">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="1264.5" Y="827.0" GraphRef="n60_REACTOME_418076" RelX="-1.1219512195121952" RelY="-0.2" ArrowHead="Arrow"/>
+      <Point X="1085.0" Y="808.0" GraphRef="e_69_a_o" RelX="22.0" RelY="-19.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_69_o3">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="1177.5" Y="868.0" GraphRef="n66_REACTOME_164121" RelX="-1.1219512195121952" RelY="-0.9333333333333333" ArrowHead="Arrow"/>
+      <Point X="1085.0" Y="808.0" GraphRef="e_69_a_o" RelX="22.0" RelY="-19.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_69_o4">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="976.5" Y="962.0" GraphRef="n67_REACTOME_68465" RelX="1.0578512396694215" RelY="-0.36363636363636365" ArrowHead="Arrow"/>
+      <Point X="1126.0" Y="952.0"/>
+      <Point X="1126.0" Y="861.0"/>
+      <Point X="1085.0" Y="808.0" GraphRef="e_69_a_o" RelX="22.0" RelY="-19.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_69_o5">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="1232.5" Y="858.0" GraphRef="n64_REACTOME_418075" RelX="-1.1219512195121952" RelY="-0.4666666666666667" ArrowHead="Arrow"/>
+      <Point X="1085.0" Y="808.0" GraphRef="e_69_a_o" RelX="22.0" RelY="-19.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_69_o6">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="959.5" Y="818.0" GraphRef="n63_REACTOME_68462" RelX="1.0654205607476634" RelY="-0.45454545454545453" ArrowHead="Arrow"/>
+      <Point X="1085.0" Y="808.0" GraphRef="e_69_a_o" RelX="22.0" RelY="-19.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_70_REACTOME_174446">
+    <Comment Source="WikiPathways-description">The remaining flap, which is too short to support RPA binding, is then processed by FEN-1. There is evidence that binding of RPA to the displaced end of the RNA-containing Okazaki fragment prevents FEN-1 from accessing the substrate.  FEN-1 is a structure-specific endonuclease that cleaves near the base of the flap at a position one nucleotide into the annealed region Biochemical studies have shown that the preferred substrate for FEN-1 consists of a one-nucleotide 3'-tail on the upstream primer in addition to the 5'-flap of the downstream primer.</Comment>
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="964.5" Y="760.0" GraphRef="n65_REACTOME_174440" RelX="1.056" RelY="0.25"/>
+      <Point X="1014.0" Y="768.0"/>
+      <Point X="1029.5" Y="739.0" GraphRef="n54_REACTOME_174432" RelX="-0.32" RelY="1.0769230769230769" ArrowHead="Arrow"/>
+      <Anchor Position="0.6079796374524323" Shape="None" GraphId="e_70_a_p"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_70_c__0">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineStyle="Broken" LineThickness="1.0">
+      <Point X="1065.0" Y="769.0" GraphRef="n68_REACTOME_54745" RelX="-1.0461538461538462" RelY="-0.2727272727272727"/>
+      <Point X="1014.0" Y="768.0" GraphRef="e_70_a_p" RelX="-0.15791485824354368" RelY="0.2954536057459336"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_71_REACTOME_174445">
+    <Comment Source="WikiPathways-description">The first step in the removal of the flap intermediate is the binding of Replication Protein A (RPA) to the long flap structure. RPA is a eukaryotic single-stranded DNA binding protein.</Comment>
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="721.0" Y="822.0"/>
+      <Point X="720.0" Y="888.0"/>
+      <Point X="842.5" Y="887.0" GraphRef="n62_REACTOME_174436" RelX="-1.04" RelY="0.0" ArrowHead="Arrow"/>
+      <Anchor Position="0.0" Shape="None" GraphId="e_71_a_i"/>
+      <Anchor Position="0.35108232405889983" Shape="None" GraphId="e_71_a_p"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_71_i0">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="720.5" Y="716.0" GraphRef="n52_REACTOME_174431" RelX="0.0" RelY="1.09375"/>
+      <Point X="721.0" Y="822.0" GraphRef="e_71_a_i" RelX="0.0" RelY="0.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_71_i1">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="846.5" Y="822.0" GraphRef="n63_REACTOME_68462" RelX="-1.0467289719626167" RelY="-0.09090909090909091"/>
+      <Point X="721.0" Y="822.0" GraphRef="e_71_a_i" RelX="0.0" RelY="0.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_72_REACTOME_174451">
+    <Comment Source="WikiPathways-description">After RPA binds the long flap, it recruits the Dna2 endonuclease. Dna2 endonuclease removes most of the flap, but the job of complete removal of the flap is then completed by FEN-1.</Comment>
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="915.0" Y="942.0"/>
+      <Point X="972.0" Y="942.0"/>
+      <Point X="993.5" Y="929.0" GraphRef="n61_REACTOME_174442" RelX="-0.864" RelY="1.0769230769230769" ArrowHead="Arrow"/>
+      <Anchor Position="0.0" Shape="None" GraphId="e_72_a_i"/>
+      <Anchor Position="0.697689977258035" Shape="None" GraphId="e_72_a_p"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_72_i0">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="913.5" Y="952.0" GraphRef="n67_REACTOME_68465" RelX="0.01652892561983471" RelY="-1.2727272727272727"/>
+      <Point X="915.0" Y="942.0" GraphRef="e_72_a_i" RelX="0.0" RelY="0.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_72_i1">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="912.5" Y="929.0" GraphRef="n62_REACTOME_174436" RelX="0.08" RelY="1.0769230769230769"/>
+      <Point X="915.0" Y="942.0" GraphRef="e_72_a_i" RelX="0.0" RelY="0.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_78_REACTOME_176700">
+    <Comment Source="WikiPathways-description">In addition to telomerase-mediated elongation and C-strand synthesis, other DNA processing steps are likely involved in telomere maintenance.  In humans, nucleolytic activity is proposed to be involved in generating the G-rich 3' single strand overhang.  In addition, differences in the structure of the overhang at telomeres that have undergone leading vs. lagging strand replication suggest that DNA processing may be different at these telomeres (Chai et al. 2006).
+&lt;br&gt;
+Electron microscopy studies of purified human telomeric DNA have provided evidence for telomeric loops, or t-loops (Griffith et al. 1999).  t-loops are proposed to result from invasion of the 3' G-rich single strand overhang into the double stranded portion of the telomeric TTAGGG repeat tract.  The strand displaced by invasion forms a structure called a D loop.  The function of the t-loop is presumed to be the protection of the 3' telomeric end.  In vitro, the double strand telomeric DNA binding protein TRF2 can increase the frequency of t-loop formation.  The prevalence of the t-loops in vivo is not known.
+&lt;br&gt;
+Many proteins associate with telomeric DNA.  One complex that binds telomeres is called shelterin.  Shelterin is a six-protein complex composed of TRF1 and TRF2, which can bind double-stranded telomeric DNA, POT1, which can bind single-stranded telomeric DNA, and three other factors, RAP1, TIN2, and TPP1 (reviewed in de Lange 2006 "Telomeres").  Human telomeric DNA is also bound by nucleosomes (Makarov et al. 1993; Nikitina and Woodcock 2004).  A number of other proteins, including some that play roles in the DNA damage response, can be found at telomeres (Zhu et al. 2000; Verdun et al. 2005).  
+&lt;br&gt;
+Studies in yeast and humans indicate that the association of many proteins with telomeres is regulated through the cell cycle (Smith et al. 1993; Zhu et al. 2000; Taggart et al. 2002; Fisher et al. 2004; Takata et al. 2004; Takata et al. 2005; Verdun et al. 2005).  For instance, TRF1, MRE11, POT1, ATM, and NBS1 display cell cycle regulated chromatin immunoprecipitation of telomeric DNA (Zhu et al. 2000; Verdun et al. 2005), and cytologically observable hTERT and hTERC localize to a subset of telomeres only in S-phase (Jady et al. 2006; Tomlinson et al. 2006).  These data indicate that telomeres are dynamically remodeled through the cell cycle.</Comment>
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="1288.0" Y="667.0"/>
+      <Point X="1290.0" Y="689.0"/>
+      <Point X="1405.5" Y="687.5" GraphRef="n77_REACTOME_182751" RelX="-1.0381679389312977" RelY="0.01652892561983471" ArrowHead="Arrow"/>
+      <Anchor Position="0.0" Shape="None" GraphId="e_78_a_i"/>
+      <Anchor Position="0.16111900097147858" Shape="None" GraphId="e_78_a_p"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_78_i0">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="1279.0" Y="573.0" GraphRef="n73_REACTOME_181921" RelX="0.02564102564102564" RelY="1.2727272727272727"/>
+      <Point X="1288.0" Y="667.0" GraphRef="e_78_a_i" RelX="0.0" RelY="0.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_78_i1">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="1180.0" Y="596.0" GraphRef="n75_REACTOME_174890" RelX="0.8" RelY="1.2727272727272727"/>
+      <Point X="1288.0" Y="667.0" GraphRef="e_78_a_i" RelX="0.0" RelY="0.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_78_i2">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="1209.0" Y="539.0" GraphRef="n29_REACTOME_176706" RelX="0.2153846153846154" RelY="1.12"/>
+      <Point X="1288.0" Y="667.0" GraphRef="e_78_a_i" RelX="0.0" RelY="0.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_78_i3">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="1340.0" Y="609.0" GraphRef="n76_REACTOME_174898" RelX="-0.18181818181818182" RelY="1.2727272727272727"/>
+      <Point X="1288.0" Y="667.0" GraphRef="e_78_a_i" RelX="0.0" RelY="0.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_79_REACTOME_181450">
+    <Comment Source="WikiPathways-description">In addition to telomerase-mediated elongation and C-strand synthesis, other DNA processing steps are likely involved in telomere maintenance.  In humans, nucleolytic activity is proposed to be involved in generating the G-rich 3' single strand overhang.  In addition, differences in the structure of the overhang at telomeres that have undergone leading vs. lagging strand replication suggest that DNA processing may be different at these telomeres (Chai et al. 2006).
+&lt;P&gt;
+Many proteins associate with telomeric DNA.  One complex that binds telomeres is called shelterin.  Shelterin is a six-protein complex composed of TRF1 and TRF2, which can bind double-stranded telomeric DNA, POT1, which can bind single-stranded telomeric DNA, and three other factors, RAP1, TIN2, and TPP1 (reviewed in de Lange 2006 "Telomeres").  Human telomeric DNA is also bound by nucleosomes (Makarov et al. 1993; Nikitina and Woodcock 2004).  A number of other proteins, including some that play roles in the DNA damage response, can be found at telomeres (Zhu et al. 2000; Verdun et al. 2005).  
+&lt;P&gt;
+Studies in yeast and humans indicate that the association of many proteins with telomeres is regulated through the cell cycle (Zhu et al. 2000; Taggart et al. 2002; Fisher et al. 2004; Takata et al. 2004; Takata et al. 2005; Verdun et al. 2005).  For instance, TRF1, MRE11, POT1, ATM, and NBS1 display cell cycle regulated chromatin immunoprecipitation of telomeric DNA (Zhu et al. 2000; Verdun et al. 2005), and cytologically observable hTERT and hTERC localize to a subset of telomeres only in S-phase (Jady et al. 2006; Tomlinson et al. 2006).  These data indicate that telomeres are dynamically remodeled through the cell cycle.</Comment>
+    <BiopaxRef>lit_177805</BiopaxRef>
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="1223.0" Y="662.0"/>
+      <Point X="1224.0" Y="689.0"/>
+      <Point X="1378.0" Y="797.0" GraphRef="n74_REACTOME_176703" RelX="-1.0461538461538462" RelY="-1.0" ArrowHead="Arrow"/>
+      <Anchor Position="0.0" Shape="None" GraphId="e_79_a_i"/>
+      <Anchor Position="0.12560076504511175" Shape="None" GraphId="e_79_a_p"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_79_i0">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="1272.0" Y="573.0" GraphRef="n73_REACTOME_181921" RelX="-0.15384615384615385" RelY="1.2727272727272727"/>
+      <Point X="1223.0" Y="662.0" GraphRef="e_79_a_i" RelX="0.0" RelY="0.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_79_i1">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="1172.0" Y="596.0" GraphRef="n75_REACTOME_174890" RelX="0.4" RelY="1.2727272727272727"/>
+      <Point X="1223.0" Y="662.0" GraphRef="e_79_a_i" RelX="0.0" RelY="0.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_79_i2">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="1199.0" Y="539.0" GraphRef="n29_REACTOME_176706" RelX="0.06153846153846154" RelY="1.12"/>
+      <Point X="1223.0" Y="662.0" GraphRef="e_79_a_i" RelX="0.0" RelY="0.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="e_79_i3">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="1329.0" Y="609.0" GraphRef="n76_REACTOME_174898" RelX="-0.38181818181818183" RelY="1.2727272727272727"/>
+      <Point X="1223.0" Y="662.0" GraphRef="e_79_a_i" RelX="0.0" RelY="0.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Label TextLabel="nucleoplasm" GraphId="comp_text_1" GroupRef="group_comp_1">
+    <Graphics CenterX="1450.0" CenterY="954.5" Width="92.0" Height="33.0" ZOrder="28672" FontSize="12" Valign="Middle"/>
+  </Label>
+  <Shape GraphId="comp_1" GroupRef="group_comp_1">
+    <Graphics CenterX="785.5" CenterY="498.0" Width="1539.0" Height="960.0" ZOrder="16384" FontSize="12" Valign="Middle" ShapeType="Rectangle" LineThickness="2.0" Rotation="0.0"/>
+  </Shape>
+  <InfoBox CenterX="3872.5" CenterY="6350.0"/>
+  <Biopax>
+    <bp:PublicationXref xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" rdf:id="lit_171313">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2463488</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Pubmed</bp:DB>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1989</bp:YEAR>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">A telomeric sequence in the RNA of Tetrahymena telomerase required for telomere repeat synthesis</bp:TITLE>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Greider, CW</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Blackburn, EH</bp:AUTHORS>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Nature 337:331-7</bp:SOURCE>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" rdf:id="lit_418237">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">11074001</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Pubmed</bp:DB>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2000</bp:YEAR>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Human H/ACA small nucleolar RNPs and telomerase share evolutionarily conserved proteins NHP2 and NOP10</bp:TITLE>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Pogacic, V</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Dragon, F</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Filipowicz, W</bp:AUTHORS>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Mol Cell Biol 20:9028-40</bp:SOURCE>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" rdf:id="lit_171307">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">3907856</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Pubmed</bp:DB>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1985</bp:YEAR>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Identification of a specific telomere terminal transferase activity in Tetrahymena extracts</bp:TITLE>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Greider, CW</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Blackburn, EH</bp:AUTHORS>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Cell 43:405-13</bp:SOURCE>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" rdf:id="lit_417089">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">17395830</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Pubmed</bp:DB>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2007</bp:YEAR>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Protein composition of catalytically active human telomerase from immortal cells</bp:TITLE>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Cohen, SB</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Graham, ME</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Lovrecz, GO</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Bache, N</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Robinson, PJ</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Reddel, RR</bp:AUTHORS>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Science 315:1850-3</bp:SOURCE>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" rdf:id="lit_68488">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">12045093</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Pubmed</bp:DB>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2002</bp:YEAR>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Eukaryotic DNA polymerases.</bp:TITLE>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Hubscher, U</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Maga, G</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Spadari, S</bp:AUTHORS>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Annu Rev Biochem 71:133-63</bp:SOURCE>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" rdf:id="lit_417080">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">18358808</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Pubmed</bp:DB>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2008</bp:YEAR>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Identification of ATPases pontin and reptin as telomerase components essential for holoenzyme assembly</bp:TITLE>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Venteicher, AS</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Meng, Z</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Mason, PJ</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Veenstra, TD</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Artandi, SE</bp:AUTHORS>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Cell 132:945-57</bp:SOURCE>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" rdf:id="lit_177199">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">4754905</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Pubmed</bp:DB>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1973</bp:YEAR>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">A theory of marginotomy. The incomplete copying of template margin in enzymic synthesis of polynucleotides and biological significance of the phenomenon.</bp:TITLE>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Olovnikov, AM</bp:AUTHORS>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">J Theor Biol 41:181-90</bp:SOURCE>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" rdf:id="lit_177806">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">4507727</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Pubmed</bp:DB>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1972</bp:YEAR>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Origin of concatemeric T7 DNA</bp:TITLE>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Watson, JD</bp:AUTHORS>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Nat New Biol 239:197-201</bp:SOURCE>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" rdf:id="lit_177805">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">16166375</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Pubmed</bp:DB>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2005</bp:YEAR>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Shelterin: the protein complex that shapes and safeguards human telomeres</bp:TITLE>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">de Lange, T</bp:AUTHORS>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Genes Dev 19:2100-10</bp:SOURCE>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" rdf:id="lit_163113">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">12699629</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Pubmed</bp:DB>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2003</bp:YEAR>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Functional conservation of the telomerase protein Est1p in humans</bp:TITLE>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Snow, BE</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Erdmann, N</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Cruickshank, J</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Goldman, H</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Gill, RM</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Robinson, MO</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Harrington, L</bp:AUTHORS>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Curr Biol 13:698-704</bp:SOURCE>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" rdf:id="lit_171312">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">642006</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Pubmed</bp:DB>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1978</bp:YEAR>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">A tandemly repeated sequence at the termini of the extrachromosomal ribosomal RNA genes in Tetrahymena</bp:TITLE>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Blackburn, EH</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Gall, JG</bp:AUTHORS>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">J Mol Biol 120:33-53</bp:SOURCE>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" rdf:id="lit_68474">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">9405441</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Pubmed</bp:DB>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1998</bp:YEAR>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Purification, cDNA cloning, and gene mapping of the small subunit of human DNA polymerase epsilon.</bp:TITLE>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Li, Y</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Asahara, H</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Patel, VS</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Zhou, S</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Linn, S</bp:AUTHORS>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">J Biol Chem 272:32337-44</bp:SOURCE>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" rdf:id="lit_163093">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">15189140</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Pubmed</bp:DB>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2004</bp:YEAR>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Regulation of telomerase by telomeric proteins</bp:TITLE>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Smogorzewska, A</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">de Lange, T</bp:AUTHORS>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Annu Rev Biochem 73:177-208</bp:SOURCE>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" rdf:id="lit_418381">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">19179534</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Pubmed</bp:DB>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2009</bp:YEAR>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">A human telomerase holoenzyme protein required for Cajal body localization and telomere synthesis</bp:TITLE>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Venteicher, AS</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Abreu, EB</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Meng, Z</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">McCann, KE</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Terns, RM</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Veenstra, TD</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Terns, MP</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Artandi, SE</bp:AUTHORS>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Science 323:644-8</bp:SOURCE>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" rdf:id="lit_171036">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">14685173</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Pubmed</bp:DB>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2003</bp:YEAR>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Getting to the end: telomerase access in yeast and humans</bp:TITLE>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Vega, LR</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Mateyak, MK</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Zakian, VA</bp:AUTHORS>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Nat Rev Mol Cell Biol 4:948-59</bp:SOURCE>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" rdf:id="lit_69330">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">6693436</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Pubmed</bp:DB>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1984</bp:YEAR>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">DNA primase from KB cells. Characterization of a primase activity tightly associated with immunoaffinity-purified DNA polymerase-alpha.</bp:TITLE>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Wang, TS</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Hu, SZ</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Korn, D</bp:AUTHORS>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">J Biol Chem 259:1854-65</bp:SOURCE>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" rdf:id="lit_177185">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">16339074</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Pubmed</bp:DB>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2006</bp:YEAR>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Cell cycle-regulated trafficking of human telomerase to telomeres</bp:TITLE>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Tomlinson, RL</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Ziegler, TD</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Supakorndej, T</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Terns, RM</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Terns, MP</bp:AUTHORS>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Mol Biol Cell 17:955-65</bp:SOURCE>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" rdf:id="lit_418255">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">18523010</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Pubmed</bp:DB>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2008</bp:YEAR>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Mutations in the telomerase component NHP2 cause the premature ageing syndrome dyskeratosis congenita</bp:TITLE>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Vulliamy, T</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Beswick, R</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Kirwan, M</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Marrone, A</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Digweed, M</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Walne, A</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Dokal, I</bp:AUTHORS>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Proc Natl Acad Sci U S A 105:8073-8</bp:SOURCE>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" rdf:id="lit_177183">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">15060173</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Pubmed</bp:DB>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2004</bp:YEAR>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Rescue of an hTERT mutant defective in telomere elongation by fusion with hPot1</bp:TITLE>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Armbruster, BN</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Linardic, CM</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Veldman, T</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Bansal, NP</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Downie, DL</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Counter, CM</bp:AUTHORS>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Mol Cell Biol 24:3552-61</bp:SOURCE>
+    </bp:PublicationXref>
+  </Biopax>
+</Pathway>

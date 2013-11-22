@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Pathway xmlns="http://pathvisiojs.org/GPML/2013a" Name="data-nodes" Version="20130815" Organism="Anopheles gambiae">
+<Pathway xmlns="http://pathvisio.org/GPML/2013a" Name="data-nodes" Version="20130815" Organism="Anopheles gambiae">
   <Graphics BoardWidth="589.4605394605396" BoardHeight="785.4815301392441" />
   <DataNode TextLabel="GeneProduct" GraphId="bbd97" Type="GeneProduct">
     <Graphics CenterX="61.1242201513961" CenterY="71.7948717948718" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />

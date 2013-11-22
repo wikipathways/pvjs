@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Pathway xmlns="http://genmapp.org/GPML/2008a" Name="Fatty Acid Beta Oxidation Meta" Organism="Caenorhabditis elegans" License="CC BY 2.0">
+  <Comment Source="GenMAPP notes">Updated from Charles Redfern and Nathan Salomonisâ original by Magali Jaillard, Marijke Vermeer, Michiel Adrieans, Ron Schormans and Chris Evelo, see website</Comment>
+  <Comment Source="GenMAPP remarks">http://www.bigcat.unimaas.nl/mapps/</Comment>
+  <Comment Source="WikiPathways-category">Metabolic Process</Comment>
+  <Graphics BoardWidth="15457.75" BoardHeight="10725.0" WindowWidth="15540.0" WindowHeight="11700.0"/>
+  <DataNode TextLabel="LPL" Type="GeneProduct" BackpageHead="LPL | lipoprotein lipase" GraphId="d46">
+    <Graphics Color="000000" CenterX="1500.0" CenterY="1800.0" Width="1100.0" Height="300.0" ZOrder="32768"/>
+    <Xref Database="Entrez Gene" ID=" "/>
+  </DataNode>
+  <DataNode TextLabel="R11F4.1" Type="GeneProduct" BackpageHead="R11F4.1 | R11F4.1" GraphId="dd7">
+    <Graphics Color="000000" CenterX="1500.0" CenterY="2100.0" Width="1100.0" Height="300.0" ZOrder="32768"/>
+    <Xref Database="Entrez Gene" ID="173747"/>
+  </DataNode>
+  <DataNode TextLabel="GK2" Type="GeneProduct" BackpageHead="GK2 | glycerol kinase 2" GraphId="c17">
+    <Graphics Color="000000" CenterX="1500.0" CenterY="2400.0" Width="1100.0" Height="300.0" ZOrder="32768"/>
+    <Xref Database="Entrez Gene" ID=" "/>
+  </DataNode>
+  <DataNode TextLabel="T25G3.4" Type="GeneProduct" BackpageHead="T25G3.4 | T25G3.4" GraphId="c54">
+    <Graphics Color="000000" CenterX="1500.0" CenterY="2700.0" Width="1100.0" Height="300.0" ZOrder="32768"/>
+    <Xref Database="Entrez Gene" ID="172509"/>
+  </DataNode>
+  <DataNode TextLabel="tpi-1" Type="GeneProduct" BackpageHead="tpi-1 | Triose Phosphate Isomerase" GraphId="ff5">
+    <Graphics Color="000000" CenterX="1500.0" CenterY="3000.0" Width="1100.0" Height="300.0" ZOrder="32768"/>
+    <Xref Database="Entrez Gene" ID="174844"/>
+  </DataNode>
+  <DataNode TextLabel="Y65B4BL.5" Type="GeneProduct" BackpageHead="Y65B4BL.5 | Y65B4BL.5" GraphId="f65">
+    <Graphics Color="000000" CenterX="1500.0" CenterY="3600.0" Width="1100.0" Height="300.0" ZOrder="32768"/>
+    <Xref Database="Entrez Gene" ID="171643"/>
+  </DataNode>
+  <DataNode TextLabel="F37C12.7" Type="GeneProduct" BackpageHead="F37C12.7 | F37C12.7" GraphId="a7b">
+    <Graphics Color="000000" CenterX="1500.0" CenterY="3900.0" Width="1100.0" Height="300.0" ZOrder="32768"/>
+    <Xref Database="Entrez Gene" ID="176005"/>
+  </DataNode>
+  <DataNode TextLabel="acs-17" Type="GeneProduct" BackpageHead="acs-17 | fatty Acid CoA Synthetase family" GraphId="ddf">
+    <Graphics Color="000000" CenterX="1500.0" CenterY="4200.0" Width="1100.0" Height="300.0" ZOrder="32768"/>
+    <Xref Database="Entrez Gene" ID="180859"/>
+  </DataNode>
+  <DataNode TextLabel="ACSL5" Type="GeneProduct" BackpageHead="ACSL5 | acyl-CoA synthetase long-chain family m..." GraphId="dd6">
+    <Graphics Color="000000" CenterX="1500.0" CenterY="4500.0" Width="1100.0" Height="300.0" ZOrder="32768"/>
+    <Xref Database="Entrez Gene" ID=" "/>
+  </DataNode>
+  <DataNode TextLabel="ACSL6" Type="GeneProduct" BackpageHead="ACSL6 | acyl-CoA synthetase long-chain family m..." GraphId="f9f">
+    <Graphics Color="000000" CenterX="1500.0" CenterY="4800.0" Width="1100.0" Height="300.0" ZOrder="32768"/>
+    <Xref Database="Entrez Gene" ID=" "/>
+  </DataNode>
+  <DataNode TextLabel="B0395.3" Type="GeneProduct" BackpageHead="B0395.3 | B0395.3" GraphId="acb">
+    <Graphics Color="000000" CenterX="1500.0" CenterY="5100.0" Width="1100.0" Height="300.0" ZOrder="32768"/>
+    <Xref Database="Entrez Gene" ID="181682"/>
+  </DataNode>
+  <DataNode TextLabel="cpt-1" Type="GeneProduct" BackpageHead="cpt-1 | Carnitine Palmitoyl Transferase" GraphId="e70">
+    <Graphics Color="000000" CenterX="1500.0" CenterY="5400.0" Width="1100.0" Height="300.0" ZOrder="32768"/>
+    <Xref Database="Entrez Gene" ID="174912"/>
+  </DataNode>
+  <DataNode TextLabel="cka-1" Type="GeneProduct" BackpageHead="cka-1 | Choline Kinase A" GraphId="e94">
+    <Graphics Color="000000" CenterX="1500.0" CenterY="5700.0" Width="1100.0" Height="300.0" ZOrder="32768"/>
+    <Xref Database="Entrez Gene" ID="177807"/>
+  </DataNode>
+  <DataNode TextLabel="cpt-2" Type="GeneProduct" BackpageHead="cpt-2 | Carnitine Palmitoyl Transferase" GraphId="d58">
+    <Graphics Color="000000" CenterX="1500.0" CenterY="6000.0" Width="1100.0" Height="300.0" ZOrder="32768"/>
+    <Xref Database="Entrez Gene" ID="178025"/>
+  </DataNode>
+  <DataNode TextLabel="dif-1" Type="GeneProduct" BackpageHead="dif-1 | DIFferentiation abnormal" GraphId="f7c">
+    <Graphics Color="000000" CenterX="1500.0" CenterY="6300.0" Width="1100.0" Height="300.0" ZOrder="32768"/>
+    <Xref Database="Entrez Gene" ID="177530"/>
+  </DataNode>
+  <DataNode TextLabel="CPT1B" Type="GeneProduct" BackpageHead="CPT1B | carnitine palmitoyltransferase 1B (musc..." GraphId="ca7">
+    <Graphics Color="000000" CenterX="1500.0" CenterY="6600.0" Width="1100.0" Height="300.0" ZOrder="32768"/>
+    <Xref Database="Entrez Gene" ID=" "/>
+  </DataNode>
+  <DataNode TextLabel="E04F6.5" Type="GeneProduct" BackpageHead="E04F6.5 | E04F6.5b" GraphId="a08">
+    <Graphics Color="000000" CenterX="1500.0" CenterY="6900.0" Width="1100.0" Height="300.0" ZOrder="32768"/>
+    <Xref Database="Entrez Gene" ID="174180"/>
+  </DataNode>
+  <DataNode TextLabel="T08B2.7" Type="GeneProduct" BackpageHead="T08B2.7 | T08B2.7c" GraphId="aff">
+    <Graphics Color="000000" CenterX="1500.0" CenterY="7200.0" Width="1100.0" Height="300.0" ZOrder="32768"/>
+    <Xref Database="Entrez Gene" ID="172310"/>
+  </DataNode>
+  <DataNode TextLabel="B0303.3" Type="GeneProduct" BackpageHead="B0303.3 | B0303.3" GraphId="c82">
+    <Graphics Color="000000" CenterX="1500.0" CenterY="7500.0" Width="1100.0" Height="300.0" ZOrder="32768"/>
+    <Xref Database="Entrez Gene" ID="176216"/>
+  </DataNode>
+  <DataNode TextLabel="ACADL" Type="GeneProduct" BackpageHead="ACADL | acyl-Coenzyme A dehydrogenase long cha..." GraphId="df3">
+    <Graphics Color="000000" CenterX="1500.0" CenterY="7800.0" Width="1100.0" Height="300.0" ZOrder="32768"/>
+    <Xref Database="Entrez Gene" ID=" "/>
+  </DataNode>
+  <DataNode TextLabel="ech-6" Type="GeneProduct" BackpageHead="ech-6 | Enoyl-CoA Hydratase" GraphId="c86">
+    <Graphics Color="000000" CenterX="1500.0" CenterY="8100.0" Width="1100.0" Height="300.0" ZOrder="32768"/>
+    <Xref Database="Entrez Gene" ID="176376"/>
+  </DataNode>
+  <DataNode TextLabel="F54C8.1" Type="GeneProduct" BackpageHead="F54C8.1 | F54C8.1" GraphId="bfa">
+    <Graphics Color="000000" CenterX="1500.0" CenterY="8400.0" Width="1100.0" Height="300.0" ZOrder="32768"/>
+    <Xref Database="Entrez Gene" ID="186222"/>
+  </DataNode>
+  <DataNode TextLabel="T08G2.3" Type="GeneProduct" BackpageHead="T08G2.3 | T08G2.3" GraphId="a06">
+    <Graphics Color="000000" CenterX="6550.0" CenterY="1850.0" Width="1000.0" Height="300.0" ZOrder="32768"/>
+    <Xref Database="Entrez Gene" ID="181757"/>
+  </DataNode>
+  <DataNode TextLabel="ech-6" Type="GeneProduct" BackpageHead="ech-6 | Enoyl-CoA Hydratase" GraphId="a8c">
+    <Graphics Color="000000" CenterX="6550.0" CenterY="2150.0" Width="1000.0" Height="300.0" ZOrder="32768"/>
+    <Xref Database="Entrez Gene" ID="176376"/>
+  </DataNode>
+  <DataNode TextLabel="T08B2.7" Type="GeneProduct" BackpageHead="T08B2.7 | T08B2.7c" GraphId="ac7">
+    <Graphics Color="000000" CenterX="6550.0" CenterY="2750.0" Width="1000.0" Height="300.0" ZOrder="32768"/>
+    <Xref Database="Entrez Gene" ID="172310"/>
+  </DataNode>
+  <DataNode TextLabel="F54C8.1" Type="GeneProduct" BackpageHead="F54C8.1 | F54C8.1" GraphId="b54">
+    <Graphics Color="000000" CenterX="6550.0" CenterY="2450.0" Width="1000.0" Height="300.0" ZOrder="32768"/>
+    <Xref Database="Entrez Gene" ID="186222"/>
+  </DataNode>
+  <DataNode TextLabel="B0303.3" Type="GeneProduct" BackpageHead="B0303.3 | B0303.3" GraphId="dae">
+    <Graphics Color="000000" CenterX="6550.0" CenterY="3050.0" Width="1000.0" Height="300.0" ZOrder="32768"/>
+    <Xref Database="Entrez Gene" ID="176216"/>
+  </DataNode>
+  <DataNode TextLabel="ACADS" Type="GeneProduct" BackpageHead="ACADS | acyl-Coenzyme A dehydrogenase C-2 to C..." GraphId="fd6">
+    <Graphics Color="000000" CenterX="6550.0" CenterY="3350.0" Width="1000.0" Height="300.0" ZOrder="32768"/>
+    <Xref Database="Entrez Gene" ID=" "/>
+  </DataNode>
+  <DataNode TextLabel="ech-6" Type="GeneProduct" BackpageHead="ech-6 | Enoyl-CoA Hydratase" GraphId="d8c">
+    <Graphics Color="000000" CenterX="12500.0" CenterY="1800.0" Width="1000.0" Height="300.0" ZOrder="32768"/>
+    <Xref Database="Entrez Gene" ID="176376"/>
+  </DataNode>
+  <DataNode TextLabel="ACADS" Type="GeneProduct" BackpageHead="ACADS | acyl-Coenzyme A dehydrogenase C-2 to C..." GraphId="f06">
+    <Graphics Color="000000" CenterX="12500.0" CenterY="2100.0" Width="1000.0" Height="300.0" ZOrder="32768"/>
+    <Xref Database="Entrez Gene" ID=" "/>
+  </DataNode>
+  <DataNode TextLabel="F54C8.1" Type="GeneProduct" BackpageHead="F54C8.1 | F54C8.1" GraphId="a68">
+    <Graphics Color="000000" CenterX="12500.0" CenterY="2400.0" Width="1000.0" Height="300.0" ZOrder="32768"/>
+    <Xref Database="Entrez Gene" ID="186222"/>
+  </DataNode>
+  <DataNode TextLabel="kat-1" Type="GeneProduct" BackpageHead="kat-1 | 3-Ketoacyl-coA Thiolase" GraphId="db2">
+    <Graphics Color="000000" CenterX="12500.0" CenterY="2700.0" Width="1000.0" Height="300.0" ZOrder="32768"/>
+    <Xref Database="Entrez Gene" ID="174161"/>
+  </DataNode>
+  <DataNode TextLabel="T08B2.7" Type="GeneProduct" BackpageHead="T08B2.7 | T08B2.7c" GraphId="bcb">
+    <Graphics Color="000000" CenterX="12500.0" CenterY="3000.0" Width="1000.0" Height="300.0" ZOrder="32768"/>
+    <Xref Database="Entrez Gene" ID="172310"/>
+  </DataNode>
+  <DataNode TextLabel="B0303.3" Type="GeneProduct" BackpageHead="B0303.3 | B0303.3" GraphId="c91">
+    <Graphics Color="000000" CenterX="12500.0" CenterY="3300.0" Width="1000.0" Height="300.0" ZOrder="32768"/>
+    <Xref Database="Entrez Gene" ID="176216"/>
+  </DataNode>
+  <DataNode TextLabel="LLC1.3" Type="GeneProduct" BackpageHead="LLC1.3 | LLC1.3" GraphId="ab7">
+    <Graphics Color="000000" CenterX="12500.0" CenterY="3600.0" Width="1000.0" Height="300.0" ZOrder="32768"/>
+    <Xref Database="Entrez Gene" ID="178387"/>
+  </DataNode>
+  <DataNode TextLabel="F54D5.7" Type="GeneProduct" BackpageHead="F54D5.7 | F54D5.7" GraphId="ac5">
+    <Graphics Color="000000" CenterX="12500.0" CenterY="3900.0" Width="1000.0" Height="300.0" ZOrder="32768"/>
+    <Xref Database="Entrez Gene" ID="174768"/>
+  </DataNode>
+  <DataNode TextLabel="LIPC" Type="GeneProduct" BackpageHead="LIPC | lipase hepatic" GraphId="f91">
+    <Graphics Color="000000" CenterX="1500.0" CenterY="8700.0" Width="1100.0" Height="300.0" ZOrder="32768"/>
+    <Xref Database="Entrez Gene" ID=" "/>
+  </DataNode>
+  <DataNode TextLabel="C46C11.1" Type="GeneProduct" BackpageHead="C46C11.1 | C46C11.1" GraphId="d78">
+    <Graphics Color="000000" CenterX="1500.0" CenterY="9000.0" Width="1100.0" Height="300.0" ZOrder="32768"/>
+    <Xref Database="Entrez Gene" ID="180737"/>
+  </DataNode>
+  <DataNode TextLabel="lipase" Type="GeneProduct" BackpageHead="lipase | F54F3.3" GraphId="a4c">
+    <Graphics Color="000000" CenterX="1500.0" CenterY="9300.0" Width="1100.0" Height="300.0" ZOrder="32768"/>
+    <Xref Database="Entrez Gene" ID="179771"/>
+  </DataNode>
+  <DataNode TextLabel="C05D11.7" Type="GeneProduct" BackpageHead="C05D11.7 | C05D11.7a" GraphId="a0f">
+    <Graphics Color="000000" CenterX="1500.0" CenterY="9600.0" Width="1100.0" Height="300.0" ZOrder="32768"/>
+    <Xref Database="Entrez Gene" ID="175910"/>
+  </DataNode>
+  <DataNode TextLabel="C36A4.9" Type="GeneProduct" BackpageHead="C36A4.9 | C36A4.9a" GraphId="f47">
+    <Graphics Color="000000" CenterX="1500.0" CenterY="3300.0" Width="1100.0" Height="300.0" ZOrder="32768"/>
+    <Xref Database="Entrez Gene" ID="175500"/>
+  </DataNode>
+  <Label TextLabel="Beta Oxidation 1 MAPP" GraphId="ff7">
+    <Graphics FontWeight="Bold" FontSize="180" Color="0000ff" CenterX="1600.0" CenterY="1250.0" Width="2705.0" Height="285.0" ZOrder="28672"/>
+  </Label>
+  <Label TextLabel="Beta Oxidation 2 MAPP" GraphId="e71">
+    <Graphics FontWeight="Bold" FontSize="180" Color="0000ff" CenterX="6800.0" CenterY="1250.0" Width="2705.0" Height="285.0" ZOrder="28672"/>
+  </Label>
+  <Label TextLabel="Beta Oxidation 3 MAPP" GraphId="b11">
+    <Graphics FontWeight="Bold" FontSize="180" Color="0000ff" CenterX="12700.0" CenterY="1250.0" Width="2705.0" Height="285.0" ZOrder="28672"/>
+  </Label>
+  <Label TextLabel="This MAPP is only present for statistical purpose," GraphId="d0c">
+    <Graphics FontWeight="Bold" FontSize="180" Color="000000" CenterX="10800.0" CenterY="5500.0" Width="6000.0" Height="100.0" ZOrder="28672"/>
+  </Label>
+  <Label TextLabel="to help evaluate all beta-oxidation MAPPS at once." GraphId="df8">
+    <Graphics FontWeight="Bold" FontSize="180" Color="000000" CenterX="10900.0" CenterY="5800.0" Width="6000.0" Height="100.0" ZOrder="28672"/>
+  </Label>
+  <Label TextLabel="Omit the 3 individual sub-mapps from statistical" GraphId="d6b">
+    <Graphics FontWeight="Bold" FontSize="180" Color="000000" CenterX="10750.0" CenterY="6100.0" Width="6000.0" Height="100.0" ZOrder="28672"/>
+  </Label>
+  <Label TextLabel="evaluation to prevent redundancy." GraphId="bc8">
+    <Graphics FontWeight="Bold" FontSize="180" Color="000000" CenterX="10000.0" CenterY="6400.0" Width="6000.0" Height="100.0" ZOrder="28672"/>
+  </Label>
+  <InfoBox CenterX="8075.0" CenterY="8325.0"/>
+  <Legend CenterX="2925.0" CenterY="4325.0"/>
+<Biopax><bp:openControlledVocabulary xmlns:bp="http://www.biopax.org/release/biopax-level2.owl#"><bp:TERM>fatty acid beta degradation pathway</bp:TERM><bp:ID>PW:0000738</bp:ID><bp:Ontology>Pathway Ontology</bp:Ontology></bp:openControlledVocabulary></Biopax></Pathway>
