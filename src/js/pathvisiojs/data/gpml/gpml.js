@@ -44,16 +44,18 @@ pathvisiojs.data.gpml = function(){
 
       jsonPathway = {
         "@id":pathwayIri,
-        "wp:Author":
+        "@type":"wp:Pathway",
+        "schema:image": {
+          "schema:width":parseFloat(gpmlPathway.select('Graphics').attr('BoardWidth')),
+          "schema:height":parseFloat(gpmlPathway.select('Graphics').attr('BoardHeight'))
+        },
+        "schema:author":
         [
           {"@id":"Khanspers"},
           {"@id":"Pjaiswal"},
           {"@id":"Ariutta"}
         ],
-        "media:frameSize":{
-          "media:width":parseFloat(gpmlPathway.select('Graphics').attr('BoardWidth')),
-          "media:height":parseFloat(gpmlPathway.select('Graphics').attr('BoardHeight'))
-        }
+        "wp:organism": gpmlPathway.attr('Organism')
       };
 
       jsonPathway['@context'] = {
@@ -65,6 +67,8 @@ pathvisiojs.data.gpml = function(){
         "gpml":"http://vocabularies.wikipathways.org/gpml#",
         "name":"http://xmlns.com/foaf/0.1/name",
         "dcterms":"http://purl.org/dc/terms/",
+        "schema":"http://schema.org/",
+        "biopax": "http://www.biopax.org/release/biopax-level3.owl#",
         "hMDB":"http://www.hmdb.ca/metabolites/HMDB",
         "entrezGene":"http://www.ncbi.nlm.nih.gov/gene/",
         "ChEBI":"http://www.ebi.ac.uk/chebi/searchId.do?chebiId=",
