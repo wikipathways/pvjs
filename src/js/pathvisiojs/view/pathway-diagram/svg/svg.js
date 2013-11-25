@@ -34,7 +34,7 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
         })
       },
       function(callback) {
-        var svgDimensions = self.svgDimensions = pathvisiojs.view.pathwayDiagram.fitElementWithinContainer(args.target, results.pathway.metadata.boardWidth, results.pathway.metadata.boardHeight, args.preserveAspectRatio);
+        var svgDimensions = self.svgDimensions = pathvisiojs.view.pathwayDiagram.fitElementWithinContainer(args.target, results.pathway["schema:image"]["schema:width"], results.pathway["schema:image"]["schema:height"], args.preserveAspectRatio);
         self.svgDimensions = svgDimensions;
         d3.select('#loading-icon').remove();
 
