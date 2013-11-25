@@ -99,6 +99,17 @@ grunt.initConfig({
       //pathvisioNS: { 'tmp/pathvisio-js.js': ['src/views/pathvisio-js.html', 'src/views/error.html', 'src/views/pathway-template.svg']}
       pathvisioNS: { 'tmp/pathvisio-js.js': ['tmp/pathvisio-js.html']}
     },
+    browserify: {
+      dist: {
+        files: {
+          'node_modules/node-xml2json/index.js': ['client/scripts/**/*.js', 'client/scripts/**/*.coffee'],
+          //'build/module.js': ['client/scripts/**/*.js', 'client/scripts/**/*.coffee'],
+        }/*,
+        options: {
+          transform: ['coffeeify']
+        }//*/
+      }
+    }
     "git-describe": {
         build: {
             options: {
@@ -108,7 +119,7 @@ grunt.initConfig({
     }
   });
 
-  // Load the plugin that provides the "uglify" task.
+  // Load the plugin that provides the tasks.
   grunt.loadNpmTasks("grunt-string-to-js");
   grunt.loadNpmTasks("grunt-contrib-clean");
   grunt.loadNpmTasks('grunt-contrib-uglify');
@@ -116,6 +127,7 @@ grunt.initConfig({
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks("grunt-git-describe");
+  grunt.loadNpmTasks('grunt-browserify');
 
   // build 
   grunt.registerTask('build', ['str2js', 'clean:build', 'git-describe', 'jshint:beforeconcat', 'concat', 'jshint:afterconcat', 'uglify']);
