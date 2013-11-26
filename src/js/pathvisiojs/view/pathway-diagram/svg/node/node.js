@@ -72,7 +72,7 @@ pathvisiojs.view.pathwayDiagram.svg.node = function(){
       if (d.nodeType === 'data-node') {
         console.log(pathway);
         console.log(pathway.metadata.organism);
-        pathvisiojs.view.annotation.xRef.render(pathway.metadata.organism, d);
+        pathvisiojs.view.annotation.xRef.render(pathway.metadata.organism, d.xRef.id, d.xRef.database, d.textLable.text, d.dataNodeType);
       }
     })
     .call(drag)
@@ -93,7 +93,7 @@ pathvisiojs.view.pathwayDiagram.svg.node = function(){
       if (d.nodeType === 'data-node') {
         console.log(pathway);
         console.log(pathway.metadata.organism);
-        pathvisiojs.view.annotation.xRef.render(pathway.metadata.organism, d);
+        pathvisiojs.view.annotation.xRef.render(pathway.metadata.organism, d.xRef.id, d.xRef.database, d.textLable.text, d.dataNodeType);
       }
     })
     .call(drag);
