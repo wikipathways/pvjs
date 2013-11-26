@@ -3,8 +3,6 @@ pathvisiojs.view.annotation = function(){
     self.annotationData = annotationData;
     var annotation = d3.select("#annotation")
     .data([annotationData])
-    
-    annotation[0][0].style.visibility = 'visible';
 
     var annotationHeaderText = annotation.select('#annotation-header-text')
     .text(function(d) { return d.header; });
@@ -102,8 +100,8 @@ pathvisiojs.view.annotation = function(){
 
     // Exit…
     annotationItemLinkedTextElements.exit().remove();
-
-
+    
+    annotation[0][0].style.visibility = 'visible';
   }
       
   return {
