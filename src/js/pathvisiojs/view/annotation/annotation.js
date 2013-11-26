@@ -100,9 +100,8 @@ pathvisiojs.view.annotation = function(){
 
     // Exit…
     annotationItemLinkedTextElements.exit().remove();
-
+    
     annotation[0][0].style.visibility = 'visible';
-
   }
       
   return {

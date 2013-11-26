@@ -1,9 +1,9 @@
 pathvisiojs.data.bridgedb = function(){
-  function getXrefAnnotationDataByDataNode(singleSpecies, node, callback) {
+  function getXrefAnnotationDataByDataNode(singleSpecies, id, datasource, label, desc, callback) {
     getDataSources(function(dataSources) {
-      var dataSourceRowCorrespondingToDataNodeXrefDatabase = getDataSourceRowByName(node.xRef.database, dataSources);
+      var dataSourceRowCorrespondingToDataNodeXrefDatabase = getDataSourceRowByName(datasource, dataSources);
       var systemCode = dataSourceRowCorrespondingToDataNodeXrefDatabase.systemCode;
-      getXrefAliases(singleSpecies, systemCode, node.xRef.id, function(xRefAliases) {
+      getXrefAliases(singleSpecies, systemCode, id, function(xRefAliases) {
         var currentDataSourceRow;
         var listItems = xRefAliases.map(function(xRefAlias) {
           var listItem = {}
@@ -13,7 +13,7 @@ pathvisiojs.data.bridgedb = function(){
           listItem.priority = currentDataSourceRow.priority;
           if (currentDataSourceRow.hasOwnProperty('linkoutPattern')) {
             if (currentDataSourceRow.linkoutPattern !== "" && currentDataSourceRow.linkoutPattern !== null) {
-              listItem.uri = currentDataSourceRow.linkoutPattern.replace('$id', node.xRef.id);
+              listItem.uri = currentDataSourceRow.linkoutPattern.replace('$id', id);
             }
           }
           return listItem;
@@ -35,17 +35,17 @@ pathvisiojs.data.bridgedb = function(){
 
         // We want the identifier that was listed by the pathway creator for this data node to be listed first.
 
-        var specifiedListItem = nestedListItems.filter(function(element) {return (element.key == node.xRef.database);})[0];
+        var specifiedListItem = nestedListItems.filter(function(element) {return (element.key == datasource);})[0];
         var currentListItemIndex = nestedListItems.indexOf(specifiedListItem);
         nestedListItems = pathvisiojs.utilities.moveArrayItem(nestedListItems, currentListItemIndex, 0);
 
-        var specifiedXRefId = specifiedListItem.values.filter(function(element) {return (element.text == node.xRef.id);})[0];
+        var specifiedXRefId = specifiedListItem.values.filter(function(element) {return (element.text == id);})[0];
         var currentXRefIdIndex = specifiedListItem.values.indexOf(specifiedXRefId);
         specifiedListItem.values = pathvisiojs.utilities.moveArrayItem(specifiedListItem.values, currentXRefIdIndex, 0);
 
         var annotationData = {
-          "header": node.textLabel.text,
-          "description": node.dataNodeType,
+          "header": label,
+          "description": desc,
           "listItems": nestedListItems
         };
         callback(annotationData);
