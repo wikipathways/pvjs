@@ -1,6 +1,6 @@
 pathvisiojs.view.annotation.xRef = function(){
-  function render(organism, node) {
-    var xRefData = pathvisiojs.data.bridgedb.getXrefAnnotationDataByDataNode(organism, node, function(annotationData) {
+  function render(organism, id, datasource, label, desc) {
+    var xRefData = pathvisiojs.data.bridgedb.getXrefAnnotationDataByDataNode(organism, id, datasource, label, desc, function(annotationData) {
       pathvisiojs.view.annotation.render(annotationData);
     });
   }
