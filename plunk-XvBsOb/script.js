@@ -10,8 +10,11 @@ function transform(input, callback) {
         },
         "@type": "gpml:Pathway"
       },
-      "$.DataNode[*]": 
-        {"@type": "gpml:DataNode"}
+      "$.DataNode[*]": {"@type": "gpml:DataNode"},
+      "$.Interaction[*]": {"@type": "gpml:Interaction"},
+      "$.Interaction[*]": {"@type": "gpml:Interaction"},
+      "$.Interaction[*]": {"@type": "gpml:Interaction"},
+      "$.Interaction[*]": {"@type": "gpml:Interaction"},
     }
   };
 
@@ -22,37 +25,55 @@ function transform(input, callback) {
   macro.clearAPIs();
   macro.registerAPI(transformationData);
 
-  callback(macro.resolve("http://wikipathways.org/index.php/Pathway:"+"WP100", originalData));
+  callback(macro.resolve("http://wikipathways.org/index.php/Pathway:"+"WP2545", originalData));
 }
 
 var x2js = new X2JS();
-d3.xml('http://pointer.ucsf.edu/d3/r/data-sources/gpml.php?id=WP100', function(xmlDoc) {
+d3.xml('http://pointer.ucsf.edu/d3/r/data-sources/gpml.php?id=WP2545', function(xmlDoc) {
   var xml = xmlDoc.documentElement;
-  var pathway = x2js.xml2json(xml);
+  var pathway = self.pathway = x2js.xml2json(xml);
 
   var json = self.json = {};
-  //json['@context'] = context;
-  //json.Pathway = pathway;
+  json["@graph"] = [];
 
-  transform(pathway, function(transformed) {
+  var pushedObj = {};
+  d3.map(pathway).forEach(function(key, value) {
+    console.log('this');
+    console.log(this);
+    console.log('key');
+    console.log(key);
+    console.log('value');
+    console.log(value);
+    pushedObj = {};
+    pushedObj[key] = value;
+    json["@graph"].push(pushedObj);
+  })
 
+  json['@context'] = context;
+  console.log('json');
+  console.log(json);
 
-
+  /*
+    transform(pathway, function(transformed) {
     console.log('transformed');
     console.log(transformed);
     self.transformed = transformed;
+    //*/
 
 
 
-    //*
-       var textContent = JSON.stringify(transformed, null, 2);
+
+
+    /*
+       var textContent = JSON.stringify(json, null, 2);
        editor.setValue(textContent);
     //*/
 
-    //var result = jsonld.compact(transformed, context, function(err, processedJson) {
-      var result = jsonld.flatten(transformed, function(err, processedJson) {
+    var result = jsonld.compact(json, context, function(err, processedJson) {
+      //var result = jsonld.flatten(json, function(err, processedJson) {
       console.log('processedJson');
       console.log(processedJson);
+      self.processedJson = processedJson;
 
       /*
       var textContent = JSON.stringify(processedJson, null, 2);
@@ -63,7 +84,7 @@ d3.xml('http://pointer.ucsf.edu/d3/r/data-sources/gpml.php?id=WP100', function(x
         console.log('framed');
         console.log(framed);
 
-        /*
+        //*
            var textContent = JSON.stringify(framed, null, 2);
            editor.setValue(textContent);
         //*/
@@ -71,6 +92,6 @@ d3.xml('http://pointer.ucsf.edu/d3/r/data-sources/gpml.php?id=WP100', function(x
       });
     });
 
-  });
+  //});
 });
 
