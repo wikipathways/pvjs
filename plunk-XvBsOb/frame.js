@@ -1,16 +1,5 @@
 var frame = {
-  "@context": {
-    "gpml": "http://vocabularies.wikipathways.org/gpml/",
-    "wp": "http://vocabularies.wikipathways.org/wp/",
-    "dc": "http://purl.org/dc/elements/1.1/",
-    "ex": "http://example.org/vocab#",
-    "xsd": "http://www.w3.org/2001/XMLSchema#",
-    "ex:contains": {
-      "@type": "@id"
-    }
-  },
-  "@embed": false,
-  "gpml:Name": {}
+  "http://vocabularies.wikipathways.org/gpml#DataNode": {}
 };
 
 /*
