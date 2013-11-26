@@ -71,8 +71,13 @@ pathvisiojs.view.pathwayDiagram.svg.node = function(){
       console.log('clicked a data node');
         // only for data nodes
         console.log(pathway);
-        console.log(pathway['wp:organism']);
-        pathvisiojs.view.annotation.xRef.render(['biopax:organism'], d);
+        console.log(pathway['biopax:organism']);
+        pathvisiojs.view.annotation.xRef.render(pathway['biopax:organism'], d.xRef['@id'], d.xRef.database, d.textLabel.text, d.dataNodeType);
+      }
+    })
+    .call(drag)
+
+    // Enter…
     })
     .call(drag)
 
@@ -85,8 +90,9 @@ pathvisiojs.view.pathwayDiagram.svg.node = function(){
       console.log('clicked a data node');
         // only for data nodes
         console.log(pathway);
-        console.log(pathway['wp:organism']);
-        pathvisiojs.view.annotation.xRef.render(['biopax:organism'], d);
+        console.log(pathway['biopax:organism']);
+        pathvisiojs.view.annotation.xRef.render(pathway['biopax:organism'], d.xRef['@id'], d.xRef.database, d.textLabel.text, d.dataNodeType);
+      }
     })
     .call(drag)
 
