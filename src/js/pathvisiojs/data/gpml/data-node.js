@@ -1,6 +1,6 @@
 pathvisiojs.data.gpml.dataNode = function() {
 
-  function toRenderableJson(gpmlDataNode, pathwayIri, callback) {
+  function toRenderableJson(gpmlDataNode, pathwayIri, callbackInside) {
     self.gpmlDataNode = gpmlDataNode;
     var jsonDataNode = {};
 
@@ -10,21 +10,24 @@ pathvisiojs.data.gpml.dataNode = function() {
       jsonDataNode = {};
       jsonDataNode["@id"] = elementIri;
       jsonDataNode["GraphId"] = graphId;
-      jsonDataNode["wp:DatasourceReference"] = {};
-      jsonDataNode["wp:DatasourceReference"]["database"] = gpmlDataNode.select('Xref').attr('Database');
-      jsonDataNode["wp:DatasourceReference"]["ID"] = gpmlDataNode.select('Xref').attr('ID')
+      jsonDataNode["DatasourceReference"] = {};
+      jsonDataNode["DatasourceReference"]["Database"] = gpmlDataNode.select('Xref').attr('Database');
+      jsonDataNode["DatasourceReference"]["ID"] = gpmlDataNode.select('Xref').attr('ID')
       shapeType = gpmlDataNode.select('Graphics').attr('ShapeType') || 'rectangle';
       shapeType = strcase.paramCase(shapeType);
       jsonDataNode["ShapeType"] = shapeType;
       dataNodeType = gpmlDataNode.attr('Type');
-      jsonDataNode["dataNodeType"] = 'wp:' + dataNodeType;
+      jsonDataNode["dataNodeType"] = dataNodeType;
       jsonDataNode["@type"] = [
         "Shape",
         shapeType,
         "DataNode",
-        "wp:" + dataNodeType
+        dataNodeType
       ];
-      jsonDataNode["TextLabel"] = gpmlDataNode.attr('TextLabel');
+      var textLabel = {};
+      textLabel.tspan = gpmlDataNode.attr('TextLabel').split(/\r\n|\r|\n|&#xA;/g);
+      //textLabel.lines = gpmlDataNode.attr('TextLabel').split(/\r\n|\r|\n|&#xA;/g);
+      jsonDataNode["TextLabel"] = textLabel;
       jsonDataNode["CenterX"] = gpmlDataNode.select('Graphics').attr('CenterX');
       jsonDataNode["CenterY"] = gpmlDataNode.select('Graphics').attr('CenterY');
       jsonDataNode["Width"] = gpmlDataNode.select('Graphics').attr('Width');
@@ -35,7 +38,7 @@ pathvisiojs.data.gpml.dataNode = function() {
       };
       jsonDataNode["LineStyle"] = linestyle;
 
-      callback(jsonDataNode);
+      callbackInside(jsonDataNode);
     }
     catch (e) {
       console.log("Error converting data node to renderable json: " + e.message);

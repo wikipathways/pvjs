@@ -9,7 +9,7 @@ pathvisiojs.data.gpml = function(){
     'mim-inhibition':'Inhibition'
   };
 
-  function toRenderableJson(gpml, pathwayIri, callback){
+  function toRenderableJson(gpml, pathwayIri, callbackOutside){
     self.gpml = gpml;
     
     var gpmlPathway = d3.select(gpml).select('Pathway');
@@ -62,6 +62,7 @@ pathvisiojs.data.gpml = function(){
               "gpmlFolder":"file://Users/andersriutta/Sites/pathvisiojs/test/gpml/",
               "name":"http://xmlns.com/foaf/0.1/name",
               "dcterms":"http://purl.org/dc/terms/",
+              "DatasourceReference": "wp:DatasourceReference",
               "Pathway": "biopax:Pathway",
               "shapeLibrary": "http://shapelibrary.example.org/",
               "shapeName": "shapeLibrary:shapeName",
@@ -69,6 +70,10 @@ pathvisiojs.data.gpml = function(){
               "dataNodeType": "gpml:Type",
               "author": "schema:author",
               "organism": "biopax:organism",
+              "tspan": {
+                "@id": "http://www.w3.org/TR/SVG/text.html#TSpanElement",
+                "@container": "@set"
+              },
               "pathwayElements": {
                 "@id": "ex:pathwayElements/",
                 "@container": "@list"
@@ -106,7 +111,7 @@ pathvisiojs.data.gpml = function(){
               'height':parseFloat(gpmlPathway.select('Graphics').attr('BoardHeight'))
             });
           },
-          DataNodes: function(callback){
+          DataNode: function(callback){
             var jsonDataNodes = [];
             gpmlPathway.selectAll('DataNode').each(function() {
               gpmlDataNode = d3.select(this);
@@ -119,10 +124,6 @@ pathvisiojs.data.gpml = function(){
             callback(null, jsonDataNodes);
           },
           Interaction: function(callback){
-
-
-
-
             var interactions, interaction, jsonInteraction, anchor, jsonAnchor, points, jsonPoints, interactionType, target, targetId;
             interactions = [];
             gpmlPathway.selectAll('Interaction').each(function() {
@@ -203,35 +204,15 @@ pathvisiojs.data.gpml = function(){
 
                 interactions.push(jsonInteraction);
               })
-              callback(null, interactions);
-
             })
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+            callback(null, interactions);
           }
       },
       function(err, results) {
         console.log('err');
         console.log(err);
         self.myresults = results;
-        callback(results);
+        callbackOutside(results);
       });
 
 
