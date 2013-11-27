@@ -2,6 +2,53 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
 
   var svg, pathway, shapesAvailable, markersAvailable;
 
+  var context = {
+    "@vocab":"http://vocabularies.wikipathways.org/gpml#",
+    "gpml":"http://vocabularies.wikipathways.org/gpml#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "wp":"http://vocabularies.wikipathways.org/wp#",
+    "biopax": "http://www.biopax.org/release/biopax-level3.owl#",
+    "schema":"http://schema.org/",
+    "hMDB":"http://www.hmdb.ca/metabolites/HMDB",
+    "entrezGene":"http://www.ncbi.nlm.nih.gov/gene/",
+    "ChEBI":"http://www.ebi.ac.uk/chebi/searchId.do?chebiId=",
+    "media":"http://www.w3.org/TR/mediaont-10/",
+    "ex":"http://www.example.com/",
+    "gpmlFolder":"file://Users/andersriutta/Sites/pathvisiojs/test/gpml/",
+    "name":"http://xmlns.com/foaf/0.1/name",
+    "dcterms":"http://purl.org/dc/terms/",
+    "Pathway": "biopax:Pathway",
+    "image": "schema:image",
+    "shapeLibrary": "http://shapelibrary.example.org/",
+    "shapeName": "shapeLibrary:shapeName",
+    "dataNodeType": "gpml:Type",
+    "author": "schema:author",
+    "organism": "biopax:organism",
+    "pathwayElements": {
+      "@id": "ex:pathwayElements/",
+      "@container": "@list"
+    },
+    "hasReference": {
+      "@type": "ex:hasReference",
+      "@type": "@id"
+    },
+    "ex:IsReferencedBy": { "@reverse": "ex:hasReference" },
+    "InteractionGraph": {
+      "@id": "ex:InteractionGraph",
+      "@type": "@id"
+    },
+    "interactsWith": "ex:interactsWith",
+    "Interaction": {
+      "@id": "biopax:Interaction",
+      "@type": "@id",
+      "InteractsWith":"xsd:string"
+    },
+    "Point": {
+      "@id": "gpml:Point",
+      "@container": "@list"
+    }
+  };
+
   function setCTM(element, matrix) {
     var s = "matrix(" + matrix.a + "," + matrix.b + "," + matrix.c + "," + matrix.d + "," + matrix.e + "," + matrix.f + ")";
     element.setAttribute("transform", s);
@@ -21,8 +68,15 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
     async.series([
       function(callback) {
         pathvisioNS.grid = {};
-        pathvisiojs.view.pathwayDiagram.pathFinder.generateGridData(results.pathway, function() {
-          callback(null);
+        var frame = {
+          '@context': context,
+          '@type': 'Shape'
+        };  
+        jsonld.frame(args.pathway, frame, function(err, framedData) {
+          self.framedData = framedData;
+          pathvisiojs.view.pathwayDiagram.pathFinder.generateGridData(framedData['@graph'], args.pathway.image.width, args.pathway.image.height, function() {
+            callback(null);
+          });
         });
       },
       function(callback){
@@ -224,54 +278,6 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
     console.log('args');
     console.log(args);
 
-
-
-    var context = {
-      "@vocab":"http://vocabularies.wikipathways.org/gpml#",
-      "gpml":"http://vocabularies.wikipathways.org/gpml#",
-      "xsd": "http://www.w3.org/2001/XMLSchema#",
-      "wp":"http://vocabularies.wikipathways.org/wp#",
-      "biopax": "http://www.biopax.org/release/biopax-level3.owl#",
-      "schema":"http://schema.org/",
-      "hMDB":"http://www.hmdb.ca/metabolites/HMDB",
-      "entrezGene":"http://www.ncbi.nlm.nih.gov/gene/",
-      "ChEBI":"http://www.ebi.ac.uk/chebi/searchId.do?chebiId=",
-      "media":"http://www.w3.org/TR/mediaont-10/",
-      "ex":"http://www.example.com/",
-      "gpmlFolder":"file://Users/andersriutta/Sites/pathvisiojs/test/gpml/",
-      "name":"http://xmlns.com/foaf/0.1/name",
-      "dcterms":"http://purl.org/dc/terms/",
-      "Pathway": "biopax:Pathway",
-      "image": "schema:image",
-      "shapeLibrary": "http://shapelibrary.example.org/",
-      "shapeName": "shapeLibrary:shapeName",
-      "dataNodeType": "gpml:Type",
-      "author": "schema:author",
-      "organism": "biopax:organism",
-      "pathwayElements": {
-        "@id": "ex:pathwayElements/",
-        "@container": "@list"
-      },
-      "hasReference": {
-        "@type": "ex:hasReference",
-        "@type": "@id"
-      },
-      "ex:IsReferencedBy": { "@reverse": "ex:hasReference" },
-      "InteractionGraph": {
-        "@id": "ex:InteractionGraph",
-        "@type": "@id"
-      },
-      "interactsWith": "ex:interactsWith",
-      "Interaction": {
-        "@id": "biopax:Interaction",
-        "@type": "@id",
-        "InteractsWith":"xsd:string"
-      },
-      "Point": {
-        "@id": "gpml:Point",
-        "@container": "@list"
-      }
-    };
 
           /*
           "@vocab": "http://vocabularies.wikipathways.org/gpml#",

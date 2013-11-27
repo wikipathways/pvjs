@@ -125,8 +125,7 @@ pathvisiojs = function(){
       ///* Node Highlighter
 
       var nodeLabels = [];
-      var dataNodes = results.pathway.elements.filter(function(element) {return element.nodeType === 'data-node';});
-      dataNodes.forEach(function(node) {
+      results.pathway.DataNodes.forEach(function(node) {
         if (!!node.textLabel) {
           nodeLabels.push(node.textLabel.text);
         }
