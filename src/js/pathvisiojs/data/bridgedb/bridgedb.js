@@ -1,4 +1,8 @@
 pathvisiojs.data.bridgedb = function(){
+
+  var bridgedbPhp = '../external-data/bridgedb/';
+  var bridgedbDatasources = '../external-data/bridgedb/';
+
   function getXrefAnnotationDataByDataNode(singleSpecies, id, datasource, label, desc, callback) {
     getDataSources(function(dataSources) {
       var dataSourceRowCorrespondingToDataNodeXrefDatabase = getDataSourceRowByName(datasource, dataSources);
@@ -63,17 +67,26 @@ pathvisiojs.data.bridgedb = function(){
   }
 
   function getDataSources(callback) {
-    d3.tsv("http://pointer.ucsf.edu/d3/r/data-sources/bridgedb.php?target=datasources")
-    .row(function(d) { return {dataSourceName: d.datasource_name, systemCode: d.system_code, websiteUrl: d.website_url, linkoutPattern: d.linkout_pattern, exampleIdentifier: d.example_identifier, entityIdentified: d.entity_identified, singleSpecies: d.single_species, priority: d.identifier_type, uri: d.uri, regex: d.regex, officialName: d.official_name}; })
+    d3.tsv(bridgedbDatasources + 'datasources.txt')
+    .response(function(request) {
+      return d3.tsv.parseRows(request.responseText, function(d) {
+        return {dataSourceName: d[0], systemCode: d[1], websiteUrl: d[2], linkoutPattern: d[3], exampleIdentifier: d[4], entityIdentified: d[5], singleSpecies: d[6], priority: d[7], uri: d[8], regex: d[9], officialName: d[10]};
+      });
+    })
     .get(function(error, rows) {
       callback(rows);
     });
   }
 
   function getXrefAliases(singleSpecies, systemCode, xRefId, callback) {
-    var bridgedbUrl = 'http://pointer.ucsf.edu/d3/r/data-sources/bridgedb.php?single_species=' + encodeURIComponent(singleSpecies) + '&system_code=' + encodeURIComponent(systemCode) + '&id=' + encodeURIComponent(xRefId);
+    var bridgedbUrl = bridgedbPhp + 'bridgedb.php/' + encodeURIComponent(singleSpecies) + '/xrefs/' + encodeURIComponent(systemCode) + '/' + encodeURIComponent(xRefId);
+    console.log(bridgedbUrl);
     d3.tsv(bridgedbUrl)
-    .row(function(d) { return {xRefId: d.id, dataSourceName: d.datasource_name}; })
+    .response(function(request) { 
+      return d3.tsv.parseRows(request.responseText, function(d) {
+        return {xRefId: d[0], dataSourceName: d[1]}; 
+      });
+    })
     .get(function(error, rows) {
       callback(rows);
     });
