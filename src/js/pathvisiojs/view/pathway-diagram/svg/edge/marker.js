@@ -6,15 +6,17 @@ pathvisiojs.view.pathwayDiagram.svg.edge.marker = function(){
   // template svg, whether it is at the start or end of a path and whether
   // a color other than black (the color specified in the template) is desired.
 
+  var svgHere;
+
   function appendCustom(customMarker, callback) {
-    // TODO don't select svg again
-    var svg = d3.select('#pathway-svg');
+    console.log('customMarker');
+    console.log(customMarker);
     if (1===1) {
       d3.xml(customMarker.url, 'image/svg+xml', function(svgXml) {
 
-        def = svg.select('defs').select('#' + customMarker.id);
+        def = svgHere.select('defs').select('#' + customMarker.id);
         if (!def[0][0]) {
-          def = svg.select('defs').append('marker')
+          def = svgHere.select('defs').append('marker')
           .attr('id', customMarker.id)
           .attr('preserveAspectRatio', 'none');
         }
@@ -63,6 +65,7 @@ pathvisiojs.view.pathwayDiagram.svg.edge.marker = function(){
   }
 
   function loadAllCustom(svg, customMarkers, callback) {
+    svgHere = svg;
     var image = null;
     var img = null;
     var def = null;

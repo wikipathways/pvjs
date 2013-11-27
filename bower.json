@@ -18,7 +18,9 @@
     "modernizr": "~2.7.0",
     "PathFinding.js": "*",
     "OpenSeadragon": "~0.9.131",
-    "rgb-color": "*"
+    "rgb-color": "*",
+    "d3-topological": "*",
+    "node-uuid": "~1.4.1"
   },
   "devDependencies": {
     "jquery": "1.10.2"
