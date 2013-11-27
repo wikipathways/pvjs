@@ -32,12 +32,12 @@ var packageJson = grunt.file.readJSON("package.json"),
       'src/js/pathvisiojs/view/pathway-diagram/svg/svg.js',
       'src/js/pathvisiojs/view/pathway-diagram/svg/group.js',
       'src/js/pathvisiojs/view/pathway-diagram/svg/info-box.js',
-      'src/js/pathvisiojs/view/pathway-diagram/svg/node/node.js',
-      'src/js/pathvisiojs/view/pathway-diagram/svg/node/shape/shape.js',
-      'src/js/pathvisiojs/view/pathway-diagram/svg/node/shape/uniformly-scaling-shape.js',
-      'src/js/pathvisiojs/view/pathway-diagram/svg/node/shape/nonuniformly-scaling-shape/nonuniformly-scaling-shape.js',
-      'src/js/pathvisiojs/view/pathway-diagram/svg/node/shape/nonuniformly-scaling-shape/rounded-rectangle.js',
-      'src/js/pathvisiojs/view/pathway-diagram/svg/node/label.js',
+      'src/js/pathvisiojs/view/pathway-diagram/svg/node.js',
+      'src/js/pathvisiojs/view/pathway-diagram/svg/symbol.js',
+      'src/js/pathvisiojs/view/pathway-diagram/svg/use-element.js',
+      'src/js/pathvisiojs/view/pathway-diagram/svg/path-shape/path-shape.js',
+      'src/js/pathvisiojs/view/pathway-diagram/svg/path-shape/rounded-rectangle.js',
+      'src/js/pathvisiojs/view/pathway-diagram/svg/label.js',
       'src/js/pathvisiojs/view/pathway-diagram/svg/edge/edge.js',
       'src/js/pathvisiojs/view/pathway-diagram/svg/edge/marker.js',
       'src/js/pathvisiojs/view/pathway-diagram/svg/edge/point.js',
@@ -109,7 +109,7 @@ grunt.initConfig({
           transform: ['coffeeify']
         }//*/
       }
-    }
+    },
     "git-describe": {
         build: {
             options: {
