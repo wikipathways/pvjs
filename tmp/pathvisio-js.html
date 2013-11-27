@@ -1,10 +1,10 @@
-<div id="pathvisio-js-container" style="width: inherit; height: inherit; position: absolute; ">
+<div id="pathvisio-js-container" style="width: inherit; min-width: inherit; max-width: inherit; height: inherit; min-height: inherit; max-height: inherit; position: absolute; ">
 
     <!-- **********************************************************************
     Pathway Container (JavaScript inserts pathway image inside this div)
     *********************************************************************** -->
 
-    <div id="pathway-container" style="width:inherit; height: inherit; " class="y-mid">
+    <div id="pathway-container" style="width: inherit; min-width: inherit; max-width: inherit; height: inherit; min-height: inherit; max-height: inherit; " class="y-mid">
       
     <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ev="http://www.w3.org/2001/xml-events" id="pathway-svg" version="1.1" baseProfile="full" width="500px" height="500px" style="display: inline; width: 502px; height: 502px; " class="x-mid" onmouseup="svgPanZoom.handleMouseUp(evt)" onmousedown="svgPanZoom.handleMouseDown(evt)" onmousemove="svgPanZoom.handleMouseMove(evt)">
 	<g>
@@ -32,554 +32,109 @@
 	we need to clone the black marker and set the color for the clone to the desired color using d3.js.
 	I wish fill="currentColor" worked for markers, but that does not appear to be the case. -->
 
-	<!-- Each marker includes a small rectangle with a default-fill color to obscure the
-	ends of lines that might otherwise show up beneath the marker. Double lines require their own special
-	obscuring rects and are included as a double-line-hack-start/end marker, defined here and added in
-	gpml2json.js -->
-
-	<!-- arrow markers: triangular polygons, no stroke -->
-
-<!--
-	<marker id="arrow-start-black" 
-	fill="black"
-	markerUnits="strokeWidth"
-	markerWidth="12" markerHeight="12"
-	orient="auto"
-	refX="0" refY="0"
-	viewBox="0 -6 12 12">
-	<rect class="default-fill" stroke="none" x="0" y="-0.6" width="2" height="1.2" />
-	<polygon stroke-width="0" points="12,5 0,0 12,-5"/>
-	</marker>
-
-	<marker id="arrow-end-black"
-	fill="black"
-	markerUnits="strokeWidth"
-	markerWidth="12" markerHeight="12"
-	orient="auto"
-	refX="0" refY="0"
-	viewBox="-12 -6 12 12">
-	<rect class="default-fill" stroke="none" x="-2" y="-0.6" width="2" height="1.2" />
-	<polygon stroke-width="0" points="-12,5 0,0 -12,-5"/>
-	</marker>
-  -->
-	<marker id="arrow-start-black" class="default-fill" stroke="black" markerHeight="12" markerWidth="12" markerUnits="strokeWidth" orient="auto" refX="0" refY="6" viewBox="0 0 12 12">
-  <image xlink:href="http://wikipathways.github.io/pathvisiojs/src/views/markers/arrow.svg" x="0" y="0" width="12" height="12"></image>
-	</marker>
-
-	<marker id="arrow-end-black" class="default-fill" stroke="black" markerHeight="12" markerWidth="12" markerUnits="strokeWidth" orient="auto" refX="12" refY="6" viewBox="0 0 12 12">
-  <image xlink:href="http://wikipathways.github.io/pathvisiojs/src/views/markers/arrow.svg" x="0" y="0" width="12" height="12" class="marker-end"></image>
-	</marker>
-
-
-	<!-- mim-binding markers: four-point polygon, no stroke -->
-<!--
-	<marker id="mim-binding-start-black" 
-	fill="black"
-	markerUnits="strokeWidth"
-	markerWidth="12" markerHeight="12"
-	orient="auto"
-	refX="0" refY="0"
-	viewBox="0 -6 12 12">
-	<rect class="default-fill" stroke="none" x="0" y="-0.6" width="2" height="1.2" />
-	<polygon stroke-width="0" points="12,6 0,0 12,-6 5,0 "/>
-	</marker>
-
-	<marker id="mim-binding-end-black"
-	fill="black"
-	markerUnits="strokeWidth"
-	markerWidth="12" markerHeight="12"
-	orient="auto"
-	refX="0" refY="0"
-	viewBox="-12 -6 12 12">
-	<rect class="default-fill" stroke="none" x="-2" y="-0.6" width="2" height="1.2" />
-	<polygon stroke-width="0" points="-12,6 0,0 -12,-6 -5,0 "/>
-	</marker>
--->
-	<marker id="mim-binding-start-black" class="default-fill" stroke="black" markerHeight="12" markerWidth="12" markerUnits="strokeWidth" orient="auto" refX="0" refY="6" viewBox="0 0 12 12">
-  <image xlink:href="http://wikipathways.github.io/pathvisiojs/src/views/markers/mim-binding.svg" x="0" y="0" width="12" height="12"></image>
-	</marker>
-
-	<marker id="mim-binding-end-black" class="default-fill" stroke="black" markerHeight="12" markerWidth="12" markerUnits="strokeWidth" orient="auto" refX="12" refY="6" viewBox="0 0 12 12">
-  <image xlink:href="http://wikipathways.github.io/pathvisiojs/src/views/markers/mim-binding.svg" x="0" y="0" width="12" height="12" class="marker-end"></image>
-	</marker>
-
-	<!-- mim-branching-left markers: line and extended drawing-board rect -->
-
-<!--
-	<marker id="mim-branching-left-start-black" 
-	class="default-fill" 
-	stroke="black"
-	markerHeight="24"
-	markerWidth="24"
-	markerUnits="strokeWidth"
-	orient="auto"
-	refX="0" refY="0"
-	viewBox="0 -6 12 12">
-	<rect stroke="none" x="0" y="-0.6" width="3.5" height="1.2" />
-	<line fill="none" stroke-width=".4" x1="3.7" y1="0" x2="0" y2="-6"/>	
-	</marker>
-
-	<marker id="mim-branching-left-end-black"
-	class="default-fill" 
-	stroke="black"
-	markerHeight="24"
-	markerWidth="24"
-	markerUnits="strokeWidth"
-	orient="auto"
-	refX="0" refY="0"
-	viewBox="-12 -6 12 12">
-	<rect stroke="none" x="-3.5" y="-0.6" width="3.5" height="1.2" />
-	<line fill="none" stroke-width=".4" x1="-3.7" y1="0" x2="0" y2="6"/>	
-	</marker>
--->
-	<marker id="mim-branching-left-start-black" class="default-fill" stroke="black" markerHeight="24" markerWidth="24" markerUnits="strokeWidth" orient="auto" refX="0" refY="6" viewBox="0 0 12 12">
-  <image xlink:href="http://wikipathways.github.io/pathvisiojs/src/views/markers/mim-branching-left.svg" x="0" y="0" width="12" height="12"></image>
-	</marker>
-
-	<marker id="mim-branching-left-end-black" class="default-fill" stroke="black" markerHeight="24" markerWidth="24" markerUnits="strokeWidth" orient="auto" refX="12" refY="6" viewBox="0 0 12 12">
-  <image xlink:href="http://wikipathways.github.io/pathvisiojs/src/views/markers/mim-branching-left.svg" x="0" y="0" width="12" height="12" class="marker-end"></image>
-	</marker>
-
-
-	<!-- mim-branching-right markers: line and extended drawing-board rect -->
-
-  <!--
-	<marker id="mim-branching-right-start-black" 
-	class="default-fill" 
-	stroke="black"
-	markerHeight="24"
-	markerWidth="24"
-	markerUnits="strokeWidth"
-	orient="auto"
-	refX="0" refY="0"
-	viewBox="0 -6 12 12">
-	<rect stroke="none" x="0" y="-0.6" width="3.5" height="1.2" />
-	<line fill="none" stroke-width=".4" x1="3.7" y1="0" x2="0" y2="6"/>
-	</marker>
-
-	<marker id="mim-branching-right-end-black"
-	class="default-fill" 
-	stroke="black"
-	markerHeight="24"
-	markerWidth="24"
-	markerUnits="strokeWidth"
-	orient="auto"
-	refX="0" refY="0"
-	viewBox="-12 -6 12 12">
-	<rect stroke="none" x="-3.5" y="-0.6" width="3.5" height="1.2" />
-	<line fill="none" stroke-width=".4" x1="-3.7" y1="0" x2="0" y2="-6"/>	
-	</marker>
--->
-	<marker id="mim-branching-right-start-black" class="default-fill" stroke="black" markerHeight="24" markerWidth="24" markerUnits="strokeWidth" orient="auto" refX="0" refY="6" viewBox="0 0 12 12">
-  <image xlink:href="http://wikipathways.github.io/pathvisiojs/src/views/markers/mim-branching-right.svg" x="0" y="0" width="12" height="12"></image>
-	</marker>
-
-	<marker id="mim-branching-right-end-black" class="default-fill" stroke="black" markerHeight="24" markerWidth="24" markerUnits="strokeWidth" orient="auto" refX="12" refY="6" viewBox="0 0 12 12">
-  <image xlink:href="http://wikipathways.github.io/pathvisiojs/src/views/markers/mim-branching-right.svg" x="0" y="0" width="12" height="12" class="marker-end"></image>
-	</marker>
-
-	<!-- mim-catalysis markers: circle, drawing-board fill and black stroke -->
-<!--
-	<marker id="mim-catalysis-start-black"
-	class="default-fill"
-	stroke="black"
-	markerHeight="12"
-	markerWidth="12"
-	markerUnits="strokeWidth"
-	orient="auto"
-	refX="0" refY="0"
-	viewBox="0 -6 12 12">
-	<circle cx="5.3" cy="0" r="5.3px" stroke-width="1px"/>
-	</marker>
-
-	<marker id="mim-catalysis-end-black"
-	class="default-fill"
-	stroke="black"
-	markerHeight="12"
-	markerUnits="strokeWidth"
-	markerWidth="12"
-	orient="auto"
-	refX="5" refY="0"
-	viewBox="-6.5 -6 12 12">
-	<circle cx="-0.3" cy="0" r="5.3px" stroke-width="1px"/>
-	</marker>
--->
-
-	<marker id="mim-catalysis-start-black" class="default-fill" stroke="black" markerHeight="12" markerWidth="12" markerUnits="strokeWidth" orient="auto" refX="0" refY="6" viewBox="0 0 12 12">
-  <image xlink:href="http://wikipathways.github.io/pathvisiojs/src/views/markers/mim-catalysis.svg" x="0" y="0" width="12" height="12"></image>
-	</marker>
-
-	<marker id="mim-catalysis-end-black" class="default-fill" stroke="black" markerHeight="12" markerWidth="12" markerUnits="strokeWidth" orient="auto" refX="12" refY="6" viewBox="0 0 12 12">
-  <image xlink:href="http://wikipathways.github.io/pathvisiojs/src/views/markers/mim-catalysis.svg" x="0" y="0" width="12" height="12" class="marker-end"></image>
-	</marker>
-
-	<!-- mim-cleavage markers: two lines and extended drawing-board rect -->
-  <!--
-	<marker id="mim-cleavage-start-black" 
-	class="default-fill" 
-	stroke="black"
-	markerHeight="24"
-	markerWidth="24"
-	markerUnits="strokeWidth"
-	orient="auto"
-	refX="0" refY="0"
-	viewBox="-8 -6 12 12">
-	<rect stroke="none" x="0" y="-0.6" width="3.5" height="1.2" />
-	<line fill="none" stroke-width=".4" x1="3.7" y1="0" x2="3.7" y2="6"/>	
-	<line fill="none" stroke-width=".4" x1="3.7" y1="6" x2="-8" y2="-6"/>	
-	</marker>
-
-	<marker id="mim-cleavage-end-black"
-	class="default-fill" 
-	stroke="black"
-	markerHeight="24"
-	markerWidth="24"
-	markerUnits="strokeWidth"
-	orient="auto"
-	refX="0" refY="0"
-	viewBox="-4 -6 12 12">
-	<rect stroke="none" x="-3.5" y="-0.6" width="3.5" height="1.2" />
-	<line fill="none" stroke-width=".4" x1="-3.7" y1="0" x2="-3.7" y2="-6"/>	
-	<line fill="none" stroke-width=".4" x1="-3.7" y1="-6" x2="8" y2="6"/>	
-	</marker>
-  -->
-	<marker id="mim-cleavage-start-black" class="default-fill" stroke="black" markerHeight="24" markerWidth="24" markerUnits="strokeWidth" orient="auto" refX="8" refY="6" viewBox="0 0 12 12">
-  <image xlink:href="http://wikipathways.github.io/pathvisiojs/src/views/markers/mim-cleavage.svg" x="0" y="0" width="12" height="12"></image>
-	</marker>
-
-	<marker id="mim-cleavage-end-black" class="default-fill" stroke="black" markerHeight="24" markerWidth="24" markerUnits="strokeWidth" orient="auto" refX="4" refY="6" viewBox="0 0 12 12">
-  <image xlink:href="http://wikipathways.github.io/pathvisiojs/src/views/markers/mim-cleavage.svg" x="0" y="0" width="12" height="12" class="marker-end"></image>
-	</marker>
-
-	<!-- mim-conversion markers: triangular polygons, no stroke -->
-<!--
-	<marker id="mim-conversion-start-black" 
-	fill="black"
-	markerUnits="strokeWidth"
-	markerWidth="12" markerHeight="12"
-	orient="auto"
-	refX="0" refY="0"
-	viewBox="0 -6 12 12">
-	<rect class="default-fill" stroke="none" x="0" y="-0.6" width="2" height="1.2" />
-	<polygon stroke-width="0" points="11,5 0,0 11,-5"/>
-	</marker>
-
-	<marker id="mim-conversion-end-black"
-	fill="black"
-	markerUnits="strokeWidth"
-	markerWidth="12" markerHeight="12"
-	orient="auto"
-	refX="0" refY="0"
-	viewBox="-12 -6 12 12">
-	<rect class="default-fill" stroke="none" x="-2" y="-0.6" width="2" height="1.2" />
-	<polygon stroke-width="0" points="-11,5 0,0 -11,-5"/>
-	</marker>
--->
-	<marker id="mim-conversion-start-black" class="default-fill" stroke="black" markerHeight="12" markerWidth="12" markerUnits="strokeWidth" orient="auto" refX="0" refY="6" viewBox="0 0 12 12">
-  <image xlink:href="http://wikipathways.github.io/pathvisiojs/src/views/markers/mim-conversion.svg" x="0" y="0" width="12" height="12"></image>
-	</marker>
-
-	<marker id="mim-conversion-end-black" class="default-fill" stroke="black" markerHeight="12" markerWidth="12" markerUnits="strokeWidth" orient="auto" refX="12" refY="6" viewBox="0 0 12 12">
-  <image xlink:href="http://wikipathways.github.io/pathvisiojs/src/views/markers/mim-conversion.svg" x="0" y="0" width="12" height="12" class="marker-end"></image>
-	</marker>
-
-	<!-- mim-covalent-bond markers: not much to see here! -->
-<!--
-	<marker id="mim-covalent-bond-start-black"
-	markerUnits="strokeWidth"
-	markerWidth="10" markerHeight="10"
-	orient="auto"
-	refX="0" refY="0"
-	viewBox="0 -6 12 12">
-	</marker>
-
-	<marker id="mim-covalent-bond-end-black"
-	markerUnits="strokeWidth"
-	markerWidth="10" markerHeight="10"
-	orient="auto"
-	refX="0" refY="0"
-	viewBox="-12 -6 12 12">
-	</marker>
--->
-	<marker id="mim-covalent-bond-start-black" class="default-fill" stroke="black" markerHeight="12" markerWidth="12" markerUnits="strokeWidth" orient="auto" refX="0" refY="6" viewBox="0 0 12 12">
-  <image xlink:href="http://wikipathways.github.io/pathvisiojs/src/views/markers/mim-covalent-bond.svg" x="0" y="0" width="12" height="12"></image>
-	</marker>
-
-	<marker id="mim-covalent-bond-end-black" class="default-fill" stroke="black" markerHeight="12" markerWidth="12" markerUnits="strokeWidth" orient="auto" refX="12" refY="6" viewBox="0 0 12 12">
-  <image xlink:href="http://wikipathways.github.io/pathvisiojs/src/views/markers/mim-covalent-bond.svg" x="0" y="0" width="12" height="12" class="marker-end"></image>
-	</marker>
-
-	<!-- mim-gap markers: just an extended drawing-board rect -->
-	<!-- 
-	TODO This could be refactored to make the shape match the viewbox.
-	It can overlap the side of the shape, blanking out a small part of it when the edge is at an angle.
-	-->
-<!--
-	<marker id="mim-gap-start-black"
-	class="default-fill"
-	markerUnits="strokeWidth"
-	markerWidth="10" markerHeight="10"
-	orient="auto"
-	refX="0" refY="0"
-	viewBox="0 -6 12 12">
-	<rect stroke="none" x="-2" y="-0.7" width="8" height="1.4" />
-	</marker>
-
-	<marker id="mim-gap-end-black"
-	class="default-fill"
-	markerUnits="strokeWidth"
-	markerWidth="10" markerHeight="10"
-	orient="auto"
-	refX="0" refY="0"
-	viewBox="-12 -6 12 12">
-	<rect stroke="none" x="-6" y="-0.7" width="8" height="1.4" />
-	</marker>
--->
-	<marker id="mim-gap-start-black" class="default-fill" stroke="black" markerHeight="10" markerWidth="10" markerUnits="strokeWidth" orient="auto" refX="2" refY="6" viewBox="0 0 12 12">
-  <image xlink:href="http://wikipathways.github.io/pathvisiojs/src/views/markers/mim-gap.svg" x="0" y="0" width="12" height="12"></image>
-	</marker>
-
-	<marker id="mim-gap-end-black" class="default-fill" stroke="black" markerHeight="10" markerWidth="10" markerUnits="strokeWidth" orient="auto" refX="10" refY="6" viewBox="0 0 12 12">
-  <image xlink:href="http://wikipathways.github.io/pathvisiojs/src/views/markers/mim-gap.svg" x="0" y="0" width="12" height="12" class="marker-end"></image>
-	</marker>
-
-	<!-- mim-inhibition markers: vertical line; and extended drawing-board rect -->
-
-  <!--
-	<marker id="mim-inhibition-start-black"
-	class="default-fill"
-	stroke="black"
-	markerWidth="16" 
-	markerHeight="16"
-	markerUnits="strokeWidth"
-	orient="auto"
-	refX="0" refY="0"
-	viewBox="0 -6 12 12">
-	<rect stroke="none" x="0" y="-0.6" width="5" height="1.2" />
-	<line fill="none" stroke-width="1.6" x1="5" y1="-6" x2="5" y2="6"/>
-  </marker>
-
-	<marker id="mim-inhibition-end-black"
-	class="default-fill"
-	stroke="black"
-	markerUnits="strokeWidth"
-	markerWidth="16" 
-	markerHeight="16"
-	orient="auto"
-	refX="0" refY="0"
-	viewBox="-12 -6 12 12">
-	<rect stroke="none" x="-5" y="-0.6" width="5" height="1.2" />
-	<line fill="none" stroke-width="1.6" x1="-5" y1="-6" x2="-5" y2="6"/>
-	</marker>
-	-->
-  
-	<marker id="mim-inhibition-start-black" class="default-fill" stroke="black" markerWidth="16" markerHeight="16" markerUnits="strokeWidth" orient="auto" refX="0" refY="6" viewBox="0 0 12 12">
-  <image xlink:href="http://wikipathways.github.io/pathvisiojs/src/views/markers/mim-inhibition.svg" x="0" y="0" width="12" height="12"></image>
-  </marker>
-  
-	<marker id="mim-inhibition-end-black" class="default-fill" stroke="black" markerWidth="16" markerHeight="16" markerUnits="strokeWidth" orient="auto" refX="12" refY="6" viewBox="0 0 12 12">
-  <image xlink:href="http://wikipathways.github.io/pathvisiojs/src/views/markers/mim-inhibition.svg" x="0" y="0" width="12" height="12" class="marker-end"></image>
-  </marker>
-
-	<!-- mim-modification markers: four-point polygon, no stroke -->
-<!-- TODO
-	<marker id="mim-modification-start-black" 
-	fill="black"
-	markerUnits="strokeWidth"
-	markerWidth="12" markerHeight="12"
-	orient="auto"
-	refX="0" refY="0"
-	viewBox="0 -6 12 12">
-	<rect class="default-fill" stroke="none" x="0" y="-0.6" width="2" height="1.2" />
-	<polygon stroke-width="0" points="12,6 0,0 12,-6 5,0 "/>
-	</marker>
-
-	<marker id="mim-modification-end-black"
-	fill="black"
-	markerUnits="strokeWidth"
-	markerWidth="12" markerHeight="12"
-	orient="auto"
-	refX="0" refY="0"
-	viewBox="-12 -6 12 12">
-	<rect class="default-fill" stroke="none" x="-2" y="-0.6" width="2" height="1.2" />
-	<polygon stroke-width="0" points="-12,6 0,0 -12,-6 -5,0 "/>
-	</marker>
-  -->
-	<marker id="mim-modification-start-black" class="default-fill" stroke="black" markerHeight="12" markerWidth="12" markerUnits="strokeWidth" orient="auto" refX="0" refY="6" viewBox="0 0 12 12">
-  <image xlink:href="http://wikipathways.github.io/pathvisiojs/src/views/markers/mim-modification.svg" x="0" y="0" width="12" height="12"></image>
-	</marker>
-
-	<marker id="mim-modification-end-black" class="default-fill" stroke="black" markerHeight="12" markerWidth="12" markerUnits="strokeWidth" orient="auto" refX="12" refY="6" viewBox="0 0 12 12">
-  <image xlink:href="http://wikipathways.github.io/pathvisiojs/src/views/markers/mim-modification.svg" x="0" y="0" width="12" height="12" class="marker-end"></image>
-	</marker>
-
-	<!-- mim-necessary-stimulation markers: triangular polygons, drawing-board fill, black stroke; and vertical line -->
-<!--
-	<marker id="mim-necessary-stimulation-start-black"
-	class="default-fill"
-	stroke="black"
-	markerWidth="12" markerHeight="12"
-	markerUnits="strokeWidth"
-	orient="auto"
-	refX="0" refY="0"
-	viewBox="0 -6 15 12">
-	<rect stroke="none" x="0" y="-0.6" width="2" height="1.2" />
-	<line fill="none" stroke-width="1" x1="14" y1="-6" x2="14" y2="6"/>
-	<polygon stroke-width="1" points="9,5 0,0 9,-5"/>
-	</marker>
-
-	<marker id="mim-necessary-stimulation-end-black"
-	class="default-fill"
-	stroke="black"
-	markerUnits="strokeWidth"
-	markerWidth="12" markerHeight="12"
-	orient="auto"
-	refX="0" refY="0"
-	viewBox="-15 -6 15 12">
-	<rect stroke="none" x="-2" y="-0.6" width="2" height="1.2" />
-	<line fill="none" stroke-width="1" x1="-14" y1="-6" x2="-14" y2="6"/>
-	<polygon stroke-width="1" points="-9,5 0,0 -9,-5"/>
-	</marker>
-  -->
-	<marker id="mim-necessary-stimulation-start-black" class="default-fill" stroke="black" markerHeight="12" markerWidth="12" markerUnits="strokeWidth" orient="auto" refX="0" refY="6" viewBox="0 0 15 12">
-  <image xlink:href="http://wikipathways.github.io/pathvisiojs/src/views/markers/mim-necessary-stimulation.svg" x="0" y="0" width="15" height="12"></image>
-	</marker>
-
-	<marker id="mim-necessary-stimulation-end-black" class="default-fill" stroke="black" markerHeight="12" markerWidth="12" markerUnits="strokeWidth" orient="auto" refX="15" refY="6" viewBox="0 0 15 12">
-  <image xlink:href="http://wikipathways.github.io/pathvisiojs/src/views/markers/mim-necessary-stimulation.svg" x="0" y="0" width="15" height="12" class="marker-end"></image>
-	</marker>
-
-	<!-- mim-stimulation markers: triangular polygons, drawing-board fill, black stroke -->
-<!--
-	<marker id="mim-stimulation-start-black"
-	class="default-fill"
-	stroke="black"
-	markerWidth="12" markerHeight="12"
-	markerUnits="strokeWidth"
-	orient="auto"
-	refX="0" refY="0"
-	viewBox="0 -6 12 12">
-	<rect stroke="none" x="0" y="-0.6" width="2" height="1.2" />
-	<polygon stroke-width="1" points="11,5 0,0 11,-5"/>
-	</marker>
-
-	<marker id="mim-stimulation-end-black"
-	class="default-fill"
-	stroke="black"
-	markerUnits="strokeWidth"
-	markerWidth="12" markerHeight="12"
-	orient="auto"
-	refX="0" refY="0"
-	viewBox="-12 -6 12 12">
-	<rect stroke="none" x="-2" y="-0.6" width="2" height="1.2" />
-	<polygon stroke-width="1" points="-11,5 0,0 -11,-5"/>
-	</marker>
-  -->
-	<marker id="mim-stimulation-start-black" class="default-fill" stroke="black" markerHeight="12" markerWidth="12" markerUnits="strokeWidth" orient="auto" refX="0" refY="6" viewBox="0 0 12 12">
-  <image xlink:href="http://wikipathways.github.io/pathvisiojs/src/views/markers/mim-stimulation.svg" x="0" y="0" width="12" height="12"></image>
-	</marker>
-
-	<marker id="mim-stimulation-end-black" class="default-fill" stroke="black" markerHeight="12" markerWidth="12" markerUnits="strokeWidth" orient="auto" refX="12" refY="6" viewBox="0 0 12 12">
-  <image xlink:href="http://wikipathways.github.io/pathvisiojs/src/views/markers/mim-stimulation.svg" x="0" y="0" width="12" height="12" class="marker-end"></image>
-	</marker>
-
-	<!-- mim-transcription-translation markers: two lines and an open trigular polygon, plus extended drawing-board rect -->
-<!--
-	<marker id="mim-transcription-translation-start-black"
-	class="default-fill" 
-	stroke="black"
-	markerHeight="24"
-	markerWidth="24"
-	markerUnits="strokeWidth"
-	orient="auto"
-	refX="0" refY="0"
-	viewBox="0 -6 12 12">
-	<rect stroke="none" x="0" y="-0.6" width="6" height="1.2" />
-	<line fill="none" stroke-width=".4" x1="9" y1="0" x2="9" y2="-4"/>
-	<line fill="none" stroke-width=".4" x1="9" y1="-4" x2="5" y2="-4"/>
-	<polygon stroke-width=".4" points="5,-6 0,-4 5,-2"/>
-	</marker>
-
-	<marker id="mim-transcription-translation-end-black"
-	class="default-fill" 
-	stroke="black"
-	markerHeight="24"
-	markerWidth="24"
-	markerUnits="strokeWidth"
-	orient="auto"
-	refX="0" refY="0"
-	viewBox="-12 -6 12 12">
-	<rect stroke="none" x="-6" y="-0.6" width="6" height="1.2" />
-	<line fill="none" stroke-width=".4" x1="-9" y1="0" x2="-9" y2="4"/>
-	<line fill="none" stroke-width=".4" x1="-9" y1="4" x2="-5" y2="4"/>
-	<polygon stroke-width=".4" points="-5,6 0,4 -5,2"/>	
-	</marker>
-  -->
-	<marker id="mim-transcription-translation-start-black" class="default-fill" stroke="black" markerHeight="24" markerWidth="24" markerUnits="strokeWidth" orient="auto" refX="0" refY="6" viewBox="0 0 12 12">
-  <image xlink:href="http://wikipathways.github.io/pathvisiojs/src/views/markers/mim-transcription-translation.svg" x="0" y="0" width="12" height="12"></image>
-	</marker>
-
-	<marker id="mim-transcription-translation-end-black" class="default-fill" stroke="black" markerHeight="24" markerWidth="24" markerUnits="strokeWidth" orient="auto" refX="12" refY="6" viewBox="0 0 12 12">
-  <image xlink:href="http://wikipathways.github.io/pathvisiojs/src/views/markers/mim-transcription-translation.svg" x="0" y="0" width="12" height="12" class="marker-end"></image>
-	</marker>
-
-	<!-- t-bar markers: vertical line; and extended drawing-board rect -->
-<!--
-	<marker id="t-bar-start-black"
-	class="default-fill"
-	stroke="black"
-	markerWidth="16" 
-	markerHeight="16"
-	markerUnits="strokeWidth"
-	orient="auto"
-	refX="0" refY="0"
-	viewBox="0 -6 12 12">
-	<rect stroke="none" x="0" y="-0.6" width="5" height="1.2" />
-	<line fill="none" stroke-width="1.6" x1="5" y1="-6" x2="5" y2="6"/>
-	</marker>
-
-	<marker id="t-bar-end-black"
-	class="default-fill"
-	stroke="black"
-	markerUnits="strokeWidth"
-	markerWidth="16" 
-	markerHeight="16"
-	orient="auto"
-	refX="0" refY="0"
-	viewBox="-12 -6 12 12">
-	<rect stroke="none" x="-5" y="-0.6" width="5" height="1.2" />
-	<line fill="none" stroke-width="1.6" x1="-5" y1="-6" x2="-5" y2="6"/>
-	</marker>
-  -->
-	<marker id="t-bar-start-black" class="default-fill" stroke="black" markerHeight="16" markerWidth="16" markerUnits="strokeWidth" orient="auto" refX="0" refY="6" viewBox="0 0 12 12">
-  <image xlink:href="http://wikipathways.github.io/pathvisiojs/src/views/markers/t-bar.svg" x="0" y="0" width="12" height="12"></image>
-	</marker>
-
-	<marker id="t-bar-end-black" class="default-fill" stroke="black" markerHeight="16" markerWidth="16" markerUnits="strokeWidth" orient="auto" refX="12" refY="6" viewBox="0 0 12 12">
-  <image xlink:href="http://wikipathways.github.io/pathvisiojs/src/views/markers/t-bar.svg" x="0" y="0" width="12" height="12" class="marker-end"></image>
-	</marker>
 	
-	<!-- double-line-hack markers are used in double line handling; they include their own 
-	special blank rect to obscure the ends -->
-<!--
-	<marker id="double-line-hack-start"
-	markerUnits="strokeWidth"
-	markerWidth="10" markerHeight="10"
-	orient="auto"
-	refX="0" refY="0"
-	viewBox="0 -6 12 12">
-	<rect class="default-fill" stroke="none" x="0" y="-1.5" width="2.3" height="3" />
-	</marker>
 
-	<marker id="double-line-hack-end"
-	markerUnits="strokeWidth"
-	markerWidth="10" markerHeight="10"
-	orient="auto"
-	refX="0" refY="0"
-	viewBox="-12 -6 12 12">
-	<rect class="default-fill" stroke="none" x="-2.3" y="-1.5" width="2.3" height="3" />
-	</marker>
-  -->
+	
+
+
+	
+
+	
+
+
+	
+
+	
+
+	
+
+	
+
+
+	
+
+	
+
+
+	
+
+  
+	
+
+	
+
+	
+
+
+	
+
+	
+
+	
+  
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+	
+
+	
+
+	
+
+	
+
+  
+  
+	
+  
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+	
+	
+
 	<marker id="double-line-hack-start" class="default-fill" stroke="black" markerHeight="10" markerWidth="10" markerUnits="strokeWidth" orient="auto" refX="0" refY="6" viewBox="0 0 12 12">
   <image xlink:href="http://wikipathways.github.io/pathvisiojs/src/views/markers/double-line-hack.svg" x="0" y="0" width="12" height="12"></image>
 	</marker>
@@ -595,7 +150,7 @@
 
 	<symbol id="none" viewBox="0 0 100 100" preserveAspectRatio="none"></symbol>
 
-	<marker id="arrow" preserveAspectRatio="none" viewBox="0 0 12 12"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ev="http://www.w3.org/2001/xml-events" id="arrow" version="1.1" baseProfile="full" width="12" height="12" class="solid-stroke" style="fill:black" viewBox="0 0 12 12">
+	<marker id="activity" preserveAspectRatio="none" viewBox="0 0 12 12"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ev="http://www.w3.org/2001/xml-events" id="arrow" version="1.1" baseProfile="full" width="12" height="12" class="solid-stroke" style="fill:black" viewBox="0 0 12 12">
 	<rect class="default-fill" stroke="none" x="0" y="5.4" width="2" height="1.2"></rect>
 	<polygon fill="black" stroke-width="0" points="12,11 0,6 12,1"></polygon>
 
@@ -609,74 +164,74 @@
 	<rect stroke="none" x="0" y="5.4" width="3.5" height="1.2"></rect>
 	<line fill="none" stroke-width=".4" x1="0" y1="12" x2="3.7" y2="6"></line>	
 
-</svg></marker><marker id="mim-necessary-stimulation" preserveAspectRatio="none" viewBox="0 0 15 12"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ev="http://www.w3.org/2001/xml-events" id="mim-necessary-stimulation" version="1.1" baseProfile="full" width="15" height="12" class="default-fill solid-stroke" style="stroke:black" viewBox="0 0 15 12">
+</svg></marker><marker id="necessary-stimulation" preserveAspectRatio="none" viewBox="0 0 15 12"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ev="http://www.w3.org/2001/xml-events" id="mim-necessary-stimulation" version="1.1" baseProfile="full" width="15" height="12" class="default-fill solid-stroke" style="stroke:black" viewBox="0 0 15 12">
 
 	<rect stroke="none" x="0" y="5.4" width="2" height="1.2"></rect>
 	<line fill="none" stroke-width="1" x1="14" y1="0" x2="14" y2="12"></line>
 	<polygon stroke-width="1" points="9,11 0,6 9,1"></polygon>
 
-</svg></marker><marker id="mim-binding" preserveAspectRatio="none" viewBox="0 0 12 12"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ev="http://www.w3.org/2001/xml-events" id="mim-binding" version="1.1" baseProfile="full" width="12" height="12" class="solid-stroke" style="fill:black" viewBox="0 0 12 12">
+</svg></marker><marker id="binding" preserveAspectRatio="none" viewBox="0 0 12 12"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ev="http://www.w3.org/2001/xml-events" id="mim-binding" version="1.1" baseProfile="full" width="12" height="12" class="solid-stroke" style="fill:black" viewBox="0 0 12 12">
 
 	<rect class="default-fill" stroke="none" x="0" y="5.4" width="2" height="1.2"></rect>
 	<polygon stroke-width="0" points="12,12 0,6 12,0 5,6 "></polygon>
 
-</svg></marker><marker id="mim-conversion" preserveAspectRatio="none" viewBox="0 0 12 12"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ev="http://www.w3.org/2001/xml-events" id="mim-conversion" version="1.1" baseProfile="full" width="12" height="12" style="fill:black" class="solid-stroke" viewBox="0 0 12 12">
+</svg></marker><marker id="conversion" preserveAspectRatio="none" viewBox="0 0 12 12"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ev="http://www.w3.org/2001/xml-events" id="mim-conversion" version="1.1" baseProfile="full" width="12" height="12" style="fill:black" class="solid-stroke" viewBox="0 0 12 12">
 
 	<rect class="default-fill" stroke="none" x="0" y="5.4" width="2" height="1.2"></rect>
 	<polygon stroke-width="0" points="11,11 0,6 11,1"></polygon>
 
-</svg></marker><marker id="mim-stimulation" preserveAspectRatio="none" viewBox="0 0 12 12"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ev="http://www.w3.org/2001/xml-events" id="mim-stimulation" version="1.1" baseProfile="full" width="12" height="12" class="default-fill solid-stroke" style="stroke:black" viewBox="0 0 12 12">
+</svg></marker><marker id="stimulation" preserveAspectRatio="none" viewBox="0 0 12 12"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ev="http://www.w3.org/2001/xml-events" id="mim-stimulation" version="1.1" baseProfile="full" width="12" height="12" class="default-fill solid-stroke" style="stroke:black" viewBox="0 0 12 12">
 
 	<rect class="default-fill" stroke="none" x="0" y="5.4" width="2" height="1.2"></rect>
 	<polygon stroke-width="1" points="11,11 0,6 11,1"></polygon>
 
-</svg></marker><marker id="mim-modification" preserveAspectRatio="none" viewBox="0 0 12 12"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ev="http://www.w3.org/2001/xml-events" id="mim-modification" version="1.1" baseProfile="full" width="12" height="12" class="solid-stroke" style="fill:black" viewBox="0 0 12 12">
+</svg></marker><marker id="modification" preserveAspectRatio="none" viewBox="0 0 12 12"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ev="http://www.w3.org/2001/xml-events" id="mim-modification" version="1.1" baseProfile="full" width="12" height="12" class="solid-stroke" style="fill:black" viewBox="0 0 12 12">
 
 	<rect class="default-fill" stroke="none" x="0" y="5.4" width="2" height="1.2"></rect>
 	<polygon stroke-width="0" points="12,12 0,6 12,0 5,6 "></polygon>
 
-</svg></marker><marker id="mim-catalysis" preserveAspectRatio="none" viewBox="0 0 12 12"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ev="http://www.w3.org/2001/xml-events" id="mim-catalysis" version="1.1" baseProfile="full" width="12" height="12" class="default-fill solid-stroke" viewBox="-6 -6 12 12">
+</svg></marker><marker id="catalysis" preserveAspectRatio="none" viewBox="0 0 12 12"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ev="http://www.w3.org/2001/xml-events" id="mim-catalysis" version="1.1" baseProfile="full" width="12" height="12" class="default-fill solid-stroke" viewBox="-6 -6 12 12">
 
 	<circle cx="0" cy="0" r="5.3px" stroke-width="1px"></circle>
 
-</svg></marker><marker id="mim-inhibition" preserveAspectRatio="none" viewBox="0 0 12 12"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ev="http://www.w3.org/2001/xml-events" id="mim-inhibition" version="1.1" baseProfile="full" width="12" height="12" class="default-fill solid-stroke">
+</svg></marker><marker id="inhibition" preserveAspectRatio="none" viewBox="0 0 12 12"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ev="http://www.w3.org/2001/xml-events" id="mim-inhibition" version="1.1" baseProfile="full" width="12" height="12" class="default-fill solid-stroke">
 
 	<rect stroke="none" x="0" y="5.4" width="5" height="1.2"></rect>
 	<line fill="none" stroke-width="1.6" x1="5" y1="0" x2="5" y2="12"></line>
 
-</svg></marker><marker id="mim-cleavage" preserveAspectRatio="none" viewBox="0 0 12 12"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ev="http://www.w3.org/2001/xml-events" id="mim-cleavage" version="1.1" baseProfile="full" width="12" height="12" viewBox="0 0 12 12" class="default-fill solid-stroke">
+</svg></marker><marker id="cleavage" preserveAspectRatio="none" viewBox="0 0 12 12"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ev="http://www.w3.org/2001/xml-events" id="mim-cleavage" version="1.1" baseProfile="full" width="12" height="12" viewBox="0 0 12 12" class="default-fill solid-stroke">
 
 	<rect stroke="none" x="8" y="5.4" width="3.5" height="1.2"></rect>
 	<line fill="none" stroke-width=".4" x1="11.7" y1="6" x2="11.7" y2="12"></line>	
 	<line fill="none" stroke-width=".4" x1="11.7" y1="12" x2="0" y2="0"></line>	
 
-</svg></marker><marker id="mim-covalent-bond" preserveAspectRatio="none" viewBox="0 0 12 12"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ev="http://www.w3.org/2001/xml-events" id="mim-covalent-bond" version="1.1" baseProfile="full" width="12" height="12" class="solid-stroke" style="fill:black" viewBox="0 0 12 12">
+</svg></marker><marker id="covalent-bond" preserveAspectRatio="none" viewBox="0 0 12 12"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ev="http://www.w3.org/2001/xml-events" id="mim-covalent-bond" version="1.1" baseProfile="full" width="12" height="12" class="solid-stroke" style="fill:black" viewBox="0 0 12 12">
 
-</svg></marker><marker id="mim-transcription-translation" preserveAspectRatio="none" viewBox="0 0 12 12"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ev="http://www.w3.org/2001/xml-events" id="mim-transcription-translation" version="1.1" baseProfile="full" width="12" height="12" class="default-fill solid-stroke" style="stroke:black">
+</svg></marker><marker id="transcription-translation" preserveAspectRatio="none" viewBox="0 0 12 12"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ev="http://www.w3.org/2001/xml-events" id="mim-transcription-translation" version="1.1" baseProfile="full" width="12" height="12" class="default-fill solid-stroke" style="stroke:black">
 
 	<rect stroke="none" x="0" y="5.4" width="6" height="1.2"></rect>
 	<line fill="none" stroke-width=".4" x1="9" y1="6" x2="9" y2="2"></line>
 	<line fill="none" stroke-width=".4" x1="9" y1="2" x2="5" y2="2"></line>
 	<polygon stroke-width=".4" points="5,0 0,2 5,4"></polygon>
 
-</svg></marker><marker id="mim-gap" preserveAspectRatio="none" viewBox="0 0 12 12"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ev="http://www.w3.org/2001/xml-events" id="mim-gap" version="1.1" baseProfile="full" width="12" height="12" class="default-fill solid-stroke" viewBox="0 0 12 12">
+</svg></marker><marker id="gap" preserveAspectRatio="none" viewBox="0 0 12 12"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ev="http://www.w3.org/2001/xml-events" id="mim-gap" version="1.1" baseProfile="full" width="12" height="12" class="default-fill solid-stroke" viewBox="0 0 12 12">
 
 	<rect stroke="none" x="0" y="5.3" width="8" height="1.4"></rect>
 
-</svg></marker><marker id="t-bar" preserveAspectRatio="none" viewBox="0 0 12 12"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ev="http://www.w3.org/2001/xml-events" id="t-bar" version="1.1" baseProfile="full" width="12" height="12" class="default-fill solid-stroke" style="stroke:black">
+</svg></marker><marker id="inhibitory-activity" preserveAspectRatio="none" viewBox="0 0 12 12"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ev="http://www.w3.org/2001/xml-events" id="t-bar" version="1.1" baseProfile="full" width="12" height="12" class="default-fill solid-stroke" style="stroke:black">
 
 	<rect stroke="none" x="0" y="5.4" width="5" height="1.2"></rect>
 	<line fill="none" stroke-width="1.6" x1="5" y1="0" x2="5" y2="12"></line>
 
-</svg></marker><symbol id="brace" preserveAspectRatio="none" viewBox="0 0 100 50"><clipPath id="brace-clip-path">
-		<path d="m1.5,49.499996c0,-16.166668 8.166666,-24.249996 24.499998,-24.249996s24.499998,-8.083336 24.499998,-24.250002c0,16.166666 8.166664,24.250002 24.499996,24.250002s24.5,8.083328 24.5,24.249996" vector-effect="non-scaling-stroke"></path>
-        </clipPath></symbol><symbol id="arc" preserveAspectRatio="none" viewBox="0 0 100 100"><path d="m1.5,50.5c0,-16.16667 8.16667,-24.25 24.5,-24.25s24.5,-8.08334 24.5,-24.25c0,16.16666 8.16666,24.25 24.49999,24.25s24.50001,8.08333 24.50001,24.25" vector-effect="non-scaling-stroke" class="node shape"></path></symbol><symbol id="golgi-apparatus" preserveAspectRatio="none" viewBox="0 0 100 100"><clipPath id="golgi-apparatus-clip-path1">
+</svg></marker><symbol id="golgi-apparatus" preserveAspectRatio="none" viewBox="0 0 100 100"><clipPath id="golgi-apparatus-clip-path1">
 	<path d="m58.46714,27.713327c-22.205345,-29.90079 37.310066,-30.258356 25.567245,-4.823446c-8.807655,18.581238 -17.066429,58.135235 -0.941673,99.22044c13.31469,27.066696 -41.748463,27.760925 -27.755554,-1.469849c11.345825,-29.420242 10.286858,-80.336422 3.129982,-92.927145z" vector-effect="non-scaling-stroke"></path>
    	</clipPath><clipPath id="golgi-apparatus-clip-path3">
    	<path d="m29.803959,52.160912c1.584177,11.474716 2.723461,16.737267 -1.482977,38.361366c-3.731956,12.989006 -3.600399,16.340691 -11.732334,19.412781c-6.683298,1.658531 -11.864832,-9.789436 -4.793299,-16.11377c4.855728,-5.623222 6.141087,-10.882362 6.658888,-22.954659c-0.239212,-9.521427 0.814508,-15.823826 -5.36692,-19.958626c-7.624315,-2.195171 -6.088041,-16.534611 4.824059,-13.863804c5.849354,1.027065 10.282408,8.561516 11.892582,15.116711z" vector-effect="non-scaling-stroke"></path>
-	</clipPath><path d="m31.214371,36.214363c-10.791712,-21.427903 29.897598,-19.848164 18.407501,0.670895c-4.066933,7.422386 -5.782803,61.572803 1.160713,75.028805c8.52943,18.597427 -32.852985,19.355408 -20.500162,-2.250633c6.952761,-17.358604 10.473742,-52.291187 0.931948,-73.449066z" style="clip-path: url(#golgi-apparatus-clip-path2); " vector-effect="non-scaling-stroke"></path></symbol><symbol id="endoplasmic-reticulum" preserveAspectRatio="none" viewBox="0 0 100 100"><clipPath id="endoplasmic-reticulum-clip-path">
+	</clipPath><path d="m31.214371,36.214363c-10.791712,-21.427903 29.897598,-19.848164 18.407501,0.670895c-4.066933,7.422386 -5.782803,61.572803 1.160713,75.028805c8.52943,18.597427 -32.852985,19.355408 -20.500162,-2.250633c6.952761,-17.358604 10.473742,-52.291187 0.931948,-73.449066z" style="clip-path: url(#golgi-apparatus-clip-path2); " vector-effect="non-scaling-stroke"></path></symbol><symbol id="brace" preserveAspectRatio="none" viewBox="0 0 100 50"><clipPath id="brace-clip-path">
+		<path d="m1.5,49.499996c0,-16.166668 8.166666,-24.249996 24.499998,-24.249996s24.499998,-8.083336 24.499998,-24.250002c0,16.166666 8.166664,24.250002 24.499996,24.250002s24.5,8.083328 24.5,24.249996" vector-effect="non-scaling-stroke"></path>
+        </clipPath></symbol><symbol id="endoplasmic-reticulum" preserveAspectRatio="none" viewBox="0 0 100 100"><clipPath id="endoplasmic-reticulum-clip-path">
 		<path d="m73.52756,56.60967c-5.62457,-18.60675 23.51463,-32.43358 23.40173,-45.06604c-0.34426,-4.86102 -10.48934,-8.89743 -18.28974,-5.33395c-17.04119,7.87556 -15.64949,29.30503 -21.20533,42.23387c-0.35661,3.60951 -7.36274,2.46926 -7.74964,-0.48694c-5.8512,-11.38871 17.13534,-24.48692 5.96075,-29.42586c-19.63467,-8.16979 -28.75184,21.15346 -22.0682,28.81784c7.4956,14.17602 -2.17949,24.40679 -6.74689,15.49637c-2.44209,-5.30613 6.06605,-11.08445 -0.80351,-16.17689c-4.31991,-2.79993 -11.75555,-0.64618 -16.15468,3.0943c-12.89117,10.73799 4.72957,40.98145 20.96467,36.14635c4.69833,-1.95989 -3.23603,-8.70151 3.90717,-9.59951c7.29767,-0.81255 5.17628,6.18889 7.68745,9.22691c2.3071,4.0509 4.83232,8.35538 10.7626,11.6237c4.78642,2.53724 15.29437,2.11225 16.77148,-1.95795c2.0318,-9.26291 -26.11129,-28.35848 -10.68903,-31.2815c18.55524,-2.71473 4.74866,23.84573 24.31006,29.69419c9.50188,2.02824 15.63902,-0.62194 14.81255,-4.03272c-2.74586,-11.26327 -25.13557,-22.6802 -24.96441,-33.14968" vector-effect="non-scaling-stroke"></path>
-	</clipPath></symbol><symbol id="hexagon" preserveAspectRatio="none" viewBox="0 0 100 100"><clipPath id="hexagon-clip-path">
+	</clipPath></symbol><symbol id="arc" preserveAspectRatio="none" viewBox="0 0 100 100"><path d="m1.5,50.5c0,-16.16667 8.16667,-24.25 24.5,-24.25s24.5,-8.08334 24.5,-24.25c0,16.16666 8.16666,24.25 24.49999,24.25s24.50001,8.08333 24.50001,24.25" vector-effect="non-scaling-stroke" class="node shape"></path></symbol><symbol id="hexagon" preserveAspectRatio="none" viewBox="0 0 100 100"><clipPath id="hexagon-clip-path">
 		<path d="m1.42004,50.99635l21.07262,-42.13943l56.19152,0l21.0667,42.13943l-21.0667,42.14507l-56.19152,0l-21.07262,-42.14507z" vector-effect="non-scaling-stroke"></path>
         </clipPath></symbol><symbol id="mim-degradation" preserveAspectRatio="none" viewBox="0 0 100 100"><clipPath id="mim-degradation-circle-clip-path">
 		<circle cx="50" cy="50" r="49" vector-effect="non-scaling-stroke"></circle>
@@ -877,7 +432,7 @@
   }
 </style></defs>
 
-	<g id="viewport" transform="matrix(0.6736939549446106,0,0,0.6736939549446106,1.0000041846169552,6.999998453056833)">
+	<g id="viewport">
 	</g>
 
 </svg></div>
