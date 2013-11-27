@@ -80,8 +80,8 @@ pathvisiojs.view.annotation = function(){
 
     // Enter
     annotationItemPlainTextElements.enter()
-    .append('div')
-    .attr('class', 'annotation-item-plain') // 'annotation-item-text')
+    .append('span')
+    .attr('class', 'annotation-item-text')
     .text(function(d) { return ' ' + d.text; });
 
     // Exit…
