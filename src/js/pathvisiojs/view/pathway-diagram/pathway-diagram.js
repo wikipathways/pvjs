@@ -107,10 +107,10 @@ pathvisiojs.view.pathwayDiagram = function(){
     args.target.height = args.targetElement[0][0].getElementHeight();
 
     if (Modernizr.svg) {
-      pathvisiojs.view.pathwayDiagram.svg.loadPartials(args, function(svg, uniformlyScalingShapesList) {
+      pathvisiojs.view.pathwayDiagram.svg.loadPartials(args, function(svg, allSymbolNames) {
         console.log(svg);
         args.svg = svg;
-        args.uniformlyScalingShapesList = uniformlyScalingShapesList;
+        args.allSymbolNames = allSymbolNames;
         callback(args);
       })
     }
