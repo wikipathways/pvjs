@@ -1,4 +1,4 @@
-pathvisiojs.view.pathwayDiagram.svg.node.label = function(){
+pathvisiojs.view.pathwayDiagram.svg.label = function(){
   function renderAll(nodes, pathway) {
     if (!nodes || !pathway) {
       if (!nodes) {

@@ -30,8 +30,8 @@ pathvisiojs.view.pathwayDiagram.pathFinder = function(){
       Math.min(node1.height, node1.width) - Math.min(node2.height, node2.width);
     });
     pathvisioNS.grid.squareLength = Math.min(nodes[0][0][0].height, nodes[0][0][0].width) / 7;
-    var totalColumnCount = self.totalColumnCount = Math.ceil(pathway.metadata.boardWidth/pathvisioNS.grid.squareLength);
-    var totalRowCount = self.totalRowCount = Math.ceil(pathway.metadata.boardHeight/pathvisioNS.grid.squareLength);
+    var totalColumnCount = self.totalColumnCount = Math.ceil(pathway.image.width/pathvisioNS.grid.squareLength);
+    var totalRowCount = self.totalRowCount = Math.ceil(pathway.image.height/pathvisioNS.grid.squareLength);
 
     var paddedMatrix = self.paddedMatrix = [];
     pathvisioNS.grid.gridRenderingData = [];
