@@ -359,7 +359,7 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
         .call(pathvisiojs.view.pathwayDiagram.svg.edge.render);
 
         // Enter…
-        edges.enter().append("path.edge")
+        edges.enter().append("path")
         .call(pathvisiojs.view.pathwayDiagram.svg.edge.render);
 
         // Exit…
