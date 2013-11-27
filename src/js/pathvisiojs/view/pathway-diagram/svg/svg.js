@@ -34,7 +34,7 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
         })
       },
       function(callback) {
-        var svgDimensions = self.svgDimensions = pathvisiojs.view.pathwayDiagram.fitElementWithinContainer(args.target, results.pathway["schema:image"]["schema:width"], results.pathway["schema:image"]["schema:height"], args.preserveAspectRatio);
+        var svgDimensions = self.svgDimensions = pathvisiojs.view.pathwayDiagram.fitElementWithinContainer(args.target, results.pathway.image.width, results.pathway.image.height, args.preserveAspectRatio);
         self.svgDimensions = svgDimensions;
         d3.select('#loading-icon').remove();
 
@@ -96,7 +96,7 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
   }
 
   function loadPartials(args, callbackOutside) {
-    var pathvisioJsContainer, pathwayContainer, uniformlyScalingShapesList;
+    var pathvisioJsContainer, pathwayContainer, allSymbolNames;
     async.series([
       function(callback) {
         args.target.element.html(pathvisioNS['tmp/pathvisio-js.html']);
@@ -111,111 +111,10 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
 
         callback(null);
       },
-      function(callback){
-
-
-        /*
-        // Update…
-        var pd3 = docfragd3.selectAll("p")
-            .data([3, 4, 8, 15, 16, 23, 42])
-            .text(String);
-
-        // Enter…
-        pd3.enter().append("p")
-            .text(String);
-
-        // Exit…
-        pd3.exit().remove();
-
-        d3.select('document').append(docfragd3);
-
-
-
-// Update…
-var container = d3.select('div.test')
-.data([{'pathway':{'elements':[{'id':'node-a', 'label':'123', 'type':'node'}, {'id':'node-b', 'label':'456', 'type':'node'}, {'id':'edge-c', 'label':'79', 'type':'edge'}]}}])
-.attr('class', 'test');  
-
-// Enter…
-container.enter().append("div")
-.attr('class', 'test');  
-
-// Exit…
-container.exit().remove();
-
-// Update… 
-var nodes = container.selectAll("p.node")
-.data(function(d) { return d.pathway.elements.filter(function(element) {return element.type === 'node'})})
-.text(function(d) {
-  return d.label;
-});
-
-// Enter…
-nodes.enter().append("p")
-.attr('class', 'node')
-.text(function(d) {
-  return d.label;
-});
-
-// Exit…
-nodes.exit().remove();
-
-// Update… 
-var edges = container.selectAll("p.edge")
-.data(function(d) { return d.pathway.elements.filter(function(element) {return element.type === 'edge'}); })
-.text(function(d) {
-  return d.label;
-});
-
-// Enter…
-edges.enter().append("p")
-.attr('class', 'edge')
-.text(function(d) {
-  return d.label;
-});
-
-// Exit…
-edges.exit().remove();
-
-// doing this again
-
-
-
-
-// Update…
-var container = d3.select('div.test')
-.data([{'pathway':{'elements':[{'id':'node-a', 'label':'123', 'type':'node'}, {'id':'node-b', 'label':'456', 'type':'node'}, {'id':'edge-c', 'label':'79', 'type':'edge'}, {'id':'edge-c', 'label':'hi', 'type':'edge'}, {'id':'edge-c', 'label':'wow', 'type':'edge'}, {'id':'edge-c', 'label':'aaa', 'type':'edge'}, {'id':'edge-c', 'label':'bbb', 'type':'edge'}, {'id':'edge-c', 'label':'ccc', 'type':'edge'}]}}])
-.attr('class', 'test');  
-
-
-
-// Enter…
-edges.data(function(d) { return d.pathway.elements.filter(function(element) {return element.type === 'edge'}); })
-.enter().append("p")
-.attr('class', 'edge')
-.text(function(d) {
-  return d.label;
-});
-
-
-        //*/
-
-        //var loadingImage = targetElement.select('#pathway-image');
-
-
-
-
-        ///*
-        //var docfrag = document.createDocumentFragment();
-        //var div = d3.select(docfrag).append('div');
-        //var div = document.createElement('div');
-        //args.target.element.html(pathvisioNS['tmp/pathvisio-js.html']);
-        ////*/
-
-        callback(null);
-      },
       function(callback) {
         if (!!args.customMarkers) {
+          console.log('args.customMarkers');
+          console.log(args.customMarkers);
           pathvisiojs.view.pathwayDiagram.svg.edge.marker.loadAllCustom(svg, args.customMarkers, function() {
             callback(null);
           })
@@ -225,8 +124,10 @@ edges.data(function(d) { return d.pathway.elements.filter(function(element) {ret
         }
       },
       function(callback) {
+        console.log('args.customShapes');
+        console.log(args.customShapes);
         if (!!args.customShapes) {
-          pathvisiojs.view.pathwayDiagram.svg.node.shape.uniformlyScalingShape.loadAllCustom(svg, args.customShapes, function() {
+          pathvisiojs.view.pathwayDiagram.svg.symbol.loadAllCustom(svg, args.customShapes, function() {
             callback(null);
           })
         }
@@ -235,8 +136,8 @@ edges.data(function(d) { return d.pathway.elements.filter(function(element) {ret
         }
       },
       function(callback) {
-        pathvisiojs.view.pathwayDiagram.svg.node.shape.uniformlyScalingShape.getUniformlyScalingShapesList(svg, function(data) {
-          uniformlyScalingShapesList = data;
+        pathvisiojs.view.pathwayDiagram.svg.symbol.getAllSymbolNames(svg, function(data) {
+          allSymbolNames = data;
           callback(null);
         });
       },
@@ -255,7 +156,7 @@ edges.data(function(d) { return d.pathway.elements.filter(function(element) {ret
       }
     ],
     function(err, results) {
-      callbackOutside(svg, uniformlyScalingShapesList);
+      callbackOutside(svg, allSymbolNames);
     });
   }
 
@@ -269,8 +170,8 @@ edges.data(function(d) { return d.pathway.elements.filter(function(element) {ret
         console.warn('Error: No data entered as input.');
         return 'Error';
       }
-      if (!args.uniformlyScalingShapesList) {
-        console.warn('Error: No uniformlyScalingShapesList specified.');
+      if (!args.allSymbolNames) {
+        console.warn('Error: No allSymbolNames specified.');
         return 'Error';
       }
       console.warn('Error: Missing required input.');
@@ -287,6 +188,11 @@ edges.data(function(d) { return d.pathway.elements.filter(function(element) {ret
       .attr("x", d3.event.x)
       .attr("y", d3.event.y);
     }
+
+
+    //***********************
+    // Viewport Element
+    //***********************
 
     // TODO refactor so that svg isn't redefined here
     // Update…
@@ -318,10 +224,151 @@ edges.data(function(d) { return d.pathway.elements.filter(function(element) {ret
     console.log('args');
     console.log(args);
 
-    pathvisiojs.view.pathwayDiagram.svg.node.renderAll(viewport, args.pathway, args.uniformlyScalingShapesList);
 
-    //svg.attr('width', pathway.metadata.boardWidth);
-    //svg.attr('height', pathway.metadata.boardHeight);
+
+    var context = {
+      "@vocab":"http://vocabularies.wikipathways.org/gpml#",
+      "gpml":"http://vocabularies.wikipathways.org/gpml#",
+      "xsd": "http://www.w3.org/2001/XMLSchema#",
+      "wp":"http://vocabularies.wikipathways.org/wp#",
+      "biopax": "http://www.biopax.org/release/biopax-level3.owl#",
+      "schema":"http://schema.org/",
+      "hMDB":"http://www.hmdb.ca/metabolites/HMDB",
+      "entrezGene":"http://www.ncbi.nlm.nih.gov/gene/",
+      "ChEBI":"http://www.ebi.ac.uk/chebi/searchId.do?chebiId=",
+      "media":"http://www.w3.org/TR/mediaont-10/",
+      "ex":"http://www.example.com/",
+      "gpmlFolder":"file://Users/andersriutta/Sites/pathvisiojs/test/gpml/",
+      "name":"http://xmlns.com/foaf/0.1/name",
+      "dcterms":"http://purl.org/dc/terms/",
+      "Pathway": "biopax:Pathway",
+      "image": "schema:image",
+      "shapeLibrary": "http://shapelibrary.example.org/",
+      "shapeName": "shapeLibrary:shapeName",
+      "dataNodeType": "gpml:Type",
+      "author": "schema:author",
+      "organism": "biopax:organism",
+      "pathwayElements": {
+        "@id": "ex:pathwayElements/",
+        "@container": "@list"
+      },
+      "hasReference": {
+        "@type": "ex:hasReference",
+        "@type": "@id"
+      },
+      "ex:IsReferencedBy": { "@reverse": "ex:hasReference" },
+      "InteractionGraph": {
+        "@id": "ex:InteractionGraph",
+        "@type": "@id"
+      },
+      "interactsWith": "ex:interactsWith",
+      "Interaction": {
+        "@id": "biopax:Interaction",
+        "@type": "@id",
+        "InteractsWith":"xsd:string"
+      },
+      "Point": {
+        "@id": "gpml:Point",
+        "@container": "@list"
+      }
+    };
+
+          /*
+          "@vocab": "http://vocabularies.wikipathways.org/gpml#",
+          "gpml": "http://vocabularies.wikipathways.org/gpml#",
+          "shapeLibrary": "http://shapelibrary.example.org/",
+          "shapeName": "shapeLibrary:shapeName",
+          "ex": "http://example.org/vocab#"
+          //*/
+
+
+
+
+
+
+    /***********************
+    // Use Elements
+    //***********************/
+
+    async.series([
+      function(callbackInside){
+        var frame = {
+          "@context": context,
+          "@type": args.allSymbolNames
+        };  
+        jsonld.frame(args.pathway, frame, function(err, framedData) {
+          callbackInside(err, framedData);
+          //callback(err, framedData); // should I use this one instead?
+        });
+      }
+    ],
+    function(err, results) {
+        // Update… 
+        var useElementsContainers = viewport.selectAll('g.shape')
+        .data(results[0]['@graph'])
+        .call(pathvisiojs.view.pathwayDiagram.svg.node.render);
+
+        // Enter…
+        useElementsContainers.enter().append("g")
+        .call(pathvisiojs.view.pathwayDiagram.svg.node.render);
+
+        // Exit…
+        useElementsContainers.exit().remove();
+
+        // Update… 
+        var useElements = useElementsContainers.selectAll("use.shape")
+        .data(function(d) {
+          return [d];
+        })
+        .call(pathvisiojs.view.pathwayDiagram.svg.useElement.render);
+
+        // Enter…
+        useElements.enter().append("use")
+        .call(pathvisiojs.view.pathwayDiagram.svg.useElement.render);
+
+        // Exit…
+        useElements.exit().remove();
+    });
+
+
+    //pathvisiojs.view.pathwayDiagram.svg.pathShape.renderAll(viewport, pathShapes);
+
+    /***********************
+    // Path (Edge) Elements
+    //***********************/
+
+    async.series([
+      function(callbackInside){
+        var frame = self.frame = {
+          "@context": context,
+          "@type": "SvgPath"
+        };  
+        jsonld.frame(args.pathway, frame, function(err, framedData) {
+          callbackInside(err, framedData);
+          //callback(err, framedData); // should I use this one instead?
+        });
+      }
+    ],
+    function(err, results) {
+        //self.results = results;
+        console.log('results[0][@graph]');
+        console.log(results[0]['@graph']);
+        // Update… 
+        var edges = viewport.selectAll('path.edge')
+        .data(results[0]['@graph'])
+        .call(pathvisiojs.view.pathwayDiagram.svg.edge.render);
+
+        // Enter…
+        edges.enter().append("path.edge")
+        .call(pathvisiojs.view.pathwayDiagram.svg.edge.render);
+
+        // Exit…
+        edges.exit().remove();
+    });
+
+
+    //svg.attr('width', pathway.image.width);
+    //svg.attr('height', pathway.image.height);
 
     /*
     if (!!pathway.biopaxRefs) {
