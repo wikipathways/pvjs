@@ -26,8 +26,17 @@ pathvisiojs.view.annotation = function(){
     .data(function(d) {
       console.log('d annotationListItemsContainer');
       console.log(d);
+      //if a single string, then assume special case: img src for loading gif
+      if (typeof d.listItems[0] === 'string'){
+	annotationDescription.append('br');
+	annotationDescription.append('br');
+	annotationDescription.append('img').attr('src', d.listItems[0]).attr('style', 'width: 20px');
+	//fake item list that effectively clears the display while loading gif is active
+        return [{"key":"clear","values":[{"clear": "clear"}]}];
+      } else {
       console.log([d.listItems]);
       return [d.listItems];
+      }	
     });
 
     console.log(annotationListItemsContainer);
@@ -71,8 +80,8 @@ pathvisiojs.view.annotation = function(){
 
     // Enter
     annotationItemPlainTextElements.enter()
-    .append('span')
-    .attr('class', 'annotation-item-text')
+    .append('div')
+    .attr('class', 'annotation-item-plain') // 'annotation-item-text')
     .text(function(d) { return ' ' + d.text; });
 
     // Exit…
