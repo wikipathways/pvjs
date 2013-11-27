@@ -4,9 +4,18 @@ pathvisiojs.view.annotation.xRef = function(){
   function render(organism, id, datasource, label, desc) {
     var data = getCachedAnnotationData(organism, id, datasource);
     if (data){
+      //if cache, then use it
       pathvisiojs.view.annotation.render(data);
     }
     else {
+      //else render immediate data and loading gif
+      var data = {
+          "header": label,
+          "description": desc,
+	  "listItems":["../src/img/loading.gif"] 
+        };
+      pathvisiojs.view.annotation.render(data);
+      //then retrieve the bridgedb data
       var xRefData = pathvisiojs.data.bridgedb.getXrefAnnotationDataByDataNode(organism, id, datasource, label, desc, function(annotationData) {
         setCachedAnnotationData(organism, id, datasource, annotationData);
 	pathvisiojs.view.annotation.render(annotationData);
