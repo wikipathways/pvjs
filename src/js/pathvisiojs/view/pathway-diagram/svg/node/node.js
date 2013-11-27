@@ -37,7 +37,6 @@ pathvisiojs.view.pathwayDiagram.svg.node = function(){
     args.pathway = pathwayHere;
     args.uniformlyScalingShapesList = uniformlyScalingShapesListHere;
     pathvisiojs.view.pathwayDiagram.svg.render(args, function(){console.log('rendered after drag');});
-
   }
 
   function renderAll(viewport, pathway, uniformlyScalingShapesList) {
@@ -62,41 +61,33 @@ pathvisiojs.view.pathwayDiagram.svg.node = function(){
     .data(function(d) {
       console.log('d');
       console.log(d);
-      return d.elements.filter(function(element) { return element.renderableType === 'node'; })
+      return d.DataNode
     })
-    .attr("id", function (d) { return 'node-' + d.id; })
+    .attr("id", function (d) { return 'node-' + d["@id"]; })
     .attr('class', 'node')
-    .attr('transform', function(d) {return 'translate(' + d.x + ' ' + d.y + ')';})
+    .attr('transform', function(d) {return 'translate(' + (d['CenterX'] - d['Width']/2) + ' ' + (d['CenterY'] - d['Height']/2) + ')';})
     .on("click", function(d,i) {
       console.log('clicked a data node');
-      if (d.nodeType === 'data-node') {
+        // only for data nodes
         console.log(pathway);
-        console.log(pathway.metadata.organism);
-        pathvisiojs.view.annotation.xRef.render(pathway.metadata.organism, d.xRef.id, d.xRef.database, d.textLabel.text, d.dataNodeType);
-      }
+        console.log(pathway['organism']);
+        pathvisiojs.view.annotation.xRef.render(pathway['organism'], d.xRef['@id'], d.xRef.database, d.textLabel.text, d.dataNodeType);
     })
     .call(drag)
 
     // Enter…
     nodes.enter().append("g")
-    .attr("id", function (d) { return 'node-' + d.id; })
-    .attr("class", function (d) {
-      var styleClass = 'node ';
-      if (d.strokeStyle === 'double') {
-        styleClass += 'double ';
-      }
-      return styleClass;
-    })
-    .attr('transform', function(d) {return 'translate(' + d.x + ' ' + d.y + ')';})
+    .attr("id", function (d) { return 'node-' + d["@id"]; })
+    .attr('class', 'node')
+    .attr('transform', function(d) {return 'translate(' + (d['CenterX'] - d['Width']/2) + ' ' + (d['CenterY'] - d['Height']/2) + ')';})
     .on("click", function(d,i) {
       console.log('clicked a data node');
-      if (d.nodeType === 'data-node') {
+        // only for data nodes
         console.log(pathway);
-        console.log(pathway.metadata.organism);
-        pathvisiojs.view.annotation.xRef.render(pathway.metadata.organism, d.xRef.id, d.xRef.database, d.textLabel.text, d.dataNodeType);
-      }
+        console.log(pathway['organism']);
+        pathvisiojs.view.annotation.xRef.render(pathway['organism'], d.xRef['@id'], d.xRef.database, d.textLabel.text, d.dataNodeType);
     })
-    .call(drag);
+    .call(drag)
 
     // Exit…
     nodes.exit().remove();
