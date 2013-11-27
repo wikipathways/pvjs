@@ -187,8 +187,8 @@ pathvisiojs.view.pathwayDiagram.svg.edge.point = function(){
     }
   }
 
-  function getCoordinates(svg, pathway, point) {
-    if (!svg || !pathway || !point) {
+  function getCoordinates(viewport, pathway, point) {
+    if (!viewport || !pathway || !point) {
       return console.warn('Error: Missing input parameters.');
     }
 
@@ -216,7 +216,7 @@ pathvisiojs.view.pathwayDiagram.svg.edge.point = function(){
       }
     }
     else {
-      var path = svg.select("#interaction-" + edgeTerminusRef.edge.graphId)[0][0];
+      var path = viewport.select("#interaction-" + edgeTerminusRef.edge.graphId)[0][0];
       coordinates = path.getPointAtLength(edgeTerminusRef.element.position * path.getTotalLength());
     }
 
