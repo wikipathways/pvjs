@@ -72,6 +72,7 @@
   <script src="../lib/screenfull/dist/screenfull.min.js"></script>
   <script src="../lib/svg-pan-zoom/svg-pan-zoom.js"></script>
   <script src="../lib/PathFinding.js/lib/pathfinding-browser.min.js"></script>
+  <script src="../lib/node-uuid/uuid.js"></script>
   <!--
   <script src="../lib/requirejs/require.js"></script>
   -->
@@ -282,12 +283,12 @@
           srcDirectoryUrl + 'js/pathvisiojs/view/pathway-diagram/svg/svg.js',
           srcDirectoryUrl + 'js/pathvisiojs/view/pathway-diagram/svg/group.js',
           srcDirectoryUrl + 'js/pathvisiojs/view/pathway-diagram/svg/info-box.js',
-          srcDirectoryUrl + 'js/pathvisiojs/view/pathway-diagram/svg/node/node.js',
-          srcDirectoryUrl + 'js/pathvisiojs/view/pathway-diagram/svg/node/shape/shape.js',
-          srcDirectoryUrl + 'js/pathvisiojs/view/pathway-diagram/svg/node/shape/uniformly-scaling-shape.js',
-          srcDirectoryUrl + 'js/pathvisiojs/view/pathway-diagram/svg/node/shape/nonuniformly-scaling-shape/nonuniformly-scaling-shape.js',
-          srcDirectoryUrl + 'js/pathvisiojs/view/pathway-diagram/svg/node/shape/nonuniformly-scaling-shape/rounded-rectangle.js',
-          srcDirectoryUrl + 'js/pathvisiojs/view/pathway-diagram/svg/node/label.js',
+          srcDirectoryUrl + 'js/pathvisiojs/view/pathway-diagram/svg/node.js',
+          srcDirectoryUrl + 'js/pathvisiojs/view/pathway-diagram/svg/symbol.js',
+          srcDirectoryUrl + 'js/pathvisiojs/view/pathway-diagram/svg/use-element.js',
+          srcDirectoryUrl + 'js/pathvisiojs/view/pathway-diagram/svg/path-shape/path-shape.js',
+          srcDirectoryUrl + 'js/pathvisiojs/view/pathway-diagram/svg/path-shape/rounded-rectangle.js',
+          srcDirectoryUrl + 'js/pathvisiojs/view/pathway-diagram/svg/label.js',
           srcDirectoryUrl + 'js/pathvisiojs/view/pathway-diagram/svg/edge/edge.js',
           srcDirectoryUrl + 'js/pathvisiojs/view/pathway-diagram/svg/edge/marker.js',
           srcDirectoryUrl + 'js/pathvisiojs/view/pathway-diagram/svg/edge/point.js',
@@ -354,22 +355,22 @@
         {'id': 'triangle', 'url': srcDirectoryUrl + 'views/shapes/triangle.svg'}
       ];
 
-      var customMarkers = [
-        {'id': 'arrow', 'url': srcDirectoryUrl + 'views/markers/arrow.svg'},
+      var customMarkers = self.customMarkers = [
+        {'id': 'activity', 'url': srcDirectoryUrl + 'views/markers/arrow.svg'},
         {'id': 'mim-branching-left', 'url': srcDirectoryUrl + 'views/markers/mim-branching-left.svg'},
         {'id': 'mim-branching-right', 'url': srcDirectoryUrl + 'views/markers/mim-branching-right.svg'},
-        {'id': 'mim-necessary-stimulation', 'url': srcDirectoryUrl + 'views/markers/mim-necessary-stimulation.svg'},
-        {'id': 'mim-binding', 'url': srcDirectoryUrl + 'views/markers/mim-binding.svg'},
-        {'id': 'mim-conversion', 'url': srcDirectoryUrl + 'views/markers/mim-conversion.svg'},
-        {'id': 'mim-stimulation', 'url': srcDirectoryUrl + 'views/markers/mim-stimulation.svg'},
-        {'id': 'mim-modification', 'url': srcDirectoryUrl + 'views/markers/mim-modification.svg'},
-        {'id': 'mim-catalysis', 'url': srcDirectoryUrl + 'views/markers/mim-catalysis.svg'},
-        {'id': 'mim-inhibition', 'url': srcDirectoryUrl + 'views/markers/mim-inhibition.svg'},
-        {'id': 'mim-cleavage', 'url': srcDirectoryUrl + 'views/markers/mim-cleavage.svg'},
-        {'id': 'mim-covalent-bond', 'url': srcDirectoryUrl + 'views/markers/mim-covalent-bond.svg'},
-        {'id': 'mim-transcription-translation', 'url': srcDirectoryUrl + 'views/markers/mim-transcription-translation.svg'},
-        {'id': 'mim-gap', 'url': srcDirectoryUrl + 'views/markers/mim-gap.svg'},
-        {'id': 't-bar', 'url': srcDirectoryUrl + 'views/markers/t-bar.svg'}
+        {'id': 'necessary-stimulation', 'url': srcDirectoryUrl + 'views/markers/mim-necessary-stimulation.svg'},
+        {'id': 'binding', 'url': srcDirectoryUrl + 'views/markers/mim-binding.svg'},
+        {'id': 'conversion', 'url': srcDirectoryUrl + 'views/markers/mim-conversion.svg'},
+        {'id': 'stimulation', 'url': srcDirectoryUrl + 'views/markers/mim-stimulation.svg'},
+        {'id': 'modification', 'url': srcDirectoryUrl + 'views/markers/mim-modification.svg'},
+        {'id': 'catalysis', 'url': srcDirectoryUrl + 'views/markers/mim-catalysis.svg'},
+        {'id': 'inhibition', 'url': srcDirectoryUrl + 'views/markers/mim-inhibition.svg'},
+        {'id': 'cleavage', 'url': srcDirectoryUrl + 'views/markers/mim-cleavage.svg'},
+        {'id': 'covalent-bond', 'url': srcDirectoryUrl + 'views/markers/mim-covalent-bond.svg'},
+        {'id': 'transcription-translation', 'url': srcDirectoryUrl + 'views/markers/mim-transcription-translation.svg'},
+        {'id': 'gap', 'url': srcDirectoryUrl + 'views/markers/mim-gap.svg'},
+        {'id': 'inhibitory-activity', 'url': srcDirectoryUrl + 'views/markers/t-bar.svg'}
       ];
 
       pathvisiojs.load({
