@@ -110,7 +110,7 @@ pathvisiojs = function(){
     function(err, results){
       self.results = results;
       var viewLoadArgs = results.preload;
-      viewLoadArgs.pathway = results.pathway;
+      self.pathway = viewLoadArgs.pathway = results.pathway;
 
           console.log('pathvisiojspreload');
           console.log(results.preload);
@@ -125,8 +125,7 @@ pathvisiojs = function(){
       ///* Node Highlighter
 
       var nodeLabels = [];
-      var dataNodes = results.pathway.elements.filter(function(element) {return element.nodeType === 'data-node';});
-      dataNodes.forEach(function(node) {
+      results.pathway.DataNode.forEach(function(node) {
         if (!!node.textLabel) {
           nodeLabels.push(node.textLabel.text);
         }
@@ -149,7 +148,7 @@ pathvisiojs = function(){
           console.warn('Error: No data node value entered.');
         }
         else {
-          pathvisiojs.view.pathwayDiagram.svg.node.highlightByLabel(svg, nodeLabel);
+          pathvisiojs.view.pathwayDiagram.svg.shapeContainer.highlightByLabel(svg, nodeLabel);
         }
       });
 //*/
@@ -166,7 +165,7 @@ pathvisiojs = function(){
           // TODO refactor this so it calls a generic highlightDataNodeByLabel function that can call
           // a highlighter for svg, png, etc. as appropriate.
 
-          pathvisiojs.view.pathwayDiagram.svg.node.highlightByLabel(results.preload.svg, results.pathway, nodeLabel);
+          pathvisiojs.view.pathwayDiagram.svg.shapeContainer.highlightByLabel(results.preload.svg, results.pathway, nodeLabel);
         }
       });
 

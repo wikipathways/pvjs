@@ -1,6 +1,6 @@
 // Draw nodes. Includes data nodes, shapes, labels, cellular components...
 
-pathvisiojs.view.pathwayDiagram.svg.node = function(){
+pathvisiojs.view.pathwayDiagram.svg.shapeContainer = function(){
   
   var pathwayHere, uniformlyScalingShapesListHere;
 
@@ -39,64 +39,24 @@ pathvisiojs.view.pathwayDiagram.svg.node = function(){
     pathvisiojs.view.pathwayDiagram.svg.render(args, function(){console.log('rendered after drag');});
   }
 
-  function renderAll(viewport, pathway, uniformlyScalingShapesList) {
-    if (!viewport || !pathway) {
-      if (!viewport) {
-        console.log('viewport');
-      }
-      if (!pathway) {
-        console.log('pathway');
-      }
-      return console.warn('Error: Missing one or more required parameters: viewport, pathway.');
-    }
-
-    pathwayHere = pathway;
-    uniformlyScalingShapesListHere = uniformlyScalingShapesList;
+  function render(shapeContainer, organism) {
+    console.log('shapeContainer');
+    console.log(shapeContainer);
     var drag = d3.behavior.drag()
       .origin(Object)
       .on("drag", dragmove);
 
-    // Update… 
-    var nodes = viewport.selectAll("g.node")
-    .data(function(d) {
-      console.log('d');
+    shapeContainer.attr("id", function (d) { return 'shape-container-' + d.GraphId; })
+    .attr('class', 'shapeContainer')
+    .attr('transform', function(d) {return 'translate(' + (d['CenterX'] - d['Width']/2) + ' ' + (d['CenterY'] - d['Height']/2) + ')';})
+    .on("click", function(d,i) {
+      console.log('clicked a data shape-container');
       console.log(d);
-      return d.DataNode
-    })
-    .attr("id", function (d) { return 'node-' + d["@id"]; })
-    .attr('class', 'node')
-    .attr('transform', function(d) {return 'translate(' + (d['CenterX'] - d['Width']/2) + ' ' + (d['CenterY'] - d['Height']/2) + ')';})
-    .on("click", function(d,i) {
-      console.log('clicked a data node');
-        // only for data nodes
-        console.log(pathway);
-        console.log(pathway['organism']);
-        pathvisiojs.view.annotation.xRef.render(pathway['organism'], d.xRef['@id'], d.xRef.database, d.textLabel.text, d.dataNodeType);
+      self.item = d;
+      // only for data nodes
+      pathvisiojs.view.annotation.xRef.render(organism, d['DatasourceReference'].ID, d['DatasourceReference'].Database, d.TextLabel.tspan.join(' '), d.dataNodeType);
     })
     .call(drag)
-
-    // Enter…
-    nodes.enter().append("g")
-    .attr("id", function (d) { return 'node-' + d["@id"]; })
-    .attr('class', 'node')
-    .attr('transform', function(d) {return 'translate(' + (d['CenterX'] - d['Width']/2) + ' ' + (d['CenterY'] - d['Height']/2) + ')';})
-    .on("click", function(d,i) {
-      console.log('clicked a data node');
-        // only for data nodes
-        console.log(pathway);
-        console.log(pathway['organism']);
-        pathvisiojs.view.annotation.xRef.render(pathway['organism'], d.xRef['@id'], d.xRef.database, d.textLabel.text, d.dataNodeType);
-    })
-    .call(drag)
-
-    // Exit…
-    nodes.exit().remove();
-
-    // Shapes
-    pathvisiojs.view.pathwayDiagram.svg.node.shape.render(nodes, pathway, uniformlyScalingShapesList);
-
-    // Labels
-    pathvisiojs.view.pathwayDiagram.svg.node.label.renderAll(nodes, pathway);
   }
 
   function getPortCoordinates(boxDimensions, relX, relY) {
@@ -124,7 +84,7 @@ pathvisiojs.view.pathwayDiagram.svg.node = function(){
   }
 
   return {
-    renderAll:renderAll,
+    render:render,
     getPortCoordinates:getPortCoordinates,
     highlightByLabel:highlightByLabel
   };
