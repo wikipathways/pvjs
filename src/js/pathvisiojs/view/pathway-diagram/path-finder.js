@@ -27,10 +27,10 @@ pathvisiojs.view.pathwayDiagram.pathFinder = function(){
       Math.min(shape1.Height, shape1.Width) - Math.min(shape2.Height, shape2.Width);
     })[0][0];
     pathvisioNS.grid.squareLength = Math.min(shapes[0].Height, shapes[0].Width) / 7;
-    var totalColumnCount = self.totalColumnCount = Math.ceil(pathwayImageWidth/pathvisioNS.grid.squareLength);
-    var totalRowCount = self.totalRowCount = Math.ceil(pathwayImageHeight/pathvisioNS.grid.squareLength);
+    var totalColumnCount = Math.ceil(pathwayImageWidth/pathvisioNS.grid.squareLength);
+    var totalRowCount = Math.ceil(pathwayImageHeight/pathvisioNS.grid.squareLength);
 
-    var paddedMatrix = self.paddedMatrix = [];
+    var paddedMatrix = [];
     pathvisioNS.grid.gridRenderingData = [];
 
     // remember zero-based indexing means we want to go from 0 to totalRowCount - 1
@@ -54,10 +54,10 @@ pathvisiojs.view.pathwayDiagram.pathFinder = function(){
       upperLeftCorner = xYCoordinatesToMatrixLocation(shape.x, shape.y, pathvisioNS.grid.squareLength);
       lowerRightCorner = xYCoordinatesToMatrixLocation(shape.x + shape.Width, shape.y + shape.Height, pathvisioNS.grid.squareLength);
 
-      columnStartTight = self.columnStartTight = Math.max((upperLeftCorner.column), 0);
-      columnEndTight = self.columnEndTight = Math.min((lowerRightCorner.column), totalColumnCount - 1);
-      rowStartTight = self.rowStartTight = Math.max((upperLeftCorner.row), 0);
-      rowEndTight = self.rowEndTight = Math.min((lowerRightCorner.row), totalRowCount - 1);
+      columnStartTight = Math.max((upperLeftCorner.column), 0);
+      columnEndTight = Math.min((lowerRightCorner.column), totalColumnCount - 1);
+      rowStartTight = Math.max((upperLeftCorner.row), 0);
+      rowEndTight = Math.min((lowerRightCorner.row), totalRowCount - 1);
 
       for(var currentRow=rowStartTight; currentRow<rowEndTight + 1; currentRow++) {
         for(var currentColumn=columnStartTight; currentColumn<columnEndTight + 1; currentColumn++) {
@@ -65,10 +65,10 @@ pathvisiojs.view.pathwayDiagram.pathFinder = function(){
         }
       }
 
-      columnStart = self.columnStart = Math.max((upperLeftCorner.column - 5), 0);
-      columnEnd = self.columnEnd = Math.min((lowerRightCorner.column + 5), totalColumnCount - 1);
-      rowStart = self.rowStart = Math.max((upperLeftCorner.row - 5), 0);
-      rowEnd = self.rowEnd = Math.min((lowerRightCorner.row + 5), totalRowCount - 1);
+      columnStart = Math.max((upperLeftCorner.column - 5), 0);
+      columnEnd = Math.min((lowerRightCorner.column + 5), totalColumnCount - 1);
+      rowStart = Math.max((upperLeftCorner.row - 5), 0);
+      rowEnd = Math.min((lowerRightCorner.row + 5), totalRowCount - 1);
 
       for(var currentRow=rowStart; currentRow<rowEnd + 1; currentRow++) {
         for(var currentColumn=columnStart; currentColumn<columnEnd + 1; currentColumn++) {
@@ -143,7 +143,6 @@ pathvisiojs.view.pathwayDiagram.pathFinder = function(){
       }); 
     });
 
-    self.shapes = shapes;
     console.log('anchors');
     console.log(anchors);
 
@@ -188,16 +187,16 @@ pathvisiojs.view.pathwayDiagram.pathFinder = function(){
   }
 
   function getPath(pathway, edge, callbackOutside) {
-    var workingGrid = self.workingGrid = pathvisioNS.grid.paddedGrid.clone();
-    var finder = self.finder = new PF.BiBreadthFirstFinder({
+    var workingGrid = pathvisioNS.grid.paddedGrid.clone();
+    var finder = new PF.BiBreadthFirstFinder({
       allowDiagonal: false,
       dontCrossCorners: true
     });
     var points = edge.points;
     var pointStart = points[0];
     var pointEnd = points[points.length - 1];
-    startLocation = self.startLocation = xYCoordinatesToMatrixLocation(pointStart.x, pointStart.y);
-    endLocation = self.endLocation = xYCoordinatesToMatrixLocation(pointEnd.x, pointEnd.y);
+    startLocation = xYCoordinatesToMatrixLocation(pointStart.x, pointStart.y);
+    endLocation = xYCoordinatesToMatrixLocation(pointEnd.x, pointEnd.y);
     var pathData;
     async.series([
       function(callback){
@@ -211,7 +210,7 @@ pathvisiojs.view.pathwayDiagram.pathFinder = function(){
       },
       function(callback){
         if (pathData.length < 3) {
-          workingGrid = self.workingGrid = pathvisioNS.grid.tightGrid.clone();
+          workingGrid = pathvisioNS.grid.tightGrid.clone();
           runPathFinder(pathway, edge, workingGrid, finder, points, pointStart, pointEnd, startLocation, endLocation, function(data) {
             pathData = data;
             console.log('tight');
@@ -226,7 +225,7 @@ pathvisiojs.view.pathwayDiagram.pathFinder = function(){
       },
       function(callback){
         if (pathData.length < 3) {
-          workingGrid = self.workingGrid = pathvisioNS.grid.emptyGrid.clone();
+          workingGrid = pathvisioNS.grid.emptyGrid.clone();
           runPathFinder(pathway, edge, workingGrid, finder, points, pointStart, pointEnd, startLocation, endLocation, function(data) {
             pathData = data;
             console.log('empty');
@@ -256,7 +255,7 @@ pathvisiojs.view.pathwayDiagram.pathFinder = function(){
      * Get blockyPath
      */
 
-    var blockyPath = self.blockyPath = finder.findPath(startLocation.column, startLocation.row, endLocation.column, endLocation.row, workingGrid);
+    var blockyPath = finder.findPath(startLocation.column, startLocation.row, endLocation.column, endLocation.row, workingGrid);
     console.log('blockyPath');
     console.log(blockyPath);
 
@@ -270,7 +269,7 @@ pathvisiojs.view.pathwayDiagram.pathFinder = function(){
      */
     // compress path data and extract points
 
-    var compressedMidpoints = self.compressedMidpoints = [];
+    var compressedMidpoints = [];
     var index = 0;
     if (blockyPath.length > 3) {
       do {
@@ -291,7 +290,7 @@ pathvisiojs.view.pathwayDiagram.pathFinder = function(){
      * Get fullXYPath
      */
 
-    var fullXYPath = self.fullXYPath = [];
+    var fullXYPath = [];
 
     compressedMidpoints.forEach(function(element, index) {
       fullXYPath.push({
@@ -307,7 +306,7 @@ pathvisiojs.view.pathwayDiagram.pathFinder = function(){
      * Get smootherPath
      */
 
-    var smootherPath = self.smootherPath = [];
+    var smootherPath = [];
     index = 0;
     if (fullXYPath.length > 2) {
       do {
