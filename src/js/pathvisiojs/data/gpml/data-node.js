@@ -1,32 +1,38 @@
 pathvisiojs.data.gpml.dataNode = function() {
 
   function toRenderableJson(gpmlDataNode, pathwayIri, callbackInside) {
-    self.gpmlDataNode = gpmlDataNode;
-    var jsonDataNode = {};
-
     try {
+      var jsonDataNode = {};
       graphId = gpmlDataNode.attr('GraphId') || ('id' + uuid.v4());
-      elementIri = pathwayIri + "#" + graphId;
-      jsonDataNode = {};
-      jsonDataNode["@id"] = elementIri;
+      jsonDataNode["@id"] = pathwayIri + "#" + graphId;
       jsonDataNode["GraphId"] = graphId;
-      jsonDataNode["DatasourceReference"] = {};
-      jsonDataNode["DatasourceReference"]["Database"] = gpmlDataNode.select('Xref').attr('Database');
-      jsonDataNode["DatasourceReference"]["ID"] = gpmlDataNode.select('Xref').attr('ID')
+      var groupRef = gpmlDataNode.attr('GroupRef');
+      if (!!groupRef) {
+        jsonDataNode["GroupRef"] = groupRef;
+        jsonDataNode["dependsOn"] = [pathwayIri + "#" + groupRef];
+      }
+      var datasourceReference = gpmlDataNode.select('Xref');
+      if (!!datasourceReference && datasourceReference.length > 0) {
+        jsonDataNode["DatasourceReference"] = {};
+        jsonDataNode["DatasourceReference"]["Database"] = datasourceReference.attr('Database');
+        jsonDataNode["DatasourceReference"]["ID"] = datasourceReference.attr('ID')
+      }
       shapeType = gpmlDataNode.select('Graphics').attr('ShapeType') || 'rectangle';
       shapeType = strcase.paramCase(shapeType);
       jsonDataNode["ShapeType"] = shapeType;
       dataNodeType = gpmlDataNode.attr('Type');
       jsonDataNode["dataNodeType"] = dataNodeType;
       jsonDataNode["@type"] = [
-        "Shape",
+        "element",
+        "node",
+        "entityNode",
         shapeType,
         "DataNode",
-        dataNodeType
+        dataNodeType,
+        groupRef || 'notGrouped'
       ];
       var textLabel = {};
       textLabel.tspan = gpmlDataNode.attr('TextLabel').split(/\r\n|\r|\n|&#xA;/g);
-      //textLabel.lines = gpmlDataNode.attr('TextLabel').split(/\r\n|\r|\n|&#xA;/g);
       jsonDataNode["TextLabel"] = textLabel;
       jsonDataNode["CenterX"] = gpmlDataNode.select('Graphics').attr('CenterX');
       jsonDataNode["CenterY"] = gpmlDataNode.select('Graphics').attr('CenterY');
@@ -41,7 +47,7 @@ pathvisiojs.data.gpml.dataNode = function() {
       callbackInside(jsonDataNode);
     }
     catch (e) {
-      console.log("Error converting data node to renderable json: " + e.message);
+      throw new Error("Error converting DataNode to renderable json: " + e.message);
     }
   }
 

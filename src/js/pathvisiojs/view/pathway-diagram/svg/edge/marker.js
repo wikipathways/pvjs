@@ -9,8 +9,10 @@ pathvisiojs.view.pathwayDiagram.svg.edge.marker = function(){
   var svgHere;
 
   function appendCustom(customMarker, callback) {
+    /*
     console.log('customMarker');
     console.log(customMarker);
+    //*/
     if (1===1) {
       d3.xml(customMarker.url, 'image/svg+xml', function(svgXml) {
 

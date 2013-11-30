@@ -1,8 +1,63 @@
 pathvisiojs.view.pathwayDiagram.svg = function(){
 
-  var svg, pathway, shapesAvailable, markersAvailable;
+  var svg, shapesAvailable, markersAvailable;
 
   var context = {
+    "@vocab":"http://vocabularies.wikipathways.org/gpml#",
+    "gpml":"http://vocabularies.wikipathways.org/gpml#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "wp":"http://vocabularies.wikipathways.org/wp#",
+    "biopax": "http://www.biopax.org/release/biopax-level3.owl#",
+    "schema":"http://schema.org/",
+    "hMDB":"http://www.hmdb.ca/metabolites/HMDB",
+    "entrezGene":"http://www.ncbi.nlm.nih.gov/gene/",
+    "ChEBI":"http://www.ebi.ac.uk/chebi/searchId.do?chebiId=",
+    "media":"http://www.w3.org/TR/mediaont-10/",
+    "ex":"http://www.example.com/",
+    "gpmlFolder":"file://Users/andersriutta/Sites/pathvisiojs/test/gpml/",
+    "name":"http://xmlns.com/foaf/0.1/name",
+    "dcterms":"http://purl.org/dc/terms/",
+    "DatasourceReference": "wp:DatasourceReference",
+    "Pathway": "biopax:Pathway",
+    "shapeLibrary": "http://shapelibrary.example.org/",
+    "shapeName": "shapeLibrary:shapeName",
+    "image": "schema:image",
+    "dataNodeType": "gpml:Type",
+    "author": "schema:author",
+    "organism": "biopax:organism",
+    "tspan": {
+      "@id": "http://www.w3.org/TR/SVG/text.html#TSpanElement",
+      "@container": "@set"
+    },
+    "pathwayElements": {
+      "@id": "ex:pathwayElements/",
+      "@container": "@list"
+    },
+    "dependencies": {
+      "@id": "ex:dependencies",
+      "@type": "@id"
+    },
+    "dependsOn": {
+      "@reverse": "ex:dependencies",
+      "@type": "@id"
+    },
+    "InteractionGraph": {
+      "@id": "ex:InteractionGraph",
+      "@type": "@id"
+    },
+    "interactsWith": "ex:interactsWith",
+    "Interaction": {
+      "@id": "biopax:Interaction",
+      "@type": "@id",
+      "InteractsWith":"xsd:string"
+    },
+    "Point": {
+      "@id": "gpml:Point",
+      "@container": "@list"
+    }
+  };
+
+  var contextLevelInput = {
       "@vocab":"http://vocabularies.wikipathways.org/gpml#",
       "gpml":"http://vocabularies.wikipathways.org/gpml#",
       "xsd": "http://www.w3.org/2001/XMLSchema#",
@@ -33,8 +88,9 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
         "@id": "ex:pathwayElements/",
         "@container": "@list"
       },
+      "dependsOn": "ex:dependsOn",
       "hasReference": {
-        "@type": "ex:hasReference",
+        "@id": "ex:hasReference",
         "@type": "@id"
       },
       "ex:IsReferencedBy": { "@reverse": "ex:hasReference" },
@@ -60,30 +116,14 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
   }
 
   function load(args, callback) {
-    if (!args) {
-      if (!args.svg) {
-        return console.warn('Missing svg.');
-      }
-      if (!args.pathway) {
-        return console.warn('Missing pathway.');
-      }
-      return console.warn('Missing required input parameter.');
+    if (!args.svg) {
+      throw new Error("Missing svg.");
+    }
+    if (!args.pathway) {
+      throw new Error("Missing pathway.");
     }
     var svg = args.svg;
     async.series([
-      function(callback) {
-        pathvisioNS.grid = {};
-        var frame = {
-          '@context': context,
-          '@type': 'Shape'
-        };  
-        jsonld.frame(args.pathway, frame, function(err, framedData) {
-          self.framedData = framedData;
-          pathvisiojs.view.pathwayDiagram.pathFinder.generateGridData(framedData['@graph'], args.pathway.image.width, args.pathway.image.height, function() {
-            callback(null);
-          });
-        });
-      },
       function(callback){
         // TODO get SVG from where it was already defined
         svg = d3.select('body').select('#pathway-svg')
@@ -93,8 +133,7 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
         })
       },
       function(callback) {
-        var svgDimensions = self.svgDimensions = pathvisiojs.view.pathwayDiagram.fitElementWithinContainer(args.target, results.pathway.image.width, results.pathway.image.height, args.preserveAspectRatio);
-        self.svgDimensions = svgDimensions;
+        var svgDimensions = pathvisiojs.view.pathwayDiagram.fitElementWithinContainer(args.target, args.pathway.image.width, args.pathway.image.height, args.preserveAspectRatio);
         d3.select('#loading-icon').remove();
 
         var initialClickHappened = false;
@@ -172,8 +211,6 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
       },
       function(callback) {
         if (!!args.customMarkers) {
-          console.log('args.customMarkers');
-          console.log(args.customMarkers);
           pathvisiojs.view.pathwayDiagram.svg.edge.marker.loadAllCustom(svg, args.customMarkers, function() {
             callback(null);
           })
@@ -183,8 +220,6 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
         }
       },
       function(callback) {
-        console.log('args.customShapes');
-        console.log(args.customShapes);
         if (!!args.customShapes) {
           pathvisiojs.view.pathwayDiagram.svg.symbol.loadAllCustom(svg, args.customShapes, function() {
             callback(null);
@@ -220,21 +255,88 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
   }
 
   function render(args, callback){
-    if (!args) {
-      if (!args.svg) {
-        console.warn('Error: No svg specified.');
-        return 'Error';
+    if (!args.svg) {
+      throw new Error("No svg specified.");
+    }
+    if (!args.pathway) {
+      throw new Error("No data entered to render.");
+    }
+    if (!args.allSymbolNames) {
+      throw new Error("No allSymbolNames (list of symbols in this diagram) specified.");
+    }
+
+    async.parallel({
+      'hierarchicalData': function(callbackInside) {
+        self.pathway = args.pathway;
+        var frame = {
+          '@context': context,
+          '@type': 'element'
+        };  
+        jsonld.frame(args.pathway, frame, function(err, hierarchicalData) {
+          console.log('hierarchicalData');
+          console.log(hierarchicalData);
+          callbackInside(null, hierarchicalData);
+        });
+      },
+      'grid': function(callbackInside) {
+        pathvisioNS.grid = {};
+        var frame = {
+          '@context': context,
+          '@type': 'entityNode'
+        };  
+        jsonld.frame(args.pathway, frame, function(err, framedData) {
+          console.log('framedData');
+          console.log(framedData);
+          pathvisiojs.view.pathwayDiagram.pathFinder.generateGridData(framedData['@graph'], args.pathway.image.width, args.pathway.image.height, function() {
+            callbackInside(null);
+          });
+        });
+      },
+      'topLevelData': function(callbackInside) {
+        var inputTopLevel = pathvisiojs.utilities.clone(args.pathway);
+        inputTopLevel['@context'] = contextLevelInput;
+        console.log('inputTopLevel');
+        console.log(inputTopLevel);
+        var topLevelFrame = {
+          "@context": contextLevelInput,
+          "@type":"element",
+          "dependsOn": {}        
+        };
+        jsonld.frame(inputTopLevel, topLevelFrame, function(err, framedDataTopLevel) {
+          var topLevelData = [];
+          framedDataTopLevel['@graph'].forEach(function(element) {
+            if (!element.dependsOn) {
+              topLevelData.push(element['@id']);
+            }
+          });
+          console.log('topLevelData');
+          console.log(topLevelData);
+          callbackInside(null, topLevelData);
+        });
       }
-      if (!args.pathway) {
-        console.warn('Error: No data entered as input.');
-        return 'Error';
-      }
-      if (!args.allSymbolNames) {
-        console.warn('Error: No allSymbolNames specified.');
-        return 'Error';
-      }
-      console.warn('Error: Missing required input.');
-      return 'Error';
+    },
+    function(err, results) {
+      self.results = results;
+      var resultsData = results.hierarchicalData['@graph'].filter(function(element) {
+        return (results.topLevelData.indexOf(element['@id']) > -1);
+      });
+      console.log('resultsData');
+      console.log(resultsData);
+      renderHierarchySiblings(args, function(svg) {
+        callback(svg);
+      })
+    })
+  }
+
+  function renderHierarchySiblings(args, callback){
+    if (!args.svg) {
+      throw new Error("No svg specified.");
+    }
+    if (!args.pathway) {
+      throw new Error("No data entered to render.");
+    }
+    if (!args.allSymbolNames) {
+      throw new Error("No allSymbolNames (list of symbols in this diagram) specified.");
     }
 
     var drag = d3.behavior.drag()
@@ -277,12 +379,6 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
     // Exit…
     viewport.exit().remove();
 
-    console.log('viewport');
-    console.log(viewport);
-
-    console.log('args');
-    console.log(args);
-
 
           /*
           "@vocab": "http://vocabularies.wikipathways.org/gpml#",
@@ -309,7 +405,6 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
         };  
         jsonld.frame(args.pathway, frame, function(err, framedData) {
           callbackInside(err, framedData);
-          //callback(err, framedData); // should I use this one instead?
         });
       }
     ],
@@ -354,7 +449,7 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
 
     async.series([
       function(callbackInside){
-        var frame = self.frame = {
+        var frame = {
           "@context": context,
           "@type": "SvgPath"
         };  
@@ -365,7 +460,6 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
       }
     ],
     function(err, results) {
-        //self.results = results;
         console.log('results[0][@graph]');
         console.log(results[0]['@graph']);
         // Update… 
