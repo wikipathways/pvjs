@@ -278,6 +278,17 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
           callbackInside(null, hierarchicalData);
         });
       },
+      'groupData': function(callbackInside) {
+        var frame = {
+          '@context': context,
+          '@type': 'a351d'
+        };  
+        jsonld.frame(args.pathway, frame, function(err, groupData) {
+          console.log('groupData');
+          console.log(groupData);
+          callbackInside(null, groupData);
+        });
+      },
       'grid': function(callbackInside) {
         pathvisioNS.grid = {};
         var frame = {
