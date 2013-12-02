@@ -14,14 +14,16 @@ pathvisiojs.data.gpml.group = function() {
       shapeType = groupType = gpmlGroup.attr('Style') || 'rectangle';
       shapeType = strcase.paramCase(shapeType);
       jsonGroup["ShapeType"] = shapeType;
+      jsonGroup["zIndex"] = 0;
+      //jsonGroup["ZIndex"] = gpmlGroup.selectAll('Graphics').attr('ZOrder');
+      jsonGroup["renderableType"] = 'Group';
       jsonGroup["groupType"] = groupType;
       jsonGroup["@type"] = [
         "element",
         "node",
         shapeType,
         "Group",
-        groupType,
-        groupId
+        groupType
       ];
       var textLabel = {};
       var text = gpmlGroup.attr('TextLabel');

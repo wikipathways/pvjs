@@ -58,6 +58,11 @@ pathvisiojs.data.gpml = function(){
               "gpmlFolder":"file://Users/andersriutta/Sites/pathvisiojs/test/gpml/",
               "name":"http://xmlns.com/foaf/0.1/name",
               "dcterms":"http://purl.org/dc/terms/",
+              "css":"http://www.w3.org/TR/CSS2/visuren.html#",
+              "zIndex": {
+                "@id": "css:z-index",
+                "@type": "xsd:integer"
+              },
               "DatasourceReference": "wp:DatasourceReference",
               "Pathway": "biopax:Pathway",
               "shapeLibrary": "http://shapelibrary.example.org/",
@@ -148,6 +153,8 @@ pathvisiojs.data.gpml = function(){
                   parents.push(pathwayIri + "#" + groupRef);
                 }
 
+                jsonInteraction["zIndex"] = parseFloat(gpmlInteraction.select('Graphics').attr('ZOrder'));
+                jsonInteraction["renderableType"] = 'edge';
                 points = gpmlInteraction.selectAll('Point');
                 jsonInteraction["@type"] = [
                   "element",
