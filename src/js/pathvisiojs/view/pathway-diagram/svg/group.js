@@ -1,4 +1,47 @@
 pathvisiojs.view.pathwayDiagram.svg.group = function(){
+  function render(viewport, groupData) {
+    console.log('groupData');
+    console.log(groupData);
+    if (!viewport) {
+      throw new Error('Error: Missing viewport.');
+    }
+    if (!groupData) {
+      throw new Error('Error: Group data missing.');
+    }
+
+    var pathData = null;
+    var groupContainer = viewport.selectAll("#group-" + groupData.GroupId)
+    .data([groupData])
+    .enter()
+    .append("path")
+    .attr("id", function (d) { return 'group-' + d.GroupId;})
+    .attr("class", function(d) { return 'group ' + d.shapeType;})
+    .attr("d", 'M5,5 L20,5 L20,20 Z');
+
+    // We tried using symbols for the group shapes, but this wasn't possible because the symbols scaled uniformly, and the beveled corners of the complex group
+    // are supposed to remain constant in size, regardless of changes in group size.
+
+    /*
+    .attr("d", function(d) {
+      var groupDimensions = getDimensions(pathway, d.groupId);
+      if (d.style === 'none' || d.style === 'Group' || d.style === 'Pathway') {
+        pathData = 'M ' + groupDimensions.x + ' ' + groupDimensions.y + ' L ' + (groupDimensions.x + groupDimensions.width) + ' ' + groupDimensions.y + ' L ' + (groupDimensions.x + groupDimensions.width) + ' ' + (groupDimensions.y + groupDimensions.height) + ' L ' + groupDimensions.x + ' ' + (groupDimensions.y + groupDimensions.height) + ' Z';
+      }
+      else {
+        if (d.style === 'Complex') {
+          pathData = 'M ' + (groupDimensions.x + 20) + ' ' + groupDimensions.y + ' L ' + (groupDimensions.x + groupDimensions.width - 20) + ' ' + groupDimensions.y + ' L ' + (groupDimensions.x + groupDimensions.width) + ' ' + (groupDimensions.y + 20) + ' L ' + (groupDimensions.x + groupDimensions.width) + ' ' + (groupDimensions.y + groupDimensions.height - 20) + ' L ' + (groupDimensions.x + groupDimensions.width - 20) + ' ' + (groupDimensions.y + groupDimensions.height) + ' L ' + (groupDimensions.x + 20) + ' ' + (groupDimensions.y + groupDimensions.height) + ' L ' + (groupDimensions.x) + ' ' + (groupDimensions.y + groupDimensions.height - 20) + ' L ' + (groupDimensions.x) + ' ' + (groupDimensions.y + 20) + ' Z';
+        }
+        else {
+          pathData = 'M ' + groupDimensions.x + ' ' + groupDimensions.y + ' L ' + (groupDimensions.x + groupDimensions.width) + ' ' + groupDimensions.y + ' L ' + (groupDimensions.x + groupDimensions.width) + ' ' + (groupDimensions.y + groupDimensions.height) + ' L ' + groupDimensions.x + ' ' + (groupDimensions.y + groupDimensions.height) + ' Z';
+        }
+      }
+      return pathData;
+    });
+    //.call(drag);
+    //*/
+  }
+
+
   function renderAll(svg, pathway) {
     if (!svg || !pathway) {
       return console.warn('Error: Missing input parameters.');
@@ -61,6 +104,7 @@ pathvisiojs.view.pathwayDiagram.svg.group = function(){
  
   return {
     renderAll:renderAll,
+    render:render,
     getDimensions:getDimensions
   };
 }();
