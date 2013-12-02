@@ -2,33 +2,40 @@
 <Pathway xmlns="http://pathvisio.org/GPML/2013a" Name="New Pathway" Version="20131128">
   <Graphics BoardWidth="645.483870967742" BoardHeight="452.58064516129036" />
   <DataNode TextLabel="GeneProduct&#xA;in group" GraphId="ab39a" Type="GeneProduct" GroupRef="a351d">
-    <Graphics CenterX="69.15421045855808" CenterY="95.35088295957888" Width="80.0" Height="33.968784838350054" ZOrder="32768" FontSize="10" Valign="Middle" ShapeType="Oval" />
+    <Graphics CenterX="139.1787804831281" CenterY="87.97987558857162" Width="80.0" Height="33.968784838350054" ZOrder="32768" FontSize="10" Valign="Middle" ShapeType="Oval" />
     <Xref Database="" ID="" />
   </DataNode>
   <DataNode TextLabel="attached to anchor" GraphId="a4d32" Type="GeneProduct">
-    <Graphics CenterX="132.67380484771786" CenterY="268.1159420289855" Width="105.65976131193523" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Graphics CenterX="229.1111512850652" CenterY="300.0569739700179" Width="105.65976131193523" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
     <Xref Database="" ID="" />
   </DataNode>
   <Interaction GroupRef="a351d">
     <Graphics ZOrder="12288" LineThickness="1.0">
-      <Point X="440.41769041769044" Y="134.52088452088452" />
-      <Point X="109.15421045855808" Y="95.35088295957888" GraphRef="ab39a" RelX="1.0" RelY="0.0" ArrowHead="Arrow" />
-      <Anchor Position="0.24537912553458885" Shape="Circle" GraphId="d027d" />
+      <Point X="406.019656019656" Y="163.39066339066343" />
+      <Point X="179.1787804831281" Y="87.97987558857162" GraphRef="ab39a" RelX="1.0" RelY="0.0" ArrowHead="Arrow" />
+      <Anchor Position="0.8765283343587246" Shape="Circle" GraphId="d027d" />
     </Graphics>
     <Xref Database="" ID="" />
   </Interaction>
   <Interaction>
     <Graphics ZOrder="12288" LineThickness="1.0">
-      <Point X="132.67380484771786" Y="258.1159420289855" GraphRef="a4d32" RelX="0.0" RelY="-1.0" />
-      <Point X="359.1325473837737" Y="124.90938379058287" GraphRef="d027d" RelX="0.0" RelY="0.0" ArrowHead="Arrow" />
+      <Point X="229.11115128506523" Y="290.0569739700179" GraphRef="a4d32" RelX="0.0" RelY="-1.0" />
+      <Point X="207.18720122114846" Y="97.29097116581667" GraphRef="d027d" RelX="0.0" RelY="0.0" ArrowHead="Arrow" />
       <Anchor Position="0.4" Shape="None" GraphId="b4d12" />
     </Graphics>
     <Xref Database="" ID="" />
   </Interaction>
   <Interaction>
     <Graphics ZOrder="12288" LineThickness="1.0">
-      <Point X="223.2573018621402" Y="204.83331873362445" GraphRef="b4d12" RelX="0.0" RelY="0.0" />
-      <Point X="127.97008044834118" Y="142.52088452088452" GraphRef="ca5f8" RelX="-0.5" RelY="1.0" ArrowHead="Arrow" />
+      <Point X="220.34157125949852" Y="212.9505728483374" GraphRef="b4d12" RelX="0.0" RelY="0.0" />
+      <Point X="171.88899936726006" Y="171.39066339066343" GraphRef="ca5f8" RelX="-0.5" RelY="1.0" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction>
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="252.59921825139205" Y="171.39066339066343" GraphRef="ca5f8" RelX="0.0" RelY="1.0" />
+      <Point X="207.18720122114846" Y="97.29097116581667" GraphRef="d027d" RelX="0.0" RelY="0.0" ArrowHead="Arrow" />
     </Graphics>
     <Xref Database="" ID="" />
   </Interaction>
