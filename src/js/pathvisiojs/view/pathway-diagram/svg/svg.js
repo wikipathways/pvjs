@@ -396,10 +396,13 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
       args.data = results.firstRoundData;
       quickRenderMultipleElements(args, function() {
         console.log('hello');
+        callback(svg);
       });
+      /*
       renderHierarchySiblings(args, function(svg) {
         callback(svg);
       })
+      //*/
     })
   }
 
@@ -570,13 +573,13 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
         var useElementsContainers = viewport.selectAll('g.shape')
         .data(results[0]['@graph'])
         .call(function(selection) {
-          pathvisiojs.view.pathwayDiagram.svg.shapeContainer.render(selection, args.pathway.organism)
+          pathvisiojs.view.pathwayDiagram.svg.nodeContainer.render(selection, args.pathway.organism)
         });
 
         // Enter…
         useElementsContainers.enter().append("g")
         .call(function(selection) {
-          pathvisiojs.view.pathwayDiagram.svg.shapeContainer.render(selection, args.pathway.organism)
+          pathvisiojs.view.pathwayDiagram.svg.nodeContainer.render(selection, args.pathway.organism)
         });
 
         // Exit…

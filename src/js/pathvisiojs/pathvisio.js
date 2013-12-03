@@ -144,7 +144,7 @@ pathvisiojs = function(){
           console.warn('Error: No data node value entered.');
         }
         else {
-          pathvisiojs.view.pathwayDiagram.svg.shapeContainer.highlightByLabel(svg, nodeLabel);
+          pathvisiojs.view.pathwayDiagram.svg.nodeContainer.highlightByLabel(svg, nodeLabel);
         }
       });
 //*/
@@ -161,7 +161,7 @@ pathvisiojs = function(){
           // TODO refactor this so it calls a generic highlightDataNodeByLabel function that can call
           // a highlighter for svg, png, etc. as appropriate.
 
-          pathvisiojs.view.pathwayDiagram.svg.shapeContainer.highlightByLabel(results.preload.svg, results.pathway, nodeLabel);
+          pathvisiojs.view.pathwayDiagram.svg.nodeContainer.highlightByLabel(results.preload.svg, results.pathway, nodeLabel);
         }
       });
 
