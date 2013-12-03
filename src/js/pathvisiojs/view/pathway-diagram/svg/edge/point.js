@@ -202,12 +202,12 @@ pathvisiojs.view.pathwayDiagram.svg.edge.point = function(){
       }
       else {
         if (edgeTerminusRef.type === 'node') {
-          coordinates = pathvisiojs.view.pathwayDiagram.svg.nodeContainer.getPortCoordinates(edgeTerminusRef.element, point.relX, point.relY);
+          coordinates = pathvisiojs.view.pathwayDiagram.svg.node.getPortCoordinates(edgeTerminusRef.element, point.relX, point.relY);
         }
         else {
           if (edgeTerminusRef.type === 'group') {
-            var groupDimensions = pathvisiojs.view.pathwayDiagram.svg.group.getDimensions(pathway, edgeTerminusRef.groupId);
-            coordinates = pathvisiojs.view.pathwayDiagram.svg.nodeContainer.getPortCoordinates(groupDimensions, point.relX, point.relY);
+            var groupDimensions = pathvisiojs.view.pathwayDiagram.svg.node.group.getDimensions(pathway, edgeTerminusRef.groupId);
+            coordinates = pathvisiojs.view.pathwayDiagram.svg.node.getPortCoordinates(groupDimensions, point.relX, point.relY);
           }
           else {
             return 'error';

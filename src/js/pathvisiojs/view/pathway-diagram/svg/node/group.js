@@ -1,4 +1,4 @@
-pathvisiojs.view.pathwayDiagram.svg.group = function(){
+pathvisiojs.view.pathwayDiagram.svg.node.group = function(){
   function render(viewport, groupData, allSymbolNames) {
     console.log('groupData');
     console.log(groupData);
@@ -9,7 +9,7 @@ pathvisiojs.view.pathwayDiagram.svg.group = function(){
       throw new Error('Error: Group data missing.');
     }
 
-    pathvisiojs.view.pathwayDiagram.svg.nodeContainer.render(viewport, groupData, allSymbolNames);
+    pathvisiojs.view.pathwayDiagram.svg.node.render(viewport, groupData, allSymbolNames);
 
 
     /*
