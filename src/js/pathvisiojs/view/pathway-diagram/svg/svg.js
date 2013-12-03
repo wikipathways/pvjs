@@ -264,7 +264,7 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
     });
   }
 
-  function quickRenderMultipleElements(args, callback){
+  function quickRenderMultipleElements(args, callbackOutside){
     if (!args.target) {
       throw new Error("No target specified.");
     }
@@ -288,13 +288,21 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
       function(data, callback) {
         data.forEach(function(element) {
           if (element.renderableType === 'Group') {
-            var groupedElementsFrame = {
-              '@context': context,
-              "@type":element.GroupId
-            };
-            jsonld.frame(args.pathway, groupedElementsFrame, function(err, groupedElementsData) {
-              element.contains = groupedElementsData['@graph'];
-              pathvisiojs.view.pathwayDiagram.svg.node.group.render(args.target, element, args.allSymbolNames);
+            pathvisiojs.view.pathwayDiagram.svg.node.render(args.target, element, args.allSymbolNames, function(groupContainer) {
+              groupContainer.attr("class", function (d) {
+                return 'group group-' + strcase.paramCase(d.ShapeType);
+              })
+
+              var groupedElementsFrame = {
+                '@context': context,
+                "@type":element.GroupId
+              };
+              jsonld.frame(args.pathway, groupedElementsFrame, function(err, groupedElementsData) {
+                args.target = groupContainer;
+                args.data = groupedElementsData['@graph'];
+                pathvisiojs.view.pathwayDiagram.svg.quickRenderMultipleElements(args, function() {
+                });
+              });
             });
           }
           else {
@@ -311,7 +319,7 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
       }
     ],
     function(err, results) {
-      callback(null);
+      callbackOutside(null);
     })
   }
 
@@ -327,6 +335,7 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
     }
 
     async.parallel({
+      /*
       'hierarchicalData': function(callbackInside) {
         self.pathway = args.pathway;
         var frame = {
@@ -337,15 +346,25 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
           callbackInside(null, hierarchicalData);
         });
       },
+      'notGroupedData': function(callbackInside) {
+        var notGroupedFrame = {
+          '@context': context,
+          "@type":"notGrouped"
+        };
+        jsonld.frame(args.pathway, notGroupedFrame, function(err, notGroupedData) {
+          callbackInside(null, notGroupedData['@graph']);
+        });
+      },
       'groupData': function(callbackInside) {
         var frame = {
           '@context': context,
-          '@type': 'a351d'
+          '@type': 'Group'
         };  
         jsonld.frame(args.pathway, frame, function(err, groupData) {
-          callbackInside(null, groupData);
+          callbackInside(null, groupData['@graph']);
         });
       },
+      //*/
       'grid': function(callbackInside) {
         pathvisioNS.grid = {};
         var frame = {
@@ -358,25 +377,43 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
           });
         });
       },
-      'firstRoundData': function(callbackInside) {
-        var firstRoundFrame = {
+      'firstOrderData': function(callbackInside) {
+        var firstOrderFrame = {
           '@context': context,
-          "@type":["notGrouped","Group"]
+          "@type":["notGrouped", "Group"]
         };
-        jsonld.frame(args.pathway, firstRoundFrame, function(err, firstRoundData) {
-          callbackInside(null, firstRoundData['@graph']);
+        jsonld.frame(args.pathway, firstOrderFrame, function(err, firstOrderData) {
+          callbackInside(null, firstOrderData['@graph']);
         });
       }
     },
     function(err, results) {
-      self.results = results;
       args.target = args.svg.select('#viewport');
-      args.data = results.firstRoundData;
+      args.data = results.firstOrderData;
       quickRenderMultipleElements(args, function() {
         callback(svg);
       });
       /*
-      renderHierarchySiblings(args, function(svg) {
+      async.series([
+        function(callbackInside2) {
+          args.target = args.svg.select('#viewport');
+          args.data = results.groupData;
+          quickRenderMultipleElements(args, function() {
+            console.log(1);
+          });
+          callbackInside2(null, svg);
+        },
+        function(callbackInside2) {
+          args.target = args.svg.select('#viewport');
+          args.data = results.notGroupedData;
+          self.args = args;
+          quickRenderMultipleElements(args, function() {
+            console.log(2);
+            callbackInside2(null, svg);
+          });
+        }
+      ],
+      function(err, results) {
         callback(svg);
       })
       //*/
