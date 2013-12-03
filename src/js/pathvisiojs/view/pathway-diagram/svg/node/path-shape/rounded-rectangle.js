@@ -1,4 +1,4 @@
-pathvisiojs.view.pathwayDiagram.svg.pathShape.roundedRectangle = function(){
+pathvisiojs.view.pathwayDiagram.svg.node.pathShape.roundedRectangle = function(){
 
   // Be sure to specify style elements like default fill and stroke color!
   // This can be done in the JSON below, or it can be done via defining a CSS class. If you choose to use a CSS class,

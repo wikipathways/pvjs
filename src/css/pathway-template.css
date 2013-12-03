@@ -44,6 +44,7 @@
 		stroke: gray;
 		stroke-miterlimit: 1;
 		stroke-width: 1px;
+    pointer-events:none;
 	}
 
 	.group:hover {
@@ -75,8 +76,10 @@
 		stroke: black;
 		stroke-dasharray: 0;
 		stroke-miterlimit: 1;
+    pointer-events:auto;
 	}
-	use.data-node:hover {
+	
+  .data-node:hover {
 		cursor:pointer;
 	}
 
