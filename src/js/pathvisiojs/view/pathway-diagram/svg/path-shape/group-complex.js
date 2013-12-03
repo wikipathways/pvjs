@@ -5,6 +5,7 @@ pathvisiojs.view.pathwayDiagram.svg.pathShape.groupComplex = function(){
   // the class name must be the same as the shape name, except in dash case (roundedRectangle would be rounded-rectangle).
   // The CSS file is located at /src/css/pathway-template.css
 
+
   function getAttributes(nodeWidth, nodeHeight) {
       var attributes = [
         {

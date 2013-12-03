@@ -39,13 +39,21 @@ pathvisiojs.view.pathwayDiagram.svg.nodeContainer = function(){
     pathvisiojs.view.pathwayDiagram.svg.render(args, function(){console.log('rendered after drag');});
   }
 
-  function render(nodeContainer, organism) {
-    console.log('nodeContainer');
-    console.log(nodeContainer);
+  //function render(nodeContainer, organism) {
+  function render(parent, data, allSymbolNames) {
+    console.log('data');
+    console.log(data);
     var drag = d3.behavior.drag()
       .origin(Object)
       .on("drag", dragmove);
 
+    var nodeContainer = parent.selectAll('#node-container-' + strcase.paramCase(data['@id']))
+    .data([data])
+    .enter()
+    .append("g")
+    .attr("class", function (d) {
+      return 'group ' + strcase.paramCase(d.ShapeType);
+    })
     nodeContainer.attr("id", function (d) { return 'node-container-' + strcase.paramCase(d['@id']); })
     .attr('transform', function(d) {return 'translate(' + (d['CenterX'] - d['Width']/2) + ' ' + (d['CenterY'] - d['Height']/2) + ')';})
     /*/
@@ -58,6 +66,8 @@ pathvisiojs.view.pathwayDiagram.svg.nodeContainer = function(){
     })
     //*/
     .call(drag)
+
+    pathvisiojs.view.pathwayDiagram.svg.node.render(nodeContainer, data, allSymbolNames);
   }
 
   function getPortCoordinates(boxDimensions, relX, relY) {
