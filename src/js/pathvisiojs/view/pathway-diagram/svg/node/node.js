@@ -1,8 +1,6 @@
-// Draw nodes. Includes data nodes, nodes, labels, cellular components...
+pathvisiojs.view.pathwayDiagram.svg.node = function(){
 
-pathvisiojs.view.pathwayDiagram.svg.nodeContainer = function(){
-  
-  var pathwayHere, uniformlyScalingShapesListHere;
+
 
   function dragmove(d) {
     console.log(d3.event.x);
@@ -41,6 +39,11 @@ pathvisiojs.view.pathwayDiagram.svg.nodeContainer = function(){
 
   //function render(nodeContainer, organism) {
   function render(parent, data, allSymbolNames) {
+
+    /************ 
+     * container
+     * *********/
+
     console.log('data');
     console.log(data);
     var drag = d3.behavior.drag()
@@ -67,7 +70,67 @@ pathvisiojs.view.pathwayDiagram.svg.nodeContainer = function(){
     //*/
     .call(drag)
 
-    pathvisiojs.view.pathwayDiagram.svg.node.render(nodeContainer, data, allSymbolNames);
+    /****************** 
+     * background shape
+     * ***************/
+
+    var shapeType = strcase.camelCase(data.ShapeType);
+    if (allSymbolNames.indexOf(shapeType) > -1) {
+      console.log('We will use an SVG "use" element to render this ' + shapeType);
+      pathvisiojs.view.pathwayDiagram.svg.node.useElement.render(parent, data);
+    }
+    else {
+      console.log('We will use a pathShape to render this ' + shapeType);
+      pathvisiojs.view.pathwayDiagram.svg.node.pathShape.render(parent, data);
+    }
+
+
+
+    /*
+    .attr("class", function (d) {
+      var styleClass = '';
+      if (d.elementType === 'data-node') {
+        styleClass = 'shape ' + d.dataNodeType + ' ' + d.shapeType;
+      }
+      else {
+        styleClass = 'shape ' + d.shapeType;
+      }
+      return styleClass;
+    })
+    //*/
+  }
+
+  function renderAll(nodes, pathway, allSymbolNames) {
+    if (!nodes || !pathway || !allSymbolNames) {
+      console.log(allSymbolNames);
+      if (!nodes) {
+        console.log('nodes not specified');
+      }
+      if (!pathway) {
+        console.log('pathway not specified');
+      }
+      if (!allSymbolNames) {
+        console.log('allSymbolNames not specified');
+      }
+      return console.warn('Error: Missing one or more required parameters: nodes, pathway or allSymbolNames.');
+    }
+
+    var nonuniformlyScalingNodes = nodes.filter(function(d, i) { return allSymbolNames.indexOf(d.shapeType) === -1; });
+
+    // Update… 
+    var nodes = nonuniformlyScalingNodes.selectAll("path.shape")
+    .data(function(d) {
+      return nonuniformlyScalingNodes;
+    })
+    .call(render);
+
+    // Enter…
+    nodes.enter().append("path")
+    .call(render);
+
+    // Exit…
+    nodes.exit().remove();
+
   }
 
   function getPortCoordinates(boxDimensions, relX, relY) {
@@ -93,8 +156,8 @@ pathvisiojs.view.pathwayDiagram.svg.nodeContainer = function(){
       .attr('height', height + 5);
     });
   }
-
   return {
+    renderAll:renderAll,
     render:render,
     getPortCoordinates:getPortCoordinates,
     highlightByLabel:highlightByLabel

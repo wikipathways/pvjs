@@ -1,6 +1,6 @@
 // Draw nodes. Includes data nodes, shapes, labels, cellular components...
 
-pathvisiojs.view.pathwayDiagram.svg.useElement = function(){
+pathvisiojs.view.pathwayDiagram.svg.node.useElement = function(){
   
   var pathwayHere, allSymbolNamesHere;
 

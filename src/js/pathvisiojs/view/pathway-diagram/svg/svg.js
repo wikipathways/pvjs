@@ -305,14 +305,14 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
               console.log('groupedElementsData');
               console.log(groupedElementsData);
               element.contains = groupedElementsData['@graph'];
-              pathvisiojs.view.pathwayDiagram.svg.group.render(args.target, element, args.allSymbolNames);
+              pathvisiojs.view.pathwayDiagram.svg.node.group.render(args.target, element, args.allSymbolNames);
             });
           }
           else {
             if (element.renderableType === 'entityNode') {
               console.log('entityNode');
               console.log(element);
-              pathvisiojs.view.pathwayDiagram.svg.entityNode.render(args.target, element, args.allSymbolNames);
+              pathvisiojs.view.pathwayDiagram.svg.node.entityNode.render(args.target, element, args.allSymbolNames);
             }
             else {
               if (element.renderableType === 'edge') {
@@ -574,13 +574,13 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
         var useElementsContainers = viewport.selectAll('g.shape')
         .data(results[0]['@graph'])
         .call(function(selection) {
-          pathvisiojs.view.pathwayDiagram.svg.nodeContainer.render(selection, args.pathway.organism)
+          pathvisiojs.view.pathwayDiagram.svg.node.render(selection, args.pathway.organism)
         });
 
         // Enter…
         useElementsContainers.enter().append("g")
         .call(function(selection) {
-          pathvisiojs.view.pathwayDiagram.svg.nodeContainer.render(selection, args.pathway.organism)
+          pathvisiojs.view.pathwayDiagram.svg.node.render(selection, args.pathway.organism)
         });
 
         // Exit…
@@ -591,18 +591,18 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
         .data(function(d) {
           return [d];
         })
-        .call(pathvisiojs.view.pathwayDiagram.svg.useElement.render);
+        .call(pathvisiojs.view.pathwayDiagram.svg.node.useElement.render);
 
         // Enter…
         useElements.enter().append("use")
-        .call(pathvisiojs.view.pathwayDiagram.svg.useElement.render);
+        .call(pathvisiojs.view.pathwayDiagram.svg.node.useElement.render);
 
         // Exit…
         useElements.exit().remove();
     });
 
 
-    //pathvisiojs.view.pathwayDiagram.svg.pathShape.renderAll(viewport, pathShapes);
+    //pathvisiojs.view.pathwayDiagram.svg.node.pathShape.renderAll(viewport, pathShapes);
 
     /***********************
     // Path (Edge) Elements
@@ -669,7 +669,7 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
     }
 
     if (pathway.hasOwnProperty('groups')) {
-      pathvisiojs.view.pathwayDiagram.svg.group.renderAll(svg, pathway);
+      pathvisiojs.view.pathwayDiagram.svg.node.group.renderAll(svg, pathway);
     }
 
     if (pathway.hasOwnProperty('edges')) {
