@@ -1,7 +1,4 @@
 pathvisiojs.view.pathwayDiagram.svg.node = function(){
-
-
-
   function dragmove(d) {
     console.log(d3.event.x);
     console.log('d');
@@ -38,7 +35,7 @@ pathvisiojs.view.pathwayDiagram.svg.node = function(){
   }
 
   //function render(nodeContainer, organism) {
-  function render(parent, data, allSymbolNames) {
+  function render(parent, data, allSymbolNames, callback) {
 
     /************ 
      * container
@@ -77,14 +74,14 @@ pathvisiojs.view.pathwayDiagram.svg.node = function(){
     var shapeType = strcase.camelCase(data.ShapeType);
     if (allSymbolNames.indexOf(shapeType) > -1) {
       console.log('We will use an SVG "use" element to render this ' + shapeType);
-      pathvisiojs.view.pathwayDiagram.svg.node.useElement.render(parent, data);
+      pathvisiojs.view.pathwayDiagram.svg.node.useElement.render(nodeContainer, data);
     }
     else {
       console.log('We will use a pathShape to render this ' + shapeType);
-      pathvisiojs.view.pathwayDiagram.svg.node.pathShape.render(parent, data);
+      pathvisiojs.view.pathwayDiagram.svg.node.pathShape.render(nodeContainer, data);
     }
 
-
+    callback(nodeContainer);
 
     /*
     .attr("class", function (d) {

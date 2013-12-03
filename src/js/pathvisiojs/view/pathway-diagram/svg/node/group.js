@@ -9,18 +9,18 @@ pathvisiojs.view.pathwayDiagram.svg.node.group = function(){
       throw new Error('Error: Group data missing.');
     }
 
-    pathvisiojs.view.pathwayDiagram.svg.node.render(viewport, groupData, allSymbolNames);
-
-
-    /*
-    var args = {};
-    args.target = groupContainer;
-    args.data = groupData.contains;
-    args.allSymbolNames = allSymbolNames;
-    pathvisiojs.view.pathwayDiagram.svg.quickRenderMultipleElements(args, function() {
-      console.log('back to draw entityNodes within group')
+    pathvisiojs.view.pathwayDiagram.svg.node.render(viewport, groupData, allSymbolNames, function(groupContainer) {
+      groupContainer.attr("class", function (d) {
+        return 'group group-' + strcase.paramCase(d.ShapeType);
+      })
+      var args = {};
+      args.target = groupContainer;
+      args.data = groupData.contains;
+      args.allSymbolNames = allSymbolNames;
+      pathvisiojs.view.pathwayDiagram.svg.quickRenderMultipleElements(args, function() {
+        console.log('back to draw entityNodes within group')
+      });
     });
-    //*/
 
 
     // We tried using symbols for the group shapes, but this wasn't possible because the symbols scaled uniformly, and the beveled corners of the complex group
