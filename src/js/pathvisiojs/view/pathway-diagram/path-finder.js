@@ -22,16 +22,13 @@ pathvisiojs.view.pathwayDiagram.pathFinder = function(){
     return results;
   }
 
-  function generateGridData(pathway, callback) {
-    var nodes = pathway.elements.filter(function(element) {
-      return element.renderableType === 'node';
-    });
-    nodes = d3.select(nodes).sort(function(node1, node2) {
-      Math.min(node1.height, node1.width) - Math.min(node2.height, node2.width);
-    });
-    pathvisioNS.grid.squareLength = Math.min(nodes[0][0][0].height, nodes[0][0][0].width) / 7;
-    var totalColumnCount = self.totalColumnCount = Math.ceil(pathway.image.width/pathvisioNS.grid.squareLength);
-    var totalRowCount = self.totalRowCount = Math.ceil(pathway.image.height/pathvisioNS.grid.squareLength);
+  function generateGridData(shapes, pathwayImageWidth, pathwayImageHeight, callback) {
+    shapes = d3.select(shapes).sort(function(shape1, shape2) {
+      Math.min(shape1.Height, shape1.Width) - Math.min(shape2.Height, shape2.Width);
+    })[0][0];
+    pathvisioNS.grid.squareLength = Math.min(shapes[0].Height, shapes[0].Width) / 7;
+    var totalColumnCount = self.totalColumnCount = Math.ceil(pathwayImageWidth/pathvisioNS.grid.squareLength);
+    var totalRowCount = self.totalRowCount = Math.ceil(pathwayImageHeight/pathvisioNS.grid.squareLength);
 
     var paddedMatrix = self.paddedMatrix = [];
     pathvisioNS.grid.gridRenderingData = [];
@@ -50,12 +47,12 @@ pathvisiojs.view.pathwayDiagram.pathFinder = function(){
     var tightMatrix, emptyMatrix;
     emptyMatrix = tightMatrix = paddedMatrix;
 
-    // mark off no-go non-walkable regions for path finder (regions under nodes)
+    // mark off no-go non-walkable regions for path finder (regions under shapes)
 
     var upperLeftCorner, lowerRightCorner, rowStart, rowEnd, columnStart, columnEnd;
-    nodes[0][0].forEach(function(node) {
-      upperLeftCorner = xYCoordinatesToMatrixLocation(node.x, node.y, pathvisioNS.grid.squareLength);
-      lowerRightCorner = xYCoordinatesToMatrixLocation(node.x + node.width, node.y + node.height, pathvisioNS.grid.squareLength);
+    shapes.forEach(function(shape) {
+      upperLeftCorner = xYCoordinatesToMatrixLocation(shape.x, shape.y, pathvisioNS.grid.squareLength);
+      lowerRightCorner = xYCoordinatesToMatrixLocation(shape.x + shape.Width, shape.y + shape.Height, pathvisioNS.grid.squareLength);
 
       columnStartTight = self.columnStartTight = Math.max((upperLeftCorner.column), 0);
       columnEndTight = self.columnEndTight = Math.min((lowerRightCorner.column), totalColumnCount - 1);
@@ -85,20 +82,81 @@ pathvisiojs.view.pathwayDiagram.pathFinder = function(){
       }
     });
 
-    var anchors = pathway.elements.filter(function(element) {
-      return element.renderableType === 'anchor';
+    var anchors = [];
+    var relXYCombinations = [
+      {
+        RelX: -0.5,
+        RelY: -1
+      },
+      {
+        RelX: 0,
+        RelY: -1
+      },
+      {
+        RelX: 0.5,
+        RelY: -1
+      },
+      {
+        RelX: 1,
+        RelY: -0.5
+      },
+      {
+        RelX: 1,
+        RelY: 0
+      },
+      {
+        RelX: 1,
+        RelY: 0.5
+      },
+      {
+        RelX: -0.5,
+        RelY: 1
+      },
+      {
+        RelX: 0,
+        RelY: 1
+      },
+      {
+        RelX: 0.5,
+        RelY: 1
+      },
+      {
+        RelX: -1,
+        RelY: -0.5
+      },
+      {
+        RelX: -1,
+        RelY: 0
+      },
+      {
+        RelX: -1,
+        RelY: 0.5
+      }
+    ];
+
+    shapes.forEach(function(shape) {
+      relXYCombinations.forEach(function(relXYCombination) {
+        anchors.push({
+          'x': (shape.CenterX + shape.Width * relXYCombination.RelX),
+          'y': (shape.CenterY + shape.Height * relXYCombination.RelY)
+        }); 
+      }); 
     });
 
-    var column1, column2, row1, row2, anchorPosition;
+    self.shapes = shapes;
+    console.log('anchors');
+    console.log(anchors);
+
+    var column1, column2, row1, row2, anchorLocation;
     anchors.forEach(function(anchor) {
-      anchorPosition = xYCoordinatesToMatrixLocation(anchor.x, anchor.y);
-      column1 = Math.max(Math.min((anchorPosition.column - 5 * anchor.dx), totalColumnCount - 1), 0);
-      column2 = Math.max(Math.min((anchorPosition.column + 5 * anchor.dx), totalColumnCount - 1), 0);
+      anchorLocation = xYCoordinatesToMatrixLocation(anchor.x, anchor.y);
+      column1 = Math.max(Math.min((anchorLocation.column - 5 * anchor.dx), totalColumnCount - 1), 0);
+      column2 = Math.max(Math.min((anchorLocation.column + 5 * anchor.dx), totalColumnCount - 1), 0);
       columnStart = Math.min(column1, column2);
       columnEnd = Math.max(column1, column2);
 
-      row1 = Math.max(Math.min((anchorPosition.row - 5 * anchor.dy), totalRowCount - 1), 0);
-      row2 = Math.max(Math.min((anchorPosition.row + 5 * anchor.dy), totalRowCount - 1), 0);
+      row1 = Math.max(Math.min((anchorLocation.row - 5 * anchor.dy), totalRowCount - 1), 0);
+      row2 = Math.max(Math.min((anchorLocation.row + 5 * anchor.dy), totalRowCount - 1), 0);
       rowStart = Math.min(row1, row2);
       rowEnd = Math.max(row1, row2);
 
@@ -113,6 +171,13 @@ pathvisiojs.view.pathwayDiagram.pathFinder = function(){
         }
       }
     });
+
+    console.log('totalColumnCount');
+    console.log(totalColumnCount);
+    console.log('totalRowCount');
+    console.log(totalRowCount);
+    console.log('paddedMatrix');
+    console.log(paddedMatrix);
 
     pathvisioNS.grid.paddedGrid = new PF.Grid(totalColumnCount, totalRowCount, paddedMatrix);
     pathvisioNS.grid.tightGrid = new PF.Grid(totalColumnCount, totalRowCount, tightMatrix);
