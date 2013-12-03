@@ -40,7 +40,7 @@ pathvisiojs.view.pathwayDiagram.svg.useElement = function(){
   }
 
   function render(useElement) {
-    useElement.attr("id", function (d) {return 'shape-' + d['@id'];})
+    useElement.attr("id", function (d) {return 'shape-' + strcase.paramCase(d['@id']);})
     .attr('transform', function(d) {
       var transform = 'scale(1)';
       if (d.hasOwnProperty('rotation')) {
@@ -48,21 +48,10 @@ pathvisiojs.view.pathwayDiagram.svg.useElement = function(){
       }
       return transform;
     })
-    .attr("class", function (d) {
-      var styleClass = 'shape ';
-      if (d.elementType === 'data-node') {
-        styleClass += d.dataNodeType + ' ';
-      }
-      if (d.strokeStyle === 'double') {
-        styleClass += 'double-original ';
-      }
-      return styleClass;
-    })
     .attr("x", 0)
     .attr("y", 0)
     .attr("width", function (d) { return d.Width;})
     .attr("height", function (d) { return d.Height;})
-    .attr("z-index", function (d) { return d.zIndex;})
     .attr("style", function (d) {
       var style = '';
 
