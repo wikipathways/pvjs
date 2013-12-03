@@ -36,10 +36,10 @@ pathvisiojs.data.gpml.dataNode = function() {
       var textLabel = {};
       textLabel.tspan = gpmlDataNode.attr('TextLabel').split(/\r\n|\r|\n|&#xA;/g);
       jsonDataNode["TextLabel"] = textLabel;
-      jsonDataNode["CenterX"] = gpmlDataNode.select('Graphics').attr('CenterX');
-      jsonDataNode["CenterY"] = gpmlDataNode.select('Graphics').attr('CenterY');
-      jsonDataNode["Width"] = gpmlDataNode.select('Graphics').attr('Width');
-      jsonDataNode["Height"] = gpmlDataNode.select('Graphics').attr('Height');
+      jsonDataNode["CenterX"] = parseFloat(gpmlDataNode.select('Graphics').attr('CenterX'));
+      jsonDataNode["CenterY"] = parseFloat(gpmlDataNode.select('Graphics').attr('CenterY'));
+      jsonDataNode["Width"] = parseFloat(gpmlDataNode.select('Graphics').attr('Width'));
+      jsonDataNode["Height"] = parseFloat(gpmlDataNode.select('Graphics').attr('Height'));
       linestyle = gpmlDataNode.select('Graphics').attr('LineStyle');
       if (!!linestyle) {
         linestyle = 'Solid';

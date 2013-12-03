@@ -1,5 +1,5 @@
 pathvisiojs.view.pathwayDiagram.svg.group = function(){
-  function render(viewport, groupData) {
+  function render(viewport, groupData, allSymbolNames) {
     console.log('groupData');
     console.log(groupData);
     if (!viewport) {
@@ -9,14 +9,30 @@ pathvisiojs.view.pathwayDiagram.svg.group = function(){
       throw new Error('Error: Group data missing.');
     }
 
-    var pathData = null;
     var groupContainer = viewport.selectAll("#group-" + groupData.GroupId)
     .data([groupData])
     .enter()
-    .append("path")
+    .append("g")
     .attr("id", function (d) { return 'group-' + d.GroupId;})
-    .attr("class", function(d) { return 'group ' + d.shapeType;})
-    .attr("d", 'M5,5 L20,5 L20,20 Z');
+    .attr("class", function(d) { return 'group ' + d.shapeType;});
+
+    var pathData = null;
+
+    pathData = 'M ' + (groupData.x + 20) + ' ' + groupData.y + ' L ' + (groupData.x + groupData.Width - 20) + ' ' + groupData.y + ' L ' + (groupData.x + groupData.Width) + ' ' + (groupData.y + 20) + ' L ' + (groupData.x + groupData.Width) + ' ' + (groupData.y + groupData.Height - 20) + ' L ' + (groupData.x + groupData.Width - 20) + ' ' + (groupData.y + groupData.Height) + ' L ' + (groupData.x + 20) + ' ' + (groupData.y + groupData.Height) + ' L ' + (groupData.x) + ' ' + (groupData.y + groupData.Height - 20) + ' L ' + (groupData.x) + ' ' + (groupData.y + 20) + ' Z';
+
+    var groupShape = groupContainer.append("path")
+    .attr("id", function (d) { return 'shape-' + d.GroupId;})
+    .attr("d", pathData);
+
+    var args = {};
+    args.target = groupContainer;
+    args.data = groupData.contains;
+    args.allSymbolNames = allSymbolNames;
+    pathvisiojs.view.pathwayDiagram.svg.quickRenderMultipleElements(args, function() {
+      console.log('back to draw entityNodes within group')
+    });
+    
+
 
     // We tried using symbols for the group shapes, but this wasn't possible because the symbols scaled uniformly, and the beveled corners of the complex group
     // are supposed to remain constant in size, regardless of changes in group size.

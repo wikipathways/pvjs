@@ -9,6 +9,46 @@ pathvisiojs.data.gpml = function(){
     'mim-inhibition':'Inhibition'
   };
 
+  function getGroupDimensions(groupElements, callback) {
+    var dimensions = {};
+    dimensions.topLeftCorner = {
+      "x": 99999,
+      "y": 99999
+    };
+    dimensions.bottomRightCorner = {
+      "x": 0,
+      "y": 0
+    };
+    groupElements.forEach(function(groupElement) {
+      if (groupElement.renderableType === 'entityNode') {
+        entityNode = {};
+        entityNode.topLeftCorner = {};
+        entityNode.topLeftCorner.x = (groupElement['CenterX'] - groupElement['Width']/2);
+        entityNode.topLeftCorner.y = (groupElement['CenterY'] - groupElement['Height']/2);
+        entityNode.bottomRightCorner = {};
+        entityNode.bottomRightCorner.x = (groupElement['CenterX'] + groupElement['Width']/2);
+        entityNode.bottomRightCorner.y = (groupElement['CenterY'] + groupElement['Height']/2);
+        dimensions.topLeftCorner.x = Math.min(dimensions.topLeftCorner.x, entityNode.topLeftCorner.x);
+        dimensions.topLeftCorner.y = Math.min(dimensions.topLeftCorner.y, entityNode.topLeftCorner.y);
+        dimensions.bottomRightCorner.x = Math.max(dimensions.bottomRightCorner.x, entityNode.bottomRightCorner.x);
+        dimensions.bottomRightCorner.y = Math.max(dimensions.bottomRightCorner.y, entityNode.bottomRightCorner.y);
+      }
+      else {
+        dimensions.topLeftCorner.x = Math.min(dimensions.topLeftCorner.x, groupElement.Point[0].X, groupElement.Point[groupElement.Point.length - 1].X);
+        dimensions.topLeftCorner.y = Math.min(dimensions.topLeftCorner.y, groupElement.Point[0].Y, groupElement.Point[groupElement.Point.length - 1].Y);
+        dimensions.bottomRightCorner.x = Math.max(dimensions.bottomRightCorner.x, groupElement.Point[0].X, groupElement.Point[groupElement.Point.length - 1].X);
+        dimensions.bottomRightCorner.y = Math.max(dimensions.bottomRightCorner.y, groupElement.Point[0].Y, groupElement.Point[groupElement.Point.length - 1].Y);
+      }
+      dimensions.x = dimensions.topLeftCorner.x;
+      dimensions.y = dimensions.topLeftCorner.y;
+      dimensions.CenterX = (dimensions.topLeftCorner.x + dimensions.bottomRightCorner.x)/2;
+      dimensions.CenterY = (dimensions.topLeftCorner.y + dimensions.bottomRightCorner.y)/2;
+      dimensions.Width = (dimensions.bottomRightCorner.x - dimensions.topLeftCorner.x);
+      dimensions.Height = (dimensions.bottomRightCorner.y - dimensions.topLeftCorner.y);
+      callback(dimensions);
+    });
+  }
+
   function toRenderableJson(gpml, pathwayIri, callbackOutside){
     var gpmlPathway = d3.select(gpml).select('Pathway');
 
@@ -203,8 +243,8 @@ pathvisiojs.data.gpml = function(){
                   else {
                     pointObj["@type"] = 'GraphicalPoint';
                     pointObj["X"] = {};
-                    pointObj["X"] = point.attr('X');
-                    pointObj["Y"] = point.attr('Y');
+                    pointObj["X"] = parseFloat(point.attr('X'));
+                    pointObj["Y"] = parseFloat(point.attr('Y'));
                   }
                   jsonInteraction["Point"].push(pointObj);
                 })
@@ -242,6 +282,27 @@ pathvisiojs.data.gpml = function(){
           }
       },
       function(err, results) {
+        var updateGroupsFrame = {};
+        results.Group.forEach(function(element) {
+          updateGroupsFrame = {
+            '@context': results['@context'],
+            "@type":element.GroupId
+          };
+          jsonld.frame(results, updateGroupsFrame, function(err, updateGroupsData) {
+            console.log('updateGroupsData');
+            console.log(updateGroupsData['@graph']);
+            var dimensions = getGroupDimensions(updateGroupsData['@graph'], function(dimensions) {
+              element.x = dimensions.x;
+              element.y = dimensions.y;
+              element.CenterX = dimensions.CenterX;
+              element.CenterY = dimensions.CenterY;
+              element.Width = dimensions.Width;
+              element.Height = dimensions.Height;
+            });
+            console.log('results.Group');
+            console.log(results.Group);
+          });
+        });
         callbackOutside(results);
       });
 
