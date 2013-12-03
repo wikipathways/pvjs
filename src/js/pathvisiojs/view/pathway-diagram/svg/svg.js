@@ -278,13 +278,6 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
       console.log("Optional input 'pathway' not specified.");
     } 
 
-    console.log('target');
-    console.log(args.target);
-    console.log('data');
-    console.log(args.data);
-    console.log('allSymbolNames');
-    console.log(args.allSymbolNames);
-
     async.waterfall([
       function(callback) {
         args.data.sort(function(a, b) {
@@ -295,29 +288,21 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
       function(data, callback) {
         data.forEach(function(element) {
           if (element.renderableType === 'Group') {
-            console.log('Group');
-            console.log(element);
             var groupedElementsFrame = {
               '@context': context,
               "@type":element.GroupId
             };
             jsonld.frame(args.pathway, groupedElementsFrame, function(err, groupedElementsData) {
-              console.log('groupedElementsData');
-              console.log(groupedElementsData);
               element.contains = groupedElementsData['@graph'];
               pathvisiojs.view.pathwayDiagram.svg.node.group.render(args.target, element, args.allSymbolNames);
             });
           }
           else {
             if (element.renderableType === 'entityNode') {
-              console.log('entityNode');
-              console.log(element);
               pathvisiojs.view.pathwayDiagram.svg.node.entityNode.render(args.target, element, args.allSymbolNames);
             }
             else {
               if (element.renderableType === 'edge') {
-                console.log('edge');
-                console.log(element);
               }
             }
           }
@@ -349,8 +334,6 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
           '@type': 'element'
         };  
         jsonld.frame(args.pathway, frame, function(err, hierarchicalData) {
-          console.log('hierarchicalData');
-          console.log(hierarchicalData);
           callbackInside(null, hierarchicalData);
         });
       },
@@ -360,8 +343,6 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
           '@type': 'a351d'
         };  
         jsonld.frame(args.pathway, frame, function(err, groupData) {
-          console.log('groupData');
-          console.log(groupData);
           callbackInside(null, groupData);
         });
       },
@@ -372,8 +353,6 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
           '@type': 'entityNode'
         };  
         jsonld.frame(args.pathway, frame, function(err, framedData) {
-          console.log('framedData');
-          console.log(framedData);
           pathvisiojs.view.pathwayDiagram.pathFinder.generateGridData(framedData['@graph'], args.pathway.image.width, args.pathway.image.height, function() {
             callbackInside(null);
           });
@@ -385,8 +364,6 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
           "@type":["notGrouped","Group"]
         };
         jsonld.frame(args.pathway, firstRoundFrame, function(err, firstRoundData) {
-          console.log('firstRoundData');
-          console.log(firstRoundData);
           callbackInside(null, firstRoundData['@graph']);
         });
       }
@@ -396,7 +373,6 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
       args.target = args.svg.select('#viewport');
       args.data = results.firstRoundData;
       quickRenderMultipleElements(args, function() {
-        console.log('hello');
         callback(svg);
       });
       /*
@@ -426,8 +402,6 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
           '@type': 'element'
         };  
         jsonld.frame(args.pathway, frame, function(err, hierarchicalData) {
-          console.log('hierarchicalData');
-          console.log(hierarchicalData);
           callbackInside(null, hierarchicalData);
         });
       },
@@ -437,8 +411,6 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
           '@type': 'a351d'
         };  
         jsonld.frame(args.pathway, frame, function(err, groupData) {
-          console.log('groupData');
-          console.log(groupData);
           callbackInside(null, groupData);
         });
       },
@@ -449,8 +421,6 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
           '@type': 'entityNode'
         };  
         jsonld.frame(args.pathway, frame, function(err, framedData) {
-          console.log('framedData');
-          console.log(framedData);
           pathvisiojs.view.pathwayDiagram.pathFinder.generateGridData(framedData['@graph'], args.pathway.image.width, args.pathway.image.height, function() {
             callbackInside(null);
           });
@@ -459,8 +429,6 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
       'topLevelData': function(callbackInside) {
         var inputTopLevel = pathvisiojs.utilities.clone(args.pathway);
         inputTopLevel['@context'] = contextLevelInput;
-        console.log('inputTopLevel');
-        console.log(inputTopLevel);
         var topLevelFrame = {
           "@context": contextLevelInput,
           "@type":"element",
@@ -473,8 +441,6 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
               topLevelData.push(element['@id']);
             }
           });
-          console.log('topLevelData');
-          console.log(topLevelData);
           callbackInside(null, topLevelData);
         });
       }
@@ -484,8 +450,6 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
       var resultsData = results.hierarchicalData['@graph'].filter(function(element) {
         return (results.topLevelData.indexOf(element['@id']) > -1);
       });
-      console.log('resultsData');
-      console.log(resultsData);
     })
   }
 
@@ -621,8 +585,6 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
       }
     ],
     function(err, results) {
-        console.log('results[0][@graph]');
-        console.log(results[0]['@graph']);
         // Update… 
         var edges = viewport.selectAll('path.edge')
         .data(results[0]['@graph'])

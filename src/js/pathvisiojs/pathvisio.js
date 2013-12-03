@@ -108,8 +108,6 @@ pathvisiojs = function(){
       var viewLoadArgs = results.preload;
       viewLoadArgs.pathway = results.pathway;
 
-      console.log('pathvisiojspreload');
-      console.log(results.preload);
       //console.log(allSymbolNames);
       pathvisiojs.view.pathwayDiagram.load(viewLoadArgs, function() {
         // do something here

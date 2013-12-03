@@ -289,8 +289,6 @@ pathvisiojs.data.gpml = function(){
             "@type":element.GroupId
           };
           jsonld.frame(results, updateGroupsFrame, function(err, updateGroupsData) {
-            console.log('updateGroupsData');
-            console.log(updateGroupsData['@graph']);
             var dimensions = getGroupDimensions(updateGroupsData['@graph'], function(dimensions) {
               element.x = dimensions.x;
               element.y = dimensions.y;
@@ -299,8 +297,6 @@ pathvisiojs.data.gpml = function(){
               element.Width = dimensions.Width;
               element.Height = dimensions.Height;
             });
-            console.log('results.Group');
-            console.log(results.Group);
           });
         });
         callbackOutside(results);

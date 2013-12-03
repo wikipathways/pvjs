@@ -8,8 +8,8 @@ pathvisiojs.view.pathwayDiagram.svg.node.pathShape = function(){
       return 'group shape ' + strcase.paramCase(d.ShapeType);
     })
 
-    console.log('data.ShapeType');
-    console.log(data.ShapeType);
+    //console.log('data.ShapeType');
+    //console.log(data.ShapeType);
     var nodeAttributes = pathvisiojs.view.pathwayDiagram.svg.node.pathShape[strcase.camelCase(data.ShapeType)].getAttributes(data.Width, data.Height);
     nodeAttributes.forEach(function(attribute) {
       node.attr(attribute.name, attribute.value)
@@ -48,7 +48,7 @@ pathvisiojs.view.pathwayDiagram.svg.node.pathShape = function(){
 
   function renderAll(nodes, pathway, allSymbolNames) {
     if (!nodes || !pathway || !allSymbolNames) {
-      console.log(allSymbolNames);
+      //console.log(allSymbolNames);
       if (!nodes) {
         console.log('nodes not specified');
       }
