@@ -312,6 +312,7 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
             if (element.renderableType === 'entityNode') {
               console.log('entityNode');
               console.log(element);
+              pathvisiojs.view.pathwayDiagram.svg.entityNode.render(args.target, element, args.allSymbolNames);
             }
             else {
               if (element.renderableType === 'edge') {

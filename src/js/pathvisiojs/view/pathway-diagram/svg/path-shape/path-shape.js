@@ -1,4 +1,22 @@
 pathvisiojs.view.pathwayDiagram.svg.pathShape = function(){
+
+  function render(parent, data) {
+    var node = parent.append("path")
+    .data([data])
+    .attr("id", function (d) {return 'node-' + strcase.paramCase(d['@id']);})
+    .attr("class", function (d) {
+      return 'group shape ' + strcase.paramCase(d.ShapeType);
+    })
+
+    console.log('data.ShapeType');
+    console.log(data.ShapeType);
+    var nodeAttributes = pathvisiojs.view.pathwayDiagram.svg.pathShape[strcase.camelCase(data.ShapeType)].getAttributes(data.Width, data.Height);
+    nodeAttributes.forEach(function(attribute) {
+      node.attr(attribute.name, attribute.value)
+    });
+  }
+
+  /*
   function render(pathShape) {
 
     // TODO this seems like a hack. How can the code be refactored so this line below is not needed?
@@ -26,6 +44,7 @@ pathvisiojs.view.pathwayDiagram.svg.pathShape = function(){
       pathShape.attr(attribute.name, attribute.value)
     });
   }
+  //*/
 
   function renderAll(nodes, pathway, allSymbolNames) {
     if (!nodes || !pathway || !allSymbolNames) {
@@ -61,6 +80,7 @@ pathvisiojs.view.pathwayDiagram.svg.pathShape = function(){
   }
 
   return {
-    renderAll:renderAll
+    renderAll:renderAll,
+    render:render
   };
 }();
