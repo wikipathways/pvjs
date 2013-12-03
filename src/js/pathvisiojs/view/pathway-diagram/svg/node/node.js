@@ -41,8 +41,8 @@ pathvisiojs.view.pathwayDiagram.svg.node = function(){
      * container
      * *********/
 
-    console.log('data');
-    console.log(data);
+    //console.log('data');
+    //console.log(data);
     var drag = d3.behavior.drag()
       .origin(Object)
       .on("drag", dragmove);
@@ -73,11 +73,11 @@ pathvisiojs.view.pathwayDiagram.svg.node = function(){
 
     var shapeType = strcase.camelCase(data.ShapeType);
     if (allSymbolNames.indexOf(shapeType) > -1) {
-      console.log('We will use an SVG "use" element to render this ' + shapeType);
+      //console.log('We will use an SVG "use" element to render this ' + shapeType);
       pathvisiojs.view.pathwayDiagram.svg.node.useElement.render(nodeContainer, data);
     }
     else {
-      console.log('We will use a pathShape to render this ' + shapeType);
+      //console.log('We will use a pathShape to render this ' + shapeType);
       pathvisiojs.view.pathwayDiagram.svg.node.pathShape.render(nodeContainer, data);
     }
 
@@ -99,7 +99,7 @@ pathvisiojs.view.pathwayDiagram.svg.node = function(){
 
   function renderAll(nodes, pathway, allSymbolNames) {
     if (!nodes || !pathway || !allSymbolNames) {
-      console.log(allSymbolNames);
+      //console.log(allSymbolNames);
       if (!nodes) {
         console.log('nodes not specified');
       }
