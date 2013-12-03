@@ -1,7 +1,7 @@
 pathvisiojs.view.pathwayDiagram.svg.node.entityNode = function(){
   function render(viewport, entityNodeData, allSymbolNames) {
-    console.log('entityNodeData');
-    console.log(entityNodeData);
+    //console.log('entityNodeData');
+    //console.log(entityNodeData);
     if (!viewport) {
       throw new Error('Error: Missing viewport.');
     }

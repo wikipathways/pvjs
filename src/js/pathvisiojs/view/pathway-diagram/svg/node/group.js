@@ -1,7 +1,7 @@
 pathvisiojs.view.pathwayDiagram.svg.node.group = function(){
   function render(viewport, groupData, allSymbolNames) {
-    console.log('groupData');
-    console.log(groupData);
+    //console.log('groupData');
+    //console.log(groupData);
     if (!viewport) {
       throw new Error('Error: Missing viewport.');
     }
@@ -18,7 +18,7 @@ pathvisiojs.view.pathwayDiagram.svg.node.group = function(){
       args.data = groupData.contains;
       args.allSymbolNames = allSymbolNames;
       pathvisiojs.view.pathwayDiagram.svg.quickRenderMultipleElements(args, function() {
-        console.log('back to draw entityNodes within group')
+        //console.log('back to draw entityNodes within group')
       });
     });
 

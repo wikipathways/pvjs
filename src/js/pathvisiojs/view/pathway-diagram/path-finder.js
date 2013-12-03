@@ -143,8 +143,8 @@ pathvisiojs.view.pathwayDiagram.pathFinder = function(){
       }); 
     });
 
-    console.log('anchors');
-    console.log(anchors);
+    //console.log('anchors');
+    //console.log(anchors);
 
     var column1, column2, row1, row2, anchorLocation;
     anchors.forEach(function(anchor) {
@@ -171,12 +171,12 @@ pathvisiojs.view.pathwayDiagram.pathFinder = function(){
       }
     });
 
-    console.log('totalColumnCount');
-    console.log(totalColumnCount);
-    console.log('totalRowCount');
-    console.log(totalRowCount);
-    console.log('paddedMatrix');
-    console.log(paddedMatrix);
+    //console.log('totalColumnCount');
+    //console.log(totalColumnCount);
+    //console.log('totalRowCount');
+    //console.log(totalRowCount);
+    //console.log('paddedMatrix');
+    //console.log(paddedMatrix);
 
     pathvisioNS.grid.paddedGrid = new PF.Grid(totalColumnCount, totalRowCount, paddedMatrix);
     pathvisioNS.grid.tightGrid = new PF.Grid(totalColumnCount, totalRowCount, tightMatrix);
@@ -202,9 +202,9 @@ pathvisiojs.view.pathwayDiagram.pathFinder = function(){
       function(callback){
         runPathFinder(pathway, edge, workingGrid, finder, points, pointStart, pointEnd, startLocation, endLocation, function(data) {
           pathData = data;
-          console.log('padded');
-          console.log(pathData);
-          console.log(pathData.length);
+          //console.log('padded');
+          //console.log(pathData);
+          //console.log(pathData.length);
           callback(null);
         });
       },
@@ -213,9 +213,9 @@ pathvisiojs.view.pathwayDiagram.pathFinder = function(){
           workingGrid = pathvisioNS.grid.tightGrid.clone();
           runPathFinder(pathway, edge, workingGrid, finder, points, pointStart, pointEnd, startLocation, endLocation, function(data) {
             pathData = data;
-            console.log('tight');
-            console.log(pathData);
-            console.log(pathData.length);
+            //console.log('tight');
+            //console.log(pathData);
+            //console.log(pathData.length);
             callback(null);
           });
         }
@@ -228,9 +228,9 @@ pathvisiojs.view.pathwayDiagram.pathFinder = function(){
           workingGrid = pathvisioNS.grid.emptyGrid.clone();
           runPathFinder(pathway, edge, workingGrid, finder, points, pointStart, pointEnd, startLocation, endLocation, function(data) {
             pathData = data;
-            console.log('empty');
-            console.log(pathData);
-            console.log(pathData.length);
+            //console.log('empty');
+            //console.log(pathData);
+            //console.log(pathData.length);
             pathData.push({'x': pointEnd.x, 'y': pointEnd.y});
             callback(null);
           });
@@ -241,9 +241,9 @@ pathvisiojs.view.pathwayDiagram.pathFinder = function(){
       }
     ],
     function(err) {
-      console.log('returned');
-      console.log(pathData);
-      console.log(pathData.length);
+      //console.log('returned');
+      //console.log(pathData);
+      //console.log(pathData.length);
       callbackOutside(pathData);
       //return pathData;
     });
@@ -256,8 +256,8 @@ pathvisiojs.view.pathwayDiagram.pathFinder = function(){
      */
 
     var blockyPath = finder.findPath(startLocation.column, startLocation.row, endLocation.column, endLocation.row, workingGrid);
-    console.log('blockyPath');
-    console.log(blockyPath);
+    //console.log('blockyPath');
+    //console.log(blockyPath);
 
     /*
        var newWorkingGrid = pathvisioNS.grid.paddedGrid.clone();
@@ -283,7 +283,7 @@ pathvisiojs.view.pathwayDiagram.pathFinder = function(){
       } while (index < blockyPath.length - 2);
     }
     else {
-      console.log('blockyPath too short to compress.');
+      //console.log('blockyPath too short to compress.');
     }
 
     /* 
@@ -317,7 +317,7 @@ pathvisiojs.view.pathwayDiagram.pathFinder = function(){
       } while (index < fullXYPath.length - 2);
     }
     else {
-      console.log('fullXYPath too short to smooth.');
+      //console.log('fullXYPath too short to smooth.');
     }
 
     smootherPath.unshift({'x': pointStart.x, 'y': pointStart.y});
