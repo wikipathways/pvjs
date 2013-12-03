@@ -76,6 +76,9 @@
 		stroke-dasharray: 0;
 		stroke-miterlimit: 1;
 	}
+	use.data-node:hover {
+		cursor:pointer;
+	}
 
 	use.gene-product {
 	}
@@ -144,6 +147,9 @@
 		fill:none;
 		stroke: black; 
 		stroke-width: 1px; 
+	}
+	.interaction:hover {
+		cursor: pointer;
 	}
 
 	marker {
