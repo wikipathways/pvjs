@@ -9,26 +9,11 @@ pathvisiojs.view.pathwayDiagram.svg.node.entityNode = function(){
       throw new Error('Error: Group data missing.');
     }
 
-    pathvisiojs.view.pathwayDiagram.svg.node.render(viewport, entityNodeData, allSymbolNames);
-    /*
-    var entityNodeContainer = viewport.selectAll('#node-container-' + strcase.paramCase(entityNodeData['@id']))
-    .data([entityNodeData])
-    .enter()
-    .append("g")
-    .attr("class", function (d) {
-      return 'entity-node ' + strcase.paramCase(d.ShapeType);
-    })
-    .call()
-
-    var entityNodeShape = entityNodeContainer.append("path")
-    .data([entityNodeData])
-    .attr("class", function (d) {
-      return 'entity-node shape ' + strcase.paramCase(d.ShapeType);
-    })
-    .call(function() {
-      pathvisiojs.view.pathwayDiagram.svg.node.render(this, allSymbolNames)
-    })
-    //*/
+    pathvisiojs.view.pathwayDiagram.svg.node.render(viewport, entityNodeData, allSymbolNames, function(nodeContainer) {
+      nodeContainer.attr("class", function (d) {
+        return 'entity-node ' + strcase.paramCase(d.ShapeType);
+      })
+    });
   }
  
   return {
