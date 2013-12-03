@@ -264,6 +264,71 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
     });
   }
 
+  function quickRenderMultipleElements(args, callback){
+    if (!args.target) {
+      throw new Error("No target specified.");
+    }
+    if (!args.data) {
+      throw new Error("No data entered to render.");
+    }
+    if (!args.allSymbolNames) {
+      throw new Error("No allSymbolNames (list of symbols in this diagram) specified.");
+    }
+    if (!args.pathway) {
+      console.log("Optional input 'pathway' not specified.");
+    } 
+
+    console.log('target');
+    console.log(args.target);
+    console.log('data');
+    console.log(args.data);
+    console.log('allSymbolNames');
+    console.log(args.allSymbolNames);
+
+    async.waterfall([
+      function(callback) {
+        args.data.sort(function(a, b) {
+          return a.zIndex - b.zIndex;
+        });
+        callback(null, args.data);
+      },
+      function(data, callback) {
+        data.forEach(function(element) {
+          if (element.renderableType === 'Group') {
+            console.log('Group');
+            console.log(element);
+            var groupedElementsFrame = {
+              '@context': context,
+              "@type":element.GroupId
+            };
+            jsonld.frame(args.pathway, groupedElementsFrame, function(err, groupedElementsData) {
+              console.log('groupedElementsData');
+              console.log(groupedElementsData);
+              element.contains = groupedElementsData['@graph'];
+              pathvisiojs.view.pathwayDiagram.svg.group.render(args.target, element, args.allSymbolNames);
+            });
+          }
+          else {
+            if (element.renderableType === 'entityNode') {
+              console.log('entityNode');
+              console.log(element);
+            }
+            else {
+              if (element.renderableType === 'edge') {
+                console.log('edge');
+                console.log(element);
+              }
+            }
+          }
+        });
+        callback(null, 'Successfully rendered elements');
+      }
+    ],
+    function(err, results) {
+      callback(null);
+    })
+  }
+
   function quickRender(args, callback){
     if (!args.svg) {
       throw new Error("No svg specified.");
@@ -327,39 +392,10 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
     },
     function(err, results) {
       self.results = results;
-      results.firstRoundData.sort(function(a, b) {
-        return a.zIndex - b.zIndex;
-      });
-      results.firstRoundData.forEach(function(element) {
-        if (element.renderableType === 'Group') {
-          console.log('Group');
-          console.log(element);
-          var groupedElementsFrame = {
-            '@context': context,
-            "@type":element.GroupId
-          };
-          jsonld.frame(pathway, groupedElementsFrame, function(err, groupedElementsData) {
-            console.log('groupedElementsData');
-            console.log(groupedElementsData);
-            element.contains = groupedElementsData;
-            pathvisiojs.view.pathwayDiagram.svg.group.render(args.svg.select('#viewport'), element);
-            //callbackInside(null, firstRoundData['@graph']);
-          });
-          self.grouup = element;
-          self.aargs = args;
-        }
-        else {
-          if (element.renderableType === 'entityNode') {
-            console.log('entityNode');
-            console.log(element);
-          }
-          else {
-            if (element.renderableType === 'edge') {
-              console.log('edge');
-              console.log(element);
-            }
-          }
-        }
+      args.target = args.svg.select('#viewport');
+      args.data = results.firstRoundData;
+      quickRenderMultipleElements(args, function() {
+        console.log('hello');
       });
       renderHierarchySiblings(args, function(svg) {
         callback(svg);
@@ -446,9 +482,6 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
       });
       console.log('resultsData');
       console.log(resultsData);
-      renderHierarchySiblings(args, function(svg) {
-        callback(svg);
-      })
     })
   }
 
@@ -661,6 +694,7 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
   return {
     render:render,
     quickRender:quickRender,
+    quickRenderMultipleElements:quickRenderMultipleElements,
     load:load,
     loadPartials:loadPartials
   };
