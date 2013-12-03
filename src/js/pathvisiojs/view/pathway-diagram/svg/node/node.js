@@ -36,6 +36,7 @@ pathvisiojs.view.pathwayDiagram.svg.node = function(){
 
   //function render(nodeContainer, organism) {
   function render(parent, data, allSymbolNames, callback) {
+    self.myparent = parent;
 
     /************ 
      * container
@@ -51,11 +52,22 @@ pathvisiojs.view.pathwayDiagram.svg.node = function(){
     .data([data])
     .enter()
     .append("g")
-    .attr("class", function (d) {
-      return 'group ' + strcase.paramCase(d.ShapeType);
+    .attr("id", function (d) { return 'node-container-' + strcase.paramCase(d['@id']); })
+    .attr('transform', function(d) {
+      var parentElement = {}
+      if (parent[0][0].hasOwnProperty('__data__')) {
+        parentElement.x = (parent[0][0].__data__['CenterX'] - parent[0][0].__data__['Width']/2);
+        parentElement.y = (parent[0][0].__data__['CenterY'] - parent[0][0].__data__['Height']/2);
+      }
+      else {
+        parentElement.x = 0;
+        parentElement.y = 0;
+      }
+      var element = {}
+      element.x = (d['CenterX'] - d['Width']/2 - parentElement.x);
+      element.y = (d['CenterY'] - d['Height']/2 - parentElement.y);
+      return 'translate(' + element.x + ' ' + element.y + ')';
     })
-    nodeContainer.attr("id", function (d) { return 'node-container-' + strcase.paramCase(d['@id']); })
-    .attr('transform', function(d) {return 'translate(' + (d['CenterX'] - d['Width']/2) + ' ' + (d['CenterY'] - d['Height']/2) + ')';})
     /*/
     .on("click", function(d,i) {
       console.log('clicked a data node-container');

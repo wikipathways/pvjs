@@ -22,14 +22,11 @@ pathvisiojs.view.pathwayDiagram.svg.symbol = function(){
     //if (symbolType === 'svg') {
     if (1===1) {
       d3.xml(customShape.url, "image/svg+xml", function(svgXml) {
-        console.log(customShape.url);
         if (customShape.url === 'http://127.0.0.1/~andersriutta/pathvisiojs/src/views/shapes/oval.svg') {
-          console.log(svgXml.documentElement.getElementsByTagName("clipPath"));
           self.mySvgXml = svgXml;
         }
 
         var shape = d3.select(svgXml.documentElement)
-        console.log(shape);
         var width = shape.attr('width');
         var height = shape.attr('height');
 
@@ -50,11 +47,7 @@ pathvisiojs.view.pathwayDiagram.svg.symbol = function(){
             symbol.attr('viewBox', '0 0 ' + width + ' ' + height);
             shapeChildren = shapeSvg[0][0].children;
             do {
-              console.log('shapeChildren[0]');
-              console.log(shapeChildren[0]);
               symbol[0][0].appendChild(shapeChildren[0]);
-              console.log('symbol[0][0]');
-              console.log(symbol[0][0]);
             } while (shapeChildren.length > 0);
           });
         });
