@@ -12,7 +12,7 @@ pathvisiojs.data.gpml.group = function() {
       jsonGroup["@id"] = pathwayIri + "#" + groupId;
       jsonGroup["GroupId"] = groupId;
       shapeType = groupType = gpmlGroup.attr('Style') || 'rectangle';
-      shapeType = strcase.paramCase(shapeType);
+      shapeType = strcase.paramCase('group-' + shapeType);
       jsonGroup["ShapeType"] = shapeType;
       jsonGroup["zIndex"] = 0;
       //jsonGroup["ZIndex"] = gpmlGroup.selectAll('Graphics').attr('ZOrder');

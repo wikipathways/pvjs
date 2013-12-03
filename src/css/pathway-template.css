@@ -39,48 +39,48 @@
 		font-weight: bold;
 	}
 
-	path.group {
+	.group {
 		fill-opacity: 0.098;
 		stroke: gray;
 		stroke-miterlimit: 1;
 		stroke-width: 1px;
 	}
 
-	path.group:hover {
+	.group:hover {
 		fill-opacity: 0.2;
 		stroke-width: 1px;
 	}
 
-	path.group-none {
+	.group-none {
 		fill: rgb(180,180,100);
 		stroke-dasharray: 5,3;
 	}
 
-	path.group-group {
+	.group-group {
 		fill-opacity: 0;
 		stroke-width: 0;
 	}
 
-	path.group-complex {
+	.group-complex {
 		fill: rgb(180,180,100);
 	}
 
-	path.group-pathway {
+	.group-pathway {
 		fill: lightgreen;
 		stroke-dasharray: 5,3;
 	}
 
-	use.data-node {
+	.data-node {
 		fill-opacity: 1;
 		stroke: black;
 		stroke-dasharray: 0;
 		stroke-miterlimit: 1;
 	}
 
-	use.gene-product {
+	.gene-product {
 	}
 
-	use.metabolite {
+	.metabolite {
 		stroke: blue;
 	}
 
@@ -88,7 +88,7 @@
 		fill: blue;
 	}
 
-	use.pathway {
+	.data-node-pathway {
 		stroke: rgb(20,150,30);
 		fill-opacity: 0;
 	}
@@ -99,13 +99,13 @@
 		stroke: none;
 	}
 
-	use.protein {
+	.protein {
 	}
 
-	use.rna {
+	.rna {
 	}
 
-	use.unknown {
+	.unknown {
 	}
 
 	.label {

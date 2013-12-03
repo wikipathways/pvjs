@@ -9,20 +9,28 @@ pathvisiojs.view.pathwayDiagram.svg.group = function(){
       throw new Error('Error: Group data missing.');
     }
 
-    var groupContainer = viewport.selectAll("#group-" + groupData.GroupId)
+    var groupContainer = viewport.selectAll('#node-container-' + strcase.paramCase(groupData['@id']))
     .data([groupData])
     .enter()
     .append("g")
-    .attr("id", function (d) { return 'group-' + d.GroupId;})
-    .attr("class", function(d) { return 'group ' + d.shapeType;});
+    .attr("class", function (d) {
+      return 'group ' + strcase.paramCase(d.ShapeType);
+    })
+    .call(pathvisiojs.view.pathwayDiagram.svg.nodeContainer.render)
+    //.attr("class", function(d) { return 'group ' + d.shapeType;});
 
     var pathData = null;
 
-    pathData = 'M ' + (groupData.x + 20) + ' ' + groupData.y + ' L ' + (groupData.x + groupData.Width - 20) + ' ' + groupData.y + ' L ' + (groupData.x + groupData.Width) + ' ' + (groupData.y + 20) + ' L ' + (groupData.x + groupData.Width) + ' ' + (groupData.y + groupData.Height - 20) + ' L ' + (groupData.x + groupData.Width - 20) + ' ' + (groupData.y + groupData.Height) + ' L ' + (groupData.x + 20) + ' ' + (groupData.y + groupData.Height) + ' L ' + (groupData.x) + ' ' + (groupData.y + groupData.Height - 20) + ' L ' + (groupData.x) + ' ' + (groupData.y + 20) + ' Z';
 
     var groupShape = groupContainer.append("path")
-    .attr("id", function (d) { return 'shape-' + d.GroupId;})
-    .attr("d", pathData);
+    .data([groupData])
+    .attr("class", function (d) {
+      return 'group shape ' + strcase.paramCase(d.ShapeType);
+    })
+    .call(function() {
+      pathvisiojs.view.pathwayDiagram.svg.node.render(this, allSymbolNames)
+    })
+    //.attr("id", function (d) { return 'shape-' + d.GroupId;})
 
     var args = {};
     args.target = groupContainer;

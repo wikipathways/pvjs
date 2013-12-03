@@ -1,6 +1,6 @@
-// Draw nodes. Includes data nodes, shapes, labels, cellular components...
+// Draw nodes. Includes data nodes, nodes, labels, cellular components...
 
-pathvisiojs.view.pathwayDiagram.svg.shapeContainer = function(){
+pathvisiojs.view.pathwayDiagram.svg.nodeContainer = function(){
   
   var pathwayHere, uniformlyScalingShapesListHere;
 
@@ -39,23 +39,24 @@ pathvisiojs.view.pathwayDiagram.svg.shapeContainer = function(){
     pathvisiojs.view.pathwayDiagram.svg.render(args, function(){console.log('rendered after drag');});
   }
 
-  function render(shapeContainer, organism) {
-    console.log('shapeContainer');
-    console.log(shapeContainer);
+  function render(nodeContainer, organism) {
+    console.log('nodeContainer');
+    console.log(nodeContainer);
     var drag = d3.behavior.drag()
       .origin(Object)
       .on("drag", dragmove);
 
-    shapeContainer.attr("id", function (d) { return 'shape-container-' + d.GraphId; })
-    .attr('class', 'shapeContainer')
+    nodeContainer.attr("id", function (d) { return 'node-container-' + strcase.paramCase(d['@id']); })
     .attr('transform', function(d) {return 'translate(' + (d['CenterX'] - d['Width']/2) + ' ' + (d['CenterY'] - d['Height']/2) + ')';})
+    /*/
     .on("click", function(d,i) {
-      console.log('clicked a data shape-container');
+      console.log('clicked a data node-container');
       console.log(d);
       self.item = d;
       // only for data nodes
       pathvisiojs.view.annotation.xRef.render(organism, d['DatasourceReference'].ID, d['DatasourceReference'].Database, d.TextLabel.tspan.join(' '), d.dataNodeType);
     })
+    //*/
     .call(drag)
   }
 
