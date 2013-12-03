@@ -1,12 +1,17 @@
 pathvisiojs.view.pathwayDiagram.svg.node = function(){
-  function render(node, allSymbolNames) {
+  function render(parent, data, allSymbolNames) {
+    var shapeType = strcase.camelCase(data.ShapeType);
+    if (allSymbolNames.indexOf(shapeType) > -1) {
+      console.log('We will use an SVG "use" element to render this ' + shapeType);
+      pathvisiojs.view.pathwayDiagram.svg.useElement.render(parent, data);
+    }
+    else {
+      console.log('We will use a pathShape to render this ' + shapeType);
+      pathvisiojs.view.pathwayDiagram.svg.pathShape.render(parent, data);
+    }
 
-    // TODO this seems like a hack. How can the code be refactored so this line below is not needed?
 
-    if (!node[0] || node[0].length < 1) {return 'nonuniformlyScalingNodes empty'};
 
-    self.node = node;
-    node.attr("id", function (d) {return 'node-' + strcase.paramCase(d['@id']);})
     /*
     .attr("class", function (d) {
       var styleClass = '';
@@ -18,24 +23,6 @@ pathvisiojs.view.pathwayDiagram.svg.node = function(){
       }
       return styleClass;
     })
-    //*/
-
-    // TODO there must be a cleaner, less brittle way of getting nodeData here
-
-    var nodeData = node[0][0].__data__;
-    var shapeType = strcase.camelCase(nodeData.ShapeType);
-    if (allSymbolNames.indexOf(shapeType) > -1) {
-      console.log('We will use an SVG "use" element to render this ' + shapeType);
-      pathvisiojs.view.pathwayDiagram.svg.useElement.render(node);
-    }
-    else {
-      console.log('We will use a pathShape to render this ' + shapeType);
-      var nodeAttributes = pathvisiojs.view.pathwayDiagram.svg.pathShape[shapeType].getAttributes(nodeData.Width, nodeData.Height);
-      nodeAttributes.forEach(function(attribute) {
-        node.attr(attribute.name, attribute.value)
-      });
-    }
-    //*
     //*/
   }
 

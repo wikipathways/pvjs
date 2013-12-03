@@ -39,8 +39,13 @@ pathvisiojs.view.pathwayDiagram.svg.useElement = function(){
     pathvisiojs.view.pathwayDiagram.svg.render(args, function(){console.log('rendered after drag');});
   }
 
-  function render(useElement) {
-    useElement.attr("id", function (d) {return 'shape-' + strcase.paramCase(d['@id']);})
+  function render(parent, data) {
+    var node = parent.append("use")
+    .data([data])
+    .attr("id", function (d) {return 'node-' + strcase.paramCase(d['@id']);})
+    .attr("class", function (d) {
+      return 'group shape ' + strcase.paramCase(d.ShapeType);
+    })
     .attr('transform', function(d) {
       var transform = 'scale(1)';
       if (d.hasOwnProperty('rotation')) {

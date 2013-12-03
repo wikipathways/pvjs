@@ -9,29 +9,10 @@ pathvisiojs.view.pathwayDiagram.svg.group = function(){
       throw new Error('Error: Group data missing.');
     }
 
-    var groupContainer = viewport.selectAll('#node-container-' + strcase.paramCase(groupData['@id']))
-    .data([groupData])
-    .enter()
-    .append("g")
-    .attr("class", function (d) {
-      return 'group ' + strcase.paramCase(d.ShapeType);
-    })
-    .call(pathvisiojs.view.pathwayDiagram.svg.nodeContainer.render)
-    //.attr("class", function(d) { return 'group ' + d.shapeType;});
-
-    var pathData = null;
+    pathvisiojs.view.pathwayDiagram.svg.nodeContainer.render(viewport, groupData, allSymbolNames);
 
 
-    var groupShape = groupContainer.append("path")
-    .data([groupData])
-    .attr("class", function (d) {
-      return 'group shape ' + strcase.paramCase(d.ShapeType);
-    })
-    .call(function() {
-      pathvisiojs.view.pathwayDiagram.svg.node.render(this, allSymbolNames)
-    })
-    //.attr("id", function (d) { return 'shape-' + d.GroupId;})
-
+    /*
     var args = {};
     args.target = groupContainer;
     args.data = groupData.contains;
@@ -39,7 +20,7 @@ pathvisiojs.view.pathwayDiagram.svg.group = function(){
     pathvisiojs.view.pathwayDiagram.svg.quickRenderMultipleElements(args, function() {
       console.log('back to draw entityNodes within group')
     });
-    
+    //*/
 
 
     // We tried using symbols for the group shapes, but this wasn't possible because the symbols scaled uniformly, and the beveled corners of the complex group
