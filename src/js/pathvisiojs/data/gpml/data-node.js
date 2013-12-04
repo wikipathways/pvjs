@@ -23,6 +23,7 @@ pathvisiojs.data.gpml.dataNode = function() {
       jsonDataNode["zIndex"] = parseFloat(gpmlDataNode.select('Graphics').attr('ZOrder'));
       jsonDataNode["renderableType"] = 'entityNode';
       dataNodeType = gpmlDataNode.attr('Type');
+      jsonDataNode["nodeType"] = "DataNode";
       jsonDataNode["dataNodeType"] = dataNodeType;
       jsonDataNode["@type"] = [
         "element",
