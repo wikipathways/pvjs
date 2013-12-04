@@ -5,7 +5,7 @@
 		vector-effect: non-scaling-stroke;
 		fill: white;
 		background: white;
-    stroke: black;
+    		stroke: black;
 	}
 
 	.default-fill {
@@ -79,6 +79,9 @@
 	use.data-node:hover {
 		cursor:pointer;
 	}
+	
+	use.empty-data-node {
+	}
 
 	use.gene-product {
 	}
@@ -89,6 +92,9 @@
 	
 	use.metabolite:hover {
 		stroke: blue;
+	}
+	
+	use.empty-metabolite {
 	}
 
 	text.metabolite {
@@ -154,6 +160,9 @@
 	}
 	.interaction:hover {
 		cursor: pointer;
+	}
+	
+	.empty-interaction {
 	}
 
 	marker {
