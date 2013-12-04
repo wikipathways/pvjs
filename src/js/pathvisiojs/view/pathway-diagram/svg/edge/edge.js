@@ -1,8 +1,30 @@
 // Edges (interactions and graphical lines)
 
-pathvisiojs.view.pathwayDiagram.svg.edge = function(){
+var thisParent;
 
-  function render(edge) {
+pathvisiojs.view.pathwayDiagram.svg.edge = function(){
+  function render(parent, data) {
+    thisParent = self.thisParent = parent;
+    console.log('parent[0][0]');
+    console.log(parent[0][0]);
+    console.log('data');
+    console.log(data);
+
+    // Update…
+    var edge = parent.selectAll('#' + strcase.paramCase(data['@id']))
+    .data([data])
+    .call(setAttributes);
+
+    // Enter…
+    edge.enter().append("path")
+    .call(setAttributes);
+
+    // Exit…
+    edge.exit().remove();
+
+  }
+
+  function setAttributes(edge) {
     console.log('edge me');
     console.log(edge);
 
@@ -25,7 +47,7 @@ pathvisiojs.view.pathwayDiagram.svg.edge = function(){
           console.log(pathData);
           //*/
 
-      edge.attr("id", edge.edgeType + '-' + edge.id )
+      edge.attr("id", function(d) { return strcase.paramCase(d['@id']); })
       .attr("class", function () {
         var styleClass = 'edge ' + edge.edgeType + ' ';
         if (edge.hasOwnProperty('strokeStyle')) {
@@ -34,6 +56,18 @@ pathvisiojs.view.pathwayDiagram.svg.edge = function(){
           }
         }
         return styleClass;
+      })
+      .attr('transform', function(d) {
+        var parentElement = {}
+        if (thisParent[0][0].hasOwnProperty('__data__')) {
+          parentElement.x = (thisParent[0][0].__data__['CenterX'] - thisParent[0][0].__data__['Width']/2);
+          parentElement.y = (thisParent[0][0].__data__['CenterY'] - thisParent[0][0].__data__['Height']/2);
+        }
+        else {
+          parentElement.x = 0;
+          parentElement.y = 0;
+        }
+        return 'translate(' + (-1*parentElement.x) + ' ' + (-1*parentElement.y) + ')';
       })
       .attr("style", function () {
         var style = 'stroke-width:' + edge.strokeWidth + '; ';
