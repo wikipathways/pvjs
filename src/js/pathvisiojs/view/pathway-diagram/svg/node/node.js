@@ -83,7 +83,11 @@ pathvisiojs.view.pathwayDiagram.svg.node = function(){
      * background shape
      * ***************/
 
-    var shapeType = strcase.camelCase(data.ShapeType);
+    var shapeType = strcase.paramCase(data.ShapeType);
+    console.log('allSymbolNames');
+    console.log(allSymbolNames);
+    console.log('shapeType');
+    console.log(shapeType);
     if (allSymbolNames.indexOf(shapeType) > -1) {
       //console.log('We will use an SVG "use" element to render this ' + shapeType);
       pathvisiojs.view.pathwayDiagram.svg.node.useElement.render(nodeContainer, data);
