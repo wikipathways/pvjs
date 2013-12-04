@@ -11,6 +11,10 @@ pathvisiojs.view.pathwayDiagram.svg.node.pathShape.groupComplex = function(){
         {
           name:'d',
           value: 'M ' + (0 + 20) + ' ' + 0 + ' L ' + (0 + nodeWidth - 20) + ' ' + 0 + ' L ' + (0 + nodeWidth) + ' ' + (0 + 20) + ' L ' + (0 + nodeWidth) + ' ' + (0 + nodeHeight - 20) + ' L ' + (0 + nodeWidth - 20) + ' ' + (0 + nodeHeight) + ' L ' + (0 + 20) + ' ' + (0 + nodeHeight) + ' L ' + (0) + ' ' + (0 + nodeHeight - 20) + ' L ' + (0) + ' ' + (0 + 20) + ' Z'
+        },
+        {
+          name:'vector-effect',
+          value: 'non-scaling-stroke'
         }
       ];
       return attributes;
