@@ -70,31 +70,26 @@
 		stroke-dasharray: 5,3;
 	}
 
-	use.data-node {
+	use.data-node use.annotated-data-node{
 		fill-opacity: 1;
 		stroke: black;
 		stroke-dasharray: 0;
 		stroke-miterlimit: 1;
 	}
-	use.data-node:hover {
-		cursor:pointer;
-	}
 	
-	use.empty-data-node {
+	use.annotated-data-node:hover {
+		cursor: pointer;
 	}
 
 	use.gene-product {
 	}
 
-	use.metabolite {
+	use.metabolite use.annotated-metabolite{
 		stroke: blue;
 	}
 	
-	use.metabolite:hover {
-		stroke: blue;
-	}
-	
-	use.empty-metabolite {
+	use.annotated-metabolite:hover {
+		cursor: pointer;
 	}
 
 	text.metabolite {
@@ -153,16 +148,13 @@
 		stroke-width: 1px; 
 	}
 
-	.interaction {
+	.interaction .annotated-interaction{
 		fill:none;
 		stroke: black; 
 		stroke-width: 1px; 
 	}
-	.interaction:hover {
+	.annotated-interaction:hover {
 		cursor: pointer;
-	}
-	
-	.empty-interaction {
 	}
 
 	marker {
