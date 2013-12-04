@@ -278,6 +278,15 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
       console.log("Optional input 'pathway' not specified.");
     } 
 
+    // TODO this is a hack. Should define args the same way each time. Should args include pathway or just organism?
+    var organism;
+    if (args.hasOwnProperty('pathway')) {
+      organism = args.pathway.organism;
+    }
+    else {
+      organism = args.organism;
+    }
+
     async.waterfall([
       function(callback) {
         args.data.sort(function(a, b) {
@@ -288,7 +297,8 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
       function(data, callback) {
         data.forEach(function(element) {
           if (element.renderableType === 'Group') {
-            pathvisiojs.view.pathwayDiagram.svg.node.render(args.target, element, args.allSymbolNames, function(groupContainer) {
+            args.data = element;
+            pathvisiojs.view.pathwayDiagram.svg.node.render(args, function(groupContainer) {
               groupContainer.attr("class", function (d) {
                 return 'group group-' + strcase.paramCase(d.ShapeType);
               })
@@ -302,6 +312,7 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
                 nodeEntityArgs.target = groupContainer;
                 nodeEntityArgs.data = groupedElementsData['@graph'];
                 nodeEntityArgs.allSymbolNames = args.allSymbolNames;
+                nodeEntityArgs.organism = organism;
                 pathvisiojs.view.pathwayDiagram.svg.quickRenderMultipleElements(nodeEntityArgs, function() {
                 });
               });
@@ -309,7 +320,11 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
           }
           else {
             if (element.renderableType === 'entityNode') {
-              pathvisiojs.view.pathwayDiagram.svg.node.entityNode.render(args.target, element, args.allSymbolNames);
+              args.data = element;
+              args.organism = organism;
+              console.log('args here')
+              console.log(args)
+              pathvisiojs.view.pathwayDiagram.svg.node.entityNode.render(args);
             }
             else {
               if (element.renderableType === 'edge') {
@@ -395,6 +410,8 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
     function(err, results) {
       args.target = args.svg.select('#viewport');
       args.data = results.firstOrderData;
+      console.log('args.pathway');
+      console.log(args.pathway);
       quickRenderMultipleElements(args, function() {
         callback(svg);
       });

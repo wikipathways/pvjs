@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Pathway xmlns="http://pathvisio.org/GPML/2013a" Name="New Pathway" Version="20131128">
+<Pathway xmlns="http://pathvisio.org/GPML/2013a" Name="New Pathway" Version="20131128" Organism="Anopheles gambiae">
   <Graphics BoardWidth="437.0201643017177" BoardHeight="400.2914001421465" />
   <DataNode TextLabel="attached to anchor" GraphId="a4d32" Type="GeneProduct">
     <Graphics CenterX="291.65071746540775" CenterY="325.38696345999034" Width="230.73889367262" Height="70.65997897994464" ZOrder="32768" FontSize="10" Valign="Middle" ShapeType="RoundedRectangle" />
@@ -18,7 +18,7 @@
     <Xref Database="" ID="" />
   </DataNode>
   <Interaction GraphId="id27f502b7">
-    <Graphics ZOrder="12288" LineThickness="1.0">
+    <Graphics ConnectorType="Elbow" ZOrder="12288" LineThickness="1.0">
       <Point X="291.65071746540775" Y="290.056973970018" GraphRef="a4d32" RelX="0.0" RelY="-1.0" />
       <Point X="207.18720122114846" Y="97.29097116581667" GraphRef="d027d" RelX="0.0" RelY="0.0" ArrowHead="Arrow" />
       <Anchor Position="0.4" Shape="None" GraphId="b4d12" />
@@ -27,7 +27,7 @@
   </Interaction>
   <Interaction GraphId="id38e4dad3">
     <Graphics ZOrder="12288" LineThickness="1.0">
-      <Point X="257.86531096770403" Y="212.95057284833746" GraphRef="b4d12" RelX="0.0" RelY="0.0" />
+      <Point X="207.18720122114846" Y="263.62868259489306" GraphRef="b4d12" RelX="0.0" RelY="0.0" />
       <Point X="169.88899936726006" Y="175.39066339066343" GraphRef="ca5f8" RelX="-0.5" RelY="1.0" ArrowHead="Arrow" />
     </Graphics>
     <Xref Database="" ID="" />

@@ -27,75 +27,75 @@ pathvisiojs.view.pathwayDiagram.svg.node = function(){
     d.y = d3.event.y;
 
 
+    /*
     var args = {};
     args.svg = d3.select('svg');
     args.pathway = pathwayHere;
     args.uniformlyScalingShapesList = uniformlyScalingShapesListHere;
     pathvisiojs.view.pathwayDiagram.svg.render(args, function(){console.log('rendered after drag');});
+    */
   }
 
   //function render(nodeContainer, organism) {
-  function render(parent, data, allSymbolNames, callback) {
-    self.myparent = parent;
+  function render(args, callback) {
 
     /************ 
      * container
      * *********/
 
-    //console.log('data');
-    //console.log(data);
+    //console.log('args.data');
+    //console.log(args.data);
     var drag = d3.behavior.drag()
       .origin(Object)
       .on("drag", dragmove);
 
-    var nodeContainer = parent.selectAll('#node-container-' + strcase.paramCase(data['@id']))
-    .data([data])
+    var nodeContainer = args.target.selectAll('#node-container-' + strcase.paramCase(args.data['@id']))
+    .data([args.data])
     .enter()
     .append("g")
     .attr("id", function (d) { return 'node-container-' + strcase.paramCase(d['@id']); })
     .attr('transform', function(d) {
-      var parentElement = {}
-      if (parent[0][0].hasOwnProperty('__data__')) {
-        parentElement.x = (parent[0][0].__data__['CenterX'] - parent[0][0].__data__['Width']/2);
-        parentElement.y = (parent[0][0].__data__['CenterY'] - parent[0][0].__data__['Height']/2);
+      var targetElement = {}
+      if (args.target[0][0].hasOwnProperty('__data__')) {
+        targetElement.x = (args.target[0][0].__data__['CenterX'] - args.target[0][0].__data__['Width']/2);
+        targetElement.y = (args.target[0][0].__data__['CenterY'] - args.target[0][0].__data__['Height']/2);
       }
       else {
-        parentElement.x = 0;
-        parentElement.y = 0;
+        targetElement.x = 0;
+        targetElement.y = 0;
       }
       var element = {}
-      element.x = (d['CenterX'] - d['Width']/2 - parentElement.x);
-      element.y = (d['CenterY'] - d['Height']/2 - parentElement.y);
+      element.x = (d['CenterX'] - d['Width']/2 - targetElement.x);
+      element.y = (d['CenterY'] - d['Height']/2 - targetElement.y);
       return 'translate(' + element.x + ' ' + element.y + ')';
     })
-    /*/
-    .on("click", function(d,i) {
-      console.log('clicked a data node-container');
-      console.log(d);
-      self.item = d;
-      // only for data nodes
-      pathvisiojs.view.annotation.xRef.render(organism, d['DatasourceReference'].ID, d['DatasourceReference'].Database, d.TextLabel.tspan.join(' '), d.dataNodeType);
-    })
-    //*/
     .call(drag)
+
+    if (args.data.nodeType === 'DataNode') {
+      console.log('can click');
+      nodeContainer.on("click", function(d,i) {
+        console.log('clicked a data node-container');
+        console.log(d);
+        self.item = d;
+        // only for data nodes
+        pathvisiojs.view.annotation.xRef.render(args.organism, d['DatasourceReference'].ID, d['DatasourceReference'].Database, d.TextLabel.tspan.join(' '), d.dataNodeType);
+      })
+    }
 
     /****************** 
      * background shape
      * ***************/
 
-    var shapeType = strcase.paramCase(data.ShapeType);
-    console.log('allSymbolNames');
-    console.log(allSymbolNames);
-    console.log('shapeType');
-    console.log(shapeType);
-    if (allSymbolNames.indexOf(shapeType) > -1) {
+    var shapeType = strcase.paramCase(args.data.ShapeType);
+    if (args.allSymbolNames.indexOf(shapeType) > -1) {
       //console.log('We will use an SVG "use" element to render this ' + shapeType);
-      pathvisiojs.view.pathwayDiagram.svg.node.useElement.render(nodeContainer, data);
+      pathvisiojs.view.pathwayDiagram.svg.node.useElement.render(nodeContainer, args.data);
     }
     else {
       //console.log('We will use a pathShape to render this ' + shapeType);
-      pathvisiojs.view.pathwayDiagram.svg.node.pathShape.render(nodeContainer, data);
+      pathvisiojs.view.pathwayDiagram.svg.node.pathShape.render(nodeContainer, args.data);
     }
+
 
     callback(nodeContainer);
 
@@ -115,17 +115,17 @@ pathvisiojs.view.pathwayDiagram.svg.node = function(){
 
   function renderAll(nodes, pathway, allSymbolNames) {
     if (!nodes || !pathway || !allSymbolNames) {
-      //console.log(allSymbolNames);
+      //console.log(args.allSymbolNames);
       if (!nodes) {
         console.log('nodes not specified');
       }
       if (!pathway) {
         console.log('pathway not specified');
       }
-      if (!allSymbolNames) {
-        console.log('allSymbolNames not specified');
+      if (!args.allSymbolNames) {
+        console.log('args.allSymbolNames not specified');
       }
-      return console.warn('Error: Missing one or more required parameters: nodes, pathway or allSymbolNames.');
+      return console.warn('Error: Missing one or more required parameters: nodes, pathway or args.allSymbolNames.');
     }
 
     var nonuniformlyScalingNodes = nodes.filter(function(d, i) { return allSymbolNames.indexOf(d.shapeType) === -1; });
