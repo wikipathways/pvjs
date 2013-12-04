@@ -80,6 +80,8 @@ pathvisiojs.data.gpml = function(){
         alert("Pathvisiojs may not fully support the version of GPML provided (xmlns: " + gpmlNamespace + "). Please convert to the supported version of GPML (xmlns: " + pathvisiojs.data.gpml.namespaces[0] + ").");
       }
 
+
+
       async.parallel({
           '@context': function(callback){
             callback(null, {
@@ -98,7 +100,19 @@ pathvisiojs.data.gpml = function(){
               "gpmlFolder":"file://Users/andersriutta/Sites/pathvisiojs/test/gpml/",
               "name":"http://xmlns.com/foaf/0.1/name",
               "dcterms":"http://purl.org/dc/terms/",
-              "css":"http://www.w3.org/TR/CSS2/visuren.html#",
+              "css":"http://www.w3.org/TR/CSS21/",
+              "svg":"http://www.w3.org/TR/SVG11/",
+              "text":"svg:text.html#TextElement",
+              "tspan":"svg:text.html#TSpanElement",
+              "color":"css:colors.html#propdef-color", //foreground color
+              "backgroundColor":"css:colors.html#propdef-background-color",
+              "backgroundImage":"css:colors.html#propdef-background-image",
+              "fontFamily":"css:fonts.html#font-family-prop",
+              "fontStyle":"css:fonts.html#propdef-font-style", //italic
+              "textAlign":"css:text.html#propdef-text-align", //left | right | center
+              "verticalAlign":"css:visudet.html#propdef-vertical-align", //top | bottom | middle
+              "fontSize":"css:fonts.html#propdef-font-size",
+              "fontWeight":"css:fonts.html#propdef-font-weight", //normal | bold
               "zIndex": {
                 "@id": "css:z-index",
                 "@type": "xsd:integer"
