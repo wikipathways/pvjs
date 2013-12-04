@@ -96,6 +96,113 @@ pathvisiojs.view.pathwayDiagram.svg.node = function(){
       pathvisiojs.view.pathwayDiagram.svg.node.pathShape.render(nodeContainer, args.data);
     }
 
+    /****************** 
+     * text label
+     * ***************/
+
+    /*
+    if (args.data.hasOwnProperty('TextLabel')) {
+      var nodeText = nodeContainer.data(function(d) { return [d]; })
+      .append('text')
+      .attr("id", function (d) { return 'node-text-' + strcase.paramCase(args.data['@id']); })
+      .attr("x", 0)
+      .attr("y", 0)
+      .attr('transform', function(d) {
+
+        // tweak left, center, right horizontal alignment
+
+        var dx = null;
+
+        if (d.TextLabel.hasOwnProperty('textAnchor')) {
+
+          // giving padding of 5. maybe this should go into the CSS.
+
+          if (d.TextLabel.textAnchor === 'start') {
+            dx = 5;
+          }
+          else {
+            if (d.TextLabel.textAnchor === 'end') {
+              dx = d.width - 5;
+            }
+            else {
+              dx = d.width / 2;
+            }
+          }
+        }
+        else {
+          dx = d.Width / 2;
+        }
+
+        // set top, middle, bottom vertical alignment
+
+        var dy = null;
+
+        if (d.TextLabel.hasOwnProperty('vAlign')) {
+          if (d.TextLabel.vAlign === 'top') {
+            dy = 5 + (1 * d.TextLabel.fontSize);
+          }
+          else {
+            if (d.TextLabel.vAlign === 'bottom') {
+              dy = d.height - (5 + (0.3 * d.TextLabel.fontSize) + ((pathvisiojs.utilities.splitStringByNewLine(d.TextLabel.text).length - 1) * d.TextLabel.fontSize));
+            }
+            else {
+              dy = (d.height / 2) + (0.3 * d.TextLabel.fontSize) - (((pathvisiojs.utilities.splitStringByNewLine(d.TextLabel.text).length - 1) * d.TextLabel.fontSize)/2);
+            }
+          }
+        }
+        else {
+          dy = (d.height / 2) + (0.3 * d.TextLabel.fontSize) - (((pathvisiojs.utilities.splitStringByNewLine(d.TextLabel.text).length - 1) * d.TextLabel.fontSize)/2);
+        }
+        return 'translate(' + dx + ' ' + dy + ')';})
+        .attr("class", function (d) {
+          var styleClass = '';
+          if (d.elementType === 'data-node') {
+            styleClass = d.dataNodeType;
+          }
+          return styleClass; })
+          .attr("style", function (d) {
+            var style = '';
+            var fontSize = d.fontSize;
+            if (d.TextLabel.hasOwnProperty('fill')) {
+              style += 'fill:' + d.TextLabel.fill + '; ';
+            }
+            if (d.TextLabel.hasOwnProperty('fontFamily')) {
+              style += 'font-family:' + d.TextLabel.fontFamily + '; ';
+            }
+            if (d.TextLabel.hasOwnProperty('fontSize')) {
+              style += 'font-size:' + d.TextLabel.fontSize + 'px; ';
+            }
+            if (d.TextLabel.hasOwnProperty('fontWeight')) {
+              style += 'font-weight:' + d.TextLabel.fontWeight + '; ';
+            }
+            if (d.TextLabel.hasOwnProperty('fontStyle')) {
+              style += 'font-style:' + d.TextLabel.fontStyle + '; ';
+            }
+            if (d.TextLabel.hasOwnProperty('textAnchor')) {
+              style += 'text-anchor:' + d.TextLabel.textAnchor + '; ';
+            }
+            return style;
+          });
+
+          var nodeTspan = nodeText.each(function(d) {
+            var fontSize = d.TextLabel.fontSize;
+            d3.select(this).selectAll('tspan')
+            .data(function (d) {
+              var textArray = pathvisiojs.utilities.splitStringByNewLine(d.TextLabel.text);
+              return textArray;
+            })
+            .enter()
+            .append('tspan')
+            .attr("x", 0)
+            .attr("y", function (d, i) { return i * fontSize;})
+            .text(function (d) { return d;});
+          });
+    }
+    //*/
+
+
+
+
 
     callback(nodeContainer);
 

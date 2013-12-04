@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Pathway xmlns="http://pathvisio.org/GPML/2013a" Name="New Pathway" Version="20131128" Organism="Anopheles gambiae">
+<Pathway xmlns="http://pathvisio.org/GPML/2013a" Name="New Pathway" Version="20131128" Organism="Bacillus subtilis">
   <Graphics BoardWidth="437.0201643017177" BoardHeight="400.2914001421465" />
   <DataNode TextLabel="attached to anchor" GraphId="a4d32" Type="GeneProduct">
-    <Graphics CenterX="291.65071746540775" CenterY="325.38696345999034" Width="230.73889367262" Height="70.65997897994464" ZOrder="32768" FontSize="10" Valign="Middle" ShapeType="RoundedRectangle" />
+    <Graphics CenterX="291.65071746540775" CenterY="325.38696345999034" Width="230.73889367262" Height="70.65997897994464" ZOrder="32768" FillColor="ffffcc" FontName="Avenir" FontWeight="Bold" FontStyle="Italic" FontSize="12" Valign="Bottom" Align="Right" ShapeType="RoundedRectangle" Color="ff0066" />
     <Xref Database="" ID="" />
   </DataNode>
   <DataNode TextLabel="orderme1" GraphId="c02f2" Type="GeneProduct">
     <Graphics CenterX="82.46938734743628" CenterY="96.40072444950496" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
-    <Xref Database="" ID="" />
+    <Xref Database="BioCyc" ID="as" />
   </DataNode>
   <DataNode TextLabel="GeneProduct&#xA;in group" GraphId="ab39a" Type="GeneProduct" GroupRef="a351d">
     <Graphics CenterX="139.1787804831281" CenterY="87.97987558857162" Width="80.0" Height="33.968784838350054" ZOrder="32771" FontSize="10" Valign="Middle" ShapeType="Oval" />
-    <Xref Database="" ID="" />
+    <Xref Database="Entrez Gene" ID="vasf" />
   </DataNode>
   <DataNode TextLabel="orderme2" GraphId="de81d" Type="GeneProduct">
     <Graphics CenterX="92.4693873474362" CenterY="115.8858193004534" Width="80.0" Height="20.0" ZOrder="32772" FontSize="10" Valign="Middle" />
-    <Xref Database="" ID="" />
+    <Xref Database="EMBL" ID="asdf" />
   </DataNode>
   <Interaction GraphId="id27f502b7">
     <Graphics ConnectorType="Elbow" ZOrder="12288" LineThickness="1.0">
