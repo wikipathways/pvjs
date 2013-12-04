@@ -34,9 +34,7 @@ pathvisiojs.data.gpml.dataNode = function() {
         dataNodeType,
         groupRef || 'notGrouped'
       ];
-      var textLabel = {};
-      textLabel.tspan = gpmlDataNode.attr('TextLabel').split(/\r\n|\r|\n|&#xA;/g);
-      jsonDataNode["TextLabel"] = textLabel;
+      jsonDataNode["text"] = pathvisiojs.data.gpml.text.toRenderableJson(gpmlDataNode);
       jsonDataNode["CenterX"] = parseFloat(gpmlDataNode.select('Graphics').attr('CenterX'));
       jsonDataNode["CenterY"] = parseFloat(gpmlDataNode.select('Graphics').attr('CenterY'));
       jsonDataNode["Width"] = parseFloat(gpmlDataNode.select('Graphics').attr('Width'));
