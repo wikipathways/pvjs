@@ -11,7 +11,7 @@ pathvisiojs.data.gpml.group = function() {
       groupId = gpmlGroup.attr('GroupId') || ('id' + uuid.v4());
       jsonGroup["@id"] = pathwayIri + "#" + groupId;
       jsonGroup["GroupId"] = groupId;
-      shapeType = groupType = gpmlGroup.attr('Style') || 'rectangle';
+      shapeType = groupType = gpmlGroup.attr('Style') || 'none';
       shapeType = strcase.paramCase('group-' + shapeType);
       jsonGroup["ShapeType"] = shapeType;
       jsonGroup["zIndex"] = 0;
