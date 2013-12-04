@@ -17,6 +17,7 @@ pathvisiojs.data.gpml.group = function() {
       jsonGroup["zIndex"] = 0;
       //jsonGroup["ZIndex"] = gpmlGroup.selectAll('Graphics').attr('ZOrder');
       jsonGroup["renderableType"] = 'Group';
+      jsonGroup["nodeType"] = "Group";
       jsonGroup["groupType"] = groupType;
       jsonGroup["@type"] = [
         "element",

@@ -127,16 +127,23 @@ pathvisiojs.view.pathwayDiagram.svg.edge = function(){
             }
           }
           //*/
+          if (data.ConnectorType === 'Straight') {
+            console.log('Straight');
+            return Straight(data.Point);
+          }
+
           if (data.ConnectorType === 'Elbow') {
+            console.log('Elbow');
             if (data.RelY === -1 || data.RelY === 1) {
               stepType = 'step-before';
             }
             else {
               stepType = 'step-after';
             }
+            return Elbow(data.Point);
           }
+          console.log('data.Point');
           console.log(data.Point);
-          return Straight(data.Point);
           //return data.ConnectorType;
         });
       //});
