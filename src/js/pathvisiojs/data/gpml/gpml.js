@@ -84,7 +84,7 @@ pathvisiojs.data.gpml = function(){
 
       async.parallel({
           '@context': function(callback){
-            callback(null, {
+            pathvisiojs.context = {
               "@vocab":"http://vocabularies.wikipathways.org/gpml#",
               "gpml":"http://vocabularies.wikipathways.org/gpml#",
               "xsd": "http://www.w3.org/2001/XMLSchema#",
@@ -155,7 +155,8 @@ pathvisiojs.data.gpml = function(){
                 "@id": "gpml:Point",
                 "@container": "@list"
               }
-            });
+            };
+            callback(null, pathvisiojs.context);
           },
           organism: function(callback){
             callback(null, gpmlPathway.attr('Organism'));

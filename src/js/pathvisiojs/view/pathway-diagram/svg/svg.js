@@ -1,124 +1,6 @@
 pathvisiojs.view.pathwayDiagram.svg = function(){
 
-  var svg, shapesAvailable, markersAvailable;
-
-  var context = {
-    "@vocab":"http://vocabularies.wikipathways.org/gpml#",
-    "gpml":"http://vocabularies.wikipathways.org/gpml#",
-    "xsd": "http://www.w3.org/2001/XMLSchema#",
-    "wp":"http://vocabularies.wikipathways.org/wp#",
-    "biopax": "http://www.biopax.org/release/biopax-level3.owl#",
-    "schema":"http://schema.org/",
-    "hMDB":"http://www.hmdb.ca/metabolites/HMDB",
-    "entrezGene":"http://www.ncbi.nlm.nih.gov/gene/",
-    "ChEBI":"http://www.ebi.ac.uk/chebi/searchId.do?chebiId=",
-    "media":"http://www.w3.org/TR/mediaont-10/",
-    "ex":"http://www.example.com/",
-    "gpmlFolder":"file://Users/andersriutta/Sites/pathvisiojs/test/gpml/",
-    "name":"http://xmlns.com/foaf/0.1/name",
-    "dcterms":"http://purl.org/dc/terms/",
-    "css":"http://www.w3.org/TR/CSS2/visuren.html#",
-    "zIndex": {
-      "@id": "css:z-index",
-      "@type": "xsd:integer"
-    },
-    "DatasourceReference": "wp:DatasourceReference",
-    "Pathway": "biopax:Pathway",
-    "shapeLibrary": "http://shapelibrary.example.org/",
-    "shapeName": "shapeLibrary:shapeName",
-    "image": "schema:image",
-    "dataNodeType": "gpml:Type",
-    "author": "schema:author",
-    "organism": "biopax:organism",
-    "tspan": {
-      "@id": "http://www.w3.org/TR/SVG/text.html#TSpanElement",
-      "@container": "@set"
-    },
-    "pathwayElements": {
-      "@id": "ex:pathwayElements/",
-      "@container": "@list"
-    },
-    "dependencies": {
-      "@id": "ex:dependencies",
-      "@type": "@id"
-    },
-    "dependsOn": {
-      "@reverse": "ex:dependencies",
-      "@type": "@id"
-    },
-    "InteractionGraph": {
-      "@id": "ex:InteractionGraph",
-      "@type": "@id"
-    },
-    "interactsWith": "ex:interactsWith",
-    "Interaction": {
-      "@id": "biopax:Interaction",
-      "@type": "@id",
-      "InteractsWith":"xsd:string"
-    },
-    "Point": {
-      "@id": "gpml:Point",
-      "@container": "@list"
-    }
-  };
-
-  var contextLevelInput = {
-      "@vocab":"http://vocabularies.wikipathways.org/gpml#",
-      "gpml":"http://vocabularies.wikipathways.org/gpml#",
-      "xsd": "http://www.w3.org/2001/XMLSchema#",
-      "wp":"http://vocabularies.wikipathways.org/wp#",
-      "biopax": "http://www.biopax.org/release/biopax-level3.owl#",
-      "schema":"http://schema.org/",
-      "hMDB":"http://www.hmdb.ca/metabolites/HMDB",
-      "entrezGene":"http://www.ncbi.nlm.nih.gov/gene/",
-      "ChEBI":"http://www.ebi.ac.uk/chebi/searchId.do?chebiId=",
-      "media":"http://www.w3.org/TR/mediaont-10/",
-      "ex":"http://www.example.com/",
-      "gpmlFolder":"file://Users/andersriutta/Sites/pathvisiojs/test/gpml/",
-      "name":"http://xmlns.com/foaf/0.1/name",
-      "dcterms":"http://purl.org/dc/terms/",
-      "css":"http://www.w3.org/TR/CSS2/visuren.html#",
-      "zIndex": {
-        "@id": "css:z-index",
-        "@type": "xsd:integer"
-      },
-      "DatasourceReference": "wp:DatasourceReference",
-      "Pathway": "biopax:Pathway",
-      "shapeLibrary": "http://shapelibrary.example.org/",
-      "shapeName": "shapeLibrary:shapeName",
-      "image": "schema:image",
-      "dataNodeType": "gpml:Type",
-      "author": "schema:author",
-      "organism": "biopax:organism",
-      "tspan": {
-        "@id": "http://www.w3.org/TR/SVG/text.html#TSpanElement",
-        "@container": "@set"
-      },
-      "pathwayElements": {
-        "@id": "ex:pathwayElements/",
-        "@container": "@list"
-      },
-      "dependsOn": "ex:dependsOn",
-      "hasReference": {
-        "@id": "ex:hasReference",
-        "@type": "@id"
-      },
-      "ex:IsReferencedBy": { "@reverse": "ex:hasReference" },
-      "InteractionGraph": {
-        "@id": "ex:InteractionGraph",
-        "@type": "@id"
-      },
-      "interactsWith": "ex:interactsWith",
-      "Interaction": {
-        "@id": "biopax:Interaction",
-        "@type": "@id",
-        "InteractsWith":"xsd:string"
-      },
-      "Point": {
-        "@id": "gpml:Point",
-        "@container": "@list"
-      }
-  };
+  var svg, shapesAvailable, markersAvailable, contextLevelInput;
 
   function setCTM(element, matrix) {
     var s = "matrix(" + matrix.a + "," + matrix.b + "," + matrix.c + "," + matrix.d + "," + matrix.e + "," + matrix.f + ")";
@@ -278,6 +160,11 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
       console.log("Optional input 'pathway' not specified.");
     } 
 
+    console.log('pathvisiojs.context');
+    console.log(pathvisiojs.context);
+    var contextLevelInput = self.contextLevelInput = pathvisiojs.utilities.clone(pathvisiojs.context);
+    contextLevelInput.dependsOn = "ex:dependsOn";
+
     // TODO this is a hack. Should define args the same way each time. Should args include pathway or just organism?
     var organism;
     if (args.hasOwnProperty('pathway')) {
@@ -304,7 +191,7 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
               })
 
               var groupedElementsFrame = {
-                '@context': context,
+                '@context': pathvisiojs.context,
                 "@type":element.GroupId
               };
               jsonld.frame(args.pathway, groupedElementsFrame, function(err, groupedElementsData) {
@@ -359,7 +246,7 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
       'hierarchicalData': function(callbackInside) {
         self.pathway = args.pathway;
         var frame = {
-          '@context': context,
+          '@context': pathvisiojs.context,
           '@type': 'element'
         };  
         jsonld.frame(args.pathway, frame, function(err, hierarchicalData) {
@@ -368,7 +255,7 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
       },
       'notGroupedData': function(callbackInside) {
         var notGroupedFrame = {
-          '@context': context,
+          '@context': pathvisiojs.context,
           "@type":"notGrouped"
         };
         jsonld.frame(args.pathway, notGroupedFrame, function(err, notGroupedData) {
@@ -377,7 +264,7 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
       },
       'groupData': function(callbackInside) {
         var frame = {
-          '@context': context,
+          '@context': pathvisiojs.context,
           '@type': 'Group'
         };  
         jsonld.frame(args.pathway, frame, function(err, groupData) {
@@ -388,7 +275,7 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
       'grid': function(callbackInside) {
         pathvisioNS.grid = {};
         var frame = {
-          '@context': context,
+          '@context': pathvisiojs.context,
           '@type': 'entityNode'
         };  
         jsonld.frame(args.pathway, frame, function(err, framedData) {
@@ -399,7 +286,7 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
       },
       'firstOrderData': function(callbackInside) {
         var firstOrderFrame = {
-          '@context': context,
+          '@context': pathvisiojs.context,
           "@type":["notGrouped", "Group"]
         };
         jsonld.frame(args.pathway, firstOrderFrame, function(err, firstOrderData) {
@@ -457,7 +344,7 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
       'hierarchicalData': function(callbackInside) {
         self.pathway = args.pathway;
         var frame = {
-          '@context': context,
+          '@context': pathvisiojs.context,
           '@type': 'element'
         };  
         jsonld.frame(args.pathway, frame, function(err, hierarchicalData) {
@@ -466,7 +353,7 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
       },
       'groupData': function(callbackInside) {
         var frame = {
-          '@context': context,
+          '@context': pathvisiojs.context,
           '@type': 'a351d'
         };  
         jsonld.frame(args.pathway, frame, function(err, groupData) {
@@ -476,7 +363,7 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
       'grid': function(callbackInside) {
         pathvisioNS.grid = {};
         var frame = {
-          '@context': context,
+          '@context': pathvisiojs.context,
           '@type': 'entityNode'
         };  
         jsonld.frame(args.pathway, frame, function(err, framedData) {
@@ -584,7 +471,7 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
     async.series([
       function(callbackInside){
         var frame = {
-          "@context": context,
+          "@context": pathvisiojs.context,
           "@type": args.allSymbolNames
         };  
         jsonld.frame(args.pathway, frame, function(err, framedData) {
@@ -634,7 +521,7 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
     async.series([
       function(callbackInside){
         var frame = {
-          "@context": context,
+          "@context": pathvisiojs.context,
           "@type": "SvgPath"
         };  
         jsonld.frame(args.pathway, frame, function(err, framedData) {
