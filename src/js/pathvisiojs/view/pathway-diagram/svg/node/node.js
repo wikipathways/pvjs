@@ -101,7 +101,8 @@ pathvisiojs.view.pathwayDiagram.svg.node = function(){
      * ***************/
 
     /*
-    if (args.data.hasOwnProperty('TextLabel')) {
+    if (args.data.hasOwnProperty('text')) {
+      console.log('I have text');
       var nodeText = nodeContainer.data(function(d) { return [d]; })
       .append('text')
       .attr("id", function (d) { return 'node-text-' + strcase.paramCase(args.data['@id']); })
