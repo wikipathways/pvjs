@@ -2,7 +2,7 @@
 <Pathway xmlns="http://pathvisio.org/GPML/2013a" Name="New Pathway" Version="20131128">
   <Graphics BoardWidth="436.019656019656" BoardHeight="340.0569739700179" />
   <DataNode TextLabel="attached to anchor" GraphId="a4d32" Type="GeneProduct">
-    <Graphics CenterX="229.1111512850652" CenterY="300.0569739700179" Width="105.65976131193523" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Graphics CenterX="229.1111512850652" CenterY="300.0569739700179" Width="105.65976131193523" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" ShapeType="RoundedRectangle" />
     <Xref Database="" ID="" />
   </DataNode>
   <DataNode TextLabel="orderme1" GraphId="c02f2" Type="GeneProduct">
@@ -28,13 +28,13 @@
   <Interaction GraphId="id38e4dad3">
     <Graphics ZOrder="12288" LineThickness="1.0">
       <Point X="220.34157125949852" Y="212.9505728483374" GraphRef="b4d12" RelX="0.0" RelY="0.0" />
-      <Point X="171.88899936726006" Y="171.39066339066343" GraphRef="ca5f8" RelX="-0.5" RelY="1.0" ArrowHead="Arrow" />
+      <Point X="169.88899936726006" Y="175.39066339066343" GraphRef="ca5f8" RelX="-0.5" RelY="1.0" ArrowHead="Arrow" />
     </Graphics>
     <Xref Database="" ID="" />
   </Interaction>
   <Interaction GraphId="id63adfb13">
     <Graphics ZOrder="12288" LineThickness="1.0">
-      <Point X="252.59921825139205" Y="171.39066339066343" GraphRef="ca5f8" RelX="0.0" RelY="1.0" />
+      <Point X="252.59921825139205" Y="175.39066339066343" GraphRef="ca5f8" RelX="0.0" RelY="1.0" />
       <Point X="207.18720122114846" Y="97.29097116581667" GraphRef="d027d" RelX="0.0" RelY="0.0" ArrowHead="Arrow" />
     </Graphics>
     <Xref Database="" ID="" />
@@ -47,7 +47,7 @@
     </Graphics>
     <Xref Database="" ID="" />
   </Interaction>
-  <Group GroupId="a351d" GraphId="ca5f8" Style="Group" TextLabel="Heh" />
+  <Group GroupId="a351d" GraphId="ca5f8" Style="Complex" TextLabel="Heh" />
   <InfoBox CenterX="0.0" CenterY="0.0" />
   <Biopax />
 </Pathway>
