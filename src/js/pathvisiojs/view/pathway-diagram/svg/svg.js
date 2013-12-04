@@ -298,9 +298,11 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
                 "@type":element.GroupId
               };
               jsonld.frame(args.pathway, groupedElementsFrame, function(err, groupedElementsData) {
-                args.target = groupContainer;
-                args.data = groupedElementsData['@graph'];
-                pathvisiojs.view.pathwayDiagram.svg.quickRenderMultipleElements(args, function() {
+                var nodeEntityArgs = {};
+                nodeEntityArgs.target = groupContainer;
+                nodeEntityArgs.data = groupedElementsData['@graph'];
+                nodeEntityArgs.allSymbolNames = args.allSymbolNames;
+                pathvisiojs.view.pathwayDiagram.svg.quickRenderMultipleElements(nodeEntityArgs, function() {
                 });
               });
             });
@@ -311,6 +313,9 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
             }
             else {
               if (element.renderableType === 'edge') {
+                console.log('edge element');
+                console.log(element);
+                pathvisiojs.view.pathwayDiagram.svg.edge.render(args.target, element);
               }
             }
           }
