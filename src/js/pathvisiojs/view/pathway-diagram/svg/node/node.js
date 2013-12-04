@@ -100,14 +100,16 @@ pathvisiojs.view.pathwayDiagram.svg.node = function(){
      * text label
      * ***************/
 
-    /*
     if (args.data.hasOwnProperty('text')) {
       console.log('I have text');
-      var nodeText = nodeContainer.data(function(d) { return [d]; })
+      var nodeText = nodeContainer.select('text')
+      .data(function(d) { return [d]; })
+      .enter()
       .append('text')
       .attr("id", function (d) { return 'node-text-' + strcase.paramCase(args.data['@id']); })
       .attr("x", 0)
       .attr("y", 0)
+    /*
       .attr('transform', function(d) {
 
         // tweak left, center, right horizontal alignment
@@ -198,8 +200,8 @@ pathvisiojs.view.pathwayDiagram.svg.node = function(){
             .attr("y", function (d, i) { return i * fontSize;})
             .text(function (d) { return d;});
           });
-    }
     //*/
+    }
 
 
 
