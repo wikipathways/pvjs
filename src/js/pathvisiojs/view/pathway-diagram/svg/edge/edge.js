@@ -29,14 +29,14 @@ pathvisiojs.view.pathwayDiagram.svg.edge = function(){
     console.log(edge);
 
     var Straight = Segmented = d3.svg.line()
-      .x(function(d) { return d.X; })
-      .y(function(d) { return d.Y; })
+      .x(function(data) { return data.X; })
+      .y(function(data) { return data.Y; })
       .interpolate("linear");
 
     var stepType;
     var Elbow = d3.svg.line()
-      .x(function(d) { return d.X; })
-      .y(function(d) { return d.Y; })
+      .x(function(data) { return data.X; })
+      .y(function(data) { return data.Y; })
       .interpolate(stepType);
 
       /*
@@ -47,11 +47,11 @@ pathvisiojs.view.pathwayDiagram.svg.edge = function(){
           console.log(pathData);
           //*/
 
-      edge.attr("id", function(d) { return strcase.paramCase(d['@id']); })
-      .attr("class", function () {
-        var styleClass = 'edge ' + edge.edgeType + ' ';
-        if (edge.hasOwnProperty('strokeStyle')) {
-          if (edge.strokeStyle === 'dashed') {
+      edge.attr("id", function(data) { return strcase.paramCase(data['@id']); })
+      .attr("class", function (data) {
+        var styleClass = 'edge ' + data.edgeType + ' ';
+        if (data.hasOwnProperty('strokeStyle')) {
+          if (data.strokeStyle === 'dashed') {
             styleClass += " dashed-stroke";
           }
         }
@@ -69,14 +69,14 @@ pathvisiojs.view.pathwayDiagram.svg.edge = function(){
         }
         return 'translate(' + (-1*parentElement.x) + ' ' + (-1*parentElement.y) + ')';
       })
-      .attr("style", function () {
-        var style = 'stroke-width:' + edge.strokeWidth + '; ';
-        if (edge.hasOwnProperty('stroke')) {
-          style += 'stroke:' + edge.stroke + '; ';
+      .attr("style", function (data) {
+        var style = 'stroke-width:' + data.strokeWidth + '; ';
+        if (data.hasOwnProperty('stroke')) {
+          style += 'stroke:' + data.stroke + '; ';
         }
-        if (edge.hasOwnProperty('strokeStyle')) {
-          if (edge.strokeStyle === 'double') {
-            style += 'stroke-width:' + (3 * edge.strokeWidth) + '; ';
+        if (data.hasOwnProperty('strokeStyle')) {
+          if (data.strokeStyle === 'double') {
+            style += 'stroke-width:' + (3 * data.strokeWidth) + '; ';
           }
         }
         return style;
@@ -92,8 +92,11 @@ pathvisiojs.view.pathwayDiagram.svg.edge = function(){
         }
         return 'url(#' + markerStart + ')';
       })
+      //*/
       .attr("marker-end", function (d) {
-        var markerEnd = pathvisiojs.view.pathwayDiagram.svg.edge.marker.render(viewport, strcase.paramCase(d.interactionType), 'end', d.stroke);
+        // TODO don't redefine svg
+        var svg = d3.select('#svg');
+        var markerEnd = pathvisiojs.view.pathwayDiagram.svg.edge.marker.render(svg, strcase.paramCase(d.interactionType), 'end', d.stroke);
         if (edge.hasOwnProperty('strokeStyle')) {
           if (edge.strokeStyle === 'double') {
             //hack to manage marker scaling; this marker should not have any features itself
@@ -102,7 +105,6 @@ pathvisiojs.view.pathwayDiagram.svg.edge = function(){
         }
         return 'url(#' + markerEnd + ')';
       })
-      //*/
       .attr("fill", 'none')
 
       // this attr needs to be last, because of the confusion over the meaning of 'd' as 1) the data for the d3 selection and 2) the path data.

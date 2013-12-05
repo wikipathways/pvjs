@@ -34,16 +34,45 @@ pathvisiojs.data.gpml.dataNode = function() {
         dataNodeType,
         groupRef || 'notGrouped'
       ];
-      jsonDataNode["text"] = pathvisiojs.data.gpml.text.toRenderableJson(gpmlDataNode);
+
+      pathvisiojs.data.gpml.text.toRenderableJson(gpmlDataNode, function(text) {
+        jsonDataNode["text"] = text;
+      });
       jsonDataNode["CenterX"] = parseFloat(gpmlDataNode.select('Graphics').attr('CenterX'));
       jsonDataNode["CenterY"] = parseFloat(gpmlDataNode.select('Graphics').attr('CenterY'));
-      jsonDataNode["Width"] = parseFloat(gpmlDataNode.select('Graphics').attr('Width'));
-      jsonDataNode["Height"] = parseFloat(gpmlDataNode.select('Graphics').attr('Height'));
-      linestyle = gpmlDataNode.select('Graphics').attr('LineStyle');
-      if (!!linestyle) {
-        linestyle = 'Solid';
-      };
+      var linestyle = gpmlDataNode.select('Graphics').attr('LineStyle') || 'Solid';
       jsonDataNode["LineStyle"] = linestyle;
+
+      var color = gpmlDataNode.select('Graphics').attr('Color');
+      if (!!color) {
+        jsonDataNode["color"] = color;
+      }
+
+      var backgroundColor = gpmlDataNode.select('Graphics').attr('FillColor');
+      if (!!backgroundColor) {
+        jsonDataNode["backgroundColor"] = backgroundColor;
+      }
+
+      var borderColor = gpmlDataNode.select('Graphics').attr('Color');
+      if (!!borderColor) {
+        jsonDataNode["borderColor"] = borderColor;
+      }     
+
+      var borderWidth = gpmlDataNode.select('Graphics').attr('LineThickness') || 1;
+      jsonDataNode["borderWidth"] = parseFloat(borderWidth);
+
+      // the width and height values are not clearly specified in GPML, but the closest
+      // I could come up with for interpreting them as actually rendered in PathVisio (Java)
+      // at scales in common use is that gpmlWidth = elementWidth + elementPadding + elementBorderWidth (on each side)
+      // with a similar calculation for gpmlHeight
+
+      var gpmlWidth = parseFloat(gpmlDataNode.select('Graphics').attr('Width'));
+      jsonDataNode["offsetWidth"] = gpmlWidth + jsonDataNode["borderWidth"];
+
+      var gpmlHeight = parseFloat(gpmlDataNode.select('Graphics').attr('Height'));
+      jsonDataNode["offsetHeight"] = gpmlHeight + jsonDataNode["borderWidth"];
+
+      jsonDataNode["padding"] = "0.5em";
 
       callbackInside(jsonDataNode);
     }

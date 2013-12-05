@@ -8,9 +8,7 @@ pathvisiojs.view.pathwayDiagram.svg.node.pathShape = function(){
       return 'group shape ' + strcase.paramCase(d.ShapeType);
     })
 
-    //console.log('data.ShapeType');
-    //console.log(data.ShapeType);
-    var nodeAttributes = pathvisiojs.view.pathwayDiagram.svg.node.pathShape[strcase.camelCase(data.ShapeType)].getAttributes(data.Width, data.Height);
+    var nodeAttributes = pathvisiojs.view.pathwayDiagram.svg.node.pathShape[strcase.camelCase(data.ShapeType)].getAttributes(data.offsetWidth, data.offsetHeight);
     nodeAttributes.forEach(function(attribute) {
       node.attr(attribute.name, attribute.value)
     });
