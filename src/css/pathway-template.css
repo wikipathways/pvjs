@@ -89,9 +89,13 @@
 	.metabolite {
 		stroke: blue;
 	}
+	
+	use.metabolite:hover {
+		stroke: blue;
+	}
 
 	text.metabolite {
-		fill: blue;
+		cursor:pointer;
 	}
 
 	.data-node-pathway {
