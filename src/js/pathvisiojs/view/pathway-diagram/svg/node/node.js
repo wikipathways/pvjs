@@ -77,7 +77,7 @@ pathvisiojs.view.pathwayDiagram.svg.node = function(){
         console.log('clicked a data node-container');
         console.log(d);
         // only for data nodes
-        pathvisiojs.view.annotation.xRef.render(args.organism, d['DatasourceReference'].ID, d['DatasourceReference'].Database, d.TextLabel.tspan.join(' '), d.dataNodeType);
+        pathvisiojs.view.annotation.xRef.render(args.organism, d['DatasourceReference'].ID, d['DatasourceReference'].Database, d.text.tspan.join(' '), d.dataNodeType);
       })
     }
 
