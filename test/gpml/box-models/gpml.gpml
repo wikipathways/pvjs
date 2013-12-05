@@ -6,7 +6,7 @@
     <Xref Database="" ID="" />
   </DataNode>
   <DataNode TextLabel="Metabolite" GraphId="dfe4e" Type="Metabolite">
-    <Graphics CenterX="77.99737439386851" CenterY="121.78559707115491" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" LineThickness="10.0" Color="0000ff" />
+    <Graphics CenterX="270.33236374802044" CenterY="101.91334724858575" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" LineThickness="10.0" Color="0000ff" />
     <Xref Database="" ID="" />
   </DataNode>
   <DataNode TextLabel="Metabolite" GraphId="d5e64" Type="Metabolite">
@@ -25,12 +25,23 @@
     <Graphics CenterX="400.0" CenterY="409.54616588419407" Width="400.0" Height="380.90766823161186" ZOrder="32791" FontSize="10" Valign="Middle" Color="33ff33" />
     <Xref Database="" ID="" />
   </DataNode>
+  <DataNode TextLabel="Metabolite" GraphId="c36dc" Type="Metabolite">
+    <Graphics CenterX="87.99737439386851" CenterY="115.46196328833025" Width="80.0" Height="20.0" ZOrder="32793" FontSize="10" Valign="Middle" LineThickness="10.0" Color="0000ff" />
+    <Xref Database="" ID="" />
+  </DataNode>
   <Interaction>
     <Graphics ZOrder="12288" LineThickness="1.0">
       <Point X="878.136200716846" Y="200.0" />
       <Point X="1186.3799283154115" Y="200.0" />
     </Graphics>
     <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction>
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="127.99737439386851" Y="115.46196328833025" GraphRef="c36dc" RelX="1.0" RelY="0.0" />
+      <Point X="230.33236374802044" Y="101.91334724858575" GraphRef="dfe4e" RelX="-1.0" RelY="0.0" ArrowHead="mim-binding" />
+    </Graphics>
+    <Xref Database="BRENDA" ID="asdf" />
   </Interaction>
   <Interaction GraphId="ebbc2">
     <Graphics ZOrder="32775" LineStyle="Broken" LineThickness="20.0" Color="ffff33">

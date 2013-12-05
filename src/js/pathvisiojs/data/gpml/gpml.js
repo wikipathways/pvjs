@@ -237,11 +237,14 @@ pathvisiojs.data.gpml = function(){
 
                 jsonInteraction["zIndex"] = parseFloat(gpmlInteraction.select('Graphics').attr('ZOrder'));
                 jsonInteraction["renderableType"] = 'edge';
+                var edgeType = 'interaction';
+                jsonInteraction["edgeType"] = 'Interaction';
                 points = gpmlInteraction.selectAll('Point');
                 jsonInteraction["@type"] = [
                   "element",
                   "SvgPath",
                   "Interaction",
+                  edgeType,
                   groupRef || 'notGrouped'
                 ];
                 // TODO this is very rudimentary - it needs to be much improved for checking where the arrowhead is located, etc.
@@ -312,6 +315,18 @@ pathvisiojs.data.gpml = function(){
                 var strokeWidth = gpmlInteraction.select('Graphics').attr('LineThickness');
                 if (!!strokeWidth) {
                   jsonInteraction["strokeWidth"] = parseFloat(strokeWidth);
+                }
+
+                var database, ID, 
+                  datasourceReference = gpmlInteraction.select('Xref');
+                if (!!datasourceReference) {
+                  database = datasourceReference.attr('Database')
+                  ID = datasourceReference.attr('ID')
+                  if (!!database && !!ID) {
+                    jsonInteraction["DatasourceReference"] = {};
+                    jsonInteraction["DatasourceReference"]["Database"] = database;
+                    jsonInteraction["DatasourceReference"]["ID"] = ID;
+                  }
                 }
 
                 interactions.push(jsonInteraction);
