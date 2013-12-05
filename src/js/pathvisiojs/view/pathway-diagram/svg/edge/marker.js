@@ -9,32 +9,77 @@ pathvisiojs.view.pathwayDiagram.svg.edge.marker = function(){
   var svgHere;
 
   function appendCustom(customMarker, callback) {
-    /*
+    //*
     console.log('customMarker');
     console.log(customMarker);
     //*/
     if (1===1) {
       d3.xml(customMarker.url, 'image/svg+xml', function(svgXml) {
 
-        def = svgHere.select('defs').select('#' + customMarker.id);
-        if (!def[0][0]) {
-          def = svgHere.select('defs').append('marker')
-          .attr('id', customMarker.id)
-          .attr('preserveAspectRatio', 'none');
+        /*
+<marker id="mim-inhibition-start-black" class="default-fill" stroke="black" markerWidth="16" markerHeight="16" markerUnits="strokeWidth" orient="auto" refX="0" refY="6" viewBox="0 0 12 12">
+         //*/
+
+        var idStub = strcase.paramCase(customMarker.id)
+        var startId = idStub + '-start-black';
+        console.log('startId');
+        console.log(startId);
+        var endId = idStub + '-end-black';
+        console.log('endId');
+        console.log(endId);
+
+        var markerStart = svgHere.select('defs').select('#' + startId);
+        if (!markerStart[0][0]) {
+          markerStart.selectAll('*').remove();
         }
-        else {
-          def.selectAll('*').remove();
-        }
+        markerStart = svgHere.select('defs').append('marker')
+        .attr('id', startId)
+        .attr('preserveAspectRatio', 'none');
+        console.log('markerStart');
+        console.log(markerStart);
 
+        var newMarker = d3.select(svgXml.documentElement)
+        var width = newMarker.attr('width');
+        var height = newMarker.attr('height');
 
-        var marker = d3.select(svgXml.documentElement)
-        var width = marker.attr('width');
-        var height = marker.attr('height');
+        markerStart.attr('viewBox', '0 0 ' + width + ' ' + height)
+        .attr('markerWidth', width)
+        .attr('markerHeight', height)
+        .attr('markerUnits', 'strokeWidth')
+        .attr('orient', 'auto')
+        .attr('refX', 0)
+        .attr('refY', 6);
 
-        def.attr('viewBox', '0 0 ' + width + ' ' + height);
-
-        var parent = document.querySelector('#' + customMarker.id);
+        var parent = document.querySelector('#' + startId);
+        var docElClone = pathvisiojs.utilities.clone(svgXml.documentElement);
         parent.appendChild(svgXml.documentElement);
+
+        var markerEndD3 = svgHere.select('defs').select('#' + endId);
+        if (!markerEndD3[0][0]) {
+          markerEndD3.selectAll('*').remove();
+        }
+        markerEndD3 = svgHere.select('defs').append('marker')
+        .attr('id', endId)
+        .attr('viewBox', -1*width + ' ' + -1*height + ' ' + width + ' ' + height)
+        .attr('markerWidth', width)
+        .attr('markerHeight', height)
+        .attr('markerUnits', 'strokeWidth')
+        .attr('orient', 'auto')
+        .attr('refX', 0)
+        .attr('refY', -1*height/2);
+        console.log('markerEndD3');
+        console.log(markerEndD3);
+        var g = markerEndD3.append('g')
+        .attr('id', 'g-' + endId)
+        .attr('style', '-webkit-transform: rotate(180deg); -webkit-transform-origin: 50% 50%;');
+        var endG = document.querySelector('#' + 'g-' + endId);
+        endG.appendChild(docElClone);
+
+        //*
+        //var markerEnd = pathvisiojs.utilities.cloneNode('#' + startId);
+        //markerEnd[0][0].setAttribute('id', endId);
+        //markerEnd[0][0].setAttribute('transform', 'rotate(180deg)');
+        //*/
         callback(null);
       });
     }
@@ -42,19 +87,19 @@ pathvisiojs.view.pathwayDiagram.svg.edge.marker = function(){
       img = document.createElement('img');
       img.src = customMarker.url;
       img.onload = function() {
-        def = svg.select('defs').select('#' + customMarker.id);
-        if (!def[0][0]) {
-          def = svg.select('defs').append('symbol')
+        marker = svg.select('defs').select('#' + customMarker.id);
+        if (!marker[0][0]) {
+          marker = svg.select('defs').append('symbol')
           .attr('id', customMarker.id)
           .attr('viewBox', '0 0 ' + this.width + ' ' + this.height)
           .attr('preserveAspectRatio', 'none');
         }
         else {
-          def.selectAll('*').remove();
+          marker.selectAll('*').remove();
         }
-        dimensions = def.attr('viewBox').split(' ');
+        dimensions = marker.attr('viewBox').split(' ');
 
-        def.append('image').attr('xlink:xlink:href', customMarker.url)
+        marker.append('image').attr('xlink:xlink:href', customMarker.url)
         .attr('x', dimensions[0])
         .attr('y', dimensions[1])
         .attr('width', dimensions[2])
@@ -70,7 +115,7 @@ pathvisiojs.view.pathwayDiagram.svg.edge.marker = function(){
     svgHere = svg;
     var image = null;
     var img = null;
-    var def = null;
+    var marker = null;
     var dimensions = null;
     var dimensionSet = [];
 
@@ -81,6 +126,12 @@ pathvisiojs.view.pathwayDiagram.svg.edge.marker = function(){
   }
 
   function render(svg, name, position, color) {
+    console.log('name');
+    console.log(name);
+    console.log('position');
+    console.log(position);
+    console.log('color');
+    console.log(color);
     var markerUrl = '';
 
     // if no marker is to be used, JSON data will specify 'none'.
@@ -92,7 +143,10 @@ pathvisiojs.view.pathwayDiagram.svg.edge.marker = function(){
 
       // check for whether the desired marker is defined once in the pathway template svg.
 
-      var markerElementBlack = svg.select('marker#' + name + '-' + position + '-black');
+      var selector = 'marker#' + name + '-' + position + '-black';
+      var markerElementBlack = svg.select(selector);
+      console.log('markerElementBlack');
+      console.log(markerElementBlack);
 
       if (markerElementBlack.length === 1) {
 
@@ -111,7 +165,9 @@ pathvisiojs.view.pathwayDiagram.svg.edge.marker = function(){
           });
           */
 
-          var markerElement = pathvisiojs.utilities.cloneNode(markerElementBlack[0][0]);
+          var markerElement = pathvisiojs.utilities.cloneNode(selector);
+          // TODO remove dependency on cloneNode and get the below working:
+          //var markerElement = pathvisiojs.utilities.clone(markerElementBlack[0][0]);
 
           // define style of marker element
 

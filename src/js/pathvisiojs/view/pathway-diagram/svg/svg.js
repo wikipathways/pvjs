@@ -160,9 +160,7 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
       console.log("Optional input 'pathway' not specified.");
     } 
 
-    console.log('pathvisiojs.context');
-    console.log(pathvisiojs.context);
-    var contextLevelInput = self.contextLevelInput = pathvisiojs.utilities.clone(pathvisiojs.context);
+    var contextLevelInput = pathvisiojs.utilities.clone(pathvisiojs.context);
     contextLevelInput.dependsOn = "ex:dependsOn";
 
     // TODO this is a hack. Should define args the same way each time. Should args include pathway or just organism?
@@ -209,14 +207,10 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
             if (element.renderableType === 'entityNode') {
               args.data = element;
               args.organism = organism;
-              console.log('args here')
-              console.log(args)
               pathvisiojs.view.pathwayDiagram.svg.node.entityNode.render(args);
             }
             else {
               if (element.renderableType === 'edge') {
-                console.log('edge element');
-                console.log(element);
                 pathvisiojs.view.pathwayDiagram.svg.edge.render(args.target, element);
               }
             }
@@ -297,8 +291,6 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
     function(err, results) {
       args.target = args.svg.select('#viewport');
       args.data = results.firstOrderData;
-      console.log('args.pathway');
-      console.log(args.pathway);
       quickRenderMultipleElements(args, function() {
         callback(svg);
       });
@@ -342,7 +334,6 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
 
     async.parallel({
       'hierarchicalData': function(callbackInside) {
-        self.pathway = args.pathway;
         var frame = {
           '@context': pathvisiojs.context,
           '@type': 'element'
@@ -392,7 +383,6 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
       }
     },
     function(err, results) {
-      self.results = results;
       var resultsData = results.hierarchicalData['@graph'].filter(function(element) {
         return (results.topLevelData.indexOf(element['@id']) > -1);
       });

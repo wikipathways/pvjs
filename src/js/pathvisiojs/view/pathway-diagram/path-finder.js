@@ -24,9 +24,9 @@ pathvisiojs.view.pathwayDiagram.pathFinder = function(){
 
   function generateGridData(shapes, pathwayImageWidth, pathwayImageHeight, callback) {
     shapes = d3.select(shapes).sort(function(shape1, shape2) {
-      Math.min(shape1.Height, shape1.Width) - Math.min(shape2.Height, shape2.Width);
+      Math.min(shape1.offsetHeight, shape1.offsetWidth) - Math.min(shape2.offsetHeight, shape2.offsetWidth);
     })[0][0];
-    pathvisioNS.grid.squareLength = Math.min(shapes[0].Height, shapes[0].Width) / 7;
+    pathvisioNS.grid.squareLength = Math.min(shapes[0].offsetHeight, shapes[0].offsetWidth) / 7;
     var totalColumnCount = Math.ceil(pathwayImageWidth/pathvisioNS.grid.squareLength);
     var totalRowCount = Math.ceil(pathwayImageHeight/pathvisioNS.grid.squareLength);
 
@@ -52,7 +52,7 @@ pathvisiojs.view.pathwayDiagram.pathFinder = function(){
     var upperLeftCorner, lowerRightCorner, rowStart, rowEnd, columnStart, columnEnd;
     shapes.forEach(function(shape) {
       upperLeftCorner = xYCoordinatesToMatrixLocation(shape.x, shape.y, pathvisioNS.grid.squareLength);
-      lowerRightCorner = xYCoordinatesToMatrixLocation(shape.x + shape.Width, shape.y + shape.Height, pathvisioNS.grid.squareLength);
+      lowerRightCorner = xYCoordinatesToMatrixLocation(shape.x + shape.offsetWidth, shape.y + shape.offsetHeight, pathvisioNS.grid.squareLength);
 
       columnStartTight = Math.max((upperLeftCorner.column), 0);
       columnEndTight = Math.min((lowerRightCorner.column), totalColumnCount - 1);
@@ -137,8 +137,8 @@ pathvisiojs.view.pathwayDiagram.pathFinder = function(){
     shapes.forEach(function(shape) {
       relXYCombinations.forEach(function(relXYCombination) {
         anchors.push({
-          'x': (shape.CenterX + shape.Width * relXYCombination.RelX),
-          'y': (shape.CenterY + shape.Height * relXYCombination.RelY)
+          'x': (shape.CenterX + shape.offsetWidth * relXYCombination.RelX),
+          'y': (shape.CenterY + shape.offsetHeight * relXYCombination.RelY)
         }); 
       }); 
     });
