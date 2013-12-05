@@ -71,16 +71,6 @@ pathvisiojs.view.pathwayDiagram.svg.node = function(){
     })
     .call(drag)
 
-    if (args.data.nodeType === 'DataNode') {
-      console.log('can click');
-      nodeContainer.on("click", function(d,i) {
-        console.log('clicked a data node-container');
-        console.log(d);
-        // only for data nodes
-        pathvisiojs.view.annotation.xRef.render(args.organism, d['DatasourceReference'].ID, d['DatasourceReference'].Database, d.text.tspan.join(' '), d.dataNodeType);
-      })
-    }
-
     /****************** 
      * background shape
      * ***************/

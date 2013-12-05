@@ -71,7 +71,7 @@
 		stroke-dasharray: 5,3;
 	}
 
-	use.data-node use.annotated-data-node{
+	.data-node .annotated-data-node{
 		fill-opacity: 1;
 		stroke: black;
 		stroke-dasharray: 0;
@@ -79,14 +79,14 @@
     pointer-events:auto;
 	}
 	
-	use.annotated-data-node:hover {
+	.annotated-data-node:hover {
 		cursor: pointer;
 	}
 
 	.gene-product {
 	}
 
-	use.metabolite use.annotated-metabolite{
+	.metabolite .annotated-metabolite{
 		stroke: blue;
 	}
 	

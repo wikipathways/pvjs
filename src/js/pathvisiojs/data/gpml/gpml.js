@@ -348,8 +348,6 @@ pathvisiojs.data.gpml = function(){
             "@type":element.GroupId
           };
           jsonld.frame(results, updateGroupsFrame, function(err, updateGroupsData) {
-            console.log('err');
-            console.log(err);
             var dimensions = getGroupDimensions(updateGroupsData['@graph'], function(dimensions) {
               element.x = dimensions.x;
               element.y = dimensions.y;

@@ -4,11 +4,7 @@ var thisParent;
 
 pathvisiojs.view.pathwayDiagram.svg.edge = function(){
   function render(parent, data) {
-    thisParent = self.thisParent = parent;
-    console.log('parent[0][0]');
-    console.log(parent[0][0]);
-    console.log('data');
-    console.log(data);
+    thisParent = parent;
 
     // Update…
     var edge = parent.selectAll('#' + strcase.paramCase(data['@id']))
@@ -25,9 +21,6 @@ pathvisiojs.view.pathwayDiagram.svg.edge = function(){
   }
 
   function setAttributes(edge) {
-    console.log('edge me');
-    console.log(edge);
-
     var Straight = Segmented = d3.svg.line()
       .x(function(data) { return data.X; })
       .y(function(data) { return data.Y; })
@@ -130,12 +123,10 @@ pathvisiojs.view.pathwayDiagram.svg.edge = function(){
           }
           //*/
           if (data.ConnectorType === 'Straight') {
-            console.log('Straight');
             return Straight(data.Point);
           }
 
           if (data.ConnectorType === 'Elbow') {
-            console.log('Elbow');
             if (data.RelY === -1 || data.RelY === 1) {
               stepType = 'step-before';
             }
@@ -144,8 +135,6 @@ pathvisiojs.view.pathwayDiagram.svg.edge = function(){
             }
             return Elbow(data.Point);
           }
-          console.log('data.Point');
-          console.log(data.Point);
           //return data.ConnectorType;
         });
       //});
