@@ -17,11 +17,17 @@ pathvisiojs.view.pathwayDiagram.svg.node.entityNode = function(){
     pathvisiojs.view.pathwayDiagram.svg.node.render(args, function(nodeContainer) {
       nodeContainer.attr("class", function (d) {
         var styleClass = 'entity-node ' + strcase.paramCase(d.ShapeType) + ' ';
-        if (!!args.data.DatasourceReference) {
-          if (!!args.data.DatasourceReference.ID) {
+        if (d.nodeType === 'DataNode') {
+          if (!!d.DatasourceReference) {
             styleClass += 'annotated-data-node ';
             styleClass += 'annotated-' + strcase.paramCase(d.dataNodeType) + ' ';
           }
+          else {
+            styleClass += 'data-node ' + strcase.paramCase(d.dataNodeType) + ' ';
+          }
+        }
+        else {
+          styleClass += strcase.paramCase(d.nodeType) + ' ';
         }
         return styleClass;
       })

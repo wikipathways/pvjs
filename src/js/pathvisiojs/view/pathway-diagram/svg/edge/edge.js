@@ -42,7 +42,13 @@ pathvisiojs.view.pathwayDiagram.svg.edge = function(){
 
       edge.attr("id", function(data) { return strcase.paramCase(data['@id']); })
       .attr("class", function (data) {
-        var styleClass = 'edge ' + data.edgeType + ' ';
+        var styleClass = 'edge ';
+        if (!!data.DatasourceReference) {
+          styleClass += 'annotated-interaction ';
+        }
+        else {
+          styleClass += strcase.paramCase(data.edgeType) + ' ';
+        }
         if (data.hasOwnProperty('strokeStyle')) {
           if (data.strokeStyle === 'dashed') {
             styleClass += " dashed-stroke";
@@ -50,7 +56,7 @@ pathvisiojs.view.pathwayDiagram.svg.edge = function(){
         }
         return styleClass;
       })
-      .attr('transform', function(d) {
+      .attr('transform', function() {
         var parentElement = {}
         if (thisParent[0][0].hasOwnProperty('__data__')) {
           parentElement.x = (thisParent[0][0].__data__['CenterX'] - thisParent[0][0].__data__['Width']/2);
@@ -86,10 +92,10 @@ pathvisiojs.view.pathwayDiagram.svg.edge = function(){
         return 'url(#' + markerStart + ')';
       })
       //*/
-      .attr("marker-end", function (d) {
+      .attr("marker-end", function (data) {
         // TODO don't redefine svg
         var svg = d3.select('#svg');
-        var markerEnd = pathvisiojs.view.pathwayDiagram.svg.edge.marker.render(svg, strcase.paramCase(d.interactionType), 'end', d.stroke);
+        var markerEnd = pathvisiojs.view.pathwayDiagram.svg.edge.marker.render(svg, strcase.paramCase(data.interactionType), 'end', data.stroke);
         if (edge.hasOwnProperty('strokeStyle')) {
           if (edge.strokeStyle === 'double') {
             //hack to manage marker scaling; this marker should not have any features itself
@@ -153,42 +159,42 @@ pathvisiojs.view.pathwayDiagram.svg.edge = function(){
       .data(pathway.edges)
       .enter()
       .append("path")
-      .attr("id", function (d) { return d.edgeType + '-' + d.graphId; })
-      .attr("class", function (d) {
-        var styleClass = 'edge ' + d.edgeType + ' ';
-        if (d.hasOwnProperty('strokeStyle')) {
-          if (d.strokeStyle === 'dashed') {
+      .attr("id", function (data) { return data.edgeType + '-' + data.graphId; })
+      .attr("class", function (data) {
+        var styleClass = 'edge ' + data.edgeType + ' ';
+        if (data.hasOwnProperty('strokeStyle')) {
+          if (data.strokeStyle === 'dashed') {
             styleClass += " dashed-stroke";
           }
         }
         return styleClass;
       })
-      .attr("style", function (d) {
-        var style = 'stroke-width:' + d.strokeWidth + '; ';
-        if (d.hasOwnProperty('stroke')) {
-          style += 'stroke:' + d.stroke + '; ';
+      .attr("style", function (data) {
+        var style = 'stroke-width:' + data.strokeWidth + '; ';
+        if (data.hasOwnProperty('stroke')) {
+          style += 'stroke:' + data.stroke + '; ';
         }
-        if (d.hasOwnProperty('strokeStyle')) {
-          if (d.strokeStyle === 'double') {
-            style += 'stroke-width:' + (3 * d.strokeWidth) + '; ';
+        if (data.hasOwnProperty('strokeStyle')) {
+          if (data.strokeStyle === 'double') {
+            style += 'stroke-width:' + (3 * data.strokeWidth) + '; ';
           }
         }
         return style;
       })
-      .attr("marker-start", function (d) {
-        var markerStart = pathvisiojs.view.pathwayDiagram.svg.edge.marker.render(viewport, d.markerStart, 'start', d.stroke);
-        if (d.hasOwnProperty('strokeStyle')) {
-          if (d.strokeStyle === 'double') {
+      .attr("marker-start", function (data) {
+        var markerStart = pathvisiojs.view.pathwayDiagram.svg.edge.marker.render(viewport, data.markerStart, 'start', data.stroke);
+        if (data.hasOwnProperty('strokeStyle')) {
+          if (data.strokeStyle === 'double') {
             //hack to manage marker scaling; this marker should not have any features itself
             markerStart = 'double-line-hack-start';
           }
         }
         return 'url(#' + markerStart + ')';
       })
-      .attr("marker-end", function (d) {
-        var markerEnd = pathvisiojs.view.pathwayDiagram.svg.edge.marker.render(viewport, d.markerEnd, 'end', d.stroke);
-        if (d.hasOwnProperty('strokeStyle')) {
-          if (d.strokeStyle === 'double') {
+      .attr("marker-end", function (data) {
+        var markerEnd = pathvisiojs.view.pathwayDiagram.svg.edge.marker.render(viewport, data.markerEnd, 'end', data.stroke);
+        if (data.hasOwnProperty('strokeStyle')) {
+          if (data.strokeStyle === 'double') {
             //hack to manage marker scaling; this marker should not have any features itself
             markerEnd = 'double-line-hack-end';
           }
