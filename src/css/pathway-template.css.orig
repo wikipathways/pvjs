@@ -71,7 +71,11 @@
 		stroke-dasharray: 5,3;
 	}
 
+<<<<<<< HEAD
+	.data-node {
+=======
 	use.data-node use.annotated-data-node{
+>>>>>>> 98ffc24eaf633a15fa7ccb9860ac46a260d699af
 		fill-opacity: 1;
 		stroke: black;
 		stroke-dasharray: 0;
@@ -79,18 +83,27 @@
     pointer-events:auto;
 	}
 	
+<<<<<<< HEAD
+  .data-node:hover {
+		cursor:pointer;
+=======
 	use.annotated-data-node:hover {
 		cursor: pointer;
+>>>>>>> 98ffc24eaf633a15fa7ccb9860ac46a260d699af
 	}
 
 	.gene-product {
 	}
 
+<<<<<<< HEAD
+	.metabolite {
+=======
 	use.metabolite use.annotated-metabolite{
+>>>>>>> 98ffc24eaf633a15fa7ccb9860ac46a260d699af
 		stroke: blue;
 	}
 	
-	.annotated-metabolite:hover {
+	use.annotated-metabolite:hover {
 		cursor: pointer;
 	}
 
