@@ -1,8 +1,6 @@
 pathvisiojs.view.pathwayDiagram.svg.node.entityNode = function(){
   //function render(viewport, data, allSymbolNames) {
   function render(args) {
-    console.log('args in entityNode.render');
-    console.log(args);
     if (!args.target) {
       throw new Error('Error: Missing viewport.');
     }
@@ -18,8 +16,25 @@ pathvisiojs.view.pathwayDiagram.svg.node.entityNode = function(){
 
     pathvisiojs.view.pathwayDiagram.svg.node.render(args, function(nodeContainer) {
       nodeContainer.attr("class", function (d) {
-        return 'entity-node ' + strcase.paramCase(d.ShapeType);
+        var styleClass = 'entity-node ' + strcase.paramCase(d.ShapeType) + ' ';
+        if (!!args.data.DatasourceReference) {
+          if (!!args.data.DatasourceReference.ID) {
+            styleClass += 'annotated-data-node ';
+            styleClass += 'annotated-' + strcase.paramCase(d.dataNodeType) + ' ';
+          }
+        }
+        return styleClass;
       })
+      if (!!args.data.DatasourceReference) {
+        if (!!args.data.DatasourceReference.ID) {
+          console.log('can click');
+          nodeContainer.on("click", function(d,i) {
+            console.log('clicked a data node-container');
+            console.log(d);
+            pathvisiojs.view.annotation.xRef.render(args.organism, d['DatasourceReference'].ID, d['DatasourceReference'].Database, d.text.tspan.join(' '), d.dataNodeType);
+          })
+        }
+      }
     });
   }
  
