@@ -1,5 +1,29 @@
 pathvisiojs.utilities = function(){
 
+  /**
+   * From http://stackoverflow.com/questions/7770235/change-text-direction-of-textbox-automatically
+   * What about Chinese characters that go top to bottom?
+   */
+
+  function getTextDirection(text) {
+
+    var x =  new RegExp("[\x00-\x80]+"); // is ascii
+
+    //alert(x.test($this.val()));
+
+    var isAscii = x.test(text);
+
+    var direction;
+    if (isAscii) {
+      direction = "ltr";
+    }
+    else {
+      direction = "rtl";
+    }
+
+    return direction;
+  }  
+
   // from here: http://www.cjboco.com/blog.cfm/post/determining-an-elements-width-and-height-using-javascript/
   // TODO have not tested x-browser yet.
   // could use jquery, but I want to remove it as a dependency for pv.js.
@@ -50,6 +74,8 @@ pathvisiojs.utilities = function(){
   }
 
   function cloneNode(selector) {
+    console.log('selector');
+    console.log(selector);
     var node = d3.select(selector).node();
     return d3.select(node.parentNode.insertBefore(node.cloneNode(true), node.nextSibling));
   }
@@ -224,7 +250,8 @@ pathvisiojs.utilities = function(){
     isWikiPathwaysId:isWikiPathwaysId,
     isNumber:isNumber,
     strToHtmlId:strToHtmlId,
-    getObjectType:getObjectType
+    getObjectType:getObjectType,
+    getTextDirection:getTextDirection
   };
 }();
 

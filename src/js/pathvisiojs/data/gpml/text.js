@@ -1,5 +1,5 @@
 pathvisiojs.data.gpml.text = function() {
-  function toRenderableJson(gpmlTextLabel) {
+  function toRenderableJson(gpmlTextLabel, callback) {
     try {
       jsonText = {};
       jsonText["tspan"] = gpmlDataNode.attr('TextLabel').split(/\r\n|\r|\n|&#xA;/g);
@@ -15,7 +15,14 @@ pathvisiojs.data.gpml.text = function() {
       jsonText["fontWeight"] = fontWeight.toLowerCase();
       jsonText["fontFamily"] = gpmlDataNode.select('Graphics').attr('FontName') || 'Arial';
 
-      return jsonText;
+      var color = gpmlDataNode.select('Graphics').attr('Color');
+      if (!!color) {
+        // validate color as CSS value TODO
+        jsonText["color"] = color;
+      }
+
+
+      callback(jsonText);
     }
     catch (e) {
       throw new Error("Error converting gpmlTextLabel to renderable json: " + e.message);
