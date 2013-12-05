@@ -44,7 +44,7 @@ pathvisiojs.view.pathwayDiagram.svg.node.useElement = function(){
     .data([data])
     .attr("id", function (d) {return 'node-' + strcase.paramCase(d['@id']);})
     .attr("class", function (d) {
-      return 'group shape ' + strcase.paramCase(d.ShapeType);
+      return 'shape ';
     })
     .attr('transform', function(d) {
       var transform = 'scale(1)';
@@ -60,7 +60,7 @@ pathvisiojs.view.pathwayDiagram.svg.node.useElement = function(){
     .attr("style", function (data) {
       var style = '';
       if (data.hasOwnProperty('borderColor')) {
-        style += 'stroke-color:' + data.borderColor + '; ';
+        style += 'stroke:' + data.borderColor + '; ';
       }
       /*
       if (d.hasOwnProperty('fillOpacity')) {

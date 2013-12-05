@@ -11,11 +11,16 @@ pathvisiojs.data.gpml.dataNode = function() {
         jsonDataNode["GroupRef"] = groupRef;
         jsonDataNode["dependsOn"] = [pathwayIri + "#" + groupRef];
       }
-      var datasourceReference = gpmlDataNode.select('Xref');
-      if (!!datasourceReference && datasourceReference.length > 0) {
-        jsonDataNode["DatasourceReference"] = {};
-        jsonDataNode["DatasourceReference"]["Database"] = datasourceReference.attr('Database');
-        jsonDataNode["DatasourceReference"]["ID"] = datasourceReference.attr('ID')
+      var database, ID, 
+        datasourceReference = gpmlDataNode.select('Xref');
+      if (!!datasourceReference) {
+        database = datasourceReference.attr('Database')
+        ID = datasourceReference.attr('ID')
+        if (!!database && !!ID) {
+          jsonDataNode["DatasourceReference"] = {};
+          jsonDataNode["DatasourceReference"]["Database"] = database;
+          jsonDataNode["DatasourceReference"]["ID"] = ID;
+        }
       }
       shapeType = gpmlDataNode.select('Graphics').attr('ShapeType') || 'rectangle';
       shapeType = strcase.paramCase(shapeType);
