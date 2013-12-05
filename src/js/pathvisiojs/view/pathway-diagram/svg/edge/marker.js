@@ -9,7 +9,7 @@ pathvisiojs.view.pathwayDiagram.svg.edge.marker = function(){
   var svgHere;
 
   function appendCustom(customMarker, callback) {
-    //*
+    /*
     console.log('customMarker');
     console.log(customMarker);
     //*/
@@ -22,11 +22,7 @@ pathvisiojs.view.pathwayDiagram.svg.edge.marker = function(){
 
         var idStub = strcase.paramCase(customMarker.id)
         var startId = idStub + '-start-black';
-        console.log('startId');
-        console.log(startId);
         var endId = idStub + '-end-black';
-        console.log('endId');
-        console.log(endId);
 
         var markerStart = svgHere.select('defs').select('#' + startId);
         if (!markerStart[0][0]) {
@@ -35,8 +31,6 @@ pathvisiojs.view.pathwayDiagram.svg.edge.marker = function(){
         markerStart = svgHere.select('defs').append('marker')
         .attr('id', startId)
         .attr('preserveAspectRatio', 'none');
-        console.log('markerStart');
-        console.log(markerStart);
 
         var newMarker = d3.select(svgXml.documentElement)
         var width = newMarker.attr('width');
@@ -67,8 +61,6 @@ pathvisiojs.view.pathwayDiagram.svg.edge.marker = function(){
         .attr('orient', 'auto')
         .attr('refX', 0)
         .attr('refY', -1*height/2);
-        console.log('markerEndD3');
-        console.log(markerEndD3);
         var g = markerEndD3.append('g')
         .attr('id', 'g-' + endId)
         .attr('style', '-webkit-transform: rotate(180deg); -webkit-transform-origin: 50% 50%;');
@@ -126,12 +118,6 @@ pathvisiojs.view.pathwayDiagram.svg.edge.marker = function(){
   }
 
   function render(svg, name, position, color) {
-    console.log('name');
-    console.log(name);
-    console.log('position');
-    console.log(position);
-    console.log('color');
-    console.log(color);
     var markerUrl = '';
 
     // if no marker is to be used, JSON data will specify 'none'.
@@ -145,8 +131,6 @@ pathvisiojs.view.pathwayDiagram.svg.edge.marker = function(){
 
       var selector = 'marker#' + name + '-' + position + '-black';
       var markerElementBlack = svg.select(selector);
-      console.log('markerElementBlack');
-      console.log(markerElementBlack);
 
       if (markerElementBlack.length === 1) {
 

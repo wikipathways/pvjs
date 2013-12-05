@@ -44,8 +44,6 @@ pathvisiojs.view.pathwayDiagram.svg.node.text = function(){
   };
 
   function render(nodeContainer, data) {
-    console.log('I have text');
-
     var dx, dy, textAlign, textAnchor;
     var fontSize = data.text.fontSize;
     if (data.text.hasOwnProperty('textAlign')) {
@@ -64,8 +62,6 @@ pathvisiojs.view.pathwayDiagram.svg.node.text = function(){
 
     var nodeText = nodeContainer.selectAll('text')
     .data(function(d) {
-      console.log('d');
-      console.log(d);
       return [d];
     })
     .enter()
@@ -144,8 +140,6 @@ pathvisiojs.view.pathwayDiagram.svg.node.text = function(){
 
     var nodeTspan = nodeText.selectAll('tspan')
     .data(function(d) {
-      console.log('data inside nodeTspan');
-      console.log(d.text.tspan);
       return d.text.tspan;
     })
     .enter()

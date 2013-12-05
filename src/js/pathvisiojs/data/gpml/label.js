@@ -27,8 +27,6 @@ pathvisiojs.data.gpml.label = function(){
       ];
 
       pathvisiojs.data.gpml.text.toRenderableJson(gpmlLabel, function(text) {
-        console.log('jsonLabel["text"]');
-        console.log(jsonLabel["text"]);
         jsonLabel["text"] = text;
       });
       jsonLabel["CenterX"] = parseFloat(gpmlLabel.select('Graphics').attr('CenterX'));
