@@ -159,42 +159,42 @@
       }
 
       function loadScripts(array, callback){  
-      var loader = function(src,handler){  
-      var script = document.createElement("script");  
-      script.src = src;  
-      script.onload = script.onreadystatechange = function(){  
-      script.onreadystatechange = script.onload = null;  
-      if(/MSIE ([6-9]+\.\d+);/.test(navigator.userAgent))window.setTimeout(function(){handler();},8,this);  
-      else handler();  
-      }  
-      var head = document.getElementsByTagName("head")[0];  
-      (head || document.body).appendChild( script );  
-      };  
-      (function(){  
-      if(array.length!=0){  
-      loader(array.shift(),arguments.callee);  
-      }else{  
-      callback && callback();  
-      }  
-      })();  
+        var loader = function(src,handler){  
+          var script = document.createElement("script");  
+          script.src = src;  
+          script.onload = script.onreadystatechange = function(){  
+            script.onreadystatechange = script.onload = null;  
+            if(/MSIE ([6-9]+\.\d+);/.test(navigator.userAgent))window.setTimeout(function(){handler();},8,this);  
+            else handler();  
+          }  
+          var head = document.getElementsByTagName("head")[0];  
+          (head || document.body).appendChild( script );  
+        };  
+        (function(){  
+          if(array.length!=0){  
+            loader(array.shift(),arguments.callee);  
+            }else{  
+            callback && callback();  
+          }  
+        })();  
       }
 
       function loadJsCssFile(filename, filetype, callback){
-      if (filetype=="js") {
-      var fileref=document.createElement('script')
-      fileref.setAttribute("type","text/javascript")
-      fileref.setAttribute("src", filename)
-      }
-      else if (filetype=="css") {
-      var fileref=document.createElement("link")
-      fileref.setAttribute("rel", "stylesheet")
-      fileref.setAttribute("type", "text/css")
-      fileref.setAttribute("href", filename)
-      }
-      if (typeof fileref!="undefined") {
-      document.getElementsByTagName("head")[0].appendChild(fileref)
-      }
-      callback();
+        if (filetype=="js") {
+          var fileref=document.createElement('script')
+          fileref.setAttribute("type","text/javascript")
+          fileref.setAttribute("src", filename)
+        }
+        else if (filetype=="css") {
+          var fileref=document.createElement("link")
+          fileref.setAttribute("rel", "stylesheet")
+          fileref.setAttribute("type", "text/css")
+          fileref.setAttribute("href", filename)
+        }
+        if (typeof fileref!="undefined") {
+          document.getElementsByTagName("head")[0].appendChild(fileref)
+        }
+        callback();
       }
 
       function updateParams(updatedParam) {
