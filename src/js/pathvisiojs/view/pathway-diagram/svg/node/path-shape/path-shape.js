@@ -5,7 +5,7 @@ pathvisiojs.view.pathwayDiagram.svg.node.pathShape = function(){
     .data([data])
     .attr("id", function (d) {return 'node-' + strcase.paramCase(d['@id']);})
     .attr("class", function (d) {
-      return 'group shape ' + strcase.paramCase(d.ShapeType);
+      return 'shape ' + strcase.paramCase(d.ShapeType);
     })
 
     var nodeAttributes = pathvisiojs.view.pathwayDiagram.svg.node.pathShape[strcase.camelCase(data.ShapeType)].getAttributes(data.offsetWidth, data.offsetHeight);

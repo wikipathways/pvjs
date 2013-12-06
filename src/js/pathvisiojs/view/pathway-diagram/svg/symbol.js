@@ -22,17 +22,13 @@ pathvisiojs.view.pathwayDiagram.svg.symbol = function(){
     //if (symbolType === 'svg') {
     if (1===1) {
       d3.xml(customShape.url, "image/svg+xml", function(svgXml) {
-        if (customShape.url === 'http://127.0.0.1/~andersriutta/pathvisiojs/src/views/shapes/oval.svg') {
-          self.mySvgXml = svgXml;
-        }
-
         var shape = d3.select(svgXml.documentElement)
         var width = shape.attr('width');
         var height = shape.attr('height');
+        var shapeClass = shape.attr('class');
 
         symbol.attr('viewBox', '0 0 ' + width + ' ' + height);
 
-        d3.xml(customShape.url, "image/svg+xml", function(svgXml) {
           self.mySvgXml = svgXml;
           var shapeSvg = d3.select(svgXml).select('svg');
           var width = shapeSvg.attr('width');
@@ -50,7 +46,6 @@ pathvisiojs.view.pathwayDiagram.svg.symbol = function(){
               symbol[0][0].appendChild(shapeChildren[0]);
             } while (shapeChildren.length > 0);
           });
-        });
         callback(null);
       });
     }
