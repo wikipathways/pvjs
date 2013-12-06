@@ -89,7 +89,7 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
     var pathvisioJsContainer, pathwayContainer, allSymbolNames;
     async.series([
       function(callback) {
-        args.target.element.html(pathvisioNS['tmp/pathvisio-js.html']);
+        args.target.element.html(pathvisioNS['tmp/pathvisiojs.html']);
         pathvisioJsContainer = args.target.element.select('#pathvisio-js-container');
         pathwayContainer = pathvisioJsContainer.select('#pathway-container')
         .attr('class', args.preserveAspectRatioValues.yAlign);
@@ -185,7 +185,7 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
             args.data = element;
             pathvisiojs.view.pathwayDiagram.svg.node.render(args, function(groupContainer) {
               groupContainer.attr("class", function (d) {
-                return 'group group-' + strcase.paramCase(d.ShapeType);
+                return 'group ';
               })
 
               var groupedElementsFrame = {

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<?xml-stylesheet type="text/css" href="../../css/pathway-template.css"?>
+<?xml-stylesheet type="text/css" href="../../css/pathway-diagram.css"?>
 
 <svg id="mim-binding"
 	version="1.1"
@@ -12,6 +12,8 @@
 	class="solid-stroke"
 	style="fill:black"
 	viewBox="0 0 12 12">
+
+	<!-- mim-binding markers: four-point polygon, no stroke -->
 
 	<rect class="default-fill" stroke="none" x="0" y="5.4" width="2" height="1.2" />
 	<polygon stroke-width="0" points="12,12 0,6 12,0 5,6 "/>
