@@ -163,7 +163,7 @@ pathvisiojs.data.gpml.node = function(){
             jsonNode.textLabel.fill = jsonNode.stroke;
           }
 
-          // default fontSize is already specified in the CSS of pathway-template.svg, but I need the font size
+          // default fontSize is already specified in the CSS of pathway-diagram.svg, but I need the font size
           // to calculate the vertical spacing. I could remove this if I could pull the value from the CSS.
           
           var fontSize;

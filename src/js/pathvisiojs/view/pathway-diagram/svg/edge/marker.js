@@ -14,6 +14,22 @@ pathvisiojs.view.pathwayDiagram.svg.edge.marker = function(){
     console.log(customMarker);
     //*/
     if (1===1) {
+
+/*
+ * could also look at using SVG image tags for this, like so:
+	<marker id="mim-binding-start-black" 
+	class="default-fill" 
+	stroke="black"
+	markerHeight="12"
+	markerWidth="12"
+	markerUnits="strokeWidth"
+	orient="auto"
+	refX="0" refY="6"
+	viewBox="0 0 12 12">
+  <image xlink:href="http://wikipathways.github.io/pathvisiojs/src/views/markers/mim-binding.svg" x="0" y="0" width="12" height="12"></image>
+	</marker>
+//*/
+
       d3.xml(customMarker.url, 'image/svg+xml', function(svgXml) {
 
         /*

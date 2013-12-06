@@ -6,6 +6,41 @@
 
     <div id="pathway-container" style="width: inherit; min-width: inherit; max-width: inherit; height: inherit; min-height: inherit; max-height: inherit; " class="y-mid">
       <img id="loading-icon" class="x-mid" src="http://wikipathways.org//wpi/extensions/PathwayViewer/img/loading.gif">
+
+
+      <svg id="pathway-svg"
+        version="1.1"
+        baseProfile="full"
+        xmlns="http://www.w3.org/2000/svg"
+        xmlns:xlink="http://www.w3.org/1999/xlink"
+        xmlns:ev="http://www.w3.org/2001/xml-events"
+        width="100%"
+        height="100%">
+
+        <g>
+        <title>pathvisiojs pathway diagram</title>
+        <desc>
+          This SVG file contains all the graphical elements (markers and symbols in defs as well as
+          style data) used by the program pathvisiojs, which has two components: 
+          1) a viewer for transforming GPML biological pathway data into an SVG visual representation and 
+          2) an editor for creating both views and models for biological pathways.
+        </desc>
+        </g>
+        <defs>
+
+          <filter id = "highlight" width = "150%" height = "150%">
+            <feOffset result = "offOut" in = "SourceGraphic" dx = "30" dy = "30"/>
+              <feGaussianBlur result = "blurOut" in = "offOut" stdDeviation = "10"/>
+            <feBlend in = "SourceGraphic" in2 = "blurOut" mode = "normal"/>
+          </filter>
+
+        </defs>
+
+        <g id="viewport">
+        </g>
+
+      </svg>
+
     
       
     </div>

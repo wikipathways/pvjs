@@ -44,7 +44,7 @@ pathvisiojs.view.pathwayDiagram.svg.node.useElement = function(){
     .data([data])
     .attr("id", function (d) {return 'node-' + strcase.paramCase(d['@id']);})
     .attr("class", function (d) {
-      return 'shape ';
+      return 'shape ' + strcase.paramCase(d.ShapeType);
     })
     .attr('transform', function(d) {
       var transform = 'scale(1)';
