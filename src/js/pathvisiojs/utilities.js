@@ -35,7 +35,7 @@ pathvisiojs.utilities = function(){
       if (this.style.pixelWidth) {
         return this.style.pixelWidth;
       } else {
-        return this.offsetWidth;
+        return this.width;
       }
     }
   };
@@ -47,7 +47,7 @@ pathvisiojs.utilities = function(){
       if (this.style.pixelHeight) {
         return this.style.pixelHeight;
       } else {
-        return this.offsetHeight;
+        return this.height;
       }
     }
   };
@@ -205,15 +205,15 @@ pathvisiojs.utilities = function(){
 
   function getWindowDimensions(object) {
     var winW = 630, winH = 460;
-    if (document.body && document.body.offsetWidth) {
-     winW = document.body.offsetWidth;
-     winH = document.body.offsetHeight;
+    if (document.body && document.body.width) {
+     winW = document.body.width;
+     winH = document.body.height;
     }
     if (document.compatMode=='CSS1Compat' &&
         document.documentElement &&
-        document.documentElement.offsetWidth ) {
-     winW = document.documentElement.offsetWidth;
-     winH = document.documentElement.offsetHeight;
+        document.documentElement.width ) {
+     winW = document.documentElement.width;
+     winH = document.documentElement.height;
     }
     if (window.innerWidth && window.innerHeight) {
      winW = window.innerWidth;

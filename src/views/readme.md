@@ -38,8 +38,7 @@ render a GPML file on the browser, we will read a copy of this file into D3.js a
 modify the copy by adding "use" statements, cloning markers, etc. in order to create
 the desired pathway illustration in SVG.
 
-The XML declaration used in the template is taken from an example from the W3C 
-<http://www.w3.org/TR/SVG/images/struct/use04.svg>,
+The XML declaration used in the template is taken from [an example](http://www.w3.org/TR/SVG/images/struct/use04.svg) from the W3C,
 except I added:
 encoding="UTF-8" 
 

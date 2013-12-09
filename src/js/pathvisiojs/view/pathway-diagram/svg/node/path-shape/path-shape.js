@@ -1,5 +1,4 @@
 pathvisiojs.view.pathwayDiagram.svg.node.pathShape = function(){
-
   function render(parent, data) {
     var node = parent.append("path")
     .data([data])
@@ -8,7 +7,7 @@ pathvisiojs.view.pathwayDiagram.svg.node.pathShape = function(){
       return 'shape ' + strcase.paramCase(d.ShapeType);
     })
 
-    var nodeAttributes = pathvisiojs.view.pathwayDiagram.svg.node.pathShape[strcase.camelCase(data.ShapeType)].getAttributes(data.offsetWidth, data.offsetHeight);
+    var nodeAttributes = pathvisiojs.view.pathwayDiagram.svg.node.pathShape[strcase.camelCase(data.ShapeType)].getAttributes(data.width, data.height);
     nodeAttributes.forEach(function(attribute) {
       node.attr(attribute.name, attribute.value)
     });
