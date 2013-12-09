@@ -48,20 +48,33 @@ pathvisiojs.data.gpml.dataNode = function() {
       var linestyle = gpmlDataNode.select('Graphics').attr('LineStyle') || 'Solid';
       jsonDataNode["LineStyle"] = linestyle;
 
-      var color = gpmlDataNode.select('Graphics').attr('Color');
-      if (!!color) {
-        jsonDataNode["color"] = color;
+      var color;
+      var colorValue = gpmlDataNode.select('Graphics').attr('Color');
+      if (!!colorValue) {
+        color = new RGBColor(colorValue);
+        if (color.ok) {
+          jsonDataNode["color"] = color.toHex();
+        }
+        else {
+          console.warn('Invalid Color encountered. Setting Color to black.');
+          jsonDataNode["color"] = "#000000";
+        }
       }
 
-      var backgroundColor = gpmlDataNode.select('Graphics').attr('FillColor');
-      if (!!backgroundColor) {
-        jsonDataNode["backgroundColor"] = backgroundColor;
-      }
+      jsonDataNode["borderColor"] = jsonDataNode["color"];
 
-      var borderColor = gpmlDataNode.select('Graphics').attr('Color');
-      if (!!borderColor) {
-        jsonDataNode["borderColor"] = borderColor;
-      }     
+      var backgroundColor;
+      var backgroundColorValue = gpmlDataNode.select('Graphics').attr('FillColor');
+      if (!!backgroundColorValue) {
+        backgroundColor = new RGBColor(backgroundColorValue);
+        if (backgroundColor.ok) {
+          jsonDataNode["backgroundColor"] = backgroundColor.toHex();
+        }
+        else {
+          console.warn('Invalid backgroundColor encountered. Setting backgroundColor to black.');
+          jsonDataNode["backgroundColor"] = "#000000";
+        }
+      }
 
       var borderWidth = gpmlDataNode.select('Graphics').attr('LineThickness') || 1;
       jsonDataNode["borderWidth"] = parseFloat(borderWidth);
@@ -72,10 +85,10 @@ pathvisiojs.data.gpml.dataNode = function() {
       // with a similar calculation for gpmlHeight
 
       var gpmlWidth = parseFloat(gpmlDataNode.select('Graphics').attr('Width'));
-      jsonDataNode["offsetWidth"] = gpmlWidth + jsonDataNode["borderWidth"];
+      jsonDataNode["width"] = gpmlWidth + jsonDataNode["borderWidth"];
 
       var gpmlHeight = parseFloat(gpmlDataNode.select('Graphics').attr('Height'));
-      jsonDataNode["offsetHeight"] = gpmlHeight + jsonDataNode["borderWidth"];
+      jsonDataNode["height"] = gpmlHeight + jsonDataNode["borderWidth"];
 
       jsonDataNode["padding"] = "0.5em";
 

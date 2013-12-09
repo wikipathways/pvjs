@@ -9,42 +9,39 @@ pathvisiojs.data.gpml = function(){
     'mim-inhibition':'Inhibition'
   };
 
-  function getGroupDimensions(groupElements, callback) {
+  function getGroupDimensions(group, groupContents, callback) {
     var dimensions = {};
-    dimensions.topLeftCorner = {
-      "x": 99999,
-      "y": 99999
-    };
-    dimensions.bottomRightCorner = {
-      "x": 0,
-      "y": 0
-    };
-    groupElements.forEach(function(groupElement) {
-      if (groupElement.renderableType === 'entityNode') {
+    dimensions.topLeftCorner = {};
+    dimensions.topLeftCorner.X = 99999;
+    dimensions.topLeftCorner.Y = 99999;
+    dimensions.bottomRightCorner.X = 0;
+    dimensions.bottomRightCorner.Y = 0;
+    groupContents.forEach(function(groupContent) {
+      if (groupContent.renderableType === 'entityNode') {
         entityNode = {};
         entityNode.topLeftCorner = {};
-        entityNode.topLeftCorner.x = (groupElement['CenterX'] - groupElement['offsetWidth']/2);
-        entityNode.topLeftCorner.y = (groupElement['CenterY'] - groupElement['offsetHeight']/2);
+        entityNode.topLeftCorner.X = (groupContent.CenterX - groupContent.width/2);
+        entityNode.topLeftCorner.Y = (groupContent.CenterY - groupContent.height/2);
         entityNode.bottomRightCorner = {};
-        entityNode.bottomRightCorner.x = (groupElement['CenterX'] + groupElement['offsetWidth']/2);
-        entityNode.bottomRightCorner.y = (groupElement['CenterY'] + groupElement['offsetHeight']/2);
-        dimensions.topLeftCorner.x = Math.min(dimensions.topLeftCorner.x, entityNode.topLeftCorner.x);
-        dimensions.topLeftCorner.y = Math.min(dimensions.topLeftCorner.y, entityNode.topLeftCorner.y);
-        dimensions.bottomRightCorner.x = Math.max(dimensions.bottomRightCorner.x, entityNode.bottomRightCorner.x);
-        dimensions.bottomRightCorner.y = Math.max(dimensions.bottomRightCorner.y, entityNode.bottomRightCorner.y);
+        entityNode.bottomRightCorner.X = (groupContent.CenterX + groupContent.width/2);
+        entityNode.bottomRightCorner.Y = (groupContent.CenterY + groupContent.height/2);
+        dimensions.topLeftCorner.X = Math.min(dimensions.topLeftCorner.X, entityNode.topLeftCorner.X);
+        dimensions.topLeftCorner.Y = Math.min(dimensions.topLeftCorner.Y, entityNode.topLeftCorner.Y);
+        dimensions.bottomRightCorner.X = Math.max(dimensions.bottomRightCorner.X, entityNode.bottomRightCorner.X);
+        dimensions.bottomRightCorner.Y = Math.max(dimensions.bottomRightCorner.Y, entityNode.bottomRightCorner.Y);
       }
       else {
-        dimensions.topLeftCorner.x = Math.min(dimensions.topLeftCorner.x, groupElement.Point[0].X, groupElement.Point[groupElement.Point.length - 1].X);
-        dimensions.topLeftCorner.y = Math.min(dimensions.topLeftCorner.y, groupElement.Point[0].Y, groupElement.Point[groupElement.Point.length - 1].Y);
-        dimensions.bottomRightCorner.x = Math.max(dimensions.bottomRightCorner.x, groupElement.Point[0].X, groupElement.Point[groupElement.Point.length - 1].X);
-        dimensions.bottomRightCorner.y = Math.max(dimensions.bottomRightCorner.y, groupElement.Point[0].Y, groupElement.Point[groupElement.Point.length - 1].Y);
+        dimensions.topLeftCorner.X = Math.min(dimensions.topLeftCorner.X, groupContent.Point[0].X, groupContent.Point[groupContent.Point.length - 1].X);
+        dimensions.topLeftCorner.Y = Math.min(dimensions.topLeftCorner.Y, groupContent.Point[0].Y, groupContent.Point[groupContent.Point.length - 1].Y);
+        dimensions.bottomRightCorner.X = Math.max(dimensions.bottomRightCorner.X, groupContent.Point[0].X, groupContent.Point[groupContent.Point.length - 1].X);
+        dimensions.bottomRightCorner.Y = Math.max(dimensions.bottomRightCorner.Y, groupContent.Point[0].Y, groupContent.Point[groupContent.Point.length - 1].Y);
       }
-      dimensions.x = dimensions.topLeftCorner.x;
-      dimensions.y = dimensions.topLeftCorner.y;
-      dimensions.CenterX = (dimensions.topLeftCorner.x + dimensions.bottomRightCorner.x)/2;
-      dimensions.CenterY = (dimensions.topLeftCorner.y + dimensions.bottomRightCorner.y)/2;
-      dimensions.offsetWidth = (dimensions.bottomRightCorner.x - dimensions.topLeftCorner.x);
-      dimensions.offsetHeight = (dimensions.bottomRightCorner.y - dimensions.topLeftCorner.y);
+      dimensions.X = dimensions.topLeftCorner.X - group.padding;
+      dimensions.Y = dimensions.topLeftCorner.Y - group.padding;
+      dimensions.CenterX = (dimensions.topLeftCorner.X + dimensions.bottomRightCorner.X)/2;
+      dimensions.CenterY = (dimensions.topLeftCorner.Y + dimensions.bottomRightCorner.Y)/2;
+      dimensions.width = (dimensions.bottomRightCorner.X - dimensions.topLeftCorner.X) + 2 * group.padding;
+      dimensions.height = (dimensions.bottomRightCorner.Y - dimensions.topLeftCorner.Y) + 2 * group.padding;
       callback(dimensions);
     });
   }
@@ -77,7 +74,7 @@ pathvisiojs.data.gpml = function(){
 
         // preferably, this would call the Java RPC updater for the file to be updated.
 
-        alert("Pathvisiojs may not fully support the version of GPML provided (xmlns: " + gpmlNamespace + "). Please convert to the supported version of GPML (xmlns: " + pathvisiojs.data.gpml.namespaces[0] + ").");
+        alert('Pathvisiojs may not fully support the version of GPML provided (xmlns: ' + gpmlNamespace + '). Please convert to the supported version of GPML (xmlns: ' + pathvisiojs.data.gpml.namespaces[0] + ').');
       }
 
 
@@ -85,82 +82,92 @@ pathvisiojs.data.gpml = function(){
       async.parallel({
           '@context': function(callback){
             pathvisiojs.context = {
-              "@vocab":"http://vocabularies.wikipathways.org/gpml#",
-              "gpml":"http://vocabularies.wikipathways.org/gpml#",
-              "xsd": "http://www.w3.org/2001/XMLSchema#",
-              "wp":"http://vocabularies.wikipathways.org/wp#",
-              "biopax": "http://www.biopax.org/release/biopax-level3.owl#",
-              "schema":"http://schema.org/",
-              "hMDB":"http://www.hmdb.ca/metabolites/HMDB",
-              "entrezGene":"http://www.ncbi.nlm.nih.gov/gene/",
-              "ChEBI":"http://www.ebi.ac.uk/chebi/searchId.do?chebiId=",
-              "media":"http://www.w3.org/TR/mediaont-10/",
-              "ex":"http://www.example.com/",
-              "pathwayIri":pathwayIri,
-              "gpmlFolder":"file://Users/andersriutta/Sites/pathvisiojs/test/gpml/",
-              "name":"http://xmlns.com/foaf/0.1/name",
-              "dcterms":"http://purl.org/dc/terms/",
-              "offsetWidth":"http://www.w3.org/TR/cssom-view/#dom-htmlelement-offsetwidth",
-              "offsetHeight":"http://www.w3.org/TR/cssom-view/#dom-htmlelement-offsetheight",
-              "css":"http://www.w3.org/TR/CSS21/",
-              "svg":"http://www.w3.org/TR/SVG11/",
-              "text":"svg:text.html#TextElement",
-              "tspan":"svg:text.html#TSpanElement",
-              "color":"css:colors.html#propdef-color", //foreground color
-              "backgroundColor":"css:colors.html#propdef-background-color",
-              "backgroundImage":"css:colors.html#propdef-background-image",
-              "borderColor":"css:box.html#propdef-border-color",
-              "borderWidth":"css:box.html#propdef-border-width",
-              "padding":"css:box.html#propdef-padding",
-              "fontFamily":"css:fonts.html#font-family-prop",
-              "fontStyle":"css:fonts.html#propdef-font-style", //italic
-              "textAlign":"css:text.html#propdef-text-align", //left | right | center
-              "verticalAlign":"css:visudet.html#propdef-vertical-align", //top | bottom | middle
-              "fontSize":"css:fonts.html#propdef-font-size",
-              "fontWeight":"css:fonts.html#propdef-font-weight", //normal | bold
-              "zIndex": {
-                "@id": "css:z-index",
-                "@type": "xsd:integer"
+              '@vocab':'http://vocabularies.wikipathways.org/gpml#',
+              'gpml':'http://vocabularies.wikipathways.org/gpml#',
+              'xsd': 'http://www.w3.org/2001/XMLSchema#',
+              'wp':'http://vocabularies.wikipathways.org/wp#',
+              'biopax': 'http://www.biopax.org/release/biopax-level3.owl#',
+              'schema':'http://schema.org/',
+              'hMDB':'http://www.hmdb.ca/metabolites/HMDB',
+              'entrezGene':'http://www.ncbi.nlm.nih.gov/gene/',
+              'ChEBI':'http://www.ebi.ac.uk/chebi/searchId.do?chebiId=',
+              'media':'http://www.w3.org/TR/mediaont-10/',
+              'ex':'http://www.example.com/',
+              'pathwayIri':pathwayIri,
+              'gpmlFolder':'file://Users/andersriutta/Sites/pathvisiojs/test/gpml/',
+              'name':'http://xmlns.com/foaf/0.1/name',
+              'dcterms':'http://purl.org/dc/terms/',
+              'width':'css2:visudet.html#propdef-width',
+              'height':'css2:visudet.html#propdef-height',
+              'css2':'http://www.w3.org/TR/CSS2/',
+              'css3Ui':'http://www.w3.org/TR/css3-ui/#',
+              'svg':'http://www.w3.org/TR/SVG11/',
+              'boxSizing':'css3Ui:box-sizing',
+              'text':'svg:text.html#TextElement',
+              'tspan':'svg:text.html#TSpanElement',
+              'color':'css2:colors.html#propdef-color', //foreground color
+              'backgroundColor':'css2:colors.html#propdef-background-color',
+              'backgroundImage':'css2:colors.html#propdef-background-image',
+              'borderColor':'css2:box.html#propdef-border-color',
+              'borderWidth':'css2:box.html#propdef-border-width',
+              'padding':'css2:box.html#propdef-padding',
+              'fontFamily':'css2:fonts.html#font-family-prop',
+              'fontStyle':'css2:fonts.html#propdef-font-style', //italic
+              'textAlign':'css2:text.html#propdef-text-align', //left | right | center
+              'verticalAlign':'css2:visudet.html#propdef-vertical-align', //top | bottom | middle
+              'fontSize':'css2:fonts.html#propdef-font-size',
+              'fontWeight':'css2:fonts.html#propdef-font-weight', //normal | bold
+              'zIndex': {
+                '@id': 'css2:z-index',
+                '@type': 'xsd:integer'
               },
-              "DatasourceReference": "wp:DatasourceReference",
-              "Pathway": "biopax:Pathway",
-              "shapeLibrary": "http://shapelibrary.example.org/",
-              "shapeName": "shapeLibrary:shapeName",
-              "image": "schema:image",
-              "dataNodeType": "gpml:Type",
-              "author": "schema:author",
-              "organism": "biopax:organism",
-              "stroke": "svg:painting.html#StrokeProperty",
-              "strokeWidth": "svg:painting.html#StrokeWidthProperty",
-              "tspan": {
-                "@id": "svg:text.html#TSpanElement",
-                "@container": "@set"
+              'DatasourceReference': 'wp:DatasourceReference',
+              'Pathway': 'biopax:Pathway',
+              'shapeLibrary': 'http://shapelibrary.example.org/',
+              'shapeName': 'shapeLibrary:shapeName',
+              'image': 'schema:image',
+              'dataNodeType': 'gpml:Type',
+              'author': 'schema:author',
+              'organism': 'biopax:organism',
+              'stroke': 'svg:painting.html#StrokeProperty',
+              'strokeWidth': 'svg:painting.html#StrokeWidthProperty',
+              'tspan': {
+                '@id': 'svg:text.html#TSpanElement',
+                '@container': '@set'
               },
-              "pathwayElements": {
-                "@id": "ex:pathwayElements/",
-                "@container": "@list"
+              'pathwayElements': {
+                '@id': 'ex:pathwayElements/',
+                '@container': '@list'
               },
-              "dependencies": {
-                "@id": "ex:dependencies",
-                "@type": "@id"
+              'dependencies': {
+                '@id': 'ex:dependencies',
+                '@type': '@id'
               },
-              "dependsOn": {
-                "@reverse": "ex:dependencies",
-                "@type": "@id"
+              'dependsOn': {
+                '@reverse': 'ex:dependencies',
+                '@type': '@id'
               },
-              "InteractionGraph": {
-                "@id": "ex:InteractionGraph",
-                "@type": "@id"
+              'hasReference': {
+                '@id': 'ex:hasReference',
+                '@type': '@id'
               },
-              "interactsWith": "ex:interactsWith",
-              "Interaction": {
-                "@id": "biopax:Interaction",
-                "@type": "@id",
-                "InteractsWith":"xsd:string"
+              'isReferredToBy': {
+                '@reverse': 'ex:hasReference',
+                '@type': '@id'
               },
-              "Point": {
-                "@id": "gpml:Point",
-                "@container": "@list"
+              'InteractionGraph': {
+                '@id': 'ex:InteractionGraph',
+                '@type': '@id'
+              },
+              'interactsWith': 'ex:interactsWith',
+              'Interaction': {
+                '@id': 'biopax:Interaction',
+                '@type': '@id',
+                'InteractsWith':'xsd:string'
+              },
+              'Point': {
+                '@id': 'gpml:Point',
+                '@container': '@list'
               }
             };
             callback(null, pathvisiojs.context);
@@ -224,26 +231,27 @@ pathvisiojs.data.gpml = function(){
               try {
                 gpmlInteraction = d3.select(this);
                 graphId = gpmlInteraction.attr('GraphId') || ('id' + uuid.v4());
-                elementIri = pathwayIri + "#" + graphId;
+                elementIri = pathwayIri + '#' + graphId;
                 jsonInteraction = {};
-                jsonInteraction["@id"] = elementIri;
+                jsonInteraction['@id'] = elementIri;
+                jsonInteraction.GraphId = graphId;
 
                 groupRef = gpmlInteraction.attr('GroupRef');
                 var parents = [];
                 if (!!groupRef) {
-                  jsonInteraction["GroupRef"] = groupRef;
-                  parents.push(pathwayIri + "#" + groupRef);
+                  jsonInteraction.GroupRef = groupRef;
+                  parents.push(pathwayIri + '#' + groupRef);
                 }
 
-                jsonInteraction["zIndex"] = parseFloat(gpmlInteraction.select('Graphics').attr('ZOrder'));
-                jsonInteraction["renderableType"] = 'edge';
+                jsonInteraction.zIndex = parseFloat(gpmlInteraction.select('Graphics').attr('ZOrder'));
+                jsonInteraction.renderableType = 'edge';
                 var edgeType = 'interaction';
-                jsonInteraction["edgeType"] = 'Interaction';
+                jsonInteraction.edgeType = 'Interaction';
                 points = gpmlInteraction.selectAll('Point');
-                jsonInteraction["@type"] = [
-                  "element",
-                  "SvgPath",
-                  "Interaction",
+                jsonInteraction['@type'] = [
+                  'element',
+                  'SvgPath',
+                  'Interaction',
                   edgeType,
                   groupRef || 'notGrouped'
                 ];
@@ -255,11 +263,11 @@ pathvisiojs.data.gpml = function(){
                     interactionType = 'none';
                   }
                 }
-                jsonInteraction["@type"].push(interactionType);
-                jsonInteraction["interactionType"] = interactionType;
+                jsonInteraction['@type'].push(interactionType);
+                jsonInteraction.interactionType = interactionType;
 
-                jsonInteraction["InteractionGraph"] = {};
-                jsonInteraction["InteractionGraph"]["@id"] = pathwayIri + "#" + points[0][0].getAttribute('GraphRef');
+                jsonInteraction.InteractionGraph = {};
+                jsonInteraction.InteractionGraph['@id'] = pathwayIri + '#' + points[0][0].getAttribute('GraphRef');
 
                 targetId = points[0][points[0].length - 1].getAttribute('GraphRef');
                 if (!!targetId) {
@@ -268,53 +276,53 @@ pathvisiojs.data.gpml = function(){
                     targetId = target.parentElement.parentElement.getAttribute('GraphId');
                   }
 
-                  jsonInteraction["InteractionGraph"]["interactsWith"] = pathwayIri + "#" + targetId;
+                  jsonInteraction.InteractionGraph.interactsWith = pathwayIri + '#' + targetId;
                 }
                 // TODO add the reaction, if it exists
-                //"ex:Anchor": pathwayIri + "#Reaction1"
+                //'ex:Anchor': pathwayIri + '#Reaction1'
 
                 var point, pointObj;
-                jsonInteraction["Point"] = [];
+                jsonInteraction.Point = [];
                 points.each(function() {
                   point = d3.select(this);
                   pointObj = {};
                   var relX = point.attr('RelX');
                   var relY = point.attr('RelY');
                   if (!!relX && !!relY) {
-                    pointObj["@type"] = 'SnappedPoint';
+                    pointObj['@type'] = 'SnappedPoint';
 
-                    parents.push(pathwayIri + "#" + point.attr('GraphRef'));
+                    parents.push(pathwayIri + '#' + point.attr('GraphRef'));
 
-                    pointObj["hasReference"] = pathwayIri + "#" + point.attr('GraphRef');
-                    pointObj["RelX"] = relX;
-                    pointObj["RelY"] = relY;
-                    pointObj["X"] = point.attr('X');
-                    pointObj["Y"] = point.attr('Y');
+                    pointObj.hasReference = pathwayIri + '#' + point.attr('GraphRef');
+                    pointObj.RelX = relX;
+                    pointObj.RelY = relY;
+                    pointObj.X = parseFloat(point.attr('X'));
+                    pointObj.Y = parseFloat(point.attr('Y'));
                   }
                   else {
-                    pointObj["@type"] = 'GraphicalPoint';
-                    pointObj["X"] = {};
-                    pointObj["X"] = parseFloat(point.attr('X'));
-                    pointObj["Y"] = parseFloat(point.attr('Y'));
+                    pointObj['@type'] = 'GraphicalPoint';
+                    pointObj.X = {};
+                    pointObj.X = parseFloat(point.attr('X'));
+                    pointObj.Y = parseFloat(point.attr('Y'));
                   }
-                  jsonInteraction["Point"].push(pointObj);
+                  jsonInteraction.Point.push(pointObj);
                 })
 
                 if (parents.length > 0) {
-                  jsonInteraction["dependsOn"] = parents;
+                  jsonInteraction.dependsOn = parents;
                 }
 
                 var connectorType = gpmlInteraction.select('Graphics').attr('ConnectorType') || 'Straight';
-                jsonInteraction["ConnectorType"] = "" + connectorType;
+                jsonInteraction['ConnectorType'] = '' + connectorType;
 
                 var stroke = gpmlInteraction.select('Graphics').attr('Color');
                 if (!!stroke) {
-                  jsonInteraction["stroke"] = stroke;
+                  jsonInteraction['stroke'] = stroke;
                 }
 
                 var strokeWidth = gpmlInteraction.select('Graphics').attr('LineThickness');
                 if (!!strokeWidth) {
-                  jsonInteraction["strokeWidth"] = parseFloat(strokeWidth);
+                  jsonInteraction['strokeWidth'] = parseFloat(strokeWidth);
                 }
 
                 var database, ID, 
@@ -323,9 +331,9 @@ pathvisiojs.data.gpml = function(){
                   database = datasourceReference.attr('Database')
                   ID = datasourceReference.attr('ID')
                   if (!!database && !!ID) {
-                    jsonInteraction["DatasourceReference"] = {};
-                    jsonInteraction["DatasourceReference"]["Database"] = database;
-                    jsonInteraction["DatasourceReference"]["ID"] = ID;
+                    jsonInteraction.DatasourceReference = {};
+                    jsonInteraction.DatasourceReference.Database = database;
+                    jsonInteraction.DatasourceReference.ID = ID;
                   }
                 }
 
@@ -334,45 +342,45 @@ pathvisiojs.data.gpml = function(){
                 gpmlInteraction.selectAll('Anchor').each(function() {
                   jsonAnchorInteraction = {};
                   anchor = d3.select(this);
-                  elementIri = pathwayIri + "#" + anchor.attr('GraphId');
-                  jsonAnchorInteraction["@id"] = pathwayIri + "#" + anchor.attr('GraphId');
-                  jsonAnchorInteraction["@type"] = [
-                    "element",
-                    "Interaction",
-                    "Anchor"
+                  elementIri = pathwayIri + '#' + anchor.attr('GraphId');
+                  jsonAnchorInteraction['@id'] = pathwayIri + '#' + anchor.attr('GraphId');
+                  jsonAnchorInteraction['@type'] = [
+                    'element',
+                    'Interaction',
+                    'Anchor'
                   ];
-                  jsonAnchorInteraction["dependsOn"] = jsonInteraction["@id"];
-                  jsonAnchorInteraction["anchorPosition"] = anchor.attr('Position');
+                  jsonAnchorInteraction.dependsOn = jsonInteraction['@id'];
+                  jsonAnchorInteraction.anchorPosition = anchor.attr('Position');
 
                   interactions.push(jsonAnchorInteraction);
                 })
               }
               catch (e) {
-                throw new Error("Error converting Interaction to renderable json: " + e.message);
+                throw new Error('Error converting Interaction to renderable json: ' + e.message);
               }
             })
             callback(null, interactions);
           }
       },
       function(err, results) {
-        self.myrealresults = results;
         var updateGroupsFrame = {};
         results.Group.forEach(function(element) {
           updateGroupsFrame = {
             '@context': results['@context'],
-            "@type":element.GroupId
+            '@type':element.GroupId
           };
           jsonld.frame(results, updateGroupsFrame, function(err, updateGroupsData) {
-            var dimensions = getGroupDimensions(updateGroupsData['@graph'], function(dimensions) {
-              element.x = dimensions.x;
-              element.y = dimensions.y;
+            var dimensions = getGroupDimensions(element, updateGroupsData['@graph'], function(dimensions) {
+              element.X = dimensions.X;
+              element.Y = dimensions.Y;
               element.CenterX = dimensions.CenterX;
               element.CenterY = dimensions.CenterY;
-              element.offsetWidth = dimensions.offsetWidth;
-              element.offsetHeight = dimensions.offsetHeight;
+              element.width = dimensions.width;
+              element.height = dimensions.height;
             });
           });
         });
+        self.myPathway = results;
         callbackOutside(results);
       });
 
@@ -410,9 +418,9 @@ pathvisiojs.data.gpml = function(){
       // infoBox
       // These values are a legacy from GenMAPP. They are always forced to be equal to 0 in PathVisio (Java) so as to place the infobox in the upper lefthand corner.
 
-      pathway.infoBox.x = 0;
+      pathway.infoBox.X = 0;
       delete pathway.infoBox.centerX;
-      pathway.infoBox.y = 0;
+      pathway.infoBox.Y = 0;
       delete pathway.infoBox.centerY;
 //*/
 
@@ -433,11 +441,11 @@ pathvisiojs.data.gpml = function(){
           });
         }
         else {
-          console.log("No element(s) named 'comment' found in this gpml file.");
+          console.log('No element(s) named 'comment' found in this gpml file.');
         }
       }
       catch (e) {
-        console.log("Error converting comment to json: " + e.message);
+        console.log('Error converting comment to json: ' + e.message);
       }
 
       // Groups
@@ -458,11 +466,11 @@ pathvisiojs.data.gpml = function(){
           });
         }
         else {
-          console.log("No element(s) named 'group' found in this gpml file.");
+          console.log('No element(s) named 'group' found in this gpml file.');
         }
       }
       catch (e) {
-        console.log("Error converting group to json: " + e.message);
+        console.log('Error converting group to json: ' + e.message);
       }
 
       // Graphical Lines 
@@ -482,11 +490,11 @@ pathvisiojs.data.gpml = function(){
           });
         }
         else {
-          console.log("No element(s) named 'graphicalLine' found in this gpml file.");
+          console.log('No element(s) named 'graphicalLine' found in this gpml file.');
         }
       }
       catch (e) {
-        console.log("Error converting graphicalLine to json: " + e.message);
+        console.log('Error converting graphicalLine to json: ' + e.message);
       }
 
       // Interactions
@@ -509,11 +517,11 @@ pathvisiojs.data.gpml = function(){
           pathway.edges;
         }
         else {
-          console.log("No element(s) named 'interaction' found in this gpml file.");
+          console.log('No element(s) named 'interaction' found in this gpml file.');
         }
       }
       catch (e) {
-        console.log("Error converting interaction to json: " + e.message);
+        console.log('Error converting interaction to json: ' + e.message);
       }
 
       // Edges
@@ -523,18 +531,18 @@ pathvisiojs.data.gpml = function(){
           pathway.edges = pathvisiojs.pathway.edge.gpml2json(pathway.edges);
         }
         else {
-          console.log("No element(s) named 'edges' found in this gpml file.");
+          console.log('No element(s) named 'edges' found in this gpml file.');
         }
       }
       catch (e) {
-        console.log("Error converting edges to json: " + e.message);
+        console.log('Error converting edges to json: ' + e.message);
       }
 
       //*/
     }
     else {
-      alert("Pathvisiojs does not support the data format provided. Please convert to GPML and retry.");
-      throw new Error("Pathvisiojs does not support the data format provided. Please convert to GPML and retry.");
+      alert('Pathvisiojs does not support the data format provided. Please convert to GPML and retry.');
+      throw new Error('Pathvisiojs does not support the data format provided. Please convert to GPML and retry.');
     }
   }
 

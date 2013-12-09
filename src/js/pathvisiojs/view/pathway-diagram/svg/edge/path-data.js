@@ -91,20 +91,20 @@ pathvisiojs.view.pathwayDiagram.svg.edge.pathData = function(){
     }
   }
 
-  function get(viewport, pathway, edge, callback) {
-    if (!viewport || !edge) {
+  function get(pathway, edge, callback) {
+    if (!edge) {
       return console.warn('Error: Missing input parameters.');
     }
 
 
     var currentDirection, startDirection, endDirection, controlPoint, index;
     var pointStart = edge.points[0];
-    var source = pathvisiojs.view.pathwayDiagram.svg.edge.point.getCoordinates(viewport, pathway, pointStart);
+    var source = pathvisiojs.view.pathwayDiagram.svg.edge.point.getCoordinates(pathway, pointStart);
 
     var pointCoordinatesArray = self.pointCoordinatesArray = [];
     var pointCoordinates;
     edge.points.forEach(function(element) {
-      pointCoordinates = pathvisiojs.view.pathwayDiagram.svg.edge.point.getCoordinates(viewport, pathway, element);
+      pointCoordinates = pathvisiojs.view.pathwayDiagram.svg.edge.point.getCoordinates(pathway, element);
       pointCoordinatesArray.push(pointCoordinates)
     })
 
@@ -123,7 +123,7 @@ pathvisiojs.view.pathwayDiagram.svg.edge.pathData = function(){
     }
 
     var pointEnd = edge.points[edge.points.length - 1];
-    var target = pathvisiojs.view.pathwayDiagram.svg.edge.point.getCoordinates(viewport, pathway, pointEnd);
+    var target = pathvisiojs.view.pathwayDiagram.svg.edge.point.getCoordinates(pathway, pointEnd);
 
     if (pointEnd.dx === undefined) {
       target.dx = 0;
