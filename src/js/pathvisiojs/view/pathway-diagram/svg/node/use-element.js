@@ -49,14 +49,14 @@ pathvisiojs.view.pathwayDiagram.svg.node.useElement = function(){
     .attr('transform', function(d) {
       var transform = 'scale(1)';
       if (d.hasOwnProperty('rotation')) {
-        transform = 'rotate(' + d.rotation + ' ' + d.offsetWidth / 2 + ' ' + d.offsetHeight / 2 + ')';
+        transform = 'rotate(' + d.rotation + ' ' + d.width / 2 + ' ' + d.height / 2 + ')';
       }
       return transform;
     })
     .attr("x", 0)
     .attr("y", 0)
-    .attr("width", function (d) { return d.offsetWidth;})
-    .attr("height", function (d) { return d.offsetHeight;})
+    .attr("width", function (d) { return d.width;})
+    .attr("height", function (d) { return d.height;})
     .attr("style", function (data) {
       var style = '';
       if (data.hasOwnProperty('borderColor')) {

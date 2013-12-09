@@ -81,10 +81,10 @@ pathvisiojs.view.pathwayDiagram.svg.node.text = function(){
       }
       else {
         if (textAnchor === 'end') {
-          dx = d.offsetWidth - 5;
+          dx = d.width - 5;
         }
         else {
-          dx = d.offsetWidth / 2;
+          dx = d.width / 2;
         }
       }
 
@@ -96,22 +96,25 @@ pathvisiojs.view.pathwayDiagram.svg.node.text = function(){
         }
         else {
           if (d.text.verticalAlign === 'bottom') {
-            dy = d.offsetHeight - (5 + (0.3 * fontSize) + ((d.text.tspan.length - 1) * fontSize));
+            dy = d.height - (5 + (0.3 * fontSize) + ((d.text.tspan.length - 1) * fontSize));
           }
           else {
-            dy = (d.offsetHeight / 2) + (0.3 * fontSize) - (((d.text.tspan.length - 1) * fontSize)/2);
+            dy = (d.height / 2) + (0.3 * fontSize) - (((d.text.tspan.length - 1) * fontSize)/2);
           }
         }
       }
       else {
-        dy = (d.offsetHeight / 2) + (0.3 * fontSize) - (((d.text.tspan.length - 1) * fontSize)/2);
+        dy = (d.height / 2) + (0.3 * fontSize) - (((d.text.tspan.length - 1) * fontSize)/2);
       }
       return 'translate(' + dx + ' ' + dy + ')';
     })
     .attr("class", function (d) {
-      var styleClass = '';
-      if (d.elementType === 'data-node') {
-        styleClass = d.dataNodeType;
+      var styleClass = strcase.paramCase(d.renderableType) + ' ';
+      if (d.nodeType === 'Group') {
+        styleClass = 'group-' + strcase.paramCase(d.groupType) + ' ';
+      }
+      if (d.nodeType === 'DataNode') {
+        styleClass = d.dataNodeType + ' ';
       }
       return styleClass;
     })
@@ -132,9 +135,6 @@ pathvisiojs.view.pathwayDiagram.svg.node.text = function(){
       if (d.text.hasOwnProperty('fontStyle')) {
         style += 'font-style:' + d.text.fontStyle + '; ';
       }
-      if (d.text.hasOwnProperty('textAnchor')) {
-        style += 'text-anchor:' + textAnchor + '; ';
-      }
       return style;
     });
 
@@ -146,6 +146,7 @@ pathvisiojs.view.pathwayDiagram.svg.node.text = function(){
     .append('tspan')
     .attr("x", 0)
     .attr("y", function (d, i) { return i * fontSize;})
+    .attr("text-anchor", textAnchor)
     .text(function (d) { return d; });
     return nodeContainer;
   }

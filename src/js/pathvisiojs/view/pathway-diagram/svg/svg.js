@@ -294,6 +294,7 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
       quickRenderMultipleElements(args, function() {
         callback(svg);
       });
+      pathvisiojs.view.pathwayDiagram.svg.grid.render(args.svg);
       /*
       async.series([
         function(callbackInside2) {
@@ -321,6 +322,7 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
     })
   }
 
+  /*
   function render(args, callback){
     if (!args.svg) {
       throw new Error("No svg specified.");
@@ -345,7 +347,7 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
       'groupData': function(callbackInside) {
         var frame = {
           '@context': pathvisiojs.context,
-          '@type': 'a351d'
+          '@type': 'Group'
         };  
         jsonld.frame(args.pathway, frame, function(err, groupData) {
           callbackInside(null, groupData);
@@ -388,213 +390,10 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
       });
     })
   }
-
-  function renderHierarchySiblings(args, callback){
-    if (!args.svg) {
-      throw new Error("No svg specified.");
-    }
-    if (!args.pathway) {
-      throw new Error("No data entered to render.");
-    }
-    if (!args.allSymbolNames) {
-      throw new Error("No allSymbolNames (list of symbols in this diagram) specified.");
-    }
-
-    var drag = d3.behavior.drag()
-    .on("drag", dragmove);
-
-    function dragmove(d) {
-      d.x=d3.event.x;
-      d.y=d3.event.y;
-      d3.select(this)
-      .attr("x", d3.event.x)
-      .attr("y", d3.event.y);
-    }
-
-
-    //***********************
-    // Viewport Element
-    //***********************
-
-    // TODO refactor so that svg isn't redefined here
-    // Update…
-    var viewport = svg.select('#viewport')
-    .data([args.pathway]);
-
-    //.attr('transform', function(d) {return 'translate(' + d.x + ' ' + d.y + ')';})
-    /*
-    .on("click", function(d,i) {
-      if (d.elementType === 'data-node') {
-        pathvisiojs.view.pathwayDiagram.svg.xRef.render(pathway.organism, d);
-      }
-    });
-    */
-
-    // Enter…
-    /*
-    viewport.enter().append("g")
-    .attr("id", function (d) { return 'node-' + d.id; })
-    .attr("id", 'viewport');
-    //*/
-
-    // Exit…
-    viewport.exit().remove();
-
-
-          /*
-          "@vocab": "http://vocabularies.wikipathways.org/gpml#",
-          "gpml": "http://vocabularies.wikipathways.org/gpml#",
-          "shapeLibrary": "http://shapelibrary.example.org/",
-          "shapeName": "shapeLibrary:shapeName",
-          "ex": "http://example.org/vocab#"
-          //*/
-
-
-
-
-
-
-    /***********************
-    // Use Elements
-    //***********************/
-
-    async.series([
-      function(callbackInside){
-        var frame = {
-          "@context": pathvisiojs.context,
-          "@type": args.allSymbolNames
-        };  
-        jsonld.frame(args.pathway, frame, function(err, framedData) {
-          callbackInside(err, framedData);
-        });
-      }
-    ],
-    function(err, results) {
-        // Update… 
-        var useElementsContainers = viewport.selectAll('g.shape')
-        .data(results[0]['@graph'])
-        .call(function(selection) {
-          pathvisiojs.view.pathwayDiagram.svg.node.render(selection, args.pathway.organism)
-        });
-
-        // Enter…
-        useElementsContainers.enter().append("g")
-        .call(function(selection) {
-          pathvisiojs.view.pathwayDiagram.svg.node.render(selection, args.pathway.organism)
-        });
-
-        // Exit…
-        useElementsContainers.exit().remove();
-
-        // Update… 
-        var useElements = useElementsContainers.selectAll("use.shape")
-        .data(function(d) {
-          return [d];
-        })
-        .call(pathvisiojs.view.pathwayDiagram.svg.node.useElement.render);
-
-        // Enter…
-        useElements.enter().append("use")
-        .call(pathvisiojs.view.pathwayDiagram.svg.node.useElement.render);
-
-        // Exit…
-        useElements.exit().remove();
-    });
-
-
-    //pathvisiojs.view.pathwayDiagram.svg.node.pathShape.renderAll(viewport, pathShapes);
-
-    /***********************
-    // Path (Edge) Elements
-    //***********************/
-
-    async.series([
-      function(callbackInside){
-        var frame = {
-          "@context": pathvisiojs.context,
-          "@type": "SvgPath"
-        };  
-        jsonld.frame(args.pathway, frame, function(err, framedData) {
-          callbackInside(err, framedData);
-          //callback(err, framedData); // should I use this one instead?
-        });
-      }
-    ],
-    function(err, results) {
-        // Update… 
-        var edges = viewport.selectAll('path.edge')
-        .data(results[0]['@graph'])
-        .call(pathvisiojs.view.pathwayDiagram.svg.edge.render);
-
-        // Enter…
-        edges.enter().append("path")
-        .call(pathvisiojs.view.pathwayDiagram.svg.edge.render);
-
-        // Exit…
-        edges.exit().remove();
-    });
-
-
-    //svg.attr('width', pathway.image.width);
-    //svg.attr('height', pathway.image.height);
-
-    /*
-    if (!!pathway.biopaxRefs) {
-      var pathwayPublicationXrefs = svg.select('#viewport').selectAll(".pathway-publication-xref-text")
-      .data(pathway.biopaxRefs)
-      .enter()
-      .append("text")
-      .attr("id", function (d) { return 'pathway-publication-xref-text-' + d; })
-      .attr("x", 0)
-      .attr("y", 0)
-      .attr('transform', function(d,i) { return 'translate(' + (200 + i*12) + ' ' + 12 + ')'; })
-      .attr("class", 'pathway-publication-xref-text')
-      .attr("style", "")
-      .text(function (d) {
-
-        // d is an array of biopaxRefs. There are several IDs for biopaxRefs, but rdfId (rdf:id) is the one used for
-        // GPML to link pathway elements with biopaxRefs.
-        // TODO I set rdfId to null here because I think not doing so could result in errors if the rdfId value for
-        // a previous instance of biopaxRefs had a value that was used when evaluating a later instance
-
-        var index = 0;
-        var rdfId = null;
-        do {
-          rdfId = pathway.biopax.bpPublicationXrefs[index].rdfId;
-          index += 1;
-        } while (rdfId !== d.Text && index < pathway.biopax.bpPublicationXrefs.length);
-        return index;});
-    }
-
-    if (pathway.hasOwnProperty('groups')) {
-      pathvisiojs.view.pathwayDiagram.svg.node.group.renderAll(svg, pathway);
-    }
-
-    if (pathway.hasOwnProperty('edges')) {
-      pathvisiojs.view.pathwayDiagram.svg.edge.renderAll(svg, pathway);
-    }
-    else {
-    console.log('none');
-    }
-
-
-
-    if (pathway.hasOwnProperty('infoBox')) {
-      pathvisiojs.view.pathwayDiagram.svg.infoBox.render(svg, pathway);
-    }
-
-    //pathvisiojs.view.pathwayDiagram.svg.grid.render(svg);
-
-    //pathvisiojs.view.pathwayDiagram.svg.anchor.renderAll(svg, pathway);
-
-      window.svg = d3.select("svg")
-      .attr('style', 'width: 500px');
-//*/
-    callback(svg);
-  }
+  //*/
 
   return {
-    render:render,
+    //render:render,
     quickRender:quickRender,
     quickRenderMultipleElements:quickRenderMultipleElements,
     load:load,

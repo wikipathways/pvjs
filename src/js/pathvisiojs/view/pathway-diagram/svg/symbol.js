@@ -41,6 +41,7 @@ pathvisiojs.view.pathwayDiagram.svg.symbol = function(){
             var width = shapeSvg.attr('width');
             var height = shapeSvg.attr('height');
             symbol.attr('viewBox', '0 0 ' + width + ' ' + height);
+            symbol.attr('class', shapeClass);
             shapeChildren = shapeSvg[0][0].children;
             do {
               symbol[0][0].appendChild(shapeChildren[0]);

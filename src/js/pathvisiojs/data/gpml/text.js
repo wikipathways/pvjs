@@ -1,31 +1,37 @@
 pathvisiojs.data.gpml.text = function() {
-  function toRenderableJson(gpmlTextLabel, callback) {
+  function toRenderableJson(gpmlNode, callback) {
     try {
       jsonText = {};
-      jsonText["tspan"] = gpmlDataNode.attr('TextLabel').split(/\r\n|\r|\n|&#xA;/g);
-      var textAlign = gpmlDataNode.select('Graphics').attr('Align') || 'center';
+      jsonText["tspan"] = gpmlNode.attr('TextLabel').split(/\r\n|\r|\n|&#xA;/g);
+      var textAlign = gpmlNode.select('Graphics').attr('Align') || 'center';
       jsonText["textAlign"] = textAlign.toLowerCase();
-      var verticalAlign = gpmlDataNode.select('Graphics').attr('Valign') || 'top';
+      var verticalAlign = gpmlNode.select('Graphics').attr('Valign') || 'top';
       jsonText["verticalAlign"] = verticalAlign.toLowerCase();
-      var fontSize = gpmlDataNode.select('Graphics').attr('FontSize') || 10;
+      var fontSize = gpmlNode.select('Graphics').attr('FontSize') || 10;
       jsonText["fontSize"] = parseFloat(fontSize);
-      var fontStyle = gpmlDataNode.select('Graphics').attr('FontStyle') || 'normal';
+      var fontStyle = gpmlNode.select('Graphics').attr('FontStyle') || 'normal';
       jsonText["fontStyle"] = fontStyle.toLowerCase();
-      var fontWeight = gpmlDataNode.select('Graphics').attr('FontWeight') || 'normal';
+      var fontWeight = gpmlNode.select('Graphics').attr('FontWeight') || 'normal';
       jsonText["fontWeight"] = fontWeight.toLowerCase();
-      jsonText["fontFamily"] = gpmlDataNode.select('Graphics').attr('FontName') || 'Arial';
+      jsonText["fontFamily"] = gpmlNode.select('Graphics').attr('FontName') || 'Arial';
 
-      var color = gpmlDataNode.select('Graphics').attr('Color');
-      if (!!color) {
-        // validate color as CSS value TODO
-        jsonText["color"] = color;
+      var color;
+      var colorValue = gpmlNode.select('Graphics').attr('Color');
+      if (!!colorValue) {
+        color = new RGBColor(colorValue);
+        if (color.ok) {
+          jsonText["color"] = color.toHex();
+        }
+        else {
+          console.warn('Invalid color encountered. Setting color to black.');
+          jsonText["color"] = "#000000";
+        }
       }
-
 
       callback(jsonText);
     }
     catch (e) {
-      throw new Error("Error converting gpmlTextLabel to renderable json: " + e.message);
+      throw new Error("Error converting gpmlNode's text to renderable json: " + e.message);
     }
   }
 

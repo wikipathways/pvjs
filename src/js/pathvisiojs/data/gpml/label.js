@@ -58,10 +58,10 @@ pathvisiojs.data.gpml.label = function(){
       // with a similar calculation for gpmlHeight
 
       var gpmlWidth = parseFloat(gpmlLabel.select('Graphics').attr('Width'));
-      jsonLabel["offsetWidth"] = gpmlWidth + jsonLabel["borderWidth"];
+      jsonLabel["width"] = gpmlWidth + jsonLabel["borderWidth"];
 
       var gpmlHeight = parseFloat(gpmlLabel.select('Graphics').attr('Height'));
-      jsonLabel["offsetHeight"] = gpmlHeight + jsonLabel["borderWidth"];
+      jsonLabel["height"] = gpmlHeight + jsonLabel["borderWidth"];
 
       jsonLabel["padding"] = "0.5em";
 
