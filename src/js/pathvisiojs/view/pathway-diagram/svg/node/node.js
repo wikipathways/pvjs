@@ -57,16 +57,16 @@ pathvisiojs.view.pathwayDiagram.svg.node = function(){
     .attr('transform', function(d) {
       var targetElement = {}
       if (args.target[0][0].hasOwnProperty('__data__')) {
-        targetElement.x = (args.target[0][0].__data__['CenterX'] - args.target[0][0].__data__['width']/2);
-        targetElement.y = (args.target[0][0].__data__['CenterY'] - args.target[0][0].__data__['height']/2);
+        targetElement.x = (args.target[0][0].__data__.x);
+        targetElement.y = (args.target[0][0].__data__.y);
       }
       else {
         targetElement.x = 0;
         targetElement.y = 0;
       }
       var element = {}
-      element.x = (d['CenterX'] - d['width']/2 - targetElement.x);
-      element.y = (d['CenterY'] - d['height']/2 - targetElement.y);
+      element.x = d.x - targetElement.x;
+      element.y = d.y - targetElement.y;
       return 'translate(' + element.x + ' ' + element.y + ')';
     })
     .call(drag)

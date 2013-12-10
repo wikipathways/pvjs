@@ -12,8 +12,8 @@ pathvisiojs.view.pathwayDiagram.svg.edge = function(){
 
     function setAttributes(edge) {
         var createPathDataString = d3.svg.line()
-        .x(function(data) { return data.X; })
-        .y(function(data) { return data.Y; });
+        .x(function(data) { return data.x; })
+        .y(function(data) { return data.y; });
 
         //*
         //var pathData = null;
