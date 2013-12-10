@@ -12,36 +12,28 @@ pathvisiojs.data.gpml = function(){
   function getGroupDimensions(group, groupContents, callback) {
     var dimensions = {};
     dimensions.topLeftCorner = {};
-    dimensions.topLeftCorner.X = 99999;
-    dimensions.topLeftCorner.Y = 99999;
-    dimensions.bottomRightCorner.X = 0;
-    dimensions.bottomRightCorner.Y = 0;
+    dimensions.topLeftCorner.x = 99999;
+    dimensions.topLeftCorner.y = 99999;
+    dimensions.bottomRightCorner = {};
+    dimensions.bottomRightCorner.x = 0;
+    dimensions.bottomRightCorner.y = 0;
     groupContents.forEach(function(groupContent) {
       if (groupContent.renderableType === 'entityNode') {
-        entityNode = {};
-        entityNode.topLeftCorner = {};
-        entityNode.topLeftCorner.X = (groupContent.CenterX - groupContent.width/2);
-        entityNode.topLeftCorner.Y = (groupContent.CenterY - groupContent.height/2);
-        entityNode.bottomRightCorner = {};
-        entityNode.bottomRightCorner.X = (groupContent.CenterX + groupContent.width/2);
-        entityNode.bottomRightCorner.Y = (groupContent.CenterY + groupContent.height/2);
-        dimensions.topLeftCorner.X = Math.min(dimensions.topLeftCorner.X, entityNode.topLeftCorner.X);
-        dimensions.topLeftCorner.Y = Math.min(dimensions.topLeftCorner.Y, entityNode.topLeftCorner.Y);
-        dimensions.bottomRightCorner.X = Math.max(dimensions.bottomRightCorner.X, entityNode.bottomRightCorner.X);
-        dimensions.bottomRightCorner.Y = Math.max(dimensions.bottomRightCorner.Y, entityNode.bottomRightCorner.Y);
+        dimensions.topLeftCorner.x = Math.min(dimensions.topLeftCorner.x, groupContent.x);
+        dimensions.topLeftCorner.y = Math.min(dimensions.topLeftCorner.y, groupContent.y);
+        dimensions.bottomRightCorner.x = Math.max(dimensions.bottomRightCorner.x, groupContent.x + groupContent.width);
+        dimensions.bottomRightCorner.y = Math.max(dimensions.bottomRightCorner.y, groupContent.y + groupContent.height);
       }
       else {
-        dimensions.topLeftCorner.X = Math.min(dimensions.topLeftCorner.X, groupContent.Point[0].X, groupContent.Point[groupContent.Point.length - 1].X);
-        dimensions.topLeftCorner.Y = Math.min(dimensions.topLeftCorner.Y, groupContent.Point[0].Y, groupContent.Point[groupContent.Point.length - 1].Y);
-        dimensions.bottomRightCorner.X = Math.max(dimensions.bottomRightCorner.X, groupContent.Point[0].X, groupContent.Point[groupContent.Point.length - 1].X);
-        dimensions.bottomRightCorner.Y = Math.max(dimensions.bottomRightCorner.Y, groupContent.Point[0].Y, groupContent.Point[groupContent.Point.length - 1].Y);
+        dimensions.topLeftCorner.x = Math.min(dimensions.topLeftCorner.x, groupContent.Point[0].x, groupContent.Point[groupContent.Point.length - 1].x);
+        dimensions.topLeftCorner.y = Math.min(dimensions.topLeftCorner.y, groupContent.Point[0].y, groupContent.Point[groupContent.Point.length - 1].y);
+        dimensions.bottomRightCorner.x = Math.max(dimensions.bottomRightCorner.x, groupContent.Point[0].x, groupContent.Point[groupContent.Point.length - 1].x);
+        dimensions.bottomRightCorner.y = Math.max(dimensions.bottomRightCorner.y, groupContent.Point[0].y, groupContent.Point[groupContent.Point.length - 1].y);
       }
-      dimensions.X = dimensions.topLeftCorner.X - group.padding;
-      dimensions.Y = dimensions.topLeftCorner.Y - group.padding;
-      dimensions.CenterX = (dimensions.topLeftCorner.X + dimensions.bottomRightCorner.X)/2;
-      dimensions.CenterY = (dimensions.topLeftCorner.Y + dimensions.bottomRightCorner.Y)/2;
-      dimensions.width = (dimensions.bottomRightCorner.X - dimensions.topLeftCorner.X) + 2 * group.padding;
-      dimensions.height = (dimensions.bottomRightCorner.Y - dimensions.topLeftCorner.Y) + 2 * group.padding;
+      dimensions.x = dimensions.topLeftCorner.x - group.padding - group.borderWidth;
+      dimensions.y = dimensions.topLeftCorner.y - group.padding - group.borderWidth;
+      dimensions.width = (dimensions.bottomRightCorner.x - dimensions.topLeftCorner.x) + 2 * (group.padding + group.borderWidth);
+      dimensions.height = (dimensions.bottomRightCorner.y - dimensions.topLeftCorner.y) + 2 * (group.padding + group.borderWidth);
       callback(dimensions);
     });
   }
@@ -97,12 +89,14 @@ pathvisiojs.data.gpml = function(){
               'gpmlFolder':'file://Users/andersriutta/Sites/pathvisiojs/test/gpml/',
               'name':'http://xmlns.com/foaf/0.1/name',
               'dcterms':'http://purl.org/dc/terms/',
-              'width':'css2:visudet.html#propdef-width',
-              'height':'css2:visudet.html#propdef-height',
               'css2':'http://www.w3.org/TR/CSS2/',
               'css3Ui':'http://www.w3.org/TR/css3-ui/#',
               'svg':'http://www.w3.org/TR/SVG11/',
-              'boxSizing':'css3Ui:box-sizing',
+              'boxSizing':{
+                '@id':'css3Ui:box-sizing',
+                '@value':'border-box'
+              },
+              'position':'css2:visuren.html#propdef-position',
               'text':'svg:text.html#TextElement',
               'tspan':'svg:text.html#TSpanElement',
               'color':'css2:colors.html#propdef-color', //foreground color
@@ -110,6 +104,10 @@ pathvisiojs.data.gpml = function(){
               'backgroundImage':'css2:colors.html#propdef-background-image',
               'borderColor':'css2:box.html#propdef-border-color',
               'borderWidth':'css2:box.html#propdef-border-width',
+              'x':'css2:visuren.html#propdef-left',
+              'y':'css2:visuren.html#propdef-top',
+              'width':'css2:visudet.html#propdef-width',
+              'height':'css2:visudet.html#propdef-height',
               'padding':'css2:box.html#propdef-padding',
               'fontFamily':'css2:fonts.html#font-family-prop',
               'fontStyle':'css2:fonts.html#propdef-font-style', //italic
@@ -194,15 +192,17 @@ pathvisiojs.data.gpml = function(){
             })
             callback(null, jsonGroups);
           },
-          DataNode: function(callback){
+          DataNodeAndPort: function(callback){
             var jsonDataNodes = [];
+            var Port = [];
             gpmlPathway.selectAll('DataNode').each(function() {
               gpmlDataNode = d3.select(this);
-              pathvisiojs.data.gpml.dataNode.toRenderableJson(gpmlDataNode, pathwayIri, function(jsonDataNode) {
+              pathvisiojs.data.gpml.dataNode.toRenderableJson(gpmlDataNode, pathwayIri, function(jsonDataNode, ports) {
                 jsonDataNodes.push(jsonDataNode);
+                Port.push(ports);
               });
             })
-            callback(null, jsonDataNodes);
+            callback(null, {'DataNode':jsonDataNodes, 'Port':Port});
           },
           Label: function(callback){
             var jsonLabels = [];
@@ -296,14 +296,14 @@ pathvisiojs.data.gpml = function(){
                     pointObj.hasReference = pathwayIri + '#' + point.attr('GraphRef');
                     pointObj.RelX = relX;
                     pointObj.RelY = relY;
-                    pointObj.X = parseFloat(point.attr('X'));
-                    pointObj.Y = parseFloat(point.attr('Y'));
+                    pointObj.x = parseFloat(point.attr('X'));
+                    pointObj.y = parseFloat(point.attr('Y'));
                   }
                   else {
                     pointObj['@type'] = 'GraphicalPoint';
-                    pointObj.X = {};
-                    pointObj.X = parseFloat(point.attr('X'));
-                    pointObj.Y = parseFloat(point.attr('Y'));
+                    pointObj.x = {};
+                    pointObj.x = parseFloat(point.attr('X'));
+                    pointObj.y = parseFloat(point.attr('Y'));
                   }
                   jsonInteraction.Point.push(pointObj);
                 })
@@ -363,25 +363,28 @@ pathvisiojs.data.gpml = function(){
           }
       },
       function(err, results) {
+        var arrangedResults = results;
+        arrangedResults.DataNode = results.DataNodeAndPort.DataNode;
+        arrangedResults.Port = results.DataNodeAndPort.Port;
+        delete arrangedResults.DataNodeAndPort;
+
         var updateGroupsFrame = {};
         results.Group.forEach(function(element) {
           updateGroupsFrame = {
-            '@context': results['@context'],
+            '@context': arrangedResults['@context'],
             '@type':element.GroupId
           };
-          jsonld.frame(results, updateGroupsFrame, function(err, updateGroupsData) {
+          jsonld.frame(arrangedResults, updateGroupsFrame, function(err, updateGroupsData) {
             var dimensions = getGroupDimensions(element, updateGroupsData['@graph'], function(dimensions) {
-              element.X = dimensions.X;
-              element.Y = dimensions.Y;
-              element.CenterX = dimensions.CenterX;
-              element.CenterY = dimensions.CenterY;
+              element.x = dimensions.x;
+              element.y = dimensions.y;
               element.width = dimensions.width;
               element.height = dimensions.height;
             });
           });
         });
-        self.myPathway = results;
-        callbackOutside(results);
+        self.myPathway = arrangedResults;
+        callbackOutside(arrangedResults);
       });
 
 
@@ -418,9 +421,9 @@ pathvisiojs.data.gpml = function(){
       // infoBox
       // These values are a legacy from GenMAPP. They are always forced to be equal to 0 in PathVisio (Java) so as to place the infobox in the upper lefthand corner.
 
-      pathway.infoBox.X = 0;
+      pathway.infoBox.x = 0;
       delete pathway.infoBox.centerX;
-      pathway.infoBox.Y = 0;
+      pathway.infoBox.y = 0;
       delete pathway.infoBox.centerY;
 //*/
 
