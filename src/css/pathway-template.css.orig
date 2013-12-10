@@ -5,7 +5,7 @@
 		vector-effect: non-scaling-stroke;
 		fill: white;
 		background: white;
-    stroke: black;
+    		stroke: black;
 	}
 
 	.default-fill {
@@ -39,56 +39,79 @@
 		font-weight: bold;
 	}
 
-	path.group {
+	.group {
 		fill-opacity: 0.098;
 		stroke: gray;
 		stroke-miterlimit: 1;
 		stroke-width: 1px;
+    pointer-events:none;
 	}
 
-	path.group:hover {
+	.group:hover {
 		fill-opacity: 0.2;
 		stroke-width: 1px;
 	}
 
-	path.group-none {
+	.group-none {
 		fill: rgb(180,180,100);
 		stroke-dasharray: 5,3;
 	}
 
-	path.group-group {
+	.group-group {
 		fill-opacity: 0;
 		stroke-width: 0;
 	}
 
-	path.group-complex {
+	.group-complex {
 		fill: rgb(180,180,100);
 	}
 
-	path.group-pathway {
+	.group-pathway {
 		fill: lightgreen;
 		stroke-dasharray: 5,3;
 	}
 
-	use.data-node {
+<<<<<<< HEAD
+	.data-node {
+=======
+	use.data-node use.annotated-data-node{
+>>>>>>> 98ffc24eaf633a15fa7ccb9860ac46a260d699af
 		fill-opacity: 1;
 		stroke: black;
 		stroke-dasharray: 0;
 		stroke-miterlimit: 1;
+    pointer-events:auto;
+	}
+	
+<<<<<<< HEAD
+  .data-node:hover {
+		cursor:pointer;
+=======
+	use.annotated-data-node:hover {
+		cursor: pointer;
+>>>>>>> 98ffc24eaf633a15fa7ccb9860ac46a260d699af
 	}
 
-	use.gene-product {
+	.gene-product {
 	}
 
-	use.metabolite {
+<<<<<<< HEAD
+	.metabolite {
+=======
+	use.metabolite use.annotated-metabolite{
+>>>>>>> 98ffc24eaf633a15fa7ccb9860ac46a260d699af
 		stroke: blue;
+	}
+	
+	use.annotated-metabolite:hover {
+		cursor: pointer;
 	}
 
 	text.metabolite {
-		fill: blue;
+		cursor:pointer;
 	}
 
-	use.pathway {
+	.data-node-pathway {
 		stroke: rgb(20,150,30);
 		fill-opacity: 0;
 	}
@@ -99,13 +122,13 @@
 		stroke: none;
 	}
 
-	use.protein {
+	.protein {
 	}
 
-	use.rna {
+	.rna {
 	}
 
-	use.unknown {
+	.unknown {
 	}
 
 	.label {
@@ -140,10 +163,13 @@
 		stroke-width: 1px; 
 	}
 
-	.interaction {
+	.interaction .annotated-interaction{
 		fill:none;
 		stroke: black; 
 		stroke-width: 1px; 
+	}
+	.annotated-interaction:hover {
+		cursor: pointer;
 	}
 
 	marker {

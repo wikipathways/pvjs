@@ -7,7 +7,7 @@
   margin: 0;
   zoom: 1;
   -webkit-font-smoothing: antialiased;
-  background: #E9EEEF;
+  background: #F9F9F9;
   width: 250px;
   border-radius: 10px;
   -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3),inset 0 1px 1px rgba(255, 255, 255, 0.8);
@@ -80,7 +80,7 @@ header.annotation-header {
 }
 
 .annotation-items-container ul {
-  line-height: 120%;
+  line-height: 130%;
   list-style: none;
   text-align: left;
   padding: 0 0 0 10px;
