@@ -98,11 +98,11 @@ pathvisiojs.view.pathwayDiagram.pathFinder = function(){
     ports.forEach(function(port) {
       portLocation = xYCoordinatesToMatrixLocation(port.x, port.y);
       column1 = Math.max(Math.min((portLocation.column - 5 * port.dy), totalColumnCount - 1), 0);
-      column2 = Math.max(Math.min((portLocation.column + 5 * port.dy), totalColumnCount - 1), 0);
+      column2 = Math.max(Math.min((portLocation.column + port.dy), totalColumnCount - 1), 0);
       columnStart = Math.min(column1, column2);
       columnEnd = Math.max(column1, column2);
 
-      row1 = Math.max(Math.min((portLocation.row - 5 * port.dx), totalRowCount - 1), 0);
+      row1 = Math.max(Math.min((portLocation.row - port.dx), totalRowCount - 1), 0);
       row2 = Math.max(Math.min((portLocation.row + 5 * port.dx), totalRowCount - 1), 0);
       rowStart = Math.min(row1, row2);
       rowEnd = Math.max(row1, row2);
@@ -221,8 +221,8 @@ pathvisiojs.view.pathwayDiagram.pathFinder = function(){
      */
 
     var blockyPath = finder.findPath(startLocation.column, startLocation.row, endLocation.column, endLocation.row, workingGrid);
-    //console.log('blockyPath');
-    //console.log(blockyPath);
+    console.log('blockyPath');
+    console.log(blockyPath);
 
     /*
        var newWorkingGrid = pathvisioNS.grid.paddedGrid.clone();
@@ -263,6 +263,8 @@ pathvisiojs.view.pathwayDiagram.pathFinder = function(){
         'y': compressedMidPoint[index][1] * pathvisioNS.grid.squareLength
       });
     });
+    console.log('fullXYPath');
+    console.log(fullXYPath);
 
     fullXYPath.unshift({'x': pointStart.x, 'y': pointStart.y});
     fullXYPath.push({'x': pointEnd.x, 'y': pointEnd.y});
@@ -292,32 +294,32 @@ pathvisiojs.view.pathwayDiagram.pathFinder = function(){
     console.log(smootherPath);
 
 
-    /*
+    //*
     // reposition start and end point to match source and origin
     if (smootherPath.length === 2) {
-    if (Math.abs(smootherPath[1].x - pointStart.x) < Math.abs(smootherPath[1].x - pointEnd.x)) {
-    smootherPath[1].x = pointStart.x;
-    smootherPath[1].y = pointEnd.y;
+      if (Math.abs(smootherPath[1].x - pointStart.x) < Math.abs(smootherPath[1].x - pointEnd.x)) {
+        smootherPath[1].x = pointStart.x;
+        smootherPath[1].y = pointEnd.y;
+      }
+      else {
+        smootherPath[1].x = pointEnd.x;
+        smootherPath[1].y = pointStart.y;
+      }
     }
     else {
-    smootherPath[1].x = pointEnd.x;
-    smootherPath[1].y = pointStart.y;
-    }
-    }
-    else {
-    if (Math.abs(smootherPath[1].x - pointStart.x) < Math.abs(smootherPath[1].y - pointStart.y)) {
-    smootherPath[1].x = pointStart.x;
-    }
-    else {
-    smootherPath[1].y = pointStart.y;
-    }
+      if (Math.abs(smootherPath[1].x - pointStart.x) < Math.abs(smootherPath[1].y - pointStart.y)) {
+        smootherPath[1].x = pointStart.x;
+      }
+      else {
+        smootherPath[1].y = pointStart.y;
+      }
 
-    if (Math.abs(smootherPath[smootherPath.length - 2].x - pointEnd.x) < Math.abs(smootherPath[smootherPath.length - 2].y - pointEnd.y)) {
-    smootherPath[smootherPath.length - 2].x = pointEnd.x;
-    }
-    else {
-    smootherPath[smootherPath.length - 2].y = pointEnd.y;
-    }
+      if (Math.abs(smootherPath[smootherPath.length - 2].x - pointEnd.x) < Math.abs(smootherPath[smootherPath.length - 2].y - pointEnd.y)) {
+        smootherPath[smootherPath.length - 2].x = pointEnd.x;
+      }
+      else {
+        smootherPath[smootherPath.length - 2].y = pointEnd.y;
+      }
     }
     //*/
 

@@ -6,7 +6,7 @@
     <Xref Database="" ID="" />
   </DataNode>
   <DataNode TextLabel="left" GraphId="fe5b0" Type="Metabolite">
-    <Graphics CenterX="238.56157453079612" CenterY="255.96870471557975" Width="88.13693270735519" Height="63.88028169014086" ZOrder="32769" FontSize="10" Valign="Middle" Align="Left" Color="0000ff" />
+    <Graphics CenterX="495.16950404621485" CenterY="348.47971793143813" Width="88.13693270735519" Height="63.88028169014086" ZOrder="32769" FontSize="10" Valign="Middle" Align="Left" Color="0000ff" />
     <Xref Database="" ID="" />
   </DataNode>
   <DataNode TextLabel="center" GraphId="b4bd1" Type="Metabolite">
@@ -16,7 +16,7 @@
   <Interaction GraphId="idfcde4a04">
     <Graphics ConnectorType="Elbow" ZOrder="12288" LineThickness="1.0">
       <Point X="425.5394291564819" Y="132.4168854376004" GraphRef="f8e5b" RelX="-1.0" RelY="0.0" />
-      <Point X="282.6300408844737" Y="255.96870471557975" GraphRef="fe5b0" RelX="1.0" RelY="0.0" ArrowHead="Arrow" />
+      <Point X="539.2379703998924" Y="348.47971793143813" GraphRef="fe5b0" RelX="1.0" RelY="0.0" ArrowHead="Arrow" />
     </Graphics>
     <Xref Database="" ID="" />
   </Interaction>
