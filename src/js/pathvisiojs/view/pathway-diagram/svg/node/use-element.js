@@ -1,6 +1,6 @@
 // Draw nodes. Includes data nodes, shapes, labels, cellular components...
 
-pathvisiojs.view.pathwayDiagram.svg.useElement = function(){
+pathvisiojs.view.pathwayDiagram.svg.node.useElement = function(){
   
   var pathwayHere, allSymbolNamesHere;
 
@@ -39,60 +39,57 @@ pathvisiojs.view.pathwayDiagram.svg.useElement = function(){
     pathvisiojs.view.pathwayDiagram.svg.render(args, function(){console.log('rendered after drag');});
   }
 
-  function render(useElement) {
-    useElement.attr("id", function (d) {return 'shape-' + d['@id'];})
+  function render(parent, data) {
+    var node = parent.append("use")
+    .data([data])
+    .attr("id", function (d) {return 'node-' + strcase.paramCase(d['@id']);})
+    .attr("class", function (d) {
+      return 'shape ' + strcase.paramCase(d.ShapeType);
+    })
     .attr('transform', function(d) {
       var transform = 'scale(1)';
       if (d.hasOwnProperty('rotation')) {
-        transform = 'rotate(' + d.rotation + ' ' + d.Width / 2 + ' ' + d.Height / 2 + ')';
+        transform = 'rotate(' + d.rotation + ' ' + d.width / 2 + ' ' + d.height / 2 + ')';
       }
       return transform;
     })
-    .attr("class", function (d) {
-      var styleClass = 'shape ';
-      if (d.elementType === 'data-node') {
-        styleClass += d.dataNodeType + ' ';
-      }
-      if (d.strokeStyle === 'double') {
-        styleClass += 'double-original ';
-      }
-      return styleClass;
-    })
     .attr("x", 0)
     .attr("y", 0)
-    .attr("width", function (d) { return d.Width;})
-    .attr("height", function (d) { return d.Height;})
-    .attr("z-index", function (d) { return d.zIndex;})
-    .attr("style", function (d) {
+    .attr("width", function (d) { return d.width;})
+    .attr("height", function (d) { return d.height;})
+    .attr("style", function (data) {
       var style = '';
-
-      if (d.hasOwnProperty('fill')) {
-        style += 'fill:' + d.fill + '; ';
+      if (data.hasOwnProperty('borderColor')) {
+        style += 'stroke:' + data.borderColor + '; ';
       }
-
+      /*
       if (d.hasOwnProperty('fillOpacity')) {
         style += 'fill-opacity:' + d.fillOpacity + '; ';
       }
+      //*/
+      var borderWidthEffective;
+      if (data.hasOwnProperty('borderWidth')) {
 
-      if (d.hasOwnProperty('stroke')) {
-        style += 'stroke:' + d.stroke + '; ';
-      }
+        // Doubling borderWidth to create borderWidthEffective.
+        // Reason: border is centered on perimeter of node, requiring us to use an SVG clipping Path to clip off the outermost half
+        // of the border so that the border does not go outside its bounding box. Because the outer half of the border is not displayed, we need to
+        // double the border width so that the border's apparent width matches the value specified in GPML.
 
-      var strokeWidthEffective = null;
-      if (d.hasOwnProperty('strokeWidth')) {
-
-        // Doubling strokeWidth to create strokeWidthEffective.
-        // Reason: stroke is centered on perimeter of node, requiring us to use an SVG clipping Path to clip off the outermost half
-        // of the stroke so that the stroke does not go outside its bounding box. Because the outer half of the stroke is not displayed, we need to
-        // double the stroke width so that the stroke's apparent width matches the value specified in GPML.
-
-        strokeWidthEffective = 2 * d.strokeWidth;
+        borderWidthEffective = 2 * data.borderWidth;
       }
       else {
-        strokeWidthEffective = 2;
+        borderWidthEffective = 2;
       }
 
-      style += 'stroke-width:' + strokeWidthEffective + '; ';
+      style += 'stroke-width:' + borderWidthEffective + '; ';
+
+
+      return style;
+    })
+
+
+    /*
+
 
       if (d.hasOwnProperty('strokeStyle')) {
         if (d.strokeStyle === 'dashed') {
@@ -134,7 +131,6 @@ pathvisiojs.view.pathwayDiagram.svg.useElement = function(){
           //.attr("class", "stroke-color-equals-default-fill-color")
           .attr("style", function(d) { return style + 'fill-opacity:0; ';});
         }
-        //*/
       }
 
       // be careful that all additions to 'style' go above the 'double-line second element' above
@@ -142,6 +138,7 @@ pathvisiojs.view.pathwayDiagram.svg.useElement = function(){
 
       return style;
     })
+        //*/
     .attr("xlink:xlink:href", function(d) {return '#' + d.ShapeType;});
   }
 

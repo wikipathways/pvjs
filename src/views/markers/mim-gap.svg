@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<?xml-stylesheet type="text/css" href="../../css/pathway-template.css"?>
+<?xml-stylesheet type="text/css" href="../../css/pathway-diagram.css"?>
 
 <!-- mim-gap markers: just an extended drawing-board rect -->
 <!-- 
@@ -17,6 +17,12 @@ It can overlap the side of the shape, blanking out a small part of it when the e
 	height="12"
 	class="default-fill solid-stroke"
 	viewBox="0 0 12 12">
+
+	<!-- mim-gap markers: just an extended drawing-board rect -->
+	<!-- 
+	TODO This could be refactored to make the shape match the viewbox.
+	It can overlap the side of the shape, blanking out a small part of it when the edge is at an angle.
+	-->
 
 	<rect stroke="none" x="0" y="5.3" width="8" height="1.4" />
 

@@ -6,74 +6,161 @@
 Sources: [https://www.pharmgkb.org/do/serve?objId=PA2031&amp;amp;objCls=Pathway PharmGKB] and [http://en.wikipedia.org/wiki/Statin Wikipedia]
 
 </Comment>
-  <Graphics BoardWidth="828.0" BoardHeight="735.7912447684621" />
+  <Graphics BoardWidth="830.8627450980393" BoardHeight="635.0" />
   <DataNode TextLabel="DGAT1" GraphId="d4e" Type="GeneProduct">
     <Attribute Key="org.pathvisio.model.BackpageHead" Value="DGAT1 | diacylglycerol O-acyltransferase homolo..." />
-    <Graphics CenterX="694.0" CenterY="151.83333333333334" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Graphics CenterX="279.86274509803934" CenterY="133.67647058823528" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
     <Xref Database="Entrez Gene" ID="8694" />
   </DataNode>
   <DataNode TextLabel="Phospholipid" GraphId="aceb7" Type="Metabolite">
-    <Graphics CenterX="596.25" CenterY="204.0" Width="74.5" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Graphics CenterX="56.622549019608186" CenterY="170.94117647058823" Width="74.5" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff" />
     <Xref Database="KEGG Compound" ID="C00865" />
   </DataNode>
   <DataNode TextLabel="Triglyceride" GraphId="fc934" Type="Metabolite">
-    <Graphics CenterX="694.5" CenterY="228.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Graphics CenterX="203.5" CenterY="202.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff" />
     <Xref Database="KEGG Compound" ID="C00422" />
   </DataNode>
   <DataNode TextLabel="DAG" GraphId="b209b" Type="Metabolite">
-    <Graphics CenterX="608.5" CenterY="105.5" Width="46.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Graphics CenterX="203.77450980392166" CenterY="83.42156862745097" Width="46.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff" />
     <Xref Database="KEGG Compound" ID="C00165" />
   </DataNode>
   <DataNode TextLabel="Acyl-CoA" GraphId="a47e8" Type="Metabolite">
-    <Graphics CenterX="524.625" CenterY="123.75" Width="53.75" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Graphics CenterX="68.13480392156805" CenterY="100.10294117647058" Width="53.75" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff" />
     <Xref Database="HMDB" ID="HMDB03419" />
   </DataNode>
+  <DataNode TextLabel="Acyl-CoA" GraphId="c0244" Type="Metabolite">
+    <Graphics CenterX="69.13480392156805" CenterY="278.1029411764706" Width="53.75" Height="20.0" ZOrder="32773" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Xref Database="HMDB" ID="HMDB03419" />
+  </DataNode>
+  <DataNode TextLabel="Phospholipid" GraphId="bd6cd" Type="Metabolite">
+    <Graphics CenterX="57.622549019608186" CenterY="348.94117647058823" Width="74.5" Height="20.0" ZOrder="32774" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Xref Database="KEGG Compound" ID="C00865" />
+  </DataNode>
+  <DataNode TextLabel="DAG" GraphId="dd1f2" Type="Metabolite">
+    <Graphics CenterX="204.77450980392166" CenterY="261.42156862745094" Width="46.0" Height="20.0" ZOrder="32775" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Xref Database="KEGG Compound" ID="C00165" />
+  </DataNode>
+  <DataNode TextLabel="DGAT1" GraphId="c531e" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="DGAT1 | diacylglycerol O-acyltransferase homolo..." />
+    <Graphics CenterX="280.86274509803934" CenterY="311.67647058823525" Width="60.0" Height="20.0" ZOrder="32776" FontSize="10" Valign="Middle" />
+    <Xref Database="Entrez Gene" ID="8694" />
+  </DataNode>
+  <DataNode TextLabel="Triglyceride" GraphId="f33f0" Type="Metabolite">
+    <Graphics CenterX="204.5" CenterY="380.0" Width="80.0" Height="20.0" ZOrder="32777" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Xref Database="KEGG Compound" ID="C00422" />
+  </DataNode>
+  <DataNode TextLabel="Acyl-CoA" GraphId="bc397" Type="Metabolite">
+    <Graphics CenterX="70.13480392156805" CenterY="460.1029411764706" Width="53.75" Height="20.0" ZOrder="32781" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Xref Database="HMDB" ID="HMDB03419" />
+  </DataNode>
+  <DataNode TextLabel="Phospholipid" GraphId="fb0d4" Type="Metabolite">
+    <Graphics CenterX="58.622549019608186" CenterY="530.9411764705883" Width="74.5" Height="20.0" ZOrder="32782" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Xref Database="KEGG Compound" ID="C00865" />
+  </DataNode>
+  <DataNode TextLabel="DAG" GraphId="a894b" Type="Metabolite">
+    <Graphics CenterX="205.77450980392166" CenterY="443.42156862745094" Width="46.0" Height="20.0" ZOrder="32783" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Xref Database="KEGG Compound" ID="C00165" />
+  </DataNode>
+  <DataNode TextLabel="DGAT1" GraphId="d5535" Type="GeneProduct">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="DGAT1 | diacylglycerol O-acyltransferase homolo..." />
+    <Graphics CenterX="281.86274509803934" CenterY="493.67647058823525" Width="60.0" Height="20.0" ZOrder="32784" FontSize="10" Valign="Middle" />
+    <Xref Database="Entrez Gene" ID="8694" />
+  </DataNode>
+  <DataNode TextLabel="Triglyceride" GraphId="d751b" Type="Metabolite">
+    <Graphics CenterX="205.5" CenterY="562.0" Width="80.0" Height="20.0" ZOrder="32785" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Xref Database="KEGG Compound" ID="C00422" />
+  </DataNode>
   <Interaction GraphId="d870f">
-    <Graphics ZOrder="12288" LineThickness="1.0" Color="008040">
-      <Point X="608.5" Y="115.5" GraphRef="b209b" RelX="0.0" RelY="1.0" />
-      <Point X="674.5" Y="218.0" GraphRef="fc934" RelX="-0.5" RelY="-1.0" ArrowHead="Arrow" />
+    <Graphics ZOrder="12288" LineThickness="1.0" Color="ff0000">
+      <Point X="203.77450980392166" Y="93.42156862745097" GraphRef="b209b" RelX="0.0" RelY="1.0" />
+      <Point X="203.5" Y="192.0" GraphRef="fc934" RelX="0.0" RelY="-1.0" ArrowHead="Arrow" />
       <Anchor Position="0.4" Shape="None" GraphId="edbc5" />
     </Graphics>
     <Xref Database="" ID="" />
   </Interaction>
   <Interaction GraphId="idb248dd5c">
     <Graphics ZOrder="12288" LineThickness="1.0">
-      <Point X="664.0" Y="151.83333333333334" GraphRef="d4e" RelX="-1.0" RelY="0.0" />
-      <Point X="634.9" Y="156.5" GraphRef="edbc5" RelX="0.0" RelY="0.0" ArrowHead="mim-catalysis" />
+      <Point X="249.86274509803934" Y="133.67647058823528" GraphRef="d4e" RelX="-1.0" RelY="0.0" />
+      <Point X="203.664705882353" Y="132.85294117647058" GraphRef="edbc5" RelX="0.0" RelY="0.0" ArrowHead="mim-catalysis" />
     </Graphics>
     <Xref Database="" ID="" />
   </Interaction>
   <Interaction GraphId="id52ac424a">
-    <Graphics ConnectorType="Curved" ZOrder="12288" LineThickness="1.0" Color="006633">
-      <Point X="538.0625" Y="133.75" GraphRef="a47e8" RelX="0.5" RelY="1.0" />
-      <Point X="634.9" Y="156.5" GraphRef="edbc5" RelX="0.0" RelY="0.0" />
+    <Graphics ConnectorType="Curved" ZOrder="12288" LineThickness="1.0">
+      <Point X="95.00980392156805" Y="100.10294117647058" GraphRef="a47e8" RelX="1.0" RelY="0.0" />
+      <Point X="203.90196078431381" Y="116.47794117647058" />
+      <Point X="203.664705882353" Y="132.85294117647058" GraphRef="edbc5" RelX="0.0" RelY="0.0" />
     </Graphics>
     <Xref Database="" ID="" />
   </Interaction>
   <Interaction GraphId="idb3964d3f">
-    <Graphics ConnectorType="Curved" ZOrder="12288" LineThickness="1.0" Color="006633">
-      <Point X="634.9" Y="156.5" GraphRef="edbc5" RelX="0.0" RelY="0.0" />
-      <Point X="620.6875" Y="194.5" />
-      <Point X="614.875" Y="194.0" GraphRef="aceb7" RelX="0.5" RelY="-1.0" />
+    <Graphics ConnectorType="Curved" ZOrder="12288" LineThickness="1.0">
+      <Point X="203.664705882353" Y="132.85294117647058" GraphRef="edbc5" RelX="0.0" RelY="0.0" />
+      <Point X="203.90196078431381" Y="151.8970588235294" />
+      <Point X="93.87254901960819" Y="170.94117647058823" GraphRef="aceb7" RelX="1.0" RelY="0.0" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction>
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="96.00980392156805" Y="278.1029411764706" GraphRef="c0244" RelX="1.0" RelY="0.0" />
+      <Point X="204.70326874133897" Y="297.0047430656149" GraphRef="a2cec" RelX="0.0" RelY="0.0" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="cc213">
+    <Graphics ZOrder="32770" LineThickness="1.0">
+      <Point X="204.60860572028503" Y="330.99891009051896" GraphRef="c6eb7" RelX="0.0" RelY="0.0" />
+      <Point X="94.87254901960819" Y="348.94117647058823" GraphRef="bd6cd" RelX="1.0" RelY="0.0" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="f99cb">
+    <Graphics ZOrder="32771" LineThickness="1.0">
+      <Point X="250.86274509803934" Y="311.67647058823525" GraphRef="c531e" RelX="-1.0" RelY="0.0" />
+      <Point X="204.664705882353" Y="310.85294117647055" GraphRef="f6101" RelX="0.0" RelY="0.0" ArrowHead="mim-catalysis" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="b0314">
+    <Graphics ZOrder="32772" LineThickness="1.0" Color="ff0000">
+      <Point X="204.77450980392166" Y="271.42156862745094" GraphRef="dd1f2" RelX="0.0" RelY="1.0" />
+      <Point X="204.5" Y="370.0" GraphRef="f33f0" RelX="0.0" RelY="-1.0" ArrowHead="Arrow" />
+      <Anchor Position="0.4" Shape="None" GraphId="f6101" />
+      <Anchor Position="0.2595210136939554" Shape="None" GraphId="a2cec" />
+      <Anchor Position="0.6043648761047176" Shape="None" GraphId="c6eb7" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="c0027">
+    <Graphics ConnectorType="Segmented" ZOrder="32778" LineThickness="1.0">
+      <Point X="97.00980392156805" Y="460.1029411764706" GraphRef="bc397" RelX="1.0" RelY="0.0" />
+      <Point X="205.0" Y="494.0" />
+      <Point X="95.87254901960819" Y="530.9411764705883" GraphRef="fb0d4" RelX="1.0" RelY="0.0" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="c4491">
+    <Graphics ZOrder="32779" LineThickness="1.0">
+      <Point X="251.86274509803934" Y="493.67647058823525" GraphRef="d5535" RelX="-1.0" RelY="0.0" />
+      <Point X="205.664705882353" Y="492.85294117647055" GraphRef="d1973" RelX="0.0" RelY="0.0" ArrowHead="mim-catalysis" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="be9c4">
+    <Graphics ZOrder="32780" LineThickness="1.0" Color="ff0000">
+      <Point X="205.77450980392166" Y="453.42156862745094" GraphRef="a894b" RelX="0.0" RelY="1.0" />
+      <Point X="205.5" Y="552.0" GraphRef="d751b" RelX="0.0" RelY="-1.0" ArrowHead="Arrow" />
+      <Anchor Position="0.4" Shape="None" GraphId="d1973" />
     </Graphics>
     <Xref Database="" ID="" />
   </Interaction>
   <InfoBox CenterX="5.1" CenterY="8.333333333333334" />
   <Biopax>
     <bp:openControlledVocabulary xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#">
-      <bp:TERM xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">hepatocyte</bp:TERM>
-      <bp:ID xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">CL:0000182</bp:ID>
-      <bp:Ontology xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Cell Type</bp:Ontology>
-    </bp:openControlledVocabulary>
-    <bp:openControlledVocabulary xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#">
       <bp:TERM xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">statin drug pathway</bp:TERM>
       <bp:ID xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PW:0000724</bp:ID>
       <bp:Ontology xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Pathway Ontology</bp:Ontology>
-    </bp:openControlledVocabulary>
-    <bp:openControlledVocabulary xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#">
-      <bp:TERM xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">cardiovascular system disease</bp:TERM>
-      <bp:ID xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">DOID:1287</bp:ID>
-      <bp:Ontology xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Disease</bp:Ontology>
     </bp:openControlledVocabulary>
     <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="a6b">
       <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">9106493</bp:ID>
@@ -85,6 +172,16 @@ Sources: [https://www.pharmgkb.org/do/serve?objId=PA2031&amp;amp;objCls=Pathway 
       <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Lin MC</bp:AUTHORS>
       <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Jamil H</bp:AUTHORS>
     </bp:PublicationXref>
+    <bp:openControlledVocabulary xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#">
+      <bp:TERM xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">cardiovascular system disease</bp:TERM>
+      <bp:ID xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">DOID:1287</bp:ID>
+      <bp:Ontology xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Disease</bp:Ontology>
+    </bp:openControlledVocabulary>
+    <bp:openControlledVocabulary xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#">
+      <bp:TERM xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">hepatocyte</bp:TERM>
+      <bp:ID xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">CL:0000182</bp:ID>
+      <bp:Ontology xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Cell Type</bp:Ontology>
+    </bp:openControlledVocabulary>
   </Biopax>
 </Pathway>
 

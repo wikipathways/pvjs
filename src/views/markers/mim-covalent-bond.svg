@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<?xml-stylesheet type="text/css" href="../../css/pathway-template.css"?>
+<?xml-stylesheet type="text/css" href="../../css/pathway-diagram.css"?>
 
 <!-- mim-covalent-bond marker: not much to see here! -->
 
@@ -14,5 +14,8 @@
 	class="solid-stroke"
 	style="fill:black"
 	viewBox="0 0 12 12">
+
+	<!-- mim-covalent-bond markers: not much to see here! -->
+	<rect x="0" y="0" width="0" height="0" stroke="none" fill="none" stroke-width="0"/>
 
 </svg>

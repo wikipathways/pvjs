@@ -11,9 +11,6 @@ pathvisiojs = function(){
 
   function getInputDataDetails(inputData) {
 
-    console.log('inputData');
-    console.log(inputData);
-
     // inputData can be a WikiPathways ID (WP1), a uri for a GPML file (http://www.wikipathways.org/gpmlfile.gpml)
     // or a uri for another type of file.
 
@@ -45,7 +42,7 @@ pathvisiojs = function(){
           results.pathwayIri = 'wpId:' + inputData;
         }
         else {
-          return new Error('Pathvisio.js cannot handle the data source type entered: ' + data);
+          throw new Error('Pathvisio.js cannot handle the data source type entered: ' + data);
         }
       }
     }
@@ -108,13 +105,10 @@ pathvisiojs = function(){
       }
     },
     function(err, results){
-      self.results = results;
       var viewLoadArgs = results.preload;
-      self.pathway = viewLoadArgs.pathway = results.pathway;
+      viewLoadArgs.pathway = results.pathway;
 
-          console.log('pathvisiojspreload');
-          console.log(results.preload);
-          //console.log(allSymbolNames);
+      //console.log(allSymbolNames);
       pathvisiojs.view.pathwayDiagram.load(viewLoadArgs, function() {
         // do something here
       })
@@ -148,7 +142,7 @@ pathvisiojs = function(){
           console.warn('Error: No data node value entered.');
         }
         else {
-          pathvisiojs.view.pathwayDiagram.svg.shapeContainer.highlightByLabel(svg, nodeLabel);
+          pathvisiojs.view.pathwayDiagram.svg.node.highlightByLabel(svg, nodeLabel);
         }
       });
 //*/
@@ -158,14 +152,14 @@ pathvisiojs = function(){
       $( "#highlight-by-label-input" ).bind( "typeahead:selected", function() {
         var nodeLabel = $("#highlight-by-label-input").val();
         if (!nodeLabel) {
-          console.warn('Error: No data node value entered.');
+          throw new Error("No data node value entered for type-ahead node highlighter.");
         }
         else {
 
           // TODO refactor this so it calls a generic highlightDataNodeByLabel function that can call
           // a highlighter for svg, png, etc. as appropriate.
 
-          pathvisiojs.view.pathwayDiagram.svg.shapeContainer.highlightByLabel(results.preload.svg, results.pathway, nodeLabel);
+          pathvisiojs.view.pathwayDiagram.svg.node.highlightByLabel(results.preload.svg, results.pathway, nodeLabel);
         }
       });
 

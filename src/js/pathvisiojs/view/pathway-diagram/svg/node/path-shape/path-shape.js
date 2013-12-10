@@ -1,4 +1,19 @@
-pathvisiojs.view.pathwayDiagram.svg.pathShape = function(){
+pathvisiojs.view.pathwayDiagram.svg.node.pathShape = function(){
+  function render(parent, data) {
+    var node = parent.append("path")
+    .data([data])
+    .attr("id", function (d) {return 'node-' + strcase.paramCase(d['@id']);})
+    .attr("class", function (d) {
+      return 'shape ' + strcase.paramCase(d.ShapeType);
+    })
+
+    var nodeAttributes = pathvisiojs.view.pathwayDiagram.svg.node.pathShape[strcase.camelCase(data.ShapeType)].getAttributes(data.width, data.height);
+    nodeAttributes.forEach(function(attribute) {
+      node.attr(attribute.name, attribute.value)
+    });
+  }
+
+  /*
   function render(pathShape) {
 
     // TODO this seems like a hack. How can the code be refactored so this line below is not needed?
@@ -21,15 +36,16 @@ pathvisiojs.view.pathwayDiagram.svg.pathShape = function(){
 
     var nodeData = pathShape[0].parentNode.__data__;
     var shapeType = strcase.camelCase(nodeData.shapeType);
-    var pathShapeAttributes = pathvisiojs.view.pathwayDiagram.svg.shapeContainer.shape.pathShape[shapeType].getAttributes(nodeData.width, nodeData.height);
+    var pathShapeAttributes = pathvisiojs.view.pathwayDiagram.svg.node.shape.pathShape[shapeType].getAttributes(nodeData.width, nodeData.height);
     pathShapeAttributes.forEach(function(attribute) {
       pathShape.attr(attribute.name, attribute.value)
     });
   }
+  //*/
 
   function renderAll(nodes, pathway, allSymbolNames) {
     if (!nodes || !pathway || !allSymbolNames) {
-      console.log(allSymbolNames);
+      //console.log(allSymbolNames);
       if (!nodes) {
         console.log('nodes not specified');
       }
@@ -61,6 +77,7 @@ pathvisiojs.view.pathwayDiagram.svg.pathShape = function(){
   }
 
   return {
-    renderAll:renderAll
+    renderAll:renderAll,
+    render:render
   };
 }();
