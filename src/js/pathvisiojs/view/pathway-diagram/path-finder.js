@@ -26,6 +26,8 @@ pathvisiojs.view.pathwayDiagram.pathFinder = function(){
     console.log('***************');
     console.log('shapes');
     console.log(shapes);
+    console.log('ports');
+    console.log(ports);
     console.log('pathwayImageWidth');
     console.log(pathwayImageWidth);
     console.log('pathwayImageHeight');
@@ -92,41 +94,28 @@ pathvisiojs.view.pathwayDiagram.pathFinder = function(){
       }
     });
 
-
-
-    //console.log('ports');
-    //console.log(ports);
-
     var column1, column2, row1, row2, portLocation;
     ports.forEach(function(port) {
       portLocation = xYCoordinatesToMatrixLocation(port.x, port.y);
-      console.log('port');
-      console.log(portLocation);
-      console.log('portLocation');
-      console.log(portLocation);
-      column1 = Math.max(Math.min((portLocation.column - 5 * port.dx), totalColumnCount - 1), 0);
-      column2 = Math.max(Math.min((portLocation.column + 5 * port.dx), totalColumnCount - 1), 0);
+      column1 = Math.max(Math.min((portLocation.column - 5 * port.dy), totalColumnCount - 1), 0);
+      column2 = Math.max(Math.min((portLocation.column + 5 * port.dy), totalColumnCount - 1), 0);
       columnStart = Math.min(column1, column2);
       columnEnd = Math.max(column1, column2);
 
-      row1 = Math.max(Math.min((portLocation.row - 5 * port.dy), totalRowCount - 1), 0);
-      row2 = Math.max(Math.min((portLocation.row + 5 * port.dy), totalRowCount - 1), 0);
+      row1 = Math.max(Math.min((portLocation.row - 5 * port.dx), totalRowCount - 1), 0);
+      row2 = Math.max(Math.min((portLocation.row + 5 * port.dx), totalRowCount - 1), 0);
       rowStart = Math.min(row1, row2);
       rowEnd = Math.max(row1, row2);
 
       for(currentRow=rowStart; currentRow<rowEnd + 1; currentRow++) {
         paddedMatrix[currentRow] = paddedMatrix[currentRow] || [];
         for(currentColumn=columnStart; currentColumn<columnEnd + 1; currentColumn++) {
-          console.log('currentColumn');
-          console.log(currentColumn);
           paddedMatrix[currentRow][currentColumn] = 0;
           pathvisioNS.grid.gridRenderingData[currentRow * (totalColumnCount - 1) + currentColumn] = {
             'x': currentColumn * pathvisioNS.grid.squareLength,
             'y': currentRow * pathvisioNS.grid.squareLength,
             'fill': 'yellow'
           };
-          console.log('currentColumn * pathvisioNS.grid.squareLength');
-          console.log(currentColumn * pathvisioNS.grid.squareLength);
         }
       }
     });
