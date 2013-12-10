@@ -273,7 +273,7 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
           '@type': 'entityNode'
         };  
         jsonld.frame(args.pathway, frame, function(err, framedData) {
-          pathvisiojs.view.pathwayDiagram.pathFinder.generateGridData(framedData['@graph'], args.pathway.image.width, args.pathway.image.height, function() {
+          pathvisiojs.view.pathwayDiagram.pathFinder.generateGridData(framedData['@graph'], args.pathway.Port, args.pathway.image.width, args.pathway.image.height, function() {
             callbackInside(null);
           });
         });
@@ -294,7 +294,7 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
       quickRenderMultipleElements(args, function() {
         callback(svg);
       });
-      pathvisiojs.view.pathwayDiagram.svg.grid.render(args.svg);
+      //pathvisiojs.view.pathwayDiagram.svg.grid.render(args.svg);
       /*
       async.series([
         function(callbackInside2) {

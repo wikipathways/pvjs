@@ -41,6 +41,16 @@ pathvisiojs.data.gpml.group = function() {
 
       jsonGroup.padding = groupTypeToPaddingValueMappings[groupType];
 
+      // Groups in PathVisio (Java) appear to have a default borderWidth
+      // of 1px at normal zoom levels, but unlike for edges and entityNodes, 
+      // this borderWidth does not change when I zoom in or out.
+      //
+      // TODO this should be updated to check for whether it is defined
+      // in CSS. If it is, this could conflict or require defining
+      // borderWidth twice -- once here and once in CSS.
+
+      jsonGroup.borderWidth = 1;
+
       var textLabel = {};
       var text = gpmlGroup.attr('TextLabel');
       if (!!text && text.length > 0) {
