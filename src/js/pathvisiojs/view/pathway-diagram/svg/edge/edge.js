@@ -16,11 +16,87 @@ pathvisiojs.view.pathwayDiagram.svg.edge = function(){
         .y(function(data) { return data.y; });
 
         //*
-        //var pathData = null;
-        //pathvisiojs.view.pathwayDiagram.svg.edge.pathData.get(edge, function(pathData) {
-        pathvisiojs.view.pathwayDiagram.pathFinder.getPath(data, function(pathData) {
-          console.log('pathData');
-          console.log(pathData);
+
+
+    async.series({
+      'fullPointSetAndStepType': function(callback) {
+
+        // in GPML, some points are implied, such as for many curves and elbows with only two points.
+        // This code below fills in the implied points, returning the full set of points.
+
+        var stepType, index, horizontal,
+        fullPointSet = [];
+
+        if ((!data.ConnectorType) || (data.ConnectorType === undefined) || (data.ConnectorType === 'Straight') || (data.ConnectorType === 'Segmented')) {
+          stepType = 'linear';
+          callback(null, {'fullPointSet': data.Point, 'stepType': stepType});
+        }
+        else {
+          if (data.ConnectorType === 'Elbow' || data.ConnectorType === 'Curved') {
+            if (data.ConnectorType === 'Elbow') {
+              if (data.RelY === '-1.0' || data.RelY === '1.0') {
+                stepType = 'step-before';
+              }
+              else {
+                stepType = 'step-after';
+              }
+            }
+            else {
+              if (data.ConnectorType === 'Curved') {
+                stepType = 'basis';
+              }
+            }
+
+            if (data.Point.length === 2) {
+              pathvisiojs.view.pathwayDiagram.pathFinder.getPath(data, function(fullPointSet) {
+                callback(null, {'fullPointSet': fullPointSet, 'stepType': stepType});
+              });
+            }
+            else {
+              if (Math.abs(data.Point[0].RelX) === 1) {
+                horizontal = true;
+              }
+              else {
+                horizontal = false;
+              }
+
+              fullPointSet.push(data.Point[0]);
+
+              index = 0;
+              do {
+                index += 1;
+
+                if (horizontal) {
+                  fullPointSet.push({
+                    'x':data.Point[index].x,
+                    'y':data.Point[index - 1].y
+                  });
+                }
+                else {
+                  fullPointSet.push({
+                    'x':data.Point[index - 1].x,
+                    'y':data.Point[index].y
+                  });
+                }
+
+                horizontal = !horizontal;
+
+              } while (index < data.Point.length - 1);
+
+              fullPointSet.push(data.Point[data.Point.length - 1]);
+              callback(null, {'fullPointSet': fullPointSet, 'stepType': stepType});
+            }
+          }
+          else {
+            console.warn('Warning: pathvisiojs does not support connector type: ' + data.ConnectorType + '. Using linear interpolation as fallback.');
+            stepType = 'linear';
+            callback(null, {'fullPointSet': data.Point, 'stepType': stepType});
+          }
+        }
+      }
+    },
+    function(err, results) {
+
           //*/
 
           edge.attr("id", function(data) { return strcase.paramCase(data.GraphId); })
@@ -114,36 +190,10 @@ pathvisiojs.view.pathwayDiagram.svg.edge = function(){
               }
               //*/
 
-              //*
-              if (data.ConnectorType === 'Straight' || data.ConnectorType === 'Segmented') {
-                stepType = 'linear';
-              }
+              createPathDataString.interpolate(results.fullPointSetAndStepType.stepType);
 
-              if (data.ConnectorType === 'Elbow') {
-                //*
-                if (data.RelY === '-1.0' || data.RelY === '1.0') {
-                  stepType = 'step-before';
-                }
-                else {
-                  stepType = 'step-after';
-                }
-                //*/
-                //stepType = 'linear';
-              }
-
-              if (data.ConnectorType === 'Curved') {
-                stepType = 'monotone';
-              }
-
-              createPathDataString.interpolate(stepType);
-
-              console.log('stepType');
-              console.log(stepType);
-              console.log(createPathDataString(pathData));
-              
-              return createPathDataString(pathData);
+              return createPathDataString(results.fullPointSetAndStepType.fullPointSet);
             });
-              //*/
           });
       }
 
