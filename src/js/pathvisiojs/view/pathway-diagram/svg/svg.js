@@ -295,7 +295,7 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
         callback(svg);
       });
 
-      //pathvisiojs.view.pathwayDiagram.svg.grid.render(args.svg);
+      pathvisiojs.view.pathwayDiagram.svg.grid.render(args.svg);
 
       /*
       async.series([
