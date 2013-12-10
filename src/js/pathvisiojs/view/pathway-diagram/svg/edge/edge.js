@@ -17,7 +17,7 @@ pathvisiojs.view.pathwayDiagram.svg.edge = function(){
 
         //*
         //var pathData = null;
-        //pathData = pathvisiojs.view.pathwayDiagram.svg.edge.pathData.get(viewport, pathway, edge, function(data) {
+        //pathvisiojs.view.pathwayDiagram.svg.edge.pathData.get(edge, function(pathData) {
         pathvisiojs.view.pathwayDiagram.pathFinder.getPath(data, function(pathData) {
           console.log('pathData');
           console.log(pathData);
@@ -115,8 +115,7 @@ pathvisiojs.view.pathwayDiagram.svg.edge = function(){
               //*/
 
               //*
-              console.log('hi');
-              if (data.ConnectorType === 'Straight') {
+              if (data.ConnectorType === 'Straight' || data.ConnectorType === 'Segmented') {
                 stepType = 'linear';
               }
 
@@ -135,6 +134,7 @@ pathvisiojs.view.pathwayDiagram.svg.edge = function(){
               if (data.ConnectorType === 'Curved') {
                 stepType = 'monotone';
               }
+
               createPathDataString.interpolate(stepType);
 
               console.log('stepType');
