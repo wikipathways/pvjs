@@ -37,6 +37,18 @@ pathvisiojs.data.bridgedb = function(){
         .key(function(d) { return d.title; })
         .entries(listItems);
 
+        // handle case where nothing is returned by bridgedb webservice
+        if (nestedListItems.length == 0){
+          var uri = "";
+          var ds = getDataSourceRowByName(datasource, dataSources);
+           if (ds.hasOwnProperty('linkoutPattern')) {
+             if (ds.linkoutPattern !== "" && ds.linkoutPattern !== null) {
+               uri = ds.linkoutPattern.replace('$id', id);
+             }
+           }
+          nestedListItems = [{"key": datasource, "values":[{"priority": "1","text": id,"title": datasource,"uri":uri}]}];
+        }
+
         // We want the identifier that was listed by the pathway creator for this data node to be listed first.
 
         var specifiedListItem = nestedListItems.filter(function(element) {return (element.key == datasource);})[0];
