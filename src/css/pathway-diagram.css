@@ -39,28 +39,25 @@
 		font-weight: bold;
 	}
 
-	.data-node .annotated-data-node{
+	.data-node {
 		fill-opacity: 1;
 		stroke: black;
 		stroke-dasharray: 0;
 		stroke-miterlimit: 1;
-    pointer-events:auto;
+    		pointer-events:auto;
 	}
 	
-	.annotated-data-node:hover {
+	.has-xref:hover {
 		cursor: pointer;
 	}
 
 	.gene-product {
 	}
 
-	.metabolite .annotated-metabolite{
+	.metabolite {
 		stroke: blue;
 	}
 	
-	.annotated-metabolite:hover {
-		cursor: pointer;
-	}
 
 	text.metabolite {
 		cursor:pointer;
@@ -112,7 +109,7 @@
 		stroke: gray;
 		stroke-miterlimit: 1;
 		stroke-width: 1px;
-    pointer-events:none;
+    		pointer-events:none;
 	}
 
 	.group {
@@ -120,7 +117,7 @@
 		stroke: gray;
 		stroke-miterlimit: 1;
 		stroke-width: 1px;
-    pointer-events:none;
+    		pointer-events:none;
 	}
 
 	g.group > text {
@@ -162,12 +159,12 @@
 		fill: rgb(180,180,100);
 	}
 
-  .group-pathway {
+  	.group-pathway {
 		fill: lightgreen;
 		stroke-dasharray: 5,3;
 	}
 
-  .cellular-component {
+  	.cellular-component {
 		fill-opacity: 0;
 		stroke: gray;
 	}
@@ -178,13 +175,10 @@
 		stroke-width: 1px; 
 	}
 
-	.interaction .annotated-interaction{
+	.interaction {
 		fill:none;
 		stroke: black; 
 		stroke-width: 1px; 
-	}
-	.annotated-interaction:hover {
-		cursor: pointer;
 	}
 
 	marker {
