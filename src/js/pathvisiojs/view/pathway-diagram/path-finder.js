@@ -23,21 +23,29 @@ pathvisiojs.view.pathwayDiagram.pathFinder = function(){
   }
 
   function generateGridData(shapes, ports, pathwayImageWidth, pathwayImageHeight, callback) {
-    console.log('***************');
-    console.log('shapes');
-    console.log(shapes);
-    console.log('ports');
-    console.log(ports);
-    console.log('pathwayImageWidth');
-    console.log(pathwayImageWidth);
-    console.log('pathwayImageHeight');
-    console.log(pathwayImageHeight);
-    console.log('***************');
+    //console.log('***************');
+    //console.log('shapes');
+    //console.log(shapes);
+    //console.log('ports');
+    //console.log(ports);
+    //console.log('pathwayImageWidth');
+    //console.log(pathwayImageWidth);
+    //console.log('pathwayImageHeight');
+    //console.log(pathwayImageHeight);
+    //console.log('***************');
 
     shapes = d3.select(shapes).sort(function(shape1, shape2) {
       Math.min(shape1.height, shape1.width) - Math.min(shape2.height, shape2.width);
     })[0][0];
     pathvisioNS.grid.squareLength = Math.min(shapes[0].height, shapes[0].width) / 14;
+    console.log('pathvisioNS');
+    console.log(pathvisioNS);
+
+    // how much padding to place around the entityNodes, in units of grid squares
+    // TODO change the static value of 12 to be a calculated value equal to the
+    // largest dimension of a marker in the diagram
+
+    var padding = Math.ceil(12 / pathvisioNS.grid.squareLength);
     var currentRow, currentColumn;
     var totalColumnCount = Math.ceil(pathwayImageWidth/pathvisioNS.grid.squareLength);
     var totalRowCount = Math.ceil(pathwayImageHeight/pathvisioNS.grid.squareLength);
@@ -77,10 +85,10 @@ pathvisiojs.view.pathwayDiagram.pathFinder = function(){
         }
       }
 
-      columnStart = Math.max((upperLeftCorner.column - 5), 0);
-      columnEnd = Math.min((lowerRightCorner.column + 5), totalColumnCount - 1);
-      rowStart = Math.max((upperLeftCorner.row - 5), 0);
-      rowEnd = Math.min((lowerRightCorner.row + 5), totalRowCount - 1);
+      columnStart = Math.max((upperLeftCorner.column - padding), 0);
+      columnEnd = Math.min((lowerRightCorner.column + padding), totalColumnCount - 1);
+      rowStart = Math.max((upperLeftCorner.row - padding), 0);
+      rowEnd = Math.min((lowerRightCorner.row + padding), totalRowCount - 1);
 
       for(currentRow=rowStart; currentRow<rowEnd + 1; currentRow++) {
         for(currentColumn=columnStart; currentColumn<columnEnd + 1; currentColumn++) {
@@ -97,13 +105,13 @@ pathvisiojs.view.pathwayDiagram.pathFinder = function(){
     var column1, column2, row1, row2, portLocation;
     ports.forEach(function(port) {
       portLocation = xYCoordinatesToMatrixLocation(port.x, port.y);
-      column1 = Math.max(Math.min((portLocation.column - 5 * port.dy), totalColumnCount - 1), 0);
+      column1 = Math.max(Math.min((portLocation.column - padding * port.dy), totalColumnCount - 1), 0);
       column2 = Math.max(Math.min((portLocation.column + port.dy), totalColumnCount - 1), 0);
       columnStart = Math.min(column1, column2);
       columnEnd = Math.max(column1, column2);
 
       row1 = Math.max(Math.min((portLocation.row - port.dx), totalRowCount - 1), 0);
-      row2 = Math.max(Math.min((portLocation.row + 5 * port.dx), totalRowCount - 1), 0);
+      row2 = Math.max(Math.min((portLocation.row + padding * port.dx), totalRowCount - 1), 0);
       rowStart = Math.min(row1, row2);
       rowEnd = Math.max(row1, row2);
 
@@ -120,12 +128,12 @@ pathvisiojs.view.pathwayDiagram.pathFinder = function(){
       }
     });
 
-    console.log('totalColumnCount');
-    console.log(totalColumnCount);
-    console.log('totalRowCount');
-    console.log(totalRowCount);
-    console.log('paddedMatrix');
-    console.log(paddedMatrix);
+    //console.log('totalColumnCount');
+    //console.log(totalColumnCount);
+    //console.log('totalRowCount');
+    //console.log(totalRowCount);
+    //console.log('paddedMatrix');
+    //console.log(paddedMatrix);
 
     pathvisioNS.grid.paddedGrid = new PF.Grid(totalColumnCount, totalRowCount, paddedMatrix);
     pathvisioNS.grid.tightGrid = new PF.Grid(totalColumnCount, totalRowCount, tightMatrix);
@@ -221,8 +229,8 @@ pathvisiojs.view.pathwayDiagram.pathFinder = function(){
      */
 
     var blockyPath = finder.findPath(startLocation.column, startLocation.row, endLocation.column, endLocation.row, workingGrid);
-    console.log('blockyPath');
-    console.log(blockyPath);
+    //console.log('blockyPath');
+    //console.log(blockyPath);
 
     /*
        var newWorkingGrid = pathvisioNS.grid.paddedGrid.clone();
@@ -263,8 +271,8 @@ pathvisiojs.view.pathwayDiagram.pathFinder = function(){
         'y': compressedMidPoint[index][1] * pathvisioNS.grid.squareLength
       });
     });
-    console.log('fullXYPath');
-    console.log(fullXYPath);
+    //console.log('fullXYPath');
+    //console.log(fullXYPath);
 
     fullXYPath.unshift({'x': pointStart.x, 'y': pointStart.y});
     fullXYPath.push({'x': pointEnd.x, 'y': pointEnd.y});
@@ -290,8 +298,8 @@ pathvisiojs.view.pathwayDiagram.pathFinder = function(){
     smootherPath.unshift({'x': pointStart.x, 'y': pointStart.y});
     smootherPath.push({'x': pointEnd.x, 'y': pointEnd.y});
 
-    console.log('smootherPath');
-    console.log(smootherPath);
+    //console.log('smootherPath');
+    //console.log(smootherPath);
 
 
     //*

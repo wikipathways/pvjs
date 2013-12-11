@@ -2,10 +2,10 @@
 
 pathvisiojs.view.pathwayDiagram.svg.edge = function(){
   function render(parent, data) {
-    console.log('parent');
-    console.log(parent);
-    console.log('data');
-    console.log(data);
+    //console.log('parent');
+    //console.log(parent);
+    //console.log('data');
+    //console.log(data);
 
     // defining this function inside the render function, because I don't know how else
     // to pass the data value to a d3.call() function

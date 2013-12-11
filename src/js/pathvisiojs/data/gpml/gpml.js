@@ -381,16 +381,12 @@ pathvisiojs.data.gpml = function(){
       },
       function(err, results) {
         var updateGroupsFrame = {};
-            console.log('pathway');
-            console.log(pathway);
         results.Group.forEach(function(element) {
           updateGroupsFrame = {
             '@context': pathway['@context'],
             '@type':element.GroupId
           };
           jsonld.frame(pathway, updateGroupsFrame, function(err, updateGroupsData) {
-            console.log('updateGroupsData');
-            console.log(updateGroupsData);
             var dimensions = getGroupDimensions(element, updateGroupsData['@graph'], function(dimensions) {
               element.x = dimensions.x;
               element.y = dimensions.y;
@@ -402,24 +398,6 @@ pathvisiojs.data.gpml = function(){
         self.myPathway = pathway;
         callbackOutside(pathway);
       });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
       /*
