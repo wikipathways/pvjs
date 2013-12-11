@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Pathway xmlns="http://pathvisio.org/GPML/2013a" Name="curves" Version="20130813" Organism="Anopheles gambiae">
-  <Graphics BoardWidth="592.4475524475525" BoardHeight="2428.984622196427" />
+  <Graphics BoardWidth="579.4605394605396" BoardHeight="2428.984622196427" />
   <DataNode TextLabel="GeneProduct" GraphId="cc766" Type="GeneProduct">
     <Graphics CenterX="327.35799875505927" CenterY="146.83685841113413" Width="80.0" Height="20.0" ZOrder="32945" FontSize="10" Valign="Middle" />
     <Xref Database="" ID="" />
