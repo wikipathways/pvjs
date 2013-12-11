@@ -71,9 +71,11 @@ pathvisiojs.data.gpml = function(){
 
 
 
+      var pathway = {};
+      pathway.Port = [];
       async.parallel({
           '@context': function(callback){
-            pathvisiojs.context = {
+            pathvisiojs.context = pathway['@context'] = {
               '@vocab':'http://vocabularies.wikipathways.org/gpml#',
               'gpml':'http://vocabularies.wikipathways.org/gpml#',
               'xsd': 'http://www.w3.org/2001/XMLSchema#',
@@ -91,11 +93,13 @@ pathvisiojs.data.gpml = function(){
               'dcterms':'http://purl.org/dc/terms/',
               'css2':'http://www.w3.org/TR/CSS2/',
               'css3Ui':'http://www.w3.org/TR/css3-ui/#',
+              'cssTransform':'http://www.w3.org/TR/css-transforms-1/#',
               'svg':'http://www.w3.org/TR/SVG11/',
               'boxSizing':{
                 '@id':'css3Ui:box-sizing',
                 '@value':'border-box'
               },
+              'rotate':'cssTransform:funcdef-rotate',
               'position':'css2:visuren.html#propdef-position',
               'text':'svg:text.html#TextElement',
               'tspan':'svg:text.html#TSpanElement',
@@ -171,61 +175,73 @@ pathvisiojs.data.gpml = function(){
             callback(null, pathvisiojs.context);
           },
           organism: function(callback){
-            callback(null, gpmlPathway.attr('Organism'));
+            pathway.organism = gpmlPathway.attr('Organism');
+            callback(null, pathway.organism);
           },
           image: function(callback){
-            callback(null, {
+            pathway.image = {
               '@context': {
                 '@vocab': 'http://schema.org/'
               },
               'width':parseFloat(gpmlPathway.select('Graphics').attr('BoardWidth')),
               'height':parseFloat(gpmlPathway.select('Graphics').attr('BoardHeight'))
-            });
+            };
+            callback(null, pathway.image);
           },
           Group: function(callback){
-            var jsonGroups = [];
+            pathway.Group = [];
             gpmlPathway.selectAll('Group').each(function() {
               gpmlGroup = d3.select(this);
               pathvisiojs.data.gpml.group.toRenderableJson(gpmlGroup, pathwayIri, function(jsonGroup) {
-                jsonGroups.push(jsonGroup);
+                pathway.Group.push(jsonGroup);
               });
             })
-            callback(null, jsonGroups);
+            callback(null, pathway.Group);
           },
           DataNodeAndPort: function(callback){
-            var jsonDataNodes = [];
-            var Port = [];
+            pathway.DataNode = [];
             gpmlPathway.selectAll('DataNode').each(function() {
               gpmlDataNode = d3.select(this);
               pathvisiojs.data.gpml.dataNode.toRenderableJson(gpmlDataNode, pathwayIri, function(jsonDataNode, ports) {
-                jsonDataNodes.push(jsonDataNode);
-                Port.push(ports);
+                pathway.DataNode.push(jsonDataNode);
+                pathway.Port = pathway.Port.concat(ports);
               });
             })
-            callback(null, {'DataNode':jsonDataNodes, 'Port':Port});
+            callback(null, {'DataNode':pathway.DataNode, 'Port':pathway.Port});
           },
-          Label: function(callback){
-            var jsonLabels = [];
+          LabelAndPort: function(callback){
+            pathway.Label = [];
             gpmlPathway.selectAll('Label').each(function() {
               gpmlLabel = d3.select(this);
-              pathvisiojs.data.gpml.label.toRenderableJson(gpmlLabel, pathwayIri, function(jsonLabel) {
-                jsonLabels.push(jsonLabel);
+              pathvisiojs.data.gpml.label.toRenderableJson(gpmlLabel, pathwayIri, function(jsonLabel, ports) {
+                pathway.Label.push(jsonLabel);
+                pathway.Port = pathway.Port.concat(ports);
               });
             })
-            callback(null, jsonLabels);
+            callback(null, pathway.Label, pathway.Port);
           },
-          Shape: function(callback){
-            var jsonShapes = [];
-            gpmlPathway.selectAll('Shape').each(function() {
-              gpmlShape = d3.select(this);
-              pathvisiojs.data.gpml.shape.toRenderableJson(gpmlShape, pathwayIri, function(jsonShape) {
-                jsonShapes.push(jsonShape);
-              });
-            })
-            callback(null, jsonShapes);
+          ShapeAndPort: function(callback){
+            var shapes = gpmlPathway.selectAll('Shape');
+            if (shapes[0].length > 0) {
+              console.log('shapes');
+              console.log(shapes);
+              pathway.Shape = [];
+              gpmlPathway.selectAll('Shape').each(function() {
+                gpmlShape = d3.select(this);
+                pathvisiojs.data.gpml.shape.toRenderableJson(gpmlShape, pathwayIri, function(jsonShape, ports) {
+                  pathway.Shape.push(jsonShape);
+                  pathway.Port = pathway.Port.concat(ports);
+                });
+              })
+              callback(null, 'Shapes are all converted.');
+            }
+            else {
+              callback(null, 'No shapes to convert.');
+            }
           },
           Interaction: function(callback){
             var interactions, gpmlInteraction, jsonInteraction, jsonAnchorInteraction, anchor, jsonAnchor, points, jsonPoints, interactionType, target, targetId, groupRef;
+            pathway.Interaction = [];
             interactions = [];
             gpmlPathway.selectAll('Interaction').each(function() {
               try {
@@ -359,22 +375,18 @@ pathvisiojs.data.gpml = function(){
                 throw new Error('Error converting Interaction to renderable json: ' + e.message);
               }
             })
+            pathway.Interaction.push(interactions);
             callback(null, interactions);
           }
       },
       function(err, results) {
-        var arrangedResults = results;
-        arrangedResults.DataNode = results.DataNodeAndPort.DataNode;
-        arrangedResults.Port = results.DataNodeAndPort.Port;
-        delete arrangedResults.DataNodeAndPort;
-
         var updateGroupsFrame = {};
         results.Group.forEach(function(element) {
           updateGroupsFrame = {
-            '@context': arrangedResults['@context'],
+            '@context': pathway['@context'],
             '@type':element.GroupId
           };
-          jsonld.frame(arrangedResults, updateGroupsFrame, function(err, updateGroupsData) {
+          jsonld.frame(pathway, updateGroupsFrame, function(err, updateGroupsData) {
             var dimensions = getGroupDimensions(element, updateGroupsData['@graph'], function(dimensions) {
               element.x = dimensions.x;
               element.y = dimensions.y;
@@ -383,27 +395,9 @@ pathvisiojs.data.gpml = function(){
             });
           });
         });
-        self.myPathway = arrangedResults;
-        callbackOutside(arrangedResults);
+        self.myPathway = pathway;
+        callbackOutside(pathway);
       });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
       /*
