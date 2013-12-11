@@ -110,7 +110,7 @@
     <Graphics CenterX="414.08591408591417" CenterY="25.489510489510494" Width="290.7492507492508" Height="32.977022977022976" ZOrder="33016" FillColor="ffffff" FontSize="10" Align="Left" />
   </Label>
   <Shape GraphId="ba4c6">
-    <Graphics CenterX="400.0" CenterY="600.0" Width="600.0" Height="600.0" ZOrder="32969" FontSize="10" Valign="Middle" ShapeType="Rectangle" Color="ff0000" Rotation="0.0" />
+    <Graphics CenterX="400.0" CenterY="600.0" Width="600.0" Height="600.0" ZOrder="32969" FontSize="1" Valign="Middle" ShapeType="Rectangle" Color="ff0000" Rotation="0.0" />
   </Shape>
   <Shape GraphId="ad9d9">
     <Graphics CenterX="400.0" CenterY="3400.0" Width="600.0" Height="600.0" ZOrder="32979" FontSize="10" Valign="Middle" ShapeType="Oval" Color="ff0000" Rotation="0.0" />

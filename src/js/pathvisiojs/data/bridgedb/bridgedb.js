@@ -17,7 +17,7 @@ pathvisiojs.data.bridgedb = function(){
           listItem.priority = currentDataSourceRow.priority;
           if (currentDataSourceRow.hasOwnProperty('linkoutPattern')) {
             if (currentDataSourceRow.linkoutPattern !== "" && currentDataSourceRow.linkoutPattern !== null) {
-              listItem.uri = currentDataSourceRow.linkoutPattern.replace('$id', id);
+              listItem.uri = currentDataSourceRow.linkoutPattern.replace('$id', listItem.text);
             }
           }
           return listItem;
@@ -36,6 +36,18 @@ pathvisiojs.data.bridgedb = function(){
         var nestedListItems = d3.nest()
         .key(function(d) { return d.title; })
         .entries(listItems);
+
+        // handle case where nothing is returned by bridgedb webservice
+        if (nestedListItems.length == 0){
+          var uri = "";
+          var ds = getDataSourceRowByName(datasource, dataSources);
+           if (ds.hasOwnProperty('linkoutPattern')) {
+             if (ds.linkoutPattern !== "" && ds.linkoutPattern !== null) {
+               uri = ds.linkoutPattern.replace('$id', id);
+             }
+           }
+          nestedListItems = [{"key": datasource, "values":[{"priority": "1","text": id,"title": datasource,"uri":uri}]}];
+        }
 
         // We want the identifier that was listed by the pathway creator for this data node to be listed first.
 
