@@ -22,6 +22,64 @@ pathvisiojs.view.pathwayDiagram.pathFinder = function(){
     return results;
   }
 
+  function initGrid(nodes, ports, pathwayImageWidth, pathwayImageHeight, callback) {
+    var gridData = {}
+    nodes = d3.select(nodes).sort(function(node1, node2) {
+      Math.min(node1.height, node1.width) - Math.min(node2.height, node2.width);
+    })[0][0];
+    gridData.squareLength = Math.min(nodes[0].height, nodes[0].width) / 14;
+    console.log('pathvisioNS');
+    console.log(pathvisioNS);
+
+    // Here we set how much padding to place around the entityNodes, in units of grid squares.
+    // TODO change the static value of 12 to be a calculated value equal to the
+    // largest dimension of a marker in the diagram
+
+    gridData.padding = Math.ceil(12 / gridData.squareLength);
+    var currentRow, currentColumn;
+    gridData.totalColumnCount = Math.ceil(pathwayImageWidth/gridData.squareLength);
+    gridData.totalRowCount = Math.ceil(pathwayImageHeight/gridData.squareLength);
+
+    // remember zero-based indexing means we want to go from 0 to gridData.totalRowCount - 1
+    // and 0 to gridData.totalColumnCount - 1
+    // last element is matrix[gridData.totalRowCount - 1][gridData.totalColumnCount - 1]
+
+    var entirelyWalkableMatrix = [];
+    for(var currentRow = 0; currentRow < gridData.totalRowCount; currentRow++) {
+      entirelyWalkableMatrix[currentRow] = [];
+      for(var currentColumn = 0; currentColumn < gridData.totalColumnCount; currentColumn++) {
+        entirelyWalkableMatrix[currentRow][currentColumn] = 0;
+      }
+    }
+    gridData.entirelyWalkableMatrix = entirelyWalkableMatrix;
+    callback(gridData);
+  }
+
+  function generateGrid(svg, nodes, ports, callback) {
+
+    // Here we set how much padding to place around the entityNodes, in units of grid squares.
+    // TODO change the static value of 12 to be a calculated value equal to the
+    // largest dimension of a marker in the diagram
+
+    var padding = Math.ceil(12 / pathvisioNS.grid.squareLength);
+    var currentRow, currentColumn;
+    var totalColumnCount = Math.ceil(pathwayImageWidth/pathvisioNS.grid.squareLength);
+    var totalRowCount = Math.ceil(pathwayImageHeight/pathvisioNS.grid.squareLength);
+
+    // remember zero-based indexing means we want to go from 0 to totalRowCount - 1
+    // and 0 to totalColumnCount - 1
+    // last element is matrix[totalRowCount - 1][totalColumnCount - 1]
+
+    var entirelyWalkableMatrix = [];
+    for(var currentRow = 0; currentRow < totalRowCount; currentRow++) {
+      entirelyWalkableMatrix[currentRow] = [];
+      for(var currentColumn = 0; currentColumn < totalColumnCount; currentColumn++) {
+        entirelyWalkableMatrix[currentRow][currentColumn] = 0;
+      }
+    }
+    callback(entirelyWalkableMatrix);
+  }
+
   function generateGridData(shapes, ports, pathwayImageWidth, pathwayImageHeight, callback) {
     //console.log('***************');
     //console.log('shapes');
@@ -50,97 +108,85 @@ pathvisiojs.view.pathwayDiagram.pathFinder = function(){
     var totalColumnCount = Math.ceil(pathwayImageWidth/pathvisioNS.grid.squareLength);
     var totalRowCount = Math.ceil(pathwayImageHeight/pathvisioNS.grid.squareLength);
 
-    var paddedMatrix = [];
-    pathvisioNS.grid.gridRenderingData = [];
+    initGrid(shapes, ports, pathwayImageWidth, pathwayImageHeight, function(gridData) {
+      var paddedMatrix = tightMatrix = entirelyWalkableMatrix = gridData.entirelyWalkableMatrix;
+      pathvisioNS.grid.gridRenderingData = [];
 
-    // remember zero-based indexing means we want to go from 0 to totalRowCount - 1
-    // and 0 to totalColumnCount - 1
-    // last element is matrix[totalRowCount - 1][totalColumnCount - 1]
+      // mark off no-go non-walkable regions for path finder (regions under shapes)
 
-    for(currentRow = 0; currentRow < totalRowCount; currentRow++) {
-      paddedMatrix[currentRow] = [];
-      for(currentColumn = 0; currentColumn < totalColumnCount; currentColumn++) {
-        paddedMatrix[currentRow][currentColumn] = 0;
-      }
-    }
-    
-    var tightMatrix, emptyMatrix;
-    emptyMatrix = tightMatrix = paddedMatrix;
+      var upperLeftCorner, lowerRightCorner, rowStart, rowEnd, columnStart, columnEnd;
+      shapes.forEach(function(shape) {
+        upperLeftCorner = xYCoordinatesToMatrixLocation(shape.x, shape.y, pathvisioNS.grid.squareLength);
+        lowerRightCorner = xYCoordinatesToMatrixLocation(shape.x + shape.width, shape.y + shape.height, pathvisioNS.grid.squareLength);
 
-    // mark off no-go non-walkable regions for path finder (regions under shapes)
+        columnStartTight = Math.max((upperLeftCorner.column), 0);
+        columnEndTight = Math.min((lowerRightCorner.column), totalColumnCount - 1);
+        rowStartTight = Math.max((upperLeftCorner.row), 0);
+        rowEndTight = Math.min((lowerRightCorner.row), totalRowCount - 1);
 
-    var upperLeftCorner, lowerRightCorner, rowStart, rowEnd, columnStart, columnEnd;
-    shapes.forEach(function(shape) {
-      upperLeftCorner = xYCoordinatesToMatrixLocation(shape.x, shape.y, pathvisioNS.grid.squareLength);
-      lowerRightCorner = xYCoordinatesToMatrixLocation(shape.x + shape.width, shape.y + shape.height, pathvisioNS.grid.squareLength);
-
-      columnStartTight = Math.max((upperLeftCorner.column), 0);
-      columnEndTight = Math.min((lowerRightCorner.column), totalColumnCount - 1);
-      rowStartTight = Math.max((upperLeftCorner.row), 0);
-      rowEndTight = Math.min((lowerRightCorner.row), totalRowCount - 1);
-
-      for(currentRow=rowStartTight; currentRow<rowEndTight + 1; currentRow++) {
-        for(currentColumn=columnStartTight; currentColumn<columnEndTight + 1; currentColumn++) {
-          tightMatrix[currentRow][currentColumn] = 1;
+        for(currentRow=rowStartTight; currentRow<rowEndTight + 1; currentRow++) {
+          for(currentColumn=columnStartTight; currentColumn<columnEndTight + 1; currentColumn++) {
+            tightMatrix[currentRow][currentColumn] = 1;
+          }
         }
-      }
 
-      columnStart = Math.max((upperLeftCorner.column - padding), 0);
-      columnEnd = Math.min((lowerRightCorner.column + padding), totalColumnCount - 1);
-      rowStart = Math.max((upperLeftCorner.row - padding), 0);
-      rowEnd = Math.min((lowerRightCorner.row + padding), totalRowCount - 1);
+        columnStart = Math.max((upperLeftCorner.column - padding), 0);
+        columnEnd = Math.min((lowerRightCorner.column + padding), totalColumnCount - 1);
+        rowStart = Math.max((upperLeftCorner.row - padding), 0);
+        rowEnd = Math.min((lowerRightCorner.row + padding), totalRowCount - 1);
 
-      for(currentRow=rowStart; currentRow<rowEnd + 1; currentRow++) {
-        for(currentColumn=columnStart; currentColumn<columnEnd + 1; currentColumn++) {
-          paddedMatrix[currentRow][currentColumn] = 1;
-          pathvisioNS.grid.gridRenderingData[currentRow * (totalColumnCount - 1) + currentColumn] = {
-            'x': currentColumn * pathvisioNS.grid.squareLength,
-            'y': currentRow * pathvisioNS.grid.squareLength,
-            'fill': 'blue'
-          };
+        for(currentRow=rowStart; currentRow<rowEnd + 1; currentRow++) {
+          for(currentColumn=columnStart; currentColumn<columnEnd + 1; currentColumn++) {
+            paddedMatrix[currentRow][currentColumn] = 1;
+            pathvisioNS.grid.gridRenderingData[currentRow * (totalColumnCount - 1) + currentColumn] = {
+              'x': currentColumn * pathvisioNS.grid.squareLength,
+              'y': currentRow * pathvisioNS.grid.squareLength,
+              'fill': 'blue'
+            };
+          }
         }
-      }
-    });
+      });
 
-    var column1, column2, row1, row2, portLocation;
-    ports.forEach(function(port) {
-      portLocation = xYCoordinatesToMatrixLocation(port.x, port.y);
-      column1 = Math.max(Math.min((portLocation.column - padding * port.dy), totalColumnCount - 1), 0);
-      column2 = Math.max(Math.min((portLocation.column + port.dy), totalColumnCount - 1), 0);
-      columnStart = Math.min(column1, column2);
-      columnEnd = Math.max(column1, column2);
+      var column1, column2, row1, row2, portLocation;
+      ports.forEach(function(port) {
+        portLocation = xYCoordinatesToMatrixLocation(port.x, port.y);
+        column1 = Math.max(Math.min((portLocation.column - padding * port.dy), totalColumnCount - 1), 0);
+        column2 = Math.max(Math.min((portLocation.column + port.dy), totalColumnCount - 1), 0);
+        columnStart = Math.min(column1, column2);
+        columnEnd = Math.max(column1, column2);
 
-      row1 = Math.max(Math.min((portLocation.row - port.dx), totalRowCount - 1), 0);
-      row2 = Math.max(Math.min((portLocation.row + padding * port.dx), totalRowCount - 1), 0);
-      rowStart = Math.min(row1, row2);
-      rowEnd = Math.max(row1, row2);
+        row1 = Math.max(Math.min((portLocation.row - port.dx), totalRowCount - 1), 0);
+        row2 = Math.max(Math.min((portLocation.row + padding * port.dx), totalRowCount - 1), 0);
+        rowStart = Math.min(row1, row2);
+        rowEnd = Math.max(row1, row2);
 
-      for(currentRow=rowStart; currentRow<rowEnd + 1; currentRow++) {
-        paddedMatrix[currentRow] = paddedMatrix[currentRow] || [];
-        for(currentColumn=columnStart; currentColumn<columnEnd + 1; currentColumn++) {
-          paddedMatrix[currentRow][currentColumn] = 0;
-          pathvisioNS.grid.gridRenderingData[currentRow * (totalColumnCount - 1) + currentColumn] = {
-            'x': currentColumn * pathvisioNS.grid.squareLength,
-            'y': currentRow * pathvisioNS.grid.squareLength,
-            'fill': 'yellow'
-          };
+        for(currentRow=rowStart; currentRow<rowEnd + 1; currentRow++) {
+          paddedMatrix[currentRow] = paddedMatrix[currentRow] || [];
+          for(currentColumn=columnStart; currentColumn<columnEnd + 1; currentColumn++) {
+            paddedMatrix[currentRow][currentColumn] = 0;
+            pathvisioNS.grid.gridRenderingData[currentRow * (totalColumnCount - 1) + currentColumn] = {
+              'x': currentColumn * pathvisioNS.grid.squareLength,
+              'y': currentRow * pathvisioNS.grid.squareLength,
+              'fill': 'yellow'
+            };
+          }
         }
-      }
-    });
+      });
 
-    //console.log('totalColumnCount');
-    //console.log(totalColumnCount);
-    //console.log('totalRowCount');
-    //console.log(totalRowCount);
-    //console.log('paddedMatrix');
-    //console.log(paddedMatrix);
+      //console.log('totalColumnCount');
+      //console.log(totalColumnCount);
+      //console.log('totalRowCount');
+      //console.log(totalRowCount);
+      //console.log('paddedMatrix');
+      //console.log(paddedMatrix);
 
-    pathvisioNS.grid.paddedGrid = new PF.Grid(totalColumnCount, totalRowCount, paddedMatrix);
-    pathvisioNS.grid.tightGrid = new PF.Grid(totalColumnCount, totalRowCount, tightMatrix);
-    pathvisioNS.grid.emptyGrid = new PF.Grid(totalColumnCount, totalRowCount, emptyMatrix);
-    pathvisioNS.grid.gridRenderingData = pathvisioNS.grid.gridRenderingData.filter(function(element) {return !!element});
+      pathvisioNS.grid.paddedGrid = new PF.Grid(totalColumnCount, totalRowCount, paddedMatrix);
+      pathvisioNS.grid.tightGrid = new PF.Grid(totalColumnCount, totalRowCount, tightMatrix);
+      pathvisioNS.grid.emptyGrid = new PF.Grid(totalColumnCount, totalRowCount, entirelyWalkableMatrix);
+      pathvisioNS.grid.gridRenderingData = pathvisioNS.grid.gridRenderingData.filter(function(element) {return !!element});
 
-    callback();
+      callback(pathvisioNS.grid.emptyGrid);
+    })
   }
 
   function getPath(edge, callbackOutside) {
@@ -340,6 +386,7 @@ pathvisiojs.view.pathwayDiagram.pathFinder = function(){
   }
 
   return {
+    initGrid:initGrid,
     generateGridData:generateGridData,
     getPath:getPath,
     xYCoordinatesToMatrixLocation:xYCoordinatesToMatrixLocation,
