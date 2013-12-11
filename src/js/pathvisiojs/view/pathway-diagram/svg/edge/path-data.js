@@ -1,4 +1,4 @@
-// TODO Rewrite the code for getting elbow and curve edge points. For reference, see these links:
+// TODO Rewrite the code for getting elbow and curve edge Point. For reference, see these links:
 //
 // Elbows:
 // [PathVisio Java code for elbows](http://svn.bigcat.unimaas.nl/pathvisio/trunk/modules/org.pathvisiojs.core/src/org/pathvisio/core/model/ElbowConnectorShape.java)
@@ -12,22 +12,21 @@
 // There are other types of SVG curves, but I understand the Java code to use bezier curves.
 
 pathvisiojs.view.pathwayDiagram.svg.edge.pathData = function(){
-
   function getPathDirectionForElbowFromPoint(pathway, edge, point) {
     var direction, otherEndDirection, otherEndPoint;
 
     direction = getPathDirectionForElbowFromPointByAnchor(pathway, point); 
     if (!direction) {
-      if (point === edge.points[0]) {
-        otherEndPoint = edge.points[edge.points.length - 1];
+      if (point === edge.Point[0]) {
+        otherEndPoint = edge.Point[edge.Point.length - 1];
       }
       else {
-        otherEndPoint = edge.points[0];
+        otherEndPoint = edge.Point[0];
       }
 
       otherEndDirection = getPathDirectionForElbowFromPointByAnchor(pathway, otherEndPoint); 
       if (!!otherEndDirection) {
-        if (pathvisiojs.utilities.isOdd(edge.points.length)) {
+        if (pathvisiojs.utilities.isOdd(edge.Point.length)) {
           direction = switchDirection(otherEndDirection);
         }
         else {
@@ -66,11 +65,11 @@ pathvisiojs.view.pathwayDiagram.svg.edge.pathData = function(){
 
   function getPathDirectionForElbowFromPointByDistance(pathway, edge, point) {
     var direction, comparisonPoint;
-    if (point === edge.points[0]) {
-      comparisonPoint = edge.points[1];
+    if (point === edge.Point[0]) {
+      comparisonPoint = edge.Point[1];
     }
     else {
-      comparisonPoint = edge.points[edge.points.length - 1];
+      comparisonPoint = edge.Point[edge.Point.length - 1];
     }
     if (Math.abs(comparisonPoint.x - point.x) < Math.abs(comparisonPoint.y - point.y)) {
       direction = 'V';
@@ -91,20 +90,21 @@ pathvisiojs.view.pathwayDiagram.svg.edge.pathData = function(){
     }
   }
 
-  function get(viewport, pathway, edge, callback) {
-    if (!viewport || !edge) {
-      return console.warn('Error: Missing input parameters.');
+  function get(edge, callback) {
+    if (!edge) {
+      throw new Error('No edge specified as input.');
     }
 
-
     var currentDirection, startDirection, endDirection, controlPoint, index;
-    var pointStart = edge.points[0];
-    var source = pathvisiojs.view.pathwayDiagram.svg.edge.point.getCoordinates(viewport, pathway, pointStart);
+    var pointStart = edge.Point[0];
+
+    /*
+    var source = pathvisiojs.view.pathwayDiagram.svg.edge.point.getCoordinates(pathway, pointStart);
 
     var pointCoordinatesArray = self.pointCoordinatesArray = [];
     var pointCoordinates;
-    edge.points.forEach(function(element) {
-      pointCoordinates = pathvisiojs.view.pathwayDiagram.svg.edge.point.getCoordinates(viewport, pathway, element);
+    edge.Point.forEach(function(element) {
+      pointCoordinates = pathvisiojs.view.pathwayDiagram.svg.edge.point.getCoordinates(pathway, element);
       pointCoordinatesArray.push(pointCoordinates)
     })
 
@@ -122,8 +122,8 @@ pathvisiojs.view.pathwayDiagram.svg.edge.pathData = function(){
       source.dy = pointStart.dy;
     }
 
-    var pointEnd = edge.points[edge.points.length - 1];
-    var target = pathvisiojs.view.pathwayDiagram.svg.edge.point.getCoordinates(viewport, pathway, pointEnd);
+    var pointEnd = edge.Point[edge.Point.length - 1];
+    //var target = pathvisiojs.view.pathwayDiagram.svg.edge.point.getCoordinates(pathway, pointEnd);
 
     if (pointEnd.dx === undefined) {
       target.dx = 0;
@@ -138,22 +138,22 @@ pathvisiojs.view.pathwayDiagram.svg.edge.pathData = function(){
     else {
       target.dy = pointEnd.dy;
     }
+    //*/
 
     var pathData = 'M ' + source.x + ' ' + source.y;
 
-    if ((!edge.connectorType) || (edge.connectorType === undefined) || (edge.connectorType === 'straight')) {
+    if ((!edge.connectorType) || (edge.connectorType === undefined) || (edge.connectorType === 'Straight')) {
       pathData += " L " + target.x + " " + target.y;
       callback(pathData);
     }
     else {
-      if (edge.connectorType === 'elbow') {
+      if (edge.connectorType === 'Elbow') {
 
         // distance to move away from node when we can't go directly to the next node
 
         var stubLength = 15;
 
         startDirection = getPathDirectionForElbowFromPoint(pathway, edge, pointStart);
-        console.log(startDirection);
         currentDirection = startDirection;
         endDirection = getPathDirectionForElbowFromPoint(pathway, edge, pointEnd);
 
@@ -162,7 +162,7 @@ pathvisiojs.view.pathwayDiagram.svg.edge.pathData = function(){
 
         async.series([
           function(callbackInside){
-            if (edge.points.length === 2) {
+            if (edge.Point.length === 2) {
               pathvisiojs.view.pathwayDiagram.pathFinder.getPath(pathway, edge, function(data) {
                 pathCoordinatesArray = data;
                 callbackInside(null);
@@ -180,18 +180,18 @@ pathvisiojs.view.pathwayDiagram.svg.edge.pathData = function(){
 
                 if (currentDirection === 'H') {
                   pathCoordinatesArray.push({
-                    'x': edge.points[index].x,
-                    'y': edge.points[index - 1].y
+                    'x': edge.Point[index].x,
+                    'y': edge.Point[index - 1].y
                   });
                 }
                 else {
                   pathCoordinatesArray.push({
-                    'x': edge.points[index - 1].x,
-                    'y': edge.points[index].y
+                    'x': edge.Point[index - 1].x,
+                    'y': edge.Point[index].y
                   });
                 }
                 currentDirection = switchDirection(currentDirection);
-              } while (index < edge.points.length - 1);
+              } while (index < edge.Point.length - 1);
 
               pathCoordinatesArray.push({
                 'x': pointEnd.x,
@@ -274,8 +274,8 @@ pathvisiojs.view.pathwayDiagram.svg.edge.pathData = function(){
 
       }
       else {
-        if (edge.connectorType === 'segmented') {
-          edge.points.forEach(function(element, index, array) {
+        if (edge.connectorType === 'Segmented') {
+          edge.Point.forEach(function(element, index, array) {
             if ((index > 0) && (index < (array.length -1))) {
               pathData += " L " + element.x + " " + element.y;
             }
@@ -284,14 +284,14 @@ pathvisiojs.view.pathwayDiagram.svg.edge.pathData = function(){
           callback(pathData);
         }
         else {
-          if (edge.connectorType === 'curved') {
+          if (edge.connectorType === 'Curved') {
 
 
-            if (edge.points.length === 2) {
+            if (edge.Point.length === 2) {
               pathCoordinatesArray = pathvisiojs.view.pathwayDiagram.pathFinder.getPath(pathway, edge);
             }
             else {
-              pathCoordinatesArray = edge.points;
+              pathCoordinatesArray = edge.Point;
             }
 
 
@@ -323,18 +323,18 @@ pathvisiojs.view.pathwayDiagram.svg.edge.pathData = function(){
 //*/
 
             /*
-            if (edge.points.length === 3) {
+            if (edge.Point.length === 3) {
 
               // what is here is just a starting point. It has not been tested to match the PathVisio (Java) implementation.
 
-              var controlPoint = edge.points[1];
+              var controlPoint = edge.Point[1];
 
               pathData += " S" + controlPoint.x + "," + controlPoint.y + " " + target.x + "," + target.y;
               return pathData;
             }
             else {
 
-              // Some of the curved connector types only have two points. I don't know which function is used in these cases. For now, I approximated with a smooth quadratic bezier.
+              // Some of the curved connector types only have two Point. I don't know which function is used in these cases. For now, I approximated with a smooth quadratic bezier.
 
               pathData += " T" + target.x + "," + target.y;
               return pathData;
@@ -347,7 +347,7 @@ pathvisiojs.view.pathwayDiagram.svg.edge.pathData = function(){
           }
           else {
             console.log('Warning: pathvisiojs does not support connector type: ' + edge.connectorType);
-            edge.points.forEach(function(element, index, array) {
+            edge.Point.forEach(function(element, index, array) {
               if ((index > 0) && (index < (array.length -1))) {
                 pathData += " L " + element.x + " " + element.y;
               }

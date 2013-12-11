@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<?xml-stylesheet type="text/css" href="../../css/pathway-diagram.css"?>
+
+<svg id="mim-necessary-stimulation"
+	version="1.1"
+	baseProfile="full"
+	xmlns="http://www.w3.org/2000/svg"
+	xmlns:xlink="http://www.w3.org/1999/xlink"
+	xmlns:ev="http://www.w3.org/2001/xml-events"
+	width="15"
+	height="12"
+	class="default-fill solid-stroke"
+	style="stroke:black"
+	viewBox="0 0 15 12">
+
+	<!-- mim-necessary-stimulation markers: triangular polygons, drawing-board fill, black stroke; and vertical line -->
+
+	<rect stroke="none" x="0" y="5.4" width="2" height="1.2" />
+	<line fill="none" stroke-width="1" x1="14" y1="0" x2="14" y2="12"/>
+	<polygon stroke-width="1" points="9,11 0,6 9,1"/>
+
+</svg>
