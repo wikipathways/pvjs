@@ -1,5 +1,29 @@
 pathvisiojs.utilities = function(){
 
+  /**
+   * From http://stackoverflow.com/questions/7770235/change-text-direction-of-textbox-automatically
+   * What about Chinese characters that go top to bottom?
+   */
+
+  function getTextDirection(text) {
+
+    var x =  new RegExp("[\x00-\x80]+"); // is ascii
+
+    //alert(x.test($this.val()));
+
+    var isAscii = x.test(text);
+
+    var direction;
+    if (isAscii) {
+      direction = "ltr";
+    }
+    else {
+      direction = "rtl";
+    }
+
+    return direction;
+  }  
+
   // from here: http://www.cjboco.com/blog.cfm/post/determining-an-elements-width-and-height-using-javascript/
   // TODO have not tested x-browser yet.
   // could use jquery, but I want to remove it as a dependency for pv.js.
@@ -11,7 +35,7 @@ pathvisiojs.utilities = function(){
       if (this.style.pixelWidth) {
         return this.style.pixelWidth;
       } else {
-        return this.offsetWidth;
+        return this.width;
       }
     }
   };
@@ -23,7 +47,7 @@ pathvisiojs.utilities = function(){
       if (this.style.pixelHeight) {
         return this.style.pixelHeight;
       } else {
-        return this.offsetHeight;
+        return this.height;
       }
     }
   };
@@ -50,6 +74,8 @@ pathvisiojs.utilities = function(){
   }
 
   function cloneNode(selector) {
+    console.log('selector');
+    console.log(selector);
     var node = d3.select(selector).node();
     return d3.select(node.parentNode.insertBefore(node.cloneNode(true), node.nextSibling));
   }
@@ -59,6 +85,59 @@ pathvisiojs.utilities = function(){
   function isNumber(n) {
     return !isNaN(parseFloat(n)) && isFinite(n);
   }
+
+
+  function clone(src) {
+    function mixin(dest, source, copyFunc) {
+      var name, s, i, empty = {};
+      for(name in source){
+        // the (!(name in empty) || empty[name] !== s) condition avoids copying properties in "source"
+        // inherited from Object.prototype.	 For example, if dest has a custom toString() method,
+        // don't overwrite it with the toString() method that source inherited from Object.prototype
+        s = source[name];
+        if(!(name in dest) || (dest[name] !== s && (!(name in empty) || empty[name] !== s))){
+          dest[name] = copyFunc ? copyFunc(s) : s;
+        }
+      }
+      return dest;
+    }
+
+    if(!src || typeof src != "object" || Object.prototype.toString.call(src) === "[object Function]"){
+      // null, undefined, any non-object, or function
+      return src;	// anything
+    }
+    if(src.nodeType && "cloneNode" in src){
+      // DOM Node
+      return src.cloneNode(true); // Node
+    }
+    if(src instanceof Date){
+      // Date
+      return new Date(src.getTime());	// Date
+    }
+    if(src instanceof RegExp){
+      // RegExp
+      return new RegExp(src);   // RegExp
+    }
+    var r, i, l;
+    if(src instanceof Array){
+      // array
+      r = [];
+      for(i = 0, l = src.length; i < l; ++i){
+        if(i in src){
+          r.push(clone(src[i]));
+        }
+      }
+      // we don't clone functions for performance reasons
+      //		}else if(d.isFunction(src)){
+      //			// function
+      //			r = function(){ return src.apply(this, arguments); };
+    }else{
+      // generic objects
+      r = src.constructor ? new src.constructor() : {};
+    }
+    return mixin(r, src, clone);
+
+  }  
 
   function getUrlParam(name) {
 
@@ -126,15 +205,15 @@ pathvisiojs.utilities = function(){
 
   function getWindowDimensions(object) {
     var winW = 630, winH = 460;
-    if (document.body && document.body.offsetWidth) {
-     winW = document.body.offsetWidth;
-     winH = document.body.offsetHeight;
+    if (document.body && document.body.width) {
+     winW = document.body.width;
+     winH = document.body.height;
     }
     if (document.compatMode=='CSS1Compat' &&
         document.documentElement &&
-        document.documentElement.offsetWidth ) {
-     winW = document.documentElement.offsetWidth;
-     winH = document.documentElement.offsetHeight;
+        document.documentElement.width ) {
+     winW = document.documentElement.width;
+     winH = document.documentElement.height;
     }
     if (window.innerWidth && window.innerHeight) {
      winW = window.innerWidth;
@@ -163,6 +242,7 @@ pathvisiojs.utilities = function(){
     splitStringByNewLine:splitStringByNewLine,
     getUrlParam:getUrlParam,
     cloneNode:cloneNode,
+    clone:clone,
     convertToArray:convertToArray,
     getWindowDimensions:getWindowDimensions,
     moveArrayItem:moveArrayItem,
@@ -170,7 +250,8 @@ pathvisiojs.utilities = function(){
     isWikiPathwaysId:isWikiPathwaysId,
     isNumber:isNumber,
     strToHtmlId:strToHtmlId,
-    getObjectType:getObjectType
+    getObjectType:getObjectType,
+    getTextDirection:getTextDirection
   };
 }();
 

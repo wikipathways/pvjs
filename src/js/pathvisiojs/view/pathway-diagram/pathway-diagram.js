@@ -108,7 +108,7 @@ pathvisiojs.view.pathwayDiagram = function(){
 
     if (Modernizr.svg) {
       pathvisiojs.view.pathwayDiagram.svg.loadPartials(args, function(svg, allSymbolNames) {
-        console.log(svg);
+        //console.log(svg);
         args.svg = svg;
         args.allSymbolNames = allSymbolNames;
         callback(args);
@@ -147,12 +147,12 @@ pathvisiojs.view.pathwayDiagram = function(){
       }
       return console.warn('Missing required input parameter.');
     }
-    console.log('args.pathway');
-    console.log(args.pathway);
+    //console.log('args.pathway');
+    //console.log(args.pathway);
     if (Modernizr.svg) {
       pathvisiojs.view.pathwayDiagram.svg.load(args, function(svg) {
-        console.log('view.load args');
-        console.log(args);
+        //console.log('view.load args');
+        //console.log(args);
         callback(args);
       })
     }
