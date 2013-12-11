@@ -89,7 +89,7 @@ function updateParams(updatedParam) {
 }
 
 function generateHtmlView(callback) {
-  d3.html(srcDirectoryUrl + 'views/pathvisiojs.html', function(html) {
+  d3.html(srcDirectoryUrl + 'pathvisiojs.html', function(html) {
     var svg = html.querySelector('#pathway-svg');
     svg.setAttribute('style', 'display: none; ');
     svg.setAttribute('width', '500px');
@@ -122,6 +122,7 @@ function loadExtJsCss(callbackOutside) {
       srcDirectoryUrl + 'js/pathvisiojs/data/gpml/gpml.js',
       srcDirectoryUrl + 'js/pathvisiojs/data/gpml/text.js',
       srcDirectoryUrl + 'js/pathvisiojs/data/gpml/namespaces.js',
+      srcDirectoryUrl + 'js/pathvisiojs/data/gpml/entity-node.js',
       srcDirectoryUrl + 'js/pathvisiojs/data/gpml/data-node.js',
       srcDirectoryUrl + 'js/pathvisiojs/data/gpml/label.js',
       srcDirectoryUrl + 'js/pathvisiojs/data/gpml/shape.js',
@@ -198,42 +199,42 @@ window.onload = function() {
   }],
   function(err) {
     var customShapes = [
-      {'id': 'arc', 'url': srcDirectoryUrl + 'views/shapes/arc.svg'},
-      {'id': 'brace', 'url': srcDirectoryUrl + 'views/shapes/brace.svg'},
-      {'id': 'endoplasmic-reticulum', 'url': srcDirectoryUrl + 'views/shapes/endoplasmic-reticulum.svg'},
-      {'id': 'golgi-apparatus', 'url': srcDirectoryUrl + 'views/shapes/golgi-apparatus.svg'},
-      {'id': 'hexagon', 'url': srcDirectoryUrl + 'views/shapes/hexagon.svg'},
-      {'id': 'mim-degradation', 'url': srcDirectoryUrl + 'views/shapes/mim-degradation.svg'},
-      {'id': 'mitochondria', 'url': srcDirectoryUrl + 'views/shapes/mitochondria.svg'},
-      {'id': 'oval', 'url': srcDirectoryUrl + 'views/shapes/oval.svg'},
-      {'id': 'pentagon', 'url': srcDirectoryUrl + 'views/shapes/pentagon.svg'},
-      {'id': 'rectangle', 'url': srcDirectoryUrl + 'views/shapes/rectangle.svg'},
-      {'id': 'group-none', 'url': srcDirectoryUrl + 'views/shapes/group-none.svg'},
-      {'id': 'group-pathway', 'url': srcDirectoryUrl + 'views/shapes/group-pathway.svg'},
-      {'id': 'group-group', 'url': srcDirectoryUrl + 'views/shapes/group-group.svg'},
-      //{'id': 'rounded-rectangle', 'url': srcDirectoryUrl + 'views/shapes/rounded-rectangle.svg'},
-      {'id': 'sarcoplasmic-reticulum','url': srcDirectoryUrl + 'views/shapes/sarcoplasmic-reticulum.svg'},
-      {'id': 'triangle', 'url': srcDirectoryUrl + 'views/shapes/triangle.svg'},
-      {'id': 'grid-square', 'url': srcDirectoryUrl + 'views/shapes/grid-square.svg'},
-      {'id': 'none', 'url': srcDirectoryUrl + 'views/shapes/none.svg'}
+      {'id': 'arc', 'url': srcDirectoryUrl + 'shape-library/shapes/arc.svg'},
+      {'id': 'brace', 'url': srcDirectoryUrl + 'shape-library/shapes/brace.svg'},
+      {'id': 'endoplasmic-reticulum', 'url': srcDirectoryUrl + 'shape-library/shapes/endoplasmic-reticulum.svg'},
+      {'id': 'golgi-apparatus', 'url': srcDirectoryUrl + 'shape-library/shapes/golgi-apparatus.svg'},
+      {'id': 'hexagon', 'url': srcDirectoryUrl + 'shape-library/shapes/hexagon.svg'},
+      {'id': 'mim-degradation', 'url': srcDirectoryUrl + 'shape-library/shapes/mim-degradation.svg'},
+      {'id': 'mitochondria', 'url': srcDirectoryUrl + 'shape-library/shapes/mitochondria.svg'},
+      {'id': 'oval', 'url': srcDirectoryUrl + 'shape-library/shapes/oval.svg'},
+      {'id': 'pentagon', 'url': srcDirectoryUrl + 'shape-library/shapes/pentagon.svg'},
+      {'id': 'rectangle', 'url': srcDirectoryUrl + 'shape-library/shapes/rectangle.svg'},
+      {'id': 'group-none', 'url': srcDirectoryUrl + 'shape-library/shapes/group-none.svg'},
+      {'id': 'group-pathway', 'url': srcDirectoryUrl + 'shape-library/shapes/group-pathway.svg'},
+      {'id': 'group-group', 'url': srcDirectoryUrl + 'shape-library/shapes/group-group.svg'},
+      //{'id': 'rounded-rectangle', 'url': srcDirectoryUrl + 'shape-library/shapes/rounded-rectangle.svg'},
+      {'id': 'sarcoplasmic-reticulum','url': srcDirectoryUrl + 'shape-library/shapes/sarcoplasmic-reticulum.svg'},
+      {'id': 'triangle', 'url': srcDirectoryUrl + 'shape-library/shapes/triangle.svg'},
+      {'id': 'grid-square', 'url': srcDirectoryUrl + 'shape-library/shapes/grid-square.svg'},
+      {'id': 'none', 'url': srcDirectoryUrl + 'shape-library/shapes/none.svg'}
     ];
 
     var customMarkers = self.customMarkers = [
-      {'id': 'activity', 'url': srcDirectoryUrl + 'views/markers/arrow.svg'},
-      {'id': 'mim-branching-left', 'url': srcDirectoryUrl + 'views/markers/mim-branching-left.svg'},
-      {'id': 'mim-branching-right', 'url': srcDirectoryUrl + 'views/markers/mim-branching-right.svg'},
-      {'id': 'necessary-stimulation', 'url': srcDirectoryUrl + 'views/markers/mim-necessary-stimulation.svg'},
-      {'id': 'binding', 'url': srcDirectoryUrl + 'views/markers/mim-binding.svg'},
-      {'id': 'conversion', 'url': srcDirectoryUrl + 'views/markers/mim-conversion.svg'},
-      {'id': 'stimulation', 'url': srcDirectoryUrl + 'views/markers/mim-stimulation.svg'},
-      {'id': 'modification', 'url': srcDirectoryUrl + 'views/markers/mim-modification.svg'},
-      {'id': 'catalysis', 'url': srcDirectoryUrl + 'views/markers/mim-catalysis.svg'},
-      {'id': 'inhibition', 'url': srcDirectoryUrl + 'views/markers/mim-inhibition.svg'},
-      {'id': 'cleavage', 'url': srcDirectoryUrl + 'views/markers/mim-cleavage.svg'},
-      {'id': 'covalent-bond', 'url': srcDirectoryUrl + 'views/markers/mim-covalent-bond.svg'},
-      {'id': 'transcription-translation', 'url': srcDirectoryUrl + 'views/markers/mim-transcription-translation.svg'},
-      {'id': 'gap', 'url': srcDirectoryUrl + 'views/markers/mim-gap.svg'},
-      {'id': 'inhibitory-activity', 'url': srcDirectoryUrl + 'views/markers/t-bar.svg'}
+      {'id': 'activity', 'url': srcDirectoryUrl + 'shape-library/markers/arrow.svg'},
+      {'id': 'mim-branching-left', 'url': srcDirectoryUrl + 'shape-library/markers/mim-branching-left.svg'},
+      {'id': 'mim-branching-right', 'url': srcDirectoryUrl + 'shape-library/markers/mim-branching-right.svg'},
+      {'id': 'necessary-stimulation', 'url': srcDirectoryUrl + 'shape-library/markers/mim-necessary-stimulation.svg'},
+      {'id': 'binding', 'url': srcDirectoryUrl + 'shape-library/markers/mim-binding.svg'},
+      {'id': 'conversion', 'url': srcDirectoryUrl + 'shape-library/markers/mim-conversion.svg'},
+      {'id': 'stimulation', 'url': srcDirectoryUrl + 'shape-library/markers/mim-stimulation.svg'},
+      {'id': 'modification', 'url': srcDirectoryUrl + 'shape-library/markers/mim-modification.svg'},
+      {'id': 'catalysis', 'url': srcDirectoryUrl + 'shape-library/markers/mim-catalysis.svg'},
+      {'id': 'inhibition', 'url': srcDirectoryUrl + 'shape-library/markers/mim-inhibition.svg'},
+      {'id': 'cleavage', 'url': srcDirectoryUrl + 'shape-library/markers/mim-cleavage.svg'},
+      {'id': 'covalent-bond', 'url': srcDirectoryUrl + 'shape-library/markers/mim-covalent-bond.svg'},
+      {'id': 'transcription-translation', 'url': srcDirectoryUrl + 'shape-library/markers/mim-transcription-translation.svg'},
+      {'id': 'gap', 'url': srcDirectoryUrl + 'shape-library/markers/mim-gap.svg'},
+      {'id': 'inhibitory-activity', 'url': srcDirectoryUrl + 'shape-library/markers/t-bar.svg'}
     ];
 
     pathvisiojs.load({

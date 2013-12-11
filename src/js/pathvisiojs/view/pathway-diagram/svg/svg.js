@@ -294,7 +294,9 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
       quickRenderMultipleElements(args, function() {
         callback(svg);
       });
+
       //pathvisiojs.view.pathwayDiagram.svg.grid.render(args.svg);
+
       /*
       async.series([
         function(callbackInside2) {
