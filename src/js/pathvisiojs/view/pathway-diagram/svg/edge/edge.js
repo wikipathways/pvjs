@@ -1,7 +1,7 @@
 // Edges (interactions and graphical lines)
 
 pathvisiojs.view.pathwayDiagram.svg.edge = function(){
-  function render(parent, data) {
+  function render(svg, parent, data) {
     //console.log('parent');
     //console.log(parent);
     //console.log('data');

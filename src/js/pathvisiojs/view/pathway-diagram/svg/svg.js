@@ -153,6 +153,9 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
     if (!args.data) {
       throw new Error("No data entered to render.");
     }
+    if (!args.svg) {
+      throw new Error("No svg specified.");
+    }
     if (!args.allSymbolNames) {
       throw new Error("No allSymbolNames (list of symbols in this diagram) specified.");
     }
@@ -211,7 +214,7 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
             }
             else {
               if (element.renderableType === 'edge') {
-                pathvisiojs.view.pathwayDiagram.svg.edge.render(args.target, element);
+                pathvisiojs.view.pathwayDiagram.svg.edge.render(args.svg, args.target, element);
               }
             }
           }
