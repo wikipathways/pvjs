@@ -40,36 +40,13 @@ pathvisiojs.view.pathwayDiagram.pathFinder = function(){
     gridData.totalColumnCount = Math.ceil(pathwayImageWidth/gridData.squareLength);
     gridData.totalRowCount = Math.ceil(pathwayImageHeight/gridData.squareLength);
 
-    // remember zero-based indexing means we want to go from 0 to gridData.totalRowCount - 1
-    // and 0 to gridData.totalColumnCount - 1
-    // last element is matrix[gridData.totalRowCount - 1][gridData.totalColumnCount - 1]
-
-    var entirelyWalkableMatrix = [];
-    for(var currentRow = 0; currentRow < gridData.totalRowCount; currentRow++) {
-      entirelyWalkableMatrix[currentRow] = [];
-      for(var currentColumn = 0; currentColumn < gridData.totalColumnCount; currentColumn++) {
-        entirelyWalkableMatrix[currentRow][currentColumn] = 0;
-      }
-    }
-    gridData.entirelyWalkableMatrix = entirelyWalkableMatrix;
-    callback(gridData);
+    generateEntirelyWalkableMatrix(gridData.totalRowCount, gridData.totalColumnCount, function(entirelyWalkableMatrix) {
+      gridData.entirelyWalkableMatrix = entirelyWalkableMatrix;
+      callback(gridData);
+    });
   }
 
-  function generateGrid(svg, nodes, ports, callback) {
-
-    // Here we set how much padding to place around the entityNodes, in units of grid squares.
-    // TODO change the static value of 12 to be a calculated value equal to the
-    // largest dimension of a marker in the diagram
-
-    var padding = Math.ceil(12 / pathvisioNS.grid.squareLength);
-    var currentRow, currentColumn;
-    var totalColumnCount = Math.ceil(pathwayImageWidth/pathvisioNS.grid.squareLength);
-    var totalRowCount = Math.ceil(pathwayImageHeight/pathvisioNS.grid.squareLength);
-
-    // remember zero-based indexing means we want to go from 0 to totalRowCount - 1
-    // and 0 to totalColumnCount - 1
-    // last element is matrix[totalRowCount - 1][totalColumnCount - 1]
-
+  function generateEntirelyWalkableMatrix(totalRowCount, totalColumnCount, callback) {
     var entirelyWalkableMatrix = [];
     for(var currentRow = 0; currentRow < totalRowCount; currentRow++) {
       entirelyWalkableMatrix[currentRow] = [];
@@ -78,6 +55,192 @@ pathvisiojs.view.pathwayDiagram.pathFinder = function(){
       }
     }
     callback(entirelyWalkableMatrix);
+  }
+
+  function populateMatrix(args, callback) {
+    if (!args) {
+      throw new Error('No args specified.');
+    }
+    if (!args.inputMatrix) {
+      throw new Error('No inputMatrix specified.');
+    }
+    if (!args.padding) {
+      throw new Error('No padding specified.');
+    }
+    if (!args.squareLength) {
+      throw new Error('No squareLength specified.');
+    }
+    if (!args.totalRowCount) {
+      throw new Error('No totalRowCount specified.');
+    }
+    if (!args.totalColumnCount) {
+      throw new Error('No totalColumnCount specified.');
+    }
+    if (!args.gridRenderingData) {
+
+      // gridRenderingData is a matrix with data for rendering the grid squares. The non-walkable squares
+      // are blue and the squares emanating from ports are yellow. The walkable squares are not specified,
+      // so they will appear with whatever the default background color of the SVG happens to be.
+
+      throw new Error('No gridRenderingData specified.');
+    }
+    if (!args.nodes) {
+      console.warn('No nodes specified. Returning unmodified inputMatrix and gridRenderingData.');
+      callback(args.inputMatrix, args.gridRenderingData);
+    }
+
+    // populatedMatrix is the matrix that has non-walkable areas for each node specified in the input
+
+    var populatedMatrix = args.inputMatrix;
+
+    // mark off no-go non-walkable regions for path finder (regions under edgeGraphRefNodes)
+
+    var upperLeftCorner, lowerRightCorner, rowStart, rowEnd, columnStart, columnEnd;
+    args.nodes.forEach(function(node) {
+      upperLeftCorner = xYCoordinatesToMatrixLocation(node.x, node.y, args.squareLength);
+      lowerRightCorner = xYCoordinatesToMatrixLocation(node.x + node.width, node.y + node.height, args.squareLength);
+
+      columnStart = Math.max((upperLeftCorner.column - args.padding), 0);
+      columnEnd = Math.min((lowerRightCorner.column + args.padding), args.totalColumnCount - 1);
+      rowStart = Math.max((upperLeftCorner.row - args.padding), 0);
+      rowEnd = Math.min((lowerRightCorner.row + args.padding), args.totalRowCount - 1);
+
+      for(currentRow=rowStart; currentRow<rowEnd + 1; currentRow++) {
+        for(currentColumn=columnStart; currentColumn<columnEnd + 1; currentColumn++) {
+          populatedMatrix[currentRow][currentColumn] = 1;
+          args.gridRenderingData[currentRow * (args.totalColumnCount - 1) + currentColumn] = {
+            'x': currentColumn * args.squareLength,
+            'y': currentRow * args.squareLength,
+            'fill': 'blue'
+          };
+        }
+      }
+    });
+    callback(populatedMatrix, args.gridRenderingData);
+  }
+
+  function generateGrid(gridData, edgeGraphRefNodes, otherNodes, ports, callback) {
+    if (!gridData) {
+      throw new Error('No gridData specified.');
+    }
+    if (!gridData.entirelyWalkableMatrix) {
+      throw new Error('No entirelyWalkableMatrix specified.');
+    }
+    if (!gridData.padding) {
+      throw new Error('No padding specified.');
+    }
+    if (!gridData.squareLength) {
+      throw new Error('No squareLength specified.');
+    }
+    if (!gridData.totalRowCount) {
+      throw new Error('No totalRowCount specified.');
+    }
+    if (!gridData.totalColumnCount) {
+      throw new Error('No totalColumnCount specified.');
+    }
+
+    // edgeGraphRefNodes and otherNodes are clumsy names but are the best I could come up
+    // with for now.
+    //
+    // edgeGraphRefNodes refers to the set of nodes that an edge is snapped to.
+    // At present, this set is only the source and target nodes, but in the future,
+    // it could include nodes that a waypoint is snapped to
+    // if we allow for waypoints to be snappable.
+    //
+    // otherNodes refers to any other nodes that should be non-walkable.
+
+    //var gridData = d3.select('svg')[0][0].pathvisiojs.gridData;
+
+    async.waterfall([
+      function(waterfallCallback) {
+
+        // mark off no-go non-walkable regions for path finder
+        // (in this case, regions under edgeGraphRefNodes)
+
+        populateMatrix({
+          'nodes':edgeGraphRefNodes,
+          'inputMatrix':gridData.entirelyWalkableMatrix,
+          'gridRenderingData':[],
+          'padding':gridData.padding,
+          'squareLength':gridData.squareLength,
+          'totalRowCount':gridData.totalRowCount,
+          'totalColumnCount':gridData.totalColumnCount
+        },
+        function(populatedMatrix, gridRenderingData) {
+          waterfallCallback(null, populatedMatrix, gridRenderingData);
+        })
+      },
+      function(populatedMatrix, gridRenderingData, waterfallCallback) {
+
+        // mark off no-go non-walkable regions for path finder
+        // (in this case, regions under otherNodes)
+
+        populateMatrix({
+          'nodes':otherNodes,
+          'inputMatrix':populatedMatrix,
+          'gridRenderingData':gridRenderingData,
+          'padding':1,
+          'squareLength':gridData.squareLength,
+          'totalRowCount':gridData.totalRowCount,
+          'totalColumnCount':gridData.totalColumnCount
+        },
+        function(populatedMatrix, gridRenderingData) {
+          waterfallCallback(null, populatedMatrix, gridRenderingData);
+        })
+      },
+      function(populatedMatrix, gridRenderingData, waterfallCallback) {
+
+        // mark off walkable regions emanating from ports
+
+        if (!!ports) {
+          var column1, column2, row1, row2, portLocation;
+          ports.forEach(function(port) {
+            portLocation = xYCoordinatesToMatrixLocation(port.x, port.y);
+            column1 = Math.max(Math.min((portLocation.column - gridData.padding * port.dy), gridData.totalColumnCount - 1), 0);
+            column2 = Math.max(Math.min((portLocation.column + port.dy), gridData.totalColumnCount - 1), 0);
+            columnStart = Math.min(column1, column2);
+            columnEnd = Math.max(column1, column2);
+
+            row1 = Math.max(Math.min((portLocation.row - port.dx), gridData.totalRowCount - 1), 0);
+            row2 = Math.max(Math.min((portLocation.row + gridData.padding * port.dx), gridData.totalRowCount - 1), 0);
+            rowStart = Math.min(row1, row2);
+            rowEnd = Math.max(row1, row2);
+
+            for(var currentRow=rowStart; currentRow<rowEnd + 1; currentRow++) {
+              populatedMatrix[currentRow] = populatedMatrix[currentRow] || [];
+              for(var currentColumn=columnStart; currentColumn<columnEnd + 1; currentColumn++) {
+                populatedMatrix[currentRow][currentColumn] = 0;
+                gridData.gridRenderingData[currentRow * (gridData.totalColumnCount - 1) + currentColumn] = {
+                  'x': currentColumn * gridData.squareLength,
+                  'y': currentRow * gridData.squareLength,
+                  'fill': 'yellow'
+                };
+              }
+            }
+          });
+        }
+        waterfallCallback(null, populatedMatrix, gridRenderingData);
+      }
+    ],
+    function(err, results) {
+
+      //console.log('gridData.totalColumnCount');
+      //console.log(gridData.totalColumnCount);
+      //console.log('gridData.totalRowCount');
+      //console.log(gridData.totalRowCount);
+      //console.log('populatedMatrix');
+      //console.log(populatedMatrix);
+
+      var grid = new PF.Grid(gridData.totalColumnCount, gridData.totalRowCount, results.populatedMatrix);
+
+      // we only want to render the non-walkable areas the walkable areas emanating out from nodes.
+      // Rendering all the rest of the walkable areas would be too demanding in terms of number of
+      // elements rendered in SVG.
+
+      results.gridRenderingData = results.gridData.gridRenderingData.filter(function(element) {return !!element});
+
+      callback(grid, results.gridRenderingData);
+    });
   }
 
   function generateGridData(shapes, ports, pathwayImageWidth, pathwayImageHeight, callback) {
