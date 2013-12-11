@@ -278,6 +278,20 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
           });
         });
       },
+      'gridData': function(callbackInside) {
+        pathvisioNS.grid = {};
+        var frame = {
+          '@context': pathvisiojs.context,
+          '@type': 'entityNode'
+        };  
+        jsonld.frame(args.pathway, frame, function(err, framedData) {
+          pathvisiojs.view.pathwayDiagram.pathFinder.initGrid(framedData['@graph'], args.pathway.Port, args.pathway.image.width, args.pathway.image.height, function(gridData) {
+            args.svg[0][0].pathvisiojs = args.svg[0][0].pathvisiojs || {};
+            args.svg[0][0].pathvisiojs.gridData = gridData;
+            callbackInside(null, gridData);
+          });
+        });
+      },
       'firstOrderData': function(callbackInside) {
         var firstOrderFrame = {
           '@context': pathvisiojs.context,
