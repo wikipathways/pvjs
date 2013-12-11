@@ -89,7 +89,7 @@ function updateParams(updatedParam) {
 }
 
 function generateHtmlView(callback) {
-  d3.html(srcDirectoryUrl + 'shape-library/pathvisiojs.html', function(html) {
+  d3.html(srcDirectoryUrl + 'pathvisiojs.html', function(html) {
     var svg = html.querySelector('#pathway-svg');
     svg.setAttribute('style', 'display: none; ');
     svg.setAttribute('width', '500px');
