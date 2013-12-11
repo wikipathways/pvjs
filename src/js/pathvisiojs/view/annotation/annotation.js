@@ -16,7 +16,7 @@ pathvisiojs.view.annotation = function(){
 
     var annotationIconRemove = annotation.select('i.icon-remove')
     .on("click", function(d, i){
-      annotation.attr('style', 'visibility: hidden;');
+      annotation[0][0].style.visibility = 'hidden';
     });
 
     var annotationDescription = annotation.select('#annotation-description')
