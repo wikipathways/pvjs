@@ -154,7 +154,6 @@ pathvisiojs.view.pathwayDiagram.svg.edge.pathData = function(){
         var stubLength = 15;
 
         startDirection = getPathDirectionForElbowFromPoint(pathway, edge, pointStart);
-        console.log(startDirection);
         currentDirection = startDirection;
         endDirection = getPathDirectionForElbowFromPoint(pathway, edge, pointEnd);
 
