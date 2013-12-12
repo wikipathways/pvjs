@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Pathway xmlns="http://pathvisio.org/GPML/2013a" Name="New Pathway" Version="20131206" Organism="Bos taurus">
-  <Graphics BoardWidth="537.2655701423835" BoardHeight="485.3670241066422" />
+  <Graphics BoardWidth="549.1880738681659" BoardHeight="485.3670241066422" />
   <DataNode TextLabel="right" GraphId="f8e5b" Type="Metabolite">
-    <Graphics CenterX="448.2979130859168" CenterY="242.69105012368024" Width="88.13693270735519" Height="63.88028169014086" ZOrder="32768" FontSize="10" Valign="Middle" Align="Right" Color="0000ff" />
+    <Graphics CenterX="282.8731738906862" CenterY="269.51668350669075" Width="88.13693270735519" Height="63.88028169014086" ZOrder="32768" FontSize="10" Valign="Middle" Align="Right" Color="0000ff" />
     <Xref Database="" ID="" />
   </DataNode>
   <DataNode TextLabel="left" GraphId="fe5b0" Type="Metabolite">
-    <Graphics CenterX="207.64285602663358" CenterY="222.0671521396606" Width="73.46475509725681" Height="63.88028169014086" ZOrder="32769" FontSize="10" Valign="Middle" Align="Left" Color="0000ff" />
+    <Graphics CenterX="164.42378002067278" CenterY="114.76461860761883" Width="73.46475509725681" Height="63.88028169014086" ZOrder="32769" FontSize="10" Valign="Middle" Align="Left" Color="0000ff" />
     <Xref Database="" ID="" />
   </DataNode>
   <DataNode TextLabel="center" GraphId="b4bd1" Type="Metabolite">
-    <Graphics CenterX="463.1971037887059" CenterY="364.5672879212867" Width="88.13693270735519" Height="63.88028169014086" ZOrder="32770" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Graphics CenterX="315.65612018214864" CenterY="116.43017912843997" Width="88.13693270735519" Height="63.88028169014086" ZOrder="32770" FontSize="10" Valign="Middle" Color="0000ff" />
     <Xref Database="" ID="" />
   </DataNode>
   <Interaction>
     <Graphics ConnectorType="Elbow" ZOrder="12288" LineThickness="1.0">
-      <Point X="448.2979130859168" Y="210.7509092786098" GraphRef="f8e5b" RelX="0.0" RelY="-1.0" />
-      <Point X="207.64285602663358" Y="254.00729298473104" GraphRef="fe5b0" RelX="0.0" RelY="1.0" ArrowHead="Arrow" />
+      <Point X="282.8731738906862" Y="237.57654266162035" GraphRef="f8e5b" RelX="0.0" RelY="-1.0" />
+      <Point X="164.42378002067278" Y="146.70475945268925" GraphRef="fe5b0" RelX="0.0" RelY="1.0" ArrowHead="Arrow" />
     </Graphics>
     <Xref Database="" ID="" />
   </Interaction>
