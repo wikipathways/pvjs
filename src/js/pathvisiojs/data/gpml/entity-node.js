@@ -18,12 +18,12 @@ pathvisiojs.data.gpml.entityNode = function() {
         }
       });
       graphId = gpmlEntityNode.attr('GraphId') || ('id' + uuid.v4());
-      jsonEntityNode["@id"] = pathwayIri + "#" + graphId;
+      jsonEntityNode["@id"] = pathwayIri + graphId;
       jsonEntityNode.GraphId = graphId;
       var groupRef = gpmlEntityNode.attr('GroupRef');
       if (!!groupRef) {
         jsonEntityNode.GroupRef = groupRef;
-        jsonEntityNode.dependsOn = [pathwayIri + "#" + groupRef];
+        jsonEntityNode.dependsOn = [pathwayIri + groupRef];
       }
       shapeType = gpmlEntityNode.select('Graphics').attr('ShapeType') || 'rectangle';
       shapeType = strcase.paramCase(shapeType);
@@ -186,7 +186,8 @@ pathvisiojs.data.gpml.entityNode = function() {
           '@type':'Port'
         }); 
       }); 
-      entityNodeCallback(jsonEntityNode, ports);
+      jsonEntityNode.Port = ports;
+      entityNodeCallback(jsonEntityNode);
     }
     catch (e) {
       throw new Error("Error converting EntityNode or Port to renderable json: " + e.message);

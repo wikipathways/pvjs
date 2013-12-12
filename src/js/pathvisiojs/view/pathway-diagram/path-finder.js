@@ -22,7 +22,7 @@ pathvisiojs.view.pathwayDiagram.pathFinder = function(){
     return results;
   }
 
-  function initGrid(nodes, ports, pathwayImageWidth, pathwayImageHeight, callback) {
+  function initGrid(nodes, pathwayImageWidth, pathwayImageHeight, callback) {
     var gridData = {}
     nodes = d3.select(nodes).sort(function(node1, node2) {
       Math.min(node1.height, node1.width) - Math.min(node2.height, node2.width);
@@ -41,6 +41,9 @@ pathvisiojs.view.pathwayDiagram.pathFinder = function(){
     gridData.totalRowCount = Math.ceil(pathwayImageHeight/gridData.squareLength);
 
     generateEntirelyWalkableMatrix(gridData.totalRowCount, gridData.totalColumnCount, function(entirelyWalkableMatrix) {
+      // need this to generate path data as last resort when populated grids do not result in a path
+
+      gridData.emptyGrid = new PF.Grid(gridData.totalColumnCount, gridData.totalRowCount, entirelyWalkableMatrix);
       gridData.entirelyWalkableMatrix = entirelyWalkableMatrix;
       callback(gridData);
     });
@@ -119,7 +122,7 @@ pathvisiojs.view.pathwayDiagram.pathFinder = function(){
     callback(populatedMatrix, args.gridRenderingData);
   }
 
-  function generateGrid(gridData, edgeGraphRefNodes, otherNodes, ports, callback) {
+  function generateGrid(gridData, edgeGraphRefNodes, otherNodes, callback) {
     if (!gridData) {
       throw new Error('No gridData specified.');
     }
@@ -149,80 +152,111 @@ pathvisiojs.view.pathwayDiagram.pathFinder = function(){
     //
     // otherNodes refers to any other nodes that should be non-walkable.
 
-    //var gridData = d3.select('svg')[0][0].pathvisiojs.gridData;
 
-    async.waterfall([
-      function(waterfallCallback) {
+    var gridRenderingData = [];
+    async.parallel({
+      'populatedMatrix':function(populateMatrixCallback) {
+        async.waterfall([
+          function(waterfallCallback) {
 
-        // mark off no-go non-walkable regions for path finder
-        // (in this case, regions under edgeGraphRefNodes)
+            // mark off no-go non-walkable regions for path finder
+            // (in this case, regions under edgeGraphRefNodes)
 
-        populateMatrix({
-          'nodes':edgeGraphRefNodes,
-          'inputMatrix':gridData.entirelyWalkableMatrix,
-          'gridRenderingData':[],
-          'padding':gridData.padding,
-          'squareLength':gridData.squareLength,
-          'totalRowCount':gridData.totalRowCount,
-          'totalColumnCount':gridData.totalColumnCount
-        },
-        function(populatedMatrix, gridRenderingData) {
-          waterfallCallback(null, populatedMatrix, gridRenderingData);
-        })
+            populateMatrix({
+              'nodes':edgeGraphRefNodes,
+              'inputMatrix':gridData.entirelyWalkableMatrix,
+              'gridRenderingData':gridRenderingData,
+              'padding':gridData.padding,
+              'squareLength':gridData.squareLength,
+              'totalRowCount':gridData.totalRowCount,
+              'totalColumnCount':gridData.totalColumnCount
+            },
+            function(populatedMatrix, thisGridRenderingData) {
+              gridRenderingData = thisGridRenderingData;
+              waterfallCallback(null, populatedMatrix);
+            })
+          },
+          function(populatedMatrix, waterfallCallback) {
+
+            // mark off no-go non-walkable regions for path finder
+            // (in this case, regions under otherNodes)
+
+            populateMatrix({
+              'nodes':otherNodes,
+              'inputMatrix':populatedMatrix,
+              'gridRenderingData':gridRenderingData,
+              'padding':1,
+              'squareLength':gridData.squareLength,
+              'totalRowCount':gridData.totalRowCount,
+              'totalColumnCount':gridData.totalColumnCount
+            },
+            function(populatedMatrix, thisGridRenderingData) {
+              gridRenderingData = thisGridRenderingData;
+              waterfallCallback(null, populatedMatrix);
+            })
+          }
+        ]);
       },
-      function(populatedMatrix, gridRenderingData, waterfallCallback) {
-
-        // mark off no-go non-walkable regions for path finder
-        // (in this case, regions under otherNodes)
-
-        populateMatrix({
-          'nodes':otherNodes,
-          'inputMatrix':populatedMatrix,
-          'gridRenderingData':gridRenderingData,
-          'padding':1,
-          'squareLength':gridData.squareLength,
-          'totalRowCount':gridData.totalRowCount,
-          'totalColumnCount':gridData.totalColumnCount
-        },
-        function(populatedMatrix, gridRenderingData) {
-          waterfallCallback(null, populatedMatrix, gridRenderingData);
-        })
-      },
-      function(populatedMatrix, gridRenderingData, waterfallCallback) {
-
-        // mark off walkable regions emanating from ports
-
-        if (!!ports) {
-          var column1, column2, row1, row2, portLocation;
-          ports.forEach(function(port) {
-            portLocation = xYCoordinatesToMatrixLocation(port.x, port.y);
-            column1 = Math.max(Math.min((portLocation.column - gridData.padding * port.dy), gridData.totalColumnCount - 1), 0);
-            column2 = Math.max(Math.min((portLocation.column + port.dy), gridData.totalColumnCount - 1), 0);
-            columnStart = Math.min(column1, column2);
-            columnEnd = Math.max(column1, column2);
-
-            row1 = Math.max(Math.min((portLocation.row - port.dx), gridData.totalRowCount - 1), 0);
-            row2 = Math.max(Math.min((portLocation.row + gridData.padding * port.dx), gridData.totalRowCount - 1), 0);
-            rowStart = Math.min(row1, row2);
-            rowEnd = Math.max(row1, row2);
-
-            for(var currentRow=rowStart; currentRow<rowEnd + 1; currentRow++) {
-              populatedMatrix[currentRow] = populatedMatrix[currentRow] || [];
-              for(var currentColumn=columnStart; currentColumn<columnEnd + 1; currentColumn++) {
-                populatedMatrix[currentRow][currentColumn] = 0;
-                gridData.gridRenderingData[currentRow * (gridData.totalColumnCount - 1) + currentColumn] = {
-                  'x': currentColumn * gridData.squareLength,
-                  'y': currentRow * gridData.squareLength,
-                  'fill': 'yellow'
-                };
-              }
+      'ports':function(populateMatrixCallback) {
+        var portFrame = {
+          '@context': pathvisiojs.context,
+          '@type': 'Port'
+        };  
+        var allNodes = edgeGraphRefNodes;
+        otherNodes.forEach(function(node){
+          allNodes = allNodes.concat(node);
+        });
+        jsonld.frame(allNodes, portFrame, function(err, ports) {
+          console.log('ports[@graph]');
+          console.log(ports['@graph']);
+          async.series([
+            function(portsCallback) {
+              var Port = [];
+              ports['@graph'].each(function(portSet) {
+                Port = Port.concat(portSet);
+              });
+              portsCallback(null, Port);
             }
+          ],
+          function(err, results) {
+            populateMatrixCallback(null, results.ports);
           });
-        }
-        waterfallCallback(null, populatedMatrix, gridRenderingData);
+        });
       }
-    ],
+    },
     function(err, results) {
+      var populatedMatrix = results.populatedMatrix;
+      var ports = results.ports;
+
+      // mark off walkable regions emanating from ports
+
+      if (!!ports) {
+        var column1, column2, row1, row2, portLocation;
+        ports.forEach(function(port) {
+          portLocation = xYCoordinatesToMatrixLocation(port.x, port.y);
+          column1 = Math.max(Math.min((portLocation.column - gridData.padding * port.dy), gridData.totalColumnCount - 1), 0);
+          column2 = Math.max(Math.min((portLocation.column + port.dy), gridData.totalColumnCount - 1), 0);
+          columnStart = Math.min(column1, column2);
+          columnEnd = Math.max(column1, column2);
+
+          row1 = Math.max(Math.min((portLocation.row - port.dx), gridData.totalRowCount - 1), 0);
+          row2 = Math.max(Math.min((portLocation.row + gridData.padding * port.dx), gridData.totalRowCount - 1), 0);
+          rowStart = Math.min(row1, row2);
+          rowEnd = Math.max(row1, row2);
+
+          for(var currentRow=rowStart; currentRow<rowEnd + 1; currentRow++) {
+            populatedMatrix[currentRow] = populatedMatrix[currentRow] || [];
+            for(var currentColumn=columnStart; currentColumn<columnEnd + 1; currentColumn++) {
+              populatedMatrix[currentRow][currentColumn] = 0;
+              gridData.gridRenderingData[currentRow * (gridData.totalColumnCount - 1) + currentColumn] = {
+                'x': currentColumn * gridData.squareLength,
+                'y': currentRow * gridData.squareLength,
+                'fill': 'yellow'
+              };
+            }
+          }
+        });
+      }
 
       //console.log('gridData.totalColumnCount');
       //console.log(gridData.totalColumnCount);
@@ -231,18 +265,19 @@ pathvisiojs.view.pathwayDiagram.pathFinder = function(){
       //console.log('populatedMatrix');
       //console.log(populatedMatrix);
 
-      var grid = new PF.Grid(gridData.totalColumnCount, gridData.totalRowCount, results.populatedMatrix);
+      var grid = new PF.Grid(gridData.totalColumnCount, gridData.totalRowCount, populatedMatrix);
 
       // we only want to render the non-walkable areas the walkable areas emanating out from nodes.
       // Rendering all the rest of the walkable areas would be too demanding in terms of number of
       // elements rendered in SVG.
 
-      results.gridRenderingData = results.gridData.gridRenderingData.filter(function(element) {return !!element});
+      gridRenderingData = gridData.gridRenderingData.filter(function(element) {return !!element});
 
-      callback(grid, results.gridRenderingData);
+      callback(grid, gridRenderingData);
     });
   }
 
+  /*
   function generateGridData(shapes, ports, pathwayImageWidth, pathwayImageHeight, callback) {
     //console.log('***************');
     //console.log('shapes');
@@ -351,67 +386,78 @@ pathvisiojs.view.pathwayDiagram.pathFinder = function(){
       callback(pathvisioNS.grid.emptyGrid);
     })
   }
+  //*/
 
-  function getPath(edge, callbackOutside) {
-    var workingGrid = pathvisioNS.grid.paddedGrid.clone();
-    var finder = new PF.BiBreadthFirstFinder({
-      allowDiagonal: false,
-      dontCrossCorners: true
-    });
+  function getPath(svg, edge, callbackOutside) {
+    var gridData = svg[0][0].pathvisiojs.gridData;
+    console.log('edge');
+    console.log(edge);
+    self.myEdge = edge;
+
     var Point = edge.Point;
     var pointStart = Point[0];
     var pointEnd = Point[Point.length - 1];
     startLocation = xYCoordinatesToMatrixLocation(pointStart.x, pointStart.y);
     endLocation = xYCoordinatesToMatrixLocation(pointEnd.x, pointEnd.y);
-    var pathData;
-    async.series([
-      function(callback){
-        runPathFinder(workingGrid, finder, Point, pointStart, pointEnd, startLocation, endLocation, function(data) {
-          pathData = data;
-          //console.log('padded');
-          //console.log(pathData);
-          //console.log(pathData.length);
-          callback(null);
-        });
-      },
-      function(callback){
-        if (pathData.length < 3) {
-          workingGrid = pathvisioNS.grid.tightGrid.clone();
+    var finder = new PF.BiBreadthFirstFinder({
+      allowDiagonal: false,
+      dontCrossCorners: true
+    });
+
+    generateGrid(gridData, edgeGraphRefNodes, null, function(grid, gridRenderingData) {
+      var pathData;
+      async.series([
+        function(callback){
+          workingGrid = grid;
           runPathFinder(workingGrid, finder, Point, pointStart, pointEnd, startLocation, endLocation, function(data) {
             pathData = data;
-            //console.log('tight');
+            //console.log('padded');
             //console.log(pathData);
             //console.log(pathData.length);
             callback(null);
           });
-        }
-        else {
-          callback(null);
-        }
-      },
-      function(callback){
-        if (pathData.length < 3) {
-          workingGrid = pathvisioNS.grid.emptyGrid.clone();
-          runPathFinder(workingGrid, finder, Point, pointStart, pointEnd, startLocation, endLocation, function(data) {
-            pathData = data;
-            //console.log('empty');
-            //console.log(pathData);
-            //console.log(pathData.length);
-            pathData.push({'x': pointEnd.x, 'y': pointEnd.y});
+        },
+        /*
+        function(callback){
+          if (pathData.length < 3) {
+            workingGrid = pathvisioNS.grid.tightGrid.clone();
+            runPathFinder(workingGrid, finder, Point, pointStart, pointEnd, startLocation, endLocation, function(data) {
+              pathData = data;
+              //console.log('tight');
+              //console.log(pathData);
+              //console.log(pathData.length);
+              callback(null);
+            });
+          }
+          else {
             callback(null);
-          });
+          }
+        },
+        //*/
+        function(callback){
+          if (pathData.length < 3) {
+            workingGrid = gridData.emptyGrid.clone();
+            runPathFinder(workingGrid, finder, Point, pointStart, pointEnd, startLocation, endLocation, function(data) {
+              pathData = data;
+              //console.log('empty');
+              //console.log(pathData);
+              //console.log(pathData.length);
+              pathData.push({'x': pointEnd.x, 'y': pointEnd.y});
+              callback(null);
+            });
+          }
+          else {
+            callback(null);
+          }
         }
-        else {
-          callback(null);
-        }
-      }
-    ],
-    function(err) {
-      //console.log('returned');
-      //console.log(pathData);
-      //console.log(pathData.length);
-      callbackOutside(pathData);
-      //return pathData;
+      ],
+      function(err) {
+        //console.log('returned');
+        //console.log(pathData);
+        //console.log(pathData.length);
+        callbackOutside(pathData);
+        //return pathData;
+      });
     });
   }
 
@@ -550,7 +596,7 @@ pathvisiojs.view.pathwayDiagram.pathFinder = function(){
 
   return {
     initGrid:initGrid,
-    generateGridData:generateGridData,
+    //generateGridData:generateGridData,
     getPath:getPath,
     xYCoordinatesToMatrixLocation:xYCoordinatesToMatrixLocation,
     matrixLocationToXYCoordinates:matrixLocationToXYCoordinates
