@@ -154,21 +154,23 @@ pathvisiojs.data.gpml = function(){
                 '@reverse': 'ex:hasReference',
                 '@type': '@id'
               },
-              'InteractionGraph': {
+              //*
+              'interactionGraph': {
                 '@type': '@id',
-                '@container':'@list'
+                '@container': '@list'
               },
+              //*/
               /*
-               * Defining this as shown below works. It ensures InteractionGraph is an array.
-              'InteractionGraph': {
+               * Defining this as shown below works. It ensures interactionGraph is an array.
+              'interactionGraph': {
                 '@type': '@id',
                 '@container':'@list'
               },
               //*/
               /*
                * Defining this as shown below makes it so the members are not included. I don't know why.
-              'InteractionGraph': {
-                '@id': 'ex:InteractionGraph',
+              'interactionGraph': {
+                '@id': 'ex:interactionGraph',
                 '@type': '@id'
               },
               //*/
@@ -177,8 +179,7 @@ pathvisiojs.data.gpml = function(){
                 '@type': '@id',
               },
               'Interaction': {
-                '@id': 'biopax:Interaction',
-                '@type': '@id'
+                '@id': 'biopax:Interaction'
               },
               'Point': {
                 '@id': 'gpml:Point',
@@ -286,79 +287,6 @@ pathvisiojs.data.gpml = function(){
                   edgeType,
                   groupRef || 'notGrouped'
                 ];
-                // TODO this is very rudimentary - it needs to be much improved for checking where the arrowhead is located, etc.
-                interactionType = gpmlArrowHeadToSemanticMappings[points[0][points[0].length - 1].getAttribute('ArrowHead')]
-                if (!interactionType) {
-                  interactionType = points[0][points[0].length - 1].getAttribute('ArrowHead');
-                  if (!interactionType) {
-                    interactionType = 'none';
-                  }
-                }
-                jsonInteraction['@type'].push(interactionType);
-                jsonInteraction.interactionType = interactionType;
-
-                jsonInteraction.InteractionGraph = [];
-                var InteractionGraphMember = {};
-                InteractionGraphMember['@id'] = pathwayIri + points[0][0].getAttribute('GraphRef');
-
-                targetId = points[0][points[0].length - 1].getAttribute('GraphRef');
-                if (!!targetId) {
-                  target = gpml.querySelector('[GraphId=' + targetId + ']');
-                  if (target.tagName === 'Anchor') {
-                    targetId = target.parentElement.parentElement.getAttribute('GraphId');
-                  }
-
-                  InteractionGraphMember.interactsWith = pathwayIri + targetId;
-                  console.log('InteractionGraphMember');
-                  console.log(InteractionGraphMember);
-                }
-                jsonInteraction.InteractionGraph.push(InteractionGraphMember);
-                // TODO add the reaction, if it exists
-                //'ex:Anchor': pathwayIri + '#Reaction1'
-
-                var point, pointObj;
-                jsonInteraction.Point = [];
-                points.each(function() {
-                  point = d3.select(this);
-                  pointObj = {};
-                  var relX = point.attr('RelX');
-                  var relY = point.attr('RelY');
-                  if (!!relX && !!relY) {
-                    pointObj['@type'] = 'SnappedPoint';
-
-                    parents.push(pathwayIri + point.attr('GraphRef'));
-
-                    pointObj.hasReference = pathwayIri + point.attr('GraphRef');
-                    pointObj.RelX = relX;
-                    pointObj.RelY = relY;
-                    pointObj.x = parseFloat(point.attr('X'));
-                    pointObj.y = parseFloat(point.attr('Y'));
-                  }
-                  else {
-                    pointObj['@type'] = 'GraphicalPoint';
-                    pointObj.x = {};
-                    pointObj.x = parseFloat(point.attr('X'));
-                    pointObj.y = parseFloat(point.attr('Y'));
-                  }
-                  jsonInteraction.Point.push(pointObj);
-                })
-
-                if (parents.length > 0) {
-                  jsonInteraction.dependsOn = parents;
-                }
-
-                var connectorType = gpmlInteraction.select('Graphics').attr('ConnectorType') || 'Straight';
-                jsonInteraction['ConnectorType'] = '' + connectorType;
-
-                var stroke = gpmlInteraction.select('Graphics').attr('Color');
-                if (!!stroke) {
-                  jsonInteraction['stroke'] = stroke;
-                }
-
-                var strokeWidth = gpmlInteraction.select('Graphics').attr('LineThickness');
-                if (!!strokeWidth) {
-                  jsonInteraction['strokeWidth'] = parseFloat(strokeWidth);
-                }
 
                 var database, ID, 
                   datasourceReference = gpmlInteraction.select('Xref');
@@ -372,28 +300,139 @@ pathvisiojs.data.gpml = function(){
                   }
                 }
 
-                gpmlInteraction.selectAll('Anchor').each(function() {
-                  jsonAnchorInteraction = {};
-                  anchor = d3.select(this);
-                  elementIri = pathwayIri + anchor.attr('GraphId');
-                  jsonAnchorInteraction['@id'] = pathwayIri + anchor.attr('GraphId');
-                  jsonAnchorInteraction['@type'] = [
-                    'element',
-                    'Interaction',
-                    'Anchor'
-                  ];
-                  jsonAnchorInteraction.dependsOn = jsonInteraction['@id'];
-                  jsonAnchorInteraction.anchorPosition = anchor.attr('Position');
+                // Arrowheads on both ends of a single graphical Interaction would represent two semantic Interactions
 
-                  jsonInteraction.push(jsonAnchorInteraction);
-                })
-                pathway.Interaction.push(jsonInteraction);
+                function buildInteractionGraph(gpmlSource, gpmlTarget, callbackBIG) {
+                  console.log('gpmlSource');
+                  console.log(gpmlSource);
+                  console.log('gpmlTarget');
+                  console.log(gpmlTarget);
+                  console.log("gpmlTarget.getAttribute('ArrowHead')");
+                  console.log(gpmlTarget.getAttribute('ArrowHead'));
+                  var interactionGraphMember = {};
+                  interactionGraphMember.interactionType = gpmlArrowHeadToSemanticMappings[gpmlTarget.getAttribute('ArrowHead')];
+                  console.log('interactionGraphMember.interactionType');
+                  console.log(interactionGraphMember.interactionType);
+                  self.myinteractionGraphMember = interactionGraphMember.interactionType;
+                  if (!!interactionGraphMember.interactionType) {
+                    jsonInteraction.interactionGraph = jsonInteraction.interactionGraph || [];
+
+                    interactionGraphMember['@id'] = pathwayIri + gpmlSource.getAttribute('GraphRef');
+                    targetId = gpmlTarget.getAttribute('GraphRef');
+                    if (!!targetId) {
+                      target = gpml.querySelector('[GraphId=' + targetId + ']');
+                      if (target.tagName === 'Anchor') {
+                        targetId = target.parentElement.parentElement.getAttribute('GraphId');
+                      }
+
+                      interactionGraphMember.interactsWith = pathwayIri + targetId;
+                      console.log('interactionGraphMember');
+                      console.log(interactionGraphMember);
+                    }
+                    interactionGraphMember['@type'] = [];
+                    interactionGraphMember['@type'].push(interactionGraphMember.interactionType);
+                    jsonInteraction.interactionGraph.push(interactionGraphMember);
+                    // TODO add the reaction, if it exists
+                    //'ex:Anchor': pathwayIri + '#Reaction1'
+
+                    callbackBIG(interactionGraphMember);
+                  }
+                  else {
+                    callbackBIG(null);
+                  }
+                }
+
+                var firstPoint = points[0][0];
+                var lastPoint = points[0][points[0].length - 1];
+
+                async.series([
+                  function(interactionTypeCallback) {
+                    buildInteractionGraph(firstPoint, lastPoint, function(interactionGraphMember) {
+                      console.log('interactionGraphMember');
+                      console.log(interactionGraphMember);
+                      interactionTypeCallback(null, 'success 1')
+                    });
+                  },
+                  function(interactionTypeCallback) {
+                    buildInteractionGraph(lastPoint, firstPoint, function(interactionGraphMember) {
+                      console.log('interactionGraphMember');
+                      console.log(interactionGraphMember);
+                      interactionTypeCallback(null, 'success 2')
+                    });
+                  }
+                ],
+                function(err, results) {
+
+                  // Graphical Only Data below, except maybe Anchors
+                  
+                  var point, pointObj;
+                  jsonInteraction.Point = [];
+                  points.each(function() {
+                    point = d3.select(this);
+                    pointObj = {};
+                    var relX = point.attr('RelX');
+                    var relY = point.attr('RelY');
+                    if (!!relX && !!relY) {
+                      pointObj['@type'] = 'SnappedPoint';
+
+                      parents.push(pathwayIri + point.attr('GraphRef'));
+
+                      pointObj.hasReference = pathwayIri + point.attr('GraphRef');
+                      pointObj.RelX = relX;
+                      pointObj.RelY = relY;
+                      pointObj.x = parseFloat(point.attr('X'));
+                      pointObj.y = parseFloat(point.attr('Y'));
+                    }
+                    else {
+                      pointObj['@type'] = 'GraphicalPoint';
+                      pointObj.x = {};
+                      pointObj.x = parseFloat(point.attr('X'));
+                      pointObj.y = parseFloat(point.attr('Y'));
+                    }
+                    jsonInteraction.Point.push(pointObj);
+                  })
+
+                  if (parents.length > 0) {
+                    jsonInteraction.dependsOn = parents;
+                  }
+
+                  var connectorType = gpmlInteraction.select('Graphics').attr('ConnectorType') || 'Straight';
+                  jsonInteraction['ConnectorType'] = '' + connectorType;
+
+                  var stroke = gpmlInteraction.select('Graphics').attr('Color');
+                  if (!!stroke) {
+                    jsonInteraction['stroke'] = stroke;
+                  }
+
+                  var strokeWidth = gpmlInteraction.select('Graphics').attr('LineThickness');
+                  if (!!strokeWidth) {
+                    jsonInteraction['strokeWidth'] = parseFloat(strokeWidth);
+                  }
+
+                  gpmlInteraction.selectAll('Anchor').each(function() {
+                    jsonAnchorInteraction = {};
+                    anchor = d3.select(this);
+                    elementIri = pathwayIri + anchor.attr('GraphId');
+                    jsonAnchorInteraction['@id'] = pathwayIri + anchor.attr('GraphId');
+                    jsonAnchorInteraction['@type'] = [
+                      'element',
+                      'Interaction',
+                      'Anchor'
+                    ];
+                    jsonAnchorInteraction.dependsOn = jsonInteraction['@id'];
+                    jsonAnchorInteraction.anchorPosition = anchor.attr('Position');
+
+                    jsonInteraction.push(jsonAnchorInteraction);
+                  })
+                  pathway.Interaction.push(jsonInteraction);
+                  callback(null, pathway.Interaction);
+                });
               }
               catch (e) {
+                callback(e);
                 throw new Error('Error converting Interaction to renderable json: ' + e.message);
               }
             })
-            callback(null, pathway.Interaction);
           }
       },
       function(err, results) {
