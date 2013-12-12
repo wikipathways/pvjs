@@ -69,10 +69,7 @@ pathvisiojs.data.gpml = function(){
         alert('Pathvisiojs may not fully support the version of GPML provided (xmlns: ' + gpmlNamespace + '). Please convert to the supported version of GPML (xmlns: ' + pathvisiojs.data.gpml.namespaces[0] + ').');
       }
 
-
-
       var pathway = {};
-      pathway.Port = [];
       async.parallel({
           '@context': function(callback){
             pathvisiojs.context = pathway['@context'] = {
@@ -158,14 +155,30 @@ pathvisiojs.data.gpml = function(){
                 '@type': '@id'
               },
               'InteractionGraph': {
+                '@type': '@id',
+                '@container':'@list'
+              },
+              /*
+               * Defining this as shown below works. It ensures InteractionGraph is an array.
+              'InteractionGraph': {
+                '@type': '@id',
+                '@container':'@list'
+              },
+              //*/
+              /*
+               * Defining this as shown below makes it so the members are not included. I don't know why.
+              'InteractionGraph': {
                 '@id': 'ex:InteractionGraph',
                 '@type': '@id'
               },
-              'interactsWith': 'ex:interactsWith',
+              //*/
+              'interactsWith': {
+                '@id': 'ex:interactsWith',
+                '@type': '@id',
+              },
               'Interaction': {
                 '@id': 'biopax:Interaction',
-                '@type': '@id',
-                'InteractsWith':'xsd:string'
+                '@type': '@id'
               },
               'Point': {
                 '@id': 'gpml:Point',
@@ -188,39 +201,43 @@ pathvisiojs.data.gpml = function(){
             };
             callback(null, pathway.image);
           },
-          Group: function(callback){
-            pathway.Group = [];
-            gpmlPathway.selectAll('Group').each(function() {
-              gpmlGroup = d3.select(this);
-              pathvisiojs.data.gpml.group.toRenderableJson(gpmlGroup, pathwayIri, function(jsonGroup) {
-                pathway.Group.push(jsonGroup);
-              });
-            })
-            callback(null, pathway.Group);
+          DataNode: function(callback){
+            var dataNodes = gpmlPathway.selectAll('DataNode');
+            if (dataNodes[0].length > 0) {
+              console.log('dataNodes');
+              console.log(dataNodes);
+              pathway.DataNode = [];
+              gpmlPathway.selectAll('DataNode').each(function() {
+                gpmlDataNode = d3.select(this);
+                pathvisiojs.data.gpml.dataNode.toRenderableJson(gpmlDataNode, pathwayIri, function(jsonDataNode) {
+                  pathway.DataNode.push(jsonDataNode);
+                });
+              })
+              callback(null, 'DataNodes are all converted.');
+            }
+            else {
+              callback(null, 'No dataNodes to convert.');
+            }
           },
-          DataNodeAndPort: function(callback){
-            pathway.DataNode = [];
-            gpmlPathway.selectAll('DataNode').each(function() {
-              gpmlDataNode = d3.select(this);
-              pathvisiojs.data.gpml.dataNode.toRenderableJson(gpmlDataNode, pathwayIri, function(jsonDataNode, ports) {
-                pathway.DataNode.push(jsonDataNode);
-                pathway.Port = pathway.Port.concat(ports);
-              });
-            })
-            callback(null, {'DataNode':pathway.DataNode, 'Port':pathway.Port});
+          Label: function(callback){
+            var labels = gpmlPathway.selectAll('Label');
+            if (labels[0].length > 0) {
+              console.log('labels');
+              console.log(labels);
+              pathway.Label = [];
+              gpmlPathway.selectAll('Label').each(function() {
+                gpmlLabel = d3.select(this);
+                pathvisiojs.data.gpml.label.toRenderableJson(gpmlLabel, pathwayIri, function(jsonLabel) {
+                  pathway.Label.push(jsonLabel);
+                });
+              })
+              callback(null, 'Labels are all converted.');
+            }
+            else {
+              callback(null, 'No labels to convert.');
+            }
           },
-          LabelAndPort: function(callback){
-            pathway.Label = [];
-            gpmlPathway.selectAll('Label').each(function() {
-              gpmlLabel = d3.select(this);
-              pathvisiojs.data.gpml.label.toRenderableJson(gpmlLabel, pathwayIri, function(jsonLabel, ports) {
-                pathway.Label.push(jsonLabel);
-                pathway.Port = pathway.Port.concat(ports);
-              });
-            })
-            callback(null, pathway.Label, pathway.Port);
-          },
-          ShapeAndPort: function(callback){
+          Shape: function(callback){
             var shapes = gpmlPathway.selectAll('Shape');
             if (shapes[0].length > 0) {
               console.log('shapes');
@@ -228,9 +245,8 @@ pathvisiojs.data.gpml = function(){
               pathway.Shape = [];
               gpmlPathway.selectAll('Shape').each(function() {
                 gpmlShape = d3.select(this);
-                pathvisiojs.data.gpml.shape.toRenderableJson(gpmlShape, pathwayIri, function(jsonShape, ports) {
+                pathvisiojs.data.gpml.shape.toRenderableJson(gpmlShape, pathwayIri, function(jsonShape) {
                   pathway.Shape.push(jsonShape);
-                  pathway.Port = pathway.Port.concat(ports);
                 });
               })
               callback(null, 'Shapes are all converted.');
@@ -240,14 +256,13 @@ pathvisiojs.data.gpml = function(){
             }
           },
           Interaction: function(callback){
-            var interactions, gpmlInteraction, jsonInteraction, jsonAnchorInteraction, anchor, jsonAnchor, points, jsonPoints, interactionType, target, targetId, groupRef;
+            var gpmlInteraction, jsonInteraction, jsonAnchorInteraction, anchor, jsonAnchor, points, jsonPoints, interactionType, target, targetId, groupRef;
             pathway.Interaction = [];
-            interactions = [];
             gpmlPathway.selectAll('Interaction').each(function() {
               try {
                 gpmlInteraction = d3.select(this);
                 graphId = gpmlInteraction.attr('GraphId') || ('id' + uuid.v4());
-                elementIri = pathwayIri + '#' + graphId;
+                elementIri = pathwayIri + graphId;
                 jsonInteraction = {};
                 jsonInteraction['@id'] = elementIri;
                 jsonInteraction.GraphId = graphId;
@@ -256,7 +271,7 @@ pathvisiojs.data.gpml = function(){
                 var parents = [];
                 if (!!groupRef) {
                   jsonInteraction.GroupRef = groupRef;
-                  parents.push(pathwayIri + '#' + groupRef);
+                  parents.push(pathwayIri + groupRef);
                 }
 
                 jsonInteraction.zIndex = parseFloat(gpmlInteraction.select('Graphics').attr('ZOrder'));
@@ -282,8 +297,9 @@ pathvisiojs.data.gpml = function(){
                 jsonInteraction['@type'].push(interactionType);
                 jsonInteraction.interactionType = interactionType;
 
-                jsonInteraction.InteractionGraph = {};
-                jsonInteraction.InteractionGraph['@id'] = pathwayIri + '#' + points[0][0].getAttribute('GraphRef');
+                jsonInteraction.InteractionGraph = [];
+                var InteractionGraphMember = {};
+                InteractionGraphMember['@id'] = pathwayIri + points[0][0].getAttribute('GraphRef');
 
                 targetId = points[0][points[0].length - 1].getAttribute('GraphRef');
                 if (!!targetId) {
@@ -292,8 +308,11 @@ pathvisiojs.data.gpml = function(){
                     targetId = target.parentElement.parentElement.getAttribute('GraphId');
                   }
 
-                  jsonInteraction.InteractionGraph.interactsWith = pathwayIri + '#' + targetId;
+                  InteractionGraphMember.interactsWith = pathwayIri + targetId;
+                  console.log('InteractionGraphMember');
+                  console.log(InteractionGraphMember);
                 }
+                jsonInteraction.InteractionGraph.push(InteractionGraphMember);
                 // TODO add the reaction, if it exists
                 //'ex:Anchor': pathwayIri + '#Reaction1'
 
@@ -307,9 +326,9 @@ pathvisiojs.data.gpml = function(){
                   if (!!relX && !!relY) {
                     pointObj['@type'] = 'SnappedPoint';
 
-                    parents.push(pathwayIri + '#' + point.attr('GraphRef'));
+                    parents.push(pathwayIri + point.attr('GraphRef'));
 
-                    pointObj.hasReference = pathwayIri + '#' + point.attr('GraphRef');
+                    pointObj.hasReference = pathwayIri + point.attr('GraphRef');
                     pointObj.RelX = relX;
                     pointObj.RelY = relY;
                     pointObj.x = parseFloat(point.attr('X'));
@@ -353,13 +372,11 @@ pathvisiojs.data.gpml = function(){
                   }
                 }
 
-                interactions.push(jsonInteraction);
-
                 gpmlInteraction.selectAll('Anchor').each(function() {
                   jsonAnchorInteraction = {};
                   anchor = d3.select(this);
-                  elementIri = pathwayIri + '#' + anchor.attr('GraphId');
-                  jsonAnchorInteraction['@id'] = pathwayIri + '#' + anchor.attr('GraphId');
+                  elementIri = pathwayIri + anchor.attr('GraphId');
+                  jsonAnchorInteraction['@id'] = pathwayIri + anchor.attr('GraphId');
                   jsonAnchorInteraction['@type'] = [
                     'element',
                     'Interaction',
@@ -368,35 +385,42 @@ pathvisiojs.data.gpml = function(){
                   jsonAnchorInteraction.dependsOn = jsonInteraction['@id'];
                   jsonAnchorInteraction.anchorPosition = anchor.attr('Position');
 
-                  interactions.push(jsonAnchorInteraction);
+                  jsonInteraction.push(jsonAnchorInteraction);
                 })
+                pathway.Interaction.push(jsonInteraction);
               }
               catch (e) {
                 throw new Error('Error converting Interaction to renderable json: ' + e.message);
               }
             })
-            pathway.Interaction.push(interactions);
-            callback(null, interactions);
+            callback(null, pathway.Interaction);
           }
       },
       function(err, results) {
-        var updateGroupsFrame = {};
-        results.Group.forEach(function(element) {
-          updateGroupsFrame = {
-            '@context': pathway['@context'],
-            '@type':element.GroupId
-          };
-          jsonld.frame(pathway, updateGroupsFrame, function(err, updateGroupsData) {
-            var dimensions = getGroupDimensions(element, updateGroupsData['@graph'], function(dimensions) {
-              element.x = dimensions.x;
-              element.y = dimensions.y;
-              element.width = dimensions.width;
-              element.height = dimensions.height;
+        var groups = gpmlPathway.selectAll('Group');
+        if (groups[0].length > 0) {
+          console.log('groups');
+          console.log(groups);
+          pathway.Group = [];
+          gpmlPathway.selectAll('Group').each(function() {
+            gpmlGroup = d3.select(this);
+            pathvisiojs.data.gpml.group.toRenderableJson(gpmlGroup, pathwayIri, function(jsonGroup) {
+              var dimensions = getGroupDimensions(element, jsonGroup, function(dimensions) {
+                element.x = dimensions.x;
+                element.y = dimensions.y;
+                element.width = dimensions.width;
+                element.height = dimensions.height;
+              });
+              pathway.Group.push(jsonGroup);
             });
-          });
-        });
-        self.myPathway = pathway;
-        callbackOutside(pathway);
+          })
+          self.myPathway = pathway;
+          callbackOutside(pathway);
+        }
+        else {
+          self.myPathway = pathway;
+          callbackOutside(pathway);
+        }
       });
 
 
