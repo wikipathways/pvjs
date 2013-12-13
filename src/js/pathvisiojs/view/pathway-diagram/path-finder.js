@@ -79,8 +79,6 @@ pathvisiojs.view.pathwayDiagram.pathFinder = function(){
     }
     if (!args.nodes) {
       console.warn('No nodes specified. Returning unmodified inputMatrix.');
-      console.log('args');
-      console.log(args);
       callback(args.inputMatrix);
     }
 
@@ -110,10 +108,6 @@ pathvisiojs.view.pathwayDiagram.pathFinder = function(){
   }
 
   function generateGrid(gridData, edgeGraphRefNodes, otherNodes, callback) {
-    console.log('edgeGraphRefNodes');
-    console.log(edgeGraphRefNodes);
-    console.log('gridData');
-    console.log(gridData);
     if (!gridData) {
       throw new Error('No gridData specified.');
     }
@@ -201,10 +195,7 @@ pathvisiojs.view.pathwayDiagram.pathFinder = function(){
             allNodesContainer.DataNode = allNodesContainer.DataNode.concat(node);
           });
         }
-        self.myallNodesContainer = allNodesContainer;
         jsonld.frame(allNodesContainer, portFrame, function(err, ports) {
-          console.log('ports[@graph]');
-          console.log(ports['@graph']);
           /*
           async.series([
             function(portsCallback) {
@@ -248,8 +239,6 @@ pathvisiojs.view.pathwayDiagram.pathFinder = function(){
       }
     },
     function(err, results) {
-      console.log('results');
-      console.log(results);
       var populatedMatrix = results.populatedMatrix;
       var ports = results.ports;
       var grid;
@@ -277,7 +266,6 @@ pathvisiojs.view.pathwayDiagram.pathFinder = function(){
             }
           }
         });
-        console.log('I made a grid, taking into account the ports.');
         grid = new PF.Grid(gridData.totalColumnCount, gridData.totalRowCount, populatedMatrix);
         callback(grid);
       }
@@ -414,9 +402,6 @@ pathvisiojs.view.pathwayDiagram.pathFinder = function(){
 
   function getPath(svg, edge, callbackOutside) {
     var gridData = svg[0][0].pathvisiojs.gridData;
-    console.log('edge');
-    console.log(edge);
-    self.myEdge = edge;
 
     var Point = edge.Point;
     var pointStart = Point[0];
@@ -443,24 +428,17 @@ pathvisiojs.view.pathwayDiagram.pathFinder = function(){
     var pathData = [];
     async.waterfall([
       function(callback){
-      console.log('results1');
         if (edge.edgeType === 'Interaction') {
-          console.log('results1a');
           generateGrid(gridData, edgeGraphRefNodes, null, function(grid) {
-            console.log('results1ai');
-            console.log(grid);
             callback(null, grid);
           });
         }
         else {
-            console.log('results1b');
           callback(null);
         }
       },
       function(grid, callback){
-        console.log('results 2');
         if (edge.edgeType === 'Interaction') {
-          console.log('results 2a');
           workingGrid = grid;
           /*
           console.log('workingGrid');
@@ -487,28 +465,21 @@ pathvisiojs.view.pathwayDiagram.pathFinder = function(){
                         endLocation,
                         gridData.squareLength,
                         function(data) {
-            console.log('results 2ai');
-            console.log(data);
             pathData = data;
             callback(null);
           });
         }
         else {
-          console.log('results 2b');
           callback(null);
         }
       },
       function(callback){
-        console.log('results 3');
-        console.log('pathData');
-        console.log(pathData);
 
         // graphicalLines will have pathData = [],
         // Interactions will have pathData = [startPoint, endPoint] if the nodes
         // block a real path from being found.
 
         if (pathData.length < 3) {
-          console.log('results3a');
           workingGrid = gridData.emptyGrid.clone();
           runPathFinder(workingGrid,
                         finder,
@@ -519,18 +490,12 @@ pathvisiojs.view.pathwayDiagram.pathFinder = function(){
                         endLocation,
                         gridData.squareLength,
                         function(data) {
-            console.log('results3ai');
-            console.log(data);
             pathData = data;
-            //console.log('empty');
-            //console.log(pathData);
-            //console.log(pathData.length);
             pathData.push({'x': pointEnd.x, 'y': pointEnd.y});
           callbackOutside(pathData);
           });
         }
         else {
-          console.log('results3b');
           callbackOutside(pathData);
         }
       }
@@ -560,8 +525,6 @@ pathvisiojs.view.pathwayDiagram.pathFinder = function(){
      */
 
     var blockyPath = finder.findPath(startLocation.column, startLocation.row, endLocation.column, endLocation.row, workingGrid);
-    console.log('blockyPath');
-    console.log(blockyPath);
 
     /* 
      * Get compressedMidPoint
@@ -597,8 +560,6 @@ pathvisiojs.view.pathwayDiagram.pathFinder = function(){
         'y': compressedMidPoint[index][1] * squareLength
       });
     });
-    console.log('fullXYPath');
-    console.log(fullXYPath);
 
     fullXYPath.unshift({'x': pointStart.x, 'y': pointStart.y});
     fullXYPath.push({'x': pointEnd.x, 'y': pointEnd.y});
