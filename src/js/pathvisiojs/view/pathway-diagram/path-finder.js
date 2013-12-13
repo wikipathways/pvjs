@@ -33,7 +33,7 @@ pathvisiojs.view.pathwayDiagram.pathFinder = function(){
     // TODO change the static value of 12 to be a calculated value equal to the
     // largest dimension of a marker in the diagram
 
-    gridData.padding = Math.ceil(16 / gridData.squareLength);
+    gridData.padding = Math.ceil(12 / gridData.squareLength);
     var currentRow, currentColumn;
     gridData.totalColumnCount = Math.ceil(pathwayImageWidth/gridData.squareLength);
     gridData.totalRowCount = Math.ceil(pathwayImageHeight/gridData.squareLength);
@@ -98,8 +98,8 @@ pathvisiojs.view.pathwayDiagram.pathFinder = function(){
       rowStart = Math.max((upperLeftCorner.row - args.padding), 0);
       rowEnd = Math.min((lowerRightCorner.row + args.padding), args.totalRowCount - 1);
 
-      for(currentRow=rowStart; currentRow<rowEnd + 1; currentRow++) {
-        for(currentColumn=columnStart; currentColumn<columnEnd + 1; currentColumn++) {
+      for(var currentRow=rowStart; currentRow<rowEnd + 1; currentRow++) {
+        for(var currentColumn=columnStart; currentColumn<columnEnd + 1; currentColumn++) {
           populatedMatrix[currentRow][currentColumn] = 1;
         }
       }
@@ -148,7 +148,7 @@ pathvisiojs.view.pathwayDiagram.pathFinder = function(){
 
             populateMatrix({
               'nodes':edgeGraphRefNodes,
-              'inputMatrix':gridData.entirelyWalkableMatrix,
+              'inputMatrix':pathvisiojs.utilities.clone(gridData.entirelyWalkableMatrix),
               'padding':gridData.padding,
               'squareLength':gridData.squareLength,
               'totalRowCount':gridData.totalRowCount,
@@ -246,7 +246,7 @@ pathvisiojs.view.pathwayDiagram.pathFinder = function(){
       // mark off walkable regions emanating from ports
 
       if (!!ports) {
-        var column1, column2, row1, row2, portLocation;
+        var column1, column2, row1, row2, portLocation, columnStart, columnEnd, rowStart, rowEnd;
         ports.forEach(function(port) {
           portLocation = xYCoordinatesToMatrixLocation(port.x, port.y, gridData.squareLength);
           column1 = Math.max(Math.min((portLocation.column - gridData.padding * port.dy), gridData.totalColumnCount - 1), 0);
@@ -402,12 +402,13 @@ pathvisiojs.view.pathwayDiagram.pathFinder = function(){
 
   function getPath(svg, edge, callbackOutside) {
     var gridData = svg[0][0].pathvisiojs.gridData;
+    var workingGrid;
 
     var Point = edge.Point;
     var pointStart = Point[0];
     var pointEnd = Point[Point.length - 1];
-    startLocation = xYCoordinatesToMatrixLocation(pointStart.x, pointStart.y, gridData.squareLength);
-    endLocation = xYCoordinatesToMatrixLocation(pointEnd.x, pointEnd.y, gridData.squareLength);
+    var startLocation = xYCoordinatesToMatrixLocation(pointStart.x, pointStart.y, gridData.squareLength);
+    var endLocation = xYCoordinatesToMatrixLocation(pointEnd.x, pointEnd.y, gridData.squareLength);
     var finder = new PF.BiBreadthFirstFinder({
       allowDiagonal: false,
       dontCrossCorners: true
@@ -525,6 +526,8 @@ pathvisiojs.view.pathwayDiagram.pathFinder = function(){
      */
 
     var blockyPath = finder.findPath(startLocation.column, startLocation.row, endLocation.column, endLocation.row, workingGrid);
+    console.log('blockyPath');
+    console.log(blockyPath);
 
     /* 
      * Get compressedMidPoint
@@ -563,6 +566,8 @@ pathvisiojs.view.pathwayDiagram.pathFinder = function(){
 
     fullXYPath.unshift({'x': pointStart.x, 'y': pointStart.y});
     fullXYPath.push({'x': pointEnd.x, 'y': pointEnd.y});
+    console.log('fullXYPath');
+    console.log(fullXYPath);
 
     /* 
      * Get smootherPath
