@@ -154,6 +154,14 @@ pathvisiojs.data.gpml = function(){
                 '@reverse': 'ex:hasReference',
                 '@type': '@id'
               },
+              'edge': {
+                '@type': '@id',
+                '@container':'@list',
+                'InteractionGraph': {
+                  '@type': '@id',
+                  '@container':'@list'
+                }
+              },
               /*
               'InteractionGraph': {
                 '@type': '@id',
@@ -352,78 +360,78 @@ pathvisiojs.data.gpml = function(){
                 var firstPoint = points[0][0];
                 var lastPoint = points[0][points[0].length - 1];
 
-                    buildInteractionGraph(firstPoint, lastPoint, function(InteractionGraphMember) {
-                      console.log('InteractionGraphMember1');
-                      console.log(InteractionGraphMember);
-                    });
-                    buildInteractionGraph(lastPoint, firstPoint, function(InteractionGraphMember) {
-                      console.log('InteractionGraphMember2');
-                      console.log(InteractionGraphMember);
-                    });
-
-                  // Graphical Only Data below, except maybe Anchors
-                  
-                  var point, pointObj;
-                  jsonInteraction.Point = [];
-                  points.each(function() {
-                    point = d3.select(this);
-                    pointObj = {};
-                    var relX = point.attr('RelX');
-                    var relY = point.attr('RelY');
-                    if (!!relX && !!relY) {
-                      pointObj['@type'] = 'SnappedPoint';
-
-                      parents.push(pathwayIri + point.attr('GraphRef'));
-
-                      pointObj.hasReference = pathwayIri + point.attr('GraphRef');
-                      pointObj.RelX = relX;
-                      pointObj.RelY = relY;
-                      pointObj.x = parseFloat(point.attr('X'));
-                      pointObj.y = parseFloat(point.attr('Y'));
-                    }
-                    else {
-                      pointObj['@type'] = 'GraphicalPoint';
-                      pointObj.x = {};
-                      pointObj.x = parseFloat(point.attr('X'));
-                      pointObj.y = parseFloat(point.attr('Y'));
-                    }
-                    jsonInteraction.Point.push(pointObj);
-                  })
-
-                  if (parents.length > 0) {
-                    jsonInteraction.dependsOn = parents;
-                  }
-
-                  var connectorType = gpmlInteraction.select('Graphics').attr('ConnectorType') || 'Straight';
-                  jsonInteraction['ConnectorType'] = '' + connectorType;
-
-                  var stroke = gpmlInteraction.select('Graphics').attr('Color');
-                  if (!!stroke) {
-                    jsonInteraction['stroke'] = stroke;
-                  }
-
-                  var strokeWidth = gpmlInteraction.select('Graphics').attr('LineThickness');
-                  if (!!strokeWidth) {
-                    jsonInteraction['strokeWidth'] = parseFloat(strokeWidth);
-                  }
-
-                  gpmlInteraction.selectAll('Anchor').each(function() {
-                    jsonAnchorInteraction = {};
-                    anchor = d3.select(this);
-                    elementIri = pathwayIri + anchor.attr('GraphId');
-                    jsonAnchorInteraction['@id'] = pathwayIri + anchor.attr('GraphId');
-                    jsonAnchorInteraction['@type'] = [
-                      'element',
-                      'Interaction',
-                      'Anchor'
-                    ];
-                    jsonAnchorInteraction.dependsOn = jsonInteraction['@id'];
-                    jsonAnchorInteraction.anchorPosition = anchor.attr('Position');
-
-                    jsonInteraction.push(jsonAnchorInteraction);
-                  })
-                  pathway.Interaction.push(jsonInteraction);
+                buildInteractionGraph(firstPoint, lastPoint, function(InteractionGraphMember) {
+                  console.log('InteractionGraphMember1');
+                  console.log(InteractionGraphMember);
                 });
+                buildInteractionGraph(lastPoint, firstPoint, function(InteractionGraphMember) {
+                  console.log('InteractionGraphMember2');
+                  console.log(InteractionGraphMember);
+                });
+
+                // Graphical Only Data below, except maybe Anchors
+                
+                var point, pointObj;
+                jsonInteraction.Point = [];
+                points.each(function() {
+                  point = d3.select(this);
+                  pointObj = {};
+                  var relX = point.attr('RelX');
+                  var relY = point.attr('RelY');
+                  if (!!relX && !!relY) {
+                    pointObj['@type'] = 'SnappedPoint';
+
+                    parents.push(pathwayIri + point.attr('GraphRef'));
+
+                    pointObj.hasReference = pathwayIri + point.attr('GraphRef');
+                    pointObj.RelX = relX;
+                    pointObj.RelY = relY;
+                    pointObj.x = parseFloat(point.attr('X'));
+                    pointObj.y = parseFloat(point.attr('Y'));
+                  }
+                  else {
+                    pointObj['@type'] = 'GraphicalPoint';
+                    pointObj.x = {};
+                    pointObj.x = parseFloat(point.attr('X'));
+                    pointObj.y = parseFloat(point.attr('Y'));
+                  }
+                  jsonInteraction.Point.push(pointObj);
+                })
+
+                if (parents.length > 0) {
+                  jsonInteraction.dependsOn = parents;
+                }
+
+                var connectorType = gpmlInteraction.select('Graphics').attr('ConnectorType') || 'Straight';
+                jsonInteraction['ConnectorType'] = '' + connectorType;
+
+                var stroke = gpmlInteraction.select('Graphics').attr('Color');
+                if (!!stroke) {
+                  jsonInteraction['stroke'] = stroke;
+                }
+
+                var strokeWidth = gpmlInteraction.select('Graphics').attr('LineThickness');
+                if (!!strokeWidth) {
+                  jsonInteraction['strokeWidth'] = parseFloat(strokeWidth);
+                }
+
+                gpmlInteraction.selectAll('Anchor').each(function() {
+                  jsonAnchorInteraction = {};
+                  anchor = d3.select(this);
+                  elementIri = pathwayIri + anchor.attr('GraphId');
+                  jsonAnchorInteraction['@id'] = pathwayIri + anchor.attr('GraphId');
+                  jsonAnchorInteraction['@type'] = [
+                    'element',
+                    'Interaction',
+                    'Anchor'
+                  ];
+                  jsonAnchorInteraction.dependsOn = jsonInteraction['@id'];
+                  jsonAnchorInteraction.anchorPosition = anchor.attr('Position');
+
+                  jsonInteraction.push(jsonAnchorInteraction);
+                })
+                pathway.Interaction.push(jsonInteraction);
+              });
               callback(null, pathway.Interaction);
             }
             catch (e) {
