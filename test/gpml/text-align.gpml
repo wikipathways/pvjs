@@ -14,7 +14,7 @@
     <Xref Database="" ID="" />
   </DataNode>
   <Interaction>
-    <Graphics ConnectorType="Elbow" ZOrder="12288" LineThickness="1.0">
+    <Graphics ConnectorType="Curved" ZOrder="12288" LineThickness="1.0">
       <Point X="286.1599446384265" Y="328.78443091141423" GraphRef="f8e5b" RelX="0.0" RelY="-1.0" ArrowHead="Arrow" />
       <Point X="164.42378002067278" Y="146.70475945268925" GraphRef="fe5b0" RelX="0.0" RelY="1.0" ArrowHead="Arrow" />
     </Graphics>

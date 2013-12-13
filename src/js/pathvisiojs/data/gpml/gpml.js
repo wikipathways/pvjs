@@ -213,8 +213,6 @@ pathvisiojs.data.gpml = function(){
           DataNode: function(callback){
             var dataNodes = gpmlPathway.selectAll('DataNode');
             if (dataNodes[0].length > 0) {
-              console.log('dataNodes');
-              console.log(dataNodes);
               pathway.DataNode = [];
               gpmlPathway.selectAll('DataNode').each(function() {
                 gpmlDataNode = d3.select(this);
@@ -231,8 +229,6 @@ pathvisiojs.data.gpml = function(){
           Label: function(callback){
             var labels = gpmlPathway.selectAll('Label');
             if (labels[0].length > 0) {
-              console.log('labels');
-              console.log(labels);
               pathway.Label = [];
               gpmlPathway.selectAll('Label').each(function() {
                 gpmlLabel = d3.select(this);
@@ -249,8 +245,6 @@ pathvisiojs.data.gpml = function(){
           Shape: function(callback){
             var shapes = gpmlPathway.selectAll('Shape');
             if (shapes[0].length > 0) {
-              console.log('shapes');
-              console.log(shapes);
               pathway.Shape = [];
               gpmlPathway.selectAll('Shape').each(function() {
                 gpmlShape = d3.select(this);
@@ -311,16 +305,8 @@ pathvisiojs.data.gpml = function(){
                 // Arrowheads on both ends of a single graphical Interaction would represent two semantic Interactions
 
                 function buildInteractionGraph(gpmlSource, gpmlTarget, callbackBIG) {
-                  console.log('gpmlSource');
-                  console.log(gpmlSource);
-                  console.log('gpmlTarget');
-                  console.log(gpmlTarget);
-                  console.log("gpmlTarget.getAttribute('ArrowHead')");
-                  console.log(gpmlTarget.getAttribute('ArrowHead'));
                   var InteractionGraphMember = {};
                   interactionType = gpmlArrowHeadToSemanticMappings[gpmlTarget.getAttribute('ArrowHead')];
-                  console.log('interactionType');
-                  console.log(interactionType);
                   var interactionTypeExistenceCheck;
                   if (!!interactionType) {
                     self.myInteractionGraphMember = InteractionGraphMember;
@@ -335,8 +321,6 @@ pathvisiojs.data.gpml = function(){
                       }
 
                       InteractionGraphMember.interactsWith = pathwayIri + targetId;
-                      console.log('InteractionGraphMember in function');
-                      console.log(InteractionGraphMember);
                     }
                     interactionTypeExistenceCheck = jsonInteraction['@type'].indexOf(interactionType);
                     if (interactionTypeExistenceCheck === -1) {
@@ -361,12 +345,8 @@ pathvisiojs.data.gpml = function(){
                 var lastPoint = points[0][points[0].length - 1];
 
                 buildInteractionGraph(firstPoint, lastPoint, function(InteractionGraphMember) {
-                  console.log('InteractionGraphMember1');
-                  console.log(InteractionGraphMember);
                 });
                 buildInteractionGraph(lastPoint, firstPoint, function(InteractionGraphMember) {
-                  console.log('InteractionGraphMember2');
-                  console.log(InteractionGraphMember);
                 });
 
                 // Graphical Only Data below, except maybe Anchors
@@ -442,8 +422,6 @@ pathvisiojs.data.gpml = function(){
       function(err, results) {
         var groups = gpmlPathway.selectAll('Group');
         if (groups[0].length > 0) {
-          console.log('groups');
-          console.log(groups);
           pathway.Group = [];
           gpmlPathway.selectAll('Group').each(function() {
             gpmlGroup = d3.select(this);
