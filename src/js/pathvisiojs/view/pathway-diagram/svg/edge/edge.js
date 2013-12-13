@@ -1,18 +1,12 @@
 // Edges (interactions and graphical lines)
 
 pathvisiojs.view.pathwayDiagram.svg.edge = function(){
-  function render(svg, parent, data) {
-    self.edgeData = data;
-    //console.log('parent');
-    //console.log(parent);
-    //console.log('data');
-    //console.log(data);
 
-    // defining this function inside the render function, because I don't know how else
-    // to pass the data value to a d3.call() function
-
+  var svg;
 
     function setAttributes(edge) {
+      var edgeElement = edge[0][0];
+      var data = edgeElement.__data__;
       var createPathDataString = d3.svg.line()
       .x(function(data) { return data.x; })
       .y(function(data) { return data.y; });
@@ -35,7 +29,7 @@ pathvisiojs.view.pathwayDiagram.svg.edge = function(){
           else {
             if (data.ConnectorType === 'Elbow' || data.ConnectorType === 'Curved') {
               if (data.ConnectorType === 'Elbow') {
-                if (data.RelY === '-1.0' || data.RelY === '1.0') {
+                if (Math.abs(data.Point[0].RelY) === 1) {
                   stepType = 'step-before';
                 }
                 else {
@@ -97,8 +91,6 @@ pathvisiojs.view.pathwayDiagram.svg.edge = function(){
         }
       },
       function(err, results) {
-        console.log('edge results');
-        console.log(results);
 
         //*/
 
@@ -118,18 +110,6 @@ pathvisiojs.view.pathwayDiagram.svg.edge = function(){
           }
           return styleClass;
         })
-        .attr('transform', function() {
-          var parentElement = {}
-          if (parent[0][0].hasOwnProperty('__data__')) {
-            parentElement.x = (parent[0][0].__data__.x);
-            parentElement.y = (parent[0][0].__data__.y);
-          }
-          else {
-            parentElement.x = 0;
-            parentElement.y = 0;
-          }
-          return 'translate(' + (-1*parentElement.x) + ' ' + (-1*parentElement.y) + ')';
-        })
         .attr("style", function (data) {
           var style = 'stroke-width:' + data.strokeWidth + '; ';
           if (data.hasOwnProperty('stroke')) {
@@ -142,30 +122,6 @@ pathvisiojs.view.pathwayDiagram.svg.edge = function(){
           }
           return style;
         })
-        /*
-        .attr("marker-start", function () {
-          var markerStart = pathvisiojs.view.pathwayDiagram.svg.edge.marker.render(viewport, edge.markerStart, 'start', edge.stroke);
-          if (edge.hasOwnProperty('strokeStyle')) {
-            if (edge.strokeStyle === 'double') {
-              //hack to manage marker scaling; this marker should not have any features itself
-              markerStart = 'double-line-hack-start';
-            }
-          }
-          return 'url(#' + markerStart + ')';
-        })
-        .attr("marker-end", function (data) {
-          // TODO don't redefine svg
-          var svg = d3.select('#svg');
-          var markerEnd = pathvisiojs.view.pathwayDiagram.svg.edge.marker.render(svg, strcase.paramCase(data.interactionType), 'end', data.stroke);
-          if (edge.hasOwnProperty('strokeStyle')) {
-            if (edge.strokeStyle === 'double') {
-              //hack to manage marker scaling; this marker should not have any features itself
-              markerEnd = 'double-line-hack-end';
-            }
-          }
-          return 'url(#' + markerEnd + ')';
-        })
-        //*/
         .attr("fill", 'none')
 
         // this attr needs to be last, because of the confusion over the meaning of 'd' as 1) the data for the d3 selection and 2) the path data.
@@ -197,17 +153,70 @@ pathvisiojs.view.pathwayDiagram.svg.edge = function(){
 
           return createPathDataString(results.fullPointSetAndStepType.fullPointSet);
         });
+
+
+        /*
+        if () {
+        }
+
+        .attr("marker-start", function () {
+          var markerStart = pathvisiojs.view.pathwayDiagram.svg.edge.marker.render(viewport, edge.markerStart, 'start', edge.stroke);
+          if (edge.hasOwnProperty('strokeStyle')) {
+            if (edge.strokeStyle === 'double') {
+              //hack to manage marker scaling; this marker should not have any features itself
+              markerStart = 'double-line-hack-start';
+            }
+          }
+          return 'url(#' + markerStart + ')';
+        })
+        .attr("marker-end", function (data) {
+          // TODO don't redefine svg
+          var svg = d3.select('#svg');
+          var markerEnd = pathvisiojs.view.pathwayDiagram.svg.edge.marker.render(svg, strcase.paramCase(data.interactionType), 'end', data.stroke);
+          if (edge.hasOwnProperty('strokeStyle')) {
+            if (edge.strokeStyle === 'double') {
+              //hack to manage marker scaling; this marker should not have any features itself
+              markerEnd = 'double-line-hack-end';
+            }
+          }
+          return 'url(#' + markerEnd + ')';
+        })
+        //*/
+
       });
     }
 
-    var edge = parent.selectAll('#' + strcase.paramCase(data.GraphId))
+
+  function render(thisSvg, container, data) {
+    svg = thisSvg;
+    //console.log('container');
+    //console.log(container);
+    //console.log('data');
+    //console.log(data);
+
+    // defining this function inside the render function, because I don't know how else
+    // to pass the data value to a d3.call() function
+
+
+
+    var edge = container.selectAll('#' + strcase.paramCase(data.GraphId))
     .data([data])
     .enter().append("path")
     .call(setAttributes);
 
+    var containerElement = container[0][0];
+    var containerElementX, containerElementY;
+    if (containerElement.hasOwnProperty('__data__')) {
+      edge.attr('transform', function() {
+        containerElementX = containerElement.__data__.x || 0;
+        containerElementY = containerElement.__data__.y || 0;
+        return 'translate(' + (-1*containerElementX) + ' ' + (-1*containerElementY) + ')';
+      })
+    }
+
     /*
     // Update…
-    var edge = parent.selectAll('#' + strcase.paramCase(data.GraphId))
+    var edge = container.selectAll('#' + strcase.paramCase(data.GraphId))
     .data([data])
     .call(setAttributes);
 
