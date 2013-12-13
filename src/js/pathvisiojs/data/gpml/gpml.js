@@ -154,23 +154,22 @@ pathvisiojs.data.gpml = function(){
                 '@reverse': 'ex:hasReference',
                 '@type': '@id'
               },
-              //*
-              'interactionGraph': {
-                '@type': '@id',
-                '@container': '@list'
-              },
-              //*/
               /*
-               * Defining this as shown below works. It ensures interactionGraph is an array.
-              'interactionGraph': {
+              'InteractionGraph': {
+                '@type': '@id',
+                '@container':'@list'
+              },
+              /*
+               * Defining this as shown below works. It ensures InteractionGraph is an array.
+              'InteractionGraph': {
                 '@type': '@id',
                 '@container':'@list'
               },
               //*/
               /*
                * Defining this as shown below makes it so the members are not included. I don't know why.
-              'interactionGraph': {
-                '@id': 'ex:interactionGraph',
+              'InteractionGraph': {
+                '@id': 'ex:InteractionGraph',
                 '@type': '@id'
               },
               //*/
@@ -179,7 +178,8 @@ pathvisiojs.data.gpml = function(){
                 '@type': '@id',
               },
               'Interaction': {
-                '@id': 'biopax:Interaction'
+                '@id': 'biopax:Interaction',
+                '@type': '@id'
               },
               'Point': {
                 '@id': 'gpml:Point',
@@ -259,8 +259,8 @@ pathvisiojs.data.gpml = function(){
           Interaction: function(callback){
             var gpmlInteraction, jsonInteraction, jsonAnchorInteraction, anchor, jsonAnchor, points, jsonPoints, interactionType, target, targetId, groupRef;
             pathway.Interaction = [];
-            gpmlPathway.selectAll('Interaction').each(function() {
-              try {
+            try {
+              gpmlPathway.selectAll('Interaction').each(function() {
                 gpmlInteraction = d3.select(this);
                 graphId = gpmlInteraction.attr('GraphId') || ('id' + uuid.v4());
                 elementIri = pathwayIri + graphId;
@@ -309,15 +309,16 @@ pathvisiojs.data.gpml = function(){
                   console.log(gpmlTarget);
                   console.log("gpmlTarget.getAttribute('ArrowHead')");
                   console.log(gpmlTarget.getAttribute('ArrowHead'));
-                  var interactionGraphMember = {};
-                  interactionGraphMember.interactionType = gpmlArrowHeadToSemanticMappings[gpmlTarget.getAttribute('ArrowHead')];
-                  console.log('interactionGraphMember.interactionType');
-                  console.log(interactionGraphMember.interactionType);
-                  self.myinteractionGraphMember = interactionGraphMember.interactionType;
-                  if (!!interactionGraphMember.interactionType) {
-                    jsonInteraction.interactionGraph = jsonInteraction.interactionGraph || [];
+                  var InteractionGraphMember = {};
+                  interactionType = gpmlArrowHeadToSemanticMappings[gpmlTarget.getAttribute('ArrowHead')];
+                  console.log('interactionType');
+                  console.log(interactionType);
+                  var interactionTypeExistenceCheck;
+                  if (!!interactionType) {
+                    self.myInteractionGraphMember = InteractionGraphMember;
+                    jsonInteraction.InteractionGraph = jsonInteraction.InteractionGraph || [];
 
-                    interactionGraphMember['@id'] = pathwayIri + gpmlSource.getAttribute('GraphRef');
+                    InteractionGraphMember['@id'] = pathwayIri + gpmlSource.getAttribute('GraphRef');
                     targetId = gpmlTarget.getAttribute('GraphRef');
                     if (!!targetId) {
                       target = gpml.querySelector('[GraphId=' + targetId + ']');
@@ -325,17 +326,23 @@ pathvisiojs.data.gpml = function(){
                         targetId = target.parentElement.parentElement.getAttribute('GraphId');
                       }
 
-                      interactionGraphMember.interactsWith = pathwayIri + targetId;
-                      console.log('interactionGraphMember');
-                      console.log(interactionGraphMember);
+                      InteractionGraphMember.interactsWith = pathwayIri + targetId;
+                      console.log('InteractionGraphMember in function');
+                      console.log(InteractionGraphMember);
                     }
-                    interactionGraphMember['@type'] = [];
-                    interactionGraphMember['@type'].push(interactionGraphMember.interactionType);
-                    jsonInteraction.interactionGraph.push(interactionGraphMember);
+                    interactionTypeExistenceCheck = jsonInteraction['@type'].indexOf(interactionType);
+                    if (interactionTypeExistenceCheck === -1) {
+                      jsonInteraction['@type'].push(interactionType);
+                    }
+                    else {
+                      //jsonInteraction['@type'][interactionTypeExistenceCheck] = 'Bidirectional-' + interactionType;
+                      jsonInteraction['@type'].push('Bidirectional-' + interactionType);
+                    }
+                    jsonInteraction.InteractionGraph.push(InteractionGraphMember);
                     // TODO add the reaction, if it exists
                     //'ex:Anchor': pathwayIri + '#Reaction1'
 
-                    callbackBIG(interactionGraphMember);
+                    callbackBIG(InteractionGraphMember);
                   }
                   else {
                     callbackBIG(null);
@@ -345,23 +352,14 @@ pathvisiojs.data.gpml = function(){
                 var firstPoint = points[0][0];
                 var lastPoint = points[0][points[0].length - 1];
 
-                async.series([
-                  function(interactionTypeCallback) {
-                    buildInteractionGraph(firstPoint, lastPoint, function(interactionGraphMember) {
-                      console.log('interactionGraphMember');
-                      console.log(interactionGraphMember);
-                      interactionTypeCallback(null, 'success 1')
+                    buildInteractionGraph(firstPoint, lastPoint, function(InteractionGraphMember) {
+                      console.log('InteractionGraphMember1');
+                      console.log(InteractionGraphMember);
                     });
-                  },
-                  function(interactionTypeCallback) {
-                    buildInteractionGraph(lastPoint, firstPoint, function(interactionGraphMember) {
-                      console.log('interactionGraphMember');
-                      console.log(interactionGraphMember);
-                      interactionTypeCallback(null, 'success 2')
+                    buildInteractionGraph(lastPoint, firstPoint, function(InteractionGraphMember) {
+                      console.log('InteractionGraphMember2');
+                      console.log(InteractionGraphMember);
                     });
-                  }
-                ],
-                function(err, results) {
 
                   // Graphical Only Data below, except maybe Anchors
                   
@@ -425,14 +423,12 @@ pathvisiojs.data.gpml = function(){
                     jsonInteraction.push(jsonAnchorInteraction);
                   })
                   pathway.Interaction.push(jsonInteraction);
-                  callback(null, pathway.Interaction);
                 });
-              }
-              catch (e) {
-                callback(e);
-                throw new Error('Error converting Interaction to renderable json: ' + e.message);
-              }
-            })
+              callback(null, pathway.Interaction);
+            }
+            catch (e) {
+              throw new Error('Error converting Interaction to renderable json: ' + e.message);
+            }
           }
       },
       function(err, results) {
