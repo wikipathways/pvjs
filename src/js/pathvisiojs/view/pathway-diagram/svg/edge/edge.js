@@ -2,6 +2,7 @@
 
 pathvisiojs.view.pathwayDiagram.svg.edge = function(){
   function render(svg, parent, data) {
+    self.edgeData = data;
     //console.log('parent');
     //console.log(parent);
     //console.log('data');
@@ -9,6 +10,7 @@ pathvisiojs.view.pathwayDiagram.svg.edge = function(){
 
     // defining this function inside the render function, because I don't know how else
     // to pass the data value to a d3.call() function
+
 
     function setAttributes(edge) {
       var createPathDataString = d3.svg.line()
@@ -95,6 +97,8 @@ pathvisiojs.view.pathwayDiagram.svg.edge = function(){
         }
       },
       function(err, results) {
+        console.log('edge results');
+        console.log(results);
 
         //*/
 
@@ -149,7 +153,6 @@ pathvisiojs.view.pathwayDiagram.svg.edge = function(){
           }
           return 'url(#' + markerStart + ')';
         })
-        //*/
         .attr("marker-end", function (data) {
           // TODO don't redefine svg
           var svg = d3.select('#svg');
@@ -162,6 +165,7 @@ pathvisiojs.view.pathwayDiagram.svg.edge = function(){
           }
           return 'url(#' + markerEnd + ')';
         })
+        //*/
         .attr("fill", 'none')
 
         // this attr needs to be last, because of the confusion over the meaning of 'd' as 1) the data for the d3 selection and 2) the path data.
