@@ -356,8 +356,8 @@ pathvisiojs.data.gpml = function(){
                 points.each(function() {
                   point = d3.select(this);
                   pointObj = {};
-                  var relX = point.attr('RelX');
-                  var relY = point.attr('RelY');
+                  var relX = parseFloat(point.attr('RelX'));
+                  var relY = parseFloat(point.attr('RelY'));
                   if (!!relX && !!relY) {
                     pointObj['@type'] = 'SnappedPoint';
 
