@@ -358,7 +358,7 @@ pathvisiojs.data.gpml = function(){
                   pointObj = {};
                   var relX = parseFloat(point.attr('RelX'));
                   var relY = parseFloat(point.attr('RelY'));
-                  if (!!relX && !!relY) {
+                  if ((relX !== null && relX !== undefined) && (relY !== null && relY !== undefined)) {
                     pointObj['@type'] = 'SnappedPoint';
 
                     parents.push(pathwayIri + point.attr('GraphRef'));
