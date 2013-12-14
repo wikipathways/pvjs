@@ -526,8 +526,8 @@ pathvisiojs.view.pathwayDiagram.pathFinder = function(){
      */
 
     var blockyPath = finder.findPath(startLocation.column, startLocation.row, endLocation.column, endLocation.row, workingGrid);
-    console.log('blockyPath');
-    console.log(blockyPath);
+    //console.log('blockyPath');
+    //console.log(blockyPath);
 
     /* 
      * Get compressedMidPoint
@@ -566,8 +566,8 @@ pathvisiojs.view.pathwayDiagram.pathFinder = function(){
 
     fullXYPath.unshift({'x': pointStart.x, 'y': pointStart.y});
     fullXYPath.push({'x': pointEnd.x, 'y': pointEnd.y});
-    console.log('fullXYPath');
-    console.log(fullXYPath);
+    //console.log('fullXYPath');
+    //console.log(fullXYPath);
 
     /* 
      * Get smootherPath

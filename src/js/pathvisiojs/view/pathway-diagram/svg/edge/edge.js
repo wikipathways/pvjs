@@ -19,7 +19,7 @@ pathvisiojs.view.pathwayDiagram.svg.edge = function(){
           // in GPML, some points are implied, such as for many curves and elbows with only two points.
           // This code below fills in the implied points, returning the full set of points.
 
-          var stepType, index, horizontal,
+          var stepType, index, firstSegmentHorizontal, currentSegmentHorizontal,
           fullPointSet = [];
 
           if ((!data.ConnectorType) || (data.ConnectorType === undefined) || (data.ConnectorType === 'Straight') || (data.ConnectorType === 'Segmented')) {
@@ -28,12 +28,23 @@ pathvisiojs.view.pathwayDiagram.svg.edge = function(){
           }
           else {
             if (data.ConnectorType === 'Elbow' || data.ConnectorType === 'Curved') {
+              self.h = data.Point[0].RelX;
+              if (Math.abs(data.Point[0].RelX) === 1) {
+                firstSegmentHorizontal = true;
+              }
+              else {
+                firstSegmentHorizontal = false;
+              }
+
               if (data.ConnectorType === 'Elbow') {
-                if (Math.abs(data.Point[0].RelY) === 1) {
-                  stepType = 'step-before';
+                if (firstSegmentHorizontal) {
+
+                  // step-after - alternate between horizontal and vertical segments, as in a step function.
+
+                  stepType = 'step-after';
                 }
                 else {
-                  stepType = 'step-after';
+                  stepType = 'step-before';
                 }
               }
               else {
@@ -48,20 +59,21 @@ pathvisiojs.view.pathwayDiagram.svg.edge = function(){
                 });
               }
               else {
-                if (Math.abs(data.Point[0].RelX) === 1) {
-                  horizontal = true;
-                }
-                else {
-                  horizontal = false;
-                }
 
                 fullPointSet.push(data.Point[0]);
 
+                currentSegmentHorizontal = firstSegmentHorizontal;
                 index = 0;
                 do {
                   index += 1;
+                  console.log('firstSegmentHorizontal');
+                  console.log(firstSegmentHorizontal);
+                  console.log('currentSegmentHorizontal');
+                  console.log(currentSegmentHorizontal);
+                  console.log('fullPointSet');
+                  console.log(fullPointSet);
 
-                  if (horizontal) {
+                  if (currentSegmentHorizontal) {
                     fullPointSet.push({
                       'x':data.Point[index].x,
                       'y':data.Point[index - 1].y
@@ -74,10 +86,11 @@ pathvisiojs.view.pathwayDiagram.svg.edge = function(){
                     });
                   }
 
-                  horizontal = !horizontal;
+                  currentSegmentHorizontal = !currentSegmentHorizontal;
 
                 } while (index < data.Point.length - 1);
 
+                console.log('last');
                 fullPointSet.push(data.Point[data.Point.length - 1]);
                 callback(null, {'fullPointSet': fullPointSet, 'stepType': stepType});
               }
