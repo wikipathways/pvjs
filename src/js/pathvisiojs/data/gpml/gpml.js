@@ -138,20 +138,12 @@ pathvisiojs.data.gpml = function(){
                 '@id': 'ex:pathwayElements/',
                 '@container': '@list'
               },
-              'dependencies': {
-                '@id': 'ex:dependencies',
+              'contains': {
+                '@id': 'ex:contains',
                 '@type': '@id'
               },
-              'dependsOn': {
-                '@reverse': 'ex:dependencies',
-                '@type': '@id'
-              },
-              'hasReference': {
-                '@id': 'ex:hasReference',
-                '@type': '@id'
-              },
-              'isReferredToBy': {
-                '@reverse': 'ex:hasReference',
+              'isContainedBy': {
+                '@reverse': 'ex:contains',
                 '@type': '@id'
               },
               'edge': {
@@ -270,11 +262,11 @@ pathvisiojs.data.gpml = function(){
                 jsonInteraction['@id'] = elementIri;
                 jsonInteraction.GraphId = graphId;
 
-                groupRef = gpmlInteraction.attr('GroupRef');
-                var parents = [];
-                if (!!groupRef) {
-                  jsonInteraction.GroupRef = groupRef;
-                  parents.push(pathwayIri + groupRef);
+                var isContainedBy = gpmlInteraction.attr('GroupRef');
+                var dependsOn = [];
+                if (!!isContainedBy) {
+                  jsonInteraction.isContainedBy = isContainedBy;
+                  dependsOn.push(pathwayIri + isContainedBy);
                 }
 
                 jsonInteraction.zIndex = parseFloat(gpmlInteraction.select('Graphics').attr('ZOrder'));
@@ -287,7 +279,7 @@ pathvisiojs.data.gpml = function(){
                   'SvgPath',
                   'Interaction',
                   edgeType,
-                  groupRef || 'notGrouped'
+                  isContainedBy || 'notGrouped'
                 ];
 
                 var database, ID, 
@@ -361,7 +353,7 @@ pathvisiojs.data.gpml = function(){
                   if ((relX !== null && relX !== undefined) && (relY !== null && relY !== undefined)) {
                     pointObj['@type'] = 'SnappedPoint';
 
-                    parents.push(pathwayIri + point.attr('GraphRef'));
+                    dependsOn.push(pathwayIri + point.attr('GraphRef'));
 
                     pointObj.hasReference = pathwayIri + point.attr('GraphRef');
                     pointObj.RelX = relX;
@@ -378,10 +370,6 @@ pathvisiojs.data.gpml = function(){
                   jsonInteraction.Point.push(pointObj);
                 })
 
-                if (parents.length > 0) {
-                  jsonInteraction.dependsOn = parents;
-                }
-
                 var connectorType = gpmlInteraction.select('Graphics').attr('ConnectorType') || 'Straight';
                 jsonInteraction['ConnectorType'] = '' + connectorType;
 
@@ -395,21 +383,25 @@ pathvisiojs.data.gpml = function(){
                   jsonInteraction['strokeWidth'] = parseFloat(strokeWidth);
                 }
 
-                gpmlInteraction.selectAll('Anchor').each(function() {
-                  jsonAnchorInteraction = {};
-                  anchor = d3.select(this);
-                  elementIri = pathwayIri + anchor.attr('GraphId');
-                  jsonAnchorInteraction['@id'] = pathwayIri + anchor.attr('GraphId');
-                  jsonAnchorInteraction['@type'] = [
-                    'element',
-                    'Interaction',
-                    'Anchor'
-                  ];
-                  jsonAnchorInteraction.dependsOn = jsonInteraction['@id'];
-                  jsonAnchorInteraction.anchorPosition = anchor.attr('Position');
+                var jsonAnchorInteractions = gpmlInteraction.selectAll('Anchor');
+                if (jsonAnchorInteractions[0].length > 0) {
+                  jsonInteraction.Anchor = [];
+                  jsonAnchorInteractions.each(function() {
+                    jsonAnchorInteraction = {};
+                    anchor = d3.select(this);
+                    elementIri = pathwayIri + anchor.attr('GraphId');
+                    jsonAnchorInteraction['@id'] = pathwayIri + anchor.attr('GraphId');
+                    jsonAnchorInteraction['@type'] = [
+                      'element',
+                      'Interaction',
+                      'Anchor'
+                    ];
+                    jsonAnchorInteraction.dependsOn = jsonInteraction['@id'];
+                    jsonAnchorInteraction.anchorPosition = anchor.attr('Position');
+                    jsonInteraction.Anchor.push(jsonAnchorInteraction);
+                  })
+                }
 
-                  jsonInteraction.push(jsonAnchorInteraction);
-                })
                 pathway.Interaction.push(jsonInteraction);
               });
               callback(null, pathway.Interaction);
@@ -420,23 +412,35 @@ pathvisiojs.data.gpml = function(){
           }
       },
       function(err, results) {
-        var groups = gpmlPathway.selectAll('Group');
+        var groupsFrame, groups = gpmlPathway.selectAll('Group');
         if (groups[0].length > 0) {
           pathway.Group = [];
           gpmlPathway.selectAll('Group').each(function() {
+
+
             gpmlGroup = d3.select(this);
             pathvisiojs.data.gpml.group.toRenderableJson(gpmlGroup, pathwayIri, function(jsonGroup) {
-              var dimensions = getGroupDimensions(element, jsonGroup, function(dimensions) {
-                element.x = dimensions.x;
-                element.y = dimensions.y;
-                element.width = dimensions.width;
-                element.height = dimensions.height;
+              var groupsFrame = {
+                '@context': pathvisiojs.context,
+                '@type': jsonGroup.GroupId
+              };  
+              jsonld.frame(pathway, groupsFrame, function(err, elementsInGroup) {
+                console.log('elementsInGroup');
+                console.log(elementsInGroup);
+                //*
+                var dimensions = getGroupDimensions(jsonGroup, elementsInGroup['@graph'], function(dimensions) {
+                  jsonGroup.x = dimensions.x;
+                  jsonGroup.y = dimensions.y;
+                  jsonGroup.width = dimensions.width;
+                  jsonGroup.height = dimensions.height;
+                });
+                pathway.Group.push(jsonGroup);
+                self.myPathway = pathway;
+                callbackOutside(pathway);
+                //*/
               });
-              pathway.Group.push(jsonGroup);
             });
           })
-          self.myPathway = pathway;
-          callbackOutside(pathway);
         }
         else {
           self.myPathway = pathway;

@@ -8,7 +8,6 @@ pathvisiojs.data.gpml.node = function(){
 
   function toRenderableJson(gpmlNode, jsonNode, callback) {
     try {
-
       var comments = gpmlNode.selectAll('Comment');
       if (comments[0].length > 0) {
         jsonNode.comments = [];
