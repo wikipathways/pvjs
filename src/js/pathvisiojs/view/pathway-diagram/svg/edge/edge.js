@@ -66,12 +66,6 @@ pathvisiojs.view.pathwayDiagram.svg.edge = function(){
                 index = 0;
                 do {
                   index += 1;
-                  console.log('firstSegmentHorizontal');
-                  console.log(firstSegmentHorizontal);
-                  console.log('currentSegmentHorizontal');
-                  console.log(currentSegmentHorizontal);
-                  console.log('fullPointSet');
-                  console.log(fullPointSet);
 
                   if (currentSegmentHorizontal) {
                     fullPointSet.push({
@@ -90,7 +84,6 @@ pathvisiojs.view.pathwayDiagram.svg.edge = function(){
 
                 } while (index < data.Point.length - 1);
 
-                console.log('last');
                 fullPointSet.push(data.Point[data.Point.length - 1]);
                 callback(null, {'fullPointSet': fullPointSet, 'stepType': stepType});
               }

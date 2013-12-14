@@ -197,6 +197,7 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
               };
               jsonld.frame(args.pathway, groupedElementsFrame, function(err, groupedElementsData) {
                 var nodeEntityArgs = {};
+                nodeEntityArgs.svg = args.svg;
                 nodeEntityArgs.target = groupContainer;
                 nodeEntityArgs.data = groupedElementsData['@graph'];
                 nodeEntityArgs.allSymbolNames = args.allSymbolNames;
@@ -282,7 +283,6 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
       },
       //*/
       'gridData': function(callbackInside) {
-        pathvisioNS.grid = {};
         var frame = {
           '@context': pathvisiojs.context,
           '@type': 'entityNode'
@@ -309,7 +309,7 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
       args.target = args.svg.select('#viewport');
       args.data = results.firstOrderData;
       quickRenderMultipleElements(args, function() {
-        callback(svg);
+        callback(args.svg);
       });
 
       //pathvisiojs.view.pathwayDiagram.svg.grid.render(args.svg);
