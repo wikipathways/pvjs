@@ -1,35 +1,42 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Pathway xmlns="http://pathvisio.org/GPML/2013a" Name="elbows" Version="20130813" Organism="Anopheles gambiae">
-  <Graphics BoardWidth="901.758572357429" BoardHeight="752.5254165670315" />
-  <DataNode TextLabel="right" GraphId="f8e5b" Type="Metabolite">
-    <Graphics CenterX="411.8789257394947" CenterY="145.4410877794915" Width="88.13693270735519" Height="63.88028169014086" ZOrder="32768" FontSize="10" Valign="Middle" Align="Right" Color="0000ff" />
+  <Graphics BoardWidth="670.7434935002085" BoardHeight="388.4202682563339" />
+  <DataNode TextLabel="right" GraphId="f8e5b" Type="Metabolite" GroupRef="b5b11">
+    <Graphics CenterX="315.9439663899013" CenterY="127.5549089177029" Width="88.13693270735519" Height="63.88028169014086" ZOrder="32768" FontSize="10" Valign="Middle" Align="Right" Color="0000ff" />
     <Xref Database="" ID="" />
   </DataNode>
   <DataNode TextLabel="left" GraphId="fe5b0" Type="Metabolite">
-    <Graphics CenterX="164.42378002067278" CenterY="114.76461860761883" Width="73.46475509725681" Height="63.88028169014086" ZOrder="32769" FontSize="10" Valign="Middle" Align="Left" Color="0000ff" />
+    <BiopaxRef>d5e</BiopaxRef>
+    <Graphics CenterX="604.0111159515801" CenterY="275.4333716346564" Width="73.46475509725681" Height="63.88028169014086" ZOrder="32769" FontSize="10" Valign="Middle" Align="Left" Color="0000ff" />
     <Xref Database="" ID="" />
   </DataNode>
-  <DataNode TextLabel="center" GraphId="b4bd1" Type="Metabolite">
-    <Graphics CenterX="636.1162680868315" CenterY="134.50741824101192" Width="88.13693270735519" Height="63.88028169014086" ZOrder="32770" FontSize="10" Valign="Middle" Color="0000ff" />
+  <DataNode TextLabel="center" GraphId="b4bd1" Type="Metabolite" GroupRef="b5b11">
+    <Graphics CenterX="540.1813087372373" CenterY="116.62123937922331" Width="88.13693270735519" Height="63.88028169014086" ZOrder="32770" FontSize="10" Valign="Middle" Color="0000ff" />
     <Xref Database="" ID="" />
   </DataNode>
-  <DataNode TextLabel="44" GraphId="c98f4" Type="GeneProduct">
-    <Graphics CenterX="376.4961214153217" CenterY="470.2346676683531" Width="80.0" Height="20.0" ZOrder="33081" FontSize="10" Valign="Middle" />
+  <DataNode TextLabel="left" GraphId="d15a7" Type="Metabolite">
+    <Graphics CenterX="392.59938856513367" CenterY="285.2180917371229" Width="73.46475509725681" Height="63.88028169014086" ZOrder="32771" FontSize="10" Valign="Middle" Align="Left" Color="0000ff" />
     <Xref Database="" ID="" />
   </DataNode>
-  <DataNode TextLabel="45" GraphId="bf715" Type="GeneProduct">
-    <Graphics CenterX="140.29678744970954" CenterY="359.63805403795357" Width="80.0" Height="20.0" ZOrder="33082" FontSize="10" Valign="Middle" />
-    <Xref Database="" ID="" />
-  </DataNode>
-  <Interaction GraphId="ef932">
-    <Graphics ConnectorType="Elbow" ZOrder="33080" LineThickness="1.0">
-      <Point X="180.29678744970954" Y="359.63805403795357" GraphRef="bf715" RelX="1.0" RelY="0.0" ArrowHead="TBar" />
-      <Point X="233.54984225282757" Y="414.93636085315336" />
-      <Point X="336.4961214153217" Y="470.2346676683531" GraphRef="c98f4" RelX="-1.0" RelY="0.0" ArrowHead="Arrow" />
+  <Interaction>
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="429.3317661137621" Y="285.2180917371229" GraphRef="d15a7" RelX="1.0" RelY="0.0" ArrowHead="mim-transcription-translation" />
+      <Point X="567.2787384029517" Y="275.4333716346564" GraphRef="fe5b0" RelX="-1.0" RelY="0.0" ArrowHead="mim-transcription-translation" />
     </Graphics>
     <Xref Database="" ID="" />
   </Interaction>
+  <Group GroupId="b5b11" Style="Complex" />
   <InfoBox CenterX="0.0" CenterY="0.0" />
-  <Biopax />
+  <Biopax>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="d5e">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">12354</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Increased uptake of an anionic drug by mucous membrane, upon formation of ion-association species with quaternary ammonium salts [proceedings].</bp:TITLE>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">J Pharm Pharmacol</bp:SOURCE>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1976</bp:YEAR>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Tomlinson E</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Davis SS</bp:AUTHORS>
+    </bp:PublicationXref>
+  </Biopax>
 </Pathway>
 
