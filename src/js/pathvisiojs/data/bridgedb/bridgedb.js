@@ -17,7 +17,7 @@ pathvisiojs.data.bridgedb = function(){
           listItem.priority = currentDataSourceRow.priority;
           if (currentDataSourceRow.hasOwnProperty('linkoutPattern')) {
             if (currentDataSourceRow.linkoutPattern !== "" && currentDataSourceRow.linkoutPattern !== null) {
-              listItem.uri = currentDataSourceRow.linkoutPattern.replace('$id', id);
+              listItem.uri = currentDataSourceRow.linkoutPattern.replace('$id', listItem.text);
             }
           }
           return listItem;
