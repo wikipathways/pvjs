@@ -313,6 +313,7 @@ pathvisiojs.data.gpml = function(){
                       }
 
                       InteractionGraphMember.interactsWith = pathwayIri + targetId;
+                      InteractionGraphMember.interactionType = interactionType;
                     }
                     interactionTypeExistenceCheck = jsonInteraction['@type'].indexOf(interactionType);
                     if (interactionTypeExistenceCheck === -1) {
@@ -343,6 +344,20 @@ pathvisiojs.data.gpml = function(){
 
                 // Graphical Only Data below, except maybe Anchors
                 
+                if (!!firstPoint.getAttribute('ArrowHead')) {
+                  jsonInteraction.markerStart = strcase.paramCase(firstPoint.getAttribute('ArrowHead'));
+                }
+                else {
+                  jsonInteraction.markerStart = 'none';
+                }
+
+                if (!!lastPoint.getAttribute('ArrowHead')) {
+                  jsonInteraction.markerEnd = strcase.paramCase(lastPoint.getAttribute('ArrowHead'));
+                }
+                else {
+                  jsonInteraction.markerStart = 'none';
+                }
+
                 var point, pointObj;
                 jsonInteraction.Point = [];
                 points.each(function() {
@@ -367,8 +382,17 @@ pathvisiojs.data.gpml = function(){
                     pointObj.x = parseFloat(point.attr('X'));
                     pointObj.y = parseFloat(point.attr('Y'));
                   }
+
                   jsonInteraction.Point.push(pointObj);
                 })
+
+                /*
+                if (!!firstPoint.attr('ArrowHead')) {
+                  jsonInteraction.Point[0].interactionType
+                }
+                else {
+                }
+                //*/
 
                 var connectorType = gpmlInteraction.select('Graphics').attr('ConnectorType') || 'Straight';
                 jsonInteraction['ConnectorType'] = '' + connectorType;
