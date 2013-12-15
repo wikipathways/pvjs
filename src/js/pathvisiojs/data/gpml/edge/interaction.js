@@ -37,10 +37,11 @@ pathvisiojs.data.gpml.edge.interaction = function(){
       pathvisiojs.data.gpml.edge.toRenderableJson(gpmlInteraction, pathwayIri, function(jsonInteraction) {
         //console.log('jsonInteraction');
         //console.log(jsonInteraction);
-        var edgeType = 'interaction';
+
+        jsonInteraction['@type'].push('Interaction');
         jsonInteraction.edgeType = 'Interaction';
+
         points = gpmlInteraction.selectAll('Point');
-        jsonInteraction['@type'].push(edgeType);
 
         var database, ID, 
         datasourceReference = gpmlInteraction.select('Xref');
