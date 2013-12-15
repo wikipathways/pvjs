@@ -129,9 +129,9 @@ function loadExtJsCss(callbackOutside) {
       srcDirectoryUrl + 'js/pathvisiojs/data/gpml/group.js',
       srcDirectoryUrl + 'js/pathvisiojs/data/gpml/node.js',
       srcDirectoryUrl + 'js/pathvisiojs/data/gpml/anchor.js',
-      srcDirectoryUrl + 'js/pathvisiojs/data/gpml/interaction.js',
-      srcDirectoryUrl + 'js/pathvisiojs/data/gpml/graphical-line.js',
       srcDirectoryUrl + 'js/pathvisiojs/data/gpml/edge/edge.js',
+      srcDirectoryUrl + 'js/pathvisiojs/data/gpml/edge/interaction.js',
+      srcDirectoryUrl + 'js/pathvisiojs/data/gpml/edge/graphical-line.js',
       srcDirectoryUrl + 'js/pathvisiojs/data/gpml/edge/point.js',
       srcDirectoryUrl + 'js/pathvisiojs/view/view.js',
       srcDirectoryUrl + 'js/pathvisiojs/view/annotation/annotation.js',
@@ -198,25 +198,25 @@ window.onload = function() {
     });
   }],
   function(err) {
-    var customShapes = [
-      {'id': 'arc', 'url': srcDirectoryUrl + 'shape-library/shapes/arc.svg'},
-      {'id': 'brace', 'url': srcDirectoryUrl + 'shape-library/shapes/brace.svg'},
-      {'id': 'endoplasmic-reticulum', 'url': srcDirectoryUrl + 'shape-library/shapes/endoplasmic-reticulum.svg'},
-      {'id': 'golgi-apparatus', 'url': srcDirectoryUrl + 'shape-library/shapes/golgi-apparatus.svg'},
-      {'id': 'hexagon', 'url': srcDirectoryUrl + 'shape-library/shapes/hexagon.svg'},
-      {'id': 'mim-degradation', 'url': srcDirectoryUrl + 'shape-library/shapes/mim-degradation.svg'},
-      {'id': 'mitochondria', 'url': srcDirectoryUrl + 'shape-library/shapes/mitochondria.svg'},
-      {'id': 'oval', 'url': srcDirectoryUrl + 'shape-library/shapes/oval.svg'},
-      {'id': 'pentagon', 'url': srcDirectoryUrl + 'shape-library/shapes/pentagon.svg'},
-      {'id': 'rectangle', 'url': srcDirectoryUrl + 'shape-library/shapes/rectangle.svg'},
-      {'id': 'group-none', 'url': srcDirectoryUrl + 'shape-library/shapes/group-none.svg'},
-      {'id': 'group-pathway', 'url': srcDirectoryUrl + 'shape-library/shapes/group-pathway.svg'},
-      {'id': 'group-group', 'url': srcDirectoryUrl + 'shape-library/shapes/group-group.svg'},
-      //{'id': 'rounded-rectangle', 'url': srcDirectoryUrl + 'shape-library/shapes/rounded-rectangle.svg'},
-      {'id': 'sarcoplasmic-reticulum','url': srcDirectoryUrl + 'shape-library/shapes/sarcoplasmic-reticulum.svg'},
-      {'id': 'triangle', 'url': srcDirectoryUrl + 'shape-library/shapes/triangle.svg'},
-      {'id': 'grid-square', 'url': srcDirectoryUrl + 'shape-library/shapes/grid-square.svg'},
-      {'id': 'none', 'url': srcDirectoryUrl + 'shape-library/shapes/none.svg'}
+    var customSymbols = [
+      {'id': 'arc', 'url': srcDirectoryUrl + 'shape-library/symbols/arc.svg'},
+      {'id': 'brace', 'url': srcDirectoryUrl + 'shape-library/symbols/brace.svg'},
+      {'id': 'endoplasmic-reticulum', 'url': srcDirectoryUrl + 'shape-library/symbols/endoplasmic-reticulum.svg'},
+      {'id': 'golgi-apparatus', 'url': srcDirectoryUrl + 'shape-library/symbols/golgi-apparatus.svg'},
+      {'id': 'hexagon', 'url': srcDirectoryUrl + 'shape-library/symbols/hexagon.svg'},
+      {'id': 'mim-degradation', 'url': srcDirectoryUrl + 'shape-library/symbols/mim-degradation.svg'},
+      {'id': 'mitochondria', 'url': srcDirectoryUrl + 'shape-library/symbols/mitochondria.svg'},
+      {'id': 'oval', 'url': srcDirectoryUrl + 'shape-library/symbols/oval.svg'},
+      {'id': 'pentagon', 'url': srcDirectoryUrl + 'shape-library/symbols/pentagon.svg'},
+      {'id': 'rectangle', 'url': srcDirectoryUrl + 'shape-library/symbols/rectangle.svg'},
+      {'id': 'group-none', 'url': srcDirectoryUrl + 'shape-library/symbols/group-none.svg'},
+      {'id': 'group-pathway', 'url': srcDirectoryUrl + 'shape-library/symbols/group-pathway.svg'},
+      {'id': 'group-group', 'url': srcDirectoryUrl + 'shape-library/symbols/group-group.svg'},
+      //{'id': 'rounded-rectangle', 'url': srcDirectoryUrl + 'shape-library/symbols/rounded-rectangle.svg'},
+      {'id': 'sarcoplasmic-reticulum','url': srcDirectoryUrl + 'shape-library/symbols/sarcoplasmic-reticulum.svg'},
+      {'id': 'triangle', 'url': srcDirectoryUrl + 'shape-library/symbols/triangle.svg'},
+      {'id': 'grid-square', 'url': srcDirectoryUrl + 'shape-library/symbols/grid-square.svg'},
+      {'id': 'none', 'url': srcDirectoryUrl + 'shape-library/symbols/none.svg'}
     ];
 
     var customMarkers = self.customMarkers = [
@@ -246,7 +246,7 @@ window.onload = function() {
       //gpmlRev: urlParamList.gpmlRev,
       cssUrl: srcDirectoryUrl + 'css/pathway-diagram.css',
       customMarkers: customMarkers,
-      customShapes: customShapes,
+      customSymbols: customSymbols,
       highlightNodes: [
         {'parameter': 'label', 'parameterValue': 'CRH', 'color': 'red'},
         {'parameter': 'xref', 'parameterValue': '8525,Entrez%20Gene', 'color': '#FF0000'}

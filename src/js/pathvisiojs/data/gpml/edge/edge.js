@@ -1,4 +1,6 @@
 pathvisiojs.data.gpml.edge = function(){
+    
+
   var markerMappings = {
     "Arrow":"arrow",
     "mim-branching-left":"mim-branching-left",
@@ -22,6 +24,126 @@ pathvisiojs.data.gpml.edge = function(){
     'Broken': 'dashed'
   };
 
+  function toRenderableJson(gpmlEdge, pathwayIri, callback) {
+    try {
+      var jsonAnchorInteraction, anchor, jsonAnchor, points, jsonPoints, interactionType, target, targetId, groupRef;
+      var jsonEdge = {};
+      graphId = gpmlEdge.attr('GraphId') || ('id' + uuid.v4());
+      elementIri = pathwayIri + graphId;
+      jsonEdge['@id'] = elementIri;
+      jsonEdge.GraphId = graphId;
+
+      var isContainedBy = gpmlEdge.attr('GroupRef');
+      var dependsOn = [];
+      if (!!isContainedBy) {
+        jsonEdge.isContainedBy = isContainedBy;
+        dependsOn.push(pathwayIri + isContainedBy);
+      }
+
+      jsonEdge.zIndex = parseFloat(gpmlEdge.select('Graphics').attr('ZOrder'));
+      jsonEdge.renderableType = 'edge';
+      points = gpmlEdge.selectAll('Point');
+      jsonEdge['@type'] = [
+        'element',
+        'SvgPath',
+        'Interaction',
+        isContainedBy || 'notGrouped'
+      ];
+
+      var firstPoint = points[0][0];
+      var lastPoint = points[0][points[0].length - 1];
+
+      // Graphical Only Data below, except maybe Anchors
+
+      if (!!firstPoint.getAttribute('ArrowHead')) {
+        jsonEdge.markerStart = strcase.paramCase(firstPoint.getAttribute('ArrowHead'));
+      }
+      else {
+        jsonEdge.markerStart = 'none';
+      }
+
+      if (!!lastPoint.getAttribute('ArrowHead')) {
+        jsonEdge.markerEnd = strcase.paramCase(lastPoint.getAttribute('ArrowHead'));
+      }
+      else {
+        jsonEdge.markerStart = 'none';
+      }
+
+      var point, pointObj;
+      jsonEdge.Point = [];
+      points.each(function() {
+        point = d3.select(this);
+        pointObj = {};
+        var relX = parseFloat(point.attr('RelX'));
+        var relY = parseFloat(point.attr('RelY'));
+        if ((relX !== null && relX !== undefined) && (relY !== null && relY !== undefined)) {
+          pointObj['@type'] = 'SnappedPoint';
+
+          dependsOn.push(pathwayIri + point.attr('GraphRef'));
+
+          pointObj.hasReference = pathwayIri + point.attr('GraphRef');
+          pointObj.RelX = relX;
+          pointObj.RelY = relY;
+          pointObj.x = parseFloat(point.attr('X'));
+          pointObj.y = parseFloat(point.attr('Y'));
+        }
+        else {
+          pointObj['@type'] = 'GraphicalPoint';
+          pointObj.x = {};
+          pointObj.x = parseFloat(point.attr('X'));
+          pointObj.y = parseFloat(point.attr('Y'));
+        }
+
+        jsonEdge.Point.push(pointObj);
+      })
+
+      /*
+         if (!!firstPoint.attr('ArrowHead')) {
+         jsonEdge.Point[0].interactionType
+         }
+         else {
+         }
+      //*/
+
+      var connectorType = gpmlEdge.select('Graphics').attr('ConnectorType') || 'Straight';
+      jsonEdge['ConnectorType'] = '' + connectorType;
+
+      var stroke = gpmlEdge.select('Graphics').attr('Color');
+      if (!!stroke) {
+        jsonEdge['stroke'] = stroke;
+      }
+
+      var strokeWidth = gpmlEdge.select('Graphics').attr('LineThickness');
+      if (!!strokeWidth) {
+        jsonEdge['strokeWidth'] = parseFloat(strokeWidth);
+      }
+
+      var jsonAnchorInteractions = gpmlEdge.selectAll('Anchor');
+      if (jsonAnchorInteractions[0].length > 0) {
+        jsonEdge.Anchor = [];
+        jsonAnchorInteractions.each(function() {
+            jsonAnchorInteraction = {};
+            anchor = d3.select(this);
+            elementIri = pathwayIri + anchor.attr('GraphId');
+            jsonAnchorInteraction['@id'] = pathwayIri + anchor.attr('GraphId');
+            jsonAnchorInteraction['@type'] = [
+            'element',
+            'Interaction',
+            'Anchor'
+            ];
+            jsonAnchorInteraction.dependsOn = jsonEdge['@id'];
+            jsonAnchorInteraction.anchorPosition = anchor.attr('Position');
+            jsonEdge.Anchor.push(jsonAnchorInteraction);
+            })
+      }
+      callback(jsonEdge);
+    }
+    catch (e) {
+      throw new Error('Error converting edge to renderable json: ' + e.message);
+    }
+  }
+
+  /*
   function toRenderableJson(gpmlEdge, jsonEdge, callback) {
     try {
       jsonEdge.id = gpmlEdge.attr('GraphId');
@@ -100,6 +222,7 @@ pathvisiojs.data.gpml.edge = function(){
       return e;
     }
   }
+  //*/
 
   return {
     toRenderableJson:toRenderableJson

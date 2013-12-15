@@ -6,12 +6,12 @@
 var thisSvg;
 
 pathvisiojs.view.pathwayDiagram.svg.symbol = function(){
-  function appendCustom(customShape, callback) {
+  function appendCustom(customSymbol, callback) {
     var defsSection = thisSvg.select('defs');
-    var symbol = defsSection.select('#' + customShape.id);
+    var symbol = defsSection.select('#' + customSymbol.id);
     if (!symbol[0][0]) {
       symbol = defsSection.append('symbol')
-      .attr('id', customShape.id)
+      .attr('id', customSymbol.id)
       .attr('preserveAspectRatio', 'none');
     }
     else {
@@ -21,7 +21,7 @@ pathvisiojs.view.pathwayDiagram.svg.symbol = function(){
     // ignoring non-svg symbols for now
     //if (symbolType === 'svg') {
     if (1===1) {
-      d3.xml(customShape.url, "image/svg+xml", function(svgXml) {
+      d3.xml(customSymbol.url, "image/svg+xml", function(svgXml) {
         var shape = d3.select(svgXml.documentElement)
         var width = shape.attr('width');
         var height = shape.attr('height');
@@ -35,7 +35,7 @@ pathvisiojs.view.pathwayDiagram.svg.symbol = function(){
           var height = shapeSvg.attr('height');
           symbol.attr('viewBox', '0 0 ' + width + ' ' + height);
           var shapeChildren = shapeSvg[0][0].children;
-          d3.xml(customShape.url, "image/svg+xml", function(svgXml) {
+          d3.xml(customSymbol.url, "image/svg+xml", function(svgXml) {
             self.mySvgXml = svgXml;
             shapeSvg = d3.select(svgXml).select('svg');
             var width = shapeSvg.attr('width');
@@ -52,11 +52,11 @@ pathvisiojs.view.pathwayDiagram.svg.symbol = function(){
     }
     else {
       img = document.createElement('img');
-      img.src = customShape.url;
+      img.src = customSymbol.url;
       img.onload = function() {
         symbol.attr('viewBox', '0 0 ' + this.width + ' ' + this.height)
         dimensions = symbol.attr('viewBox').split(' ');
-        symbol.append('image').attr('xlink:xlink:href', customShape.url)
+        symbol.append('image').attr('xlink:xlink:href', customSymbol.url)
         .attr('x', dimensions[0])
         .attr('y', dimensions[1])
         .attr('width', dimensions[2])
@@ -72,7 +72,7 @@ pathvisiojs.view.pathwayDiagram.svg.symbol = function(){
 
 
     /*
-    symbol.append('object').attr('data', customShape.url)
+    symbol.append('object').attr('data', customSymbol.url)
     .attr('x', dimensions[0])
     .attr('y', dimensions[1])
     .attr('width', dimensions[2])
@@ -83,7 +83,7 @@ pathvisiojs.view.pathwayDiagram.svg.symbol = function(){
 
   }
 
-  function loadAllCustom(svg, customShapes, callback) {
+  function loadAllCustom(svg, customSymbols, callback) {
     thisSvg = svg;
     var image = null;
     var img = null;
@@ -91,7 +91,7 @@ pathvisiojs.view.pathwayDiagram.svg.symbol = function(){
     var dimensions = null;
     var dimensionSet = [];
 
-    async.each(customShapes, appendCustom, function(err){
+    async.each(customSymbols, appendCustom, function(err){
         // if any of the saves produced an error, err would equal that error
       callback(null);
     });

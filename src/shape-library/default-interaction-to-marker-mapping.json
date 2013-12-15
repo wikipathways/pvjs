@@ -1,0 +1,17 @@
+{
+  "Activity":"arrow",
+  "InhibitoryActivity":"t-bar",
+  "Binding":"mim-binding",
+  "BranchingLeft":"mim-branching-left",
+  "BranchingRight":"mim-branching-right",
+  "Catalysis":"mim-catalysis",
+  "Cleavage":"mim-cleavage",
+  "Conversion":"mim-conversion",
+  "Gap":"mim-gap",
+  "Inhibition":"mim-inhibition",
+  "Modification":"mim-modification",
+  "NecessaryStimulation":"mim-necessary-stimulation",
+  "Stimulation":"mim-stimulation",
+  "TranscriptionTranslation":"mim-transcription-translatiion",
+  "CovalentBond":"mim-covalent-bond"
+}
