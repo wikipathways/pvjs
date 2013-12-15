@@ -461,13 +461,13 @@ pathvisiojs.pathway = function(){
     //*/
   }
 
-  function appendCustomShape(customShape, callback) {
+  function appendCustomShape(customSymbol, callback) {
     img = document.createElement('img');
-    img.src = customShape.url;
+    img.src = customSymbol.url;
     img.onload = function() {
-      def = svg.select('defs').select('#' + customShape.id);
+      def = svg.select('defs').select('#' + customSymbol.id);
       if (!def[0][0]) {
-        def = d3.select('svg').select('defs').append('symbol').attr('id', customShape.id)
+        def = d3.select('svg').select('defs').append('symbol').attr('id', customSymbol.id)
         .attr('viewBox', '0 0 ' + this.width + ' ' + this.height)
         .attr('preserveAspectRatio', 'none');
       }
@@ -475,7 +475,7 @@ pathvisiojs.pathway = function(){
         def.selectAll('*').remove();
       }
       dimensions = def.attr('viewBox').split(' ');
-      def.append('image').attr('xlink:xlink:href', customShape.url).attr('x', dimensions[0]).attr('y', dimensions[1]).attr('width', dimensions[2]).attr('height', dimensions[3]);
+      def.append('image').attr('xlink:xlink:href', customSymbol.url).attr('x', dimensions[0]).attr('y', dimensions[1]).attr('width', dimensions[2]).attr('height', dimensions[3]);
       callback(null);
     }
   }
@@ -487,8 +487,8 @@ pathvisiojs.pathway = function(){
     var dimensions = null;
     var dimensionSet = [];
 
-    if (!!args.customShapes) {
-      async.each(args.customShapes, appendCustomShape, function(err){
+    if (!!args.customSymbols) {
+      async.each(args.customSymbols, appendCustomShape, function(err){
           // if any of the saves produced an error, err would equal that error
         callback(null);
       });

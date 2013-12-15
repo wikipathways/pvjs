@@ -112,8 +112,8 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
         }
       },
       function(callback) {
-        if (!!args.customShapes) {
-          pathvisiojs.view.pathwayDiagram.svg.symbol.loadAllCustom(svg, args.customShapes, function() {
+        if (!!args.customSymbols) {
+          pathvisiojs.view.pathwayDiagram.svg.symbol.loadAllCustom(svg, args.customSymbols, function() {
             callback(null);
           })
         }
