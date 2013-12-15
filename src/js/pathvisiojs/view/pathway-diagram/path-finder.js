@@ -8,6 +8,139 @@ pathvisiojs.view.pathwayDiagram.pathFinder = function(){
    *  so be careful to note this may differ from linear algebra conventions.
    * */
 
+  function initGrid(nodes, pathwayImageWidth, pathwayImageHeight, callback) {
+    var gridData = {}
+    nodes = d3.select(nodes).sort(function(node1, node2) {
+      Math.min(node1.height, node1.width) - Math.min(node2.height, node2.width);
+    })[0][0];
+    gridData.squareLength = Math.min(nodes[0].height, nodes[0].width) / 14;
+
+    // Here we set how much padding to place around the entityNodes, in units of grid squares.
+    // TODO change the static value of 12 to be a calculated value equal to the
+    // largest dimension of a marker in the diagram.
+    //
+    // Curves need more padding than elbows do. Elbows look OK when padding is just
+    // larger than the marker size, but curves slope down, so the padding needs to be
+    // closer to twice the marker size for the marker to look properly connected to
+    // the curve.
+
+    gridData.padding = Math.ceil(22 / gridData.squareLength);
+    var currentRow, currentColumn;
+    gridData.totalColumnCount = Math.ceil(pathwayImageWidth/gridData.squareLength);
+    gridData.totalRowCount = Math.ceil(pathwayImageHeight/gridData.squareLength);
+
+    generateEntirelyWalkableMatrix(gridData.totalRowCount, gridData.totalColumnCount, function(entirelyWalkableMatrix) {
+      // need this to generate path data as last resort when populated grids do not result in a path
+
+      gridData.emptyGrid = new PF.Grid(gridData.totalColumnCount, gridData.totalRowCount, entirelyWalkableMatrix);
+      gridData.entirelyWalkableMatrix = entirelyWalkableMatrix;
+      callback(gridData);
+    });
+  }
+
+  function getPath(svg, edge, callbackOutside) {
+    var gridData = svg[0][0].pathvisiojs.gridData;
+    var workingGrid;
+
+    var Point = edge.Point;
+    var pointStart = Point[0];
+    var pointEnd = Point[Point.length - 1];
+    var startLocation = xYCoordinatesToMatrixLocation(pointStart.x, pointStart.y, gridData.squareLength);
+    var endLocation = xYCoordinatesToMatrixLocation(pointEnd.x, pointEnd.y, gridData.squareLength);
+    var finder = new PF.BiBreadthFirstFinder({
+      allowDiagonal: false,
+      dontCrossCorners: true
+    });
+
+    // TODO need to rethink this wrt to reactions and other ways of
+    // doing the data structure where we may have more than just a
+    // source and a target
+
+    var edgeGraphRefNodes = [];
+    if (edge.edgeType === 'Interaction') {
+      edgeGraphRefNodes.push(edge.InteractionGraph[0]);
+      edgeGraphRefNodes.push(edge.InteractionGraph[0].interactsWith);
+    }
+
+    // TODO this handles both graphicalLines and Interactions for now, but it's a little clumsy.
+
+    var pathData = [];
+    async.waterfall([
+      function(callback){
+        if (edge.edgeType === 'Interaction') {
+          generateGrid(gridData, edgeGraphRefNodes, null, function(grid) {
+            callback(null, grid);
+          });
+        }
+        else {
+          callback(null);
+        }
+      },
+      function(grid, callback){
+        if (edge.edgeType === 'Interaction') {
+          workingGrid = grid;
+          /*
+          console.log('workingGrid');
+          console.log(workingGrid);
+          console.log('finder');
+          console.log(finder);
+          console.log('Point');
+          console.log(Point);
+          console.log('pointStart');
+          console.log(pointStart);
+          console.log('pointEnd');
+          console.log(pointEnd);
+          console.log('startLocation');
+          console.log(startLocation);
+          console.log('endLocation');
+          console.log(endLocation);
+          //*/
+          runPathFinder(workingGrid,
+                        finder,
+                        Point,
+                        pointStart,
+                        pointEnd,
+                        startLocation,
+                        endLocation,
+                        gridData.squareLength,
+                        function(data) {
+            pathData = data;
+            callback(null);
+          });
+        }
+        else {
+          callback(null);
+        }
+      },
+      function(callback){
+
+        // graphicalLines will have pathData = [],
+        // Interactions will have pathData = [startPoint, endPoint] if the nodes
+        // block a real path from being found.
+
+        if (pathData.length < 3) {
+          workingGrid = gridData.emptyGrid.clone();
+          runPathFinder(workingGrid,
+                        finder,
+                        Point,
+                        pointStart,
+                        pointEnd,
+                        startLocation,
+                        endLocation,
+                        gridData.squareLength,
+                        function(data) {
+            pathData = data;
+            pathData.push({'x': pointEnd.x, 'y': pointEnd.y});
+          callbackOutside(pathData);
+          });
+        }
+        else {
+          callbackOutside(pathData);
+        }
+      }
+    ]);
+  }
+
   function xYCoordinatesToMatrixLocation(x, y, squareLength) {
     var results = {};
     results.column = Math.floor(x/squareLength);
@@ -20,31 +153,6 @@ pathvisiojs.view.pathwayDiagram.pathFinder = function(){
     results.x = column * squareLength;
     results.y = row * squareLength;
     return results;
-  }
-
-  function initGrid(nodes, pathwayImageWidth, pathwayImageHeight, callback) {
-    var gridData = {}
-    nodes = d3.select(nodes).sort(function(node1, node2) {
-      Math.min(node1.height, node1.width) - Math.min(node2.height, node2.width);
-    })[0][0];
-    gridData.squareLength = Math.min(nodes[0].height, nodes[0].width) / 14;
-
-    // Here we set how much padding to place around the entityNodes, in units of grid squares.
-    // TODO change the static value of 12 to be a calculated value equal to the
-    // largest dimension of a marker in the diagram
-
-    gridData.padding = Math.ceil(12 / gridData.squareLength);
-    var currentRow, currentColumn;
-    gridData.totalColumnCount = Math.ceil(pathwayImageWidth/gridData.squareLength);
-    gridData.totalRowCount = Math.ceil(pathwayImageHeight/gridData.squareLength);
-
-    generateEntirelyWalkableMatrix(gridData.totalRowCount, gridData.totalColumnCount, function(entirelyWalkableMatrix) {
-      // need this to generate path data as last resort when populated grids do not result in a path
-
-      gridData.emptyGrid = new PF.Grid(gridData.totalColumnCount, gridData.totalRowCount, entirelyWalkableMatrix);
-      gridData.entirelyWalkableMatrix = entirelyWalkableMatrix;
-      callback(gridData);
-    });
   }
 
   function generateEntirelyWalkableMatrix(totalRowCount, totalColumnCount, callback) {
@@ -400,109 +508,6 @@ pathvisiojs.view.pathwayDiagram.pathFinder = function(){
   }
   //*/
 
-  function getPath(svg, edge, callbackOutside) {
-    var gridData = svg[0][0].pathvisiojs.gridData;
-    var workingGrid;
-
-    var Point = edge.Point;
-    var pointStart = Point[0];
-    var pointEnd = Point[Point.length - 1];
-    var startLocation = xYCoordinatesToMatrixLocation(pointStart.x, pointStart.y, gridData.squareLength);
-    var endLocation = xYCoordinatesToMatrixLocation(pointEnd.x, pointEnd.y, gridData.squareLength);
-    var finder = new PF.BiBreadthFirstFinder({
-      allowDiagonal: false,
-      dontCrossCorners: true
-    });
-
-    // TODO need to rethink this wrt to reactions and other ways of
-    // doing the data structure where we may have more than just a
-    // source and a target
-
-    var edgeGraphRefNodes = [];
-    if (edge.edgeType === 'Interaction') {
-      edgeGraphRefNodes.push(edge.InteractionGraph[0]);
-      edgeGraphRefNodes.push(edge.InteractionGraph[0].interactsWith);
-    }
-
-    // TODO this handles both graphicalLines and Interactions for now, but it's a little clumsy.
-
-    var pathData = [];
-    async.waterfall([
-      function(callback){
-        if (edge.edgeType === 'Interaction') {
-          generateGrid(gridData, edgeGraphRefNodes, null, function(grid) {
-            callback(null, grid);
-          });
-        }
-        else {
-          callback(null);
-        }
-      },
-      function(grid, callback){
-        if (edge.edgeType === 'Interaction') {
-          workingGrid = grid;
-          /*
-          console.log('workingGrid');
-          console.log(workingGrid);
-          console.log('finder');
-          console.log(finder);
-          console.log('Point');
-          console.log(Point);
-          console.log('pointStart');
-          console.log(pointStart);
-          console.log('pointEnd');
-          console.log(pointEnd);
-          console.log('startLocation');
-          console.log(startLocation);
-          console.log('endLocation');
-          console.log(endLocation);
-          //*/
-          runPathFinder(workingGrid,
-                        finder,
-                        Point,
-                        pointStart,
-                        pointEnd,
-                        startLocation,
-                        endLocation,
-                        gridData.squareLength,
-                        function(data) {
-            pathData = data;
-            callback(null);
-          });
-        }
-        else {
-          callback(null);
-        }
-      },
-      function(callback){
-
-        // graphicalLines will have pathData = [],
-        // Interactions will have pathData = [startPoint, endPoint] if the nodes
-        // block a real path from being found.
-
-        if (pathData.length < 3) {
-          workingGrid = gridData.emptyGrid.clone();
-          runPathFinder(workingGrid,
-                        finder,
-                        Point,
-                        pointStart,
-                        pointEnd,
-                        startLocation,
-                        endLocation,
-                        gridData.squareLength,
-                        function(data) {
-            pathData = data;
-            pathData.push({'x': pointEnd.x, 'y': pointEnd.y});
-          callbackOutside(pathData);
-          });
-        }
-        else {
-          callbackOutside(pathData);
-        }
-      }
-    ]);
-  }
-
   function runPathFinder(workingGrid, finder, Point, pointStart, pointEnd, startLocation, endLocation, squareLength, callback) {
     /*
     console.log('workingGrid');
@@ -623,10 +628,6 @@ pathvisiojs.view.pathwayDiagram.pathFinder = function(){
     }
     //*/
 
-
-
-
-
     callback(smootherPath);
     //return smootherPath;
   }
@@ -634,8 +635,6 @@ pathvisiojs.view.pathwayDiagram.pathFinder = function(){
   return {
     initGrid:initGrid,
     //generateGridData:generateGridData,
-    getPath:getPath,
-    xYCoordinatesToMatrixLocation:xYCoordinatesToMatrixLocation,
-    matrixLocationToXYCoordinates:matrixLocationToXYCoordinates
+    getPath:getPath
   };
 }();

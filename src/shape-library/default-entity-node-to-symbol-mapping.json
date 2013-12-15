@@ -1,0 +1,23 @@
+{
+  "GeneProduct":"rectangle",
+  "Metabolite":"rectangle",
+  "Protein":"rectangle",
+  "Unknown":"rectangle",
+  "RNA":"rectangle",
+  "Pathway":"rectangle",
+  "EndoplasmicReticulum":"endoplasmic-reticulum",
+  "GolgiApparatus":"golgi-apparatus",
+  "Degradation":"mim-degradation",
+  "SarcoplasmicReticulum":"sarcoplasmic-reticulum",
+  "Cell":"oval",
+  "Nucleus":"oval",
+  "Vesicle":"oval",
+  "Organelle":"oval",
+  "Nucleolus":"oval",
+  "Vacuole":"oval",
+  "Lysosome":"rectangle",
+  "CytosolRegion":"rectangle",
+  "ExtracellularRegion":"rectangle",
+  "MembraneRegion":"rectangle",
+  "Mitochondria":"mitochondria"
+}
