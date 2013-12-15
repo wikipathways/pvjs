@@ -26,7 +26,7 @@ pathvisiojs.data.gpml.edge = function(){
 
   function toRenderableJson(gpmlEdge, pathwayIri, callback) {
     try {
-      var jsonAnchorInteraction, anchor, jsonAnchor, points, jsonPoints, interactionType, target, targetId, groupRef;
+      var jsonAnchorEdge, anchor, jsonAnchor, points, jsonPoints, interactionType, target, targetId, groupRef;
       var jsonEdge = {};
       graphId = gpmlEdge.attr('GraphId') || ('id' + uuid.v4());
       elementIri = pathwayIri + graphId;
@@ -46,7 +46,7 @@ pathvisiojs.data.gpml.edge = function(){
       jsonEdge['@type'] = [
         'element',
         'SvgPath',
-        'Interaction',
+        'Edge',
         isContainedBy || 'notGrouped'
       ];
 
@@ -118,22 +118,22 @@ pathvisiojs.data.gpml.edge = function(){
         jsonEdge['strokeWidth'] = parseFloat(strokeWidth);
       }
 
-      var jsonAnchorInteractions = gpmlEdge.selectAll('Anchor');
-      if (jsonAnchorInteractions[0].length > 0) {
+      var jsonAnchorEdges = gpmlEdge.selectAll('Anchor');
+      if (jsonAnchorEdges[0].length > 0) {
         jsonEdge.Anchor = [];
-        jsonAnchorInteractions.each(function() {
-            jsonAnchorInteraction = {};
+        jsonAnchorEdges.each(function() {
+            jsonAnchorEdge = {};
             anchor = d3.select(this);
             elementIri = pathwayIri + anchor.attr('GraphId');
-            jsonAnchorInteraction['@id'] = pathwayIri + anchor.attr('GraphId');
-            jsonAnchorInteraction['@type'] = [
+            jsonAnchorEdge['@id'] = pathwayIri + anchor.attr('GraphId');
+            jsonAnchorEdge['@type'] = [
             'element',
-            'Interaction',
+            'Edge',
             'Anchor'
             ];
-            jsonAnchorInteraction.dependsOn = jsonEdge['@id'];
-            jsonAnchorInteraction.anchorPosition = anchor.attr('Position');
-            jsonEdge.Anchor.push(jsonAnchorInteraction);
+            jsonAnchorEdge.dependsOn = jsonEdge['@id'];
+            jsonAnchorEdge.anchorPosition = anchor.attr('Position');
+            jsonEdge.Anchor.push(jsonAnchorEdge);
             })
       }
       callback(jsonEdge);
