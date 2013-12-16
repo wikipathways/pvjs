@@ -1,25 +1,5 @@
 pathvisiojs.data.gpml.edge = function(){
     
-
-  var markerMappings = {
-    "Arrow":"arrow",
-    "mim-branching-left":"mim-branching-left",
-    "mim-branching-right":"mim-branching-right",
-    "mim-necessary-stimulation":"mim-necessary-stimulation",
-    "mim-binding":"mim-binding",
-    "mim-conversion":"mim-conversion",
-    "mim-stimulation":"mim-stimulation",
-    "mim-modification":"mim-modification",
-    "mim-catalysis":"mim-catalysis",
-    "mim-inhibition":"mim-inhibition",
-    "mim-cleavage":"mim-cleavage",
-    "mim-covalent-bond":"mim-covalent-bond",
-    "mim-transcription-translation":"mim-transcription-translation",
-    "mim-gap":"mim-gap",
-    "None":"none",
-    "TBar":"t-bar"
-  };
-
   var strokeStyleMappings = {
     'Broken': 'dashed'
   };
