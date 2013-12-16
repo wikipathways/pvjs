@@ -1,6 +1,5 @@
 pathvisiojs.data.gpml.edge.interaction = function(){
 
-
   //*
   //var jsonPathway = {};
   // TODO this isn't getting the linetype info for determining whether activity is direct or indirect yet
@@ -9,10 +8,6 @@ pathvisiojs.data.gpml.edge.interaction = function(){
     'TBar':'InhibitoryActivity',
     'mim-catalysis':'Catalysis',
     'mim-inhibition':'Inhibition'
-  };
-  //*/
-
-  var markerMappings = {
     "Arrow":"arrow",
     "mim-branching-left":"mim-branching-left",
     "mim-branching-right":"mim-branching-right",
@@ -26,10 +21,11 @@ pathvisiojs.data.gpml.edge.interaction = function(){
     "mim-cleavage":"mim-cleavage",
     "mim-covalent-bond":"mim-covalent-bond",
     "mim-transcription-translation":"mim-transcription-translation",
-    "mim-gap":"mim-gap",
+    "Gap":"mim-gap",
     "None":"none",
     "TBar":"t-bar"
   };
+  //*/
 
   function toRenderableJson(gpml, gpmlInteraction, pathwayIri, callback) {
     var jsonAnchorInteraction, anchor, jsonAnchor, points, jsonPoints, interactionType, target, targetId, groupRef;
@@ -66,7 +62,6 @@ pathvisiojs.data.gpml.edge.interaction = function(){
           interactionType = gpmlArrowHeadToSemanticMappings[gpmlTarget.getAttribute('ArrowHead')];
           var interactionTypeExistenceCheck;
           if (!!interactionType) {
-            self.myInteractionGraphMember = InteractionGraphMember;
             jsonInteraction.InteractionGraph = jsonInteraction.InteractionGraph || [];
 
             InteractionGraphMember['@id'] = pathwayIri + gpmlSource.getAttribute('GraphRef');
