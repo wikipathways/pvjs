@@ -7,7 +7,7 @@ pathvisiojs.data.gpml.edge.interaction = function(){
     'Arrow':'Activity',
     'TBar':'InhibitoryActivity',
     'mim-catalysis':'Catalysis',
-    'mim-inhibition':'Inhibition'
+    'mim-inhibition':'Inhibition',
     "Arrow":"arrow",
     "mim-branching-left":"mim-branching-left",
     "mim-branching-right":"mim-branching-right",
