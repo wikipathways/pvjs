@@ -39,6 +39,15 @@ pathvisiojs.view.pathwayDiagram.pathFinder = function(){
   }
 
   function getPath(svg, edge, callbackOutside) {
+    /*
+    console.log('svg in path-finder');
+    console.log(svg);
+    console.log('edge in path-finder');
+    console.log(edge);
+    console.log('callbackOutside in path-finder');
+    console.log(callbackOutside);
+    //*/
+
     var gridData = svg[0][0].pathvisiojs.gridData;
     var workingGrid;
 
@@ -57,60 +66,53 @@ pathvisiojs.view.pathwayDiagram.pathFinder = function(){
     // source and a target
 
     var edgeGraphRefNodes = [];
-    if (edge.edgeType === 'Interaction') {
-      edgeGraphRefNodes.push(edge.InteractionGraph[0]);
-      edgeGraphRefNodes.push(edge.InteractionGraph[0].interactsWith);
+    edgeGraphRefNodes.push(edge.InteractionGraph[0]);
+    var targetNode = edge.InteractionGraph[0].interactsWith;
+    //var targetNode = edge.InteractionGraph[edge.InteractionGraph.length - 1];
+    if (!!targetNode) {
+      edgeGraphRefNodes.push(targetNode);
     }
 
     // TODO this handles both graphicalLines and Interactions for now, but it's a little clumsy.
+    // 2013-12-17: I don't remember why it needs to be different for graphicalLines vs Interactions.
 
     var pathData = [];
     async.waterfall([
       function(callback){
-        if (edge.edgeType === 'Interaction') {
-          generateGrid(gridData, edgeGraphRefNodes, null, function(grid) {
-            callback(null, grid);
-          });
-        }
-        else {
-          callback(null);
-        }
+        generateGrid(gridData, edgeGraphRefNodes, null, function(grid) {
+          callback(null, grid);
+        });
       },
       function(grid, callback){
-        if (edge.edgeType === 'Interaction') {
-          workingGrid = grid;
-          /*
-          console.log('workingGrid');
-          console.log(workingGrid);
-          console.log('finder');
-          console.log(finder);
-          console.log('Point');
-          console.log(Point);
-          console.log('pointStart');
-          console.log(pointStart);
-          console.log('pointEnd');
-          console.log(pointEnd);
-          console.log('startLocation');
-          console.log(startLocation);
-          console.log('endLocation');
-          console.log(endLocation);
-          //*/
-          runPathFinder(workingGrid,
-                        finder,
-                        Point,
-                        pointStart,
-                        pointEnd,
-                        startLocation,
-                        endLocation,
-                        gridData.squareLength,
-                        function(data) {
-            pathData = data;
-            callback(null);
-          });
-        }
-        else {
+        workingGrid = grid;
+        /*
+        console.log('workingGrid');
+        console.log(workingGrid);
+        console.log('finder');
+        console.log(finder);
+        console.log('Point');
+        console.log(Point);
+        console.log('pointStart');
+        console.log(pointStart);
+        console.log('pointEnd');
+        console.log(pointEnd);
+        console.log('startLocation');
+        console.log(startLocation);
+        console.log('endLocation');
+        console.log(endLocation);
+        //*/
+        runPathFinder(workingGrid,
+                      finder,
+                      Point,
+                      pointStart,
+                      pointEnd,
+                      startLocation,
+                      endLocation,
+                      gridData.squareLength,
+                      function(data) {
+          pathData = data;
           callback(null);
-        }
+        });
       },
       function(callback){
 
