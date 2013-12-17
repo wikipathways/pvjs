@@ -8,24 +8,47 @@ pathvisiojs.data.gpml.edge.interaction = function(){
     'TBar':'InhibitoryActivity',
     'mim-catalysis':'Catalysis',
     'mim-inhibition':'Inhibition',
-    "Arrow":"arrow",
     "mim-branching-left":"mim-branching-left",
     "mim-branching-right":"mim-branching-right",
-    "mim-necessary-stimulation":"mim-necessary-stimulation",
-    "mim-binding":"mim-binding",
-    "mim-conversion":"mim-conversion",
-    "mim-stimulation":"mim-stimulation",
-    "mim-modification":"mim-modification",
-    "mim-catalysis":"mim-catalysis",
-    "mim-inhibition":"mim-inhibition",
-    "mim-cleavage":"mim-cleavage",
-    "mim-covalent-bond":"mim-covalent-bond",
-    "mim-transcription-translation":"mim-transcription-translation",
-    "Gap":"mim-gap",
-    "None":"none",
-    "TBar":"t-bar"
+    "mim-necessary-stimulation":"NecessaryStimulation",
+    "mim-binding":"Binding",
+    "mim-conversion":"Conversion",
+    "mim-stimulation":"Stimulation",
+    "mim-modification":"Modification",
+    "mim-catalysis":"Catalysis",
+    "mim-inhibition":"Inhibition",
+    "mim-cleavage":"Cleavage",
+    "mim-covalent-bond":"CovalentBond",
+    "mim-transcription-translation":"TranscriptionTranslation",
+    "mim-gap":"Gap"
   };
   //*/
+
+  function getGpmlArrowHeadNameFromSemanticName(semanticName) {
+    for (gpmlArrowHeadName in gpmlArrowHeadToSemanticMappings) {
+      if (gpmlArrowHeadToSemanticMappings[gpmlArrowHeadName] === semanticName) {
+        return gpmlArrowHeadName;
+      }
+    }
+
+    // if we get to here, there is no GPML ArrowHead name that matches the
+    // semantic name. This should probably be in a try, catch, finally block.
+    
+    if (!gpmlArrowHeadName) {
+      gpmlArrowHeadName = semanticName;
+      console.warn('No GPML ArrowHead name found for semantic name "' + semanticName + '". Returning original semantic name as GPML ArrowHead name. PathVisio-Java will delete this ArrowHead from the GPML file if it edits this file.');
+    }
+    return gpmlArrowHeadName;
+  }
+
+  function getSemanticNameFromGpmlArrowHeadName(gpmlArrowHeadName) {
+    var semanticName = gpmlArrowHeadToSemanticMappings[gpmlArrowHeadName];
+    if (!semanticName) {
+      semanticName = gpmlArrowHeadName;
+      console.warn('No semantic name found for GPML ArrowHead named "' + gpmlArrowHeadName + '". Returning original GPML ArrowHead name as semantic name.');
+    }
+    return semanticName;
+  }
 
   function toRenderableJson(gpml, gpmlInteraction, pathwayIri, callback) {
     var jsonAnchorInteraction, anchor, jsonAnchor, points, jsonPoints, interactionType, target, targetId, groupRef;
@@ -35,7 +58,7 @@ pathvisiojs.data.gpml.edge.interaction = function(){
         //console.log(jsonInteraction);
 
         jsonInteraction['@type'].push('Interaction');
-        jsonInteraction.edgeType = 'Interaction';
+        jsonInteraction.renderableType = 'Interaction';
 
         points = gpmlInteraction.selectAll('Point');
 
@@ -59,7 +82,7 @@ pathvisiojs.data.gpml.edge.interaction = function(){
           //console.log('gpmlTarget');
           //console.log(gpmlTarget);
           var InteractionGraphMember = {};
-          interactionType = gpmlArrowHeadToSemanticMappings[gpmlTarget.getAttribute('ArrowHead')];
+          interactionType = getSemanticNameFromGpmlArrowHeadName(gpmlTarget.getAttribute('ArrowHead'));
           var interactionTypeExistenceCheck;
           if (!!interactionType) {
             jsonInteraction.InteractionGraph = jsonInteraction.InteractionGraph || [];
@@ -97,12 +120,12 @@ pathvisiojs.data.gpml.edge.interaction = function(){
         var firstPoint = points[0][0];
         var lastPoint = points[0][points[0].length - 1];
 
-        buildInteractionGraph(firstPoint, lastPoint, function(InteractionGraphMember) {
-          //console.log('InteractionGraphMember1');
-          //console.log(InteractionGraphMember);
-        });
         buildInteractionGraph(lastPoint, firstPoint, function(InteractionGraphMember) {
           //console.log('InteractionGraphMember2');
+          //console.log(InteractionGraphMember);
+        });
+        buildInteractionGraph(firstPoint, lastPoint, function(InteractionGraphMember) {
+          //console.log('InteractionGraphMember1');
           //console.log(InteractionGraphMember);
         });
 
@@ -196,6 +219,8 @@ pathvisiojs.data.gpml.edge.interaction = function(){
   //*/
 
   return {
-    toRenderableJson:toRenderableJson
+    toRenderableJson:toRenderableJson,
+    getGpmlArrowHeadNameFromSemanticName:getGpmlArrowHeadNameFromSemanticName,
+    getSemanticNameFromGpmlArrowHeadName:getSemanticNameFromGpmlArrowHeadName
   };
 }();

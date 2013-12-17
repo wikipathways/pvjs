@@ -13,7 +13,7 @@
     "async": "~0.2.5",
     "typeahead.js": "~0.9.3",
     "jsonld.js": "~0.1.25",
-    "strcase": "~0.5.0",
+    "strcase": "https://github.com/ariutta/strcase.git#~0.6.0",
     "svg-pan-zoom": "*",
     "modernizr": "~2.7.0",
     "PathFinding.js": "*",

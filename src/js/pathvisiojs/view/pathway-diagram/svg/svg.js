@@ -214,8 +214,13 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
               pathvisiojs.view.pathwayDiagram.svg.node.entityNode.render(args);
             }
             else {
-              if (element.renderableType === 'edge') {
-                pathvisiojs.view.pathwayDiagram.svg.edge.render(args.svg, args.target, element);
+              if (element.renderableType === 'Interaction') {
+                pathvisiojs.view.pathwayDiagram.svg.edge.interaction.render(args.svg, args.target, element);
+              }
+              else {
+                if (element.renderableType === 'GraphicalLine') {
+                  pathvisiojs.view.pathwayDiagram.svg.edge.graphicalLine.render(args.svg, args.target, element);
+                }
               }
             }
           }
@@ -298,7 +303,8 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
       'firstOrderData': function(callbackInside) {
         var firstOrderFrame = {
           '@context': pathvisiojs.context,
-          "@type":["notGrouped", "Group"]
+          '@type':['notGrouped', 'Group'],
+          'InteractionGraph': {}
         };
         jsonld.frame(args.pathway, firstOrderFrame, function(err, firstOrderData) {
           callbackInside(null, firstOrderData['@graph']);
