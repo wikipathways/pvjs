@@ -145,7 +145,7 @@ pathvisiojs.data.gpml = function(){
                   '@container':'@list'
                 }
               },
-              /*
+              //*
               'InteractionGraph': {
                 '@type': '@id',
                 '@container':'@list'
@@ -241,14 +241,14 @@ pathvisiojs.data.gpml = function(){
               callback(null, 'No shapes to convert.');
             }
           },
-          /*
+          //*
           GraphicalLine: function(callback){
             var graphicalLines = gpmlPathway.selectAll('GraphicalLine');
             if (graphicalLines[0].length > 0) {
               pathway.GraphicalLine = [];
               gpmlPathway.selectAll('GraphicalLine').each(function() {
                 gpmlGraphicalLine = d3.select(this);
-                pathvisiojs.data.gpml.edge.graphicalLine.toRenderableJson(gpmlGraphicalLine, pathwayIri, function(jsonGraphicalLine) {
+                pathvisiojs.data.gpml.edge.graphicalLine.toRenderableJson(gpml, gpmlGraphicalLine, pathwayIri, function(jsonGraphicalLine) {
                   pathway.GraphicalLine.push(jsonGraphicalLine);
                 });
               })

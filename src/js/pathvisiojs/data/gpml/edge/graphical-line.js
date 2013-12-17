@@ -1,52 +1,36 @@
 pathvisiojs.data.gpml.edge.graphicalLine = function(){
-  var markerMappings = {
-    "Arrow":"arrow",
-    "mim-branching-left":"mim-branching-left",
-    "mim-branching-right":"mim-branching-right",
-    "mim-necessary-stimulation":"mim-necessary-stimulation",
-    "mim-binding":"mim-binding",
-    "mim-conversion":"mim-conversion",
-    "mim-stimulation":"mim-stimulation",
-    "mim-modification":"mim-modification",
-    "mim-catalysis":"mim-catalysis",
-    "mim-inhibition":"mim-inhibition",
-    "mim-cleavage":"mim-cleavage",
-    "mim-covalent-bond":"mim-covalent-bond",
-    "mim-transcription-translation":"mim-transcription-translation",
-    "mim-gap":"mim-gap",
-    "None":"none",
-    "TBar":"t-bar"
-  };
 
-  function toRenderableJson(gpmlGraphicalLine, jsonGraphicalLine, pathwayIri, callback) {
+  //*
+  //var jsonPathway = {};
+  // TODO this isn't getting the linetype info for determining whether activity is direct or indirect yet
+  var gpmlArrowHeadToSemanticMappings = {
+    'Arrow':'arrow'
+  };
+  //*/
+
+  function toRenderableJson(gpml, gpmlGraphicalLine, pathwayIri, callback) {
     var jsonAnchorGraphicalLine, anchor, jsonAnchor, points, jsonPoints, graphicalLineType, target, targetId, groupRef;
     try {
-      pathvisiojs.data.gpml.edge.toRenderableJson(gpmlGraphicalLine, jsonGraphicalLine, pathwayIri, function(jsonGraphicalLine) {
-        var edgeType = 'graphicalLine';
-        jsonGraphicalLine.edgeType = 'GraphicalLine';
-        points = gpmlGraphicalLine.selectAll('Point');
-        jsonGraphicalLine['@type'].push(edgeType);
+      pathvisiojs.data.gpml.edge.toRenderableJson(gpmlGraphicalLine, pathwayIri, function(jsonGraphicalLine) {
+        //console.log('jsonGraphicalLine');
+        //console.log(jsonGraphicalLine);
 
-        var database, ID, 
-        datasourceReference = gpmlGraphicalLine.select('Xref');
-        if (!!datasourceReference) {
-          database = datasourceReference.attr('Database')
-          ID = datasourceReference.attr('ID')
-          if (!!database && !!ID) {
-            jsonGraphicalLine.DatasourceReference = {};
-            jsonGraphicalLine.DatasourceReference.Database = database;
-            jsonGraphicalLine.DatasourceReference.ID = ID;
-          }
-        }
+        jsonGraphicalLine['@type'].push('GraphicalLine');
+        jsonGraphicalLine.renderableType = 'GraphicalLine';
+
+        points = gpmlGraphicalLine.selectAll('Point');
 
         // Arrowheads on both ends of a single graphical GraphicalLine would represent two semantic GraphicalLines
 
         function buildGraphicalLineGraph(gpmlSource, gpmlTarget, callbackBIG) {
+          //console.log('gpmlSource');
+          //console.log(gpmlSource);
+          //console.log('gpmlTarget');
+          //console.log(gpmlTarget);
           var GraphicalLineGraphMember = {};
           graphicalLineType = gpmlArrowHeadToSemanticMappings[gpmlTarget.getAttribute('ArrowHead')];
           var graphicalLineTypeExistenceCheck;
           if (!!graphicalLineType) {
-            self.myGraphicalLineGraphMember = GraphicalLineGraphMember;
             jsonGraphicalLine.GraphicalLineGraph = jsonGraphicalLine.GraphicalLineGraph || [];
 
             GraphicalLineGraphMember['@id'] = pathwayIri + gpmlSource.getAttribute('GraphRef');
@@ -58,7 +42,6 @@ pathvisiojs.data.gpml.edge.graphicalLine = function(){
               }
 
               GraphicalLineGraphMember.interactsWith = pathwayIri + targetId;
-              GraphicalLineGraphMember.graphicalLineType = graphicalLineType;
             }
             graphicalLineTypeExistenceCheck = jsonGraphicalLine['@type'].indexOf(graphicalLineType);
             if (graphicalLineTypeExistenceCheck === -1) {
@@ -82,9 +65,29 @@ pathvisiojs.data.gpml.edge.graphicalLine = function(){
         var firstPoint = points[0][0];
         var lastPoint = points[0][points[0].length - 1];
 
+        /*
+        if (!!firstPoint.getAttribute('ArrowHead')) {
+          jsonGraphicalLine.markerStart = strcase.paramCase(firstPoint.getAttribute('ArrowHead'));
+        }
+        else {
+          jsonGraphicalLine.markerStart = 'none';
+        }
+
+        if (!!lastPoint.getAttribute('ArrowHead')) {
+          jsonGraphicalLine.markerEnd = strcase.paramCase(lastPoint.getAttribute('ArrowHead'));
+        }
+        else {
+          jsonGraphicalLine.markerStart = 'none';
+        }
+        //*/
+
         buildGraphicalLineGraph(firstPoint, lastPoint, function(GraphicalLineGraphMember) {
+          //console.log('GraphicalLineGraphMember1');
+          //console.log(GraphicalLineGraphMember);
         });
         buildGraphicalLineGraph(lastPoint, firstPoint, function(GraphicalLineGraphMember) {
+          //console.log('GraphicalLineGraphMember2');
+          //console.log(GraphicalLineGraphMember);
         });
 
         callback(jsonGraphicalLine);
@@ -94,6 +97,7 @@ pathvisiojs.data.gpml.edge.graphicalLine = function(){
       throw new Error('Error converting GraphicalLine to renderable json: ' + e.message);
     }
   }
+
   /*
   function toRenderableJson(gpmlEdge, jsonEdge, callback) {
     try {

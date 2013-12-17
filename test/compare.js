@@ -153,6 +153,8 @@ function loadExtJsCss(callbackOutside) {
       srcDirectoryUrl + 'js/pathvisiojs/view/pathway-diagram/svg/node/path-shape/group-complex.js',
       srcDirectoryUrl + 'js/pathvisiojs/view/pathway-diagram/svg/node/label.js',
       srcDirectoryUrl + 'js/pathvisiojs/view/pathway-diagram/svg/edge/edge.js',
+      srcDirectoryUrl + 'js/pathvisiojs/view/pathway-diagram/svg/edge/graphical-line.js',
+      srcDirectoryUrl + 'js/pathvisiojs/view/pathway-diagram/svg/edge/interaction.js',
       srcDirectoryUrl + 'js/pathvisiojs/view/pathway-diagram/svg/edge/marker.js',
       srcDirectoryUrl + 'js/pathvisiojs/view/pathway-diagram/svg/edge/point.js',
       srcDirectoryUrl + 'js/pathvisiojs/view/pathway-diagram/svg/edge/path-data.js'
@@ -219,6 +221,28 @@ window.onload = function() {
       {'id': 'none', 'url': srcDirectoryUrl + 'shape-library/symbols/none.svg'}
     ];
 
+    //*
+    var customMarkers = self.customMarkers = [
+      {'id': 'arrow', 'url': srcDirectoryUrl + 'shape-library/markers/arrow.svg'},
+      {'id': 'activity', 'url': srcDirectoryUrl + 'shape-library/markers/arrow.svg'},
+      {'id': 'mim-branching-left', 'url': srcDirectoryUrl + 'shape-library/markers/mim-branching-left.svg'},
+      {'id': 'mim-branching-right', 'url': srcDirectoryUrl + 'shape-library/markers/mim-branching-right.svg'},
+      {'id': 'necessary-stimulation', 'url': srcDirectoryUrl + 'shape-library/markers/mim-necessary-stimulation.svg'},
+      {'id': 'binding', 'url': srcDirectoryUrl + 'shape-library/markers/mim-binding.svg'},
+      {'id': 'conversion', 'url': srcDirectoryUrl + 'shape-library/markers/mim-conversion.svg'},
+      {'id': 'stimulation', 'url': srcDirectoryUrl + 'shape-library/markers/mim-stimulation.svg'},
+      {'id': 'modification', 'url': srcDirectoryUrl + 'shape-library/markers/mim-modification.svg'},
+      {'id': 'catalysis', 'url': srcDirectoryUrl + 'shape-library/markers/mim-catalysis.svg'},
+      {'id': 'inhibition', 'url': srcDirectoryUrl + 'shape-library/markers/mim-inhibition.svg'},
+      {'id': 'cleavage', 'url': srcDirectoryUrl + 'shape-library/markers/mim-cleavage.svg'},
+      {'id': 'covalent-bond', 'url': srcDirectoryUrl + 'shape-library/markers/mim-covalent-bond.svg'},
+      {'id': 'transcription-translation', 'url': srcDirectoryUrl + 'shape-library/markers/mim-transcription-translation.svg'},
+      {'id': 'gap', 'url': srcDirectoryUrl + 'shape-library/markers/mim-gap.svg'},
+      {'id': 'inhibitory-activity', 'url': srcDirectoryUrl + 'shape-library/markers/t-bar.svg'}
+    ];
+    //*/
+
+   /*
     var customMarkers = self.customMarkers = [
       {'id': 'arrow', 'url': srcDirectoryUrl + 'shape-library/markers/arrow.svg'},
       {'id': 'mim-branching-left', 'url': srcDirectoryUrl + 'shape-library/markers/mim-branching-left.svg'},
@@ -236,6 +260,7 @@ window.onload = function() {
       {'id': 'mim-gap', 'url': srcDirectoryUrl + 'shape-library/markers/mim-gap.svg'},
       {'id': 't-bar', 'url': srcDirectoryUrl + 'shape-library/markers/t-bar.svg'}
     ];
+    //*/
 
     pathvisiojs.load({
       target: '#pathvisio-js-dev',
