@@ -7,6 +7,12 @@ pathvisiojs.view.annotation = function(){
     var annotationHeaderText = annotation.select('#annotation-header-text')
     .text(function(d) { return d.header; });
 
+    var detailsSearchUri = annotation.select('#annotation-header-search').select('a')
+    .attr('href', function(d) {
+    	return 'http://wikipathways.org//index.php?title=Special:SearchPathways&doSearch=1&query=' + d.header;
+     })
+     .attr('title', function(d) {return 'Search for pathways containing ' + d.header; });
+
     var annotationIconMove = annotation.select('i.icon-move')
     .on("drag", function(d, i){
       // I think I need to play with absolute positioning for this

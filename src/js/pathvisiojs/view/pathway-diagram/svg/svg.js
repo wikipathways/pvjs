@@ -112,8 +112,8 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
         }
       },
       function(callback) {
-        if (!!args.customShapes) {
-          pathvisiojs.view.pathwayDiagram.svg.symbol.loadAllCustom(svg, args.customShapes, function() {
+        if (!!args.customSymbols) {
+          pathvisiojs.view.pathwayDiagram.svg.symbol.loadAllCustom(svg, args.customSymbols, function() {
             callback(null);
           })
         }
@@ -152,6 +152,9 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
     }
     if (!args.data) {
       throw new Error("No data entered to render.");
+    }
+    if (!args.svg) {
+      throw new Error("No svg specified.");
     }
     if (!args.allSymbolNames) {
       throw new Error("No allSymbolNames (list of symbols in this diagram) specified.");
@@ -194,6 +197,7 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
               };
               jsonld.frame(args.pathway, groupedElementsFrame, function(err, groupedElementsData) {
                 var nodeEntityArgs = {};
+                nodeEntityArgs.svg = args.svg;
                 nodeEntityArgs.target = groupContainer;
                 nodeEntityArgs.data = groupedElementsData['@graph'];
                 nodeEntityArgs.allSymbolNames = args.allSymbolNames;
@@ -210,8 +214,13 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
               pathvisiojs.view.pathwayDiagram.svg.node.entityNode.render(args);
             }
             else {
-              if (element.renderableType === 'edge') {
-                pathvisiojs.view.pathwayDiagram.svg.edge.render(args.target, element);
+              if (element.renderableType === 'Interaction') {
+                pathvisiojs.view.pathwayDiagram.svg.edge.interaction.render(args.svg, args.target, element);
+              }
+              else {
+                if (element.renderableType === 'GraphicalLine') {
+                  pathvisiojs.view.pathwayDiagram.svg.edge.graphicalLine.render(args.svg, args.target, element);
+                }
               }
             }
           }
@@ -265,7 +274,6 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
           callbackInside(null, groupData['@graph']);
         });
       },
-      //*/
       'grid': function(callbackInside) {
         pathvisioNS.grid = {};
         var frame = {
@@ -278,10 +286,25 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
           });
         });
       },
+      //*/
+      'gridData': function(callbackInside) {
+        var frame = {
+          '@context': pathvisiojs.context,
+          '@type': 'entityNode'
+        };  
+        jsonld.frame(args.pathway, frame, function(err, framedData) {
+          pathvisiojs.view.pathwayDiagram.pathFinder.initGrid(framedData['@graph'], args.pathway.image.width, args.pathway.image.height, function(gridData) {
+            args.svg[0][0].pathvisiojs = args.svg[0][0].pathvisiojs || {};
+            args.svg[0][0].pathvisiojs.gridData = gridData;
+            callbackInside(null, gridData);
+          });
+        });
+      },
       'firstOrderData': function(callbackInside) {
         var firstOrderFrame = {
           '@context': pathvisiojs.context,
-          "@type":["notGrouped", "Group"]
+          '@type':['notGrouped', 'Group'],
+          'InteractionGraph': {}
         };
         jsonld.frame(args.pathway, firstOrderFrame, function(err, firstOrderData) {
           callbackInside(null, firstOrderData['@graph']);
@@ -292,7 +315,7 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
       args.target = args.svg.select('#viewport');
       args.data = results.firstOrderData;
       quickRenderMultipleElements(args, function() {
-        callback(svg);
+        callback(args.svg);
       });
 
       //pathvisiojs.view.pathwayDiagram.svg.grid.render(args.svg);
