@@ -1,65 +1,102 @@
-// Edges (interactions and graphical lines)
+pathvisiojs.view.pathwayDiagram.svg.edge.interaction = function(){
+  function getMarkerNameFromInteractionGraph(InteractionGraph) {
+    console.log('InteractionGraph');
+    console.log(InteractionGraph);
+    self.myInteractionGraph = InteractionGraph;
+    var interactionType;
+    if (!InteractionGraph) {
+      return 'none';
+    }
+    else {
+      interactionType = InteractionGraph.interactionType;
+      if (!interactionType) {
+        return 'none';
+        console.warn('No interactionType specified for interaction.');
+      }
+      else {
 
-pathvisiojs.view.pathwayDiagram.svg.edge = function(){
+        // TODO check for whether marker is specified in list of availableMarkers
 
-  var svg;
+        return strcase.paramCase(interactionType);
+      }
+    }
+  }
 
-  function render(thisSvg, container, data) {
-    svg = thisSvg;
-    //console.log('container');
-    //console.log(container);
-    //console.log('data');
-    //console.log(data);
-
-    // defining this function inside the render function, because I don't know how else
-    // to pass the data value to a d3.call() function
+  function render(svg, container, data) {
+    /*
+    console.log('container');
+    console.log(container);
+    console.log('data');
+    console.log(data);
+    //*/
 
 
+    var firstInteractionGraph, lastInteractionGraph, markerStart, markerEnd;
+    if (!!data.InteractionGraph) {
+      if (data.InteractionGraph.length > 1) {
+        firstInteractionGraph = data.InteractionGraph[0];
+        console.log('data.InteractionGraph');
+        console.log(data.InteractionGraph);
+        self.myData = data;
+        markerStart = getMarkerNameFromInteractionGraph(firstInteractionGraph);
+        lastInteractionGraph = data.InteractionGraph[data.InteractionGraph.length - 1];
+        markerEnd = getMarkerNameFromInteractionGraph(lastInteractionGraph);
+      }
+      else {
+        lastInteractionGraph = data.InteractionGraph[0];
+        markerEnd = getMarkerNameFromInteractionGraph(lastInteractionGraph);
+      }
+    }
 
-    var edge = container.selectAll('#' + strcase.paramCase(data.GraphId))
+    var interaction = container.selectAll('#' + strcase.paramCase(data.GraphId))
     .data([data])
     .enter().append("path")
-    .call(setAttributes);
+    .attr("class", function (data) {
+      var styleClass = 'edge interaction';
+      if (!!data.DatasourceReference) {
+        styleClass += 'annotated-interaction ';
+      }
+      if (data.hasOwnProperty('strokeStyle')) {
+        if (data.strokeStyle === 'dashed') {
+          styleClass += " dashed-stroke";
+        }
+      }
+      return styleClass;
+    })
 
     var containerElement = container[0][0];
     var containerElementX, containerElementY;
     if (containerElement.hasOwnProperty('__data__')) {
-      edge.attr('transform', function() {
+      interaction.attr('transform', function() {
         containerElementX = containerElement.__data__.x || 0;
         containerElementY = containerElement.__data__.y || 0;
         return 'translate(' + (-1*containerElementX) + ' ' + (-1*containerElementY) + ')';
       })
     }
 
+    pathvisiojs.view.pathwayDiagram.svg.edge.setAttributes(svg, interaction, data, markerStart, markerEnd);
+
     /*
     // Update…
-    var edge = container.selectAll('#' + strcase.paramCase(data.GraphId))
+    var interaction = container.selectAll('#' + strcase.paramCase(data.GraphId))
     .data([data])
     .call(setAttributes);
 
     // Enter…
-    edge.enter().append("path")
+    interaction.enter().append("path")
     .call(setAttributes);
 
     // Exit…
-    edge.exit().remove();
+    interaction.exit().remove();
     //*/
 
   }
 
-  function setAttributes(svg, edge, data, markerStartName, markerEndName) {
-    /*
-    console.log('svg in edge');
-    console.log(svg);
-    console.log('edge in edge');
-    console.log(edge);
-    console.log('data in edge');
+  function setAttributes(interaction) {
+    var interactionElement = interaction[0][0];
+    var data = interactionElement.__data__;
+    console.log('data');
     console.log(data);
-    console.log('markerStartName in edge');
-    console.log(markerStartName);
-    console.log('markerEndName in edge');
-    console.log(markerEndName);
-    //*/
     var createPathDataString = d3.svg.line()
     .x(function(data) { return data.x; })
     .y(function(data) { return data.y; });
@@ -126,7 +163,7 @@ pathvisiojs.view.pathwayDiagram.svg.edge = function(){
 
               // GPML specifies just the start and end points and assumes a programmatic
               // path finding algorithm will fill in the intermediate points, unless
-              // the user explicitly sets the intermediate points by dragging the edge.
+              // the user explicitly sets the intermediate points by dragging the interaction.
 
               // fill in intermediate points using default algorithmic layout
 
@@ -187,29 +224,7 @@ pathvisiojs.view.pathwayDiagram.svg.edge = function(){
 
       //*/
 
-      edge.attr("id", function(data) { return strcase.paramCase(data.GraphId); })
-      //*
-      .attr("marker-start", function () {
-        var markerStart = pathvisiojs.view.pathwayDiagram.svg.edge.marker.render(svg, markerStartName, 'start', edge.stroke);
-        if (edge.hasOwnProperty('strokeStyle')) {
-          if (edge.strokeStyle === 'double') {
-            //hack to manage marker scaling; this marker should not have any features itself
-            markerStart = 'double-line-hack-start';
-          }
-        }
-        return 'url(#' + markerStart + ')';
-      })
-      .attr("marker-end", function (data) {
-        var markerEnd = pathvisiojs.view.pathwayDiagram.svg.edge.marker.render(svg, markerEndName, 'end', data.stroke);
-        if (edge.hasOwnProperty('strokeStyle')) {
-          if (edge.strokeStyle === 'double') {
-            //hack to manage marker scaling; this marker should not have any features itself
-            markerEnd = 'double-line-hack-end';
-          }
-        }
-        return 'url(#' + markerEnd + ')';
-      })
-      //*/
+      interaction.attr("id", function(data) { return strcase.paramCase(data.GraphId); })
       .attr("style", function (data) {
         var style = 'stroke-width:' + data.strokeWidth + '; ';
         if (data.hasOwnProperty('stroke')) {
@@ -231,20 +246,20 @@ pathvisiojs.view.pathwayDiagram.svg.edge = function(){
         //*
       .attr("d", function (data) {
       /*
-        if (edge.hasOwnProperty('strokeStyle')) {
-          if (edge.strokeStyle === 'double') {
+        if (interaction.hasOwnProperty('strokeStyle')) {
+          if (interaction.strokeStyle === 'double') {
 
             // setting stroke-width equal to its specified line value is
             // what PathVisio (Java) does, but the white line (overlaying the
             // thick line to create a "double line") is hard to see at 1px.
 
             viewport.append("path")
-            .attr("class", edge.edgeType + "-double")
+            .attr("class", interaction.interactionType + "-double")
             .attr("d", pathData)
             .attr("class", "stroke-color-equals-default-fill-color")
-            .attr("style", "stroke-width:" + edge.strokeWidth + '; ')
-            //.attr("marker-start", 'url(#' + pathvisiojs.view.pathwayDiagram.svg.edge.marker.render(viewport, edge.markerStart, 'start', edge.stroke) + ')')
-            .attr("marker-end", 'url(#' + pathvisiojs.view.pathwayDiagram.svg.edge.marker.render(viewport, strcase.paramCase(edge.interactionType), 'end', edge.stroke) + ')');
+            .attr("style", "stroke-width:" + interaction.strokeWidth + '; ')
+            //.attr("marker-start", 'url(#' + pathvisiojs.view.pathwayDiagram.svg.interaction.marker.render(viewport, interaction.markerStart, 'start', interaction.stroke) + ')')
+            .attr("marker-end", 'url(#' + pathvisiojs.view.pathwayDiagram.svg.interaction.marker.render(viewport, strcase.paramCase(edge.interactionType), 'end', edge.stroke) + ')');
           }
         }
         //*/
@@ -257,9 +272,6 @@ pathvisiojs.view.pathwayDiagram.svg.edge = function(){
 
         return createPathDataString(results.stepTypeAndConvertedPointSet.convertedPointSet);
       });
-
-
-
     });
   }
 
@@ -350,7 +362,6 @@ pathvisiojs.view.pathwayDiagram.svg.edge = function(){
 
   return {
     render:render,
-    setAttributes:setAttributes
     //renderAll:renderAll
   };
 }();
