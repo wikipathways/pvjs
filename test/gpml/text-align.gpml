@@ -1,44 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Pathway xmlns="http://pathvisio.org/GPML/2013a" Name="elbows" Version="20130813" Organism="Anopheles gambiae">
-  <Graphics BoardWidth="549.9689086481834" BoardHeight="450.6935482679971" />
+  <Graphics BoardWidth="658.0537813871033" BoardHeight="850.1586819093093" />
   <DataNode TextLabel="right" GraphId="f8e5b" Type="Metabolite">
-    <Graphics CenterX="86.9202118930236" CenterY="107.07537600409955" Width="88.13693270735519" Height="63.88028169014086" ZOrder="32768" FontSize="10" Valign="Middle" Align="Right" Color="0000ff" />
+    <Graphics CenterX="86.9202118930236" CenterY="102.22100707206073" Width="88.13693270735519" Height="63.88028169014086" ZOrder="32768" FontSize="10" Valign="Middle" Align="Right" Color="0000ff" />
     <Xref Database="" ID="" />
   </DataNode>
   <DataNode TextLabel="center" GraphId="b4bd1" Type="Metabolite">
-    <Graphics CenterX="105.06086467269299" CenterY="388.75340742292667" Width="88.13693270735519" Height="63.88028169014086" ZOrder="32770" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Graphics CenterX="187.19306693047585" CenterY="102.22100707206073" Width="88.13693270735519" Height="63.880281690140855" ZOrder="32770" FontSize="10" Valign="Middle" Color="0000ff" />
     <Xref Database="" ID="" />
   </DataNode>
   <DataNode TextLabel="left" GraphId="d15a7" Type="Metabolite">
-    <Graphics CenterX="483.236531099555" CenterY="371.759243655196" Width="73.46475509725681" Height="63.88028169014086" ZOrder="32771" FontSize="10" Valign="Middle" Align="Left" Color="0000ff" />
+    <Graphics CenterX="289.8931064339475" CenterY="102.22100707206071" Width="88.13693270735514" Height="63.880281690140855" ZOrder="32771" FontSize="10" Valign="Middle" Align="Left" Color="0000ff" />
     <Xref Database="" ID="" />
   </DataNode>
-  <Interaction GraphId="id988260af">
-    <Graphics ZOrder="12288" LineThickness="1.0">
-      <Point X="446.5041535509266" Y="371.759243655196" GraphRef="d15a7" RelX="-1.0" RelY="0.0" ArrowHead="Arrow" />
-      <Point X="149.12933102637058" Y="388.75340742292667" GraphRef="b4bd1" RelX="1.0" RelY="0.0" />
-    </Graphics>
+  <DataNode TextLabel="Pathway" GraphId="b3d24" Type="Pathway">
+    <Graphics CenterX="175.74765935616256" CenterY="244.10868578644664" Width="117.3478260869565" Height="72.05797101449275" ZOrder="32783" FontWeight="Bold" FontSize="12" Valign="Middle" ShapeType="None" Color="14961e" />
     <Xref Database="" ID="" />
-  </Interaction>
-  <Interaction>
-    <Graphics ZOrder="12288" LineThickness="1.0">
-      <Point X="105.06086467269299" Y="356.8132665778562" GraphRef="b4bd1" RelX="0.0" RelY="-1.0" />
-      <Point X="86.9202118930236" Y="139.01551684916998" GraphRef="f8e5b" RelX="0.0" RelY="1.0" ArrowHead="Arrow" />
-    </Graphics>
-    <Xref Database="" ID="" />
-  </Interaction>
-  <Interaction>
-    <Graphics ZOrder="12288" LineThickness="1.0">
-      <Point X="446.5041535509266" Y="387.7293140777312" GraphRef="d15a7" RelX="-1.0" RelY="0.5" />
-      <Point X="149.12933102637058" Y="404.7234778454619" GraphRef="b4bd1" RelX="1.0" RelY="0.5" ArrowHead="Arrow" />
-    </Graphics>
-    <Xref Database="" ID="" />
-  </Interaction>
-  <Shape GraphId="efec5">
-    <Attribute Key="org.pathvisio.CellularComponentProperty" Value="Cytosol region" />
-    <Attribute Key="org.pathvisio.DoubleLineProperty" Value="Double" />
-    <Graphics CenterX="345.34113012798394" CenterY="107.56893210542955" Width="111.38573360378633" Height="87.04496281271133" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="RoundedRectangle" LineThickness="3.0" Color="c0c0c0" Rotation="0.0" />
-  </Shape>
+  </DataNode>
   <InfoBox CenterX="0.0" CenterY="0.0" />
   <Biopax>
     <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="d5e">
