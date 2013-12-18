@@ -1,5 +1,121 @@
 pathvisiojs.data.gpml.node = function(){
 
+  function setJsonBackgroundColor(jsonNode, currentGpmlFillColorValue, defaultGpmlFillColorValue) {
+    var jsonBackgroundColor;
+    if (currentGpmlFillColorValue !== defaultGpmlFillColorValue) {
+      jsonBackgroundColor = pathvisiojs.data.gpml.getGpmlColor(currentGpmlFillColorValue, defaultGpmlFillColorValue);
+      jsonNode.backgroundColor = jsonBackgroundColor;
+    }
+    return jsonNode;
+  }
+
+  function getPerpendicularLine(sx, sy, rotate) {
+    var rad = rotate * Math.PI/180;
+    var sideAngleRotation = 2 * Math.PI - rad;
+    var dx, dy;
+    var sideAngleBeforeRotate = Math.atan2(sy, sx);
+    var dx = Math.cos(sideAngleBeforeRotate + sideAngleRotation - Math.PI/2);
+    var dy = Math.sin(sideAngleBeforeRotate + sideAngleRotation - Math.PI/2);
+    return {'dx': dx, 'dy': dy};
+  }
+
+  function getPorts(jsonNode, callback) {
+    var ports = [];
+    var relXYCombinations = [
+      {
+      RelX: -0.5,
+      RelY: -1
+    },
+    {
+      RelX: 0,
+      RelY: -1
+    },
+    {
+      RelX: 0.5,
+      RelY: -1
+    },
+    {
+      RelX: 1,
+      RelY: -0.5
+    },
+    {
+      RelX: 1,
+      RelY: 0
+    },
+    {
+      RelX: 1,
+      RelY: 0.5
+    },
+    {
+      RelX: -0.5,
+      RelY: 1
+    },
+    {
+      RelX: 0,
+      RelY: 1
+    },
+    {
+      RelX: 0.5,
+      RelY: 1
+    },
+    {
+      RelX: -1,
+      RelY: -0.5
+    },
+    {
+      RelX: -1,
+      RelY: 0
+    },
+    {
+      RelX: -1,
+      RelY: 0.5
+    }
+    ];
+
+    var side = {};
+
+    var x, y, perpendicularUnitVector, rotate;
+    relXYCombinations.forEach(function(relXYCombination) {
+      if (Math.abs(relXYCombination.RelX) === 1) {
+        side.sx = relXYCombination.RelX;
+        side.sy = 0;
+      }
+      else {
+        side.sx = 0;
+        side.sy = relXYCombination.RelY;
+      }
+
+      // if rotate has a value, keep the value. Otherwise, it's 0deg.
+
+      rotate = jsonNode.rotate || 0;
+      perpendicularUnitVector = getPerpendicularLine(side.sx, side.sy, rotate);
+
+      /*
+       * then get line represented by side
+       * and then get perpendicular to that line, taking
+       * into account rotation
+       * */
+
+      ports.push({
+        'x': (jsonNode.x + jsonNode.width * (relXYCombination.RelX + 1)/2),
+        'y': (jsonNode.y + jsonNode.height * (relXYCombination.RelY + 1)/2),
+        'positionRelative':{
+          '@context':{
+            'position':{
+              '@value':'relative'
+            }
+          },
+          'x': 100 * (relXYCombination.RelX + 1)/2 + '%',
+          'y': 100 * (relXYCombination.RelY + 1)/2 + '%'
+        },
+        'dx': perpendicularUnitVector.dx,
+        'dy': perpendicularUnitVector.dy,
+        '@type':'Port'
+      }); 
+    }); 
+    callback(ports);
+  }
+
   // TODO What happens if we have right to left flowing text?
 
   var alignToAnchorMappings = { "Left":"start", "Center":"middle", "Right":"end" };
@@ -35,19 +151,6 @@ pathvisiojs.data.gpml.node = function(){
 
       var jsonAnchorsFromThisNode = pathvisiojs.data.gpml.anchor.getAllFromNode(jsonNode);
 
-      var color;
-      var colorValue = gpmlNode.select('Graphics').attr('Color');
-      if (!!colorValue) {
-        color = new RGBColor(colorValue);
-        if (color.ok) {
-          jsonNode.stroke = color.toHex();
-        }
-        else {
-          console.warn('Invalid Color encountered. Setting Color to black.');
-          jsonNode.stroke = "#000000";
-        }
-      }
-
       var shapeType = gpmlNode.select('Graphics').attr('ShapeType'); 
       if (!shapeType) {
 
@@ -64,34 +167,6 @@ pathvisiojs.data.gpml.node = function(){
       }
       else {
         jsonNode.shapeType = strcase.paramCase(shapeType);
-      }
-
-      var fillColor = gpmlNode.select('Graphics').attr('FillColor'); 
-      var validRGBFillColor;
-      if (!!fillColor) {
-
-        // RGBColor() from http://www.phpied.com/rgb-color-parser-in-javascript/
-        // license: Use it if you like it
-
-        fillColor = fillColor.toLowerCase();
-
-        if (fillColor === 'transparent') {
-          jsonNode.fillOpacity = 0;
-        }
-        else {
-          rGBFillColor = new RGBColor(fillColor);
-          if (rGBFillColor.ok) {
-            jsonNode.fill = rGBFillColor.toHex();
-          }
-          else {
-            console.warn('Invalid FillColor encountered. Setting FillColor to gray.');
-            jsonNode.fill = "#999999";
-          }
-
-          if (jsonNode.shapeType !== 'none') {
-            jsonNode.fillOpacity = 1;
-          }
-        }
       }
 
       var strokeWidth = gpmlNode.select('Graphics').attr('LineThickness'); 
@@ -264,6 +339,8 @@ pathvisiojs.data.gpml.node = function(){
 
   return {
     toRenderableJson:toRenderableJson,
-    getPortCoordinates:getPortCoordinates
+    getPortCoordinates:getPortCoordinates,
+    getPorts:getPorts,
+    setJsonBackgroundColor:setJsonBackgroundColor
   };
 }();
