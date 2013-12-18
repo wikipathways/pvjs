@@ -11,13 +11,13 @@ pathvisiojs.view.pathwayDiagram.svg.edge.graphicalLine = function(){
     .data([data])
     .enter().append("path")
     .attr("class", function (data) {
-      var styleClass = 'edge graphical-line';
+      var cssClass = 'edge graphical-line';
       if (data.hasOwnProperty('strokeStyle')) {
         if (data.strokeStyle === 'dashed') {
-          styleClass += " dashed-stroke";
+          cssClass += " dashed-stroke";
         }
       }
-      return styleClass;
+      return cssClass;
     });
 
     var containerElement = container[0][0];
@@ -66,13 +66,13 @@ pathvisiojs.view.pathwayDiagram.svg.edge.graphicalLine = function(){
       .append("path")
       .attr("id", function (data) { return data.edgeType + '-' + data.graphId; })
       .attr("class", function (data) {
-        var styleClass = 'edge ' + data.edgeType + ' ';
+        var cssClass = 'edge ' + data.edgeType + ' ';
         if (data.hasOwnProperty('strokeStyle')) {
           if (data.strokeStyle === 'dashed') {
-            styleClass += " dashed-stroke";
+            cssClass += " dashed-stroke";
           }
         }
-        return styleClass;
+        return cssClass;
       })
       .attr("style", function (data) {
         var style = 'stroke-width:' + data.strokeWidth + '; ';

@@ -206,13 +206,13 @@ pathvisiojs.pathway.edge = function(){
       .append("path")
       .attr("id", function (d) { return d.edgeType + '-' + d.graphId; })
       .attr("class", function (d) {
-        var styleClass = 'edge ' + d.edgeType + ' ';
+        var cssClass = 'edge ' + d.edgeType + ' ';
         if (d.hasOwnProperty('strokeStyle')) {
           if (d.strokeStyle === 'dashed') {
-            styleClass += " dashed-stroke";
+            cssClass += " dashed-stroke";
           }
         }
-        return styleClass;
+        return cssClass;
       })
       .attr("style", function (d) {
         var style = 'stroke-width:' + d.strokeWidth + '; ';
