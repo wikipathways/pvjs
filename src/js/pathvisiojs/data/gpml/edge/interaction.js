@@ -20,7 +20,8 @@ pathvisiojs.data.gpml.edge.interaction = function(){
     "mim-cleavage":"Cleavage",
     "mim-covalent-bond":"CovalentBond",
     "mim-transcription-translation":"TranscriptionTranslation",
-    "mim-gap":"Gap"
+    "mim-gap":"Gap",
+    "Line":"Unspecified"
   };
   //*/
 
@@ -42,11 +43,18 @@ pathvisiojs.data.gpml.edge.interaction = function(){
   }
 
   function getSemanticNameFromGpmlArrowHeadName(gpmlArrowHeadName) {
-    var semanticName = gpmlArrowHeadToSemanticMappings[gpmlArrowHeadName];
-    if (!semanticName) {
-      semanticName = gpmlArrowHeadName;
-      console.warn('No semantic name found for GPML ArrowHead named "' + gpmlArrowHeadName + '". Returning original GPML ArrowHead name as semantic name.');
+    var semanticName;
+    if (!!gpmlArrowHeadName) {
+      semanticName = gpmlArrowHeadToSemanticMappings[gpmlArrowHeadName];
+      if (!semanticName) {
+        semanticName = gpmlArrowHeadName;
+        console.warn('No semantic name found for GPML ArrowHead name "' + gpmlArrowHeadName + '". Returning original GPML ArrowHead name as semantic name.');
+      }
     }
+    else {
+      semanticName = 'Unspecified';
+    }
+
     return semanticName;
   }
 
@@ -106,28 +114,42 @@ pathvisiojs.data.gpml.edge.interaction = function(){
               //jsonInteraction['@type'][interactionTypeExistenceCheck] = 'Bidirectional-' + interactionType;
               jsonInteraction['@type'].push('Bidirectional-' + interactionType);
             }
+
             jsonInteraction.InteractionGraph.push(InteractionGraphMember);
             // TODO add the reaction, if it exists
             //'ex:Anchor': pathwayIri + '#Reaction1'
 
-            callbackBIG(InteractionGraphMember);
+            callbackBIG(InteractionGraphMember, strcase.paramCase(interactionType));
           }
           else {
-            callbackBIG(null);
+            callbackBIG(null, 'unspecified');
           }
         }
 
         var firstPoint = points[0][0];
         var lastPoint = points[0][points[0].length - 1];
 
-        buildInteractionGraph(lastPoint, firstPoint, function(InteractionGraphMember) {
-          //console.log('InteractionGraphMember2');
-          //console.log(InteractionGraphMember);
-        });
-        buildInteractionGraph(firstPoint, lastPoint, function(InteractionGraphMember) {
-          //console.log('InteractionGraphMember1');
-          //console.log(InteractionGraphMember);
-        });
+        // first function below has inputs lastPoint, firstPoint because it
+        // corresponds to the marker type for the first point
+
+        if (!!firstPoint.getAttribute('ArrowHead') || !!lastPoint.getAttribute('ArrowHead')) {
+          buildInteractionGraph(lastPoint, firstPoint, function(InteractionGraphMember, interactionType) {
+            // TODO this is temporary. we want to get the marker from the interactionType at render time.
+            jsonInteraction.markerStart = interactionType;
+            //console.log(InteractionGraphMember);
+          });
+          buildInteractionGraph(firstPoint, lastPoint, function(InteractionGraphMember, interactionType) {
+            jsonInteraction.markerEnd = interactionType;
+            //console.log(InteractionGraphMember);
+          });
+        }
+        else {
+          lastPoint.setAttribute('ArrowHead', 'Line');
+          buildInteractionGraph(firstPoint, lastPoint, function(InteractionGraphMember, interactionType) {
+            jsonInteraction.markerEnd = interactionType;
+            //console.log(InteractionGraphMember);
+          });
+        }
 
         callback(jsonInteraction);
       })
