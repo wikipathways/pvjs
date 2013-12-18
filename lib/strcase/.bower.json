@@ -1,14 +1,15 @@
 {
   "name": "strcase",
-  "homepage": "https://github.com/tower/strcase",
-  "version": "0.5.0",
-  "_release": "0.5.0",
+  "homepage": "https://github.com/ariutta/strcase",
+  "version": "0.6.0",
+  "_release": "0.6.0",
   "_resolution": {
     "type": "version",
-    "tag": "0.5.0",
-    "commit": "176d0b0e40aa5f8897fe66fa257ae86752cc0e00"
+    "tag": "0.6.0",
+    "commit": "75c0ccdfb1779fcc11aede1876acb05c2bf9d78f"
   },
-  "_source": "git://github.com/tower/strcase.git",
-  "_target": "~0.5.0",
-  "_originalSource": "strcase"
+  "_source": "https://github.com/ariutta/strcase.git",
+  "_target": "~0.6.0",
+  "_originalSource": "https://github.com/ariutta/strcase.git",
+  "_direct": true
 }

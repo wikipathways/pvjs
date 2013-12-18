@@ -5,15 +5,23 @@ Convert strings to `camelCase`, `snake_case`, `CONSTANT_CASE`, and other useful 
 ## Install
 
 node:
+----
 
 ```
 npm install tower-strcase
 ```
 
 browser:
+-------
 
 ``` html
 component install tower/strcase
+```
+
+or using minified file from Grunt build:
+
+``` html
+<script src="./dist/strcase.min.js" />
 ```
 
 ## Usage

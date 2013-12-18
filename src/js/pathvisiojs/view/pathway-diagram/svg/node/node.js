@@ -109,6 +109,7 @@ pathvisiojs.view.pathwayDiagram.svg.node = function(){
     //*/
   }
 
+  /*
   function renderAll(nodes, pathway, allSymbolNames) {
     if (!nodes || !pathway || !allSymbolNames) {
       //console.log(args.allSymbolNames);
@@ -141,6 +142,7 @@ pathvisiojs.view.pathwayDiagram.svg.node = function(){
     nodes.exit().remove();
 
   }
+  //*/
 
   function getPortCoordinates(boxDimensions, relX, relY) {
     var port = {};
@@ -166,7 +168,7 @@ pathvisiojs.view.pathwayDiagram.svg.node = function(){
     });
   }
   return {
-    renderAll:renderAll,
+    //renderAll:renderAll,
     render:render,
     getPortCoordinates:getPortCoordinates,
     highlightByLabel:highlightByLabel

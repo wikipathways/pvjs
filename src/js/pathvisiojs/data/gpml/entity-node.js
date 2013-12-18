@@ -18,13 +18,14 @@ pathvisiojs.data.gpml.entityNode = function() {
         }
       });
       graphId = gpmlEntityNode.attr('GraphId') || ('id' + uuid.v4());
-      jsonEntityNode["@id"] = pathwayIri + "#" + graphId;
+      jsonEntityNode["@id"] = pathwayIri + graphId;
       jsonEntityNode.GraphId = graphId;
-      var groupRef = gpmlEntityNode.attr('GroupRef');
-      if (!!groupRef) {
-        jsonEntityNode.GroupRef = groupRef;
-        jsonEntityNode.dependsOn = [pathwayIri + "#" + groupRef];
+
+      var isContainedBy = gpmlEntityNode.attr('GroupRef');
+      if (!!isContainedBy) {
+        jsonEntityNode.isContainedBy = pathwayIri + isContainedBy;
       }
+
       shapeType = gpmlEntityNode.select('Graphics').attr('ShapeType') || 'rectangle';
       shapeType = strcase.paramCase(shapeType);
       jsonEntityNode.ShapeType = shapeType;
@@ -38,7 +39,7 @@ pathvisiojs.data.gpml.entityNode = function() {
         "entityNode",
         shapeType,
         "EntityNode",
-        groupRef || 'notGrouped'
+        isContainedBy || 'notGrouped'
       ];
 
       var linestyle = gpmlEntityNode.select('Graphics').attr('LineStyle') || 'Solid';
@@ -186,7 +187,8 @@ pathvisiojs.data.gpml.entityNode = function() {
           '@type':'Port'
         }); 
       }); 
-      entityNodeCallback(jsonEntityNode, ports);
+      jsonEntityNode.Port = ports;
+      entityNodeCallback(jsonEntityNode);
     }
     catch (e) {
       throw new Error("Error converting EntityNode or Port to renderable json: " + e.message);
