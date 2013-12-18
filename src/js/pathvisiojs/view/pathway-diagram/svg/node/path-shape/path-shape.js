@@ -4,7 +4,7 @@ pathvisiojs.view.pathwayDiagram.svg.node.pathShape = function(){
     .data([data])
     .attr("id", function (d) {return 'node-' + strcase.paramCase(d['@id']);})
     .attr("class", function (d) {
-      var cssClass = 'shape ';
+      var cssClass = 'symbol ';
       return cssClass;
     })
 
