@@ -9,7 +9,7 @@ pathvisiojs.data.gpml.group = function() {
       graphId = gpmlGroup.attr('GraphId') || ('id' + uuid.v4());
       jsonGroup.GraphId = graphId;
       groupId = gpmlGroup.attr('GroupId') || ('id' + uuid.v4());
-      jsonGroup["@id"] = pathwayIri + "#" + groupId;
+      jsonGroup["@id"] = pathwayIri + groupId;
       jsonGroup.GroupId = groupId;
       shapeType = groupType = gpmlGroup.attr('Style') || 'None';
       shapeType = strcase.paramCase('group-' + shapeType);
