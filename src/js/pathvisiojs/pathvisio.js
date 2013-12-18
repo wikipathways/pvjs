@@ -24,7 +24,7 @@ pathvisiojs = function(){
       if (pathvisiojs.utilities.isWikiPathwaysId(inputData.wikiPathwaysId)) {
         results.uri = getUriFromWikiPathwaysId(inputData.wikiPathwaysId, inputData.revision);
         results.type = 'GPML';
-        results.pathwayIri = 'wpId:' + inputData.wikiPathwaysId;
+        results.pathwayIri = 'wpId:' + inputData.wikiPathwaysId + '#';
       }
     }
     else {
@@ -32,14 +32,14 @@ pathvisiojs = function(){
         results.uri = inputData;
         if (results.uri.indexOf('.gpml') > -1) {
           results.type = 'GPML';
-          results.pathwayIri = inputData;
+          results.pathwayIri = inputData + '#';
         }
       }
       else {
         if (pathvisiojs.utilities.isWikiPathwaysId(inputData)) {
           results.uri = getUriFromWikiPathwaysId(inputData);
           results.type = 'GPML';
-          results.pathwayIri = 'wpId:' + inputData;
+          results.pathwayIri = 'wpId:' + inputData + '#';
         }
         else {
           throw new Error('Pathvisio.js cannot handle the data source type entered: ' + data);
