@@ -97,14 +97,14 @@ pathvisiojs.view.pathwayDiagram.svg.node = function(){
 
     /*
     .attr("class", function (d) {
-      var styleClass = '';
+      var cssClass = '';
       if (d.elementType === 'data-node') {
-        styleClass = 'shape ' + d.dataNodeType + ' ' + d.shapeType;
+        cssClass = 'shape ' + d.dataNodeType + ' ' + d.shapeType;
       }
       else {
-        styleClass = 'shape ' + d.shapeType;
+        cssClass = 'shape ' + d.shapeType;
       }
-      return styleClass;
+      return cssClass;
     })
     //*/
   }

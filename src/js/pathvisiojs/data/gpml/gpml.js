@@ -1,6 +1,47 @@
 pathvisiojs.data.gpml = function(){
 
-  function getGroupDimensions(group, groupContents, callback) {
+  var pathvisioDefaultStyleValues = {
+    'FontSize':{
+      'Type':"FontSize",
+      'Value':10
+    }
+  }
+
+  function getGpmlColor(gpmlColor, pathvisioDefault) {
+    var color;
+    if (gpmlColor !== pathvisioDefault) {
+      if (!!gpmlColor) {
+        color = new RGBColor(gpmlColor);
+        if (color.ok) {
+          return color.toHex();
+        }
+        else {
+          return 'black';
+        }
+      }
+      else {
+        return 'black';
+      }
+    }
+    else {
+      return null;
+    }
+  }
+
+   function setJsonColor(jsonElement, currentGpmlColorValue, defaultGpmlColorValue) {
+    var jsonColor;
+    if (currentGpmlColorValue !== defaultGpmlColorValue) {
+      jsonColor = getGpmlColor(currentGpmlColorValue, defaultGpmlColorValue);
+      jsonElement.color = jsonColor;
+      jsonElement.borderColor = jsonColor;
+      if (jsonElement.hasOwnProperty('text')) {
+        jsonElement.text.color = jsonColor;
+      }
+    }
+    return jsonElement;
+  }
+
+ function getGroupDimensions(group, groupContents, callback) {
     var dimensions = {};
     dimensions.topLeftCorner = {};
     dimensions.topLeftCorner.x = 99999;
@@ -458,6 +499,8 @@ pathvisiojs.data.gpml = function(){
   }
 
   return {
-    toRenderableJson:toRenderableJson
+    toRenderableJson:toRenderableJson,
+    getGpmlColor:getGpmlColor,
+    setJsonColor:setJsonColor
   };
 }();
