@@ -44,6 +44,7 @@ pathvisiojs.view.pathwayDiagram.svg.node.pathShape = function(){
   }
   //*/
 
+ /*
   function renderAll(nodes, pathway, allSymbolNames) {
     if (!nodes || !pathway || !allSymbolNames) {
       //console.log(allSymbolNames);
@@ -76,9 +77,10 @@ pathvisiojs.view.pathwayDiagram.svg.node.pathShape = function(){
     pathShapes.exit().remove();
 
   }
+  //*/
 
   return {
-    renderAll:renderAll,
+    //renderAll:renderAll,
     render:render
   };
 }();

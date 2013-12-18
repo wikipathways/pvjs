@@ -8,12 +8,14 @@ pathvisiojs.data.gpml.text = function() {
   }
 
   function toRenderableJson(gpmlNode, inputDefaultValues, textCallbackOutside) {
+    /*
     console.log('gpmlNode');
     console.log(gpmlNode[0][0]);
     console.log('inputDefaultValues');
     console.log(inputDefaultValues);
     console.log('textCallbackOutside');
     console.log(textCallbackOutside);
+    //*/
     try {
       var text = gpmlNode.attr('TextLabel');
       if (!!text) {

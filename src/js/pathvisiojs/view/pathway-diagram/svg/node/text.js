@@ -14,6 +14,7 @@ pathvisiojs.view.pathwayDiagram.svg.node.text = function(){
     'inherit': 'inherit',
     'justify': null
     //*/
+
   function getTextAnchor(tspan0, cssTextAlignValue) {
     var direction, textAnchor;
     if (cssTextAlignValue === 'center') {
@@ -46,7 +47,7 @@ pathvisiojs.view.pathwayDiagram.svg.node.text = function(){
   function render(nodeContainer, data) {
     var dx, dy, textAlign, textAnchor;
 
-    // TODO don't repeat default fontSize here. DRY.
+    // TODO don't repeat default fontSize here. Need to follow DRY principle.
 
     var fontSize = data.text.fontSize || 10;
     if (data.text.hasOwnProperty('textAlign')) {
