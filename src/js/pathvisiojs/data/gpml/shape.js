@@ -17,7 +17,7 @@ pathvisiojs.data.gpml.shape = function(){
             jsonShape.text = text;
           }
 
-          jsonShape = pathvisiojs.data.gpml.setJsonColor(jsonShape,
+          jsonShape = pathvisiojs.data.gpml.setColorAsJson(jsonShape,
                         gpmlShape.select('Graphics').attr('Color'),
                         pathvisioDefaultStyleValues.Color);
 

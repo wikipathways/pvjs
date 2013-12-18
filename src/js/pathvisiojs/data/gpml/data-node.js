@@ -2,36 +2,42 @@ pathvisiojs.data.gpml.dataNode = function() {
 
   var pathvisioDefaultStyleValues = {
     'GeneProduct':{
+      'LineStyle':null,
       'Color':null,
       'FillColor':null,
       'FontSize':10,
       'FontWeight':null
     },
     'Protein':{
+      'LineStyle':null,
       'Color':null,
       'FillColor':null,
       'FontSize':10,
       'FontWeight':null
     },
     'Rna':{
+      'LineStyle':null,
       'Color':null,
       'FillColor':null,
       'FontSize':10,
       'FontWeight':null
     },
     'Unknown':{
+      'LineStyle':null,
       'Color':null,
       'FillColor':null,
       'FontSize':10,
       'FontWeight':null
     },
     'Pathway':{
+      'LineStyle':null,
       'Color':'14961e',
       'FillColor':null,
       'FontSize':12,
       'FontWeight':'Bold'
     },
     'Metabolite':{
+      'LineStyle':null,
       'Color':'0000ff',
       'FillColor':null,
       'FontSize':10,
@@ -62,12 +68,19 @@ pathvisiojs.data.gpml.dataNode = function() {
         jsonDataNode.dataNodeType = dataNodeType;
         jsonDataNode["@type"].push(dataNodeType);
 
+
+
+
         pathvisiojs.data.gpml.text.toRenderableJson(gpmlDataNode, pathvisioDefaultStyleValues[dataNodeType], function(text) {
           if (!!text) {
             jsonDataNode.text = text;
           }
 
-          jsonDataNode = pathvisiojs.data.gpml.setJsonColor(jsonDataNode,
+          jsonDataNode = pathvisiojs.data.gpml.setBorderStyleAsJson(jsonDataNode,
+                        gpmlDataNode.select('Graphics').attr('LineStyle'),
+                        pathvisioDefaultStyleValues[dataNodeType].LineStyle);
+
+          jsonDataNode = pathvisiojs.data.gpml.setColorAsJson(jsonDataNode,
                         gpmlDataNode.select('Graphics').attr('Color'),
                         pathvisioDefaultStyleValues[dataNodeType].Color);
 

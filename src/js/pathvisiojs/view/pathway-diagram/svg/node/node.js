@@ -1,11 +1,13 @@
 pathvisiojs.view.pathwayDiagram.svg.node = function(){
   function dragmove(d) {
+    /*
     console.log(d3.event.x);
     console.log('d');
     console.log(d);
     console.log(d.id);
     console.log('this');
     console.log(this);
+    //*/
     // don't have anchors rendered yet
     /*
     var changingAnchors = pathwayHere.elements.filter(function(element) {return element.parentId === d.id});
@@ -36,15 +38,21 @@ pathvisiojs.view.pathwayDiagram.svg.node = function(){
     */
   }
 
-  //function render(nodeContainer, organism) {
   function render(args, callback) {
+    if (!args) {
+      throw new Error('Need input args to render a node.');
+    }
+    if (!args.target) {
+      throw new Error('Need a target to render a node.');
+    }
+    if (!args.data) {
+      throw new Error('Need a input data to render a node.');
+    }
 
     /************ 
      * container
      * *********/
 
-    //console.log('args.data');
-    //console.log(args.data);
     var drag = d3.behavior.drag()
       .origin(Object)
       .on("drag", dragmove);

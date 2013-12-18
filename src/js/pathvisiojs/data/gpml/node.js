@@ -3,7 +3,7 @@ pathvisiojs.data.gpml.node = function(){
   function setJsonBackgroundColor(jsonNode, currentGpmlFillColorValue, defaultGpmlFillColorValue) {
     var jsonBackgroundColor;
     if (currentGpmlFillColorValue !== defaultGpmlFillColorValue) {
-      jsonBackgroundColor = pathvisiojs.data.gpml.getGpmlColor(currentGpmlFillColorValue, defaultGpmlFillColorValue);
+      jsonBackgroundColor = pathvisiojs.data.gpml.getColor(currentGpmlFillColorValue, defaultGpmlFillColorValue);
       jsonNode.backgroundColor = jsonBackgroundColor;
     }
     return jsonNode;
@@ -149,8 +149,6 @@ pathvisiojs.data.gpml.node = function(){
 
       jsonNode.id = gpmlNode.attr('GraphId');
 
-      var jsonAnchorsFromThisNode = pathvisiojs.data.gpml.anchor.getAllFromNode(jsonNode);
-
       var shapeType = gpmlNode.select('Graphics').attr('ShapeType'); 
       if (!shapeType) {
 
@@ -175,35 +173,6 @@ pathvisiojs.data.gpml.node = function(){
       }
 
       var attributes = gpmlNode.selectAll('Attribute');
-
-      var strokeStyle = gpmlNode.select('Graphics').attr('LineStyle'); 
-      if (!!strokeStyle) {
-        strokeStyle = strokeStyle.toLowerCase();
-        if (strokeStyle === 'broken') {
-          jsonNode.strokeStyle = 'dashed';
-        }
-        else {
-          jsonNode.strokeStyle = strokeStyle;
-        }
-      }
-      else {
-
-        // As currently specified, a given element can only have one strokeStyle.
-        // This one strokeStyle can be solid, dashed (broken) or double.
-        // If no value is specified in GPML for LineStyle, then we need to check
-        // for whether the element has strokeStyle of double.
-
-        if (attributes.length > 0) {
-          strokeStyle = attributes.filter(function(d, i) {
-            return d3.select(this).attr('Key') === 'org.pathvisiojs.DoubleLineProperty' && d3.select(this).attr('Value') === 'Double';
-          });
-
-          if (strokeStyle[0].length > 0) {
-            jsonNode.strokeStyle = 'double';
-          }
-        }
-      }
-
       ///*
       if (attributes.length > 0) {
         var cellularComponent = attributes.filter(function(d, i) {
@@ -215,90 +184,8 @@ pathvisiojs.data.gpml.node = function(){
       }
       //*/
 
-      // TODO move this to label.js
-      // textLabel data
-
-      var textLabel = gpmlNode.attr('TextLabel');
-      self.gpmlNode = gpmlNode;
-      console.log('textLabel');
-      console.log(textLabel);
-      ///*
-      if (!!textLabel) {
-        var text = textLabel.toString().replace("&#xA;","\r\n");
-
-          jsonNode.textLabel = {};
-
-          jsonNode.textLabel.text = text;
-
-          if (jsonNode.hasOwnProperty("stroke")) {
-
-            // jsonNode stroke color (referring to the color of a border or line) and text fill color appear to be the same property in the Java PathVisio code
-
-            jsonNode.textLabel.fill = jsonNode.stroke;
-          }
-
-          // default fontSize is already specified in the CSS of pathway-diagram.svg, but I need the font size
-          // to calculate the vertical spacing. I could remove this if I could pull the value from the CSS.
-          
-          var fontSize;
-          fontSize = gpmlNode.select('Graphics').attr("FontSize");
-          if (!fontSize) {
-            fontSize = 10;
-          }
-
-          jsonNode.textLabel.fontSize = fontSize;
-
-          var fontName;
-          fontName = gpmlNode.select('Graphics').attr("FontName");
-          if (!!fontName) {
-            jsonNode.textLabel.fontFamily = fontName.toLowerCase();
-          }
-
-          var fontWeight;
-          fontWeight = gpmlNode.select('Graphics').attr("FontWeight");
-          if (!!fontWeight) {
-            jsonNode.textLabel.fontWeight = fontWeight.toLowerCase();
-          }
-
-          var fontStyle;
-          fontStyle = gpmlNode.select('Graphics').attr("FontStyle");
-          if (!!fontStyle) {
-            jsonNode.textLabel.fontStyle = fontStyle.toLowerCase();
-          }
-
-          var textAnchor;
-          textAnchor = gpmlNode.select('Graphics').attr("Align");
-          if (alignToAnchorMappings.hasOwnProperty(textAnchor)) {
-            jsonNode.textLabel.textAnchor = textAnchor.toLowerCase();
-          }
-          else {
-            jsonNode.textLabel.textAnchor = 'middle';
-          }
-
-          var vAlign;
-          vAlign = gpmlNode.select('Graphics').attr("Valign");
-          if (!!vAlign) {
-            jsonNode.textLabel.vAlign = vAlign.toLowerCase();
-          }
-          else {
-            jsonNode.textLabel.vAlign = 'top';
-          }
-        }
-        //*/
 
 /*
-
-
-
-      if (element.graphics.hasOwnProperty("rotation")) {
-
-        // get rotation in degrees because SVG rotate attribute uses degrees
-        // http://www.w3.org/TR/SVG/coords.html#TransformAttribute
-
-        element.rotation = element.graphics.rotation * (180 / Math.PI);
-        //element.rotation = Math.round( element.rotation * 100 ) / 100;
-      }
-
 
       // BiopaxRefs 
 

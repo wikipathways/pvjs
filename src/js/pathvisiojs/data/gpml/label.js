@@ -17,7 +17,7 @@ pathvisiojs.data.gpml.label = function(){
             jsonLabel.text = text;
           }
 
-          jsonLabel = pathvisiojs.data.gpml.setJsonColor(jsonLabel,
+          jsonLabel = pathvisiojs.data.gpml.setColorAsJson(jsonLabel,
                         gpmlLabel.select('Graphics').attr('Color'),
                         pathvisioDefaultStyleValues.Color);
 
@@ -26,7 +26,7 @@ pathvisiojs.data.gpml.label = function(){
                         pathvisioDefaultStyleValues.FillColor);
 
           var gpmlBackgroundColor = gpmlLabel.select('Graphics').attr('FillColor');
-          var jsonBackgroundColor = pathvisiojs.data.gpml.getGpmlColor(gpmlBackgroundColor, pathvisioDefaultStyleValues.FillColor);
+          var jsonBackgroundColor = pathvisiojs.data.gpml.getColor(gpmlBackgroundColor, pathvisioDefaultStyleValues.FillColor);
           if (!!jsonBackgroundColor) {
             jsonLabel.backgroundColor = jsonBackgroundColor;
           }

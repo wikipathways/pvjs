@@ -5,18 +5,6 @@
     <Graphics CenterX="86.9202118930236" CenterY="102.22100707206073" Width="88.13693270735519" Height="63.88028169014086" ZOrder="32768" FontSize="16" Valign="Middle" Align="Right" Color="0000ff" />
     <Xref Database="" ID="" />
   </DataNode>
-  <DataNode TextLabel="GeneProduct" GraphId="ca163" Type="GeneProduct">
-    <Graphics CenterX="105.6910569105691" CenterY="213.0081300813008" Width="80.0" Height="20.0" ZOrder="32768" FillColor="3333ff" FontSize="10" Valign="Middle" />
-    <Xref Database="" ID="" />
-  </DataNode>
-  <DataNode TextLabel="Metabolite" GraphId="a196c" Type="Metabolite">
-    <Graphics CenterX="99.1869918699187" CenterY="263.4146341463415" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff" />
-    <Xref Database="" ID="" />
-  </DataNode>
-  <DataNode TextLabel="Pathway" GraphId="ad488" Type="Pathway">
-    <Graphics CenterX="122.25838116317182" CenterY="319.4556464218278" Width="80.0" Height="20.0" ZOrder="32768" FontWeight="Bold" FontSize="12" Valign="Middle" ShapeType="None" Color="14961e" />
-    <Xref Database="" ID="" />
-  </DataNode>
   <DataNode TextLabel="center" GraphId="b4bd1" Type="Metabolite">
     <Graphics CenterX="187.19306693047585" CenterY="102.22100707206073" Width="88.13693270735519" Height="63.880281690140855" ZOrder="32770" FontSize="16" Valign="Middle" Color="0000ff" />
     <Xref Database="" ID="" />
@@ -25,35 +13,6 @@
     <Graphics CenterX="289.8931064339475" CenterY="102.22100707206071" Width="88.13693270735514" Height="63.880281690140855" ZOrder="32771" FontSize="16" Valign="Middle" Align="Left" Color="0000ff" />
     <Xref Database="" ID="" />
   </DataNode>
-  <DataNode TextLabel="Metabolite" GraphId="c6502" Type="Metabolite">
-    <Graphics CenterX="249.43548819983803" CenterY="281.99665137758757" Width="80.0" Height="20.0" ZOrder="32772" FontSize="10" Valign="Middle" Color="cc0033" />
-    <Xref Database="" ID="" />
-  </DataNode>
-  <DataNode TextLabel="GeneProduct" GraphId="cdbba" Type="GeneProduct">
-    <Graphics CenterX="242.52453404603074" CenterY="202.3006236102051" Width="80.0" Height="20.0" ZOrder="32773" FontSize="10" Valign="Middle" Color="ff6600" />
-    <Xref Database="" ID="" />
-  </DataNode>
-  <Interaction>
-    <Comment>asdf</Comment>
-    <Graphics ZOrder="12288" LineThickness="1.0">
-      <Point X="654.891304347826" Y="92.39130434782608" />
-      <Point X="666.6666666666666" Y="232.78985507246375" ArrowHead="Arrow" />
-    </Graphics>
-    <Xref Database="" ID="" />
-  </Interaction>
-  <Label TextLabel="Label" GraphId="e92cc" GroupRef="e0db8">
-    <Graphics CenterX="491.41641970214204" CenterY="185.07177601880676" Width="80.0" Height="20.0" ZOrder="28672" FillColor="ffffff" FontSize="10" Valign="Middle" />
-  </Label>
-  <Shape GraphId="cc376" GroupRef="e0db8">
-    <Attribute Key="org.pathvisio.CellularComponentProperty" Value="Cell" />
-    <Attribute Key="org.pathvisio.DoubleLineProperty" Value="Double" />
-    <Graphics CenterX="516.9601449275361" CenterY="70.8550724637681" Width="96.51449275362323" Height="55.7536231884058" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="RoundedRectangle" LineThickness="3.0" Color="0033ff" Rotation="0.0" />
-  </Shape>
-  <Shape GraphId="e046b">
-    <Attribute Key="org.pathvisio.CellularComponentProperty" Value="Golgi Apparatus" />
-    <Graphics CenterX="551.3804347826086" CenterY="301.38043478260863" Width="103.7608695652174" Height="60.282608695652186" ZOrder="16384" FillColor="cc0099" FontSize="10" Valign="Middle" ShapeType="Golgi Apparatus" LineThickness="3.0" Color="c0c0c0" Rotation="0.22118444765371276" />
-  </Shape>
-  <Group GroupId="e0db8" Style="Pathway" TextLabel="paway" />
   <InfoBox CenterX="0.0" CenterY="0.0" />
   <Biopax>
     <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="d5e">
