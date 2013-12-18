@@ -75,11 +75,11 @@ pathvisiojs.view.pathwayDiagram.svg.node.label = function(){
       }
       return 'translate(' + dx + ' ' + dy + ')';})
       .attr("class", function (d) {
-        var styleClass = '';
+        var cssClass = '';
         if (d.elementType === 'data-node') {
-          styleClass = d.dataNodeType;
+          cssClass = d.dataNodeType;
         }
-        return styleClass; })
+        return cssClass; })
         .attr("style", function (d) {
           var style = '';
           var fontSize = d.fontSize;

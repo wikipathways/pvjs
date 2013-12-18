@@ -186,11 +186,7 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
         data.forEach(function(element) {
           if (element.renderableType === 'Group') {
             args.data = element;
-            pathvisiojs.view.pathwayDiagram.svg.node.render(args, function(groupContainer) {
-              groupContainer.attr("class", function (d) {
-                return 'group ';
-              })
-
+            pathvisiojs.view.pathwayDiagram.svg.node.group.render(args, function(groupContainer) {
               var groupedElementsFrame = {
                 '@context': pathvisiojs.context,
                 "@type":element.GroupId
