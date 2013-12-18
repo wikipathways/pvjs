@@ -67,9 +67,10 @@ pathvisiojs.view.pathwayDiagram.pathFinder = function(){
 
     var edgeGraphRefNodes = [];
     edgeGraphRefNodes.push(edge.InteractionGraph[0]);
-    var targetNode = edge.InteractionGraph[0].interactsWith;
-    //var targetNode = edge.InteractionGraph[edge.InteractionGraph.length - 1];
-    if (!!targetNode) {
+    var targetNode;
+    //targetNode = edge.InteractionGraph[0].interactsWith;
+    targetNode = edge.InteractionGraph[edge.InteractionGraph.length - 1];
+    if (!!targetNode && edge.InteractionGraph.length > 1) {
       edgeGraphRefNodes.push(targetNode);
     }
 

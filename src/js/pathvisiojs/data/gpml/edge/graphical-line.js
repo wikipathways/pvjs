@@ -65,6 +65,20 @@ pathvisiojs.data.gpml.edge.graphicalLine = function(){
         var firstPoint = points[0][0];
         var lastPoint = points[0][points[0].length - 1];
 
+        if (!!firstPoint.getAttribute('ArrowHead')) {
+          jsonGraphicalLine.markerStart = strcase.paramCase(firstPoint.getAttribute('ArrowHead'));
+        }
+        else {
+          jsonGraphicalLine.markerStart = 'none';
+        }
+
+        if (!!lastPoint.getAttribute('ArrowHead')) {
+          jsonGraphicalLine.markerEnd = strcase.paramCase(lastPoint.getAttribute('ArrowHead'));
+        }
+        else {
+          jsonGraphicalLine.markerStart = 'none';
+        }
+
         /*
         if (!!firstPoint.getAttribute('ArrowHead')) {
           jsonGraphicalLine.markerStart = strcase.paramCase(firstPoint.getAttribute('ArrowHead'));
