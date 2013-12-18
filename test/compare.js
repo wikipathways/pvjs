@@ -215,14 +215,34 @@ window.onload = function() {
       {'id': 'group-none', 'url': srcDirectoryUrl + 'shape-library/symbols/group-none.svg'},
       {'id': 'group-pathway', 'url': srcDirectoryUrl + 'shape-library/symbols/group-pathway.svg'},
       {'id': 'group-group', 'url': srcDirectoryUrl + 'shape-library/symbols/group-group.svg'},
-      //{'id': 'rounded-rectangle', 'url': srcDirectoryUrl + 'shape-library/symbols/rounded-rectangle.svg'},
       {'id': 'sarcoplasmic-reticulum','url': srcDirectoryUrl + 'shape-library/symbols/sarcoplasmic-reticulum.svg'},
       {'id': 'triangle', 'url': srcDirectoryUrl + 'shape-library/symbols/triangle.svg'},
       {'id': 'grid-square', 'url': srcDirectoryUrl + 'shape-library/symbols/grid-square.svg'},
       {'id': 'none', 'url': srcDirectoryUrl + 'shape-library/symbols/none.svg'}
     ];
 
-    //*
+    /*
+    var customSymbols = [
+      {'id': 'arc', 'url': srcDirectoryUrl + 'shape-library/symbols/arc.svg'},
+      {'id': 'brace', 'url': srcDirectoryUrl + 'shape-library/symbols/brace.svg'},
+      {'id': 'endoplasmic-reticulum', 'url': srcDirectoryUrl + 'shape-library/symbols/endoplasmic-reticulum.svg'},
+      {'id': 'golgi-apparatus', 'url': srcDirectoryUrl + 'shape-library/symbols/golgi-apparatus.svg'},
+      {'id': 'hexagon', 'url': srcDirectoryUrl + 'shape-library/symbols/hexagon.svg'},
+      {'id': 'mim-degradation', 'url': srcDirectoryUrl + 'shape-library/symbols/mim-degradation.svg'},
+      {'id': 'mitochondria', 'url': srcDirectoryUrl + 'shape-library/symbols/mitochondria.svg'},
+      {'id': 'oval', 'url': srcDirectoryUrl + 'shape-library/symbols/oval.svg'},
+      {'id': 'pentagon', 'url': srcDirectoryUrl + 'shape-library/symbols/pentagon.svg'},
+      {'id': 'rectangle', 'url': srcDirectoryUrl + 'shape-library/symbols/rectangle.svg'},
+      {'id': 'group-none', 'url': srcDirectoryUrl + 'shape-library/symbols/group-none.svg'},
+      {'id': 'group-pathway', 'url': srcDirectoryUrl + 'shape-library/symbols/group-pathway.svg'},
+      {'id': 'group-group', 'url': srcDirectoryUrl + 'shape-library/symbols/group-group.svg'},
+      {'id': 'sarcoplasmic-reticulum','url': srcDirectoryUrl + 'shape-library/symbols/sarcoplasmic-reticulum.svg'},
+      {'id': 'triangle', 'url': srcDirectoryUrl + 'shape-library/symbols/triangle.svg'},
+      {'id': 'grid-square', 'url': srcDirectoryUrl + 'shape-library/symbols/grid-square.svg'},
+      {'id': 'none', 'url': srcDirectoryUrl + 'shape-library/symbols/none.svg'}
+    ];
+    //*/
+
     var customMarkers = self.customMarkers = [
       {'id': 'arrow', 'url': srcDirectoryUrl + 'shape-library/markers/arrow.svg'},
       {'id': 'activity', 'url': srcDirectoryUrl + 'shape-library/markers/arrow.svg'},
@@ -242,27 +262,6 @@ window.onload = function() {
       {'id': 'inhibitory-activity', 'url': srcDirectoryUrl + 'shape-library/markers/t-bar.svg'},
       {'id': 'unspecified', 'url': srcDirectoryUrl + 'shape-library/markers/none.svg'}
     ];
-    //*/
-
-   /*
-    var customMarkers = self.customMarkers = [
-      {'id': 'arrow', 'url': srcDirectoryUrl + 'shape-library/markers/arrow.svg'},
-      {'id': 'mim-branching-left', 'url': srcDirectoryUrl + 'shape-library/markers/mim-branching-left.svg'},
-      {'id': 'mim-branching-right', 'url': srcDirectoryUrl + 'shape-library/markers/mim-branching-right.svg'},
-      {'id': 'necessary-stimulation', 'url': srcDirectoryUrl + 'shape-library/markers/mim-necessary-stimulation.svg'},
-      {'id': 'mim-binding', 'url': srcDirectoryUrl + 'shape-library/markers/mim-binding.svg'},
-      {'id': 'mim-conversion', 'url': srcDirectoryUrl + 'shape-library/markers/mim-conversion.svg'},
-      {'id': 'mim-stimulation', 'url': srcDirectoryUrl + 'shape-library/markers/mim-stimulation.svg'},
-      {'id': 'mim-modification', 'url': srcDirectoryUrl + 'shape-library/markers/mim-modification.svg'},
-      {'id': 'mim-catalysis', 'url': srcDirectoryUrl + 'shape-library/markers/mim-catalysis.svg'},
-      {'id': 'mim-inhibition', 'url': srcDirectoryUrl + 'shape-library/markers/mim-inhibition.svg'},
-      {'id': 'mim-cleavage', 'url': srcDirectoryUrl + 'shape-library/markers/mim-cleavage.svg'},
-      {'id': 'mim-covalent-bond', 'url': srcDirectoryUrl + 'shape-library/markers/mim-covalent-bond.svg'},
-      {'id': 'mim-transcription-translation', 'url': srcDirectoryUrl + 'shape-library/markers/mim-transcription-translation.svg'},
-      {'id': 'mim-gap', 'url': srcDirectoryUrl + 'shape-library/markers/mim-gap.svg'},
-      {'id': 't-bar', 'url': srcDirectoryUrl + 'shape-library/markers/t-bar.svg'}
-    ];
-    //*/
 
     pathvisiojs.load({
       target: '#pathvisio-js-dev',
