@@ -21,7 +21,6 @@ pathvisiojs.data.gpml.edge = function(){
       }
 
       jsonEdge.zIndex = parseFloat(gpmlEdge.select('Graphics').attr('ZOrder'));
-      jsonEdge.renderableType = 'edge';
       points = gpmlEdge.selectAll('Point');
       jsonEdge['@type'] = [
         'element',
@@ -30,24 +29,7 @@ pathvisiojs.data.gpml.edge = function(){
         isContainedBy || 'notGrouped'
       ];
 
-      var firstPoint = points[0][0];
-      var lastPoint = points[0][points[0].length - 1];
-
       // Graphical Only Data below, except maybe Anchors
-
-      if (!!firstPoint.getAttribute('ArrowHead')) {
-        jsonEdge.markerStart = strcase.paramCase(firstPoint.getAttribute('ArrowHead'));
-      }
-      else {
-        jsonEdge.markerStart = 'none';
-      }
-
-      if (!!lastPoint.getAttribute('ArrowHead')) {
-        jsonEdge.markerEnd = strcase.paramCase(lastPoint.getAttribute('ArrowHead'));
-      }
-      else {
-        jsonEdge.markerStart = 'none';
-      }
 
       var point, pointObj;
       jsonEdge.Point = [];

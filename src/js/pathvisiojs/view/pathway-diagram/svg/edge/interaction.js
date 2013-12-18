@@ -38,13 +38,13 @@ pathvisiojs.view.pathwayDiagram.svg.edge.interaction = function(){
         console.log('data.InteractionGraph');
         console.log(data.InteractionGraph);
         self.myData = data;
-        markerStart = getMarkerNameFromInteractionGraph(firstInteractionGraph);
+        //markerStart = getMarkerNameFromInteractionGraph(firstInteractionGraph);
         lastInteractionGraph = data.InteractionGraph[data.InteractionGraph.length - 1];
-        markerEnd = getMarkerNameFromInteractionGraph(lastInteractionGraph);
+        //markerEnd = getMarkerNameFromInteractionGraph(lastInteractionGraph);
       }
       else {
         lastInteractionGraph = data.InteractionGraph[0];
-        markerEnd = getMarkerNameFromInteractionGraph(lastInteractionGraph);
+        //markerEnd = getMarkerNameFromInteractionGraph(lastInteractionGraph);
       }
     }
 
@@ -74,7 +74,9 @@ pathvisiojs.view.pathwayDiagram.svg.edge.interaction = function(){
       })
     }
 
-    pathvisiojs.view.pathwayDiagram.svg.edge.setAttributes(svg, interaction, data, markerStart, markerEnd);
+    pathvisiojs.view.pathwayDiagram.svg.edge.setAttributes(svg, interaction, data, data.markerStart, data.markerEnd);
+    // I want to get the marker name from the interactionType later.
+    //pathvisiojs.view.pathwayDiagram.svg.edge.setAttributes(svg, interaction, data, markerStart, markerEnd);
 
     /*
     // Update…
