@@ -38,9 +38,6 @@ pathvisiojs.data.gpml.entityNode = function() {
         isContainedBy || 'notGrouped'
       ];
 
-      var linestyle = gpmlEntityNode.select('Graphics').attr('LineStyle') || 'Solid';
-      jsonEntityNode.LineStyle = linestyle;
-
       var borderWidth = gpmlEntityNode.select('Graphics').attr('LineThickness') || 1;
       jsonEntityNode.borderWidth = parseFloat(borderWidth);
 
@@ -63,7 +60,6 @@ pathvisiojs.data.gpml.entityNode = function() {
       jsonEntityNode.padding = "0.5em";
 
       var attributes = gpmlEntityNode.selectAll('Attribute');
-
       var doubleProperty;
       if (attributes.length > 0) {
         doubleProperty = attributes.filter(function(d, i) {

@@ -16,15 +16,16 @@ pathvisiojs.view.pathwayDiagram.svg.node.entityNode = function(){
 
     pathvisiojs.view.pathwayDiagram.svg.node.render(args, function(nodeContainer) {
       nodeContainer.attr("class", function (d) {
-        var cssClass = 'entity-node ';
+        var cssClass = 'entity-node ' + strcase.paramCase(d.nodeType) + ' ';
         if (d.nodeType === 'DataNode') {
-          cssClass += 'data-node ' + strcase.paramCase(d.dataNodeType) + ' ';
+          cssClass += strcase.paramCase(d.dataNodeType) + ' ';
           if (!!d.DatasourceReference) {
             cssClass += 'has-xref ';
           }
         }
-        else {
-          cssClass += strcase.paramCase(d.nodeType) + ' ';
+        if (d.hasOwnProperty('CellularComponent')) {
+          console.log('****** has cc');
+          cssClass += strcase.paramCase(d.CellularComponent) + ' ';
         }
         return cssClass;
       })

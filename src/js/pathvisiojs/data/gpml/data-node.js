@@ -1,47 +1,39 @@
 pathvisiojs.data.gpml.dataNode = function() {
 
   var pathvisioDefaultStyleValues = {
-    'GeneProduct':{
+    'DataNode':{
       'LineStyle':null,
-      'Color':null,
       'FillColor':null,
-      'FontSize':10,
-      'FontWeight':null
-    },
-    'Protein':{
-      'LineStyle':null,
-      'Color':null,
-      'FillColor':null,
-      'FontSize':10,
-      'FontWeight':null
-    },
-    'Rna':{
-      'LineStyle':null,
-      'Color':null,
-      'FillColor':null,
-      'FontSize':10,
-      'FontWeight':null
-    },
-    'Unknown':{
-      'LineStyle':null,
-      'Color':null,
-      'FillColor':null,
-      'FontSize':10,
-      'FontWeight':null
-    },
-    'Pathway':{
-      'LineStyle':null,
-      'Color':'14961e',
-      'FillColor':null,
-      'FontSize':12,
-      'FontWeight':'Bold'
-    },
-    'Metabolite':{
-      'LineStyle':null,
-      'Color':'0000ff',
-      'FillColor':null,
-      'FontSize':10,
-      'FontWeight':null
+      'GeneProduct':{
+        'Color':null,
+        'FontSize':10,
+        'FontWeight':null
+      },
+      'Protein':{
+        'Color':null,
+        'FontSize':10,
+        'FontWeight':null
+      },
+      'Rna':{
+        'Color':null,
+        'FontSize':10,
+        'FontWeight':null
+      },
+      'Unknown':{
+        'Color':null,
+        'FontSize':10,
+        'FontWeight':null
+      },
+      'Pathway':{
+        'Color':'14961e',
+        'FontSize':12,
+        'FontWeight':'Bold'
+      },
+      'Metabolite':{
+        'Color':'0000ff',
+        'FontSize':10,
+        'FontWeight':null
+      }
     }
   }
 
@@ -68,22 +60,23 @@ pathvisiojs.data.gpml.dataNode = function() {
         jsonDataNode.dataNodeType = dataNodeType;
         jsonDataNode["@type"].push(dataNodeType);
 
-        pathvisiojs.data.gpml.text.toRenderableJson(gpmlDataNode, pathvisioDefaultStyleValues[dataNodeType], function(text) {
+        var thisPathvisioDefaultStyleValues = pathvisiojs.utilities.collect(pathvisioDefaultStyleValues.DataNode, pathvisioDefaultStyleValues.DataNode[dataNodeType]);
+        pathvisiojs.data.gpml.text.toRenderableJson(gpmlDataNode, thisPathvisioDefaultStyleValues, function(text) {
           if (!!text) {
             jsonDataNode.text = text;
           }
 
           jsonDataNode = pathvisiojs.data.gpml.setBorderStyleAsJson(jsonDataNode,
                         gpmlDataNode.select('Graphics').attr('LineStyle'),
-                        pathvisioDefaultStyleValues[dataNodeType].LineStyle);
+                        thisPathvisioDefaultStyleValues.LineStyle);
 
           jsonDataNode = pathvisiojs.data.gpml.setColorAsJson(jsonDataNode,
                         gpmlDataNode.select('Graphics').attr('Color'),
-                        pathvisioDefaultStyleValues[dataNodeType].Color);
+                        thisPathvisioDefaultStyleValues.Color);
 
           jsonDataNode = pathvisiojs.data.gpml.node.setJsonBackgroundColor(jsonDataNode,
                         gpmlDataNode.select('Graphics').attr('FillColor'),
-                        pathvisioDefaultStyleValues[dataNodeType].FillColor);
+                        thisPathvisioDefaultStyleValues.FillColor);
 
           callbackInside(jsonDataNode);
         });

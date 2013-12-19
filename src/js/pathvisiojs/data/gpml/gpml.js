@@ -41,42 +41,6 @@ pathvisiojs.data.gpml = function(){
     return jsonElement;
   }
 
-  function getBorderStyle(gpmlLineStyle, pathvisioDefault) {
-
-    // Double-lined entityNodes will be handled by using a symbol with double lines.
-    // Double-lined edges will be rendered as single-lined, solid edges, because we
-    // shouldn't need double-lined edges other than for cell walls/membranes, which
-    // should be symbols. Any double-lined edges are curation issues.
-
-    var lineStyleToBorderStyleMapping = {
-      'Solid':'solid',
-      'Double':'solid',
-      'Broken':'dashed'
-    };
-    var borderStyle;
-    if (gpmlLineStyle !== pathvisioDefault) {
-      if (!!gpmlLineStyle) {
-        borderStyle = lineStyleToBorderStyleMapping[gpmlLineStyle];
-        if (borderStyle) {
-          return gpmlLineStyle;
-        }
-        else {
-          console.warn('LineStyle "' + gpmlLineStyle + '" does not have a corresponding borderStyle. Using "solid"');
-          return 'solid';
-        }
-      }
-      else {
-        return 'solid';
-      }
-    }
-    else {
-
-      // TODO use code to actually get the default
-      
-      return 'whatever the default value is';
-    }
-  }
-
   // TODO can we delete this function?
 
   function getLineStyle(gpmlElement) {
@@ -111,6 +75,42 @@ pathvisiojs.data.gpml = function(){
           return null;
         }
       }
+    }
+  }
+
+  function getBorderStyle(gpmlLineStyle, pathvisioDefault) {
+
+    // Double-lined entityNodes will be handled by using a symbol with double lines.
+    // Double-lined edges will be rendered as single-lined, solid edges, because we
+    // shouldn't need double-lined edges other than for cell walls/membranes, which
+    // should be symbols. Any double-lined edges are curation issues.
+
+    var lineStyleToBorderStyleMapping = {
+      'Solid':'solid',
+      'Double':'solid',
+      'Broken':'dashed'
+    };
+    var borderStyle;
+    if (gpmlLineStyle !== pathvisioDefault) {
+      if (!!gpmlLineStyle) {
+        borderStyle = lineStyleToBorderStyleMapping[gpmlLineStyle];
+        if (borderStyle) {
+          return borderStyle;
+        }
+        else {
+          console.warn('LineStyle "' + gpmlLineStyle + '" does not have a corresponding borderStyle. Using "solid"');
+          return 'solid';
+        }
+      }
+      else {
+        return 'solid';
+      }
+    }
+    else {
+
+      // TODO use code to actually get the default
+      
+      return 'whatever the default value is';
     }
   }
 
