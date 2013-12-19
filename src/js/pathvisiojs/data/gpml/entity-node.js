@@ -64,19 +64,13 @@ pathvisiojs.data.gpml.entityNode = function() {
 
       var attributes = gpmlEntityNode.selectAll('Attribute');
 
-      var doubleProperty, cellularComponent;
+      var doubleProperty;
       if (attributes.length > 0) {
         doubleProperty = attributes.filter(function(d, i) {
           return d3.select(this).attr('Key') === 'org.pathvisio.DoubleLineProperty' && d3.select(this).attr('Value') === 'Double';
         });
         if (doubleProperty[0].length > 0) {
           jsonEntityNode.ShapeType = shapeType + '-double';
-        }
-        cellularComponent = attributes.filter(function(d, i) {
-          return d3.select(this).attr('Key') === 'org.pathvisiojs.CellularComponentProperty' && d3.select(this).attr('Value') != 'None';
-        });
-        if (cellularComponent[0].length > 0) {
-          jsonEntityNode.cellularComponent = cellularComponent.attr('Value');
         }
       }
 
