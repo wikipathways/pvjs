@@ -73,7 +73,10 @@ pathvisiojs.data.gpml.group = function() {
           jsonGroup.text.textAlign = 'center';
           jsonGroup.text.verticalAlign = 'middle';
         }
-        callbackInside(jsonGroup);
+        pathvisiojs.data.gpml.node.getPorts(jsonGroup, function(ports) {
+          jsonGroup.Port = ports;
+          callbackInside(jsonGroup);
+        });
       });
     }
     catch (e) {
