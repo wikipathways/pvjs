@@ -152,6 +152,7 @@ function loadExtJsCss(callbackOutside) {
       srcDirectoryUrl + 'js/pathvisiojs/view/pathway-diagram/svg/node/path-shape/path-shape.js',
       srcDirectoryUrl + 'js/pathvisiojs/view/pathway-diagram/svg/node/path-shape/rounded-rectangle.js',
       srcDirectoryUrl + 'js/pathvisiojs/view/pathway-diagram/svg/node/path-shape/rounded-rectangle-double.js',
+      srcDirectoryUrl + 'js/pathvisiojs/view/pathway-diagram/svg/node/path-shape/oval-double.js',
       srcDirectoryUrl + 'js/pathvisiojs/view/pathway-diagram/svg/node/path-shape/complex.js',
       srcDirectoryUrl + 'js/pathvisiojs/view/pathway-diagram/svg/node/label.js',
       srcDirectoryUrl + 'js/pathvisiojs/view/pathway-diagram/svg/edge/edge.js',
