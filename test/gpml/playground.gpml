@@ -18,17 +18,17 @@
     <Xref Database="" ID="" />
   </DataNode>
   <DataNode TextLabel="Rna" GraphId="b349c" Type="Rna" GroupRef="bd115">
-    <Graphics CenterX="77.06945765937203" CenterY="242.62607040913417" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Graphics CenterX="78.6344028862891" CenterY="259.0579952917634" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
     <Xref Database="" ID="" />
   </DataNode>
   <DataNode TextLabel="Unknown" GraphId="dbc50" GroupRef="bd115">
-    <Graphics CenterX="77.06945765937203" CenterY="284.4909609895338" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Graphics CenterX="78.6344028862891" CenterY="300.9228858721629" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
     <Xref Database="" ID="" />
   </DataNode>
   <Shape GraphId="cfde2">
     <Attribute Key="org.pathvisio.CellularComponentProperty" Value="Cell" />
     <Attribute Key="org.pathvisio.DoubleLineProperty" Value="Double" />
-    <Graphics CenterX="238.20387580797203" CenterY="166.23947496162106" Width="124.19172216936249" Height="122.28877259752616" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="RoundedRectangle" LineThickness="3.0" Color="c0c0c0" Rotation="0.0" />
+    <Graphics CenterX="260.8955815982694" CenterY="134.94057042327978" Width="124.19172216936249" Height="122.28877259752616" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="RoundedRectangle" LineThickness="3.0" Color="c0c0c0" Rotation="0.0" />
   </Shape>
   <Group GroupId="bd115" Style="Complex" />
   <Group GroupId="a42dc" Style="Group" />

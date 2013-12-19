@@ -12,6 +12,19 @@ pathvisiojs.data.gpml.shape = function(){
     try {
       pathvisiojs.data.gpml.entityNode.toRenderableJson(gpmlShape, pathwayIri, function(jsonShape) {
         jsonShape.nodeType = "Shape";
+
+        var attributes = gpmlShape.selectAll('Attribute');
+        var cellularComponent;
+        if (attributes.length > 0) {
+          cellularComponent = attributes.filter(function(d, i) {
+            return d3.select(this).attr('Key') === 'org.pathvisio.CellularComponentProperty' && d3.select(this).attr('Value') !== 'None';
+          });
+
+          if (cellularComponent[0].length > 0) {
+            jsonShape.cellularComponent = cellularComponent.attr('Value');
+          }
+        }
+
         pathvisiojs.data.gpml.text.toRenderableJson(gpmlShape, pathvisioDefaultStyleValues, function(text) {
           if (!!text) {
             jsonShape.text = text;
