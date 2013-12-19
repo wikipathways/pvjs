@@ -1,32 +1,34 @@
 pathvisiojs.data.gpml.label = function(){
 
   var pathvisioDefaultStyleValues = {
-    'Rotation':null,
-    'Color':null,
-    'FillColor':'ffffff',
-    'FontSize':10,
-    'FontWeight':null
+    'Label':{
+      'Rotation':null,
+      'Color':null,
+      'FillColor':'ffffff',
+      'FontSize':10,
+      'FontWeight':null
+    }
   }
 
   function toRenderableJson(gpmlLabel, pathwayIri, callbackInside) {
     try {
       pathvisiojs.data.gpml.entityNode.toRenderableJson(gpmlLabel, pathwayIri, function(jsonLabel) {
         jsonLabel.nodeType = "Label";
-        pathvisiojs.data.gpml.text.toRenderableJson(gpmlLabel, pathvisioDefaultStyleValues, function(text) {
+        pathvisiojs.data.gpml.text.toRenderableJson(gpmlLabel, pathvisioDefaultStyleValues.Label, function(text) {
           if (!!text) {
             jsonLabel.text = text;
           }
 
           jsonLabel = pathvisiojs.data.gpml.setColorAsJson(jsonLabel,
                         gpmlLabel.select('Graphics').attr('Color'),
-                        pathvisioDefaultStyleValues.Color);
+                        pathvisioDefaultStyleValues.Label.Color);
 
           jsonLabel = pathvisiojs.data.gpml.node.setJsonBackgroundColor(jsonLabel,
                         gpmlLabel.select('Graphics').attr('FillColor'),
-                        pathvisioDefaultStyleValues.FillColor);
+                        pathvisioDefaultStyleValues.Label.FillColor);
 
           var gpmlBackgroundColor = gpmlLabel.select('Graphics').attr('FillColor');
-          var jsonBackgroundColor = pathvisiojs.data.gpml.getColor(gpmlBackgroundColor, pathvisioDefaultStyleValues.FillColor);
+          var jsonBackgroundColor = pathvisiojs.data.gpml.getColor(gpmlBackgroundColor, pathvisioDefaultStyleValues.Label.FillColor);
           if (!!jsonBackgroundColor) {
             jsonLabel.backgroundColor = jsonBackgroundColor;
           }
