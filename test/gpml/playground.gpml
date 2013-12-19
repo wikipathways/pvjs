@@ -1,7 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Pathway xmlns="http://pathvisio.org/GPML/2013a" Name="elbows" Version="20130813" Organism="Anopheles gambiae">
-  <Graphics BoardWidth="590.0806445608847" BoardHeight="478.3568075117371" />
+  <BiopaxRef>ead</BiopaxRef>
+  <Graphics BoardWidth="739.7026604068858" BoardHeight="533.1298904538346" />
   <DataNode TextLabel="GeneProduct" GraphId="b2823" Type="GeneProduct" GroupRef="c0f84">
+    <BiopaxRef>f03</BiopaxRef>
+    <BiopaxRef>b91</BiopaxRef>
+    <BiopaxRef>a79</BiopaxRef>
+    <BiopaxRef>a52</BiopaxRef>
+    <BiopaxRef>aca</BiopaxRef>
+    <BiopaxRef>dd8</BiopaxRef>
     <Graphics CenterX="47.57373929590866" CenterY="83.72978116079925" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
     <Xref Database="" ID="" />
   </DataNode>
@@ -14,6 +21,7 @@
     <Xref Database="" ID="" />
   </DataNode>
   <DataNode TextLabel="Protein" GraphId="cfdb3" Type="Protein" GroupRef="a42dc">
+    <BiopaxRef>e48</BiopaxRef>
     <Graphics CenterX="53.2825880114177" CenterY="199.80970504281638" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
     <Xref Database="" ID="" />
   </DataNode>
@@ -22,18 +30,182 @@
     <Xref Database="" ID="" />
   </DataNode>
   <DataNode TextLabel="Unknown" GraphId="dbc50" GroupRef="bd115">
-    <Graphics CenterX="78.6344028862891" CenterY="300.9228858721629" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Graphics CenterX="78.6344028862891" CenterY="300.9228858721629" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" LineStyle="Broken" />
     <Xref Database="" ID="" />
   </DataNode>
-  <Shape GraphId="cfde2">
+  <DataNode TextLabel="GeneProduct" GraphId="a350e" Type="GeneProduct">
+    <Graphics CenterX="473.14593114241" CenterY="372.20696400625974" Width="53.70813771518003" Height="56.83802816901412" ZOrder="32768" FillColor="Transparent" FontSize="10" Valign="Middle" />
+    <Xref Database="" ID="" />
+  </DataNode>
+  <Label TextLabel="Label" GraphId="ce98c">
+    <Graphics CenterX="69.64006259780905" CenterY="457.7464788732394" Width="80.0" Height="20.0" ZOrder="28672" FillColor="ffffff" FontSize="10" Valign="Middle" />
+  </Label>
+  <Label TextLabel="Label" GraphId="cffd2">
+    <Graphics CenterX="532.7868852459017" CenterY="356.18479880774964" Width="80.0" Height="20.0" ZOrder="28672" FillColor="ffffff" FontSize="10" Valign="Middle" />
+  </Label>
+  <Shape GraphId="c610a">
+    <Graphics CenterX="201.23669796557112" CenterY="79.95344287949973" Width="46.66588419405319" Height="43.53599374021911" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="Arc" Rotation="0.0" />
+  </Shape>
+  <Shape GraphId="e1600">
+    <Graphics CenterX="302.95813771517993" CenterY="83.47456964006253" Width="67.01017214397496" Height="47.44835680751176" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="Rectangle" Rotation="0.0" />
+  </Shape>
+  <Shape GraphId="fa9db">
+    <Graphics CenterX="408.9831768388106" CenterY="84.64827856025038" Width="69.35758998435058" Height="35.71126760563382" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="Oval" Rotation="0.0" />
+  </Shape>
+  <Shape GraphId="ac2a2">
+    <Graphics CenterX="517.7468701095461" CenterY="85.03951486697966" Width="58.40297339593113" Height="41.1885758998435" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="RoundedRectangle" Rotation="0.0" />
+  </Shape>
+  <Shape GraphId="e1a20">
+    <Graphics CenterX="202.410406885759" CenterY="153.50586854460096" Width="44.31846635367766" Height="49.795774647887285" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="Triangle" Rotation="0.0" />
+  </Shape>
+  <Shape GraphId="cdf83">
+    <Graphics CenterX="304.523082942097" CenterY="158.20070422535213" Width="82.6596244131456" Height="43.53599374021907" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="Pentagon" Rotation="0.0" />
+  </Shape>
+  <Shape GraphId="b259b">
+    <Graphics CenterX="415.6341940532081" CenterY="156.24452269170578" Width="54.49061032863853" Height="45.883411580594654" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="Hexagon" Rotation="0.0" />
+  </Shape>
+  <Shape GraphId="bef1b">
+    <Graphics CenterX="521.6592331768388" CenterY="153.8971048513302" Width="30.23395931142406" Height="45.883411580594654" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="Brace" Rotation="0.0" />
+  </Shape>
+  <Shape GraphId="af363">
+    <Graphics CenterX="207.49647887323948" CenterY="223.53716744913928" Width="48.230829420970196" Height="41.18857589984347" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="mim-degradation" Rotation="0.0" />
+  </Shape>
+  <Shape GraphId="ced76">
     <Attribute Key="org.pathvisio.CellularComponentProperty" Value="Cell" />
     <Attribute Key="org.pathvisio.DoubleLineProperty" Value="Double" />
-    <Graphics CenterX="260.8955815982694" CenterY="134.94057042327978" Width="124.19172216936249" Height="122.28877259752616" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="RoundedRectangle" LineThickness="3.0" Color="c0c0c0" Rotation="0.0" />
+    <Graphics CenterX="309.2179186228482" CenterY="220.01604068857586" Width="63.880281690140905" Height="41.97104851330208" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="RoundedRectangle" LineThickness="3.0" Color="c0c0c0" Rotation="0.0" />
   </Shape>
-  <Group GroupId="bd115" Style="Complex" />
+  <Shape GraphId="c9e94">
+    <Attribute Key="org.pathvisio.CellularComponentProperty" Value="Nucleus" />
+    <Attribute Key="org.pathvisio.DoubleLineProperty" Value="Double" />
+    <Graphics CenterX="423.4589201877934" CenterY="218.0598591549296" Width="48.230829420970295" Height="39.623630672926424" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="Oval" LineThickness="3.0" Color="c0c0c0" Rotation="0.0" />
+  </Shape>
+  <Shape GraphId="a7997">
+    <Attribute Key="org.pathvisio.CellularComponentProperty" Value="Endoplasmic Reticulum" />
+    <Graphics CenterX="528.7014866979656" CenterY="221.97222222222223" Width="49.01330203442886" Height="45.88341158059467" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="Endoplasmic Reticulum" LineThickness="3.0" Color="c0c0c0" Rotation="0.0" />
+  </Shape>
+  <Shape GraphId="a10ae">
+    <Attribute Key="org.pathvisio.CellularComponentProperty" Value="Golgi Apparatus" />
+    <Graphics CenterX="212.97378716744913" CenterY="292.0035211267606" Width="52.92566510172142" Height="46.66588419405326" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="Golgi Apparatus" LineThickness="3.0" Color="c0c0c0" Rotation="0.0" />
+  </Shape>
+  <Shape GraphId="c156e">
+    <Attribute Key="org.pathvisio.CellularComponentProperty" Value="Mitochondria" />
+    <Graphics CenterX="308.4354460093897" CenterY="288.09115805946794" Width="59.185446009389636" Height="49.79577464788728" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="Mitochondria" LineThickness="3.0" Color="c0c0c0" Rotation="0.0" />
+  </Shape>
+  <Shape GraphId="adb58">
+    <Attribute Key="org.pathvisio.CellularComponentProperty" Value="Sarcoplasmic Reticulum" />
+    <Graphics CenterX="405.4620500782472" CenterY="281.44014084507046" Width="60.75039123630674" Height="44.318466353677564" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="Sarcoplasmic Reticulum" LineThickness="3.0" Color="c0c0c0" Rotation="0.0" />
+  </Shape>
+  <Shape GraphId="c6f46">
+    <Attribute Key="org.pathvisio.CellularComponentProperty" Value="Organelle" />
+    <Attribute Key="org.pathvisio.DoubleLineProperty" Value="Double" />
+    <Graphics CenterX="524.7891236306729" CenterY="274.3978873239437" Width="63.09780907668222" Height="39.623630672926446" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="RoundedRectangle" LineThickness="3.0" Color="c0c0c0" Rotation="0.0" />
+  </Shape>
+  <Shape GraphId="a3863">
+    <Attribute Key="org.pathvisio.CellularComponentProperty" Value="Vesicle" />
+    <Graphics CenterX="209.45266040688574" CenterY="363.59976525821594" Width="56.83802816901412" Height="42.753521126760546" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="Oval" LineThickness="3.0" Color="c0c0c0" Rotation="0.0" />
+  </Shape>
+  <Shape GraphId="aea88">
+    <Attribute Key="org.pathvisio.CellularComponentProperty" Value="Extracellular region" />
+    <Graphics CenterX="321.73748043818466" CenterY="366.3384194053208" Width="57.62050078247257" Height="51.3607198748044" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="RoundedRectangle" LineStyle="Broken" Color="c0c0c0" Rotation="0.0" />
+  </Shape>
+  <Shape GraphId="fe899">
+    <Graphics CenterX="235.6654929577465" CenterY="460.2351330203443" Width="95.17918622848197" Height="65.44522691705791" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="Rectangle" LineStyle="Broken" LineThickness="2.0" Rotation="0.0" />
+  </Shape>
+  <Group GroupId="bd115" Style="Complex">
+    <BiopaxRef>afd</BiopaxRef>
+  </Group>
   <Group GroupId="a42dc" Style="Group" />
   <Group GroupId="c0f84" Style="Pathway" TextLabel="group" />
   <InfoBox CenterX="0.0" CenterY="0.0" />
-  <Biopax />
+  <Biopax>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="ead">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1234</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Change in the kinetics of sulphacetamide tissue distribution in Walker tumor-bearing rats.</bp:TITLE>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Drug Metab Dispos</bp:SOURCE>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1975</bp:YEAR>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Nadeau D</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Marchand C</bp:AUTHORS>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="f03">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2345</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Oxygen transport by haemoglobin. A comparison of whole blood, washed erythrocytes and haemoglobin solution.</bp:TITLE>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Biomedicine</bp:SOURCE>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1975</bp:YEAR>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Lecompte F</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Sinet M</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Azoulay E</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Muffat-Joly M</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Pocidalo JJ</bp:AUTHORS>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="afd">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">345</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Failure of rubella virus to replicate in mosquitos.</bp:TITLE>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Intervirology</bp:SOURCE>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1975</bp:YEAR>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Tesh RB</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Rosen L</bp:AUTHORS>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="b91">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">3456</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Post-prandial changes in PH and electrolyte concentration, in the upper jejunum after truncal vagotomy and drainage in man.</bp:TITLE>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Gut</bp:SOURCE>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1975</bp:YEAR>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Temple JG</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Birch A</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Shields R</bp:AUTHORS>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="a79">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">4574</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Anglo-American Conference on Sexually Transmitted Diseases.</bp:TITLE>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">J Infect Dis</bp:SOURCE>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1976</bp:YEAR>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Munford RS</bp:AUTHORS>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="e48">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">7854</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Clinical and therapeutical problems of mild (non-psychotic) mental depressions.</bp:TITLE>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Ther Hung</bp:SOURCE>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1975</bp:YEAR>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Böszörményi Z</bp:AUTHORS>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="a52">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">9876</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">[Oxygen toxicity for pulmonary parenchyma. Ultrastructural study by electron microscopy. Physiopathologic data].</bp:TITLE>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Ann Anesthesiol Fr</bp:SOURCE>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1975</bp:YEAR>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Foliguet B</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Grignon G</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Reichart E</bp:AUTHORS>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="aca">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">9875</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">[Pulmonary edemas due to acute heroin poisoning].</bp:TITLE>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Ann Anesthesiol Fr</bp:SOURCE>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1975</bp:YEAR>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Francois G</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Faizende J</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Reboul J</bp:AUTHORS>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="dd8">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">9874</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">[Nonhemodynamic pulmonary edema due to toxins].</bp:TITLE>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Ann Anesthesiol Fr</bp:SOURCE>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1975</bp:YEAR>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Frejaville JP</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Tourtier Y</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Susini J</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">De Courcy A</bp:AUTHORS>
+    </bp:PublicationXref>
+  </Biopax>
 </Pathway>
 
