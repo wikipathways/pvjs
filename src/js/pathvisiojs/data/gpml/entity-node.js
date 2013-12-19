@@ -63,14 +63,10 @@ pathvisiojs.data.gpml.entityNode = function() {
       jsonEntityNode.padding = "0.5em";
 
       var attributes = gpmlEntityNode.selectAll('Attribute');
-      console.log('attributes');
-      console.log(attributes);
-      ///*
+
       var doubleProperty, cellularComponent;
       if (attributes.length > 0) {
         doubleProperty = attributes.filter(function(d, i) {
-          console.log('this');
-          console.log(this);
           return d3.select(this).attr('Key') === 'org.pathvisio.DoubleLineProperty' && d3.select(this).attr('Value') === 'Double';
         });
         if (doubleProperty[0].length > 0) {
