@@ -1,5 +1,12 @@
 pathvisiojs.data.gpml.group = function() {
 
+  var groupTypeToShapeTypeMappings = {
+    'Complex':'complex',
+    'Group':'rectangle',
+    'None':'rectangle',
+    'Pathway':'rectangle'
+  };
+
   var pathvisioDefaultStyleValues = {
     'FontSize':null,
     'FontWeight':null
@@ -16,9 +23,11 @@ pathvisiojs.data.gpml.group = function() {
       groupId = gpmlGroup.attr('GroupId') || ('id' + uuid.v4());
       jsonGroup["@id"] = pathwayIri + groupId;
       jsonGroup.GroupId = groupId;
-      shapeType = groupType = gpmlGroup.attr('Style') || 'None';
-      shapeType = strcase.paramCase('group-' + shapeType);
-      jsonGroup.ShapeType = shapeType;
+      groupType = gpmlGroup.attr('Style') || 'None';
+
+      shapeType = groupTypeToShapeTypeMappings[groupType];
+      jsonGroup.ShapeType = shapeType || 'rectangle';
+
       jsonGroup.zIndex = 0;
       //jsonGroup.ZIndex = gpmlGroup.selectAll('Graphics').attr('ZOrder');
       jsonGroup.renderableType = 'Group';

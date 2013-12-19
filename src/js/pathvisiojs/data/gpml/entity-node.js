@@ -1,3 +1,5 @@
+// includes GPML elements of type Shape, Label and DataNode
+
 pathvisiojs.data.gpml.entityNode = function() {
 
   function setJsonRotationValue(jsonNode, currentGpmlRotationValue, defaultGpmlRotationValue) {
@@ -59,6 +61,28 @@ pathvisiojs.data.gpml.entityNode = function() {
       jsonEntityNode.y = centerY - gpmlHeight/2;
 
       jsonEntityNode.padding = "0.5em";
+
+      var attributes = gpmlEntityNode.selectAll('Attribute');
+      console.log('attributes');
+      console.log(attributes);
+      ///*
+      var doubleProperty, cellularComponent;
+      if (attributes.length > 0) {
+        doubleProperty = attributes.filter(function(d, i) {
+          console.log('this');
+          console.log(this);
+          return d3.select(this).attr('Key') === 'org.pathvisio.DoubleLineProperty' && d3.select(this).attr('Value') === 'Double';
+        });
+        if (doubleProperty[0].length > 0) {
+          jsonEntityNode.ShapeType = shapeType + '-double';
+        }
+        cellularComponent = attributes.filter(function(d, i) {
+          return d3.select(this).attr('Key') === 'org.pathvisiojs.CellularComponentProperty' && d3.select(this).attr('Value') != 'None';
+        });
+        if (cellularComponent[0].length > 0) {
+          jsonEntityNode.cellularComponent = cellularComponent.attr('Value');
+        }
+      }
 
       entityNodeCallback(jsonEntityNode);
     }

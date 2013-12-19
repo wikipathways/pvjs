@@ -87,11 +87,6 @@ pathvisiojs.data.gpml.dataNode = function() {
           jsonDataNode = pathvisiojs.data.gpml.node.setJsonBackgroundColor(jsonDataNode,
                         gpmlDataNode.select('Graphics').attr('FillColor'),
                         pathvisioDefaultStyleValues[dataNodeType].FillColor);
-
-          pathvisiojs.data.gpml.node.getPorts(jsonDataNode, function(ports) {
-            jsonDataNode.Port = ports;
-            callbackInside(jsonDataNode, ports);
-          });
         });
 
       });
