@@ -1,11 +1,6 @@
 pathvisiojs.view.pathwayDiagram.svg.node.pathShape.roundedRectangle = function(){
 
-  // Be sure to specify style elements like default fill and stroke color!
-  // This can be done in the JSON below, or it can be done via defining a CSS class. If you choose to use a CSS class,
-  // the class name must be the same as the shape name, except in dash case (roundedRectangle would be rounded-rectangle).
-  // The CSS file is located at /src/css/pathway-template.css
-
-  function getAttributes(nodeWidth, nodeHeight) {
+  function getAttributes(nodeWidth, nodeHeight, borderWidth) {
       var attributes = [
         {
           name:'d',

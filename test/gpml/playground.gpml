@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Pathway xmlns="http://pathvisio.org/GPML/2013a" Name="elbows" Version="20130813" Organism="Anopheles gambiae">
-  <Graphics BoardWidth="609.7918210195184" BoardHeight="601.1280116193159" />
+  <Graphics BoardWidth="590.0806445608847" BoardHeight="478.3568075117371" />
   <DataNode TextLabel="GeneProduct" GraphId="b2823" Type="GeneProduct" GroupRef="c0f84">
     <Graphics CenterX="47.57373929590866" CenterY="83.72978116079925" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
     <Xref Database="" ID="" />
@@ -25,57 +25,14 @@
     <Graphics CenterX="77.06945765937203" CenterY="284.4909609895338" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
     <Xref Database="" ID="" />
   </DataNode>
-  <DataNode TextLabel="GeneProduct" GraphId="fb91c" Type="GeneProduct">
-    <Graphics CenterX="430.0666032350143" CenterY="294.0057088487155" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" LineStyle="Broken" />
-    <Xref Database="" ID="" />
-  </DataNode>
-  <DataNode TextLabel="GeneProduct" GraphId="fe70e" Type="GeneProduct">
-    <Attribute Key="org.pathvisio.DoubleLineProperty" Value="Double" />
-    <Graphics CenterX="435.30922930542346" CenterY="351.5794481446241" Width="80.0" Height="20.0" ZOrder="32769" FontSize="10" Valign="Middle" />
-    <Xref Database="" ID="" />
-  </DataNode>
-  <DataNode TextLabel="GeneProduct" GraphId="dc5d4" Type="GeneProduct">
-    <Graphics CenterX="420.5708848715509" CenterY="401.54138915318737" Width="80.0" Height="20.0" ZOrder="32770" FontSize="10" Valign="Middle" />
-    <Xref Database="" ID="" />
-  </DataNode>
-  <Interaction GroupRef="fdf8f">
-    <Graphics ZOrder="12288" LineThickness="1.0">
-      <Point X="220.74215033301618" Y="79.92388201712654" />
-      <Point X="326.3558515699334" Y="74.21503330161751" />
-    </Graphics>
-    <Xref Database="" ID="" />
-  </Interaction>
-  <GraphicalLine>
-    <Graphics ZOrder="12288" LineStyle="Broken" LineThickness="1.0">
-      <Point X="191.05074739484547" Y="212.81899798718516" />
-      <Point X="345.1896627135896" Y="219.47932148861238" />
-    </Graphics>
-  </GraphicalLine>
-  <GraphicalLine GraphId="e8934">
-    <Attribute Key="org.pathvisio.DoubleLineProperty" Value="Double" />
-    <Graphics ZOrder="32771" LineThickness="1.0">
-      <Point X="201.05074739484547" Y="222.81899798718516" />
-      <Point X="355.1896627135896" Y="229.47932148861238" />
-    </Graphics>
-  </GraphicalLine>
-  <Label TextLabel="Label" GraphId="bd1b6" GroupRef="fdf8f">
-    <Graphics CenterX="220.74215033301618" CenterY="157.94481446241676" Width="80.0" Height="20.0" ZOrder="28672" FillColor="ffffff" FontSize="10" Valign="Middle" />
-  </Label>
-  <Shape GraphId="f6576">
-    <Graphics CenterX="274.72621313035205" CenterY="320.3970028544244" Width="91.84157944814467" Height="69.00618458610845" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="Arc" Rotation="0.0" />
-  </Shape>
   <Shape GraphId="cfde2">
     <Attribute Key="org.pathvisio.CellularComponentProperty" Value="Cell" />
     <Attribute Key="org.pathvisio.DoubleLineProperty" Value="Double" />
-    <Graphics CenterX="496.4198382492864" CenterY="152.93744053282592" Width="124.19172216936249" Height="122.28877259752616" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="RoundedRectangle" LineThickness="3.0" Color="c0c0c0" Rotation="0.0" />
-  </Shape>
-  <Shape GraphId="ef043">
-    <Graphics CenterX="392.3425925925926" CenterY="161.62363834422658" Width="43.201525054466195" Height="83.72440087145971" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="Oval" Rotation="0.0" />
+    <Graphics CenterX="238.20387580797203" CenterY="166.23947496162106" Width="124.19172216936249" Height="122.28877259752616" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="RoundedRectangle" LineThickness="3.0" Color="c0c0c0" Rotation="0.0" />
   </Shape>
   <Group GroupId="bd115" Style="Complex" />
   <Group GroupId="a42dc" Style="Group" />
   <Group GroupId="c0f84" Style="Pathway" TextLabel="group" />
-  <Group GroupId="fdf8f" />
   <InfoBox CenterX="0.0" CenterY="0.0" />
   <Biopax />
 </Pathway>
