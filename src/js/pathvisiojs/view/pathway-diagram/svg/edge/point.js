@@ -85,7 +85,7 @@ pathvisiojs.view.pathwayDiagram.svg.edge.point = function(){
         }
         else {
           if (edgeTerminusRef.type === 'group') {
-            var groupDimensions = pathvisiojs.view.pathwayDiagram.svg.node.group.getDimensions(pathway, edgeTerminusRef.groupId);
+            var groupDimensions = pathvisiojs.view.pathwayDiagram.svg.node.groupNode.getDimensions(pathway, edgeTerminusRef.groupId);
             coordinates = pathvisiojs.view.pathwayDiagram.svg.node.getPortCoordinates(groupDimensions, point.relX, point.relY);
           }
           else {
