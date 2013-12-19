@@ -46,7 +46,7 @@ pathvisiojs.view.pathwayDiagram.svg.node = function(){
       throw new Error('Need a target to render a node.');
     }
     if (!args.data) {
-      throw new Error('Need a input data to render a node.');
+      throw new Error('Need input data to render a node.');
     }
 
     /************ 
@@ -102,19 +102,6 @@ pathvisiojs.view.pathwayDiagram.svg.node = function(){
     }
 
     callback(nodeContainer);
-
-    /*
-    .attr("class", function (d) {
-      var cssClass = '';
-      if (d.elementType === 'data-node') {
-        cssClass = 'shape ' + d.dataNodeType + ' ' + d.shapeType;
-      }
-      else {
-        cssClass = 'shape ' + d.shapeType;
-      }
-      return cssClass;
-    })
-    //*/
   }
 
   /*
