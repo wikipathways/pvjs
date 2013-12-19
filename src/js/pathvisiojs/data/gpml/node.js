@@ -1,3 +1,5 @@
+// includes GPML elements of type EntityNode and Group
+
 pathvisiojs.data.gpml.node = function(){
 
   function setJsonBackgroundColor(jsonNode, currentGpmlFillColorValue, defaultGpmlFillColorValue) {
@@ -124,6 +126,7 @@ pathvisiojs.data.gpml.node = function(){
 
   function toRenderableJson(gpmlNode, jsonNode, callback) {
     try {
+      /*
       var comments = gpmlNode.selectAll('Comment');
       if (comments[0].length > 0) {
         jsonNode.comments = [];
@@ -173,19 +176,28 @@ pathvisiojs.data.gpml.node = function(){
       }
 
       var attributes = gpmlNode.selectAll('Attribute');
+      console.log('attributes');
+      console.log(attributes);
       ///*
+      var doubleProperty, cellularComponent;
       if (attributes.length > 0) {
-        var cellularComponent = attributes.filter(function(d, i) {
+        doubleProperty = attributes.filter(function(d, i) {
+          console.log('this');
+          console.log(this);
+          return d3.select(this).attr('Key') === 'org.pathvisio.DoubleLineProperty' && d3.select(this).attr('Value') === 'Double';
+        });
+        if (doubleProperty[0].length > 0) {
+          jsonNode.shapeType = shapeType + '-double';
+        }
+        cellularComponent = attributes.filter(function(d, i) {
           return d3.select(this).attr('Key') === 'org.pathvisiojs.CellularComponentProperty' && d3.select(this).attr('Value') != 'None';
         });
         if (cellularComponent[0].length > 0) {
           jsonNode.cellularComponent = cellularComponent.attr('Value');
         }
       }
-      //*/
 
 
-/*
 
       // BiopaxRefs 
 
@@ -209,7 +221,8 @@ pathvisiojs.data.gpml.node = function(){
       delete element.graphics;
       //*/
 
-      callback(jsonNode, jsonAnchorsFromThisNode);
+      callback(jsonNode, jsonPorts);
+      //*/
     }
     catch (e) {
       console.log("Error converting node to json: " + e.message);
