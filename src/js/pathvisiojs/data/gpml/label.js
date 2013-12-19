@@ -10,7 +10,7 @@ pathvisiojs.data.gpml.label = function(){
 
   function toRenderableJson(gpmlLabel, pathwayIri, callbackInside) {
     try {
-      pathvisiojs.data.gpml.entityNode.toRenderableJson(gpmlLabel, pathwayIri, function(jsonLabel, ports) {
+      pathvisiojs.data.gpml.entityNode.toRenderableJson(gpmlLabel, pathwayIri, function(jsonLabel) {
         jsonLabel.nodeType = "Label";
         pathvisiojs.data.gpml.text.toRenderableJson(gpmlLabel, pathvisioDefaultStyleValues, function(text) {
           if (!!text) {
@@ -31,10 +31,7 @@ pathvisiojs.data.gpml.label = function(){
             jsonLabel.backgroundColor = jsonBackgroundColor;
           }
 
-          pathvisiojs.data.gpml.node.getPorts(jsonLabel, function(ports) {
-            jsonLabel.Port = ports;
-            callbackInside(jsonLabel, ports);
-          });
+          callbackInside(jsonLabel);
         });
       });
     }

@@ -48,7 +48,7 @@ pathvisiojs.data.gpml.dataNode = function() {
 
   function toRenderableJson(gpmlDataNode, pathwayIri, callbackInside) {
     try {
-      pathvisiojs.data.gpml.entityNode.toRenderableJson(gpmlDataNode, pathwayIri, function(jsonDataNode, ports) {
+      pathvisiojs.data.gpml.entityNode.toRenderableJson(gpmlDataNode, pathwayIri, function(jsonDataNode) {
         var database, ID, 
           datasourceReference = gpmlDataNode.select('Xref');
         if (!!datasourceReference) {
@@ -68,9 +68,6 @@ pathvisiojs.data.gpml.dataNode = function() {
         jsonDataNode.dataNodeType = dataNodeType;
         jsonDataNode["@type"].push(dataNodeType);
 
-
-
-
         pathvisiojs.data.gpml.text.toRenderableJson(gpmlDataNode, pathvisioDefaultStyleValues[dataNodeType], function(text) {
           if (!!text) {
             jsonDataNode.text = text;
@@ -87,8 +84,9 @@ pathvisiojs.data.gpml.dataNode = function() {
           jsonDataNode = pathvisiojs.data.gpml.node.setJsonBackgroundColor(jsonDataNode,
                         gpmlDataNode.select('Graphics').attr('FillColor'),
                         pathvisioDefaultStyleValues[dataNodeType].FillColor);
-        });
 
+          callbackInside(jsonDataNode);
+        });
       });
     }
     catch (e) {
