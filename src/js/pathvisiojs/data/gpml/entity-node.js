@@ -84,7 +84,10 @@ pathvisiojs.data.gpml.entityNode = function() {
         }
       }
 
-      entityNodeCallback(jsonEntityNode);
+      pathvisiojs.data.gpml.node.getPorts(jsonEntityNode, function(ports) {
+        jsonEntityNode.Port = ports;
+        entityNodeCallback(jsonEntityNode);
+      });
     }
     catch (e) {
       throw new Error("Error converting EntityNode or Port to renderable json: " + e.message);
