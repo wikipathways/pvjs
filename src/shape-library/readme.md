@@ -1,7 +1,7 @@
 This folder holds two parts of our shape library: markers (arrowheads) and shapes that scale uniformly.
 
 For shapes that scale non-uniformly (e.g., the arc-like corner of a rounded
-rectangle if the corner must keep a constant radius, regardless of the zoom level of the diagram), please
+rectangle if the corner must keep a constant radius, regardless of the size of the shape), please
 see the JavaScript code. For SVG, these shapes are currently rendered on-demand by JavaScript as SVG path elements, 
 with their attributes being set in the files in the [path shape directory](../js/pathvisiojs/view/pathway-diagram/svg/node/path-shape).
 
@@ -89,11 +89,3 @@ SVG-Edit (latest release)
 	For more information on SVG, these references are helpful:
 	[W3 Spec](http://www.w3.org/TR/SVG/expanded-toc.html)
 	[MDN on SVG](https://developer.mozilla.org/en-US/docs/Web/SVG)
-
-	<!-- ***************************
-	Markers (Arrowheads) 
-	*************************** -->
-
-
-
-
