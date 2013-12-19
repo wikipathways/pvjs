@@ -10,7 +10,7 @@ pathvisiojs.data.gpml.shape = function(){
 
   function toRenderableJson(gpmlShape, pathwayIri, callbackInside) {
     try {
-      pathvisiojs.data.gpml.entityNode.toRenderableJson(gpmlShape, pathwayIri, function(jsonShape, ports) {
+      pathvisiojs.data.gpml.entityNode.toRenderableJson(gpmlShape, pathwayIri, function(jsonShape) {
         jsonShape.nodeType = "Shape";
         pathvisiojs.data.gpml.text.toRenderableJson(gpmlShape, pathvisioDefaultStyleValues, function(text) {
           if (!!text) {
@@ -29,10 +29,7 @@ pathvisiojs.data.gpml.shape = function(){
                         gpmlShape.select('Graphics').attr('Rotation'),
                         pathvisioDefaultStyleValues.Rotation);
 
-          pathvisiojs.data.gpml.node.getPorts(jsonShape, function(ports) {
-            jsonShape.Port = ports;
-            callbackInside(jsonShape, ports);
-          });
+          callbackInside(jsonShape);
         });
       });
     }
