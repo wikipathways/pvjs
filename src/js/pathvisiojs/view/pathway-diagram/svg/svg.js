@@ -146,7 +146,7 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
     });
   }
 
-  function quickRenderMultipleElements(args, callbackOutside){
+  function renderElementsQuick(args, callbackOutside){
     if (!args.target) {
       throw new Error("No target specified.");
     }
@@ -198,7 +198,7 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
                 nodeEntityArgs.data = groupedElementsData['@graph'];
                 nodeEntityArgs.allSymbolNames = args.allSymbolNames;
                 nodeEntityArgs.organism = organism;
-                pathvisiojs.view.pathwayDiagram.svg.quickRenderMultipleElements(nodeEntityArgs, function() {
+                pathvisiojs.view.pathwayDiagram.svg.renderElementsQuick(nodeEntityArgs, function() {
                 });
               });
             });
@@ -310,7 +310,7 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
     function(err, results) {
       args.target = args.svg.select('#viewport');
       args.data = results.firstOrderData;
-      quickRenderMultipleElements(args, function() {
+      renderElementsQuick(args, function() {
         callback(args.svg);
       });
 
@@ -321,7 +321,7 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
         function(callbackInside2) {
           args.target = args.svg.select('#viewport');
           args.data = results.groupData;
-          quickRenderMultipleElements(args, function() {
+          renderElementsQuick(args, function() {
             console.log(1);
           });
           callbackInside2(null, svg);
@@ -330,7 +330,7 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
           args.target = args.svg.select('#viewport');
           args.data = results.notGroupedData;
           self.args = args;
-          quickRenderMultipleElements(args, function() {
+          renderElementsQuick(args, function() {
             console.log(2);
             callbackInside2(null, svg);
           });
@@ -416,7 +416,7 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
   return {
     //render:render,
     quickRender:quickRender,
-    quickRenderMultipleElements:quickRenderMultipleElements,
+    renderElementsQuick:renderElementsQuick,
     load:load,
     loadPartials:loadPartials
   };
