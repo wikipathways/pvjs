@@ -205,6 +205,7 @@ pathvisiojs.data.gpml = function(){
               'media':'http://www.w3.org/TR/mediaont-10/',
               'ex':'http://www.example.com/',
               'pathwayIri':pathwayIri,
+              'PublicationXref':'biopax:PublicationXref',
               'gpmlFolder':'file://Users/andersriutta/Sites/pathvisiojs/test/gpml/',
               'name':'http://xmlns.com/foaf/0.1/name',
               'dcterms':'http://purl.org/dc/terms/',
@@ -311,59 +312,110 @@ pathvisiojs.data.gpml = function(){
             };
             callback(null, pathvisiojs.context);
           },
-          BiopaxRef: function(callback){
-            var biopaxRefs = gpmlPathway.selectAll('Pathway > BiopaxRef');
-            if (biopaxRefs[0].length > 0) {
-              pathway.BiopaxRef = [];
-              biopaxRefs.each(function() {
-                jsonBiopaxRef = d3.select(this)[0][0].textContent;
-                pathway.BiopaxRef.push(jsonBiopaxRef);
-              })
-              callback(null, 'BiopaxRefs are all converted.');
-            }
-            else {
-              callback(null, 'No biopaxRef to convert.');
-            }
+          PublicationXref: function(callback){
+            pathvisiojs.data.gpml.biopaxRef.getAllAsRenderableJson(gpmlPathway, function(publicationXrefs) {
+              if (!!publicationXrefs) {
+                pathway.PublicationXref = publicationXrefs;
+                callback(null, 'BiopaxRefs are all converted.');
+              }
+              else {
+                callback(null, 'No biopaxRefs to convert.');
+              }
+            });
           },
           xmlns: function(callback){
             pathway.xmlns = gpmlPathway.attr('xmlns');
             callback(null, pathway.xmlns);
           },
           DataSource: function(callback){
-            pathway.DataSource = gpmlPathway.attr('Data-Source');
-            callback(null, pathway.DataSource);
+            var jsonDataSource = gpmlPathway.attr('Data-Source');
+            if (!!jsonDataSource) {
+              pathway.DataSource = jsonDataSource;
+              callback(null, 'DataSource converted.');
+            }
+            else {
+              callback(null, 'No DataSource to convert.');
+            }
           },
           Version: function(callback){
-            pathway.Version = gpmlPathway.attr('Version');
-            callback(null, pathway.Version);
+            var jsonVersion = gpmlPathway.attr('Version');
+            if (!!jsonVersion) {
+              pathway.Version = jsonVersion;
+              callback(null, 'Version converted.');
+            }
+            else {
+              callback(null, 'No Version to convert.');
+            }
           },
           Author: function(callback){
-            pathway.Author = gpmlPathway.attr('Author');
-            callback(null, pathway.Author);
+            var jsonAuthor = gpmlPathway.attr('Author');
+            if (!!jsonAuthor) {
+              pathway.Author = jsonAuthor;
+              callback(null, 'Author converted.');
+            }
+            else {
+              callback(null, 'No Author to convert.');
+            }
           },
           Maintainer: function(callback){
-            pathway.Maintainer = gpmlPathway.attr('Maintainer');
-            callback(null, pathway.Maintainer);
+            var jsonMaintainer = gpmlPathway.attr('Maintainer');
+            if (!!jsonMaintainer) {
+              pathway.Maintainer = jsonMaintainer;
+              callback(null, 'Maintainer converted.');
+            }
+            else {
+              callback(null, 'No Maintainer to convert.');
+            }
           },
           Email: function(callback){
-            pathway.Email = gpmlPathway.attr('Email');
-            callback(null, pathway.Email);
+            var jsonEmail = gpmlPathway.attr('Email');
+            if (!!jsonEmail) {
+              pathway.Email = jsonEmail;
+              callback(null, 'Email converted.');
+            }
+            else {
+              callback(null, 'No Email to convert.');
+            }
           },
           LastModified: function(callback){
-            pathway.LastModified = gpmlPathway.attr('Last-Modified');
-            callback(null, pathway.LastModified);
+            var jsonLastModified = gpmlPathway.attr('Last-Modified');
+            if (!!jsonLastModified) {
+              pathway.LastModified = jsonLastModified;
+              callback(null, 'LastModified converted.');
+            }
+            else {
+              callback(null, 'No LastModified to convert.');
+            }
           },
           License: function(callback){
-            pathway.License = gpmlPathway.attr('License');
-            callback(null, pathway.License);
+            var jsonLicense = gpmlPathway.attr('License');
+            if (!!jsonLicense) {
+              pathway.License = jsonLicense;
+              callback(null, 'License converted.');
+            }
+            else {
+              callback(null, 'No License to convert.');
+            }
           },
           Name: function(callback){
-            pathway.Name = gpmlPathway.attr('Name');
-            callback(null, pathway.Name);
+            var jsonName = gpmlPathway.attr('Name');
+            if (!!jsonName) {
+              pathway.Name = jsonName;
+              callback(null, 'Name converted.');
+            }
+            else {
+              callback(null, 'No Name to convert.');
+            }
           },
           Organism: function(callback){
-            pathway.Organism = gpmlPathway.attr('Organism');
-            callback(null, pathway.Organism);
+            var jsonOrganism = gpmlPathway.attr('Organism');
+            if (!!jsonOrganism) {
+              pathway.Organism = jsonOrganism;
+              callback(null, 'Organism converted.');
+            }
+            else {
+              callback(null, 'No Organism to convert.');
+            }
           },
           image: function(callback){
             pathway.image = {
@@ -378,7 +430,6 @@ pathvisiojs.data.gpml = function(){
           Biopax: function(callback){
             var xmlBiopax = gpmlPathway.selectAll('Biopax');
             if (xmlBiopax[0].length > 0) {
-              pathway.Biopax = [];
               pathvisiojs.data.biopax.toRenderableJson(xmlBiopax, function(jsonBiopax) {
                 pathway.Biopax = jsonBiopax;
               });

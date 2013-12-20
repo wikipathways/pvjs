@@ -24,9 +24,9 @@ pathvisiojs.view.pathwayDiagram.svg.infoBox = function(){
       infoBox.push({'key':'Organism', 'value':pathway.Organism});
     }
 
-    if (pathway.hasOwnProperty('BiopaxRef')) {
-      pathvisiojs.view.pathwayDiagram.svg.citation.getCitationString(pathway, pathway.BiopaxRef, function(citationString) {
-        infoBox.push({'key':'Citation(s)', 'value':citationString});
+    if (pathway.hasOwnProperty('PublicationXref')) {
+      pathvisiojs.view.pathwayDiagram.svg.publicationXref.getPublicationXrefString(pathway, pathway.PublicationXref, function(publicationXrefString) {
+        infoBox.push({'key':'Citation(s)', 'value':publicationXrefString});
       })
     }
 
