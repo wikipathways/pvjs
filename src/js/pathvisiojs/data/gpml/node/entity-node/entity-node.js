@@ -1,6 +1,6 @@
 // includes GPML elements of type Shape, Label and DataNode
 
-pathvisiojs.data.gpml.entityNode = function() {
+pathvisiojs.data.gpml.node.entityNode = function() {
 
   function setJsonRotationValue(jsonNode, currentGpmlRotationValue, defaultGpmlRotationValue) {
     if (currentGpmlRotationValue !== defaultGpmlRotationValue) {

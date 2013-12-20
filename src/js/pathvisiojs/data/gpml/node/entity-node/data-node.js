@@ -1,4 +1,4 @@
-pathvisiojs.data.gpml.dataNode = function() {
+pathvisiojs.data.gpml.node.entityNode.dataNode = function() {
 
   var pathvisioDefaultStyleValues = {
     'DataNode':{
@@ -40,7 +40,7 @@ pathvisiojs.data.gpml.dataNode = function() {
 
   function toRenderableJson(gpmlDataNode, pathwayIri, callbackInside) {
     try {
-      pathvisiojs.data.gpml.entityNode.toRenderableJson(gpmlDataNode, pathwayIri, function(jsonDataNode) {
+      pathvisiojs.data.gpml.node.entityNode.toRenderableJson(gpmlDataNode, pathwayIri, function(jsonDataNode) {
         var database, ID, 
           datasourceReference = gpmlDataNode.select('Xref');
         if (!!datasourceReference) {
