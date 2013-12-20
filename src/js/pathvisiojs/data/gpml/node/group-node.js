@@ -1,4 +1,4 @@
-pathvisiojs.data.gpml.group = function() {
+pathvisiojs.data.gpml.node.groupNode = function() {
 
   var groupTypeToShapeTypeMappings = {
     'Complex':'complex',
