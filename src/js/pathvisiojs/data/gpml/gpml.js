@@ -128,35 +128,6 @@ pathvisiojs.data.gpml = function(){
     return jsonElement;
   }
 
-  function getGroupDimensions(group, groupContents, callback) {
-    var dimensions = {};
-    dimensions.topLeftCorner = {};
-    dimensions.topLeftCorner.x = 99999;
-    dimensions.topLeftCorner.y = 99999;
-    dimensions.bottomRightCorner = {};
-    dimensions.bottomRightCorner.x = 0;
-    dimensions.bottomRightCorner.y = 0;
-    groupContents.forEach(function(groupContent) {
-      if (groupContent.renderableType === 'entityNode') {
-        dimensions.topLeftCorner.x = Math.min(dimensions.topLeftCorner.x, groupContent.x);
-        dimensions.topLeftCorner.y = Math.min(dimensions.topLeftCorner.y, groupContent.y);
-        dimensions.bottomRightCorner.x = Math.max(dimensions.bottomRightCorner.x, groupContent.x + groupContent.width);
-        dimensions.bottomRightCorner.y = Math.max(dimensions.bottomRightCorner.y, groupContent.y + groupContent.height);
-      }
-      else {
-        dimensions.topLeftCorner.x = Math.min(dimensions.topLeftCorner.x, groupContent.Point[0].x, groupContent.Point[groupContent.Point.length - 1].x);
-        dimensions.topLeftCorner.y = Math.min(dimensions.topLeftCorner.y, groupContent.Point[0].y, groupContent.Point[groupContent.Point.length - 1].y);
-        dimensions.bottomRightCorner.x = Math.max(dimensions.bottomRightCorner.x, groupContent.Point[0].x, groupContent.Point[groupContent.Point.length - 1].x);
-        dimensions.bottomRightCorner.y = Math.max(dimensions.bottomRightCorner.y, groupContent.Point[0].y, groupContent.Point[groupContent.Point.length - 1].y);
-      }
-      dimensions.x = dimensions.topLeftCorner.x - group.padding - group.borderWidth;
-      dimensions.y = dimensions.topLeftCorner.y - group.padding - group.borderWidth;
-      dimensions.width = (dimensions.bottomRightCorner.x - dimensions.topLeftCorner.x) + 2 * (group.padding + group.borderWidth);
-      dimensions.height = (dimensions.bottomRightCorner.y - dimensions.topLeftCorner.y) + 2 * (group.padding + group.borderWidth);
-      callback(dimensions);
-    });
-  }
-
   function toRenderableJson(gpml, pathwayIri, callbackOutside){
     var gpmlPathway = d3.select(gpml).select('Pathway');
     self.mygpmlPathwayAsXmlDoc = gpmlPathway[0][0];
@@ -528,6 +499,10 @@ pathvisiojs.data.gpml = function(){
           pathway.Group = [];
           gpmlPathway.selectAll('Group').each(function() {
             gpmlGroup = d3.select(this);
+            pathvisiojs.data.gpml.node.groupNode.toRenderableJson(pathway, gpmlGroup, pathwayIri, function(jsonGroup) {
+              pathway.Group.push(jsonGroup);
+            });
+            /*
             pathvisiojs.data.gpml.node.groupNode.toRenderableJson(gpmlGroup, pathwayIri, function(jsonGroup) {
               var groupsFrame = {
                 '@context': pathvisiojs.context,
@@ -543,6 +518,7 @@ pathvisiojs.data.gpml = function(){
                 pathway.Group.push(jsonGroup);
               });
             });
+            //*/
           })
           self.myPathway = pathway;
           callbackOutside(pathway);
