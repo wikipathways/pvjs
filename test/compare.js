@@ -119,15 +119,16 @@ function loadExtJsCss(callbackOutside) {
       srcDirectoryUrl + 'js/pathvisiojs/data/data.js',
       srcDirectoryUrl + 'js/pathvisiojs/data/bridgedb/bridgedb.js',
       srcDirectoryUrl + 'js/pathvisiojs/data/bridgedb/data-sources.js',
+      srcDirectoryUrl + 'js/pathvisiojs/data/biopax/biopax.js',
       srcDirectoryUrl + 'js/pathvisiojs/data/gpml/gpml.js',
       srcDirectoryUrl + 'js/pathvisiojs/data/gpml/text.js',
       srcDirectoryUrl + 'js/pathvisiojs/data/gpml/namespaces.js',
-      srcDirectoryUrl + 'js/pathvisiojs/data/gpml/entity-node.js',
-      srcDirectoryUrl + 'js/pathvisiojs/data/gpml/data-node.js',
-      srcDirectoryUrl + 'js/pathvisiojs/data/gpml/label.js',
-      srcDirectoryUrl + 'js/pathvisiojs/data/gpml/shape.js',
-      srcDirectoryUrl + 'js/pathvisiojs/data/gpml/group.js',
-      srcDirectoryUrl + 'js/pathvisiojs/data/gpml/node.js',
+      srcDirectoryUrl + 'js/pathvisiojs/data/gpml/node/node.js',
+      srcDirectoryUrl + 'js/pathvisiojs/data/gpml/node/group-node.js',
+      srcDirectoryUrl + 'js/pathvisiojs/data/gpml/node/entity-node/entity-node.js',
+      srcDirectoryUrl + 'js/pathvisiojs/data/gpml/node/entity-node/data-node.js',
+      srcDirectoryUrl + 'js/pathvisiojs/data/gpml/node/entity-node/label.js',
+      srcDirectoryUrl + 'js/pathvisiojs/data/gpml/node/entity-node/shape.js',
       srcDirectoryUrl + 'js/pathvisiojs/data/gpml/anchor.js',
       srcDirectoryUrl + 'js/pathvisiojs/data/gpml/edge/edge.js',
       srcDirectoryUrl + 'js/pathvisiojs/data/gpml/edge/interaction.js',
@@ -144,14 +145,17 @@ function loadExtJsCss(callbackOutside) {
       srcDirectoryUrl + 'js/pathvisiojs/view/pathway-diagram/svg/grid.js',
       srcDirectoryUrl + 'js/pathvisiojs/view/pathway-diagram/svg/info-box.js',
       srcDirectoryUrl + 'js/pathvisiojs/view/pathway-diagram/svg/symbol.js',
+      srcDirectoryUrl + 'js/pathvisiojs/view/pathway-diagram/svg/citation.js',
       srcDirectoryUrl + 'js/pathvisiojs/view/pathway-diagram/svg/node/node.js',
-      srcDirectoryUrl + 'js/pathvisiojs/view/pathway-diagram/svg/node/text.js',
       srcDirectoryUrl + 'js/pathvisiojs/view/pathway-diagram/svg/node/entity-node.js',
-      srcDirectoryUrl + 'js/pathvisiojs/view/pathway-diagram/svg/node/use-element.js',
       srcDirectoryUrl + 'js/pathvisiojs/view/pathway-diagram/svg/node/path-shape/path-shape.js',
       srcDirectoryUrl + 'js/pathvisiojs/view/pathway-diagram/svg/node/path-shape/rounded-rectangle.js',
-      srcDirectoryUrl + 'js/pathvisiojs/view/pathway-diagram/svg/node/path-shape/group-complex.js',
-      srcDirectoryUrl + 'js/pathvisiojs/view/pathway-diagram/svg/node/label.js',
+      srcDirectoryUrl + 'js/pathvisiojs/view/pathway-diagram/svg/node/path-shape/rounded-rectangle-double.js',
+      srcDirectoryUrl + 'js/pathvisiojs/view/pathway-diagram/svg/node/path-shape/oval-double.js',
+      srcDirectoryUrl + 'js/pathvisiojs/view/pathway-diagram/svg/node/path-shape/complex.js',
+      srcDirectoryUrl + 'js/pathvisiojs/view/pathway-diagram/svg/node/text.js',
+      srcDirectoryUrl + 'js/pathvisiojs/view/pathway-diagram/svg/node/group-node.js',
+      srcDirectoryUrl + 'js/pathvisiojs/view/pathway-diagram/svg/node/use-element.js',
       srcDirectoryUrl + 'js/pathvisiojs/view/pathway-diagram/svg/edge/edge.js',
       srcDirectoryUrl + 'js/pathvisiojs/view/pathway-diagram/svg/edge/graphical-line.js',
       srcDirectoryUrl + 'js/pathvisiojs/view/pathway-diagram/svg/edge/interaction.js',
@@ -211,17 +215,15 @@ window.onload = function() {
       {'id': 'oval', 'url': srcDirectoryUrl + 'shape-library/symbols/oval.svg'},
       {'id': 'pentagon', 'url': srcDirectoryUrl + 'shape-library/symbols/pentagon.svg'},
       {'id': 'rectangle', 'url': srcDirectoryUrl + 'shape-library/symbols/rectangle.svg'},
-      {'id': 'group-none', 'url': srcDirectoryUrl + 'shape-library/symbols/group-none.svg'},
-      {'id': 'group-pathway', 'url': srcDirectoryUrl + 'shape-library/symbols/group-pathway.svg'},
-      {'id': 'group-group', 'url': srcDirectoryUrl + 'shape-library/symbols/group-group.svg'},
-      //{'id': 'rounded-rectangle', 'url': srcDirectoryUrl + 'shape-library/symbols/rounded-rectangle.svg'},
+      {'id': 'group-none', 'url': srcDirectoryUrl + 'shape-library/symbols/rectangle.svg'},
+      {'id': 'group-pathway', 'url': srcDirectoryUrl + 'shape-library/symbols/rectangle.svg'},
+      {'id': 'group-group', 'url': srcDirectoryUrl + 'shape-library/symbols/rectangle.svg'},
       {'id': 'sarcoplasmic-reticulum','url': srcDirectoryUrl + 'shape-library/symbols/sarcoplasmic-reticulum.svg'},
       {'id': 'triangle', 'url': srcDirectoryUrl + 'shape-library/symbols/triangle.svg'},
       {'id': 'grid-square', 'url': srcDirectoryUrl + 'shape-library/symbols/grid-square.svg'},
       {'id': 'none', 'url': srcDirectoryUrl + 'shape-library/symbols/none.svg'}
     ];
 
-    //*
     var customMarkers = self.customMarkers = [
       {'id': 'arrow', 'url': srcDirectoryUrl + 'shape-library/markers/arrow.svg'},
       {'id': 'activity', 'url': srcDirectoryUrl + 'shape-library/markers/arrow.svg'},
@@ -239,16 +241,13 @@ window.onload = function() {
       {'id': 'transcription-translation', 'url': srcDirectoryUrl + 'shape-library/markers/mim-transcription-translation.svg'},
       {'id': 'gap', 'url': srcDirectoryUrl + 'shape-library/markers/mim-gap.svg'},
       {'id': 'inhibitory-activity', 'url': srcDirectoryUrl + 'shape-library/markers/t-bar.svg'},
-      {'id': 'unspecified', 'url': srcDirectoryUrl + 'shape-library/markers/none.svg'}
-    ];
-    //*/
-
-   /*
-    var customMarkers = self.customMarkers = [
-      {'id': 'arrow', 'url': srcDirectoryUrl + 'shape-library/markers/arrow.svg'},
+      {'id': 'unspecified', 'url': srcDirectoryUrl + 'shape-library/markers/none.svg'},
+      // not sure whether to do it like above or below. I think we should use the below where we have a minimum
+      // default palette and then use a default mapping from semantic name to shape name.
+      {'id': 'activity', 'url': srcDirectoryUrl + 'shape-library/markers/arrow.svg'},
       {'id': 'mim-branching-left', 'url': srcDirectoryUrl + 'shape-library/markers/mim-branching-left.svg'},
       {'id': 'mim-branching-right', 'url': srcDirectoryUrl + 'shape-library/markers/mim-branching-right.svg'},
-      {'id': 'necessary-stimulation', 'url': srcDirectoryUrl + 'shape-library/markers/mim-necessary-stimulation.svg'},
+      {'id': 'mim-necessary-stimulation', 'url': srcDirectoryUrl + 'shape-library/markers/mim-necessary-stimulation.svg'},
       {'id': 'mim-binding', 'url': srcDirectoryUrl + 'shape-library/markers/mim-binding.svg'},
       {'id': 'mim-conversion', 'url': srcDirectoryUrl + 'shape-library/markers/mim-conversion.svg'},
       {'id': 'mim-stimulation', 'url': srcDirectoryUrl + 'shape-library/markers/mim-stimulation.svg'},
@@ -259,9 +258,9 @@ window.onload = function() {
       {'id': 'mim-covalent-bond', 'url': srcDirectoryUrl + 'shape-library/markers/mim-covalent-bond.svg'},
       {'id': 'mim-transcription-translation', 'url': srcDirectoryUrl + 'shape-library/markers/mim-transcription-translation.svg'},
       {'id': 'mim-gap', 'url': srcDirectoryUrl + 'shape-library/markers/mim-gap.svg'},
-      {'id': 't-bar', 'url': srcDirectoryUrl + 'shape-library/markers/t-bar.svg'}
+      {'id': 't-bar', 'url': srcDirectoryUrl + 'shape-library/markers/t-bar.svg'},
+      {'id': 'none', 'url': srcDirectoryUrl + 'shape-library/markers/none.svg'}
     ];
-    //*/
 
     pathvisiojs.load({
       target: '#pathvisio-js-dev',

@@ -1,4 +1,4 @@
-pathvisiojs.biopax = function(){
+pathvisiojs.pathway.biopax = function(){
 
   function toRenderableJson(xmlBiopax, callback) {
     try {
@@ -23,4 +23,3 @@ pathvisiojs.biopax = function(){
     toRenderableJson:toRenderableJson
   };
 }();
-

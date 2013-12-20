@@ -1,32 +1,57 @@
 pathvisiojs.data.gpml.text = function() {
-  function toRenderableJson(gpmlNode, textCallbackOutside) {
+
+  var pathvisioDefaultStyleValues = {
+    'text':{
+      'Align':null,
+      'Valign':'Middle',
+      'FontStyle':null,
+      'FontName':null
+    }
+  }
+
+  function toRenderableJson(gpmlNode, inputDefaultValues, textCallbackOutside) {
+    /*
+    console.log('gpmlNode');
+    console.log(gpmlNode[0][0]);
+    console.log('inputDefaultValues');
+    console.log(inputDefaultValues);
+    console.log('textCallbackOutside');
+    console.log(textCallbackOutside);
+    //*/
     try {
-      var text = gpmlNode.attr('TextLabel')
+      var thisPathvisioDefaultStyleValues = pathvisiojs.utilities.collect(pathvisioDefaultStyleValues.text, inputDefaultValues);
+      var text = gpmlNode.attr('TextLabel');
       if (!!text) {
         jsonText = {};
-        jsonText["tspan"] = text.split(/\r\n|\r|\n|&#xA;/g);
-        var textAlign = gpmlNode.select('Graphics').attr('Align') || 'center';
-        jsonText["textAlign"] = textAlign.toLowerCase();
-        var verticalAlign = gpmlNode.select('Graphics').attr('Valign') || 'top';
-        jsonText["verticalAlign"] = verticalAlign.toLowerCase();
-        var fontSize = gpmlNode.select('Graphics').attr('FontSize') || 10;
-        jsonText["fontSize"] = parseFloat(fontSize);
-        var fontStyle = gpmlNode.select('Graphics').attr('FontStyle') || 'normal';
-        jsonText["fontStyle"] = fontStyle.toLowerCase();
-        var fontWeight = gpmlNode.select('Graphics').attr('FontWeight') || 'normal';
-        jsonText["fontWeight"] = fontWeight.toLowerCase();
-        jsonText["fontFamily"] = gpmlNode.select('Graphics').attr('FontName') || 'Arial';
+        jsonText.tspan = text.split(/\r\n|\r|\n|&#xA;/g);
 
-        var color;
-        var colorValue = gpmlNode.select('Graphics').attr('Color');
-        if (!!colorValue) {
-          color = new RGBColor(colorValue);
-          if (color.ok) {
-            jsonText["color"] = color.toHex();
+        var graphics = gpmlNode.select('Graphics');
+        var textAlign, fontStyle, fontWeight, fontSize, fontFamily;
+        if (!!graphics[0][0]) {
+          textAlign = gpmlNode.select('Graphics').attr('Align') || 'center';
+          jsonText.textAlign = textAlign.toLowerCase();
+
+          verticalAlign = gpmlNode.select('Graphics').attr('Valign') || 'middle';
+          jsonText.verticalAlign = verticalAlign.toLowerCase();
+
+          fontStyle = gpmlNode.select('Graphics').attr('FontStyle');
+          if (fontStyle !== thisPathvisioDefaultStyleValues['FontStyle']) {
+            jsonText.fontStyle = fontStyle.toLowerCase();
           }
-          else {
-            console.warn('Invalid color encountered. Setting color to black.');
-            jsonText["color"] = "#000000";
+
+          fontWeight = gpmlNode.select('Graphics').attr('FontWeight');
+          if (fontWeight !== thisPathvisioDefaultStyleValues['FontWeight']) {
+            jsonText.fontWeight = fontWeight.toLowerCase();
+          }
+
+          fontSize = gpmlNode.select('Graphics').attr('FontSize') || 10;
+          if (parseFloat(fontSize) !== thisPathvisioDefaultStyleValues['FontSize']) {
+            jsonText.fontSize = parseFloat(fontSize);
+          }
+
+          fontFamily = gpmlNode.select('Graphics').attr('FontName');
+          if (fontFamily !== thisPathvisioDefaultStyleValues['FontName']) {
+            jsonText.fontFamily = fontFamily;
           }
         }
         textCallbackOutside(jsonText);

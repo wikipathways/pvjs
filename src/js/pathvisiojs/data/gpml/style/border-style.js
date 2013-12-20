@@ -1,4 +1,4 @@
-pathvisiojs.data.gpml = function(){
+pathvisiojs.data.gpml.style.borderStyle = function(){
 
   var pathvisioDefaultStyleValues = {
     'FontSize':{
@@ -7,123 +7,15 @@ pathvisiojs.data.gpml = function(){
     }
   }
 
-  function getColor(gpmlColor, pathvisioDefault) {
-    var color;
-    if (gpmlColor !== pathvisioDefault) {
-      if (!!gpmlColor) {
-        color = new RGBColor(gpmlColor);
-        if (color.ok) {
-          return color.toHex();
-        }
-        else {
-          return 'black';
-        }
-      }
-      else {
-        return 'black';
-      }
-    }
-    else {
-      return null;
-    }
-  }
-
-  function setColorAsJson(jsonElement, currentGpmlColorValue, defaultGpmlColorValue) {
-    var jsonColor;
-    if (currentGpmlColorValue !== defaultGpmlColorValue) {
-      jsonColor = getColor(currentGpmlColorValue, defaultGpmlColorValue);
-      jsonElement.color = jsonColor;
-      jsonElement.borderColor = jsonColor;
+  function get(jsonElement, currentGpmlBorderStyleValue, defaultGpmlBorderStyleValue) {
+    var jsonBorderStyle;
+    if (currentGpmlBorderStyleValue !== defaultGpmlBorderStyleValue) {
+      jsonBorderStyle = getGpmlBorderStyle(currentGpmlBorderStyleValue, defaultGpmlBorderStyleValue);
+      jsonElement.borderStyle = jsonBorderStyle;
+      jsonElement.borderBorderStyle = jsonBorderStyle;
       if (jsonElement.hasOwnProperty('text')) {
-        jsonElement.text.color = jsonColor;
+        jsonElement.text.borderStyle = jsonBorderStyle;
       }
-    }
-    return jsonElement;
-  }
-
-  // TODO can we delete this function?
-
-  function getLineStyle(gpmlElement) {
-    var LineStyle, attributes; 
-    var graphics = gpmlElement.select('Graphics');
-    if (!!graphics) {
-      LineStyle = graphics.attr('LineStyle'); 
-      if (!!LineStyle) {
-        return LineStyle;
-      }
-      else {
-
-        // As currently specified, a given element can only have one LineStyle.
-        // This one LineStyle can be solid, dashed (broken) or double.
-        // If no value is specified in GPML for LineStyle, then we need to check
-        // for whether the element has LineStyle of double.
-
-        attributes = gpmlElement.selectAll('Attribute');
-        if (attributes.length > 0) {
-          LineStyle = attributes.filter(function(d, i) {
-            return d3.select(this).attr('Key') === 'org.pathvisiojs.DoubleLineProperty' && d3.select(this).attr('Value') === 'Double';
-          });
-
-          if (LineStyle[0].length > 0) {
-            return 'double';
-          }
-          else {
-            return null;
-          }
-        }
-        else {
-          return null;
-        }
-      }
-    }
-  }
-
-  function getBorderStyle(gpmlLineStyle, pathvisioDefault) {
-
-    // Double-lined entityNodes will be handled by using a symbol with double lines.
-    // Double-lined edges will be rendered as single-lined, solid edges, because we
-    // shouldn't need double-lined edges other than for cell walls/membranes, which
-    // should be symbols. Any double-lined edges are curation issues.
-
-    var lineStyleToBorderStyleMapping = {
-      'Solid':'solid',
-      'Double':'solid',
-      'Broken':'dashed'
-    };
-    var borderStyle;
-    if (gpmlLineStyle !== pathvisioDefault) {
-      if (!!gpmlLineStyle) {
-        borderStyle = lineStyleToBorderStyleMapping[gpmlLineStyle];
-        if (borderStyle) {
-          return borderStyle;
-        }
-        else {
-          console.warn('LineStyle "' + gpmlLineStyle + '" does not have a corresponding borderStyle. Using "solid"');
-          return 'solid';
-        }
-      }
-      else {
-        return 'solid';
-      }
-    }
-    else {
-
-      // TODO use code to actually get the default
-      
-      return 'whatever the default value is';
-    }
-  }
-
-  function setBorderStyleAsJson(jsonElement, currentGpmlLineStyleValue, defaultGpmlLineStyleValue) {
-    var borderStyle;
-
-    // this check happens twice because it doesn't make sense to have getBorderStyle() tell us
-    // whether it has returned the default value, and we need to know whether we are using the
-    // default here.
-
-    if (currentGpmlLineStyleValue !== defaultGpmlLineStyleValue) {
-      borderStyle = getBorderStyle(currentGpmlLineStyleValue, defaultGpmlLineStyleValue);
-      jsonElement.borderStyle = borderStyle;
     }
     return jsonElement;
   }
@@ -159,7 +51,6 @@ pathvisiojs.data.gpml = function(){
 
   function toRenderableJson(gpml, pathwayIri, callbackOutside){
     var gpmlPathway = d3.select(gpml).select('Pathway');
-    self.mygpmlPathwayAsXmlDoc = gpmlPathway[0][0];
 
     // for doing this in Java, we could look at 
     // https://code.google.com/p/json-io/
@@ -242,8 +133,6 @@ pathvisiojs.data.gpml = function(){
                 '@type': 'xsd:integer'
               },
               'DatasourceReference': 'wp:DatasourceReference',
-              'DataSource': 'gpml:Data-Source',
-              'LastModified': 'gpml:Last-Modified',
               'Pathway': 'biopax:Pathway',
               'shapeLibrary': 'http://shapelibrary.example.org/',
               'shapeName': 'shapeLibrary:shapeName',
@@ -311,57 +200,7 @@ pathvisiojs.data.gpml = function(){
             };
             callback(null, pathvisiojs.context);
           },
-          BiopaxRef: function(callback){
-            var biopaxRefs = gpmlPathway.selectAll('Pathway > BiopaxRef');
-            if (biopaxRefs[0].length > 0) {
-              pathway.BiopaxRef = [];
-              biopaxRefs.each(function() {
-                jsonBiopaxRef = d3.select(this)[0][0].textContent;
-                pathway.BiopaxRef.push(jsonBiopaxRef);
-              })
-              callback(null, 'BiopaxRefs are all converted.');
-            }
-            else {
-              callback(null, 'No biopaxRef to convert.');
-            }
-          },
-          xmlns: function(callback){
-            pathway.xmlns = gpmlPathway.attr('xmlns');
-            callback(null, pathway.xmlns);
-          },
-          DataSource: function(callback){
-            pathway.DataSource = gpmlPathway.attr('Data-Source');
-            callback(null, pathway.DataSource);
-          },
-          Version: function(callback){
-            pathway.Version = gpmlPathway.attr('Version');
-            callback(null, pathway.Version);
-          },
-          Author: function(callback){
-            pathway.Author = gpmlPathway.attr('Author');
-            callback(null, pathway.Author);
-          },
-          Maintainer: function(callback){
-            pathway.Maintainer = gpmlPathway.attr('Maintainer');
-            callback(null, pathway.Maintainer);
-          },
-          Email: function(callback){
-            pathway.Email = gpmlPathway.attr('Email');
-            callback(null, pathway.Email);
-          },
-          LastModified: function(callback){
-            pathway.LastModified = gpmlPathway.attr('Last-Modified');
-            callback(null, pathway.LastModified);
-          },
-          License: function(callback){
-            pathway.License = gpmlPathway.attr('License');
-            callback(null, pathway.License);
-          },
-          Name: function(callback){
-            pathway.Name = gpmlPathway.attr('Name');
-            callback(null, pathway.Name);
-          },
-          Organism: function(callback){
+          organism: function(callback){
             pathway.Organism = gpmlPathway.attr('Organism');
             callback(null, pathway.Organism);
           },
@@ -375,24 +214,11 @@ pathvisiojs.data.gpml = function(){
             };
             callback(null, pathway.image);
           },
-          Biopax: function(callback){
-            var xmlBiopax = gpmlPathway.selectAll('Biopax');
-            if (xmlBiopax[0].length > 0) {
-              pathway.Biopax = [];
-              pathvisiojs.data.biopax.toRenderableJson(xmlBiopax, function(jsonBiopax) {
-                pathway.Biopax = jsonBiopax;
-              });
-              callback(null, 'Biopax all converted.');
-            }
-            else {
-              callback(null, 'No Biopax to convert.');
-            }
-          },
           DataNode: function(callback){
             var dataNodes = gpmlPathway.selectAll('DataNode');
             if (dataNodes[0].length > 0) {
               pathway.DataNode = [];
-              dataNodes.each(function() {
+              gpmlPathway.selectAll('DataNode').each(function() {
                 gpmlDataNode = d3.select(this);
                 pathvisiojs.data.gpml.node.entityNode.dataNode.toRenderableJson(gpmlDataNode, pathwayIri, function(jsonDataNode) {
                   pathway.DataNode.push(jsonDataNode);
@@ -502,9 +328,19 @@ pathvisiojs.data.gpml = function(){
         }
       });
 
+
+      /*
+      jsonPathway.metadata = {};
+      jsonPathway.metadata.boardWidth = parseFloat(gpmlPathway.select('Graphics').attr('BoardWidth'));
+      jsonPathway.metadata.boardHeight = parseFloat(gpmlPathway.select('Graphics').attr('BoardHeight'));
+      jsonPathway.metadata.name = d3.select(gpml).select('Pathway').attr('Name');
+      jsonPathway.metadata.xmlns = d3.select(gpml).select('Pathway').attr('xmlns');
+      jsonPathway.metadata.organism = d3.select(gpml).select('Pathway').attr('Organism');
+      //*/
       
 
       /*
+
       // infoBox
       // These values are a legacy from GenMAPP. They are always forced to be equal to 0 in PathVisio (Java) so as to place the infobox in the upper lefthand corner.
 
@@ -512,7 +348,7 @@ pathvisiojs.data.gpml = function(){
       delete pathway.infoBox.centerX;
       pathway.infoBox.y = 0;
       delete pathway.infoBox.centerY;
-      //*/
+//*/
 
 
 
@@ -536,6 +372,31 @@ pathvisiojs.data.gpml = function(){
       }
       catch (e) {
         console.log('Error converting comment to json: ' + e.message);
+      }
+
+      // Groups
+
+      try {
+        if (pathway.hasOwnProperty('group')) {
+          pathway.groups = pathvisiojs.utilities.convertToArray( pathway.group );
+          delete pathway.group;
+
+          pathway.groups.forEach(function(element, index, array) {
+            if (element.hasOwnProperty('style')) {
+              element.style = element.style.toLowerCase();
+            }
+            else {
+              element.style = 'none';
+            }
+
+          });
+        }
+        else {
+          console.log('No element(s) named 'group' found in this gpml file.');
+        }
+      }
+      catch (e) {
+        console.log('Error converting group to json: ' + e.message);
       }
 
       // Graphical Lines 
@@ -589,6 +450,20 @@ pathvisiojs.data.gpml = function(){
         console.log('Error converting interaction to json: ' + e.message);
       }
 
+      // Edges
+
+      try {
+        if (pathway.hasOwnProperty('edges')) {
+          pathway.edges = pathvisiojs.pathway.edge.gpml2json(pathway.edges);
+        }
+        else {
+          console.log('No element(s) named 'edges' found in this gpml file.');
+        }
+      }
+      catch (e) {
+        console.log('Error converting edges to json: ' + e.message);
+      }
+
       //*/
     }
     else {
@@ -599,9 +474,6 @@ pathvisiojs.data.gpml = function(){
 
   return {
     toRenderableJson:toRenderableJson,
-    getLineStyle:getLineStyle,
-    getBorderStyle:getBorderStyle,
-    setBorderStyleAsJson:setBorderStyleAsJson,
     getColor:getColor,
     setColorAsJson:setColorAsJson
   };

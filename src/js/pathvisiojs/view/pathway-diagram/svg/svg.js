@@ -146,7 +146,7 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
     });
   }
 
-  function quickRenderMultipleElements(args, callbackOutside){
+  function renderElementsQuick(args, callbackOutside){
     if (!args.target) {
       throw new Error("No target specified.");
     }
@@ -169,7 +169,7 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
     // TODO this is a hack. Should define args the same way each time. Should args include pathway or just organism?
     var organism;
     if (args.hasOwnProperty('pathway')) {
-      organism = args.pathway.organism;
+      organism = args.pathway.Organism;
     }
     else {
       organism = args.organism;
@@ -184,13 +184,9 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
       },
       function(data, callback) {
         data.forEach(function(element) {
-          if (element.renderableType === 'Group') {
+          if (element.renderableType === 'GroupNode') {
             args.data = element;
-            pathvisiojs.view.pathwayDiagram.svg.node.render(args, function(groupContainer) {
-              groupContainer.attr("class", function (d) {
-                return 'group ';
-              })
-
+            pathvisiojs.view.pathwayDiagram.svg.node.groupNode.render(args, function(groupContainer) {
               var groupedElementsFrame = {
                 '@context': pathvisiojs.context,
                 "@type":element.GroupId
@@ -202,7 +198,7 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
                 nodeEntityArgs.data = groupedElementsData['@graph'];
                 nodeEntityArgs.allSymbolNames = args.allSymbolNames;
                 nodeEntityArgs.organism = organism;
-                pathvisiojs.view.pathwayDiagram.svg.quickRenderMultipleElements(nodeEntityArgs, function() {
+                pathvisiojs.view.pathwayDiagram.svg.renderElementsQuick(nodeEntityArgs, function() {
                 });
               });
             });
@@ -245,48 +241,6 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
     }
 
     async.parallel({
-      /*
-      'hierarchicalData': function(callbackInside) {
-        self.pathway = args.pathway;
-        var frame = {
-          '@context': pathvisiojs.context,
-          '@type': 'element'
-        };  
-        jsonld.frame(args.pathway, frame, function(err, hierarchicalData) {
-          callbackInside(null, hierarchicalData);
-        });
-      },
-      'notGroupedData': function(callbackInside) {
-        var notGroupedFrame = {
-          '@context': pathvisiojs.context,
-          "@type":"notGrouped"
-        };
-        jsonld.frame(args.pathway, notGroupedFrame, function(err, notGroupedData) {
-          callbackInside(null, notGroupedData['@graph']);
-        });
-      },
-      'groupData': function(callbackInside) {
-        var frame = {
-          '@context': pathvisiojs.context,
-          '@type': 'Group'
-        };  
-        jsonld.frame(args.pathway, frame, function(err, groupData) {
-          callbackInside(null, groupData['@graph']);
-        });
-      },
-      'grid': function(callbackInside) {
-        pathvisioNS.grid = {};
-        var frame = {
-          '@context': pathvisiojs.context,
-          '@type': 'entityNode'
-        };  
-        jsonld.frame(args.pathway, frame, function(err, framedData) {
-          pathvisiojs.view.pathwayDiagram.pathFinder.generateGridData(framedData['@graph'], args.pathway.Port, args.pathway.image.width, args.pathway.image.height, function() {
-            callbackInside(null);
-          });
-        });
-      },
-      //*/
       'gridData': function(callbackInside) {
         var frame = {
           '@context': pathvisiojs.context,
@@ -303,7 +257,7 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
       'firstOrderData': function(callbackInside) {
         var firstOrderFrame = {
           '@context': pathvisiojs.context,
-          '@type':['notGrouped', 'Group'],
+          '@type':['notGrouped', 'GroupNode'],
           'InteractionGraph': {}
         };
         jsonld.frame(args.pathway, firstOrderFrame, function(err, firstOrderData) {
@@ -312,11 +266,16 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
       }
     },
     function(err, results) {
-      args.target = args.svg.select('#viewport');
+      var viewport = args.svg.select('#viewport');
+
+      pathvisiojs.view.pathwayDiagram.svg.infoBox.render(viewport, args.pathway);
+
+      args.target = viewport;
       args.data = results.firstOrderData;
-      quickRenderMultipleElements(args, function() {
+      renderElementsQuick(args, function() {
         callback(args.svg);
       });
+
 
       //pathvisiojs.view.pathwayDiagram.svg.grid.render(args.svg);
 
@@ -325,7 +284,7 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
         function(callbackInside2) {
           args.target = args.svg.select('#viewport');
           args.data = results.groupData;
-          quickRenderMultipleElements(args, function() {
+          renderElementsQuick(args, function() {
             console.log(1);
           });
           callbackInside2(null, svg);
@@ -334,7 +293,7 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
           args.target = args.svg.select('#viewport');
           args.data = results.notGroupedData;
           self.args = args;
-          quickRenderMultipleElements(args, function() {
+          renderElementsQuick(args, function() {
             console.log(2);
             callbackInside2(null, svg);
           });
@@ -372,7 +331,7 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
       'groupData': function(callbackInside) {
         var frame = {
           '@context': pathvisiojs.context,
-          '@type': 'Group'
+          '@type': 'GroupNode'
         };  
         jsonld.frame(args.pathway, frame, function(err, groupData) {
           callbackInside(null, groupData);
@@ -420,7 +379,7 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
   return {
     //render:render,
     quickRender:quickRender,
-    quickRenderMultipleElements:quickRenderMultipleElements,
+    renderElementsQuick:renderElementsQuick,
     load:load,
     loadPartials:loadPartials
   };
