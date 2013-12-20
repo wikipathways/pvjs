@@ -303,7 +303,7 @@ pathvisiojs.data.gpml.style.borderStyle = function(){
           pathway.Group = [];
           gpmlPathway.selectAll('Group').each(function() {
             gpmlGroup = d3.select(this);
-            pathvisiojs.data.gpml.group.toRenderableJson(gpmlGroup, pathwayIri, function(jsonGroup) {
+            pathvisiojs.data.gpml.node.groupNode.toRenderableJson(gpmlGroup, pathwayIri, function(jsonGroup) {
               var groupsFrame = {
                 '@context': pathvisiojs.context,
                 '@type': jsonGroup.GroupId
