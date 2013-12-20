@@ -241,6 +241,8 @@ pathvisiojs.data.gpml = function(){
                 '@type': 'xsd:integer'
               },
               'DatasourceReference': 'wp:DatasourceReference',
+              'DataSource': 'gpml:Data-Source',
+              'LastModified': 'gpml:Last-Modified',
               'Pathway': 'biopax:Pathway',
               'shapeLibrary': 'http://shapelibrary.example.org/',
               'shapeName': 'shapeLibrary:shapeName',
@@ -308,7 +310,43 @@ pathvisiojs.data.gpml = function(){
             };
             callback(null, pathvisiojs.context);
           },
-          organism: function(callback){
+          xmlns: function(callback){
+            pathway.xmlns = gpmlPathway.attr('xmlns');
+            callback(null, pathway.xmlns);
+          },
+          DataSource: function(callback){
+            pathway.DataSource = gpmlPathway.attr('Data-Source');
+            callback(null, pathway.DataSource);
+          },
+          Version: function(callback){
+            pathway.Version = gpmlPathway.attr('Version');
+            callback(null, pathway.Version);
+          },
+          Author: function(callback){
+            pathway.Author = gpmlPathway.attr('Author');
+            callback(null, pathway.Author);
+          },
+          Maintainer: function(callback){
+            pathway.Maintainer = gpmlPathway.attr('Maintainer');
+            callback(null, pathway.Maintainer);
+          },
+          Email: function(callback){
+            pathway.Email = gpmlPathway.attr('Email');
+            callback(null, pathway.Email);
+          },
+          LastModified: function(callback){
+            pathway.LastModified = gpmlPathway.attr('Last-Modified');
+            callback(null, pathway.LastModified);
+          },
+          License: function(callback){
+            pathway.License = gpmlPathway.attr('License');
+            callback(null, pathway.License);
+          },
+          Name: function(callback){
+            pathway.Name = gpmlPathway.attr('Name');
+            callback(null, pathway.Name);
+          },
+          Organism: function(callback){
             pathway.Organism = gpmlPathway.attr('Organism');
             callback(null, pathway.Organism);
           },
