@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Pathway xmlns="http://pathvisio.org/GPML/2013a" Name="elbows" Data-Source="mydatasource" Version="20130813" Author="auth" Maintainer="maint" Email="email@email.com" Last-Modified="2013-12-17" Organism="Anopheles gambiae" License="CC">
   <BiopaxRef>ead</BiopaxRef>
+  <BiopaxRef>d52</BiopaxRef>
   <Graphics BoardWidth="839.7982708933719" BoardHeight="579.4716618635928" />
   <DataNode TextLabel="GeneProduct" GraphId="b2823" Type="GeneProduct" GroupRef="c0f84">
     <BiopaxRef>f03</BiopaxRef>
@@ -252,6 +253,14 @@
       <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Tourtier Y</bp:AUTHORS>
       <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Susini J</bp:AUTHORS>
       <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">De Courcy A</bp:AUTHORS>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="d52">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">24168</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Inhibition of human brain type B monoamine oxidase by tricyclic psychoactive drugs.</bp:TITLE>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Mol Pharmacol</bp:SOURCE>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1978</bp:YEAR>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Roth JA</bp:AUTHORS>
     </bp:PublicationXref>
   </Biopax>
 </Pathway>
