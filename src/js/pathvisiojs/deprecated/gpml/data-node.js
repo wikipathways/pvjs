@@ -1,4 +1,4 @@
-pathvisiojs.data.gpml.dataNode = function() {
+pathvisiojs.data.gpml.node.entityNode.dataNode = function() {
 
   function toRenderableJson(gpmlDataNode, callback) {
     self.gpmlDataNode = gpmlDataNode;

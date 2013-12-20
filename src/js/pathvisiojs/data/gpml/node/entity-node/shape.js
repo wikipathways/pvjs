@@ -1,4 +1,4 @@
-pathvisiojs.data.gpml.shape = function(){
+pathvisiojs.data.gpml.node.entityNode.shape = function(){
 
   var pathvisioDefaultStyleValues = {
     'Shape':{
@@ -42,7 +42,7 @@ pathvisiojs.data.gpml.shape = function(){
 
   function toRenderableJson(gpmlShape, pathwayIri, callbackInside) {
     try {
-      pathvisiojs.data.gpml.entityNode.toRenderableJson(gpmlShape, pathwayIri, function(jsonShape) {
+      pathvisiojs.data.gpml.node.entityNode.toRenderableJson(gpmlShape, pathwayIri, function(jsonShape) {
         jsonShape.nodeType = "Shape";
 
         var attributes = gpmlShape.selectAll('Attribute');
@@ -78,7 +78,7 @@ pathvisiojs.data.gpml.shape = function(){
                         gpmlShape.select('Graphics').attr('FillColor'),
                         thisPathvisioDefaultStyleValues.FillColor);
 
-          jsonShape = pathvisiojs.data.gpml.entityNode.setJsonRotationValue(jsonShape,
+          jsonShape = pathvisiojs.data.gpml.node.entityNode.setJsonRotationValue(jsonShape,
                         gpmlShape.select('Graphics').attr('Rotation'),
                         thisPathvisioDefaultStyleValues.Rotation);
 

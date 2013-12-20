@@ -1,4 +1,4 @@
-pathvisiojs.data.gpml.label = function(){
+pathvisiojs.data.gpml.node.entityNode.label = function(){
 
   var pathvisioDefaultStyleValues = {
     'Label':{
@@ -12,7 +12,7 @@ pathvisiojs.data.gpml.label = function(){
 
   function toRenderableJson(gpmlLabel, pathwayIri, callbackInside) {
     try {
-      pathvisiojs.data.gpml.entityNode.toRenderableJson(gpmlLabel, pathwayIri, function(jsonLabel) {
+      pathvisiojs.data.gpml.node.entityNode.toRenderableJson(gpmlLabel, pathwayIri, function(jsonLabel) {
         jsonLabel.nodeType = "Label";
         pathvisiojs.data.gpml.text.toRenderableJson(gpmlLabel, pathvisioDefaultStyleValues.Label, function(text) {
           if (!!text) {
