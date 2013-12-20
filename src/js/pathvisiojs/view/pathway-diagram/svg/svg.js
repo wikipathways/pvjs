@@ -241,48 +241,6 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
     }
 
     async.parallel({
-      /*
-      'hierarchicalData': function(callbackInside) {
-        self.pathway = args.pathway;
-        var frame = {
-          '@context': pathvisiojs.context,
-          '@type': 'element'
-        };  
-        jsonld.frame(args.pathway, frame, function(err, hierarchicalData) {
-          callbackInside(null, hierarchicalData);
-        });
-      },
-      'notGroupedData': function(callbackInside) {
-        var notGroupedFrame = {
-          '@context': pathvisiojs.context,
-          "@type":"notGrouped"
-        };
-        jsonld.frame(args.pathway, notGroupedFrame, function(err, notGroupedData) {
-          callbackInside(null, notGroupedData['@graph']);
-        });
-      },
-      'groupData': function(callbackInside) {
-        var frame = {
-          '@context': pathvisiojs.context,
-          '@type': 'GroupNode'
-        };  
-        jsonld.frame(args.pathway, frame, function(err, groupData) {
-          callbackInside(null, groupData['@graph']);
-        });
-      },
-      'grid': function(callbackInside) {
-        pathvisioNS.grid = {};
-        var frame = {
-          '@context': pathvisiojs.context,
-          '@type': 'entityNode'
-        };  
-        jsonld.frame(args.pathway, frame, function(err, framedData) {
-          pathvisiojs.view.pathwayDiagram.pathFinder.generateGridData(framedData['@graph'], args.pathway.Port, args.pathway.image.width, args.pathway.image.height, function() {
-            callbackInside(null);
-          });
-        });
-      },
-      //*/
       'gridData': function(callbackInside) {
         var frame = {
           '@context': pathvisiojs.context,
@@ -308,11 +266,16 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
       }
     },
     function(err, results) {
-      args.target = args.svg.select('#viewport');
+      var viewport = args.svg.select('#viewport');
+
+      pathvisiojs.view.pathwayDiagram.svg.infoBox.render(viewport, args.pathway);
+
+      args.target = viewport;
       args.data = results.firstOrderData;
       renderElementsQuick(args, function() {
         callback(args.svg);
       });
+
 
       //pathvisiojs.view.pathwayDiagram.svg.grid.render(args.svg);
 
