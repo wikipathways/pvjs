@@ -201,8 +201,8 @@ pathvisiojs.data.gpml.style.borderStyle = function(){
             callback(null, pathvisiojs.context);
           },
           organism: function(callback){
-            pathway.organism = gpmlPathway.attr('Organism');
-            callback(null, pathway.organism);
+            pathway.Organism = gpmlPathway.attr('Organism');
+            callback(null, pathway.Organism);
           },
           image: function(callback){
             pathway.image = {
