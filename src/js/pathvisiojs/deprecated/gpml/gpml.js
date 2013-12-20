@@ -81,7 +81,7 @@ pathvisiojs.data.gpml = function(){
           jsonDataNodes = [];
           jsonAnchors = [];
           gpmlDataNodes.each(function() {
-            pathvisiojs.data.gpml.dataNode.toRenderableJson(d3.select(this), function(jsonDataNode, jsonAnchorsFromLastDataNode) {
+            pathvisiojs.data.gpml.node.entityNode.dataNode.toRenderableJson(d3.select(this), function(jsonDataNode, jsonAnchorsFromLastDataNode) {
               jsonDataNodes.push(jsonDataNode);
               jsonAnchors = jsonAnchors.concat(jsonAnchorsFromLastDataNode);
             });

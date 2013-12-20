@@ -14,6 +14,7 @@ pathvisiojs.view.pathwayDiagram.svg.node.text = function(){
     'inherit': 'inherit',
     'justify': null
     //*/
+
   function getTextAnchor(tspan0, cssTextAlignValue) {
     var direction, textAnchor;
     if (cssTextAlignValue === 'center') {
@@ -45,7 +46,10 @@ pathvisiojs.view.pathwayDiagram.svg.node.text = function(){
 
   function render(nodeContainer, data) {
     var dx, dy, textAlign, textAnchor;
-    var fontSize = data.text.fontSize;
+
+    // TODO don't repeat default fontSize here. Need to follow DRY principle.
+
+    var fontSize = data.text.fontSize || 10;
     if (data.text.hasOwnProperty('textAlign')) {
       textAlign = data.text.textAlign;
       if (textAlign === 'left' || textAlign === 'center' || textAlign === 'right') {
@@ -107,16 +111,6 @@ pathvisiojs.view.pathwayDiagram.svg.node.text = function(){
         dy = (d.height / 2) + (0.3 * fontSize) - (((d.text.tspan.length - 1) * fontSize)/2);
       }
       return 'translate(' + dx + ' ' + dy + ')';
-    })
-    .attr("class", function (d) {
-      var styleClass = strcase.paramCase(d.renderableType) + ' ';
-      if (d.nodeType === 'Group') {
-        styleClass = 'group-' + strcase.paramCase(d.groupType) + ' ';
-      }
-      if (d.nodeType === 'DataNode') {
-        styleClass = d.dataNodeType + ' ';
-      }
-      return styleClass;
     })
     .attr("style", function (d) {
       var style = '';

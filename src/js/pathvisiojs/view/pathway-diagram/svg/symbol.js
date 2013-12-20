@@ -3,11 +3,11 @@
 // See also: ./node/use-element.js
 
 // a hack because I don't know how to pass the svg variable to the function appendCustom() when it's part of async.each().
-var thisSvg;
+var svg;
 
 pathvisiojs.view.pathwayDiagram.svg.symbol = function(){
   function appendCustom(customSymbol, callback) {
-    var defsSection = thisSvg.select('defs');
+    var defsSection = svg.select('defs');
     var symbol = defsSection.select('#' + customSymbol.id);
     if (!symbol[0][0]) {
       symbol = defsSection.append('symbol')
@@ -25,7 +25,7 @@ pathvisiojs.view.pathwayDiagram.svg.symbol = function(){
         var shape = d3.select(svgXml.documentElement)
         var width = shape.attr('width');
         var height = shape.attr('height');
-        var shapeClass = shape.attr('class');
+        //var shapeClass = shape.attr('class');
 
         symbol.attr('viewBox', '0 0 ' + width + ' ' + height);
 
@@ -41,7 +41,7 @@ pathvisiojs.view.pathwayDiagram.svg.symbol = function(){
             var width = shapeSvg.attr('width');
             var height = shapeSvg.attr('height');
             symbol.attr('viewBox', '0 0 ' + width + ' ' + height);
-            symbol.attr('class', shapeClass);
+            //symbol.attr('class', shapeClass);
             shapeChildren = shapeSvg[0][0].children;
             do {
               symbol[0][0].appendChild(shapeChildren[0]);
@@ -66,11 +66,6 @@ pathvisiojs.view.pathwayDiagram.svg.symbol = function(){
       }
     }
 
-
-
-
-
-
     /*
     symbol.append('object').attr('data', customSymbol.url)
     .attr('x', dimensions[0])
@@ -83,8 +78,8 @@ pathvisiojs.view.pathwayDiagram.svg.symbol = function(){
 
   }
 
-  function loadAllCustom(svg, customSymbols, callback) {
-    thisSvg = svg;
+  function loadAllCustom(thisSvg, customSymbols, callback) {
+    svg = thisSvg;
     var image = null;
     var img = null;
     var def = null;

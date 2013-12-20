@@ -1,8 +1,5 @@
 pathvisiojs.view.pathwayDiagram.svg.edge.interaction = function(){
   function getMarkerNameFromInteractionGraph(InteractionGraph) {
-    console.log('InteractionGraph');
-    console.log(InteractionGraph);
-    self.myInteractionGraph = InteractionGraph;
     var interactionType;
     if (!InteractionGraph) {
       return 'none';
@@ -35,9 +32,6 @@ pathvisiojs.view.pathwayDiagram.svg.edge.interaction = function(){
     if (!!data.InteractionGraph) {
       if (data.InteractionGraph.length > 1) {
         firstInteractionGraph = data.InteractionGraph[0];
-        console.log('data.InteractionGraph');
-        console.log(data.InteractionGraph);
-        self.myData = data;
         //markerStart = getMarkerNameFromInteractionGraph(firstInteractionGraph);
         lastInteractionGraph = data.InteractionGraph[data.InteractionGraph.length - 1];
         //markerEnd = getMarkerNameFromInteractionGraph(lastInteractionGraph);
@@ -52,16 +46,16 @@ pathvisiojs.view.pathwayDiagram.svg.edge.interaction = function(){
     .data([data])
     .enter().append("path")
     .attr("class", function (data) {
-      var styleClass = 'edge interaction';
+      var cssClass = 'edge interaction';
       if (!!data.DatasourceReference) {
-        styleClass += 'annotated-interaction ';
+        cssClass += 'has-xref ';
       }
       if (data.hasOwnProperty('strokeStyle')) {
         if (data.strokeStyle === 'dashed') {
-          styleClass += " dashed-stroke";
+          cssClass += " dashed-stroke";
         }
       }
-      return styleClass;
+      return cssClass;
     })
 
     var containerElement = container[0][0];
@@ -97,8 +91,6 @@ pathvisiojs.view.pathwayDiagram.svg.edge.interaction = function(){
   function setAttributes(interaction) {
     var interactionElement = interaction[0][0];
     var data = interactionElement.__data__;
-    console.log('data');
-    console.log(data);
     var createPathDataString = d3.svg.line()
     .x(function(data) { return data.x; })
     .y(function(data) { return data.y; });
@@ -267,10 +259,6 @@ pathvisiojs.view.pathwayDiagram.svg.edge.interaction = function(){
         //*/
 
         createPathDataString.interpolate(results.stepTypeAndConvertedPointSet.stepType);
-        console.log('stepType');
-        console.log(results.stepTypeAndConvertedPointSet.stepType);
-        console.log('convertedPointSet');
-        console.log(results.stepTypeAndConvertedPointSet.convertedPointSet);
 
         return createPathDataString(results.stepTypeAndConvertedPointSet.convertedPointSet);
       });
@@ -292,13 +280,13 @@ pathvisiojs.view.pathwayDiagram.svg.edge.interaction = function(){
       .append("path")
       .attr("id", function (data) { return data.edgeType + '-' + data.graphId; })
       .attr("class", function (data) {
-        var styleClass = 'edge ' + data.edgeType + ' ';
+        var cssClass = 'edge ' + data.edgeType + ' ';
         if (data.hasOwnProperty('strokeStyle')) {
           if (data.strokeStyle === 'dashed') {
-            styleClass += " dashed-stroke";
+            cssClass += " dashed-stroke";
           }
         }
-        return styleClass;
+        return cssClass;
       })
       .attr("style", function (data) {
         var style = 'stroke-width:' + data.strokeWidth + '; ';

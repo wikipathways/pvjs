@@ -4,7 +4,8 @@ pathvisiojs.view.pathwayDiagram.svg.node.pathShape = function(){
     .data([data])
     .attr("id", function (d) {return 'node-' + strcase.paramCase(d['@id']);})
     .attr("class", function (d) {
-      return 'shape ' + strcase.paramCase(d.ShapeType);
+      var cssClass = 'symbol ';
+      return cssClass;
     })
 
     var nodeAttributes = pathvisiojs.view.pathwayDiagram.svg.node.pathShape[strcase.camelCase(data.ShapeType)].getAttributes(data.width, data.height);
@@ -22,14 +23,14 @@ pathvisiojs.view.pathwayDiagram.svg.node.pathShape = function(){
     self.pathShape = pathShape;
     pathShape.attr("id", function (d) {return 'shape-' + d.id;})
     .attr("class", function (d) {
-      var styleClass = '';
+      var cssClass = '';
       if (d.elementType === 'data-node') {
-        styleClass = 'shape ' + d.dataNodeType + ' ' + d.shapeType;
+        cssClass = 'shape ' + d.dataNodeType + ' ' + d.shapeType;
       }
       else {
-        styleClass = 'shape ' + d.shapeType;
+        cssClass = 'shape ' + d.shapeType;
       }
-      return styleClass;
+      return cssClass;
     })
 
     // TODO there must be a cleaner, less brittle way of getting nodeData here
@@ -43,6 +44,7 @@ pathvisiojs.view.pathwayDiagram.svg.node.pathShape = function(){
   }
   //*/
 
+ /*
   function renderAll(nodes, pathway, allSymbolNames) {
     if (!nodes || !pathway || !allSymbolNames) {
       //console.log(allSymbolNames);
@@ -75,9 +77,10 @@ pathvisiojs.view.pathwayDiagram.svg.node.pathShape = function(){
     pathShapes.exit().remove();
 
   }
+  //*/
 
   return {
-    renderAll:renderAll,
+    //renderAll:renderAll,
     render:render
   };
 }();
