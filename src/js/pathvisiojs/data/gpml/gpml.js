@@ -159,6 +159,7 @@ pathvisiojs.data.gpml = function(){
 
   function toRenderableJson(gpml, pathwayIri, callbackOutside){
     var gpmlPathway = d3.select(gpml).select('Pathway');
+    self.mygpmlPathwayAsXmlDoc = gpmlPathway[0][0];
 
     // for doing this in Java, we could look at 
     // https://code.google.com/p/json-io/
@@ -310,6 +311,20 @@ pathvisiojs.data.gpml = function(){
             };
             callback(null, pathvisiojs.context);
           },
+          BiopaxRef: function(callback){
+            var biopaxRefs = gpmlPathway.selectAll('Pathway > BiopaxRef');
+            if (biopaxRefs[0].length > 0) {
+              pathway.BiopaxRef = [];
+              biopaxRefs.each(function() {
+                jsonBiopaxRef = d3.select(this)[0][0].textContent;
+                pathway.BiopaxRef.push(jsonBiopaxRef);
+              })
+              callback(null, 'BiopaxRefs are all converted.');
+            }
+            else {
+              callback(null, 'No biopaxRef to convert.');
+            }
+          },
           xmlns: function(callback){
             pathway.xmlns = gpmlPathway.attr('xmlns');
             callback(null, pathway.xmlns);
@@ -360,11 +375,24 @@ pathvisiojs.data.gpml = function(){
             };
             callback(null, pathway.image);
           },
+          Biopax: function(callback){
+            var xmlBiopax = gpmlPathway.selectAll('Biopax');
+            if (xmlBiopax[0].length > 0) {
+              pathway.Biopax = [];
+              pathvisiojs.data.biopax.toRenderableJson(xmlBiopax, function(jsonBiopax) {
+                pathway.Biopax = jsonBiopax;
+              });
+              callback(null, 'Biopax all converted.');
+            }
+            else {
+              callback(null, 'No Biopax to convert.');
+            }
+          },
           DataNode: function(callback){
             var dataNodes = gpmlPathway.selectAll('DataNode');
             if (dataNodes[0].length > 0) {
               pathway.DataNode = [];
-              gpmlPathway.selectAll('DataNode').each(function() {
+              dataNodes.each(function() {
                 gpmlDataNode = d3.select(this);
                 pathvisiojs.data.gpml.node.entityNode.dataNode.toRenderableJson(gpmlDataNode, pathwayIri, function(jsonDataNode) {
                   pathway.DataNode.push(jsonDataNode);
@@ -474,19 +502,9 @@ pathvisiojs.data.gpml = function(){
         }
       });
 
-
-      /*
-      jsonPathway.metadata = {};
-      jsonPathway.metadata.boardWidth = parseFloat(gpmlPathway.select('Graphics').attr('BoardWidth'));
-      jsonPathway.metadata.boardHeight = parseFloat(gpmlPathway.select('Graphics').attr('BoardHeight'));
-      jsonPathway.metadata.name = d3.select(gpml).select('Pathway').attr('Name');
-      jsonPathway.metadata.xmlns = d3.select(gpml).select('Pathway').attr('xmlns');
-      jsonPathway.metadata.organism = d3.select(gpml).select('Pathway').attr('Organism');
-      //*/
       
 
       /*
-
       // infoBox
       // These values are a legacy from GenMAPP. They are always forced to be equal to 0 in PathVisio (Java) so as to place the infobox in the upper lefthand corner.
 
@@ -494,7 +512,7 @@ pathvisiojs.data.gpml = function(){
       delete pathway.infoBox.centerX;
       pathway.infoBox.y = 0;
       delete pathway.infoBox.centerY;
-//*/
+      //*/
 
 
 
@@ -518,31 +536,6 @@ pathvisiojs.data.gpml = function(){
       }
       catch (e) {
         console.log('Error converting comment to json: ' + e.message);
-      }
-
-      // Groups
-
-      try {
-        if (pathway.hasOwnProperty('group')) {
-          pathway.groups = pathvisiojs.utilities.convertToArray( pathway.group );
-          delete pathway.group;
-
-          pathway.groups.forEach(function(element, index, array) {
-            if (element.hasOwnProperty('style')) {
-              element.style = element.style.toLowerCase();
-            }
-            else {
-              element.style = 'none';
-            }
-
-          });
-        }
-        else {
-          console.log('No element(s) named 'group' found in this gpml file.');
-        }
-      }
-      catch (e) {
-        console.log('Error converting group to json: ' + e.message);
       }
 
       // Graphical Lines 
@@ -594,20 +587,6 @@ pathvisiojs.data.gpml = function(){
       }
       catch (e) {
         console.log('Error converting interaction to json: ' + e.message);
-      }
-
-      // Edges
-
-      try {
-        if (pathway.hasOwnProperty('edges')) {
-          pathway.edges = pathvisiojs.pathway.edge.gpml2json(pathway.edges);
-        }
-        else {
-          console.log('No element(s) named 'edges' found in this gpml file.');
-        }
-      }
-      catch (e) {
-        console.log('Error converting edges to json: ' + e.message);
       }
 
       //*/
