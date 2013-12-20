@@ -235,7 +235,7 @@ pathvisiojs.pathway.node = function(){
     .attr("class", "nodes-container")
     .on("click", function(d,i) {
       if (d.elementType === 'data-node') {
-        pathvisiojs.pathway.xRef.render(pathway.organism, d);
+        pathvisiojs.pathway.xRef.render(pathway.Organism, d);
       }
         /*
         var xrefDiv = $('.xrefinfo');
