@@ -184,7 +184,7 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
       },
       function(data, callback) {
         data.forEach(function(element) {
-          if (element.renderableType === 'Group') {
+          if (element.renderableType === 'GroupNode') {
             args.data = element;
             pathvisiojs.view.pathwayDiagram.svg.node.groupNode.render(args, function(groupContainer) {
               var groupedElementsFrame = {
@@ -264,7 +264,7 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
       'groupData': function(callbackInside) {
         var frame = {
           '@context': pathvisiojs.context,
-          '@type': 'Group'
+          '@type': 'GroupNode'
         };  
         jsonld.frame(args.pathway, frame, function(err, groupData) {
           callbackInside(null, groupData['@graph']);
@@ -299,7 +299,7 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
       'firstOrderData': function(callbackInside) {
         var firstOrderFrame = {
           '@context': pathvisiojs.context,
-          '@type':['notGrouped', 'Group'],
+          '@type':['notGrouped', 'GroupNode'],
           'InteractionGraph': {}
         };
         jsonld.frame(args.pathway, firstOrderFrame, function(err, firstOrderData) {
@@ -368,7 +368,7 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
       'groupData': function(callbackInside) {
         var frame = {
           '@context': pathvisiojs.context,
-          '@type': 'Group'
+          '@type': 'GroupNode'
         };  
         jsonld.frame(args.pathway, frame, function(err, groupData) {
           callbackInside(null, groupData);
