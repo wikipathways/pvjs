@@ -59,16 +59,8 @@ pathvisiojs.data.gpml.edge = function(){
         jsonEdge.Point.push(pointObj);
       })
 
-      /*
-         if (!!firstPoint.attr('ArrowHead')) {
-         jsonEdge.Point[0].interactionType
-         }
-         else {
-         }
-      //*/
-
       var connectorType = gpmlEdge.select('Graphics').attr('ConnectorType') || 'Straight';
-      jsonEdge['ConnectorType'] = '' + connectorType;
+      jsonEdge.ConnectorType = '' + connectorType;
 
       var stroke = gpmlEdge.select('Graphics').attr('Color');
       if (!!stroke) {

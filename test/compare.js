@@ -239,7 +239,25 @@ window.onload = function() {
       {'id': 'transcription-translation', 'url': srcDirectoryUrl + 'shape-library/markers/mim-transcription-translation.svg'},
       {'id': 'gap', 'url': srcDirectoryUrl + 'shape-library/markers/mim-gap.svg'},
       {'id': 'inhibitory-activity', 'url': srcDirectoryUrl + 'shape-library/markers/t-bar.svg'},
-      {'id': 'unspecified', 'url': srcDirectoryUrl + 'shape-library/markers/none.svg'}
+      {'id': 'unspecified', 'url': srcDirectoryUrl + 'shape-library/markers/none.svg'},
+      // not sure whether to do it like above or below. I think we should use the below where we have a minimum
+      // default palette and then use a default mapping from semantic name to shape name.
+      {'id': 'activity', 'url': srcDirectoryUrl + 'shape-library/markers/arrow.svg'},
+      {'id': 'mim-branching-left', 'url': srcDirectoryUrl + 'shape-library/markers/mim-branching-left.svg'},
+      {'id': 'mim-branching-right', 'url': srcDirectoryUrl + 'shape-library/markers/mim-branching-right.svg'},
+      {'id': 'mim-necessary-stimulation', 'url': srcDirectoryUrl + 'shape-library/markers/mim-necessary-stimulation.svg'},
+      {'id': 'mim-binding', 'url': srcDirectoryUrl + 'shape-library/markers/mim-binding.svg'},
+      {'id': 'mim-conversion', 'url': srcDirectoryUrl + 'shape-library/markers/mim-conversion.svg'},
+      {'id': 'mim-stimulation', 'url': srcDirectoryUrl + 'shape-library/markers/mim-stimulation.svg'},
+      {'id': 'mim-modification', 'url': srcDirectoryUrl + 'shape-library/markers/mim-modification.svg'},
+      {'id': 'mim-catalysis', 'url': srcDirectoryUrl + 'shape-library/markers/mim-catalysis.svg'},
+      {'id': 'mim-inhibition', 'url': srcDirectoryUrl + 'shape-library/markers/mim-inhibition.svg'},
+      {'id': 'mim-cleavage', 'url': srcDirectoryUrl + 'shape-library/markers/mim-cleavage.svg'},
+      {'id': 'mim-covalent-bond', 'url': srcDirectoryUrl + 'shape-library/markers/mim-covalent-bond.svg'},
+      {'id': 'mim-transcription-translation', 'url': srcDirectoryUrl + 'shape-library/markers/mim-transcription-translation.svg'},
+      {'id': 'mim-gap', 'url': srcDirectoryUrl + 'shape-library/markers/mim-gap.svg'},
+      {'id': 't-bar', 'url': srcDirectoryUrl + 'shape-library/markers/t-bar.svg'},
+      {'id': 'none', 'url': srcDirectoryUrl + 'shape-library/markers/none.svg'}
     ];
 
     pathvisiojs.load({
