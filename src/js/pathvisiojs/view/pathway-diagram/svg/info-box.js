@@ -1,30 +1,37 @@
 pathvisiojs.view.pathwayDiagram.svg.infoBox = function(){
     
-  function render(svg, pathway) {
-    if (!svg || !pathway) {
+  function render(viewport, pathway) {
+    if (!viewport || !pathway) {
       return console.warn('Error: Missing input parameters.');
     }
 
     // Although gpml has x and y values for infobox, we have decided to ignore them and always set it in the upper left.
 
     var infoBox = [];
-    if (pathway.hasOwnProperty('name')) {
-      infoBox.push({'key':'Title', 'value':pathway.name});
+    if (pathway.hasOwnProperty('Name')) {
+      infoBox.push({'key':'Title', 'value':pathway.Name});
     }
 
-    if (pathway.hasOwnProperty('license')) {
-      infoBox.push({'key':'Availability', 'value':pathway.license});
+    if (pathway.hasOwnProperty('License')) {
+      infoBox.push({'key':'Availability', 'value':pathway.License});
     }
 
-    if (pathway.hasOwnProperty('lastModified')) {
-      infoBox.push({'key':'Last modified', 'value':pathway.lastModified});
+    if (pathway.hasOwnProperty('LastModified')) {
+      infoBox.push({'key':'Last modified', 'value':pathway.LastModified});
     }
 
-    if (pathway.hasOwnProperty('organism')) {
-      infoBox.push({'key':'Organism', 'value':pathway.organism});
+    if (pathway.hasOwnProperty('Organism')) {
+      infoBox.push({'key':'Organism', 'value':pathway.Organism});
     }
 
-    var infoBoxElements = svg.select('#viewport').selectAll("text.info-box")
+    if (pathway.hasOwnProperty('BiopaxRef')) {
+      pathvisiojs.view.pathwayDiagram.svg.citation.getCitationString(pathway, pathway.BiopaxRef, function(citationString) {
+        infoBox.push({'key':'Citation(s)', 'value':citationString});
+      })
+    }
+
+
+    var infoBoxElements = viewport.selectAll("text.info-box")
     .data(infoBox)
     .enter()
     .append("text")

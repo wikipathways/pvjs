@@ -21,7 +21,7 @@ pathvisiojs.pathway.infoBox = function(){
     }
 
     if (pathway.hasOwnProperty('organism')) {
-      infoBox.push({'key':'Organism', 'value':pathway.organism});
+      infoBox.push({'key':'Organism', 'value':pathway.Organism});
     }
 
     var infoBoxElements = svg.select('#viewport').selectAll("text.info-box")

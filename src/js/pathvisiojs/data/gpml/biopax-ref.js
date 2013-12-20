@@ -10,7 +10,6 @@ pathvisiojs.pathway.biopaxRef = function(){
     }
   }
 
-
   return {
     toRenderableJson:toRenderableJson
   };

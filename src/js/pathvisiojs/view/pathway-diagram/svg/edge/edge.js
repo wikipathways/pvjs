@@ -278,13 +278,13 @@ pathvisiojs.view.pathwayDiagram.svg.edge = function(){
       .append("path")
       .attr("id", function (data) { return data.edgeType + '-' + data.graphId; })
       .attr("class", function (data) {
-        var styleClass = 'edge ' + data.edgeType + ' ';
+        var cssClass = 'edge ' + data.edgeType + ' ';
         if (data.hasOwnProperty('strokeStyle')) {
           if (data.strokeStyle === 'dashed') {
-            styleClass += " dashed-stroke";
+            cssClass += " dashed-stroke";
           }
         }
-        return styleClass;
+        return cssClass;
       })
       .attr("style", function (data) {
         var style = 'stroke-width:' + data.strokeWidth + '; ';

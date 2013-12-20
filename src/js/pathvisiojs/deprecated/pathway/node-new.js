@@ -245,7 +245,7 @@ pathvisiojs.pathway.node = function(){
     .attr("class", "nodes-container")
     .on("click", function(d,i) {
       if (d.elementType === 'data-node') {
-        pathvisiojs.pathway.xRef.render(pathway.organism, d);
+        pathvisiojs.pathway.xRef.render(pathway.Organism, d);
       }
         /*
         var xrefDiv = $('.xrefinfo');
@@ -297,14 +297,14 @@ pathvisiojs.pathway.node = function(){
         return transform;
       })
       .attr("class", function (d) {
-        var styleClass = '';
+        var cssClass = '';
         if (d.elementType === 'data-node') {
-          styleClass = "node " + d.elementType + ' ' + d.dataNodeType;
+          cssClass = "node " + d.elementType + ' ' + d.dataNodeType;
         }
         else {
-          styleClass = "node " + d.elementType;
+          cssClass = "node " + d.elementType;
         }
-        return styleClass;
+        return cssClass;
       })
       .attr("z-index", function (d) { return d.zIndex;})
       .attr("style", function (d) {
@@ -350,14 +350,14 @@ pathvisiojs.pathway.node = function(){
             d3.select(nodesContainer[0][i]).append("use")
             .attr("id", function (d) {return 'node-double' + d.graphId;})
             .attr("class", function (d) {
-              var styleClass = '';
+              var cssClass = '';
               if (d.elementType === 'data-node') {
-                styleClass = "node " + d.elementType + ' ' + d.dataNodeType;
+                cssClass = "node " + d.elementType + ' ' + d.dataNodeType;
               }
               else {
-                styleClass = "node " + d.elementType;
+                cssClass = "node " + d.elementType;
               }
-              return styleClass;
+              return cssClass;
             })
             .attr('transform', function(d) {
               var transform = 'scale(1)';
@@ -441,11 +441,11 @@ pathvisiojs.pathway.node = function(){
           }
           return 'translate(' + dx + ' ' + dy + ')';})
           .attr("class", function (d) {
-            var styleClass = '';
+            var cssClass = '';
             if (d.elementType === 'data-node') {
-              styleClass = d.dataNodeType;
+              cssClass = d.dataNodeType;
             }
-            return styleClass; })
+            return cssClass; })
             .attr("style", function (d) {
               var style = '';
               var fontSize = d.fontSize;
@@ -558,14 +558,14 @@ pathvisiojs.pathway.node = function(){
       return text;
       })
       .attr("class", function (d) { 
-      var styleClass = '';
+      var cssClass = '';
       if (d.elementType === 'data-node') {
-      styleClass = "node " + d.elementType + ' ' + d.dataNodeType;
+      cssClass = "node " + d.elementType + ' ' + d.dataNodeType;
       }
       else {
-      styleClass = "node " + d.elementType;
+      cssClass = "node " + d.elementType;
       }
-      return styleClass });
+      return cssClass });
 
       var nodeText = nodeSwitch.append('text')
       .attr("id", function (d) { return 'node-text-' + d.graphId;})

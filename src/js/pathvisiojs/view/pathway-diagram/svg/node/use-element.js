@@ -44,7 +44,7 @@ pathvisiojs.view.pathwayDiagram.svg.node.useElement = function(){
     .data([data])
     .attr("id", function (d) {return 'node-' + strcase.paramCase(d['@id']);})
     .attr("class", function (d) {
-      return 'shape ' + strcase.paramCase(d.ShapeType);
+      return 'symbol ';
     })
     .attr('transform', function(d) {
       var transform = 'scale(1)';
@@ -104,14 +104,14 @@ pathvisiojs.view.pathwayDiagram.svg.node.useElement = function(){
           d3.select(nodesContainer[0][i]).append("use")
           .attr("id", function (d) {return 'node-double' + d.id;})
           .attr("class", function (d) {
-            var styleClass = '';
+            var cssClass = '';
             if (d.elementType === 'data-node') {
-              styleClass = 'node ' + d.dataNodeType;
+              cssClass = 'node ' + d.dataNodeType;
             }
             else {
-              styleClass = 'node';
+              cssClass = 'node';
             }
-            return styleClass;
+            return cssClass;
           })
           .attr('transform', function(d) {
             var transform = 'scale(1)';
