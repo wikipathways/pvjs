@@ -1,4 +1,4 @@
-pathvisiojs.pathway.biopax = function(){
+pathvisiojs.data.biopax = function(){
 
   function toRenderableJson(xmlBiopax, callback) {
     try {
@@ -8,11 +8,13 @@ pathvisiojs.pathway.biopax = function(){
       var xmlBiopaxPubs = xmlBiopax.selectAll('PublicationXref');
       var jsonBiopax = {};
       jsonBiopax.PublicationXref = [];
+      var publicationXref;
       xmlBiopaxPubs.each(function() {
-        id = d3.select(this).attr('rdf:id');
-        jsonBiopax.PublicationXref.push(id);
+        publicationXref = {};
+        publicationXref.rdfId = d3.select(this).attr('rdf:id').toString();
+        jsonBiopax.PublicationXref.push(publicationXref);
       });
-      callback(jsonBiopax.PublicationXref);
+      callback(jsonBiopax);
     }
     catch (e) {
       throw new Error("Error converting biopax to json: " + e.message);
@@ -23,3 +25,4 @@ pathvisiojs.pathway.biopax = function(){
     toRenderableJson:toRenderableJson
   };
 }();
+
