@@ -1,5 +1,7 @@
 pathvisiojs.data.biopax = function(){
 
+  // TODO get ontology terms and other data
+
   function toRenderableJson(xmlBiopax, callback) {
     try {
       d3.ns.prefix.bp = 'http://www.biopax.org/owldoc/Level3/';
