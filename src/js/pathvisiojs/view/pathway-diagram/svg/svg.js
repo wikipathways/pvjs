@@ -169,7 +169,7 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
     // TODO this is a hack. Should define args the same way each time. Should args include pathway or just organism?
     var organism;
     if (args.hasOwnProperty('pathway')) {
-      organism = args.pathway.organism;
+      organism = args.pathway.Organism;
     }
     else {
       organism = args.organism;
