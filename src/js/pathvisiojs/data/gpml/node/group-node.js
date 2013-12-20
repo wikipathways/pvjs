@@ -12,7 +12,36 @@ pathvisiojs.data.gpml.node.groupNode = function() {
     'FontWeight':null
   }
 
-  function toRenderableJson(gpmlGroup, pathwayIri, callbackInside) {
+  function getGroupDimensions(group, groupContents, callback) {
+    var dimensions = {};
+    dimensions.topLeftCorner = {};
+    dimensions.topLeftCorner.x = 99999;
+    dimensions.topLeftCorner.y = 99999;
+    dimensions.bottomRightCorner = {};
+    dimensions.bottomRightCorner.x = 0;
+    dimensions.bottomRightCorner.y = 0;
+    groupContents.forEach(function(groupContent) {
+      if (groupContent.renderableType === 'entityNode') {
+        dimensions.topLeftCorner.x = Math.min(dimensions.topLeftCorner.x, groupContent.x);
+        dimensions.topLeftCorner.y = Math.min(dimensions.topLeftCorner.y, groupContent.y);
+        dimensions.bottomRightCorner.x = Math.max(dimensions.bottomRightCorner.x, groupContent.x + groupContent.width);
+        dimensions.bottomRightCorner.y = Math.max(dimensions.bottomRightCorner.y, groupContent.y + groupContent.height);
+      }
+      else {
+        dimensions.topLeftCorner.x = Math.min(dimensions.topLeftCorner.x, groupContent.Point[0].x, groupContent.Point[groupContent.Point.length - 1].x);
+        dimensions.topLeftCorner.y = Math.min(dimensions.topLeftCorner.y, groupContent.Point[0].y, groupContent.Point[groupContent.Point.length - 1].y);
+        dimensions.bottomRightCorner.x = Math.max(dimensions.bottomRightCorner.x, groupContent.Point[0].x, groupContent.Point[groupContent.Point.length - 1].x);
+        dimensions.bottomRightCorner.y = Math.max(dimensions.bottomRightCorner.y, groupContent.Point[0].y, groupContent.Point[groupContent.Point.length - 1].y);
+      }
+      dimensions.x = dimensions.topLeftCorner.x - group.padding - group.borderWidth;
+      dimensions.y = dimensions.topLeftCorner.y - group.padding - group.borderWidth;
+      dimensions.width = (dimensions.bottomRightCorner.x - dimensions.topLeftCorner.x) + 2 * (group.padding + group.borderWidth);
+      dimensions.height = (dimensions.bottomRightCorner.y - dimensions.topLeftCorner.y) + 2 * (group.padding + group.borderWidth);
+      callback(dimensions);
+    });
+  }
+
+  function toRenderableJson(pathway, gpmlGroup, pathwayIri, callbackInside) {
     try {
       var jsonGroup = {},
         shapeType,
@@ -28,18 +57,17 @@ pathvisiojs.data.gpml.node.groupNode = function() {
       shapeType = groupTypeToShapeTypeMappings[groupType];
       jsonGroup.ShapeType = shapeType || 'rectangle';
 
-      jsonGroup.zIndex = 0;
-      //jsonGroup.ZIndex = gpmlGroup.selectAll('Graphics').attr('ZOrder');
       jsonGroup.renderableType = 'GroupNode';
       jsonGroup.nodeType = "GroupNode";
       jsonGroup.groupType = groupType;
-      jsonGroup["@type"] = [
-        "element",
-        "node",
-        shapeType,
-        "Group",
-        groupType
-      ];
+
+      jsonGroup["@type"] = [];
+      jsonGroup["@type"].push(shapeType);
+      jsonGroup["@type"].push("Group");
+      jsonGroup["@type"].push(groupType);
+      jsonGroup["@type"].push();
+      jsonGroup["@type"].push();
+
     
       // Groups in PathVisio (Java) appear to have unchangable padding values,
       // but they are different based on GroupType.
@@ -63,19 +91,34 @@ pathvisiojs.data.gpml.node.groupNode = function() {
 
       jsonGroup.borderWidth = 1;
 
-      pathvisiojs.data.gpml.text.toRenderableJson(gpmlGroup, pathvisioDefaultStyleValues, function(text) {
-        if (!!text) {
-          jsonGroup.text = text;
+      var groupsFrame = {
+        '@context': pathvisiojs.context,
+        '@type': jsonGroup.GroupId
+      };  
+      jsonld.frame(pathway, groupsFrame, function(err, elementsInGroup) {
+        var dimensions = getGroupDimensions(jsonGroup, elementsInGroup['@graph'], function(dimensions) {
+          jsonGroup.x = dimensions.x;
+          jsonGroup.y = dimensions.y;
+          jsonGroup.width = dimensions.width;
+          jsonGroup.height = dimensions.height;
 
-          // TODO set fontSize in CSS, not here
+          pathvisiojs.data.gpml.element.toRenderableJson(gpmlGroup, jsonGroup, function(jsonGroup) {
+            pathvisiojs.data.gpml.text.toRenderableJson(gpmlGroup, pathvisioDefaultStyleValues, function(text) {
+              if (!!text) {
+                jsonGroup.text = text;
 
-          jsonGroup.text.fontSize = 32;
-          jsonGroup.text.textAlign = 'center';
-          jsonGroup.text.verticalAlign = 'middle';
-        }
-        pathvisiojs.data.gpml.node.getPorts(jsonGroup, function(ports) {
-          jsonGroup.Port = ports;
-          callbackInside(jsonGroup);
+                // TODO set fontSize in CSS, not here. Need to be able to still calculate font rendering, however,
+                // which depends in part on font size.
+
+                jsonGroup.text.fontSize = 32;
+                jsonGroup.text.textAlign = 'center';
+                jsonGroup.text.verticalAlign = 'middle';
+              }
+              pathvisiojs.data.gpml.node.toRenderableJson(gpmlGroup, jsonGroup, function(jsonGroup, ports) {
+                callbackInside(jsonGroup, ports);
+              });
+            });
+          });
         });
       });
     }

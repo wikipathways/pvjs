@@ -126,6 +126,14 @@ pathvisiojs.data.gpml.node = function(){
 
   function toRenderableJson(gpmlNode, jsonNode, callback) {
     try {
+      jsonNode["@type"] = jsonNode["@type"] || [];
+      jsonNode["@type"].push("node");
+
+      getPorts(jsonNode, function(ports) {
+        jsonNode.Port = ports;
+        callback(jsonNode, ports);
+      });
+
       /*
       var comments = gpmlNode.selectAll('Comment');
       if (comments[0].length > 0) {
@@ -220,13 +228,9 @@ pathvisiojs.data.gpml.node = function(){
 
       delete element.graphics;
       //*/
-
-      callback(jsonNode, jsonPorts);
-      //*/
     }
     catch (e) {
-      console.log("Error converting node to json: " + e.message);
-      return e;
+      throw new Error("Error converting node to json: " + e.message);
     }
   }
 

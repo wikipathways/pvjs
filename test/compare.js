@@ -121,6 +121,7 @@ function loadExtJsCss(callbackOutside) {
       srcDirectoryUrl + 'js/pathvisiojs/data/bridgedb/data-sources.js',
       srcDirectoryUrl + 'js/pathvisiojs/data/biopax/biopax.js',
       srcDirectoryUrl + 'js/pathvisiojs/data/gpml/gpml.js',
+      srcDirectoryUrl + 'js/pathvisiojs/data/gpml/element.js',
       srcDirectoryUrl + 'js/pathvisiojs/data/gpml/text.js',
       srcDirectoryUrl + 'js/pathvisiojs/data/gpml/namespaces.js',
       srcDirectoryUrl + 'js/pathvisiojs/data/gpml/biopax-ref.js',
