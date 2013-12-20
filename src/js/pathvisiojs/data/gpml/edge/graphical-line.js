@@ -20,48 +20,6 @@ pathvisiojs.data.gpml.edge.graphicalLine = function(){
 
         points = gpmlGraphicalLine.selectAll('Point');
 
-        // Arrowheads on both ends of a single graphical GraphicalLine would represent two semantic GraphicalLines
-
-        function buildGraphicalLineGraph(gpmlSource, gpmlTarget, callbackBIG) {
-          //console.log('gpmlSource');
-          //console.log(gpmlSource);
-          //console.log('gpmlTarget');
-          //console.log(gpmlTarget);
-          var GraphicalLineGraphMember = {};
-          graphicalLineType = gpmlArrowHeadToSemanticMappings[gpmlTarget.getAttribute('ArrowHead')];
-          var graphicalLineTypeExistenceCheck;
-          if (!!graphicalLineType) {
-            jsonGraphicalLine.GraphicalLineGraph = jsonGraphicalLine.GraphicalLineGraph || [];
-
-            GraphicalLineGraphMember['@id'] = pathwayIri + gpmlSource.getAttribute('GraphRef');
-            targetId = gpmlTarget.getAttribute('GraphRef');
-            if (!!targetId) {
-              target = gpml.querySelector('[GraphId=' + targetId + ']');
-              if (target.tagName === 'Anchor') {
-                targetId = target.parentElement.parentElement.getAttribute('GraphId');
-              }
-
-              GraphicalLineGraphMember.interactsWith = pathwayIri + targetId;
-            }
-            graphicalLineTypeExistenceCheck = jsonGraphicalLine['@type'].indexOf(graphicalLineType);
-            if (graphicalLineTypeExistenceCheck === -1) {
-              jsonGraphicalLine['@type'].push(graphicalLineType);
-            }
-            else {
-              //jsonGraphicalLine['@type'][graphicalLineTypeExistenceCheck] = 'Bidirectional-' + graphicalLineType;
-              jsonGraphicalLine['@type'].push('Bidirectional-' + graphicalLineType);
-            }
-            jsonGraphicalLine.GraphicalLineGraph.push(GraphicalLineGraphMember);
-            // TODO add the reaction, if it exists
-            //'ex:Anchor': pathwayIri + '#Reaction1'
-
-            callbackBIG(GraphicalLineGraphMember);
-          }
-          else {
-            callbackBIG(null);
-          }
-        }
-
         var firstPoint = points[0][0];
         var lastPoint = points[0][points[0].length - 1];
 
@@ -79,30 +37,10 @@ pathvisiojs.data.gpml.edge.graphicalLine = function(){
           jsonGraphicalLine.markerStart = 'none';
         }
 
-        /*
-        if (!!firstPoint.getAttribute('ArrowHead')) {
-          jsonGraphicalLine.markerStart = strcase.paramCase(firstPoint.getAttribute('ArrowHead'));
-        }
-        else {
-          jsonGraphicalLine.markerStart = 'none';
-        }
+        // TODO handle this properly. Right now, we can't render graphical lines with
+        // connector type of elbow or curve.
 
-        if (!!lastPoint.getAttribute('ArrowHead')) {
-          jsonGraphicalLine.markerEnd = strcase.paramCase(lastPoint.getAttribute('ArrowHead'));
-        }
-        else {
-          jsonGraphicalLine.markerStart = 'none';
-        }
-        //*/
-
-        buildGraphicalLineGraph(firstPoint, lastPoint, function(GraphicalLineGraphMember) {
-          //console.log('GraphicalLineGraphMember1');
-          //console.log(GraphicalLineGraphMember);
-        });
-        buildGraphicalLineGraph(lastPoint, firstPoint, function(GraphicalLineGraphMember) {
-          //console.log('GraphicalLineGraphMember2');
-          //console.log(GraphicalLineGraphMember);
-        });
+       jsonGraphicalLine.ConnectorType = 'Straight';
 
         callback(jsonGraphicalLine);
       })

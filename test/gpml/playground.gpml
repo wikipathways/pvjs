@@ -58,16 +58,16 @@
     <Xref Database="" ID="" />
   </DataNode>
   <Interaction>
-    <Graphics ZOrder="12288" LineThickness="1.0">
-      <Point X="769.927536231884" Y="105.07246376811594" />
-      <Point X="763.586956521739" Y="189.31159420289853" />
+    <Graphics ConnectorType="Elbow" ZOrder="12288" LineThickness="1.0">
+      <Point X="91.37963843958136" Y="123.69172216936252" GraphRef="cf282" RelX="1.0" RelY="0.0" />
+      <Point X="87.57373929590867" Y="83.72978116079925" GraphRef="b2823" RelX="1.0" RelY="0.0" />
     </Graphics>
     <Xref Database="" ID="" />
   </Interaction>
   <GraphicalLine>
-    <Graphics ZOrder="12288" LineThickness="1.0">
-      <Point X="690.2502157031923" Y="93.18377911993097" />
-      <Point X="751.5099223468507" Y="286.4538395168248" />
+    <Graphics ConnectorType="Curved" ZOrder="12288" LineThickness="1.0">
+      <Point X="199.74237089201878" Y="268.670579029734" GraphRef="a10ae" RelX="-0.5" RelY="-1.0" ArrowHead="TBar" />
+      <Point X="278.8427230046949" Y="288.09115805946794" GraphRef="c156e" RelX="-1.0" RelY="0.0" ArrowHead="mim-necessary-stimulation" />
     </Graphics>
   </GraphicalLine>
   <Label TextLabel="Label" GraphId="ce98c">
@@ -92,7 +92,7 @@
     <Graphics CenterX="521.6592331768387" CenterY="63.91275430359935" Width="58.40297339593113" Height="41.1885758998435" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="RoundedRectangle" Rotation="0.0" />
   </Shape>
   <Shape GraphId="e1a20">
-    <Graphics CenterX="202.410406885759" CenterY="153.50586854460096" Width="44.31846635367766" Height="49.795774647887285" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="Triangle" Rotation="0.0" />
+    <Graphics CenterX="198.92456810580256" CenterY="151.3272193071282" Width="44.31846635367766" Height="49.795774647887285" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="Triangle" Rotation="0.0" />
   </Shape>
   <Shape GraphId="cdf83">
     <Graphics CenterX="304.523082942097" CenterY="158.20070422535213" Width="82.6596244131456" Height="43.53599374021907" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="Pentagon" Rotation="0.0" />
@@ -156,13 +156,13 @@
     <Attribute Key="org.pathvisio.DoubleLineProperty" Value="Double" />
     <Graphics CenterX="765.195173990583" CenterY="527.8316553429313" Width="89.20619380557764" Height="43.280013041322945" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="RoundedRectangle" LineThickness="3.0" Color="c0c0c0" Rotation="0.0" />
   </Shape>
-  <Group GroupId="bd115" Style="Complex">
+  <Group GroupId="bd115" GraphId="d3d06" Style="Complex">
     <BiopaxRef>afd</BiopaxRef>
   </Group>
-  <Group GroupId="a42dc" Style="Group" />
-  <Group GroupId="c0f84" Style="Pathway" TextLabel="group" />
-  <Group GroupId="ad9c2" Style="Group" />
-  <Group GroupId="b2e91" Style="Group" TextLabel="lsakfjlksad" />
+  <Group GroupId="a42dc" GraphId="dc19e" Style="Group" />
+  <Group GroupId="c0f84" GraphId="adfda" Style="Pathway" TextLabel="group" />
+  <Group GroupId="ad9c2" GraphId="b7567" Style="Group" />
+  <Group GroupId="b2e91" GraphId="e4dbb" Style="Group" TextLabel="lsakfjlksad" />
   <Group GroupId="dfb6e" Style="Complex" />
   <InfoBox CenterX="0.0" CenterY="0.0" />
   <Biopax>
