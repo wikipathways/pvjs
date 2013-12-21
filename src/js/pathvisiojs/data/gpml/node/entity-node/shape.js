@@ -44,28 +44,29 @@ pathvisiojs.data.gpml.node.entityNode.shape = function(){
   function toRenderableJson(gpmlShape, pathwayIri, callbackInside) {
     try {
       var jsonShape = {};
-      pathvisiojs.data.gpml.node.entityNode.toRenderableJson(gpmlShape, jsonShape, pathwayIri, function(jsonShape) {
-        jsonShape.nodeType = "Shape";
+      jsonShape.nodeType = "Shape";
 
-        var attributes = gpmlShape.selectAll('Attribute');
-        var CellularComponent;
-        if (attributes.length > 0) {
-          CellularComponent = attributes.filter(function(d, i) {
-            return d3.select(this).attr('Key') === 'org.pathvisio.CellularComponentProperty' && d3.select(this).attr('Value') !== 'None';
-          });
+      var attributes = gpmlShape.selectAll('Attribute');
+      var CellularComponent;
+      if (attributes.length > 0) {
+        CellularComponent = attributes.filter(function(d, i) {
+          return d3.select(this).attr('Key') === 'org.pathvisio.CellularComponentProperty' && d3.select(this).attr('Value') !== 'None';
+        });
 
-          if (CellularComponent[0].length > 0) {
-            jsonShape.CellularComponent = CellularComponent.attr('Value');
-          }
+        if (CellularComponent[0].length > 0) {
+          jsonShape.CellularComponent = CellularComponent.attr('Value');
         }
+      }
 
-        var thisPathvisioDefaultStyleValues;
-        if (!!jsonShape.CellularComponent) {
-          thisPathvisioDefaultStyleValues = pathvisiojs.utilities.collect(pathvisioDefaultStyleValues.Shape, pathvisioDefaultStyleValues.Shape[strcase.classCase(jsonShape.CellularComponent)]);
-        }
-        else {
-          thisPathvisioDefaultStyleValues = pathvisioDefaultStyleValues.Shape;
-        }
+      var thisPathvisioDefaultStyleValues;
+      if (!!jsonShape.CellularComponent) {
+        thisPathvisioDefaultStyleValues = pathvisiojs.utilities.collect(pathvisioDefaultStyleValues.Shape, pathvisioDefaultStyleValues.Shape[strcase.classCase(jsonShape.CellularComponent)]);
+      }
+      else {
+        thisPathvisioDefaultStyleValues = pathvisioDefaultStyleValues.Shape;
+      }
+
+      pathvisiojs.data.gpml.node.entityNode.toRenderableJson(gpmlShape, jsonShape, thisPathvisioDefaultStyleValues, pathwayIri, function(jsonShape) {
 
         pathvisiojs.data.gpml.text.toRenderableJson(gpmlShape, thisPathvisioDefaultStyleValues, function(text) {
           if (!!text) {
