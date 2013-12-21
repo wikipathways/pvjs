@@ -11,7 +11,7 @@
 	xmlns:ev="http://www.w3.org/2001/xml-events"
 	width="12"
 	height="12"
-	class="default-fill solid-stroke">
+	class="board-fill-color solid-stroke">
 
 	<!-- mim-inhibition markers: vertical line; and extended drawing-board rect -->
 

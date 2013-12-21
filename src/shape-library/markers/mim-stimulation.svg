@@ -9,13 +9,13 @@
 	xmlns:ev="http://www.w3.org/2001/xml-events"
 	width="12"
 	height="12"
-	class="default-fill solid-stroke"
+	class="board-fill-color solid-stroke"
 	style="stroke:black"
 	viewBox="0 0 12 12">
 
 	<!-- mim-stimulation markers: triangular polygons, drawing-board fill, black stroke -->
 
-	<rect class="default-fill" stroke="none" x="0" y="5.4" width="2" height="1.2" />
+	<rect class="board-fill-color" stroke="none" x="0" y="5.4" width="2" height="1.2" />
 	<polygon stroke-width="1" points="11,11 0,6 11,1"/>
 
 </svg>

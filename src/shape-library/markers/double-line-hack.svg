@@ -9,11 +9,11 @@
 	xmlns:ev="http://www.w3.org/2001/xml-events"
 	width="12"
 	height="12"
-	class="default-fill solid-stroke">
+	class="board-fill-color solid-stroke">
 
 	<!-- double-line-hack markers are used in double line handling; they include their own 
 	special blank rect to obscure the ends -->
 
-	<rect class="default-fill" stroke="none" x="0" y="4.5" width="2.3" height="3" />
+	<rect class="board-fill-color" stroke="none" x="0" y="4.5" width="2.3" height="3" />
 
 </svg>
