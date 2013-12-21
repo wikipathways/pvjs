@@ -1,3 +1,5 @@
+"use strict";
+
 // includes GPML elements of type EntityNode and Group
 
 pathvisiojs.data.gpml.node = function(){
@@ -129,9 +131,8 @@ pathvisiojs.data.gpml.node = function(){
       jsonNode["@type"] = jsonNode["@type"] || [];
       jsonNode["@type"].push("node");
 
-      getPorts(jsonNode, function(ports) {
-        jsonNode.Port = ports;
-        callback(jsonNode, ports);
+      pathvisiojs.data.gpml.element.toRenderableJson(gpmlNode, jsonNode, function(jsonNode) {
+        callback(jsonNode);
       });
 
       /*

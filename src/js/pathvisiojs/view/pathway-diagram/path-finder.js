@@ -15,7 +15,7 @@ pathvisiojs.view.pathwayDiagram.pathFinder = function(){
     })[0][0];
     gridData.squareLength = Math.min(nodes[0].height, nodes[0].width) / 14;
 
-    // Here we set how much padding to place around the entityNodes, in units of grid squares.
+    // Here we set how much padding to place around the EntityNodes, in units of grid squares.
     // TODO change the static value of 12 to be a calculated value equal to the
     // largest dimension of a marker in the diagram.
     //
@@ -420,7 +420,7 @@ pathvisiojs.view.pathwayDiagram.pathFinder = function(){
     console.log('pathvisioNS');
     console.log(pathvisioNS);
 
-    // how much padding to place around the entityNodes, in units of grid squares
+    // how much padding to place around the EntityNodes, in units of grid squares
     // TODO change the static value of 12 to be a calculated value equal to the
     // largest dimension of a marker in the diagram
 

@@ -1,3 +1,4 @@
+"use strict";
 pathvisiojs.view.pathwayDiagram.svg.node.text = function(){
 
   // for more details, see 
@@ -45,6 +46,10 @@ pathvisiojs.view.pathwayDiagram.svg.node.text = function(){
   };
 
   function render(nodeContainer, data) {
+    console.log('nodeContainer');
+    console.log(nodeContainer);
+    console.log('data');
+    console.log(data);
     var dx, dy, textAlign, textAnchor;
 
     // TODO don't repeat default fontSize here. Need to follow DRY principle.

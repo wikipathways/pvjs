@@ -1,3 +1,4 @@
+"use strict";
 pathvisiojs.data.gpml.edge.interaction = function(){
 
   //*
@@ -15,8 +16,6 @@ pathvisiojs.data.gpml.edge.interaction = function(){
     "mim-conversion":"Conversion",
     "mim-stimulation":"Stimulation",
     "mim-modification":"Modification",
-    "mim-catalysis":"Catalysis",
-    "mim-inhibition":"Inhibition",
     "mim-cleavage":"Cleavage",
     "mim-covalent-bond":"CovalentBond",
     "mim-transcription-translation":"TranscriptionTranslation",

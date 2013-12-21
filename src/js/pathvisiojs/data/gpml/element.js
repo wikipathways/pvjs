@@ -7,6 +7,13 @@ pathvisiojs.data.gpml.element = function() {
       jsonElement["@type"] = jsonElement["@type"] || [];
       jsonElement["@type"].push("element");
 
+      pathvisiojs.data.gpml.biopaxRef.getAllAsRenderableJson(gpmlElement, function(publicationXrefs) {
+        if (!!publicationXrefs) {
+          jsonElement.PublicationXref = publicationXrefs;
+        }
+        elementCallback(jsonElement);
+      });
+
       /*
       var graphics = gpmlElement.select('Graphics'),
         zIndex,
@@ -20,7 +27,6 @@ pathvisiojs.data.gpml.element = function() {
       }
       //*/
 
-      elementCallback(jsonElement);
     }
     catch (e) {
       throw new Error("Error converting gpmlElement to renderable json: " + e.message);

@@ -1,3 +1,5 @@
+"use strict";
+
 // Edges (interactions and graphical lines)
 
 pathvisiojs.view.pathwayDiagram.svg.edge = function(){

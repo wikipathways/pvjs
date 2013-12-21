@@ -105,6 +105,8 @@ pathvisiojs = function(){
       }
     },
     function(err, results){
+      console.log('pvjs results');
+      console.log(results);
       var viewLoadArgs = results.preload;
       viewLoadArgs.pathway = results.pathway;
 

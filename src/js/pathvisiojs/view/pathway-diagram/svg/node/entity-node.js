@@ -1,11 +1,12 @@
-pathvisiojs.view.pathwayDiagram.svg.node.entityNode = function(){
+"use strict";
+pathvisiojs.view.pathwayDiagram.svg.node.EntityNode = function(){
   //function render(viewport, data, allSymbolNames) {
   function render(args) {
     if (!args.target) {
       throw new Error('Error: Missing viewport.');
     }
     if (!args.data) {
-      throw new Error('Error: entityNode data missing.');
+      throw new Error('Error: EntityNode data missing.');
     }
     if (!args.allSymbolNames) {
       throw new Error('Error: allSymbolNames missing.');

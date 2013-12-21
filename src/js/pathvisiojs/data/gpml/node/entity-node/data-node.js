@@ -1,3 +1,4 @@
+"use strict";
 pathvisiojs.data.gpml.node.entityNode.dataNode = function() {
 
   var pathvisioDefaultStyleValues = {
@@ -40,7 +41,8 @@ pathvisiojs.data.gpml.node.entityNode.dataNode = function() {
 
   function toRenderableJson(gpmlDataNode, pathwayIri, callbackInside) {
     try {
-      pathvisiojs.data.gpml.node.entityNode.toRenderableJson(gpmlDataNode, pathwayIri, function(jsonDataNode) {
+      var jsonDataNode = {};
+      pathvisiojs.data.gpml.node.entityNode.toRenderableJson(gpmlDataNode, jsonDataNode, pathwayIri, function(jsonDataNode) {
         var database, ID, 
           datasourceReference = gpmlDataNode.select('Xref');
         if (!!datasourceReference) {
@@ -52,7 +54,7 @@ pathvisiojs.data.gpml.node.entityNode.dataNode = function() {
             jsonDataNode.DatasourceReference.ID = ID;
           }
         }
-        dataNodeType = gpmlDataNode.attr('Type');
+        var dataNodeType = gpmlDataNode.attr('Type');
         if (!dataNodeType) {
           dataNodeType = 'Unknown';
         }

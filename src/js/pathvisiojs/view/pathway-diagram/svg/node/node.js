@@ -1,3 +1,4 @@
+"use strict";
 pathvisiojs.view.pathwayDiagram.svg.node = function(){
   function dragmove(d) {
     /*

@@ -1,3 +1,5 @@
+"use strict";
+
 // includes GPML elements of type Shape, Label and DataNode
 
 pathvisiojs.data.gpml.node.entityNode = function() {
@@ -9,10 +11,9 @@ pathvisiojs.data.gpml.node.entityNode = function() {
     return jsonNode;
   }
 
-  function toRenderableJson(gpmlEntityNode, pathwayIri, entityNodeCallback) {
+  function toRenderableJson(gpmlEntityNode, jsonEntityNode, pathwayIri, EntityNodeCallback) {
     try {
-      jsonEntityNode = {};
-      graphId = gpmlEntityNode.attr('GraphId') || ('id' + uuid.v4());
+      var graphId = gpmlEntityNode.attr('GraphId') || ('id' + uuid.v4());
       jsonEntityNode["@id"] = pathwayIri + graphId;
       jsonEntityNode.GraphId = graphId;
 
@@ -21,29 +22,29 @@ pathvisiojs.data.gpml.node.entityNode = function() {
         jsonEntityNode.isContainedBy = pathwayIri + isContainedBy;
       }
 
-      shapeType = gpmlEntityNode.select('Graphics').attr('ShapeType') || 'rectangle';
+      var shapeType = gpmlEntityNode.select('Graphics').attr('ShapeType') || 'rectangle';
       if (shapeType === 'None') {
         shapeType = 'rectangle';
       }
       shapeType = strcase.paramCase(shapeType);
       jsonEntityNode.ShapeType = shapeType;
       jsonEntityNode.zIndex = parseFloat(gpmlEntityNode.select('Graphics').attr('ZOrder'));
-      jsonEntityNode.renderableType = 'entityNode';
-      jsonEntityNode["@type"] = [
-        "element",
-        "node",
-        "entityNode",
-        shapeType,
-        "EntityNode",
-        isContainedBy || 'notGrouped'
-      ];
+      jsonEntityNode.renderableType = 'EntityNode';
+
+      jsonEntityNode["@type"] = jsonEntityNode["@type"] || [];
+      jsonEntityNode["@type"].push("EntityNode");
+      jsonEntityNode["@type"].push(shapeType);
+      var groupedStatus = isContainedBy || 'notGrouped';
+      jsonEntityNode["@type"].push(groupedStatus);
 
       var borderWidth = gpmlEntityNode.select('Graphics').attr('LineThickness') || 1;
       jsonEntityNode.borderWidth = parseFloat(borderWidth);
 
-      // the width and height values are not clearly specified in GPML, but the closest
-      // I could come up with for interpreting them as actually rendered in PathVisio (Java)
-      // at scales in common use is that gpmlWidth = elementWidth + elementPadding + elementBorderWidth (on each side)
+      // exactly what is meant by "width" and "height" is not clearly specified in GPML,
+      // so I analyzed examples by visually inspecting the rendering in PathVisio-Java, at
+      // a zoom level that made for easy reading of DataNodes at their default size.
+      // This analysis indicates the following meaning for GPML width in CSS2.1 box-model terms:
+      // gpmlWidth = elementWidth + elementPadding + elementBorderWidth (1/2 on each side = 1)
       // with a similar calculation for gpmlHeight
 
       var gpmlWidth = parseFloat(gpmlEntityNode.select('Graphics').attr('Width'));
@@ -54,6 +55,7 @@ pathvisiojs.data.gpml.node.entityNode = function() {
 
       var centerX = parseFloat(gpmlEntityNode.select('Graphics').attr('CenterX'));
       jsonEntityNode.x = centerX - gpmlWidth/2;
+
       var centerY = parseFloat(gpmlEntityNode.select('Graphics').attr('CenterY'));
       jsonEntityNode.y = centerY - gpmlHeight/2;
 
@@ -71,9 +73,15 @@ pathvisiojs.data.gpml.node.entityNode = function() {
       }
 
       pathvisiojs.data.gpml.node.getPorts(jsonEntityNode, function(ports) {
+        console.log('ports');
+        console.log(ports);
         jsonEntityNode.Port = ports;
-        entityNodeCallback(jsonEntityNode);
+        pathvisiojs.data.gpml.node.toRenderableJson(gpmlEntityNode, jsonEntityNode, function(jsonEntityNode) {
+          EntityNodeCallback(jsonEntityNode, ports);
+        });
       });
+
+
     }
     catch (e) {
       throw new Error("Error converting EntityNode or Port to renderable json: " + e.message);

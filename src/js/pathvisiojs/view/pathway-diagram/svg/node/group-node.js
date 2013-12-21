@@ -16,7 +16,8 @@ pathvisiojs.view.pathwayDiagram.svg.node.groupNode = function(){
         return cssClass;
       })
 
-      callback(groupContainer);
+      var groupContents = args.data.contains;
+      callback(groupContainer, groupContents);
     });
   }
  

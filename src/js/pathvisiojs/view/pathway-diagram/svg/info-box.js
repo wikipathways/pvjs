@@ -1,3 +1,4 @@
+"use strict";
 pathvisiojs.view.pathwayDiagram.svg.infoBox = function(){
     
   function render(viewport, pathway) {
@@ -29,7 +30,6 @@ pathvisiojs.view.pathwayDiagram.svg.infoBox = function(){
         infoBox.push({'key':'Citation(s)', 'value':publicationXrefString});
       })
     }
-
 
     var infoBoxElements = viewport.selectAll("text.info-box")
     .data(infoBox)
