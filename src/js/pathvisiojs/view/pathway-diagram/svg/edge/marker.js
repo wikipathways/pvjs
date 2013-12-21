@@ -35,7 +35,6 @@ pathvisiojs.view.pathwayDiagram.svg.edge.marker = function(){
         /*
 <marker id="mim-inhibition-start-black" class="default-fill" stroke="black" markerWidth="16" markerHeight="16" markerUnits="strokeWidth" orient="auto" refX="0" refY="6" viewBox="0 0 12 12">
          //*/
-
         var idStub = strcase.paramCase(customMarker.id)
         var startId = idStub + '-start-default';
         var endId = idStub + '-end-default';
@@ -174,7 +173,6 @@ pathvisiojs.view.pathwayDiagram.svg.edge.marker = function(){
           var markerElementStyle = '';
 
 	  var markerElementSvg = markerElement.selectAll("svg")[0][0];
-console.log('HEY');
 
           if (markerElementSvg.getAttribute('class').match(/default-stroke-color/)) {
             markerElementStyle += 'stroke:#' + color + '; ';
