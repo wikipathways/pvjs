@@ -9,8 +9,7 @@
 	xmlns:ev="http://www.w3.org/2001/xml-events"
 	width="12"
 	height="12"
-	class="board-fill-color solid-stroke"
-	style="stroke:black">
+	class="board-fill-color default-stroke-color solid-stroke">
 
 	<!-- t-bar markers: vertical line; and extended drawing-board rect -->
 

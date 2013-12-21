@@ -3,14 +3,15 @@
 		image-rendering: auto;
 		shape-rendering: auto;
 		vector-effect: non-scaling-stroke;
-		fill: white;
-		background: white;
-    		stroke: black;
+                background: white;
+	/* removed fill and stroke since they override marker specs */
+	/*	fill: white;
+    		stroke: black; */
 	}
 
 	/* default color for pathway elements */
 	.default-fill-color {
-		fill: black;
+		fill: black; 
 	}
 	.default-stroke-color {
 		stroke: black;
@@ -49,6 +50,7 @@
 
 	.data-node {
 		fill-opacity: 1;
+		fill: white;
 		stroke: black;
 		stroke-dasharray: 0;
 		stroke-miterlimit: 1;
