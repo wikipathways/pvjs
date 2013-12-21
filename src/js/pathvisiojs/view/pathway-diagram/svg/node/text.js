@@ -114,6 +114,12 @@ pathvisiojs.view.pathwayDiagram.svg.node.text = function(){
     })
     .attr("style", function (d) {
       var style = '';
+      if (nodeContainer[0][0]['__data__']['@type'].indexOf('Metabolite') != -1) {
+	style += 'fill:#0000FF; ';
+      }
+      if (nodeContainer[0][0]['__data__']['@type'].indexOf('Pathway') != -1) {
+        style += 'fill:rgb(20,150,30); ';
+      }
       if (d.text.hasOwnProperty('color')) {
         style += 'fill:' + d.text.color + '; ';
       }
