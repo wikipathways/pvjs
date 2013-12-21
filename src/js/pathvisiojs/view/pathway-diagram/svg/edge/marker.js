@@ -37,8 +37,8 @@ pathvisiojs.view.pathwayDiagram.svg.edge.marker = function(){
          //*/
 
         var idStub = strcase.paramCase(customMarker.id)
-        var startId = idStub + '-start-black';
-        var endId = idStub + '-end-black';
+        var startId = idStub + '-start-default';
+        var endId = idStub + '-end-default';
 
         var markerStart = svgHere.select('defs').select('#' + startId);
         if (!markerStart[0][0]) {
@@ -145,15 +145,15 @@ pathvisiojs.view.pathwayDiagram.svg.edge.marker = function(){
 
       // check for whether the desired marker is defined once in the pathway template svg.
 
-      var selector = 'marker#' + name + '-' + position + '-black';
-      var markerElementBlack = svg.select(selector);
+      var selector = 'marker#' + name + '-' + position + '-default';
+      var markerElementDefault = svg.select(selector);
 
-      if (markerElementBlack.length === 1) {
+      if (markerElementDefault.length === 1) {
 
-        // if the desired stroke color is black, use the marker specified in the pathway template svg.
+        // if the desired stroke color is not specified, use the default marker specified in the pathway template svg.
 
-        if ( (color === '#000') || (color === '#000000') || (!(color)) ) {
-          markerUrl = name + '-' + position + '-black';
+        if ( !(color) ) {
+          markerUrl = name + '-' + position + '-default';
         }
 
         // else create a new marker with the desired color
@@ -167,22 +167,25 @@ pathvisiojs.view.pathwayDiagram.svg.edge.marker = function(){
 
           var markerElement = pathvisiojs.utilities.cloneNode(selector);
           // TODO remove dependency on cloneNode and get the below working:
-          //var markerElement = pathvisiojs.utilities.clone(markerElementBlack[0][0]);
+          //var markerElement = pathvisiojs.utilities.clone(markerElementDefault[0][0]);
 
-          // define style of marker element
+          // define style of marker element's SVG
 
           var markerElementStyle = '';
 
-          if (markerElement[0][0].getAttribute('stroke') === 'black') {
-            markerElementStyle += 'stroke:' + color + '; ';
+	  var markerElementSvg = markerElement.selectAll("svg")[0][0];
+console.log('HEY');
+
+          if (markerElementSvg.getAttribute('class').match(/default-stroke-color/)) {
+            markerElementStyle += 'stroke:#' + color + '; ';
           }
 
-          if (markerElement[0][0].getAttribute('fill') === 'black') {
-            markerElementStyle += 'fill:' + color + '; ';
+          if (markerElementSvg.getAttribute('class').match(/default-fill-color/)) {
+            markerElementStyle += 'fill:#' + color + '; ';
           }
 
           markerElement[0][0].setAttribute('id', name + '-' + position + '-' + color );
-          markerElement[0][0].setAttribute('style', markerElementStyle);
+          markerElementSvg.setAttribute('style', markerElementStyle);
 
           markerUrl = name + '-' + position + '-' + color;
         }
