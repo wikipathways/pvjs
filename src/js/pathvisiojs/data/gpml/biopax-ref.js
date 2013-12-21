@@ -1,8 +1,9 @@
+"use strict";
 pathvisiojs.data.gpml.biopaxRef = function(){
 
   function getAllAsRenderableJson(gpmlElement, callback) {
     try {
-      var tagName = gpmlElement[0][0].tagName;
+      var publicationXrefs, jsonPublicationXref, tagName = gpmlElement[0][0].tagName;
       var biopaxRefs = gpmlElement.selectAll(tagName + ' > BiopaxRef');
       if (biopaxRefs[0].length > 0) {
         publicationXrefs = [];

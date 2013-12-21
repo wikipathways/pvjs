@@ -1,3 +1,4 @@
+"use strict";
 pathvisiojs.data.gpml.node.entityNode.shape = function(){
 
   var pathvisioDefaultStyleValues = {
@@ -42,7 +43,8 @@ pathvisiojs.data.gpml.node.entityNode.shape = function(){
 
   function toRenderableJson(gpmlShape, pathwayIri, callbackInside) {
     try {
-      pathvisiojs.data.gpml.node.entityNode.toRenderableJson(gpmlShape, pathwayIri, function(jsonShape) {
+      var jsonShape = {};
+      pathvisiojs.data.gpml.node.entityNode.toRenderableJson(gpmlShape, jsonShape, pathwayIri, function(jsonShape) {
         jsonShape.nodeType = "Shape";
 
         var attributes = gpmlShape.selectAll('Attribute');
