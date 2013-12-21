@@ -42,7 +42,19 @@ pathvisiojs.data.gpml.node.entityNode.dataNode = function() {
   function toRenderableJson(gpmlDataNode, pathwayIri, callbackInside) {
     try {
       var jsonDataNode = {};
-      pathvisiojs.data.gpml.node.entityNode.toRenderableJson(gpmlDataNode, jsonDataNode, pathwayIri, function(jsonDataNode) {
+      var dataNodeType = gpmlDataNode.attr('Type');
+      if (!dataNodeType) {
+        dataNodeType = 'Unknown';
+      }
+      jsonDataNode.nodeType = "DataNode";
+      jsonDataNode.dataNodeType = dataNodeType;
+      jsonDataNode["@type"] = jsonDataNode["@type"] || [];
+      jsonDataNode["@type"].push("DataNode");
+      jsonDataNode["@type"].push(dataNodeType);
+
+      var thisPathvisioDefaultStyleValues = pathvisiojs.utilities.collect(pathvisioDefaultStyleValues.DataNode, pathvisioDefaultStyleValues.DataNode[dataNodeType]);
+
+      pathvisiojs.data.gpml.node.entityNode.toRenderableJson(gpmlDataNode, jsonDataNode, thisPathvisioDefaultStyleValues, pathwayIri, function(jsonDataNode) {
         var database, ID, 
           datasourceReference = gpmlDataNode.select('Xref');
         if (!!datasourceReference) {
@@ -54,15 +66,6 @@ pathvisiojs.data.gpml.node.entityNode.dataNode = function() {
             jsonDataNode.DatasourceReference.ID = ID;
           }
         }
-        var dataNodeType = gpmlDataNode.attr('Type');
-        if (!dataNodeType) {
-          dataNodeType = 'Unknown';
-        }
-        jsonDataNode.nodeType = "DataNode";
-        jsonDataNode.dataNodeType = dataNodeType;
-        jsonDataNode["@type"].push(dataNodeType);
-
-        var thisPathvisioDefaultStyleValues = pathvisiojs.utilities.collect(pathvisioDefaultStyleValues.DataNode, pathvisioDefaultStyleValues.DataNode[dataNodeType]);
         pathvisiojs.data.gpml.text.toRenderableJson(gpmlDataNode, thisPathvisioDefaultStyleValues, function(text) {
           if (!!text) {
             jsonDataNode.text = text;
