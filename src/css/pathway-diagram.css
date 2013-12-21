@@ -8,11 +8,19 @@
     		stroke: black;
 	}
 
-	.default-fill {
+	/* default color for pathway elements */
+	.default-fill-color {
+		fill: black;
+	}
+	.default-stroke-color {
+		stroke: black;
+	}
+	
+	/* default color of the background drawing board */ 	
+	.board-fill-color {
 		fill: white;
 	}
-
-	.stroke-color-equals-default-fill-color {
+	.board-stroke-color {
 		stroke: white;
 	}
 
