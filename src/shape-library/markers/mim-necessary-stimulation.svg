@@ -9,11 +9,10 @@
 	xmlns:ev="http://www.w3.org/2001/xml-events"
 	width="15"
 	height="12"
-	class="board-fill-color solid-stroke"
-	style="stroke:black"
+	class="board-fill-color default-stroke-color solid-stroke"
 	viewBox="0 0 15 12">
 
-	<!-- mim-necessary-stimulation markers: triangular polygons, drawing-board fill, black stroke; and vertical line -->
+	<!-- mim-necessary-stimulation markers: triangular polygons, drawing-board fill, default color stroke; and vertical line -->
 
 	<rect stroke="none" x="0" y="5.4" width="2" height="1.2" />
 	<line fill="none" stroke-width="1" x1="14" y1="0" x2="14" y2="12"/>
