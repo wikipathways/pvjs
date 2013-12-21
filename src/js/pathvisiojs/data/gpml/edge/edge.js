@@ -1,3 +1,4 @@
+"use strict";
 pathvisiojs.data.gpml.edge = function(){
     
   var strokeStyleMappings = {
@@ -8,8 +9,8 @@ pathvisiojs.data.gpml.edge = function(){
     try {
       var jsonAnchorEdge, anchor, jsonAnchor, points, jsonPoints, interactionType, target, targetId, groupRef;
       var jsonEdge = {};
-      graphId = gpmlEdge.attr('GraphId') || ('id' + uuid.v4());
-      elementIri = pathwayIri + graphId;
+      var graphId = gpmlEdge.attr('GraphId') || ('id' + uuid.v4());
+      var elementIri = pathwayIri + graphId;
       jsonEdge['@id'] = elementIri;
       jsonEdge.GraphId = graphId;
 
@@ -21,7 +22,7 @@ pathvisiojs.data.gpml.edge = function(){
       }
 
       jsonEdge.zIndex = parseFloat(gpmlEdge.select('Graphics').attr('ZOrder'));
-      points = gpmlEdge.selectAll('Point');
+      var points = gpmlEdge.selectAll('Point');
       jsonEdge['@type'] = [
         'element',
         'SvgPath',

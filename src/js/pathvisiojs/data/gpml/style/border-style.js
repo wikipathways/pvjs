@@ -29,7 +29,7 @@ pathvisiojs.data.gpml.style.borderStyle = function(){
     dimensions.bottomRightCorner.x = 0;
     dimensions.bottomRightCorner.y = 0;
     groupContents.forEach(function(groupContent) {
-      if (groupContent.renderableType === 'entityNode') {
+      if (groupContent.renderableType === 'EntityNode') {
         dimensions.topLeftCorner.x = Math.min(dimensions.topLeftCorner.x, groupContent.x);
         dimensions.topLeftCorner.y = Math.min(dimensions.topLeftCorner.y, groupContent.y);
         dimensions.bottomRightCorner.x = Math.max(dimensions.bottomRightCorner.x, groupContent.x + groupContent.width);

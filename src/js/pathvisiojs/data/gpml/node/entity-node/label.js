@@ -1,3 +1,4 @@
+"use strict";
 pathvisiojs.data.gpml.node.entityNode.label = function(){
 
   var pathvisioDefaultStyleValues = {
@@ -11,8 +12,17 @@ pathvisiojs.data.gpml.node.entityNode.label = function(){
   }
 
   function toRenderableJson(gpmlLabel, pathwayIri, callbackInside) {
+    /*
+    console.log('gpmlLabel');
+    console.log(gpmlLabel[0][0]);
+    console.log('pathwayIri');
+    console.log(pathwayIri);
+    console.log('callbackInside');
+    console.log(callbackInside);
+    //*/
     try {
-      pathvisiojs.data.gpml.node.entityNode.toRenderableJson(gpmlLabel, pathwayIri, function(jsonLabel) {
+      var jsonLabel = {};
+      pathvisiojs.data.gpml.node.entityNode.toRenderableJson(gpmlLabel, jsonLabel, pathwayIri, function(jsonLabel) {
         jsonLabel.nodeType = "Label";
         pathvisiojs.data.gpml.text.toRenderableJson(gpmlLabel, pathvisioDefaultStyleValues.Label, function(text) {
           if (!!text) {
@@ -38,8 +48,7 @@ pathvisiojs.data.gpml.node.entityNode.label = function(){
       });
     }
     catch (e) {
-      console.log("Error converting label to json: " + e.message);
-      return e;
+      throw new Error("Error converting label to json: " + e.message);
     }
   }
 

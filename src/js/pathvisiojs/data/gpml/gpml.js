@@ -1,3 +1,4 @@
+"use strict";
 pathvisiojs.data.gpml = function(){
 
   var pathvisioDefaultStyleValues = {
@@ -80,7 +81,7 @@ pathvisiojs.data.gpml = function(){
 
   function getBorderStyle(gpmlLineStyle, pathvisioDefault) {
 
-    // Double-lined entityNodes will be handled by using a symbol with double lines.
+    // Double-lined EntityNodes will be handled by using a symbol with double lines.
     // Double-lined edges will be rendered as single-lined, solid edges, because we
     // shouldn't need double-lined edges other than for cell walls/membranes, which
     // should be symbols. Any double-lined edges are curation issues.
@@ -129,6 +130,12 @@ pathvisiojs.data.gpml = function(){
   }
 
   function toRenderableJson(gpml, pathwayIri, callbackOutside){
+    console.log('gpml');
+    console.log(gpml);
+    console.log('pathwayIri');
+    console.log(pathwayIri);
+    console.log('callbackOutside');
+    console.log(callbackOutside);
     var gpmlPathway = d3.select(gpml).select('Pathway');
     self.mygpmlPathwayAsXmlDoc = gpmlPathway[0][0];
 
@@ -190,8 +197,6 @@ pathvisiojs.data.gpml = function(){
               },
               'rotate':'cssTransform:funcdef-rotate',
               'position':'css2:visuren.html#propdef-position',
-              'text':'svg:text.html#TextElement',
-              'tspan':'svg:text.html#TSpanElement',
               'color':'css2:colors.html#propdef-color', //foreground color
               'backgroundColor':'css2:colors.html#propdef-background-color',
               'backgroundImage':'css2:colors.html#propdef-background-image',
@@ -225,9 +230,19 @@ pathvisiojs.data.gpml = function(){
               'organism': 'biopax:organism',
               'stroke': 'svg:painting.html#StrokeProperty',
               'strokeWidth': 'svg:painting.html#StrokeWidthProperty',
+              /*
+              'text': {
+                '@id': 'svg:text.html#TextElement',
+                '@type': '@id'
+              },
+              //*/
               'tspan': {
                 '@id': 'svg:text.html#TSpanElement',
                 '@container': '@set'
+              },
+              'Group': {
+                '@id': 'gpml:Group',
+                '@container': '@list'
               },
               'pathwayElements': {
                 '@id': 'ex:pathwayElements/',
@@ -236,6 +251,7 @@ pathvisiojs.data.gpml = function(){
               'contains': {
                 '@id': 'ex:contains',
                 '@type': '@id'
+                //'@container': '@list'
               },
               'isContainedBy': {
                 '@reverse': 'ex:contains',
@@ -411,7 +427,7 @@ pathvisiojs.data.gpml = function(){
             }
           },
           DataNode: function(callback){
-            var dataNodes = gpmlPathway.selectAll('DataNode');
+            var gpmlDataNode, dataNodes = gpmlPathway.selectAll('DataNode');
             if (dataNodes[0].length > 0) {
               pathway.DataNode = [];
               dataNodes.each(function() {
@@ -458,9 +474,25 @@ pathvisiojs.data.gpml = function(){
               callback(null, 'No shapes to convert.');
             }
           },
+          Group: function(callback){
+            var gpmlGroup, groups = gpmlPathway.selectAll('Group');
+            if (groups[0].length > 0) {
+              pathway.Group = [];
+              gpmlPathway.selectAll('Group').each(function() {
+                gpmlGroup = d3.select(this);
+                pathvisiojs.data.gpml.node.groupNode.toRenderableJson(gpml, gpmlGroup, pathwayIri, function(jsonGroup) {
+                  pathway.Group.push(jsonGroup);
+                });
+              })
+              callback(null, 'Groups are all converted.');
+            }
+            else {
+              callback(null, 'No groups to convert.');
+            }
+          },
           //*
           GraphicalLine: function(callback){
-            var graphicalLines = gpmlPathway.selectAll('GraphicalLine');
+            var gpmlGraphicalLine, graphicalLines = gpmlPathway.selectAll('GraphicalLine');
             if (graphicalLines[0].length > 0) {
               pathway.GraphicalLine = [];
               gpmlPathway.selectAll('GraphicalLine').each(function() {
@@ -477,7 +509,7 @@ pathvisiojs.data.gpml = function(){
           },
           //*/
           Interaction: function(callback){
-            var interactions = gpmlPathway.selectAll('Interaction');
+            var gpmlInteraction, interactions = gpmlPathway.selectAll('Interaction');
             if (interactions[0].length > 0) {
               pathway.Interaction = [];
               gpmlPathway.selectAll('Interaction').each(function() {
@@ -494,57 +526,33 @@ pathvisiojs.data.gpml = function(){
           }
       },
       function(err, results) {
-        var groupsFrame, groups = gpmlPathway.selectAll('Group');
-        if (groups[0].length > 0) {
-          pathway.Group = [];
-          gpmlPathway.selectAll('Group').each(function() {
-            gpmlGroup = d3.select(this);
-            pathvisiojs.data.gpml.node.groupNode.toRenderableJson(pathway, gpmlGroup, pathwayIri, function(jsonGroup) {
-              pathway.Group.push(jsonGroup);
-            });
-            /*
-            pathvisiojs.data.gpml.node.groupNode.toRenderableJson(gpmlGroup, pathwayIri, function(jsonGroup) {
-              var groupsFrame = {
-                '@context': pathvisiojs.context,
-                '@type': jsonGroup.GroupId
-              };  
-              jsonld.frame(pathway, groupsFrame, function(err, elementsInGroup) {
-                var dimensions = getGroupDimensions(jsonGroup, elementsInGroup['@graph'], function(dimensions) {
-                  jsonGroup.x = dimensions.x;
-                  jsonGroup.y = dimensions.y;
-                  jsonGroup.width = dimensions.width;
-                  jsonGroup.height = dimensions.height;
-                });
-                pathway.Group.push(jsonGroup);
+        var groupsFrame, jsonGroups = [];
+        if (pathway.Group.length > 0) {
+          groupsFrame = {
+            '@context': pathvisiojs.context,
+            '@type': 'GroupNode',
+            'contains': {}
+          };  
+          jsonld.frame(pathway, groupsFrame, function(err, framedGroups) {
+            console.log('framedGroups');
+            console.log(framedGroups);
+            framedGroups['@graph'].forEach(function(jsonGroup) {
+              pathvisiojs.data.gpml.node.groupNode.calculateImplicitRenderingData(jsonGroup, function(updatedJsonGroup) {
+                console.log('jsonGroup in gpml.js');
+                console.log(jsonGroup);
+                jsonGroups.push(updatedJsonGroup);
               });
             });
-            //*/
-          })
-          self.myPathway = pathway;
-          callbackOutside(pathway);
+            pathway.Group = jsonGroups;
+            self.myPathway = pathway;
+            callbackOutside(pathway);
+          });
         }
         else {
           self.myPathway = pathway;
           callbackOutside(pathway);
         }
       });
-
-      
-
-      /*
-      // infoBox
-      // These values are a legacy from GenMAPP. They are always forced to be equal to 0 in PathVisio (Java) so as to place the infobox in the upper lefthand corner.
-
-      pathway.infoBox.x = 0;
-      delete pathway.infoBox.centerX;
-      pathway.infoBox.y = 0;
-      delete pathway.infoBox.centerY;
-      //*/
-
-
-
-
-
 /*
       // Comments 
 
