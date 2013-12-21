@@ -11,8 +11,7 @@
 	xmlns:ev="http://www.w3.org/2001/xml-events"
 	width="12"
 	height="12"
-	class="solid-stroke"
-	style="fill:black"
+	class="solid-stroke default-fill-color"
 	viewBox="0 0 12 12">
 
 	<!-- mim-covalent-bond markers: not much to see here! -->
