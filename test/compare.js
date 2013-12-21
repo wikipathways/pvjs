@@ -228,9 +228,6 @@ window.onload = function() {
 
     var customMarkers = self.customMarkers = [
       {'id': 'arrow', 'url': srcDirectoryUrl + 'shape-library/markers/arrow.svg'},
-      {'id': 'activity', 'url': srcDirectoryUrl + 'shape-library/markers/arrow.svg'},
-      {'id': 'mim-branching-left', 'url': srcDirectoryUrl + 'shape-library/markers/mim-branching-left.svg'},
-      {'id': 'mim-branching-right', 'url': srcDirectoryUrl + 'shape-library/markers/mim-branching-right.svg'},
       {'id': 'necessary-stimulation', 'url': srcDirectoryUrl + 'shape-library/markers/mim-necessary-stimulation.svg'},
       {'id': 'binding', 'url': srcDirectoryUrl + 'shape-library/markers/mim-binding.svg'},
       {'id': 'conversion', 'url': srcDirectoryUrl + 'shape-library/markers/mim-conversion.svg'},

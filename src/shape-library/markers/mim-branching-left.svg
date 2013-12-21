@@ -9,11 +9,11 @@
 	xmlns:ev="http://www.w3.org/2001/xml-events"
 	width="12"
 	height="12"
-	class="default-fill solid-stroke">
+	class="board-fill-color default-stroke-color solid-stroke">
 
 	<!-- mim-branching-left markers: line and extended drawing-board rect -->
 
 	<rect stroke="none" x="0" y="5.4" width="3.5" height="1.2" />
-	<line fill="none" stroke-width=".4" x1="3.7" y1="6" x2="0" y2="0"/>	
+	<line fill="none" stroke-width="1" x1="3.7" y1="6" x2="0" y2="0"/>	
 
 </svg>
