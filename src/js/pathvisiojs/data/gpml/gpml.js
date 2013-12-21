@@ -443,7 +443,7 @@ pathvisiojs.data.gpml = function(){
             }
           },
           Label: function(callback){
-            var labels = gpmlPathway.selectAll('Label');
+            var gpmlLabel, labels = gpmlPathway.selectAll('Label');
             if (labels[0].length > 0) {
               pathway.Label = [];
               gpmlPathway.selectAll('Label').each(function() {
@@ -459,7 +459,7 @@ pathvisiojs.data.gpml = function(){
             }
           },
           Shape: function(callback){
-            var shapes = gpmlPathway.selectAll('Shape');
+            var gpmlShape, shapes = gpmlPathway.selectAll('Shape');
             if (shapes[0].length > 0) {
               pathway.Shape = [];
               gpmlPathway.selectAll('Shape').each(function() {
@@ -527,7 +527,7 @@ pathvisiojs.data.gpml = function(){
       },
       function(err, results) {
         var groupsFrame, jsonGroups = [];
-        if (pathway.Group.length > 0) {
+        if (!!pathway.Group) {
           groupsFrame = {
             '@context': pathvisiojs.context,
             '@type': 'GroupNode',
@@ -537,11 +537,16 @@ pathvisiojs.data.gpml = function(){
             console.log('framedGroups');
             console.log(framedGroups);
             framedGroups['@graph'].forEach(function(jsonGroup) {
-              pathvisiojs.data.gpml.node.groupNode.calculateImplicitRenderingData(jsonGroup, function(updatedJsonGroup) {
-                console.log('jsonGroup in gpml.js');
-                console.log(jsonGroup);
-                jsonGroups.push(updatedJsonGroup);
-              });
+
+              // Some GPML files contain empty groups due to a PathVisio-Java bug. They should be deleted.
+
+              if (!!jsonGroup.contains) {
+                pathvisiojs.data.gpml.node.groupNode.calculateImplicitRenderingData(jsonGroup, function(updatedJsonGroup) {
+                  console.log('jsonGroup in gpml.js');
+                  console.log(jsonGroup);
+                  jsonGroups.push(updatedJsonGroup);
+                });
+              }
             });
             pathway.Group = jsonGroups;
             self.myPathway = pathway;

@@ -22,8 +22,8 @@ pathvisiojs.data.gpml.node.entityNode.label = function(){
     //*/
     try {
       var jsonLabel = {};
-      pathvisiojs.data.gpml.node.entityNode.toRenderableJson(gpmlLabel, jsonLabel, pathwayIri, function(jsonLabel) {
-        jsonLabel.nodeType = "Label";
+      jsonLabel.nodeType = "Label";
+      pathvisiojs.data.gpml.node.entityNode.toRenderableJson(gpmlLabel, jsonLabel, pathvisioDefaultStyleValues.Label, pathwayIri, function(jsonLabel) {
         pathvisiojs.data.gpml.text.toRenderableJson(gpmlLabel, pathvisioDefaultStyleValues.Label, function(text) {
           if (!!text) {
             jsonLabel.text = text;

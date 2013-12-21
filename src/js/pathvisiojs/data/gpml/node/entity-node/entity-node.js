@@ -11,7 +11,7 @@ pathvisiojs.data.gpml.node.entityNode = function() {
     return jsonNode;
   }
 
-  function toRenderableJson(gpmlEntityNode, jsonEntityNode, pathwayIri, EntityNodeCallback) {
+  function toRenderableJson(gpmlEntityNode, jsonEntityNode, pathvisioDefaultStyleValues, pathwayIri, EntityNodeCallback) {
     try {
       var graphId = gpmlEntityNode.attr('GraphId') || ('id' + uuid.v4());
       jsonEntityNode["@id"] = pathwayIri + graphId;
@@ -37,8 +37,12 @@ pathvisiojs.data.gpml.node.entityNode = function() {
       var groupedStatus = isContainedBy || 'notGrouped';
       jsonEntityNode["@type"].push(groupedStatus);
 
-      var borderWidth = gpmlEntityNode.select('Graphics').attr('LineThickness') || 1;
-      jsonEntityNode.borderWidth = parseFloat(borderWidth);
+      var borderWidth = gpmlEntityNode.select('Graphics').attr('LineThickness');
+      if (borderWidth !== pathvisioDefaultStyleValues.LineThickness) {
+        jsonEntityNode.borderWidth = parseFloat(borderWidth);
+      }
+      // TODO get the actual default value instead of just assuming a value of 1
+      borderWidth = jsonEntityNode.borderWidth || 1;
 
       // exactly what is meant by "width" and "height" is not clearly specified in GPML,
       // so I analyzed examples by visually inspecting the rendering in PathVisio-Java, at
@@ -48,10 +52,10 @@ pathvisiojs.data.gpml.node.entityNode = function() {
       // with a similar calculation for gpmlHeight
 
       var gpmlWidth = parseFloat(gpmlEntityNode.select('Graphics').attr('Width'));
-      jsonEntityNode.width = gpmlWidth + jsonEntityNode.borderWidth;
+      jsonEntityNode.width = gpmlWidth + borderWidth;
 
       var gpmlHeight = parseFloat(gpmlEntityNode.select('Graphics').attr('Height'));
-      jsonEntityNode.height = gpmlHeight + jsonEntityNode.borderWidth;
+      jsonEntityNode.height = gpmlHeight + borderWidth;
 
       var centerX = parseFloat(gpmlEntityNode.select('Graphics').attr('CenterX'));
       jsonEntityNode.x = centerX - gpmlWidth/2;
