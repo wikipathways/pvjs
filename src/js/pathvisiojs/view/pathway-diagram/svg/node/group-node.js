@@ -1,5 +1,7 @@
 pathvisiojs.view.pathwayDiagram.svg.node.groupNode = function(){
   function render(args, callback) {
+    console.log('args');
+    console.log(args);
     if (!args.target) {
       throw new Error('Error: Missing viewport.');
     }
