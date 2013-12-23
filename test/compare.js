@@ -217,12 +217,8 @@ window.onload = function() {
       {'id': 'oval', 'url': srcDirectoryUrl + 'shape-library/symbols/oval.svg'},
       {'id': 'pentagon', 'url': srcDirectoryUrl + 'shape-library/symbols/pentagon.svg'},
       {'id': 'rectangle', 'url': srcDirectoryUrl + 'shape-library/symbols/rectangle.svg'},
-      {'id': 'group-none', 'url': srcDirectoryUrl + 'shape-library/symbols/rectangle.svg'},
-      {'id': 'group-pathway', 'url': srcDirectoryUrl + 'shape-library/symbols/rectangle.svg'},
-      {'id': 'group-group', 'url': srcDirectoryUrl + 'shape-library/symbols/rectangle.svg'},
       {'id': 'sarcoplasmic-reticulum','url': srcDirectoryUrl + 'shape-library/symbols/sarcoplasmic-reticulum.svg'},
       {'id': 'triangle', 'url': srcDirectoryUrl + 'shape-library/symbols/triangle.svg'},
-      {'id': 'grid-square', 'url': srcDirectoryUrl + 'shape-library/symbols/grid-square.svg'},
       {'id': 'none', 'url': srcDirectoryUrl + 'shape-library/symbols/none.svg'}
     ];
 

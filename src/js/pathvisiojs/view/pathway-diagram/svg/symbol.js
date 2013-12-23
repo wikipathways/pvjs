@@ -87,7 +87,7 @@ pathvisiojs.view.pathwayDiagram.svg.symbol = function(){
     var dimensionSet = [];
 
     async.each(customSymbols, appendCustom, function(err){
-        // if any of the saves produced an error, err would equal that error
+      // if any of the saves produced an error, err would equal that error
       callback(null);
     });
   }
