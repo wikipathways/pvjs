@@ -1,0 +1,181 @@
+{
+  "node":{
+    "elementType":"node",
+    "GroupNode":{
+      "nodeType":"GroupNode"
+    },
+    "EntityNode":{
+      "nodeType":"EntityNode",
+      "DataNode":{
+        "entityNodeType":"DataNode",
+        "LineStyle":null,
+        "FillColor":null,
+        "GeneProduct":{
+          "dataNodeType":"GeneProduct",
+          "Color":{
+            "gpml":null,
+            "pathVisioJava":""
+          },
+          "FontSize":10,
+          "FontWeight":null,
+          "backgroundImage":"rectangle"
+        },
+        "Metabolite":{
+          "dataNodeType":"Metabolite",
+          "Color":null,
+          "FontSize":10,
+          "FontWeight":null,
+          "backgroundImage":"rectangle"
+        },
+        "Protein":{
+          "dataNodeType":"Protein",
+          "Color":null,
+          "FontSize":10,
+          "FontWeight":null,
+          "backgroundImage":"rectangle"
+        },
+        "Unknown":{
+          "dataNodeType":"Unknown",
+          "Color":null,
+          "FontSize":10,
+          "FontWeight":null,
+          "backgroundImage":"rectangle"
+        },
+        "RNA":{
+          "dataNodeType":"RNA",
+          "Color":null,
+          "FontSize":10,
+          "FontWeight":null,
+          "backgroundImage":"rectangle"
+        },
+        "Pathway":{
+          "dataNodeType":"Pathway",
+          "Color":null,
+          "FontSize":10,
+          "FontWeight":null,
+          "backgroundImage":"rectangle"
+        }
+      }
+    }
+  }
+}
+      "Pathway":{
+        "Color":"14961e",
+        "FontSize":12,
+        "FontWeight":"Bold"
+      },
+      "Metabolite":{
+        "Color":"0000ff",
+        "FontSize":10,
+        "FontWeight":null
+      }
+    }
+  }
+
+  "EndoplasmicReticulum":"endoplasmic-reticulum",
+  "GolgiApparatus":"golgi-apparatus",
+  "Degradation":"mim-degradation",
+  "SarcoplasmicReticulum":"sarcoplasmic-reticulum",
+  "Cell":"rounded-rectangle-double",
+  "Nucleus":"ellipse-double",
+  "Vesicle":"oval",
+  "Organelle":"rounded-rectangle-double",
+  "Nucleolus":"oval",
+  "Vacuole":"oval",
+  "Lysosome":"rounded-rectangle",
+  "CytosolRegion":"rounded-rectangle",
+  "ExtracellularRegion":"rounded-rectangle",
+  "MembraneRegion":"rectangle",
+  "Mitochondria":"mitochondria"
+}
+      "GeneProduct":{
+      },
+      "Protein":{
+        "Color":null,
+        "FontSize":10,
+        "FontWeight":null
+      },
+      "Rna":{
+        "Color":null,
+        "FontSize":10,
+        "FontWeight":null
+      },
+      "Unknown":{
+        "Color":null,
+        "FontSize":10,
+        "FontWeight":null
+      },
+      "Pathway":{
+        "Color":"14961e",
+        "FontSize":12,
+        "FontWeight":"Bold"
+      },
+      "Metabolite":{
+        "Color":"0000ff",
+        "FontSize":10,
+        "FontWeight":null
+      }
+    }
+  }
+/*
+marker defaults
+style defaults
+  background-image defaults
+
+Inputs from GPML
+----------------
+
+element tag name:
+* Group
+* Label
+* Shape
+* DataNode
+
+Style (for Groups)
+* Complex
+* Group
+* None
+* Pathway
+
+Type (for DataNodes)
+* Metabolite
+* GeneProduct
+* Protein
+* RNA
+* Unknown
+
+CellularComponent (for some Shapes)
+
+ArrowHead
+* mim-stimulation
+
+
+Outputs as Visual
+-----------------
+
+PVJS structure
+--------------
+
+elementType
+  nodeType
+    dataNodeType
+    cellularComponent
+  edgeType
+    Interaction
+      interactionType
+    GraphicalLine
+      markerStart
+      markerEnd
+
+
+
+
+groups
+entityNodes
+background shapes
+styles
+
+datanodeTypes
+cellular components
+
+//*/
