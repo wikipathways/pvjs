@@ -1,14 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Pathway xmlns="http://pathvisio.org/GPML/2013a" Name="elbows" Data-Source="mydatasource" Version="20130813" Author="auth" Maintainer="maint" Email="email@email.com" Last-Modified="2013-12-17" Organism="Anopheles gambiae" License="CC">
   <Graphics BoardWidth="839.7982708933719" BoardHeight="579.4716618635928" />
-  <DataNode TextLabel="GeneProduct" GraphId="e5518" Type="GeneProduct">
+  <DataNode TextLabel="GeneProduct" GraphId="e5518" Type="GeneProduct" GroupRef="ace47">
     <Graphics CenterX="226.87224669603526" CenterY="176.2114537444934" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
     <Xref Database="" ID="" />
   </DataNode>
   <DataNode TextLabel="Metabolite" GraphId="d5e0f" Type="Metabolite">
-    <Graphics CenterX="400.8810572687225" CenterY="231.2775330396476" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Graphics CenterX="400.8810572687225" CenterY="231.2775330396476" Width="80.0" Height="20.0" ZOrder="32768" FontName="Times New Roman" FontSize="10" Valign="Middle" Align="Left" Color="0000ff" />
     <Xref Database="" ID="" />
   </DataNode>
+  <DataNode TextLabel="Rna" GraphId="b9d35" Type="Rna" GroupRef="ace47">
+    <Graphics CenterX="334.8017621145375" CenterY="56.167400881057276" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="" ID="" />
+  </DataNode>
+  <DataNode TextLabel="Pathway" GraphId="a77ae" Type="Pathway">
+    <Graphics CenterX="209.25110132158594" CenterY="254.40528634361235" Width="80.0" Height="20.0" ZOrder="32768" FontWeight="Bold" FontSize="12" Valign="Middle" ShapeType="None" Color="14961e" />
+    <Xref Database="" ID="" />
+  </DataNode>
+  <Shape GraphId="dc729">
+    <Attribute Key="org.pathvisio.CellularComponentProperty" Value="Vacuole" />
+    <Graphics CenterX="620.8953744493392" CenterY="193.58259911894274" Width="99.6189427312776" Height="81.99779735682824" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="Sarcoplasmic Reticulum" Rotation="0.0" />
+  </Shape>
+  <Group GroupId="ace47" Style="Pathway" TextLabel="asdf">
+    <Comment>aasdf</Comment>
+  </Group>
   <InfoBox CenterX="0.0" CenterY="0.0" />
   <Biopax>
     <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="e33">
