@@ -19,7 +19,6 @@ Pathvisiojs depends on the following JS libraries:
   * [d3](https://www.github.com/mbostock/d3/)
   * [jquery](https://www.github.com/components/jquery/)
   * [typeahead.js](https://www.github.com/twitter/typeahead.js/)
-  * [OpenSeadragon](https://www.github.com/openseadragon/openseadragon)
   * [Modernizr](https://www.github.com/Modernizr/Modernizr/)
   * [screenfull.js](https://www.github.com/sindresorhus/screenfull.js)
   * [svg-pan-zoom](https://www.github.com/ariutta/svg-pan-zoom/)
@@ -31,7 +30,7 @@ and the following stylesheets:
   * pathvisio-js.css
   * annotation.css
   * pan-zoom.css
-  * pathway-template.css
+  * pathway-diagram.css
 
 You can make it run in the browser by copying the following snippet:
 
@@ -40,14 +39,13 @@ You can make it run in the browser by copying the following snippet:
   <link rel="stylesheet" href="http://wikipathways.github.io/pathvisiojs/src/css/pathvisio-js.css" media="screen">
   <link rel="stylesheet" href="http://wikipathways.github.io/pathvisiojs/src/css/annotation.css" media="screen">
   <link rel="stylesheet" href="http://wikipathways.github.io/pathvisiojs/src/css/pan-zoom.css" media="screen">
-  <link rel="stylesheet" href="http://wikipathways.github.io/pathvisiojs/src/css/pathway-template.css" media="screen">
+  <link rel="stylesheet" href="http://wikipathways.github.io/pathvisiojs/src/css/pathway-diagram.css" media="screen">
   <script src="http://wikipathways.github.io/pathvisiojs/lib/rgb-color/rgb-color.min.js"></script>
   <script src="http://wikipathways.github.io/pathvisiojs/lib/strcase/build/build.js"></script>
   <script src="http://wikipathways.github.io/pathvisiojs/lib/async/lib/async.js"></script>
   <script src="http://wikipathways.github.io/pathvisiojs/lib/d3/d3.min.js"></script>
   <script src="http://wikipathways.github.io/pathvisiojs/lib/jquery/jquery.min.js"></script>
   <script src="http://wikipathways.github.io/pathvisiojs/lib/typeahead.js/dist/typeahead.min.js"></script>
-  <script src="http://wikipathways.github.io/pathvisiojs/lib/OpenSeadragon/build/openseadragon/openseadragon.min.js"></script>
   <script src="http://wikipathways.github.io/pathvisiojs/lib/modernizr/modernizr.js"></script>
   <script src="http://wikipathways.github.io/pathvisiojs/lib/screenfull/dist/screenfull.min.js"></script>
   <script src="http://wikipathways.github.io/pathvisiojs/lib/svg-pan-zoom/svg-pan-zoom.js"></script>
@@ -67,7 +65,6 @@ $scripts = array(
         "$wgScriptPath/wpi/lib/js/d3.min.js",
         "$wgScriptPath/wpi/lib/js/jquery.min.js",                                                                                                                                                                          
         "$wgScriptPath/wpi/lib/js/typeahead.min.js",
-        "$wgScriptPath/wpi/lib/js/openseadragon.min.js",
         "$wgScriptPath/wpi/lib/js/modernizr.js",                                                                                                                                                                           
         "$wgScriptPath/wpi/lib/js/screenfull.min.js",
         "$wgScriptPath/wpi/lib/js/svg-pan.js",
@@ -80,7 +77,7 @@ $libs = "<script type=\"text/javascript\">" . $scripts . "</script>
  <link rel=\"stylesheet\" href=\"http://wikipathways.github.io/pathvisiojs/src/css/pathvisio-js.css\" media=\"screen\" type=\"text/css\" />
  <link rel=\"stylesheet\" href=\"http://wikipathways.github.io/pathvisiojs/src/css/annotation.css\" media=\"screen\" type=\"text/css\" />
  <link rel=\"stylesheet\" href=\"http://wikipathways.github.io/pathvisiojs/src/css/pan-zoom.css\" media=\"screen\" type=\"text/css\" />
- <link rel=\"stylesheet\" href=\"http://wikipathways.github.io/pathvisiojs/src/css/pathway-template.css\" media=\"screen\" type=\"text/css\" />\n";
+ <link rel=\"stylesheet\" href=\"http://wikipathways.github.io/pathvisiojs/src/css/pathway-diagram.css\" media=\"screen\" type=\"text/css\" />\n";
                         
 ```
 How To Get Involved
@@ -107,7 +104,7 @@ your-github-account:gh-pages ... wikipathways:gh-pages
 2. Make Awesome Updates
 -----------------------
 * You can edit any of the files in the "src" directory of the gh-pages branch of your fork (https://github.com/your-github-account/pathvisiojs/tree/gh-pages/src/)
-* View your changes live at http://your-github-account.github.io/pathvisiojs/test/ (note the .IO)
+* View your changes locally or view them live at http://your-github-account.github.io/pathvisiojs/test/ (note the .IO)
 
 3. Send Us a Pull Request
 -------------------------
