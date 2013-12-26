@@ -7,8 +7,8 @@ Demos
 =====
 
 * [gh-pages](http://wikipathways.github.io/pathvisiojs/test/)
-* [JSBin](http://jsbin.com/iJUTEjU/latest)
-* [Widget example on JSFiddle](http://jsfiddle.net/ariutta/RzeKd/)
+* [Widget example on JSFiddle](http://jsfiddle.net/ariutta/RzeKd/2/) (outdated/still works)
+* [JSBin](http://jsbin.com/iJUTEjU/latest) (outdated/not-working)
 
 Installing
 ===================
