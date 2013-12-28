@@ -4,29 +4,29 @@
 function PathVisioJsElement() {}
 
 // set default values. "swing" refers to PathVisio-Java.
-PathVisioJsElement.color = {};
-PathVisioJsElement.color.swing = '000000';
-PathVisioJsElement.color.gpml = null;
+PathVisioJsElement.prototype.color = {};
+PathVisioJsElement.prototype.color.swing = '000000';
+PathVisioJsElement.prototype.color.gpml = null;
 
-PathVisioJsElement.fillColor = {};
-PathVisioJsElement.fillColor.swing = 'ffffff';
-PathVisioJsElement.fillColor.gpml = null;
+PathVisioJsElement.prototype.fillColor = {};
+PathVisioJsElement.prototype.fillColor.swing = 'ffffff';
+PathVisioJsElement.prototype.fillColor.gpml = null;
 
-PathVisioJsElement.lineStyle = {};
-PathVisioJsElement.lineStyle.swing = 'Solid';
-PathVisioJsElement.lineStyle.gpml = null;
+PathVisioJsElement.prototype.lineStyle = {};
+PathVisioJsElement.prototype.lineStyle.swing = 'Solid';
+PathVisioJsElement.prototype.lineStyle.gpml = null;
 
-PathVisioJsElement.fontSize = {};
-PathVisioJsElement.fontSize.swing = 10;
-PathVisioJsElement.fontSize.gpml = 10;
+PathVisioJsElement.prototype.fontSize = {};
+PathVisioJsElement.prototype.fontSize.swing = 10;
+PathVisioJsElement.prototype.fontSize.gpml = 10;
 
-PathVisioJsElement.fontWeight = {};
-PathVisioJsElement.fontWeight.swing = null;
-PathVisioJsElement.fontWeight.gpml = null;
+PathVisioJsElement.prototype.fontWeight = {};
+PathVisioJsElement.prototype.fontWeight.swing = null;
+PathVisioJsElement.prototype.fontWeight.gpml = null;
 
-PathVisioJsElement.fontName = {};
-PathVisioJsElement.fontName.swing = 'Arial';
-PathVisioJsElement.fontName.gpml = null;
+PathVisioJsElement.prototype.fontName = {};
+PathVisioJsElement.prototype.fontName.swing = 'Arial';
+PathVisioJsElement.prototype.fontName.gpml = null;
 
 // ************************
 // define the PathVisioJsNode class
@@ -38,27 +38,27 @@ function PathVisioJsNode() {
 PathVisioJsNode.prototype = new PathVisioJsElement();
 PathVisioJsNode.prototype.constructor = PathVisioJsNode;
 
-PathVisioJsNode.shapeType = PathVisioJsNode.backgroundImage = {};
-PathVisioJsNode.shapeType.swing = 'Rectangle';
-PathVisioJsNode.shapeType.gpml = 'Rectangle';
+PathVisioJsNode.prototype.shapeType = PathVisioJsNode.prototype.backgroundImage = {};
+PathVisioJsNode.prototype.shapeType.swing = 'Rectangle';
+PathVisioJsNode.prototype.shapeType.gpml = 'Rectangle';
 
-PathVisioJsNode.valign = PathVisioJsNode.verticalAlign = {};
-PathVisioJsNode.valign.swing = 'Middle';
-PathVisioJsNode.valign.gpml = 'Middle';
+PathVisioJsNode.prototype.valign = PathVisioJsNode.prototype.verticalAlign = {};
+PathVisioJsNode.prototype.valign.swing = 'Middle';
+PathVisioJsNode.prototype.valign.gpml = 'Middle';
 
-PathVisioJsNode.align = PathVisioJsNode.textAlign = {};
-PathVisioJsNode.align.swing = 'Center';
-PathVisioJsNode.align.gpml = null;
+PathVisioJsNode.prototype.align = PathVisioJsNode.prototype.textAlign = {};
+PathVisioJsNode.prototype.align.swing = 'Center';
+PathVisioJsNode.prototype.align.gpml = null;
 
-PathVisioJsNode.padding = {};
-PathVisioJsNode.padding.swing = '0.5em';
-PathVisioJsNode.padding.gpml = null;
+PathVisioJsNode.prototype.padding = {};
+PathVisioJsNode.prototype.padding.swing = '0.5em';
+PathVisioJsNode.prototype.padding.gpml = null;
 
-PathVisioJsNode.lineThickness = PathVisioJsNode.borderWidth = {};
-PathVisioJsNode.lineThickness.swing = 1;
-PathVisioJsNode.lineThickness.gpml = null;
+PathVisioJsNode.prototype.lineThickness = PathVisioJsNode.prototype.borderWidth = {};
+PathVisioJsNode.prototype.lineThickness.swing = 1;
+PathVisioJsNode.prototype.lineThickness.gpml = null;
 
-PathVisioJsNode.lineStyle = PathVisioJsNode.borderStyle;
+PathVisioJsNode.prototype.lineStyle = PathVisioJsNode.prototype.borderStyle;
 
 // ************************
 // define the EntityNode class
@@ -100,9 +100,9 @@ function Metabolite() {
 Metabolite.prototype = new DataNode();
 Metabolite.prototype.constructor = Metabolite;
 
-Metabolite.color = {};
-Metabolite.color.swing = '0000ff';
-Metabolite.color.gpml = '0000ff';
+Metabolite.prototype.color = {};
+Metabolite.prototype.color.swing = '0000ff';
+Metabolite.prototype.color.gpml = '0000ff';
 
 // ************************
 // define the Protein class
@@ -127,24 +127,24 @@ Rna.prototype.constructor = Rna;
 // ************************
 // define the Pathway class
 // ************************
-function Pathway() {
+function DataNodePathway() {
   DataNode.call(this);
 }
 
-Pathway.prototype = new DataNode();
-Pathway.prototype.constructor = Pathway;
+DataNodePathway.prototype = new DataNode();
+DataNodePathway.prototype.constructor = DataNodePathway;
 
-Pathway.color = {};
-Pathway.color.swing = '14961e';
-Pathway.color.gpml = '14961e';
+DataNodePathway.prototype.color = {};
+DataNodePathway.prototype.color.swing = '14961e';
+DataNodePathway.prototype.color.gpml = '14961e';
 
-Pathway.fontSize = {};
-Pathway.fontSize.swing = 12;
-Pathway.fontSize.gpml = 12;
+DataNodePathway.prototype.fontSize = {};
+DataNodePathway.prototype.fontSize.swing = 12;
+DataNodePathway.prototype.fontSize.gpml = 12;
 
-Pathway.fontWeight = {};
-Pathway.fontWeight.swing = 'Bold';
-Pathway.fontWeight.gpml = 'Bold';
+DataNodePathway.prototype.fontWeight = {};
+DataNodePathway.prototype.fontWeight.swing = 'Bold';
+DataNodePathway.prototype.fontWeight.gpml = 'Bold';
 
 // ************************
 // define the Unknown class
@@ -166,21 +166,21 @@ function GroupNode() {
 GroupNode.prototype = new PathVisioJsNode();
 GroupNode.prototype.constructor = GroupNode;
 
-GroupNode.fontSize = {};
-GroupNode.fontSize.swing = 32;
-GroupNode.fontSize.gpml = null;
+GroupNode.prototype.fontSize = {};
+GroupNode.prototype.fontSize.swing = 32;
+GroupNode.prototype.fontSize.gpml = null;
 
-GroupNode.fontName = GroupNode.fontFamily = {};
-GroupNode.fontName.swing = 'Times New Roman';
-GroupNode.fontName.gpml = null;
+GroupNode.prototype.fontName = GroupNode.prototype.fontFamily = {};
+GroupNode.prototype.fontName.swing = 'Times New Roman';
+GroupNode.prototype.fontName.gpml = null;
 
-GroupNode.padding = {};
-GroupNode.padding.swing = 8;
-GroupNode.padding.gpml = null;
+GroupNode.prototype.padding = {};
+GroupNode.prototype.padding.swing = 8;
+GroupNode.prototype.padding.gpml = null;
 
-GroupNode.lineThickness = GroupNode.borderWidth = {};
-GroupNode.lineThickness.swing = 0.4;
-GroupNode.lineThickness.gpml = undefined;
+GroupNode.prototype.lineThickness = GroupNode.prototype.borderWidth = {};
+GroupNode.prototype.lineThickness.swing = 0.4;
+GroupNode.prototype.lineThickness.gpml = undefined;
 
 // ************************
 // define the Complex class
@@ -192,17 +192,17 @@ function Complex() {
 Complex.prototype = new GroupNode();
 Complex.prototype.constructor = Complex;
 
-Complex.Style = Complex.backgroundImage = {};
-Complex.Style.swing = 'Complex';
-Complex.Style.gpml = 'Complex';
+Complex.prototype.Style = Complex.prototype.backgroundImage = {};
+Complex.prototype.Style.swing = 'Complex.prototype';
+Complex.prototype.Style.gpml = 'Complex.prototype';
 
-Complex.fillColor = Complex.backgroundColor = {};
-Complex.fillColor.swing = 'B4B464';
-Complex.fillColor.gpml = undefined;
+Complex.prototype.fillColor = Complex.prototype.backgroundColor = {};
+Complex.prototype.fillColor.swing = 'B4B464';
+Complex.prototype.fillColor.gpml = undefined;
 
-Complex.padding = {};
-Complex.padding.swing = 11;
-Complex.padding.gpml = null;
+Complex.prototype.padding = {};
+Complex.prototype.padding.swing = 11;
+Complex.prototype.padding.gpml = null;
 
 // ************************
 // define the Group class (note this is referring to
@@ -216,33 +216,33 @@ function Group() {
 Group.prototype = new GroupNode();
 Group.prototype.constructor = Group;
 
-Group.fillOpacity = {};
-Group.fillOpacity.swing = 0;
-Group.fillOpacity.gpml = undefined;
+Group.prototype.fillOpacity = {};
+Group.prototype.fillOpacity.swing = 0;
+Group.prototype.fillOpacity.gpml = undefined;
 
-Group.lineThickness = Group.borderWidth = {};
-Group.lineThickness.swing = 0;
-Group.lineThickness.gpml = undefined;
+Group.prototype.lineThickness = Group.prototype.borderWidth = {};
+Group.prototype.lineThickness.swing = 0;
+Group.prototype.lineThickness.gpml = undefined;
 
-Group.fillColor = Group.backgroundColor = {};
-Group.fillColor.swing = 'lightgreen';
-Group.fillColor.gpml = null;
+Group.prototype.fillColor = Group.prototype.backgroundColor = {};
+Group.prototype.fillColor.swing = 'lightgreen';
+Group.prototype.fillColor.gpml = null;
 
 // ************************
 // define the Pathway class (note this is referring to
 // Groups of Style Pathway. Be aware that DataNodes of
 // Type Pathway exist.)
 // ************************
-function Pathway() {
+function GroupNodePathway() {
   GroupNode.call(this);
 }
 
-Pathway.prototype = new GroupNode();
-Pathway.prototype.constructor = Pathway;
+GroupNodePathway.prototype = new GroupNode();
+GroupNodePathway.prototype.constructor = GroupNodePathway;
 
-Pathway.fillColor = Pathway.backgroundColor = {};
-Pathway.fillColor.swing = 'lightgreen';
-Pathway.fillColor.gpml = null;
+GroupNodePathway.prototype.fillColor = GroupNodePathway.prototype.backgroundColor = {};
+GroupNodePathway.prototype.fillColor.swing = 'lightgreen';
+GroupNodePathway.prototype.fillColor.gpml = null;
 
 // ************************
 // define the PathVisioJsEdge class
@@ -254,17 +254,17 @@ function PathVisioJsEdge() {
 PathVisioJsEdge.prototype = new PathVisioJsElement();
 PathVisioJsEdge.prototype.constructor = PathVisioJsEdge;
 
-PathVisioJsEdge.color = PathVisioJsEdge.stroke = {};
-PathVisioJsEdge.color.swing = '000000';
-PathVisioJsEdge.color.gpml = null;
+PathVisioJsEdge.prototype.color = PathVisioJsEdge.prototype.stroke = {};
+PathVisioJsEdge.prototype.color.swing = '000000';
+PathVisioJsEdge.prototype.color.gpml = null;
 
-PathVisioJsEdge.lineThickness = PathVisioJsEdge.strokeWidth = {};
-PathVisioJsEdge.lineThickness.swing = '000000';
-PathVisioJsEdge.lineThickness.gpml = null;
+PathVisioJsEdge.prototype.lineThickness = PathVisioJsEdge.prototype.strokeWidth = {};
+PathVisioJsEdge.prototype.lineThickness.swing = '000000';
+PathVisioJsEdge.prototype.lineThickness.gpml = null;
 
 // this is only approximately correct, because "double" is
 // not a valid value for stroke-dasharray.
-PathVisioJsEdge.lineStyle = PathVisioJsEdge.strokeDasharray;
+PathVisioJsEdge.prototype.lineStyle = PathVisioJsEdge.prototype.strokeDasharray;
 
 // TODO fill in any missing attributes for the elements defined above
 // and also add all the elements not yet defined, such as Shape, Label,
