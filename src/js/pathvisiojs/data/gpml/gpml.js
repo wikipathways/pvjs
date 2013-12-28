@@ -130,14 +130,7 @@ pathvisiojs.data.gpml = function(){
   }
 
   function toRenderableJson(gpml, pathwayIri, callbackOutside){
-    console.log('gpml');
-    console.log(gpml);
-    console.log('pathwayIri');
-    console.log(pathwayIri);
-    console.log('callbackOutside');
-    console.log(callbackOutside);
     var gpmlPathway = d3.select(gpml).select('Pathway');
-    self.mygpmlPathwayAsXmlDoc = gpmlPathway[0][0];
 
     // for doing this in Java, we could look at 
     // https://code.google.com/p/json-io/
@@ -145,29 +138,22 @@ pathvisiojs.data.gpml = function(){
     console.log('GPML');
     console.log(gpml);
 
-    var gpmlNamespace = null;
-    try {
-      gpmlNamespace = gpmlPathway.attr('xmlns');
-    }
-    catch (e) {
-      console.log(e.message);
-      return;
-    }
+    var pathway = {};
+    pathway.xmlns = gpmlPathway.attr('xmlns');
 
     // test for whether file is GPML
 
-    if ( pathvisiojs.data.gpml.namespaces.indexOf(gpmlNamespace) !== -1 ) {
+    if ( pathvisiojs.data.gpml.namespaces.indexOf(pathway.xmlns) !== -1 ) {
 
       // test for whether the GPML file version matches the latest version (only the latest version will be supported by pathvisiojs).
 
-      if (pathvisiojs.data.gpml.namespaces.indexOf(gpmlNamespace) !== 0) {
+      if (pathvisiojs.data.gpml.namespaces.indexOf(pathway.xmlns) !== 0) {
 
         // preferably, this would call the Java RPC updater for the file to be updated.
 
-        alert('Pathvisiojs may not fully support the version of GPML provided (xmlns: ' + gpmlNamespace + '). Please convert to the supported version of GPML (xmlns: ' + pathvisiojs.data.gpml.namespaces[0] + ').');
+        alert('Pathvisiojs may not fully support the version of GPML provided (xmlns: ' + pathway.xmlns + '). Please convert to the supported version of GPML (xmlns: ' + pathvisiojs.data.gpml.namespaces[0] + ').');
       }
 
-      var pathway = {};
       async.parallel({
           '@context': function(callback){
             pathvisiojs.context = pathway['@context'] = {
@@ -309,10 +295,6 @@ pathvisiojs.data.gpml = function(){
                 callback(null, 'No biopaxRefs to convert.');
               }
             });
-          },
-          xmlns: function(callback){
-            pathway.xmlns = gpmlPathway.attr('xmlns');
-            callback(null, pathway.xmlns);
           },
           DataSource: function(callback){
             var jsonDataSource = gpmlPathway.attr('Data-Source');
