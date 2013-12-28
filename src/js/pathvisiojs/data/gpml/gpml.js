@@ -414,7 +414,7 @@ pathvisiojs.data.gpml = function(){
               pathway.DataNode = [];
               dataNodes.each(function() {
                 gpmlDataNode = d3.select(this);
-                pathvisiojs.data.gpml.node.entityNode.dataNode.toRenderableJson(gpmlDataNode, pathwayIri, function(jsonDataNode) {
+                pathvisiojs.data.gpml.element.node.entityNode.dataNode.toRenderableJson(gpmlDataNode, pathwayIri, function(jsonDataNode) {
                   pathway.DataNode.push(jsonDataNode);
                 });
               })
@@ -430,7 +430,7 @@ pathvisiojs.data.gpml = function(){
               pathway.Label = [];
               gpmlPathway.selectAll('Label').each(function() {
                 gpmlLabel = d3.select(this);
-                pathvisiojs.data.gpml.node.entityNode.label.toRenderableJson(gpmlLabel, pathwayIri, function(jsonLabel) {
+                pathvisiojs.data.gpml.element.node.entityNode.label.toRenderableJson(gpmlLabel, pathwayIri, function(jsonLabel) {
                   pathway.Label.push(jsonLabel);
                 });
               })
@@ -446,7 +446,7 @@ pathvisiojs.data.gpml = function(){
               pathway.Shape = [];
               gpmlPathway.selectAll('Shape').each(function() {
                 gpmlShape = d3.select(this);
-                pathvisiojs.data.gpml.node.entityNode.shape.toRenderableJson(gpmlShape, pathwayIri, function(jsonShape) {
+                pathvisiojs.data.gpml.element.node.entityNode.shape.toRenderableJson(gpmlShape, pathwayIri, function(jsonShape) {
                   pathway.Shape.push(jsonShape);
                 });
               })
@@ -462,7 +462,7 @@ pathvisiojs.data.gpml = function(){
               pathway.Group = [];
               gpmlPathway.selectAll('Group').each(function() {
                 gpmlGroup = d3.select(this);
-                pathvisiojs.data.gpml.node.groupNode.toRenderableJson(gpml, gpmlGroup, pathwayIri, function(jsonGroup) {
+                pathvisiojs.data.gpml.element.node.groupNode.toRenderableJson(gpml, gpmlGroup, pathwayIri, function(jsonGroup) {
                   pathway.Group.push(jsonGroup);
                 });
               })
@@ -523,7 +523,7 @@ pathvisiojs.data.gpml = function(){
               // Some GPML files contain empty groups due to a PathVisio-Java bug. They should be deleted.
 
               if (!!jsonGroup.contains) {
-                pathvisiojs.data.gpml.node.groupNode.calculateImplicitRenderingData(jsonGroup, function(updatedJsonGroup) {
+                pathvisiojs.data.gpml.element.node.groupNode.calculateImplicitRenderingData(jsonGroup, function(updatedJsonGroup) {
                   console.log('jsonGroup in gpml.js');
                   console.log(jsonGroup);
                   jsonGroups.push(updatedJsonGroup);

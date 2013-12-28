@@ -1,5 +1,5 @@
 "use strict";
-pathvisiojs.data.gpml.node.entityNode.label = function(){
+pathvisiojs.data.gpml.element.node.entityNode.label = function(){
 
   var pathvisioDefaultStyleValues = {
     'Label':{
@@ -23,7 +23,7 @@ pathvisiojs.data.gpml.node.entityNode.label = function(){
     try {
       var jsonLabel = {};
       jsonLabel.nodeType = "Label";
-      pathvisiojs.data.gpml.node.entityNode.toRenderableJson(gpmlLabel, jsonLabel, pathvisioDefaultStyleValues.Label, pathwayIri, function(jsonLabel) {
+      pathvisiojs.data.gpml.element.node.entityNode.toRenderableJson(gpmlLabel, jsonLabel, pathvisioDefaultStyleValues.Label, pathwayIri, function(jsonLabel) {
         pathvisiojs.data.gpml.text.toRenderableJson(gpmlLabel, pathvisioDefaultStyleValues.Label, function(text) {
           if (!!text) {
             jsonLabel.text = text;
@@ -33,7 +33,7 @@ pathvisiojs.data.gpml.node.entityNode.label = function(){
                         gpmlLabel.select('Graphics').attr('Color'),
                         pathvisioDefaultStyleValues.Label.Color);
 
-          jsonLabel = pathvisiojs.data.gpml.node.setJsonBackgroundColor(jsonLabel,
+          jsonLabel = pathvisiojs.data.gpml.element.node.setJsonBackgroundColor(jsonLabel,
                         gpmlLabel.select('Graphics').attr('FillColor'),
                         pathvisioDefaultStyleValues.Label.FillColor);
 

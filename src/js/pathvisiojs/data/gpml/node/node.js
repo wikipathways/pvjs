@@ -2,31 +2,31 @@
 
 // includes GPML elements of type EntityNode and Group
 
-pathvisiojs.data.gpml.node = Object.create(pathvisiojs.data.gpml.element);
+pathvisiojs.data.gpml.element.node = Object.create(pathvisiojs.data.gpml.element);
 
-pathvisiojs.data.gpml.node.shapeType = pathvisiojs.data.gpml.node.backgroundImage = {};
-pathvisiojs.data.gpml.node.shapeType.swing = 'Rectangle';
-pathvisiojs.data.gpml.node.shapeType.gpml = 'Rectangle';
+pathvisiojs.data.gpml.element.node.shapeType = pathvisiojs.data.gpml.element.node.backgroundImage = {};
+pathvisiojs.data.gpml.element.node.shapeType.swing = 'Rectangle';
+pathvisiojs.data.gpml.element.node.shapeType.gpml = 'Rectangle';
 
-pathvisiojs.data.gpml.node.valign = pathvisiojs.data.gpml.node.verticalAlign = {};
-pathvisiojs.data.gpml.node.valign.swing = 'Middle';
-pathvisiojs.data.gpml.node.valign.gpml = 'Middle';
+pathvisiojs.data.gpml.element.node.valign = pathvisiojs.data.gpml.element.node.verticalAlign = {};
+pathvisiojs.data.gpml.element.node.valign.swing = 'Middle';
+pathvisiojs.data.gpml.element.node.valign.gpml = 'Middle';
 
-pathvisiojs.data.gpml.node.align = pathvisiojs.data.gpml.node.textAlign = {};
-pathvisiojs.data.gpml.node.align.swing = 'Center';
-pathvisiojs.data.gpml.node.align.gpml = null;
+pathvisiojs.data.gpml.element.node.align = pathvisiojs.data.gpml.element.node.textAlign = {};
+pathvisiojs.data.gpml.element.node.align.swing = 'Center';
+pathvisiojs.data.gpml.element.node.align.gpml = null;
 
-pathvisiojs.data.gpml.node.padding = {};
-pathvisiojs.data.gpml.node.padding.swing = '0.5em';
-pathvisiojs.data.gpml.node.padding.gpml = null;
+pathvisiojs.data.gpml.element.node.padding = {};
+pathvisiojs.data.gpml.element.node.padding.swing = '0.5em';
+pathvisiojs.data.gpml.element.node.padding.gpml = null;
 
-pathvisiojs.data.gpml.node.lineThickness = pathvisiojs.data.gpml.node.borderWidth = {};
-pathvisiojs.data.gpml.node.lineThickness.swing = 1;
-pathvisiojs.data.gpml.node.lineThickness.gpml = null;
+pathvisiojs.data.gpml.element.node.lineThickness = pathvisiojs.data.gpml.element.node.borderWidth = {};
+pathvisiojs.data.gpml.element.node.lineThickness.swing = 1;
+pathvisiojs.data.gpml.element.node.lineThickness.gpml = null;
 
-pathvisiojs.data.gpml.node.lineStyle = pathvisiojs.data.gpml.node.borderStyle;
+pathvisiojs.data.gpml.element.node.lineStyle = pathvisiojs.data.gpml.element.node.borderStyle;
 
-pathvisiojs.data.gpml.node.setJsonBackgroundColor = function(jsonNode, currentGpmlFillColorValue, defaultGpmlFillColorValue) {
+pathvisiojs.data.gpml.element.node.setJsonBackgroundColor = function(jsonNode, currentGpmlFillColorValue, defaultGpmlFillColorValue) {
   var jsonBackgroundColor;
   if (currentGpmlFillColorValue !== defaultGpmlFillColorValue) {
     jsonBackgroundColor = pathvisiojs.data.gpml.getColor(currentGpmlFillColorValue, defaultGpmlFillColorValue);
@@ -35,7 +35,7 @@ pathvisiojs.data.gpml.node.setJsonBackgroundColor = function(jsonNode, currentGp
   return jsonNode;
 }
 
-pathvisiojs.data.gpml.node.getPorts = function(jsonNode, callback) {
+pathvisiojs.data.gpml.element.node.getPorts = function(jsonNode, callback) {
   var getPerpendicularLine = function(sx, sy, rotate) {
     var rad = rotate * Math.PI/180;
     var sideAngleRotation = 2 * Math.PI - rad;
@@ -144,7 +144,7 @@ pathvisiojs.data.gpml.node.getPorts = function(jsonNode, callback) {
 
 // gpmlNode is NOT referring to data nodes exclusively. It is also referring to any other non-edge elements that can have anchors.
 
-pathvisiojs.data.gpml.node.toRenderableJson = function(gpmlNode, jsonNode, callback) {
+pathvisiojs.data.gpml.element.node.toRenderableJson = function(gpmlNode, jsonNode, callback) {
   jsonNode["@type"] = jsonNode["@type"] || [];
   jsonNode["@type"].push("node");
 
@@ -248,7 +248,7 @@ delete element.graphics;
 //*/
 }
 
-pathvisiojs.data.gpml.node.getPortCoordinates = function(boxDimensions, relX, relY) {
+pathvisiojs.data.gpml.element.node.getPortCoordinates = function(boxDimensions, relX, relY) {
   var port = {};
   port.x = boxDimensions.x + (relX * boxDimensions.width);
   port.y = boxDimensions.y + (relY * boxDimensions.height);

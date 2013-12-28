@@ -1,5 +1,5 @@
 "use strict";
-pathvisiojs.data.gpml.node.entityNode.shape = function(){
+pathvisiojs.data.gpml.element.node.entityNode.shape = function(){
 
   var pathvisioDefaultStyleValues = {
     'Shape':{
@@ -66,7 +66,7 @@ pathvisiojs.data.gpml.node.entityNode.shape = function(){
         thisPathvisioDefaultStyleValues = pathvisioDefaultStyleValues.Shape;
       }
 
-      pathvisiojs.data.gpml.node.entityNode.toRenderableJson(gpmlShape, jsonShape, thisPathvisioDefaultStyleValues, pathwayIri, function(jsonShape) {
+      pathvisiojs.data.gpml.element.node.entityNode.toRenderableJson(gpmlShape, jsonShape, thisPathvisioDefaultStyleValues, pathwayIri, function(jsonShape) {
 
         pathvisiojs.data.gpml.text.toRenderableJson(gpmlShape, thisPathvisioDefaultStyleValues, function(text) {
           if (!!text) {
@@ -77,11 +77,11 @@ pathvisiojs.data.gpml.node.entityNode.shape = function(){
                         gpmlShape.select('Graphics').attr('Color'),
                         thisPathvisioDefaultStyleValues.Color);
 
-          jsonShape = pathvisiojs.data.gpml.node.setJsonBackgroundColor(jsonShape,
+          jsonShape = pathvisiojs.data.gpml.element.node.setJsonBackgroundColor(jsonShape,
                         gpmlShape.select('Graphics').attr('FillColor'),
                         thisPathvisioDefaultStyleValues.FillColor);
 
-          jsonShape = pathvisiojs.data.gpml.node.entityNode.setJsonRotationValue(jsonShape,
+          jsonShape = pathvisiojs.data.gpml.element.node.entityNode.setJsonRotationValue(jsonShape,
                         gpmlShape.select('Graphics').attr('Rotation'),
                         thisPathvisioDefaultStyleValues.Rotation);
 

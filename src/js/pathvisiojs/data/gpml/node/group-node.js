@@ -1,5 +1,5 @@
 "use strict";
-pathvisiojs.data.gpml.node.groupNode = function() {
+pathvisiojs.data.gpml.element.node.groupNode = function() {
 
   var groupTypeToShapeTypeMappings = {
     'Complex':'complex',
@@ -106,7 +106,7 @@ pathvisiojs.data.gpml.node.groupNode = function() {
           jsonGroup.text.textAlign = 'center';
           jsonGroup.text.verticalAlign = 'middle';
         }
-        pathvisiojs.data.gpml.node.toRenderableJson(gpmlGroup, jsonGroup, function(jsonGroup) {
+        pathvisiojs.data.gpml.element.node.toRenderableJson(gpmlGroup, jsonGroup, function(jsonGroup) {
           callbackOutside(jsonGroup);
         });
       });
@@ -125,7 +125,7 @@ pathvisiojs.data.gpml.node.groupNode = function() {
         jsonGroup.y = dimensions.y;
         jsonGroup.width = dimensions.width;
         jsonGroup.height = dimensions.height;
-        pathvisiojs.data.gpml.node.getPorts(jsonGroup, function(ports) {
+        pathvisiojs.data.gpml.element.node.getPorts(jsonGroup, function(ports) {
           jsonGroup.Port = ports;
         });
       });
