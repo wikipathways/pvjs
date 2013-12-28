@@ -120,33 +120,14 @@ pathvisiojs.data.gpml.node.groupNode = function() {
     console.log('jsonGroup');
     console.log(jsonGroup);
     try {
-      async.series({
-        'dimensions': function(callback){
-              jsonGroup.x = 10;
-              jsonGroup.y = 20;
-              jsonGroup.width = 100;
-              jsonGroup.height = 50;
-              callback(null, jsonGroup);
-              /*
-            getGroupDimensions(jsonGroup, jsonGroup['contains'], function(dimensions) {
-              jsonGroup.x = dimensions.x;
-              jsonGroup.y = dimensions.y;
-              jsonGroup.width = dimensions.width;
-              jsonGroup.height = dimensions.height;
-              callback(null, dimensions);
-            });
-            //*/
-        },
-        'ports': function(callback){
-          pathvisiojs.data.gpml.node.getPorts(jsonGroup, function(ports) {
-            jsonGroup.Port = ports;
-            console.log('calling node');
-            console.log('jsonGroup in group-node.js');
-            console.log(jsonGroup);
-            console.log('jsonPorts');
-            callback(null, ports);
-          });
-        }
+      getGroupDimensions(jsonGroup, jsonGroup['contains'], function(dimensions) {
+        jsonGroup.x = dimensions.x;
+        jsonGroup.y = dimensions.y;
+        jsonGroup.width = dimensions.width;
+        jsonGroup.height = dimensions.height;
+        pathvisiojs.data.gpml.node.getPorts(jsonGroup, function(ports) {
+          jsonGroup.Port = ports;
+        });
       });
     }
     catch (e) {
