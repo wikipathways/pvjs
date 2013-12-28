@@ -1,274 +1,232 @@
 // ************************
-// define the PathVisioJsElement Class
+// define the Pathvisiojs Class
 // ************************
-function PathVisioJsElement() {}
+
+var Pathvisiojs = (function(){
+
+    var static_var; //static private var
+
+    var MyClass = function () {
+
+        var privateVar; //private
+        var privateFn = function(){}; //private 
+
+        this.someProperty = 5;  //public
+        this.anotherProperty = false;  //public
+        this.someFunction = function () {  //public
+            //do something
+        };
+    };
+
+    return MyClass;
+
+})();
+
+Pathvisiojs.Data = {};
+Pathvisiojs.Data.Gpml = {};
+
+// ************************
+// define the Pathvisiojs.Element Class
+// ************************
+
+Pathvisiojs.Element = Object.create(Pathvisiojs);
 
 // set default values. "swing" refers to PathVisio-Java.
-PathVisioJsElement.prototype.color = {};
-PathVisioJsElement.prototype.color.swing = '000000';
-PathVisioJsElement.prototype.color.gpml = null;
+Pathvisiojs.Element.color = {};
+Pathvisiojs.Element.color.swing = '000000';
+Pathvisiojs.Element.color.gpml = null;
 
-PathVisioJsElement.prototype.fillColor = {};
-PathVisioJsElement.prototype.fillColor.swing = 'ffffff';
-PathVisioJsElement.prototype.fillColor.gpml = null;
+Pathvisiojs.Element.fillColor = {};
+Pathvisiojs.Element.fillColor.swing = 'ffffff';
+Pathvisiojs.Element.fillColor.gpml = null;
 
-PathVisioJsElement.prototype.lineStyle = {};
-PathVisioJsElement.prototype.lineStyle.swing = 'Solid';
-PathVisioJsElement.prototype.lineStyle.gpml = null;
+Pathvisiojs.Element.lineStyle = {};
+Pathvisiojs.Element.lineStyle.swing = 'Solid';
+Pathvisiojs.Element.lineStyle.gpml = null;
 
-PathVisioJsElement.prototype.fontSize = {};
-PathVisioJsElement.prototype.fontSize.swing = 10;
-PathVisioJsElement.prototype.fontSize.gpml = 10;
+Pathvisiojs.Element.fontSize = {};
+Pathvisiojs.Element.fontSize.swing = 10;
+Pathvisiojs.Element.fontSize.gpml = 10;
 
-PathVisioJsElement.prototype.fontWeight = {};
-PathVisioJsElement.prototype.fontWeight.swing = null;
-PathVisioJsElement.prototype.fontWeight.gpml = null;
+Pathvisiojs.Element.fontWeight = {};
+Pathvisiojs.Element.fontWeight.swing = null;
+Pathvisiojs.Element.fontWeight.gpml = null;
 
-PathVisioJsElement.prototype.fontName = {};
-PathVisioJsElement.prototype.fontName.swing = 'Arial';
-PathVisioJsElement.prototype.fontName.gpml = null;
-
-// ************************
-// define the PathVisioJsNode class
-// ************************
-function PathVisioJsNode() {
-  PathVisioJsElement.call(this);
-}
-
-PathVisioJsNode.prototype = new PathVisioJsElement();
-PathVisioJsNode.prototype.constructor = PathVisioJsNode;
-
-PathVisioJsNode.prototype.shapeType = PathVisioJsNode.prototype.backgroundImage = {};
-PathVisioJsNode.prototype.shapeType.swing = 'Rectangle';
-PathVisioJsNode.prototype.shapeType.gpml = 'Rectangle';
-
-PathVisioJsNode.prototype.valign = PathVisioJsNode.prototype.verticalAlign = {};
-PathVisioJsNode.prototype.valign.swing = 'Middle';
-PathVisioJsNode.prototype.valign.gpml = 'Middle';
-
-PathVisioJsNode.prototype.align = PathVisioJsNode.prototype.textAlign = {};
-PathVisioJsNode.prototype.align.swing = 'Center';
-PathVisioJsNode.prototype.align.gpml = null;
-
-PathVisioJsNode.prototype.padding = {};
-PathVisioJsNode.prototype.padding.swing = '0.5em';
-PathVisioJsNode.prototype.padding.gpml = null;
-
-PathVisioJsNode.prototype.lineThickness = PathVisioJsNode.prototype.borderWidth = {};
-PathVisioJsNode.prototype.lineThickness.swing = 1;
-PathVisioJsNode.prototype.lineThickness.gpml = null;
-
-PathVisioJsNode.prototype.lineStyle = PathVisioJsNode.prototype.borderStyle;
+Pathvisiojs.Element.fontName = {};
+Pathvisiojs.Element.fontName.swing = 'Arial';
+Pathvisiojs.Element.fontName.gpml = null;
 
 // ************************
-// define the EntityNode class
+// define the Pathvisiojs.Element.Node class
 // ************************
-function EntityNode() {
-  PathVisioJsNode.call(this);
-}
+Pathvisiojs.Element.Node = Object.create(Pathvisiojs.Element);
 
-EntityNode.prototype = new PathVisioJsNode();
-EntityNode.prototype.constructor = EntityNode;
+Pathvisiojs.Element.Node.shapeType = Pathvisiojs.Element.Node.backgroundImage = {};
+Pathvisiojs.Element.Node.shapeType.swing = 'Rectangle';
+Pathvisiojs.Element.Node.shapeType.gpml = 'Rectangle';
 
-// ************************
-// define the DataNode class
-// ************************
-function DataNode() {
-  EntityNode.call(this);
-}
+Pathvisiojs.Element.Node.valign = Pathvisiojs.Element.Node.verticalAlign = {};
+Pathvisiojs.Element.Node.valign.swing = 'Middle';
+Pathvisiojs.Element.Node.valign.gpml = 'Middle';
 
-DataNode.prototype = new EntityNode();
-DataNode.prototype.constructor = DataNode;
+Pathvisiojs.Element.Node.align = Pathvisiojs.Element.Node.textAlign = {};
+Pathvisiojs.Element.Node.align.swing = 'Center';
+Pathvisiojs.Element.Node.align.gpml = null;
 
-// ************************
-// define the GeneProduct class
-// ************************
-function GeneProduct() {
-  DataNode.call(this);
-}
+Pathvisiojs.Element.Node.padding = {};
+Pathvisiojs.Element.Node.padding.swing = '0.5em';
+Pathvisiojs.Element.Node.padding.gpml = null;
 
-GeneProduct.prototype = new DataNode();
-GeneProduct.prototype.constructor = GeneProduct;
+Pathvisiojs.Element.Node.lineThickness = Pathvisiojs.Element.Node.borderWidth = {};
+Pathvisiojs.Element.Node.lineThickness.swing = 1;
+Pathvisiojs.Element.Node.lineThickness.gpml = null;
+
+Pathvisiojs.Element.Node.lineStyle = Pathvisiojs.Element.Node.borderStyle;
 
 // ************************
-// define the Metabolite class
+// define the Pathvisiojs.Element.Node.EntityNode class
 // ************************
-function Metabolite() {
-  DataNode.call(this);
-}
-
-Metabolite.prototype = new DataNode();
-Metabolite.prototype.constructor = Metabolite;
-
-Metabolite.prototype.color = {};
-Metabolite.prototype.color.swing = '0000ff';
-Metabolite.prototype.color.gpml = '0000ff';
+Pathvisiojs.Element.Node.EntityNode = Object.create(Pathvisiojs.Element.Node);
 
 // ************************
-// define the Protein class
+// define the Pathvisiojs.Element.Node.EntityNode.DataNode class
 // ************************
-function Protein() {
-  DataNode.call(this);
-}
-
-Protein.prototype = new DataNode();
-Protein.prototype.constructor = Protein;
+Pathvisiojs.Element.Node.EntityNode.DataNode = Object.create(Pathvisiojs.Element.Node.EntityNode);
 
 // ************************
-// define the Rna class
+// define the Pathvisiojs.Element.Node.EntityNode.DataNode.GeneProduct class
 // ************************
-function Rna() {
-  DataNode.call(this);
-}
+Pathvisiojs.Element.Node.EntityNode.DataNode.GeneProduct = Object.create(Pathvisiojs.Element.Node.EntityNode.DataNode);
 
-Rna.prototype = new DataNode();
-Rna.prototype.constructor = Rna;
+// ************************
+// define the Pathvisiojs.Element.Node.EntityNode.DataNode.Metabolite class
+// ************************
+Pathvisiojs.Element.Node.EntityNode.DataNode.Metabolite = Object.create(Pathvisiojs.Element.Node.EntityNode.DataNode);
+
+Pathvisiojs.Element.Node.EntityNode.DataNode.Metabolite.color = {};
+Pathvisiojs.Element.Node.EntityNode.DataNode.Metabolite.color.swing = '0000ff';
+Pathvisiojs.Element.Node.EntityNode.DataNode.Metabolite.color.gpml = '0000ff';
+
+// ************************
+// define the Pathvisiojs.Element.Node.EntityNode.DataNode.Protein class
+// ************************
+Pathvisiojs.Element.Node.EntityNode.DataNode.Protein = Object.create(Pathvisiojs.Element.Node.EntityNode.DataNode);
+
+// ************************
+// define the Pathvisiojs.Element.Node.EntityNode.DataNode.Rna class
+// ************************
+Pathvisiojs.Element.Node.EntityNode.DataNode.Rna = Object.create(Pathvisiojs.Element.Node.EntityNode.DataNode);
 
 // ************************
 // define the Pathway class
 // ************************
-function DataNodePathway() {
-  DataNode.call(this);
-}
+Pathvisiojs.Element.Node.EntityNode.DataNode.Pathway = Object.create(Pathvisiojs.Element.Node.EntityNode.DataNode);
 
-DataNodePathway.prototype = new DataNode();
-DataNodePathway.prototype.constructor = DataNodePathway;
+Pathvisiojs.Element.Node.EntityNode.DataNode.Pathway.color = {};
+Pathvisiojs.Element.Node.EntityNode.DataNode.Pathway.color.swing = '14961e';
+Pathvisiojs.Element.Node.EntityNode.DataNode.Pathway.color.gpml = '14961e';
 
-DataNodePathway.prototype.color = {};
-DataNodePathway.prototype.color.swing = '14961e';
-DataNodePathway.prototype.color.gpml = '14961e';
+Pathvisiojs.Element.Node.EntityNode.DataNode.Pathway.fontSize = {};
+Pathvisiojs.Element.Node.EntityNode.DataNode.Pathway.fontSize.swing = 12;
+Pathvisiojs.Element.Node.EntityNode.DataNode.Pathway.fontSize.gpml = 12;
 
-DataNodePathway.prototype.fontSize = {};
-DataNodePathway.prototype.fontSize.swing = 12;
-DataNodePathway.prototype.fontSize.gpml = 12;
-
-DataNodePathway.prototype.fontWeight = {};
-DataNodePathway.prototype.fontWeight.swing = 'Bold';
-DataNodePathway.prototype.fontWeight.gpml = 'Bold';
+Pathvisiojs.Element.Node.EntityNode.DataNode.Pathway.fontWeight = {};
+Pathvisiojs.Element.Node.EntityNode.DataNode.Pathway.fontWeight.swing = 'Bold';
+Pathvisiojs.Element.Node.EntityNode.DataNode.Pathway.fontWeight.gpml = 'Bold';
 
 // ************************
-// define the Unknown class
+// define the Pathvisiojs.Element.Node.EntityNode.DataNode.Unknown class
 // ************************
-function Unknown() {
-  DataNode.call(this);
-}
-
-Unknown.prototype = new DataNode();
-Unknown.prototype.constructor = Unknown;
+Pathvisiojs.Element.Node.EntityNode.DataNode.Unknown = Object.create(Pathvisiojs.Element.Node.EntityNode.DataNode);
 
 // ************************
-// define the GroupNode class
+// define the Pathvisiojs.Element.Node.GroupNode class
 // ************************
-function GroupNode() {
-  PathVisioJsNode.call(this);
-}
+Pathvisiojs.Element.Node.GroupNode = Object.create(Pathvisiojs.Element.Node);
 
-GroupNode.prototype = new PathVisioJsNode();
-GroupNode.prototype.constructor = GroupNode;
+Pathvisiojs.Element.Node.GroupNode.fontSize = {};
+Pathvisiojs.Element.Node.GroupNode.fontSize.swing = 32;
+Pathvisiojs.Element.Node.GroupNode.fontSize.gpml = null;
 
-GroupNode.prototype.fontSize = {};
-GroupNode.prototype.fontSize.swing = 32;
-GroupNode.prototype.fontSize.gpml = null;
+Pathvisiojs.Element.Node.GroupNode.fontName = Pathvisiojs.Element.Node.GroupNode.fontFamily = {};
+Pathvisiojs.Element.Node.GroupNode.fontName.swing = 'Times New Roman';
+Pathvisiojs.Element.Node.GroupNode.fontName.gpml = null;
 
-GroupNode.prototype.fontName = GroupNode.prototype.fontFamily = {};
-GroupNode.prototype.fontName.swing = 'Times New Roman';
-GroupNode.prototype.fontName.gpml = null;
+Pathvisiojs.Element.Node.GroupNode.padding = {};
+Pathvisiojs.Element.Node.GroupNode.padding.swing = 8;
+Pathvisiojs.Element.Node.GroupNode.padding.gpml = null;
 
-GroupNode.prototype.padding = {};
-GroupNode.prototype.padding.swing = 8;
-GroupNode.prototype.padding.gpml = null;
-
-GroupNode.prototype.lineThickness = GroupNode.prototype.borderWidth = {};
-GroupNode.prototype.lineThickness.swing = 0.4;
-GroupNode.prototype.lineThickness.gpml = undefined;
+Pathvisiojs.Element.Node.GroupNode.lineThickness = Pathvisiojs.Element.Node.GroupNode.borderWidth = {};
+Pathvisiojs.Element.Node.GroupNode.lineThickness.swing = 0.4;
+Pathvisiojs.Element.Node.GroupNode.lineThickness.gpml = undefined;
 
 // ************************
-// define the Complex class
+// define the Pathvisiojs.Element.Node.GroupNode.Complex class
 // ************************
-function Complex() {
-  GroupNode.call(this);
-}
+Pathvisiojs.Element.Node.GroupNode.Complex = Object.create(Pathvisiojs.Element.Node.GroupNode);
 
-Complex.prototype = new GroupNode();
-Complex.prototype.constructor = Complex;
+Pathvisiojs.Element.Node.GroupNode.Complex.Style = Pathvisiojs.Element.Node.GroupNode.Complex.backgroundImage = {};
+Pathvisiojs.Element.Node.GroupNode.Complex.Style.swing = 'Pathvisiojs.Element.Node.GroupNode.Complex';
+Pathvisiojs.Element.Node.GroupNode.Complex.Style.gpml = 'Pathvisiojs.Element.Node.GroupNode.Complex';
 
-Complex.prototype.Style = Complex.prototype.backgroundImage = {};
-Complex.prototype.Style.swing = 'Complex.prototype';
-Complex.prototype.Style.gpml = 'Complex.prototype';
+Pathvisiojs.Element.Node.GroupNode.Complex.fillColor = Pathvisiojs.Element.Node.GroupNode.Complex.backgroundColor = {};
+Pathvisiojs.Element.Node.GroupNode.Complex.fillColor.swing = 'B4B464';
+Pathvisiojs.Element.Node.GroupNode.Complex.fillColor.gpml = undefined;
 
-Complex.prototype.fillColor = Complex.prototype.backgroundColor = {};
-Complex.prototype.fillColor.swing = 'B4B464';
-Complex.prototype.fillColor.gpml = undefined;
-
-Complex.prototype.padding = {};
-Complex.prototype.padding.swing = 11;
-Complex.prototype.padding.gpml = null;
+Pathvisiojs.Element.Node.GroupNode.Complex.padding = {};
+Pathvisiojs.Element.Node.GroupNode.Complex.padding.swing = 11;
+Pathvisiojs.Element.Node.GroupNode.Complex.padding.gpml = null;
 
 // ************************
-// define the Group class (note this is referring to
+// define the Pathvisiojs.Element.Node.GroupNode.Group class (note this is referring to
 // the GroupStyle named "Group". Groups in general
-// are GroupNodes.)
+// are Pathvisiojs.Element.Node.GroupNodes.)
 // ************************
-function Group() {
-  GroupNode.call(this);
-}
+Pathvisiojs.Element.Node.GroupNode.Group = Object.create(Pathvisiojs.Element.Node.GroupNode);
 
-Group.prototype = new GroupNode();
-Group.prototype.constructor = Group;
+Pathvisiojs.Element.Node.GroupNode.Group.fillOpacity = {};
+Pathvisiojs.Element.Node.GroupNode.Group.fillOpacity.swing = 0;
+Pathvisiojs.Element.Node.GroupNode.Group.fillOpacity.gpml = undefined;
 
-Group.prototype.fillOpacity = {};
-Group.prototype.fillOpacity.swing = 0;
-Group.prototype.fillOpacity.gpml = undefined;
+Pathvisiojs.Element.Node.GroupNode.Group.lineThickness = Pathvisiojs.Element.Node.GroupNode.Group.borderWidth = {};
+Pathvisiojs.Element.Node.GroupNode.Group.lineThickness.swing = 0;
+Pathvisiojs.Element.Node.GroupNode.Group.lineThickness.gpml = undefined;
 
-Group.prototype.lineThickness = Group.prototype.borderWidth = {};
-Group.prototype.lineThickness.swing = 0;
-Group.prototype.lineThickness.gpml = undefined;
-
-Group.prototype.fillColor = Group.prototype.backgroundColor = {};
-Group.prototype.fillColor.swing = 'lightgreen';
-Group.prototype.fillColor.gpml = null;
+Pathvisiojs.Element.Node.GroupNode.Group.fillColor = Pathvisiojs.Element.Node.GroupNode.Group.backgroundColor = {};
+Pathvisiojs.Element.Node.GroupNode.Group.fillColor.swing = 'lightgreen';
+Pathvisiojs.Element.Node.GroupNode.Group.fillColor.gpml = null;
 
 // ************************
 // define the Pathway class (note this is referring to
-// Groups of Style Pathway. Be aware that DataNodes of
+// Groups of Style Pathway. Be aware that Pathvisiojs.Element.Node.EntityNode.DataNodes of
 // Type Pathway exist.)
 // ************************
-function GroupNodePathway() {
-  GroupNode.call(this);
-}
+Pathvisiojs.Element.Node.GroupNode.Pathway = Object.create(Pathvisiojs.Element.Node.GroupNode);
 
-GroupNodePathway.prototype = new GroupNode();
-GroupNodePathway.prototype.constructor = GroupNodePathway;
-
-GroupNodePathway.prototype.fillColor = GroupNodePathway.prototype.backgroundColor = {};
-GroupNodePathway.prototype.fillColor.swing = 'lightgreen';
-GroupNodePathway.prototype.fillColor.gpml = null;
+Pathvisiojs.Element.Node.GroupNode.Pathway.fillColor = Pathvisiojs.Element.Node.GroupNode.Pathway.backgroundColor = {};
+Pathvisiojs.Element.Node.GroupNode.Pathway.fillColor.swing = 'lightgreen';
+Pathvisiojs.Element.Node.GroupNode.Pathway.fillColor.gpml = null;
 
 // ************************
-// define the PathVisioJsEdge class
+// define the Pathvisiojs.Element.Edge class
 // ************************
-function PathVisioJsEdge() {
-  PathVisioJsElement.call(this);
-}
+Pathvisiojs.Element.Edge = Object.create(Pathvisiojs.Element);
 
-PathVisioJsEdge.prototype = new PathVisioJsElement();
-PathVisioJsEdge.prototype.constructor = PathVisioJsEdge;
+Pathvisiojs.Element.Edge.color = Pathvisiojs.Element.Edge.stroke = {};
+Pathvisiojs.Element.Edge.color.swing = '000000';
+Pathvisiojs.Element.Edge.color.gpml = null;
 
-PathVisioJsEdge.prototype.color = PathVisioJsEdge.prototype.stroke = {};
-PathVisioJsEdge.prototype.color.swing = '000000';
-PathVisioJsEdge.prototype.color.gpml = null;
-
-PathVisioJsEdge.prototype.lineThickness = PathVisioJsEdge.prototype.strokeWidth = {};
-PathVisioJsEdge.prototype.lineThickness.swing = '000000';
-PathVisioJsEdge.prototype.lineThickness.gpml = null;
+Pathvisiojs.Element.Edge.lineThickness = Pathvisiojs.Element.Edge.strokeWidth = {};
+Pathvisiojs.Element.Edge.lineThickness.swing = '000000';
+Pathvisiojs.Element.Edge.lineThickness.gpml = null;
 
 // this is only approximately correct, because "double" is
 // not a valid value for stroke-dasharray.
-PathVisioJsEdge.prototype.lineStyle = PathVisioJsEdge.prototype.strokeDasharray;
+Pathvisiojs.Element.Edge.lineStyle = Pathvisiojs.Element.Edge.strokeDasharray;
 
 // TODO fill in any missing attributes for the elements defined above
 // and also add all the elements not yet defined, such as Shape, Label,
 // Interaction, GraphicalLine...
 //
 // The inheritance currently does not allow me to get a default color
-// for a GeneProduct.
+// for a Pathvisiojs.Element.Node.EntityNode.DataNode.GeneProduct.

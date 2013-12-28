@@ -40,7 +40,6 @@ pathvisiojs.data.gpml.node.entityNode.dataNode = function() {
 
 
   function toRenderableJson(gpmlDataNode, pathwayIri, callbackInside) {
-    try {
       var jsonDataNode = {};
       var dataNodeType = gpmlDataNode.attr('Type');
       if (!dataNodeType) {
@@ -86,10 +85,6 @@ pathvisiojs.data.gpml.node.entityNode.dataNode = function() {
           callbackInside(jsonDataNode);
         });
       });
-    }
-    catch (e) {
-      throw new Error("Error converting DataNode or Port to renderable json: " + e.message);
-    }
   }
 
   return {
