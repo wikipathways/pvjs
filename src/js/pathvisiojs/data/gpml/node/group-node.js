@@ -46,7 +46,7 @@ pathvisiojs.data.gpml.node.groupNode = function() {
     });
   }
 
-  function toRenderableJson(pathway, gpmlGroup, pathwayIri, callbackInside) {
+  function toRenderableJson(pathway, gpmlGroup, pathwayIri, callbackOutside) {
     try {
       var jsonGroup = {},
       groupId;
@@ -107,7 +107,7 @@ pathvisiojs.data.gpml.node.groupNode = function() {
           jsonGroup.text.verticalAlign = 'middle';
         }
         pathvisiojs.data.gpml.node.toRenderableJson(gpmlGroup, jsonGroup, function(jsonGroup) {
-          callbackInside(jsonGroup);
+          callbackOutside(jsonGroup);
         });
       });
     }
@@ -116,19 +116,26 @@ pathvisiojs.data.gpml.node.groupNode = function() {
     }
   }
 
-  function calculateImplicitRenderingData(jsonGroup, callbackInside) {
+  function calculateImplicitRenderingData(jsonGroup, callbackOutside) {
     console.log('jsonGroup');
     console.log(jsonGroup);
     try {
       async.series({
         'dimensions': function(callback){
-            var dimensions = getGroupDimensions(jsonGroup, jsonGroup['contains'], function(dimensions) {
+              jsonGroup.x = 10;
+              jsonGroup.y = 20;
+              jsonGroup.width = 100;
+              jsonGroup.height = 50;
+              callback(null, jsonGroup);
+              /*
+            getGroupDimensions(jsonGroup, jsonGroup['contains'], function(dimensions) {
               jsonGroup.x = dimensions.x;
               jsonGroup.y = dimensions.y;
               jsonGroup.width = dimensions.width;
               jsonGroup.height = dimensions.height;
               callback(null, dimensions);
             });
+            //*/
         },
         'ports': function(callback){
           pathvisiojs.data.gpml.node.getPorts(jsonGroup, function(ports) {
@@ -140,14 +147,13 @@ pathvisiojs.data.gpml.node.groupNode = function() {
             callback(null, ports);
           });
         }
-        //*/
-      },
-      function(err, results) {
-        callbackInside(jsonGroup);
       });
     }
     catch (e) {
       throw new Error("Error converting Group to renderable json: " + e.message);
+    }
+    finally {
+      callbackOutside(jsonGroup);
     }
   }
 
