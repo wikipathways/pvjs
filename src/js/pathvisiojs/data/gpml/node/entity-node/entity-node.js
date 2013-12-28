@@ -12,84 +12,77 @@ pathvisiojs.data.gpml.node.entityNode = function() {
   }
 
   function toRenderableJson(gpmlEntityNode, jsonEntityNode, pathvisioDefaultStyleValues, pathwayIri, EntityNodeCallback) {
-    try {
-      var graphId = gpmlEntityNode.attr('GraphId') || ('id' + uuid.v4());
-      jsonEntityNode["@id"] = pathwayIri + graphId;
-      jsonEntityNode.GraphId = graphId;
+    var graphId = gpmlEntityNode.attr('GraphId') || ('id' + uuid.v4());
+    jsonEntityNode["@id"] = pathwayIri + graphId;
+    jsonEntityNode.GraphId = graphId;
 
-      var isContainedBy = gpmlEntityNode.attr('GroupRef');
-      if (!!isContainedBy) {
-        jsonEntityNode.isContainedBy = pathwayIri + isContainedBy;
-      }
+    var isContainedBy = gpmlEntityNode.attr('GroupRef');
+    if (!!isContainedBy) {
+      jsonEntityNode.isContainedBy = pathwayIri + isContainedBy;
+    }
 
-      var shapeType = gpmlEntityNode.select('Graphics').attr('ShapeType') || 'rectangle';
-      if (shapeType === 'None') {
-        shapeType = 'rectangle';
-      }
-      shapeType = strcase.paramCase(shapeType);
-      jsonEntityNode.ShapeType = shapeType;
-      jsonEntityNode.zIndex = parseFloat(gpmlEntityNode.select('Graphics').attr('ZOrder'));
-      jsonEntityNode.renderableType = 'EntityNode';
+    var shapeType = gpmlEntityNode.select('Graphics').attr('ShapeType') || 'rectangle';
+    if (shapeType === 'None') {
+      shapeType = 'rectangle';
+    }
+    shapeType = strcase.paramCase(shapeType);
+    jsonEntityNode.ShapeType = shapeType;
+    jsonEntityNode.zIndex = parseFloat(gpmlEntityNode.select('Graphics').attr('ZOrder'));
+    jsonEntityNode.renderableType = 'EntityNode';
 
-      jsonEntityNode["@type"] = jsonEntityNode["@type"] || [];
-      jsonEntityNode["@type"].push("EntityNode");
-      jsonEntityNode["@type"].push(shapeType);
-      var groupedStatus = isContainedBy || 'notGrouped';
-      jsonEntityNode["@type"].push(groupedStatus);
+    jsonEntityNode["@type"] = jsonEntityNode["@type"] || [];
+    jsonEntityNode["@type"].push("EntityNode");
+    jsonEntityNode["@type"].push(shapeType);
+    var groupedStatus = isContainedBy || 'notGrouped';
+    jsonEntityNode["@type"].push(groupedStatus);
 
-      var borderWidth = gpmlEntityNode.select('Graphics').attr('LineThickness');
-      if (borderWidth !== pathvisioDefaultStyleValues.LineThickness) {
-        jsonEntityNode.borderWidth = parseFloat(borderWidth);
-      }
-      // TODO get the actual default value instead of just assuming a value of 1
-      borderWidth = jsonEntityNode.borderWidth || 1;
+    var borderWidth = gpmlEntityNode.select('Graphics').attr('LineThickness');
+    if (borderWidth !== pathvisioDefaultStyleValues.LineThickness) {
+      jsonEntityNode.borderWidth = parseFloat(borderWidth);
+    }
+    // TODO get the actual default value instead of just assuming a value of 1
+    borderWidth = jsonEntityNode.borderWidth || 1;
 
-      // exactly what is meant by "width" and "height" is not clearly specified in GPML,
-      // so I analyzed examples by visually inspecting the rendering in PathVisio-Java, at
-      // a zoom level that made for easy reading of DataNodes at their default size.
-      // This analysis indicates the following meaning for GPML width in CSS2.1 box-model terms:
-      // gpmlWidth = elementWidth + elementPadding + elementBorderWidth (1/2 on each side = 1)
-      // with a similar calculation for gpmlHeight
+    // exactly what is meant by "width" and "height" is not clearly specified in GPML,
+    // so I analyzed examples by visually inspecting the rendering in PathVisio-Java, at
+    // a zoom level that made for easy reading of DataNodes at their default size.
+    // This analysis indicates the following meaning for GPML width in CSS2.1 box-model terms:
+    // gpmlWidth = elementWidth + elementPadding + elementBorderWidth (1/2 on each side = 1)
+    // with a similar calculation for gpmlHeight
 
-      var gpmlWidth = parseFloat(gpmlEntityNode.select('Graphics').attr('Width'));
-      jsonEntityNode.width = gpmlWidth + borderWidth;
+    var gpmlWidth = parseFloat(gpmlEntityNode.select('Graphics').attr('Width'));
+    jsonEntityNode.width = gpmlWidth + borderWidth;
 
-      var gpmlHeight = parseFloat(gpmlEntityNode.select('Graphics').attr('Height'));
-      jsonEntityNode.height = gpmlHeight + borderWidth;
+    var gpmlHeight = parseFloat(gpmlEntityNode.select('Graphics').attr('Height'));
+    jsonEntityNode.height = gpmlHeight + borderWidth;
 
-      var centerX = parseFloat(gpmlEntityNode.select('Graphics').attr('CenterX'));
-      jsonEntityNode.x = centerX - gpmlWidth/2;
+    var centerX = parseFloat(gpmlEntityNode.select('Graphics').attr('CenterX'));
+    jsonEntityNode.x = centerX - gpmlWidth/2;
 
-      var centerY = parseFloat(gpmlEntityNode.select('Graphics').attr('CenterY'));
-      jsonEntityNode.y = centerY - gpmlHeight/2;
+    var centerY = parseFloat(gpmlEntityNode.select('Graphics').attr('CenterY'));
+    jsonEntityNode.y = centerY - gpmlHeight/2;
 
-      jsonEntityNode.padding = "0.5em";
+    jsonEntityNode.padding = "0.5em";
 
-      var attributes = gpmlEntityNode.selectAll('Attribute');
-      var doubleProperty;
-      if (attributes.length > 0) {
-        doubleProperty = attributes.filter(function(d, i) {
-          return d3.select(this).attr('Key') === 'org.pathvisio.DoubleLineProperty' && d3.select(this).attr('Value') === 'Double';
-        });
-        if (doubleProperty[0].length > 0) {
-          jsonEntityNode.ShapeType = shapeType + '-double';
-        }
-      }
-
-      pathvisiojs.data.gpml.node.getPorts(jsonEntityNode, function(ports) {
-        console.log('ports');
-        console.log(ports);
-        jsonEntityNode.Port = ports;
-        pathvisiojs.data.gpml.node.toRenderableJson(gpmlEntityNode, jsonEntityNode, function(jsonEntityNode) {
-          EntityNodeCallback(jsonEntityNode, ports);
-        });
+    var attributes = gpmlEntityNode.selectAll('Attribute');
+    var doubleProperty;
+    if (attributes.length > 0) {
+      doubleProperty = attributes.filter(function(d, i) {
+        return d3.select(this).attr('Key') === 'org.pathvisio.DoubleLineProperty' && d3.select(this).attr('Value') === 'Double';
       });
-
-
+      if (doubleProperty[0].length > 0) {
+        jsonEntityNode.ShapeType = shapeType + '-double';
+      }
     }
-    catch (e) {
-      throw new Error("Error converting EntityNode or Port to renderable json: " + e.message);
-    }
+
+    pathvisiojs.data.gpml.node.getPorts(jsonEntityNode, function(ports) {
+      console.log('ports');
+      console.log(ports);
+      jsonEntityNode.Port = ports;
+      pathvisiojs.data.gpml.node.toRenderableJson(gpmlEntityNode, jsonEntityNode, function(jsonEntityNode) {
+        EntityNodeCallback(jsonEntityNode, ports);
+      });
+    });
   }
 
   return {
