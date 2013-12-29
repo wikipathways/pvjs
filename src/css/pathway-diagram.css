@@ -27,6 +27,7 @@
 
 	text {
 		font-family: Sans-Serif, Helvetica, Arial;
+		vertical-align: bottom;
 		font-size: 10px;
 		fill: black;
 		fill-opacity: 1;
@@ -49,6 +50,7 @@
 	}
 
 	.data-node {
+		text-align: right;
 		fill-opacity: 1;
 		fill: white;
 		stroke: black;

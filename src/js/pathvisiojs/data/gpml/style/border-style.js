@@ -474,7 +474,7 @@ pathvisiojs.data.gpml.style.borderStyle = function(){
 
   return {
     toRenderableJson:toRenderableJson,
-    getColor:getColor,
+    gpmlColorToCssColor:gpmlColorToCssColor,
     setColorAsJson:setColorAsJson
   };
 }();
