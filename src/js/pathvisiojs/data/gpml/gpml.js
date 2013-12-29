@@ -8,7 +8,7 @@ pathvisiojs.data.gpml = function(){
     }
   }
 
-  function getColor(gpmlColor, pathvisioDefault) {
+  function gpmlColorToCssColor(gpmlColor, pathvisioDefault) {
     var color;
     if (gpmlColor !== pathvisioDefault) {
       if (!!gpmlColor) {
@@ -32,7 +32,7 @@ pathvisiojs.data.gpml = function(){
   function setColorAsJson(jsonElement, currentGpmlColorValue, defaultGpmlColorValue) {
     var jsonColor;
     if (currentGpmlColorValue !== defaultGpmlColorValue) {
-      jsonColor = getColor(currentGpmlColorValue, defaultGpmlColorValue);
+      jsonColor = gpmlColorToCssColor(currentGpmlColorValue, defaultGpmlColorValue);
       jsonElement.color = jsonColor;
       jsonElement.borderColor = jsonColor;
       if (jsonElement.hasOwnProperty('text')) {
@@ -624,7 +624,7 @@ pathvisiojs.data.gpml = function(){
     getLineStyle:getLineStyle,
     getBorderStyle:getBorderStyle,
     setBorderStyleAsJson:setBorderStyleAsJson,
-    getColor:getColor,
+    gpmlColorToCssColor:gpmlColorToCssColor,
     setColorAsJson:setColorAsJson
   };
 }();
