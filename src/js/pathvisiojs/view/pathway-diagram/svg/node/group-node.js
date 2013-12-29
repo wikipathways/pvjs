@@ -14,7 +14,7 @@ pathvisiojs.view.pathwayDiagram.svg.node.groupNode = function(){
 
     pathvisiojs.view.pathwayDiagram.svg.node.render(args, function(groupContainer) {
       groupContainer.attr("class", function (d) {
-        var cssClass = 'group ' + strcase.paramCase(d.groupType) + ' ';
+        var cssClass = 'group-node ' + strcase.paramCase(d.groupType) + ' ';
         return cssClass;
       })
 
