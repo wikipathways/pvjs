@@ -16,148 +16,47 @@ pathvisiojs.view.pathwayDiagram.svg.node.text = function(){
     'justify': null
     //*/
 
-  // TODO make a better caching system
-  var cachedFontSize = 12;
-  var cachedPadding = 5;
-
-  function getTextAnchor(tspan0, cssTextAlignValue) {
-    var direction, textAnchor;
-    if (cssTextAlignValue === 'center') {
-      textAnchor = 'middle';
-    }
-    else {
-      if (cssTextAlignValue === 'left' || cssTextAlignValue === 'right') {
-        direction = pathvisiojs.utilities.getTextDirection('tspan0');
-        if (direction === 'ltr') {
-          if (cssTextAlignValue === 'left') {
-            textAnchor = 'start';
-          }
-          else {
-            textAnchor = 'end';
-          }
-        }
-        else {
-          if (cssTextAlignValue === 'left') {
-            textAnchor = 'end';
-          }
-          else {
-            textAnchor = 'start';
-          }
-        }
-      }
-    }
-    return textAnchor;
-  };
-
-  function applyTextAlign(d) {
-    console.log('repositioning text');
-    var element = this;
-    var dx, dy;
-    var computedStyle = window.getComputedStyle(element);
-    var textAlign = computedStyle.textAlign;
-    var verticalAlign = computedStyle.verticalAlign;
-    var fontSize = computedStyle.fontSize;
-    var bBox = element.getBBox()
-    var parent = element.parentElement;
-    parent.bBox = parent.getBBox();
-
-    // tweak left, center, right horizontal alignment
-    // giving padding of 5. maybe this should go into the CSS.
-
-    if (textAlign === 'left') {
-      dx = 5 + (-1)*bBox.x;
-    }
-    else {
-      if (textAlign === 'right') {
-        dx = parent.bBox.width - (5 + bBox.width) + (-1)*bBox.x;
-      }
-      else {
-        dx = parent.bBox.width / 2 + (-1)*bBox.x;
-      }
-    }
-
-    //var textAnchor = getTextAnchor(element.tspan[0], textAlign);
-    //element.style.textAnchor = textAnchor;
-
-    // set top, middle, bottom vertical alignment
-
-    if (!!verticalAlign) {
-      if (verticalAlign === 'top') {
-        dy = 5 + bBox.height + (-1)*bBox.y;
-      }
-      else {
-        if (verticalAlign === 'bottom') {
-          dy = parent.bBox.height - (5 + bBox.height) + (-1)*bBox.y;
-        }
-        else {
-          dy = ((parent.bBox.height / 2) + bBox.height/2) + (-1)*bBox.y;
-        }
-      }
-    }
-    else {
-      dy = ((parent.bBox.height / 2) + bBox.height/2) + (-1)*bBox.y;
-    }
-
-    var nodeText = d3.select(element) 
-    .attr('transform', function(d) {
-      return 'translate(' + dx + ' ' + dy + ')';
-    });
-
-    var tSpanComputedStyle, tSpanBBox;
-    var tSpans = nodeText.selectAll('tspan').map(function(tSpan) {
-      tSpanComputedStyle = window.getComputedStyle(tSpan[0]);
-      tSpanBBox = tSpan[0].getBBox();
-      d3.select(this).attr("y", function (d, i) { return i * tSpanBBox.height;})
-    });
-  }
 
   function render(nodeContainer, data) {
     var dx, dy, textAlign, textAnchor;
 
-    // TODO don't repeat default fontSize here. Need to follow DRY principle.
+    // TODO make a better caching system
+    var cache = {};
+    cache.padding = 5;
+    var text = {};
+    text.cache = {};
+    text.cache.fontSize = 12;
+    text.cache.textAnchor = 'middle';
+    text.cache.textAlign = 'center';
+    text.cache.verticalAlign = 'middle';
+    text.cache.translate = {};
+    // TODO replace this with the actual translate values
+    text.cache.translate.dx = data.width - (cache.padding + data.text.tspan[0].length * text.cache.fontSize / 2);
+    text.cache.translate.dy = data.height - (cache.padding + (data.text.tspan.length + 1) * text.cache.fontSize);
+    text.tspan = {};
+    text.tspan.cache = {};
+    text.tspan.cache.y = [];
+    var i = 0
+    data.text.tspan.forEach(function(tspan) {
+      text.tspan.cache.y.push(i * text.cache.fontSize);
+      i += 1;
+    });  
 
-    var fontSize = data.text.fontSize || cachedFontSize;
-    /*
-    if (data.text.hasOwnProperty('textAlign')) {
-      textAlign = data.text.textAlign;
-      if (textAlign === 'left' || textAlign === 'center' || textAlign === 'right') {
-        textAnchor = getTextAnchor(data.text.tspan[0], textAlign);
-      }
-      else {
-        // TODO handle justify and inherit
-        textAnchor = 'middle';
-      }
-    }
-    else {
-      textAnchor = 'middle';
-    }
-    //*/
-
-    var nodeText = nodeContainer.selectAll('text')
+    var textArea = nodeContainer.selectAll('g.text-area')
     .data(function(d) {
       return [d];
     })
     .enter()
-    .append('text')
+    .append('g')
     .attr("id", function (d) {
-      return 'node-text-' + strcase.paramCase(d['@id']);
+      return 'text-container' + strcase.paramCase(d['@id']);
     })
-    .attr("x", 0)
-    .attr("y", 0)
     .attr('transform', function(d) {
-      var dx, dy;
-      dx = d.width - (cachedPadding + d.text.tspan[0].length * cachedFontSize / 2);
-      dy = d.height - (cachedPadding + (d.text.tspan.length + 1) * cachedFontSize);
-      return 'translate(' + dx + ' ' + dy + ')';
+      return 'translate(' + text.cache.translate.dx + ' ' + text.cache.translate.dy + ')';
     })
+    .attr("class", "text-area")
     .attr("style", function (d) {
       var style = '';
-      if (nodeContainer[0][0]['__data__']['@type'].indexOf('Metabolite') != -1) {
-	style += 'fill:#0000FF; ';
-      }
-      if (nodeContainer[0][0]['__data__']['@type'].indexOf('Pathway') != -1) {
-        style += 'fill:rgb(20,150,30); ';
-      }
       if (d.text.hasOwnProperty('color')) {
         style += 'fill:' + d.text.color + '; ';
       }
@@ -174,20 +73,21 @@ pathvisiojs.view.pathwayDiagram.svg.node.text = function(){
         style += 'font-style:' + d.text.fontStyle + '; ';
       }
       return style;
-    })
-    .on('progress', applyTextAlign);
+    });
 
-    var nodeTspan = nodeText.selectAll('tspan')
+    var textLine = textArea.selectAll('text')
     .data(function(d) {
       return d.text.tspan;
     })
     .enter()
-    .append('tspan')
+    .append('text')
+    .attr("id", function (d, i) {
+      return 'text-line' + i;
+    })
     .attr("x", 0)
-    .attr("y", function (d, i) { return i * fontSize;})
-    .attr("text-anchor", 'middle')
+    .attr("y", function (d, i) { return text.tspan.cache.y[i];})
+    .attr("text-anchor", text.cache.textAnchor)
     .text(function (d) { return d; });
-
 
     /*
     nodeText.attr('transform', function(d) {
@@ -201,8 +101,7 @@ pathvisiojs.view.pathwayDiagram.svg.node.text = function(){
   }
 
   return {
-    render:render,
-    applyTextAlign:applyTextAlign
+    render:render
   };
 }();
 
