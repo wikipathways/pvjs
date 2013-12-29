@@ -29,7 +29,7 @@ pathvisiojs.data.gpml.element.node.lineStyle = pathvisiojs.data.gpml.element.nod
 pathvisiojs.data.gpml.element.node.setJsonBackgroundColor = function(jsonNode, currentGpmlFillColorValue, defaultGpmlFillColorValue) {
   var jsonBackgroundColor;
   if (currentGpmlFillColorValue !== defaultGpmlFillColorValue) {
-    jsonBackgroundColor = pathvisiojs.data.gpml.getColor(currentGpmlFillColorValue, defaultGpmlFillColorValue);
+    jsonBackgroundColor = pathvisiojs.data.gpml.gpmlColorToCssColor(currentGpmlFillColorValue, defaultGpmlFillColorValue);
     jsonNode.backgroundColor = jsonBackgroundColor;
   }
   return jsonNode;
