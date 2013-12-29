@@ -31,20 +31,28 @@ pathvisiojs.view.pathwayDiagram.svg.infoBox = function(){
       })
     }
 
-    var infoBoxElements = viewport.selectAll("text.info-box")
-    .data(infoBox)
+    var infoBox = viewport.selectAll("g.info-box")
+    .data([infoBox])
+    .enter()
+    .append("g")
+    .attr("id", function (d,i) {return "info-box-" + i; })
+    .attr("class", "text-area info-box");
+
+    var infoBoxItems = infoBox.selectAll("text")
+    .data(function(d) {return d;})
     .enter()
     .append("text")
-    .attr("id", function (d,i) {return "info-box-" + i; })
-    .attr("class", "info-box")
+    .attr("id", function (d,i) {return "info-box-text" + i; })
+    .attr("class", "item")
     .attr("x", 0)
     .attr("y", function(d,i) {return 14 + 14 * i; });
 
-    infoBoxElements.append("tspan")
-    .attr("class", "info-box-property-name")
+    var infoBoxPropertyName = infoBoxItems.append("tspan")
+    .attr("class", "info-box-item-property-name")
     .text(function (d) {return d.key + ': ';});
 
-    infoBoxElements.append("tspan")
+    var infoBoxProperty = infoBoxItems.append("tspan")
+    .attr("class", "info-box-item-property-value")
     .text(function (d) {return d.value;});
   }
 
