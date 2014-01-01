@@ -26,13 +26,14 @@ pathvisiojs.view.pathwayDiagram.svg.node.text = function(){
     var text = {};
     text.cache = {};
     text.cache.fontSize = 12;
+    text.cache.alignmentBaseline = 'middle';
     text.cache.textAnchor = 'middle';
     text.cache.textAlign = 'center';
     text.cache.verticalAlign = 'middle';
     text.cache.translate = {};
     // TODO replace this with the actual translate values
-    text.cache.translate.dx = data.width - (cache.padding + data.text.tspan[0].length * text.cache.fontSize / 2);
-    text.cache.translate.dy = data.height - (cache.padding + (data.text.tspan.length + 1) * text.cache.fontSize);
+    text.cache.translate.dx = data.width / 2;
+    text.cache.translate.dy = data.height / 2;
     text.tspan = {};
     text.tspan.cache = {};
     text.tspan.cache.y = [];
@@ -85,7 +86,8 @@ pathvisiojs.view.pathwayDiagram.svg.node.text = function(){
       return 'text-line' + i;
     })
     .attr("x", 0)
-    .attr("y", function (d, i) { return text.tspan.cache.y[i];})
+    .attr("y", function (d, i) { return i * 1.4 + 'em';})
+    .attr("alignment-baseline", text.cache.alignmentBaseline)
     .attr("text-anchor", text.cache.textAnchor)
     .text(function (d) { return d; });
 
