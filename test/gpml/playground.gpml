@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Pathway xmlns="http://pathvisio.org/GPML/2013a" Name="elbows" Data-Source="mydatasource" Version="20130813" Author="auth" Maintainer="maint" Email="email@email.com" Last-Modified="2013-12-17" Organism="Anopheles gambiae" License="CC">
-  <Graphics BoardWidth="700.704845814978" BoardHeight="533.0" />
+  <Graphics BoardWidth="899.0" BoardHeight="587.5" />
   <DataNode TextLabel="GeneProduct" GraphId="e5518" Type="GeneProduct" GroupRef="ace47">
     <Graphics CenterX="226.87224669603526" CenterY="176.2114537444934" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
     <Xref Database="" ID="" />
@@ -21,10 +21,6 @@
     <Graphics CenterX="218.44052863436127" CenterY="458.1387665198238" Width="113.11894273127746" Height="87.72246696035245" ZOrder="32769" FontName="Times New Roman" FontSize="10" Align="Left" Color="0000ff" />
     <Xref Database="" ID="" />
   </DataNode>
-  <Shape GraphId="dc729">
-    <Attribute Key="org.pathvisio.CellularComponentProperty" Value="Vacuole" />
-    <Graphics CenterX="620.8953744493392" CenterY="193.58259911894274" Width="99.6189427312776" Height="81.99779735682824" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="Sarcoplasmic Reticulum" Rotation="0.0" />
-  </Shape>
   <Group GroupId="ace47" Style="Pathway" TextLabel="asdf">
     <Comment>aasdf</Comment>
   </Group>
