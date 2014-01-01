@@ -4,7 +4,7 @@
 
 pathvisiojs.view.pathwayDiagram.svg.edge = function(){
 
-  var svg;
+  var svg, customMarkers;
 
   function render(thisSvg, container, data) {
     svg = thisSvg;
@@ -193,22 +193,26 @@ pathvisiojs.view.pathwayDiagram.svg.edge = function(){
       //*
       .attr("marker-start", function () {
         var markerStart = pathvisiojs.view.pathwayDiagram.svg.edge.marker.render(svg, markerStartName, 'start', edge.stroke);
+        /*
         if (edge.hasOwnProperty('strokeStyle')) {
           if (edge.strokeStyle === 'double') {
             //hack to manage marker scaling; this marker should not have any features itself
             markerStart = 'double-line-hack-start';
           }
         }
+        //*/
         return 'url(#' + markerStart + ')';
       })
       .attr("marker-end", function (data) {
         var markerEnd = pathvisiojs.view.pathwayDiagram.svg.edge.marker.render(svg, markerEndName, 'end', data.stroke);
+        /*
         if (edge.hasOwnProperty('strokeStyle')) {
           if (edge.strokeStyle === 'double') {
             //hack to manage marker scaling; this marker should not have any features itself
             markerEnd = 'double-line-hack-end';
           }
         }
+        //*/
         return 'url(#' + markerEnd + ')';
       })
       //*/
