@@ -1,118 +1,54 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Pathway xmlns="http://pathvisio.org/GPML/2013a" Name="elbows" Data-Source="mydatasource" Version="20130813" Author="auth" Maintainer="maint" Email="email@email.com" Last-Modified="2013-12-17" Organism="Anopheles gambiae" License="CC">
-  <Graphics BoardWidth="899.0" BoardHeight="587.5" />
-  <DataNode TextLabel="GeneProduct" GraphId="e5518" Type="GeneProduct" GroupRef="ace47">
-    <Graphics CenterX="226.87224669603526" CenterY="176.2114537444934" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+<Pathway xmlns="http://pathvisio.org/GPML/2013a" Name="shapes" Version="20130813" Organism="Anopheles gambiae">
+  <Graphics BoardWidth="589.4605394605396" BoardHeight="1903.0790411903004" />
+  <DataNode TextLabel="Metabolite" GraphId="b7917" Type="Metabolite">
+    <Graphics CenterX="200.0" CenterY="169.69855603791484" Width="200.0" Height="71.97456535737274" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff" />
     <Xref Database="" ID="" />
   </DataNode>
-  <DataNode TextLabel="Metabolite&#xA;Second Line" GraphId="d5e0f" Type="Metabolite">
-    <Graphics CenterX="212.44052863436127" CenterY="348.1387665198238" Width="113.11894273127746" Height="87.72246696035245" ZOrder="32768" FontName="Arial Hebrew" FontSize="10" Valign="Middle" Color="0000ff" />
+  <Interaction>
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="100.0" Y="87.58537210309157" />
+      <Point X="99.99999999999994" Y="922.6006191950465" />
+    </Graphics>
     <Xref Database="" ID="" />
-  </DataNode>
-  <DataNode TextLabel="Rna" GraphId="b9d35" Type="Rna" GroupRef="ace47">
-    <Graphics CenterX="334.8017621145375" CenterY="56.167400881057276" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+  </Interaction>
+  <Interaction GraphId="e29ee">
+    <Graphics ZOrder="33017" LineThickness="1.0">
+      <Point X="200.0" Y="97.58537210309157" />
+      <Point X="199.99999999999994" Y="924.1486068111457" />
+    </Graphics>
     <Xref Database="" ID="" />
-  </DataNode>
-  <DataNode TextLabel="Pathway" GraphId="a77ae" Type="Pathway">
-    <Graphics CenterX="211.25110132158594" CenterY="249.40528634361235" Width="80.0" Height="20.0" ZOrder="32768" FontWeight="Bold" FontSize="12" Valign="Middle" ShapeType="None" Color="14961e" />
+  </Interaction>
+  <Interaction GraphId="e454e">
+    <Graphics ZOrder="33018" LineThickness="1.0">
+      <Point X="300.0" Y="107.58537210309157" />
+      <Point X="299.99999999999994" Y="922.6006191950465" />
+    </Graphics>
     <Xref Database="" ID="" />
-  </DataNode>
-  <DataNode TextLabel="Metabolite" GraphId="d0722" Type="Metabolite">
-    <Graphics CenterX="218.44052863436127" CenterY="458.1387665198238" Width="113.11894273127746" Height="87.72246696035245" ZOrder="32769" FontName="Times New Roman" FontSize="10" Align="Left" Color="0000ff" />
-    <Xref Database="" ID="" />
-  </DataNode>
-  <Group GroupId="ace47" Style="Pathway" TextLabel="asdf">
-    <Comment>aasdf</Comment>
-  </Group>
+  </Interaction>
+  <Label TextLabel="SAVE" GraphId="d24b3">
+    <Graphics CenterX="212.78721278721278" CenterY="28.986013986013994" Width="95.94405594405595" Height="27.982017982017986" ZOrder="33015" FillColor="ffffff" FontWeight="Bold" FontSize="30" Valign="Middle" />
+  </Label>
+  <Label TextLabel="This pathway is to be saved long-term to test the ability of&#xA;GPML views to handle the element type named in the title." GraphId="fbada">
+    <Graphics CenterX="414.08591408591417" CenterY="25.489510489510494" Width="290.7492507492508" Height="32.977022977022976" ZOrder="33016" FillColor="ffffff" FontSize="10" Align="Left" />
+  </Label>
+  <Shape GraphId="dd46c">
+    <Graphics CenterX="100.95177192750691" CenterY="813.370071684588" Width="0.6533878269677942" Height="115.19534050179217" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="Triangle" Rotation="0.0" />
+  </Shape>
+  <Shape TextLabel="one" GraphId="aa039">
+    <Graphics CenterX="200.0" CenterY="262.7304173028631" Width="200.0" Height="116.4313557795858" ZOrder="32967" FontSize="10" Valign="Middle" ShapeType="Triangle" Rotation="0.0" />
+  </Shape>
+  <Shape TextLabel="extracellular&#xA;region" GraphId="cb8a8">
+    <Attribute Key="org.pathvisio.CellularComponentProperty" Value="Extracellular region" />
+    <Graphics CenterX="159.74435249918815" CenterY="1839.9871868113864" Width="84.14728551194578" Height="66.18370875782784" ZOrder="32972" FontSize="10" Valign="Middle" ShapeType="RoundedRectangle" LineStyle="Broken" Color="c0c0c0" Rotation="0.0" />
+  </Shape>
+  <Shape TextLabel="two" GraphId="de731">
+    <Graphics CenterX="122.28933881930368" CenterY="433.7821839421388" Width="106.74794633211542" Height="116.4313557795858" ZOrder="33019" FontSize="10" Valign="Middle" ShapeType="Triangle" Rotation="0.0" />
+  </Shape>
+  <Shape TextLabel="three" GraphId="f6361">
+    <Graphics CenterX="141.90579657504625" CenterY="614.5916502981253" Width="212.9204329936984" Height="163.9326414327349" ZOrder="33020" FontSize="10" Valign="Middle" ShapeType="Triangle" Rotation="0.0" />
+  </Shape>
   <InfoBox CenterX="0.0" CenterY="0.0" />
-  <Biopax>
-    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="a79">
-      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">4574</bp:ID>
-      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
-      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Anglo-American Conference on Sexually Transmitted Diseases.</bp:TITLE>
-      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">J Infect Dis</bp:SOURCE>
-      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1976</bp:YEAR>
-      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Munford RS</bp:AUTHORS>
-    </bp:PublicationXref>
-    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="afd">
-      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">345</bp:ID>
-      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
-      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Failure of rubella virus to replicate in mosquitos.</bp:TITLE>
-      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Intervirology</bp:SOURCE>
-      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1975</bp:YEAR>
-      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Tesh RB</bp:AUTHORS>
-      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Rosen L</bp:AUTHORS>
-    </bp:PublicationXref>
-    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="e48">
-      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">7854</bp:ID>
-      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
-      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Clinical and therapeutical problems of mild (non-psychotic) mental depressions.</bp:TITLE>
-      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Ther Hung</bp:SOURCE>
-      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1975</bp:YEAR>
-      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Böszörményi Z</bp:AUTHORS>
-    </bp:PublicationXref>
-    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="f03">
-      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2345</bp:ID>
-      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
-      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Oxygen transport by haemoglobin. A comparison of whole blood, washed erythrocytes and haemoglobin solution.</bp:TITLE>
-      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Biomedicine</bp:SOURCE>
-      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1975</bp:YEAR>
-      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Lecompte F</bp:AUTHORS>
-      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Sinet M</bp:AUTHORS>
-      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Azoulay E</bp:AUTHORS>
-      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Muffat-Joly M</bp:AUTHORS>
-      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Pocidalo JJ</bp:AUTHORS>
-    </bp:PublicationXref>
-    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="e33">
-      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">47302</bp:ID>
-      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
-      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Effect of antibiotics on the mutagenic activity induced by chemicals. I. Chromosome aberrations during spermatogenesis in mice.</bp:TITLE>
-      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Folia Biol (Praha)</bp:SOURCE>
-      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1975</bp:YEAR>
-      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Srám RJ</bp:AUTHORS>
-      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Kocisová J</bp:AUTHORS>
-    </bp:PublicationXref>
-    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="dd8">
-      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">9874</bp:ID>
-      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
-      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">[Nonhemodynamic pulmonary edema due to toxins].</bp:TITLE>
-      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Ann Anesthesiol Fr</bp:SOURCE>
-      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1975</bp:YEAR>
-      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Frejaville JP</bp:AUTHORS>
-      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Tourtier Y</bp:AUTHORS>
-      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Susini J</bp:AUTHORS>
-      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">De Courcy A</bp:AUTHORS>
-    </bp:PublicationXref>
-    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="b91">
-      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">3456</bp:ID>
-      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
-      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Post-prandial changes in PH and electrolyte concentration, in the upper jejunum after truncal vagotomy and drainage in man.</bp:TITLE>
-      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Gut</bp:SOURCE>
-      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1975</bp:YEAR>
-      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Temple JG</bp:AUTHORS>
-      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Birch A</bp:AUTHORS>
-      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Shields R</bp:AUTHORS>
-    </bp:PublicationXref>
-    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="a52">
-      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">9876</bp:ID>
-      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
-      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">[Oxygen toxicity for pulmonary parenchyma. Ultrastructural study by electron microscopy. Physiopathologic data].</bp:TITLE>
-      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Ann Anesthesiol Fr</bp:SOURCE>
-      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1975</bp:YEAR>
-      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Foliguet B</bp:AUTHORS>
-      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Grignon G</bp:AUTHORS>
-      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Reichart E</bp:AUTHORS>
-    </bp:PublicationXref>
-    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="aca">
-      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">9875</bp:ID>
-      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
-      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">[Pulmonary edemas due to acute heroin poisoning].</bp:TITLE>
-      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Ann Anesthesiol Fr</bp:SOURCE>
-      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1975</bp:YEAR>
-      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Francois G</bp:AUTHORS>
-      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Faizende J</bp:AUTHORS>
-      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Reboul J</bp:AUTHORS>
-    </bp:PublicationXref>
-  </Biopax>
+  <Biopax />
 </Pathway>
 
