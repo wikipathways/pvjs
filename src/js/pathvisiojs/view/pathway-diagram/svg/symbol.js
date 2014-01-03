@@ -6,6 +6,40 @@
 var svg;
 
 pathvisiojs.view.pathwayDiagram.svg.symbol = function(){
+
+  var semanticNameToIdMapping = { 
+    'arrow':'shape-library-markers-arrow-svg',
+    'necessary-stimulation':'shape-library-markers-mim-necessary-stimulation-svg',
+    'binding':'shape-library-markers-mim-binding-svg',
+    'conversion':'shape-library-markers-mim-conversion-svg',
+    'stimulation':'shape-library-markers-mim-stimulation-svg',
+    'modification':'shape-library-markers-mim-modification-svg',
+    'catalysis':'shape-library-markers-mim-catalysis-svg',
+    'inhibition':'shape-library-markers-mim-inhibition-svg',
+    'cleavage':'shape-library-markers-mim-cleavage-svg',
+    'covalent-bond':'shape-library-markers-mim-covalent-bond-svg',
+    'transcription-translation':'shape-library-markers-mim-transcription-translation-svg',
+    'gap':'shape-library-markers-mim-gap-svg',
+    'inhibitory-activity':'shape-library-markers-t-bar-svg',
+    'unspecified':'shape-library-markers-none-svg',
+    'activity':'shape-library-markers-arrow-svg',
+    'mim-branching-left':'shape-library-markers-mim-branching-left-svg',
+    'mim-branching-right':'shape-library-markers-mim-branching-right-svg',
+    'mim-necessary-stimulation':'shape-library-markers-mim-necessary-stimulation-svg',
+    'mim-binding':'shape-library-markers-mim-binding-svg',
+    'mim-conversion':'shape-library-markers-mim-conversion-svg',
+    'mim-stimulation':'shape-library-markers-mim-stimulation-svg',
+    'mim-modification':'shape-library-markers-mim-modification-svg',
+    'mim-catalysis':'shape-library-markers-mim-catalysis-svg',
+    'mim-inhibition':'shape-library-markers-mim-inhibition-svg',
+    'mim-cleavage':'shape-library-markers-mim-cleavage-svg',
+    'mim-covalent-bond':'shape-library-markers-mim-covalent-bond-svg',
+    'mim-transcription-translation':'shape-library-markers-mim-transcription-translation-svg',
+    'mim-gap':'shape-library-markers-mim-gap-svg',
+    't-bar':'shape-library-markers-t-bar-svg',
+    'none':'shape-library-markers-none-svg'
+  };
+
   function appendCustom(customSymbol, callback) {
     var defsSection = svg.select('defs');
     var symbol = defsSection.select('#' + customSymbol.id);
@@ -101,6 +135,7 @@ pathvisiojs.view.pathwayDiagram.svg.symbol = function(){
 
   return {
     loadAllCustom:loadAllCustom,
+    semanticNameToIdMapping:semanticNameToIdMapping,
     getAllSymbolNames:getAllSymbolNames
   };
 }();

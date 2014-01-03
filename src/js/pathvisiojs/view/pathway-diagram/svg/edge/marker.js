@@ -6,9 +6,42 @@ pathvisiojs.view.pathwayDiagram.svg.edge.marker = function(){
   // template svg, whether it is at the start or end of a path and whether
   // a color other than black (the color specified in the template) is desired.
 
-  var svgHere;
+  var svg;
 
-  function appendCustom(uniqueMarkerShapeUrls, callback) {
+  var semanticNameToIdMapping = { 
+    'arrow':'shape-library-markers-arrow-svg',
+    'necessary-stimulation':'shape-library-markers-mim-necessary-stimulation-svg',
+    'binding':'shape-library-markers-mim-binding-svg',
+    'conversion':'shape-library-markers-mim-conversion-svg',
+    'stimulation':'shape-library-markers-mim-stimulation-svg',
+    'modification':'shape-library-markers-mim-modification-svg',
+    'catalysis':'shape-library-markers-mim-catalysis-svg',
+    'inhibition':'shape-library-markers-mim-inhibition-svg',
+    'cleavage':'shape-library-markers-mim-cleavage-svg',
+    'covalent-bond':'shape-library-markers-mim-covalent-bond-svg',
+    'transcription-translation':'shape-library-markers-mim-transcription-translation-svg',
+    'gap':'shape-library-markers-mim-gap-svg',
+    'inhibitory-activity':'shape-library-markers-t-bar-svg',
+    'unspecified':'shape-library-markers-none-svg',
+    'activity':'shape-library-markers-arrow-svg',
+    'mim-branching-left':'shape-library-markers-mim-branching-left-svg',
+    'mim-branching-right':'shape-library-markers-mim-branching-right-svg',
+    'mim-necessary-stimulation':'shape-library-markers-mim-necessary-stimulation-svg',
+    'mim-binding':'shape-library-markers-mim-binding-svg',
+    'mim-conversion':'shape-library-markers-mim-conversion-svg',
+    'mim-stimulation':'shape-library-markers-mim-stimulation-svg',
+    'mim-modification':'shape-library-markers-mim-modification-svg',
+    'mim-catalysis':'shape-library-markers-mim-catalysis-svg',
+    'mim-inhibition':'shape-library-markers-mim-inhibition-svg',
+    'mim-cleavage':'shape-library-markers-mim-cleavage-svg',
+    'mim-covalent-bond':'shape-library-markers-mim-covalent-bond-svg',
+    'mim-transcription-translation':'shape-library-markers-mim-transcription-translation-svg',
+    'mim-gap':'shape-library-markers-mim-gap-svg',
+    't-bar':'shape-library-markers-t-bar-svg',
+    'none':'shape-library-markers-none-svg'
+  };
+
+  function appendCustom(uniqueMarkerShapeUrl, callback) {
     /*
     console.log('customMarker');
     console.log(customMarker);
@@ -30,20 +63,20 @@ pathvisiojs.view.pathwayDiagram.svg.edge.marker = function(){
 	</marker>
 //*/
 
-      d3.xml(uniqueMarkerShapeUrls, 'image/svg+xml', function(svgXml) {
+      d3.xml(uniqueMarkerShapeUrl, 'image/svg+xml', function(svgXml) {
 
         /*
 <marker id="mim-inhibition-start-black" class="default-fill" stroke="black" markerWidth="16" markerHeight="16" markerUnits="strokeWidth" orient="auto" refX="0" refY="6" viewBox="0 0 12 12">
          //*/
-        var idStub = strcase.paramCase(uniqueMarkerShapeUrls)
+        var idStub = strcase.paramCase(uniqueMarkerShapeUrl)
         var startId = idStub + '-start-default';
         var endId = idStub + '-end-default';
 
-        var markerStart = svgHere.select('defs').select('#' + startId);
+        var markerStart = svg.select('defs').select('#' + startId);
         if (!markerStart[0][0]) {
           markerStart.selectAll('*').remove();
         }
-        markerStart = svgHere.select('defs').append('marker')
+        markerStart = svg.select('defs').append('marker')
         .attr('id', startId)
         .attr('preserveAspectRatio', 'none');
 
@@ -63,11 +96,11 @@ pathvisiojs.view.pathwayDiagram.svg.edge.marker = function(){
         var docElClone = pathvisiojs.utilities.clone(svgXml.documentElement);
         parent.appendChild(svgXml.documentElement);
 
-        var markerEndD3 = svgHere.select('defs').select('#' + endId);
+        var markerEndD3 = svg.select('defs').select('#' + endId);
         if (!markerEndD3[0][0]) {
           markerEndD3.selectAll('*').remove();
         }
-        markerEndD3 = svgHere.select('defs').append('marker')
+        markerEndD3 = svg.select('defs').append('marker')
         .attr('id', endId)
         .attr('viewBox', -1*width + ' ' + -1*height + ' ' + width + ' ' + height)
         .attr('markerWidth', width)
@@ -92,7 +125,7 @@ pathvisiojs.view.pathwayDiagram.svg.edge.marker = function(){
     }
     else {
       img = document.createElement('img');
-      img.src = uniqueMarkerShapeUrls;
+      img.src = uniqueMarkerShapeUrl;
       img.onload = function() {
         marker = svg.select('defs').select('#' + customMarker.id);
         if (!marker[0][0]) {
@@ -106,7 +139,7 @@ pathvisiojs.view.pathwayDiagram.svg.edge.marker = function(){
         }
         dimensions = marker.attr('viewBox').split(' ');
 
-        marker.append('image').attr('xlink:xlink:href', uniqueMarkerShapeUrls)
+        marker.append('image').attr('xlink:xlink:href', uniqueMarkerShapeUrl)
         .attr('x', dimensions[0])
         .attr('y', dimensions[1])
         .attr('width', dimensions[2])
@@ -118,8 +151,8 @@ pathvisiojs.view.pathwayDiagram.svg.edge.marker = function(){
     }
   }
 
-  function loadAllCustom(svg, customMarkers, callback) {
-    svgHere = svg;
+  function loadAllCustom(thisSvg, customMarkers, callback) {
+    svg = thisSvg;
     var image = null;
     var img = null;
     var marker = null;
@@ -127,7 +160,7 @@ pathvisiojs.view.pathwayDiagram.svg.edge.marker = function(){
     var dimensionSet = [];
     var uniqueMarkerShapeUrls = [];
     customMarkers.forEach(function(customMarker){
-      pathvisiojs.view.pathwayDiagram.svg.edge.marker.semanticNameToIdMapping[customMarker.semanticName] = strcase.paramCase(customMarker.url);
+      semanticNameToIdMapping[customMarker.semanticName] = strcase.paramCase(customMarker.url);
       if (uniqueMarkerShapeUrls.indexOf(customMarker.url) === -1) {
         uniqueMarkerShapeUrls.push(customMarker.url);
       }
@@ -141,7 +174,7 @@ pathvisiojs.view.pathwayDiagram.svg.edge.marker = function(){
 
   function render(svg, name, position, color) {
     var markerId;
-    var markerIdStub = pathvisiojs.view.pathwayDiagram.svg.edge.marker.semanticNameToIdMapping[name];
+    var markerIdStub = semanticNameToIdMapping[name];
 
     // if no marker is to be used, JSON data will specify 'none'.
 
@@ -206,45 +239,15 @@ pathvisiojs.view.pathwayDiagram.svg.edge.marker = function(){
  
   return {
     render:render,
+    semanticNameToIdMapping:semanticNameToIdMapping,
     loadAllCustom:loadAllCustom
   };
 }();
 
-pathvisiojs.view.pathwayDiagram.svg.edge.marker.semanticNameToIdMapping = { 
-  'arrow':'shape-library-markers-arrow-svg',
-  'necessary-stimulation':'shape-library-markers-mim-necessary-stimulation-svg',
-  'binding':'shape-library-markers-mim-binding-svg',
-  'conversion':'shape-library-markers-mim-conversion-svg',
-  'stimulation':'shape-library-markers-mim-stimulation-svg',
-  'modification':'shape-library-markers-mim-modification-svg',
-  'catalysis':'shape-library-markers-mim-catalysis-svg',
-  'inhibition':'shape-library-markers-mim-inhibition-svg',
-  'cleavage':'shape-library-markers-mim-cleavage-svg',
-  'covalent-bond':'shape-library-markers-mim-covalent-bond-svg',
-  'transcription-translation':'shape-library-markers-mim-transcription-translation-svg',
-  'gap':'shape-library-markers-mim-gap-svg',
-  'inhibitory-activity':'shape-library-markers-t-bar-svg',
-  'unspecified':'shape-library-markers-none-svg',
-  'activity':'shape-library-markers-arrow-svg',
-  'mim-branching-left':'shape-library-markers-mim-branching-left-svg',
-  'mim-branching-right':'shape-library-markers-mim-branching-right-svg',
-  'mim-necessary-stimulation':'shape-library-markers-mim-necessary-stimulation-svg',
-  'mim-binding':'shape-library-markers-mim-binding-svg',
-  'mim-conversion':'shape-library-markers-mim-conversion-svg',
-  'mim-stimulation':'shape-library-markers-mim-stimulation-svg',
-  'mim-modification':'shape-library-markers-mim-modification-svg',
-  'mim-catalysis':'shape-library-markers-mim-catalysis-svg',
-  'mim-inhibition':'shape-library-markers-mim-inhibition-svg',
-  'mim-cleavage':'shape-library-markers-mim-cleavage-svg',
-  'mim-covalent-bond':'shape-library-markers-mim-covalent-bond-svg',
-  'mim-transcription-translation':'shape-library-markers-mim-transcription-translation-svg',
-  'mim-gap':'shape-library-markers-mim-gap-svg',
-  't-bar':'shape-library-markers-t-bar-svg',
-  'none':'shape-library-markers-none-svg'
-};
+
 
 /*
-pathvisiojs.view.pathwayDiagram.svg.edge.marker.semanticNameToIdMapping = [
+semanticNameToIdMapping = [
   {
     'semanticName': 'arrow',
     'id':'shape-library-markers-arrow-svg'
