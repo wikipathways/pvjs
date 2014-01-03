@@ -33,8 +33,6 @@
 		fill: black;
 		fill-opacity: 1;
 		stroke: none;
-		font-size: 10px;
-		stroke: none;
 	}
 
 	.info-box {
@@ -76,6 +74,9 @@
 
 	.data-node.metabolite > .text-area {
 		cursor:pointer;
+		fill: blue;
+		fill-opacity: 1;
+		stroke: none;
 	}
 
 	.data-node.pathway {
