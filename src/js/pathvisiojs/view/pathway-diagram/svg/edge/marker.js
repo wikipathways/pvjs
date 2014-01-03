@@ -158,9 +158,10 @@ pathvisiojs.view.pathwayDiagram.svg.edge.marker = function(){
     var marker = null;
     var dimensions = null;
     var dimensionSet = [];
+
     var uniqueMarkerShapeUrls = [];
     customMarkers.forEach(function(customMarker){
-      semanticNameToIdMapping[customMarker.semanticName] = strcase.paramCase(customMarker.url);
+      pathvisiojs.view.pathwayDiagram.svg.edge.marker.semanticNameToIdMapping[customMarker.semanticName] = strcase.paramCase(customMarker.url);
       if (uniqueMarkerShapeUrls.indexOf(customMarker.url) === -1) {
         uniqueMarkerShapeUrls.push(customMarker.url);
       }

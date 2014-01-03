@@ -139,7 +139,11 @@ pathvisiojs.view.pathwayDiagram.svg.node.useElement = function(){
       return style;
     })
         //*/
-    .attr("xlink:xlink:href", function(d) {return '#' + d.ShapeType;});
+    .attr("xlink:xlink:href", function(d) {
+      var shapeType = strcase.paramCase(d.ShapeType);
+      var symbolId = pathvisiojs.view.pathwayDiagram.svg.symbol.semanticNameToIdMapping[shapeType];
+      return '#' + symbolId;
+    });
   }
 
   function getPortCoordinates(boxDimensions, relX, relY) {
