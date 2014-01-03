@@ -6,7 +6,7 @@
     <Xref Database="" ID="" />
   </DataNode>
   <DataNode TextLabel="Metabolite&#xA;Second Line" GraphId="d5e0f" Type="Metabolite">
-    <Graphics CenterX="212.44052863436127" CenterY="348.1387665198238" Width="113.11894273127746" Height="87.72246696035245" ZOrder="32768" FontName="Times New Roman" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Graphics CenterX="212.44052863436127" CenterY="348.1387665198238" Width="113.11894273127746" Height="87.72246696035245" ZOrder="32768" FontName="Arial Hebrew" FontSize="10" Valign="Middle" Color="0000ff" />
     <Xref Database="" ID="" />
   </DataNode>
   <DataNode TextLabel="Rna" GraphId="b9d35" Type="Rna" GroupRef="ace47">
