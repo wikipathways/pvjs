@@ -13,11 +13,6 @@ pathvisiojs.view.pathwayDiagram.svg.edge = function(){
     //console.log('data');
     //console.log(data);
 
-    // defining this function inside the render function, because I don't know how else
-    // to pass the data value to a d3.call() function
-
-
-
     var edge = container.selectAll('#' + strcase.paramCase(data.GraphId))
     .data([data])
     .enter().append("path")
@@ -62,24 +57,38 @@ pathvisiojs.view.pathwayDiagram.svg.edge = function(){
     console.log('markerEndName in edge');
     console.log(markerEndName);
     //*/
+
     var createPathDataString = d3.svg.line()
     .x(function(data) { return data.x; })
     .y(function(data) { return data.y; });
 
-    //*
+    // "stepType" is the term d3js uses to specify type of interpolation.
+    // we need to convert from GPML ConnectorType to
+    // d3 stepType here
+    var gpmlConnectorTypeToD3StepTypeMapping = {
+      Straight:'linear',
+      Segmented:'linear',
+      Elbow:'linear',
+      Curved:'basis'
+    };
+    var stepType = 'linear';
+    if (gpmlConnectorTypeToD3StepTypeMapping.hasOwnProperty(data.ConnectorType)) {
+      stepType = gpmlConnectorTypeToD3StepTypeMapping[data.ConnectorType];
+    }
+    createPathDataString.interpolate(stepType);
 
+    //*
     async.series({
-      'stepTypeAndConvertedPointSet': function(callback) {
+      'convertedPointSet': function(callback) {
+        var index, firstSegmentHorizontal, currentSegmentHorizontal, convertedPointSet;
 
         // in GPML, some points are implied, such as for many curves and elbows with only two points.
         // This code below fills in the implied points, returning the full set of points.
 
-        var stepType, index, firstSegmentHorizontal, currentSegmentHorizontal,
         convertedPointSet = [];
 
         if ((!data.ConnectorType) || (data.ConnectorType === undefined) || (data.ConnectorType === 'Straight') || (data.ConnectorType === 'Segmented')) {
-          stepType = 'linear';
-          callback(null, {'convertedPointSet': data.Point, 'stepType': stepType});
+          callback(null, data.Point);
         }
         else {
 
@@ -88,42 +97,6 @@ pathvisiojs.view.pathwayDiagram.svg.edge = function(){
           // basis instead of linear.
 
           if (data.ConnectorType === 'Elbow' || data.ConnectorType === 'Curved') {
-            if (data.ConnectorType === 'Elbow') {
-              stepType = 'linear';
-
-              // The d3.js step-after and step-before would seem to be well-suited for
-              // Elbows, but it won't work for the point set format we are using.
-              // The point set formats we could use include the following:
-              // 1) linear/path-finding.js format: specify a full set of points, meaning
-              // start and end points as well as a point at every change in direction.
-              // 2) PathVisio-Java/GPML format: start and end points plus intermediate
-              // points specifying the mid-points of each Elbow segment.
-              // 3) d3.js step-after and step-before format: start and end points plus
-              // a point for every other change in direction.
-              //
-              // pvjs uses format 1), so that requires a step type of linear. If we
-              // used step-before and step-after, we would need to use format 3) and
-              // the following code:
-
-              /*
-              if (firstSegmentHorizontal) {
-
-                // step-after - alternate between horizontal and vertical segments, as in a step function.
-
-                stepType = 'step-after';
-              }
-              else {
-                stepType = 'step-before';
-              }
-              //*/
-
-            }
-            else {
-              if (data.ConnectorType === 'Curved') {
-                stepType = 'basis';
-              }
-            }
-
             if (data.Point.length === 2) {
 
               // GPML specifies just the start and end points and assumes a programmatic
@@ -133,7 +106,7 @@ pathvisiojs.view.pathwayDiagram.svg.edge = function(){
               // fill in intermediate points using default algorithmic layout
 
               pathvisiojs.view.pathwayDiagram.pathFinder.getPath(svg, data, function(convertedPointSet) {
-                callback(null, {'convertedPointSet': convertedPointSet, 'stepType': stepType});
+                callback(null, convertedPointSet);
               });
             }
             else {
@@ -173,14 +146,12 @@ pathvisiojs.view.pathwayDiagram.svg.edge = function(){
               } while (index < data.Point.length - 1);
 
               convertedPointSet.push(data.Point[data.Point.length - 1]);
-              self.myconvertedPointSet = convertedPointSet;
-              callback(null, {'convertedPointSet': convertedPointSet, 'stepType': stepType});
+              callback(null, convertedPointSet);
             }
           }
           else {
             console.warn('Warning: pathvisiojs does not support connector type: ' + data.ConnectorType + '. Using linear interpolation as fallback.');
-            stepType = 'linear';
-            callback(null, {'convertedPointSet': data.Point, 'stepType': stepType});
+            callback(null, data.Point);
           }
         }
       }
@@ -255,17 +226,11 @@ pathvisiojs.view.pathwayDiagram.svg.edge = function(){
         }
         //*/
 
-        createPathDataString.interpolate(results.stepTypeAndConvertedPointSet.stepType);
-        console.log('stepType');
-        console.log(results.stepTypeAndConvertedPointSet.stepType);
         console.log('convertedPointSet');
-        console.log(results.stepTypeAndConvertedPointSet.convertedPointSet);
+        console.log(results.convertedPointSet);
 
-        return createPathDataString(results.stepTypeAndConvertedPointSet.convertedPointSet);
+        return createPathDataString(results.convertedPointSet);
       });
-
-
-
     });
   }
 
