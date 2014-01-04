@@ -1,3 +1,4 @@
+"use strict";
 pathvisiojs.view.pathwayDiagram.svg = function(){
 
   var svg, shapesAvailable, markersAvailable, contextLevelInput;
@@ -147,6 +148,8 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
   }
 
   function renderElementsQuick(args, callbackOutside){
+    console.log('args.data');
+    console.log(args.data);
     if (!args.target) {
       throw new Error("No target specified.");
     }
@@ -185,8 +188,28 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
       function(data, callback) {
         data.forEach(function(element) {
           if (element.renderableType === 'GroupNode') {
+            console.log('element');
+            console.log(element);
             args.data = element;
-            pathvisiojs.view.pathwayDiagram.svg.node.groupNode.render(args, function(groupContainer) {
+            pathvisiojs.view.pathwayDiagram.svg.node.groupNode.render(args, function(groupContainer, groupContents) {
+              console.log('groupContainer');
+              console.log(groupContainer);
+              console.log('groupContents');
+              console.log(groupContents);
+
+              var groupedElementsArgs = {};
+              groupedElementsArgs.svg = args.svg;
+              groupedElementsArgs.target = groupContainer;
+              groupedElementsArgs.data = groupContents;
+              groupedElementsArgs.allSymbolNames = args.allSymbolNames;
+              groupedElementsArgs.organism = organism;
+              console.log('groupedElementsArgs');
+              console.log(groupedElementsArgs);
+              pathvisiojs.view.pathwayDiagram.svg.renderElementsQuick(groupedElementsArgs, function() {
+              });
+
+
+              /*
               var groupedElementsFrame = {
                 '@context': pathvisiojs.context,
                 "@type":element.GroupId
@@ -201,13 +224,14 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
                 pathvisiojs.view.pathwayDiagram.svg.renderElementsQuick(nodeEntityArgs, function() {
                 });
               });
+              //*/
             });
           }
           else {
-            if (element.renderableType === 'entityNode') {
+            if (element.renderableType === 'EntityNode') {
               args.data = element;
               args.organism = organism;
-              pathvisiojs.view.pathwayDiagram.svg.node.entityNode.render(args);
+              pathvisiojs.view.pathwayDiagram.svg.node.EntityNode.render(args);
             }
             else {
               if (element.renderableType === 'Interaction') {
@@ -244,7 +268,7 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
       'gridData': function(callbackInside) {
         var frame = {
           '@context': pathvisiojs.context,
-          '@type': 'entityNode'
+          '@type': 'EntityNode'
         };  
         jsonld.frame(args.pathway, frame, function(err, framedData) {
           pathvisiojs.view.pathwayDiagram.pathFinder.initGrid(framedData['@graph'], args.pathway.image.width, args.pathway.image.height, function(gridData) {
@@ -258,6 +282,7 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
         var firstOrderFrame = {
           '@context': pathvisiojs.context,
           '@type':['notGrouped', 'GroupNode'],
+          'contains': {},
           'InteractionGraph': {}
         };
         jsonld.frame(args.pathway, firstOrderFrame, function(err, firstOrderData) {
@@ -341,7 +366,7 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
         pathvisioNS.grid = {};
         var frame = {
           '@context': pathvisiojs.context,
-          '@type': 'entityNode'
+          '@type': 'EntityNode'
         };  
         jsonld.frame(args.pathway, frame, function(err, framedData) {
           pathvisiojs.view.pathwayDiagram.pathFinder.generateGridData(framedData['@graph'], args.pathway.image.width, args.pathway.image.height, function() {

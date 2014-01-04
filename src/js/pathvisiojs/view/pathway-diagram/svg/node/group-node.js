@@ -1,5 +1,7 @@
 pathvisiojs.view.pathwayDiagram.svg.node.groupNode = function(){
   function render(args, callback) {
+    console.log('args');
+    console.log(args);
     if (!args.target) {
       throw new Error('Error: Missing viewport.');
     }
@@ -12,11 +14,12 @@ pathvisiojs.view.pathwayDiagram.svg.node.groupNode = function(){
 
     pathvisiojs.view.pathwayDiagram.svg.node.render(args, function(groupContainer) {
       groupContainer.attr("class", function (d) {
-        var cssClass = 'group ' + strcase.paramCase(d.groupType) + ' ';
+        var cssClass = 'group-node ' + strcase.paramCase(d.groupType) + ' ';
         return cssClass;
       })
 
-      callback(groupContainer);
+      var groupContents = args.data.contains;
+      callback(groupContainer, groupContents);
     });
   }
  

@@ -29,7 +29,7 @@ pathvisiojs.data.gpml.style.borderStyle = function(){
     dimensions.bottomRightCorner.x = 0;
     dimensions.bottomRightCorner.y = 0;
     groupContents.forEach(function(groupContent) {
-      if (groupContent.renderableType === 'entityNode') {
+      if (groupContent.renderableType === 'EntityNode') {
         dimensions.topLeftCorner.x = Math.min(dimensions.topLeftCorner.x, groupContent.x);
         dimensions.topLeftCorner.y = Math.min(dimensions.topLeftCorner.y, groupContent.y);
         dimensions.bottomRightCorner.x = Math.max(dimensions.bottomRightCorner.x, groupContent.x + groupContent.width);
@@ -220,7 +220,7 @@ pathvisiojs.data.gpml.style.borderStyle = function(){
               pathway.DataNode = [];
               gpmlPathway.selectAll('DataNode').each(function() {
                 gpmlDataNode = d3.select(this);
-                pathvisiojs.data.gpml.node.entityNode.dataNode.toRenderableJson(gpmlDataNode, pathwayIri, function(jsonDataNode) {
+                pathvisiojs.data.gpml.element.node.entityNode.dataNode.toRenderableJson(gpmlDataNode, pathwayIri, function(jsonDataNode) {
                   pathway.DataNode.push(jsonDataNode);
                 });
               })
@@ -236,7 +236,7 @@ pathvisiojs.data.gpml.style.borderStyle = function(){
               pathway.Label = [];
               gpmlPathway.selectAll('Label').each(function() {
                 gpmlLabel = d3.select(this);
-                pathvisiojs.data.gpml.node.entityNode.label.toRenderableJson(gpmlLabel, pathwayIri, function(jsonLabel) {
+                pathvisiojs.data.gpml.element.node.entityNode.label.toRenderableJson(gpmlLabel, pathwayIri, function(jsonLabel) {
                   pathway.Label.push(jsonLabel);
                 });
               })
@@ -252,7 +252,7 @@ pathvisiojs.data.gpml.style.borderStyle = function(){
               pathway.Shape = [];
               gpmlPathway.selectAll('Shape').each(function() {
                 gpmlShape = d3.select(this);
-                pathvisiojs.data.gpml.node.entityNode.shape.toRenderableJson(gpmlShape, pathwayIri, function(jsonShape) {
+                pathvisiojs.data.gpml.element.node.entityNode.shape.toRenderableJson(gpmlShape, pathwayIri, function(jsonShape) {
                   pathway.Shape.push(jsonShape);
                 });
               })
@@ -303,7 +303,7 @@ pathvisiojs.data.gpml.style.borderStyle = function(){
           pathway.Group = [];
           gpmlPathway.selectAll('Group').each(function() {
             gpmlGroup = d3.select(this);
-            pathvisiojs.data.gpml.node.groupNode.toRenderableJson(gpmlGroup, pathwayIri, function(jsonGroup) {
+            pathvisiojs.data.gpml.element.node.groupNode.toRenderableJson(gpmlGroup, pathwayIri, function(jsonGroup) {
               var groupsFrame = {
                 '@context': pathvisiojs.context,
                 '@type': jsonGroup.GroupId
@@ -474,7 +474,7 @@ pathvisiojs.data.gpml.style.borderStyle = function(){
 
   return {
     toRenderableJson:toRenderableJson,
-    getColor:getColor,
+    gpmlColorToCssColor:gpmlColorToCssColor,
     setColorAsJson:setColorAsJson
   };
 }();

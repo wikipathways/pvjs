@@ -105,6 +105,8 @@ pathvisiojs = function(){
       }
     },
     function(err, results){
+      console.log('pvjs results');
+      console.log(results);
       var viewLoadArgs = results.preload;
       viewLoadArgs.pathway = results.pathway;
 
@@ -119,20 +121,23 @@ pathvisiojs = function(){
       ///* Node Highlighter
 
       var nodeLabels = [];
-      results.pathway.DataNode.forEach(function(node) {
-        if (!!node.textLabel) {
-          nodeLabels.push(node.textLabel.text);
-        }
-      });
+      if (results.pathway.hasOwnProperty('DataNode')) {
+        results.pathway.DataNode.forEach(function(node) {
+          if (!!node.text) {
+            nodeLabels.push(node.text.tspan[0]);
+          }
+        });
+
+        // see http://twitter.github.io/typeahead.js/
+
+        $('#highlight-by-label-input').typeahead({
+          name: 'Highlight node in pathway',
+          local: nodeLabels,
+          limit: 10
+        });
+      }
 
 
-      // see http://twitter.github.io/typeahead.js/
-
-      $('#highlight-by-label-input').typeahead({
-        name: 'Highlight node in pathway',
-        local: nodeLabels,
-        limit: 10
-      });
 //*/
 
       /*

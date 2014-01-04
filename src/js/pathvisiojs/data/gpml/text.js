@@ -1,3 +1,4 @@
+"use strict";
 pathvisiojs.data.gpml.text = function() {
 
   var pathvisioDefaultStyleValues = {
@@ -20,9 +21,11 @@ pathvisiojs.data.gpml.text = function() {
     //*/
     try {
       var thisPathvisioDefaultStyleValues = pathvisiojs.utilities.collect(pathvisioDefaultStyleValues.text, inputDefaultValues);
-      var text = gpmlNode.attr('TextLabel');
+      var jsonText, textAlign, verticalAlign, fontStyle, fontWeight, fontSize, fontFamily,
+        text = gpmlNode.attr('TextLabel');
       if (!!text) {
         jsonText = {};
+        jsonText['@id'] = ('id' + uuid.v4());
         jsonText.tspan = text.split(/\r\n|\r|\n|&#xA;/g);
 
         var graphics = gpmlNode.select('Graphics');
@@ -35,22 +38,22 @@ pathvisiojs.data.gpml.text = function() {
           jsonText.verticalAlign = verticalAlign.toLowerCase();
 
           fontStyle = gpmlNode.select('Graphics').attr('FontStyle');
-          if (fontStyle !== thisPathvisioDefaultStyleValues['FontStyle']) {
+          if (fontStyle !== thisPathvisioDefaultStyleValues['FontStyle'] && !!fontStyle) {
             jsonText.fontStyle = fontStyle.toLowerCase();
           }
 
           fontWeight = gpmlNode.select('Graphics').attr('FontWeight');
-          if (fontWeight !== thisPathvisioDefaultStyleValues['FontWeight']) {
+          if (fontWeight !== thisPathvisioDefaultStyleValues['FontWeight'] && !!fontWeight) {
             jsonText.fontWeight = fontWeight.toLowerCase();
           }
 
           fontSize = gpmlNode.select('Graphics').attr('FontSize') || 10;
-          if (parseFloat(fontSize) !== thisPathvisioDefaultStyleValues['FontSize']) {
+          if (parseFloat(fontSize) !== thisPathvisioDefaultStyleValues['FontSize'] && !!fontSize) {
             jsonText.fontSize = parseFloat(fontSize);
           }
 
           fontFamily = gpmlNode.select('Graphics').attr('FontName');
-          if (fontFamily !== thisPathvisioDefaultStyleValues['FontName']) {
+          if (fontFamily !== thisPathvisioDefaultStyleValues['FontName'] && !!fontFamily) {
             jsonText.fontFamily = fontFamily;
           }
         }

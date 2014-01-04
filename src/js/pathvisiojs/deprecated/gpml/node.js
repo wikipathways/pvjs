@@ -1,4 +1,4 @@
-pathvisiojs.data.gpml.node = function(){
+pathvisiojs.data.gpml.element.node = function(){
 
   // TODO What happens if we have right to left flowing text?
 
