@@ -1,4 +1,4 @@
-pathvisiojs.data.gpml.node.entityNode.dataNode = function() {
+pathvisiojs.data.gpml.element.node.entityNode.dataNode = function() {
 
   function toRenderableJson(gpmlDataNode, callback) {
     self.gpmlDataNode = gpmlDataNode;
@@ -18,7 +18,7 @@ pathvisiojs.data.gpml.node.entityNode.dataNode = function() {
       }
 
       var jsonAnchorsFromThisDataNode;
-      pathvisiojs.data.gpml.node.toRenderableJson(gpmlDataNode, jsonDataNode, function(jsonNode, jsonAnchorsFromThisNode) {
+      pathvisiojs.data.gpml.element.node.toRenderableJson(gpmlDataNode, jsonDataNode, function(jsonNode, jsonAnchorsFromThisNode) {
         jsonDataNode = jsonNode;
         jsonAnchorsFromThisDataNode = jsonAnchorsFromThisNode;
       });

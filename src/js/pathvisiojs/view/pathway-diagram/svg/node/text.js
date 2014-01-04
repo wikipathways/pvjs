@@ -1,3 +1,4 @@
+"use strict";
 pathvisiojs.view.pathwayDiagram.svg.node.text = function(){
 
   // for more details, see 
@@ -15,111 +16,48 @@ pathvisiojs.view.pathwayDiagram.svg.node.text = function(){
     'justify': null
     //*/
 
-  function getTextAnchor(tspan0, cssTextAlignValue) {
-    var direction, textAnchor;
-    if (cssTextAlignValue === 'center') {
-      textAnchor = 'middle';
-    }
-    else {
-      if (cssTextAlignValue === 'left' || cssTextAlignValue === 'right') {
-        direction = pathvisiojs.utilities.getTextDirection('tspan0');
-        if (direction === 'ltr') {
-          if (cssTextAlignValue === 'left') {
-            textAnchor = 'start';
-          }
-          else {
-            textAnchor = 'end';
-          }
-        }
-        else {
-          if (cssTextAlignValue === 'left') {
-            textAnchor = 'end';
-          }
-          else {
-            textAnchor = 'start';
-          }
-        }
-      }
-    }
-    return textAnchor;
-  };
 
   function render(nodeContainer, data) {
     var dx, dy, textAlign, textAnchor;
 
-    // TODO don't repeat default fontSize here. Need to follow DRY principle.
+    // TODO make a better caching system
+    var cache = {};
+    cache.padding = 5;
+    var text = {};
+    text.cache = {};
+    text.cache.fontSize = 12;
+    text.cache.alignmentBaseline = 'middle';
+    text.cache.textAnchor = 'middle';
+    text.cache.textAlign = 'center';
+    text.cache.verticalAlign = 'middle';
+    text.cache.translate = {};
+    // TODO replace this with the actual translate values
+    text.cache.translate.dx = data.width / 2;
+    text.cache.translate.dy = data.height / 2;
+    text.tspan = {};
+    text.tspan.cache = {};
+    text.tspan.cache.y = [];
+    var i = 0
+    data.text.tspan.forEach(function(tspan) {
+      text.tspan.cache.y.push(i * text.cache.fontSize);
+      i += 1;
+    });  
 
-    var fontSize = data.text.fontSize || 10;
-    if (data.text.hasOwnProperty('textAlign')) {
-      textAlign = data.text.textAlign;
-      if (textAlign === 'left' || textAlign === 'center' || textAlign === 'right') {
-        textAnchor = getTextAnchor(data.text.tspan[0], textAlign);
-      }
-      else {
-        // TODO handle justify and inherit
-        textAnchor = 'middle';
-      }
-    }
-    else {
-      textAnchor = 'middle';
-    }
-
-    var nodeText = nodeContainer.selectAll('text')
+    var textArea = nodeContainer.selectAll('g.text-area')
     .data(function(d) {
       return [d];
     })
     .enter()
-    .append('text')
+    .append('g')
     .attr("id", function (d) {
-      return 'node-text-' + strcase.paramCase(d['@id']);
+      return 'text-container' + strcase.paramCase(d['@id']);
     })
-    .attr("x", 0)
-    .attr("y", 0)
     .attr('transform', function(d) {
-
-      // tweak left, center, right horizontal alignment
-      // giving padding of 5. maybe this should go into the CSS.
-
-      if (textAnchor === 'start') {
-        dx = 5;
-      }
-      else {
-        if (textAnchor === 'end') {
-          dx = d.width - 5;
-        }
-        else {
-          dx = d.width / 2;
-        }
-      }
-
-      // set top, middle, bottom vertical alignment
-
-      if (d.text.hasOwnProperty('verticalAlign')) {
-        if (d.text.verticalAlign === 'top') {
-          dy = 5 + (1 * fontSize);
-        }
-        else {
-          if (d.text.verticalAlign === 'bottom') {
-            dy = d.height - (5 + (0.3 * fontSize) + ((d.text.tspan.length - 1) * fontSize));
-          }
-          else {
-            dy = (d.height / 2) + (0.3 * fontSize) - (((d.text.tspan.length - 1) * fontSize)/2);
-          }
-        }
-      }
-      else {
-        dy = (d.height / 2) + (0.3 * fontSize) - (((d.text.tspan.length - 1) * fontSize)/2);
-      }
-      return 'translate(' + dx + ' ' + dy + ')';
+      return 'translate(' + text.cache.translate.dx + ' ' + text.cache.translate.dy + ')';
     })
+    .attr("class", "text-area")
     .attr("style", function (d) {
       var style = '';
-      if (nodeContainer[0][0]['__data__']['@type'].indexOf('Metabolite') != -1) {
-	style += 'fill:#0000FF; ';
-      }
-      if (nodeContainer[0][0]['__data__']['@type'].indexOf('Pathway') != -1) {
-        style += 'fill:rgb(20,150,30); ';
-      }
       if (d.text.hasOwnProperty('color')) {
         style += 'fill:' + d.text.color + '; ';
       }
@@ -138,16 +76,29 @@ pathvisiojs.view.pathwayDiagram.svg.node.text = function(){
       return style;
     });
 
-    var nodeTspan = nodeText.selectAll('tspan')
+    var textLine = textArea.selectAll('text')
     .data(function(d) {
       return d.text.tspan;
     })
     .enter()
-    .append('tspan')
+    .append('text')
+    .attr("id", function (d, i) {
+      return 'text-line' + i;
+    })
     .attr("x", 0)
-    .attr("y", function (d, i) { return i * fontSize;})
-    .attr("text-anchor", textAnchor)
+    .attr("y", function (d, i) { return i * 1.4 + 'em';})
+    .attr("alignment-baseline", text.cache.alignmentBaseline)
+    .attr("text-anchor", text.cache.textAnchor)
     .text(function (d) { return d; });
+
+    /*
+    nodeText.attr('transform', function(d) {
+      applyTextAlign(nodeText[0][0], d, function(translate) {
+        return 'translate(' + translate.dx + ' ' + translate.dy + ')';
+      });
+    })
+    //*/
+
     return nodeContainer;
   }
 
