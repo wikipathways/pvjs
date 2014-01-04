@@ -8,7 +8,21 @@ pathvisiojs.view.pathwayDiagram.svg.node.pathShape = function(){
       return cssClass;
     })
 
-    var nodeAttributes = pathvisiojs.view.pathwayDiagram.svg.node.pathShape[strcase.camelCase(data.ShapeType)].getAttributes(data.width, data.height);
+    var re;
+    var pathShapeNameToUse = strcase.camelCase(data.ShapeType);
+    if (!pathvisiojs.view.pathwayDiagram.svg.node.pathShape.hasOwnProperty(pathShapeNameToUse)) {
+      re = /-double$/gi;
+      pathShapeNameToUse = pathShapeNameToUse.replace(re, '');
+      if (pathvisiojs.view.pathwayDiagram.svg.node.pathShape.hasOwnProperty(pathShapeNameToUse)) {
+        console.warn('Requested pathShape "' + data.ShapeType + '" is not available with linetype of "Double". Using linetype of "Solid" instead');
+      }
+      else {
+        console.warn('Requested pathShape "' + data.ShapeType + '" is not available. Using pathShape "rounded-rectangle" instead');
+        pathShapeNameToUse = 'roundedRectangle';
+      }
+    }
+
+    var nodeAttributes = pathvisiojs.view.pathwayDiagram.svg.node.pathShape[pathShapeNameToUse].getAttributes(data.width, data.height);
     nodeAttributes.forEach(function(attribute) {
       node.attr(attribute.name, attribute.value)
     });
