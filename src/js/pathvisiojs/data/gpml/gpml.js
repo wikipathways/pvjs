@@ -156,7 +156,7 @@ pathvisiojs.data.gpml = function(){
 
       async.parallel({
           '@context': function(callback){
-            pathvisiojs.context = pathway['@context'] = {
+            pathway['@context'] = {
               '@vocab':'http://vocabularies.wikipathways.org/gpml#',
               'gpml':'http://vocabularies.wikipathways.org/gpml#',
               'xsd': 'http://www.w3.org/2001/XMLSchema#',
@@ -283,7 +283,7 @@ pathvisiojs.data.gpml = function(){
                 '@container': '@list'
               }
             };
-            callback(null, pathvisiojs.context);
+            callback(null, pathway['@context']);
           },
           PublicationXref: function(callback){
             pathvisiojs.data.gpml.biopaxRef.getAllAsRenderableJson(gpmlPathway, function(publicationXrefs) {
@@ -511,7 +511,7 @@ pathvisiojs.data.gpml = function(){
         var groupsFrame, jsonGroups = [];
         if (!!pathway.Group) {
           groupsFrame = {
-            '@context': pathvisiojs.context,
+            '@context': pathway['@context'],
             '@type': 'GroupNode',
             'contains': {}
           };  

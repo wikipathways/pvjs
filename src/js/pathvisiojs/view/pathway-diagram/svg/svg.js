@@ -152,8 +152,8 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
   }
 
   function renderElementsQuick(args, callbackOutside){
-    console.log('args.data');
-    console.log(args.data);
+    console.log('args');
+    console.log(args);
     if (!args.target) {
       throw new Error("No target specified.");
     }
@@ -192,14 +192,8 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
       function(data, callback) {
         data.forEach(function(element) {
           if (element.renderableType === 'GroupNode') {
-            console.log('element');
-            console.log(element);
             args.data = element;
             pathvisiojs.view.pathwayDiagram.svg.node.groupNode.render(args, function(groupContainer, groupContents) {
-              console.log('groupContainer');
-              console.log(groupContainer);
-              console.log('groupContents');
-              console.log(groupContents);
 
               var groupedElementsArgs = {};
               groupedElementsArgs.svg = args.svg;
@@ -207,15 +201,13 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
               groupedElementsArgs.data = groupContents;
               groupedElementsArgs.allSymbolNames = args.allSymbolNames;
               groupedElementsArgs.organism = organism;
-              console.log('groupedElementsArgs');
-              console.log(groupedElementsArgs);
               pathvisiojs.view.pathwayDiagram.svg.renderElementsQuick(groupedElementsArgs, function() {
               });
 
 
               /*
               var groupedElementsFrame = {
-                '@context': pathvisiojs.context,
+                '@context': pathway['@context'],
                 "@type":element.GroupId
               };
               jsonld.frame(args.pathway, groupedElementsFrame, function(err, groupedElementsData) {
@@ -350,7 +342,7 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
     async.parallel({
       'hierarchicalData': function(callbackInside) {
         var frame = {
-          '@context': pathvisiojs.context,
+          '@context': pathway['@context'],
           '@type': 'element'
         };  
         jsonld.frame(args.pathway, frame, function(err, hierarchicalData) {
@@ -359,7 +351,7 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
       },
       'groupData': function(callbackInside) {
         var frame = {
-          '@context': pathvisiojs.context,
+          '@context': pathway['@context'],
           '@type': 'GroupNode'
         };  
         jsonld.frame(args.pathway, frame, function(err, groupData) {
@@ -369,7 +361,7 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
       'grid': function(callbackInside) {
         pathvisioNS.grid = {};
         var frame = {
-          '@context': pathvisiojs.context,
+          '@context': pathway['@context'],
           '@type': 'EntityNode'
         };  
         jsonld.frame(args.pathway, frame, function(err, framedData) {

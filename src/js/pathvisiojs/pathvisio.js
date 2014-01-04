@@ -2,30 +2,32 @@ pathvisiojs = function(){
 
   var svg, pathway, args;
 
-  function getUriFromWikiPathwaysId(wikiPathwaysId, revision) {
+  function getUrisForWikiPathwaysId(wikiPathwaysId, revision) {
+    var results = {};
+    if (pathvisiojs.utilities.isWikiPathwaysId(wikiPathwaysId)) {
+      results.uri = 'http://pointer.ucsf.edu/d3/r/data-sources/gpml.php?id=' + wikiPathwaysId + '&rev=' + revision;
+      results.cached = 'https://pathways.firebaseio.com/' + wikiPathwaysId + '.json';
+      results.type = 'GPML';
+      results.pathwayIri = 'wpId:' + wikiPathwaysId + '#';
+    }
+    else {
+      throw new Error('Pathvisiojs cannot handle the data source type entered.');
+    }
 
     // be sure server has set gpml mime type to application/xml or application/gpml+xml
 
-    return 'http://pointer.ucsf.edu/d3/r/data-sources/gpml.php?id=' + wikiPathwaysId + '&rev=' + revision;
+    return results;
   }
 
   function getInputDataDetails(inputData) {
+    var results = {};
 
     // inputData can be a WikiPathways ID (WP1), a uri for a GPML file (http://www.wikipathways.org/gpmlfile.gpml)
     // or a uri for another type of file.
 
-    var results = {};
-    if (!inputData.revision) {
-      inputData.revision = 0;
-    }
-
     if (pathvisiojs.utilities.getObjectType(inputData) === 'Object') {
-      results = inputData;
-      if (pathvisiojs.utilities.isWikiPathwaysId(inputData.wikiPathwaysId)) {
-        results.uri = getUriFromWikiPathwaysId(inputData.wikiPathwaysId, inputData.revision);
-        results.type = 'GPML';
-        results.pathwayIri = 'wpId:' + inputData.wikiPathwaysId + '#';
-      }
+      inputData.revision = inputData.revision || 0;
+      results = getUrisForWikiPathwaysId(inputData.wikiPathwaysId, 0);
     }
     else {
       if (pathvisiojs.utilities.isUrl(inputData)) {
@@ -33,30 +35,30 @@ pathvisiojs = function(){
         if (results.uri.indexOf('.gpml') > -1) {
           results.type = 'GPML';
           results.pathwayIri = inputData + '#';
+          return results;
+        }
+        else {
+          throw new Error('Pathvisiojs cannot handle the data source type entered.');
         }
       }
       else {
-        if (pathvisiojs.utilities.isWikiPathwaysId(inputData)) {
-          results.uri = getUriFromWikiPathwaysId(inputData);
-          results.type = 'GPML';
-          results.pathwayIri = 'wpId:' + inputData + '#';
-        }
-        else {
-          throw new Error('Pathvisio.js cannot handle the data source type entered: ' + data);
-        }
+        results = getUrisForWikiPathwaysId(inputData, 0);
       }
     }
-
     return results;
   }
 
   function getJson(inputData, callback) {
 
-    // inputData is a uri to a GPML or other pathway data file.
+    // inputData can be either of the following:
+    // 1) a uri to a GPML or other pathway data file
+    // 2) a WikiPathways pathway ID, like "WP1"
     // This function converts data specified by inputData to formatted JSON
     // and return the JSON to the function that called getJson()
 
     var inputDataDetails = getInputDataDetails(inputData);
+    console.log('inputDataDetails');
+    console.log(inputDataDetails);
 
     // For now, pathvisio.js will attempt to convert any input data, as long as it is of type
     // GPML or has no type specified, into JSON.
@@ -65,13 +67,21 @@ pathvisiojs = function(){
 
     if (!!inputDataDetails.uri && (!inputDataDetails.type || inputDataDetails.type === 'GPML')) {
 
+      //*
+      d3.json(inputDataDetails.cached, function(json) {
+        callback(json);
+      });
+      //*/
+
       // TODO d3.xml doesn't seem to work with IE8
 
+      /*
       d3.xml(inputDataDetails.uri, function(gpml) {
         pathvisiojs.data.gpml.toRenderableJson(gpml, inputDataDetails.pathwayIri, function(json) {
           callback(json);
         });
       });
+      //*/
     }
     else {
       return new Error('No data source specified or pathvisio.js cannot handle the data source specified.');
@@ -98,6 +108,7 @@ pathvisiojs = function(){
       },
       pathway: function(callback){
         getJson(args.data, function(json) {
+          pathvisiojs.context = json['@context'];
           console.log('json');
           console.log(json);
           callback(null, json);
