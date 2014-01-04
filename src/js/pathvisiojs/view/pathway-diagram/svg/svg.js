@@ -3,8 +3,8 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
 
   var svg, shapesAvailable, markersAvailable, contextLevelInput;
 
-  function setCTM(element, matrix) {
-    var s = "matrix(" + matrix.a + "," + matrix.b + "," + matrix.c + "," + matrix.d + "," + matrix.e + "," + matrix.f + ")";
+  function setCTM(element, scale) {
+    var s = "matrix(" + scale + ",0,0," + scale + ",10,20)"; // + matrix.a + "," + matrix.b + "," + matrix.c + "," + matrix.d + "," + matrix.e + "," + matrix.f + ")";
     element.setAttribute("transform", s);
   }
 
@@ -49,11 +49,15 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
         // TODO avoid defining svg again
 
         var svgElement = document.querySelector('svg');
-        var m1 = svgElement.getCTM();
-        var p = {'x': m1.e, 'y': m1.f};
-        var m2 = svgElement.createSVGMatrix().translate(p.x, p.y).scale(svgDimensions.scale).translate(-p.x, -p.y);
+        //var m1 = svgElement.getCTM();
+        //var p = {'x': m1.e, 'y': m1.f};
+        //var m2 = svgElement.createSVGMatrix().translate(p.x, p.y).scale(svgDimensions.scale).translate(-p.x, -p.y);
         var viewport = svgElement.querySelector('#viewport');
-        setCTM(viewport, m2);
+	var container = d3.select('body').select('#pathway-container');
+ 	var containerWidth = parseInt(container.style("width")) - 40; //account for space for pan/zoom controls
+	var containerHeight = parseInt(container.style("height")) -20; //account for space for search field
+	var fitScreenScale = Math.min(containerWidth/args.pathway.image.width, containerHeight/args.pathway.image.height);
+        setCTM(viewport, fitScreenScale);
 
         /*
          * function setCTM(element, matrix) {
