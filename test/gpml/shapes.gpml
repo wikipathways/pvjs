@@ -83,9 +83,9 @@
   <Shape TextLabel="Shape Type: Rectangle&#xA;Line Style: dashed" GraphId="f4f31">
     <Graphics CenterX="482.1564379089201" CenterY="233.69281320388794" Width="129.19822485207098" Height="49.316568047337455" ZOrder="32979" FontSize="10" Valign="Middle" ShapeType="Rectangle" LineStyle="Broken" Rotation="0.0" />
   </Shape>
-  <Shape TextLabel="Shape Type: rectangle&#xA;Line Style: Double" GraphId="e5bdc">
+  <Shape TextLabel="Shape Type: rectangle&#xA;Line Style: Double&#xA;Fill: yellow" GraphId="e5bdc">
     <Attribute Key="org.pathvisio.DoubleLineProperty" Value="Double" />
-    <Graphics CenterX="485.6246460014055" CenterY="301.6489950939209" Width="129.19822485207098" Height="49.316568047337455" ZOrder="32980" FontSize="10" Valign="Middle" ShapeType="Rectangle" Rotation="0.0" />
+    <Graphics CenterX="485.6246460014055" CenterY="301.6489950939209" Width="129.19822485207098" Height="49.316568047337455" ZOrder="32980" FillColor="ffffcc" FontSize="10" Valign="Middle" ShapeType="Rectangle" Rotation="0.0" />
   </Shape>
   <Shape TextLabel="Shape Type: rectangle &#xA;Line Style: dashed&#xA;stroke: red" GraphId="a7001">
     <Attribute Key="org.pathvisio.CellularComponentProperty" Value="None" />

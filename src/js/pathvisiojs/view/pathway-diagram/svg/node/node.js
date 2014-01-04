@@ -78,6 +78,13 @@ pathvisiojs.view.pathwayDiagram.svg.node = function(){
       element.y = d.y - targetElement.y;
       return 'translate(' + element.x + ' ' + element.y + ')';
     })
+    .attr("style", function (d) {
+      var style = '';
+      if (d.hasOwnProperty('backgroundColor')) {
+        style += 'fill:' + d.backgroundColor + '; ';
+      }
+      return style;
+    })
     .call(drag)
 
     /****************** 

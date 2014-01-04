@@ -37,6 +37,7 @@ pathvisiojs.view.pathwayDiagram.svg.node.text = function(){
     text.tspan = {};
     text.tspan.cache = {};
     text.tspan.cache.y = [];
+    var textLineCount = data.text.tspan.length;
     var i = 0
     data.text.tspan.forEach(function(tspan) {
       text.tspan.cache.y.push(i * text.cache.fontSize);
@@ -86,7 +87,7 @@ pathvisiojs.view.pathwayDiagram.svg.node.text = function(){
       return 'text-line' + i;
     })
     .attr("x", 0)
-    .attr("y", function (d, i) { return i * 1.4 + 'em';})
+    .attr("y", function (d, i) { return (i - (textLineCount - 1)/2) * 1.4 + 'em';})
     .attr("alignment-baseline", text.cache.alignmentBaseline)
     .attr("text-anchor", text.cache.textAnchor)
     .text(function (d) { return d; });
