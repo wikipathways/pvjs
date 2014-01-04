@@ -45,12 +45,17 @@ pathvisiojs.data.gpml.element.node.entityNode.shape = function(){
     
     // some shapes have GPML values that do not match what is visually displayed in PathVisio-Java.
     // Below we correct the GPMl so that the display in pathvisiojs will matches the display in PathVisio-Java.
+    console.log('gpmlShape at first');
+    console.log(gpmlShape);
+    self.myGpmlShape = gpmlShape;
     var gpmlWidth, gpmlCenterX; 
-    if (gpmlShape.select('ShapeType') === 'Triangle') {
-      gpmlWidth = gpmlShape.select('Graphics').attr('Width');
-      gpmlCenterX = gpmlShape.select('Graphics').attr('CenterX');
-      gpmlShape.select('Graphics').attr('CenterX') += gpmlWidth * 0.27;
-      gpmlShape.select('Graphics').attr('Width') = gpmlWidth * 1.06;
+    if (gpmlShape.select('Graphics').attr('ShapeType') === 'Triangle') {
+      gpmlWidth = parseFloat(gpmlShape.select('Graphics').attr('Width'));
+      gpmlCenterX = parseFloat(gpmlShape.select('Graphics').attr('CenterX'));
+      gpmlShape.select('Graphics').attr('CenterX', gpmlCenterX + gpmlWidth * 0.27);
+      gpmlShape.select('Graphics').attr('Width', gpmlWidth * 0.98);
+      console.log('gpmlShape');
+      console.log(gpmlShape);
     }
 
     var jsonShape = {};
