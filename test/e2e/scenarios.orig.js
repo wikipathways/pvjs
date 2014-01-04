@@ -2,28 +2,26 @@
 
 /* http://docs.angularjs.org/guide/dev_guide.e2e-testing */
 
-describe('testing ', function() {
+describe('wikipathways version', function() {
 
   beforeEach(function() {
-    browser().navigateTo('../');
+    browser().navigateTo('/samples/wikipathways-version/index.html');
   });
 
-    it('should have 1 body when user navigates to testing home', function() {
+    it('should have 1 body when user navigates to samples/wikipathways-version/', function() {
       expect(element('body').count()).toEqual(1);
     });
 
-    /*
-    it('should have 1 iframe with an id of "current-wiki-pathways-widget" when user navigates to testing home', function() {
-      expect(element('iframe#current-wiki-pathways-widget').count()).toEqual(1);
+    it('should have 1 iframe#pathwayFrame when user navigates to samples/wikipathways-version/', function() {
+      expect(element('iframe#pathwayFrame').count()).toEqual(1);
     });
-    //*/
 
 });
 
 describe('viewer', function() {
 
   beforeEach(function() {
-    browser().navigateTo('../compare.html?gpml=WP1');
+    browser().navigateTo('/app/index.html#/?wgTitle=WP673&wgCurRevisionId=63184');
   });
 
     it('should have 1 svg#drawingBoard', function() {
