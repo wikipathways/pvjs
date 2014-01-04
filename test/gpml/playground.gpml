@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Pathway xmlns="http://pathvisio.org/GPML/2013a" Name="shapes" Version="20130813" Organism="Anopheles gambiae">
-  <Graphics BoardWidth="589.4605394605396" BoardHeight="1903.0790411903004" />
+  <Graphics BoardWidth="766.4414843006662" BoardHeight="1903.0790411903004" />
   <DataNode TextLabel="Metabolite" GraphId="b7917" Type="Metabolite">
     <Graphics CenterX="200.0" CenterY="169.69855603791484" Width="200.0" Height="71.97456535737274" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff" />
     <Xref Database="" ID="" />
@@ -37,7 +37,10 @@
   </Shape>
   <Shape GraphId="bf5a4">
     <Attribute Key="org.pathvisio.CellularComponentProperty" Value="Mitochondria" />
-    <Graphics CenterX="200.0" CenterY="288.96078921078936" Width="200.0" Height="79.42107892107893" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="Mitochondria" LineThickness="3.0" Color="c0c0c0" Rotation="0.0" />
+    <Graphics CenterX="200.0" CenterY="275.64014220793484" Width="200.0" Height="79.42107892107893" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="Mitochondria" LineThickness="3.0" Color="c0c0c0" Rotation="0.0" />
+  </Shape>
+  <Shape GraphId="a3451">
+    <Graphics CenterX="199.80970504281638" CenterY="286.3939105613701" Width="199.80970504281635" Height="89.43862987630826" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="Arc" Color="ff3366" Rotation="0.0" />
   </Shape>
   <Shape TextLabel="extracellular&#xA;region" GraphId="cb8a8">
     <Attribute Key="org.pathvisio.CellularComponentProperty" Value="Extracellular region" />
