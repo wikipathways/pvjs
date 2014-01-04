@@ -24,6 +24,9 @@ pathvisiojs.view.pathwayDiagram.svg.symbol = function(){
   };
 
   function appendCustom(uniqueSymbolShapeUrl, callback) {
+    var img, width, height, imgChildren;
+    var dimensions = null;
+
     var symbolId = strcase.paramCase(uniqueSymbolShapeUrl)
     var defsSection = svg.select('defs');
     var symbol = defsSection.select('#' + symbolId);
@@ -40,18 +43,14 @@ pathvisiojs.view.pathwayDiagram.svg.symbol = function(){
     if (1===1) {
     //if (symbolType === 'svg') {
       d3.xml(uniqueSymbolShapeUrl, "image/svg+xml", function(svgXml) {
-        var shape = d3.select(svgXml.documentElement)
-        var width = shape.attr('width');
-        var height = shape.attr('height');
+        img = d3.select(svgXml.documentElement)
+        width = img.attr('width');
+        height = img.attr('height');
         symbol.attr('viewBox', '0 0 ' + width + ' ' + height);
-        var shapeSvg = d3.select(svgXml).select('svg');
-        var width = shapeSvg.attr('width');
-        var height = shapeSvg.attr('height');
-        symbol.attr('viewBox', '0 0 ' + width + ' ' + height);
-        var shapeChildren = shapeSvg[0][0].children;
+        imgChildren = img[0][0].children;
         do {
-          symbol[0][0].appendChild(shapeChildren[0]);
-        } while (shapeChildren.length > 0);
+          symbol[0][0].appendChild(imgChildren[0]);
+        } while (imgChildren.length > 0);
         callback(null);
       });
     }
@@ -70,26 +69,10 @@ pathvisiojs.view.pathwayDiagram.svg.symbol = function(){
         callback(null);
       }
     }
-
-    /*
-    symbol.append('object').attr('data', uniqueSymbolShapeUrl)
-    .attr('x', dimensions[0])
-    .attr('y', dimensions[1])
-    .attr('width', dimensions[2])
-    .attr('height', dimensions[3])
-    .attr('type', "image/svg+xml");
-    //*/
-
-
   }
 
   function loadAllCustom(thisSvg, customSymbols, callback) {
     svg = thisSvg;
-    var image = null;
-    var img = null;
-    var def = null;
-    var dimensions = null;
-    var dimensionSet = [];
 
     var uniqueSymbolShapeUrls = [];
     customSymbols.forEach(function(customSymbol){
