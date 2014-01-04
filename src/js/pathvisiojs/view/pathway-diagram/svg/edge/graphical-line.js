@@ -1,3 +1,4 @@
+"use strict";
 pathvisiojs.view.pathwayDiagram.svg.edge.graphicalLine = function(){
   function render(svg, container, data) {
     /*

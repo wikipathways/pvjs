@@ -1,3 +1,4 @@
+"use strict";
 pathvisiojs.data.gpml.edge.graphicalLine = function(){
 
   //*

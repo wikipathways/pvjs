@@ -6,12 +6,30 @@
 var svg;
 
 pathvisiojs.view.pathwayDiagram.svg.symbol = function(){
-  function appendCustom(customSymbol, callback) {
+
+  var semanticNameToIdMapping = { 
+    'arc':'shape-library-symbols-arc-svg',
+    'brace':'shape-library-symbols-brace-svg',
+    'endoplasmic-reticulum':'shape-library-symbols-endoplasmic-reticulum-svg',
+    'golgi-apparatus':'shape-library-symbols-golgi-apparatus-svg',
+    'hexagon':'shape-library-symbols-hexagon-svg',
+    'mim-degradation':'shape-library-symbols-mim-degradation-svg',
+    'mitochondria':'shape-library-symbols-mitochondria-svg',
+    'oval':'shape-library-symbols-oval-svg',
+    'pentagon':'shape-library-symbols-pentagon-svg',
+    'rectangle':'shape-library-symbols-rectangle-svg',
+    'sarcoplasmic-reticulum':'shape-library-symbols-sarcoplasmic-reticulum-svg',
+    'triangle':'shape-library-symbols-triangle-svg',
+    'none':'shape-library-symbols-none-svg'
+  };
+
+  function appendCustom(uniqueSymbolShapeUrl, callback) {
+    var symbolId = strcase.paramCase(uniqueSymbolShapeUrl)
     var defsSection = svg.select('defs');
-    var symbol = defsSection.select('#' + customSymbol.id);
+    var symbol = defsSection.select('#' + symbolId);
     if (!symbol[0][0]) {
       symbol = defsSection.append('symbol')
-      .attr('id', customSymbol.id)
+      .attr('id', symbolId)
       .attr('preserveAspectRatio', 'none');
     }
     else {
@@ -19,44 +37,31 @@ pathvisiojs.view.pathwayDiagram.svg.symbol = function(){
     }
 
     // ignoring non-svg symbols for now
-    //if (symbolType === 'svg') {
     if (1===1) {
-      d3.xml(customSymbol.url, "image/svg+xml", function(svgXml) {
+    //if (symbolType === 'svg') {
+      d3.xml(uniqueSymbolShapeUrl, "image/svg+xml", function(svgXml) {
         var shape = d3.select(svgXml.documentElement)
         var width = shape.attr('width');
         var height = shape.attr('height');
-        //var shapeClass = shape.attr('class');
-
         symbol.attr('viewBox', '0 0 ' + width + ' ' + height);
-
-          self.mySvgXml = svgXml;
-          var shapeSvg = d3.select(svgXml).select('svg');
-          var width = shapeSvg.attr('width');
-          var height = shapeSvg.attr('height');
-          symbol.attr('viewBox', '0 0 ' + width + ' ' + height);
-          var shapeChildren = shapeSvg[0][0].children;
-          d3.xml(customSymbol.url, "image/svg+xml", function(svgXml) {
-            self.mySvgXml = svgXml;
-            shapeSvg = d3.select(svgXml).select('svg');
-            var width = shapeSvg.attr('width');
-            var height = shapeSvg.attr('height');
-            symbol.attr('viewBox', '0 0 ' + width + ' ' + height);
-            //symbol.attr('class', shapeClass);
-            shapeChildren = shapeSvg[0][0].children;
-            do {
-              symbol[0][0].appendChild(shapeChildren[0]);
-            } while (shapeChildren.length > 0);
-          });
+        var shapeSvg = d3.select(svgXml).select('svg');
+        var width = shapeSvg.attr('width');
+        var height = shapeSvg.attr('height');
+        symbol.attr('viewBox', '0 0 ' + width + ' ' + height);
+        var shapeChildren = shapeSvg[0][0].children;
+        do {
+          symbol[0][0].appendChild(shapeChildren[0]);
+        } while (shapeChildren.length > 0);
         callback(null);
       });
     }
     else {
       img = document.createElement('img');
-      img.src = customSymbol.url;
+      img.src = uniqueSymbolShapeUrl;
       img.onload = function() {
         symbol.attr('viewBox', '0 0 ' + this.width + ' ' + this.height)
         dimensions = symbol.attr('viewBox').split(' ');
-        symbol.append('image').attr('xlink:xlink:href', customSymbol.url)
+        symbol.append('image').attr('xlink:xlink:href', uniqueSymbolShapeUrl)
         .attr('x', dimensions[0])
         .attr('y', dimensions[1])
         .attr('width', dimensions[2])
@@ -67,7 +72,7 @@ pathvisiojs.view.pathwayDiagram.svg.symbol = function(){
     }
 
     /*
-    symbol.append('object').attr('data', customSymbol.url)
+    symbol.append('object').attr('data', uniqueSymbolShapeUrl)
     .attr('x', dimensions[0])
     .attr('y', dimensions[1])
     .attr('width', dimensions[2])
@@ -86,8 +91,16 @@ pathvisiojs.view.pathwayDiagram.svg.symbol = function(){
     var dimensions = null;
     var dimensionSet = [];
 
-    async.each(customSymbols, appendCustom, function(err){
-        // if any of the saves produced an error, err would equal that error
+    var uniqueSymbolShapeUrls = [];
+    customSymbols.forEach(function(customSymbol){
+      semanticNameToIdMapping[customSymbol.semanticName] = strcase.paramCase(customSymbol.url);
+      if (uniqueSymbolShapeUrls.indexOf(customSymbol.url) === -1) {
+        uniqueSymbolShapeUrls.push(customSymbol.url);
+      }
+    });
+
+    async.each(uniqueSymbolShapeUrls, appendCustom, function(err){
+      // if any of the saves produced an error, err would equal that error
       callback(null);
     });
   }
@@ -101,6 +114,7 @@ pathvisiojs.view.pathwayDiagram.svg.symbol = function(){
 
   return {
     loadAllCustom:loadAllCustom,
+    semanticNameToIdMapping:semanticNameToIdMapping,
     getAllSymbolNames:getAllSymbolNames
   };
 }();
