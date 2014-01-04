@@ -67,7 +67,7 @@ pathvisiojs = function(){
 
     if (!!inputDataDetails.uri && (!inputDataDetails.type || inputDataDetails.type === 'GPML')) {
 
-      //*
+      /*
       d3.json(inputDataDetails.cached, function(json) {
         callback(json);
       });
@@ -75,7 +75,7 @@ pathvisiojs = function(){
 
       // TODO d3.xml doesn't seem to work with IE8
 
-      /*
+      //*
       d3.xml(inputDataDetails.uri, function(gpml) {
         pathvisiojs.data.gpml.toRenderableJson(gpml, inputDataDetails.pathwayIri, function(json) {
           callback(json);
