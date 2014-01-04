@@ -56,9 +56,10 @@
 		fill-opacity: 1;
 		fill: white;
 		stroke: black;
+		stroke-width: 2;
 		stroke-dasharray: 0;
 		stroke-miterlimit: 1;
-    pointer-events:auto;
+    		pointer-events:auto;
 	}
 	
 	.has-xref:hover {
