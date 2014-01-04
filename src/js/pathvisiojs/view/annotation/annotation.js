@@ -2,7 +2,19 @@ pathvisiojs.view.annotation = function(){
   function render(annotationData) {
     self.annotationData = annotationData;
     var annotation = d3.select("#annotation")
-    .data([annotationData])
+    .data([annotationData]);
+ 
+    //Special drag code to update absolute position of annotation panel
+    var dragAbs = d3.behavior.drag()
+    .on("drag", function(d,i){
+	var dright = parseInt(annotation.style("right"));
+	var dtop = parseInt(annotation.style("top"));
+	dright-=d3.event.dx;
+	dtop+=d3.event.dy;
+	annotation.style("right", dright+"px");
+	annotation.style("top", dtop+"px");
+    });
+
 
     var annotationHeaderText = annotation.select('#annotation-header-text')
     .text(function(d) { return d.header; });
@@ -14,10 +26,13 @@ pathvisiojs.view.annotation = function(){
      .attr('title', function(d) {return 'Search for pathways containing ' + d.header; });
 
     var annotationIconMove = annotation.select('i.icon-move')
-    .on("drag", function(d, i){
-      // I think I need to play with absolute positioning for this
-      // it doesn't currently work.
-      //annotation.attr('transform', 'translate(10 10)');
+    .on("mousedown", function(d, i){
+	//add dragAbs function when icon is pressed
+       	annotation.call(dragAbs);
+    })
+    .on("mouseup", function(d, i){
+	//nullify dragAbs when icon is released; simulates drag behaviour via icon
+       	annotation.on('mousedown.drag', null);
     });
 
     var annotationIconRemove = annotation.select('i.icon-remove')
