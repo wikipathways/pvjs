@@ -35,18 +35,13 @@
   <Shape GraphId="dd46c">
     <Graphics CenterX="100.95177192750691" CenterY="813.370071684588" Width="0.6533878269677942" Height="115.19534050179217" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="Triangle" Rotation="0.0" />
   </Shape>
-  <Shape TextLabel="one" GraphId="aa039">
-    <Graphics CenterX="200.0" CenterY="262.7304173028631" Width="200.0" Height="116.4313557795858" ZOrder="32967" FontSize="10" Valign="Middle" ShapeType="Triangle" Rotation="0.0" />
+  <Shape GraphId="bf5a4">
+    <Attribute Key="org.pathvisio.CellularComponentProperty" Value="Mitochondria" />
+    <Graphics CenterX="200.0" CenterY="288.96078921078936" Width="200.0" Height="79.42107892107893" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="Mitochondria" LineThickness="3.0" Color="c0c0c0" Rotation="0.0" />
   </Shape>
   <Shape TextLabel="extracellular&#xA;region" GraphId="cb8a8">
     <Attribute Key="org.pathvisio.CellularComponentProperty" Value="Extracellular region" />
     <Graphics CenterX="159.74435249918815" CenterY="1839.9871868113864" Width="84.14728551194578" Height="66.18370875782784" ZOrder="32972" FontSize="10" Valign="Middle" ShapeType="RoundedRectangle" LineStyle="Broken" Color="c0c0c0" Rotation="0.0" />
-  </Shape>
-  <Shape TextLabel="two" GraphId="de731">
-    <Graphics CenterX="122.28933881930368" CenterY="433.7821839421388" Width="106.74794633211542" Height="116.4313557795858" ZOrder="33019" FontSize="10" Valign="Middle" ShapeType="Triangle" Rotation="0.0" />
-  </Shape>
-  <Shape TextLabel="three" GraphId="f6361">
-    <Graphics CenterX="141.90579657504625" CenterY="614.5916502981253" Width="212.9204329936984" Height="163.9326414327349" ZOrder="33020" FontSize="10" Valign="Middle" ShapeType="Triangle" Rotation="0.0" />
   </Shape>
   <InfoBox CenterX="0.0" CenterY="0.0" />
   <Biopax />
