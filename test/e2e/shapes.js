@@ -37,13 +37,15 @@ ptor.get("http://127.0.0.1/~andersriutta/pathvisiojs/test/compare.html?gpml=http
     return ptor.wait(forElementToBePresent(by.css('#pathvisiojs-is-loaded')), 30 * 1000);
   }).
   then(function() {
-    testTheCount('anchors.gpml', 'node', 3);
-    expect(element.all(by.css('.node')).count()).toEqual(3);
+    var expectedCount = 3;
+    testTheCount('anchors.gpml', 'node', expectedCount);
+    expect(element.all(by.css('.node')).count()).toEqual(expectedCount);
     return 'success';
   }).
   then(function() {
-    testTheCount('anchors.gpml', 'DataNode', 4);
-    expect(element.all(by.css('.data-node')).count()).toEqual(4);
+    var expectedCount = 4;
+    testTheCount('anchors.gpml', 'DataNode', expectedCount);
+    expect(element.all(by.css('.data-node')).count()).toEqual(expectedCount);
     return 'success';
   }).
   /*
@@ -52,18 +54,21 @@ ptor.get("http://127.0.0.1/~andersriutta/pathvisiojs/test/compare.html?gpml=http
   }).
   //*/
   then(function() {
-    expect(element.all(by.css('.shape')).count()).toEqual(4);
-    testTheCount('anchors.gpml', 'shape', 4);
+    var expectedCount = 4;
+    expect(element.all(by.css('.shape')).count()).toEqual(expectedCount);
+    testTheCount('anchors.gpml', 'shape', expectedCount);
     return 'success';
   }).
   then(function() {
-    expect(element.all(by.css('.edge')).count()).toEqual(9);
-    testTheCount('anchors.gpml', 'edge', 9);
+    var expectedCount = 9;
+    expect(element.all(by.css('.edge')).count()).toEqual(expectedCount);
+    testTheCount('anchors.gpml', 'edge', expectedCount);
     return 'success';
   }).
   then(function() {
-    expect(element.all(by.css('.interaction')).count()).toEqual(9);
-    testTheCount('anchors.gpml', 'GPML Interaction', 9);
+    var expectedCount = 9;
+    expect(element.all(by.css('.interaction')).count()).toEqual(expectedCount);
+    testTheCount('anchors.gpml', 'GPML Interaction', expectedCount);
     return 'success';
   }).
   then(function() {
@@ -74,8 +79,9 @@ ptor.get("http://127.0.0.1/~andersriutta/pathvisiojs/test/compare.html?gpml=http
     return ptor.wait(forElementToBePresent(by.css('#pathvisiojs-is-loaded')), 30 * 1000);
   }).
   then(function() {
-    expect(element.all(by.css('.shape')).count()).toEqual(31);
-    testTheCount('shapes.gpml', 'shape', 31);
+    var expectedCount = 31;
+    expect(element.all(by.css('.shape')).count()).toEqual(expectedCount);
+    testTheCount('shapes.gpml', 'shape', expectedCount);
     return 'success';
   }).
   then(function() {
@@ -91,8 +97,9 @@ ptor.get("http://127.0.0.1/~andersriutta/pathvisiojs/test/compare.html?gpml=http
     return ptor.wait(forElementToBePresent(by.css('#pathvisiojs-is-loaded')), 30 * 1000);
   }).
   then(function() {
-    testTheCount('WP1', 'loading icon', 0);
-    expect(element.all(by.css('#loading-icon')).count()).toEqual(0);
+    var expectedCount = 0;
+    testTheCount('WP1', 'loading icon', expectedCount);
+    expect(element.all(by.css('#loading-icon')).count()).toEqual(expectedCount);
     return 'success';
   });
 
