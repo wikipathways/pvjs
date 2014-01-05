@@ -33,18 +33,18 @@ function testTheCount(gpmlFile, gpmlElementName, expectedCount) {
 
 ptor.get("http://localhost:3000/test/compare.html?gpml=WP2545").
   then(function() {
-    console.log('^^^^^^^^^^^^^^^^^^^^^^^^^^^^^anchors.gpml');
+    console.log('************** testing anchors **************');
     return ptor.wait(forElementToBePresent(by.css('#pathvisiojs-is-loaded')), 30 * 1000);
   }).
   then(function() {
     var expectedCount = 3;
-    testTheCount('anchors.gpml', 'node', expectedCount);
+    testTheCount('anchors', 'node', expectedCount);
     expect(element.all(by.css('.node')).count()).toEqual(expectedCount);
     return 'success';
   }).
   then(function() {
     var expectedCount = 4;
-    testTheCount('anchors.gpml', 'DataNode', expectedCount);
+    testTheCount('anchors', 'DataNode', expectedCount);
     expect(element.all(by.css('.data-node')).count()).toEqual(expectedCount);
     return 'success';
   }).
@@ -56,29 +56,29 @@ ptor.get("http://localhost:3000/test/compare.html?gpml=WP2545").
   then(function() {
     var expectedCount = 4;
     expect(element.all(by.css('.shape')).count()).toEqual(expectedCount);
-    testTheCount('anchors.gpml', 'shape', expectedCount);
+    testTheCount('anchors', 'shape', expectedCount);
     return 'success';
   }).
   then(function() {
     var expectedCount = 1;
     expect(element.all(by.css('.info-box')).count()).toEqual(expectedCount);
-    testTheCount('anchors.gpml', 'info-box', expectedCount);
+    testTheCount('anchors', 'info-box', expectedCount);
     return 'success';
   }).
   then(function() {
     var expectedCount = 9;
     expect(element.all(by.css('.edge')).count()).toEqual(expectedCount);
-    testTheCount('anchors.gpml', 'edge', expectedCount);
+    testTheCount('anchors', 'edge', expectedCount);
     return 'success';
   }).
   then(function() {
     var expectedCount = 9;
     expect(element.all(by.css('.interaction')).count()).toEqual(expectedCount);
-    testTheCount('anchors.gpml', 'GPML Interaction', expectedCount);
+    testTheCount('anchors', 'GPML Interaction', expectedCount);
     return 'success';
   }).
   then(function() {
-    console.log('^^^^^^^^^^^^^^^^^^^^^^^^^^^^^citations.gpml');
+    console.log('^^^^^^^^^^^^^^^^^^^^^^^^^^^^^citations');
     ptor.get("http://localhost:3000/test/compare.html?gpml=WP2605");
     return ptor.wait(forElementToBePresent(by.css('#pathvisiojs-is-loaded')), 30 * 1000);
   }).
@@ -86,24 +86,24 @@ ptor.get("http://localhost:3000/test/compare.html?gpml=WP2545").
     // TODO update this ASAP
     var expectedCount = 13;
     expect(element.all(by.css('.citation')).count()).toEqual(expectedCount);
-    testTheCount('citations.gpml', 'citation', expectedCount);
+    testTheCount('citations', 'citation', expectedCount);
     return 'success';
   }).
   then(function() {
     var expectedCount = 3;
     expect(element.all(by.css('.node')).count()).toEqual(expectedCount);
-    testTheCount('citations.gpml', 'node', expectedCount);
+    testTheCount('citations', 'node', expectedCount);
     return 'success';
   }).
   then(function() {
-    console.log('^^^^^^^^^^^^^^^^^^^^^^^^^^^^^shapes.gpml');
+    console.log('^^^^^^^^^^^^^^^^^^^^^^^^^^^^^shapes');
     ptor.get("http://localhost:3000/test/compare.html?gpml=WP2554");
     return ptor.wait(forElementToBePresent(by.css('#pathvisiojs-is-loaded')), 30 * 1000);
   }).
   then(function() {
-    var expectedCount = 31;
+    var expectedCount = 32;
     expect(element.all(by.css('.shape')).count()).toEqual(expectedCount);
-    testTheCount('shapes.gpml', 'shape', expectedCount);
+    testTheCount('shapes', 'shape', expectedCount);
     return 'success';
   }).
   then(function() {
@@ -125,7 +125,7 @@ ptor.get("http://localhost:3000/test/compare.html?gpml=WP2545").
     return 'success';
   });
 
-describe('shapes.gpml', function() {
-  it('should have 31 Shapes', function() {
+describe('shapes', function() {
+  it('should have 32 Shapes', function() {
   });
 });
