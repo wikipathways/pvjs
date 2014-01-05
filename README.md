@@ -138,7 +138,7 @@ protractor run.js
 
 3. Send Us a Pull Request
 -------------------------
-* View each of the test pathways at http://YOUR-GITHUB-ACCOUNT.github.io/pathvisiojs/test/ to ensure your code works well
+* Visually inspect each of the test pathways from the test page, comparing your version with the current version to ensure your code produces the correct visual result in terms of styling, etc.
 * Run the tests
 * Create a pull request to the wikipathways fork of pathvisiojs: 
 ```
