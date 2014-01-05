@@ -78,15 +78,15 @@ ptor.get("http://localhost:3000/test/compare.html?gpml=WP2545").
     return 'success';
   }).
   then(function() {
-    ptor.get("http://127.0.0.1/~andersriutta/pathvisiojs/test/compare.html?gpml=http://127.0.0.1/~andersriutta/pathvisiojs/test/gpml/citations.gpml");
     console.log('^^^^^^^^^^^^^^^^^^^^^^^^^^^^^citations.gpml');
+    ptor.get("http://localhost:3000/test/compare.html?gpml=WP2605");
     return ptor.wait(forElementToBePresent(by.css('#pathvisiojs-is-loaded')), 30 * 1000);
   }).
   then(function() {
     // TODO update this ASAP
     var expectedCount = 13;
     expect(element.all(by.css('.citation')).count()).toEqual(expectedCount);
-    testTheCount('citations.gpml', 'node', expectedCount);
+    testTheCount('citations.gpml', 'citation', expectedCount);
     return 'success';
   }).
   then(function() {
@@ -96,8 +96,8 @@ ptor.get("http://localhost:3000/test/compare.html?gpml=WP2545").
     return 'success';
   }).
   then(function() {
-    ptor.get("http://127.0.0.1/~andersriutta/pathvisiojs/test/compare.html?gpml=http://127.0.0.1/~andersriutta/pathvisiojs/test/gpml/shapes.gpml");
     console.log('^^^^^^^^^^^^^^^^^^^^^^^^^^^^^shapes.gpml');
+    ptor.get("http://localhost:3000/test/compare.html?gpml=WP2554");
     return ptor.wait(forElementToBePresent(by.css('#pathvisiojs-is-loaded')), 30 * 1000);
   }).
   then(function() {
@@ -107,10 +107,10 @@ ptor.get("http://localhost:3000/test/compare.html?gpml=WP2545").
     return 'success';
   }).
   then(function() {
-    return ptor.get("http://127.0.0.1/~andersriutta/pathvisiojs/test/compare.html?gpml=WP1");
+    console.log('^^^^^^^^^^^^^^^^^^^^^^^^^^^^^WP1');
+    return ptor.get("http://localhost:3000/test/compare.html?gpml=WP1");
   }).
   then(function() {
-    console.log('^^^^^^^^^^^^^^^^^^^^^^^^^^^^^WP1');
     loadingIconBeforePathwayLoaded = element.all(by.css('#loading-icon'));
     //expect(loadingIconBeforePathwayLoaded.count()).toEqual(1);
     return 'success';
