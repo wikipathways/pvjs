@@ -67,6 +67,10 @@ pathvisiojs = function(){
 
     if (!!inputDataDetails.uri && (!inputDataDetails.type || inputDataDetails.type === 'GPML')) {
 
+      // This is just an experiment with using mongodb for caching json,
+      // but the higher priority for now would be to cache the SVG.
+      // Caching the json would be part of having the API deliver results
+      // in JSON format.
       /*
       d3.json(inputDataDetails.cached, function(json) {
         callback(json);
@@ -123,6 +127,8 @@ pathvisiojs = function(){
 
       //console.log(allSymbolNames);
       pathvisiojs.view.pathwayDiagram.load(viewLoadArgs, function() {
+        d3.select('body').append('span')
+        .attr('id', 'pathvisiojs-is-loaded');
         // do something here
       })
 

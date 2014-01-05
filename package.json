@@ -40,7 +40,9 @@
     "grunt-git-describe": "~2.3.2",
     "utilities": "latest",
     "grunt-browserify": "~1.2.11",
-    "xml2json": "~0.3.2"
+    "xml2json": "~0.3.2",
+    "jasmine-runner": "~0.2.9",
+    "protractor": "~0.15.0"
   },
   "dependencies": {
     "grunt-string-to-js": "0.0.3",
