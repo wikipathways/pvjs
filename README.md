@@ -115,7 +115,7 @@ Now start the server from the terminal with
 ```
 $ node devserver
 ```
-and you should be able to pull up test pathways from the [test page](http://localhost:3000/test/).
+and you should be able to pull up test pathways from the test page at http://localhost:3000/test/.
 
 You can test as you develop by installing the Chromedriver and other browser plugins for WebDriver manager. Do this from the terminal with:
 ```
