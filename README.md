@@ -60,7 +60,7 @@ Or something like this in PHP:
 ```
 $scripts = array(
         "$wgScriptPath/wpi/lib/js/rgb-color.min.js",
-        "$wgScriptPath/wpi/lib/js/case-converter.min.js",
+        "$wgScriptPath/wpi/lib/strcase/build/build.js",
         "$wgScriptPath/wpi/lib/js/async.js",
         "$wgScriptPath/wpi/lib/js/d3.min.js",
         "$wgScriptPath/wpi/lib/js/jquery.min.js",                                                                                                                                                                          
@@ -89,22 +89,22 @@ How To Get Involved
 If you have not forked pathvisiojs,
 
 * Fork the WikiPathways repo for pathvisiojs [here](https://github.com/wikipathways/pathvisiojs/fork)
-* Go to your fork at https://github.com/your-github-account/pathvisiojs/
+* Go to your fork at https://github.com/YOUR-GITHUB-ACCOUNT/pathvisiojs/
 
 If you've already forked pathvisiojs in the past,
 
-* Go to your fork of pathvisiojs at https://github.com/your-github-account/pathvisiojs/ and select the "Compare and review" button to the left of the "branch" drop-down to pull from the wikipathways fork of pathvisiojs into your fork
+* Go to your fork of pathvisiojs at https://github.com/YOUR-GITHUB-ACCOUNT/pathvisiojs/ and select the "Compare and review" button to the left of the "branch" drop-down to pull from the wikipathways fork of pathvisiojs into your fork
 * Select "Edit" and "compare across forks" as needed to make the drop-downs look like this: 
 ```
-your-github-account:gh-pages ... wikipathways:gh-pages
+YOUR-GITHUB-ACCOUNT:gh-pages ... wikipathways:gh-pages
 ```
 * Create pull request
 * Accept pull request (if github says that the pull request cannot be done automatically, you will need to merge the files from the command line. Let Anders or Alex know and they can help.)
 
 2. Make Awesome Updates
 -----------------------
-* You can edit any of the files in the "src" directory of the gh-pages branch of your fork (https://github.com/your-github-account/pathvisiojs/tree/gh-pages/src/)
-* You can view your changes on your dev machine or set up github pages for your repo and view your changes at http://<YOUR-GITHUB-ACCOUNT>.github.io/pathvisiojs/test/ (note the .IO)
+* You can edit any of the files in the "src" directory of the gh-pages branch of your fork (https://github.com/YOUR-GITHUB-ACCOUNT/pathvisiojs/tree/gh-pages/src/)
+* You can view your changes on your dev machine or set up github pages for your repo and view your changes at http://YOUR-GITHUB-ACCOUNT.github.io/pathvisiojs/test/ (note the .IO)
 
 If you choose to view your changes on your dev machine, you can use the included development server. Install [nodejs](http://nodejs.org/download/) if you don't already have it, then cd to the root directory of the repo and use npm (the node package manager) to handle installing dependencies:
 ```
@@ -138,11 +138,11 @@ protractor run.js
 
 3. Send Us a Pull Request
 -------------------------
-* View each of the test pathways at http://<your-github-account>.github.io/pathvisiojs/test/ to ensure your code works well
+* View each of the test pathways at http://YOUR-GITHUB-ACCOUNT.github.io/pathvisiojs/test/ to ensure your code works well
 * Run the tests
 * Create a pull request to the wikipathways fork of pathvisiojs: 
 ```
-wikipathways:gh-pages ... your-github-account:gh-pages
+wikipathways:gh-pages ... YOUR-GITHUB-ACCOUNT:gh-pages
 ```
 
 License
@@ -159,3 +159,4 @@ License
    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
    See the License for the specific language governing permissions and
    limitations under the License.
+
