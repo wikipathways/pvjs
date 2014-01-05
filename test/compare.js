@@ -176,10 +176,9 @@ function loadExtJsCss(callbackOutside) {
 }
 
 var urlParamList = getUrlParamList();
-
 var currentUrl = document.location.origin + document.location.pathname;
-var rootDirectoryUrl = document.location.origin + document.location.pathname.split("pathvisiojs/")[0] + 'pathvisiojs/';
-var srcDirectoryUrl = (rootDirectoryUrl + 'src/');
+var pathvisiojsRootDirectoryUrl = document.location.origin + document.location.pathname.split('test/compare.html')[0];
+var srcDirectoryUrl = (pathvisiojsRootDirectoryUrl + 'src/');
 
 /*********************************************
   Load UI for this test/dev comparison page 
