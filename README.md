@@ -104,11 +104,42 @@ your-github-account:gh-pages ... wikipathways:gh-pages
 2. Make Awesome Updates
 -----------------------
 * You can edit any of the files in the "src" directory of the gh-pages branch of your fork (https://github.com/your-github-account/pathvisiojs/tree/gh-pages/src/)
-* View your changes locally or view them live at http://your-github-account.github.io/pathvisiojs/test/ (note the .IO)
+* You can view your changes on your dev machine or set up github pages for your repo and view your changes at http://<YOUR-GITHUB-ACCOUNT>.github.io/pathvisiojs/test/ (note the .IO)
+
+If you choose to view your changes on your dev machine, you can use the included development server. Install [nodejs](http://nodejs.org/download/) if you don't already have it, then cd to the root directory of the repo and use npm (the node package manager) to handle installing dependencies:
+```
+$ npm install
+```
+
+Now start the server from the terminal with
+```
+$ node devserver
+```
+and you should be able to pull up test pathways from the [test page](http://localhost:3000/test/).
+
+You can test as you develop by installing the Chromedriver and other browser plugins for WebDriver manager. Do this from the terminal with:
+```
+$ webdriver-manager update
+```
+
+If you installed the node module "protractor" locally (default), the webdriver-manager file will be located at:
+pathvisiojs/node_modules/protractor/bin/webdriver-manager
+
+Start webdriver server
+```
+webdriver-manager start
+```
+
+Run the tests
+```
+cd pathvisiojs/test/
+protractor run.js
+```
 
 3. Send Us a Pull Request
 -------------------------
-* View each of the test pathways at http://your-github-account.github.io/pathvisiojs/test/ to ensure your code works well
+* View each of the test pathways at http://<your-github-account>.github.io/pathvisiojs/test/ to ensure your code works well
+* Run the tests
 * Create a pull request to the wikipathways fork of pathvisiojs: 
 ```
 wikipathways:gh-pages ... your-github-account:gh-pages
