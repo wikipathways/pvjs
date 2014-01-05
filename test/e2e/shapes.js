@@ -60,6 +60,12 @@ ptor.get("http://127.0.0.1/~andersriutta/pathvisiojs/test/compare.html?gpml=http
     return 'success';
   }).
   then(function() {
+    var expectedCount = 1;
+    expect(element.all(by.css('.info-box')).count()).toEqual(expectedCount);
+    testTheCount('anchors.gpml', 'info-box', expectedCount);
+    return 'success';
+  }).
+  then(function() {
     var expectedCount = 9;
     expect(element.all(by.css('.edge')).count()).toEqual(expectedCount);
     testTheCount('anchors.gpml', 'edge', expectedCount);
@@ -72,9 +78,25 @@ ptor.get("http://127.0.0.1/~andersriutta/pathvisiojs/test/compare.html?gpml=http
     return 'success';
   }).
   then(function() {
-    return ptor.get("http://127.0.0.1/~andersriutta/pathvisiojs/test/compare.html?gpml=http://127.0.0.1/~andersriutta/pathvisiojs/test/gpml/shapes.gpml");
+    ptor.get("http://127.0.0.1/~andersriutta/pathvisiojs/test/compare.html?gpml=http://127.0.0.1/~andersriutta/pathvisiojs/test/gpml/citations.gpml");
+    console.log('^^^^^^^^^^^^^^^^^^^^^^^^^^^^^citations.gpml');
+    return ptor.wait(forElementToBePresent(by.css('#pathvisiojs-is-loaded')), 30 * 1000);
   }).
   then(function() {
+    // TODO update this ASAP
+    var expectedCount = 13;
+    expect(element.all(by.css('.citation')).count()).toEqual(expectedCount);
+    testTheCount('citations.gpml', 'node', expectedCount);
+    return 'success';
+  }).
+  then(function() {
+    var expectedCount = 3;
+    expect(element.all(by.css('.node')).count()).toEqual(expectedCount);
+    testTheCount('citations.gpml', 'node', expectedCount);
+    return 'success';
+  }).
+  then(function() {
+    ptor.get("http://127.0.0.1/~andersriutta/pathvisiojs/test/compare.html?gpml=http://127.0.0.1/~andersriutta/pathvisiojs/test/gpml/shapes.gpml");
     console.log('^^^^^^^^^^^^^^^^^^^^^^^^^^^^^shapes.gpml');
     return ptor.wait(forElementToBePresent(by.css('#pathvisiojs-is-loaded')), 30 * 1000);
   }).
