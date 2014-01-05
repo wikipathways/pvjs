@@ -31,7 +31,7 @@ function testTheCount(gpmlFile, gpmlElementName, expectedCount) {
   });
 }
 
-ptor.get("http://127.0.0.1/~andersriutta/pathvisiojs/test/compare.html?gpml=http://127.0.0.1/~andersriutta/pathvisiojs/test/gpml/anchors.gpml").
+ptor.get("http://localhost:3000/test/compare.html?gpml=WP2545").
   then(function() {
     console.log('^^^^^^^^^^^^^^^^^^^^^^^^^^^^^anchors.gpml');
     return ptor.wait(forElementToBePresent(by.css('#pathvisiojs-is-loaded')), 30 * 1000);
