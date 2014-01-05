@@ -4,9 +4,19 @@ pathvisiojs = function(){
 
   function getUrisForWikiPathwaysId(wikiPathwaysId, revision) {
     var results = {};
+    var re = /wikipathways\.org/; 
+    var isOnWikiPathwaysDomain = re.test(document.location.origin);
+    var PathwayViewer_viewers = PathwayViewer_viewers || [];
+
     if (pathvisiojs.utilities.isWikiPathwaysId(wikiPathwaysId)) {
-      results.uri = 'http://pointer.ucsf.edu/d3/r/data-sources/gpml.php?id=' + wikiPathwaysId + '&rev=' + revision;
-      results.cached = 'https://pathways.firebaseio.com/' + wikiPathwaysId + '.json';
+      if (PathwayViewer_viewers.length > 0 && isOnWikiPathwaysDomain) {
+        results.uri = PathwayViewer_viewers[0].gpml.gpmlUrl;
+      }
+      else {
+        console.warn('Using pointer as proxy to enable CORS for getting GPML from http://www.wikipathways.org//wpi/wpi.php?action=downloadFile&type=gpml&pwTitle=Pathway:' + wikiPathwaysId + '&rev=' + revision);
+        results.uri = 'http://pointer.ucsf.edu/d3/r/data-sources/gpml.php?id=' + wikiPathwaysId + '&rev=' + revision;
+      }
+      //results.cached = 'https://pathways.firebaseio.com/' + wikiPathwaysId + '.json';
       results.type = 'GPML';
       results.pathwayIri = 'wpId:' + wikiPathwaysId + '#';
     }
