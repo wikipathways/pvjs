@@ -53,7 +53,7 @@ exports.config = {
   //
   // Spec patterns are relative to the location of this config.
   specs: [
-    'e2e/shapes.js'
+    'e2e/*.js'
   ],
 
   // ----- Capabilities to be passed to the webdriver instance ----
