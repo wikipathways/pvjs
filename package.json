@@ -42,7 +42,10 @@
     "grunt-browserify": "~1.2.11",
     "xml2json": "~0.3.2",
     "jasmine-runner": "~0.2.9",
-    "protractor": "~0.15.0"
+    "protractor": "~0.15.0",
+    "express": "~3.4.7",
+    "reload": "~0.1.0",
+    "colors": "~0.6.2"
   },
   "dependencies": {
     "grunt-string-to-js": "0.0.3",
