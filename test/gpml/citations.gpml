@@ -44,6 +44,10 @@
     </Graphics>
     <Xref Database="" ID="" />
   </Interaction>
+  <Label TextLabel="Label" GraphId="f3db5">
+    <BiopaxRef>afd</BiopaxRef>
+    <Graphics CenterX="461.12237998647726" CenterY="229.8850574712643" Width="80.0" Height="20.0" ZOrder="28672" FillColor="ffffff" FontSize="10" Valign="Middle" />
+  </Label>
   <Label TextLabel="SAVE" GraphId="bf11d">
     <Graphics CenterX="212.78721278721278" CenterY="28.986013986013994" Width="95.94405594405595" Height="27.982017982017986" ZOrder="33015" FillColor="ffffff" FontWeight="Bold" FontSize="30" Valign="Middle" />
   </Label>
@@ -167,6 +171,15 @@
       <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1975</bp:YEAR>
       <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Rozniecki J</bp:AUTHORS>
       <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Grabski W</bp:AUTHORS>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="afd">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">734</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Neuroendocrine effects of perinatal androgenization in the male ferret.</bp:TITLE>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Prog Brain Res</bp:SOURCE>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1975</bp:YEAR>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Baum MJ</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Schretlen P</bp:AUTHORS>
     </bp:PublicationXref>
   </Biopax>
 </Pathway>

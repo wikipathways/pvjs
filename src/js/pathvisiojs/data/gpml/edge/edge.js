@@ -90,7 +90,9 @@ pathvisiojs.data.gpml.edge = function(){
         jsonEdge.Anchor.push(jsonAnchorEdge);
       })
     }
-    callback(jsonEdge);
+    pathvisiojs.data.gpml.element.toRenderableJson(gpmlEdge, jsonEdge, function(jsonEdge) {
+      callback(jsonEdge);
+    });
   }
 
   /*
