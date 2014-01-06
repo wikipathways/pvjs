@@ -134,17 +134,28 @@ pathvisiojs.view.pathwayDiagram = function(){
         }
 
         var preserveAspectRatioValues = getPreserveAspectRatioValues(preserveAspectRatio);
-        if (!width) {
-          width = target[0][0].getElementWidth();
-        }
+        var boundingClientRect;
+        if (!width && !height) {
+          boundingClientRect = target[0][0].getBoundingClientRect()
+          if (!width) {
+            width = boundingClientRect.width;
+          }
 
-        if (!height) {
-          height = target[0][0].getElementHeight();
+          if (!height) {
+            height = boundingClientRect.height;
+          }
         }
 
         callback(null, target, width, height, preserveAspectRatioValues);
       },
       function(target, width, height, preserveAspectRatioValues, callback){
+        var svg, pathway, loadDiagramArgs = {};
+
+        loadDiagramArgs.parsedInputData = parsedInputData;
+        loadDiagramArgs.target = target;
+        loadDiagramArgs.width = width;
+        loadDiagramArgs.height = height;
+        loadDiagramArgs.preserveAspectRatioValues = preserveAspectRatioValues;
 
         // ********************************************
         // Check for SVG support. If false, use PNG fallback
@@ -153,15 +164,15 @@ pathvisiojs.view.pathwayDiagram = function(){
         if (Modernizr.svg) {
           async.parallel({
             preloadSvg: function(callback) {
-              var preloadSvgArgs = {};
-              preloadSvgArgs.target = target;
-              preloadSvgArgs.width = width;
-              preloadSvgArgs.height = height;
-              preloadSvgArgs.preserveAspectRatioValues = preserveAspectRatioValues;
-              preloadSvgArgs.customMarkers = customMarkers;
-              preloadSvgArgs.customSymbols = customSymbols;
-              preloadSvgArgs.cssUrl = cssUrl;
-              pathvisiojs.view.pathwayDiagram.svg.loadPartials(preloadSvgArgs, function(svg) {
+              var preloadDiagramArgs = {};
+              preloadDiagramArgs.target = target;
+              preloadDiagramArgs.width = width;
+              preloadDiagramArgs.height = height;
+              preloadDiagramArgs.preserveAspectRatioValues = preserveAspectRatioValues;
+              preloadDiagramArgs.customMarkers = customMarkers;
+              preloadDiagramArgs.customSymbols = customSymbols;
+              preloadDiagramArgs.cssUrl = cssUrl;
+              pathvisiojs.view.pathwayDiagram.svg.loadPartials(preloadDiagramArgs, function(svg) {
                 callback(null, svg);
               });
             },
@@ -175,19 +186,13 @@ pathvisiojs.view.pathwayDiagram = function(){
             }
           },
           function(err, results){
-            console.log('pvjs results');
-            console.log(results);
-            var svg = results.preloadSvg,
-              pathway = results.pathway,
-              loadSvgArgs = {};
+            svg = results.preloadSvg,
+            pathway = results.pathway;
 
-            loadSvgArgs.svg = svg;
-            loadSvgArgs.pathway = pathway;
-            loadSvgArgs.width = width;
-            loadSvgArgs.height = height;
-            loadSvgArgs.preserveAspectRatioValues = preserveAspectRatioValues;
+            loadDiagramArgs.svg = svg;
+            loadDiagramArgs.pathway = pathway;
 
-            pathvisiojs.view.pathwayDiagram.svg.load(loadSvgArgs, function(svg) {
+            pathvisiojs.view.pathwayDiagram.svg.load(loadDiagramArgs, function(svg) {
 
               ///* Node Highlighter
 
@@ -238,7 +243,7 @@ pathvisiojs.view.pathwayDiagram = function(){
                   }
                 });
 
-                callback(null, 'success');
+                callback(null, 'svg loaded');
               }
               else {
                 callback(null);
@@ -247,34 +252,9 @@ pathvisiojs.view.pathwayDiagram = function(){
           })
         }
         else {
-
-          // TODO use target selector and seadragon for this
-
-          /*
-             var pngUrl;
-             var inputDataDetails = getInputDataDetails(args.data);
-             if (!!inputDataDetails.wikiPathwaysId) {
-             pngUrl = encodeURI('http://test3.wikipathways.org/wpi//wpi.php?action=downloadFile&type=png&pwTitle=Pathway:' + inputDataDetails.wikiPathwaysId + '&revision=' + inputDataDetails.revision);
-             }
-             else {
-
-          // TODO update this link to a URL we control
-
-          pngUrl = 'http://upload.wikimedia.org/wikipedia/commons/3/3b/Picture_Not_Yet_Available.png';
-          }
-          //*/
-
-          /*
-             window.setTimeout(function() {
-             args.targetElement.append('img')
-             .attr('id', 'pathvisiojs-pathway-png')
-             .attr('src', 'http://test3.wikipathways.org/wpi//wpi.php?action=downloadFile&type=png&pwTitle=Pathway:' + inputDataDetails.wikiPathwaysId + '&revision=' + inputDataDetails.revision);
-          /*
-          $('#view').prepend('<img id="pathvisio-java-png" src="http://test3.wikipathways.org/wpi//wpi.php?action=downloadFile&type=png&pwTitle=Pathway:' +  + urlParamList.gpml + '&revision=' + urlParamList.gpmlRev + '" />')
-          }, 50);
-          //*/
-          //*/
-          callback(null);
+          pathvisiojs.view.pathwayDiagram.png.load(loadDiagramArgs, function() {
+            callback(null, 'png loaded');
+          });
         }
       }
     ],
@@ -282,6 +262,7 @@ pathvisiojs.view.pathwayDiagram = function(){
       // adding this as a signal that the process is done
       d3.select('body').append('span')
       .attr('id', 'pathvisiojs-is-loaded');
+      console.log('Pathvisiojs done loading.');
     });
   }
 

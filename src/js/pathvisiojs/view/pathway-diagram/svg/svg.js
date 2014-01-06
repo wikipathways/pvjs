@@ -1,4 +1,5 @@
 "use strict";
+
 pathvisiojs.view.pathwayDiagram.svg = function(){
 
   var svg, shapesAvailable, markersAvailable, contextLevelInput;
