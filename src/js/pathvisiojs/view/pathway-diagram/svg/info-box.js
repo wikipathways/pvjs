@@ -25,11 +25,13 @@ pathvisiojs.view.pathwayDiagram.svg.infoBox = function(){
       infoBox.push({'key':'Organism', 'value':pathway.Organism});
     }
 
+    /*
     if (pathway.hasOwnProperty('PublicationXref')) {
       pathvisiojs.view.pathwayDiagram.svg.publicationXref.getPublicationXrefString(pathway, pathway.PublicationXref, function(publicationXrefString) {
         infoBox.push({'key':'Citation(s)', 'value':publicationXrefString});
       })
     }
+    //*/
 
     var infoBox = viewport.selectAll("g.info-box")
     .data([infoBox])

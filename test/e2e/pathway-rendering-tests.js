@@ -83,8 +83,9 @@ ptor.get("http://localhost:3000/test/compare.html?gpml=WP2545").
     return ptor.wait(forElementToBePresent(by.css('#pathvisiojs-is-loaded')), 30 * 1000);
   }).
   then(function() {
-    // TODO update this ASAP
-    var expectedCount = 13;
+    // This is using the direction from APico that citations that apply to an entire pathway
+    // are not to be displayed.
+    var expectedCount = 5;
     expect(element.all(by.css('.citation')).count()).toEqual(expectedCount);
     testTheCount('citations', 'citation', expectedCount);
     return 'success';

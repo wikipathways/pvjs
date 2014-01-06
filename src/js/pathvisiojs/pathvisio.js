@@ -13,7 +13,7 @@ pathvisiojs = function(){
         results.uri = PathwayViewer_viewers[0].gpml.gpmlUrl;
       }
       else {
-        console.warn('Using pointer as proxy to enable CORS for getting GPML from http://www.wikipathways.org//wpi/wpi.php?action=downloadFile&type=gpml&pwTitle=Pathway:' + wikiPathwaysId + '&rev=' + revision);
+        console.warn('WikiPathways does not yet support CORS, so until we get CORS support, we are using Pointer as a proxy to enable CORS for getting GPML from http://www.wikipathways.org//wpi/wpi.php?action=downloadFile&type=gpml&pwTitle=Pathway:' + wikiPathwaysId + '&rev=' + revision);
         results.uri = 'http://pointer.ucsf.edu/d3/r/data-sources/gpml.php?id=' + wikiPathwaysId + '&rev=' + revision;
       }
       //results.cached = 'https://pathways.firebaseio.com/' + wikiPathwaysId + '.json';
