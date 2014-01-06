@@ -29,7 +29,7 @@ pathvisiojs = function(){
     return results;
   }
 
-  function getInputDataDetails(inputData) {
+  function parseInputData(inputData) {
     var results = {};
 
     // inputData can be a WikiPathways ID (WP1), a uri for a GPML file (http://www.wikipathways.org/gpmlfile.gpml)
@@ -58,31 +58,25 @@ pathvisiojs = function(){
     return results;
   }
 
-  function getJson(inputData, callback) {
+  function getJson(parsedInputData, callback) {
 
-    // inputData can be either of the following:
-    // 1) a uri to a GPML or other pathway data file
-    // 2) a WikiPathways pathway ID, like "WP1"
-    // This function converts data specified by inputData to formatted JSON
+    // This function converts data specified by parsedInputData to formatted JSON
     // and return the JSON to the function that called getJson()
 
-    var inputDataDetails = getInputDataDetails(inputData);
-    console.log('inputDataDetails');
-    console.log(inputDataDetails);
 
     // For now, pathvisio.js will attempt to convert any input data, as long as it is of type
     // GPML or has no type specified, into JSON.
     // TODO Later, this functionality can be extended to include other data types and
     // to test for data type when it is not specified.
 
-    if (!!inputDataDetails.uri && (!inputDataDetails.type || inputDataDetails.type === 'GPML')) {
+    if (!!parsedInputData.uri && (!parsedInputData.type || parsedInputData.type === 'GPML')) {
 
       // This is just an experiment with using mongodb for caching json,
       // but the higher priority for now would be to cache the SVG.
       // Caching the json would be part of having the API deliver results
       // in JSON format.
       /*
-      d3.json(inputDataDetails.cached, function(json) {
+      d3.json(parsedInputData.cached, function(json) {
         callback(json);
       });
       //*/
@@ -90,8 +84,8 @@ pathvisiojs = function(){
       // TODO d3.xml doesn't seem to work with IE8
 
       //*
-      d3.xml(inputDataDetails.uri, function(gpml) {
-        pathvisiojs.data.gpml.toRenderableJson(gpml, inputDataDetails.pathwayIri, function(json) {
+      d3.xml(parsedInputData.uri, function(gpml) {
+        pathvisiojs.data.gpml.toRenderableJson(gpml, parsedInputData.pathwayIri, function(json) {
           callback(json);
         });
       });
@@ -105,97 +99,29 @@ pathvisiojs = function(){
 
   function load(args) {
 
-    // this function gets JSON and draws SVG representation of pathway
+    // for now, load will just load a visual representation of a pathway, but
+    // this could change in the future
 
     // ********************************************
     // Check for minimum required set of parameters
     // ********************************************
 
-    if (!args.target) { return console.warn('Error: No target selector specified as target for pathvisiojs.'); }
-    if (!args.data) { return console.warn('Error: No input data source (URL or WikiPathways ID) specified.'); }
+    if (!args.target) {
+      throw new Error('No target selector specified as target for pathvisiojs.');
+    }
 
-    async.parallel({
-      preload: function(callback) {
-        pathvisiojs.view.pathwayDiagram.preload(args, function(loadArgs) {
-          callback(null, loadArgs);
-        })
-      },
-      pathway: function(callback){
-        getJson(args.data, function(json) {
-          pathvisiojs.context = json['@context'];
-          console.log('json');
-          console.log(json);
-          callback(null, json);
-        })
-      }
-    },
-    function(err, results){
-      console.log('pvjs results');
-      console.log(results);
-      var viewLoadArgs = results.preload;
-      viewLoadArgs.pathway = results.pathway;
+    // args.data can be either of the following:
+    // 1) a uri to a GPML or other pathway data file
+    // 2) a WikiPathways pathway ID, like "WP1"
+    if (!args.data) {
+      throw new Error('No input data source (URL or WikiPathways ID) specified.');
+    }
 
-      //console.log(allSymbolNames);
-      pathvisiojs.view.pathwayDiagram.load(viewLoadArgs, function() {
-        d3.select('body').append('span')
-        .attr('id', 'pathvisiojs-is-loaded');
-        // do something here
-      })
-
-
-///*
-
-      ///* Node Highlighter
-
-      var nodeLabels = [];
-      if (results.pathway.hasOwnProperty('DataNode')) {
-        results.pathway.DataNode.forEach(function(node) {
-          if (!!node.text) {
-            nodeLabels.push(node.text.tspan[0]);
-          }
-        });
-
-        // see http://twitter.github.io/typeahead.js/
-
-        $('#highlight-by-label-input').typeahead({
-          name: 'Highlight node in pathway',
-          local: nodeLabels,
-          limit: 10
-        });
-      }
-
-
-//*/
-
-      /*
-      $('.icon-eye-open').click(function(){
-        var nodeLabel = $("#highlight-by-label-input").val();
-        if (!nodeLabel) {
-          console.warn('Error: No data node value entered.');
-        }
-        else {
-          pathvisiojs.view.pathwayDiagram.svg.node.highlightByLabel(svg, nodeLabel);
-        }
-      });
-//*/
-      // see http://api.jquery.com/bind/
-      // TODO get selected value better and make function to handle
-
-      $( "#highlight-by-label-input" ).bind( "typeahead:selected", function() {
-        var nodeLabel = $("#highlight-by-label-input").val();
-        if (!nodeLabel) {
-          throw new Error("No data node value entered for type-ahead node highlighter.");
-        }
-        else {
-
-          // TODO refactor this so it calls a generic highlightDataNodeByLabel function that can call
-          // a highlighter for svg, png, etc. as appropriate.
-
-          pathvisiojs.view.pathwayDiagram.svg.node.highlightByLabel(results.preload.svg, results.pathway, nodeLabel);
-        }
-      });
-
-    });
+    var parsedInputData = parseInputData(args.data);
+    console.log('parsedInputData');
+    console.log(parsedInputData);
+    args.data = parsedInputData;
+    pathvisiojs.view.pathwayDiagram.load(args);
   }
 
   return {
