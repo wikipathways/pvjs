@@ -9,28 +9,33 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
   }
 
   function load(args, callback) {
-    if (!args.svg) {
+    var svg = args.svg,
+      pathway = args.pathway,
+      containerWidth = args.containerWidth,
+      containerHeight = args.containerHeight,
+      pathwayWidth = args.pathway.image.width,
+      pathwayHeight = args.pathway.image.height,
+      preserveAspectRatioValues = args.preserveAspectRatioValues;
+
+    if (!svg) {
       throw new Error("Missing svg.");
     }
-    if (!args.pathway) {
+    if (!pathway) {
       throw new Error("Missing pathway.");
     }
-    var svg = args.svg;
+
     async.series([
       function(callback){
-        // TODO get SVG from where it was already defined
-        svg = d3.select('body').select('#pathway-svg')
-        //draw(svg, pathway, function() {
-        pathvisiojs.view.pathwayDiagram.svg.renderFast(args, function() {
+        pathvisiojs.view.pathwayDiagram.svg.renderFast(svg, pathway, function() {
           callback(null);
         })
       },
       function(callback) {
-        var svgDimensions = pathvisiojs.view.pathwayDiagram.fitElementWithinContainer(args.target, args.pathway.image.width, args.pathway.image.height, args.preserveAspectRatio);
+        var svgDimensions = pathvisiojs.view.pathwayDiagram.fitElementWithinContainer(containerWidth, containerHeight, pathwayWidth, pathwayHeight, preserveAspectRatioValues);
         d3.select('#loading-icon').remove();
 
         var initialClickHappened = false;
-        svg.attr('style', 'display: inline; width: ' + args.target.width + 'px; height: ' + args.target.height + 'px; ')
+        svg.attr('style', 'display: inline; width: ' + svgDimensions.width + 'px; height: ' + svgDimensions.height + 'px; ')
         .on("click", function(d, i){
           svgPanZoom.enableZoom();
           initialClickHappened = true;
@@ -91,16 +96,25 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
   }
 
   function loadPartials(args, callbackOutside) {
-    var pathvisioJsContainer, pathwayContainer;
+    var target = args.target,
+      width = args.width,
+      height = args.height,
+      preserveAspectRatioValues = args.preserveAspectRatioValues,
+      customMarkers = args.customMarkers,
+      customSymbols = args.customSymbols,
+      cssUrl = args.cssUrl,
+      pathvisioJsContainer,
+      pathwayContainer;
+
     async.series([
       function(callback) {
-        args.target.element.html(pathvisioNS['tmp/pathvisiojs.html']);
-        pathvisioJsContainer = args.target.element.select('#pathvisio-js-container');
+        target.html(pathvisioNS['tmp/pathvisiojs.html']);
+        pathvisioJsContainer = target.select('#pathvisio-js-container');
         pathwayContainer = pathvisioJsContainer.select('#pathway-container')
-        .attr('class', args.preserveAspectRatioValues.yAlign);
+        .attr('class', preserveAspectRatioValues.yAlign);
 
         svg = pathvisioJsContainer.select('#pathway-svg')
-        .attr('class', args.preserveAspectRatioValues.xAlign)
+        .attr('class', preserveAspectRatioValues.xAlign)
         //.attr('viewBox', '0 0 ' + args.target.width + ' ' + args.target.height)
         .attr('style', 'display: none; ');
 
@@ -108,7 +122,7 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
       },
       function(callback) {
         if (!!args.customMarkers) {
-          pathvisiojs.view.pathwayDiagram.svg.edge.marker.loadAllCustom(svg, args.customMarkers, function() {
+          pathvisiojs.view.pathwayDiagram.svg.edge.marker.loadAllCustom(svg, customMarkers, function() {
             callback(null);
           })
         }
@@ -118,7 +132,7 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
       },
       function(callback) {
         if (!!args.customSymbols) {
-          pathvisiojs.view.pathwayDiagram.svg.symbol.loadAllCustom(svg, args.customSymbols, function() {
+          pathvisiojs.view.pathwayDiagram.svg.symbol.loadAllCustom(svg, customSymbols, function() {
             callback(null);
           })
         }
@@ -127,8 +141,8 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
         }
       },
       function(callback) {
-        if (!!args.cssUrl) {
-          d3.text(args.cssUrl, 'text/css', function(data) {
+        if (!!cssUrl) {
+          d3.text(cssUrl, 'text/css', function(data) {
             var defs = svg.select('defs');
             var style = defs.append('style').attr('type', "text/css");
             style.text(data);
@@ -234,11 +248,11 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
     })
   }
 
-  function renderFast(args, callback){
-    if (!args.svg) {
+  function renderFast(svg, pathway, callback){
+    if (!svg) {
       throw new Error("No svg specified.");
     }
-    if (!args.pathway) {
+    if (!pathway) {
       throw new Error("No data entered to render.");
     }
 
@@ -248,10 +262,10 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
           '@context': pathvisiojs.context,
           '@type': 'EntityNode'
         };  
-        jsonld.frame(args.pathway, frame, function(err, framedData) {
-          pathvisiojs.view.pathwayDiagram.pathFinder.initGrid(framedData['@graph'], args.pathway.image.width, args.pathway.image.height, function(gridData) {
-            args.svg[0][0].pathvisiojs = args.svg[0][0].pathvisiojs || {};
-            args.svg[0][0].pathvisiojs.gridData = gridData;
+        jsonld.frame(pathway, frame, function(err, framedData) {
+          pathvisiojs.view.pathwayDiagram.pathFinder.initGrid(framedData['@graph'], pathway.image.width, pathway.image.height, function(gridData) {
+            svg[0][0].pathvisiojs = svg[0][0].pathvisiojs || {};
+            svg[0][0].pathvisiojs.gridData = gridData;
             callbackInside(null, gridData);
           });
         });
@@ -263,24 +277,27 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
           'contains': {},
           'InteractionGraph': {}
         };
-        jsonld.frame(args.pathway, firstOrderFrame, function(err, firstOrderData) {
+        jsonld.frame(pathway, firstOrderFrame, function(err, firstOrderData) {
           callbackInside(null, firstOrderData['@graph']);
         });
       }
     },
     function(err, results) {
-      var viewport = args.svg.select('#viewport');
+      var viewport = svg.select('#viewport');
 
-      pathvisiojs.view.pathwayDiagram.svg.infoBox.render(viewport, args.pathway);
+      pathvisiojs.view.pathwayDiagram.svg.infoBox.render(viewport, pathway);
 
-      args.target = viewport;
-      args.data = results.firstOrderData;
-      renderSelectedElementsFast(args, function() {
-        callback(args.svg);
+      var renderSelectedElementsFastArgs = {};
+      renderSelectedElementsFastArgs.svg = svg;
+      renderSelectedElementsFastArgs.target = viewport;
+      renderSelectedElementsFastArgs.pathway = pathway;
+      renderSelectedElementsFastArgs.data = results.firstOrderData;
+      renderSelectedElementsFast(renderSelectedElementsFastArgs, function() {
+        callback(svg);
       });
 
 
-      //pathvisiojs.view.pathwayDiagram.svg.grid.render(args.svg);
+      //pathvisiojs.view.pathwayDiagram.svg.grid.render(svg);
 
       /*
       async.series([
