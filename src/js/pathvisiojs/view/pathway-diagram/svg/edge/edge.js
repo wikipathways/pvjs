@@ -13,6 +13,7 @@ pathvisiojs.view.pathwayDiagram.svg.edge = function(){
     var data = args.data;
     var markerStartName = args.data.markerStart;
     var markerEndName = args.data.markerEnd;
+    var edgeId = strcase.paramCase(data.GraphId);
     /*
     console.log('svg in edge');
     console.log(svg);
@@ -128,7 +129,7 @@ pathvisiojs.view.pathwayDiagram.svg.edge = function(){
 
       //*/
 
-      edge.attr("id", function(data) { return strcase.paramCase(data.GraphId); })
+      edge.attr("id", edgeId)
       //*
       .attr("marker-start", function () {
         var markerStart = pathvisiojs.view.pathwayDiagram.svg.edge.marker.render(svg, markerStartName, 'start', edge.stroke);
@@ -196,6 +197,16 @@ pathvisiojs.view.pathwayDiagram.svg.edge = function(){
 
         return createPathDataString(results.convertedPointSet);
       });
+
+    /****************** 
+     * citation(s)
+     * ***************/
+
+    if (data.hasOwnProperty('PublicationXref')) {
+      pathvisiojs.view.pathwayDiagram.svg.publicationXref.render(edgeId, 'edge', args.pathway, args.data.PublicationXref);
+    }
+
+
     });
   }
 
