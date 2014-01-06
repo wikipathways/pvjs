@@ -21,7 +21,7 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
         // TODO get SVG from where it was already defined
         svg = d3.select('body').select('#pathway-svg')
         //draw(svg, pathway, function() {
-        pathvisiojs.view.pathwayDiagram.svg.quickRender(args, function() {
+        pathvisiojs.view.pathwayDiagram.svg.renderFast(args, function() {
           callback(null);
         })
       },
@@ -91,7 +91,7 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
   }
 
   function loadPartials(args, callbackOutside) {
-    var pathvisioJsContainer, pathwayContainer, allSymbolNames;
+    var pathvisioJsContainer, pathwayContainer;
     async.series([
       function(callback) {
         args.target.element.html(pathvisioNS['tmp/pathvisiojs.html']);
@@ -127,12 +127,6 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
         }
       },
       function(callback) {
-        pathvisiojs.view.pathwayDiagram.svg.symbol.getAllSymbolNames(svg, function(data) {
-          allSymbolNames = data;
-          callback(null);
-        });
-      },
-      function(callback) {
         if (!!args.cssUrl) {
           d3.text(args.cssUrl, 'text/css', function(data) {
             var defs = svg.select('defs');
@@ -147,11 +141,16 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
       }
     ],
     function(err, results) {
-      callbackOutside(svg, allSymbolNames);
+      callbackOutside(svg);
     });
   }
 
-  function renderElementsQuick(args, callbackOutside){
+  // this function does not render all elements. Rather, it renders
+  // one or more selected elements that are given as inputs.
+  // If one or more of these elements are a groupNode that contains
+  // other elements, this function will call itself back to render
+  // the elements within the groupNode.
+  function renderSelectedElementsFast(args, callbackOutside){
     console.log('args');
     console.log(args);
     if (!args.target) {
@@ -163,24 +162,12 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
     if (!args.svg) {
       throw new Error("No svg specified.");
     }
-    if (!args.allSymbolNames) {
-      throw new Error("No allSymbolNames (list of symbols in this diagram) specified.");
-    }
     if (!args.pathway) {
-      console.log("Optional input 'pathway' not specified.");
+      throw new Error("No pathway specified.");
     } 
 
     var contextLevelInput = pathvisiojs.utilities.clone(pathvisiojs.context);
     contextLevelInput.dependsOn = "ex:dependsOn";
-
-    // TODO this is a hack. Should define args the same way each time. Should args include pathway or just organism?
-    var organism;
-    if (args.hasOwnProperty('pathway')) {
-      organism = args.pathway.Organism;
-    }
-    else {
-      organism = args.organism;
-    }
 
     async.waterfall([
       function(callback) {
@@ -199,9 +186,10 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
               groupedElementsArgs.svg = args.svg;
               groupedElementsArgs.target = groupContainer;
               groupedElementsArgs.data = groupContents;
-              groupedElementsArgs.allSymbolNames = args.allSymbolNames;
-              groupedElementsArgs.organism = organism;
-              pathvisiojs.view.pathwayDiagram.svg.renderElementsQuick(groupedElementsArgs, function() {
+              groupedElementsArgs.pathway = args.pathway;
+
+              // recursively calling this function to render elements within groupNode(s)
+              pathvisiojs.view.pathwayDiagram.svg.renderSelectedElementsFast(groupedElementsArgs, function() {
               });
 
 
@@ -215,27 +203,24 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
                 nodeEntityArgs.svg = args.svg;
                 nodeEntityArgs.target = groupContainer;
                 nodeEntityArgs.data = groupedElementsData['@graph'];
-                nodeEntityArgs.allSymbolNames = args.allSymbolNames;
-                nodeEntityArgs.organism = organism;
-                pathvisiojs.view.pathwayDiagram.svg.renderElementsQuick(nodeEntityArgs, function() {
+                pathvisiojs.view.pathwayDiagram.svg.renderSelectedElementsFast(nodeEntityArgs, function() {
                 });
               });
               //*/
             });
           }
           else {
+            args.data = element;
             if (element.renderableType === 'EntityNode') {
-              args.data = element;
-              args.organism = organism;
               pathvisiojs.view.pathwayDiagram.svg.node.EntityNode.render(args);
             }
             else {
               if (element.renderableType === 'Interaction') {
-                pathvisiojs.view.pathwayDiagram.svg.edge.interaction.render(args.svg, args.target, element);
+                pathvisiojs.view.pathwayDiagram.svg.edge.interaction.render(args);
               }
               else {
                 if (element.renderableType === 'GraphicalLine') {
-                  pathvisiojs.view.pathwayDiagram.svg.edge.graphicalLine.render(args.svg, args.target, element);
+                  pathvisiojs.view.pathwayDiagram.svg.edge.graphicalLine.render(args);
                 }
               }
             }
@@ -249,15 +234,12 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
     })
   }
 
-  function quickRender(args, callback){
+  function renderFast(args, callback){
     if (!args.svg) {
       throw new Error("No svg specified.");
     }
     if (!args.pathway) {
       throw new Error("No data entered to render.");
-    }
-    if (!args.allSymbolNames) {
-      throw new Error("No allSymbolNames (list of symbols in this diagram) specified.");
     }
 
     async.parallel({
@@ -293,7 +275,7 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
 
       args.target = viewport;
       args.data = results.firstOrderData;
-      renderElementsQuick(args, function() {
+      renderSelectedElementsFast(args, function() {
         callback(args.svg);
       });
 
@@ -305,7 +287,7 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
         function(callbackInside2) {
           args.target = args.svg.select('#viewport');
           args.data = results.groupData;
-          renderElementsQuick(args, function() {
+          renderSelectedElementsFast(args, function() {
             console.log(1);
           });
           callbackInside2(null, svg);
@@ -314,7 +296,7 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
           args.target = args.svg.select('#viewport');
           args.data = results.notGroupedData;
           self.args = args;
-          renderElementsQuick(args, function() {
+          renderSelectedElementsFast(args, function() {
             console.log(2);
             callbackInside2(null, svg);
           });
@@ -334,9 +316,6 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
     }
     if (!args.pathway) {
       throw new Error("No data entered to render.");
-    }
-    if (!args.allSymbolNames) {
-      throw new Error("No allSymbolNames (list of symbols in this diagram) specified.");
     }
 
     async.parallel({
@@ -399,8 +378,8 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
 
   return {
     //render:render,
-    quickRender:quickRender,
-    renderElementsQuick:renderElementsQuick,
+    renderFast:renderFast,
+    renderSelectedElementsFast:renderSelectedElementsFast,
     load:load,
     loadPartials:loadPartials
   };

@@ -76,8 +76,8 @@ pathvisiojs.data.gpml.element.node.entityNode.toRenderableJson = function(gpmlEn
   }
 
   pathvisiojs.data.gpml.element.node.getPorts(jsonEntityNode, function(ports) {
-    console.log('ports');
-    console.log(ports);
+    //console.log('ports');
+    //console.log(ports);
     jsonEntityNode.Port = ports;
     pathvisiojs.data.gpml.element.node.toRenderableJson(gpmlEntityNode, jsonEntityNode, function(jsonEntityNode) {
       EntityNodeCallback(jsonEntityNode, ports);

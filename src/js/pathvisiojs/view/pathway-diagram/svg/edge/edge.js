@@ -6,45 +6,13 @@ pathvisiojs.view.pathwayDiagram.svg.edge = function(){
 
   var svg, customMarkers;
 
-  function render(thisSvg, container, data) {
-    svg = thisSvg;
-    //console.log('container');
-    //console.log(container);
-    //console.log('data');
-    //console.log(data);
-
-    var edge = container.selectAll('#' + strcase.paramCase(data.GraphId))
-    .data([data])
-    .enter().append("path")
-    .call(setAttributes);
-
-    var containerElement = container[0][0];
-    var containerElementX, containerElementY;
-    if (containerElement.hasOwnProperty('__data__')) {
-      edge.attr('transform', function() {
-        containerElementX = containerElement.__data__.x || 0;
-        containerElementY = containerElement.__data__.y || 0;
-        return 'translate(' + (-1*containerElementX) + ' ' + (-1*containerElementY) + ')';
-      })
-    }
-
-    /*
-    // Update…
-    var edge = container.selectAll('#' + strcase.paramCase(data.GraphId))
-    .data([data])
-    .call(setAttributes);
-
-    // Enter…
-    edge.enter().append("path")
-    .call(setAttributes);
-
-    // Exit…
-    edge.exit().remove();
-    //*/
-
-  }
-
-  function setAttributes(svg, edge, data, markerStartName, markerEndName) {
+  //function setAttributes(svg, edge, data, markerStartName, markerEndName) {
+  function setAttributes(args) {
+    var svg = args.svg;
+    var edge = args.edge;
+    var data = args.data;
+    var markerStartName = args.data.markerStart;
+    var markerEndName = args.data.markerEnd;
     /*
     console.log('svg in edge');
     console.log(svg);
@@ -226,9 +194,6 @@ pathvisiojs.view.pathwayDiagram.svg.edge = function(){
         }
         //*/
 
-        console.log('convertedPointSet');
-        console.log(results.convertedPointSet);
-
         return createPathDataString(results.convertedPointSet);
       });
     });
@@ -320,7 +285,6 @@ pathvisiojs.view.pathwayDiagram.svg.edge = function(){
 
 
   return {
-    render:render,
     setAttributes:setAttributes
     //renderAll:renderAll
   };
