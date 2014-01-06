@@ -112,6 +112,14 @@ pathvisiojs.view.pathwayDiagram.svg.node = function(){
       pathvisiojs.view.pathwayDiagram.svg.node.text.render(nodeContainer, args.data);
     }
 
+    /****************** 
+     * citation(s)
+     * ***************/
+
+    if (args.data.hasOwnProperty('PublicationXref')) {
+      pathvisiojs.view.pathwayDiagram.svg.publicationXref.render(nodeContainer, 'node', args.pathway, args.data.PublicationXref);
+    }
+
     callback(nodeContainer);
   }
 

@@ -1,15 +1,10 @@
 pathvisiojs.view.pathwayDiagram.svg.node.groupNode = function(){
   function render(args, callback) {
-    console.log('args');
-    console.log(args);
     if (!args.target) {
-      throw new Error('Error: Missing viewport.');
+      throw new Error('Error: target element not specified for rendering groupNode.');
     }
     if (!args.data) {
-      throw new Error('Error: group data missing.');
-    }
-    if (!args.allSymbolNames) {
-      throw new Error('Error: allSymbolNames missing.');
+      throw new Error('Error: group data missing for rendering groupNode.');
     }
 
     pathvisiojs.view.pathwayDiagram.svg.node.render(args, function(groupContainer) {

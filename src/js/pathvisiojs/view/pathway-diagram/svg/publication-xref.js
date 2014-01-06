@@ -1,3 +1,5 @@
+"use strict"
+
 pathvisiojs.view.pathwayDiagram.svg.publicationXref = function(){
 
   function getReferenceNumberForDisplay(pathway, rdfId) {
@@ -18,6 +20,10 @@ pathvisiojs.view.pathwayDiagram.svg.publicationXref = function(){
     return displayNumberForDisplay;
   }
 
+  // Create a string of citation numbers for display,
+  // delimited by commas, and
+  // replacing any consecutive series of numbers with the
+  // first and last joined by a hyphen.
   function createPublicationXrefString(displayNumbers) {
     var publicationXrefString;
     if (displayNumbers.length === 1) {
@@ -69,18 +75,23 @@ pathvisiojs.view.pathwayDiagram.svg.publicationXref = function(){
     rdfIds.forEach(function(rdfId) {
       displayNumbers.push(getReferenceNumberForDisplay(pathway, rdfId));
     });
-    console.log('displayNumbers');
-    console.log(displayNumbers);
     var publicationXrefString = createPublicationXrefString(displayNumbers);
     callback(publicationXrefString);
   }
 
-  // TODO this isn't tested
-
-  function render(viewport, target, pathway, rdfIds) {
+  function render(target, targetType, pathway, rdfIds) {
+    /* targetType can be any of the following:
+     * node
+     * edge
+     * not currently but maybe in the future: diagram (applies to the whole pathway)
+    //*/
     getPublicationXrefString(pathway, rdfIds, function(publicationXrefString) {
-      viewport.append(text).text(publicationXrefString);
+      target.append('text')
+      .attr('class', 'citation')
+      .attr('transform', function(d) {return 'translate(-0.5em 0)';})
+      .text(publicationXrefString);
     })
+
   }
 
   return {
