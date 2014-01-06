@@ -30,32 +30,39 @@ pathvisiojs = function(){
   }
 
   function parseInputData(inputData) {
-    var results = {};
+    // TODO get urls elsewhere:
+    // gpml in pathvisiojs.data.gpml...
+    // png in pathvisio.view.pathwayDiagram.png...
+    var parsedInputData = {};
 
     // inputData can be a WikiPathways ID (WP1), a uri for a GPML file (http://www.wikipathways.org/gpmlfile.gpml)
     // or a uri for another type of file.
 
     if (pathvisiojs.utilities.getObjectType(inputData) === 'Object') {
       inputData.revision = inputData.revision || 0;
-      results = getUrisForWikiPathwaysId(inputData.wikiPathwaysId, 0);
+      parsedInputData = getUrisForWikiPathwaysId(inputData.wikiPathwaysId, 0);
+      parsedInputData.wikiPathwaysId = inputData.wikiPathwaysId;
+      parsedInputData.revision = inputData.revision;
     }
     else {
       if (pathvisiojs.utilities.isUrl(inputData)) {
-        results.uri = inputData;
-        if (results.uri.indexOf('.gpml') > -1) {
-          results.type = 'GPML';
-          results.pathwayIri = inputData + '#';
-          return results;
+        parsedInputData.uri = inputData;
+        if (parsedInputData.uri.indexOf('.gpml') > -1) {
+          parsedInputData.type = 'GPML';
+          parsedInputData.pathwayIri = inputData + '#';
+          return parsedInputData;
         }
         else {
           throw new Error('Pathvisiojs cannot handle the data source type entered.');
         }
       }
       else {
-        results = getUrisForWikiPathwaysId(inputData, 0);
+        parsedInputData = getUrisForWikiPathwaysId(inputData, 0);
+        parsedInputData.wikiPathwaysId = inputData;
+        parsedInputData.revision = 0;
       }
     }
-    return results;
+    return parsedInputData;
   }
 
   function getJson(parsedInputData, callback) {

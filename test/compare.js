@@ -163,7 +163,8 @@ function loadExtJsCss(callbackOutside) {
       srcDirectoryUrl + 'js/pathvisiojs/view/pathway-diagram/svg/edge/interaction.js',
       srcDirectoryUrl + 'js/pathvisiojs/view/pathway-diagram/svg/edge/marker.js',
       srcDirectoryUrl + 'js/pathvisiojs/view/pathway-diagram/svg/edge/point.js',
-      srcDirectoryUrl + 'js/pathvisiojs/view/pathway-diagram/svg/edge/path-data.js'
+      srcDirectoryUrl + 'js/pathvisiojs/view/pathway-diagram/svg/edge/path-data.js',
+      srcDirectoryUrl + 'js/pathvisiojs/view/pathway-diagram/png/png.js'
     ],
     function(){
       callback(null);
@@ -346,8 +347,8 @@ window.onload = function() {
 
     pathvisiojs.load({
       target: '#pathvisio-js-dev',
-      width: 1000,
-      height: 500,
+      //width: 400,
+      //height: 300,
       preserveAspectRatio: 'xMidYMid',
       data: urlParamList.gpml,
       //gpmlRev: urlParamList.gpmlRev,
