@@ -93,7 +93,7 @@ pathvisiojs.view.pathwayDiagram.svg.publicationXref = function(){
       if (targetType === 'node') {
         target.append('text')
         .attr('class', 'citation')
-        .attr('transform', function(d) {return 'translate(-0.5em 0)';})
+        .attr('transform', function(d) {return 'translate(0 -5)';})
         .text(publicationXrefString);
       }
       else {
@@ -103,7 +103,9 @@ pathvisiojs.view.pathwayDiagram.svg.publicationXref = function(){
         if (targetType === 'edge') {
           viewport = d3.select('svg > #viewport');
           text = viewport.append('text')
-          .attr('class', 'citation');
+          .attr('class', 'citation')
+          .attr('transform', function(d) {return 'translate(0 -5)';});
+
           text.append('textPath')
           .attr('xlink:xlink:href', '#' + target)
           .attr('startOffset', '50%')
