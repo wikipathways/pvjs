@@ -22,7 +22,7 @@ pathvisiojs.view.pathwayDiagram.svg.node.EntityNode = function(){
           }
         }
         if (d.hasOwnProperty('CellularComponent')) {
-          cssClass += strcase.paramCase(d.CellularComponent) + ' ';
+          cssClass += 'cellular-component ' + strcase.paramCase(d.CellularComponent) + ' ';
         }
         return cssClass;
       })
