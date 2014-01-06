@@ -85,11 +85,29 @@ pathvisiojs.view.pathwayDiagram.svg.publicationXref = function(){
      * edge
      * not currently but maybe in the future: diagram (applies to the whole pathway)
     //*/
+
+    var viewport;
     getPublicationXrefString(pathway, rdfIds, function(publicationXrefString) {
-      target.append('text')
-      .attr('class', 'citation')
-      .attr('transform', function(d) {return 'translate(-0.5em 0)';})
-      .text(publicationXrefString);
+      if (targetType === 'node') {
+        target.append('text')
+        .attr('class', 'citation')
+        .attr('transform', function(d) {return 'translate(-0.5em 0)';})
+        .text(publicationXrefString);
+      }
+      else {
+
+        // TODO don't repeat svg definition
+        viewport = d3.select('svg > #viewport');
+        if (targetType === 'edge') {
+          viewport.append('text')
+          .attr('class', 'citation')
+          // <textPath xlink:href="#path1">Text along path1</textPath>
+          .text(publicationXrefString);
+        }
+        else {
+          throw new Error('Pathvisiojs cannot render a citation for targets of this type: ' + targetType);
+        }
+      }
     })
 
   }
