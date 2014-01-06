@@ -72,6 +72,8 @@ pathvisiojs.view.pathwayDiagram.svg.publicationXref = function(){
 
   function getPublicationXrefString(pathway, rdfIds, callback) {
     var displayNumbers = [];
+    // make sure it's an array
+    rdfIds = pathvisiojs.utilities.convertToArray(rdfIds);
     rdfIds.forEach(function(rdfId) {
       displayNumbers.push(getReferenceNumberForDisplay(pathway, rdfId));
     });
@@ -86,7 +88,7 @@ pathvisiojs.view.pathwayDiagram.svg.publicationXref = function(){
      * not currently but maybe in the future: diagram (applies to the whole pathway)
     //*/
 
-    var viewport;
+    var viewport, text;
     getPublicationXrefString(pathway, rdfIds, function(publicationXrefString) {
       if (targetType === 'node') {
         target.append('text')
@@ -99,10 +101,14 @@ pathvisiojs.view.pathwayDiagram.svg.publicationXref = function(){
         // TODO don't repeat svg definition
         viewport = d3.select('svg > #viewport');
         if (targetType === 'edge') {
-          viewport.append('text')
-          .attr('class', 'citation')
-          // <textPath xlink:href="#path1">Text along path1</textPath>
+          viewport = d3.select('svg > #viewport');
+          text = viewport.append('text')
+          .attr('class', 'citation');
+          text.append('textPath')
+          .attr('xlink:xlink:href', '#' + target)
+          .attr('startOffset', '50%')
           .text(publicationXrefString);
+
         }
         else {
           throw new Error('Pathvisiojs cannot render a citation for targets of this type: ' + targetType);
