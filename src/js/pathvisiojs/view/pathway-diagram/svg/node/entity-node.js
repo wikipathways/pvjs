@@ -2,8 +2,8 @@
 pathvisiojs.view.pathwayDiagram.svg.node.EntityNode = function(){
   //function render(viewport, data) {
   function render(args) {
-    if (!args.target) {
-      throw new Error('Target element not specified for this EntityNode.');
+    if (!args.container) {
+      throw new Error('Container element not specified for this EntityNode.');
     }
     if (!args.data) {
       throw new Error('EntityNode data missing.');

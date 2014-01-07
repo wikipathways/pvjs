@@ -5,18 +5,20 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
   var svg, shapesAvailable, markersAvailable, contextLevelInput;
 
   function setCTM(element, scale) {
+    // element is a d3 selection
     var s = "matrix(" + scale + ",0,0," + scale + ",10,20)"; // + matrix.a + "," + matrix.b + "," + matrix.c + "," + matrix.d + "," + matrix.e + "," + matrix.f + ")";
-    element.setAttribute("transform", s);
+    element.attr("transform", s);
   }
 
   function load(args, callback) {
     var svg = args.svg,
       pathway = args.pathway,
+      container = args.container,
       containerWidth = args.containerWidth,
       containerHeight = args.containerHeight,
+      scale = args.scale,
       pathwayWidth = args.pathway.image.width,
-      pathwayHeight = args.pathway.image.height,
-      preserveAspectRatioValues = args.preserveAspectRatioValues;
+      pathwayHeight = args.pathway.image.height;
 
     if (!svg) {
       throw new Error("Missing svg.");
@@ -32,7 +34,6 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
         })
       },
       function(callback) {
-        var svgDimensions = pathvisiojs.view.pathwayDiagram.fitElementWithinContainer(containerWidth, containerHeight, pathwayWidth, pathwayHeight, preserveAspectRatioValues);
         d3.select('#loading-icon').remove();
 
         var initialClickHappened = false;
@@ -51,43 +52,19 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
           }
         });
 
-        // TODO avoid defining svg again
+        var viewport = svg.select('#viewport');
 
-        var svgElement = document.querySelector('svg');
-        //var m1 = svgElement.getCTM();
-        //var p = {'x': m1.e, 'y': m1.f};
-        //var m2 = svgElement.createSVGMatrix().translate(p.x, p.y).scale(svgDimensions.scale).translate(-p.x, -p.y);
-        var viewport = svgElement.querySelector('#viewport');
+        /* not all containers will have a width or height style attribute. this is now done using the same logic
+         * but uses boundingClientRect() instead. the code is located in pathway-diagram.js
         var container = d3.select('body').select('#pathway-container');
         var containerWidth = parseInt(container.style("width")) - 40; //account for space for pan/zoom controls
         var containerHeight = parseInt(container.style("height")) -20; //account for space for search field
-        if (!(!!svgDimensions.width && !!svgDimensions.height)) { // if user did NOT set a desired width and height, use the width and height of the parent
-          svg.attr('style', 'display: inline; width: inherit; min-width: inherit; max-width: inherit; height: inherit; min-height: inherit; max-height: inherit; ')
-        }
-        else { // if user DID set a desired width and height, use those values
-          svg.attr('style', 'display: inline; width: ' + svgDimensions.width + 'px; height: ' + svgDimensions.height + 'px; ')
-        }
-        var fitScreenScale = Math.min(containerWidth/args.pathway.image.width, containerHeight/args.pathway.image.height);
-        setCTM(viewport, fitScreenScale);
-
-        /*
-         * function setCTM(element, matrix) {
-         var s = "matrix(" + matrix.a + "," + matrix.b + "," + matrix.c + "," + matrix.d + "," + matrix.e + "," + matrix.f + ")";
-         console.log(s);
-
-         element.setAttribute("transform", s);
-         }
-         var svgElement = document.querySelector('svg');
-         var m1 = svgElement.getCTM();
-         var xScale1 = m1.a;
-         var yScale1 = m1.d;
-         var zoomFactor = 0.2;
-         var p = {'x': m1.e, 'y': m1.f};
-         var z = xScale1 * (1+zoomFactor);
-         var m2 = svgElement.createSVGMatrix().translate(p.x, p.y).scale(z).translate(-p.x, -p.y);
-         var viewport = svgElement.querySelector('#viewport');
-         setCTM(viewport, m2);
         //*/
+        var fitScreenScale;
+        if (scale === 'fit') {
+          fitScreenScale = Math.min(containerWidth/args.pathway.image.width, containerHeight/args.pathway.image.height);
+          setCTM(viewport, fitScreenScale);
+        }
 
         svgPanZoom.init({
           'root': 'svg',
@@ -102,10 +79,7 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
   }
 
   function loadPartials(args, callbackOutside) {
-    var target = args.target,
-      width = args.width,
-      height = args.height,
-      preserveAspectRatioValues = args.preserveAspectRatioValues,
+    var container = args.container,
       customMarkers = args.customMarkers,
       customSymbols = args.customSymbols,
       cssUrl = args.cssUrl,
@@ -114,15 +88,13 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
 
     async.series([
       function(callback) {
-        target.html(pathvisioNS['tmp/pathvisiojs.html']);
-        pathvisioJsContainer = target.select('#pathvisio-js-container');
+        container.html(pathvisioNS['tmp/pathvisiojs.html']);
+        pathvisioJsContainer = container.select('#pathvisio-js-container');
         pathwayContainer = pathvisioJsContainer.select('#pathway-container')
-        .attr('class', preserveAspectRatioValues.yAlign);
 
         svg = pathvisioJsContainer.select('#pathway-svg')
-        .attr('class', preserveAspectRatioValues.xAlign)
-        //.attr('viewBox', '0 0 ' + args.target.width + ' ' + args.target.height)
-        .attr('style', 'display: none; ');
+        svg.attr('style', 'display: inline; width: inherit; min-width: inherit; max-width: inherit; height: inherit; min-height: inherit; max-height: inherit; ') // TODO this should be moved to the CSS file
+        .attr('preserveAspectRatio', 'xMidYMid');
 
         callback(null);
       },
@@ -173,8 +145,8 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
   function renderSelectedElementsFast(args, callbackOutside){
     console.log('args');
     console.log(args);
-    if (!args.target) {
-      throw new Error("No target specified.");
+    if (!args.container) {
+      throw new Error("No container specified.");
     }
     if (!args.data) {
       throw new Error("No data entered to render.");
@@ -204,7 +176,7 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
 
               var groupedElementsArgs = {};
               groupedElementsArgs.svg = args.svg;
-              groupedElementsArgs.target = groupContainer;
+              groupedElementsArgs.container = groupContainer;
               groupedElementsArgs.data = groupContents;
               groupedElementsArgs.pathway = args.pathway;
 
@@ -221,7 +193,7 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
               jsonld.frame(args.pathway, groupedElementsFrame, function(err, groupedElementsData) {
                 var nodeEntityArgs = {};
                 nodeEntityArgs.svg = args.svg;
-                nodeEntityArgs.target = groupContainer;
+                nodeEntityArgs.container = groupContainer;
                 nodeEntityArgs.data = groupedElementsData['@graph'];
                 pathvisiojs.view.pathwayDiagram.svg.renderSelectedElementsFast(nodeEntityArgs, function() {
                 });
@@ -295,7 +267,7 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
 
       var renderSelectedElementsFastArgs = {};
       renderSelectedElementsFastArgs.svg = svg;
-      renderSelectedElementsFastArgs.target = viewport;
+      renderSelectedElementsFastArgs.container = viewport;
       renderSelectedElementsFastArgs.pathway = pathway;
       renderSelectedElementsFastArgs.data = results.firstOrderData;
       renderSelectedElementsFast(renderSelectedElementsFastArgs, function() {
@@ -308,7 +280,7 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
       /*
       async.series([
         function(callbackInside2) {
-          args.target = args.svg.select('#viewport');
+          args.container = args.svg.select('#viewport');
           args.data = results.groupData;
           renderSelectedElementsFast(args, function() {
             console.log(1);
@@ -316,7 +288,7 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
           callbackInside2(null, svg);
         },
         function(callbackInside2) {
-          args.target = args.svg.select('#viewport');
+          args.container = args.svg.select('#viewport');
           args.data = results.notGroupedData;
           self.args = args;
           renderSelectedElementsFast(args, function() {
