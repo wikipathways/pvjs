@@ -118,7 +118,10 @@ pathvisiojs = function(){
     }
 
     // args.data can be either of the following:
-    // 1) a uri to a GPML or other pathway data file
+    // 1) a uri to a GPML file
+    //    (in the future, we may add the ability to handle other file types.
+    //    we could also consider handling json data objects so that pvjs
+    //    could work with other JS libraries.)
     // 2) a WikiPathways pathway ID, like "WP1"
     if (!args.data) {
       throw new Error('No input data source (URL or WikiPathways ID) specified.');

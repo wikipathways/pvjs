@@ -112,6 +112,8 @@ pathvisiojs.view.pathwayDiagram.svg.edge.marker = function(){
         var g = markerEndD3.append('g')
         .attr('id', 'g-' + endId)
         .attr('style', '-webkit-transform: rotate(180deg); -webkit-transform-origin: 50% 50%;');
+        // TODO the transform attribute used is specific to chrome. we need ot add the transform attributes for other browsers
+        // check for this on MDN.
         var endG = document.querySelector('#' + 'g-' + endId);
         endG.appendChild(docElClone);
 

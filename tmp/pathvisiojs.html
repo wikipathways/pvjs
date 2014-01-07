@@ -6,273 +6,325 @@
 
     <div id="pathway-container" style="width: inherit; min-width: inherit; max-width: inherit; height: inherit; min-height: inherit; max-height: inherit; " class="y-mid">
       
-    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ev="http://www.w3.org/2001/xml-events" id="pathway-svg" version="1.1" baseProfile="full" width="500px" height="500px" style="display: inline; width: 502px; height: 502px; " class="x-mid" onmouseup="svgPanZoom.handleMouseUp(evt)" onmousedown="svgPanZoom.handleMouseDown(evt)" onmousemove="svgPanZoom.handleMouseMove(evt)">
-	<g>
-	<title>pathway defs for pathvisiojs</title>
-	<desc>
-	This SVG file contains all the graphical elements (markers and symbols in defs as well as
-	style data) used by the program pathvisiojs, which has two components: 
-	1) a viewer for transforming GPML biological pathway data into an SVG visual representation and 
-	2) an editor for creating both views and models for biological pathways.
-	</desc>
-	</g>
-	<defs>
-
-    <filter id="highlight" width="150%" height="150%">
-        <feOffset result="offOut" in="SourceGraphic" dx="30" dy="30"></feOffset>
-        <feGaussianBlur result="blurOut" in="offOut" stdDeviation="10"></feGaussianBlur>
-        <feBlend in="SourceGraphic" in2="blurOut" mode="normal"></feBlend>
-    </filter>
-
-	<!-- ***************************
-	Markers (Arrowheads) 
-	*************************** -->
-
-	<!-- Here we generate a set of interaction markers for the default color (black). If we need other colors,
-	we need to clone the black marker and set the color for the clone to the desired color using d3.js.
-	I wish fill="currentColor" worked for markers, but that does not appear to be the case. -->
-
-	
-
-	
 
 
-	
+      <svg id="pathway-svg" version="1.1" baseProfile="full" xmlns="http://www.w3.org/1999/xlink" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ev="http://www.w3.org/2001/xml-events" width="500px" height="500px" style="display: inline; width: NaNpx; height: NaNpx; " class="x-mid" onmouseup="svgPanZoom.handleMouseUp(evt)" onmousedown="svgPanZoom.handleMouseDown(evt)" onmousemove="svgPanZoom.handleMouseMove(evt)" xlink="http://www.w3.org/1999/xlink" ev="http://www.w3.org/2001/xml-events">
 
-	
+        <g>
+        <title>pathvisiojs pathway diagram</title>
+        <desc>
+          This SVG file contains all the graphical elements (markers and symbols in defs as well as
+          style data) used by the program pathvisiojs, which has two components: 
+          1) a viewer for transforming GPML biological pathway data into an SVG visual representation and 
+          2) an editor for creating both views and models for biological pathways.
+        </desc>
+        </g>
+        <defs>
 
+          <filter id="highlight" width="150%" height="150%">
+            <feOffset result="offOut" in="SourceGraphic" dx="30" dy="30"></feOffset>
+              <feGaussianBlur result="blurOut" in="offOut" stdDeviation="10"></feGaussianBlur>
+            <feBlend in="SourceGraphic" in2="blurOut" mode="normal"></feBlend>
+          </filter>
 
-	
+        <marker id="http-localhost-3000-src-shape-library-markers-arrow-svg-start-default" preserveAspectRatio="none" viewBox="0 0 12 12" markerWidth="12" markerHeight="12" markerUnits="strokeWidth" orient="auto" refX="0" refY="6"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ev="http://www.w3.org/2001/xml-events" id="arrow" version="1.1" baseProfile="full" width="12" height="12" class="solid-stroke default-fill-color" viewBox="0 0 12 12">
 
-	
+	<!-- arrow markers: triangular polygons, no stroke -->
 
-	
+	<rect class="board-fill-color" stroke="none" x="0" y="5.4" width="2" height="1.2"></rect>
+	<polygon stroke-width="0" points="12,11 0,6 12,1"></polygon>
 
-	
+</svg></marker><marker id="http-localhost-3000-src-shape-library-markers-arrow-svg-end-default" viewBox="-12 -12 12 12" markerWidth="12" markerHeight="12" markerUnits="strokeWidth" orient="auto" refX="0" refY="-6"><g id="g-http-localhost-3000-src-shape-library-markers-arrow-svg-end-default" style="-webkit-transform: rotate(180deg); -webkit-transform-origin: 50% 50%;"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ev="http://www.w3.org/2001/xml-events" id="arrow" version="1.1" baseProfile="full" width="12" height="12" class="solid-stroke default-fill-color" viewBox="0 0 12 12">
 
+	<!-- arrow markers: triangular polygons, no stroke -->
 
-	
+	<rect class="board-fill-color" stroke="none" x="0" y="5.4" width="2" height="1.2"></rect>
+	<polygon stroke-width="0" points="12,11 0,6 12,1"></polygon>
 
-	
+</svg></g></marker><marker id="http-localhost-3000-src-shape-library-markers-mim-necessary-stimulation-svg-start-default" preserveAspectRatio="none" viewBox="0 0 15 12" markerWidth="15" markerHeight="12" markerUnits="strokeWidth" orient="auto" refX="0" refY="6"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ev="http://www.w3.org/2001/xml-events" id="mim-necessary-stimulation" version="1.1" baseProfile="full" width="15" height="12" class="board-fill-color default-stroke-color solid-stroke" viewBox="0 0 15 12">
 
-
-	
-
-  
-	
-
-	
-
-	
-
-
-	
-
-	
-
-	
-  
-	
-
-	
-
-	
-
-	
-
-	
-
-	
-
-	
-
-	
-
-	
-	
-
-	
-
-	
-
-	
-
-  
-  
-	
-  
-	
-
-	
-
-	
-
-	
-
-	
-
-	
-
-	
-
-	
-
-	
-
-	
-
-	
-
-	
-
-	
-
-	
-
-	
-
-	
-	
-	
-
-	<marker id="double-line-hack-start" class="default-fill" stroke="black" markerHeight="10" markerWidth="10" markerUnits="strokeWidth" orient="auto" refX="0" refY="6" viewBox="0 0 12 12">
-  <image xlink:href="http://wikipathways.github.io/pathvisiojs/src/views/markers/double-line-hack.svg" x="0" y="0" width="12" height="12"></image>
-	</marker>
-
-	<marker id="double-line-hack-end" class="default-fill" stroke="black" markerHeight="10" markerWidth="10" markerUnits="strokeWidth" orient="auto" refX="12" refY="6" viewBox="0 0 12 12">
-  <image xlink:href="http://wikipathways.github.io/pathvisiojs/src/views/markers/double-line-hack.svg" x="0" y="0" width="12" height="12" class="marker-end"></image>
-	</marker>
-
-	<symbol id="grid-square" viewBox="0 0 100 100" preserveAspectRatio="none">
-
-		<rect x="1" y="1" width="99" height="99" stroke="gray" stroke-width="2"></rect>
-	</symbol>
-
-	<symbol id="none" viewBox="0 0 100 100" preserveAspectRatio="none"></symbol>
-
-	<marker id="activity" preserveAspectRatio="none" viewBox="0 0 12 12"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ev="http://www.w3.org/2001/xml-events" id="arrow" version="1.1" baseProfile="full" width="12" height="12" class="solid-stroke" style="fill:black" viewBox="0 0 12 12">
-	<rect class="default-fill" stroke="none" x="0" y="5.4" width="2" height="1.2"></rect>
-	<polygon fill="black" stroke-width="0" points="12,11 0,6 12,1"></polygon>
-
-</svg></marker><marker id="mim-branching-left" preserveAspectRatio="none" viewBox="0 0 12 12"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ev="http://www.w3.org/2001/xml-events" id="mim-branching-left" version="1.1" baseProfile="full" width="12" height="12" class="default-fill solid-stroke">
-
-	<rect stroke="none" x="0" y="5.4" width="3.5" height="1.2"></rect>
-	<line fill="none" stroke-width=".4" x1="3.7" y1="6" x2="0" y2="0"></line>	
-
-</svg></marker><marker id="mim-branching-right" preserveAspectRatio="none" viewBox="0 0 12 12"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ev="http://www.w3.org/2001/xml-events" id="mim-branching-right" version="1.1" baseProfile="full" width="12" height="12" class="default-fill solid-stroke">
-
-	<rect stroke="none" x="0" y="5.4" width="3.5" height="1.2"></rect>
-	<line fill="none" stroke-width=".4" x1="0" y1="12" x2="3.7" y2="6"></line>	
-
-</svg></marker><marker id="necessary-stimulation" preserveAspectRatio="none" viewBox="0 0 15 12"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ev="http://www.w3.org/2001/xml-events" id="mim-necessary-stimulation" version="1.1" baseProfile="full" width="15" height="12" class="default-fill solid-stroke" style="stroke:black" viewBox="0 0 15 12">
+	<!-- mim-necessary-stimulation markers: triangular polygons, drawing-board fill, default color stroke; and vertical line -->
 
 	<rect stroke="none" x="0" y="5.4" width="2" height="1.2"></rect>
 	<line fill="none" stroke-width="1" x1="14" y1="0" x2="14" y2="12"></line>
 	<polygon stroke-width="1" points="9,11 0,6 9,1"></polygon>
 
-</svg></marker><marker id="binding" preserveAspectRatio="none" viewBox="0 0 12 12"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ev="http://www.w3.org/2001/xml-events" id="mim-binding" version="1.1" baseProfile="full" width="12" height="12" class="solid-stroke" style="fill:black" viewBox="0 0 12 12">
+</svg></marker><marker id="http-localhost-3000-src-shape-library-markers-mim-necessary-stimulation-svg-end-default" viewBox="-15 -12 15 12" markerWidth="15" markerHeight="12" markerUnits="strokeWidth" orient="auto" refX="0" refY="-6"><g id="g-http-localhost-3000-src-shape-library-markers-mim-necessary-stimulation-svg-end-default" style="-webkit-transform: rotate(180deg); -webkit-transform-origin: 50% 50%;"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ev="http://www.w3.org/2001/xml-events" id="mim-necessary-stimulation" version="1.1" baseProfile="full" width="15" height="12" class="board-fill-color default-stroke-color solid-stroke" viewBox="0 0 15 12">
 
-	<rect class="default-fill" stroke="none" x="0" y="5.4" width="2" height="1.2"></rect>
+	<!-- mim-necessary-stimulation markers: triangular polygons, drawing-board fill, default color stroke; and vertical line -->
+
+	<rect stroke="none" x="0" y="5.4" width="2" height="1.2"></rect>
+	<line fill="none" stroke-width="1" x1="14" y1="0" x2="14" y2="12"></line>
+	<polygon stroke-width="1" points="9,11 0,6 9,1"></polygon>
+
+</svg></g></marker><marker id="http-localhost-3000-src-shape-library-markers-mim-binding-svg-start-default" preserveAspectRatio="none" viewBox="0 0 12 12" markerWidth="12" markerHeight="12" markerUnits="strokeWidth" orient="auto" refX="0" refY="6"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ev="http://www.w3.org/2001/xml-events" id="mim-binding" version="1.1" baseProfile="full" width="12" height="12" class="solid-stroke default-fill-color" viewBox="0 0 12 12">
+
+	<!-- mim-binding markers: four-point polygon, no stroke -->
+
+	<rect class="board-fill-color" stroke="none" x="0" y="5.4" width="2" height="1.2"></rect>
 	<polygon stroke-width="0" points="12,12 0,6 12,0 5,6 "></polygon>
 
-</svg></marker><marker id="conversion" preserveAspectRatio="none" viewBox="0 0 12 12"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ev="http://www.w3.org/2001/xml-events" id="mim-conversion" version="1.1" baseProfile="full" width="12" height="12" style="fill:black" class="solid-stroke" viewBox="0 0 12 12">
+</svg></marker><marker id="http-localhost-3000-src-shape-library-markers-mim-binding-svg-end-default" viewBox="-12 -12 12 12" markerWidth="12" markerHeight="12" markerUnits="strokeWidth" orient="auto" refX="0" refY="-6"><g id="g-http-localhost-3000-src-shape-library-markers-mim-binding-svg-end-default" style="-webkit-transform: rotate(180deg); -webkit-transform-origin: 50% 50%;"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ev="http://www.w3.org/2001/xml-events" id="mim-binding" version="1.1" baseProfile="full" width="12" height="12" class="solid-stroke default-fill-color" viewBox="0 0 12 12">
 
-	<rect class="default-fill" stroke="none" x="0" y="5.4" width="2" height="1.2"></rect>
+	<!-- mim-binding markers: four-point polygon, no stroke -->
+
+	<rect class="board-fill-color" stroke="none" x="0" y="5.4" width="2" height="1.2"></rect>
+	<polygon stroke-width="0" points="12,12 0,6 12,0 5,6 "></polygon>
+
+</svg></g></marker><marker id="http-localhost-3000-src-shape-library-markers-mim-conversion-svg-start-default" preserveAspectRatio="none" viewBox="0 0 12 12" markerWidth="12" markerHeight="12" markerUnits="strokeWidth" orient="auto" refX="0" refY="6"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ev="http://www.w3.org/2001/xml-events" id="mim-conversion" version="1.1" baseProfile="full" width="12" height="12" class="solid-stroke default-fill-color" viewBox="0 0 12 12">
+
+	<!-- mim-conversion markers: triangular polygons, no stroke -->
+
+	<rect class="board-fill-color" stroke="none" x="0" y="5.4" width="2" height="1.2"></rect>
 	<polygon stroke-width="0" points="11,11 0,6 11,1"></polygon>
 
-</svg></marker><marker id="stimulation" preserveAspectRatio="none" viewBox="0 0 12 12"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ev="http://www.w3.org/2001/xml-events" id="mim-stimulation" version="1.1" baseProfile="full" width="12" height="12" class="default-fill solid-stroke" style="stroke:black" viewBox="0 0 12 12">
+</svg></marker><marker id="http-localhost-3000-src-shape-library-markers-mim-conversion-svg-end-default" viewBox="-12 -12 12 12" markerWidth="12" markerHeight="12" markerUnits="strokeWidth" orient="auto" refX="0" refY="-6"><g id="g-http-localhost-3000-src-shape-library-markers-mim-conversion-svg-end-default" style="-webkit-transform: rotate(180deg); -webkit-transform-origin: 50% 50%;"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ev="http://www.w3.org/2001/xml-events" id="mim-conversion" version="1.1" baseProfile="full" width="12" height="12" class="solid-stroke default-fill-color" viewBox="0 0 12 12">
 
-	<rect class="default-fill" stroke="none" x="0" y="5.4" width="2" height="1.2"></rect>
+	<!-- mim-conversion markers: triangular polygons, no stroke -->
+
+	<rect class="board-fill-color" stroke="none" x="0" y="5.4" width="2" height="1.2"></rect>
+	<polygon stroke-width="0" points="11,11 0,6 11,1"></polygon>
+
+</svg></g></marker><marker id="http-localhost-3000-src-shape-library-markers-mim-stimulation-svg-start-default" preserveAspectRatio="none" viewBox="0 0 12 12" markerWidth="12" markerHeight="12" markerUnits="strokeWidth" orient="auto" refX="0" refY="6"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ev="http://www.w3.org/2001/xml-events" id="mim-stimulation" version="1.1" baseProfile="full" width="12" height="12" class="board-fill-color default-stroke-color solid-stroke" viewBox="0 0 12 12">
+
+	<!-- mim-stimulation markers: triangular polygons, drawing-board fill, default color stroke -->
+
+	<rect class="board-fill-color" stroke="none" x="0" y="5.4" width="2" height="1.2"></rect>
 	<polygon stroke-width="1" points="11,11 0,6 11,1"></polygon>
 
-</svg></marker><marker id="modification" preserveAspectRatio="none" viewBox="0 0 12 12"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ev="http://www.w3.org/2001/xml-events" id="mim-modification" version="1.1" baseProfile="full" width="12" height="12" class="solid-stroke" style="fill:black" viewBox="0 0 12 12">
+</svg></marker><marker id="http-localhost-3000-src-shape-library-markers-mim-stimulation-svg-end-default" viewBox="-12 -12 12 12" markerWidth="12" markerHeight="12" markerUnits="strokeWidth" orient="auto" refX="0" refY="-6"><g id="g-http-localhost-3000-src-shape-library-markers-mim-stimulation-svg-end-default" style="-webkit-transform: rotate(180deg); -webkit-transform-origin: 50% 50%;"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ev="http://www.w3.org/2001/xml-events" id="mim-stimulation" version="1.1" baseProfile="full" width="12" height="12" class="board-fill-color default-stroke-color solid-stroke" viewBox="0 0 12 12">
 
-	<rect class="default-fill" stroke="none" x="0" y="5.4" width="2" height="1.2"></rect>
+	<!-- mim-stimulation markers: triangular polygons, drawing-board fill, default color stroke -->
+
+	<rect class="board-fill-color" stroke="none" x="0" y="5.4" width="2" height="1.2"></rect>
+	<polygon stroke-width="1" points="11,11 0,6 11,1"></polygon>
+
+</svg></g></marker><marker id="http-localhost-3000-src-shape-library-markers-mim-modification-svg-start-default" preserveAspectRatio="none" viewBox="0 0 12 12" markerWidth="12" markerHeight="12" markerUnits="strokeWidth" orient="auto" refX="0" refY="6"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ev="http://www.w3.org/2001/xml-events" id="mim-modification" version="1.1" baseProfile="full" width="12" height="12" class="default-fill-color solid-stroke" viewBox="0 0 12 12">
+
+	<!-- mim-modification markers: four-point polygon, no stroke -->
+
+	<rect class="board-fill-color" stroke="none" x="0" y="5.4" width="2" height="1.2"></rect>
 	<polygon stroke-width="0" points="12,12 0,6 12,0 5,6 "></polygon>
 
-</svg></marker><marker id="catalysis" preserveAspectRatio="none" viewBox="0 0 12 12"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ev="http://www.w3.org/2001/xml-events" id="mim-catalysis" version="1.1" baseProfile="full" width="12" height="12" class="default-fill solid-stroke" viewBox="-6 -6 12 12">
+</svg></marker><marker id="http-localhost-3000-src-shape-library-markers-mim-modification-svg-end-default" viewBox="-12 -12 12 12" markerWidth="12" markerHeight="12" markerUnits="strokeWidth" orient="auto" refX="0" refY="-6"><g id="g-http-localhost-3000-src-shape-library-markers-mim-modification-svg-end-default" style="-webkit-transform: rotate(180deg); -webkit-transform-origin: 50% 50%;"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ev="http://www.w3.org/2001/xml-events" id="mim-modification" version="1.1" baseProfile="full" width="12" height="12" class="default-fill-color solid-stroke" viewBox="0 0 12 12">
+
+	<!-- mim-modification markers: four-point polygon, no stroke -->
+
+	<rect class="board-fill-color" stroke="none" x="0" y="5.4" width="2" height="1.2"></rect>
+	<polygon stroke-width="0" points="12,12 0,6 12,0 5,6 "></polygon>
+
+</svg></g></marker><marker id="http-localhost-3000-src-shape-library-markers-mim-catalysis-svg-start-default" preserveAspectRatio="none" viewBox="0 0 12 12" markerWidth="12" markerHeight="12" markerUnits="strokeWidth" orient="auto" refX="0" refY="6"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ev="http://www.w3.org/2001/xml-events" id="mim-catalysis" version="1.1" baseProfile="full" width="12" height="12" class="board-fill-color default-stroke-color solid-stroke" viewBox="-6 -6 12 12">
+
+	<!-- mim-catalysis markers: circle, drawing-board fill and default color stroke -->
 
 	<circle cx="0" cy="0" r="5.3px" stroke-width="1px"></circle>
 
-</svg></marker><marker id="inhibition" preserveAspectRatio="none" viewBox="0 0 12 12"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ev="http://www.w3.org/2001/xml-events" id="mim-inhibition" version="1.1" baseProfile="full" width="12" height="12" class="default-fill solid-stroke">
+</svg></marker><marker id="http-localhost-3000-src-shape-library-markers-mim-catalysis-svg-end-default" viewBox="-12 -12 12 12" markerWidth="12" markerHeight="12" markerUnits="strokeWidth" orient="auto" refX="0" refY="-6"><g id="g-http-localhost-3000-src-shape-library-markers-mim-catalysis-svg-end-default" style="-webkit-transform: rotate(180deg); -webkit-transform-origin: 50% 50%;"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ev="http://www.w3.org/2001/xml-events" id="mim-catalysis" version="1.1" baseProfile="full" width="12" height="12" class="board-fill-color default-stroke-color solid-stroke" viewBox="-6 -6 12 12">
 
-	<rect stroke="none" x="0" y="5.4" width="5" height="1.2"></rect>
-	<line fill="none" stroke-width="1.6" x1="5" y1="0" x2="5" y2="12"></line>
+	<!-- mim-catalysis markers: circle, drawing-board fill and default color stroke -->
 
-</svg></marker><marker id="cleavage" preserveAspectRatio="none" viewBox="0 0 12 12"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ev="http://www.w3.org/2001/xml-events" id="mim-cleavage" version="1.1" baseProfile="full" width="12" height="12" viewBox="0 0 12 12" class="default-fill solid-stroke">
+	<circle cx="0" cy="0" r="5.3px" stroke-width="1px"></circle>
 
-	<rect stroke="none" x="8" y="5.4" width="3.5" height="1.2"></rect>
-	<line fill="none" stroke-width=".4" x1="11.7" y1="6" x2="11.7" y2="12"></line>	
-	<line fill="none" stroke-width=".4" x1="11.7" y1="12" x2="0" y2="0"></line>	
+</svg></g></marker><marker id="http-localhost-3000-src-shape-library-markers-mim-inhibition-svg-start-default" preserveAspectRatio="none" viewBox="0 0 20 20" markerWidth="20" markerHeight="20" markerUnits="strokeWidth" orient="auto" refX="0" refY="6"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ev="http://www.w3.org/2001/xml-events" id="mim-inhibition" version="1.1" baseProfile="full" width="20" height="20" class="board-fill-color default-stroke-color solid-stroke">
 
-</svg></marker><marker id="covalent-bond" preserveAspectRatio="none" viewBox="0 0 12 12"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ev="http://www.w3.org/2001/xml-events" id="mim-covalent-bond" version="1.1" baseProfile="full" width="12" height="12" class="solid-stroke" style="fill:black" viewBox="0 0 12 12">
+        <!-- t-bar markers: vertical line; and extended drawing-board rect -->
 
-</svg></marker><marker id="transcription-translation" preserveAspectRatio="none" viewBox="0 0 12 12"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ev="http://www.w3.org/2001/xml-events" id="mim-transcription-translation" version="1.1" baseProfile="full" width="12" height="12" class="default-fill solid-stroke" style="stroke:black">
+        <rect stroke="none" x="0" y="9.4" width="5" height="1.2"></rect>
+        <line fill="none" stroke-width="1.8" x1="5" y1="0" x2="5" y2="20"></line>
 
-	<rect stroke="none" x="0" y="5.4" width="6" height="1.2"></rect>
-	<line fill="none" stroke-width=".4" x1="9" y1="6" x2="9" y2="2"></line>
-	<line fill="none" stroke-width=".4" x1="9" y1="2" x2="5" y2="2"></line>
-	<polygon stroke-width=".4" points="5,0 0,2 5,4"></polygon>
+</svg></marker><marker id="http-localhost-3000-src-shape-library-markers-mim-inhibition-svg-end-default" viewBox="-20 -20 20 20" markerWidth="20" markerHeight="20" markerUnits="strokeWidth" orient="auto" refX="0" refY="-10"><g id="g-http-localhost-3000-src-shape-library-markers-mim-inhibition-svg-end-default" style="-webkit-transform: rotate(180deg); -webkit-transform-origin: 50% 50%;"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ev="http://www.w3.org/2001/xml-events" id="mim-inhibition" version="1.1" baseProfile="full" width="20" height="20" class="board-fill-color default-stroke-color solid-stroke">
 
-</svg></marker><marker id="gap" preserveAspectRatio="none" viewBox="0 0 12 12"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ev="http://www.w3.org/2001/xml-events" id="mim-gap" version="1.1" baseProfile="full" width="12" height="12" class="default-fill solid-stroke" viewBox="0 0 12 12">
+        <!-- t-bar markers: vertical line; and extended drawing-board rect -->
+
+        <rect stroke="none" x="0" y="9.4" width="5" height="1.2"></rect>
+        <line fill="none" stroke-width="1.8" x1="5" y1="0" x2="5" y2="20"></line>
+
+</svg></g></marker><marker id="http-localhost-3000-src-shape-library-markers-mim-cleavage-svg-start-default" preserveAspectRatio="none" viewBox="0 0 24 24" markerWidth="24" markerHeight="24" markerUnits="strokeWidth" orient="auto" refX="0" refY="6"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ev="http://www.w3.org/2001/xml-events" id="mim-cleavage" version="1.1" baseProfile="full" width="24" height="24" viewBox="12 0 -12 24" class="board-fill-color default-stroke-color solid-stroke">
+
+	<!-- mim-cleavage markers: two lines and extended drawing-board rect -->
+
+	<rect stroke="none" x="0" y="11.4" width="10.4" height="1.2"></rect>
+	<line fill="none" stroke-width="1" x1="11" y1="12" x2="11" y2="24"></line>	
+	<line fill="none" stroke-width="1" x1="11" y1="24" x2="-11" y2="0"></line>	
+
+</svg></marker><marker id="http-localhost-3000-src-shape-library-markers-mim-cleavage-svg-end-default" viewBox="-24 -24 24 24" markerWidth="24" markerHeight="24" markerUnits="strokeWidth" orient="auto" refX="0" refY="-12"><g id="g-http-localhost-3000-src-shape-library-markers-mim-cleavage-svg-end-default" style="-webkit-transform: rotate(180deg); -webkit-transform-origin: 50% 50%;"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ev="http://www.w3.org/2001/xml-events" id="mim-cleavage" version="1.1" baseProfile="full" width="24" height="24" viewBox="12 0 -12 24" class="board-fill-color default-stroke-color solid-stroke">
+
+	<!-- mim-cleavage markers: two lines and extended drawing-board rect -->
+
+	<rect stroke="none" x="0" y="11.4" width="10.4" height="1.2"></rect>
+	<line fill="none" stroke-width="1" x1="11" y1="12" x2="11" y2="24"></line>	
+	<line fill="none" stroke-width="1" x1="11" y1="24" x2="-11" y2="0"></line>	
+
+</svg></g></marker><marker id="http-localhost-3000-src-shape-library-markers-mim-covalent-bond-svg-start-default" preserveAspectRatio="none" viewBox="0 0 12 12" markerWidth="12" markerHeight="12" markerUnits="strokeWidth" orient="auto" refX="0" refY="6"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ev="http://www.w3.org/2001/xml-events" id="mim-covalent-bond" version="1.1" baseProfile="full" width="12" height="12" class="solid-stroke default-fill-color" viewBox="0 0 12 12">
+
+	<!-- mim-covalent-bond markers: not much to see here! -->
+	<rect x="0" y="0" width="0" height="0" stroke="none" fill="none" stroke-width="0"></rect>
+
+</svg></marker><marker id="http-localhost-3000-src-shape-library-markers-mim-covalent-bond-svg-end-default" viewBox="-12 -12 12 12" markerWidth="12" markerHeight="12" markerUnits="strokeWidth" orient="auto" refX="0" refY="-6"><g id="g-http-localhost-3000-src-shape-library-markers-mim-covalent-bond-svg-end-default" style="-webkit-transform: rotate(180deg); -webkit-transform-origin: 50% 50%;"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ev="http://www.w3.org/2001/xml-events" id="mim-covalent-bond" version="1.1" baseProfile="full" width="12" height="12" class="solid-stroke default-fill-color" viewBox="0 0 12 12">
+
+	<!-- mim-covalent-bond markers: not much to see here! -->
+	<rect x="0" y="0" width="0" height="0" stroke="none" fill="none" stroke-width="0"></rect>
+
+</svg></g></marker><marker id="http-localhost-3000-src-shape-library-markers-mim-transcription-translation-svg-start-default" preserveAspectRatio="none" viewBox="0 0 18 18" markerWidth="18" markerHeight="18" markerUnits="strokeWidth" orient="auto" refX="0" refY="6"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ev="http://www.w3.org/2001/xml-events" id="mim-transcription-translation" version="1.1" baseProfile="full" width="18" height="18" class="board-fill-color default-stroke-color solid-stroke">
+
+	<!-- mim-transcription-translation markers: two lines and an open trigular polygon, plus extended drawing-board rect -->
+
+	<rect stroke="none" x="0" y="8.4" width="10" height="1.2"></rect>
+	<line fill="none" stroke-width="1" x1="14" y1="9" x2="14" y2="4"></line>
+	<line fill="none" stroke-width="1" x1="14.5" y1="4" x2="7" y2="4"></line>
+	<polygon stroke-width="1" points="0,4 7,1 7,7"></polygon>
+
+</svg></marker><marker id="http-localhost-3000-src-shape-library-markers-mim-transcription-translation-svg-end-default" viewBox="-18 -18 18 18" markerWidth="18" markerHeight="18" markerUnits="strokeWidth" orient="auto" refX="0" refY="-9"><g id="g-http-localhost-3000-src-shape-library-markers-mim-transcription-translation-svg-end-default" style="-webkit-transform: rotate(180deg); -webkit-transform-origin: 50% 50%;"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ev="http://www.w3.org/2001/xml-events" id="mim-transcription-translation" version="1.1" baseProfile="full" width="18" height="18" class="board-fill-color default-stroke-color solid-stroke">
+
+	<!-- mim-transcription-translation markers: two lines and an open trigular polygon, plus extended drawing-board rect -->
+
+	<rect stroke="none" x="0" y="8.4" width="10" height="1.2"></rect>
+	<line fill="none" stroke-width="1" x1="14" y1="9" x2="14" y2="4"></line>
+	<line fill="none" stroke-width="1" x1="14.5" y1="4" x2="7" y2="4"></line>
+	<polygon stroke-width="1" points="0,4 7,1 7,7"></polygon>
+
+</svg></g></marker><marker id="http-localhost-3000-src-shape-library-markers-mim-gap-svg-start-default" preserveAspectRatio="none" viewBox="0 0 12 12" markerWidth="12" markerHeight="12" markerUnits="strokeWidth" orient="auto" refX="0" refY="6"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ev="http://www.w3.org/2001/xml-events" id="mim-gap" version="1.1" baseProfile="full" width="12" height="12" class="board-fill-color solid-stroke" viewBox="0 0 12 12">
+
+	<!-- mim-gap markers: just an extended drawing-board rect -->
+	<!-- 
+	TODO This could be refactored to make the shape match the viewbox.
+	It can overlap the side of the shape, blanking out a small part of it when the edge is at an angle.
+	-->
 
 	<rect stroke="none" x="0" y="5.3" width="8" height="1.4"></rect>
 
-</svg></marker><marker id="inhibitory-activity" preserveAspectRatio="none" viewBox="0 0 12 12"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ev="http://www.w3.org/2001/xml-events" id="t-bar" version="1.1" baseProfile="full" width="12" height="12" class="default-fill solid-stroke" style="stroke:black">
+</svg></marker><marker id="http-localhost-3000-src-shape-library-markers-mim-gap-svg-end-default" viewBox="-12 -12 12 12" markerWidth="12" markerHeight="12" markerUnits="strokeWidth" orient="auto" refX="0" refY="-6"><g id="g-http-localhost-3000-src-shape-library-markers-mim-gap-svg-end-default" style="-webkit-transform: rotate(180deg); -webkit-transform-origin: 50% 50%;"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ev="http://www.w3.org/2001/xml-events" id="mim-gap" version="1.1" baseProfile="full" width="12" height="12" class="board-fill-color solid-stroke" viewBox="0 0 12 12">
 
-	<rect stroke="none" x="0" y="5.4" width="5" height="1.2"></rect>
-	<line fill="none" stroke-width="1.6" x1="5" y1="0" x2="5" y2="12"></line>
+	<!-- mim-gap markers: just an extended drawing-board rect -->
+	<!-- 
+	TODO This could be refactored to make the shape match the viewbox.
+	It can overlap the side of the shape, blanking out a small part of it when the edge is at an angle.
+	-->
 
-</svg></marker><symbol id="golgi-apparatus" preserveAspectRatio="none" viewBox="0 0 100 100"><clipPath id="golgi-apparatus-clip-path1">
-	<path d="m58.46714,27.713327c-22.205345,-29.90079 37.310066,-30.258356 25.567245,-4.823446c-8.807655,18.581238 -17.066429,58.135235 -0.941673,99.22044c13.31469,27.066696 -41.748463,27.760925 -27.755554,-1.469849c11.345825,-29.420242 10.286858,-80.336422 3.129982,-92.927145z" vector-effect="non-scaling-stroke"></path>
-   	</clipPath><clipPath id="golgi-apparatus-clip-path3">
-   	<path d="m29.803959,52.160912c1.584177,11.474716 2.723461,16.737267 -1.482977,38.361366c-3.731956,12.989006 -3.600399,16.340691 -11.732334,19.412781c-6.683298,1.658531 -11.864832,-9.789436 -4.793299,-16.11377c4.855728,-5.623222 6.141087,-10.882362 6.658888,-22.954659c-0.239212,-9.521427 0.814508,-15.823826 -5.36692,-19.958626c-7.624315,-2.195171 -6.088041,-16.534611 4.824059,-13.863804c5.849354,1.027065 10.282408,8.561516 11.892582,15.116711z" vector-effect="non-scaling-stroke"></path>
-	</clipPath><path d="m31.214371,36.214363c-10.791712,-21.427903 29.897598,-19.848164 18.407501,0.670895c-4.066933,7.422386 -5.782803,61.572803 1.160713,75.028805c8.52943,18.597427 -32.852985,19.355408 -20.500162,-2.250633c6.952761,-17.358604 10.473742,-52.291187 0.931948,-73.449066z" style="clip-path: url(#golgi-apparatus-clip-path2); " vector-effect="non-scaling-stroke"></path></symbol><symbol id="brace" preserveAspectRatio="none" viewBox="0 0 100 50"><clipPath id="brace-clip-path">
+	<rect stroke="none" x="0" y="5.3" width="8" height="1.4"></rect>
+
+</svg></g></marker><marker id="http-localhost-3000-src-shape-library-markers-t-bar-svg-start-default" preserveAspectRatio="none" viewBox="0 0 20 20" markerWidth="20" markerHeight="20" markerUnits="strokeWidth" orient="auto" refX="0" refY="6"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ev="http://www.w3.org/2001/xml-events" id="t-bar" version="1.1" baseProfile="full" width="20" height="20" class="board-fill-color default-stroke-color solid-stroke">
+
+	<!-- t-bar markers: vertical line; and extended drawing-board rect -->
+
+	<rect stroke="none" x="0" y="9.4" width="5" height="1.2"></rect>
+	<line fill="none" stroke-width="1.8" x1="5" y1="0" x2="5" y2="20"></line>
+
+</svg></marker><marker id="http-localhost-3000-src-shape-library-markers-t-bar-svg-end-default" viewBox="-20 -20 20 20" markerWidth="20" markerHeight="20" markerUnits="strokeWidth" orient="auto" refX="0" refY="-10"><g id="g-http-localhost-3000-src-shape-library-markers-t-bar-svg-end-default" style="-webkit-transform: rotate(180deg); -webkit-transform-origin: 50% 50%;"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ev="http://www.w3.org/2001/xml-events" id="t-bar" version="1.1" baseProfile="full" width="20" height="20" class="board-fill-color default-stroke-color solid-stroke">
+
+	<!-- t-bar markers: vertical line; and extended drawing-board rect -->
+
+	<rect stroke="none" x="0" y="9.4" width="5" height="1.2"></rect>
+	<line fill="none" stroke-width="1.8" x1="5" y1="0" x2="5" y2="20"></line>
+
+</svg></g></marker><marker id="http-localhost-3000-src-shape-library-markers-none-svg-start-default" preserveAspectRatio="none" viewBox="0 0 0 0" markerWidth="0" markerHeight="0" markerUnits="strokeWidth" orient="auto" refX="0" refY="6"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ev="http://www.w3.org/2001/xml-events" id="none" version="1.1" baseProfile="full" width="0" height="0" viewBox="0 0 0 0" preserveAspectRatio="none" class="board-fill-color board-stroke-color node shape">
+
+	<rect x="0" y="0" width="0" height="0" stroke="none" fill="none" stroke-width="0"></rect>
+
+</svg></marker><marker id="http-localhost-3000-src-shape-library-markers-none-svg-end-default" viewBox="0 0 0 0" markerWidth="0" markerHeight="0" markerUnits="strokeWidth" orient="auto" refX="0" refY="0"><g id="g-http-localhost-3000-src-shape-library-markers-none-svg-end-default" style="-webkit-transform: rotate(180deg); -webkit-transform-origin: 50% 50%;"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ev="http://www.w3.org/2001/xml-events" id="none" version="1.1" baseProfile="full" width="0" height="0" viewBox="0 0 0 0" preserveAspectRatio="none" class="board-fill-color board-stroke-color node shape">
+
+	<rect x="0" y="0" width="0" height="0" stroke="none" fill="none" stroke-width="0"></rect>
+
+</svg></g></marker><marker id="http-localhost-3000-src-shape-library-markers-mim-branching-left-svg-start-default" preserveAspectRatio="none" viewBox="0 0 12 12" markerWidth="12" markerHeight="12" markerUnits="strokeWidth" orient="auto" refX="0" refY="6"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ev="http://www.w3.org/2001/xml-events" id="mim-branching-left" version="1.1" baseProfile="full" width="12" height="12" class="board-fill-color default-stroke-color solid-stroke">
+
+	<!-- mim-branching-left markers: line and extended drawing-board rect -->
+
+	<rect stroke="none" x="0" y="5.4" width="3.5" height="1.2"></rect>
+	<line fill="none" stroke-width="1" x1="3.7" y1="6" x2="0" y2="0"></line>	
+
+</svg></marker><marker id="http-localhost-3000-src-shape-library-markers-mim-branching-left-svg-end-default" viewBox="-12 -12 12 12" markerWidth="12" markerHeight="12" markerUnits="strokeWidth" orient="auto" refX="0" refY="-6"><g id="g-http-localhost-3000-src-shape-library-markers-mim-branching-left-svg-end-default" style="-webkit-transform: rotate(180deg); -webkit-transform-origin: 50% 50%;"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ev="http://www.w3.org/2001/xml-events" id="mim-branching-left" version="1.1" baseProfile="full" width="12" height="12" class="board-fill-color default-stroke-color solid-stroke">
+
+	<!-- mim-branching-left markers: line and extended drawing-board rect -->
+
+	<rect stroke="none" x="0" y="5.4" width="3.5" height="1.2"></rect>
+	<line fill="none" stroke-width="1" x1="3.7" y1="6" x2="0" y2="0"></line>	
+
+</svg></g></marker><marker id="http-localhost-3000-src-shape-library-markers-mim-branching-right-svg-start-default" preserveAspectRatio="none" viewBox="0 0 12 12" markerWidth="12" markerHeight="12" markerUnits="strokeWidth" orient="auto" refX="0" refY="6"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ev="http://www.w3.org/2001/xml-events" id="mim-branching-right" version="1.1" baseProfile="full" width="12" height="12" class="board-fill-color default-stroke-color solid-stroke">
+
+	<!-- mim-branching-right markers: line and extended drawing-board rect -->
+
+	<rect stroke="none" x="0" y="5.4" width="3.5" height="1.2"></rect>
+	<line fill="none" stroke-width="1" x1="0" y1="12" x2="3.7" y2="6"></line>	
+
+</svg></marker><marker id="http-localhost-3000-src-shape-library-markers-mim-branching-right-svg-end-default" viewBox="-12 -12 12 12" markerWidth="12" markerHeight="12" markerUnits="strokeWidth" orient="auto" refX="0" refY="-6"><g id="g-http-localhost-3000-src-shape-library-markers-mim-branching-right-svg-end-default" style="-webkit-transform: rotate(180deg); -webkit-transform-origin: 50% 50%;"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ev="http://www.w3.org/2001/xml-events" id="mim-branching-right" version="1.1" baseProfile="full" width="12" height="12" class="board-fill-color default-stroke-color solid-stroke">
+
+	<!-- mim-branching-right markers: line and extended drawing-board rect -->
+
+	<rect stroke="none" x="0" y="5.4" width="3.5" height="1.2"></rect>
+	<line fill="none" stroke-width="1" x1="0" y1="12" x2="3.7" y2="6"></line>	
+
+</svg></g></marker><symbol id="http-localhost-3000-src-shape-library-symbols-arc-svg" preserveAspectRatio="none" viewBox="0 0 100 100"><path d="m99.5,50c0,27.338341 -22.162117,49.5 -49.5,49.5s-49.5,-22.161659 -49.5,-49.5" vector-effect="non-scaling-stroke" class="node shape"></path></symbol><symbol id="http-localhost-3000-src-shape-library-symbols-brace-svg" preserveAspectRatio="none" viewBox="0 0 100 50"><clipPath id="brace-clip-path">
 		<path d="m1.5,49.499996c0,-16.166668 8.166666,-24.249996 24.499998,-24.249996s24.499998,-8.083336 24.499998,-24.250002c0,16.166666 8.166664,24.250002 24.499996,24.250002s24.5,8.083328 24.5,24.249996" vector-effect="non-scaling-stroke"></path>
-        </clipPath></symbol><symbol id="endoplasmic-reticulum" preserveAspectRatio="none" viewBox="0 0 100 100"><clipPath id="endoplasmic-reticulum-clip-path">
+        </clipPath><path d="m1.5,49.499996c0,-16.166668 8.166666,-24.249996 24.499998,-24.249996s24.499998,-8.083336 24.499998,-24.250002c0,16.166666 8.166664,24.250002 24.499996,24.250002s24.5,8.083328 24.5,24.249996" style="clip-path: url(#brace-clip-path); " vector-effect="non-scaling-stroke"></path></symbol><symbol id="http-localhost-3000-src-shape-library-symbols-endoplasmic-reticulum-svg" preserveAspectRatio="none" viewBox="0 0 100 100"><clipPath id="endoplasmic-reticulum-clip-path">
 		<path d="m73.52756,56.60967c-5.62457,-18.60675 23.51463,-32.43358 23.40173,-45.06604c-0.34426,-4.86102 -10.48934,-8.89743 -18.28974,-5.33395c-17.04119,7.87556 -15.64949,29.30503 -21.20533,42.23387c-0.35661,3.60951 -7.36274,2.46926 -7.74964,-0.48694c-5.8512,-11.38871 17.13534,-24.48692 5.96075,-29.42586c-19.63467,-8.16979 -28.75184,21.15346 -22.0682,28.81784c7.4956,14.17602 -2.17949,24.40679 -6.74689,15.49637c-2.44209,-5.30613 6.06605,-11.08445 -0.80351,-16.17689c-4.31991,-2.79993 -11.75555,-0.64618 -16.15468,3.0943c-12.89117,10.73799 4.72957,40.98145 20.96467,36.14635c4.69833,-1.95989 -3.23603,-8.70151 3.90717,-9.59951c7.29767,-0.81255 5.17628,6.18889 7.68745,9.22691c2.3071,4.0509 4.83232,8.35538 10.7626,11.6237c4.78642,2.53724 15.29437,2.11225 16.77148,-1.95795c2.0318,-9.26291 -26.11129,-28.35848 -10.68903,-31.2815c18.55524,-2.71473 4.74866,23.84573 24.31006,29.69419c9.50188,2.02824 15.63902,-0.62194 14.81255,-4.03272c-2.74586,-11.26327 -25.13557,-22.6802 -24.96441,-33.14968" vector-effect="non-scaling-stroke"></path>
-	</clipPath></symbol><symbol id="arc" preserveAspectRatio="none" viewBox="0 0 100 100"><path d="m1.5,50.5c0,-16.16667 8.16667,-24.25 24.5,-24.25s24.5,-8.08334 24.5,-24.25c0,16.16666 8.16666,24.25 24.49999,24.25s24.50001,8.08333 24.50001,24.25" vector-effect="non-scaling-stroke" class="node shape"></path></symbol><symbol id="hexagon" preserveAspectRatio="none" viewBox="0 0 100 100"><clipPath id="hexagon-clip-path">
+	</clipPath><path d="m73.52756,56.60967c-5.62457,-18.60675 23.51463,-32.43358 23.40173,-45.06604c-0.34426,-4.86102 -10.48934,-8.89743 -18.28974,-5.33395c-17.04119,7.87556 -15.64949,29.30503 -21.20533,42.23387c-0.35661,3.60951 -7.36274,2.46926 -7.74964,-0.48694c-5.8512,-11.38871 17.13534,-24.48692 5.96075,-29.42586c-19.63467,-8.16979 -28.75184,21.15346 -22.0682,28.81784c7.4956,14.17602 -2.17949,24.40679 -6.74689,15.49637c-2.44209,-5.30613 6.06605,-11.08445 -0.80351,-16.17689c-4.31991,-2.79993 -11.75555,-0.64618 -16.15468,3.0943c-12.89117,10.73799 4.72957,40.98145 20.96467,36.14635c4.69833,-1.95989 -3.23603,-8.70151 3.90717,-9.59951c7.29767,-0.81255 5.17628,6.18889 7.68745,9.22691c2.3071,4.0509 4.83232,8.35538 10.7626,11.6237c4.78642,2.53724 15.29437,2.11225 16.77148,-1.95795c2.0318,-9.26291 -26.11129,-28.35848 -10.68903,-31.2815c18.55524,-2.71473 4.74866,23.84573 24.31006,29.69419c9.50188,2.02824 15.63902,-0.62194 14.81255,-4.03272c-2.74586,-11.26327 -25.13557,-22.6802 -24.96441,-33.14968" style="clip-path: url(#endoplasmic-reticulum-clip-path); " vector-effect="non-scaling-stroke"></path></symbol><symbol id="http-localhost-3000-src-shape-library-symbols-golgi-apparatus-svg" preserveAspectRatio="none" viewBox="0 0 100 100"><clipPath id="golgi-apparatus-clip-path1">
+	<path d="m58.46714,27.713327c-22.205345,-29.90079 37.310066,-30.258356 25.567245,-4.823446c-8.807655,18.581238 -17.066429,58.135235 -0.941673,99.22044c13.31469,27.066696 -41.748463,27.760925 -27.755554,-1.469849c11.345825,-29.420242 10.286858,-80.336422 3.129982,-92.927145z" vector-effect="non-scaling-stroke"></path>
+   	</clipPath><clipPath id="golgi-apparatus-clip-path2">
+   	<path d="m31.214371,36.214363c-10.791712,-21.427903 29.897598,-19.848164 18.407501,0.670895c-4.066933,7.422386 -5.782803,61.572803 1.160713,75.028805c8.52943,18.597427 -32.852985,19.355408 -20.500162,-2.250633c6.952761,-17.358604 10.473742,-52.291187 0.931948,-73.449066z" vector-effect="non-scaling-stroke"></path>
+	</clipPath><clipPath id="golgi-apparatus-clip-path3">
+   	<path d="m29.803959,52.160912c1.584177,11.474716 2.723461,16.737267 -1.482977,38.361366c-3.731956,12.989006 -3.600399,16.340691 -11.732334,19.412781c-6.683298,1.658531 -11.864832,-9.789436 -4.793299,-16.11377c4.855728,-5.623222 6.141087,-10.882362 6.658888,-22.954659c-0.239212,-9.521427 0.814508,-15.823826 -5.36692,-19.958626c-7.624315,-2.195171 -6.088041,-16.534611 4.824059,-13.863804c5.849354,1.027065 10.282408,8.561516 11.892582,15.116711z" vector-effect="non-scaling-stroke"></path>
+	</clipPath><path d="m58.46714,27.713327c-22.205345,-29.90079 37.310066,-30.258356 25.567245,-4.823446c-8.807655,18.581238 -17.066429,58.135235 -0.941673,99.22044c13.31469,27.066696 -41.748463,27.760925 -27.755554,-1.469849c11.345825,-29.420242 10.286858,-80.336422 3.129982,-92.927145z" style="clip-path: url(#golgi-apparatus-clip-path1); " vector-effect="non-scaling-stroke"></path><path d="m31.214371,36.214363c-10.791712,-21.427903 29.897598,-19.848164 18.407501,0.670895c-4.066933,7.422386 -5.782803,61.572803 1.160713,75.028805c8.52943,18.597427 -32.852985,19.355408 -20.500162,-2.250633c6.952761,-17.358604 10.473742,-52.291187 0.931948,-73.449066z" style="clip-path: url(#golgi-apparatus-clip-path2); " vector-effect="non-scaling-stroke"></path><path d="m29.803959,52.160912c1.584177,11.474716 2.723461,16.737267 -1.482977,38.361366c-3.731956,12.989006 -3.600399,16.340691 -11.732334,19.412781c-6.683298,1.658531 -11.864832,-9.789436 -4.793299,-16.11377c4.855728,-5.623222 6.141087,-10.882362 6.658888,-22.954659c-0.239212,-9.521427 0.814508,-15.823826 -5.36692,-19.958626c-7.624315,-2.195171 -6.088041,-16.534611 4.824059,-13.863804c5.849354,1.027065 10.282408,8.561516 11.892582,15.116711z" style="clip-path: url(#golgi-apparatus-clip-path3); " vector-effect="non-scaling-stroke"></path></symbol><symbol id="http-localhost-3000-src-shape-library-symbols-hexagon-svg" preserveAspectRatio="none" viewBox="0 0 100 100"><clipPath id="hexagon-clip-path">
 		<path d="m1.42004,50.99635l21.07262,-42.13943l56.19152,0l21.0667,42.13943l-21.0667,42.14507l-56.19152,0l-21.07262,-42.14507z" vector-effect="non-scaling-stroke"></path>
-        </clipPath></symbol><symbol id="mim-degradation" preserveAspectRatio="none" viewBox="0 0 100 100"><clipPath id="mim-degradation-circle-clip-path">
+        </clipPath><path d="m1.42004,50.99635l21.07262,-42.13943l56.19152,0l21.0667,42.13943l-21.0667,42.14507l-56.19152,0l-21.07262,-42.14507z" style="clip-path: url(#hexagon-clip-path); " vector-effect="non-scaling-stroke"></path></symbol><symbol id="http-localhost-3000-src-shape-library-symbols-mim-degradation-svg" preserveAspectRatio="none" viewBox="0 0 100 100"><clipPath id="mim-degradation-circle-clip-path">
 		<circle cx="50" cy="50" r="49" vector-effect="non-scaling-stroke"></circle>
-  	</clipPath><line x1="1" y1="1" x2="100" y2="100" stroke-width="1" vector-effect="non-scaling-stroke"></line></symbol><symbol id="mitochondria" preserveAspectRatio="none" viewBox="0 0 100 100"><clipPath id="oval-clip-path">
+  	</clipPath><circle cx="50" cy="50" r="49" style="clip-path: url(#mim-degradation-circle-clip-path); " vector-effect="non-scaling-stroke"></circle><line x1="1" y1="1" x2="100" y2="100" stroke-width="1" vector-effect="non-scaling-stroke"></line></symbol><symbol id="http-localhost-3000-src-shape-library-symbols-mitochondria-svg" preserveAspectRatio="none" viewBox="0 0 100 100"><clipPath id="mitochondria-oval-clip-path">
 		<ellipse cx="50" cy="50" rx="50" ry="50" vector-effect="non-scaling-stroke"></ellipse>
-        </clipPath><ellipse cx="50" cy="50" rx="50" ry="50" style="clip-path: url(#oval-clip-path); " vector-effect="non-scaling-stroke"></ellipse></symbol><symbol id="oval" preserveAspectRatio="none" viewBox="0 0 100 100"><clipPath id="oval-clip-path">
-		<ellipse cx="50" cy="25" rx="50" ry="25" vector-effect="non-scaling-stroke"></ellipse>
-        </clipPath></symbol><symbol id="pentagon" preserveAspectRatio="none" viewBox="0 0 100 100"><clipPath id="pentagon-clip-path">
+        </clipPath><clipPath id="mitochondria-clip-path">
+		<path d="m14.894899,26.347357c4.363817,-0.741571 3.827518,17.036169 8.182638,16.183825c8.27347,0.030762 2.982006,-28.148991 9.899754,-28.336687c6.967995,-0.187704 2.246651,29.947527 9.204983,29.43981c7.632813,-0.560024 0.507309,-32.935357 8.136253,-33.623082c7.698521,-0.689259 2.919197,32.039941 10.628349,32.224557c6.546684,0.160011 3.026451,-27.642808 9.56057,-26.921232c7.192177,0.79388 0.664818,29.842905 7.781624,31.667604c4.748405,1.215439 4.420822,-18.257757 9.204018,-17.440804c11.128883,7.577278 8.628105,37.698658 -2.179977,44.645138c-3.138542,0.698479 -3.965698,-10.502029 -7.112938,-9.905075c-5.59005,1.058502 -3.982124,22.284088 -9.603096,21.799461c-5.239281,-0.456947 -2.226364,-21.636383 -7.47047,-21.730232c-6.961235,-0.116928 -3.357895,28.924408 -10.316231,28.495148c-6.140846,-0.375397 -1.73064,-24.950363 -7.825104,-26.191963c-5.681847,-1.156982 -5.378429,22.170242 -11.027426,20.680939c-6.249069,-1.644684 -0.469624,-26.673519 -6.759275,-27.865887c-3.728954,-0.706188 -2.647665,14.400654 -6.403677,14.545292c-14.016198,-5.938736 -15.748776,-39.707981 -3.899994,-47.666811z" vector-effect="non-scaling-stroke"></path>
+	</clipPath><ellipse cx="50" cy="50" rx="50" ry="50" style="clip-path: url(#mitochondria-oval-clip-path); " vector-effect="non-scaling-stroke"></ellipse><path d="m14.894899,26.347357c4.363817,-0.741571 3.827518,17.036169 8.182638,16.183825c8.27347,0.030762 2.982006,-28.148991 9.899754,-28.336687c6.967995,-0.187704 2.246651,29.947527 9.204983,29.43981c7.632813,-0.560024 0.507309,-32.935357 8.136253,-33.623082c7.698521,-0.689259 2.919197,32.039941 10.628349,32.224557c6.546684,0.160011 3.026451,-27.642808 9.56057,-26.921232c7.192177,0.79388 0.664818,29.842905 7.781624,31.667604c4.748405,1.215439 4.420822,-18.257757 9.204018,-17.440804c11.128883,7.577278 8.628105,37.698658 -2.179977,44.645138c-3.138542,0.698479 -3.965698,-10.502029 -7.112938,-9.905075c-5.59005,1.058502 -3.982124,22.284088 -9.603096,21.799461c-5.239281,-0.456947 -2.226364,-21.636383 -7.47047,-21.730232c-6.961235,-0.116928 -3.357895,28.924408 -10.316231,28.495148c-6.140846,-0.375397 -1.73064,-24.950363 -7.825104,-26.191963c-5.681847,-1.156982 -5.378429,22.170242 -11.027426,20.680939c-6.249069,-1.644684 -0.469624,-26.673519 -6.759275,-27.865887c-3.728954,-0.706188 -2.647665,14.400654 -6.403677,14.545292c-14.016198,-5.938736 -15.748776,-39.707981 -3.899994,-47.666811z" style="clip-path: url(#mitochondria-clip-path); " vector-effect="non-scaling-stroke"></path></symbol><symbol id="http-localhost-3000-src-shape-library-symbols-oval-svg" preserveAspectRatio="none" viewBox="0 0 100 50"><clipPath id="oval-clip-path">
+		<ellipse id="oval-clip-path-ellipse" cx="50" cy="25" rx="50" ry="25" vector-effect="non-scaling-stroke"></ellipse>
+        </clipPath><ellipse id="oval-shape" cx="50" cy="25" rx="50" ry="25" style="clip-path: url(#oval-clip-path); " vector-effect="non-scaling-stroke"></ellipse></symbol><symbol id="http-localhost-3000-src-shape-library-symbols-pentagon-svg" preserveAspectRatio="none" viewBox="0 0 100 100"><clipPath id="pentagon-clip-path">
 		<polygon points="59.159732818603516,99.61322021484375 95,50.28331756591797 59.159732818603516,0.9534196853637695 1.168962001800537,19.795764923095703 1.168962001800537,80.7708740234375 " vector-effect="non-scaling-stroke"></polygon>
-	</clipPath></symbol><symbol id="rectangle" preserveAspectRatio="none" viewBox="0 0 100 50"><clipPath id="rectangle-clip-path">
-	<rect x="0" y="0" width="100" height="50" vector-effect="non-scaling-stroke"></rect>
-      	</clipPath><rect x="0" y="0" width="100" height="50" style="clip-path: url(#rectangle-clip-path); " vector-effect="non-scaling-stroke"></rect></symbol><symbol id="sarcoplasmic-reticulum" preserveAspectRatio="none" viewBox="0 0 100 100"><clipPath id="sarcoplasmic-reticulum-clip-path">
+	</clipPath><polygon points="59.159732818603516,99.61322021484375 95,50.28331756591797 59.159732818603516,0.9534196853637695 1.168962001800537,19.795764923095703 1.168962001800537,80.7708740234375 " style="clip-path: url(#pentagon-clip-path); " vector-effect="non-scaling-stroke"></polygon></symbol><symbol id="http-localhost-3000-src-shape-library-symbols-rectangle-svg" preserveAspectRatio="none" viewBox="0 0 100 50"><clipPath id="rectangle-clip-path">
+		<rect x="0" y="0" width="100" height="50" vector-effect="non-scaling-stroke"></rect>
+	</clipPath><desc>Rectangle</desc><rect x="0" y="0" width="100" height="50" style="clip-path: url(#rectangle-clip-path); " vector-effect="non-scaling-stroke"></rect></symbol><symbol id="http-localhost-3000-src-shape-library-symbols-sarcoplasmic-reticulum-svg" preserveAspectRatio="none" viewBox="0 0 100 100"><clipPath id="sarcoplasmic-reticulum-clip-path">
 		<path d="m46.60182,1.40724c-32.37224,1.34138 -36.32004,22.77011 -26.50318,38.12777c9.31826,18.3425 -18.7656,30.15016 2.56955,49.37807c16.82126,13.11594 46.33175,6.10508 52.12638,-8.56826c5.89916,-15.24847 -10.95099,-26.0272 -3.29316,-40.96135c10.85342,-19.88432 -0.77615,-38.13043 -24.89959,-37.97624z" vector-effect="non-scaling-stroke"></path>	
-	</clipPath></symbol><symbol id="triangle" preserveAspectRatio="none" viewBox="0 0 100 100"><clipPath id="triangle-clip-path">
+	</clipPath><path d="m46.60182,1.40724c-32.37224,1.34138 -36.32004,22.77011 -26.50318,38.12777c9.31826,18.3425 -18.7656,30.15016 2.56955,49.37807c16.82126,13.11594 46.33175,6.10508 52.12638,-8.56826c5.89916,-15.24847 -10.95099,-26.0272 -3.29316,-40.96135c10.85342,-19.88432 -0.77615,-38.13043 -24.89959,-37.97624z" style="clip-path: url(#sarcoplasmic-reticulum-clip-path); " vector-effect="non-scaling-stroke"></path></symbol><symbol id="http-localhost-3000-src-shape-library-symbols-triangle-svg" preserveAspectRatio="none" viewBox="0 0 50 50"><clipPath id="triangle-clip-path">
 		<polygon points="1,49 49,24 1,1" vector-effect="non-scaling-stroke"></polygon>
-        </clipPath></symbol><style type="text/css">	svg {
+        </clipPath><polygon points="1,49 49,24 1,1" style="clip-path: url(#triangle-clip-path);" vector-effect="non-scaling-stroke"></polygon></symbol><symbol id="http-localhost-3000-src-shape-library-symbols-none-svg" preserveAspectRatio="none" viewBox="0 0 0 0"><rect x="0" y="0" width="0" height="0" stroke="none" fill="none" stroke-width="0"></rect></symbol><style type="text/css">	svg {
 		color-interpolation: auto;
 		image-rendering: auto;
 		shape-rendering: auto;
 		vector-effect: non-scaling-stroke;
-		fill: white;
-		background: white;
-    stroke: black;
+                background: white;
+	/* removed fill and stroke since they override marker specs */
+	/*	fill: white;
+    		stroke: black; */
 	}
 
-	.default-fill {
+	/* default color for pathway elements */
+	.default-fill-color {
+		fill: black; 
+	}
+	.default-stroke-color {
+		stroke: black;
+	}
+	
+	/* default color of the background drawing board */ 	
+	.board-fill-color {
 		fill: white;
 	}
-
-	.stroke-color-equals-default-fill-color {
+	.board-stroke-color {
 		stroke: white;
 	}
 
-	text {
+	.text-area {
 		font-family: Sans-Serif, Helvetica, Arial;
+		text-align: center;
+		vertical-align: middle;
 		font-size: 10px;
 		fill: black;
 		fill-opacity: 1;
 		stroke: none;
-		text-anchor: middle;
-		font-size: 10px;
+	}
+
+	.citation {
+		font-family: Sans-Serif, Helvetica, Arial;
+		text-align: center;
+		vertical-align: top;
+		font-size: 8px;
+		fill: lightgray;
+		fill-opacity: 1;
 		stroke: none;
 	}
 
@@ -281,80 +333,65 @@
 		font-size: 10px;
 		fill: black;
 		stroke: none;
-		text-anchor: start;
+		text-align: left;
+		vertical-align: top;
 	}
 
-	.info-box-property-name {
+	.info-box-item-property-name {
 		font-weight: bold;
 	}
 
-	path.group {
-		fill-opacity: 0.098;
-		stroke: gray;
-		stroke-miterlimit: 1;
-		stroke-width: 1px;
+	.info-box-item-property-value {
 	}
 
-	path.group:hover {
-		fill-opacity: 0.2;
-		stroke-width: 1px;
-	}
-
-	path.group-none {
-		fill: rgb(180,180,100);
-		stroke-dasharray: 5,3;
-	}
-
-	path.group-group {
-		fill-opacity: 0;
-		stroke-width: 0;
-	}
-
-	path.group-complex {
-		fill: rgb(180,180,100);
-	}
-
-	path.group-pathway {
-		fill: lightgreen;
-		stroke-dasharray: 5,3;
-	}
-
-	use.data-node {
+	.data-node {
+		text-align: right;
 		fill-opacity: 1;
+		fill: white;
 		stroke: black;
+		stroke-width: 2;
 		stroke-dasharray: 0;
 		stroke-miterlimit: 1;
+    pointer-events:auto;
+	}
+	
+	.has-xref:hover {
+		cursor: pointer;
 	}
 
-	use.gene-product {
+	.data-node.gene-product {
 	}
 
-	use.metabolite {
+	.metabolite {
 		stroke: blue;
 	}
 
-	text.metabolite {
+	.data-node.metabolite &gt; .text-area {
+		cursor:pointer;
 		fill: blue;
-	}
-
-	use.pathway {
-		stroke: rgb(20,150,30);
-		fill-opacity: 0;
-	}
-
-	text.pathway {
-		fill: rgb(20,150,30);
 		fill-opacity: 1;
 		stroke: none;
 	}
 
-	use.protein {
+	.data-node.pathway {
+		stroke: none;
+		fill-opacity: 0;
 	}
 
-	use.rna {
+	.data-node.pathway &gt; .text-area {
+		fill: rgb(20,150,30);
+		fill-opacity: 1;
+		font-size: 12px;
+		font-weight: bold;
 	}
 
-	use.unknown {
+	.data-node.protein {
+	}
+
+	.data-node.rna {
+	}
+
+	.data-node.unknown {
 	}
 
 	.label {
@@ -367,23 +404,90 @@
 
 	.shape {
 		fill-opacity: 1;
+		fill: white;
 		stroke: black;
 		stroke-dasharray: 0;
 		stroke-miterlimit: 1;
 	}
 
-	.shape-none {
+	.shape.none {
 		fill: none;
 		fill-opacity: 0;
 		stroke: none;
 	}
 
-	.cellular-component {
-		fill-opacity: 0;
+	g.group-node &gt; .shape {
+		fill-opacity: 0.098;
 		stroke: gray;
+		stroke-miterlimit: 1;
+		stroke-width: 1px;
+    pointer-events:none;
 	}
 
-	.graphical-line {
+	.group-node {
+		fill-opacity: 0.098;
+		stroke: gray;
+		stroke-miterlimit: 1;
+		stroke-width: 1px;
+    pointer-events:none;
+	}
+
+	.group-node &gt; .text-area {
+		fill-opacity: 0.4;
+		font-family: Serif, Times;
+		font-size: 32px;
+		fill: black;
+		stroke-width: 0;
+		font-weight: bold;
+  }
+
+	.group-node:hover {
+		fill-opacity: 0.2;
+		stroke-width: 1px;
+	}
+
+	.group-node.none {
+		fill: rgb(180,180,100);
+		stroke-dasharray: 5,3;
+	}
+
+	.group-node.none &gt; .text-area {
+		display: none;
+  }
+
+	.group-node.group {
+		fill-opacity: 0;
+		stroke-width: 0;
+	}
+
+	.group-node.group &gt; .text-area {
+		display: none;
+  }
+
+	.group-node.complex {
+		fill: rgb(180,180,100);
+	}
+
+	.group-node.complex &gt; .text-area {
+		display: none;
+  }
+
+  .group-node.pathway {
+		fill: lightgreen;
+		stroke-dasharray: 5,3;
+	}
+
+	.group-node.pathway &gt; .text-area {
+		fill: rgb(20,150,30);
+		stroke: rgb(20,150,30);
+  }
+
+  .cellular-component {
+		fill-opacity: 0;
+		stroke: lightgray;
+	}
+
+  .graphical-line {
 		fill:none;
 		stroke: black; 
 		stroke-width: 1px; 
@@ -432,17 +536,25 @@
   }
 </style></defs>
 
-	<g id="viewport">
-	</g>
+        <g id="viewport" transform="matrix(0.19926023483276367,0,0,0.19926023483276367,-35.99999661861512,-25.000019373372197)">
+        </g>
 
-</svg></div>
+      </svg>
+
     
+      
+    </div>
+    
+    <div id="typeahead" style="position: absolute; top: 5px; right: 5px;">
     <!-- **********************************************************************
       Highlight Element by Label Control
       *********************************************************************** -->
 
       <span class="twitter-typeahead" style="position: relative; display: inline-block;"><input class="tt-hint" type="text" autocomplete="off" spellcheck="off" disabled="" style="position: absolute; top: 0px; left: 0px; border-color: transparent; box-shadow: none; background-attachment: scroll; background-clip: border-box; background-color: rgb(255, 255, 255); background-image: none; background-origin: padding-box; background-size: auto; background-position: 0% 0%; background-repeat: repeat repeat;"><input id="highlight-by-label-input" placeholder="Enter node name to highlight." role="textbox" aria-autocomplete="list" aria-haspopup="true" class="tt-query" autocomplete="off" spellcheck="false" dir="auto" style="position: relative; vertical-align: top; background-color: transparent;"><span style="position: absolute; left: -9999px; visibility: hidden; white-space: nowrap; font-family: 'Lucida Grande'; font-size: 12px; font-style: normal; font-variant: normal; font-weight: 400; word-spacing: 0px; letter-spacing: 0px; text-indent: 0px; text-rendering: auto; text-transform: none;"></span><span class="tt-dropdown-menu" style="position: absolute; top: 100%; left: 0px; z-index: 100; display: none;"></span></span>
 
+      </div> 
+     
+   
       <!-- **********************************************************************
       Pan Zoom Control
       see http://bumbu.github.io/cytoscape.js/debug/ for example of cytoscape.js 
