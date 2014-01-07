@@ -16,7 +16,7 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
       container = args.container,
       containerWidth = args.containerWidth,
       containerHeight = args.containerHeight,
-      scale = args.scale,
+      fitToContainer = args.fitToContainer,
       pathwayWidth = args.pathway.image.width,
       pathwayHeight = args.pathway.image.height;
 
@@ -61,7 +61,7 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
         var containerHeight = parseInt(container.style("height")) -20; //account for space for search field
         //*/
         var fitScreenScale;
-        if (scale === 'fit') {
+        if (fitToContainer) {
           fitScreenScale = Math.min(containerWidth/args.pathway.image.width, containerHeight/args.pathway.image.height);
           setCTM(viewport, fitScreenScale);
         }
