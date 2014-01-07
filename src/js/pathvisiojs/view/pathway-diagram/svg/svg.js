@@ -36,8 +36,7 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
         d3.select('#loading-icon').remove();
 
         var initialClickHappened = false;
-        svg.attr('style', 'display: inline; width: ' + svgDimensions.width + 'px; height: ' + svgDimensions.height + 'px; ')
-        .on("click", function(d, i){
+        svg.on("click", function(d, i){
           svgPanZoom.enableZoom();
           initialClickHappened = true;
         })
@@ -59,10 +58,16 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
         //var p = {'x': m1.e, 'y': m1.f};
         //var m2 = svgElement.createSVGMatrix().translate(p.x, p.y).scale(svgDimensions.scale).translate(-p.x, -p.y);
         var viewport = svgElement.querySelector('#viewport');
-	var container = d3.select('body').select('#pathway-container');
- 	var containerWidth = parseInt(container.style("width")) - 40; //account for space for pan/zoom controls
-	var containerHeight = parseInt(container.style("height")) -20; //account for space for search field
-	var fitScreenScale = Math.min(containerWidth/args.pathway.image.width, containerHeight/args.pathway.image.height);
+        var container = d3.select('body').select('#pathway-container');
+        var containerWidth = parseInt(container.style("width")) - 40; //account for space for pan/zoom controls
+        var containerHeight = parseInt(container.style("height")) -20; //account for space for search field
+        if (!(!!svgDimensions.width && !!svgDimensions.height)) { // if user did NOT set a desired width and height, use the width and height of the parent
+          svg.attr('style', 'display: inline; width: inherit; min-width: inherit; max-width: inherit; height: inherit; min-height: inherit; max-height: inherit; ')
+        }
+        else { // if user DID set a desired width and height, use those values
+          svg.attr('style', 'display: inline; width: ' + svgDimensions.width + 'px; height: ' + svgDimensions.height + 'px; ')
+        }
+        var fitScreenScale = Math.min(containerWidth/args.pathway.image.width, containerHeight/args.pathway.image.height);
         setCTM(viewport, fitScreenScale);
 
         /*
