@@ -3,6 +3,10 @@
 pathvisiojs.view.pathwayDiagram = function(){
 
   function getPreserveAspectRatioValues(preserveAspectRatio) {
+
+    // this function uses SVG terminology, but it is intended to work with any graphical
+    // file format (SVG, PNG, etc.)
+
     var results = {};
     if (!preserveAspectRatio.align) {
       results.align = preserveAspectRatio;
@@ -95,6 +99,9 @@ pathvisiojs.view.pathwayDiagram = function(){
   function load(args) {
 
     // this function gets a reference to a GPML file and draws a visual representation of the pathway
+    // TODO Much of the SVG creation code should be moved to ./svg/svg.js so we just call
+    // pathvisiojs.view.pathwayDiagram.svg.load() in the same way as we do for
+    // pathvisiojs.view.pathwayDiagram.png.load()
 
     // ********************************************
     // Check for minimum required set of parameters
