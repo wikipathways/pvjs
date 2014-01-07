@@ -132,7 +132,7 @@ pathvisiojs.view.pathwayDiagram.svg.edge = function(){
       edge.attr("id", edgeId)
       //*
       .attr("marker-start", function () {
-        var markerStart = pathvisiojs.view.pathwayDiagram.svg.edge.marker.render(svg, markerStartName, 'start', edge.stroke);
+        var markerStart = pathvisiojs.view.pathwayDiagram.svg.edge.marker.render(svg, markerStartName, 'start', data.stroke);
         /*
         if (edge.hasOwnProperty('strokeStyle')) {
           if (edge.strokeStyle === 'double') {
