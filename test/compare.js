@@ -206,20 +206,63 @@ window.onload = function() {
     });
   }],
   function(err) {
+    // Specify an image for each semantic element you would like to customize.
+    // If no image is specified for a semantic element, the default will be used.
+    // You can use the same image for multiple semantic elements if you choose to,
+    // but every semanticName must be unique.
     var customSymbols = [
-      {'semanticName': 'arc', 'url': srcDirectoryUrl + 'shape-library/symbols/arc.svg'},
-      {'semanticName': 'brace', 'url': srcDirectoryUrl + 'shape-library/symbols/brace.svg'},
-      {'semanticName': 'endoplasmic-reticulum', 'url': srcDirectoryUrl + 'shape-library/symbols/endoplasmic-reticulum.svg'},
-      {'semanticName': 'golgi-apparatus', 'url': srcDirectoryUrl + 'shape-library/symbols/golgi-apparatus.svg'},
-      {'semanticName': 'hexagon', 'url': srcDirectoryUrl + 'shape-library/symbols/hexagon.svg'},
-      {'semanticName': 'mim-degradation', 'url': srcDirectoryUrl + 'shape-library/symbols/mim-degradation.svg'},
-      {'semanticName': 'mitochondria', 'url': srcDirectoryUrl + 'shape-library/symbols/mitochondria.svg'},
-      {'semanticName': 'oval', 'url': srcDirectoryUrl + 'shape-library/symbols/oval.svg'},
-      {'semanticName': 'pentagon', 'url': srcDirectoryUrl + 'shape-library/symbols/pentagon.svg'},
-      {'semanticName': 'rectangle', 'url': srcDirectoryUrl + 'shape-library/symbols/rectangle.svg'},
-      {'semanticName': 'sarcoplasmic-reticulum','url': srcDirectoryUrl + 'shape-library/symbols/sarcoplasmic-reticulum.svg'},
-      {'semanticName': 'triangle', 'url': srcDirectoryUrl + 'shape-library/symbols/triangle.svg'},
-      {'semanticName': 'none', 'url': srcDirectoryUrl + 'shape-library/symbols/none.svg'}
+      {
+        'semanticName': 'arc',
+        'url': srcDirectoryUrl + 'shape-library/symbols/arc.svg'
+      },
+      {
+        'semanticName': 'brace',
+        'url': srcDirectoryUrl + 'shape-library/symbols/brace.svg'
+      },
+      {
+        'semanticName': 'endoplasmic-reticulum',
+        'url': srcDirectoryUrl + 'shape-library/symbols/endoplasmic-reticulum.svg'
+      },
+      {
+        'semanticName': 'golgi-apparatus',
+        'url': srcDirectoryUrl + 'shape-library/symbols/golgi-apparatus.svg'
+      },
+      {
+        'semanticName': 'hexagon',
+        'url': srcDirectoryUrl + 'shape-library/symbols/hexagon.svg'
+      },
+      {
+        'semanticName': 'mim-degradation',
+        'url': srcDirectoryUrl + 'shape-library/symbols/mim-degradation.svg'
+      },
+      {
+        'semanticName': 'mitochondria',
+        'url': srcDirectoryUrl + 'shape-library/symbols/mitochondria.svg'
+      },
+      {
+        'semanticName': 'oval',
+        'url': srcDirectoryUrl + 'shape-library/symbols/oval.svg'
+      },
+      {
+        'semanticName': 'pentagon',
+        'url': srcDirectoryUrl + 'shape-library/symbols/pentagon.svg'
+      },
+      {
+        'semanticName': 'rectangle',
+        'url': srcDirectoryUrl + 'shape-library/symbols/rectangle.svg'
+      },
+      {
+        'semanticName': 'sarcoplasmic-reticulum',
+        'url': srcDirectoryUrl + 'shape-library/symbols/sarcoplasmic-reticulum.svg'
+      },
+      {
+        'semanticName': 'triangle',
+        'url': srcDirectoryUrl + 'shape-library/symbols/triangle.svg'
+      },
+      {
+        'semanticName': 'none',
+        'url': srcDirectoryUrl + 'shape-library/symbols/none.svg'
+      }
     ];
 
     var customMarkers = self.customMarkers = [

@@ -11,44 +11,39 @@ pathvisiojs.data.gpml.edge.graphicalLine = function(){
 
   function toRenderableJson(gpml, gpmlGraphicalLine, pathwayIri, callback) {
     var jsonAnchorGraphicalLine, anchor, jsonAnchor, points, jsonPoints, graphicalLineType, target, targetId, groupRef;
-    try {
-      pathvisiojs.data.gpml.edge.toRenderableJson(gpmlGraphicalLine, pathwayIri, function(jsonGraphicalLine) {
-        //console.log('jsonGraphicalLine');
-        //console.log(jsonGraphicalLine);
+    pathvisiojs.data.gpml.edge.toRenderableJson(gpmlGraphicalLine, pathwayIri, function(jsonGraphicalLine) {
+      //console.log('jsonGraphicalLine');
+      //console.log(jsonGraphicalLine);
 
-        jsonGraphicalLine['@type'].push('GraphicalLine');
-        jsonGraphicalLine.renderableType = 'GraphicalLine';
+      jsonGraphicalLine['@type'].push('GraphicalLine');
+      jsonGraphicalLine.renderableType = 'GraphicalLine';
 
-        points = gpmlGraphicalLine.selectAll('Point');
+      points = gpmlGraphicalLine.selectAll('Point');
 
-        var firstPoint = points[0][0];
-        var lastPoint = points[0][points[0].length - 1];
+      var firstPoint = points[0][0];
+      if (!!firstPoint.getAttribute('ArrowHead')) {
+        jsonGraphicalLine.markerStart = strcase.paramCase(firstPoint.getAttribute('ArrowHead'));
+      }
+      else {
+        jsonGraphicalLine.markerStart = 'none';
+      }
 
-        if (!!firstPoint.getAttribute('ArrowHead')) {
-          jsonGraphicalLine.markerStart = strcase.paramCase(firstPoint.getAttribute('ArrowHead'));
-        }
-        else {
-          jsonGraphicalLine.markerStart = 'none';
-        }
+      var lastPoint = points[0][points[0].length - 1];
+      if (!!lastPoint.getAttribute('ArrowHead')) {
+        jsonGraphicalLine.markerEnd = strcase.paramCase(lastPoint.getAttribute('ArrowHead'));
+      }
+      else {
+        console.log('markerEnd = none');
+        jsonGraphicalLine.markerEnd = 'none';
+      }
 
-        if (!!lastPoint.getAttribute('ArrowHead')) {
-          jsonGraphicalLine.markerEnd = strcase.paramCase(lastPoint.getAttribute('ArrowHead'));
-        }
-        else {
-          jsonGraphicalLine.markerStart = 'none';
-        }
+      // TODO handle this properly. Right now, we can't render graphical lines with
+      // connector type of elbow or curve.
 
-        // TODO handle this properly. Right now, we can't render graphical lines with
-        // connector type of elbow or curve.
+      jsonGraphicalLine.ConnectorType = 'Straight';
 
-       jsonGraphicalLine.ConnectorType = 'Straight';
-
-        callback(jsonGraphicalLine);
-      })
-    }
-    catch (e) {
-      throw new Error('Error converting GraphicalLine to renderable json: ' + e.message);
-    }
+      callback(jsonGraphicalLine);
+    })
   }
 
   /*
