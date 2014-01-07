@@ -42,8 +42,6 @@ pathvisiojs.view.pathwayDiagram.svg.edge.marker = function(){
   };
 
   function appendCustom(uniqueMarkerShapeUrl, callback) {
-    console.log(uniqueMarkerShapeUrl);
-
     var idStub = strcase.paramCase(uniqueMarkerShapeUrl)
     var startId = idStub + '-start-default';
     var endId = idStub + '-end-default';
@@ -132,7 +130,6 @@ pathvisiojs.view.pathwayDiagram.svg.edge.marker = function(){
       img.onload = function() {
         var width = this.width;
         var height = this.height;
-        self.midas = this;
         markerStart = svg.select('#' + this.id + '-start-default')
         .attr('viewBox', '0 0 ' + width + ' ' + height)
         .attr('markerWidth', width)
