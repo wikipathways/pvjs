@@ -96,17 +96,16 @@ If you've already forked pathvisiojs in the past,
 * Go to your fork of pathvisiojs at https://github.com/YOUR-GITHUB-ACCOUNT/pathvisiojs/ and select the "Compare and review" button to the left of the "branch" drop-down to pull from the wikipathways fork of pathvisiojs into your fork
 * Select "Edit" and "compare across forks" as needed to make the drop-downs look like this: 
 ```
-YOUR-GITHUB-ACCOUNT:gh-pages ... wikipathways:gh-pages
+YOUR-GITHUB-ACCOUNT:master ... wikipathways:master
 ```
 * Create pull request
 * Accept pull request (if github says that the pull request cannot be done automatically, you will need to merge the files from the command line. Let Anders or Alex know and they can help.)
 
 2. Make Awesome Updates
 -----------------------
-* You can edit any of the files in the "src" directory of the gh-pages branch of your fork (https://github.com/YOUR-GITHUB-ACCOUNT/pathvisiojs/tree/gh-pages/src/)
-* You can view your changes on your dev machine or set up github pages for your repo and view your changes at http://YOUR-GITHUB-ACCOUNT.github.io/pathvisiojs/test/ (note the .IO)
+You can edit any of the files in the "src" directory of the master branch of your fork (https://github.com/YOUR-GITHUB-ACCOUNT/pathvisiojs/tree/master/src/).
 
-If you choose to view your changes on your dev machine, you can use the included development server. Install [nodejs](http://nodejs.org/download/) if you don't already have it, then cd to the root directory of the repo and use npm (the node package manager) to handle installing dependencies:
+To view your changes, you can use any server already set up on your dev machine, or you can use the included development server. Install [nodejs](http://nodejs.org/download/) if you don't already have it, then cd to the root directory of the repo and use npm (the node package manager) to handle installing dependencies:
 ```
 $ npm install
 ```
@@ -142,7 +141,7 @@ protractor run.js
 * Run the tests
 * Create a pull request to the wikipathways fork of pathvisiojs: 
 ```
-wikipathways:gh-pages ... YOUR-GITHUB-ACCOUNT:gh-pages
+wikipathways:master ... YOUR-GITHUB-ACCOUNT:master
 ```
 
 License
