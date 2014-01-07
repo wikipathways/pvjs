@@ -117,7 +117,7 @@ pathvisiojs.view.pathwayDiagram = function(){
 
     var containerSelector = args.container,
       parsedInputData = args.data,
-      scale = args.scale,
+      fitToContainer = args.fitToContainer,
       cssUrl = args.cssUrl,
       customMarkers = args.customMarkers,
       customSymbols = args.customSymbols,
@@ -151,7 +151,7 @@ pathvisiojs.view.pathwayDiagram = function(){
         loadDiagramArgs.container = container;
         loadDiagramArgs.containerWidth = containerWidth;
         loadDiagramArgs.containerHeight = containerHeight;
-        loadDiagramArgs.scale = scale;
+        loadDiagramArgs.fitToContainer = fitToContainer;
 
         // ********************************************
         // Check for SVG support. If false, use PNG fallback

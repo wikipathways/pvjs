@@ -8,30 +8,7 @@
   <link rel="stylesheet" href="http://wikipathways.github.io/pathvisiojs/src/css/pathvisio-js.css" media="screen">
   <link rel="stylesheet" href="http://wikipathways.github.io/pathvisiojs/src/css/annotation.css" media="screen">
   <link rel="stylesheet" href="http://wikipathways.github.io/pathvisiojs/src/css/pan-zoom.css" media="screen">
-  <link rel="stylesheet" href="http://wikipathways.github.io/pathvisiojs/src/css/pathway-template.css" media="screen">
-
-  <script src="http://wikipathways.github.io/pathvisiojs/lib/rgb-color/rgb-color.min.js"></script>
-  <script src="http://wikipathways.github.io/pathvisiojs/lib/strcase/build/build.js"></script>
-  <script src="http://wikipathways.github.io/pathvisiojs/lib/async/lib/async.js"></script>
-  <script src="http://wikipathways.github.io/pathvisiojs/lib/d3/d3.min.js"></script>
-  <script src="http://wikipathways.github.io/pathvisiojs/lib/jquery/jquery.min.js"></script>
-  <script src="http://wikipathways.github.io/pathvisiojs/lib/typeahead.js/dist/typeahead.min.js"></script>
-  <script src="http://wikipathways.github.io/pathvisiojs/lib/OpenSeadragon/build/openseadragon/openseadragon.min.js"></script>
-  <script src="http://wikipathways.github.io/pathvisiojs/lib/modernizr/modernizr.js"></script>
-  <script src="http://wikipathways.github.io/pathvisiojs/lib/screenfull/dist/screenfull.min.js"></script>
-  <script src="http://wikipathways.github.io/pathvisiojs/lib/svg-pan-zoom/svg-pan-zoom.js"></script>
-  <script src="http://wikipathways.github.io/pathvisiojs/lib/PathFinding.js/lib/pathfinding-browser.min.js"></script>
-  <!--
-  <script src="http://wikipathways.github.io/pathvisiojs/lib/requirejs/require.js"></script>
-  -->
-  <script src="http://wikipathways.github.io/pathvisiojs/lib/jsonld.js/js/jsonld.js"></script>
-  <script src="http://wikipathways.github.io/pathvisiojs/lib/jsonld.js/js/Promise.js"></script>
-  <script src="http://wikipathways.github.io/pathvisiojs/lib/jsonld.js/js/rdfa.js"></script>
-  <!--
-  <script src="http://wikipathways.github.io/pathvisiojs/lib/jsonld.js/js/request.js"></script>
-  -->
-  <script src="http://wikipathways.github.io/pathvisiojs/build/js/pathvisio.min.js"></script>
-
+  <link rel="stylesheet" href="http://wikipathways.github.io/pathvisiojs/src/css/pathway-diagram.css" media="screen">
 
   <!--[if lt IE 9]>
   <script src="http://ie7-js.googlecode.com/svn/version/2.1(beta4)/IE9.js"></script>
@@ -73,103 +50,108 @@
     function getUrlParam(name) {
 
       // Thanks to http://stackoverflow.com/questions/11582512/how-to-get-url-parameters-with-javascript
-      // This will be replaced once we get the backend php to get the json
+      // This will be replaced once we get the backend php to get the GPML
 
       var parameter = decodeURIComponent((new RegExp('[?|&]' + name + '=' + '([^&;]+?)(&|#|;|$)').exec(location.search)||[,""])[1].replace(/\+/g, '%20'))||null;
       if (!!parameter) {
-      return parameter;
+        return parameter;
       }
       else {
-      return null;
+        return null;
       }
-      }
+    }
 
-      function getUrlParamList() {
+    function getUrlParamList() {
       urlParamList = {
-      'svg-disabled': false,
-      'gpml': null,
-      'gpmlRev': 0,
-      'creator': 'pathvisio-js-dev',
-      'account': '',
-      'branch': ''
-      };
+        'svg-disabled': false,
+        'gpml': null,
+        'gpmlRev': 0,
+        'creator': 'pathvisio-js-dev',
+        'account': '',
+        'branch': ''
+        };
 
       Object.keys(urlParamList).forEach(function(element) {
-      if (!!getUrlParam(element)) {
-      urlParamList[element] = getUrlParam(element);
-      }
-      window.setTimeout(function() {
-      $('#' + element).val(urlParamList[element]);
-      }, 50)
+        if (!!getUrlParam(element)) {
+          urlParamList[element] = getUrlParam(element);
+        }
+        window.setTimeout(function() {
+          $('#' + element).val(urlParamList[element]);
+        }, 50)
       });
 
       return urlParamList;
-      }
+    }
 
-      function updateParams(updatedParam) {
+    function updateParams(updatedParam) {
       var targetUrl = currentUrl + '?' + updatedParam.key + '=' + updatedParam.value;
 
       Object.keys(urlParamList).forEach(function(element) {
-      if (element === updatedParam.key) {
-      urlParamList[element] = updatedParam.value;
-      }
-      else {
-      targetUrl += '&' + element + '=' + urlParamList[element];
-      }
+        if (element === updatedParam.key) {
+          urlParamList[element] = updatedParam.value;
+        }
+        else {
+          targetUrl += '&' + element + '=' + urlParamList[element];
+        }
       });
 
       location.href = targetUrl;
-      }
+    }
 
-      var urlParamList = getUrlParamList();
+    var urlParamList = getUrlParamList();
 
-      var currentUrl = document.location.origin + document.location.pathname;
-      var rootDirectoryUrl = document.location.origin + document.location.pathname.split("pathvisiojs/")[0] + 'pathvisiojs/';
-      var srcDirectoryUrl = (rootDirectoryUrl + 'src/');
+    var currentUrl = document.location.origin + document.location.pathname;
+    var rootDirectoryUrl = document.location.origin + document.location.pathname.split("pathvisiojs/")[0] + 'pathvisiojs/';
+    var srcDirectoryUrl = (rootDirectoryUrl + 'src/');
 
-      var pathvisioNS;
-      var gpmlUrl;
-      window.onload = function() {
+    var pathvisioNS;
+    var gpmlUrl;
+    window.onload = function() {
       if (urlParamList['svg-disabled']) {
-      Modernizr.svg = false;
-      $('#svg-disabled').prop('checked', true);
+        Modernizr.svg = false;
+        $('#svg-disabled').prop('checked', true);
       }
 
       pathvisiojs.load({
-        target: '#production-container',
+        container: '#production-container', //as of now, this can only be a CSS selector: http://www.w3.org/TR/CSS2/selector.html
         width: 1000,
         height: 500,
-        preserveAspectRatio: 'xMidYMid',
-        data: urlParamList.gpml,
+        fitToContainer:true, //A fitToContainer value of false means that the diagram should be the size specified by the diagram creator, without any scaling (full size as per GPML width and height). A value of true means that diagram should be scaled down, if required, to fit entirely within the element specified by the container selector, while preserving aspect ratio. 
+        data: urlParamList.gpml
       });
+    }
+  </script>
+</head>
 
-      // test for whether urlParamList.gpml is a WikiPathways ID
-
-      if (urlParamList.gpml.indexOf('.gpml') === -1 && urlParamList.gpml.indexOf('.xml') === -1) {
-      window.setTimeout(function() {
-      $('#current-wikipathways-viewer').prepend('<iframe id="current-wiki-pathways-widget" src="http://test.wikipathways.org/wpi/PathwayWidget.php?id=' + urlParamList.gpml + '" width="500px" height="500px" />')
-        }, 50);
-        }
-        else {
-        console.warn('Error: GPML data source specified is not a WP ID. WP widget cannot display this GPML data as a pathway image.');
-        }
-        }
-      </script>
-
-
-    </head>
-    <body>
-      <div id="body">
-        <div id="header">
-          <h1>Pathvisiojs Simple Built Production Example</h1>
-        </div>
-        <div id="main">
-            <div id="production-container" style="width: 500px; height: 500px; border:1px solid black; ">
-            </div>
-        </div>
-        <div id="footer">
-          <p>(c) WikiPathways 2013</p>
-        </div>
+<body>
+  <div id="body">
+    <div id="header">
+      <h1>Pathvisiojs Simple Built Production Example</h1>
+    </div>
+    <div id="main">
+      <div id="production-container" style="width: 500px; height: 500px; border:1px solid black; ">
       </div>
-
-    </body>
+    </div>
+    <div id="footer">
+      <p>(c) WikiPathways 2013</p>
+    </div>
+  </div>
+  <script src="http://wikipathways.github.io/pathvisiojs/lib/lib/rgb-color/rgb-color.min.js"></script>
+  <script src="http://wikipathways.github.io/pathvisiojs/lib/lib/strcase/dist/strcase.min.js"></script>
+  <script src="http://wikipathways.github.io/pathvisiojs/lib/lib/async/lib/async.js"></script>
+  <script src="http://wikipathways.github.io/pathvisiojs/lib/lib/d3/d3.min.js"></script>
+  <script src="http://wikipathways.github.io/pathvisiojs/lib/lib/jquery/jquery.min.js"></script>
+  <script src="http://wikipathways.github.io/pathvisiojs/lib/lib/typeahead.js/dist/typeahead.min.js"></script>
+  <script src="http://wikipathways.github.io/pathvisiojs/lib/lib/modernizr/modernizr.js"></script>
+  <script src="http://wikipathways.github.io/pathvisiojs/lib/lib/screenfull/dist/screenfull.min.js"></script>
+  <script src="http://wikipathways.github.io/pathvisiojs/lib/lib/svg-pan-zoom/svg-pan-zoom.js"></script>
+  <script src="http://wikipathways.github.io/pathvisiojs/lib/lib/PathFinding.js/lib/pathfinding-browser.min.js"></script>
+  <script src="http://wikipathways.github.io/pathvisiojs/lib/lib/node-uuid/uuid.js"></script>
+  <!--
+  <script src="http://wikipathways.github.io/pathvisiojs/lib/lib/requirejs/require.js"></script>
+  -->
+  <script src="http://wikipathways.github.io/pathvisiojs/lib/lib/jsonld.js/js/jsonld.js"></script>
+  <script src="http://wikipathways.github.io/pathvisiojs/lib/lib/jsonld.js/js/Promise.js"></script>
+  <script src="http://wikipathways.github.io/pathvisiojs/lib/lib/jsonld.js/js/rdfa.js"></script>
+  <script src="http://wikipathways.github.io/pathvisiojs/build/js/pathvisio.min.js"></script>
+</body>

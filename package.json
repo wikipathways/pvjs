@@ -1,6 +1,6 @@
 {
   "name": "pathvisiojs",
-  "version": "0.0.4",
+  "version": "0.7.0",
   "description": "Biological pathway viewer and editor.",
   "main": "Gruntfile.js",
   "directories": {
@@ -21,8 +21,7 @@
     "edge",
     "diagram"
   ],
-  "author": "Anders Riutta",
-  "license": "Apache 2.0",
+  "author": "Pathvisiojs team",
   "gitHead": "044be6618ee72b932fcb90f4369eb61706f3cfb9",
   "readmeFilename": "README.md",
   "devDependencies": {

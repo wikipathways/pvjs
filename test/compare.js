@@ -36,14 +36,14 @@ function getUrlParamList() {
 
 function loadScripts(array, callback){  
   var loader = function(src,handler){  
-    var script = document.createElement("script");  
+    var script = document.createElement('script');  
     script.src = src;  
     script.onload = script.onreadystatechange = function(){  
       script.onreadystatechange = script.onload = null;  
       if(/MSIE ([6-9]+\.\d+);/.test(navigator.userAgent))window.setTimeout(function(){handler();},8,this);  
       else handler();  
     }  
-    var head = document.getElementsByTagName("head")[0];  
+    var head = document.getElementsByTagName('head')[0];  
     (head || document.body).appendChild( script );  
   };  
   (function(){  
@@ -56,19 +56,19 @@ function loadScripts(array, callback){
 }
 
 function loadJsCssFile(filename, filetype, callback){
-  if (filetype=="js") {
+  if (filetype=='js') {
     var fileref=document.createElement('script')
-    fileref.setAttribute("type","text/javascript")
-    fileref.setAttribute("src", filename)
+    fileref.setAttribute('type','text/javascript')
+    fileref.setAttribute('src', filename)
   }
-  else if (filetype=="css") {
-    var fileref=document.createElement("link")
-    fileref.setAttribute("rel", "stylesheet")
-    fileref.setAttribute("type", "text/css")
-    fileref.setAttribute("href", filename)
+  else if (filetype=='css') {
+    var fileref=document.createElement('link')
+    fileref.setAttribute('rel', 'stylesheet')
+    fileref.setAttribute('type', 'text/css')
+    fileref.setAttribute('href', filename)
   }
-  if (typeof fileref!="undefined") {
-    document.getElementsByTagName("head")[0].appendChild(fileref)
+  if (typeof fileref!='undefined') {
+    document.getElementsByTagName('head')[0].appendChild(fileref)
   }
   callback();
 }
@@ -104,18 +104,18 @@ function generateHtmlView(callback) {
 function loadExtJsCss(callbackOutside) {
   async.parallel([
     function(callback) {
-    loadJsCssFile(srcDirectoryUrl + "css/pathvisiojs.css", "css", callback);
+    loadJsCssFile(srcDirectoryUrl + 'css/pathvisiojs.css', 'css', callback);
   },
   function(callback) {
-    loadJsCssFile(srcDirectoryUrl + "css/annotation.css", "css", callback);
+    loadJsCssFile(srcDirectoryUrl + 'css/annotation.css', 'css', callback);
   },
   function(callback) {
-    loadJsCssFile(srcDirectoryUrl + "css/pan-zoom.css", "css", callback);
+    loadJsCssFile(srcDirectoryUrl + 'css/pan-zoom.css', 'css', callback);
   },
   function(callback) {
     loadScripts([
-      srcDirectoryUrl + "js/pathvisiojs/pathvisio.js",
-      srcDirectoryUrl + "js/pathvisiojs/utilities.js",
+      srcDirectoryUrl + 'js/pathvisiojs/pathvisio.js',
+      srcDirectoryUrl + 'js/pathvisiojs/utilities.js',
       srcDirectoryUrl + 'js/pathvisiojs/data/data.js',
       srcDirectoryUrl + 'js/pathvisiojs/data/bridgedb/bridgedb.js',
       srcDirectoryUrl + 'js/pathvisiojs/data/bridgedb/data-sources.js',
@@ -141,7 +141,7 @@ function loadExtJsCss(callbackOutside) {
       srcDirectoryUrl + 'js/pathvisiojs/view/annotation/citation.js',
       srcDirectoryUrl + 'js/pathvisiojs/view/annotation/x-ref.js',
       srcDirectoryUrl + 'js/pathvisiojs/view/pathway-diagram/pathway-diagram.js',
-      srcDirectoryUrl + "js/pathvisiojs/view/pathway-diagram/path-finder.js",
+      srcDirectoryUrl + 'js/pathvisiojs/view/pathway-diagram/path-finder.js',
       srcDirectoryUrl + 'js/pathvisiojs/view/pathway-diagram/svg/svg.js',
       srcDirectoryUrl + 'js/pathvisiojs/view/pathway-diagram/svg/anchor.js',
       srcDirectoryUrl + 'js/pathvisiojs/view/pathway-diagram/svg/grid.js',
@@ -393,10 +393,10 @@ window.onload = function() {
     // preserveAspectRatio refers to the vertical and horizontal alignment of the image.
 
     pathvisiojs.load({
-      container: '#pathvisio-js-dev',
+      container: '#pathvisio-js-dev', //as of now, this can only be a CSS selector: http://www.w3.org/TR/CSS2/selector.html
       width: 400,
       height: 300,
-      scale:'fit', // can be either 'none' or 'fit'. 'none' means that it should be the size specified by the pathway creator without any scaling (full size as per GPML width and height). 'fit' means that it should be scaled down, if required, to fit entirely within its parent, while preserving aspect ratio. 
+      fitToContainer:true, //A fitToContainer value of false means that the diagram should be the size specified by the diagram creator, without any scaling (full size as per GPML width and height). A value of true means that diagram should be scaled down, if required, to fit entirely within the element specified by the container selector, while preserving aspect ratio. 
       data: urlParamList.gpml,
       //gpmlRev: urlParamList.gpmlRev,
       cssUrl: srcDirectoryUrl + 'css/pathway-diagram.css',
@@ -413,15 +413,15 @@ window.onload = function() {
     });
   });
 
-// test for whether urlParamList.gpml is a WikiPathways ID
-
-if (urlParamList.gpml.indexOf('.gpml') === -1 && urlParamList.gpml.indexOf('.xml') === -1) {
-  window.setTimeout(function() {
-      $('#current-wikipathways-viewer').prepend('<iframe id="current-wiki-pathways-widget" src="http://www.wikipathways.org/wpi/PathwayWidget.php?id=' + urlParamList.gpml + '" width="500px" height="500px" />')
-      }, 50);
-}
-else {
-  console.warn('GPML data source specified is not a WP ID. WP widget cannot display this GPML data as a pathway image.');
-}
+  // test for whether urlParamList.gpml is a WikiPathways ID
+  // If it is not a WikiPathways ID, the WikiPathways widget will not be able to load the pathway.
+  if (urlParamList.gpml.indexOf('.gpml') === -1 && urlParamList.gpml.indexOf('.xml') === -1) {
+    window.setTimeout(function() {
+        $('#current-wikipathways-viewer').prepend('<iframe id="current-wiki-pathways-widget" src="http://www.wikipathways.org/wpi/PathwayWidget.php?id=' + urlParamList.gpml + '" width="500px" height="500px" />')
+        }, 50);
+  }
+  else {
+    console.warn('GPML data source specified is not a WP ID. WP widget cannot display this GPML data as a pathway image.');
+  }
 }
 
