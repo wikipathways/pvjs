@@ -1,4 +1,6 @@
-pathvisiojs = function(){
+"use strict"
+
+var pathvisiojs = function(){
 
   var svg, pathway, args;
 
@@ -113,8 +115,8 @@ pathvisiojs = function(){
     // Check for minimum required set of parameters
     // ********************************************
 
-    if (!args.target) {
-      throw new Error('No target selector specified as target for pathvisiojs.');
+    if (!args.container) {
+      throw new Error('No container selector specified as container for pathvisiojs.');
     }
 
     // args.data can be either of the following:

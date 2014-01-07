@@ -1,18 +1,18 @@
 "use strict";
 pathvisiojs.view.pathwayDiagram.svg.edge.graphicalLine = function(){
-  //function render(svg, target, data) {
+  //function render(svg, container, data) {
   function render(args) {
     var svg = args.svg;
-    var target = args.target;
+    var container = args.container;
     var data = args.data;
     /*
-    console.log('target');
-    console.log(target);
+    console.log('container');
+    console.log(container);
     console.log('data');
     console.log(data);
     //*/
 
-    var graphicalLine = target.selectAll('#' + strcase.paramCase(data.GraphId))
+    var graphicalLine = container.selectAll('#' + strcase.paramCase(data.GraphId))
     .data([data])
     .enter().append("path")
     .attr("class", function (data) {
@@ -25,13 +25,13 @@ pathvisiojs.view.pathwayDiagram.svg.edge.graphicalLine = function(){
       return cssClass;
     });
 
-    var targetElement = target[0][0];
-    var targetElementX, targetElementY;
-    if (targetElement.hasOwnProperty('__data__')) {
+    var containerElement = container[0][0];
+    var containerElementX, containerElementY;
+    if (containerElement.hasOwnProperty('__data__')) {
       graphicalLine.attr('transform', function() {
-        targetElementX = targetElement.__data__.x || 0;
-        targetElementY = targetElement.__data__.y || 0;
-        return 'translate(' + (-1*targetElementX) + ' ' + (-1*targetElementY) + ')';
+        containerElementX = containerElement.__data__.x || 0;
+        containerElementY = containerElement.__data__.y || 0;
+        return 'translate(' + (-1*containerElementX) + ' ' + (-1*containerElementY) + ')';
       })
     }
 
@@ -43,7 +43,7 @@ pathvisiojs.view.pathwayDiagram.svg.edge.graphicalLine = function(){
 
     /*
     // Update…
-    var graphicalLine = target.selectAll('#' + strcase.paramCase(data.GraphId))
+    var graphicalLine = container.selectAll('#' + strcase.paramCase(data.GraphId))
     .data([data])
     .call(setAttributes);
 

@@ -42,44 +42,30 @@ pathvisiojs.view.pathwayDiagram.svg.edge.marker = function(){
   };
 
   function appendCustom(uniqueMarkerShapeUrl, callback) {
-    /*
-    console.log('customMarker');
-    console.log(customMarker);
-    //*/
-    if (1===1) {
+    console.log(uniqueMarkerShapeUrl);
 
-/*
- * could also look at using SVG image tags for this, like so:
-	<marker id="mim-binding-start-black" 
-	class="default-fill" 
-	stroke="black"
-	markerHeight="12"
-	markerWidth="12"
-	markerUnits="strokeWidth"
-	orient="auto"
-	refX="0" refY="6"
-	viewBox="0 0 12 12">
-  <image xlink:href="http://wikipathways.github.io/pathvisiojs/src/views/markers/mim-binding.svg" x="0" y="0" width="12" height="12"></image>
-	</marker>
-//*/
+    var idStub = strcase.paramCase(uniqueMarkerShapeUrl)
+    var startId = idStub + '-start-default';
+    var endId = idStub + '-end-default';
+    var markerStart = svg.select('defs').select('#' + startId);
+    if (!markerStart[0][0]) {
+      markerStart.selectAll('*').remove();
+    }
 
+    markerStart = svg.select('defs').append('marker')
+    .attr('id', startId)
+    .attr('preserveAspectRatio', 'none');
+
+    var markerEnd = svg.select('defs').select('#' + endId);
+    if (!markerEnd[0][0]) {
+      markerEnd.selectAll('*').remove();
+    }
+    markerEnd = svg.select('defs').append('marker')
+    .attr('id', startId)
+    .attr('preserveAspectRatio', 'none');
+
+    if (uniqueMarkerShapeUrl.indexOf('.svg') > 0) {
       d3.xml(uniqueMarkerShapeUrl, 'image/svg+xml', function(svgXml) {
-
-        /*
-<marker id="mim-inhibition-start-black" class="default-fill" stroke="black" markerWidth="16" markerHeight="16" markerUnits="strokeWidth" orient="auto" refX="0" refY="6" viewBox="0 0 12 12">
-         //*/
-        var idStub = strcase.paramCase(uniqueMarkerShapeUrl)
-        var startId = idStub + '-start-default';
-        var endId = idStub + '-end-default';
-
-        var markerStart = svg.select('defs').select('#' + startId);
-        if (!markerStart[0][0]) {
-          markerStart.selectAll('*').remove();
-        }
-        markerStart = svg.select('defs').append('marker')
-        .attr('id', startId)
-        .attr('preserveAspectRatio', 'none');
-
         var newMarker = d3.select(svgXml.documentElement)
         var width = newMarker.attr('width');
         var height = newMarker.attr('height');
@@ -96,20 +82,14 @@ pathvisiojs.view.pathwayDiagram.svg.edge.marker = function(){
         var docElClone = pathvisiojs.utilities.clone(svgXml.documentElement);
         parent.appendChild(svgXml.documentElement);
 
-        var markerEndD3 = svg.select('defs').select('#' + endId);
-        if (!markerEndD3[0][0]) {
-          markerEndD3.selectAll('*').remove();
-        }
-        markerEndD3 = svg.select('defs').append('marker')
-        .attr('id', endId)
-        .attr('viewBox', -1*width + ' ' + -1*height + ' ' + width + ' ' + height)
+        markerEnd.attr('viewBox', -1*width + ' ' + -1*height + ' ' + width + ' ' + height)
         .attr('markerWidth', width)
         .attr('markerHeight', height)
         .attr('markerUnits', 'strokeWidth')
         .attr('orient', 'auto')
         .attr('refX', 0)
         .attr('refY', -1*height/2);
-        var g = markerEndD3.append('g')
+        var g = markerEnd.append('g')
         .attr('id', 'g-' + endId)
         .attr('style', '-webkit-transform: rotate(180deg); -webkit-transform-origin: 50% 50%;');
         // TODO the transform attribute used is specific to chrome. we need ot add the transform attributes for other browsers
@@ -126,28 +106,70 @@ pathvisiojs.view.pathwayDiagram.svg.edge.marker = function(){
       });
     }
     else {
+      // note that HTML uses 'img' while SVG uses 'image'
+      // we need to get the dimensions of the image we are adding to the new symbol,
+      // so we'll create an img element in HTML to check width and height
+      // then we'll append an image element to the SVG symbol
+
+/*
+ * could also look at using SVG image tags for this, like so:
+	<marker id="mim-binding-start-black" 
+	class="default-fill" 
+	stroke="black"
+	markerHeight="12"
+	markerWidth="12"
+	markerUnits="strokeWidth"
+	orient="auto"
+	refX="0" refY="6"
+	viewBox="0 0 12 12">
+  <image xlink:href="http://wikipathways.github.io/pathvisiojs/src/views/markers/mim-binding.svg" x="0" y="0" width="12" height="12"></image>
+	</marker>
+//*/
+
       img = document.createElement('img');
+      img.id = idStub;
       img.src = uniqueMarkerShapeUrl;
       img.onload = function() {
-        marker = svg.select('defs').select('#' + customMarker.id);
-        if (!marker[0][0]) {
-          marker = svg.select('defs').append('symbol')
-          .attr('id', customMarker.id)
-          .attr('viewBox', '0 0 ' + this.width + ' ' + this.height)
-          .attr('preserveAspectRatio', 'none');
-        }
-        else {
-          marker.selectAll('*').remove();
-        }
-        dimensions = marker.attr('viewBox').split(' ');
+        var width = this.width;
+        var height = this.height;
+        self.midas = this;
+        markerStart = svg.select('#' + this.id + '-start-default')
+        .attr('viewBox', '0 0 ' + width + ' ' + height)
+        .attr('markerWidth', width)
+        .attr('markerHeight', height)
+        .attr('markerUnits', 'strokeWidth')
+        .attr('orient', 'auto')
+        .attr('refX', 0)
+        .attr('refY', 6);
 
-        marker.append('image').attr('xlink:xlink:href', uniqueMarkerShapeUrl)
-        .attr('x', dimensions[0])
-        .attr('y', dimensions[1])
-        .attr('width', dimensions[2])
-        .attr('height', dimensions[3])
+        markerStart.append('image').attr('xlink:xlink:href', uniqueMarkerShapeUrl)
+        .attr('x', 0)
+        .attr('y', 0)
+        .attr('width', width)
+        .attr('height', height)
         .attr('externalResourcesRequired', "true");
 
+        markerEnd = d3.select('svg').select('defs').select('#' + this.id + '-end-default')
+        .attr('id', endId)
+        .attr('viewBox', -1*width + ' ' + -1*height + ' ' + width + ' ' + height)
+        .attr('markerWidth', width)
+        .attr('markerHeight', height)
+        .attr('markerUnits', 'strokeWidth')
+        .attr('orient', 'auto')
+        .attr('refX', 0)
+        .attr('refY', -1*height/2);
+        var g = markerEnd.append('g')
+        .attr('id', 'g-' + endId)
+        .attr('style', '-webkit-transform: rotate(180deg); -webkit-transform-origin: 50% 50%;');
+        // TODO the transform attribute used is specific to chrome. we need ot add the transform attributes for other browsers
+        // check for this on MDN.
+
+        g.append('image').attr('xlink:xlink:href', uniqueMarkerShapeUrl)
+        .attr('x', 0)
+        .attr('y', 0)
+        .attr('width', width)
+        .attr('height', height)
+        .attr('externalResourcesRequired', "true");
         callback(null);
       }
     }

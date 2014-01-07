@@ -268,6 +268,7 @@ window.onload = function() {
     var customMarkers = self.customMarkers = [
       {
         'semanticName': 'arrow',
+        //'url': 'http://wikipathways.org/skins/common/images/poweredby_mediawiki_88x31.png' // can use PNG or SVG
         'url': srcDirectoryUrl + 'shape-library/markers/arrow.svg'
       },
       {
@@ -388,11 +389,14 @@ window.onload = function() {
       }
     ];
 
+    // for element scaling, we are using the SVG terms for all graphical representations of pathways.
+    // preserveAspectRatio refers to the vertical and horizontal alignment of the image.
+
     pathvisiojs.load({
-      target: '#pathvisio-js-dev',
-      //width: 400,
-      //height: 300,
-      preserveAspectRatio: 'xMidYMid',
+      container: '#pathvisio-js-dev',
+      width: 400,
+      height: 300,
+      scale:'fit', // can be either 'none' or 'fit'. 'none' means that it should be the size specified by the pathway creator without any scaling (full size as per GPML width and height). 'fit' means that it should be scaled down, if required, to fit entirely within its parent, while preserving aspect ratio. 
       data: urlParamList.gpml,
       //gpmlRev: urlParamList.gpmlRev,
       cssUrl: srcDirectoryUrl + 'css/pathway-diagram.css',
