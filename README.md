@@ -103,9 +103,9 @@ YOUR-GITHUB-ACCOUNT:master ... wikipathways:master
 
 2. Make Awesome Updates
 -----------------------
-You can edit any of the files in the "src" directory of the master branch of your fork (https://github.com/YOUR-GITHUB-ACCOUNT/pathvisiojs/tree/master/src/).
+You can edit any of the files in the "src" directory of the master branch of your fork (https://github.com/YOUR-GITHUB-ACCOUNT/pathvisiojs/tree/master/src/). To view your changes, you can run a web server on your dev machine and navigate to the page ["./pathvisiojs/test/index.html"](http://localhost:3000/test/) (edit URL as required to match your server setup). 
 
-To view your changes, you can use any server already set up on your dev machine, or you can use the included development server. Install [nodejs](http://nodejs.org/download/) if you don't already have it, then cd to the root directory of the repo and use npm (the node package manager) to handle installing dependencies:
+If you don't have a server already, you can use the included development server. To set it up, start by installing [nodejs](http://nodejs.org/download/), if you don't already have node installed, then cd to the root directory of the repo "pathvisiojs/" and use npm (the node package manager) to handle installing dependencies:
 ```
 $ npm install
 ```
