@@ -1,14 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Pathway xmlns="http://pathvisio.org/GPML/2013a" Name="playground for testing" Version="20130813" Organism="Anopheles gambiae">
-  <Graphics BoardWidth="617.5591615956727" BoardHeight="1903.0790411903004" />
+  <Graphics BoardWidth="711.0035842293908" BoardHeight="1903.0790411903004" />
   <DataNode TextLabel="Metabolite" GraphId="b7917" Type="Metabolite">
     <Graphics CenterX="200.0" CenterY="169.69855603791484" Width="200.0" Height="71.97456535737274" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff" />
     <Xref Database="" ID="" />
   </DataNode>
-  <Shape TextLabel="extracellular&#xA;region" GraphId="cb8a8">
-    <Attribute Key="org.pathvisio.CellularComponentProperty" Value="Extracellular region" />
-    <Graphics CenterX="159.74435249918815" CenterY="1839.9871868113864" Width="84.14728551194578" Height="66.18370875782784" ZOrder="32972" FontSize="10" Valign="Middle" ShapeType="RoundedRectangle" LineStyle="Broken" Color="c0c0c0" Rotation="0.0" />
-  </Shape>
+  <DataNode TextLabel="GeneProduct" GraphId="e6879" Type="GeneProduct">
+    <Graphics CenterX="514.9462365591397" CenterY="420.6272401433692" Width="307.02508960573493" Height="65.55555555555566" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="" ID="" />
+  </DataNode>
+  <GraphicalLine>
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="200.0" Y="205.6858387166012" GraphRef="b7917" RelX="0.0" RelY="1.0" ArrowHead="Arrow" />
+      <Point X="514.9462365591397" Y="387.84946236559136" GraphRef="e6879" RelX="0.0" RelY="-1.0" ArrowHead="Arrow" />
+    </Graphics>
+  </GraphicalLine>
   <InfoBox CenterX="0.0" CenterY="0.0" />
   <Biopax />
 </Pathway>

@@ -107,25 +107,23 @@ pathvisiojs.view.pathwayDiagram = function(){
     // Check for minimum required set of parameters
     // ********************************************
 
-    if (!args.target) {
-      throw new Error('No target selector specified as target for pathvisiojs.');
+    if (!args.container) {
+      throw new Error('No container selector specified as container for pathvisiojs.');
     }
 
     if (!args.data) {
       throw new Error('No input data source (URL or WikiPathways ID) specified.');
     }
 
-    var targetSelector = args.target,
+    var containerSelector = args.container,
       parsedInputData = args.data,
-      width = args.width || null,
-      height = args.width || null,
-      preserveAspectRatio = args.preserveAspectRatio || 'xMidYMid',
+      scale = args.scale,
       cssUrl = args.cssUrl,
       customMarkers = args.customMarkers,
       customSymbols = args.customSymbols,
       highlightNodes = args.highlightNodes,
       hiddenElements = args.hiddenElements,
-      target;
+      container;
 
     // waterfall means that each function completes in order, passing its result to the next
     async.waterfall([
@@ -135,34 +133,25 @@ pathvisiojs.view.pathwayDiagram = function(){
         // Get desired dimensions for pathway diagram
         // ********************************************
 
-        var target = d3.select(targetSelector);
-        if (target.length !== 1) {
+        var container = d3.select(containerSelector);
+        if (container.length !== 1) {
           throw new Error('Container selector must be matched by exactly one element.');
         }
 
-        var preserveAspectRatioValues = getPreserveAspectRatioValues(preserveAspectRatio);
-        var boundingClientRect;
-        if (!width && !height) {
-          boundingClientRect = target[0][0].getBoundingClientRect()
-          if (!width) {
-            width = boundingClientRect.width;
-          }
+        var boundingClientRect = container[0][0].getBoundingClientRect();
+        var containerWidth = boundingClientRect.width - 40; //account for space for pan/zoom controls,
+        var containerHeight = boundingClientRect.height - 20; //account for space for search field;
 
-          if (!height) {
-            height = boundingClientRect.height;
-          }
-        }
-
-        callback(null, target, width, height, preserveAspectRatioValues);
+        callback(null, container, containerWidth, containerHeight);
       },
-      function(target, width, height, preserveAspectRatioValues, callback){
+      function(container, containerWidth, containerHeight, callback){
         var svg, pathway, loadDiagramArgs = {};
 
         loadDiagramArgs.parsedInputData = parsedInputData;
-        loadDiagramArgs.target = target;
-        loadDiagramArgs.width = width;
-        loadDiagramArgs.height = height;
-        loadDiagramArgs.preserveAspectRatioValues = preserveAspectRatioValues;
+        loadDiagramArgs.container = container;
+        loadDiagramArgs.containerWidth = containerWidth;
+        loadDiagramArgs.containerHeight = containerHeight;
+        loadDiagramArgs.scale = scale;
 
         // ********************************************
         // Check for SVG support. If false, use PNG fallback
@@ -172,10 +161,7 @@ pathvisiojs.view.pathwayDiagram = function(){
           async.parallel({
             preloadSvg: function(callback) {
               var preloadDiagramArgs = {};
-              preloadDiagramArgs.target = target;
-              preloadDiagramArgs.width = width;
-              preloadDiagramArgs.height = height;
-              preloadDiagramArgs.preserveAspectRatioValues = preserveAspectRatioValues;
+              preloadDiagramArgs.container = container;
               preloadDiagramArgs.customMarkers = customMarkers;
               preloadDiagramArgs.customSymbols = customSymbols;
               preloadDiagramArgs.cssUrl = cssUrl;
@@ -274,8 +260,7 @@ pathvisiojs.view.pathwayDiagram = function(){
   }
 
   return{
-    load:load,
-    fitElementWithinContainer:fitElementWithinContainer
+    load:load
   };
 }();
 

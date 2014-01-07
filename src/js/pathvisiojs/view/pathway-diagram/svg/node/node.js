@@ -43,8 +43,8 @@ pathvisiojs.view.pathwayDiagram.svg.node = function(){
     if (!args) {
       throw new Error('Need input args to render a node.');
     }
-    if (!args.target) {
-      throw new Error('Need a target to render a node.');
+    if (!args.container) {
+      throw new Error('Need a container to render a node.');
     }
     if (!args.data) {
       throw new Error('Need input data to render a node.');
@@ -58,24 +58,24 @@ pathvisiojs.view.pathwayDiagram.svg.node = function(){
       .origin(Object)
       .on("drag", dragmove);
 
-    var nodeContainer = args.target.selectAll('#node-container-' + strcase.paramCase(args.data['@id']))
+    var nodeContainer = args.container.selectAll('#node-container-' + strcase.paramCase(args.data['@id']))
     .data([args.data])
     .enter()
     .append("g")
     .attr("id", function (d) { return 'node-container-' + strcase.paramCase(d['@id']); })
     .attr('transform', function(d) {
-      var targetElement = {}
-      if (args.target[0][0].hasOwnProperty('__data__')) {
-        targetElement.x = (args.target[0][0].__data__.x);
-        targetElement.y = (args.target[0][0].__data__.y);
+      var containerElement = {}
+      if (args.container[0][0].hasOwnProperty('__data__')) {
+        containerElement.x = (args.container[0][0].__data__.x);
+        containerElement.y = (args.container[0][0].__data__.y);
       }
       else {
-        targetElement.x = 0;
-        targetElement.y = 0;
+        containerElement.x = 0;
+        containerElement.y = 0;
       }
       var element = {}
-      element.x = d.x - targetElement.x;
-      element.y = d.y - targetElement.y;
+      element.x = d.x - containerElement.x;
+      element.y = d.y - containerElement.y;
       return 'translate(' + element.x + ' ' + element.y + ')';
     })
     .attr("style", function (d) {
