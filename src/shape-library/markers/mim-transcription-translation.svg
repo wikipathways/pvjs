@@ -9,6 +9,8 @@
 	xmlns:ev="http://www.w3.org/2001/xml-events"
 	width="18"
 	height="18"
+        refX="14"
+        refY="1.6"
 	class="board-fill-color default-stroke-color solid-stroke">
 
 	<!-- mim-transcription-translation markers: two lines and an open trigular polygon, plus extended drawing-board rect -->
