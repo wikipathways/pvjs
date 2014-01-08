@@ -4,11 +4,19 @@
 
   <title>Pathvisiojs Simple Built Production Example</title>
 
+  <!--
   <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css" media="screen">
-  <link rel="stylesheet" href="http://wikipathways.github.io/pathvisiojs/src/css/pathvisio-js.css" media="screen">
+  <link rel="stylesheet" href="http://wikipathways.github.io/pathvisiojs/src/css/pathvisiojs.css" media="screen">
   <link rel="stylesheet" href="http://wikipathways.github.io/pathvisiojs/src/css/annotation.css" media="screen">
   <link rel="stylesheet" href="http://wikipathways.github.io/pathvisiojs/src/css/pan-zoom.css" media="screen">
   <link rel="stylesheet" href="http://wikipathways.github.io/pathvisiojs/src/css/pathway-diagram.css" media="screen">
+  -->
+
+  <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css" media="screen">
+  <link rel="stylesheet" href="../src/css/pathvisiojs.css" media="screen">
+  <link rel="stylesheet" href="../src/css/annotation.css" media="screen">
+  <link rel="stylesheet" href="../src/css/pan-zoom.css" media="screen">
+  <link rel="stylesheet" href="../src/css/pathway-diagram.css" media="screen">
 
   <!--[if lt IE 9]>
   <script src="http://ie7-js.googlecode.com/svn/version/2.1(beta4)/IE9.js"></script>
@@ -62,6 +70,7 @@
       <p>(c) WikiPathways 2013</p>
     </div>
   </div>
+  <!--
   <script src="http://wikipathways.github.io/pathvisiojs/lib/lib/rgb-color/rgb-color.min.js"></script>
   <script src="http://wikipathways.github.io/pathvisiojs/lib/lib/strcase/dist/strcase.min.js"></script>
   <script src="http://wikipathways.github.io/pathvisiojs/lib/lib/async/lib/async.js"></script>
@@ -73,15 +82,39 @@
   <script src="http://wikipathways.github.io/pathvisiojs/lib/lib/svg-pan-zoom/svg-pan-zoom.js"></script>
   <script src="http://wikipathways.github.io/pathvisiojs/lib/lib/PathFinding.js/lib/pathfinding-browser.min.js"></script>
   <script src="http://wikipathways.github.io/pathvisiojs/lib/lib/node-uuid/uuid.js"></script>
-  <!--
-  <script src="http://wikipathways.github.io/pathvisiojs/lib/lib/requirejs/require.js"></script>
-  -->
   <script src="http://wikipathways.github.io/pathvisiojs/lib/lib/jsonld.js/js/jsonld.js"></script>
   <script src="http://wikipathways.github.io/pathvisiojs/lib/lib/jsonld.js/js/Promise.js"></script>
   <script src="http://wikipathways.github.io/pathvisiojs/lib/lib/jsonld.js/js/rdfa.js"></script>
   <script src="http://wikipathways.github.io/pathvisiojs/build/js/pathvisio.min.js"></script>
-
+  -->
+  <script src="../lib/rgb-color/rgb-color.min.js"></script>
+  <script src="../lib/strcase/dist/strcase.min.js"></script>
+  <script src="../lib/async/lib/async.js"></script>
+  <script src="../lib/d3/d3.min.js"></script>
+  <script src="../lib/jquery/jquery.min.js"></script>
+  <script src="../lib/typeahead.js/dist/typeahead.min.js"></script>
+  <!--<script src="../lib/OpenSeadragon/build/openseadragon/openseadragon.min.js"></script>-->
+  <script src="../lib/modernizr/modernizr.js"></script>
+  <script src="../lib/screenfull/dist/screenfull.min.js"></script>
+  <script src="../lib/svg-pan-zoom/svg-pan-zoom.js"></script>
+  <script src="../lib/PathFinding.js/lib/pathfinding-browser.min.js"></script>
+  <script src="../lib/node-uuid/uuid.js"></script>
+  <!--
+  <script src="../lib/requirejs/require.js"></script>
+  -->
+  <script src="../lib/jsonld.js/js/jsonld.js"></script>
+  <script src="../lib/jsonld.js/js/Promise.js"></script>
+  <script src="../lib/jsonld.js/js/rdfa.js"></script>
+  <script src="../build/js/pathvisio.min.js"></script>
   <script>
+
+    /* *******************
+    /* Get the desired GPML file URL or WikiPathways ID from the URL parameters.
+    /* *******************/
+
+    // If you want to the GPML file URL or WikiPathways ID you want to display, you can
+    // hard code it as the data parameter in the pathvisiojs.load() function below
+
     function getUrlParam(name) {
 
       // Thanks to http://stackoverflow.com/questions/11582512/how-to-get-url-parameters-with-javascript
@@ -134,19 +167,16 @@
     }
 
     var urlParamList = getUrlParamList();
-
     var currentUrl = document.location.origin + document.location.pathname;
-    var rootDirectoryUrl = document.location.origin + document.location.pathname.split("pathvisiojs/")[0] + 'pathvisiojs/';
-    var srcDirectoryUrl = (rootDirectoryUrl + 'src/');
+    var pathvisiojsRootDirectoryUrl = document.location.origin + document.location.pathname.split('test/compare.html')[0];
+    var srcDirectoryUrl = (pathvisiojsRootDirectoryUrl + 'src/');
 
-    var pathvisioNS;
-    var gpmlUrl;
+    /* *******************
+    /* Load pathvisiojs
+    /* *******************/
+
+    // TODO this could malfunction if "window.onload" gets defined elsewhere on the page.
     window.onload = function() {
-      if (urlParamList['svg-disabled']) {
-        Modernizr.svg = false;
-        $('#svg-disabled').prop('checked', true);
-      }
-
       pathvisiojs.load({
         container: '#production-container', //as of now, this can only be a CSS selector: http://www.w3.org/TR/CSS2/selector.html
         width: 1000,
