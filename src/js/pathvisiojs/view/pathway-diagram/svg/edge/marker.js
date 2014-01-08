@@ -59,7 +59,7 @@ pathvisiojs.view.pathwayDiagram.svg.edge.marker = function(){
       markerEnd.selectAll('*').remove();
     }
     markerEnd = svg.select('defs').append('marker')
-    .attr('id', startId)
+    .attr('id', endId)
     .attr('preserveAspectRatio', 'none');
 
     if (uniqueMarkerShapeUrl.indexOf('.svg') > 0) {
@@ -196,7 +196,7 @@ pathvisiojs.view.pathwayDiagram.svg.edge.marker = function(){
 
   function render(svg, name, position, color) {
     var markerId;
-    var markerIdStub = semanticNameToIdMapping[name];
+    var markerIdStub = pathvisiojs.view.pathwayDiagram.svg.edge.marker.semanticNameToIdMapping[name];
 
     // if no marker is to be used, JSON data will specify 'none'.
 
