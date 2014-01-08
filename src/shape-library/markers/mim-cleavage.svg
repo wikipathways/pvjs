@@ -11,6 +11,8 @@
 	xmlns:ev="http://www.w3.org/2001/xml-events"
 	width="24"
 	height="24"
+        refX="11"
+        refY="6"
 	viewBox="12 0 -12 24"
 	class="board-fill-color default-stroke-color solid-stroke">
 
