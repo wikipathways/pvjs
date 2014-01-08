@@ -1,27 +1,70 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Pathway xmlns="http://pathvisio.org/GPML/2013a" Name="shapes" Version="20130813" Organism="Anopheles gambiae">
   <Graphics BoardWidth="878.7394957983192" BoardHeight="1903.0790411903004" />
+  <DataNode TextLabel="GeneProduct" GraphId="d64cd" Type="GeneProduct">
+    <Graphics CenterX="85.0" CenterY="272.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="" ID="" />
+  </DataNode>
+  <DataNode TextLabel="Metabolite" GraphId="b1f11" Type="Metabolite">
+    <Graphics CenterX="449.0" CenterY="269.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Xref Database="" ID="" />
+  </DataNode>
+  <DataNode TextLabel="Metabolite" GraphId="c2fa4" Type="Metabolite">
+    <Graphics CenterX="449.0" CenterY="213.0" Width="80.0" Height="20.0" ZOrder="33017" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Xref Database="" ID="" />
+  </DataNode>
+  <DataNode TextLabel="Metabolite" GraphId="c0e0f" Type="Metabolite">
+    <Graphics CenterX="449.0" CenterY="152.0" Width="80.0" Height="20.0" ZOrder="33018" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Xref Database="" ID="" />
+  </DataNode>
+  <DataNode TextLabel="Metabolite" GraphId="d27e8" Type="Metabolite">
+    <Graphics CenterX="449.0" CenterY="96.0" Width="80.0" Height="20.0" ZOrder="33019" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Xref Database="" ID="" />
+  </DataNode>
+  <DataNode TextLabel="GeneProduct" GraphId="dad8f" Type="GeneProduct">
+    <Graphics CenterX="85.0" CenterY="216.0" Width="80.0" Height="20.0" ZOrder="33020" FontSize="10" Valign="Middle" />
+    <Xref Database="" ID="" />
+  </DataNode>
+  <DataNode TextLabel="GeneProduct" GraphId="e8f4e" Type="GeneProduct">
+    <Graphics CenterX="85.0" CenterY="152.0" Width="80.0" Height="20.0" ZOrder="33021" FontSize="10" Valign="Middle" />
+    <Xref Database="" ID="" />
+  </DataNode>
+  <DataNode TextLabel="GeneProduct" GraphId="e31a3" Type="GeneProduct">
+    <Graphics CenterX="85.0" CenterY="90.0" Width="80.0" Height="20.0" ZOrder="33022" FontSize="10" Valign="Middle" />
+    <Xref Database="" ID="" />
+  </DataNode>
+  <Interaction>
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="125.0" Y="216.0" GraphRef="dad8f" RelX="1.0" RelY="0.0" ArrowHead="Arrow" />
+      <Point X="409.0" Y="213.0" GraphRef="c2fa4" RelX="-1.0" RelY="0.0" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="a55ae">
+    <Graphics ZOrder="33024" LineThickness="1.0" Color="3333ff">
+      <Point X="125.0" Y="272.0" GraphRef="d64cd" RelX="1.0" RelY="0.0" ArrowHead="Arrow" />
+      <Point X="409.0" Y="269.0" GraphRef="b1f11" RelX="-1.0" RelY="0.0" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <GraphicalLine>
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="125.0" Y="90.0" GraphRef="e31a3" RelX="1.0" RelY="0.0" ArrowHead="Arrow" />
+      <Point X="409.0" Y="96.0" GraphRef="d27e8" RelX="-1.0" RelY="0.0" ArrowHead="Arrow" />
+    </Graphics>
+  </GraphicalLine>
+  <GraphicalLine GraphId="ac911">
+    <Graphics ZOrder="33023" LineThickness="1.0" Color="33ff33">
+      <Point X="125.0" Y="152.0" GraphRef="e8f4e" RelX="1.0" RelY="0.0" ArrowHead="Arrow" />
+      <Point X="409.0" Y="152.0" GraphRef="c0e0f" RelX="-1.0" RelY="0.0" ArrowHead="Arrow" />
+    </Graphics>
+  </GraphicalLine>
   <Label TextLabel="SAVE" GraphId="d24b3">
     <Graphics CenterX="212.78721278721278" CenterY="28.986013986013994" Width="95.94405594405595" Height="27.982017982017986" ZOrder="33015" FillColor="ffffff" FontWeight="Bold" FontSize="30" Valign="Middle" />
   </Label>
   <Label TextLabel="This pathway is to be saved long-term to test the ability of&#xA;GPML views to handle the element type named in the title." GraphId="fbada">
     <Graphics CenterX="414.08591408591417" CenterY="25.489510489510494" Width="290.7492507492508" Height="32.977022977022976" ZOrder="33016" FillColor="ffffff" FontSize="10" Align="Left" />
   </Label>
-  <Shape GraphId="e3a96">
-    <Attribute Key="org.pathvisio.CellularComponentProperty" Value="Nucleus" />
-    <Attribute Key="org.pathvisio.DoubleLineProperty" Value="Double" />
-    <Graphics CenterX="304.3718487394939" CenterY="203.00630252100814" Width="141.2563025210083" Height="196.92857142857133" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="Oval" LineThickness="3.0" Color="c0c0c0" Rotation="0.0" />
-  </Shape>
-  <Shape TextLabel="nucleus" GraphId="dc765">
-    <Attribute Key="org.pathvisio.CellularComponentProperty" Value="Nucleus" />
-    <Attribute Key="org.pathvisio.DoubleLineProperty" Value="Double" />
-    <Graphics CenterX="100.92082308742322" CenterY="257.26658493671994" Width="126.23964497041442" Height="78.90236686390534" ZOrder="32966" FontSize="10" Valign="Middle" ShapeType="Oval" LineThickness="3.0" Color="c0c0c0" Rotation="0.0" />
-  </Shape>
-  <Shape TextLabel="cell" GraphId="af620">
-    <Attribute Key="org.pathvisio.CellularComponentProperty" Value="Cell" />
-    <Attribute Key="org.pathvisio.DoubleLineProperty" Value="Double" />
-    <Graphics CenterX="100.92082308742339" CenterY="136.99637995711367" Width="87.77810650887574" Height="75.94378698224847" ZOrder="32974" FontSize="10" Valign="Middle" ShapeType="RoundedRectangle" LineThickness="3.0" Color="c0c0c0" Rotation="0.0" />
-  </Shape>
   <InfoBox CenterX="0.0" CenterY="0.0" />
   <Biopax />
 </Pathway>
