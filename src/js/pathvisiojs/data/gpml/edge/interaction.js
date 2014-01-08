@@ -125,44 +125,54 @@ pathvisiojs.data.gpml.edge.interaction = function(){
       }
 
       var firstPoint = points[0][0];
+      var firstGpmlArrowHeadName = firstPoint.getAttribute('ArrowHead');
+
       var lastPoint = points[0][points[0].length - 1];
+      var lastGpmlArrowHeadName = lastPoint.getAttribute('ArrowHead');
 
       // first function below has inputs lastPoint, firstPoint because it
       // corresponds to the marker type for the first point
-      // TODO this is temporary solution. In the future, we will want to get
-      // the marker id from the interactionType at render time.
 
-      if (!!firstPoint.getAttribute('ArrowHead') && !!lastPoint.getAttribute('ArrowHead')) {
+
+      if (!!firstGpmlArrowHeadName && !!lastGpmlArrowHeadName) {
         buildInteractionGraph(lastPoint, firstPoint, function(InteractionGraphMember, interactionType) {
-          jsonInteraction.markerStart = interactionType;
         });
         buildInteractionGraph(firstPoint, lastPoint, function(InteractionGraphMember, interactionType) {
-          jsonInteraction.markerEnd = interactionType;
         });
       }
       else {
-        if (!!firstPoint.getAttribute('ArrowHead') || !!lastPoint.getAttribute('ArrowHead')) {
-          if (!!firstPoint.getAttribute('ArrowHead')) {
+        if (!!firstGpmlArrowHeadName || !!lastGpmlArrowHeadName) {
+          if (!!firstGpmlArrowHeadName) {
             buildInteractionGraph(lastPoint, firstPoint, function(InteractionGraphMember, interactionType) {
-              jsonInteraction.markerStart = interactionType;
             });
-            jsonInteraction.markerEnd = 'unspecified';
           }
 
-          if (!!lastPoint.getAttribute('ArrowHead')) {
+          if (!!lastGpmlArrowHeadName) {
             buildInteractionGraph(firstPoint, lastPoint, function(InteractionGraphMember, interactionType) {
-              jsonInteraction.markerEnd = interactionType;
             });
-            jsonInteraction.markerStart = 'unspecified';
           }
         }
         else {
-          jsonInteraction.markerStart = 'unspecified';
           lastPoint.setAttribute('ArrowHead', 'Line');
           buildInteractionGraph(firstPoint, lastPoint, function(InteractionGraphMember, interactionType) {
-            jsonInteraction.markerEnd = interactionType;
           });
         }
+      }
+
+      // TODO this is temporary solution. In the future, we will want to get
+      // the marker id from the interactionType at render time.
+      if (firstGpmlArrowHeadName) {
+        jsonInteraction.markerStart = strcase.paramCase(firstGpmlArrowHeadName);
+      }
+      else {
+        jsonInteraction.markerStart = 'none';
+      }
+
+      if (lastGpmlArrowHeadName) {
+        jsonInteraction.markerEnd = strcase.paramCase(lastGpmlArrowHeadName);
+      }
+      else {
+        jsonInteraction.markerEnd = 'none';
       }
 
       callback(jsonInteraction);

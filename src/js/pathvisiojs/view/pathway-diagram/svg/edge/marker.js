@@ -76,7 +76,7 @@ pathvisiojs.view.pathwayDiagram.svg.edge.marker = function(){
         .attr('refX', 0)
         .attr('refY', 6);
 
-        var parent = document.querySelector('#' + endId);
+        var parent = document.querySelector('#' + startId);
         var docElClone = pathvisiojs.utilities.clone(svgXml.documentElement);
         parent.appendChild(svgXml.documentElement);
 
