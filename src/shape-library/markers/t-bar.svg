@@ -9,6 +9,8 @@
 	xmlns:ev="http://www.w3.org/2001/xml-events"
 	width="20"
 	height="20"
+	refX="5"
+	refY="10"
 	class="board-fill-color default-stroke-color solid-stroke">
 
 	<!-- t-bar markers: vertical line; and extended drawing-board rect -->
