@@ -69,16 +69,19 @@ pathvisiojs.view.pathwayDiagram.svg.edge.marker = function(){
         var markerClass = newMarker.attr('class');
         var refX = newMarker.attr('refX');                                              
         var refY = newMarker.attr('refY');  
+	var viewBox = newMarker.attr('viewBox');
+            
+	marker
+        .attr('viewBox', viewBox)
+        .attr('markerWidth', width)
+        .attr('markerHeight', height)
+        .attr('markerUnits', 'strokeWidth')
+        .attr('orient', 'auto');
 
         if (rotate){
             marker
-            .attr('viewBox', '0 0 ' + width + ' ' + height)
-            .attr('markerWidth', width)                                                     
-            .attr('markerHeight', height)                                                   
-            .attr('markerUnits', 'strokeWidth')  
             .attr('refX', refX)
-            .attr('refY', refY)
-            .attr('orient', 'auto');
+            .attr('refY', refY);
             marker.append('g')
             .attr('id', 'g-' + markerId)
             .attr('class', markerClass)
@@ -86,17 +89,13 @@ pathvisiojs.view.pathwayDiagram.svg.edge.marker = function(){
 ;
         } else {
             marker
-            .attr('viewBox', '0 0 ' + width + ' ' + height)
-            .attr('markerWidth', width)                                                     
-            .attr('markerHeight', height)                                                   
-            .attr('markerUnits', 'strokeWidth')  
             .attr('refX', 0)
-            .attr('refY', height/2)
-            .attr('orient', 'auto');
+            .attr('refY', height/2);
             marker.append('g')
             .attr('id', 'g-' + markerId)
             .attr('class', markerClass);
         }
+
         var g = document.querySelector('#' + 'g-' + markerId);
 
         var newMarkerChildren = newMarker[0][0].children;
