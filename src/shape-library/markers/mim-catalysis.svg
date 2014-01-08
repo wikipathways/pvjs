@@ -11,11 +11,13 @@
 	xmlns:ev="http://www.w3.org/2001/xml-events"
 	width="12"
 	height="12"
+        refX="11"
+        refY="6"
 	class="board-fill-color default-stroke-color solid-stroke"
-	viewBox="-6 -6 12 12">
+	viewBox="0 0 12 12">
 
 	<!-- mim-catalysis markers: circle, drawing-board fill and default color stroke -->
 
-	<circle cx="0" cy="0" r="5.3px" stroke-width="1px"/>
+	<circle cx="6" cy="6" r="5.3px" stroke-width="1px"/>
 
 </svg>

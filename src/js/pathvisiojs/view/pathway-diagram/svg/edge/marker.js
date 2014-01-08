@@ -46,64 +46,67 @@ pathvisiojs.view.pathwayDiagram.svg.edge.marker = function(){
     var startId = idStub + '-start-default';
     var endId = idStub + '-end-default';
     var markerStart = svg.select('defs').select('#' + startId);
-    if (!markerStart[0][0]) {
-      markerStart.selectAll('*').remove();
-    }
 
     markerStart = svg.select('defs').append('marker')
     .attr('id', startId)
     .attr('preserveAspectRatio', 'none');
+    processSvg(uniqueMarkerShapeUrl, markerStart, startId, false);
 
     var markerEnd = svg.select('defs').select('#' + endId);
-    if (!markerEnd[0][0]) {
-      markerEnd.selectAll('*').remove();
-    }
     markerEnd = svg.select('defs').append('marker')
     .attr('id', endId)
     .attr('preserveAspectRatio', 'none');
+    processSvg(uniqueMarkerShapeUrl, markerEnd, endId, true);
 
-    if (uniqueMarkerShapeUrl.indexOf('.svg') > 0) {
-      d3.xml(uniqueMarkerShapeUrl, 'image/svg+xml', function(svgXml) {
-        var newMarker = d3.select(svgXml.documentElement)
+    callback(null);
+  }
+
+   function processSvg(uniqueMarkerShapeUrl, marker, markerId, rotate){
+        d3.xml(uniqueMarkerShapeUrl, 'image/svg+xml', function(svgXml) {
+        var newMarker = d3.select(svgXml.documentElement);
         var width = newMarker.attr('width');
         var height = newMarker.attr('height');
-
-        markerStart.attr('viewBox', '0 0 ' + width + ' ' + height)
+        var markerClass = newMarker.attr('class');
+        var refX = newMarker.attr('refX');                                              
+        var refY = newMarker.attr('refY');  
+	var viewBox = newMarker.attr('viewBox');
+            
+	marker
+        .attr('viewBox', viewBox)
         .attr('markerWidth', width)
         .attr('markerHeight', height)
         .attr('markerUnits', 'strokeWidth')
-        .attr('orient', 'auto')
-        .attr('refX', 0)
-        .attr('refY', 6);
+        .attr('orient', 'auto');
 
-        var parent = document.querySelector('#' + startId);
-        var docElClone = pathvisiojs.utilities.clone(svgXml.documentElement);
-        parent.appendChild(svgXml.documentElement);
+        if (rotate){
+            marker
+            .attr('refX', refX)
+            .attr('refY', refY);
+            marker.append('g')
+            .attr('id', 'g-' + markerId)
+            .attr('class', markerClass)
+            .attr('style', '-webkit-transform: rotate(180deg); -webkit-transform-origin: 50% 50%;')
+;
+        } else {
+            marker
+            .attr('refX', 0)
+            .attr('refY', height/2);
+            marker.append('g')
+            .attr('id', 'g-' + markerId)
+            .attr('class', markerClass);
+        }
 
-        markerEnd.attr('viewBox', -1*width + ' ' + -1*height + ' ' + width + ' ' + height)
-        .attr('markerWidth', width)
-        .attr('markerHeight', height)
-        .attr('markerUnits', 'strokeWidth')
-        .attr('orient', 'auto')
-        .attr('refX', 0)
-        .attr('refY', -1*height/2);
-        var g = markerEnd.append('g')
-        .attr('id', 'g-' + endId)
-        .attr('style', '-webkit-transform: rotate(180deg); -webkit-transform-origin: 50% 50%;');
-        // TODO the transform attribute used is specific to chrome. we need ot add the transform attributes for other browsers
-        // check for this on MDN.
-        var endG = document.querySelector('#' + 'g-' + endId);
-        endG.appendChild(docElClone);
+        var g = document.querySelector('#' + 'g-' + markerId);
 
-        //*
-        //var markerEnd = pathvisiojs.utilities.cloneNode('#' + startId);
-        //markerEnd[0][0].setAttribute('id', endId);
-        //markerEnd[0][0].setAttribute('transform', 'rotate(180deg)');
-        //*/
-        callback(null);
-      });
+        var newMarkerChildren = newMarker[0][0].children;
+        do {
+            g.appendChild(newMarkerChildren[0]);
+        } while (newMarkerChildren.length > 0);
+        });
     }
-    else {
+
+//    }
+//    else {
       // note that HTML uses 'img' while SVG uses 'image'
       // we need to get the dimensions of the image we are adding to the new symbol,
       // so we'll create an img element in HTML to check width and height
@@ -123,7 +126,7 @@ pathvisiojs.view.pathwayDiagram.svg.edge.marker = function(){
   <image xlink:href="http://wikipathways.github.io/pathvisiojs/src/views/markers/mim-binding.svg" x="0" y="0" width="12" height="12"></image>
 	</marker>
 //*/
-
+/*
       img = document.createElement('img');
       img.id = idStub;
       img.src = uniqueMarkerShapeUrl;
@@ -171,6 +174,7 @@ pathvisiojs.view.pathwayDiagram.svg.edge.marker = function(){
       }
     }
   }
+*/
 
   function loadAllCustom(thisSvg, customMarkers, callback) {
     svg = thisSvg;
@@ -205,7 +209,7 @@ pathvisiojs.view.pathwayDiagram.svg.edge.marker = function(){
     }
     else {
 
-      // check for whether the desired marker is defined once in the pathway template svg.
+      // check for whether the desired marker is defined once in the pathway templatesvg.
 
       var selector = 'marker#' + markerIdStub + '-' + position + '-default';
       var markerElementDefault = svg.select(selector);
@@ -233,9 +237,12 @@ pathvisiojs.view.pathwayDiagram.svg.edge.marker = function(){
 
           // define style of marker element's SVG
 
-          var markerElementStyle = '';
 
-          var markerElementSvg = markerElement.selectAll("svg")[0][0];
+          var markerElementSvg = markerElement.selectAll("g")[0][0];
+	  var markerElementStyle = '';
+	  if (position == 'end'){
+		markerElementStyle = markerElementSvg.getAttribute('style');
+	  }
 
           if (markerElementSvg.getAttribute('class').match(/default-stroke-color/)) {
             markerElementStyle += 'stroke:#' + color + '; ';
@@ -243,6 +250,7 @@ pathvisiojs.view.pathwayDiagram.svg.edge.marker = function(){
 
           if (markerElementSvg.getAttribute('class').match(/default-fill-color/)) {
             markerElementStyle += 'fill:#' + color + '; ';
+		markerElementSvg.style.fill = '#' + color + '; ';
           }
 
           markerElement[0][0].setAttribute('id', markerIdStub + '-' + position + '-' + color );
