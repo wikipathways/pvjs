@@ -129,24 +129,40 @@ pathvisiojs.data.gpml.edge.interaction = function(){
 
       // first function below has inputs lastPoint, firstPoint because it
       // corresponds to the marker type for the first point
+      // TODO this is temporary solution. In the future, we will want to get
+      // the marker id from the interactionType at render time.
 
-      if (!!firstPoint.getAttribute('ArrowHead') || !!lastPoint.getAttribute('ArrowHead')) {
+      if (!!firstPoint.getAttribute('ArrowHead') && !!lastPoint.getAttribute('ArrowHead')) {
         buildInteractionGraph(lastPoint, firstPoint, function(InteractionGraphMember, interactionType) {
-          // TODO this is temporary. we want to get the marker from the interactionType at render time.
           jsonInteraction.markerStart = interactionType;
-          //console.log(InteractionGraphMember);
         });
         buildInteractionGraph(firstPoint, lastPoint, function(InteractionGraphMember, interactionType) {
           jsonInteraction.markerEnd = interactionType;
-          //console.log(InteractionGraphMember);
         });
       }
       else {
-        lastPoint.setAttribute('ArrowHead', 'Line');
-        buildInteractionGraph(firstPoint, lastPoint, function(InteractionGraphMember, interactionType) {
-          jsonInteraction.markerEnd = interactionType;
-          //console.log(InteractionGraphMember);
-        });
+        if (!!firstPoint.getAttribute('ArrowHead') || !!lastPoint.getAttribute('ArrowHead')) {
+          if (!!firstPoint.getAttribute('ArrowHead')) {
+            buildInteractionGraph(lastPoint, firstPoint, function(InteractionGraphMember, interactionType) {
+              jsonInteraction.markerStart = interactionType;
+            });
+            jsonInteraction.markerEnd = 'unspecified';
+          }
+
+          if (!!lastPoint.getAttribute('ArrowHead')) {
+            buildInteractionGraph(firstPoint, lastPoint, function(InteractionGraphMember, interactionType) {
+              jsonInteraction.markerEnd = interactionType;
+            });
+            jsonInteraction.markerStart = 'unspecified';
+          }
+        }
+        else {
+          jsonInteraction.markerStart = 'unspecified';
+          lastPoint.setAttribute('ArrowHead', 'Line');
+          buildInteractionGraph(firstPoint, lastPoint, function(InteractionGraphMember, interactionType) {
+            jsonInteraction.markerEnd = interactionType;
+          });
+        }
       }
 
       callback(jsonInteraction);
