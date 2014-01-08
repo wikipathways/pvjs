@@ -5,14 +5,14 @@ pathvisiojs.view.pathwayDiagram.svg.node.pathShape.roundedRectangle = function()
         {
           name:'d',
           value: 'm0,2.5' +
-            'c0,-1.35845 1.14155,-2.5 2.5,-2.5' +
-            'l' + (nodeWidth - 5) + ',0' + 
-            'c1.35844,0 2.5,1.14155 2.5,2.5' + 
-            'l0,' + (nodeHeight - 5) + 
-            'c0,1.35845 -1.14156,2.5 -2.5,2.5' + 
-            'l' + (5 - nodeWidth) + ',0' + 
-            'c-1.35845,0 -2.5,-1.14155 -2.5,-2.5' + 
-            'l0,' + (5 - nodeHeight) + 
+            'c0,-1.35845 1.14155,-10 10,-10' +
+            'l' + (nodeWidth - 20) + ',0' + 
+            'c1.35844,0 10,1.14155 10,10' + 
+            'l0,' + (nodeHeight - 20) + 
+            'c0,1.35845 -1.14156,10 -10,10' + 
+            'l' + (20 - nodeWidth) + ',0' + 
+            'c-1.35845,0 -10,-1.14155 -10,-10' + 
+            'l0,' + (20 - nodeHeight) + 
             'z'
         },
         {
