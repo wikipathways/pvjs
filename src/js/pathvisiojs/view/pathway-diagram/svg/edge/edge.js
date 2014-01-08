@@ -7,10 +7,10 @@ pathvisiojs.view.pathwayDiagram.svg.edge = function(){
   var svg, customMarkers;
 
   //function setAttributes(svg, edge, data, markerStartName, markerEndName) {
-  function setAttributes(args) {
+  function render(args, callback) {
     var svg = args.svg;
-    var edge = args.edge;
     var data = args.data;
+    var container = args.container;
     var markerStartName = args.data.markerStart;
     console.log('markerStartName');
     console.log(markerStartName);
@@ -30,6 +30,10 @@ pathvisiojs.view.pathwayDiagram.svg.edge = function(){
     console.log('markerEndName in edge');
     console.log(markerEndName);
     //*/
+
+    var edge = container.selectAll('#' + strcase.paramCase(data.GraphId))
+    .data([data])
+    .enter().append("path")
 
     var createPathDataString = d3.svg.line()
     .x(function(data) { return data.x; })
@@ -130,23 +134,7 @@ pathvisiojs.view.pathwayDiagram.svg.edge = function(){
       }
     },
     function(err, results) {
-
-      //*/
-
       edge.attr("id", edgeId)
-      //*
-      .attr("marker-start", function () {
-        var markerStart = pathvisiojs.view.pathwayDiagram.svg.edge.marker.render(svg, markerStartName, 'start', data.stroke);
-        /*
-        if (edge.hasOwnProperty('strokeStyle')) {
-          if (edge.strokeStyle === 'double') {
-            //hack to manage marker scaling; this marker should not have any features itself
-            markerStart = 'double-line-hack-start';
-          }
-        }
-        //*/
-        return 'url(#' + markerStart + ')';
-      })
       .attr("marker-end", function (data) {
         var markerEnd = pathvisiojs.view.pathwayDiagram.svg.edge.marker.render(svg, markerEndName, 'end', data.stroke);
         /*
@@ -159,7 +147,18 @@ pathvisiojs.view.pathwayDiagram.svg.edge = function(){
         //*/
         return 'url(#' + markerEnd + ')';
       })
-      //*/
+      .attr("marker-start", function () {
+        var markerStart = pathvisiojs.view.pathwayDiagram.svg.edge.marker.render(svg, markerStartName, 'start', data.stroke);
+        /*
+        if (edge.hasOwnProperty('strokeStyle')) {
+          if (edge.strokeStyle === 'double') {
+            //hack to manage marker scaling; this marker should not have any features itself
+            markerStart = 'double-line-hack-start';
+          }
+        }
+        //*/
+        return 'url(#' + markerStart + ')';
+      })
       .attr("style", function (data) {
         var style = 'stroke-width:' + data.strokeWidth + '; ';
         if (data.hasOwnProperty('stroke')) {
@@ -210,7 +209,7 @@ pathvisiojs.view.pathwayDiagram.svg.edge = function(){
       pathvisiojs.view.pathwayDiagram.svg.publicationXref.render(edgeId, 'edge', args.pathway, args.data.PublicationXref);
     }
 
-
+    callback(edge);
     });
   }
 
@@ -300,7 +299,7 @@ pathvisiojs.view.pathwayDiagram.svg.edge = function(){
 
 
   return {
-    setAttributes:setAttributes
+    render:render
     //renderAll:renderAll
   };
 }();
