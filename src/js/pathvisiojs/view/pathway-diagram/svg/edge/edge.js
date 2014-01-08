@@ -12,7 +12,11 @@ pathvisiojs.view.pathwayDiagram.svg.edge = function(){
     var edge = args.edge;
     var data = args.data;
     var markerStartName = args.data.markerStart;
+    console.log('markerStartName');
+    console.log(markerStartName);
     var markerEndName = args.data.markerEnd;
+    console.log('markerEndName');
+    console.log(markerEndName);
     var edgeId = strcase.paramCase(data.GraphId);
     /*
     console.log('svg in edge');
@@ -132,7 +136,7 @@ pathvisiojs.view.pathwayDiagram.svg.edge = function(){
       edge.attr("id", edgeId)
       //*
       .attr("marker-start", function () {
-        var markerStart = pathvisiojs.view.pathwayDiagram.svg.edge.marker.render(svg, markerStartName, 'start', edge.stroke);
+        var markerStart = pathvisiojs.view.pathwayDiagram.svg.edge.marker.render(svg, markerStartName, 'start', data.stroke);
         /*
         if (edge.hasOwnProperty('strokeStyle')) {
           if (edge.strokeStyle === 'double') {
