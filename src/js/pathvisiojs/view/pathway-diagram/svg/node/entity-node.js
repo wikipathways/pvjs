@@ -14,7 +14,7 @@ pathvisiojs.view.pathwayDiagram.svg.node.EntityNode = function(){
 
     pathvisiojs.view.pathwayDiagram.svg.node.render(args, function(nodeContainer) {
       nodeContainer.attr("class", function (d) {
-        var cssClass = 'entity-node ' + strcase.paramCase(d.nodeType) + ' ';
+        var cssClass = 'node entity-node ' + strcase.paramCase(d.nodeType) + ' ';
         if (d.nodeType === 'DataNode') {
           cssClass += strcase.paramCase(d.dataNodeType) + ' ';
           if (!!d.DatasourceReference) {
