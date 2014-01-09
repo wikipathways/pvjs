@@ -12,32 +12,30 @@ pathvisiojs.view.pathwayDiagram.svg.edge.graphicalLine = function(){
     console.log(data);
     //*/
 
-    var graphicalLine = container.selectAll('#' + strcase.paramCase(data.GraphId))
-    .data([data])
-    .enter().append("path")
-    .attr("class", function (data) {
-      var cssClass = 'edge graphical-line';
-      if (data.hasOwnProperty('strokeStyle')) {
-        if (data.strokeStyle === 'dashed') {
-          cssClass += " dashed-stroke";
+    pathvisiojs.view.pathwayDiagram.svg.edge.render(args, function(graphicalLine) {
+      graphicalLine.attr("class", function (data) {
+        var cssClass = 'edge graphical-line';
+        if (data.hasOwnProperty('strokeStyle')) {
+          if (data.strokeStyle === 'dashed') {
+            cssClass += " dashed-stroke";
+          }
         }
+        return cssClass;
+      });
+
+      var containerElement = container[0][0];
+      var containerElementX, containerElementY;
+      if (containerElement.hasOwnProperty('__data__')) {
+        graphicalLine.attr('transform', function() {
+          containerElementX = containerElement.__data__.x || 0;
+          containerElementY = containerElement.__data__.y || 0;
+          return 'translate(' + (-1*containerElementX) + ' ' + (-1*containerElementY) + ')';
+        })
       }
-      return cssClass;
     });
 
-    var containerElement = container[0][0];
-    var containerElementX, containerElementY;
-    if (containerElement.hasOwnProperty('__data__')) {
-      graphicalLine.attr('transform', function() {
-        containerElementX = containerElement.__data__.x || 0;
-        containerElementY = containerElement.__data__.y || 0;
-        return 'translate(' + (-1*containerElementX) + ' ' + (-1*containerElementY) + ')';
-      })
-    }
 
     //pathvisiojs.view.pathwayDiagram.svg.edge.setAttributes(svg, graphicalLine, data, data.markerStart, data.markerEnd);
-    args.edge = graphicalLine;
-    pathvisiojs.view.pathwayDiagram.svg.edge.setAttributes(args);
 
     //.call(pathvisiojs.view.pathwayDiagram.svg.edge.setAttributes);
 
