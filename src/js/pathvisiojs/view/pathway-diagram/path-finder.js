@@ -103,17 +103,18 @@ pathvisiojs.view.pathwayDiagram.pathFinder = function(){
         console.log(endLocation);
         //*/
         runPathFinder(workingGrid,
-                      finder,
-                      Point,
-                      pointStart,
-                      pointEnd,
-                      startLocation,
-                      endLocation,
-                      gridData.squareLength,
-                      function(data) {
-          pathData = data;
-          callback(null);
-        });
+          finder,
+          Point,
+          pointStart,
+          pointEnd,
+          startLocation,
+          endLocation,
+          gridData.squareLength,
+          function(data) {
+            pathData = data;
+            callback(null);
+          }
+        );
       },
       function(callback){
 
@@ -124,18 +125,19 @@ pathvisiojs.view.pathwayDiagram.pathFinder = function(){
         if (pathData.length < 3) {
           workingGrid = gridData.emptyGrid.clone();
           runPathFinder(workingGrid,
-                        finder,
-                        Point,
-                        pointStart,
-                        pointEnd,
-                        startLocation,
-                        endLocation,
-                        gridData.squareLength,
-                        function(data) {
-            pathData = data;
-            pathData.push({'x': pointEnd.x, 'y': pointEnd.y});
-          callbackOutside(pathData);
-          });
+            finder,
+            Point,
+            pointStart,
+            pointEnd,
+            startLocation,
+            endLocation,
+            gridData.squareLength,
+            function(data) {
+              pathData = data;
+              pathData.push({'x': pointEnd.x, 'y': pointEnd.y});
+            callbackOutside(pathData);
+            }
+          );
         }
         else {
           callbackOutside(pathData);
@@ -219,6 +221,9 @@ pathvisiojs.view.pathwayDiagram.pathFinder = function(){
   }
 
   function generateGrid(gridData, edgeGraphRefNodes, otherNodes, callback) {
+    console.log('edgeGraphRefNodes');
+    console.log(edgeGraphRefNodes);
+    self.myedgeGraphRefNodes = edgeGraphRefNodes;
     if (!gridData) {
       throw new Error('No gridData specified.');
     }
