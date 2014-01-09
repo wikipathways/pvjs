@@ -35,28 +35,28 @@
   </DataNode>
   <Interaction>
     <Graphics ZOrder="12288" LineThickness="1.0">
-      <Point X="125.0" Y="216.0" GraphRef="dad8f" RelX="1.0" RelY="0.0" ArrowHead="Arrow" />
-      <Point X="409.0" Y="213.0" GraphRef="c2fa4" RelX="-1.0" RelY="0.0" ArrowHead="Arrow" />
+      <Point X="125.0" Y="216.0" GraphRef="dad8f" RelX="1.0" RelY="0.0" ArrowHead="TBar" />
+      <Point X="409.0" Y="213.0" GraphRef="c2fa4" RelX="-1.0" RelY="0.0" ArrowHead="TBar" />
     </Graphics>
     <Xref Database="" ID="" />
   </Interaction>
   <Interaction GraphId="a55ae">
     <Graphics ZOrder="33024" LineThickness="1.0" Color="3333ff">
-      <Point X="125.0" Y="272.0" GraphRef="d64cd" RelX="1.0" RelY="0.0" ArrowHead="Arrow" />
-      <Point X="409.0" Y="269.0" GraphRef="b1f11" RelX="-1.0" RelY="0.0" ArrowHead="Arrow" />
+      <Point X="125.0" Y="272.0" GraphRef="d64cd" RelX="1.0" RelY="0.0" ArrowHead="TBar" />
+      <Point X="409.0" Y="269.0" GraphRef="b1f11" RelX="-1.0" RelY="0.0" ArrowHead="TBar" />
     </Graphics>
     <Xref Database="" ID="" />
   </Interaction>
   <GraphicalLine>
     <Graphics ZOrder="12288" LineThickness="1.0">
-      <Point X="125.0" Y="90.0" GraphRef="e31a3" RelX="1.0" RelY="0.0" ArrowHead="Arrow" />
-      <Point X="409.0" Y="96.0" GraphRef="d27e8" RelX="-1.0" RelY="0.0" ArrowHead="Arrow" />
+      <Point X="125.0" Y="90.0" GraphRef="e31a3" RelX="1.0" RelY="0.0" ArrowHead="TBar" />
+      <Point X="409.0" Y="96.0" GraphRef="d27e8" RelX="-1.0" RelY="0.0" ArrowHead="TBar" />
     </Graphics>
   </GraphicalLine>
   <GraphicalLine GraphId="ac911">
     <Graphics ZOrder="33023" LineThickness="1.0" Color="33ff33">
-      <Point X="125.0" Y="152.0" GraphRef="e8f4e" RelX="1.0" RelY="0.0" ArrowHead="Arrow" />
-      <Point X="409.0" Y="152.0" GraphRef="c0e0f" RelX="-1.0" RelY="0.0" ArrowHead="Arrow" />
+      <Point X="125.0" Y="152.0" GraphRef="e8f4e" RelX="1.0" RelY="0.0" ArrowHead="TBar" />
+      <Point X="409.0" Y="152.0" GraphRef="c0e0f" RelX="-1.0" RelY="0.0" ArrowHead="TBar" />
     </Graphics>
   </GraphicalLine>
   <Label TextLabel="SAVE" GraphId="d24b3">
