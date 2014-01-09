@@ -11,6 +11,7 @@
 	height="20"
 	refX="5"
 	refY="10"
+	viewBox="0 0 20 20"
 	class="board-fill-color default-stroke-color solid-stroke">
 
 	<!-- t-bar markers: vertical line; and extended drawing-board rect -->
