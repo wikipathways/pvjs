@@ -134,7 +134,7 @@ pathvisiojs.view.pathwayDiagram.svg.edge = function(){
       'edge': function(callback) {
         edge = container.selectAll('#' + strcase.paramCase(data.GraphId))
         .data([data])
-        .enter().append("path");
+        .enter().insert("path", ":first-child") // TODO this may cause problems in the future if we have groups with fully opaque backgrounds
         callback(null, edge);
       },
       'convertedPointSet': function(callback) {
