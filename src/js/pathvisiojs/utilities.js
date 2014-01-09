@@ -251,7 +251,7 @@ pathvisiojs.utilities = function(){
     return arr; // for testing purposes
   }
 
-  function isOdd(num) { return num % 2;}
+  var isOdd = function(num) { return num % 2;}
 
   return{
     collect:collect,

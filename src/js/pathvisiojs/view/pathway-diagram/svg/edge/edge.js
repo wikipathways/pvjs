@@ -134,7 +134,7 @@ pathvisiojs.view.pathwayDiagram.svg.edge = function(){
       'edge': function(callback) {
         edge = container.selectAll('#' + strcase.paramCase(data.GraphId))
         .data([data])
-        .enter().append("path");
+        .enter().insert("path", ":first-child") // TODO this may cause problems in the future if we have groups with fully opaque backgrounds
         callback(null, edge);
       },
       'convertedPointSet': function(callback) {
@@ -178,7 +178,17 @@ pathvisiojs.view.pathwayDiagram.svg.edge = function(){
                 firstSegmentHorizontal = true;
               }
               else {
-                firstSegmentHorizontal = false;
+                if (Math.abs(data.Point[0].RelY) === 1) {
+                  firstSegmentHorizontal = false;
+                }
+                else {
+                  if ((Math.abs(data.Point[data.Point.length - 1].RelX) === 1) && pathvisiojs.utilities.isOdd(data.Point.length)) {
+                    firstSegmentHorizontal = true;
+                  }
+                  else {
+                    firstSegmentHorizontal = false;
+                  }
+                }
               }
 
               currentSegmentHorizontal = firstSegmentHorizontal;
