@@ -20,6 +20,17 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
       pathwayWidth = args.pathway.image.width,
       pathwayHeight = args.pathway.image.height;
 
+    //add loading gif
+    var container = d3.select('body').select('#pathway-container');
+    var posX = containerWidth/2;
+    var posY = containerHeight/2;
+    var img = container.append('img');
+    img.attr('src', "../src/img/loading.gif")
+    .attr('width', 50)
+    .style('position', "absolute")
+    .style('top', posY + "px")
+    .style('left', posX + "px");
+
     if (!svg) {
       throw new Error("Missing svg.");
     }
@@ -34,7 +45,8 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
         })
       },
       function(callback) {
-        d3.select('#loading-icon').remove();
+	//remove loading gif
+        container.select('img').remove();
 
         var initialClickHappened = false;
         svg.on("click", function(d, i){
