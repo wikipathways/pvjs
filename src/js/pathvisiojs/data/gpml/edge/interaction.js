@@ -58,7 +58,7 @@ pathvisiojs.data.gpml.edge.interaction = function(){
   }
 
   function toRenderableJson(gpml, gpmlInteraction, pathwayIri, callback) {
-    var jsonAnchorInteraction, anchor, jsonAnchor, points, jsonPoints, interactionType, target, targetId, groupRef;
+    var jsonAnchorInteraction, anchor, jsonAnchor, points, jsonPoints, interactionType, target, targetId, groupRef, source, sourceId;
     pathvisiojs.data.gpml.edge.toRenderableJson(gpmlInteraction, pathwayIri, function(jsonInteraction) {
       //console.log('jsonInteraction');
       //console.log(jsonInteraction);
@@ -93,12 +93,30 @@ pathvisiojs.data.gpml.edge.interaction = function(){
         if (!!interactionType) {
           jsonInteraction.InteractionGraph = jsonInteraction.InteractionGraph || [];
 
-          InteractionGraphMember['@id'] = pathwayIri + gpmlSource.getAttribute('GraphRef');
+          sourceId = gpmlSource.getAttribute('GraphRef');
+          if (!!sourceId) {
+            source = gpml.querySelector('[GraphId=' + sourceId + ']');
+            if (source.tagName === 'Anchor') {
+              sourceId = source.parentElement.parentElement.getAttribute('GraphId');
+            }
+            else {
+              if (source.tagName === 'Group') {
+                sourceId = source.getAttribute('GroupId');
+              }
+            }
+          }
+          InteractionGraphMember['@id'] = pathwayIri + sourceId;
+
           targetId = gpmlTarget.getAttribute('GraphRef');
           if (!!targetId) {
             target = gpml.querySelector('[GraphId=' + targetId + ']');
             if (target.tagName === 'Anchor') {
               targetId = target.parentElement.parentElement.getAttribute('GraphId');
+            }
+            else {
+              if (target.tagName === 'Group') {
+                targetId = target.getAttribute('GroupId');
+              }
             }
 
             InteractionGraphMember.interactsWith = pathwayIri + targetId;
