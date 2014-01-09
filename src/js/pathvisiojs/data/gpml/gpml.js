@@ -17,11 +17,11 @@ pathvisiojs.data.gpml = function(){
           return color.toHex();
         }
         else {
-          return 'black';
+          return 'null';
         }
       }
       else {
-        return 'black';
+        return 'null';
       }
     }
     else {
