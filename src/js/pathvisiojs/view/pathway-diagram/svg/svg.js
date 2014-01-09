@@ -190,6 +190,8 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
               groupedElementsArgs.svg = args.svg;
               groupedElementsArgs.container = groupContainer;
               groupedElementsArgs.data = groupContents;
+              console.log('groupContents');
+              console.log(groupContents);
               groupedElementsArgs.pathway = args.pathway;
 
               // recursively calling this function to render elements within groupNode(s)
@@ -264,10 +266,13 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
         var firstOrderFrame = {
           '@context': pathvisiojs.context,
           '@type':['notGrouped', 'GroupNode'],
-          'contains': {},
-          'InteractionGraph': {}
+          //'contains': {},
+          'InteractionGraph':['Port']
+          
         };
         jsonld.frame(pathway, firstOrderFrame, function(err, firstOrderData) {
+          console.log('firstOrderData');
+          console.log(firstOrderData['@graph']);
           callbackInside(null, firstOrderData['@graph']);
         });
       }
