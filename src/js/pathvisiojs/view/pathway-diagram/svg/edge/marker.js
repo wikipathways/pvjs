@@ -7,7 +7,7 @@ pathvisiojs.view.pathwayDiagram.svg.edge.marker = function(){
   // template svg, whether it is at the start or end of a path and whether
   // a color other than black (the color specified in the template) is desired.
 
-  //var svg;
+  var svg;
 
   var semanticNameToIdMapping = { 
     'arrow':'shape-library-markers-arrow-svg',
