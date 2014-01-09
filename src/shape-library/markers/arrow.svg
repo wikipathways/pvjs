@@ -9,8 +9,10 @@
 	xmlns:ev="http://www.w3.org/2001/xml-events"
 	width="12"
 	height="12"
-        refX="11"
-        refY="6"
+        refXstart="-1"
+        refYstart="6"
+        refXend="12"
+        refYend="6"
 	class="solid-stroke default-fill-color"
 	viewBox="0 0 12 12">
 

@@ -15,8 +15,10 @@ It can overlap the side of the shape, blanking out a small part of it when the e
 	xmlns:ev="http://www.w3.org/2001/xml-events"
 	width="12"
 	height="12"
-        refX="8"
-        refY="6"
+        refXstart="0"
+        refYstart="6"
+        refXend="8"
+        refYend="6"
 	class="board-fill-color solid-stroke"
 	viewBox="0 0 12 12">
 
