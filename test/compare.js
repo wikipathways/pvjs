@@ -361,7 +361,7 @@ window.onload = function() {
       },
       {
         'semanticName': 'mim-inhibition',
-        'url': srcDirectoryUrl + 'shape-library/markers/t-bar.svg'
+        'url': srcDirectoryUrl + 'shape-library/markers/mim-inhibition.svg'
       },
       {
         'semanticName': 'mim-cleavage',
