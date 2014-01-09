@@ -33,7 +33,7 @@ function testTheCount(gpmlFile, gpmlElementName, expectedCount) {
 
 ptor.get("http://localhost:3000/test/compare.html?gpml=WP2545").
   then(function() {
-    console.log('************** testing anchors **************');
+    console.log('************** running anchors rendering test protocol...');
     return ptor.wait(forElementToBePresent(by.css('#pathvisiojs-is-loaded')), 30 * 1000);
   }).
   then(function() {
@@ -78,7 +78,7 @@ ptor.get("http://localhost:3000/test/compare.html?gpml=WP2545").
     return 'success';
   }).
   then(function() {
-    console.log('^^^^^^^^^^^^^^^^^^^^^^^^^^^^^citations');
+    console.log('************** running citations test protocol...');
     ptor.get("http://localhost:3000/test/compare.html?gpml=WP2605");
     return ptor.wait(forElementToBePresent(by.css('#pathvisiojs-is-loaded')), 30 * 1000);
   }).
@@ -97,7 +97,7 @@ ptor.get("http://localhost:3000/test/compare.html?gpml=WP2545").
     return 'success';
   }).
   then(function() {
-    console.log('^^^^^^^^^^^^^^^^^^^^^^^^^^^^^shapes');
+    console.log('************** running shapes test protocol...');
     ptor.get("http://localhost:3000/test/compare.html?gpml=WP2554");
     return ptor.wait(forElementToBePresent(by.css('#pathvisiojs-is-loaded')), 30 * 1000);
   }).
@@ -108,7 +108,7 @@ ptor.get("http://localhost:3000/test/compare.html?gpml=WP2545").
     return 'success';
   }).
   then(function() {
-    console.log('^^^^^^^^^^^^^^^^^^^^^^^^^^^^^WP1');
+    console.log('************** running pathway "WP1"...');
     return ptor.get("http://localhost:3000/test/compare.html?gpml=WP1");
   }).
   then(function() {
