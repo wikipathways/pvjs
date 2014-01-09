@@ -308,7 +308,9 @@ pathvisiojs.view.pathwayDiagram.pathFinder = function(){
         var ports = [];
         if (!!edgeGraphRefNodes) {
           edgeGraphRefNodes.forEach(function(edgeGraphRefNode){
-            ports = ports.concat(edgeGraphRefNode.Port);
+            if (edgeGraphRefNode.hasOwnProperty('Port')) {
+              ports = ports.concat(edgeGraphRefNode.Port);
+            }
           });
         }
         if (!!otherNodes) {
