@@ -88,9 +88,10 @@ pathvisiojs.utilities = function(){
     return str.split(/\r\n|\r|\n/g);
   }
 
+  // this both clones a node and inserts it at the same level of the DOM
+  // as the element it was cloned from.
+  // it returns a d3 selection of the cloned element
   function cloneNode(selector) {
-    console.log('selector');
-    console.log(selector);
     var node = d3.select(selector).node();
     return d3.select(node.parentNode.insertBefore(node.cloneNode(true), node.nextSibling));
   }
