@@ -103,7 +103,7 @@ pathvisiojs.view.pathwayDiagram.svg.edge = function(){
         var markerEndIdStub = pathvisiojs.view.pathwayDiagram.svg.edge.marker.semanticNameToIdMapping[markerEndName];
         if (!!markerEndIdStub) {
           if (!!stroke) { // if edge is not of default stroke color (at time of writing, this was black)
-            if (markerStartName === 'none') { // if no marker is to be used, JSON data will specify 'none'
+            if (markerEndName === 'none') { // if no marker is to be used, JSON data will specify 'none'
               markerEndAttributeValue = 'none';
               callback(null, markerEndAttributeValue);
             }
