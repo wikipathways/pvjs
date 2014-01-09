@@ -16,17 +16,11 @@ ptorWp1.ignoreSynchronization = true
 var bodyElements, shapes, wp1, loadingIconBeforePathwayLoaded, loadingIconAfterPathwayLoaded,
   shapesInShapes, shapesInWp1;
 
-function testTheCount(gpmlFile, gpmlElementName, expectedCount) {
-  console.log('*************');
-  console.log('gpmlFile');
-  console.log(gpmlFile);
-  console.log('gpmlElementName');
-  console.log(gpmlElementName);
-  console.log('expectedCount');
-  console.log(expectedCount);
+function testTheCount(gpmlFile, elementName, expectedCount) {
+  //console.log('elementName: ' + elementName);
+  //console.log('expectedCount: ' + expectedCount);
   describe(gpmlFile, function() {
-    it('should have ' + expectedCount + ' ' + gpmlElementName + 's', function() {
-      console.log('tested=============================');
+    it('should have ' + expectedCount + ' ' + elementName + 's', function() {
     });
   });
 }
@@ -37,15 +31,15 @@ ptor.get("http://localhost:3000/test/compare.html?gpml=WP2545").
     return ptor.wait(forElementToBePresent(by.css('#pathvisiojs-is-loaded')), 30 * 1000);
   }).
   then(function() {
-    var expectedCount = 3;
-    testTheCount('anchors', 'node', expectedCount);
-    expect(element.all(by.css('.node')).count()).toEqual(expectedCount);
+    var expectedCount = 11; // should actually be higher, because anchors are nodes. but they aren't being drawn yet.
+    testTheCount('anchors test protocol pathway', 'node', expectedCount);
+    expect(element.all(by.css('#viewport .node')).count()).toEqual(expectedCount);
     return 'success';
   }).
   then(function() {
     var expectedCount = 4;
     testTheCount('anchors', 'DataNode', expectedCount);
-    expect(element.all(by.css('.data-node')).count()).toEqual(expectedCount);
+    expect(element.all(by.css('#viewport .data-node')).count()).toEqual(expectedCount);
     return 'success';
   }).
   /*
@@ -56,72 +50,78 @@ ptor.get("http://localhost:3000/test/compare.html?gpml=WP2545").
   then(function() {
     var expectedCount = 4;
     expect(element.all(by.css('.shape')).count()).toEqual(expectedCount);
-    testTheCount('anchors', 'shape', expectedCount);
+    testTheCount('anchors test protocol pathway', 'shape', expectedCount);
     return 'success';
   }).
   then(function() {
     var expectedCount = 1;
-    expect(element.all(by.css('.info-box')).count()).toEqual(expectedCount);
-    testTheCount('anchors', 'info-box', expectedCount);
+    expect(element.all(by.css('#viewport .info-box')).count()).toEqual(expectedCount);
+    testTheCount('anchors test protocol pathway', 'info-box', expectedCount);
     return 'success';
   }).
   then(function() {
     var expectedCount = 9;
-    expect(element.all(by.css('.edge')).count()).toEqual(expectedCount);
-    testTheCount('anchors', 'edge', expectedCount);
+    expect(element.all(by.css('#viewport .edge')).count()).toEqual(expectedCount);
+    testTheCount('anchors test protocol pathway', 'edge', expectedCount);
     return 'success';
   }).
   then(function() {
     var expectedCount = 9;
-    expect(element.all(by.css('.interaction')).count()).toEqual(expectedCount);
-    testTheCount('anchors', 'GPML Interaction', expectedCount);
+    expect(element.all(by.css('#viewport .interaction')).count()).toEqual(expectedCount);
+    testTheCount('anchors test protocol pathway', 'GPML Interaction', expectedCount);
     return 'success';
   }).
   then(function() {
-    console.log('************** running citations test protocol...');
+    console.log('************** running citations rendering test protocol...');
     ptor.get("http://localhost:3000/test/compare.html?gpml=WP2605");
     return ptor.wait(forElementToBePresent(by.css('#pathvisiojs-is-loaded')), 30 * 1000);
   }).
   then(function() {
     // This is using the direction from APico that citations that apply to an entire pathway
-    // are not to be displayed.
+    // are not to be displayed, so there are actually 6 citation list strings in this
+    // pathway, but only 5 of them are element-specific.
     var expectedCount = 5;
-    expect(element.all(by.css('.citation')).count()).toEqual(expectedCount);
-    testTheCount('citations', 'citation', expectedCount);
+    expect(element.all(by.css('#viewport .citation')).count()).toEqual(expectedCount);
+    testTheCount('citations test protocol pathway', 'element-specific citation list string', expectedCount);
     return 'success';
   }).
   then(function() {
-    var expectedCount = 3;
-    expect(element.all(by.css('.node')).count()).toEqual(expectedCount);
-    testTheCount('citations', 'node', expectedCount);
+    var expectedCount = 6;
+    expect(element.all(by.css('#viewport .node')).count()).toEqual(expectedCount);
+    testTheCount('citations test protocol pathway', 'node', expectedCount);
     return 'success';
   }).
   then(function() {
-    console.log('************** running shapes test protocol...');
+    console.log('************** running shapes rendering test protocol...');
     ptor.get("http://localhost:3000/test/compare.html?gpml=WP2554");
     return ptor.wait(forElementToBePresent(by.css('#pathvisiojs-is-loaded')), 30 * 1000);
   }).
   then(function() {
-    var expectedCount = 32;
-    expect(element.all(by.css('.shape')).count()).toEqual(expectedCount);
-    testTheCount('shapes', 'shape', expectedCount);
+    return ptor.wait(forElementToBePresent(by.css('#pathvisiojs-is-loaded')), 30 * 1000);
+  }).
+  then(function() {
+    var expectedCount = 31;
+    expect(element.all(by.css('#viewport .node')).count()).toEqual(expectedCount);
+    testTheCount('shapes test protocol pathway', 'node', expectedCount);
     return 'success';
   }).
   then(function() {
-    console.log('************** running pathway "WP1"...');
+    console.log('************** attempting to render pathway "WP1"...');
     return ptor.get("http://localhost:3000/test/compare.html?gpml=WP1");
   }).
+    /*
   then(function() {
     loadingIconBeforePathwayLoaded = element.all(by.css('#loading-icon'));
     //expect(loadingIconBeforePathwayLoaded.count()).toEqual(1);
     return 'success';
   }).
+  //*/
   then(function() {
     return ptor.wait(forElementToBePresent(by.css('#pathvisiojs-is-loaded')), 30 * 1000);
   }).
   then(function() {
     var expectedCount = 0;
-    testTheCount('WP1', 'loading icon', expectedCount);
+    testTheCount('WP1 pathway', 'loading icon', expectedCount);
     expect(element.all(by.css('#loading-icon')).count()).toEqual(expectedCount);
     return 'success';
   });
