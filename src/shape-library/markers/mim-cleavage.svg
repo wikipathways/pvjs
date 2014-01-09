@@ -9,17 +9,20 @@
 	xmlns="http://www.w3.org/2000/svg"
 	xmlns:xlink="http://www.w3.org/1999/xlink"
 	xmlns:ev="http://www.w3.org/2001/xml-events"
-	width="12"
-	height="24"
-        refX="10.6"
-        refY="23.4"
-	viewBox="0 0 12 24"
+	width="20"
+	height="30"
+        refXstart="10"
+        refYstart="15"
+        refXend="10"
+        refYend="15"
+	viewBox="0 0 20 30"
 	class="board-fill-color default-stroke-color solid-stroke">
 
 	<!-- mim-cleavage markers: two lines and extended drawing-board rect -->
 
-	<rect stroke="none" x="0" y="11.4" width="10.4" height="1.2" />
-	<line fill="none" stroke-width="1" x1="11" y1="12" x2="11" y2="24"/>	
-	<line fill="none" stroke-width="1" x1="11" y1="24" x2="0" y2="12"/>	
+	<rect stroke="none" x="0" y="14.4" width="18.4" height="1.2" />
+	<line fill="none" stroke-width="1" x1="18" y1="14.5" x2="18" y2="30"/>	
+	<line fill="none" stroke-width="1" x1="18" y1="30" x2="0" y2="0"/>	
+
 
 </svg>
