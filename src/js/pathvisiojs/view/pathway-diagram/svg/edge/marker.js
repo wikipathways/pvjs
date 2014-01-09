@@ -87,8 +87,10 @@ pathvisiojs.view.pathwayDiagram.svg.edge.marker = function(){
       var width = newMarker.attr('width');
       var height = newMarker.attr('height');
       var markerClass = newMarker.attr('class');
-      var refX = newMarker.attr('refX');                                              
-      var refY = newMarker.attr('refY');  
+      var refXstart = newMarker.attr('refXstart');                                              
+      var refYstart = newMarker.attr('refYstart');
+      var refXend = newMarker.attr('refXend');
+      var refYend = newMarker.attr('refYend');  
       var viewBox = newMarker.attr('viewBox');
 
       marker.attr('viewBox', viewBox)
@@ -98,16 +100,18 @@ pathvisiojs.view.pathwayDiagram.svg.edge.marker = function(){
       .attr('orient', 'auto');
 
       if (rotate){
-        marker.attr('refX', refX)
-        .attr('refY', refY);
+	//end marker
+        marker.attr('refX', refXend)
+        .attr('refY', refYend);
         marker.append('g')
         .attr('id', 'g-' + markerId)
         .attr('class', markerClass)
         .attr('style', '-webkit-transform: rotate(180deg); -webkit-transform-origin: 50% 50%;')
         ;
       } else {
-        marker.attr('refX', 0)
-        .attr('refY', height/2);
+	//start marker
+        marker.attr('refX', refXstart)
+        .attr('refY', refYstart);
 
         marker.append('g')
         .attr('id', 'g-' + markerId)
