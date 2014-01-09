@@ -31,6 +31,12 @@ ptor.get("http://localhost:3000/test/compare.html?gpml=WP2545").
     return ptor.wait(forElementToBePresent(by.css('#pathvisiojs-is-loaded')), 30 * 1000);
   }).
   then(function() {
+    var expectedCount = 1;
+    expect(element.all(by.css('#viewport .info-box')).count()).toEqual(expectedCount);
+    testTheCount('anchors test protocol pathway', 'info-box', expectedCount);
+    return 'success';
+  }).
+  then(function() {
     var expectedCount = 11; // should actually be higher, because anchors are nodes. but they aren't being drawn yet.
     testTheCount('anchors test protocol pathway', 'node', expectedCount);
     expect(element.all(by.css('#viewport .node')).count()).toEqual(expectedCount);
@@ -42,22 +48,41 @@ ptor.get("http://localhost:3000/test/compare.html?gpml=WP2545").
     expect(element.all(by.css('#viewport .data-node')).count()).toEqual(expectedCount);
     return 'success';
   }).
-  /*
   then(function() {
-    return expect(element.all(by.css('.metabolite')).count()).toEqual(2);
+    var expectedCount = 1;
+    expect(element.all(by.css('#viewport .gene-product')).count()).toEqual(expectedCount);
+    testTheCount('anchors test protocol pathway', 'gene-product', expectedCount);
+    return 'sucess';
   }).
-  //*/
   then(function() {
-    var expectedCount = 4;
-    expect(element.all(by.css('.shape')).count()).toEqual(expectedCount);
-    testTheCount('anchors test protocol pathway', 'shape', expectedCount);
-    return 'success';
+    var expectedCount = 2;
+    expect(element.all(by.css('#viewport .metabolite')).count()).toEqual(expectedCount);
+    testTheCount('anchors test protocol pathway', 'metabolite', expectedCount);
+    return 'sucess';
   }).
   then(function() {
     var expectedCount = 1;
-    expect(element.all(by.css('#viewport .info-box')).count()).toEqual(expectedCount);
-    testTheCount('anchors test protocol pathway', 'info-box', expectedCount);
-    return 'success';
+    expect(element.all(by.css('#viewport .data-node.pathway')).count()).toEqual(expectedCount);
+    testTheCount('anchors test protocol pathway', 'pathway (as data-node)', expectedCount);
+    return 'sucess';
+  }).
+  then(function() {
+    var expectedCount = 0;
+    expect(element.all(by.css('#viewport .protein')).count()).toEqual(expectedCount);
+    testTheCount('anchors test protocol pathway', 'protein', expectedCount);
+    return 'sucess';
+  }).
+  then(function() {
+    var expectedCount = 0;
+    expect(element.all(by.css('#viewport .rna')).count()).toEqual(expectedCount);
+    testTheCount('anchors test protocol pathway', 'rna', expectedCount);
+    return 'sucess';
+  }).
+  then(function() {
+    var expectedCount = 0;
+    expect(element.all(by.css('#viewport .unknown')).count()).toEqual(expectedCount);
+    testTheCount('anchors test protocol pathway', 'unknown', expectedCount);
+    return 'sucess';
   }).
   then(function() {
     var expectedCount = 9;
