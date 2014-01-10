@@ -13,7 +13,7 @@ pathvisiojs.data.gpml.element.node.groupNode = function() {
     'FontWeight':null
   }
 
-  function getGroupDimensions(group, groupContents, callback) {
+  function getGroupDimensions(group, callback) {
     /*
     console.log('group');
     console.log(group);
@@ -27,6 +27,9 @@ pathvisiojs.data.gpml.element.node.groupNode = function() {
     dimensions.bottomRightCorner = {};
     dimensions.bottomRightCorner.x = 0;
     dimensions.bottomRightCorner.y = 0;
+
+    var groupContents = group.contains;
+    groupContents = pathvisiojs.utilities.convertToArray(groupContents);
     groupContents.forEach(function(groupContent) {
       if (groupContent.renderableType === 'EntityNode') {
         dimensions.topLeftCorner.x = Math.min(dimensions.topLeftCorner.x, groupContent.x);
@@ -50,9 +53,9 @@ pathvisiojs.data.gpml.element.node.groupNode = function() {
 
   function toRenderableJson(pathway, gpmlGroup, pathwayIri, callbackOutside) {
     var jsonGroup = {},
-    groupId;
-    var shapeType,
-    groupType;
+      groupId,
+      shapeType,
+      groupType;
 
     var graphId = gpmlGroup.attr('GraphId') || ('id' + uuid.v4());
     jsonGroup.GraphId = graphId;
@@ -115,26 +118,9 @@ pathvisiojs.data.gpml.element.node.groupNode = function() {
     });
   }
 
-  function calculateImplicitRenderingData(jsonGroup, callbackOutside) {
-    /*
-    console.log('jsonGroup');
-    console.log(jsonGroup);
-    //*/
-    getGroupDimensions(jsonGroup, jsonGroup['contains'], function(dimensions) {
-      jsonGroup.x = dimensions.x;
-      jsonGroup.y = dimensions.y;
-      jsonGroup.width = dimensions.width;
-      jsonGroup.height = dimensions.height;
-      pathvisiojs.data.gpml.element.node.getPorts(jsonGroup, function(ports) {
-        jsonGroup.Port = ports;
-        callbackOutside(jsonGroup);
-      });
-    });
-  }
-
   return {
     toRenderableJson:toRenderableJson,
-    calculateImplicitRenderingData:calculateImplicitRenderingData
+    getGroupDimensions:getGroupDimensions
   };
 }();
 
