@@ -101,8 +101,6 @@ pathvisiojs.data.gpml.node.anchor = function() {
     return jsonAnchors;
   }
 
-
-
   return {
     toRenderableJson:toRenderableJson,
     getAllFromNode:getAllFromNode
