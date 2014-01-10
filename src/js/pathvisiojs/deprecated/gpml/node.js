@@ -34,7 +34,7 @@ pathvisiojs.data.gpml.element.node = function(){
 
       jsonNode.id = gpmlNode.attr('GraphId');
 
-      var jsonAnchorsFromThisNode = pathvisiojs.data.gpml.anchor.getAllFromNode(jsonNode);
+      var jsonAnchorsFromThisNode = pathvisiojs.data.gpml.node.anchor.getAllFromNode(jsonNode);
 
       var color;
       var colorValue = gpmlNode.select('Graphics').attr('Color');

@@ -47,34 +47,40 @@ pathvisiojs.view.pathwayDiagram.svg.edge.interaction = function(){
       }
     }
 
-    var interaction = container.selectAll('#' + strcase.paramCase(data.GraphId))
-    .data([data])
-    .enter().append("path")
-    .attr("class", function (data) {
-      var cssClass = 'edge interaction';
-      if (!!data.DatasourceReference) {
-        cssClass += 'has-xref ';
-      }
-      if (data.hasOwnProperty('strokeStyle')) {
-        if (data.strokeStyle === 'dashed') {
-          cssClass += " dashed-stroke";
+    pathvisiojs.view.pathwayDiagram.svg.edge.render(args, function(interaction) {
+      interaction.attr("class", function (data) {
+        var cssClass = 'edge interaction' + ' ';
+        if (!!data.DatasourceReference) {
+          cssClass += 'has-xref ';
+          if (!!data.DatasourceReference.ID) {
+            interaction.on("click", function(d,i) {
+console.log("HEYYYYYY");
+console.log(d);
+              pathvisiojs.view.annotation.xRef.render(args.pathway.Organism, d['DatasourceReference'].ID, d['DatasourceReference'].Database, d.InteractionGraph[0].interactsWith.text.tspan[0]+' + '+d.InteractionGraph[0].text.tspan[0], d.renderableType); 
+	      //that's capital 'O' Organism from GPML vocab
+	      //names of interaction partners is given as header, which is also used to form site query, thus the "+" is used to convey both the interaction and query logic
+            })
+          }
         }
-      }
-      return cssClass;
-    })
-
-    var containerElement = container[0][0];
-    var containerElementX, containerElementY;
-    if (containerElement.hasOwnProperty('__data__')) {
-      interaction.attr('transform', function() {
-        containerElementX = containerElement.__data__.x || 0;
-        containerElementY = containerElement.__data__.y || 0;
-        return 'translate(' + (-1*containerElementX) + ' ' + (-1*containerElementY) + ')';
+        if (data.hasOwnProperty('strokeStyle')) {
+          if (data.strokeStyle === 'dashed') {
+            cssClass += " dashed-stroke";
+          }
+        }
+        return cssClass;
       })
-    }
 
-    args.edge = interaction;
-    pathvisiojs.view.pathwayDiagram.svg.edge.setAttributes(args);
+      var containerElement = container[0][0];
+      var containerElementX, containerElementY;
+      if (containerElement.hasOwnProperty('__data__')) {
+        interaction.attr('transform', function() {
+          containerElementX = containerElement.__data__.x || 0;
+          containerElementY = containerElement.__data__.y || 0;
+          return 'translate(' + (-1*containerElementX) + ' ' + (-1*containerElementY) + ')';
+        })
+      }
+    });
+
 
     // I want to get the marker name from the interactionType later.
     //pathvisiojs.view.pathwayDiagram.svg.edge.setAttributes(svg, interaction, data, markerStart, markerEnd);
@@ -95,182 +101,6 @@ pathvisiojs.view.pathwayDiagram.svg.edge.interaction = function(){
 
   }
 
-  function setAttributes(interaction) {
-    var interactionElement = interaction[0][0];
-    var data = interactionElement.__data__;
-    var createPathDataString = d3.svg.line()
-    .x(function(data) { return data.x; })
-    .y(function(data) { return data.y; });
-
-    //*
-
-    async.series({
-      'stepTypeAndConvertedPointSet': function(callback) {
-
-        // in GPML, some points are implied, such as for many curves and elbows with only two points.
-        // This code below fills in the implied points, returning the full set of points.
-
-        var stepType, index, firstSegmentHorizontal, currentSegmentHorizontal,
-        convertedPointSet = [];
-
-        if ((!data.ConnectorType) || (data.ConnectorType === undefined) || (data.ConnectorType === 'Straight') || (data.ConnectorType === 'Segmented')) {
-          stepType = 'linear';
-          callback(null, {'convertedPointSet': data.Point, 'stepType': stepType});
-        }
-        else {
-
-          // Elbow and Curved are considered together, because a Curve is just a modification
-          // of an Elbow. The Curve uses the Elbow point set, but it has interpolation of
-          // basis instead of linear.
-
-          if (data.ConnectorType === 'Elbow' || data.ConnectorType === 'Curved') {
-            if (data.ConnectorType === 'Elbow') {
-              stepType = 'linear';
-
-              // The d3.js step-after and step-before would seem to be well-suited for
-              // Elbows, but it won't work for the point set format we are using.
-              // The point set formats we could use include the following:
-              // 1) linear/path-finding.js format: specify a full set of points, meaning
-              // start and end points as well as a point at every change in direction.
-              // 2) PathVisio-Java/GPML format: start and end points plus intermediate
-              // points specifying the mid-points of each Elbow segment.
-              // 3) d3.js step-after and step-before format: start and end points plus
-              // a point for every other change in direction.
-              //
-              // pvjs uses format 1), so that requires a step type of linear. If we
-              // used step-before and step-after, we would need to use format 3) and
-              // the following code:
-
-              /*
-              if (firstSegmentHorizontal) {
-
-                // step-after - alternate between horizontal and vertical segments, as in a step function.
-
-                stepType = 'step-after';
-              }
-              else {
-                stepType = 'step-before';
-              }
-              //*/
-
-            }
-            else {
-              if (data.ConnectorType === 'Curved') {
-                stepType = 'basis';
-              }
-            }
-
-            if (data.Point.length === 2) {
-
-              // GPML specifies just the start and end points and assumes a programmatic
-              // path finding algorithm will fill in the intermediate points, unless
-              // the user explicitly sets the intermediate points by dragging the interaction.
-
-              // fill in intermediate points using default algorithmic layout
-
-              pathvisiojs.view.pathwayDiagram.pathFinder.getPath(svg, data, function(convertedPointSet) {
-                callback(null, {'convertedPointSet': convertedPointSet, 'stepType': stepType});
-              });
-            }
-            else {
-
-              // use user-specified intermediate points. This requires converting from
-              // point set format #2 (see above) to format #1.
-
-              convertedPointSet.push(data.Point[0]);
-
-              if (Math.abs(data.Point[0].RelX) === 1) {
-                firstSegmentHorizontal = true;
-              }
-              else {
-                firstSegmentHorizontal = false;
-              }
-
-              currentSegmentHorizontal = firstSegmentHorizontal;
-              index = 0;
-              do {
-                index += 1;
-
-                if (currentSegmentHorizontal) {
-                  convertedPointSet.push({
-                    'x':data.Point[index].x,
-                    'y':data.Point[index - 1].y
-                  });
-                }
-                else {
-                  convertedPointSet.push({
-                    'x':data.Point[index - 1].x,
-                    'y':data.Point[index].y
-                  });
-                }
-
-                currentSegmentHorizontal = !currentSegmentHorizontal;
-
-              } while (index < data.Point.length - 1);
-
-              convertedPointSet.push(data.Point[data.Point.length - 1]);
-              self.myconvertedPointSet = convertedPointSet;
-              callback(null, {'convertedPointSet': convertedPointSet, 'stepType': stepType});
-            }
-          }
-          else {
-            console.warn('Warning: pathvisiojs does not support connector type: ' + data.ConnectorType + '. Using linear interpolation as fallback.');
-            stepType = 'linear';
-            callback(null, {'convertedPointSet': data.Point, 'stepType': stepType});
-          }
-        }
-      }
-    },
-    function(err, results) {
-
-      //*/
-
-      interaction.attr("id", function(data) { return strcase.paramCase(data.GraphId); })
-      .attr("style", function (data) {
-        var style = 'stroke-width:' + data.strokeWidth + '; ';
-        if (data.hasOwnProperty('stroke')) {
-          style += 'stroke:' + data.stroke + '; ';
-        }
-        if (data.hasOwnProperty('strokeStyle')) {
-          if (data.strokeStyle === 'double') {
-            style += 'stroke-width:' + (3 * data.strokeWidth) + '; ';
-          }
-        }
-        return style;
-      })
-      .attr("fill", 'none')
-
-      // this attr needs to be last, because of the confusion over the meaning of 'd' as 1) the data for the d3 selection and 2) the path data.
-      // Somehow, d (the d3 selection data) gets redefined after this attr is defined.
-
-      //.attr("d", pathData)
-        //*
-      .attr("d", function (data) {
-      /*
-        if (interaction.hasOwnProperty('strokeStyle')) {
-          if (interaction.strokeStyle === 'double') {
-
-            // setting stroke-width equal to its specified line value is
-            // what PathVisio (Java) does, but the white line (overlaying the
-            // thick line to create a "double line") is hard to see at 1px.
-
-            viewport.append("path")
-            .attr("class", interaction.interactionType + "-double")
-            .attr("d", pathData)
-            .attr("class", "stroke-color-equals-default-fill-color")
-            .attr("style", "stroke-width:" + interaction.strokeWidth + '; ')
-            //.attr("marker-start", 'url(#' + pathvisiojs.view.pathwayDiagram.svg.interaction.marker.render(viewport, interaction.markerStart, 'start', interaction.stroke) + ')')
-            .attr("marker-end", 'url(#' + pathvisiojs.view.pathwayDiagram.svg.interaction.marker.render(viewport, strcase.paramCase(edge.interactionType), 'end', edge.stroke) + ')');
-          }
-        }
-        //*/
-
-        createPathDataString.interpolate(results.stepTypeAndConvertedPointSet.stepType);
-
-        return createPathDataString(results.stepTypeAndConvertedPointSet.convertedPointSet);
-      });
-    });
-  }
 
   /*
   function renderAll(viewport, pathway) {

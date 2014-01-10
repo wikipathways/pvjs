@@ -51,10 +51,10 @@ pathvisiojs.data.gpml.element.node.entityNode.toRenderableJson = function(gpmlEn
   // with a similar calculation for gpmlHeight
 
   var gpmlWidth = parseFloat(gpmlEntityNode.select('Graphics').attr('Width'));
-  jsonEntityNode.width = gpmlWidth + borderWidth;
+  jsonEntityNode.width = gpmlWidth + borderWidth; 
 
   var gpmlHeight = parseFloat(gpmlEntityNode.select('Graphics').attr('Height'));
-  jsonEntityNode.height = gpmlHeight + borderWidth;
+  jsonEntityNode.height = gpmlHeight + borderWidth; 
 
   var centerX = parseFloat(gpmlEntityNode.select('Graphics').attr('CenterX'));
   jsonEntityNode.x = centerX - gpmlWidth/2;

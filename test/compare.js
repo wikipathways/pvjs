@@ -131,7 +131,7 @@ function loadExtJsCss(callbackOutside) {
       srcDirectoryUrl + 'js/pathvisiojs/data/gpml/node/entity-node/data-node.js',
       srcDirectoryUrl + 'js/pathvisiojs/data/gpml/node/entity-node/label.js',
       srcDirectoryUrl + 'js/pathvisiojs/data/gpml/node/entity-node/shape.js',
-      srcDirectoryUrl + 'js/pathvisiojs/data/gpml/anchor.js',
+      srcDirectoryUrl + 'js/pathvisiojs/data/gpml/node/anchor.js',
       srcDirectoryUrl + 'js/pathvisiojs/data/gpml/edge/edge.js',
       srcDirectoryUrl + 'js/pathvisiojs/data/gpml/edge/interaction.js',
       srcDirectoryUrl + 'js/pathvisiojs/data/gpml/edge/graphical-line.js',
@@ -143,12 +143,12 @@ function loadExtJsCss(callbackOutside) {
       srcDirectoryUrl + 'js/pathvisiojs/view/pathway-diagram/pathway-diagram.js',
       srcDirectoryUrl + 'js/pathvisiojs/view/pathway-diagram/path-finder.js',
       srcDirectoryUrl + 'js/pathvisiojs/view/pathway-diagram/svg/svg.js',
-      srcDirectoryUrl + 'js/pathvisiojs/view/pathway-diagram/svg/anchor.js',
       srcDirectoryUrl + 'js/pathvisiojs/view/pathway-diagram/svg/grid.js',
       srcDirectoryUrl + 'js/pathvisiojs/view/pathway-diagram/svg/info-box.js',
       srcDirectoryUrl + 'js/pathvisiojs/view/pathway-diagram/svg/symbol.js',
       srcDirectoryUrl + 'js/pathvisiojs/view/pathway-diagram/svg/publication-xref.js',
       srcDirectoryUrl + 'js/pathvisiojs/view/pathway-diagram/svg/node/node.js',
+      srcDirectoryUrl + 'js/pathvisiojs/view/pathway-diagram/svg/node/anchor.js',
       srcDirectoryUrl + 'js/pathvisiojs/view/pathway-diagram/svg/node/entity-node.js',
       srcDirectoryUrl + 'js/pathvisiojs/view/pathway-diagram/svg/node/path-shape/path-shape.js',
       srcDirectoryUrl + 'js/pathvisiojs/view/pathway-diagram/svg/node/path-shape/rounded-rectangle.js',
@@ -238,6 +238,10 @@ window.onload = function() {
       {
         'semanticName': 'mitochondria',
         'url': srcDirectoryUrl + 'shape-library/symbols/mitochondria.svg'
+      },
+      {
+        'semanticName': 'circle',
+        'url': srcDirectoryUrl + 'shape-library/symbols/oval.svg'
       },
       {
         'semanticName': 'oval',
@@ -425,3 +429,30 @@ window.onload = function() {
   }
 }
 
+
+/* *******************
+/* Until we finish automating the Grunt build process, we are manually getting the html template with this function.
+/* *******************/
+
+var getPathvisiojsHtmlTemplate = function() {
+  var svg = d3.select('#pathway-svg');
+  svg.select('#viewport').selectAll('*').remove();
+  var marker, oldMarkerId, newMarkerId;
+  var markers = svg.selectAll('marker');
+  markers.each(function() {
+    marker = d3.select(this);
+    oldMarkerId = marker.attr('id');
+    newMarkerId = 'shape-library' + oldMarkerId.split('-shape-library')[1];
+    marker.attr('id', newMarkerId);
+  });
+
+  var symbol, oldSymbolId, newSymbolId;
+  var symbols = svg.selectAll('symbol');
+  symbols.each(function() {
+    symbol = d3.select(this);
+    oldSymbolId = symbol.attr('id');
+    newSymbolId = 'shape-library' + oldSymbolId.split('-shape-library')[1];
+    symbol.attr('id', newSymbolId);
+  });
+  return d3.select('#pathvisio-js-container')[0][0];
+}

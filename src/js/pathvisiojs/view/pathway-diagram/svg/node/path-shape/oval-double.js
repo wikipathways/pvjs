@@ -25,11 +25,11 @@ pathvisiojs.view.pathwayDiagram.svg.node.pathShape.ovalDouble = function(){
             'l0,' + (11 - nodeHeight) + 
             'z'
         },
-        {
+/*        {
           name:'vector-effect',
           value: 'non-scaling-stroke'
         }
-      ];
+ */     ];
       return attributes;
   }
 
