@@ -14,11 +14,11 @@ pathvisiojs.view.pathwayDiagram.svg.node.pathShape.complex = function(){
             ' L ' + (0) + ' ' + (0 + 18) +
             ' Z'
         },
-        {
+/*        {
           name:'vector-effect',
           value: 'non-scaling-stroke'
         }
-      ];
+*/      ];
       return attributes;
   }
 
