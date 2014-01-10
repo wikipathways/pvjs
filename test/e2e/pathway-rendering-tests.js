@@ -117,7 +117,7 @@ ptor.get("http://localhost:3000/test/compare.html?gpml=WP2545").
     return 'success';
   }).
   then(function() {
-    var expectedCount = 6;
+    var expectedCount = 9;
     expect(element.all(by.css('#viewport .node')).count()).toEqual(expectedCount);
     testTheCount('citations test protocol pathway', 'node', expectedCount);
     return 'success';
@@ -145,6 +145,23 @@ ptor.get("http://localhost:3000/test/compare.html?gpml=WP2545").
     testTheCount('shapes test protocol pathway', 'edge', expectedCount);
     return 'success';
   }).
+  then(function() {
+    console.log('************** running interactions rendering test protocol...');
+    ptor.get("http://localhost:3000/test/compare.html?gpml=WP2557");
+    return ptor.wait(forElementToBePresent(by.css('#pathvisiojs-is-loaded')), 30 * 1000);
+  }).
+  then(function() {
+    var expectedCount = 115; // DataNodes (66), Anchors (26), Shapes (1), Labels (22)
+    expect(element.all(by.css('#viewport .node')).count()).toEqual(expectedCount);
+    testTheCount('interactions test protocol pathway', 'node', expectedCount);
+    return 'success';
+  }).
+  then(function() {
+    var expectedCount = 62;
+    expect(element.all(by.css('#viewport .edge')).count()).toEqual(expectedCount);
+    testTheCount('interactions test protocol pathway', 'edge', expectedCount);
+    return 'success';
+  }).
     /*
   then(function() {
     console.log('************** running curves rendering test protocol...');
@@ -154,7 +171,7 @@ ptor.get("http://localhost:3000/test/compare.html?gpml=WP2545").
     return ptor.wait(forElementToBePresent(by.css('#pathvisiojs-is-loaded')), 30 * 1000);
   }).
   then(function() {
-    var expectedCount = 48;
+    var expectedCount = 51;
     expect(element.all(by.css('#viewport .node')).count()).toEqual(expectedCount);
     testTheCount('curves test protocol pathway', 'node', expectedCount);
     return 'success';
@@ -176,7 +193,7 @@ ptor.get("http://localhost:3000/test/compare.html?gpml=WP2545").
     return ptor.wait(forElementToBePresent(by.css('#pathvisiojs-is-loaded')), 30 * 1000);
   }).
   then(function() {
-    var expectedCount = 48;
+    var expectedCount = 51;
     expect(element.all(by.css('#viewport .node')).count()).toEqual(expectedCount);
     testTheCount('elbows test protocol pathway', 'node', expectedCount);
     return 'success';
@@ -200,7 +217,7 @@ ptor.get("http://localhost:3000/test/compare.html?gpml=WP2545").
     return ptor.sleep(5 * 1000);
   }).
   then(function() {
-    var expectedCount = 24;
+    var expectedCount = 27;
     expect(element.all(by.css('#viewport .node')).count()).toEqual(expectedCount);
     testTheCount('groups test protocol pathway', 'node', expectedCount);
     return 'success';
@@ -209,6 +226,30 @@ ptor.get("http://localhost:3000/test/compare.html?gpml=WP2545").
     var expectedCount = 6;
     expect(element.all(by.css('#viewport .group-node')).count()).toEqual(expectedCount);
     testTheCount('groups test protocol pathway', 'groups, also called group-node', expectedCount);
+    return 'success';
+  }).
+  then(function() {
+    var expectedCount = 2;
+    expect(element.all(by.css('#viewport .complex')).count()).toEqual(expectedCount);
+    testTheCount('groups test protocol pathway', 'groups of type "complex"', expectedCount);
+    return 'success';
+  }).
+  then(function() {
+    var expectedCount = 1;
+    expect(element.all(by.css('#viewport .group-node.group')).count()).toEqual(expectedCount);
+    testTheCount('groups test protocol pathway', 'groups of type "group"', expectedCount);
+    return 'success';
+  }).
+  then(function() {
+    var expectedCount = 2;
+    expect(element.all(by.css('#viewport .group-node.pathway')).count()).toEqual(expectedCount);
+    testTheCount('groups test protocol pathway', 'groups of type "pathway"', expectedCount);
+    return 'success';
+  }).
+  then(function() {
+    var expectedCount = 1;
+    expect(element.all(by.css('#viewport .group-node.none')).count()).toEqual(expectedCount);
+    testTheCount('groups test protocol pathway', 'groups of type "none"', expectedCount);
     return 'success';
   }).
   then(function() {
