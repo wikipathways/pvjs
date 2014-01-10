@@ -14,9 +14,9 @@
 	class="node shape">
 
 	<clipPath id="triangle-clip-path">
-		<polygon points="1,49 49,24 1,1" vector-effect="non-scaling-stroke"/>
+		<polygon points="1,49 49,24 1,1"/>
         </clipPath>
 
-	<polygon points="1,49 49,24 1,1" style="clip-path: url(#triangle-clip-path);" vector-effect="non-scaling-stroke"/>
+	<polygon points="1,49 49,24 1,1" style="clip-path: url(#triangle-clip-path);"/>
 
 </svg>
