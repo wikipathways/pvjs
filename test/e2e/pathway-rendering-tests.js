@@ -37,7 +37,7 @@ ptor.get("http://localhost:3000/test/compare.html?gpml=WP2545").
     return 'success';
   }).
   then(function() {
-    var expectedCount = 11; // should actually be higher, because anchors are nodes. but they aren't being drawn yet.
+    var expectedCount = 21; // includes anchors as nodes
     testTheCount('anchors test protocol pathway', 'node', expectedCount);
     expect(element.all(by.css('#viewport .node')).count()).toEqual(expectedCount);
     return 'success';
