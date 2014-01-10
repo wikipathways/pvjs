@@ -4,7 +4,7 @@ pathvisiojs.view.pathwayDiagram.svg.node.pathShape.roundedRectangleDouble = func
       var attributes = [
         {
           name:'d',
-          value: 'm0,2.5' +
+          value: 'm0,1.5' +
             'c0,-1.35845 1.14155,-10 10,-10' +
             'l' + (nodeWidth - 20) + ',0' + 
             'c1.35844,0 10,1.14155 10,10' + 
@@ -25,11 +25,11 @@ pathvisiojs.view.pathwayDiagram.svg.node.pathShape.roundedRectangleDouble = func
             'l0,' + (26 - nodeHeight) + 
             'z'
         },
-        {
+/*        {
           name:'vector-effect',
           value: 'non-scaling-stroke'
         }
-      ];
+*/      ];
       return attributes;
   }
 
