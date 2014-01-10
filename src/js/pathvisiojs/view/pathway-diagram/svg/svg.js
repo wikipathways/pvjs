@@ -265,10 +265,7 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
       'firstOrderData': function(callbackInside) {
         var firstOrderFrame = {
           '@context': pathvisiojs.context,
-          '@type':['notGrouped', 'GroupNode'],
-          //'contains': {},
-          'InteractionGraph':['Port']
-          
+          '@type':['notGrouped', 'GroupNode']
         };
         jsonld.frame(pathway, firstOrderFrame, function(err, firstOrderData) {
           console.log('firstOrderData');
