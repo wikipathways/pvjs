@@ -63,7 +63,7 @@ pathvisiojs.data.gpml = function(){
         if (gpmlAnchors.length > 0) {
           jsonAnchors = [];
           gpmlAnchors.each(function() {
-            pathvisiojs.data.gpml.anchor.getFromEdge(d3.select(this), function(renderableElement) {
+            pathvisiojs.data.gpml.node.anchor.getFromEdge(d3.select(this), function(renderableElement) {
               jsonAnchors.push(renderableElement);
             });
           });

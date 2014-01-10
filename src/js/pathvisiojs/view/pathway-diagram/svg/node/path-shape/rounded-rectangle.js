@@ -15,11 +15,11 @@ pathvisiojs.view.pathwayDiagram.svg.node.pathShape.roundedRectangle = function()
             'l0,' + (20 - nodeHeight) + 
             'z'
         },
-        {
+/*        {
           name:'vector-effect',
           value: 'non-scaling-stroke'
         }
-      ];
+*/      ];
       return attributes;
   }
 

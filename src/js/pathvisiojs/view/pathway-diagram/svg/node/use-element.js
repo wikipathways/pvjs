@@ -1,4 +1,4 @@
-// Draw nodes. Includes data nodes, shapes, labels, cellular components...
+"use strict"
 
 pathvisiojs.view.pathwayDiagram.svg.node.useElement = function(){
   

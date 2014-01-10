@@ -16,10 +16,10 @@
 	<!-- The line part of this shape has a stroke width set to 1, to make it the same as the circle after clip path is applied -->
 
 	<clipPath id="mim-degradation-circle-clip-path" >
-		<circle cx="50" cy="50" r="49" vector-effect="non-scaling-stroke"/>
+		<circle cx="50" cy="50" r="49" />
   	</clipPath>
   	
-	<circle cx="50" cy="50" r="49" style="clip-path: url(#mim-degradation-circle-clip-path); " vector-effect="non-scaling-stroke"/>
-  	<line  x1="1" y1="1" x2="100" y2="100" stroke-width="1" vector-effect="non-scaling-stroke"/>
+	<circle cx="50" cy="50" r="49" style="clip-path: url(#mim-degradation-circle-clip-path); "/>
+  	<line  x1="1" y1="1" x2="100" y2="100" stroke-width="1" />
 
 </svg>

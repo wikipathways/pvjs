@@ -9,15 +9,18 @@
 	xmlns:ev="http://www.w3.org/2001/xml-events"
 	width="16"
 	height="12"
-        refX="15"
-        refY="6"
-	class="board-fill-color default-stroke-color solid-stroke"
-	viewBox="0 0 16 12">
+        refXstart="-0.5"
+        refYstart="6"
+        refXend="16"
+        refYend="6"
+	viewBox="0 0 16 12"
+	class="board-fill-color default-stroke-color solid-stroke">
 
 	<!-- mim-necessary-stimulation markers: triangular polygons, drawing-board fill, default color stroke; and vertical line -->
 
-	<rect stroke="none" x="0" y="5.4" width="2" height="1.2" />
-	<line fill="none" stroke-width="1" x1="15" y1="0" x2="15" y2="12"/>
+	<rect class="board-fill-color" stroke="none" x="0" y="5.4" width="2" height="1.2" />
+	<line fill="none" stroke-width="1" x1="14" y1="0" x2="14" y2="12"/>
+	<line fill="none" stroke="none" x1="16" y1="6" x2="16" y2="6"/> <!-- dummy point -->
 	<polygon stroke-width="1" points="0,6 9,11 9,1"/>
 
 </svg>

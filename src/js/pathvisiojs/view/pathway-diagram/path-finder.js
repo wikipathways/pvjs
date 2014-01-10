@@ -39,7 +39,7 @@ pathvisiojs.view.pathwayDiagram.pathFinder = function(){
   }
 
   function getPath(svg, edge, callbackOutside) {
-    /*
+    //*
     console.log('svg in path-finder');
     console.log(svg);
     console.log('edge in path-finder');
@@ -66,12 +66,18 @@ pathvisiojs.view.pathwayDiagram.pathFinder = function(){
     // source and a target
 
     var edgeGraphRefNodes = [];
-    edgeGraphRefNodes.push(edge.InteractionGraph[0]);
     var targetNode;
-    //targetNode = edge.InteractionGraph[0].interactsWith;
-    targetNode = edge.InteractionGraph[edge.InteractionGraph.length - 1];
-    if (!!targetNode && edge.InteractionGraph.length > 1) {
-      edgeGraphRefNodes.push(targetNode);
+    if (edge.hasOwnProperty('InteractionGraph')) {
+      edgeGraphRefNodes.push(edge.InteractionGraph[0]);
+      if (edge.InteractionGraph.length === 1) {
+        targetNode = edge.InteractionGraph[0].interactsWith;
+      }
+      else {
+        targetNode = edge.InteractionGraph[edge.InteractionGraph.length - 1];
+      }
+      if (!!targetNode) {
+        edgeGraphRefNodes.push(targetNode);
+      }
     }
 
     // TODO this handles both graphicalLines and Interactions for now, but it's a little clumsy.
@@ -103,17 +109,18 @@ pathvisiojs.view.pathwayDiagram.pathFinder = function(){
         console.log(endLocation);
         //*/
         runPathFinder(workingGrid,
-                      finder,
-                      Point,
-                      pointStart,
-                      pointEnd,
-                      startLocation,
-                      endLocation,
-                      gridData.squareLength,
-                      function(data) {
-          pathData = data;
-          callback(null);
-        });
+          finder,
+          Point,
+          pointStart,
+          pointEnd,
+          startLocation,
+          endLocation,
+          gridData.squareLength,
+          function(data) {
+            pathData = data;
+            callback(null);
+          }
+        );
       },
       function(callback){
 
@@ -124,18 +131,19 @@ pathvisiojs.view.pathwayDiagram.pathFinder = function(){
         if (pathData.length < 3) {
           workingGrid = gridData.emptyGrid.clone();
           runPathFinder(workingGrid,
-                        finder,
-                        Point,
-                        pointStart,
-                        pointEnd,
-                        startLocation,
-                        endLocation,
-                        gridData.squareLength,
-                        function(data) {
-            pathData = data;
-            pathData.push({'x': pointEnd.x, 'y': pointEnd.y});
-          callbackOutside(pathData);
-          });
+            finder,
+            Point,
+            pointStart,
+            pointEnd,
+            startLocation,
+            endLocation,
+            gridData.squareLength,
+            function(data) {
+              pathData = data;
+              pathData.push({'x': pointEnd.x, 'y': pointEnd.y});
+            callbackOutside(pathData);
+            }
+          );
         }
         else {
           callbackOutside(pathData);
@@ -219,6 +227,9 @@ pathvisiojs.view.pathwayDiagram.pathFinder = function(){
   }
 
   function generateGrid(gridData, edgeGraphRefNodes, otherNodes, callback) {
+    console.log('edgeGraphRefNodes');
+    console.log(edgeGraphRefNodes);
+    self.myedgeGraphRefNodes = edgeGraphRefNodes;
     if (!gridData) {
       throw new Error('No gridData specified.');
     }
@@ -294,6 +305,20 @@ pathvisiojs.view.pathwayDiagram.pathFinder = function(){
         ]);
       },
       'ports':function(populateMatrixCallback) {
+        var ports = [];
+        if (!!edgeGraphRefNodes) {
+          edgeGraphRefNodes.forEach(function(edgeGraphRefNode){
+            if (edgeGraphRefNode.hasOwnProperty('Port')) {
+              ports = ports.concat(edgeGraphRefNode.Port);
+            }
+          });
+        }
+        if (!!otherNodes) {
+          otherNodes.forEach(function(otherNode){
+            ports = ports.concat(otherNode.Port);
+          });
+        }
+        /*
         var portFrame = {
           '@context': pathvisiojs.context,
           '@type': 'Port'
@@ -307,7 +332,6 @@ pathvisiojs.view.pathwayDiagram.pathFinder = function(){
           });
         }
         jsonld.frame(allNodesContainer, portFrame, function(err, ports) {
-          /*
           async.series([
             function(portsCallback) {
               var ports = [];
@@ -344,9 +368,9 @@ pathvisiojs.view.pathwayDiagram.pathFinder = function(){
 
             populateMatrixCallback(null, results.ports);
           });
-          //*/
-          populateMatrixCallback(null, ports['@graph']);
         });
+        //*/
+        populateMatrixCallback(null, ports);
       }
     },
     function(err, results) {
@@ -637,6 +661,8 @@ pathvisiojs.view.pathwayDiagram.pathFinder = function(){
 
   return {
     initGrid:initGrid,
+    xYCoordinatesToMatrixLocation:xYCoordinatesToMatrixLocation,
+    matrixLocationToXYCoordinates:matrixLocationToXYCoordinates,
     //generateGridData:generateGridData,
     getPath:getPath
   };
