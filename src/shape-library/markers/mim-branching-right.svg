@@ -7,17 +7,18 @@
 	xmlns="http://www.w3.org/2000/svg"
 	xmlns:xlink="http://www.w3.org/1999/xlink"
 	xmlns:ev="http://www.w3.org/2001/xml-events"
-	width="12"
+	width="4"
 	height="12"
-        refXstart="0"
+        refXstart="0.4"
         refYstart="6"
-        refXend="3.5"
+        refXend="3.6"
         refYend="11.4"
+        viewBox="0 0 4 12"
 	class="board-fill-color default-stroke-color solid-stroke">
 
 	<!-- mim-branching-right markers: line and extended drawing-board rect -->
 
-	<rect stroke="none" x="0" y="5.4" width="3.5" height="1.2" />
-	<line fill="none" stroke-width="1" x1="0" y1="12" x2="3.7" y2="6"/>	
+	<rect stroke="none" x="0.9" y="5.4" width="2.6" height="1.2" />
+	<line fill="none" stroke-width="1" x1="0.2" y1="12" x2="3.9" y2="5.8"/>	
 
 </svg>
