@@ -4,6 +4,17 @@
 
 pathvisiojs.view.pathwayDiagram.svg.edge = function(){
 
+  function getPointAtPositionById(edgeElementId, position) {
+    // position refers to percentage of total length along
+    // edge from start toward end
+
+    var edgeElement = d3.select('#' + edgeElementId)[0][0];
+    var totalLength = edgeElement.getTotalLength();
+    var lengthFromStartToPosition = position * totalLength;
+    var point = edgeElement.getPointAtLength(lengthFromStartToPosition);
+    return point;
+  }
+
   //var svg, customMarkers;
 
   function render(args, callback) {
@@ -245,6 +256,14 @@ pathvisiojs.view.pathwayDiagram.svg.edge = function(){
         return createPathDataString(results.convertedPointSet);
       });
 
+     /****************** 
+       * anchor(s) (note that this method is called from ...EDGE.render() but the result is to render a NODE)
+       * ***************/
+
+      if (data.hasOwnProperty('Anchor')) {
+        pathvisiojs.view.pathwayDiagram.svg.node.anchor.render(container, edgeId, data.Anchor);
+      }
+
       /****************** 
        * citation(s)
        * ***************/
@@ -346,7 +365,8 @@ pathvisiojs.view.pathwayDiagram.svg.edge = function(){
 
 
   return {
-    render:render
+    render:render,
+    getPointAtPositionById:getPointAtPositionById
     //renderAll:renderAll
   };
 }();
