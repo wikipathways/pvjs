@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Pathway xmlns="http://pathvisio.org/GPML/2013a" Name="MAPK Cascade" Last-Modified="10/17/2013" Organism="Bos taurus">
+  <Comment Source="WikiPathways-category">Cellular Process</Comment>
+  <Comment Source="HomologyConvert">This pathway was inferred from Homo sapiens pathway [http://www.wikipathways.org/index.php?title=Pathway:WP422&amp;amp;amp;amp;amp;oldid=21570 WP422(r21570)] with a 84% conversion rate.</Comment>
+  <Graphics BoardWidth="829.2008412197687" BoardHeight="669.4336640940835" />
+  <DataNode TextLabel="MAPK14" GraphId="a66" Type="GeneProduct" GroupRef="e7ebd">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="MAPK14" />
+    <Graphics CenterX="156.5501653803745" CenterY="554.9728041161341" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Entrez Gene" ID="534492" />
+  </DataNode>
+  <DataNode TextLabel="MAP2K3" GraphId="f9a" Type="GeneProduct" GroupRef="b5796">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="MAP2K3" />
+    <Graphics CenterX="593.6960676221983" CenterY="629.4336640940835" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Entrez Gene" ID="516039" />
+  </DataNode>
+  <DataNode TextLabel="MAP2K4" GraphId="c82" Type="GeneProduct" GroupRef="b5796">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="MAP2K4" />
+    <Graphics CenterX="483.44248438074237" CenterY="323.0830576993751" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Entrez Gene" ID="526469" />
+  </DataNode>
+  <DataNode TextLabel="MAPK12" GraphId="d6e" Type="GeneProduct" GroupRef="e7ebd">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="MAPK12" />
+    <Graphics CenterX="317.41025926402494" CenterY="334.3452281994113" Width="60.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Entrez Gene" ID="512943" />
+  </DataNode>
+  <Shape GraphId="ad8" GroupRef="d9e09">
+    <Graphics CenterX="540.8718264416167" CenterY="104.47540278497496" Width="273.3333333333333" Height="8.666666666666666" ZOrder="16384" FillColor="000000" FontSize="10" Valign="Middle" ShapeType="Brace" Rotation="0.0" />
+  </Shape>
+  <Group GroupId="e7ebd" GraphId="f9d2b" GroupRef="c173d" />
+  <Group GroupId="b5796" GraphId="c0c20" GroupRef="c173d" />
+  <Group GroupId="c173d" GraphId="f145e" GroupRef="d9e09" />
+  <Group GroupId="d9e09" GraphId="cb24c" />
+  <InfoBox CenterX="580.0" CenterY="253.33333333333334" />
+</Pathway>
+
