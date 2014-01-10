@@ -1,23 +1,24 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <?xml-stylesheet type="text/css" href="../../css/pathway-diagram.css"?>
 
-<!-- mim-inhibition markers: vertical line; and extended drawing-board rect -->
-
 <svg id="mim-inhibition"
 	version="1.1"
 	baseProfile="full"
 	xmlns="http://www.w3.org/2000/svg"
 	xmlns:xlink="http://www.w3.org/1999/xlink"
 	xmlns:ev="http://www.w3.org/2001/xml-events"
-        width="20"
-        height="20"
-        refX="5"
-        refY="10"
-        class="board-fill-color default-stroke-color solid-stroke">
+	width="10"
+	height="20"
+        refXstart="-0.5"
+        refYstart="10"
+        refXend="8"
+        refYend="10"
+	viewBox="0 0 10 20"
+	class="board-fill-color default-stroke-color solid-stroke">
 
-        <!-- t-bar markers: vertical line; and extended drawing-board rect -->
-
-        <rect stroke="none" x="0" y="9.4" width="5" height="1.2" />
-        <line fill="none" stroke-width="1.8" x1="5" y1="0" x2="5" y2="20"/>
+	<!-- mim-inhibition markers: vertical line; and extended drawing-board rect -->
+	
+	<rect stroke="none" x="0" y="9.4" width="8" height="1.2" />
+	<line fill="none" stroke-width="1.8" x1="7" y1="0" x2="7" y2="20"/>
 
 </svg>

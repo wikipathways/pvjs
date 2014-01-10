@@ -1,4 +1,4 @@
-pathvisiojs.data.gpml.anchor = function() {
+pathvisiojs.data.gpml.node.anchor = function() {
 
   // anchors
   // an anchor is an attachment point at which an edge can originate or terminate.

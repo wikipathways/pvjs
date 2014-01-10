@@ -9,14 +9,17 @@
 	xmlns:ev="http://www.w3.org/2001/xml-events"
 	width="12"
 	height="12"
-        refX="11"
-        refY="6"
+        refXstart="-0.5"
+        refYstart="6"
+        refXend="12"
+        refYend="6"
 	class="board-fill-color default-stroke-color solid-stroke"
 	viewBox="0 0 12 12">
 
 	<!-- mim-stimulation markers: triangular polygons, drawing-board fill, default color stroke -->
 
 	<rect class="board-fill-color" stroke="none" x="0" y="5.4" width="2" height="1.2" />
-	<polygon stroke-width="1" points="11,11 0,6 11,1"/>
+	<line stroke="none" fill="none" x1="12" y1="6" x2="12" y2="6" /> <!-- dummy point -->
+	<polygon stroke-width="1" points="0,6 11,11 11,1"/>
 
 </svg>
