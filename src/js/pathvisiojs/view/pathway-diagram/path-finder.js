@@ -661,6 +661,8 @@ pathvisiojs.view.pathwayDiagram.pathFinder = function(){
 
   return {
     initGrid:initGrid,
+    xYCoordinatesToMatrixLocation:xYCoordinatesToMatrixLocation,
+    matrixLocationToXYCoordinates:matrixLocationToXYCoordinates,
     //generateGridData:generateGridData,
     getPath:getPath
   };
