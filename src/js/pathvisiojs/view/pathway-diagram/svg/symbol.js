@@ -20,6 +20,7 @@ pathvisiojs.view.pathwayDiagram.svg.symbol = function(){
     'rectangle':'shape-library-symbols-rectangle-svg',
     'sarcoplasmic-reticulum':'shape-library-symbols-sarcoplasmic-reticulum-svg',
     'triangle':'shape-library-symbols-triangle-svg',
+    'circle':'shape-library-symbols-oval-svg',
     'none':'shape-library-symbols-none-svg'
   };
 
