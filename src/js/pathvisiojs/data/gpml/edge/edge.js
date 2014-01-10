@@ -93,7 +93,7 @@ pathvisiojs.data.gpml.edge = function(){
     }
     //*/
 
-    pathvisiojs.data.gpml.anchor.toRenderableJson(gpmlEdge, jsonEdge, 'edge', pathwayIri, function(jsonEdge) {
+    pathvisiojs.data.gpml.node.anchor.toRenderableJson(gpmlEdge, jsonEdge, 'edge', pathwayIri, function(jsonEdge) {
       pathvisiojs.data.gpml.element.toRenderableJson(gpmlEdge, jsonEdge, function(jsonEdge) {
         callback(jsonEdge);
       });

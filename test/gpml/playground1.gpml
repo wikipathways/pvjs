@@ -23,7 +23,7 @@
       <Point X="217.9746094554405" Y="366.2866474943658" GraphRef="a32cc" RelX="0.0" RelY="0.0" />
       <Point X="341.4012738853503" Y="299.00814088948545" />
       <Point X="489.45957272057944" Y="231.7296342846051" GraphRef="ca19d" RelX="-1.0" RelY="-0.5" ArrowHead="Arrow" />
-      <Anchor Position="0.34870209571951927" Shape="Circle" GraphId="bd89f" />
+      <Anchor Position="0.34870209571951927" Shape="None" GraphId="bd89f" />
       <Anchor Position="0.08080084935034008" Shape="Circle" GraphId="c7c04" />
     </Graphics>
     <Xref Database="" ID="" />
@@ -90,7 +90,7 @@
       <Anchor Position="0.46471360827773617" Shape="Circle" GraphId="a32cc" />
       <Anchor Position="0.7683490000759361" Shape="Circle" GraphId="df37d" />
       <Anchor Position="0.12532823216518313" Shape="Circle" GraphId="ecf03" />
-      <Anchor Position="0.6392031830525495" Shape="Circle" />
+      <Anchor Position="0.6362984549721387" Shape="None" />
     </Graphics>
     <Xref Database="" ID="" />
   </Interaction>
