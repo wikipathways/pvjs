@@ -13,13 +13,13 @@
 	height="12"
         refXstart="0"
         refYstart="6"
-        refXend="11"
+        refXend="12"
         refYend="6"
 	class="board-fill-color default-stroke-color solid-stroke"
 	viewBox="0 0 12 12">
 
 	<!-- mim-catalysis markers: circle, drawing-board fill and default color stroke -->
 
-	<circle cx="6" cy="6" r="5.3px" stroke-width="1px"/>
+	<circle cx="6.1" cy="6" r="5.3px" stroke-width="1px"/>
 
 </svg>
