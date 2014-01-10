@@ -50,7 +50,7 @@ ptor.get("http://localhost:3000/test/compare.html?gpml=WP2545").
   }).
   then(function() {
     var expectedCount = 4;
-    testTheCount('anchors', 'DataNode', expectedCount);
+    testTheCount('anchors test protocol pathway', 'DataNode', expectedCount);
     expect(element.all(by.css('#viewport .data-node')).count()).toEqual(expectedCount);
     return 'success';
   }).
@@ -123,11 +123,14 @@ ptor.get("http://localhost:3000/test/compare.html?gpml=WP2545").
     return 'success';
   }).
   then(function() {
-    console.log('************** running shapes rendering test protocol...');
-    ptor.get("http://localhost:3000/test/compare.html?gpml=WP2554");
-    return ptor.wait(forElementToBePresent(by.css('#pathvisiojs-is-loaded')), 30 * 1000);
+    var expectedCount = 3;
+    expect(element.all(by.css('#viewport .edge')).count()).toEqual(expectedCount);
+    testTheCount('citations test protocol pathway', 'edge', expectedCount);
+    return 'success';
   }).
   then(function() {
+    console.log('************** running shapes rendering test protocol...');
+    ptor.get("http://localhost:3000/test/compare.html?gpml=WP2554");
     return ptor.wait(forElementToBePresent(by.css('#pathvisiojs-is-loaded')), 30 * 1000);
   }).
   then(function() {
@@ -137,8 +140,87 @@ ptor.get("http://localhost:3000/test/compare.html?gpml=WP2545").
     return 'success';
   }).
   then(function() {
+    var expectedCount = 0;
+    expect(element.all(by.css('#viewport .edge')).count()).toEqual(expectedCount);
+    testTheCount('shapes test protocol pathway', 'edge', expectedCount);
+    return 'success';
+  }).
+    /*
+  then(function() {
+    console.log('************** running curves rendering test protocol...');
+    ptor.get("http://localhost:3000/test/compare.html?gpml=WP2546");
+  }).
+  then(function() {
+    return ptor.wait(forElementToBePresent(by.css('#pathvisiojs-is-loaded')), 30 * 1000);
+  }).
+  then(function() {
+    var expectedCount = 48;
+    expect(element.all(by.css('#viewport .node')).count()).toEqual(expectedCount);
+    testTheCount('curves test protocol pathway', 'node', expectedCount);
+    return 'success';
+  }).
+  then(function() {
+    return ptor.sleep(5 * 1000);
+  }).
+  then(function() {
+    var expectedCount = 23;
+    expect(element.all(by.css('#viewport .edge')).count()).toEqual(expectedCount);
+    testTheCount('curves test protocol pathway', 'edge', expectedCount);
+    return 'success';
+  }).
+  then(function() {
+    console.log('************** running elbows rendering test protocol...');
+    ptor.get("http://localhost:3000/test/compare.html?gpml=WP2548");
+  }).
+  then(function() {
+    return ptor.wait(forElementToBePresent(by.css('#pathvisiojs-is-loaded')), 30 * 1000);
+  }).
+  then(function() {
+    var expectedCount = 48;
+    expect(element.all(by.css('#viewport .node')).count()).toEqual(expectedCount);
+    testTheCount('elbows test protocol pathway', 'node', expectedCount);
+    return 'success';
+  }).
+  then(function() {
+    return ptor.sleep(5 * 1000);
+  }).
+  then(function() {
+    var expectedCount = 23;
+    expect(element.all(by.css('#viewport .edge')).count()).toEqual(expectedCount);
+    testTheCount('elbows test protocol pathway', 'edge', expectedCount);
+    return 'success';
+  }).
+  //*/
+  then(function() {
+    console.log('************** running groups rendering test protocol...');
+    ptor.get("http://localhost:3000/test/compare.html?gpml=WP2551");
+    return ptor.wait(forElementToBePresent(by.css('#pathvisiojs-is-loaded')), 30 * 1000);
+  }).
+  then(function() {
+    return ptor.sleep(5 * 1000);
+  }).
+  then(function() {
+    var expectedCount = 24;
+    expect(element.all(by.css('#viewport .node')).count()).toEqual(expectedCount);
+    testTheCount('groups test protocol pathway', 'node', expectedCount);
+    return 'success';
+  }).
+  then(function() {
+    var expectedCount = 6;
+    expect(element.all(by.css('#viewport .group-node')).count()).toEqual(expectedCount);
+    testTheCount('groups test protocol pathway', 'groups, also called group-node', expectedCount);
+    return 'success';
+  }).
+  then(function() {
+    var expectedCount = 9;
+    expect(element.all(by.css('#viewport .edge')).count()).toEqual(expectedCount);
+    testTheCount('groups test protocol pathway', 'edge', expectedCount);
+    return 'success';
+  }).
+  then(function() {
     console.log('************** attempting to render pathway "WP1"...');
-    return ptor.get("http://localhost:3000/test/compare.html?gpml=WP1");
+    ptor.get("http://localhost:3000/test/compare.html?gpml=WP1");
+    return ptor.wait(forElementToBePresent(by.css('#pathvisiojs-is-loaded')), 30 * 1000);
   }).
     /* even though this is actually working, the test fails. not sure how to test for
     //* the loading icon showing before the pathway diagram loads
@@ -148,9 +230,6 @@ ptor.get("http://localhost:3000/test/compare.html?gpml=WP2545").
     return 'success';
   }).
   //*/
-  then(function() {
-    return ptor.wait(forElementToBePresent(by.css('#pathvisiojs-is-loaded')), 30 * 1000);
-  }).
   then(function() {
     var expectedCount = 0;
     testTheCount('WP1 pathway', 'loading icon', expectedCount);
