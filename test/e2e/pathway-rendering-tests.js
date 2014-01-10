@@ -43,6 +43,12 @@ ptor.get("http://localhost:3000/test/compare.html?gpml=WP2545").
     return 'success';
   }).
   then(function() {
+    var expectedCount = 10;
+    testTheCount('anchors test protocol pathway', 'anchor', expectedCount);
+    expect(element.all(by.css('#viewport .anchor')).count()).toEqual(expectedCount);
+    return 'success';
+  }).
+  then(function() {
     var expectedCount = 4;
     testTheCount('anchors', 'DataNode', expectedCount);
     expect(element.all(by.css('#viewport .data-node')).count()).toEqual(expectedCount);
@@ -134,10 +140,11 @@ ptor.get("http://localhost:3000/test/compare.html?gpml=WP2545").
     console.log('************** attempting to render pathway "WP1"...');
     return ptor.get("http://localhost:3000/test/compare.html?gpml=WP1");
   }).
-    /*
+    /* even though this is actually working, the test fails. not sure how to test for
+    //* the loading icon showing before the pathway diagram loads
   then(function() {
     loadingIconBeforePathwayLoaded = element.all(by.css('#loading-icon'));
-    //expect(loadingIconBeforePathwayLoaded.count()).toEqual(1);
+    expect(loadingIconBeforePathwayLoaded.count()).toEqual(1);
     return 'success';
   }).
   //*/
@@ -149,9 +156,82 @@ ptor.get("http://localhost:3000/test/compare.html?gpml=WP2545").
     testTheCount('WP1 pathway', 'loading icon', expectedCount);
     expect(element.all(by.css('#loading-icon')).count()).toEqual(expectedCount);
     return 'success';
+  }).
+  then(function() {
+    var expectedCount = 1;
+    expect(element.all(by.css('#viewport .info-box')).count()).toEqual(expectedCount);
+    testTheCount('WP1 pathway', 'info-box', expectedCount);
+    return 'success';
+  }).
+  then(function() {
+    var expectedCount = 52; // includes anything a line can snap to: anchors (12), groups (1), shapes (2), labels (11), data-nodes(26), etc.
+    testTheCount('WP1 pathway', 'node', expectedCount);
+    expect(element.all(by.css('#viewport .node')).count()).toEqual(expectedCount);
+    return 'success';
+  }).
+  then(function() {
+    var expectedCount = 12;
+    testTheCount('WP1 pathway', 'anchor', expectedCount);
+    expect(element.all(by.css('#viewport .anchor')).count()).toEqual(expectedCount);
+    return 'success';
+  }).
+  then(function() {
+    var expectedCount = 26;
+    testTheCount('WP1 pathway', 'DataNode', expectedCount);
+    expect(element.all(by.css('#viewport .data-node')).count()).toEqual(expectedCount);
+    return 'success';
+  }).
+  then(function() {
+    var expectedCount = 20;
+    expect(element.all(by.css('#viewport .gene-product')).count()).toEqual(expectedCount);
+    testTheCount('WP1 pathway', 'gene-product', expectedCount);
+    return 'sucess';
+  }).
+  then(function() {
+    var expectedCount = 6;
+    expect(element.all(by.css('#viewport .metabolite')).count()).toEqual(expectedCount);
+    testTheCount('WP1 pathway', 'metabolite', expectedCount);
+    return 'sucess';
+  }).
+  then(function() {
+    var expectedCount = 0;
+    expect(element.all(by.css('#viewport .data-node.pathway')).count()).toEqual(expectedCount);
+    testTheCount('WP1 pathway', 'pathway (as data-node)', expectedCount);
+    return 'sucess';
+  }).
+  then(function() {
+    var expectedCount = 0;
+    expect(element.all(by.css('#viewport .protein')).count()).toEqual(expectedCount);
+    testTheCount('WP1 pathway', 'protein', expectedCount);
+    return 'sucess';
+  }).
+  then(function() {
+    var expectedCount = 0;
+    expect(element.all(by.css('#viewport .rna')).count()).toEqual(expectedCount);
+    testTheCount('WP1 pathway', 'rna', expectedCount);
+    return 'sucess';
+  }).
+  then(function() {
+    var expectedCount = 0;
+    expect(element.all(by.css('#viewport .unknown')).count()).toEqual(expectedCount);
+    testTheCount('WP1 pathway', 'unknown', expectedCount);
+    return 'sucess';
+  }).
+  then(function() {
+    var expectedCount = 32; // 0 GraphicalLines
+    expect(element.all(by.css('#viewport .edge')).count()).toEqual(expectedCount);
+    testTheCount('WP1 pathway', 'edge', expectedCount);
+    return 'success';
+  }).
+  then(function() {
+    var expectedCount = 32;
+    expect(element.all(by.css('#viewport .interaction')).count()).toEqual(expectedCount);
+    testTheCount('WP1 pathway', 'GPML Interaction', expectedCount);
+    return 'success';
   });
 
+
 describe('shapes', function() {
-  it('should have 32 Shapes', function() {
+  it('should have 31 Shapes', function() {
   });
 });
