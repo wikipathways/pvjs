@@ -9,15 +9,16 @@
 	xmlns:ev="http://www.w3.org/2001/xml-events"
 	width="12"
 	height="12"
-        refXstart="0"
+        refXstart="0.4"
         refYstart="6"
-        refXend="3.5"
+        refXend="3.7"
         refYend="0.6"
+	viewBox="0 0 12 12"
 	class="board-fill-color default-stroke-color solid-stroke">
 
 	<!-- mim-branching-left markers: line and extended drawing-board rect -->
 
-	<rect stroke="none" x="0" y="5.4" width="3.5" height="1.2" />
-	<line fill="none" stroke-width="1" x1="3.7" y1="6" x2="0" y2="0"/>	
+	<rect stroke="none" x="0.9" y="5.4" width="2.6" height="1.2" />
+	<line fill="none" stroke-width="1" x1="3.9" y1="6.2" x2="0.2" y2="0"/>	
 
 </svg>
