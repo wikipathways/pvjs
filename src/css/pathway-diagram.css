@@ -201,7 +201,8 @@
 
   .cellular-component {
 		fill-opacity: 0;
-		stroke: lightgray;
+		stroke: silver;
+		stroke-width: 3;
 	}
 
   .graphical-line {
