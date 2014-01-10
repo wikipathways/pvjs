@@ -151,6 +151,9 @@ ptor.get("http://localhost:3000/test/compare.html?gpml=WP2545").
     return ptor.wait(forElementToBePresent(by.css('#pathvisiojs-is-loaded')), 30 * 1000);
   }).
   then(function() {
+    return ptor.sleep(3 * 1000);
+  }).
+  then(function() {
     var expectedCount = 115; // DataNodes (66), Anchors (26), Shapes (1), Labels (22)
     expect(element.all(by.css('#viewport .node')).count()).toEqual(expectedCount);
     testTheCount('interactions test protocol pathway', 'node', expectedCount);
