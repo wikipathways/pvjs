@@ -32,54 +32,8 @@ and the following stylesheets:
   * pan-zoom.css
   * pathway-diagram.css
 
-You can make it run in the browser by copying the following snippet:
+You can make it run in the browser by copying one of the [pathvisiojs load snippets](https://gist.github.com/ariutta/8377189).
 
-```
-  <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css" media="screen">
-  <link rel="stylesheet" href="http://wikipathways.github.io/pathvisiojs/src/css/pathvisiojs.css" media="screen">
-  <link rel="stylesheet" href="http://wikipathways.github.io/pathvisiojs/src/css/annotation.css" media="screen">
-  <link rel="stylesheet" href="http://wikipathways.github.io/pathvisiojs/src/css/pan-zoom.css" media="screen">
-  <link rel="stylesheet" href="http://wikipathways.github.io/pathvisiojs/src/css/pathway-diagram.css" media="screen">
-  <script src="http://wikipathways.github.io/pathvisiojs/lib/rgb-color/rgb-color.min.js"></script>
-  <script src="http://wikipathways.github.io/pathvisiojs/lib/strcase/build/build.js"></script>
-  <script src="http://wikipathways.github.io/pathvisiojs/lib/async/lib/async.js"></script>
-  <script src="http://wikipathways.github.io/pathvisiojs/lib/d3/d3.min.js"></script>
-  <script src="http://wikipathways.github.io/pathvisiojs/lib/jquery/jquery.min.js"></script>
-  <script src="http://wikipathways.github.io/pathvisiojs/lib/typeahead.js/dist/typeahead.min.js"></script>
-  <script src="http://wikipathways.github.io/pathvisiojs/lib/modernizr/modernizr.js"></script>
-  <script src="http://wikipathways.github.io/pathvisiojs/lib/screenfull/dist/screenfull.min.js"></script>
-  <script src="http://wikipathways.github.io/pathvisiojs/lib/svg-pan-zoom/svg-pan-zoom.js"></script>
-  <script src="http://wikipathways.github.io/pathvisiojs/lib/PathFinding.js/lib/pathfinding-browser.min.js"></script>
-  <script src="http://wikipathways.github.io/pathvisiojs/lib/jsonld.js/js/jsonld.js"></script>
-  <script src="http://wikipathways.github.io/pathvisiojs/lib/jsonld.js/js/Promise.js"></script>
-  <script src="http://wikipathways.github.io/pathvisiojs/lib/jsonld.js/js/rdfa.js"></script>
-  <script src="http://wikipathways.github.io/pathvisiojs/build/js/pathvisio.min.js"></script>
-```
-Or something like this in PHP:
-
-```
-$scripts = array(
-        "$wgScriptPath/wpi/lib/js/rgb-color.min.js",
-        "$wgScriptPath/wpi/lib/strcase/build/build.js",
-        "$wgScriptPath/wpi/lib/js/async.js",
-        "$wgScriptPath/wpi/lib/js/d3.min.js",
-        "$wgScriptPath/wpi/lib/js/jquery.min.js",                                                                                                                                                                          
-        "$wgScriptPath/wpi/lib/js/typeahead.min.js",
-        "$wgScriptPath/wpi/lib/js/modernizr.js",                                                                                                                                                                           
-        "$wgScriptPath/wpi/lib/js/screenfull.min.js",
-        "$wgScriptPath/wpi/lib/js/svg-pan.js",
-        "$wgScriptPath/wpi/lib/js/pathfinding-browser.min.js",
-        "$wgScriptPath/wpi/lib/js/pathvisio.min.js"
-); 
-
-$libs = "<script type=\"text/javascript\">" . $scripts . "</script>
- <link rel=\"stylesheet\" href=\"http://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css\" media=\"screen\" type=\"text/css\" />
- <link rel=\"stylesheet\" href=\"http://wikipathways.github.io/pathvisiojs/src/css/pathvisiojs.css\" media=\"screen\" type=\"text/css\" />
- <link rel=\"stylesheet\" href=\"http://wikipathways.github.io/pathvisiojs/src/css/annotation.css\" media=\"screen\" type=\"text/css\" />
- <link rel=\"stylesheet\" href=\"http://wikipathways.github.io/pathvisiojs/src/css/pan-zoom.css\" media=\"screen\" type=\"text/css\" />
- <link rel=\"stylesheet\" href=\"http://wikipathways.github.io/pathvisiojs/src/css/pathway-diagram.css\" media=\"screen\" type=\"text/css\" />\n";
-                        
-```
 How To Get Involved
 ===================
 
