@@ -28,9 +28,9 @@ npm install #this command uses npm (the node package manager) to install pathvis
 B. Install the Chromedriver and other browser plugins for WebDriver manager. Do this from the terminal with:
 
 ```
-cd ~/Sites/pathvisiojs/pathvisiojs/node_modules/protractor/bin/ #update this to where the pathvisiojs directory is actually located on your computer
+cd ~/Sites/pathvisiojs/node_modules/protractor/bin/ #update this to where the pathvisiojs directory is actually located on your computer
 webdriver-manager update
 webdriver-manager start #Starts webdriver server
-cd ~/Sites/pathvisiojs/pathvisiojs/test/ #update this to where the pathvisiojs directory is actually located on your computer
+cd ~/Sites/pathvisiojs/test/ #update this to where the pathvisiojs directory is actually located on your computer
 protractor run.js #Run the tests and gives results in the terminal
 ```
