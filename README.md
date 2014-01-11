@@ -92,9 +92,9 @@ A. Get the Latest Code
 * Once Github takes you to your newly created fork, find the "HTTPS clone URL," copy it and open a terminal on your dev machine and enter the following command:
 
 ```
-cd ~/Sites/ #or another directory of your preference
-git clone https://github.com/YOUR-GITHUB-ACCOUNT/pathvisiojs.git #replace YOUR-GITHUB-ACCOUNT with the appropriate value for you
-cd pathvisiojs
+$ cd ~/Sites/ #or another directory of your preference
+$ git clone https://github.com/YOUR-GITHUB-ACCOUNT/pathvisiojs.git #replace YOUR-GITHUB-ACCOUNT with the appropriate value for you
+$ cd pathvisiojs
 ```
 
 2. If you've already forked and cloned pathvisiojs in the past, use either step a) or b) below to get the latest code.
@@ -110,17 +110,17 @@ YOUR-GITHUB-ACCOUNT:master ... wikipathways:master
 * Accept pull request (if github says that the pull request cannot be done automatically, you will need to merge the files from the command line. Let Anders or Alex know and they can help.)
 
 ```
-cd ~/Sites/pathvisiojs/ #update this to where the pathvisiojs directory is actually located on your computer  
-git pull origin master
+$ cd ~/Sites/pathvisiojs/ #update this to where the pathvisiojs directory is actually located on your computer  
+$ git pull origin master
 ```
 
 b. Command line interface
 * Add the wikipathways pathvisiojs repo as a remote named wikipathways with the following command
 
 ```
-cd ~/Sites/pathvisiojs/ #use the location where the pathvisiojs directory is actually located on your computer  
-git remote add wikipathways https://github.com/wikipathways/pathvisiojs.git #if you haven't already done this
-git pull wikipathways master
+$ cd ~/Sites/pathvisiojs/ #use the location where the pathvisiojs directory is actually located on your computer  
+$ git remote add wikipathways https://github.com/wikipathways/pathvisiojs.git #if you haven't already done this
+$ git pull wikipathways master
 ```
 
 B. Make Awesome Updates
@@ -128,13 +128,13 @@ B. Make Awesome Updates
 You can edit any of the files in the ["src" directory](https://github.com/wikipathways/pathvisiojs/tree/master/src):
 
 ```
-cd ~/Sites/pathvisiojs/src/ #update this to where the pathvisiojs directory is actually located on your computer
+$ cd ~/Sites/pathvisiojs/src/ #update this to where the pathvisiojs directory is actually located on your computer
 ```
 
 To view your changes as you edit, you can use the functionalities in the ["test" directory](https://github.com/wikipathways/pathvisiojs/tree/master/test):
 
 ```
-cd ~/Sites/pathvisiojs/src/test/ #update this to where the pathvisiojs directory is actually located on your computer
+$ cd ~/Sites/pathvisiojs/src/test/ #update this to where the pathvisiojs directory is actually located on your computer
 ```
 
 The [README](https://github.com/wikipathways/pathvisiojs/tree/master/test/README.md) in this directory includes information on how to view diagrams during development and how to run tests.
