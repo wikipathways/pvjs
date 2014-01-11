@@ -1,13 +1,5 @@
 pathvisiojs.view.pathwayDiagram.svg.node.pathShape = function(){
   function render(parent, data) {
-    var node = parent.append("path")
-    .data([data])
-    .attr("id", function (d) {return 'node-' + strcase.paramCase(d['@id']);})
-    .attr("class", function (d) {
-      var cssClass = 'symbol ';
-      return cssClass;
-    })
-
     var re;
     var pathShapeNameToUse = strcase.camelCase(data.ShapeType);
     if (!pathvisiojs.view.pathwayDiagram.svg.node.pathShape.hasOwnProperty(pathShapeNameToUse)) {
@@ -22,9 +14,30 @@ pathvisiojs.view.pathwayDiagram.svg.node.pathShape = function(){
       }
     }
 
+    var g = parent.append("g");
+
     var nodeAttributes = pathvisiojs.view.pathwayDiagram.svg.node.pathShape[pathShapeNameToUse].getAttributes(data.width, data.height);
     nodeAttributes.forEach(function(attribute) {
-      node.attr(attribute.name, attribute.value)
+      var stroke = 1;
+      if(!isNaN(data.borderWidth)){
+	stroke = data.borderWidth;
+      }
+      g.attr("stroke-width", stroke);
+
+      //if scaling is required, then calculate a transform and new stroke
+      if(attribute.class == 'gscale'){
+	var newstroke = stroke / ((data.width + data.height) / 200);
+	g.attr("transform", "scale("+data.width/100+", "+data.height/100+")")
+	 .attr("stroke-width", newstroke);
+      }
+      var node = g.append("path")
+      .data([data])
+      .attr("id", function (d) {return 'node-' + strcase.paramCase(d['@id']);})
+      .attr("class", function (d) {
+        var cssClass = attribute.class + ' symbol ';
+        return cssClass;
+      })
+      .attr(attribute.name, attribute.path)
     });
   }
 
