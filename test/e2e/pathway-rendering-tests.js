@@ -133,6 +133,7 @@ ptor.get("http://localhost:3000/test/compare.html?gpml=WP2545").
     ptor.get("http://localhost:3000/test/compare.html?gpml=WP2554");
     return ptor.wait(forElementToBePresent(by.css('#pathvisiojs-is-loaded')), 30 * 1000);
   }).
+  /*
   then(function() {
     var expectedCount = 31;
     expect(element.all(by.css('#viewport .node')).count()).toEqual(expectedCount);
@@ -145,11 +146,13 @@ ptor.get("http://localhost:3000/test/compare.html?gpml=WP2545").
     testTheCount('shapes test protocol pathway', 'edge', expectedCount);
     return 'success';
   }).
+  //*/
   then(function() {
     console.log('************** running interactions rendering test protocol...');
     ptor.get("http://localhost:3000/test/compare.html?gpml=WP2557");
     return ptor.wait(forElementToBePresent(by.css('#pathvisiojs-is-loaded')), 30 * 1000);
   }).
+/*
   then(function() {
     return ptor.sleep(3 * 1000);
   }).
@@ -165,6 +168,7 @@ ptor.get("http://localhost:3000/test/compare.html?gpml=WP2545").
     testTheCount('interactions test protocol pathway', 'edge', expectedCount);
     return 'success';
   }).
+  //*/
     /*
   then(function() {
     console.log('************** running curves rendering test protocol...');
