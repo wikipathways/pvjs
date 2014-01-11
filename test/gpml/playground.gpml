@@ -1,41 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Pathway xmlns="http://pathvisio.org/GPML/2013a" Name="playground for testing" Version="20130813" Organism="Anopheles gambiae">
-  <Graphics BoardWidth="819.8460645990014" BoardHeight="572.4223589616092" />
-  <DataNode TextLabel="GeneProduct" GraphId="f2727" Type="GeneProduct" GroupRef="c573b">
-    <Graphics CenterX="395.49112827630967" CenterY="300.61843251263696" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+  <Graphics BoardWidth="693.2159847764035" BoardHeight="340.61843251263696" />
+  <DataNode TextLabel="GeneProduct" GraphId="ad328" Type="GeneProduct">
+    <Graphics CenterX="180.45738045738048" CenterY="118.0873180873181" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
     <Xref Database="" ID="" />
   </DataNode>
-  <DataNode TextLabel="Metabolite" GraphId="fab35" Type="Metabolite" GroupRef="c573b">
-    <Graphics CenterX="380.5899143672693" CenterY="265.4614652711703" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff" />
-    <Xref Database="" ID="" />
-  </DataNode>
-  <DataNode TextLabel="Metabolite" GraphId="bd8f1" Type="Metabolite">
-    <Graphics CenterX="623.2159847764035" CenterY="181.73168411037108" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff" />
-    <Xref Database="" ID="" />
-  </DataNode>
-  <DataNode TextLabel="GeneProduct" GraphId="ddf5c" Type="GeneProduct">
-    <Graphics CenterX="298.1326464906632" CenterY="91.43593045717964" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
-    <Xref Database="" ID="" />
-  </DataNode>
-  <DataNode TextLabel="Protein" GraphId="a1a5d" Type="Protein">
-    <Graphics CenterX="441.08177720540886" CenterY="84.9967804249839" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
-    <Xref Database="" ID="" />
-  </DataNode>
-  <Interaction>
+  <Interaction GroupRef="ca881">
     <Graphics ZOrder="12288" LineThickness="1.0">
-      <Point X="338.1326464906632" Y="91.43593045717964" GraphRef="ddf5c" RelX="1.0" RelY="0.0" />
-      <Point X="401.08177720540886" Y="84.9967804249839" GraphRef="a1a5d" RelX="-1.0" RelY="0.0" ArrowHead="mim-binding" />
+      <Point X="268.6840898670335" Y="78.7757909215956" />
+      <Point X="436.0385144429161" Y="108.20724438331041" ArrowHead="Arrow" />
     </Graphics>
     <Xref Database="" ID="" />
   </Interaction>
-  <Interaction>
-    <Graphics ConnectorType="Elbow" ZOrder="12288" LineThickness="1.0">
-      <Point X="447.49112827630967" Y="283.03994889190363" GraphRef="c81a1" RelX="1.0" RelY="0.0" />
-      <Point X="583.2159847764035" Y="181.73168411037108" GraphRef="bd8f1" RelX="-1.0" RelY="0.0" ArrowHead="Arrow" />
-    </Graphics>
-    <Xref Database="" ID="" />
-  </Interaction>
-  <Group GroupId="c573b" GraphId="c81a1" Style="Complex" />
+  <Group GroupId="ca881" Style="Complex" />
   <InfoBox CenterX="0.0" CenterY="0.0" />
   <Biopax />
 </Pathway>
