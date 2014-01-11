@@ -526,6 +526,7 @@ pathvisiojs.data.gpml = function(){
             // Some GPML files contain empty groups due to a PathVisio-Java bug. They are deleted
             // here because only groups that pass the test (!!jsonGroup.contains) are added to
             // the jsonGroups array, and the jsonGroups array overwrites pathway.Group.
+            if (!!jsonGroup.contains) {
               pathvisiojs.data.gpml.element.node.groupNode.getGroupDimensions(jsonGroup, function(dimensions) {
                 console.log('jsonGroup in gpml.js');
                 console.log(jsonGroup);
@@ -539,10 +540,11 @@ pathvisiojs.data.gpml = function(){
                   jsonGroups.push(jsonGroup);
                 });
               });
-            });
-            pathway.Group = jsonGroups;
-            self.myPathway = pathway;
-            callbackOutside(pathway);
+            }
+          });
+          pathway.Group = jsonGroups;
+          self.myPathway = pathway;
+          callbackOutside(pathway);
           });
         }
         else {
