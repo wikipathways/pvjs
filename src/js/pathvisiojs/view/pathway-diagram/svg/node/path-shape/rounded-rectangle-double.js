@@ -4,7 +4,6 @@ pathvisiojs.view.pathwayDiagram.svg.node.pathShape.roundedRectangleDouble = func
       var attributes = [
           {
 	  name:'d',
-          class:'inner',
           path:
                 'm6,13c0,-3.80365 3.19635,-7 7,-7l'
                 + (nodeWidth - 26)
@@ -19,7 +18,6 @@ pathvisiojs.view.pathwayDiagram.svg.node.pathShape.roundedRectangleDouble = func
 
         {
 	  name:'d',
-          class:'outer',
           path: 'm0,10c0,-5.43379 4.56621,-10 10,-10l'
                 + (nodeWidth - 20)
                 + ',0c5.43379,0 10,4.56621 10,10l0,'
