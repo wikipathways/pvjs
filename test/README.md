@@ -4,7 +4,7 @@ A. You will need a web server running on your dev machine. If you already have o
 Otherwise, you can use the included development server like this:
 
 1. Install [nodejs](http://nodejs.org/download/), if you haven't already done so.
-2. When node is installed, open a terminal and enter the following commands
+2. When nodejs is installed, open a terminal and enter the following commands
 
 ```
 cd ~/Sites/pathvisiojs/ #update this to where the pathvisiojs directory is actually located on your computer
