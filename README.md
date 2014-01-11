@@ -88,8 +88,8 @@ A. Get the Latest Code
 
 1. If you've already forked and cloned pathvisiojs, skip ahead to Step 2. Otherwise:
 
-* Fork the [WikiPathways repo for pathvisiojs](https://github.com/wikipathways/pathvisiojs/fork) by clicking the "Fork" button on the upper right.
-* Once Github takes you to your newly created fork, find the "HTTPS clone URL," copy it, open a terminal on your dev machine and enter the following command:
+a. Fork the [WikiPathways repo for pathvisiojs](https://github.com/wikipathways/pathvisiojs/fork) by clicking the "Fork" button on the upper right.
+b. Once Github takes you to your newly created fork, find the "HTTPS clone URL," copy it, open a terminal on your dev machine and enter the following command:
 
 ```
 $ cd ~/Sites/ #or another directory of your choice
