@@ -96,35 +96,17 @@ $ git clone https://github.com/YOUR-GITHUB-ACCOUNT/pathvisiojs.git #replace with
 $ cd pathvisiojs
 ```
 
-2. If you've already forked and cloned pathvisiojs in the past, use either step a) or b) below to get the latest code.
+2. If you've already forked and cloned pathvisiojs in the past, get the latest code:
 
-a. Github interface
 
-* Go to your fork of pathvisiojs at https://github.com/YOUR-GITHUB-ACCOUNT/pathvisiojs/ and select the "Compare and review" button to the left of the "branch" drop-down to pull from the wikipathways fork of pathvisiojs into your fork
-* Select "Edit" and "compare across forks" as needed to make the drop-downs look like this:
-
-```
-YOUR-GITHUB-ACCOUNT:master ... wikipathways:master
-```
-
-* Create pull request
-* Accept pull request (if github says that the pull request cannot be done automatically, you will need to merge the files from the command line. Let Anders or Alex know and they can help.)
-
-```
-$ cd ~/Sites/pathvisiojs/ #update this to where the pathvisiojs directory is actually located on your computer  
-$ git pull origin master
-```
-
-b. Command line interface
-
-* Add the wikipathways pathvisiojs repo as a remote named "wikipathways," if you have not already done so:
+Add the wikipathways pathvisiojs repo as a remote named "wikipathways," if you have not already done so:
 
 ```
 $ cd ~/Sites/pathvisiojs/ #use the location where the pathvisiojs directory is actually located on your computer  
 $ git remote add wikipathways https://github.com/wikipathways/pathvisiojs.git
 ```
 
-* Pull latest code from wikipathways master branch of pathvisiojs:
+Pull latest code from wikipathways master branch of pathvisiojs:
 
 ```
 $ git pull wikipathways master
