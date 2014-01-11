@@ -29,7 +29,7 @@ $ cd ~/Sites/pathvisiojs/ #update this to where the pathvisiojs directory is act
 $ npm install #this command uses npm (the node package manager) to install pathvisiojs dependencies
 ```
 
-B. Install the Chromedriver and other browser plugins for WebDriver manager, if you haven't already done so:
+B. Install the Chromedriver and other browser plugins for [WebDriver](http://docs.seleniumhq.org/projects/webdriver/), if you haven't already done so:
 
 ```
 $ cd ~/Sites/pathvisiojs/node_modules/protractor/bin/ #update this to where the pathvisiojs directory is actually located on your computer
