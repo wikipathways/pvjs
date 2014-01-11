@@ -14,13 +14,15 @@ pathvisiojs.view.pathwayDiagram.svg.node.pathShape = function(){
       }
     }
 
-    //new child group element for all attributes extracted and applied here
-    var stroke = 1;
-    var transform = '';
-    var g = parent.append('g')
-      .data([data])
-      .attr('id', function (d) {return 'node-' + strcase.paramCase(d['@id']);})                              
-      .attr('class', 'symbol ')
+    //attributes extracted and applied to parent g element
+    var style = parent.attr('style');;
+    var stroke = 1
+    var transform = parent.attr('transform');
+    parent.attr('style', function(d) {
+	if(d.borderColor) {
+	  style += 'stroke:' + d.borderColor + '; ';
+	}
+	return style;})
       .attr('stroke-width', function(d) {
         if(!isNaN(d.borderWidth)){
           stroke = d.borderWidth; //LineThickness in GPML
@@ -36,7 +38,7 @@ pathvisiojs.view.pathwayDiagram.svg.node.pathShape = function(){
     nodeAttributes.forEach(function(attribute) {
 
      if(attribute.parent == 'scale'){
-        g.attr('stroke-width', function(d) {
+        parent.attr('stroke-width', function(d) {
           return stroke / ((d.width + d.height) / 200);
 	})
 	.attr('transform', function(d) {
@@ -54,7 +56,7 @@ pathvisiojs.view.pathwayDiagram.svg.node.pathShape = function(){
 	names = attribute.name;
 	paths = attribute.path;
       }
-      var childElement = g.append(child);
+      var childElement = parent.append(child);
       for(var i = 0; i < names.length; i++){
 	childElement.attr(names[i], paths[i]);
       }
