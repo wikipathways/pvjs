@@ -81,7 +81,7 @@ pathvisiojs.view.pathwayDiagram.svg.node = function(){
     .attr("style", function (d) {
       var style = '';
       if (d.hasOwnProperty('backgroundColor')) {
-        style += 'fill:' + d.backgroundColor + '; ';
+        style += 'fill:' + d.backgroundColor + '; fill-opacity:1; ';
       }
       return style;
     })
