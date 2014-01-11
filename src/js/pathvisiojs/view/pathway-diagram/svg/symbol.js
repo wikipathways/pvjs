@@ -10,7 +10,6 @@ pathvisiojs.view.pathwayDiagram.svg.symbol = function(){
   var semanticNameToIdMapping = { 
     'arc':'shape-library-symbols-arc-svg',
     'brace':'shape-library-symbols-brace-svg',
-    'endoplasmic-reticulum':'shape-library-symbols-endoplasmic-reticulum-svg',
     'golgi-apparatus':'shape-library-symbols-golgi-apparatus-svg',
     'hexagon':'shape-library-symbols-hexagon-svg',
     'mim-degradation':'shape-library-symbols-mim-degradation-svg',
