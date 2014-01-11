@@ -86,19 +86,21 @@ How To Get Involved
 A. Get the Latest Code
 ----------------------
 
-1. If you have not yet forked and cloned pathvisiojs,
+1. If you've already forked and cloned pathvisiojs, skip ahead to Step 2. Otherwise:
 
 * Fork the [WikiPathways repo for pathvisiojs](https://github.com/wikipathways/pathvisiojs/fork) by clicking the "Fork" button on the upper right.
-* Once Github takes you to your newly created fork, find the "HTTPS clone URL," copy it and open a terminal on your dev machine and enter the following command:
+* Once Github takes you to your newly created fork, find the "HTTPS clone URL," copy it, open a terminal on your dev machine and enter the following command:
 
 ```
-$ cd ~/Sites/ #or another directory of your preference
-$ git clone https://github.com/YOUR-GITHUB-ACCOUNT/pathvisiojs.git #replace YOUR-GITHUB-ACCOUNT with the appropriate value for you
+$ cd ~/Sites/ #or another directory of your choice
+$ git clone https://github.com/YOUR-GITHUB-ACCOUNT/pathvisiojs.git #replace with the HTTPS clone URL you copied
 $ cd pathvisiojs
 ```
 
 2. If you've already forked and cloned pathvisiojs in the past, use either step a) or b) below to get the latest code.
+
 a. Github interface
+
 * Go to your fork of pathvisiojs at https://github.com/YOUR-GITHUB-ACCOUNT/pathvisiojs/ and select the "Compare and review" button to the left of the "branch" drop-down to pull from the wikipathways fork of pathvisiojs into your fork
 * Select "Edit" and "compare across forks" as needed to make the drop-downs look like this:
 
@@ -115,11 +117,17 @@ $ git pull origin master
 ```
 
 b. Command line interface
-* Add the wikipathways pathvisiojs repo as a remote named wikipathways with the following command
+
+* Add the wikipathways pathvisiojs repo as a remote named "wikipathways," if you have not already done so:
 
 ```
 $ cd ~/Sites/pathvisiojs/ #use the location where the pathvisiojs directory is actually located on your computer  
-$ git remote add wikipathways https://github.com/wikipathways/pathvisiojs.git #if you haven't already done this
+$ git remote add wikipathways https://github.com/wikipathways/pathvisiojs.git
+```
+
+* Pull latest code from wikipathways master branch of pathvisiojs:
+
+```
 $ git pull wikipathways master
 ```
 
