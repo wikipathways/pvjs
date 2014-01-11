@@ -125,13 +125,13 @@ $ git pull wikipathways master
 
 B. Make Awesome Updates
 -----------------------
-You can edit any of the files in the ["src" directory](https://github.com/wikipathways/pathvisiojs/tree/master/src):
+You can edit any of the files in the [src directory](https://github.com/wikipathways/pathvisiojs/tree/master/src):
 
 ```
 $ cd ~/Sites/pathvisiojs/src/ #update this to where the pathvisiojs directory is actually located on your computer
 ```
 
-To view your changes as you edit, you can use the functionalities in the ["test" directory](https://github.com/wikipathways/pathvisiojs/tree/master/test):
+To view your changes as you edit, you can use the functionalities in the [test directory](https://github.com/wikipathways/pathvisiojs/tree/master/test):
 
 ```
 $ cd ~/Sites/pathvisiojs/src/test/ #update this to where the pathvisiojs directory is actually located on your computer
