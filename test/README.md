@@ -12,7 +12,9 @@ npm install #this command uses npm (the node package manager) to install pathvis
 node devserver #this starts the server
 ```
 
-B. Navigate to the pathvisiojs test page. If you are using the included dev server, it will be ["./pathvisiojs/test/index.html"](http://localhost:3000/test/). If you are using another server, edit the URL as required to match your server setup. Select any one of the pathways listed. 
+B. Navigate to the pathvisiojs [test page](https://github.com/wikipathways/pathvisiojs/blob/master/test/index.html). If you are using the included dev server, it will be located at ["http://localhost:3000/test/"](http://localhost:3000/test/). If you are using another server, edit the URL as required for your server setup. Then follow a link for any one of the pathways listed.
+
+C. If you add a new JS file, you will need to add a reference to it in [compare.js](https://github.com/wikipathways/pathvisiojs/blob/master/test/compare.js#L116).
 
 # How To Run Tests
 
