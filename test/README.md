@@ -21,7 +21,7 @@ C. If you add a new JS file, you will need to add a reference to it in [compare.
 A. If you are using the included dev server, you can skip ahead to Step B.
 Otherwise, you will need to follow these instructions:
 
-1. Install [nodejs](http://nodejs.org/download/), if you haven't already done so.
+1. Install [nodejs](http://nodejs.org/download/) (if you haven't already done so).
 2. When node is installed, open a terminal and enter the following commands
 
 ```
@@ -29,7 +29,7 @@ $ cd ~/Sites/pathvisiojs/ #update this to where the pathvisiojs directory is act
 $ npm install #this command uses npm (the node package manager) to install pathvisiojs dependencies
 ```
 
-B. Install the Chromedriver and other browser plugins for [WebDriver](http://docs.seleniumhq.org/projects/webdriver/), if you haven't already done so:
+B. Install the Chromedriver and other browser plugins for [WebDriver](http://docs.seleniumhq.org/projects/webdriver/) (if you haven't already done so):
 
 ```
 $ cd ~/Sites/pathvisiojs/node_modules/protractor/bin/ #update this to where the pathvisiojs directory is actually located on your computer
