@@ -83,9 +83,7 @@ $libs = "<script type=\"text/javascript\">" . $scripts . "</script>
 How To Get Involved
 ===================
 
-A. Get the Latest Code
-
-1. If you've already forked and cloned pathvisiojs, skip ahead to Step 2. Otherwise:
+A. Fork and clone pathvisiojs. If you've already done this, skip ahead to Step B. Otherwise:
 
 Fork the [WikiPathways repo for pathvisiojs](https://github.com/wikipathways/pathvisiojs/fork) by clicking the "Fork" button on the upper right. Github will create a fork of pathvisiojs for you and take you to your newly created fork. On your newly created fork, find the "HTTPS clone URL," copy it, open a terminal on your dev machine and enter the following command:
 
@@ -95,10 +93,7 @@ $ git clone https://github.com/YOUR-GITHUB-ACCOUNT/pathvisiojs.git #replace with
 $ cd pathvisiojs
 ```
 
-2. If you've already forked and cloned pathvisiojs in the past, get the latest code:
-
-
-Add the wikipathways pathvisiojs repo as a remote named "wikipathways," if you have not already done so:
+B. Add the wikipathways pathvisiojs repo as a remote named "wikipathways," if you have not already done so:
 
 ```
 $ cd ~/Sites/pathvisiojs/ #use the location where the pathvisiojs directory is actually located on your computer  
@@ -111,7 +106,7 @@ Pull latest code from wikipathways master branch of pathvisiojs:
 $ git pull wikipathways master
 ```
 
-B. Make Awesome Updates
+C. Make Awesome Updates
 
 You can edit any of the files in the [src directory](https://github.com/wikipathways/pathvisiojs/tree/master/src):
 
@@ -127,7 +122,7 @@ $ cd ~/Sites/pathvisiojs/src/test/ #update this to where the pathvisiojs directo
 
 The [README](https://github.com/wikipathways/pathvisiojs/tree/master/test/README.md) in this directory includes information on how to view diagrams during development and how to run tests.
 
-C. Send Us a Pull Request
+D. Send Us a Pull Request
 
 * Visually inspect each of the test pathways from the test page, comparing your version with the current version to ensure your code produces the correct visual result in terms of styling, etc.
 * Run the tests
