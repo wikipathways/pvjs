@@ -1,18 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Pathway xmlns="http://pathvisio.org/GPML/2013a" Name="playground for testing" Version="20130813" Organism="Anopheles gambiae">
-  <Graphics BoardWidth="693.2159847764035" BoardHeight="340.61843251263696" />
-  <DataNode TextLabel="GeneProduct" GraphId="ad328" Type="GeneProduct">
-    <Graphics CenterX="180.45738045738048" CenterY="118.0873180873181" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
-    <Xref Database="" ID="" />
-  </DataNode>
-  <Interaction GroupRef="ca881">
-    <Graphics ZOrder="12288" LineThickness="1.0">
-      <Point X="268.6840898670335" Y="78.7757909215956" />
-      <Point X="436.0385144429161" Y="108.20724438331041" ArrowHead="Arrow" />
-    </Graphics>
-    <Xref Database="" ID="" />
-  </Interaction>
-  <Group GroupId="ca881" Style="Complex" />
+  <Graphics BoardWidth="466.0385144429161" BoardHeight="173.63143631436316" />
+  <Shape GraphId="da214">
+    <Attribute Key="org.pathvisio.CellularComponentProperty" Value="Mitochondria" />
+    <Graphics CenterX="117.97493224932249" CenterY="115.94241192411926" Width="97.38346883468833" Height="55.3780487804878" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="Sarcoplasmic Reticulum" LineThickness="3.0" Color="c0c0c0" Rotation="0.0" />
+  </Shape>
   <InfoBox CenterX="0.0" CenterY="0.0" />
   <Biopax />
 </Pathway>
