@@ -2,6 +2,7 @@
 
 A. You will need a web server running on your dev machine. If you already have one set up, you can skip ahead to Step B.
 Otherwise, you can use the included development server like this:
+
 1. Install [nodejs](http://nodejs.org/download/), if you haven't already done so.
 2. When node is installed, open a terminal and enter the following commands
 
@@ -17,6 +18,7 @@ B. Navigate to the pathvisiojs test page. If you are using the included dev serv
 
 A. If you are using the included dev server, you can skip ahead to Step B.
 Otherwise, you will need to follow these instructions:
+
 1. Install [nodejs](http://nodejs.org/download/), if you haven't already done so.
 2. When node is installed, open a terminal and enter the following commands
 
