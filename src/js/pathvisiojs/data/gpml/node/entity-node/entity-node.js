@@ -21,9 +21,9 @@ pathvisiojs.data.gpml.element.node.entityNode.toRenderableJson = function(gpmlEn
     jsonEntityNode.isContainedBy = pathwayIri + isContainedBy;
   }
 
-  var shapeType = gpmlEntityNode.select('Graphics').attr('ShapeType') || 'rectangle';
+  var shapeType = gpmlEntityNode.select('Graphics').attr('ShapeType') || 'datanode';
   if (shapeType === 'None') {
-    shapeType = 'rectangle';
+    shapeType = 'datanode';
   }
   shapeType = strcase.paramCase(shapeType);
   jsonEntityNode.ShapeType = shapeType;
