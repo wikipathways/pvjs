@@ -3,7 +3,7 @@ pathvisiojs.view.pathwayDiagram.svg.node.pathShape = function(){
     var re;
     var pathShapeNameToUse = strcase.camelCase(data.ShapeType);
     if (!pathvisiojs.view.pathwayDiagram.svg.node.pathShape.hasOwnProperty(pathShapeNameToUse)) {
-      re = /-double$/gi;
+      re = /Double$/gi;
       pathShapeNameToUse = pathShapeNameToUse.replace(re, '');
       if (pathvisiojs.view.pathwayDiagram.svg.node.pathShape.hasOwnProperty(pathShapeNameToUse)) {
         console.warn('Requested pathShape "' + data.ShapeType + '" is not available with linetype of "Double". Using linetype of "Solid" instead');
@@ -25,19 +25,29 @@ pathvisiojs.view.pathwayDiagram.svg.node.pathShape = function(){
       g.attr("stroke-width", stroke);
 
       //if scaling is required, then calculate a transform and new stroke
-      if(attribute.class == 'gscale'){
+      if(attribute.parent == 'scale'){
 	var newstroke = stroke / ((data.width + data.height) / 200);
 	g.attr("transform", "scale("+data.width/100+", "+data.height/100+")")
 	 .attr("stroke-width", newstroke);
       }
-      var node = g.append("path")
+      var tag = "path";
+      var names = [attribute.name];
+      var paths = [attribute.path];
+      if (attribute.alt){
+	tag = attribute.alt;
+	names = attribute.name;
+	paths = attribute.path;
+      }
+      var node = g.append(tag)
       .data([data])
       .attr("id", function (d) {return 'node-' + strcase.paramCase(d['@id']);})
       .attr("class", function (d) {
-        var cssClass = attribute.class + ' symbol ';
+        var cssClass = 'symbol ';
         return cssClass;
-      })
-      .attr(attribute.name, attribute.path)
+      });
+      for(var i = 0; i < names.length; i++){
+	node.attr(names[i], paths[i])
+      }
     });
   }
 

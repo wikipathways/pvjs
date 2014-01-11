@@ -29,6 +29,6 @@ strcase.paramCase('rounded rectangle double')
 strcase.camelCase('rounded rectangle double')
 ```
 
-For markers and for shapes that scale uniformly, please see the [shape library directory](/shape-library/).
+For markers and for shapes that scale uniformly, please see the [shape library directory](../../../../../../../shape-library/symbols/).
 
 This directory will probably eventually be replaced with a database. 
