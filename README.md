@@ -84,7 +84,6 @@ How To Get Involved
 ===================
 
 A. Get the Latest Code
-----------------------
 
 1. If you've already forked and cloned pathvisiojs, skip ahead to Step 2. Otherwise:
 
@@ -132,7 +131,7 @@ $ git pull wikipathways master
 ```
 
 B. Make Awesome Updates
------------------------
+
 You can edit any of the files in the [src directory](https://github.com/wikipathways/pathvisiojs/tree/master/src):
 
 ```
@@ -148,7 +147,7 @@ $ cd ~/Sites/pathvisiojs/src/test/ #update this to where the pathvisiojs directo
 The [README](https://github.com/wikipathways/pathvisiojs/tree/master/test/README.md) in this directory includes information on how to view diagrams during development and how to run tests.
 
 C. Send Us a Pull Request
--------------------------
+
 * Visually inspect each of the test pathways from the test page, comparing your version with the current version to ensure your code produces the correct visual result in terms of styling, etc.
 * Run the tests
 * Commit your changes and push them to your github fork of pathvisiojs
