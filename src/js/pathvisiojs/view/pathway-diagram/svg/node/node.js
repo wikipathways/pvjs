@@ -94,15 +94,15 @@ pathvisiojs.view.pathwayDiagram.svg.node = function(){
     var shapeType = strcase.paramCase(args.data.ShapeType);
     
     // check for whether desired shape type is available as a symbol
-    if (pathvisiojs.view.pathwayDiagram.svg.symbol.semanticNameToIdMapping.hasOwnProperty(shapeType)) {
+//    if (pathvisiojs.view.pathwayDiagram.svg.symbol.semanticNameToIdMapping.hasOwnProperty(shapeType)) {
       //console.log('We will use an SVG "use" element to render this ' + shapeType);
-      pathvisiojs.view.pathwayDiagram.svg.node.useElement.render(nodeContainer, args.data);
-    }
+//      pathvisiojs.view.pathwayDiagram.svg.node.useElement.render(nodeContainer, args.data);
+//    }
     // else check for whether it is available as a pathShape
-    else {
+//    else {
       //console.log('We will use a pathShape to render this ' + shapeType);
       pathvisiojs.view.pathwayDiagram.svg.node.pathShape.render(nodeContainer, args.data);
-    }
+//    }
 
     /****************** 
      * text label
