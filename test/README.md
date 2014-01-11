@@ -33,7 +33,7 @@ B. Install the Chromedriver and other browser plugins for WebDriver manager, if 
 
 ```
 cd ~/Sites/pathvisiojs/node_modules/protractor/bin/ #update this to where the pathvisiojs directory is actually located on your computer
-webdriver-manager update
+./webdriver-manager update
 ```
 
 C. Ensure your web server is running, then run the tests:
