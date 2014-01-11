@@ -27,12 +27,17 @@ cd ~/Sites/pathvisiojs/ #update this to where the pathvisiojs directory is actua
 npm install #this command uses npm (the node package manager) to install pathvisiojs dependencies
 ```
 
-B. Install the Chromedriver and other browser plugins for WebDriver manager. Do this from the terminal with:
+B. Install the Chromedriver and other browser plugins for WebDriver manager, if you haven't already done so:
 
 ```
 cd ~/Sites/pathvisiojs/node_modules/protractor/bin/ #update this to where the pathvisiojs directory is actually located on your computer
 webdriver-manager update
-webdriver-manager start #Starts webdriver server
+```
+
+C. Ensure your web server is running, then run the tests:
+
+```
+webdriver-manager start #Starts webdriver server (you will need both this server and your web server running)
 cd ~/Sites/pathvisiojs/test/ #update this to where the pathvisiojs directory is actually located on your computer
 protractor run.js #Run the tests and gives results in the terminal
 ```
