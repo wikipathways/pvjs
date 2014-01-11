@@ -6,7 +6,7 @@ pathvisiojs.data.gpml.element.node.entityNode = Object.create(pathvisiojs.data.g
 
 pathvisiojs.data.gpml.element.node.entityNode.setJsonRotationValue = function(jsonNode, currentGpmlRotationValue, defaultGpmlRotationValue) {
   if (currentGpmlRotationValue !== defaultGpmlRotationValue) {
-    jsonNode.rotate = currentGpmlRotationValue + 'deg';
+    jsonNode.rotate = currentGpmlRotationValue * 180/Math.PI; //converting from radians to degrees
   }
   return jsonNode;
 }
