@@ -14,39 +14,49 @@ pathvisiojs.view.pathwayDiagram.svg.node.pathShape = function(){
       }
     }
 
-    var g = parent.append("g");
+    //new child group element for all attributes extracted and applied here
+    var stroke = 1;
+    var transform = '';
+    var g = parent.append('g')
+      .data([data])
+      .attr('id', function (d) {return 'node-' + strcase.paramCase(d['@id']);})                              
+      .attr('class', 'symbol ')
+      .attr('stroke-width', function(d) {
+        if(!isNaN(d.borderWidth)){
+          stroke = d.borderWidth; //LineThickness in GPML
+        }
+        return stroke;})
+      .attr('transform', function(d) {
+        if (d.rotate){
+          transform += ' rotate(' + d.rotate + ',' + d.width/2 + ',' + d.height/2 + ')';
+        }
+        return transform;});
 
-    var nodeAttributes = pathvisiojs.view.pathwayDiagram.svg.node.pathShape[pathShapeNameToUse].getAttributes(data.width, data.height);
+    var nodeAttributes = pathvisiojs.view.pathwayDiagram.svg.node.pathShape[pathShapeNameToUse].getAttributes(data.width, data.height, data.borderWidth);
     nodeAttributes.forEach(function(attribute) {
-      var stroke = 1;
-      if(!isNaN(data.borderWidth)){
-	stroke = data.borderWidth;
-      }
-      g.attr("stroke-width", stroke);
 
-      //if scaling is required, then calculate a transform and new stroke
-      if(attribute.parent == 'scale'){
-	var newstroke = stroke / ((data.width + data.height) / 200);
-	g.attr("transform", "scale("+data.width/100+", "+data.height/100+")")
-	 .attr("stroke-width", newstroke);
-      }
-      var tag = "path";
+     if(attribute.parent == 'scale'){
+        g.attr('stroke-width', function(d) {
+          return stroke / ((d.width + d.height) / 200);
+	})
+	.attr('transform', function(d) {
+	  transform += ' scale('+d.width/100+', '+d.height/100+')';
+	  return transform;
+	});
+     }
+
+      //handle alt path types and lists of attrs
+      var child = 'path';
       var names = [attribute.name];
       var paths = [attribute.path];
       if (attribute.alt){
-	tag = attribute.alt;
+	child = attribute.alt;
 	names = attribute.name;
 	paths = attribute.path;
       }
-      var node = g.append(tag)
-      .data([data])
-      .attr("id", function (d) {return 'node-' + strcase.paramCase(d['@id']);})
-      .attr("class", function (d) {
-        var cssClass = 'symbol ';
-        return cssClass;
-      });
+      var childElement = g.append(child);
       for(var i = 0; i < names.length; i++){
-	node.attr(names[i], paths[i])
+	childElement.attr(names[i], paths[i]);
       }
     });
   }
@@ -58,8 +68,8 @@ pathvisiojs.view.pathwayDiagram.svg.node.pathShape = function(){
 
     if (!pathShape[0] || pathShape[0].length < 1) {return 'nonuniformlyScalingNodes empty'};
     self.pathShape = pathShape;
-    pathShape.attr("id", function (d) {return 'shape-' + d.id;})
-    .attr("class", function (d) {
+    pathShape.attr('id', function (d) {return 'shape-' + d.id;})
+    .attr('class', function (d) {
       var cssClass = '';
       if (d.elementType === 'data-node') {
         cssClass = 'shape ' + d.dataNodeType + ' ' + d.shapeType;
