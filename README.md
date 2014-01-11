@@ -83,62 +83,67 @@ $libs = "<script type=\"text/javascript\">" . $scripts . "</script>
 How To Get Involved
 ===================
 
-1. Get the Latest Code
+A. Get the Latest Code
 ----------------------
 
-If you have not forked pathvisiojs,
+1. If you have not yet forked and cloned pathvisiojs,
 
-* Fork the WikiPathways repo for pathvisiojs [here](https://github.com/wikipathways/pathvisiojs/fork)
-* Go to your fork at https://github.com/YOUR-GITHUB-ACCOUNT/pathvisiojs/
+* Fork the [WikiPathways repo for pathvisiojs](https://github.com/wikipathways/pathvisiojs/fork) by clicking the "Fork" button on the upper right.
+* Once Github takes you to your newly created fork, find the "HTTPS clone URL," copy it and open a terminal on your dev machine and enter the following command:
 
-If you've already forked pathvisiojs in the past,
+```
+cd ~/Sites/ #or another directory of your preference
+git clone https://github.com/YOUR-GITHUB-ACCOUNT/pathvisiojs.git #replace YOUR-GITHUB-ACCOUNT with the appropriate value for you
+cd pathvisiojs
+```
 
+2. If you've already forked and cloned pathvisiojs in the past, use either step a) or b) below to get the latest code.
+a. Github interface
 * Go to your fork of pathvisiojs at https://github.com/YOUR-GITHUB-ACCOUNT/pathvisiojs/ and select the "Compare and review" button to the left of the "branch" drop-down to pull from the wikipathways fork of pathvisiojs into your fork
-* Select "Edit" and "compare across forks" as needed to make the drop-downs look like this: 
+* Select "Edit" and "compare across forks" as needed to make the drop-downs look like this:
+
 ```
 YOUR-GITHUB-ACCOUNT:master ... wikipathways:master
 ```
+
 * Create pull request
 * Accept pull request (if github says that the pull request cannot be done automatically, you will need to merge the files from the command line. Let Anders or Alex know and they can help.)
 
-2. Make Awesome Updates
+```
+cd ~/Sites/pathvisiojs/ #update this to where the pathvisiojs directory is actually located on your computer  
+git pull origin master
+```
+
+b. Command line interface
+* Add the wikipathways pathvisiojs repo as a remote named wikipathways with the following command
+
+```
+cd ~/Sites/pathvisiojs/ #use the location where the pathvisiojs directory is actually located on your computer  
+git remote add wikipathways https://github.com/wikipathways/pathvisiojs.git #if you haven't already done this
+git pull wikipathways master
+```
+
+B. Make Awesome Updates
 -----------------------
-You can edit any of the files in the "src" directory of the master branch of your fork (https://github.com/YOUR-GITHUB-ACCOUNT/pathvisiojs/tree/master/src/). To view your changes, you can run a web server on your dev machine and navigate to the page ["./pathvisiojs/test/index.html"](http://localhost:3000/test/) (edit URL as required to match your server setup). 
+You can edit any of the files in the ["src" directory](https://github.com/wikipathways/pathvisiojs/tree/master/src):
 
-If you don't have a server already, you can use the included development server. To set it up, start by installing [nodejs](http://nodejs.org/download/), if you don't already have node installed, then cd to the root directory of the repo "pathvisiojs/" and use npm (the node package manager) to handle installing dependencies:
 ```
-$ npm install
-```
-
-Now start the server from the terminal with
-```
-$ node devserver
-```
-and you should be able to pull up test pathways from the test page at http://localhost:3000/test/.
-
-You can test as you develop by installing the Chromedriver and other browser plugins for WebDriver manager. Do this from the terminal with:
-```
-$ webdriver-manager update
+cd ~/Sites/pathvisiojs/src/ #update this to where the pathvisiojs directory is actually located on your computer
 ```
 
-If you installed the node module "protractor" locally (default), the webdriver-manager file will be located at:
-pathvisiojs/node_modules/protractor/bin/webdriver-manager
+To view your changes as you edit, you can use the functionalities in the ["test" directory](https://github.com/wikipathways/pathvisiojs/tree/master/test):
 
-Start webdriver server
 ```
-webdriver-manager start
+cd ~/Sites/pathvisiojs/src/test/ #update this to where the pathvisiojs directory is actually located on your computer
 ```
 
-Run the tests
-```
-cd pathvisiojs/test/
-protractor run.js
-```
+The [README](https://github.com/wikipathways/pathvisiojs/tree/master/test/README.md) in this directory includes information on how to view diagrams during development and how to run tests.
 
-3. Send Us a Pull Request
+C. Send Us a Pull Request
 -------------------------
 * Visually inspect each of the test pathways from the test page, comparing your version with the current version to ensure your code produces the correct visual result in terms of styling, etc.
 * Run the tests
+* Commit your changes and push them to your github fork of pathvisiojs
 * Create a pull request to the wikipathways fork of pathvisiojs: 
 ```
 wikipathways:master ... YOUR-GITHUB-ACCOUNT:master
