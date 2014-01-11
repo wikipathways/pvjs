@@ -42,5 +42,5 @@ C. Ensure your web server is running, then run the tests:
 $ cd ~/Sites/pathvisiojs/node_modules/protractor/bin/ #update this to where the pathvisiojs directory is actually located on your computer
 $ ./webdriver-manager start #Starts webdriver server (you will need both this server and your web server running)
 $ cd ~/Sites/pathvisiojs/test/ #update this to where the pathvisiojs directory is actually located on your computer
-$ protractor run.js #Run the tests and get test results in the terminal
+$ ../node_modules/protractor/bin/protractor/protractor run.js #Run the tests and get test results in the terminal
 ```
