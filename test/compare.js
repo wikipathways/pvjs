@@ -155,6 +155,7 @@ function loadExtJsCss(callbackOutside) {
       srcDirectoryUrl + 'js/pathvisiojs/view/pathway-diagram/svg/node/path-shape/rounded-rectangle-double.js',
       srcDirectoryUrl + 'js/pathvisiojs/view/pathway-diagram/svg/node/path-shape/oval-double.js',
       srcDirectoryUrl + 'js/pathvisiojs/view/pathway-diagram/svg/node/path-shape/complex.js',
+      srcDirectoryUrl + 'js/pathvisiojs/view/pathway-diagram/svg/node/path-shape/endoplasmic-reticulum.js',
       srcDirectoryUrl + 'js/pathvisiojs/view/pathway-diagram/svg/node/text.js',
       srcDirectoryUrl + 'js/pathvisiojs/view/pathway-diagram/svg/node/group-node.js',
       srcDirectoryUrl + 'js/pathvisiojs/view/pathway-diagram/svg/node/use-element.js',
@@ -218,10 +219,6 @@ window.onload = function() {
       {
         'semanticName': 'brace',
         'url': srcDirectoryUrl + 'shape-library/symbols/brace.svg'
-      },
-      {
-        'semanticName': 'endoplasmic-reticulum',
-        'url': srcDirectoryUrl + 'shape-library/symbols/endoplasmic-reticulum.svg'
       },
       {
         'semanticName': 'golgi-apparatus',
