@@ -81,7 +81,11 @@ pathvisiojs.view.pathwayDiagram.svg.node = function(){
     .attr("style", function (d) {
       var style = '';
       if (d.hasOwnProperty('backgroundColor')) {
-        style += 'fill:' + d.backgroundColor + '; fill-opacity:1; ';
+          if(d.nodeType != 'Label' || (d.nodeType == 'Label' && d.backgroundColor != '#ffffff')){  
+	  //Label fill attr is programmatically IGNORED when set to Java default of white
+	  //This is obviously a hack that should ultimately be resolved by fixing the editors default for label backgroundColor
+          style += 'fill:' + d.backgroundColor + '; fill-opacity:1; ';
+	}
       }
       return style;
     })
