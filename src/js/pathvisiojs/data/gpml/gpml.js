@@ -17,15 +17,15 @@ pathvisiojs.data.gpml = function(){
           return color.toHex();
         }
         else {
-          return 'null';
+          return pathvisioDefault;
         }
       }
       else {
-        return 'null';
+        return pathvisioDefault;
       }
     }
     else {
-      return null;
+      return pathvisioDefault;
     }
   }
 

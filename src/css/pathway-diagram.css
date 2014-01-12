@@ -66,7 +66,7 @@
 		fill-opacity: 1;
 		fill: white;
 		stroke: black;
-		stroke-width: 2;
+		stroke-width: 1;
 		stroke-dasharray: 0;
 		stroke-miterlimit: 1;
     		pointer-events:auto;
@@ -111,7 +111,7 @@
 	}
 
 	.label {
-		stroke: black;
+		stroke: null;
 		stroke-width: 0;
 		fill-opacity: 0;
 		stroke-dasharray: 0;

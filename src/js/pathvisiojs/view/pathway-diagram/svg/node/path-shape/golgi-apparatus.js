@@ -4,7 +4,7 @@ pathvisiojs.view.pathwayDiagram.svg.node.pathShape.golgiApparatus = function(){
       var attributes = [
         {
           name:'d',
-	  parent:'scale', //adds transform and stroke-width attrs to parent g container
+          scale:'true', //adds transform and stroke-width attrs to g container
           path: 'm58.4671,16.99297c-22.2053,-19.30712 37.3101,-19.538 25.5673,-3.1145c-8.8077,11.998 -17.0665,37.53828 -0.9417,64.06707c13.3147,17.47735 -41.7485,17.92546 -27.7555,-0.94919c11.3458,-18.99656 10.2868,-51.87342 3.1299,-60.00338l0,0z'
         },
 	{

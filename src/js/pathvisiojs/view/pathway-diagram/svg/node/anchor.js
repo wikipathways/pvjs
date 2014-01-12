@@ -8,10 +8,10 @@ pathvisiojs.view.pathwayDiagram.svg.node.anchor = function(){
     // TODO look at using markers for this instead of independent symbols
     // TODO use ...svg.node.render() with this
 
-    if (!svg) {
+/*    if (!svg) {
       throw new Error('svg missing for rendering anchors.');
     }
-    if (!container) {
+//*/    if (!container) {
       throw new Error('container element not specified for rendering anchors.');
     }
     if (!parentEdgeId) {
