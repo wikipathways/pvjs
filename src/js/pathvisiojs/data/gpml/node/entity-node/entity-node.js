@@ -6,7 +6,7 @@ pathvisiojs.data.gpml.element.node.entityNode = Object.create(pathvisiojs.data.g
 
 pathvisiojs.data.gpml.element.node.entityNode.setJsonRotationValue = function(jsonNode, currentGpmlRotationValue, defaultGpmlRotationValue) {
   if (currentGpmlRotationValue !== defaultGpmlRotationValue) {
-    jsonNode.rotate = currentGpmlRotationValue + 'deg';
+    jsonNode.rotate = currentGpmlRotationValue * 180/Math.PI; //converting from radians to degrees
   }
   return jsonNode;
 }
@@ -21,9 +21,9 @@ pathvisiojs.data.gpml.element.node.entityNode.toRenderableJson = function(gpmlEn
     jsonEntityNode.isContainedBy = pathwayIri + isContainedBy;
   }
 
-  var shapeType = gpmlEntityNode.select('Graphics').attr('ShapeType') || 'rectangle';
+  var shapeType = gpmlEntityNode.select('Graphics').attr('ShapeType') || 'datanode';
   if (shapeType === 'None') {
-    shapeType = 'rectangle';
+    shapeType = 'datanode';
   }
   shapeType = strcase.paramCase(shapeType);
   jsonEntityNode.ShapeType = shapeType;
