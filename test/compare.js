@@ -224,13 +224,13 @@ window.onload = function() {
     // If no image is specified for a semantic element, the default will be used.
     // You can use the same image for multiple semantic elements if you choose to,
     // but every semanticName must be unique.
-    var customSymbols = [
+ /*   var customSymbols = [
       {
-        'semanticName': 'datanode',
+        'semanticName': 'rectangle',
         'url': srcDirectoryUrl + 'shape-library/symbols/rectangle.svg'
       }
     ];
-
+//*/
     var customMarkers = self.customMarkers = [
       {
         'semanticName': 'arrow',
@@ -367,7 +367,7 @@ window.onload = function() {
       //gpmlRev: urlParamList.gpmlRev,
       cssUrl: srcDirectoryUrl + 'css/pathway-diagram.css',
       customMarkers: customMarkers,
-      customSymbols: customSymbols,
+      //customSymbols: customSymbols,
       highlightNodes: [
         {'parameter': 'label', 'parameterValue': 'CRH', 'color': 'red'},
         {'parameter': 'xref', 'parameterValue': '8525,Entrez%20Gene', 'color': '#FF0000'}
