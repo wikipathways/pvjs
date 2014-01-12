@@ -164,7 +164,7 @@
 
 	.group-node.none {
 		fill: rgb(180,180,100);
-		stroke-dasharray: 5,3;
+		/*stroke-dasharray: 5,3;*/
 	}
 
 	.group-node.none > .text-area {
