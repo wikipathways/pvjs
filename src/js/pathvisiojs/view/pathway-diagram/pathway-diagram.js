@@ -120,7 +120,7 @@ pathvisiojs.view.pathwayDiagram = function(){
       fitToContainer = args.fitToContainer,
       cssUrl = args.cssUrl,
       customMarkers = args.customMarkers,
-      customSymbols = args.customSymbols,
+//      customSymbols = args.customSymbols,
       highlightNodes = args.highlightNodes,
       hiddenElements = args.hiddenElements,
       container;
@@ -163,7 +163,7 @@ pathvisiojs.view.pathwayDiagram = function(){
               var preloadDiagramArgs = {};
               preloadDiagramArgs.container = container;
               preloadDiagramArgs.customMarkers = customMarkers;
-              preloadDiagramArgs.customSymbols = customSymbols;
+//              preloadDiagramArgs.customSymbols = customSymbols;
               preloadDiagramArgs.cssUrl = cssUrl;
               pathvisiojs.view.pathwayDiagram.svg.loadPartials(preloadDiagramArgs, function(svg) {
                 callback(null, svg);
