@@ -457,6 +457,9 @@ pathvisiojs.data.gpml = function(){
             }
           },
           Group: function(callback){
+            // Note: this calculates all the data for each group-node, except for its dimensions.
+            // The dimenensions can only be calculated once all the rest of the elements have been
+            // converted from GPML to JSON.
             var gpmlGroup, groups = gpmlPathway.selectAll('Group');
             if (groups[0].length > 0) {
               pathway.Group = [];
@@ -518,21 +521,30 @@ pathvisiojs.data.gpml = function(){
           jsonld.frame(pathway, groupsFrame, function(err, framedGroups) {
             console.log('framedGroups');
             console.log(framedGroups);
-            framedGroups['@graph'].forEach(function(jsonGroup) {
 
-              // Some GPML files contain empty groups due to a PathVisio-Java bug. They should be deleted.
+          framedGroups['@graph'].forEach(function(jsonGroup) {
+            // Some GPML files contain empty groups due to a PathVisio-Java bug. They are deleted
+            // here because only groups that pass the test (!!jsonGroup.contains) are added to
+            // the jsonGroups array, and the jsonGroups array overwrites pathway.Group.
+            if (!!jsonGroup.contains) {
+              pathvisiojs.data.gpml.element.node.groupNode.getGroupDimensions(jsonGroup, function(dimensions) {
+                console.log('jsonGroup in gpml.js');
+                console.log(jsonGroup);
 
-              if (!!jsonGroup.contains) {
-                pathvisiojs.data.gpml.element.node.groupNode.calculateImplicitRenderingData(jsonGroup, function(updatedJsonGroup) {
-                  console.log('jsonGroup in gpml.js');
-                  console.log(jsonGroup);
-                  jsonGroups.push(updatedJsonGroup);
+                jsonGroup.x = dimensions.x;
+                jsonGroup.y = dimensions.y;
+                jsonGroup.width = dimensions.width;
+                jsonGroup.height = dimensions.height;
+                pathvisiojs.data.gpml.element.node.getPorts(jsonGroup, function(ports) {
+                  jsonGroup.Port = ports;
+                  jsonGroups.push(jsonGroup);
                 });
-              }
-            });
-            pathway.Group = jsonGroups;
-            self.myPathway = pathway;
-            callbackOutside(pathway);
+              });
+            }
+          });
+          pathway.Group = jsonGroups;
+          self.myPathway = pathway;
+          callbackOutside(pathway);
           });
         }
         else {

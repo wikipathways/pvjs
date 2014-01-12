@@ -224,19 +224,19 @@ ptor.get("http://localhost:3000/test/compare.html?gpml=WP2545").
     return ptor.sleep(5 * 1000);
   }).
   then(function() {
-    var expectedCount = 27;
+    var expectedCount = 31;
     expect(element.all(by.css('#viewport .node')).count()).toEqual(expectedCount);
     testTheCount('groups test protocol pathway', 'node', expectedCount);
     return 'success';
   }).
   then(function() {
-    var expectedCount = 6;
+    var expectedCount = 8;
     expect(element.all(by.css('#viewport .group-node')).count()).toEqual(expectedCount);
     testTheCount('groups test protocol pathway', 'groups, also called group-node', expectedCount);
     return 'success';
   }).
   then(function() {
-    var expectedCount = 2;
+    var expectedCount = 4;
     expect(element.all(by.css('#viewport .complex')).count()).toEqual(expectedCount);
     testTheCount('groups test protocol pathway', 'groups of type "complex"', expectedCount);
     return 'success';
@@ -260,7 +260,7 @@ ptor.get("http://localhost:3000/test/compare.html?gpml=WP2545").
     return 'success';
   }).
   then(function() {
-    var expectedCount = 9;
+    var expectedCount = 12;
     expect(element.all(by.css('#viewport .edge')).count()).toEqual(expectedCount);
     testTheCount('groups test protocol pathway', 'edge', expectedCount);
     return 'success';

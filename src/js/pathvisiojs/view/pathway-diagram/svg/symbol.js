@@ -8,20 +8,7 @@ var svg;
 pathvisiojs.view.pathwayDiagram.svg.symbol = function(){
 
   var semanticNameToIdMapping = { 
-    'arc':'shape-library-symbols-arc-svg',
-    'brace':'shape-library-symbols-brace-svg',
-    'endoplasmic-reticulum':'shape-library-symbols-endoplasmic-reticulum-svg',
-    'golgi-apparatus':'shape-library-symbols-golgi-apparatus-svg',
-    'hexagon':'shape-library-symbols-hexagon-svg',
-    'mim-degradation':'shape-library-symbols-mim-degradation-svg',
-    'mitochondria':'shape-library-symbols-mitochondria-svg',
-    'oval':'shape-library-symbols-oval-svg',
-    'pentagon':'shape-library-symbols-pentagon-svg',
-    'rectangle':'shape-library-symbols-rectangle-svg',
-    'sarcoplasmic-reticulum':'shape-library-symbols-sarcoplasmic-reticulum-svg',
-    'triangle':'shape-library-symbols-triangle-svg',
-    'circle':'shape-library-symbols-oval-svg',
-    'none':'shape-library-symbols-none-svg'
+    'datanode':'shape-library-symbols-rectangle-svg',
   };
 
   function appendCustom(uniqueSymbolShapeUrl, callback) {

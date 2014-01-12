@@ -1,17 +1,9 @@
 pathvisiojs.view.pathwayDiagram.svg.node.pathShape = function(){
   function render(parent, data) {
-    var node = parent.append("path")
-    .data([data])
-    .attr("id", function (d) {return 'node-' + strcase.paramCase(d['@id']);})
-    .attr("class", function (d) {
-      var cssClass = 'symbol ';
-      return cssClass;
-    })
-
     var re;
     var pathShapeNameToUse = strcase.camelCase(data.ShapeType);
     if (!pathvisiojs.view.pathwayDiagram.svg.node.pathShape.hasOwnProperty(pathShapeNameToUse)) {
-      re = /-double$/gi;
+      re = /Double$/gi;
       pathShapeNameToUse = pathShapeNameToUse.replace(re, '');
       if (pathvisiojs.view.pathwayDiagram.svg.node.pathShape.hasOwnProperty(pathShapeNameToUse)) {
         console.warn('Requested pathShape "' + data.ShapeType + '" is not available with linetype of "Double". Using linetype of "Solid" instead');
@@ -22,9 +14,52 @@ pathvisiojs.view.pathwayDiagram.svg.node.pathShape = function(){
       }
     }
 
-    var nodeAttributes = pathvisiojs.view.pathwayDiagram.svg.node.pathShape[pathShapeNameToUse].getAttributes(data.width, data.height);
+    //attributes extracted and applied to parent g element
+    var style = parent.attr('style');;
+    var stroke = 1
+    var transform = parent.attr('transform');
+    parent.attr('style', function(d) {
+	if(d.borderColor) {
+	  style += 'stroke:' + d.borderColor + '; ';
+	}
+	return style;})
+      .attr('stroke-width', function(d) {
+        if(!isNaN(d.borderWidth)){
+          stroke = d.borderWidth; //LineThickness in GPML
+        }
+        return stroke;})
+      .attr('transform', function(d) {
+        if (d.rotate){
+          transform += ' rotate(' + d.rotate + ',' + d.width/2 + ',' + d.height/2 + ')';
+        }
+        return transform;});
+
+    var nodeAttributes = pathvisiojs.view.pathwayDiagram.svg.node.pathShape[pathShapeNameToUse].getAttributes(data.width, data.height, data.borderWidth);
     nodeAttributes.forEach(function(attribute) {
-      node.attr(attribute.name, attribute.value)
+
+     if(attribute.parent == 'scale'){
+        parent.attr('stroke-width', function(d) {
+          return stroke / ((d.width + d.height) / 200);
+	})
+	.attr('transform', function(d) {
+	  transform += ' scale('+d.width/100+', '+d.height/100+')';
+	  return transform;
+	});
+     }
+
+      //handle alt path types and lists of attrs
+      var child = 'path';
+      var names = [attribute.name];
+      var paths = [attribute.path];
+      if (attribute.alt){
+	child = attribute.alt;
+	names = attribute.name;
+	paths = attribute.path;
+      }
+      var childElement = parent.append(child);
+      for(var i = 0; i < names.length; i++){
+	childElement.attr(names[i], paths[i]);
+      }
     });
   }
 
@@ -35,8 +70,8 @@ pathvisiojs.view.pathwayDiagram.svg.node.pathShape = function(){
 
     if (!pathShape[0] || pathShape[0].length < 1) {return 'nonuniformlyScalingNodes empty'};
     self.pathShape = pathShape;
-    pathShape.attr("id", function (d) {return 'shape-' + d.id;})
-    .attr("class", function (d) {
+    pathShape.attr('id', function (d) {return 'shape-' + d.id;})
+    .attr('class', function (d) {
       var cssClass = '';
       if (d.elementType === 'data-node') {
         cssClass = 'shape ' + d.dataNodeType + ' ' + d.shapeType;

@@ -155,6 +155,20 @@ function loadExtJsCss(callbackOutside) {
       srcDirectoryUrl + 'js/pathvisiojs/view/pathway-diagram/svg/node/path-shape/rounded-rectangle-double.js',
       srcDirectoryUrl + 'js/pathvisiojs/view/pathway-diagram/svg/node/path-shape/oval-double.js',
       srcDirectoryUrl + 'js/pathvisiojs/view/pathway-diagram/svg/node/path-shape/complex.js',
+      srcDirectoryUrl + 'js/pathvisiojs/view/pathway-diagram/svg/node/path-shape/endoplasmic-reticulum.js',
+      srcDirectoryUrl + 'js/pathvisiojs/view/pathway-diagram/svg/node/path-shape/sarcoplasmic-reticulum.js',
+      srcDirectoryUrl + 'js/pathvisiojs/view/pathway-diagram/svg/node/path-shape/golgi-apparatus.js',
+      srcDirectoryUrl + 'js/pathvisiojs/view/pathway-diagram/svg/node/path-shape/mitochondria.js',
+      srcDirectoryUrl + 'js/pathvisiojs/view/pathway-diagram/svg/node/path-shape/arc.js',
+      srcDirectoryUrl + 'js/pathvisiojs/view/pathway-diagram/svg/node/path-shape/brace.js',
+      srcDirectoryUrl + 'js/pathvisiojs/view/pathway-diagram/svg/node/path-shape/grid-square.js',
+      srcDirectoryUrl + 'js/pathvisiojs/view/pathway-diagram/svg/node/path-shape/hexagon.js',
+      srcDirectoryUrl + 'js/pathvisiojs/view/pathway-diagram/svg/node/path-shape/mim-degradation.js',
+      srcDirectoryUrl + 'js/pathvisiojs/view/pathway-diagram/svg/node/path-shape/none.js',
+      srcDirectoryUrl + 'js/pathvisiojs/view/pathway-diagram/svg/node/path-shape/oval.js',
+      srcDirectoryUrl + 'js/pathvisiojs/view/pathway-diagram/svg/node/path-shape/pentagon.js',
+      srcDirectoryUrl + 'js/pathvisiojs/view/pathway-diagram/svg/node/path-shape/rectangle.js',
+      srcDirectoryUrl + 'js/pathvisiojs/view/pathway-diagram/svg/node/path-shape/triangle.js',
       srcDirectoryUrl + 'js/pathvisiojs/view/pathway-diagram/svg/node/text.js',
       srcDirectoryUrl + 'js/pathvisiojs/view/pathway-diagram/svg/node/group-node.js',
       srcDirectoryUrl + 'js/pathvisiojs/view/pathway-diagram/svg/node/use-element.js',
@@ -212,60 +226,8 @@ window.onload = function() {
     // but every semanticName must be unique.
     var customSymbols = [
       {
-        'semanticName': 'arc',
-        'url': srcDirectoryUrl + 'shape-library/symbols/arc.svg'
-      },
-      {
-        'semanticName': 'brace',
-        'url': srcDirectoryUrl + 'shape-library/symbols/brace.svg'
-      },
-      {
-        'semanticName': 'endoplasmic-reticulum',
-        'url': srcDirectoryUrl + 'shape-library/symbols/endoplasmic-reticulum.svg'
-      },
-      {
-        'semanticName': 'golgi-apparatus',
-        'url': srcDirectoryUrl + 'shape-library/symbols/golgi-apparatus.svg'
-      },
-      {
-        'semanticName': 'hexagon',
-        'url': srcDirectoryUrl + 'shape-library/symbols/hexagon.svg'
-      },
-      {
-        'semanticName': 'mim-degradation',
-        'url': srcDirectoryUrl + 'shape-library/symbols/mim-degradation.svg'
-      },
-      {
-        'semanticName': 'mitochondria',
-        'url': srcDirectoryUrl + 'shape-library/symbols/mitochondria.svg'
-      },
-      {
-        'semanticName': 'circle',
-        'url': srcDirectoryUrl + 'shape-library/symbols/oval.svg'
-      },
-      {
-        'semanticName': 'oval',
-        'url': srcDirectoryUrl + 'shape-library/symbols/oval.svg'
-      },
-      {
-        'semanticName': 'pentagon',
-        'url': srcDirectoryUrl + 'shape-library/symbols/pentagon.svg'
-      },
-      {
-        'semanticName': 'rectangle',
+        'semanticName': 'datanode',
         'url': srcDirectoryUrl + 'shape-library/symbols/rectangle.svg'
-      },
-      {
-        'semanticName': 'sarcoplasmic-reticulum',
-        'url': srcDirectoryUrl + 'shape-library/symbols/sarcoplasmic-reticulum.svg'
-      },
-      {
-        'semanticName': 'triangle',
-        'url': srcDirectoryUrl + 'shape-library/symbols/triangle.svg'
-      },
-      {
-        'semanticName': 'none',
-        'url': srcDirectoryUrl + 'shape-library/symbols/none.svg'
       }
     ];
 
