@@ -32,113 +32,55 @@ and the following stylesheets:
   * pan-zoom.css
   * pathway-diagram.css
 
-You can make it run in the browser by copying the following snippet:
+You can make it run in the browser by copying one of the [pathvisiojs load snippets](https://gist.github.com/ariutta/8377189).
 
-```
-  <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css" media="screen">
-  <link rel="stylesheet" href="http://wikipathways.github.io/pathvisiojs/src/css/pathvisiojs.css" media="screen">
-  <link rel="stylesheet" href="http://wikipathways.github.io/pathvisiojs/src/css/annotation.css" media="screen">
-  <link rel="stylesheet" href="http://wikipathways.github.io/pathvisiojs/src/css/pan-zoom.css" media="screen">
-  <link rel="stylesheet" href="http://wikipathways.github.io/pathvisiojs/src/css/pathway-diagram.css" media="screen">
-  <script src="http://wikipathways.github.io/pathvisiojs/lib/rgb-color/rgb-color.min.js"></script>
-  <script src="http://wikipathways.github.io/pathvisiojs/lib/strcase/build/build.js"></script>
-  <script src="http://wikipathways.github.io/pathvisiojs/lib/async/lib/async.js"></script>
-  <script src="http://wikipathways.github.io/pathvisiojs/lib/d3/d3.min.js"></script>
-  <script src="http://wikipathways.github.io/pathvisiojs/lib/jquery/jquery.min.js"></script>
-  <script src="http://wikipathways.github.io/pathvisiojs/lib/typeahead.js/dist/typeahead.min.js"></script>
-  <script src="http://wikipathways.github.io/pathvisiojs/lib/modernizr/modernizr.js"></script>
-  <script src="http://wikipathways.github.io/pathvisiojs/lib/screenfull/dist/screenfull.min.js"></script>
-  <script src="http://wikipathways.github.io/pathvisiojs/lib/svg-pan-zoom/svg-pan-zoom.js"></script>
-  <script src="http://wikipathways.github.io/pathvisiojs/lib/PathFinding.js/lib/pathfinding-browser.min.js"></script>
-  <script src="http://wikipathways.github.io/pathvisiojs/lib/jsonld.js/js/jsonld.js"></script>
-  <script src="http://wikipathways.github.io/pathvisiojs/lib/jsonld.js/js/Promise.js"></script>
-  <script src="http://wikipathways.github.io/pathvisiojs/lib/jsonld.js/js/rdfa.js"></script>
-  <script src="http://wikipathways.github.io/pathvisiojs/build/js/pathvisio.min.js"></script>
-```
-Or something like this in PHP:
-
-```
-$scripts = array(
-        "$wgScriptPath/wpi/lib/js/rgb-color.min.js",
-        "$wgScriptPath/wpi/lib/strcase/build/build.js",
-        "$wgScriptPath/wpi/lib/js/async.js",
-        "$wgScriptPath/wpi/lib/js/d3.min.js",
-        "$wgScriptPath/wpi/lib/js/jquery.min.js",                                                                                                                                                                          
-        "$wgScriptPath/wpi/lib/js/typeahead.min.js",
-        "$wgScriptPath/wpi/lib/js/modernizr.js",                                                                                                                                                                           
-        "$wgScriptPath/wpi/lib/js/screenfull.min.js",
-        "$wgScriptPath/wpi/lib/js/svg-pan.js",
-        "$wgScriptPath/wpi/lib/js/pathfinding-browser.min.js",
-        "$wgScriptPath/wpi/lib/js/pathvisio.min.js"
-); 
-
-$libs = "<script type=\"text/javascript\">" . $scripts . "</script>
- <link rel=\"stylesheet\" href=\"http://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css\" media=\"screen\" type=\"text/css\" />
- <link rel=\"stylesheet\" href=\"http://wikipathways.github.io/pathvisiojs/src/css/pathvisiojs.css\" media=\"screen\" type=\"text/css\" />
- <link rel=\"stylesheet\" href=\"http://wikipathways.github.io/pathvisiojs/src/css/annotation.css\" media=\"screen\" type=\"text/css\" />
- <link rel=\"stylesheet\" href=\"http://wikipathways.github.io/pathvisiojs/src/css/pan-zoom.css\" media=\"screen\" type=\"text/css\" />
- <link rel=\"stylesheet\" href=\"http://wikipathways.github.io/pathvisiojs/src/css/pathway-diagram.css\" media=\"screen\" type=\"text/css\" />\n";
-                        
-```
 How To Get Involved
 ===================
 
-1. Get the Latest Code
-----------------------
+A. Fork and clone pathvisiojs. If you've already done this, skip ahead to Step B. Otherwise:
 
-If you have not forked pathvisiojs,
+Fork the [WikiPathways repo for pathvisiojs](https://github.com/wikipathways/pathvisiojs/fork) by clicking the "Fork" button on the upper right. Github will create a fork of pathvisiojs for you and take you to your newly created fork. On your newly created fork, find the "HTTPS clone URL," copy it, open a terminal on your dev machine and enter the following command:
 
-* Fork the WikiPathways repo for pathvisiojs [here](https://github.com/wikipathways/pathvisiojs/fork)
-* Go to your fork at https://github.com/YOUR-GITHUB-ACCOUNT/pathvisiojs/
-
-If you've already forked pathvisiojs in the past,
-
-* Go to your fork of pathvisiojs at https://github.com/YOUR-GITHUB-ACCOUNT/pathvisiojs/ and select the "Compare and review" button to the left of the "branch" drop-down to pull from the wikipathways fork of pathvisiojs into your fork
-* Select "Edit" and "compare across forks" as needed to make the drop-downs look like this: 
 ```
-YOUR-GITHUB-ACCOUNT:master ... wikipathways:master
-```
-* Create pull request
-* Accept pull request (if github says that the pull request cannot be done automatically, you will need to merge the files from the command line. Let Anders or Alex know and they can help.)
-
-2. Make Awesome Updates
------------------------
-You can edit any of the files in the "src" directory of the master branch of your fork (https://github.com/YOUR-GITHUB-ACCOUNT/pathvisiojs/tree/master/src/). To view your changes, you can run a web server on your dev machine and navigate to the page ["./pathvisiojs/test/index.html"](http://localhost:3000/test/) (edit URL as required to match your server setup). 
-
-If you don't have a server already, you can use the included development server. To set it up, start by installing [nodejs](http://nodejs.org/download/), if you don't already have node installed, then cd to the root directory of the repo "pathvisiojs/" and use npm (the node package manager) to handle installing dependencies:
-```
-$ npm install
+$ cd ~/Sites/ #or another directory of your choice
+$ git clone https://github.com/YOUR-GITHUB-ACCOUNT/pathvisiojs.git #replace with the HTTPS clone URL you copied
+$ cd pathvisiojs
 ```
 
-Now start the server from the terminal with
-```
-$ node devserver
-```
-and you should be able to pull up test pathways from the test page at http://localhost:3000/test/.
+B. Add the wikipathways pathvisiojs repo as a remote named "wikipathways," if you have not already done so:
 
-You can test as you develop by installing the Chromedriver and other browser plugins for WebDriver manager. Do this from the terminal with:
 ```
-$ webdriver-manager update
+$ cd ~/Sites/pathvisiojs/ #use the location where the pathvisiojs directory is actually located on your computer  
+$ git remote add wikipathways https://github.com/wikipathways/pathvisiojs.git
 ```
 
-If you installed the node module "protractor" locally (default), the webdriver-manager file will be located at:
-pathvisiojs/node_modules/protractor/bin/webdriver-manager
+Pull latest code from wikipathways master branch of pathvisiojs:
 
-Start webdriver server
 ```
-webdriver-manager start
+$ git pull wikipathways master
 ```
 
-Run the tests
+C. Make Awesome Updates
+
+You can edit any of the files in the [src directory](https://github.com/wikipathways/pathvisiojs/tree/master/src):
+
 ```
-cd pathvisiojs/test/
-protractor run.js
+$ cd ~/Sites/pathvisiojs/src/ #update this to where the pathvisiojs directory is actually located on your computer
 ```
 
-3. Send Us a Pull Request
--------------------------
+To view your changes as you edit, you can use the functionalities in the [test directory](https://github.com/wikipathways/pathvisiojs/tree/master/test):
+
+```
+$ cd ~/Sites/pathvisiojs/src/test/ #update this to where the pathvisiojs directory is actually located on your computer
+```
+
+The [README](https://github.com/wikipathways/pathvisiojs/tree/master/test/README.md) in this directory includes information on how to view diagrams during development and how to run tests.
+
+D. Send Us a Pull Request
+
 * Visually inspect each of the test pathways from the test page, comparing your version with the current version to ensure your code produces the correct visual result in terms of styling, etc.
 * Run the tests
+* Commit your changes and push them to your github fork of pathvisiojs
 * Create a pull request to the wikipathways fork of pathvisiojs: 
 ```
 wikipathways:master ... YOUR-GITHUB-ACCOUNT:master
