@@ -79,9 +79,21 @@ pathvisiojs.view.pathwayDiagram.svg.node = function(){
       return 'translate(' + element.x + ' ' + element.y + ')';
     })
     .attr("style", function (d) {
-      var style = '';
+      var style;
       if (d.hasOwnProperty('backgroundColor')) {
-        style += 'fill:' + d.backgroundColor + '; fill-opacity:1; ';
+	if (d.ShapeType == 'brace'){ 
+	  //Brace color is NOT for fill and should always be transparent
+	  style = 'fill-opacity:0; ';
+	} 
+        else if (d.nodeType == 'Label' && d.backgroundColor == '#ffffff'){  
+	  //Label fill attr is programmatically IGNORED when set to Java editor default of white.
+	  //This is obviously a hack that should ultimately be resolved by fixing the editor's 
+	  // default for label backgroundColor.
+	  style = '' ;
+	}
+	else {
+          style = 'fill:' + d.backgroundColor + '; fill-opacity:1; ';
+	}
       }
       return style;
     })
@@ -94,15 +106,15 @@ pathvisiojs.view.pathwayDiagram.svg.node = function(){
     var shapeType = strcase.paramCase(args.data.ShapeType);
     
     // check for whether desired shape type is available as a symbol
-    if (pathvisiojs.view.pathwayDiagram.svg.symbol.semanticNameToIdMapping.hasOwnProperty(shapeType)) {
+//    if (pathvisiojs.view.pathwayDiagram.svg.symbol.semanticNameToIdMapping.hasOwnProperty(shapeType)) {
       //console.log('We will use an SVG "use" element to render this ' + shapeType);
-      pathvisiojs.view.pathwayDiagram.svg.node.useElement.render(nodeContainer, args.data);
-    }
+//      pathvisiojs.view.pathwayDiagram.svg.node.useElement.render(nodeContainer, args.data);
+//    }
     // else check for whether it is available as a pathShape
-    else {
+//    else {
       //console.log('We will use a pathShape to render this ' + shapeType);
       pathvisiojs.view.pathwayDiagram.svg.node.pathShape.render(nodeContainer, args.data);
-    }
+//    }
 
     /****************** 
      * text label
