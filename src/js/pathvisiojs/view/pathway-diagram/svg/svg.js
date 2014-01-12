@@ -93,7 +93,7 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
   function loadPartials(args, callbackOutside) {
     var container = args.container,
       customMarkers = args.customMarkers,
-      customSymbols = args.customSymbols,
+//      customSymbols = args.customSymbols,
       cssUrl = args.cssUrl,
       pathvisioJsContainer,
       pathwayContainer;
@@ -120,6 +120,7 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
           callback(null);
         }
       },
+/*
       function(callback) {
         if (!!args.customSymbols) {
           pathvisiojs.view.pathwayDiagram.svg.symbol.loadAllCustom(svg, customSymbols, function() {
@@ -130,7 +131,7 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
           callback(null);
         }
       },
-      function(callback) {
+//*/      function(callback) {
         if (!!cssUrl) {
           d3.text(cssUrl, 'text/css', function(data) {
             var defs = svg.select('defs');
@@ -194,10 +195,14 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
             pathvisiojs.view.pathwayDiagram.svg.node.groupNode.render(args, function(groupContainer, groupContents) {
               var groupedElementsArgs = renderingArgs;
               groupedElementsArgs.svg = svg;
-              groupedElementsArgs.container = groupContainer;
+              groupedElementsArgs.container = args.container; //groupContainer;
+	      /* 
+	      console.log('groupContainer');
+	      console.log(groupContainer); //*/
               groupedElementsArgs.data = groupContents;
-              console.log('groupContents');
-              console.log(groupContents);
+	      /*
+	      console.log('groupContents');
+	      console.log(groupContents); //*/
               groupedElementsArgs.pathway = pathway;
 
               // recursively calling this function to render elements within groupNode(s)

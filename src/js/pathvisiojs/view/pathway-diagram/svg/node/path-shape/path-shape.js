@@ -14,16 +14,21 @@ pathvisiojs.view.pathwayDiagram.svg.node.pathShape = function(){
       }
     }
 
-    //attributes extracted and applied to parent g element
-    var style = parent.attr('style');;
-    var stroke = 1
-    var transform = parent.attr('transform');
+    //style attribute modified on parent 
+    var style = parent.attr('style');
     parent.attr('style', function(d) {
-	if(d.borderColor) {
-	  style += 'stroke:' + d.borderColor + '; ';
-	}
-	return style;})
-      .attr('stroke-width', function(d) {
+        if(d.hasOwnProperty('borderColor')) {
+	  if(d.nodeType != 'Label'){  //Label "Color" attrs are NOT for borderColor of svg-specific rectangle shape
+            style += 'stroke:' + d.borderColor + '; ';
+	  }
+        }
+        return style;})
+
+    //other attributes extracted and applied to new g element
+    var stroke = 1
+    var transform = '';
+    var g = parent.append('g');
+    g.attr('stroke-width', function(d) {
         if(!isNaN(d.borderWidth)){
           stroke = d.borderWidth; //LineThickness in GPML
         }
@@ -37,8 +42,8 @@ pathvisiojs.view.pathwayDiagram.svg.node.pathShape = function(){
     var nodeAttributes = pathvisiojs.view.pathwayDiagram.svg.node.pathShape[pathShapeNameToUse].getAttributes(data.width, data.height, data.borderWidth);
     nodeAttributes.forEach(function(attribute) {
 
-     if(attribute.parent == 'scale'){
-        parent.attr('stroke-width', function(d) {
+     if(attribute.scale == 'true'){
+        g.attr('stroke-width', function(d) {
           return stroke / ((d.width + d.height) / 200);
 	})
 	.attr('transform', function(d) {
@@ -56,7 +61,7 @@ pathvisiojs.view.pathwayDiagram.svg.node.pathShape = function(){
 	names = attribute.name;
 	paths = attribute.path;
       }
-      var childElement = parent.append(child);
+      var childElement = g.append(child);
       for(var i = 0; i < names.length; i++){
 	childElement.attr(names[i], paths[i]);
       }
