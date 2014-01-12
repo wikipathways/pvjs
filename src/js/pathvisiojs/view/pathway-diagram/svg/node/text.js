@@ -18,18 +18,31 @@ pathvisiojs.view.pathwayDiagram.svg.node.text = function(){
 
 
   function render(nodeContainer, data) {
-    var dx, dy, textAlign, textAnchor;
-
     // TODO make a better caching system
     var cache = {};
     cache.padding = 5;
     var text = {};
     text.cache = {};
     text.cache.fontSize = 12;
-    text.cache.alignmentBaseline = 'middle';
-    text.cache.textAnchor = 'middle';
-    text.cache.textAlign = 'center';
-    text.cache.verticalAlign = 'middle';
+    text.cache.alignmentBaseline = data.text.verticalAlign;
+    text.cache.textAnchor = function() {
+	if (data.text.textAlign == 'left'){
+	  return 'start';
+	} else if (data.text.textAlign == 'right') {
+	  return 'end';
+	} else {
+	  return 'middle';
+	}
+    };
+    text.cache.x = function() {
+	if (data.text.textAlign == 'left'){
+          return -1 * data.width / 2;
+        } else if (data.text.textAlign == 'right') {
+          return data.width / 2;
+        } else {
+          return 0;
+        }
+    };
     text.cache.translate = {};
     // TODO replace this with the actual translate values
     text.cache.translate.dx = data.width / 2;
@@ -86,9 +99,9 @@ pathvisiojs.view.pathwayDiagram.svg.node.text = function(){
     .attr("id", function (d, i) {
       return 'text-line' + i;
     })
-    .attr("x", 0)
+    .attr("x", text.cache.x)
     .attr("y", function (d, i) { return (i - (textLineCount - 1)/2) * 1.4 + 'em';})
-    .attr("alignment-baseline", text.cache.alignmentBaseline)
+    .attr("alignment-baseline", text.cache.alignmentBaseline) 
     .attr("text-anchor", text.cache.textAnchor)
     .text(function (d) { return d; });
 
