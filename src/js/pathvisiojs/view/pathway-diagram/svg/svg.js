@@ -195,10 +195,14 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
             pathvisiojs.view.pathwayDiagram.svg.node.groupNode.render(args, function(groupContainer, groupContents) {
               var groupedElementsArgs = renderingArgs;
               groupedElementsArgs.svg = svg;
-              groupedElementsArgs.container = groupContainer;
+              groupedElementsArgs.container = args.container; //groupContainer;
+	      /* 
+	      console.log('groupContainer');
+	      console.log(groupContainer); //*/
               groupedElementsArgs.data = groupContents;
-              console.log('groupContents');
-              console.log(groupContents);
+	      /*
+	      console.log('groupContents');
+	      console.log(groupContents); //*/
               groupedElementsArgs.pathway = pathway;
 
               // recursively calling this function to render elements within groupNode(s)
