@@ -17,8 +17,10 @@ pathvisiojs.view.pathwayDiagram.svg.node.pathShape = function(){
     //style attribute modified on parent 
     var style = parent.attr('style');
     parent.attr('style', function(d) {
-        if(d.borderColor) {
-          style += 'stroke:' + d.borderColor + '; ';
+        if(d.hasOwnProperty('borderColor')) {
+	  if(d.nodeType != 'Label'){  //Label "Color" attrs are NOT for borderColor of svg-specific rectangle shape
+            style += 'stroke:' + d.borderColor + '; ';
+	  }
         }
         return style;})
 
