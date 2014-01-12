@@ -79,12 +79,20 @@ pathvisiojs.view.pathwayDiagram.svg.node = function(){
       return 'translate(' + element.x + ' ' + element.y + ')';
     })
     .attr("style", function (d) {
-      var style = '';
+      var style;
       if (d.hasOwnProperty('backgroundColor')) {
-          if(d.nodeType != 'Label' || (d.nodeType == 'Label' && d.backgroundColor != '#ffffff')){  
-	  //Label fill attr is programmatically IGNORED when set to Java default of white
-	  //This is obviously a hack that should ultimately be resolved by fixing the editors default for label backgroundColor
-          style += 'fill:' + d.backgroundColor + '; fill-opacity:1; ';
+	if (d.ShapeType == 'brace'){ 
+	  //Brace color is NOT for fill and should always be transparent
+	  style = 'fill-opacity:0; ';
+	} 
+        else if (d.nodeType == 'Label' && d.backgroundColor == '#ffffff'){  
+	  //Label fill attr is programmatically IGNORED when set to Java editor default of white.
+	  //This is obviously a hack that should ultimately be resolved by fixing the editor's 
+	  // default for label backgroundColor.
+	  style = '' ;
+	}
+	else {
+          style = 'fill:' + d.backgroundColor + '; fill-opacity:1; ';
 	}
       }
       return style;
