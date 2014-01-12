@@ -54,11 +54,10 @@ pathvisiojs.view.pathwayDiagram.svg.edge.interaction = function(){
           cssClass += 'has-xref ';
           if (!!data.DatasourceReference.ID) {
             interaction.on("click", function(d,i) {
-console.log("HEYYYYYY");
-console.log(d);
               pathvisiojs.view.annotation.xRef.render(args.pathway.Organism, d['DatasourceReference'].ID, d['DatasourceReference'].Database, d.InteractionGraph[0].interactsWith.text.tspan[0]+' + '+d.InteractionGraph[0].text.tspan[0], d.renderableType); 
-	      //that's capital 'O' Organism from GPML vocab
-	      //names of interaction partners is given as header, which is also used to form site query, thus the "+" is used to convey both the interaction and query logic
+	      //That's capital 'O' Organism from GPML vocab.
+	      //Names of interaction partners is given as header, which is also used to form site query, 
+	      // thus the "+" is used to convey both the interaction and query logic.
             })
           }
         }

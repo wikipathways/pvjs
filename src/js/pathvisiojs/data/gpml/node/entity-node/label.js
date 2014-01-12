@@ -4,7 +4,7 @@ pathvisiojs.data.gpml.element.node.entityNode.label = Object.create(pathvisiojs.
 
 pathvisiojs.data.gpml.element.node.entityNode.label.Rotation = null;
 pathvisiojs.data.gpml.element.node.entityNode.label.Color = null;
-pathvisiojs.data.gpml.element.node.entityNode.label.FillColor = 'ffffff';
+pathvisiojs.data.gpml.element.node.entityNode.label.FillColor = null;
 pathvisiojs.data.gpml.element.node.entityNode.label.FontSize = 10;
 pathvisiojs.data.gpml.element.node.entityNode.label.FontWeight = null;
 
