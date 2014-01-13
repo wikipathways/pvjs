@@ -43,11 +43,13 @@ C. Ensure your web server is running. Start your webdriver server, a second serv
 $ ~/Sites/pathvisiojs/node_modules/protractor/bin/webdriver-manager start
 ```
 
-Leave test server running in terminal window. Open a new terminal tab or window and run the tests:
+Leave test server running in terminal window.
+
+D. Open a new terminal tab or window and run the tests:
 
 ```
-$ cd  #update this to where the pathvisiojs directory is actually located on your computer
-$ ~/Sites/pathvisiojs/node_modules/protractor/bin/protractor/protractor ./test/run.js
+$ cd ~/Sites/pathvisiojs/
+$ ./node_modules/protractor/bin/protractor/protractor ./test/run.js
 ```
 
 Once the tests finish running, you will see the test results in the terminal window. Everything should be successful and displayed in green.
