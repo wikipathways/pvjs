@@ -1,6 +1,8 @@
 # How To View Diagrams During Development
 
-A. You will need a web server running on your dev machine. If you already have one set up, you can just update the base URL in [run.js](https://github.com/wikipathways/pathvisiojs/blob/master/test/run.js#L73) then skip to Step B. Otherwise, use the included development server by following these steps:
+A. You will need a web server running on your dev machine. If you already have one set up, you can simply update the base URL in [run.js](https://github.com/wikipathways/pathvisiojs/blob/master/test/run.js#L73) then skip to Step B. Please change base URL back before making a pull request.
+
+If you don't have a web server available, you can use the included development server by following these steps:
 
 1. Install [nodejs](http://nodejs.org/download/), if you haven't already done so.
 2. When nodejs is installed, open a terminal and enter the following commands (update file path if pathvisiojs directory is not located in ~/Sites/ on your computer):
