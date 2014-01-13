@@ -15,3 +15,5 @@ var point = path.getPointAtLength(0.4 * totalLength); //Finds the SVGPoint that 
 ```
 
 [D3 Path Data Generators](https://github.com/mbostock/d3/wiki/SVG-Shapes#path-data-generators) can help with the construction of these paths. For example, "line.interpolate('step')" could be used for Elbows. Note that the generator expects a start point, an end point and a point for every change in direction of an Elbow, whereas GPML gives a start point and an end point and sometimes gives a waypoint, which is the midpoint of Elbow segments that are not the first and last segments.
+
+For more information on D3 and paths, [dashing d3js](https://www.dashingd3js.com/svg-paths-and-d3js) has some good info.
