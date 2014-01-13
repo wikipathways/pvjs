@@ -38,7 +38,15 @@ pathvisiojs.data.gpml.node.anchor = function() {
           if (!!jsonParentElement.stroke) {
             jsonAnchor.backgroundColor = jsonParentElement.stroke;
           }
-          jsonAnchor.backgroundImage = gpmlAnchor.attr('Shape') || 'none';
+          jsonAnchor.ShapeType = gpmlAnchor.attr('Shape');
+          if (!!jsonAnchor.ShapeType) {
+            if (jsonAnchor.ShapeType === 'Circle') {
+              jsonAnchor.ShapeType = 'oval';
+            }
+          }
+          else {
+            jsonAnchor.ShapeType = 'none';
+          }
           jsonParentElement.Anchor.push(jsonAnchor);
         })
         callback(jsonParentElement);
