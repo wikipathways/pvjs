@@ -1,6 +1,6 @@
 # How To View Diagrams During Development
 
-A. You will need a web server running on your dev machine. If you already have one set up, you can simply update the base URL in [pathway-rendering-tests.js](https://github.com/wikipathways/pathvisiojs/blob/master/test/e2e/pathway-rendering-tests.js#L16) then skip to Step B. Please change base URL back before making a pull request.
+A. You will need a web server running on your dev machine. If you already have one set up, you can simply update the baseUrl variable in [pathway-rendering-tests.js](https://github.com/wikipathways/pathvisiojs/blob/master/test/e2e/pathway-rendering-tests.js#L16) then skip to Step B. Please change base URL back before making a pull request.
 
 If you don't have a web server available, you can use the included development server by following these steps:
 
