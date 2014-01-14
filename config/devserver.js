@@ -13,7 +13,7 @@ pathvisiojs.config = function() {
   }
 
   var bridgedbDatasources = function() {
-    return 'http://localhost:3000/external-data/bridgedb/datasources.txt';
+    return '../external-data/bridgedb/datasources.txt';
   }
 
   var diagramNotAvailableImageUri = function() {
