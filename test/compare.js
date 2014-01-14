@@ -102,6 +102,7 @@ function generateHtmlView(callback) {
 }
 
 /*
+ * moved this into compare.html
 function loadExtJsCss(callbackOutside) {
   async.parallel([
     function(callback) {
