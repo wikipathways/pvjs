@@ -4,55 +4,31 @@ pathvisiojs.view.pathwayDiagram.svg.edge.path = function(){
 	var type = edge.ConnectorType;
 	
 	if (type == 'Straight'){
-	    return calcStraightPath(edge.Point);	
+          if (edge.Point.length == 2) {
+            return svgLine(edge.Point);
+          }
+          else {
+            console.log("Too many points for a straight line!");
+            return null;
+          }
 	}
 
 	else if (type == 'Segmented') {
-	    return calcSegmentedPath(edge.Point);
+	    return svgLine(edge.Point);
 	}
 
 	else if (type == 'Elbow'){
-	    return calcElbowPath(edge.Point);
+	    return svgLine(calcPathpoints(edge.Point));
 	}
 
 	else if (type == 'Curved'){
-	    return calcCurvedPath(edge.Point);
+	    return svgCurve(calcPathpoints(edge.Point));
 	}
 	
 	else {
 	    console.log("Unknown connector type: " + type);
 	    return null;
 	}
-    }
-
-    function calcStraightPath(pts){
-	if (pts.length == 2) {
-	  return svgLine(pts);
-	}
-	else {
-	  console.log("Too many points for a straight line!");
-	  return null;
-	}
-    }
-
-    function calcSegmentedPath(pts){
-	return svgLine(pts);
-    }
-
-    function calcElbowPath(pts){
-//	var wpts = calcWaypoints(pts);
-//	var segs = calcSegments(wpts);
-
-	var ppts = calcPathpoints(pts);
-	return svgLine(ppts);;
-    }
-
-    function calcCurvedPath(pts){
-	var wpts = calcWaypoints(pts);                                                                       
-        var segs = calcSegments(wpts);
-	//calc lo and hi-res curves and set on edge
-	//calc path
-	return null;
     }
 
     function calcPathpoints(p){
@@ -120,6 +96,9 @@ pathvisiojs.view.pathwayDiagram.svg.edge.path = function(){
 	// final waypoint is end
 	wpts[wptCount+1] = end;
 
+console.log(wptCount);
+console.log(wpts);
+
 	return wpts;
     }
 
@@ -180,30 +159,28 @@ pathvisiojs.view.pathwayDiagram.svg.edge.path = function(){
 	return wptMatrix[x][y][z];
     }
 
-    function sign(x) { return x ? x < 0 ? -1 : 1 : 0; }; //caution: sign("0") -> 1
-
-    function calcSegments(wpts){
-	//Remember: wpts include start and end points
-
-	return segs;
-    }
+    function sign(x) { 
+	return x ? x < 0 ? -1 : 1 : 0; //caution: sign("0") -> 1 
+    };
 
     function getSide(p){
-	if(p.RelX == 0){
-           if (p.RelY == 1){
-              return 2; //South
-           } else {
-               return 0; //North
-           }
-         } else if (p.RelX == 1){
+	if(Math.abs(p.RelX) > Math.abs(p.RelY)) {
+	  if(p.RelX > 0) {
             return 1; //East
-         } else {
-           return 3; //West
-         }
+	  } else {
+            return 3; //West
+	  }
+ 	} else {
+	  if(p.RelY > 0) {
+            return 2; //South
+	  } else {
+            return 0; //North
+	  }
+	}
       }
 
     function getAxis(p) {
-        if (p.RelY == 0){
+        if (Math.abs(p.RelX) > Math.abs(p.RelY)){
            return 0; // Y-Axis; Vertical
         } else {
           return 1; // X-Axis; Horzontal
@@ -211,25 +188,32 @@ pathvisiojs.view.pathwayDiagram.svg.edge.path = function(){
     }
 
     function getDir(p){ 
-	return p.RelX + p.RelY;
+        if(Math.abs(p.RelX) > Math.abs(p.RelY)) {
+          if(p.RelX > 0) {
+            return 1; //Right
+          } else {
+            return -1; //Left
+          }
+        } else {
+          if(p.RelY > 0) {
+            return 1; //Down
+          } else {
+            return -1; //Up
+          }
+        }
     }
 
-    function moveTo(p){
-	return 'M'+p.x+','+p.y;
-    }
-    function lineTo(p){
-	return 'L'+p.x+','+p.y;
-    }
-    function curveTo(cp){
-	//control point: array of 3 points
-	return 'C'+cp[0].x+','+cp[0].y+' '+cp[1].x+','+cp[1].y+' '+cp[2].x+','+cp[2].y;
-    }
- 
+    //for generating line segments through a path of points (pathpoints, not waypoints)
     var svgLine = d3.svg.line()
 	.x(function(d) {return d.x; })
 	.y(function(d) {return d.y;})
 	.interpolate("linear");
 
+    //for generating bezier curves through a path of points (pathpoints, not waypoints)
+    var svgCurve = d3.svg.line()
+        .x(function(d) {return d.x; })
+        .y(function(d) {return d.y;})
+        .interpolate("basis");
 
   return {
     getPath:getPath
