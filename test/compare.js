@@ -101,6 +101,7 @@ function generateHtmlView(callback) {
   });
 }
 
+/*
 function loadExtJsCss(callbackOutside) {
   async.parallel([
     function(callback) {
@@ -115,8 +116,8 @@ function loadExtJsCss(callbackOutside) {
   function(callback) {
     loadScripts([
       srcDirectoryUrl + 'js/pathvisiojs/pathvisio.js',
-      srcDirectoryUrl + '../config/default.js',
-      //srcDirectoryUrl + '../config/devserver.js',
+      //srcDirectoryUrl + '../config/default.js',
+      srcDirectoryUrl + '../config/devserver.js',
       //srcDirectoryUrl + '../config/www.wikipathways.org.js',
       //srcDirectoryUrl + '../config/test3.wikipathways.org.js',
       srcDirectoryUrl + 'js/pathvisiojs/utilities.js',
@@ -193,10 +194,11 @@ function loadExtJsCss(callbackOutside) {
     callbackOutside();
   })
 }
+//*/
 
 var urlParamList = getUrlParamList();
-var currentUrl = document.location.origin + document.location.pathname;
-var pathvisiojsRootDirectoryUrl = document.location.origin + document.location.pathname.split('test/compare.html')[0];
+var currentUrl = document.location;
+var pathvisiojsRootDirectoryUrl = document.location.pathname.split('test/compare.html')[0];
 var srcDirectoryUrl = (pathvisiojsRootDirectoryUrl + 'src/');
 
 /*********************************************
@@ -217,12 +219,12 @@ window.onload = function() {
     generateHtmlView(function() {
       callback(null);
     });
-  },
+  }/*,
   function(callback) {
     loadExtJsCss(function() {
       callback(null);
     });
-  }],
+  }//*/],
   function(err) {
     // Specify an image for each semantic element you would like to customize.
     // If no image is specified for a semantic element, the default will be used.
