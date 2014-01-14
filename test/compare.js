@@ -55,24 +55,6 @@ function loadScripts(array, callback){
   })();  
 }
 
-function loadJsCssFile(filename, filetype, callback){
-  if (filetype=='js') {
-    var fileref=document.createElement('script')
-    fileref.setAttribute('type','text/javascript')
-    fileref.setAttribute('src', filename)
-  }
-  else if (filetype=='css') {
-    var fileref=document.createElement('link')
-    fileref.setAttribute('rel', 'stylesheet')
-    fileref.setAttribute('type', 'text/css')
-    fileref.setAttribute('href', filename)
-  }
-  if (typeof fileref!='undefined') {
-    document.getElementsByTagName('head')[0].appendChild(fileref)
-  }
-  callback();
-}
-
 function updateParams(updatedParam) {
   var targetUrl = currentUrl + '?' + updatedParam.key + '=' + updatedParam.value;
 
@@ -101,103 +83,10 @@ function generateHtmlView(callback) {
   });
 }
 
-/*
- * moved this into compare.html
-function loadExtJsCss(callbackOutside) {
-  async.parallel([
-    function(callback) {
-    loadJsCssFile(srcDirectoryUrl + 'css/pathvisiojs.css', 'css', callback);
-  },
-  function(callback) {
-    loadJsCssFile(srcDirectoryUrl + 'css/annotation.css', 'css', callback);
-  },
-  function(callback) {
-    loadJsCssFile(srcDirectoryUrl + 'css/pan-zoom.css', 'css', callback);
-  },
-  function(callback) {
-    loadScripts([
-      srcDirectoryUrl + 'js/pathvisiojs/pathvisio.js',
-      //srcDirectoryUrl + '../config/default.js',
-      srcDirectoryUrl + '../config/devserver.js',
-      //srcDirectoryUrl + '../config/www.wikipathways.org.js',
-      //srcDirectoryUrl + '../config/test3.wikipathways.org.js',
-      srcDirectoryUrl + 'js/pathvisiojs/utilities.js',
-      srcDirectoryUrl + 'js/pathvisiojs/data/data.js',
-      srcDirectoryUrl + 'js/pathvisiojs/data/bridgedb/bridgedb.js',
-      srcDirectoryUrl + 'js/pathvisiojs/data/bridgedb/data-sources.js',
-      srcDirectoryUrl + 'js/pathvisiojs/data/biopax/biopax.js',
-      srcDirectoryUrl + 'js/pathvisiojs/data/gpml/gpml.js',
-      srcDirectoryUrl + 'js/pathvisiojs/data/gpml/element.js',
-      srcDirectoryUrl + 'js/pathvisiojs/data/gpml/text.js',
-      srcDirectoryUrl + 'js/pathvisiojs/data/gpml/namespaces.js',
-      srcDirectoryUrl + 'js/pathvisiojs/data/gpml/biopax-ref.js',
-      srcDirectoryUrl + 'js/pathvisiojs/data/gpml/node/node.js',
-      srcDirectoryUrl + 'js/pathvisiojs/data/gpml/node/group-node.js',
-      srcDirectoryUrl + 'js/pathvisiojs/data/gpml/node/entity-node/entity-node.js',
-      srcDirectoryUrl + 'js/pathvisiojs/data/gpml/node/entity-node/data-node.js',
-      srcDirectoryUrl + 'js/pathvisiojs/data/gpml/node/entity-node/label.js',
-      srcDirectoryUrl + 'js/pathvisiojs/data/gpml/node/entity-node/shape.js',
-      srcDirectoryUrl + 'js/pathvisiojs/data/gpml/node/anchor.js',
-      srcDirectoryUrl + 'js/pathvisiojs/data/gpml/edge/edge.js',
-      srcDirectoryUrl + 'js/pathvisiojs/data/gpml/edge/interaction.js',
-      srcDirectoryUrl + 'js/pathvisiojs/data/gpml/edge/graphical-line.js',
-      srcDirectoryUrl + 'js/pathvisiojs/data/gpml/edge/point.js',
-      srcDirectoryUrl + 'js/pathvisiojs/view/view.js',
-      srcDirectoryUrl + 'js/pathvisiojs/view/annotation/annotation.js',
-      srcDirectoryUrl + 'js/pathvisiojs/view/annotation/citation.js',
-      srcDirectoryUrl + 'js/pathvisiojs/view/annotation/x-ref.js',
-      srcDirectoryUrl + 'js/pathvisiojs/view/pathway-diagram/pathway-diagram.js',
-      srcDirectoryUrl + 'js/pathvisiojs/view/pathway-diagram/path-finder.js',
-      srcDirectoryUrl + 'js/pathvisiojs/view/pathway-diagram/svg/svg.js',
-      srcDirectoryUrl + 'js/pathvisiojs/view/pathway-diagram/svg/grid.js',
-      srcDirectoryUrl + 'js/pathvisiojs/view/pathway-diagram/svg/info-box.js',
-      srcDirectoryUrl + 'js/pathvisiojs/view/pathway-diagram/svg/symbol.js',
-      srcDirectoryUrl + 'js/pathvisiojs/view/pathway-diagram/svg/publication-xref.js',
-      srcDirectoryUrl + 'js/pathvisiojs/view/pathway-diagram/svg/node/node.js',
-      srcDirectoryUrl + 'js/pathvisiojs/view/pathway-diagram/svg/node/anchor.js',
-      srcDirectoryUrl + 'js/pathvisiojs/view/pathway-diagram/svg/node/entity-node.js',
-      srcDirectoryUrl + 'js/pathvisiojs/view/pathway-diagram/svg/node/path-shape/path-shape.js',
-      srcDirectoryUrl + 'js/pathvisiojs/view/pathway-diagram/svg/node/path-shape/rounded-rectangle.js',
-      srcDirectoryUrl + 'js/pathvisiojs/view/pathway-diagram/svg/node/path-shape/rounded-rectangle-double.js',
-      srcDirectoryUrl + 'js/pathvisiojs/view/pathway-diagram/svg/node/path-shape/oval-double.js',
-      srcDirectoryUrl + 'js/pathvisiojs/view/pathway-diagram/svg/node/path-shape/complex.js',
-      srcDirectoryUrl + 'js/pathvisiojs/view/pathway-diagram/svg/node/path-shape/endoplasmic-reticulum.js',
-      srcDirectoryUrl + 'js/pathvisiojs/view/pathway-diagram/svg/node/path-shape/sarcoplasmic-reticulum.js',
-      srcDirectoryUrl + 'js/pathvisiojs/view/pathway-diagram/svg/node/path-shape/golgi-apparatus.js',
-      srcDirectoryUrl + 'js/pathvisiojs/view/pathway-diagram/svg/node/path-shape/mitochondria.js',
-      srcDirectoryUrl + 'js/pathvisiojs/view/pathway-diagram/svg/node/path-shape/arc.js',
-      srcDirectoryUrl + 'js/pathvisiojs/view/pathway-diagram/svg/node/path-shape/brace.js',
-      srcDirectoryUrl + 'js/pathvisiojs/view/pathway-diagram/svg/node/path-shape/grid-square.js',
-      srcDirectoryUrl + 'js/pathvisiojs/view/pathway-diagram/svg/node/path-shape/hexagon.js',
-      srcDirectoryUrl + 'js/pathvisiojs/view/pathway-diagram/svg/node/path-shape/mim-degradation.js',
-      srcDirectoryUrl + 'js/pathvisiojs/view/pathway-diagram/svg/node/path-shape/none.js',
-      srcDirectoryUrl + 'js/pathvisiojs/view/pathway-diagram/svg/node/path-shape/oval.js',
-      srcDirectoryUrl + 'js/pathvisiojs/view/pathway-diagram/svg/node/path-shape/pentagon.js',
-      srcDirectoryUrl + 'js/pathvisiojs/view/pathway-diagram/svg/node/path-shape/rectangle.js',
-      srcDirectoryUrl + 'js/pathvisiojs/view/pathway-diagram/svg/node/path-shape/triangle.js',
-      srcDirectoryUrl + 'js/pathvisiojs/view/pathway-diagram/svg/node/text.js',
-      srcDirectoryUrl + 'js/pathvisiojs/view/pathway-diagram/svg/node/group-node.js',
-      srcDirectoryUrl + 'js/pathvisiojs/view/pathway-diagram/svg/node/use-element.js',
-      srcDirectoryUrl + 'js/pathvisiojs/view/pathway-diagram/svg/edge/edge.js',
-      srcDirectoryUrl + 'js/pathvisiojs/view/pathway-diagram/svg/edge/graphical-line.js',
-      srcDirectoryUrl + 'js/pathvisiojs/view/pathway-diagram/svg/edge/interaction.js',
-      srcDirectoryUrl + 'js/pathvisiojs/view/pathway-diagram/svg/edge/marker.js',
-      srcDirectoryUrl + 'js/pathvisiojs/view/pathway-diagram/svg/edge/point.js',
-      srcDirectoryUrl + 'js/pathvisiojs/view/pathway-diagram/svg/edge/path-data.js',
-      srcDirectoryUrl + 'js/pathvisiojs/view/pathway-diagram/png/png.js'
-    ],
-    function(){
-      callback(null);
-    });
-  }
-  ],
-  function(err, results){
-    callbackOutside();
-  })
-}
-//*/
-
 var urlParamList = getUrlParamList();
+
+var hostname = decodeURI(window.location.hostname);
+
 var currentUrl = document.location;
 var pathvisiojsRootDirectoryUrl = document.location.pathname.split('test/compare.html')[0];
 var srcDirectoryUrl = (pathvisiojsRootDirectoryUrl + 'src/');
@@ -206,6 +95,7 @@ var srcDirectoryUrl = (pathvisiojsRootDirectoryUrl + 'src/');
   Load UI for this test/dev comparison page 
 /********************************************/
 
+var pathvisiojs = pathvisiojs || {};
 var pathvisioNS;
 var gpmlUrl;
 window.onload = function() {
@@ -216,16 +106,117 @@ window.onload = function() {
 
   async.parallel([
     function(callback) {
-    pathvisioNS = [];
-    generateHtmlView(function() {
-      callback(null);
-    });
-  }/*,
-  function(callback) {
-    loadExtJsCss(function() {
-      callback(null);
-    });
-  }//*/],
+
+      // If you update this array, please also update it in pathvisiojs/Gruntfile.js
+      var sources = [
+        //'tmp/pathvisiojs.js', //we only use this one in the Gruntfile, not in development mode
+        'src/js/pathvisiojs/pathvisio.js',
+        'config/default.js', //this gets overwritten by serverSpecificJsConfigFileUrl in development mode
+        'src/js/pathvisiojs/utilities.js',
+        'src/js/pathvisiojs/data/data.js',
+        'src/js/pathvisiojs/data/bridgedb/bridgedb.js',
+        'src/js/pathvisiojs/data/bridgedb/data-sources.js',
+        'src/js/pathvisiojs/data/biopax/biopax.js',
+        'src/js/pathvisiojs/data/gpml/gpml.js',
+        'src/js/pathvisiojs/data/gpml/element.js',
+        'src/js/pathvisiojs/data/gpml/text.js',
+        'src/js/pathvisiojs/data/gpml/namespaces.js',
+        'src/js/pathvisiojs/data/gpml/biopax-ref.js',
+        'src/js/pathvisiojs/data/gpml/node/node.js',
+        'src/js/pathvisiojs/data/gpml/node/group-node.js',
+        'src/js/pathvisiojs/data/gpml/node/entity-node/entity-node.js',
+        'src/js/pathvisiojs/data/gpml/node/entity-node/data-node.js',
+        'src/js/pathvisiojs/data/gpml/node/entity-node/label.js',
+        'src/js/pathvisiojs/data/gpml/node/entity-node/shape.js',
+        'src/js/pathvisiojs/data/gpml/node/anchor.js',
+        'src/js/pathvisiojs/data/gpml/edge/edge.js',
+        'src/js/pathvisiojs/data/gpml/edge/interaction.js',
+        'src/js/pathvisiojs/data/gpml/edge/graphical-line.js',
+        'src/js/pathvisiojs/data/gpml/edge/point.js',
+        'src/js/pathvisiojs/view/view.js',
+        'src/js/pathvisiojs/view/annotation/annotation.js',
+        'src/js/pathvisiojs/view/annotation/citation.js',
+        'src/js/pathvisiojs/view/annotation/x-ref.js',
+        'src/js/pathvisiojs/view/pathway-diagram/pathway-diagram.js',
+        'src/js/pathvisiojs/view/pathway-diagram/path-finder.js',
+        'src/js/pathvisiojs/view/pathway-diagram/svg/svg.js',
+        'src/js/pathvisiojs/view/pathway-diagram/svg/grid.js',
+        'src/js/pathvisiojs/view/pathway-diagram/svg/info-box.js',
+        'src/js/pathvisiojs/view/pathway-diagram/svg/symbol.js',
+        'src/js/pathvisiojs/view/pathway-diagram/svg/publication-xref.js',
+        'src/js/pathvisiojs/view/pathway-diagram/svg/node/node.js',
+        'src/js/pathvisiojs/view/pathway-diagram/svg/node/anchor.js',
+        'src/js/pathvisiojs/view/pathway-diagram/svg/node/entity-node.js',
+        'src/js/pathvisiojs/view/pathway-diagram/svg/node/path-shape/path-shape.js',
+        'src/js/pathvisiojs/view/pathway-diagram/svg/node/path-shape/arc.js',
+        'src/js/pathvisiojs/view/pathway-diagram/svg/node/path-shape/brace.js',
+        'src/js/pathvisiojs/view/pathway-diagram/svg/node/path-shape/complex.js',
+        'src/js/pathvisiojs/view/pathway-diagram/svg/node/path-shape/endoplasmic-reticulum.js',
+        'src/js/pathvisiojs/view/pathway-diagram/svg/node/path-shape/golgi-apparatus.js',
+        'src/js/pathvisiojs/view/pathway-diagram/svg/node/path-shape/grid-square.js',
+        'src/js/pathvisiojs/view/pathway-diagram/svg/node/path-shape/hexagon.js',
+        'src/js/pathvisiojs/view/pathway-diagram/svg/node/path-shape/mim-degradation.js',
+        'src/js/pathvisiojs/view/pathway-diagram/svg/node/path-shape/mitochondria.js',
+        'src/js/pathvisiojs/view/pathway-diagram/svg/node/path-shape/none.js',
+        'src/js/pathvisiojs/view/pathway-diagram/svg/node/path-shape/oval.js',
+        'src/js/pathvisiojs/view/pathway-diagram/svg/node/path-shape/oval-double.js',
+        'src/js/pathvisiojs/view/pathway-diagram/svg/node/path-shape/pentagon.js',
+        'src/js/pathvisiojs/view/pathway-diagram/svg/node/path-shape/rectangle.js',
+        'src/js/pathvisiojs/view/pathway-diagram/svg/node/path-shape/rounded-rectangle.js',
+        'src/js/pathvisiojs/view/pathway-diagram/svg/node/path-shape/rounded-rectangle-double.js',
+        'src/js/pathvisiojs/view/pathway-diagram/svg/node/path-shape/sarcoplasmic-reticulum.js',
+        'src/js/pathvisiojs/view/pathway-diagram/svg/node/path-shape/triangle.js',
+        'src/js/pathvisiojs/view/pathway-diagram/svg/node/text.js',
+        'src/js/pathvisiojs/view/pathway-diagram/svg/node/group-node.js',
+        'src/js/pathvisiojs/view/pathway-diagram/svg/node/use-element.js',
+        'src/js/pathvisiojs/view/pathway-diagram/svg/edge/edge.js',
+        'src/js/pathvisiojs/view/pathway-diagram/svg/edge/graphical-line.js',
+        'src/js/pathvisiojs/view/pathway-diagram/svg/edge/interaction.js',
+        'src/js/pathvisiojs/view/pathway-diagram/svg/edge/marker.js',
+        'src/js/pathvisiojs/view/pathway-diagram/svg/edge/point.js',
+        'src/js/pathvisiojs/view/pathway-diagram/svg/edge/path-data.js',
+        'src/js/pathvisiojs/view/pathway-diagram/png/png.js'
+      ];
+
+      // In dev mode, different servers will use different configs.
+      // The code below sets this config file.
+      // For production, we will use default.js for our default config settings and
+      // optionally build other versions as needed if we need a built version that
+      // doesn't use the config settings in default.js.
+      var serverSpecificJsConfigFileName;
+      var regDomainPattern = /^(?!:\/\/)([a-zA-Z0-9]+\.)?[a-zA-Z0-9][a-zA-Z0-9-]+\.[a-zA-Z]{2,6}?$/i
+      var regexResult = regDomainPattern.exec(hostname);
+      if (!!regexResult) {
+        // www is the same as a bare domain for our purposes, e.g., www.example.org === example.org
+        if (!!regexResult[1]) {
+          serverSpecificJsConfigFileName = regexResult[0];
+        }
+        else {
+          serverSpecificJsConfigFileName = 'www.' + regexResult[0];
+        }
+      }
+      else { //if it's an IP address, just use localhost
+        serverSpecificJsConfigFileName = 'localhost';
+      }
+
+      serverSpecificJsConfigFileName = strcase.paramCase(serverSpecificJsConfigFileName);
+      sources[1] = 'config/' + serverSpecificJsConfigFileName + '.js';
+
+      sources = sources.map(function(source) {
+        return '../' + source;
+      });
+
+      loadScripts(sources, function() {
+        callback(null);
+      });
+    },
+    function(callback) {
+      pathvisioNS = [];
+      generateHtmlView(function() {
+        callback(null);
+      });
+    }
+  ],
   function(err) {
     // Specify an image for each semantic element you would like to customize.
     // If no image is specified for a semantic element, the default will be used.
@@ -238,7 +229,9 @@ window.onload = function() {
       }
     ];
 //*/
-    var customMarkers = self.customMarkers = [
+        console.log('pathvisiojs.config.bridgedbLinkOutsUrlStub()');
+        console.log(pathvisiojs.config.bridgedbLinkOutsUrlStub());
+    var customMarkers = [
       {
         'semanticName': 'arrow',
         //'url': 'http://wikipathways.org/skins/common/images/poweredby_mediawiki_88x31.png' // can use PNG or SVG
