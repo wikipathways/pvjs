@@ -115,6 +115,10 @@ function loadExtJsCss(callbackOutside) {
   function(callback) {
     loadScripts([
       srcDirectoryUrl + 'js/pathvisiojs/pathvisio.js',
+      srcDirectoryUrl + '../config/default.js',
+      //srcDirectoryUrl + '../config/devserver.js',
+      //srcDirectoryUrl + '../config/www.wikipathways.org.js',
+      //srcDirectoryUrl + '../config/test3.wikipathways.org.js',
       srcDirectoryUrl + 'js/pathvisiojs/utilities.js',
       srcDirectoryUrl + 'js/pathvisiojs/data/data.js',
       srcDirectoryUrl + 'js/pathvisiojs/data/bridgedb/bridgedb.js',

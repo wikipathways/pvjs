@@ -18,13 +18,10 @@ pathvisiojs.view.pathwayDiagram.png = function(){
       fitScreenScale;
 
     if (!!wikiPathwaysId) {
-      pngUrl = encodeURI('http://www.wikipathways.org/wpi//wpi.php?action=downloadFile&type=png&pwTitle=Pathway:' + wikiPathwaysId + '&revision=' + revision);
+      pngUrl = encodeURI(pathvisiojs.config.pngDiagramUriStub() + wikiPathwaysId + '&revision=' + revision);
     }
     else {
-
-      // TODO update this link to a URL we control
-
-      pngUrl = 'http://upload.wikimedia.org/wikipedia/commons/3/3b/Picture_Not_Yet_Available.png';
+      pngUrl = pathvisiojs.config.diagramNotAvailableImageUri();
     }
     window.setTimeout(function() {
       png = document.createElement('img');
