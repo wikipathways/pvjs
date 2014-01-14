@@ -6,12 +6,13 @@ pathvisiojs.view.pathwayDiagram.svg.node.anchor = function(){
     // renders all anchors for a given edge
 
     // TODO look at using markers for this instead of independent symbols
-    // TODO use ...svg.node.render() with this
 
-/*    if (!svg) {
-      throw new Error('svg missing for rendering anchors.');
-    }
-//*/    if (!container) {
+    /*    if (!svg) {
+          throw new Error('svg missing for rendering anchors.');
+          }
+    //*/    
+
+    if (!container) {
       throw new Error('container element not specified for rendering anchors.');
     }
     if (!parentEdgeId) {
@@ -26,6 +27,50 @@ pathvisiojs.view.pathwayDiagram.svg.node.anchor = function(){
 
     var defaultAnchorWidth = 10;
     var defaultAnchorHeight = 10;
+
+    // TODO refactor svg.node.render() so we can use it for the other nodes and for anchors instead of basically repeating much of that method here
+    var nodeContainer = container.selectAll('.node.anchor.parent-edge-' + strcase.paramCase(parentEdgeId))
+    .data(data)
+    .enter()
+    .append("g")
+    .attr('transform', function(d) {
+      var anchorCoordinates = pathvisiojs.view.pathwayDiagram.svg.edge.getPointAtPositionById(parentEdgeId, d.anchorPosition)
+      var translateX = anchorCoordinates.x - defaultAnchorWidth/2;
+      var translateY = anchorCoordinates.y - defaultAnchorHeight/2;
+      return 'translate(' + translateX + ' ' + translateY + ')';
+    })
+    .attr('class', 'node anchor parent-edge-' + strcase.paramCase(parentEdgeId))
+    .attr("style", function (d) {
+      var style;
+      if (d.hasOwnProperty('backgroundColor')) {
+        if (d.ShapeType == 'brace' || d.ShapeType == 'arc'){ 
+          //Brace color is NOT for fill and should always be transparent
+          style = 'fill-opacity:0; ';
+        } 
+        else if (d.nodeType == 'Label' && d.backgroundColor == '#ffffff'){  
+          //Label fill attr is programmatically IGNORED when set to Java editor default of white.
+          //This is obviously a hack that should ultimately be resolved by fixing the editor's 
+          // default for label backgroundColor.
+          style = '' ;
+        }
+        else {
+          style = 'fill:' + d.backgroundColor + '; fill-opacity:1; ';
+        }
+      }
+      return style;
+    })
+    .each(function(d) {
+      var thisNodeContainer = d3.select(this);
+      if (!d.width) {
+        d.width = defaultAnchorWidth;
+      }
+      if (!d.height) {
+        d.height = defaultAnchorHeight;
+      }
+      pathvisiojs.view.pathwayDiagram.svg.node.pathShape.render(thisNodeContainer, d);
+    });
+
+    /*
     var anchors = container.selectAll('use.anchor.parent-edge-' + strcase.paramCase(parentEdgeId))
     .data(data)
     .enter()
@@ -66,81 +111,9 @@ pathvisiojs.view.pathwayDiagram.svg.node.anchor = function(){
       }
       return style;
     })
+    //*/
+
   }
-
-  /*
-  function makeBlocky(x, y) {
-    var results = {};
-    
-    var matrixLocation = pathvisiojs.view.pathwayDiagram.pathFinder.xYCoordinatesToMatrixLocation(x, y, squareLength);
-    var column = matrixLocation.column;
-    var row = matrixLocation.row;
-
-    var xyCoordinates = pathvisiojs.view.pathwayDiagram.pathFinder.matrixLocationToXYCoordinates(column, row, squareLength);
-    results.x = xyCoordinates.x;
-    results.y = xyCoordinates.y;
-    return results;
-  }
-
-  function render(svg, container, parentEdgeId, data) {
-    if (!svg) {
-      throw new Error('svg missing for rendering anchors.');
-    }
-    if (!container) {
-      throw new Error('container element not specified for rendering anchors.');
-    }
-    if (!parentEdgeId) {
-      throw new Error('parentEdgeId missing for rendering anchors.');
-    }
-    if (!data) {
-      throw new Error('anchor data missing for rendering anchors.');
-    }
-
-    var squareLength = d3.select('svg')[0][0].pathvisiojs.gridData.squareLength;
-
-    var anchors = container.selectAll('use.anchor.parent-edge-' + strcase.paramCase(parentEdgeId))
-    .data(data)
-    .enter()
-    .append('use')
-    .attr('x', function(d) {return makeBlocky(d.x, d.y, squareLength).x; })
-    .attr('y', function(d) {return makeBlocky(d.x, d.y, squareLength).y; })
-    .attr('width', pathvisioNS.grid.squareLength)
-    .attr('height', pathvisioNS.grid.squareLength)
-    .attr('xlink:xlink:href', '#' + pathvisiojs.view.pathwayDiagram.svg.symbol.semanticNameToIdMapping('oval'))
-    .attr('class', 'node anchor')
-    .attr('style', function(d) {return 'fill:red; stroke:none;';});
-  }
-  //*/
-
-  /*
-  function renderAll(container, pathway) {
-    if (!args.container) {
-      throw new Error('Error: container element not specified for rendering anchors.');
-    }
-    if (!args.data) {
-      throw new Error('Error: group data missing for rendering anchors.');
-    }
-
-    // make sure it's an array
-    anchors = pathvisiojs.utilities.convertToArray(anchors);
-
-    var anchors = pathway.elements.filter(function(element) {
-      return element.renderableType === 'anchor';
-    });
-
-    var anchorElements = container.selectAll('use.anchor')
-    .data(anchors)
-    .enter()
-    .append('use')
-    .attr('x', function(d) {return makeBlocky(d.x, d.y).x; })
-    .attr('y', function(d) {return makeBlocky(d.x, d.y).y; })
-    .attr('width', squareLength)
-    .attr('height', squareLength)
-    .attr('xlink:xlink:href', '#' + pathvisiojs.view.pathwayDiagram.svg.symbol.semanticNameToIdMapping('oval'))
-    .attr('class', 'node anchor')
-    .attr('style', function(d) {return 'fill:red; stroke:none;';});
-  }
-  //*/
 
   return {
     render:render
