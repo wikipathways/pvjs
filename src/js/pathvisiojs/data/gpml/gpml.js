@@ -518,7 +518,10 @@ pathvisiojs.data.gpml = function(){
             '@type': 'GroupNode',
             'contains': {}
           };  
+          self.myPathway = pathway;
           jsonld.frame(pathway, groupsFrame, function(err, framedGroups) {
+            console.log('err');
+            console.log(err);
             console.log('framedGroups');
             console.log(framedGroups);
 
