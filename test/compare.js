@@ -1,3 +1,5 @@
+var module = {};
+var pvjsSources;
 function getUrlParam(name) {
 
   // Thanks to http://stackoverflow.com/questions/11582512/how-to-get-url-parameters-with-javascript
@@ -104,79 +106,21 @@ window.onload = function() {
     $('#svg-disabled').prop('checked', true);
   }
 
-  async.parallel([
+  async.series([
     function(callback) {
-
-      // If you update this array, please also update it in pathvisiojs/Gruntfile.js
-      var sources = [
-        //'tmp/pathvisiojs.js', //we only use this one in the Gruntfile, not in development mode
-        'src/js/pathvisiojs/pathvisio.js',
-        'config/default.js', //this gets overwritten by serverSpecificJsConfigFileUrl in development mode
-        'src/js/pathvisiojs/utilities.js',
-        'src/js/pathvisiojs/data/data.js',
-        'src/js/pathvisiojs/data/bridgedb/bridgedb.js',
-        'src/js/pathvisiojs/data/bridgedb/data-sources.js',
-        'src/js/pathvisiojs/data/biopax/biopax.js',
-        'src/js/pathvisiojs/data/gpml/gpml.js',
-        'src/js/pathvisiojs/data/gpml/element.js',
-        'src/js/pathvisiojs/data/gpml/text.js',
-        'src/js/pathvisiojs/data/gpml/namespaces.js',
-        'src/js/pathvisiojs/data/gpml/biopax-ref.js',
-        'src/js/pathvisiojs/data/gpml/node/node.js',
-        'src/js/pathvisiojs/data/gpml/node/group-node.js',
-        'src/js/pathvisiojs/data/gpml/node/entity-node/entity-node.js',
-        'src/js/pathvisiojs/data/gpml/node/entity-node/data-node.js',
-        'src/js/pathvisiojs/data/gpml/node/entity-node/label.js',
-        'src/js/pathvisiojs/data/gpml/node/entity-node/shape.js',
-        'src/js/pathvisiojs/data/gpml/node/anchor.js',
-        'src/js/pathvisiojs/data/gpml/edge/edge.js',
-        'src/js/pathvisiojs/data/gpml/edge/interaction.js',
-        'src/js/pathvisiojs/data/gpml/edge/graphical-line.js',
-        'src/js/pathvisiojs/data/gpml/edge/point.js',
-        'src/js/pathvisiojs/view/view.js',
-        'src/js/pathvisiojs/view/annotation/annotation.js',
-        'src/js/pathvisiojs/view/annotation/citation.js',
-        'src/js/pathvisiojs/view/annotation/x-ref.js',
-        'src/js/pathvisiojs/view/pathway-diagram/pathway-diagram.js',
-        'src/js/pathvisiojs/view/pathway-diagram/path-finder.js',
-        'src/js/pathvisiojs/view/pathway-diagram/svg/svg.js',
-        'src/js/pathvisiojs/view/pathway-diagram/svg/grid.js',
-        'src/js/pathvisiojs/view/pathway-diagram/svg/info-box.js',
-        'src/js/pathvisiojs/view/pathway-diagram/svg/symbol.js',
-        'src/js/pathvisiojs/view/pathway-diagram/svg/publication-xref.js',
-        'src/js/pathvisiojs/view/pathway-diagram/svg/node/node.js',
-        'src/js/pathvisiojs/view/pathway-diagram/svg/node/anchor.js',
-        'src/js/pathvisiojs/view/pathway-diagram/svg/node/entity-node.js',
-        'src/js/pathvisiojs/view/pathway-diagram/svg/node/path-shape/path-shape.js',
-        'src/js/pathvisiojs/view/pathway-diagram/svg/node/path-shape/arc.js',
-        'src/js/pathvisiojs/view/pathway-diagram/svg/node/path-shape/brace.js',
-        'src/js/pathvisiojs/view/pathway-diagram/svg/node/path-shape/complex.js',
-        'src/js/pathvisiojs/view/pathway-diagram/svg/node/path-shape/endoplasmic-reticulum.js',
-        'src/js/pathvisiojs/view/pathway-diagram/svg/node/path-shape/golgi-apparatus.js',
-        'src/js/pathvisiojs/view/pathway-diagram/svg/node/path-shape/grid-square.js',
-        'src/js/pathvisiojs/view/pathway-diagram/svg/node/path-shape/hexagon.js',
-        'src/js/pathvisiojs/view/pathway-diagram/svg/node/path-shape/mim-degradation.js',
-        'src/js/pathvisiojs/view/pathway-diagram/svg/node/path-shape/mitochondria.js',
-        'src/js/pathvisiojs/view/pathway-diagram/svg/node/path-shape/none.js',
-        'src/js/pathvisiojs/view/pathway-diagram/svg/node/path-shape/oval.js',
-        'src/js/pathvisiojs/view/pathway-diagram/svg/node/path-shape/oval-double.js',
-        'src/js/pathvisiojs/view/pathway-diagram/svg/node/path-shape/pentagon.js',
-        'src/js/pathvisiojs/view/pathway-diagram/svg/node/path-shape/rectangle.js',
-        'src/js/pathvisiojs/view/pathway-diagram/svg/node/path-shape/rounded-rectangle.js',
-        'src/js/pathvisiojs/view/pathway-diagram/svg/node/path-shape/rounded-rectangle-double.js',
-        'src/js/pathvisiojs/view/pathway-diagram/svg/node/path-shape/sarcoplasmic-reticulum.js',
-        'src/js/pathvisiojs/view/pathway-diagram/svg/node/path-shape/triangle.js',
-        'src/js/pathvisiojs/view/pathway-diagram/svg/node/text.js',
-        'src/js/pathvisiojs/view/pathway-diagram/svg/node/group-node.js',
-        'src/js/pathvisiojs/view/pathway-diagram/svg/node/use-element.js',
-        'src/js/pathvisiojs/view/pathway-diagram/svg/edge/edge.js',
-        'src/js/pathvisiojs/view/pathway-diagram/svg/edge/graphical-line.js',
-        'src/js/pathvisiojs/view/pathway-diagram/svg/edge/interaction.js',
-        'src/js/pathvisiojs/view/pathway-diagram/svg/edge/marker.js',
-        'src/js/pathvisiojs/view/pathway-diagram/svg/edge/point.js',
-        'src/js/pathvisiojs/view/pathway-diagram/svg/edge/path-data.js',
-        'src/js/pathvisiojs/view/pathway-diagram/png/png.js'
-      ];
+      var gruntFileUrl = '../Gruntfile.js'; // just for testing/development purposes
+      loadScripts([gruntFileUrl], function() {
+        callback(null);
+      });
+    },
+    function(callback) {
+      pathvisioNS = [];
+      generateHtmlView(function() {
+        callback(null);
+      });
+    },
+    function(callback) {
+      var pvjsSourcesDev = pvjsSources.slice(1); //this file is only used in the build process
 
       // In dev mode, different servers will use different configs.
       // The code below sets this config file.
@@ -200,19 +144,13 @@ window.onload = function() {
       }
 
       serverSpecificJsConfigFileName = strcase.paramCase(serverSpecificJsConfigFileName);
-      sources[1] = 'config/' + serverSpecificJsConfigFileName + '.js';
+      pvjsSourcesDev[1] = 'config/' + serverSpecificJsConfigFileName + '.js';
 
-      sources = sources.map(function(source) {
+      pvjsSourcesDev = pvjsSourcesDev.map(function(source) {
         return '../' + source;
       });
 
-      loadScripts(sources, function() {
-        callback(null);
-      });
-    },
-    function(callback) {
-      pathvisioNS = [];
-      generateHtmlView(function() {
+      loadScripts(pvjsSourcesDev, function() {
         callback(null);
       });
     }
@@ -418,3 +356,5 @@ var getPathvisiojsHtmlTemplate = function() {
   });
   return d3.select('#pathvisio-js-container')[0][0];
 }
+
+
