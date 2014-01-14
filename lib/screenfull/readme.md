@@ -1,5 +1,7 @@
 # screenfull.js
 
+[![Views in the last 24 hours](https://sourcegraph.com/api/repos/github.com/sindresorhus/screenfull.js/counters/views-24h.png)](https://sourcegraph.com/github.com/sindresorhus/screenfull.js)
+
 Simple wrapper for cross-browser usage of the JavaScript [Fullscreen API](https://developer.mozilla.org/en/DOM/Using_full-screen_mode), which lets you bring the page or any element into fullscreen. Smoothens out the browser implementation differences, so you don't have too.
 
 
@@ -26,6 +28,10 @@ Download the [production version][min] or the [development version][max].
 #### [npm](https://npmjs.org/package/screenfull)
 
 `npm install --save screenfull`
+
+#### [cdnjs](http://cdnjs.com)
+
+`//cdnjs.cloudflare.com/ajax/libs/screenfull.js/1.0.4/screenfull.min.js`
 
 
 ## Why?
@@ -127,9 +133,9 @@ $('img').click(function () {
 
 ```javascript
 if (screenfull.enabled) {
-	screenfull.onchange = function () {
+	document.addEventListener(screenfull.raw.fullscreenchange, function () {
 		console.log('Am I fullscreen? ' + (screenfull.isFullscreen ? 'Yes' : 'No'));
-	};
+	});
 }
 ```
 
@@ -160,11 +166,23 @@ Requests fullscreen if not active, otherwise exits.
 
 #### .onchange()
 
-Override this method to get notified about fullscreen changes.
+<del>Override this method to get notified about fullscreen changes.</del>
+
+You should rather use a real event listener:
+
+```js
+document.addEventListener(screenfull.raw.fullscreenchange, function () {});
+```
 
 #### .onerror()
 
-Override this method to get notified about fullscreen errors.
+<del>Override this method to get notified about fullscreen errors.</del>
+
+You should rather use a real event listener:
+
+```js
+document.addEventListener(screenfull.raw.fullscreenerror, function () {});
+```
 
 
 ### Properties
@@ -197,6 +215,7 @@ $(document).on(screenfull.raw.fullscreenchange, function () {
 - [Using the Fullscreen API in web browsers](http://hacks.mozilla.org/2012/01/using-the-fullscreen-api-in-web-browsers/)
 - [MDN - Fullscreen API](https://developer.mozilla.org/en/DOM/Using_full-screen_mode)
 - [W3C Fullscren spec](http://dvcs.w3.org/hg/fullscreen/raw-file/tip/Overview.html)
+- [Building an amazing fullscreen mobile experience](http://www.html5rocks.com/en/mobile/fullscreen/)
 
 
 ## License
