@@ -178,6 +178,7 @@ function loadExtJsCss(callbackOutside) {
       srcDirectoryUrl + 'js/pathvisiojs/view/pathway-diagram/svg/edge/marker.js',
       srcDirectoryUrl + 'js/pathvisiojs/view/pathway-diagram/svg/edge/point.js',
       srcDirectoryUrl + 'js/pathvisiojs/view/pathway-diagram/svg/edge/path-data.js',
+      srcDirectoryUrl + 'js/pathvisiojs/view/pathway-diagram/svg/edge/path.js',
       srcDirectoryUrl + 'js/pathvisiojs/view/pathway-diagram/png/png.js'
     ],
     function(){
