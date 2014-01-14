@@ -253,7 +253,7 @@ pathvisiojs.view.pathwayDiagram.svg.edge = function(){
       })
       .attr("fill", 'none')
       .attr("d", function (data) {
-        return createPathDataString(results.convertedPointSet);
+        return pathvisiojs.view.pathwayDiagram.svg.edge.path.getPath(data); //createPathDataString(results.convertedPointSet);
       });
 
      /****************** 
