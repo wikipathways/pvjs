@@ -1,6 +1,6 @@
 # How To View Diagrams During Development
 
-A. You will need a web server running on your dev machine. If you already have one set up, you can simply update the base URL in [run.js](https://github.com/wikipathways/pathvisiojs/blob/master/test/run.js#L73) then skip to Step B. Please change base URL back before making a pull request.
+A. You will need a web server running on your dev machine. If you already have one set up, you can skip ahead to Step B.
 
 If you don't have a web server available, you can use the included development server by following these steps:
 
@@ -21,10 +21,12 @@ C. If you add a new JS file, you will need to add a reference to it in [compare.
 # How To Run The Tests
 
 A. If you are using the included dev server, you can skip ahead to Step B.
+
 Otherwise, you will need to follow these instructions:
 
-1. Install [nodejs](http://nodejs.org/download/) (if you haven't already done so).
-2. When node is installed, open a terminal and enter the following commands (update file path if pathvisiojs directory is not located in ~/Sites/ on your computer):
+1. Update the variable "baseUrl" in [pathway-rendering-tests.js](https://github.com/wikipathways/pathvisiojs/blob/master/test/e2e/pathway-rendering-tests.js#L16). Please undo your change to baseUrl before making a pull request.
+2. Install [nodejs](http://nodejs.org/download/) (if you haven't already done so).
+3. When node is installed, open a terminal and enter the following commands (update file path if pathvisiojs directory is not located in ~/Sites/ on your computer):
 
 ```
 $ cd ~/Sites/pathvisiojs/
