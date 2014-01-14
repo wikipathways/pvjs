@@ -167,8 +167,8 @@
   	}	
 
 	.group-node.none:hover {
-		fill: Brown;
-		fill-opacity: 0.1;
+		fill: rgb(255,0,0);
+		fill-opacity: 0.05;
 	}
 
 	.group-node.group {
@@ -180,7 +180,7 @@
 		display: none;
   	}
 	.group-node.group:hover {
-		fill: CornflowerBlue;
+		fill: rgb(0,0,255);
 		stroke-width: 1px;
 		stroke-dasharray: 5,3;
 		stroke: gray;
@@ -195,16 +195,16 @@
 		display: none;
   	}
 	.group-node.complex:hover {
-		fill: Brown;
-		fill-opacity: 0.1;
+		fill: rgb(255,0,0);
+		fill-opacity: 0.05;
 	}	
 
   	.group-node.pathway {
-		fill: lightgreen;
+		fill: rgb(0,255,0);
 		stroke-dasharray: 5,3;
 	}
 	.group-node.pathway:hover {
-		fill: lightgreen;
+		fill: rgb(0,255,0);
 		fill-opacity: 0.2;
 	}
 	.group-node.pathway > .text-area {
