@@ -1,10 +1,10 @@
-//! pathvisiojs 0.7.0
-//! Built on 2014-01-07
+//! pathvisiojs 0.8.0
+//! Built on 2014-01-13
 //! https://github.com/wikipathways/pathvisiojs
 //! License: http://www.apache.org/licenses/LICENSE-2.0/
 
 var pathvisioNS = pathvisioNS || {};
-pathvisioNS["tmp/pathvisiojs.html"] = '<div id="pathvisio-js-container" style="width: inherit; min-width: inherit; max-width: inherit; height: inherit; min-height: inherit; max-height: inherit; position: absolute; ">\n\n    <!-- **********************************************************************\n    Pathway Container (JavaScript inserts pathway image inside this div)\n    *********************************************************************** -->\n\n    <div id="pathway-container" style="width: inherit; min-width: inherit; max-width: inherit; height: inherit; min-height: inherit; max-height: inherit; " class="y-mid">\n      \n\n\n      <svg id="pathway-svg" version="1.1" baseProfile="full" xmlns="http://www.w3.org/1999/xlink" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ev="http://www.w3.org/2001/xml-events" width="500px" height="500px" style="display: inline; width: NaNpx; height: NaNpx; " class="x-mid" onmouseup="svgPanZoom.handleMouseUp(evt)" onmousedown="svgPanZoom.handleMouseDown(evt)" onmousemove="svgPanZoom.handleMouseMove(evt)" xlink="http://www.w3.org/1999/xlink" ev="http://www.w3.org/2001/xml-events">\n\n        <g>\n        <title>pathvisiojs pathway diagram</title>\n        <desc>\n          This SVG file contains all the graphical elements (markers and symbols in defs as well as\n          style data) used by the program pathvisiojs, which has two components: \n          1) a viewer for transforming GPML biological pathway data into an SVG visual representation and \n          2) an editor for creating both views and models for biological pathways.\n        </desc>\n        </g>\n        <defs>\n\n          <filter id="highlight" width="150%" height="150%">\n            <feOffset result="offOut" in="SourceGraphic" dx="30" dy="30"></feOffset>\n              <feGaussianBlur result="blurOut" in="offOut" stdDeviation="10"></feGaussianBlur>\n            <feBlend in="SourceGraphic" in2="blurOut" mode="normal"></feBlend>\n          </filter>\n\n        <marker id="shape-library-markers-arrow-svg-start-default" preserveAspectRatio="none" viewBox="0 0 12 12" markerWidth="12" markerHeight="12" markerUnits="strokeWidth" orient="auto" refX="0" refY="6"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ev="http://www.w3.org/2001/xml-events" id="arrow" version="1.1" baseProfile="full" width="12" height="12" class="solid-stroke default-fill-color" viewBox="0 0 12 12">\n\n	<!-- arrow markers: triangular polygons, no stroke -->\n\n	<rect class="board-fill-color" stroke="none" x="0" y="5.4" width="2" height="1.2"></rect>\n	<polygon stroke-width="0" points="12,11 0,6 12,1"></polygon>\n\n</svg></marker><marker id="shape-library-markers-arrow-svg-end-default" viewBox="-12 -12 12 12" markerWidth="12" markerHeight="12" markerUnits="strokeWidth" orient="auto" refX="0" refY="-6"><g id="g-shape-library-markers-arrow-svg-end-default" style="-webkit-transform: rotate(180deg); -webkit-transform-origin: 50% 50%;"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ev="http://www.w3.org/2001/xml-events" id="arrow" version="1.1" baseProfile="full" width="12" height="12" class="solid-stroke default-fill-color" viewBox="0 0 12 12">\n\n	<!-- arrow markers: triangular polygons, no stroke -->\n\n	<rect class="board-fill-color" stroke="none" x="0" y="5.4" width="2" height="1.2"></rect>\n	<polygon stroke-width="0" points="12,11 0,6 12,1"></polygon>\n\n</svg></g></marker><marker id="shape-library-markers-mim-necessary-stimulation-svg-start-default" preserveAspectRatio="none" viewBox="0 0 15 12" markerWidth="15" markerHeight="12" markerUnits="strokeWidth" orient="auto" refX="0" refY="6"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ev="http://www.w3.org/2001/xml-events" id="mim-necessary-stimulation" version="1.1" baseProfile="full" width="15" height="12" class="board-fill-color default-stroke-color solid-stroke" viewBox="0 0 15 12">\n\n	<!-- mim-necessary-stimulation markers: triangular polygons, drawing-board fill, default color stroke; and vertical line -->\n\n	<rect stroke="none" x="0" y="5.4" width="2" height="1.2"></rect>\n	<line fill="none" stroke-width="1" x1="14" y1="0" x2="14" y2="12"></line>\n	<polygon stroke-width="1" points="9,11 0,6 9,1"></polygon>\n\n</svg></marker><marker id="shape-library-markers-mim-necessary-stimulation-svg-end-default" viewBox="-15 -12 15 12" markerWidth="15" markerHeight="12" markerUnits="strokeWidth" orient="auto" refX="0" refY="-6"><g id="g-shape-library-markers-mim-necessary-stimulation-svg-end-default" style="-webkit-transform: rotate(180deg); -webkit-transform-origin: 50% 50%;"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ev="http://www.w3.org/2001/xml-events" id="mim-necessary-stimulation" version="1.1" baseProfile="full" width="15" height="12" class="board-fill-color default-stroke-color solid-stroke" viewBox="0 0 15 12">\n\n	<!-- mim-necessary-stimulation markers: triangular polygons, drawing-board fill, default color stroke; and vertical line -->\n\n	<rect stroke="none" x="0" y="5.4" width="2" height="1.2"></rect>\n	<line fill="none" stroke-width="1" x1="14" y1="0" x2="14" y2="12"></line>\n	<polygon stroke-width="1" points="9,11 0,6 9,1"></polygon>\n\n</svg></g></marker><marker id="shape-library-markers-mim-binding-svg-start-default" preserveAspectRatio="none" viewBox="0 0 12 12" markerWidth="12" markerHeight="12" markerUnits="strokeWidth" orient="auto" refX="0" refY="6"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ev="http://www.w3.org/2001/xml-events" id="mim-binding" version="1.1" baseProfile="full" width="12" height="12" class="solid-stroke default-fill-color" viewBox="0 0 12 12">\n\n	<!-- mim-binding markers: four-point polygon, no stroke -->\n\n	<rect class="board-fill-color" stroke="none" x="0" y="5.4" width="2" height="1.2"></rect>\n	<polygon stroke-width="0" points="12,12 0,6 12,0 5,6 "></polygon>\n\n</svg></marker><marker id="shape-library-markers-mim-binding-svg-end-default" viewBox="-12 -12 12 12" markerWidth="12" markerHeight="12" markerUnits="strokeWidth" orient="auto" refX="0" refY="-6"><g id="g-shape-library-markers-mim-binding-svg-end-default" style="-webkit-transform: rotate(180deg); -webkit-transform-origin: 50% 50%;"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ev="http://www.w3.org/2001/xml-events" id="mim-binding" version="1.1" baseProfile="full" width="12" height="12" class="solid-stroke default-fill-color" viewBox="0 0 12 12">\n\n	<!-- mim-binding markers: four-point polygon, no stroke -->\n\n	<rect class="board-fill-color" stroke="none" x="0" y="5.4" width="2" height="1.2"></rect>\n	<polygon stroke-width="0" points="12,12 0,6 12,0 5,6 "></polygon>\n\n</svg></g></marker><marker id="shape-library-markers-mim-conversion-svg-start-default" preserveAspectRatio="none" viewBox="0 0 12 12" markerWidth="12" markerHeight="12" markerUnits="strokeWidth" orient="auto" refX="0" refY="6"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ev="http://www.w3.org/2001/xml-events" id="mim-conversion" version="1.1" baseProfile="full" width="12" height="12" class="solid-stroke default-fill-color" viewBox="0 0 12 12">\n\n	<!-- mim-conversion markers: triangular polygons, no stroke -->\n\n	<rect class="board-fill-color" stroke="none" x="0" y="5.4" width="2" height="1.2"></rect>\n	<polygon stroke-width="0" points="11,11 0,6 11,1"></polygon>\n\n</svg></marker><marker id="shape-library-markers-mim-conversion-svg-end-default" viewBox="-12 -12 12 12" markerWidth="12" markerHeight="12" markerUnits="strokeWidth" orient="auto" refX="0" refY="-6"><g id="g-shape-library-markers-mim-conversion-svg-end-default" style="-webkit-transform: rotate(180deg); -webkit-transform-origin: 50% 50%;"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ev="http://www.w3.org/2001/xml-events" id="mim-conversion" version="1.1" baseProfile="full" width="12" height="12" class="solid-stroke default-fill-color" viewBox="0 0 12 12">\n\n	<!-- mim-conversion markers: triangular polygons, no stroke -->\n\n	<rect class="board-fill-color" stroke="none" x="0" y="5.4" width="2" height="1.2"></rect>\n	<polygon stroke-width="0" points="11,11 0,6 11,1"></polygon>\n\n</svg></g></marker><marker id="shape-library-markers-mim-stimulation-svg-start-default" preserveAspectRatio="none" viewBox="0 0 12 12" markerWidth="12" markerHeight="12" markerUnits="strokeWidth" orient="auto" refX="0" refY="6"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ev="http://www.w3.org/2001/xml-events" id="mim-stimulation" version="1.1" baseProfile="full" width="12" height="12" class="board-fill-color default-stroke-color solid-stroke" viewBox="0 0 12 12">\n\n	<!-- mim-stimulation markers: triangular polygons, drawing-board fill, default color stroke -->\n\n	<rect class="board-fill-color" stroke="none" x="0" y="5.4" width="2" height="1.2"></rect>\n	<polygon stroke-width="1" points="11,11 0,6 11,1"></polygon>\n\n</svg></marker><marker id="shape-library-markers-mim-stimulation-svg-end-default" viewBox="-12 -12 12 12" markerWidth="12" markerHeight="12" markerUnits="strokeWidth" orient="auto" refX="0" refY="-6"><g id="g-shape-library-markers-mim-stimulation-svg-end-default" style="-webkit-transform: rotate(180deg); -webkit-transform-origin: 50% 50%;"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ev="http://www.w3.org/2001/xml-events" id="mim-stimulation" version="1.1" baseProfile="full" width="12" height="12" class="board-fill-color default-stroke-color solid-stroke" viewBox="0 0 12 12">\n\n	<!-- mim-stimulation markers: triangular polygons, drawing-board fill, default color stroke -->\n\n	<rect class="board-fill-color" stroke="none" x="0" y="5.4" width="2" height="1.2"></rect>\n	<polygon stroke-width="1" points="11,11 0,6 11,1"></polygon>\n\n</svg></g></marker><marker id="shape-library-markers-mim-modification-svg-start-default" preserveAspectRatio="none" viewBox="0 0 12 12" markerWidth="12" markerHeight="12" markerUnits="strokeWidth" orient="auto" refX="0" refY="6"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ev="http://www.w3.org/2001/xml-events" id="mim-modification" version="1.1" baseProfile="full" width="12" height="12" class="default-fill-color solid-stroke" viewBox="0 0 12 12">\n\n	<!-- mim-modification markers: four-point polygon, no stroke -->\n\n	<rect class="board-fill-color" stroke="none" x="0" y="5.4" width="2" height="1.2"></rect>\n	<polygon stroke-width="0" points="12,12 0,6 12,0 5,6 "></polygon>\n\n</svg></marker><marker id="shape-library-markers-mim-modification-svg-end-default" viewBox="-12 -12 12 12" markerWidth="12" markerHeight="12" markerUnits="strokeWidth" orient="auto" refX="0" refY="-6"><g id="g-shape-library-markers-mim-modification-svg-end-default" style="-webkit-transform: rotate(180deg); -webkit-transform-origin: 50% 50%;"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ev="http://www.w3.org/2001/xml-events" id="mim-modification" version="1.1" baseProfile="full" width="12" height="12" class="default-fill-color solid-stroke" viewBox="0 0 12 12">\n\n	<!-- mim-modification markers: four-point polygon, no stroke -->\n\n	<rect class="board-fill-color" stroke="none" x="0" y="5.4" width="2" height="1.2"></rect>\n	<polygon stroke-width="0" points="12,12 0,6 12,0 5,6 "></polygon>\n\n</svg></g></marker><marker id="shape-library-markers-mim-catalysis-svg-start-default" preserveAspectRatio="none" viewBox="0 0 12 12" markerWidth="12" markerHeight="12" markerUnits="strokeWidth" orient="auto" refX="0" refY="6"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ev="http://www.w3.org/2001/xml-events" id="mim-catalysis" version="1.1" baseProfile="full" width="12" height="12" class="board-fill-color default-stroke-color solid-stroke" viewBox="-6 -6 12 12">\n\n	<!-- mim-catalysis markers: circle, drawing-board fill and default color stroke -->\n\n	<circle cx="0" cy="0" r="5.3px" stroke-width="1px"></circle>\n\n</svg></marker><marker id="shape-library-markers-mim-catalysis-svg-end-default" viewBox="-12 -12 12 12" markerWidth="12" markerHeight="12" markerUnits="strokeWidth" orient="auto" refX="0" refY="-6"><g id="g-shape-library-markers-mim-catalysis-svg-end-default" style="-webkit-transform: rotate(180deg); -webkit-transform-origin: 50% 50%;"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ev="http://www.w3.org/2001/xml-events" id="mim-catalysis" version="1.1" baseProfile="full" width="12" height="12" class="board-fill-color default-stroke-color solid-stroke" viewBox="-6 -6 12 12">\n\n	<!-- mim-catalysis markers: circle, drawing-board fill and default color stroke -->\n\n	<circle cx="0" cy="0" r="5.3px" stroke-width="1px"></circle>\n\n</svg></g></marker><marker id="shape-library-markers-mim-inhibition-svg-start-default" preserveAspectRatio="none" viewBox="0 0 20 20" markerWidth="20" markerHeight="20" markerUnits="strokeWidth" orient="auto" refX="0" refY="6"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ev="http://www.w3.org/2001/xml-events" id="mim-inhibition" version="1.1" baseProfile="full" width="20" height="20" class="board-fill-color default-stroke-color solid-stroke">\n\n        <!-- t-bar markers: vertical line; and extended drawing-board rect -->\n\n        <rect stroke="none" x="0" y="9.4" width="5" height="1.2"></rect>\n        <line fill="none" stroke-width="1.8" x1="5" y1="0" x2="5" y2="20"></line>\n\n</svg></marker><marker id="shape-library-markers-mim-inhibition-svg-end-default" viewBox="-20 -20 20 20" markerWidth="20" markerHeight="20" markerUnits="strokeWidth" orient="auto" refX="0" refY="-10"><g id="g-shape-library-markers-mim-inhibition-svg-end-default" style="-webkit-transform: rotate(180deg); -webkit-transform-origin: 50% 50%;"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ev="http://www.w3.org/2001/xml-events" id="mim-inhibition" version="1.1" baseProfile="full" width="20" height="20" class="board-fill-color default-stroke-color solid-stroke">\n\n        <!-- t-bar markers: vertical line; and extended drawing-board rect -->\n\n        <rect stroke="none" x="0" y="9.4" width="5" height="1.2"></rect>\n        <line fill="none" stroke-width="1.8" x1="5" y1="0" x2="5" y2="20"></line>\n\n</svg></g></marker><marker id="shape-library-markers-mim-cleavage-svg-start-default" preserveAspectRatio="none" viewBox="0 0 24 24" markerWidth="24" markerHeight="24" markerUnits="strokeWidth" orient="auto" refX="0" refY="6"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ev="http://www.w3.org/2001/xml-events" id="mim-cleavage" version="1.1" baseProfile="full" width="24" height="24" viewBox="12 0 12 24" class="board-fill-color default-stroke-color solid-stroke">\n\n	<!-- mim-cleavage markers: two lines and extended drawing-board rect -->\n\n	<rect stroke="none" x="0" y="11.4" width="10.4" height="1.2"></rect>\n	<line fill="none" stroke-width="1" x1="11" y1="12" x2="11" y2="24"></line>	\n	<line fill="none" stroke-width="1" x1="11" y1="24" x2="-11" y2="0"></line>	\n\n</svg></marker><marker id="shape-library-markers-mim-cleavage-svg-end-default" viewBox="-24 -24 24 24" markerWidth="24" markerHeight="24" markerUnits="strokeWidth" orient="auto" refX="0" refY="-12"><g id="g-shape-library-markers-mim-cleavage-svg-end-default" style="-webkit-transform: rotate(180deg); -webkit-transform-origin: 50% 50%;"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ev="http://www.w3.org/2001/xml-events" id="mim-cleavage" version="1.1" baseProfile="full" width="24" height="24" viewBox="12 0 12 24" class="board-fill-color default-stroke-color solid-stroke">\n\n	<!-- mim-cleavage markers: two lines and extended drawing-board rect -->\n\n	<rect stroke="none" x="0" y="11.4" width="10.4" height="1.2"></rect>\n	<line fill="none" stroke-width="1" x1="11" y1="12" x2="11" y2="24"></line>	\n	<line fill="none" stroke-width="1" x1="11" y1="24" x2="-11" y2="0"></line>	\n\n</svg></g></marker><marker id="shape-library-markers-mim-covalent-bond-svg-start-default" preserveAspectRatio="none" viewBox="0 0 12 12" markerWidth="12" markerHeight="12" markerUnits="strokeWidth" orient="auto" refX="0" refY="6"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ev="http://www.w3.org/2001/xml-events" id="mim-covalent-bond" version="1.1" baseProfile="full" width="12" height="12" class="solid-stroke default-fill-color" viewBox="0 0 12 12">\n\n	<!-- mim-covalent-bond markers: not much to see here! -->\n	<rect x="0" y="0" width="0" height="0" stroke="none" fill="none" stroke-width="0"></rect>\n\n</svg></marker><marker id="shape-library-markers-mim-covalent-bond-svg-end-default" viewBox="-12 -12 12 12" markerWidth="12" markerHeight="12" markerUnits="strokeWidth" orient="auto" refX="0" refY="-6"><g id="g-shape-library-markers-mim-covalent-bond-svg-end-default" style="-webkit-transform: rotate(180deg); -webkit-transform-origin: 50% 50%;"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ev="http://www.w3.org/2001/xml-events" id="mim-covalent-bond" version="1.1" baseProfile="full" width="12" height="12" class="solid-stroke default-fill-color" viewBox="0 0 12 12">\n\n	<!-- mim-covalent-bond markers: not much to see here! -->\n	<rect x="0" y="0" width="0" height="0" stroke="none" fill="none" stroke-width="0"></rect>\n\n</svg></g></marker><marker id="shape-library-markers-mim-transcription-translation-svg-start-default" preserveAspectRatio="none" viewBox="0 0 18 18" markerWidth="18" markerHeight="18" markerUnits="strokeWidth" orient="auto" refX="0" refY="6"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ev="http://www.w3.org/2001/xml-events" id="mim-transcription-translation" version="1.1" baseProfile="full" width="18" height="18" class="board-fill-color default-stroke-color solid-stroke">\n\n	<!-- mim-transcription-translation markers: two lines and an open trigular polygon, plus extended drawing-board rect -->\n\n	<rect stroke="none" x="0" y="8.4" width="10" height="1.2"></rect>\n	<line fill="none" stroke-width="1" x1="14" y1="9" x2="14" y2="4"></line>\n	<line fill="none" stroke-width="1" x1="14.5" y1="4" x2="7" y2="4"></line>\n	<polygon stroke-width="1" points="0,4 7,1 7,7"></polygon>\n\n</svg></marker><marker id="shape-library-markers-mim-transcription-translation-svg-end-default" viewBox="-18 -18 18 18" markerWidth="18" markerHeight="18" markerUnits="strokeWidth" orient="auto" refX="0" refY="-9"><g id="g-shape-library-markers-mim-transcription-translation-svg-end-default" style="-webkit-transform: rotate(180deg); -webkit-transform-origin: 50% 50%;"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ev="http://www.w3.org/2001/xml-events" id="mim-transcription-translation" version="1.1" baseProfile="full" width="18" height="18" class="board-fill-color default-stroke-color solid-stroke">\n\n	<!-- mim-transcription-translation markers: two lines and an open trigular polygon, plus extended drawing-board rect -->\n\n	<rect stroke="none" x="0" y="8.4" width="10" height="1.2"></rect>\n	<line fill="none" stroke-width="1" x1="14" y1="9" x2="14" y2="4"></line>\n	<line fill="none" stroke-width="1" x1="14.5" y1="4" x2="7" y2="4"></line>\n	<polygon stroke-width="1" points="0,4 7,1 7,7"></polygon>\n\n</svg></g></marker><marker id="shape-library-markers-mim-gap-svg-start-default" preserveAspectRatio="none" viewBox="0 0 12 12" markerWidth="12" markerHeight="12" markerUnits="strokeWidth" orient="auto" refX="0" refY="6"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ev="http://www.w3.org/2001/xml-events" id="mim-gap" version="1.1" baseProfile="full" width="12" height="12" class="board-fill-color solid-stroke" viewBox="0 0 12 12">\n\n	<!-- mim-gap markers: just an extended drawing-board rect -->\n	<!-- \n	TODO This could be refactored to make the shape match the viewbox.\n	It can overlap the side of the shape, blanking out a small part of it when the edge is at an angle.\n	-->\n\n	<rect stroke="none" x="0" y="5.3" width="8" height="1.4"></rect>\n\n</svg></marker><marker id="shape-library-markers-mim-gap-svg-end-default" viewBox="-12 -12 12 12" markerWidth="12" markerHeight="12" markerUnits="strokeWidth" orient="auto" refX="0" refY="-6"><g id="g-shape-library-markers-mim-gap-svg-end-default" style="-webkit-transform: rotate(180deg); -webkit-transform-origin: 50% 50%;"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ev="http://www.w3.org/2001/xml-events" id="mim-gap" version="1.1" baseProfile="full" width="12" height="12" class="board-fill-color solid-stroke" viewBox="0 0 12 12">\n\n	<!-- mim-gap markers: just an extended drawing-board rect -->\n	<!-- \n	TODO This could be refactored to make the shape match the viewbox.\n	It can overlap the side of the shape, blanking out a small part of it when the edge is at an angle.\n	-->\n\n	<rect stroke="none" x="0" y="5.3" width="8" height="1.4"></rect>\n\n</svg></g></marker><marker id="shape-library-markers-t-bar-svg-start-default" preserveAspectRatio="none" viewBox="0 0 20 20" markerWidth="20" markerHeight="20" markerUnits="strokeWidth" orient="auto" refX="0" refY="6"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ev="http://www.w3.org/2001/xml-events" id="t-bar" version="1.1" baseProfile="full" width="20" height="20" class="board-fill-color default-stroke-color solid-stroke">\n\n	<!-- t-bar markers: vertical line; and extended drawing-board rect -->\n\n	<rect stroke="none" x="0" y="9.4" width="5" height="1.2"></rect>\n	<line fill="none" stroke-width="1.8" x1="5" y1="0" x2="5" y2="20"></line>\n\n</svg></marker><marker id="shape-library-markers-t-bar-svg-end-default" viewBox="-20 -20 20 20" markerWidth="20" markerHeight="20" markerUnits="strokeWidth" orient="auto" refX="0" refY="-10"><g id="g-shape-library-markers-t-bar-svg-end-default" style="-webkit-transform: rotate(180deg); -webkit-transform-origin: 50% 50%;"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ev="http://www.w3.org/2001/xml-events" id="t-bar" version="1.1" baseProfile="full" width="20" height="20" class="board-fill-color default-stroke-color solid-stroke">\n\n	<!-- t-bar markers: vertical line; and extended drawing-board rect -->\n\n	<rect stroke="none" x="0" y="9.4" width="5" height="1.2"></rect>\n	<line fill="none" stroke-width="1.8" x1="5" y1="0" x2="5" y2="20"></line>\n\n</svg></g></marker><marker id="shape-library-markers-none-svg-start-default" preserveAspectRatio="none" viewBox="0 0 0 0" markerWidth="0" markerHeight="0" markerUnits="strokeWidth" orient="auto" refX="0" refY="6"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ev="http://www.w3.org/2001/xml-events" id="none" version="1.1" baseProfile="full" width="0" height="0" viewBox="0 0 0 0" preserveAspectRatio="none" class="board-fill-color board-stroke-color node shape">\n\n	<rect x="0" y="0" width="0" height="0" stroke="none" fill="none" stroke-width="0"></rect>\n\n</svg></marker><marker id="shape-library-markers-none-svg-end-default" viewBox="0 0 0 0" markerWidth="0" markerHeight="0" markerUnits="strokeWidth" orient="auto" refX="0" refY="0"><g id="g-shape-library-markers-none-svg-end-default" style="-webkit-transform: rotate(180deg); -webkit-transform-origin: 50% 50%;"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ev="http://www.w3.org/2001/xml-events" id="none" version="1.1" baseProfile="full" width="0" height="0" viewBox="0 0 0 0" preserveAspectRatio="none" class="board-fill-color board-stroke-color node shape">\n\n	<rect x="0" y="0" width="0" height="0" stroke="none" fill="none" stroke-width="0"></rect>\n\n</svg></g></marker><marker id="shape-library-markers-mim-branching-left-svg-start-default" preserveAspectRatio="none" viewBox="0 0 12 12" markerWidth="12" markerHeight="12" markerUnits="strokeWidth" orient="auto" refX="0" refY="6"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ev="http://www.w3.org/2001/xml-events" id="mim-branching-left" version="1.1" baseProfile="full" width="12" height="12" class="board-fill-color default-stroke-color solid-stroke">\n\n	<!-- mim-branching-left markers: line and extended drawing-board rect -->\n\n	<rect stroke="none" x="0" y="5.4" width="3.5" height="1.2"></rect>\n	<line fill="none" stroke-width="1" x1="3.7" y1="6" x2="0" y2="0"></line>	\n\n</svg></marker><marker id="shape-library-markers-mim-branching-left-svg-end-default" viewBox="-12 -12 12 12" markerWidth="12" markerHeight="12" markerUnits="strokeWidth" orient="auto" refX="0" refY="-6"><g id="g-shape-library-markers-mim-branching-left-svg-end-default" style="-webkit-transform: rotate(180deg); -webkit-transform-origin: 50% 50%;"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ev="http://www.w3.org/2001/xml-events" id="mim-branching-left" version="1.1" baseProfile="full" width="12" height="12" class="board-fill-color default-stroke-color solid-stroke">\n\n	<!-- mim-branching-left markers: line and extended drawing-board rect -->\n\n	<rect stroke="none" x="0" y="5.4" width="3.5" height="1.2"></rect>\n	<line fill="none" stroke-width="1" x1="3.7" y1="6" x2="0" y2="0"></line>	\n\n</svg></g></marker><marker id="shape-library-markers-mim-branching-right-svg-start-default" preserveAspectRatio="none" viewBox="0 0 12 12" markerWidth="12" markerHeight="12" markerUnits="strokeWidth" orient="auto" refX="0" refY="6"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ev="http://www.w3.org/2001/xml-events" id="mim-branching-right" version="1.1" baseProfile="full" width="12" height="12" class="board-fill-color default-stroke-color solid-stroke">\n\n	<!-- mim-branching-right markers: line and extended drawing-board rect -->\n\n	<rect stroke="none" x="0" y="5.4" width="3.5" height="1.2"></rect>\n	<line fill="none" stroke-width="1" x1="0" y1="12" x2="3.7" y2="6"></line>	\n\n</svg></marker><marker id="shape-library-markers-mim-branching-right-svg-end-default" viewBox="-12 -12 12 12" markerWidth="12" markerHeight="12" markerUnits="strokeWidth" orient="auto" refX="0" refY="-6"><g id="g-shape-library-markers-mim-branching-right-svg-end-default" style="-webkit-transform: rotate(180deg); -webkit-transform-origin: 50% 50%;"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ev="http://www.w3.org/2001/xml-events" id="mim-branching-right" version="1.1" baseProfile="full" width="12" height="12" class="board-fill-color default-stroke-color solid-stroke">\n\n	<!-- mim-branching-right markers: line and extended drawing-board rect -->\n\n	<rect stroke="none" x="0" y="5.4" width="3.5" height="1.2"></rect>\n	<line fill="none" stroke-width="1" x1="0" y1="12" x2="3.7" y2="6"></line>	\n\n</svg></g></marker><symbol id="shape-library-symbols-arc-svg" preserveAspectRatio="none" viewBox="0 0 100 100"><path d="m99.5,50c0,27.338341 -22.162117,49.5 -49.5,49.5s-49.5,-22.161659 -49.5,-49.5" vector-effect="non-scaling-stroke" class="node shape"></path></symbol><symbol id="shape-library-symbols-brace-svg" preserveAspectRatio="none" viewBox="0 0 100 50"><clipPath id="brace-clip-path">\n		<path d="m1.5,49.499996c0,-16.166668 8.166666,-24.249996 24.499998,-24.249996s24.499998,-8.083336 24.499998,-24.250002c0,16.166666 8.166664,24.250002 24.499996,24.250002s24.5,8.083328 24.5,24.249996" vector-effect="non-scaling-stroke"></path>\n        </clipPath><path d="m1.5,49.499996c0,-16.166668 8.166666,-24.249996 24.499998,-24.249996s24.499998,-8.083336 24.499998,-24.250002c0,16.166666 8.166664,24.250002 24.499996,24.250002s24.5,8.083328 24.5,24.249996" style="clip-path: url(#brace-clip-path); " vector-effect="non-scaling-stroke"></path></symbol><symbol id="shape-library-symbols-endoplasmic-reticulum-svg" preserveAspectRatio="none" viewBox="0 0 100 100"><clipPath id="endoplasmic-reticulum-clip-path">\n		<path d="m73.52756,56.60967c-5.62457,-18.60675 23.51463,-32.43358 23.40173,-45.06604c-0.34426,-4.86102 -10.48934,-8.89743 -18.28974,-5.33395c-17.04119,7.87556 -15.64949,29.30503 -21.20533,42.23387c-0.35661,3.60951 -7.36274,2.46926 -7.74964,-0.48694c-5.8512,-11.38871 17.13534,-24.48692 5.96075,-29.42586c-19.63467,-8.16979 -28.75184,21.15346 -22.0682,28.81784c7.4956,14.17602 -2.17949,24.40679 -6.74689,15.49637c-2.44209,-5.30613 6.06605,-11.08445 -0.80351,-16.17689c-4.31991,-2.79993 -11.75555,-0.64618 -16.15468,3.0943c-12.89117,10.73799 4.72957,40.98145 20.96467,36.14635c4.69833,-1.95989 -3.23603,-8.70151 3.90717,-9.59951c7.29767,-0.81255 5.17628,6.18889 7.68745,9.22691c2.3071,4.0509 4.83232,8.35538 10.7626,11.6237c4.78642,2.53724 15.29437,2.11225 16.77148,-1.95795c2.0318,-9.26291 -26.11129,-28.35848 -10.68903,-31.2815c18.55524,-2.71473 4.74866,23.84573 24.31006,29.69419c9.50188,2.02824 15.63902,-0.62194 14.81255,-4.03272c-2.74586,-11.26327 -25.13557,-22.6802 -24.96441,-33.14968" vector-effect="non-scaling-stroke"></path>\n	</clipPath><path d="m73.52756,56.60967c-5.62457,-18.60675 23.51463,-32.43358 23.40173,-45.06604c-0.34426,-4.86102 -10.48934,-8.89743 -18.28974,-5.33395c-17.04119,7.87556 -15.64949,29.30503 -21.20533,42.23387c-0.35661,3.60951 -7.36274,2.46926 -7.74964,-0.48694c-5.8512,-11.38871 17.13534,-24.48692 5.96075,-29.42586c-19.63467,-8.16979 -28.75184,21.15346 -22.0682,28.81784c7.4956,14.17602 -2.17949,24.40679 -6.74689,15.49637c-2.44209,-5.30613 6.06605,-11.08445 -0.80351,-16.17689c-4.31991,-2.79993 -11.75555,-0.64618 -16.15468,3.0943c-12.89117,10.73799 4.72957,40.98145 20.96467,36.14635c4.69833,-1.95989 -3.23603,-8.70151 3.90717,-9.59951c7.29767,-0.81255 5.17628,6.18889 7.68745,9.22691c2.3071,4.0509 4.83232,8.35538 10.7626,11.6237c4.78642,2.53724 15.29437,2.11225 16.77148,-1.95795c2.0318,-9.26291 -26.11129,-28.35848 -10.68903,-31.2815c18.55524,-2.71473 4.74866,23.84573 24.31006,29.69419c9.50188,2.02824 15.63902,-0.62194 14.81255,-4.03272c-2.74586,-11.26327 -25.13557,-22.6802 -24.96441,-33.14968" style="clip-path: url(#endoplasmic-reticulum-clip-path); " vector-effect="non-scaling-stroke"></path></symbol><symbol id="shape-library-symbols-golgi-apparatus-svg" preserveAspectRatio="none" viewBox="0 0 100 100"><clipPath id="golgi-apparatus-clip-path1">\n	<path d="m58.46714,27.713327c-22.205345,-29.90079 37.310066,-30.258356 25.567245,-4.823446c-8.807655,18.581238 -17.066429,58.135235 -0.941673,99.22044c13.31469,27.066696 -41.748463,27.760925 -27.755554,-1.469849c11.345825,-29.420242 10.286858,-80.336422 3.129982,-92.927145z" vector-effect="non-scaling-stroke"></path>\n   	</clipPath><clipPath id="golgi-apparatus-clip-path2">\n   	<path d="m31.214371,36.214363c-10.791712,-21.427903 29.897598,-19.848164 18.407501,0.670895c-4.066933,7.422386 -5.782803,61.572803 1.160713,75.028805c8.52943,18.597427 -32.852985,19.355408 -20.500162,-2.250633c6.952761,-17.358604 10.473742,-52.291187 0.931948,-73.449066z" vector-effect="non-scaling-stroke"></path>\n	</clipPath><clipPath id="golgi-apparatus-clip-path3">\n   	<path d="m29.803959,52.160912c1.584177,11.474716 2.723461,16.737267 -1.482977,38.361366c-3.731956,12.989006 -3.600399,16.340691 -11.732334,19.412781c-6.683298,1.658531 -11.864832,-9.789436 -4.793299,-16.11377c4.855728,-5.623222 6.141087,-10.882362 6.658888,-22.954659c-0.239212,-9.521427 0.814508,-15.823826 -5.36692,-19.958626c-7.624315,-2.195171 -6.088041,-16.534611 4.824059,-13.863804c5.849354,1.027065 10.282408,8.561516 11.892582,15.116711z" vector-effect="non-scaling-stroke"></path>\n	</clipPath><path d="m58.46714,27.713327c-22.205345,-29.90079 37.310066,-30.258356 25.567245,-4.823446c-8.807655,18.581238 -17.066429,58.135235 -0.941673,99.22044c13.31469,27.066696 -41.748463,27.760925 -27.755554,-1.469849c11.345825,-29.420242 10.286858,-80.336422 3.129982,-92.927145z" style="clip-path: url(#golgi-apparatus-clip-path1); " vector-effect="non-scaling-stroke"></path><path d="m31.214371,36.214363c-10.791712,-21.427903 29.897598,-19.848164 18.407501,0.670895c-4.066933,7.422386 -5.782803,61.572803 1.160713,75.028805c8.52943,18.597427 -32.852985,19.355408 -20.500162,-2.250633c6.952761,-17.358604 10.473742,-52.291187 0.931948,-73.449066z" style="clip-path: url(#golgi-apparatus-clip-path2); " vector-effect="non-scaling-stroke"></path><path d="m29.803959,52.160912c1.584177,11.474716 2.723461,16.737267 -1.482977,38.361366c-3.731956,12.989006 -3.600399,16.340691 -11.732334,19.412781c-6.683298,1.658531 -11.864832,-9.789436 -4.793299,-16.11377c4.855728,-5.623222 6.141087,-10.882362 6.658888,-22.954659c-0.239212,-9.521427 0.814508,-15.823826 -5.36692,-19.958626c-7.624315,-2.195171 -6.088041,-16.534611 4.824059,-13.863804c5.849354,1.027065 10.282408,8.561516 11.892582,15.116711z" style="clip-path: url(#golgi-apparatus-clip-path3); " vector-effect="non-scaling-stroke"></path></symbol><symbol id="shape-library-symbols-hexagon-svg" preserveAspectRatio="none" viewBox="0 0 100 100"><clipPath id="hexagon-clip-path">\n		<path d="m1.42004,50.99635l21.07262,-42.13943l56.19152,0l21.0667,42.13943l-21.0667,42.14507l-56.19152,0l-21.07262,-42.14507z" vector-effect="non-scaling-stroke"></path>\n        </clipPath><path d="m1.42004,50.99635l21.07262,-42.13943l56.19152,0l21.0667,42.13943l-21.0667,42.14507l-56.19152,0l-21.07262,-42.14507z" style="clip-path: url(#hexagon-clip-path); " vector-effect="non-scaling-stroke"></path></symbol><symbol id="shape-library-symbols-mim-degradation-svg" preserveAspectRatio="none" viewBox="0 0 100 100"><clipPath id="mim-degradation-circle-clip-path">\n		<circle cx="50" cy="50" r="49" vector-effect="non-scaling-stroke"></circle>\n  	</clipPath><circle cx="50" cy="50" r="49" style="clip-path: url(#mim-degradation-circle-clip-path); " vector-effect="non-scaling-stroke"></circle><line x1="1" y1="1" x2="100" y2="100" stroke-width="1" vector-effect="non-scaling-stroke"></line></symbol><symbol id="shape-library-symbols-mitochondria-svg" preserveAspectRatio="none" viewBox="0 0 100 100"><clipPath id="mitochondria-oval-clip-path">\n		<ellipse cx="50" cy="50" rx="50" ry="50" vector-effect="non-scaling-stroke"></ellipse>\n        </clipPath><clipPath id="mitochondria-clip-path">\n		<path d="m14.894899,26.347357c4.363817,-0.741571 3.827518,17.036169 8.182638,16.183825c8.27347,0.030762 2.982006,-28.148991 9.899754,-28.336687c6.967995,-0.187704 2.246651,29.947527 9.204983,29.43981c7.632813,-0.560024 0.507309,-32.935357 8.136253,-33.623082c7.698521,-0.689259 2.919197,32.039941 10.628349,32.224557c6.546684,0.160011 3.026451,-27.642808 9.56057,-26.921232c7.192177,0.79388 0.664818,29.842905 7.781624,31.667604c4.748405,1.215439 4.420822,-18.257757 9.204018,-17.440804c11.128883,7.577278 8.628105,37.698658 -2.179977,44.645138c-3.138542,0.698479 -3.965698,-10.502029 -7.112938,-9.905075c-5.59005,1.058502 -3.982124,22.284088 -9.603096,21.799461c-5.239281,-0.456947 -2.226364,-21.636383 -7.47047,-21.730232c-6.961235,-0.116928 -3.357895,28.924408 -10.316231,28.495148c-6.140846,-0.375397 -1.73064,-24.950363 -7.825104,-26.191963c-5.681847,-1.156982 -5.378429,22.170242 -11.027426,20.680939c-6.249069,-1.644684 -0.469624,-26.673519 -6.759275,-27.865887c-3.728954,-0.706188 -2.647665,14.400654 -6.403677,14.545292c-14.016198,-5.938736 -15.748776,-39.707981 -3.899994,-47.666811z" vector-effect="non-scaling-stroke"></path>\n	</clipPath><ellipse cx="50" cy="50" rx="50" ry="50" style="clip-path: url(#mitochondria-oval-clip-path); " vector-effect="non-scaling-stroke"></ellipse><path d="m14.894899,26.347357c4.363817,-0.741571 3.827518,17.036169 8.182638,16.183825c8.27347,0.030762 2.982006,-28.148991 9.899754,-28.336687c6.967995,-0.187704 2.246651,29.947527 9.204983,29.43981c7.632813,-0.560024 0.507309,-32.935357 8.136253,-33.623082c7.698521,-0.689259 2.919197,32.039941 10.628349,32.224557c6.546684,0.160011 3.026451,-27.642808 9.56057,-26.921232c7.192177,0.79388 0.664818,29.842905 7.781624,31.667604c4.748405,1.215439 4.420822,-18.257757 9.204018,-17.440804c11.128883,7.577278 8.628105,37.698658 -2.179977,44.645138c-3.138542,0.698479 -3.965698,-10.502029 -7.112938,-9.905075c-5.59005,1.058502 -3.982124,22.284088 -9.603096,21.799461c-5.239281,-0.456947 -2.226364,-21.636383 -7.47047,-21.730232c-6.961235,-0.116928 -3.357895,28.924408 -10.316231,28.495148c-6.140846,-0.375397 -1.73064,-24.950363 -7.825104,-26.191963c-5.681847,-1.156982 -5.378429,22.170242 -11.027426,20.680939c-6.249069,-1.644684 -0.469624,-26.673519 -6.759275,-27.865887c-3.728954,-0.706188 -2.647665,14.400654 -6.403677,14.545292c-14.016198,-5.938736 -15.748776,-39.707981 -3.899994,-47.666811z" style="clip-path: url(#mitochondria-clip-path); " vector-effect="non-scaling-stroke"></path></symbol><symbol id="shape-library-symbols-oval-svg" preserveAspectRatio="none" viewBox="0 0 100 50"><clipPath id="oval-clip-path">\n		<ellipse id="oval-clip-path-ellipse" cx="50" cy="25" rx="50" ry="25" vector-effect="non-scaling-stroke"></ellipse>\n        </clipPath><ellipse id="oval-shape" cx="50" cy="25" rx="50" ry="25" style="clip-path: url(#oval-clip-path); " vector-effect="non-scaling-stroke"></ellipse></symbol><symbol id="shape-library-symbols-pentagon-svg" preserveAspectRatio="none" viewBox="0 0 100 100"><clipPath id="pentagon-clip-path">\n		<polygon points="59.159732818603516,99.61322021484375 95,50.28331756591797 59.159732818603516,0.9534196853637695 1.168962001800537,19.795764923095703 1.168962001800537,80.7708740234375 " vector-effect="non-scaling-stroke"></polygon>\n	</clipPath><polygon points="59.159732818603516,99.61322021484375 95,50.28331756591797 59.159732818603516,0.9534196853637695 1.168962001800537,19.795764923095703 1.168962001800537,80.7708740234375 " style="clip-path: url(#pentagon-clip-path); " vector-effect="non-scaling-stroke"></polygon></symbol><symbol id="shape-library-symbols-rectangle-svg" preserveAspectRatio="none" viewBox="0 0 100 50"><clipPath id="rectangle-clip-path">\n		<rect x="0" y="0" width="100" height="50" vector-effect="non-scaling-stroke"></rect>\n	</clipPath><desc>Rectangle</desc><rect x="0" y="0" width="100" height="50" style="clip-path: url(#rectangle-clip-path); " vector-effect="non-scaling-stroke"></rect></symbol><symbol id="shape-library-symbols-sarcoplasmic-reticulum-svg" preserveAspectRatio="none" viewBox="0 0 100 100"><clipPath id="sarcoplasmic-reticulum-clip-path">\n		<path d="m46.60182,1.40724c-32.37224,1.34138 -36.32004,22.77011 -26.50318,38.12777c9.31826,18.3425 -18.7656,30.15016 2.56955,49.37807c16.82126,13.11594 46.33175,6.10508 52.12638,-8.56826c5.89916,-15.24847 -10.95099,-26.0272 -3.29316,-40.96135c10.85342,-19.88432 -0.77615,-38.13043 -24.89959,-37.97624z" vector-effect="non-scaling-stroke"></path>	\n	</clipPath><path d="m46.60182,1.40724c-32.37224,1.34138 -36.32004,22.77011 -26.50318,38.12777c9.31826,18.3425 -18.7656,30.15016 2.56955,49.37807c16.82126,13.11594 46.33175,6.10508 52.12638,-8.56826c5.89916,-15.24847 -10.95099,-26.0272 -3.29316,-40.96135c10.85342,-19.88432 -0.77615,-38.13043 -24.89959,-37.97624z" style="clip-path: url(#sarcoplasmic-reticulum-clip-path); " vector-effect="non-scaling-stroke"></path></symbol><symbol id="shape-library-symbols-triangle-svg" preserveAspectRatio="none" viewBox="0 0 50 50"><clipPath id="triangle-clip-path">\n		<polygon points="1,49 49,24 1,1" vector-effect="non-scaling-stroke"></polygon>\n        </clipPath><polygon points="1,49 49,24 1,1" style="clip-path: url(#triangle-clip-path);" vector-effect="non-scaling-stroke"></polygon></symbol><symbol id="shape-library-symbols-none-svg" preserveAspectRatio="none" viewBox="0 0 0 0"><rect x="0" y="0" width="0" height="0" stroke="none" fill="none" stroke-width="0"></rect></symbol><style type="text/css">	svg {\n		color-interpolation: auto;\n		image-rendering: auto;\n		shape-rendering: auto;\n		vector-effect: non-scaling-stroke;\n                background: white;\n	/* removed fill and stroke since they override marker specs */\n	/*	fill: white;\n    		stroke: black; */\n	}\n\n	/* default color for pathway elements */\n	.default-fill-color {\n		fill: black; \n	}\n	.default-stroke-color {\n		stroke: black;\n	}\n	\n	/* default color of the background drawing board */ 	\n	.board-fill-color {\n		fill: white;\n	}\n	.board-stroke-color {\n		stroke: white;\n	}\n\n	.text-area {\n		font-family: Sans-Serif, Helvetica, Arial;\n		text-align: center;\n		vertical-align: middle;\n		font-size: 10px;\n		fill: black;\n		fill-opacity: 1;\n		stroke: none;\n	}\n\n	.citation {\n		font-family: Sans-Serif, Helvetica, Arial;\n		text-align: center;\n		vertical-align: top;\n		font-size: 8px;\n		fill: lightgray;\n		fill-opacity: 1;\n		stroke: none;\n	}\n\n	.info-box {\n		font-family: Sans-Serif;\n		font-size: 10px;\n		fill: black;\n		stroke: none;\n		text-align: left;\n		vertical-align: top;\n	}\n\n	.info-box-item-property-name {\n		font-weight: bold;\n	}\n\n	.info-box-item-property-value {\n	}\n\n	.data-node {\n		text-align: right;\n		fill-opacity: 1;\n		fill: white;\n		stroke: black;\n		stroke-width: 2;\n		stroke-dasharray: 0;\n		stroke-miterlimit: 1;\n    pointer-events:auto;\n	}\n	\n	.has-xref:hover {\n		cursor: pointer;\n	}\n\n	.data-node.gene-product {\n	}\n\n	.metabolite {\n		stroke: blue;\n	}\n\n	.data-node.metabolite &gt; .text-area {\n		cursor:pointer;\n		fill: blue;\n		fill-opacity: 1;\n		stroke: none;\n	}\n\n	.data-node.pathway {\n		stroke: none;\n		fill-opacity: 0;\n	}\n\n	.data-node.pathway &gt; .text-area {\n		fill: rgb(20,150,30);\n		fill-opacity: 1;\n		font-size: 12px;\n		font-weight: bold;\n	}\n\n	.data-node.protein {\n	}\n\n	.data-node.rna {\n	}\n\n	.data-node.unknown {\n	}\n\n	.label {\n		stroke: black;\n		stroke-width: 0;\n		fill-opacity: 0;\n		stroke-dasharray: 0;\n		stroke-miterlimit: 1;\n	}\n\n	.shape {\n		fill-opacity: 1;\n		fill: white;\n		stroke: black;\n		stroke-dasharray: 0;\n		stroke-miterlimit: 1;\n	}\n\n	.shape.none {\n		fill: none;\n		fill-opacity: 0;\n		stroke: none;\n	}\n\n	g.group-node &gt; .shape {\n		fill-opacity: 0.098;\n		stroke: gray;\n		stroke-miterlimit: 1;\n		stroke-width: 1px;\n    pointer-events:none;\n	}\n\n	.group-node {\n		fill-opacity: 0.098;\n		stroke: gray;\n		stroke-miterlimit: 1;\n		stroke-width: 1px;\n    pointer-events:none;\n	}\n\n	.group-node &gt; .text-area {\n		fill-opacity: 0.4;\n		font-family: Serif, Times;\n		font-size: 32px;\n		fill: black;\n		stroke-width: 0;\n		font-weight: bold;\n  }\n\n	.group-node:hover {\n		fill-opacity: 0.2;\n		stroke-width: 1px;\n	}\n\n	.group-node.none {\n		fill: rgb(180,180,100);\n		stroke-dasharray: 5,3;\n	}\n\n	.group-node.none &gt; .text-area {\n		display: none;\n  }\n\n	.group-node.group {\n		fill-opacity: 0;\n		stroke-width: 0;\n	}\n\n	.group-node.group &gt; .text-area {\n		display: none;\n  }\n\n	.group-node.complex {\n		fill: rgb(180,180,100);\n	}\n\n	.group-node.complex &gt; .text-area {\n		display: none;\n  }\n\n  .group-node.pathway {\n		fill: lightgreen;\n		stroke-dasharray: 5,3;\n	}\n\n	.group-node.pathway &gt; .text-area {\n		fill: rgb(20,150,30);\n		stroke: rgb(20,150,30);\n  }\n\n  .cellular-component {\n		fill-opacity: 0;\n		stroke: lightgray;\n	}\n\n  .graphical-line {\n		fill:none;\n		stroke: black; \n		stroke-width: 1px; \n	}\n\n	.interaction {\n		fill:none;\n		stroke: black; \n		stroke-width: 1px; \n	}\n\n	marker {\n		/* this is what should work per the spec\n		   stroke-dasharray: none; */\n		/* but I need to add this to make it work in Safari */\n		stroke-dasharray: 9999999999999999999999999;\n	}\n\n  .marker-end {\n    -webkit-transform: rotate(180deg);\n    -webkit-transform-origin: 50% 50%;\n\n    -o-transform: rotate(180deg); \n    -o-transform-origin: 50% 50%;\n\n    transform: rotate(180deg);\n    transform-origin: 50% 50%;\n  }\n\n	.solid-stroke {\n		/* this is what should work per the spec\n		   stroke-dasharray: none; */\n		/* but I need to add this to make it work in Safari */\n		stroke-dasharray: 9999999999999999999999999;\n	}\n\n	.dashed-stroke {\n		stroke-dasharray: 5,3;\n	}\n\n  .highlighted-node {\n		fill: yellow;\n    fill-opacity: 0.2;\n		stroke: orange; \n    stroke-width: 3px;\n  }\n</style></defs>\n\n        <g id="viewport" transform="matrix(0.19926023483276367,0,0,0.19926023483276367,-35.99999661861512,-25.000019373372197)">\n        </g>\n\n      </svg>\n\n    \n      \n    </div>\n    \n    <div id="typeahead" style="position: absolute; top: 5px; right: 5px;">\n    <!-- **********************************************************************\n      Highlight Element by Label Control\n      *********************************************************************** -->\n\n      <span class="twitter-typeahead" style="position: relative; display: inline-block;"><input class="tt-hint" type="text" autocomplete="off" spellcheck="off" disabled="" style="position: absolute; top: 0px; left: 0px; border-color: transparent; box-shadow: none; background-attachment: scroll; background-clip: border-box; background-color: rgb(255, 255, 255); background-image: none; background-origin: padding-box; background-size: auto; background-position: 0% 0%; background-repeat: repeat repeat;"><input id="highlight-by-label-input" placeholder="Enter node name to highlight." role="textbox" aria-autocomplete="list" aria-haspopup="true" class="tt-query" autocomplete="off" spellcheck="false" dir="auto" style="position: relative; vertical-align: top; background-color: transparent;"><span style="position: absolute; left: -9999px; visibility: hidden; white-space: nowrap; font-family: \'Lucida Grande\'; font-size: 12px; font-style: normal; font-variant: normal; font-weight: 400; word-spacing: 0px; letter-spacing: 0px; text-indent: 0px; text-rendering: auto; text-transform: none;"></span><span class="tt-dropdown-menu" style="position: absolute; top: 100%; left: 0px; z-index: 100; display: none;"></span></span>\n\n      </div> \n     \n   \n      <!-- **********************************************************************\n      Pan Zoom Control\n      see http://bumbu.github.io/cytoscape.js/debug/ for example of cytoscape.js \n      *********************************************************************** -->\n\n      <div id="pan-zoom-control" class="ui-cytoscape-panzoom">\n        <div class="ui-cytoscape-panzoom-zoom-in ui-cytoscape-panzoom-zoom-button">\n          <span class="icon icon-plus"></span>\n        </div>\n        <div class="ui-cytoscape-panzoom-zoom-out ui-cytoscape-panzoom-zoom-button">\n          <span class="icon icon-minus"></span>\n        </div>\n        <div class="ui-cytoscape-panzoom-reset ui-cytoscape-panzoom-zoom-button">\n          <span class="icon icon-resize-full"></span>\n        </div>\n        <div class="ui-cytoscape-panzoom-slider">\n          <div class="ui-cytoscape-panzoom-slider-background">\n          </div>\n          <div class="ui-cytoscape-panzoom-slider-handle" style="top: 42.80000001192093px;">\n            <span class="icon icon-minus"></span>\n          </div>\n          <div class="ui-cytoscape-panzoom-no-zoom-tick" style="top: 42.80000001192093px;">\n          </div>\n        </div>\n        <div class="ui-cytoscape-panzoom-panner">\n          <div class="ui-cytoscape-panzoom-panner-handle">\n          </div>\n          <div class="ui-cytoscape-panzoom-pan-up ui-cytoscape-panzoom-pan-button">\n          </div>\n          <div class="ui-cytoscape-panzoom-pan-down ui-cytoscape-panzoom-pan-button">\n          </div>\n          <div class="ui-cytoscape-panzoom-pan-left ui-cytoscape-panzoom-pan-button">\n          </div>\n          <div class="ui-cytoscape-panzoom-pan-right ui-cytoscape-panzoom-pan-button">\n          </div>\n          <div class="ui-cytoscape-panzoom-pan-indicator" style="display: none; left: 22.424611085682006px; top: 0.12287108520014556px; background-color: rgb(127, 127, 127); background-position: initial initial; background-repeat: initial initial;">\n          </div>\n        </div>\n      </div>\n\n      <!-- **********************************************************************\n      Fullscreen Control \n      *********************************************************************** -->\n\n      <div id="fullscreen-control" style="position: absolute; bottom: 5px; right: 5px;">\n        <i class="icon-fullscreen" style="color:#aaa"></i>\n      </div>\n   \n\n    <div id="viewer-toolbar" style="position: absolute; top: 0px; right: 0px; height: inherit">\n    </div>\n      \n    <!-- **********************************************************************\n    Details Frame\n    *********************************************************************** -->\n\n    <div id="annotation" class="annotation ui-draggable" style="visibility: hidden; position: absolute; right: 75px; top: 100px;">\n      <header class="annotation-header">\n      <span id="annotation-move" class="annotation-header-move">\n        <i class="icon-move"></i>\n      </span>\n      <span id="annotation-header-text" class="annotation-header-text">\n        Header\n      </span> \n      <span id="annotation-header-search" class="annotation-header-search" title="Search for pathways containing \'Header Text\'">\n        <a href="http://wikipathways.org//index.php?title=Special:SearchPathways">\n          <i class="icon-search" style="color:blue; font-size:50% ; text-decoration:none"></i>\n        </a>\n      </span>\n      <span class="annotation-header-close">\n        <i class="icon-remove"></i>\n      </span>\n      <div id="annotation-description" class="annotation-description">\n        <h2>description</h2>\n      </div>\n      </header>\n      <span class="annotation-items-container">\n        <ul id="annotation-items-container">\n          <!-- List items inside this ul element are generated automatically by JavaScript.\n          Each item will be composed of a title and text. The text can be set to be an href.\n          You can edit the styling of the title by editing CSS class "annotation-item-title"\n          and the styling of the text by editing CSS class "annotation-item-text.\n          -->\n        </ul>\n      </span>\n    </div>\n  </div>\n';
+pathvisioNS["tmp/pathvisiojs.html"] = '<div id="pathvisio-js-container" style="width: inherit; min-width: inherit; max-width: inherit; height: inherit; min-height: inherit; max-height: inherit; position: absolute; ">\n\n    <!-- **********************************************************************\n    Pathway Container (JavaScript inserts pathway image inside this div)\n    *********************************************************************** -->\n\n    <div id="pathway-container" style="width: inherit; min-width: inherit; max-width: inherit; height: inherit; min-height: inherit; max-height: inherit; " class="y-mid">\n\n      <svg id="pathway-svg" version="1.1" baseProfile="full" xmlns="http://www.w3.org/1999/xlink" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ev="http://www.w3.org/2001/xml-events" width="500px" height="500px" style="display: inline; width: inherit; min-width: inherit; max-width: inherit; height: inherit; min-height: inherit; max-height: inherit; " preserveAspectRatio="xMidYMid" onmouseup="svgPanZoom.handleMouseUp(evt)" onmousedown="svgPanZoom.handleMouseDown(evt)" onmousemove="svgPanZoom.handleMouseMove(evt)" xlink="http://www.w3.org/1999/xlink" ev="http://www.w3.org/2001/xml-events">\n\n        <g>\n        <title>pathvisiojs pathway diagram</title>\n        <desc>\n          This SVG file contains all the graphical elements (markers and symbols in defs as well as\n          style data) used by the program pathvisiojs, which has two components: \n          1) a viewer for transforming GPML biological pathway data into an SVG visual representation and \n          2) an editor for creating both views and models for biological pathways.\n        </desc>\n        </g>\n        <defs>\n\n          <filter id="highlight" width="150%" height="150%">\n            <feOffset result="offOut" in="SourceGraphic" dx="30" dy="30"></feOffset>\n              <feGaussianBlur result="blurOut" in="offOut" stdDeviation="10"></feGaussianBlur>\n            <feBlend in="SourceGraphic" in2="blurOut" mode="normal"></feBlend>\n          </filter>\n\n        <marker id="shape-library-markers-arrow-svg-start-default" preserveAspectRatio="none" viewBox="0 0 12 12" markerWidth="12" markerHeight="12" markerUnits="strokeWidth" orient="auto" refX="-0.5" refY="6"><g id="g-src-shape-library-markers-arrow-svg-start-default" class="solid-stroke default-fill-color"><rect class="board-fill-color" stroke="none" x="0" y="5.4" width="2" height="1.2"></rect><polygon stroke-width="0" points="12,11 0,6 12,1"></polygon></g></marker><marker id="shape-library-markers-arrow-svg-end-default" preserveAspectRatio="none" viewBox="0 0 12 12" markerWidth="12" markerHeight="12" markerUnits="strokeWidth" orient="auto" refX="12" refY="6"><g id="g-src-shape-library-markers-arrow-svg-end-default" class="solid-stroke default-fill-color" style="-webkit-transform: rotate(180deg); -webkit-transform-origin: 50% 50%;"><rect class="board-fill-color" stroke="none" x="0" y="5.4" width="2" height="1.2"></rect><polygon stroke-width="0" points="12,11 0,6 12,1"></polygon></g></marker><marker id="shape-library-markers-mim-necessary-stimulation-svg-start-default" preserveAspectRatio="none" viewBox="0 0 16 12" markerWidth="16" markerHeight="12" markerUnits="strokeWidth" orient="auto" refX="-0.5" refY="6"><g id="g-src-shape-library-markers-mim-necessary-stimulation-svg-start-default" class="board-fill-color default-stroke-color solid-stroke"><rect class="board-fill-color" stroke="none" x="0" y="5.4" width="2" height="1.2"></rect><line fill="none" stroke-width="1" x1="14" y1="0" x2="14" y2="12"></line><line fill="none" stroke="none" x1="16" y1="6" x2="16" y2="6"></line><polygon stroke-width="1" points="0,6 9,11 9,1"></polygon></g></marker><marker id="shape-library-markers-mim-necessary-stimulation-svg-end-default" preserveAspectRatio="none" viewBox="0 0 16 12" markerWidth="16" markerHeight="12" markerUnits="strokeWidth" orient="auto" refX="16" refY="6"><g id="g-src-shape-library-markers-mim-necessary-stimulation-svg-end-default" class="board-fill-color default-stroke-color solid-stroke" style="-webkit-transform: rotate(180deg); -webkit-transform-origin: 50% 50%;"><rect class="board-fill-color" stroke="none" x="0" y="5.4" width="2" height="1.2"></rect><line fill="none" stroke-width="1" x1="14" y1="0" x2="14" y2="12"></line><line fill="none" stroke="none" x1="16" y1="6" x2="16" y2="6"></line><polygon stroke-width="1" points="0,6 9,11 9,1"></polygon></g></marker><marker id="shape-library-markers-mim-binding-svg-start-default" preserveAspectRatio="none" viewBox="0 0 12 12" markerWidth="12" markerHeight="12" markerUnits="strokeWidth" orient="auto" refX="-0.5" refY="6"><g id="g-src-shape-library-markers-mim-binding-svg-start-default" class="solid-stroke default-fill-color"><rect class="board-fill-color" stroke="none" x="0" y="5.4" width="2" height="1.2"></rect><polygon stroke-width="0" points="12,12 0,6 12,0 5,6 "></polygon></g></marker><marker id="shape-library-markers-mim-binding-svg-end-default" preserveAspectRatio="none" viewBox="0 0 12 12" markerWidth="12" markerHeight="12" markerUnits="strokeWidth" orient="auto" refX="12" refY="6"><g id="g-src-shape-library-markers-mim-binding-svg-end-default" class="solid-stroke default-fill-color" style="-webkit-transform: rotate(180deg); -webkit-transform-origin: 50% 50%;"><rect class="board-fill-color" stroke="none" x="0" y="5.4" width="2" height="1.2"></rect><polygon stroke-width="0" points="12,12 0,6 12,0 5,6 "></polygon></g></marker><marker id="shape-library-markers-mim-conversion-svg-start-default" preserveAspectRatio="none" viewBox="0 0 12 12" markerWidth="12" markerHeight="12" markerUnits="strokeWidth" orient="auto" refX="-0.5" refY="6"><g id="g-src-shape-library-markers-mim-conversion-svg-start-default" class="solid-stroke default-fill-color"><rect class="board-fill-color" stroke="none" x="0" y="5.4" width="2" height="1.2"></rect><polygon stroke-width="0" points="12,11 0,6 12,1"></polygon></g></marker><marker id="shape-library-markers-mim-conversion-svg-end-default" preserveAspectRatio="none" viewBox="0 0 12 12" markerWidth="12" markerHeight="12" markerUnits="strokeWidth" orient="auto" refX="12" refY="6"><g id="g-src-shape-library-markers-mim-conversion-svg-end-default" class="solid-stroke default-fill-color" style="-webkit-transform: rotate(180deg); -webkit-transform-origin: 50% 50%;"><rect class="board-fill-color" stroke="none" x="0" y="5.4" width="2" height="1.2"></rect><polygon stroke-width="0" points="12,11 0,6 12,1"></polygon></g></marker><marker id="shape-library-markers-mim-stimulation-svg-start-default" preserveAspectRatio="none" viewBox="0 0 12 12" markerWidth="12" markerHeight="12" markerUnits="strokeWidth" orient="auto" refX="-0.5" refY="6"><g id="g-src-shape-library-markers-mim-stimulation-svg-start-default" class="board-fill-color default-stroke-color solid-stroke"><rect class="board-fill-color" stroke="none" x="0" y="5.4" width="2" height="1.2"></rect><line stroke="none" fill="none" x1="12" y1="6" x2="12" y2="6"></line><polygon stroke-width="1" points="0,6 11,11 11,1"></polygon></g></marker><marker id="shape-library-markers-mim-stimulation-svg-end-default" preserveAspectRatio="none" viewBox="0 0 12 12" markerWidth="12" markerHeight="12" markerUnits="strokeWidth" orient="auto" refX="12" refY="6"><g id="g-src-shape-library-markers-mim-stimulation-svg-end-default" class="board-fill-color default-stroke-color solid-stroke" style="-webkit-transform: rotate(180deg); -webkit-transform-origin: 50% 50%;"><rect class="board-fill-color" stroke="none" x="0" y="5.4" width="2" height="1.2"></rect><line stroke="none" fill="none" x1="12" y1="6" x2="12" y2="6"></line><polygon stroke-width="1" points="0,6 11,11 11,1"></polygon></g></marker><marker id="shape-library-markers-mim-modification-svg-start-default" preserveAspectRatio="none" viewBox="0 0 12 12" markerWidth="12" markerHeight="12" markerUnits="strokeWidth" orient="auto" refX="-0.5" refY="6"><g id="g-src-shape-library-markers-mim-modification-svg-start-default" class="default-fill-color solid-stroke"><rect class="board-fill-color" stroke="none" x="0" y="5.4" width="2" height="1.2"></rect><polygon stroke-width="0" points="12,12 0,6 12,0 5,6 "></polygon></g></marker><marker id="shape-library-markers-mim-modification-svg-end-default" preserveAspectRatio="none" viewBox="0 0 12 12" markerWidth="12" markerHeight="12" markerUnits="strokeWidth" orient="auto" refX="12" refY="6"><g id="g-src-shape-library-markers-mim-modification-svg-end-default" class="default-fill-color solid-stroke" style="-webkit-transform: rotate(180deg); -webkit-transform-origin: 50% 50%;"><rect class="board-fill-color" stroke="none" x="0" y="5.4" width="2" height="1.2"></rect><polygon stroke-width="0" points="12,12 0,6 12,0 5,6 "></polygon></g></marker><marker id="shape-library-markers-mim-catalysis-svg-start-default" preserveAspectRatio="none" viewBox="0 0 12 12" markerWidth="12" markerHeight="12" markerUnits="strokeWidth" orient="auto" refX="0" refY="6"><g id="g-src-shape-library-markers-mim-catalysis-svg-start-default" class="board-fill-color default-stroke-color solid-stroke"><circle cx="6.1" cy="6" r="5.3px" stroke-width="1px"></circle></g></marker><marker id="shape-library-markers-mim-catalysis-svg-end-default" preserveAspectRatio="none" viewBox="0 0 12 12" markerWidth="12" markerHeight="12" markerUnits="strokeWidth" orient="auto" refX="12" refY="6"><g id="g-src-shape-library-markers-mim-catalysis-svg-end-default" class="board-fill-color default-stroke-color solid-stroke" style="-webkit-transform: rotate(180deg); -webkit-transform-origin: 50% 50%;"><circle cx="6.1" cy="6" r="5.3px" stroke-width="1px"></circle></g></marker><marker id="shape-library-markers-mim-inhibition-svg-start-default" preserveAspectRatio="none" viewBox="0 0 10 20" markerWidth="10" markerHeight="20" markerUnits="strokeWidth" orient="auto" refX="-0.5" refY="10"><g id="g-src-shape-library-markers-mim-inhibition-svg-start-default" class="board-fill-color default-stroke-color solid-stroke"><rect stroke="none" x="0" y="9.4" width="8" height="1.2"></rect><line fill="none" stroke-width="1.8" x1="7" y1="0" x2="7" y2="20"></line></g></marker><marker id="shape-library-markers-mim-inhibition-svg-end-default" preserveAspectRatio="none" viewBox="0 0 10 20" markerWidth="10" markerHeight="20" markerUnits="strokeWidth" orient="auto" refX="8" refY="10"><g id="g-src-shape-library-markers-mim-inhibition-svg-end-default" class="board-fill-color default-stroke-color solid-stroke" style="-webkit-transform: rotate(180deg); -webkit-transform-origin: 50% 50%;"><rect stroke="none" x="0" y="9.4" width="8" height="1.2"></rect><line fill="none" stroke-width="1.8" x1="7" y1="0" x2="7" y2="20"></line></g></marker><marker id="shape-library-markers-mim-cleavage-svg-start-default" preserveAspectRatio="none" viewBox="0 0 20 30" markerWidth="20" markerHeight="30" markerUnits="strokeWidth" orient="auto" refX="9" refY="15"><g id="g-src-shape-library-markers-mim-cleavage-svg-start-default" class="board-fill-color default-stroke-color solid-stroke"><rect stroke="none" x="0" y="14.4" width="18.4" height="1.2"></rect><line fill="none" stroke-width="1" x1="18" y1="14.5" x2="18" y2="30"></line><line fill="none" stroke-width="1" x1="18" y1="30" x2="0" y2="0"></line></g></marker><marker id="shape-library-markers-mim-cleavage-svg-end-default" preserveAspectRatio="none" viewBox="0 0 20 30" markerWidth="20" markerHeight="30" markerUnits="strokeWidth" orient="auto" refX="10" refY="15"><g id="g-src-shape-library-markers-mim-cleavage-svg-end-default" class="board-fill-color default-stroke-color solid-stroke" style="-webkit-transform: rotate(180deg); -webkit-transform-origin: 50% 50%;"><rect stroke="none" x="0" y="14.4" width="18.4" height="1.2"></rect><line fill="none" stroke-width="1" x1="18" y1="14.5" x2="18" y2="30"></line><line fill="none" stroke-width="1" x1="18" y1="30" x2="0" y2="0"></line></g></marker><marker id="shape-library-markers-mim-covalent-bond-svg-start-default" preserveAspectRatio="none" viewBox="0 0 12 12" markerWidth="12" markerHeight="12" markerUnits="strokeWidth" orient="auto" refX="-0.5" refY="6"><g id="g-src-shape-library-markers-mim-covalent-bond-svg-start-default" class="solid-stroke default-fill-color"><rect x="0" y="0" width="0" height="0" stroke="none" fill="none" stroke-width="0"></rect></g></marker><marker id="shape-library-markers-mim-covalent-bond-svg-end-default" preserveAspectRatio="none" viewBox="0 0 12 12" markerWidth="12" markerHeight="12" markerUnits="strokeWidth" orient="auto" refX="11" refY="6"><g id="g-src-shape-library-markers-mim-covalent-bond-svg-end-default" class="solid-stroke default-fill-color" style="-webkit-transform: rotate(180deg); -webkit-transform-origin: 50% 50%;"><rect x="0" y="0" width="0" height="0" stroke="none" fill="none" stroke-width="0"></rect></g></marker><marker id="shape-library-markers-mim-transcription-translation-svg-start-default" preserveAspectRatio="none" viewBox="0 0 20 24" markerWidth="20" markerHeight="24" markerUnits="strokeWidth" orient="auto" refX="-0.5" refY="12"><g id="g-src-shape-library-markers-mim-transcription-translation-svg-start-default" class="board-fill-color default-stroke-color solid-stroke"><rect stroke="none" x="0" y="11.4" width="12" height="1.2"></rect><line fill="none" stroke-width="1" x1="15" y1="12" x2="15" y2="5"></line><line fill="none" stroke-width="1" x1="15.5" y1="5" x2="8" y2="5"></line><polygon stroke-width="1" points="0,5 8,1 8,9"></polygon></g></marker><marker id="shape-library-markers-mim-transcription-translation-svg-end-default" preserveAspectRatio="none" viewBox="0 0 20 24" markerWidth="20" markerHeight="24" markerUnits="strokeWidth" orient="auto" refX="15.5" refY="1.6"><g id="g-src-shape-library-markers-mim-transcription-translation-svg-end-default" class="board-fill-color default-stroke-color solid-stroke" style="-webkit-transform: rotate(180deg); -webkit-transform-origin: 50% 50%;"><rect stroke="none" x="0" y="11.4" width="12" height="1.2"></rect><line fill="none" stroke-width="1" x1="15" y1="12" x2="15" y2="5"></line><line fill="none" stroke-width="1" x1="15.5" y1="5" x2="8" y2="5"></line><polygon stroke-width="1" points="0,5 8,1 8,9"></polygon></g></marker><marker id="shape-library-markers-mim-gap-svg-start-default" preserveAspectRatio="none" viewBox="0 0 12 12" markerWidth="12" markerHeight="12" markerUnits="strokeWidth" orient="auto" refX="0" refY="6"><g id="g-src-shape-library-markers-mim-gap-svg-start-default" class="board-fill-color solid-stroke"><rect stroke="none" x="0.5" y="5.3" width="8" height="1.4"></rect></g></marker><marker id="shape-library-markers-mim-gap-svg-end-default" preserveAspectRatio="none" viewBox="0 0 12 12" markerWidth="12" markerHeight="12" markerUnits="strokeWidth" orient="auto" refX="8.5" refY="6"><g id="g-src-shape-library-markers-mim-gap-svg-end-default" class="board-fill-color solid-stroke" style="-webkit-transform: rotate(180deg); -webkit-transform-origin: 50% 50%;"><rect stroke="none" x="0.5" y="5.3" width="8" height="1.4"></rect></g></marker><marker id="shape-library-markers-t-bar-svg-start-default" preserveAspectRatio="none" viewBox="0 0 10 20" markerWidth="10" markerHeight="20" markerUnits="strokeWidth" orient="auto" refX="-0.5" refY="10"><g id="g-src-shape-library-markers-t-bar-svg-start-default" class="board-fill-color default-stroke-color solid-stroke"><rect stroke="none" x="0" y="9.4" width="8" height="1.2"></rect><line fill="none" stroke-width="1.8" x1="7" y1="0" x2="7" y2="20"></line></g></marker><marker id="shape-library-markers-t-bar-svg-start-ff0000" preserveAspectRatio="none" viewBox="0 0 10 20" markerWidth="10" markerHeight="20" markerUnits="strokeWidth" orient="auto" refX="-0.5" refY="10"><g id="g-src-shape-library-markers-t-bar-svg-start-ff0000" class="board-fill-color default-stroke-color solid-stroke" style="stroke:#ff0000; "><rect stroke="none" x="0" y="9.4" width="8" height="1.2"></rect><line fill="none" stroke-width="1.8" x1="7" y1="0" x2="7" y2="20"></line></g></marker><marker id="shape-library-markers-t-bar-svg-end-default" preserveAspectRatio="none" viewBox="0 0 10 20" markerWidth="10" markerHeight="20" markerUnits="strokeWidth" orient="auto" refX="8" refY="10"><g id="g-src-shape-library-markers-t-bar-svg-end-default" class="board-fill-color default-stroke-color solid-stroke" style="-webkit-transform: rotate(180deg); -webkit-transform-origin: 50% 50%;"><rect stroke="none" x="0" y="9.4" width="8" height="1.2"></rect><line fill="none" stroke-width="1.8" x1="7" y1="0" x2="7" y2="20"></line></g></marker><marker id="shape-library-markers-t-bar-svg-end-ff0000" preserveAspectRatio="none" viewBox="-10 -20 10 20" markerWidth="10" markerHeight="20" markerUnits="strokeWidth" orient="auto" refX="-0.5" refY="-10"><g id="g-src-shape-library-markers-t-bar-svg-end-ff0000" class="board-fill-color default-stroke-color solid-stroke" style="-webkit-transform: rotate(180deg); -webkit-transform-origin: 50% 50%;stroke:#ff0000; "><rect stroke="none" x="0" y="9.4" width="8" height="1.2"></rect><line fill="none" stroke-width="1.8" x1="7" y1="0" x2="7" y2="20"></line></g></marker><marker id="shape-library-markers-none-svg-start-default" preserveAspectRatio="none" viewBox="0 0 0 0" markerWidth="0" markerHeight="0" markerUnits="strokeWidth" orient="auto" refX="0" refY="6"><g id="g-src-shape-library-markers-none-svg-start-default" class="board-fill-color board-stroke-color node shape"><rect x="0" y="0" width="0" height="0" stroke="none" fill="none" stroke-width="0"></rect></g></marker><marker id="shape-library-markers-none-svg-end-default" preserveAspectRatio="none" viewBox="0 0 0 0" markerWidth="0" markerHeight="0" markerUnits="strokeWidth" orient="auto" refX="11" refY="6"><g id="g-src-shape-library-markers-none-svg-end-default" class="board-fill-color board-stroke-color node shape" style="-webkit-transform: rotate(180deg); -webkit-transform-origin: 50% 50%;"><rect x="0" y="0" width="0" height="0" stroke="none" fill="none" stroke-width="0"></rect></g></marker><marker id="shape-library-markers-mim-branching-left-svg-start-default" preserveAspectRatio="none" viewBox="0 0 12 12" markerWidth="12" markerHeight="12" markerUnits="strokeWidth" orient="auto" refX="0.4" refY="6"><g id="g-src-shape-library-markers-mim-branching-left-svg-start-default" class="board-fill-color default-stroke-color solid-stroke"><rect stroke="none" x="0.9" y="5.4" width="2.6" height="1.2"></rect><line fill="none" stroke-width="1" x1="3.9" y1="6.2" x2="0.2" y2="0"></line></g></marker><marker id="shape-library-markers-mim-branching-left-svg-end-default" preserveAspectRatio="none" viewBox="0 0 12 12" markerWidth="12" markerHeight="12" markerUnits="strokeWidth" orient="auto" refX="3.7" refY="0.6"><g id="g-src-shape-library-markers-mim-branching-left-svg-end-default" class="board-fill-color default-stroke-color solid-stroke" style="-webkit-transform: rotate(180deg); -webkit-transform-origin: 50% 50%;"><rect stroke="none" x="0.9" y="5.4" width="2.6" height="1.2"></rect><line fill="none" stroke-width="1" x1="3.9" y1="6.2" x2="0.2" y2="0"></line></g></marker><marker id="shape-library-markers-mim-branching-right-svg-start-default" preserveAspectRatio="none" viewBox="0 0 4 12" markerWidth="4" markerHeight="12" markerUnits="strokeWidth" orient="auto" refX="0.4" refY="6"><g id="g-src-shape-library-markers-mim-branching-right-svg-start-default" class="board-fill-color default-stroke-color solid-stroke"><rect stroke="none" x="0.9" y="5.4" width="2.6" height="1.2"></rect><line fill="none" stroke-width="1" x1="0.2" y1="12" x2="3.9" y2="5.8"></line></g></marker><marker id="shape-library-markers-mim-branching-right-svg-end-default" preserveAspectRatio="none" viewBox="0 0 4 12" markerWidth="4" markerHeight="12" markerUnits="strokeWidth" orient="auto" refX="3.6" refY="11.4"><g id="g-src-shape-library-markers-mim-branching-right-svg-end-default" class="board-fill-color default-stroke-color solid-stroke" style="-webkit-transform: rotate(180deg); -webkit-transform-origin: 50% 50%;"><rect stroke="none" x="0.9" y="5.4" width="2.6" height="1.2"></rect><line fill="none" stroke-width="1" x1="0.2" y1="12" x2="3.9" y2="5.8"></line></g></marker><style type="text/css">	svg {\n		color-interpolation: auto;\n		image-rendering: auto;\n		shape-rendering: auto;\n		vector-effect: non-scaling-stroke;\n                background: white;\n	/* removed fill and stroke since they override marker specs */\n	/*	fill: white;\n    		stroke: black; */\n	}\n\n	/* default color for pathway elements */\n	.default-fill-color {\n		fill: black; \n	}\n	.default-stroke-color {\n		stroke: black;\n	}\n	\n	/* default color of the background drawing board */ 	\n	.board-fill-color {\n		fill: white;\n	}\n	.board-stroke-color {\n		stroke: white;\n	}\n\n	.text-area {\n		font-family: Sans-Serif, Helvetica, Arial;\n		text-align: center;\n		vertical-align: middle;\n		font-size: 10px;\n		fill: black;\n		fill-opacity: 1;\n		stroke: none;\n	}\n\n	.citation {\n		font-family: Sans-Serif, Helvetica, Arial;\n		text-align: center;\n		vertical-align: top;\n		font-size: 8px;\n		fill: lightgray;\n		fill-opacity: 1;\n		stroke: none;\n	}\n\n	.info-box {\n		font-family: Sans-Serif;\n		font-size: 10px;\n		fill: black;\n		stroke: none;\n		text-align: left;\n		vertical-align: top;\n	}\n\n	.info-box-item-property-name {\n		font-weight: bold;\n	}\n\n	.info-box-item-property-value {\n	}\n\n	.data-node {\n		text-align: right;\n		fill-opacity: 1;\n		fill: white;\n		stroke: black;\n		stroke-width: 1;\n		stroke-dasharray: 0;\n		stroke-miterlimit: 1;\n    		pointer-events:auto;\n	}\n	\n	.has-xref:hover {\n		cursor: pointer;\n	}\n\n	.data-node.gene-product {\n	}\n\n	.metabolite {\n		stroke: blue;\n	}\n\n	.data-node.metabolite &gt; .text-area {\n		fill: blue;\n		fill-opacity: 1;\n		stroke: none;\n	}\n\n	.data-node.pathway {\n		stroke: none;\n		fill-opacity: 0;\n	}\n\n	.data-node.pathway &gt; .text-area {\n		fill: rgb(20,150,30);\n		fill-opacity: 1;\n		font-size: 12px;\n		font-weight: bold;\n	}\n\n	.data-node.protein {\n	}\n\n	.data-node.rna {\n	}\n\n	.data-node.unknown {\n	}\n\n	.label {\n		stroke: null;\n		stroke-width: 0;\n		fill-opacity: 0;\n		stroke-dasharray: 0;\n		stroke-miterlimit: 1;\n	}\n\n	.shape {\n		fill-opacity: 1;\n		fill: white;\n		stroke: black;\n		stroke-dasharray: 0;\n		stroke-miterlimit: 1;\n	}\n\n	.shape.none {\n		fill: none;\n		fill-opacity: 0;\n		stroke: none;\n	}\n\n	g.group-node &gt; .shape {\n		fill-opacity: 0.098;\n		stroke: gray;\n		stroke-miterlimit: 1;\n		stroke-width: 1px;\n    		pointer-events:auto;\n	}\n\n	.group-node {\n		fill-opacity: 0.098;\n		stroke: gray;\n		stroke-miterlimit: 1;\n		stroke-width: 1px;\n    		pointer-events:auto;\n	}\n\n	.group-node &gt; .text-area {\n		fill-opacity: 0.4;\n		font-family: Serif, Times;\n		font-size: 32px;\n		fill: black;\n		stroke-width: 0;\n		font-weight: bold;\n  	}	\n\n	.group-node.none {\n		fill: rgb(180,180,100);\n		stroke-dasharray: 5,3;\n	}\n\n	.group-node.none &gt; .text-area {\n		display: none;\n  	}	\n\n	.group-node.none:hover {\n		fill: Brown;\n		fill-opacity: 0.1;\n	}\n\n	.group-node.group {\n		fill-opacity: 0;\n		stroke: none;\n	}\n\n	.group-node.group &gt; .text-area {\n		display: none;\n  	}\n	.group-node.group:hover {\n		fill: CornflowerBlue;\n		stroke-width: 1px;\n		stroke-dasharray: 5,3;\n		stroke: gray;\n		fill-opacity: 0.1;\n	}\n\n	.group-node.complex {\n		fill: rgb(180,180,100);\n	}\n\n	.group-node.complex &gt; .text-area {\n		display: none;\n  	}\n	.group-node.complex:hover {\n		fill: Brown;\n		fill-opacity: 0.1;\n	}	\n\n  	.group-node.pathway {\n		fill: lightgreen;\n		stroke-dasharray: 5,3;\n	}\n	.group-node.pathway:hover {\n		fill: lightgreen;\n		fill-opacity: 0.2;\n	}\n	.group-node.pathway &gt; .text-area {\n		fill: rgb(20,150,30);\n		stroke: rgb(20,150,30);\n  }\n\n  .cellular-component {\n		fill-opacity: 0;\n		stroke: silver;\n	}\n\n  .graphical-line {\n		fill:none;\n		stroke: black; \n		stroke-width: 1px; \n	}\n\n	.interaction {\n		fill:none;\n		stroke: black; \n		stroke-width: 1px; \n	}\n\n	marker {\n		/* this is what should work per the spec\n		   stroke-dasharray: none; */\n		/* but I need to add this to make it work in Safari */\n		stroke-dasharray: 9999999999999999999999999;\n	}\n\n  .marker-end {\n    -webkit-transform: rotate(180deg);\n    -webkit-transform-origin: 50% 50%;\n\n    -o-transform: rotate(180deg); \n    -o-transform-origin: 50% 50%;\n\n    transform: rotate(180deg);\n    transform-origin: 50% 50%;\n  }\n\n	.solid-stroke {\n		/* this is what should work per the spec\n		   stroke-dasharray: none; */\n		/* but I need to add this to make it work in Safari */\n		stroke-dasharray: 9999999999999999999999999;\n	}\n\n	.dashed-stroke {\n		stroke-dasharray: 5,3;\n	}\n\n  .highlighted-node {\n		fill: yellow;\n    fill-opacity: 0.2;\n		stroke: orange; \n    stroke-width: 3px;\n  }\n</style></defs>\n\n        <g id="viewport" transform="matrix(0.5393548780871974,0,0,0.5393548780871974,10,20)">\n        </g>\n\n      </svg>\n\n    \n      \n    </div>\n    \n    <div id="typeahead" style="position: absolute; top: 5px; right: 5px;">\n    <!-- **********************************************************************\n      Highlight Element by Label Control\n      *********************************************************************** -->\n\n      <span class="twitter-typeahead" style="position: relative; display: inline-block;"><input class="tt-hint" type="text" autocomplete="off" spellcheck="off" disabled="" style="position: absolute; top: 0px; left: 0px; border-color: transparent; box-shadow: none; background-attachment: scroll; background-clip: border-box; background-color: rgb(255, 255, 255); background-image: none; background-origin: padding-box; background-size: auto; background-position: 0% 0%; background-repeat: repeat repeat;"><input id="highlight-by-label-input" placeholder="Enter node name to highlight." role="textbox" aria-autocomplete="list" aria-haspopup="true" class="tt-query" autocomplete="off" spellcheck="false" dir="auto" style="position: relative; vertical-align: top; background-color: transparent;"><span style="position: absolute; left: -9999px; visibility: hidden; white-space: nowrap; font-family: \'Lucida Grande\'; font-size: 12px; font-style: normal; font-variant: normal; font-weight: 400; word-spacing: 0px; letter-spacing: 0px; text-indent: 0px; text-rendering: auto; text-transform: none;"></span><span class="tt-dropdown-menu" style="position: absolute; top: 100%; left: 0px; z-index: 100; display: none;"></span></span>\n\n      </div> \n     \n   \n      <!-- **********************************************************************\n      Pan Zoom Control\n      see http://bumbu.github.io/cytoscape.js/debug/ for example of cytoscape.js \n      *********************************************************************** -->\n\n      <div id="pan-zoom-control" class="ui-cytoscape-panzoom">\n        <div class="ui-cytoscape-panzoom-zoom-in ui-cytoscape-panzoom-zoom-button">\n          <span class="icon icon-plus"></span>\n        </div>\n        <div class="ui-cytoscape-panzoom-zoom-out ui-cytoscape-panzoom-zoom-button">\n          <span class="icon icon-minus"></span>\n        </div>\n        <div class="ui-cytoscape-panzoom-reset ui-cytoscape-panzoom-zoom-button">\n          <span class="icon icon-resize-full"></span>\n        </div>\n        <div class="ui-cytoscape-panzoom-slider">\n          <div class="ui-cytoscape-panzoom-slider-background">\n          </div>\n          <div class="ui-cytoscape-panzoom-slider-handle" style="top: 42.80000001192093px;">\n            <span class="icon icon-minus"></span>\n          </div>\n          <div class="ui-cytoscape-panzoom-no-zoom-tick" style="top: 42.80000001192093px;">\n          </div>\n        </div>\n        <div class="ui-cytoscape-panzoom-panner">\n          <div class="ui-cytoscape-panzoom-panner-handle">\n          </div>\n          <div class="ui-cytoscape-panzoom-pan-up ui-cytoscape-panzoom-pan-button">\n          </div>\n          <div class="ui-cytoscape-panzoom-pan-down ui-cytoscape-panzoom-pan-button">\n          </div>\n          <div class="ui-cytoscape-panzoom-pan-left ui-cytoscape-panzoom-pan-button">\n          </div>\n          <div class="ui-cytoscape-panzoom-pan-right ui-cytoscape-panzoom-pan-button">\n          </div>\n          <div class="ui-cytoscape-panzoom-pan-indicator" style="display: none; left: 22.424611085682006px; top: 0.12287108520014556px; background-color: rgb(127, 127, 127); background-position: initial initial; background-repeat: initial initial;">\n          </div>\n        </div>\n      </div>\n\n      <!-- **********************************************************************\n      Fullscreen Control \n      *********************************************************************** -->\n\n      <div id="fullscreen-control" style="position: absolute; bottom: 5px; right: 5px;">\n        <i class="icon-fullscreen" style="color:#aaa"></i>\n      </div>\n   \n\n    <div id="viewer-toolbar" style="position: absolute; top: 0px; right: 0px; height: inherit">\n    </div>\n      \n    <!-- **********************************************************************\n    Details Frame\n    *********************************************************************** -->\n\n    <div id="annotation" class="annotation ui-draggable" style="visibility: hidden; position: absolute; right: 75px; top: 100px;">\n      <header class="annotation-header">\n      <span id="annotation-move" class="annotation-header-move">\n        <i class="icon-move"></i>\n      </span>\n      <span class="annotation-header-close">                                                                                    \n        <i class="icon-remove"></i>                                                                                                                             \n      </span>   \n      <span id="annotation-header-text" class="annotation-header-text">\n        Header\n      </span> \n      <span id="annotation-header-search" class="annotation-header-search" title="Search for pathways containing \'Header Text\'">\n        <a href="http://wikipathways.org//index.php?title=Special:SearchPathways">\n          <i class="icon-search" style="color:blue; font-size:50% ; text-decoration:none"></i>\n        </a>\n      </span>\n      <div id="annotation-description" class="annotation-description">\n        <h2>description</h2>\n      </div>\n      </header>\n      <span class="annotation-items-container">\n        <ul id="annotation-items-container">\n          <!-- List items inside this ul element are generated automatically by JavaScript.\n          Each item will be composed of a title and text. The text can be set to be an href.\n          You can edit the styling of the title by editing CSS class "annotation-item-title"\n          and the styling of the text by editing CSS class "annotation-item-text.\n          -->\n        </ul>\n      </span>\n    </div>\n  </div>\n';
 ;
 
 "use strict"
@@ -24,8 +24,7 @@ var pathvisiojs = function(){
         results.uri = PathwayViewer_viewers[0].gpml.gpmlUrl;
       }
       else {
-        console.warn('WikiPathways does not yet support CORS, so until we get CORS support, we are using Pointer as a proxy to enable CORS for getting GPML from http://www.wikipathways.org//wpi/wpi.php?action=downloadFile&type=gpml&pwTitle=Pathway:' + wikiPathwaysId + '&rev=' + revision);
-        results.uri = 'http://pointer.ucsf.edu/d3/r/data-sources/gpml.php?id=' + wikiPathwaysId + '&rev=' + revision;
+        results.uri = pathvisiojs.config.gpmlSourceUriStub() + wikiPathwaysId + '&rev=' + revision;
       }
       //results.cached = 'https://pathways.firebaseio.com/' + wikiPathwaysId + '.json';
       results.type = 'GPML';
@@ -152,6 +151,48 @@ var pathvisiojs = function(){
 }();
 ;
 
+"use strict";
+
+pathvisiojs.config = function() {
+  var gpmlSourceUriStub = function() {
+    if(typeof console !== "undefined") {
+      console.warn('WikiPathways does not yet support CORS, so until we get CORS support, we are using Pointer as a proxy to enable CORS for getting GPML.');
+    }
+    return 'http://pointer.ucsf.edu/d3/r/data-sources/gpml.php?id=';
+  }
+
+  var bridgedbLinkOutsUrlStub = function() {
+    return 'http://pointer.ucsf.edu/d3/r/data-sources/bridgedb/bridgedb.php/';
+  }
+
+  var bridgedbDatasources = function() {
+    return 'http://localhost:3000/external-data/bridgedb/datasources.txt';
+  }
+
+  var diagramNotAvailableImageUri = function() {
+    // TODO update this link to a URL we control
+    return 'http://upload.wikimedia.org/wikipedia/commons/3/3b/Picture_Not_Yet_Available.png';
+  }
+
+  var pngDiagramUriStub = function() {
+    return 'http://www.wikipathways.org/wpi//wpi.php?action=downloadFile&type=png&pwTitle=Pathway:';
+  }
+
+  var pathwaySearchUriStub = function() {
+    return 'http://wikipathways.org//index.php?title=Special:SearchPathways&doSearch=1&query=';
+  }
+
+  return {
+    gpmlSourceUriStub:gpmlSourceUriStub,
+    bridgedbLinkOutsUrlStub:bridgedbLinkOutsUrlStub,
+    bridgedbDatasources:bridgedbDatasources,
+    pngDiagramUriStub:pngDiagramUriStub,
+    diagramNotAvailableImageUri:diagramNotAvailableImageUri,
+    pathwaySearchUriStub:pathwaySearchUriStub
+  };
+}();
+;
+
 pathvisiojs.utilities = function(){
 
   // from http://stackoverflow.com/questions/2454295/javascript-concatenate-properties-from-multiple-objects-associative-array
@@ -242,9 +283,10 @@ pathvisiojs.utilities = function(){
     return str.split(/\r\n|\r|\n/g);
   }
 
+  // this both clones a node and inserts it at the same level of the DOM
+  // as the element it was cloned from.
+  // it returns a d3 selection of the cloned element
   function cloneNode(selector) {
-    console.log('selector');
-    console.log(selector);
     var node = d3.select(selector).node();
     return d3.select(node.parentNode.insertBefore(node.cloneNode(true), node.nextSibling));
   }
@@ -404,7 +446,7 @@ pathvisiojs.utilities = function(){
     return arr; // for testing purposes
   }
 
-  function isOdd(num) { return num % 2;}
+  var isOdd = function(num) { return num % 2;}
 
   return{
     collect:collect,
@@ -434,8 +476,8 @@ pathvisiojs.data = {};
 
 pathvisiojs.data.bridgedb = function(){
 
-  var bridgedbPhp = '../external-data/bridgedb/';
-  var bridgedbDatasources = '../external-data/bridgedb/';
+  var bridgedbLinkOutsUrlStub = pathvisiojs.config.bridgedbLinkOutsUrlStub();
+  var bridgedbDatasources = pathvisiojs.config.bridgedbDatasources();
 
   function getXrefAnnotationDataByDataNode(singleSpecies, id, datasource, label, desc, callback) {
     getDataSources(function(dataSources) {
@@ -513,7 +555,7 @@ pathvisiojs.data.bridgedb = function(){
   }
 
   function getDataSources(callback) {
-    d3.tsv(bridgedbDatasources + 'datasources.txt')
+    d3.tsv(bridgedbDatasources)
     .response(function(request) {
       return d3.tsv.parseRows(request.responseText, function(d) {
         return {dataSourceName: d[0], systemCode: d[1], websiteUrl: d[2], linkoutPattern: d[3], exampleIdentifier: d[4], entityIdentified: d[5], singleSpecies: d[6], priority: d[7], uri: d[8], regex: d[9], officialName: d[10]};
@@ -525,7 +567,7 @@ pathvisiojs.data.bridgedb = function(){
   }
 
   function getXrefAliases(singleSpecies, systemCode, xRefId, callback) {
-    var bridgedbUrl = bridgedbPhp + 'bridgedb.php/' + encodeURIComponent(singleSpecies) + '/xrefs/' + encodeURIComponent(systemCode) + '/' + encodeURIComponent(xRefId);
+    var bridgedbUrl = bridgedbLinkOutsUrlStub + encodeURIComponent(singleSpecies) + '/xrefs/' + encodeURIComponent(systemCode) + '/' + encodeURIComponent(xRefId);
     console.log(bridgedbUrl);
     d3.tsv(bridgedbUrl)
     .response(function(request) { 
@@ -2302,15 +2344,15 @@ pathvisiojs.data.gpml = function(){
           return color.toHex();
         }
         else {
-          return 'black';
+          return pathvisioDefault;
         }
       }
       else {
-        return 'black';
+        return pathvisioDefault;
       }
     }
     else {
-      return null;
+      return pathvisioDefault;
     }
   }
 
@@ -2742,6 +2784,9 @@ pathvisiojs.data.gpml = function(){
             }
           },
           Group: function(callback){
+            // Note: this calculates all the data for each group-node, except for its dimensions.
+            // The dimenensions can only be calculated once all the rest of the elements have been
+            // converted from GPML to JSON.
             var gpmlGroup, groups = gpmlPathway.selectAll('Group');
             if (groups[0].length > 0) {
               pathway.Group = [];
@@ -2803,21 +2848,30 @@ pathvisiojs.data.gpml = function(){
           jsonld.frame(pathway, groupsFrame, function(err, framedGroups) {
             console.log('framedGroups');
             console.log(framedGroups);
-            framedGroups['@graph'].forEach(function(jsonGroup) {
 
-              // Some GPML files contain empty groups due to a PathVisio-Java bug. They should be deleted.
+          framedGroups['@graph'].forEach(function(jsonGroup) {
+            // Some GPML files contain empty groups due to a PathVisio-Java bug. They are deleted
+            // here because only groups that pass the test (!!jsonGroup.contains) are added to
+            // the jsonGroups array, and the jsonGroups array overwrites pathway.Group.
+            if (!!jsonGroup.contains) {
+              pathvisiojs.data.gpml.element.node.groupNode.getGroupDimensions(jsonGroup, function(dimensions) {
+                console.log('jsonGroup in gpml.js');
+                console.log(jsonGroup);
 
-              if (!!jsonGroup.contains) {
-                pathvisiojs.data.gpml.element.node.groupNode.calculateImplicitRenderingData(jsonGroup, function(updatedJsonGroup) {
-                  console.log('jsonGroup in gpml.js');
-                  console.log(jsonGroup);
-                  jsonGroups.push(updatedJsonGroup);
+                jsonGroup.x = dimensions.x;
+                jsonGroup.y = dimensions.y;
+                jsonGroup.width = dimensions.width;
+                jsonGroup.height = dimensions.height;
+                pathvisiojs.data.gpml.element.node.getPorts(jsonGroup, function(ports) {
+                  jsonGroup.Port = ports;
+                  jsonGroups.push(jsonGroup);
                 });
-              }
-            });
-            pathway.Group = jsonGroups;
-            self.myPathway = pathway;
-            callbackOutside(pathway);
+              });
+            }
+          });
+          pathway.Group = jsonGroups;
+          self.myPathway = pathway;
+          callbackOutside(pathway);
           });
         }
         else {
@@ -2913,6 +2967,10 @@ pathvisiojs.data.gpml = function(){
     setColorAsJson:setColorAsJson
   };
 }();
+
+// hack required because we call ...node.anchors.toRenderableJson() before we
+// call the other ...node.toRenderableJson() methods
+pathvisiojs.data.gpml.node = pathvisiojs.data.gpml.node || {};
 ;
 
 "use strict";
@@ -3499,11 +3557,13 @@ pathvisiojs.data.gpml.element.node.groupNode = function() {
     'FontWeight':null
   }
 
-  function getGroupDimensions(group, groupContents, callback) {
+  function getGroupDimensions(group, callback) {
+    /*
     console.log('group');
     console.log(group);
     console.log('groupContents');
     console.log(groupContents);
+    //*/
     var dimensions = {};
     dimensions.topLeftCorner = {};
     dimensions.topLeftCorner.x = 99999;
@@ -3511,6 +3571,9 @@ pathvisiojs.data.gpml.element.node.groupNode = function() {
     dimensions.bottomRightCorner = {};
     dimensions.bottomRightCorner.x = 0;
     dimensions.bottomRightCorner.y = 0;
+
+    var groupContents = group.contains;
+    groupContents = pathvisiojs.utilities.convertToArray(groupContents);
     groupContents.forEach(function(groupContent) {
       if (groupContent.renderableType === 'EntityNode') {
         dimensions.topLeftCorner.x = Math.min(dimensions.topLeftCorner.x, groupContent.x);
@@ -3533,100 +3596,75 @@ pathvisiojs.data.gpml.element.node.groupNode = function() {
   }
 
   function toRenderableJson(pathway, gpmlGroup, pathwayIri, callbackOutside) {
-    try {
-      var jsonGroup = {},
-      groupId;
-      var shapeType,
+    var jsonGroup = {},
+      groupId,
+      shapeType,
       groupType;
 
-      var graphId = gpmlGroup.attr('GraphId') || ('id' + uuid.v4());
-      jsonGroup.GraphId = graphId;
-      groupId = gpmlGroup.attr('GroupId') || ('id' + uuid.v4());
-      jsonGroup["@id"] = pathwayIri + groupId;
-      jsonGroup.GroupId = groupId;
-      groupType = gpmlGroup.attr('Style') || 'None';
+    var graphId = gpmlGroup.attr('GraphId') || ('id' + uuid.v4());
+    jsonGroup.GraphId = graphId;
+    groupId = gpmlGroup.attr('GroupId') || ('id' + uuid.v4());
+    jsonGroup["@id"] = pathwayIri + groupId;
+    jsonGroup.GroupId = groupId;
+    groupType = gpmlGroup.attr('Style') || 'None';
 
-      var shapeType = groupTypeToShapeTypeMappings[groupType];
-      jsonGroup.ShapeType = shapeType || 'rectangle';
+    var shapeType = groupTypeToShapeTypeMappings[groupType];
+    jsonGroup.ShapeType = shapeType || 'rectangle';
 
-      jsonGroup.renderableType = 'GroupNode';
-      jsonGroup.nodeType = "GroupNode";
-      jsonGroup.groupType = groupType;
+    jsonGroup.renderableType = 'GroupNode';
+    jsonGroup.nodeType = "GroupNode";
+    jsonGroup.groupType = groupType;
 
-      jsonGroup["@type"] = [];
-      jsonGroup["@type"].push(shapeType);
-      jsonGroup["@type"].push("GroupNode");
-      jsonGroup["@type"].push(groupType);
+    jsonGroup["@type"] = [];
+    jsonGroup["@type"].push(shapeType);
+    jsonGroup["@type"].push("GroupNode");
+    jsonGroup["@type"].push(groupType);
 
-      // Groups in PathVisio (Java) appear to have unchangable padding values,
-      // but they are different based on GroupType.
+    // Groups in PathVisio (Java) appear to have unchangable padding values,
+    // but they are different based on GroupType.
 
-      var groupTypeToPaddingValueMappings = {
-        'Complex': 11,
-        'Group': 8,
-        'None': 8,
-        'Pathway': 8
-      };
+    var groupTypeToPaddingValueMappings = {
+      'Complex': 11,
+      'Group': 8,
+      'None': 8,
+      'Pathway': 8
+    };
 
-      jsonGroup.padding = groupTypeToPaddingValueMappings[groupType];
+    jsonGroup.padding = groupTypeToPaddingValueMappings[groupType];
 
-      // Groups in PathVisio (Java) appear to have a default borderWidth
-      // of 1px at normal zoom levels, but unlike for edges and EntityNodes, 
-      // this borderWidth does not change when I zoom in or out.
-      //
-      // TODO this should be updated to check for whether it is defined
-      // in CSS. If it is, this could conflict or require defining
-      // borderWidth twice -- once here and once in CSS.
+    // Groups in PathVisio (Java) appear to have a default borderWidth
+    // of 1px at normal zoom levels, but unlike for edges and EntityNodes, 
+    // this borderWidth does not change when I zoom in or out.
+    //
+    // TODO this should be updated to check for whether it is defined
+    // in CSS. If it is, this could conflict or require defining
+    // borderWidth twice -- once here and once in CSS.
 
-      jsonGroup.borderWidth = 1;
-      pathvisiojs.data.gpml.text.toRenderableJson(gpmlGroup, pathvisioDefaultStyleValues, function(text) {
-        console.log('text');
-        console.log(text);
-        if (!!text) {
-          jsonGroup.text = text;
+    jsonGroup.borderWidth = 1;
+    pathvisiojs.data.gpml.text.toRenderableJson(gpmlGroup, pathvisioDefaultStyleValues, function(text) {
+      /*
+      console.log('text');
+      console.log(text);
+      //*/
+      if (!!text) {
+        jsonGroup.text = text;
 
-          // TODO set fontSize in CSS, not here. Need to be able to still calculate font rendering, however,
-          // which depends in part on font size.
+        // TODO set fontSize in CSS, not here. Need to be able to still calculate font rendering, however,
+        // which depends in part on font size.
 
-          jsonGroup.text.fontSize = 32;
-          jsonGroup.text.textAlign = 'center';
-          jsonGroup.text.verticalAlign = 'middle';
-        }
-        pathvisiojs.data.gpml.element.node.toRenderableJson(gpmlGroup, jsonGroup, function(jsonGroup) {
-          callbackOutside(jsonGroup);
-        });
+        jsonGroup.text.fontSize = 32;
+        jsonGroup.text.textAlign = 'center';
+        jsonGroup.text.verticalAlign = 'middle';
+      }
+      pathvisiojs.data.gpml.element.node.toRenderableJson(gpmlGroup, jsonGroup, function(jsonGroup) {
+        callbackOutside(jsonGroup);
       });
-    }
-    catch (e) {
-      throw new Error("Error converting Group to renderable json: " + e.message);
-    }
-  }
-
-  function calculateImplicitRenderingData(jsonGroup, callbackOutside) {
-    console.log('jsonGroup');
-    console.log(jsonGroup);
-    try {
-      getGroupDimensions(jsonGroup, jsonGroup['contains'], function(dimensions) {
-        jsonGroup.x = dimensions.x;
-        jsonGroup.y = dimensions.y;
-        jsonGroup.width = dimensions.width;
-        jsonGroup.height = dimensions.height;
-        pathvisiojs.data.gpml.element.node.getPorts(jsonGroup, function(ports) {
-          jsonGroup.Port = ports;
-        });
-      });
-    }
-    catch (e) {
-      throw new Error("Error converting Group to renderable json: " + e.message);
-    }
-    finally {
-      callbackOutside(jsonGroup);
-    }
+    });
   }
 
   return {
     toRenderableJson:toRenderableJson,
-    calculateImplicitRenderingData:calculateImplicitRenderingData
+    getGroupDimensions:getGroupDimensions
   };
 }();
 
@@ -3640,7 +3678,7 @@ pathvisiojs.data.gpml.element.node.entityNode = Object.create(pathvisiojs.data.g
 
 pathvisiojs.data.gpml.element.node.entityNode.setJsonRotationValue = function(jsonNode, currentGpmlRotationValue, defaultGpmlRotationValue) {
   if (currentGpmlRotationValue !== defaultGpmlRotationValue) {
-    jsonNode.rotate = currentGpmlRotationValue + 'deg';
+    jsonNode.rotate = currentGpmlRotationValue * 180/Math.PI; //converting from radians to degrees
   }
   return jsonNode;
 }
@@ -3685,10 +3723,10 @@ pathvisiojs.data.gpml.element.node.entityNode.toRenderableJson = function(gpmlEn
   // with a similar calculation for gpmlHeight
 
   var gpmlWidth = parseFloat(gpmlEntityNode.select('Graphics').attr('Width'));
-  jsonEntityNode.width = gpmlWidth + borderWidth;
+  jsonEntityNode.width = gpmlWidth + borderWidth; 
 
   var gpmlHeight = parseFloat(gpmlEntityNode.select('Graphics').attr('Height'));
-  jsonEntityNode.height = gpmlHeight + borderWidth;
+  jsonEntityNode.height = gpmlHeight + borderWidth; 
 
   var centerX = parseFloat(gpmlEntityNode.select('Graphics').attr('CenterX'));
   jsonEntityNode.x = centerX - gpmlWidth/2;
@@ -3816,7 +3854,7 @@ pathvisiojs.data.gpml.element.node.entityNode.label = Object.create(pathvisiojs.
 
 pathvisiojs.data.gpml.element.node.entityNode.label.Rotation = null;
 pathvisiojs.data.gpml.element.node.entityNode.label.Color = null;
-pathvisiojs.data.gpml.element.node.entityNode.label.FillColor = 'ffffff';
+pathvisiojs.data.gpml.element.node.entityNode.label.FillColor = null;
 pathvisiojs.data.gpml.element.node.entityNode.label.FontSize = 10;
 pathvisiojs.data.gpml.element.node.entityNode.label.FontWeight = null;
 
@@ -3975,7 +4013,9 @@ pathvisiojs.data.gpml.element.node.entityNode.shape = function(){
 
 ;
 
-pathvisiojs.data.gpml.anchor = function() {
+"use strict"
+
+pathvisiojs.data.gpml.node.anchor = function() {
 
   // anchors
   // an anchor is an attachment point at which an edge can originate or terminate.
@@ -3990,20 +4030,48 @@ pathvisiojs.data.gpml.anchor = function() {
   //  initialEdgeDirection: direction (in degrees) by which the edge emanates from the anchor (only for anchors attached to nodes, not edges)
   // }
 
-  function getFromEdge(gpmlAnchor, callback) {
-    self.gpmlAnchor = gpmlAnchor;
-    var jsonAnchor = {};
-
-    try {
-      jsonAnchor.id = gpmlAnchor.attr('GraphId');
-      jsonAnchor.parentId = gpmlAnchor[0][0].parentNode.parentNode.attributes['GraphId'].textContent;
-      jsonAnchor.position = gpmlAnchor.attr('Position');
-      jsonAnchor.renderableType = 'anchor';
-      callback(jsonAnchor);
-
+  function toRenderableJson(gpmlParentElement, jsonParentElement, elementType, pathwayIri, callback) {
+    var gpmlAnchors, gpmlAnchor, jsonAnchor, elementIri, graphId;
+    if (elementType === 'edge') {
+      gpmlAnchors = gpmlParentElement.selectAll('Anchor');
+      if (gpmlAnchors[0].length > 0) {
+        jsonParentElement.Anchor = [];
+        gpmlAnchors.each(function() {
+          jsonAnchor = {};
+          gpmlAnchor = d3.select(this);
+          graphId = gpmlAnchor.attr('GraphId') || ('id' + uuid.v4());
+          elementIri = pathwayIri + graphId;
+          jsonAnchor['@id'] = elementIri;
+          jsonAnchor['@type'] = [
+            'node',
+            'element',
+            'Element',
+            'Anchor'
+          ];
+          jsonAnchor.dependsOn = jsonParentElement['@id'];
+          jsonAnchor.anchorPosition = gpmlAnchor.attr('Position');
+          if (!!jsonParentElement.stroke) {
+            jsonAnchor.backgroundColor = jsonParentElement.stroke;
+          }
+          jsonAnchor.ShapeType = gpmlAnchor.attr('Shape');
+          if (!!jsonAnchor.ShapeType) {
+            if (jsonAnchor.ShapeType === 'Circle') {
+              jsonAnchor.ShapeType = 'oval';
+            }
+          }
+          else {
+            jsonAnchor.ShapeType = 'none';
+          }
+          jsonParentElement.Anchor.push(jsonAnchor);
+        })
+        callback(jsonParentElement);
+      }
+      else {
+        callback(jsonParentElement);
+      }
     }
-    catch (e) {
-      console.log("Error converting anchor to renderable json: " + e.message);
+    else {
+      throw new Error('anchor.toRenderableJson doesnt know how to handle anything other than edges as parent elements right now. handling other elements needs to be implemented.');
     }
   }
 
@@ -4027,44 +4095,37 @@ pathvisiojs.data.gpml.anchor = function() {
     ];
     var anchorPositions = [0.25, 0.5, 0.75];
 
-    try {
-      parentId = jsonNode.id;
-      renderableType = 'anchor';
+    parentId = jsonNode.id;
+    renderableType = 'anchor';
 
-      elementSides.forEach(function(element) {
-        sideOffsetX = Math.max(element.dx, 0) * jsonNode.width;
-        sideOffsetY = Math.max(element.dy, 0) * jsonNode.height;
-        anchorPositions.forEach(function(position) {
-          id = String(jsonNode.id) + String(element.side) + String(position);
-          positionOffsetX = Math.abs(element.dy) * position * jsonNode.width;
-          positionOffsetY = Math.abs(element.dx) * position * jsonNode.height;
-          x = jsonNode.x + sideOffsetX + positionOffsetX;
-          y = jsonNode.y + sideOffsetY + positionOffsetY;
-          jsonAnchors.push({
-            'parentId': jsonNode.id,
-            'renderableType': 'anchor',
-            'side': element.side,
-            'dx': element.dx,
-            'dy': element.dy,
-            'id': id,
-            'position': position,
-            'x': x,
-            'y': y 
-          });
+    elementSides.forEach(function(element) {
+      sideOffsetX = Math.max(element.dx, 0) * jsonNode.width;
+      sideOffsetY = Math.max(element.dy, 0) * jsonNode.height;
+      anchorPositions.forEach(function(position) {
+        id = String(jsonNode.id) + String(element.side) + String(position);
+        positionOffsetX = Math.abs(element.dy) * position * jsonNode.width;
+        positionOffsetY = Math.abs(element.dx) * position * jsonNode.height;
+        x = jsonNode.x + sideOffsetX + positionOffsetX;
+        y = jsonNode.y + sideOffsetY + positionOffsetY;
+        jsonAnchors.push({
+          'parentId': jsonNode.id,
+          'renderableType': 'anchor',
+          'side': element.side,
+          'dx': element.dx,
+          'dy': element.dy,
+          'id': id,
+          'position': position,
+          'x': x,
+          'y': y 
         });
       });
-      //callback(jsonAnchors);
-      return jsonAnchors;
-    }
-    catch (e) {
-      console.log("Error converting anchor to renderable json: " + e.message);
-    }
+    });
+    //callback(jsonAnchors);
+    return jsonAnchors;
   }
 
-
-
   return {
-    getFromEdge:getFromEdge,
+    toRenderableJson:toRenderableJson,
     getAllFromNode:getAllFromNode
   };
 }();
@@ -4085,11 +4146,12 @@ pathvisiojs.data.gpml.edge = function(){
     jsonEdge['@id'] = elementIri;
     jsonEdge.GraphId = graphId;
 
-    var isContainedBy = gpmlEdge.attr('GroupRef');
+    var containingGroupRef = gpmlEdge.attr('GroupRef');
+    var isContainedBy;
     var dependsOn = [];
-    if (!!isContainedBy) {
-      jsonEdge.isContainedBy = isContainedBy;
-      dependsOn.push(pathwayIri + isContainedBy);
+    if (!!containingGroupRef) {
+      isContainedBy = jsonEdge.isContainedBy = pathwayIri + containingGroupRef;
+      dependsOn.push(isContainedBy);
     }
 
     jsonEdge.zIndex = parseFloat(gpmlEdge.select('Graphics').attr('ZOrder'));
@@ -4144,6 +4206,7 @@ pathvisiojs.data.gpml.edge = function(){
       jsonEdge['strokeWidth'] = parseFloat(strokeWidth);
     }
 
+    /*
     var jsonAnchorEdges = gpmlEdge.selectAll('Anchor');
     if (jsonAnchorEdges[0].length > 0) {
       jsonEdge.Anchor = [];
@@ -4162,8 +4225,12 @@ pathvisiojs.data.gpml.edge = function(){
         jsonEdge.Anchor.push(jsonAnchorEdge);
       })
     }
-    pathvisiojs.data.gpml.element.toRenderableJson(gpmlEdge, jsonEdge, function(jsonEdge) {
-      callback(jsonEdge);
+    //*/
+
+    pathvisiojs.data.gpml.node.anchor.toRenderableJson(gpmlEdge, jsonEdge, 'edge', pathwayIri, function(jsonEdge) {
+      pathvisiojs.data.gpml.element.toRenderableJson(gpmlEdge, jsonEdge, function(jsonEdge) {
+        callback(jsonEdge);
+      });
     });
   }
 
@@ -4314,7 +4381,7 @@ pathvisiojs.data.gpml.edge.interaction = function(){
   }
 
   function toRenderableJson(gpml, gpmlInteraction, pathwayIri, callback) {
-    var jsonAnchorInteraction, anchor, jsonAnchor, points, jsonPoints, interactionType, target, targetId, groupRef;
+    var jsonAnchorInteraction, anchor, jsonAnchor, points, jsonPoints, interactionType, target, targetId, groupRef, source, sourceId;
     pathvisiojs.data.gpml.edge.toRenderableJson(gpmlInteraction, pathwayIri, function(jsonInteraction) {
       //console.log('jsonInteraction');
       //console.log(jsonInteraction);
@@ -4349,12 +4416,30 @@ pathvisiojs.data.gpml.edge.interaction = function(){
         if (!!interactionType) {
           jsonInteraction.InteractionGraph = jsonInteraction.InteractionGraph || [];
 
-          InteractionGraphMember['@id'] = pathwayIri + gpmlSource.getAttribute('GraphRef');
+          sourceId = gpmlSource.getAttribute('GraphRef');
+          if (!!sourceId) {
+            source = gpml.querySelector('[GraphId=' + sourceId + ']');
+            if (source.tagName === 'Anchor') {
+              sourceId = source.parentNode.parentNode.getAttribute('GraphId');
+            }
+            else {
+              if (source.tagName === 'Group') {
+                sourceId = source.getAttribute('GroupId');
+              }
+            }
+          }
+          InteractionGraphMember['@id'] = pathwayIri + sourceId;
+
           targetId = gpmlTarget.getAttribute('GraphRef');
           if (!!targetId) {
             target = gpml.querySelector('[GraphId=' + targetId + ']');
             if (target.tagName === 'Anchor') {
-              targetId = target.parentElement.parentElement.getAttribute('GraphId');
+              targetId = target.parentNode.parentNode.getAttribute('GraphId');
+            }
+            else {
+              if (target.tagName === 'Group') {
+                targetId = target.getAttribute('GroupId');
+              }
             }
 
             InteractionGraphMember.interactsWith = pathwayIri + targetId;
@@ -4744,7 +4829,7 @@ pathvisiojs.view.annotation = function(){
 
     var detailsSearchUri = annotation.select('#annotation-header-search').select('a')
     .attr('href', function(d) {
-    	return 'http://wikipathways.org//index.php?title=Special:SearchPathways&doSearch=1&query=' + d.header;
+    	return pathvisiojs.config.pathwaySearchUriStub() + d.header;
      })
      .attr('title', function(d) {return 'Search for pathways containing ' + d.header; });
 
@@ -5035,7 +5120,7 @@ pathvisiojs.view.pathwayDiagram = function(){
       fitToContainer = args.fitToContainer,
       cssUrl = args.cssUrl,
       customMarkers = args.customMarkers,
-      customSymbols = args.customSymbols,
+//      customSymbols = args.customSymbols,
       highlightNodes = args.highlightNodes,
       hiddenElements = args.hiddenElements,
       container;
@@ -5078,7 +5163,7 @@ pathvisiojs.view.pathwayDiagram = function(){
               var preloadDiagramArgs = {};
               preloadDiagramArgs.container = container;
               preloadDiagramArgs.customMarkers = customMarkers;
-              preloadDiagramArgs.customSymbols = customSymbols;
+//              preloadDiagramArgs.customSymbols = customSymbols;
               preloadDiagramArgs.cssUrl = cssUrl;
               pathvisiojs.view.pathwayDiagram.svg.loadPartials(preloadDiagramArgs, function(svg) {
                 callback(null, svg);
@@ -5223,7 +5308,7 @@ pathvisiojs.view.pathwayDiagram.pathFinder = function(){
   }
 
   function getPath(svg, edge, callbackOutside) {
-    /*
+    //*
     console.log('svg in path-finder');
     console.log(svg);
     console.log('edge in path-finder');
@@ -5250,12 +5335,18 @@ pathvisiojs.view.pathwayDiagram.pathFinder = function(){
     // source and a target
 
     var edgeGraphRefNodes = [];
-    edgeGraphRefNodes.push(edge.InteractionGraph[0]);
     var targetNode;
-    //targetNode = edge.InteractionGraph[0].interactsWith;
-    targetNode = edge.InteractionGraph[edge.InteractionGraph.length - 1];
-    if (!!targetNode && edge.InteractionGraph.length > 1) {
-      edgeGraphRefNodes.push(targetNode);
+    if (edge.hasOwnProperty('InteractionGraph')) {
+      edgeGraphRefNodes.push(edge.InteractionGraph[0]);
+      if (edge.InteractionGraph.length === 1) {
+        targetNode = edge.InteractionGraph[0].interactsWith;
+      }
+      else {
+        targetNode = edge.InteractionGraph[edge.InteractionGraph.length - 1];
+      }
+      if (!!targetNode) {
+        edgeGraphRefNodes.push(targetNode);
+      }
     }
 
     // TODO this handles both graphicalLines and Interactions for now, but it's a little clumsy.
@@ -5287,17 +5378,18 @@ pathvisiojs.view.pathwayDiagram.pathFinder = function(){
         console.log(endLocation);
         //*/
         runPathFinder(workingGrid,
-                      finder,
-                      Point,
-                      pointStart,
-                      pointEnd,
-                      startLocation,
-                      endLocation,
-                      gridData.squareLength,
-                      function(data) {
-          pathData = data;
-          callback(null);
-        });
+          finder,
+          Point,
+          pointStart,
+          pointEnd,
+          startLocation,
+          endLocation,
+          gridData.squareLength,
+          function(data) {
+            pathData = data;
+            callback(null);
+          }
+        );
       },
       function(callback){
 
@@ -5308,18 +5400,19 @@ pathvisiojs.view.pathwayDiagram.pathFinder = function(){
         if (pathData.length < 3) {
           workingGrid = gridData.emptyGrid.clone();
           runPathFinder(workingGrid,
-                        finder,
-                        Point,
-                        pointStart,
-                        pointEnd,
-                        startLocation,
-                        endLocation,
-                        gridData.squareLength,
-                        function(data) {
-            pathData = data;
-            pathData.push({'x': pointEnd.x, 'y': pointEnd.y});
-          callbackOutside(pathData);
-          });
+            finder,
+            Point,
+            pointStart,
+            pointEnd,
+            startLocation,
+            endLocation,
+            gridData.squareLength,
+            function(data) {
+              pathData = data;
+              pathData.push({'x': pointEnd.x, 'y': pointEnd.y});
+            callbackOutside(pathData);
+            }
+          );
         }
         else {
           callbackOutside(pathData);
@@ -5403,6 +5496,9 @@ pathvisiojs.view.pathwayDiagram.pathFinder = function(){
   }
 
   function generateGrid(gridData, edgeGraphRefNodes, otherNodes, callback) {
+    console.log('edgeGraphRefNodes');
+    console.log(edgeGraphRefNodes);
+    self.myedgeGraphRefNodes = edgeGraphRefNodes;
     if (!gridData) {
       throw new Error('No gridData specified.');
     }
@@ -5478,6 +5574,20 @@ pathvisiojs.view.pathwayDiagram.pathFinder = function(){
         ]);
       },
       'ports':function(populateMatrixCallback) {
+        var ports = [];
+        if (!!edgeGraphRefNodes) {
+          edgeGraphRefNodes.forEach(function(edgeGraphRefNode){
+            if (edgeGraphRefNode.hasOwnProperty('Port')) {
+              ports = ports.concat(edgeGraphRefNode.Port);
+            }
+          });
+        }
+        if (!!otherNodes) {
+          otherNodes.forEach(function(otherNode){
+            ports = ports.concat(otherNode.Port);
+          });
+        }
+        /*
         var portFrame = {
           '@context': pathvisiojs.context,
           '@type': 'Port'
@@ -5491,7 +5601,6 @@ pathvisiojs.view.pathwayDiagram.pathFinder = function(){
           });
         }
         jsonld.frame(allNodesContainer, portFrame, function(err, ports) {
-          /*
           async.series([
             function(portsCallback) {
               var ports = [];
@@ -5528,9 +5637,9 @@ pathvisiojs.view.pathwayDiagram.pathFinder = function(){
 
             populateMatrixCallback(null, results.ports);
           });
-          //*/
-          populateMatrixCallback(null, ports['@graph']);
         });
+        //*/
+        populateMatrixCallback(null, ports);
       }
     },
     function(err, results) {
@@ -5821,6 +5930,8 @@ pathvisiojs.view.pathwayDiagram.pathFinder = function(){
 
   return {
     initGrid:initGrid,
+    xYCoordinatesToMatrixLocation:xYCoordinatesToMatrixLocation,
+    matrixLocationToXYCoordinates:matrixLocationToXYCoordinates,
     //generateGridData:generateGridData,
     getPath:getPath
   };
@@ -5849,6 +5960,17 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
       pathwayWidth = args.pathway.image.width,
       pathwayHeight = args.pathway.image.height;
 
+    //add loading gif
+    var container = d3.select('body').select('#pathway-container');
+    var posX = containerWidth/2;
+    var posY = containerHeight/2;
+    var img = container.append('img');
+    img.attr('src', "../src/img/loading.gif")
+    .attr('width', 50)
+    .style('position', "absolute")
+    .style('top', posY + "px")
+    .style('left', posX + "px");
+
     if (!svg) {
       throw new Error("Missing svg.");
     }
@@ -5863,7 +5985,8 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
         })
       },
       function(callback) {
-        d3.select('#loading-icon').remove();
+	//remove loading gif
+        container.select('img').remove();
 
         var initialClickHappened = false;
         svg.on("click", function(d, i){
@@ -5910,7 +6033,7 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
   function loadPartials(args, callbackOutside) {
     var container = args.container,
       customMarkers = args.customMarkers,
-      customSymbols = args.customSymbols,
+//      customSymbols = args.customSymbols,
       cssUrl = args.cssUrl,
       pathvisioJsContainer,
       pathwayContainer;
@@ -5937,6 +6060,7 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
           callback(null);
         }
       },
+/*
       function(callback) {
         if (!!args.customSymbols) {
           pathvisiojs.view.pathwayDiagram.svg.symbol.loadAllCustom(svg, customSymbols, function() {
@@ -5947,7 +6071,7 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
           callback(null);
         }
       },
-      function(callback) {
+//*/      function(callback) {
         if (!!cssUrl) {
           d3.text(cssUrl, 'text/css', function(data) {
             var defs = svg.select('defs');
@@ -5972,42 +6096,54 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
   // other elements, this function will call itself back to render
   // the elements within the groupNode.
   function renderSelectedElementsFast(args, callbackOutside){
-    console.log('args');
+    console.log('renderSelectedElementsFast args');
     console.log(args);
-    if (!args.container) {
+    var svg = args.svg,
+      data = args.data,
+      pathway = args.pathway,
+      container = args.container;
+
+    if (!container) {
       throw new Error("No container specified.");
     }
-    if (!args.data) {
+    if (!data) {
       throw new Error("No data entered to render.");
     }
-    if (!args.svg) {
+    if (!svg) {
       throw new Error("No svg specified.");
     }
-    if (!args.pathway) {
+    if (!pathway) {
       throw new Error("No pathway specified.");
     } 
+    data = pathvisiojs.utilities.convertToArray(data);
 
     var contextLevelInput = pathvisiojs.utilities.clone(pathvisiojs.context);
     contextLevelInput.dependsOn = "ex:dependsOn";
 
     async.waterfall([
       function(callback) {
-        args.data.sort(function(a, b) {
+        data.sort(function(a, b) {
           return a.zIndex - b.zIndex;
         });
-        callback(null, args.data);
+        callback(null, data);
       },
-      function(data, callback) {
-        data.forEach(function(element) {
+      function(sortedData, callback) {
+        var renderingArgs = args;
+        sortedData.forEach(function(element) {
+          renderingArgs.data = element;
           if (element.renderableType === 'GroupNode') {
-            args.data = element;
             pathvisiojs.view.pathwayDiagram.svg.node.groupNode.render(args, function(groupContainer, groupContents) {
-
-              var groupedElementsArgs = {};
-              groupedElementsArgs.svg = args.svg;
-              groupedElementsArgs.container = groupContainer;
+              var groupedElementsArgs = renderingArgs;
+              groupedElementsArgs.svg = svg;
+              groupedElementsArgs.container = args.container; //groupContainer;
+	      /* 
+	      console.log('groupContainer');
+	      console.log(groupContainer); //*/
               groupedElementsArgs.data = groupContents;
-              groupedElementsArgs.pathway = args.pathway;
+	      /*
+	      console.log('groupContents');
+	      console.log(groupContents); //*/
+              groupedElementsArgs.pathway = pathway;
 
               // recursively calling this function to render elements within groupNode(s)
               pathvisiojs.view.pathwayDiagram.svg.renderSelectedElementsFast(groupedElementsArgs, function() {
@@ -6031,17 +6167,16 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
             });
           }
           else {
-            args.data = element;
             if (element.renderableType === 'EntityNode') {
-              pathvisiojs.view.pathwayDiagram.svg.node.EntityNode.render(args);
+              pathvisiojs.view.pathwayDiagram.svg.node.EntityNode.render(renderingArgs);
             }
             else {
               if (element.renderableType === 'Interaction') {
-                pathvisiojs.view.pathwayDiagram.svg.edge.interaction.render(args);
+                pathvisiojs.view.pathwayDiagram.svg.edge.interaction.render(renderingArgs);
               }
               else {
                 if (element.renderableType === 'GraphicalLine') {
-                  pathvisiojs.view.pathwayDiagram.svg.edge.graphicalLine.render(args);
+                  pathvisiojs.view.pathwayDiagram.svg.edge.graphicalLine.render(renderingArgs);
                 }
               }
             }
@@ -6081,10 +6216,11 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
         var firstOrderFrame = {
           '@context': pathvisiojs.context,
           '@type':['notGrouped', 'GroupNode'],
-          'contains': {},
-          'InteractionGraph': {}
+          'contains':{}
         };
         jsonld.frame(pathway, firstOrderFrame, function(err, firstOrderData) {
+          console.log('firstOrderData');
+          console.log(firstOrderData['@graph']);
           callbackInside(null, firstOrderData['@graph']);
         });
       }
@@ -6210,44 +6346,6 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
 }();
 ;
 
-pathvisiojs.view.pathwayDiagram.svg.anchor = function(){
-
-function makeBlocky(x, y) {
- var results = {};
- var column = pathvisiojs.view.pathwayDiagram.pathFinder.xYCoordinatesToMatrixLocation(x, y).column;
- var row = pathvisiojs.view.pathwayDiagram.pathFinder.xYCoordinatesToMatrixLocation(x, y).row;
- results.x = pathvisiojs.view.pathwayDiagram.pathFinder.matrixLocationToXYCoordinates(column, row).x;
- results.y = pathvisiojs.view.pathwayDiagram.pathFinder.matrixLocationToXYCoordinates(column, row).y;
- return results;
-}
-
-  function renderAll(svg, pathway) {
-
-    var anchors = pathway.elements.filter(function(element) {
-      return element.renderableType === 'anchor';
-    });
-
-    var viewport = svg.select('#viewport');
-
-    var anchorElements = viewport.selectAll('use.anchor')
-    .data(anchors)
-    .enter()
-    .append('use')
-    .attr('x', function(d) {return makeBlocky(d.x, d.y).x; })
-    .attr('y', function(d) {return makeBlocky(d.x, d.y).y; })
-    .attr('width', pathvisioNS.grid.squareLength)
-    .attr('height', pathvisioNS.grid.squareLength)
-    .attr('xlink:xlink:href', '#grid-square')
-    .attr('class', 'anchor')
-    .attr('style', function(d) {return 'fill:red; stroke:none;';});
-  }
-
-  return {
-    renderAll:renderAll
-  };
-}();
-;
-
 pathvisiojs.view.pathwayDiagram.svg.grid = function(){
 
 /*  Linear algebra conventions call for specifying an element of a matrix as row #, column #.
@@ -6356,19 +6454,7 @@ var svg;
 pathvisiojs.view.pathwayDiagram.svg.symbol = function(){
 
   var semanticNameToIdMapping = { 
-    'arc':'shape-library-symbols-arc-svg',
-    'brace':'shape-library-symbols-brace-svg',
-    'endoplasmic-reticulum':'shape-library-symbols-endoplasmic-reticulum-svg',
-    'golgi-apparatus':'shape-library-symbols-golgi-apparatus-svg',
-    'hexagon':'shape-library-symbols-hexagon-svg',
-    'mim-degradation':'shape-library-symbols-mim-degradation-svg',
-    'mitochondria':'shape-library-symbols-mitochondria-svg',
-    'oval':'shape-library-symbols-oval-svg',
-    'pentagon':'shape-library-symbols-pentagon-svg',
-    'rectangle':'shape-library-symbols-rectangle-svg',
-    'sarcoplasmic-reticulum':'shape-library-symbols-sarcoplasmic-reticulum-svg',
-    'triangle':'shape-library-symbols-triangle-svg',
-    'none':'shape-library-symbols-none-svg'
+    'datanode':'shape-library-symbols-rectangle-svg',
   };
 
   function appendCustom(uniqueSymbolShapeUrl, callback) {
@@ -6661,9 +6747,21 @@ pathvisiojs.view.pathwayDiagram.svg.node = function(){
       return 'translate(' + element.x + ' ' + element.y + ')';
     })
     .attr("style", function (d) {
-      var style = '';
+      var style;
       if (d.hasOwnProperty('backgroundColor')) {
-        style += 'fill:' + d.backgroundColor + '; ';
+	if (d.ShapeType == 'brace' || d.ShapeType == 'arc'){ 
+	  //Brace color is NOT for fill and should always be transparent
+	  style = 'fill-opacity:0; ';
+	} 
+        else if (d.nodeType == 'Label' && d.backgroundColor == '#ffffff'){  
+	  //Label fill attr is programmatically IGNORED when set to Java editor default of white.
+	  //This is obviously a hack that should ultimately be resolved by fixing the editor's 
+	  // default for label backgroundColor.
+	  style = '' ;
+	}
+	else {
+          style = 'fill:' + d.backgroundColor + '; fill-opacity:1; ';
+	}
       }
       return style;
     })
@@ -6676,15 +6774,15 @@ pathvisiojs.view.pathwayDiagram.svg.node = function(){
     var shapeType = strcase.paramCase(args.data.ShapeType);
     
     // check for whether desired shape type is available as a symbol
-    if (pathvisiojs.view.pathwayDiagram.svg.symbol.semanticNameToIdMapping.hasOwnProperty(shapeType)) {
+//    if (pathvisiojs.view.pathwayDiagram.svg.symbol.semanticNameToIdMapping.hasOwnProperty(shapeType)) {
       //console.log('We will use an SVG "use" element to render this ' + shapeType);
-      pathvisiojs.view.pathwayDiagram.svg.node.useElement.render(nodeContainer, args.data);
-    }
+//      pathvisiojs.view.pathwayDiagram.svg.node.useElement.render(nodeContainer, args.data);
+//    }
     // else check for whether it is available as a pathShape
-    else {
+//    else {
       //console.log('We will use a pathShape to render this ' + shapeType);
       pathvisiojs.view.pathwayDiagram.svg.node.pathShape.render(nodeContainer, args.data);
-    }
+//    }
 
     /****************** 
      * text label
@@ -6772,6 +6870,130 @@ pathvisiojs.view.pathwayDiagram.svg.node = function(){
 }();
 ;
 
+"use strict"
+
+pathvisiojs.view.pathwayDiagram.svg.node.anchor = function(){
+
+  function render(container, parentEdgeId, data) {
+    // renders all anchors for a given edge
+
+    // TODO look at using markers for this instead of independent symbols
+
+    /*    if (!svg) {
+          throw new Error('svg missing for rendering anchors.');
+          }
+    //*/    
+
+    if (!container) {
+      throw new Error('container element not specified for rendering anchors.');
+    }
+    if (!parentEdgeId) {
+      throw new Error('parentEdgeId missing for rendering anchors.');
+    }
+    if (!data) {
+      throw new Error('anchor data missing for rendering anchors.');
+    }
+
+    // make sure it's an array
+    data = pathvisiojs.utilities.convertToArray(data);
+
+    var defaultAnchorWidth = 10;
+    var defaultAnchorHeight = 10;
+
+    // TODO refactor svg.node.render() so we can use it for the other nodes and for anchors instead of basically repeating much of that method here
+    var nodeContainer = container.selectAll('.node.anchor.parent-edge-' + strcase.paramCase(parentEdgeId))
+    .data(data)
+    .enter()
+    .append("g")
+    .attr('transform', function(d) {
+      var anchorCoordinates = pathvisiojs.view.pathwayDiagram.svg.edge.getPointAtPositionById(parentEdgeId, d.anchorPosition)
+      var translateX = anchorCoordinates.x - defaultAnchorWidth/2;
+      var translateY = anchorCoordinates.y - defaultAnchorHeight/2;
+      return 'translate(' + translateX + ' ' + translateY + ')';
+    })
+    .attr('class', 'node anchor parent-edge-' + strcase.paramCase(parentEdgeId))
+    .attr("style", function (d) {
+      var style;
+      if (d.hasOwnProperty('backgroundColor')) {
+        if (d.ShapeType == 'brace' || d.ShapeType == 'arc'){ 
+          //Brace color is NOT for fill and should always be transparent
+          style = 'fill-opacity:0; ';
+        } 
+        else if (d.nodeType == 'Label' && d.backgroundColor == '#ffffff'){  
+          //Label fill attr is programmatically IGNORED when set to Java editor default of white.
+          //This is obviously a hack that should ultimately be resolved by fixing the editor's 
+          // default for label backgroundColor.
+          style = '' ;
+        }
+        else {
+          style = 'fill:' + d.backgroundColor + '; fill-opacity:1; ';
+        }
+      }
+      return style;
+    })
+    .each(function(d) {
+      var thisNodeContainer = d3.select(this);
+      if (!d.width) {
+        d.width = defaultAnchorWidth;
+      }
+      if (!d.height) {
+        d.height = defaultAnchorHeight;
+      }
+      pathvisiojs.view.pathwayDiagram.svg.node.pathShape.render(thisNodeContainer, d);
+    });
+
+    /*
+    var anchors = container.selectAll('use.anchor.parent-edge-' + strcase.paramCase(parentEdgeId))
+    .data(data)
+    .enter()
+    .append('use')
+    .attr('x', function(d) {
+      var anchorCoordinates = pathvisiojs.view.pathwayDiagram.svg.edge.getPointAtPositionById(parentEdgeId, d.anchorPosition)
+      return anchorCoordinates.x - defaultAnchorWidth/2;
+    })
+    .attr('y', function(d) {
+      var anchorCoordinates = pathvisiojs.view.pathwayDiagram.svg.edge.getPointAtPositionById(parentEdgeId, d.anchorPosition)
+      return anchorCoordinates.y - defaultAnchorHeight/2;
+    })
+    .attr('width', defaultAnchorWidth)
+    .attr('height', defaultAnchorHeight)
+    .attr('xlink:xlink:href', function(d) {
+      var backgroundImageId;
+      var backgroundImage = d.backgroundImage;
+      if (!!backgroundImage) {
+        // check for whether desired shape type is available as a symbol
+        backgroundImageId = pathvisiojs.view.pathwayDiagram.svg.symbol.semanticNameToIdMapping[strcase.paramCase(backgroundImage)]; 
+        if (!!backgroundImageId) {
+          //console.log('We will use an SVG "use" element to render this ' + shapeType);
+          return '#' + backgroundImageId;
+        }
+        else {
+          return 'none'
+        }
+      }
+      else {
+        return 'none'
+      }
+    })
+    .attr('class', 'node anchor parent-edge-' + strcase.paramCase(parentEdgeId))
+    .attr('style', function(d) {
+      var style = ''
+      if (d.hasOwnProperty('backgroundColor')) {
+        style += 'fill:' + d.backgroundColor + '; ';
+      }
+      return style;
+    })
+    //*/
+
+  }
+
+  return {
+    render:render
+    //renderAll:renderAll
+  };
+}();
+;
+
 "use strict";
 pathvisiojs.view.pathwayDiagram.svg.node.EntityNode = function(){
   //function render(viewport, data) {
@@ -6788,7 +7010,7 @@ pathvisiojs.view.pathwayDiagram.svg.node.EntityNode = function(){
 
     pathvisiojs.view.pathwayDiagram.svg.node.render(args, function(nodeContainer) {
       nodeContainer.attr("class", function (d) {
-        var cssClass = 'entity-node ' + strcase.paramCase(d.nodeType) + ' ';
+        var cssClass = 'node entity-node ' + strcase.paramCase(d.nodeType) + ' ';
         if (d.nodeType === 'DataNode') {
           cssClass += strcase.paramCase(d.dataNodeType) + ' ';
           if (!!d.DatasourceReference) {
@@ -6803,7 +7025,7 @@ pathvisiojs.view.pathwayDiagram.svg.node.EntityNode = function(){
       if (!!args.data.DatasourceReference) {
         if (!!args.data.DatasourceReference.ID) {
           nodeContainer.on("click", function(d,i) {
-            pathvisiojs.view.annotation.xRef.render(args.pathway.organism, d['DatasourceReference'].ID, d['DatasourceReference'].Database, d.text.tspan.join(' '), d.dataNodeType);
+            pathvisiojs.view.annotation.xRef.render(args.pathway.Organism, d['DatasourceReference'].ID, d['DatasourceReference'].Database, d.text.tspan.join(' '), d.dataNodeType); //that's capital 'O' Organism from GPML vocab
           })
         }
       }
@@ -6818,18 +7040,10 @@ pathvisiojs.view.pathwayDiagram.svg.node.EntityNode = function(){
 
 pathvisiojs.view.pathwayDiagram.svg.node.pathShape = function(){
   function render(parent, data) {
-    var node = parent.append("path")
-    .data([data])
-    .attr("id", function (d) {return 'node-' + strcase.paramCase(d['@id']);})
-    .attr("class", function (d) {
-      var cssClass = 'symbol ';
-      return cssClass;
-    })
-
     var re;
     var pathShapeNameToUse = strcase.camelCase(data.ShapeType);
     if (!pathvisiojs.view.pathwayDiagram.svg.node.pathShape.hasOwnProperty(pathShapeNameToUse)) {
-      re = /-double$/gi;
+      re = /Double$/gi;
       pathShapeNameToUse = pathShapeNameToUse.replace(re, '');
       if (pathvisiojs.view.pathwayDiagram.svg.node.pathShape.hasOwnProperty(pathShapeNameToUse)) {
         console.warn('Requested pathShape "' + data.ShapeType + '" is not available with linetype of "Double". Using linetype of "Solid" instead');
@@ -6840,9 +7054,57 @@ pathvisiojs.view.pathwayDiagram.svg.node.pathShape = function(){
       }
     }
 
-    var nodeAttributes = pathvisiojs.view.pathwayDiagram.svg.node.pathShape[pathShapeNameToUse].getAttributes(data.width, data.height);
+    //style attribute modified on parent 
+    var style = parent.attr('style');
+    parent.attr('style', function(d) {
+        if(d.hasOwnProperty('borderColor')) {
+	  if(d.nodeType != 'Label'){  //Label "Color" attrs are NOT for borderColor of svg-specific rectangle shape
+            style += 'stroke:' + d.borderColor + '; ';
+	  }
+        }
+        return style;})
+
+    //other attributes extracted and applied to new g element
+    var stroke = 1
+    var transform = '';
+    var g = parent.append('g');
+    g.attr('stroke-width', function(d) {
+        if(!isNaN(d.borderWidth)){
+          stroke = d.borderWidth; //LineThickness in GPML
+        }
+        return stroke;})
+      .attr('transform', function(d) {
+        if (d.rotate){
+          transform += ' rotate(' + d.rotate + ',' + d.width/2 + ',' + d.height/2 + ')';
+        }
+        return transform;});
+
+    var nodeAttributes = pathvisiojs.view.pathwayDiagram.svg.node.pathShape[pathShapeNameToUse].getAttributes(data.width, data.height, data.borderWidth);
     nodeAttributes.forEach(function(attribute) {
-      node.attr(attribute.name, attribute.value)
+
+     if(attribute.scale == 'true'){
+        g.attr('stroke-width', function(d) {
+          return stroke / ((d.width + d.height) / 200);
+	})
+	.attr('transform', function(d) {
+	  transform += ' scale('+d.width/100+', '+d.height/100+')';
+	  return transform;
+	});
+     }
+
+      //handle alt path types and lists of attrs
+      var child = 'path';
+      var names = [attribute.name];
+      var paths = [attribute.path];
+      if (attribute.alt){
+	child = attribute.alt;
+	names = attribute.name;
+	paths = attribute.path;
+      }
+      var childElement = g.append(child);
+      for(var i = 0; i < names.length; i++){
+	childElement.attr(names[i], paths[i]);
+      }
     });
   }
 
@@ -6853,8 +7115,8 @@ pathvisiojs.view.pathwayDiagram.svg.node.pathShape = function(){
 
     if (!pathShape[0] || pathShape[0].length < 1) {return 'nonuniformlyScalingNodes empty'};
     self.pathShape = pathShape;
-    pathShape.attr("id", function (d) {return 'shape-' + d.id;})
-    .attr("class", function (d) {
+    pathShape.attr('id', function (d) {return 'shape-' + d.id;})
+    .attr('class', function (d) {
       var cssClass = '';
       if (d.elementType === 'data-node') {
         cssClass = 'shape ' + d.dataNodeType + ' ' + d.shapeType;
@@ -6918,26 +7180,14 @@ pathvisiojs.view.pathwayDiagram.svg.node.pathShape = function(){
 }();
 ;
 
-pathvisiojs.view.pathwayDiagram.svg.node.pathShape.roundedRectangle = function(){
+pathvisiojs.view.pathwayDiagram.svg.node.pathShape.arc = function(){
 
   function getAttributes(nodeWidth, nodeHeight, borderWidth) {
       var attributes = [
         {
           name:'d',
-          value: 'm0,2.5' +
-            'c0,-1.35845 1.14155,-10 10,-10' +
-            'l' + (nodeWidth - 20) + ',0' + 
-            'c1.35844,0 10,1.14155 10,10' + 
-            'l0,' + (nodeHeight - 20) + 
-            'c0,1.35845 -1.14156,10 -10,10' + 
-            'l' + (20 - nodeWidth) + ',0' + 
-            'c-1.35845,0 -10,-1.14155 -10,-10' + 
-            'l0,' + (20 - nodeHeight) + 
-            'z'
-        },
-        {
-          name:'vector-effect',
-          value: 'non-scaling-stroke'
+          scale:'true', //adds transform and stroke-width attrs to g container
+          path: 'm99.5,50c0,27.338341 -22.162117,49.5 -49.5,49.5s-49.5,-22.161659 -49.5,-49.5'
         }
       ];
       return attributes;
@@ -6949,77 +7199,14 @@ pathvisiojs.view.pathwayDiagram.svg.node.pathShape.roundedRectangle = function()
 }();
 ;
 
-pathvisiojs.view.pathwayDiagram.svg.node.pathShape.roundedRectangleDouble = function(){
+pathvisiojs.view.pathwayDiagram.svg.node.pathShape.brace = function(){
 
-  function getAttributes(nodeWidth, nodeHeight) {
+  function getAttributes(nodeWidth, nodeHeight, borderWidth) {
       var attributes = [
         {
           name:'d',
-          value: 'm0,2.5' +
-            'c0,-1.35845 1.14155,-10 10,-10' +
-            'l' + (nodeWidth - 20) + ',0' + 
-            'c1.35844,0 10,1.14155 10,10' + 
-            'l0,' + (nodeHeight - 20) + 
-            'c0,1.35845 -1.14156,10 -10,10' + 
-            'l' + (20 - nodeWidth) + ',0' + 
-            'c-1.35845,0 -10,-1.14155 -10,-10' + 
-            'l0,' + (20 - nodeHeight) + 
-            'z' +
-            'm3,3' +
-            'c0,-1.35845 1.14155,-10 10,-10' +
-            'l' + (nodeWidth - 26) + ',0' + 
-            'c1.35844,0 10,1.14155 10,10' + 
-            'l0,' + (nodeHeight - 26) + 
-            'c0,1.35845 -1.14156,10 -10,10' + 
-            'l' + (26 - nodeWidth) + ',0' + 
-            'c-1.35845,0 -10,-1.14155 -10,-10' + 
-            'l0,' + (26 - nodeHeight) + 
-            'z'
-        },
-        {
-          name:'vector-effect',
-          value: 'non-scaling-stroke'
-        }
-      ];
-      return attributes;
-  }
-
-  return {
-    getAttributes:getAttributes
-  };
-}();
-;
-
-pathvisiojs.view.pathwayDiagram.svg.node.pathShape.ovalDouble = function(){
-
-  function getAttributes(nodeWidth, nodeHeight) {
-      var attributes = [
-        {
-          name:'d',
-          value: 'm0,2.5' +
-            'c0,-1.35845 1.14155,-2.5 2.5,-2.5' +
-            'l' + (nodeWidth - 5) + ',0' + 
-            'c1.35844,0 2.5,1.14155 2.5,2.5' + 
-            'l0,' + (nodeHeight - 5) + 
-            'c0,1.35845 -1.14156,2.5 -2.5,2.5' + 
-            'l' + (5 - nodeWidth) + ',0' + 
-            'c-1.35845,0 -2.5,-1.14155 -2.5,-2.5' + 
-            'l0,' + (5 - nodeHeight) + 
-            'z' +
-            'm3,5.5' +
-            'c0,-1.35845 1.14155,-2.5 2.5,-2.5' +
-            'l' + (nodeWidth - 11) + ',0' + 
-            'c1.35844,0 2.5,1.14155 2.5,2.5' + 
-            'l0,' + (nodeHeight - 11) + 
-            'c0,1.35845 -1.14156,2.5 -2.5,2.5' + 
-            'l' + (11 - nodeWidth) + ',0' + 
-            'c-1.35845,0 -2.5,-1.14155 -2.5,-2.5' + 
-            'l0,' + (11 - nodeHeight) + 
-            'z'
-        },
-        {
-          name:'vector-effect',
-          value: 'non-scaling-stroke'
+          scale:'true', //adds transform and stroke-width attrs to g container
+          path: 'm1.5,98.5c0,-32.50001 8.16667,-48.75 24.5,-48.75s24.5,-16.25001 24.5,-48.75c0,32.49999 8.16666,48.75 24.49999,48.75s24.5,16.24999 24.5,48.75'
         }
       ];
       return attributes;
@@ -7037,7 +7224,7 @@ pathvisiojs.view.pathwayDiagram.svg.node.pathShape.complex = function(){
       var attributes = [
         {
           name:'d',
-          value: 'M ' + (0 + 18) + ' ' + 0 +
+          path: 'M ' + (0 + 18) + ' ' + 0 +
             ' L ' + (0 + nodeWidth - 18) + ' ' + 0 +
             ' L ' + (0 + nodeWidth) + ' ' + (0 + 18) +
             ' L ' + (0 + nodeWidth) + ' ' + (0 + nodeHeight - 18) +
@@ -7046,10 +7233,336 @@ pathvisiojs.view.pathwayDiagram.svg.node.pathShape.complex = function(){
             ' L ' + (0) + ' ' + (0 + nodeHeight - 18) +
             ' L ' + (0) + ' ' + (0 + 18) +
             ' Z'
-        },
+        }
+      ];
+      return attributes;
+  }
+
+  return {
+    getAttributes:getAttributes
+  };
+}();
+;
+
+pathvisiojs.view.pathwayDiagram.svg.node.pathShape.endoplasmicReticulum = function(){
+
+  function getAttributes(nodeWidth, nodeHeight, borderWidth) {
+      var attributes = [
         {
-          name:'vector-effect',
-          value: 'non-scaling-stroke'
+          name:'d',
+          scale:'true', //adds transform and stroke-width attrs to g container
+          path: 'm73.52756,56.60967c-5.62457,-18.60675 23.51463,-32.43358 23.40173,-45.06604c-0.34426,-4.86102 -10.48934,-8.89743 -18.28974,-5.33395c-17.04119,7.87556 -15.64949,29.30503 -21.20533,42.23387c-0.35661,3.60951 -7.36274,2.46926 -7.74964,-0.48694c-5.8512,-11.38871 17.13534,-24.48692 5.96075,-29.42586c-19.63467,-8.16979 -28.75184,21.15346 -22.0682,28.81784c7.4956,14.17602 -2.17949,24.40679 -6.74689,15.49637c-2.44209,-5.30613 6.06605,-11.08445 -0.80351,-16.17689c-4.31991,-2.79993 -11.75555,-0.64618 -16.15468,3.0943c-12.89117,10.73799 4.72957,40.98145 20.96467,36.14635c4.69833,-1.95989 -3.23603,-8.70151 3.90717,-9.59951c7.29767,-0.81255 5.17628,6.18889 7.68745,9.22691c2.3071,4.0509 4.83232,8.35538 10.7626,11.6237c4.78642,2.53724 15.29437,2.11225 16.77148,-1.95795c2.0318,-9.26291 -26.11129,-28.35848 -10.68903,-31.2815c18.55524,-2.71473 4.74866,23.84573 24.31006,29.69419c9.50188,2.02824 15.63902,-0.62194 14.81255,-4.03272c-2.74586,-11.26327 -25.13557,-22.6802 -24.96441,-33.14968'
+        }
+      ];
+      return attributes;
+  }
+
+  return {
+    getAttributes:getAttributes
+  };
+}();
+;
+
+pathvisiojs.view.pathwayDiagram.svg.node.pathShape.golgiApparatus = function(){
+
+  function getAttributes(nodeWidth, nodeHeight, borderWidth) {
+      var attributes = [
+        {
+          name:'d',
+          scale:'true', //adds transform and stroke-width attrs to g container
+          path: 'm58.4671,16.99297c-22.2053,-19.30712 37.3101,-19.538 25.5673,-3.1145c-8.8077,11.998 -17.0665,37.53828 -0.9417,64.06707c13.3147,17.47735 -41.7485,17.92546 -27.7555,-0.94919c11.3458,-18.99656 10.2868,-51.87342 3.1299,-60.00338l0,0z'
+        },
+	{
+	  name:'d',
+	  path: 'm31.2144,22.48219c-10.7917,-13.83614 29.8976,-12.81612 18.4075,0.4332c-4.067,4.79263 -5.7828,39.75796 1.1607,48.44653c8.5294,12.0082 -32.853,12.49764 -20.5002,-1.45349c6.9528,-11.2083 10.4738,-33.76451 0.932,-47.42624l0,0z'
+	},
+	{
+	  name:'d',
+	  path: 'm29.80396,32.77896c1.58418,7.4093 2.72346,10.80737 -1.48298,24.77019c-3.73195,8.38708 -3.6004,10.5513 -11.73233,12.53496c-6.6833,1.07092 -11.86483,-6.32111 -4.7933,-10.40477c4.85573,-3.63095 6.14109,-7.02681 6.65889,-14.82198c-0.23922,-6.14805 0.8145,-10.21755 -5.36692,-12.88742c-7.62432,-1.41744 -6.08804,-10.67651 4.82406,-8.95195c5.84935,0.66319 10.2824,5.52823 11.89258,9.76096z'
+	}
+      ];
+      return attributes;
+  }
+
+  return {
+    getAttributes:getAttributes
+  };
+}();
+;
+
+pathvisiojs.view.pathwayDiagram.svg.node.pathShape.gridSquare = function(){
+
+  function getAttributes(nodeWidth, nodeHeight, borderWidth) {
+      var attributes = [
+        {
+          name:'d',
+	  scale:'true', //adds transform and stroke-width attrs to g container
+          path: 'm1,1l99,0l0,99l-99,0l0,-99z'
+        }
+      ];
+      return attributes;
+  }
+
+  return {
+    getAttributes:getAttributes
+  };
+}();
+;
+
+pathvisiojs.view.pathwayDiagram.svg.node.pathShape.hexagon = function(){
+
+  function getAttributes(nodeWidth, nodeHeight, borderWidth) {
+      var attributes = [
+        {
+          name:'d',
+          scale:'true', //adds transform and stroke-width attrs to g container
+          path: 'm1.42004,50.99635l21.07262,-42.13943l56.19152,0l21.0667,42.13943l-21.0667,42.14507l-56.19152,0l-21.07262,-42.14507z'
+        }
+      ];
+      return attributes;
+  }
+
+  return {
+    getAttributes:getAttributes
+  };
+}();
+;
+
+pathvisiojs.view.pathwayDiagram.svg.node.pathShape.mimDegradation = function(){
+
+  function getAttributes(nodeWidth, nodeHeight, borderWidth) {
+      var attributes = [
+        {
+          name:'d',
+          scale:'true', //adds transform and stroke-width attrs to g container
+          path: 'm8,50c0,-23.20442 18.79558,-42 42,-42c23.20442,0 42,18.79558 42,42c0,23.20442 -18.79558,42 -42,42c-23.20442,0 -42,-18.79558 -42,-42z'
+        },
+	{
+	  name:'d',
+	  path:'m1,1l99,99'
+	}
+      ];
+      return attributes;
+  }
+
+  return {
+    getAttributes:getAttributes
+  };
+}();
+;
+
+pathvisiojs.view.pathwayDiagram.svg.node.pathShape.mitochondria = function(){
+
+  function getAttributes(nodeWidth, nodeHeight, borderWidth) {
+      var attributes = [
+        {
+          name:'d',
+          scale:'true', //adds transform and stroke-width attrs to g container
+          path: 'm0,50c0,-27.62431 22.37569,-50 50,-50c27.62431,0 50,22.37569 50,50c0,27.62431 -22.37569,50 -50,50c-27.62431,0 -50,-22.37569 -50,-50z'
+        },
+	{
+	  name:'d',
+	  path: 'm14.894899,26.347357c4.363817,-0.741571 3.827518,17.036169 8.182638,16.183825c8.27347,0.030762 2.982006,-28.148991 9.899754,-28.336687c6.967995,-0.187704 2.246651,29.947527 9.204983,29.43981c7.632813,-0.560024 0.507309,-32.935357 8.136253,-33.623082c7.698521,-0.689259 2.919197,32.039941 10.628349,32.224557c6.546684,0.160011 3.026451,-27.642808 9.56057,-26.921232c7.192177,0.79388 0.664818,29.842905 7.781624,31.667604c4.748405,1.215439 4.420822,-18.257757 9.204018,-17.440804c11.128883,7.577278 8.628105,37.698658 -2.179977,44.645138c-3.138542,0.698479 -3.965698,-10.502029 -7.112938,-9.905075c-5.59005,1.058502 -3.982124,22.284088 -9.603096,21.799461c-5.239281,-0.456947 -2.226364,-21.636383 -7.47047,-21.730232c-6.961235,-0.116928 -3.357895,28.924408 -10.316231,28.495148c-6.140846,-0.375397 -1.73064,-24.950363 -7.825104,-26.191963c-5.681847,-1.156982 -5.378429,22.170242 -11.027426,20.680939c-6.249069,-1.644684 -0.469624,-26.673519 -6.759275,-27.865887c-3.728954,-0.706188 -2.647665,14.400654 -6.403677,14.545292c-14.016198,-5.938736 -15.748776,-39.707981 -3.899994,-47.666811z'
+	}
+      ];
+      return attributes;
+  }
+
+  return {
+    getAttributes:getAttributes
+  };
+}();
+;
+
+pathvisiojs.view.pathwayDiagram.svg.node.pathShape.none = function(){
+
+  function getAttributes(nodeWidth, nodeHeight, borderWidth) {
+      var attributes = [
+        {
+          name:'d',
+          path: 'M0 0'
+        }
+      ];
+      return attributes;
+  }
+
+  return {
+    getAttributes:getAttributes
+  };
+}();
+;
+
+pathvisiojs.view.pathwayDiagram.svg.node.pathShape.oval = function(){
+
+  function getAttributes(nodeWidth, nodeHeight, borderWidth) {
+      var attributes = [
+        {
+          name:'d',
+          scale:'true', //adds transform and stroke-width attrs to g container
+          path: 'm0,50c0,-27.62431 22.37569,-50 50,-50c27.62431,0 50,22.37569 50,50c0,27.62431 -22.37569,50 -50,50c-27.62431,0 -50,-22.37569 -50,-50z'
+        }
+      ];
+      return attributes;
+  }
+
+  return {
+    getAttributes:getAttributes
+  };
+}();
+;
+
+pathvisiojs.view.pathwayDiagram.svg.node.pathShape.ovalDouble = function(){
+
+  function getAttributes(nodeWidth, nodeHeight) {
+      var attributes = [
+        {
+          name:['ry','rx','cy','cx'],
+	  alt:'ellipse',
+          path:[nodeHeight/2,nodeWidth/2,nodeHeight/2,nodeWidth/2] 
+	},
+        {
+          name:['ry','rx','cy','cx'],
+          alt:'ellipse',
+          path:[nodeHeight/2-6,nodeWidth/2-6,nodeHeight/2,nodeWidth/2]
+        }
+      ];
+      return attributes;
+  }
+
+  return {
+    getAttributes:getAttributes
+  };
+}();
+;
+
+pathvisiojs.view.pathwayDiagram.svg.node.pathShape.pentagon = function(){
+
+  function getAttributes(nodeWidth, nodeHeight, borderWidth) {
+      var attributes = [
+        {
+          name:'d',
+          path: 'm0,'+0.81*nodeHeight+'l0,-'+0.62*nodeHeight+'l'+0.62*nodeWidth+',-'+0.19*nodeHeight+'l'+0.38*nodeWidth+','+0.5*nodeHeight+'l-'+0.38*nodeWidth+','+0.5*nodeHeight+'l-'+0.62*nodeWidth+',-'+0.19*nodeHeight+'z'
+        }
+      ];
+      return attributes;
+  }
+
+  return {
+    getAttributes:getAttributes
+  };
+}();
+;
+
+pathvisiojs.view.pathwayDiagram.svg.node.pathShape.rectangle = function(){
+
+  function getAttributes(nodeWidth, nodeHeight, borderWidth) {
+      var attributes = [
+        {
+          name:'d',
+          path: 'm0,0l'+ nodeWidth +',0l0,'+ nodeHeight + 'l-' + nodeWidth +',0l0,-' + nodeHeight +'z'
+        }
+      ];
+      return attributes;
+  }
+
+  return {
+    getAttributes:getAttributes
+  };
+}();
+;
+
+pathvisiojs.view.pathwayDiagram.svg.node.pathShape.roundedRectangle = function(){
+
+  function getAttributes(nodeWidth, nodeHeight, borderWidth) {
+      var attributes = [
+        {
+          name:'d',
+          path: 'm0,10c0,-5.43379 4.56621,-10 10,-10l' 
+		+ (nodeWidth - 20) 
+		+ ',0c5.43379,0 10,4.56621 10,10l0,'
+		+ (nodeHeight - 20) 
+		+ 'c0,5.43379 -4.56621,10 -10,10l' 
+		+ (20 - nodeWidth) 
+		+ ',0c-5.43379,0 -10,-4.56621 -10,-10l0,' 
+		+ (20 - nodeHeight) 
+		+ 'z'
+        }
+      ];
+      return attributes;
+  }
+
+  return {
+    getAttributes:getAttributes
+  };
+}();
+;
+
+pathvisiojs.view.pathwayDiagram.svg.node.pathShape.roundedRectangleDouble = function(){
+
+  function getAttributes(nodeWidth, nodeHeight) {
+      var attributes = [
+          {
+	  name:'d',
+          path:
+                'm6,13c0,-3.80365 3.19635,-7 7,-7l'
+                + (nodeWidth - 26)
+                + ',0c3.80365,0 7,3.19635 7,7l0,'
+                + (nodeHeight - 26)
+                + 'c0,3.80365 -3.19635,7 -7,7l'
+                + (26 - nodeWidth)
+                + ',0c-3.80365,0 -7,-3.19635 -7,-7l0,'
+                + (26 - nodeHeight)
+                + 'z'
+        },
+
+        {
+	  name:'d',
+          path: 'm0,10c0,-5.43379 4.56621,-10 10,-10l'
+                + (nodeWidth - 20)
+                + ',0c5.43379,0 10,4.56621 10,10l0,'
+                + (nodeHeight - 20)
+                + 'c0,5.43379 -4.56621,10 -10,10l'
+                + (20 - nodeWidth)
+                + ',0c-5.43379,0 -10,-4.56621 -10,-10l0,'
+                + (20 - nodeHeight)
+                + 'z'
+        }
+      ];
+      return attributes;
+  }
+
+  return {
+    getAttributes:getAttributes
+  };
+}();
+;
+
+pathvisiojs.view.pathwayDiagram.svg.node.pathShape.sarcoplasmicReticulum = function(){
+
+  function getAttributes(nodeWidth, nodeHeight, borderWidth) {
+      var attributes = [
+        {
+          name:'d',
+          scale:'true', //adds transform and stroke-width attrs to g container
+          path: 'm46.60182,1.40724c-32.37224,1.34138 -36.32004,22.77011 -26.50318,38.12777c9.31826,18.3425 -18.7656,30.15016 2.56955,49.37807c16.82126,13.11594 46.33175,6.10508 52.12638,-8.56826c5.89916,-15.24847 -10.95099,-26.0272 -3.29316,-40.96135c10.85342,-19.88432 -0.77615,-38.13043 -24.89959,-37.97624z'
+        }
+      ];
+      return attributes;
+  }
+
+  return {
+    getAttributes:getAttributes
+  };
+}();
+;
+
+pathvisiojs.view.pathwayDiagram.svg.node.pathShape.triangle = function(){
+
+  function getAttributes(nodeWidth, nodeHeight, borderWidth) {
+      var attributes = [
+        {
+          name:'d',
+          path: 'm0,'+nodeHeight+'l0,-'+nodeHeight+'l'+nodeWidth+','+nodeHeight/2+'l-'+nodeWidth+','+nodeHeight/2+'z'
         }
       ];
       return attributes;
@@ -7081,18 +7594,31 @@ pathvisiojs.view.pathwayDiagram.svg.node.text = function(){
 
 
   function render(nodeContainer, data) {
-    var dx, dy, textAlign, textAnchor;
-
     // TODO make a better caching system
     var cache = {};
     cache.padding = 5;
     var text = {};
     text.cache = {};
     text.cache.fontSize = 12;
-    text.cache.alignmentBaseline = 'middle';
-    text.cache.textAnchor = 'middle';
-    text.cache.textAlign = 'center';
-    text.cache.verticalAlign = 'middle';
+    text.cache.alignmentBaseline = data.text.verticalAlign;
+    text.cache.textAnchor = function() {
+	if (data.text.textAlign == 'left'){
+	  return 'start';
+	} else if (data.text.textAlign == 'right') {
+	  return 'end';
+	} else {
+	  return 'middle';
+	}
+    };
+    text.cache.x = function() {
+	if (data.text.textAlign == 'left'){
+          return -1 * data.width / 2;
+        } else if (data.text.textAlign == 'right') {
+          return data.width / 2;
+        } else {
+          return 0;
+        }
+    };
     text.cache.translate = {};
     // TODO replace this with the actual translate values
     text.cache.translate.dx = data.width / 2;
@@ -7149,9 +7675,9 @@ pathvisiojs.view.pathwayDiagram.svg.node.text = function(){
     .attr("id", function (d, i) {
       return 'text-line' + i;
     })
-    .attr("x", 0)
+    .attr("x", text.cache.x)
     .attr("y", function (d, i) { return (i - (textLineCount - 1)/2) * 1.4 + 'em';})
-    .attr("alignment-baseline", text.cache.alignmentBaseline)
+    .attr("alignment-baseline", text.cache.alignmentBaseline) 
     .attr("text-anchor", text.cache.textAnchor)
     .text(function (d) { return d; });
 
@@ -7184,7 +7710,7 @@ pathvisiojs.view.pathwayDiagram.svg.node.groupNode = function(){
 
     pathvisiojs.view.pathwayDiagram.svg.node.render(args, function(groupContainer) {
       groupContainer.attr("class", function (d) {
-        var cssClass = 'group-node ' + strcase.paramCase(d.groupType) + ' ';
+        var cssClass = 'node group-node ' + strcase.paramCase(d.groupType) + ' ';
         return cssClass;
       })
 
@@ -7199,7 +7725,7 @@ pathvisiojs.view.pathwayDiagram.svg.node.groupNode = function(){
 }();
 ;
 
-// Draw nodes. Includes data nodes, shapes, labels, cellular components...
+"use strict"
 
 pathvisiojs.view.pathwayDiagram.svg.node.useElement = function(){
   
@@ -7385,19 +7911,42 @@ pathvisiojs.view.pathwayDiagram.svg.node.useElement = function(){
 
 pathvisiojs.view.pathwayDiagram.svg.edge = function(){
 
-  var svg, customMarkers;
+  function getPointAtPositionById(edgeElementId, position) {
+    // position refers to percentage of total length along
+    // edge from start toward end
 
-  //function setAttributes(svg, edge, data, markerStartName, markerEndName) {
-  function setAttributes(args) {
+    var edgeElement = d3.select('#' + edgeElementId)[0][0];
+    var totalLength = edgeElement.getTotalLength();
+    var lengthFromStartToPosition = position * totalLength;
+    var point = edgeElement.getPointAtLength(lengthFromStartToPosition);
+    return point;
+  }
+
+  //var svg, customMarkers;
+
+  function render(args, callback) {
     var svg = args.svg;
-    var edge = args.edge;
+    if (!svg) {
+      throw new Error('svg missing');
+    }
+    var pathway = args.pathway;
+    if (!pathway) {
+      throw new Error('pathway missing');
+    }
     var data = args.data;
+    if (!data) {
+      throw new Error('data missing');
+    }
+    var container = args.container;
+    if (!container) {
+      throw new Error('container missing');
+    }
     var markerStartName = args.data.markerStart;
-    console.log('markerStartName');
-    console.log(markerStartName);
+    //console.log('markerStartName');
+    //console.log(markerStartName);
     var markerEndName = args.data.markerEnd;
-    console.log('markerEndName');
-    console.log(markerEndName);
+    //console.log('markerEndName');
+    //console.log(markerEndName);
     var edgeId = strcase.paramCase(data.GraphId);
     /*
     console.log('svg in edge');
@@ -7431,8 +7980,81 @@ pathvisiojs.view.pathwayDiagram.svg.edge = function(){
     }
     createPathDataString.interpolate(stepType);
 
-    //*
+    var edge,
+      stroke = data.stroke,
+      markerStartAttributeValue,
+      markerEndAttributeValue;
     async.series({
+      'markerStartAttributeValue': function(callback) {
+        var markerStartIdStub = pathvisiojs.view.pathwayDiagram.svg.edge.marker.semanticNameToIdMapping[markerStartName];
+        if (!!markerStartIdStub) {
+          if (!!stroke) { // if edge is not of default stroke color (at time of writing, this was black)
+            if (markerStartName === 'none') { // if no marker is to be used, JSON data will specify 'none'
+              markerStartAttributeValue = 'none';
+              callback(null, markerStartAttributeValue);
+            }
+            else {
+              if (pathvisiojs.view.pathwayDiagram.svg.edge.marker.colorsAvailable[markerStartIdStub].indexOf(stroke) === -1) { // if no marker of this stroke color exists
+                pathvisiojs.view.pathwayDiagram.svg.edge.marker.appendNonDefaultColorMarkerBothEnds(svg, markerStartIdStub, stroke, function() {
+                  markerStartAttributeValue = 'url(#' + strcase.paramCase(markerStartIdStub + '-start-' + stroke) + ')';
+                  callback(null, markerStartAttributeValue);
+                });
+              }
+              else {
+                markerStartAttributeValue = 'url(#' + strcase.paramCase(markerStartIdStub + '-start-' + stroke) + ')';
+                callback(null, markerStartAttributeValue);
+              }
+            }
+          }
+          else {
+            markerStartAttributeValue = 'url(#' + strcase.paramCase(markerStartIdStub + '-start-default') + ')';
+            callback(null, markerStartAttributeValue);
+          }
+        }
+        else {
+          console.warn('Pathvisiojs does not have access to a marker (arrowhead) of the requested type: "' + markerStartName + '"');
+          markerStartAttributeValue = 'none';
+          callback(null, markerStartAttributeValue);
+        }
+      },
+      'markerEndAttributeValue': function(callback) {
+        var markerEndIdStub = pathvisiojs.view.pathwayDiagram.svg.edge.marker.semanticNameToIdMapping[markerEndName];
+        if (!!markerEndIdStub) {
+          if (!!stroke) { // if edge is not of default stroke color (at time of writing, this was black)
+            if (markerEndName === 'none') { // if no marker is to be used, JSON data will specify 'none'
+              markerEndAttributeValue = 'none';
+              callback(null, markerEndAttributeValue);
+            }
+            else {
+              if (pathvisiojs.view.pathwayDiagram.svg.edge.marker.colorsAvailable[markerEndIdStub].indexOf(stroke) === -1) { // if no marker of this stroke color exists
+                pathvisiojs.view.pathwayDiagram.svg.edge.marker.appendNonDefaultColorMarkerBothEnds(svg, markerEndIdStub, stroke, function() {
+                  markerEndAttributeValue = 'url(#' + strcase.paramCase(markerEndIdStub + '-end-' + stroke) + ')';
+                  callback(null, markerEndAttributeValue);
+                });
+              }
+              else {
+                markerEndAttributeValue = 'url(#' + strcase.paramCase(markerEndIdStub + '-end-' + stroke) + ')';
+                callback(null, markerEndAttributeValue);
+              }
+            }
+          }
+          else {
+            markerEndAttributeValue = 'url(#' + strcase.paramCase(markerEndIdStub + '-end-default') + ')';
+            callback(null, markerEndAttributeValue);
+          }
+        }
+        else {
+          console.warn('Pathvisiojs does not have access to a marker (arrowhead) of the requested type: "' + markerEndName + '"');
+          markerEndAttributeValue = 'none';
+          callback(null, markerEndAttributeValue);
+        }
+      },
+      'edge': function(callback) {
+        edge = container.selectAll('#' + strcase.paramCase(data.GraphId))
+        .data([data])
+        .enter().insert("path", ":first-child") // TODO this may cause problems in the future if we have groups with fully opaque backgrounds
+        callback(null, edge);
+      },
       'convertedPointSet': function(callback) {
         var index, firstSegmentHorizontal, currentSegmentHorizontal, convertedPointSet;
 
@@ -7474,7 +8096,17 @@ pathvisiojs.view.pathwayDiagram.svg.edge = function(){
                 firstSegmentHorizontal = true;
               }
               else {
-                firstSegmentHorizontal = false;
+                if (Math.abs(data.Point[0].RelY) === 1) {
+                  firstSegmentHorizontal = false;
+                }
+                else {
+                  if ((Math.abs(data.Point[data.Point.length - 1].RelX) === 1) && pathvisiojs.utilities.isOdd(data.Point.length)) {
+                    firstSegmentHorizontal = true;
+                  }
+                  else {
+                    firstSegmentHorizontal = false;
+                  }
+                }
               }
 
               currentSegmentHorizontal = firstSegmentHorizontal;
@@ -7511,36 +8143,9 @@ pathvisiojs.view.pathwayDiagram.svg.edge = function(){
       }
     },
     function(err, results) {
-
-      //*/
-
       edge.attr("id", edgeId)
-      //*
-      .attr("marker-start", function () {
-        var markerStart = pathvisiojs.view.pathwayDiagram.svg.edge.marker.render(svg, markerStartName, 'start', data.stroke);
-        /*
-        if (edge.hasOwnProperty('strokeStyle')) {
-          if (edge.strokeStyle === 'double') {
-            //hack to manage marker scaling; this marker should not have any features itself
-            markerStart = 'double-line-hack-start';
-          }
-        }
-        //*/
-        return 'url(#' + markerStart + ')';
-      })
-      .attr("marker-end", function (data) {
-        var markerEnd = pathvisiojs.view.pathwayDiagram.svg.edge.marker.render(svg, markerEndName, 'end', data.stroke);
-        /*
-        if (edge.hasOwnProperty('strokeStyle')) {
-          if (edge.strokeStyle === 'double') {
-            //hack to manage marker scaling; this marker should not have any features itself
-            markerEnd = 'double-line-hack-end';
-          }
-        }
-        //*/
-        return 'url(#' + markerEnd + ')';
-      })
-      //*/
+      .attr("marker-start", markerStartAttributeValue)
+      .attr("marker-end", markerEndAttributeValue)
       .attr("style", function (data) {
         var style = 'stroke-width:' + data.strokeWidth + '; ';
         if (data.hasOwnProperty('stroke')) {
@@ -7554,43 +8159,29 @@ pathvisiojs.view.pathwayDiagram.svg.edge = function(){
         return style;
       })
       .attr("fill", 'none')
-
-      // this attr needs to be last, because of the confusion over the meaning of 'd' as 1) the data for the d3 selection and 2) the path data.
-      // Somehow, d (the d3 selection data) gets redefined after this attr is defined.
-
-      //.attr("d", pathData)
-        //*
       .attr("d", function (data) {
-      /*
-        if (edge.hasOwnProperty('strokeStyle')) {
-          if (edge.strokeStyle === 'double') {
-
-            // setting stroke-width equal to its specified line value is
-            // what PathVisio (Java) does, but the white line (overlaying the
-            // thick line to create a "double line") is hard to see at 1px.
-
-            viewport.append("path")
-            .attr("class", edge.edgeType + "-double")
-            .attr("d", pathData)
-            .attr("class", "stroke-color-equals-default-fill-color")
-            .attr("style", "stroke-width:" + edge.strokeWidth + '; ')
-            //.attr("marker-start", 'url(#' + pathvisiojs.view.pathwayDiagram.svg.edge.marker.render(viewport, edge.markerStart, 'start', edge.stroke) + ')')
-            .attr("marker-end", 'url(#' + pathvisiojs.view.pathwayDiagram.svg.edge.marker.render(viewport, strcase.paramCase(edge.interactionType), 'end', edge.stroke) + ')');
-          }
-        }
-        //*/
-
         return createPathDataString(results.convertedPointSet);
       });
 
-    /****************** 
-     * citation(s)
-     * ***************/
+     /****************** 
+       * anchor(s) (note that this method is called from ...EDGE.render() but the result is to render a NODE)
+       * ***************/
 
-    if (data.hasOwnProperty('PublicationXref')) {
-      pathvisiojs.view.pathwayDiagram.svg.publicationXref.render(edgeId, 'edge', args.pathway, args.data.PublicationXref);
-    }
+      if (data.hasOwnProperty('Anchor')) {
+        pathvisiojs.view.pathwayDiagram.svg.node.anchor.render(container, edgeId, data.Anchor);
+      }
 
+      /****************** 
+       * citation(s)
+       * ***************/
+
+      if (data.hasOwnProperty('PublicationXref')) {
+        pathvisiojs.view.pathwayDiagram.svg.publicationXref.render(edgeId, 'edge', pathway, data.PublicationXref);
+        callback(edge);
+      }
+      else {
+        callback(edge);
+      }
 
     });
   }
@@ -7681,7 +8272,8 @@ pathvisiojs.view.pathwayDiagram.svg.edge = function(){
 
 
   return {
-    setAttributes:setAttributes
+    render:render,
+    getPointAtPositionById:getPointAtPositionById
     //renderAll:renderAll
   };
 }();
@@ -7702,32 +8294,30 @@ pathvisiojs.view.pathwayDiagram.svg.edge.graphicalLine = function(){
     console.log(data);
     //*/
 
-    var graphicalLine = container.selectAll('#' + strcase.paramCase(data.GraphId))
-    .data([data])
-    .enter().append("path")
-    .attr("class", function (data) {
-      var cssClass = 'edge graphical-line';
-      if (data.hasOwnProperty('strokeStyle')) {
-        if (data.strokeStyle === 'dashed') {
-          cssClass += " dashed-stroke";
+    pathvisiojs.view.pathwayDiagram.svg.edge.render(args, function(graphicalLine) {
+      graphicalLine.attr("class", function (data) {
+        var cssClass = 'edge graphical-line';
+        if (data.hasOwnProperty('strokeStyle')) {
+          if (data.strokeStyle === 'dashed') {
+            cssClass += " dashed-stroke";
+          }
         }
+        return cssClass;
+      });
+
+      var containerElement = container[0][0];
+      var containerElementX, containerElementY;
+      if (containerElement.hasOwnProperty('__data__')) {
+        graphicalLine.attr('transform', function() {
+          containerElementX = containerElement.__data__.x || 0;
+          containerElementY = containerElement.__data__.y || 0;
+          return 'translate(' + (-1*containerElementX) + ' ' + (-1*containerElementY) + ')';
+        })
       }
-      return cssClass;
     });
 
-    var containerElement = container[0][0];
-    var containerElementX, containerElementY;
-    if (containerElement.hasOwnProperty('__data__')) {
-      graphicalLine.attr('transform', function() {
-        containerElementX = containerElement.__data__.x || 0;
-        containerElementY = containerElement.__data__.y || 0;
-        return 'translate(' + (-1*containerElementX) + ' ' + (-1*containerElementY) + ')';
-      })
-    }
 
     //pathvisiojs.view.pathwayDiagram.svg.edge.setAttributes(svg, graphicalLine, data, data.markerStart, data.markerEnd);
-    args.edge = graphicalLine;
-    pathvisiojs.view.pathwayDiagram.svg.edge.setAttributes(args);
 
     //.call(pathvisiojs.view.pathwayDiagram.svg.edge.setAttributes);
 
@@ -7890,34 +8480,39 @@ pathvisiojs.view.pathwayDiagram.svg.edge.interaction = function(){
       }
     }
 
-    var interaction = container.selectAll('#' + strcase.paramCase(data.GraphId))
-    .data([data])
-    .enter().append("path")
-    .attr("class", function (data) {
-      var cssClass = 'edge interaction';
-      if (!!data.DatasourceReference) {
-        cssClass += 'has-xref ';
-      }
-      if (data.hasOwnProperty('strokeStyle')) {
-        if (data.strokeStyle === 'dashed') {
-          cssClass += " dashed-stroke";
+    pathvisiojs.view.pathwayDiagram.svg.edge.render(args, function(interaction) {
+      interaction.attr("class", function (data) {
+        var cssClass = 'edge interaction' + ' ';
+        if (!!data.DatasourceReference) {
+          cssClass += 'has-xref ';
+          if (!!data.DatasourceReference.ID) {
+            interaction.on("click", function(d,i) {
+              pathvisiojs.view.annotation.xRef.render(args.pathway.Organism, d['DatasourceReference'].ID, d['DatasourceReference'].Database, d.InteractionGraph[0].interactsWith.text.tspan[0]+' + '+d.InteractionGraph[0].text.tspan[0], d.renderableType); 
+	      //That's capital 'O' Organism from GPML vocab.
+	      //Names of interaction partners is given as header, which is also used to form site query, 
+	      // thus the "+" is used to convey both the interaction and query logic.
+            })
+          }
         }
-      }
-      return cssClass;
-    })
-
-    var containerElement = container[0][0];
-    var containerElementX, containerElementY;
-    if (containerElement.hasOwnProperty('__data__')) {
-      interaction.attr('transform', function() {
-        containerElementX = containerElement.__data__.x || 0;
-        containerElementY = containerElement.__data__.y || 0;
-        return 'translate(' + (-1*containerElementX) + ' ' + (-1*containerElementY) + ')';
+        if (data.hasOwnProperty('strokeStyle')) {
+          if (data.strokeStyle === 'dashed') {
+            cssClass += " dashed-stroke";
+          }
+        }
+        return cssClass;
       })
-    }
 
-    args.edge = interaction;
-    pathvisiojs.view.pathwayDiagram.svg.edge.setAttributes(args);
+      var containerElement = container[0][0];
+      var containerElementX, containerElementY;
+      if (containerElement.hasOwnProperty('__data__')) {
+        interaction.attr('transform', function() {
+          containerElementX = containerElement.__data__.x || 0;
+          containerElementY = containerElement.__data__.y || 0;
+          return 'translate(' + (-1*containerElementX) + ' ' + (-1*containerElementY) + ')';
+        })
+      }
+    });
+
 
     // I want to get the marker name from the interactionType later.
     //pathvisiojs.view.pathwayDiagram.svg.edge.setAttributes(svg, interaction, data, markerStart, markerEnd);
@@ -7938,182 +8533,6 @@ pathvisiojs.view.pathwayDiagram.svg.edge.interaction = function(){
 
   }
 
-  function setAttributes(interaction) {
-    var interactionElement = interaction[0][0];
-    var data = interactionElement.__data__;
-    var createPathDataString = d3.svg.line()
-    .x(function(data) { return data.x; })
-    .y(function(data) { return data.y; });
-
-    //*
-
-    async.series({
-      'stepTypeAndConvertedPointSet': function(callback) {
-
-        // in GPML, some points are implied, such as for many curves and elbows with only two points.
-        // This code below fills in the implied points, returning the full set of points.
-
-        var stepType, index, firstSegmentHorizontal, currentSegmentHorizontal,
-        convertedPointSet = [];
-
-        if ((!data.ConnectorType) || (data.ConnectorType === undefined) || (data.ConnectorType === 'Straight') || (data.ConnectorType === 'Segmented')) {
-          stepType = 'linear';
-          callback(null, {'convertedPointSet': data.Point, 'stepType': stepType});
-        }
-        else {
-
-          // Elbow and Curved are considered together, because a Curve is just a modification
-          // of an Elbow. The Curve uses the Elbow point set, but it has interpolation of
-          // basis instead of linear.
-
-          if (data.ConnectorType === 'Elbow' || data.ConnectorType === 'Curved') {
-            if (data.ConnectorType === 'Elbow') {
-              stepType = 'linear';
-
-              // The d3.js step-after and step-before would seem to be well-suited for
-              // Elbows, but it won't work for the point set format we are using.
-              // The point set formats we could use include the following:
-              // 1) linear/path-finding.js format: specify a full set of points, meaning
-              // start and end points as well as a point at every change in direction.
-              // 2) PathVisio-Java/GPML format: start and end points plus intermediate
-              // points specifying the mid-points of each Elbow segment.
-              // 3) d3.js step-after and step-before format: start and end points plus
-              // a point for every other change in direction.
-              //
-              // pvjs uses format 1), so that requires a step type of linear. If we
-              // used step-before and step-after, we would need to use format 3) and
-              // the following code:
-
-              /*
-              if (firstSegmentHorizontal) {
-
-                // step-after - alternate between horizontal and vertical segments, as in a step function.
-
-                stepType = 'step-after';
-              }
-              else {
-                stepType = 'step-before';
-              }
-              //*/
-
-            }
-            else {
-              if (data.ConnectorType === 'Curved') {
-                stepType = 'basis';
-              }
-            }
-
-            if (data.Point.length === 2) {
-
-              // GPML specifies just the start and end points and assumes a programmatic
-              // path finding algorithm will fill in the intermediate points, unless
-              // the user explicitly sets the intermediate points by dragging the interaction.
-
-              // fill in intermediate points using default algorithmic layout
-
-              pathvisiojs.view.pathwayDiagram.pathFinder.getPath(svg, data, function(convertedPointSet) {
-                callback(null, {'convertedPointSet': convertedPointSet, 'stepType': stepType});
-              });
-            }
-            else {
-
-              // use user-specified intermediate points. This requires converting from
-              // point set format #2 (see above) to format #1.
-
-              convertedPointSet.push(data.Point[0]);
-
-              if (Math.abs(data.Point[0].RelX) === 1) {
-                firstSegmentHorizontal = true;
-              }
-              else {
-                firstSegmentHorizontal = false;
-              }
-
-              currentSegmentHorizontal = firstSegmentHorizontal;
-              index = 0;
-              do {
-                index += 1;
-
-                if (currentSegmentHorizontal) {
-                  convertedPointSet.push({
-                    'x':data.Point[index].x,
-                    'y':data.Point[index - 1].y
-                  });
-                }
-                else {
-                  convertedPointSet.push({
-                    'x':data.Point[index - 1].x,
-                    'y':data.Point[index].y
-                  });
-                }
-
-                currentSegmentHorizontal = !currentSegmentHorizontal;
-
-              } while (index < data.Point.length - 1);
-
-              convertedPointSet.push(data.Point[data.Point.length - 1]);
-              self.myconvertedPointSet = convertedPointSet;
-              callback(null, {'convertedPointSet': convertedPointSet, 'stepType': stepType});
-            }
-          }
-          else {
-            console.warn('Warning: pathvisiojs does not support connector type: ' + data.ConnectorType + '. Using linear interpolation as fallback.');
-            stepType = 'linear';
-            callback(null, {'convertedPointSet': data.Point, 'stepType': stepType});
-          }
-        }
-      }
-    },
-    function(err, results) {
-
-      //*/
-
-      interaction.attr("id", function(data) { return strcase.paramCase(data.GraphId); })
-      .attr("style", function (data) {
-        var style = 'stroke-width:' + data.strokeWidth + '; ';
-        if (data.hasOwnProperty('stroke')) {
-          style += 'stroke:' + data.stroke + '; ';
-        }
-        if (data.hasOwnProperty('strokeStyle')) {
-          if (data.strokeStyle === 'double') {
-            style += 'stroke-width:' + (3 * data.strokeWidth) + '; ';
-          }
-        }
-        return style;
-      })
-      .attr("fill", 'none')
-
-      // this attr needs to be last, because of the confusion over the meaning of 'd' as 1) the data for the d3 selection and 2) the path data.
-      // Somehow, d (the d3 selection data) gets redefined after this attr is defined.
-
-      //.attr("d", pathData)
-        //*
-      .attr("d", function (data) {
-      /*
-        if (interaction.hasOwnProperty('strokeStyle')) {
-          if (interaction.strokeStyle === 'double') {
-
-            // setting stroke-width equal to its specified line value is
-            // what PathVisio (Java) does, but the white line (overlaying the
-            // thick line to create a "double line") is hard to see at 1px.
-
-            viewport.append("path")
-            .attr("class", interaction.interactionType + "-double")
-            .attr("d", pathData)
-            .attr("class", "stroke-color-equals-default-fill-color")
-            .attr("style", "stroke-width:" + interaction.strokeWidth + '; ')
-            //.attr("marker-start", 'url(#' + pathvisiojs.view.pathwayDiagram.svg.interaction.marker.render(viewport, interaction.markerStart, 'start', interaction.stroke) + ')')
-            .attr("marker-end", 'url(#' + pathvisiojs.view.pathwayDiagram.svg.interaction.marker.render(viewport, strcase.paramCase(edge.interactionType), 'end', edge.stroke) + ')');
-          }
-        }
-        //*/
-
-        createPathDataString.interpolate(results.stepTypeAndConvertedPointSet.stepType);
-
-        return createPathDataString(results.stepTypeAndConvertedPointSet.convertedPointSet);
-      });
-    });
-  }
 
   /*
   function renderAll(viewport, pathway) {
@@ -8208,6 +8627,7 @@ pathvisiojs.view.pathwayDiagram.svg.edge.interaction = function(){
   
 ;
 
+"use strict"
 pathvisiojs.view.pathwayDiagram.svg.edge.marker = function(){
 
   // the way SVG works makes this code more complex than it should need to be. Essentially, we
@@ -8251,69 +8671,93 @@ pathvisiojs.view.pathwayDiagram.svg.edge.marker = function(){
     'none':'shape-library-markers-none-svg'
   };
 
+  var colorsAvailable = {
+    'shape-library-markers-arrow-svg':['default'],
+    'shape-library-markers-mim-necessary-stimulation-svg':['default'],
+    'shape-library-markers-mim-binding-svg':['default'],
+    'shape-library-markers-mim-conversion-svg':['default'],
+    'shape-library-markers-mim-stimulation-svg':['default'],
+    'shape-library-markers-mim-modification-svg':['default'],
+    'shape-library-markers-mim-catalysis-svg':['default'],
+    'shape-library-markers-mim-inhibition-svg':['default'],
+    'shape-library-markers-mim-cleavage-svg':['default'],
+    'shape-library-markers-mim-covalent-bond-svg':['default'],
+    'shape-library-markers-mim-transcription-translation-svg':['default'],
+    'shape-library-markers-mim-gap-svg':['default'],
+    'shape-library-markers-t-bar-svg':['default'],
+    'shape-library-markers-mim-branching-left-svg':['default'],
+    'shape-library-markers-mim-branching-right-svg':['default'],
+    'shape-library-markers-none-svg':['default']
+  };
+
   function appendCustom(uniqueMarkerShapeUrl, callback) {
     var idStub = strcase.paramCase(uniqueMarkerShapeUrl)
     var startId = idStub + '-start-default';
     var endId = idStub + '-end-default';
     var markerStart = svg.select('defs').select('#' + startId);
-    if (!markerStart[0][0]) {
-      markerStart.selectAll('*').remove();
-    }
 
     markerStart = svg.select('defs').append('marker')
     .attr('id', startId)
     .attr('preserveAspectRatio', 'none');
+    processSvg(uniqueMarkerShapeUrl, markerStart, startId, false);
 
     var markerEnd = svg.select('defs').select('#' + endId);
-    if (!markerEnd[0][0]) {
-      markerEnd.selectAll('*').remove();
-    }
     markerEnd = svg.select('defs').append('marker')
     .attr('id', endId)
     .attr('preserveAspectRatio', 'none');
+    processSvg(uniqueMarkerShapeUrl, markerEnd, endId, true);
 
-    if (uniqueMarkerShapeUrl.indexOf('.svg') > 0) {
-      d3.xml(uniqueMarkerShapeUrl, 'image/svg+xml', function(svgXml) {
-        var newMarker = d3.select(svgXml.documentElement)
-        var width = newMarker.attr('width');
-        var height = newMarker.attr('height');
+    callback(null);
+  }
 
-        markerStart.attr('viewBox', '0 0 ' + width + ' ' + height)
-        .attr('markerWidth', width)
-        .attr('markerHeight', height)
-        .attr('markerUnits', 'strokeWidth')
-        .attr('orient', 'auto')
-        .attr('refX', 0)
-        .attr('refY', 6);
+  function processSvg(uniqueMarkerShapeUrl, marker, markerId, rotate){
+    d3.xml(uniqueMarkerShapeUrl, 'image/svg+xml', function(svgXml) {
+      var newMarker = d3.select(svgXml.documentElement);
+      var width = newMarker.attr('width');
+      var height = newMarker.attr('height');
+      var markerClass = newMarker.attr('class');
+      var refXstart = newMarker.attr('refXstart');                                              
+      var refYstart = newMarker.attr('refYstart');
+      var refXend = newMarker.attr('refXend');
+      var refYend = newMarker.attr('refYend');  
+      var viewBox = newMarker.attr('viewBox');
 
-        var parent = document.querySelector('#' + startId);
-        var docElClone = pathvisiojs.utilities.clone(svgXml.documentElement);
-        parent.appendChild(svgXml.documentElement);
+      marker.attr('viewBox', viewBox)
+      .attr('markerWidth', width)
+      .attr('markerHeight', height)
+      .attr('markerUnits', 'strokeWidth')
+      .attr('orient', 'auto');
 
-        markerEnd.attr('viewBox', -1*width + ' ' + -1*height + ' ' + width + ' ' + height)
-        .attr('markerWidth', width)
-        .attr('markerHeight', height)
-        .attr('markerUnits', 'strokeWidth')
-        .attr('orient', 'auto')
-        .attr('refX', 0)
-        .attr('refY', -1*height/2);
-        var g = markerEnd.append('g')
-        .attr('id', 'g-' + endId)
-        .attr('style', '-webkit-transform: rotate(180deg); -webkit-transform-origin: 50% 50%;');
-        // TODO the transform attribute used is specific to chrome. we need ot add the transform attributes for other browsers
-        // check for this on MDN.
-        var endG = document.querySelector('#' + 'g-' + endId);
-        endG.appendChild(docElClone);
+      if (rotate){
+	//end marker
+        marker.attr('refX', refXend)
+        .attr('refY', refYend);
+        marker.append('g')
+        .attr('id', 'g-' + markerId)
+        .attr('class', markerClass)
+        .attr('style', '-webkit-transform: rotate(180deg); -webkit-transform-origin: 50% 50%;')
+        ;
+      } else {
+	//start marker
+        marker.attr('refX', refXstart)
+        .attr('refY', refYstart);
 
-        //*
-        //var markerEnd = pathvisiojs.utilities.cloneNode('#' + startId);
-        //markerEnd[0][0].setAttribute('id', endId);
-        //markerEnd[0][0].setAttribute('transform', 'rotate(180deg)');
-        //*/
-        callback(null);
-      });
-    }
-    else {
+        marker.append('g')
+        .attr('id', 'g-' + markerId)
+        .attr('class', markerClass);
+      }
+
+      var g = document.querySelector('#' + 'g-' + markerId);
+
+      var newMarkerChildren = newMarker[0][0].children;
+      do {
+        g.appendChild(newMarkerChildren[0]);
+      } while (newMarkerChildren.length > 0);
+    });
+  }
+
+//    }
+//    else {
       // note that HTML uses 'img' while SVG uses 'image'
       // we need to get the dimensions of the image we are adding to the new symbol,
       // so we'll create an img element in HTML to check width and height
@@ -8333,7 +8777,7 @@ pathvisiojs.view.pathwayDiagram.svg.edge.marker = function(){
   <image xlink:href="http://wikipathways.github.io/pathvisiojs/src/views/markers/mim-binding.svg" x="0" y="0" width="12" height="12"></image>
 	</marker>
 //*/
-
+/*
       img = document.createElement('img');
       img.id = idStub;
       img.src = uniqueMarkerShapeUrl;
@@ -8381,6 +8825,7 @@ pathvisiojs.view.pathwayDiagram.svg.edge.marker = function(){
       }
     }
   }
+*/
 
   function loadAllCustom(thisSvg, customMarkers, callback) {
     svg = thisSvg;
@@ -8390,11 +8835,18 @@ pathvisiojs.view.pathwayDiagram.svg.edge.marker = function(){
     var dimensions = null;
     var dimensionSet = [];
 
+    var semanticName;
+    var markerUrl;
+    var paramCaseUrl;
     var uniqueMarkerShapeUrls = [];
     customMarkers.forEach(function(customMarker){
-      pathvisiojs.view.pathwayDiagram.svg.edge.marker.semanticNameToIdMapping[customMarker.semanticName] = strcase.paramCase(customMarker.url);
-      if (uniqueMarkerShapeUrls.indexOf(customMarker.url) === -1) {
-        uniqueMarkerShapeUrls.push(customMarker.url);
+      semanticName = customMarker.semanticName;
+      markerUrl = customMarker.url;
+      paramCaseUrl = strcase.paramCase(markerUrl);
+      pathvisiojs.view.pathwayDiagram.svg.edge.marker.semanticNameToIdMapping[semanticName] = paramCaseUrl;
+      pathvisiojs.view.pathwayDiagram.svg.edge.marker.colorsAvailable[paramCaseUrl] = ['default'];
+      if (uniqueMarkerShapeUrls.indexOf(markerUrl) === -1) {
+        uniqueMarkerShapeUrls.push(markerUrl);
       }
     });
 
@@ -8404,204 +8856,61 @@ pathvisiojs.view.pathwayDiagram.svg.edge.marker = function(){
     });
   }
 
-  function render(svg, name, position, color) {
-    var markerId;
-    var markerIdStub = pathvisiojs.view.pathwayDiagram.svg.edge.marker.semanticNameToIdMapping[name];
+  function appendNonDefaultColorMarkerBothEnds(svg, markerIdStub, color, callback) {
+    appendNonDefaultColorMarker(svg, markerIdStub, 'start', color, function() {
+      appendNonDefaultColorMarker(svg, markerIdStub, 'end', color, function() {
+        pathvisiojs.view.pathwayDiagram.svg.edge.marker.colorsAvailable[markerIdStub].push(color);
+        callback();
+      })
+    })
+  }
 
-    // if no marker is to be used, JSON data will specify 'none'.
+  function appendNonDefaultColorMarker(svg, markerIdStub, position, color, callback) {
+    var defaultId = markerIdStub + '-' + position + '-default';
+    var marker = pathvisiojs.utilities.cloneNode('#' + defaultId);
 
-    if (name === 'none') {
-      markerId = name;
-    }
-    else {
-
-      // check for whether the desired marker is defined once in the pathway template svg.
-
-      var selector = 'marker#' + markerIdStub + '-' + position + '-default';
-      var markerElementDefault = svg.select(selector);
-
-      if (markerElementDefault.length === 1) {
-
-        // if the desired stroke color is not specified, use the default marker specified in the pathway template svg.
-
-        if ( !(color) ) {
-          markerId = markerIdStub + '-' + position + '-default';
-        }
-
-        // else create a new marker with the desired color
-
-        else {
-          /*
-          var pathway.svg = d3.select("#pathway-container").select(function() {
-            return this.contentDocument.documentElement;
-          });
-          */
-
-          var markerElement = pathvisiojs.utilities.cloneNode(selector);
-          // TODO remove dependency on cloneNode and get the below working:
-          //var markerElement = pathvisiojs.utilities.clone(markerElementDefault[0][0]);
-
-          // define style of marker element's SVG
-
-          var markerElementStyle = '';
-
-          var markerElementSvg = markerElement.selectAll("svg")[0][0];
-
-          if (markerElementSvg.getAttribute('class').match(/default-stroke-color/)) {
-            markerElementStyle += 'stroke:#' + color + '; ';
-          }
-
-          if (markerElementSvg.getAttribute('class').match(/default-fill-color/)) {
-            markerElementStyle += 'fill:#' + color + '; ';
-          }
-
-          markerElement[0][0].setAttribute('id', markerIdStub + '-' + position + '-' + color );
-          markerElementSvg.setAttribute('style', markerElementStyle);
-
-          markerId = markerIdStub + '-' + position + '-' + color;
-        }
+    var defaultMarkerStart, refX, refY, viewBox, viewBoxElements;
+    if (position === 'end') {
+      console.log('end');
+      defaultMarkerStart = d3.select('#' + markerIdStub + '-start-default');
+      refX = parseFloat(defaultMarkerStart.attr('refX'));
+      refY = parseFloat(defaultMarkerStart.attr('refY'));
+      viewBox = defaultMarkerStart.attr('viewBox');
+      if (!!viewBox) {
+        viewBoxElements = viewBox.split(' ');
+        marker.attr('viewBox', (-1) * viewBoxElements[2] + ' ' + (-1) * viewBoxElements[3] + ' ' + viewBoxElements[2] + ' ' + viewBoxElements[3]);
       }
-      else {
-        markerId = 'none';
-        console.warn('Pathvisio.js does not have access to a marker (arrowhead) for the requested edge type: ' + name);
-      }
+      marker.attr('refX', refX)
+      marker.attr('refY', (-1) * refY)
     }
-    return markerId;
+
+    // define style of marker element's SVG
+
+    var markerContents = marker.select("g");
+    var markerStyle = markerContents.attr('style') || '';
+    if (markerContents.attr('class').match(/default-stroke-color/)) {
+      markerStyle += 'stroke:#' + color + '; ';
+    }
+
+    if (markerContents.attr('class').match(/default-fill-color/)) {
+      markerStyle += 'fill:#' + color + '; ';
+    }
+
+    var markerId = markerIdStub + '-' + position + '-' + color;
+    marker.attr('id', markerId);
+    markerContents.attr('id', strcase.paramCase('g-' + markerId));
+    markerContents.attr('style', markerStyle);
+
+    callback(markerId);
   }
  
   return {
-    render:render,
+    appendNonDefaultColorMarkerBothEnds:appendNonDefaultColorMarkerBothEnds,
+    loadAllCustom:loadAllCustom,
     semanticNameToIdMapping:semanticNameToIdMapping,
-    loadAllCustom:loadAllCustom
+    colorsAvailable:colorsAvailable
   };
 }();
-
-
-
-/*
-semanticNameToIdMapping = [
-  {
-    'semanticName': 'arrow',
-    'id':'shape-library-markers-arrow-svg'
-  },
-  {
-    'semanticName': 'necessary-stimulation',
-    'id':'shape-library-markers-mim-necessary-stimulation-svg'
-  },
-  {
-    'semanticName': 'binding',
-    'id':'shape-library-markers-mim-binding-svg'
-  },
-  {
-    'semanticName': 'conversion',
-    'id':'shape-library-markers-mim-conversion-svg'
-  },
-  {
-    'semanticName': 'stimulation',
-    'id':'shape-library-markers-mim-stimulation-svg'
-  },
-  {
-    'semanticName': 'modification',
-    'id':'shape-library-markers-mim-modification-svg'
-  },
-  {
-    'semanticName': 'catalysis',
-    'id':'shape-library-markers-mim-catalysis-svg'
-  },
-  {
-    'semanticName': 'inhibition',
-    'id':'shape-library-markers-mim-inhibition-svg'
-  },
-  {
-    'semanticName': 'cleavage',
-    'id':'shape-library-markers-mim-cleavage-svg'
-  },
-  {
-    'semanticName': 'covalent-bond',
-    'id':'shape-library-markers-mim-covalent-bond-svg'
-  },
-  {
-    'semanticName': 'transcription-translation',
-    'id':'shape-library-markers-mim-transcription-translation-svg'
-  },
-  {
-    'semanticName': 'gap',
-    'id':'shape-library-markers-mim-gap-svg'
-  },
-  {
-    'semanticName': 'inhibitory-activity',
-    'id':'shape-library-markers-t-bar-svg'
-  },
-  {
-    'semanticName': 'unspecified',
-    'id':'shape-library-markers-none-svg'
-  },
-  {
-    'semanticName': 'activity',
-    'id':'shape-library-markers-arrow-svg'
-  },
-  {
-    'semanticName': 'mim-branching-left',
-    'id':'shape-library-markers-mim-branching-left-svg'
-  },
-  {
-    'semanticName': 'mim-branching-right',
-    'id':'shape-library-markers-mim-branching-right-svg'
-  },
-  {
-    'semanticName': 'mim-necessary-stimulation',
-    'id':'shape-library-markers-mim-necessary-stimulation-svg'
-  },
-  {
-    'semanticName': 'mim-binding',
-    'id':'shape-library-markers-mim-binding-svg'
-  },
-  {
-    'semanticName': 'mim-conversion',
-    'id':'shape-library-markers-mim-conversion-svg'
-  },
-  {
-    'semanticName': 'mim-stimulation',
-    'id':'shape-library-markers-mim-stimulation-svg'
-  },
-  {
-    'semanticName': 'mim-modification',
-    'id':'shape-library-markers-mim-modification-svg'
-  },
-  {
-    'semanticName': 'mim-catalysis',
-    'id':'shape-library-markers-mim-catalysis-svg'
-  },
-  {
-    'semanticName': 'mim-inhibition',
-    'id':'shape-library-markers-mim-inhibition-svg'
-  },
-  {
-    'semanticName': 'mim-cleavage',
-    'id':'shape-library-markers-mim-cleavage-svg'
-  },
-  {
-    'semanticName': 'mim-covalent-bond',
-    'id':'shape-library-markers-mim-covalent-bond-svg'
-  },
-  {
-    'semanticName': 'mim-transcription-translation',
-    'id':'shape-library-markers-mim-transcription-translation-svg'
-  },
-  {
-    'semanticName': 'mim-gap',
-    'id':'shape-library-markers-mim-gap-svg'
-  },
-  {
-    'semanticName': 't-bar',
-    'id':'shape-library-markers-t-bar-svg'
-  },
-  {
-    'semanticName': 'none',
-    'id':'shape-library-markers-none-svg'
-  }
-];
-//*/
 ;
 
 pathvisiojs.view.pathwayDiagram.svg.edge.point = function(){
@@ -9116,13 +9425,10 @@ pathvisiojs.view.pathwayDiagram.png = function(){
       fitScreenScale;
 
     if (!!wikiPathwaysId) {
-      pngUrl = encodeURI('http://www.wikipathways.org/wpi//wpi.php?action=downloadFile&type=png&pwTitle=Pathway:' + wikiPathwaysId + '&revision=' + revision);
+      pngUrl = encodeURI(pathvisiojs.config.pngDiagramUriStub() + wikiPathwaysId + '&revision=' + revision);
     }
     else {
-
-      // TODO update this link to a URL we control
-
-      pngUrl = 'http://upload.wikimedia.org/wikipedia/commons/3/3b/Picture_Not_Yet_Available.png';
+      pngUrl = pathvisiojs.config.diagramNotAvailableImageUri();
     }
     window.setTimeout(function() {
       png = document.createElement('img');
