@@ -76,6 +76,8 @@ To view your changes as you edit, you can use the functionalities in the [test d
 $ cd ~/Sites/pathvisiojs/src/test/ #update this to where the pathvisiojs directory is actually located on your computer
 ```
 
+If you add a JS file, you will need to add a reference to it in the "sources" array in [compare.js](https://github.com/wikipathways/pathvisiojs/blob/master/test/compare.js#L111) and in [Gruntfile.js](https://github.com/wikipathways/pathvisiojs/blob/master/Gruntfile.js#L10).
+
 The [README](https://github.com/wikipathways/pathvisiojs/tree/master/test/README.md) in this directory includes information on how to view diagrams during development and how to run tests.
 
 D. Send Us a Pull Request
