@@ -39,8 +39,8 @@
 		font-family: Sans-Serif, Helvetica, Arial;
 		text-align: center;
 		vertical-align: top;
-		font-size: 8px;
-		fill: lightgray;
+		font-size: 7px;
+		fill: #999999;
 		fill-opacity: 1;
 		stroke: none;
 	}
