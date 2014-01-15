@@ -106,14 +106,15 @@ pathvisiojs.view.pathwayDiagram.svg.edge.marker = function(){
         marker.append('g')
         .attr('id', 'g-' + markerId)
         .attr('class', markerClass)
-        .attr('style', ''
+	.attr('transform', 'rotate(180, '+width/2+', '+height/2+')');
+ /*       .attr('style', ''
 			+ '-webkit-transform: rotate(180deg); -webkit-transform-origin: 50% 50%; '
 			+ '-o-transform: rotate(180deg); -o-transform-origin: 50% 50%; '
 			+ '-moz-transform: rotate(180deg); -moz-transform-origin: 50% 50%; '
 			+ '-ms-transform: rotate(180deg); -ms-transform-origin: 50% 50%; '
 			+ 'transform: rotate(180deg); transform-origin: 50% 50%; '
         );
-      } else {
+ */     } else {
 	//start marker
         marker.attr('refX', refXstart)
         .attr('refY', refYstart);
