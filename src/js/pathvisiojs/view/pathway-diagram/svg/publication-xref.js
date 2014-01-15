@@ -91,9 +91,12 @@ pathvisiojs.view.pathwayDiagram.svg.publicationXref = function(){
     var viewport, text;
     getPublicationXrefString(pathway, rdfIds, function(publicationXrefString) {
       if (targetType === 'node') {
+	var nodeWidth = target[0][0]['__data__'].width;
+	var textLength = publicationXrefString.toString().length;
+	var offset = nodeWidth - textLength *3 / 2 - 2;
         target.append('text')
         .attr('class', 'citation')
-        .attr('transform', function(d) {return 'translate(0 -5)';})
+        .attr('transform', function(d) {return 'translate('+offset+' -4)';})
         .text(publicationXrefString);
       }
       else {
@@ -104,7 +107,7 @@ pathvisiojs.view.pathwayDiagram.svg.publicationXref = function(){
           viewport = d3.select('svg > #viewport');
           text = viewport.append('text')
           .attr('class', 'citation')
-          .attr('transform', function(d) {return 'translate(0 -5)';});
+          .attr('transform', function(d) {return 'translate(0 -10)';});
 
           text.append('textPath')
           .attr('xlink:xlink:href', '#' + target)
