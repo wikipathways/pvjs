@@ -125,8 +125,7 @@ pathvisiojs.view.pathwayDiagram.svg.edge.marker = function(){
       }
 
       var g = document.querySelector('#' + 'g-' + markerId);
-
-      var newMarkerChildren = newMarker[0][0].children;
+      var newMarkerChildren = newMarker[0][0].childNodes;
       do {
         g.appendChild(newMarkerChildren[0]);
       } while (newMarkerChildren.length > 0);
