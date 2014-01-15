@@ -1,7 +1,9 @@
 pathvisiojs
 ============
 
-JavaScript viewer and editor for biological pathways. All code is in beta stage and is subject to change.
+JavaScript-based diagram viewer and editor intended for biological pathways. This project is supported by the same community that maintains the Java-based pathway diagram editor [PathVisio](http://www.pathvisio.org/), but the codebases between pathvisiojs and PathVisio-Java are entirely distinct. PathVisio-Java plugins will not work with pathvisiojs.
+
+All code is in beta stage, and any APIs are subject to change.
 
 Demos
 =====
@@ -73,6 +75,8 @@ To view your changes as you edit, you can use the functionalities in the [test d
 ```
 $ cd ~/Sites/pathvisiojs/src/test/ #update this to where the pathvisiojs directory is actually located on your computer
 ```
+
+If you add a JS file, you will need to add a reference to it in the "sources" array in [compare.js](https://github.com/wikipathways/pathvisiojs/blob/master/test/compare.js#L111) and in [Gruntfile.js](https://github.com/wikipathways/pathvisiojs/blob/master/Gruntfile.js#L10).
 
 The [README](https://github.com/wikipathways/pathvisiojs/tree/master/test/README.md) in this directory includes information on how to view diagrams during development and how to run tests.
 

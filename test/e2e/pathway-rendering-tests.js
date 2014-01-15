@@ -8,13 +8,12 @@ function forElementToBePresent(findBy) {
 }
 
 var ptor = protractor.getInstance();
-ptor.ignoreSynchronization = true
+ptor.ignoreSynchronization = true;
 
-var ptorWp1 = protractor.getInstance();
-ptorWp1.ignoreSynchronization = true
+var bodyElements, shapes, loadingIconBeforePathwayLoaded, loadingIconAfterPathwayLoaded,
+  shapesInShapes;
 
-var bodyElements, shapes, wp1, loadingIconBeforePathwayLoaded, loadingIconAfterPathwayLoaded,
-  shapesInShapes, shapesInWp1;
+var baseUrl = 'http://localhost:3000/';
 
 function testTheCount(gpmlFile, elementName, expectedCount) {
   //console.log('elementName: ' + elementName);
@@ -25,7 +24,7 @@ function testTheCount(gpmlFile, elementName, expectedCount) {
   });
 }
 
-ptor.get("http://localhost:3000/test/compare.html?gpml=WP2545").
+ptor.get(baseUrl + "test/compare.html?gpml=WP2545").
   then(function() {
     console.log('************** running anchors rendering test protocol...');
     return ptor.wait(forElementToBePresent(by.css('#pathvisiojs-is-loaded')), 30 * 1000);
@@ -104,7 +103,7 @@ ptor.get("http://localhost:3000/test/compare.html?gpml=WP2545").
   }).
   then(function() {
     console.log('************** running citations rendering test protocol...');
-    ptor.get("http://localhost:3000/test/compare.html?gpml=WP2605");
+    ptor.get(baseUrl + "test/compare.html?gpml=WP2605");
     return ptor.wait(forElementToBePresent(by.css('#pathvisiojs-is-loaded')), 30 * 1000);
   }).
   then(function() {
@@ -130,7 +129,7 @@ ptor.get("http://localhost:3000/test/compare.html?gpml=WP2545").
   }).
   then(function() {
     console.log('************** running shapes rendering test protocol...');
-    ptor.get("http://localhost:3000/test/compare.html?gpml=WP2554");
+    ptor.get(baseUrl + "test/compare.html?gpml=WP2554");
     return ptor.wait(forElementToBePresent(by.css('#pathvisiojs-is-loaded')), 30 * 1000);
   }).
   /*
@@ -149,7 +148,7 @@ ptor.get("http://localhost:3000/test/compare.html?gpml=WP2545").
   //*/
   then(function() {
     console.log('************** running interactions rendering test protocol...');
-    ptor.get("http://localhost:3000/test/compare.html?gpml=WP2557");
+    ptor.get(baseUrl + "test/compare.html?gpml=WP2557");
     return ptor.wait(forElementToBePresent(by.css('#pathvisiojs-is-loaded')), 30 * 1000);
   }).
 /*
@@ -172,7 +171,7 @@ ptor.get("http://localhost:3000/test/compare.html?gpml=WP2545").
     /*
   then(function() {
     console.log('************** running curves rendering test protocol...');
-    ptor.get("http://localhost:3000/test/compare.html?gpml=WP2546");
+    ptor.get(baseUrl + "test/compare.html?gpml=WP2546");
   }).
   then(function() {
     return ptor.wait(forElementToBePresent(by.css('#pathvisiojs-is-loaded')), 30 * 1000);
@@ -194,7 +193,7 @@ ptor.get("http://localhost:3000/test/compare.html?gpml=WP2545").
   }).
   then(function() {
     console.log('************** running elbows rendering test protocol...');
-    ptor.get("http://localhost:3000/test/compare.html?gpml=WP2548");
+    ptor.get(baseUrl + "test/compare.html?gpml=WP2548");
   }).
   then(function() {
     return ptor.wait(forElementToBePresent(by.css('#pathvisiojs-is-loaded')), 30 * 1000);
@@ -217,7 +216,7 @@ ptor.get("http://localhost:3000/test/compare.html?gpml=WP2545").
   //*/
   then(function() {
     console.log('************** running groups rendering test protocol...');
-    ptor.get("http://localhost:3000/test/compare.html?gpml=WP2551");
+    ptor.get(baseUrl + "test/compare.html?gpml=WP2551");
     return ptor.wait(forElementToBePresent(by.css('#pathvisiojs-is-loaded')), 30 * 1000);
   }).
   then(function() {
@@ -267,7 +266,7 @@ ptor.get("http://localhost:3000/test/compare.html?gpml=WP2545").
   }).
   then(function() {
     console.log('************** attempting to render pathway "WP1"...');
-    ptor.get("http://localhost:3000/test/compare.html?gpml=WP1");
+    ptor.get(baseUrl + "test/compare.html?gpml=WP1");
     return ptor.wait(forElementToBePresent(by.css('#pathvisiojs-is-loaded')), 30 * 1000);
   }).
     /* even though this is actually working, the test fails. not sure how to test for
