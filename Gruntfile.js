@@ -1,4 +1,7 @@
-var selectedConfigFileName = 'default';
+var selectedConfigFileName = 'localhost';
+//var selectedConfigFileName = 'default';
+//var selectedConfigFileName = 'www-wikipathways-org';
+//var selectedConfigFileName = 'test3-wikipathways-org';
 var pvjsSources = [
   'tmp/pathvisiojs.js', //we only use this one in the Gruntfile, not in development mode in test/compare.js,
   'src/js/pathvisiojs/pathvisio.js',
@@ -29,7 +32,6 @@ var pvjsSources = [
   'src/js/pathvisiojs/view/annotation/citation.js',
   'src/js/pathvisiojs/view/annotation/x-ref.js',
   'src/js/pathvisiojs/view/pathway-diagram/pathway-diagram.js',
-  'src/js/pathvisiojs/view/pathway-diagram/path-finder.js',
   'src/js/pathvisiojs/view/pathway-diagram/svg/svg.js',
   'src/js/pathvisiojs/view/pathway-diagram/svg/grid.js',
   'src/js/pathvisiojs/view/pathway-diagram/svg/info-box.js',
