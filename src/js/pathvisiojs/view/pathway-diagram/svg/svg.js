@@ -259,6 +259,7 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
     }
 
     async.parallel({
+      /*
       'gridData': function(callbackInside) {
         var frame = {
           '@context': pathvisiojs.context,
@@ -272,6 +273,7 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
           });
         });
       },
+      //*/
       'firstOrderData': function(callbackInside) {
         var firstOrderFrame = {
           '@context': pathvisiojs.context,
