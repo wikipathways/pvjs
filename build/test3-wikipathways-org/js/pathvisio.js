@@ -1,5 +1,5 @@
 //! pathvisiojs 0.8.0
-//! Built on 2014-01-13
+//! Built on 2014-01-14
 //! https://github.com/wikipathways/pathvisiojs
 //! License: http://www.apache.org/licenses/LICENSE-2.0/
 
@@ -2845,7 +2845,10 @@ pathvisiojs.data.gpml = function(){
             '@type': 'GroupNode',
             'contains': {}
           };  
+          self.myPathway = pathway;
           jsonld.frame(pathway, groupsFrame, function(err, framedGroups) {
+            console.log('err');
+            console.log(err);
             console.log('framedGroups');
             console.log(framedGroups);
 
@@ -6747,7 +6750,7 @@ pathvisiojs.view.pathwayDiagram.svg.node = function(){
       return 'translate(' + element.x + ' ' + element.y + ')';
     })
     .attr("style", function (d) {
-      var style;
+      var style = '';
       if (d.hasOwnProperty('backgroundColor')) {
 	if (d.ShapeType == 'brace' || d.ShapeType == 'arc'){ 
 	  //Brace color is NOT for fill and should always be transparent
