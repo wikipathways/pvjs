@@ -1,3 +1,5 @@
+var module = {};
+var pvjsSources;
 function getUrlParam(name) {
 
   // Thanks to http://stackoverflow.com/questions/11582512/how-to-get-url-parameters-with-javascript
@@ -55,24 +57,6 @@ function loadScripts(array, callback){
   })();  
 }
 
-function loadJsCssFile(filename, filetype, callback){
-  if (filetype=='js') {
-    var fileref=document.createElement('script')
-    fileref.setAttribute('type','text/javascript')
-    fileref.setAttribute('src', filename)
-  }
-  else if (filetype=='css') {
-    var fileref=document.createElement('link')
-    fileref.setAttribute('rel', 'stylesheet')
-    fileref.setAttribute('type', 'text/css')
-    fileref.setAttribute('href', filename)
-  }
-  if (typeof fileref!='undefined') {
-    document.getElementsByTagName('head')[0].appendChild(fileref)
-  }
-  callback();
-}
-
 function updateParams(updatedParam) {
   var targetUrl = currentUrl + '?' + updatedParam.key + '=' + updatedParam.value;
 
@@ -101,103 +85,10 @@ function generateHtmlView(callback) {
   });
 }
 
-/*
- * moved this into compare.html
-function loadExtJsCss(callbackOutside) {
-  async.parallel([
-    function(callback) {
-    loadJsCssFile(srcDirectoryUrl + 'css/pathvisiojs.css', 'css', callback);
-  },
-  function(callback) {
-    loadJsCssFile(srcDirectoryUrl + 'css/annotation.css', 'css', callback);
-  },
-  function(callback) {
-    loadJsCssFile(srcDirectoryUrl + 'css/pan-zoom.css', 'css', callback);
-  },
-  function(callback) {
-    loadScripts([
-      srcDirectoryUrl + 'js/pathvisiojs/pathvisio.js',
-      //srcDirectoryUrl + '../config/default.js',
-      srcDirectoryUrl + '../config/devserver.js',
-      //srcDirectoryUrl + '../config/www.wikipathways.org.js',
-      //srcDirectoryUrl + '../config/test3.wikipathways.org.js',
-      srcDirectoryUrl + 'js/pathvisiojs/utilities.js',
-      srcDirectoryUrl + 'js/pathvisiojs/data/data.js',
-      srcDirectoryUrl + 'js/pathvisiojs/data/bridgedb/bridgedb.js',
-      srcDirectoryUrl + 'js/pathvisiojs/data/bridgedb/data-sources.js',
-      srcDirectoryUrl + 'js/pathvisiojs/data/biopax/biopax.js',
-      srcDirectoryUrl + 'js/pathvisiojs/data/gpml/gpml.js',
-      srcDirectoryUrl + 'js/pathvisiojs/data/gpml/element.js',
-      srcDirectoryUrl + 'js/pathvisiojs/data/gpml/text.js',
-      srcDirectoryUrl + 'js/pathvisiojs/data/gpml/namespaces.js',
-      srcDirectoryUrl + 'js/pathvisiojs/data/gpml/biopax-ref.js',
-      srcDirectoryUrl + 'js/pathvisiojs/data/gpml/node/node.js',
-      srcDirectoryUrl + 'js/pathvisiojs/data/gpml/node/group-node.js',
-      srcDirectoryUrl + 'js/pathvisiojs/data/gpml/node/entity-node/entity-node.js',
-      srcDirectoryUrl + 'js/pathvisiojs/data/gpml/node/entity-node/data-node.js',
-      srcDirectoryUrl + 'js/pathvisiojs/data/gpml/node/entity-node/label.js',
-      srcDirectoryUrl + 'js/pathvisiojs/data/gpml/node/entity-node/shape.js',
-      srcDirectoryUrl + 'js/pathvisiojs/data/gpml/node/anchor.js',
-      srcDirectoryUrl + 'js/pathvisiojs/data/gpml/edge/edge.js',
-      srcDirectoryUrl + 'js/pathvisiojs/data/gpml/edge/interaction.js',
-      srcDirectoryUrl + 'js/pathvisiojs/data/gpml/edge/graphical-line.js',
-      srcDirectoryUrl + 'js/pathvisiojs/data/gpml/edge/point.js',
-      srcDirectoryUrl + 'js/pathvisiojs/view/view.js',
-      srcDirectoryUrl + 'js/pathvisiojs/view/annotation/annotation.js',
-      srcDirectoryUrl + 'js/pathvisiojs/view/annotation/citation.js',
-      srcDirectoryUrl + 'js/pathvisiojs/view/annotation/x-ref.js',
-      srcDirectoryUrl + 'js/pathvisiojs/view/pathway-diagram/pathway-diagram.js',
-      srcDirectoryUrl + 'js/pathvisiojs/view/pathway-diagram/path-finder.js',
-      srcDirectoryUrl + 'js/pathvisiojs/view/pathway-diagram/svg/svg.js',
-      srcDirectoryUrl + 'js/pathvisiojs/view/pathway-diagram/svg/grid.js',
-      srcDirectoryUrl + 'js/pathvisiojs/view/pathway-diagram/svg/info-box.js',
-      srcDirectoryUrl + 'js/pathvisiojs/view/pathway-diagram/svg/symbol.js',
-      srcDirectoryUrl + 'js/pathvisiojs/view/pathway-diagram/svg/publication-xref.js',
-      srcDirectoryUrl + 'js/pathvisiojs/view/pathway-diagram/svg/node/node.js',
-      srcDirectoryUrl + 'js/pathvisiojs/view/pathway-diagram/svg/node/anchor.js',
-      srcDirectoryUrl + 'js/pathvisiojs/view/pathway-diagram/svg/node/entity-node.js',
-      srcDirectoryUrl + 'js/pathvisiojs/view/pathway-diagram/svg/node/path-shape/path-shape.js',
-      srcDirectoryUrl + 'js/pathvisiojs/view/pathway-diagram/svg/node/path-shape/rounded-rectangle.js',
-      srcDirectoryUrl + 'js/pathvisiojs/view/pathway-diagram/svg/node/path-shape/rounded-rectangle-double.js',
-      srcDirectoryUrl + 'js/pathvisiojs/view/pathway-diagram/svg/node/path-shape/oval-double.js',
-      srcDirectoryUrl + 'js/pathvisiojs/view/pathway-diagram/svg/node/path-shape/complex.js',
-      srcDirectoryUrl + 'js/pathvisiojs/view/pathway-diagram/svg/node/path-shape/endoplasmic-reticulum.js',
-      srcDirectoryUrl + 'js/pathvisiojs/view/pathway-diagram/svg/node/path-shape/sarcoplasmic-reticulum.js',
-      srcDirectoryUrl + 'js/pathvisiojs/view/pathway-diagram/svg/node/path-shape/golgi-apparatus.js',
-      srcDirectoryUrl + 'js/pathvisiojs/view/pathway-diagram/svg/node/path-shape/mitochondria.js',
-      srcDirectoryUrl + 'js/pathvisiojs/view/pathway-diagram/svg/node/path-shape/arc.js',
-      srcDirectoryUrl + 'js/pathvisiojs/view/pathway-diagram/svg/node/path-shape/brace.js',
-      srcDirectoryUrl + 'js/pathvisiojs/view/pathway-diagram/svg/node/path-shape/grid-square.js',
-      srcDirectoryUrl + 'js/pathvisiojs/view/pathway-diagram/svg/node/path-shape/hexagon.js',
-      srcDirectoryUrl + 'js/pathvisiojs/view/pathway-diagram/svg/node/path-shape/mim-degradation.js',
-      srcDirectoryUrl + 'js/pathvisiojs/view/pathway-diagram/svg/node/path-shape/none.js',
-      srcDirectoryUrl + 'js/pathvisiojs/view/pathway-diagram/svg/node/path-shape/oval.js',
-      srcDirectoryUrl + 'js/pathvisiojs/view/pathway-diagram/svg/node/path-shape/pentagon.js',
-      srcDirectoryUrl + 'js/pathvisiojs/view/pathway-diagram/svg/node/path-shape/rectangle.js',
-      srcDirectoryUrl + 'js/pathvisiojs/view/pathway-diagram/svg/node/path-shape/triangle.js',
-      srcDirectoryUrl + 'js/pathvisiojs/view/pathway-diagram/svg/node/text.js',
-      srcDirectoryUrl + 'js/pathvisiojs/view/pathway-diagram/svg/node/group-node.js',
-      srcDirectoryUrl + 'js/pathvisiojs/view/pathway-diagram/svg/node/use-element.js',
-      srcDirectoryUrl + 'js/pathvisiojs/view/pathway-diagram/svg/edge/edge.js',
-      srcDirectoryUrl + 'js/pathvisiojs/view/pathway-diagram/svg/edge/graphical-line.js',
-      srcDirectoryUrl + 'js/pathvisiojs/view/pathway-diagram/svg/edge/interaction.js',
-      srcDirectoryUrl + 'js/pathvisiojs/view/pathway-diagram/svg/edge/marker.js',
-      srcDirectoryUrl + 'js/pathvisiojs/view/pathway-diagram/svg/edge/point.js',
-      srcDirectoryUrl + 'js/pathvisiojs/view/pathway-diagram/svg/edge/path-data.js',
-      srcDirectoryUrl + 'js/pathvisiojs/view/pathway-diagram/png/png.js'
-    ],
-    function(){
-      callback(null);
-    });
-  }
-  ],
-  function(err, results){
-    callbackOutside();
-  })
-}
-//*/
-
 var urlParamList = getUrlParamList();
+
+var hostname = decodeURI(window.location.hostname);
+
 var currentUrl = document.location;
 var pathvisiojsRootDirectoryUrl = document.location.pathname.split('test/compare.html')[0];
 var srcDirectoryUrl = (pathvisiojsRootDirectoryUrl + 'src/');
@@ -206,6 +97,7 @@ var srcDirectoryUrl = (pathvisiojsRootDirectoryUrl + 'src/');
   Load UI for this test/dev comparison page 
 /********************************************/
 
+var pathvisiojs = pathvisiojs || {};
 var pathvisioNS;
 var gpmlUrl;
 window.onload = function() {
@@ -214,18 +106,55 @@ window.onload = function() {
     $('#svg-disabled').prop('checked', true);
   }
 
-  async.parallel([
+  async.series([
     function(callback) {
-    pathvisioNS = [];
-    generateHtmlView(function() {
-      callback(null);
-    });
-  }/*,
-  function(callback) {
-    loadExtJsCss(function() {
-      callback(null);
-    });
-  }//*/],
+      var gruntFileUrl = '../Gruntfile.js'; // just for testing/development purposes
+      loadScripts([gruntFileUrl], function() {
+        callback(null);
+      });
+    },
+    function(callback) {
+      pathvisioNS = [];
+      generateHtmlView(function() {
+        callback(null);
+      });
+    },
+    function(callback) {
+      var pvjsSourcesDev = pvjsSources.slice(1); //this file is only used in the build process
+
+      // In dev mode, different servers will use different configs.
+      // The code below sets this config file.
+      // For production, we will use default.js for our default config settings and
+      // optionally build other versions as needed if we need a built version that
+      // doesn't use the config settings in default.js.
+      var serverSpecificJsConfigFileName;
+      var regDomainPattern = /^(?!:\/\/)([a-zA-Z0-9]+\.)?[a-zA-Z0-9][a-zA-Z0-9-]+\.[a-zA-Z]{2,6}?$/i
+      var regexResult = regDomainPattern.exec(hostname);
+      if (!!regexResult) {
+        // www is the same as a bare domain for our purposes, e.g., www.example.org === example.org
+        if (!!regexResult[1]) {
+          serverSpecificJsConfigFileName = regexResult[0];
+        }
+        else {
+          serverSpecificJsConfigFileName = 'www.' + regexResult[0];
+        }
+      }
+      else { //if it's an IP address, just use localhost
+        serverSpecificJsConfigFileName = 'localhost';
+      }
+
+      serverSpecificJsConfigFileName = strcase.paramCase(serverSpecificJsConfigFileName);
+      pvjsSourcesDev[1] = 'config/' + serverSpecificJsConfigFileName + '.js';
+
+      pvjsSourcesDev = pvjsSourcesDev.map(function(source) {
+        return '../' + source;
+      });
+
+      loadScripts(pvjsSourcesDev, function() {
+        callback(null);
+      });
+    }
+  ],
   function(err) {
     // Specify an image for each semantic element you would like to customize.
     // If no image is specified for a semantic element, the default will be used.
@@ -238,7 +167,9 @@ window.onload = function() {
       }
     ];
 //*/
-    var customMarkers = self.customMarkers = [
+        console.log('pathvisiojs.config.bridgedbLinkOutsUrlStub()');
+        console.log(pathvisiojs.config.bridgedbLinkOutsUrlStub());
+    var customMarkers = [
       {
         'semanticName': 'arrow',
         //'url': 'http://wikipathways.org/skins/common/images/poweredby_mediawiki_88x31.png' // can use PNG or SVG
@@ -425,3 +356,5 @@ var getPathvisiojsHtmlTemplate = function() {
   });
   return d3.select('#pathvisio-js-container')[0][0];
 }
+
+

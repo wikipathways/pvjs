@@ -53,7 +53,7 @@ pathvisiojs.view.pathwayDiagram.svg.edge = function(){
     console.log('markerEndName in edge');
     console.log(markerEndName);
     //*/
-
+    /*
     var createPathDataString = d3.svg.line()
     .x(function(data) { return data.x; })
     .y(function(data) { return data.y; });
@@ -72,7 +72,7 @@ pathvisiojs.view.pathwayDiagram.svg.edge = function(){
       stepType = gpmlConnectorTypeToD3StepTypeMapping[data.ConnectorType];
     }
     createPathDataString.interpolate(stepType);
-
+    //*/
     var edge,
       stroke = data.stroke,
       markerStartAttributeValue,
@@ -148,6 +148,7 @@ pathvisiojs.view.pathwayDiagram.svg.edge = function(){
         .enter().insert("path", ":first-child") // TODO this may cause problems in the future if we have groups with fully opaque backgrounds
         callback(null, edge);
       },
+      /*
       'convertedPointSet': function(callback) {
         var index, firstSegmentHorizontal, currentSegmentHorizontal, convertedPointSet;
 
@@ -236,6 +237,8 @@ pathvisiojs.view.pathwayDiagram.svg.edge = function(){
       }
     },
     function(err, results) {
+    //*/
+    'path': function() {
       edge.attr("id", edgeId)
       .attr("marker-start", markerStartAttributeValue)
       .attr("marker-end", markerEndAttributeValue)
@@ -253,7 +256,7 @@ pathvisiojs.view.pathwayDiagram.svg.edge = function(){
       })
       .attr("fill", 'none')
       .attr("d", function (data) {
-        return createPathDataString(results.convertedPointSet);
+        return pathvisiojs.view.pathwayDiagram.svg.edge.path.getPath(data); //createPathDataString(results.convertedPointSet);
       });
 
      /****************** 
@@ -275,9 +278,9 @@ pathvisiojs.view.pathwayDiagram.svg.edge = function(){
       else {
         callback(edge);
       }
-
-    });
-  }
+    }
+   }); //close async
+  } //close function
 
   /*
   function renderAll(viewport, pathway) {
