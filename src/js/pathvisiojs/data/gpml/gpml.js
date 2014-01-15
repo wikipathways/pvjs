@@ -222,7 +222,7 @@ pathvisiojs.data.gpml = function(){
                 '@type': '@id'
               },
               //*/
-              'tspan': {
+              'line': {
                 '@id': 'svg:text.html#TSpanElement',
                 '@container': '@set'
               },

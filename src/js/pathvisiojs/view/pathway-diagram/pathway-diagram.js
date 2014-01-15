@@ -180,6 +180,8 @@ pathvisiojs.view.pathwayDiagram = function(){
           },
           function(err, results){
             svg = results.preloadSvg,
+            console.log('svg');
+            console.log(svg);
             pathway = results.pathway;
 
             loadDiagramArgs.svg = svg;
@@ -195,7 +197,7 @@ pathvisiojs.view.pathwayDiagram = function(){
                 if (pathway.hasOwnProperty('DataNode')) {
                   pathway.DataNode.forEach(function(node) {
                     if (!!node.text) {
-                      nodeLabels.push(node.text.tspan[0]);
+                      nodeLabels.push(node.text.line[0]);
                     }
                   });
 
@@ -222,7 +224,7 @@ pathvisiojs.view.pathwayDiagram = function(){
                 // see http://api.jquery.com/bind/
                 // TODO get selected value better and make function to handle
 
-                $( "#highlight-by-label-input" ).bind( "typeahead:selected", function() {
+                $( "#highlight-by-label-input" ).bind("typeahead:selected", function() {
                   nodeLabel = $("#highlight-by-label-input").val();
                   if (!nodeLabel) {
                     throw new Error("No data node value entered for type-ahead node highlighter.");
