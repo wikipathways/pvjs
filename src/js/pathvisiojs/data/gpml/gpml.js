@@ -524,7 +524,7 @@ pathvisiojs.data.gpml = function(){
             console.log(err);
             console.log('framedGroups');
             console.log(framedGroups);
-
+	  var unique = [];
           framedGroups['@graph'].forEach(function(jsonGroup) {
             // Some GPML files contain empty groups due to a PathVisio-Java bug. They are deleted
             // here because only groups that pass the test (!!jsonGroup.contains) are added to
@@ -539,8 +539,11 @@ pathvisiojs.data.gpml = function(){
                 jsonGroup.width = dimensions.width;
                 jsonGroup.height = dimensions.height;
                 pathvisiojs.data.gpml.element.node.getPorts(jsonGroup, function(ports) {
+		 if (unique.indexOf(jsonGroup.GroupId) == -1) { //exclude duplicates
                   jsonGroup.Port = ports;
                   jsonGroups.push(jsonGroup);
+		  unique.push(jsonGroup.GroupId);
+		 }
                 });
               });
             }
