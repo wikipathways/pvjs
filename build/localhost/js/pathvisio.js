@@ -153,6 +153,7 @@ var pathvisiojs = function(){
 
 "use strict";
 
+var pathvisiojs = pathvisiojs || {};
 pathvisiojs.config = function() {
   var gpmlSourceUriStub = function() {
     if(typeof console !== "undefined") {
@@ -162,7 +163,7 @@ pathvisiojs.config = function() {
   }
 
   var bridgedbLinkOutsUrlStub = function() {
-    return '../external-data/bridgedb/bridgedb.php/';
+    return 'http://pointer.ucsf.edu/d3/r/data-sources/bridgedb/bridgedb.php/';
   }
 
   var bridgedbDatasources = function() {
