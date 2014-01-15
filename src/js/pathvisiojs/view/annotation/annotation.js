@@ -21,7 +21,7 @@ pathvisiojs.view.annotation = function(){
 
     var detailsSearchUri = annotation.select('#annotation-header-search').select('a')
     .attr('href', function(d) {
-    	return 'http://wikipathways.org//index.php?title=Special:SearchPathways&doSearch=1&query=' + d.header;
+    	return pathvisiojs.config.pathwaySearchUriStub() + d.header;
      })
      .attr('title', function(d) {return 'Search for pathways containing ' + d.header; });
 
