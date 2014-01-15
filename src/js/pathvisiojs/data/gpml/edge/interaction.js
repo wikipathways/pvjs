@@ -97,7 +97,7 @@ pathvisiojs.data.gpml.edge.interaction = function(){
           if (!!sourceId) {
             source = gpml.querySelector('[GraphId=' + sourceId + ']');
             if (source.tagName === 'Anchor') {
-              sourceId = source.parentElement.parentElement.getAttribute('GraphId');
+              sourceId = source.parentNode.parentNode.getAttribute('GraphId');
             }
             else {
               if (source.tagName === 'Group') {
@@ -111,7 +111,7 @@ pathvisiojs.data.gpml.edge.interaction = function(){
           if (!!targetId) {
             target = gpml.querySelector('[GraphId=' + targetId + ']');
             if (target.tagName === 'Anchor') {
-              targetId = target.parentElement.parentElement.getAttribute('GraphId');
+              targetId = target.parentNode.parentNode.getAttribute('GraphId');
             }
             else {
               if (target.tagName === 'Group') {

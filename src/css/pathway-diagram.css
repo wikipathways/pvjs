@@ -137,7 +137,7 @@
 		stroke: gray;
 		stroke-miterlimit: 1;
 		stroke-width: 1px;
-    		pointer-events:none;
+    		pointer-events:auto;
 	}
 
 	.group-node {
@@ -145,7 +145,7 @@
 		stroke: gray;
 		stroke-miterlimit: 1;
 		stroke-width: 1px;
-    		pointer-events:none;
+    		pointer-events:auto;
 	}
 
 	.group-node > .text-area {
@@ -155,12 +155,7 @@
 		fill: black;
 		stroke-width: 0;
 		font-weight: bold;
-  }
-
-	.group-node:hover {
-		fill-opacity: 0.2;
-		stroke-width: 1px;
-	}
+  	}	
 
 	.group-node.none {
 		fill: rgb(180,180,100);
@@ -169,7 +164,12 @@
 
 	.group-node.none > .text-area {
 		display: none;
-  }
+  	}	
+
+	.group-node.none:hover {
+		fill: rgb(255,0,0);
+		fill-opacity: 0.05;
+	}
 
 	.group-node.group {
 		fill-opacity: 0;
@@ -178,7 +178,14 @@
 
 	.group-node.group > .text-area {
 		display: none;
-  }
+  	}
+	.group-node.group:hover {
+		fill: rgb(0,0,255);
+		stroke-width: 1px;
+		stroke-dasharray: 5,3;
+		stroke: gray;
+		fill-opacity: 0.1;
+	}
 
 	.group-node.complex {
 		fill: rgb(180,180,100);
@@ -186,13 +193,20 @@
 
 	.group-node.complex > .text-area {
 		display: none;
-  }
+  	}
+	.group-node.complex:hover {
+		fill: rgb(255,0,0);
+		fill-opacity: 0.05;
+	}	
 
-  .group-node.pathway {
-		fill: lightgreen;
+  	.group-node.pathway {
+		fill: rgb(0,255,0);
 		stroke-dasharray: 5,3;
 	}
-
+	.group-node.pathway:hover {
+		fill: rgb(0,255,0);
+		fill-opacity: 0.2;
+	}
 	.group-node.pathway > .text-area {
 		fill: rgb(20,150,30);
 		stroke: rgb(20,150,30);
