@@ -177,12 +177,14 @@ pathvisiojs.view.pathwayDiagram.svg.node = function(){
     return port;
   }
 
+
   function highlightByLabel(svg, pathway, nodeLabel) {
+    var svg = d3.selectAll('#pathway-svg');
     svg.selectAll('.highlighted-node').remove();
-    var dataNodesWithText = pathway.elements.filter(function(d, i) {return d.nodeType === 'data-node' && (!!d.textLabel);});
-    var selectedNodes = dataNodesWithText.filter(function(d, i) {return d.textLabel.text.indexOf(nodeLabel) !== -1;});
+    var allDataNodesWithText = pathway.DataNode.filter(function(d, i) {return (!!d.text);});
+    var selectedNodes = allDataNodesWithText.filter(function(d, i) {return d.text.line.indexOf(nodeLabel) !== -1;});
     selectedNodes.forEach(function(node) {
-      var nodeDomElement = svg.select('#node-' + node.id);
+      var nodeDomElement = svg.select('#node-container-pathway-iri-' + node.GraphId);
       var height = nodeDomElement[0][0].getBBox().height;
       var width = nodeDomElement[0][0].getBBox().width;
       nodeDomElement.append('rect')
@@ -192,7 +194,8 @@ pathvisiojs.view.pathwayDiagram.svg.node = function(){
       .attr('width', width + 5)
       .attr('height', height + 5);
     });
-  }
+  }  
+
   return {
     //renderAll:renderAll,
     render:render,
