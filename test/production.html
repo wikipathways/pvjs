@@ -107,7 +107,6 @@
   <!--
   <script src="../lib/jsonld.js/js/rdfa.js"></script>
   -->
-  <script src="../build/js/pathvisio.min.js"></script>
   <script>
 
     /* *******************
@@ -139,8 +138,7 @@
         'creator': 'pathvisio-js-dev',
         'account': '',
         'branch': ''
-        };
-
+      };
       Object.keys(urlParamList).forEach(function(element) {
         if (!!getUrlParam(element)) {
           urlParamList[element] = getUrlParam(element);
@@ -149,8 +147,28 @@
           $('#' + element).val(urlParamList[element]);
         }, 50)
       });
-
       return urlParamList;
+    }
+
+    function loadJsCssFile(filename, filetype, callback){
+      var fileref;
+      if (filetype=='js') {
+        fileref=document.createElement('script')
+        fileref.setAttribute('type','text/javascript')
+        fileref.setAttribute('src', filename)
+      }
+      else if (filetype=='css') {
+        fileref=document.createElement('link')
+        fileref.setAttribute('rel', 'stylesheet')
+        fileref.setAttribute('type', 'text/css')
+        fileref.setAttribute('href', filename)
+      }
+      if (typeof fileref!='undefined') {
+        document.getElementsByTagName('head')[0].appendChild(fileref)
+      }
+      fileref.onload = function() {
+        callback();
+      }
     }
 
     function updateParams(updatedParam) {
@@ -168,25 +186,63 @@
       location.href = targetUrl;
     }
 
-    var urlParamList = getUrlParamList();
-    var currentUrl = document.location.origin + document.location.pathname;
-    var pathvisiojsRootDirectoryUrl = document.location.origin + document.location.pathname.split('test/compare.html')[0];
-    var srcDirectoryUrl = (pathvisiojsRootDirectoryUrl + 'src/');
+    async.waterfall([
+      function(callback) {
+        var urlParamList = getUrlParamList();
+        var currentUrl = document.location.origin + document.location.pathname;
+        var hostname = decodeURI(window.location.hostname);
+        var pathvisiojsRootDirectoryUrl = document.location.origin + document.location.pathname.split('test/compare.html')[0];
+        var srcDirectoryUrl = (pathvisiojsRootDirectoryUrl + 'src/');
 
-    /* *******************
-    /* Load pathvisiojs
-    /* *******************/
+        var serverSpecificBuiltFileDirectory;
+        var regDomainPattern = /^(?!:\/\/)([a-zA-Z0-9]+\.)?[a-zA-Z0-9][a-zA-Z0-9-]+\.[a-zA-Z]{2,6}?$/i
+        var regexResult = regDomainPattern.exec(hostname);
+        if (!!regexResult) {
+          // www is the same as a bare domain for our purposes, e.g., www.example.org === example.org
+          if (!!regexResult[1]) {
+            serverSpecificBuiltFileDirectory = regexResult[0];
+          }
+          else {
+            serverSpecificBuiltFileDirectory = 'www.' + regexResult[0];
+          }
+        }
+        else { //if it's an IP address, just use localhost
+          serverSpecificBuiltFileDirectory = 'localhost';
+        }
 
-    // TODO this could malfunction if "window.onload" gets defined elsewhere on the page.
-    window.onload = function() {
-      pathvisiojs.load({
-        container: '#production-container', //as of now, this can only be a CSS selector: http://www.w3.org/TR/CSS2/selector.html
-        width: 1000,
-        height: 500,
-        fitToContainer:true, //A fitToContainer value of false means that the diagram should be the size specified by the diagram creator, without any scaling (full size as per GPML width and height). A value of true means that diagram should be scaled down, if required, to fit entirely within the element specified by the container selector, while preserving aspect ratio. 
-        data: urlParamList.gpml
-      });
-    }
+        serverSpecificBuiltFileDirectory = '../build/' + strcase.paramCase(serverSpecificBuiltFileDirectory) + '/js/pathvisio.min.js';
+        loadJsCssFile(serverSpecificBuiltFileDirectory, 'js', function() {
+          callback(null, urlParamList);
+        });
+      },    
+      function(urlParamList, callback) {
+        /* *******************
+        /* Load pathvisiojs
+        /* *******************/
+
+        pathvisiojs.load({
+          container: '#production-container', //as of now, this can only be a CSS selector: http://www.w3.org/TR/CSS2/selector.html
+          width: 400,
+          height: 300,
+          fitToContainer:true, //A fitToContainer value of false means that the diagram should be the size specified by the diagram creator, without any scaling (full size as per GPML width and height). A value of true means that diagram should be scaled down, if required, to fit entirely within the element specified by the container selector, while preserving aspect ratio. 
+          data: urlParamList.gpml,
+          //gpmlRev: urlParamList.gpmlRev,
+          //cssUrl: srcDirectoryUrl + 'css/pathway-diagram.css',
+          //customMarkers: customMarkers,
+          //customSymbols: customSymbols,
+          highlightNodes: [
+            {'parameter': 'label', 'parameterValue': 'CRH', 'color': 'red'},
+            {'parameter': 'xref', 'parameterValue': '8525,Entrez%20Gene', 'color': '#FF0000'}
+          ],
+          hiddenElements: [
+            'find',
+            'wikipathways-link'
+          ]
+        });
+
+        callback(null);
+      }    
+    ]);
   </script>
 
 </body>
