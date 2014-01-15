@@ -9,8 +9,6 @@ Demos
 =====
 
 * [gh-pages](http://wikipathways.github.io/pathvisiojs/test/)
-* [Widget example on JSFiddle](http://jsfiddle.net/RzeKd/2/) (outdated/still works)
-* [JSBin](http://jsbin.com/iJUTEjU/latest) (outdated/not-working)
 
 Installing
 ===================
@@ -104,4 +102,10 @@ License
    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
    See the License for the specific language governing permissions and
    limitations under the License.
-
+   
+   
+Funding
+=======
+* The National Institute for General Medical Sciences [R01-GM100039](http://www.nigms.nih.gov/)
+* The BioRange program of the Netherlands [Bioinformatics Centre](http://www.nbic.nl/)
+* [University Maastricht](http://www.unimaas.nl/default.asp?taal=en): Broad Research Strategy Program Part 2 (BOS2) 
