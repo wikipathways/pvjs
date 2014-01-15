@@ -158,7 +158,7 @@ pathvisiojs.config = function() {
     if(typeof console !== "undefined") {
       console.warn('WikiPathways does not yet support CORS, so until we get CORS support, we are using Pointer as a proxy to enable CORS for getting GPML.');
     }
-    return 'http://pointer.ucsf.edu/d3/r/data-sources/gpml.php?id=';
+    return '../external-data/bridgedb/gpml.php?id=';
   }
 
   var bridgedbLinkOutsUrlStub = function() {
@@ -2549,7 +2549,7 @@ pathvisiojs.data.gpml = function(){
                 '@type': '@id'
               },
               //*/
-              'tspan': {
+              'line': {
                 '@id': 'svg:text.html#TSpanElement',
                 '@container': '@set'
               },
@@ -2851,7 +2851,7 @@ pathvisiojs.data.gpml = function(){
             console.log(err);
             console.log('framedGroups');
             console.log(framedGroups);
-
+	  var unique = [];
           framedGroups['@graph'].forEach(function(jsonGroup) {
             // Some GPML files contain empty groups due to a PathVisio-Java bug. They are deleted
             // here because only groups that pass the test (!!jsonGroup.contains) are added to
@@ -2866,8 +2866,11 @@ pathvisiojs.data.gpml = function(){
                 jsonGroup.width = dimensions.width;
                 jsonGroup.height = dimensions.height;
                 pathvisiojs.data.gpml.element.node.getPorts(jsonGroup, function(ports) {
+		 if (unique.indexOf(jsonGroup.GroupId) == -1) { //exclude duplicates
                   jsonGroup.Port = ports;
                   jsonGroups.push(jsonGroup);
+		  unique.push(jsonGroup.GroupId);
+		 }
                 });
               });
             }
@@ -3204,7 +3207,7 @@ pathvisiojs.data.gpml.text = function() {
       if (!!text) {
         jsonText = {};
         jsonText['@id'] = ('id' + uuid.v4());
-        jsonText.tspan = text.split(/\r\n|\r|\n|&#xA;/g);
+        jsonText.line = text.split(/\r\n|\r|\n|&#xA;/g);
 
         var graphics = gpmlNode.select('Graphics');
         var textAlign, fontStyle, fontWeight, fontSize, fontFamily;
@@ -5183,6 +5186,8 @@ pathvisiojs.view.pathwayDiagram = function(){
           },
           function(err, results){
             svg = results.preloadSvg,
+            console.log('svg');
+            console.log(svg);
             pathway = results.pathway;
 
             loadDiagramArgs.svg = svg;
@@ -5198,7 +5203,7 @@ pathvisiojs.view.pathwayDiagram = function(){
                 if (pathway.hasOwnProperty('DataNode')) {
                   pathway.DataNode.forEach(function(node) {
                     if (!!node.text) {
-                      nodeLabels.push(node.text.tspan[0]);
+                      nodeLabels.push(node.text.line[0]);
                     }
                   });
 
@@ -5225,7 +5230,7 @@ pathvisiojs.view.pathwayDiagram = function(){
                 // see http://api.jquery.com/bind/
                 // TODO get selected value better and make function to handle
 
-                $( "#highlight-by-label-input" ).bind( "typeahead:selected", function() {
+                $( "#highlight-by-label-input" ).bind("typeahead:selected", function() {
                   nodeLabel = $("#highlight-by-label-input").val();
                   if (!nodeLabel) {
                     throw new Error("No data node value entered for type-ahead node highlighter.");
@@ -5268,677 +5273,6 @@ pathvisiojs.view.pathwayDiagram = function(){
 }();
 
      
-;
-
-pathvisiojs.view.pathwayDiagram.pathFinder = function(){
-
-  /*  Linear algebra conventions call for specifying an element of a matrix as row #, column #.
-   *  The rows and columns use one-based indexing. Example: Element.1,2 is the element in the first row and the second column.
-   *  The code in PathFinding.js uses x to refer to column # and y to refer to row #.
-   *  JavaScript uses zero-based indexing for matrices. Example: matrix[0][1] refers to the element in the first row and the second column.
-   *  This code will follow the PathFinding.js conventions and use zero-based indexing,
-   *  so be careful to note this may differ from linear algebra conventions.
-   * */
-
-  function initGrid(nodes, pathwayImageWidth, pathwayImageHeight, callback) {
-    var gridData = {}
-    nodes = d3.select(nodes).sort(function(node1, node2) {
-      Math.min(node1.height, node1.width) - Math.min(node2.height, node2.width);
-    })[0][0];
-    gridData.squareLength = Math.min(nodes[0].height, nodes[0].width) / 14;
-
-    // Here we set how much padding to place around the EntityNodes, in units of grid squares.
-    // TODO change the static value of 12 to be a calculated value equal to the
-    // largest dimension of a marker in the diagram.
-    //
-    // Curves need more padding than elbows do. Elbows look OK when padding is just
-    // larger than the marker size, but curves slope down, so the padding needs to be
-    // closer to twice the marker size for the marker to look properly connected to
-    // the curve.
-
-    gridData.padding = Math.ceil(22 / gridData.squareLength);
-    var currentRow, currentColumn;
-    gridData.totalColumnCount = Math.ceil(pathwayImageWidth/gridData.squareLength);
-    gridData.totalRowCount = Math.ceil(pathwayImageHeight/gridData.squareLength);
-
-    generateEntirelyWalkableMatrix(gridData.totalRowCount, gridData.totalColumnCount, function(entirelyWalkableMatrix) {
-      // need this to generate path data as last resort when populated grids do not result in a path
-
-      gridData.emptyGrid = new PF.Grid(gridData.totalColumnCount, gridData.totalRowCount, entirelyWalkableMatrix);
-      gridData.entirelyWalkableMatrix = entirelyWalkableMatrix;
-      callback(gridData);
-    });
-  }
-
-  function getPath(svg, edge, callbackOutside) {
-    //*
-    console.log('svg in path-finder');
-    console.log(svg);
-    console.log('edge in path-finder');
-    console.log(edge);
-    console.log('callbackOutside in path-finder');
-    console.log(callbackOutside);
-    //*/
-
-    var gridData = svg[0][0].pathvisiojs.gridData;
-    var workingGrid;
-
-    var Point = edge.Point;
-    var pointStart = Point[0];
-    var pointEnd = Point[Point.length - 1];
-    var startLocation = xYCoordinatesToMatrixLocation(pointStart.x, pointStart.y, gridData.squareLength);
-    var endLocation = xYCoordinatesToMatrixLocation(pointEnd.x, pointEnd.y, gridData.squareLength);
-    var finder = new PF.BiBreadthFirstFinder({
-      allowDiagonal: false,
-      dontCrossCorners: true
-    });
-
-    // TODO need to rethink this wrt to reactions and other ways of
-    // doing the data structure where we may have more than just a
-    // source and a target
-
-    var edgeGraphRefNodes = [];
-    var targetNode;
-    if (edge.hasOwnProperty('InteractionGraph')) {
-      edgeGraphRefNodes.push(edge.InteractionGraph[0]);
-      if (edge.InteractionGraph.length === 1) {
-        targetNode = edge.InteractionGraph[0].interactsWith;
-      }
-      else {
-        targetNode = edge.InteractionGraph[edge.InteractionGraph.length - 1];
-      }
-      if (!!targetNode) {
-        edgeGraphRefNodes.push(targetNode);
-      }
-    }
-
-    // TODO this handles both graphicalLines and Interactions for now, but it's a little clumsy.
-    // 2013-12-17: I don't remember why it needs to be different for graphicalLines vs Interactions.
-
-    var pathData = [];
-    async.waterfall([
-      function(callback){
-        generateGrid(gridData, edgeGraphRefNodes, null, function(grid) {
-          callback(null, grid);
-        });
-      },
-      function(grid, callback){
-        workingGrid = grid;
-        /*
-        console.log('workingGrid');
-        console.log(workingGrid);
-        console.log('finder');
-        console.log(finder);
-        console.log('Point');
-        console.log(Point);
-        console.log('pointStart');
-        console.log(pointStart);
-        console.log('pointEnd');
-        console.log(pointEnd);
-        console.log('startLocation');
-        console.log(startLocation);
-        console.log('endLocation');
-        console.log(endLocation);
-        //*/
-        runPathFinder(workingGrid,
-          finder,
-          Point,
-          pointStart,
-          pointEnd,
-          startLocation,
-          endLocation,
-          gridData.squareLength,
-          function(data) {
-            pathData = data;
-            callback(null);
-          }
-        );
-      },
-      function(callback){
-
-        // graphicalLines will have pathData = [],
-        // Interactions will have pathData = [startPoint, endPoint] if the nodes
-        // block a real path from being found.
-
-        if (pathData.length < 3) {
-          workingGrid = gridData.emptyGrid.clone();
-          runPathFinder(workingGrid,
-            finder,
-            Point,
-            pointStart,
-            pointEnd,
-            startLocation,
-            endLocation,
-            gridData.squareLength,
-            function(data) {
-              pathData = data;
-              pathData.push({'x': pointEnd.x, 'y': pointEnd.y});
-            callbackOutside(pathData);
-            }
-          );
-        }
-        else {
-          callbackOutside(pathData);
-        }
-      }
-    ]);
-  }
-
-  function xYCoordinatesToMatrixLocation(x, y, squareLength) {
-    var results = {};
-    results.column = Math.floor(x/squareLength);
-    results.row = Math.floor(y/squareLength);
-    return results;
-  }
-
-  function matrixLocationToXYCoordinates(column, row, squareLength) {
-    var results = {};
-    results.x = column * squareLength;
-    results.y = row * squareLength;
-    return results;
-  }
-
-  function generateEntirelyWalkableMatrix(totalRowCount, totalColumnCount, callback) {
-    var entirelyWalkableMatrix = [];
-    for(var currentRow = 0; currentRow < totalRowCount; currentRow++) {
-      entirelyWalkableMatrix[currentRow] = [];
-      for(var currentColumn = 0; currentColumn < totalColumnCount; currentColumn++) {
-        entirelyWalkableMatrix[currentRow][currentColumn] = 0;
-      }
-    }
-    callback(entirelyWalkableMatrix);
-  }
-
-  function populateMatrix(args, callback) {
-    if (!args) {
-      throw new Error('No args specified.');
-    }
-    if (!args.inputMatrix) {
-      throw new Error('No inputMatrix specified.');
-    }
-    if (!args.padding) {
-      throw new Error('No padding specified.');
-    }
-    if (!args.squareLength) {
-      throw new Error('No squareLength specified.');
-    }
-    if (!args.totalRowCount) {
-      throw new Error('No totalRowCount specified.');
-    }
-    if (!args.totalColumnCount) {
-      throw new Error('No totalColumnCount specified.');
-    }
-    if (!args.nodes) {
-      console.warn('No nodes specified. Returning unmodified inputMatrix.');
-      callback(args.inputMatrix);
-    }
-
-    // populatedMatrix is the matrix that has non-walkable areas for each node specified in the input
-
-    var populatedMatrix = args.inputMatrix;
-
-    // mark off no-go non-walkable regions for path finder (regions under edgeGraphRefNodes)
-
-    var upperLeftCorner, lowerRightCorner, rowStart, rowEnd, columnStart, columnEnd;
-    args.nodes.forEach(function(node) {
-      upperLeftCorner = xYCoordinatesToMatrixLocation(node.x, node.y, args.squareLength);
-      lowerRightCorner = xYCoordinatesToMatrixLocation(node.x + node.width, node.y + node.height, args.squareLength);
-
-      columnStart = Math.max((upperLeftCorner.column - args.padding), 0);
-      columnEnd = Math.min((lowerRightCorner.column + args.padding), args.totalColumnCount - 1);
-      rowStart = Math.max((upperLeftCorner.row - args.padding), 0);
-      rowEnd = Math.min((lowerRightCorner.row + args.padding), args.totalRowCount - 1);
-
-      for(var currentRow=rowStart; currentRow<rowEnd + 1; currentRow++) {
-        for(var currentColumn=columnStart; currentColumn<columnEnd + 1; currentColumn++) {
-          populatedMatrix[currentRow][currentColumn] = 1;
-        }
-      }
-    });
-    callback(populatedMatrix);
-  }
-
-  function generateGrid(gridData, edgeGraphRefNodes, otherNodes, callback) {
-    console.log('edgeGraphRefNodes');
-    console.log(edgeGraphRefNodes);
-    self.myedgeGraphRefNodes = edgeGraphRefNodes;
-    if (!gridData) {
-      throw new Error('No gridData specified.');
-    }
-    if (!gridData.entirelyWalkableMatrix) {
-      throw new Error('No entirelyWalkableMatrix specified.');
-    }
-    if (!gridData.padding) {
-      throw new Error('No padding specified.');
-    }
-    if (!gridData.squareLength) {
-      throw new Error('No squareLength specified.');
-    }
-    if (!gridData.totalRowCount) {
-      throw new Error('No totalRowCount specified.');
-    }
-    if (!gridData.totalColumnCount) {
-      throw new Error('No totalColumnCount specified.');
-    }
-
-    // edgeGraphRefNodes and otherNodes are clumsy names but are the best I could come up
-    // with for now.
-    //
-    // edgeGraphRefNodes refers to the set of nodes that an edge is snapped to.
-    // At present, this set is only the source and target nodes, but in the future,
-    // it could include nodes that a waypoint is snapped to
-    // if we allow for waypoints to be snappable.
-    //
-    // otherNodes refers to any other nodes that should be non-walkable.
-
-
-    async.parallel({
-      'populatedMatrix':function(populateMatrixCallback) {
-        async.waterfall([
-          function(waterfallCallback) {
-
-            // mark off no-go non-walkable regions for path finder
-            // (in this case, regions under edgeGraphRefNodes)
-
-            populateMatrix({
-              'nodes':edgeGraphRefNodes,
-              'inputMatrix':pathvisiojs.utilities.clone(gridData.entirelyWalkableMatrix),
-              'padding':gridData.padding,
-              'squareLength':gridData.squareLength,
-              'totalRowCount':gridData.totalRowCount,
-              'totalColumnCount':gridData.totalColumnCount
-            },
-            function(populatedMatrix) {
-              waterfallCallback(null, populatedMatrix);
-            })
-          },
-          function(populatedMatrix, waterfallCallback) {
-
-            // mark off no-go non-walkable regions for path finder
-            // (in this case, regions under otherNodes)
-
-            if (!!otherNodes) {
-              populateMatrix({
-                'nodes':otherNodes,
-                'inputMatrix':populatedMatrix,
-                'padding':1,
-                'squareLength':gridData.squareLength,
-                'totalRowCount':gridData.totalRowCount,
-                'totalColumnCount':gridData.totalColumnCount
-              },
-              function(populatedMatrix) {
-                populateMatrixCallback(null, populatedMatrix);
-              })
-            }
-            else {
-              populateMatrixCallback(null, populatedMatrix);
-            }
-          }
-        ]);
-      },
-      'ports':function(populateMatrixCallback) {
-        var ports = [];
-        if (!!edgeGraphRefNodes) {
-          edgeGraphRefNodes.forEach(function(edgeGraphRefNode){
-            if (edgeGraphRefNode.hasOwnProperty('Port')) {
-              ports = ports.concat(edgeGraphRefNode.Port);
-            }
-          });
-        }
-        if (!!otherNodes) {
-          otherNodes.forEach(function(otherNode){
-            ports = ports.concat(otherNode.Port);
-          });
-        }
-        /*
-        var portFrame = {
-          '@context': pathvisiojs.context,
-          '@type': 'Port'
-        };  
-        var allNodesContainer = {};
-        allNodesContainer['@context'] = pathvisiojs.context;
-        allNodesContainer.DataNode = edgeGraphRefNodes;
-        if (!!otherNodes) {
-          otherNodes.forEach(function(node){
-            allNodesContainer.DataNode = allNodesContainer.DataNode.concat(node);
-          });
-        }
-        jsonld.frame(allNodesContainer, portFrame, function(err, ports) {
-          async.series([
-            function(portsCallback) {
-              var ports = [];
-              portSets['@graph'].forEach(function(portSet) {
-                ports = ports.concat(portSet);
-              });
-
-              portsCallback(null, ports);
-            }
-          ],
-          function(err, results) {
-            var ports = results.ports;
-
-            var column1, column2, row1, row2, portLocation;
-            ports.forEach(function(port) {
-              portLocation = xYCoordinatesToMatrixLocation(port.x, port.y, gridData.squareLength);
-              column1 = Math.max(Math.min((portLocation.column - padding * port.dy), totalColumnCount - 1), 0);
-              column2 = Math.max(Math.min((portLocation.column + port.dy), totalColumnCount - 1), 0);
-              columnStart = Math.min(column1, column2);
-              columnEnd = Math.max(column1, column2);
-
-              row1 = Math.max(Math.min((portLocation.row - port.dx), totalRowCount - 1), 0);
-              row2 = Math.max(Math.min((portLocation.row + padding * port.dx), totalRowCount - 1), 0);
-              rowStart = Math.min(row1, row2);
-              rowEnd = Math.max(row1, row2);
-
-              for(currentRow=rowStart; currentRow<rowEnd + 1; currentRow++) {
-                paddedMatrix[currentRow] = paddedMatrix[currentRow] || [];
-                for(currentColumn=columnStart; currentColumn<columnEnd + 1; currentColumn++) {
-                  paddedMatrix[currentRow][currentColumn] = 0;
-                }
-              }
-            });
-
-            populateMatrixCallback(null, results.ports);
-          });
-        });
-        //*/
-        populateMatrixCallback(null, ports);
-      }
-    },
-    function(err, results) {
-      var populatedMatrix = results.populatedMatrix;
-      var ports = results.ports;
-      var grid;
-
-      // mark off walkable regions emanating from ports
-
-      if (!!ports) {
-        var column1, column2, row1, row2, portLocation, columnStart, columnEnd, rowStart, rowEnd;
-        ports.forEach(function(port) {
-          portLocation = xYCoordinatesToMatrixLocation(port.x, port.y, gridData.squareLength);
-          column1 = Math.max(Math.min((portLocation.column - gridData.padding * port.dy), gridData.totalColumnCount - 1), 0);
-          column2 = Math.max(Math.min((portLocation.column + port.dy), gridData.totalColumnCount - 1), 0);
-          columnStart = Math.min(column1, column2);
-          columnEnd = Math.max(column1, column2);
-
-          row1 = Math.max(Math.min((portLocation.row - port.dx), gridData.totalRowCount - 1), 0);
-          row2 = Math.max(Math.min((portLocation.row + gridData.padding * port.dx), gridData.totalRowCount - 1), 0);
-          rowStart = Math.min(row1, row2);
-          rowEnd = Math.max(row1, row2);
-
-          for(var currentRow=rowStart; currentRow<rowEnd + 1; currentRow++) {
-            populatedMatrix[currentRow] = populatedMatrix[currentRow] || [];
-            for(var currentColumn=columnStart; currentColumn<columnEnd + 1; currentColumn++) {
-              populatedMatrix[currentRow][currentColumn] = 0;
-            }
-          }
-        });
-        grid = new PF.Grid(gridData.totalColumnCount, gridData.totalRowCount, populatedMatrix);
-        callback(grid);
-      }
-      else {
-        grid = new PF.Grid(gridData.totalColumnCount, gridData.totalRowCount, populatedMatrix);
-        callback(grid);
-      }
-
-      //console.log('gridData.totalColumnCount');
-      //console.log(gridData.totalColumnCount);
-      //console.log('gridData.totalRowCount');
-      //console.log(gridData.totalRowCount);
-      //console.log('populatedMatrix');
-      //console.log(populatedMatrix);
-
-
-      // we only want to render the non-walkable areas the walkable areas emanating out from nodes.
-      // Rendering all the rest of the walkable areas would be too demanding in terms of number of
-      // elements rendered in SVG.
-
-    });
-  }
-
-  /*
-  function generateGridData(shapes, ports, pathwayImageWidth, pathwayImageHeight, callback) {
-    //console.log('***************');
-    //console.log('shapes');
-    //console.log(shapes);
-    //console.log('ports');
-    //console.log(ports);
-    //console.log('pathwayImageWidth');
-    //console.log(pathwayImageWidth);
-    //console.log('pathwayImageHeight');
-    //console.log(pathwayImageHeight);
-    //console.log('***************');
-
-    shapes = d3.select(shapes).sort(function(shape1, shape2) {
-      Math.min(shape1.height, shape1.width) - Math.min(shape2.height, shape2.width);
-    })[0][0];
-    pathvisioNS.grid.squareLength = Math.min(shapes[0].height, shapes[0].width) / 14;
-    console.log('pathvisioNS');
-    console.log(pathvisioNS);
-
-    // how much padding to place around the EntityNodes, in units of grid squares
-    // TODO change the static value of 12 to be a calculated value equal to the
-    // largest dimension of a marker in the diagram
-
-    var padding = Math.ceil(12 / pathvisioNS.grid.squareLength);
-    var currentRow, currentColumn;
-    var totalColumnCount = Math.ceil(pathwayImageWidth/pathvisioNS.grid.squareLength);
-    var totalRowCount = Math.ceil(pathwayImageHeight/pathvisioNS.grid.squareLength);
-
-    initGrid(shapes, ports, pathwayImageWidth, pathwayImageHeight, function(gridData) {
-      var paddedMatrix = tightMatrix = entirelyWalkableMatrix = gridData.entirelyWalkableMatrix;
-      pathvisioNS.grid.gridRenderingData = [];
-
-      // mark off no-go non-walkable regions for path finder (regions under shapes)
-
-      var upperLeftCorner, lowerRightCorner, rowStart, rowEnd, columnStart, columnEnd;
-      shapes.forEach(function(shape) {
-        upperLeftCorner = xYCoordinatesToMatrixLocation(shape.x, shape.y, pathvisioNS.grid.squareLength);
-        lowerRightCorner = xYCoordinatesToMatrixLocation(shape.x + shape.width, shape.y + shape.height, pathvisioNS.grid.squareLength);
-
-        columnStartTight = Math.max((upperLeftCorner.column), 0);
-        columnEndTight = Math.min((lowerRightCorner.column), totalColumnCount - 1);
-        rowStartTight = Math.max((upperLeftCorner.row), 0);
-        rowEndTight = Math.min((lowerRightCorner.row), totalRowCount - 1);
-
-        for(currentRow=rowStartTight; currentRow<rowEndTight + 1; currentRow++) {
-          for(currentColumn=columnStartTight; currentColumn<columnEndTight + 1; currentColumn++) {
-            tightMatrix[currentRow][currentColumn] = 1;
-          }
-        }
-
-        columnStart = Math.max((upperLeftCorner.column - padding), 0);
-        columnEnd = Math.min((lowerRightCorner.column + padding), totalColumnCount - 1);
-        rowStart = Math.max((upperLeftCorner.row - padding), 0);
-        rowEnd = Math.min((lowerRightCorner.row + padding), totalRowCount - 1);
-
-        for(currentRow=rowStart; currentRow<rowEnd + 1; currentRow++) {
-          for(currentColumn=columnStart; currentColumn<columnEnd + 1; currentColumn++) {
-            paddedMatrix[currentRow][currentColumn] = 1;
-            pathvisioNS.grid.gridRenderingData[currentRow * (totalColumnCount - 1) + currentColumn] = {
-              'x': currentColumn * pathvisioNS.grid.squareLength,
-              'y': currentRow * pathvisioNS.grid.squareLength,
-              'fill': 'blue'
-            };
-          }
-        }
-      });
-
-      var column1, column2, row1, row2, portLocation;
-      ports.forEach(function(port) {
-        portLocation = xYCoordinatesToMatrixLocation(port.x, port.y);
-        column1 = Math.max(Math.min((portLocation.column - padding * port.dy), totalColumnCount - 1), 0);
-        column2 = Math.max(Math.min((portLocation.column + port.dy), totalColumnCount - 1), 0);
-        columnStart = Math.min(column1, column2);
-        columnEnd = Math.max(column1, column2);
-
-        row1 = Math.max(Math.min((portLocation.row - port.dx), totalRowCount - 1), 0);
-        row2 = Math.max(Math.min((portLocation.row + padding * port.dx), totalRowCount - 1), 0);
-        rowStart = Math.min(row1, row2);
-        rowEnd = Math.max(row1, row2);
-
-        for(currentRow=rowStart; currentRow<rowEnd + 1; currentRow++) {
-          paddedMatrix[currentRow] = paddedMatrix[currentRow] || [];
-          for(currentColumn=columnStart; currentColumn<columnEnd + 1; currentColumn++) {
-            paddedMatrix[currentRow][currentColumn] = 0;
-            pathvisioNS.grid.gridRenderingData[currentRow * (totalColumnCount - 1) + currentColumn] = {
-              'x': currentColumn * pathvisioNS.grid.squareLength,
-              'y': currentRow * pathvisioNS.grid.squareLength,
-              'fill': 'yellow'
-            };
-          }
-        }
-      });
-
-      //console.log('totalColumnCount');
-      //console.log(totalColumnCount);
-      //console.log('totalRowCount');
-      //console.log(totalRowCount);
-      //console.log('paddedMatrix');
-      //console.log(paddedMatrix);
-
-      pathvisioNS.grid.paddedGrid = new PF.Grid(totalColumnCount, totalRowCount, paddedMatrix);
-      pathvisioNS.grid.tightGrid = new PF.Grid(totalColumnCount, totalRowCount, tightMatrix);
-      pathvisioNS.grid.emptyGrid = new PF.Grid(totalColumnCount, totalRowCount, entirelyWalkableMatrix);
-      pathvisioNS.grid.gridRenderingData = pathvisioNS.grid.gridRenderingData.filter(function(element) {return !!element});
-
-      callback(pathvisioNS.grid.emptyGrid);
-    })
-  }
-  //*/
-
-  function runPathFinder(workingGrid, finder, Point, pointStart, pointEnd, startLocation, endLocation, squareLength, callback) {
-    /*
-    console.log('workingGrid');
-    console.log(workingGrid);
-    console.log('finder');
-    console.log(finder);
-    console.log('Point');
-    console.log(Point);
-    console.log('pointStart');
-    console.log(pointStart);
-    console.log('pointEnd');
-    console.log(pointEnd);
-    console.log('startLocation');
-    console.log(startLocation);
-    console.log('endLocation');
-    console.log(endLocation);
-    //*/
-
-    /* 
-     * Get blockyPath
-     */
-
-    var blockyPath = finder.findPath(startLocation.column, startLocation.row, endLocation.column, endLocation.row, workingGrid);
-    //console.log('blockyPath');
-    //console.log(blockyPath);
-
-    /* 
-     * Get compressedMidPoint
-     */
-    // compress path data and extract Point
-
-    var compressedMidPoint = [];
-    var index = 0;
-    if (blockyPath.length > 3) {
-      do {
-        index += 1;
-        if ((blockyPath[index - 1][0] - blockyPath[index + 1][0]) && (blockyPath[index - 1][1] !== blockyPath[index + 1][1])) {
-          compressedMidPoint.push([
-            blockyPath[index][0],
-            blockyPath[index][1]
-          ]);
-        }
-      } while (index < blockyPath.length - 2);
-    }
-    else {
-      //console.log('blockyPath too short to compress.');
-    }
-
-    /* 
-     * Get fullXYPath
-     */
-
-    var fullXYPath = [];
-
-    compressedMidPoint.forEach(function(element, index) {
-      fullXYPath.push({
-        'x': compressedMidPoint[index][0] * squareLength,
-        'y': compressedMidPoint[index][1] * squareLength
-      });
-    });
-
-    fullXYPath.unshift({'x': pointStart.x, 'y': pointStart.y});
-    fullXYPath.push({'x': pointEnd.x, 'y': pointEnd.y});
-    //console.log('fullXYPath');
-    //console.log(fullXYPath);
-
-    /* 
-     * Get smootherPath
-     */
-
-    var smootherPath = [];
-    index = 0;
-    if (fullXYPath.length > 2) {
-      do {
-        index += 1;
-        if ((Math.abs(fullXYPath[index].x - fullXYPath[index - 1].x) > 2 * squareLength || Math.abs(fullXYPath[index + 1].x - fullXYPath[index].x) > 2 * squareLength) && (Math.abs(fullXYPath[index].y - fullXYPath[index - 1].y) > 2 * squareLength || Math.abs(fullXYPath[index + 1].y - fullXYPath[index].y) > 2 * squareLength)) {
-          smootherPath.push(fullXYPath[index]);
-        }
-      } while (index < fullXYPath.length - 2);
-    }
-    else {
-      //console.log('fullXYPath too short to smooth.');
-    }
-
-    smootherPath.unshift({'x': pointStart.x, 'y': pointStart.y});
-    smootherPath.push({'x': pointEnd.x, 'y': pointEnd.y});
-
-    //console.log('smootherPath');
-    //console.log(smootherPath);
-
-
-    //*
-    // reposition start and end point to match source and origin
-    if (smootherPath.length === 2) {
-      if (Math.abs(smootherPath[1].x - pointStart.x) < Math.abs(smootherPath[1].x - pointEnd.x)) {
-        smootherPath[1].x = pointStart.x;
-        smootherPath[1].y = pointEnd.y;
-      }
-      else {
-        smootherPath[1].x = pointEnd.x;
-        smootherPath[1].y = pointStart.y;
-      }
-    }
-    else {
-      if (Math.abs(smootherPath[1].x - pointStart.x) < Math.abs(smootherPath[1].y - pointStart.y)) {
-        smootherPath[1].x = pointStart.x;
-      }
-      else {
-        smootherPath[1].y = pointStart.y;
-      }
-
-      if (Math.abs(smootherPath[smootherPath.length - 2].x - pointEnd.x) < Math.abs(smootherPath[smootherPath.length - 2].y - pointEnd.y)) {
-        smootherPath[smootherPath.length - 2].x = pointEnd.x;
-      }
-      else {
-        smootherPath[smootherPath.length - 2].y = pointEnd.y;
-      }
-    }
-    //*/
-
-    callback(smootherPath);
-    //return smootherPath;
-  }
-
-  return {
-    initGrid:initGrid,
-    xYCoordinatesToMatrixLocation:xYCoordinatesToMatrixLocation,
-    matrixLocationToXYCoordinates:matrixLocationToXYCoordinates,
-    //generateGridData:generateGridData,
-    getPath:getPath
-  };
-}();
 ;
 
 "use strict";
@@ -6202,6 +5536,7 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
     }
 
     async.parallel({
+      /*
       'gridData': function(callbackInside) {
         var frame = {
           '@context': pathvisiojs.context,
@@ -6215,6 +5550,7 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
           });
         });
       },
+      //*/
       'firstOrderData': function(callbackInside) {
         var firstOrderFrame = {
           '@context': pathvisiojs.context,
@@ -6848,12 +6184,14 @@ pathvisiojs.view.pathwayDiagram.svg.node = function(){
     return port;
   }
 
+
   function highlightByLabel(svg, pathway, nodeLabel) {
+    var svg = d3.selectAll('#pathway-svg');
     svg.selectAll('.highlighted-node').remove();
-    var dataNodesWithText = pathway.elements.filter(function(d, i) {return d.nodeType === 'data-node' && (!!d.textLabel);});
-    var selectedNodes = dataNodesWithText.filter(function(d, i) {return d.textLabel.text.indexOf(nodeLabel) !== -1;});
+    var allDataNodesWithText = pathway.DataNode.filter(function(d, i) {return (!!d.text);});
+    var selectedNodes = allDataNodesWithText.filter(function(d, i) {return d.text.line.indexOf(nodeLabel) !== -1;});
     selectedNodes.forEach(function(node) {
-      var nodeDomElement = svg.select('#node-' + node.id);
+      var nodeDomElement = svg.select('#node-container-pathway-iri-' + node.GraphId);
       var height = nodeDomElement[0][0].getBBox().height;
       var width = nodeDomElement[0][0].getBBox().width;
       nodeDomElement.append('rect')
@@ -6863,7 +6201,8 @@ pathvisiojs.view.pathwayDiagram.svg.node = function(){
       .attr('width', width + 5)
       .attr('height', height + 5);
     });
-  }
+  }  
+
   return {
     //renderAll:renderAll,
     render:render,
@@ -7028,7 +6367,7 @@ pathvisiojs.view.pathwayDiagram.svg.node.EntityNode = function(){
       if (!!args.data.DatasourceReference) {
         if (!!args.data.DatasourceReference.ID) {
           nodeContainer.on("click", function(d,i) {
-            pathvisiojs.view.annotation.xRef.render(args.pathway.Organism, d['DatasourceReference'].ID, d['DatasourceReference'].Database, d.text.tspan.join(' '), d.dataNodeType); //that's capital 'O' Organism from GPML vocab
+            pathvisiojs.view.annotation.xRef.render(args.pathway.Organism, d['DatasourceReference'].ID, d['DatasourceReference'].Database, d.text.line.join(' '), d.dataNodeType); //that's capital 'O' Organism from GPML vocab
           })
         }
       }
@@ -7626,13 +6965,13 @@ pathvisiojs.view.pathwayDiagram.svg.node.text = function(){
     // TODO replace this with the actual translate values
     text.cache.translate.dx = data.width / 2;
     text.cache.translate.dy = data.height / 2;
-    text.tspan = {};
-    text.tspan.cache = {};
-    text.tspan.cache.y = [];
-    var textLineCount = data.text.tspan.length;
+    text.line = {};
+    text.line.cache = {};
+    text.line.cache.y = [];
+    var textLineCount = data.text.line.length;
     var i = 0
-    data.text.tspan.forEach(function(tspan) {
-      text.tspan.cache.y.push(i * text.cache.fontSize);
+    data.text.line.forEach(function(line) {
+      text.line.cache.y.push(i * text.cache.fontSize);
       i += 1;
     });  
 
@@ -7671,7 +7010,7 @@ pathvisiojs.view.pathwayDiagram.svg.node.text = function(){
 
     var textLine = textArea.selectAll('text')
     .data(function(d) {
-      return d.text.tspan;
+      return d.text.line;
     })
     .enter()
     .append('text')
@@ -7963,7 +7302,7 @@ pathvisiojs.view.pathwayDiagram.svg.edge = function(){
     console.log('markerEndName in edge');
     console.log(markerEndName);
     //*/
-
+    /*
     var createPathDataString = d3.svg.line()
     .x(function(data) { return data.x; })
     .y(function(data) { return data.y; });
@@ -7982,7 +7321,7 @@ pathvisiojs.view.pathwayDiagram.svg.edge = function(){
       stepType = gpmlConnectorTypeToD3StepTypeMapping[data.ConnectorType];
     }
     createPathDataString.interpolate(stepType);
-
+    //*/
     var edge,
       stroke = data.stroke,
       markerStartAttributeValue,
@@ -8058,6 +7397,7 @@ pathvisiojs.view.pathwayDiagram.svg.edge = function(){
         .enter().insert("path", ":first-child") // TODO this may cause problems in the future if we have groups with fully opaque backgrounds
         callback(null, edge);
       },
+      /*
       'convertedPointSet': function(callback) {
         var index, firstSegmentHorizontal, currentSegmentHorizontal, convertedPointSet;
 
@@ -8146,6 +7486,8 @@ pathvisiojs.view.pathwayDiagram.svg.edge = function(){
       }
     },
     function(err, results) {
+    //*/
+    'path': function() {
       edge.attr("id", edgeId)
       .attr("marker-start", markerStartAttributeValue)
       .attr("marker-end", markerEndAttributeValue)
@@ -8163,7 +7505,7 @@ pathvisiojs.view.pathwayDiagram.svg.edge = function(){
       })
       .attr("fill", 'none')
       .attr("d", function (data) {
-        return createPathDataString(results.convertedPointSet);
+        return pathvisiojs.view.pathwayDiagram.svg.edge.path.getPath(data); //createPathDataString(results.convertedPointSet);
       });
 
      /****************** 
@@ -8185,9 +7527,9 @@ pathvisiojs.view.pathwayDiagram.svg.edge = function(){
       else {
         callback(edge);
       }
-
-    });
-  }
+    }
+   }); //close async
+  } //close function
 
   /*
   function renderAll(viewport, pathway) {
@@ -8490,7 +7832,7 @@ pathvisiojs.view.pathwayDiagram.svg.edge.interaction = function(){
           cssClass += 'has-xref ';
           if (!!data.DatasourceReference.ID) {
             interaction.on("click", function(d,i) {
-              pathvisiojs.view.annotation.xRef.render(args.pathway.Organism, d['DatasourceReference'].ID, d['DatasourceReference'].Database, d.InteractionGraph[0].interactsWith.text.tspan[0]+' + '+d.InteractionGraph[0].text.tspan[0], d.renderableType); 
+              pathvisiojs.view.annotation.xRef.render(args.pathway.Organism, d['DatasourceReference'].ID, d['DatasourceReference'].Database, d.InteractionGraph[0].interactsWith.text.line[0]+' + '+d.InteractionGraph[0].text.line[0], d.renderableType); 
 	      //That's capital 'O' Organism from GPML vocab.
 	      //Names of interaction partners is given as header, which is also used to form site query, 
 	      // thus the "+" is used to convey both the interaction and query logic.
@@ -9035,375 +8377,223 @@ pathvisiojs.view.pathwayDiagram.svg.edge.point = function(){
 }();
 ;
 
-// TODO Rewrite the code for getting elbow and curve edge Point. For reference, see these links:
-//
-// Elbows:
-// [PathVisio Java code for elbows](http://svn.bigcat.unimaas.nl/pathvisio/trunk/modules/org.pathvisiojs.core/src/org/pathvisio/core/model/ElbowConnectorShape.java)
-// [jsPlumb JavaScript implemention of elbows](https://github.com/sporritt/jsPlumb/blob/master/src/connectors-flowchart.js)
-// [W3C documention on vertical and horizontal path movement - "lineto" commands - for SVG](http://www.w3.org/TR/SVG/paths.html#PathDataLinetoCommands)
-//
-// Bezier Curves:
-// [PathVisio Java code for cubic bezier curve](http://svn.bigcat.unimaas.nl/pathvisio/trunk/modules/org.pathvisiojs.core/src/org/pathvisio/core/model/CurvedConnectorShape.java)
-// [jsPlumb JavaScript implemention of bezier curves](https://github.com/sporritt/jsPlumb/blob/master/src/connectors-bezier.js)
-// [W3C documention on cubic bezier curves for SVG](http://www.w3.org/TR/SVG/paths.html#PathDataLinetoCommands)
-// There are other types of SVG curves, but I understand the Java code to use bezier curves.
-
-pathvisiojs.view.pathwayDiagram.svg.edge.pathData = function(){
-  function getPathDirectionForElbowFromPoint(pathway, edge, point) {
-    var direction, otherEndDirection, otherEndPoint;
-
-    direction = getPathDirectionForElbowFromPointByAnchor(pathway, point); 
-    if (!direction) {
-      if (point === edge.Point[0]) {
-        otherEndPoint = edge.Point[edge.Point.length - 1];
-      }
-      else {
-        otherEndPoint = edge.Point[0];
-      }
-
-      otherEndDirection = getPathDirectionForElbowFromPointByAnchor(pathway, otherEndPoint); 
-      if (!!otherEndDirection) {
-        if (pathvisiojs.utilities.isOdd(edge.Point.length)) {
-          direction = switchDirection(otherEndDirection);
-        }
-        else {
-          direction = otherEndDirection;
-        }
-      }
-      else {
-        direction = getPathDirectionForElbowFromPointByDistance(pathway, edge, point);
-      }
-    }
-    return direction;
-  }
-
-  function getPathDirectionForElbowFromPointByAnchor(pathway, point) {
-    var anchor = pathway.elements.filter(function(element) {return element.id === point.anchorId})[0];
-    if (!!anchor) {
-      if (Math.abs(anchor.dx) === 1 || Math.abs(anchor.dy) === 1) {
-        if (Math.abs(anchor.dx) === 1) {
-          direction = 'H';
-        }
-        else {
-          if (Math.abs(anchor.dy) === 1) {
-            direction = 'V';
-          }
-        }
-      }
-      else {
-        direction = undefined;
-      }
-    }
-    else {
-      direction = undefined;
-    }
-    return direction;
-  }
-
-  function getPathDirectionForElbowFromPointByDistance(pathway, edge, point) {
-    var direction, comparisonPoint;
-    if (point === edge.Point[0]) {
-      comparisonPoint = edge.Point[1];
-    }
-    else {
-      comparisonPoint = edge.Point[edge.Point.length - 1];
-    }
-    if (Math.abs(comparisonPoint.x - point.x) < Math.abs(comparisonPoint.y - point.y)) {
-      direction = 'V';
-    }
-    else {
-      direction = 'H';
-    }
-    return direction;
-  }
-
-  function switchDirection(currentDirection) {
-    currentDirection = currentDirection.toUpperCase();
-    if (currentDirection === 'H') {
-      return 'V';
-    }
-    else {
-      return 'H';
-    }
-  }
-
-  function get(edge, callback) {
-    if (!edge) {
-      throw new Error('No edge specified as input.');
-    }
-
-    var currentDirection, startDirection, endDirection, controlPoint, index;
-    var pointStart = edge.Point[0];
-
-    /*
-    var source = pathvisiojs.view.pathwayDiagram.svg.edge.point.getCoordinates(pathway, pointStart);
-
-    var pointCoordinatesArray = self.pointCoordinatesArray = [];
-    var pointCoordinates;
-    edge.Point.forEach(function(element) {
-      pointCoordinates = pathvisiojs.view.pathwayDiagram.svg.edge.point.getCoordinates(pathway, element);
-      pointCoordinatesArray.push(pointCoordinates)
-    })
-
-    if (pointStart.dx === undefined) {
-      source.dx = 0;
-    }
-    else {
-      source.dx = pointStart.dx;
-    }
-
-    if (pointStart.dy === undefined) {
-      source.dy = 0;
-    }
-    else {
-      source.dy = pointStart.dy;
-    }
-
-    var pointEnd = edge.Point[edge.Point.length - 1];
-    //var target = pathvisiojs.view.pathwayDiagram.svg.edge.point.getCoordinates(pathway, pointEnd);
-
-    if (pointEnd.dx === undefined) {
-      target.dx = 0;
-    }
-    else {
-      target.dx = pointEnd.dx;
-    }
-
-    if (pointEnd.dy === undefined) {
-      target.dy = 0;
-    }
-    else {
-      target.dy = pointEnd.dy;
-    }
-    //*/
-
-    var pathData = 'M ' + source.x + ' ' + source.y;
-
-    if ((!edge.connectorType) || (edge.connectorType === undefined) || (edge.connectorType === 'Straight')) {
-      pathData += " L " + target.x + " " + target.y;
-      callback(pathData);
-    }
-    else {
-      if (edge.connectorType === 'Elbow') {
-
-        // distance to move away from node when we can't go directly to the next node
-
-        var stubLength = 15;
-
-        startDirection = getPathDirectionForElbowFromPoint(pathway, edge, pointStart);
-        currentDirection = startDirection;
-        endDirection = getPathDirectionForElbowFromPoint(pathway, edge, pointEnd);
-
-        var pathCoordinatesArray = [];
-
-
-        async.series([
-          function(callbackInside){
-            if (edge.Point.length === 2) {
-              pathvisiojs.view.pathwayDiagram.pathFinder.getPath(pathway, edge, function(data) {
-                pathCoordinatesArray = data;
-                callbackInside(null);
-              });
-            }
-            else {
-              pathCoordinatesArray.push({
-                'x': pointStart.x,
-                'y': pointStart.y
-              });
-
-              index = 0;
-              do {
-                index += 1;
-
-                if (currentDirection === 'H') {
-                  pathCoordinatesArray.push({
-                    'x': edge.Point[index].x,
-                    'y': edge.Point[index - 1].y
-                  });
-                }
-                else {
-                  pathCoordinatesArray.push({
-                    'x': edge.Point[index - 1].x,
-                    'y': edge.Point[index].y
-                  });
-                }
-                currentDirection = switchDirection(currentDirection);
-              } while (index < edge.Point.length - 1);
-
-              pathCoordinatesArray.push({
-                'x': pointEnd.x,
-                'y': pointEnd.y
-              });
-              callbackInside(null);
-            }
-          }
-        ],
-        function(err) {
-          // reposition start and end point to match source and origin
-
-          if (pathCoordinatesArray.length === 3) {
-            if (Math.abs(pathCoordinatesArray[1].x - pointStart.x) < Math.abs(pathCoordinatesArray[1].x - pointEnd.x)) {
-              pathCoordinatesArray[1].x = pointStart.x;
-              pathCoordinatesArray[1].y = pointEnd.y;
-            }
-            else {
-              pathCoordinatesArray[1].x = pointEnd.x;
-              pathCoordinatesArray[1].y = pointStart.y;
-            }
+pathvisiojs.view.pathwayDiagram.svg.edge.path = function(){	
+    function getPath(edge) {
+	var path;
+	var type = edge.ConnectorType;
+	
+	if (type == 'Straight'){
+          if (edge.Point.length == 2) {
+            return svgLine(edge.Point);
           }
           else {
-            if (Math.abs(pathCoordinatesArray[1].x - pointStart.x) < Math.abs(pathCoordinatesArray[1].y - pointStart.y)) {
-              pathCoordinatesArray[1].x = pointStart.x;
-            }
-            else {
-              pathCoordinatesArray[1].y = pointStart.y;
-            }
-
-            if (Math.abs(pathCoordinatesArray[pathCoordinatesArray.length - 2].x - pointEnd.x) < Math.abs(pathCoordinatesArray[pathCoordinatesArray.length - 2].y - pointEnd.y)) {
-              pathCoordinatesArray[pathCoordinatesArray.length - 2].x = pointEnd.x;
-            }
-            else {
-              pathCoordinatesArray[pathCoordinatesArray.length - 2].y = pointEnd.y;
-            }
+            console.log("Too many points for a straight line!");
+            return null;
           }
+	}
 
-          if (startDirection === 'H') {
-            pathCoordinatesArray[1].y = pointStart.y;
-          }
-          else {
-            if (startDirection === 'V') {
-              pathCoordinatesArray[1].x = pointStart.x;
-            }
-          }
+	else if (type == 'Segmented') {
+	    return svgLine(edge.Point);
+	}
 
-          if (endDirection === 'H') {
-            pathCoordinatesArray[pathCoordinatesArray.length - 2].y = pointEnd.y;
-          }
-          else {
-            if (endDirection === 'V') {
-              pathCoordinatesArray[pathCoordinatesArray.length - 2].x = pointEnd.x;
-            }
-          }
+	else if (type == 'Elbow'){
+	    return svgLine(calcPathpoints(edge.Point));
+	}
 
-                console.log('pathCoordinatesArray');
-                console.log(pathCoordinatesArray);
-                self.pathCoordinatesArray = pathCoordinatesArray;
-          index = 0;
-          do {
-            index += 1;
-            pathData += ' L ' + pathCoordinatesArray[index].x + ' ' + pathCoordinatesArray[index].y;
-          } while (index < pathCoordinatesArray.length - 1);
-                console.log('pathData');
-                console.log(pathData);
-                callback(pathData);
-
-        });
-
-
-
-
-
-
-
-
-
-
-
-      }
-      else {
-        if (edge.connectorType === 'Segmented') {
-          edge.Point.forEach(function(element, index, array) {
-            if ((index > 0) && (index < (array.length -1))) {
-              pathData += " L " + element.x + " " + element.y;
-            }
-          });
-          pathData += " L " + target.x + " " + target.y;
-          callback(pathData);
-        }
-        else {
-          if (edge.connectorType === 'Curved') {
-
-
-            if (edge.Point.length === 2) {
-              pathCoordinatesArray = pathvisiojs.view.pathwayDiagram.pathFinder.getPath(pathway, edge);
-            }
-            else {
-              pathCoordinatesArray = edge.Point;
-            }
-
-
-            pathCoordinatesArray.forEach(function(element, index, array) {
-              if ((index > 0) && (index < (array.length - 1))) {
-                target.x = (array[index].x + array[index - 1].x)/2;
-                target.y = (array[index].y + array[index - 1].y)/2;
-                pathData += " T" + target.x + "," + target.y;
-              }
-            });
-
-            pathData += " T" + pathCoordinatesArray[pathCoordinatesArray.length - 1].x + "," + pathCoordinatesArray[pathCoordinatesArray.length - 1].y;
-            callback(pathData);
-
-            /*
-
-            controlPoint = {};
-            pathCoordinatesArray.forEach(function(element, index, array) {
-              if ((index > 0) && (index < (array.length - 1))) {
-                controlPoint.x = element.x;
-                controlPoint.y = element.y;
-                target.x = (array[index].x + array[index - 1].x)/2;
-                target.y = (array[index].y + array[index - 1].y)/2;
-                pathData += " S" + controlPoint.x + "," + controlPoint.y + " " + target.x + "," + target.y;
-              }
-            });
-
-            pathData += " S" + controlPoint.x + "," + controlPoint.y + " " + pathCoordinatesArray[pathCoordinatesArray.length - 1].x + "," + pathCoordinatesArray[pathCoordinatesArray.length - 1].y;
-//*/
-
-            /*
-            if (edge.Point.length === 3) {
-
-              // what is here is just a starting point. It has not been tested to match the PathVisio (Java) implementation.
-
-              var controlPoint = edge.Point[1];
-
-              pathData += " S" + controlPoint.x + "," + controlPoint.y + " " + target.x + "," + target.y;
-              return pathData;
-            }
-            else {
-
-              // Some of the curved connector types only have two Point. I don't know which function is used in these cases. For now, I approximated with a smooth quadratic bezier.
-
-              pathData += " T" + target.x + "," + target.y;
-              return pathData;
-            }
-            //*/
-            
-
-
-
-          }
-          else {
-            console.log('Warning: pathvisiojs does not support connector type: ' + edge.connectorType);
-            edge.Point.forEach(function(element, index, array) {
-              if ((index > 0) && (index < (array.length -1))) {
-                pathData += " L " + element.x + " " + element.y;
-              }
-            });
-            pathData += " L " + target.x + " " + target.y;
-            callback(pathData);
-          }
-        }
-      }
+	else if (type == 'Curved'){
+	    return svgCurve(calcPathpoints(edge.Point));
+	}
+	
+	else {
+	    console.log("Unknown connector type: " + type);
+	    return null;
+	}
     }
-    /*
-    console.log('returned pathData');
-    console.log(pathData);
-    return pathData;
-    //*/
-  }
+
+    function calcPathpoints(p){
+	//check to see if all waypoints are provided
+	if (p.length == 2) {
+	  p = calcAllWaypoints(p);
+	}
+
+	var ppts = [];
+
+	//first path point is start
+	ppts[0] = p[0];
+
+	//intermediate path points
+	var axis = getAxis(p[0]); //TODO: account for starting on an anchor..
+	var i;
+	for (i=1; i<p.length; i++){ 
+	  var dy = p[i].y - p[i-1].y;
+	  var dx = p[i].x - p[i-1].x;
+	  
+	  if (axis == 1){ //Vertical
+	  	ppts[i] = {x:p[i-1].x,y:p[i-1].y+dy};
+	  } else { //Horizontal
+		ppts[i] = {x:p[i-1].x+dx,y:p[i-1].y};
+	  }
+	  axis = (axis+1)%2;  //toggle 1|0
+	}
+
+	// final path point is end
+	ppts[p.length] = p[p.length-1];
+
+        return ppts; 
+    }
+
+    function calcAllWaypoints(p) {
+        var wptCount = getNumWaypoints(p);
+	var offset = 20;
+	var start = p[0];
+	var end = p[1];
+
+	var wpts = [];
+	
+	// first waypoint is start
+	wpts[0] = start;
+
+	// calc new waypoints	
+	if (wptCount == 0) {
+		//done!
+	}
+	else if (wptCount == 1) {
+		wpts[1] = calcWaypoint(start, end, getAxis(start), getDir(end));
+	} else if (wptCount == 2){
+		wpts[1] = calcWaypoint(start, {x:(end.x + offset * getDir(end)), y:(end.y + offset * getDir(end))}, getAxis(start), getDir(start));
+		wpts[2] = calcWaypoint(end, wpts[1], getAxis(end), getDir(end));
+	} else if (wptCount == 3){
+		wpts[2] = {x:(start.x + (end.x - start.x)/2), y:(start.y + (end.y - start.y)/2)};
+		wpts[1] = calcWaypoint(start, wpts[2], getAxis(start), getDir(start));
+	 	wpts[3] = calcWaypoint(end, wpts[2], getAxis(end), getDir(end));
+	} else {
+		console.log("Too many waypoint estimated!!!");
+	}
+
+	// final waypoint is end
+	wpts[wptCount+1] = end;
+
+//console.log(wptCount);
+//console.log(wpts);
+
+	return wpts;
+    }
+
+    function calcWaypoint(start, end, axis, dir){
+	var offset = 20;
+	var x = 0;
+	var y = 0;
+	if (axis == 1){ //Vertical
+	  x = start.x + (end.x - start.x)/2;
+	  y = start.y + offset * dir;
+	} else {  //Horizontal
+	  x = start.x + offset * dir;
+	  y = start.y + (end.y - start.y)/2;
+	}
+	return {x:x, y:y};
+    }
+
+    function getNumWaypoints(pts){
+        var start = pts[0];
+	var end = pts[1];
+	
+	var leftToRight = sign(end.x - start.x) > 0; 
+	var left = leftToRight ? start : end;
+	var right = leftToRight ? end : start;
+
+	var leftIsBottom = sign(left.y - right.y) < 0; 
+	var z = leftIsBottom ? 1 : 0;
+	var x = leftToRight ? getSide(start) : getSide(end);
+	var y = leftToRight ? getSide(end) : getSide(start);
+
+	var wptMatrix = [
+				[
+						[ 1, 1 ],
+						[ 2, 2 ],
+						[ 1, 3 ],
+						[ 0, 2 ]
+				],
+				[
+						[ 2, 0 ],
+						[ 1, 1 ],
+						[ 0, 2 ],
+						[ 1, 1 ],
+				],
+				[
+						[ 3, 1 ],
+						[ 2, 2 ],
+						[ 1, 1 ],
+						[ 2, 0 ],
+				],
+				[
+						[ 2, 2 ],
+						[ 3, 3 ],
+						[ 2, 2 ],
+						[ 1, 1 ],
+				]
+	]
+
+	return wptMatrix[x][y][z];
+    }
+
+    function sign(x) { 
+	return x ? x < 0 ? -1 : 1 : 0; //caution: sign("0") -> 1 
+    };
+
+    function getSide(p){
+	if(Math.abs(p.RelX) > Math.abs(p.RelY)) {
+	  if(p.RelX > 0) {
+            return 1; //East
+	  } else {
+            return 3; //West
+	  }
+ 	} else {
+	  if(p.RelY > 0) {
+            return 2; //South
+	  } else {
+            return 0; //North
+	  }
+	}
+      }
+
+    function getAxis(p) {
+        if (Math.abs(p.RelX) > Math.abs(p.RelY)){
+           return 0; // Y-Axis; Vertical
+        } else {
+          return 1; // X-Axis; Horzontal
+        }
+    }
+
+    function getDir(p){ 
+        if(Math.abs(p.RelX) > Math.abs(p.RelY)) {
+          if(p.RelX > 0) {
+            return 1; //Right
+          } else {
+            return -1; //Left
+          }
+        } else {
+          if(p.RelY > 0) {
+            return 1; //Down
+          } else {
+            return -1; //Up
+          }
+        }
+    }
+
+    //for generating line segments through a path of points (pathpoints, not waypoints)
+    var svgLine = d3.svg.line()
+	.x(function(d) {return d.x; })
+	.y(function(d) {return d.y;})
+	.interpolate("linear");
+
+    //for generating bezier curves through a path of points (pathpoints, not waypoints)
+    var svgCurve = d3.svg.line()
+        .x(function(d) {return d.x; })
+        .y(function(d) {return d.y;})
+        .interpolate("basis");
 
   return {
-    get:get
+    getPath:getPath
   };
 }();
 ;
