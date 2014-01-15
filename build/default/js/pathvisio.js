@@ -158,7 +158,7 @@ pathvisiojs.config = function() {
     if(typeof console !== "undefined") {
       console.warn('WikiPathways does not yet support CORS, so until we get CORS support, we are using Pointer as a proxy to enable CORS for getting GPML.');
     }
-    return 'http://pointer.ucsf.edu/d3/r/data-sources/gpml.php?id=';
+    return '../external-data/bridgedb/gpml.php?id=';
   }
 
   var bridgedbLinkOutsUrlStub = function() {
@@ -2549,7 +2549,7 @@ pathvisiojs.data.gpml = function(){
                 '@type': '@id'
               },
               //*/
-              'tspan': {
+              'line': {
                 '@id': 'svg:text.html#TSpanElement',
                 '@container': '@set'
               },
@@ -3204,7 +3204,7 @@ pathvisiojs.data.gpml.text = function() {
       if (!!text) {
         jsonText = {};
         jsonText['@id'] = ('id' + uuid.v4());
-        jsonText.tspan = text.split(/\r\n|\r|\n|&#xA;/g);
+        jsonText.line = text.split(/\r\n|\r|\n|&#xA;/g);
 
         var graphics = gpmlNode.select('Graphics');
         var textAlign, fontStyle, fontWeight, fontSize, fontFamily;
@@ -5183,6 +5183,8 @@ pathvisiojs.view.pathwayDiagram = function(){
           },
           function(err, results){
             svg = results.preloadSvg,
+            console.log('svg');
+            console.log(svg);
             pathway = results.pathway;
 
             loadDiagramArgs.svg = svg;
@@ -5198,7 +5200,7 @@ pathvisiojs.view.pathwayDiagram = function(){
                 if (pathway.hasOwnProperty('DataNode')) {
                   pathway.DataNode.forEach(function(node) {
                     if (!!node.text) {
-                      nodeLabels.push(node.text.tspan[0]);
+                      nodeLabels.push(node.text.line[0]);
                     }
                   });
 
@@ -5225,7 +5227,7 @@ pathvisiojs.view.pathwayDiagram = function(){
                 // see http://api.jquery.com/bind/
                 // TODO get selected value better and make function to handle
 
-                $( "#highlight-by-label-input" ).bind( "typeahead:selected", function() {
+                $( "#highlight-by-label-input" ).bind("typeahead:selected", function() {
                   nodeLabel = $("#highlight-by-label-input").val();
                   if (!nodeLabel) {
                     throw new Error("No data node value entered for type-ahead node highlighter.");
@@ -6848,12 +6850,14 @@ pathvisiojs.view.pathwayDiagram.svg.node = function(){
     return port;
   }
 
+
   function highlightByLabel(svg, pathway, nodeLabel) {
+    var svg = d3.selectAll('#pathway-svg');
     svg.selectAll('.highlighted-node').remove();
-    var dataNodesWithText = pathway.elements.filter(function(d, i) {return d.nodeType === 'data-node' && (!!d.textLabel);});
-    var selectedNodes = dataNodesWithText.filter(function(d, i) {return d.textLabel.text.indexOf(nodeLabel) !== -1;});
+    var allDataNodesWithText = pathway.DataNode.filter(function(d, i) {return (!!d.text);});
+    var selectedNodes = allDataNodesWithText.filter(function(d, i) {return d.text.line.indexOf(nodeLabel) !== -1;});
     selectedNodes.forEach(function(node) {
-      var nodeDomElement = svg.select('#node-' + node.id);
+      var nodeDomElement = svg.select('#node-container-pathway-iri-' + node.GraphId);
       var height = nodeDomElement[0][0].getBBox().height;
       var width = nodeDomElement[0][0].getBBox().width;
       nodeDomElement.append('rect')
@@ -6863,7 +6867,8 @@ pathvisiojs.view.pathwayDiagram.svg.node = function(){
       .attr('width', width + 5)
       .attr('height', height + 5);
     });
-  }
+  }  
+
   return {
     //renderAll:renderAll,
     render:render,
@@ -7028,7 +7033,7 @@ pathvisiojs.view.pathwayDiagram.svg.node.EntityNode = function(){
       if (!!args.data.DatasourceReference) {
         if (!!args.data.DatasourceReference.ID) {
           nodeContainer.on("click", function(d,i) {
-            pathvisiojs.view.annotation.xRef.render(args.pathway.Organism, d['DatasourceReference'].ID, d['DatasourceReference'].Database, d.text.tspan.join(' '), d.dataNodeType); //that's capital 'O' Organism from GPML vocab
+            pathvisiojs.view.annotation.xRef.render(args.pathway.Organism, d['DatasourceReference'].ID, d['DatasourceReference'].Database, d.text.line.join(' '), d.dataNodeType); //that's capital 'O' Organism from GPML vocab
           })
         }
       }
@@ -7626,13 +7631,13 @@ pathvisiojs.view.pathwayDiagram.svg.node.text = function(){
     // TODO replace this with the actual translate values
     text.cache.translate.dx = data.width / 2;
     text.cache.translate.dy = data.height / 2;
-    text.tspan = {};
-    text.tspan.cache = {};
-    text.tspan.cache.y = [];
-    var textLineCount = data.text.tspan.length;
+    text.line = {};
+    text.line.cache = {};
+    text.line.cache.y = [];
+    var textLineCount = data.text.line.length;
     var i = 0
-    data.text.tspan.forEach(function(tspan) {
-      text.tspan.cache.y.push(i * text.cache.fontSize);
+    data.text.line.forEach(function(line) {
+      text.line.cache.y.push(i * text.cache.fontSize);
       i += 1;
     });  
 
@@ -7671,7 +7676,7 @@ pathvisiojs.view.pathwayDiagram.svg.node.text = function(){
 
     var textLine = textArea.selectAll('text')
     .data(function(d) {
-      return d.text.tspan;
+      return d.text.line;
     })
     .enter()
     .append('text')
@@ -8493,7 +8498,7 @@ pathvisiojs.view.pathwayDiagram.svg.edge.interaction = function(){
           cssClass += 'has-xref ';
           if (!!data.DatasourceReference.ID) {
             interaction.on("click", function(d,i) {
-              pathvisiojs.view.annotation.xRef.render(args.pathway.Organism, d['DatasourceReference'].ID, d['DatasourceReference'].Database, d.InteractionGraph[0].interactsWith.text.tspan[0]+' + '+d.InteractionGraph[0].text.tspan[0], d.renderableType); 
+              pathvisiojs.view.annotation.xRef.render(args.pathway.Organism, d['DatasourceReference'].ID, d['DatasourceReference'].Database, d.InteractionGraph[0].interactsWith.text.line[0]+' + '+d.InteractionGraph[0].text.line[0], d.renderableType); 
 	      //That's capital 'O' Organism from GPML vocab.
 	      //Names of interaction partners is given as header, which is also used to form site query, 
 	      // thus the "+" is used to convey both the interaction and query logic.
@@ -9034,379 +9039,6 @@ pathvisiojs.view.pathwayDiagram.svg.edge.point = function(){
     getGraphRef:getGraphRef,
     getCoordinates:getCoordinates,
     isTwoPointElbow:isTwoPointElbow
-  };
-}();
-;
-
-// TODO Rewrite the code for getting elbow and curve edge Point. For reference, see these links:
-//
-// Elbows:
-// [PathVisio Java code for elbows](http://svn.bigcat.unimaas.nl/pathvisio/trunk/modules/org.pathvisiojs.core/src/org/pathvisio/core/model/ElbowConnectorShape.java)
-// [jsPlumb JavaScript implemention of elbows](https://github.com/sporritt/jsPlumb/blob/master/src/connectors-flowchart.js)
-// [W3C documention on vertical and horizontal path movement - "lineto" commands - for SVG](http://www.w3.org/TR/SVG/paths.html#PathDataLinetoCommands)
-//
-// Bezier Curves:
-// [PathVisio Java code for cubic bezier curve](http://svn.bigcat.unimaas.nl/pathvisio/trunk/modules/org.pathvisiojs.core/src/org/pathvisio/core/model/CurvedConnectorShape.java)
-// [jsPlumb JavaScript implemention of bezier curves](https://github.com/sporritt/jsPlumb/blob/master/src/connectors-bezier.js)
-// [W3C documention on cubic bezier curves for SVG](http://www.w3.org/TR/SVG/paths.html#PathDataLinetoCommands)
-// There are other types of SVG curves, but I understand the Java code to use bezier curves.
-
-pathvisiojs.view.pathwayDiagram.svg.edge.pathData = function(){
-  function getPathDirectionForElbowFromPoint(pathway, edge, point) {
-    var direction, otherEndDirection, otherEndPoint;
-
-    direction = getPathDirectionForElbowFromPointByAnchor(pathway, point); 
-    if (!direction) {
-      if (point === edge.Point[0]) {
-        otherEndPoint = edge.Point[edge.Point.length - 1];
-      }
-      else {
-        otherEndPoint = edge.Point[0];
-      }
-
-      otherEndDirection = getPathDirectionForElbowFromPointByAnchor(pathway, otherEndPoint); 
-      if (!!otherEndDirection) {
-        if (pathvisiojs.utilities.isOdd(edge.Point.length)) {
-          direction = switchDirection(otherEndDirection);
-        }
-        else {
-          direction = otherEndDirection;
-        }
-      }
-      else {
-        direction = getPathDirectionForElbowFromPointByDistance(pathway, edge, point);
-      }
-    }
-    return direction;
-  }
-
-  function getPathDirectionForElbowFromPointByAnchor(pathway, point) {
-    var anchor = pathway.elements.filter(function(element) {return element.id === point.anchorId})[0];
-    if (!!anchor) {
-      if (Math.abs(anchor.dx) === 1 || Math.abs(anchor.dy) === 1) {
-        if (Math.abs(anchor.dx) === 1) {
-          direction = 'H';
-        }
-        else {
-          if (Math.abs(anchor.dy) === 1) {
-            direction = 'V';
-          }
-        }
-      }
-      else {
-        direction = undefined;
-      }
-    }
-    else {
-      direction = undefined;
-    }
-    return direction;
-  }
-
-  function getPathDirectionForElbowFromPointByDistance(pathway, edge, point) {
-    var direction, comparisonPoint;
-    if (point === edge.Point[0]) {
-      comparisonPoint = edge.Point[1];
-    }
-    else {
-      comparisonPoint = edge.Point[edge.Point.length - 1];
-    }
-    if (Math.abs(comparisonPoint.x - point.x) < Math.abs(comparisonPoint.y - point.y)) {
-      direction = 'V';
-    }
-    else {
-      direction = 'H';
-    }
-    return direction;
-  }
-
-  function switchDirection(currentDirection) {
-    currentDirection = currentDirection.toUpperCase();
-    if (currentDirection === 'H') {
-      return 'V';
-    }
-    else {
-      return 'H';
-    }
-  }
-
-  function get(edge, callback) {
-    if (!edge) {
-      throw new Error('No edge specified as input.');
-    }
-
-    var currentDirection, startDirection, endDirection, controlPoint, index;
-    var pointStart = edge.Point[0];
-
-    /*
-    var source = pathvisiojs.view.pathwayDiagram.svg.edge.point.getCoordinates(pathway, pointStart);
-
-    var pointCoordinatesArray = self.pointCoordinatesArray = [];
-    var pointCoordinates;
-    edge.Point.forEach(function(element) {
-      pointCoordinates = pathvisiojs.view.pathwayDiagram.svg.edge.point.getCoordinates(pathway, element);
-      pointCoordinatesArray.push(pointCoordinates)
-    })
-
-    if (pointStart.dx === undefined) {
-      source.dx = 0;
-    }
-    else {
-      source.dx = pointStart.dx;
-    }
-
-    if (pointStart.dy === undefined) {
-      source.dy = 0;
-    }
-    else {
-      source.dy = pointStart.dy;
-    }
-
-    var pointEnd = edge.Point[edge.Point.length - 1];
-    //var target = pathvisiojs.view.pathwayDiagram.svg.edge.point.getCoordinates(pathway, pointEnd);
-
-    if (pointEnd.dx === undefined) {
-      target.dx = 0;
-    }
-    else {
-      target.dx = pointEnd.dx;
-    }
-
-    if (pointEnd.dy === undefined) {
-      target.dy = 0;
-    }
-    else {
-      target.dy = pointEnd.dy;
-    }
-    //*/
-
-    var pathData = 'M ' + source.x + ' ' + source.y;
-
-    if ((!edge.connectorType) || (edge.connectorType === undefined) || (edge.connectorType === 'Straight')) {
-      pathData += " L " + target.x + " " + target.y;
-      callback(pathData);
-    }
-    else {
-      if (edge.connectorType === 'Elbow') {
-
-        // distance to move away from node when we can't go directly to the next node
-
-        var stubLength = 15;
-
-        startDirection = getPathDirectionForElbowFromPoint(pathway, edge, pointStart);
-        currentDirection = startDirection;
-        endDirection = getPathDirectionForElbowFromPoint(pathway, edge, pointEnd);
-
-        var pathCoordinatesArray = [];
-
-
-        async.series([
-          function(callbackInside){
-            if (edge.Point.length === 2) {
-              pathvisiojs.view.pathwayDiagram.pathFinder.getPath(pathway, edge, function(data) {
-                pathCoordinatesArray = data;
-                callbackInside(null);
-              });
-            }
-            else {
-              pathCoordinatesArray.push({
-                'x': pointStart.x,
-                'y': pointStart.y
-              });
-
-              index = 0;
-              do {
-                index += 1;
-
-                if (currentDirection === 'H') {
-                  pathCoordinatesArray.push({
-                    'x': edge.Point[index].x,
-                    'y': edge.Point[index - 1].y
-                  });
-                }
-                else {
-                  pathCoordinatesArray.push({
-                    'x': edge.Point[index - 1].x,
-                    'y': edge.Point[index].y
-                  });
-                }
-                currentDirection = switchDirection(currentDirection);
-              } while (index < edge.Point.length - 1);
-
-              pathCoordinatesArray.push({
-                'x': pointEnd.x,
-                'y': pointEnd.y
-              });
-              callbackInside(null);
-            }
-          }
-        ],
-        function(err) {
-          // reposition start and end point to match source and origin
-
-          if (pathCoordinatesArray.length === 3) {
-            if (Math.abs(pathCoordinatesArray[1].x - pointStart.x) < Math.abs(pathCoordinatesArray[1].x - pointEnd.x)) {
-              pathCoordinatesArray[1].x = pointStart.x;
-              pathCoordinatesArray[1].y = pointEnd.y;
-            }
-            else {
-              pathCoordinatesArray[1].x = pointEnd.x;
-              pathCoordinatesArray[1].y = pointStart.y;
-            }
-          }
-          else {
-            if (Math.abs(pathCoordinatesArray[1].x - pointStart.x) < Math.abs(pathCoordinatesArray[1].y - pointStart.y)) {
-              pathCoordinatesArray[1].x = pointStart.x;
-            }
-            else {
-              pathCoordinatesArray[1].y = pointStart.y;
-            }
-
-            if (Math.abs(pathCoordinatesArray[pathCoordinatesArray.length - 2].x - pointEnd.x) < Math.abs(pathCoordinatesArray[pathCoordinatesArray.length - 2].y - pointEnd.y)) {
-              pathCoordinatesArray[pathCoordinatesArray.length - 2].x = pointEnd.x;
-            }
-            else {
-              pathCoordinatesArray[pathCoordinatesArray.length - 2].y = pointEnd.y;
-            }
-          }
-
-          if (startDirection === 'H') {
-            pathCoordinatesArray[1].y = pointStart.y;
-          }
-          else {
-            if (startDirection === 'V') {
-              pathCoordinatesArray[1].x = pointStart.x;
-            }
-          }
-
-          if (endDirection === 'H') {
-            pathCoordinatesArray[pathCoordinatesArray.length - 2].y = pointEnd.y;
-          }
-          else {
-            if (endDirection === 'V') {
-              pathCoordinatesArray[pathCoordinatesArray.length - 2].x = pointEnd.x;
-            }
-          }
-
-                console.log('pathCoordinatesArray');
-                console.log(pathCoordinatesArray);
-                self.pathCoordinatesArray = pathCoordinatesArray;
-          index = 0;
-          do {
-            index += 1;
-            pathData += ' L ' + pathCoordinatesArray[index].x + ' ' + pathCoordinatesArray[index].y;
-          } while (index < pathCoordinatesArray.length - 1);
-                console.log('pathData');
-                console.log(pathData);
-                callback(pathData);
-
-        });
-
-
-
-
-
-
-
-
-
-
-
-      }
-      else {
-        if (edge.connectorType === 'Segmented') {
-          edge.Point.forEach(function(element, index, array) {
-            if ((index > 0) && (index < (array.length -1))) {
-              pathData += " L " + element.x + " " + element.y;
-            }
-          });
-          pathData += " L " + target.x + " " + target.y;
-          callback(pathData);
-        }
-        else {
-          if (edge.connectorType === 'Curved') {
-
-
-            if (edge.Point.length === 2) {
-              pathCoordinatesArray = pathvisiojs.view.pathwayDiagram.pathFinder.getPath(pathway, edge);
-            }
-            else {
-              pathCoordinatesArray = edge.Point;
-            }
-
-
-            pathCoordinatesArray.forEach(function(element, index, array) {
-              if ((index > 0) && (index < (array.length - 1))) {
-                target.x = (array[index].x + array[index - 1].x)/2;
-                target.y = (array[index].y + array[index - 1].y)/2;
-                pathData += " T" + target.x + "," + target.y;
-              }
-            });
-
-            pathData += " T" + pathCoordinatesArray[pathCoordinatesArray.length - 1].x + "," + pathCoordinatesArray[pathCoordinatesArray.length - 1].y;
-            callback(pathData);
-
-            /*
-
-            controlPoint = {};
-            pathCoordinatesArray.forEach(function(element, index, array) {
-              if ((index > 0) && (index < (array.length - 1))) {
-                controlPoint.x = element.x;
-                controlPoint.y = element.y;
-                target.x = (array[index].x + array[index - 1].x)/2;
-                target.y = (array[index].y + array[index - 1].y)/2;
-                pathData += " S" + controlPoint.x + "," + controlPoint.y + " " + target.x + "," + target.y;
-              }
-            });
-
-            pathData += " S" + controlPoint.x + "," + controlPoint.y + " " + pathCoordinatesArray[pathCoordinatesArray.length - 1].x + "," + pathCoordinatesArray[pathCoordinatesArray.length - 1].y;
-//*/
-
-            /*
-            if (edge.Point.length === 3) {
-
-              // what is here is just a starting point. It has not been tested to match the PathVisio (Java) implementation.
-
-              var controlPoint = edge.Point[1];
-
-              pathData += " S" + controlPoint.x + "," + controlPoint.y + " " + target.x + "," + target.y;
-              return pathData;
-            }
-            else {
-
-              // Some of the curved connector types only have two Point. I don't know which function is used in these cases. For now, I approximated with a smooth quadratic bezier.
-
-              pathData += " T" + target.x + "," + target.y;
-              return pathData;
-            }
-            //*/
-            
-
-
-
-          }
-          else {
-            console.log('Warning: pathvisiojs does not support connector type: ' + edge.connectorType);
-            edge.Point.forEach(function(element, index, array) {
-              if ((index > 0) && (index < (array.length -1))) {
-                pathData += " L " + element.x + " " + element.y;
-              }
-            });
-            pathData += " L " + target.x + " " + target.y;
-            callback(pathData);
-          }
-        }
-      }
-    }
-    /*
-    console.log('returned pathData');
-    console.log(pathData);
-    return pathData;
-    //*/
-  }
-
-  return {
-    get:get
   };
 }();
 ;
