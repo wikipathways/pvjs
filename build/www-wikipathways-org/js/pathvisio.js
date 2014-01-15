@@ -1,5 +1,5 @@
 //! pathvisiojs 0.8.0
-//! Built on 2014-01-13
+//! Built on 2014-01-14
 //! https://github.com/wikipathways/pathvisiojs
 //! License: http://www.apache.org/licenses/LICENSE-2.0/
 
@@ -155,40 +155,11 @@ var pathvisiojs = function(){
 
 pathvisiojs.config = function() {
   var gpmlSourceUriStub = function() {
-    if(typeof console !== "undefined") {
-      console.warn('WikiPathways does not yet support CORS, so until we get CORS support, we are using Pointer as a proxy to enable CORS for getting GPML.');
-    }
-    return 'http://pointer.ucsf.edu/d3/r/data-sources/gpml.php?id=';
-  }
-
-  var bridgedbLinkOutsUrlStub = function() {
-    return 'http://pointer.ucsf.edu/d3/r/data-sources/bridgedb/bridgedb.php/';
-  }
-
-  var bridgedbDatasources = function() {
-    return '../external-data/bridgedb/datasources.txt';
-  }
-
-  var diagramNotAvailableImageUri = function() {
-    // TODO update this link to a URL we control
-    return 'http://upload.wikimedia.org/wikipedia/commons/3/3b/Picture_Not_Yet_Available.png';
-  }
-
-  var pngDiagramUriStub = function() {
-    return 'http://www.wikipathways.org/wpi//wpi.php?action=downloadFile&type=png&pwTitle=Pathway:';
-  }
-
-  var pathwaySearchUriStub = function() {
-    return 'http://wikipathways.org//index.php?title=Special:SearchPathways&doSearch=1&query=';
+    return 'http://www.wikipathways.org//wpi/wpi.php?action=downloadFile&type=gpml&pwTitle=Pathway:';
   }
 
   return {
-    gpmlSourceUriStub:gpmlSourceUriStub,
-    bridgedbLinkOutsUrlStub:bridgedbLinkOutsUrlStub,
-    bridgedbDatasources:bridgedbDatasources,
-    pngDiagramUriStub:pngDiagramUriStub,
-    diagramNotAvailableImageUri:diagramNotAvailableImageUri,
-    pathwaySearchUriStub:pathwaySearchUriStub
+    gpmlSourceUriStub:gpmlSourceUriStub
   };
 }();
 ;
@@ -2845,7 +2816,10 @@ pathvisiojs.data.gpml = function(){
             '@type': 'GroupNode',
             'contains': {}
           };  
+          self.myPathway = pathway;
           jsonld.frame(pathway, groupsFrame, function(err, framedGroups) {
+            console.log('err');
+            console.log(err);
             console.log('framedGroups');
             console.log(framedGroups);
 
@@ -6747,7 +6721,7 @@ pathvisiojs.view.pathwayDiagram.svg.node = function(){
       return 'translate(' + element.x + ' ' + element.y + ')';
     })
     .attr("style", function (d) {
-      var style;
+      var style = '';
       if (d.hasOwnProperty('backgroundColor')) {
 	if (d.ShapeType == 'brace' || d.ShapeType == 'arc'){ 
 	  //Brace color is NOT for fill and should always be transparent

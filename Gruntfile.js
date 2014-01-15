@@ -1,7 +1,8 @@
+var selectedConfigFileName = 'www-wikipathways-org';
 var pvjsSources = [
   'tmp/pathvisiojs.js', //we only use this one in the Gruntfile, not in development mode in test/compare.js,
   'src/js/pathvisiojs/pathvisio.js',
-  'config/default.js', //this gets overwritten by serverSpecificJsConfigFileUrl in development mode in test/compare.js,
+  'config/' + selectedConfigFileName + '.js', //this gets overwritten by serverSpecificJsConfigFileUrl in development mode in test/compare.js,
   'src/js/pathvisiojs/utilities.js',
   'src/js/pathvisiojs/data/data.js',
   'src/js/pathvisiojs/data/bridgedb/bridgedb.js',
@@ -72,8 +73,8 @@ module.exports = function(grunt) {
 
 // ----------
 var packageJson = grunt.file.readJSON("package.json"),
-    distribution = "build/js/pathvisio.js",
-    minified = "build/js/pathvisio.min.js",
+    distribution = "build/" + selectedConfigFileName + "/js/pathvisio.js",
+    minified = "build/" + selectedConfigFileName + "/js/pathvisio.min.js",
     packageDirName = "pathvisiojs-" + packageJson.version,
     packageDir = "build/" + packageDirName + "/",
     releaseRoot = "../site-build/built-pathvisiojs/";
@@ -128,7 +129,6 @@ grunt.initConfig({
         afterconcat: [ distribution ]
     },
     str2js: {
-      //pathvisioNS: { 'tmp/pathvisiojs.js': ['src/views/pathvisiojs.html', 'src/views/error.html', 'src/views/pathway-template.svg']}
       pathvisioNS: { 'tmp/pathvisiojs.js': ['tmp/pathvisiojs.html']}
     },
     browserify: {
@@ -165,7 +165,7 @@ grunt.initConfig({
   grunt.registerTask('build', ['str2js', 'clean:build', 'git-describe', 'jshint:beforeconcat', 'concat', 'jshint:afterconcat', 'uglify']);
 
   // quick-build 
-  grunt.registerTask('quick-build', ['str2js', 'clean:build', 'git-describe', 'concat', 'uglify']);
+  grunt.registerTask('quick-build', ['str2js', 'git-describe', 'concat', 'uglify']);
 
   // test
   //grunt.registerTask('test', ['build']);
