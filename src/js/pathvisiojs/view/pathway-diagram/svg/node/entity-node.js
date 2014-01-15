@@ -29,7 +29,7 @@ pathvisiojs.view.pathwayDiagram.svg.node.EntityNode = function(){
       if (!!args.data.DatasourceReference) {
         if (!!args.data.DatasourceReference.ID) {
           nodeContainer.on("click", function(d,i) {
-            pathvisiojs.view.annotation.xRef.render(args.pathway.Organism, d['DatasourceReference'].ID, d['DatasourceReference'].Database, d.text.tspan.join(' '), d.dataNodeType); //that's capital 'O' Organism from GPML vocab
+            pathvisiojs.view.annotation.xRef.render(args.pathway.Organism, d['DatasourceReference'].ID, d['DatasourceReference'].Database, d.text.line.join(' '), d.dataNodeType); //that's capital 'O' Organism from GPML vocab
           })
         }
       }

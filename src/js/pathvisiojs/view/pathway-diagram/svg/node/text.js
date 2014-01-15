@@ -47,13 +47,13 @@ pathvisiojs.view.pathwayDiagram.svg.node.text = function(){
     // TODO replace this with the actual translate values
     text.cache.translate.dx = data.width / 2;
     text.cache.translate.dy = data.height / 2;
-    text.tspan = {};
-    text.tspan.cache = {};
-    text.tspan.cache.y = [];
-    var textLineCount = data.text.tspan.length;
+    text.line = {};
+    text.line.cache = {};
+    text.line.cache.y = [];
+    var textLineCount = data.text.line.length;
     var i = 0
-    data.text.tspan.forEach(function(tspan) {
-      text.tspan.cache.y.push(i * text.cache.fontSize);
+    data.text.line.forEach(function(line) {
+      text.line.cache.y.push(i * text.cache.fontSize);
       i += 1;
     });  
 
@@ -92,7 +92,7 @@ pathvisiojs.view.pathwayDiagram.svg.node.text = function(){
 
     var textLine = textArea.selectAll('text')
     .data(function(d) {
-      return d.text.tspan;
+      return d.text.line;
     })
     .enter()
     .append('text')
