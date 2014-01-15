@@ -79,7 +79,7 @@ pathvisiojs.view.pathwayDiagram.svg.node = function(){
       return 'translate(' + element.x + ' ' + element.y + ')';
     })
     .attr("style", function (d) {
-      var style;
+      var style = '';
       if (d.hasOwnProperty('backgroundColor')) {
 	if (d.ShapeType == 'brace' || d.ShapeType == 'arc'){ 
 	  //Brace color is NOT for fill and should always be transparent
