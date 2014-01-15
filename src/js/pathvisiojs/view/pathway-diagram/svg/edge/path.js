@@ -42,9 +42,10 @@ pathvisiojs.view.pathwayDiagram.svg.edge.path = function(){
 	//first path point is start
 	ppts[0] = p[0];
 
+	//intermediate path points
 	var axis = getAxis(p[0]); //TODO: account for starting on an anchor..
 	var i;
-	for (i=1; i<p.length-1; i++){ 
+	for (i=1; i<p.length; i++){ 
 	  var dy = p[i].y - p[i-1].y;
 	  var dx = p[i].x - p[i-1].x;
 	  
@@ -55,17 +56,11 @@ pathvisiojs.view.pathwayDiagram.svg.edge.path = function(){
 	  }
 	  axis = (axis+1)%2;  //toggle 1|0
 	}
-	// one extra path point based on final waypoint
-	  if (axis == 0){ //Verticali (ignoring last toggle)
-                ppts[i] = {x:p[i-1].x+(p[i-1].x - p[i-2].x),y:p[i-1].y};
-          } else { //Horizontal (ignoring last toggle)
-                ppts[i] = {x:p[i-1].x,y:p[i-1].y+(p[i-1].y - p[i-2].y)};
-          }
 
 	// final path point is end
 	ppts[p.length] = p[p.length-1];
 
-        return ppts                                                                                        
+        return ppts; 
     }
 
     function calcAllWaypoints(p) {
@@ -80,7 +75,10 @@ pathvisiojs.view.pathwayDiagram.svg.edge.path = function(){
 	wpts[0] = start;
 
 	// calc new waypoints	
-	if (wptCount == 1) {
+	if (wptCount == 0) {
+		//done!
+	}
+	else if (wptCount == 1) {
 		wpts[1] = calcWaypoint(start, end, getAxis(start), getDir(end));
 	} else if (wptCount == 2){
 		wpts[1] = calcWaypoint(start, {x:(end.x + offset * getDir(end)), y:(end.y + offset * getDir(end))}, getAxis(start), getDir(start));
@@ -96,8 +94,8 @@ pathvisiojs.view.pathwayDiagram.svg.edge.path = function(){
 	// final waypoint is end
 	wpts[wptCount+1] = end;
 
-console.log(wptCount);
-console.log(wpts);
+//console.log(wptCount);
+//console.log(wpts);
 
 	return wpts;
     }
