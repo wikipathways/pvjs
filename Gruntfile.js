@@ -65,7 +65,6 @@ var pvjsSources = [
   'src/js/pathvisiojs/view/pathway-diagram/svg/edge/interaction.js',
   'src/js/pathvisiojs/view/pathway-diagram/svg/edge/marker.js',
   'src/js/pathvisiojs/view/pathway-diagram/svg/edge/point.js',
-  'src/js/pathvisiojs/view/pathway-diagram/svg/edge/path-data.js',
   'src/js/pathvisiojs/view/pathway-diagram/svg/edge/path.js',
   'src/js/pathvisiojs/view/pathway-diagram/png/png.js'
 ];
