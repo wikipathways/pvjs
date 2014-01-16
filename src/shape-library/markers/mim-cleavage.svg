@@ -20,7 +20,7 @@
 
 	<!-- mim-cleavage markers: two lines and extended drawing-board rect -->
 
-	<rect stroke="none" x="0" y="14.4" width="18.4" height="1.2" />
+	<rect stroke="none" x="0" y="14.3" width="18.4" height="1.4" />
 	<line fill="none" stroke-width="1" x1="18" y1="14.5" x2="18" y2="30"/>	
 	<line fill="none" stroke-width="1" x1="18" y1="30" x2="0" y2="0"/>	
 
