@@ -85,7 +85,8 @@ header.annotation-header {
   text-align: left;
   padding: 0 0 0 10px;
   margin: 5px 0 0 -5px;
-  height: 20em;
+  max-height: 300px;
+  min-height: 30px;
   overflow: auto;
 }
 
