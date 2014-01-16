@@ -1,7 +1,8 @@
-//var selectedConfigFileName = 'localhost';
+var selectedConfigFileName = 'localhost';
 //var selectedConfigFileName = 'default';
 //var selectedConfigFileName = 'www-wikipathways-org';
-var selectedConfigFileName = 'test3-wikipathways-org';
+//var selectedConfigFileName = 'test3-wikipathways-org';
+
 var pvjsSources = [
   'tmp/pathvisiojs.js', //we only use this one in the Gruntfile, not in development mode in test/compare.js,
   'src/js/pathvisiojs/pathvisio.js',

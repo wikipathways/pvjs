@@ -14,6 +14,8 @@ pathvisiojs.view.pathwayDiagram.svg.node.groupNode = function(){
       })
 
       var groupContents = args.data.contains;
+      console.log('args.data.contains');
+      console.log(args.data.contains);
       callback(groupContainer, groupContents);
     });
   }

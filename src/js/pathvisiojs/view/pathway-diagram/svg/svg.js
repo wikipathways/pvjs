@@ -156,6 +156,8 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
   // other elements, this function will call itself back to render
   // the elements within the groupNode.
   function renderSelectedElementsFast(args, callbackOutside){
+    console.log('render');
+    console.log(new Date());
     console.log('renderSelectedElementsFast args');
     console.log(args);
     var svg = args.svg,
@@ -258,6 +260,8 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
       throw new Error("No data entered to render.");
     }
 
+    console.log('first');
+    console.log(new Date());
     async.parallel({
       /*
       'gridData': function(callbackInside) {
@@ -277,8 +281,7 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
       'firstOrderData': function(callbackInside) {
         var firstOrderFrame = {
           '@context': pathvisiojs.context,
-          '@type':['notGrouped', 'GroupNode'],
-          'contains':{}
+          '@type':['notGrouped', 'GroupNode']
         };
         jsonld.frame(pathway, firstOrderFrame, function(err, firstOrderData) {
           console.log('firstOrderData');
@@ -288,6 +291,8 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
       }
     },
     function(err, results) {
+      console.log('second');
+      console.log(new Date());
       var viewport = svg.select('#viewport');
 
       pathvisiojs.view.pathwayDiagram.svg.infoBox.render(viewport, pathway);
@@ -298,6 +303,8 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
       renderSelectedElementsFastArgs.pathway = pathway;
       renderSelectedElementsFastArgs.data = results.firstOrderData;
       renderSelectedElementsFast(renderSelectedElementsFastArgs, function() {
+        console.log('third');
+        console.log(new Date());
         callback(svg);
       });
 
