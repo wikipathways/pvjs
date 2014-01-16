@@ -48,19 +48,20 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
 	//remove loading gif
         container.select('img').remove();
 
-        var initialClickHappened = false;
+        var svgActive = false;
         svg.on("click", function(d, i){
           svgPanZoom.enableZoom();
-          initialClickHappened = true;
+          svgActive = true;
         })
         .on("mouseover", function(d, i){
-          if (initialClickHappened) {
+          if (svgActive) {
             svgPanZoom.enableZoom();
           }
         })
         .on("mouseout", function(d, i){
-          if (initialClickHappened) {
+          if (svgActive) {
             svgPanZoom.disableZoom();
+	    svgActive = false;
           }
         });
 
