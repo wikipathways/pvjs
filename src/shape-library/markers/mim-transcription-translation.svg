@@ -11,14 +11,14 @@
 	height="24"
         refXstart="-0.5"
         refYstart="12"
-        refXend="22.5"
-        refYend="10.6"
+        refXend="20.5"
+        refYend="12"
 	viewBox="0 0 20 24"
 	class="board-fill-color default-stroke-color solid-stroke">
 
 	<!-- mim-transcription-translation markers: two lines and an open trigular polygon, plus extended drawing-board rect -->
 
-	<rect stroke="none" x="0" y="11.4" width="12" height="1.2" />
+	<rect stroke="none" x="0" y="11" width="12" height="2" />
 	<line fill="none" stroke-width="1" x1="15" y1="12" x2="15" y2="5"/>
 	<line fill="none" stroke-width="1" x1="15.5" y1="5" x2="8" y2="5"/>
 	<polygon stroke-width="1" points="0,5 8,1 8,9"/>
