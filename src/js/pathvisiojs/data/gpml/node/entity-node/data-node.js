@@ -69,20 +69,16 @@ pathvisiojs.data.gpml.element.node.entityNode.dataNode.toRenderableJson = functi
       if (!!text) {
         jsonDataNode.text = text;
       }
-
       jsonDataNode = pathvisiojs.data.gpml.setBorderStyleAsJson(jsonDataNode,
                                                                 gpmlDataNode.select('Graphics').attr('LineStyle'),
                                                                 thisPathvisioDefaultStyleValues.LineStyle);
-
-                                                                jsonDataNode = pathvisiojs.data.gpml.setColorAsJson(jsonDataNode,
-                                                                                                                    gpmlDataNode.select('Graphics').attr('Color'),
-                                                                                                                    thisPathvisioDefaultStyleValues.Color);
-
-                                                                                                                    jsonDataNode = pathvisiojs.data.gpml.element.node.setJsonBackgroundColor(jsonDataNode,
-                                                                                                                                                                                     gpmlDataNode.select('Graphics').attr('FillColor'),
-                                                                                                                                                                                     thisPathvisioDefaultStyleValues.FillColor);
-
-                                                                                                                                                                                     callbackInside(jsonDataNode);
+      jsonDataNode = pathvisiojs.data.gpml.setColorAsJson(jsonDataNode,
+                                                          gpmlDataNode.select('Graphics').attr('Color'),
+                                                          thisPathvisioDefaultStyleValues.Color);
+      jsonDataNode = pathvisiojs.data.gpml.element.node.setJsonBackgroundColor(jsonDataNode,
+                                                                       gpmlDataNode.select('Graphics').attr('FillColor'),
+                                                                       thisPathvisioDefaultStyleValues.FillColor);
+      callbackInside(jsonDataNode);
     });
   });
 }
