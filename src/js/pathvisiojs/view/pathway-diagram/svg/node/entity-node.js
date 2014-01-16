@@ -31,10 +31,19 @@ pathvisiojs.view.pathwayDiagram.svg.node.EntityNode = function(){
         console.log('args.data.DatasourceReference');
         console.log(args.data.DatasourceReference);
         if (!!args.data.DatasourceReference.ID) {
-          nodeContainer.on("click", function(d,i) {
-            console.log(d);
-            pathvisiojs.view.annotation.xRef.render(args.pathway.Organism, d['DatasourceReference'].ID, d['DatasourceReference'].Database, d.text.line.join(' '), d.dataNodeType); //that's capital 'O' Organism from GPML vocab
+          var notDragged = true;
+          nodeContainer
+          .on("mousedown", function(d,i) {
+		notDragged = true;
           })
+          .on("mousemove", function(d,i) {
+                notDragged = false;
+          })
+	  .on("mouseup", function(d,i) {
+	    if (notDragged) {
+	 	pathvisiojs.view.annotation.xRef.render(args.pathway.Organism, d['DatasourceReference'].ID, d['DatasourceReference'].Database, d.text.line.join(' '), d.dataNodeType); //that's capital 'O' Organism from GPML vocab
+	    }
+	  });
         }
       }
     });
