@@ -53,12 +53,17 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
           svgPanZoom.enableZoom();
           svgActive = true;
         })
-        .on("mouseover", function(d, i){
+	.on("dblclick", function(d, i){
+	  if (svgActive) {
+	    svgPanZoom.zoomIn(); //TODO provide proper "selector" as arg
+	  }
+	})
+        .on("mouseenter", function(d, i){
           if (svgActive) {
             svgPanZoom.enableZoom();
           }
         })
-        .on("mouseout", function(d, i){
+        .on("mouseleave", function(d, i){
           if (svgActive) {
             svgPanZoom.disableZoom();
 	    svgActive = false;
@@ -81,7 +86,7 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
 
         svgPanZoom.init({
           'root': 'svg',
-          'zoomEnabled': false 
+          'zoomEnabled': false
         });
         callback(null);
       }
