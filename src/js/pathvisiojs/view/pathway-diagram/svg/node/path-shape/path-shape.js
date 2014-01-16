@@ -20,6 +20,7 @@ pathvisiojs.view.pathwayDiagram.svg.node.pathShape = function(){
         if(d.hasOwnProperty('borderColor')) {
 	  if(d.nodeType != 'Label'){  //Label "Color" attrs are NOT for borderColor of svg-specific rectangle shape
             style += 'stroke:' + d.borderColor + '; ';
+	    parent.attr('strokecolor', d.borderColor);
 	  }
         }
         return style;})
