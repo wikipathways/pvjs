@@ -263,21 +263,6 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
     console.log('first');
     console.log(new Date());
     async.parallel({
-      /*
-      'gridData': function(callbackInside) {
-        var frame = {
-          '@context': pathvisiojs.context,
-          '@type': 'EntityNode'
-        };  
-        jsonld.frame(pathway, frame, function(err, framedData) {
-          pathvisiojs.view.pathwayDiagram.pathFinder.initGrid(framedData['@graph'], pathway.image.width, pathway.image.height, function(gridData) {
-            svg[0][0].pathvisiojs = svg[0][0].pathvisiojs || {};
-            svg[0][0].pathvisiojs.gridData = gridData;
-            callbackInside(null, gridData);
-          });
-        });
-      },
-      //*/
       'firstOrderData': function(callbackInside) {
         var firstOrderFrame = {
           '@context': pathvisiojs.context,
