@@ -17,7 +17,7 @@ It can overlap the side of the shape, blanking out a small part of it when the e
 	height="12"
         refXstart="0"
         refYstart="6"
-        refXend="8.5"
+        refXend="12"
         refYend="6"
 	class="board-fill-color solid-stroke"
 	viewBox="0 0 12 12">

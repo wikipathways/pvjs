@@ -106,15 +106,14 @@ pathvisiojs.view.pathwayDiagram.svg.edge.marker = function(){
         marker.append('g')
         .attr('id', 'g-' + markerId)
         .attr('class', markerClass)
-	.attr('transform', 'rotate(180, '+width/2+', '+height/2+')');
- /*       .attr('style', ''
-			+ '-webkit-transform: rotate(180deg); -webkit-transform-origin: 50% 50%; '
+	.attr('transform', 'rotate(180, '+width/2+', '+height/2+')'); 
+/*        .attr('style', ' -webkit-transform: rotate(180deg); -webkit-transform-origin: 50% 50%; '
 			+ '-o-transform: rotate(180deg); -o-transform-origin: 50% 50%; '
 			+ '-moz-transform: rotate(180deg); -moz-transform-origin: 50% 50%; '
 			+ '-ms-transform: rotate(180deg); -ms-transform-origin: 50% 50%; '
 			+ 'transform: rotate(180deg); transform-origin: 50% 50%; '
         );
- */     } else {
+*/      } else {
 	//start marker
         marker.attr('refX', refXstart)
         .attr('refY', refYstart);
@@ -125,8 +124,7 @@ pathvisiojs.view.pathwayDiagram.svg.edge.marker = function(){
       }
 
       var g = document.querySelector('#' + 'g-' + markerId);
-
-      var newMarkerChildren = newMarker[0][0].children;
+      var newMarkerChildren = newMarker[0][0].childNodes;
       do {
         g.appendChild(newMarkerChildren[0]);
       } while (newMarkerChildren.length > 0);
@@ -246,19 +244,19 @@ pathvisiojs.view.pathwayDiagram.svg.edge.marker = function(){
     var defaultId = markerIdStub + '-' + position + '-default';
     var marker = pathvisiojs.utilities.cloneNode('#' + defaultId);
 
-    var defaultMarkerStart, refX, refY, viewBox, viewBoxElements;
+    var defaultMarker, refX, refY, viewBox, viewBoxElements;
     if (position === 'end') {
       console.log('end');
-      defaultMarkerStart = d3.select('#' + markerIdStub + '-start-default');
-      refX = parseFloat(defaultMarkerStart.attr('refX'));
-      refY = parseFloat(defaultMarkerStart.attr('refY'));
-      viewBox = defaultMarkerStart.attr('viewBox');
+      defaultMarker = d3.select('#' + markerIdStub + '-'+position+'-default');
+      refX = parseFloat(defaultMarker.attr('refX'));
+      refY = parseFloat(defaultMarker.attr('refY'));
+      viewBox = defaultMarker.attr('viewBox');
       if (!!viewBox) {
         viewBoxElements = viewBox.split(' ');
-        marker.attr('viewBox', (-1) * viewBoxElements[2] + ' ' + (-1) * viewBoxElements[3] + ' ' + viewBoxElements[2] + ' ' + viewBoxElements[3]);
+        marker.attr('viewBox', viewBox); 
       }
       marker.attr('refX', refX)
-      marker.attr('refY', (-1) * refY)
+      marker.attr('refY', refY)
     }
 
     // define style of marker element's SVG
