@@ -48,19 +48,20 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
 	//remove loading gif
         container.select('img').remove();
 
-        var initialClickHappened = false;
+        var svgInFocus = false;
         svg.on("click", function(d, i){
           svgPanZoom.enableZoom();
-          initialClickHappened = true;
+          svgInFocus = true;
         })
-        .on("mouseover", function(d, i){
-          if (initialClickHappened) {
+        .on("mouseenter", function(d, i){
+          if (svgInFocus) {
             svgPanZoom.enableZoom();
           }
         })
-        .on("mouseout", function(d, i){
-          if (initialClickHappened) {
+        .on("mouseleave", function(d, i){
+          if (svgInFocus) {
             svgPanZoom.disableZoom();
+	    svgInFocus = false;
           }
         });
 
@@ -78,9 +79,25 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
           setCTM(viewport, fitScreenScale);
         }
 
+    	var fittoscreen = d3.select('body').select('#fit-to-screen-control');
+    	fittoscreen.on("click", function(d,i){
+          fitScreenScale = Math.min(containerWidth/args.pathway.image.width, containerHeight/args.pathway.image.height);
+          setCTM(viewport, fitScreenScale);
+        });
+
+	var fullscreen = d3.select('body').select('#fullscreen-control');
+	fullscreen.on("click", function(d,i){
+          var pvjs = document.getElementById("pathvisio-js-dev").innerHTML;
+          var newwin = window.open('','','width=800,height=600');
+          var doc = newwin.document;
+	  doc.open();
+	  doc.write(pvjs);
+	  doc.close();	
+	});
+
         svgPanZoom.init({
           'root': 'svg',
-          'zoomEnabled': false 
+          'zoomEnabled': false
         });
         callback(null);
       }
@@ -156,6 +173,8 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
   // other elements, this function will call itself back to render
   // the elements within the groupNode.
   function renderSelectedElementsFast(args, callbackOutside){
+    console.log('render');
+    console.log(new Date());
     console.log('renderSelectedElementsFast args');
     console.log(args);
     var svg = args.svg,
@@ -258,6 +277,8 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
       throw new Error("No data entered to render.");
     }
 
+    console.log('first');
+    console.log(new Date());
     async.parallel({
       /*
       'gridData': function(callbackInside) {
@@ -277,8 +298,7 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
       'firstOrderData': function(callbackInside) {
         var firstOrderFrame = {
           '@context': pathvisiojs.context,
-          '@type':['notGrouped', 'GroupNode'],
-          'contains':{}
+          '@type':['notGrouped', 'GroupNode']
         };
         jsonld.frame(pathway, firstOrderFrame, function(err, firstOrderData) {
           console.log('firstOrderData');
@@ -288,6 +308,8 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
       }
     },
     function(err, results) {
+      console.log('second');
+      console.log(new Date());
       var viewport = svg.select('#viewport');
 
       pathvisiojs.view.pathwayDiagram.svg.infoBox.render(viewport, pathway);
@@ -298,6 +320,8 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
       renderSelectedElementsFastArgs.pathway = pathway;
       renderSelectedElementsFastArgs.data = results.firstOrderData;
       renderSelectedElementsFast(renderSelectedElementsFastArgs, function() {
+        console.log('third');
+        console.log(new Date());
         callback(svg);
       });
 

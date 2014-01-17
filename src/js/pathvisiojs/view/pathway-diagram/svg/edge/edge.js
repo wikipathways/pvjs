@@ -245,7 +245,7 @@ pathvisiojs.view.pathwayDiagram.svg.edge = function(){
       .attr("style", function (data) {
         var style = 'stroke-width:' + data.strokeWidth + '; ';
         if (data.hasOwnProperty('stroke')) {
-          style += 'stroke:' + data.stroke + '; ';
+          style += 'stroke:#' + data.stroke + '; ';
         }
         if (data.hasOwnProperty('strokeStyle')) {
           if (data.strokeStyle === 'double') {
