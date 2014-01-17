@@ -48,20 +48,20 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
 	//remove loading gif
         container.select('img').remove();
 
-        var svgActive = false;
+        var svgInFocus = false;
         svg.on("click", function(d, i){
           svgPanZoom.enableZoom();
-          svgActive = true;
+          svgInFocus = true;
         })
         .on("mouseenter", function(d, i){
-          if (svgActive) {
+          if (svgInFocus) {
             svgPanZoom.enableZoom();
           }
         })
         .on("mouseleave", function(d, i){
-          if (svgActive) {
+          if (svgInFocus) {
             svgPanZoom.disableZoom();
-	    svgActive = false;
+	    svgInFocus = false;
           }
         });
 
@@ -78,6 +78,22 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
           fitScreenScale = Math.min(containerWidth/args.pathway.image.width, containerHeight/args.pathway.image.height);
           setCTM(viewport, fitScreenScale);
         }
+
+    	var fittoscreen = d3.select('body').select('#fit-to-screen-control');
+    	fittoscreen.on("click", function(d,i){
+          fitScreenScale = Math.min(containerWidth/args.pathway.image.width, containerHeight/args.pathway.image.height);
+          setCTM(viewport, fitScreenScale);
+        });
+
+	var fullscreen = d3.select('body').select('#fullscreen-control');
+	fullscreen.on("click", function(d,i){
+          var pvjs = document.getElementById("pathvisio-js-dev").innerHTML;
+          var newwin = window.open('','','width=800,height=600');
+          var doc = newwin.document;
+	  doc.open();
+	  doc.write(pvjs);
+	  doc.close();	
+	});
 
         svgPanZoom.init({
           'root': 'svg',
