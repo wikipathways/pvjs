@@ -8,7 +8,7 @@
   zoom: 1;
   -webkit-font-smoothing: antialiased;
   background: #F9F9F9;
-  width: 250px;
+  width: 260px;
   border-radius: 10px;
   -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3),inset 0 1px 1px rgba(255, 255, 255, 0.8);
   -moz-box-shadow: 0 1px 3px rgba(0,0,0,0.3),inset 0 1px 1px rgba(255,255,255,0.8);
@@ -80,12 +80,13 @@ header.annotation-header {
 }
 
 .annotation-items-container ul {
-  line-height: 130%;
+  line-height: 120%;
   list-style: none;
   text-align: left;
   padding: 0 0 0 10px;
   margin: 5px 0 0 -5px;
-  height: 20em;
+  max-height: 300px;
+  min-height: 30px;
   overflow: auto;
 }
 
@@ -112,6 +113,7 @@ header.annotation-header {
 
 .annotation-item-title {
   padding: 0px;
+  font-size: 10pt;
   display: inline;
   margin: 0 auto 0 auto;
   color: #696969;
