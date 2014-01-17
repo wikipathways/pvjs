@@ -53,11 +53,6 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
           svgPanZoom.enableZoom();
           svgActive = true;
         })
-	.on("dblclick", function(d, i){
-	  if (svgActive) {
-	    svgPanZoom.zoomIn(); //TODO provide proper "selector" as arg
-	  }
-	})
         .on("mouseenter", function(d, i){
           if (svgActive) {
             svgPanZoom.enableZoom();
