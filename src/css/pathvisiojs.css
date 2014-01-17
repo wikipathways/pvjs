@@ -21,6 +21,15 @@ body {
     outline:    10px auto gold;
     background-color: transparent;
 }
+
+.icon-screenshot:hover {
+   cursor: pointer;
+}
+  
+.icon-fullscreen:hover {
+   cursor: pointer;
+}
+
 .typeahead,
 .tt-query,
 .tt-hint {
