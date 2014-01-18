@@ -1,5 +1,7 @@
 "use strict";
 
+// TODO remove controls that don't work with PNG 
+
 pathvisiojs.view.pathwayDiagram.png = function(){
 
   function load(args, callback) {
