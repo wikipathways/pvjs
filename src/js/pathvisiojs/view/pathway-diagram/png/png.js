@@ -8,9 +8,9 @@ pathvisiojs.view.pathwayDiagram.png = function(){
     }
     var wikiPathwaysId = args.parsedInputData.wikiPathwaysId,
       revision = args.parsedInputData.revision,
-      target = args.target,
-      containerWidth = args.width,
-      containerHeight = args.height,
+      container = args.container,
+      containerWidth = parseFloat(args.containerWidth),
+      containerHeight = parseFloat(args.containerHeight),
       pngUrl,
       png,
       pngWidth,
@@ -27,10 +27,10 @@ pathvisiojs.view.pathwayDiagram.png = function(){
       png = document.createElement('img');
       png.src = pngUrl;
       png.onload = function() {
-        pngWidth = this.width;
-        pngHeight = this.height;
-        fitScreenScale = Math.min(containerWidth/pngWidth, containerHeight/pngHeight);
-        target.append('img')
+        pngWidth = parseFloat(this.width);
+        pngHeight = parseFloat(this.height);
+        fitScreenScale = Math.min((containerWidth/pngWidth), (containerHeight/pngHeight));
+        container.append('img')
         .attr('id', 'pathvisiojs-pathway-png')
         .attr('src', pngUrl)
         .attr('x', 0)
