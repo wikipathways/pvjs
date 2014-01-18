@@ -157,7 +157,9 @@ pathvisiojs.view.pathwayDiagram = function(){
         // Check for SVG support. If false, use PNG fallback
         // ********************************************
 
-        if (Modernizr.svg) {
+        // TODO get this working in IE9
+
+        if (Modernizr.svg && (pathvisiojs.utilities.isIE() !== 9)) {
           async.parallel({
             preloadSvg: function(callback) {
               var preloadDiagramArgs = {};
@@ -179,71 +181,77 @@ pathvisiojs.view.pathwayDiagram = function(){
             }
           },
           function(err, results){
-            svg = results.preloadSvg,
-            console.log('svg');
-            console.log(svg);
             pathway = results.pathway;
 
-            loadDiagramArgs.svg = svg;
-            loadDiagramArgs.pathway = pathway;
+            if (pathway !== 'fail') {
+              svg = results.preloadSvg,
 
-            pathvisiojs.view.pathwayDiagram.svg.load(loadDiagramArgs, function(svg) {
+              loadDiagramArgs.svg = svg;
+              loadDiagramArgs.pathway = pathway;
 
-              ///* Node Highlighter
+              pathvisiojs.view.pathwayDiagram.svg.load(loadDiagramArgs, function(svg) {
 
-              var nodeLabels, nodeLabel;
-              if (!!pathway) {
-                nodeLabels = [];
-                if (pathway.hasOwnProperty('DataNode')) {
-                  pathway.DataNode.forEach(function(node) {
-                    if (!!node.text) {
-                      nodeLabels.push(node.text.line[0]);
+                ///* Node Highlighter
+
+                var nodeLabels, nodeLabel;
+                if (!!pathway) {
+                  nodeLabels = [];
+                  if (pathway.hasOwnProperty('DataNode')) {
+                    pathway.DataNode.forEach(function(node) {
+                      if (!!node.text) {
+                        nodeLabels.push(node.text.line[0]);
+                      }
+                    });
+
+                    // see http://twitter.github.io/typeahead.js/
+
+                    $('#highlight-by-label-input').typeahead({
+                      name: 'Highlight node in pathway',
+                      local: nodeLabels,
+                      limit: 10
+                    });
+                  }
+
+                  /*
+                     $('.icon-eye-open').click(function(){
+                     var nodeLabel = $("#highlight-by-label-input").val();
+                     if (!nodeLabel) {
+                     console.warn('Error: No data node value entered.');
+                     }
+                     else {
+                     pathvisiojs.view.pathwayDiagram.svg.node.highlightByLabel(svg, nodeLabel);
+                     }
+                     });
+                  //*/
+                  // see http://api.jquery.com/bind/
+                  // TODO get selected value better and make function to handle
+
+                  $( "#highlight-by-label-input" ).bind("typeahead:selected", function() {
+                    nodeLabel = $("#highlight-by-label-input").val();
+                    if (!nodeLabel) {
+                      throw new Error("No data node value entered for type-ahead node highlighter.");
+                    }
+                    else {
+
+                      // TODO refactor this so it calls a generic highlightDataNodeByLabel function that can call
+                      // a highlighter for svg, png, etc. as appropriate.
+
+                      pathvisiojs.view.pathwayDiagram.svg.node.highlightByLabel(svg, pathway, nodeLabel);
                     }
                   });
 
-                  // see http://twitter.github.io/typeahead.js/
-
-                  $('#highlight-by-label-input').typeahead({
-                    name: 'Highlight node in pathway',
-                    local: nodeLabels,
-                    limit: 10
-                  });
+                  callback(null, 'svg loaded');
                 }
-
-                /*
-                   $('.icon-eye-open').click(function(){
-                   var nodeLabel = $("#highlight-by-label-input").val();
-                   if (!nodeLabel) {
-                   console.warn('Error: No data node value entered.');
-                   }
-                   else {
-                   pathvisiojs.view.pathwayDiagram.svg.node.highlightByLabel(svg, nodeLabel);
-                   }
-                   });
-                //*/
-                // see http://api.jquery.com/bind/
-                // TODO get selected value better and make function to handle
-
-                $( "#highlight-by-label-input" ).bind("typeahead:selected", function() {
-                  nodeLabel = $("#highlight-by-label-input").val();
-                  if (!nodeLabel) {
-                    throw new Error("No data node value entered for type-ahead node highlighter.");
-                  }
-                  else {
-
-                    // TODO refactor this so it calls a generic highlightDataNodeByLabel function that can call
-                    // a highlighter for svg, png, etc. as appropriate.
-
-                    pathvisiojs.view.pathwayDiagram.svg.node.highlightByLabel(svg, pathway, nodeLabel);
-                  }
-                });
-
-                callback(null, 'svg loaded');
-              }
-              else {
-                callback(null);
-              }
-            })
+                else {
+                  callback(null);
+                }
+              })
+            }
+            else {
+              pathvisiojs.view.pathwayDiagram.png.load(loadDiagramArgs, function() {
+                callback(null, 'png loaded');
+              });
+            }
           })
         }
         else {
