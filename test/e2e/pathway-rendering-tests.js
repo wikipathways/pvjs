@@ -24,6 +24,11 @@ function testTheCount(gpmlFile, elementName, expectedCount) {
   });
 }
 
+describe('myTest', function() {
+  it('should run', function() {
+  });
+});
+
 ptor.get(baseUrl + "test/compare.html?gpml=WP2545").
   then(function() {
     console.log('************** running anchors rendering test protocol...');
@@ -357,7 +362,4 @@ ptor.get(baseUrl + "test/compare.html?gpml=WP2545").
   });
 
 
-describe('shapes', function() {
-  it('should have 31 Shapes', function() {
-  });
-});
+
