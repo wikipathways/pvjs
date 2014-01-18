@@ -149,10 +149,12 @@ pathvisiojs.data.gpml = function(){
 
       if (pathvisiojs.data.gpml.namespaces.indexOf(pathway.xmlns) !== 0) {
 
-        // preferably, this would call the Java RPC updater for the file to be updated.
+        // TODO call the Java RPC updater or in some other way call for the file to be updated.
 
-        alert('Pathvisiojs may not fully support the version of GPML provided (xmlns: ' + pathway.xmlns + '). Please convert to the supported version of GPML (xmlns: ' + pathvisiojs.data.gpml.namespaces[0] + ').');
+        callbackOutside('fail');
+        //alert('Pathvisiojs may not fully support the version of GPML provided (xmlns: ' + pathway.xmlns + '). Please convert to the supported version of GPML (xmlns: ' + pathvisiojs.data.gpml.namespaces[0] + ').');
       }
+      else {
 
       async.parallel({
           '@context': function(callback){
@@ -558,6 +560,7 @@ pathvisiojs.data.gpml = function(){
           callbackOutside(pathway);
         }
       });
+      }
 /*
       // Comments 
 
