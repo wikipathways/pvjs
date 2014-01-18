@@ -157,7 +157,9 @@ pathvisiojs.view.pathwayDiagram = function(){
         // Check for SVG support. If false, use PNG fallback
         // ********************************************
 
-        if (Modernizr.svg) {
+        // TODO get this working in IE9
+
+        if (Modernizr.svg && (pathvisiojs.utilities.isIE() !== 9)) {
           async.parallel({
             preloadSvg: function(callback) {
               var preloadDiagramArgs = {};
