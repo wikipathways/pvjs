@@ -87,7 +87,8 @@ header.annotation-header {
   margin: 5px -5px 10px -5px;
   max-height: 300px;
   min-height: 30px;
-  overflow: auto;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 
 .annotation-item li {
