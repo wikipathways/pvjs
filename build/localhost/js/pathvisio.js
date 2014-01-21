@@ -1,5 +1,5 @@
 //! pathvisiojs 0.8.0
-//! Built on 2014-01-15
+//! Built on 2014-01-17
 //! https://github.com/wikipathways/pathvisiojs
 //! License: http://www.apache.org/licenses/LICENSE-2.0/
 
@@ -2477,10 +2477,12 @@ pathvisiojs.data.gpml = function(){
 
       if (pathvisiojs.data.gpml.namespaces.indexOf(pathway.xmlns) !== 0) {
 
-        // preferably, this would call the Java RPC updater for the file to be updated.
+        // TODO call the Java RPC updater or in some other way call for the file to be updated.
 
-        alert('Pathvisiojs may not fully support the version of GPML provided (xmlns: ' + pathway.xmlns + '). Please convert to the supported version of GPML (xmlns: ' + pathvisiojs.data.gpml.namespaces[0] + ').');
+        callbackOutside('fail');
+        //alert('Pathvisiojs may not fully support the version of GPML provided (xmlns: ' + pathway.xmlns + '). Please convert to the supported version of GPML (xmlns: ' + pathvisiojs.data.gpml.namespaces[0] + ').');
       }
+      else {
 
       async.parallel({
           '@context': function(callback){
@@ -2886,6 +2888,7 @@ pathvisiojs.data.gpml = function(){
           callbackOutside(pathway);
         }
       });
+      }
 /*
       // Comments 
 
@@ -5182,71 +5185,77 @@ pathvisiojs.view.pathwayDiagram = function(){
             }
           },
           function(err, results){
-            svg = results.preloadSvg,
-            console.log('svg');
-            console.log(svg);
             pathway = results.pathway;
 
-            loadDiagramArgs.svg = svg;
-            loadDiagramArgs.pathway = pathway;
+            if (pathway !== 'fail') {
+              svg = results.preloadSvg,
 
-            pathvisiojs.view.pathwayDiagram.svg.load(loadDiagramArgs, function(svg) {
+              loadDiagramArgs.svg = svg;
+              loadDiagramArgs.pathway = pathway;
 
-              ///* Node Highlighter
+              pathvisiojs.view.pathwayDiagram.svg.load(loadDiagramArgs, function(svg) {
 
-              var nodeLabels, nodeLabel;
-              if (!!pathway) {
-                nodeLabels = [];
-                if (pathway.hasOwnProperty('DataNode')) {
-                  pathway.DataNode.forEach(function(node) {
-                    if (!!node.text) {
-                      nodeLabels.push(node.text.line[0]);
+                ///* Node Highlighter
+
+                var nodeLabels, nodeLabel;
+                if (!!pathway) {
+                  nodeLabels = [];
+                  if (pathway.hasOwnProperty('DataNode')) {
+                    pathway.DataNode.forEach(function(node) {
+                      if (!!node.text) {
+                        nodeLabels.push(node.text.line[0]);
+                      }
+                    });
+
+                    // see http://twitter.github.io/typeahead.js/
+
+                    $('#highlight-by-label-input').typeahead({
+                      name: 'Highlight node in pathway',
+                      local: nodeLabels,
+                      limit: 10
+                    });
+                  }
+
+                  /*
+                     $('.icon-eye-open').click(function(){
+                     var nodeLabel = $("#highlight-by-label-input").val();
+                     if (!nodeLabel) {
+                     console.warn('Error: No data node value entered.');
+                     }
+                     else {
+                     pathvisiojs.view.pathwayDiagram.svg.node.highlightByLabel(svg, nodeLabel);
+                     }
+                     });
+                  //*/
+                  // see http://api.jquery.com/bind/
+                  // TODO get selected value better and make function to handle
+
+                  $( "#highlight-by-label-input" ).bind("typeahead:selected", function() {
+                    nodeLabel = $("#highlight-by-label-input").val();
+                    if (!nodeLabel) {
+                      throw new Error("No data node value entered for type-ahead node highlighter.");
+                    }
+                    else {
+
+                      // TODO refactor this so it calls a generic highlightDataNodeByLabel function that can call
+                      // a highlighter for svg, png, etc. as appropriate.
+
+                      pathvisiojs.view.pathwayDiagram.svg.node.highlightByLabel(svg, pathway, nodeLabel);
                     }
                   });
 
-                  // see http://twitter.github.io/typeahead.js/
-
-                  $('#highlight-by-label-input').typeahead({
-                    name: 'Highlight node in pathway',
-                    local: nodeLabels,
-                    limit: 10
-                  });
+                  callback(null, 'svg loaded');
                 }
-
-                /*
-                   $('.icon-eye-open').click(function(){
-                   var nodeLabel = $("#highlight-by-label-input").val();
-                   if (!nodeLabel) {
-                   console.warn('Error: No data node value entered.');
-                   }
-                   else {
-                   pathvisiojs.view.pathwayDiagram.svg.node.highlightByLabel(svg, nodeLabel);
-                   }
-                   });
-                //*/
-                // see http://api.jquery.com/bind/
-                // TODO get selected value better and make function to handle
-
-                $( "#highlight-by-label-input" ).bind("typeahead:selected", function() {
-                  nodeLabel = $("#highlight-by-label-input").val();
-                  if (!nodeLabel) {
-                    throw new Error("No data node value entered for type-ahead node highlighter.");
-                  }
-                  else {
-
-                    // TODO refactor this so it calls a generic highlightDataNodeByLabel function that can call
-                    // a highlighter for svg, png, etc. as appropriate.
-
-                    pathvisiojs.view.pathwayDiagram.svg.node.highlightByLabel(svg, pathway, nodeLabel);
-                  }
-                });
-
-                callback(null, 'svg loaded');
-              }
-              else {
-                callback(null);
-              }
-            })
+                else {
+                  callback(null);
+                }
+              })
+            }
+            else {
+              pathvisiojs.view.pathwayDiagram.png.load(loadDiagramArgs, function() {
+                callback(null, 'png loaded');
+              });
+            }
           })
         }
         else {
@@ -5322,19 +5331,20 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
 	//remove loading gif
         container.select('img').remove();
 
-        var initialClickHappened = false;
+        var svgInFocus = false;
         svg.on("click", function(d, i){
           svgPanZoom.enableZoom();
-          initialClickHappened = true;
+          svgInFocus = true;
         })
-        .on("mouseover", function(d, i){
-          if (initialClickHappened) {
+        .on("mouseenter", function(d, i){
+          if (svgInFocus) {
             svgPanZoom.enableZoom();
           }
         })
-        .on("mouseout", function(d, i){
-          if (initialClickHappened) {
+        .on("mouseleave", function(d, i){
+          if (svgInFocus) {
             svgPanZoom.disableZoom();
+	    svgInFocus = false;
           }
         });
 
@@ -5352,9 +5362,25 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
           setCTM(viewport, fitScreenScale);
         }
 
+    	var fittoscreen = d3.select('body').select('#fit-to-screen-control');
+    	fittoscreen.on("click", function(d,i){
+          fitScreenScale = Math.min(containerWidth/args.pathway.image.width, containerHeight/args.pathway.image.height);
+          setCTM(viewport, fitScreenScale);
+        });
+
+	var fullscreen = d3.select('body').select('#fullscreen-control');
+	fullscreen.on("click", function(d,i){
+          var pvjs = document.getElementById("pathvisio-js-dev").innerHTML;
+          var newwin = window.open('','','width=800,height=600');
+          var doc = newwin.document;
+	  doc.open();
+	  doc.write(pvjs);
+	  doc.close();	
+	});
+
         svgPanZoom.init({
           'root': 'svg',
-          'zoomEnabled': false 
+          'zoomEnabled': false
         });
         callback(null);
       }
@@ -5430,6 +5456,8 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
   // other elements, this function will call itself back to render
   // the elements within the groupNode.
   function renderSelectedElementsFast(args, callbackOutside){
+    console.log('render');
+    console.log(new Date());
     console.log('renderSelectedElementsFast args');
     console.log(args);
     var svg = args.svg,
@@ -5532,35 +5560,21 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
       throw new Error("No data entered to render.");
     }
 
+    console.log('first');
+    console.log(new Date());
     async.parallel({
-      /*
-      'gridData': function(callbackInside) {
-        var frame = {
-          '@context': pathvisiojs.context,
-          '@type': 'EntityNode'
-        };  
-        jsonld.frame(pathway, frame, function(err, framedData) {
-          pathvisiojs.view.pathwayDiagram.pathFinder.initGrid(framedData['@graph'], pathway.image.width, pathway.image.height, function(gridData) {
-            svg[0][0].pathvisiojs = svg[0][0].pathvisiojs || {};
-            svg[0][0].pathvisiojs.gridData = gridData;
-            callbackInside(null, gridData);
-          });
-        });
-      },
-      //*/
       'firstOrderData': function(callbackInside) {
         var firstOrderFrame = {
           '@context': pathvisiojs.context,
           '@type':['notGrouped', 'GroupNode']
         };
-        jsonld.frame(pathway, firstOrderFrame, function(err, firstOrderData) {
-          console.log('firstOrderData');
-          console.log(firstOrderData['@graph']);
-          callbackInside(null, firstOrderData['@graph']);
-        });
+	var newFrame = frameIt(pathway);
+          callbackInside(null, newFrame['@graph']);
       }
     },
     function(err, results) {
+      console.log('second');
+      console.log(new Date());
       var viewport = svg.select('#viewport');
 
       pathvisiojs.view.pathwayDiagram.svg.infoBox.render(viewport, pathway);
@@ -5571,9 +5585,45 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
       renderSelectedElementsFastArgs.pathway = pathway;
       renderSelectedElementsFastArgs.data = results.firstOrderData;
       renderSelectedElementsFast(renderSelectedElementsFastArgs, function() {
+        console.log('third');
+        console.log(new Date());
         callback(svg);
       });
-
+    })
+  }
+  function frameIt(pathway){
+	var nf = new Object({'@context': pathvisiojs.context});
+	var arr = new Array();
+        if(pathway.DataNode){
+          for (var i=0; i<pathway.DataNode.length; i++){
+	    if(!pathway.DataNode[i].isContainedBy){
+              arr.push(pathway.DataNode[i]);
+	    }
+          }
+        }
+        if(pathway.Shape){
+          for (var i=0; i<pathway.Shape.length; i++){
+            arr.push(pathway.Shape[i]);
+          }
+        }
+        if(pathway.Label){
+          for (var i=0; i<pathway.Label.length; i++){
+            arr.push(pathway.Label[i]);
+          }
+        }
+        if(pathway.Interaction){
+          for (var i=0; i<pathway.Interaction.length; i++){
+            arr.push(pathway.Interaction[i]);
+          }
+        }
+	if(pathway.Group){
+          for (var i=0; i<pathway.Group.length; i++){
+            arr.push(pathway.Group[i]);
+          }
+	}
+	nf['@graph'] = arr; 
+	return nf;
+  }
 
       //pathvisiojs.view.pathwayDiagram.svg.grid.render(svg);
 
@@ -5600,10 +5650,9 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
       function(err, results) {
         callback(svg);
       })
-      //*/
     })
   }
-
+  //*/
   /*
   function render(args, callback){
     if (!args.svg) {
@@ -6190,10 +6239,14 @@ pathvisiojs.view.pathwayDiagram.svg.node = function(){
     var allDataNodesWithText = pathway.DataNode.filter(function(d, i) {return (!!d.text);});
     var selectedNodes = allDataNodesWithText.filter(function(d, i) {return d.text.line.indexOf(nodeLabel) !== -1;});
     selectedNodes.forEach(function(node) {
-      var nodeDomElement = svg.select('#node-container-pathway-iri-' + node.GraphId);
-      var height = nodeDomElement[0][0].getBBox().height;
-      var width = nodeDomElement[0][0].getBBox().width;
-      nodeDomElement.append('rect')
+      var nodeContainer = svg.select('#node-container-' + strcase.paramCase(node['@id']));
+      if (null == nodeContainer[0][0]){
+	//if null, try grouped node container id
+        nodeContainer = svg.select('#node-container-pathway-iri-' + node.GraphId);
+      }
+      var height = nodeContainer[0][0].getBBox().height;
+      var width = nodeContainer[0][0].getBBox().width; 
+      nodeContainer.append('rect') 
       .attr('class', 'highlighted-node')
       .attr('x', -2.5)
       .attr('y', -2.5)
@@ -6368,10 +6421,19 @@ pathvisiojs.view.pathwayDiagram.svg.node.EntityNode = function(){
         console.log('args.data.DatasourceReference');
         console.log(args.data.DatasourceReference);
         if (!!args.data.DatasourceReference.ID) {
-          nodeContainer.on("click", function(d,i) {
-            console.log(d);
-            pathvisiojs.view.annotation.xRef.render(args.pathway.Organism, d['DatasourceReference'].ID, d['DatasourceReference'].Database, d.text.line.join(' '), d.dataNodeType); //that's capital 'O' Organism from GPML vocab
+          var notDragged = true;
+          nodeContainer
+          .on("mousedown", function(d,i) {
+		notDragged = true;
           })
+          .on("mousemove", function(d,i) {
+                notDragged = false;
+          })
+	  .on("mouseup", function(d,i) {
+	    if (notDragged) {
+	 	pathvisiojs.view.annotation.xRef.render(args.pathway.Organism, d['DatasourceReference'].ID, d['DatasourceReference'].Database, d.text.line.join(' '), d.dataNodeType); //that's capital 'O' Organism from GPML vocab
+	    }
+	  });
         }
       }
     });
@@ -6405,7 +6467,6 @@ pathvisiojs.view.pathwayDiagram.svg.node.pathShape = function(){
         if(d.hasOwnProperty('borderColor')) {
 	  if(d.nodeType != 'Label'){  //Label "Color" attrs are NOT for borderColor of svg-specific rectangle shape
             style += 'stroke:' + d.borderColor + '; ';
-	    parent.attr('strokecolor', d.borderColor);
 	  }
         }
         return style;})
@@ -8618,9 +8679,9 @@ pathvisiojs.view.pathwayDiagram.png = function(){
     }
     var wikiPathwaysId = args.parsedInputData.wikiPathwaysId,
       revision = args.parsedInputData.revision,
-      target = args.target,
-      containerWidth = args.width,
-      containerHeight = args.height,
+      container = args.container,
+      containerWidth = parseFloat(args.containerWidth),
+      containerHeight = parseFloat(args.containerHeight),
       pngUrl,
       png,
       pngWidth,
@@ -8637,10 +8698,10 @@ pathvisiojs.view.pathwayDiagram.png = function(){
       png = document.createElement('img');
       png.src = pngUrl;
       png.onload = function() {
-        pngWidth = this.width;
-        pngHeight = this.height;
-        fitScreenScale = Math.min(containerWidth/pngWidth, containerHeight/pngHeight);
-        target.append('img')
+        pngWidth = parseFloat(this.width);
+        pngHeight = parseFloat(this.height);
+        fitScreenScale = Math.min((containerWidth/pngWidth), (containerHeight/pngHeight));
+        container.append('img')
         .attr('id', 'pathvisiojs-pathway-png')
         .attr('src', pngUrl)
         .attr('x', 0)

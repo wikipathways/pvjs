@@ -7,18 +7,20 @@ pathvisiojs.config = function() {
   }
 
   var bridgedbLinkOutsUrlStub = function() {
-    // TODO this is not correct for test3
-    return '../external-data/bridgedb/bridgedb.php/';
+    return '../wpi/extensions/bridgedb.php/';
   }
 
   var bridgedbDatasources = function() {
-    // TODO this is not correct for test3
-    return '../external-data/bridgedb/datasources.txt';
+    // TODO this should be replaced with bridgedb webservice call, when made available
+    return '../wpi/extensions/PathwayViewer/datasources.txt';
   }
 
   var diagramNotAvailableImageUri = function() {
-    // TODO update this link to a URL we control
-    return 'http://upload.wikimedia.org/wikipedia/commons/3/3b/Picture_Not_Yet_Available.png';
+    return '../wpi/extensions/PathwayViewer/img/Picture_Not_Yet_Available.png';
+  }
+
+  var loadingGif = function() {
+    return '../wpi/extensions/PathwayViewer/img/loading.gif';
   }
 
   var pngDiagramUriStub = function() {
@@ -35,6 +37,7 @@ pathvisiojs.config = function() {
     bridgedbDatasources:bridgedbDatasources,
     pngDiagramUriStub:pngDiagramUriStub,
     diagramNotAvailableImageUri:diagramNotAvailableImageUri,
+    loadingGif:loadingGif,
     pathwaySearchUriStub:pathwaySearchUriStub
   };
 }();
