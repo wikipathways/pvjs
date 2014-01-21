@@ -76,8 +76,6 @@ function generateHtmlView(callback) {
   d3.html(srcDirectoryUrl + 'pathvisiojs.html', function(html) {
     var svg = html.querySelector('#pathway-svg');
     svg.setAttribute('style', 'display: none; ');
-    svg.setAttribute('width', '500px');
-    svg.setAttribute('height', '500px');
 
     var oSerializer = new XMLSerializer();
     pathvisioNS['tmp/pathvisiojs.html'] = oSerializer.serializeToString(html);
