@@ -19,7 +19,7 @@ function getUrlParamList() {
     'svg-disabled': false,
     'gpml': null,
     'gpmlRev': 0,
-    'creator': 'pathvisio-js-dev',
+    'creator': 'pathvisiojs-dev',
     'account': '',
     'branch': ''
   };
@@ -297,9 +297,7 @@ window.onload = function() {
     // preserveAspectRatio refers to the vertical and horizontal alignment of the image.
 
     pathvisiojs.load({
-      container: '#pathvisio-js-dev', //as of now, this can only be a CSS selector: http://www.w3.org/TR/CSS2/selector.html
-      width: 400,
-      height: 300,
+      container: '#pathvisiojs-dev', //as of now, this can only be a CSS selector: http://www.w3.org/TR/CSS2/selector.html
       fitToContainer:true, //A fitToContainer value of false means that the diagram should be the size specified by the diagram creator, without any scaling (full size as per GPML width and height). A value of true means that diagram should be scaled down, if required, to fit entirely within the element specified by the container selector, while preserving aspect ratio. 
       data: urlParamList.gpml,
       //gpmlRev: urlParamList.gpmlRev,
@@ -354,7 +352,7 @@ var getPathvisiojsHtmlTemplate = function() {
     newSymbolId = 'shape-library' + oldSymbolId.split('-shape-library')[1];
     symbol.attr('id', newSymbolId);
   });
-  return d3.select('#pathvisio-js-container')[0][0];
+  return d3.select('#pathvisiojs-container')[0][0];
 }
 
 
