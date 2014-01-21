@@ -21,6 +21,7 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
       pathwayHeight = args.pathway.image.height;
 
     //add loading gif
+    // TODO this should probably use the args.container variable and not redefine a new container
     var container = d3.select('body').select('#pathway-container');
     var posX = containerWidth/2;
     var posY = containerHeight/2;
