@@ -87,7 +87,7 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
 
 	var fullscreen = d3.select('body').select('#fullscreen-control');
 	fullscreen.on("click", function(d,i){
-          var pvjs = document.getElementById("pathvisio-js-dev").innerHTML;
+          var pvjs = document.getElementById("pathvisiojs-dev").innerHTML;
           var newwin = window.open('','','width=800,height=600');
           var doc = newwin.document;
 	  doc.open();
@@ -118,7 +118,7 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
     async.series([
       function(callback) {
         container.html(pathvisioNS['tmp/pathvisiojs.html']);
-        pathvisioJsContainer = container.select('#pathvisio-js-container');
+        pathvisioJsContainer = container.select('#pathvisiojs-container');
         pathwayContainer = pathvisioJsContainer.select('#pathway-container')
 
         svg = pathvisioJsContainer.select('#pathway-svg')

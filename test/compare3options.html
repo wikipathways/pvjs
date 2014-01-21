@@ -79,7 +79,7 @@
       'svg-disabled': false,
       'gpml': null,
       'gpmlRev': 0,
-      'creator': 'pathvisio-js-dev',
+      'creator': 'pathvisiojs-dev',
       'account': '',
       'branch': ''
       };
@@ -161,7 +161,7 @@
     async.parallel(
       {
         'html': function(callback) {
-          d3.html(srcDirectoryUrl + 'views/pathvisio-js.html', function(html) {
+          d3.html(srcDirectoryUrl + 'views/pathvisiojs.html', function(html) {
             callback(null, html);
           });
         },
@@ -197,7 +197,7 @@
         var pathwayContainer = results.html.querySelector('#pathway-container').appendChild(results.svg.documentElement)
 
         var oSerializer = new XMLSerializer();
-        pathvisioNS['tmp/pathvisio-js.html'] = oSerializer.serializeToString(results.html);
+        pathvisioNS['tmp/pathvisiojs.html'] = oSerializer.serializeToString(results.html);
         callback();
       }
     )
@@ -206,7 +206,7 @@
   function loadExtJsCss(callbackOutside) {
     async.parallel([
       function(callback) {
-        loadJsCssFile(srcDirectoryUrl + "css/pathvisio-js.css", "css", callback);
+        loadJsCssFile(srcDirectoryUrl + "css/pathvisiojs.css", "css", callback);
       },
       function(callback) {
         loadJsCssFile(srcDirectoryUrl + "css/annotation.css", "css", callback);
@@ -215,7 +215,7 @@
         loadJsCssFile(srcDirectoryUrl + "css/pan-zoom.css", "css", callback);
       },
       function(callback) {
-        if (urlParamList.creator === 'pathvisio-js-dev') {
+        if (urlParamList.creator === 'pathvisiojs-dev') {
           loadScripts([
             srcDirectoryUrl + "js/pathvisio/pathvisio",
             srcDirectoryUrl + "js/pathvisio/utilities.js",
@@ -273,7 +273,7 @@
   var srcDirectoryUrl = (rootDirectoryUrl + 'src/');
 
   /*
-  if (urlParamList.creator === 'pathvisio-js-dev') {
+  if (urlParamList.creator === 'pathvisiojs-dev') {
     if (!!urlParamList.account && !!urlParamList.branch && urlParamList.acount !== 'null' && urlParamList.branch !== 'null') {
       srcDirectoryUrl = 'src/';
       //srcDirectoryUrl = 'https://rawgithub.com/' + urlParamList.account + '/pathvisio/' + urlParamList.branch + '/src/';
@@ -287,7 +287,7 @@
      Load UI for this test/dev comparison page 
   /********************************************/
 
-  if (urlParamList.creator === 'pathvisio-js-dev') {
+  if (urlParamList.creator === 'pathvisiojs-dev') {
     window.setTimeout(function() {
       $('#github-container').show();
     }, 50);
@@ -321,7 +321,7 @@
       $('#svg-disabled').prop('checked', true);
     }
 
-    if (urlParamList.creator === 'pathvisio-js-dev' || urlParamList.creator === 'pathvisio-js-prod') {
+    if (urlParamList.creator === 'pathvisiojs-dev' || urlParamList.creator === 'pathvisiojs-prod') {
       $('#view').empty();
 
 
@@ -329,7 +329,7 @@
       async.parallel(
         [
           function(callback) {
-            if (urlParamList.creator === 'pathvisio-js-dev') {
+            if (urlParamList.creator === 'pathvisiojs-dev') {
               pathvisioNS = [];
               generateHtmlView(function() {
                 callback(null);
@@ -442,8 +442,8 @@
 </head>
 <body>
   <div id="choose-viewer">
-    <button id="pathvisio-js-dev-button" class="pathway" title="SVG viewer for all modern browsers (Dev Version)" onclick="displayCreator('pathvisio-js-dev')" style="background-color: yellow">pathvisio (DEV)</button>
-    <button id="pathvisio-js-prod-button" class="pathway" title="SVG viewer for all modern browsers" onclick="displayCreator('pathvisio-js-prod')" style="background-color: lightgray">pathvisio (PROD)</button>
+    <button id="pathvisiojs-dev-button" class="pathway" title="SVG viewer for all modern browsers (Dev Version)" onclick="displayCreator('pathvisiojs-dev')" style="background-color: yellow">pathvisio (DEV)</button>
+    <button id="pathvisiojs-prod-button" class="pathway" title="SVG viewer for all modern browsers" onclick="displayCreator('pathvisiojs-prod')" style="background-color: lightgray">pathvisio (PROD)</button>
     <button id="current-wiki-pathways-widget-button" class="pathway" title="Pathway widget currently in use on www.wikipathways.org" onclick="displayCreator('current-wiki-pathways-widget')" style="background-color: lightgray">Current WP Viewer</button>
     <button id="help-button" class="pathway" title="How to use this test/dev page" onclick="displayCreator('help')" style="background-color: lightgray">Help</button>
   <!--
