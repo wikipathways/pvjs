@@ -96,7 +96,7 @@ var srcDirectoryUrl = (pathvisiojsRootDirectoryUrl + 'src/');
 /********************************************/
 
 var pathvisiojs = pathvisiojs || {};
-var pathvisioNS;
+var pathvisioNS = [];
 var gpmlUrl;
 window.onload = function() {
   if (urlParamList['svg-disabled']) {
@@ -112,7 +112,6 @@ window.onload = function() {
       });
     },
     function(callback) {
-      pathvisioNS = [];
       generateHtmlView(function() {
         callback(null);
       });
