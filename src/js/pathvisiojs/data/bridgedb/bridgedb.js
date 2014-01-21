@@ -9,7 +9,9 @@ pathvisiojs.data.bridgedb = function(){
       var systemCode = dataSourceRowCorrespondingToDataNodeXrefDatabase.systemCode;
       getXrefAliases(singleSpecies, systemCode, id, function(xRefAliases) {
         var currentDataSourceRow;
-        var listItems = xRefAliases.map(function(xRefAlias) {
+        var listItems = [];
+        if (typeof xRefAliases != 'undefined') { //BridgeDb Error
+        listItems = xRefAliases.map(function(xRefAlias) {
           var listItem = {}
           listItem.title = xRefAlias.dataSourceName;
           listItem.text = xRefAlias.xRefId;
@@ -22,6 +24,7 @@ pathvisiojs.data.bridgedb = function(){
           }
           return listItem;
         });
+        }
 
         listItems.sort(function(a, b) {
           if (a.priority === b.priority)
