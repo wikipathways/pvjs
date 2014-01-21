@@ -15,6 +15,11 @@ pathvisiojs.utilities = function(){
     return ret;
   }
 
+  function isIE() {
+    var myNav = navigator.userAgent.toLowerCase();
+    return (myNav.indexOf('msie') != -1) ? parseInt(myNav.split('msie')[1]) : false;
+  }
+
   /**
    * From http://stackoverflow.com/questions/7770235/change-text-direction-of-textbox-automatically
    * What about Chinese characters that go top to bottom?
@@ -256,6 +261,7 @@ pathvisiojs.utilities = function(){
   return{
     collect:collect,
     isUrl:isUrl,
+    isIE:isIE,
     splitStringByNewLine:splitStringByNewLine,
     getUrlParam:getUrlParam,
     cloneNode:cloneNode,
