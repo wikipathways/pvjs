@@ -22,6 +22,10 @@ pathvisiojs.config = function() {
     return 'http://upload.wikimedia.org/wikipedia/commons/3/3b/Picture_Not_Yet_Available.png';
   }
 
+  var loadingGif = function() {
+    return '../src/img/loading.gif';
+  }
+
   var pngDiagramUriStub = function() {
     return 'http://www.wikipathways.org/wpi//wpi.php?action=downloadFile&type=png&pwTitle=Pathway:';
   }
@@ -35,6 +39,7 @@ pathvisiojs.config = function() {
     bridgedbLinkOutsUrlStub:bridgedbLinkOutsUrlStub,
     bridgedbDatasources:bridgedbDatasources,
     pngDiagramUriStub:pngDiagramUriStub,
+    loadingGif:loadingGif,
     diagramNotAvailableImageUri:diagramNotAvailableImageUri,
     pathwaySearchUriStub:pathwaySearchUriStub
   };
