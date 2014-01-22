@@ -1,4 +1,4 @@
-pathvisiojs.data = function(){
+pathvisiojs.data.pathvisiojsJson = function(){
 
   // For now, pathvisio.js will attempt to convert any input data, as long as it is of type
   // GPML or has no type specified, into JSON.
