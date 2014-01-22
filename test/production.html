@@ -93,140 +93,33 @@
   <script src="../lib/d3/d3.min.js"></script>
   <script src="../lib/jquery/jquery.min.js"></script>
   <script src="../lib/typeahead.js/dist/typeahead.min.js"></script>
-  <!--<script src="../lib/OpenSeadragon/build/openseadragon/openseadragon.min.js"></script>-->
   <script src="../lib/modernizr/modernizr.js"></script>
-  <script src="../lib/screenfull/dist/screenfull.min.js"></script>
   <script src="../lib/svg-pan-zoom/svg-pan-zoom.js"></script>
-  <script src="../lib/PathFinding.js/lib/pathfinding-browser.min.js"></script>
   <script src="../lib/node-uuid/uuid.js"></script>
-  <!--
-  <script src="../lib/requirejs/require.js"></script>
-  -->
   <script src="../lib/jsonld.js/js/jsonld.js"></script>
   <script src="../lib/jsonld.js/js/Promise.js"></script>
-  <!--
-  <script src="../lib/jsonld.js/js/rdfa.js"></script>
-  -->
+  <script src="./compare.js"></script>
+  <script src="../build/localhost/js/pathvisio.min.js"></script>
+
+
   <script>
-
-    /* *******************
-    /* Get the desired GPML file URL or WikiPathways ID from the URL parameters.
-    /* *******************/
-
-    // If you want to the GPML file URL or WikiPathways ID you want to display, you can
-    // hard code it as the data parameter in the pathvisiojs.load() function below
-
-    function getUrlParam(name) {
-
-      // Thanks to http://stackoverflow.com/questions/11582512/how-to-get-url-parameters-with-javascript
-      // This will be replaced once we get the backend php to get the GPML
-
-      var parameter = decodeURIComponent((new RegExp('[?|&]' + name + '=' + '([^&;]+?)(&|#|;|$)').exec(location.search)||[,""])[1].replace(/\+/g, '%20'))||null;
-      if (!!parameter) {
-        return parameter;
-      }
-      else {
-        return null;
-      }
-    }
-
-    function getUrlParamList() {
-      urlParamList = {
-        'svg-disabled': false,
-        'gpml': null,
-        'gpmlRev': 0,
-        'creator': 'pathvisio-js-dev',
-        'account': '',
-        'branch': ''
-      };
-      Object.keys(urlParamList).forEach(function(element) {
-        if (!!getUrlParam(element)) {
-          urlParamList[element] = getUrlParam(element);
-        }
-        window.setTimeout(function() {
-          $('#' + element).val(urlParamList[element]);
-        }, 50)
-      });
-      return urlParamList;
-    }
-
-    function loadJsCssFile(filename, filetype, callback){
-      var fileref;
-      if (filetype=='js') {
-        fileref=document.createElement('script')
-        fileref.setAttribute('type','text/javascript')
-        fileref.setAttribute('src', filename)
-      }
-      else if (filetype=='css') {
-        fileref=document.createElement('link')
-        fileref.setAttribute('rel', 'stylesheet')
-        fileref.setAttribute('type', 'text/css')
-        fileref.setAttribute('href', filename)
-      }
-      if (typeof fileref!='undefined') {
-        document.getElementsByTagName('head')[0].appendChild(fileref)
-      }
-      fileref.onload = function() {
-        callback();
-      }
-    }
-
-    function updateParams(updatedParam) {
-      var targetUrl = currentUrl + '?' + updatedParam.key + '=' + updatedParam.value;
-
-      Object.keys(urlParamList).forEach(function(element) {
-        if (element === updatedParam.key) {
-          urlParamList[element] = updatedParam.value;
-        }
-        else {
-          targetUrl += '&' + element + '=' + urlParamList[element];
-        }
-      });
-
-      location.href = targetUrl;
-    }
-
     async.waterfall([
       function(callback) {
-        var urlParamList = getUrlParamList();
-        var currentUrl = document.location.origin + document.location.pathname;
-        var hostname = decodeURI(window.location.hostname);
-        var pathvisiojsRootDirectoryUrl = document.location.origin + document.location.pathname.split('test/compare.html')[0];
-        var srcDirectoryUrl = (pathvisiojsRootDirectoryUrl + 'src/');
-
-        var serverSpecificBuiltFileDirectory;
-        var regDomainPattern = /^(?!:\/\/)([a-zA-Z0-9]+\.)?[a-zA-Z0-9][a-zA-Z0-9-]+\.[a-zA-Z]{2,6}?$/i
-        var regexResult = regDomainPattern.exec(hostname);
-        if (!!regexResult) {
-          // www is the same as a bare domain for our purposes, e.g., www.example.org === example.org
-          if (!!regexResult[1]) {
-            serverSpecificBuiltFileDirectory = regexResult[0];
-          }
-          else {
-            serverSpecificBuiltFileDirectory = 'www.' + regexResult[0];
-          }
-        }
-        else { //if it's an IP address, just use localhost
-          serverSpecificBuiltFileDirectory = 'localhost';
-        }
-
-        serverSpecificBuiltFileDirectory = '../build/' + strcase.paramCase(serverSpecificBuiltFileDirectory) + '/js/pathvisio.min.js';
-        loadJsCssFile(serverSpecificBuiltFileDirectory, 'js', function() {
-          callback(null, urlParamList);
+        developmentLoader.parseUriParams(function(parsedInputData) {
+          callback(null, parsedInputData);
         });
       },    
-      function(urlParamList, callback) {
+      function(parsedInputData, callback) {
         /* *******************
         /* Load pathvisiojs
         /* *******************/
 
         pathvisiojs.load({
           container: '#production-container', //as of now, this can only be a CSS selector: http://www.w3.org/TR/CSS2/selector.html
-          width: 400,
-          height: 300,
           fitToContainer:true, //A fitToContainer value of false means that the diagram should be the size specified by the diagram creator, without any scaling (full size as per GPML width and height). A value of true means that diagram should be scaled down, if required, to fit entirely within the element specified by the container selector, while preserving aspect ratio. 
-          data: urlParamList.gpml,
-          //gpmlRev: urlParamList.gpmlRev,
+          sourceData:parsedInputData.sourceData, //at least one element required
+          wpId:parsedInputData.wpId, //optional
+          wpRevision:'', //optional
           //cssUrl: srcDirectoryUrl + 'css/pathway-diagram.css',
           //customMarkers: customMarkers,
           //customSymbols: customSymbols,

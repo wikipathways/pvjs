@@ -30,12 +30,17 @@ body {
    cursor: pointer;
 }
 
+.fit-to-screen-controls {
+  margin-right: 20px;
+}
+
 .typeahead,
 .tt-query,
 .tt-hint {
   width: 180px;
   height: 20px;
   padding: 4px 6px;
+  margin-right: 20px;
   font-size: 12px;
   line-height: 30px;
   border: 2px solid #ccc;

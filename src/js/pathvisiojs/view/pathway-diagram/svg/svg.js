@@ -4,6 +4,24 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
 
   var svg, shapesAvailable, markersAvailable, contextLevelInput;
 
+  //TODO we want to use something like this function below instead of the setCTM function below.
+  //Also, either this function or the svg-pan-zoom library needs an update so
+  //that zoom origin matches mouse location.
+  function fitAndCenterDiagramWithinViewport(viewport, viewportWidth, viewportHeight, diagramWidth, diagramHeight) {
+    // viewport is a d3 selection
+
+    var fitScreenScale = Math.min(viewportWidth/diagramWidth, viewportHeight/diagramHeight);
+    var diagramWidthScaled = fitScreenScale * diagramWidth;
+    var diagramHeightScaled = fitScreenScale * diagramHeight;
+
+    var xTranslation = viewportWidth/2 - diagramWidthScaled/2;
+    var yTranslation = viewportHeight/2 - diagramHeightScaled/2;
+
+    var translationMatrixString = 'matrix(' + fitScreenScale + ', 0, 0, ' + fitScreenScale + ', ' + xTranslation + ', ' + yTranslation + '); ';
+    
+    viewport.attr("transform", translationMatrixString);
+  }
+
   function setCTM(element, scale) {
     // element is a d3 selection
     var s = "matrix(" + scale + ",0,0," + scale + ",10,20)"; // + matrix.a + "," + matrix.b + "," + matrix.c + "," + matrix.d + "," + matrix.e + "," + matrix.f + ")";
@@ -21,6 +39,7 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
       pathwayHeight = args.pathway.image.height;
 
     //add loading gif
+    // TODO this should probably use the args.container variable and not redefine a new container
     var container = d3.select('body').select('#pathway-container');
     var posX = containerWidth/2;
     var posY = containerHeight/2;
@@ -87,7 +106,7 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
 
 	var fullscreen = d3.select('body').select('#fullscreen-control');
 	fullscreen.on("click", function(d,i){
-          var pvjs = document.getElementById("pathvisio-js-dev").innerHTML;
+          var pvjs = document.getElementById("pathvisiojs-dev").innerHTML;
           var newwin = window.open('','','width=800,height=600');
           var doc = newwin.document;
 	  doc.open();
@@ -118,7 +137,7 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
     async.series([
       function(callback) {
         container.html(pathvisioNS['tmp/pathvisiojs.html']);
-        pathvisioJsContainer = container.select('#pathvisio-js-container');
+        pathvisioJsContainer = container.select('#pathvisiojs-container');
         pathwayContainer = pathvisioJsContainer.select('#pathway-container')
 
         svg = pathvisioJsContainer.select('#pathway-svg')

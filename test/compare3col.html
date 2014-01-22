@@ -134,7 +134,7 @@
         'svg-disabled': false,
         'gpml': null,
         'gpmlRev': 0,
-        'creator': 'pathvisio-js-dev',
+        'creator': 'pathvisiojs-dev',
         'account': '',
         'branch': ''
         };
@@ -209,7 +209,7 @@
             async.parallel(
             {
               'html': function(callback) {
-                d3.html(srcDirectoryUrl + 'views/pathvisio-js.html', function(html) {
+                d3.html(srcDirectoryUrl + 'views/pathvisiojs.html', function(html) {
                   callback(null, html);
                   });
                   },
@@ -235,7 +235,7 @@
                         var pathwayContainer = results.html.querySelector('#pathway-container').appendChild(results.svg.documentElement)
 
                         var oSerializer = new XMLSerializer();
-                        pathvisioNS['tmp/pathvisio-js.html'] = oSerializer.serializeToString(results.html);
+                        pathvisioNS['tmp/pathvisiojs.html'] = oSerializer.serializeToString(results.html);
                         callback();
                       }
                       )
@@ -244,7 +244,7 @@
                     function loadExtJsCss(callbackOutside) {
                       async.parallel([
                       function(callback) {
-                        loadJsCssFile(srcDirectoryUrl + "css/pathvisio-js.css", "css", callback);
+                        loadJsCssFile(srcDirectoryUrl + "css/pathvisiojs.css", "css", callback);
                         },
                         function(callback) {
                           loadJsCssFile(srcDirectoryUrl + "css/annotation.css", "css", callback);
@@ -362,7 +362,7 @@
                                       ];
 
                                       pathvisio.load({
-                                        target: '#pathvisio-js-dev',
+                                        target: '#pathvisiojs-dev',
                                         width: 1000,
                                         height: 500,
                                         preserveAspectRatio: 'xMidYMid',
@@ -404,7 +404,7 @@
                                           </div>
                                           <div id="main" class="cf">
                                             <div id="content-1">
-                                              <div id="pathvisio-js-dev" style="width: 500px; height: 500px; border:1px solid black; ">
+                                              <div id="pathvisiojs-dev" style="width: 500px; height: 500px; border:1px solid black; ">
                                               </div>
                                             </div>
                                             <div id="content-2">
