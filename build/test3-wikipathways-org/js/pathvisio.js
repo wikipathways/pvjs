@@ -1,5 +1,5 @@
 //! pathvisiojs 0.8.0
-//! Built on 2014-01-21
+//! Built on 2014-01-22
 //! https://github.com/wikipathways/pathvisiojs
 //! License: http://www.apache.org/licenses/LICENSE-2.0/
 
@@ -5030,100 +5030,6 @@ pathvisiojs.view.annotation.xRef = function(){
 
 pathvisiojs.view.pathwayDiagram = function(){
 
-  function getPreserveAspectRatioValues(preserveAspectRatio) {
-
-    // this function uses SVG terminology, but it is intended to work with any graphical
-    // file format (SVG, PNG, etc.)
-
-    var results = {};
-    if (!preserveAspectRatio.align) {
-      results.align = preserveAspectRatio;
-    }
-    else {
-      results.align = preserveAspectRatio.align;
-    }
-
-    if (results.align === 'none') {
-      results.xAlign = 'x-mid';
-      results.yAlign = 'y-mid';
-    }
-    else {
-      results.meetOrSlice = 'meet';
-      if (!!preserveAspectRatio.meetOrSlice) {
-        results.meetOrSlice = preserveAspectRatio.meetOrSlice;
-      }
-      
-      results.xAlign = 'x-' + results.align.substr(1, 3).toLowerCase();
-      results.yAlign = 'y-' + results.align.substr(results.align.length - 3, 3).toLowerCase();
-    }
-    return results;
-  }
-
-  function fitElementWithinContainer(containerWidth, containerHeight, pathwayWidth, pathwayHeight, preserveAspectRatioValues) {
-
-    // following svg standards.
-    // see http://www.w3.org/TR/SVG/coords.html#PreserveAspectRatioAttribute
-
-    var meetOrSlice, xScale, yScale, scale, pathwayWidthScaled, pathwayHeightScaled, xMapping, yMapping;
-    var results = {};
-
-    xScale = scale = containerWidth/pathwayWidth;
-    yScale = containerHeight/pathwayHeight;
-
-    if (preserveAspectRatioValues.align === 'none') {
-      results.x = 0;
-      results.y = 0;
-      
-      results.width = xScale * pathwayWidth;
-      results.height = yScale * pathwayHeight;
-    }
-    else {
-      if (preserveAspectRatioValues.meetOrSlice === 'meet') {
-        scale = xScale = yScale = Math.min(xScale, yScale);
-      }
-      else {
-        scale = xScale = yScale = Math.max(xScale, yScale);
-      }
-
-      results.width = xScale * pathwayWidth;
-      results.height = yScale * pathwayHeight;
-
-      xMapping = [
-        {'x-min': 0},
-        {'x-mid': containerWidth/2 - results.width/2},
-        {'x-max': containerWidth - results.width}
-      ];
-
-      yMapping = [
-        {'y-min': 0},
-        {'y-mid': containerHeight/2 - results.height/2},
-        {'y-max': containerHeight - results.height}
-      ];
-
-      results.x = xMapping[preserveAspectRatioValues.xAlign];
-      results.y = yMapping[preserveAspectRatioValues.yAlign];
-      results.scale = scale;
-    }
-
-    var browserPrefixArray = [
-      '-webkit-transform: ',
-      '-o-transform: ',
-      'transform: '
-    ];
-
-    var translationMatrixCssString = 'matrix(' + xScale + ', 0, 0, ' + yScale + ', ' + results.x + ', ' + results.y + '); ';
-    
-    results.translationMatrixCss = ' ';
-    browserPrefixArray.forEach(function(element) {
-      results.translationMatrixCss += (element + translationMatrixCssString);
-    });
-
-    //var translationMatrix = matrix(a, c, b, d, tx, ty);
-    //var translationMatrix = matrix(xScale, rotation, skew, yScale, x translation, y translation);
-
-    return results;
-  }
-
   function getFirstRenderableSourceDataElement(sourceData) {
     var sourceDataElement,
       results = {};
@@ -5343,6 +5249,24 @@ pathvisiojs.view.pathwayDiagram = function(){
 pathvisiojs.view.pathwayDiagram.svg = function(){
 
   var svg, shapesAvailable, markersAvailable, contextLevelInput;
+
+  //TODO we want to use something like this function below instead of the setCTM function below.
+  //Also, either this function or the svg-pan-zoom library needs an update so
+  //that zoom origin matches mouse location.
+  function fitAndCenterDiagramWithinViewport(viewport, viewportWidth, viewportHeight, diagramWidth, diagramHeight) {
+    // viewport is a d3 selection
+
+    var fitScreenScale = Math.min(viewportWidth/diagramWidth, viewportHeight/diagramHeight);
+    var diagramWidthScaled = fitScreenScale * diagramWidth;
+    var diagramHeightScaled = fitScreenScale * diagramHeight;
+
+    var xTranslation = viewportWidth/2 - diagramWidthScaled/2;
+    var yTranslation = viewportHeight/2 - diagramHeightScaled/2;
+
+    var translationMatrixString = 'matrix(' + fitScreenScale + ', 0, 0, ' + fitScreenScale + ', ' + xTranslation + ', ' + yTranslation + '); ';
+    
+    viewport.attr("transform", translationMatrixString);
+  }
 
   function setCTM(element, scale) {
     // element is a d3 selection

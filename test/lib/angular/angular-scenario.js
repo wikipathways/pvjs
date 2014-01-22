@@ -7433,7 +7433,7 @@ jQuery.extend({
 				// Overrides response content-type header
 				overrideMimeType: function( type ) {
 					if ( !state ) {
-						s.mimeType = type;
+						s.mediaType = type;
 					}
 					return this;
 				},
@@ -7838,7 +7838,7 @@ function ajaxHandleResponses( s, jqXHR, responses ) {
 	while( dataTypes[ 0 ] === "*" ) {
 		dataTypes.shift();
 		if ( ct === undefined ) {
-			ct = s.mimeType || jqXHR.getResponseHeader( "content-type" );
+			ct = s.mediaType || jqXHR.getResponseHeader( "content-type" );
 		}
 	}
 
@@ -8215,8 +8215,8 @@ if ( jQuery.support.ajax ) {
 					}
 
 					// Override mime type if needed
-					if ( s.mimeType && xhr.overrideMimeType ) {
-						xhr.overrideMimeType( s.mimeType );
+					if ( s.mediaType && xhr.overrideMimeType ) {
+						xhr.overrideMimeType( s.mediaType );
 					}
 
 					// X-Requested-With header
