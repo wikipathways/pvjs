@@ -98,40 +98,18 @@
   <script src="../lib/node-uuid/uuid.js"></script>
   <script src="../lib/jsonld.js/js/jsonld.js"></script>
   <script src="../lib/jsonld.js/js/Promise.js"></script>
+  <script src="./compare.js"></script>
+  <script src="../build/localhost/js/pathvisio.min.js"></script>
 
-  <script src="dev-utils.js"></script>
 
   <script>
     async.waterfall([
       function(callback) {
-        var currentUrl = document.location.origin + document.location.pathname;
-        var hostname = decodeURI(window.location.hostname);
-        var pathvisiojsRootDirectoryUrl = document.location.origin + document.location.pathname.split('test/compare.html')[0];
-        var srcDirectoryUrl = (pathvisiojsRootDirectoryUrl + 'src/');
-
-        var serverSpecificBuiltFileDirectory;
-        var regDomainPattern = /^(?!:\/\/)([a-zA-Z0-9]+\.)?[a-zA-Z0-9][a-zA-Z0-9-]+\.[a-zA-Z]{2,6}?$/i
-        var regexResult = regDomainPattern.exec(hostname);
-        if (!!regexResult) {
-          // www is the same as a bare domain for our purposes, e.g., www.example.org === example.org
-          if (!!regexResult[1]) {
-            serverSpecificBuiltFileDirectory = regexResult[0];
-          }
-          else {
-            serverSpecificBuiltFileDirectory = 'www.' + regexResult[0];
-          }
-        }
-        else { //if it's an IP address, just use localhost
-          serverSpecificBuiltFileDirectory = 'localhost';
-        }
-
-        serverSpecificBuiltFileDirectory = '../build/' + strcase.paramCase(serverSpecificBuiltFileDirectory) + '/js/pathvisio.min.js';
-        loadJsCssFile(serverSpecificBuiltFileDirectory, 'js', function() {
-          callback(null, urlParamList);
+        developmentLoader.parseUriParams(function(parsedInputData) {
+          callback(null, parsedInputData);
         });
-
       },    
-      function(urlParamList, callback) {
+      function(parsedInputData, callback) {
         /* *******************
         /* Load pathvisiojs
         /* *******************/
@@ -139,18 +117,9 @@
         pathvisiojs.load({
           container: '#production-container', //as of now, this can only be a CSS selector: http://www.w3.org/TR/CSS2/selector.html
           fitToContainer:true, //A fitToContainer value of false means that the diagram should be the size specified by the diagram creator, without any scaling (full size as per GPML width and height). A value of true means that diagram should be scaled down, if required, to fit entirely within the element specified by the container selector, while preserving aspect ratio. 
-          sourceData:[ //at least one element required
-            {
-              uri:urlParamList.gpml,
-              mimeType:'application/xml+gpml'
-            },
-            {
-              uri:'',
-              mimeType:'image/png'
-            }
-          ],
-          wikiPathwaysId:'WP1', //optional
-          wikiPathwaysRevision:'', //optional
+          sourceData:parsedInputData.sourceData, //at least one element required
+          wpId:parsedInputData.wpId, //optional
+          wpRevision:'', //optional
           //cssUrl: srcDirectoryUrl + 'css/pathway-diagram.css',
           //customMarkers: customMarkers,
           //customSymbols: customSymbols,

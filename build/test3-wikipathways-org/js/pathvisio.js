@@ -1,5 +1,5 @@
 //! pathvisiojs 0.8.0
-//! Built on 2014-01-17
+//! Built on 2014-01-21
 //! https://github.com/wikipathways/pathvisiojs
 //! License: http://www.apache.org/licenses/LICENSE-2.0/
 
@@ -13,140 +13,30 @@ var pathvisiojs = function(){
 
   var svg, pathway, args;
 
-  function getUrisForWikiPathwaysId(wikiPathwaysId, revision) {
-    var results = {};
-    var re = /wikipathways\.org/; 
-    var isOnWikiPathwaysDomain = re.test(document.location.origin);
-    var PathwayViewer_viewers = PathwayViewer_viewers || [];
 
-    if (pathvisiojs.utilities.isWikiPathwaysId(wikiPathwaysId)) {
-      if (PathwayViewer_viewers.length > 0 && isOnWikiPathwaysDomain) {
-        results.uri = PathwayViewer_viewers[0].gpml.gpmlUrl;
-      }
-      else {
-        results.uri = pathvisiojs.config.gpmlSourceUriStub() + wikiPathwaysId + '&rev=' + revision;
-      }
-      //results.cached = 'https://pathways.firebaseio.com/' + wikiPathwaysId + '.json';
-      results.type = 'GPML';
-      results.pathwayIri = 'wpId:' + wikiPathwaysId + '#';
-    }
-    else {
-      throw new Error('Pathvisiojs cannot handle the data source type entered.');
-    }
-
-    // be sure server has set gpml mime type to application/xml or application/gpml+xml
-
-    return results;
-  }
-
-  function parseInputData(inputData) {
-    // TODO get urls elsewhere:
-    // gpml in pathvisiojs.data.gpml...
-    // png in pathvisio.view.pathwayDiagram.png...
-    var parsedInputData = {};
-
-    // inputData can be a WikiPathways ID (WP1), a uri for a GPML file (http://www.wikipathways.org/gpmlfile.gpml)
-    // or a uri for another type of file.
-
-    if (pathvisiojs.utilities.getObjectType(inputData) === 'Object') {
-      inputData.revision = inputData.revision || 0;
-      parsedInputData = getUrisForWikiPathwaysId(inputData.wikiPathwaysId, 0);
-      parsedInputData.wikiPathwaysId = inputData.wikiPathwaysId;
-      parsedInputData.revision = inputData.revision;
-    }
-    else {
-      if (pathvisiojs.utilities.isUrl(inputData)) {
-        parsedInputData.uri = inputData;
-        if (parsedInputData.uri.indexOf('.gpml') > -1) {
-          parsedInputData.type = 'GPML';
-          parsedInputData.pathwayIri = inputData + '#';
-          return parsedInputData;
-        }
-        else {
-          throw new Error('Pathvisiojs cannot handle the data source type entered.');
-        }
-      }
-      else {
-        parsedInputData = getUrisForWikiPathwaysId(inputData, 0);
-        parsedInputData.wikiPathwaysId = inputData;
-        parsedInputData.revision = 0;
-      }
-    }
-    return parsedInputData;
-  }
-
-  function getJson(parsedInputData, callback) {
-
-    // This function converts data specified by parsedInputData to formatted JSON
-    // and return the JSON to the function that called getJson()
-
-
-    // For now, pathvisio.js will attempt to convert any input data, as long as it is of type
-    // GPML or has no type specified, into JSON.
-    // TODO Later, this functionality can be extended to include other data types and
-    // to test for data type when it is not specified.
-
-    if (!!parsedInputData.uri && (!parsedInputData.type || parsedInputData.type === 'GPML')) {
-
-      // This is just an experiment with using mongodb for caching json,
-      // but the higher priority for now would be to cache the SVG.
-      // Caching the json would be part of having the API deliver results
-      // in JSON format.
-      /*
-      d3.json(parsedInputData.cached, function(json) {
-        callback(json);
-      });
-      //*/
-
-      // TODO d3.xml doesn't seem to work with IE8
-
-      //*
-      d3.xml(parsedInputData.uri, function(gpml) {
-        pathvisiojs.data.gpml.toRenderableJson(gpml, parsedInputData.pathwayIri, function(json) {
-          callback(json);
-        });
-      });
-      //*/
-    }
-    else {
-      return new Error('No data source specified or pathvisio.js cannot handle the data source specified.');
-
-    }
-  }
 
   function load(args) {
+    console.log(args);
 
     // for now, load will just load a visual representation of a pathway, but
     // this could change in the future
 
     // ********************************************
-    // Check for minimum required set of parameters
+    // Check that required parameters are present
     // ********************************************
 
     if (!args.container) {
-      throw new Error('No container selector specified as container for pathvisiojs.');
+      throw new Error('No container selector specified as container.');
+    }
+    if (!args.sourceData[0].uri) {
+      throw new Error('No sourceData uri specified.');
     }
 
-    // args.data can be either of the following:
-    // 1) a uri to a GPML file
-    //    (in the future, we may add the ability to handle other file types.
-    //    we could also consider handling json data objects so that pvjs
-    //    could work with other JS libraries.)
-    // 2) a WikiPathways pathway ID, like "WP1"
-    if (!args.data) {
-      throw new Error('No input data source (URL or WikiPathways ID) specified.');
-    }
-
-    var parsedInputData = parseInputData(args.data);
-    console.log('parsedInputData');
-    console.log(parsedInputData);
-    args.data = parsedInputData;
     pathvisiojs.view.pathwayDiagram.load(args);
   }
 
   return {
-    load:load,
-    getJson:getJson
+    load:load
   };
 }();
 ;
@@ -160,18 +50,20 @@ pathvisiojs.config = function() {
   }
 
   var bridgedbLinkOutsUrlStub = function() {
-    // TODO this is not correct for test3
-    return '../external-data/bridgedb/bridgedb.php/';
+    return '../wpi/extensions/bridgedb.php/';
   }
 
   var bridgedbDatasources = function() {
-    // TODO this is not correct for test3
-    return '../external-data/bridgedb/datasources.txt';
+    // TODO this should be replaced with bridgedb webservice call, when made available
+    return '../wpi/extensions/PathwayViewer/datasources.txt';
   }
 
   var diagramNotAvailableImageUri = function() {
-    // TODO update this link to a URL we control
-    return 'http://upload.wikimedia.org/wikipedia/commons/3/3b/Picture_Not_Yet_Available.png';
+    return '../wpi/extensions/PathwayViewer/img/Picture_Not_Yet_Available.png';
+  }
+
+  var loadingGif = function() {
+    return '../wpi/extensions/PathwayViewer/img/loading.gif';
   }
 
   var pngDiagramUriStub = function() {
@@ -188,6 +80,7 @@ pathvisiojs.config = function() {
     bridgedbDatasources:bridgedbDatasources,
     pngDiagramUriStub:pngDiagramUriStub,
     diagramNotAvailableImageUri:diagramNotAvailableImageUri,
+    loadingGif:loadingGif,
     pathwaySearchUriStub:pathwaySearchUriStub
   };
 }();
@@ -477,7 +370,54 @@ pathvisiojs.utilities = function(){
 
 ;
 
-pathvisiojs.data = {};
+pathvisiojs.data = function(){
+
+  // For now, pathvisio.js will attempt to convert any input data, as long as it is of type
+  // GPML or has no type specified, into JSON.
+  // TODO Later, this functionality can be extended to include other data types and
+  // to test for data type when it is not specified.
+  function get(sourceData, callback) {
+    var uri = sourceData.uri;
+    var object = sourceData.object;
+    var mimeType = sourceData.mimeType;
+
+    if (!uri) {
+      return new Error('No uri specified.');
+    }
+    if (!mimeType) {
+      return new Error('No mimeType specified.');
+    }
+
+    // TODO handle if sourceData.object
+
+    if (mimeType === 'application/xml+gpml') {
+      pathvisiojs.data.gpml.get(sourceData, function(gpml) {
+        pathvisiojs.data.gpml.toRenderableJson(gpml, uri, function(json) {
+          callback(json);
+        });
+      });
+    }
+    else {
+      throw new Error('Cannot get jGpml from the specified input.');
+    }
+
+    // This is just an experiment with using mongodb for caching json,
+    // but the higher priority for now would be to cache the SVG.
+    // Caching the json would be part of having the API deliver results
+    // in JSON format.
+    /*
+    d3.json(parsedInputData.cached, function(json) {
+      callback(json);
+    });
+    //*/
+  }
+
+  return{
+    get:get
+  };
+}();
+
+
 ;
 
 pathvisiojs.data.bridgedb = function(){
@@ -491,7 +431,9 @@ pathvisiojs.data.bridgedb = function(){
       var systemCode = dataSourceRowCorrespondingToDataNodeXrefDatabase.systemCode;
       getXrefAliases(singleSpecies, systemCode, id, function(xRefAliases) {
         var currentDataSourceRow;
-        var listItems = xRefAliases.map(function(xRefAlias) {
+        var listItems = [];
+        if (typeof xRefAliases != 'undefined') { //BridgeDb Error
+        listItems = xRefAliases.map(function(xRefAlias) {
           var listItem = {}
           listItem.title = xRefAlias.dataSourceName;
           listItem.text = xRefAlias.xRefId;
@@ -504,6 +446,7 @@ pathvisiojs.data.bridgedb = function(){
           }
           return listItem;
         });
+        }
 
         listItems.sort(function(a, b) {
           if (a.priority === b.priority)
@@ -2331,6 +2274,56 @@ pathvisiojs.data.biopax = function(){
 
 ;
 
+pathvisiojs.data.pathvisiojsJson = function(){
+
+  // For now, pathvisio.js will attempt to convert any input data, as long as it is of type
+  // GPML or has no type specified, into JSON.
+  // TODO Later, this functionality can be extended to include other data types and
+  // to test for data type when it is not specified.
+  function get(sourceData, callback) {
+    var uri = sourceData.uri;
+    var object = sourceData.object;
+    var mimeType = sourceData.mimeType;
+
+    if (!uri) {
+      return new Error('No uri specified.');
+    }
+    if (!mimeType) {
+      return new Error('No mimeType specified.');
+    }
+
+    // TODO handle if sourceData.object
+
+    if (mimeType === 'application/xml+gpml') {
+      pathvisiojs.data.gpml.get(sourceData, function(gpml) {
+        pathvisiojs.data.gpml.toRenderableJson(gpml, uri, function(json) {
+          callback(json);
+        });
+      });
+    }
+    else {
+      throw new Error('Cannot get jGpml from the specified input.');
+    }
+
+    // This is just an experiment with using mongodb for caching json,
+    // but the higher priority for now would be to cache the SVG.
+    // Caching the json would be part of having the API deliver results
+    // in JSON format.
+    /*
+    d3.json(parsedInputData.cached, function(json) {
+      callback(json);
+    });
+    //*/
+  }
+
+  return{
+    get:get
+  };
+}();
+
+
+;
+
 "use strict";
 pathvisiojs.data.gpml = function(){
 
@@ -2338,6 +2331,29 @@ pathvisiojs.data.gpml = function(){
     'FontSize':{
       'Type':"FontSize",
       'Value':10
+    }
+  }
+
+  function get(sourceData, callback) {
+    var uri = sourceData.uri;
+    var object = sourceData.object;
+    var mimeType = sourceData.mimeType;
+
+    if ((!uri) && (!object)) {
+      return new Error('No sourceData specified.');
+    }
+    if (!mimeType) {
+      return new Error('No mimeType specified.');
+    }
+
+    if (mimeType === 'application/xml+gpml') {
+      // TODO d3.xml doesn't seem to work with IE8
+      d3.xml(uri, function(gpml) {
+        callback(gpml);
+      });
+    }
+    else {
+      throw new Error('Cannot get GPML from the specified input.');
     }
   }
 
@@ -2974,6 +2990,7 @@ pathvisiojs.data.gpml = function(){
   }
 
   return {
+    get:get,
     toRenderableJson:toRenderableJson,
     getLineStyle:getLineStyle,
     getBorderStyle:getBorderStyle,
@@ -5107,6 +5124,32 @@ pathvisiojs.view.pathwayDiagram = function(){
     return results;
   }
 
+  function getFirstRenderableSourceDataElement(sourceData) {
+    var sourceDataElement,
+      results = {};
+    var i = 0;
+    do {
+      sourceDataElement = sourceData[i];
+      var imageFormat = getImageFormatForDataSourceMimeType(sourceDataElement.mimeType);
+      i += 1;
+    } while ((!imageFormat) && (i < sourceData.length + 1));
+
+    sourceDataElement.imageFormat = imageFormat;
+    return sourceDataElement;
+  }
+
+  function getImageFormatForDataSourceMimeType(mimeType) {
+    if ((mimeType === 'application/xml+gpml') && (Modernizr.svg) && (pathvisiojs.utilities.isIE() !== 9)) {
+      return 'svg';
+    }
+    else if ((mimeType === 'image/png') || (mimeType === 'image/jpeg') || (mimeType === 'image/gif')) { //TODO update this to correct mimeTypes and also use a better test for all supported static image formats
+      return 'png'; //TODO change this name so it also handles jpeg, etc.
+    }
+    else {
+      return null;
+    }
+  }
+
   function load(args) {
 
     // this function gets a reference to a GPML file and draws a visual representation of the pathway
@@ -5122,12 +5165,12 @@ pathvisiojs.view.pathwayDiagram = function(){
       throw new Error('No container selector specified as container for pathvisiojs.');
     }
 
-    if (!args.data) {
-      throw new Error('No input data source (URL or WikiPathways ID) specified.');
+    if (!args.sourceData[0].uri) {
+      throw new Error('No sourceData uri specified.');
     }
 
     var containerSelector = args.container,
-      parsedInputData = args.data,
+      sourceData = args.sourceData,
       fitToContainer = args.fitToContainer,
       cssUrl = args.cssUrl,
       customMarkers = args.customMarkers,
@@ -5144,6 +5187,16 @@ pathvisiojs.view.pathwayDiagram = function(){
         // Get desired dimensions for pathway diagram
         // ********************************************
 
+        var renderableSourceDataElement = getFirstRenderableSourceDataElement(sourceData);
+
+        callback(null, renderableSourceDataElement);
+      },
+      function(renderableSourceDataElement, callback){
+
+        // ********************************************
+        // Get desired dimensions for pathway diagram
+        // ********************************************
+
         var container = d3.select(containerSelector);
         if (container.length !== 1) {
           throw new Error('Container selector must be matched by exactly one element.');
@@ -5153,12 +5206,11 @@ pathvisiojs.view.pathwayDiagram = function(){
         var containerWidth = boundingClientRect.width - 40; //account for space for pan/zoom controls,
         var containerHeight = boundingClientRect.height - 20; //account for space for search field;
 
-        callback(null, container, containerWidth, containerHeight);
+        callback(null, container, containerWidth, containerHeight, renderableSourceDataElement);
       },
-      function(container, containerWidth, containerHeight, callback){
+      function(container, containerWidth, containerHeight, renderableSourceDataElement, callback){
         var svg, pathway, loadDiagramArgs = {};
 
-        loadDiagramArgs.parsedInputData = parsedInputData;
         loadDiagramArgs.container = container;
         loadDiagramArgs.containerWidth = containerWidth;
         loadDiagramArgs.containerHeight = containerHeight;
@@ -5170,7 +5222,7 @@ pathvisiojs.view.pathwayDiagram = function(){
 
         // TODO get this working in IE9
 
-        if (Modernizr.svg && (pathvisiojs.utilities.isIE() !== 9)) {
+        if (renderableSourceDataElement.imageFormat === 'svg') {
           async.parallel({
             preloadSvg: function(callback) {
               var preloadDiagramArgs = {};
@@ -5183,7 +5235,7 @@ pathvisiojs.view.pathwayDiagram = function(){
               });
             },
             pathway: function(callback){
-              pathvisiojs.getJson(parsedInputData, function(json) {
+              pathvisiojs.data.pathvisiojsJson.get(renderableSourceDataElement, function(json) {
                 pathvisiojs.context = json['@context'];
                 console.log('json');
                 console.log(json);
@@ -5250,7 +5302,6 @@ pathvisiojs.view.pathwayDiagram = function(){
                       pathvisiojs.view.pathwayDiagram.svg.node.highlightByLabel(svg, pathway, nodeLabel);
                     }
                   });
-
                   callback(null, 'svg loaded');
                 }
                 else {
@@ -5259,13 +5310,12 @@ pathvisiojs.view.pathwayDiagram = function(){
               })
             }
             else {
-              pathvisiojs.view.pathwayDiagram.png.load(loadDiagramArgs, function() {
-                callback(null, 'png loaded');
-              });
+              throw new Error('Detected mimeType does not match specified mimeType of "application/xml+gpml"');
             }
           })
         }
         else {
+          loadDiagramArgs.sourceDataElement = renderableSourceDataElement;
           pathvisiojs.view.pathwayDiagram.png.load(loadDiagramArgs, function() {
             callback(null, 'png loaded');
           });
@@ -5311,6 +5361,7 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
       pathwayHeight = args.pathway.image.height;
 
     //add loading gif
+    // TODO this should probably use the args.container variable and not redefine a new container
     var container = d3.select('body').select('#pathway-container');
     var posX = containerWidth/2;
     var posY = containerHeight/2;
@@ -8686,23 +8737,25 @@ pathvisiojs.view.pathwayDiagram.png = function(){
     if (!args) {
       throw new Error("Missing input data.");
     }
-    var wikiPathwaysId = args.parsedInputData.wikiPathwaysId,
-      revision = args.parsedInputData.revision,
-      container = args.container,
+
+    var container = args.container,
       containerWidth = parseFloat(args.containerWidth),
       containerHeight = parseFloat(args.containerHeight),
-      pngUrl,
+      pngUrl = args.sourceDataElement.uri,
       png,
       pngWidth,
       pngHeight,
       fitScreenScale;
 
+      /*
     if (!!wikiPathwaysId) {
       pngUrl = encodeURI(pathvisiojs.config.pngDiagramUriStub() + wikiPathwaysId + '&revision=' + revision);
     }
     else {
       pngUrl = pathvisiojs.config.diagramNotAvailableImageUri();
     }
+    //*/
+
     window.setTimeout(function() {
       png = document.createElement('img');
       png.src = pngUrl;
