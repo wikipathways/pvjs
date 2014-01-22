@@ -379,18 +379,18 @@ pathvisiojs.data = function(){
   function get(sourceData, callback) {
     var uri = sourceData.uri;
     var object = sourceData.object;
-    var mimeType = sourceData.mimeType;
+    var mediaType = sourceData.mediaType;
 
     if (!uri) {
       return new Error('No uri specified.');
     }
-    if (!mimeType) {
-      return new Error('No mimeType specified.');
+    if (!mediaType) {
+      return new Error('No mediaType specified.');
     }
 
     // TODO handle if sourceData.object
 
-    if (mimeType === 'application/xml+gpml') {
+    if (mediaType === 'application/xml+gpml') {
       pathvisiojs.data.gpml.get(sourceData, function(gpml) {
         pathvisiojs.data.gpml.toRenderableJson(gpml, uri, function(json) {
           callback(json);
@@ -2283,18 +2283,18 @@ pathvisiojs.data.pathvisiojsJson = function(){
   function get(sourceData, callback) {
     var uri = sourceData.uri;
     var object = sourceData.object;
-    var mimeType = sourceData.mimeType;
+    var mediaType = sourceData.mediaType;
 
     if (!uri) {
       return new Error('No uri specified.');
     }
-    if (!mimeType) {
-      return new Error('No mimeType specified.');
+    if (!mediaType) {
+      return new Error('No mediaType specified.');
     }
 
     // TODO handle if sourceData.object
 
-    if (mimeType === 'application/xml+gpml') {
+    if (mediaType === 'application/xml+gpml') {
       pathvisiojs.data.gpml.get(sourceData, function(gpml) {
         pathvisiojs.data.gpml.toRenderableJson(gpml, uri, function(json) {
           callback(json);
@@ -2337,16 +2337,16 @@ pathvisiojs.data.gpml = function(){
   function get(sourceData, callback) {
     var uri = sourceData.uri;
     var object = sourceData.object;
-    var mimeType = sourceData.mimeType;
+    var mediaType = sourceData.mediaType;
 
     if ((!uri) && (!object)) {
       return new Error('No sourceData specified.');
     }
-    if (!mimeType) {
-      return new Error('No mimeType specified.');
+    if (!mediaType) {
+      return new Error('No mediaType specified.');
     }
 
-    if (mimeType === 'application/xml+gpml') {
+    if (mediaType === 'application/xml+gpml') {
       // TODO d3.xml doesn't seem to work with IE8
       d3.xml(uri, function(gpml) {
         callback(gpml);
@@ -5026,7 +5026,7 @@ pathvisiojs.view.annotation.xRef = function(){
 }();
 ;
 
-"use strict"
+"use strict";
 
 pathvisiojs.view.pathwayDiagram = function(){
 
@@ -5036,7 +5036,7 @@ pathvisiojs.view.pathwayDiagram = function(){
     var i = 0;
     do {
       sourceDataElement = sourceData[i];
-      var imageFormat = getImageFormatForDataSourceMimeType(sourceDataElement.mimeType);
+      var imageFormat = getImageFormatForDataSourceMimeType(sourceDataElement.mediaType);
       i += 1;
     } while ((!imageFormat) && (i < sourceData.length + 1));
 
@@ -5044,12 +5044,13 @@ pathvisiojs.view.pathwayDiagram = function(){
     return sourceDataElement;
   }
 
-  function getImageFormatForDataSourceMimeType(mimeType) {
-    if ((mimeType === 'application/xml+gpml') && (Modernizr.svg) && (pathvisiojs.utilities.isIE() !== 9)) {
+  function getImageFormatForDataSourceMimeType(mediaType) {
+    //IE9 currently cannot convert gpml to pathvisiojsJson
+    if ((mediaType === 'application/xml+gpml') && (Modernizr.svg) && (pathvisiojs.utilities.isIE() !== 9)) {
       return 'svg';
     }
-    else if ((mimeType === 'image/png') || (mimeType === 'image/jpeg') || (mimeType === 'image/gif')) { //TODO update this to correct mimeTypes and also use a better test for all supported static image formats
-      return 'png'; //TODO change this name so it also handles jpeg, etc.
+    else if ((mediaType === 'image/png') || (mediaType === 'image/jpeg') || (mediaType === 'image/gif')) { //TODO update this to use a more complete test for all supported static image formats
+      return 'img';
     }
     else {
       return null;
@@ -5061,7 +5062,7 @@ pathvisiojs.view.pathwayDiagram = function(){
     // this function gets a reference to a GPML file and draws a visual representation of the pathway
     // TODO Much of the SVG creation code should be moved to ./svg/svg.js so we just call
     // pathvisiojs.view.pathwayDiagram.svg.load() in the same way as we do for
-    // pathvisiojs.view.pathwayDiagram.png.load()
+    // pathvisiojs.view.pathwayDiagram.img.load()
 
     // ********************************************
     // Check for minimum required set of parameters
@@ -5216,14 +5217,14 @@ pathvisiojs.view.pathwayDiagram = function(){
               })
             }
             else {
-              throw new Error('Detected mimeType does not match specified mimeType of "application/xml+gpml"');
+              throw new Error('Detected mediaType does not match specified mediaType of "application/xml+gpml"');
             }
           })
         }
         else {
           loadDiagramArgs.sourceDataElement = renderableSourceDataElement;
-          pathvisiojs.view.pathwayDiagram.png.load(loadDiagramArgs, function() {
-            callback(null, 'png loaded');
+          pathvisiojs.view.pathwayDiagram.img.load(loadDiagramArgs, function() {
+            callback(null, 'img loaded');
           });
         }
       }
@@ -8653,9 +8654,11 @@ pathvisiojs.view.pathwayDiagram.svg.edge.path = function(){
 
 "use strict";
 
-// TODO remove controls that don't work with PNG 
+// TODO remove controls that don't work with this element
+// This code is for the HTML img element. It displays the
+// diagram as a PNG, JPG, GIF, etc.
 
-pathvisiojs.view.pathwayDiagram.png = function(){
+pathvisiojs.view.pathwayDiagram.img = function(){
 
   function load(args, callback) {
     if (!args) {
@@ -8665,38 +8668,38 @@ pathvisiojs.view.pathwayDiagram.png = function(){
     var container = args.container,
       containerWidth = parseFloat(args.containerWidth),
       containerHeight = parseFloat(args.containerHeight),
-      pngUrl = args.sourceDataElement.uri,
-      png,
-      pngWidth,
-      pngHeight,
+      imgUrl = args.sourceDataElement.uri,
+      img,
+      imgWidth,
+      imgHeight,
       fitScreenScale;
 
       /*
     if (!!wikiPathwaysId) {
-      pngUrl = encodeURI(pathvisiojs.config.pngDiagramUriStub() + wikiPathwaysId + '&revision=' + revision);
+      imgUrl = encodeURI(pathvisiojs.config.imgDiagramUriStub() + wikiPathwaysId + '&revision=' + revision);
     }
     else {
-      pngUrl = pathvisiojs.config.diagramNotAvailableImageUri();
+      imgUrl = pathvisiojs.config.diagramNotAvailableImageUri();
     }
     //*/
 
     window.setTimeout(function() {
-      png = document.createElement('img');
-      png.src = pngUrl;
-      png.onload = function() {
-        pngWidth = parseFloat(this.width);
-        pngHeight = parseFloat(this.height);
-        fitScreenScale = Math.min((containerWidth/pngWidth), (containerHeight/pngHeight));
+      img = document.createElement('img');
+      img.src = imgUrl;
+      img.onload = function() {
+        imgWidth = parseFloat(this.width);
+        imgHeight = parseFloat(this.height);
+        fitScreenScale = Math.min((containerWidth/imgWidth), (containerHeight/imgHeight));
         container.append('img')
-        .attr('id', 'pathvisiojs-pathway-png')
-        .attr('src', pngUrl)
+        .attr('id', 'pathvisiojs-pathway-img')
+        .attr('src', imgUrl)
         .attr('x', 0)
         .attr('y', 0)
         .attr('style', 'position:relative; left:'
-              + (containerWidth - pngWidth * fitScreenScale)/2 + 'px; '
-              + 'top:' + (containerHeight - pngHeight * fitScreenScale)/2 + 'px; ')
-        .attr('width', pngWidth * fitScreenScale)
-        .attr('height', pngHeight * fitScreenScale);
+              + (containerWidth - imgWidth * fitScreenScale)/2 + 'px; '
+              + 'top:' + (containerHeight - imgHeight * fitScreenScale)/2 + 'px; ')
+        .attr('width', imgWidth * fitScreenScale)
+        .attr('height', imgHeight * fitScreenScale);
         callback(null);
       }
     }, 50);
