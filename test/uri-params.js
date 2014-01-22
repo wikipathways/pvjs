@@ -81,7 +81,7 @@ var uriParams = function() {
       if (uri.indexOf('.gpml') > -1) {
         parsedInputData.sourceData.push({
           uri:gpmlParam,
-          mimeType:'application/xml+gpml'
+          mediaType:'application/xml+gpml'
         });
         return parsedInputData;
       }
@@ -97,7 +97,7 @@ var uriParams = function() {
         uri = getGpmlUri(gpmlParam, wpRevision); //get uri
         parsedInputData.sourceData.push({
           uri:uri,
-          mimeType:'application/xml+gpml'
+          mediaType:'application/xml+gpml'
         });
         parsedInputData.wpId = gpmlParam;
         parsedInputData.revision = wpRevision;

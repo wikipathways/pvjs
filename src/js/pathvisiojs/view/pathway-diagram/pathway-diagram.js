@@ -1,4 +1,4 @@
-"use strict"
+"use strict";
 
 pathvisiojs.view.pathwayDiagram = function(){
 
@@ -8,7 +8,7 @@ pathvisiojs.view.pathwayDiagram = function(){
     var i = 0;
     do {
       sourceDataElement = sourceData[i];
-      var imageFormat = getImageFormatForDataSourceMimeType(sourceDataElement.mimeType);
+      var imageFormat = getImageFormatForDataSourceMimeType(sourceDataElement.mediaType);
       i += 1;
     } while ((!imageFormat) && (i < sourceData.length + 1));
 
@@ -16,12 +16,13 @@ pathvisiojs.view.pathwayDiagram = function(){
     return sourceDataElement;
   }
 
-  function getImageFormatForDataSourceMimeType(mimeType) {
-    if ((mimeType === 'application/xml+gpml') && (Modernizr.svg) && (pathvisiojs.utilities.isIE() !== 9)) {
+  function getImageFormatForDataSourceMimeType(mediaType) {
+    //IE9 currently cannot convert gpml to pathvisiojsJson
+    if ((mediaType === 'application/xml+gpml') && (Modernizr.svg) && (pathvisiojs.utilities.isIE() !== 9)) {
       return 'svg';
     }
-    else if ((mimeType === 'image/png') || (mimeType === 'image/jpeg') || (mimeType === 'image/gif')) { //TODO update this to correct mimeTypes and also use a better test for all supported static image formats
-      return 'png'; //TODO change this name so it also handles jpeg, etc.
+    else if ((mediaType === 'image/png') || (mediaType === 'image/jpeg') || (mediaType === 'image/gif')) { //TODO update this to use a more complete test for all supported static image formats
+      return 'img';
     }
     else {
       return null;
@@ -33,7 +34,7 @@ pathvisiojs.view.pathwayDiagram = function(){
     // this function gets a reference to a GPML file and draws a visual representation of the pathway
     // TODO Much of the SVG creation code should be moved to ./svg/svg.js so we just call
     // pathvisiojs.view.pathwayDiagram.svg.load() in the same way as we do for
-    // pathvisiojs.view.pathwayDiagram.png.load()
+    // pathvisiojs.view.pathwayDiagram.img.load()
 
     // ********************************************
     // Check for minimum required set of parameters
@@ -188,14 +189,14 @@ pathvisiojs.view.pathwayDiagram = function(){
               })
             }
             else {
-              throw new Error('Detected mimeType does not match specified mimeType of "application/xml+gpml"');
+              throw new Error('Detected mediaType does not match specified mediaType of "application/xml+gpml"');
             }
           })
         }
         else {
           loadDiagramArgs.sourceDataElement = renderableSourceDataElement;
-          pathvisiojs.view.pathwayDiagram.png.load(loadDiagramArgs, function() {
-            callback(null, 'png loaded');
+          pathvisiojs.view.pathwayDiagram.img.load(loadDiagramArgs, function() {
+            callback(null, 'img loaded');
           });
         }
       }

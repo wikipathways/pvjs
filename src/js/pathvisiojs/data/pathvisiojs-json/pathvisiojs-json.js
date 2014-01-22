@@ -7,18 +7,18 @@ pathvisiojs.data.pathvisiojsJson = function(){
   function get(sourceData, callback) {
     var uri = sourceData.uri;
     var object = sourceData.object;
-    var mimeType = sourceData.mimeType;
+    var mediaType = sourceData.mediaType;
 
     if (!uri) {
       return new Error('No uri specified.');
     }
-    if (!mimeType) {
-      return new Error('No mimeType specified.');
+    if (!mediaType) {
+      return new Error('No mediaType specified.');
     }
 
     // TODO handle if sourceData.object
 
-    if (mimeType === 'application/xml+gpml') {
+    if (mediaType === 'application/xml+gpml') {
       pathvisiojs.data.gpml.get(sourceData, function(gpml) {
         pathvisiojs.data.gpml.toRenderableJson(gpml, uri, function(json) {
           callback(json);
