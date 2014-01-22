@@ -21,6 +21,10 @@ pathvisiojs.config = function() {
     return 'http://upload.wikimedia.org/wikipedia/commons/3/3b/Picture_Not_Yet_Available.png';
   }
 
+  var loadingGif = function() {
+    return '../src/img/loading.gif';
+  }
+
   var pngDiagramUriStub = function() {
     return 'http://www.wikipathways.org/wpi//wpi.php?action=downloadFile&type=png&pwTitle=Pathway:';
   }
@@ -29,11 +33,14 @@ pathvisiojs.config = function() {
     return 'http://wikipathways.org//index.php?title=Special:SearchPathways&doSearch=1&query=';
   }
 
+  //TODO add fitToContainer and every other optional parameter for pathvisiojs.load()
+
   return {
     gpmlSourceUriStub:gpmlSourceUriStub,
     bridgedbLinkOutsUrlStub:bridgedbLinkOutsUrlStub,
     bridgedbDatasources:bridgedbDatasources,
     pngDiagramUriStub:pngDiagramUriStub,
+    loadingGif:loadingGif,
     diagramNotAvailableImageUri:diagramNotAvailableImageUri,
     pathwaySearchUriStub:pathwaySearchUriStub
   };
