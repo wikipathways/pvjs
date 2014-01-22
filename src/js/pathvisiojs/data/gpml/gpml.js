@@ -8,6 +8,29 @@ pathvisiojs.data.gpml = function(){
     }
   }
 
+  function get(sourceData, callback) {
+    var uri = sourceData.uri;
+    var object = sourceData.object;
+    var mediaType = sourceData.mediaType;
+
+    if ((!uri) && (!object)) {
+      return new Error('No sourceData specified.');
+    }
+    if (!mediaType) {
+      return new Error('No mediaType specified.');
+    }
+
+    if (mediaType === 'application/xml+gpml') {
+      // TODO d3.xml doesn't seem to work with IE8
+      d3.xml(uri, function(gpml) {
+        callback(gpml);
+      });
+    }
+    else {
+      throw new Error('Cannot get GPML from the specified input.');
+    }
+  }
+
   function gpmlColorToCssColor(gpmlColor, pathvisioDefault) {
     var color;
     if (gpmlColor !== pathvisioDefault) {
@@ -641,6 +664,7 @@ pathvisiojs.data.gpml = function(){
   }
 
   return {
+    get:get,
     toRenderableJson:toRenderableJson,
     getLineStyle:getLineStyle,
     getBorderStyle:getBorderStyle,
