@@ -1,6 +1,7 @@
 # Diagram Loading Process
 
 Handling Pathvisiojs Template
+
  1) Development
   a) compare.js calls generateHtmlView() to create a string, pathvisioNS['tmp/pathvisiojs.html'], that corresponds to the content of src/pathvisio.html
   b) compare.js calls pathvisiojs.load() and uses the customMarkers argument to pass in the locations of the SVG files that we use as defaults for customMarkers
@@ -15,6 +16,7 @@ Handling Pathvisiojs Template
       build/js/APPROPRIATE DIRECTORY/pathvisio.js and pathvisio.min.js
 
 Loading Pathway
+
 1) pathvisiojs.load() calls pathvisiojs.view.pathwayDiagram.load()
 2) pathvisiojs.view.pathwayDiagram.load() calls pathvisiojs.view.pathwayDiagram.svg.loadPartials() (this is messy if we don't actually render an SVG)
 3) pathvisiojs.view.pathwayDiagram.svg.loadPartials() inserts template (div#pathvisiojs-container from src/pathvisio.html) into target container specified by user in pathvisiojs.load()
