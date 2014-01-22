@@ -1,99 +1,32 @@
-"use strict"
+"use strict";
 
 pathvisiojs.view.pathwayDiagram = function(){
 
-  function getPreserveAspectRatioValues(preserveAspectRatio) {
+  function getFirstRenderableSourceDataElement(sourceData) {
+    var sourceDataElement,
+      results = {};
+    var i = 0;
+    do {
+      sourceDataElement = sourceData[i];
+      var imageFormat = getImageFormatForDataSourceMimeType(sourceDataElement.mediaType);
+      i += 1;
+    } while ((!imageFormat) && (i < sourceData.length + 1));
 
-    // this function uses SVG terminology, but it is intended to work with any graphical
-    // file format (SVG, PNG, etc.)
-
-    var results = {};
-    if (!preserveAspectRatio.align) {
-      results.align = preserveAspectRatio;
-    }
-    else {
-      results.align = preserveAspectRatio.align;
-    }
-
-    if (results.align === 'none') {
-      results.xAlign = 'x-mid';
-      results.yAlign = 'y-mid';
-    }
-    else {
-      results.meetOrSlice = 'meet';
-      if (!!preserveAspectRatio.meetOrSlice) {
-        results.meetOrSlice = preserveAspectRatio.meetOrSlice;
-      }
-      
-      results.xAlign = 'x-' + results.align.substr(1, 3).toLowerCase();
-      results.yAlign = 'y-' + results.align.substr(results.align.length - 3, 3).toLowerCase();
-    }
-    return results;
+    sourceDataElement.imageFormat = imageFormat;
+    return sourceDataElement;
   }
 
-  function fitElementWithinContainer(containerWidth, containerHeight, pathwayWidth, pathwayHeight, preserveAspectRatioValues) {
-
-    // following svg standards.
-    // see http://www.w3.org/TR/SVG/coords.html#PreserveAspectRatioAttribute
-
-    var meetOrSlice, xScale, yScale, scale, pathwayWidthScaled, pathwayHeightScaled, xMapping, yMapping;
-    var results = {};
-
-    xScale = scale = containerWidth/pathwayWidth;
-    yScale = containerHeight/pathwayHeight;
-
-    if (preserveAspectRatioValues.align === 'none') {
-      results.x = 0;
-      results.y = 0;
-      
-      results.width = xScale * pathwayWidth;
-      results.height = yScale * pathwayHeight;
+  function getImageFormatForDataSourceMimeType(mediaType) {
+    //IE9 currently cannot convert gpml to pathvisiojsJson
+    if ((mediaType === 'application/xml+gpml') && (Modernizr.svg) && (pathvisiojs.utilities.isIE() !== 9)) {
+      return 'svg';
+    }
+    else if ((mediaType === 'image/png') || (mediaType === 'image/jpeg') || (mediaType === 'image/gif')) { //TODO update this to use a more complete test for all supported static image formats
+      return 'img';
     }
     else {
-      if (preserveAspectRatioValues.meetOrSlice === 'meet') {
-        scale = xScale = yScale = Math.min(xScale, yScale);
-      }
-      else {
-        scale = xScale = yScale = Math.max(xScale, yScale);
-      }
-
-      results.width = xScale * pathwayWidth;
-      results.height = yScale * pathwayHeight;
-
-      xMapping = [
-        {'x-min': 0},
-        {'x-mid': containerWidth/2 - results.width/2},
-        {'x-max': containerWidth - results.width}
-      ];
-
-      yMapping = [
-        {'y-min': 0},
-        {'y-mid': containerHeight/2 - results.height/2},
-        {'y-max': containerHeight - results.height}
-      ];
-
-      results.x = xMapping[preserveAspectRatioValues.xAlign];
-      results.y = yMapping[preserveAspectRatioValues.yAlign];
-      results.scale = scale;
+      return null;
     }
-
-    var browserPrefixArray = [
-      '-webkit-transform: ',
-      '-o-transform: ',
-      'transform: '
-    ];
-
-    var translationMatrixCssString = 'matrix(' + xScale + ', 0, 0, ' + yScale + ', ' + results.x + ', ' + results.y + '); ';
-    
-    results.translationMatrixCss = ' ';
-    browserPrefixArray.forEach(function(element) {
-      results.translationMatrixCss += (element + translationMatrixCssString);
-    });
-
-    //var translationMatrix = matrix(a, c, b, d, tx, ty);
-    //var translationMatrix = matrix(xScale, rotation, skew, yScale, x translation, y translation);
-
-    return results;
   }
 
   function load(args) {
@@ -101,7 +34,7 @@ pathvisiojs.view.pathwayDiagram = function(){
     // this function gets a reference to a GPML file and draws a visual representation of the pathway
     // TODO Much of the SVG creation code should be moved to ./svg/svg.js so we just call
     // pathvisiojs.view.pathwayDiagram.svg.load() in the same way as we do for
-    // pathvisiojs.view.pathwayDiagram.png.load()
+    // pathvisiojs.view.pathwayDiagram.img.load()
 
     // ********************************************
     // Check for minimum required set of parameters
@@ -111,12 +44,12 @@ pathvisiojs.view.pathwayDiagram = function(){
       throw new Error('No container selector specified as container for pathvisiojs.');
     }
 
-    if (!args.data) {
-      throw new Error('No input data source (URL or WikiPathways ID) specified.');
+    if (!args.sourceData[0].uri) {
+      throw new Error('No sourceData uri specified.');
     }
 
     var containerSelector = args.container,
-      parsedInputData = args.data,
+      sourceData = args.sourceData,
       fitToContainer = args.fitToContainer,
       cssUrl = args.cssUrl,
       customMarkers = args.customMarkers,
@@ -133,6 +66,16 @@ pathvisiojs.view.pathwayDiagram = function(){
         // Get desired dimensions for pathway diagram
         // ********************************************
 
+        var renderableSourceDataElement = getFirstRenderableSourceDataElement(sourceData);
+
+        callback(null, renderableSourceDataElement);
+      },
+      function(renderableSourceDataElement, callback){
+
+        // ********************************************
+        // Get desired dimensions for pathway diagram
+        // ********************************************
+
         var container = d3.select(containerSelector);
         if (container.length !== 1) {
           throw new Error('Container selector must be matched by exactly one element.');
@@ -142,12 +85,11 @@ pathvisiojs.view.pathwayDiagram = function(){
         var containerWidth = boundingClientRect.width - 40; //account for space for pan/zoom controls,
         var containerHeight = boundingClientRect.height - 20; //account for space for search field;
 
-        callback(null, container, containerWidth, containerHeight);
+        callback(null, container, containerWidth, containerHeight, renderableSourceDataElement);
       },
-      function(container, containerWidth, containerHeight, callback){
+      function(container, containerWidth, containerHeight, renderableSourceDataElement, callback){
         var svg, pathway, loadDiagramArgs = {};
 
-        loadDiagramArgs.parsedInputData = parsedInputData;
         loadDiagramArgs.container = container;
         loadDiagramArgs.containerWidth = containerWidth;
         loadDiagramArgs.containerHeight = containerHeight;
@@ -159,7 +101,7 @@ pathvisiojs.view.pathwayDiagram = function(){
 
         // TODO get this working in IE9
 
-        if (Modernizr.svg && (pathvisiojs.utilities.isIE() !== 9)) {
+        if (renderableSourceDataElement.imageFormat === 'svg') {
           async.parallel({
             preloadSvg: function(callback) {
               var preloadDiagramArgs = {};
@@ -172,7 +114,7 @@ pathvisiojs.view.pathwayDiagram = function(){
               });
             },
             pathway: function(callback){
-              pathvisiojs.getJson(parsedInputData, function(json) {
+              pathvisiojs.data.pathvisiojsJson.get(renderableSourceDataElement, function(json) {
                 pathvisiojs.context = json['@context'];
                 console.log('json');
                 console.log(json);
@@ -239,7 +181,6 @@ pathvisiojs.view.pathwayDiagram = function(){
                       pathvisiojs.view.pathwayDiagram.svg.node.highlightByLabel(svg, pathway, nodeLabel);
                     }
                   });
-
                   callback(null, 'svg loaded');
                 }
                 else {
@@ -248,15 +189,14 @@ pathvisiojs.view.pathwayDiagram = function(){
               })
             }
             else {
-              pathvisiojs.view.pathwayDiagram.png.load(loadDiagramArgs, function() {
-                callback(null, 'png loaded');
-              });
+              throw new Error('Detected mediaType does not match specified mediaType of "application/xml+gpml"');
             }
           })
         }
         else {
-          pathvisiojs.view.pathwayDiagram.png.load(loadDiagramArgs, function() {
-            callback(null, 'png loaded');
+          loadDiagramArgs.sourceDataElement = renderableSourceDataElement;
+          pathvisiojs.view.pathwayDiagram.img.load(loadDiagramArgs, function() {
+            callback(null, 'img loaded');
           });
         }
       }
