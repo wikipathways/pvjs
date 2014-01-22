@@ -8,23 +8,25 @@ pathvisiojs.view.pathwayDiagram.png = function(){
     if (!args) {
       throw new Error("Missing input data.");
     }
-    var wikiPathwaysId = args.parsedInputData.wikiPathwaysId,
-      revision = args.parsedInputData.revision,
-      container = args.container,
+
+    var container = args.container,
       containerWidth = parseFloat(args.containerWidth),
       containerHeight = parseFloat(args.containerHeight),
-      pngUrl,
+      pngUrl = args.sourceDataElement.uri,
       png,
       pngWidth,
       pngHeight,
       fitScreenScale;
 
+      /*
     if (!!wikiPathwaysId) {
       pngUrl = encodeURI(pathvisiojs.config.pngDiagramUriStub() + wikiPathwaysId + '&revision=' + revision);
     }
     else {
       pngUrl = pathvisiojs.config.diagramNotAvailableImageUri();
     }
+    //*/
+
     window.setTimeout(function() {
       png = document.createElement('img');
       png.src = pngUrl;

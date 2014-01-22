@@ -96,6 +96,32 @@ pathvisiojs.view.pathwayDiagram = function(){
     return results;
   }
 
+  function getFirstRenderableSourceDataElement(sourceData) {
+    var sourceDataElement,
+      results = {};
+    var i = 0;
+    do {
+      sourceDataElement = sourceData[i];
+      var imageFormat = getImageFormatForDataSourceMimeType(sourceDataElement.mimeType);
+      i += 1;
+    } while ((!imageFormat) && (i < sourceData.length + 1));
+
+    sourceDataElement.imageFormat = imageFormat;
+    return sourceDataElement;
+  }
+
+  function getImageFormatForDataSourceMimeType(mimeType) {
+    if ((mimeType === 'application/xml+gpml') && (Modernizr.svg) && (pathvisiojs.utilities.isIE() !== 9)) {
+      return 'svg';
+    }
+    else if ((mimeType === 'image/png') || (mimeType === 'image/jpeg') || (mimeType === 'image/gif')) { //TODO update this to correct mimeTypes and also use a better test for all supported static image formats
+      return 'png'; //TODO change this name so it also handles jpeg, etc.
+    }
+    else {
+      return null;
+    }
+  }
+
   function load(args) {
 
     // this function gets a reference to a GPML file and draws a visual representation of the pathway
@@ -111,12 +137,12 @@ pathvisiojs.view.pathwayDiagram = function(){
       throw new Error('No container selector specified as container for pathvisiojs.');
     }
 
-    if (!args.data) {
-      throw new Error('No input data source (URL or WikiPathways ID) specified.');
+    if (!args.sourceData[0].uri) {
+      throw new Error('No sourceData uri specified.');
     }
 
     var containerSelector = args.container,
-      parsedInputData = args.data,
+      sourceData = args.sourceData,
       fitToContainer = args.fitToContainer,
       cssUrl = args.cssUrl,
       customMarkers = args.customMarkers,
@@ -133,6 +159,16 @@ pathvisiojs.view.pathwayDiagram = function(){
         // Get desired dimensions for pathway diagram
         // ********************************************
 
+        var renderableSourceDataElement = getFirstRenderableSourceDataElement(sourceData);
+
+        callback(null, renderableSourceDataElement);
+      },
+      function(renderableSourceDataElement, callback){
+
+        // ********************************************
+        // Get desired dimensions for pathway diagram
+        // ********************************************
+
         var container = d3.select(containerSelector);
         if (container.length !== 1) {
           throw new Error('Container selector must be matched by exactly one element.');
@@ -142,12 +178,11 @@ pathvisiojs.view.pathwayDiagram = function(){
         var containerWidth = boundingClientRect.width - 40; //account for space for pan/zoom controls,
         var containerHeight = boundingClientRect.height - 20; //account for space for search field;
 
-        callback(null, container, containerWidth, containerHeight);
+        callback(null, container, containerWidth, containerHeight, renderableSourceDataElement);
       },
-      function(container, containerWidth, containerHeight, callback){
+      function(container, containerWidth, containerHeight, renderableSourceDataElement, callback){
         var svg, pathway, loadDiagramArgs = {};
 
-        loadDiagramArgs.parsedInputData = parsedInputData;
         loadDiagramArgs.container = container;
         loadDiagramArgs.containerWidth = containerWidth;
         loadDiagramArgs.containerHeight = containerHeight;
@@ -159,7 +194,7 @@ pathvisiojs.view.pathwayDiagram = function(){
 
         // TODO get this working in IE9
 
-        if (Modernizr.svg && (pathvisiojs.utilities.isIE() !== 9)) {
+        if (renderableSourceDataElement.imageFormat === 'svg') {
           async.parallel({
             preloadSvg: function(callback) {
               var preloadDiagramArgs = {};
@@ -172,7 +207,7 @@ pathvisiojs.view.pathwayDiagram = function(){
               });
             },
             pathway: function(callback){
-              pathvisiojs.getJson(parsedInputData, function(json) {
+              pathvisiojs.data.pathvisiojsJson.get(renderableSourceDataElement, function(json) {
                 pathvisiojs.context = json['@context'];
                 console.log('json');
                 console.log(json);
@@ -239,7 +274,6 @@ pathvisiojs.view.pathwayDiagram = function(){
                       pathvisiojs.view.pathwayDiagram.svg.node.highlightByLabel(svg, pathway, nodeLabel);
                     }
                   });
-
                   callback(null, 'svg loaded');
                 }
                 else {
@@ -248,13 +282,12 @@ pathvisiojs.view.pathwayDiagram = function(){
               })
             }
             else {
-              pathvisiojs.view.pathwayDiagram.png.load(loadDiagramArgs, function() {
-                callback(null, 'png loaded');
-              });
+              throw new Error('Detected mimeType does not match specified mimeType of "application/xml+gpml"');
             }
           })
         }
         else {
+          loadDiagramArgs.sourceDataElement = renderableSourceDataElement;
           pathvisiojs.view.pathwayDiagram.png.load(loadDiagramArgs, function() {
             callback(null, 'png loaded');
           });
