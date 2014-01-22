@@ -233,39 +233,44 @@ var developmentLoader = function() {
         });
       },
       function(callback) {
-        var pvjsSourcesDev = pvjsSources.slice(1); //this file is only used in the build process
+        if (pathname.indexOf('compare.html') > -1) { //if this is the development version
+          var pvjsSourcesDev = pvjsSources.slice(1); //this file is only used in the build process
 
-        // In dev mode, different servers will use different configs.
-        // The code below sets this config file.
-        // For production, we will use default.js for our default config settings and
-        // optionally build other versions as needed if we need a built version that
-        // doesn't use the config settings in default.js.
-        var serverSpecificJsConfigFileName;
-        var regDomainPattern = /^(?!:\/\/)([a-zA-Z0-9]+\.)?[a-zA-Z0-9][a-zA-Z0-9-]+\.[a-zA-Z]{2,6}?$/i
-        var regexResult = regDomainPattern.exec(hostname);
-        if (!!regexResult) {
-          // www is the same as a bare domain for our purposes, e.g., www.example.org === example.org
-          if (!!regexResult[1]) {
-            serverSpecificJsConfigFileName = regexResult[0];
+          // In dev mode, different servers will use different configs.
+          // The code below sets this config file.
+          // For production, we will use default.js for our default config settings and
+          // optionally build other versions as needed if we need a built version that
+          // doesn't use the config settings in default.js.
+          var serverSpecificJsConfigFileName;
+          var regDomainPattern = /^(?!:\/\/)([a-zA-Z0-9]+\.)?[a-zA-Z0-9][a-zA-Z0-9-]+\.[a-zA-Z]{2,6}?$/i
+          var regexResult = regDomainPattern.exec(hostname);
+          if (!!regexResult) {
+            // www is the same as a bare domain for our purposes, e.g., www.example.org === example.org
+            if (!!regexResult[1]) {
+              serverSpecificJsConfigFileName = regexResult[0];
+            }
+            else {
+              serverSpecificJsConfigFileName = 'www.' + regexResult[0];
+            }
           }
-          else {
-            serverSpecificJsConfigFileName = 'www.' + regexResult[0];
+          else { //if it's an IP address, just use localhost
+            serverSpecificJsConfigFileName = 'localhost';
           }
+
+          serverSpecificJsConfigFileName = strcase.paramCase(serverSpecificJsConfigFileName);
+          pvjsSourcesDev[1] = 'config/' + serverSpecificJsConfigFileName + '.js';
+
+          pvjsSourcesDev = pvjsSourcesDev.map(function(source) {
+            return '../' + source;
+          });
+
+          loadScripts(pvjsSourcesDev, function() {
+            callback(null);
+          });
         }
-        else { //if it's an IP address, just use localhost
-          serverSpecificJsConfigFileName = 'localhost';
-        }
-
-        serverSpecificJsConfigFileName = strcase.paramCase(serverSpecificJsConfigFileName);
-        pvjsSourcesDev[1] = 'config/' + serverSpecificJsConfigFileName + '.js';
-
-        pvjsSourcesDev = pvjsSourcesDev.map(function(source) {
-          return '../' + source;
-        });
-
-        loadScripts(pvjsSourcesDev, function() {
+        else { //if this is the production version
           callback(null);
-        });
+        }
       },
       function(callback) {
         parseUriParams(function(parsedInputData) {
@@ -334,6 +339,7 @@ var developmentLoader = function() {
   }
 
   return{
-    preload:preload
+    preload:preload,
+    parseUriParams:parseUriParams
   };
 }();
