@@ -4,6 +4,24 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
 
   var svg, shapesAvailable, markersAvailable, contextLevelInput;
 
+  //TODO we want to use something like this function below instead of the setCTM function below.
+  //Also, either this function or the svg-pan-zoom library needs an update so
+  //that zoom origin matches mouse location.
+  function fitAndCenterDiagramWithinViewport(viewport, viewportWidth, viewportHeight, diagramWidth, diagramHeight) {
+    // viewport is a d3 selection
+
+    var fitScreenScale = Math.min(viewportWidth/diagramWidth, viewportHeight/diagramHeight);
+    var diagramWidthScaled = fitScreenScale * diagramWidth;
+    var diagramHeightScaled = fitScreenScale * diagramHeight;
+
+    var xTranslation = viewportWidth/2 - diagramWidthScaled/2;
+    var yTranslation = viewportHeight/2 - diagramHeightScaled/2;
+
+    var translationMatrixString = 'matrix(' + fitScreenScale + ', 0, 0, ' + fitScreenScale + ', ' + xTranslation + ', ' + yTranslation + '); ';
+    
+    viewport.attr("transform", translationMatrixString);
+  }
+
   function setCTM(element, scale) {
     // element is a d3 selection
     var s = "matrix(" + scale + ",0,0," + scale + ",10,20)"; // + matrix.a + "," + matrix.b + "," + matrix.c + "," + matrix.d + "," + matrix.e + "," + matrix.f + ")";
