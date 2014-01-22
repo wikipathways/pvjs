@@ -1,8 +1,10 @@
-var selectedConfigFileName = 'localhost';
+
+var selectedConfigFileName = 'test3-wikipathways-org';
+
 /*
 var selectedConfigFileName = 'default';
+var selectedConfigFileName = 'localhost';
 var selectedConfigFileName = 'www-wikipathways-org';
-var selectedConfigFileName = 'test3-wikipathways-org';
 //*/
 
 var pvjsSources = [
@@ -72,7 +74,7 @@ var pvjsSources = [
   'src/js/pathvisiojs/view/pathway-diagram/svg/edge/marker.js',
   'src/js/pathvisiojs/view/pathway-diagram/svg/edge/point.js',
   'src/js/pathvisiojs/view/pathway-diagram/svg/edge/path.js',
-  'src/js/pathvisiojs/view/pathway-diagram/png/png.js'
+  'src/js/pathvisiojs/view/pathway-diagram/img/img.js'
 ];
 
 module.exports = function(grunt) {
