@@ -14,7 +14,7 @@ pathvisiojs.view.pathwayDiagram.img = function(){
     var container = args.container,
       containerWidth = parseFloat(args.containerWidth),
       containerHeight = parseFloat(args.containerHeight),
-      imgUrl = args.sourceDataElement.uri,
+      imgUri = args.sourceDataElement.uri,
       img,
       imgWidth,
       imgHeight,
@@ -22,23 +22,23 @@ pathvisiojs.view.pathwayDiagram.img = function(){
 
       /*
     if (!!wikiPathwaysId) {
-      imgUrl = encodeURI(pathvisiojs.config.imgDiagramUriStub() + wikiPathwaysId + '&revision=' + revision);
+      imgUri = encodeURI(pathvisiojs.config.imgDiagramUriStub() + wikiPathwaysId + '&revision=' + revision);
     }
     else {
-      imgUrl = pathvisiojs.config.diagramNotAvailableImageUri();
+      imgUri = pathvisiojs.config.diagramNotAvailableImageUri();
     }
     //*/
 
     window.setTimeout(function() {
       img = document.createElement('img');
-      img.src = imgUrl;
+      img.src = imgUri;
       img.onload = function() {
         imgWidth = parseFloat(this.width);
         imgHeight = parseFloat(this.height);
         fitScreenScale = Math.min((containerWidth/imgWidth), (containerHeight/imgHeight));
         container.append('img')
         .attr('id', 'pathvisiojs-pathway-img')
-        .attr('src', imgUrl)
+        .attr('src', imgUri)
         .attr('x', 0)
         .attr('y', 0)
         .attr('style', 'position:relative; left:'

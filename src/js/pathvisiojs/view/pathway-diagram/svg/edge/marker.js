@@ -61,8 +61,8 @@ pathvisiojs.view.pathwayDiagram.svg.edge.marker = function(){
     'shape-library-markers-none-svg':['default']
   };
 
-  function appendCustom(uniqueMarkerShapeUrl, callback) {
-    var idStub = strcase.paramCase(uniqueMarkerShapeUrl)
+  function appendCustom(uniqueMarkerShapeUri, callback) {
+    var idStub = strcase.paramCase(uniqueMarkerShapeUri)
     var startId = idStub + '-start-default';
     var endId = idStub + '-end-default';
     var markerStart = svg.select('defs').select('#' + startId);
@@ -70,19 +70,19 @@ pathvisiojs.view.pathwayDiagram.svg.edge.marker = function(){
     markerStart = svg.select('defs').append('marker')
     .attr('id', startId)
     .attr('preserveAspectRatio', 'none');
-    processSvg(uniqueMarkerShapeUrl, markerStart, startId, false);
+    processSvg(uniqueMarkerShapeUri, markerStart, startId, false);
 
     var markerEnd = svg.select('defs').select('#' + endId);
     markerEnd = svg.select('defs').append('marker')
     .attr('id', endId)
     .attr('preserveAspectRatio', 'none');
-    processSvg(uniqueMarkerShapeUrl, markerEnd, endId, true);
+    processSvg(uniqueMarkerShapeUri, markerEnd, endId, true);
 
     callback(null);
   }
 
-  function processSvg(uniqueMarkerShapeUrl, marker, markerId, rotate){
-    d3.xml(uniqueMarkerShapeUrl, 'image/svg+xml', function(svgXml) {
+  function processSvg(uniqueMarkerShapeUri, marker, markerId, rotate){
+    d3.xml(uniqueMarkerShapeUri, 'image/svg+xml', function(svgXml) {
       var newMarker = d3.select(svgXml.documentElement);
       var width = newMarker.attr('width');
       var height = newMarker.attr('height');
@@ -155,7 +155,7 @@ pathvisiojs.view.pathwayDiagram.svg.edge.marker = function(){
 /*
       img = document.createElement('img');
       img.id = idStub;
-      img.src = uniqueMarkerShapeUrl;
+      img.src = uniqueMarkerShapeUri;
       img.onload = function() {
         var width = this.width;
         var height = this.height;
@@ -168,7 +168,7 @@ pathvisiojs.view.pathwayDiagram.svg.edge.marker = function(){
         .attr('refX', 0)
         .attr('refY', 6);
 
-        markerStart.append('image').attr('xlink:xlink:href', uniqueMarkerShapeUrl)
+        markerStart.append('image').attr('xlink:xlink:href', uniqueMarkerShapeUri)
         .attr('x', 0)
         .attr('y', 0)
         .attr('width', width)
@@ -190,7 +190,7 @@ pathvisiojs.view.pathwayDiagram.svg.edge.marker = function(){
         // TODO the transform attribute used is specific to chrome. we need ot add the transform attributes for other browsers
         // check for this on MDN.
 
-        g.append('image').attr('xlink:xlink:href', uniqueMarkerShapeUrl)
+        g.append('image').attr('xlink:xlink:href', uniqueMarkerShapeUri)
         .attr('x', 0)
         .attr('y', 0)
         .attr('width', width)
@@ -211,21 +211,21 @@ pathvisiojs.view.pathwayDiagram.svg.edge.marker = function(){
     var dimensionSet = [];
 
     var semanticName;
-    var markerUrl;
-    var paramCaseUrl;
-    var uniqueMarkerShapeUrls = [];
+    var markerUri;
+    var paramCaseUri;
+    var uniqueMarkerShapeUris = [];
     customMarkers.forEach(function(customMarker){
       semanticName = customMarker.semanticName;
-      markerUrl = customMarker.url;
-      paramCaseUrl = strcase.paramCase(markerUrl);
-      pathvisiojs.view.pathwayDiagram.svg.edge.marker.semanticNameToIdMapping[semanticName] = paramCaseUrl;
-      pathvisiojs.view.pathwayDiagram.svg.edge.marker.colorsAvailable[paramCaseUrl] = ['default'];
-      if (uniqueMarkerShapeUrls.indexOf(markerUrl) === -1) {
-        uniqueMarkerShapeUrls.push(markerUrl);
+      markerUri = customMarker.uri;
+      paramCaseUri = strcase.paramCase(markerUri);
+      pathvisiojs.view.pathwayDiagram.svg.edge.marker.semanticNameToIdMapping[semanticName] = paramCaseUri;
+      pathvisiojs.view.pathwayDiagram.svg.edge.marker.colorsAvailable[paramCaseUri] = ['default'];
+      if (uniqueMarkerShapeUris.indexOf(markerUri) === -1) {
+        uniqueMarkerShapeUris.push(markerUri);
       }
     });
 
-    async.each(uniqueMarkerShapeUrls, appendCustom, function(err){
+    async.each(uniqueMarkerShapeUris, appendCustom, function(err){
         // if any of the saves produced an error, err would equal that error
       callback(null);
     });
