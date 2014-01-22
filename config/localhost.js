@@ -39,6 +39,7 @@ pathvisiojs.config = function() {
     bridgedbLinkOutsUrlStub:bridgedbLinkOutsUrlStub,
     bridgedbDatasources:bridgedbDatasources,
     pngDiagramUriStub:pngDiagramUriStub,
+    loadingGif:loadingGif,
     diagramNotAvailableImageUri:diagramNotAvailableImageUri,
     pathwaySearchUriStub:pathwaySearchUriStub
   };
