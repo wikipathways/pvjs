@@ -4,15 +4,62 @@ var pathvisiojs = function(){
 
   var svg, pathway, args;
 
-  function getUrisForWikiPathwaysId(wikiPathwaysId, revision) {
+  function parseInputData(inputData) {
+    // inputData can be a WikiPathways ID (WP1), a uri for a GPML file (http://www.wikipathways.org/gpmlfile.gpml)
+    // or a uri for another type of file.
+    var wikiPathwaysId; // this might be equal to the value of inputData, but it might not.
+    var revision = inputData.revision || 0;
+    var uri; // this might be equal to the value of inputData, but it might not.
+
+    // object we will return
+    var parsedInputData = {};
+
+    if (pathvisiojs.utilities.getObjectType(inputData) === 'Object') {
+      wikiPathwaysId = inputData.wikiPathwaysId;
+      // TODO this is messy if we later want to use a data format that is not GPML
+      parsedInputData = getGpmlUri(wikiPathwaysId, revision); //get uri
+      parsedInputData.wikiPathwaysId = wikiPathwaysId;
+      parsedInputData.revision = revision;
+    }
+    else {
+      if (pathvisiojs.utilities.isUrl(inputData)) {
+        uri = inputData;
+        if (uri.indexOf('.gpml') > -1) {
+          parsedInputData.type = 'GPML';
+          parsedInputData.pathwayIri = inputData + '#';
+          parsedInputData.uri = uri;
+          return parsedInputData;
+        }
+        else {
+          throw new Error('Pathvisiojs cannot handle the data source type entered.');
+        }
+      }
+      else {
+        wikiPathwaysId = inputData;
+        // TODO this is messy if we later want to use a data format that is not GPML
+        parsedInputData = getGpmlUri(inputData, revision); //get uri
+        parsedInputData.wikiPathwaysId = wikiPathwaysId;
+        parsedInputData.revision = revision;
+      }
+    }
+    return parsedInputData;
+  }
+
+  // TODO getGpmlUri() and getJson() should move under pathvisiojs.data...
+  // if the input is a WP ID, we can get the uri for GPML.
+  function getGpmlUri(wikiPathwaysId, revision) {
     var results = {};
+
+    // test whether the server serving this file is on a wikipathways.org domain (wikipathways.org, test3.wikipathways.org, etc.)
     var re = /wikipathways\.org/; 
     var isOnWikiPathwaysDomain = re.test(document.location.origin);
+
+    // I don't know what this is doing. It might be a start at handling display of multiple pathways on a page.
     var PathwayViewer_viewers = PathwayViewer_viewers || [];
 
-    if (pathvisiojs.utilities.isWikiPathwaysId(wikiPathwaysId)) {
-      if (PathwayViewer_viewers.length > 0 && isOnWikiPathwaysDomain) {
-        results.uri = PathwayViewer_viewers[0].gpml.gpmlUrl;
+    if (pathvisiojs.utilities.isWikiPathwaysId(wikiPathwaysId)) { // if the input is a WP ID
+      if (PathwayViewer_viewers.length > 0 && isOnWikiPathwaysDomain) { // if we are also on a *.wikipathways.org domain
+        results.uri = PathwayViewer_viewers[0].gpml.gpmlUrl; // TODO we are not handling multiple pathways on one page here
       }
       else {
         results.uri = pathvisiojs.config.gpmlSourceUriStub() + wikiPathwaysId + '&rev=' + revision;
@@ -28,42 +75,6 @@ var pathvisiojs = function(){
     // be sure server has set gpml mime type to application/xml or application/gpml+xml
 
     return results;
-  }
-
-  function parseInputData(inputData) {
-    // TODO get urls elsewhere:
-    // gpml in pathvisiojs.data.gpml...
-    // png in pathvisio.view.pathwayDiagram.png...
-    var parsedInputData = {};
-
-    // inputData can be a WikiPathways ID (WP1), a uri for a GPML file (http://www.wikipathways.org/gpmlfile.gpml)
-    // or a uri for another type of file.
-
-    if (pathvisiojs.utilities.getObjectType(inputData) === 'Object') {
-      inputData.revision = inputData.revision || 0;
-      parsedInputData = getUrisForWikiPathwaysId(inputData.wikiPathwaysId, 0);
-      parsedInputData.wikiPathwaysId = inputData.wikiPathwaysId;
-      parsedInputData.revision = inputData.revision;
-    }
-    else {
-      if (pathvisiojs.utilities.isUrl(inputData)) {
-        parsedInputData.uri = inputData;
-        if (parsedInputData.uri.indexOf('.gpml') > -1) {
-          parsedInputData.type = 'GPML';
-          parsedInputData.pathwayIri = inputData + '#';
-          return parsedInputData;
-        }
-        else {
-          throw new Error('Pathvisiojs cannot handle the data source type entered.');
-        }
-      }
-      else {
-        parsedInputData = getUrisForWikiPathwaysId(inputData, 0);
-        parsedInputData.wikiPathwaysId = inputData;
-        parsedInputData.revision = 0;
-      }
-    }
-    return parsedInputData;
   }
 
   function getJson(parsedInputData, callback) {
@@ -101,7 +112,6 @@ var pathvisiojs = function(){
     }
     else {
       return new Error('No data source specified or pathvisio.js cannot handle the data source specified.');
-
     }
   }
 
