@@ -8,7 +8,7 @@ pathvisiojs.config = function() {
     return 'http://pointer.ucsf.edu/d3/r/data-sources/gpml.php?id=';
   }
 
-  var bridgedbLinkOutsUrlStub = function() {
+  var bridgedbLinkOutsUriStub = function() {
     return 'http://pointer.ucsf.edu/d3/r/data-sources/bridgedb/bridgedb.php/';
   }
 
@@ -21,7 +21,7 @@ pathvisiojs.config = function() {
     return 'http://upload.wikimedia.org/wikipedia/commons/3/3b/Picture_Not_Yet_Available.png';
   }
 
-  var pngDiagramUriStub = function() {
+  var imgDiagramUriStub = function() {
     return 'http://www.wikipathways.org/wpi//wpi.php?action=downloadFile&type=png&pwTitle=Pathway:';
   }
 
@@ -31,9 +31,9 @@ pathvisiojs.config = function() {
 
   return {
     gpmlSourceUriStub:gpmlSourceUriStub,
-    bridgedbLinkOutsUrlStub:bridgedbLinkOutsUrlStub,
+    bridgedbLinkOutsUriStub:bridgedbLinkOutsUriStub,
     bridgedbDatasources:bridgedbDatasources,
-    pngDiagramUriStub:pngDiagramUriStub,
+    imgDiagramUriStub:imgDiagramUriStub,
     diagramNotAvailableImageUri:diagramNotAvailableImageUri,
     pathwaySearchUriStub:pathwaySearchUriStub
   };

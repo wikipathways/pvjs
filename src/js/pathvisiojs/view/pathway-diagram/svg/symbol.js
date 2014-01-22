@@ -11,11 +11,11 @@ pathvisiojs.view.pathwayDiagram.svg.symbol = function(){
     'datanode':'shape-library-symbols-rectangle-svg',
   };
 
-  function appendCustom(uniqueSymbolShapeUrl, callback) {
+  function appendCustom(uniqueSymbolShapeUri, callback) {
     var img, width, height, imgChildren;
     var dimensions = null;
 
-    var symbolId = strcase.paramCase(uniqueSymbolShapeUrl)
+    var symbolId = strcase.paramCase(uniqueSymbolShapeUri)
     var defsSection = svg.select('defs');
     var symbol = defsSection.select('#' + symbolId);
     if (!symbol[0][0]) {
@@ -30,7 +30,7 @@ pathvisiojs.view.pathwayDiagram.svg.symbol = function(){
     // ignoring non-svg symbols for now
     if (1===1) {
     //if (symbolType === 'svg') {
-      d3.xml(uniqueSymbolShapeUrl, "image/svg+xml", function(svgXml) {
+      d3.xml(uniqueSymbolShapeUri, "image/svg+xml", function(svgXml) {
         img = d3.select(svgXml.documentElement)
         width = img.attr('width');
         height = img.attr('height');
@@ -44,11 +44,11 @@ pathvisiojs.view.pathwayDiagram.svg.symbol = function(){
     }
     else {
       img = document.createElement('img');
-      img.src = uniqueSymbolShapeUrl;
+      img.src = uniqueSymbolShapeUri;
       img.onload = function() {
         symbol.attr('viewBox', '0 0 ' + this.width + ' ' + this.height)
         dimensions = symbol.attr('viewBox').split(' ');
-        symbol.append('image').attr('xlink:xlink:href', uniqueSymbolShapeUrl)
+        symbol.append('image').attr('xlink:xlink:href', uniqueSymbolShapeUri)
         .attr('x', dimensions[0])
         .attr('y', dimensions[1])
         .attr('width', dimensions[2])
@@ -62,15 +62,15 @@ pathvisiojs.view.pathwayDiagram.svg.symbol = function(){
   function loadAllCustom(thisSvg, customSymbols, callback) {
     svg = thisSvg;
 
-    var uniqueSymbolShapeUrls = [];
+    var uniqueSymbolShapeUris = [];
     customSymbols.forEach(function(customSymbol){
-      semanticNameToIdMapping[customSymbol.semanticName] = strcase.paramCase(customSymbol.url);
-      if (uniqueSymbolShapeUrls.indexOf(customSymbol.url) === -1) {
-        uniqueSymbolShapeUrls.push(customSymbol.url);
+      semanticNameToIdMapping[customSymbol.semanticName] = strcase.paramCase(customSymbol.uri);
+      if (uniqueSymbolShapeUris.indexOf(customSymbol.uri) === -1) {
+        uniqueSymbolShapeUris.push(customSymbol.uri);
       }
     });
 
-    async.each(uniqueSymbolShapeUrls, appendCustom, function(err){
+    async.each(uniqueSymbolShapeUris, appendCustom, function(err){
       // if any of the saves produced an error, err would equal that error
       callback(null);
     });

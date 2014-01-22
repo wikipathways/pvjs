@@ -3997,7 +3997,7 @@
     </Graphics>
   </Line>
   <Line GraphId="e_291_REACTOME_70920">
-    <Comment Source="WikiPathways-description">Cytosolic formimidoyltransferase-cyclodeaminase (FTCD) catalyzes the reaction of N-formiminoglutamate and tetrahydrofolate to form glutamate and 5-formiminotetrahydrofolate. The gene encoding the human enzyme has beeen cloned and its sequence can encode a protein homologous the the biochemically characterized porcine protein (Solans et al. 2000; Murley et al. 1993). The function of FTCD in vivo was established by identification of missense mutations that reduce enzyme activity in patients with glutamate formiminotransferase deficiency (Hilton et al. 2003). Human FTCD is inferred to be an octamer by homology to the porcine enzyme (Murley et al. 1993).</Comment>
+    <Comment Source="WikiPathways-description">Cytosolic formimidoyltransferase-cyclodeaminase (FTCD) catalyzes the reaction of N-formiminoglutamate and tetrahydrofolate to form glutamate and 5-formiminotetrahydrofolate. The gene encoding the human enzyme has beeen cloned and its sequence can encode a protein homologous the the biochemically characterized porcine protein (Solans et al. 2000; Muriey et al. 1993). The function of FTCD in vivo was established by identification of missense mutations that reduce enzyme activity in patients with glutamate formiminotransferase deficiency (Hilton et al. 2003). Human FTCD is inferred to be an octamer by homology to the porcine enzyme (Muriey et al. 1993).</Comment>
     <BiopaxRef>lit_517423</BiopaxRef>
     <BiopaxRef>lit_70909</BiopaxRef>
     <BiopaxRef>lit_70913</BiopaxRef>
@@ -8483,7 +8483,7 @@
       <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Pubmed</bp:DB>
       <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1993</bp:YEAR>
       <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">The nucleotide sequence of porcine formiminotransferase cyclodeaminase. Expression and purification from Escherichia coli.</bp:TITLE>
-      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Murley, LL</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Muriey, LL</bp:AUTHORS>
       <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Mejia, NR</bp:AUTHORS>
       <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">MacKenzie, RE</bp:AUTHORS>
       <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">J Biol Chem 268:22820-4</bp:SOURCE>
@@ -9133,7 +9133,7 @@
       <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2000</bp:YEAR>
       <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2-Methylbutyryl-coenzyme A dehydrogenase deficiency: a new inborn error of L-isoleucine metabolism.</bp:TITLE>
       <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Gibson, KM</bp:AUTHORS>
-      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Burlingame, TG</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Buriingame, TG</bp:AUTHORS>
       <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Hogema, B</bp:AUTHORS>
       <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Jakobs, C</bp:AUTHORS>
       <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Schutgens, RB</bp:AUTHORS>
@@ -10759,7 +10759,7 @@
       <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Aevarsson, A</bp:AUTHORS>
       <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Chuang, JL</bp:AUTHORS>
       <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Wynn, RM</bp:AUTHORS>
-      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Turley, S</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Turiey, S</bp:AUTHORS>
       <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Chuang, DT</bp:AUTHORS>
       <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Hol, WG</bp:AUTHORS>
       <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Structure Fold Des 8:277-91</bp:SOURCE>

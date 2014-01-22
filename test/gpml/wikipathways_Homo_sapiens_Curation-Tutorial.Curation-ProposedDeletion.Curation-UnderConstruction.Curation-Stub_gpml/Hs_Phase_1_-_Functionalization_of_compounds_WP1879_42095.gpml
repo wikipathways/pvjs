@@ -5585,7 +5585,7 @@
     </Graphics>
   </Line>
   <Line GraphId="e_547_REACTOME_139970">
-    <Comment Source="WikiPathways-description">Trimethylamine (TMA) is present in the diet (in fish) but primarily formed in vivo from the breakdown of choline. It is N-oxidized by FMO3 in the liver, the major isoform active towards TMA Trimethylaminuria (âfish-odour syndromeâ) is a human genetic disorder characterized by an impaired ability to convert the malodourous TMA to its odourless N-oxide.</Comment>
+    <Comment Source="WikiPathways-description">Trimethylamine (TMA) is present in the diet (in fish) but primarily formed in vivo from the breakdown of choline. It is N-oxidized by FMO3 in the liver, the major isoform active towards TMA Trimethylaminuria (âfish-odour syndromeâ) is a human genetic disorder characterized by an impaired ability to convert the malodourous TMA to its odouriess N-oxide.</Comment>
     <BiopaxRef>lit_139971</BiopaxRef>
     <BiopaxRef>lit_139976</BiopaxRef>
     <Graphics LineStyle="Solid" Color="000000" ConnectorType="Segmented">
@@ -7535,7 +7535,7 @@
       <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Human liver mitochondrial aldehyde dehydrogenase: three-dimensional structure and the restoration of solubility and activity of chimeric forms</bp:TITLE>
       <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Ni, L</bp:AUTHORS>
       <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Zhou, J</bp:AUTHORS>
-      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Hurley, TD</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Huriey, TD</bp:AUTHORS>
       <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Weiner, H</bp:AUTHORS>
       <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Protein Sci 8:2784-90</bp:SOURCE>
     </bp:publicationXref>

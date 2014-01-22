@@ -2748,7 +2748,7 @@
     </Graphics>
   </Line>
   <Line GraphId="e_197_REACTOME_109624">
-    <Comment Source="WikiPathways-description">Cytosolic adenosine linase (ADK) catalyzes the reactions of adenosine and deoxyadenosine with ATP to yield the corresponding nucleotide monophosphates and ADP (Andres and Fox 1979). The enzyme is substantially more active on adenosine than deoxyadenosine in vitro (Hurley at al. 1985) though studies of cultured cells suggest that both reactions may be physiologically relevant (Hershfield et al. 1982). The enzyme is a monomer complexed with magnesium (Mathews et al. 1998).</Comment>
+    <Comment Source="WikiPathways-description">Cytosolic adenosine linase (ADK) catalyzes the reactions of adenosine and deoxyadenosine with ATP to yield the corresponding nucleotide monophosphates and ADP (Andres and Fox 1979). The enzyme is substantially more active on adenosine than deoxyadenosine in vitro (Huriey at al. 1985) though studies of cultured cells suggest that both reactions may be physiologically relevant (Hershfield et al. 1982). The enzyme is a monomer complexed with magnesium (Mathews et al. 1998).</Comment>
     <BiopaxRef>lit_109620</BiopaxRef>
     <BiopaxRef>lit_109610</BiopaxRef>
     <BiopaxRef>lit_76543</BiopaxRef>
@@ -7155,7 +7155,7 @@
       <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Human T-lymphoblast deoxycytidine kinase: purification and properties</bp:TITLE>
       <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Datta, NS</bp:AUTHORS>
       <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Shewach, DS</bp:AUTHORS>
-      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Hurley, MC</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Huriey, MC</bp:AUTHORS>
       <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Mitchell, BS</bp:AUTHORS>
       <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Fox, IH</bp:AUTHORS>
       <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Biochemistry 28:114-123</bp:SOURCE>
@@ -7698,7 +7698,7 @@
       <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Pubmed</bp:DB>
       <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1985</bp:YEAR>
       <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Regulation of deoxyadenosine and nucleoside analog phosphorylation by human placental adenosine kinase</bp:TITLE>
-      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Hurley, MC</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Huriey, MC</bp:AUTHORS>
       <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Lin, B</bp:AUTHORS>
       <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Fox, IH</bp:AUTHORS>
       <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">J Biol Chem 260:15675-15681</bp:SOURCE>

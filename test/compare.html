@@ -115,153 +115,169 @@ window.onload = function() {
      /*   var customSymbols = [
           {
             'semanticName': 'rectangle',
-            'url': srcDirectoryUrl + 'shape-library/symbols/rectangle.svg'
+            'uri': srcDirectoryUri + 'shape-library/symbols/rectangle.svg'
           }
         ];
     //*/
       var customMarkers = [
         {
           'semanticName': 'arrow',
-          //'url': 'http://wikipathways.org/skins/common/images/poweredby_mediawiki_88x31.png' // can use PNG or SVG
-          'url': srcDirectoryUrl + 'shape-library/markers/arrow.svg'
+          //'uri': 'http://wikipathways.org/skins/common/images/poweredby_mediawiki_88x31.png' // can use PNG or SVG
+          'uri': srcDirectoryUri + 'shape-library/markers/arrow.svg'
         },
         {
           'semanticName': 'necessary-stimulation',
-          'url': srcDirectoryUrl + 'shape-library/markers/mim-necessary-stimulation.svg'
+          'uri': srcDirectoryUri + 'shape-library/markers/mim-necessary-stimulation.svg'
         },
         {
           'semanticName': 'binding',
-          'url': srcDirectoryUrl + 'shape-library/markers/mim-binding.svg'
+          'uri': srcDirectoryUri + 'shape-library/markers/mim-binding.svg'
         },
         {
           'semanticName': 'conversion',
-          'url': srcDirectoryUrl + 'shape-library/markers/mim-conversion.svg'
+          'uri': srcDirectoryUri + 'shape-library/markers/mim-conversion.svg'
         },
         {
           'semanticName': 'stimulation',
-          'url': srcDirectoryUrl + 'shape-library/markers/mim-stimulation.svg'
+          'uri': srcDirectoryUri + 'shape-library/markers/mim-stimulation.svg'
         },
         {
           'semanticName': 'modification',
-          'url': srcDirectoryUrl + 'shape-library/markers/mim-modification.svg'
+          'uri': srcDirectoryUri + 'shape-library/markers/mim-modification.svg'
         },
         {
           'semanticName': 'catalysis',
-          'url': srcDirectoryUrl + 'shape-library/markers/mim-catalysis.svg'
+          'uri': srcDirectoryUri + 'shape-library/markers/mim-catalysis.svg'
         },
         {
           'semanticName': 'inhibition',
-          'url': srcDirectoryUrl + 'shape-library/markers/mim-inhibition.svg'
+          'uri': srcDirectoryUri + 'shape-library/markers/mim-inhibition.svg'
         },
         {
           'semanticName': 'cleavage',
-          'url': srcDirectoryUrl + 'shape-library/markers/mim-cleavage.svg'
+          'uri': srcDirectoryUri + 'shape-library/markers/mim-cleavage.svg'
         },
         {
           'semanticName': 'covalent-bond',
-          'url': srcDirectoryUrl + 'shape-library/markers/mim-covalent-bond.svg'
+          'uri': srcDirectoryUri + 'shape-library/markers/mim-covalent-bond.svg'
         },
         {
           'semanticName': 'transcription-translation',
-          'url': srcDirectoryUrl + 'shape-library/markers/mim-transcription-translation.svg'
+          'uri': srcDirectoryUri + 'shape-library/markers/mim-transcription-translation.svg'
         },
         {
           'semanticName': 'gap',
-          'url': srcDirectoryUrl + 'shape-library/markers/mim-gap.svg'
+          'uri': srcDirectoryUri + 'shape-library/markers/mim-gap.svg'
         },
         {
           'semanticName': 'inhibitory-activity',
-          'url': srcDirectoryUrl + 'shape-library/markers/t-bar.svg'
+          'uri': srcDirectoryUri + 'shape-library/markers/t-bar.svg'
         },
         {
           'semanticName': 'unspecified',
-          'url': srcDirectoryUrl + 'shape-library/markers/none.svg'
+          'uri': srcDirectoryUri + 'shape-library/markers/none.svg'
         },
         {
           'semanticName': 'activity',
-          'url': srcDirectoryUrl + 'shape-library/markers/arrow.svg'
+          'uri': srcDirectoryUri + 'shape-library/markers/arrow.svg'
         },
         {
           'semanticName': 'mim-branching-left',
-          'url': srcDirectoryUrl + 'shape-library/markers/mim-branching-left.svg'
+          'uri': srcDirectoryUri + 'shape-library/markers/mim-branching-left.svg'
         },
         {
           'semanticName': 'mim-branching-right',
-          'url': srcDirectoryUrl + 'shape-library/markers/mim-branching-right.svg'
+          'uri': srcDirectoryUri + 'shape-library/markers/mim-branching-right.svg'
         },
         {
           'semanticName': 'mim-necessary-stimulation',
-          'url': srcDirectoryUrl + 'shape-library/markers/mim-necessary-stimulation.svg'
+          'uri': srcDirectoryUri + 'shape-library/markers/mim-necessary-stimulation.svg'
         },
         {
           'semanticName': 'mim-binding',
-          'url': srcDirectoryUrl + 'shape-library/markers/mim-binding.svg'
+          'uri': srcDirectoryUri + 'shape-library/markers/mim-binding.svg'
         },
         {
           'semanticName': 'mim-conversion',
-          'url': srcDirectoryUrl + 'shape-library/markers/mim-conversion.svg'
+          'uri': srcDirectoryUri + 'shape-library/markers/mim-conversion.svg'
         },
         {
           'semanticName': 'mim-stimulation',
-          'url': srcDirectoryUrl + 'shape-library/markers/mim-stimulation.svg'
+          'uri': srcDirectoryUri + 'shape-library/markers/mim-stimulation.svg'
         },
         {
           'semanticName': 'mim-modification',
-          'url': srcDirectoryUrl + 'shape-library/markers/mim-modification.svg'
+          'uri': srcDirectoryUri + 'shape-library/markers/mim-modification.svg'
         },
         {
           'semanticName': 'mim-catalysis',
-          'url': srcDirectoryUrl + 'shape-library/markers/mim-catalysis.svg'
+          'uri': srcDirectoryUri + 'shape-library/markers/mim-catalysis.svg'
         },
         {
           'semanticName': 'mim-inhibition',
-          'url': srcDirectoryUrl + 'shape-library/markers/mim-inhibition.svg'
+          'uri': srcDirectoryUri + 'shape-library/markers/mim-inhibition.svg'
         },
         {
           'semanticName': 'mim-cleavage',
-          'url': srcDirectoryUrl + 'shape-library/markers/mim-cleavage.svg'
+          'uri': srcDirectoryUri + 'shape-library/markers/mim-cleavage.svg'
         },
         {
           'semanticName': 'mim-covalent-bond',
-          'url': srcDirectoryUrl + 'shape-library/markers/mim-covalent-bond.svg'
+          'uri': srcDirectoryUri + 'shape-library/markers/mim-covalent-bond.svg'
         },
         {
           'semanticName': 'mim-transcription-translation',
-          'url': srcDirectoryUrl + 'shape-library/markers/mim-transcription-translation.svg'
+          'uri': srcDirectoryUri + 'shape-library/markers/mim-transcription-translation.svg'
         },
         {
           'semanticName': 'mim-gap',
-          'url': srcDirectoryUrl + 'shape-library/markers/mim-gap.svg'
+          'uri': srcDirectoryUri + 'shape-library/markers/mim-gap.svg'
         },
         {
           'semanticName': 't-bar',
-          'url': srcDirectoryUrl + 'shape-library/markers/t-bar.svg'
+          'uri': srcDirectoryUri + 'shape-library/markers/t-bar.svg'
         },
         {
           'semanticName': 'none',
-          'url': srcDirectoryUrl + 'shape-library/markers/none.svg'
+          'uri': srcDirectoryUri + 'shape-library/markers/none.svg'
         }
       ];
 
       // for element scaling, we are using the SVG terms for all graphical representations of pathways.
       // preserveAspectRatio refers to the vertical and horizontal alignment of the image.
 
+      // each optional parameter below overrides the default specfied in config.js if it is specified
       pathvisiojs.load({
-        container: '#pathvisiojs-dev', //as of now, this can only be a CSS selector: http://www.w3.org/TR/CSS2/selector.html
-        fitToContainer:true, //A fitToContainer value of false means that the diagram should be the size specified by the diagram creator, without any scaling (full size as per GPML width and height). A value of true means that diagram should be scaled down, if required, to fit entirely within the element specified by the container selector, while preserving aspect ratio. 
-        sourceData:parsedInputData.sourceData,
-        wpId:'WP1', //optional
-        wpRevision:'', //optional
-        cssUrl: srcDirectoryUrl + 'css/pathway-diagram.css',
-        customMarkers: customMarkers,
-        //customSymbols: customSymbols,
-        highlightNodes: [
+        container: '#pathvisiojs-dev', // required. as of now, this can only be a CSS selector: http://www.w3.org/TR/CSS2/selector.html
+        fitToContainer:true, //optional. A fitToContainer value of false means that the diagram should be the size specified by the diagram creator, without any scaling (full size as per GPML width and height). A value of true means that diagram should be scaled down, if required, to fit entirely within the element specified by the container selector, while preserving aspect ratio. 
+        // optional. default is true.
+        sourceData:parsedInputData.sourceData,// at least one element required in array
+        /*
+        sourceData:[
+          {
+            uri:'wp.org/wp1.gpml',
+            type:'gpml' // generally will correspond to filename extension
+          },
+          {
+            uri:'wp.org/wp1.png',
+            type:'png'
+          }
+        ], 
+        //*/
+        //pathwaySearchUriStub: 'wp.org/search', // optional
+        cssUri: srcDirectoryUri + 'css/pathway-diagram.css', // optional
+        //bridgedbLinkOutsUriStub: '../external-data/bridgedb/bridgedb.php/', //optional
+        //bridgedbDatasources: '../external-data/bridgedb/datasources.txt', //optional
+        customMarkers: customMarkers, //optional
+        //customSymbols: customSymbols, //optional
+        highlightNodes: [ //optional
+          {'selector': 'CRH', 'color': 'red'},
           {'parameter': 'label', 'parameterValue': 'CRH', 'color': 'red'},
           {'parameter': 'xref', 'parameterValue': '8525,Entrez%20Gene', 'color': '#FF0000'}
         ],
-        hiddenElements: [
-          'find',
-          'wikipathways-link'
+        hiddenElements: [ //optional
+          'highlight-by-label-input',
+          'fit-to-screen-control'
         ]
       });
     }
