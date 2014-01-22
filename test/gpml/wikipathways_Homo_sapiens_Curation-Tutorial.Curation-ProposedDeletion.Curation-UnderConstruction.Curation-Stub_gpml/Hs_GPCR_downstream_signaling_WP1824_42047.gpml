@@ -3179,7 +3179,7 @@ Of the 960 human OR genes and pseudogenes, there is experimental evidence which 
       <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Alpha transducin is present in blue-, green-, and red-sensitive cone photoreceptors in the human retina</bp:TITLE>
       <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Lerea, CL</bp:AUTHORS>
       <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Bunt-Milam, AH</bp:AUTHORS>
-      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Hurley, JB</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Huriey, JB</bp:AUTHORS>
       <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Neuron 3:367-76</bp:SOURCE>
     </bp:publicationXref>
     <bp:publicationXref xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" rdf:ID="lit_380075" rdf:id="lit_380075">

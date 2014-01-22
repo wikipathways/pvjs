@@ -1058,7 +1058,7 @@ by receptor tyrosine kinases and by Ras and Rho family GTPases.</Comment>
       <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#int">1996</bp:YEAR>
       <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Syk, activated by cross-linking the B-cell antigen receptor, localizes to the cytosol where it interacts with and phosphorylates alpha-tubulin on tyrosine</bp:TITLE>
       <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Peters, JD</bp:AUTHORS>
-      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Furlong, MT</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Furiong, MT</bp:AUTHORS>
       <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Asai, DJ</bp:AUTHORS>
       <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Harrison, ML</bp:AUTHORS>
       <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Geahlen, RL</bp:AUTHORS>

@@ -1,5 +1,5 @@
 var module = {};
-var srcDirectoryUrl;
+var srcDirectoryUri;
 var pvjsSources;
 var pathvisioNS = [];
 
@@ -13,7 +13,7 @@ var developmentLoader = function() {
 
   function getUriParam(name) {
 
-    // Thanks to http://stackoverflow.com/questions/11582512/how-to-get-url-parameters-with-javascript
+    // Thanks to http://stackoverflow.com/questions/11582512/how-to-get-uri-parameters-with-javascript
     // This will be replaced once we get the backend php to get the GPML
 
     var parameter = decodeURIComponent((new RegExp('[?|&]' + name + '=' + '([^&;]+?)(&|#|;|$)').exec(location.search)||[,""])[1].replace(/\+/g, '%20'))||null;
@@ -26,7 +26,7 @@ var developmentLoader = function() {
   }
 
   function getUriParamList() {
-    urlParamList = {
+    uriParamList = {
       'svg-disabled': false,
       'gpml': null,
       'gpmlRev': 0,
@@ -34,26 +34,26 @@ var developmentLoader = function() {
       'account': '',
       'branch': ''
     };
-    Object.keys(urlParamList).forEach(function(element) {
+    Object.keys(uriParamList).forEach(function(element) {
       if (!!getUriParam(element)) {
-        urlParamList[element] = getUriParam(element);
+        uriParamList[element] = getUriParam(element);
       }
       window.setTimeout(function() {
-        $('#' + element).val(urlParamList[element]);
+        $('#' + element).val(uriParamList[element]);
       }, 50)
     });
-    return urlParamList;
+    return uriParamList;
   }
 
   function updateParams(updatedParam) {
     var targetUri = currentUri + '?' + updatedParam.key + '=' + updatedParam.value;
 
-    Object.keys(urlParamList).forEach(function(element) {
+    Object.keys(uriParamList).forEach(function(element) {
       if (element === updatedParam.key) {
-        urlParamList[element] = updatedParam.value;
+        uriParamList[element] = updatedParam.value;
       }
       else {
-        targetUri += '&' + element + '=' + urlParamList[element];
+        targetUri += '&' + element + '=' + uriParamList[element];
       }
     });
 
@@ -78,9 +78,9 @@ var developmentLoader = function() {
 
 
 
-    var wpId, wpRevision, gpmlUri, pngUrl;
+    var wpId, wpRevision, gpmlUri, pngUri;
 
-    if (pathvisiojs.utilities.isUrl(gpmlParam)) {
+    if (pathvisiojs.utilities.isUri(gpmlParam)) {
       if (uri.indexOf('.gpml') > -1) {
         parsedInputData.sourceData.push({
           uri:gpmlParam,
@@ -109,7 +109,7 @@ var developmentLoader = function() {
           mediaType:'application/xml+gpml'
         });
 
-        pngUri = encodeURI(pathvisiojs.config.pngDiagramUriStub() + gpmlParam + '&revision=' + wpRevision);
+        pngUri = encodeURI(pathvisiojs.config.imgDiagramUriStub() + gpmlParam + '&revision=' + wpRevision);
         parsedInputData.sourceData.push({
           uri:pngUri,
           mediaType:'image/png'
@@ -155,9 +155,9 @@ var developmentLoader = function() {
   }
 
 
-  function getUrlParam(name) {
+  function getUriParam(name) {
 
-    // Thanks to http://stackoverflow.com/questions/11582512/how-to-get-url-parameters-with-javascript
+    // Thanks to http://stackoverflow.com/questions/11582512/how-to-get-uri-parameters-with-javascript
     // This will be replaced once we get the backend php to get the json
 
     var parameter = decodeURIComponent((new RegExp('[?|&]' + name + '=' + '([^&;]+?)(&|#|;|$)').exec(location.search)||[,""])[1].replace(/\+/g, '%20'))||null;
@@ -191,22 +191,22 @@ var developmentLoader = function() {
   }
 
   function updateParams(updatedParam) {
-    var targetUrl = currentUrl + '?' + updatedParam.key + '=' + updatedParam.value;
+    var targetUri = currentUri + '?' + updatedParam.key + '=' + updatedParam.value;
 
-    Object.keys(urlParamList).forEach(function(element) {
+    Object.keys(uriParamList).forEach(function(element) {
       if (element === updatedParam.key) {
-        urlParamList[element] = updatedParam.value;
+        uriParamList[element] = updatedParam.value;
       }
       else {
-        targetUrl += '&' + element + '=' + urlParamList[element];
+        targetUri += '&' + element + '=' + uriParamList[element];
       }
     });
 
-    location.href = targetUrl;
+    location.href = targetUri;
   }
 
   function generateHtmlView(callback) {
-    d3.html(srcDirectoryUrl + 'pathvisiojs.html', function(html) {
+    d3.html(srcDirectoryUri + 'pathvisiojs.html', function(html) {
       var svg = html.querySelector('#pathway-svg');
       svg.setAttribute('style', 'display: none; ');
 
@@ -219,16 +219,16 @@ var developmentLoader = function() {
   function preload(outsideCallback) {
     var hostname = decodeURI(window.location.hostname);
 
-    var currentUrl = document.location;
+    var currentUri = document.location;
     var pathname = document.location.pathname;
-    var pathvisiojsRootDirectoryUrl = pathname.split('test/compare.html')[0];
-    srcDirectoryUrl = (pathvisiojsRootDirectoryUrl + 'src/');
+    var pathvisiojsRootDirectoryUri = pathname.split('test/compare.html')[0];
+    srcDirectoryUri = (pathvisiojsRootDirectoryUri + 'src/');
 
 
     async.waterfall([
       function(callback) {
-        var gruntFileUrl = '../Gruntfile.js'; // just for testing/development purposes
-        loadScripts([gruntFileUrl], function() {
+        var gruntFileUri = '../Gruntfile.js'; // just for testing/development purposes
+        loadScripts([gruntFileUri], function() {
           callback(null);
         });
       },
@@ -289,7 +289,7 @@ var developmentLoader = function() {
       },
       function(parsedInputData, callback) {
         console.log(parsedInputData);
-        // test for whether urlParamList.gpml is a WikiPathways ID
+        // test for whether uriParamList.gpml is a WikiPathways ID
         // If it is not a WikiPathways ID, the WikiPathways widget will not be able to load the pathway.
         if (!!parsedInputData.wpId) {
           window.setTimeout(function() {

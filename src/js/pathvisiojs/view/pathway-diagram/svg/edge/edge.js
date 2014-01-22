@@ -89,18 +89,18 @@ pathvisiojs.view.pathwayDiagram.svg.edge = function(){
             else {
               if (pathvisiojs.view.pathwayDiagram.svg.edge.marker.colorsAvailable[markerStartIdStub].indexOf(stroke) === -1) { // if no marker of this stroke color exists
                 pathvisiojs.view.pathwayDiagram.svg.edge.marker.appendNonDefaultColorMarkerBothEnds(svg, markerStartIdStub, stroke, function() {
-                  markerStartAttributeValue = 'url(#' + strcase.paramCase(markerStartIdStub + '-start-' + stroke) + ')';
+                  markerStartAttributeValue = 'uri(#' + strcase.paramCase(markerStartIdStub + '-start-' + stroke) + ')';
                   callback(null, markerStartAttributeValue);
                 });
               }
               else {
-                markerStartAttributeValue = 'url(#' + strcase.paramCase(markerStartIdStub + '-start-' + stroke) + ')';
+                markerStartAttributeValue = 'uri(#' + strcase.paramCase(markerStartIdStub + '-start-' + stroke) + ')';
                 callback(null, markerStartAttributeValue);
               }
             }
           }
           else {
-            markerStartAttributeValue = 'url(#' + strcase.paramCase(markerStartIdStub + '-start-default') + ')';
+            markerStartAttributeValue = 'uri(#' + strcase.paramCase(markerStartIdStub + '-start-default') + ')';
             callback(null, markerStartAttributeValue);
           }
         }
@@ -121,18 +121,18 @@ pathvisiojs.view.pathwayDiagram.svg.edge = function(){
             else {
               if (pathvisiojs.view.pathwayDiagram.svg.edge.marker.colorsAvailable[markerEndIdStub].indexOf(stroke) === -1) { // if no marker of this stroke color exists
                 pathvisiojs.view.pathwayDiagram.svg.edge.marker.appendNonDefaultColorMarkerBothEnds(svg, markerEndIdStub, stroke, function() {
-                  markerEndAttributeValue = 'url(#' + strcase.paramCase(markerEndIdStub + '-end-' + stroke) + ')';
+                  markerEndAttributeValue = 'uri(#' + strcase.paramCase(markerEndIdStub + '-end-' + stroke) + ')';
                   callback(null, markerEndAttributeValue);
                 });
               }
               else {
-                markerEndAttributeValue = 'url(#' + strcase.paramCase(markerEndIdStub + '-end-' + stroke) + ')';
+                markerEndAttributeValue = 'uri(#' + strcase.paramCase(markerEndIdStub + '-end-' + stroke) + ')';
                 callback(null, markerEndAttributeValue);
               }
             }
           }
           else {
-            markerEndAttributeValue = 'url(#' + strcase.paramCase(markerEndIdStub + '-end-default') + ')';
+            markerEndAttributeValue = 'uri(#' + strcase.paramCase(markerEndIdStub + '-end-default') + ')';
             callback(null, markerEndAttributeValue);
           }
         }
@@ -325,7 +325,7 @@ pathvisiojs.view.pathwayDiagram.svg.edge = function(){
             markerStart = 'double-line-hack-start';
           }
         }
-        return 'url(#' + markerStart + ')';
+        return 'uri(#' + markerStart + ')';
       })
       .attr("marker-end", function (data) {
         var markerEnd = pathvisiojs.view.pathwayDiagram.svg.edge.marker.render(viewport, data.markerEnd, 'end', data.stroke);
@@ -335,7 +335,7 @@ pathvisiojs.view.pathwayDiagram.svg.edge = function(){
             markerEnd = 'double-line-hack-end';
           }
         }
-        return 'url(#' + markerEnd + ')';
+        return 'uri(#' + markerEnd + ')';
       })
       .attr("fill", 'none')
 
@@ -356,8 +356,8 @@ pathvisiojs.view.pathwayDiagram.svg.edge = function(){
             .attr("d", pathData)
             .attr("class", "stroke-color-equals-default-fill-color")
             .attr("style", "stroke-width:" + data.strokeWidth + '; ')
-            .attr("marker-start", 'url(#' + pathvisiojs.view.pathwayDiagram.svg.edge.marker.render(viewport, data.markerStart, 'start', data.stroke) + ')')
-            .attr("marker-end", 'url(#' + pathvisiojs.view.pathwayDiagram.svg.edge.marker.render(viewport, data.markerEnd, 'end', data.stroke) + ')');
+            .attr("marker-start", 'uri(#' + pathvisiojs.view.pathwayDiagram.svg.edge.marker.render(viewport, data.markerStart, 'start', data.stroke) + ')')
+            .attr("marker-end", 'uri(#' + pathvisiojs.view.pathwayDiagram.svg.edge.marker.render(viewport, data.markerEnd, 'end', data.stroke) + ')');
           }
         }
         return pathData;

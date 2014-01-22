@@ -130,7 +130,7 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
     var container = args.container,
       customMarkers = args.customMarkers,
 //      customSymbols = args.customSymbols,
-      cssUrl = args.cssUrl,
+      cssUri = args.cssUri,
       pathvisioJsContainer,
       pathwayContainer;
 
@@ -168,8 +168,8 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
         }
       },
 //*/      function(callback) {
-        if (!!cssUrl) {
-          d3.text(cssUrl, 'text/css', function(data) {
+        if (!!cssUri) {
+          d3.text(cssUri, 'text/css', function(data) {
             var defs = svg.select('defs');
             var style = defs.append('style').attr('type', "text/css");
             style.text(data);

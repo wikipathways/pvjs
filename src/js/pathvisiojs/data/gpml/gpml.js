@@ -197,7 +197,7 @@ pathvisiojs.data.gpml = function(){
               'PublicationXref':'biopax:PublicationXref',
               'gpmlFolder':'file://Users/andersriutta/Sites/pathvisiojs/test/gpml/',
               'name':'http://xmlns.com/foaf/0.1/name',
-              'dcterms':'http://purl.org/dc/terms/',
+              'dcterms':'http://puri.org/dc/terms/',
               'css2':'http://www.w3.org/TR/CSS2/',
               'css3Ui':'http://www.w3.org/TR/css3-ui/#',
               'cssTransform':'http://www.w3.org/TR/css-transforms-1/#',

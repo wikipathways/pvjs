@@ -6071,7 +6071,7 @@ jQuery.fn.extend({
 						jQuery.ajax({
 							type: "GET",
 							global: false,
-							url: elem.src,
+							uri: elem.src,
 							async: false,
 							dataType: "script"
 						});
@@ -6974,7 +6974,7 @@ var r20 = /%20/g,
 	rCRLF = /\r?\n/g,
 	rhash = /#.*$/,
 	rheaders = /^(.*?):[ \t]*([^\r\n]*)\r?$/mg, // IE leaves an \r character at EOL
-	rinput = /^(?:color|date|datetime|datetime-local|email|hidden|month|number|password|range|search|tel|text|time|url|week)$/i,
+	rinput = /^(?:color|date|datetime|datetime-local|email|hidden|month|number|password|range|search|tel|text|time|uri|week)$/i,
 	// #7653, #8125, #8152: local protocol detection
 	rlocalProtocol = /^(?:about|app|app\-storage|.+\-extension|file|res|widget):$/,
 	rnoContent = /^(?:GET|HEAD)$/,
@@ -6984,7 +6984,7 @@ var r20 = /%20/g,
 	rselectTextarea = /^(?:select|textarea)/i,
 	rspacesAjax = /\s+/,
 	rts = /([?&])_=[^&]*/,
-	rurl = /^([\w\+\.\-]+:)(?:\/\/([^\/?#:]*)(?::(\d+))?)?/,
+	ruri = /^([\w\+\.\-]+:)(?:\/\/([^\/?#:]*)(?::(\d+))?)?/,
 
 	// Keep a copy of the old load method
 	_load = jQuery.fn.load,
@@ -7029,7 +7029,7 @@ try {
 }
 
 // Segment location into parts
-ajaxLocParts = rurl.exec( ajaxLocation.toLowerCase() ) || [];
+ajaxLocParts = ruri.exec( ajaxLocation.toLowerCase() ) || [];
 
 // Base "constructor" for jQuery.ajaxPrefilter and jQuery.ajaxTransport
 function addToPrefiltersOrTransports( structure ) {
@@ -7124,8 +7124,8 @@ function ajaxExtend( target, src ) {
 }
 
 jQuery.fn.extend({
-	load: function( url, params, callback ) {
-		if ( typeof url !== "string" && _load ) {
+	load: function( uri, params, callback ) {
+		if ( typeof uri !== "string" && _load ) {
 			return _load.apply( this, arguments );
 
 		// Don't do a request if no elements are being requested
@@ -7133,10 +7133,10 @@ jQuery.fn.extend({
 			return this;
 		}
 
-		var off = url.indexOf( " " );
+		var off = uri.indexOf( " " );
 		if ( off >= 0 ) {
-			var selector = url.slice( off, url.length );
-			url = url.slice( 0, off );
+			var selector = uri.slice( off, uri.length );
+			uri = uri.slice( 0, off );
 		}
 
 		// Default to a GET request
@@ -7161,7 +7161,7 @@ jQuery.fn.extend({
 
 		// Request the remote document
 		jQuery.ajax({
-			url: url,
+			uri: uri,
 			type: type,
 			dataType: "html",
 			data: params,
@@ -7235,7 +7235,7 @@ jQuery.each( "ajaxStart ajaxStop ajaxComplete ajaxError ajaxSuccess ajaxSend".sp
 });
 
 jQuery.each( [ "get", "post" ], function( i, method ) {
-	jQuery[ method ] = function( url, data, callback, type ) {
+	jQuery[ method ] = function( uri, data, callback, type ) {
 		// shift arguments if data argument was omitted
 		if ( jQuery.isFunction( data ) ) {
 			type = type || callback;
@@ -7245,7 +7245,7 @@ jQuery.each( [ "get", "post" ], function( i, method ) {
 
 		return jQuery.ajax({
 			type: method,
-			url: url,
+			uri: uri,
 			data: data,
 			success: callback,
 			dataType: type
@@ -7255,12 +7255,12 @@ jQuery.each( [ "get", "post" ], function( i, method ) {
 
 jQuery.extend({
 
-	getScript: function( url, callback ) {
-		return jQuery.get( url, undefined, callback, "script" );
+	getScript: function( uri, callback ) {
+		return jQuery.get( uri, undefined, callback, "script" );
 	},
 
-	getJSON: function( url, data, callback ) {
-		return jQuery.get( url, data, callback, "json" );
+	getJSON: function( uri, data, callback ) {
+		return jQuery.get( uri, data, callback, "json" );
 	},
 
 	// Creates a full fledged settings object into target
@@ -7280,11 +7280,11 @@ jQuery.extend({
 	},
 
 	ajaxSettings: {
-		url: ajaxLocation,
+		uri: ajaxLocation,
 		isLocal: rlocalProtocol.test( ajaxLocParts[ 1 ] ),
 		global: true,
 		type: "GET",
-		contentType: "application/x-www-form-urlencoded; charset=UTF-8",
+		contentType: "application/x-www-form-uriencoded; charset=UTF-8",
 		processData: true,
 		async: true,
 		/*
@@ -7341,7 +7341,7 @@ jQuery.extend({
 		// deep extended (see ajaxExtend)
 		flatOptions: {
 			context: true,
-			url: true
+			uri: true
 		}
 	},
 
@@ -7349,12 +7349,12 @@ jQuery.extend({
 	ajaxTransport: addToPrefiltersOrTransports( transports ),
 
 	// Main method
-	ajax: function( url, options ) {
+	ajax: function( uri, options ) {
 
-		// If url is an object, simulate pre-1.5 signature
-		if ( typeof url === "object" ) {
-			options = url;
-			url = undefined;
+		// If uri is an object, simulate pre-1.5 signature
+		if ( typeof uri === "object" ) {
+			options = uri;
+			uri = undefined;
 		}
 
 		// Force options to be an object
@@ -7585,16 +7585,16 @@ jQuery.extend({
 		};
 
 		// Remove hash character (#7531: and string promotion)
-		// Add protocol if not provided (#5866: IE7 issue with protocol-less urls)
-		// We also use the url parameter if available
-		s.url = ( ( url || s.url ) + "" ).replace( rhash, "" ).replace( rprotocol, ajaxLocParts[ 1 ] + "//" );
+		// Add protocol if not provided (#5866: IE7 issue with protocol-less uris)
+		// We also use the uri parameter if available
+		s.uri = ( ( uri || s.uri ) + "" ).replace( rhash, "" ).replace( rprotocol, ajaxLocParts[ 1 ] + "//" );
 
 		// Extract dataTypes list
 		s.dataTypes = jQuery.trim( s.dataType || "*" ).toLowerCase().split( rspacesAjax );
 
 		// Determine if a cross-domain request is in order
 		if ( s.crossDomain == null ) {
-			parts = rurl.exec( s.url.toLowerCase() );
+			parts = ruri.exec( s.uri.toLowerCase() );
 			s.crossDomain = !!( parts &&
 				( parts[ 1 ] != ajaxLocParts[ 1 ] || parts[ 2 ] != ajaxLocParts[ 2 ] ||
 					( parts[ 3 ] || ( parts[ 1 ] === "http:" ? 80 : 443 ) ) !=
@@ -7632,25 +7632,25 @@ jQuery.extend({
 		// More options handling for requests with no content
 		if ( !s.hasContent ) {
 
-			// If data is available, append data to url
+			// If data is available, append data to uri
 			if ( s.data ) {
-				s.url += ( rquery.test( s.url ) ? "&" : "?" ) + s.data;
+				s.uri += ( rquery.test( s.uri ) ? "&" : "?" ) + s.data;
 				// #9682: remove data so that it's not used in an eventual retry
 				delete s.data;
 			}
 
 			// Get ifModifiedKey before adding the anti-cache parameter
-			ifModifiedKey = s.url;
+			ifModifiedKey = s.uri;
 
-			// Add anti-cache in url if needed
+			// Add anti-cache in uri if needed
 			if ( s.cache === false ) {
 
 				var ts = jQuery.now(),
 					// try replacing _= if it is there
-					ret = s.url.replace( rts, "$1_=" + ts );
+					ret = s.uri.replace( rts, "$1_=" + ts );
 
 				// if nothing was replaced, add timestamp to the end
-				s.url = ret + ( ( ret === s.url ) ? ( rquery.test( s.url ) ? "&" : "?" ) + "_=" + ts : "" );
+				s.uri = ret + ( ( ret === s.uri ) ? ( rquery.test( s.uri ) ? "&" : "?" ) + "_=" + ts : "" );
 			}
 		}
 
@@ -7661,7 +7661,7 @@ jQuery.extend({
 
 		// Set the If-Modified-Since and/or If-None-Match header, if in ifModified mode.
 		if ( s.ifModified ) {
-			ifModifiedKey = ifModifiedKey || s.url;
+			ifModifiedKey = ifModifiedKey || s.uri;
 			if ( jQuery.lastModified[ ifModifiedKey ] ) {
 				jqXHR.setRequestHeader( "If-Modified-Since", jQuery.lastModified[ ifModifiedKey ] );
 			}
@@ -7983,34 +7983,34 @@ jQuery.ajaxSetup({
 // Detect, normalize options and install callbacks for jsonp requests
 jQuery.ajaxPrefilter( "json jsonp", function( s, originalSettings, jqXHR ) {
 
-	var inspectData = ( typeof s.data === "string" ) && /^application\/x\-www\-form\-urlencoded/.test( s.contentType );
+	var inspectData = ( typeof s.data === "string" ) && /^application\/x\-www\-form\-uriencoded/.test( s.contentType );
 
 	if ( s.dataTypes[ 0 ] === "jsonp" ||
-		s.jsonp !== false && ( jsre.test( s.url ) ||
+		s.jsonp !== false && ( jsre.test( s.uri ) ||
 				inspectData && jsre.test( s.data ) ) ) {
 
 		var responseContainer,
 			jsonpCallback = s.jsonpCallback =
 				jQuery.isFunction( s.jsonpCallback ) ? s.jsonpCallback() : s.jsonpCallback,
 			previous = window[ jsonpCallback ],
-			url = s.url,
+			uri = s.uri,
 			data = s.data,
 			replace = "$1" + jsonpCallback + "$2";
 
 		if ( s.jsonp !== false ) {
-			url = url.replace( jsre, replace );
-			if ( s.url === url ) {
+			uri = uri.replace( jsre, replace );
+			if ( s.uri === uri ) {
 				if ( inspectData ) {
 					data = data.replace( jsre, replace );
 				}
 				if ( s.data === data ) {
 					// Add callback manually
-					url += (/\?/.test( url ) ? "&" : "?") + s.jsonp + "=" + jsonpCallback;
+					uri += (/\?/.test( uri ) ? "&" : "?") + s.jsonp + "=" + jsonpCallback;
 				}
 			}
 		}
 
-		s.url = url;
+		s.uri = uri;
 		s.data = data;
 
 		// Install callback
@@ -8095,7 +8095,7 @@ jQuery.ajaxTransport( "script", function(s) {
 					script.charset = s.scriptCharset;
 				}
 
-				script.src = s.url;
+				script.src = s.uri;
 
 				// Attach handlers for all browsers
 				script.onload = script.onreadystatechange = function( _, isAbort ) {
@@ -8202,9 +8202,9 @@ if ( jQuery.support.ajax ) {
 					// Open the socket
 					// Passing null username, generates a login popup on Opera (#2865)
 					if ( s.username ) {
-						xhr.open( s.type, s.url, s.async, s.username, s.password );
+						xhr.open( s.type, s.uri, s.async, s.username, s.password );
 					} else {
-						xhr.open( s.type, s.url, s.async );
+						xhr.open( s.type, s.uri, s.async );
 					}
 
 					// Apply custom fields if provided
@@ -10205,7 +10205,7 @@ function startingTag(element) {
 /////////////////////////////////////////////////
 
 /**
- * Parses an escaped url query string into key-value pairs.
+ * Parses an escaped uri query string into key-value pairs.
  * @returns Object.<(string|boolean)>
  */
 function parseKeyValue(/**string*/keyValue) {
@@ -12346,7 +12346,7 @@ function $AnchorScrollProvider() {
     }
 
     // does not scroll when user clicks on anchor link that is currently on
-    // (no url change, no $location.hash() change), browser native does scroll
+    // (no uri change, no $location.hash() change), browser native does scroll
     if (autoScrollingEnabled) {
       $rootScope.$watch(function autoScrollWatch() {return $location.hash();},
         function autoScrollWatchAction() {
@@ -12481,11 +12481,11 @@ function Browser(window, document, $log, $sniffer) {
   // URL API
   //////////////////////////////////////////////////////////////
 
-  var lastBrowserUrl = location.href,
+  var lastBrowserUri = location.href,
       baseElement = document.find('base');
 
   /**
-   * @name ng.$browser#url
+   * @name ng.$browser#uri
    * @methodOf ng.$browser
    *
    * @description
@@ -12493,32 +12493,32 @@ function Browser(window, document, $log, $sniffer) {
    * Without any argument, this method just returns current value of location.href.
    *
    * SETTER:
-   * With at least one argument, this method sets url to new value.
+   * With at least one argument, this method sets uri to new value.
    * If html5 history api supported, pushState/replaceState is used, otherwise
    * location.href/location.replace is used.
    * Returns its own instance to allow chaining
    *
    * NOTE: this api is intended for use only by the $location service. Please use the
-   * {@link ng.$location $location service} to change url.
+   * {@link ng.$location $location service} to change uri.
    *
-   * @param {string} url New url (when used as setter)
-   * @param {boolean=} replace Should new url replace current history record ?
+   * @param {string} uri New uri (when used as setter)
+   * @param {boolean=} replace Should new uri replace current history record ?
    */
-  self.url = function(url, replace) {
+  self.uri = function(uri, replace) {
     // setter
-    if (url) {
-      if (lastBrowserUrl == url) return;
-      lastBrowserUrl = url;
+    if (uri) {
+      if (lastBrowserUri == uri) return;
+      lastBrowserUri = uri;
       if ($sniffer.history) {
-        if (replace) history.replaceState(null, '', url);
+        if (replace) history.replaceState(null, '', uri);
         else {
-          history.pushState(null, '', url);
+          history.pushState(null, '', uri);
           // Crazy Opera Bug: http://my.opera.com/community/forums/topic.dml?id=1185462
           baseElement.attr('href', baseElement.attr('href'));
         }
       } else {
-        if (replace) location.replace(url);
-        else location.href = url;
+        if (replace) location.replace(uri);
+        else location.href = uri;
       }
       return self;
     // getter
@@ -12528,58 +12528,58 @@ function Browser(window, document, $log, $sniffer) {
     }
   };
 
-  var urlChangeListeners = [],
-      urlChangeInit = false;
+  var uriChangeListeners = [],
+      uriChangeInit = false;
 
-  function fireUrlChange() {
-    if (lastBrowserUrl == self.url()) return;
+  function fireUriChange() {
+    if (lastBrowserUri == self.uri()) return;
 
-    lastBrowserUrl = self.url();
-    forEach(urlChangeListeners, function(listener) {
-      listener(self.url());
+    lastBrowserUri = self.uri();
+    forEach(uriChangeListeners, function(listener) {
+      listener(self.uri());
     });
   }
 
   /**
-   * @name ng.$browser#onUrlChange
+   * @name ng.$browser#onUriChange
    * @methodOf ng.$browser
    * @TODO(vojta): refactor to use node's syntax for events
    *
    * @description
-   * Register callback function that will be called, when url changes.
+   * Register callback function that will be called, when uri changes.
    *
-   * It's only called when the url is changed by outside of angular:
-   * - user types different url into address bar
+   * It's only called when the uri is changed by outside of angular:
+   * - user types different uri into address bar
    * - user clicks on history (forward/back) button
    * - user clicks on a link
    *
-   * It's not called when url is changed by $browser.url() method
+   * It's not called when uri is changed by $browser.uri() method
    *
-   * The listener gets called with new url as parameter.
+   * The listener gets called with new uri as parameter.
    *
    * NOTE: this api is intended for use only by the $location service. Please use the
-   * {@link ng.$location $location service} to monitor url changes in angular apps.
+   * {@link ng.$location $location service} to monitor uri changes in angular apps.
    *
-   * @param {function(string)} listener Listener function to be called when url changes.
+   * @param {function(string)} listener Listener function to be called when uri changes.
    * @return {function(string)} Returns the registered listener fn - handy if the fn is anonymous.
    */
-  self.onUrlChange = function(callback) {
-    if (!urlChangeInit) {
+  self.onUriChange = function(callback) {
+    if (!uriChangeInit) {
       // We listen on both (hashchange/popstate) when available, as some browsers (e.g. Opera)
-      // don't fire popstate when user change the address bar and don't fire hashchange when url
+      // don't fire popstate when user change the address bar and don't fire hashchange when uri
       // changed by push/replaceState
 
       // html5 history api - popstate event
-      if ($sniffer.history) jqLite(window).bind('popstate', fireUrlChange);
+      if ($sniffer.history) jqLite(window).bind('popstate', fireUriChange);
       // hashchange event
-      if ($sniffer.hashchange) jqLite(window).bind('hashchange', fireUrlChange);
+      if ($sniffer.hashchange) jqLite(window).bind('hashchange', fireUriChange);
       // polling
-      else self.addPollFn(fireUrlChange);
+      else self.addPollFn(fireUriChange);
 
-      urlChangeInit = true;
+      uriChangeInit = true;
     }
 
-    urlChangeListeners.push(callback);
+    uriChangeListeners.push(callback);
     return callback;
   };
 
@@ -13047,7 +13047,7 @@ function $CompileProvider($provide) {
       COMMENT_DIRECTIVE_REGEXP = /^\s*directive\:\s*([\d\w\-_]+)\s+(.*)$/,
       CLASS_DIRECTIVE_REGEXP = /(([\d\w\-_]+)(?:\:([^;]+))?;?)/,
       MULTI_ROOT_TEMPLATE_ERROR = 'Template must have exactly one root element. was: ',
-      urlSanitizationWhitelist = /^\s*(https?|ftp|mailto|file):/;
+      uriSanitizationWhitelist = /^\s*(https?|ftp|mailto|file):/;
 
 
   /**
@@ -13103,31 +13103,31 @@ function $CompileProvider($provide) {
 
   /**
    * @ngdoc function
-   * @name ng.$compileProvider#urlSanitizationWhitelist
+   * @name ng.$compileProvider#uriSanitizationWhitelist
    * @methodOf ng.$compileProvider
    * @function
    *
    * @description
    * Retrieves or overrides the default regular expression that is used for whitelisting of safe
-   * urls during a[href] sanitization.
+   * uris during a[href] sanitization.
    *
    * The sanitization is a security measure aimed at prevent XSS attacks via html links.
    *
-   * Any url about to be assigned to a[href] via data-binding is first normalized and turned into an
-   * absolute url. Afterwards the url is matched against the `urlSanitizationWhitelist` regular
-   * expression. If a match is found the original url is written into the dom. Otherwise the
-   * absolute url is prefixed with `'unsafe:'` string and only then it is written into the DOM.
+   * Any uri about to be assigned to a[href] via data-binding is first normalized and turned into an
+   * absolute uri. Afterwards the uri is matched against the `uriSanitizationWhitelist` regular
+   * expression. If a match is found the original uri is written into the dom. Otherwise the
+   * absolute uri is prefixed with `'unsafe:'` string and only then it is written into the DOM.
    *
-   * @param {RegExp=} regexp New regexp to whitelist urls with.
+   * @param {RegExp=} regexp New regexp to whitelist uris with.
    * @returns {RegExp|ng.$compileProvider} Current RegExp if called without value or self for
    *    chaining otherwise.
    */
-  this.urlSanitizationWhitelist = function(regexp) {
+  this.uriSanitizationWhitelist = function(regexp) {
     if (isDefined(regexp)) {
-      urlSanitizationWhitelist = regexp;
+      uriSanitizationWhitelist = regexp;
       return this;
     }
-    return urlSanitizationWhitelist;
+    return uriSanitizationWhitelist;
   };
 
 
@@ -13180,11 +13180,11 @@ function $CompileProvider($provide) {
 
         // sanitize a[href] values
         if (nodeName_(this.$$element[0]) === 'A' && key === 'href') {
-          urlSanitizationNode.setAttribute('href', value);
+          uriSanitizationNode.setAttribute('href', value);
 
-          // href property always returns normalized absolute url, so we can match against that
-          normalizedVal = urlSanitizationNode.href;
-          if (!normalizedVal.match(urlSanitizationWhitelist)) {
+          // href property always returns normalized absolute uri, so we can match against that
+          normalizedVal = uriSanitizationNode.href;
+          if (!normalizedVal.match(uriSanitizationWhitelist)) {
             this[key] = value = 'unsafe:' + normalizedVal;
           }
         }
@@ -13233,7 +13233,7 @@ function $CompileProvider($provide) {
       }
     };
 
-    var urlSanitizationNode = $document[0].createElement('a'),
+    var uriSanitizationNode = $document[0].createElement('a'),
         startSymbol = $interpolate.startSymbol(),
         endSymbol = $interpolate.endSymbol(),
         denormalizeTemplate = (startSymbol == '{{' || endSymbol  == '}}')
@@ -13576,10 +13576,10 @@ function $CompileProvider($provide) {
           }
         }
 
-        if (directive.templateUrl) {
+        if (directive.templateUri) {
           assertNoDuplicate('template', templateDirective, directive, $compileNode);
           templateDirective = directive;
-          nodeLinkFn = compileTemplateUrl(directives.splice(i, directives.length - i),
+          nodeLinkFn = compileTemplateUri(directives.splice(i, directives.length - i),
               nodeLinkFn, $compileNode, templateAttrs, $rootElement, directive.replace,
               childTranscludeFn);
           ii = directives.length;
@@ -13606,7 +13606,7 @@ function $CompileProvider($provide) {
       nodeLinkFn.scope = newScopeDirective && newScopeDirective.scope;
       nodeLinkFn.transclude = transcludeDirective && childTranscludeFn;
 
-      // might be normal or delayed nodeLinkFn depending on if templateUrl is present
+      // might be normal or delayed nodeLinkFn depending on if templateUri is present
       return nodeLinkFn;
 
       ////////////////////
@@ -13844,7 +13844,7 @@ function $CompileProvider($provide) {
     }
 
 
-    function compileTemplateUrl(directives, beforeTemplateNodeLinkFn, $compileNode, tAttrs,
+    function compileTemplateUri(directives, beforeTemplateNodeLinkFn, $compileNode, tAttrs,
         $rootElement, replace, childTranscludeFn) {
       var linkQueue = [],
           afterTemplateNodeLinkFn,
@@ -13853,12 +13853,12 @@ function $CompileProvider($provide) {
           origAsyncDirective = directives.shift(),
           // The fact that we have to copy and patch the directive seems wrong!
           derivedSyncDirective = extend({}, origAsyncDirective, {
-            controller: null, templateUrl: null, transclude: null, scope: null
+            controller: null, templateUri: null, transclude: null, scope: null
           });
 
       $compileNode.html('');
 
-      $http.get(origAsyncDirective.templateUrl, {cache: $templateCache}).
+      $http.get(origAsyncDirective.templateUri, {cache: $templateCache}).
         success(function(content) {
           var compileNode, tempTemplateAttrs, $template;
 
@@ -13906,7 +13906,7 @@ function $CompileProvider($provide) {
           linkQueue = null;
         }).
         error(function(response, code, headers, config) {
-          throw Error('Failed to load template: ' + config.url);
+          throw Error('Failed to load template: ' + config.uri);
         });
 
       return function delayedNodeLinkFn(ignoreChildLinkFn, scope, node, rootElement, controller) {
@@ -14412,13 +14412,13 @@ function encodePath(path) {
   return segments.join('/');
 }
 
-function stripHash(url) {
-  return url.split('#')[0];
+function stripHash(uri) {
+  return uri.split('#')[0];
 }
 
 
-function matchUrl(url, obj) {
-  var match = URL_MATCH.exec(url);
+function matchUri(uri, obj) {
+  var match = URL_MATCH.exec(uri);
 
   match = {
       protocol: match[1],
@@ -14449,14 +14449,14 @@ function pathPrefixFromBase(basePath) {
 }
 
 
-function convertToHtml5Url(url, basePath, hashPrefix) {
-  var match = matchUrl(url);
+function convertToHtml5Uri(uri, basePath, hashPrefix) {
+  var match = matchUri(uri);
 
-  // already html5 url
+  // already html5 uri
   if (decodeURIComponent(match.path) != basePath || isUndefined(match.hash) ||
       match.hash.indexOf(hashPrefix) !== 0) {
-    return url;
-  // convert hashbang url -> html5 url
+    return uri;
+  // convert hashbang uri -> html5 uri
   } else {
     return composeProtocolHostPort(match.protocol, match.host, match.port) +
            pathPrefixFromBase(basePath) + match.hash.substr(hashPrefix.length);
@@ -14464,14 +14464,14 @@ function convertToHtml5Url(url, basePath, hashPrefix) {
 }
 
 
-function convertToHashbangUrl(url, basePath, hashPrefix) {
-  var match = matchUrl(url);
+function convertToHashbangUri(uri, basePath, hashPrefix) {
+  var match = matchUri(uri);
 
-  // already hashbang url
+  // already hashbang uri
   if (decodeURIComponent(match.path) == basePath && !isUndefined(match.hash) &&
       match.hash.indexOf(hashPrefix) === 0) {
-    return url;
-  // convert html5 url -> hashbang url
+    return uri;
+  // convert html5 uri -> hashbang uri
   } else {
     var search = match.search && '?' + match.search || '',
         hash = match.hash && '#' + match.hash || '',
@@ -14479,7 +14479,7 @@ function convertToHashbangUrl(url, basePath, hashPrefix) {
         path = match.path.substr(pathPrefix.length);
 
     if (match.path.indexOf(pathPrefix) !== 0) {
-      throw Error('Invalid url "' + url + '", missing path prefix "' + pathPrefix + '" !');
+      throw Error('Invalid uri "' + uri + '", missing path prefix "' + pathPrefix + '" !');
     }
 
     return composeProtocolHostPort(match.protocol, match.host, match.port) + basePath +
@@ -14489,26 +14489,26 @@ function convertToHashbangUrl(url, basePath, hashPrefix) {
 
 
 /**
- * LocationUrl represents an url
+ * LocationUri represents an uri
  * This object is exposed as $location service when HTML5 mode is enabled and supported
  *
  * @constructor
- * @param {string} url HTML5 url
+ * @param {string} uri HTML5 uri
  * @param {string} pathPrefix
  */
-function LocationUrl(url, pathPrefix, appBaseUrl) {
+function LocationUri(uri, pathPrefix, appBaseUri) {
   pathPrefix = pathPrefix || '';
 
   /**
-   * Parse given html5 (regular) url string into properties
-   * @param {string} newAbsoluteUrl HTML5 url
+   * Parse given html5 (regular) uri string into properties
+   * @param {string} newAbsoluteUri HTML5 uri
    * @private
    */
-  this.$$parse = function(newAbsoluteUrl) {
-    var match = matchUrl(newAbsoluteUrl, this);
+  this.$$parse = function(newAbsoluteUri) {
+    var match = matchUri(newAbsoluteUri, this);
 
     if (match.path.indexOf(pathPrefix) !== 0) {
-      throw Error('Invalid url "' + newAbsoluteUrl + '", missing path prefix "' + pathPrefix + '" !');
+      throw Error('Invalid uri "' + newAbsoluteUri + '", missing path prefix "' + pathPrefix + '" !');
     }
 
     this.$$path = decodeURIComponent(match.path.substr(pathPrefix.length));
@@ -14519,52 +14519,52 @@ function LocationUrl(url, pathPrefix, appBaseUrl) {
   };
 
   /**
-   * Compose url and update `absUrl` property
+   * Compose uri and update `absUri` property
    * @private
    */
   this.$$compose = function() {
     var search = toKeyValue(this.$$search),
         hash = this.$$hash ? '#' + encodeUriSegment(this.$$hash) : '';
 
-    this.$$url = encodePath(this.$$path) + (search ? '?' + search : '') + hash;
-    this.$$absUrl = composeProtocolHostPort(this.$$protocol, this.$$host, this.$$port) +
-                    pathPrefix + this.$$url;
+    this.$$uri = encodePath(this.$$path) + (search ? '?' + search : '') + hash;
+    this.$$absUri = composeProtocolHostPort(this.$$protocol, this.$$host, this.$$port) +
+                    pathPrefix + this.$$uri;
   };
 
 
-  this.$$rewriteAppUrl = function(absoluteLinkUrl) {
-    if(absoluteLinkUrl.indexOf(appBaseUrl) == 0) {
-      return absoluteLinkUrl;
+  this.$$rewriteAppUri = function(absoluteLinkUri) {
+    if(absoluteLinkUri.indexOf(appBaseUri) == 0) {
+      return absoluteLinkUri;
     }
   }
 
 
-  this.$$parse(url);
+  this.$$parse(uri);
 }
 
 
 /**
- * LocationHashbangUrl represents url
+ * LocationHashbangUri represents uri
  * This object is exposed as $location service when html5 history api is disabled or not supported
  *
  * @constructor
- * @param {string} url Legacy url
+ * @param {string} uri Legacy uri
  * @param {string} hashPrefix Prefix for hash part (containing path and search)
  */
-function LocationHashbangUrl(url, hashPrefix, appBaseUrl) {
+function LocationHashbangUri(uri, hashPrefix, appBaseUri) {
   var basePath;
 
   /**
-   * Parse given hashbang url into properties
-   * @param {string} url Hashbang url
+   * Parse given hashbang uri into properties
+   * @param {string} uri Hashbang uri
    * @private
    */
-  this.$$parse = function(url) {
-    var match = matchUrl(url, this);
+  this.$$parse = function(uri) {
+    var match = matchUri(uri, this);
 
 
     if (match.hash && match.hash.indexOf(hashPrefix) !== 0) {
-      throw Error('Invalid url "' + url + '", missing hash prefix "' + hashPrefix + '" !');
+      throw Error('Invalid uri "' + uri + '", missing hash prefix "' + hashPrefix + '" !');
     }
 
     basePath = match.path + (match.search ? '?' + match.search : '');
@@ -14582,30 +14582,30 @@ function LocationHashbangUrl(url, hashPrefix, appBaseUrl) {
   };
 
   /**
-   * Compose hashbang url and update `absUrl` property
+   * Compose hashbang uri and update `absUri` property
    * @private
    */
   this.$$compose = function() {
     var search = toKeyValue(this.$$search),
         hash = this.$$hash ? '#' + encodeUriSegment(this.$$hash) : '';
 
-    this.$$url = encodePath(this.$$path) + (search ? '?' + search : '') + hash;
-    this.$$absUrl = composeProtocolHostPort(this.$$protocol, this.$$host, this.$$port) +
-                    basePath + (this.$$url ? '#' + hashPrefix + this.$$url : '');
+    this.$$uri = encodePath(this.$$path) + (search ? '?' + search : '') + hash;
+    this.$$absUri = composeProtocolHostPort(this.$$protocol, this.$$host, this.$$port) +
+                    basePath + (this.$$uri ? '#' + hashPrefix + this.$$uri : '');
   };
 
-  this.$$rewriteAppUrl = function(absoluteLinkUrl) {
-    if(absoluteLinkUrl.indexOf(appBaseUrl) == 0) {
-      return absoluteLinkUrl;
+  this.$$rewriteAppUri = function(absoluteLinkUri) {
+    if(absoluteLinkUri.indexOf(appBaseUri) == 0) {
+      return absoluteLinkUri;
     }
   }
 
 
-  this.$$parse(url);
+  this.$$parse(uri);
 }
 
 
-LocationUrl.prototype = {
+LocationUri.prototype = {
 
   /**
    * Has any change been replacing ?
@@ -14615,39 +14615,39 @@ LocationUrl.prototype = {
 
   /**
    * @ngdoc method
-   * @name ng.$location#absUrl
+   * @name ng.$location#absUri
    * @methodOf ng.$location
    *
    * @description
    * This method is getter only.
    *
-   * Return full url representation with all segments encoded according to rules specified in
+   * Return full uri representation with all segments encoded according to rules specified in
    * {@link http://www.ietf.org/rfc/rfc3986.txt RFC 3986}.
    *
-   * @return {string} full url
+   * @return {string} full uri
    */
-  absUrl: locationGetter('$$absUrl'),
+  absUri: locationGetter('$$absUri'),
 
   /**
    * @ngdoc method
-   * @name ng.$location#url
+   * @name ng.$location#uri
    * @methodOf ng.$location
    *
    * @description
    * This method is getter / setter.
    *
-   * Return url (e.g. `/path?a=b#hash`) when called without any parameter.
+   * Return uri (e.g. `/path?a=b#hash`) when called without any parameter.
    *
    * Change path, search and hash, when called with parameter and return `$location`.
    *
-   * @param {string=} url New url without base prefix (e.g. `/path?a=b#hash`)
-   * @return {string} url
+   * @param {string=} uri New uri without base prefix (e.g. `/path?a=b#hash`)
+   * @return {string} uri
    */
-  url: function(url, replace) {
-    if (isUndefined(url))
-      return this.$$url;
+  uri: function(uri, replace) {
+    if (isUndefined(uri))
+      return this.$$uri;
 
-    var match = PATH_MATCH.exec(url);
+    var match = PATH_MATCH.exec(uri);
     if (match[1]) this.path(decodeURIComponent(match[1]));
     if (match[2] || match[1]) this.search(match[3] || '');
     this.hash(match[5] || '', replace);
@@ -14663,9 +14663,9 @@ LocationUrl.prototype = {
    * @description
    * This method is getter only.
    *
-   * Return protocol of current url.
+   * Return protocol of current uri.
    *
-   * @return {string} protocol of current url
+   * @return {string} protocol of current uri
    */
   protocol: locationGetter('$$protocol'),
 
@@ -14677,9 +14677,9 @@ LocationUrl.prototype = {
    * @description
    * This method is getter only.
    *
-   * Return host of current url.
+   * Return host of current uri.
    *
-   * @return {string} host of current url.
+   * @return {string} host of current uri.
    */
   host: locationGetter('$$host'),
 
@@ -14691,7 +14691,7 @@ LocationUrl.prototype = {
    * @description
    * This method is getter only.
    *
-   * Return port of current url.
+   * Return port of current uri.
    *
    * @return {Number} port
    */
@@ -14705,7 +14705,7 @@ LocationUrl.prototype = {
    * @description
    * This method is getter / setter.
    *
-   * Return path of current url when called without any parameter.
+   * Return path of current uri when called without any parameter.
    *
    * Change path when called with parameter and return `$location`.
    *
@@ -14727,7 +14727,7 @@ LocationUrl.prototype = {
    * @description
    * This method is getter / setter.
    *
-   * Return search part (as object) of current url when called without any parameter.
+   * Return search part (as object) of current uri when called without any parameter.
    *
    * Change search part when called with parameter and return `$location`.
    *
@@ -14787,20 +14787,20 @@ LocationUrl.prototype = {
   }
 };
 
-LocationHashbangUrl.prototype = inherit(LocationUrl.prototype);
+LocationHashbangUri.prototype = inherit(LocationUri.prototype);
 
-function LocationHashbangInHtml5Url(url, hashPrefix, appBaseUrl, baseExtra) {
-  LocationHashbangUrl.apply(this, arguments);
+function LocationHashbangInHtml5Uri(uri, hashPrefix, appBaseUri, baseExtra) {
+  LocationHashbangUri.apply(this, arguments);
 
 
-  this.$$rewriteAppUrl = function(absoluteLinkUrl) {
-    if (absoluteLinkUrl.indexOf(appBaseUrl) == 0) {
-      return appBaseUrl + baseExtra + '#' + hashPrefix  + absoluteLinkUrl.substr(appBaseUrl.length);
+  this.$$rewriteAppUri = function(absoluteLinkUri) {
+    if (absoluteLinkUri.indexOf(appBaseUri) == 0) {
+      return appBaseUri + baseExtra + '#' + hashPrefix  + absoluteLinkUri.substr(appBaseUri.length);
     }
   }
 }
 
-LocationHashbangInHtml5Url.prototype = inherit(LocationHashbangUrl.prototype);
+LocationHashbangInHtml5Uri.prototype = inherit(LocationHashbangUri.prototype);
 
 function locationGetter(property) {
   return function() {
@@ -14900,39 +14900,39 @@ function $LocationProvider(){
     var $location,
         basePath,
         pathPrefix,
-        initUrl = $browser.url(),
-        initUrlParts = matchUrl(initUrl),
-        appBaseUrl;
+        initUri = $browser.uri(),
+        initUriParts = matchUri(initUri),
+        appBaseUri;
 
     if (html5Mode) {
       basePath = $browser.baseHref() || '/';
       pathPrefix = pathPrefixFromBase(basePath);
-      appBaseUrl =
-          composeProtocolHostPort(initUrlParts.protocol, initUrlParts.host, initUrlParts.port) +
+      appBaseUri =
+          composeProtocolHostPort(initUriParts.protocol, initUriParts.host, initUriParts.port) +
           pathPrefix + '/';
 
       if ($sniffer.history) {
-        $location = new LocationUrl(
-          convertToHtml5Url(initUrl, basePath, hashPrefix),
-          pathPrefix, appBaseUrl);
+        $location = new LocationUri(
+          convertToHtml5Uri(initUri, basePath, hashPrefix),
+          pathPrefix, appBaseUri);
       } else {
-        $location = new LocationHashbangInHtml5Url(
-          convertToHashbangUrl(initUrl, basePath, hashPrefix),
-          hashPrefix, appBaseUrl, basePath.substr(pathPrefix.length + 1));
+        $location = new LocationHashbangInHtml5Uri(
+          convertToHashbangUri(initUri, basePath, hashPrefix),
+          hashPrefix, appBaseUri, basePath.substr(pathPrefix.length + 1));
       }
     } else {
-      appBaseUrl =
-          composeProtocolHostPort(initUrlParts.protocol, initUrlParts.host, initUrlParts.port) +
-          (initUrlParts.path || '') +
-          (initUrlParts.search ? ('?' + initUrlParts.search) : '') +
+      appBaseUri =
+          composeProtocolHostPort(initUriParts.protocol, initUriParts.host, initUriParts.port) +
+          (initUriParts.path || '') +
+          (initUriParts.search ? ('?' + initUriParts.search) : '') +
           '#' + hashPrefix + '/';
 
-      $location = new LocationHashbangUrl(initUrl, hashPrefix, appBaseUrl);
+      $location = new LocationHashbangUri(initUri, hashPrefix, appBaseUri);
     }
 
     $rootElement.bind('click', function(event) {
       // TODO(vojta): rewrite link when opening in new tab/window (in legacy browser)
-      // currently we open nice url link and redirect then
+      // currently we open nice uri link and redirect then
 
       if (event.ctrlKey || event.metaKey || event.which == 2) return;
 
@@ -14945,11 +14945,11 @@ function $LocationProvider(){
       }
 
       var absHref = elm.prop('href'),
-          rewrittenUrl = $location.$$rewriteAppUrl(absHref);
+          rewrittenUri = $location.$$rewriteAppUri(absHref);
 
-      if (absHref && !elm.attr('target') && rewrittenUrl) {
+      if (absHref && !elm.attr('target') && rewrittenUri) {
         // update location manually
-        $location.$$parse(rewrittenUrl);
+        $location.$$parse(rewrittenUri);
         $rootScope.$apply();
         event.preventDefault();
         // hack to work around FF6 bug 684208 when scenario runner clicks on links
@@ -14958,19 +14958,19 @@ function $LocationProvider(){
     });
 
 
-    // rewrite hashbang url <> html5 url
-    if ($location.absUrl() != initUrl) {
-      $browser.url($location.absUrl(), true);
+    // rewrite hashbang uri <> html5 uri
+    if ($location.absUri() != initUri) {
+      $browser.uri($location.absUri(), true);
     }
 
-    // update $location when $browser url changes
-    $browser.onUrlChange(function(newUrl) {
-      if ($location.absUrl() != newUrl) {
+    // update $location when $browser uri changes
+    $browser.onUriChange(function(newUri) {
+      if ($location.absUri() != newUri) {
         $rootScope.$evalAsync(function() {
-          var oldUrl = $location.absUrl();
+          var oldUri = $location.absUri();
 
-          $location.$$parse(newUrl);
-          afterLocationChange(oldUrl);
+          $location.$$parse(newUri);
+          afterLocationChange(oldUri);
         });
         if (!$rootScope.$$phase) $rootScope.$digest();
       }
@@ -14979,18 +14979,18 @@ function $LocationProvider(){
     // update browser
     var changeCounter = 0;
     $rootScope.$watch(function $locationWatch() {
-      var oldUrl = $browser.url();
+      var oldUri = $browser.uri();
       var currentReplace = $location.$$replace;
 
-      if (!changeCounter || oldUrl != $location.absUrl()) {
+      if (!changeCounter || oldUri != $location.absUri()) {
         changeCounter++;
         $rootScope.$evalAsync(function() {
-          if ($rootScope.$broadcast('$locationChangeStart', $location.absUrl(), oldUrl).
+          if ($rootScope.$broadcast('$locationChangeStart', $location.absUri(), oldUri).
               defaultPrevented) {
-            $location.$$parse(oldUrl);
+            $location.$$parse(oldUri);
           } else {
-            $browser.url($location.absUrl(), currentReplace);
-            afterLocationChange(oldUrl);
+            $browser.uri($location.absUri(), currentReplace);
+            afterLocationChange(oldUri);
           }
         });
       }
@@ -15001,8 +15001,8 @@ function $LocationProvider(){
 
     return $location;
 
-    function afterLocationChange(oldUrl) {
-      $rootScope.$broadcast('$locationChangeSuccess', $location.absUrl(), oldUrl);
+    function afterLocationChange(oldUri) {
+      $rootScope.$broadcast('$locationChangeSuccess', $location.absUri(), oldUri);
     }
 }];
 }
@@ -16438,8 +16438,8 @@ function $RouteProvider(){
    *    - `template` – `{string=}` –  html template as a string that should be used by
    *      {@link ng.directive:ngView ngView} or
    *      {@link ng.directive:ngInclude ngInclude} directives.
-   *      this property takes precedence over `templateUrl`.
-   *    - `templateUrl` – `{string=}` – path to an html template that should be used by
+   *      this property takes precedence over `templateUri`.
+   *    - `templateUri` – `{string=}` – path to an html template that should be used by
    *      {@link ng.directive:ngView ngView}.
    *    - `resolve` - `{Object.<string, function>=}` - An optional map of dependencies which should
    *      be injected into the controller. If any of these dependencies are promises, they will be
@@ -16458,7 +16458,7 @@ function $RouteProvider(){
    *      If `redirectTo` is a function, it will be called with the following parameters:
    *
    *      - `{Object.<string>}` - route parameters extracted from the current
-   *        `$location.path()` by applying the current route templateUrl.
+   *        `$location.path()` by applying the current route templateUri.
    *      - `{string}` - current `$location.path()`
    *      - `{Object}` - current `$location.search()`
    *
@@ -16468,7 +16468,7 @@ function $RouteProvider(){
    *    - `[reloadOnSearch=true]` - {boolean=} - reload route when only $location.search()
    *    changes.
    *
-   *      If the option is set to `false` and url in the browser changes, then
+   *      If the option is set to `false` and uri in the browser changes, then
    *      `$routeUpdate` event is broadcasted on the root scope.
    *
    * @returns {Object} self
@@ -16533,7 +16533,7 @@ function $RouteProvider(){
      *
      * @description
      * Is used for deep-linking URLs to controllers and views (HTML partials).
-     * It watches `$location.url()` and tries to map the path to an existing route definition.
+     * It watches `$location.uri()` and tries to map the path to an existing route definition.
      *
      * You can define routes through {@link ng.$routeProvider $routeProvider}'s API.
      *
@@ -16561,7 +16561,7 @@ function $RouteProvider(){
            <hr />
 
            <pre>$location.path() = {{$location.path()}}</pre>
-           <pre>$route.current.templateUrl = {{$route.current.templateUrl}}</pre>
+           <pre>$route.current.templateUri = {{$route.current.templateUri}}</pre>
            <pre>$route.current.params = {{$route.current.params}}</pre>
            <pre>$route.current.scope.name = {{$route.current.scope.name}}</pre>
            <pre>$routeParams = {{$routeParams}}</pre>
@@ -16582,7 +16582,7 @@ function $RouteProvider(){
        <file name="script.js">
          angular.module('ngView', [], function($routeProvider, $locationProvider) {
            $routeProvider.when('/Book/:bookId', {
-             templateUrl: 'book.html',
+             templateUri: 'book.html',
              controller: BookCntl,
              resolve: {
                // I will cause a 1 second delay
@@ -16594,7 +16594,7 @@ function $RouteProvider(){
              }
            });
            $routeProvider.when('/Book/:bookId/ch/:chapterId', {
-             templateUrl: 'chapter.html',
+             templateUri: 'chapter.html',
              controller: ChapterCntl
            });
 
@@ -16721,8 +16721,8 @@ function $RouteProvider(){
     /////////////////////////////////////////////////////
 
     /**
-     * @param on {string} current url
-     * @param when {string} route when template to match the url against
+     * @param on {string} current uri
+     * @param when {string} route when template to match the uri against
      * @return {?Object}
      */
     function switchRouteMatcher(on, when) {
@@ -16778,7 +16778,7 @@ function $RouteProvider(){
               $location.path(interpolate(next.redirectTo, next.params)).search(next.params)
                        .replace();
             } else {
-              $location.url(next.redirectTo(next.pathParams, $location.path(), $location.search()))
+              $location.uri(next.redirectTo(next.pathParams, $location.path(), $location.search()))
                        .replace();
             }
           }
@@ -16796,7 +16796,7 @@ function $RouteProvider(){
                 values.push(isString(value) ? $injector.get(value) : $injector.invoke(value));
               });
               if (isDefined(template = next.template)) {
-              } else if (isDefined(template = next.templateUrl)) {
+              } else if (isDefined(template = next.templateUri)) {
                 template = $http.get(template, {cache: $templateCache}).
                     then(function(response) { return response.data; });
               }
@@ -17952,7 +17952,7 @@ function $HttpProvider() {
      * with two $http specific methods: `success` and `error`.
      *
      * <pre>
-     *   $http({method: 'GET', url: '/someUrl'}).
+     *   $http({method: 'GET', uri: '/someUri'}).
      *     success(function(data, status, headers, config) {
      *       // this callback will be called asynchronously
      *       // when the response is available
@@ -17975,13 +17975,13 @@ function $HttpProvider() {
      *
      * # Shortcut methods
      *
-     * Since all invocation of the $http service require definition of the http method and url and
+     * Since all invocation of the $http service require definition of the http method and uri and
      * POST and PUT requests require response body/data to be provided as well, shortcut methods
      * were created to simplify using the api:
      *
      * <pre>
-     *   $http.get('/someUrl').success(successCallback);
-     *   $http.post('/someUrl', data).success(successCallback);
+     *   $http.get('/someUri').success(successCallback);
+     *   $http.post('/someUri', data).success(successCallback);
      * </pre>
      *
      * Complete list of shortcut methods:
@@ -18051,7 +18051,7 @@ function $HttpProvider() {
      * Note that even if the response is served from cache, delivery of the data is asynchronous in
      * the same way that real requests are.
      *
-     * If there are multiple GET requests for the same url that should be cached using the same
+     * If there are multiple GET requests for the same uri that should be cached using the same
      * cache, but the cache is not populated yet, only one request to the server will be made and
      * the remaining requests will be fulfilled using the response for the first request.
      *
@@ -18156,9 +18156,9 @@ function $HttpProvider() {
      *    processed. The object has following properties:
      *
      *    - **method** – `{string}` – HTTP method (e.g. 'GET', 'POST', etc)
-     *    - **url** – `{string}` – Absolute or relative URL of the resource that is being requested.
+     *    - **uri** – `{string}` – Absolute or relative URL of the resource that is being requested.
      *    - **params** – `{Object.<string|Object>}` – Map of strings or objects which will be turned to
-     *      `?key1=value1&key2=value2` after the url. If the value is not a string, it will be JSONified.
+     *      `?key1=value1&key2=value2` after the uri. If the value is not a string, it will be JSONified.
      *    - **data** – `{string|Object}` – Data to be sent as the request message data.
      *    - **headers** – `{Object}` – Map of strings representing HTTP headers to send to the server.
      *    - **transformRequest** – `{function(data, headersGetter)|Array.<function(data, headersGetter)>}` –
@@ -18201,7 +18201,7 @@ function $HttpProvider() {
               <option>GET</option>
               <option>JSONP</option>
             </select>
-            <input type="text" ng-model="url" size="80"/>
+            <input type="text" ng-model="uri" size="80"/>
             <button ng-click="fetch()">fetch</button><br>
             <button ng-click="updateModel('GET', 'http-hello.html')">Sample GET</button>
             <button ng-click="updateModel('JSONP', 'http://angularjs.org/greet.php?callback=JSON_CALLBACK&name=Super%20Hero')">Sample JSONP</button>
@@ -18213,13 +18213,13 @@ function $HttpProvider() {
         <file name="script.js">
           function FetchCtrl($scope, $http, $templateCache) {
             $scope.method = 'GET';
-            $scope.url = 'http-hello.html';
+            $scope.uri = 'http-hello.html';
 
             $scope.fetch = function() {
               $scope.code = null;
               $scope.response = null;
 
-              $http({method: $scope.method, url: $scope.url, cache: $templateCache}).
+              $http({method: $scope.method, uri: $scope.uri, cache: $templateCache}).
                 success(function(data, status) {
                   $scope.status = status;
                   $scope.data = data;
@@ -18230,9 +18230,9 @@ function $HttpProvider() {
               });
             };
 
-            $scope.updateModel = function(method, url) {
+            $scope.updateModel = function(method, uri) {
               $scope.method = method;
-              $scope.url = url;
+              $scope.uri = uri;
             };
           }
         </file>
@@ -18329,7 +18329,7 @@ function $HttpProvider() {
      * @description
      * Shortcut method to perform `GET` request
      *
-     * @param {string} url Relative or absolute URL specifying the destination of the request
+     * @param {string} uri Relative or absolute URL specifying the destination of the request
      * @param {Object=} config Optional configuration object
      * @returns {HttpPromise} Future object
      */
@@ -18342,7 +18342,7 @@ function $HttpProvider() {
      * @description
      * Shortcut method to perform `DELETE` request
      *
-     * @param {string} url Relative or absolute URL specifying the destination of the request
+     * @param {string} uri Relative or absolute URL specifying the destination of the request
      * @param {Object=} config Optional configuration object
      * @returns {HttpPromise} Future object
      */
@@ -18355,7 +18355,7 @@ function $HttpProvider() {
      * @description
      * Shortcut method to perform `HEAD` request
      *
-     * @param {string} url Relative or absolute URL specifying the destination of the request
+     * @param {string} uri Relative or absolute URL specifying the destination of the request
      * @param {Object=} config Optional configuration object
      * @returns {HttpPromise} Future object
      */
@@ -18368,7 +18368,7 @@ function $HttpProvider() {
      * @description
      * Shortcut method to perform `JSONP` request
      *
-     * @param {string} url Relative or absolute URL specifying the destination of the request.
+     * @param {string} uri Relative or absolute URL specifying the destination of the request.
      *                     Should contain `JSON_CALLBACK` string.
      * @param {Object=} config Optional configuration object
      * @returns {HttpPromise} Future object
@@ -18383,7 +18383,7 @@ function $HttpProvider() {
      * @description
      * Shortcut method to perform `POST` request
      *
-     * @param {string} url Relative or absolute URL specifying the destination of the request
+     * @param {string} uri Relative or absolute URL specifying the destination of the request
      * @param {*} data Request content
      * @param {Object=} config Optional configuration object
      * @returns {HttpPromise} Future object
@@ -18397,7 +18397,7 @@ function $HttpProvider() {
      * @description
      * Shortcut method to perform `PUT` request
      *
-     * @param {string} url Relative or absolute URL specifying the destination of the request
+     * @param {string} uri Relative or absolute URL specifying the destination of the request
      * @param {*} data Request content
      * @param {Object=} config Optional configuration object
      * @returns {HttpPromise} Future object
@@ -18423,10 +18423,10 @@ function $HttpProvider() {
 
     function createShortMethods(names) {
       forEach(arguments, function(name) {
-        $http[name] = function(url, config) {
+        $http[name] = function(uri, config) {
           return $http(extend(config || {}, {
             method: name,
-            url: url
+            uri: uri
           }));
         };
       });
@@ -18435,10 +18435,10 @@ function $HttpProvider() {
 
     function createShortMethodsWithData(name) {
       forEach(arguments, function(name) {
-        $http[name] = function(url, data, config) {
+        $http[name] = function(uri, data, config) {
           return $http(extend(config || {}, {
             method: name,
-            url: url,
+            uri: uri,
             data: data
           }));
         };
@@ -18457,7 +18457,7 @@ function $HttpProvider() {
           promise = deferred.promise,
           cache,
           cachedResp,
-          url = buildUrl(config.url, config.params);
+          uri = buildUri(config.uri, config.params);
 
       $http.pendingRequests.push(config);
       promise.then(removePendingReq, removePendingReq);
@@ -18468,7 +18468,7 @@ function $HttpProvider() {
       }
 
       if (cache) {
-        cachedResp = cache.get(url);
+        cachedResp = cache.get(uri);
         if (cachedResp) {
           if (cachedResp.then) {
             // cached request has already been sent, but there is no response yet
@@ -18484,13 +18484,13 @@ function $HttpProvider() {
           }
         } else {
           // put the promise for the non-transformed response into cache as a placeholder
-          cache.put(url, promise);
+          cache.put(uri, promise);
         }
       }
 
       // if we won't have the response in cache, send the request to the backend
       if (!cachedResp) {
-        $httpBackend(config.method, url, reqData, done, reqHeaders, config.timeout,
+        $httpBackend(config.method, uri, reqData, done, reqHeaders, config.timeout,
             config.withCredentials);
       }
 
@@ -18506,10 +18506,10 @@ function $HttpProvider() {
       function done(status, response, headersString) {
         if (cache) {
           if (isSuccess(status)) {
-            cache.put(url, [status, response, parseHeaders(headersString)]);
+            cache.put(uri, [status, response, parseHeaders(headersString)]);
           } else {
             // remove promise from the cache
-            cache.remove(url);
+            cache.remove(uri);
           }
         }
 
@@ -18541,8 +18541,8 @@ function $HttpProvider() {
     }
 
 
-    function buildUrl(url, params) {
-          if (!params) return url;
+    function buildUri(uri, params) {
+          if (!params) return uri;
           var parts = [];
           forEachSorted(params, function(value, key) {
             if (value == null || value == undefined) return;
@@ -18551,7 +18551,7 @@ function $HttpProvider() {
             }
             parts.push(encodeURIComponent(key) + '=' + encodeURIComponent(value));
           });
-          return url + ((url.indexOf('?') == -1) ? '?' : '&') + parts.join('&');
+          return uri + ((uri.indexOf('?') == -1) ? '?' : '&') + parts.join('&');
         }
 
 
@@ -18592,9 +18592,9 @@ function $HttpBackendProvider() {
 
 function createHttpBackend($browser, XHR, $browserDefer, callbacks, rawDocument, locationProtocol) {
   // TODO(vojta): fix the signature
-  return function(method, url, post, callback, headers, timeout, withCredentials) {
+  return function(method, uri, post, callback, headers, timeout, withCredentials) {
     $browser.$$incOutstandingRequestCount();
-    url = url || $browser.url();
+    uri = uri || $browser.uri();
 
     if (lowercase(method) == 'jsonp') {
       var callbackId = '_' + (callbacks.counter++).toString(36);
@@ -18602,7 +18602,7 @@ function createHttpBackend($browser, XHR, $browserDefer, callbacks, rawDocument,
         callbacks[callbackId].data = data;
       };
 
-      jsonpReq(url.replace('JSON_CALLBACK', 'angular.callbacks.' + callbackId),
+      jsonpReq(uri.replace('JSON_CALLBACK', 'angular.callbacks.' + callbackId),
           function() {
         if (callbacks[callbackId].data) {
           completeRequest(callback, 200, callbacks[callbackId].data);
@@ -18613,7 +18613,7 @@ function createHttpBackend($browser, XHR, $browserDefer, callbacks, rawDocument,
       });
     } else {
       var xhr = new XHR();
-      xhr.open(method, url, true);
+      xhr.open(method, uri, true);
       forEach(headers, function(value, key) {
         if (value) xhr.setRequestHeader(key, value);
       });
@@ -18669,7 +18669,7 @@ function createHttpBackend($browser, XHR, $browserDefer, callbacks, rawDocument,
 
     function completeRequest(callback, status, response, headersString) {
       // URL_MATCH is defined in src/service/location.js
-      var protocol = (url.match(URL_MATCH) || ['', locationProtocol])[1];
+      var protocol = (uri.match(URL_MATCH) || ['', locationProtocol])[1];
 
       // fix status code for file protocol (it's always 0)
       status = (protocol == 'file') ? (response ? 200 : 404) : status;
@@ -18682,7 +18682,7 @@ function createHttpBackend($browser, XHR, $browserDefer, callbacks, rawDocument,
     }
   };
 
-  function jsonpReq(url, done) {
+  function jsonpReq(uri, done) {
     // we can't use jQuery/jqLite here because jQuery does crazy shit with script elements, e.g.:
     // - fetches local scripts via XHR and evals them
     // - adds and immediately removes script elements from the document
@@ -18693,7 +18693,7 @@ function createHttpBackend($browser, XHR, $browserDefer, callbacks, rawDocument,
         };
 
     script.type = 'text/javascript';
-    script.src = url;
+    script.src = uri;
 
     if (msie) {
       script.onreadystatechange = function() {
@@ -19535,7 +19535,7 @@ function dateFilter($locale) {
  * @description
  *   Allows you to convert a JavaScript object into JSON string.
  *
- *   This filter is mostly useful for debugging. When using the double curly {{value}} notation
+ *   This filter is mostly useful for debugging. When using the double curiy {{value}} notation
  *   the binding is automatically converted to JSON.
  *
  * @param {*} object Any JavaScript object (including arrays and primitive types) to filter.
@@ -19849,7 +19849,7 @@ var htmlAnchorDirective = valueFn({
 
     return function(scope, element) {
       element.bind('click', function(event){
-        // if we have no href url, then don't navigate anywhere.
+        // if we have no href uri, then don't navigate anywhere.
         if (!element.attr('href')) {
           event.preventDefault();
         }
@@ -19908,7 +19908,7 @@ var htmlAnchorDirective = valueFn({
           expect(element('#link-2').attr('href')).toBe("");
         });
 
-        it('should execute ng-click and change url when ng-href specified', function() {
+        it('should execute ng-click and change uri when ng-href specified', function() {
           expect(element('#link-3').attr('href')).toBe("/123");
 
           element('#link-3').click();
@@ -19927,12 +19927,12 @@ var htmlAnchorDirective = valueFn({
           expect(element('#link-5').attr('href')).toBe(undefined);
         });
 
-        it('should only change url when only ng-href', function() {
+        it('should only change uri when only ng-href', function() {
           input('value').enter('6');
           expect(element('#link-6').attr('href')).toBe('6');
 
           element('#link-6').click();
-          expect(browser().location().url()).toEqual('/6');
+          expect(browser().location().uri()).toEqual('/6');
         });
       </doc:scenario>
     </doc:example>
@@ -20168,7 +20168,7 @@ forEach(['src', 'href'], function(attrName) {
           // on IE, if "ng:src" directive declaration is used and "src" attribute doesn't exist
           // then calling element.setAttribute('src', 'foo') doesn't do anything, so we need
           // to set the property as well to achieve the desired effect.
-          // we use attr[attrName] value since $set can sanitize the url.
+          // we use attr[attrName] value since $set can sanitize the uri.
           if (msie) element.prop(attrName, attr[attrName]);
         });
       }
@@ -20195,7 +20195,7 @@ var nullFormCtrl = {
  * @property {Object} $error Is an object hash, containing references to all invalid controls or
  *  forms, where:
  *
- *  - keys are validation tokens (error names) — such as `required`, `url` or `email`),
+ *  - keys are validation tokens (error names) — such as `required`, `uri` or `email`),
  *  - values are arrays of controls or forms that are invalid with given error.
  *
  * @description
@@ -20611,10 +20611,10 @@ var inputType = {
 
   /**
    * @ngdoc inputType
-   * @name ng.directive:input.url
+   * @name ng.directive:input.uri
    *
    * @description
-   * Text input with URL validation. Sets the `url` validation error key if the content is not a
+   * Text input with URL validation. Sets the `uri` validation error key if the content is not a
    * valid URL.
    *
    * @param {string} ngModel Assignable angular expression to data-bind to.
@@ -20642,17 +20642,17 @@ var inputType = {
            }
          </script>
          <form name="myForm" ng-controller="Ctrl">
-           URL: <input type="url" name="input" ng-model="text" required>
+           URL: <input type="uri" name="input" ng-model="text" required>
            <span class="error" ng-show="myForm.input.$error.required">
              Required!</span>
-           <span class="error" ng-show="myForm.input.$error.url">
-             Not valid url!</span>
+           <span class="error" ng-show="myForm.input.$error.uri">
+             Not valid uri!</span>
            <tt>text = {{text}}</tt><br/>
            <tt>myForm.input.$valid = {{myForm.input.$valid}}</tt><br/>
            <tt>myForm.input.$error = {{myForm.input.$error}}</tt><br/>
            <tt>myForm.$valid = {{myForm.$valid}}</tt><br/>
            <tt>myForm.$error.required = {{!!myForm.$error.required}}</tt><br/>
-           <tt>myForm.$error.url = {{!!myForm.$error.url}}</tt><br/>
+           <tt>myForm.$error.uri = {{!!myForm.$error.uri}}</tt><br/>
           </form>
         </doc:source>
         <doc:scenario>
@@ -20667,14 +20667,14 @@ var inputType = {
             expect(binding('myForm.input.$valid')).toEqual('false');
           });
 
-          it('should be invalid if not url', function() {
+          it('should be invalid if not uri', function() {
             input('text').enter('xxx');
             expect(binding('myForm.input.$valid')).toEqual('false');
           });
         </doc:scenario>
       </doc:example>
    */
-  'url': urlInputType,
+  'uri': uriInputType,
 
 
   /**
@@ -21017,21 +21017,21 @@ function numberInputType(scope, element, attr, ctrl, $sniffer, $browser) {
   });
 }
 
-function urlInputType(scope, element, attr, ctrl, $sniffer, $browser) {
+function uriInputType(scope, element, attr, ctrl, $sniffer, $browser) {
   textInputType(scope, element, attr, ctrl, $sniffer, $browser);
 
-  var urlValidator = function(value) {
+  var uriValidator = function(value) {
     if (isEmpty(value) || URL_REGEXP.test(value)) {
-      ctrl.$setValidity('url', true);
+      ctrl.$setValidity('uri', true);
       return value;
     } else {
-      ctrl.$setValidity('url', false);
+      ctrl.$setValidity('uri', false);
       return undefined;
     }
   };
 
-  ctrl.$formatters.push(urlValidator);
-  ctrl.$parsers.push(urlValidator);
+  ctrl.$formatters.push(uriValidator);
+  ctrl.$parsers.push(uriValidator);
 }
 
 function emailInputType(scope, element, attr, ctrl, $sniffer, $browser) {
@@ -21512,7 +21512,7 @@ var NgModelController = ['$scope', '$exceptionHandler', '$attrs', '$element', '$
  *
  * - binding the view into the model, which other directives such as `input`, `textarea` or `select`
  *   require,
- * - providing validation behavior (i.e. required, number, email, url),
+ * - providing validation behavior (i.e. required, number, email, uri),
  * - keeping state of the control (valid/invalid, dirty/pristine, validation errors),
  * - setting related css class onto the element (`ng-valid`, `ng-invalid`, `ng-dirty`, `ng-pristine`),
  * - register the control with parent {@link ng.directive:form form}.
@@ -21525,7 +21525,7 @@ var NgModelController = ['$scope', '$exceptionHandler', '$attrs', '$element', '$
  *    - {@link ng.directive:input.radio radio}
  *    - {@link ng.directive:input.number number}
  *    - {@link ng.directive:input.email email}
- *    - {@link ng.directive:input.url url}
+ *    - {@link ng.directive:input.uri uri}
  *  - {@link ng.directive:select select}
  *  - {@link ng.directive:textarea textarea}
  *
@@ -21742,7 +21742,7 @@ var ngValueDirective = function() {
  * with the value of a given expression, and to update the text content when the value of that
  * expression changes.
  *
- * Typically, you don't use `ngBind` directly, but instead you use the double curly markup like
+ * Typically, you don't use `ngBind` directly, but instead you use the double curiy markup like
  * `{{ expression }}` which is similar but less verbose.
  *
  * Once scenario in which the use of `ngBind` is prefered over `{{ expression }}` binding is when
@@ -22514,16 +22514,16 @@ var ngSubmitDirective = ngDirective(function(scope, element, attrs) {
        <select ng-model="template" ng-options="t.name for t in templates">
         <option value="">(blank)</option>
        </select>
-       url of the template: <tt>{{template.url}}</tt>
+       uri of the template: <tt>{{template.uri}}</tt>
        <hr/>
-       <div ng-include src="template.url"></div>
+       <div ng-include src="template.uri"></div>
      </div>
     </file>
     <file name="script.js">
       function Ctrl($scope) {
         $scope.templates =
-          [ { name: 'template1.html', url: 'template1.html'}
-          , { name: 'template2.html', url: 'template2.html'} ];
+          [ { name: 'template1.html', uri: 'template1.html'}
+          , { name: 'template2.html', uri: 'template2.html'} ];
         $scope.template = $scope.templates[0];
       }
      </file>
@@ -23399,7 +23399,7 @@ var ngTranscludeDirective = ngDirective({
           <hr />
 
           <pre>$location.path() = {{$location.path()}}</pre>
-          <pre>$route.current.templateUrl = {{$route.current.templateUrl}}</pre>
+          <pre>$route.current.templateUri = {{$route.current.templateUri}}</pre>
           <pre>$route.current.params = {{$route.current.params}}</pre>
           <pre>$route.current.scope.name = {{$route.current.scope.name}}</pre>
           <pre>$routeParams = {{$routeParams}}</pre>
@@ -23420,11 +23420,11 @@ var ngTranscludeDirective = ngDirective({
       <file name="script.js">
         angular.module('ngView', [], function($routeProvider, $locationProvider) {
           $routeProvider.when('/Book/:bookId', {
-            templateUrl: 'book.html',
+            templateUri: 'book.html',
             controller: BookCntl
           });
           $routeProvider.when('/Book/:bookId/ch/:chapterId', {
-            templateUrl: 'chapter.html',
+            templateUri: 'chapter.html',
             controller: ChapterCntl
           });
 
@@ -23570,11 +23570,11 @@ var scriptDirective = ['$templateCache', function($templateCache) {
     terminal: true,
     compile: function(element, attr) {
       if (attr.type == 'text/ng-template') {
-        var templateUrl = attr.id,
+        var templateUri = attr.id,
             // IE is not consistent, in scripts we have to read .text but in other nodes we have to read .textContent
             text = element[0].text;
 
-        $templateCache.put(templateUrl, text);
+        $templateCache.put(templateUri, text);
       }
     }
   };
@@ -24610,21 +24610,21 @@ angular.scenario.Application.prototype.getWindow_ = function() {
 /**
  * Changes the location of the frame.
  *
- * @param {string} url The URL. If it begins with a # then only the
+ * @param {string} uri The URL. If it begins with a # then only the
  *   hash of the page is changed.
  * @param {function()} loadFn function($window, $document) Called when frame loads.
  * @param {function()} errorFn function(error) Called if any error when loading.
  */
-angular.scenario.Application.prototype.navigateTo = function(url, loadFn, errorFn) {
+angular.scenario.Application.prototype.navigateTo = function(uri, loadFn, errorFn) {
   var self = this;
   var frame = this.getFrame_();
   //TODO(esprehn): Refactor to use rethrow()
   errorFn = errorFn || function(e) { throw e; };
-  if (url === 'about:blank') {
+  if (uri === 'about:blank') {
     errorFn('Sandbox Error: Navigating to about:blank is not allowed.');
-  } else if (url.charAt(0) === '#') {
-    url = frame.attr('src').split('#')[0] + url;
-    frame.attr('src', url);
+  } else if (uri.charAt(0) === '#') {
+    uri = frame.attr('src').split('#')[0] + uri;
+    frame.attr('src', uri);
     this.executeAction(loadFn);
   } else {
     frame.remove();
@@ -24637,9 +24637,9 @@ angular.scenario.Application.prototype.navigateTo = function(url, loadFn, errorF
       } catch (e) {
         errorFn(e);
       }
-    }).attr('src', url);
+    }).attr('src', uri);
   }
-  this.context.find('> h2 a').attr('href', url).text(url);
+  this.context.find('> h2 a').attr('href', uri).text(uri);
 };
 
 /**
@@ -25543,14 +25543,14 @@ angular.scenario.dsl('sleep', function() {
 
 /**
  * Usage:
- *    browser().navigateTo(url) Loads the url into the frame
- *    browser().navigateTo(url, fn) where fn(url) is called and returns the URL to navigate to
+ *    browser().navigateTo(uri) Loads the uri into the frame
+ *    browser().navigateTo(uri, fn) where fn(uri) is called and returns the URL to navigate to
  *    browser().reload() refresh the page (reload the same URL)
  *    browser().window.href() window.location.href
  *    browser().window.path() window.location.pathname
  *    browser().window.search() window.location.search
  *    browser().window.hash() window.location.hash without # prefix
- *    browser().location().url() see ng.$location#url
+ *    browser().location().uri() see ng.$location#uri
  *    browser().location().path() see ng.$location#path
  *    browser().location().search() see ng.$location#search
  *    browser().location().hash() see ng.$location#hash
@@ -25558,14 +25558,14 @@ angular.scenario.dsl('sleep', function() {
 angular.scenario.dsl('browser', function() {
   var chain = {};
 
-  chain.navigateTo = function(url, delegate) {
+  chain.navigateTo = function(uri, delegate) {
     var application = this.application;
-    return this.addFuture("browser navigate to '" + url + "'", function(done) {
+    return this.addFuture("browser navigate to '" + uri + "'", function(done) {
       if (delegate) {
-        url = delegate.call(this, url);
+        uri = delegate.call(this, uri);
       }
-      application.navigateTo(url, function() {
-        done(null, url);
+      application.navigateTo(uri, function() {
+        done(null, uri);
       }, done);
     });
   };
@@ -25613,9 +25613,9 @@ angular.scenario.dsl('browser', function() {
   chain.location = function() {
     var api = {};
 
-    api.url = function() {
-      return this.addFutureAction('$location.url()', function($window, $document, done) {
-        done(null, $document.injector().get('$location').url());
+    api.uri = function() {
+      return this.addFutureAction('$location.uri()', function($window, $document, done) {
+        done(null, $document.injector().get('$location').uri());
       });
     };
 
