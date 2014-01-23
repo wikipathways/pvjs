@@ -41,7 +41,7 @@ ptor.get(baseUri + "test/compare.html?gpml=WP2545").
     return 'success';
   }).
   then(function() {
-    var expectedCount = 21; // includes anchors as nodes
+    var expectedCount = 22; // includes anchors as nodes
     testTheCount('anchors test protocol pathway', 'node', expectedCount);
     expect(element.all(by.css('#viewport .node')).count()).toEqual(expectedCount);
     return 'success';
@@ -92,6 +92,12 @@ ptor.get(baseUri + "test/compare.html?gpml=WP2545").
     var expectedCount = 0;
     expect(element.all(by.css('#viewport .unknown')).count()).toEqual(expectedCount);
     testTheCount('anchors test protocol pathway', 'unknown', expectedCount);
+    return 'sucess';
+  }).
+  then(function() {
+    var expectedCount = 1;
+    expect(element.all(by.css('#viewport .group-node')).count()).toEqual(expectedCount);
+    testTheCount('anchors test protocol pathway', 'group', expectedCount);
     return 'sucess';
   }).
   then(function() {
@@ -307,7 +313,7 @@ ptor.get(baseUri + "test/compare.html?gpml=WP2545").
     return 'success';
   }).
   then(function() {
-    var expectedCount = 26;
+    var expectedCount = 29;
     testTheCount('WP1 pathway', 'DataNode', expectedCount);
     expect(element.all(by.css('#viewport .data-node')).count()).toEqual(expectedCount);
     return 'success';
@@ -319,7 +325,7 @@ ptor.get(baseUri + "test/compare.html?gpml=WP2545").
     return 'sucess';
   }).
   then(function() {
-    var expectedCount = 6;
+    var expectedCount = 9;
     expect(element.all(by.css('#viewport .metabolite')).count()).toEqual(expectedCount);
     testTheCount('WP1 pathway', 'metabolite', expectedCount);
     return 'sucess';
