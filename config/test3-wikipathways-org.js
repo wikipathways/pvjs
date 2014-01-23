@@ -16,7 +16,7 @@ pathvisiojs.config = function() {
   }
 
   var diagramNotAvailableImageUri = function() {
-    return '../wpi/extensions/PathwayViewer/img/Picture_Not_Yet_Available.png';
+    return '../wpi/extensions/PathwayViewer/img/imageNotAvailable.jpg';
   }
 
   var loadingGif = function() {

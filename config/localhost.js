@@ -18,8 +18,7 @@ pathvisiojs.config = function() {
   }
 
   var diagramNotAvailableImageUri = function() {
-    // TODO update this link to a URL we control
-    return 'http://upload.wikimedia.org/wikipedia/commons/3/3b/Picture_Not_Yet_Available.png';
+    return '../src/img/imageNotAvailable.jpg';
   }
 
   var loadingGif = function() {
