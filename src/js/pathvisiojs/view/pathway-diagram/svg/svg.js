@@ -106,7 +106,9 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
 
         svgPanZoom.init({
           'root': 'svg',
-          'zoomEnabled': false
+          'zoomEnabled': false,
+          'minZoom': '0.1',
+          'maxZoom': '8.0',
         });
         callback(null);
       }
