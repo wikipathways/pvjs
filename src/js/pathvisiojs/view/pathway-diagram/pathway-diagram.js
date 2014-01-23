@@ -8,7 +8,7 @@ pathvisiojs.view.pathwayDiagram = function(){
     var i = 0;
     do {
       sourceDataElement = sourceData[i];
-      var imageFormat = getImageFormatForDataSourceMimeType(sourceDataElement.mediaType);
+      var imageFormat = getImageFormatByDataSourceFileType(sourceDataElement.fileType);
       i += 1;
     } while ((!imageFormat) && (i < sourceData.length + 1));
 
@@ -16,12 +16,12 @@ pathvisiojs.view.pathwayDiagram = function(){
     return sourceDataElement;
   }
 
-  function getImageFormatForDataSourceMimeType(mediaType) {
+  function getImageFormatByDataSourceFileType(fileType) {
     //IE9 currently cannot convert gpml to pathvisiojsJson
-    if ((mediaType === 'application/xml+gpml') && (Modernizr.svg) && (pathvisiojs.utilities.isIE() !== 9)) {
+    if ((fileType === 'gpml') && (Modernizr.svg) && (pathvisiojs.utilities.isIE() !== 9)) {
       return 'svg';
     }
-    else if ((mediaType === 'image/png') || (mediaType === 'image/jpeg') || (mediaType === 'image/gif')) { //TODO update this to use a more complete test for all supported static image formats
+    else if ((fileType === 'png') || (fileType === 'jpeg') || (fileType === 'gif')) { //TODO update this to use a more complete test for all supported static image formats
       return 'img';
     }
     else {
@@ -51,9 +51,9 @@ pathvisiojs.view.pathwayDiagram = function(){
     var containerSelector = args.container,
       sourceData = args.sourceData,
       fitToContainer = args.fitToContainer,
-      cssUrl = args.cssUrl,
+      cssUri = args.cssUri,
       customMarkers = args.customMarkers,
-//      customSymbols = args.customSymbols,
+      //customSymbols = args.customSymbols,
       highlightNodes = args.highlightNodes,
       hiddenElements = args.hiddenElements,
       container;
@@ -108,7 +108,7 @@ pathvisiojs.view.pathwayDiagram = function(){
               preloadDiagramArgs.container = container;
               preloadDiagramArgs.customMarkers = customMarkers;
 //              preloadDiagramArgs.customSymbols = customSymbols;
-              preloadDiagramArgs.cssUrl = cssUrl;
+              preloadDiagramArgs.cssUri = cssUri;
               pathvisiojs.view.pathwayDiagram.svg.loadPartials(preloadDiagramArgs, function(svg) {
                 callback(null, svg);
               });
@@ -189,7 +189,7 @@ pathvisiojs.view.pathwayDiagram = function(){
               })
             }
             else {
-              throw new Error('Detected mediaType does not match specified mediaType of "application/xml+gpml"');
+              throw new Error('Detected file type does not match specified file type of "gpml"');
             }
           })
         }

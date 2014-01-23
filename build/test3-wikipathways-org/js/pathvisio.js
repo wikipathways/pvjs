@@ -66,7 +66,7 @@ pathvisiojs.config = function() {
     return '../wpi/extensions/PathwayViewer/img/loading.gif';
   }
 
-  var pngDiagramUriStub = function() {
+  var imgDiagramUriStub = function() {
     return 'http://test3.wikipathways.org/wpi//wpi.php?action=downloadFile&type=png&pwTitle=Pathway:';
   }
 
@@ -78,7 +78,7 @@ pathvisiojs.config = function() {
     gpmlSourceUriStub:gpmlSourceUriStub,
     bridgedbLinkOutsUrlStub:bridgedbLinkOutsUrlStub,
     bridgedbDatasources:bridgedbDatasources,
-    pngDiagramUriStub:pngDiagramUriStub,
+    imgDiagramUriStub:imgDiagramUriStub,
     diagramNotAvailableImageUri:diagramNotAvailableImageUri,
     loadingGif:loadingGif,
     pathwaySearchUriStub:pathwaySearchUriStub

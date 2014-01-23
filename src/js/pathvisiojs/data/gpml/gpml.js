@@ -11,16 +11,16 @@ pathvisiojs.data.gpml = function(){
   function get(sourceData, callback) {
     var uri = sourceData.uri;
     var object = sourceData.object;
-    var mediaType = sourceData.mediaType;
+    var fileType = sourceData.fileType;
 
     if ((!uri) && (!object)) {
       return new Error('No sourceData specified.');
     }
-    if (!mediaType) {
-      return new Error('No mediaType specified.');
+    if (!fileType) {
+      return new Error('No fileType specified.');
     }
 
-    if (mediaType === 'application/xml+gpml') {
+    if (fileType === 'gpml') {
       // TODO d3.xml doesn't seem to work with IE8
       d3.xml(uri, function(gpml) {
         callback(gpml);
@@ -197,7 +197,7 @@ pathvisiojs.data.gpml = function(){
               'PublicationXref':'biopax:PublicationXref',
               'gpmlFolder':'file://Users/andersriutta/Sites/pathvisiojs/test/gpml/',
               'name':'http://xmlns.com/foaf/0.1/name',
-              'dcterms':'http://purl.org/dc/terms/',
+              'dcterms':'http://puri.org/dc/terms/',
               'css2':'http://www.w3.org/TR/CSS2/',
               'css3Ui':'http://www.w3.org/TR/css3-ui/#',
               'cssTransform':'http://www.w3.org/TR/css-transforms-1/#',

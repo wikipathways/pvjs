@@ -33,6 +33,8 @@ pathvisiojs.config = function() {
     return 'http://wikipathways.org//index.php?title=Special:SearchPathways&doSearch=1&query=';
   }
 
+  //TODO add fitToContainer and every other optional parameter for pathvisiojs.load()
+
   return {
     gpmlSourceUriStub:gpmlSourceUriStub,
     bridgedbLinkOutsUrlStub:bridgedbLinkOutsUrlStub,
