@@ -6,7 +6,7 @@
 
     <div id="pathway-container" style="width: inherit; min-width: inherit; max-width: inherit; height: inherit; min-height: inherit; max-height: inherit; " class="y-mid">
 
-      <svg id="pathway-svg" version="1.1" baseProfile="full" xmlns="http://www.w3.org/1999/xlink" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ev="http://www.w3.org/2001/xml-events" width="500px" height="500px" style="display: inline; width: inherit; min-width: inherit; max-width: inherit; height: inherit; min-height: inherit; max-height: inherit; " preserveAspectRatio="xMidYMid" onmouseup="svgPanZoom.handleMouseUp(evt)" onmousedown="svgPanZoom.handleMouseDown(evt)" onmousemove="svgPanZoom.handleMouseMove(evt)" xlink="http://www.w3.org/1999/xlink" ev="http://www.w3.org/2001/xml-events">
+      <svg id="pathway-svg" version="1.1" baseProfile="full" xmlns="http://www.w3.org/1999/xlink" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ev="http://www.w3.org/2001/xml-events" width="100%" height="100%" style="display: inline; width: inherit; min-width: inherit; max-width: inherit; height: inherit; min-height: inherit; max-height: inherit; " preserveAspectRatio="xMidYMid" onmouseup="svgPanZoom.handleMouseUp(evt)" onmousedown="svgPanZoom.handleMouseDown(evt)" onmousemove="svgPanZoom.handleMouseMove(evt)" onmouseleave="svgPanZoom.handleMouseUp(evt)" xlink="http://www.w3.org/1999/xlink" ev="http://www.w3.org/2001/xml-events">
 
         <g>
         <title>pathvisiojs pathway diagram</title>
@@ -524,7 +524,7 @@
   }
 </style></defs>
 
-        <g id="viewport" transform="matrix(0.8630183945977313,0,0,0.8630183945977313,10,20)">
+        <g id="viewport" transform="matrix(0.40192310626690203, 0, 0, 0.40192310626690203, 10, 155.10552514671065) ">
         </g>
 
       </svg>
@@ -548,7 +548,7 @@
       see http://bumbu.github.io/cytoscape.js/debug/ for example of cytoscape.js 
       *********************************************************************** -->
 
-    <!--  <div id="pan-zoom-control" class="ui-cytoscape-panzoom">
+<!--      <div id="pan-zoom-control" class="ui-cytoscape-panzoom">
         <div class="ui-cytoscape-panzoom-zoom-in ui-cytoscape-panzoom-zoom-button">
           <span class="icon icon-plus"></span>
         </div>
@@ -582,18 +582,19 @@
           </div>
         </div>
       </div>
-	-->
+-->
       <!-- **********************************************************************
       Fullscreen Control 
       *********************************************************************** -->
 
-      <div id="fit-to-screen-control" style="position: absolute; bottom: 5px; right: 8px;">                           
+      <div id="fit-to-screen-control" class="fit-to-screen-controls" style="position: absolute; bottom: 5px; right: 0px;">                           
         <img class="icon-screenshot" style="color:#aaa" src="../src/img/fitscreen_icon.png">                                                        
-      </div>
-    <!--  <div id="fullscreen-control" style="position: absolute; bottom: 5px; right: 5px;">
+      </div>    
+
+   <!--   <div id="fullscreen-control" style="position: absolute; bottom: 5px; right: 8px;">
         <i class="icon-fullscreen" style="color:#aaa"></i>
       </div>
-    -->
+   -->
 
     <div id="viewer-toolbar" style="position: absolute; top: 0px; right: 0px; height: inherit">
     </div>
