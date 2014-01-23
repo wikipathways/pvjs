@@ -1,10 +1,10 @@
 
-var selectedConfigFileName = 'test3-wikipathways-org';
 
-/*
-var selectedConfigFileName = 'default';
-var selectedConfigFileName = 'localhost';
 var selectedConfigFileName = 'www-wikipathways-org';
+/*
+var selectedConfigFileName = 'localhost';
+var selectedConfigFileName = 'test3-wikipathways-org';
+var selectedConfigFileName = 'default';
 //*/
 
 var pvjsSources = [
@@ -77,12 +77,20 @@ var pvjsSources = [
   'src/js/pathvisiojs/view/pathway-diagram/img/img.js'
 ];
 
+var pvjsCssSources = [
+  'src/css/pathvisiojs.css',
+  'src/css/annotation.css',
+  'src/css/pan-zoom.css'
+];
+
 module.exports = function(grunt) {
 
 // ----------
 var packageJson = grunt.file.readJSON("package.json"),
-    distribution = "build/" + selectedConfigFileName + "/js/pathvisio.js",
-    minified = "build/" + selectedConfigFileName + "/js/pathvisio.min.js",
+    distributionJs = "build/" + selectedConfigFileName + "/js/pathvisio.js",
+    distributionCss = "build/" + selectedConfigFileName + "/css/pathvisiojs.css",
+    minifiedJs = "build/" + selectedConfigFileName + "/js/pathvisio.min.js",
+    minifiedCss = "build/" + selectedConfigFileName + "/js/pathvisiojs.min.css",
     packageDirName = "pathvisiojs-" + packageJson.version,
     packageDir = "build/" + packageDirName + "/",
     releaseRoot = "../site-build/built-pathvisiojs/";
@@ -111,9 +119,17 @@ grunt.initConfig({
               + "//! License: http://www.apache.org/licenses/LICENSE-2.0/\n\n",
           process: true
         },
-        dist: {
+        distJs: {
             src:  [ "<banner>" ].concat(pvjsSources),
-            dest: distribution
+            dest: distributionJs
+        },
+        distCss: {
+            src:  [ "<banner>" ].concat(pvjsCssSources),
+            dest: distributionCss
+        },
+        pathwayDiagramCss: {
+            src:  [ "<banner>" ].concat(['src/css/pathway-diagram.css']),
+            dest: "build/" + selectedConfigFileName + "/css/pathway-diagram.css"
         }
     },
     uglify: {
@@ -121,8 +137,8 @@ grunt.initConfig({
         mangle: false
       },
       pathvisiojs: {
-          src: [ distribution ],
-          dest: minified
+          src: [ distributionJs ],
+          dest: minifiedJs
       }
     },
     watch: {
@@ -134,7 +150,7 @@ grunt.initConfig({
             jshintrc: '.jshintrc'
         },
         beforeconcat: pvjsSources,
-        afterconcat: [ distribution ]
+        afterconcat: [ distributionJs ]
     },
     str2js: {
       pathvisioNS: { 'tmp/pathvisiojs.js': ['tmp/pathvisiojs.html']}

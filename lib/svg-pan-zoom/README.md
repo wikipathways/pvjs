@@ -1,14 +1,12 @@
-svg-pan-zoom library 1.3.2
+svg-pan-zoom library
 ==========================
 
-JavaScript for panning and zooming an SVG image from the mouse and programmatically.
+JavaScript library for panning and zooming an SVG image from the mouse and programmatically.
 
- The SVGPan library was intended for use inside
- an SVG by manually adding an xlink:href script tag.
-
- The svg-pan-zoom library builds on the SVGPan library,
- adding the ability to control panning and zooming of
- any SVG included in an HTML document, without needing 
+ This library is based on the [SVGPan](https://code.google.com/p/svgpan/) library, which was intended for use inside
+ an SVG by manually adding an xlink:href script tag. The svg-pan-zoom library is intended for use with SVG images that
+ are included in an HTML document, whether as in-line images or with HTML "object" or "embed" elements. It adds the ability to control panning and zooming of
+ these SVG images from the HTML document, without needing 
  to manually add a script element to the SVG.
 
  svg-pan-zoom features the following capabilities:
@@ -16,10 +14,10 @@ JavaScript for panning and zooming an SVG image from the mouse and programmatica
   * Zooming based on mouse events (using the wheel) and via JavaScript
   * Object dragging based on mouse events
 
-  Note that the SVG should have a top-level 'g' element
-  with the id 'viewport' to enable zooming for the entire SVG. 
-  If the specified SVG does not have this element, it will
-  use the first 'g' element.
+Note that the SVG should have a top-level 'g' element
+with the id 'viewport' to enable zooming for the entire SVG. 
+If the specified SVG does not have this element, it will
+use the first 'g' element.
 
 Demo
 ----
@@ -36,7 +34,10 @@ svgPanZoom.init({
   'panEnabled': true, // optional. values must be true or false. default is true.
   'zoomEnabled': true, // optional. values must be true or false. default is true.
   'dragEnabled': false, // optional. values must be true or false. default is false.
-  'zoomScaleSensitivity': 0.2 // optional. values must be scalar. default is 0.2.
+  'zoomScaleSensitivity': 0.2, // optional. values must be scalar. default is 0.2.
+  'minZoom': 0.5, // optional. values must be scalar. default is 0.5.
+  'maxZoom': 10, // optional. values must be scalar. default is 10.
+  'onZoom': function(scale) { ... }  // optional. Callback function when zoom changes.
 });
 ```
 
@@ -83,33 +84,38 @@ Releases before Github
 
  1.3.2), Thu Dec 5 2013, Anders Riutta
   * Addressed issue of overwriting existing viewport transform
-  * Added capability to handle SVG documents in object elements.
-
+  * Added capability to handle SVG documents in object elements
+ 
  1.3.1), Mon Nov 19 2013, Anders Riutta
-	* Added programmatic control for pan and zoom 
-	* Changed certain terms to make them more intuitive
+  * Added programmatic control for pan and zoom 
+  * Changed certain terms to make them more intuitive
 
  1.3.0), Mon Nov 18 2013, Anders Riutta
-	* Added programmatic control for zoom/pan enabled/disabled
+  * Added programmatic control for zoom/pan enabled/disabled
 
- 1.2.2), Tue Aug 30 17:21:56 CEST 2011, Andrea Leofreddi
-	* Fixed viewBox on svg tag (#7)
-	* Improved zoom speed (#2)
+ 1.2.2, Tue Aug 30 17:21:56 CEST 2011, Andrea Leofreddi
 
- 1.2.1), Mon Jul  4 00:33:18 CEST 2011, Andrea Leofreddi
-	* Fixed a regression with mouse wheel (now working on Firefox 5)
-	* Working with viewBox attribute (#4)
-	* Added 'use strict;' and fixed resulting warnings (#5)
-	* Added configuration variables, dragging is disabled by default (#3)
+  * Fixed viewBox on svg tag (#7)
+  * Improved zoom speed (#2)
 
- 1.2), Sat Mar 20 08:42:50 GMT 2010, Zeng Xiaohui
-	Fixed a bug with browser mouse handler interaction
+ 1.2.1, Mon Jul  4 00:33:18 CEST 2011, Andrea Leofreddi
 
- 1.1), Wed Feb  3 17:39:33 GMT 2010, Zeng Xiaohui
-	Updated the zoom code to support the mouse wheel on Safari/Chrome
+  * Fixed a regression with mouse wheel (now working on Firefox 5)
+  * Working with viewBox attribute (#4)
+  * Added 'use strict;' and fixed resulting warnings (#5)
+  * Added configuration variables, dragging is disabled by default (#3)
 
- 1.0), Andrea Leofreddi
-	First release
+ 1.2, Sat Mar 20 08:42:50 GMT 2010, Zeng Xiaohui
+
+  * Fixed a bug with browser mouse handler interaction
+
+ 1.1, Wed Feb  3 17:39:33 GMT 2010, Zeng Xiaohui
+
+  * Updated the zoom code to support the mouse wheel on Safari/Chrome
+
+ 1.0, Andrea Leofreddi
+
+  * First release
 
 License
 -------

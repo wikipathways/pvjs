@@ -144,7 +144,7 @@ pathvisiojs.view.pathwayDiagram.svg.edge.interaction = function(){
             markerStart = 'double-line-hack-start';
           }
         }
-        return 'uri(#' + markerStart + ')';
+        return 'url(#' + markerStart + ')';
       })
       .attr("marker-end", function (data) {
         var markerEnd = pathvisiojs.view.pathwayDiagram.svg.edge.marker.render(viewport, data.markerEnd, 'end', data.stroke);
@@ -154,7 +154,7 @@ pathvisiojs.view.pathwayDiagram.svg.edge.interaction = function(){
             markerEnd = 'double-line-hack-end';
           }
         }
-        return 'uri(#' + markerEnd + ')';
+        return 'url(#' + markerEnd + ')';
       })
       .attr("fill", 'none')
 
@@ -175,8 +175,8 @@ pathvisiojs.view.pathwayDiagram.svg.edge.interaction = function(){
             .attr("d", pathData)
             .attr("class", "stroke-color-equals-default-fill-color")
             .attr("style", "stroke-width:" + data.strokeWidth + '; ')
-            .attr("marker-start", 'uri(#' + pathvisiojs.view.pathwayDiagram.svg.edge.marker.render(viewport, data.markerStart, 'start', data.stroke) + ')')
-            .attr("marker-end", 'uri(#' + pathvisiojs.view.pathwayDiagram.svg.edge.marker.render(viewport, data.markerEnd, 'end', data.stroke) + ')');
+            .attr("marker-start", 'url(#' + pathvisiojs.view.pathwayDiagram.svg.edge.marker.render(viewport, data.markerStart, 'start', data.stroke) + ')')
+            .attr("marker-end", 'url(#' + pathvisiojs.view.pathwayDiagram.svg.edge.marker.render(viewport, data.markerEnd, 'end', data.stroke) + ')');
           }
         }
         return pathData;
