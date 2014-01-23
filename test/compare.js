@@ -84,13 +84,13 @@ var developmentLoader = function() {
       if (uri.indexOf('.gpml') > -1) {
         parsedInputData.sourceData.push({
           uri:gpmlParam,
-          mediaType:'application/xml+gpml'
+          fileType:'gpml'
         });
 
         pngUri = pathvisiojs.config.diagramNotAvailableImageUri();
         parsedInputData.sourceData.push({
           uri:pngUri,
-          mediaType:'image/png'
+          fileType:'png'
         });
 
         callback(parsedInputData);
@@ -106,13 +106,13 @@ var developmentLoader = function() {
         gpmlUri = getGpmlUri(gpmlParam, wpRevision); //get uri
         parsedInputData.sourceData.push({
           uri:gpmlUri,
-          mediaType:'application/xml+gpml'
+          fileType:'gpml'
         });
 
         pngUri = encodeURI(pathvisiojs.config.imgDiagramUriStub() + gpmlParam + '&revision=' + wpRevision);
         parsedInputData.sourceData.push({
           uri:pngUri,
-          mediaType:'image/png'
+          fileType:'png'
         });
 
         parsedInputData.wpId = gpmlParam;
