@@ -11,16 +11,16 @@ pathvisiojs.data.gpml = function(){
   function get(sourceData, callback) {
     var uri = sourceData.uri;
     var object = sourceData.object;
-    var mediaType = sourceData.mediaType;
+    var fileType = sourceData.fileType;
 
     if ((!uri) && (!object)) {
       return new Error('No sourceData specified.');
     }
-    if (!mediaType) {
-      return new Error('No mediaType specified.');
+    if (!fileType) {
+      return new Error('No fileType specified.');
     }
 
-    if (mediaType === 'application/xml+gpml') {
+    if (fileType === 'gpml') {
       // TODO d3.xml doesn't seem to work with IE8
       d3.xml(uri, function(gpml) {
         callback(gpml);
