@@ -115,9 +115,9 @@
   <![endif]-->
 
   <script>
-    function getUrlParam(name) {
+    function getUriParam(name) {
 
-      // Thanks to http://stackoverflow.com/questions/11582512/how-to-get-url-parameters-with-javascript
+      // Thanks to http://stackoverflow.com/questions/11582512/how-to-get-uri-parameters-with-javascript
       // This will be replaced once we get the backend php to get the json
 
       var parameter = decodeURIComponent((new RegExp('[?|&]' + name + '=' + '([^&;]+?)(&|#|;|$)').exec(location.search)||[,""])[1].replace(/\+/g, '%20'))||null;
@@ -129,8 +129,8 @@
       }
     }
 
-    function getUrlParamList() {
-      urlParamList = {
+    function getUriParamList() {
+      uriParamList = {
         'svg-disabled': false,
         'gpml': null,
         'gpmlRev': 0,
@@ -139,16 +139,16 @@
         'branch': ''
         };
 
-        Object.keys(urlParamList).forEach(function(element) {
-          if (!!getUrlParam(element)) {
-            urlParamList[element] = getUrlParam(element);
+        Object.keys(uriParamList).forEach(function(element) {
+          if (!!getUriParam(element)) {
+            uriParamList[element] = getUriParam(element);
           }
           window.setTimeout(function() {
-            $('#' + element).val(urlParamList[element]);
+            $('#' + element).val(uriParamList[element]);
           }, 50)
           });
 
-          return urlParamList;
+          return uriParamList;
         }
 
         function loadScripts(array, callback){  
@@ -191,34 +191,34 @@
         }
 
         function updateParams(updatedParam) {
-          var targetUrl = currentUrl + '?' + updatedParam.key + '=' + updatedParam.value;
+          var targetUri = currentUri + '?' + updatedParam.key + '=' + updatedParam.value;
 
-          Object.keys(urlParamList).forEach(function(element) {
+          Object.keys(uriParamList).forEach(function(element) {
             if (element === updatedParam.key) {
-              urlParamList[element] = updatedParam.value;
+              uriParamList[element] = updatedParam.value;
             }
             else {
-              targetUrl += '&' + element + '=' + urlParamList[element];
+              targetUri += '&' + element + '=' + uriParamList[element];
             }
             });
 
-            location.href = targetUrl;
+            location.href = targetUri;
           }
 
           function generateHtmlView(callback) {
             async.parallel(
             {
               'html': function(callback) {
-                d3.html(srcDirectoryUrl + 'views/pathvisiojs.html', function(html) {
+                d3.html(srcDirectoryUri + 'views/pathvisiojs.html', function(html) {
                   callback(null, html);
                   });
                   },
                   'svg': function(callback) {
-                    d3.xml(srcDirectoryUrl + 'views/pathway-template.svg', 'image/svg+xml', function(svg) {
+                    d3.xml(srcDirectoryUri + 'views/pathway-template.svg', 'image/svg+xml', function(svg) {
                       async.series(
                       {
                         'load': function(callback) {
-                          d3.xml(srcDirectoryUrl + 'views/pathway-template.svg', 'image/svg+xml', function(svg) {
+                          d3.xml(srcDirectoryUri + 'views/pathway-template.svg', 'image/svg+xml', function(svg) {
                             callback(null, svg);
                             });
                           }
@@ -244,46 +244,46 @@
                     function loadExtJsCss(callbackOutside) {
                       async.parallel([
                       function(callback) {
-                        loadJsCssFile(srcDirectoryUrl + "css/pathvisiojs.css", "css", callback);
+                        loadJsCssFile(srcDirectoryUri + "css/pathvisiojs.css", "css", callback);
                         },
                         function(callback) {
-                          loadJsCssFile(srcDirectoryUrl + "css/annotation.css", "css", callback);
+                          loadJsCssFile(srcDirectoryUri + "css/annotation.css", "css", callback);
                           },
                           function(callback) {
-                            loadJsCssFile(srcDirectoryUrl + "css/pan-zoom.css", "css", callback);
+                            loadJsCssFile(srcDirectoryUri + "css/pan-zoom.css", "css", callback);
                             },
                             function(callback) {
                               loadScripts([
-                              srcDirectoryUrl + "js/pathvisio/pathvisio",
-                              srcDirectoryUrl + "js/pathvisio/utilities.js",
-                              srcDirectoryUrl + 'js/pathvisio/data-sources.js',
-                              srcDirectoryUrl + 'js/pathvisio/x-ref.js',
-                              srcDirectoryUrl + 'js/pathvisio/view/view.js',
-                              srcDirectoryUrl + "js/pathvisio/view/path-finder.js",
-                              srcDirectoryUrl + 'js/pathvisio/view/svg/svg.js',
-                              srcDirectoryUrl + 'js/pathvisio/view/svg/group.js',
-                              srcDirectoryUrl + 'js/pathvisio/view/svg/info-box.js',
-                              srcDirectoryUrl + 'js/pathvisio/view/svg/node/node.js',
-                              srcDirectoryUrl + 'js/pathvisio/view/svg/node/shape/shape.js',
-                              srcDirectoryUrl + 'js/pathvisio/view/svg/node/shape/uniformly-scaling-shape.js',
-                              srcDirectoryUrl + 'js/pathvisio/view/svg/node/shape/nonuniformly-scaling-shape/nonuniformly-scaling-shape.js',
-                              srcDirectoryUrl + 'js/pathvisio/view/svg/node/shape/nonuniformly-scaling-shape/rounded-rectangle.js',
-                              srcDirectoryUrl + 'js/pathvisio/view/svg/edge/edge.js',
-                              srcDirectoryUrl + 'js/pathvisio/view/svg/edge/marker.js',
-                              srcDirectoryUrl + 'js/pathvisio/view/svg/edge/point.js',
-                              srcDirectoryUrl + 'js/pathvisio/view/svg/edge/path-data.js',
-                              srcDirectoryUrl + 'js/pathvisio/view/svg/anchor.js',
-                              srcDirectoryUrl + 'js/pathvisio/view/svg/grid.js',
-                              srcDirectoryUrl + 'js/pathvisio/data/data.js',
-                              srcDirectoryUrl + 'js/pathvisio/data/gpml/gpml.js',
-                              srcDirectoryUrl + 'js/pathvisio/data/gpml/namespaces.js',
-                              srcDirectoryUrl + 'js/pathvisio/data/gpml/data-node.js',
-                              srcDirectoryUrl + 'js/pathvisio/data/gpml/node.js',
-                              srcDirectoryUrl + 'js/pathvisio/data/gpml/anchor.js',
-                              srcDirectoryUrl + 'js/pathvisio/data/gpml/interaction.js',
-                              srcDirectoryUrl + 'js/pathvisio/data/gpml/graphical-line.js',
-                              srcDirectoryUrl + 'js/pathvisio/data/gpml/edge/edge.js',
-                              srcDirectoryUrl + 'js/pathvisio/data/gpml/edge/point.js'
+                              srcDirectoryUri + "js/pathvisio/pathvisio",
+                              srcDirectoryUri + "js/pathvisio/utilities.js",
+                              srcDirectoryUri + 'js/pathvisio/data-sources.js',
+                              srcDirectoryUri + 'js/pathvisio/x-ref.js',
+                              srcDirectoryUri + 'js/pathvisio/view/view.js',
+                              srcDirectoryUri + "js/pathvisio/view/path-finder.js",
+                              srcDirectoryUri + 'js/pathvisio/view/svg/svg.js',
+                              srcDirectoryUri + 'js/pathvisio/view/svg/group.js',
+                              srcDirectoryUri + 'js/pathvisio/view/svg/info-box.js',
+                              srcDirectoryUri + 'js/pathvisio/view/svg/node/node.js',
+                              srcDirectoryUri + 'js/pathvisio/view/svg/node/shape/shape.js',
+                              srcDirectoryUri + 'js/pathvisio/view/svg/node/shape/uniformly-scaling-shape.js',
+                              srcDirectoryUri + 'js/pathvisio/view/svg/node/shape/nonuniformly-scaling-shape/nonuniformly-scaling-shape.js',
+                              srcDirectoryUri + 'js/pathvisio/view/svg/node/shape/nonuniformly-scaling-shape/rounded-rectangle.js',
+                              srcDirectoryUri + 'js/pathvisio/view/svg/edge/edge.js',
+                              srcDirectoryUri + 'js/pathvisio/view/svg/edge/marker.js',
+                              srcDirectoryUri + 'js/pathvisio/view/svg/edge/point.js',
+                              srcDirectoryUri + 'js/pathvisio/view/svg/edge/path-data.js',
+                              srcDirectoryUri + 'js/pathvisio/view/svg/anchor.js',
+                              srcDirectoryUri + 'js/pathvisio/view/svg/grid.js',
+                              srcDirectoryUri + 'js/pathvisio/data/data.js',
+                              srcDirectoryUri + 'js/pathvisio/data/gpml/gpml.js',
+                              srcDirectoryUri + 'js/pathvisio/data/gpml/namespaces.js',
+                              srcDirectoryUri + 'js/pathvisio/data/gpml/data-node.js',
+                              srcDirectoryUri + 'js/pathvisio/data/gpml/node.js',
+                              srcDirectoryUri + 'js/pathvisio/data/gpml/anchor.js',
+                              srcDirectoryUri + 'js/pathvisio/data/gpml/interaction.js',
+                              srcDirectoryUri + 'js/pathvisio/data/gpml/graphical-line.js',
+                              srcDirectoryUri + 'js/pathvisio/data/gpml/edge/edge.js',
+                              srcDirectoryUri + 'js/pathvisio/data/gpml/edge/point.js'
                               ], function(){
                                 callback(null);
                                 });
@@ -294,20 +294,20 @@
                               })
                             }
 
-                            var urlParamList = getUrlParamList();
+                            var uriParamList = getUriParamList();
 
-                            var currentUrl = document.location.origin + document.location.pathname;
-                            var rootDirectoryUrl = document.location.origin + document.location.pathname.split("pathvisio/")[0] + 'pathvisio/';
-                            var srcDirectoryUrl = (rootDirectoryUrl + 'src/');
+                            var currentUri = document.location.origin + document.location.pathname;
+                            var rootDirectoryUri = document.location.origin + document.location.pathname.split("pathvisio/")[0] + 'pathvisio/';
+                            var srcDirectoryUri = (rootDirectoryUri + 'src/');
 
                             /*********************************************
                             Load UI for this test/dev comparison page 
                             /********************************************/
 
                             var pathvisioNS;
-                            var gpmlUrl;
+                            var gpmlUri;
                             window.onload = function() {
-                              if (urlParamList['svg-disabled']) {
+                              if (uriParamList['svg-disabled']) {
                                 Modernizr.svg = false;
                                 $('#svg-disabled').prop('checked', true);
                               }
@@ -328,37 +328,37 @@
                                     ],
                                     function(err) {
                                       var customShapes = [
-                                      {'id': 'arc', 'url': srcDirectoryUrl + 'views/shapes/arc.svg'},
-                                      {'id': 'brace', 'url': srcDirectoryUrl + 'views/shapes/brace.svg'},
-                                      {'id': 'endoplasmic-reticulum', 'url': srcDirectoryUrl + 'views/shapes/endoplasmic-reticulum.svg'},
-                                      {'id': 'golgi-apparatus', 'url': srcDirectoryUrl + 'views/shapes/golgi-apparatus.svg'},
-                                      {'id': 'hexagon', 'url': srcDirectoryUrl + 'views/shapes/hexagon.svg'},
-                                      {'id': 'mim-degradation', 'url': srcDirectoryUrl + 'views/shapes/mim-degradation.svg'},
-                                      {'id': 'mitochondria', 'url': srcDirectoryUrl + 'views/shapes/mitochondria.svg'},
-                                      {'id': 'oval', 'url': srcDirectoryUrl + 'views/shapes/oval.svg'},
-                                      {'id': 'pentagon', 'url': srcDirectoryUrl + 'views/shapes/pentagon.svg'},
-                                      {'id': 'rectangle', 'url': srcDirectoryUrl + 'views/shapes/rectangle.svg'},
-                                      //{'id': 'rounded-rectangle', 'url': srcDirectoryUrl + 'views/shapes/rounded-rectangle.svg'},
-                                      {'id': 'sarcoplasmic-reticulum','url': srcDirectoryUrl + 'views/shapes/sarcoplasmic-reticulum.svg'},
-                                      {'id': 'triangle', 'url': srcDirectoryUrl + 'views/shapes/triangle.svg'}
+                                      {'id': 'arc', 'uri': srcDirectoryUri + 'views/shapes/arc.svg'},
+                                      {'id': 'brace', 'uri': srcDirectoryUri + 'views/shapes/brace.svg'},
+                                      {'id': 'endoplasmic-reticulum', 'uri': srcDirectoryUri + 'views/shapes/endoplasmic-reticulum.svg'},
+                                      {'id': 'golgi-apparatus', 'uri': srcDirectoryUri + 'views/shapes/golgi-apparatus.svg'},
+                                      {'id': 'hexagon', 'uri': srcDirectoryUri + 'views/shapes/hexagon.svg'},
+                                      {'id': 'mim-degradation', 'uri': srcDirectoryUri + 'views/shapes/mim-degradation.svg'},
+                                      {'id': 'mitochondria', 'uri': srcDirectoryUri + 'views/shapes/mitochondria.svg'},
+                                      {'id': 'oval', 'uri': srcDirectoryUri + 'views/shapes/oval.svg'},
+                                      {'id': 'pentagon', 'uri': srcDirectoryUri + 'views/shapes/pentagon.svg'},
+                                      {'id': 'rectangle', 'uri': srcDirectoryUri + 'views/shapes/rectangle.svg'},
+                                      //{'id': 'rounded-rectangle', 'uri': srcDirectoryUri + 'views/shapes/rounded-rectangle.svg'},
+                                      {'id': 'sarcoplasmic-reticulum','uri': srcDirectoryUri + 'views/shapes/sarcoplasmic-reticulum.svg'},
+                                      {'id': 'triangle', 'uri': srcDirectoryUri + 'views/shapes/triangle.svg'}
                                       ];
 
                                       var customMarkers = [
-                                      {'id': 'arrow', 'url': srcDirectoryUrl + 'views/markers/arrow.svg'},
-                                      {'id': 'mim-branching-left', 'url': srcDirectoryUrl + 'views/markers/mim-branching-left.svg'},
-                                      {'id': 'mim-branching-right', 'url': srcDirectoryUrl + 'views/markers/mim-branching-right.svg'},
-                                      {'id': 'mim-necessary-stimulation', 'url': srcDirectoryUrl + 'views/markers/mim-necessary-stimulation.svg'},
-                                      {'id': 'mim-binding', 'url': srcDirectoryUrl + 'views/markers/mim-binding.svg'},
-                                      {'id': 'mim-conversion', 'url': srcDirectoryUrl + 'views/markers/mim-conversion.svg'},
-                                      {'id': 'mim-stimulation', 'url': srcDirectoryUrl + 'views/markers/mim-stimulation.svg'},
-                                      {'id': 'mim-modification', 'url': srcDirectoryUrl + 'views/markers/mim-modification.svg'},
-                                      {'id': 'mim-catalysis', 'url': srcDirectoryUrl + 'views/markers/mim-catalysis.svg'},
-                                      {'id': 'mim-inhibition', 'url': srcDirectoryUrl + 'views/markers/mim-inhibition.svg'},
-                                      {'id': 'mim-cleavage', 'url': srcDirectoryUrl + 'views/markers/mim-cleavage.svg'},
-                                      {'id': 'mim-covalent-bond', 'url': srcDirectoryUrl + 'views/markers/mim-covalent-bond.svg'},
-                                      {'id': 'mim-transcription-translation', 'url': srcDirectoryUrl + 'views/markers/mim-transcription-translation.svg'},
-                                      {'id': 'mim-gap', 'url': srcDirectoryUrl + 'views/markers/mim-gap.svg'},
-                                      {'id': 't-bar', 'url': srcDirectoryUrl + 'views/markers/t-bar.svg'}
+                                      {'id': 'arrow', 'uri': srcDirectoryUri + 'views/markers/arrow.svg'},
+                                      {'id': 'mim-branching-left', 'uri': srcDirectoryUri + 'views/markers/mim-branching-left.svg'},
+                                      {'id': 'mim-branching-right', 'uri': srcDirectoryUri + 'views/markers/mim-branching-right.svg'},
+                                      {'id': 'mim-necessary-stimulation', 'uri': srcDirectoryUri + 'views/markers/mim-necessary-stimulation.svg'},
+                                      {'id': 'mim-binding', 'uri': srcDirectoryUri + 'views/markers/mim-binding.svg'},
+                                      {'id': 'mim-conversion', 'uri': srcDirectoryUri + 'views/markers/mim-conversion.svg'},
+                                      {'id': 'mim-stimulation', 'uri': srcDirectoryUri + 'views/markers/mim-stimulation.svg'},
+                                      {'id': 'mim-modification', 'uri': srcDirectoryUri + 'views/markers/mim-modification.svg'},
+                                      {'id': 'mim-catalysis', 'uri': srcDirectoryUri + 'views/markers/mim-catalysis.svg'},
+                                      {'id': 'mim-inhibition', 'uri': srcDirectoryUri + 'views/markers/mim-inhibition.svg'},
+                                      {'id': 'mim-cleavage', 'uri': srcDirectoryUri + 'views/markers/mim-cleavage.svg'},
+                                      {'id': 'mim-covalent-bond', 'uri': srcDirectoryUri + 'views/markers/mim-covalent-bond.svg'},
+                                      {'id': 'mim-transcription-translation', 'uri': srcDirectoryUri + 'views/markers/mim-transcription-translation.svg'},
+                                      {'id': 'mim-gap', 'uri': srcDirectoryUri + 'views/markers/mim-gap.svg'},
+                                      {'id': 't-bar', 'uri': srcDirectoryUri + 'views/markers/t-bar.svg'}
                                       ];
 
                                       pathvisio.load({
@@ -366,9 +366,9 @@
                                         width: 1000,
                                         height: 500,
                                         preserveAspectRatio: 'xMidYMid',
-                                        data: urlParamList.gpml,
-                                        //gpmlRev: urlParamList.gpmlRev,
-                                        cssUrl: srcDirectoryUrl + 'css/pathway-template.css',
+                                        data: uriParamList.gpml,
+                                        //gpmlRev: uriParamList.gpmlRev,
+                                        cssUri: srcDirectoryUri + 'css/pathway-template.css',
                                         customMarkers: customMarkers,
                                         customShapes: customShapes,
                                         highlightNodes: [
@@ -382,11 +382,11 @@
                                         });
                                         });
 
-                                        // test for whether urlParamList.gpml is a WikiPathways ID
+                                        // test for whether uriParamList.gpml is a WikiPathways ID
 
-                                        if (urlParamList.gpml.indexOf('.gpml') === -1 && urlParamList.gpml.indexOf('.xml') === -1) {
+                                        if (uriParamList.gpml.indexOf('.gpml') === -1 && uriParamList.gpml.indexOf('.xml') === -1) {
                                           window.setTimeout(function() {
-                                            $('#current-wikipathways-viewer').prepend('<iframe id="current-wiki-pathways-widget" src="http://www.wikipathways.org/wpi/PathwayWidget.php?id=' + urlParamList.gpml + '" width="70%" height="1000" />')
+                                            $('#current-wikipathways-viewer').prepend('<iframe id="current-wiki-pathways-widget" src="http://www.wikipathways.org/wpi/PathwayWidget.php?id=' + uriParamList.gpml + '" width="70%" height="1000" />')
                                               }, 50);
                                             }
                                             else {

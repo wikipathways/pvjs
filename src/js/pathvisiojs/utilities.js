@@ -78,12 +78,12 @@ pathvisiojs.utilities = function(){
     return id;
   }
 
-  function isUrl(str) {
+  function isUri(str) {
 
     // from https://gist.github.com/samuelcole/920312
 
-    var urlPattern = /(?:(?=[\s`!()\[\]{};:'".,<>?«»“”‘’])|\b)((?:[a-z][\w-]+:(?:\/{1,3}|[a-z0-9%])|www\d{0,3}[.]|[a-z0-9.\-]+[.][a-z]{2,4}\/|[a-z0-9.\-]+[.](?:com|org|net))(?:[^\s()<>]+|\(([^\s()<>]+|(\([^\s()<>]+\)))*\))*(?:\(([^\s()<>]+|(\([^\s()<>]+\)))*\)|[^\s`!()\[\]{};:'".,<>?«»“”‘’]|\b))/gi;
-    return urlPattern.test(str);
+    var uriPattern = /(?:(?=[\s`!()\[\]{};:'".,<>?«»“”‘’])|\b)((?:[a-z][\w-]+:(?:\/{1,3}|[a-z0-9%])|www\d{0,3}[.]|[a-z0-9.\-]+[.][a-z]{2,4}\/|[a-z0-9.\-]+[.](?:com|org|net))(?:[^\s()<>]+|\(([^\s()<>]+|(\([^\s()<>]+\)))*\))*(?:\(([^\s()<>]+|(\([^\s()<>]+\)))*\)|[^\s`!()\[\]{};:'".,<>?«»“”‘’]|\b))/gi;
+    return uriPattern.test(str);
   }
 
   function splitStringByNewLine(str) {
@@ -160,9 +160,9 @@ pathvisiojs.utilities = function(){
 
   }  
 
-  function getUrlParam(name) {
+  function getUriParam(name) {
 
-    // Thanks to http://stackoverflow.com/questions/11582512/how-to-get-url-parameters-with-javascript
+    // Thanks to http://stackoverflow.com/questions/11582512/how-to-get-uri-parameters-with-javascript
     // This will be replaced once we get the backend php to get the json
 
     var parameter = decodeURIComponent((new RegExp('[?|&]' + name + '=' + '([^&;]+?)(&|#|;|$)').exec(location.search)||[,""])[1].replace(/\+/g, '%20'))||null;
@@ -260,10 +260,10 @@ pathvisiojs.utilities = function(){
 
   return{
     collect:collect,
-    isUrl:isUrl,
+    isUri:isUri,
     isIE:isIE,
     splitStringByNewLine:splitStringByNewLine,
-    getUrlParam:getUrlParam,
+    getUriParam:getUriParam,
     cloneNode:cloneNode,
     clone:clone,
     convertToArray:convertToArray,

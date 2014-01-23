@@ -8717,7 +8717,7 @@ pathvisiojs.view.pathwayDiagram.png = function(){
 
       /*
     if (!!wikiPathwaysId) {
-      pngUrl = encodeURI(pathvisiojs.config.pngDiagramUriStub() + wikiPathwaysId + '&revision=' + revision);
+      pngUrl = encodeURI(pathvisiojs.config.imgDiagramUriStub() + wikiPathwaysId + '&revision=' + revision);
     }
     else {
       pngUrl = pathvisiojs.config.diagramNotAvailableImageUri();

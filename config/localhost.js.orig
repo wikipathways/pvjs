@@ -1,5 +1,6 @@
 "use strict";
 
+var pathvisiojs = pathvisiojs || {};
 pathvisiojs.config = function() {
   var gpmlSourceUriStub = function() {
     if(typeof console !== "undefined") {
@@ -21,11 +22,15 @@ pathvisiojs.config = function() {
     return 'http://upload.wikimedia.org/wikipedia/commons/3/3b/Picture_Not_Yet_Available.png';
   }
 
+<<<<<<< HEAD
+  var imgDiagramUriStub = function() {
+=======
   var loadingGif = function() {
     return '../src/img/loading.gif';
   }
 
-  var imgDiagramUriStub = function() {
+  var pngDiagramUriStub = function() {
+>>>>>>> 9321b774645d9ce52a59815adc78a68343d44fdb
     return 'http://www.wikipathways.org/wpi//wpi.php?action=downloadFile&type=png&pwTitle=Pathway:';
   }
 
@@ -37,8 +42,12 @@ pathvisiojs.config = function() {
     gpmlSourceUriStub:gpmlSourceUriStub,
     bridgedbLinkOutsUriStub:bridgedbLinkOutsUriStub,
     bridgedbDatasources:bridgedbDatasources,
+<<<<<<< HEAD
     imgDiagramUriStub:imgDiagramUriStub,
+=======
+    pngDiagramUriStub:pngDiagramUriStub,
     loadingGif:loadingGif,
+>>>>>>> 9321b774645d9ce52a59815adc78a68343d44fdb
     diagramNotAvailableImageUri:diagramNotAvailableImageUri,
     pathwaySearchUriStub:pathwaySearchUriStub
   };

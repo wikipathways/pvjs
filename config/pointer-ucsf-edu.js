@@ -8,7 +8,7 @@ pathvisiojs.config = function() {
     return '../external-data/bridgedb/gpml.php?id=';
   }
 
-  var bridgedbLinkOutsUrlStub = function() {
+  var bridgedbLinkOutsUriStub = function() {
     return '../external-data/bridgedb/bridgedb.php/';
   }
 
@@ -25,7 +25,7 @@ pathvisiojs.config = function() {
     return '../src/img/loading.gif';
   }
 
-  var pngDiagramUriStub = function() {
+  var imgDiagramUriStub = function() {
     return 'http://www.wikipathways.org/wpi//wpi.php?action=downloadFile&type=png&pwTitle=Pathway:';
   }
 
@@ -35,9 +35,9 @@ pathvisiojs.config = function() {
 
   return {
     gpmlSourceUriStub:gpmlSourceUriStub,
-    bridgedbLinkOutsUrlStub:bridgedbLinkOutsUrlStub,
+    bridgedbLinkOutsUriStub:bridgedbLinkOutsUriStub,
     bridgedbDatasources:bridgedbDatasources,
-    pngDiagramUriStub:pngDiagramUriStub,
+    imgDiagramUriStub:imgDiagramUriStub,
     loadingGif:loadingGif,
     diagramNotAvailableImageUri:diagramNotAvailableImageUri,
     pathwaySearchUriStub:pathwaySearchUriStub
