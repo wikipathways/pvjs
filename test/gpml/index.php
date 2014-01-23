@@ -14,12 +14,12 @@ http://google-styleguide.googlecode.com/svn/trunk/jsoncstyleguide.xml#General_Gu
 </head>
 <body>
 <script>
-function getUrlParameter(name) {
+function getUriParameter(name) {
   return decodeURIComponent((new RegExp('[?|&]' + name + '=' + '([^&;]+?)(&|#|;|$)').exec(location.search)||[,""])[1].replace(/\+/g, '%20'))||null
 };
-var repo = getUrlParameter('repo');
-var url = getUrlParameter('pathwayUrl');
-var pwId = getUrlParameter('pwId');
+var repo = getUriParameter('repo');
+var uri = getUriParameter('pathwayUri');
+var pwId = getUriParameter('pwId');
 </script>
 
 <div id="choose-pathway-creator">
@@ -40,38 +40,38 @@ Repo:
   }
 
   if ($_GET['repo'] == "local") {
-    $pathwayTemplateSvgUrl = "pathway-template.svg";
-    $pathwayTemplateSvgUrlEditable = "pathway-template.svg";
+    $pathwayTemplateSvgUri = "pathway-template.svg";
+    $pathwayTemplateSvgUriEditable = "pathway-template.svg";
   }
   else {
-    $pathwayTemplateSvgUrl = "https://raw.github.com/" . $repo . "/pathvisio/dev/src/views/pathway-template.svg";
-    $pathwayTemplateSvgUrlEditable = "https://github.com/" . $repo . "/pathvisio/blob/dev/src/views/pathway-template.svg";
+    $pathwayTemplateSvgUri = "https://raw.github.com/" . $repo . "/pathvisio/dev/src/views/pathway-template.svg";
+    $pathwayTemplateSvgUriEditable = "https://github.com/" . $repo . "/pathvisio/blob/dev/src/views/pathway-template.svg";
   }
 
   if (isset($_GET['pwId'])) {
     echo "<script>var local = false</script>";
     $pwId = htmlspecialchars($_GET['pwId']);
-    $pathwayUrlParamStr = "pwId=" . $pwId;
+    $pathwayUriParamStr = "pwId=" . $pwId;
 
-    $batikSvgUrl = "http://www.wikipathways.org//wpi/wpi.php?action=downloadFile&type=svg&pwTitle=Pathway:" . $pwId . "&revision=0";
-    $pngUrl = "http://www.wikipathways.org//wpi/wpi.php?action=downloadFile&type=png&pwTitle=Pathway:" . $pwId . "&revision=0";
+    $batikSvgUri = "http://www.wikipathways.org//wpi/wpi.php?action=downloadFile&type=svg&pwTitle=Pathway:" . $pwId . "&revision=0";
+    $pngUri = "http://www.wikipathways.org//wpi/wpi.php?action=downloadFile&type=png&pwTitle=Pathway:" . $pwId . "&revision=0";
 
-    $pathwayUrl = "http://www.wikipathways.org//wpi/wpi.php?action=downloadFile&type=gpml&pwTitle=Pathway:" . $pwId;
+    $pathwayUri = "http://www.wikipathways.org//wpi/wpi.php?action=downloadFile&type=gpml&pwTitle=Pathway:" . $pwId;
   }
-  elseif (isset($_GET['pathwayUrl'])) {
+  elseif (isset($_GET['pathwayUri'])) {
     echo "<script>var local = true</script>";
-    $pathwayUrl = htmlspecialchars($_GET['pathwayUrl']);
-    $pathwayUrlParamStr = "pathwayUrl=" . $pathwayUrl;
-    $batikSvgUrl = str_replace(".gpml", ".svg", htmlspecialchars($_GET['pathwayUrl']));
-    $pngUrl = str_replace(".gpml", ".png", htmlspecialchars($_GET['pathwayUrl']));
+    $pathwayUri = htmlspecialchars($_GET['pathwayUri']);
+    $pathwayUriParamStr = "pathwayUri=" . $pathwayUri;
+    $batikSvgUri = str_replace(".gpml", ".svg", htmlspecialchars($_GET['pathwayUri']));
+    $pngUri = str_replace(".gpml", ".png", htmlspecialchars($_GET['pathwayUri']));
   }
 
   foreach($authorizedRepos as $value){
     if ($value == $repo) {
-        $html .= "<option value='./?" . $pathwayUrlParamStr . "&repo=" . $value . "' selected='selected'>$value</key>";
+        $html .= "<option value='./?" . $pathwayUriParamStr . "&repo=" . $value . "' selected='selected'>$value</key>";
     }
     else {
-        $html .= "<option value='./?" . $pathwayUrlParamStr . "&repo=" . $value . "'>$value</key>";
+        $html .= "<option value='./?" . $pathwayUriParamStr . "&repo=" . $value . "'>$value</key>";
     }
   }
 
@@ -80,7 +80,7 @@ Repo:
 </div> 
 <p>If you would like to edit the symbols (shapes), markers (arrowheads), colors or other properties of the pathvisio pathway template, let Anders or Alex know. When you are added as an authorized user, you can edit your 
 <?php
-  echo "<a href='" . $pathwayTemplateSvgUrlEditable . "'>"
+  echo "<a href='" . $pathwayTemplateSvgUriEditable . "'>"
 ?>
 SVG pathway template file</a> in the <span style="font-weight: bold">DEV</span> branch of your github fork of <a href="https://github.com/wikipathways/pathvisio">pathvisio</a>, commit, and view your changes on this page. Note that your commits on Github may take a few seconds before they show up here.</p>
 
@@ -96,25 +96,25 @@ SVG pathway template file</a> in the <span style="font-weight: bold">DEV</span> 
   // }
 
   echo "<div id='javascript-svg-pathway-container' class='pathway'>";
-    $pathwayTemplateSvg = simplexml_load_file($pathwayTemplateSvgUrl);
+    $pathwayTemplateSvg = simplexml_load_file($pathwayTemplateSvgUri);
     echo $pathwayTemplateSvg->saveXML();
   echo "</div>";
 
   // PathVisio (Java) SVG
 
-  $batikSvg = simplexml_load_file($batikSvgUrl);
+  $batikSvg = simplexml_load_file($batikSvgUri);
 
   echo "<div id='java-svg-pathway-container' class='pathway' style='display: none;'>";
     echo $batikSvg->saveXML();
   echo "</div>";
  
   echo "<div id='java-png-pathway-container' class='pathway' style='display: none;'>";
-    echo '<img id="img" src="' . $pngUrl . '"/>';
+    echo '<img id="img" src="' . $pngUri . '"/>';
   echo "</div>";
 
   // XML GPML (from either wikipathways.org REST API or local /test/gpml/ folder)
 
-  $gpmlStr = file_get_contents($pathwayUrl);
+  $gpmlStr = file_get_contents($pathwayUri);
   $doc = new DOMDocument();
   $doc->loadXML($gpmlStr);
 
@@ -183,9 +183,9 @@ SVG pathway template file</a> in the <span style="font-weight: bold">DEV</span> 
   window.onload = function() {
     //pathway.load('#pathway-image', '../../test/gpml/fill-and-stroke-colors.gpml');
     //pathway.load('#pathway-image', '../../test/gpml/shapes.gpml');
-    pathvisio.pathway.load('#pathway-image', url);
+    pathvisio.pathway.load('#pathway-image', uri);
 
-    //pathvisio.drawFromUrl('#pathway-image', url, 'gpml+xml');
+    //pathvisio.drawFromUri('#pathway-image', uri, 'gpml+xml');
     //var sJson = JSON.stringify(pathway, undefined, 2);
     //$('#json-gpml-for-reading').text(sJson);
 

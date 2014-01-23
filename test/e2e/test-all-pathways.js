@@ -13,7 +13,7 @@ ptor.ignoreSynchronization = true;
 var bodyElements, shapes, loadingIconBeforePathwayLoaded, loadingIconAfterPathwayLoaded,
   shapesInShapes;
 
-var baseUrl = 'http://localhost:3000/';
+var baseUri = 'http://localhost:3000/';
 
 function testTheCount(pathwayId, elementName, expectedCount) {
   console.log('pathwayId: ' + pathwayId);
@@ -37,7 +37,7 @@ var pathwayIds = ["WP1","WP10","WP100","WP1000","WP1001","WP1002","WP1004","WP10
 //*/
 
 pathwayIds.forEach(function(pathwayId) {
-  ptor.get(baseUrl + "test/compare.html?gpml=" + pathwayId).
+  ptor.get(baseUri + "test/compare.html?gpml=" + pathwayId).
     then(function() {
       return ptor.wait(forElementToBePresent(by.css('#pathvisiojs-is-loaded')), 20 * 1000);
     }).

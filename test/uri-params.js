@@ -1,5 +1,5 @@
 var uriParams = function() {
-  var urlParamList = getUriParamList();
+  var uriParamList = getUriParamList();
 
   /* *******************
   /* Get the desired GPML file URL or WikiPathways ID from the URL parameters.
@@ -10,7 +10,7 @@ var uriParams = function() {
 
   function getUriParam(name) {
 
-    // Thanks to http://stackoverflow.com/questions/11582512/how-to-get-url-parameters-with-javascript
+    // Thanks to http://stackoverflow.com/questions/11582512/how-to-get-uri-parameters-with-javascript
     // This will be replaced once we get the backend php to get the GPML
 
     var parameter = decodeURIComponent((new RegExp('[?|&]' + name + '=' + '([^&;]+?)(&|#|;|$)').exec(location.search)||[,""])[1].replace(/\+/g, '%20'))||null;
@@ -23,7 +23,7 @@ var uriParams = function() {
   }
 
   function getUriParamList() {
-    urlParamList = {
+    uriParamList = {
       'svg-disabled': false,
       'gpml': null,
       'gpmlRev': 0,
@@ -31,26 +31,26 @@ var uriParams = function() {
       'account': '',
       'branch': ''
     };
-    Object.keys(urlParamList).forEach(function(element) {
+    Object.keys(uriParamList).forEach(function(element) {
       if (!!getUriParam(element)) {
-        urlParamList[element] = getUriParam(element);
+        uriParamList[element] = getUriParam(element);
       }
       window.setTimeout(function() {
-        $('#' + element).val(urlParamList[element]);
+        $('#' + element).val(uriParamList[element]);
       }, 50)
     });
-    return urlParamList;
+    return uriParamList;
   }
 
   function updateParams(updatedParam) {
     var targetUri = currentUri + '?' + updatedParam.key + '=' + updatedParam.value;
 
-    Object.keys(urlParamList).forEach(function(element) {
+    Object.keys(uriParamList).forEach(function(element) {
       if (element === updatedParam.key) {
-        urlParamList[element] = updatedParam.value;
+        uriParamList[element] = updatedParam.value;
       }
       else {
-        targetUri += '&' + element + '=' + urlParamList[element];
+        targetUri += '&' + element + '=' + uriParamList[element];
       }
     });
 
@@ -77,7 +77,7 @@ var uriParams = function() {
 
     var wpId, wpRevision, uri;
 
-    if (pathvisiojs.utilities.isUrl(gpmlParam)) {
+    if (pathvisiojs.utilities.isUri(gpmlParam)) {
       if (uri.indexOf('.gpml') > -1) {
         parsedInputData.sourceData.push({
           uri:gpmlParam,

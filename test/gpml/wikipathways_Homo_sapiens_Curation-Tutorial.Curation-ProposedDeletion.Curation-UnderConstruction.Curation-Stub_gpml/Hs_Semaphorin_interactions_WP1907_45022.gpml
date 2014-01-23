@@ -2320,7 +2320,7 @@ Class 2 myosins play a crucial role in a variety of cellular processes, includin
       <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Schmidt, EF</bp:AUTHORS>
       <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Elhabazi, A</bp:AUTHORS>
       <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Togashi, H</bp:AUTHORS>
-      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Burley, SK</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Buriey, SK</bp:AUTHORS>
       <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Strittmatter, SM</bp:AUTHORS>
       <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">EMBO J 23:9-22</bp:SOURCE>
     </bp:publicationXref>
