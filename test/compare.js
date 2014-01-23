@@ -311,35 +311,35 @@ var developmentLoader = function() {
     ]);
   }
 
-  /* *******************
-  /* Until we finish automating the Grunt build process, we are manually getting the html template with this function.
-  /* *******************/
-
-  var getPathvisiojsHtmlTemplate = function() {
-    var svg = d3.select('#pathway-svg');
-    svg.select('#viewport').selectAll('*').remove();
-    var marker, oldMarkerId, newMarkerId;
-    var markers = svg.selectAll('marker');
-    markers.each(function() {
-      marker = d3.select(this);
-      oldMarkerId = marker.attr('id');
-      newMarkerId = 'shape-library' + oldMarkerId.split('-shape-library')[1];
-      marker.attr('id', newMarkerId);
-    });
-
-    var symbol, oldSymbolId, newSymbolId;
-    var symbols = svg.selectAll('symbol');
-    symbols.each(function() {
-      symbol = d3.select(this);
-      oldSymbolId = symbol.attr('id');
-      newSymbolId = 'shape-library' + oldSymbolId.split('-shape-library')[1];
-      symbol.attr('id', newSymbolId);
-    });
-    return d3.select('#pathvisiojs-container')[0][0];
-  }
-
   return{
     preload:preload,
     parseUriParams:parseUriParams
   };
 }();
+
+/* *******************
+/* Until we finish automating the Grunt build process, we are manually getting the html template with this function.
+/* *******************/
+
+var getPathvisiojsHtmlTemplate = function() {
+  var svg = d3.select('#pathway-svg');
+  svg.select('#viewport').selectAll('*').remove();
+  var marker, oldMarkerId, newMarkerId;
+  var markers = svg.selectAll('marker');
+  markers.each(function() {
+    marker = d3.select(this);
+    oldMarkerId = marker.attr('id');
+    newMarkerId = 'shape-library' + oldMarkerId.split('-shape-library')[1];
+    marker.attr('id', newMarkerId);
+  });
+
+  var symbol, oldSymbolId, newSymbolId;
+  var symbols = svg.selectAll('symbol');
+  symbols.each(function() {
+    symbol = d3.select(this);
+    oldSymbolId = symbol.attr('id');
+    newSymbolId = 'shape-library' + oldSymbolId.split('-shape-library')[1];
+    symbol.attr('id', newSymbolId);
+  });
+  return d3.select('#pathvisiojs-container')[0][0];
+}
