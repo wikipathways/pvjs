@@ -86,9 +86,10 @@ pathvisiojs.view.pathwayDiagram = function(){
     return supportedViewMethods;
   }
 
-  function loadHtmlTemplate(container, callback) {
-    container.html(pathvisioNS['tmp/pathvisiojs.html']);
-    callback();
+  function loadHtmlTemplate(userSpecifiedContainer, callback) {
+    userSpecifiedContainer.html(pathvisioNS['tmp/pathvisiojs.html']);
+    var pathwayContainer = userSpecifiedContainer.select('#pathway-container');
+    callback(pathwayContainer);
   }
 
   function load(args) {
@@ -101,13 +102,6 @@ pathvisiojs.view.pathwayDiagram = function(){
     // Check for minimum required set of parameters
     // ********************************************
 
-    if (!args.container) {
-      throw new Error('No container selector specified as container for pathvisiojs.');
-    }
-
-    if (!args.sourceData[0].uri) {
-      throw new Error('No sourceData uri specified.');
-    }
 
     var containerSelector = args.container,
       sourceData = args.sourceData,
@@ -117,12 +111,24 @@ pathvisiojs.view.pathwayDiagram = function(){
       //customSymbols = args.customSymbols,
       highlightNodes = args.highlightNodes,
       hiddenElements = args.hiddenElements,
-      container;
+      pathvisioJsContainer,
+      pathwayContainer,
+      userSpecifiedContainer, // the element matching the user-specified selector. the user specified selector is the parameter "container" in the pathvisiojs.load() method.
+      pathvisioJsContainer,
+      pathwayContainer;
 
-      var container = d3.select(containerSelector);
-      if (container.length !== 1) {
-        throw new Error('Container selector must be matched by exactly one element.');
-      }
+    if (!sourceData[0].uri) {
+      throw new Error('No sourceData uri specified.');
+    }
+
+    if (!containerSelector) {
+      throw new Error('No container selector specified as container for pathvisiojs.');
+    }
+
+    userSpecifiedContainer = d3.select(containerSelector);
+    if (userSpecifiedContainer.length !== 1) {
+      throw new Error('Container selector must be matched by exactly one element.');
+    }
 
     // waterfall means that each function completes in order, passing its result to the next
     async.waterfall([
@@ -130,7 +136,8 @@ pathvisiojs.view.pathwayDiagram = function(){
         // ********************************************
         // Load HTML template
         // ********************************************
-        var htmlTemplate = loadHtmlTemplate(container, function() {
+        var htmlTemplate = loadHtmlTemplate(userSpecifiedContainer, function(thisPathwayContainer) {
+          pathwayContainer = thisPathwayContainer;
           callback(null);
         });
       },
@@ -147,9 +154,13 @@ pathvisiojs.view.pathwayDiagram = function(){
         // Get desired dimensions for pathway diagram
         // ********************************************
 
-        var boundingClientRect = container[0][0].getBoundingClientRect();
+        var boundingClientRect = userSpecifiedContainer[0][0].getBoundingClientRect();
+        var containerWidth = boundingClientRect.width - 3; //account for space for pan/zoom controls,
+        var containerHeight = boundingClientRect.height - 3; //account for space for search field;
+        /* //Alex, pan/zoom controls are removed, so I changed this.
         var containerWidth = boundingClientRect.width - 40; //account for space for pan/zoom controls,
         var containerHeight = boundingClientRect.height - 20; //account for space for search field;
+        //*/
 
         /*
         //add loading gif
@@ -163,12 +174,12 @@ pathvisiojs.view.pathwayDiagram = function(){
         .style('left', posX + "px");
         //*/
 
-        callback(null, container, containerWidth, containerHeight, renderableSourceDataElement);
+        callback(null, containerWidth, containerHeight, renderableSourceDataElement);
       },
-      function(container, containerWidth, containerHeight, renderableSourceDataElement, callback){
+      function(containerWidth, containerHeight, renderableSourceDataElement, callback){
         var svg, pathway,
         loadDiagramArgs = {};
-        loadDiagramArgs.container = container;
+        loadDiagramArgs.container = pathwayContainer;
         loadDiagramArgs.renderableSourceDataElement = renderableSourceDataElement;
         loadDiagramArgs.containerWidth = containerWidth;
         loadDiagramArgs.containerHeight = containerHeight;
@@ -177,34 +188,29 @@ pathvisiojs.view.pathwayDiagram = function(){
         // ********************************************
         // Check for SVG support. If false, use PNG fallback
         // ********************************************
-
         
         if (renderableSourceDataElement.selectedViewMethod === 'svg') { // TODO get this working in IE9
           loadDiagramArgs.cssUri = cssUri;
           loadDiagramArgs.customMarkers = customMarkers;
           //loadDiagramArgs.customSymbols = customSymbols;
-          pathvisiojs.view.pathwayDiagram.svg.load(loadDiagramArgs, function(pathvisioJsContainer, diagramContainer, diagram) {
-            callback(null, pathvisioJsContainer, diagramContainer, diagram);
+          //*
+          pathvisiojs.view.pathwayDiagram.svg.load(loadDiagramArgs, function(diagram) {
+            callback(null, diagram);
           });
+          //*/
         }
         else {
-          pathvisiojs.view.pathwayDiagram.img.load(loadDiagramArgs, function() {
-            callback(null, 'img loaded');
+          pathvisiojs.view.pathwayDiagram.img.load(loadDiagramArgs, function(diagram) {
+            callback(null, diagram);
           });
         }
       },
-      function(pathvisioJsContainer, diagramContainer, diagram, callback){
+      function(diagram, callback){
         //remove loading image
-        diagramContainer.select('#loading-icon').remove();
+        pathwayContainer.select('#loading-icon').remove();
         callback(null);
       }
-    ],
-    function(err, results) {
-      // adding this as a signal that the process is done
-      d3.select('body').append('span')
-      .attr('id', 'pathvisiojs-is-loaded');
-      console.log('Pathvisiojs done loading.');
-    });
+    ]);
   }
 
   return{

@@ -13,7 +13,8 @@ pathvisiojs.view.pathwayDiagram.img = function(){
     var container = args.container, //a d3 selection corresponding to the containing element in the parent document
       containerWidth = parseFloat(args.containerWidth),
       containerHeight = parseFloat(args.containerHeight),
-      imgUri = args.sourceDataElement.uri || pathvisiojs.config.diagramNotAvailableImageUri();
+      fitToContainer = args.fitToContainer,
+      imgUri = args.renderableSourceDataElement.uri || pathvisiojs.config.diagramNotAvailableImageUri();
 
     loadImage(
       imgUri,
@@ -25,23 +26,25 @@ pathvisiojs.view.pathwayDiagram.img = function(){
             function (img) {
               //changing from d3 selection to html element
               container[0][0].appendChild(img);
-              callback(null);
+              callback(null, img);
             },
             {
-              maxWidth: args.containerWidth,
-              maxHeight: args.containerHeight
+              maxWidth: containerWidth,
+              maxHeight: containerHeight
             }
           );
-        } else {
+        }
+        else {
           //changing from d3 selection to html element
           container[0][0].appendChild(img);
-          callback(null);
+          callback(null, img);
         }
       },
       {
-        maxWidth: args.containerWidth,
-        maxHeight: args.containerHeight,
-        canvas: true
+        maxWidth: containerWidth,
+        maxHeight: containerHeight,
+        canvas: true,
+        contain: true
         //crossOrigin:'Anonymous' // I thought this would allow CORS images, but it actually does not.
       }
     );
@@ -59,7 +62,7 @@ pathvisiojs.view.pathwayDiagram.img = function(){
     var container = args.container,
       containerWidth = parseFloat(args.containerWidth),
       containerHeight = parseFloat(args.containerHeight),
-      imgUri = args.sourceDataElement.uri || pathvisiojs.config.diagramNotAvailableImageUri(),
+      imgUri = args.renderableSourceDataElement.uri || pathvisiojs.config.diagramNotAvailableImageUri(),
       img,
       fitScreenScale;
       
