@@ -15,7 +15,8 @@
     "modernizr": "~2.7.0",
     "rgb-color": "latest",
     "node-uuid": "~1.4.1",
-    "font-awesome": "~4.0.3"
+    "font-awesome": "~4.0.3",
+    "blueimp-load-image": "~1.11.0"
   },
   "resolutions": {
     "jquery": "1.10.2"

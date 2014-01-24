@@ -4,6 +4,10 @@ var pvjsSources;
 var pathvisioNS = [];
 
 var developmentLoader = function() {
+
+
+  var oSerializer = new XMLSerializer();
+
   /* *******************
   /* Get the desired GPML file URL or WikiPathways ID from the URL parameters.
   /* *******************/
@@ -75,8 +79,6 @@ var developmentLoader = function() {
 
     var svgDisabled = parsedInputData.svgDisabled = uriParams['svg-disabled'] || false;
     var gpmlParam = uriParams.gpml; // this might be equal to the value of uriParams.gpml, but it might not.
-
-
 
     var wpId, wpRevision, gpmlUri, pngUri;
 
@@ -205,12 +207,60 @@ var developmentLoader = function() {
     location.href = targetUri;
   }
 
-  function generateHtmlView(callback) {
-    d3.html(srcDirectoryUri + 'pathvisiojs.html', function(html) {
-      var svg = html.querySelector('#pathway-svg');
-      svg.setAttribute('style', 'display: none; ');
+  function generateSvgTemplate(callback) {
+    var docFragment = document.createDocumentFragment();
+    var svg = d3.select(docFragment).append('svg').
+    attr('id', 'pathway-svg').
+    attr('version', '1.1').
+    attr('baseProfile', 'full').
+    attr('xmlns', 'http://www.w3.org/2000/svg').
+    attr('xmlns:xmlns:xlink', 'http://www.w3.org/1999/xlink').
+    attr('xmlns:xmlns:ev', 'http://www.w3.org/2001/xml-events').
+    attr('width', '100%').
+    attr('height', '100%').
+    attr('style', 'display: none; ');
 
-      var oSerializer = new XMLSerializer();
+    var g = svg.append('g')
+
+    var title = svg.append('title').
+    text('pathvisiojs diagram');
+
+    var desc = g.append('desc').
+    text('This SVG file contains all the graphical elements (markers and symbols in defs as well as\nstyle data) used by the program pathvisiojs, which has two components:\n1) a viewer for transforming GPML biological pathway data into an SVG visual representation and\n2) an editor for creating both views and models for biological pathways.');
+
+    var defs = svg.append('defs');
+
+    var filter = svg.append('filter').
+    attr('id', 'highlight').
+    attr('width', '150%').
+    attr('height', '150%');
+
+    filter.append('feOffset').
+    attr('result', 'offOut').
+    attr('in', 'SourceGraphic').
+    attr('dx', '30').
+    attr('dy', '30');
+
+    filter.append('feGaussianBlur').
+    attr('result', 'blurOut').
+    attr('in', 'offOut').
+    attr('stdDeviation', '10');
+
+    filter.append('feBlend').
+    attr('in', 'SourceGraphic').
+    attr('in2', 'blurOut').
+    attr('mode', 'normal');
+
+    var viewport = svg.append('g').
+    attr('id', 'viewport');
+
+    var oSerializer = new XMLSerializer();
+    pathvisioNS['tmp/pathvisiojs.svg'] = oSerializer.serializeToString(svg[0][0]);
+    callback();
+  }
+
+  function generateHtmlTemplate(callback) {
+    d3.html(srcDirectoryUri + 'pathvisiojs.html', function(html) {
       pathvisioNS['tmp/pathvisiojs.html'] = oSerializer.serializeToString(html);
       callback();
     });
@@ -223,7 +273,6 @@ var developmentLoader = function() {
     var pathname = document.location.pathname;
     var pathvisiojsRootDirectoryUri = pathname.split('test/compare.html')[0];
     srcDirectoryUri = (pathvisiojsRootDirectoryUri + 'src/');
-
 
     async.waterfall([
       function(callback) {
@@ -279,8 +328,11 @@ var developmentLoader = function() {
       },
       function(parsedInputData, callback) {
         if (pathname.indexOf('compare.html') > -1) { //if this is the development version
-          generateHtmlView(function() {
-            callback(null, parsedInputData);
+          generateHtmlTemplate(function() {
+            generateSvgTemplate(function() {
+              console.log(pathvisioNS);
+              callback(null, parsedInputData);
+            });
           });
         }
         else { //if this is the production version
@@ -302,7 +354,7 @@ var developmentLoader = function() {
 
 
         if (parsedInputData.svgDisabled) {
-          Modernizr.svg = false;
+          Modernizr.svg = Modernizr.inlinesvg = false;
           $('#svg-disabled').prop('checked', true);
         }
 

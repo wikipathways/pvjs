@@ -21,43 +21,66 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
   }
 
   function load(args, callback) {
-    var svg = args.svg,
-      pathway = args.pathway,
-      container = args.container,
+    var container = args.container, //a d3 selection corresponding to the containing element in the parent document
       containerWidth = args.containerWidth,
       containerHeight = args.containerHeight,
+      cssUri = args.cssUri,
+      renderableSourceDataElement = args.renderableSourceDataElement,
       fitToContainer = args.fitToContainer,
-      pathwayWidth = args.pathway.image.width,
-      pathwayHeight = args.pathway.image.height;
+      customMarkers = args.customMarkers;
+      //customSymbols = args.customSymbols;
 
-    //add loading gif
-    // TODO this should probably use the args.container variable and not redefine a new container
-    var container = d3.select('body').select('#pathway-container');
-    var posX = containerWidth/2;
-    var posY = containerHeight/2;
-    var img = container.append('img');
-    img.attr('src', "../src/img/loading.gif")
-    .attr('width', 50)
-    .style('position', "absolute")
-    .style('top', posY + "px")
-    .style('left', posX + "px");
+    //var pathvisioJsContainer = container.select('#pathvisiojs-container');
+    //var pathwayContainer = pathvisioJsContainer.select('#pathway-container')
 
-    if (!svg) {
-      throw new Error("Missing svg.");
-    }
-    if (!pathway) {
-      throw new Error("Missing pathway.");
-    }
-
-    async.series([
+    async.waterfall([
       function(callback){
+        async.parallel({
+          preloadSvg: function(callback) {
+            var preloadDiagramArgs = {};
+              preloadDiagramArgs.container = container;
+              preloadDiagramArgs.customMarkers = customMarkers,
+              //preloadDiagramArgs.customSymbols = customSymbols,
+              preloadDiagramArgs.cssUri = cssUri;
+
+            pathvisiojs.view.pathwayDiagram.svg.loadPartials(preloadDiagramArgs, function(svg) {
+              callback(null, svg);
+            });
+          },
+          pathway: function(callback){
+            pathvisiojs.data.pathvisiojsJson.get(renderableSourceDataElement, function(json) {
+              pathvisiojs.context = json['@context'];
+              console.log('json');
+              console.log(json);
+              callback(null, json);
+            })
+          }
+        },
+        function(err, results){
+          var pathway = results.pathway,
+            svg = results.preloadSvg;
+
+          if (!svg) {
+            throw new Error("Missing svg.");
+          }
+          if (!pathway || pathway === 'fail') {
+            throw new Error("Missing pathway.");
+          }
+
+          //TODO get pathwayWidth and Height
+
+          callback(null, svg, pathway);
+        })
+      },
+      function(svg, pathway, callback){
         pathvisiojs.view.pathwayDiagram.svg.renderFast(svg, pathway, function() {
           callback(null);
         })
       },
       function(callback) {
-	//remove loading gif
-        container.select('img').remove();
+        //remove loading gif
+        //TODO move this to pathway-diagram.js
+        diagramContainer.select('img').remove();
 
         var svgInFocus = false;
         svg.on("click", function(d, i){
@@ -86,23 +109,23 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
         //*/
         var fitScreenScale;
         if (fitToContainer) {
-	  fitAndCenterDiagramWithinViewport(viewport, containerWidth, containerHeight, args.pathway.image.width, args.pathway.image.height);
+          fitAndCenterDiagramWithinViewport(viewport, containerWidth, containerHeight, args.pathway.image.width, args.pathway.image.height);
         }
 
-    	var fittoscreen = d3.select('body').select('#fit-to-screen-control');
-    	fittoscreen.on("click", function(d,i){
+        var fitToScreen = d3.select('body').select('#fit-to-screen-control');
+        fitToScreen.on("click", function(d,i){
           fitAndCenterDiagramWithinViewport(viewport, containerWidth, containerHeight, args.pathway.image.width, args.pathway.image.height);
         });
 
-	var fullscreen = d3.select('body').select('#fullscreen-control');
-	fullscreen.on("click", function(d,i){
+        var fullscreen = d3.select('body').select('#fullscreen-control');
+        fullscreen.on("click", function(d,i){
           var pvjs = document.getElementById("pathvisiojs-dev").innerHTML;
           var newwin = window.open('','','width=800,height=600');
           var doc = newwin.document;
-	  doc.open();
-	  doc.write(pvjs);
-	  doc.close();	
-	});
+          doc.open();
+          doc.write(pvjs);
+          doc.close();	
+        });
 
         svgPanZoom.init({
           'root': 'svg',
@@ -111,6 +134,58 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
           'maxZoom': '8.0',
         });
         callback(null);
+      },
+      function(callback){
+        //* Node Highlighter
+
+        var nodeLabels, nodeLabel;
+        if (!!pathway) {
+          nodeLabels = [];
+          if (pathway.hasOwnProperty('DataNode')) {
+            pathway.DataNode.forEach(function(node) {
+              if (!!node.text) {
+                nodeLabels.push(node.text.line[0]);
+              }
+            });
+
+            // see http://twitter.github.io/typeahead.js/
+
+            $('#highlight-by-label-input').typeahead({
+              name: 'Highlight node in pathway',
+              local: nodeLabels,
+              limit: 10
+            });
+          }
+
+          /*
+             $('.icon-eye-open').click(function(){
+             var nodeLabel = $("#highlight-by-label-input").val();
+             if (!nodeLabel) {
+             console.warn('Error: No data node value entered.');
+             }
+             else {
+             pathvisiojs.view.pathwayDiagram.svg.node.highlightByLabel(svg, nodeLabel);
+             }
+             });
+          //*/
+          // see http://api.jquery.com/bind/
+          // TODO get selected value better and make function to handle
+
+          $( "#highlight-by-label-input" ).bind("typeahead:selected", function() {
+            nodeLabel = $("#highlight-by-label-input").val();
+            if (!nodeLabel) {
+              throw new Error("No data node value entered for type-ahead node highlighter.");
+            }
+            else {
+
+              // TODO refactor this so it calls a generic highlightDataNodeByLabel function that can call
+              // a highlighter for svg, png, etc. as appropriate.
+
+              pathvisiojs.view.pathwayDiagram.svg.node.highlightByLabel(svg, pathway, nodeLabel);
+            }
+          });
+          callback(null, 'svg loaded');
+        }
       }
     ],
     function(err, results) {
@@ -121,16 +196,14 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
   function loadPartials(args, callbackOutside) {
     var container = args.container,
       customMarkers = args.customMarkers,
-//      customSymbols = args.customSymbols,
+      //customSymbols = args.customSymbols,
       cssUri = args.cssUri,
-      pathvisioJsContainer,
-      pathwayContainer;
+      pathvisioJsContainer = container.select('#pathvisiojs-container'),
+      pathwayContainer = pathvisioJsContainer.select('#pathway-container');
 
     async.series([
       function(callback) {
-        container.html(pathvisioNS['tmp/pathvisiojs.html']);
-        pathvisioJsContainer = container.select('#pathvisiojs-container');
-        pathwayContainer = pathvisioJsContainer.select('#pathway-container')
+        pathwayContainer.html(pathvisioNS['tmp/pathvisiojs.svg']);
 
         svg = pathvisioJsContainer.select('#pathway-svg')
         svg.attr('style', 'display: inline; width: inherit; min-width: inherit; max-width: inherit; height: inherit; min-height: inherit; max-height: inherit; ') // TODO this should be moved to the CSS file
