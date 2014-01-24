@@ -19,10 +19,6 @@ pathvisiojs.config = function() {
     return '../wpi/extensions/PathwayViewer/img/imageNotAvailable.jpg';
   }
 
-  var loadingGif = function() {
-    return '../wpi/extensions/PathwayViewer/img/loading.gif';
-  }
-
   var imgDiagramUriStub = function() {
     return 'http://test3.wikipathways.org/wpi//wpi.php?action=downloadFile&type=png&pwTitle=Pathway:';
   }
@@ -37,7 +33,6 @@ pathvisiojs.config = function() {
     bridgedbDatasources:bridgedbDatasources,
     imgDiagramUriStub:imgDiagramUriStub,
     diagramNotAvailableImageUri:diagramNotAvailableImageUri,
-    loadingGif:loadingGif,
     pathwaySearchUriStub:pathwaySearchUriStub
   };
 }();
