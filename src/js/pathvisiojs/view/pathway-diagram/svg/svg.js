@@ -344,6 +344,11 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
             arr.push(pathway.Interaction[i]);
           }
         }
+        if(pathway.GraphicalLine){                                                                                                                         
+          for (var i=0; i<pathway.GraphicalLine.length; i++){                                                                                              
+            arr.push(pathway.GraphicalLine[i]);                                                                                                            
+          }                                                                                                                                              
+        }     
 	if(pathway.Group){
           for (var i=0; i<pathway.Group.length; i++){
             arr.push(pathway.Group[i]);
