@@ -179,7 +179,7 @@ pathvisiojs.view.pathwayDiagram.svg.node = function(){
 
 
   function highlightByLabel(svg, pathway, nodeLabel) {
-    var svg = d3.selectAll('#pathway-svg');
+    var svg = d3.selectAll('#pathvisiojs-diagram');
     svg.selectAll('.highlighted-node').remove();
     var allDataNodesWithText = pathway.DataNode.filter(function(d, i) {return (!!d.text);});
     var selectedNodes = allDataNodesWithText.filter(function(d, i) {return d.text.line.indexOf(nodeLabel) !== -1;});

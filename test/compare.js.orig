@@ -74,7 +74,7 @@ function updateParams(updatedParam) {
 
 function generateHtmlView(callback) {
   d3.html(srcDirectoryUri + 'pathvisiojs.html', function(html) {
-    var svg = html.querySelector('#pathway-svg');
+    var svg = html.querySelector('#pathvisiojs-diagram');
     svg.setAttribute('style', 'display: none; ');
     svg.setAttribute('width', '500px');
     svg.setAttribute('height', '500px');
@@ -428,7 +428,7 @@ window.onload = function() {
 /* *******************/
 
 var getPathvisiojsHtmlTemplate = function() {
-  var svg = d3.select('#pathway-svg');
+  var svg = d3.select('#pathvisiojs-diagram');
   svg.select('#viewport').selectAll('*').remove();
   var marker, oldMarkerId, newMarkerId;
   var markers = svg.selectAll('marker');

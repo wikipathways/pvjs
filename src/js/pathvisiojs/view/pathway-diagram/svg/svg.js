@@ -21,7 +21,7 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
   }
 
   function load(args, callback) {
-    var container = args.container, //a d3 selection corresponding to the containing element in the parent document
+    var pathwayContainer = args.container, //a d3 selection corresponding to the containing element in the parent document
       containerWidth = args.containerWidth,
       containerHeight = args.containerHeight,
       cssUri = args.cssUri,
@@ -32,7 +32,6 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
       customMarkers = args.customMarkers,
       //customSymbols = args.customSymbols,
       pathway,
-      pathvisioJsContainer,
       pathwayContainer,
       svg;
 
@@ -42,14 +41,12 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
         async.parallel({
           preloadSvg: function(callback) {
             var preloadDiagramArgs = {};
-              preloadDiagramArgs.container = container;
+              preloadDiagramArgs.container = pathwayContainer;
               preloadDiagramArgs.customMarkers = customMarkers,
               //preloadDiagramArgs.customSymbols = customSymbols,
               preloadDiagramArgs.cssUri = cssUri;
 
             pathvisiojs.view.pathwayDiagram.svg.loadPartials(preloadDiagramArgs, function(svgTemplate) {
-              pathvisioJsContainer = container.select('#pathvisiojs-container');
-              pathwayContainer = pathvisioJsContainer.select('#pathway-container');
               svg = svgTemplate;
 
               if (!svg) {
@@ -138,9 +135,6 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
             svgInFocus = false;
           }
         });
-
-
-
         callback(null);
       },
       function(callback){
@@ -197,23 +191,21 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
       }
     ],
     function(err, results) {
-      callback(pathvisioJsContainer, pathwayContainer, svg);
+      callback(svg);
     });
   }
 
   function loadPartials(args, callbackOutside) {
-    var container = args.container,
+    var pathwayContainer = args.container,
       customMarkers = args.customMarkers,
       //customSymbols = args.customSymbols,
-      cssUri = args.cssUri,
-      pathvisioJsContainer = container.select('#pathvisiojs-container'),
-      pathwayContainer = pathvisioJsContainer.select('#pathway-container');
+      cssUri = args.cssUri;
 
     async.series([
       function(callback) {
         pathwayContainer.html(pathvisioNS['tmp/pathvisiojs.svg']);
 
-        svg = pathvisioJsContainer.select('#pathway-svg')
+        svg = pathwayContainer.select('#pathvisiojs-diagram')
         svg.attr('style', 'display: inline; width: inherit; min-width: inherit; max-width: inherit; height: inherit; min-height: inherit; max-height: inherit; ') // TODO this should be moved to the CSS file
         .attr('preserveAspectRatio', 'xMidYMid');
 
@@ -266,10 +258,6 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
   // other elements, this function will call itself back to render
   // the elements within the groupNode.
   function renderSelectedElementsFast(args, callbackOutside){
-    console.log('render');
-    console.log(new Date());
-    console.log('renderSelectedElementsFast args');
-    console.log(args);
     var svg = args.svg,
       data = args.data,
       pathway = args.pathway,

@@ -133,7 +133,12 @@ body {
   vertical-align: bottom
 }
 
-#loading-icon #pathvisiojs-diagram #unable-to-load-message {
+#pathway-container {
+  display: table-cell;
+  vertical-align: middle
+}
+
+#pathway-container > * {
   display: block;
   margin-left: auto;
   margin-right: auto

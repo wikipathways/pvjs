@@ -210,7 +210,7 @@ var developmentLoader = function() {
   function generateSvgTemplate(callback) {
     var docFragment = document.createDocumentFragment();
     var svg = d3.select(docFragment).append('svg').
-    attr('id', 'pathway-svg').
+    attr('id', 'pathvisiojs-diagram').
     attr('version', '1.1').
     attr('baseProfile', 'full').
     attr('xmlns', 'http://www.w3.org/2000/svg').
@@ -374,7 +374,7 @@ var developmentLoader = function() {
 /* *******************/
 
 var getPathvisiojsHtmlTemplate = function() {
-  var svg = d3.select('#pathway-svg');
+  var svg = d3.select('#pathvisiojs-diagram');
   svg.select('#viewport').selectAll('*').remove();
   var marker, oldMarkerId, newMarkerId;
   var markers = svg.selectAll('marker');
