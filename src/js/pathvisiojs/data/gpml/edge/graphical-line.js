@@ -37,10 +37,10 @@ pathvisiojs.data.gpml.edge.graphicalLine = function(){
         jsonGraphicalLine.markerEnd = 'none';
       }
 
-      // TODO handle this properly. Right now, we can't render graphical lines with
-      // connector type of elbow or curve.
-
-      jsonGraphicalLine.ConnectorType = 'Straight';
+      jsonGraphicalLine.ConnectorType = (gpmlGraphicalLine.select('Graphics').attr('ConnectorType')); 
+      if (!jsonGraphicalLine.ConnectorType) {
+	jsonGraphicalLine.ConnectorType = 'Straight';
+      }
 
       callback(jsonGraphicalLine);
     })
