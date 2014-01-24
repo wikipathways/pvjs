@@ -208,6 +208,12 @@ pathvisiojs.view.pathwayDiagram = function(){
       function(diagram, callback){
         //remove loading image
         pathwayContainer.select('#loading-icon').remove();
+
+        // adding this as a signal for e2e tests that the diagram has finished loading 
+        // TODO refactor tests so they don't need this hack.
+        d3.select('body').append('span')
+        .attr('id', 'pathvisiojs-is-loaded');
+        console.log('Pathvisiojs done loading.');
         callback(null);
       }
     ]);
