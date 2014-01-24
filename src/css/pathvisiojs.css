@@ -132,3 +132,9 @@ body {
   display: table-cell;
   vertical-align: bottom
 }
+
+#loading-icon #pathvisiojs-diagram #unable-to-load-message {
+  display: block;
+  margin-left: auto;
+  margin-right: auto
+}
