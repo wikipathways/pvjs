@@ -4,8 +4,6 @@ var pathvisiojs = function(){
 
   var svg, pathway, args;
 
-
-
   function load(args) {
     console.log(args);
 
