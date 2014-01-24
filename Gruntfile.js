@@ -126,10 +126,6 @@ grunt.initConfig({
         distCss: {
             src:  [ "<banner>" ].concat(pvjsCssSources),
             dest: distributionCss
-        },
-        pathwayDiagramCss: {
-            src:  [ "<banner>" ].concat(['src/css/pathway-diagram.css']),
-            dest: "build/" + selectedConfigFileName + "/css/pathway-diagram.css"
         }
     },
     uglify: {

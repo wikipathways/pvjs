@@ -10,32 +10,81 @@ pathvisiojs.view.pathwayDiagram.img = function(){
     if (!args) {
       throw new Error("Missing input data.");
     }
+    var container = args.container, //a d3 selection corresponding to the containing element in the parent document
+      containerWidth = parseFloat(args.containerWidth),
+      containerHeight = parseFloat(args.containerHeight),
+      imgUri = args.sourceDataElement.uri || pathvisiojs.config.diagramNotAvailableImageUri();
+
+    loadImage(
+      imgUri,
+      function (img) {
+        if (img.type === "error") {
+          console.warn("Error loading image " + imgUri);
+          loadImage(
+            pathvisiojs.config.diagramNotAvailableImageUri(),
+            function (img) {
+              //changing from d3 selection to html element
+              container[0][0].appendChild(img);
+              callback(null);
+            },
+            {
+              maxWidth: args.containerWidth,
+              maxHeight: args.containerHeight
+            }
+          );
+        } else {
+          //changing from d3 selection to html element
+          container[0][0].appendChild(img);
+          callback(null);
+        }
+      },
+      {
+        maxWidth: args.containerWidth,
+        maxHeight: args.containerHeight,
+        canvas: true
+        //crossOrigin:'Anonymous' // I thought this would allow CORS images, but it actually does not.
+      }
+    );
+
+    loadImage.onerror = function() {
+    };
+  }
+
+  /*
+  function load(args, callback) {
+    if (!args) {
+      throw new Error("Missing input data.");
+    }
 
     var container = args.container,
       containerWidth = parseFloat(args.containerWidth),
       containerHeight = parseFloat(args.containerHeight),
-      imgUri = args.sourceDataElement.uri,
+      imgUri = args.sourceDataElement.uri || pathvisiojs.config.diagramNotAvailableImageUri(),
       img,
-      imgWidth,
-      imgHeight,
       fitScreenScale;
+      
+      console.log(imgUri);
 
-      /*
-    if (!!wikiPathwaysId) {
-      imgUri = encodeURI(pathvisiojs.config.imgDiagramUriStub() + wikiPathwaysId + '&revision=' + revision);
-    }
-    else {
-      imgUri = pathvisiojs.config.diagramNotAvailableImageUri();
-    }
-    //*/
-
-    window.setTimeout(function() {
       img = document.createElement('img');
       img.src = imgUri;
       img.onload = function() {
-        imgWidth = parseFloat(this.width);
-        imgHeight = parseFloat(this.height);
-        fitScreenScale = Math.min((containerWidth/imgWidth), (containerHeight/imgHeight));
+        console.log(this);
+        insertImage(container, containerWidth, containerHeight, img, imgUri, callback);
+      }
+      img.onerror = function() {
+        img.src = pathvisiojs.config.diagramNotAvailableImageUri();
+        img.onload = function() {
+          console.log(this);
+          insertImage(container, containerWidth, containerHeight, img, imgUri, callback);
+          callback(null);
+        }
+      };
+  }
+
+  function insertImage(container, containerWidth, containerHeight, img, imgUri, callback) {
+        var imgWidth = parseFloat(img.width);
+        var imgHeight = parseFloat(img.height);
+        var fitScreenScale = Math.min((containerWidth/imgWidth), (containerHeight/imgHeight));
         container.append('img')
         .attr('id', 'pathvisiojs-pathway-img')
         .attr('src', imgUri)
@@ -47,9 +96,8 @@ pathvisiojs.view.pathwayDiagram.img = function(){
         .attr('width', imgWidth * fitScreenScale)
         .attr('height', imgHeight * fitScreenScale);
         callback(null);
-      }
-    }, 50);
   }
+  //*/
 
   return {
     load:load
