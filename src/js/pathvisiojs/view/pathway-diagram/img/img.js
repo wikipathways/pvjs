@@ -14,13 +14,18 @@ pathvisiojs.view.pathwayDiagram.img = function(){
       containerWidth = parseFloat(args.containerWidth),
       containerHeight = parseFloat(args.containerHeight),
       fitToContainer = args.fitToContainer,
+      imgUri = args.renderableSourceDataElement.uri;
+
+    if (!imgUri) {
+      console.warn('No uri specified for sourceData element.'); //TODO decide whether this should warn or throw an error.
       imgUri = args.renderableSourceDataElement.uri || pathvisiojs.config.diagramNotAvailableImageUri();
+    }
 
     loadImage(
       imgUri,
       function (img) {
         if (img.type === "error") {
-          console.warn("Error loading image " + imgUri);
+          console.warn("Error loading image " + imgUri); //TODO decide whether this should warn or throw an error.
           loadImage(
             pathvisiojs.config.diagramNotAvailableImageUri(),
             function (img) {
