@@ -26,12 +26,16 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
       containerHeight = args.containerHeight,
       cssUri = args.cssUri,
       renderableSourceDataElement = args.renderableSourceDataElement,
+      containerWidth = args.containerWidth,
+      containerHeight = args.containerHeight,
       fitToContainer = args.fitToContainer,
-      customMarkers = args.customMarkers;
-      //customSymbols = args.customSymbols;
+      customMarkers = args.customMarkers,
+      //customSymbols = args.customSymbols,
+      pathway,
+      pathvisioJsContainer,
+      pathwayContainer,
+      svg;
 
-    //var pathvisioJsContainer = container.select('#pathvisiojs-container');
-    //var pathwayContainer = pathvisioJsContainer.select('#pathway-container')
 
     async.waterfall([
       function(callback){
@@ -43,62 +47,45 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
               //preloadDiagramArgs.customSymbols = customSymbols,
               preloadDiagramArgs.cssUri = cssUri;
 
-            pathvisiojs.view.pathwayDiagram.svg.loadPartials(preloadDiagramArgs, function(svg) {
-              callback(null, svg);
+            pathvisiojs.view.pathwayDiagram.svg.loadPartials(preloadDiagramArgs, function(svgTemplate) {
+              pathvisioJsContainer = container.select('#pathvisiojs-container');
+              pathwayContainer = pathvisioJsContainer.select('#pathway-container');
+              svg = svgTemplate;
+
+              if (!svg) {
+                throw new Error("Could not load SVG template.");
+              }
+
+              callback(null);
             });
           },
           pathway: function(callback){
             pathvisiojs.data.pathvisiojsJson.get(renderableSourceDataElement, function(json) {
               pathvisiojs.context = json['@context'];
+
+              if (!json || json === 'fail') {
+                throw new Error("Could not convert input source data to pathvisioJsJson.");
+              }
+
               console.log('json');
               console.log(json);
-              callback(null, json);
+              pathway = json;
+              callback(null);
             })
           }
         },
         function(err, results){
-          var pathway = results.pathway,
-            svg = results.preloadSvg;
-
-          if (!svg) {
-            throw new Error("Missing svg.");
-          }
-          if (!pathway || pathway === 'fail') {
-            throw new Error("Missing pathway.");
-          }
-
           //TODO get pathwayWidth and Height
 
-          callback(null, svg, pathway);
+          callback(null);
         })
       },
-      function(svg, pathway, callback){
+      function(callback){
         pathvisiojs.view.pathwayDiagram.svg.renderFast(svg, pathway, function() {
           callback(null);
         })
       },
       function(callback) {
-        //remove loading gif
-        //TODO move this to pathway-diagram.js
-        diagramContainer.select('img').remove();
-
-        var svgInFocus = false;
-        svg.on("click", function(d, i){
-          svgPanZoom.enableZoom();
-          svgInFocus = true;
-        })
-        .on("mouseenter", function(d, i){
-          if (svgInFocus) {
-            svgPanZoom.enableZoom();
-          }
-        })
-        .on("mouseleave", function(d, i){
-          if (svgInFocus) {
-            svgPanZoom.disableZoom();
-	    svgInFocus = false;
-          }
-        });
-
         var viewport = svg.select('#viewport');
 
         /* not all containers will have a width or height style attribute. this is now done using the same logic
@@ -109,7 +96,7 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
         //*/
         var fitScreenScale;
         if (fitToContainer) {
-          fitAndCenterDiagramWithinViewport(viewport, containerWidth, containerHeight, args.pathway.image.width, args.pathway.image.height);
+          fitAndCenterDiagramWithinViewport(viewport, containerWidth, containerHeight, pathway.image.width, pathway.image.height);
         }
 
         var fitToScreen = d3.select('body').select('#fit-to-screen-control');
@@ -128,11 +115,32 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
         });
 
         svgPanZoom.init({
-          'root': 'svg',
+          //'root': 'svg', //Alex, what is this line for? It doesn't appear to be doing anything and might be intended to be doing what the line below that I added is doing.
+          'selector': 'svg',
           'zoomEnabled': false,
           'minZoom': '0.1',
           'maxZoom': '8.0',
         });
+
+        var svgInFocus = false;
+        svg.on("click", function(d, i){
+          svgPanZoom.enableZoom();
+          svgInFocus = true;
+        })
+        .on("mouseenter", function(d, i){
+          if (svgInFocus) {
+            svgPanZoom.enableZoom();
+          }
+        })
+        .on("mouseleave", function(d, i){
+          if (svgInFocus) {
+            svgPanZoom.disableZoom();
+            svgInFocus = false;
+          }
+        });
+
+
+
         callback(null);
       },
       function(callback){
@@ -189,7 +197,7 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
       }
     ],
     function(err, results) {
-      callback();
+      callback(pathvisioJsContainer, pathwayContainer, svg);
     });
   }
 
@@ -221,7 +229,7 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
           callback(null);
         }
       },
-/*
+      /*
       function(callback) {
         if (!!args.customSymbols) {
           pathvisiojs.view.pathwayDiagram.svg.symbol.loadAllCustom(svg, customSymbols, function() {
@@ -232,7 +240,8 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
           callback(null);
         }
       },
-//*/      function(callback) {
+      //*/      
+      function(callback) {
         if (!!cssUri) {
           d3.text(cssUri, 'text/css', function(data) {
             var defs = svg.select('defs');

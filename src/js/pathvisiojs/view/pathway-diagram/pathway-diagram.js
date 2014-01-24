@@ -151,6 +151,7 @@ pathvisiojs.view.pathwayDiagram = function(){
         var containerWidth = boundingClientRect.width - 40; //account for space for pan/zoom controls,
         var containerHeight = boundingClientRect.height - 20; //account for space for search field;
 
+        /*
         //add loading gif
         var posX = containerWidth/2;
         var posY = containerHeight/2;
@@ -160,6 +161,7 @@ pathvisiojs.view.pathwayDiagram = function(){
         .style('position', "absolute")
         .style('top', posY + "px")
         .style('left', posX + "px");
+        //*/
 
         callback(null, container, containerWidth, containerHeight, renderableSourceDataElement);
       },
@@ -181,8 +183,8 @@ pathvisiojs.view.pathwayDiagram = function(){
           loadDiagramArgs.cssUri = cssUri;
           loadDiagramArgs.customMarkers = customMarkers;
           //loadDiagramArgs.customSymbols = customSymbols;
-          pathvisiojs.view.pathwayDiagram.svg.load(loadDiagramArgs, function() {
-            callback(null, 'img loaded');
+          pathvisiojs.view.pathwayDiagram.svg.load(loadDiagramArgs, function(pathvisioJsContainer, diagramContainer, diagram) {
+            callback(null, pathvisioJsContainer, diagramContainer, diagram);
           });
         }
         else {
@@ -190,6 +192,11 @@ pathvisiojs.view.pathwayDiagram = function(){
             callback(null, 'img loaded');
           });
         }
+      },
+      function(pathvisioJsContainer, diagramContainer, diagram, callback){
+        //remove loading image
+        diagramContainer.select('#loading-icon').remove();
+        callback(null);
       }
     ],
     function(err, results) {
