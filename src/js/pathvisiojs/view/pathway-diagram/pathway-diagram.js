@@ -102,7 +102,6 @@ pathvisiojs.view.pathwayDiagram = function(){
     // Check for minimum required set of parameters
     // ********************************************
 
-
     var containerSelector = args.container,
       sourceData = args.sourceData,
       fitToContainer = args.fitToContainer,
@@ -143,36 +142,24 @@ pathvisiojs.view.pathwayDiagram = function(){
       },
       function(callback){
         // ********************************************
+        // Add loading gif
+        // ********************************************
+        var diagramLoadingIconUri = pathvisiojs.config.diagramLoadingIconUri();
+        var img = pathwayContainer.append('img')
+        .attr('src', diagramLoadingIconUri)
+        .attr('width', 50);
+
+        // ********************************************
         // Get desired dimensions for pathway diagram
         // ********************************************
         var renderableSourceDataElement = getFirstRenderableSourceDataElement(sourceData);
-        callback(null, renderableSourceDataElement);
-      },
-      function(renderableSourceDataElement, callback){
 
         // ********************************************
         // Get desired dimensions for pathway diagram
         // ********************************************
-
         var boundingClientRect = userSpecifiedContainer[0][0].getBoundingClientRect();
         var containerWidth = boundingClientRect.width - 3; //account for space for pan/zoom controls,
         var containerHeight = boundingClientRect.height - 3; //account for space for search field;
-        /* //Alex, pan/zoom controls are removed, so I changed this.
-        var containerWidth = boundingClientRect.width - 40; //account for space for pan/zoom controls,
-        var containerHeight = boundingClientRect.height - 20; //account for space for search field;
-        //*/
-
-        /*
-        //add loading gif
-        var posX = containerWidth/2;
-        var posY = containerHeight/2;
-        var img = container.append('img')
-        .attr('src', "../src/img/loading.gif")
-        .attr('width', 50)
-        .style('position', "absolute")
-        .style('top', posY + "px")
-        .style('left', posX + "px");
-        //*/
 
         callback(null, containerWidth, containerHeight, renderableSourceDataElement);
       },
@@ -186,9 +173,8 @@ pathvisiojs.view.pathwayDiagram = function(){
         loadDiagramArgs.fitToContainer = fitToContainer;
 
         // ********************************************
-        // Check for SVG support. If false, use PNG fallback
+        // Check for SVG support. If false, use static image (png, jpg, gif, etc.) fallback
         // ********************************************
-        
         if (renderableSourceDataElement.selectedViewMethod === 'svg') { // TODO get this working in IE9
           loadDiagramArgs.cssUri = cssUri;
           loadDiagramArgs.customMarkers = customMarkers;
@@ -206,7 +192,9 @@ pathvisiojs.view.pathwayDiagram = function(){
         }
       },
       function(diagram, callback){
-        //remove loading image
+        // ********************************************
+        // Remove loading icon
+        // ********************************************
         pathwayContainer.select('#loading-icon').remove();
 
         // adding this as a signal for e2e tests that the diagram has finished loading 

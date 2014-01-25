@@ -15,6 +15,10 @@ pathvisiojs.config = function() {
     return '../wpi/extensions/PathwayViewer/datasources.txt';
   }
 
+  var diagramLoadingIconUri = function() {
+    return '../src/img/loading.gif';
+  }
+
   var diagramNotAvailableImageUri = function() {
     return '../wpi/extensions/PathwayViewer/img/imageNotAvailable.jpg';
   }
@@ -32,6 +36,7 @@ pathvisiojs.config = function() {
     bridgedbLinkOutsUriStub:bridgedbLinkOutsUriStub,
     bridgedbDatasources:bridgedbDatasources,
     imgDiagramUriStub:imgDiagramUriStub,
+    diagramLoadingIconUri:diagramLoadingIconUri,
     diagramNotAvailableImageUri:diagramNotAvailableImageUri,
     pathwaySearchUriStub:pathwaySearchUriStub
   };

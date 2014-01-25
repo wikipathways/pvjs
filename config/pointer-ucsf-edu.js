@@ -16,6 +16,10 @@ pathvisiojs.config = function() {
     return '../external-data/bridgedb/datasources.txt';
   }
 
+  var diagramLoadingIconUri = function() {
+    return '../src/img/loading.gif';
+  }
+
   var diagramNotAvailableImageUri = function() {
     return '../src/img/imageNotAvailable.jpg';
   }
@@ -33,6 +37,7 @@ pathvisiojs.config = function() {
     bridgedbLinkOutsUriStub:bridgedbLinkOutsUriStub,
     bridgedbDatasources:bridgedbDatasources,
     imgDiagramUriStub:imgDiagramUriStub,
+    diagramLoadingIconUri:diagramLoadingIconUri,
     diagramNotAvailableImageUri:diagramNotAvailableImageUri,
     pathwaySearchUriStub:pathwaySearchUriStub
   };
