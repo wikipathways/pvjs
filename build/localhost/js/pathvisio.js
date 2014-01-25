@@ -60,7 +60,7 @@ pathvisiojs.config = function() {
     return '../external-data/bridgedb/datasources.txt';
   }
 
-  var diagramNotAvailableImageUri = function() {
+  var diagramNotAvailableIconUri = function() {
     // TODO update this link to a URL we control
     return 'http://upload.wikimedia.org/wikipedia/commons/3/3b/Picture_Not_Yet_Available.png';
   }
@@ -83,7 +83,7 @@ pathvisiojs.config = function() {
     bridgedbDatasources:bridgedbDatasources,
     imgDiagramUriStub:imgDiagramUriStub,
     loadingGif:loadingGif,
-    diagramNotAvailableImageUri:diagramNotAvailableImageUri,
+    diagramNotAvailableIconUri:diagramNotAvailableIconUri,
     pathwaySearchUriStub:pathwaySearchUriStub
   };
 }();
@@ -425,8 +425,8 @@ pathvisiojs.data = function(){
 
 pathvisiojs.data.bridgedb = function(){
 
-  var bridgedbLinkOutsUriStub = pathvisiojs.config.bridgedbLinkOutsUriStub();
-  var bridgedbDatasources = pathvisiojs.config.bridgedbDatasources();
+  var bridgedbLinkOutsUriStub = pathvisiojs.config.bridgedbLinkOutsUriStub;
+  var bridgedbDatasources = pathvisiojs.config.bridgedbDatasources;
 
   function getXrefAnnotationDataByDataNode(singleSpecies, id, datasource, label, desc, callback) {
     getDataSources(function(dataSources) {
@@ -4860,7 +4860,7 @@ pathvisiojs.view.annotation = function(){
 
     var detailsSearchUri = annotation.select('#annotation-header-search').select('a')
     .attr('href', function(d) {
-    	return pathvisiojs.config.pathwaySearchUriStub() + d.header;
+    	return pathvisiojs.config.pathwaySearchUriStub + d.header;
      })
      .attr('title', function(d) {return 'Search for pathways containing ' + d.header; });
 
@@ -8669,10 +8669,10 @@ pathvisiojs.view.pathwayDiagram.img = function(){
 
       /*
     if (!!wikiPathwaysId) {
-      imgUri = encodeURI(pathvisiojs.config.imgDiagramUriStub() + wikiPathwaysId + '&revision=' + revision);
+      imgUri = encodeURI(pathvisiojs.config.imgDiagramUriStub + wikiPathwaysId + '&revision=' + revision);
     }
     else {
-      imgUri = pathvisiojs.config.diagramNotAvailableImageUri();
+      imgUri = pathvisiojs.config.diagramNotAvailableIconUri;
     }
     //*/
 

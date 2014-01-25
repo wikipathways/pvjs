@@ -260,8 +260,8 @@ window.onload = function() {
       }
     ];
 //*/
-        console.log('pathvisiojs.config.bridgedbLinkOutsUriStub()');
-        console.log(pathvisiojs.config.bridgedbLinkOutsUriStub());
+        console.log('pathvisiojs.config.bridgedbLinkOutsUriStub');
+        console.log(pathvisiojs.config.bridgedbLinkOutsUriStub);
     var customMarkers = [
       {
         'semanticName': 'arrow',

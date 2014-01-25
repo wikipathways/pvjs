@@ -18,7 +18,7 @@ pathvisiojs.view.pathwayDiagram.img = function(){
 
     if (!imgUri) {
       console.warn('No uri specified for sourceData element.'); //TODO decide whether this should warn or throw an error.
-      imgUri = args.renderableSourceDataElement.uri || pathvisiojs.config.diagramNotAvailableImageUri();
+      imgUri = args.renderableSourceDataElement.uri || pathvisiojs.config.diagramNotAvailableIconUri;
     }
 
     loadImage(
@@ -27,7 +27,7 @@ pathvisiojs.view.pathwayDiagram.img = function(){
         if (img.type === "error") {
           console.warn("Error loading image " + imgUri); //TODO decide whether this should warn or throw an error.
           loadImage(
-            pathvisiojs.config.diagramNotAvailableImageUri(),
+            pathvisiojs.config.diagramNotAvailableIconUri,
             function (img) {
               //changing from d3 selection to html element
               container[0][0].appendChild(img);
@@ -67,7 +67,7 @@ pathvisiojs.view.pathwayDiagram.img = function(){
     var container = args.container,
       containerWidth = parseFloat(args.containerWidth),
       containerHeight = parseFloat(args.containerHeight),
-      imgUri = args.renderableSourceDataElement.uri || pathvisiojs.config.diagramNotAvailableImageUri(),
+      imgUri = args.renderableSourceDataElement.uri || pathvisiojs.config.diagramNotAvailableIconUri,
       img,
       fitScreenScale;
       
@@ -80,7 +80,7 @@ pathvisiojs.view.pathwayDiagram.img = function(){
         insertImage(container, containerWidth, containerHeight, img, imgUri, callback);
       }
       img.onerror = function() {
-        img.src = pathvisiojs.config.diagramNotAvailableImageUri();
+        img.src = pathvisiojs.config.diagramNotAvailableIconUri;
         img.onload = function() {
           console.log(this);
           insertImage(container, containerWidth, containerHeight, img, imgUri, callback);

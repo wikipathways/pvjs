@@ -1,7 +1,7 @@
 pathvisiojs.data.bridgedb = function(){
 
-  var bridgedbLinkOutsUriStub = pathvisiojs.config.bridgedbLinkOutsUriStub();
-  var bridgedbDatasources = pathvisiojs.config.bridgedbDatasources();
+  var bridgedbLinkOutsUriStub = pathvisiojs.config.bridgedbLinkOutsUriStub;
+  var bridgedbDatasources = pathvisiojs.config.bridgedbDatasources;
 
   function getXrefAnnotationDataByDataNode(singleSpecies, id, datasource, label, desc, callback) {
     getDataSources(function(dataSources) {

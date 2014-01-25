@@ -144,7 +144,7 @@ pathvisiojs.view.pathwayDiagram = function(){
         // ********************************************
         // Add loading gif
         // ********************************************
-        var diagramLoadingIconUri = pathvisiojs.config.diagramLoadingIconUri();
+        var diagramLoadingIconUri = pathvisiojs.config.diagramLoadingIconUri;
         var img = pathwayContainer.append('img')
         .attr('src', diagramLoadingIconUri)
         .attr('width', 50);
