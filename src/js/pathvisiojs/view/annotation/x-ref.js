@@ -12,7 +12,7 @@ pathvisiojs.view.annotation.xRef = function(){
       var data = {
           "header": label,
           "description": desc,
-	  "listItems":[pathvisiojs.config.loadingGif()] 
+	  "listItems":[pathvisiojs.config.diagramLoadingIconUri()] 
         };
       pathvisiojs.view.annotation.render(data);
       //then retrieve the bridgedb data
