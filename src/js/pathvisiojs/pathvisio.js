@@ -21,27 +21,18 @@ var pathvisiojs = function(){
       throw new Error('No sourceData uri specified.');
     }
 
-    if (args.hasOwnProperty('bridgedbLinkOutsUriStub')) {
-      pathvisiojs.config.bridgedbLinkOutsUriStub = args.bridgedbLinkOutsUriStub;
-    }
+    var configArray = d3.map(pathvisiojs.config).entries();
+    var updateConfigsAsNeeded = function(configElement, callback) {
+      if (args.hasOwnProperty(configElement.key)) {
+        pathvisiojs.config[configElement.key] = args[configElement.key];
+      }
+      callback(null);
+    };
 
-    if (args.hasOwnProperty('bridgedbDatasources')) {
-      pathvisiojs.config.bridgedbDatasources =  args.bridgedbDatasources;
-    }
-
-    if (args.hasOwnProperty('diagramNotAvailableIconUri')) {
-      pathvisiojs.config.diagramNotAvailableIconUri = args.diagramNotAvailableIconUri;
-    }
-
-    if (args.hasOwnProperty('diagramLoadingIconUri')) {
-      pathvisiojs.config.diagramLoadingIconUri = args.diagramLoadingIconUri;
-    }
-
-    if (args.hasOwnProperty('pathwaySearchUriStub')) {
-      pathvisiojs.config.pathwaySearchUriStub = args.pathwaySearchUriStub;
-    }
-
-    pathvisiojs.view.pathwayDiagram.load(args);
+    async.each(configArray, updateConfigsAsNeeded, function(err){
+      console.log(pathvisiojs.config.bridgedbLinkOutsUriStub);
+      pathvisiojs.view.pathwayDiagram.load(args);
+    });
   }
 
   return {

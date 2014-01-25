@@ -95,6 +95,7 @@ var developmentLoader = function() {
           fileType:'png'
         });
 
+        console.log(parsedInputData);
         callback(parsedInputData);
       }
       else {
@@ -119,6 +120,7 @@ var developmentLoader = function() {
 
         parsedInputData.wpId = gpmlParam;
         parsedInputData.revision = wpRevision;
+        console.log(parsedInputData);
         callback(parsedInputData);
       }
       else {
@@ -266,12 +268,12 @@ var developmentLoader = function() {
     });
   }
 
-  function preload(outsideCallback) {
+  function loadPathvisioJsScripts(outsideCallback) {
     var hostname = decodeURI(window.location.hostname);
 
     var currentUri = document.location;
     var pathname = document.location.pathname;
-    var pathvisiojsRootDirectoryUri = pathname.split('test/compare.html')[0];
+    var pathvisiojsRootDirectoryUri = pathname.split('test/development.html')[0];
     srcDirectoryUri = (pathvisiojsRootDirectoryUri + 'src/');
 
     async.waterfall([
@@ -282,7 +284,7 @@ var developmentLoader = function() {
         });
       },
       function(callback) {
-        if (pathname.indexOf('compare.html') > -1) { //if this is the development version
+        if (pathname.indexOf('development.html') > -1) { //if this is the development version
           var pvjsSourcesDev = pvjsSources.slice(1); //this file is only used in the build process
 
       /*
@@ -329,44 +331,41 @@ var developmentLoader = function() {
         });
       },
       function(parsedInputData, callback) {
-        if (pathname.indexOf('compare.html') > -1) { //if this is the development version
+        if (pathname.indexOf('development.html') > -1) { //if this is the development version
           generateHtmlTemplate(function() {
             generateSvgTemplate(function() {
               console.log(pathvisioNS);
-              callback(null, parsedInputData);
+              outsideCallback(parsedInputData);
             });
           });
         }
         else { //if this is the production version
-          callback(null, parsedInputData);
+          outsideCallback(parsedInputData);
         }
-      },
-      function(parsedInputData, callback) {
-        console.log(parsedInputData);
-        // test for whether uriParamList.gpml is a WikiPathways ID
-        // If it is not a WikiPathways ID, the WikiPathways widget will not be able to load the pathway.
-        if (!!parsedInputData.wpId) {
-          window.setTimeout(function() {
-            $('#current-wikipathways-viewer').prepend('<iframe id="current-wiki-pathways-widget" src="http://www.wikipathways.org/wpi/PathwayWidget.php?id=' + parsedInputData.wpId + '" width="500px" height="500px" />')
-            }, 50);
-        }
-        else {
-          console.warn('GPML data source specified is not a WP ID. WP widget cannot display this GPML data as a pathway image.');
-        }
-
-
-        if (parsedInputData.svgDisabled) {
-          Modernizr.svg = Modernizr.inlinesvg = false;
-          $('#svg-disabled').prop('checked', true);
-        }
-
-        outsideCallback(parsedInputData);
       }
     ]);
   }
 
+  function loadFrames(inputData, callback) {
+    console.log(inputData);
+    window.setTimeout(function() {
+      inputData.forEach(function(inputDataElement) {
+        $('#' + inputDataElement.containerId).prepend('<iframe id="' + inputDataElement.containerId + '-frame" src="' + inputDataElement.frameSrc + '" style="width:inherit; height:inherit; margin:0; " />')
+      });
+      callback();
+    }, 50);
+
+    /*
+    if (parsedInputData.svgDisabled) {
+      Modernizr.svg = Modernizr.inlinesvg = false;
+      $('#svg-disabled').prop('checked', true);
+    }
+    //*/
+  }
+
   return{
-    preload:preload,
+    loadPathvisioJsScripts:loadPathvisioJsScripts,
+    loadFrames:loadFrames,
     parseUriParams:parseUriParams
   };
 }();
