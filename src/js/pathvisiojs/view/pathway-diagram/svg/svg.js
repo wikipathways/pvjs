@@ -62,8 +62,8 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
                 throw new Error("Could not convert input source data to pathvisioJsJson.");
               }
 
-              console.log('json');
-              console.log(json);
+              //console.log('json');
+              //console.log(json);
               pathway = json;
               callback(null);
             })
@@ -274,7 +274,6 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
       throw new Error("No pathway specified.");
     } 
     data = pathvisiojs.utilities.convertToArray(data);
-
     var contextLevelInput = pathvisiojs.utilities.clone(pathvisiojs.context);
     contextLevelInput.dependsOn = "ex:dependsOn";
 
@@ -289,7 +288,13 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
         var renderingArgs = args;
         sortedData.forEach(function(element) {
           renderingArgs.data = element;
-          if (element.renderableType === 'GroupNode') {
+          if (element.renderableType === 'GraphicalLine') {                                                                                        
+            pathvisiojs.view.pathwayDiagram.svg.edge.graphicalLine.render(renderingArgs);                                                          
+          } 
+ 	  else if (element.renderableType === 'Interaction') {
+            pathvisiojs.view.pathwayDiagram.svg.edge.interaction.render(renderingArgs);
+          } 
+          else if (element.renderableType === 'GroupNode') {
             pathvisiojs.view.pathwayDiagram.svg.node.groupNode.render(args, function(groupContainer, groupContents) {
               var groupedElementsArgs = renderingArgs;
               groupedElementsArgs.svg = svg;
@@ -324,20 +329,8 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
               //*/
             });
           }
-          else {
-            if (element.renderableType === 'EntityNode') {
-              pathvisiojs.view.pathwayDiagram.svg.node.EntityNode.render(renderingArgs);
-            }
-            else {
-              if (element.renderableType === 'Interaction') {
-                pathvisiojs.view.pathwayDiagram.svg.edge.interaction.render(renderingArgs);
-              }
-              else {
-                if (element.renderableType === 'GraphicalLine') {
-                  pathvisiojs.view.pathwayDiagram.svg.edge.graphicalLine.render(renderingArgs);
-                }
-              }
-            }
+          else if (element.renderableType === 'EntityNode') {
+            pathvisiojs.view.pathwayDiagram.svg.node.EntityNode.render(renderingArgs);
           }
         });
         callback(null, 'Successfully rendered elements');
@@ -356,8 +349,6 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
       throw new Error("No data entered to render.");
     }
 
-    console.log('first');
-    console.log(new Date());
     async.parallel({
       'firstOrderData': function(callbackInside) {
         var firstOrderFrame = {
@@ -369,8 +360,6 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
       }
     },
     function(err, results) {
-      console.log('second');
-      console.log(new Date());
       var viewport = svg.select('#viewport');
 
       pathvisiojs.view.pathwayDiagram.svg.infoBox.render(viewport, pathway);
@@ -381,36 +370,17 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
       renderSelectedElementsFastArgs.pathway = pathway;
       renderSelectedElementsFastArgs.data = results.firstOrderData;
       renderSelectedElementsFast(renderSelectedElementsFastArgs, function() {
-        console.log('third');
-        console.log(new Date());
         callback(svg);
       });
-    })
+    });
   }
 
   function frameIt(pathway){
     var nf = new Object({'@context': pathvisiojs.context});
     var arr = new Array();
-    if(pathway.DataNode){
-      for (var i=0; i<pathway.DataNode.length; i++){
-        if(!pathway.DataNode[i].isContainedBy){
-          arr.push(pathway.DataNode[i]);
-        }
-      }
-    }
     if(pathway.Shape){
       for (var i=0; i<pathway.Shape.length; i++){
         arr.push(pathway.Shape[i]);
-      }
-    }
-    if(pathway.Label){
-      for (var i=0; i<pathway.Label.length; i++){
-        arr.push(pathway.Label[i]);
-      }
-    }
-    if(pathway.Interaction){
-      for (var i=0; i<pathway.Interaction.length; i++){
-        arr.push(pathway.Interaction[i]);
       }
     }
     if(pathway.GraphicalLine){                                                                                                                         
@@ -418,9 +388,26 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
         arr.push(pathway.GraphicalLine[i]);                                                                                                            
       }                                                                                                                                              
     }     
+    if(pathway.Interaction){
+      for (var i=0; i<pathway.Interaction.length; i++){
+        arr.push(pathway.Interaction[i]);
+      }
+    }
     if(pathway.Group){
       for (var i=0; i<pathway.Group.length; i++){
         arr.push(pathway.Group[i]);
+      }
+    }
+    if(pathway.Label){
+      for (var i=0; i<pathway.Label.length; i++){
+        arr.push(pathway.Label[i]);
+      }
+    }
+    if(pathway.DataNode){
+      for (var i=0; i<pathway.DataNode.length; i++){
+        if(!pathway.DataNode[i].isContainedBy){
+          arr.push(pathway.DataNode[i]);
+        }
       }
     }
     nf['@graph'] = arr; 
