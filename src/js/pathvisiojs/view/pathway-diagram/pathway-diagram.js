@@ -1,36 +1,98 @@
 "use strict";
 
 pathvisiojs.view.pathwayDiagram = function(){
+  // currently just using Gecko (Firefox) list of supported image formats for the HTML img tag:
+  // https://developer.mozilla.org/en-US/docs/Web/HTML/Element/Img
+  // TODO decide what to do if the user specifies an SVG image as a dataSource element
+
+  // the viewMethods are sorted in order of preference - viewMethod with lower index will be used if more than one is returned.
+  var sourceDataFileTypeToViewMethodMappings = {
+    gpml:[
+      'svg' //in the future, could add canvas support
+    ],
+    biopax:[ //biopax is not currently supported
+      'svg' //in the future, could add canvas support
+    ],
+    pdf:[
+      'pdf' //not supported now. this would be future. we might use pdf.js or we could just try using an embed or object tag.
+    ],
+    png:[
+      'img'
+    ],
+    jpg:[
+      'img'
+    ],
+    jpeg:[
+      'img'
+    ],
+    jpe:[
+      'img'
+    ],
+    jif:[
+      'img'
+    ],
+    jfif:[
+      'img'
+    ],
+    jfi:[
+      'img'
+    ],
+    gif:[
+      'img'
+    ],
+    ico:[
+      'img'
+    ],
+    bmp:[
+      'img'
+    ],
+    dib:[
+      'img'
+    ]
+  };
 
   function getFirstRenderableSourceDataElement(sourceData) {
-    var sourceDataElement,
-      results = {};
+    var sourceDataElement, viewMethodsForSourceDataFileType, supportedViewMethodsForSourceDataFileType,
+      results = {},
+      supportedViewMethods = getSupportedViewMethods();
+
     var i = 0;
     do {
       sourceDataElement = sourceData[i];
-      var imageFormat = getImageFormatByDataSourceFileType(sourceDataElement.fileType);
+      viewMethodsForSourceDataFileType = sourceDataFileTypeToViewMethodMappings[sourceDataElement.fileType];
+      supportedViewMethodsForSourceDataFileType = pathvisiojs.utilities.intersect(viewMethodsForSourceDataFileType, supportedViewMethods);
       i += 1;
-    } while ((!imageFormat) && (i < sourceData.length + 1));
+    } while ((supportedViewMethodsForSourceDataFileType.length < 1) && (i < sourceData.length + 1));
 
-    sourceDataElement.imageFormat = imageFormat;
+    sourceDataElement.selectedViewMethod = supportedViewMethodsForSourceDataFileType[0];
     return sourceDataElement;
   }
 
-  function getImageFormatByDataSourceFileType(fileType) {
-    //IE9 currently cannot convert gpml to pathvisiojsJson
-    if ((fileType === 'gpml') && (Modernizr.svg) && (pathvisiojs.utilities.isIE() !== 9)) {
-      return 'svg';
+  //function getImageFormatByDataSourceFileType(fileType) {
+  //this is testing the browser the user is currently using 
+  function getSupportedViewMethods() {
+    //making an assumption that all browsers we care about support the HTML img tag
+
+    var supportedViewMethods = ['img'];
+
+    // TODO support svg that is not inline in the svg viewMethod
+    // The IE9 detection is a temporary hack. It is used because IE9 cannot currently convert GPML to pathvisiojsJson,
+    // so it cannot display the resulting SVG.
+    // TODO get gpml to pathvisiojsJson conversion working with IE9
+    if (Modernizr.inlinesvg && (pathvisiojs.utilities.isIE() !== 9)) {
+      supportedViewMethods.push('svg');
     }
-    else if ((fileType === 'png') || (fileType === 'jpeg') || (fileType === 'gif')) { //TODO update this to use a more complete test for all supported static image formats
-      return 'img';
-    }
-    else {
-      return null;
-    }
+    
+    return supportedViewMethods;
+  }
+
+  function loadHtmlTemplate(userSpecifiedContainer, callback) {
+    userSpecifiedContainer.html(pathvisioNS['tmp/pathvisiojs.html']);
+    var diagramContainer = userSpecifiedContainer.select('#diagram-container');
+    callback(diagramContainer);
   }
 
   function load(args) {
-
     // this function gets a reference to a GPML file and draws a visual representation of the pathway
     // TODO Much of the SVG creation code should be moved to ./svg/svg.js so we just call
     // pathvisiojs.view.pathwayDiagram.svg.load() in the same way as we do for
@@ -40,15 +102,7 @@ pathvisiojs.view.pathwayDiagram = function(){
     // Check for minimum required set of parameters
     // ********************************************
 
-    if (!args.container) {
-      throw new Error('No container selector specified as container for pathvisiojs.');
-    }
-
-    if (!args.sourceData[0].uri) {
-      throw new Error('No sourceData uri specified.');
-    }
-
-    var containerSelector = args.container,
+    var userSpecifiedContainerSelector = args.container,
       sourceData = args.sourceData,
       fitToContainer = args.fitToContainer,
       cssUri = args.cssUri,
@@ -56,157 +110,100 @@ pathvisiojs.view.pathwayDiagram = function(){
       //customSymbols = args.customSymbols,
       highlightNodes = args.highlightNodes,
       hiddenElements = args.hiddenElements,
-      container;
+      userSpecifiedContainer, // the element matching the user-specified selector. the user specified selector is the parameter "container" in the pathvisiojs.load() method.
+      pathvisioJsContainer,
+      diagramContainer;
+
+    if (!sourceData[0].uri) {
+      throw new Error('No sourceData uri specified.');
+    }
+
+    if (!userSpecifiedContainerSelector) {
+      throw new Error('No container selector specified as container for pathvisiojs.');
+    }
+
+    userSpecifiedContainer = d3.select(userSpecifiedContainerSelector);
+    if (userSpecifiedContainer.length !== 1) {
+      throw new Error('Container selector must be matched by exactly one element.');
+    }
 
     // waterfall means that each function completes in order, passing its result to the next
     async.waterfall([
+      function(callback){ // this could be in parallel
+        // ********************************************
+        // Load HTML template
+        // ********************************************
+        var htmlTemplate = loadHtmlTemplate(userSpecifiedContainer, function(thisPathwayContainer) {
+          diagramContainer = thisPathwayContainer;
+          callback(null);
+        });
+      },
       function(callback){
+        // ********************************************
+        // Add loading gif
+        // ********************************************
+        var diagramLoadingIconUri = pathvisiojs.config.diagramLoadingIconUri;
+        var img = diagramContainer.append('img')
+        .attr('id', 'loading-icon')
+        .attr('src', diagramLoadingIconUri)
+        .attr('width', 50);
 
         // ********************************************
         // Get desired dimensions for pathway diagram
         // ********************************************
-
         var renderableSourceDataElement = getFirstRenderableSourceDataElement(sourceData);
 
-        callback(null, renderableSourceDataElement);
-      },
-      function(renderableSourceDataElement, callback){
-
         // ********************************************
         // Get desired dimensions for pathway diagram
         // ********************************************
+        var boundingClientRect = userSpecifiedContainer[0][0].getBoundingClientRect();
+        var containerWidth = boundingClientRect.width - 3; //account for space for pan/zoom controls,
+        var containerHeight = boundingClientRect.height - 3; //account for space for search field;
 
-        var container = d3.select(containerSelector);
-        if (container.length !== 1) {
-          throw new Error('Container selector must be matched by exactly one element.');
-        }
-
-        var boundingClientRect = container[0][0].getBoundingClientRect();
-        var containerWidth = boundingClientRect.width - 40; //account for space for pan/zoom controls,
-        var containerHeight = boundingClientRect.height - 20; //account for space for search field;
-
-        callback(null, container, containerWidth, containerHeight, renderableSourceDataElement);
+        callback(null, containerWidth, containerHeight, renderableSourceDataElement);
       },
-      function(container, containerWidth, containerHeight, renderableSourceDataElement, callback){
-        var svg, pathway, loadDiagramArgs = {};
-
-        loadDiagramArgs.container = container;
+      function(containerWidth, containerHeight, renderableSourceDataElement, callback){
+        var svg, pathway,
+        loadDiagramArgs = {};
+        loadDiagramArgs.container = diagramContainer;
+        loadDiagramArgs.renderableSourceDataElement = renderableSourceDataElement;
         loadDiagramArgs.containerWidth = containerWidth;
         loadDiagramArgs.containerHeight = containerHeight;
         loadDiagramArgs.fitToContainer = fitToContainer;
 
         // ********************************************
-        // Check for SVG support. If false, use PNG fallback
+        // Check for SVG support. If false, use static image (png, jpg, gif, etc.) fallback
         // ********************************************
-
-        // TODO get this working in IE9
-
-        if (renderableSourceDataElement.imageFormat === 'svg') {
-          async.parallel({
-            preloadSvg: function(callback) {
-              var preloadDiagramArgs = {};
-              preloadDiagramArgs.container = container;
-              preloadDiagramArgs.customMarkers = customMarkers;
-//              preloadDiagramArgs.customSymbols = customSymbols;
-              preloadDiagramArgs.cssUri = cssUri;
-              pathvisiojs.view.pathwayDiagram.svg.loadPartials(preloadDiagramArgs, function(svg) {
-                callback(null, svg);
-              });
-            },
-            pathway: function(callback){
-              pathvisiojs.data.pathvisiojsJson.get(renderableSourceDataElement, function(json) {
-                pathvisiojs.context = json['@context'];
-                console.log('json');
-                console.log(json);
-                callback(null, json);
-              })
-            }
-          },
-          function(err, results){
-            pathway = results.pathway;
-
-            if (pathway !== 'fail') {
-              svg = results.preloadSvg,
-
-              loadDiagramArgs.svg = svg;
-              loadDiagramArgs.pathway = pathway;
-
-              pathvisiojs.view.pathwayDiagram.svg.load(loadDiagramArgs, function(svg) {
-
-                ///* Node Highlighter
-
-                var nodeLabels, nodeLabel;
-                if (!!pathway) {
-                  nodeLabels = [];
-                  if (pathway.hasOwnProperty('DataNode')) {
-                    pathway.DataNode.forEach(function(node) {
-                      if (!!node.text) {
-                        nodeLabels.push(node.text.line[0]);
-                      }
-                    });
-
-                    // see http://twitter.github.io/typeahead.js/
-
-                    $('#highlight-by-label-input').typeahead({
-                      name: 'Highlight node in pathway',
-                      local: nodeLabels,
-                      limit: 10
-                    });
-                  }
-
-                  /*
-                     $('.icon-eye-open').click(function(){
-                     var nodeLabel = $("#highlight-by-label-input").val();
-                     if (!nodeLabel) {
-                     console.warn('Error: No data node value entered.');
-                     }
-                     else {
-                     pathvisiojs.view.pathwayDiagram.svg.node.highlightByLabel(svg, nodeLabel);
-                     }
-                     });
-                  //*/
-                  // see http://api.jquery.com/bind/
-                  // TODO get selected value better and make function to handle
-
-                  $( "#highlight-by-label-input" ).bind("typeahead:selected", function() {
-                    nodeLabel = $("#highlight-by-label-input").val();
-                    if (!nodeLabel) {
-                      throw new Error("No data node value entered for type-ahead node highlighter.");
-                    }
-                    else {
-
-                      // TODO refactor this so it calls a generic highlightDataNodeByLabel function that can call
-                      // a highlighter for svg, png, etc. as appropriate.
-
-                      pathvisiojs.view.pathwayDiagram.svg.node.highlightByLabel(svg, pathway, nodeLabel);
-                    }
-                  });
-                  callback(null, 'svg loaded');
-                }
-                else {
-                  callback(null);
-                }
-              })
-            }
-            else {
-              throw new Error('Detected file type does not match specified file type of "gpml"');
-            }
-          })
+        if (renderableSourceDataElement.selectedViewMethod === 'svg') { // TODO get this working in IE9
+          loadDiagramArgs.cssUri = cssUri;
+          loadDiagramArgs.customMarkers = customMarkers;
+          //loadDiagramArgs.customSymbols = customSymbols;
+          //*
+          pathvisiojs.view.pathwayDiagram.svg.load(loadDiagramArgs, function(diagram) {
+            callback(null, diagram);
+          });
+          //*/
         }
         else {
-          loadDiagramArgs.sourceDataElement = renderableSourceDataElement;
-          pathvisiojs.view.pathwayDiagram.img.load(loadDiagramArgs, function() {
-            callback(null, 'img loaded');
+          pathvisiojs.view.pathwayDiagram.img.load(loadDiagramArgs, function(diagram) {
+            callback(null, diagram);
           });
         }
+      },
+      function(diagram, callback){
+        // ********************************************
+        // Remove loading icon
+        // ********************************************
+        diagramContainer.select('#loading-icon').remove();
+
+        // adding this as a signal for e2e tests that the diagram has finished loading 
+        // TODO refactor tests so they don't need this hack.
+        d3.select('body').append('span')
+        .attr('id', 'pathvisiojs-is-loaded');
+        console.log('Pathvisiojs done loading.');
+        callback(null);
       }
-    ],
-    function(err, results) {
-      // adding this as a signal that the process is done
-      d3.select('body').append('span')
-      .attr('id', 'pathvisiojs-is-loaded');
-      console.log('Pathvisiojs done loading.');
-    });
+    ]);
   }
 
   return{

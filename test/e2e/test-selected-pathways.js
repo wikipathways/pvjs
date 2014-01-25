@@ -29,7 +29,7 @@ describe('myTest', function() {
   });
 });
 
-ptor.get(baseUri + "test/compare.html?gpml=WP2545").
+ptor.get(baseUri + "test/development.html?gpml=WP2545").
   then(function() {
     console.log('************** running anchors rendering test protocol...');
     return ptor.wait(forElementToBePresent(by.css('#pathvisiojs-is-loaded')), 30 * 1000);
@@ -114,7 +114,7 @@ ptor.get(baseUri + "test/compare.html?gpml=WP2545").
   }).
   then(function() {
     console.log('************** running citations rendering test protocol...');
-    ptor.get(baseUri + "test/compare.html?gpml=WP2605");
+    ptor.get(baseUri + "test/development.html?gpml=WP2605");
     return ptor.wait(forElementToBePresent(by.css('#pathvisiojs-is-loaded')), 30 * 1000);
   }).
   then(function() {
@@ -140,7 +140,7 @@ ptor.get(baseUri + "test/compare.html?gpml=WP2545").
   }).
   then(function() {
     console.log('************** running shapes rendering test protocol...');
-    ptor.get(baseUri + "test/compare.html?gpml=WP2554");
+    ptor.get(baseUri + "test/development.html?gpml=WP2554");
     return ptor.wait(forElementToBePresent(by.css('#pathvisiojs-is-loaded')), 30 * 1000);
   }).
   /*
@@ -159,7 +159,7 @@ ptor.get(baseUri + "test/compare.html?gpml=WP2545").
   //*/
   then(function() {
     console.log('************** running interactions rendering test protocol...');
-    ptor.get(baseUri + "test/compare.html?gpml=WP2557");
+    ptor.get(baseUri + "test/development.html?gpml=WP2557");
     return ptor.wait(forElementToBePresent(by.css('#pathvisiojs-is-loaded')), 30 * 1000);
   }).
 /*
@@ -182,7 +182,7 @@ ptor.get(baseUri + "test/compare.html?gpml=WP2545").
     /*
   then(function() {
     console.log('************** running curves rendering test protocol...');
-    ptor.get(baseUri + "test/compare.html?gpml=WP2546");
+    ptor.get(baseUri + "test/development.html?gpml=WP2546");
   }).
   then(function() {
     return ptor.wait(forElementToBePresent(by.css('#pathvisiojs-is-loaded')), 30 * 1000);
@@ -204,7 +204,7 @@ ptor.get(baseUri + "test/compare.html?gpml=WP2545").
   }).
   then(function() {
     console.log('************** running elbows rendering test protocol...');
-    ptor.get(baseUri + "test/compare.html?gpml=WP2548");
+    ptor.get(baseUri + "test/development.html?gpml=WP2548");
   }).
   then(function() {
     return ptor.wait(forElementToBePresent(by.css('#pathvisiojs-is-loaded')), 30 * 1000);
@@ -227,7 +227,7 @@ ptor.get(baseUri + "test/compare.html?gpml=WP2545").
   //*/
   then(function() {
     console.log('************** running groups rendering test protocol...');
-    ptor.get(baseUri + "test/compare.html?gpml=WP2551");
+    ptor.get(baseUri + "test/development.html?gpml=WP2551");
     return ptor.wait(forElementToBePresent(by.css('#pathvisiojs-is-loaded')), 30 * 1000);
   }).
   then(function() {
@@ -277,7 +277,7 @@ ptor.get(baseUri + "test/compare.html?gpml=WP2545").
   }).
   then(function() {
     console.log('************** attempting to render pathway "WP1"...');
-    ptor.get(baseUri + "test/compare.html?gpml=WP1");
+    ptor.get(baseUri + "test/development.html?gpml=WP1");
     return ptor.wait(forElementToBePresent(by.css('#pathvisiojs-is-loaded')), 30 * 1000);
   }).
     /* even though this is actually working, the test fails. not sure how to test for

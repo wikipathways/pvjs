@@ -37,7 +37,7 @@ var pathwayIds = ["WP1","WP10","WP100","WP1000","WP1001","WP1002","WP1004","WP10
 //*/
 
 pathwayIds.forEach(function(pathwayId) {
-  ptor.get(baseUri + "test/compare.html?gpml=" + pathwayId).
+  ptor.get(baseUri + "test/development.html?gpml=" + pathwayId).
     then(function() {
       return ptor.wait(forElementToBePresent(by.css('#pathvisiojs-is-loaded')), 20 * 1000);
     }).

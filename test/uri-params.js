@@ -126,7 +126,7 @@ var uriParams = function() {
         results.uri = PathwayViewer_viewers[0].gpml.gpmlUri; // TODO we are not handling multiple pathways on one page here
       }
       else {
-        results.uri = pathvisiojs.config.gpmlSourceUriStub() + wpId + '&rev=' + revision;
+        results.uri = pathvisiojs.config.gpmlSourceUriStub + wpId + '&rev=' + revision;
       }
       //results.cached = 'https://pathways.firebaseio.com/' + wpId + '.json';
       results.type = 'GPML';

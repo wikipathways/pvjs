@@ -10,8 +10,8 @@ var selectedConfigFileName = 'default';
 var pvjsSources = [
   'tmp/pathvisiojs.js', //we only use this one in the Gruntfile, not in development mode in test/compare.js,
   'src/js/pathvisiojs/pathvisio.js',
-  'config/' + selectedConfigFileName + '.js', //this gets overwritten by serverSpecificJsConfigFileUrl in development mode in test/compare.js,
   'src/js/pathvisiojs/utilities.js',
+  'config/default.js',
   'src/js/pathvisiojs/data/data.js',
   'src/js/pathvisiojs/data/bridgedb/bridgedb.js',
   'src/js/pathvisiojs/data/bridgedb/data-sources.js',
@@ -126,10 +126,6 @@ grunt.initConfig({
         distCss: {
             src:  [ "<banner>" ].concat(pvjsCssSources),
             dest: distributionCss
-        },
-        pathwayDiagramCss: {
-            src:  [ "<banner>" ].concat(['src/css/pathway-diagram.css']),
-            dest: "build/" + selectedConfigFileName + "/css/pathway-diagram.css"
         }
     },
     uglify: {
