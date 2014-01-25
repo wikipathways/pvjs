@@ -21,7 +21,7 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
   }
 
   function load(args, callback) {
-    var pathwayContainer = args.container, //a d3 selection corresponding to the containing element in the parent document
+    var diagramContainer = args.container, //a d3 selection corresponding to the containing element in the parent document
       containerWidth = args.containerWidth,
       containerHeight = args.containerHeight,
       cssUri = args.cssUri,
@@ -32,7 +32,7 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
       customMarkers = args.customMarkers,
       //customSymbols = args.customSymbols,
       pathway,
-      pathwayContainer,
+      diagramContainer,
       svg;
 
 
@@ -41,7 +41,7 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
         async.parallel({
           preloadSvg: function(callback) {
             var preloadDiagramArgs = {};
-              preloadDiagramArgs.container = pathwayContainer;
+              preloadDiagramArgs.container = diagramContainer;
               preloadDiagramArgs.customMarkers = customMarkers,
               //preloadDiagramArgs.customSymbols = customSymbols,
               preloadDiagramArgs.cssUri = cssUri;
@@ -87,7 +87,7 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
 
         /* not all containers will have a width or height style attribute. this is now done using the same logic
          * but uses boundingClientRect() instead. the code is located in pathway-diagram.js
-        var container = d3.select('body').select('#pathway-container');
+        var container = d3.select('body').select('#diagram-container');
         var containerWidth = parseInt(container.style("width")) - 40; //account for space for pan/zoom controls
         var containerHeight = parseInt(container.style("height")) -20; //account for space for search field
         //*/
@@ -196,16 +196,16 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
   }
 
   function loadPartials(args, callbackOutside) {
-    var pathwayContainer = args.container,
+    var diagramContainer = args.container,
       customMarkers = args.customMarkers,
       //customSymbols = args.customSymbols,
       cssUri = args.cssUri;
 
     async.series([
       function(callback) {
-        pathwayContainer.html(pathvisioNS['tmp/pathvisiojs.svg']);
+        diagramContainer.html(pathvisioNS['tmp/pathvisiojs.svg']);
 
-        svg = pathwayContainer.select('#pathvisiojs-diagram')
+        svg = diagramContainer.select('#pathvisiojs-diagram')
         svg.attr('style', 'display: inline; width: inherit; min-width: inherit; max-width: inherit; height: inherit; min-height: inherit; max-height: inherit; ') // TODO this should be moved to the CSS file
         .attr('preserveAspectRatio', 'xMidYMid');
 
