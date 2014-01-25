@@ -41,7 +41,7 @@ pathvisiojs.view.pathwayDiagram.svg.node.EntityNode = function(){
           })
 	  .on("mouseup", function(d,i) {
 	    if (notDragged) {
-	 	pathvisiojs.view.annotation.xRef.render(args.pathway.Organism, d['DatasourceReference'].ID, d['DatasourceReference'].Database, d.text.line.join(' '), d.dataNodeType); //that's capital 'O' Organism from GPML vocab
+        pathvisiojs.view.annotation.xRef.render(args.pathway.Organism, d['DatasourceReference'].ID, d['DatasourceReference'].Database, d.text.line.join(' '), d.dataNodeType); //that's capital 'O' Organism from GPML vocab
 	    }
 	  });
         }

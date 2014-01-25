@@ -99,36 +99,20 @@ body {
   margin: 0;
 }
 
-.x-min {
-  display: block;
-  margin-left: 0;
-}
-
-.x-mid {
-  display: block;
-  margin-left: auto;
-  margin-right: auto
-}
-
-.x-max {
-  display: block;
-  margin-right: 0
-}
-
-.y-min {
-  min-height: 10em;
-  display: table-cell;
-  vertical-align: top
-}
-
-.y-mid {
-  min-height: 10em;
+#diagram-container {
+  width: inherit;
+  min-width: inherit;
+  max-width: inherit;
+  height: inherit;
+  min-height: inherit;
+  max-height: inherit;
+  position: absolute; 
   display: table-cell;
   vertical-align: middle
 }
 
-.y-max {
-  min-height: 10em;
-  display: table-cell;
-  vertical-align: bottom
+#diagram-container > * {
+  display: block;
+  margin-left: auto;
+  margin-right: auto
 }

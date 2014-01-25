@@ -232,7 +232,7 @@
                         results.svg.documentElement.setAttribute('style', 'display: none; ');
                         results.svg.documentElement.setAttribute('width', '500px');
                         results.svg.documentElement.setAttribute('height', '500px');
-                        var pathwayContainer = results.html.querySelector('#pathway-container').appendChild(results.svg.documentElement)
+                        var diagramContainer = results.html.querySelector('#diagram-container').appendChild(results.svg.documentElement)
 
                         var oSerializer = new XMLSerializer();
                         pathvisioNS['tmp/pathvisiojs.html'] = oSerializer.serializeToString(results.html);

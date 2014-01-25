@@ -4,6 +4,8 @@ var pvjsSources;
 var pathvisioNS = [];
 
 var developmentLoader = function() {
+  var oSerializer = new XMLSerializer();
+
   /* *******************
   /* Get the desired GPML file URL or WikiPathways ID from the URL parameters.
   /* *******************/
@@ -76,8 +78,6 @@ var developmentLoader = function() {
     var svgDisabled = parsedInputData.svgDisabled = uriParams['svg-disabled'] || false;
     var gpmlParam = uriParams.gpml; // this might be equal to the value of uriParams.gpml, but it might not.
 
-
-
     var wpId, wpRevision, gpmlUri, pngUri;
 
     if (pathvisiojs.utilities.isUri(gpmlParam)) {
@@ -87,12 +87,13 @@ var developmentLoader = function() {
           fileType:'gpml'
         });
 
-        pngUri = pathvisiojs.config.diagramNotAvailableImageUri();
+        pngUri = pathvisiojs.config.diagramNotAvailableIconUri;
         parsedInputData.sourceData.push({
           uri:pngUri,
           fileType:'png'
         });
 
+        console.log(parsedInputData);
         callback(parsedInputData);
       }
       else {
@@ -109,7 +110,7 @@ var developmentLoader = function() {
           fileType:'gpml'
         });
 
-        pngUri = encodeURI(pathvisiojs.config.imgDiagramUriStub() + gpmlParam + '&revision=' + wpRevision);
+        pngUri = encodeURI('http://www.wikipathways.org/wpi//wpi.php?action=downloadFile&type=png&pwTitle=Pathway:' + gpmlParam + '&revision=' + wpRevision);
         parsedInputData.sourceData.push({
           uri:pngUri,
           fileType:'png'
@@ -117,6 +118,7 @@ var developmentLoader = function() {
 
         parsedInputData.wpId = gpmlParam;
         parsedInputData.revision = wpRevision;
+        console.log(parsedInputData);
         callback(parsedInputData);
       }
       else {
@@ -142,7 +144,7 @@ var developmentLoader = function() {
         gpmlUri = PathwayViewer_viewers[0].gpml.gpmlUri; // TODO we are not handling multiple pathways on one page here
       }
       else {
-        gpmlUri = pathvisiojs.config.gpmlSourceUriStub() + wpId + '&rev=' + revision;
+        gpmlUri = 'http://pointer.ucsf.edu/d3/r/data-sources/gpml.php?id=' + wpId + '&rev=' + revision;
       }
     }
     else {
@@ -205,12 +207,60 @@ var developmentLoader = function() {
     location.href = targetUri;
   }
 
-  function generateHtmlView(callback) {
-    d3.html(srcDirectoryUri + 'pathvisiojs.html', function(html) {
-      var svg = html.querySelector('#pathway-svg');
-      svg.setAttribute('style', 'display: none; ');
+  function generateSvgTemplate(callback) {
+    var docFragment = document.createDocumentFragment();
+    var svg = d3.select(docFragment).append('svg').
+    attr('id', 'pathvisiojs-diagram').
+    attr('version', '1.1').
+    attr('baseProfile', 'full').
+    attr('xmlns', 'http://www.w3.org/2000/svg').
+    attr('xmlns:xmlns:xlink', 'http://www.w3.org/1999/xlink').
+    attr('xmlns:xmlns:ev', 'http://www.w3.org/2001/xml-events').
+    attr('width', '100%').
+    attr('height', '100%').
+    attr('style', 'display: none; ');
 
-      var oSerializer = new XMLSerializer();
+    var g = svg.append('g')
+
+    var title = svg.append('title').
+    text('pathvisiojs diagram');
+
+    var desc = g.append('desc').
+    text('This SVG file contains all the graphical elements (markers and symbols in defs as well as\nstyle data) used by the program pathvisiojs, which has two components:\n1) a viewer for transforming GPML biological pathway data into an SVG visual representation and\n2) an editor for creating both views and models for biological pathways.');
+
+    var defs = svg.append('defs');
+
+    var filter = svg.append('filter').
+    attr('id', 'highlight').
+    attr('width', '150%').
+    attr('height', '150%');
+
+    filter.append('feOffset').
+    attr('result', 'offOut').
+    attr('in', 'SourceGraphic').
+    attr('dx', '30').
+    attr('dy', '30');
+
+    filter.append('feGaussianBlur').
+    attr('result', 'blurOut').
+    attr('in', 'offOut').
+    attr('stdDeviation', '10');
+
+    filter.append('feBlend').
+    attr('in', 'SourceGraphic').
+    attr('in2', 'blurOut').
+    attr('mode', 'normal');
+
+    var viewport = svg.append('g').
+    attr('id', 'viewport');
+
+    var oSerializer = new XMLSerializer();
+    pathvisioNS['tmp/pathvisiojs.svg'] = oSerializer.serializeToString(svg[0][0]);
+    callback();
+  }
+
+  function generateHtmlTemplate(callback) {
+    d3.html(srcDirectoryUri + 'pathvisiojs.html', function(html) {
       pathvisioNS['tmp/pathvisiojs.html'] = oSerializer.serializeToString(html);
       callback();
     });
@@ -221,9 +271,8 @@ var developmentLoader = function() {
 
     var currentUri = document.location;
     var pathname = document.location.pathname;
-    var pathvisiojsRootDirectoryUri = pathname.split('test/compare.html')[0];
+    var pathvisiojsRootDirectoryUri = pathname.split('test/development.html')[0];
     srcDirectoryUri = (pathvisiojsRootDirectoryUri + 'src/');
-
 
     async.waterfall([
       function(callback) {
@@ -233,9 +282,10 @@ var developmentLoader = function() {
         });
       },
       function(callback) {
-        if (pathname.indexOf('compare.html') > -1) { //if this is the development version
+        if (pathname.indexOf('development.html') > -1) { //if this is the development version
           var pvjsSourcesDev = pvjsSources.slice(1); //this file is only used in the build process
 
+      /*
           // In dev mode, different servers will use different configs.
           // The code below sets this config file.
           // For production, we will use default.js for our default config settings and
@@ -260,6 +310,7 @@ var developmentLoader = function() {
           serverSpecificJsConfigFileName = strcase.paramCase(serverSpecificJsConfigFileName);
           pvjsSourcesDev[1] = 'config/' + serverSpecificJsConfigFileName + '.js';
 
+      //*/
           pvjsSourcesDev = pvjsSourcesDev.map(function(source) {
             return '../' + source;
           });
@@ -278,41 +329,41 @@ var developmentLoader = function() {
         });
       },
       function(parsedInputData, callback) {
-        if (pathname.indexOf('compare.html') > -1) { //if this is the development version
-          generateHtmlView(function() {
-            callback(null, parsedInputData);
+        if (parsedInputData.svgDisabled) {
+          Modernizr.svg = Modernizr.inlinesvg = false;
+          $('#svg-disabled').prop('checked', true);
+        }
+        if (pathname.indexOf('development.html') > -1) { //if this is the development version
+          generateHtmlTemplate(function() {
+            generateSvgTemplate(function() {
+              console.log(pathvisioNS);
+              outsideCallback(parsedInputData);
+            });
           });
         }
         else { //if this is the production version
-          callback(null, parsedInputData);
+          outsideCallback(parsedInputData);
         }
-      },
-      function(parsedInputData, callback) {
-        console.log(parsedInputData);
-        // test for whether uriParamList.gpml is a WikiPathways ID
-        // If it is not a WikiPathways ID, the WikiPathways widget will not be able to load the pathway.
-        if (!!parsedInputData.wpId) {
-          window.setTimeout(function() {
-            $('#current-wikipathways-viewer').prepend('<iframe id="current-wiki-pathways-widget" src="http://www.wikipathways.org/wpi/PathwayWidget.php?id=' + parsedInputData.wpId + '" width="500px" height="500px" />')
-            }, 50);
-        }
-        else {
-          console.warn('GPML data source specified is not a WP ID. WP widget cannot display this GPML data as a pathway image.');
-        }
-
-
-        if (parsedInputData.svgDisabled) {
-          Modernizr.svg = false;
-          $('#svg-disabled').prop('checked', true);
-        }
-
-        outsideCallback(parsedInputData);
       }
     ]);
   }
 
+  function loadFrames(inputData, callback) {
+    console.log(inputData);
+    window.setTimeout(function() {
+      inputData.forEach(function(inputDataElement) {
+        $('#' + inputDataElement.containerId).prepend('<iframe id="' + inputDataElement.containerId + '-frame" src="' + inputDataElement.frameSrc + '" style="width:inherit; height:inherit; margin:0; " />')
+      });
+      callback();
+    }, 50);
+
+    //*
+    //*/
+  }
+
   return{
     preload:preload,
+    loadFrames:loadFrames,
     parseUriParams:parseUriParams
   };
 }();
@@ -322,7 +373,7 @@ var developmentLoader = function() {
 /* *******************/
 
 var getPathvisiojsHtmlTemplate = function() {
-  var svg = d3.select('#pathway-svg');
+  var svg = d3.select('#pathvisiojs-diagram');
   svg.select('#viewport').selectAll('*').remove();
   var marker, oldMarkerId, newMarkerId;
   var markers = svg.selectAll('marker');
