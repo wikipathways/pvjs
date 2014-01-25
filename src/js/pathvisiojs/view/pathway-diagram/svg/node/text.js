@@ -100,7 +100,7 @@ pathvisiojs.view.pathwayDiagram.svg.node.text = function(){
       return 'text-line' + i;
     })
     .attr("x", text.cache.x)
-    .attr("y", function (d, i) { return (i - (textLineCount - 1)/2) * 1 + 'em';})
+    .attr("y", function (d, i) { return (i - (textLineCount - 1)/2) * 1.1 + 'em';})
     .attr("alignment-baseline", text.cache.alignmentBaseline) 
     .attr("text-anchor", text.cache.textAnchor)
     .text(function (d) { return d; });
