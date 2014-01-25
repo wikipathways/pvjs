@@ -88,8 +88,8 @@ pathvisiojs.view.pathwayDiagram = function(){
 
   function loadHtmlTemplate(userSpecifiedContainer, callback) {
     userSpecifiedContainer.html(pathvisioNS['tmp/pathvisiojs.html']);
-    var pathwayContainer = userSpecifiedContainer.select('#pathway-container');
-    callback(pathwayContainer);
+    var diagramContainer = userSpecifiedContainer.select('#diagram-container');
+    callback(diagramContainer);
   }
 
   function load(args) {
@@ -102,7 +102,7 @@ pathvisiojs.view.pathwayDiagram = function(){
     // Check for minimum required set of parameters
     // ********************************************
 
-    var containerSelector = args.container,
+    var userSpecifiedContainerSelector = args.container,
       sourceData = args.sourceData,
       fitToContainer = args.fitToContainer,
       cssUri = args.cssUri,
@@ -111,20 +111,20 @@ pathvisiojs.view.pathwayDiagram = function(){
       highlightNodes = args.highlightNodes,
       hiddenElements = args.hiddenElements,
       pathvisioJsContainer,
-      pathwayContainer,
+      diagramContainer,
       userSpecifiedContainer, // the element matching the user-specified selector. the user specified selector is the parameter "container" in the pathvisiojs.load() method.
       pathvisioJsContainer,
-      pathwayContainer;
+      diagramContainer;
 
     if (!sourceData[0].uri) {
       throw new Error('No sourceData uri specified.');
     }
 
-    if (!containerSelector) {
+    if (!userSpecifiedContainerSelector) {
       throw new Error('No container selector specified as container for pathvisiojs.');
     }
 
-    userSpecifiedContainer = d3.select(containerSelector);
+    userSpecifiedContainer = d3.select(userSpecifiedContainerSelector);
     if (userSpecifiedContainer.length !== 1) {
       throw new Error('Container selector must be matched by exactly one element.');
     }
@@ -136,7 +136,7 @@ pathvisiojs.view.pathwayDiagram = function(){
         // Load HTML template
         // ********************************************
         var htmlTemplate = loadHtmlTemplate(userSpecifiedContainer, function(thisPathwayContainer) {
-          pathwayContainer = thisPathwayContainer;
+          diagramContainer = thisPathwayContainer;
           callback(null);
         });
       },
@@ -145,7 +145,7 @@ pathvisiojs.view.pathwayDiagram = function(){
         // Add loading gif
         // ********************************************
         var diagramLoadingIconUri = pathvisiojs.config.diagramLoadingIconUri;
-        var img = pathwayContainer.append('img')
+        var img = diagramContainer.append('img')
         .attr('src', diagramLoadingIconUri)
         .attr('width', 50);
 
@@ -166,7 +166,7 @@ pathvisiojs.view.pathwayDiagram = function(){
       function(containerWidth, containerHeight, renderableSourceDataElement, callback){
         var svg, pathway,
         loadDiagramArgs = {};
-        loadDiagramArgs.container = pathwayContainer;
+        loadDiagramArgs.container = diagramContainer;
         loadDiagramArgs.renderableSourceDataElement = renderableSourceDataElement;
         loadDiagramArgs.containerWidth = containerWidth;
         loadDiagramArgs.containerHeight = containerHeight;
@@ -195,7 +195,7 @@ pathvisiojs.view.pathwayDiagram = function(){
         // ********************************************
         // Remove loading icon
         // ********************************************
-        pathwayContainer.select('#loading-icon').remove();
+        diagramContainer.select('#loading-icon').remove();
 
         // adding this as a signal for e2e tests that the diagram has finished loading 
         // TODO refactor tests so they don't need this hack.
