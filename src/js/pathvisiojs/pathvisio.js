@@ -8,14 +8,14 @@ var pathvisiojs = function(){
     console.log(args);
 
     // for now, load will just load a visual representation of a pathway, but
-    // this could change in the future
+    // this could change in the future if we add capabilities for analytics or data conversion.
 
     // ********************************************
     // Check that required parameters are present
     // ********************************************
 
     if (!args.container) {
-      throw new Error('No container selector specified as container.');
+      throw new Error('No container selector specified to indicate where to insert the diagram.');
     }
     if (!args.sourceData[0].uri) {
       throw new Error('No sourceData uri specified.');

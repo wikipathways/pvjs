@@ -133,12 +133,12 @@ body {
   vertical-align: bottom
 }
 
-#pathway-container {
+#diagram-container {
   display: table-cell;
   vertical-align: middle
 }
 
-#pathway-container > * {
+#diagram-container > * {
   display: block;
   margin-left: auto;
   margin-right: auto
