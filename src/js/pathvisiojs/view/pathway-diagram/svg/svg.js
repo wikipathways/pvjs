@@ -96,7 +96,7 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
 
         var fitToScreen = d3.select('body').select('#fit-to-screen-control');
         fitToScreen.on("click", function(d,i){
-          fitAndCenterDiagramWithinViewport(viewport, containerWidth, containerHeight, args.pathway.image.width, args.pathway.image.height);
+          fitAndCenterDiagramWithinViewport(viewport, containerWidth, containerHeight, pathway.image.width, pathway.image.height);
         });
 
         var fullscreen = d3.select('body').select('#fullscreen-control');
