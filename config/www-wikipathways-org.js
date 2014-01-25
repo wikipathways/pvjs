@@ -1,42 +1,10 @@
 "use strict";
 
-pathvisiojs.config = function() {
-  var gpmlSourceUriStub = function() {
-    return 'http://www.wikipathways.org//wpi/wpi.php?action=downloadFile&type=gpml&pwTitle=Pathway:';
-  }
-
-  var bridgedbLinkOutsUrlStub = function() {
-    return '../wpi/extensions/bridgedb.php/';
-  }
-
-  var bridgedbDatasources = function() {
-    // TODO this should be replaced with bridgedb webservice call, when made available
-    return '../wpi/extensions/PathwayViewer/datasources.txt';
-  }
-
-  var diagramLoadingIconUri = function() {
-    return '../src/img/loading.gif';
-  }
-
-  var diagramNotAvailableImageUri = function() {
-    return '../wpi/extensions/PathwayViewer/img/imageNotAvailable.jpg';
-  }
-
-  var imgDiagramUriStub = function() {
-    return 'http://www.wikipathways.org/wpi//wpi.php?action=downloadFile&type=png&pwTitle=Pathway:';
-  }
-
-  var pathwaySearchUriStub = function() {
-    return 'http://www.wikipathways.org//index.php?title=Special:SearchPathways&doSearch=1&query=';
-  }
-
-  return {
-    gpmlSourceUriStub:gpmlSourceUriStub,
-    bridgedbLinkOutsUrlStub:bridgedbLinkOutsUrlStub,
-    bridgedbDatasources:bridgedbDatasources,
-    imgDiagramUriStub:imgDiagramUriStub,
-    diagramLoadingIconUri:diagramLoadingIconUri,
-    diagramNotAvailableImageUri:diagramNotAvailableImageUri,
-    pathwaySearchUriStub:pathwaySearchUriStub
-  };
-}();
+pathvisiojs.config = {};
+pathvisiojs.config.gpmlSourceUriStub = 'http://www.wikipathways.org//wpi/wpi.php?action=downloadFile&type=gpml&pwTitle=Pathway:';
+pathvisiojs.config.bridgedbLinkOutsUrlStub = '../wpi/extensions/bridgedb.php/';
+pathvisiojs.config.bridgedbDatasources = '../wpi/extensions/PathwayViewer/datasources.txt';
+pathvisiojs.config.diagramLoadingIconUri = '../src/img/loading.gif';
+pathvisiojs.config.diagramNotAvailableIconUri = '../wpi/extensions/PathwayViewer/img/imageNotAvailable.jpg';
+pathvisiojs.config.imgDiagramUriStub = 'http://www.wikipathways.org/wpi//wpi.php?action=downloadFile&type=png&pwTitle=Pathway:';
+pathvisiojs.config.pathwaySearchUriStub = 'http://www.wikipathways.org//index.php?title=Special:SearchPathways&doSearch=1&query=';

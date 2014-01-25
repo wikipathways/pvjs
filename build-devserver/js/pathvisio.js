@@ -24,7 +24,7 @@ var pathvisiojs = function(){
         results.uri = PathwayViewer_viewers[0].gpml.gpmlUrl;
       }
       else {
-        results.uri = pathvisiojs.config.gpmlSourceUriStub() + wikiPathwaysId + '&rev=' + revision;
+        results.uri = pathvisiojs.config.gpmlSourceUriStub + wikiPathwaysId + '&rev=' + revision;
       }
       //results.cached = 'https://pathways.firebaseio.com/' + wikiPathwaysId + '.json';
       results.type = 'GPML';
@@ -169,7 +169,7 @@ pathvisiojs.config = function() {
     return '../external-data/bridgedb/datasources.txt';
   }
 
-  var diagramNotAvailableImageUri = function() {
+  var diagramNotAvailableIconUri = function() {
     // TODO update this link to a URL we control
     return 'http://upload.wikimedia.org/wikipedia/commons/3/3b/Picture_Not_Yet_Available.png';
   }
@@ -187,7 +187,7 @@ pathvisiojs.config = function() {
     bridgedbLinkOutsUrlStub:bridgedbLinkOutsUrlStub,
     bridgedbDatasources:bridgedbDatasources,
     imgDiagramUriStub:imgDiagramUriStub,
-    diagramNotAvailableImageUri:diagramNotAvailableImageUri,
+    diagramNotAvailableIconUri:diagramNotAvailableIconUri,
     pathwaySearchUriStub:pathwaySearchUriStub
   };
 }();
@@ -477,7 +477,7 @@ pathvisiojs.data = {};
 pathvisiojs.data.bridgedb = function(){
 
   var bridgedbLinkOutsUrlStub = pathvisiojs.config.bridgedbLinkOutsUrlStub();
-  var bridgedbDatasources = pathvisiojs.config.bridgedbDatasources();
+  var bridgedbDatasources = pathvisiojs.config.bridgedbDatasources;
 
   function getXrefAnnotationDataByDataNode(singleSpecies, id, datasource, label, desc, callback) {
     getDataSources(function(dataSources) {
@@ -4829,7 +4829,7 @@ pathvisiojs.view.annotation = function(){
 
     var detailsSearchUri = annotation.select('#annotation-header-search').select('a')
     .attr('href', function(d) {
-    	return pathvisiojs.config.pathwaySearchUriStub() + d.header;
+    	return pathvisiojs.config.pathwaySearchUriStub + d.header;
      })
      .attr('title', function(d) {return 'Search for pathways containing ' + d.header; });
 
@@ -9425,10 +9425,10 @@ pathvisiojs.view.pathwayDiagram.png = function(){
       fitScreenScale;
 
     if (!!wikiPathwaysId) {
-      pngUrl = encodeURI(pathvisiojs.config.imgDiagramUriStub() + wikiPathwaysId + '&revision=' + revision);
+      pngUrl = encodeURI(pathvisiojs.config.imgDiagramUriStub + wikiPathwaysId + '&revision=' + revision);
     }
     else {
-      pngUrl = pathvisiojs.config.diagramNotAvailableImageUri();
+      pngUrl = pathvisiojs.config.diagramNotAvailableIconUri;
     }
     window.setTimeout(function() {
       png = document.createElement('img');
