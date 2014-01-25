@@ -4,8 +4,6 @@ var pvjsSources;
 var pathvisioNS = [];
 
 var developmentLoader = function() {
-
-
   var oSerializer = new XMLSerializer();
 
   /* *******************
@@ -268,7 +266,7 @@ var developmentLoader = function() {
     });
   }
 
-  function loadPathvisioJsScripts(outsideCallback) {
+  function preload(outsideCallback) {
     var hostname = decodeURI(window.location.hostname);
 
     var currentUri = document.location;
@@ -331,6 +329,10 @@ var developmentLoader = function() {
         });
       },
       function(parsedInputData, callback) {
+        if (parsedInputData.svgDisabled) {
+          Modernizr.svg = Modernizr.inlinesvg = false;
+          $('#svg-disabled').prop('checked', true);
+        }
         if (pathname.indexOf('development.html') > -1) { //if this is the development version
           generateHtmlTemplate(function() {
             generateSvgTemplate(function() {
@@ -355,16 +357,12 @@ var developmentLoader = function() {
       callback();
     }, 50);
 
-    /*
-    if (parsedInputData.svgDisabled) {
-      Modernizr.svg = Modernizr.inlinesvg = false;
-      $('#svg-disabled').prop('checked', true);
-    }
+    //*
     //*/
   }
 
   return{
-    loadPathvisioJsScripts:loadPathvisioJsScripts,
+    preload:preload,
     loadFrames:loadFrames,
     parseUriParams:parseUriParams
   };

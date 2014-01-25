@@ -79,7 +79,7 @@
 window.onload = function() {
   async.waterfall([
     function(callback) {
-      developmentLoader.loadPathvisioJsScripts(function(parsedInputData) {
+      developmentLoader.preload(function(parsedInputData) {
         console.log('parsedInputData');
         console.log(parsedInputData);
         callback(null, parsedInputData);
