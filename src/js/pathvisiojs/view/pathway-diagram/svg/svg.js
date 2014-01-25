@@ -364,8 +364,8 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
           '@context': pathvisiojs.context,
           '@type':['notGrouped', 'GroupNode']
         };
-	var newFrame = frameIt(pathway);
-          callbackInside(null, newFrame['@graph']);
+        var newFrame = frameIt(pathway);
+        callbackInside(null, newFrame['@graph']);
       }
     },
     function(err, results) {

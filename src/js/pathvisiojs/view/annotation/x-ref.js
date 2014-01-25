@@ -10,15 +10,17 @@ pathvisiojs.view.annotation.xRef = function(){
     else {
       //else render immediate data and loading gif
       var data = {
-          "header": label,
-          "description": desc,
-	  "listItems":[pathvisiojs.config.diagramLoadingIconUri] 
-        };
+        "header": label,
+        "description": desc,
+        "listItems":[pathvisiojs.config.diagramLoadingIconUri] 
+      };
       pathvisiojs.view.annotation.render(data);
+
+      console.log(pathvisiojs.config.bridgedbLinkOutsUriStub);
       //then retrieve the bridgedb data
       var xRefData = pathvisiojs.data.bridgedb.getXrefAnnotationDataByDataNode(organism, id, datasource, label, desc, function(annotationData) {
         setCachedAnnotationData(organism, id, datasource, annotationData);
-	pathvisiojs.view.annotation.render(annotationData);
+        pathvisiojs.view.annotation.render(annotationData);
       });
     }
   }
