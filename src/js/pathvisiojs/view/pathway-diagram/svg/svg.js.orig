@@ -26,6 +26,8 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
       containerHeight = args.containerHeight,
       cssUri = args.cssUri,
       renderableSourceDataElement = args.renderableSourceDataElement,
+      containerWidth = args.containerWidth,
+      containerHeight = args.containerHeight,
       fitToContainer = args.fitToContainer,
       customMarkers = args.customMarkers,
       //customSymbols = args.customSymbols,
@@ -364,8 +366,8 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
           '@context': pathvisiojs.context,
           '@type':['notGrouped', 'GroupNode']
         };
-        var newFrame = frameIt(pathway);
-        callbackInside(null, newFrame['@graph']);
+	var newFrame = frameIt(pathway);
+          callbackInside(null, newFrame['@graph']);
       }
     },
     function(err, results) {
@@ -396,6 +398,7 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
         if(!pathway.DataNode[i].isContainedBy){
           arr.push(pathway.DataNode[i]);
         }
+<<<<<<< HEAD
       }
     }
     if(pathway.Shape){
@@ -413,18 +416,32 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
         arr.push(pathway.Interaction[i]);
       }
     }
-    if(pathway.GraphicalLine){                                                                                                                         
-      for (var i=0; i<pathway.GraphicalLine.length; i++){                                                                                              
-        arr.push(pathway.GraphicalLine[i]);                                                                                                            
-      }                                                                                                                                              
-    }     
     if(pathway.Group){
       for (var i=0; i<pathway.Group.length; i++){
         arr.push(pathway.Group[i]);
       }
     }
+    if(pathway.GraphicalLine){                                                                                                                         
+      for (var i=0; i<pathway.GraphicalLine.length; i){                                                                                              
+        arr.push(pathway.GraphicalLine[i]);                                                                                                            
+      }                                                                                                                                              
+    }  
     nf['@graph'] = arr; 
     return nf;
+=======
+        if(pathway.GraphicalLine){                                                                                                                         
+          for (var i=0; i<pathway.GraphicalLine.length; i++){                                                                                              
+            arr.push(pathway.GraphicalLine[i]);                                                                                                            
+          }                                                                                                                                              
+        }     
+	if(pathway.Group){
+          for (var i=0; i<pathway.Group.length; i++){
+            arr.push(pathway.Group[i]);
+          }
+	}
+	nf['@graph'] = arr; 
+	return nf;
+>>>>>>> 09c0810b577dcd3be8c3b143b5f0255f7b39dc89
   }
 
       //pathvisiojs.view.pathwayDiagram.svg.grid.render(svg);

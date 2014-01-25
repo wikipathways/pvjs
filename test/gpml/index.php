@@ -95,7 +95,7 @@ SVG pathway template file</a> in the <span style="font-weight: bold">DEV</span> 
   //   $repo = $_GET['repo'];
   // }
 
-  echo "<div id='javascript-svg-pathway-container' class='pathway'>";
+  echo "<div id='javascript-svg-diagram-container' class='pathway'>";
     $pathwayTemplateSvg = simplexml_load_file($pathwayTemplateSvgUri);
     echo $pathwayTemplateSvg->saveXML();
   echo "</div>";
@@ -104,11 +104,11 @@ SVG pathway template file</a> in the <span style="font-weight: bold">DEV</span> 
 
   $batikSvg = simplexml_load_file($batikSvgUri);
 
-  echo "<div id='java-svg-pathway-container' class='pathway' style='display: none;'>";
+  echo "<div id='java-svg-diagram-container' class='pathway' style='display: none;'>";
     echo $batikSvg->saveXML();
   echo "</div>";
  
-  echo "<div id='java-png-pathway-container' class='pathway' style='display: none;'>";
+  echo "<div id='java-png-diagram-container' class='pathway' style='display: none;'>";
     echo '<img id="img" src="' . $pngUri . '"/>';
   echo "</div>";
 
@@ -118,7 +118,7 @@ SVG pathway template file</a> in the <span style="font-weight: bold">DEV</span> 
   $doc = new DOMDocument();
   $doc->loadXML($gpmlStr);
 
-  echo "<div id='xml-gpml-pathway-container' class='pathway' style='display:none'>";
+  echo "<div id='xml-gpml-diagram-container' class='pathway' style='display:none'>";
 
     // need to use LIBXML_NOEMPTYTAG option, because it appears Chrome will incorrectly close the self-closing tags in gpml.
 
@@ -130,7 +130,7 @@ SVG pathway template file</a> in the <span style="font-weight: bold">DEV</span> 
 
   // JSON GPML 
 
-  echo "<div id='json-gpml-pathway-container' class='pathway' style='display:none'>";
+  echo "<div id='json-gpml-diagram-container' class='pathway' style='display:none'>";
     echo "<textarea name='json-gpml-for-reading' id='json-gpml-for-reading' rows='40' cols='180'>Not yet implemented.</textarea>";
   echo "</div>";
 
@@ -194,55 +194,55 @@ SVG pathway template file</a> in the <span style="font-weight: bold">DEV</span> 
     // I wanted to make the pathvisio SVG, the PathVisio (Java) SVG and the PathVisio (Java) PNG all the same size.
     // But the code below does not work.
 
-    var javaScriptSvgWidth = self.javaScriptSvgWidth = $('#javascript-svg-pathway-container svg')[0].getAttribute('width');
+    var javaScriptSvgWidth = self.javaScriptSvgWidth = $('#javascript-svg-diagram-container svg')[0].getAttribute('width');
     //console.log('javaScriptSvgWidth');
     //console.log(javaScriptSvgWidth);
-    var javaScriptSvgHeight = self.javaScriptSvgHeight = $('#javascript-svg-pathway-container svg')[0].getAttribute('height');
+    var javaScriptSvgHeight = self.javaScriptSvgHeight = $('#javascript-svg-diagram-container svg')[0].getAttribute('height');
     //console.log('javaScriptSvgHeight');
     //console.log(javaScriptSvgHeight);
 
-    var javaScriptSvgBBoxWidth = self.javaScriptSvgBBoxWidth = $('#javascript-svg-pathway-container svg')[0].getBBox().width;
+    var javaScriptSvgBBoxWidth = self.javaScriptSvgBBoxWidth = $('#javascript-svg-diagram-container svg')[0].getBBox().width;
     //console.log('javaScriptSvgBBoxWidth');
     //console.log(javaScriptSvgBBoxWidth);
-    var javaScriptSvgBBoxHeight = self.javaScriptSvgBBoxHeight = $('#javascript-svg-pathway-container svg')[0].getBBox().height;
+    var javaScriptSvgBBoxHeight = self.javaScriptSvgBBoxHeight = $('#javascript-svg-diagram-container svg')[0].getBBox().height;
     //console.log('javaScriptSvgBBoxHeight');
     //console.log(javaScriptSvgBBoxHeight);
 
-    var javaPngWidth = self.javaPngWidth =  $('#java-png-pathway-container img')[0].getAttribute('width');
-    var javaPngHeight = self.javaPngHeight =  $('#java-png-pathway-container img')[0].getAttribute('height');
+    var javaPngWidth = self.javaPngWidth =  $('#java-png-diagram-container img')[0].getAttribute('width');
+    var javaPngHeight = self.javaPngHeight =  $('#java-png-diagram-container img')[0].getAttribute('height');
 
-    var javaPngBBoxWidth = self.javaPngBBoxWidth = $('#java-png-pathway-container img')[0].getBoundingClientRect().width;
+    var javaPngBBoxWidth = self.javaPngBBoxWidth = $('#java-png-diagram-container img')[0].getBoundingClientRect().width;
     //console.log('javaPngBBoxWidth');
     //console.log(javaPngBBoxWidth);
-    var javaPngBBoxHeight = self.javaPngBBoxHeight = $('#java-png-pathway-container img')[0].getBoundingClientRect().height;
+    var javaPngBBoxHeight = self.javaPngBBoxHeight = $('#java-png-diagram-container img')[0].getBoundingClientRect().height;
     var correctionFactor =  javaScriptSvgBBoxHeight / javaPngBBoxHeight;
 
     if (local === true) {
-      //$('#java-png-pathway-container img')[0].setAttribute('width', (javaScriptSvgBBoxWidth) + "px");
-      //$('#java-png-pathway-container img')[0].setAttribute('height', (javaScriptSvgBBoxHeight) + "px");
+      //$('#java-png-diagram-container img')[0].setAttribute('width', (javaScriptSvgBBoxWidth) + "px");
+      //$('#java-png-diagram-container img')[0].setAttribute('height', (javaScriptSvgBBoxHeight) + "px");
     }
     else {
-      //$('#java-png-pathway-container img')[0].setAttribute('width', (javaScriptSvgWidth) + "px");
-      //$('#java-png-pathway-container img')[0].setAttribute('height', (javaScriptSvgHeight) + "px");
-      //$('#java-png-pathway-container img')[0].setAttribute('width', (2 * javaScriptSvgBBoxWidth) + "px");
-      //$('#java-png-pathway-container img')[0].setAttribute('height', (2 * javaScriptSvgBBoxHeight) + "px");
-      //$('#java-png-pathway-container img')[0].setAttribute('width', (javaPngBBoxWidth * (javaScriptSvgWidth / javaPngBBoxWidth)) + "px");
-      //$('#java-png-pathway-container img')[0].setAttribute('height', (javaPngBBoxHeight * (javaScriptSvgHeight / javaPngBBoxHeight)) + "px");
+      //$('#java-png-diagram-container img')[0].setAttribute('width', (javaScriptSvgWidth) + "px");
+      //$('#java-png-diagram-container img')[0].setAttribute('height', (javaScriptSvgHeight) + "px");
+      //$('#java-png-diagram-container img')[0].setAttribute('width', (2 * javaScriptSvgBBoxWidth) + "px");
+      //$('#java-png-diagram-container img')[0].setAttribute('height', (2 * javaScriptSvgBBoxHeight) + "px");
+      //$('#java-png-diagram-container img')[0].setAttribute('width', (javaPngBBoxWidth * (javaScriptSvgWidth / javaPngBBoxWidth)) + "px");
+      //$('#java-png-diagram-container img')[0].setAttribute('height', (javaPngBBoxHeight * (javaScriptSvgHeight / javaPngBBoxHeight)) + "px");
     };
 
     /*
-    $('#java-png-pathway-container img')[0].setAttribute('width', (javaPngWidth * correctionFactor) + "px");
-    $('#java-png-pathway-container img')[0].setAttribute('height', (javaPngHeight * correctionFactor) + "px");
+    $('#java-png-diagram-container img')[0].setAttribute('width', (javaPngWidth * correctionFactor) + "px");
+    $('#java-png-diagram-container img')[0].setAttribute('height', (javaPngHeight * correctionFactor) + "px");
      */
 
     /*
-    $('#java-png-pathway-container img')[0].setAttribute('width', (javaScriptSvgBBoxWidth) + "px");
-    $('#java-png-pathway-container img')[0].setAttribute('height', (javaScriptSvgBBoxHeight) + "px");
+    $('#java-png-diagram-container img')[0].setAttribute('width', (javaScriptSvgBBoxWidth) + "px");
+    $('#java-png-diagram-container img')[0].setAttribute('height', (javaScriptSvgBBoxHeight) + "px");
 
-    var javaScriptSvgWidth = $('#javascript-svg-pathway-container svg')[0].getAttribute('width');
-    var javaScriptSvgHeight = $('#javascript-svg-pathway-container svg')[0].getAttribute('height');
-    $('#java-png-pathway-container img')[0].setAttribute('width', 0.985*width + "px");
-    $('#java-png-pathway-container img')[0].setAttribute('height', 0.985*height + "px");
+    var javaScriptSvgWidth = $('#javascript-svg-diagram-container svg')[0].getAttribute('width');
+    var javaScriptSvgHeight = $('#javascript-svg-diagram-container svg')[0].getAttribute('height');
+    $('#java-png-diagram-container img')[0].setAttribute('width', 0.985*width + "px");
+    $('#java-png-diagram-container img')[0].setAttribute('height', 0.985*height + "px");
 
     //*/
 
@@ -257,7 +257,7 @@ SVG pathway template file</a> in the <span style="font-weight: bold">DEV</span> 
     $('div.pathway').each(function(i) {
       this.style.display = 'none';
     });
-    $('#' + creator + "-pathway-container")[0].style.display = 'block';
+    $('#' + creator + "-diagram-container")[0].style.display = 'block';
     $('#json-gpml-for-reading').text(sJson);
   };
 </script>

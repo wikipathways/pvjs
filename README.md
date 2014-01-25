@@ -20,19 +20,12 @@ Pathvisiojs depends on the following JS libraries:
   * [jquery](https://www.github.com/components/jquery/)
   * [typeahead.js](https://www.github.com/twitter/typeahead.js/)
   * [Modernizr](https://www.github.com/Modernizr/Modernizr/)
-  * [screenfull.js](https://www.github.com/sindresorhus/screenfull.js)
   * [svg-pan-zoom](https://www.github.com/ariutta/svg-pan-zoom/)
-  * [PathFinding.js](https://www.github.com/qiao/PathFinding.js/)
   * [jsonld.js](https://www.github.com/digitalbazaar/jsonld.js/)
 
-and the following stylesheets:
-  * font-awesome
-  * pathvisiojs.css
-  * annotation.css
-  * pan-zoom.css
-  * pathway-diagram.css
+and the font-awesome icons.
 
-You can make it run in the browser by copying one of the [pathvisiojs load snippets](https://gist.github.com/ariutta/8377189).
+You can make it run in the browser by copying one of the [pathvisiojs load snippets](https://gist.github.com/ariutta/8377189) (outdated. check the dependencies in bower.json for up-to-date requirements.).
 
 How To Get Involved
 ===================

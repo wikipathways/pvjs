@@ -5,7 +5,7 @@ $.fn.drawPathway = function(args) {
 
 // use like this:
 /*
-$('#pathway-container').drawPathway({
+$('#diagram-container').drawPathway({
   width: 1000,
   height: 500,
   zoom: 'fit',
