@@ -89,7 +89,7 @@ var developmentLoader = function() {
           fileType:'gpml'
         });
 
-        pngUri = pathvisiojs.config.diagramNotAvailableImageUri();
+        pngUri = pathvisiojs.config.diagramNotAvailableIconUri;
         parsedInputData.sourceData.push({
           uri:pngUri,
           fileType:'png'
@@ -111,7 +111,7 @@ var developmentLoader = function() {
           fileType:'gpml'
         });
 
-        pngUri = encodeURI(pathvisiojs.config.imgDiagramUriStub() + gpmlParam + '&revision=' + wpRevision);
+        pngUri = encodeURI('http://www.wikipathways.org/wpi//wpi.php?action=downloadFile&type=png&pwTitle=Pathway:' + gpmlParam + '&revision=' + wpRevision);
         parsedInputData.sourceData.push({
           uri:pngUri,
           fileType:'png'
@@ -144,7 +144,7 @@ var developmentLoader = function() {
         gpmlUri = PathwayViewer_viewers[0].gpml.gpmlUri; // TODO we are not handling multiple pathways on one page here
       }
       else {
-        gpmlUri = pathvisiojs.config.gpmlSourceUriStub() + wpId + '&rev=' + revision;
+        gpmlUri = 'http://pointer.ucsf.edu/d3/r/data-sources/gpml.php?id=' + wpId + '&rev=' + revision;
       }
     }
     else {
@@ -285,6 +285,7 @@ var developmentLoader = function() {
         if (pathname.indexOf('compare.html') > -1) { //if this is the development version
           var pvjsSourcesDev = pvjsSources.slice(1); //this file is only used in the build process
 
+      /*
           // In dev mode, different servers will use different configs.
           // The code below sets this config file.
           // For production, we will use default.js for our default config settings and
@@ -309,6 +310,7 @@ var developmentLoader = function() {
           serverSpecificJsConfigFileName = strcase.paramCase(serverSpecificJsConfigFileName);
           pvjsSourcesDev[1] = 'config/' + serverSpecificJsConfigFileName + '.js';
 
+      //*/
           pvjsSourcesDev = pvjsSourcesDev.map(function(source) {
             return '../' + source;
           });
