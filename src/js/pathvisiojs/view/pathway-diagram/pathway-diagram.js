@@ -110,8 +110,6 @@ pathvisiojs.view.pathwayDiagram = function(){
       //customSymbols = args.customSymbols,
       highlightNodes = args.highlightNodes,
       hiddenElements = args.hiddenElements,
-      pathvisioJsContainer,
-      diagramContainer,
       userSpecifiedContainer, // the element matching the user-specified selector. the user specified selector is the parameter "container" in the pathvisiojs.load() method.
       pathvisioJsContainer,
       diagramContainer;
@@ -146,6 +144,7 @@ pathvisiojs.view.pathwayDiagram = function(){
         // ********************************************
         var diagramLoadingIconUri = pathvisiojs.config.diagramLoadingIconUri;
         var img = diagramContainer.append('img')
+        .attr('id', 'loading-icon')
         .attr('src', diagramLoadingIconUri)
         .attr('width', 50);
 
