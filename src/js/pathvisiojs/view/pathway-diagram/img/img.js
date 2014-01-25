@@ -42,20 +42,19 @@ pathvisiojs.view.pathwayDiagram.img = function(){
         else {
           //changing from d3 selection to html element
           container[0][0].appendChild(img);
+          //TODO this should go into the CSS file somehow, but be careful not to mess up the SVG version
+          img.setAttribute('style', 'margin: auto; position: absolute; top: 0; left: 0; bottom: 0; right: 0;')
           callback(null, img);
         }
       },
       {
         maxWidth: containerWidth,
         maxHeight: containerHeight,
-        canvas: true,
-        contain: true
+        //canvas: true,
+        contain: fitToContainer
         //crossOrigin:'Anonymous' // I thought this would allow CORS images, but it actually does not.
       }
     );
-
-    loadImage.onerror = function() {
-    };
   }
 
   /*
