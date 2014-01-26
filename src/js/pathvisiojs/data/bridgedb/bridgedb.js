@@ -1,6 +1,15 @@
 pathvisiojs.data.bridgedb = function(){
 
   function getXrefAnnotationDataByDataNode(singleSpecies, id, datasource, label, desc, callback) {
+    //For unannotated nodes, without datasource or identifier
+    if (null == id || null == datasource){
+        var annotationData = {
+          "header": label,
+          "description": desc,
+          "listItems": ['Missing ID and datasource']
+        };
+        callback(annotationData);  
+    } else {   
     getDataSources(function(dataSources) {
       var dataSourceRowCorrespondingToDataNodeXrefDatabase = getDataSourceRowByName(datasource, dataSources);
       var systemCode = dataSourceRowCorrespondingToDataNodeXrefDatabase.systemCode;
@@ -67,6 +76,7 @@ pathvisiojs.data.bridgedb = function(){
         callback(annotationData);
       });
     });
+   }
   }
 
   function getDataSourceRowByName(dataSourceName, dataSources) {
