@@ -3,7 +3,7 @@
 pathvisiojs.view.pathwayDiagram.svg.publicationXref = function(){
 
   function getReferenceNumberForDisplay(pathway, rdfId) {
-    var displayNumberForDisplay;
+    var displayNumberForDisplay = null;
     var i = -1;
     var currentPublicationXref;
     var found = false;
@@ -11,9 +11,11 @@ pathvisiojs.view.pathwayDiagram.svg.publicationXref = function(){
     do {
       i += 1;
       currentPublicationXref = pathway.Biopax.PublicationXref[i];
-      if (currentPublicationXref.rdfId === rdfId) {
-        found = true;
-        displayNumberForDisplay = i + 1;
+      if (typeof currentPublicationXref != 'undefined'){
+        if (currentPublicationXref.rdfId === rdfId) {
+          found = true;
+          displayNumberForDisplay = i + 1;
+        }
       }
     } while (found === false && i < pathway.Biopax.PublicationXref.length);
 
@@ -72,12 +74,18 @@ pathvisiojs.view.pathwayDiagram.svg.publicationXref = function(){
 
   function getPublicationXrefString(pathway, rdfIds, callback) {
     var displayNumbers = [];
+    var publicationXrefString = '';
     // make sure it's an array
     rdfIds = pathvisiojs.utilities.convertToArray(rdfIds);
     rdfIds.forEach(function(rdfId) {
-      displayNumbers.push(getReferenceNumberForDisplay(pathway, rdfId));
+      var num = getReferenceNumberForDisplay(pathway, rdfId);
+      if(!!num) {
+        displayNumbers.push(num); 
+      }	
     });
-    var publicationXrefString = createPublicationXrefString(displayNumbers);
+    if (displayNumbers.length > 0){
+      publicationXrefString = createPublicationXrefString(displayNumbers);
+    }
     callback(publicationXrefString);
   }
 
