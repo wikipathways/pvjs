@@ -368,6 +368,8 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
       renderSelectedElementsFastArgs.svg = svg;
       renderSelectedElementsFastArgs.container = viewport;
       renderSelectedElementsFastArgs.pathway = pathway;
+console.log('firstOrderData');
+console.log(results.firstOrderData);
       renderSelectedElementsFastArgs.data = results.firstOrderData;
       renderSelectedElementsFast(renderSelectedElementsFastArgs, function() {
         callback(svg);
