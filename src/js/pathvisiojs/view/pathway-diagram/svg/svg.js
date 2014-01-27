@@ -76,7 +76,7 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
         })
       },
       function(callback){
-        pathvisiojs.view.pathwayDiagram.svg.renderFast(svg, pathway, function() {
+        pathvisiojs.view.pathwayDiagram.svg.renderWithCachedData(svg, pathway, function() {
           callback(null);
         })
       },
@@ -255,7 +255,7 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
   // If one or more of these elements are a groupNode that contains
   // other elements, this function will call itself back to render
   // the elements within the groupNode.
-  function renderSelectedElementsFast(args, callbackOutside){
+  function renderSelectedElementsWithCachedData(args, callbackOutside){
     var svg = args.svg,
       data = args.data,
       pathway = args.pathway,
@@ -309,7 +309,7 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
               groupedElementsArgs.pathway = pathway;
 
               // recursively calling this function to render elements within groupNode(s)
-              pathvisiojs.view.pathwayDiagram.svg.renderSelectedElementsFast(groupedElementsArgs, function() {
+              pathvisiojs.view.pathwayDiagram.svg.renderSelectedElementsWithCachedData(groupedElementsArgs, function() {
               });
 
 
@@ -323,7 +323,7 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
                 nodeEntityArgs.svg = args.svg;
                 nodeEntityArgs.container = groupContainer;
                 nodeEntityArgs.data = groupedElementsData['@graph'];
-                pathvisiojs.view.pathwayDiagram.svg.renderSelectedElementsFast(nodeEntityArgs, function() {
+                pathvisiojs.view.pathwayDiagram.svg.renderSelectedElementsWithCachedData(nodeEntityArgs, function() {
                 });
               });
               //*/
@@ -341,7 +341,7 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
     })
   }
 
-  function renderFast(svg, pathway, callback){
+  function renderWithCachedData(svg, pathway, callback){
     if (!svg) {
       throw new Error("No svg specified.");
     }
@@ -364,14 +364,14 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
 
       pathvisiojs.view.pathwayDiagram.svg.infoBox.render(viewport, pathway);
 
-      var renderSelectedElementsFastArgs = {};
-      renderSelectedElementsFastArgs.svg = svg;
-      renderSelectedElementsFastArgs.container = viewport;
-      renderSelectedElementsFastArgs.pathway = pathway;
+      var renderSelectedElementsWithCachedDataArgs = {};
+      renderSelectedElementsWithCachedDataArgs.svg = svg;
+      renderSelectedElementsWithCachedDataArgs.container = viewport;
+      renderSelectedElementsWithCachedDataArgs.pathway = pathway;
 console.log('firstOrderData');
 console.log(results.firstOrderData);
-      renderSelectedElementsFastArgs.data = results.firstOrderData;
-      renderSelectedElementsFast(renderSelectedElementsFastArgs, function() {
+      renderSelectedElementsWithCachedDataArgs.data = results.firstOrderData;
+      renderSelectedElementsWithCachedData(renderSelectedElementsWithCachedDataArgs, function() {
         callback(svg);
       });
     });
@@ -423,7 +423,7 @@ console.log(results.firstOrderData);
         function(callbackInside2) {
           args.container = args.svg.select('#viewport');
           args.data = results.groupData;
-          renderSelectedElementsFast(args, function() {
+          renderSelectedElementsWithCachedData(args, function() {
             console.log(1);
           });
           callbackInside2(null, svg);
@@ -432,7 +432,7 @@ console.log(results.firstOrderData);
           args.container = args.svg.select('#viewport');
           args.data = results.notGroupedData;
           self.args = args;
-          renderSelectedElementsFast(args, function() {
+          renderSelectedElementsWithCachedData(args, function() {
             console.log(2);
             callbackInside2(null, svg);
           });
@@ -513,8 +513,8 @@ console.log(results.firstOrderData);
 
   return {
     //render:render,
-    renderFast:renderFast,
-    renderSelectedElementsFast:renderSelectedElementsFast,
+    renderWithCachedData:renderWithCachedData,
+    renderSelectedElementsWithCachedData:renderSelectedElementsWithCachedData,
     load:load,
     loadPartials:loadPartials
   };

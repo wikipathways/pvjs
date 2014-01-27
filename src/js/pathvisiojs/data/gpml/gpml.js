@@ -163,6 +163,9 @@ pathvisiojs.data.gpml = function(){
 
     var pathway = {};
     pathway.xmlns = gpmlPathway.attr('xmlns');
+    pathway.nodes = [];
+    pathway.edges = [];
+    pathway.elements = [];
 
     // test for whether file is GPML
 
@@ -441,6 +444,8 @@ pathvisiojs.data.gpml = function(){
                 gpmlDataNode = d3.select(this);
                 pathvisiojs.data.gpml.element.node.entityNode.dataNode.toRenderableJson(gpmlDataNode, pathwayIri, function(jsonDataNode) {
                   pathway.DataNode.push(jsonDataNode);
+                  pathway.nodes = pathway.nodes.concat(jsonDataNode);
+                  pathway.elements = pathway.elements.concat(jsonDataNode);
                 });
               })
               callback(null, 'DataNodes are all converted.');
@@ -457,6 +462,8 @@ pathvisiojs.data.gpml = function(){
                 gpmlLabel = d3.select(this);
                 pathvisiojs.data.gpml.element.node.entityNode.label.toRenderableJson(gpmlLabel, pathwayIri, function(jsonLabel) {
                   pathway.Label.push(jsonLabel);
+                  pathway.nodes = pathway.nodes.concat(jsonLabel);
+                  pathway.elements = pathway.elements.concat(jsonLabel);
                 });
               })
               callback(null, 'Labels are all converted.');
@@ -473,6 +480,8 @@ pathvisiojs.data.gpml = function(){
                 gpmlShape = d3.select(this);
                 pathvisiojs.data.gpml.element.node.entityNode.shape.toRenderableJson(gpmlShape, pathwayIri, function(jsonShape) {
                   pathway.Shape.push(jsonShape);
+                  pathway.nodes = pathway.nodes.concat(jsonShape);
+                  pathway.elements = pathway.elements.concat(jsonShape);
                 });
               })
               callback(null, 'Shapes are all converted.');
@@ -492,6 +501,8 @@ pathvisiojs.data.gpml = function(){
                 gpmlGroup = d3.select(this);
                 pathvisiojs.data.gpml.element.node.groupNode.toRenderableJson(gpml, gpmlGroup, pathwayIri, function(jsonGroup) {
                   pathway.Group.push(jsonGroup);
+                  pathway.nodes = pathway.nodes.concat(jsonGroup);
+                  pathway.elements = pathway.elements.concat(jsonGroup);
                 });
               })
               callback(null, 'Groups are all converted.');
@@ -509,6 +520,8 @@ pathvisiojs.data.gpml = function(){
                 gpmlGraphicalLine = d3.select(this);
                 pathvisiojs.data.gpml.edge.graphicalLine.toRenderableJson(gpml, gpmlGraphicalLine, pathwayIri, function(jsonGraphicalLine) {
                   pathway.GraphicalLine.push(jsonGraphicalLine);
+                  pathway.edges = pathway.edges.concat(jsonGraphicalLine);
+                  pathway.elements = pathway.elements.concat(jsonGraphicalLine);
                 });
               })
               callback(null, 'GraphicalLines are all converted.');
@@ -526,6 +539,8 @@ pathvisiojs.data.gpml = function(){
                 gpmlInteraction = d3.select(this);
                 pathvisiojs.data.gpml.edge.interaction.toRenderableJson(gpml, gpmlInteraction, pathwayIri, function(jsonInteraction) {
                   pathway.Interaction.push(jsonInteraction);
+                  pathway.edges = pathway.edges.concat(jsonInteraction);
+                  pathway.elements = pathway.elements.concat(jsonInteraction);
                 });
               })
               callback(null, 'Interactions are all converted.');
@@ -549,33 +564,39 @@ pathvisiojs.data.gpml = function(){
             console.log(err);
             console.log('framedGroups');
             console.log(framedGroups);
-	  var unique = [];
-          framedGroups['@graph'].forEach(function(jsonGroup) {
-            // Some GPML files contain empty groups due to a PathVisio-Java bug. They are deleted
-            // here because only groups that pass the test (!!jsonGroup.contains) are added to
-            // the jsonGroups array, and the jsonGroups array overwrites pathway.Group.
-            if (!!jsonGroup.contains) {
-              pathvisiojs.data.gpml.element.node.groupNode.getGroupDimensions(jsonGroup, function(dimensions) {
-                console.log('jsonGroup in gpml.js');
-                console.log(jsonGroup);
+            var unique = [];
+            framedGroups['@graph'].forEach(function(jsonGroup) {
+              // Some GPML files contain empty groups due to a PathVisio-Java bug. They are deleted
+              // here because only groups that pass the test (!!jsonGroup.contains) are added to
+              // the jsonGroups array, and the jsonGroups array overwrites pathway.Group.
+              if (!!jsonGroup.contains) {
+                pathvisiojs.data.gpml.element.node.groupNode.getGroupDimensions(jsonGroup, function(dimensions) {
+                  console.log('jsonGroup in gpml.js');
+                  console.log(jsonGroup);
 
-                jsonGroup.x = dimensions.x;
-                jsonGroup.y = dimensions.y;
-                jsonGroup.width = dimensions.width;
-                jsonGroup.height = dimensions.height;
-                pathvisiojs.data.gpml.element.node.getPorts(jsonGroup, function(ports) {
-		 if (unique.indexOf(jsonGroup.GroupId) == -1) { //exclude duplicates
-                  jsonGroup.Port = ports;
-                  jsonGroups.push(jsonGroup);
-		  unique.push(jsonGroup.GroupId);
-		 }
+                  jsonGroup.x = dimensions.x;
+                  jsonGroup.y = dimensions.y;
+                  jsonGroup.width = dimensions.width;
+                  jsonGroup.height = dimensions.height;
+                  pathvisiojs.data.gpml.element.node.getPorts(jsonGroup, function(ports) {
+                    if (unique.indexOf(jsonGroup.GroupId) == -1) { //exclude duplicates
+                      jsonGroup.Port = ports;
+                      jsonGroups.push(jsonGroup);
+                      unique.push(jsonGroup.GroupId);
+                    }
+                  });
                 });
-              });
-            }
-          });
-          pathway.Group = jsonGroups;
-          self.myPathway = pathway;
-          callbackOutside(pathway);
+              }
+            });
+            pathway.Group = jsonGroups;
+
+            var pathwayNestedByGrouping = d3.nest()
+            .key(function(d) { return d.hasDependencies; })
+            .entries(pathway.elements);
+
+            self.myPathway = pathway;
+            callbackOutside(pathway);
+            //callbackOutside(pathwayNestedByGrouping);
           });
         }
         else {
