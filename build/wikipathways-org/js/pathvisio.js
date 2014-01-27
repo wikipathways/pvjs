@@ -1,10 +1,10 @@
 //! pathvisiojs 0.9.3
-//! Built on 2014-01-22
+//! Built on 2014-01-27
 //! https://github.com/wikipathways/pathvisiojs
 //! License: http://www.apache.org/licenses/LICENSE-2.0/
 
 var pathvisioNS = pathvisioNS || {};
-pathvisioNS["tmp/pathvisiojs.html"] = '<div id="pathvisiojs-container" style="width: inherit; min-width: inherit; max-width: inherit; height: inherit; min-height: inherit; max-height: inherit; position: absolute; ">\n\n    <!-- **********************************************************************\n    Pathway Container (JavaScript inserts pathway image inside this div)\n    *********************************************************************** -->\n\n    <div id="diagram-container" style="width: inherit; min-width: inherit; max-width: inherit; height: inherit; min-height: inherit; max-height: inherit; " class="y-mid">\n\n      <svg id="pathvisiojs-diagram" version="1.1" baseProfile="full" xmlns="http://www.w3.org/1999/xlink" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ev="http://www.w3.org/2001/xml-events" width="100%" height="100%" style="display: inline; width: inherit; min-width: inherit; max-width: inherit; height: inherit; min-height: inherit; max-height: inherit; " preserveAspectRatio="xMidYMid" onmouseup="svgPanZoom.handleMouseUp(evt)" onmousedown="svgPanZoom.handleMouseDown(evt)" onmousemove="svgPanZoom.handleMouseMove(evt)" onmouseleave="svgPanZoom.handleMouseUp(evt)" xlink="http://www.w3.org/1999/xlink" ev="http://www.w3.org/2001/xml-events">\n\n        <g>\n        <title>pathvisiojs pathway diagram</title>\n        <desc>\n          This SVG file contains all the graphical elements (markers and symbols in defs as well as\n          style data) used by the program pathvisiojs, which has two components: \n          1) a viewer for transforming GPML biological pathway data into an SVG visual representation and \n          2) an editor for creating both views and models for biological pathways.\n        </desc>\n        </g>\n        <defs>\n\n          <filter id="highlight" width="150%" height="150%">\n            <feOffset result="offOut" in="SourceGraphic" dx="30" dy="30"></feOffset>\n              <feGaussianBlur result="blurOut" in="offOut" stdDeviation="10"></feGaussianBlur>\n            <feBlend in="SourceGraphic" in2="blurOut" mode="normal"></feBlend>\n          </filter>\n\n        <marker id="shape-library-markers-arrow-svg-start-default" preserveAspectRatio="none" viewBox="0 0 12 12" markerWidth="12" markerHeight="12" markerUnits="strokeWidth" orient="auto" refX="-0.5" refY="6"><g id="g-src-shape-library-markers-arrow-svg-start-default" class="solid-stroke default-fill-color">\n\n	<!-- arrow markers: triangular polygons, no stroke -->\n\n	<rect class="board-fill-color" stroke="none" x="0" y="5.4" width="2" height="1.2"></rect>\n	<polygon stroke-width="0" points="12,11 0,6 12,1"></polygon>\n\n</g></marker><marker id="shape-library-markers-arrow-svg-end-default" preserveAspectRatio="none" viewBox="0 0 12 12" markerWidth="12" markerHeight="12" markerUnits="strokeWidth" orient="auto" refX="12" refY="6"><g id="g-src-shape-library-markers-arrow-svg-end-default" class="solid-stroke default-fill-color" transform="rotate(180, 6, 6)">\n\n	<!-- arrow markers: triangular polygons, no stroke -->\n\n	<rect class="board-fill-color" stroke="none" x="0" y="5.4" width="2" height="1.2"></rect>\n	<polygon stroke-width="0" points="12,11 0,6 12,1"></polygon>\n\n</g></marker><marker id="shape-library-markers-mim-necessary-stimulation-svg-start-default" preserveAspectRatio="none" viewBox="0 0 16 12" markerWidth="16" markerHeight="12" markerUnits="strokeWidth" orient="auto" refX="-0.5" refY="6"><g id="g-src-shape-library-markers-mim-necessary-stimulation-svg-start-default" class="board-fill-color default-stroke-color solid-stroke">\n\n	<!-- mim-necessary-stimulation markers: triangular polygons, drawing-board fill, default color stroke; and vertical line -->\n\n	<rect class="board-fill-color" stroke="none" x="0" y="5.4" width="2" height="1.2"></rect>\n	<line fill="none" stroke-width="1" x1="14" y1="0" x2="14" y2="12"></line>\n	<line fill="none" stroke="none" x1="16" y1="6" x2="16" y2="6"></line> <!-- dummy point -->\n	<polygon stroke-width="1" points="0,6 9,11 9,1"></polygon>\n\n</g></marker><marker id="shape-library-markers-mim-necessary-stimulation-svg-end-default" preserveAspectRatio="none" viewBox="0 0 16 12" markerWidth="16" markerHeight="12" markerUnits="strokeWidth" orient="auto" refX="16" refY="6"><g id="g-src-shape-library-markers-mim-necessary-stimulation-svg-end-default" class="board-fill-color default-stroke-color solid-stroke" transform="rotate(180, 8, 6)">\n\n	<!-- mim-necessary-stimulation markers: triangular polygons, drawing-board fill, default color stroke; and vertical line -->\n\n	<rect class="board-fill-color" stroke="none" x="0" y="5.4" width="2" height="1.2"></rect>\n	<line fill="none" stroke-width="1" x1="14" y1="0" x2="14" y2="12"></line>\n	<line fill="none" stroke="none" x1="16" y1="6" x2="16" y2="6"></line> <!-- dummy point -->\n	<polygon stroke-width="1" points="0,6 9,11 9,1"></polygon>\n\n</g></marker><marker id="shape-library-markers-mim-binding-svg-start-default" preserveAspectRatio="none" viewBox="0 0 12 12" markerWidth="12" markerHeight="12" markerUnits="strokeWidth" orient="auto" refX="-0.5" refY="6"><g id="g-src-shape-library-markers-mim-binding-svg-start-default" class="solid-stroke default-fill-color">\n\n	<!-- mim-binding markers: four-point polygon, no stroke -->\n\n	<rect class="board-fill-color" stroke="none" x="0" y="5.4" width="2" height="1.2"></rect>\n	<polygon stroke-width="0" points="12,12 0,6 12,0 5,6 "></polygon>\n\n</g></marker><marker id="shape-library-markers-mim-binding-svg-end-default" preserveAspectRatio="none" viewBox="0 0 12 12" markerWidth="12" markerHeight="12" markerUnits="strokeWidth" orient="auto" refX="12" refY="6"><g id="g-src-shape-library-markers-mim-binding-svg-end-default" class="solid-stroke default-fill-color" transform="rotate(180, 6, 6)">\n\n	<!-- mim-binding markers: four-point polygon, no stroke -->\n\n	<rect class="board-fill-color" stroke="none" x="0" y="5.4" width="2" height="1.2"></rect>\n	<polygon stroke-width="0" points="12,12 0,6 12,0 5,6 "></polygon>\n\n</g></marker><marker id="shape-library-markers-mim-conversion-svg-start-default" preserveAspectRatio="none" viewBox="0 0 12 12" markerWidth="12" markerHeight="12" markerUnits="strokeWidth" orient="auto" refX="-0.5" refY="6"><g id="g-src-shape-library-markers-mim-conversion-svg-start-default" class="solid-stroke default-fill-color">\n\n	<!-- mim-conversion markers: triangular polygons, no stroke -->\n\n	<rect class="board-fill-color" stroke="none" x="0" y="5.4" width="2" height="1.2"></rect>\n	<polygon stroke-width="0" points="12,11 0,6 12,1"></polygon>\n\n</g></marker><marker id="shape-library-markers-mim-conversion-svg-end-default" preserveAspectRatio="none" viewBox="0 0 12 12" markerWidth="12" markerHeight="12" markerUnits="strokeWidth" orient="auto" refX="12" refY="6"><g id="g-src-shape-library-markers-mim-conversion-svg-end-default" class="solid-stroke default-fill-color" transform="rotate(180, 6, 6)">\n\n	<!-- mim-conversion markers: triangular polygons, no stroke -->\n\n	<rect class="board-fill-color" stroke="none" x="0" y="5.4" width="2" height="1.2"></rect>\n	<polygon stroke-width="0" points="12,11 0,6 12,1"></polygon>\n\n</g></marker><marker id="shape-library-markers-mim-stimulation-svg-start-default" preserveAspectRatio="none" viewBox="0 0 12 12" markerWidth="12" markerHeight="12" markerUnits="strokeWidth" orient="auto" refX="-0.5" refY="6"><g id="g-src-shape-library-markers-mim-stimulation-svg-start-default" class="board-fill-color default-stroke-color solid-stroke">\n\n	<!-- mim-stimulation markers: triangular polygons, drawing-board fill, default color stroke -->\n\n	<rect class="board-fill-color" stroke="none" x="0" y="5.4" width="2" height="1.2"></rect>\n	<line stroke="none" fill="none" x1="12" y1="6" x2="12" y2="6"></line> <!-- dummy point -->\n	<polygon stroke-width="1" points="0,6 11,11 11,1"></polygon>\n\n</g></marker><marker id="shape-library-markers-mim-stimulation-svg-end-default" preserveAspectRatio="none" viewBox="0 0 12 12" markerWidth="12" markerHeight="12" markerUnits="strokeWidth" orient="auto" refX="12" refY="6"><g id="g-src-shape-library-markers-mim-stimulation-svg-end-default" class="board-fill-color default-stroke-color solid-stroke" transform="rotate(180, 6, 6)">\n\n	<!-- mim-stimulation markers: triangular polygons, drawing-board fill, default color stroke -->\n\n	<rect class="board-fill-color" stroke="none" x="0" y="5.4" width="2" height="1.2"></rect>\n	<line stroke="none" fill="none" x1="12" y1="6" x2="12" y2="6"></line> <!-- dummy point -->\n	<polygon stroke-width="1" points="0,6 11,11 11,1"></polygon>\n\n</g></marker><marker id="shape-library-markers-mim-modification-svg-start-default" preserveAspectRatio="none" viewBox="0 0 12 12" markerWidth="12" markerHeight="12" markerUnits="strokeWidth" orient="auto" refX="-0.5" refY="6"><g id="g-src-shape-library-markers-mim-modification-svg-start-default" class="default-fill-color solid-stroke">\n\n	<!-- mim-modification markers: four-point polygon, no stroke -->\n\n	<rect class="board-fill-color" stroke="none" x="0" y="5.4" width="2" height="1.2"></rect>\n	<polygon stroke-width="0" points="12,12 0,6 12,0 5,6 "></polygon>\n\n</g></marker><marker id="shape-library-markers-mim-modification-svg-end-default" preserveAspectRatio="none" viewBox="0 0 12 12" markerWidth="12" markerHeight="12" markerUnits="strokeWidth" orient="auto" refX="12" refY="6"><g id="g-src-shape-library-markers-mim-modification-svg-end-default" class="default-fill-color solid-stroke" transform="rotate(180, 6, 6)">\n\n	<!-- mim-modification markers: four-point polygon, no stroke -->\n\n	<rect class="board-fill-color" stroke="none" x="0" y="5.4" width="2" height="1.2"></rect>\n	<polygon stroke-width="0" points="12,12 0,6 12,0 5,6 "></polygon>\n\n</g></marker><marker id="shape-library-markers-mim-catalysis-svg-start-default" preserveAspectRatio="none" viewBox="0 0 12 12" markerWidth="12" markerHeight="12" markerUnits="strokeWidth" orient="auto" refX="0" refY="6"><g id="g-src-shape-library-markers-mim-catalysis-svg-start-default" class="board-fill-color default-stroke-color solid-stroke">\n\n	<!-- mim-catalysis markers: circle, drawing-board fill and default color stroke -->\n\n	<circle cx="6.1" cy="6" r="5.3px" stroke-width="1px"></circle>\n\n</g></marker><marker id="shape-library-markers-mim-catalysis-svg-end-default" preserveAspectRatio="none" viewBox="0 0 12 12" markerWidth="12" markerHeight="12" markerUnits="strokeWidth" orient="auto" refX="12" refY="6"><g id="g-src-shape-library-markers-mim-catalysis-svg-end-default" class="board-fill-color default-stroke-color solid-stroke" transform="rotate(180, 6, 6)">\n\n	<!-- mim-catalysis markers: circle, drawing-board fill and default color stroke -->\n\n	<circle cx="6.1" cy="6" r="5.3px" stroke-width="1px"></circle>\n\n</g></marker><marker id="shape-library-markers-mim-inhibition-svg-start-default" preserveAspectRatio="none" viewBox="0 0 10 20" markerWidth="10" markerHeight="20" markerUnits="strokeWidth" orient="auto" refX="-0.5" refY="10"><g id="g-src-shape-library-markers-mim-inhibition-svg-start-default" class="board-fill-color default-stroke-color solid-stroke">\n\n	<!-- mim-inhibition markers: vertical line; and extended drawing-board rect -->\n	\n	<rect stroke="none" x="0" y="9" width="8" height="2"></rect>\n	<line fill="none" stroke-width="1.8" x1="7" y1="0" x2="7" y2="20"></line>\n\n</g></marker><marker id="shape-library-markers-mim-inhibition-svg-end-default" preserveAspectRatio="none" viewBox="0 0 10 20" markerWidth="10" markerHeight="20" markerUnits="strokeWidth" orient="auto" refX="10.5" refY="10"><g id="g-src-shape-library-markers-mim-inhibition-svg-end-default" class="board-fill-color default-stroke-color solid-stroke" transform="rotate(180, 5, 10)">\n\n	<!-- mim-inhibition markers: vertical line; and extended drawing-board rect -->\n	\n	<rect stroke="none" x="0" y="9" width="8" height="2"></rect>\n	<line fill="none" stroke-width="1.8" x1="7" y1="0" x2="7" y2="20"></line>\n\n</g></marker><marker id="shape-library-markers-mim-cleavage-svg-start-default" preserveAspectRatio="none" viewBox="0 0 20 30" markerWidth="20" markerHeight="30" markerUnits="strokeWidth" orient="auto" refX="9" refY="15"><g id="g-src-shape-library-markers-mim-cleavage-svg-start-default" class="board-fill-color default-stroke-color solid-stroke">\n\n	<!-- mim-cleavage markers: two lines and extended drawing-board rect -->\n\n	<rect stroke="none" x="0" y="14.3" width="18.4" height="1.4"></rect>\n	<line fill="none" stroke-width="1" x1="18" y1="14.5" x2="18" y2="30"></line>	\n	<line fill="none" stroke-width="1" x1="18" y1="30" x2="0" y2="0"></line>	\n\n\n</g></marker><marker id="shape-library-markers-mim-cleavage-svg-end-default" preserveAspectRatio="none" viewBox="0 0 20 30" markerWidth="20" markerHeight="30" markerUnits="strokeWidth" orient="auto" refX="10" refY="15"><g id="g-src-shape-library-markers-mim-cleavage-svg-end-default" class="board-fill-color default-stroke-color solid-stroke" transform="rotate(180, 10, 15)">\n\n	<!-- mim-cleavage markers: two lines and extended drawing-board rect -->\n\n	<rect stroke="none" x="0" y="14.3" width="18.4" height="1.4"></rect>\n	<line fill="none" stroke-width="1" x1="18" y1="14.5" x2="18" y2="30"></line>	\n	<line fill="none" stroke-width="1" x1="18" y1="30" x2="0" y2="0"></line>	\n\n\n</g></marker><marker id="shape-library-markers-mim-covalent-bond-svg-start-default" preserveAspectRatio="none" viewBox="0 0 12 12" markerWidth="12" markerHeight="12" markerUnits="strokeWidth" orient="auto" refX="-0.5" refY="6"><g id="g-src-shape-library-markers-mim-covalent-bond-svg-start-default" class="solid-stroke default-fill-color">\n\n	<!-- mim-covalent-bond markers: not much to see here! -->\n	<rect x="0" y="0" width="0" height="0" stroke="none" fill="none" stroke-width="0"></rect>\n\n</g></marker><marker id="shape-library-markers-mim-covalent-bond-svg-end-default" preserveAspectRatio="none" viewBox="0 0 12 12" markerWidth="12" markerHeight="12" markerUnits="strokeWidth" orient="auto" refX="11" refY="6"><g id="g-src-shape-library-markers-mim-covalent-bond-svg-end-default" class="solid-stroke default-fill-color" transform="rotate(180, 6, 6)">\n\n	<!-- mim-covalent-bond markers: not much to see here! -->\n	<rect x="0" y="0" width="0" height="0" stroke="none" fill="none" stroke-width="0"></rect>\n\n</g></marker><marker id="shape-library-markers-mim-transcription-translation-svg-start-default" preserveAspectRatio="none" viewBox="0 0 20 24" markerWidth="20" markerHeight="24" markerUnits="strokeWidth" orient="auto" refX="-0.5" refY="12"><g id="g-src-shape-library-markers-mim-transcription-translation-svg-start-default" class="board-fill-color default-stroke-color solid-stroke">\n\n	<!-- mim-transcription-translation markers: two lines and an open trigular polygon, plus extended drawing-board rect -->\n\n	<rect stroke="none" x="0" y="11" width="12" height="2"></rect>\n	<line fill="none" stroke-width="1" x1="15" y1="12" x2="15" y2="5"></line>\n	<line fill="none" stroke-width="1" x1="15.5" y1="5" x2="8" y2="5"></line>\n	<polygon stroke-width="1" points="0,5 8,1 8,9"></polygon>\n\n</g></marker><marker id="shape-library-markers-mim-transcription-translation-svg-end-default" preserveAspectRatio="none" viewBox="0 0 20 24" markerWidth="20" markerHeight="24" markerUnits="strokeWidth" orient="auto" refX="20.5" refY="12"><g id="g-src-shape-library-markers-mim-transcription-translation-svg-end-default" class="board-fill-color default-stroke-color solid-stroke" transform="rotate(180, 10, 12)">\n\n	<!-- mim-transcription-translation markers: two lines and an open trigular polygon, plus extended drawing-board rect -->\n\n	<rect stroke="none" x="0" y="11" width="12" height="2"></rect>\n	<line fill="none" stroke-width="1" x1="15" y1="12" x2="15" y2="5"></line>\n	<line fill="none" stroke-width="1" x1="15.5" y1="5" x2="8" y2="5"></line>\n	<polygon stroke-width="1" points="0,5 8,1 8,9"></polygon>\n\n</g></marker><marker id="shape-library-markers-mim-gap-svg-start-default" preserveAspectRatio="none" viewBox="0 0 12 12" markerWidth="12" markerHeight="12" markerUnits="strokeWidth" orient="auto" refX="0" refY="6"><g id="g-src-shape-library-markers-mim-gap-svg-start-default" class="board-fill-color solid-stroke">\n\n	<!-- mim-gap markers: just an extended drawing-board rect -->\n	<!-- \n	TODO This could be refactored to make the shape match the viewbox.\n	It can overlap the side of the shape, blanking out a small part of it when the edge is at an angle.\n	-->\n\n	<rect stroke="none" x="0.5" y="5.3" width="8" height="1.4"></rect>\n\n</g></marker><marker id="shape-library-markers-mim-gap-svg-end-default" preserveAspectRatio="none" viewBox="0 0 12 12" markerWidth="12" markerHeight="12" markerUnits="strokeWidth" orient="auto" refX="12" refY="6"><g id="g-src-shape-library-markers-mim-gap-svg-end-default" class="board-fill-color solid-stroke" transform="rotate(180, 6, 6)">\n\n	<!-- mim-gap markers: just an extended drawing-board rect -->\n	<!-- \n	TODO This could be refactored to make the shape match the viewbox.\n	It can overlap the side of the shape, blanking out a small part of it when the edge is at an angle.\n	-->\n\n	<rect stroke="none" x="0.5" y="5.3" width="8" height="1.4"></rect>\n\n</g></marker><marker id="shape-library-markers-t-bar-svg-start-default" preserveAspectRatio="none" viewBox="0 0 10 20" markerWidth="10" markerHeight="20" markerUnits="strokeWidth" orient="auto" refX="-0.5" refY="10"><g id="g-src-shape-library-markers-t-bar-svg-start-default" class="board-fill-color default-stroke-color solid-stroke">\n\n        <!-- t-bar markers: vertical line; and extended drawing-board rect -->\n	\n	<rect stroke="none" x="0" y="9" width="8" height="2"></rect>\n	<line fill="none" stroke-width="1.8" x1="7" y1="0" x2="7" y2="20"></line>\n\n</g></marker><marker id="shape-library-markers-t-bar-svg-end-default" preserveAspectRatio="none" viewBox="0 0 10 20" markerWidth="10" markerHeight="20" markerUnits="strokeWidth" orient="auto" refX="10.5" refY="10"><g id="g-src-shape-library-markers-t-bar-svg-end-default" class="board-fill-color default-stroke-color solid-stroke" transform="rotate(180, 5, 10)">\n\n        <!-- t-bar markers: vertical line; and extended drawing-board rect -->\n	\n	<rect stroke="none" x="0" y="9" width="8" height="2"></rect>\n	<line fill="none" stroke-width="1.8" x1="7" y1="0" x2="7" y2="20"></line>\n\n</g></marker><marker id="shape-library-markers-none-svg-start-default" preserveAspectRatio="none" viewBox="0 0 0 0" markerWidth="0" markerHeight="0" markerUnits="strokeWidth" orient="auto" refX="0" refY="6"><g id="g-src-shape-library-markers-none-svg-start-default" class="board-fill-color board-stroke-color node shape">\n\n	<rect x="0" y="0" width="0" height="0" stroke="none" fill="none" stroke-width="0"></rect>\n\n</g></marker><marker id="shape-library-markers-none-svg-end-default" preserveAspectRatio="none" viewBox="0 0 0 0" markerWidth="0" markerHeight="0" markerUnits="strokeWidth" orient="auto" refX="11" refY="6"><g id="g-src-shape-library-markers-none-svg-end-default" class="board-fill-color board-stroke-color node shape" transform="rotate(180, 0, 0)">\n\n	<rect x="0" y="0" width="0" height="0" stroke="none" fill="none" stroke-width="0"></rect>\n\n</g></marker><marker id="shape-library-markers-mim-branching-left-svg-start-default" preserveAspectRatio="none" viewBox="0 0 12 12" markerWidth="12" markerHeight="12" markerUnits="strokeWidth" orient="auto" refX="0.4" refY="6"><g id="g-src-shape-library-markers-mim-branching-left-svg-start-default" class="board-fill-color default-stroke-color solid-stroke">\n\n	<!-- mim-branching-left markers: line and extended drawing-board rect -->\n\n	<rect stroke="none" x="0.9" y="5.3" width="2.6" height="1.4"></rect>\n	<line fill="none" stroke-width="1" x1="3.9" y1="6.2" x2="0.2" y2="0"></line>	\n\n</g></marker><marker id="shape-library-markers-mim-branching-left-svg-end-default" preserveAspectRatio="none" viewBox="0 0 12 12" markerWidth="12" markerHeight="12" markerUnits="strokeWidth" orient="auto" refX="11.6" refY="6"><g id="g-src-shape-library-markers-mim-branching-left-svg-end-default" class="board-fill-color default-stroke-color solid-stroke" transform="rotate(180, 6, 6)">\n\n	<!-- mim-branching-left markers: line and extended drawing-board rect -->\n\n	<rect stroke="none" x="0.9" y="5.3" width="2.6" height="1.4"></rect>\n	<line fill="none" stroke-width="1" x1="3.9" y1="6.2" x2="0.2" y2="0"></line>	\n\n</g></marker><marker id="shape-library-markers-mim-branching-right-svg-start-default" preserveAspectRatio="none" viewBox="0 0 4 12" markerWidth="4" markerHeight="12" markerUnits="strokeWidth" orient="auto" refX="0.4" refY="6"><g id="g-src-shape-library-markers-mim-branching-right-svg-start-default" class="board-fill-color default-stroke-color solid-stroke">\n\n	<!-- mim-branching-right markers: line and extended drawing-board rect -->\n\n	<rect stroke="none" x="0.9" y="5.3" width="2.6" height="1.4"></rect>\n	<line fill="none" stroke-width="1" x1="0.2" y1="12" x2="3.9" y2="5.8"></line>	\n\n</g></marker><marker id="shape-library-markers-mim-branching-right-svg-end-default" preserveAspectRatio="none" viewBox="0 0 4 12" markerWidth="4" markerHeight="12" markerUnits="strokeWidth" orient="auto" refX="3.6" refY="6"><g id="g-src-shape-library-markers-mim-branching-right-svg-end-default" class="board-fill-color default-stroke-color solid-stroke" transform="rotate(180, 2, 6)">\n\n	<!-- mim-branching-right markers: line and extended drawing-board rect -->\n\n	<rect stroke="none" x="0.9" y="5.3" width="2.6" height="1.4"></rect>\n	<line fill="none" stroke-width="1" x1="0.2" y1="12" x2="3.9" y2="5.8"></line>	\n\n</g></marker><style type="text/css">	svg {\n		color-interpolation: auto;\n		image-rendering: auto;\n		shape-rendering: auto;\n		vector-effect: non-scaling-stroke;\n                background: white;\n	/* removed fill and stroke since they override marker specs */\n	/*	fill: white;\n    		stroke: black; */\n	}\n\n	/* default color for pathway elements */\n	.default-fill-color {\n		fill: black; \n	}\n	.default-stroke-color {\n		stroke: black;\n	}\n	\n	/* default color of the background drawing board */ 	\n	.board-fill-color {\n		fill: white;\n	}\n	.board-stroke-color {\n		stroke: white;\n	}\n\n	.text-area {\n		font-family: Sans-Serif, Helvetica, Arial;\n		text-align: center;\n		vertical-align: middle;\n		font-size: 10px;\n		fill: black;\n		fill-opacity: 1;\n		stroke: none;\n	}\n\n	.citation {\n		font-family: Sans-Serif, Helvetica, Arial;\n		text-align: center;\n		vertical-align: top;\n		font-size: 7px;\n		fill: #999999;\n		fill-opacity: 1;\n		stroke: none;\n	}\n\n	.info-box {\n		font-family: Sans-Serif;\n		font-size: 10px;\n		fill: black;\n		stroke: none;\n		text-align: left;\n		vertical-align: top;\n	}\n\n	.info-box-item-property-name {\n		font-weight: bold;\n	}\n\n	.info-box-item-property-value {\n	}\n\n	.data-node {\n		text-align: right;\n		fill-opacity: 1;\n		fill: white;\n		stroke: black;\n		stroke-width: 1;\n		stroke-dasharray: 0;\n		stroke-miterlimit: 1;\n    		pointer-events:auto;\n	}\n	\n	.has-xref:hover {\n		cursor: pointer;\n	}\n\n	.data-node.gene-product {\n	}\n\n	.metabolite {\n		stroke: blue;\n	}\n\n	.data-node.metabolite &gt; .text-area {\n		fill: blue;\n		fill-opacity: 1;\n		stroke: none;\n	}\n\n	.data-node.pathway {\n		stroke: none;\n		fill-opacity: 0;\n	}\n\n	.data-node.pathway &gt; .text-area {\n		fill: rgb(20,150,30);\n		fill-opacity: 1;\n		font-size: 12px;\n		font-weight: bold;\n	}\n\n	.data-node.protein {\n	}\n\n	.data-node.rna {\n	}\n\n	.data-node.unknown {\n	}\n\n	.label {\n		stroke: null;\n		stroke-width: 0;\n		fill-opacity: 0;\n		stroke-dasharray: 0;\n		stroke-miterlimit: 1;\n	}\n\n	.shape {\n		fill-opacity: 0;\n		stroke: black;\n		stroke-dasharray: 0;\n		stroke-miterlimit: 1;\n	}\n\n	.shape.none {\n		fill: none;\n		fill-opacity: 0;\n		stroke: none;\n	}\n\n	g.group-node &gt; .shape {\n		fill-opacity: 0.098;\n		stroke: gray;\n		stroke-miterlimit: 1;\n		stroke-width: 1px;\n    		pointer-events:none;\n	}\n\n	.group-node {\n		fill-opacity: 0.098;\n		stroke: gray;\n		stroke-miterlimit: 1;\n		stroke-width: 1px;\n    		pointer-events:none;\n	}\n\n	.group-node &gt; .text-area {\n		fill-opacity: 0.4;\n		font-family: Serif, Times;\n		font-size: 32px;\n		fill: black;\n		stroke-width: 0;\n		font-weight: bold;\n  	}	\n\n	.group-node.none {\n		fill: rgb(180,180,100);\n		stroke-dasharray: 5,3;\n	}\n\n	.group-node.none &gt; .text-area {\n		display: none;\n  	}	\n\n	/*.group-node.none:hover {\n		fill: rgb(255,180,100);\n		fill-opacity: 0.05;\n	}*/\n\n	.group-node.group {\n		fill-opacity: 0;\n		stroke: none;\n	}\n\n	.group-node.group &gt; .text-area {\n		display: none;\n  	}\n	/*.group-node.group:hover {\n		fill: rgb(0,0,255);\n		stroke-width: 1px;\n		stroke-dasharray: 5,3;\n		stroke: gray;\n		fill-opacity: 0.1;\n	}*/\n\n	.group-node.complex {\n		fill: rgb(180,180,100);\n	}\n\n	.group-node.complex &gt; .text-area {\n		display: none;\n  	}\n	/*.group-node.complex:hover {\n		fill: rgb(255,0,0);\n		fill-opacity: 0.05;\n	}*/	\n\n  	.group-node.pathway {\n		fill: rgb(0,255,0);\n		stroke-dasharray: 5,3;\n	}\n	/*.group-node.pathway:hover {\n		fill: rgb(0,255,0);\n		fill-opacity: 0.2;\n	}*/\n	.group-node.pathway &gt; .text-area {\n		fill: rgb(20,150,30);\n		stroke: rgb(20,150,30);\n  }\n\n  .cellular-component {\n		fill-opacity: 0;\n		stroke: silver;\n	}\n\n  .graphical-line {\n		fill:none;\n		stroke: black; \n		stroke-width: 1px; \n	}\n\n	.interaction {\n		fill:none;\n		stroke: black; \n		stroke-width: 1px; \n	}\n\n	marker {\n		/* this is what should work per the spec\n		   stroke-dasharray: none; */\n		/* but I need to add this to make it work in Safari */\n		stroke-dasharray: 9999999999999999999999999;\n	}\n\n  .marker-end {\n    -webkit-transform: rotate(180deg);\n    -webkit-transform-origin: 50% 50%;\n\n    -o-transform: rotate(180deg); \n    -o-transform-origin: 50% 50%;\n\n    transform: rotate(180deg);\n    transform-origin: 50% 50%;\n  }\n\n	.solid-stroke {\n		/* this is what should work per the spec\n		   stroke-dasharray: none; */\n		/* but I need to add this to make it work in Safari */\n		stroke-dasharray: 9999999999999999999999999;\n	}\n\n	.dashed-stroke {\n		stroke-dasharray: 5,3;\n	}\n\n  .highlighted-node {\n		fill: yellow;\n    fill-opacity: 0.2;\n		stroke: orange; \n    stroke-width: 3px;\n  }\n</style></defs>\n\n        <g id="viewport" transform="matrix(0.40192310626690203, 0, 0, 0.40192310626690203, 10, 155.10552514671065) ">\n        </g>\n\n      </svg>\n\n    \n      \n    </div>\n    \n    <div id="typeahead" style="position: absolute; top: 5px; right: 5px;">\n    <!-- **********************************************************************\n      Highlight Element by Label Control\n      *********************************************************************** -->\n\n      <span class="twitter-typeahead" style="position: relative; display: inline-block;"><input class="tt-hint" type="text" autocomplete="off" spellcheck="off" disabled="" style="position: absolute; top: 0px; left: 0px; border-color: transparent; box-shadow: none; background-attachment: scroll; background-clip: border-box; background-color: rgb(255, 255, 255); background-image: none; background-origin: padding-box; background-size: auto; background-position: 0% 0%; background-repeat: repeat repeat;"><input id="highlight-by-label-input" placeholder="Enter node name to highlight." role="textbox" aria-autocomplete="list" aria-haspopup="true" class="tt-query" autocomplete="off" spellcheck="false" dir="auto" style="position: relative; vertical-align: top; background-color: transparent;"><span style="position: absolute; left: -9999px; visibility: hidden; white-space: nowrap; font-family: \'Lucida Grande\'; font-size: 12px; font-style: normal; font-variant: normal; font-weight: 400; word-spacing: 0px; letter-spacing: 0px; text-indent: 0px; text-rendering: auto; text-transform: none;"></span><span class="tt-dropdown-menu" style="position: absolute; top: 100%; left: 0px; z-index: 100; display: none;"></span></span>\n\n      </div> \n     \n   \n      <!-- **********************************************************************\n      Pan Zoom Control\n      see http://bumbu.github.io/cytoscape.js/debug/ for example of cytoscape.js \n      *********************************************************************** -->\n\n<!--      <div id="pan-zoom-control" class="ui-cytoscape-panzoom">\n        <div class="ui-cytoscape-panzoom-zoom-in ui-cytoscape-panzoom-zoom-button">\n          <span class="icon icon-plus"></span>\n        </div>\n        <div class="ui-cytoscape-panzoom-zoom-out ui-cytoscape-panzoom-zoom-button">\n          <span class="icon icon-minus"></span>\n        </div>\n        <div class="ui-cytoscape-panzoom-reset ui-cytoscape-panzoom-zoom-button">\n          <span class="icon icon-resize-full"></span>\n        </div>\n        <div class="ui-cytoscape-panzoom-slider">\n          <div class="ui-cytoscape-panzoom-slider-background">\n          </div>\n          <div class="ui-cytoscape-panzoom-slider-handle" style="top: 42.80000001192093px;">\n            <span class="icon icon-minus"></span>\n          </div>\n          <div class="ui-cytoscape-panzoom-no-zoom-tick" style="top: 42.80000001192093px;">\n          </div>\n        </div>\n        <div class="ui-cytoscape-panzoom-panner">\n          <div class="ui-cytoscape-panzoom-panner-handle">\n          </div>\n          <div class="ui-cytoscape-panzoom-pan-up ui-cytoscape-panzoom-pan-button">\n          </div>\n          <div class="ui-cytoscape-panzoom-pan-down ui-cytoscape-panzoom-pan-button">\n          </div>\n          <div class="ui-cytoscape-panzoom-pan-left ui-cytoscape-panzoom-pan-button">\n          </div>\n          <div class="ui-cytoscape-panzoom-pan-right ui-cytoscape-panzoom-pan-button">\n          </div>\n          <div class="ui-cytoscape-panzoom-pan-indicator" style="display: none; left: 22.424611085682006px; top: 0.12287108520014556px; background-color: rgb(127, 127, 127); background-position: initial initial; background-repeat: initial initial;">\n          </div>\n        </div>\n      </div>\n-->\n      <!-- **********************************************************************\n      Fullscreen Control \n      *********************************************************************** -->\n\n      <div id="fit-to-screen-control" class="fit-to-screen-controls" style="position: absolute; bottom: 5px; right: 0px;">                           \n        <img class="icon-screenshot" style="color:#aaa" src="../src/img/fitscreen_icon.png">                                                        \n      </div>    \n\n   <!--   <div id="fullscreen-control" style="position: absolute; bottom: 5px; right: 8px;">\n        <i class="icon-fullscreen" style="color:#aaa"></i>\n      </div>\n   -->\n\n    <div id="viewer-toolbar" style="position: absolute; top: 0px; right: 0px; height: inherit">\n    </div>\n      \n    <!-- **********************************************************************\n    Details Frame\n    *********************************************************************** -->\n\n    <div id="annotation" class="annotation ui-draggable" style="visibility: hidden; position: absolute; right: 75px; top: 100px;">\n      <header class="annotation-header">\n      <span id="annotation-move" class="annotation-header-move">\n        <i class="icon-move"></i>\n      </span>\n      <span class="annotation-header-close">                                                                                    \n        <i class="icon-remove"></i>                                                                                                                             \n      </span>   \n      <span id="annotation-header-text" class="annotation-header-text">\n        Header\n      </span> \n      <span id="annotation-header-search" class="annotation-header-search" title="Search for pathways containing \'Header Text\'">\n        <a href="http://wikipathways.org//index.php?title=Special:SearchPathways">\n          <i class="icon-search" style="color:blue; font-size:50% ; text-decoration:none"></i>\n        </a>\n      </span>\n      <div id="annotation-description" class="annotation-description">\n        <h2>description</h2>\n      </div>\n      </header>\n      <span class="annotation-items-container">\n        <ul id="annotation-items-container">\n          <!-- List items inside this ul element are generated automatically by JavaScript.\n          Each item will be composed of a title and text. The text can be set to be an href.\n          You can edit the styling of the title by editing CSS class "annotation-item-title"\n          and the styling of the text by editing CSS class "annotation-item-text.\n          -->\n        </ul>\n      </span>\n    </div>\n  </div>\n';
+pathvisioNS["tmp/pathvisiojs.html"] = '<div id="pathvisiojs-container" style="width: inherit; min-width: inherit; max-width: inherit; height: inherit; min-height: inherit; max-height: inherit; position: absolute; ">\n\n    <!-- **********************************************************************\n    Pathway Container (JavaScript inserts pathway image inside this div)\n    *********************************************************************** -->\n\n    <div id="diagram-container" style="width: inherit; min-width: inherit; max-width: inherit; height: inherit; min-height: inherit; max-height: inherit; "><svg id="pathvisiojs-diagram" version="1.1" baseProfile="full" xmlns="http://www.w3.org/1999/xlink" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ev="http://www.w3.org/2001/xml-events" width="100%" height="100%" style="display: inline; width: inherit; min-width: inherit; max-width: inherit; height: inherit; min-height: inherit; max-height: inherit; " preserveAspectRatio="xMidYMid" onmouseup="svgPanZoom.handleMouseUp(evt)" onmousedown="svgPanZoom.handleMouseDown(evt)" onmousemove="svgPanZoom.handleMouseMove(evt)" onmouseleave="svgPanZoom.handleMouseUp(evt)" xlink="http://www.w3.org/1999/xlink" ev="http://www.w3.org/2001/xml-events"><g><desc>This SVG file contains all the graphical elements (markers and symbols in defs as well as\nstyle data) used by the program pathvisiojs, which has two components:\n1) a viewer for transforming GPML biological pathway data into an SVG visual representation and\n2) an editor for creating both views and models for biological pathways.</desc></g><title>pathvisiojs diagram</title><defs><marker id="shape-library-markers-arrow-svg-start-default" preserveAspectRatio="none" viewBox="0 0 12 12" markerWidth="12" markerHeight="12" markerUnits="strokeWidth" orient="auto" refX="0" refY="6"><g id="g-src-shape-library-markers-arrow-svg-start-default" class="solid-stroke default-fill-color">\n\n	<!-- arrow markers: triangular polygons, no stroke -->\n\n	<rect class="board-fill-color" stroke="none" x="0" y="5.4" width="2" height="1.2"></rect>\n	<polygon stroke-width="0" points="12,11 0,6 12,1"></polygon>\n\n</g></marker><marker id="shape-library-markers-arrow-svg-end-default" preserveAspectRatio="none" viewBox="0 0 12 12" markerWidth="12" markerHeight="12" markerUnits="strokeWidth" orient="auto" refX="12" refY="6"><g id="g-src-shape-library-markers-arrow-svg-end-default" class="solid-stroke default-fill-color" transform="rotate(180, 6, 6)">\n\n	<!-- arrow markers: triangular polygons, no stroke -->\n\n	<rect class="board-fill-color" stroke="none" x="0" y="5.4" width="2" height="1.2"></rect>\n	<polygon stroke-width="0" points="12,11 0,6 12,1"></polygon>\n\n</g></marker><marker id="shape-library-markers-mim-necessary-stimulation-svg-start-default" preserveAspectRatio="none" viewBox="0 0 16 12" markerWidth="16" markerHeight="12" markerUnits="strokeWidth" orient="auto" refX="0" refY="6"><g id="g-src-shape-library-markers-mim-necessary-stimulation-svg-start-default" class="board-fill-color default-stroke-color solid-stroke">\n\n	<!-- mim-necessary-stimulation markers: triangular polygons, drawing-board fill, default color stroke; and vertical line -->\n\n	<rect class="board-fill-color" stroke="none" x="0" y="5.4" width="2" height="1.2"></rect>\n	<line fill="none" stroke-width="1" x1="14" y1="0" x2="14" y2="12"></line>\n	<line fill="none" stroke="none" x1="16" y1="6" x2="16" y2="6"></line> <!-- dummy point -->\n	<polygon stroke-width="1" points="0,6 9,11 9,1"></polygon>\n\n</g></marker><marker id="shape-library-markers-mim-necessary-stimulation-svg-end-default" preserveAspectRatio="none" viewBox="0 0 16 12" markerWidth="16" markerHeight="12" markerUnits="strokeWidth" orient="auto" refX="16" refY="6"><g id="g-src-shape-library-markers-mim-necessary-stimulation-svg-end-default" class="board-fill-color default-stroke-color solid-stroke" transform="rotate(180, 8, 6)">\n\n	<!-- mim-necessary-stimulation markers: triangular polygons, drawing-board fill, default color stroke; and vertical line -->\n\n	<rect class="board-fill-color" stroke="none" x="0" y="5.4" width="2" height="1.2"></rect>\n	<line fill="none" stroke-width="1" x1="14" y1="0" x2="14" y2="12"></line>\n	<line fill="none" stroke="none" x1="16" y1="6" x2="16" y2="6"></line> <!-- dummy point -->\n	<polygon stroke-width="1" points="0,6 9,11 9,1"></polygon>\n\n</g></marker><marker id="shape-library-markers-mim-binding-svg-start-default" preserveAspectRatio="none" viewBox="0 0 12 12" markerWidth="12" markerHeight="12" markerUnits="strokeWidth" orient="auto" refX="0" refY="6"><g id="g-src-shape-library-markers-mim-binding-svg-start-default" class="solid-stroke default-fill-color">\n\n	<!-- mim-binding markers: four-point polygon, no stroke -->\n\n	<rect class="board-fill-color" stroke="none" x="0" y="5.4" width="2" height="1.2"></rect>\n	<polygon stroke-width="0" points="12,12 0,6 12,0 5,6 "></polygon>\n\n</g></marker><marker id="shape-library-markers-mim-binding-svg-end-default" preserveAspectRatio="none" viewBox="0 0 12 12" markerWidth="12" markerHeight="12" markerUnits="strokeWidth" orient="auto" refX="12" refY="6"><g id="g-src-shape-library-markers-mim-binding-svg-end-default" class="solid-stroke default-fill-color" transform="rotate(180, 6, 6)">\n\n	<!-- mim-binding markers: four-point polygon, no stroke -->\n\n	<rect class="board-fill-color" stroke="none" x="0" y="5.4" width="2" height="1.2"></rect>\n	<polygon stroke-width="0" points="12,12 0,6 12,0 5,6 "></polygon>\n\n</g></marker><marker id="shape-library-markers-mim-conversion-svg-start-default" preserveAspectRatio="none" viewBox="0 0 12 12" markerWidth="12" markerHeight="12" markerUnits="strokeWidth" orient="auto" refX="0" refY="6"><g id="g-src-shape-library-markers-mim-conversion-svg-start-default" class="solid-stroke default-fill-color">\n\n	<!-- mim-conversion markers: triangular polygons, no stroke -->\n\n	<rect class="board-fill-color" stroke="none" x="0" y="5.4" width="2" height="1.2"></rect>\n	<polygon stroke-width="0" points="12,11 0,6 12,1"></polygon>\n\n</g></marker><marker id="shape-library-markers-mim-conversion-svg-end-default" preserveAspectRatio="none" viewBox="0 0 12 12" markerWidth="12" markerHeight="12" markerUnits="strokeWidth" orient="auto" refX="12" refY="6"><g id="g-src-shape-library-markers-mim-conversion-svg-end-default" class="solid-stroke default-fill-color" transform="rotate(180, 6, 6)">\n\n	<!-- mim-conversion markers: triangular polygons, no stroke -->\n\n	<rect class="board-fill-color" stroke="none" x="0" y="5.4" width="2" height="1.2"></rect>\n	<polygon stroke-width="0" points="12,11 0,6 12,1"></polygon>\n\n</g></marker><marker id="shape-library-markers-mim-stimulation-svg-start-default" preserveAspectRatio="none" viewBox="0 0 12 12" markerWidth="12" markerHeight="12" markerUnits="strokeWidth" orient="auto" refX="0" refY="6"><g id="g-src-shape-library-markers-mim-stimulation-svg-start-default" class="board-fill-color default-stroke-color solid-stroke">\n\n	<!-- mim-stimulation markers: triangular polygons, drawing-board fill, default color stroke -->\n\n	<rect class="board-fill-color" stroke="none" x="0" y="5.4" width="2" height="1.2"></rect>\n	<line stroke="none" fill="none" x1="12" y1="6" x2="12" y2="6"></line> <!-- dummy point -->\n	<polygon stroke-width="1" points="0,6 11,11 11,1"></polygon>\n\n</g></marker><marker id="shape-library-markers-mim-stimulation-svg-end-default" preserveAspectRatio="none" viewBox="0 0 12 12" markerWidth="12" markerHeight="12" markerUnits="strokeWidth" orient="auto" refX="12" refY="6"><g id="g-src-shape-library-markers-mim-stimulation-svg-end-default" class="board-fill-color default-stroke-color solid-stroke" transform="rotate(180, 6, 6)">\n\n	<!-- mim-stimulation markers: triangular polygons, drawing-board fill, default color stroke -->\n\n	<rect class="board-fill-color" stroke="none" x="0" y="5.4" width="2" height="1.2"></rect>\n	<line stroke="none" fill="none" x1="12" y1="6" x2="12" y2="6"></line> <!-- dummy point -->\n	<polygon stroke-width="1" points="0,6 11,11 11,1"></polygon>\n\n</g></marker><marker id="shape-library-markers-mim-modification-svg-start-default" preserveAspectRatio="none" viewBox="0 0 12 12" markerWidth="12" markerHeight="12" markerUnits="strokeWidth" orient="auto" refX="0" refY="6"><g id="g-src-shape-library-markers-mim-modification-svg-start-default" class="default-fill-color solid-stroke">\n\n	<!-- mim-modification markers: four-point polygon, no stroke -->\n\n	<rect class="board-fill-color" stroke="none" x="0" y="5.4" width="2" height="1.2"></rect>\n	<polygon stroke-width="0" points="12,12 0,6 12,0 5,6 "></polygon>\n\n</g></marker><marker id="shape-library-markers-mim-modification-svg-end-default" preserveAspectRatio="none" viewBox="0 0 12 12" markerWidth="12" markerHeight="12" markerUnits="strokeWidth" orient="auto" refX="12" refY="6"><g id="g-src-shape-library-markers-mim-modification-svg-end-default" class="default-fill-color solid-stroke" transform="rotate(180, 6, 6)">\n\n	<!-- mim-modification markers: four-point polygon, no stroke -->\n\n	<rect class="board-fill-color" stroke="none" x="0" y="5.4" width="2" height="1.2"></rect>\n	<polygon stroke-width="0" points="12,12 0,6 12,0 5,6 "></polygon>\n\n</g></marker><marker id="shape-library-markers-mim-catalysis-svg-start-default" preserveAspectRatio="none" viewBox="0 0 12 12" markerWidth="12" markerHeight="12" markerUnits="strokeWidth" orient="auto" refX="0" refY="6"><g id="g-src-shape-library-markers-mim-catalysis-svg-start-default" class="board-fill-color default-stroke-color solid-stroke">\n\n	<!-- mim-catalysis markers: circle, drawing-board fill and default color stroke -->\n\n	<circle cx="6.0" cy="6" r="5.3px" stroke-width="1px"></circle>\n\n</g></marker><marker id="shape-library-markers-mim-catalysis-svg-end-default" preserveAspectRatio="none" viewBox="0 0 12 12" markerWidth="12" markerHeight="12" markerUnits="strokeWidth" orient="auto" refX="12" refY="6"><g id="g-src-shape-library-markers-mim-catalysis-svg-end-default" class="board-fill-color default-stroke-color solid-stroke" transform="rotate(180, 6, 6)">\n\n	<!-- mim-catalysis markers: circle, drawing-board fill and default color stroke -->\n\n	<circle cx="6.0" cy="6" r="5.3px" stroke-width="1px"></circle>\n\n</g></marker><marker id="shape-library-markers-mim-inhibition-svg-start-default" preserveAspectRatio="none" viewBox="0 0 10 20" markerWidth="10" markerHeight="20" markerUnits="strokeWidth" orient="auto" refX="0" refY="10"><g id="g-src-shape-library-markers-mim-inhibition-svg-start-default" class="board-fill-color default-stroke-color solid-stroke">\n\n	<!-- mim-inhibition markers: vertical line; and extended drawing-board rect -->\n	\n	<rect stroke="none" x="0" y="9" width="8" height="2"></rect>\n	<line fill="none" stroke-width="1.8" x1="7" y1="0" x2="7" y2="20"></line>\n\n</g></marker><marker id="shape-library-markers-mim-inhibition-svg-end-default" preserveAspectRatio="none" viewBox="0 0 10 20" markerWidth="10" markerHeight="20" markerUnits="strokeWidth" orient="auto" refX="10" refY="10"><g id="g-src-shape-library-markers-mim-inhibition-svg-end-default" class="board-fill-color default-stroke-color solid-stroke" transform="rotate(180, 5, 10)">\n\n	<!-- mim-inhibition markers: vertical line; and extended drawing-board rect -->\n	\n	<rect stroke="none" x="0" y="9" width="8" height="2"></rect>\n	<line fill="none" stroke-width="1.8" x1="7" y1="0" x2="7" y2="20"></line>\n\n</g></marker><marker id="shape-library-markers-mim-cleavage-svg-start-default" preserveAspectRatio="none" viewBox="0 0 20 30" markerWidth="20" markerHeight="30" markerUnits="strokeWidth" orient="auto" refX="9" refY="15"><g id="g-src-shape-library-markers-mim-cleavage-svg-start-default" class="board-fill-color default-stroke-color solid-stroke">\n\n	<!-- mim-cleavage markers: two lines and extended drawing-board rect -->\n\n	<rect stroke="none" x="0" y="14.3" width="18.4" height="1.4"></rect>\n	<line fill="none" stroke-width="1" x1="18" y1="14.5" x2="18" y2="30"></line>	\n	<line fill="none" stroke-width="1" x1="18" y1="30" x2="0" y2="0"></line>	\n\n\n</g></marker><marker id="shape-library-markers-mim-cleavage-svg-end-default" preserveAspectRatio="none" viewBox="0 0 20 30" markerWidth="20" markerHeight="30" markerUnits="strokeWidth" orient="auto" refX="10" refY="15"><g id="g-src-shape-library-markers-mim-cleavage-svg-end-default" class="board-fill-color default-stroke-color solid-stroke" transform="rotate(180, 10, 15)">\n\n	<!-- mim-cleavage markers: two lines and extended drawing-board rect -->\n\n	<rect stroke="none" x="0" y="14.3" width="18.4" height="1.4"></rect>\n	<line fill="none" stroke-width="1" x1="18" y1="14.5" x2="18" y2="30"></line>	\n	<line fill="none" stroke-width="1" x1="18" y1="30" x2="0" y2="0"></line>	\n\n\n</g></marker><marker id="shape-library-markers-mim-covalent-bond-svg-start-default" preserveAspectRatio="none" viewBox="0 0 12 12" markerWidth="12" markerHeight="12" markerUnits="strokeWidth" orient="auto" refX="-0.5" refY="6"><g id="g-src-shape-library-markers-mim-covalent-bond-svg-start-default" class="solid-stroke default-fill-color">\n\n	<!-- mim-covalent-bond markers: not much to see here! -->\n	<rect x="0" y="0" width="0" height="0" stroke="none" fill="none" stroke-width="0"></rect>\n\n</g></marker><marker id="shape-library-markers-mim-covalent-bond-svg-end-default" preserveAspectRatio="none" viewBox="0 0 12 12" markerWidth="12" markerHeight="12" markerUnits="strokeWidth" orient="auto" refX="11" refY="6"><g id="g-src-shape-library-markers-mim-covalent-bond-svg-end-default" class="solid-stroke default-fill-color" transform="rotate(180, 6, 6)">\n\n	<!-- mim-covalent-bond markers: not much to see here! -->\n	<rect x="0" y="0" width="0" height="0" stroke="none" fill="none" stroke-width="0"></rect>\n\n</g></marker><marker id="shape-library-markers-mim-transcription-translation-svg-start-default" preserveAspectRatio="none" viewBox="0 0 20 24" markerWidth="20" markerHeight="24" markerUnits="strokeWidth" orient="auto" refX="0" refY="12"><g id="g-src-shape-library-markers-mim-transcription-translation-svg-start-default" class="board-fill-color default-stroke-color solid-stroke">\n\n	<!-- mim-transcription-translation markers: two lines and an open trigular polygon, plus extended drawing-board rect -->\n\n	<rect stroke="none" x="0" y="11" width="12" height="2"></rect>\n	<line fill="none" stroke-width="1" x1="15" y1="12" x2="15" y2="5"></line>\n	<line fill="none" stroke-width="1" x1="15.5" y1="5" x2="8" y2="5"></line>\n	<polygon stroke-width="1" points="0,5 8,1 8,9"></polygon>\n\n</g></marker><marker id="shape-library-markers-mim-transcription-translation-svg-end-default" preserveAspectRatio="none" viewBox="0 0 20 24" markerWidth="20" markerHeight="24" markerUnits="strokeWidth" orient="auto" refX="20" refY="12"><g id="g-src-shape-library-markers-mim-transcription-translation-svg-end-default" class="board-fill-color default-stroke-color solid-stroke" transform="rotate(180, 10, 12)">\n\n	<!-- mim-transcription-translation markers: two lines and an open trigular polygon, plus extended drawing-board rect -->\n\n	<rect stroke="none" x="0" y="11" width="12" height="2"></rect>\n	<line fill="none" stroke-width="1" x1="15" y1="12" x2="15" y2="5"></line>\n	<line fill="none" stroke-width="1" x1="15.5" y1="5" x2="8" y2="5"></line>\n	<polygon stroke-width="1" points="0,5 8,1 8,9"></polygon>\n\n</g></marker><marker id="shape-library-markers-mim-gap-svg-start-default" preserveAspectRatio="none" viewBox="0 0 12 12" markerWidth="12" markerHeight="12" markerUnits="strokeWidth" orient="auto" refX="0" refY="6"><g id="g-src-shape-library-markers-mim-gap-svg-start-default" class="board-fill-color solid-stroke">\n\n	<!-- mim-gap markers: just an extended drawing-board rect -->\n	<!-- \n	TODO This could be refactored to make the shape match the viewbox.\n	It can overlap the side of the shape, blanking out a small part of it when the edge is at an angle.\n	-->\n\n	<rect stroke="none" x="0" y="5.3" width="8" height="1.4"></rect>\n\n</g></marker><marker id="shape-library-markers-mim-gap-svg-end-default" preserveAspectRatio="none" viewBox="0 0 12 12" markerWidth="12" markerHeight="12" markerUnits="strokeWidth" orient="auto" refX="12" refY="6"><g id="g-src-shape-library-markers-mim-gap-svg-end-default" class="board-fill-color solid-stroke" transform="rotate(180, 6, 6)">\n\n	<!-- mim-gap markers: just an extended drawing-board rect -->\n	<!-- \n	TODO This could be refactored to make the shape match the viewbox.\n	It can overlap the side of the shape, blanking out a small part of it when the edge is at an angle.\n	-->\n\n	<rect stroke="none" x="0" y="5.3" width="8" height="1.4"></rect>\n\n</g></marker><marker id="shape-library-markers-t-bar-svg-start-default" preserveAspectRatio="none" viewBox="0 0 10 20" markerWidth="10" markerHeight="20" markerUnits="strokeWidth" orient="auto" refX="0" refY="10"><g id="g-src-shape-library-markers-t-bar-svg-start-default" class="board-fill-color default-stroke-color solid-stroke">\n\n        <!-- t-bar markers: vertical line; and extended drawing-board rect -->\n	\n	<rect stroke="none" x="0" y="9" width="8" height="2"></rect>\n	<line fill="none" stroke-width="1.8" x1="7" y1="0" x2="7" y2="20"></line>\n\n</g></marker><marker id="shape-library-markers-t-bar-svg-end-default" preserveAspectRatio="none" viewBox="0 0 10 20" markerWidth="10" markerHeight="20" markerUnits="strokeWidth" orient="auto" refX="10" refY="10"><g id="g-src-shape-library-markers-t-bar-svg-end-default" class="board-fill-color default-stroke-color solid-stroke" transform="rotate(180, 5, 10)">\n\n        <!-- t-bar markers: vertical line; and extended drawing-board rect -->\n	\n	<rect stroke="none" x="0" y="9" width="8" height="2"></rect>\n	<line fill="none" stroke-width="1.8" x1="7" y1="0" x2="7" y2="20"></line>\n\n</g></marker><marker id="shape-library-markers-none-svg-start-default" preserveAspectRatio="none" viewBox="0 0 0 0" markerWidth="0" markerHeight="0" markerUnits="strokeWidth" orient="auto" refX="0" refY="6"><g id="g-src-shape-library-markers-none-svg-start-default" class="board-fill-color board-stroke-color node shape">\n\n	<rect x="0" y="0" width="0" height="0" stroke="none" fill="none" stroke-width="0"></rect>\n\n</g></marker><marker id="shape-library-markers-none-svg-end-default" preserveAspectRatio="none" viewBox="0 0 0 0" markerWidth="0" markerHeight="0" markerUnits="strokeWidth" orient="auto" refX="11" refY="6"><g id="g-src-shape-library-markers-none-svg-end-default" class="board-fill-color board-stroke-color node shape" transform="rotate(180, 0, 0)">\n\n	<rect x="0" y="0" width="0" height="0" stroke="none" fill="none" stroke-width="0"></rect>\n\n</g></marker><marker id="shape-library-markers-mim-branching-left-svg-start-default" preserveAspectRatio="none" viewBox="0 0 12 12" markerWidth="12" markerHeight="12" markerUnits="strokeWidth" orient="auto" refX="0.4" refY="6"><g id="g-src-shape-library-markers-mim-branching-left-svg-start-default" class="board-fill-color default-stroke-color solid-stroke">\n\n	<!-- mim-branching-left markers: line and extended drawing-board rect -->\n\n	<rect stroke="none" x="0.4" y="5.3" width="3.1" height="1.4"></rect>\n	<line fill="none" stroke-width="1" x1="3.9" y1="6.2" x2="0.2" y2="0"></line>	\n\n</g></marker><marker id="shape-library-markers-mim-branching-left-svg-end-default" preserveAspectRatio="none" viewBox="0 0 12 12" markerWidth="12" markerHeight="12" markerUnits="strokeWidth" orient="auto" refX="11.6" refY="6"><g id="g-src-shape-library-markers-mim-branching-left-svg-end-default" class="board-fill-color default-stroke-color solid-stroke" transform="rotate(180, 6, 6)">\n\n	<!-- mim-branching-left markers: line and extended drawing-board rect -->\n\n	<rect stroke="none" x="0.4" y="5.3" width="3.1" height="1.4"></rect>\n	<line fill="none" stroke-width="1" x1="3.9" y1="6.2" x2="0.2" y2="0"></line>	\n\n</g></marker><marker id="shape-library-markers-mim-branching-right-svg-start-default" preserveAspectRatio="none" viewBox="0 0 4 12" markerWidth="4" markerHeight="12" markerUnits="strokeWidth" orient="auto" refX="0.4" refY="6"><g id="g-src-shape-library-markers-mim-branching-right-svg-start-default" class="board-fill-color default-stroke-color solid-stroke">\n\n	<!-- mim-branching-right markers: line and extended drawing-board rect -->\n\n	<rect stroke="none" x="0.4" y="5.3" width="3.1" height="1.4"></rect>\n	<line fill="none" stroke-width="1" x1="0.2" y1="12" x2="3.9" y2="5.8"></line>	\n\n</g></marker><marker id="shape-library-markers-mim-branching-right-svg-end-default" preserveAspectRatio="none" viewBox="0 0 4 12" markerWidth="4" markerHeight="12" markerUnits="strokeWidth" orient="auto" refX="3.6" refY="6"><g id="g-src-shape-library-markers-mim-branching-right-svg-end-default" class="board-fill-color default-stroke-color solid-stroke" transform="rotate(180, 2, 6)">\n\n	<!-- mim-branching-right markers: line and extended drawing-board rect -->\n\n	<rect stroke="none" x="0.4" y="5.3" width="3.1" height="1.4"></rect>\n	<line fill="none" stroke-width="1" x1="0.2" y1="12" x2="3.9" y2="5.8"></line>	\n\n</g></marker><style type="text/css">	svg {\n		color-interpolation: auto;\n		image-rendering: auto;\n		shape-rendering: auto;\n		vector-effect: non-scaling-stroke;\n                background: white;\n	/* removed fill and stroke since they override marker specs */\n	/*	fill: white;\n    		stroke: black; */\n	}\n\n	/* default color for pathway elements */\n	.default-fill-color {\n		fill: black; \n	}\n	.default-stroke-color {\n		stroke: black;\n	}\n	\n	/* default color of the background drawing board */ 	\n	.board-fill-color {\n		fill: white;\n	}\n	.board-stroke-color {\n		stroke: white;\n	}\n\n	.text-area {\n		font-family: Sans-Serif, Helvetica, Arial;\n		text-align: center;\n		vertical-align: middle;\n		font-size: 10px;\n		fill: black;\n		fill-opacity: 1;\n		stroke: none;\n	}\n\n	.citation {\n		font-family: Sans-Serif, Helvetica, Arial;\n		text-align: center;\n		vertical-align: top;\n		font-size: 7px;\n		fill: #999999;\n		fill-opacity: 1;\n		stroke: none;\n	}\n\n	.info-box {\n		font-family: Sans-Serif;\n		font-size: 10px;\n		fill: black;\n		stroke: none;\n		text-align: left;\n		vertical-align: top;\n	}\n\n	.info-box-item-property-name {\n		font-weight: bold;\n	}\n\n	.info-box-item-property-value {\n	}\n\n	.data-node {\n		text-align: right;\n		fill-opacity: 1;\n		fill: white;\n		stroke: black;\n		stroke-width: 1;\n		stroke-dasharray: 0;\n		stroke-miterlimit: 1;\n    		pointer-events:auto;\n	}\n	.data-node:hover {\n	 	cursor: pointer;\n	}\n	\n	.has-xref {\n	}\n\n	.data-node.gene-product {\n	}\n\n	.metabolite {\n		stroke: blue;\n	}\n\n	.data-node.metabolite &gt; .text-area {\n		fill: blue;\n		fill-opacity: 1;\n		stroke: none;\n	}\n\n	.data-node.pathway {\n		stroke: none;\n		fill-opacity: 0;\n	}\n\n	.data-node.pathway &gt; .text-area {\n		fill: rgb(20,150,30);\n		fill-opacity: 1;\n		font-size: 12px;\n		font-weight: bold;\n	}\n\n	.data-node.protein {\n	}\n\n	.data-node.rna {\n	}\n\n	.data-node.unknown {\n	}\n\n	.label {\n		stroke: null;\n		stroke-width: 0;\n		fill-opacity: 0;\n		stroke-dasharray: 0;\n		stroke-miterlimit: 1;\n	}\n\n	.shape {\n		fill-opacity: 0;\n		stroke: black;\n		stroke-dasharray: 0;\n		stroke-miterlimit: 1;\n	}\n\n	.shape.none {\n		fill: none;\n		fill-opacity: 0;\n		stroke: none;\n	}\n\n	g.group-node &gt; .shape {\n		fill-opacity: 0.098;\n		stroke: gray;\n		stroke-miterlimit: 1;\n		stroke-width: 1px;\n    		pointer-events:none;\n	}\n\n	.group-node {\n		fill-opacity: 0.098;\n		stroke: gray;\n		stroke-miterlimit: 1;\n		stroke-width: 1px;\n    		pointer-events:none;\n	}\n\n	.group-node &gt; .text-area {\n		fill-opacity: 0.4;\n		font-family: Serif, Times;\n		font-size: 32px;\n		fill: black;\n		stroke-width: 0;\n		font-weight: bold;\n  	}	\n\n	.group-node.none {\n		fill: rgb(180,180,100);\n		stroke-dasharray: 5,3;\n	}\n\n	.group-node.none &gt; .text-area {\n		display: none;\n  	}	\n\n	/*.group-node.none:hover {\n		fill: rgb(255,180,100);\n		fill-opacity: 0.05;\n	}*/\n\n	.group-node.group {\n		fill-opacity: 0;\n		stroke: none;\n	}\n\n	.group-node.group &gt; .text-area {\n		display: none;\n  	}\n	/*.group-node.group:hover {\n		fill: rgb(0,0,255);\n		stroke-width: 1px;\n		stroke-dasharray: 5,3;\n		stroke: gray;\n		fill-opacity: 0.1;\n	}*/\n\n	.group-node.complex {\n		fill: rgb(180,180,100);\n	}\n\n	.group-node.complex &gt; .text-area {\n		display: none;\n  	}\n	/*.group-node.complex:hover {\n		fill: rgb(255,0,0);\n		fill-opacity: 0.05;\n	}*/	\n\n  	.group-node.pathway {\n		fill: rgb(0,255,0);\n		stroke-dasharray: 5,3;\n	}\n	/*.group-node.pathway:hover {\n		fill: rgb(0,255,0);\n		fill-opacity: 0.2;\n	}*/\n	.group-node.pathway &gt; .text-area {\n		fill: rgb(20,150,30);\n		stroke: rgb(20,150,30);\n  }\n\n  .cellular-component {\n		fill-opacity: 0;\n		stroke: silver;\n	}\n\n  .graphical-line {\n		fill:none;\n		stroke: black; \n		stroke-width: 1px; \n	}\n\n	.interaction {\n		fill:none;\n		stroke: black; \n		stroke-width: 1px; \n	}\n\n	marker {\n		/* this is what should work per the spec\n		   stroke-dasharray: none; */\n		/* but I need to add this to make it work in Safari */\n		stroke-dasharray: 9999999999999999999999999;\n	}\n\n  .marker-end {\n    -webkit-transform: rotate(180deg);\n    -webkit-transform-origin: 50% 50%;\n\n    -o-transform: rotate(180deg); \n    -o-transform-origin: 50% 50%;\n\n    transform: rotate(180deg);\n    transform-origin: 50% 50%;\n  }\n\n	.solid-stroke {\n		/* this is what should work per the spec\n		   stroke-dasharray: none; */\n		/* but I need to add this to make it work in Safari */\n		stroke-dasharray: 9999999999999999999999999;\n	}\n\n	.dashed-stroke {\n		stroke-dasharray: 5,3;\n	}\n\n  .highlighted-node {\n		fill: yellow;\n    fill-opacity: 0.2;\n		stroke: orange; \n    stroke-width: 3px;\n  }\n</style></defs><filter id="highlight" width="150%" height="150%"><feOffset result="offOut" in="SourceGraphic" dx="30" dy="30"></feOffset><feGaussianBlur result="blurOut" in="offOut" stdDeviation="10"></feGaussianBlur><feBlend in="SourceGraphic" in2="blurOut" mode="normal"></feBlend></filter><g id="viewport" transform="matrix(1.1959453268173488, 0, 0, 1.1959453268173488, 271.0301038589431, 20) "></g></svg></div>\n    \n    <div id="typeahead" style="position: absolute; top: 5px; right: 5px;">\n    <!-- **********************************************************************\n      Highlight Element by Label Control\n      *********************************************************************** -->\n\n      <span class="twitter-typeahead" style="position: relative; display: inline-block;"><input class="tt-hint" type="text" autocomplete="off" spellcheck="off" disabled="" style="position: absolute; top: 0px; left: 0px; border-color: transparent; box-shadow: none; background-attachment: scroll; background-clip: border-box; background-color: rgb(255, 255, 255); background-image: none; background-origin: padding-box; background-size: auto; background-position: 0% 0%; background-repeat: repeat repeat;"><input id="highlight-by-label-input" placeholder="Enter node name to highlight." role="textbox" aria-autocomplete="list" aria-haspopup="true" class="tt-query" autocomplete="off" spellcheck="false" dir="auto" style="position: relative; vertical-align: top; background-color: transparent;"><span style="position: absolute; left: -9999px; visibility: hidden; white-space: nowrap; font-family: \'Lucida Grande\'; font-size: 12px; font-style: normal; font-variant: normal; font-weight: 400; word-spacing: 0px; letter-spacing: 0px; text-indent: 0px; text-rendering: auto; text-transform: none;"></span><span class="tt-dropdown-menu" style="position: absolute; top: 100%; left: 0px; z-index: 100; display: none;"></span></span>\n\n      </div> \n     \n   \n      <!-- **********************************************************************\n      Pan Zoom Control\n      see http://bumbu.github.io/cytoscape.js/debug/ for example of cytoscape.js \n      *********************************************************************** -->\n\n<!--      <div id="pan-zoom-control" class="ui-cytoscape-panzoom">\n        <div class="ui-cytoscape-panzoom-zoom-in ui-cytoscape-panzoom-zoom-button">\n          <span class="icon icon-plus"></span>\n        </div>\n        <div class="ui-cytoscape-panzoom-zoom-out ui-cytoscape-panzoom-zoom-button">\n          <span class="icon icon-minus"></span>\n        </div>\n        <div class="ui-cytoscape-panzoom-reset ui-cytoscape-panzoom-zoom-button">\n          <span class="icon icon-resize-full"></span>\n        </div>\n        <div class="ui-cytoscape-panzoom-slider">\n          <div class="ui-cytoscape-panzoom-slider-background">\n          </div>\n          <div class="ui-cytoscape-panzoom-slider-handle" style="top: 42.80000001192093px;">\n            <span class="icon icon-minus"></span>\n          </div>\n          <div class="ui-cytoscape-panzoom-no-zoom-tick" style="top: 42.80000001192093px;">\n          </div>\n        </div>\n        <div class="ui-cytoscape-panzoom-panner">\n          <div class="ui-cytoscape-panzoom-panner-handle">\n          </div>\n          <div class="ui-cytoscape-panzoom-pan-up ui-cytoscape-panzoom-pan-button">\n          </div>\n          <div class="ui-cytoscape-panzoom-pan-down ui-cytoscape-panzoom-pan-button">\n          </div>\n          <div class="ui-cytoscape-panzoom-pan-left ui-cytoscape-panzoom-pan-button">\n          </div>\n          <div class="ui-cytoscape-panzoom-pan-right ui-cytoscape-panzoom-pan-button">\n          </div>\n          <div class="ui-cytoscape-panzoom-pan-indicator" style="display: none; left: 22.424611085682006px; top: 0.12287108520014556px; background-color: rgb(127, 127, 127); background-position: initial initial; background-repeat: initial initial;">\n          </div>\n        </div>\n      </div>\n-->\n      <!-- **********************************************************************\n      Fullscreen Control \n      *********************************************************************** -->\n\n      <div id="fit-to-screen-control" class="fit-to-screen-controls" style="position: absolute; bottom: 5px; right: 0px;">                           \n        <img class="icon-screenshot" style="color:#aaa" src="../src/img/fitscreen_icon.png">                                                        \n      </div>    \n\n   <!--   <div id="fullscreen-control" style="position: absolute; bottom: 5px; right: 8px;">\n        <i class="icon-fullscreen" style="color:#aaa"></i>\n      </div>\n   -->\n\n    <div id="viewer-toolbar" style="position: absolute; top: 0px; right: 0px; height: inherit">\n    </div>\n      \n    <!-- **********************************************************************\n    Details Frame\n    *********************************************************************** -->\n\n    <div id="annotation" class="annotation ui-draggable" style="visibility: hidden; position: absolute; right: 75px; top: 100px;">\n      <header class="annotation-header">\n      <span id="annotation-move" class="annotation-header-move">\n        <i class="icon-move"></i>\n      </span>\n      <span class="annotation-header-close">                                                                                    \n        <i class="icon-remove"></i>                                                                                                                             \n      </span>   \n      <span id="annotation-header-text" class="annotation-header-text">\n        Header\n      </span> \n      <span id="annotation-header-search" class="annotation-header-search" title="Search for pathways containing \'Header Text\'">\n        <a href="http://wikipathways.org//index.php?title=Special:SearchPathways">\n          <i class="icon-search" style="color:blue; font-size:50% ; text-decoration:none"></i>\n        </a>\n      </span>\n      <div id="annotation-description" class="annotation-description">\n        <h2>description</h2>\n      </div>\n      </header>\n      <span class="annotation-items-container">\n        <ul id="annotation-items-container">\n          <!-- List items inside this ul element are generated automatically by JavaScript.\n          Each item will be composed of a title and text. The text can be set to be an href.\n          You can edit the styling of the title by editing CSS class "annotation-item-title"\n          and the styling of the text by editing CSS class "annotation-item-text.\n          -->\n        </ul>\n      </span>\n    </div>\n  </div>\n';
 ;
 
 "use strict"
@@ -13,26 +13,35 @@ var pathvisiojs = function(){
 
   var svg, pathway, args;
 
-
-
   function load(args) {
     console.log(args);
 
     // for now, load will just load a visual representation of a pathway, but
-    // this could change in the future
+    // this could change in the future if we add capabilities for analytics or data conversion.
 
     // ********************************************
     // Check that required parameters are present
     // ********************************************
 
     if (!args.container) {
-      throw new Error('No container selector specified as container.');
+      throw new Error('No container selector specified to indicate where to insert the diagram.');
     }
     if (!args.sourceData[0].uri) {
       throw new Error('No sourceData uri specified.');
     }
 
-    pathvisiojs.view.pathwayDiagram.load(args);
+    var configArray = d3.map(pathvisiojs.config).entries();
+    var updateConfigsAsNeeded = function(configElement, callback) {
+      if (args.hasOwnProperty(configElement.key)) {
+        pathvisiojs.config[configElement.key] = args[configElement.key];
+      }
+      callback(null);
+    };
+
+    async.each(configArray, updateConfigsAsNeeded, function(err){
+      console.log(pathvisiojs.config.bridgedbLinkOutsUriStub);
+      pathvisiojs.view.pathwayDiagram.load(args);
+    });
   }
 
   return {
@@ -41,101 +50,11 @@ var pathvisiojs = function(){
 }();
 ;
 
-"use strict";
-
-pathvisiojs.config = function() {
-  var gpmlSourceUriStub = function() {
-    // TODO is this correct for test3? I don't think so.
-    return 'http://test3.wikipathways.org//wpi/wpi.php?action=downloadFile&type=gpml&pwTitle=Pathway:';
-  }
-
-  var bridgedbLinkOutsUriStub = function() {
-    return '../wpi/extensions/bridgedb.php/';
-  }
-
-  var bridgedbDatasources = function() {
-    // TODO this should be replaced with bridgedb webservice call, when made available
-    return '../wpi/extensions/PathwayViewer/datasources.txt';
-  }
-
-  var diagramNotAvailableIconUri = function() {
-    return '../wpi/extensions/PathwayViewer/img/Picture_Not_Yet_Available.png';
-  }
-
-  var loadingGif = function() {
-    return '../wpi/extensions/PathwayViewer/img/loading.gif';
-  }
-
-  var imgDiagramUriStub = function() {
-    return 'http://test3.wikipathways.org/wpi//wpi.php?action=downloadFile&type=png&pwTitle=Pathway:';
-  }
-
-  var pathwaySearchUriStub = function() {
-    return 'http://test3.wikipathways.org//index.php?title=Special:SearchPathways&doSearch=1&query=';
-  }
-
-  return {
-    gpmlSourceUriStub:gpmlSourceUriStub,
-    bridgedbLinkOutsUriStub:bridgedbLinkOutsUriStub,
-    bridgedbDatasources:bridgedbDatasources,
-    imgDiagramUriStub:imgDiagramUriStub,
-    diagramNotAvailableIconUri:diagramNotAvailableIconUri,
-    loadingGif:loadingGif,
-    pathwaySearchUriStub:pathwaySearchUriStub
-  };
-}();
-;
-
 pathvisiojs.utilities = function(){
-
-  // from http://stackoverflow.com/questions/2454295/javascript-concatenate-properties-from-multiple-objects-associative-array
-
-  function collect() {
-    var ret = {};
-    var len = arguments.length;
-    for (var i=0; i<len; i++) {
-      for (p in arguments[i]) {
-        if (arguments[i].hasOwnProperty(p)) {
-          ret[p] = arguments[i][p];
-        }
-      }
-    }
-    return ret;
-  }
-
-  function isIE() {
-    var myNav = navigator.userAgent.toLowerCase();
-    return (myNav.indexOf('msie') != -1) ? parseInt(myNav.split('msie')[1]) : false;
-  }
-
-  /**
-   * From http://stackoverflow.com/questions/7770235/change-text-direction-of-textbox-automatically
-   * What about Chinese characters that go top to bottom?
-   */
-
-  function getTextDirection(text) {
-
-    var x =  new RegExp("[\x00-\x80]+"); // is ascii
-
-    //alert(x.test($this.val()));
-
-    var isAscii = x.test(text);
-
-    var direction;
-    if (isAscii) {
-      direction = "ltr";
-    }
-    else {
-      direction = "rtl";
-    }
-
-    return direction;
-  }  
 
   // from here: http://www.cjboco.com/blog.cfm/post/determining-an-elements-width-and-height-using-javascript/
   // TODO have not tested x-browser yet.
   // could use jquery, but I want to remove it as a dependency for pv.js.
-
   Element.prototype.getElementWidth = function() {
     if (typeof this.clip !== "undefined") {
       return this.clip.width;
@@ -160,41 +79,19 @@ pathvisiojs.utilities = function(){
     }
   };
 
-  function strToHtmlId(str) {
-    var re = /\W/gi;
-    var id = str.replace(re, "");
-    return id;
+  function collect() {
+    // from http://stackoverflow.com/questions/2454295/javascript-concatenate-properties-from-multiple-objects-associative-array
+    var ret = {};
+    var len = arguments.length;
+    for (var i=0; i<len; i++) {
+      for (p in arguments[i]) {
+        if (arguments[i].hasOwnProperty(p)) {
+          ret[p] = arguments[i][p];
+        }
+      }
+    }
+    return ret;
   }
-
-  function isUri(str) {
-
-    // from https://gist.github.com/samuelcole/920312
-
-    var uriPattern = /(?:(?=[\s`!()\[\]{};:'".,<>?«»“”‘’])|\b)((?:[a-z][\w-]+:(?:\/{1,3}|[a-z0-9%])|www\d{0,3}[.]|[a-z0-9.\-]+[.][a-z]{2,4}\/|[a-z0-9.\-]+[.](?:com|org|net))(?:[^\s()<>]+|\(([^\s()<>]+|(\([^\s()<>]+\)))*\))*(?:\(([^\s()<>]+|(\([^\s()<>]+\)))*\)|[^\s`!()\[\]{};:'".,<>?«»“”‘’]|\b))/gi;
-    return uriPattern.test(str);
-  }
-
-  function splitStringByNewLine(str) {
-
-    // PathVisio (Java) uses '&#xA;' for indicating newline, and browsers convert this into '\r\n' or '\n' in JavaScript.
-
-    return str.split(/\r\n|\r|\n/g);
-  }
-
-  // this both clones a node and inserts it at the same level of the DOM
-  // as the element it was cloned from.
-  // it returns a d3 selection of the cloned element
-  function cloneNode(selector) {
-    var node = d3.select(selector).node();
-    return d3.select(node.parentNode.insertBefore(node.cloneNode(true), node.nextSibling));
-  }
-
-  // see http://stackoverflow.com/questions/18082/validate-numbers-in-javascript-isnumeric
-
-  function isNumber(n) {
-    return !isNaN(parseFloat(n)) && isFinite(n);
-  }
-
 
   function clone(src) {
     function mixin(dest, source, copyFunc) {
@@ -248,29 +145,12 @@ pathvisiojs.utilities = function(){
 
   }  
 
-  function getUriParam(name) {
-
-    // Thanks to http://stackoverflow.com/questions/11582512/how-to-get-uri-parameters-with-javascript
-    // This will be replaced once we get the backend php to get the json
-
-    var parameter = decodeURIComponent((new RegExp('[?|&]' + name + '=' + '([^&;]+?)(&|#|;|$)').exec(location.search)||[,""])[1].replace(/\+/g, '%20'))||null;
-    if (!!parameter) {
-      return parameter;
-    }
-    else {
-      console.warn('Warning: URL parameter "' + name + '" is null.');
-      return null;
-    }
-  }
-
-  function isWikiPathwaysId(data) {
-    data = data.trim();
-    if (data.substr(0,2).toUpperCase() === 'WP' && isNumber(data.substr(data.length - 1))) {
-      return true;
-    }
-    else {
-      return false;
-    }
+  // this both clones a node and inserts it at the same level of the DOM
+  // as the element it was cloned from.
+  // it returns a d3 selection of the cloned element
+  function cloneNode(selector) {
+    var node = d3.select(selector).node();
+    return d3.select(node.parentNode.insertBefore(node.cloneNode(true), node.nextSibling));
   }
 
   function convertToArray(object) {
@@ -312,7 +192,42 @@ pathvisiojs.utilities = function(){
     return result;
   }
 
-  function getWindowDimensions(object) {
+  function getTextDirection(text) {
+    /**
+     * From http://stackoverflow.com/questions/7770235/change-text-direction-of-textbox-automatically
+     * What about Chinese characters that go top to bottom?
+     */
+    var x =  new RegExp("[\x00-\x80]+"); // is ascii
+
+    //alert(x.test($this.val()));
+
+    var isAscii = x.test(text);
+
+    var direction;
+    if (isAscii) {
+      direction = "ltr";
+    }
+    else {
+      direction = "rtl";
+    }
+
+    return direction;
+  }  
+
+  function getUriParam(name) {
+    // Thanks to http://stackoverflow.com/questions/11582512/how-to-get-uri-parameters-with-javascript
+    // This will be replaced once we get the backend php to get the json
+    var parameter = decodeURIComponent((new RegExp('[?|&]' + name + '=' + '([^&;]+?)(&|#|;|$)').exec(location.search)||[,""])[1].replace(/\+/g, '%20'))||null;
+    if (!!parameter) {
+      return parameter;
+    }
+    else {
+      console.warn('Warning: URL parameter "' + name + '" is null.');
+      return null;
+    }
+  }
+
+ function getWindowDimensions(object) {
     var winW = 630, winH = 460;
     if (document.body && document.body.width) {
      winW = document.body.width;
@@ -331,9 +246,46 @@ pathvisiojs.utilities = function(){
     return {'width':winW, 'height':winH};
   }
 
-  // from http://stackoverflow.com/questions/5306680/move-an-array-element-from-one-array-position-to-another
+  function intersect(a, b) {
+    // modified version of https://github.com/juliangruber/intersect/blob/master/index.js
+    var res = [];
+    for (var i = 0; i < a.length; i++) {
+      if (b.indexOf(a[i]) > -1) res.push(a[i]);
+    }
+    return res;
+  }
+
+  function isIE() {
+    var myNav = navigator.userAgent.toLowerCase();
+    return (myNav.indexOf('msie') != -1) ? parseInt(myNav.split('msie')[1]) : false;
+  }
+
+  function isUri(str) {
+    // from https://gist.github.com/samuelcole/920312
+    var uriPattern = /(?:(?=[\s`!()\[\]{};:'".,<>?«»“”‘’])|\b)((?:[a-z][\w-]+:(?:\/{1,3}|[a-z0-9%])|www\d{0,3}[.]|[a-z0-9.\-]+[.][a-z]{2,4}\/|[a-z0-9.\-]+[.](?:com|org|net))(?:[^\s()<>]+|\(([^\s()<>]+|(\([^\s()<>]+\)))*\))*(?:\(([^\s()<>]+|(\([^\s()<>]+\)))*\)|[^\s`!()\[\]{};:'".,<>?«»“”‘’]|\b))/gi;
+    return uriPattern.test(str);
+  }
+
+  // see http://stackoverflow.com/questions/18082/validate-numbers-in-javascript-isnumeric
+  function isNumber(n) {
+    return !isNaN(parseFloat(n)) && isFinite(n);
+  }
+  var isOdd = function(num) {
+    return num % 2;
+  }
+
+  function isWikiPathwaysId(data) {
+    data = data.trim();
+    if (data.substr(0,2).toUpperCase() === 'WP' && isNumber(data.substr(data.length - 1))) {
+      return true;
+    }
+    else {
+      return false;
+    }
+  }
 
   function moveArrayItem(arr, old_index, new_index) {
+    // from http://stackoverflow.com/questions/5306680/move-an-array-element-from-one-array-position-to-another
     if (new_index >= arr.length) {
       var k = new_index - arr.length;
       while ((k--) + 1) {
@@ -344,30 +296,52 @@ pathvisiojs.utilities = function(){
     return arr; // for testing purposes
   }
 
-  var isOdd = function(num) { return num % 2;}
+  function splitStringByNewLine(str) {
+    // PathVisio (Java) uses '&#xA;' for indicating newline, and browsers convert this into '\r\n' or '\n' in JavaScript.
+    return str.split(/\r\n|\r|\n/g);
+  }
+
+  function strToHtmlId(str) {
+    var re = /\W/gi;
+    var id = str.replace(re, "");
+    return id;
+  }
 
   return{
-    collect:collect,
-    isUri:isUri,
-    isIE:isIE,
-    splitStringByNewLine:splitStringByNewLine,
-    getUriParam:getUriParam,
-    cloneNode:cloneNode,
     clone:clone,
+    cloneNode:cloneNode,
+    collect:collect,
     convertToArray:convertToArray,
-    getWindowDimensions:getWindowDimensions,
-    moveArrayItem:moveArrayItem,
-    isOdd:isOdd,
-    isWikiPathwaysId:isWikiPathwaysId,
-    isNumber:isNumber,
-    strToHtmlId:strToHtmlId,
     getObjectType:getObjectType,
-    getTextDirection:getTextDirection
+    getTextDirection:getTextDirection,
+    getUriParam:getUriParam,
+    getWindowDimensions:getWindowDimensions,
+    isIE:isIE,
+    intersect:intersect,
+    isNumber:isNumber,
+    isOdd:isOdd,
+    isUri:isUri,
+    isWikiPathwaysId:isWikiPathwaysId,
+    moveArrayItem:moveArrayItem,
+    splitStringByNewLine:splitStringByNewLine,
+    strToHtmlId:strToHtmlId
   };
 }();
 
 
 
+;
+
+"use strict";
+
+pathvisiojs.config = {};
+pathvisiojs.config.gpmlSourceUriStub = '../external-data/bridgedb/gpml.php?id=';
+pathvisiojs.config.bridgedbLinkOutsUriStub = '../external-data/bridgedb/bridgedb.php/';
+pathvisiojs.config.bridgedbDatasources = '../external-data/bridgedb/datasources.txt';
+pathvisiojs.config.diagramLoadingIconUri = '../src/img/loading.gif';
+pathvisiojs.config.diagramNotAvailableIconUri = '../src/img/imageNotAvailable.jpg';
+pathvisiojs.config.imgDiagramUriStub = 'http://www.wikipathways.org/wpi//wpi.php?action=downloadFile&type=png&pwTitle=Pathway:';
+pathvisiojs.config.pathwaySearchUriStub = 'http://wikipathways.org//index.php?title=Special:SearchPathways&doSearch=1&query=';
 ;
 
 pathvisiojs.data = function(){
@@ -422,10 +396,16 @@ pathvisiojs.data = function(){
 
 pathvisiojs.data.bridgedb = function(){
 
-  var bridgedbLinkOutsUriStub = pathvisiojs.config.bridgedbLinkOutsUriStub;
-  var bridgedbDatasources = pathvisiojs.config.bridgedbDatasources;
-
   function getXrefAnnotationDataByDataNode(singleSpecies, id, datasource, label, desc, callback) {
+    //For unannotated nodes, without datasource or identifier
+    if (null == id || null == datasource){
+        var annotationData = {
+          "header": label,
+          "description": desc,
+          "listItems": ['Missing ID and datasource']
+        };
+        callback(annotationData);  
+    } else {   
     getDataSources(function(dataSources) {
       var dataSourceRowCorrespondingToDataNodeXrefDatabase = getDataSourceRowByName(datasource, dataSources);
       var systemCode = dataSourceRowCorrespondingToDataNodeXrefDatabase.systemCode;
@@ -492,6 +472,7 @@ pathvisiojs.data.bridgedb = function(){
         callback(annotationData);
       });
     });
+   }
   }
 
   function getDataSourceRowByName(dataSourceName, dataSources) {
@@ -504,7 +485,7 @@ pathvisiojs.data.bridgedb = function(){
   }
 
   function getDataSources(callback) {
-    d3.tsv(bridgedbDatasources)
+    d3.tsv(pathvisiojs.config.bridgedbDatasources)
     .response(function(request) {
       return d3.tsv.parseRows(request.responseText, function(d) {
         return {dataSourceName: d[0], systemCode: d[1], websiteUri: d[2], linkoutPattern: d[3], exampleIdentifier: d[4], entityIdentified: d[5], singleSpecies: d[6], priority: d[7], uri: d[8], regex: d[9], officialName: d[10]};
@@ -516,7 +497,7 @@ pathvisiojs.data.bridgedb = function(){
   }
 
   function getXrefAliases(singleSpecies, systemCode, xRefId, callback) {
-    var bridgedbUri = bridgedbLinkOutsUriStub + encodeURIComponent(singleSpecies) + '/xrefs/' + encodeURIComponent(systemCode) + '/' + encodeURIComponent(xRefId);
+    var bridgedbUri = pathvisiojs.config.bridgedbLinkOutsUriStub + encodeURIComponent(singleSpecies) + '/xrefs/' + encodeURIComponent(systemCode) + '/' + encodeURIComponent(xRefId);
     console.log(bridgedbUri);
     d3.tsv(bridgedbUri)
     .response(function(request) { 
@@ -2280,10 +2261,10 @@ pathvisiojs.data.pathvisiojsJson = function(){
   // GPML or has no type specified, into JSON.
   // TODO Later, this functionality can be extended to include other data types and
   // to test for data type when it is not specified.
-  function get(sourceData, callback) {
-    var uri = sourceData.uri;
-    var object = sourceData.object;
-    var fileType = sourceData.fileType;
+  function get(renderableSourceDataElement, callback) {
+    var uri = renderableSourceDataElement.uri;
+    var object = renderableSourceDataElement.object;
+    var fileType = renderableSourceDataElement.fileType;
 
     if (!uri) {
       return new Error('No uri specified.');
@@ -2292,10 +2273,10 @@ pathvisiojs.data.pathvisiojsJson = function(){
       return new Error('No fileType specified.');
     }
 
-    // TODO handle if sourceData.object
+    // TODO handle if renderableSourceDataElement.object
 
     if (fileType === 'gpml') {
-      pathvisiojs.data.gpml.get(sourceData, function(gpml) {
+      pathvisiojs.data.gpml.get(renderableSourceDataElement, function(gpml) {
         pathvisiojs.data.gpml.toRenderableJson(gpml, uri, function(json) {
           callback(json);
         });
@@ -4676,10 +4657,10 @@ pathvisiojs.data.gpml.edge.graphicalLine = function(){
         jsonGraphicalLine.markerEnd = 'none';
       }
 
-      // TODO handle this properly. Right now, we can't render graphical lines with
-      // connector type of elbow or curve.
-
-      jsonGraphicalLine.ConnectorType = 'Straight';
+      jsonGraphicalLine.ConnectorType = (gpmlGraphicalLine.select('Graphics').attr('ConnectorType')); 
+      if (!jsonGraphicalLine.ConnectorType) {
+	jsonGraphicalLine.ConnectorType = 'Straight';
+      }
 
       callback(jsonGraphicalLine);
     })
@@ -4881,14 +4862,16 @@ pathvisiojs.view.annotation = function(){
 
     var annotationListItemsContainer = annotation.selectAll('#annotation-items-container')
     .data(function(d) {
-      //debug//console.log('d annotationListItemsContainer');
-      //debug//console.log(d);
-      //if a single string, then assume special case: img src for loading gif
+      //if a single string, then check for special case: img src for loading gif
       if (typeof d.listItems[0] === 'string'){
+       if (d.listItems[0].split('.').pop() == 'gif'){
 	annotationDescription.append('br');
 	annotationDescription.append('br');
 	annotationDescription.append('img').attr('src', d.listItems[0]).attr('style', 'width: 20px');
-	//fake item list that effectively clears the display while loading gif is active
+       } else { //display the custom text
+	annotationDescription.append('p').html('<font color="red">'+d.listItems[0]+'</font>');
+       }
+        //fake item list that effectively clears the display while loading gif is active
         return [{"key":"clear","values":[{"clear": "clear"}]}];
       } else {
       //debug//console.log([d.listItems]);
@@ -4991,7 +4974,7 @@ pathvisiojs.view.annotation.xRef = function(){
   var cachedAnnotationData = {};
 
   function render(organism, id, datasource, label, desc) {
-    var data = getCachedAnnotationData(organism, id, datasource);
+    var data = getCachedAnnotationData(organism, label, id, datasource);
     if (data){
       //if cache, then use it
       pathvisiojs.view.annotation.render(data);
@@ -4999,25 +4982,27 @@ pathvisiojs.view.annotation.xRef = function(){
     else {
       //else render immediate data and loading gif
       var data = {
-          "header": label,
-          "description": desc,
-	  "listItems":[pathvisiojs.config.loadingGif()] 
-        };
+        "header": label,
+        "description": desc,
+        "listItems":[pathvisiojs.config.diagramLoadingIconUri] 
+      };
       pathvisiojs.view.annotation.render(data);
+
+      console.log(pathvisiojs.config.bridgedbLinkOutsUriStub);
       //then retrieve the bridgedb data
       var xRefData = pathvisiojs.data.bridgedb.getXrefAnnotationDataByDataNode(organism, id, datasource, label, desc, function(annotationData) {
-        setCachedAnnotationData(organism, id, datasource, annotationData);
-	pathvisiojs.view.annotation.render(annotationData);
+        setCachedAnnotationData(organism, label, id, datasource, annotationData);
+        pathvisiojs.view.annotation.render(annotationData);
       });
     }
   }
 
-  function getCachedAnnotationData(organism, id, datasource){
-    return cachedAnnotationData[organism+id+datasource];
+  function getCachedAnnotationData(organism, label, id, datasource){
+    return cachedAnnotationData[organism+label+id+datasource];
   }
 
-  function setCachedAnnotationData(organism, id, datasource, data){
-    cachedAnnotationData[organism+id+datasource] = data;
+  function setCachedAnnotationData(organism, label, id, datasource, data){
+    cachedAnnotationData[organism+label+id+datasource] = data;
   }
 
   return {
@@ -5029,36 +5014,98 @@ pathvisiojs.view.annotation.xRef = function(){
 "use strict";
 
 pathvisiojs.view.pathwayDiagram = function(){
+  // currently just using Gecko (Firefox) list of supported image formats for the HTML img tag:
+  // https://developer.mozilla.org/en-US/docs/Web/HTML/Element/Img
+  // TODO decide what to do if the user specifies an SVG image as a dataSource element
+
+  // the viewMethods are sorted in order of preference - viewMethod with lower index will be used if more than one is returned.
+  var sourceDataFileTypeToViewMethodMappings = {
+    gpml:[
+      'svg' //in the future, could add canvas support
+    ],
+    biopax:[ //biopax is not currently supported
+      'svg' //in the future, could add canvas support
+    ],
+    pdf:[
+      'pdf' //not supported now. this would be future. we might use pdf.js or we could just try using an embed or object tag.
+    ],
+    png:[
+      'img'
+    ],
+    jpg:[
+      'img'
+    ],
+    jpeg:[
+      'img'
+    ],
+    jpe:[
+      'img'
+    ],
+    jif:[
+      'img'
+    ],
+    jfif:[
+      'img'
+    ],
+    jfi:[
+      'img'
+    ],
+    gif:[
+      'img'
+    ],
+    ico:[
+      'img'
+    ],
+    bmp:[
+      'img'
+    ],
+    dib:[
+      'img'
+    ]
+  };
 
   function getFirstRenderableSourceDataElement(sourceData) {
-    var sourceDataElement,
-      results = {};
+    var sourceDataElement, viewMethodsForSourceDataFileType, supportedViewMethodsForSourceDataFileType,
+      results = {},
+      supportedViewMethods = getSupportedViewMethods();
+
     var i = 0;
     do {
       sourceDataElement = sourceData[i];
-      var imageFormat = getImageFormatByDataSourceFileType(sourceDataElement.fileType);
+      viewMethodsForSourceDataFileType = sourceDataFileTypeToViewMethodMappings[sourceDataElement.fileType];
+      supportedViewMethodsForSourceDataFileType = pathvisiojs.utilities.intersect(viewMethodsForSourceDataFileType, supportedViewMethods);
       i += 1;
-    } while ((!imageFormat) && (i < sourceData.length + 1));
+    } while ((supportedViewMethodsForSourceDataFileType.length < 1) && (i < sourceData.length + 1));
 
-    sourceDataElement.imageFormat = imageFormat;
+    sourceDataElement.selectedViewMethod = supportedViewMethodsForSourceDataFileType[0];
     return sourceDataElement;
   }
 
-  function getImageFormatByDataSourceFileType(fileType) {
-    //IE9 currently cannot convert gpml to pathvisiojsJson
-    if ((fileType === 'gpml') && (Modernizr.svg) && (pathvisiojs.utilities.isIE() !== 9)) {
-      return 'svg';
+  //function getImageFormatByDataSourceFileType(fileType) {
+  //this is testing the browser the user is currently using 
+  function getSupportedViewMethods() {
+    //making an assumption that all browsers we care about support the HTML img tag
+
+    var supportedViewMethods = ['img'];
+
+    // TODO support svg that is not inline in the svg viewMethod
+    // The IE9 detection is a temporary hack. It is used because IE9 cannot currently convert GPML to pathvisiojsJson,
+    // so it cannot display the resulting SVG.
+    // TODO get gpml to pathvisiojsJson conversion working with IE9
+    if (Modernizr.inlinesvg && (pathvisiojs.utilities.isIE() !== 9)) {
+      supportedViewMethods.push('svg');
     }
-    else if ((fileType === 'png') || (fileType === 'jpeg') || (fileType === 'gif')) { //TODO update this to use a more complete test for all supported static image formats
-      return 'img';
-    }
-    else {
-      return null;
-    }
+    
+    return supportedViewMethods;
+  }
+
+  function loadHtmlTemplate(userSpecifiedContainer, callback) {
+    userSpecifiedContainer.html(pathvisioNS['tmp/pathvisiojs.html']);
+    var diagramContainer = userSpecifiedContainer.select('#diagram-container');
+    callback(diagramContainer);
   }
 
   function load(args) {
-
     // this function gets a reference to a GPML file and draws a visual representation of the pathway
     // TODO Much of the SVG creation code should be moved to ./svg/svg.js so we just call
     // pathvisiojs.view.pathwayDiagram.svg.load() in the same way as we do for
@@ -5068,15 +5115,7 @@ pathvisiojs.view.pathwayDiagram = function(){
     // Check for minimum required set of parameters
     // ********************************************
 
-    if (!args.container) {
-      throw new Error('No container selector specified as container for pathvisiojs.');
-    }
-
-    if (!args.sourceData[0].uri) {
-      throw new Error('No sourceData uri specified.');
-    }
-
-    var containerSelector = args.container,
+    var userSpecifiedContainerSelector = args.container,
       sourceData = args.sourceData,
       fitToContainer = args.fitToContainer,
       cssUri = args.cssUri,
@@ -5084,157 +5123,100 @@ pathvisiojs.view.pathwayDiagram = function(){
       //customSymbols = args.customSymbols,
       highlightNodes = args.highlightNodes,
       hiddenElements = args.hiddenElements,
-      container;
+      userSpecifiedContainer, // the element matching the user-specified selector. the user specified selector is the parameter "container" in the pathvisiojs.load() method.
+      pathvisioJsContainer,
+      diagramContainer;
+
+    if (!sourceData[0].uri) {
+      throw new Error('No sourceData uri specified.');
+    }
+
+    if (!userSpecifiedContainerSelector) {
+      throw new Error('No container selector specified as container for pathvisiojs.');
+    }
+
+    userSpecifiedContainer = d3.select(userSpecifiedContainerSelector);
+    if (userSpecifiedContainer.length !== 1) {
+      throw new Error('Container selector must be matched by exactly one element.');
+    }
 
     // waterfall means that each function completes in order, passing its result to the next
     async.waterfall([
+      function(callback){ // this could be in parallel
+        // ********************************************
+        // Load HTML template
+        // ********************************************
+        var htmlTemplate = loadHtmlTemplate(userSpecifiedContainer, function(thisPathwayContainer) {
+          diagramContainer = thisPathwayContainer;
+          callback(null);
+        });
+      },
       function(callback){
+        // ********************************************
+        // Add loading gif
+        // ********************************************
+        var diagramLoadingIconUri = pathvisiojs.config.diagramLoadingIconUri;
+        var img = diagramContainer.append('img')
+        .attr('id', 'loading-icon')
+        .attr('src', diagramLoadingIconUri)
+        .attr('width', 50);
 
         // ********************************************
         // Get desired dimensions for pathway diagram
         // ********************************************
-
         var renderableSourceDataElement = getFirstRenderableSourceDataElement(sourceData);
 
-        callback(null, renderableSourceDataElement);
-      },
-      function(renderableSourceDataElement, callback){
-
         // ********************************************
         // Get desired dimensions for pathway diagram
         // ********************************************
+        var boundingClientRect = userSpecifiedContainer[0][0].getBoundingClientRect();
+        var containerWidth = boundingClientRect.width - 3; //account for space for pan/zoom controls,
+        var containerHeight = boundingClientRect.height - 3; //account for space for search field;
 
-        var container = d3.select(containerSelector);
-        if (container.length !== 1) {
-          throw new Error('Container selector must be matched by exactly one element.');
-        }
-
-        var boundingClientRect = container[0][0].getBoundingClientRect();
-        var containerWidth = boundingClientRect.width - 40; //account for space for pan/zoom controls,
-        var containerHeight = boundingClientRect.height - 20; //account for space for search field;
-
-        callback(null, container, containerWidth, containerHeight, renderableSourceDataElement);
+        callback(null, containerWidth, containerHeight, renderableSourceDataElement);
       },
-      function(container, containerWidth, containerHeight, renderableSourceDataElement, callback){
-        var svg, pathway, loadDiagramArgs = {};
-
-        loadDiagramArgs.container = container;
+      function(containerWidth, containerHeight, renderableSourceDataElement, callback){
+        var svg, pathway,
+        loadDiagramArgs = {};
+        loadDiagramArgs.container = diagramContainer;
+        loadDiagramArgs.renderableSourceDataElement = renderableSourceDataElement;
         loadDiagramArgs.containerWidth = containerWidth;
         loadDiagramArgs.containerHeight = containerHeight;
         loadDiagramArgs.fitToContainer = fitToContainer;
 
         // ********************************************
-        // Check for SVG support. If false, use PNG fallback
+        // Check for SVG support. If false, use static image (png, jpg, gif, etc.) fallback
         // ********************************************
-
-        // TODO get this working in IE9
-
-        if (renderableSourceDataElement.imageFormat === 'svg') {
-          async.parallel({
-            preloadSvg: function(callback) {
-              var preloadDiagramArgs = {};
-              preloadDiagramArgs.container = container;
-              preloadDiagramArgs.customMarkers = customMarkers;
-//              preloadDiagramArgs.customSymbols = customSymbols;
-              preloadDiagramArgs.cssUri = cssUri;
-              pathvisiojs.view.pathwayDiagram.svg.loadPartials(preloadDiagramArgs, function(svg) {
-                callback(null, svg);
-              });
-            },
-            pathway: function(callback){
-              pathvisiojs.data.pathvisiojsJson.get(renderableSourceDataElement, function(json) {
-                pathvisiojs.context = json['@context'];
-                console.log('json');
-                console.log(json);
-                callback(null, json);
-              })
-            }
-          },
-          function(err, results){
-            pathway = results.pathway;
-
-            if (pathway !== 'fail') {
-              svg = results.preloadSvg,
-
-              loadDiagramArgs.svg = svg;
-              loadDiagramArgs.pathway = pathway;
-
-              pathvisiojs.view.pathwayDiagram.svg.load(loadDiagramArgs, function(svg) {
-
-                ///* Node Highlighter
-
-                var nodeLabels, nodeLabel;
-                if (!!pathway) {
-                  nodeLabels = [];
-                  if (pathway.hasOwnProperty('DataNode')) {
-                    pathway.DataNode.forEach(function(node) {
-                      if (!!node.text) {
-                        nodeLabels.push(node.text.line[0]);
-                      }
-                    });
-
-                    // see http://twitter.github.io/typeahead.js/
-
-                    $('#highlight-by-label-input').typeahead({
-                      name: 'Highlight node in pathway',
-                      local: nodeLabels,
-                      limit: 10
-                    });
-                  }
-
-                  /*
-                     $('.icon-eye-open').click(function(){
-                     var nodeLabel = $("#highlight-by-label-input").val();
-                     if (!nodeLabel) {
-                     console.warn('Error: No data node value entered.');
-                     }
-                     else {
-                     pathvisiojs.view.pathwayDiagram.svg.node.highlightByLabel(svg, nodeLabel);
-                     }
-                     });
-                  //*/
-                  // see http://api.jquery.com/bind/
-                  // TODO get selected value better and make function to handle
-
-                  $( "#highlight-by-label-input" ).bind("typeahead:selected", function() {
-                    nodeLabel = $("#highlight-by-label-input").val();
-                    if (!nodeLabel) {
-                      throw new Error("No data node value entered for type-ahead node highlighter.");
-                    }
-                    else {
-
-                      // TODO refactor this so it calls a generic highlightDataNodeByLabel function that can call
-                      // a highlighter for svg, png, etc. as appropriate.
-
-                      pathvisiojs.view.pathwayDiagram.svg.node.highlightByLabel(svg, pathway, nodeLabel);
-                    }
-                  });
-                  callback(null, 'svg loaded');
-                }
-                else {
-                  callback(null);
-                }
-              })
-            }
-            else {
-              throw new Error('Detected file type does not match specified file type of "gpml"');
-            }
-          })
+        if (renderableSourceDataElement.selectedViewMethod === 'svg') { // TODO get this working in IE9
+          loadDiagramArgs.cssUri = cssUri;
+          loadDiagramArgs.customMarkers = customMarkers;
+          //loadDiagramArgs.customSymbols = customSymbols;
+          //*
+          pathvisiojs.view.pathwayDiagram.svg.load(loadDiagramArgs, function(diagram) {
+            callback(null, diagram);
+          });
+          //*/
         }
         else {
-          loadDiagramArgs.sourceDataElement = renderableSourceDataElement;
-          pathvisiojs.view.pathwayDiagram.img.load(loadDiagramArgs, function() {
-            callback(null, 'img loaded');
+          pathvisiojs.view.pathwayDiagram.img.load(loadDiagramArgs, function(diagram) {
+            callback(null, diagram);
           });
         }
+      },
+      function(diagram, callback){
+        // ********************************************
+        // Remove loading icon
+        // ********************************************
+        diagramContainer.select('#loading-icon').remove();
+
+        // adding this as a signal for e2e tests that the diagram has finished loading 
+        // TODO refactor tests so they don't need this hack.
+        d3.select('body').append('span')
+        .attr('id', 'pathvisiojs-is-loaded');
+        console.log('Pathvisiojs done loading.');
+        callback(null);
       }
-    ],
-    function(err, results) {
-      // adding this as a signal that the process is done
-      d3.select('body').append('span')
-      .attr('id', 'pathvisiojs-is-loaded');
-      console.log('Pathvisiojs done loading.');
-    });
+    ]);
   }
 
   return{
@@ -5268,43 +5250,101 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
   }
 
   function load(args, callback) {
-    var svg = args.svg,
-      pathway = args.pathway,
-      container = args.container,
+    var diagramContainer = args.container, //a d3 selection corresponding to the containing element in the parent document
       containerWidth = args.containerWidth,
       containerHeight = args.containerHeight,
+      cssUri = args.cssUri,
+      renderableSourceDataElement = args.renderableSourceDataElement,
       fitToContainer = args.fitToContainer,
-      pathwayWidth = args.pathway.image.width,
-      pathwayHeight = args.pathway.image.height;
+      customMarkers = args.customMarkers,
+      //customSymbols = args.customSymbols,
+      pathway,
+      diagramContainer,
+      svg;
 
-    //add loading gif
-    // TODO this should probably use the args.container variable and not redefine a new container
-    var container = d3.select('body').select('#diagram-container');
-    var posX = containerWidth/2;
-    var posY = containerHeight/2;
-    var img = container.append('img');
-    img.attr('src', "../src/img/loading.gif")
-    .attr('width', 50)
-    .style('position', "absolute")
-    .style('top', posY + "px")
-    .style('left', posX + "px");
 
-    if (!svg) {
-      throw new Error("Missing svg.");
-    }
-    if (!pathway) {
-      throw new Error("Missing pathway.");
-    }
+    async.waterfall([
+      function(callback){
+        async.parallel({
+          preloadSvg: function(callback) {
+            var preloadDiagramArgs = {};
+              preloadDiagramArgs.container = diagramContainer;
+              preloadDiagramArgs.customMarkers = customMarkers,
+              //preloadDiagramArgs.customSymbols = customSymbols,
+              preloadDiagramArgs.cssUri = cssUri;
 
-    async.series([
+            pathvisiojs.view.pathwayDiagram.svg.loadPartials(preloadDiagramArgs, function(svgTemplate) {
+              svg = svgTemplate;
+
+              if (!svg) {
+                throw new Error("Could not load SVG template.");
+              }
+
+              callback(null);
+            });
+          },
+          pathway: function(callback){
+            pathvisiojs.data.pathvisiojsJson.get(renderableSourceDataElement, function(json) {
+              pathvisiojs.context = json['@context'];
+
+              if (!json || json === 'fail') {
+                throw new Error("Could not convert input source data to pathvisioJsJson.");
+              }
+
+              //console.log('json');
+              //console.log(json);
+              pathway = json;
+              callback(null);
+            })
+          }
+        },
+        function(err, results){
+          //TODO get pathwayWidth and Height
+
+          callback(null);
+        })
+      },
       function(callback){
         pathvisiojs.view.pathwayDiagram.svg.renderFast(svg, pathway, function() {
           callback(null);
         })
       },
       function(callback) {
-	//remove loading gif
-        container.select('img').remove();
+        var viewport = svg.select('#viewport');
+
+        /* not all containers will have a width or height style attribute. this is now done using the same logic
+         * but uses boundingClientRect() instead. the code is located in pathway-diagram.js
+        var container = d3.select('body').select('#diagram-container');
+        var containerWidth = parseInt(container.style("width")) - 40; //account for space for pan/zoom controls
+        var containerHeight = parseInt(container.style("height")) -20; //account for space for search field
+        //*/
+        var fitScreenScale;
+        if (fitToContainer) {
+          fitAndCenterDiagramWithinViewport(viewport, containerWidth, containerHeight, pathway.image.width, pathway.image.height);
+        }
+
+        var fitToScreen = d3.select('body').select('#fit-to-screen-control');
+        fitToScreen.on("click", function(d,i){
+          fitAndCenterDiagramWithinViewport(viewport, containerWidth, containerHeight, pathway.image.width, pathway.image.height);
+        });
+
+        var fullscreen = d3.select('body').select('#fullscreen-control');
+        fullscreen.on("click", function(d,i){
+          var pvjs = document.getElementById("pathvisiojs-dev").innerHTML;
+          var newwin = window.open('','','width=800,height=600');
+          var doc = newwin.document;
+          doc.open();
+          doc.write(pvjs);
+          doc.close();	
+        });
+
+        svgPanZoom.init({
+          //'root': 'svg', //Alex, what is this line for? It doesn't appear to be doing anything and might be intended to be doing what the line below that I added is doing.
+          'selector': 'svg',
+          'zoomEnabled': false,
+          'minZoom': '0.1',
+          'maxZoom': '8.0',
+        });
 
         var svgInFocus = false;
         svg.on("click", function(d, i){
@@ -5319,65 +5359,80 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
         .on("mouseleave", function(d, i){
           if (svgInFocus) {
             svgPanZoom.disableZoom();
-	    svgInFocus = false;
+            svgInFocus = false;
           }
         });
-
-        var viewport = svg.select('#viewport');
-
-        /* not all containers will have a width or height style attribute. this is now done using the same logic
-         * but uses boundingClientRect() instead. the code is located in pathway-diagram.js
-        var container = d3.select('body').select('#diagram-container');
-        var containerWidth = parseInt(container.style("width")) - 40; //account for space for pan/zoom controls
-        var containerHeight = parseInt(container.style("height")) -20; //account for space for search field
-        //*/
-        var fitScreenScale;
-        if (fitToContainer) {
-	  fitAndCenterDiagramWithinViewport(viewport, containerWidth, containerHeight, args.pathway.image.width, args.pathway.image.height);
-        }
-
-    	var fittoscreen = d3.select('body').select('#fit-to-screen-control');
-    	fittoscreen.on("click", function(d,i){
-          fitAndCenterDiagramWithinViewport(viewport, containerWidth, containerHeight, args.pathway.image.width, args.pathway.image.height);
-        });
-
-	var fullscreen = d3.select('body').select('#fullscreen-control');
-	fullscreen.on("click", function(d,i){
-          var pvjs = document.getElementById("pathvisiojs-dev").innerHTML;
-          var newwin = window.open('','','width=800,height=600');
-          var doc = newwin.document;
-	  doc.open();
-	  doc.write(pvjs);
-	  doc.close();	
-	});
-
-        svgPanZoom.init({
-          'root': 'svg',
-          'zoomEnabled': false
-        });
         callback(null);
+      },
+      function(callback){
+        //* Node Highlighter
+
+        var nodeLabels, nodeLabel;
+        if (!!pathway) {
+          nodeLabels = [];
+          if (pathway.hasOwnProperty('DataNode')) {
+            pathway.DataNode.forEach(function(node) {
+              if (!!node.text) {
+                nodeLabels.push(node.text.line[0]);
+              }
+            });
+
+            // see http://twitter.github.io/typeahead.js/
+
+            $('#highlight-by-label-input').typeahead({
+              name: 'Highlight node in pathway',
+              local: nodeLabels,
+              limit: 10
+            });
+          }
+
+          /*
+             $('.icon-eye-open').click(function(){
+             var nodeLabel = $("#highlight-by-label-input").val();
+             if (!nodeLabel) {
+             console.warn('Error: No data node value entered.');
+             }
+             else {
+             pathvisiojs.view.pathwayDiagram.svg.node.highlightByLabel(svg, nodeLabel);
+             }
+             });
+          //*/
+          // see http://api.jquery.com/bind/
+          // TODO get selected value better and make function to handle
+
+          $( "#highlight-by-label-input" ).bind("typeahead:selected", function() {
+            nodeLabel = $("#highlight-by-label-input").val();
+            if (!nodeLabel) {
+              throw new Error("No data node value entered for type-ahead node highlighter.");
+            }
+            else {
+
+              // TODO refactor this so it calls a generic highlightDataNodeByLabel function that can call
+              // a highlighter for svg, png, etc. as appropriate.
+
+              pathvisiojs.view.pathwayDiagram.svg.node.highlightByLabel(svg, pathway, nodeLabel);
+            }
+          });
+          callback(null, 'svg loaded');
+        }
       }
     ],
     function(err, results) {
-      callback();
+      callback(svg);
     });
   }
 
   function loadPartials(args, callbackOutside) {
-    var container = args.container,
+    var diagramContainer = args.container,
       customMarkers = args.customMarkers,
-//      customSymbols = args.customSymbols,
-      cssUri = args.cssUri,
-      pathvisioJsContainer,
-      diagramContainer;
+      //customSymbols = args.customSymbols,
+      cssUri = args.cssUri;
 
     async.series([
       function(callback) {
-        container.html(pathvisioNS['tmp/pathvisiojs.html']);
-        pathvisioJsContainer = container.select('#pathvisiojs-container');
-        diagramContainer = pathvisioJsContainer.select('#diagram-container')
+        diagramContainer.html(pathvisioNS['tmp/pathvisiojs.svg']);
 
-        svg = pathvisioJsContainer.select('#pathvisiojs-diagram')
+        svg = diagramContainer.select('#pathvisiojs-diagram')
         svg.attr('style', 'display: inline; width: inherit; min-width: inherit; max-width: inherit; height: inherit; min-height: inherit; max-height: inherit; ') // TODO this should be moved to the CSS file
         .attr('preserveAspectRatio', 'xMidYMid');
 
@@ -5393,7 +5448,7 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
           callback(null);
         }
       },
-/*
+      /*
       function(callback) {
         if (!!args.customSymbols) {
           pathvisiojs.view.pathwayDiagram.svg.symbol.loadAllCustom(svg, customSymbols, function() {
@@ -5404,7 +5459,8 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
           callback(null);
         }
       },
-//*/      function(callback) {
+      //*/      
+      function(callback) {
         if (!!cssUri) {
           d3.text(cssUri, 'text/css', function(data) {
             var defs = svg.select('defs');
@@ -5429,10 +5485,6 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
   // other elements, this function will call itself back to render
   // the elements within the groupNode.
   function renderSelectedElementsFast(args, callbackOutside){
-    console.log('render');
-    console.log(new Date());
-    console.log('renderSelectedElementsFast args');
-    console.log(args);
     var svg = args.svg,
       data = args.data,
       pathway = args.pathway,
@@ -5451,7 +5503,6 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
       throw new Error("No pathway specified.");
     } 
     data = pathvisiojs.utilities.convertToArray(data);
-
     var contextLevelInput = pathvisiojs.utilities.clone(pathvisiojs.context);
     contextLevelInput.dependsOn = "ex:dependsOn";
 
@@ -5466,7 +5517,13 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
         var renderingArgs = args;
         sortedData.forEach(function(element) {
           renderingArgs.data = element;
-          if (element.renderableType === 'GroupNode') {
+          if (element.renderableType === 'GraphicalLine') {                                                                                        
+            pathvisiojs.view.pathwayDiagram.svg.edge.graphicalLine.render(renderingArgs);                                                          
+          } 
+ 	  else if (element.renderableType === 'Interaction') {
+            pathvisiojs.view.pathwayDiagram.svg.edge.interaction.render(renderingArgs);
+          } 
+          else if (element.renderableType === 'GroupNode') {
             pathvisiojs.view.pathwayDiagram.svg.node.groupNode.render(args, function(groupContainer, groupContents) {
               var groupedElementsArgs = renderingArgs;
               groupedElementsArgs.svg = svg;
@@ -5501,20 +5558,8 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
               //*/
             });
           }
-          else {
-            if (element.renderableType === 'EntityNode') {
-              pathvisiojs.view.pathwayDiagram.svg.node.EntityNode.render(renderingArgs);
-            }
-            else {
-              if (element.renderableType === 'Interaction') {
-                pathvisiojs.view.pathwayDiagram.svg.edge.interaction.render(renderingArgs);
-              }
-              else {
-                if (element.renderableType === 'GraphicalLine') {
-                  pathvisiojs.view.pathwayDiagram.svg.edge.graphicalLine.render(renderingArgs);
-                }
-              }
-            }
+          else if (element.renderableType === 'EntityNode') {
+            pathvisiojs.view.pathwayDiagram.svg.node.EntityNode.render(renderingArgs);
           }
         });
         callback(null, 'Successfully rendered elements');
@@ -5533,21 +5578,17 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
       throw new Error("No data entered to render.");
     }
 
-    console.log('first');
-    console.log(new Date());
     async.parallel({
       'firstOrderData': function(callbackInside) {
         var firstOrderFrame = {
           '@context': pathvisiojs.context,
           '@type':['notGrouped', 'GroupNode']
         };
-	var newFrame = frameIt(pathway);
-          callbackInside(null, newFrame['@graph']);
+        var newFrame = frameIt(pathway);
+        callbackInside(null, newFrame['@graph']);
       }
     },
     function(err, results) {
-      console.log('second');
-      console.log(new Date());
       var viewport = svg.select('#viewport');
 
       pathvisiojs.view.pathwayDiagram.svg.infoBox.render(viewport, pathway);
@@ -5556,46 +5597,52 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
       renderSelectedElementsFastArgs.svg = svg;
       renderSelectedElementsFastArgs.container = viewport;
       renderSelectedElementsFastArgs.pathway = pathway;
+console.log('firstOrderData');
+console.log(results.firstOrderData);
       renderSelectedElementsFastArgs.data = results.firstOrderData;
       renderSelectedElementsFast(renderSelectedElementsFastArgs, function() {
-        console.log('third');
-        console.log(new Date());
         callback(svg);
       });
-    })
+    });
   }
+
   function frameIt(pathway){
-	var nf = new Object({'@context': pathvisiojs.context});
-	var arr = new Array();
-        if(pathway.DataNode){
-          for (var i=0; i<pathway.DataNode.length; i++){
-	    if(!pathway.DataNode[i].isContainedBy){
-              arr.push(pathway.DataNode[i]);
-	    }
-          }
+    var nf = new Object({'@context': pathvisiojs.context});
+    var arr = new Array();
+    if(pathway.Shape){
+      for (var i=0; i<pathway.Shape.length; i++){
+        arr.push(pathway.Shape[i]);
+      }
+    }
+    if(pathway.GraphicalLine){                                                                                                                         
+      for (var i=0; i<pathway.GraphicalLine.length; i++){                                                                                              
+        arr.push(pathway.GraphicalLine[i]);                                                                                                            
+      }                                                                                                                                              
+    }     
+    if(pathway.Interaction){
+      for (var i=0; i<pathway.Interaction.length; i++){
+        arr.push(pathway.Interaction[i]);
+      }
+    }
+    if(pathway.Group){
+      for (var i=0; i<pathway.Group.length; i++){
+        arr.push(pathway.Group[i]);
+      }
+    }
+    if(pathway.Label){
+      for (var i=0; i<pathway.Label.length; i++){
+        arr.push(pathway.Label[i]);
+      }
+    }
+    if(pathway.DataNode){
+      for (var i=0; i<pathway.DataNode.length; i++){
+        if(!pathway.DataNode[i].isContainedBy){
+          arr.push(pathway.DataNode[i]);
         }
-        if(pathway.Shape){
-          for (var i=0; i<pathway.Shape.length; i++){
-            arr.push(pathway.Shape[i]);
-          }
-        }
-        if(pathway.Label){
-          for (var i=0; i<pathway.Label.length; i++){
-            arr.push(pathway.Label[i]);
-          }
-        }
-        if(pathway.Interaction){
-          for (var i=0; i<pathway.Interaction.length; i++){
-            arr.push(pathway.Interaction[i]);
-          }
-        }
-	if(pathway.Group){
-          for (var i=0; i<pathway.Group.length; i++){
-            arr.push(pathway.Group[i]);
-          }
-	}
-	nf['@graph'] = arr; 
-	return nf;
+      }
+    }
+    nf['@graph'] = arr; 
+    return nf;
   }
 
       //pathvisiojs.view.pathwayDiagram.svg.grid.render(svg);
@@ -5899,7 +5946,7 @@ pathvisiojs.view.pathwayDiagram.svg.symbol = function(){
 pathvisiojs.view.pathwayDiagram.svg.publicationXref = function(){
 
   function getReferenceNumberForDisplay(pathway, rdfId) {
-    var displayNumberForDisplay;
+    var displayNumberForDisplay = null;
     var i = -1;
     var currentPublicationXref;
     var found = false;
@@ -5907,9 +5954,11 @@ pathvisiojs.view.pathwayDiagram.svg.publicationXref = function(){
     do {
       i += 1;
       currentPublicationXref = pathway.Biopax.PublicationXref[i];
-      if (currentPublicationXref.rdfId === rdfId) {
-        found = true;
-        displayNumberForDisplay = i + 1;
+      if (typeof currentPublicationXref != 'undefined'){
+        if (currentPublicationXref.rdfId === rdfId) {
+          found = true;
+          displayNumberForDisplay = i + 1;
+        }
       }
     } while (found === false && i < pathway.Biopax.PublicationXref.length);
 
@@ -5968,12 +6017,18 @@ pathvisiojs.view.pathwayDiagram.svg.publicationXref = function(){
 
   function getPublicationXrefString(pathway, rdfIds, callback) {
     var displayNumbers = [];
+    var publicationXrefString = '';
     // make sure it's an array
     rdfIds = pathvisiojs.utilities.convertToArray(rdfIds);
     rdfIds.forEach(function(rdfId) {
-      displayNumbers.push(getReferenceNumberForDisplay(pathway, rdfId));
+      var num = getReferenceNumberForDisplay(pathway, rdfId);
+      if(!!num) {
+        displayNumbers.push(num); 
+      }	
     });
-    var publicationXrefString = createPublicationXrefString(displayNumbers);
+    if (displayNumbers.length > 0){
+      publicationXrefString = createPublicationXrefString(displayNumbers);
+    }
     callback(publicationXrefString);
   }
 
@@ -6390,10 +6445,7 @@ pathvisiojs.view.pathwayDiagram.svg.node.EntityNode = function(){
         }
         return cssClass;
       })
-      if (!!args.data.DatasourceReference) {
-        console.log('args.data.DatasourceReference');
-        console.log(args.data.DatasourceReference);
-        if (!!args.data.DatasourceReference.ID) {
+      if (args.data.nodeType === 'DataNode') { //all datanodes should be clickable
           var notDragged = true;
           nodeContainer
           .on("mousedown", function(d,i) {
@@ -6404,10 +6456,17 @@ pathvisiojs.view.pathwayDiagram.svg.node.EntityNode = function(){
           })
 	  .on("mouseup", function(d,i) {
 	    if (notDragged) {
-	 	pathvisiojs.view.annotation.xRef.render(args.pathway.Organism, d['DatasourceReference'].ID, d['DatasourceReference'].Database, d.text.line.join(' '), d.dataNodeType); //that's capital 'O' Organism from GPML vocab
+	      var dfId = null, dfDb = null;
+	      if (!!d['DatasourceReference']){
+	       if (!!d['DatasourceReference'].ID && !!d['DatasourceReference'].Database){ 
+		dfId = d['DatasourceReference'].ID;
+		dfDb = d['DatasourceReference'].Database;
+	       }
+	      }
+              pathvisiojs.view.annotation.xRef.render(args.pathway.Organism, dfId, dfDb, d.text.line.join(' '), d.dataNodeType); //that's capital 'O' Organism from GPML vocab
+	     
 	    }
 	  });
-        }
       }
     });
   }
@@ -7056,7 +7115,7 @@ pathvisiojs.view.pathwayDiagram.svg.node.text = function(){
       return 'text-line' + i;
     })
     .attr("x", text.cache.x)
-    .attr("y", function (d, i) { return (i - (textLineCount - 1)/2) * 1.4 + 'em';})
+    .attr("y", function (d, i) { return (i - (textLineCount - 1)/2) * 1.1 + 'em';})
     .attr("alignment-baseline", text.cache.alignmentBaseline) 
     .attr("text-anchor", text.cache.textAnchor)
     .text(function (d) { return d; });
@@ -7434,7 +7493,8 @@ pathvisiojs.view.pathwayDiagram.svg.edge = function(){
       'edge': function(callback) {
         edge = container.selectAll('#' + strcase.paramCase(data.GraphId))
         .data([data])
-        .enter().insert("path", ":first-child") // TODO this may cause problems in the future if we have groups with fully opaque backgrounds
+        .enter().append("path") // TODO check whether this option works with groups for both the temporary frameIt hack and the final pathvisio JSON model
+        //.enter().insert("path", ":first-child") // this option may cause problems in the future if we have groups with fully opaque backgrounds
         callback(null, edge);
       },
       /*
@@ -8654,32 +8714,88 @@ pathvisiojs.view.pathwayDiagram.img = function(){
     if (!args) {
       throw new Error("Missing input data.");
     }
+    var container = args.container, //a d3 selection corresponding to the containing element in the parent document
+      containerWidth = parseFloat(args.containerWidth),
+      containerHeight = parseFloat(args.containerHeight),
+      fitToContainer = args.fitToContainer,
+      imgUri = args.renderableSourceDataElement.uri;
+
+    if (!imgUri) {
+      console.warn('No uri specified for sourceData element.'); //TODO decide whether this should warn or throw an error.
+      imgUri = args.renderableSourceDataElement.uri || pathvisiojs.config.diagramNotAvailableIconUri;
+    }
+
+    loadImage(
+      imgUri,
+      function (img) {
+        if (img.type === "error") {
+          console.warn("Error loading image " + imgUri); //TODO decide whether this should warn or throw an error.
+          loadImage(
+            pathvisiojs.config.diagramNotAvailableIconUri,
+            function (img) {
+              //changing from d3 selection to html element
+              container[0][0].appendChild(img);
+              callback(null, img);
+            },
+            {
+              maxWidth: containerWidth,
+              maxHeight: containerHeight
+            }
+          );
+        }
+        else {
+          //changing from d3 selection to html element
+          container[0][0].appendChild(img);
+          //TODO this should go into the CSS file somehow, but be careful not to mess up the SVG version
+          img.setAttribute('style', 'margin: auto; position: absolute; top: 0; left: 0; bottom: 0; right: 0;')
+          callback(null, img);
+        }
+      },
+      {
+        maxWidth: containerWidth,
+        maxHeight: containerHeight,
+        //canvas: true,
+        contain: fitToContainer
+        //crossOrigin:'Anonymous' // I thought this would allow CORS images, but it actually does not.
+      }
+    );
+  }
+
+  /*
+  function load(args, callback) {
+    if (!args) {
+      throw new Error("Missing input data.");
+    }
 
     var container = args.container,
       containerWidth = parseFloat(args.containerWidth),
       containerHeight = parseFloat(args.containerHeight),
-      imgUri = args.sourceDataElement.uri,
+      imgUri = args.renderableSourceDataElement.uri || pathvisiojs.config.diagramNotAvailableIconUri,
       img,
-      imgWidth,
-      imgHeight,
       fitScreenScale;
+      
+      console.log(imgUri);
 
-      /*
-    if (!!wikiPathwaysId) {
-      imgUri = encodeURI(pathvisiojs.config.imgDiagramUriStub + wikiPathwaysId + '&revision=' + revision);
-    }
-    else {
-      imgUri = pathvisiojs.config.diagramNotAvailableIconUri;
-    }
-    //*/
-
-    window.setTimeout(function() {
       img = document.createElement('img');
       img.src = imgUri;
       img.onload = function() {
-        imgWidth = parseFloat(this.width);
-        imgHeight = parseFloat(this.height);
-        fitScreenScale = Math.min((containerWidth/imgWidth), (containerHeight/imgHeight));
+        console.log(this);
+        insertImage(container, containerWidth, containerHeight, img, imgUri, callback);
+      }
+      img.onerror = function() {
+        img.src = pathvisiojs.config.diagramNotAvailableIconUri;
+        img.onload = function() {
+          console.log(this);
+          insertImage(container, containerWidth, containerHeight, img, imgUri, callback);
+          callback(null);
+        }
+      };
+  }
+
+  function insertImage(container, containerWidth, containerHeight, img, imgUri, callback) {
+        var imgWidth = parseFloat(img.width);
+        var imgHeight = parseFloat(img.height);
+        var fitScreenScale = Math.min((containerWidth/imgWidth), (containerHeight/imgHeight));
         container.append('img')
         .attr('id', 'pathvisiojs-pathway-img')
         .attr('src', imgUri)
@@ -8691,9 +8807,8 @@ pathvisiojs.view.pathwayDiagram.img = function(){
         .attr('width', imgWidth * fitScreenScale)
         .attr('height', imgHeight * fitScreenScale);
         callback(null);
-      }
-    }, 50);
   }
+  //*/
 
   return {
     load:load
