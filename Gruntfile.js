@@ -1,9 +1,8 @@
 
+var selectedConfigFileName = 'wikipathways-org';
 
-var selectedConfigFileName = 'www-wikipathways-org';
 /*
 var selectedConfigFileName = 'localhost';
-var selectedConfigFileName = 'test3-wikipathways-org';
 var selectedConfigFileName = 'default';
 //*/
 
