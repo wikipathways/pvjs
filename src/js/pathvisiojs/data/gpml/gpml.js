@@ -590,6 +590,10 @@ pathvisiojs.data.gpml = function(){
             });
             pathway.Group = jsonGroups;
 
+            pathway.elements.sort(function(a, b) {
+              return a.zIndex - b.zIndex;
+            });
+
             var pathwayNestedByGrouping = d3.nest()
             .key(function(d) { return d.hasDependencies; })
             .entries(pathway.elements);

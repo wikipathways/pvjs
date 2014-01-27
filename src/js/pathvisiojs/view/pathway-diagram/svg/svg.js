@@ -255,7 +255,7 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
   // If one or more of these elements are a groupNode that contains
   // other elements, this function will call itself back to render
   // the elements within the groupNode.
-  function renderSelectedElementsWithCachedData(args, callbackOutside){
+  function renderSelectedElementsWithCachedData(args, callback){
     var svg = args.svg,
       data = args.data,
       pathway = args.pathway,
@@ -274,71 +274,56 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
       throw new Error("No pathway specified.");
     } 
     data = pathvisiojs.utilities.convertToArray(data);
-    var contextLevelInput = pathvisiojs.utilities.clone(pathvisiojs.context);
-    contextLevelInput.dependsOn = "ex:dependsOn";
 
-    async.waterfall([
-      function(callback) {
-        data.sort(function(a, b) {
-          return a.zIndex - b.zIndex;
-        });
-        callback(null, data);
-      },
-      function(sortedData, callback) {
-        var renderingArgs = args;
-        sortedData.forEach(function(element) {
-          renderingArgs.data = element;
-          if (element.renderableType === 'GraphicalLine') {                                                                                        
-            pathvisiojs.view.pathwayDiagram.svg.edge.graphicalLine.render(renderingArgs);                                                          
-          } 
- 	  else if (element.renderableType === 'Interaction') {
-            pathvisiojs.view.pathwayDiagram.svg.edge.interaction.render(renderingArgs);
-          } 
-          else if (element.renderableType === 'GroupNode') {
-            pathvisiojs.view.pathwayDiagram.svg.node.groupNode.render(args, function(groupContainer, groupContents) {
-              var groupedElementsArgs = renderingArgs;
-              groupedElementsArgs.svg = svg;
-              groupedElementsArgs.container = args.container; //groupContainer;
-	      /* 
-	      console.log('groupContainer');
-	      console.log(groupContainer); //*/
-              groupedElementsArgs.data = groupContents;
-	      /*
-	      console.log('groupContents');
-	      console.log(groupContents); //*/
-              groupedElementsArgs.pathway = pathway;
+    var renderingArgs = args;
+    data.forEach(function(element) {
+      renderingArgs.data = element;
+      if (element.renderableType === 'GraphicalLine') {                                                                                        
+        pathvisiojs.view.pathwayDiagram.svg.edge.graphicalLine.render(renderingArgs);                                                          
+      } 
+else if (element.renderableType === 'Interaction') {
+        pathvisiojs.view.pathwayDiagram.svg.edge.interaction.render(renderingArgs);
+      } 
+      else if (element.renderableType === 'GroupNode') {
+        pathvisiojs.view.pathwayDiagram.svg.node.groupNode.render(args, function(groupContainer, groupContents) {
+          var groupedElementsArgs = renderingArgs;
+          groupedElementsArgs.svg = svg;
+          groupedElementsArgs.container = args.container; //groupContainer;
+    /* 
+    console.log('groupContainer');
+    console.log(groupContainer); //*/
+          groupedElementsArgs.data = groupContents;
+    /*
+    console.log('groupContents');
+    console.log(groupContents); //*/
+          groupedElementsArgs.pathway = pathway;
 
-              // recursively calling this function to render elements within groupNode(s)
-              pathvisiojs.view.pathwayDiagram.svg.renderSelectedElementsWithCachedData(groupedElementsArgs, function() {
-              });
+          // recursively calling this function to render elements within groupNode(s)
+          pathvisiojs.view.pathwayDiagram.svg.renderSelectedElementsWithCachedData(groupedElementsArgs, function() {
+          });
 
 
-              /*
-              var groupedElementsFrame = {
-                '@context': pathway['@context'],
-                "@type":element.GroupId
-              };
-              jsonld.frame(args.pathway, groupedElementsFrame, function(err, groupedElementsData) {
-                var nodeEntityArgs = {};
-                nodeEntityArgs.svg = args.svg;
-                nodeEntityArgs.container = groupContainer;
-                nodeEntityArgs.data = groupedElementsData['@graph'];
-                pathvisiojs.view.pathwayDiagram.svg.renderSelectedElementsWithCachedData(nodeEntityArgs, function() {
-                });
-              });
-              //*/
+          /*
+          var groupedElementsFrame = {
+            '@context': pathway['@context'],
+            "@type":element.GroupId
+          };
+          jsonld.frame(args.pathway, groupedElementsFrame, function(err, groupedElementsData) {
+            var nodeEntityArgs = {};
+            nodeEntityArgs.svg = args.svg;
+            nodeEntityArgs.container = groupContainer;
+            nodeEntityArgs.data = groupedElementsData['@graph'];
+            pathvisiojs.view.pathwayDiagram.svg.renderSelectedElementsWithCachedData(nodeEntityArgs, function() {
             });
-          }
-          else if (element.renderableType === 'EntityNode') {
-            pathvisiojs.view.pathwayDiagram.svg.node.EntityNode.render(renderingArgs);
-          }
+          });
+          //*/
         });
-        callback(null, 'Successfully rendered elements');
       }
-    ],
-    function(err, results) {
-      callbackOutside(null);
-    })
+      else if (element.renderableType === 'EntityNode') {
+        pathvisiojs.view.pathwayDiagram.svg.node.EntityNode.render(renderingArgs);
+      }
+    });
+    callback(null, 'Successfully rendered elements');
   }
 
   function renderWithCachedData(svg, pathway, callback){
@@ -349,31 +334,21 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
       throw new Error("No data entered to render.");
     }
 
-    async.parallel({
-      'firstOrderData': function(callbackInside) {
-        var firstOrderFrame = {
-          '@context': pathvisiojs.context,
-          '@type':['notGrouped', 'GroupNode']
-        };
-        var newFrame = frameIt(pathway);
-        callbackInside(null, newFrame['@graph']);
-      }
-    },
-    function(err, results) {
-      var viewport = svg.select('#viewport');
+    var newFrame = frameIt(pathway);
+    console.log('firstOrderData');
+    console.log(newFrame['@graph']);
 
-      pathvisiojs.view.pathwayDiagram.svg.infoBox.render(viewport, pathway);
+    var viewport = svg.select('#viewport');
 
-      var renderSelectedElementsWithCachedDataArgs = {};
-      renderSelectedElementsWithCachedDataArgs.svg = svg;
-      renderSelectedElementsWithCachedDataArgs.container = viewport;
-      renderSelectedElementsWithCachedDataArgs.pathway = pathway;
-console.log('firstOrderData');
-console.log(results.firstOrderData);
-      renderSelectedElementsWithCachedDataArgs.data = results.firstOrderData;
-      renderSelectedElementsWithCachedData(renderSelectedElementsWithCachedDataArgs, function() {
-        callback(svg);
-      });
+    pathvisiojs.view.pathwayDiagram.svg.infoBox.render(viewport, pathway);
+
+    var renderSelectedElementsWithCachedDataArgs = {};
+    renderSelectedElementsWithCachedDataArgs.svg = svg;
+    renderSelectedElementsWithCachedDataArgs.container = viewport;
+    renderSelectedElementsWithCachedDataArgs.pathway = pathway;
+    renderSelectedElementsWithCachedDataArgs.data = newFrame['@graph'];
+    renderSelectedElementsWithCachedData(renderSelectedElementsWithCachedDataArgs, function() {
+      callback(svg);
     });
   }
 
