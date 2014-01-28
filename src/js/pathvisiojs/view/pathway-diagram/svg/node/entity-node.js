@@ -1,17 +1,12 @@
 "use strict";
 pathvisiojs.view.pathwayDiagram.svg.node.EntityNode = function(){
   function render(args) {
-    if (!args.container) {
-      throw new Error('Container element not specified for this EntityNode.');
-    }
     if (!args.data) {
       throw new Error('EntityNode data missing.');
     }
     if (!args.pathway) {
       throw new Error('Pathway not specified for this EntityNode. Pathway is needed for items like setting the Organism for DataNode annotations.');
     }
-    console.log('data');
-    console.log(args.data);
 
     pathvisiojs.view.pathwayDiagram.svg.node.render(args, function(nodeContainer) {
       nodeContainer.attr("class", function (d) {
@@ -28,31 +23,32 @@ pathvisiojs.view.pathwayDiagram.svg.node.EntityNode = function(){
         return cssClass;
       })
       if (args.data.nodeType === 'DataNode') { //all datanodes should be clickable
-          var notDragged = true;
-          nodeContainer
-          .on("mousedown", function(d,i) {
-		notDragged = true;
-          })
-          .on("mousemove", function(d,i) {
-                notDragged = false;
-          })
-	  .on("mouseup", function(d,i) {
-	    if (notDragged) {
-	      var dfId = null, dfDb = null;
-	      if (!!d['DatasourceReference']){
-	       if (!!d['DatasourceReference'].ID && !!d['DatasourceReference'].Database){ 
-		dfId = d['DatasourceReference'].ID;
-		dfDb = d['DatasourceReference'].Database;
-	       }
-	      }
-              pathvisiojs.view.annotation.xRef.render(args.pathway.Organism, dfId, dfDb, d.text.line.join(' '), d.dataNodeType); //that's capital 'O' Organism from GPML vocab
-	     
-	    }
-	  });
+        var notDragged = true;
+        nodeContainer
+        .on("mousedown", function(d,i) {
+          notDragged = true;
+        })
+        .on("mousemove", function(d,i) {
+          notDragged = false;
+        })
+        .on("mouseup", function(d,i) {
+          if (notDragged) {
+            var dfId = null, dfDb = null;
+            if (!!d['DatasourceReference']){
+              if (!!d['DatasourceReference'].ID && !!d['DatasourceReference'].Database){ 
+                dfId = d['DatasourceReference'].ID;
+                dfDb = d['DatasourceReference'].Database;
+              }
+            }
+
+            pathvisiojs.view.annotation.xRef.render(args.pathway.Organism, dfId, dfDb, d.text.line.join(' '), d.dataNodeType); //that's capital 'O' Organism from GPML vocab
+
+          }
+        });
       }
     });
   }
- 
+
   return {
     render:render
   };
