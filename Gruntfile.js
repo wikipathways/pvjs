@@ -1,11 +1,3 @@
-
-var selectedConfigFileName = 'wikipathways-org';
-
-/*
-var selectedConfigFileName = 'localhost';
-var selectedConfigFileName = 'default';
-//*/
-
 var pvjsSources = [
   'tmp/pathvisiojs.js', //we only use this one in the Gruntfile, not in development mode in test/compare.js,
   'src/js/pathvisiojs/pathvisio.js',
@@ -86,10 +78,10 @@ module.exports = function(grunt) {
 
 // ----------
 var packageJson = grunt.file.readJSON("package.json"),
-    distributionJs = "build/" + selectedConfigFileName + "/js/pathvisio.js",
-    distributionCss = "build/" + selectedConfigFileName + "/css/pathvisiojs.css",
-    minifiedJs = "build/" + selectedConfigFileName + "/js/pathvisio.min.js",
-    minifiedCss = "build/" + selectedConfigFileName + "/js/pathvisiojs.min.css",
+    distributionJs = "build/js/pathvisio.js",
+    distributionCss = "build/css/pathvisiojs.css",
+    minifiedJs = "build/js/pathvisio.min.js",
+    minifiedCss = "build/js/pathvisiojs.min.css",
     packageDirName = "pathvisiojs-" + packageJson.version,
     packageDir = "build/" + packageDirName + "/",
     releaseRoot = "../site-build/built-pathvisiojs/";

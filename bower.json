@@ -2,7 +2,7 @@
   "author": "Pathvisiojs team",
   "name": "pathvisiojs",
   "description": "Diagram viewer and editor for biological pathways",
-  "version": "0.9.4",
+  "version": "0.9.5",
   "homepage": "http://wikipathways.github.io/pathvisiojs/",
   "dependencies": {
     "jquery": "1.10.2",
