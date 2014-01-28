@@ -282,14 +282,13 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
     } 
     data = pathvisiojs.utilities.convertToArray(data);
 
-    data[0].key = 'viewport';
     var i = 0;
     async.each(data, function(item, callbackInside) {
       console.log('data');
       console.log(data);
       console.log('item');
       console.log(item);
-      if (i > 0) {
+      if (item.key !== 'undefined') {
         container = viewport.append('g')
         .attr('id', strcase.paramCase(item.key));
       }
