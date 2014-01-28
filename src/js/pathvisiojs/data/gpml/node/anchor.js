@@ -25,7 +25,7 @@ pathvisiojs.data.gpml.node.anchor = function() {
           jsonAnchor = {};
           gpmlAnchor = d3.select(this);
           graphId = gpmlAnchor.attr('GraphId') || ('id' + uuid.v4());
-          elementIri = pathwayIri + graphId;
+          elementIri = 'pathwayIri:' + graphId;
           jsonAnchor['@id'] = elementIri;
           jsonAnchor['@type'] = [
             'node',

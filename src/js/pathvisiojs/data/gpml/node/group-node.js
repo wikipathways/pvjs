@@ -60,7 +60,7 @@ pathvisiojs.data.gpml.element.node.groupNode = function() {
     var graphId = gpmlGroup.attr('GraphId') || ('id' + uuid.v4());
     jsonGroup.GraphId = graphId;
     groupId = gpmlGroup.attr('GroupId') || ('id' + uuid.v4());
-    jsonGroup["@id"] = pathwayIri + groupId;
+    jsonGroup["@id"] = 'pathwayIri:' + groupId;
     jsonGroup.GroupId = groupId;
     groupType = gpmlGroup.attr('Style') || 'None';
 

@@ -40,7 +40,7 @@ pathvisiojs.view.pathwayDiagram.svg.edge = function(){
     var markerEndName = args.data.markerEnd;
     //console.log('markerEndName');
     //console.log(markerEndName);
-    var edgeId = strcase.paramCase(data.GraphId);
+    var edgeId = strcase.paramCase(data['@id']);
     /*
     console.log('svg in edge');
     console.log(svg);
@@ -143,7 +143,7 @@ pathvisiojs.view.pathwayDiagram.svg.edge = function(){
         }
       },
       'edge': function(callback) {
-        edge = container.selectAll('#' + strcase.paramCase(data.GraphId))
+        edge = container.selectAll('#' + strcase.paramCase(data['@id']))
         .data([data])
         .enter().append("path") // TODO check whether this option works with groups for both the temporary frameIt hack and the final pathvisio JSON model
         //.enter().insert("path", ":first-child") // this option may cause problems in the future if we have groups with fully opaque backgrounds

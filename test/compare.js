@@ -74,6 +74,7 @@ var developmentLoader = function() {
     // object we will return
     var parsedInputData = {};
     parsedInputData.sourceData = [];
+    var uri;
 
     var svgDisabled = parsedInputData.svgDisabled = uriParams['svg-disabled'] || false;
     var gpmlParam = uriParams.gpml; // this might be equal to the value of uriParams.gpml, but it might not.
@@ -81,6 +82,7 @@ var developmentLoader = function() {
     var wpId, wpRevision, gpmlUri, pngUri;
 
     if (pathvisiojs.utilities.isUri(gpmlParam)) {
+      uri = gpmlParam;
       if (uri.indexOf('.gpml') > -1) {
         parsedInputData.sourceData.push({
           uri:gpmlParam,
