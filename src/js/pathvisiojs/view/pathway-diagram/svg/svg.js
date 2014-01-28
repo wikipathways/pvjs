@@ -4,10 +4,10 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
 
   var svg, shapesAvailable, markersAvailable, contextLevelInput,
     renderableTypeToSvgElementMappings = {
-      EntityNode: 'g',
-      GroupNode: 'g',
-      Interaction: 'path',
-      GraphicalLine: 'path'
+      entityNode: 'g',
+      groupNode: 'g',
+      interaction: 'path',
+      graphicalLine: 'path'
     };
 
   //calculates the proper scaling and translations to fit content (i.e., diagram) to screen (i.e., viewport)
@@ -265,10 +265,11 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
     var svg = args.svg,
       data = args.data,
       pathway = args.pathway,
-      container = args.container;
+      viewport = args.container,
+      container;
 
-    if (!container) {
-      throw new Error("No container specified.");
+    if (!viewport) {
+      throw new Error("No viewport specified.");
     }
     if (!data) {
       throw new Error("No data entered to render.");
@@ -282,19 +283,36 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
     data = pathvisiojs.utilities.convertToArray(data);
 
     data[0].key = 'viewport';
+    var i = 0;
     async.each(data, function(item, callbackInside) {
-      d3.select('#' + strcase.paramCase(item.key)).selectAll('*')
+      console.log('data');
+      console.log(data);
+      console.log('item');
+      console.log(item);
+      if (i > 0) {
+        container = viewport.select('#' + strcase.paramCase(item.key))
+        .append('g');
+      }
+      else {
+        container = viewport;
+      }
+
+      container.selectAll('.element')
       .data(item.values)
       .enter()
       .append(function(d) {
-        var childElementName = renderableTypeToSvgElementMappings[d.renderableType];
-        var child = document.createElementNS('svg', childElementName);
+        console.log('d');
+        console.log(d);
+        var childElementName = renderableTypeToSvgElementMappings[strcase.camelCase(d.renderableType)];
+        var child = document.createElementNS('http://www.w3.org/2000/svg', childElementName);
         return child;
       })
       .attr("id", function (d) {
         console.log(strcase.paramCase(d['@id']));
         return strcase.paramCase(d['@id']);
-      });
+      })
+      .attr('class', 'element');
+
       callbackInside(null);
     },
     function(err){
@@ -367,11 +385,17 @@ else if (dataElement.renderableType === 'Interaction') {
     renderArgs.svg = svg;
     renderArgs.container = viewport;
     renderArgs.pathway = pathway;
-    renderArgs.data = pathway.pathwayNestedByGrouping;
 
     async.waterfall([
       function(callbackInside){
-        renderArgs.data = pathway.pathwayNestedByGrouping;
+        var pathwayNestedByGrouping = d3.nest()
+        .key(function(d) { return d.isContainedBy; })
+        .entries(pathway.elements);
+        
+        renderArgs.data = pathwayNestedByGrouping;
+        console.log('pathwayNestedByGrouping');
+        console.log(pathwayNestedByGrouping);
+
         appendElementsInDomOrder(renderArgs, function() {
           callbackInside(null, svg);
         });
@@ -380,6 +404,17 @@ else if (dataElement.renderableType === 'Interaction') {
         //TODO for the non-cached version, this should sort the elements by dependency, so that group contents are updated before their containing group,
         //and an edge is updated before any edges that rely on it.
         renderArgs.data = pathway.elements;
+
+        /*
+        var pathwayNestedByDependencies = d3.nest()
+        .key(function(d) { return d.hasDependencies; })
+        .entries(pathway.elements);
+        renderArgs.data = pathwayNestedByDependencies;
+        //*/
+
+        console.log('renderArgs.data');
+        console.log(renderArgs.data);
+
         updateElementProperties(renderArgs, function() {
           callback(svg);
         });

@@ -18,7 +18,8 @@ pathvisiojs.view.pathwayDiagram.svg.edge = function(){
   //var svg, customMarkers;
 
   function render(args, callback) {
-    var svg = args.svg;
+    var svg = args.svg,
+      edge = args.element;
     if (!svg) {
       throw new Error('svg missing');
     }
@@ -73,8 +74,7 @@ pathvisiojs.view.pathwayDiagram.svg.edge = function(){
     }
     createPathDataString.interpolate(stepType);
     //*/
-    var edge,
-      stroke = data.stroke,
+    var stroke = data.stroke,
       markerStartAttributeValue,
       markerEndAttributeValue;
     async.series({
@@ -141,13 +141,6 @@ pathvisiojs.view.pathwayDiagram.svg.edge = function(){
           markerEndAttributeValue = 'none';
           callback(null, markerEndAttributeValue);
         }
-      },
-      'edge': function(callback) {
-        edge = container.selectAll('#' + strcase.paramCase(data['@id']))
-        .data([data])
-        .enter().append("path") // TODO check whether this option works with groups for both the temporary frameIt hack and the final pathvisio JSON model
-        //.enter().insert("path", ":first-child") // this option may cause problems in the future if we have groups with fully opaque backgrounds
-        callback(null, edge);
       },
       /*
       'convertedPointSet': function(callback) {
@@ -240,8 +233,7 @@ pathvisiojs.view.pathwayDiagram.svg.edge = function(){
     function(err, results) {
     //*/
     'path': function() {
-      edge.attr("id", edgeId)
-      .attr("marker-start", markerStartAttributeValue)
+      edge.attr("marker-start", markerStartAttributeValue)
       .attr("marker-end", markerEndAttributeValue)
       .attr("style", function (data) {
         var style = 'stroke-width:' + data.strokeWidth + '; ';
