@@ -289,8 +289,7 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
       console.log('item');
       console.log(item);
       if (item.key !== 'undefined') {
-        container = viewport.append('g')
-        .attr('id', strcase.paramCase(item.key));
+        container = viewport.select('#' + strcase.paramCase(item.key));
       }
       else {
         container = viewport;
