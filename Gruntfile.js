@@ -171,12 +171,13 @@ grunt.initConfig({
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks("grunt-git-describe");
   grunt.loadNpmTasks('grunt-browserify');
+  grunt.loadNpmTasks('grunt-sync-pkg');
 
   // build 
-  grunt.registerTask('build', ['str2js', 'clean:build', 'git-describe', 'jshint:beforeconcat', 'concat', 'jshint:afterconcat', 'uglify']);
+  grunt.registerTask('build', ['sync', 'str2js', 'clean:build', 'git-describe', 'jshint:beforeconcat', 'concat', 'jshint:afterconcat', 'uglify']);
 
   // quick-build 
-  grunt.registerTask('quick-build', ['str2js', 'git-describe', 'concat', 'uglify']);
+  grunt.registerTask('quick-build', ['sync', 'str2js', 'git-describe', 'concat', 'uglify']);
 
   // test
   //grunt.registerTask('test', ['build']);
