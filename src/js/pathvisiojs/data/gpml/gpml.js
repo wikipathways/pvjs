@@ -570,6 +570,7 @@ pathvisiojs.data.gpml = function(){
                       jsonGroup.y = dimensions.y;
                       jsonGroup.width = dimensions.width;
                       jsonGroup.height = dimensions.height;
+                      jsonGroup.zIndex = 0;
                       pathvisiojs.data.gpml.element.node.getPorts(jsonGroup, function(ports) {
                         jsonGroup.Port = ports;
                         if (jsonGroups.indexOf(jsonGroup) === -1) {
