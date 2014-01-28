@@ -47,6 +47,7 @@ pathvisiojs.data.gpml.element.node.groupNode = function() {
       dimensions.y = dimensions.topLeftCorner.y - group.padding - group.borderWidth;
       dimensions.width = (dimensions.bottomRightCorner.x - dimensions.topLeftCorner.x) + 2 * (group.padding + group.borderWidth);
       dimensions.height = (dimensions.bottomRightCorner.y - dimensions.topLeftCorner.y) + 2 * (group.padding + group.borderWidth);
+      dimensions.zIndex = Math.min(dimensions.zIndex, groupContent.zIndex);
       callback(dimensions);
     });
   }

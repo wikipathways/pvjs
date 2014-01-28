@@ -45,17 +45,37 @@ pathvisiojs.view.pathwayDiagram.svg.node = function(){
       throw new Error('Need input args to render a node.');
     }
 
-    var container = args.container,
-      nodeContainer = args.element,
-      data = args.data;
+    var nodeContainer = args.element,
+      data = args.data,
+      pathway = args.pathway,
+      parentDataElement,
+      translatedX,
+      translatedY;
 
       console.log(nodeContainer);
 
-    if (!container) {
-      throw new Error('Need a container to render a node.');
+    if (!pathway) {
+      throw new Error('Need a pathway to render a node.');
+    }
+    if (!nodeContainer) {
+      throw new Error('Need a nodeContainer to render a node.');
     }
     if (!data) {
       throw new Error('Need input data to render a node.');
+    }
+
+    if (data.hasOwnProperty('isContainedBy')) {
+      parentDataElement = pathway.elements.filter(function(element) {
+        return element['@id'] === data.isContainedBy;
+      })[0];
+      translatedX = data.x - parentDataElement.x;
+      translatedY = data.y - parentDataElement.y;
+      console.log('parentDataElement');
+      console.log(parentDataElement);
+    }
+    else {
+      translatedX = data.x;
+      translatedY = data.y;
     }
 
     /************ 
@@ -66,21 +86,8 @@ pathvisiojs.view.pathwayDiagram.svg.node = function(){
       .origin(Object)
       .on("drag", dragmove);
 
-      console.log('#' + strcase.paramCase(data['@id']));
     nodeContainer.attr('transform', function(d) {
-      var containerElement = {}
-      if (container[0][0].hasOwnProperty('__data__')) {
-        containerElement.x = (container[0][0].__data__.x);
-        containerElement.y = (container[0][0].__data__.y);
-      }
-      else {
-        containerElement.x = 0;
-        containerElement.y = 0;
-      }
-      var element = {}
-      element.x = d.x - containerElement.x;
-      element.y = d.y - containerElement.y;
-      return 'translate(' + element.x + ' ' + element.y + ')';
+      return 'translate(' + translatedX + ' ' + translatedY + ')';
     })
     .attr("style", function (d) {
       var style = '';
