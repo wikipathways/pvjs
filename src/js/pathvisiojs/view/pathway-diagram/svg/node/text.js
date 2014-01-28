@@ -26,22 +26,22 @@ pathvisiojs.view.pathwayDiagram.svg.node.text = function(){
     text.cache.fontSize = 12;
     text.cache.alignmentBaseline = data.text.verticalAlign;
     text.cache.textAnchor = function() {
-	if (data.text.textAlign == 'left'){
-	  return 'start';
-	} else if (data.text.textAlign == 'right') {
-	  return 'end';
-	} else {
-	  return 'middle';
-	}
+      if (data.text.textAlign == 'left'){
+        return 'start';
+      } else if (data.text.textAlign == 'right') {
+        return 'end';
+      } else {
+        return 'middle';
+      }
     };
     text.cache.x = function() {
-	if (data.text.textAlign == 'left'){
-          return -1 * data.width / 2;
-        } else if (data.text.textAlign == 'right') {
-          return data.width / 2;
-        } else {
-          return 0;
-        }
+      if (data.text.textAlign == 'left'){
+        return -1 * data.width / 2;
+      } else if (data.text.textAlign == 'right') {
+        return data.width / 2;
+      } else {
+        return 0;
+      }
     };
     text.cache.translate = {};
     // TODO replace this with the actual translate values
@@ -59,7 +59,7 @@ pathvisiojs.view.pathwayDiagram.svg.node.text = function(){
 
     var textArea = nodeContainer.selectAll('g.text-area')
     .data(function(d) {
-      return [d];
+      return [data];
     })
     .enter()
     .append('g')
