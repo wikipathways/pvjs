@@ -1,5 +1,5 @@
-//! pathvisiojs 0.9.4
-//! Built on 2014-01-27
+//! pathvisiojs 0.9.6
+//! Built on 2014-01-28
 //! https://github.com/wikipathways/pathvisiojs
 //! License: http://www.apache.org/licenses/LICENSE-2.0/
 
@@ -334,13 +334,13 @@ pathvisiojs.utilities = function(){
 
 "use strict";
 pathvisiojs.config = {};
-pathvisiojs.config.gpmlSourceUriStub = '//wpi/wpi.php?action=downloadFile&type=gpml&pwTitle=Pathway:';
-pathvisiojs.config.bridgedbLinkOutsUrlStub = '//wpi/extensions/bridgedb.php/';
-pathvisiojs.config.bridgedbDatasources = '//wpi/extensions/PathwayViewer/datasources.txt';
-pathvisiojs.config.diagramLoadingIconUri = '//wpi/extensions/PathwayViewer/img/loading.gif';
-pathvisiojs.config.diagramNotAvailableIconUri = '//wpi/extensions/PathwayViewer/img/imageNotAvailable.jpg';
-pathvisiojs.config.imgDiagramUriStub = '//wpi//wpi.php?action=downloadFile&type=png&pwTitle=Pathway:';
-pathvisiojs.config.pathwaySearchUriStub = '//index.php?title=Special:SearchPathways&doSearch=1&query=';
+pathvisiojs.config.gpmlSourceUriStub = '/wpi/wpi.php?action=downloadFile&type=gpml&pwTitle=Pathway:';
+pathvisiojs.config.bridgedbLinkOutsUrlStub = '/wpi/extensions/bridgedb.php/';
+pathvisiojs.config.bridgedbDatasources = '/wpi/extensions/PathwayViewer/datasources.txt';
+pathvisiojs.config.diagramLoadingIconUri = '/wpi/extensions/PathwayViewer/img/loading.gif';
+pathvisiojs.config.diagramNotAvailableIconUri = '/wpi/extensions/PathwayViewer/img/imageNotAvailable.jpg';
+pathvisiojs.config.imgDiagramUriStub = '/wpi.php?action=downloadFile&type=png&pwTitle=Pathway:';
+pathvisiojs.config.pathwaySearchUriStub = '/index.php?title=Special:SearchPathways&doSearch=1&query=';
 ;
 
 pathvisiojs.data = function(){
@@ -2469,9 +2469,6 @@ pathvisiojs.data.gpml = function(){
 
     var pathway = {};
     pathway.xmlns = gpmlPathway.attr('xmlns');
-    pathway.nodes = [];
-    pathway.edges = [];
-    pathway.elements = [];
 
     // test for whether file is GPML
 
@@ -2750,8 +2747,6 @@ pathvisiojs.data.gpml = function(){
                 gpmlDataNode = d3.select(this);
                 pathvisiojs.data.gpml.element.node.entityNode.dataNode.toRenderableJson(gpmlDataNode, pathwayIri, function(jsonDataNode) {
                   pathway.DataNode.push(jsonDataNode);
-                  pathway.nodes = pathway.nodes.concat(jsonDataNode);
-                  pathway.elements = pathway.elements.concat(jsonDataNode);
                 });
               })
               callback(null, 'DataNodes are all converted.');
@@ -2768,8 +2763,6 @@ pathvisiojs.data.gpml = function(){
                 gpmlLabel = d3.select(this);
                 pathvisiojs.data.gpml.element.node.entityNode.label.toRenderableJson(gpmlLabel, pathwayIri, function(jsonLabel) {
                   pathway.Label.push(jsonLabel);
-                  pathway.nodes = pathway.nodes.concat(jsonLabel);
-                  pathway.elements = pathway.elements.concat(jsonLabel);
                 });
               })
               callback(null, 'Labels are all converted.');
@@ -2786,8 +2779,6 @@ pathvisiojs.data.gpml = function(){
                 gpmlShape = d3.select(this);
                 pathvisiojs.data.gpml.element.node.entityNode.shape.toRenderableJson(gpmlShape, pathwayIri, function(jsonShape) {
                   pathway.Shape.push(jsonShape);
-                  pathway.nodes = pathway.nodes.concat(jsonShape);
-                  pathway.elements = pathway.elements.concat(jsonShape);
                 });
               })
               callback(null, 'Shapes are all converted.');
@@ -2807,7 +2798,6 @@ pathvisiojs.data.gpml = function(){
                 gpmlGroup = d3.select(this);
                 pathvisiojs.data.gpml.element.node.groupNode.toRenderableJson(gpml, gpmlGroup, pathwayIri, function(jsonGroup) {
                   pathway.Group.push(jsonGroup);
-                  pathway.nodes = pathway.nodes.concat(jsonGroup);
                 });
               })
               callback(null, 'Groups are all converted.');
@@ -2825,8 +2815,6 @@ pathvisiojs.data.gpml = function(){
                 gpmlGraphicalLine = d3.select(this);
                 pathvisiojs.data.gpml.edge.graphicalLine.toRenderableJson(gpml, gpmlGraphicalLine, pathwayIri, function(jsonGraphicalLine) {
                   pathway.GraphicalLine.push(jsonGraphicalLine);
-                  pathway.edges = pathway.edges.concat(jsonGraphicalLine);
-                  pathway.elements = pathway.elements.concat(jsonGraphicalLine);
                 });
               })
               callback(null, 'GraphicalLines are all converted.');
@@ -2844,8 +2832,6 @@ pathvisiojs.data.gpml = function(){
                 gpmlInteraction = d3.select(this);
                 pathvisiojs.data.gpml.edge.interaction.toRenderableJson(gpml, gpmlInteraction, pathwayIri, function(jsonInteraction) {
                   pathway.Interaction.push(jsonInteraction);
-                  pathway.edges = pathway.edges.concat(jsonInteraction);
-                  pathway.elements = pathway.elements.concat(jsonInteraction);
                 });
               })
               callback(null, 'Interactions are all converted.');
@@ -2863,66 +2849,42 @@ pathvisiojs.data.gpml = function(){
             '@type': 'GroupNode',
             'contains': {}
           };  
+          self.myPathway = pathway;
           jsonld.frame(pathway, groupsFrame, function(err, framedGroups) {
-            async.waterfall([
-              function(callbackInside){
-                framedGroups['@graph'].forEach(function(jsonGroup) {
-                  // Some GPML files contain empty groups due to a PathVisio-Java bug. They are deleted
-                  // here because only groups that pass the test (!!jsonGroup.contains) are added to
-                  // the jsonGroups array, and the jsonGroups array overwrites pathway.Group.
-                  if (!!jsonGroup.contains) {
-                    pathvisiojs.data.gpml.element.node.groupNode.getGroupDimensions(jsonGroup, function(dimensions) {
-                      jsonGroup.x = dimensions.x;
-                      jsonGroup.y = dimensions.y;
-                      jsonGroup.width = dimensions.width;
-                      jsonGroup.height = dimensions.height;
-                      jsonGroup.zIndex = dimensions.zIndex;
-                      pathvisiojs.data.gpml.element.node.getPorts(jsonGroup, function(ports) {
-                        jsonGroup.Port = ports;
-                        if (jsonGroups.indexOf(jsonGroup) === -1) {
-                          jsonGroups.push(jsonGroup);
-                        }
-                      });
-                    });
-                  }
+            console.log('err');
+            console.log(err);
+            console.log('framedGroups');
+            console.log(framedGroups);
+	  var unique = [];
+          framedGroups['@graph'].forEach(function(jsonGroup) {
+            // Some GPML files contain empty groups due to a PathVisio-Java bug. They are deleted
+            // here because only groups that pass the test (!!jsonGroup.contains) are added to
+            // the jsonGroups array, and the jsonGroups array overwrites pathway.Group.
+            if (!!jsonGroup.contains) {
+              pathvisiojs.data.gpml.element.node.groupNode.getGroupDimensions(jsonGroup, function(dimensions) {
+                console.log('jsonGroup in gpml.js');
+                console.log(jsonGroup);
+
+                jsonGroup.x = dimensions.x;
+                jsonGroup.y = dimensions.y;
+                jsonGroup.width = dimensions.width;
+                jsonGroup.height = dimensions.height;
+                pathvisiojs.data.gpml.element.node.getPorts(jsonGroup, function(ports) {
+		 if (unique.indexOf(jsonGroup.GroupId) == -1) { //exclude duplicates
+                  jsonGroup.Port = ports;
+                  jsonGroups.push(jsonGroup);
+		  unique.push(jsonGroup.GroupId);
+		 }
                 });
-                callbackInside(null, jsonGroups);
-              },
-              function(jsonGroups, callbackInside){
-                pathway.Group = jsonGroups;
-                pathway.elements = pathway.elements.concat(pathway.Group);
-
-                pathway.elements.sort(function(a, b) {
-                  return a.zIndex - b.zIndex;
-                });
-
-                console.log('pathwayNestedByGrouping');
-                callbackInside(null, pathway);
-              },
-              function(pathway, callbackInside){
-                pathway.pathwayNestedByDependencies = d3.nest()
-                .key(function(d) { return d.hasDependencies; })
-                .entries(pathway.elements);
-
-                pathway.pathwayNestedByGrouping = d3.nest()
-                .key(function(d) { return d.isContainedBy; })
-                .entries(pathway.elements);
-
-                console.log('pathwayNestedByGrouping');
-                console.log(pathway.pathwayNestedByGrouping);
-                callbackInside(null, pathway);
-              },
-              function(pathway, callbackInside){
-                self.myPathway = pathway;
-                callbackOutside(pathway);
-              }
-            ]);
+              });
+            }
+          });
+          pathway.Group = jsonGroups;
+          self.myPathway = pathway;
+          callbackOutside(pathway);
           });
         }
         else {
-          pathway.elements.sort(function(a, b) {
-            return a.zIndex - b.zIndex;
-          });
           self.myPathway = pathway;
           callbackOutside(pathway);
         }
@@ -3641,7 +3603,6 @@ pathvisiojs.data.gpml.element.node.groupNode = function() {
       dimensions.y = dimensions.topLeftCorner.y - group.padding - group.borderWidth;
       dimensions.width = (dimensions.bottomRightCorner.x - dimensions.topLeftCorner.x) + 2 * (group.padding + group.borderWidth);
       dimensions.height = (dimensions.bottomRightCorner.y - dimensions.topLeftCorner.y) + 2 * (group.padding + group.borderWidth);
-      dimensions.zIndex = Math.min(dimensions.zIndex, groupContent.zIndex);
       callback(dimensions);
     });
   }
@@ -3655,7 +3616,7 @@ pathvisiojs.data.gpml.element.node.groupNode = function() {
     var graphId = gpmlGroup.attr('GraphId') || ('id' + uuid.v4());
     jsonGroup.GraphId = graphId;
     groupId = gpmlGroup.attr('GroupId') || ('id' + uuid.v4());
-    jsonGroup["@id"] = 'pathwayIri:' + groupId;
+    jsonGroup["@id"] = pathwayIri + groupId;
     jsonGroup.GroupId = groupId;
     groupType = gpmlGroup.attr('Style') || 'None';
 
@@ -3736,12 +3697,12 @@ pathvisiojs.data.gpml.element.node.entityNode.setJsonRotationValue = function(js
 
 pathvisiojs.data.gpml.element.node.entityNode.toRenderableJson = function(gpmlEntityNode, jsonEntityNode, pathvisioDefaultStyleValues, pathwayIri, EntityNodeCallback) {
   var graphId = gpmlEntityNode.attr('GraphId') || ('id' + uuid.v4());
-  jsonEntityNode["@id"] = 'pathwayIri:' + graphId;
+  jsonEntityNode["@id"] = pathwayIri + graphId;
   jsonEntityNode.GraphId = graphId;
 
   var isContainedBy = gpmlEntityNode.attr('GroupRef');
   if (!!isContainedBy) {
-    jsonEntityNode.isContainedBy = 'pathwayIri:' + isContainedBy;
+    jsonEntityNode.isContainedBy = pathwayIri + isContainedBy;
   }
 
   var shapeType = gpmlEntityNode.select('Graphics').attr('ShapeType') || 'rectangle';
@@ -4087,7 +4048,7 @@ pathvisiojs.data.gpml.node.anchor = function() {
           jsonAnchor = {};
           gpmlAnchor = d3.select(this);
           graphId = gpmlAnchor.attr('GraphId') || ('id' + uuid.v4());
-          elementIri = 'pathwayIri:' + graphId;
+          elementIri = pathwayIri + graphId;
           jsonAnchor['@id'] = elementIri;
           jsonAnchor['@type'] = [
             'node',
@@ -4189,7 +4150,7 @@ pathvisiojs.data.gpml.edge = function(){
     var jsonAnchorEdge, anchor, jsonAnchor, points, jsonPoints, interactionType, target, targetId, groupRef;
     var jsonEdge = {};
     var graphId = gpmlEdge.attr('GraphId') || ('id' + uuid.v4());
-    var elementIri = 'pathwayIri:' + graphId;
+    var elementIri = pathwayIri + graphId;
     jsonEdge['@id'] = elementIri;
     jsonEdge.GraphId = graphId;
 
@@ -4197,7 +4158,7 @@ pathvisiojs.data.gpml.edge = function(){
     var isContainedBy;
     var dependsOn = [];
     if (!!containingGroupRef) {
-      isContainedBy = jsonEdge.isContainedBy = 'pathwayIri:' + containingGroupRef;
+      isContainedBy = jsonEdge.isContainedBy = pathwayIri + containingGroupRef;
       dependsOn.push(isContainedBy);
     }
 
@@ -4222,9 +4183,9 @@ pathvisiojs.data.gpml.edge = function(){
       if ((relX !== null && relX !== undefined) && (relY !== null && relY !== undefined)) {
         pointObj['@type'] = 'SnappedPoint';
 
-        dependsOn.push('pathwayIri:' + point.attr('GraphRef'));
+        dependsOn.push(pathwayIri + point.attr('GraphRef'));
 
-        pointObj.hasReference = 'pathwayIri:' + point.attr('GraphRef');
+        pointObj.hasReference = pathwayIri + point.attr('GraphRef');
         pointObj.RelX = relX;
         pointObj.RelY = relY;
         pointObj.x = parseFloat(point.attr('X'));
@@ -5269,13 +5230,7 @@ pathvisiojs.view.pathwayDiagram = function(){
 
 pathvisiojs.view.pathwayDiagram.svg = function(){
 
-  var svg, shapesAvailable, markersAvailable, contextLevelInput,
-    renderableTypeToSvgElementMappings = {
-      entityNode: 'g',
-      groupNode: 'g',
-      interaction: 'path',
-      graphicalLine: 'path'
-    };
+  var svg, shapesAvailable, markersAvailable, contextLevelInput;
 
   //calculates the proper scaling and translations to fit content (i.e., diagram) to screen (i.e., viewport)
   function fitAndCenterDiagramWithinViewport(viewport, viewportWidth, viewportHeight, diagramWidth, diagramHeight) {
@@ -5349,7 +5304,7 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
         })
       },
       function(callback){
-        pathvisiojs.view.pathwayDiagram.svg.renderWithCachedData(svg, pathway, function() {
+        pathvisiojs.view.pathwayDiagram.svg.renderFast(svg, pathway, function() {
           callback(null);
         })
       },
@@ -5528,72 +5483,7 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
   // If one or more of these elements are a groupNode that contains
   // other elements, this function will call itself back to render
   // the elements within the groupNode.
-  function appendElementsInDomOrder(args, callback){
-    var svg = args.svg,
-      data = args.data,
-      pathway = args.pathway,
-      viewport = args.container,
-      container;
-
-    if (!viewport) {
-      throw new Error("No viewport specified.");
-    }
-    if (!data) {
-      throw new Error("No data entered to render.");
-    }
-    if (!svg) {
-      throw new Error("No svg specified.");
-    }
-    if (!pathway) {
-      throw new Error("No pathway specified.");
-    } 
-    data = pathvisiojs.utilities.convertToArray(data);
-
-    var i = 0;
-    async.each(data, function(item, callbackInside) {
-      console.log('data');
-      console.log(data);
-      console.log('item');
-      console.log(item);
-      if (item.key !== 'undefined') {
-        container = viewport.select('#' + strcase.paramCase(item.key));
-      }
-      else {
-        container = viewport;
-      }
-      console.log(container[0][0]);
-
-      container.selectAll('.element')
-      .data(item.values)
-      .enter()
-      .append(function(d) {
-        console.log('d');
-        console.log(d);
-        var childElementName = renderableTypeToSvgElementMappings[strcase.camelCase(d.renderableType)];
-        var child = document.createElementNS('http://www.w3.org/2000/svg', childElementName);
-        return child;
-      })
-      .attr("id", function (d) {
-        console.log(strcase.paramCase(d['@id']));
-        return strcase.paramCase(d['@id']);
-      })
-      .attr('class', 'element');
-      i += 1;
-
-      callbackInside(null);
-    },
-    function(err){
-      callback(null, 'Successfully rendered elements');
-    });
-  }
-
-  // this function does not render all elements. Rather, it renders
-  // one or more selected elements that are given as inputs.
-  // If one or more of these elements are a groupNode that contains
-  // other elements, this function will call itself back to render
-  // the elements within the groupNode.
-  function updateElementProperties(args, callback){
-    console.log(args);
+  function renderSelectedElementsFast(args, callbackOutside){
     var svg = args.svg,
       data = args.data,
       pathway = args.pathway,
@@ -5612,31 +5502,74 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
       throw new Error("No pathway specified.");
     } 
     data = pathvisiojs.utilities.convertToArray(data);
+    var contextLevelInput = pathvisiojs.utilities.clone(pathvisiojs.context);
+    contextLevelInput.dependsOn = "ex:dependsOn";
 
-    var renderingArgs = args;
-    data.forEach(function(dataElement) {
-      renderingArgs.data = dataElement;
-      renderingArgs.element = d3.select('#' + strcase.paramCase(dataElement['@id']));
-      console.log('#' + strcase.paramCase(dataElement['@id']));
-      console.log(renderingArgs.element);
-      if (dataElement.renderableType === 'GraphicalLine') {                                                                                        
-        pathvisiojs.view.pathwayDiagram.svg.edge.graphicalLine.render(renderingArgs);                                                          
-      } 
-else if (dataElement.renderableType === 'Interaction') {
-        pathvisiojs.view.pathwayDiagram.svg.edge.interaction.render(renderingArgs);
-      } 
-      else if (dataElement.renderableType === 'GroupNode') {
-        pathvisiojs.view.pathwayDiagram.svg.node.groupNode.render(renderingArgs, function(groupContainer, groupContents) {
+    async.waterfall([
+      function(callback) {
+        data.sort(function(a, b) {
+          return a.zIndex - b.zIndex;
         });
+        callback(null, data);
+      },
+      function(sortedData, callback) {
+        var renderingArgs = args;
+        sortedData.forEach(function(element) {
+          renderingArgs.data = element;
+          if (element.renderableType === 'GraphicalLine') {                                                                                        
+            pathvisiojs.view.pathwayDiagram.svg.edge.graphicalLine.render(renderingArgs);                                                          
+          } 
+ 	  else if (element.renderableType === 'Interaction') {
+            pathvisiojs.view.pathwayDiagram.svg.edge.interaction.render(renderingArgs);
+          } 
+          else if (element.renderableType === 'GroupNode') {
+            pathvisiojs.view.pathwayDiagram.svg.node.groupNode.render(args, function(groupContainer, groupContents) {
+              var groupedElementsArgs = renderingArgs;
+              groupedElementsArgs.svg = svg;
+              groupedElementsArgs.container = args.container; //groupContainer;
+	      /* 
+	      console.log('groupContainer');
+	      console.log(groupContainer); //*/
+              groupedElementsArgs.data = groupContents;
+	      /*
+	      console.log('groupContents');
+	      console.log(groupContents); //*/
+              groupedElementsArgs.pathway = pathway;
+
+              // recursively calling this function to render elements within groupNode(s)
+              pathvisiojs.view.pathwayDiagram.svg.renderSelectedElementsFast(groupedElementsArgs, function() {
+              });
+
+
+              /*
+              var groupedElementsFrame = {
+                '@context': pathway['@context'],
+                "@type":element.GroupId
+              };
+              jsonld.frame(args.pathway, groupedElementsFrame, function(err, groupedElementsData) {
+                var nodeEntityArgs = {};
+                nodeEntityArgs.svg = args.svg;
+                nodeEntityArgs.container = groupContainer;
+                nodeEntityArgs.data = groupedElementsData['@graph'];
+                pathvisiojs.view.pathwayDiagram.svg.renderSelectedElementsFast(nodeEntityArgs, function() {
+                });
+              });
+              //*/
+            });
+          }
+          else if (element.renderableType === 'EntityNode') {
+            pathvisiojs.view.pathwayDiagram.svg.node.EntityNode.render(renderingArgs);
+          }
+        });
+        callback(null, 'Successfully rendered elements');
       }
-      else if (dataElement.renderableType === 'EntityNode') {
-        pathvisiojs.view.pathwayDiagram.svg.node.EntityNode.render(renderingArgs);
-      }
-    });
-    callback(null, 'Successfully rendered elements');
+    ],
+    function(err, results) {
+      callbackOutside(null);
+    })
   }
 
-  function renderWithCachedData(svg, pathway, callback){
+  function renderFast(svg, pathway, callback){
     if (!svg) {
       throw new Error("No svg specified.");
     }
@@ -5644,51 +5577,72 @@ else if (dataElement.renderableType === 'Interaction') {
       throw new Error("No data entered to render.");
     }
 
-    var viewport = svg.select('#viewport');
-
-    pathvisiojs.view.pathwayDiagram.svg.infoBox.render(viewport, pathway);
-
-    var renderArgs = {};
-    renderArgs.svg = svg;
-    renderArgs.container = viewport;
-    renderArgs.pathway = pathway;
-
-    async.waterfall([
-      function(callbackInside){
-        var pathwayNestedByGrouping = d3.nest()
-        .key(function(d) { return d.isContainedBy; })
-        .entries(pathway.elements);
-        
-        renderArgs.data = pathwayNestedByGrouping;
-        console.log('pathwayNestedByGrouping');
-        console.log(pathwayNestedByGrouping);
-
-        appendElementsInDomOrder(renderArgs, function() {
-          callbackInside(null, svg);
-        });
-      },
-      function(svg, callbackInside){
-        //TODO for the non-cached version, this should sort the elements by dependency, so that group contents are updated before their containing group,
-        //and an edge is updated before any edges that rely on it.
-        renderArgs.data = pathway.elements;
-
-        /*
-        var pathwayNestedByDependencies = d3.nest()
-        .key(function(d) { return d.hasDependencies; })
-        .entries(pathway.elements);
-        renderArgs.data = pathwayNestedByDependencies;
-        //*/
-
-        console.log('renderArgs.data');
-        console.log(renderArgs.data);
-
-        updateElementProperties(renderArgs, function() {
-          callback(svg);
-        });
+    async.parallel({
+      'firstOrderData': function(callbackInside) {
+        var firstOrderFrame = {
+          '@context': pathvisiojs.context,
+          '@type':['notGrouped', 'GroupNode']
+        };
+        var newFrame = frameIt(pathway);
+        callbackInside(null, newFrame['@graph']);
       }
-    ]);
+    },
+    function(err, results) {
+      var viewport = svg.select('#viewport');
+
+      pathvisiojs.view.pathwayDiagram.svg.infoBox.render(viewport, pathway);
+
+      var renderSelectedElementsFastArgs = {};
+      renderSelectedElementsFastArgs.svg = svg;
+      renderSelectedElementsFastArgs.container = viewport;
+      renderSelectedElementsFastArgs.pathway = pathway;
+console.log('firstOrderData');
+console.log(results.firstOrderData);
+      renderSelectedElementsFastArgs.data = results.firstOrderData;
+      renderSelectedElementsFast(renderSelectedElementsFastArgs, function() {
+        callback(svg);
+      });
+    });
   }
 
+  function frameIt(pathway){
+    var nf = new Object({'@context': pathvisiojs.context});
+    var arr = new Array();
+    if(pathway.Shape){
+      for (var i=0; i<pathway.Shape.length; i++){
+        arr.push(pathway.Shape[i]);
+      }
+    }
+    if(pathway.GraphicalLine){                                                                                                                         
+      for (var i=0; i<pathway.GraphicalLine.length; i++){                                                                                              
+        arr.push(pathway.GraphicalLine[i]);                                                                                                            
+      }                                                                                                                                              
+    }     
+    if(pathway.Interaction){
+      for (var i=0; i<pathway.Interaction.length; i++){
+        arr.push(pathway.Interaction[i]);
+      }
+    }
+    if(pathway.Group){
+      for (var i=0; i<pathway.Group.length; i++){
+        arr.push(pathway.Group[i]);
+      }
+    }
+    if(pathway.Label){
+      for (var i=0; i<pathway.Label.length; i++){
+        arr.push(pathway.Label[i]);
+      }
+    }
+    if(pathway.DataNode){
+      for (var i=0; i<pathway.DataNode.length; i++){
+        if(!pathway.DataNode[i].isContainedBy){
+          arr.push(pathway.DataNode[i]);
+        }
+      }
+    }
+    nf['@graph'] = arr; 
+    return nf;
+  }
 
       //pathvisiojs.view.pathwayDiagram.svg.grid.render(svg);
 
@@ -5697,7 +5651,7 @@ else if (dataElement.renderableType === 'Interaction') {
         function(callbackInside2) {
           args.container = args.svg.select('#viewport');
           args.data = results.groupData;
-          appendElementsInDomOrder(args, function() {
+          renderSelectedElementsFast(args, function() {
             console.log(1);
           });
           callbackInside2(null, svg);
@@ -5706,7 +5660,7 @@ else if (dataElement.renderableType === 'Interaction') {
           args.container = args.svg.select('#viewport');
           args.data = results.notGroupedData;
           self.args = args;
-          appendElementsInDomOrder(args, function() {
+          renderSelectedElementsFast(args, function() {
             console.log(2);
             callbackInside2(null, svg);
           });
@@ -5787,8 +5741,8 @@ else if (dataElement.renderableType === 'Interaction') {
 
   return {
     //render:render,
-    renderWithCachedData:renderWithCachedData,
-    appendElementsInDomOrder:appendElementsInDomOrder,
+    renderFast:renderFast,
+    renderSelectedElementsFast:renderSelectedElementsFast,
     load:load,
     loadPartials:loadPartials
   };
@@ -6168,42 +6122,14 @@ pathvisiojs.view.pathwayDiagram.svg.node = function(){
   }
 
   function render(args, callback) {
-    console.log(args);
     if (!args) {
       throw new Error('Need input args to render a node.');
     }
-
-    var nodeContainer = args.element,
-      data = args.data,
-      pathway = args.pathway,
-      parentDataElement,
-      translatedX,
-      translatedY;
-
-      console.log(nodeContainer);
-
-    if (!pathway) {
-      throw new Error('Need a pathway to render a node.');
+    if (!args.container) {
+      throw new Error('Need a container to render a node.');
     }
-    if (!nodeContainer) {
-      throw new Error('Need a nodeContainer to render a node.');
-    }
-    if (!data) {
+    if (!args.data) {
       throw new Error('Need input data to render a node.');
-    }
-
-    if (data.hasOwnProperty('isContainedBy')) {
-      parentDataElement = pathway.elements.filter(function(element) {
-        return element['@id'] === data.isContainedBy;
-      })[0];
-      translatedX = data.x - parentDataElement.x;
-      translatedY = data.y - parentDataElement.y;
-      console.log('parentDataElement');
-      console.log(parentDataElement);
-    }
-    else {
-      translatedX = data.x;
-      translatedY = data.y;
     }
 
     /************ 
@@ -6214,8 +6140,25 @@ pathvisiojs.view.pathwayDiagram.svg.node = function(){
       .origin(Object)
       .on("drag", dragmove);
 
-    nodeContainer.attr('transform', function(d) {
-      return 'translate(' + translatedX + ' ' + translatedY + ')';
+    var nodeContainer = args.container.selectAll('#node-container-' + strcase.paramCase(args.data['@id']))
+    .data([args.data])
+    .enter()
+    .append("g")
+    .attr("id", function (d) { return 'node-container-' + strcase.paramCase(d['@id']); })
+    .attr('transform', function(d) {
+      var containerElement = {}
+      if (args.container[0][0].hasOwnProperty('__data__')) {
+        containerElement.x = (args.container[0][0].__data__.x);
+        containerElement.y = (args.container[0][0].__data__.y);
+      }
+      else {
+        containerElement.x = 0;
+        containerElement.y = 0;
+      }
+      var element = {}
+      element.x = d.x - containerElement.x;
+      element.y = d.y - containerElement.y;
+      return 'translate(' + element.x + ' ' + element.y + ')';
     })
     .attr("style", function (d) {
       var style = '';
@@ -6238,41 +6181,37 @@ pathvisiojs.view.pathwayDiagram.svg.node = function(){
     })
     .call(drag)
 
-
-    console.log('nodeContainer');
-    console.log(nodeContainer);
-
     /****************** 
      * background shape
      * ***************/
 
-    var shapeType = strcase.paramCase(data.ShapeType);
+    var shapeType = strcase.paramCase(args.data.ShapeType);
     
     // check for whether desired shape type is available as a symbol
 //    if (pathvisiojs.view.pathwayDiagram.svg.symbol.semanticNameToIdMapping.hasOwnProperty(shapeType)) {
       //console.log('We will use an SVG "use" element to render this ' + shapeType);
-//      pathvisiojs.view.pathwayDiagram.svg.node.useElement.render(nodeContainer, data);
+//      pathvisiojs.view.pathwayDiagram.svg.node.useElement.render(nodeContainer, args.data);
 //    }
     // else check for whether it is available as a pathShape
 //    else {
       //console.log('We will use a pathShape to render this ' + shapeType);
-      pathvisiojs.view.pathwayDiagram.svg.node.pathShape.render(nodeContainer, data);
+      pathvisiojs.view.pathwayDiagram.svg.node.pathShape.render(nodeContainer, args.data);
 //    }
 
     /****************** 
      * text label
      * ***************/
 
-    if (data.hasOwnProperty('text')) {
-      pathvisiojs.view.pathwayDiagram.svg.node.text.render(nodeContainer, data);
+    if (args.data.hasOwnProperty('text')) {
+      pathvisiojs.view.pathwayDiagram.svg.node.text.render(nodeContainer, args.data);
     }
 
     /****************** 
      * citation(s)
      * ***************/
 
-    if (data.hasOwnProperty('PublicationXref')) {
-      pathvisiojs.view.pathwayDiagram.svg.publicationXref.render(nodeContainer, 'node', args.pathway, data.PublicationXref);
+    if (args.data.hasOwnProperty('PublicationXref')) {
+      pathvisiojs.view.pathwayDiagram.svg.publicationXref.render(nodeContainer, 'node', args.pathway, args.data.PublicationXref);
     }
 
     callback(nodeContainer);
@@ -6479,12 +6418,17 @@ pathvisiojs.view.pathwayDiagram.svg.node.anchor = function(){
 "use strict";
 pathvisiojs.view.pathwayDiagram.svg.node.EntityNode = function(){
   function render(args) {
+    if (!args.container) {
+      throw new Error('Container element not specified for this EntityNode.');
+    }
     if (!args.data) {
       throw new Error('EntityNode data missing.');
     }
     if (!args.pathway) {
       throw new Error('Pathway not specified for this EntityNode. Pathway is needed for items like setting the Organism for DataNode annotations.');
     }
+    console.log('data');
+    console.log(args.data);
 
     pathvisiojs.view.pathwayDiagram.svg.node.render(args, function(nodeContainer) {
       nodeContainer.attr("class", function (d) {
@@ -6501,32 +6445,31 @@ pathvisiojs.view.pathwayDiagram.svg.node.EntityNode = function(){
         return cssClass;
       })
       if (args.data.nodeType === 'DataNode') { //all datanodes should be clickable
-        var notDragged = true;
-        nodeContainer
-        .on("mousedown", function(d,i) {
-          notDragged = true;
-        })
-        .on("mousemove", function(d,i) {
-          notDragged = false;
-        })
-        .on("mouseup", function(d,i) {
-          if (notDragged) {
-            var dfId = null, dfDb = null;
-            if (!!d['DatasourceReference']){
-              if (!!d['DatasourceReference'].ID && !!d['DatasourceReference'].Database){ 
-                dfId = d['DatasourceReference'].ID;
-                dfDb = d['DatasourceReference'].Database;
-              }
-            }
-
-            pathvisiojs.view.annotation.xRef.render(args.pathway.Organism, dfId, dfDb, d.text.line.join(' '), d.dataNodeType); //that's capital 'O' Organism from GPML vocab
-
-          }
-        });
+          var notDragged = true;
+          nodeContainer
+          .on("mousedown", function(d,i) {
+		notDragged = true;
+          })
+          .on("mousemove", function(d,i) {
+                notDragged = false;
+          })
+	  .on("mouseup", function(d,i) {
+	    if (notDragged) {
+	      var dfId = null, dfDb = null;
+	      if (!!d['DatasourceReference']){
+	       if (!!d['DatasourceReference'].ID && !!d['DatasourceReference'].Database){ 
+		dfId = d['DatasourceReference'].ID;
+		dfDb = d['DatasourceReference'].Database;
+	       }
+	      }
+              pathvisiojs.view.annotation.xRef.render(args.pathway.Organism, dfId, dfDb, d.text.line.join(' '), d.dataNodeType); //that's capital 'O' Organism from GPML vocab
+	     
+	    }
+	  });
       }
     });
   }
-
+ 
   return {
     render:render
   };
@@ -6562,7 +6505,7 @@ pathvisiojs.view.pathwayDiagram.svg.node.pathShape = function(){
     //other attributes extracted and applied to new g element
     var stroke = 1
     var transform = '';
-    var g = parent.insert('g', ':first-child');
+    var g = parent.append('g');
     g.attr('stroke-width', function(d) {
         if(!isNaN(d.borderWidth)){
           stroke = d.borderWidth; //LineThickness in GPML
@@ -7097,22 +7040,22 @@ pathvisiojs.view.pathwayDiagram.svg.node.text = function(){
     text.cache.fontSize = 12;
     text.cache.alignmentBaseline = data.text.verticalAlign;
     text.cache.textAnchor = function() {
-      if (data.text.textAlign == 'left'){
-        return 'start';
-      } else if (data.text.textAlign == 'right') {
-        return 'end';
-      } else {
-        return 'middle';
-      }
+	if (data.text.textAlign == 'left'){
+	  return 'start';
+	} else if (data.text.textAlign == 'right') {
+	  return 'end';
+	} else {
+	  return 'middle';
+	}
     };
     text.cache.x = function() {
-      if (data.text.textAlign == 'left'){
-        return -1 * data.width / 2;
-      } else if (data.text.textAlign == 'right') {
-        return data.width / 2;
-      } else {
-        return 0;
-      }
+	if (data.text.textAlign == 'left'){
+          return -1 * data.width / 2;
+        } else if (data.text.textAlign == 'right') {
+          return data.width / 2;
+        } else {
+          return 0;
+        }
     };
     text.cache.translate = {};
     // TODO replace this with the actual translate values
@@ -7130,7 +7073,7 @@ pathvisiojs.view.pathwayDiagram.svg.node.text = function(){
 
     var textArea = nodeContainer.selectAll('g.text-area')
     .data(function(d) {
-      return [data];
+      return [d];
     })
     .enter()
     .append('g')
@@ -7422,9 +7365,7 @@ pathvisiojs.view.pathwayDiagram.svg.edge = function(){
   //var svg, customMarkers;
 
   function render(args, callback) {
-    var svg = args.svg,
-      edge = args.element,
-      parentDataElement;
+    var svg = args.svg;
     if (!svg) {
       throw new Error('svg missing');
     }
@@ -7446,20 +7387,7 @@ pathvisiojs.view.pathwayDiagram.svg.edge = function(){
     var markerEndName = args.data.markerEnd;
     //console.log('markerEndName');
     //console.log(markerEndName);
-    var edgeId = strcase.paramCase(data['@id']);
-
-    if (data.hasOwnProperty('isContainedBy')) {
-      parentDataElement = pathway.elements.filter(function(element) {
-        return element['@id'] === data.isContainedBy;
-      })[0];
-      data.Point.forEach(function(point) {
-        point.x = point.x - parentDataElement.x;
-        point.y = point.y - parentDataElement.y;
-      });
-      console.log('parentDataElement');
-      console.log(parentDataElement);
-    }
-
+    var edgeId = strcase.paramCase(data.GraphId);
     /*
     console.log('svg in edge');
     console.log(svg);
@@ -7492,7 +7420,8 @@ pathvisiojs.view.pathwayDiagram.svg.edge = function(){
     }
     createPathDataString.interpolate(stepType);
     //*/
-    var stroke = data.stroke,
+    var edge,
+      stroke = data.stroke,
       markerStartAttributeValue,
       markerEndAttributeValue;
     async.series({
@@ -7559,6 +7488,13 @@ pathvisiojs.view.pathwayDiagram.svg.edge = function(){
           markerEndAttributeValue = 'none';
           callback(null, markerEndAttributeValue);
         }
+      },
+      'edge': function(callback) {
+        edge = container.selectAll('#' + strcase.paramCase(data.GraphId))
+        .data([data])
+        .enter().append("path") // TODO check whether this option works with groups for both the temporary frameIt hack and the final pathvisio JSON model
+        //.enter().insert("path", ":first-child") // this option may cause problems in the future if we have groups with fully opaque backgrounds
+        callback(null, edge);
       },
       /*
       'convertedPointSet': function(callback) {
@@ -7651,7 +7587,8 @@ pathvisiojs.view.pathwayDiagram.svg.edge = function(){
     function(err, results) {
     //*/
     'path': function() {
-      edge.attr("marker-start", markerStartAttributeValue)
+      edge.attr("id", edgeId)
+      .attr("marker-start", markerStartAttributeValue)
       .attr("marker-end", markerEndAttributeValue)
       .attr("style", function (data) {
         var style = 'stroke-width:' + data.strokeWidth + '; ';
