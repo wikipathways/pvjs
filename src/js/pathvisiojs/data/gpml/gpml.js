@@ -587,6 +587,7 @@ pathvisiojs.data.gpml = function(){
                   return a.zIndex - b.zIndex;
                 });
 
+                console.log('pathwayNestedByGrouping');
                 callbackInside(null, pathway);
               },
               function(pathway, callbackInside){
