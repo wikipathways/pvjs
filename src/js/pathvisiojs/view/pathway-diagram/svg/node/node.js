@@ -40,14 +40,42 @@ pathvisiojs.view.pathwayDiagram.svg.node = function(){
   }
 
   function render(args, callback) {
+    console.log(args);
     if (!args) {
       throw new Error('Need input args to render a node.');
     }
-    if (!args.container) {
-      throw new Error('Need a container to render a node.');
+
+    var nodeContainer = args.element,
+      data = args.data,
+      pathway = args.pathway,
+      parentDataElement,
+      translatedX,
+      translatedY;
+
+      console.log(nodeContainer);
+
+    if (!pathway) {
+      throw new Error('Need a pathway to render a node.');
     }
-    if (!args.data) {
+    if (!nodeContainer) {
+      throw new Error('Need a nodeContainer to render a node.');
+    }
+    if (!data) {
       throw new Error('Need input data to render a node.');
+    }
+
+    if (data.hasOwnProperty('isContainedBy')) {
+      parentDataElement = pathway.elements.filter(function(element) {
+        return element['@id'] === data.isContainedBy;
+      })[0];
+      translatedX = data.x - parentDataElement.x;
+      translatedY = data.y - parentDataElement.y;
+      console.log('parentDataElement');
+      console.log(parentDataElement);
+    }
+    else {
+      translatedX = data.x;
+      translatedY = data.y;
     }
 
     /************ 
@@ -58,25 +86,8 @@ pathvisiojs.view.pathwayDiagram.svg.node = function(){
       .origin(Object)
       .on("drag", dragmove);
 
-    var nodeContainer = args.container.selectAll('#node-container-' + strcase.paramCase(args.data['@id']))
-    .data([args.data])
-    .enter()
-    .append("g")
-    .attr("id", function (d) { return 'node-container-' + strcase.paramCase(d['@id']); })
-    .attr('transform', function(d) {
-      var containerElement = {}
-      if (args.container[0][0].hasOwnProperty('__data__')) {
-        containerElement.x = (args.container[0][0].__data__.x);
-        containerElement.y = (args.container[0][0].__data__.y);
-      }
-      else {
-        containerElement.x = 0;
-        containerElement.y = 0;
-      }
-      var element = {}
-      element.x = d.x - containerElement.x;
-      element.y = d.y - containerElement.y;
-      return 'translate(' + element.x + ' ' + element.y + ')';
+    nodeContainer.attr('transform', function(d) {
+      return 'translate(' + translatedX + ' ' + translatedY + ')';
     })
     .attr("style", function (d) {
       var style = '';
@@ -99,37 +110,41 @@ pathvisiojs.view.pathwayDiagram.svg.node = function(){
     })
     .call(drag)
 
+
+    console.log('nodeContainer');
+    console.log(nodeContainer);
+
     /****************** 
      * background shape
      * ***************/
 
-    var shapeType = strcase.paramCase(args.data.ShapeType);
+    var shapeType = strcase.paramCase(data.ShapeType);
     
     // check for whether desired shape type is available as a symbol
 //    if (pathvisiojs.view.pathwayDiagram.svg.symbol.semanticNameToIdMapping.hasOwnProperty(shapeType)) {
       //console.log('We will use an SVG "use" element to render this ' + shapeType);
-//      pathvisiojs.view.pathwayDiagram.svg.node.useElement.render(nodeContainer, args.data);
+//      pathvisiojs.view.pathwayDiagram.svg.node.useElement.render(nodeContainer, data);
 //    }
     // else check for whether it is available as a pathShape
 //    else {
       //console.log('We will use a pathShape to render this ' + shapeType);
-      pathvisiojs.view.pathwayDiagram.svg.node.pathShape.render(nodeContainer, args.data);
+      pathvisiojs.view.pathwayDiagram.svg.node.pathShape.render(nodeContainer, data);
 //    }
 
     /****************** 
      * text label
      * ***************/
 
-    if (args.data.hasOwnProperty('text')) {
-      pathvisiojs.view.pathwayDiagram.svg.node.text.render(nodeContainer, args.data);
+    if (data.hasOwnProperty('text')) {
+      pathvisiojs.view.pathwayDiagram.svg.node.text.render(nodeContainer, data);
     }
 
     /****************** 
      * citation(s)
      * ***************/
 
-    if (args.data.hasOwnProperty('PublicationXref')) {
-      pathvisiojs.view.pathwayDiagram.svg.publicationXref.render(nodeContainer, 'node', args.pathway, args.data.PublicationXref);
+    if (data.hasOwnProperty('PublicationXref')) {
+      pathvisiojs.view.pathwayDiagram.svg.publicationXref.render(nodeContainer, 'node', args.pathway, data.PublicationXref);
     }
 
     callback(nodeContainer);

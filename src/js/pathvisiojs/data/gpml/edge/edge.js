@@ -9,7 +9,7 @@ pathvisiojs.data.gpml.edge = function(){
     var jsonAnchorEdge, anchor, jsonAnchor, points, jsonPoints, interactionType, target, targetId, groupRef;
     var jsonEdge = {};
     var graphId = gpmlEdge.attr('GraphId') || ('id' + uuid.v4());
-    var elementIri = pathwayIri + graphId;
+    var elementIri = 'pathwayIri:' + graphId;
     jsonEdge['@id'] = elementIri;
     jsonEdge.GraphId = graphId;
 
@@ -17,7 +17,7 @@ pathvisiojs.data.gpml.edge = function(){
     var isContainedBy;
     var dependsOn = [];
     if (!!containingGroupRef) {
-      isContainedBy = jsonEdge.isContainedBy = pathwayIri + containingGroupRef;
+      isContainedBy = jsonEdge.isContainedBy = 'pathwayIri:' + containingGroupRef;
       dependsOn.push(isContainedBy);
     }
 
@@ -42,9 +42,9 @@ pathvisiojs.data.gpml.edge = function(){
       if ((relX !== null && relX !== undefined) && (relY !== null && relY !== undefined)) {
         pointObj['@type'] = 'SnappedPoint';
 
-        dependsOn.push(pathwayIri + point.attr('GraphRef'));
+        dependsOn.push('pathwayIri:' + point.attr('GraphRef'));
 
-        pointObj.hasReference = pathwayIri + point.attr('GraphRef');
+        pointObj.hasReference = 'pathwayIri:' + point.attr('GraphRef');
         pointObj.RelX = relX;
         pointObj.RelY = relY;
         pointObj.x = parseFloat(point.attr('X'));
