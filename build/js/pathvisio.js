@@ -1,5 +1,5 @@
-//! pathvisiojs 0.9.5
-//! Built on 2014-01-27
+//! pathvisiojs 0.9.6
+//! Built on 2014-01-28
 //! https://github.com/wikipathways/pathvisiojs
 //! License: http://www.apache.org/licenses/LICENSE-2.0/
 
@@ -334,13 +334,13 @@ pathvisiojs.utilities = function(){
 
 "use strict";
 pathvisiojs.config = {};
-pathvisiojs.config.gpmlSourceUriStub = '//wpi/wpi.php?action=downloadFile&type=gpml&pwTitle=Pathway:';
-pathvisiojs.config.bridgedbLinkOutsUrlStub = '//wpi/extensions/bridgedb.php/';
-pathvisiojs.config.bridgedbDatasources = '//wpi/extensions/PathwayViewer/datasources.txt';
-pathvisiojs.config.diagramLoadingIconUri = '//wpi/extensions/PathwayViewer/img/loading.gif';
-pathvisiojs.config.diagramNotAvailableIconUri = '//wpi/extensions/PathwayViewer/img/imageNotAvailable.jpg';
-pathvisiojs.config.imgDiagramUriStub = '//wpi//wpi.php?action=downloadFile&type=png&pwTitle=Pathway:';
-pathvisiojs.config.pathwaySearchUriStub = '//index.php?title=Special:SearchPathways&doSearch=1&query=';
+pathvisiojs.config.gpmlSourceUriStub = '/wpi/wpi.php?action=downloadFile&type=gpml&pwTitle=Pathway:';
+pathvisiojs.config.bridgedbLinkOutsUrlStub = '/wpi/extensions/bridgedb.php/';
+pathvisiojs.config.bridgedbDatasources = '/wpi/extensions/PathwayViewer/datasources.txt';
+pathvisiojs.config.diagramLoadingIconUri = '/wpi/extensions/PathwayViewer/img/loading.gif';
+pathvisiojs.config.diagramNotAvailableIconUri = '/wpi/extensions/PathwayViewer/img/imageNotAvailable.jpg';
+pathvisiojs.config.imgDiagramUriStub = '/wpi.php?action=downloadFile&type=png&pwTitle=Pathway:';
+pathvisiojs.config.pathwaySearchUriStub = '/index.php?title=Special:SearchPathways&doSearch=1&query=';
 ;
 
 pathvisiojs.data = function(){
