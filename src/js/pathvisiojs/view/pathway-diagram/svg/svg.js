@@ -290,12 +290,13 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
       console.log('item');
       console.log(item);
       if (i > 0) {
-        container = viewport.select('#' + strcase.paramCase(item.key))
-        .append('g');
+        container = viewport.append('g')
+        .attr('id', strcase.paramCase(item.key));
       }
       else {
         container = viewport;
       }
+      console.log(container[0][0]);
 
       container.selectAll('.element')
       .data(item.values)
@@ -312,6 +313,7 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
         return strcase.paramCase(d['@id']);
       })
       .attr('class', 'element');
+      i += 1;
 
       callbackInside(null);
     },

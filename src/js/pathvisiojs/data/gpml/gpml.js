@@ -572,7 +572,9 @@ pathvisiojs.data.gpml = function(){
                       jsonGroup.height = dimensions.height;
                       pathvisiojs.data.gpml.element.node.getPorts(jsonGroup, function(ports) {
                         jsonGroup.Port = ports;
-                        jsonGroups.push(jsonGroup);
+                        if (jsonGroups.indexOf(jsonGroup) === -1) {
+                          jsonGroups.push(jsonGroup);
+                        }
                       });
                     });
                   }
