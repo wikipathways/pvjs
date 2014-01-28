@@ -614,6 +614,9 @@ pathvisiojs.data.gpml = function(){
           });
         }
         else {
+          pathway.elements.sort(function(a, b) {
+            return a.zIndex - b.zIndex;
+          });
           self.myPathway = pathway;
           callbackOutside(pathway);
         }
