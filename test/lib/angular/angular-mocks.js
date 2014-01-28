@@ -38,8 +38,8 @@ angular.mock.$Browser = function() {
   var self = this;
 
   this.isMock = true;
-  self.$$url = "http://server/";
-  self.$$lastUrl = self.$$url; // used by url polling fn
+  self.$$uri = "http://server/";
+  self.$$lastUri = self.$$uri; // used by uri polling fn
   self.pollFns = [];
 
   // TODO(vojta): remove this temporary api
@@ -47,14 +47,14 @@ angular.mock.$Browser = function() {
   self.$$incOutstandingRequestCount = angular.noop;
 
 
-  // register url polling fn
+  // register uri polling fn
 
-  self.onUrlChange = function(listener) {
+  self.onUriChange = function(listener) {
     self.pollFns.push(
       function() {
-        if (self.$$lastUrl != self.$$url) {
-          self.$$lastUrl = self.$$url;
-          listener(self.$$url);
+        if (self.$$lastUri != self.$$uri) {
+          self.$$lastUri = self.$$uri;
+          listener(self.$$uri);
         }
       }
     );
@@ -151,13 +151,13 @@ angular.mock.$Browser.prototype = {
     return pollFn;
   },
 
-  url: function(url, replace) {
-    if (url) {
-      this.$$url = url;
+  uri: function(uri, replace) {
+    if (uri) {
+      this.$$uri = uri;
       return this;
     }
 
-    return this.$$url;
+    return this.$$uri;
   },
 
   cookies:  function(name, value) {
@@ -854,8 +854,8 @@ function createHttpBackendMock($delegate, $browser) {
     };
   }
 
-  // TODO(vojta): change params to: method, url, data, headers, callback
-  function $httpBackend(method, url, data, callback, headers) {
+  // TODO(vojta): change params to: method, uri, data, headers, callback
+  function $httpBackend(method, uri, data, callback, headers) {
     var xhr = new MockXhr(),
         expectation = expectations[0],
         wasExpected = false;
@@ -866,7 +866,7 @@ function createHttpBackendMock($delegate, $browser) {
           : angular.toJson(data);
     }
 
-    if (expectation && expectation.match(method, url)) {
+    if (expectation && expectation.match(method, uri)) {
       if (!expectation.matchData(data))
         throw Error('Expected ' + expectation + ' with different data\n' +
             'EXPECTED: ' + prettyPrint(expectation.data) + '\nGOT:      ' + data);
@@ -880,7 +880,7 @@ function createHttpBackendMock($delegate, $browser) {
 
       if (expectation.response) {
         responses.push(function() {
-          var response = expectation.response(method, url, data, headers);
+          var response = expectation.response(method, uri, data, headers);
           xhr.$$respHeaders = response[2];
           callback(response[0], response[1], xhr.getAllResponseHeaders());
         });
@@ -891,23 +891,23 @@ function createHttpBackendMock($delegate, $browser) {
 
     var i = -1, definition;
     while ((definition = definitions[++i])) {
-      if (definition.match(method, url, data, headers || {})) {
+      if (definition.match(method, uri, data, headers || {})) {
         if (definition.response) {
           // if $browser specified, we do auto flush all requests
           ($browser ? $browser.defer : responsesPush)(function() {
-            var response = definition.response(method, url, data, headers);
+            var response = definition.response(method, uri, data, headers);
             xhr.$$respHeaders = response[2];
             callback(response[0], response[1], xhr.getAllResponseHeaders());
           });
         } else if (definition.passThrough) {
-          $delegate(method, url, data, callback, headers);
+          $delegate(method, uri, data, callback, headers);
         } else throw Error('No response defined !');
         return;
       }
     }
     throw wasExpected ?
         Error('No response defined !') :
-        Error('Unexpected request: ' + method + ' ' + url + '\n' +
+        Error('Unexpected request: ' + method + ' ' + uri + '\n' +
               (expectation ? 'Expected ' + expectation : 'No more request expected'));
   }
 
@@ -919,20 +919,20 @@ function createHttpBackendMock($delegate, $browser) {
    * Creates a new backend definition.
    *
    * @param {string} method HTTP method.
-   * @param {string|RegExp} url HTTP url.
+   * @param {string|RegExp} uri HTTP uri.
    * @param {(string|RegExp)=} data HTTP request body.
    * @param {(Object|function(Object))=} headers HTTP headers or function that receives http header
    *   object and returns true if the headers match the current definition.
    * @returns {requestHandler} Returns an object with `respond` method that control how a matched
    *   request is handled.
    *
-   *  - respond – `{function([status,] data[, headers])|function(function(method, url, data, headers)}`
+   *  - respond – `{function([status,] data[, headers])|function(function(method, uri, data, headers)}`
    *    – The respond method takes a set of static data to be returned or a function that can return
    *    an array containing response status (number), response data (string) and response headers
    *    (Object).
    */
-  $httpBackend.when = function(method, url, data, headers) {
-    var definition = new MockHttpExpectation(method, url, data, headers),
+  $httpBackend.when = function(method, uri, data, headers) {
+    var definition = new MockHttpExpectation(method, uri, data, headers),
         chain = {
           respond: function(status, data, headers) {
             definition.response = createResponse(status, data, headers);
@@ -956,7 +956,7 @@ function createHttpBackendMock($delegate, $browser) {
    * @description
    * Creates a new backend definition for GET requests. For more info see `when()`.
    *
-   * @param {string|RegExp} url HTTP url.
+   * @param {string|RegExp} uri HTTP uri.
    * @param {(Object|function(Object))=} headers HTTP headers.
    * @returns {requestHandler} Returns an object with `respond` method that control how a matched
    * request is handled.
@@ -969,7 +969,7 @@ function createHttpBackendMock($delegate, $browser) {
    * @description
    * Creates a new backend definition for HEAD requests. For more info see `when()`.
    *
-   * @param {string|RegExp} url HTTP url.
+   * @param {string|RegExp} uri HTTP uri.
    * @param {(Object|function(Object))=} headers HTTP headers.
    * @returns {requestHandler} Returns an object with `respond` method that control how a matched
    * request is handled.
@@ -982,7 +982,7 @@ function createHttpBackendMock($delegate, $browser) {
    * @description
    * Creates a new backend definition for DELETE requests. For more info see `when()`.
    *
-   * @param {string|RegExp} url HTTP url.
+   * @param {string|RegExp} uri HTTP uri.
    * @param {(Object|function(Object))=} headers HTTP headers.
    * @returns {requestHandler} Returns an object with `respond` method that control how a matched
    * request is handled.
@@ -995,7 +995,7 @@ function createHttpBackendMock($delegate, $browser) {
    * @description
    * Creates a new backend definition for POST requests. For more info see `when()`.
    *
-   * @param {string|RegExp} url HTTP url.
+   * @param {string|RegExp} uri HTTP uri.
    * @param {(string|RegExp)=} data HTTP request body.
    * @param {(Object|function(Object))=} headers HTTP headers.
    * @returns {requestHandler} Returns an object with `respond` method that control how a matched
@@ -1009,7 +1009,7 @@ function createHttpBackendMock($delegate, $browser) {
    * @description
    * Creates a new backend definition for PUT requests.  For more info see `when()`.
    *
-   * @param {string|RegExp} url HTTP url.
+   * @param {string|RegExp} uri HTTP uri.
    * @param {(string|RegExp)=} data HTTP request body.
    * @param {(Object|function(Object))=} headers HTTP headers.
    * @returns {requestHandler} Returns an object with `respond` method that control how a matched
@@ -1023,7 +1023,7 @@ function createHttpBackendMock($delegate, $browser) {
    * @description
    * Creates a new backend definition for JSONP requests. For more info see `when()`.
    *
-   * @param {string|RegExp} url HTTP url.
+   * @param {string|RegExp} uri HTTP uri.
    * @returns {requestHandler} Returns an object with `respond` method that control how a matched
    * request is handled.
    */
@@ -1038,20 +1038,20 @@ function createHttpBackendMock($delegate, $browser) {
    * Creates a new request expectation.
    *
    * @param {string} method HTTP method.
-   * @param {string|RegExp} url HTTP url.
+   * @param {string|RegExp} uri HTTP uri.
    * @param {(string|RegExp)=} data HTTP request body.
    * @param {(Object|function(Object))=} headers HTTP headers or function that receives http header
    *   object and returns true if the headers match the current expectation.
    * @returns {requestHandler} Returns an object with `respond` method that control how a matched
    *  request is handled.
    *
-   *  - respond – `{function([status,] data[, headers])|function(function(method, url, data, headers)}`
+   *  - respond – `{function([status,] data[, headers])|function(function(method, uri, data, headers)}`
    *    – The respond method takes a set of static data to be returned or a function that can return
    *    an array containing response status (number), response data (string) and response headers
    *    (Object).
    */
-  $httpBackend.expect = function(method, url, data, headers) {
-    var expectation = new MockHttpExpectation(method, url, data, headers);
+  $httpBackend.expect = function(method, uri, data, headers) {
+    var expectation = new MockHttpExpectation(method, uri, data, headers);
     expectations.push(expectation);
     return {
       respond: function(status, data, headers) {
@@ -1068,7 +1068,7 @@ function createHttpBackendMock($delegate, $browser) {
    * @description
    * Creates a new request expectation for GET requests. For more info see `expect()`.
    *
-   * @param {string|RegExp} url HTTP url.
+   * @param {string|RegExp} uri HTTP uri.
    * @param {Object=} headers HTTP headers.
    * @returns {requestHandler} Returns an object with `respond` method that control how a matched
    * request is handled. See #expect for more info.
@@ -1081,7 +1081,7 @@ function createHttpBackendMock($delegate, $browser) {
    * @description
    * Creates a new request expectation for HEAD requests. For more info see `expect()`.
    *
-   * @param {string|RegExp} url HTTP url.
+   * @param {string|RegExp} uri HTTP uri.
    * @param {Object=} headers HTTP headers.
    * @returns {requestHandler} Returns an object with `respond` method that control how a matched
    *   request is handled.
@@ -1094,7 +1094,7 @@ function createHttpBackendMock($delegate, $browser) {
    * @description
    * Creates a new request expectation for DELETE requests. For more info see `expect()`.
    *
-   * @param {string|RegExp} url HTTP url.
+   * @param {string|RegExp} uri HTTP uri.
    * @param {Object=} headers HTTP headers.
    * @returns {requestHandler} Returns an object with `respond` method that control how a matched
    *   request is handled.
@@ -1107,7 +1107,7 @@ function createHttpBackendMock($delegate, $browser) {
    * @description
    * Creates a new request expectation for POST requests. For more info see `expect()`.
    *
-   * @param {string|RegExp} url HTTP url.
+   * @param {string|RegExp} uri HTTP uri.
    * @param {(string|RegExp)=} data HTTP request body.
    * @param {Object=} headers HTTP headers.
    * @returns {requestHandler} Returns an object with `respond` method that control how a matched
@@ -1121,7 +1121,7 @@ function createHttpBackendMock($delegate, $browser) {
    * @description
    * Creates a new request expectation for PUT requests. For more info see `expect()`.
    *
-   * @param {string|RegExp} url HTTP url.
+   * @param {string|RegExp} uri HTTP uri.
    * @param {(string|RegExp)=} data HTTP request body.
    * @param {Object=} headers HTTP headers.
    * @returns {requestHandler} Returns an object with `respond` method that control how a matched
@@ -1135,7 +1135,7 @@ function createHttpBackendMock($delegate, $browser) {
    * @description
    * Creates a new request expectation for PATCH requests. For more info see `expect()`.
    *
-   * @param {string|RegExp} url HTTP url.
+   * @param {string|RegExp} uri HTTP uri.
    * @param {(string|RegExp)=} data HTTP request body.
    * @param {Object=} headers HTTP headers.
    * @returns {requestHandler} Returns an object with `respond` method that control how a matched
@@ -1149,7 +1149,7 @@ function createHttpBackendMock($delegate, $browser) {
    * @description
    * Creates a new request expectation for JSONP requests. For more info see `expect()`.
    *
-   * @param {string|RegExp} url HTTP url.
+   * @param {string|RegExp} uri HTTP uri.
    * @returns {requestHandler} Returns an object with `respond` method that control how a matched
    *   request is handled.
    */
@@ -1246,36 +1246,36 @@ function createHttpBackendMock($delegate, $browser) {
 
   function createShortMethods(prefix) {
     angular.forEach(['GET', 'DELETE', 'JSONP'], function(method) {
-     $httpBackend[prefix + method] = function(url, headers) {
-       return $httpBackend[prefix](method, url, undefined, headers)
+     $httpBackend[prefix + method] = function(uri, headers) {
+       return $httpBackend[prefix](method, uri, undefined, headers)
      }
     });
 
     angular.forEach(['PUT', 'POST', 'PATCH'], function(method) {
-      $httpBackend[prefix + method] = function(url, data, headers) {
-        return $httpBackend[prefix](method, url, data, headers)
+      $httpBackend[prefix + method] = function(uri, data, headers) {
+        return $httpBackend[prefix](method, uri, data, headers)
       }
     });
   }
 }
 
-function MockHttpExpectation(method, url, data, headers) {
+function MockHttpExpectation(method, uri, data, headers) {
 
   this.data = data;
   this.headers = headers;
 
   this.match = function(m, u, d, h) {
     if (method != m) return false;
-    if (!this.matchUrl(u)) return false;
+    if (!this.matchUri(u)) return false;
     if (angular.isDefined(d) && !this.matchData(d)) return false;
     if (angular.isDefined(h) && !this.matchHeaders(h)) return false;
     return true;
   };
 
-  this.matchUrl = function(u) {
-    if (!url) return true;
-    if (angular.isFunction(url.test)) return url.test(u);
-    return url == u;
+  this.matchUri = function(u) {
+    if (!uri) return true;
+    if (angular.isFunction(uri.test)) return uri.test(u);
+    return uri == u;
   };
 
   this.matchHeaders = function(h) {
@@ -1292,7 +1292,7 @@ function MockHttpExpectation(method, url, data, headers) {
   };
 
   this.toString = function() {
-    return method + ' ' + url;
+    return method + ' ' + uri;
   };
 }
 
@@ -1301,9 +1301,9 @@ function MockXhr() {
   // hack for testing $http, $httpBackend
   MockXhr.$$lastInstance = this;
 
-  this.open = function(method, url, async) {
+  this.open = function(method, uri, async) {
     this.$$method = method;
-    this.$$url = url;
+    this.$$uri = uri;
     this.$$async = async;
     this.$$reqHeaders = {};
     this.$$respHeaders = {};
@@ -1447,7 +1447,7 @@ angular.module('ngMockE2E', ['ng']).config(function($provide) {
  *     $httpBackend.whenGET('/phones').respond(phones);
  *
  *     // adds a new phone to the phones array
- *     $httpBackend.whenPOST('/phones').respond(function(method, url, data) {
+ *     $httpBackend.whenPOST('/phones').respond(function(method, uri, data) {
  *       phones.push(angular.fromJSON(data));
  *     });
  *     $httpBackend.whenGET(/^\/templates\//).passThrough();
@@ -1466,14 +1466,14 @@ angular.module('ngMockE2E', ['ng']).config(function($provide) {
  * Creates a new backend definition.
  *
  * @param {string} method HTTP method.
- * @param {string|RegExp} url HTTP url.
+ * @param {string|RegExp} uri HTTP uri.
  * @param {(string|RegExp)=} data HTTP request body.
  * @param {(Object|function(Object))=} headers HTTP headers or function that receives http header
  *   object and returns true if the headers match the current definition.
  * @returns {requestHandler} Returns an object with `respond` and `passThrough` methods that
  *   control how a matched request is handled.
  *
- *  - respond – `{function([status,] data[, headers])|function(function(method, url, data, headers)}`
+ *  - respond – `{function([status,] data[, headers])|function(function(method, uri, data, headers)}`
  *    – The respond method takes a set of static data to be returned or a function that can return
  *    an array containing response status (number), response data (string) and response headers
  *    (Object).
@@ -1489,7 +1489,7 @@ angular.module('ngMockE2E', ['ng']).config(function($provide) {
  * @description
  * Creates a new backend definition for GET requests. For more info see `when()`.
  *
- * @param {string|RegExp} url HTTP url.
+ * @param {string|RegExp} uri HTTP uri.
  * @param {(Object|function(Object))=} headers HTTP headers.
  * @returns {requestHandler} Returns an object with `respond` and `passThrough` methods that
  *   control how a matched request is handled.
@@ -1502,7 +1502,7 @@ angular.module('ngMockE2E', ['ng']).config(function($provide) {
  * @description
  * Creates a new backend definition for HEAD requests. For more info see `when()`.
  *
- * @param {string|RegExp} url HTTP url.
+ * @param {string|RegExp} uri HTTP uri.
  * @param {(Object|function(Object))=} headers HTTP headers.
  * @returns {requestHandler} Returns an object with `respond` and `passThrough` methods that
  *   control how a matched request is handled.
@@ -1515,7 +1515,7 @@ angular.module('ngMockE2E', ['ng']).config(function($provide) {
  * @description
  * Creates a new backend definition for DELETE requests. For more info see `when()`.
  *
- * @param {string|RegExp} url HTTP url.
+ * @param {string|RegExp} uri HTTP uri.
  * @param {(Object|function(Object))=} headers HTTP headers.
  * @returns {requestHandler} Returns an object with `respond` and `passThrough` methods that
  *   control how a matched request is handled.
@@ -1528,7 +1528,7 @@ angular.module('ngMockE2E', ['ng']).config(function($provide) {
  * @description
  * Creates a new backend definition for POST requests. For more info see `when()`.
  *
- * @param {string|RegExp} url HTTP url.
+ * @param {string|RegExp} uri HTTP uri.
  * @param {(string|RegExp)=} data HTTP request body.
  * @param {(Object|function(Object))=} headers HTTP headers.
  * @returns {requestHandler} Returns an object with `respond` and `passThrough` methods that
@@ -1542,7 +1542,7 @@ angular.module('ngMockE2E', ['ng']).config(function($provide) {
  * @description
  * Creates a new backend definition for PUT requests.  For more info see `when()`.
  *
- * @param {string|RegExp} url HTTP url.
+ * @param {string|RegExp} uri HTTP uri.
  * @param {(string|RegExp)=} data HTTP request body.
  * @param {(Object|function(Object))=} headers HTTP headers.
  * @returns {requestHandler} Returns an object with `respond` and `passThrough` methods that
@@ -1556,7 +1556,7 @@ angular.module('ngMockE2E', ['ng']).config(function($provide) {
  * @description
  * Creates a new backend definition for PATCH requests.  For more info see `when()`.
  *
- * @param {string|RegExp} url HTTP url.
+ * @param {string|RegExp} uri HTTP uri.
  * @param {(string|RegExp)=} data HTTP request body.
  * @param {(Object|function(Object))=} headers HTTP headers.
  * @returns {requestHandler} Returns an object with `respond` and `passThrough` methods that
@@ -1570,7 +1570,7 @@ angular.module('ngMockE2E', ['ng']).config(function($provide) {
  * @description
  * Creates a new backend definition for JSONP requests. For more info see `when()`.
  *
- * @param {string|RegExp} url HTTP url.
+ * @param {string|RegExp} uri HTTP uri.
  * @returns {requestHandler} Returns an object with `respond` and `passThrough` methods that
  *   control how a matched request is handled.
  */

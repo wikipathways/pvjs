@@ -1,7 +1,9 @@
+"use strict"
+
 pathvisiojs.view.pathwayDiagram.svg.publicationXref = function(){
 
   function getReferenceNumberForDisplay(pathway, rdfId) {
-    var displayNumberForDisplay;
+    var displayNumberForDisplay = null;
     var i = -1;
     var currentPublicationXref;
     var found = false;
@@ -9,15 +11,21 @@ pathvisiojs.view.pathwayDiagram.svg.publicationXref = function(){
     do {
       i += 1;
       currentPublicationXref = pathway.Biopax.PublicationXref[i];
-      if (currentPublicationXref.rdfId === rdfId) {
-        found = true;
-        displayNumberForDisplay = i + 1;
+      if (typeof currentPublicationXref != 'undefined'){
+        if (currentPublicationXref.rdfId === rdfId) {
+          found = true;
+          displayNumberForDisplay = i + 1;
+        }
       }
     } while (found === false && i < pathway.Biopax.PublicationXref.length);
 
     return displayNumberForDisplay;
   }
 
+  // Create a string of citation numbers for display,
+  // delimited by commas, and
+  // replacing any consecutive series of numbers with the
+  // first and last joined by a hyphen.
   function createPublicationXrefString(displayNumbers) {
     var publicationXrefString;
     if (displayNumbers.length === 1) {
@@ -66,21 +74,61 @@ pathvisiojs.view.pathwayDiagram.svg.publicationXref = function(){
 
   function getPublicationXrefString(pathway, rdfIds, callback) {
     var displayNumbers = [];
+    var publicationXrefString = '';
+    // make sure it's an array
+    rdfIds = pathvisiojs.utilities.convertToArray(rdfIds);
     rdfIds.forEach(function(rdfId) {
-      displayNumbers.push(getReferenceNumberForDisplay(pathway, rdfId));
+      var num = getReferenceNumberForDisplay(pathway, rdfId);
+      if(!!num) {
+        displayNumbers.push(num); 
+      }	
     });
-    console.log('displayNumbers');
-    console.log(displayNumbers);
-    var publicationXrefString = createPublicationXrefString(displayNumbers);
+    if (displayNumbers.length > 0){
+      publicationXrefString = createPublicationXrefString(displayNumbers);
+    }
     callback(publicationXrefString);
   }
 
-  // TODO this isn't tested
+  function render(target, targetType, pathway, rdfIds) {
+    /* targetType can be any of the following:
+     * node
+     * edge
+     * not currently but maybe in the future: diagram (applies to the whole pathway)
+    //*/
 
-  function render(viewport, target, pathway, rdfIds) {
+    var viewport, text;
     getPublicationXrefString(pathway, rdfIds, function(publicationXrefString) {
-      viewport.append(text).text(publicationXrefString);
+      if (targetType === 'node') {
+	var nodeWidth = target[0][0]['__data__'].width;
+	var textLength = publicationXrefString.toString().length;
+	var offset = nodeWidth - textLength *3 / 2 - 2;
+        target.append('text')
+        .attr('class', 'citation')
+        .attr('transform', function(d) {return 'translate('+offset+' -4)';})
+        .text(publicationXrefString);
+      }
+      else {
+
+        // TODO don't repeat svg definition
+        viewport = d3.select('svg > #viewport');
+        if (targetType === 'edge') {
+          viewport = d3.select('svg > #viewport');
+          text = viewport.append('text')
+          .attr('class', 'citation')
+          .attr('transform', function(d) {return 'translate(0 -10)';});
+
+          text.append('textPath')
+          .attr('xlink:xlink:href', '#' + target)
+          .attr('startOffset', '50%')
+          .text(publicationXrefString);
+
+        }
+        else {
+          throw new Error('Pathvisiojs cannot render a citation for targets of this type: ' + targetType);
+        }
+      }
     })
+
   }
 
   return {

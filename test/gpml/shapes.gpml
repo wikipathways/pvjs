@@ -62,11 +62,6 @@
     <Attribute Key="org.pathvisio.CellularComponentProperty" Value="Extracellular region" />
     <Graphics CenterX="159.74435249918815" CenterY="1839.9871868113864" Width="84.14728551194578" Height="66.18370875782784" ZOrder="32972" FontSize="10" Valign="Middle" ShapeType="RoundedRectangle" LineStyle="Broken" Color="c0c0c0" Rotation="0.0" />
   </Shape>
-  <Shape TextLabel="Shape Type: Sarc. Retic.&#xA;Cellular Component: Mitochondria" GraphId="d61b8">
-    <Attribute Key="org.pathvisio.CellularComponentProperty" Value="Mitochondria" />
-    <Attribute Key="org.pathvisio.DoubleLineProperty" Value="Double" />
-    <Graphics CenterX="502.8419471196189" CenterY="934.8445750225665" Width="201.790322580645" Height="49.532258064516" ZOrder="32973" FontSize="10" Valign="Middle" ShapeType="Sarcoplasmic Reticulum" Rotation="0.0" />
-  </Shape>
   <Shape TextLabel="cell" GraphId="af620">
     <Attribute Key="org.pathvisio.CellularComponentProperty" Value="Cell" />
     <Attribute Key="org.pathvisio.DoubleLineProperty" Value="Double" />
@@ -88,9 +83,9 @@
   <Shape TextLabel="Shape Type: Rectangle&#xA;Line Style: dashed" GraphId="f4f31">
     <Graphics CenterX="482.1564379089201" CenterY="233.69281320388794" Width="129.19822485207098" Height="49.316568047337455" ZOrder="32979" FontSize="10" Valign="Middle" ShapeType="Rectangle" LineStyle="Broken" Rotation="0.0" />
   </Shape>
-  <Shape TextLabel="Shape Type: rectangle&#xA;Line Style: Double" GraphId="e5bdc">
+  <Shape TextLabel="Shape Type: rectangle&#xA;Line Style: Double&#xA;Fill: yellow" GraphId="e5bdc">
     <Attribute Key="org.pathvisio.DoubleLineProperty" Value="Double" />
-    <Graphics CenterX="485.6246460014055" CenterY="301.6489950939209" Width="129.19822485207098" Height="49.316568047337455" ZOrder="32980" FontSize="10" Valign="Middle" ShapeType="Rectangle" Rotation="0.0" />
+    <Graphics CenterX="485.6246460014055" CenterY="301.6489950939209" Width="129.19822485207098" Height="49.316568047337455" ZOrder="32980" FillColor="ffffcc" FontSize="10" Valign="Middle" ShapeType="Rectangle" Rotation="0.0" />
   </Shape>
   <Shape TextLabel="Shape Type: rectangle &#xA;Line Style: dashed&#xA;stroke: red" GraphId="a7001">
     <Attribute Key="org.pathvisio.CellularComponentProperty" Value="None" />
@@ -112,7 +107,6 @@
   </Shape>
   <Shape TextLabel="Shape Type: Mitochondria&#xA;Cellular Component: Sarc. Retic." GraphId="b0053">
     <Attribute Key="org.pathvisio.CellularComponentProperty" Value="Sarcoplasmic Reticulum" />
-    <Attribute Key="org.pathvisio.DoubleLineProperty" Value="Double" />
     <Graphics CenterX="497.85693213460354" CenterY="1005.7836359616277" Width="201.790322580645" Height="49.532258064516" ZOrder="32986" FontSize="10" Valign="Middle" ShapeType="Mitochondria" Rotation="0.0" />
   </Shape>
   <InfoBox CenterX="0.0" CenterY="0.0" />

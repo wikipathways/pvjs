@@ -3,27 +3,45 @@
 		image-rendering: auto;
 		shape-rendering: auto;
 		vector-effect: non-scaling-stroke;
-		fill: white;
-		background: white;
-    		stroke: black;
+                background: white;
+	/* removed fill and stroke since they override marker specs */
+	/*	fill: white;
+    		stroke: black; */
 	}
 
-	.default-fill {
+	/* default color for pathway elements */
+	.default-fill-color {
+		fill: black; 
+	}
+	.default-stroke-color {
+		stroke: black;
+	}
+	
+	/* default color of the background drawing board */ 	
+	.board-fill-color {
 		fill: white;
 	}
-
-	.stroke-color-equals-default-fill-color {
+	.board-stroke-color {
 		stroke: white;
 	}
 
-	text {
+	.text-area {
 		font-family: Sans-Serif, Helvetica, Arial;
+		text-align: center;
+		vertical-align: middle;
 		font-size: 10px;
 		fill: black;
 		fill-opacity: 1;
 		stroke: none;
-		text-anchor: middle;
-		font-size: 10px;
+	}
+
+	.citation {
+		font-family: Sans-Serif, Helvetica, Arial;
+		text-align: center;
+		vertical-align: top;
+		font-size: 7px;
+		fill: #999999;
+		fill-opacity: 1;
 		stroke: none;
 	}
 
@@ -32,34 +50,45 @@
 		font-size: 10px;
 		fill: black;
 		stroke: none;
-		text-anchor: start;
+		text-align: left;
+		vertical-align: top;
 	}
 
-	.info-box-property-name {
+	.info-box-item-property-name {
 		font-weight: bold;
 	}
 
+	.info-box-item-property-value {
+	}
+
 	.data-node {
+		text-align: right;
 		fill-opacity: 1;
+		fill: white;
 		stroke: black;
+		stroke-width: 1;
 		stroke-dasharray: 0;
 		stroke-miterlimit: 1;
     		pointer-events:auto;
 	}
+	.data-node:hover {
+	 	cursor: pointer;
+	}
 	
-	.has-xref:hover {
-		cursor: pointer;
+	.has-xref {
 	}
 
 	.data-node.gene-product {
 	}
 
-	.data-node.metabolite {
+	.metabolite {
 		stroke: blue;
 	}
 
-	text.metabolite {
-		cursor:pointer;
+	.data-node.metabolite > .text-area {
+		fill: blue;
+		fill-opacity: 1;
+		stroke: none;
 	}
 
 	.data-node.pathway {
@@ -67,10 +96,9 @@
 		fill-opacity: 0;
 	}
 
-	text.pathway {
+	.data-node.pathway > .text-area {
 		fill: rgb(20,150,30);
 		fill-opacity: 1;
-		stroke: rgb(20,150,30);
 		font-size: 12px;
 		font-weight: bold;
 	}
@@ -85,7 +113,7 @@
 	}
 
 	.label {
-		stroke: black;
+		stroke: null;
 		stroke-width: 0;
 		fill-opacity: 0;
 		stroke-dasharray: 0;
@@ -93,7 +121,7 @@
 	}
 
 	.shape {
-		fill-opacity: 1;
+		fill-opacity: 0;
 		stroke: black;
 		stroke-dasharray: 0;
 		stroke-miterlimit: 1;
@@ -105,7 +133,7 @@
 		stroke: none;
 	}
 
-	g.group > .shape {
+	g.group-node > .shape {
 		fill-opacity: 0.098;
 		stroke: gray;
 		stroke-miterlimit: 1;
@@ -113,7 +141,7 @@
     		pointer-events:none;
 	}
 
-	.group {
+	.group-node {
 		fill-opacity: 0.098;
 		stroke: gray;
 		stroke-miterlimit: 1;
@@ -121,56 +149,76 @@
     		pointer-events:none;
 	}
 
-	g.group > text {
+	.group-node > .text-area {
 		fill-opacity: 0.4;
 		font-family: Serif, Times;
 		font-size: 32px;
 		fill: black;
 		stroke-width: 0;
-  }
+		font-weight: bold;
+  	}	
 
-	text.group.complex {
+	.group-node.none {
+		fill: rgb(180,180,100);
+		stroke-dasharray: 5,3;
+	}
+
+	.group-node.none > .text-area {
 		display: none;
-  }
+  	}	
 
-	text.group.group {
+	/*.group-node.none:hover {
+		fill: rgb(255,180,100);
+		fill-opacity: 0.05;
+	}*/
+
+	.group-node.group {
+		fill-opacity: 0;
+		stroke: none;
+	}
+
+	.group-node.group > .text-area {
 		display: none;
-  }
-
-	text.group.none {
-		display: none;
-  }
-
-	.group:hover {
-		fill-opacity: 0.2;
+  	}
+	/*.group-node.group:hover {
+		fill: rgb(0,0,255);
 		stroke-width: 1px;
-	}
-
-	.group.none {
-		fill: rgb(180,180,100);
 		stroke-dasharray: 5,3;
-	}
-
-	.group.group {
-		fill-opacity: 0;
-		stroke-width: 0;
-	}
-
-	.group.complex {
-		fill: rgb(180,180,100);
-	}
-
-  	.group.pathway {
-		fill: lightgreen;
-		stroke-dasharray: 5,3;
-	}
-
-  	.cellular-component {
-		fill-opacity: 0;
 		stroke: gray;
+		fill-opacity: 0.1;
+	}*/
+
+	.group-node.complex {
+		fill: rgb(180,180,100);
 	}
 
-	.graphical-line {
+	.group-node.complex > .text-area {
+		display: none;
+  	}
+	/*.group-node.complex:hover {
+		fill: rgb(255,0,0);
+		fill-opacity: 0.05;
+	}*/	
+
+  	.group-node.pathway {
+		fill: rgb(0,255,0);
+		stroke-dasharray: 5,3;
+	}
+	/*.group-node.pathway:hover {
+		fill: rgb(0,255,0);
+		fill-opacity: 0.2;
+	}*/
+	.group-node.pathway > .text-area {
+		fill: rgb(20,150,30);
+		stroke: rgb(20,150,30);
+  }
+
+  .cellular-component {
+		fill-opacity: 0;
+		stroke: silver;
+	}
+
+  .graphical-line {
 		fill:none;
 		stroke: black; 
 		stroke-width: 1px; 

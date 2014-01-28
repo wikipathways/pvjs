@@ -9,9 +9,13 @@
 	xmlns:ev="http://www.w3.org/2001/xml-events"
 	width="0"
 	height="0"
+        refXstart="0"
+        refYstart="6"
+        refXend="11"
+        refYend="6"
 	viewBox="0 0 0 0"
 	preserveAspectRatio="none"
-	class="default-fill stroke-color-equals-default-fill-color node shape">
+        class="board-fill-color board-stroke-color node shape">
 
 	<rect x="0" y="0" width="0" height="0" stroke="none" fill="none" stroke-width="0"/>
 

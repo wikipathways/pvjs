@@ -1,14 +1,13 @@
-  <div id="pathvisio-js-container" style="width: inherit; min-width: inherit; max-width: inherit; height: inherit; min-height: inherit; max-height: inherit; position: absolute; ">
+  <div id="pathvisiojs-container" style="width: inherit; min-width: inherit; max-width: inherit; height: inherit; min-height: inherit; max-height: inherit; position: absolute; ">
 
     <!-- **********************************************************************
     Pathway Container (JavaScript inserts pathway image inside this div)
     *********************************************************************** -->
 
-    <div id="pathway-container" style="width: inherit; min-width: inherit; max-width: inherit; height: inherit; min-height: inherit; max-height: inherit; " class="y-mid">
-      <img id="loading-icon" class="x-mid" src="http://wikipathways.org//wpi/extensions/PathwayViewer/img/loading.gif">
+    <div id="diagram-container" style="width: inherit; min-width: inherit; max-width: inherit; height: inherit; min-height: inherit; max-height: inherit; ">
 
-
-      <svg id="pathway-svg"
+      <!--
+      <svg id="pathvisiojs-diagram"
         version="1.1"
         baseProfile="full"
         xmlns="http://www.w3.org/2000/svg"
@@ -40,9 +39,8 @@
         </g>
 
       </svg>
+      -->
 
-    
-      
     </div>
     
     <div id="typeahead" style="position: absolute; top: 5px; right: 5px;">
@@ -60,7 +58,7 @@
       see http://bumbu.github.io/cytoscape.js/debug/ for example of cytoscape.js 
       *********************************************************************** -->
 
-      <div id="pan-zoom-control" class="ui-cytoscape-panzoom">
+<!--      <div id="pan-zoom-control" class="ui-cytoscape-panzoom">
         <div class="ui-cytoscape-panzoom-zoom-in ui-cytoscape-panzoom-zoom-button">
           <span class="icon icon-plus"></span>
         </div>
@@ -94,15 +92,19 @@
           </div>
         </div>
       </div>
-
+-->
       <!-- **********************************************************************
       Fullscreen Control 
       *********************************************************************** -->
 
-      <div id="fullscreen-control" style="position: absolute; bottom: 5px; right: 5px;">
+      <div id="fit-to-screen-control" class="fit-to-screen-controls"  style="position: absolute; bottom: 5px; right: 0px;">                           
+        <img class="icon-screenshot" style="color:#aaa" src="../src/img/fitscreen_icon.png"></i>                                                        
+      </div>    
+
+   <!--   <div id="fullscreen-control" style="position: absolute; bottom: 5px; right: 8px;">
         <i class="icon-fullscreen" style="color:#aaa"></i>
       </div>
-   
+   -->
 
     <div id="viewer-toolbar" style="position: absolute; top: 0px; right: 0px; height: inherit">
     </div>
@@ -116,6 +118,9 @@
       <span id="annotation-move" class="annotation-header-move">
         <i class="icon-move"></i>
       </span>
+      <span class="annotation-header-close" class="annotation-header-close">                                                                                    
+        <i class="icon-remove"></i>                                                                                                                             
+      </span>   
       <span id="annotation-header-text" class="annotation-header-text">
         Header
       </span> 
@@ -123,9 +128,6 @@
         <a href="http://wikipathways.org//index.php?title=Special:SearchPathways">
           <i class="icon-search" style="color:blue; font-size:50% ; text-decoration:none"></i>
         </a>
-      </span>
-      <span class="annotation-header-close" class="annotation-header-close">
-        <i class="icon-remove"></i>
       </span>
       <div id="annotation-description" class="annotation-description">
         <h2>description</h2>

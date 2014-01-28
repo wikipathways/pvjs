@@ -1,0 +1,8 @@
+var fs = require('fs');
+
+onmessage = function(msg){
+  var f = msg.data;
+  fs.writeFile(f.file, f.contents+new Date(), function(err){
+    postMessage('done');
+  });
+}
