@@ -19,7 +19,8 @@ pathvisiojs.view.pathwayDiagram.svg.edge = function(){
 
   function render(args, callback) {
     var svg = args.svg,
-      edge = args.element;
+      edge = args.element,
+      parentDataElement;
     if (!svg) {
       throw new Error('svg missing');
     }
@@ -42,6 +43,19 @@ pathvisiojs.view.pathwayDiagram.svg.edge = function(){
     //console.log('markerEndName');
     //console.log(markerEndName);
     var edgeId = strcase.paramCase(data['@id']);
+
+    if (data.hasOwnProperty('isContainedBy')) {
+      parentDataElement = pathway.elements.filter(function(element) {
+        return element['@id'] === data.isContainedBy;
+      })[0];
+      data.Point.forEach(function(point) {
+        point.x = point.x - parentDataElement.x;
+        point.y = point.y - parentDataElement.y;
+      });
+      console.log('parentDataElement');
+      console.log(parentDataElement);
+    }
+
     /*
     console.log('svg in edge');
     console.log(svg);
