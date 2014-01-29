@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Pathway xmlns="http://pathvisio.org/GPML/2013a" Name="Test Protocol - Shapes" Version="20130813" Organism="Anopheles gambiae">
+  <Comment Source="WikiPathways-description">This pathway can be deleted once release 36 is shipped.</Comment>
+  <Graphics BoardWidth="1113.3016983016983" BoardHeight="1788.0790411903004"/>
+  <Label TextLabel="This pathway can be deleted once release 36 is shipped.&#10;The test protocol pathways with be stored at:" GraphId="a8680">
+    <Graphics CenterX="732.3016983016983" CenterY="38.5" Width="318.0" Height="33.0" ZOrder="32986" FillColor="ffffff" FontSize="10" Valign="Middle"/>
+  </Label>
+  <Label TextLabel="https://github.com/wikipathways/pathvisiojs/tree/master/test/data/test-protocol" GraphId="b3a0f" Href="https://github.com/wikipathways/pathvisiojs/tree/master/test/e2e">
+    <Graphics CenterX="740.6508491508491" CenterY="68.97202797202797" Width="373.30169830169825" Height="32.012987012987026" ZOrder="32987" FillColor="ffffff" FontSize="10" Align="Left" Color="0000ff"/>
+  </Label>
+  <Shape GraphId="ee0e3">
+    <Attribute Key="org.pathvisio.CellularComponentProperty" Value="Mitochondria"/>
+    <Graphics CenterX="158.2744832749354" CenterY="1200.0165416643665" Width="134.5489665498708" Height="82.03308332873334" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="Mitochondria" LineThickness="3.0" Color="c0c0c0" Rotation="0.0"/>
+  </Shape>
+  <Shape TextLabel="oval" GraphId="c6607">
+    <Graphics CenterX="161.74435249918798" CenterY="301.11951673933754" Width="145.4704142011836" Height="36.00295857988169" ZOrder="32958" FontSize="10" Valign="Middle" ShapeType="Oval" Rotation="0.0"/>
+  </Shape>
+  <Shape TextLabel="Rectangle" GraphId="cd25a">
+    <Graphics CenterX="157.74435249918827" CenterY="187.12133067874734" Width="152.97923581891024" Height="105.46579330261073" ZOrder="32959" FontSize="10" Valign="Middle" ShapeType="Rectangle" Rotation="0.0"/>
+  </Shape>
+  <Shape TextLabel="Mitochondria&#10;Rotation: 29.16" GraphId="d7152">
+    <Attribute Key="org.pathvisio.CellularComponentProperty" Value="Mitochondria"/>
+    <Graphics CenterX="433.0678385340432" CenterY="1213.7831362332404" Width="140.2459165154264" Height="65.83575317604368" ZOrder="32961" FontSize="10" Valign="Middle" ShapeType="Mitochondria" LineThickness="3.0" Color="c0c0c0" Rotation="0.5089313376455377"/>
+  </Shape>
+  <Shape TextLabel="endoplasmic reticulum" GraphId="edf98">
+    <Attribute Key="org.pathvisio.CellularComponentProperty" Value="Endoplasmic Reticulum"/>
+    <Graphics CenterX="145.86831213209996" CenterY="1096.9606566540015" Width="124.76035502958558" Height="81.86094674556213" ZOrder="32962" FontSize="10" Valign="Middle" ShapeType="Endoplasmic Reticulum" LineThickness="3.0" Color="c0c0c0" Rotation="0.0"/>
+  </Shape>
+  <Shape TextLabel="pentagon" GraphId="e38ce">
+    <Graphics CenterX="153.7032203584642" CenterY="710.4292958703853" Width="105.58284023668648" Height="52.173754556500455" ZOrder="32963" FontSize="10" Valign="Middle" ShapeType="Pentagon" Rotation="0.0"/>
+  </Shape>
+  <Shape TextLabel="golgi apparatus" GraphId="c539f">
+    <Attribute Key="org.pathvisio.CellularComponentProperty" Value="Golgi Apparatus"/>
+    <Graphics CenterX="168.06314789428677" CenterY="1327.2241104634872" Width="135.11538461538441" Height="87.77810650887585" ZOrder="32964" FontSize="10" Valign="Middle" ShapeType="Golgi Apparatus" LineThickness="3.0" Color="c0c0c0" Rotation="0.0"/>
+  </Shape>
+  <Shape TextLabel="brace" GraphId="dfcbf">
+    <Graphics CenterX="155.74435249918957" CenterY="627.6417078858858" Width="70.02662721893489" Height="55.23372781065087" ZOrder="32965" FontSize="10" Valign="Middle" ShapeType="Brace" Rotation="0.0"/>
+  </Shape>
+  <Shape TextLabel="nucleus" GraphId="dc765">
+    <Attribute Key="org.pathvisio.CellularComponentProperty" Value="Nucleus"/>
+    <Attribute Key="org.pathvisio.DoubleLineProperty" Value="Double"/>
+    <Graphics CenterX="151.74435249918804" CenterY="985.5018790543679" Width="126.23964497041442" Height="78.90236686390534" ZOrder="32966" FontSize="10" Valign="Middle" ShapeType="Oval" LineThickness="3.0" Color="c0c0c0" Rotation="0.0"/>
+  </Shape>
+  <Shape TextLabel="triangle" GraphId="aa039">
+    <Graphics CenterX="129.0789493926792" CenterY="451.68616207642856" Width="141.03254437869836" Height="58.192307692307786" ZOrder="32967" FontSize="10" Valign="Middle" ShapeType="Triangle" Rotation="0.0"/>
+  </Shape>
+  <Shape TextLabel="mim-degradation" GraphId="d4fcd">
+    <Graphics CenterX="154.21886823482535" CenterY="541.7013683861494" Width="94.90314335631732" Height="85.27967027831494" ZOrder="32968" FontSize="10" Valign="Middle" ShapeType="mim-degradation" Rotation="0.0"/>
+  </Shape>
+  <Shape TextLabel="sarcoplasmic reticulum" GraphId="e6b4e">
+    <Attribute Key="org.pathvisio.CellularComponentProperty" Value="Sarcoplasmic Reticulum"/>
+    <Graphics CenterX="155.68961919205196" CenterY="1543.7280324691412" Width="89.25739644970406" Height="72.98520710059162" ZOrder="32969" FontSize="10" Valign="Middle" ShapeType="Sarcoplasmic Reticulum" LineThickness="3.0" Color="c0c0c0" Rotation="0.0"/>
+  </Shape>
+  <Shape TextLabel="hexagon" GraphId="db586">
+    <Graphics CenterX="151.74435249918793" CenterY="785.1176689749888" Width="56.51170490412467" Height="40.60259765470511" ZOrder="32970" FontSize="10" Valign="Middle" ShapeType="Hexagon" Rotation="0.0"/>
+  </Shape>
+  <Shape TextLabel="organelle" GraphId="bf376">
+    <Attribute Key="org.pathvisio.CellularComponentProperty" Value="Organelle"/>
+    <Attribute Key="org.pathvisio.DoubleLineProperty" Value="Double"/>
+    <Graphics CenterX="160.74435249918838" CenterY="1439.129558132933" Width="132.15680473372782" Height="56.713017751479335" ZOrder="32971" FontSize="10" Valign="Middle" ShapeType="RoundedRectangle" LineThickness="3.0" Color="c0c0c0" Rotation="0.0"/>
+  </Shape>
+  <Shape TextLabel="extracellular&#10;region" GraphId="cb8a8">
+    <Attribute Key="org.pathvisio.CellularComponentProperty" Value="Extracellular region"/>
+    <Graphics CenterX="158.74435249918815" CenterY="1724.9871868113864" Width="84.14728551194578" Height="66.18370875782784" ZOrder="32972" FontSize="10" Valign="Middle" ShapeType="RoundedRectangle" LineStyle="Broken" Color="c0c0c0" Rotation="0.0"/>
+  </Shape>
+  <Shape TextLabel="cell" GraphId="af620">
+    <Attribute Key="org.pathvisio.CellularComponentProperty" Value="Cell"/>
+    <Attribute Key="org.pathvisio.DoubleLineProperty" Value="Double"/>
+    <Graphics CenterX="149.7443524991882" CenterY="874.2316740747601" Width="87.77810650887574" Height="75.94378698224847" ZOrder="32974" FontSize="10" Valign="Middle" ShapeType="RoundedRectangle" LineThickness="3.0" Color="c0c0c0" Rotation="0.0"/>
+  </Shape>
+  <Shape TextLabel="vesicle" GraphId="b4bd1">
+    <Attribute Key="org.pathvisio.CellularComponentProperty" Value="Vesicle"/>
+    <Graphics CenterX="159.7443524991882" CenterY="1629.924427531224" Width="102.5710059171599" Height="86.29881656804731" ZOrder="32975" FontSize="10" Valign="Middle" ShapeType="Oval" LineThickness="3.0" Color="c0c0c0" Rotation="0.0"/>
+  </Shape>
+  <Shape TextLabel="rounded rectangle" GraphId="e197d">
+    <Graphics CenterX="159.7443524991881" CenterY="369.3231878229024" Width="129.19822485207098" Height="49.316568047337455" ZOrder="32976" FontSize="10" Valign="Middle" ShapeType="RoundedRectangle" Rotation="0.0"/>
+  </Shape>
+  <Shape TextLabel="Arc" GraphId="a4795">
+    <Graphics CenterX="159.74435249918798" CenterY="78.89680002246209" Width="97.93182324732058" Height="62.29585439329384" ZOrder="32977" FontSize="10" Valign="Middle" ShapeType="Arc" Rotation="0.0"/>
+  </Shape>
+  <Shape TextLabel="Arc&#10;Rotated" GraphId="c7e8c">
+    <Graphics CenterX="448.73980871437766" CenterY="95.51545533040917" Width="53.54375152734479" Height="66.21428571428578" ZOrder="32978" FontSize="10" Valign="Middle" ShapeType="Arc" Rotation="4.056444368399068"/>
+  </Shape>
+  <Shape TextLabel="Shape Type: Rectangle&#10;Line Style: dashed" GraphId="f4f31">
+    <Graphics CenterX="447.1564379089201" CenterY="341.6928132038879" Width="129.19822485207098" Height="49.316568047337455" ZOrder="32979" FontSize="10" Valign="Middle" ShapeType="Rectangle" LineStyle="Broken" Rotation="0.0"/>
+  </Shape>
+  <Shape TextLabel="Shape Type: rectangle&#10;Line Style: Double" GraphId="e5bdc">
+    <Attribute Key="org.pathvisio.DoubleLineProperty" Value="Double"/>
+    <Graphics CenterX="450.6246460014055" CenterY="419.6489950939209" Width="129.19822485207098" Height="49.316568047337455" ZOrder="32980" FontSize="10" Valign="Middle" ShapeType="Rectangle" Rotation="0.0"/>
+  </Shape>
+  <Shape TextLabel="Shape Type: rectangle &#10;Line Style: dashed&#10;stroke: red" GraphId="a7001">
+    <Attribute Key="org.pathvisio.CellularComponentProperty" Value="None"/>
+    <Graphics CenterX="442.9656864638324" CenterY="673.7399602042026" Width="129.19822485207098" Height="49.316568047337455" ZOrder="32981" FontSize="10" Valign="Middle" ShapeType="RoundedRectangle" LineStyle="Broken" Color="ff0033" Rotation="0.0"/>
+  </Shape>
+  <Shape TextLabel="Shape Type: Rectangle&#10;Line Style: dashed&#10;stroke: red&#10;fill: yellow" GraphId="bc1ee">
+    <Graphics CenterX="442.96568646383287" CenterY="740.244668407809" Width="129.19822485207098" Height="59.13449810594025" ZOrder="32982" FillColor="ffffcc" FontSize="10" Valign="Middle" ShapeType="Rectangle" LineStyle="Broken" Color="ff0033" Rotation="0.0"/>
+  </Shape>
+  <Shape TextLabel="Shape Type: Rectangle&#10;Cellular Comp.: Mitochondria&#10;Line Style: dashed&#10;stroke: red&#10;fill: yellow" GraphId="fb3fc">
+    <Attribute Key="org.pathvisio.CellularComponentProperty" Value="Mitochondria"/>
+    <Graphics CenterX="442.9656864638324" CenterY="881.3315908823885" Width="280.7532448182513" Height="160.55326152669613" ZOrder="32983" FillColor="ffffcc" FontSize="20" Valign="Middle" ShapeType="Rectangle" LineStyle="Broken" Color="ff0033" Rotation="0.0"/>
+  </Shape>
+  <Shape TextLabel="Shape Type: Rectangle&#10;Rotation: 237.739" GraphId="e8158">
+    <Graphics CenterX="450.44061776943374" CenterY="217.38678348529453" Width="118.02143252817429" Height="93.08720634953332" ZOrder="32984" FontSize="10" Valign="Middle" ShapeType="Rectangle" Rotation="4.149326160497226"/>
+  </Shape>
+  <Shape TextLabel="Shape Type: Rectangle&#10;Rotation: 237.739&#10;Line Style: Double" GraphId="c403d">
+    <Attribute Key="org.pathvisio.DoubleLineProperty" Value="Double"/>
+    <Graphics CenterX="448.98282592239707" CenterY="546.3619765251867" Width="131.46733791898703" Height="106.64931097053076" ZOrder="32985" FontSize="10" Valign="Middle" ShapeType="Rectangle" Rotation="4.149326160497226"/>
+  </Shape>
+  <Group GroupId="a102b" Style="Complex"/>
+  <Group GroupId="aa74f" Style="Group"/>
+  <Group GroupId="c8297" Style="Pathway"/>
+  <Group GroupId="c3ef3"/>
+  <InfoBox CenterX="0.0" CenterY="0.0"/>
+  <Biopax/>
+</Pathway>
