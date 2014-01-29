@@ -6296,11 +6296,7 @@ pathvisiojs.view.pathwayDiagram.svg.node = function(){
     var allDataNodesWithText = pathway.DataNode.filter(function(d, i) {return (!!d.text);});
     var selectedNodes = allDataNodesWithText.filter(function(d, i) {return d.text.line.indexOf(nodeLabel) !== -1;});
     selectedNodes.forEach(function(node) {
-      var nodeContainer = svg.select('#node-container-' + strcase.paramCase(node['@id']));
-      if (null == nodeContainer[0][0]){
-	//if null, try grouped node container id
-        nodeContainer = svg.select('#node-container-pathway-iri-' + node.GraphId);
-      }
+      var nodeContainer = svg.select('#pathway-iri-' + node.GraphId); //strcase.paramCase(node['@id']));
       var height = nodeContainer[0][0].getBBox().height;
       var width = nodeContainer[0][0].getBBox().width; 
       nodeContainer.append('rect') 
