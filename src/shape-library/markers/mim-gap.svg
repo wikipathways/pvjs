@@ -28,6 +28,6 @@ It can overlap the side of the shape, blanking out a small part of it when the e
 	It can overlap the side of the shape, blanking out a small part of it when the edge is at an angle.
 	-->
 
-	<rect stroke="none" x="0.5" y="5.3" width="8" height="1.4" />
+	<rect stroke="none" x="0" y="5.3" width="8" height="1.4" />
 
 </svg>

@@ -9,7 +9,7 @@
 	xmlns:ev="http://www.w3.org/2001/xml-events"
 	width="16"
 	height="12"
-        refXstart="-0.5"
+        refXstart="0"
         refYstart="6"
         refXend="16"
         refYend="6"

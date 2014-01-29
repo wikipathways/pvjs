@@ -1,4 +1,4 @@
-"use strict"
+"use strict";
 
 pathvisiojs.view.pathwayDiagram = function(){
   // currently just using Gecko (Firefox) list of supported image formats for the HTML img tag:
