@@ -29,7 +29,7 @@ describe('myTest', function() {
   });
 });
 
-ptor.get(baseUri + "test/development.html?gpml=" + baseUri + "test/data/protocol/WP2545.gpml.xml").
+ptor.get(baseUri + "test/development.html?gpml=" + baseUri + "test/data/protocol/anchors.gpml.xml").
   then(function() {
     console.log('************** running anchors rendering test protocol...');
     return ptor.wait(forElementToBePresent(by.css('#pathvisiojs-is-loaded')), 30 * 1000);
@@ -113,8 +113,151 @@ ptor.get(baseUri + "test/development.html?gpml=" + baseUri + "test/data/protocol
     return 'success';
   }).
   then(function() {
+    console.log('************** running graphical lines rendering test protocol...');
+    ptor.get(baseUri + "test/development.html?gpml=" + baseUri + "test/data/protocol/graphical-lines.gpml.xml");
+    return ptor.wait(forElementToBePresent(by.css('#pathvisiojs-is-loaded')), 30 * 1000);
+  }).
+  then(function() {
+    var expectedCount = 9;
+    expect(element.all(by.css('#viewport .node')).count()).toEqual(expectedCount);
+    testTheCount('graphical-line test protocol pathway', 'node', expectedCount);
+    return 'success';
+  }).
+  then(function() {
+    var expectedCount = 3;
+    expect(element.all(by.css('#viewport .edge')).count()).toEqual(expectedCount);
+    testTheCount('graphical-line test protocol pathway', 'edge', expectedCount);
+    return 'success';
+  }).
+  then(function() {
+    var expectedCount = 9;
+    expect(element.all(by.css('#viewport .graphical-line')).count()).toEqual(expectedCount);
+    testTheCount('graphical-line test protocol pathway', 'GPML GraphicalLine', expectedCount);
+    return 'success';
+  }).
+  then(function() {
+    console.log('************** running GPML Label rendering test protocol...');
+    ptor.get(baseUri + "test/development.html?gpml=" + baseUri + "test/data/protocol/gpml-labels.gpml.xml");
+    return ptor.wait(forElementToBePresent(by.css('#pathvisiojs-is-loaded')), 30 * 1000);
+  }).
+  then(function() {
+    // This is using the direction from APico that citations that apply to an entire pathway
+    // are not to be displayed, so there are actually 6 citation list strings in this
+    // pathway, but only 5 of them are element-specific.
+    var expectedCount = 5;
+    expect(element.all(by.css('#viewport .citation')).count()).toEqual(expectedCount);
+    testTheCount('GPML Label test protocol pathway', 'element-specific citation list string', expectedCount);
+    return 'success';
+  }).
+  then(function() {
+    var expectedCount = 9;
+    expect(element.all(by.css('#viewport .node')).count()).toEqual(expectedCount);
+    testTheCount('GPML Label test protocol pathway', 'node', expectedCount);
+    return 'success';
+  }).
+  then(function() {
+    var expectedCount = 3;
+    expect(element.all(by.css('#viewport .edge')).count()).toEqual(expectedCount);
+    testTheCount('GPML Label test protocol pathway', 'edge', expectedCount);
+    return 'success';
+  }).
+  then(function() {
+    console.log('************** running fill-and-stroke rendering test protocol...');
+    ptor.get(baseUri + "test/development.html?gpml=" + baseUri + "test/data/protocol/fill-and-stroke.gpml.xml");
+    return ptor.wait(forElementToBePresent(by.css('#pathvisiojs-is-loaded')), 30 * 1000);
+  }).
+  then(function() {
+    var expectedCount = 9;
+    expect(element.all(by.css('#viewport .node')).count()).toEqual(expectedCount);
+    testTheCount('fill-and-stroke test protocol pathway', 'node', expectedCount);
+    return 'success';
+  }).
+  then(function() {
+    var expectedCount = 3;
+    expect(element.all(by.css('#viewport .edge')).count()).toEqual(expectedCount);
+    testTheCount('fill-and-stroke test protocol pathway', 'edge', expectedCount);
+    return 'success';
+  }).
+  then(function() {
+    console.log('************** running z-index rendering test protocol...');
+    ptor.get(baseUri + "test/development.html?gpml=" + baseUri + "test/data/protocol/z-index.gpml.xml");
+    return ptor.wait(forElementToBePresent(by.css('#pathvisiojs-is-loaded')), 30 * 1000);
+  }).
+  then(function() {
+    var expectedCount = 9;
+    expect(element.all(by.css('#viewport .node')).count()).toEqual(expectedCount);
+    testTheCount('z-index test protocol pathway', 'node', expectedCount);
+    return 'success';
+  }).
+  then(function() {
+    var expectedCount = 3;
+    expect(element.all(by.css('#viewport .edge')).count()).toEqual(expectedCount);
+    testTheCount('z-index test protocol pathway', 'edge', expectedCount);
+    return 'success';
+  }).
+  then(function() {
+    console.log('************** running size-and-proportion rendering test protocol...');
+    ptor.get(baseUri + "test/development.html?gpml=" + baseUri + "test/data/protocol/size-and-proportion.gpml.xml");
+    return ptor.wait(forElementToBePresent(by.css('#pathvisiojs-is-loaded')), 30 * 1000);
+  }).
+  then(function() {
+    var expectedCount = 9;
+    expect(element.all(by.css('#viewport .node')).count()).toEqual(expectedCount);
+    testTheCount('size-and-proportion test protocol pathway', 'node', expectedCount);
+    return 'success';
+  }).
+  then(function() {
+    var expectedCount = 3;
+    expect(element.all(by.css('#viewport .edge')).count()).toEqual(expectedCount);
+    testTheCount('size-and-proportion test protocol pathway', 'edge', expectedCount);
+    return 'success';
+  }).
+  then(function() {
+    console.log('************** running gpml-data-nodes rendering test protocol...');
+    ptor.get(baseUri + "test/development.html?gpml=" + baseUri + "test/data/protocol/gpml-data-nodes.gpml.xml");
+    return ptor.wait(forElementToBePresent(by.css('#pathvisiojs-is-loaded')), 30 * 1000);
+  }).
+  then(function() {
+    var expectedCount = 9;
+    expect(element.all(by.css('#viewport .node')).count()).toEqual(expectedCount);
+    testTheCount('gpml-data-nodes test protocol pathway', 'node', expectedCount);
+    return 'success';
+  }).
+  then(function() {
+    var expectedCount = 3;
+    expect(element.all(by.css('#viewport .edge')).count()).toEqual(expectedCount);
+    testTheCount('gpml-data-nodes test protocol pathway', 'edge', expectedCount);
+    return 'success';
+  }).
+  then(function() {
+    console.log('************** running text rendering test protocol...');
+    ptor.get(baseUri + "test/development.html?gpml=" + baseUri + "test/data/protocol/text.gpml.xml");
+    return ptor.wait(forElementToBePresent(by.css('#pathvisiojs-is-loaded')), 30 * 1000);
+  }).
+  then(function() {
+    // This is using the direction from APico that citations that apply to an entire pathway
+    // are not to be displayed, so there are actually 6 citation list strings in this
+    // pathway, but only 5 of them are element-specific.
+    var expectedCount = 5;
+    expect(element.all(by.css('#viewport .citation')).count()).toEqual(expectedCount);
+    testTheCount('text test protocol pathway', 'element-specific citation list string', expectedCount);
+    return 'success';
+  }).
+  then(function() {
+    var expectedCount = 9;
+    expect(element.all(by.css('#viewport .node')).count()).toEqual(expectedCount);
+    testTheCount('text test protocol pathway', 'node', expectedCount);
+    return 'success';
+  }).
+  then(function() {
+    var expectedCount = 3;
+    expect(element.all(by.css('#viewport .edge')).count()).toEqual(expectedCount);
+    testTheCount('text test protocol pathway', 'edge', expectedCount);
+    return 'success';
+  }).
+  then(function() {
     console.log('************** running citations rendering test protocol...');
-    ptor.get(baseUri + "test/development.html?gpml=" + baseUri + "test/data/protocol/WP2605.gpml.xml");
+    ptor.get(baseUri + "test/development.html?gpml=" + baseUri + "test/data/protocol/citations.gpml.xml");
     return ptor.wait(forElementToBePresent(by.css('#pathvisiojs-is-loaded')), 30 * 1000);
   }).
   then(function() {
@@ -140,7 +283,7 @@ ptor.get(baseUri + "test/development.html?gpml=" + baseUri + "test/data/protocol
   }).
   then(function() {
     console.log('************** running shapes rendering test protocol...');
-    ptor.get(baseUri + "test/development.html?gpml=" + baseUri + "test/data/protocol/WP2554.gpml.xml");
+    ptor.get(baseUri + "test/development.html?gpml=" + baseUri + "test/data/protocol/shapes.gpml.xml");
     return ptor.wait(forElementToBePresent(by.css('#pathvisiojs-is-loaded')), 30 * 1000);
   }).
   then(function() {
@@ -157,7 +300,7 @@ ptor.get(baseUri + "test/development.html?gpml=" + baseUri + "test/data/protocol
   }).
   then(function() {
     console.log('************** running interactions rendering test protocol...');
-    ptor.get(baseUri + "test/development.html?gpml=" + baseUri + "test/data/protocol/WP2557.gpml.xml");
+    ptor.get(baseUri + "test/development.html?gpml=" + baseUri + "test/data/protocol/interactions.gpml.xml");
     return ptor.wait(forElementToBePresent(by.css('#pathvisiojs-is-loaded')), 30 * 1000);
   }).
   then(function() {
@@ -221,7 +364,7 @@ ptor.get(baseUri + "test/development.html?gpml=" + baseUri + "test/data/protocol
   }).
   then(function() {
     console.log('************** running groups rendering test protocol...');
-    ptor.get(baseUri + "test/development.html?gpml=" + baseUri + "test/data/protocol/WP2551.gpml.xml");
+    ptor.get(baseUri + "test/development.html?gpml=" + baseUri + "test/data/protocol/groups.gpml.xml");
     return ptor.wait(forElementToBePresent(by.css('#pathvisiojs-is-loaded')), 30 * 1000);
   }).
   then(function() {
