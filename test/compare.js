@@ -1,7 +1,7 @@
 var module = {};
 var srcDirectoryUri;
 var pvjsSources;
-var pathvisioNS = [];
+var pathvisioNS = pathvisioNS || {};
 
 var developmentLoader = function() {
   var oSerializer = new XMLSerializer();
@@ -374,8 +374,22 @@ var developmentLoader = function() {
 /* Until we finish automating the Grunt build process, we are manually getting the html template with this function.
 /* *******************/
 
+function copyToClipboard(text) {
+  window.prompt("Copy to clipboard: Ctrl+C, Enter", text);
+}
+
 var getPathvisiojsHtmlTemplate = function() {
-  var svg = d3.select('#pathvisiojs-diagram');
+  var html = pathvisiojs.utilities.cloneNode('#pathvisiojs-container');
+  html.select('svg').remove();
+  var html00 = html[0][0];
+
+  var oSerializer = new XMLSerializer();
+  var serializedHtml = oSerializer.serializeToString(html00);
+  console.log(serializedHtml);
+}
+
+var getPathvisiojsSvgTemplate = function() {
+  var svg = pathvisiojs.utilities.cloneNode('#pathvisiojs-diagram');
   svg.select('#viewport').selectAll('*').remove();
   var marker, oldMarkerId, newMarkerId;
   var markers = svg.selectAll('marker');
@@ -394,5 +408,9 @@ var getPathvisiojsHtmlTemplate = function() {
     newSymbolId = 'shape-library' + oldSymbolId.split('-shape-library')[1];
     symbol.attr('id', newSymbolId);
   });
-  return d3.select('#pathvisiojs-container')[0][0];
+  var svg00 = svg[0][0];
+  //thanks MDN
+  var oSerializer = new XMLSerializer();
+  var serializedSvg = oSerializer.serializeToString(svg00);
+  console.log(serializedSvg);
 }
