@@ -1,6 +1,6 @@
 {
   "name": "pathvisiojs",
-  "version": "0.9.6",
+  "version": "0.9.8",
   "description": "Biological pathway viewer and editor.",
   "main": "Gruntfile.js",
   "directories": {
