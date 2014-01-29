@@ -128,8 +128,19 @@ grunt.initConfig({
       }
     },
     watch: {
-        files: [ "Gruntfile.js", "src/js/*.js" ],
-        tasks: "build"
+      scripts: {
+        files: [ "Gruntfile.js", "**/*.js" ],
+        tasks: ['net', 'build'],
+        options: {
+          interrupt: true,
+        },
+      },
+      /*
+      build: {
+        files: [ "Gruntfile.js", "public/js/*.js" ],
+        tasks: ['build']
+      }
+      //*/
     },
     jshint: {
         options: {
@@ -158,6 +169,34 @@ grunt.initConfig({
                 prop: "gitInfo"
             }
         }
+    },
+    protractor: {
+        options: {
+            keepAlive: true,
+            singleRun: false,
+            configFile: "test/protractor-conf.js"
+        },
+        run_chrome: {
+            options: {
+                args: {
+                    browser: "chrome"
+                }
+            }
+        },
+        run_firefox: {
+            options: {
+                args: {
+                    browser: "firefox"
+                }
+            }
+        }
+    },
+    net: {
+      remote: {
+        host: '192.168.42.74',
+        port:5004,
+        tasks: ['protractor-e2e']
+      }
     }
   });
 
@@ -171,6 +210,21 @@ grunt.initConfig({
   grunt.loadNpmTasks("grunt-git-describe");
   grunt.loadNpmTasks('grunt-browserify');
   grunt.loadNpmTasks('grunt-sync-pkg');
+  grunt.loadNpmTasks('grunt-protractor-runner');
+  //grunt.loadNpmTasks("grunt-net");
+
+  grunt.registerTask('set_global', 'Set a global var.', function(name, val) {
+    global[name] = val;
+  });
+
+  grunt.registerTask('set_array_config', 'Set a config property that is an array.', function(name, val) {
+    var valArray = val.split(',');
+    grunt.config.set(name, valArray);
+  });
+
+  grunt.registerTask('set_config', 'Set a config property.', function(name, val) {
+    grunt.config.set(name, val);
+  });
 
   // build 
   grunt.registerTask('build', ['sync', 'str2js', 'clean:build', 'git-describe', 'jshint:beforeconcat', 'concat', 'jshint:afterconcat', 'uglify']);
@@ -179,9 +233,14 @@ grunt.initConfig({
   grunt.registerTask('quick-build', ['sync', 'str2js', 'git-describe', 'concat', 'uglify']);
 
   // test
-  //grunt.registerTask('test', ['build']);
+
+  grunt.registerTask('mytest', 'Run local tests for development', function(val) {
+    grunt.config.set('protractor.run_chrome.options.args.specs', ['test/e2e/' + val + '.js']);
+    grunt.task.run('protractor:run_chrome')
+  });
+  //grunt.registerTask('mytest', ['protractor:run_chrome']);
+
 
   // Default task(s).
   grunt.registerTask('default', ['build']);
-
 };
