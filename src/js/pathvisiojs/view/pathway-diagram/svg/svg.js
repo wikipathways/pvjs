@@ -2,51 +2,126 @@
 
 pathvisiojs.view.pathwayDiagram.svg = function(){
 
-  var svg, shapesAvailable, markersAvailable, contextLevelInput;
+  var svg, shapesAvailable, markersAvailable, contextLevelInput,
+    renderableTypeToSvgElementMappings = {
+      entityNode: 'g',
+      groupNode: 'g',
+      interaction: 'path',
+      graphicalLine: 'path'
+    };
 
-  function setCTM(element, scale) {
-    // element is a d3 selection
-    var s = "matrix(" + scale + ",0,0," + scale + ",10,20)"; // + matrix.a + "," + matrix.b + "," + matrix.c + "," + matrix.d + "," + matrix.e + "," + matrix.f + ")";
-    element.attr("transform", s);
+  //calculates the proper scaling and translations to fit content (i.e., diagram) to screen (i.e., viewport)
+  function fitAndCenterDiagramWithinViewport(viewport, viewportWidth, viewportHeight, diagramWidth, diagramHeight) {
+    // viewport is a d3 selection
+
+    var fitScreenScale = Math.min(viewportWidth/diagramWidth, viewportHeight/diagramHeight);
+    var diagramWidthScaled = fitScreenScale * diagramWidth;
+    var diagramHeightScaled = fitScreenScale * diagramHeight;
+
+    var xTranslation = viewportWidth/2 - diagramWidthScaled/2 + 10; //plus margin-left
+    var yTranslation = viewportHeight/2 - diagramHeightScaled/2 + 20; //plus margin-top
+
+    var translationMatrixString = 'matrix(' + fitScreenScale + ', 0, 0, ' + fitScreenScale + ', ' + xTranslation + ', ' + yTranslation + ') ';
+    
+    viewport.attr("transform", translationMatrixString);
   }
 
   function load(args, callback) {
-    var svg = args.svg,
-      pathway = args.pathway,
-      container = args.container,
+    var diagramContainer = args.container, //a d3 selection corresponding to the containing element in the parent document
       containerWidth = args.containerWidth,
       containerHeight = args.containerHeight,
+      cssUri = args.cssUri,
+      renderableSourceDataElement = args.renderableSourceDataElement,
       fitToContainer = args.fitToContainer,
-      pathwayWidth = args.pathway.image.width,
-      pathwayHeight = args.pathway.image.height;
+      customMarkers = args.customMarkers,
+      //customSymbols = args.customSymbols,
+      pathway,
+      diagramContainer,
+      svg;
 
-    //add loading gif
-    var container = d3.select('body').select('#pathway-container');
-    var posX = containerWidth/2;
-    var posY = containerHeight/2;
-    var img = container.append('img');
-    img.attr('src', "../src/img/loading.gif")
-    .attr('width', 50)
-    .style('position', "absolute")
-    .style('top', posY + "px")
-    .style('left', posX + "px");
 
-    if (!svg) {
-      throw new Error("Missing svg.");
-    }
-    if (!pathway) {
-      throw new Error("Missing pathway.");
-    }
-
-    async.series([
+    async.waterfall([
       function(callback){
-        pathvisiojs.view.pathwayDiagram.svg.renderFast(svg, pathway, function() {
+        async.parallel({
+          preloadSvg: function(callback) {
+            var preloadDiagramArgs = {};
+              preloadDiagramArgs.container = diagramContainer;
+              preloadDiagramArgs.customMarkers = customMarkers,
+              //preloadDiagramArgs.customSymbols = customSymbols,
+              preloadDiagramArgs.cssUri = cssUri;
+
+            pathvisiojs.view.pathwayDiagram.svg.loadPartials(preloadDiagramArgs, function(svgTemplate) {
+              svg = svgTemplate;
+
+              if (!svg) {
+                throw new Error("Could not load SVG template.");
+              }
+
+              callback(null);
+            });
+          },
+          pathway: function(callback){
+            pathvisiojs.data.pathvisiojsJson.get(renderableSourceDataElement, function(json) {
+              pathvisiojs.context = json['@context'];
+
+              if (!json || json === 'fail') {
+                throw new Error("Could not convert input source data to pathvisioJsJson.");
+              }
+
+              //console.log('json');
+              //console.log(json);
+              pathway = json;
+              callback(null);
+            })
+          }
+        },
+        function(err, results){
+          //TODO get pathwayWidth and Height
+
+          callback(null);
+        })
+      },
+      function(callback){
+        pathvisiojs.view.pathwayDiagram.svg.renderWithCachedData(svg, pathway, function() {
           callback(null);
         })
       },
       function(callback) {
-	//remove loading gif
-        container.select('img').remove();
+        var viewport = svg.select('#viewport');
+
+        /* not all containers will have a width or height style attribute. this is now done using the same logic
+         * but uses boundingClientRect() instead. the code is located in pathway-diagram.js
+        var container = d3.select('body').select('#diagram-container');
+        var containerWidth = parseInt(container.style("width")) - 40; //account for space for pan/zoom controls
+        var containerHeight = parseInt(container.style("height")) -20; //account for space for search field
+        //*/
+        var fitScreenScale;
+        if (fitToContainer) {
+          fitAndCenterDiagramWithinViewport(viewport, containerWidth, containerHeight, pathway.image.width, pathway.image.height);
+        }
+
+        var fitToScreen = d3.select('body').select('#fit-to-screen-control');
+        fitToScreen.on("click", function(d,i){
+          fitAndCenterDiagramWithinViewport(viewport, containerWidth, containerHeight, pathway.image.width, pathway.image.height);
+        });
+
+        var fullscreen = d3.select('body').select('#fullscreen-control');
+        fullscreen.on("click", function(d,i){
+          var pvjs = document.getElementById("pathvisiojs-dev").innerHTML;
+          var newwin = window.open('','','width=800,height=600');
+          var doc = newwin.document;
+          doc.open();
+          doc.write(pvjs);
+          doc.close();	
+        });
+
+        svgPanZoom.init({
+          //'root': 'svg', //Alex, what is this line for? It doesn't appear to be doing anything and might be intended to be doing what the line below that I added is doing.
+          'selector': 'svg',
+          'zoomEnabled': false,
+          'minZoom': '0.1',
+          'maxZoom': '8.0',
+        });
 
         var svgInFocus = false;
         svg.on("click", function(d, i){
@@ -61,67 +136,80 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
         .on("mouseleave", function(d, i){
           if (svgInFocus) {
             svgPanZoom.disableZoom();
-	    svgInFocus = false;
+            svgInFocus = false;
           }
         });
-
-        var viewport = svg.select('#viewport');
-
-        /* not all containers will have a width or height style attribute. this is now done using the same logic
-         * but uses boundingClientRect() instead. the code is located in pathway-diagram.js
-        var container = d3.select('body').select('#pathway-container');
-        var containerWidth = parseInt(container.style("width")) - 40; //account for space for pan/zoom controls
-        var containerHeight = parseInt(container.style("height")) -20; //account for space for search field
-        //*/
-        var fitScreenScale;
-        if (fitToContainer) {
-          fitScreenScale = Math.min(containerWidth/args.pathway.image.width, containerHeight/args.pathway.image.height);
-          setCTM(viewport, fitScreenScale);
-        }
-
-    	var fittoscreen = d3.select('body').select('#fit-to-screen-control');
-    	fittoscreen.on("click", function(d,i){
-          fitScreenScale = Math.min(containerWidth/args.pathway.image.width, containerHeight/args.pathway.image.height);
-          setCTM(viewport, fitScreenScale);
-        });
-
-	var fullscreen = d3.select('body').select('#fullscreen-control');
-	fullscreen.on("click", function(d,i){
-          var pvjs = document.getElementById("pathvisio-js-dev").innerHTML;
-          var newwin = window.open('','','width=800,height=600');
-          var doc = newwin.document;
-	  doc.open();
-	  doc.write(pvjs);
-	  doc.close();	
-	});
-
-        svgPanZoom.init({
-          'root': 'svg',
-          'zoomEnabled': false
-        });
         callback(null);
+      },
+      function(callback){
+        //* Node Highlighter
+
+        var nodeLabels, nodeLabel;
+        if (!!pathway) {
+          nodeLabels = [];
+          if (pathway.hasOwnProperty('DataNode')) {
+            pathway.DataNode.forEach(function(node) {
+              if (!!node.text) {
+                nodeLabels.push(node.text.line[0]);
+              }
+            });
+
+            // see http://twitter.github.io/typeahead.js/
+
+            $('#highlight-by-label-input').typeahead({
+              name: 'Highlight node in pathway',
+              local: nodeLabels,
+              limit: 10
+            });
+          }
+
+          /*
+             $('.icon-eye-open').click(function(){
+             var nodeLabel = $("#highlight-by-label-input").val();
+             if (!nodeLabel) {
+             console.warn('Error: No data node value entered.');
+             }
+             else {
+             pathvisiojs.view.pathwayDiagram.svg.node.highlightByLabel(svg, nodeLabel);
+             }
+             });
+          //*/
+          // see http://api.jquery.com/bind/
+          // TODO get selected value better and make function to handle
+
+          $( "#highlight-by-label-input" ).bind("typeahead:selected", function() {
+            nodeLabel = $("#highlight-by-label-input").val();
+            if (!nodeLabel) {
+              throw new Error("No data node value entered for type-ahead node highlighter.");
+            }
+            else {
+
+              // TODO refactor this so it calls a generic highlightDataNodeByLabel function that can call
+              // a highlighter for svg, png, etc. as appropriate.
+
+              pathvisiojs.view.pathwayDiagram.svg.node.highlightByLabel(svg, pathway, nodeLabel);
+            }
+          });
+          callback(null, 'svg loaded');
+        }
       }
     ],
     function(err, results) {
-      callback();
+      callback(svg);
     });
   }
 
   function loadPartials(args, callbackOutside) {
-    var container = args.container,
+    var diagramContainer = args.container,
       customMarkers = args.customMarkers,
-//      customSymbols = args.customSymbols,
-      cssUrl = args.cssUrl,
-      pathvisioJsContainer,
-      pathwayContainer;
+      //customSymbols = args.customSymbols,
+      cssUri = args.cssUri;
 
     async.series([
       function(callback) {
-        container.html(pathvisioNS['tmp/pathvisiojs.html']);
-        pathvisioJsContainer = container.select('#pathvisio-js-container');
-        pathwayContainer = pathvisioJsContainer.select('#pathway-container')
+        diagramContainer.html(pathvisioNS['tmp/pathvisiojs.svg']);
 
-        svg = pathvisioJsContainer.select('#pathway-svg')
+        svg = diagramContainer.select('#pathvisiojs-diagram')
         svg.attr('style', 'display: inline; width: inherit; min-width: inherit; max-width: inherit; height: inherit; min-height: inherit; max-height: inherit; ') // TODO this should be moved to the CSS file
         .attr('preserveAspectRatio', 'xMidYMid');
 
@@ -137,7 +225,7 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
           callback(null);
         }
       },
-/*
+      /*
       function(callback) {
         if (!!args.customSymbols) {
           pathvisiojs.view.pathwayDiagram.svg.symbol.loadAllCustom(svg, customSymbols, function() {
@@ -148,9 +236,10 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
           callback(null);
         }
       },
-//*/      function(callback) {
-        if (!!cssUrl) {
-          d3.text(cssUrl, 'text/css', function(data) {
+      //*/      
+      function(callback) {
+        if (!!cssUri) {
+          d3.text(cssUri, 'text/css', function(data) {
             var defs = svg.select('defs');
             var style = defs.append('style').attr('type', "text/css");
             style.text(data);
@@ -172,10 +261,71 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
   // If one or more of these elements are a groupNode that contains
   // other elements, this function will call itself back to render
   // the elements within the groupNode.
-  function renderSelectedElementsFast(args, callbackOutside){
-    console.log('render');
-    console.log(new Date());
-    console.log('renderSelectedElementsFast args');
+  function appendElementsInDomOrder(args, callback){
+    var svg = args.svg,
+      data = args.data,
+      pathway = args.pathway,
+      viewport = args.container,
+      container;
+
+    if (!viewport) {
+      throw new Error("No viewport specified.");
+    }
+    if (!data) {
+      throw new Error("No data entered to render.");
+    }
+    if (!svg) {
+      throw new Error("No svg specified.");
+    }
+    if (!pathway) {
+      throw new Error("No pathway specified.");
+    } 
+    data = pathvisiojs.utilities.convertToArray(data);
+
+    var i = 0;
+    async.each(data, function(item, callbackInside) {
+      console.log('data');
+      console.log(data);
+      console.log('item');
+      console.log(item);
+      if (item.key !== 'undefined') {
+        container = viewport.select('#' + strcase.paramCase(item.key));
+      }
+      else {
+        container = viewport;
+      }
+      console.log(container[0][0]);
+
+      container.selectAll('.element')
+      .data(item.values)
+      .enter()
+      .append(function(d) {
+        console.log('d');
+        console.log(d);
+        var childElementName = renderableTypeToSvgElementMappings[strcase.camelCase(d.renderableType)];
+        var child = document.createElementNS('http://www.w3.org/2000/svg', childElementName);
+        return child;
+      })
+      .attr("id", function (d) {
+        console.log(strcase.paramCase(d['@id']));
+        return strcase.paramCase(d['@id']);
+      })
+      .attr('class', 'element');
+      i += 1;
+
+      callbackInside(null);
+    },
+    function(err){
+      callback(null, 'Successfully rendered elements');
+    });
+  }
+
+  // this function does not render all elements. Rather, it renders
+  // one or more selected elements that are given as inputs.
+  // If one or more of these elements are a groupNode that contains
+  // other elements, this function will call itself back to render
+  // the elements within the groupNode.
+  function updateElementProperties(args, callback){
     console.log(args);
     var svg = args.svg,
       data = args.data,
@@ -196,80 +346,30 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
     } 
     data = pathvisiojs.utilities.convertToArray(data);
 
-    var contextLevelInput = pathvisiojs.utilities.clone(pathvisiojs.context);
-    contextLevelInput.dependsOn = "ex:dependsOn";
-
-    async.waterfall([
-      function(callback) {
-        data.sort(function(a, b) {
-          return a.zIndex - b.zIndex;
+    var renderingArgs = args;
+    data.forEach(function(dataElement) {
+      renderingArgs.data = dataElement;
+      renderingArgs.element = d3.select('#' + strcase.paramCase(dataElement['@id']));
+      console.log('#' + strcase.paramCase(dataElement['@id']));
+      console.log(renderingArgs.element);
+      if (dataElement.renderableType === 'GraphicalLine') {                                                                                        
+        pathvisiojs.view.pathwayDiagram.svg.edge.graphicalLine.render(renderingArgs);                                                          
+      } 
+else if (dataElement.renderableType === 'Interaction') {
+        pathvisiojs.view.pathwayDiagram.svg.edge.interaction.render(renderingArgs);
+      } 
+      else if (dataElement.renderableType === 'GroupNode') {
+        pathvisiojs.view.pathwayDiagram.svg.node.groupNode.render(renderingArgs, function(groupContainer, groupContents) {
         });
-        callback(null, data);
-      },
-      function(sortedData, callback) {
-        var renderingArgs = args;
-        sortedData.forEach(function(element) {
-          renderingArgs.data = element;
-          if (element.renderableType === 'GroupNode') {
-            pathvisiojs.view.pathwayDiagram.svg.node.groupNode.render(args, function(groupContainer, groupContents) {
-              var groupedElementsArgs = renderingArgs;
-              groupedElementsArgs.svg = svg;
-              groupedElementsArgs.container = args.container; //groupContainer;
-	      /* 
-	      console.log('groupContainer');
-	      console.log(groupContainer); //*/
-              groupedElementsArgs.data = groupContents;
-	      /*
-	      console.log('groupContents');
-	      console.log(groupContents); //*/
-              groupedElementsArgs.pathway = pathway;
-
-              // recursively calling this function to render elements within groupNode(s)
-              pathvisiojs.view.pathwayDiagram.svg.renderSelectedElementsFast(groupedElementsArgs, function() {
-              });
-
-
-              /*
-              var groupedElementsFrame = {
-                '@context': pathway['@context'],
-                "@type":element.GroupId
-              };
-              jsonld.frame(args.pathway, groupedElementsFrame, function(err, groupedElementsData) {
-                var nodeEntityArgs = {};
-                nodeEntityArgs.svg = args.svg;
-                nodeEntityArgs.container = groupContainer;
-                nodeEntityArgs.data = groupedElementsData['@graph'];
-                pathvisiojs.view.pathwayDiagram.svg.renderSelectedElementsFast(nodeEntityArgs, function() {
-                });
-              });
-              //*/
-            });
-          }
-          else {
-            if (element.renderableType === 'EntityNode') {
-              pathvisiojs.view.pathwayDiagram.svg.node.EntityNode.render(renderingArgs);
-            }
-            else {
-              if (element.renderableType === 'Interaction') {
-                pathvisiojs.view.pathwayDiagram.svg.edge.interaction.render(renderingArgs);
-              }
-              else {
-                if (element.renderableType === 'GraphicalLine') {
-                  pathvisiojs.view.pathwayDiagram.svg.edge.graphicalLine.render(renderingArgs);
-                }
-              }
-            }
-          }
-        });
-        callback(null, 'Successfully rendered elements');
       }
-    ],
-    function(err, results) {
-      callbackOutside(null);
-    })
+      else if (dataElement.renderableType === 'EntityNode') {
+        pathvisiojs.view.pathwayDiagram.svg.node.EntityNode.render(renderingArgs);
+      }
+    });
+    callback(null, 'Successfully rendered elements');
   }
 
-  function renderFast(svg, pathway, callback){
+  function renderWithCachedData(svg, pathway, callback){
     if (!svg) {
       throw new Error("No svg specified.");
     }
@@ -277,38 +377,50 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
       throw new Error("No data entered to render.");
     }
 
-    console.log('first');
-    console.log(new Date());
-    async.parallel({
-      'firstOrderData': function(callbackInside) {
-        var firstOrderFrame = {
-          '@context': pathvisiojs.context,
-          '@type':['notGrouped', 'GroupNode']
-        };
-        jsonld.frame(pathway, firstOrderFrame, function(err, firstOrderData) {
-          console.log('firstOrderData');
-          console.log(firstOrderData['@graph']);
-          callbackInside(null, firstOrderData['@graph']);
+    var viewport = svg.select('#viewport');
+
+    pathvisiojs.view.pathwayDiagram.svg.infoBox.render(viewport, pathway);
+
+    var renderArgs = {};
+    renderArgs.svg = svg;
+    renderArgs.container = viewport;
+    renderArgs.pathway = pathway;
+
+    async.waterfall([
+      function(callbackInside){
+        var pathwayNestedByGrouping = d3.nest()
+        .key(function(d) { return d.isContainedBy; })
+        .entries(pathway.elements);
+        
+        renderArgs.data = pathwayNestedByGrouping;
+        console.log('pathwayNestedByGrouping');
+        console.log(pathwayNestedByGrouping);
+
+        appendElementsInDomOrder(renderArgs, function() {
+          callbackInside(null, svg);
+        });
+      },
+      function(svg, callbackInside){
+        //TODO for the non-cached version, this should sort the elements by dependency, so that group contents are updated before their containing group,
+        //and an edge is updated before any edges that rely on it.
+        renderArgs.data = pathway.elements;
+
+        /*
+        var pathwayNestedByDependencies = d3.nest()
+        .key(function(d) { return d.hasDependencies; })
+        .entries(pathway.elements);
+        renderArgs.data = pathwayNestedByDependencies;
+        //*/
+
+        console.log('renderArgs.data');
+        console.log(renderArgs.data);
+
+        updateElementProperties(renderArgs, function() {
+          callback(svg);
         });
       }
-    },
-    function(err, results) {
-      console.log('second');
-      console.log(new Date());
-      var viewport = svg.select('#viewport');
-
-      pathvisiojs.view.pathwayDiagram.svg.infoBox.render(viewport, pathway);
-
-      var renderSelectedElementsFastArgs = {};
-      renderSelectedElementsFastArgs.svg = svg;
-      renderSelectedElementsFastArgs.container = viewport;
-      renderSelectedElementsFastArgs.pathway = pathway;
-      renderSelectedElementsFastArgs.data = results.firstOrderData;
-      renderSelectedElementsFast(renderSelectedElementsFastArgs, function() {
-        console.log('third');
-        console.log(new Date());
-        callback(svg);
-      });
+    ]);
+  }
 
 
       //pathvisiojs.view.pathwayDiagram.svg.grid.render(svg);
@@ -318,7 +430,7 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
         function(callbackInside2) {
           args.container = args.svg.select('#viewport');
           args.data = results.groupData;
-          renderSelectedElementsFast(args, function() {
+          appendElementsInDomOrder(args, function() {
             console.log(1);
           });
           callbackInside2(null, svg);
@@ -327,7 +439,7 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
           args.container = args.svg.select('#viewport');
           args.data = results.notGroupedData;
           self.args = args;
-          renderSelectedElementsFast(args, function() {
+          appendElementsInDomOrder(args, function() {
             console.log(2);
             callbackInside2(null, svg);
           });
@@ -336,10 +448,9 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
       function(err, results) {
         callback(svg);
       })
-      //*/
     })
   }
-
+  //*/
   /*
   function render(args, callback){
     if (!args.svg) {
@@ -409,8 +520,8 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
 
   return {
     //render:render,
-    renderFast:renderFast,
-    renderSelectedElementsFast:renderSelectedElementsFast,
+    renderWithCachedData:renderWithCachedData,
+    appendElementsInDomOrder:appendElementsInDomOrder,
     load:load,
     loadPartials:loadPartials
   };
