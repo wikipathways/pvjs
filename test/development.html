@@ -10,9 +10,7 @@
   <link rel="stylesheet" href="../src/css/annotation.css">
   <link rel="stylesheet" href="../src/css/pan-zoom.css">
 </head>
-
-
-    
+   
 
 <body style="margin: 0; width: 100%; height: 100%; ">
   <div id="pathvisiojs-dev" style="width:inherit; height:inherit; margin:0; ">
@@ -23,35 +21,6 @@
   <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
   <script src="../lib/es5-shim/es5-shim.js"></script>
   <script src="../lib/Xccessors/xccessors-standard.js"></script>
-
-  <script>
-
-    // IE8 only allows console.log when Developer Tools is open. This will prevent errors
-    // from showing up if I use console.log without DevTools being open.
-    // from http://stackoverflow.com/questions/3326650/console-is-undefined-error-for-internet-explorer
-
-    /**
-    * Protect window.console method calls, e.g. console is not defined on IE
-    * unless dev tools are open, and IE doesn't define console.debug
-    */
-    (function() {
-    if (!window.console) {
-    window.console = {};
-    }
-    // union of Chrome, FF, IE, and Safari console methods
-    var m = [
-    "log", "info", "warn", "error", "debug", "trace", "dir", "group",
-    "groupCollapsed", "groupEnd", "time", "timeEnd", "profile", "profileEnd",
-    "dirxml", "assert", "count", "markTimeline", "timeStamp", "clear"
-    ];
-    // define undefined methods as noops to prevent errors
-    for (var i = 0; i < m.length; i++) {
-    if (!window.console[m[i]]) {
-    window.console[m[i]] = function() {};
-    }    
-    } 
-    })();
-  </script>
   <![endif]-->
 
   <script src="../lib/rgb-color/rgb-color.min.js"></script>
@@ -65,7 +34,6 @@
   <script src="../lib/node-uuid/uuid.js"></script>
   <script src="../lib/blueimp-load-image/js/load-image.min.js"></script>
   <script src="../lib/jsonld.js/js/jsonld.js"></script>
-  <script src="../lib/jsonld.js/js/Promise.js"></script>
   <script src="../lib/jsonld.js/js/Promise.js"></script>
 
   <!-- compare.js has the code responsible for setting up this page.
