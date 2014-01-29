@@ -24,7 +24,7 @@ A. If you are using the included dev server, you can skip ahead to Step B.
 
 Otherwise, you will need to follow these instructions:
 
-1. Update the variable "baseUrl" in [pathway-rendering-tests.js](https://github.com/wikipathways/pathvisiojs/blob/master/test/e2e/pathway-rendering-tests.js#L16). Please undo your change to baseUrl before making a pull request.
+1. Update the variable "baseUri" in [test-selected-pathways.js](https://github.com/wikipathways/pathvisiojs/blob/master/test/e2e/test-selected-pathways.js#L16). Please undo your change to baseUri before making a pull request.
 2. Install [nodejs](http://nodejs.org/download/) (if you haven't already done so).
 3. When node is installed, open a terminal and enter the following commands (update file path if pathvisiojs directory is not located in ~/Sites/ on your computer):
 
@@ -51,7 +51,7 @@ D. Open a new terminal tab or window and run the tests:
 
 ```
 $ cd ~/Sites/pathvisiojs/
-$ ./node_modules/protractor/bin/protractor ./test/run.js
+$ ./node_modules/protractor/bin/protractor ./test/test-selected-pathways-settings.js
 ```
 
 Once the tests finish running, you will see the test results in the terminal window. Everything should be successful and displayed in green.

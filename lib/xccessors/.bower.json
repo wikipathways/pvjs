@@ -1,0 +1,13 @@
+{
+  "name": "xccessors",
+  "homepage": "https://github.com/eligrey/Xccessors",
+  "_release": "af5c555136",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "af5c555136cfc1378bc2123fd038d2b5e13ed80f"
+  },
+  "_source": "https://github.com/eligrey/Xccessors.git",
+  "_target": "*",
+  "_originalSource": "https://github.com/eligrey/Xccessors.git"
+}

@@ -1,10 +1,11 @@
-//! pathvisiojs 0.8.0
-//! Built on 2014-01-13
+//! pathvisiojs 0.9.8
+//! Built on 2014-01-28
 //! https://github.com/wikipathways/pathvisiojs
 //! License: http://www.apache.org/licenses/LICENSE-2.0/
 
 var pathvisioNS = pathvisioNS || {};
-pathvisioNS["tmp/pathvisiojs.html"] = '<div id="pathvisio-js-container" style="width: inherit; min-width: inherit; max-width: inherit; height: inherit; min-height: inherit; max-height: inherit; position: absolute; ">\n\n    <!-- **********************************************************************\n    Pathway Container (JavaScript inserts pathway image inside this div)\n    *********************************************************************** -->\n\n    <div id="pathway-container" style="width: inherit; min-width: inherit; max-width: inherit; height: inherit; min-height: inherit; max-height: inherit; " class="y-mid">\n\n      <svg id="pathway-svg" version="1.1" baseProfile="full" xmlns="http://www.w3.org/1999/xlink" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ev="http://www.w3.org/2001/xml-events" width="500px" height="500px" style="display: inline; width: inherit; min-width: inherit; max-width: inherit; height: inherit; min-height: inherit; max-height: inherit; " preserveAspectRatio="xMidYMid" onmouseup="svgPanZoom.handleMouseUp(evt)" onmousedown="svgPanZoom.handleMouseDown(evt)" onmousemove="svgPanZoom.handleMouseMove(evt)" xlink="http://www.w3.org/1999/xlink" ev="http://www.w3.org/2001/xml-events">\n\n        <g>\n        <title>pathvisiojs pathway diagram</title>\n        <desc>\n          This SVG file contains all the graphical elements (markers and symbols in defs as well as\n          style data) used by the program pathvisiojs, which has two components: \n          1) a viewer for transforming GPML biological pathway data into an SVG visual representation and \n          2) an editor for creating both views and models for biological pathways.\n        </desc>\n        </g>\n        <defs>\n\n          <filter id="highlight" width="150%" height="150%">\n            <feOffset result="offOut" in="SourceGraphic" dx="30" dy="30"></feOffset>\n              <feGaussianBlur result="blurOut" in="offOut" stdDeviation="10"></feGaussianBlur>\n            <feBlend in="SourceGraphic" in2="blurOut" mode="normal"></feBlend>\n          </filter>\n\n        <marker id="shape-library-markers-arrow-svg-start-default" preserveAspectRatio="none" viewBox="0 0 12 12" markerWidth="12" markerHeight="12" markerUnits="strokeWidth" orient="auto" refX="-0.5" refY="6"><g id="g-src-shape-library-markers-arrow-svg-start-default" class="solid-stroke default-fill-color"><rect class="board-fill-color" stroke="none" x="0" y="5.4" width="2" height="1.2"></rect><polygon stroke-width="0" points="12,11 0,6 12,1"></polygon></g></marker><marker id="shape-library-markers-arrow-svg-end-default" preserveAspectRatio="none" viewBox="0 0 12 12" markerWidth="12" markerHeight="12" markerUnits="strokeWidth" orient="auto" refX="12" refY="6"><g id="g-src-shape-library-markers-arrow-svg-end-default" class="solid-stroke default-fill-color" style="-webkit-transform: rotate(180deg); -webkit-transform-origin: 50% 50%;"><rect class="board-fill-color" stroke="none" x="0" y="5.4" width="2" height="1.2"></rect><polygon stroke-width="0" points="12,11 0,6 12,1"></polygon></g></marker><marker id="shape-library-markers-mim-necessary-stimulation-svg-start-default" preserveAspectRatio="none" viewBox="0 0 16 12" markerWidth="16" markerHeight="12" markerUnits="strokeWidth" orient="auto" refX="-0.5" refY="6"><g id="g-src-shape-library-markers-mim-necessary-stimulation-svg-start-default" class="board-fill-color default-stroke-color solid-stroke"><rect class="board-fill-color" stroke="none" x="0" y="5.4" width="2" height="1.2"></rect><line fill="none" stroke-width="1" x1="14" y1="0" x2="14" y2="12"></line><line fill="none" stroke="none" x1="16" y1="6" x2="16" y2="6"></line><polygon stroke-width="1" points="0,6 9,11 9,1"></polygon></g></marker><marker id="shape-library-markers-mim-necessary-stimulation-svg-end-default" preserveAspectRatio="none" viewBox="0 0 16 12" markerWidth="16" markerHeight="12" markerUnits="strokeWidth" orient="auto" refX="16" refY="6"><g id="g-src-shape-library-markers-mim-necessary-stimulation-svg-end-default" class="board-fill-color default-stroke-color solid-stroke" style="-webkit-transform: rotate(180deg); -webkit-transform-origin: 50% 50%;"><rect class="board-fill-color" stroke="none" x="0" y="5.4" width="2" height="1.2"></rect><line fill="none" stroke-width="1" x1="14" y1="0" x2="14" y2="12"></line><line fill="none" stroke="none" x1="16" y1="6" x2="16" y2="6"></line><polygon stroke-width="1" points="0,6 9,11 9,1"></polygon></g></marker><marker id="shape-library-markers-mim-binding-svg-start-default" preserveAspectRatio="none" viewBox="0 0 12 12" markerWidth="12" markerHeight="12" markerUnits="strokeWidth" orient="auto" refX="-0.5" refY="6"><g id="g-src-shape-library-markers-mim-binding-svg-start-default" class="solid-stroke default-fill-color"><rect class="board-fill-color" stroke="none" x="0" y="5.4" width="2" height="1.2"></rect><polygon stroke-width="0" points="12,12 0,6 12,0 5,6 "></polygon></g></marker><marker id="shape-library-markers-mim-binding-svg-end-default" preserveAspectRatio="none" viewBox="0 0 12 12" markerWidth="12" markerHeight="12" markerUnits="strokeWidth" orient="auto" refX="12" refY="6"><g id="g-src-shape-library-markers-mim-binding-svg-end-default" class="solid-stroke default-fill-color" style="-webkit-transform: rotate(180deg); -webkit-transform-origin: 50% 50%;"><rect class="board-fill-color" stroke="none" x="0" y="5.4" width="2" height="1.2"></rect><polygon stroke-width="0" points="12,12 0,6 12,0 5,6 "></polygon></g></marker><marker id="shape-library-markers-mim-conversion-svg-start-default" preserveAspectRatio="none" viewBox="0 0 12 12" markerWidth="12" markerHeight="12" markerUnits="strokeWidth" orient="auto" refX="-0.5" refY="6"><g id="g-src-shape-library-markers-mim-conversion-svg-start-default" class="solid-stroke default-fill-color"><rect class="board-fill-color" stroke="none" x="0" y="5.4" width="2" height="1.2"></rect><polygon stroke-width="0" points="12,11 0,6 12,1"></polygon></g></marker><marker id="shape-library-markers-mim-conversion-svg-end-default" preserveAspectRatio="none" viewBox="0 0 12 12" markerWidth="12" markerHeight="12" markerUnits="strokeWidth" orient="auto" refX="12" refY="6"><g id="g-src-shape-library-markers-mim-conversion-svg-end-default" class="solid-stroke default-fill-color" style="-webkit-transform: rotate(180deg); -webkit-transform-origin: 50% 50%;"><rect class="board-fill-color" stroke="none" x="0" y="5.4" width="2" height="1.2"></rect><polygon stroke-width="0" points="12,11 0,6 12,1"></polygon></g></marker><marker id="shape-library-markers-mim-stimulation-svg-start-default" preserveAspectRatio="none" viewBox="0 0 12 12" markerWidth="12" markerHeight="12" markerUnits="strokeWidth" orient="auto" refX="-0.5" refY="6"><g id="g-src-shape-library-markers-mim-stimulation-svg-start-default" class="board-fill-color default-stroke-color solid-stroke"><rect class="board-fill-color" stroke="none" x="0" y="5.4" width="2" height="1.2"></rect><line stroke="none" fill="none" x1="12" y1="6" x2="12" y2="6"></line><polygon stroke-width="1" points="0,6 11,11 11,1"></polygon></g></marker><marker id="shape-library-markers-mim-stimulation-svg-end-default" preserveAspectRatio="none" viewBox="0 0 12 12" markerWidth="12" markerHeight="12" markerUnits="strokeWidth" orient="auto" refX="12" refY="6"><g id="g-src-shape-library-markers-mim-stimulation-svg-end-default" class="board-fill-color default-stroke-color solid-stroke" style="-webkit-transform: rotate(180deg); -webkit-transform-origin: 50% 50%;"><rect class="board-fill-color" stroke="none" x="0" y="5.4" width="2" height="1.2"></rect><line stroke="none" fill="none" x1="12" y1="6" x2="12" y2="6"></line><polygon stroke-width="1" points="0,6 11,11 11,1"></polygon></g></marker><marker id="shape-library-markers-mim-modification-svg-start-default" preserveAspectRatio="none" viewBox="0 0 12 12" markerWidth="12" markerHeight="12" markerUnits="strokeWidth" orient="auto" refX="-0.5" refY="6"><g id="g-src-shape-library-markers-mim-modification-svg-start-default" class="default-fill-color solid-stroke"><rect class="board-fill-color" stroke="none" x="0" y="5.4" width="2" height="1.2"></rect><polygon stroke-width="0" points="12,12 0,6 12,0 5,6 "></polygon></g></marker><marker id="shape-library-markers-mim-modification-svg-end-default" preserveAspectRatio="none" viewBox="0 0 12 12" markerWidth="12" markerHeight="12" markerUnits="strokeWidth" orient="auto" refX="12" refY="6"><g id="g-src-shape-library-markers-mim-modification-svg-end-default" class="default-fill-color solid-stroke" style="-webkit-transform: rotate(180deg); -webkit-transform-origin: 50% 50%;"><rect class="board-fill-color" stroke="none" x="0" y="5.4" width="2" height="1.2"></rect><polygon stroke-width="0" points="12,12 0,6 12,0 5,6 "></polygon></g></marker><marker id="shape-library-markers-mim-catalysis-svg-start-default" preserveAspectRatio="none" viewBox="0 0 12 12" markerWidth="12" markerHeight="12" markerUnits="strokeWidth" orient="auto" refX="0" refY="6"><g id="g-src-shape-library-markers-mim-catalysis-svg-start-default" class="board-fill-color default-stroke-color solid-stroke"><circle cx="6.1" cy="6" r="5.3px" stroke-width="1px"></circle></g></marker><marker id="shape-library-markers-mim-catalysis-svg-end-default" preserveAspectRatio="none" viewBox="0 0 12 12" markerWidth="12" markerHeight="12" markerUnits="strokeWidth" orient="auto" refX="12" refY="6"><g id="g-src-shape-library-markers-mim-catalysis-svg-end-default" class="board-fill-color default-stroke-color solid-stroke" style="-webkit-transform: rotate(180deg); -webkit-transform-origin: 50% 50%;"><circle cx="6.1" cy="6" r="5.3px" stroke-width="1px"></circle></g></marker><marker id="shape-library-markers-mim-inhibition-svg-start-default" preserveAspectRatio="none" viewBox="0 0 10 20" markerWidth="10" markerHeight="20" markerUnits="strokeWidth" orient="auto" refX="-0.5" refY="10"><g id="g-src-shape-library-markers-mim-inhibition-svg-start-default" class="board-fill-color default-stroke-color solid-stroke"><rect stroke="none" x="0" y="9.4" width="8" height="1.2"></rect><line fill="none" stroke-width="1.8" x1="7" y1="0" x2="7" y2="20"></line></g></marker><marker id="shape-library-markers-mim-inhibition-svg-end-default" preserveAspectRatio="none" viewBox="0 0 10 20" markerWidth="10" markerHeight="20" markerUnits="strokeWidth" orient="auto" refX="8" refY="10"><g id="g-src-shape-library-markers-mim-inhibition-svg-end-default" class="board-fill-color default-stroke-color solid-stroke" style="-webkit-transform: rotate(180deg); -webkit-transform-origin: 50% 50%;"><rect stroke="none" x="0" y="9.4" width="8" height="1.2"></rect><line fill="none" stroke-width="1.8" x1="7" y1="0" x2="7" y2="20"></line></g></marker><marker id="shape-library-markers-mim-cleavage-svg-start-default" preserveAspectRatio="none" viewBox="0 0 20 30" markerWidth="20" markerHeight="30" markerUnits="strokeWidth" orient="auto" refX="9" refY="15"><g id="g-src-shape-library-markers-mim-cleavage-svg-start-default" class="board-fill-color default-stroke-color solid-stroke"><rect stroke="none" x="0" y="14.4" width="18.4" height="1.2"></rect><line fill="none" stroke-width="1" x1="18" y1="14.5" x2="18" y2="30"></line><line fill="none" stroke-width="1" x1="18" y1="30" x2="0" y2="0"></line></g></marker><marker id="shape-library-markers-mim-cleavage-svg-end-default" preserveAspectRatio="none" viewBox="0 0 20 30" markerWidth="20" markerHeight="30" markerUnits="strokeWidth" orient="auto" refX="10" refY="15"><g id="g-src-shape-library-markers-mim-cleavage-svg-end-default" class="board-fill-color default-stroke-color solid-stroke" style="-webkit-transform: rotate(180deg); -webkit-transform-origin: 50% 50%;"><rect stroke="none" x="0" y="14.4" width="18.4" height="1.2"></rect><line fill="none" stroke-width="1" x1="18" y1="14.5" x2="18" y2="30"></line><line fill="none" stroke-width="1" x1="18" y1="30" x2="0" y2="0"></line></g></marker><marker id="shape-library-markers-mim-covalent-bond-svg-start-default" preserveAspectRatio="none" viewBox="0 0 12 12" markerWidth="12" markerHeight="12" markerUnits="strokeWidth" orient="auto" refX="-0.5" refY="6"><g id="g-src-shape-library-markers-mim-covalent-bond-svg-start-default" class="solid-stroke default-fill-color"><rect x="0" y="0" width="0" height="0" stroke="none" fill="none" stroke-width="0"></rect></g></marker><marker id="shape-library-markers-mim-covalent-bond-svg-end-default" preserveAspectRatio="none" viewBox="0 0 12 12" markerWidth="12" markerHeight="12" markerUnits="strokeWidth" orient="auto" refX="11" refY="6"><g id="g-src-shape-library-markers-mim-covalent-bond-svg-end-default" class="solid-stroke default-fill-color" style="-webkit-transform: rotate(180deg); -webkit-transform-origin: 50% 50%;"><rect x="0" y="0" width="0" height="0" stroke="none" fill="none" stroke-width="0"></rect></g></marker><marker id="shape-library-markers-mim-transcription-translation-svg-start-default" preserveAspectRatio="none" viewBox="0 0 20 24" markerWidth="20" markerHeight="24" markerUnits="strokeWidth" orient="auto" refX="-0.5" refY="12"><g id="g-src-shape-library-markers-mim-transcription-translation-svg-start-default" class="board-fill-color default-stroke-color solid-stroke"><rect stroke="none" x="0" y="11.4" width="12" height="1.2"></rect><line fill="none" stroke-width="1" x1="15" y1="12" x2="15" y2="5"></line><line fill="none" stroke-width="1" x1="15.5" y1="5" x2="8" y2="5"></line><polygon stroke-width="1" points="0,5 8,1 8,9"></polygon></g></marker><marker id="shape-library-markers-mim-transcription-translation-svg-end-default" preserveAspectRatio="none" viewBox="0 0 20 24" markerWidth="20" markerHeight="24" markerUnits="strokeWidth" orient="auto" refX="15.5" refY="1.6"><g id="g-src-shape-library-markers-mim-transcription-translation-svg-end-default" class="board-fill-color default-stroke-color solid-stroke" style="-webkit-transform: rotate(180deg); -webkit-transform-origin: 50% 50%;"><rect stroke="none" x="0" y="11.4" width="12" height="1.2"></rect><line fill="none" stroke-width="1" x1="15" y1="12" x2="15" y2="5"></line><line fill="none" stroke-width="1" x1="15.5" y1="5" x2="8" y2="5"></line><polygon stroke-width="1" points="0,5 8,1 8,9"></polygon></g></marker><marker id="shape-library-markers-mim-gap-svg-start-default" preserveAspectRatio="none" viewBox="0 0 12 12" markerWidth="12" markerHeight="12" markerUnits="strokeWidth" orient="auto" refX="0" refY="6"><g id="g-src-shape-library-markers-mim-gap-svg-start-default" class="board-fill-color solid-stroke"><rect stroke="none" x="0.5" y="5.3" width="8" height="1.4"></rect></g></marker><marker id="shape-library-markers-mim-gap-svg-end-default" preserveAspectRatio="none" viewBox="0 0 12 12" markerWidth="12" markerHeight="12" markerUnits="strokeWidth" orient="auto" refX="8.5" refY="6"><g id="g-src-shape-library-markers-mim-gap-svg-end-default" class="board-fill-color solid-stroke" style="-webkit-transform: rotate(180deg); -webkit-transform-origin: 50% 50%;"><rect stroke="none" x="0.5" y="5.3" width="8" height="1.4"></rect></g></marker><marker id="shape-library-markers-t-bar-svg-start-default" preserveAspectRatio="none" viewBox="0 0 10 20" markerWidth="10" markerHeight="20" markerUnits="strokeWidth" orient="auto" refX="-0.5" refY="10"><g id="g-src-shape-library-markers-t-bar-svg-start-default" class="board-fill-color default-stroke-color solid-stroke"><rect stroke="none" x="0" y="9.4" width="8" height="1.2"></rect><line fill="none" stroke-width="1.8" x1="7" y1="0" x2="7" y2="20"></line></g></marker><marker id="shape-library-markers-t-bar-svg-start-ff0000" preserveAspectRatio="none" viewBox="0 0 10 20" markerWidth="10" markerHeight="20" markerUnits="strokeWidth" orient="auto" refX="-0.5" refY="10"><g id="g-src-shape-library-markers-t-bar-svg-start-ff0000" class="board-fill-color default-stroke-color solid-stroke" style="stroke:#ff0000; "><rect stroke="none" x="0" y="9.4" width="8" height="1.2"></rect><line fill="none" stroke-width="1.8" x1="7" y1="0" x2="7" y2="20"></line></g></marker><marker id="shape-library-markers-t-bar-svg-end-default" preserveAspectRatio="none" viewBox="0 0 10 20" markerWidth="10" markerHeight="20" markerUnits="strokeWidth" orient="auto" refX="8" refY="10"><g id="g-src-shape-library-markers-t-bar-svg-end-default" class="board-fill-color default-stroke-color solid-stroke" style="-webkit-transform: rotate(180deg); -webkit-transform-origin: 50% 50%;"><rect stroke="none" x="0" y="9.4" width="8" height="1.2"></rect><line fill="none" stroke-width="1.8" x1="7" y1="0" x2="7" y2="20"></line></g></marker><marker id="shape-library-markers-t-bar-svg-end-ff0000" preserveAspectRatio="none" viewBox="-10 -20 10 20" markerWidth="10" markerHeight="20" markerUnits="strokeWidth" orient="auto" refX="-0.5" refY="-10"><g id="g-src-shape-library-markers-t-bar-svg-end-ff0000" class="board-fill-color default-stroke-color solid-stroke" style="-webkit-transform: rotate(180deg); -webkit-transform-origin: 50% 50%;stroke:#ff0000; "><rect stroke="none" x="0" y="9.4" width="8" height="1.2"></rect><line fill="none" stroke-width="1.8" x1="7" y1="0" x2="7" y2="20"></line></g></marker><marker id="shape-library-markers-none-svg-start-default" preserveAspectRatio="none" viewBox="0 0 0 0" markerWidth="0" markerHeight="0" markerUnits="strokeWidth" orient="auto" refX="0" refY="6"><g id="g-src-shape-library-markers-none-svg-start-default" class="board-fill-color board-stroke-color node shape"><rect x="0" y="0" width="0" height="0" stroke="none" fill="none" stroke-width="0"></rect></g></marker><marker id="shape-library-markers-none-svg-end-default" preserveAspectRatio="none" viewBox="0 0 0 0" markerWidth="0" markerHeight="0" markerUnits="strokeWidth" orient="auto" refX="11" refY="6"><g id="g-src-shape-library-markers-none-svg-end-default" class="board-fill-color board-stroke-color node shape" style="-webkit-transform: rotate(180deg); -webkit-transform-origin: 50% 50%;"><rect x="0" y="0" width="0" height="0" stroke="none" fill="none" stroke-width="0"></rect></g></marker><marker id="shape-library-markers-mim-branching-left-svg-start-default" preserveAspectRatio="none" viewBox="0 0 12 12" markerWidth="12" markerHeight="12" markerUnits="strokeWidth" orient="auto" refX="0.4" refY="6"><g id="g-src-shape-library-markers-mim-branching-left-svg-start-default" class="board-fill-color default-stroke-color solid-stroke"><rect stroke="none" x="0.9" y="5.4" width="2.6" height="1.2"></rect><line fill="none" stroke-width="1" x1="3.9" y1="6.2" x2="0.2" y2="0"></line></g></marker><marker id="shape-library-markers-mim-branching-left-svg-end-default" preserveAspectRatio="none" viewBox="0 0 12 12" markerWidth="12" markerHeight="12" markerUnits="strokeWidth" orient="auto" refX="3.7" refY="0.6"><g id="g-src-shape-library-markers-mim-branching-left-svg-end-default" class="board-fill-color default-stroke-color solid-stroke" style="-webkit-transform: rotate(180deg); -webkit-transform-origin: 50% 50%;"><rect stroke="none" x="0.9" y="5.4" width="2.6" height="1.2"></rect><line fill="none" stroke-width="1" x1="3.9" y1="6.2" x2="0.2" y2="0"></line></g></marker><marker id="shape-library-markers-mim-branching-right-svg-start-default" preserveAspectRatio="none" viewBox="0 0 4 12" markerWidth="4" markerHeight="12" markerUnits="strokeWidth" orient="auto" refX="0.4" refY="6"><g id="g-src-shape-library-markers-mim-branching-right-svg-start-default" class="board-fill-color default-stroke-color solid-stroke"><rect stroke="none" x="0.9" y="5.4" width="2.6" height="1.2"></rect><line fill="none" stroke-width="1" x1="0.2" y1="12" x2="3.9" y2="5.8"></line></g></marker><marker id="shape-library-markers-mim-branching-right-svg-end-default" preserveAspectRatio="none" viewBox="0 0 4 12" markerWidth="4" markerHeight="12" markerUnits="strokeWidth" orient="auto" refX="3.6" refY="11.4"><g id="g-src-shape-library-markers-mim-branching-right-svg-end-default" class="board-fill-color default-stroke-color solid-stroke" style="-webkit-transform: rotate(180deg); -webkit-transform-origin: 50% 50%;"><rect stroke="none" x="0.9" y="5.4" width="2.6" height="1.2"></rect><line fill="none" stroke-width="1" x1="0.2" y1="12" x2="3.9" y2="5.8"></line></g></marker><style type="text/css">	svg {\n		color-interpolation: auto;\n		image-rendering: auto;\n		shape-rendering: auto;\n		vector-effect: non-scaling-stroke;\n                background: white;\n	/* removed fill and stroke since they override marker specs */\n	/*	fill: white;\n    		stroke: black; */\n	}\n\n	/* default color for pathway elements */\n	.default-fill-color {\n		fill: black; \n	}\n	.default-stroke-color {\n		stroke: black;\n	}\n	\n	/* default color of the background drawing board */ 	\n	.board-fill-color {\n		fill: white;\n	}\n	.board-stroke-color {\n		stroke: white;\n	}\n\n	.text-area {\n		font-family: Sans-Serif, Helvetica, Arial;\n		text-align: center;\n		vertical-align: middle;\n		font-size: 10px;\n		fill: black;\n		fill-opacity: 1;\n		stroke: none;\n	}\n\n	.citation {\n		font-family: Sans-Serif, Helvetica, Arial;\n		text-align: center;\n		vertical-align: top;\n		font-size: 8px;\n		fill: lightgray;\n		fill-opacity: 1;\n		stroke: none;\n	}\n\n	.info-box {\n		font-family: Sans-Serif;\n		font-size: 10px;\n		fill: black;\n		stroke: none;\n		text-align: left;\n		vertical-align: top;\n	}\n\n	.info-box-item-property-name {\n		font-weight: bold;\n	}\n\n	.info-box-item-property-value {\n	}\n\n	.data-node {\n		text-align: right;\n		fill-opacity: 1;\n		fill: white;\n		stroke: black;\n		stroke-width: 1;\n		stroke-dasharray: 0;\n		stroke-miterlimit: 1;\n    		pointer-events:auto;\n	}\n	\n	.has-xref:hover {\n		cursor: pointer;\n	}\n\n	.data-node.gene-product {\n	}\n\n	.metabolite {\n		stroke: blue;\n	}\n\n	.data-node.metabolite &gt; .text-area {\n		fill: blue;\n		fill-opacity: 1;\n		stroke: none;\n	}\n\n	.data-node.pathway {\n		stroke: none;\n		fill-opacity: 0;\n	}\n\n	.data-node.pathway &gt; .text-area {\n		fill: rgb(20,150,30);\n		fill-opacity: 1;\n		font-size: 12px;\n		font-weight: bold;\n	}\n\n	.data-node.protein {\n	}\n\n	.data-node.rna {\n	}\n\n	.data-node.unknown {\n	}\n\n	.label {\n		stroke: null;\n		stroke-width: 0;\n		fill-opacity: 0;\n		stroke-dasharray: 0;\n		stroke-miterlimit: 1;\n	}\n\n	.shape {\n		fill-opacity: 1;\n		fill: white;\n		stroke: black;\n		stroke-dasharray: 0;\n		stroke-miterlimit: 1;\n	}\n\n	.shape.none {\n		fill: none;\n		fill-opacity: 0;\n		stroke: none;\n	}\n\n	g.group-node &gt; .shape {\n		fill-opacity: 0.098;\n		stroke: gray;\n		stroke-miterlimit: 1;\n		stroke-width: 1px;\n    		pointer-events:auto;\n	}\n\n	.group-node {\n		fill-opacity: 0.098;\n		stroke: gray;\n		stroke-miterlimit: 1;\n		stroke-width: 1px;\n    		pointer-events:auto;\n	}\n\n	.group-node &gt; .text-area {\n		fill-opacity: 0.4;\n		font-family: Serif, Times;\n		font-size: 32px;\n		fill: black;\n		stroke-width: 0;\n		font-weight: bold;\n  	}	\n\n	.group-node.none {\n		fill: rgb(180,180,100);\n		stroke-dasharray: 5,3;\n	}\n\n	.group-node.none &gt; .text-area {\n		display: none;\n  	}	\n\n	.group-node.none:hover {\n		fill: Brown;\n		fill-opacity: 0.1;\n	}\n\n	.group-node.group {\n		fill-opacity: 0;\n		stroke: none;\n	}\n\n	.group-node.group &gt; .text-area {\n		display: none;\n  	}\n	.group-node.group:hover {\n		fill: CornflowerBlue;\n		stroke-width: 1px;\n		stroke-dasharray: 5,3;\n		stroke: gray;\n		fill-opacity: 0.1;\n	}\n\n	.group-node.complex {\n		fill: rgb(180,180,100);\n	}\n\n	.group-node.complex &gt; .text-area {\n		display: none;\n  	}\n	.group-node.complex:hover {\n		fill: Brown;\n		fill-opacity: 0.1;\n	}	\n\n  	.group-node.pathway {\n		fill: lightgreen;\n		stroke-dasharray: 5,3;\n	}\n	.group-node.pathway:hover {\n		fill: lightgreen;\n		fill-opacity: 0.2;\n	}\n	.group-node.pathway &gt; .text-area {\n		fill: rgb(20,150,30);\n		stroke: rgb(20,150,30);\n  }\n\n  .cellular-component {\n		fill-opacity: 0;\n		stroke: silver;\n	}\n\n  .graphical-line {\n		fill:none;\n		stroke: black; \n		stroke-width: 1px; \n	}\n\n	.interaction {\n		fill:none;\n		stroke: black; \n		stroke-width: 1px; \n	}\n\n	marker {\n		/* this is what should work per the spec\n		   stroke-dasharray: none; */\n		/* but I need to add this to make it work in Safari */\n		stroke-dasharray: 9999999999999999999999999;\n	}\n\n  .marker-end {\n    -webkit-transform: rotate(180deg);\n    -webkit-transform-origin: 50% 50%;\n\n    -o-transform: rotate(180deg); \n    -o-transform-origin: 50% 50%;\n\n    transform: rotate(180deg);\n    transform-origin: 50% 50%;\n  }\n\n	.solid-stroke {\n		/* this is what should work per the spec\n		   stroke-dasharray: none; */\n		/* but I need to add this to make it work in Safari */\n		stroke-dasharray: 9999999999999999999999999;\n	}\n\n	.dashed-stroke {\n		stroke-dasharray: 5,3;\n	}\n\n  .highlighted-node {\n		fill: yellow;\n    fill-opacity: 0.2;\n		stroke: orange; \n    stroke-width: 3px;\n  }\n</style></defs>\n\n        <g id="viewport" transform="matrix(0.5393548780871974,0,0,0.5393548780871974,10,20)">\n        </g>\n\n      </svg>\n\n    \n      \n    </div>\n    \n    <div id="typeahead" style="position: absolute; top: 5px; right: 5px;">\n    <!-- **********************************************************************\n      Highlight Element by Label Control\n      *********************************************************************** -->\n\n      <span class="twitter-typeahead" style="position: relative; display: inline-block;"><input class="tt-hint" type="text" autocomplete="off" spellcheck="off" disabled="" style="position: absolute; top: 0px; left: 0px; border-color: transparent; box-shadow: none; background-attachment: scroll; background-clip: border-box; background-color: rgb(255, 255, 255); background-image: none; background-origin: padding-box; background-size: auto; background-position: 0% 0%; background-repeat: repeat repeat;"><input id="highlight-by-label-input" placeholder="Enter node name to highlight." role="textbox" aria-autocomplete="list" aria-haspopup="true" class="tt-query" autocomplete="off" spellcheck="false" dir="auto" style="position: relative; vertical-align: top; background-color: transparent;"><span style="position: absolute; left: -9999px; visibility: hidden; white-space: nowrap; font-family: \'Lucida Grande\'; font-size: 12px; font-style: normal; font-variant: normal; font-weight: 400; word-spacing: 0px; letter-spacing: 0px; text-indent: 0px; text-rendering: auto; text-transform: none;"></span><span class="tt-dropdown-menu" style="position: absolute; top: 100%; left: 0px; z-index: 100; display: none;"></span></span>\n\n      </div> \n     \n   \n      <!-- **********************************************************************\n      Pan Zoom Control\n      see http://bumbu.github.io/cytoscape.js/debug/ for example of cytoscape.js \n      *********************************************************************** -->\n\n      <div id="pan-zoom-control" class="ui-cytoscape-panzoom">\n        <div class="ui-cytoscape-panzoom-zoom-in ui-cytoscape-panzoom-zoom-button">\n          <span class="icon icon-plus"></span>\n        </div>\n        <div class="ui-cytoscape-panzoom-zoom-out ui-cytoscape-panzoom-zoom-button">\n          <span class="icon icon-minus"></span>\n        </div>\n        <div class="ui-cytoscape-panzoom-reset ui-cytoscape-panzoom-zoom-button">\n          <span class="icon icon-resize-full"></span>\n        </div>\n        <div class="ui-cytoscape-panzoom-slider">\n          <div class="ui-cytoscape-panzoom-slider-background">\n          </div>\n          <div class="ui-cytoscape-panzoom-slider-handle" style="top: 42.80000001192093px;">\n            <span class="icon icon-minus"></span>\n          </div>\n          <div class="ui-cytoscape-panzoom-no-zoom-tick" style="top: 42.80000001192093px;">\n          </div>\n        </div>\n        <div class="ui-cytoscape-panzoom-panner">\n          <div class="ui-cytoscape-panzoom-panner-handle">\n          </div>\n          <div class="ui-cytoscape-panzoom-pan-up ui-cytoscape-panzoom-pan-button">\n          </div>\n          <div class="ui-cytoscape-panzoom-pan-down ui-cytoscape-panzoom-pan-button">\n          </div>\n          <div class="ui-cytoscape-panzoom-pan-left ui-cytoscape-panzoom-pan-button">\n          </div>\n          <div class="ui-cytoscape-panzoom-pan-right ui-cytoscape-panzoom-pan-button">\n          </div>\n          <div class="ui-cytoscape-panzoom-pan-indicator" style="display: none; left: 22.424611085682006px; top: 0.12287108520014556px; background-color: rgb(127, 127, 127); background-position: initial initial; background-repeat: initial initial;">\n          </div>\n        </div>\n      </div>\n\n      <!-- **********************************************************************\n      Fullscreen Control \n      *********************************************************************** -->\n\n      <div id="fullscreen-control" style="position: absolute; bottom: 5px; right: 5px;">\n        <i class="icon-fullscreen" style="color:#aaa"></i>\n      </div>\n   \n\n    <div id="viewer-toolbar" style="position: absolute; top: 0px; right: 0px; height: inherit">\n    </div>\n      \n    <!-- **********************************************************************\n    Details Frame\n    *********************************************************************** -->\n\n    <div id="annotation" class="annotation ui-draggable" style="visibility: hidden; position: absolute; right: 75px; top: 100px;">\n      <header class="annotation-header">\n      <span id="annotation-move" class="annotation-header-move">\n        <i class="icon-move"></i>\n      </span>\n      <span class="annotation-header-close">                                                                                    \n        <i class="icon-remove"></i>                                                                                                                             \n      </span>   \n      <span id="annotation-header-text" class="annotation-header-text">\n        Header\n      </span> \n      <span id="annotation-header-search" class="annotation-header-search" title="Search for pathways containing \'Header Text\'">\n        <a href="http://wikipathways.org//index.php?title=Special:SearchPathways">\n          <i class="icon-search" style="color:blue; font-size:50% ; text-decoration:none"></i>\n        </a>\n      </span>\n      <div id="annotation-description" class="annotation-description">\n        <h2>description</h2>\n      </div>\n      </header>\n      <span class="annotation-items-container">\n        <ul id="annotation-items-container">\n          <!-- List items inside this ul element are generated automatically by JavaScript.\n          Each item will be composed of a title and text. The text can be set to be an href.\n          You can edit the styling of the title by editing CSS class "annotation-item-title"\n          and the styling of the text by editing CSS class "annotation-item-text.\n          -->\n        </ul>\n      </span>\n    </div>\n  </div>\n';
+pathvisioNS["tmp/pathvisiojs.html"] = '<div id="pathvisiojs-container" style="width: inherit; min-width: inherit; max-width: inherit; height: inherit; min-height: inherit; max-height: inherit; position: absolute; ">\n\n    <!-- **********************************************************************\n    Pathway Container (JavaScript inserts pathway image inside this div)\n    *********************************************************************** -->\n\n    <div id="diagram-container" style="width: inherit; min-width: inherit; max-width: inherit; height: inherit; min-height: inherit; max-height: inherit; "></div>\n    \n    <div id="typeahead" style="position: absolute; top: 5px; right: 5px;">\n    <!-- **********************************************************************\n      Highlight Element by Label Control\n      *********************************************************************** -->\n\n      <span class="twitter-typeahead" style="position: relative; display: inline-block;"><input class="tt-hint" type="text" autocomplete="off" spellcheck="off" disabled="" style="position: absolute; top: 0px; left: 0px; border-color: transparent; box-shadow: none; background-attachment: scroll; background-clip: border-box; background-color: rgb(255, 255, 255); background-image: none; background-origin: padding-box; background-size: auto; background-position: 0% 0%; background-repeat: repeat repeat;"><input id="highlight-by-label-input" placeholder="Enter node name to highlight." role="textbox" aria-autocomplete="list" aria-haspopup="true" class="tt-query" autocomplete="off" spellcheck="false" dir="auto" style="position: relative; vertical-align: top; background-color: transparent;"><span style="position: absolute; left: -9999px; visibility: hidden; white-space: nowrap; font-family: Arial; font-size: 12px; font-style: normal; font-variant: normal; font-weight: 400; word-spacing: 0px; letter-spacing: 0px; text-indent: 0px; text-rendering: auto; text-transform: none;"></span><span class="tt-dropdown-menu" style="position: absolute; top: 100%; left: 0px; z-index: 100; display: none;"></span></span>\n\n      </div> \n     \n   \n      <!-- **********************************************************************\n      Pan Zoom Control\n      see http://bumbu.github.io/cytoscape.js/debug/ for example of cytoscape.js \n      *********************************************************************** -->\n\n<!--      <div id="pan-zoom-control" class="ui-cytoscape-panzoom">\n        <div class="ui-cytoscape-panzoom-zoom-in ui-cytoscape-panzoom-zoom-button">\n          <span class="icon icon-plus"></span>\n        </div>\n        <div class="ui-cytoscape-panzoom-zoom-out ui-cytoscape-panzoom-zoom-button">\n          <span class="icon icon-minus"></span>\n        </div>\n        <div class="ui-cytoscape-panzoom-reset ui-cytoscape-panzoom-zoom-button">\n          <span class="icon icon-resize-full"></span>\n        </div>\n        <div class="ui-cytoscape-panzoom-slider">\n          <div class="ui-cytoscape-panzoom-slider-background">\n          </div>\n          <div class="ui-cytoscape-panzoom-slider-handle" style="top: 42.80000001192093px;">\n            <span class="icon icon-minus"></span>\n          </div>\n          <div class="ui-cytoscape-panzoom-no-zoom-tick" style="top: 42.80000001192093px;">\n          </div>\n        </div>\n        <div class="ui-cytoscape-panzoom-panner">\n          <div class="ui-cytoscape-panzoom-panner-handle">\n          </div>\n          <div class="ui-cytoscape-panzoom-pan-up ui-cytoscape-panzoom-pan-button">\n          </div>\n          <div class="ui-cytoscape-panzoom-pan-down ui-cytoscape-panzoom-pan-button">\n          </div>\n          <div class="ui-cytoscape-panzoom-pan-left ui-cytoscape-panzoom-pan-button">\n          </div>\n          <div class="ui-cytoscape-panzoom-pan-right ui-cytoscape-panzoom-pan-button">\n          </div>\n          <div class="ui-cytoscape-panzoom-pan-indicator" style="display: none; left: 22.424611085682006px; top: 0.12287108520014556px; background-color: rgb(127, 127, 127); background-position: initial initial; background-repeat: initial initial;">\n          </div>\n        </div>\n      </div>\n-->\n      <!-- **********************************************************************\n      Fullscreen Control \n      *********************************************************************** -->\n\n      <div id="fit-to-screen-control" class="fit-to-screen-controls" style="position: absolute; bottom: 5px; right: 0px;">                           \n        <img class="icon-screenshot" style="color:#aaa" src="../src/img/fitscreen_icon.png">                                                        \n      </div>    \n\n   <!--   <div id="fullscreen-control" style="position: absolute; bottom: 5px; right: 8px;">\n        <i class="icon-fullscreen" style="color:#aaa"></i>\n      </div>\n   -->\n\n    <div id="viewer-toolbar" style="position: absolute; top: 0px; right: 0px; height: inherit">\n    </div>\n      \n    <!-- **********************************************************************\n    Details Frame\n    *********************************************************************** -->\n\n    <div id="annotation" class="annotation ui-draggable" style="visibility: hidden; position: absolute; right: 75px; top: 100px;">\n      <header class="annotation-header">\n      <span id="annotation-move" class="annotation-header-move">\n        <i class="icon-move"></i>\n      </span>\n      <span class="annotation-header-close">                                                                                    \n        <i class="icon-remove"></i>                                                                                                                             \n      </span>   \n      <span id="annotation-header-text" class="annotation-header-text">\n        Header\n      </span> \n      <span id="annotation-header-search" class="annotation-header-search" title="Search for pathways containing \'Header Text\'">\n        <a href="http://wikipathways.org//index.php?title=Special:SearchPathways">\n          <i class="icon-search" style="color:blue; font-size:50% ; text-decoration:none"></i>\n        </a>\n      </span>\n      <div id="annotation-description" class="annotation-description">\n        <h2>description</h2>\n      </div>\n      </header>\n      <span class="annotation-items-container">\n        <ul id="annotation-items-container">\n          <!-- List items inside this ul element are generated automatically by JavaScript.\n          Each item will be composed of a title and text. The text can be set to be an href.\n          You can edit the styling of the title by editing CSS class "annotation-item-title"\n          and the styling of the text by editing CSS class "annotation-item-text.\n          -->\n        </ul>\n      </span>\n    </div>\n  </div> \n';
+pathvisioNS["tmp/pathvisiojs.svg"] = '<svg id="pathvisiojs-diagram" version="1.1" baseProfile="full" xmlns="http://www.w3.org/1999/xlink" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ev="http://www.w3.org/2001/xml-events" width="100%" height="100%" style="display: inline; width: inherit; min-width: inherit; max-width: inherit; height: inherit; min-height: inherit; max-height: inherit; " preserveAspectRatio="xMidYMid" onmouseup="svgPanZoom.handleMouseUp(evt)" onmousedown="svgPanZoom.handleMouseDown(evt)" onmousemove="svgPanZoom.handleMouseMove(evt)" onmouseleave="svgPanZoom.handleMouseUp(evt)" xlink="http://www.w3.org/1999/xlink" ev="http://www.w3.org/2001/xml-events"><g><desc>This SVG file contains all the graphical elements (markers and symbols in defs as well as\nstyle data) used by the program pathvisiojs, which has two components:\n1) a viewer for transforming GPML biological pathway data into an SVG visual representation and\n2) an editor for creating both views and models for biological pathways.</desc></g><title>pathvisiojs diagram</title><defs><marker id="shape-library-markers-arrow-svg-start-default" preserveAspectRatio="none" viewBox="0 0 12 12" markerWidth="12" markerHeight="12" markerUnits="strokeWidth" orient="auto" refX="0" refY="6"><g id="g-src-shape-library-markers-arrow-svg-start-default" class="solid-stroke default-fill-color">\n\n	<!-- arrow markers: triangular polygons, no stroke -->\n\n	<rect class="board-fill-color" stroke="none" x="0" y="5.4" width="2" height="1.2"></rect>\n	<polygon stroke-width="0" points="12,11 0,6 12,1"></polygon>\n\n</g></marker><marker id="shape-library-markers-arrow-svg-end-default" preserveAspectRatio="none" viewBox="0 0 12 12" markerWidth="12" markerHeight="12" markerUnits="strokeWidth" orient="auto" refX="12" refY="6"><g id="g-src-shape-library-markers-arrow-svg-end-default" class="solid-stroke default-fill-color" transform="rotate(180, 6, 6)">\n\n	<!-- arrow markers: triangular polygons, no stroke -->\n\n	<rect class="board-fill-color" stroke="none" x="0" y="5.4" width="2" height="1.2"></rect>\n	<polygon stroke-width="0" points="12,11 0,6 12,1"></polygon>\n\n</g></marker><marker id="shape-library-markers-mim-necessary-stimulation-svg-start-default" preserveAspectRatio="none" viewBox="0 0 16 12" markerWidth="16" markerHeight="12" markerUnits="strokeWidth" orient="auto" refX="0" refY="6"><g id="g-src-shape-library-markers-mim-necessary-stimulation-svg-start-default" class="board-fill-color default-stroke-color solid-stroke">\n\n	<!-- mim-necessary-stimulation markers: triangular polygons, drawing-board fill, default color stroke; and vertical line -->\n\n	<rect class="board-fill-color" stroke="none" x="0" y="5.4" width="2" height="1.2"></rect>\n	<line fill="none" stroke-width="1" x1="14" y1="0" x2="14" y2="12"></line>\n	<line fill="none" stroke="none" x1="16" y1="6" x2="16" y2="6"></line> <!-- dummy point -->\n	<polygon stroke-width="1" points="0,6 9,11 9,1"></polygon>\n\n</g></marker><marker id="shape-library-markers-mim-necessary-stimulation-svg-end-default" preserveAspectRatio="none" viewBox="0 0 16 12" markerWidth="16" markerHeight="12" markerUnits="strokeWidth" orient="auto" refX="16" refY="6"><g id="g-src-shape-library-markers-mim-necessary-stimulation-svg-end-default" class="board-fill-color default-stroke-color solid-stroke" transform="rotate(180, 8, 6)">\n\n	<!-- mim-necessary-stimulation markers: triangular polygons, drawing-board fill, default color stroke; and vertical line -->\n\n	<rect class="board-fill-color" stroke="none" x="0" y="5.4" width="2" height="1.2"></rect>\n	<line fill="none" stroke-width="1" x1="14" y1="0" x2="14" y2="12"></line>\n	<line fill="none" stroke="none" x1="16" y1="6" x2="16" y2="6"></line> <!-- dummy point -->\n	<polygon stroke-width="1" points="0,6 9,11 9,1"></polygon>\n\n</g></marker><marker id="shape-library-markers-mim-binding-svg-start-default" preserveAspectRatio="none" viewBox="0 0 12 12" markerWidth="12" markerHeight="12" markerUnits="strokeWidth" orient="auto" refX="0" refY="6"><g id="g-src-shape-library-markers-mim-binding-svg-start-default" class="solid-stroke default-fill-color">\n\n	<!-- mim-binding markers: four-point polygon, no stroke -->\n\n	<rect class="board-fill-color" stroke="none" x="0" y="5.4" width="2" height="1.2"></rect>\n	<polygon stroke-width="0" points="12,12 0,6 12,0 5,6 "></polygon>\n\n</g></marker><marker id="shape-library-markers-mim-binding-svg-end-default" preserveAspectRatio="none" viewBox="0 0 12 12" markerWidth="12" markerHeight="12" markerUnits="strokeWidth" orient="auto" refX="12" refY="6"><g id="g-src-shape-library-markers-mim-binding-svg-end-default" class="solid-stroke default-fill-color" transform="rotate(180, 6, 6)">\n\n	<!-- mim-binding markers: four-point polygon, no stroke -->\n\n	<rect class="board-fill-color" stroke="none" x="0" y="5.4" width="2" height="1.2"></rect>\n	<polygon stroke-width="0" points="12,12 0,6 12,0 5,6 "></polygon>\n\n</g></marker><marker id="shape-library-markers-mim-conversion-svg-start-default" preserveAspectRatio="none" viewBox="0 0 12 12" markerWidth="12" markerHeight="12" markerUnits="strokeWidth" orient="auto" refX="0" refY="6"><g id="g-src-shape-library-markers-mim-conversion-svg-start-default" class="solid-stroke default-fill-color">\n\n	<!-- mim-conversion markers: triangular polygons, no stroke -->\n\n	<rect class="board-fill-color" stroke="none" x="0" y="5.4" width="2" height="1.2"></rect>\n	<polygon stroke-width="0" points="12,11 0,6 12,1"></polygon>\n\n</g></marker><marker id="shape-library-markers-mim-conversion-svg-end-default" preserveAspectRatio="none" viewBox="0 0 12 12" markerWidth="12" markerHeight="12" markerUnits="strokeWidth" orient="auto" refX="12" refY="6"><g id="g-src-shape-library-markers-mim-conversion-svg-end-default" class="solid-stroke default-fill-color" transform="rotate(180, 6, 6)">\n\n	<!-- mim-conversion markers: triangular polygons, no stroke -->\n\n	<rect class="board-fill-color" stroke="none" x="0" y="5.4" width="2" height="1.2"></rect>\n	<polygon stroke-width="0" points="12,11 0,6 12,1"></polygon>\n\n</g></marker><marker id="shape-library-markers-mim-stimulation-svg-start-default" preserveAspectRatio="none" viewBox="0 0 12 12" markerWidth="12" markerHeight="12" markerUnits="strokeWidth" orient="auto" refX="0" refY="6"><g id="g-src-shape-library-markers-mim-stimulation-svg-start-default" class="board-fill-color default-stroke-color solid-stroke">\n\n	<!-- mim-stimulation markers: triangular polygons, drawing-board fill, default color stroke -->\n\n	<rect class="board-fill-color" stroke="none" x="0" y="5.4" width="2" height="1.2"></rect>\n	<line stroke="none" fill="none" x1="12" y1="6" x2="12" y2="6"></line> <!-- dummy point -->\n	<polygon stroke-width="1" points="0,6 11,11 11,1"></polygon>\n\n</g></marker><marker id="shape-library-markers-mim-stimulation-svg-end-default" preserveAspectRatio="none" viewBox="0 0 12 12" markerWidth="12" markerHeight="12" markerUnits="strokeWidth" orient="auto" refX="12" refY="6"><g id="g-src-shape-library-markers-mim-stimulation-svg-end-default" class="board-fill-color default-stroke-color solid-stroke" transform="rotate(180, 6, 6)">\n\n	<!-- mim-stimulation markers: triangular polygons, drawing-board fill, default color stroke -->\n\n	<rect class="board-fill-color" stroke="none" x="0" y="5.4" width="2" height="1.2"></rect>\n	<line stroke="none" fill="none" x1="12" y1="6" x2="12" y2="6"></line> <!-- dummy point -->\n	<polygon stroke-width="1" points="0,6 11,11 11,1"></polygon>\n\n</g></marker><marker id="shape-library-markers-mim-modification-svg-start-default" preserveAspectRatio="none" viewBox="0 0 12 12" markerWidth="12" markerHeight="12" markerUnits="strokeWidth" orient="auto" refX="0" refY="6"><g id="g-src-shape-library-markers-mim-modification-svg-start-default" class="default-fill-color solid-stroke">\n\n	<!-- mim-modification markers: four-point polygon, no stroke -->\n\n	<rect class="board-fill-color" stroke="none" x="0" y="5.4" width="2" height="1.2"></rect>\n	<polygon stroke-width="0" points="12,12 0,6 12,0 5,6 "></polygon>\n\n</g></marker><marker id="shape-library-markers-mim-modification-svg-end-default" preserveAspectRatio="none" viewBox="0 0 12 12" markerWidth="12" markerHeight="12" markerUnits="strokeWidth" orient="auto" refX="12" refY="6"><g id="g-src-shape-library-markers-mim-modification-svg-end-default" class="default-fill-color solid-stroke" transform="rotate(180, 6, 6)">\n\n	<!-- mim-modification markers: four-point polygon, no stroke -->\n\n	<rect class="board-fill-color" stroke="none" x="0" y="5.4" width="2" height="1.2"></rect>\n	<polygon stroke-width="0" points="12,12 0,6 12,0 5,6 "></polygon>\n\n</g></marker><marker id="shape-library-markers-mim-catalysis-svg-start-default" preserveAspectRatio="none" viewBox="0 0 12 12" markerWidth="12" markerHeight="12" markerUnits="strokeWidth" orient="auto" refX="0" refY="6"><g id="g-src-shape-library-markers-mim-catalysis-svg-start-default" class="board-fill-color default-stroke-color solid-stroke">\n\n	<!-- mim-catalysis markers: circle, drawing-board fill and default color stroke -->\n\n	<circle cx="6.0" cy="6" r="5.3px" stroke-width="1px"></circle>\n\n</g></marker><marker id="shape-library-markers-mim-catalysis-svg-end-default" preserveAspectRatio="none" viewBox="0 0 12 12" markerWidth="12" markerHeight="12" markerUnits="strokeWidth" orient="auto" refX="12" refY="6"><g id="g-src-shape-library-markers-mim-catalysis-svg-end-default" class="board-fill-color default-stroke-color solid-stroke" transform="rotate(180, 6, 6)">\n\n	<!-- mim-catalysis markers: circle, drawing-board fill and default color stroke -->\n\n	<circle cx="6.0" cy="6" r="5.3px" stroke-width="1px"></circle>\n\n</g></marker><marker id="shape-library-markers-mim-inhibition-svg-start-default" preserveAspectRatio="none" viewBox="0 0 10 20" markerWidth="10" markerHeight="20" markerUnits="strokeWidth" orient="auto" refX="0" refY="10"><g id="g-src-shape-library-markers-mim-inhibition-svg-start-default" class="board-fill-color default-stroke-color solid-stroke">\n\n	<!-- mim-inhibition markers: vertical line; and extended drawing-board rect -->\n	\n	<rect stroke="none" x="0" y="9" width="8" height="2"></rect>\n	<line fill="none" stroke-width="1.8" x1="7" y1="0" x2="7" y2="20"></line>\n\n</g></marker><marker id="shape-library-markers-mim-inhibition-svg-end-default" preserveAspectRatio="none" viewBox="0 0 10 20" markerWidth="10" markerHeight="20" markerUnits="strokeWidth" orient="auto" refX="10" refY="10"><g id="g-src-shape-library-markers-mim-inhibition-svg-end-default" class="board-fill-color default-stroke-color solid-stroke" transform="rotate(180, 5, 10)">\n\n	<!-- mim-inhibition markers: vertical line; and extended drawing-board rect -->\n	\n	<rect stroke="none" x="0" y="9" width="8" height="2"></rect>\n	<line fill="none" stroke-width="1.8" x1="7" y1="0" x2="7" y2="20"></line>\n\n</g></marker><marker id="shape-library-markers-mim-cleavage-svg-start-default" preserveAspectRatio="none" viewBox="0 0 20 30" markerWidth="20" markerHeight="30" markerUnits="strokeWidth" orient="auto" refX="9" refY="15"><g id="g-src-shape-library-markers-mim-cleavage-svg-start-default" class="board-fill-color default-stroke-color solid-stroke">\n\n	<!-- mim-cleavage markers: two lines and extended drawing-board rect -->\n\n	<rect stroke="none" x="0" y="14.3" width="18.4" height="1.4"></rect>\n	<line fill="none" stroke-width="1" x1="18" y1="14.5" x2="18" y2="30"></line>	\n	<line fill="none" stroke-width="1" x1="18" y1="30" x2="0" y2="0"></line>	\n\n\n</g></marker><marker id="shape-library-markers-mim-cleavage-svg-end-default" preserveAspectRatio="none" viewBox="0 0 20 30" markerWidth="20" markerHeight="30" markerUnits="strokeWidth" orient="auto" refX="10" refY="15"><g id="g-src-shape-library-markers-mim-cleavage-svg-end-default" class="board-fill-color default-stroke-color solid-stroke" transform="rotate(180, 10, 15)">\n\n	<!-- mim-cleavage markers: two lines and extended drawing-board rect -->\n\n	<rect stroke="none" x="0" y="14.3" width="18.4" height="1.4"></rect>\n	<line fill="none" stroke-width="1" x1="18" y1="14.5" x2="18" y2="30"></line>	\n	<line fill="none" stroke-width="1" x1="18" y1="30" x2="0" y2="0"></line>	\n\n\n</g></marker><marker id="shape-library-markers-mim-covalent-bond-svg-start-default" preserveAspectRatio="none" viewBox="0 0 12 12" markerWidth="12" markerHeight="12" markerUnits="strokeWidth" orient="auto" refX="-0.5" refY="6"><g id="g-src-shape-library-markers-mim-covalent-bond-svg-start-default" class="solid-stroke default-fill-color">\n\n	<!-- mim-covalent-bond markers: not much to see here! -->\n	<rect x="0" y="0" width="0" height="0" stroke="none" fill="none" stroke-width="0"></rect>\n\n</g></marker><marker id="shape-library-markers-mim-covalent-bond-svg-end-default" preserveAspectRatio="none" viewBox="0 0 12 12" markerWidth="12" markerHeight="12" markerUnits="strokeWidth" orient="auto" refX="11" refY="6"><g id="g-src-shape-library-markers-mim-covalent-bond-svg-end-default" class="solid-stroke default-fill-color" transform="rotate(180, 6, 6)">\n\n	<!-- mim-covalent-bond markers: not much to see here! -->\n	<rect x="0" y="0" width="0" height="0" stroke="none" fill="none" stroke-width="0"></rect>\n\n</g></marker><marker id="shape-library-markers-mim-transcription-translation-svg-start-default" preserveAspectRatio="none" viewBox="0 0 20 24" markerWidth="20" markerHeight="24" markerUnits="strokeWidth" orient="auto" refX="0" refY="12"><g id="g-src-shape-library-markers-mim-transcription-translation-svg-start-default" class="board-fill-color default-stroke-color solid-stroke">\n\n	<!-- mim-transcription-translation markers: two lines and an open trigular polygon, plus extended drawing-board rect -->\n\n	<rect stroke="none" x="0" y="11" width="12" height="2"></rect>\n	<line fill="none" stroke-width="1" x1="15" y1="12" x2="15" y2="5"></line>\n	<line fill="none" stroke-width="1" x1="15.5" y1="5" x2="8" y2="5"></line>\n	<polygon stroke-width="1" points="0,5 8,1 8,9"></polygon>\n\n</g></marker><marker id="shape-library-markers-mim-transcription-translation-svg-end-default" preserveAspectRatio="none" viewBox="0 0 20 24" markerWidth="20" markerHeight="24" markerUnits="strokeWidth" orient="auto" refX="20" refY="12"><g id="g-src-shape-library-markers-mim-transcription-translation-svg-end-default" class="board-fill-color default-stroke-color solid-stroke" transform="rotate(180, 10, 12)">\n\n	<!-- mim-transcription-translation markers: two lines and an open trigular polygon, plus extended drawing-board rect -->\n\n	<rect stroke="none" x="0" y="11" width="12" height="2"></rect>\n	<line fill="none" stroke-width="1" x1="15" y1="12" x2="15" y2="5"></line>\n	<line fill="none" stroke-width="1" x1="15.5" y1="5" x2="8" y2="5"></line>\n	<polygon stroke-width="1" points="0,5 8,1 8,9"></polygon>\n\n</g></marker><marker id="shape-library-markers-mim-gap-svg-start-default" preserveAspectRatio="none" viewBox="0 0 12 12" markerWidth="12" markerHeight="12" markerUnits="strokeWidth" orient="auto" refX="0" refY="6"><g id="g-src-shape-library-markers-mim-gap-svg-start-default" class="board-fill-color solid-stroke">\n\n	<!-- mim-gap markers: just an extended drawing-board rect -->\n	<!-- \n	TODO This could be refactored to make the shape match the viewbox.\n	It can overlap the side of the shape, blanking out a small part of it when the edge is at an angle.\n	-->\n\n	<rect stroke="none" x="0" y="5.3" width="8" height="1.4"></rect>\n\n</g></marker><marker id="shape-library-markers-mim-gap-svg-end-default" preserveAspectRatio="none" viewBox="0 0 12 12" markerWidth="12" markerHeight="12" markerUnits="strokeWidth" orient="auto" refX="12" refY="6"><g id="g-src-shape-library-markers-mim-gap-svg-end-default" class="board-fill-color solid-stroke" transform="rotate(180, 6, 6)">\n\n	<!-- mim-gap markers: just an extended drawing-board rect -->\n	<!-- \n	TODO This could be refactored to make the shape match the viewbox.\n	It can overlap the side of the shape, blanking out a small part of it when the edge is at an angle.\n	-->\n\n	<rect stroke="none" x="0" y="5.3" width="8" height="1.4"></rect>\n\n</g></marker><marker id="shape-library-markers-t-bar-svg-start-default" preserveAspectRatio="none" viewBox="0 0 10 20" markerWidth="10" markerHeight="20" markerUnits="strokeWidth" orient="auto" refX="0" refY="10"><g id="g-src-shape-library-markers-t-bar-svg-start-default" class="board-fill-color default-stroke-color solid-stroke">\n\n        <!-- t-bar markers: vertical line; and extended drawing-board rect -->\n	\n	<rect stroke="none" x="0" y="9" width="8" height="2"></rect>\n	<line fill="none" stroke-width="1.8" x1="7" y1="0" x2="7" y2="20"></line>\n\n</g></marker><marker id="shape-library-markers-t-bar-svg-end-default" preserveAspectRatio="none" viewBox="0 0 10 20" markerWidth="10" markerHeight="20" markerUnits="strokeWidth" orient="auto" refX="10" refY="10"><g id="g-src-shape-library-markers-t-bar-svg-end-default" class="board-fill-color default-stroke-color solid-stroke" transform="rotate(180, 5, 10)">\n\n        <!-- t-bar markers: vertical line; and extended drawing-board rect -->\n	\n	<rect stroke="none" x="0" y="9" width="8" height="2"></rect>\n	<line fill="none" stroke-width="1.8" x1="7" y1="0" x2="7" y2="20"></line>\n\n</g></marker><marker id="shape-library-markers-none-svg-start-default" preserveAspectRatio="none" viewBox="0 0 0 0" markerWidth="0" markerHeight="0" markerUnits="strokeWidth" orient="auto" refX="0" refY="6"><g id="g-src-shape-library-markers-none-svg-start-default" class="board-fill-color board-stroke-color node shape">\n\n	<rect x="0" y="0" width="0" height="0" stroke="none" fill="none" stroke-width="0"></rect>\n\n</g></marker><marker id="shape-library-markers-none-svg-end-default" preserveAspectRatio="none" viewBox="0 0 0 0" markerWidth="0" markerHeight="0" markerUnits="strokeWidth" orient="auto" refX="11" refY="6"><g id="g-src-shape-library-markers-none-svg-end-default" class="board-fill-color board-stroke-color node shape" transform="rotate(180, 0, 0)">\n\n	<rect x="0" y="0" width="0" height="0" stroke="none" fill="none" stroke-width="0"></rect>\n\n</g></marker><marker id="shape-library-markers-mim-branching-left-svg-start-default" preserveAspectRatio="none" viewBox="0 0 12 12" markerWidth="12" markerHeight="12" markerUnits="strokeWidth" orient="auto" refX="0.4" refY="6"><g id="g-src-shape-library-markers-mim-branching-left-svg-start-default" class="board-fill-color default-stroke-color solid-stroke">\n\n	<!-- mim-branching-left markers: line and extended drawing-board rect -->\n\n	<rect stroke="none" x="0.4" y="5.3" width="3.1" height="1.4"></rect>\n	<line fill="none" stroke-width="1" x1="3.9" y1="6.2" x2="0.2" y2="0"></line>	\n\n</g></marker><marker id="shape-library-markers-mim-branching-left-svg-end-default" preserveAspectRatio="none" viewBox="0 0 12 12" markerWidth="12" markerHeight="12" markerUnits="strokeWidth" orient="auto" refX="11.6" refY="6"><g id="g-src-shape-library-markers-mim-branching-left-svg-end-default" class="board-fill-color default-stroke-color solid-stroke" transform="rotate(180, 6, 6)">\n\n	<!-- mim-branching-left markers: line and extended drawing-board rect -->\n\n	<rect stroke="none" x="0.4" y="5.3" width="3.1" height="1.4"></rect>\n	<line fill="none" stroke-width="1" x1="3.9" y1="6.2" x2="0.2" y2="0"></line>	\n\n</g></marker><marker id="shape-library-markers-mim-branching-right-svg-start-default" preserveAspectRatio="none" viewBox="0 0 4 12" markerWidth="4" markerHeight="12" markerUnits="strokeWidth" orient="auto" refX="0.4" refY="6"><g id="g-src-shape-library-markers-mim-branching-right-svg-start-default" class="board-fill-color default-stroke-color solid-stroke">\n\n	<!-- mim-branching-right markers: line and extended drawing-board rect -->\n\n	<rect stroke="none" x="0.4" y="5.3" width="3.1" height="1.4"></rect>\n	<line fill="none" stroke-width="1" x1="0.2" y1="12" x2="3.9" y2="5.8"></line>	\n\n</g></marker><marker id="shape-library-markers-mim-branching-right-svg-end-default" preserveAspectRatio="none" viewBox="0 0 4 12" markerWidth="4" markerHeight="12" markerUnits="strokeWidth" orient="auto" refX="3.6" refY="6"><g id="g-src-shape-library-markers-mim-branching-right-svg-end-default" class="board-fill-color default-stroke-color solid-stroke" transform="rotate(180, 2, 6)">\n\n	<!-- mim-branching-right markers: line and extended drawing-board rect -->\n\n	<rect stroke="none" x="0.4" y="5.3" width="3.1" height="1.4"></rect>\n	<line fill="none" stroke-width="1" x1="0.2" y1="12" x2="3.9" y2="5.8"></line>	\n\n</g></marker><style type="text/css">	svg {\n		color-interpolation: auto;\n		image-rendering: auto;\n		shape-rendering: auto;\n		vector-effect: non-scaling-stroke;\n                background: white;\n	/* removed fill and stroke since they override marker specs */\n	/*	fill: white;\n    		stroke: black; */\n	}\n\n	/* default color for pathway elements */\n	.default-fill-color {\n		fill: black; \n	}\n	.default-stroke-color {\n		stroke: black;\n	}\n	\n	/* default color of the background drawing board */ 	\n	.board-fill-color {\n		fill: white;\n	}\n	.board-stroke-color {\n		stroke: white;\n	}\n\n	.text-area {\n		font-family: Sans-Serif, Helvetica, Arial;\n		text-align: center;\n		vertical-align: middle;\n		font-size: 10px;\n		fill: black;\n		fill-opacity: 1;\n		stroke: none;\n	}\n\n	.citation {\n		font-family: Sans-Serif, Helvetica, Arial;\n		text-align: center;\n		vertical-align: top;\n		font-size: 7px;\n		fill: #999999;\n		fill-opacity: 1;\n		stroke: none;\n	}\n\n	.info-box {\n		font-family: Sans-Serif;\n		font-size: 10px;\n		fill: black;\n		stroke: none;\n		text-align: left;\n		vertical-align: top;\n	}\n\n	.info-box-item-property-name {\n		font-weight: bold;\n	}\n\n	.info-box-item-property-value {\n	}\n\n	.data-node {\n		text-align: right;\n		fill-opacity: 1;\n		fill: white;\n		stroke: black;\n		stroke-width: 1;\n		stroke-dasharray: 0;\n		stroke-miterlimit: 1;\n    		pointer-events:auto;\n	}\n	.data-node:hover {\n	 	cursor: pointer;\n	}\n	\n	.has-xref {\n	}\n\n	.data-node.gene-product {\n	}\n\n	.metabolite {\n		stroke: blue;\n	}\n\n	.data-node.metabolite &gt; .text-area {\n		fill: blue;\n		fill-opacity: 1;\n		stroke: none;\n	}\n\n	.data-node.pathway {\n		stroke: none;\n		fill-opacity: 0;\n	}\n\n	.data-node.pathway &gt; .text-area {\n		fill: rgb(20,150,30);\n		fill-opacity: 1;\n		font-size: 12px;\n		font-weight: bold;\n	}\n\n	.data-node.protein {\n	}\n\n	.data-node.rna {\n	}\n\n	.data-node.unknown {\n	}\n\n	.label {\n		stroke: null;\n		stroke-width: 0;\n		fill-opacity: 0;\n		stroke-dasharray: 0;\n		stroke-miterlimit: 1;\n	}\n\n	.shape {\n		fill-opacity: 0;\n		stroke: black;\n		stroke-dasharray: 0;\n		stroke-miterlimit: 1;\n	}\n\n	.shape.none {\n		fill: none;\n		fill-opacity: 0;\n		stroke: none;\n	}\n\n	g.group-node &gt; .shape {\n		fill-opacity: 0.098;\n		stroke: gray;\n		stroke-miterlimit: 1;\n		stroke-width: 1px;\n    		pointer-events:none;\n	}\n\n	.group-node {\n		fill-opacity: 0.098;\n		stroke: gray;\n		stroke-miterlimit: 1;\n		stroke-width: 1px;\n    		pointer-events:none;\n	}\n\n	.group-node &gt; .text-area {\n		fill-opacity: 0.4;\n		font-family: Serif, Times;\n		font-size: 32px;\n		fill: black;\n		stroke-width: 0;\n		font-weight: bold;\n  	}	\n\n	.group-node.none {\n		fill: rgb(180,180,100);\n		stroke-dasharray: 5,3;\n	}\n\n	.group-node.none &gt; .text-area {\n		display: none;\n  	}	\n\n	/*.group-node.none:hover {\n		fill: rgb(255,180,100);\n		fill-opacity: 0.05;\n	}*/\n\n	.group-node.group {\n		fill-opacity: 0;\n		stroke: none;\n	}\n\n	.group-node.group &gt; .text-area {\n		display: none;\n  	}\n	/*.group-node.group:hover {\n		fill: rgb(0,0,255);\n		stroke-width: 1px;\n		stroke-dasharray: 5,3;\n		stroke: gray;\n		fill-opacity: 0.1;\n	}*/\n\n	.group-node.complex {\n		fill: rgb(180,180,100);\n	}\n\n	.group-node.complex &gt; .text-area {\n		display: none;\n  	}\n	/*.group-node.complex:hover {\n		fill: rgb(255,0,0);\n		fill-opacity: 0.05;\n	}*/	\n\n  	.group-node.pathway {\n		fill: rgb(0,255,0);\n		stroke-dasharray: 5,3;\n	}\n	/*.group-node.pathway:hover {\n		fill: rgb(0,255,0);\n		fill-opacity: 0.2;\n	}*/\n	.group-node.pathway &gt; .text-area {\n		fill: rgb(20,150,30);\n		stroke: rgb(20,150,30);\n  }\n\n  .cellular-component {\n		fill-opacity: 0;\n		stroke: silver;\n	}\n\n  .graphical-line {\n		fill:none;\n		stroke: black; \n		stroke-width: 1px; \n	}\n\n	.interaction {\n		fill:none;\n		stroke: black; \n		stroke-width: 1px; \n	}\n\n	marker {\n		/* this is what should work per the spec\n		   stroke-dasharray: none; */\n		/* but I need to add this to make it work in Safari */\n		stroke-dasharray: 9999999999999999999999999;\n	}\n\n  .marker-end {\n    -webkit-transform: rotate(180deg);\n    -webkit-transform-origin: 50% 50%;\n\n    -o-transform: rotate(180deg); \n    -o-transform-origin: 50% 50%;\n\n    transform: rotate(180deg);\n    transform-origin: 50% 50%;\n  }\n\n	.solid-stroke {\n		/* this is what should work per the spec\n		   stroke-dasharray: none; */\n		/* but I need to add this to make it work in Safari */\n		stroke-dasharray: 9999999999999999999999999;\n	}\n\n	.dashed-stroke {\n		stroke-dasharray: 5,3;\n	}\n\n  .highlighted-node {\n		fill: yellow;\n    fill-opacity: 0.2;\n		stroke: orange; \n    stroke-width: 3px;\n  }\n</style></defs><filter id="highlight" width="150%" height="150%"><feOffset result="offOut" in="SourceGraphic" dx="30" dy="30"></feOffset><feGaussianBlur result="blurOut" in="offOut" stdDeviation="10"></feGaussianBlur><feBlend in="SourceGraphic" in2="blurOut" mode="normal"></feBlend></filter><g id="viewport" transform="matrix(0.6710888444694338, 0, 0, 0.6710888444694338, 364.8176552543344, 20) "></g></svg>\n';
 ;
 
 "use strict"
@@ -13,231 +14,48 @@ var pathvisiojs = function(){
 
   var svg, pathway, args;
 
-  function getUrisForWikiPathwaysId(wikiPathwaysId, revision) {
-    var results = {};
-    var re = /wikipathways\.org/; 
-    var isOnWikiPathwaysDomain = re.test(document.location.origin);
-    var PathwayViewer_viewers = PathwayViewer_viewers || [];
-
-    if (pathvisiojs.utilities.isWikiPathwaysId(wikiPathwaysId)) {
-      if (PathwayViewer_viewers.length > 0 && isOnWikiPathwaysDomain) {
-        results.uri = PathwayViewer_viewers[0].gpml.gpmlUrl;
-      }
-      else {
-        results.uri = pathvisiojs.config.gpmlSourceUriStub() + wikiPathwaysId + '&rev=' + revision;
-      }
-      //results.cached = 'https://pathways.firebaseio.com/' + wikiPathwaysId + '.json';
-      results.type = 'GPML';
-      results.pathwayIri = 'wpId:' + wikiPathwaysId + '#';
-    }
-    else {
-      throw new Error('Pathvisiojs cannot handle the data source type entered.');
-    }
-
-    // be sure server has set gpml mime type to application/xml or application/gpml+xml
-
-    return results;
-  }
-
-  function parseInputData(inputData) {
-    // TODO get urls elsewhere:
-    // gpml in pathvisiojs.data.gpml...
-    // png in pathvisio.view.pathwayDiagram.png...
-    var parsedInputData = {};
-
-    // inputData can be a WikiPathways ID (WP1), a uri for a GPML file (http://www.wikipathways.org/gpmlfile.gpml)
-    // or a uri for another type of file.
-
-    if (pathvisiojs.utilities.getObjectType(inputData) === 'Object') {
-      inputData.revision = inputData.revision || 0;
-      parsedInputData = getUrisForWikiPathwaysId(inputData.wikiPathwaysId, 0);
-      parsedInputData.wikiPathwaysId = inputData.wikiPathwaysId;
-      parsedInputData.revision = inputData.revision;
-    }
-    else {
-      if (pathvisiojs.utilities.isUrl(inputData)) {
-        parsedInputData.uri = inputData;
-        if (parsedInputData.uri.indexOf('.gpml') > -1) {
-          parsedInputData.type = 'GPML';
-          parsedInputData.pathwayIri = inputData + '#';
-          return parsedInputData;
-        }
-        else {
-          throw new Error('Pathvisiojs cannot handle the data source type entered.');
-        }
-      }
-      else {
-        parsedInputData = getUrisForWikiPathwaysId(inputData, 0);
-        parsedInputData.wikiPathwaysId = inputData;
-        parsedInputData.revision = 0;
-      }
-    }
-    return parsedInputData;
-  }
-
-  function getJson(parsedInputData, callback) {
-
-    // This function converts data specified by parsedInputData to formatted JSON
-    // and return the JSON to the function that called getJson()
-
-
-    // For now, pathvisio.js will attempt to convert any input data, as long as it is of type
-    // GPML or has no type specified, into JSON.
-    // TODO Later, this functionality can be extended to include other data types and
-    // to test for data type when it is not specified.
-
-    if (!!parsedInputData.uri && (!parsedInputData.type || parsedInputData.type === 'GPML')) {
-
-      // This is just an experiment with using mongodb for caching json,
-      // but the higher priority for now would be to cache the SVG.
-      // Caching the json would be part of having the API deliver results
-      // in JSON format.
-      /*
-      d3.json(parsedInputData.cached, function(json) {
-        callback(json);
-      });
-      //*/
-
-      // TODO d3.xml doesn't seem to work with IE8
-
-      //*
-      d3.xml(parsedInputData.uri, function(gpml) {
-        pathvisiojs.data.gpml.toRenderableJson(gpml, parsedInputData.pathwayIri, function(json) {
-          callback(json);
-        });
-      });
-      //*/
-    }
-    else {
-      return new Error('No data source specified or pathvisio.js cannot handle the data source specified.');
-
-    }
-  }
-
   function load(args) {
+    console.log(args);
 
     // for now, load will just load a visual representation of a pathway, but
-    // this could change in the future
+    // this could change in the future if we add capabilities for analytics or data conversion.
 
     // ********************************************
-    // Check for minimum required set of parameters
+    // Check that required parameters are present
     // ********************************************
 
     if (!args.container) {
-      throw new Error('No container selector specified as container for pathvisiojs.');
+      throw new Error('No container selector specified to indicate where to insert the diagram.');
+    }
+    if (!args.sourceData[0].uri) {
+      throw new Error('No sourceData uri specified.');
     }
 
-    // args.data can be either of the following:
-    // 1) a uri to a GPML file
-    //    (in the future, we may add the ability to handle other file types.
-    //    we could also consider handling json data objects so that pvjs
-    //    could work with other JS libraries.)
-    // 2) a WikiPathways pathway ID, like "WP1"
-    if (!args.data) {
-      throw new Error('No input data source (URL or WikiPathways ID) specified.');
-    }
+    var configArray = d3.map(pathvisiojs.config).entries();
+    var updateConfigsAsNeeded = function(configElement, callback) {
+      if (args.hasOwnProperty(configElement.key)) {
+        pathvisiojs.config[configElement.key] = args[configElement.key];
+      }
+      callback(null);
+    };
 
-    var parsedInputData = parseInputData(args.data);
-    console.log('parsedInputData');
-    console.log(parsedInputData);
-    args.data = parsedInputData;
-    pathvisiojs.view.pathwayDiagram.load(args);
+    async.each(configArray, updateConfigsAsNeeded, function(err){
+      console.log(pathvisiojs.config.bridgedbLinkOutsUriStub);
+      pathvisiojs.view.pathwayDiagram.load(args);
+    });
   }
 
   return {
-    load:load,
-    getJson:getJson
-  };
-}();
-;
-
-"use strict";
-
-pathvisiojs.config = function() {
-  var gpmlSourceUriStub = function() {
-    if(typeof console !== "undefined") {
-      console.warn('WikiPathways does not yet support CORS, so until we get CORS support, we are using Pointer as a proxy to enable CORS for getting GPML.');
-    }
-    return 'http://pointer.ucsf.edu/d3/r/data-sources/gpml.php?id=';
-  }
-
-  var bridgedbLinkOutsUrlStub = function() {
-    return 'http://pointer.ucsf.edu/d3/r/data-sources/bridgedb/bridgedb.php/';
-  }
-
-  var bridgedbDatasources = function() {
-    return '../external-data/bridgedb/datasources.txt';
-  }
-
-  var diagramNotAvailableImageUri = function() {
-    // TODO update this link to a URL we control
-    return 'http://upload.wikimedia.org/wikipedia/commons/3/3b/Picture_Not_Yet_Available.png';
-  }
-
-  var pngDiagramUriStub = function() {
-    return 'http://www.wikipathways.org/wpi//wpi.php?action=downloadFile&type=png&pwTitle=Pathway:';
-  }
-
-  var pathwaySearchUriStub = function() {
-    return 'http://wikipathways.org//index.php?title=Special:SearchPathways&doSearch=1&query=';
-  }
-
-  return {
-    gpmlSourceUriStub:gpmlSourceUriStub,
-    bridgedbLinkOutsUrlStub:bridgedbLinkOutsUrlStub,
-    bridgedbDatasources:bridgedbDatasources,
-    pngDiagramUriStub:pngDiagramUriStub,
-    diagramNotAvailableImageUri:diagramNotAvailableImageUri,
-    pathwaySearchUriStub:pathwaySearchUriStub
+    load:load
   };
 }();
 ;
 
 pathvisiojs.utilities = function(){
 
-  // from http://stackoverflow.com/questions/2454295/javascript-concatenate-properties-from-multiple-objects-associative-array
-
-  function collect() {
-    var ret = {};
-    var len = arguments.length;
-    for (var i=0; i<len; i++) {
-      for (p in arguments[i]) {
-        if (arguments[i].hasOwnProperty(p)) {
-          ret[p] = arguments[i][p];
-        }
-      }
-    }
-    return ret;
-  }
-
-  /**
-   * From http://stackoverflow.com/questions/7770235/change-text-direction-of-textbox-automatically
-   * What about Chinese characters that go top to bottom?
-   */
-
-  function getTextDirection(text) {
-
-    var x =  new RegExp("[\x00-\x80]+"); // is ascii
-
-    //alert(x.test($this.val()));
-
-    var isAscii = x.test(text);
-
-    var direction;
-    if (isAscii) {
-      direction = "ltr";
-    }
-    else {
-      direction = "rtl";
-    }
-
-    return direction;
-  }  
-
   // from here: http://www.cjboco.com/blog.cfm/post/determining-an-elements-width-and-height-using-javascript/
   // TODO have not tested x-browser yet.
   // could use jquery, but I want to remove it as a dependency for pv.js.
-
   Element.prototype.getElementWidth = function() {
     if (typeof this.clip !== "undefined") {
       return this.clip.width;
@@ -262,41 +80,19 @@ pathvisiojs.utilities = function(){
     }
   };
 
-  function strToHtmlId(str) {
-    var re = /\W/gi;
-    var id = str.replace(re, "");
-    return id;
+  function collect() {
+    // from http://stackoverflow.com/questions/2454295/javascript-concatenate-properties-from-multiple-objects-associative-array
+    var ret = {};
+    var len = arguments.length;
+    for (var i=0; i<len; i++) {
+      for (p in arguments[i]) {
+        if (arguments[i].hasOwnProperty(p)) {
+          ret[p] = arguments[i][p];
+        }
+      }
+    }
+    return ret;
   }
-
-  function isUrl(str) {
-
-    // from https://gist.github.com/samuelcole/920312
-
-    var urlPattern = /(?:(?=[\s`!()\[\]{};:'".,<>?«»“”‘’])|\b)((?:[a-z][\w-]+:(?:\/{1,3}|[a-z0-9%])|www\d{0,3}[.]|[a-z0-9.\-]+[.][a-z]{2,4}\/|[a-z0-9.\-]+[.](?:com|org|net))(?:[^\s()<>]+|\(([^\s()<>]+|(\([^\s()<>]+\)))*\))*(?:\(([^\s()<>]+|(\([^\s()<>]+\)))*\)|[^\s`!()\[\]{};:'".,<>?«»“”‘’]|\b))/gi;
-    return urlPattern.test(str);
-  }
-
-  function splitStringByNewLine(str) {
-
-    // PathVisio (Java) uses '&#xA;' for indicating newline, and browsers convert this into '\r\n' or '\n' in JavaScript.
-
-    return str.split(/\r\n|\r|\n/g);
-  }
-
-  // this both clones a node and inserts it at the same level of the DOM
-  // as the element it was cloned from.
-  // it returns a d3 selection of the cloned element
-  function cloneNode(selector) {
-    var node = d3.select(selector).node();
-    return d3.select(node.parentNode.insertBefore(node.cloneNode(true), node.nextSibling));
-  }
-
-  // see http://stackoverflow.com/questions/18082/validate-numbers-in-javascript-isnumeric
-
-  function isNumber(n) {
-    return !isNaN(parseFloat(n)) && isFinite(n);
-  }
-
 
   function clone(src) {
     function mixin(dest, source, copyFunc) {
@@ -350,29 +146,12 @@ pathvisiojs.utilities = function(){
 
   }  
 
-  function getUrlParam(name) {
-
-    // Thanks to http://stackoverflow.com/questions/11582512/how-to-get-url-parameters-with-javascript
-    // This will be replaced once we get the backend php to get the json
-
-    var parameter = decodeURIComponent((new RegExp('[?|&]' + name + '=' + '([^&;]+?)(&|#|;|$)').exec(location.search)||[,""])[1].replace(/\+/g, '%20'))||null;
-    if (!!parameter) {
-      return parameter;
-    }
-    else {
-      console.warn('Warning: URL parameter "' + name + '" is null.');
-      return null;
-    }
-  }
-
-  function isWikiPathwaysId(data) {
-    data = data.trim();
-    if (data.substr(0,2).toUpperCase() === 'WP' && isNumber(data.substr(data.length - 1))) {
-      return true;
-    }
-    else {
-      return false;
-    }
+  // this both clones a node and inserts it at the same level of the DOM
+  // as the element it was cloned from.
+  // it returns a d3 selection of the cloned element
+  function cloneNode(selector) {
+    var node = d3.select(selector).node();
+    return d3.select(node.parentNode.insertBefore(node.cloneNode(true), node.nextSibling));
   }
 
   function convertToArray(object) {
@@ -414,7 +193,42 @@ pathvisiojs.utilities = function(){
     return result;
   }
 
-  function getWindowDimensions(object) {
+  function getTextDirection(text) {
+    /**
+     * From http://stackoverflow.com/questions/7770235/change-text-direction-of-textbox-automatically
+     * What about Chinese characters that go top to bottom?
+     */
+    var x =  new RegExp("[\x00-\x80]+"); // is ascii
+
+    //alert(x.test($this.val()));
+
+    var isAscii = x.test(text);
+
+    var direction;
+    if (isAscii) {
+      direction = "ltr";
+    }
+    else {
+      direction = "rtl";
+    }
+
+    return direction;
+  }  
+
+  function getUriParam(name) {
+    // Thanks to http://stackoverflow.com/questions/11582512/how-to-get-uri-parameters-with-javascript
+    // This will be replaced once we get the backend php to get the json
+    var parameter = decodeURIComponent((new RegExp('[?|&]' + name + '=' + '([^&;]+?)(&|#|;|$)').exec(location.search)||[,""])[1].replace(/\+/g, '%20'))||null;
+    if (!!parameter) {
+      return parameter;
+    }
+    else {
+      console.warn('Warning: URL parameter "' + name + '" is null.');
+      return null;
+    }
+  }
+
+ function getWindowDimensions(object) {
     var winW = 630, winH = 460;
     if (document.body && document.body.width) {
      winW = document.body.width;
@@ -433,9 +247,46 @@ pathvisiojs.utilities = function(){
     return {'width':winW, 'height':winH};
   }
 
-  // from http://stackoverflow.com/questions/5306680/move-an-array-element-from-one-array-position-to-another
+  function intersect(a, b) {
+    // modified version of https://github.com/juliangruber/intersect/blob/master/index.js
+    var res = [];
+    for (var i = 0; i < a.length; i++) {
+      if (b.indexOf(a[i]) > -1) res.push(a[i]);
+    }
+    return res;
+  }
+
+  function isIE() {
+    var myNav = navigator.userAgent.toLowerCase();
+    return (myNav.indexOf('msie') != -1) ? parseInt(myNav.split('msie')[1]) : false;
+  }
+
+  function isUri(str) {
+    // from https://gist.github.com/samuelcole/920312
+    var uriPattern = /(?:(?=[\s`!()\[\]{};:'".,<>?«»“”‘’])|\b)((?:[a-z][\w-]+:(?:\/{1,3}|[a-z0-9%])|www\d{0,3}[.]|[a-z0-9.\-]+[.][a-z]{2,4}\/|[a-z0-9.\-]+[.](?:com|org|net))(?:[^\s()<>]+|\(([^\s()<>]+|(\([^\s()<>]+\)))*\))*(?:\(([^\s()<>]+|(\([^\s()<>]+\)))*\)|[^\s`!()\[\]{};:'".,<>?«»“”‘’]|\b))/gi;
+    return uriPattern.test(str);
+  }
+
+  // see http://stackoverflow.com/questions/18082/validate-numbers-in-javascript-isnumeric
+  function isNumber(n) {
+    return !isNaN(parseFloat(n)) && isFinite(n);
+  }
+  var isOdd = function(num) {
+    return num % 2;
+  }
+
+  function isWikiPathwaysId(data) {
+    data = data.trim();
+    if (data.substr(0,2).toUpperCase() === 'WP' && isNumber(data.substr(data.length - 1))) {
+      return true;
+    }
+    else {
+      return false;
+    }
+  }
 
   function moveArrayItem(arr, old_index, new_index) {
+    // from http://stackoverflow.com/questions/5306680/move-an-array-element-from-one-array-position-to-another
     if (new_index >= arr.length) {
       var k = new_index - arr.length;
       while ((k--) + 1) {
@@ -446,24 +297,35 @@ pathvisiojs.utilities = function(){
     return arr; // for testing purposes
   }
 
-  var isOdd = function(num) { return num % 2;}
+  function splitStringByNewLine(str) {
+    // PathVisio (Java) uses '&#xA;' for indicating newline, and browsers convert this into '\r\n' or '\n' in JavaScript.
+    return str.split(/\r\n|\r|\n/g);
+  }
+
+  function strToHtmlId(str) {
+    var re = /\W/gi;
+    var id = str.replace(re, "");
+    return id;
+  }
 
   return{
-    collect:collect,
-    isUrl:isUrl,
-    splitStringByNewLine:splitStringByNewLine,
-    getUrlParam:getUrlParam,
-    cloneNode:cloneNode,
     clone:clone,
+    cloneNode:cloneNode,
+    collect:collect,
     convertToArray:convertToArray,
-    getWindowDimensions:getWindowDimensions,
-    moveArrayItem:moveArrayItem,
-    isOdd:isOdd,
-    isWikiPathwaysId:isWikiPathwaysId,
-    isNumber:isNumber,
-    strToHtmlId:strToHtmlId,
     getObjectType:getObjectType,
-    getTextDirection:getTextDirection
+    getTextDirection:getTextDirection,
+    getUriParam:getUriParam,
+    getWindowDimensions:getWindowDimensions,
+    isIE:isIE,
+    intersect:intersect,
+    isNumber:isNumber,
+    isOdd:isOdd,
+    isUri:isUri,
+    isWikiPathwaysId:isWikiPathwaysId,
+    moveArrayItem:moveArrayItem,
+    splitStringByNewLine:splitStringByNewLine,
+    strToHtmlId:strToHtmlId
   };
 }();
 
@@ -471,21 +333,87 @@ pathvisiojs.utilities = function(){
 
 ;
 
-pathvisiojs.data = {};
+"use strict";
+pathvisiojs.config = {};
+pathvisiojs.config.gpmlSourceUriStub = '/wpi/wpi.php?action=downloadFile&type=gpml&pwTitle=Pathway:';
+pathvisiojs.config.bridgedbLinkOutsUriStub = '/wpi/extensions/bridgedb.php/';
+pathvisiojs.config.bridgedbDatasources = '/wpi/extensions/PathwayViewer/datasources.txt';
+pathvisiojs.config.diagramLoadingIconUri = '/wpi/extensions/PathwayViewer/img/loading.gif';
+pathvisiojs.config.diagramNotAvailableIconUri = '/wpi/extensions/PathwayViewer/img/imageNotAvailable.jpg';
+pathvisiojs.config.imgDiagramUriStub = '/wpi.php?action=downloadFile&type=png&pwTitle=Pathway:';
+pathvisiojs.config.pathwaySearchUriStub = '/index.php?title=Special:SearchPathways&doSearch=1&query=';
+;
+
+pathvisiojs.data = function(){
+
+  // For now, pathvisio.js will attempt to convert any input data, as long as it is of type
+  // GPML or has no type specified, into JSON.
+  // TODO Later, this functionality can be extended to include other data types and
+  // to test for data type when it is not specified.
+  function get(sourceData, callback) {
+    var uri = sourceData.uri;
+    var object = sourceData.object;
+    var fileType = sourceData.fileType;
+
+    if (!uri) {
+      return new Error('No uri specified.');
+    }
+    if (!fileType) {
+      return new Error('No fileType specified.');
+    }
+
+    // TODO handle if sourceData.object
+
+    if (fileType === 'gpml') {
+      pathvisiojs.data.gpml.get(sourceData, function(gpml) {
+        pathvisiojs.data.gpml.toRenderableJson(gpml, uri, function(json) {
+          callback(json);
+        });
+      });
+    }
+    else {
+      throw new Error('Cannot get jGpml from the specified input.');
+    }
+
+    // This is just an experiment with using mongodb for caching json,
+    // but the higher priority for now would be to cache the SVG.
+    // Caching the json would be part of having the API deliver results
+    // in JSON format.
+    /*
+    d3.json(parsedInputData.cached, function(json) {
+      callback(json);
+    });
+    //*/
+  }
+
+  return{
+    get:get
+  };
+}();
+
+
 ;
 
 pathvisiojs.data.bridgedb = function(){
 
-  var bridgedbLinkOutsUrlStub = pathvisiojs.config.bridgedbLinkOutsUrlStub();
-  var bridgedbDatasources = pathvisiojs.config.bridgedbDatasources();
-
   function getXrefAnnotationDataByDataNode(singleSpecies, id, datasource, label, desc, callback) {
+    //For unannotated nodes, without datasource or identifier
+    if (null == id || null == datasource){
+        var annotationData = {
+          "header": label,
+          "description": desc,
+          "listItems": ['Missing ID and datasource']
+        };
+        callback(annotationData);  
+    } else {   
     getDataSources(function(dataSources) {
       var dataSourceRowCorrespondingToDataNodeXrefDatabase = getDataSourceRowByName(datasource, dataSources);
       var systemCode = dataSourceRowCorrespondingToDataNodeXrefDatabase.systemCode;
       getXrefAliases(singleSpecies, systemCode, id, function(xRefAliases) {
         var currentDataSourceRow;
-        var listItems = xRefAliases.map(function(xRefAlias) {
+        var listItems = [];
+        if (typeof xRefAliases != 'undefined') { //BridgeDb Error
+        listItems = xRefAliases.map(function(xRefAlias) {
           var listItem = {}
           listItem.title = xRefAlias.dataSourceName;
           listItem.text = xRefAlias.xRefId;
@@ -498,6 +426,7 @@ pathvisiojs.data.bridgedb = function(){
           }
           return listItem;
         });
+        }
 
         listItems.sort(function(a, b) {
           if (a.priority === b.priority)
@@ -543,6 +472,7 @@ pathvisiojs.data.bridgedb = function(){
         callback(annotationData);
       });
     });
+   }
   }
 
   function getDataSourceRowByName(dataSourceName, dataSources) {
@@ -555,10 +485,10 @@ pathvisiojs.data.bridgedb = function(){
   }
 
   function getDataSources(callback) {
-    d3.tsv(bridgedbDatasources)
+    d3.tsv(pathvisiojs.config.bridgedbDatasources)
     .response(function(request) {
       return d3.tsv.parseRows(request.responseText, function(d) {
-        return {dataSourceName: d[0], systemCode: d[1], websiteUrl: d[2], linkoutPattern: d[3], exampleIdentifier: d[4], entityIdentified: d[5], singleSpecies: d[6], priority: d[7], uri: d[8], regex: d[9], officialName: d[10]};
+        return {dataSourceName: d[0], systemCode: d[1], websiteUri: d[2], linkoutPattern: d[3], exampleIdentifier: d[4], entityIdentified: d[5], singleSpecies: d[6], priority: d[7], uri: d[8], regex: d[9], officialName: d[10]};
       });
     })
     .get(function(error, rows) {
@@ -567,9 +497,9 @@ pathvisiojs.data.bridgedb = function(){
   }
 
   function getXrefAliases(singleSpecies, systemCode, xRefId, callback) {
-    var bridgedbUrl = bridgedbLinkOutsUrlStub + encodeURIComponent(singleSpecies) + '/xrefs/' + encodeURIComponent(systemCode) + '/' + encodeURIComponent(xRefId);
-    console.log(bridgedbUrl);
-    d3.tsv(bridgedbUrl)
+    var bridgedbUri = pathvisiojs.config.bridgedbLinkOutsUriStub + encodeURIComponent(singleSpecies) + '/xrefs/' + encodeURIComponent(systemCode) + '/' + encodeURIComponent(xRefId);
+    console.log(bridgedbUri);
+    d3.tsv(bridgedbUri)
     .response(function(request) { 
       return d3.tsv.parseRows(request.responseText, function(d) {
         return {xRefId: d[0], dataSourceName: d[1]}; 
@@ -2325,6 +2255,56 @@ pathvisiojs.data.biopax = function(){
 
 ;
 
+pathvisiojs.data.pathvisiojsJson = function(){
+
+  // For now, pathvisio.js will attempt to convert any input data, as long as it is of type
+  // GPML or has no type specified, into JSON.
+  // TODO Later, this functionality can be extended to include other data types and
+  // to test for data type when it is not specified.
+  function get(renderableSourceDataElement, callback) {
+    var uri = renderableSourceDataElement.uri;
+    var object = renderableSourceDataElement.object;
+    var fileType = renderableSourceDataElement.fileType;
+
+    if (!uri) {
+      return new Error('No uri specified.');
+    }
+    if (!fileType) {
+      return new Error('No fileType specified.');
+    }
+
+    // TODO handle if renderableSourceDataElement.object
+
+    if (fileType === 'gpml') {
+      pathvisiojs.data.gpml.get(renderableSourceDataElement, function(gpml) {
+        pathvisiojs.data.gpml.toRenderableJson(gpml, uri, function(json) {
+          callback(json);
+        });
+      });
+    }
+    else {
+      throw new Error('Cannot get jGpml from the specified input.');
+    }
+
+    // This is just an experiment with using mongodb for caching json,
+    // but the higher priority for now would be to cache the SVG.
+    // Caching the json would be part of having the API deliver results
+    // in JSON format.
+    /*
+    d3.json(parsedInputData.cached, function(json) {
+      callback(json);
+    });
+    //*/
+  }
+
+  return{
+    get:get
+  };
+}();
+
+
+;
+
 "use strict";
 pathvisiojs.data.gpml = function(){
 
@@ -2332,6 +2312,29 @@ pathvisiojs.data.gpml = function(){
     'FontSize':{
       'Type':"FontSize",
       'Value':10
+    }
+  }
+
+  function get(sourceData, callback) {
+    var uri = sourceData.uri;
+    var object = sourceData.object;
+    var fileType = sourceData.fileType;
+
+    if ((!uri) && (!object)) {
+      return new Error('No sourceData specified.');
+    }
+    if (!fileType) {
+      return new Error('No fileType specified.');
+    }
+
+    if (fileType === 'gpml') {
+      // TODO d3.xml doesn't seem to work with IE8
+      d3.xml(uri, function(gpml) {
+        callback(gpml);
+      });
+    }
+    else {
+      throw new Error('Cannot get GPML from the specified input.');
     }
   }
 
@@ -2467,6 +2470,9 @@ pathvisiojs.data.gpml = function(){
 
     var pathway = {};
     pathway.xmlns = gpmlPathway.attr('xmlns');
+    pathway.nodes = [];
+    pathway.edges = [];
+    pathway.elements = [];
 
     // test for whether file is GPML
 
@@ -2476,10 +2482,12 @@ pathvisiojs.data.gpml = function(){
 
       if (pathvisiojs.data.gpml.namespaces.indexOf(pathway.xmlns) !== 0) {
 
-        // preferably, this would call the Java RPC updater for the file to be updated.
+        // TODO call the Java RPC updater or in some other way call for the file to be updated.
 
-        alert('Pathvisiojs may not fully support the version of GPML provided (xmlns: ' + pathway.xmlns + '). Please convert to the supported version of GPML (xmlns: ' + pathvisiojs.data.gpml.namespaces[0] + ').');
+        callbackOutside('fail');
+        //alert('Pathvisiojs may not fully support the version of GPML provided (xmlns: ' + pathway.xmlns + '). Please convert to the supported version of GPML (xmlns: ' + pathvisiojs.data.gpml.namespaces[0] + ').');
       }
+      else {
 
       async.parallel({
           '@context': function(callback){
@@ -2499,7 +2507,7 @@ pathvisiojs.data.gpml = function(){
               'PublicationXref':'biopax:PublicationXref',
               'gpmlFolder':'file://Users/andersriutta/Sites/pathvisiojs/test/gpml/',
               'name':'http://xmlns.com/foaf/0.1/name',
-              'dcterms':'http://purl.org/dc/terms/',
+              'dcterms':'http://puri.org/dc/terms/',
               'css2':'http://www.w3.org/TR/CSS2/',
               'css3Ui':'http://www.w3.org/TR/css3-ui/#',
               'cssTransform':'http://www.w3.org/TR/css-transforms-1/#',
@@ -2549,7 +2557,7 @@ pathvisiojs.data.gpml = function(){
                 '@type': '@id'
               },
               //*/
-              'tspan': {
+              'line': {
                 '@id': 'svg:text.html#TSpanElement',
                 '@container': '@set'
               },
@@ -2743,6 +2751,8 @@ pathvisiojs.data.gpml = function(){
                 gpmlDataNode = d3.select(this);
                 pathvisiojs.data.gpml.element.node.entityNode.dataNode.toRenderableJson(gpmlDataNode, pathwayIri, function(jsonDataNode) {
                   pathway.DataNode.push(jsonDataNode);
+                  pathway.nodes = pathway.nodes.concat(jsonDataNode);
+                  pathway.elements = pathway.elements.concat(jsonDataNode);
                 });
               })
               callback(null, 'DataNodes are all converted.');
@@ -2759,6 +2769,8 @@ pathvisiojs.data.gpml = function(){
                 gpmlLabel = d3.select(this);
                 pathvisiojs.data.gpml.element.node.entityNode.label.toRenderableJson(gpmlLabel, pathwayIri, function(jsonLabel) {
                   pathway.Label.push(jsonLabel);
+                  pathway.nodes = pathway.nodes.concat(jsonLabel);
+                  pathway.elements = pathway.elements.concat(jsonLabel);
                 });
               })
               callback(null, 'Labels are all converted.');
@@ -2775,6 +2787,8 @@ pathvisiojs.data.gpml = function(){
                 gpmlShape = d3.select(this);
                 pathvisiojs.data.gpml.element.node.entityNode.shape.toRenderableJson(gpmlShape, pathwayIri, function(jsonShape) {
                   pathway.Shape.push(jsonShape);
+                  pathway.nodes = pathway.nodes.concat(jsonShape);
+                  pathway.elements = pathway.elements.concat(jsonShape);
                 });
               })
               callback(null, 'Shapes are all converted.');
@@ -2794,6 +2808,7 @@ pathvisiojs.data.gpml = function(){
                 gpmlGroup = d3.select(this);
                 pathvisiojs.data.gpml.element.node.groupNode.toRenderableJson(gpml, gpmlGroup, pathwayIri, function(jsonGroup) {
                   pathway.Group.push(jsonGroup);
+                  pathway.nodes = pathway.nodes.concat(jsonGroup);
                 });
               })
               callback(null, 'Groups are all converted.');
@@ -2811,6 +2826,8 @@ pathvisiojs.data.gpml = function(){
                 gpmlGraphicalLine = d3.select(this);
                 pathvisiojs.data.gpml.edge.graphicalLine.toRenderableJson(gpml, gpmlGraphicalLine, pathwayIri, function(jsonGraphicalLine) {
                   pathway.GraphicalLine.push(jsonGraphicalLine);
+                  pathway.edges = pathway.edges.concat(jsonGraphicalLine);
+                  pathway.elements = pathway.elements.concat(jsonGraphicalLine);
                 });
               })
               callback(null, 'GraphicalLines are all converted.');
@@ -2828,6 +2845,8 @@ pathvisiojs.data.gpml = function(){
                 gpmlInteraction = d3.select(this);
                 pathvisiojs.data.gpml.edge.interaction.toRenderableJson(gpml, gpmlInteraction, pathwayIri, function(jsonInteraction) {
                   pathway.Interaction.push(jsonInteraction);
+                  pathway.edges = pathway.edges.concat(jsonInteraction);
+                  pathway.elements = pathway.elements.concat(jsonInteraction);
                 });
               })
               callback(null, 'Interactions are all converted.');
@@ -2846,39 +2865,70 @@ pathvisiojs.data.gpml = function(){
             'contains': {}
           };  
           jsonld.frame(pathway, groupsFrame, function(err, framedGroups) {
-            console.log('framedGroups');
-            console.log(framedGroups);
-
-          framedGroups['@graph'].forEach(function(jsonGroup) {
-            // Some GPML files contain empty groups due to a PathVisio-Java bug. They are deleted
-            // here because only groups that pass the test (!!jsonGroup.contains) are added to
-            // the jsonGroups array, and the jsonGroups array overwrites pathway.Group.
-            if (!!jsonGroup.contains) {
-              pathvisiojs.data.gpml.element.node.groupNode.getGroupDimensions(jsonGroup, function(dimensions) {
-                console.log('jsonGroup in gpml.js');
-                console.log(jsonGroup);
-
-                jsonGroup.x = dimensions.x;
-                jsonGroup.y = dimensions.y;
-                jsonGroup.width = dimensions.width;
-                jsonGroup.height = dimensions.height;
-                pathvisiojs.data.gpml.element.node.getPorts(jsonGroup, function(ports) {
-                  jsonGroup.Port = ports;
-                  jsonGroups.push(jsonGroup);
+            async.waterfall([
+              function(callbackInside){
+                framedGroups['@graph'].forEach(function(jsonGroup) {
+                  // Some GPML files contain empty groups due to a PathVisio-Java bug. They are deleted
+                  // here because only groups that pass the test (!!jsonGroup.contains) are added to
+                  // the jsonGroups array, and the jsonGroups array overwrites pathway.Group.
+                  if (!!jsonGroup.contains) {
+                    pathvisiojs.data.gpml.element.node.groupNode.getGroupDimensions(jsonGroup, function(dimensions) {
+                      jsonGroup.x = dimensions.x;
+                      jsonGroup.y = dimensions.y;
+                      jsonGroup.width = dimensions.width;
+                      jsonGroup.height = dimensions.height;
+                      jsonGroup.zIndex = dimensions.zIndex;
+                      pathvisiojs.data.gpml.element.node.getPorts(jsonGroup, function(ports) {
+                        jsonGroup.Port = ports;
+                        if (jsonGroups.indexOf(jsonGroup) === -1) {
+                          jsonGroups.push(jsonGroup);
+                        }
+                      });
+                    });
+                  }
                 });
-              });
-            }
-          });
-          pathway.Group = jsonGroups;
-          self.myPathway = pathway;
-          callbackOutside(pathway);
+                callbackInside(null, jsonGroups);
+              },
+              function(jsonGroups, callbackInside){
+                pathway.Group = jsonGroups;
+                pathway.elements = pathway.elements.concat(pathway.Group);
+
+                pathway.elements.sort(function(a, b) {
+                  return a.zIndex - b.zIndex;
+                });
+
+                console.log('pathwayNestedByGrouping');
+                callbackInside(null, pathway);
+              },
+              function(pathway, callbackInside){
+                pathway.pathwayNestedByDependencies = d3.nest()
+                .key(function(d) { return d.hasDependencies; })
+                .entries(pathway.elements);
+
+                pathway.pathwayNestedByGrouping = d3.nest()
+                .key(function(d) { return d.isContainedBy; })
+                .entries(pathway.elements);
+
+                console.log('pathwayNestedByGrouping');
+                console.log(pathway.pathwayNestedByGrouping);
+                callbackInside(null, pathway);
+              },
+              function(pathway, callbackInside){
+                self.myPathway = pathway;
+                callbackOutside(pathway);
+              }
+            ]);
           });
         }
         else {
+          pathway.elements.sort(function(a, b) {
+            return a.zIndex - b.zIndex;
+          });
           self.myPathway = pathway;
           callbackOutside(pathway);
         }
       });
+      }
 /*
       // Comments 
 
@@ -2959,6 +3009,7 @@ pathvisiojs.data.gpml = function(){
   }
 
   return {
+    get:get,
     toRenderableJson:toRenderableJson,
     getLineStyle:getLineStyle,
     getBorderStyle:getBorderStyle,
@@ -3201,7 +3252,7 @@ pathvisiojs.data.gpml.text = function() {
       if (!!text) {
         jsonText = {};
         jsonText['@id'] = ('id' + uuid.v4());
-        jsonText.tspan = text.split(/\r\n|\r|\n|&#xA;/g);
+        jsonText.line = text.split(/\r\n|\r|\n|&#xA;/g);
 
         var graphics = gpmlNode.select('Graphics');
         var textAlign, fontStyle, fontWeight, fontSize, fontFamily;
@@ -3591,6 +3642,7 @@ pathvisiojs.data.gpml.element.node.groupNode = function() {
       dimensions.y = dimensions.topLeftCorner.y - group.padding - group.borderWidth;
       dimensions.width = (dimensions.bottomRightCorner.x - dimensions.topLeftCorner.x) + 2 * (group.padding + group.borderWidth);
       dimensions.height = (dimensions.bottomRightCorner.y - dimensions.topLeftCorner.y) + 2 * (group.padding + group.borderWidth);
+      dimensions.zIndex = Math.min(dimensions.zIndex, groupContent.zIndex);
       callback(dimensions);
     });
   }
@@ -3604,7 +3656,7 @@ pathvisiojs.data.gpml.element.node.groupNode = function() {
     var graphId = gpmlGroup.attr('GraphId') || ('id' + uuid.v4());
     jsonGroup.GraphId = graphId;
     groupId = gpmlGroup.attr('GroupId') || ('id' + uuid.v4());
-    jsonGroup["@id"] = pathwayIri + groupId;
+    jsonGroup["@id"] = 'pathwayIri:' + groupId;
     jsonGroup.GroupId = groupId;
     groupType = gpmlGroup.attr('Style') || 'None';
 
@@ -3685,12 +3737,12 @@ pathvisiojs.data.gpml.element.node.entityNode.setJsonRotationValue = function(js
 
 pathvisiojs.data.gpml.element.node.entityNode.toRenderableJson = function(gpmlEntityNode, jsonEntityNode, pathvisioDefaultStyleValues, pathwayIri, EntityNodeCallback) {
   var graphId = gpmlEntityNode.attr('GraphId') || ('id' + uuid.v4());
-  jsonEntityNode["@id"] = pathwayIri + graphId;
+  jsonEntityNode["@id"] = 'pathwayIri:' + graphId;
   jsonEntityNode.GraphId = graphId;
 
   var isContainedBy = gpmlEntityNode.attr('GroupRef');
   if (!!isContainedBy) {
-    jsonEntityNode.isContainedBy = pathwayIri + isContainedBy;
+    jsonEntityNode.isContainedBy = 'pathwayIri:' + isContainedBy;
   }
 
   var shapeType = gpmlEntityNode.select('Graphics').attr('ShapeType') || 'rectangle';
@@ -3829,20 +3881,16 @@ pathvisiojs.data.gpml.element.node.entityNode.dataNode.toRenderableJson = functi
       if (!!text) {
         jsonDataNode.text = text;
       }
-
       jsonDataNode = pathvisiojs.data.gpml.setBorderStyleAsJson(jsonDataNode,
                                                                 gpmlDataNode.select('Graphics').attr('LineStyle'),
                                                                 thisPathvisioDefaultStyleValues.LineStyle);
-
-                                                                jsonDataNode = pathvisiojs.data.gpml.setColorAsJson(jsonDataNode,
-                                                                                                                    gpmlDataNode.select('Graphics').attr('Color'),
-                                                                                                                    thisPathvisioDefaultStyleValues.Color);
-
-                                                                                                                    jsonDataNode = pathvisiojs.data.gpml.element.node.setJsonBackgroundColor(jsonDataNode,
-                                                                                                                                                                                     gpmlDataNode.select('Graphics').attr('FillColor'),
-                                                                                                                                                                                     thisPathvisioDefaultStyleValues.FillColor);
-
-                                                                                                                                                                                     callbackInside(jsonDataNode);
+      jsonDataNode = pathvisiojs.data.gpml.setColorAsJson(jsonDataNode,
+                                                          gpmlDataNode.select('Graphics').attr('Color'),
+                                                          thisPathvisioDefaultStyleValues.Color);
+      jsonDataNode = pathvisiojs.data.gpml.element.node.setJsonBackgroundColor(jsonDataNode,
+                                                                       gpmlDataNode.select('Graphics').attr('FillColor'),
+                                                                       thisPathvisioDefaultStyleValues.FillColor);
+      callbackInside(jsonDataNode);
     });
   });
 }
@@ -4040,7 +4088,7 @@ pathvisiojs.data.gpml.node.anchor = function() {
           jsonAnchor = {};
           gpmlAnchor = d3.select(this);
           graphId = gpmlAnchor.attr('GraphId') || ('id' + uuid.v4());
-          elementIri = pathwayIri + graphId;
+          elementIri = 'pathwayIri:' + graphId;
           jsonAnchor['@id'] = elementIri;
           jsonAnchor['@type'] = [
             'node',
@@ -4142,7 +4190,7 @@ pathvisiojs.data.gpml.edge = function(){
     var jsonAnchorEdge, anchor, jsonAnchor, points, jsonPoints, interactionType, target, targetId, groupRef;
     var jsonEdge = {};
     var graphId = gpmlEdge.attr('GraphId') || ('id' + uuid.v4());
-    var elementIri = pathwayIri + graphId;
+    var elementIri = 'pathwayIri:' + graphId;
     jsonEdge['@id'] = elementIri;
     jsonEdge.GraphId = graphId;
 
@@ -4150,7 +4198,7 @@ pathvisiojs.data.gpml.edge = function(){
     var isContainedBy;
     var dependsOn = [];
     if (!!containingGroupRef) {
-      isContainedBy = jsonEdge.isContainedBy = pathwayIri + containingGroupRef;
+      isContainedBy = jsonEdge.isContainedBy = 'pathwayIri:' + containingGroupRef;
       dependsOn.push(isContainedBy);
     }
 
@@ -4175,9 +4223,9 @@ pathvisiojs.data.gpml.edge = function(){
       if ((relX !== null && relX !== undefined) && (relY !== null && relY !== undefined)) {
         pointObj['@type'] = 'SnappedPoint';
 
-        dependsOn.push(pathwayIri + point.attr('GraphRef'));
+        dependsOn.push('pathwayIri:' + point.attr('GraphRef'));
 
-        pointObj.hasReference = pathwayIri + point.attr('GraphRef');
+        pointObj.hasReference = 'pathwayIri:' + point.attr('GraphRef');
         pointObj.RelX = relX;
         pointObj.RelY = relY;
         pointObj.x = parseFloat(point.attr('X'));
@@ -4648,10 +4696,10 @@ pathvisiojs.data.gpml.edge.graphicalLine = function(){
         jsonGraphicalLine.markerEnd = 'none';
       }
 
-      // TODO handle this properly. Right now, we can't render graphical lines with
-      // connector type of elbow or curve.
-
-      jsonGraphicalLine.ConnectorType = 'Straight';
+      jsonGraphicalLine.ConnectorType = (gpmlGraphicalLine.select('Graphics').attr('ConnectorType')); 
+      if (!jsonGraphicalLine.ConnectorType) {
+	jsonGraphicalLine.ConnectorType = 'Straight';
+      }
 
       callback(jsonGraphicalLine);
     })
@@ -4829,7 +4877,7 @@ pathvisiojs.view.annotation = function(){
 
     var detailsSearchUri = annotation.select('#annotation-header-search').select('a')
     .attr('href', function(d) {
-    	return pathvisiojs.config.pathwaySearchUriStub() + d.header;
+    	return pathvisiojs.config.pathwaySearchUriStub + d.header;
      })
      .attr('title', function(d) {return 'Search for pathways containing ' + d.header; });
 
@@ -4853,14 +4901,16 @@ pathvisiojs.view.annotation = function(){
 
     var annotationListItemsContainer = annotation.selectAll('#annotation-items-container')
     .data(function(d) {
-      //debug//console.log('d annotationListItemsContainer');
-      //debug//console.log(d);
-      //if a single string, then assume special case: img src for loading gif
+      //if a single string, then check for special case: img src for loading gif
       if (typeof d.listItems[0] === 'string'){
+       if (d.listItems[0].split('.').pop() == 'gif'){
 	annotationDescription.append('br');
 	annotationDescription.append('br');
 	annotationDescription.append('img').attr('src', d.listItems[0]).attr('style', 'width: 20px');
-	//fake item list that effectively clears the display while loading gif is active
+       } else { //display the custom text
+	annotationDescription.append('p').html('<font color="red">'+d.listItems[0]+'</font>');
+       }
+        //fake item list that effectively clears the display while loading gif is active
         return [{"key":"clear","values":[{"clear": "clear"}]}];
       } else {
       //debug//console.log([d.listItems]);
@@ -4963,7 +5013,7 @@ pathvisiojs.view.annotation.xRef = function(){
   var cachedAnnotationData = {};
 
   function render(organism, id, datasource, label, desc) {
-    var data = getCachedAnnotationData(organism, id, datasource);
+    var data = getCachedAnnotationData(organism, label, id, datasource);
     if (data){
       //if cache, then use it
       pathvisiojs.view.annotation.render(data);
@@ -4971,25 +5021,27 @@ pathvisiojs.view.annotation.xRef = function(){
     else {
       //else render immediate data and loading gif
       var data = {
-          "header": label,
-          "description": desc,
-	  "listItems":["../src/img/loading.gif"] 
-        };
+        "header": label,
+        "description": desc,
+        "listItems":[pathvisiojs.config.diagramLoadingIconUri] 
+      };
       pathvisiojs.view.annotation.render(data);
+
+      console.log(pathvisiojs.config.bridgedbLinkOutsUriStub);
       //then retrieve the bridgedb data
       var xRefData = pathvisiojs.data.bridgedb.getXrefAnnotationDataByDataNode(organism, id, datasource, label, desc, function(annotationData) {
-        setCachedAnnotationData(organism, id, datasource, annotationData);
-	pathvisiojs.view.annotation.render(annotationData);
+        setCachedAnnotationData(organism, label, id, datasource, annotationData);
+        pathvisiojs.view.annotation.render(annotationData);
       });
     }
   }
 
-  function getCachedAnnotationData(organism, id, datasource){
-    return cachedAnnotationData[organism+id+datasource];
+  function getCachedAnnotationData(organism, label, id, datasource){
+    return cachedAnnotationData[organism+label+id+datasource];
   }
 
-  function setCachedAnnotationData(organism, id, datasource, data){
-    cachedAnnotationData[organism+id+datasource] = data;
+  function setCachedAnnotationData(organism, label, id, datasource, data){
+    cachedAnnotationData[organism+label+id+datasource] = data;
   }
 
   return {
@@ -4998,265 +5050,212 @@ pathvisiojs.view.annotation.xRef = function(){
 }();
 ;
 
-"use strict"
+"use strict";
 
 pathvisiojs.view.pathwayDiagram = function(){
+  // currently just using Gecko (Firefox) list of supported image formats for the HTML img tag:
+  // https://developer.mozilla.org/en-US/docs/Web/HTML/Element/Img
+  // TODO decide what to do if the user specifies an SVG image as a dataSource element
 
-  function getPreserveAspectRatioValues(preserveAspectRatio) {
+  // the viewMethods are sorted in order of preference - viewMethod with lower index will be used if more than one is returned.
+  var sourceDataFileTypeToViewMethodMappings = {
+    gpml:[
+      'svg' //in the future, could add canvas support
+    ],
+    biopax:[ //biopax is not currently supported
+      'svg' //in the future, could add canvas support
+    ],
+    pdf:[
+      'pdf' //not supported now. this would be future. we might use pdf.js or we could just try using an embed or object tag.
+    ],
+    png:[
+      'img'
+    ],
+    jpg:[
+      'img'
+    ],
+    jpeg:[
+      'img'
+    ],
+    jpe:[
+      'img'
+    ],
+    jif:[
+      'img'
+    ],
+    jfif:[
+      'img'
+    ],
+    jfi:[
+      'img'
+    ],
+    gif:[
+      'img'
+    ],
+    ico:[
+      'img'
+    ],
+    bmp:[
+      'img'
+    ],
+    dib:[
+      'img'
+    ]
+  };
 
-    // this function uses SVG terminology, but it is intended to work with any graphical
-    // file format (SVG, PNG, etc.)
+  function getFirstRenderableSourceDataElement(sourceData) {
+    var sourceDataElement, viewMethodsForSourceDataFileType, supportedViewMethodsForSourceDataFileType,
+      results = {},
+      supportedViewMethods = getSupportedViewMethods();
 
-    var results = {};
-    if (!preserveAspectRatio.align) {
-      results.align = preserveAspectRatio;
-    }
-    else {
-      results.align = preserveAspectRatio.align;
-    }
+    var i = 0;
+    do {
+      sourceDataElement = sourceData[i];
+      viewMethodsForSourceDataFileType = sourceDataFileTypeToViewMethodMappings[sourceDataElement.fileType];
+      supportedViewMethodsForSourceDataFileType = pathvisiojs.utilities.intersect(viewMethodsForSourceDataFileType, supportedViewMethods);
+      i += 1;
+    } while ((supportedViewMethodsForSourceDataFileType.length < 1) && (i < sourceData.length + 1));
 
-    if (results.align === 'none') {
-      results.xAlign = 'x-mid';
-      results.yAlign = 'y-mid';
-    }
-    else {
-      results.meetOrSlice = 'meet';
-      if (!!preserveAspectRatio.meetOrSlice) {
-        results.meetOrSlice = preserveAspectRatio.meetOrSlice;
-      }
-      
-      results.xAlign = 'x-' + results.align.substr(1, 3).toLowerCase();
-      results.yAlign = 'y-' + results.align.substr(results.align.length - 3, 3).toLowerCase();
-    }
-    return results;
+    sourceDataElement.selectedViewMethod = supportedViewMethodsForSourceDataFileType[0];
+    return sourceDataElement;
   }
 
-  function fitElementWithinContainer(containerWidth, containerHeight, pathwayWidth, pathwayHeight, preserveAspectRatioValues) {
+  //function getImageFormatByDataSourceFileType(fileType) {
+  //this is testing the browser the user is currently using 
+  function getSupportedViewMethods() {
+    //making an assumption that all browsers we care about support the HTML img tag
 
-    // following svg standards.
-    // see http://www.w3.org/TR/SVG/coords.html#PreserveAspectRatioAttribute
+    var supportedViewMethods = ['img'];
 
-    var meetOrSlice, xScale, yScale, scale, pathwayWidthScaled, pathwayHeightScaled, xMapping, yMapping;
-    var results = {};
-
-    xScale = scale = containerWidth/pathwayWidth;
-    yScale = containerHeight/pathwayHeight;
-
-    if (preserveAspectRatioValues.align === 'none') {
-      results.x = 0;
-      results.y = 0;
-      
-      results.width = xScale * pathwayWidth;
-      results.height = yScale * pathwayHeight;
+    // TODO support svg that is not inline in the svg viewMethod
+    // The IE9 detection is a temporary hack. It is used because IE9 cannot currently convert GPML to pathvisiojsJson,
+    // so it cannot display the resulting SVG.
+    // TODO get gpml to pathvisiojsJson conversion working with IE9
+    if (Modernizr.inlinesvg && (pathvisiojs.utilities.isIE() !== 9)) {
+      supportedViewMethods.push('svg');
     }
-    else {
-      if (preserveAspectRatioValues.meetOrSlice === 'meet') {
-        scale = xScale = yScale = Math.min(xScale, yScale);
-      }
-      else {
-        scale = xScale = yScale = Math.max(xScale, yScale);
-      }
-
-      results.width = xScale * pathwayWidth;
-      results.height = yScale * pathwayHeight;
-
-      xMapping = [
-        {'x-min': 0},
-        {'x-mid': containerWidth/2 - results.width/2},
-        {'x-max': containerWidth - results.width}
-      ];
-
-      yMapping = [
-        {'y-min': 0},
-        {'y-mid': containerHeight/2 - results.height/2},
-        {'y-max': containerHeight - results.height}
-      ];
-
-      results.x = xMapping[preserveAspectRatioValues.xAlign];
-      results.y = yMapping[preserveAspectRatioValues.yAlign];
-      results.scale = scale;
-    }
-
-    var browserPrefixArray = [
-      '-webkit-transform: ',
-      '-o-transform: ',
-      'transform: '
-    ];
-
-    var translationMatrixCssString = 'matrix(' + xScale + ', 0, 0, ' + yScale + ', ' + results.x + ', ' + results.y + '); ';
     
-    results.translationMatrixCss = ' ';
-    browserPrefixArray.forEach(function(element) {
-      results.translationMatrixCss += (element + translationMatrixCssString);
-    });
+    return supportedViewMethods;
+  }
 
-    //var translationMatrix = matrix(a, c, b, d, tx, ty);
-    //var translationMatrix = matrix(xScale, rotation, skew, yScale, x translation, y translation);
-
-    return results;
+  function loadHtmlTemplate(userSpecifiedContainer, callback) {
+    userSpecifiedContainer.html(pathvisioNS['tmp/pathvisiojs.html']);
+    var diagramContainer = userSpecifiedContainer.select('#diagram-container');
+    callback(diagramContainer);
   }
 
   function load(args) {
-
     // this function gets a reference to a GPML file and draws a visual representation of the pathway
     // TODO Much of the SVG creation code should be moved to ./svg/svg.js so we just call
     // pathvisiojs.view.pathwayDiagram.svg.load() in the same way as we do for
-    // pathvisiojs.view.pathwayDiagram.png.load()
+    // pathvisiojs.view.pathwayDiagram.img.load()
 
     // ********************************************
     // Check for minimum required set of parameters
     // ********************************************
 
-    if (!args.container) {
+    var userSpecifiedContainerSelector = args.container,
+      sourceData = args.sourceData,
+      fitToContainer = args.fitToContainer,
+      cssUri = args.cssUri,
+      customMarkers = args.customMarkers,
+      //customSymbols = args.customSymbols,
+      highlightNodes = args.highlightNodes,
+      hiddenElements = args.hiddenElements,
+      userSpecifiedContainer, // the element matching the user-specified selector. the user specified selector is the parameter "container" in the pathvisiojs.load() method.
+      pathvisioJsContainer,
+      diagramContainer;
+
+    if (!sourceData[0].uri) {
+      throw new Error('No sourceData uri specified.');
+    }
+
+    if (!userSpecifiedContainerSelector) {
       throw new Error('No container selector specified as container for pathvisiojs.');
     }
 
-    if (!args.data) {
-      throw new Error('No input data source (URL or WikiPathways ID) specified.');
+    userSpecifiedContainer = d3.select(userSpecifiedContainerSelector);
+    if (userSpecifiedContainer.length !== 1) {
+      throw new Error('Container selector must be matched by exactly one element.');
     }
-
-    var containerSelector = args.container,
-      parsedInputData = args.data,
-      fitToContainer = args.fitToContainer,
-      cssUrl = args.cssUrl,
-      customMarkers = args.customMarkers,
-//      customSymbols = args.customSymbols,
-      highlightNodes = args.highlightNodes,
-      hiddenElements = args.hiddenElements,
-      container;
 
     // waterfall means that each function completes in order, passing its result to the next
     async.waterfall([
+      function(callback){ // this could be in parallel
+        // ********************************************
+        // Load HTML template
+        // ********************************************
+        var htmlTemplate = loadHtmlTemplate(userSpecifiedContainer, function(thisPathwayContainer) {
+          diagramContainer = thisPathwayContainer;
+          callback(null);
+        });
+      },
       function(callback){
+        // ********************************************
+        // Add loading gif
+        // ********************************************
+        var diagramLoadingIconUri = pathvisiojs.config.diagramLoadingIconUri;
+        var img = diagramContainer.append('img')
+        .attr('id', 'loading-icon')
+        .attr('src', diagramLoadingIconUri)
+        .attr('width', 50);
 
         // ********************************************
         // Get desired dimensions for pathway diagram
         // ********************************************
+        var renderableSourceDataElement = getFirstRenderableSourceDataElement(sourceData);
 
-        var container = d3.select(containerSelector);
-        if (container.length !== 1) {
-          throw new Error('Container selector must be matched by exactly one element.');
-        }
+        // ********************************************
+        // Get desired dimensions for pathway diagram
+        // ********************************************
+        var boundingClientRect = userSpecifiedContainer[0][0].getBoundingClientRect();
+        var containerWidth = boundingClientRect.width - 3; //account for space for pan/zoom controls,
+        var containerHeight = boundingClientRect.height - 3; //account for space for search field;
 
-        var boundingClientRect = container[0][0].getBoundingClientRect();
-        var containerWidth = boundingClientRect.width - 40; //account for space for pan/zoom controls,
-        var containerHeight = boundingClientRect.height - 20; //account for space for search field;
-
-        callback(null, container, containerWidth, containerHeight);
+        callback(null, containerWidth, containerHeight, renderableSourceDataElement);
       },
-      function(container, containerWidth, containerHeight, callback){
-        var svg, pathway, loadDiagramArgs = {};
-
-        loadDiagramArgs.parsedInputData = parsedInputData;
-        loadDiagramArgs.container = container;
+      function(containerWidth, containerHeight, renderableSourceDataElement, callback){
+        var svg, pathway,
+        loadDiagramArgs = {};
+        loadDiagramArgs.container = diagramContainer;
+        loadDiagramArgs.renderableSourceDataElement = renderableSourceDataElement;
         loadDiagramArgs.containerWidth = containerWidth;
         loadDiagramArgs.containerHeight = containerHeight;
         loadDiagramArgs.fitToContainer = fitToContainer;
 
         // ********************************************
-        // Check for SVG support. If false, use PNG fallback
+        // Check for SVG support. If false, use static image (png, jpg, gif, etc.) fallback
         // ********************************************
-
-        if (Modernizr.svg) {
-          async.parallel({
-            preloadSvg: function(callback) {
-              var preloadDiagramArgs = {};
-              preloadDiagramArgs.container = container;
-              preloadDiagramArgs.customMarkers = customMarkers;
-//              preloadDiagramArgs.customSymbols = customSymbols;
-              preloadDiagramArgs.cssUrl = cssUrl;
-              pathvisiojs.view.pathwayDiagram.svg.loadPartials(preloadDiagramArgs, function(svg) {
-                callback(null, svg);
-              });
-            },
-            pathway: function(callback){
-              pathvisiojs.getJson(parsedInputData, function(json) {
-                pathvisiojs.context = json['@context'];
-                console.log('json');
-                console.log(json);
-                callback(null, json);
-              })
-            }
-          },
-          function(err, results){
-            svg = results.preloadSvg,
-            pathway = results.pathway;
-
-            loadDiagramArgs.svg = svg;
-            loadDiagramArgs.pathway = pathway;
-
-            pathvisiojs.view.pathwayDiagram.svg.load(loadDiagramArgs, function(svg) {
-
-              ///* Node Highlighter
-
-              var nodeLabels, nodeLabel;
-              if (!!pathway) {
-                nodeLabels = [];
-                if (pathway.hasOwnProperty('DataNode')) {
-                  pathway.DataNode.forEach(function(node) {
-                    if (!!node.text) {
-                      nodeLabels.push(node.text.tspan[0]);
-                    }
-                  });
-
-                  // see http://twitter.github.io/typeahead.js/
-
-                  $('#highlight-by-label-input').typeahead({
-                    name: 'Highlight node in pathway',
-                    local: nodeLabels,
-                    limit: 10
-                  });
-                }
-
-                /*
-                   $('.icon-eye-open').click(function(){
-                   var nodeLabel = $("#highlight-by-label-input").val();
-                   if (!nodeLabel) {
-                   console.warn('Error: No data node value entered.');
-                   }
-                   else {
-                   pathvisiojs.view.pathwayDiagram.svg.node.highlightByLabel(svg, nodeLabel);
-                   }
-                   });
-                //*/
-                // see http://api.jquery.com/bind/
-                // TODO get selected value better and make function to handle
-
-                $( "#highlight-by-label-input" ).bind( "typeahead:selected", function() {
-                  nodeLabel = $("#highlight-by-label-input").val();
-                  if (!nodeLabel) {
-                    throw new Error("No data node value entered for type-ahead node highlighter.");
-                  }
-                  else {
-
-                    // TODO refactor this so it calls a generic highlightDataNodeByLabel function that can call
-                    // a highlighter for svg, png, etc. as appropriate.
-
-                    pathvisiojs.view.pathwayDiagram.svg.node.highlightByLabel(svg, pathway, nodeLabel);
-                  }
-                });
-
-                callback(null, 'svg loaded');
-              }
-              else {
-                callback(null);
-              }
-            })
-          })
+        if (renderableSourceDataElement.selectedViewMethod === 'svg') { // TODO get this working in IE9
+          loadDiagramArgs.cssUri = cssUri;
+          loadDiagramArgs.customMarkers = customMarkers;
+          //loadDiagramArgs.customSymbols = customSymbols;
+          //*
+          pathvisiojs.view.pathwayDiagram.svg.load(loadDiagramArgs, function(diagram) {
+            callback(null, diagram);
+          });
+          //*/
         }
         else {
-          pathvisiojs.view.pathwayDiagram.png.load(loadDiagramArgs, function() {
-            callback(null, 'png loaded');
+          pathvisiojs.view.pathwayDiagram.img.load(loadDiagramArgs, function(diagram) {
+            callback(null, diagram);
           });
         }
+      },
+      function(diagram, callback){
+        // ********************************************
+        // Remove loading icon
+        // ********************************************
+        diagramContainer.select('#loading-icon').remove();
+
+        // adding this as a signal for e2e tests that the diagram has finished loading 
+        // TODO refactor tests so they don't need this hack.
+        d3.select('body').append('span')
+        .attr('id', 'pathvisiojs-is-loaded');
+        console.log('Pathvisiojs done loading.');
+        callback(null);
       }
-    ],
-    function(err, results) {
-      // adding this as a signal that the process is done
-      d3.select('body').append('span')
-      .attr('id', 'pathvisiojs-is-loaded');
-      console.log('Pathvisiojs done loading.');
-    });
+    ]);
   }
 
   return{
@@ -5267,784 +5266,218 @@ pathvisiojs.view.pathwayDiagram = function(){
      
 ;
 
-pathvisiojs.view.pathwayDiagram.pathFinder = function(){
-
-  /*  Linear algebra conventions call for specifying an element of a matrix as row #, column #.
-   *  The rows and columns use one-based indexing. Example: Element.1,2 is the element in the first row and the second column.
-   *  The code in PathFinding.js uses x to refer to column # and y to refer to row #.
-   *  JavaScript uses zero-based indexing for matrices. Example: matrix[0][1] refers to the element in the first row and the second column.
-   *  This code will follow the PathFinding.js conventions and use zero-based indexing,
-   *  so be careful to note this may differ from linear algebra conventions.
-   * */
-
-  function initGrid(nodes, pathwayImageWidth, pathwayImageHeight, callback) {
-    var gridData = {}
-    nodes = d3.select(nodes).sort(function(node1, node2) {
-      Math.min(node1.height, node1.width) - Math.min(node2.height, node2.width);
-    })[0][0];
-    gridData.squareLength = Math.min(nodes[0].height, nodes[0].width) / 14;
-
-    // Here we set how much padding to place around the EntityNodes, in units of grid squares.
-    // TODO change the static value of 12 to be a calculated value equal to the
-    // largest dimension of a marker in the diagram.
-    //
-    // Curves need more padding than elbows do. Elbows look OK when padding is just
-    // larger than the marker size, but curves slope down, so the padding needs to be
-    // closer to twice the marker size for the marker to look properly connected to
-    // the curve.
-
-    gridData.padding = Math.ceil(22 / gridData.squareLength);
-    var currentRow, currentColumn;
-    gridData.totalColumnCount = Math.ceil(pathwayImageWidth/gridData.squareLength);
-    gridData.totalRowCount = Math.ceil(pathwayImageHeight/gridData.squareLength);
-
-    generateEntirelyWalkableMatrix(gridData.totalRowCount, gridData.totalColumnCount, function(entirelyWalkableMatrix) {
-      // need this to generate path data as last resort when populated grids do not result in a path
-
-      gridData.emptyGrid = new PF.Grid(gridData.totalColumnCount, gridData.totalRowCount, entirelyWalkableMatrix);
-      gridData.entirelyWalkableMatrix = entirelyWalkableMatrix;
-      callback(gridData);
-    });
-  }
-
-  function getPath(svg, edge, callbackOutside) {
-    //*
-    console.log('svg in path-finder');
-    console.log(svg);
-    console.log('edge in path-finder');
-    console.log(edge);
-    console.log('callbackOutside in path-finder');
-    console.log(callbackOutside);
-    //*/
-
-    var gridData = svg[0][0].pathvisiojs.gridData;
-    var workingGrid;
-
-    var Point = edge.Point;
-    var pointStart = Point[0];
-    var pointEnd = Point[Point.length - 1];
-    var startLocation = xYCoordinatesToMatrixLocation(pointStart.x, pointStart.y, gridData.squareLength);
-    var endLocation = xYCoordinatesToMatrixLocation(pointEnd.x, pointEnd.y, gridData.squareLength);
-    var finder = new PF.BiBreadthFirstFinder({
-      allowDiagonal: false,
-      dontCrossCorners: true
-    });
-
-    // TODO need to rethink this wrt to reactions and other ways of
-    // doing the data structure where we may have more than just a
-    // source and a target
-
-    var edgeGraphRefNodes = [];
-    var targetNode;
-    if (edge.hasOwnProperty('InteractionGraph')) {
-      edgeGraphRefNodes.push(edge.InteractionGraph[0]);
-      if (edge.InteractionGraph.length === 1) {
-        targetNode = edge.InteractionGraph[0].interactsWith;
-      }
-      else {
-        targetNode = edge.InteractionGraph[edge.InteractionGraph.length - 1];
-      }
-      if (!!targetNode) {
-        edgeGraphRefNodes.push(targetNode);
-      }
-    }
-
-    // TODO this handles both graphicalLines and Interactions for now, but it's a little clumsy.
-    // 2013-12-17: I don't remember why it needs to be different for graphicalLines vs Interactions.
-
-    var pathData = [];
-    async.waterfall([
-      function(callback){
-        generateGrid(gridData, edgeGraphRefNodes, null, function(grid) {
-          callback(null, grid);
-        });
-      },
-      function(grid, callback){
-        workingGrid = grid;
-        /*
-        console.log('workingGrid');
-        console.log(workingGrid);
-        console.log('finder');
-        console.log(finder);
-        console.log('Point');
-        console.log(Point);
-        console.log('pointStart');
-        console.log(pointStart);
-        console.log('pointEnd');
-        console.log(pointEnd);
-        console.log('startLocation');
-        console.log(startLocation);
-        console.log('endLocation');
-        console.log(endLocation);
-        //*/
-        runPathFinder(workingGrid,
-          finder,
-          Point,
-          pointStart,
-          pointEnd,
-          startLocation,
-          endLocation,
-          gridData.squareLength,
-          function(data) {
-            pathData = data;
-            callback(null);
-          }
-        );
-      },
-      function(callback){
-
-        // graphicalLines will have pathData = [],
-        // Interactions will have pathData = [startPoint, endPoint] if the nodes
-        // block a real path from being found.
-
-        if (pathData.length < 3) {
-          workingGrid = gridData.emptyGrid.clone();
-          runPathFinder(workingGrid,
-            finder,
-            Point,
-            pointStart,
-            pointEnd,
-            startLocation,
-            endLocation,
-            gridData.squareLength,
-            function(data) {
-              pathData = data;
-              pathData.push({'x': pointEnd.x, 'y': pointEnd.y});
-            callbackOutside(pathData);
-            }
-          );
-        }
-        else {
-          callbackOutside(pathData);
-        }
-      }
-    ]);
-  }
-
-  function xYCoordinatesToMatrixLocation(x, y, squareLength) {
-    var results = {};
-    results.column = Math.floor(x/squareLength);
-    results.row = Math.floor(y/squareLength);
-    return results;
-  }
-
-  function matrixLocationToXYCoordinates(column, row, squareLength) {
-    var results = {};
-    results.x = column * squareLength;
-    results.y = row * squareLength;
-    return results;
-  }
-
-  function generateEntirelyWalkableMatrix(totalRowCount, totalColumnCount, callback) {
-    var entirelyWalkableMatrix = [];
-    for(var currentRow = 0; currentRow < totalRowCount; currentRow++) {
-      entirelyWalkableMatrix[currentRow] = [];
-      for(var currentColumn = 0; currentColumn < totalColumnCount; currentColumn++) {
-        entirelyWalkableMatrix[currentRow][currentColumn] = 0;
-      }
-    }
-    callback(entirelyWalkableMatrix);
-  }
-
-  function populateMatrix(args, callback) {
-    if (!args) {
-      throw new Error('No args specified.');
-    }
-    if (!args.inputMatrix) {
-      throw new Error('No inputMatrix specified.');
-    }
-    if (!args.padding) {
-      throw new Error('No padding specified.');
-    }
-    if (!args.squareLength) {
-      throw new Error('No squareLength specified.');
-    }
-    if (!args.totalRowCount) {
-      throw new Error('No totalRowCount specified.');
-    }
-    if (!args.totalColumnCount) {
-      throw new Error('No totalColumnCount specified.');
-    }
-    if (!args.nodes) {
-      console.warn('No nodes specified. Returning unmodified inputMatrix.');
-      callback(args.inputMatrix);
-    }
-
-    // populatedMatrix is the matrix that has non-walkable areas for each node specified in the input
-
-    var populatedMatrix = args.inputMatrix;
-
-    // mark off no-go non-walkable regions for path finder (regions under edgeGraphRefNodes)
-
-    var upperLeftCorner, lowerRightCorner, rowStart, rowEnd, columnStart, columnEnd;
-    args.nodes.forEach(function(node) {
-      upperLeftCorner = xYCoordinatesToMatrixLocation(node.x, node.y, args.squareLength);
-      lowerRightCorner = xYCoordinatesToMatrixLocation(node.x + node.width, node.y + node.height, args.squareLength);
-
-      columnStart = Math.max((upperLeftCorner.column - args.padding), 0);
-      columnEnd = Math.min((lowerRightCorner.column + args.padding), args.totalColumnCount - 1);
-      rowStart = Math.max((upperLeftCorner.row - args.padding), 0);
-      rowEnd = Math.min((lowerRightCorner.row + args.padding), args.totalRowCount - 1);
-
-      for(var currentRow=rowStart; currentRow<rowEnd + 1; currentRow++) {
-        for(var currentColumn=columnStart; currentColumn<columnEnd + 1; currentColumn++) {
-          populatedMatrix[currentRow][currentColumn] = 1;
-        }
-      }
-    });
-    callback(populatedMatrix);
-  }
-
-  function generateGrid(gridData, edgeGraphRefNodes, otherNodes, callback) {
-    console.log('edgeGraphRefNodes');
-    console.log(edgeGraphRefNodes);
-    self.myedgeGraphRefNodes = edgeGraphRefNodes;
-    if (!gridData) {
-      throw new Error('No gridData specified.');
-    }
-    if (!gridData.entirelyWalkableMatrix) {
-      throw new Error('No entirelyWalkableMatrix specified.');
-    }
-    if (!gridData.padding) {
-      throw new Error('No padding specified.');
-    }
-    if (!gridData.squareLength) {
-      throw new Error('No squareLength specified.');
-    }
-    if (!gridData.totalRowCount) {
-      throw new Error('No totalRowCount specified.');
-    }
-    if (!gridData.totalColumnCount) {
-      throw new Error('No totalColumnCount specified.');
-    }
-
-    // edgeGraphRefNodes and otherNodes are clumsy names but are the best I could come up
-    // with for now.
-    //
-    // edgeGraphRefNodes refers to the set of nodes that an edge is snapped to.
-    // At present, this set is only the source and target nodes, but in the future,
-    // it could include nodes that a waypoint is snapped to
-    // if we allow for waypoints to be snappable.
-    //
-    // otherNodes refers to any other nodes that should be non-walkable.
-
-
-    async.parallel({
-      'populatedMatrix':function(populateMatrixCallback) {
-        async.waterfall([
-          function(waterfallCallback) {
-
-            // mark off no-go non-walkable regions for path finder
-            // (in this case, regions under edgeGraphRefNodes)
-
-            populateMatrix({
-              'nodes':edgeGraphRefNodes,
-              'inputMatrix':pathvisiojs.utilities.clone(gridData.entirelyWalkableMatrix),
-              'padding':gridData.padding,
-              'squareLength':gridData.squareLength,
-              'totalRowCount':gridData.totalRowCount,
-              'totalColumnCount':gridData.totalColumnCount
-            },
-            function(populatedMatrix) {
-              waterfallCallback(null, populatedMatrix);
-            })
-          },
-          function(populatedMatrix, waterfallCallback) {
-
-            // mark off no-go non-walkable regions for path finder
-            // (in this case, regions under otherNodes)
-
-            if (!!otherNodes) {
-              populateMatrix({
-                'nodes':otherNodes,
-                'inputMatrix':populatedMatrix,
-                'padding':1,
-                'squareLength':gridData.squareLength,
-                'totalRowCount':gridData.totalRowCount,
-                'totalColumnCount':gridData.totalColumnCount
-              },
-              function(populatedMatrix) {
-                populateMatrixCallback(null, populatedMatrix);
-              })
-            }
-            else {
-              populateMatrixCallback(null, populatedMatrix);
-            }
-          }
-        ]);
-      },
-      'ports':function(populateMatrixCallback) {
-        var ports = [];
-        if (!!edgeGraphRefNodes) {
-          edgeGraphRefNodes.forEach(function(edgeGraphRefNode){
-            if (edgeGraphRefNode.hasOwnProperty('Port')) {
-              ports = ports.concat(edgeGraphRefNode.Port);
-            }
-          });
-        }
-        if (!!otherNodes) {
-          otherNodes.forEach(function(otherNode){
-            ports = ports.concat(otherNode.Port);
-          });
-        }
-        /*
-        var portFrame = {
-          '@context': pathvisiojs.context,
-          '@type': 'Port'
-        };  
-        var allNodesContainer = {};
-        allNodesContainer['@context'] = pathvisiojs.context;
-        allNodesContainer.DataNode = edgeGraphRefNodes;
-        if (!!otherNodes) {
-          otherNodes.forEach(function(node){
-            allNodesContainer.DataNode = allNodesContainer.DataNode.concat(node);
-          });
-        }
-        jsonld.frame(allNodesContainer, portFrame, function(err, ports) {
-          async.series([
-            function(portsCallback) {
-              var ports = [];
-              portSets['@graph'].forEach(function(portSet) {
-                ports = ports.concat(portSet);
-              });
-
-              portsCallback(null, ports);
-            }
-          ],
-          function(err, results) {
-            var ports = results.ports;
-
-            var column1, column2, row1, row2, portLocation;
-            ports.forEach(function(port) {
-              portLocation = xYCoordinatesToMatrixLocation(port.x, port.y, gridData.squareLength);
-              column1 = Math.max(Math.min((portLocation.column - padding * port.dy), totalColumnCount - 1), 0);
-              column2 = Math.max(Math.min((portLocation.column + port.dy), totalColumnCount - 1), 0);
-              columnStart = Math.min(column1, column2);
-              columnEnd = Math.max(column1, column2);
-
-              row1 = Math.max(Math.min((portLocation.row - port.dx), totalRowCount - 1), 0);
-              row2 = Math.max(Math.min((portLocation.row + padding * port.dx), totalRowCount - 1), 0);
-              rowStart = Math.min(row1, row2);
-              rowEnd = Math.max(row1, row2);
-
-              for(currentRow=rowStart; currentRow<rowEnd + 1; currentRow++) {
-                paddedMatrix[currentRow] = paddedMatrix[currentRow] || [];
-                for(currentColumn=columnStart; currentColumn<columnEnd + 1; currentColumn++) {
-                  paddedMatrix[currentRow][currentColumn] = 0;
-                }
-              }
-            });
-
-            populateMatrixCallback(null, results.ports);
-          });
-        });
-        //*/
-        populateMatrixCallback(null, ports);
-      }
-    },
-    function(err, results) {
-      var populatedMatrix = results.populatedMatrix;
-      var ports = results.ports;
-      var grid;
-
-      // mark off walkable regions emanating from ports
-
-      if (!!ports) {
-        var column1, column2, row1, row2, portLocation, columnStart, columnEnd, rowStart, rowEnd;
-        ports.forEach(function(port) {
-          portLocation = xYCoordinatesToMatrixLocation(port.x, port.y, gridData.squareLength);
-          column1 = Math.max(Math.min((portLocation.column - gridData.padding * port.dy), gridData.totalColumnCount - 1), 0);
-          column2 = Math.max(Math.min((portLocation.column + port.dy), gridData.totalColumnCount - 1), 0);
-          columnStart = Math.min(column1, column2);
-          columnEnd = Math.max(column1, column2);
-
-          row1 = Math.max(Math.min((portLocation.row - port.dx), gridData.totalRowCount - 1), 0);
-          row2 = Math.max(Math.min((portLocation.row + gridData.padding * port.dx), gridData.totalRowCount - 1), 0);
-          rowStart = Math.min(row1, row2);
-          rowEnd = Math.max(row1, row2);
-
-          for(var currentRow=rowStart; currentRow<rowEnd + 1; currentRow++) {
-            populatedMatrix[currentRow] = populatedMatrix[currentRow] || [];
-            for(var currentColumn=columnStart; currentColumn<columnEnd + 1; currentColumn++) {
-              populatedMatrix[currentRow][currentColumn] = 0;
-            }
-          }
-        });
-        grid = new PF.Grid(gridData.totalColumnCount, gridData.totalRowCount, populatedMatrix);
-        callback(grid);
-      }
-      else {
-        grid = new PF.Grid(gridData.totalColumnCount, gridData.totalRowCount, populatedMatrix);
-        callback(grid);
-      }
-
-      //console.log('gridData.totalColumnCount');
-      //console.log(gridData.totalColumnCount);
-      //console.log('gridData.totalRowCount');
-      //console.log(gridData.totalRowCount);
-      //console.log('populatedMatrix');
-      //console.log(populatedMatrix);
-
-
-      // we only want to render the non-walkable areas the walkable areas emanating out from nodes.
-      // Rendering all the rest of the walkable areas would be too demanding in terms of number of
-      // elements rendered in SVG.
-
-    });
-  }
-
-  /*
-  function generateGridData(shapes, ports, pathwayImageWidth, pathwayImageHeight, callback) {
-    //console.log('***************');
-    //console.log('shapes');
-    //console.log(shapes);
-    //console.log('ports');
-    //console.log(ports);
-    //console.log('pathwayImageWidth');
-    //console.log(pathwayImageWidth);
-    //console.log('pathwayImageHeight');
-    //console.log(pathwayImageHeight);
-    //console.log('***************');
-
-    shapes = d3.select(shapes).sort(function(shape1, shape2) {
-      Math.min(shape1.height, shape1.width) - Math.min(shape2.height, shape2.width);
-    })[0][0];
-    pathvisioNS.grid.squareLength = Math.min(shapes[0].height, shapes[0].width) / 14;
-    console.log('pathvisioNS');
-    console.log(pathvisioNS);
-
-    // how much padding to place around the EntityNodes, in units of grid squares
-    // TODO change the static value of 12 to be a calculated value equal to the
-    // largest dimension of a marker in the diagram
-
-    var padding = Math.ceil(12 / pathvisioNS.grid.squareLength);
-    var currentRow, currentColumn;
-    var totalColumnCount = Math.ceil(pathwayImageWidth/pathvisioNS.grid.squareLength);
-    var totalRowCount = Math.ceil(pathwayImageHeight/pathvisioNS.grid.squareLength);
-
-    initGrid(shapes, ports, pathwayImageWidth, pathwayImageHeight, function(gridData) {
-      var paddedMatrix = tightMatrix = entirelyWalkableMatrix = gridData.entirelyWalkableMatrix;
-      pathvisioNS.grid.gridRenderingData = [];
-
-      // mark off no-go non-walkable regions for path finder (regions under shapes)
-
-      var upperLeftCorner, lowerRightCorner, rowStart, rowEnd, columnStart, columnEnd;
-      shapes.forEach(function(shape) {
-        upperLeftCorner = xYCoordinatesToMatrixLocation(shape.x, shape.y, pathvisioNS.grid.squareLength);
-        lowerRightCorner = xYCoordinatesToMatrixLocation(shape.x + shape.width, shape.y + shape.height, pathvisioNS.grid.squareLength);
-
-        columnStartTight = Math.max((upperLeftCorner.column), 0);
-        columnEndTight = Math.min((lowerRightCorner.column), totalColumnCount - 1);
-        rowStartTight = Math.max((upperLeftCorner.row), 0);
-        rowEndTight = Math.min((lowerRightCorner.row), totalRowCount - 1);
-
-        for(currentRow=rowStartTight; currentRow<rowEndTight + 1; currentRow++) {
-          for(currentColumn=columnStartTight; currentColumn<columnEndTight + 1; currentColumn++) {
-            tightMatrix[currentRow][currentColumn] = 1;
-          }
-        }
-
-        columnStart = Math.max((upperLeftCorner.column - padding), 0);
-        columnEnd = Math.min((lowerRightCorner.column + padding), totalColumnCount - 1);
-        rowStart = Math.max((upperLeftCorner.row - padding), 0);
-        rowEnd = Math.min((lowerRightCorner.row + padding), totalRowCount - 1);
-
-        for(currentRow=rowStart; currentRow<rowEnd + 1; currentRow++) {
-          for(currentColumn=columnStart; currentColumn<columnEnd + 1; currentColumn++) {
-            paddedMatrix[currentRow][currentColumn] = 1;
-            pathvisioNS.grid.gridRenderingData[currentRow * (totalColumnCount - 1) + currentColumn] = {
-              'x': currentColumn * pathvisioNS.grid.squareLength,
-              'y': currentRow * pathvisioNS.grid.squareLength,
-              'fill': 'blue'
-            };
-          }
-        }
-      });
-
-      var column1, column2, row1, row2, portLocation;
-      ports.forEach(function(port) {
-        portLocation = xYCoordinatesToMatrixLocation(port.x, port.y);
-        column1 = Math.max(Math.min((portLocation.column - padding * port.dy), totalColumnCount - 1), 0);
-        column2 = Math.max(Math.min((portLocation.column + port.dy), totalColumnCount - 1), 0);
-        columnStart = Math.min(column1, column2);
-        columnEnd = Math.max(column1, column2);
-
-        row1 = Math.max(Math.min((portLocation.row - port.dx), totalRowCount - 1), 0);
-        row2 = Math.max(Math.min((portLocation.row + padding * port.dx), totalRowCount - 1), 0);
-        rowStart = Math.min(row1, row2);
-        rowEnd = Math.max(row1, row2);
-
-        for(currentRow=rowStart; currentRow<rowEnd + 1; currentRow++) {
-          paddedMatrix[currentRow] = paddedMatrix[currentRow] || [];
-          for(currentColumn=columnStart; currentColumn<columnEnd + 1; currentColumn++) {
-            paddedMatrix[currentRow][currentColumn] = 0;
-            pathvisioNS.grid.gridRenderingData[currentRow * (totalColumnCount - 1) + currentColumn] = {
-              'x': currentColumn * pathvisioNS.grid.squareLength,
-              'y': currentRow * pathvisioNS.grid.squareLength,
-              'fill': 'yellow'
-            };
-          }
-        }
-      });
-
-      //console.log('totalColumnCount');
-      //console.log(totalColumnCount);
-      //console.log('totalRowCount');
-      //console.log(totalRowCount);
-      //console.log('paddedMatrix');
-      //console.log(paddedMatrix);
-
-      pathvisioNS.grid.paddedGrid = new PF.Grid(totalColumnCount, totalRowCount, paddedMatrix);
-      pathvisioNS.grid.tightGrid = new PF.Grid(totalColumnCount, totalRowCount, tightMatrix);
-      pathvisioNS.grid.emptyGrid = new PF.Grid(totalColumnCount, totalRowCount, entirelyWalkableMatrix);
-      pathvisioNS.grid.gridRenderingData = pathvisioNS.grid.gridRenderingData.filter(function(element) {return !!element});
-
-      callback(pathvisioNS.grid.emptyGrid);
-    })
-  }
-  //*/
-
-  function runPathFinder(workingGrid, finder, Point, pointStart, pointEnd, startLocation, endLocation, squareLength, callback) {
-    /*
-    console.log('workingGrid');
-    console.log(workingGrid);
-    console.log('finder');
-    console.log(finder);
-    console.log('Point');
-    console.log(Point);
-    console.log('pointStart');
-    console.log(pointStart);
-    console.log('pointEnd');
-    console.log(pointEnd);
-    console.log('startLocation');
-    console.log(startLocation);
-    console.log('endLocation');
-    console.log(endLocation);
-    //*/
-
-    /* 
-     * Get blockyPath
-     */
-
-    var blockyPath = finder.findPath(startLocation.column, startLocation.row, endLocation.column, endLocation.row, workingGrid);
-    //console.log('blockyPath');
-    //console.log(blockyPath);
-
-    /* 
-     * Get compressedMidPoint
-     */
-    // compress path data and extract Point
-
-    var compressedMidPoint = [];
-    var index = 0;
-    if (blockyPath.length > 3) {
-      do {
-        index += 1;
-        if ((blockyPath[index - 1][0] - blockyPath[index + 1][0]) && (blockyPath[index - 1][1] !== blockyPath[index + 1][1])) {
-          compressedMidPoint.push([
-            blockyPath[index][0],
-            blockyPath[index][1]
-          ]);
-        }
-      } while (index < blockyPath.length - 2);
-    }
-    else {
-      //console.log('blockyPath too short to compress.');
-    }
-
-    /* 
-     * Get fullXYPath
-     */
-
-    var fullXYPath = [];
-
-    compressedMidPoint.forEach(function(element, index) {
-      fullXYPath.push({
-        'x': compressedMidPoint[index][0] * squareLength,
-        'y': compressedMidPoint[index][1] * squareLength
-      });
-    });
-
-    fullXYPath.unshift({'x': pointStart.x, 'y': pointStart.y});
-    fullXYPath.push({'x': pointEnd.x, 'y': pointEnd.y});
-    //console.log('fullXYPath');
-    //console.log(fullXYPath);
-
-    /* 
-     * Get smootherPath
-     */
-
-    var smootherPath = [];
-    index = 0;
-    if (fullXYPath.length > 2) {
-      do {
-        index += 1;
-        if ((Math.abs(fullXYPath[index].x - fullXYPath[index - 1].x) > 2 * squareLength || Math.abs(fullXYPath[index + 1].x - fullXYPath[index].x) > 2 * squareLength) && (Math.abs(fullXYPath[index].y - fullXYPath[index - 1].y) > 2 * squareLength || Math.abs(fullXYPath[index + 1].y - fullXYPath[index].y) > 2 * squareLength)) {
-          smootherPath.push(fullXYPath[index]);
-        }
-      } while (index < fullXYPath.length - 2);
-    }
-    else {
-      //console.log('fullXYPath too short to smooth.');
-    }
-
-    smootherPath.unshift({'x': pointStart.x, 'y': pointStart.y});
-    smootherPath.push({'x': pointEnd.x, 'y': pointEnd.y});
-
-    //console.log('smootherPath');
-    //console.log(smootherPath);
-
-
-    //*
-    // reposition start and end point to match source and origin
-    if (smootherPath.length === 2) {
-      if (Math.abs(smootherPath[1].x - pointStart.x) < Math.abs(smootherPath[1].x - pointEnd.x)) {
-        smootherPath[1].x = pointStart.x;
-        smootherPath[1].y = pointEnd.y;
-      }
-      else {
-        smootherPath[1].x = pointEnd.x;
-        smootherPath[1].y = pointStart.y;
-      }
-    }
-    else {
-      if (Math.abs(smootherPath[1].x - pointStart.x) < Math.abs(smootherPath[1].y - pointStart.y)) {
-        smootherPath[1].x = pointStart.x;
-      }
-      else {
-        smootherPath[1].y = pointStart.y;
-      }
-
-      if (Math.abs(smootherPath[smootherPath.length - 2].x - pointEnd.x) < Math.abs(smootherPath[smootherPath.length - 2].y - pointEnd.y)) {
-        smootherPath[smootherPath.length - 2].x = pointEnd.x;
-      }
-      else {
-        smootherPath[smootherPath.length - 2].y = pointEnd.y;
-      }
-    }
-    //*/
-
-    callback(smootherPath);
-    //return smootherPath;
-  }
-
-  return {
-    initGrid:initGrid,
-    xYCoordinatesToMatrixLocation:xYCoordinatesToMatrixLocation,
-    matrixLocationToXYCoordinates:matrixLocationToXYCoordinates,
-    //generateGridData:generateGridData,
-    getPath:getPath
-  };
-}();
-;
-
 "use strict";
 
 pathvisiojs.view.pathwayDiagram.svg = function(){
 
-  var svg, shapesAvailable, markersAvailable, contextLevelInput;
+  var svg, shapesAvailable, markersAvailable, contextLevelInput,
+    renderableTypeToSvgElementMappings = {
+      entityNode: 'g',
+      groupNode: 'g',
+      interaction: 'path',
+      graphicalLine: 'path'
+    };
 
-  function setCTM(element, scale) {
-    // element is a d3 selection
-    var s = "matrix(" + scale + ",0,0," + scale + ",10,20)"; // + matrix.a + "," + matrix.b + "," + matrix.c + "," + matrix.d + "," + matrix.e + "," + matrix.f + ")";
-    element.attr("transform", s);
+  //calculates the proper scaling and translations to fit content (i.e., diagram) to screen (i.e., viewport)
+  function fitAndCenterDiagramWithinViewport(viewport, viewportWidth, viewportHeight, diagramWidth, diagramHeight) {
+    // viewport is a d3 selection
+
+    var fitScreenScale = Math.min(viewportWidth/diagramWidth, viewportHeight/diagramHeight);
+    var diagramWidthScaled = fitScreenScale * diagramWidth;
+    var diagramHeightScaled = fitScreenScale * diagramHeight;
+
+    var xTranslation = viewportWidth/2 - diagramWidthScaled/2 + 10; //plus margin-left
+    var yTranslation = viewportHeight/2 - diagramHeightScaled/2 + 20; //plus margin-top
+
+    var translationMatrixString = 'matrix(' + fitScreenScale + ', 0, 0, ' + fitScreenScale + ', ' + xTranslation + ', ' + yTranslation + ') ';
+    
+    viewport.attr("transform", translationMatrixString);
   }
 
   function load(args, callback) {
-    var svg = args.svg,
-      pathway = args.pathway,
-      container = args.container,
+    var diagramContainer = args.container, //a d3 selection corresponding to the containing element in the parent document
       containerWidth = args.containerWidth,
       containerHeight = args.containerHeight,
+      cssUri = args.cssUri,
+      renderableSourceDataElement = args.renderableSourceDataElement,
       fitToContainer = args.fitToContainer,
-      pathwayWidth = args.pathway.image.width,
-      pathwayHeight = args.pathway.image.height;
+      customMarkers = args.customMarkers,
+      //customSymbols = args.customSymbols,
+      pathway,
+      diagramContainer,
+      svg;
 
-    //add loading gif
-    var container = d3.select('body').select('#pathway-container');
-    var posX = containerWidth/2;
-    var posY = containerHeight/2;
-    var img = container.append('img');
-    img.attr('src', "../src/img/loading.gif")
-    .attr('width', 50)
-    .style('position', "absolute")
-    .style('top', posY + "px")
-    .style('left', posX + "px");
 
-    if (!svg) {
-      throw new Error("Missing svg.");
-    }
-    if (!pathway) {
-      throw new Error("Missing pathway.");
-    }
-
-    async.series([
+    async.waterfall([
       function(callback){
-        pathvisiojs.view.pathwayDiagram.svg.renderFast(svg, pathway, function() {
+        async.parallel({
+          preloadSvg: function(callback) {
+            var preloadDiagramArgs = {};
+              preloadDiagramArgs.container = diagramContainer;
+              preloadDiagramArgs.customMarkers = customMarkers,
+              //preloadDiagramArgs.customSymbols = customSymbols,
+              preloadDiagramArgs.cssUri = cssUri;
+
+            pathvisiojs.view.pathwayDiagram.svg.loadPartials(preloadDiagramArgs, function(svgTemplate) {
+              svg = svgTemplate;
+
+              if (!svg) {
+                throw new Error("Could not load SVG template.");
+              }
+
+              callback(null);
+            });
+          },
+          pathway: function(callback){
+            pathvisiojs.data.pathvisiojsJson.get(renderableSourceDataElement, function(json) {
+              pathvisiojs.context = json['@context'];
+
+              if (!json || json === 'fail') {
+                throw new Error("Could not convert input source data to pathvisioJsJson.");
+              }
+
+              //console.log('json');
+              //console.log(json);
+              pathway = json;
+              callback(null);
+            })
+          }
+        },
+        function(err, results){
+          //TODO get pathwayWidth and Height
+
+          callback(null);
+        })
+      },
+      function(callback){
+        pathvisiojs.view.pathwayDiagram.svg.renderWithCachedData(svg, pathway, function() {
           callback(null);
         })
       },
       function(callback) {
-	//remove loading gif
-        container.select('img').remove();
-
-        var initialClickHappened = false;
-        svg.on("click", function(d, i){
-          svgPanZoom.enableZoom();
-          initialClickHappened = true;
-        })
-        .on("mouseover", function(d, i){
-          if (initialClickHappened) {
-            svgPanZoom.enableZoom();
-          }
-        })
-        .on("mouseout", function(d, i){
-          if (initialClickHappened) {
-            svgPanZoom.disableZoom();
-          }
-        });
-
         var viewport = svg.select('#viewport');
 
         /* not all containers will have a width or height style attribute. this is now done using the same logic
          * but uses boundingClientRect() instead. the code is located in pathway-diagram.js
-        var container = d3.select('body').select('#pathway-container');
+        var container = d3.select('body').select('#diagram-container');
         var containerWidth = parseInt(container.style("width")) - 40; //account for space for pan/zoom controls
         var containerHeight = parseInt(container.style("height")) -20; //account for space for search field
         //*/
         var fitScreenScale;
         if (fitToContainer) {
-          fitScreenScale = Math.min(containerWidth/args.pathway.image.width, containerHeight/args.pathway.image.height);
-          setCTM(viewport, fitScreenScale);
+          fitAndCenterDiagramWithinViewport(viewport, containerWidth, containerHeight, pathway.image.width, pathway.image.height);
         }
 
+        var fitToScreen = d3.select('body').select('#fit-to-screen-control');
+        fitToScreen.on("click", function(d,i){
+          fitAndCenterDiagramWithinViewport(viewport, containerWidth, containerHeight, pathway.image.width, pathway.image.height);
+        });
+
+        var fullscreen = d3.select('body').select('#fullscreen-control');
+        fullscreen.on("click", function(d,i){
+          var pvjs = document.getElementById("pathvisiojs-dev").innerHTML;
+          var newwin = window.open('','','width=800,height=600');
+          var doc = newwin.document;
+          doc.open();
+          doc.write(pvjs);
+          doc.close();	
+        });
+
         svgPanZoom.init({
-          'root': 'svg',
-          'zoomEnabled': false 
+          //'root': 'svg', //Alex, what is this line for? It doesn't appear to be doing anything and might be intended to be doing what the line below that I added is doing.
+          'selector': 'svg',
+          'zoomEnabled': false,
+          'minZoom': '0.1',
+          'maxZoom': '8.0',
+        });
+
+        var svgInFocus = false;
+        svg.on("click", function(d, i){
+          svgPanZoom.enableZoom();
+          svgInFocus = true;
+        })
+        .on("mouseenter", function(d, i){
+          if (svgInFocus) {
+            svgPanZoom.enableZoom();
+          }
+        })
+        .on("mouseleave", function(d, i){
+          if (svgInFocus) {
+            svgPanZoom.disableZoom();
+            svgInFocus = false;
+          }
         });
         callback(null);
+      },
+      function(callback){
+        //* Node Highlighter
+
+        var nodeLabels, nodeLabel;
+        if (!!pathway) {
+          nodeLabels = [];
+          if (pathway.hasOwnProperty('DataNode')) {
+            pathway.DataNode.forEach(function(node) {
+              if (!!node.text) {
+                nodeLabels.push(node.text.line[0]);
+              }
+            });
+
+            // see http://twitter.github.io/typeahead.js/
+
+            $('#highlight-by-label-input').typeahead({
+              name: 'Highlight node in pathway',
+              local: nodeLabels,
+              limit: 10
+            });
+          }
+
+          /*
+             $('.icon-eye-open').click(function(){
+             var nodeLabel = $("#highlight-by-label-input").val();
+             if (!nodeLabel) {
+             console.warn('Error: No data node value entered.');
+             }
+             else {
+             pathvisiojs.view.pathwayDiagram.svg.node.highlightByLabel(svg, nodeLabel);
+             }
+             });
+          //*/
+          // see http://api.jquery.com/bind/
+          // TODO get selected value better and make function to handle
+
+          $( "#highlight-by-label-input" ).bind("typeahead:selected", function() {
+            nodeLabel = $("#highlight-by-label-input").val();
+            if (!nodeLabel) {
+              throw new Error("No data node value entered for type-ahead node highlighter.");
+            }
+            else {
+
+              // TODO refactor this so it calls a generic highlightDataNodeByLabel function that can call
+              // a highlighter for svg, png, etc. as appropriate.
+
+              pathvisiojs.view.pathwayDiagram.svg.node.highlightByLabel(svg, pathway, nodeLabel);
+            }
+          });
+          callback(null, 'svg loaded');
+        }
       }
     ],
     function(err, results) {
-      callback();
+      callback(svg);
     });
   }
 
   function loadPartials(args, callbackOutside) {
-    var container = args.container,
+    var diagramContainer = args.container,
       customMarkers = args.customMarkers,
-//      customSymbols = args.customSymbols,
-      cssUrl = args.cssUrl,
-      pathvisioJsContainer,
-      pathwayContainer;
+      //customSymbols = args.customSymbols,
+      cssUri = args.cssUri;
 
     async.series([
       function(callback) {
-        container.html(pathvisioNS['tmp/pathvisiojs.html']);
-        pathvisioJsContainer = container.select('#pathvisio-js-container');
-        pathwayContainer = pathvisioJsContainer.select('#pathway-container')
+        diagramContainer.html(pathvisioNS['tmp/pathvisiojs.svg']);
 
-        svg = pathvisioJsContainer.select('#pathway-svg')
+        svg = diagramContainer.select('#pathvisiojs-diagram')
         svg.attr('style', 'display: inline; width: inherit; min-width: inherit; max-width: inherit; height: inherit; min-height: inherit; max-height: inherit; ') // TODO this should be moved to the CSS file
         .attr('preserveAspectRatio', 'xMidYMid');
 
@@ -6060,7 +5493,7 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
           callback(null);
         }
       },
-/*
+      /*
       function(callback) {
         if (!!args.customSymbols) {
           pathvisiojs.view.pathwayDiagram.svg.symbol.loadAllCustom(svg, customSymbols, function() {
@@ -6071,9 +5504,10 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
           callback(null);
         }
       },
-//*/      function(callback) {
-        if (!!cssUrl) {
-          d3.text(cssUrl, 'text/css', function(data) {
+      //*/      
+      function(callback) {
+        if (!!cssUri) {
+          d3.text(cssUri, 'text/css', function(data) {
             var defs = svg.select('defs');
             var style = defs.append('style').attr('type', "text/css");
             style.text(data);
@@ -6095,8 +5529,71 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
   // If one or more of these elements are a groupNode that contains
   // other elements, this function will call itself back to render
   // the elements within the groupNode.
-  function renderSelectedElementsFast(args, callbackOutside){
-    console.log('renderSelectedElementsFast args');
+  function appendElementsInDomOrder(args, callback){
+    var svg = args.svg,
+      data = args.data,
+      pathway = args.pathway,
+      viewport = args.container,
+      container;
+
+    if (!viewport) {
+      throw new Error("No viewport specified.");
+    }
+    if (!data) {
+      throw new Error("No data entered to render.");
+    }
+    if (!svg) {
+      throw new Error("No svg specified.");
+    }
+    if (!pathway) {
+      throw new Error("No pathway specified.");
+    } 
+    data = pathvisiojs.utilities.convertToArray(data);
+
+    var i = 0;
+    async.each(data, function(item, callbackInside) {
+      console.log('data');
+      console.log(data);
+      console.log('item');
+      console.log(item);
+      if (item.key !== 'undefined') {
+        container = viewport.select('#' + strcase.paramCase(item.key));
+      }
+      else {
+        container = viewport;
+      }
+      console.log(container[0][0]);
+
+      container.selectAll('.element')
+      .data(item.values)
+      .enter()
+      .append(function(d) {
+        console.log('d');
+        console.log(d);
+        var childElementName = renderableTypeToSvgElementMappings[strcase.camelCase(d.renderableType)];
+        var child = document.createElementNS('http://www.w3.org/2000/svg', childElementName);
+        return child;
+      })
+      .attr("id", function (d) {
+        console.log(strcase.paramCase(d['@id']));
+        return strcase.paramCase(d['@id']);
+      })
+      .attr('class', 'element');
+      i += 1;
+
+      callbackInside(null);
+    },
+    function(err){
+      callback(null, 'Successfully rendered elements');
+    });
+  }
+
+  // this function does not render all elements. Rather, it renders
+  // one or more selected elements that are given as inputs.
+  // If one or more of these elements are a groupNode that contains
+  // other elements, this function will call itself back to render
+  // the elements within the groupNode.
+  function updateElementProperties(args, callback){
     console.log(args);
     var svg = args.svg,
       data = args.data,
@@ -6117,80 +5614,30 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
     } 
     data = pathvisiojs.utilities.convertToArray(data);
 
-    var contextLevelInput = pathvisiojs.utilities.clone(pathvisiojs.context);
-    contextLevelInput.dependsOn = "ex:dependsOn";
-
-    async.waterfall([
-      function(callback) {
-        data.sort(function(a, b) {
-          return a.zIndex - b.zIndex;
+    var renderingArgs = args;
+    data.forEach(function(dataElement) {
+      renderingArgs.data = dataElement;
+      renderingArgs.element = d3.select('#' + strcase.paramCase(dataElement['@id']));
+      console.log('#' + strcase.paramCase(dataElement['@id']));
+      console.log(renderingArgs.element);
+      if (dataElement.renderableType === 'GraphicalLine') {                                                                                        
+        pathvisiojs.view.pathwayDiagram.svg.edge.graphicalLine.render(renderingArgs);                                                          
+      } 
+else if (dataElement.renderableType === 'Interaction') {
+        pathvisiojs.view.pathwayDiagram.svg.edge.interaction.render(renderingArgs);
+      } 
+      else if (dataElement.renderableType === 'GroupNode') {
+        pathvisiojs.view.pathwayDiagram.svg.node.groupNode.render(renderingArgs, function(groupContainer, groupContents) {
         });
-        callback(null, data);
-      },
-      function(sortedData, callback) {
-        var renderingArgs = args;
-        sortedData.forEach(function(element) {
-          renderingArgs.data = element;
-          if (element.renderableType === 'GroupNode') {
-            pathvisiojs.view.pathwayDiagram.svg.node.groupNode.render(args, function(groupContainer, groupContents) {
-              var groupedElementsArgs = renderingArgs;
-              groupedElementsArgs.svg = svg;
-              groupedElementsArgs.container = args.container; //groupContainer;
-	      /* 
-	      console.log('groupContainer');
-	      console.log(groupContainer); //*/
-              groupedElementsArgs.data = groupContents;
-	      /*
-	      console.log('groupContents');
-	      console.log(groupContents); //*/
-              groupedElementsArgs.pathway = pathway;
-
-              // recursively calling this function to render elements within groupNode(s)
-              pathvisiojs.view.pathwayDiagram.svg.renderSelectedElementsFast(groupedElementsArgs, function() {
-              });
-
-
-              /*
-              var groupedElementsFrame = {
-                '@context': pathway['@context'],
-                "@type":element.GroupId
-              };
-              jsonld.frame(args.pathway, groupedElementsFrame, function(err, groupedElementsData) {
-                var nodeEntityArgs = {};
-                nodeEntityArgs.svg = args.svg;
-                nodeEntityArgs.container = groupContainer;
-                nodeEntityArgs.data = groupedElementsData['@graph'];
-                pathvisiojs.view.pathwayDiagram.svg.renderSelectedElementsFast(nodeEntityArgs, function() {
-                });
-              });
-              //*/
-            });
-          }
-          else {
-            if (element.renderableType === 'EntityNode') {
-              pathvisiojs.view.pathwayDiagram.svg.node.EntityNode.render(renderingArgs);
-            }
-            else {
-              if (element.renderableType === 'Interaction') {
-                pathvisiojs.view.pathwayDiagram.svg.edge.interaction.render(renderingArgs);
-              }
-              else {
-                if (element.renderableType === 'GraphicalLine') {
-                  pathvisiojs.view.pathwayDiagram.svg.edge.graphicalLine.render(renderingArgs);
-                }
-              }
-            }
-          }
-        });
-        callback(null, 'Successfully rendered elements');
       }
-    ],
-    function(err, results) {
-      callbackOutside(null);
-    })
+      else if (dataElement.renderableType === 'EntityNode') {
+        pathvisiojs.view.pathwayDiagram.svg.node.EntityNode.render(renderingArgs);
+      }
+    });
+    callback(null, 'Successfully rendered elements');
   }
 
-  function renderFast(svg, pathway, callback){
+  function renderWithCachedData(svg, pathway, callback){
     if (!svg) {
       throw new Error("No svg specified.");
     }
@@ -6198,46 +5645,50 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
       throw new Error("No data entered to render.");
     }
 
-    async.parallel({
-      'gridData': function(callbackInside) {
-        var frame = {
-          '@context': pathvisiojs.context,
-          '@type': 'EntityNode'
-        };  
-        jsonld.frame(pathway, frame, function(err, framedData) {
-          pathvisiojs.view.pathwayDiagram.pathFinder.initGrid(framedData['@graph'], pathway.image.width, pathway.image.height, function(gridData) {
-            svg[0][0].pathvisiojs = svg[0][0].pathvisiojs || {};
-            svg[0][0].pathvisiojs.gridData = gridData;
-            callbackInside(null, gridData);
-          });
+    var viewport = svg.select('#viewport');
+
+    pathvisiojs.view.pathwayDiagram.svg.infoBox.render(viewport, pathway);
+
+    var renderArgs = {};
+    renderArgs.svg = svg;
+    renderArgs.container = viewport;
+    renderArgs.pathway = pathway;
+
+    async.waterfall([
+      function(callbackInside){
+        var pathwayNestedByGrouping = d3.nest()
+        .key(function(d) { return d.isContainedBy; })
+        .entries(pathway.elements);
+        
+        renderArgs.data = pathwayNestedByGrouping;
+        console.log('pathwayNestedByGrouping');
+        console.log(pathwayNestedByGrouping);
+
+        appendElementsInDomOrder(renderArgs, function() {
+          callbackInside(null, svg);
         });
       },
-      'firstOrderData': function(callbackInside) {
-        var firstOrderFrame = {
-          '@context': pathvisiojs.context,
-          '@type':['notGrouped', 'GroupNode'],
-          'contains':{}
-        };
-        jsonld.frame(pathway, firstOrderFrame, function(err, firstOrderData) {
-          console.log('firstOrderData');
-          console.log(firstOrderData['@graph']);
-          callbackInside(null, firstOrderData['@graph']);
+      function(svg, callbackInside){
+        //TODO for the non-cached version, this should sort the elements by dependency, so that group contents are updated before their containing group,
+        //and an edge is updated before any edges that rely on it.
+        renderArgs.data = pathway.elements;
+
+        /*
+        var pathwayNestedByDependencies = d3.nest()
+        .key(function(d) { return d.hasDependencies; })
+        .entries(pathway.elements);
+        renderArgs.data = pathwayNestedByDependencies;
+        //*/
+
+        console.log('renderArgs.data');
+        console.log(renderArgs.data);
+
+        updateElementProperties(renderArgs, function() {
+          callback(svg);
         });
       }
-    },
-    function(err, results) {
-      var viewport = svg.select('#viewport');
-
-      pathvisiojs.view.pathwayDiagram.svg.infoBox.render(viewport, pathway);
-
-      var renderSelectedElementsFastArgs = {};
-      renderSelectedElementsFastArgs.svg = svg;
-      renderSelectedElementsFastArgs.container = viewport;
-      renderSelectedElementsFastArgs.pathway = pathway;
-      renderSelectedElementsFastArgs.data = results.firstOrderData;
-      renderSelectedElementsFast(renderSelectedElementsFastArgs, function() {
-        callback(svg);
-      });
+    ]);
+  }
 
 
       //pathvisiojs.view.pathwayDiagram.svg.grid.render(svg);
@@ -6247,7 +5698,7 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
         function(callbackInside2) {
           args.container = args.svg.select('#viewport');
           args.data = results.groupData;
-          renderSelectedElementsFast(args, function() {
+          appendElementsInDomOrder(args, function() {
             console.log(1);
           });
           callbackInside2(null, svg);
@@ -6256,7 +5707,7 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
           args.container = args.svg.select('#viewport');
           args.data = results.notGroupedData;
           self.args = args;
-          renderSelectedElementsFast(args, function() {
+          appendElementsInDomOrder(args, function() {
             console.log(2);
             callbackInside2(null, svg);
           });
@@ -6265,10 +5716,9 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
       function(err, results) {
         callback(svg);
       })
-      //*/
     })
   }
-
+  //*/
   /*
   function render(args, callback){
     if (!args.svg) {
@@ -6338,42 +5788,10 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
 
   return {
     //render:render,
-    renderFast:renderFast,
-    renderSelectedElementsFast:renderSelectedElementsFast,
+    renderWithCachedData:renderWithCachedData,
+    appendElementsInDomOrder:appendElementsInDomOrder,
     load:load,
     loadPartials:loadPartials
-  };
-}();
-;
-
-pathvisiojs.view.pathwayDiagram.svg.grid = function(){
-
-/*  Linear algebra conventions call for specifying an element of a matrix as row #, column #.
- *  The rows and columns use one-based indexing. Example: Element.1,2 is the element in the first row and the second column.
- *  The code in PathFinding.js uses x to refer to column # and y to refer to row #.
- *  JavaScript uses zero-based indexing for matrices. Example: matrix[0][1] refers to the element in the first row and the second column.
- *  This code will follow the PathFinding.js conventions and use zero-based indexing,
- *  so be careful to note this may differ from linear algebra conventions.
- * */
-
-  function render(svg) {
-    var viewport = svg.select('#viewport');
-
-    var grid = viewport.selectAll('use.grid-square')
-    .data(pathvisioNS.grid.gridRenderingData)
-    .enter()
-    .append('use')
-    .attr('x', function(d) {return d.x;})
-    .attr('y', function(d) {return d.y;})
-    .attr('width', pathvisioNS.grid.squareLength)
-    .attr('height', pathvisioNS.grid.squareLength)
-    .attr('xlink:xlink:href', '#grid-square')
-    .attr('class', 'grid-square')
-    .attr('style', function(d) {return 'fill:' + d.fill + '; fill-opacity:0.3; stroke:darkgray;';});
-  }
-
-  return {
-    render:render
   };
 }();
 ;
@@ -6457,11 +5875,11 @@ pathvisiojs.view.pathwayDiagram.svg.symbol = function(){
     'datanode':'shape-library-symbols-rectangle-svg',
   };
 
-  function appendCustom(uniqueSymbolShapeUrl, callback) {
+  function appendCustom(uniqueSymbolShapeUri, callback) {
     var img, width, height, imgChildren;
     var dimensions = null;
 
-    var symbolId = strcase.paramCase(uniqueSymbolShapeUrl)
+    var symbolId = strcase.paramCase(uniqueSymbolShapeUri)
     var defsSection = svg.select('defs');
     var symbol = defsSection.select('#' + symbolId);
     if (!symbol[0][0]) {
@@ -6476,7 +5894,7 @@ pathvisiojs.view.pathwayDiagram.svg.symbol = function(){
     // ignoring non-svg symbols for now
     if (1===1) {
     //if (symbolType === 'svg') {
-      d3.xml(uniqueSymbolShapeUrl, "image/svg+xml", function(svgXml) {
+      d3.xml(uniqueSymbolShapeUri, "image/svg+xml", function(svgXml) {
         img = d3.select(svgXml.documentElement)
         width = img.attr('width');
         height = img.attr('height');
@@ -6490,11 +5908,11 @@ pathvisiojs.view.pathwayDiagram.svg.symbol = function(){
     }
     else {
       img = document.createElement('img');
-      img.src = uniqueSymbolShapeUrl;
+      img.src = uniqueSymbolShapeUri;
       img.onload = function() {
         symbol.attr('viewBox', '0 0 ' + this.width + ' ' + this.height)
         dimensions = symbol.attr('viewBox').split(' ');
-        symbol.append('image').attr('xlink:xlink:href', uniqueSymbolShapeUrl)
+        symbol.append('image').attr('xlink:xlink:href', uniqueSymbolShapeUri)
         .attr('x', dimensions[0])
         .attr('y', dimensions[1])
         .attr('width', dimensions[2])
@@ -6508,15 +5926,15 @@ pathvisiojs.view.pathwayDiagram.svg.symbol = function(){
   function loadAllCustom(thisSvg, customSymbols, callback) {
     svg = thisSvg;
 
-    var uniqueSymbolShapeUrls = [];
+    var uniqueSymbolShapeUris = [];
     customSymbols.forEach(function(customSymbol){
-      semanticNameToIdMapping[customSymbol.semanticName] = strcase.paramCase(customSymbol.url);
-      if (uniqueSymbolShapeUrls.indexOf(customSymbol.url) === -1) {
-        uniqueSymbolShapeUrls.push(customSymbol.url);
+      semanticNameToIdMapping[customSymbol.semanticName] = strcase.paramCase(customSymbol.uri);
+      if (uniqueSymbolShapeUris.indexOf(customSymbol.uri) === -1) {
+        uniqueSymbolShapeUris.push(customSymbol.uri);
       }
     });
 
-    async.each(uniqueSymbolShapeUrls, appendCustom, function(err){
+    async.each(uniqueSymbolShapeUris, appendCustom, function(err){
       // if any of the saves produced an error, err would equal that error
       callback(null);
     });
@@ -6542,7 +5960,7 @@ pathvisiojs.view.pathwayDiagram.svg.symbol = function(){
 pathvisiojs.view.pathwayDiagram.svg.publicationXref = function(){
 
   function getReferenceNumberForDisplay(pathway, rdfId) {
-    var displayNumberForDisplay;
+    var displayNumberForDisplay = null;
     var i = -1;
     var currentPublicationXref;
     var found = false;
@@ -6550,9 +5968,11 @@ pathvisiojs.view.pathwayDiagram.svg.publicationXref = function(){
     do {
       i += 1;
       currentPublicationXref = pathway.Biopax.PublicationXref[i];
-      if (currentPublicationXref.rdfId === rdfId) {
-        found = true;
-        displayNumberForDisplay = i + 1;
+      if (typeof currentPublicationXref != 'undefined'){
+        if (currentPublicationXref.rdfId === rdfId) {
+          found = true;
+          displayNumberForDisplay = i + 1;
+        }
       }
     } while (found === false && i < pathway.Biopax.PublicationXref.length);
 
@@ -6611,12 +6031,18 @@ pathvisiojs.view.pathwayDiagram.svg.publicationXref = function(){
 
   function getPublicationXrefString(pathway, rdfIds, callback) {
     var displayNumbers = [];
+    var publicationXrefString = '';
     // make sure it's an array
     rdfIds = pathvisiojs.utilities.convertToArray(rdfIds);
     rdfIds.forEach(function(rdfId) {
-      displayNumbers.push(getReferenceNumberForDisplay(pathway, rdfId));
+      var num = getReferenceNumberForDisplay(pathway, rdfId);
+      if(!!num) {
+        displayNumbers.push(num); 
+      }	
     });
-    var publicationXrefString = createPublicationXrefString(displayNumbers);
+    if (displayNumbers.length > 0){
+      publicationXrefString = createPublicationXrefString(displayNumbers);
+    }
     callback(publicationXrefString);
   }
 
@@ -6630,9 +6056,12 @@ pathvisiojs.view.pathwayDiagram.svg.publicationXref = function(){
     var viewport, text;
     getPublicationXrefString(pathway, rdfIds, function(publicationXrefString) {
       if (targetType === 'node') {
+	var nodeWidth = target[0][0]['__data__'].width;
+	var textLength = publicationXrefString.toString().length;
+	var offset = nodeWidth - textLength *3 / 2 - 2;
         target.append('text')
         .attr('class', 'citation')
-        .attr('transform', function(d) {return 'translate(0 -5)';})
+        .attr('transform', function(d) {return 'translate('+offset+' -4)';})
         .text(publicationXrefString);
       }
       else {
@@ -6643,7 +6072,7 @@ pathvisiojs.view.pathwayDiagram.svg.publicationXref = function(){
           viewport = d3.select('svg > #viewport');
           text = viewport.append('text')
           .attr('class', 'citation')
-          .attr('transform', function(d) {return 'translate(0 -5)';});
+          .attr('transform', function(d) {return 'translate(0 -10)';});
 
           text.append('textPath')
           .attr('xlink:xlink:href', '#' + target)
@@ -6708,14 +6137,42 @@ pathvisiojs.view.pathwayDiagram.svg.node = function(){
   }
 
   function render(args, callback) {
+    console.log(args);
     if (!args) {
       throw new Error('Need input args to render a node.');
     }
-    if (!args.container) {
-      throw new Error('Need a container to render a node.');
+
+    var nodeContainer = args.element,
+      data = args.data,
+      pathway = args.pathway,
+      parentDataElement,
+      translatedX,
+      translatedY;
+
+      console.log(nodeContainer);
+
+    if (!pathway) {
+      throw new Error('Need a pathway to render a node.');
     }
-    if (!args.data) {
+    if (!nodeContainer) {
+      throw new Error('Need a nodeContainer to render a node.');
+    }
+    if (!data) {
       throw new Error('Need input data to render a node.');
+    }
+
+    if (data.hasOwnProperty('isContainedBy')) {
+      parentDataElement = pathway.elements.filter(function(element) {
+        return element['@id'] === data.isContainedBy;
+      })[0];
+      translatedX = data.x - parentDataElement.x;
+      translatedY = data.y - parentDataElement.y;
+      console.log('parentDataElement');
+      console.log(parentDataElement);
+    }
+    else {
+      translatedX = data.x;
+      translatedY = data.y;
     }
 
     /************ 
@@ -6726,28 +6183,11 @@ pathvisiojs.view.pathwayDiagram.svg.node = function(){
       .origin(Object)
       .on("drag", dragmove);
 
-    var nodeContainer = args.container.selectAll('#node-container-' + strcase.paramCase(args.data['@id']))
-    .data([args.data])
-    .enter()
-    .append("g")
-    .attr("id", function (d) { return 'node-container-' + strcase.paramCase(d['@id']); })
-    .attr('transform', function(d) {
-      var containerElement = {}
-      if (args.container[0][0].hasOwnProperty('__data__')) {
-        containerElement.x = (args.container[0][0].__data__.x);
-        containerElement.y = (args.container[0][0].__data__.y);
-      }
-      else {
-        containerElement.x = 0;
-        containerElement.y = 0;
-      }
-      var element = {}
-      element.x = d.x - containerElement.x;
-      element.y = d.y - containerElement.y;
-      return 'translate(' + element.x + ' ' + element.y + ')';
+    nodeContainer.attr('transform', function(d) {
+      return 'translate(' + translatedX + ' ' + translatedY + ')';
     })
     .attr("style", function (d) {
-      var style;
+      var style = '';
       if (d.hasOwnProperty('backgroundColor')) {
 	if (d.ShapeType == 'brace' || d.ShapeType == 'arc'){ 
 	  //Brace color is NOT for fill and should always be transparent
@@ -6767,37 +6207,41 @@ pathvisiojs.view.pathwayDiagram.svg.node = function(){
     })
     .call(drag)
 
+
+    console.log('nodeContainer');
+    console.log(nodeContainer);
+
     /****************** 
      * background shape
      * ***************/
 
-    var shapeType = strcase.paramCase(args.data.ShapeType);
+    var shapeType = strcase.paramCase(data.ShapeType);
     
     // check for whether desired shape type is available as a symbol
 //    if (pathvisiojs.view.pathwayDiagram.svg.symbol.semanticNameToIdMapping.hasOwnProperty(shapeType)) {
       //console.log('We will use an SVG "use" element to render this ' + shapeType);
-//      pathvisiojs.view.pathwayDiagram.svg.node.useElement.render(nodeContainer, args.data);
+//      pathvisiojs.view.pathwayDiagram.svg.node.useElement.render(nodeContainer, data);
 //    }
     // else check for whether it is available as a pathShape
 //    else {
       //console.log('We will use a pathShape to render this ' + shapeType);
-      pathvisiojs.view.pathwayDiagram.svg.node.pathShape.render(nodeContainer, args.data);
+      pathvisiojs.view.pathwayDiagram.svg.node.pathShape.render(nodeContainer, data);
 //    }
 
     /****************** 
      * text label
      * ***************/
 
-    if (args.data.hasOwnProperty('text')) {
-      pathvisiojs.view.pathwayDiagram.svg.node.text.render(nodeContainer, args.data);
+    if (data.hasOwnProperty('text')) {
+      pathvisiojs.view.pathwayDiagram.svg.node.text.render(nodeContainer, data);
     }
 
     /****************** 
      * citation(s)
      * ***************/
 
-    if (args.data.hasOwnProperty('PublicationXref')) {
-      pathvisiojs.view.pathwayDiagram.svg.publicationXref.render(nodeContainer, 'node', args.pathway, args.data.PublicationXref);
+    if (data.hasOwnProperty('PublicationXref')) {
+      pathvisiojs.view.pathwayDiagram.svg.publicationXref.render(nodeContainer, 'node', args.pathway, data.PublicationXref);
     }
 
     callback(nodeContainer);
@@ -6845,22 +6289,29 @@ pathvisiojs.view.pathwayDiagram.svg.node = function(){
     return port;
   }
 
+
   function highlightByLabel(svg, pathway, nodeLabel) {
+    var svg = d3.selectAll('#pathvisiojs-diagram');
     svg.selectAll('.highlighted-node').remove();
-    var dataNodesWithText = pathway.elements.filter(function(d, i) {return d.nodeType === 'data-node' && (!!d.textLabel);});
-    var selectedNodes = dataNodesWithText.filter(function(d, i) {return d.textLabel.text.indexOf(nodeLabel) !== -1;});
+    var allDataNodesWithText = pathway.DataNode.filter(function(d, i) {return (!!d.text);});
+    var selectedNodes = allDataNodesWithText.filter(function(d, i) {return d.text.line.indexOf(nodeLabel) !== -1;});
     selectedNodes.forEach(function(node) {
-      var nodeDomElement = svg.select('#node-' + node.id);
-      var height = nodeDomElement[0][0].getBBox().height;
-      var width = nodeDomElement[0][0].getBBox().width;
-      nodeDomElement.append('rect')
+      var nodeContainer = svg.select('#node-container-' + strcase.paramCase(node['@id']));
+      if (null == nodeContainer[0][0]){
+	//if null, try grouped node container id
+        nodeContainer = svg.select('#node-container-pathway-iri-' + node.GraphId);
+      }
+      var height = nodeContainer[0][0].getBBox().height;
+      var width = nodeContainer[0][0].getBBox().width; 
+      nodeContainer.append('rect') 
       .attr('class', 'highlighted-node')
       .attr('x', -2.5)
       .attr('y', -2.5)
       .attr('width', width + 5)
       .attr('height', height + 5);
     });
-  }
+  }  
+
   return {
     //renderAll:renderAll,
     render:render,
@@ -6996,11 +6447,7 @@ pathvisiojs.view.pathwayDiagram.svg.node.anchor = function(){
 
 "use strict";
 pathvisiojs.view.pathwayDiagram.svg.node.EntityNode = function(){
-  //function render(viewport, data) {
   function render(args) {
-    if (!args.container) {
-      throw new Error('Container element not specified for this EntityNode.');
-    }
     if (!args.data) {
       throw new Error('EntityNode data missing.');
     }
@@ -7022,16 +6469,33 @@ pathvisiojs.view.pathwayDiagram.svg.node.EntityNode = function(){
         }
         return cssClass;
       })
-      if (!!args.data.DatasourceReference) {
-        if (!!args.data.DatasourceReference.ID) {
-          nodeContainer.on("click", function(d,i) {
-            pathvisiojs.view.annotation.xRef.render(args.pathway.Organism, d['DatasourceReference'].ID, d['DatasourceReference'].Database, d.text.tspan.join(' '), d.dataNodeType); //that's capital 'O' Organism from GPML vocab
-          })
-        }
+      if (args.data.nodeType === 'DataNode') { //all datanodes should be clickable
+        var notDragged = true;
+        nodeContainer
+        .on("mousedown", function(d,i) {
+          notDragged = true;
+        })
+        .on("mousemove", function(d,i) {
+          notDragged = false;
+        })
+        .on("mouseup", function(d,i) {
+          if (notDragged) {
+            var dfId = null, dfDb = null;
+            if (!!d['DatasourceReference']){
+              if (!!d['DatasourceReference'].ID && !!d['DatasourceReference'].Database){ 
+                dfId = d['DatasourceReference'].ID;
+                dfDb = d['DatasourceReference'].Database;
+              }
+            }
+
+            pathvisiojs.view.annotation.xRef.render(args.pathway.Organism, dfId, dfDb, d.text.line.join(' '), d.dataNodeType); //that's capital 'O' Organism from GPML vocab
+
+          }
+        });
       }
     });
   }
- 
+
   return {
     render:render
   };
@@ -7067,7 +6531,7 @@ pathvisiojs.view.pathwayDiagram.svg.node.pathShape = function(){
     //other attributes extracted and applied to new g element
     var stroke = 1
     var transform = '';
-    var g = parent.append('g');
+    var g = parent.insert('g', ':first-child');
     g.attr('stroke-width', function(d) {
         if(!isNaN(d.borderWidth)){
           stroke = d.borderWidth; //LineThickness in GPML
@@ -7602,40 +7066,40 @@ pathvisiojs.view.pathwayDiagram.svg.node.text = function(){
     text.cache.fontSize = 12;
     text.cache.alignmentBaseline = data.text.verticalAlign;
     text.cache.textAnchor = function() {
-	if (data.text.textAlign == 'left'){
-	  return 'start';
-	} else if (data.text.textAlign == 'right') {
-	  return 'end';
-	} else {
-	  return 'middle';
-	}
+      if (data.text.textAlign == 'left'){
+        return 'start';
+      } else if (data.text.textAlign == 'right') {
+        return 'end';
+      } else {
+        return 'middle';
+      }
     };
     text.cache.x = function() {
-	if (data.text.textAlign == 'left'){
-          return -1 * data.width / 2;
-        } else if (data.text.textAlign == 'right') {
-          return data.width / 2;
-        } else {
-          return 0;
-        }
+      if (data.text.textAlign == 'left'){
+        return -1 * data.width / 2;
+      } else if (data.text.textAlign == 'right') {
+        return data.width / 2;
+      } else {
+        return 0;
+      }
     };
     text.cache.translate = {};
     // TODO replace this with the actual translate values
     text.cache.translate.dx = data.width / 2;
     text.cache.translate.dy = data.height / 2;
-    text.tspan = {};
-    text.tspan.cache = {};
-    text.tspan.cache.y = [];
-    var textLineCount = data.text.tspan.length;
+    text.line = {};
+    text.line.cache = {};
+    text.line.cache.y = [];
+    var textLineCount = data.text.line.length;
     var i = 0
-    data.text.tspan.forEach(function(tspan) {
-      text.tspan.cache.y.push(i * text.cache.fontSize);
+    data.text.line.forEach(function(line) {
+      text.line.cache.y.push(i * text.cache.fontSize);
       i += 1;
     });  
 
     var textArea = nodeContainer.selectAll('g.text-area')
     .data(function(d) {
-      return [d];
+      return [data];
     })
     .enter()
     .append('g')
@@ -7668,7 +7132,7 @@ pathvisiojs.view.pathwayDiagram.svg.node.text = function(){
 
     var textLine = textArea.selectAll('text')
     .data(function(d) {
-      return d.text.tspan;
+      return d.text.line;
     })
     .enter()
     .append('text')
@@ -7676,7 +7140,7 @@ pathvisiojs.view.pathwayDiagram.svg.node.text = function(){
       return 'text-line' + i;
     })
     .attr("x", text.cache.x)
-    .attr("y", function (d, i) { return (i - (textLineCount - 1)/2) * 1.4 + 'em';})
+    .attr("y", function (d, i) { return (i - (textLineCount - 1)/2) * 1.1 + 'em';})
     .attr("alignment-baseline", text.cache.alignmentBaseline) 
     .attr("text-anchor", text.cache.textAnchor)
     .text(function (d) { return d; });
@@ -7715,6 +7179,8 @@ pathvisiojs.view.pathwayDiagram.svg.node.groupNode = function(){
       })
 
       var groupContents = args.data.contains;
+      console.log('args.data.contains');
+      console.log(args.data.contains);
       callback(groupContainer, groupContents);
     });
   }
@@ -7925,7 +7391,9 @@ pathvisiojs.view.pathwayDiagram.svg.edge = function(){
   //var svg, customMarkers;
 
   function render(args, callback) {
-    var svg = args.svg;
+    var svg = args.svg,
+      edge = args.element,
+      parentDataElement;
     if (!svg) {
       throw new Error('svg missing');
     }
@@ -7947,7 +7415,20 @@ pathvisiojs.view.pathwayDiagram.svg.edge = function(){
     var markerEndName = args.data.markerEnd;
     //console.log('markerEndName');
     //console.log(markerEndName);
-    var edgeId = strcase.paramCase(data.GraphId);
+    var edgeId = strcase.paramCase(data['@id']);
+
+    if (data.hasOwnProperty('isContainedBy')) {
+      parentDataElement = pathway.elements.filter(function(element) {
+        return element['@id'] === data.isContainedBy;
+      })[0];
+      data.Point.forEach(function(point) {
+        point.x = point.x - parentDataElement.x;
+        point.y = point.y - parentDataElement.y;
+      });
+      console.log('parentDataElement');
+      console.log(parentDataElement);
+    }
+
     /*
     console.log('svg in edge');
     console.log(svg);
@@ -7960,7 +7441,7 @@ pathvisiojs.view.pathwayDiagram.svg.edge = function(){
     console.log('markerEndName in edge');
     console.log(markerEndName);
     //*/
-
+    /*
     var createPathDataString = d3.svg.line()
     .x(function(data) { return data.x; })
     .y(function(data) { return data.y; });
@@ -7979,9 +7460,8 @@ pathvisiojs.view.pathwayDiagram.svg.edge = function(){
       stepType = gpmlConnectorTypeToD3StepTypeMapping[data.ConnectorType];
     }
     createPathDataString.interpolate(stepType);
-
-    var edge,
-      stroke = data.stroke,
+    //*/
+    var stroke = data.stroke,
       markerStartAttributeValue,
       markerEndAttributeValue;
     async.series({
@@ -8049,12 +7529,7 @@ pathvisiojs.view.pathwayDiagram.svg.edge = function(){
           callback(null, markerEndAttributeValue);
         }
       },
-      'edge': function(callback) {
-        edge = container.selectAll('#' + strcase.paramCase(data.GraphId))
-        .data([data])
-        .enter().insert("path", ":first-child") // TODO this may cause problems in the future if we have groups with fully opaque backgrounds
-        callback(null, edge);
-      },
+      /*
       'convertedPointSet': function(callback) {
         var index, firstSegmentHorizontal, currentSegmentHorizontal, convertedPointSet;
 
@@ -8143,13 +7618,14 @@ pathvisiojs.view.pathwayDiagram.svg.edge = function(){
       }
     },
     function(err, results) {
-      edge.attr("id", edgeId)
-      .attr("marker-start", markerStartAttributeValue)
+    //*/
+    'path': function() {
+      edge.attr("marker-start", markerStartAttributeValue)
       .attr("marker-end", markerEndAttributeValue)
       .attr("style", function (data) {
         var style = 'stroke-width:' + data.strokeWidth + '; ';
         if (data.hasOwnProperty('stroke')) {
-          style += 'stroke:' + data.stroke + '; ';
+          style += 'stroke:#' + data.stroke + '; ';
         }
         if (data.hasOwnProperty('strokeStyle')) {
           if (data.strokeStyle === 'double') {
@@ -8160,7 +7636,7 @@ pathvisiojs.view.pathwayDiagram.svg.edge = function(){
       })
       .attr("fill", 'none')
       .attr("d", function (data) {
-        return createPathDataString(results.convertedPointSet);
+        return pathvisiojs.view.pathwayDiagram.svg.edge.path.getPath(data); //createPathDataString(results.convertedPointSet);
       });
 
      /****************** 
@@ -8182,9 +7658,9 @@ pathvisiojs.view.pathwayDiagram.svg.edge = function(){
       else {
         callback(edge);
       }
-
-    });
-  }
+    }
+   }); //close async
+  } //close function
 
   /*
   function renderAll(viewport, pathway) {
@@ -8487,7 +7963,7 @@ pathvisiojs.view.pathwayDiagram.svg.edge.interaction = function(){
           cssClass += 'has-xref ';
           if (!!data.DatasourceReference.ID) {
             interaction.on("click", function(d,i) {
-              pathvisiojs.view.annotation.xRef.render(args.pathway.Organism, d['DatasourceReference'].ID, d['DatasourceReference'].Database, d.InteractionGraph[0].interactsWith.text.tspan[0]+' + '+d.InteractionGraph[0].text.tspan[0], d.renderableType); 
+              pathvisiojs.view.annotation.xRef.render(args.pathway.Organism, d['DatasourceReference'].ID, d['DatasourceReference'].Database, d.InteractionGraph[0].interactsWith.text.line[0]+' + '+d.InteractionGraph[0].text.line[0], d.renderableType); 
 	      //That's capital 'O' Organism from GPML vocab.
 	      //Names of interaction partners is given as header, which is also used to form site query, 
 	      // thus the "+" is used to convey both the interaction and query logic.
@@ -8690,8 +8166,8 @@ pathvisiojs.view.pathwayDiagram.svg.edge.marker = function(){
     'shape-library-markers-none-svg':['default']
   };
 
-  function appendCustom(uniqueMarkerShapeUrl, callback) {
-    var idStub = strcase.paramCase(uniqueMarkerShapeUrl)
+  function appendCustom(uniqueMarkerShapeUri, callback) {
+    var idStub = strcase.paramCase(uniqueMarkerShapeUri)
     var startId = idStub + '-start-default';
     var endId = idStub + '-end-default';
     var markerStart = svg.select('defs').select('#' + startId);
@@ -8699,19 +8175,19 @@ pathvisiojs.view.pathwayDiagram.svg.edge.marker = function(){
     markerStart = svg.select('defs').append('marker')
     .attr('id', startId)
     .attr('preserveAspectRatio', 'none');
-    processSvg(uniqueMarkerShapeUrl, markerStart, startId, false);
+    processSvg(uniqueMarkerShapeUri, markerStart, startId, false);
 
     var markerEnd = svg.select('defs').select('#' + endId);
     markerEnd = svg.select('defs').append('marker')
     .attr('id', endId)
     .attr('preserveAspectRatio', 'none');
-    processSvg(uniqueMarkerShapeUrl, markerEnd, endId, true);
+    processSvg(uniqueMarkerShapeUri, markerEnd, endId, true);
 
     callback(null);
   }
 
-  function processSvg(uniqueMarkerShapeUrl, marker, markerId, rotate){
-    d3.xml(uniqueMarkerShapeUrl, 'image/svg+xml', function(svgXml) {
+  function processSvg(uniqueMarkerShapeUri, marker, markerId, rotate){
+    d3.xml(uniqueMarkerShapeUri, 'image/svg+xml', function(svgXml) {
       var newMarker = d3.select(svgXml.documentElement);
       var width = newMarker.attr('width');
       var height = newMarker.attr('height');
@@ -8735,9 +8211,14 @@ pathvisiojs.view.pathwayDiagram.svg.edge.marker = function(){
         marker.append('g')
         .attr('id', 'g-' + markerId)
         .attr('class', markerClass)
-        .attr('style', '-webkit-transform: rotate(180deg); -webkit-transform-origin: 50% 50%;')
-        ;
-      } else {
+	.attr('transform', 'rotate(180, '+width/2+', '+height/2+')'); 
+/*        .attr('style', ' -webkit-transform: rotate(180deg); -webkit-transform-origin: 50% 50%; '
+			+ '-o-transform: rotate(180deg); -o-transform-origin: 50% 50%; '
+			+ '-moz-transform: rotate(180deg); -moz-transform-origin: 50% 50%; '
+			+ '-ms-transform: rotate(180deg); -ms-transform-origin: 50% 50%; '
+			+ 'transform: rotate(180deg); transform-origin: 50% 50%; '
+        );
+*/      } else {
 	//start marker
         marker.attr('refX', refXstart)
         .attr('refY', refYstart);
@@ -8748,8 +8229,7 @@ pathvisiojs.view.pathwayDiagram.svg.edge.marker = function(){
       }
 
       var g = document.querySelector('#' + 'g-' + markerId);
-
-      var newMarkerChildren = newMarker[0][0].children;
+      var newMarkerChildren = newMarker[0][0].childNodes;
       do {
         g.appendChild(newMarkerChildren[0]);
       } while (newMarkerChildren.length > 0);
@@ -8780,7 +8260,7 @@ pathvisiojs.view.pathwayDiagram.svg.edge.marker = function(){
 /*
       img = document.createElement('img');
       img.id = idStub;
-      img.src = uniqueMarkerShapeUrl;
+      img.src = uniqueMarkerShapeUri;
       img.onload = function() {
         var width = this.width;
         var height = this.height;
@@ -8793,7 +8273,7 @@ pathvisiojs.view.pathwayDiagram.svg.edge.marker = function(){
         .attr('refX', 0)
         .attr('refY', 6);
 
-        markerStart.append('image').attr('xlink:xlink:href', uniqueMarkerShapeUrl)
+        markerStart.append('image').attr('xlink:xlink:href', uniqueMarkerShapeUri)
         .attr('x', 0)
         .attr('y', 0)
         .attr('width', width)
@@ -8815,7 +8295,7 @@ pathvisiojs.view.pathwayDiagram.svg.edge.marker = function(){
         // TODO the transform attribute used is specific to chrome. we need ot add the transform attributes for other browsers
         // check for this on MDN.
 
-        g.append('image').attr('xlink:xlink:href', uniqueMarkerShapeUrl)
+        g.append('image').attr('xlink:xlink:href', uniqueMarkerShapeUri)
         .attr('x', 0)
         .attr('y', 0)
         .attr('width', width)
@@ -8836,21 +8316,21 @@ pathvisiojs.view.pathwayDiagram.svg.edge.marker = function(){
     var dimensionSet = [];
 
     var semanticName;
-    var markerUrl;
-    var paramCaseUrl;
-    var uniqueMarkerShapeUrls = [];
+    var markerUri;
+    var paramCaseUri;
+    var uniqueMarkerShapeUris = [];
     customMarkers.forEach(function(customMarker){
       semanticName = customMarker.semanticName;
-      markerUrl = customMarker.url;
-      paramCaseUrl = strcase.paramCase(markerUrl);
-      pathvisiojs.view.pathwayDiagram.svg.edge.marker.semanticNameToIdMapping[semanticName] = paramCaseUrl;
-      pathvisiojs.view.pathwayDiagram.svg.edge.marker.colorsAvailable[paramCaseUrl] = ['default'];
-      if (uniqueMarkerShapeUrls.indexOf(markerUrl) === -1) {
-        uniqueMarkerShapeUrls.push(markerUrl);
+      markerUri = customMarker.uri;
+      paramCaseUri = strcase.paramCase(markerUri);
+      pathvisiojs.view.pathwayDiagram.svg.edge.marker.semanticNameToIdMapping[semanticName] = paramCaseUri;
+      pathvisiojs.view.pathwayDiagram.svg.edge.marker.colorsAvailable[paramCaseUri] = ['default'];
+      if (uniqueMarkerShapeUris.indexOf(markerUri) === -1) {
+        uniqueMarkerShapeUris.push(markerUri);
       }
     });
 
-    async.each(uniqueMarkerShapeUrls, appendCustom, function(err){
+    async.each(uniqueMarkerShapeUris, appendCustom, function(err){
         // if any of the saves produced an error, err would equal that error
       callback(null);
     });
@@ -8869,19 +8349,19 @@ pathvisiojs.view.pathwayDiagram.svg.edge.marker = function(){
     var defaultId = markerIdStub + '-' + position + '-default';
     var marker = pathvisiojs.utilities.cloneNode('#' + defaultId);
 
-    var defaultMarkerStart, refX, refY, viewBox, viewBoxElements;
+    var defaultMarker, refX, refY, viewBox, viewBoxElements;
     if (position === 'end') {
       console.log('end');
-      defaultMarkerStart = d3.select('#' + markerIdStub + '-start-default');
-      refX = parseFloat(defaultMarkerStart.attr('refX'));
-      refY = parseFloat(defaultMarkerStart.attr('refY'));
-      viewBox = defaultMarkerStart.attr('viewBox');
+      defaultMarker = d3.select('#' + markerIdStub + '-'+position+'-default');
+      refX = parseFloat(defaultMarker.attr('refX'));
+      refY = parseFloat(defaultMarker.attr('refY'));
+      viewBox = defaultMarker.attr('viewBox');
       if (!!viewBox) {
         viewBoxElements = viewBox.split(' ');
-        marker.attr('viewBox', (-1) * viewBoxElements[2] + ' ' + (-1) * viewBoxElements[3] + ' ' + viewBoxElements[2] + ' ' + viewBoxElements[3]);
+        marker.attr('viewBox', viewBox); 
       }
       marker.attr('refX', refX)
-      marker.attr('refY', (-1) * refY)
+      marker.attr('refY', refY)
     }
 
     // define style of marker element's SVG
@@ -9032,425 +8512,334 @@ pathvisiojs.view.pathwayDiagram.svg.edge.point = function(){
 }();
 ;
 
-// TODO Rewrite the code for getting elbow and curve edge Point. For reference, see these links:
-//
-// Elbows:
-// [PathVisio Java code for elbows](http://svn.bigcat.unimaas.nl/pathvisio/trunk/modules/org.pathvisiojs.core/src/org/pathvisio/core/model/ElbowConnectorShape.java)
-// [jsPlumb JavaScript implemention of elbows](https://github.com/sporritt/jsPlumb/blob/master/src/connectors-flowchart.js)
-// [W3C documention on vertical and horizontal path movement - "lineto" commands - for SVG](http://www.w3.org/TR/SVG/paths.html#PathDataLinetoCommands)
-//
-// Bezier Curves:
-// [PathVisio Java code for cubic bezier curve](http://svn.bigcat.unimaas.nl/pathvisio/trunk/modules/org.pathvisiojs.core/src/org/pathvisio/core/model/CurvedConnectorShape.java)
-// [jsPlumb JavaScript implemention of bezier curves](https://github.com/sporritt/jsPlumb/blob/master/src/connectors-bezier.js)
-// [W3C documention on cubic bezier curves for SVG](http://www.w3.org/TR/SVG/paths.html#PathDataLinetoCommands)
-// There are other types of SVG curves, but I understand the Java code to use bezier curves.
-
-pathvisiojs.view.pathwayDiagram.svg.edge.pathData = function(){
-  function getPathDirectionForElbowFromPoint(pathway, edge, point) {
-    var direction, otherEndDirection, otherEndPoint;
-
-    direction = getPathDirectionForElbowFromPointByAnchor(pathway, point); 
-    if (!direction) {
-      if (point === edge.Point[0]) {
-        otherEndPoint = edge.Point[edge.Point.length - 1];
-      }
-      else {
-        otherEndPoint = edge.Point[0];
-      }
-
-      otherEndDirection = getPathDirectionForElbowFromPointByAnchor(pathway, otherEndPoint); 
-      if (!!otherEndDirection) {
-        if (pathvisiojs.utilities.isOdd(edge.Point.length)) {
-          direction = switchDirection(otherEndDirection);
-        }
-        else {
-          direction = otherEndDirection;
-        }
-      }
-      else {
-        direction = getPathDirectionForElbowFromPointByDistance(pathway, edge, point);
-      }
-    }
-    return direction;
-  }
-
-  function getPathDirectionForElbowFromPointByAnchor(pathway, point) {
-    var anchor = pathway.elements.filter(function(element) {return element.id === point.anchorId})[0];
-    if (!!anchor) {
-      if (Math.abs(anchor.dx) === 1 || Math.abs(anchor.dy) === 1) {
-        if (Math.abs(anchor.dx) === 1) {
-          direction = 'H';
-        }
-        else {
-          if (Math.abs(anchor.dy) === 1) {
-            direction = 'V';
-          }
-        }
-      }
-      else {
-        direction = undefined;
-      }
-    }
-    else {
-      direction = undefined;
-    }
-    return direction;
-  }
-
-  function getPathDirectionForElbowFromPointByDistance(pathway, edge, point) {
-    var direction, comparisonPoint;
-    if (point === edge.Point[0]) {
-      comparisonPoint = edge.Point[1];
-    }
-    else {
-      comparisonPoint = edge.Point[edge.Point.length - 1];
-    }
-    if (Math.abs(comparisonPoint.x - point.x) < Math.abs(comparisonPoint.y - point.y)) {
-      direction = 'V';
-    }
-    else {
-      direction = 'H';
-    }
-    return direction;
-  }
-
-  function switchDirection(currentDirection) {
-    currentDirection = currentDirection.toUpperCase();
-    if (currentDirection === 'H') {
-      return 'V';
-    }
-    else {
-      return 'H';
-    }
-  }
-
-  function get(edge, callback) {
-    if (!edge) {
-      throw new Error('No edge specified as input.');
-    }
-
-    var currentDirection, startDirection, endDirection, controlPoint, index;
-    var pointStart = edge.Point[0];
-
-    /*
-    var source = pathvisiojs.view.pathwayDiagram.svg.edge.point.getCoordinates(pathway, pointStart);
-
-    var pointCoordinatesArray = self.pointCoordinatesArray = [];
-    var pointCoordinates;
-    edge.Point.forEach(function(element) {
-      pointCoordinates = pathvisiojs.view.pathwayDiagram.svg.edge.point.getCoordinates(pathway, element);
-      pointCoordinatesArray.push(pointCoordinates)
-    })
-
-    if (pointStart.dx === undefined) {
-      source.dx = 0;
-    }
-    else {
-      source.dx = pointStart.dx;
-    }
-
-    if (pointStart.dy === undefined) {
-      source.dy = 0;
-    }
-    else {
-      source.dy = pointStart.dy;
-    }
-
-    var pointEnd = edge.Point[edge.Point.length - 1];
-    //var target = pathvisiojs.view.pathwayDiagram.svg.edge.point.getCoordinates(pathway, pointEnd);
-
-    if (pointEnd.dx === undefined) {
-      target.dx = 0;
-    }
-    else {
-      target.dx = pointEnd.dx;
-    }
-
-    if (pointEnd.dy === undefined) {
-      target.dy = 0;
-    }
-    else {
-      target.dy = pointEnd.dy;
-    }
-    //*/
-
-    var pathData = 'M ' + source.x + ' ' + source.y;
-
-    if ((!edge.connectorType) || (edge.connectorType === undefined) || (edge.connectorType === 'Straight')) {
-      pathData += " L " + target.x + " " + target.y;
-      callback(pathData);
-    }
-    else {
-      if (edge.connectorType === 'Elbow') {
-
-        // distance to move away from node when we can't go directly to the next node
-
-        var stubLength = 15;
-
-        startDirection = getPathDirectionForElbowFromPoint(pathway, edge, pointStart);
-        currentDirection = startDirection;
-        endDirection = getPathDirectionForElbowFromPoint(pathway, edge, pointEnd);
-
-        var pathCoordinatesArray = [];
-
-
-        async.series([
-          function(callbackInside){
-            if (edge.Point.length === 2) {
-              pathvisiojs.view.pathwayDiagram.pathFinder.getPath(pathway, edge, function(data) {
-                pathCoordinatesArray = data;
-                callbackInside(null);
-              });
-            }
-            else {
-              pathCoordinatesArray.push({
-                'x': pointStart.x,
-                'y': pointStart.y
-              });
-
-              index = 0;
-              do {
-                index += 1;
-
-                if (currentDirection === 'H') {
-                  pathCoordinatesArray.push({
-                    'x': edge.Point[index].x,
-                    'y': edge.Point[index - 1].y
-                  });
-                }
-                else {
-                  pathCoordinatesArray.push({
-                    'x': edge.Point[index - 1].x,
-                    'y': edge.Point[index].y
-                  });
-                }
-                currentDirection = switchDirection(currentDirection);
-              } while (index < edge.Point.length - 1);
-
-              pathCoordinatesArray.push({
-                'x': pointEnd.x,
-                'y': pointEnd.y
-              });
-              callbackInside(null);
-            }
-          }
-        ],
-        function(err) {
-          // reposition start and end point to match source and origin
-
-          if (pathCoordinatesArray.length === 3) {
-            if (Math.abs(pathCoordinatesArray[1].x - pointStart.x) < Math.abs(pathCoordinatesArray[1].x - pointEnd.x)) {
-              pathCoordinatesArray[1].x = pointStart.x;
-              pathCoordinatesArray[1].y = pointEnd.y;
-            }
-            else {
-              pathCoordinatesArray[1].x = pointEnd.x;
-              pathCoordinatesArray[1].y = pointStart.y;
-            }
+pathvisiojs.view.pathwayDiagram.svg.edge.path = function(){	
+    function getPath(edge) {
+	var path;
+	var type = edge.ConnectorType;
+	
+	if (type == 'Straight'){
+          if (edge.Point.length == 2) {
+            return svgLine(edge.Point);
           }
           else {
-            if (Math.abs(pathCoordinatesArray[1].x - pointStart.x) < Math.abs(pathCoordinatesArray[1].y - pointStart.y)) {
-              pathCoordinatesArray[1].x = pointStart.x;
-            }
-            else {
-              pathCoordinatesArray[1].y = pointStart.y;
-            }
-
-            if (Math.abs(pathCoordinatesArray[pathCoordinatesArray.length - 2].x - pointEnd.x) < Math.abs(pathCoordinatesArray[pathCoordinatesArray.length - 2].y - pointEnd.y)) {
-              pathCoordinatesArray[pathCoordinatesArray.length - 2].x = pointEnd.x;
-            }
-            else {
-              pathCoordinatesArray[pathCoordinatesArray.length - 2].y = pointEnd.y;
-            }
+            console.log("Too many points for a straight line!");
+            return null;
           }
+	}
 
-          if (startDirection === 'H') {
-            pathCoordinatesArray[1].y = pointStart.y;
-          }
-          else {
-            if (startDirection === 'V') {
-              pathCoordinatesArray[1].x = pointStart.x;
-            }
-          }
+	else if (type == 'Segmented') {
+	    return svgLine(edge.Point);
+	}
 
-          if (endDirection === 'H') {
-            pathCoordinatesArray[pathCoordinatesArray.length - 2].y = pointEnd.y;
-          }
-          else {
-            if (endDirection === 'V') {
-              pathCoordinatesArray[pathCoordinatesArray.length - 2].x = pointEnd.x;
-            }
-          }
+	else if (type == 'Elbow'){
+	    return svgLine(calcPathpoints(edge.Point));
+	}
 
-                console.log('pathCoordinatesArray');
-                console.log(pathCoordinatesArray);
-                self.pathCoordinatesArray = pathCoordinatesArray;
-          index = 0;
-          do {
-            index += 1;
-            pathData += ' L ' + pathCoordinatesArray[index].x + ' ' + pathCoordinatesArray[index].y;
-          } while (index < pathCoordinatesArray.length - 1);
-                console.log('pathData');
-                console.log(pathData);
-                callback(pathData);
-
-        });
-
-
-
-
-
-
-
-
-
-
-
-      }
-      else {
-        if (edge.connectorType === 'Segmented') {
-          edge.Point.forEach(function(element, index, array) {
-            if ((index > 0) && (index < (array.length -1))) {
-              pathData += " L " + element.x + " " + element.y;
-            }
-          });
-          pathData += " L " + target.x + " " + target.y;
-          callback(pathData);
-        }
-        else {
-          if (edge.connectorType === 'Curved') {
-
-
-            if (edge.Point.length === 2) {
-              pathCoordinatesArray = pathvisiojs.view.pathwayDiagram.pathFinder.getPath(pathway, edge);
-            }
-            else {
-              pathCoordinatesArray = edge.Point;
-            }
-
-
-            pathCoordinatesArray.forEach(function(element, index, array) {
-              if ((index > 0) && (index < (array.length - 1))) {
-                target.x = (array[index].x + array[index - 1].x)/2;
-                target.y = (array[index].y + array[index - 1].y)/2;
-                pathData += " T" + target.x + "," + target.y;
-              }
-            });
-
-            pathData += " T" + pathCoordinatesArray[pathCoordinatesArray.length - 1].x + "," + pathCoordinatesArray[pathCoordinatesArray.length - 1].y;
-            callback(pathData);
-
-            /*
-
-            controlPoint = {};
-            pathCoordinatesArray.forEach(function(element, index, array) {
-              if ((index > 0) && (index < (array.length - 1))) {
-                controlPoint.x = element.x;
-                controlPoint.y = element.y;
-                target.x = (array[index].x + array[index - 1].x)/2;
-                target.y = (array[index].y + array[index - 1].y)/2;
-                pathData += " S" + controlPoint.x + "," + controlPoint.y + " " + target.x + "," + target.y;
-              }
-            });
-
-            pathData += " S" + controlPoint.x + "," + controlPoint.y + " " + pathCoordinatesArray[pathCoordinatesArray.length - 1].x + "," + pathCoordinatesArray[pathCoordinatesArray.length - 1].y;
-//*/
-
-            /*
-            if (edge.Point.length === 3) {
-
-              // what is here is just a starting point. It has not been tested to match the PathVisio (Java) implementation.
-
-              var controlPoint = edge.Point[1];
-
-              pathData += " S" + controlPoint.x + "," + controlPoint.y + " " + target.x + "," + target.y;
-              return pathData;
-            }
-            else {
-
-              // Some of the curved connector types only have two Point. I don't know which function is used in these cases. For now, I approximated with a smooth quadratic bezier.
-
-              pathData += " T" + target.x + "," + target.y;
-              return pathData;
-            }
-            //*/
-            
-
-
-
-          }
-          else {
-            console.log('Warning: pathvisiojs does not support connector type: ' + edge.connectorType);
-            edge.Point.forEach(function(element, index, array) {
-              if ((index > 0) && (index < (array.length -1))) {
-                pathData += " L " + element.x + " " + element.y;
-              }
-            });
-            pathData += " L " + target.x + " " + target.y;
-            callback(pathData);
-          }
-        }
-      }
+	else if (type == 'Curved'){
+	    return svgCurve(calcPathpoints(edge.Point));
+	}
+	
+	else {
+	    console.log("Unknown connector type: " + type);
+	    return null;
+	}
     }
-    /*
-    console.log('returned pathData');
-    console.log(pathData);
-    return pathData;
-    //*/
-  }
+
+    function calcPathpoints(p){
+	//check to see if all waypoints are provided
+	if (p.length == 2) {
+	  p = calcAllWaypoints(p);
+	}
+
+	var ppts = [];
+
+	//first path point is start
+	ppts[0] = p[0];
+
+	//intermediate path points
+	var axis = getAxis(p[0]); //TODO: account for starting on an anchor..
+	var i;
+	for (i=1; i<p.length; i++){ 
+	  var dy = p[i].y - p[i-1].y;
+	  var dx = p[i].x - p[i-1].x;
+	  
+	  if (axis == 1){ //Vertical
+	  	ppts[i] = {x:p[i-1].x,y:p[i-1].y+dy};
+	  } else { //Horizontal
+		ppts[i] = {x:p[i-1].x+dx,y:p[i-1].y};
+	  }
+	  axis = (axis+1)%2;  //toggle 1|0
+	}
+
+	// final path point is end
+	ppts[p.length] = p[p.length-1];
+
+        return ppts; 
+    }
+
+    function calcAllWaypoints(p) {
+        var wptCount = getNumWaypoints(p);
+	var offset = 20;
+	var start = p[0];
+	var end = p[1];
+
+	var wpts = [];
+	
+	// first waypoint is start
+	wpts[0] = start;
+
+	// calc new waypoints	
+	if (wptCount == 0) {
+		//done!
+	}
+	else if (wptCount == 1) {
+		wpts[1] = calcWaypoint(start, end, getAxis(start), getDir(end));
+	} else if (wptCount == 2){
+		wpts[1] = calcWaypoint(start, {x:(end.x + offset * getDir(end)), y:(end.y + offset * getDir(end))}, getAxis(start), getDir(start));
+		wpts[2] = calcWaypoint(end, wpts[1], getAxis(end), getDir(end));
+	} else if (wptCount == 3){
+		wpts[2] = {x:(start.x + (end.x - start.x)/2), y:(start.y + (end.y - start.y)/2)};
+		wpts[1] = calcWaypoint(start, wpts[2], getAxis(start), getDir(start));
+	 	wpts[3] = calcWaypoint(end, wpts[2], getAxis(end), getDir(end));
+	} else {
+		console.log("Too many waypoint estimated!!!");
+	}
+
+	// final waypoint is end
+	wpts[wptCount+1] = end;
+
+//console.log(wptCount);
+//console.log(wpts);
+
+	return wpts;
+    }
+
+    function calcWaypoint(start, end, axis, dir){
+	var offset = 20;
+	var x = 0;
+	var y = 0;
+	if (axis == 1){ //Vertical
+	  x = start.x + (end.x - start.x)/2;
+	  y = start.y + offset * dir;
+	} else {  //Horizontal
+	  x = start.x + offset * dir;
+	  y = start.y + (end.y - start.y)/2;
+	}
+	return {x:x, y:y};
+    }
+
+    function getNumWaypoints(pts){
+        var start = pts[0];
+	var end = pts[1];
+	
+	var leftToRight = sign(end.x - start.x) > 0; 
+	var left = leftToRight ? start : end;
+	var right = leftToRight ? end : start;
+
+	var leftIsBottom = sign(left.y - right.y) < 0; 
+	var z = leftIsBottom ? 1 : 0;
+	var x = leftToRight ? getSide(start) : getSide(end);
+	var y = leftToRight ? getSide(end) : getSide(start);
+
+	var wptMatrix = [
+				[
+						[ 1, 1 ],
+						[ 2, 2 ],
+						[ 1, 3 ],
+						[ 0, 2 ]
+				],
+				[
+						[ 2, 0 ],
+						[ 1, 1 ],
+						[ 0, 2 ],
+						[ 1, 1 ],
+				],
+				[
+						[ 3, 1 ],
+						[ 2, 2 ],
+						[ 1, 1 ],
+						[ 2, 0 ],
+				],
+				[
+						[ 2, 2 ],
+						[ 3, 3 ],
+						[ 2, 2 ],
+						[ 1, 1 ],
+				]
+	]
+
+	return wptMatrix[x][y][z];
+    }
+
+    function sign(x) { 
+	return x ? x < 0 ? -1 : 1 : 0; //caution: sign("0") -> 1 
+    };
+
+    function getSide(p){
+	if(Math.abs(p.RelX) > Math.abs(p.RelY)) {
+	  if(p.RelX > 0) {
+            return 1; //East
+	  } else {
+            return 3; //West
+	  }
+ 	} else {
+	  if(p.RelY > 0) {
+            return 2; //South
+	  } else {
+            return 0; //North
+	  }
+	}
+      }
+
+    function getAxis(p) {
+        if (Math.abs(p.RelX) > Math.abs(p.RelY)){
+           return 0; // Y-Axis; Vertical
+        } else {
+          return 1; // X-Axis; Horzontal
+        }
+    }
+
+    function getDir(p){ 
+        if(Math.abs(p.RelX) > Math.abs(p.RelY)) {
+          if(p.RelX > 0) {
+            return 1; //Right
+          } else {
+            return -1; //Left
+          }
+        } else {
+          if(p.RelY > 0) {
+            return 1; //Down
+          } else {
+            return -1; //Up
+          }
+        }
+    }
+
+    //for generating line segments through a path of points (pathpoints, not waypoints)
+    var svgLine = d3.svg.line()
+	.x(function(d) {return d.x; })
+	.y(function(d) {return d.y;})
+	.interpolate("linear");
+
+    //for generating bezier curves through a path of points (pathpoints, not waypoints)
+    var svgCurve = d3.svg.line()
+        .x(function(d) {return d.x; })
+        .y(function(d) {return d.y;})
+        .interpolate("basis");
 
   return {
-    get:get
+    getPath:getPath
   };
 }();
 ;
 
 "use strict";
 
-pathvisiojs.view.pathwayDiagram.png = function(){
+// TODO remove controls that don't work with this element
+// This code is for the HTML img element. It displays the
+// diagram as a PNG, JPG, GIF, etc.
+
+pathvisiojs.view.pathwayDiagram.img = function(){
 
   function load(args, callback) {
     if (!args) {
       throw new Error("Missing input data.");
     }
-    var wikiPathwaysId = args.parsedInputData.wikiPathwaysId,
-      revision = args.parsedInputData.revision,
-      target = args.target,
-      containerWidth = args.width,
-      containerHeight = args.height,
-      pngUrl,
-      png,
-      pngWidth,
-      pngHeight,
-      fitScreenScale;
+    var container = args.container, //a d3 selection corresponding to the containing element in the parent document
+      containerWidth = parseFloat(args.containerWidth),
+      containerHeight = parseFloat(args.containerHeight),
+      fitToContainer = args.fitToContainer,
+      imgUri = args.renderableSourceDataElement.uri;
 
-    if (!!wikiPathwaysId) {
-      pngUrl = encodeURI(pathvisiojs.config.pngDiagramUriStub() + wikiPathwaysId + '&revision=' + revision);
+    if (!imgUri) {
+      console.warn('No uri specified for sourceData element.'); //TODO decide whether this should warn or throw an error.
+      imgUri = args.renderableSourceDataElement.uri || pathvisiojs.config.diagramNotAvailableIconUri;
     }
-    else {
-      pngUrl = pathvisiojs.config.diagramNotAvailableImageUri();
+
+    loadImage(
+      imgUri,
+      function (img) {
+        if (img.type === "error") {
+          console.warn("Error loading image " + imgUri); //TODO decide whether this should warn or throw an error.
+          loadImage(
+            pathvisiojs.config.diagramNotAvailableIconUri,
+            function (img) {
+              //changing from d3 selection to html element
+              container[0][0].appendChild(img);
+              callback(null, img);
+            },
+            {
+              maxWidth: containerWidth,
+              maxHeight: containerHeight
+            }
+          );
+        }
+        else {
+          //changing from d3 selection to html element
+          container[0][0].appendChild(img);
+          //TODO this should go into the CSS file somehow, but be careful not to mess up the SVG version
+          img.setAttribute('style', 'margin: auto; position: absolute; top: 0; left: 0; bottom: 0; right: 0;')
+          callback(null, img);
+        }
+      },
+      {
+        maxWidth: containerWidth,
+        maxHeight: containerHeight,
+        //canvas: true,
+        contain: fitToContainer
+        //crossOrigin:'Anonymous' // I thought this would allow CORS images, but it actually does not.
+      }
+    );
+  }
+
+  /*
+  function load(args, callback) {
+    if (!args) {
+      throw new Error("Missing input data.");
     }
-    window.setTimeout(function() {
-      png = document.createElement('img');
-      png.src = pngUrl;
-      png.onload = function() {
-        pngWidth = this.width;
-        pngHeight = this.height;
-        fitScreenScale = Math.min(containerWidth/pngWidth, containerHeight/pngHeight);
-        target.append('img')
-        .attr('id', 'pathvisiojs-pathway-png')
-        .attr('src', pngUrl)
+
+    var container = args.container,
+      containerWidth = parseFloat(args.containerWidth),
+      containerHeight = parseFloat(args.containerHeight),
+      imgUri = args.renderableSourceDataElement.uri || pathvisiojs.config.diagramNotAvailableIconUri,
+      img,
+      fitScreenScale;
+      
+      console.log(imgUri);
+
+      img = document.createElement('img');
+      img.src = imgUri;
+      img.onload = function() {
+        console.log(this);
+        insertImage(container, containerWidth, containerHeight, img, imgUri, callback);
+      }
+      img.onerror = function() {
+        img.src = pathvisiojs.config.diagramNotAvailableIconUri;
+        img.onload = function() {
+          console.log(this);
+          insertImage(container, containerWidth, containerHeight, img, imgUri, callback);
+          callback(null);
+        }
+      };
+  }
+
+  function insertImage(container, containerWidth, containerHeight, img, imgUri, callback) {
+        var imgWidth = parseFloat(img.width);
+        var imgHeight = parseFloat(img.height);
+        var fitScreenScale = Math.min((containerWidth/imgWidth), (containerHeight/imgHeight));
+        container.append('img')
+        .attr('id', 'pathvisiojs-pathway-img')
+        .attr('src', imgUri)
         .attr('x', 0)
         .attr('y', 0)
         .attr('style', 'position:relative; left:'
-              + (containerWidth - pngWidth * fitScreenScale)/2 + 'px; '
-              + 'top:' + (containerHeight - pngHeight * fitScreenScale)/2 + 'px; ')
-        .attr('width', pngWidth * fitScreenScale)
-        .attr('height', pngHeight * fitScreenScale);
+              + (containerWidth - imgWidth * fitScreenScale)/2 + 'px; '
+              + 'top:' + (containerHeight - imgHeight * fitScreenScale)/2 + 'px; ')
+        .attr('width', imgWidth * fitScreenScale)
+        .attr('height', imgHeight * fitScreenScale);
         callback(null);
-      }
-    }, 50);
   }
+  //*/
 
   return {
     load:load

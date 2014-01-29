@@ -5,10 +5,10 @@
   <title>Pathvisiojs Testing and Development</title>
 
   <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css">
+  <link rel="stylesheet" href="compare.css">
   <link rel="stylesheet" href="../src/css/pathvisiojs.css">
   <link rel="stylesheet" href="../src/css/annotation.css">
   <link rel="stylesheet" href="../src/css/pan-zoom.css">
-  <link rel="stylesheet" href="compare.css">
 </head>
 
 <body>
@@ -18,12 +18,12 @@
     </div>
     <div id="main" class="cf">
       <div id="content-1">
-        <div id="pathvisio-js-dev" style="width: 540px; height: 500px; border:1px solid black; ">
+        <div id="left" style="width: 540px; height: 500px; border:1px solid black; ">
         </div>
       </div>
       <div id="content-2">
         <div id="content-2-1">
-          <div id="current-wikipathways-viewer" style="float:left; width: 540px; height: 500px; border:1px solid black; ">
+          <div id="right" style="float:left; width: 540px; height: 500px; border:1px solid black; ">
           </div>
         </div>
       </div>
@@ -78,37 +78,46 @@
   </script>
   <![endif]-->
 
-  <script src="../lib/rgb-color/rgb-color.min.js"></script>
-  <script src="../lib/strcase/dist/strcase.min.js"></script>
   <script src="../lib/async/lib/async.js"></script>
-  <script src="../lib/d3/d3.min.js"></script>
   <script src="../lib/jquery/jquery.min.js"></script>
-  <script src="../lib/typeahead.js/dist/typeahead.min.js"></script>
-  <!--<script src="../lib/OpenSeadragon/build/openseadragon/openseadragon.min.js"></script>-->
-  <script src="../lib/modernizr/modernizr.js"></script>
-  <script src="../lib/screenfull/dist/screenfull.min.js"></script>
-  <script src="../lib/svg-pan-zoom/svg-pan-zoom.js"></script>
-  <script src="../lib/PathFinding.js/lib/pathfinding-browser.min.js"></script>
-  <script src="../lib/node-uuid/uuid.js"></script>
-  <!--
-  <script src="../lib/requirejs/require.js"></script>
-  -->
-  <script src="../lib/jsonld.js/js/jsonld.js"></script>
-  <script src="../lib/jsonld.js/js/Promise.js"></script>
-  <!--
-  <script src="../lib/jsonld.js/js/rdfa.js"></script>
-  -->
-  <!--
-  <script src="../lib/jsonld.js/js/request.js"></script>
-  -->
-
-  <script src="../lib/jsonld.js/js/Promise.js"></script>
-
-
-  <!-- compare.js has the code responsible for setting up this page.
-  Much of the compare.js code is specific to the functionality of
-  this test page, but it does include the call to load pathvisiojs.
-  This call is a working example of what anyone wanting to deploy
-  pathvisiojs could use.  -->
+  <script>
+    pathvisiojs = {};
+  </script>
+  <script src="../src/js/pathvisiojs/utilities.js"></script>
   <script src="./compare.js"></script>
+
+  <script>
+    window.onload = function() {
+      async.waterfall([
+        function(callback) {
+          developmentLoader.parseUriParams(function(parsedInputData) {
+            callback(null, parsedInputData);
+          });
+        },
+        function(parsedInputData, callback) {
+         var inputData = [{
+            'containerId':'left',
+            'frameSrc':'./development.html' + document.location.search
+          }];
+
+          // test for whether uriParamList.gpml is a WikiPathways ID
+          // If it is not a WikiPathways ID, the WikiPathways widget will not be able to load the pathway.
+          if (!!parsedInputData.wpId) {
+            inputData.push({
+              'containerId':'right',
+              'frameSrc':'http://www.wikipathways.org/wpi/PathwayWidget.php?id=' + parsedInputData.wpId
+            });
+          }
+          else {
+            console.warn('GPML data source specified is not a WP ID. WP widget cannot display this GPML data as a pathway image.');
+          }
+
+          developmentLoader.loadFrames(inputData,
+          function() {
+            callback(null);
+          });
+        }
+      ]);
+    }
+  </script>
 </body>
