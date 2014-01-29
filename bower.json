@@ -20,7 +20,7 @@
     "strcase": "https://github.com/ariutta/strcase.git#~0.6.0",
     "svg-pan-zoom": "latest",
     "typeahead.js": "~0.9.3",
-    "xccessors":"https://github.com/eligrey/Xccessors.git"
+    "xccessors": "https://github.com/eligrey/Xccessors.git"
   },
   "resolutions": {
     "jquery": "1.10.2"
