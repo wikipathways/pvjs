@@ -18,7 +18,9 @@ pathvisiojs.view.pathwayDiagram.svg.edge = function(){
   //var svg, customMarkers;
 
   function render(args, callback) {
-    var svg = args.svg;
+    var svg = args.svg,
+      edge = args.element,
+      parentDataElement;
     if (!svg) {
       throw new Error('svg missing');
     }
@@ -40,7 +42,20 @@ pathvisiojs.view.pathwayDiagram.svg.edge = function(){
     var markerEndName = args.data.markerEnd;
     //console.log('markerEndName');
     //console.log(markerEndName);
-    var edgeId = strcase.paramCase(data.GraphId);
+    var edgeId = strcase.paramCase(data['@id']);
+
+    if (data.hasOwnProperty('isContainedBy')) {
+      parentDataElement = pathway.elements.filter(function(element) {
+        return element['@id'] === data.isContainedBy;
+      })[0];
+      data.Point.forEach(function(point) {
+        point.x = point.x - parentDataElement.x;
+        point.y = point.y - parentDataElement.y;
+      });
+      console.log('parentDataElement');
+      console.log(parentDataElement);
+    }
+
     /*
     console.log('svg in edge');
     console.log(svg);
@@ -73,8 +88,7 @@ pathvisiojs.view.pathwayDiagram.svg.edge = function(){
     }
     createPathDataString.interpolate(stepType);
     //*/
-    var edge,
-      stroke = data.stroke,
+    var stroke = data.stroke,
       markerStartAttributeValue,
       markerEndAttributeValue;
     async.series({
@@ -141,12 +155,6 @@ pathvisiojs.view.pathwayDiagram.svg.edge = function(){
           markerEndAttributeValue = 'none';
           callback(null, markerEndAttributeValue);
         }
-      },
-      'edge': function(callback) {
-        edge = container.selectAll('#' + strcase.paramCase(data.GraphId))
-        .data([data])
-        .enter().insert("path", ":first-child") // TODO this may cause problems in the future if we have groups with fully opaque backgrounds
-        callback(null, edge);
       },
       /*
       'convertedPointSet': function(callback) {
@@ -239,8 +247,7 @@ pathvisiojs.view.pathwayDiagram.svg.edge = function(){
     function(err, results) {
     //*/
     'path': function() {
-      edge.attr("id", edgeId)
-      .attr("marker-start", markerStartAttributeValue)
+      edge.attr("marker-start", markerStartAttributeValue)
       .attr("marker-end", markerEndAttributeValue)
       .attr("style", function (data) {
         var style = 'stroke-width:' + data.strokeWidth + '; ';
