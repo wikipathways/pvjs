@@ -1,0 +1,14 @@
+{
+  "name": "html5-shiv",
+  "_cacheHeaders": {
+    "ETag": "\"23//trunk/html5.js\"",
+    "Last-Modified": "Thu, 26 Sep 2013 10:05:49 GMT",
+    "Content-Length": "2429",
+    "Content-Type": "text/javascript"
+  },
+  "_release": "e-tag:23//trunk",
+  "main": "index.js",
+  "_source": "http://html5shim.googlecode.com/svn/trunk/html5.js",
+  "_target": "*",
+  "_originalSource": "http://html5shim.googlecode.com/svn/trunk/html5.js"
+}
