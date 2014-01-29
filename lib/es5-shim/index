@@ -1,0 +1,1326 @@
+
+
+
+
+
+<!DOCTYPE html>
+<html>
+  <head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# object: http://ogp.me/ns/object# article: http://ogp.me/ns/article# profile: http://ogp.me/ns/profile#">
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>es-shims/es5-shim · GitHub</title>
+    <link rel="search" type="application/opensearchdescription+xml" href="/opensearch.xml" title="GitHub" />
+    <link rel="fluid-icon" href="https://github.com/fluidicon.png" title="GitHub" />
+    <link rel="apple-touch-icon" sizes="57x57" href="/apple-touch-icon-114.png" />
+    <link rel="apple-touch-icon" sizes="114x114" href="/apple-touch-icon-114.png" />
+    <link rel="apple-touch-icon" sizes="72x72" href="/apple-touch-icon-144.png" />
+    <link rel="apple-touch-icon" sizes="144x144" href="/apple-touch-icon-144.png" />
+    <meta property="fb:app_id" content="1401488693436528"/>
+    <meta content="@github" name="twitter:site" /><meta content="summary" name="twitter:card" /><meta content="es-shims/es5-shim" name="twitter:title" /><meta content="es5-shim - ECMAScript 5 compatibility shims for legacy JavaScript engines" name="twitter:description" /><meta content="https://identicons.github.com/192e3ffcf3417fd9b3edddc611bc621e.png" name="twitter:image:src" />
+<meta content="GitHub" property="og:site_name" /><meta content="object" property="og:type" /><meta content="https://identicons.github.com/192e3ffcf3417fd9b3edddc611bc621e.png" property="og:image" /><meta content="es-shims/es5-shim" property="og:title" /><meta content="https://github.com/es-shims/es5-shim" property="og:url" /><meta content="es5-shim - ECMAScript 5 compatibility shims for legacy JavaScript engines" property="og:description" />
+
+    <meta name="hostname" content="github-fe129-cp1-prd.iad.github.net">
+    <meta name="ruby" content="ruby 2.1.0p0-github-tcmalloc (60139581e1) [x86_64-linux]">
+    <link rel="assets" href="https://github.global.ssl.fastly.net/">
+    <link rel="conduit-xhr" href="https://ghconduit.com:25035/">
+    <link rel="xhr-socket" href="/_sockets" />
+    
+
+
+    <meta name="msapplication-TileImage" content="/windows-tile.png" />
+    <meta name="msapplication-TileColor" content="#ffffff" />
+    <meta name="selected-link" value="repo_source" data-pjax-transient />
+    <meta content="collector.githubapp.com" name="octolytics-host" /><meta content="collector-cdn.github.com" name="octolytics-script-host" /><meta content="github" name="octolytics-app-id" /><meta content="ADE450E9:3D3A:273F74:52E84940" name="octolytics-dimension-request_id" />
+    
+
+    
+    
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+
+    <meta content="authenticity_token" name="csrf-param" />
+<meta content="Lc7mZ21dHJ617UluG+aX95Axgu3azup4C/VQwV2ekRg=" name="csrf-token" />
+
+    <link href="https://github.global.ssl.fastly.net/assets/github-8ade070a1b3e2394638bbec2ae5539fd287de00e.css" media="all" rel="stylesheet" type="text/css" />
+    <link href="https://github.global.ssl.fastly.net/assets/github2-a7a44570b569a7e68859c12f617e31306dcd719d.css" media="all" rel="stylesheet" type="text/css" />
+    
+
+
+      <script src="https://github.global.ssl.fastly.net/assets/frameworks-2086b76396d7018acf390457357b14121f3e16f3.js" type="text/javascript"></script>
+      <script async="async" defer="defer" src="https://github.global.ssl.fastly.net/assets/github-29423a3a76be35e1238a4142a63b3408a2fe8124.js" type="text/javascript"></script>
+      
+      <meta http-equiv="x-pjax-version" content="fecedf7597cee3fb660f91a4c0a7f865">
+
+      
+  <meta name="description" content="es5-shim - ECMAScript 5 compatibility shims for legacy JavaScript engines" />
+
+  <meta content="6288429" name="octolytics-dimension-user_id" /><meta content="es-shims" name="octolytics-dimension-user_login" /><meta content="914603" name="octolytics-dimension-repository_id" /><meta content="es-shims/es5-shim" name="octolytics-dimension-repository_nwo" /><meta content="true" name="octolytics-dimension-repository_public" /><meta content="false" name="octolytics-dimension-repository_is_fork" /><meta content="914603" name="octolytics-dimension-repository_network_root_id" /><meta content="es-shims/es5-shim" name="octolytics-dimension-repository_network_root_nwo" />
+  <link href="https://github.com/es-shims/es5-shim/commits/master.atom" rel="alternate" title="Recent Commits to es5-shim:master" type="application/atom+xml" />
+
+  </head>
+
+
+  <body class="logged_out  env-production  vis-public">
+    <div class="wrapper">
+      
+      
+      
+      
+
+
+      
+      <div class="header header-logged-out">
+  <div class="container clearfix">
+
+    <a class="header-logo-wordmark" href="https://github.com/">
+      <span class="mega-octicon octicon-logo-github"></span>
+    </a>
+
+    <div class="header-actions">
+        <a class="button primary" href="/join">Sign up</a>
+      <a class="button signin" href="/login?return_to=%2Fes-shims%2Fes5-shim">Sign in</a>
+    </div>
+
+    <div class="command-bar js-command-bar  in-repository">
+
+      <ul class="top-nav">
+          <li class="explore"><a href="/explore">Explore</a></li>
+        <li class="features"><a href="/features">Features</a></li>
+          <li class="enterprise"><a href="https://enterprise.github.com/">Enterprise</a></li>
+          <li class="blog"><a href="/blog">Blog</a></li>
+      </ul>
+        <form accept-charset="UTF-8" action="/search" class="command-bar-form" id="top_search_form" method="get">
+
+<input type="text" data-hotkey="/ s" name="q" id="js-command-bar-field" placeholder="Search or type a command" tabindex="1" autocapitalize="off"
+    
+    
+      data-repo="es-shims/es5-shim"
+      data-branch="master"
+      data-sha="b44fb58196c7034a630f527c9f2c33b7c19c42e8"
+  >
+
+    <input type="hidden" name="nwo" value="es-shims/es5-shim" />
+
+    <div class="select-menu js-menu-container js-select-menu search-context-select-menu">
+      <span class="minibutton select-menu-button js-menu-target">
+        <span class="js-select-button">This repository</span>
+      </span>
+
+      <div class="select-menu-modal-holder js-menu-content js-navigation-container">
+        <div class="select-menu-modal">
+
+          <div class="select-menu-item js-navigation-item js-this-repository-navigation-item selected">
+            <span class="select-menu-item-icon octicon octicon-check"></span>
+            <input type="radio" class="js-search-this-repository" name="search_target" value="repository" checked="checked" />
+            <div class="select-menu-item-text js-select-button-text">This repository</div>
+          </div> <!-- /.select-menu-item -->
+
+          <div class="select-menu-item js-navigation-item js-all-repositories-navigation-item">
+            <span class="select-menu-item-icon octicon octicon-check"></span>
+            <input type="radio" name="search_target" value="global" />
+            <div class="select-menu-item-text js-select-button-text">All repositories</div>
+          </div> <!-- /.select-menu-item -->
+
+        </div>
+      </div>
+    </div>
+
+  <span class="octicon help tooltipped downwards" title="Show command bar help">
+    <span class="octicon octicon-question"></span>
+  </span>
+
+
+  <input type="hidden" name="ref" value="cmdform">
+
+</form>
+    </div>
+
+  </div>
+</div>
+
+
+      
+
+
+          <div class="site" itemscope itemtype="http://schema.org/WebPage">
+    
+    <div class="pagehead repohead instapaper_ignore readability-menu">
+      <div class="container">
+        
+
+<ul class="pagehead-actions">
+
+
+  <li>
+    <a href="/login?return_to=%2Fes-shims%2Fes5-shim"
+    class="minibutton with-count js-toggler-target star-button tooltipped upwards"
+    title="You must be signed in to use this feature" rel="nofollow">
+    <span class="octicon octicon-star"></span>Star
+  </a>
+
+    <a class="social-count js-social-count" href="/es-shims/es5-shim/stargazers">
+      2,234
+    </a>
+
+  </li>
+
+    <li>
+      <a href="/login?return_to=%2Fes-shims%2Fes5-shim"
+        class="minibutton with-count js-toggler-target fork-button tooltipped upwards"
+        title="You must be signed in to fork a repository" rel="nofollow">
+        <span class="octicon octicon-git-branch"></span>Fork
+      </a>
+      <a href="/es-shims/es5-shim/network" class="social-count">
+        305
+      </a>
+    </li>
+</ul>
+
+        <h1 itemscope itemtype="http://data-vocabulary.org/Breadcrumb" class="entry-title public">
+          <span class="repo-label"><span>public</span></span>
+          <span class="mega-octicon octicon-repo"></span>
+          <span class="author">
+            <a href="/es-shims" class="url fn" itemprop="url" rel="author"><span itemprop="title">es-shims</span></a>
+          </span>
+          <span class="repohead-name-divider">/</span>
+          <strong><a href="/es-shims/es5-shim" class="js-current-repository js-repo-home-link">es5-shim</a></strong>
+
+          <span class="page-context-loader">
+            <img alt="Octocat-spinner-32" height="16" src="https://github.global.ssl.fastly.net/images/spinners/octocat-spinner-32.gif" width="16" />
+          </span>
+
+        </h1>
+      </div><!-- /.container -->
+    </div><!-- /.repohead -->
+
+    <div class="container">
+      
+
+      <div class="repository-with-sidebar repo-container with-full-navigation new-discussion-timeline js-new-discussion-timeline">
+
+        <div class="repository-sidebar">
+            
+
+<div class="sunken-menu vertical-right repo-nav js-repo-nav js-repository-container-pjax js-octicon-loaders">
+  <div class="sunken-menu-contents">
+    <ul class="sunken-menu-group">
+      <li class="tooltipped leftwards" title="Code">
+        <a href="/es-shims/es5-shim" aria-label="Code" class="selected js-selected-navigation-item sunken-menu-item" data-gotokey="c" data-pjax="true" data-selected-links="repo_source repo_downloads repo_commits repo_tags repo_branches /es-shims/es5-shim">
+          <span class="octicon octicon-code"></span> <span class="full-word">Code</span>
+          <img alt="Octocat-spinner-32" class="mini-loader" height="16" src="https://github.global.ssl.fastly.net/images/spinners/octocat-spinner-32.gif" width="16" />
+</a>      </li>
+
+        <li class="tooltipped leftwards" title="Issues">
+          <a href="/es-shims/es5-shim/issues" aria-label="Issues" class="js-selected-navigation-item sunken-menu-item js-disable-pjax" data-gotokey="i" data-selected-links="repo_issues /es-shims/es5-shim/issues">
+            <span class="octicon octicon-issue-opened"></span> <span class="full-word">Issues</span>
+            <span class='counter'>16</span>
+            <img alt="Octocat-spinner-32" class="mini-loader" height="16" src="https://github.global.ssl.fastly.net/images/spinners/octocat-spinner-32.gif" width="16" />
+</a>        </li>
+
+      <li class="tooltipped leftwards" title="Pull Requests">
+        <a href="/es-shims/es5-shim/pulls" aria-label="Pull Requests" class="js-selected-navigation-item sunken-menu-item js-disable-pjax" data-gotokey="p" data-selected-links="repo_pulls /es-shims/es5-shim/pulls">
+            <span class="octicon octicon-git-pull-request"></span> <span class="full-word">Pull Requests</span>
+            <span class='counter'>1</span>
+            <img alt="Octocat-spinner-32" class="mini-loader" height="16" src="https://github.global.ssl.fastly.net/images/spinners/octocat-spinner-32.gif" width="16" />
+</a>      </li>
+
+
+    </ul>
+    <div class="sunken-menu-separator"></div>
+    <ul class="sunken-menu-group">
+
+      <li class="tooltipped leftwards" title="Pulse">
+        <a href="/es-shims/es5-shim/pulse" aria-label="Pulse" class="js-selected-navigation-item sunken-menu-item" data-pjax="true" data-selected-links="pulse /es-shims/es5-shim/pulse">
+          <span class="octicon octicon-pulse"></span> <span class="full-word">Pulse</span>
+          <img alt="Octocat-spinner-32" class="mini-loader" height="16" src="https://github.global.ssl.fastly.net/images/spinners/octocat-spinner-32.gif" width="16" />
+</a>      </li>
+
+      <li class="tooltipped leftwards" title="Graphs">
+        <a href="/es-shims/es5-shim/graphs" aria-label="Graphs" class="js-selected-navigation-item sunken-menu-item" data-pjax="true" data-selected-links="repo_graphs repo_contributors /es-shims/es5-shim/graphs">
+          <span class="octicon octicon-graph"></span> <span class="full-word">Graphs</span>
+          <img alt="Octocat-spinner-32" class="mini-loader" height="16" src="https://github.global.ssl.fastly.net/images/spinners/octocat-spinner-32.gif" width="16" />
+</a>      </li>
+
+      <li class="tooltipped leftwards" title="Network">
+        <a href="/es-shims/es5-shim/network" aria-label="Network" class="js-selected-navigation-item sunken-menu-item js-disable-pjax" data-selected-links="repo_network /es-shims/es5-shim/network">
+          <span class="octicon octicon-git-branch"></span> <span class="full-word">Network</span>
+          <img alt="Octocat-spinner-32" class="mini-loader" height="16" src="https://github.global.ssl.fastly.net/images/spinners/octocat-spinner-32.gif" width="16" />
+</a>      </li>
+    </ul>
+
+
+  </div>
+</div>
+
+              <div class="only-with-full-nav">
+                
+
+  
+
+<div class="clone-url open"
+  data-protocol-type="http"
+  data-url="/users/set_protocol?protocol_selector=http&amp;protocol_type=clone">
+  <h3><strong>HTTPS</strong> clone URL</h3>
+  <div class="clone-url-box">
+    <input type="text" class="clone js-url-field"
+           value="https://github.com/es-shims/es5-shim.git" readonly="readonly">
+
+    <span class="js-zeroclipboard url-box-clippy minibutton zeroclipboard-button" data-clipboard-text="https://github.com/es-shims/es5-shim.git" data-copied-hint="copied!" title="copy to clipboard"><span class="octicon octicon-clippy"></span></span>
+  </div>
+</div>
+
+  
+
+<div class="clone-url "
+  data-protocol-type="subversion"
+  data-url="/users/set_protocol?protocol_selector=subversion&amp;protocol_type=clone">
+  <h3><strong>Subversion</strong> checkout URL</h3>
+  <div class="clone-url-box">
+    <input type="text" class="clone js-url-field"
+           value="https://github.com/es-shims/es5-shim" readonly="readonly">
+
+    <span class="js-zeroclipboard url-box-clippy minibutton zeroclipboard-button" data-clipboard-text="https://github.com/es-shims/es5-shim" data-copied-hint="copied!" title="copy to clipboard"><span class="octicon octicon-clippy"></span></span>
+  </div>
+</div>
+
+
+<p class="clone-options">You can clone with
+      <a href="#" class="js-clone-selector" data-protocol="http">HTTPS</a>,
+      or <a href="#" class="js-clone-selector" data-protocol="subversion">Subversion</a>.
+  <span class="octicon help tooltipped upwards" title="Get help on which URL is right for you.">
+    <a href="https://help.github.com/articles/which-remote-url-should-i-use">
+    <span class="octicon octicon-question"></span>
+    </a>
+  </span>
+</p>
+
+
+
+                <a href="/es-shims/es5-shim/archive/master.zip"
+                   class="minibutton sidebar-button"
+                   title="Download this repository as a zip file"
+                   rel="nofollow">
+                  <span class="octicon octicon-cloud-download"></span>
+                  Download ZIP
+                </a>
+              </div>
+        </div><!-- /.repository-sidebar -->
+
+        <div id="js-repo-pjax-container" class="repository-content context-loader-container" data-pjax-container>
+          
+
+<span id="js-show-full-navigation"></span>
+
+<div class="repository-meta js-details-container ">
+    <div class="repository-description js-details-show">
+      <p>ECMAScript 5 compatibility shims for legacy JavaScript engines</p>
+    </div>
+
+
+
+</div>
+
+<div class="capped-box overall-summary ">
+
+  <div class="stats-switcher-viewport js-stats-switcher-viewport">
+
+    <ul class="numbers-summary">
+      <li class="commits">
+        <a data-pjax href="/es-shims/es5-shim/commits/master">
+            <span class="num">
+              <span class="octicon octicon-history"></span>
+              430
+            </span>
+            commits
+        </a>
+      </li>
+      <li>
+        <a data-pjax href="/es-shims/es5-shim/branches">
+          <span class="num">
+            <span class="octicon octicon-git-branch"></span>
+            4
+          </span>
+          branches
+        </a>
+      </li>
+
+      <li>
+        <a data-pjax href="/es-shims/es5-shim/releases">
+          <span class="num">
+            <span class="octicon octicon-tag"></span>
+            33
+          </span>
+          releases
+        </a>
+      </li>
+
+      <li>
+
+  <a href="/es-shims/es5-shim/graphs/contributors">
+    <span class="num">
+      <span class="octicon octicon-organization"></span>
+      40
+    </span>
+    contributors
+  </a>
+      </li>
+    </ul>
+
+      <div class="repository-lang-stats">
+        <ol class="repository-lang-stats-numbers">
+          <li>
+              <a href="/es-shims/es5-shim/search?l=javascript">
+                <span class="color-block language-color" style="background-color:#f15501;"></span>
+                <span class="lang">JavaScript</span>
+                <span class="percent">99.1%</span>
+              </a>
+          </li>
+          <li>
+              <a href="/es-shims/es5-shim/search?l=css">
+                <span class="color-block language-color" style="background-color:#1f085e;"></span>
+                <span class="lang">CSS</span>
+                <span class="percent">0.9%</span>
+              </a>
+          </li>
+        </ol>
+      </div>
+  </div>
+
+</div>
+
+  <a href="#"
+     class="repository-lang-stats-graph js-toggle-lang-stats tooltipped downwards"
+     title="Show language statistics"
+     style="background-color:#1f085e">
+  <span class="language-color" style="width:99.1%; background-color:#f15501;" itemprop="keywords">JavaScript</span><span class="language-color" style="width:0.9%; background-color:#1f085e;" itemprop="keywords">CSS</span>
+  </a>
+
+
+
+<div class="file-navigation in-mid-page">
+    <a href="/es-shims/es5-shim/compare" aria-label="Compare, review, create a pull request" class="minibutton compact primary tooltipped downwards" title="Compare &amp; review" data-pjax>
+      <span class="octicon octicon-git-compare"></span>
+    </a>
+
+  
+
+<div class="select-menu js-menu-container js-select-menu" >
+  <span class="minibutton select-menu-button js-menu-target" data-hotkey="w"
+    data-master-branch="master"
+    data-ref="master"
+    role="button" aria-label="Switch branches or tags" tabindex="0">
+    <span class="octicon octicon-git-branch"></span>
+    <i>branch:</i>
+    <span class="js-select-button">master</span>
+  </span>
+
+  <div class="select-menu-modal-holder js-menu-content js-navigation-container" data-pjax>
+
+    <div class="select-menu-modal">
+      <div class="select-menu-header">
+        <span class="select-menu-title">Switch branches/tags</span>
+        <span class="octicon octicon-remove-close js-menu-close"></span>
+      </div> <!-- /.select-menu-header -->
+
+      <div class="select-menu-filters">
+        <div class="select-menu-text-filter">
+          <input type="text" aria-label="Filter branches/tags" id="context-commitish-filter-field" class="js-filterable-field js-navigation-enable" placeholder="Filter branches/tags">
+        </div>
+        <div class="select-menu-tabs">
+          <ul>
+            <li class="select-menu-tab">
+              <a href="#" data-tab-filter="branches" class="js-select-menu-tab">Branches</a>
+            </li>
+            <li class="select-menu-tab">
+              <a href="#" data-tab-filter="tags" class="js-select-menu-tab">Tags</a>
+            </li>
+          </ul>
+        </div><!-- /.select-menu-tabs -->
+      </div><!-- /.select-menu-filters -->
+
+      <div class="select-menu-list select-menu-tab-bucket js-select-menu-tab-bucket" data-tab-filter="branches">
+
+        <div data-filterable-for="context-commitish-filter-field" data-filterable-type="substring">
+
+
+            <div class="select-menu-item js-navigation-item ">
+              <span class="select-menu-item-icon octicon octicon-check"></span>
+              <a href="/es-shims/es5-shim/tree/js-shim"
+                 data-name="js-shim"
+                 data-skip-pjax="true"
+                 rel="nofollow"
+                 class="js-navigation-open select-menu-item-text js-select-button-text css-truncate-target"
+                 title="js-shim">js-shim</a>
+            </div> <!-- /.select-menu-item -->
+            <div class="select-menu-item js-navigation-item selected">
+              <span class="select-menu-item-icon octicon octicon-check"></span>
+              <a href="/es-shims/es5-shim/tree/master"
+                 data-name="master"
+                 data-skip-pjax="true"
+                 rel="nofollow"
+                 class="js-navigation-open select-menu-item-text js-select-button-text css-truncate-target"
+                 title="master">master</a>
+            </div> <!-- /.select-menu-item -->
+            <div class="select-menu-item js-navigation-item ">
+              <span class="select-menu-item-icon octicon octicon-check"></span>
+              <a href="/es-shims/es5-shim/tree/review"
+                 data-name="review"
+                 data-skip-pjax="true"
+                 rel="nofollow"
+                 class="js-navigation-open select-menu-item-text js-select-button-text css-truncate-target"
+                 title="review">review</a>
+            </div> <!-- /.select-menu-item -->
+            <div class="select-menu-item js-navigation-item ">
+              <span class="select-menu-item-icon octicon octicon-check"></span>
+              <a href="/es-shims/es5-shim/tree/work"
+                 data-name="work"
+                 data-skip-pjax="true"
+                 rel="nofollow"
+                 class="js-navigation-open select-menu-item-text js-select-button-text css-truncate-target"
+                 title="work">work</a>
+            </div> <!-- /.select-menu-item -->
+        </div>
+
+          <div class="select-menu-no-results">Nothing to show</div>
+      </div> <!-- /.select-menu-list -->
+
+      <div class="select-menu-list select-menu-tab-bucket js-select-menu-tab-bucket" data-tab-filter="tags">
+        <div data-filterable-for="context-commitish-filter-field" data-filterable-type="substring">
+
+
+            <div class="select-menu-item js-navigation-item ">
+              <span class="select-menu-item-icon octicon octicon-check"></span>
+              <a href="/es-shims/es5-shim/tree/v2.3.0"
+                 data-name="v2.3.0"
+                 data-skip-pjax="true"
+                 rel="nofollow"
+                 class="js-navigation-open select-menu-item-text js-select-button-text css-truncate-target"
+                 title="v2.3.0">v2.3.0</a>
+            </div> <!-- /.select-menu-item -->
+            <div class="select-menu-item js-navigation-item ">
+              <span class="select-menu-item-icon octicon octicon-check"></span>
+              <a href="/es-shims/es5-shim/tree/v2.2.0"
+                 data-name="v2.2.0"
+                 data-skip-pjax="true"
+                 rel="nofollow"
+                 class="js-navigation-open select-menu-item-text js-select-button-text css-truncate-target"
+                 title="v2.2.0">v2.2.0</a>
+            </div> <!-- /.select-menu-item -->
+            <div class="select-menu-item js-navigation-item ">
+              <span class="select-menu-item-icon octicon octicon-check"></span>
+              <a href="/es-shims/es5-shim/tree/v2.1.0"
+                 data-name="v2.1.0"
+                 data-skip-pjax="true"
+                 rel="nofollow"
+                 class="js-navigation-open select-menu-item-text js-select-button-text css-truncate-target"
+                 title="v2.1.0">v2.1.0</a>
+            </div> <!-- /.select-menu-item -->
+            <div class="select-menu-item js-navigation-item ">
+              <span class="select-menu-item-icon octicon octicon-check"></span>
+              <a href="/es-shims/es5-shim/tree/v2.0.12"
+                 data-name="v2.0.12"
+                 data-skip-pjax="true"
+                 rel="nofollow"
+                 class="js-navigation-open select-menu-item-text js-select-button-text css-truncate-target"
+                 title="v2.0.12">v2.0.12</a>
+            </div> <!-- /.select-menu-item -->
+            <div class="select-menu-item js-navigation-item ">
+              <span class="select-menu-item-icon octicon octicon-check"></span>
+              <a href="/es-shims/es5-shim/tree/v2.0.11"
+                 data-name="v2.0.11"
+                 data-skip-pjax="true"
+                 rel="nofollow"
+                 class="js-navigation-open select-menu-item-text js-select-button-text css-truncate-target"
+                 title="v2.0.11">v2.0.11</a>
+            </div> <!-- /.select-menu-item -->
+            <div class="select-menu-item js-navigation-item ">
+              <span class="select-menu-item-icon octicon octicon-check"></span>
+              <a href="/es-shims/es5-shim/tree/v2.0.10"
+                 data-name="v2.0.10"
+                 data-skip-pjax="true"
+                 rel="nofollow"
+                 class="js-navigation-open select-menu-item-text js-select-button-text css-truncate-target"
+                 title="v2.0.10">v2.0.10</a>
+            </div> <!-- /.select-menu-item -->
+            <div class="select-menu-item js-navigation-item ">
+              <span class="select-menu-item-icon octicon octicon-check"></span>
+              <a href="/es-shims/es5-shim/tree/v2.0.9"
+                 data-name="v2.0.9"
+                 data-skip-pjax="true"
+                 rel="nofollow"
+                 class="js-navigation-open select-menu-item-text js-select-button-text css-truncate-target"
+                 title="v2.0.9">v2.0.9</a>
+            </div> <!-- /.select-menu-item -->
+            <div class="select-menu-item js-navigation-item ">
+              <span class="select-menu-item-icon octicon octicon-check"></span>
+              <a href="/es-shims/es5-shim/tree/v2.0.8"
+                 data-name="v2.0.8"
+                 data-skip-pjax="true"
+                 rel="nofollow"
+                 class="js-navigation-open select-menu-item-text js-select-button-text css-truncate-target"
+                 title="v2.0.8">v2.0.8</a>
+            </div> <!-- /.select-menu-item -->
+            <div class="select-menu-item js-navigation-item ">
+              <span class="select-menu-item-icon octicon octicon-check"></span>
+              <a href="/es-shims/es5-shim/tree/v2.0.7"
+                 data-name="v2.0.7"
+                 data-skip-pjax="true"
+                 rel="nofollow"
+                 class="js-navigation-open select-menu-item-text js-select-button-text css-truncate-target"
+                 title="v2.0.7">v2.0.7</a>
+            </div> <!-- /.select-menu-item -->
+            <div class="select-menu-item js-navigation-item ">
+              <span class="select-menu-item-icon octicon octicon-check"></span>
+              <a href="/es-shims/es5-shim/tree/v2.0.6"
+                 data-name="v2.0.6"
+                 data-skip-pjax="true"
+                 rel="nofollow"
+                 class="js-navigation-open select-menu-item-text js-select-button-text css-truncate-target"
+                 title="v2.0.6">v2.0.6</a>
+            </div> <!-- /.select-menu-item -->
+            <div class="select-menu-item js-navigation-item ">
+              <span class="select-menu-item-icon octicon octicon-check"></span>
+              <a href="/es-shims/es5-shim/tree/v2.0.5"
+                 data-name="v2.0.5"
+                 data-skip-pjax="true"
+                 rel="nofollow"
+                 class="js-navigation-open select-menu-item-text js-select-button-text css-truncate-target"
+                 title="v2.0.5">v2.0.5</a>
+            </div> <!-- /.select-menu-item -->
+            <div class="select-menu-item js-navigation-item ">
+              <span class="select-menu-item-icon octicon octicon-check"></span>
+              <a href="/es-shims/es5-shim/tree/v2.0.4"
+                 data-name="v2.0.4"
+                 data-skip-pjax="true"
+                 rel="nofollow"
+                 class="js-navigation-open select-menu-item-text js-select-button-text css-truncate-target"
+                 title="v2.0.4">v2.0.4</a>
+            </div> <!-- /.select-menu-item -->
+            <div class="select-menu-item js-navigation-item ">
+              <span class="select-menu-item-icon octicon octicon-check"></span>
+              <a href="/es-shims/es5-shim/tree/v2.0.2"
+                 data-name="v2.0.2"
+                 data-skip-pjax="true"
+                 rel="nofollow"
+                 class="js-navigation-open select-menu-item-text js-select-button-text css-truncate-target"
+                 title="v2.0.2">v2.0.2</a>
+            </div> <!-- /.select-menu-item -->
+            <div class="select-menu-item js-navigation-item ">
+              <span class="select-menu-item-icon octicon octicon-check"></span>
+              <a href="/es-shims/es5-shim/tree/v2.0.1"
+                 data-name="v2.0.1"
+                 data-skip-pjax="true"
+                 rel="nofollow"
+                 class="js-navigation-open select-menu-item-text js-select-button-text css-truncate-target"
+                 title="v2.0.1">v2.0.1</a>
+            </div> <!-- /.select-menu-item -->
+            <div class="select-menu-item js-navigation-item ">
+              <span class="select-menu-item-icon octicon octicon-check"></span>
+              <a href="/es-shims/es5-shim/tree/v2.0.0"
+                 data-name="v2.0.0"
+                 data-skip-pjax="true"
+                 rel="nofollow"
+                 class="js-navigation-open select-menu-item-text js-select-button-text css-truncate-target"
+                 title="v2.0.0">v2.0.0</a>
+            </div> <!-- /.select-menu-item -->
+            <div class="select-menu-item js-navigation-item ">
+              <span class="select-menu-item-icon octicon octicon-check"></span>
+              <a href="/es-shims/es5-shim/tree/v1.2.10"
+                 data-name="v1.2.10"
+                 data-skip-pjax="true"
+                 rel="nofollow"
+                 class="js-navigation-open select-menu-item-text js-select-button-text css-truncate-target"
+                 title="v1.2.10">v1.2.10</a>
+            </div> <!-- /.select-menu-item -->
+            <div class="select-menu-item js-navigation-item ">
+              <span class="select-menu-item-icon octicon octicon-check"></span>
+              <a href="/es-shims/es5-shim/tree/v1.2.8"
+                 data-name="v1.2.8"
+                 data-skip-pjax="true"
+                 rel="nofollow"
+                 class="js-navigation-open select-menu-item-text js-select-button-text css-truncate-target"
+                 title="v1.2.8">v1.2.8</a>
+            </div> <!-- /.select-menu-item -->
+            <div class="select-menu-item js-navigation-item ">
+              <span class="select-menu-item-icon octicon octicon-check"></span>
+              <a href="/es-shims/es5-shim/tree/v1.2.7"
+                 data-name="v1.2.7"
+                 data-skip-pjax="true"
+                 rel="nofollow"
+                 class="js-navigation-open select-menu-item-text js-select-button-text css-truncate-target"
+                 title="v1.2.7">v1.2.7</a>
+            </div> <!-- /.select-menu-item -->
+            <div class="select-menu-item js-navigation-item ">
+              <span class="select-menu-item-icon octicon octicon-check"></span>
+              <a href="/es-shims/es5-shim/tree/v1.2.4"
+                 data-name="v1.2.4"
+                 data-skip-pjax="true"
+                 rel="nofollow"
+                 class="js-navigation-open select-menu-item-text js-select-button-text css-truncate-target"
+                 title="v1.2.4">v1.2.4</a>
+            </div> <!-- /.select-menu-item -->
+            <div class="select-menu-item js-navigation-item ">
+              <span class="select-menu-item-icon octicon octicon-check"></span>
+              <a href="/es-shims/es5-shim/tree/v1.2.3"
+                 data-name="v1.2.3"
+                 data-skip-pjax="true"
+                 rel="nofollow"
+                 class="js-navigation-open select-menu-item-text js-select-button-text css-truncate-target"
+                 title="v1.2.3">v1.2.3</a>
+            </div> <!-- /.select-menu-item -->
+            <div class="select-menu-item js-navigation-item ">
+              <span class="select-menu-item-icon octicon octicon-check"></span>
+              <a href="/es-shims/es5-shim/tree/v1.2.2"
+                 data-name="v1.2.2"
+                 data-skip-pjax="true"
+                 rel="nofollow"
+                 class="js-navigation-open select-menu-item-text js-select-button-text css-truncate-target"
+                 title="v1.2.2">v1.2.2</a>
+            </div> <!-- /.select-menu-item -->
+            <div class="select-menu-item js-navigation-item ">
+              <span class="select-menu-item-icon octicon octicon-check"></span>
+              <a href="/es-shims/es5-shim/tree/v1.2.1"
+                 data-name="v1.2.1"
+                 data-skip-pjax="true"
+                 rel="nofollow"
+                 class="js-navigation-open select-menu-item-text js-select-button-text css-truncate-target"
+                 title="v1.2.1">v1.2.1</a>
+            </div> <!-- /.select-menu-item -->
+            <div class="select-menu-item js-navigation-item ">
+              <span class="select-menu-item-icon octicon octicon-check"></span>
+              <a href="/es-shims/es5-shim/tree/v1.2.0"
+                 data-name="v1.2.0"
+                 data-skip-pjax="true"
+                 rel="nofollow"
+                 class="js-navigation-open select-menu-item-text js-select-button-text css-truncate-target"
+                 title="v1.2.0">v1.2.0</a>
+            </div> <!-- /.select-menu-item -->
+            <div class="select-menu-item js-navigation-item ">
+              <span class="select-menu-item-icon octicon octicon-check"></span>
+              <a href="/es-shims/es5-shim/tree/v1.1.0"
+                 data-name="v1.1.0"
+                 data-skip-pjax="true"
+                 rel="nofollow"
+                 class="js-navigation-open select-menu-item-text js-select-button-text css-truncate-target"
+                 title="v1.1.0">v1.1.0</a>
+            </div> <!-- /.select-menu-item -->
+            <div class="select-menu-item js-navigation-item ">
+              <span class="select-menu-item-icon octicon octicon-check"></span>
+              <a href="/es-shims/es5-shim/tree/v1.0.0"
+                 data-name="v1.0.0"
+                 data-skip-pjax="true"
+                 rel="nofollow"
+                 class="js-navigation-open select-menu-item-text js-select-button-text css-truncate-target"
+                 title="v1.0.0">v1.0.0</a>
+            </div> <!-- /.select-menu-item -->
+            <div class="select-menu-item js-navigation-item ">
+              <span class="select-menu-item-icon octicon octicon-check"></span>
+              <a href="/es-shims/es5-shim/tree/v0.2.10"
+                 data-name="v0.2.10"
+                 data-skip-pjax="true"
+                 rel="nofollow"
+                 class="js-navigation-open select-menu-item-text js-select-button-text css-truncate-target"
+                 title="v0.2.10">v0.2.10</a>
+            </div> <!-- /.select-menu-item -->
+            <div class="select-menu-item js-navigation-item ">
+              <span class="select-menu-item-icon octicon octicon-check"></span>
+              <a href="/es-shims/es5-shim/tree/v0.0.4"
+                 data-name="v0.0.4"
+                 data-skip-pjax="true"
+                 rel="nofollow"
+                 class="js-navigation-open select-menu-item-text js-select-button-text css-truncate-target"
+                 title="v0.0.4">v0.0.4</a>
+            </div> <!-- /.select-menu-item -->
+            <div class="select-menu-item js-navigation-item ">
+              <span class="select-menu-item-icon octicon octicon-check"></span>
+              <a href="/es-shims/es5-shim/tree/v0.0.3"
+                 data-name="v0.0.3"
+                 data-skip-pjax="true"
+                 rel="nofollow"
+                 class="js-navigation-open select-menu-item-text js-select-button-text css-truncate-target"
+                 title="v0.0.3">v0.0.3</a>
+            </div> <!-- /.select-menu-item -->
+            <div class="select-menu-item js-navigation-item ">
+              <span class="select-menu-item-icon octicon octicon-check"></span>
+              <a href="/es-shims/es5-shim/tree/v0.0.2"
+                 data-name="v0.0.2"
+                 data-skip-pjax="true"
+                 rel="nofollow"
+                 class="js-navigation-open select-menu-item-text js-select-button-text css-truncate-target"
+                 title="v0.0.2">v0.0.2</a>
+            </div> <!-- /.select-menu-item -->
+            <div class="select-menu-item js-navigation-item ">
+              <span class="select-menu-item-icon octicon octicon-check"></span>
+              <a href="/es-shims/es5-shim/tree/v0.0.1"
+                 data-name="v0.0.1"
+                 data-skip-pjax="true"
+                 rel="nofollow"
+                 class="js-navigation-open select-menu-item-text js-select-button-text css-truncate-target"
+                 title="v0.0.1">v0.0.1</a>
+            </div> <!-- /.select-menu-item -->
+            <div class="select-menu-item js-navigation-item ">
+              <span class="select-menu-item-icon octicon octicon-check"></span>
+              <a href="/es-shims/es5-shim/tree/2.3.0"
+                 data-name="2.3.0"
+                 data-skip-pjax="true"
+                 rel="nofollow"
+                 class="js-navigation-open select-menu-item-text js-select-button-text css-truncate-target"
+                 title="2.3.0">2.3.0</a>
+            </div> <!-- /.select-menu-item -->
+            <div class="select-menu-item js-navigation-item ">
+              <span class="select-menu-item-icon octicon octicon-check"></span>
+              <a href="/es-shims/es5-shim/tree/2.2.0"
+                 data-name="2.2.0"
+                 data-skip-pjax="true"
+                 rel="nofollow"
+                 class="js-navigation-open select-menu-item-text js-select-button-text css-truncate-target"
+                 title="2.2.0">2.2.0</a>
+            </div> <!-- /.select-menu-item -->
+            <div class="select-menu-item js-navigation-item ">
+              <span class="select-menu-item-icon octicon octicon-check"></span>
+              <a href="/es-shims/es5-shim/tree/2.1.0"
+                 data-name="2.1.0"
+                 data-skip-pjax="true"
+                 rel="nofollow"
+                 class="js-navigation-open select-menu-item-text js-select-button-text css-truncate-target"
+                 title="2.1.0">2.1.0</a>
+            </div> <!-- /.select-menu-item -->
+        </div>
+
+        <div class="select-menu-no-results">Nothing to show</div>
+      </div> <!-- /.select-menu-list -->
+
+    </div> <!-- /.select-menu-modal -->
+  </div> <!-- /.select-menu-modal-holder -->
+</div> <!-- /.select-menu -->
+
+
+  <div class="breadcrumb"><span class='repo-root js-repo-root'><span itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb"><a href="/es-shims/es5-shim" data-branch="master" data-direction="back" data-pjax="true" itemscope="url"><span itemprop="title">es5-shim</span></a></span></span><span class="separator"> / </span><form action="/login?return_to=%2Fes-shims%2Fes5-shim" class="js-new-blob-form tooltipped rightwards new-file-link" method="post" title="Sign in to make or propose changes"><span aria-label="Sign in to make or propose changes" class="js-new-blob-submit octicon octicon-file-add" data-test-id="create-new-git-file" role="button"></span></form></div>
+</div>
+
+
+
+<a href="/es-shims/es5-shim/find/master"
+  data-hotkey="t" class="js-show-file-finder" style="display:none" data-pjax>Show File Finder</a>
+<div class="bubble files-bubble">
+
+
+  <div class="commit commit-tease js-details-container" >
+    <p class="commit-title ">
+        <a href="/es-shims/es5-shim/commit/9c043a1eb7fef87ffe3889e7451d2b8925308d2f" class="message" data-pjax="true" title="No reason to exclude node 0.4.">No reason to exclude node 0.4.</a>
+        
+    </p>
+    <div class="commit-meta">
+      <span class="js-zeroclipboard zeroclipboard-link" data-clipboard-text="9c043a1eb7fef87ffe3889e7451d2b8925308d2f" data-copied-hint="copied!" title="Copy SHA"><span class="octicon octicon-clippy"></span></span>
+      <a href="/es-shims/es5-shim/commit/9c043a1eb7fef87ffe3889e7451d2b8925308d2f" class="sha-block" data-pjax>latest commit <span class="sha">9c043a1eb7</span></a>
+
+      <div class="authorship">
+        <img alt="Jordan Harband" class="gravatar" height="20" src="https://2.gravatar.com/avatar/27f5eb444e2d61659e9fde1485dbab97?d=https%3A%2F%2Fidenticons.github.com%2F92ee5fcb44fc70d5432a7130b72f2f3d.png&amp;r=x&amp;s=140" width="20" />
+        <span class="author-name"><a href="/ljharb" data-skip-pjax="true" rel="contributor">ljharb</a></span>
+        authored <time class="js-relative-date updated" datetime="2014-01-26T11:41:09-08:00" title="2014-01-26 11:41:09">January 26, 2014</time>
+
+      </div>
+    </div>
+  </div>
+
+  <table class="files" data-pjax>
+
+    
+<tbody class=""
+  data-url="/es-shims/es5-shim/file-list/master">
+    <tr>
+      <td class="icon">
+        <span class="octicon octicon-file-directory"></span>
+        <img alt="Octocat-spinner-32" class="spinner" height="16" src="https://github.global.ssl.fastly.net/images/spinners/octocat-spinner-32.gif" width="16" />
+      </td>
+      <td class="content">
+        <span class="css-truncate css-truncate-target"><a href="/es-shims/es5-shim/tree/master/tests" class="js-directory-link" id="b61a6d542f9036550ba9c401c80f00ef-7a885872668e0368fd4e1989cca33c63dcd4c7db" title="tests">tests</a></span>
+      </td>
+      <td class="message">
+        <span class="css-truncate css-truncate-target"><a href="/es-shims/es5-shim/commit/e11054df78efc34674cf31b4562f622af1746ded" class="message" data-pjax="true" title="Adding some test cases.">Adding some test cases.</a></span>
+      </td>
+      <td class="age"><span class="css-truncate css-truncate-target"><time class="js-relative-date" datetime="2014-01-04T21:23:06-08:00" title="2014-01-04 21:23:06">January 04, 2014</time></span></td>
+    </tr>
+    <tr>
+      <td class="icon">
+        <span class="octicon octicon-file-text"></span>
+        <img alt="Octocat-spinner-32" class="spinner" height="16" src="https://github.global.ssl.fastly.net/images/spinners/octocat-spinner-32.gif" width="16" />
+      </td>
+      <td class="content">
+        <span class="css-truncate css-truncate-target"><a href="/es-shims/es5-shim/blob/master/.gitignore" class="js-directory-link" id="a084b794bc0759e7a6b77810e01874f2-fd4f2b066b339e4fd5c0efd44938231a398e9a81" title=".gitignore">.gitignore</a></span>
+      </td>
+      <td class="message">
+        <span class="css-truncate css-truncate-target"><a href="/es-shims/es5-shim/commit/df417f6bca093e6ca49189af44504fe2e221d0aa" class="message" data-pjax="true" title="Added .DS_Store to the .gitignore file.">Added .DS_Store to the .gitignore file.</a></span>
+      </td>
+      <td class="age"><span class="css-truncate css-truncate-target"><time class="js-relative-date" datetime="2011-07-10T23:30:32-07:00" title="2011-07-10 23:30:32">July 10, 2011</time></span></td>
+    </tr>
+    <tr>
+      <td class="icon">
+        <span class="octicon octicon-file-text"></span>
+        <img alt="Octocat-spinner-32" class="spinner" height="16" src="https://github.global.ssl.fastly.net/images/spinners/octocat-spinner-32.gif" width="16" />
+      </td>
+      <td class="content">
+        <span class="css-truncate css-truncate-target"><a href="/es-shims/es5-shim/blob/master/.travis.yml" class="js-directory-link" id="354f30a63fb0907d4ad57269548329e3-7cccac99d67b2de9b1dae7411fdce4216ae7d9e5" title=".travis.yml">.travis.yml</a></span>
+      </td>
+      <td class="message">
+        <span class="css-truncate css-truncate-target"><a href="/es-shims/es5-shim/commit/9c043a1eb7fef87ffe3889e7451d2b8925308d2f" class="message" data-pjax="true" title="No reason to exclude node 0.4.">No reason to exclude node 0.4.</a></span>
+      </td>
+      <td class="age"><span class="css-truncate css-truncate-target"><time class="js-relative-date" datetime="2014-01-26T11:41:09-08:00" title="2014-01-26 11:41:09">January 26, 2014</time></span></td>
+    </tr>
+    <tr>
+      <td class="icon">
+        <span class="octicon octicon-file-text"></span>
+        <img alt="Octocat-spinner-32" class="spinner" height="16" src="https://github.global.ssl.fastly.net/images/spinners/octocat-spinner-32.gif" width="16" />
+      </td>
+      <td class="content">
+        <span class="css-truncate css-truncate-target"><a href="/es-shims/es5-shim/blob/master/CHANGES" class="js-directory-link" id="e4eb329834da3d36278b1b7d943b3bc9-ce816e89fff039cb5f0d2879ec1faa8f335bfa9f" title="CHANGES">CHANGES</a></span>
+      </td>
+      <td class="message">
+        <span class="css-truncate css-truncate-target"><a href="/es-shims/es5-shim/commit/16e070c763588290718a907d0fa0a132993e5d6a" class="message" data-pjax="true" title="Updating changelog, and bumping version">Updating changelog, and bumping version</a></span>
+      </td>
+      <td class="age"><span class="css-truncate css-truncate-target"><time class="js-relative-date" datetime="2013-12-30T13:30:38-08:00" title="2013-12-30 13:30:38">December 30, 2013</time></span></td>
+    </tr>
+    <tr>
+      <td class="icon">
+        <span class="octicon octicon-file-text"></span>
+        <img alt="Octocat-spinner-32" class="spinner" height="16" src="https://github.global.ssl.fastly.net/images/spinners/octocat-spinner-32.gif" width="16" />
+      </td>
+      <td class="content">
+        <span class="css-truncate css-truncate-target"><a href="/es-shims/es5-shim/blob/master/CONTRIBUTORS.md" class="js-directory-link" id="f0eaedffe49f98e11072394a678af7cc-43ebf77087c0702a60885cb8d76e18283a90cfb3" title="CONTRIBUTORS.md">CONTRIBUTORS.md</a></span>
+      </td>
+      <td class="message">
+        <span class="css-truncate css-truncate-target"><a href="/es-shims/es5-shim/commit/42d6a12688b9761044dbab1f8cd1a058215ccf2d" class="message" data-pjax="true" title="Adding myself to the contributors list">Adding myself to the contributors list</a></span>
+      </td>
+      <td class="age"><span class="css-truncate css-truncate-target"><time class="js-relative-date" datetime="2013-12-30T13:21:50-08:00" title="2013-12-30 13:21:50">December 30, 2013</time></span></td>
+    </tr>
+    <tr>
+      <td class="icon">
+        <span class="octicon octicon-file-text"></span>
+        <img alt="Octocat-spinner-32" class="spinner" height="16" src="https://github.global.ssl.fastly.net/images/spinners/octocat-spinner-32.gif" width="16" />
+      </td>
+      <td class="content">
+        <span class="css-truncate css-truncate-target"><a href="/es-shims/es5-shim/blob/master/LICENSE" class="js-directory-link" id="9879d6db96fd29134fc802214163b95a-3dbd7de3a565e04b0058665ff0b4f6f27c7dcce6" title="LICENSE">LICENSE</a></span>
+      </td>
+      <td class="message">
+        <span class="css-truncate css-truncate-target"><a href="/es-shims/es5-shim/commit/ad5e68434ea9b08279aec78ab6661c100cb9b04f" class="message" data-pjax="true" title="Adding license comments; ensure they&#39;re preserved in minification; consi...
+
+...stently using the MIT license.
+
+Fixes #77.">Adding license comments; ensure they're preserved in minification; co…</a></span>
+      </td>
+      <td class="age"><span class="css-truncate css-truncate-target"><time class="js-relative-date" datetime="2014-01-04T23:56:28-08:00" title="2014-01-04 23:56:28">January 04, 2014</time></span></td>
+    </tr>
+    <tr>
+      <td class="icon">
+        <span class="octicon octicon-file-text"></span>
+        <img alt="Octocat-spinner-32" class="spinner" height="16" src="https://github.global.ssl.fastly.net/images/spinners/octocat-spinner-32.gif" width="16" />
+      </td>
+      <td class="content">
+        <span class="css-truncate css-truncate-target"><a href="/es-shims/es5-shim/blob/master/README.md" class="js-directory-link" id="04c6e90faac2675aa89e2176d2eec7d8-ad4b10b8dea5fc4117f91b0044c61b1356df9145" title="README.md">README.md</a></span>
+      </td>
+      <td class="message">
+        <span class="css-truncate css-truncate-target"><a href="/es-shims/es5-shim/commit/8e998676cd6f9931e95c0fe3c1d8dc547d0e1776" class="message" data-pjax="true" title="Adding various badges">Adding various badges</a></span>
+      </td>
+      <td class="age"><span class="css-truncate css-truncate-target"><time class="js-relative-date" datetime="2013-12-30T20:54:24-08:00" title="2013-12-30 20:54:24">December 30, 2013</time></span></td>
+    </tr>
+    <tr>
+      <td class="icon">
+        <span class="octicon octicon-file-text"></span>
+        <img alt="Octocat-spinner-32" class="spinner" height="16" src="https://github.global.ssl.fastly.net/images/spinners/octocat-spinner-32.gif" width="16" />
+      </td>
+      <td class="content">
+        <span class="css-truncate css-truncate-target"><a href="/es-shims/es5-shim/blob/master/bower.json" class="js-directory-link" id="0a08a7565aba4405282251491979bb6b-2c399aaa81ed0993b56af8f2b0ddbf891ef4f457" title="bower.json">bower.json</a></span>
+      </td>
+      <td class="message">
+        <span class="css-truncate css-truncate-target"><a href="/es-shims/es5-shim/commit/ec5afc8246835b68477463024c64ecb0690a280b" class="message" data-pjax="true" title="Adding bower.json
+
+Fixes #171.">Adding bower.json</a></span>
+      </td>
+      <td class="age"><span class="css-truncate css-truncate-target"><time class="js-relative-date" datetime="2014-01-26T11:31:48-08:00" title="2014-01-26 11:31:48">January 26, 2014</time></span></td>
+    </tr>
+    <tr>
+      <td class="icon">
+        <span class="octicon octicon-file-text"></span>
+        <img alt="Octocat-spinner-32" class="spinner" height="16" src="https://github.global.ssl.fastly.net/images/spinners/octocat-spinner-32.gif" width="16" />
+      </td>
+      <td class="content">
+        <span class="css-truncate css-truncate-target"><a href="/es-shims/es5-shim/blob/master/es5-sham.js" class="js-directory-link" id="04ca88b0ff79d4ef4da1a557e9ed4b06-7a3898827f79aa06e19864eb3899f9d14d49c0a8" title="es5-sham.js">es5-sham.js</a></span>
+      </td>
+      <td class="message">
+        <span class="css-truncate css-truncate-target"><a href="/es-shims/es5-shim/commit/ad5e68434ea9b08279aec78ab6661c100cb9b04f" class="message" data-pjax="true" title="Adding license comments; ensure they&#39;re preserved in minification; consi...
+
+...stently using the MIT license.
+
+Fixes #77.">Adding license comments; ensure they're preserved in minification; co…</a></span>
+      </td>
+      <td class="age"><span class="css-truncate css-truncate-target"><time class="js-relative-date" datetime="2014-01-04T23:56:28-08:00" title="2014-01-04 23:56:28">January 04, 2014</time></span></td>
+    </tr>
+    <tr>
+      <td class="icon">
+        <span class="octicon octicon-file-text"></span>
+        <img alt="Octocat-spinner-32" class="spinner" height="16" src="https://github.global.ssl.fastly.net/images/spinners/octocat-spinner-32.gif" width="16" />
+      </td>
+      <td class="content">
+        <span class="css-truncate css-truncate-target"><a href="/es-shims/es5-shim/blob/master/es5-sham.map" class="js-directory-link" id="33731ac6a97262588bf4869ae02d7904-39aab0edb023148f561c78290a93ed0877f97080" title="es5-sham.map">es5-sham.map</a></span>
+      </td>
+      <td class="message">
+        <span class="css-truncate css-truncate-target"><a href="/es-shims/es5-shim/commit/ad5e68434ea9b08279aec78ab6661c100cb9b04f" class="message" data-pjax="true" title="Adding license comments; ensure they&#39;re preserved in minification; consi...
+
+...stently using the MIT license.
+
+Fixes #77.">Adding license comments; ensure they're preserved in minification; co…</a></span>
+      </td>
+      <td class="age"><span class="css-truncate css-truncate-target"><time class="js-relative-date" datetime="2014-01-04T23:56:28-08:00" title="2014-01-04 23:56:28">January 04, 2014</time></span></td>
+    </tr>
+    <tr>
+      <td class="icon">
+        <span class="octicon octicon-file-text"></span>
+        <img alt="Octocat-spinner-32" class="spinner" height="16" src="https://github.global.ssl.fastly.net/images/spinners/octocat-spinner-32.gif" width="16" />
+      </td>
+      <td class="content">
+        <span class="css-truncate css-truncate-target"><a href="/es-shims/es5-shim/blob/master/es5-sham.min.js" class="js-directory-link" id="7e66a39e5e12af753883c97db3049198-22011245c70a935295675c1317ce5d2c79ee47a8" title="es5-sham.min.js">es5-sham.min.js</a></span>
+      </td>
+      <td class="message">
+        <span class="css-truncate css-truncate-target"><a href="/es-shims/es5-shim/commit/ad5e68434ea9b08279aec78ab6661c100cb9b04f" class="message" data-pjax="true" title="Adding license comments; ensure they&#39;re preserved in minification; consi...
+
+...stently using the MIT license.
+
+Fixes #77.">Adding license comments; ensure they're preserved in minification; co…</a></span>
+      </td>
+      <td class="age"><span class="css-truncate css-truncate-target"><time class="js-relative-date" datetime="2014-01-04T23:56:28-08:00" title="2014-01-04 23:56:28">January 04, 2014</time></span></td>
+    </tr>
+    <tr>
+      <td class="icon">
+        <span class="octicon octicon-file-text"></span>
+        <img alt="Octocat-spinner-32" class="spinner" height="16" src="https://github.global.ssl.fastly.net/images/spinners/octocat-spinner-32.gif" width="16" />
+      </td>
+      <td class="content">
+        <span class="css-truncate css-truncate-target"><a href="/es-shims/es5-shim/blob/master/es5-shim.js" class="js-directory-link" id="3a6bf705b1ed1ca1478c414e543b26e6-fea71e3f5d1265b21800bf537288697e745879ef" title="es5-shim.js">es5-shim.js</a></span>
+      </td>
+      <td class="message">
+        <span class="css-truncate css-truncate-target"><a href="/es-shims/es5-shim/commit/5b0ffb6cef3bde729e870a36832196785c0aa06b" class="message" data-pjax="true" title="Per https://github.com/es-shims/es5-shim/commit/ee416a685fe37af25e2ddd6a...
+
+...7b1b0dddc4f05213#commitcomment-5001295">Per</a> <a href="https://github.com/es-shims/es5-shim/commit/ee416a685fe37af25e2ddd6a7b1b0dddc4f05213#commitcomment-5001295" class="commit-link"><tt>ee416a6</tt>#commitcomment-5001295</a></span>
+      </td>
+      <td class="age"><span class="css-truncate css-truncate-target"><time class="js-relative-date" datetime="2014-01-07T08:58:36-08:00" title="2014-01-07 08:58:36">January 07, 2014</time></span></td>
+    </tr>
+    <tr>
+      <td class="icon">
+        <span class="octicon octicon-file-text"></span>
+        <img alt="Octocat-spinner-32" class="spinner" height="16" src="https://github.global.ssl.fastly.net/images/spinners/octocat-spinner-32.gif" width="16" />
+      </td>
+      <td class="content">
+        <span class="css-truncate css-truncate-target"><a href="/es-shims/es5-shim/blob/master/es5-shim.map" class="js-directory-link" id="6de8d2f323251f94706fe8b119315583-ef1af1241c03754a74d92bdda7d621df4b38a4aa" title="es5-shim.map">es5-shim.map</a></span>
+      </td>
+      <td class="message">
+        <span class="css-truncate css-truncate-target"><a href="/es-shims/es5-shim/commit/ad5e68434ea9b08279aec78ab6661c100cb9b04f" class="message" data-pjax="true" title="Adding license comments; ensure they&#39;re preserved in minification; consi...
+
+...stently using the MIT license.
+
+Fixes #77.">Adding license comments; ensure they're preserved in minification; co…</a></span>
+      </td>
+      <td class="age"><span class="css-truncate css-truncate-target"><time class="js-relative-date" datetime="2014-01-04T23:56:28-08:00" title="2014-01-04 23:56:28">January 04, 2014</time></span></td>
+    </tr>
+    <tr>
+      <td class="icon">
+        <span class="octicon octicon-file-text"></span>
+        <img alt="Octocat-spinner-32" class="spinner" height="16" src="https://github.global.ssl.fastly.net/images/spinners/octocat-spinner-32.gif" width="16" />
+      </td>
+      <td class="content">
+        <span class="css-truncate css-truncate-target"><a href="/es-shims/es5-shim/blob/master/es5-shim.min.js" class="js-directory-link" id="a0282fdb1c4e803cac7fb8649e3f6c43-dcf09f0f18488f371d22863fdf9f938f0144cedc" title="es5-shim.min.js">es5-shim.min.js</a></span>
+      </td>
+      <td class="message">
+        <span class="css-truncate css-truncate-target"><a href="/es-shims/es5-shim/commit/ad5e68434ea9b08279aec78ab6661c100cb9b04f" class="message" data-pjax="true" title="Adding license comments; ensure they&#39;re preserved in minification; consi...
+
+...stently using the MIT license.
+
+Fixes #77.">Adding license comments; ensure they're preserved in minification; co…</a></span>
+      </td>
+      <td class="age"><span class="css-truncate css-truncate-target"><time class="js-relative-date" datetime="2014-01-04T23:56:28-08:00" title="2014-01-04 23:56:28">January 04, 2014</time></span></td>
+    </tr>
+    <tr>
+      <td class="icon">
+        <span class="octicon octicon-file-text"></span>
+        <img alt="Octocat-spinner-32" class="spinner" height="16" src="https://github.global.ssl.fastly.net/images/spinners/octocat-spinner-32.gif" width="16" />
+      </td>
+      <td class="content">
+        <span class="css-truncate css-truncate-target"><a href="/es-shims/es5-shim/blob/master/package.json" class="js-directory-link" id="b9cfc7f2cdf78a7f4b91a753d10865a2-5c3f1a80bd42c8e12291a15030e2e6e3bc970733" title="package.json">package.json</a></span>
+      </td>
+      <td class="message">
+        <span class="css-truncate css-truncate-target"><a href="/es-shims/es5-shim/commit/9c043a1eb7fef87ffe3889e7451d2b8925308d2f" class="message" data-pjax="true" title="No reason to exclude node 0.4.">No reason to exclude node 0.4.</a></span>
+      </td>
+      <td class="age"><span class="css-truncate css-truncate-target"><time class="js-relative-date" datetime="2014-01-26T11:41:09-08:00" title="2014-01-26 11:41:09">January 26, 2014</time></span></td>
+    </tr>
+</tbody>
+
+  </table>
+</div>
+
+  <div id="readme" class="clearfix announce instapaper_body md">
+    <span class="name">
+      <span class="octicon octicon-book"></span>
+      README.md
+    </span>
+
+    <article class="markdown-body entry-content" itemprop="mainContentOfPage"><h1>
+<a name="es5-shim-" class="anchor" href="#es5-shim-"><span class="octicon octicon-link"></span></a>es5-shim <sup><a href="https://npmjs.org/package/es5-shim"><img src="https://github-camo.global.ssl.fastly.net/148bf63b9d36962aa94b9dd3ec94f902b4b3bee3/687474703a2f2f76622e7465656c61756e2e63682f65732d7368696d732f6573352d7368696d2e737667" alt="Version Badge" style="max-width:100%;"></a></sup>
+</h1>
+
+<p><a href="https://npmjs.org/package/es5-shim"><img src="https://nodei.co/npm/es5-shim.png?downloads=true&amp;stars=true" alt="npm badge" style="max-width:100%;"></a></p>
+
+<p><a href="https://travis-ci.org/es-shims/es5-shim"><img src="https://travis-ci.org/es-shims/es5-shim.png" alt="Build Status" style="max-width:100%;"></a> <a href="https://david-dm.org/es-shims/es5-shim"><img src="https://david-dm.org/es-shims/es5-shim.png" alt="dependency status" style="max-width:100%;"></a>  <a href="https://david-dm.org/es-shims/es5-shim#info=devDependencies"><img src="https://david-dm.org/es-shims/es5-shim/dev-status.png" alt="dev dependency status" style="max-width:100%;"></a></p>
+
+<p><code>es5-shim.js</code> and <code>es5-shim.min.js</code> monkey-patch a JavaScript context to
+contain all EcmaScript 5 methods that can be faithfully emulated with a
+legacy JavaScript engine.</p>
+
+<p><code>es5-sham.js</code> and <code>es5-sham.min.js</code> monkey-patch other ES5 methods as
+closely as possible.  For these methods, as closely as possible to ES5
+is not very close.  Many of these shams are intended only to allow code
+to be written to ES5 without causing run-time errors in older engines.
+In many cases, this means that these shams cause many ES5 methods to
+silently fail.  Decide carefully whether this is what you want.</p>
+
+<h2>
+<a name="tests" class="anchor" href="#tests"><span class="octicon octicon-link"></span></a>Tests</h2>
+
+<p>The tests are written with the Jasmine BDD test framework.
+To run the tests, navigate to /tests/. </p>
+
+<p>In order to run against the shim-code, the tests attempt to kill the current 
+implementation of the missing methods. This happens in /tests/helpers/h-kill.js.
+So in order to run the tests against the built-in methods, invalidate that file somehow
+(comment-out, delete the file, delete the script-tag, etc.).</p>
+
+<h2>
+<a name="shims" class="anchor" href="#shims"><span class="octicon octicon-link"></span></a>Shims</h2>
+
+<h3>
+<a name="complete-tests" class="anchor" href="#complete-tests"><span class="octicon octicon-link"></span></a>Complete tests</h3>
+
+<ul>
+<li>Array.prototype.every</li>
+<li>Array.prototype.filter</li>
+<li>Array.prototype.forEach</li>
+<li>Array.prototype.indexOf</li>
+<li>Array.prototype.lastIndexOf</li>
+<li>Array.prototype.map</li>
+<li>Array.prototype.some</li>
+<li>Array.prototype.reduce</li>
+<li>Array.prototype.reduceRight</li>
+<li>Array.isArray</li>
+<li>Date.now</li>
+<li>Date.prototype.toJSON</li>
+<li>Function.prototype.bind
+
+<ul>
+<li>
+<img class="emoji" title=":warning:" alt=":warning:" src="https://github.global.ssl.fastly.net/images/icons/emoji/warning.png" height="20" width="20" align="absmiddle"> Caveat: the bound function has a prototype property.</li>
+<li>
+<img class="emoji" title=":warning:" alt=":warning:" src="https://github.global.ssl.fastly.net/images/icons/emoji/warning.png" height="20" width="20" align="absmiddle"> Caveat: bound functions do not try too hard to keep you
+from manipulating their <code>arguments</code> and <code>caller</code> properties.</li>
+<li>
+<img class="emoji" title=":warning:" alt=":warning:" src="https://github.global.ssl.fastly.net/images/icons/emoji/warning.png" height="20" width="20" align="absmiddle"> Caveat: bound functions don't have checks in <code>call</code> and
+<code>apply</code> to avoid executing as a constructor.</li>
+</ul>
+</li>
+<li>Number.prototype.toFixed</li>
+<li>Object.keys</li>
+<li>String.prototype.split</li>
+<li>String.prototype.trim</li>
+<li>Date.parse (for ISO parsing)</li>
+<li>Date.prototype.toISOString</li>
+<li>parseInt</li>
+</ul><h2>
+<a name="shams" class="anchor" href="#shams"><span class="octicon octicon-link"></span></a>Shams</h2>
+
+<ul>
+<li>
+<p><img class="emoji" title=":warning:" alt=":warning:" src="https://github.global.ssl.fastly.net/images/icons/emoji/warning.png" height="20" width="20" align="absmiddle"> Object.create</p>
+
+<p>For the case of simply "begetting" an object that inherits
+prototypically from another, this should work fine across legacy
+engines.</p>
+
+<p><img class="emoji" title=":warning:" alt=":warning:" src="https://github.global.ssl.fastly.net/images/icons/emoji/warning.png" height="20" width="20" align="absmiddle"> Object.create(null) will work only in browsers that
+support prototype assignment.  This creates an object that does not
+have any properties inherited from Object.prototype.  It will
+silently fail otherwise.</p>
+
+<p><img class="emoji" title=":warning:" alt=":warning:" src="https://github.global.ssl.fastly.net/images/icons/emoji/warning.png" height="20" width="20" align="absmiddle"> The second argument is passed to Object.defineProperties
+which will probably fail either silently or with extreme predudice.</p>
+</li>
+<li>
+<p><img class="emoji" title=":warning:" alt=":warning:" src="https://github.global.ssl.fastly.net/images/icons/emoji/warning.png" height="20" width="20" align="absmiddle"> Object.getPrototypeOf</p>
+
+<p>This will return "undefined" in some cases.  It uses <code>__proto__</code> if
+it's available.  Failing that, it uses constructor.prototype, which
+depends on the constructor property of the object's prototype having
+not been replaced.  If your object was created like this, it won't
+work:</p>
+
+<pre><code>function Foo() {
+}
+Foo.prototype = {};
+</code></pre>
+
+<p>Because the prototype reassignment destroys the constructor
+property.</p>
+
+<p>This will work for all objects that were created using
+<code>Object.create</code> implemented with this library.</p>
+</li>
+<li>
+<p><img class="emoji" title=":warning:" alt=":warning:" src="https://github.global.ssl.fastly.net/images/icons/emoji/warning.png" height="20" width="20" align="absmiddle"> Object.getOwnPropertyNames</p>
+
+<p>This method uses Object.keys, so it will not be accurate on legacy
+engines.</p>
+</li>
+<li>
+<p>Object.isSealed</p>
+
+<p>Returns "false" in all legacy engines for all objects, which is
+conveniently guaranteed to be accurate.</p>
+</li>
+<li>
+<p>Object.isFrozen</p>
+
+<p>Returns "false" in all legacy engines for all objects, which is
+conveniently guaranteed to be accurate.</p>
+</li>
+<li>
+<p>Object.isExtensible</p>
+
+<p>Works like a charm, by trying very hard to extend the object then
+redacting the extension.</p>
+</li>
+</ul><h3>
+<a name="may-fail" class="anchor" href="#may-fail"><span class="octicon octicon-link"></span></a>May fail</h3>
+
+<ul>
+<li>
+<p><img class="emoji" title=":warning:" alt=":warning:" src="https://github.global.ssl.fastly.net/images/icons/emoji/warning.png" height="20" width="20" align="absmiddle"> Object.getOwnPropertyDescriptor</p>
+
+<p>The behavior of this shim does not conform to ES5.  It should
+probably not be used at this time, until its behavior has been
+reviewed and been confirmed to be useful in legacy engines.</p>
+</li>
+<li>
+<p><img class="emoji" title=":warning:" alt=":warning:" src="https://github.global.ssl.fastly.net/images/icons/emoji/warning.png" height="20" width="20" align="absmiddle"> Object.defineProperty</p>
+
+<p>In the worst of circumstances, IE 8 provides a version of this
+method that only works on DOM objects.  This sham will not be
+installed.  The given version of <code>defineProperty</code> will throw an
+exception if used on non-DOM objects.</p>
+
+<p>In slightly better circumstances, this method will silently fail to
+set "writable", "enumerable", and "configurable" properties.</p>
+
+<p>Providing a getter or setter with "get" or "set" on a descriptor
+will silently fail on engines that lack "<strong>defineGetter</strong>" and
+"<strong>defineSetter</strong>", which include all versions of IE.</p>
+
+<p><a href="https://github.com/es-shims/es5-shim/issues#issue/5">https://github.com/es-shims/es5-shim/issues#issue/5</a></p>
+</li>
+<li>
+<p><img class="emoji" title=":warning:" alt=":warning:" src="https://github.global.ssl.fastly.net/images/icons/emoji/warning.png" height="20" width="20" align="absmiddle"> Object.defineProperties</p>
+
+<p>This uses the Object.defineProperty shim</p>
+</li>
+<li>
+<p>Object.seal</p>
+
+<p>Silently fails on all legacy engines.  This should be
+fine unless you are depending on the safety and security
+provisions of this method, which you cannot possibly
+obtain in legacy engines.</p>
+</li>
+<li>
+<p>Object.freeze</p>
+
+<p>Silently fails on all legacy engines.  This should be
+fine unless you are depending on the safety and security
+provisions of this method, which you cannot possibly
+obtain in legacy engines.</p>
+</li>
+<li>
+<p>Object.preventExtensions</p>
+
+<p>Silently fails on all legacy engines.  This should be
+fine unless you are depending on the safety and security
+provisions of this method, which you cannot possibly
+obtain in legacy engines.</p>
+</li>
+</ul></article>
+  </div>
+
+
+        </div>
+
+      </div><!-- /.repo-container -->
+      <div class="modal-backdrop"></div>
+    </div><!-- /.container -->
+  </div><!-- /.site -->
+
+
+    </div><!-- /.wrapper -->
+
+      <div class="container">
+  <div class="site-footer">
+    <ul class="site-footer-links right">
+      <li><a href="https://status.github.com/">Status</a></li>
+      <li><a href="http://developer.github.com">API</a></li>
+      <li><a href="http://training.github.com">Training</a></li>
+      <li><a href="http://shop.github.com">Shop</a></li>
+      <li><a href="/blog">Blog</a></li>
+      <li><a href="/about">About</a></li>
+
+    </ul>
+
+    <a href="/">
+      <span class="mega-octicon octicon-mark-github" title="GitHub"></span>
+    </a>
+
+    <ul class="site-footer-links">
+      <li>&copy; 2014 <span title="0.03359s from github-fe129-cp1-prd.iad.github.net">GitHub</span>, Inc.</li>
+        <li><a href="/site/terms">Terms</a></li>
+        <li><a href="/site/privacy">Privacy</a></li>
+        <li><a href="/security">Security</a></li>
+        <li><a href="/contact">Contact</a></li>
+    </ul>
+  </div><!-- /.site-footer -->
+</div><!-- /.container -->
+
+
+    <div class="fullscreen-overlay js-fullscreen-overlay" id="fullscreen_overlay">
+  <div class="fullscreen-container js-fullscreen-container">
+    <div class="textarea-wrap">
+      <textarea name="fullscreen-contents" id="fullscreen-contents" class="js-fullscreen-contents" placeholder="" data-suggester="fullscreen_suggester"></textarea>
+          <div class="suggester-container">
+              <div class="suggester fullscreen-suggester js-navigation-container" id="fullscreen_suggester"
+                 data-url="/es-shims/es5-shim/suggestions/commit">
+              </div>
+          </div>
+    </div>
+  </div>
+  <div class="fullscreen-sidebar">
+    <a href="#" class="exit-fullscreen js-exit-fullscreen tooltipped leftwards" title="Exit Zen Mode">
+      <span class="mega-octicon octicon-screen-normal"></span>
+    </a>
+    <a href="#" class="theme-switcher js-theme-switcher tooltipped leftwards"
+      title="Switch themes">
+      <span class="octicon octicon-color-mode"></span>
+    </a>
+  </div>
+</div>
+
+
+
+    <div id="ajax-error-message" class="flash flash-error">
+      <span class="octicon octicon-alert"></span>
+      <a href="#" class="octicon octicon-remove-close close js-ajax-error-dismiss"></a>
+      Something went wrong with that request. Please try again.
+    </div>
+
+  </body>
+</html>
+
