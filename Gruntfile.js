@@ -30,7 +30,6 @@ var pvjsSources = [
   'src/js/pathvisiojs/view/annotation/x-ref.js',
   'src/js/pathvisiojs/view/pathway-diagram/pathway-diagram.js',
   'src/js/pathvisiojs/view/pathway-diagram/svg/svg.js',
-  'src/js/pathvisiojs/view/pathway-diagram/svg/grid.js',
   'src/js/pathvisiojs/view/pathway-diagram/svg/info-box.js',
   'src/js/pathvisiojs/view/pathway-diagram/svg/symbol.js',
   'src/js/pathvisiojs/view/pathway-diagram/svg/publication-xref.js',
@@ -140,7 +139,7 @@ grunt.initConfig({
         afterconcat: [ distributionJs ]
     },
     str2js: {
-      pathvisioNS: { 'tmp/pathvisiojs.js': ['tmp/pathvisiojs.html']}
+      pathvisioNS: { 'tmp/pathvisiojs.js': ['tmp/pathvisiojs.html', 'tmp/pathvisiojs.svg']}
     },
     browserify: {
       dist: {

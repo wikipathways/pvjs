@@ -4,19 +4,8 @@
 
   <title>Pathvisiojs Simple Built Production Example</title>
 
-  <!--
   <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css" media="screen">
-  <link rel="stylesheet" href="http://wikipathways.github.io/pathvisiojs/src/css/pathvisiojs.css" media="screen">
-  <link rel="stylesheet" href="http://wikipathways.github.io/pathvisiojs/src/css/annotation.css" media="screen">
-  <link rel="stylesheet" href="http://wikipathways.github.io/pathvisiojs/src/css/pan-zoom.css" media="screen">
-  <link rel="stylesheet" href="http://wikipathways.github.io/pathvisiojs/src/css/pathway-diagram.css" media="screen">
-  -->
-
-  <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css" media="screen">
-  <link rel="stylesheet" href="../src/css/pathvisiojs.css" media="screen">
-  <link rel="stylesheet" href="../src/css/annotation.css" media="screen">
-  <link rel="stylesheet" href="../src/css/pan-zoom.css" media="screen">
-  <link rel="stylesheet" href="../src/css/pathway-diagram.css" media="screen">
+  <link rel="stylesheet" href="../build/css/pathvisiojs.css" media="screen">
 
   <!--[if lt IE 9]>
   <script>
@@ -69,23 +58,6 @@
       <p>(c) WikiPathways 2013</p>
     </div>
   </div>
-  <!--
-  <script src="http://wikipathways.github.io/pathvisiojs/lib/lib/rgb-color/rgb-color.min.js"></script>
-  <script src="http://wikipathways.github.io/pathvisiojs/lib/lib/strcase/dist/strcase.min.js"></script>
-  <script src="http://wikipathways.github.io/pathvisiojs/lib/lib/async/lib/async.js"></script>
-  <script src="http://wikipathways.github.io/pathvisiojs/lib/lib/d3/d3.min.js"></script>
-  <script src="http://wikipathways.github.io/pathvisiojs/lib/lib/jquery/jquery.min.js"></script>
-  <script src="http://wikipathways.github.io/pathvisiojs/lib/lib/typeahead.js/dist/typeahead.min.js"></script>
-  <script src="http://wikipathways.github.io/pathvisiojs/lib/lib/modernizr/modernizr.js"></script>
-  <script src="http://wikipathways.github.io/pathvisiojs/lib/lib/screenfull/dist/screenfull.min.js"></script>
-  <script src="http://wikipathways.github.io/pathvisiojs/lib/lib/svg-pan-zoom/svg-pan-zoom.js"></script>
-  <script src="http://wikipathways.github.io/pathvisiojs/lib/lib/PathFinding.js/lib/pathfinding-browser.min.js"></script>
-  <script src="http://wikipathways.github.io/pathvisiojs/lib/lib/node-uuid/uuid.js"></script>
-  <script src="http://wikipathways.github.io/pathvisiojs/lib/lib/jsonld.js/js/jsonld.js"></script>
-  <script src="http://wikipathways.github.io/pathvisiojs/lib/lib/jsonld.js/js/Promise.js"></script>
-  <script src="http://wikipathways.github.io/pathvisiojs/lib/lib/jsonld.js/js/rdfa.js"></script>
-  <script src="http://wikipathways.github.io/pathvisiojs/build/js/pathvisio.min.js"></script>
-  -->
   <script src="../lib/rgb-color/rgb-color.min.js"></script>
   <script src="../lib/strcase/dist/strcase.min.js"></script>
   <script src="../lib/async/lib/async.js"></script>
@@ -95,11 +67,11 @@
   <script src="../lib/modernizr/modernizr.js"></script>
   <script src="../lib/svg-pan-zoom/svg-pan-zoom.js"></script>
   <script src="../lib/node-uuid/uuid.js"></script>
+  <script src="../lib/blueimp-load-image/js/load-image.min.js"></script>
   <script src="../lib/jsonld.js/js/jsonld.js"></script>
   <script src="../lib/jsonld.js/js/Promise.js"></script>
+  <script src="../build/js/pathvisio.js"></script>
   <script src="./compare.js"></script>
-  <script src="../build/localhost/js/pathvisio.min.js"></script>
-
 
   <script>
     async.waterfall([
@@ -117,11 +89,14 @@
           container: '#production-container', //as of now, this can only be a CSS selector: http://www.w3.org/TR/CSS2/selector.html
           fitToContainer:true, //A fitToContainer value of false means that the diagram should be the size specified by the diagram creator, without any scaling (full size as per GPML width and height). A value of true means that diagram should be scaled down, if required, to fit entirely within the element specified by the container selector, while preserving aspect ratio. 
           sourceData:parsedInputData.sourceData, //at least one element required
-          wpId:parsedInputData.wpId, //optional
-          wpRevision:'', //optional
           //cssUri: srcDirectoryUri + 'css/pathway-diagram.css',
           //customMarkers: customMarkers,
           //customSymbols: customSymbols,
+          bridgedbLinkOutsUriStub: 'http://pointer.ucsf.edu/d3/r/data-sources/bridgedb/bridgedb.php/', // optional
+          diagramLoadingIconUri: 'http://www.wikipathways.org/wpi/extensions/PathwayViewer/img/loading.gif', // optional
+          diagramNotAvailableIconUri: 'http://www.wikipathways.org/wpi/extensions/PathwayViewer/img/imageNotAvailable.jpg', // optional
+          imgDiagramUriStub: 'http://www.wikipathways.org/wpi.php?action=downloadFile&type=png&pwTitle=Pathway:', // optional
+          pathwaySearchUriStub: 'http://wikipathways.org//index.php?title=Special:SearchPathways&doSearch=1&query=', // optional
           highlightNodes: [
             {'parameter': 'label', 'parameterValue': 'CRH', 'color': 'red'},
             {'parameter': 'xref', 'parameterValue': '8525,Entrez%20Gene', 'color': '#FF0000'}
