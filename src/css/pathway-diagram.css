@@ -71,9 +71,11 @@
 		stroke-miterlimit: 1;
     		pointer-events:auto;
 	}
+	.data-node:hover {
+	 	cursor: pointer;
+	}
 	
-	.has-xref:hover {
-		cursor: pointer;
+	.has-xref {
 	}
 
 	.data-node.gene-product {
