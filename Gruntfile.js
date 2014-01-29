@@ -233,8 +233,7 @@ grunt.initConfig({
   grunt.registerTask('quick-build', ['sync', 'str2js', 'git-describe', 'concat', 'uglify']);
 
   // test
-
-  grunt.registerTask('mytest', 'Run local tests for development', function(val) {
+  grunt.registerTask('test', 'Run local tests for development', function(val) {
     grunt.config.set('protractor.run_chrome.options.args.specs', ['test/e2e/' + val + '.js']);
     grunt.task.run('protractor:run_chrome')
   });
