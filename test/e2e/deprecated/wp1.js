@@ -23,7 +23,7 @@ ptor.get('http://127.0.0.1/~andersriutta/pathvisiojs/test/').
     return loadingIconAfterPathwayLoaded;
   }).
   then(function() {
-    svg = element.all(by.css('svg#pathway-svg'));
+    svg = element.all(by.css('svg#pathvisiojs-diagram'));
     expect(svg.count()).toEqual(1);
     return svg;
   }).

@@ -14,12 +14,12 @@ http://google-styleguide.googlecode.com/svn/trunk/jsoncstyleguide.xml#General_Gu
 </head>
 <body>
 <script>
-function getUrlParameter(name) {
+function getUriParameter(name) {
   return decodeURIComponent((new RegExp('[?|&]' + name + '=' + '([^&;]+?)(&|#|;|$)').exec(location.search)||[,""])[1].replace(/\+/g, '%20'))||null
 };
-var repo = getUrlParameter('repo');
-var url = getUrlParameter('pathwayUrl');
-var pwId = getUrlParameter('pwId');
+var repo = getUriParameter('repo');
+var uri = getUriParameter('pathwayUri');
+var pwId = getUriParameter('pwId');
 </script>
 
 <div id="choose-pathway-creator">
@@ -40,38 +40,38 @@ Repo:
   }
 
   if ($_GET['repo'] == "local") {
-    $pathwayTemplateSvgUrl = "pathway-template.svg";
-    $pathwayTemplateSvgUrlEditable = "pathway-template.svg";
+    $pathwayTemplateSvgUri = "pathway-template.svg";
+    $pathwayTemplateSvgUriEditable = "pathway-template.svg";
   }
   else {
-    $pathwayTemplateSvgUrl = "https://raw.github.com/" . $repo . "/pathvisio/dev/src/views/pathway-template.svg";
-    $pathwayTemplateSvgUrlEditable = "https://github.com/" . $repo . "/pathvisio/blob/dev/src/views/pathway-template.svg";
+    $pathwayTemplateSvgUri = "https://raw.github.com/" . $repo . "/pathvisio/dev/src/views/pathway-template.svg";
+    $pathwayTemplateSvgUriEditable = "https://github.com/" . $repo . "/pathvisio/blob/dev/src/views/pathway-template.svg";
   }
 
   if (isset($_GET['pwId'])) {
     echo "<script>var local = false</script>";
     $pwId = htmlspecialchars($_GET['pwId']);
-    $pathwayUrlParamStr = "pwId=" . $pwId;
+    $pathwayUriParamStr = "pwId=" . $pwId;
 
-    $batikSvgUrl = "http://www.wikipathways.org//wpi/wpi.php?action=downloadFile&type=svg&pwTitle=Pathway:" . $pwId . "&revision=0";
-    $pngUrl = "http://www.wikipathways.org//wpi/wpi.php?action=downloadFile&type=png&pwTitle=Pathway:" . $pwId . "&revision=0";
+    $batikSvgUri = "http://www.wikipathways.org//wpi/wpi.php?action=downloadFile&type=svg&pwTitle=Pathway:" . $pwId . "&revision=0";
+    $pngUri = "http://www.wikipathways.org//wpi/wpi.php?action=downloadFile&type=png&pwTitle=Pathway:" . $pwId . "&revision=0";
 
-    $pathwayUrl = "http://www.wikipathways.org//wpi/wpi.php?action=downloadFile&type=gpml&pwTitle=Pathway:" . $pwId;
+    $pathwayUri = "http://www.wikipathways.org//wpi/wpi.php?action=downloadFile&type=gpml&pwTitle=Pathway:" . $pwId;
   }
-  elseif (isset($_GET['pathwayUrl'])) {
+  elseif (isset($_GET['pathwayUri'])) {
     echo "<script>var local = true</script>";
-    $pathwayUrl = htmlspecialchars($_GET['pathwayUrl']);
-    $pathwayUrlParamStr = "pathwayUrl=" . $pathwayUrl;
-    $batikSvgUrl = str_replace(".gpml", ".svg", htmlspecialchars($_GET['pathwayUrl']));
-    $pngUrl = str_replace(".gpml", ".png", htmlspecialchars($_GET['pathwayUrl']));
+    $pathwayUri = htmlspecialchars($_GET['pathwayUri']);
+    $pathwayUriParamStr = "pathwayUri=" . $pathwayUri;
+    $batikSvgUri = str_replace(".gpml", ".svg", htmlspecialchars($_GET['pathwayUri']));
+    $pngUri = str_replace(".gpml", ".png", htmlspecialchars($_GET['pathwayUri']));
   }
 
   foreach($authorizedRepos as $value){
     if ($value == $repo) {
-        $html .= "<option value='./?" . $pathwayUrlParamStr . "&repo=" . $value . "' selected='selected'>$value</key>";
+        $html .= "<option value='./?" . $pathwayUriParamStr . "&repo=" . $value . "' selected='selected'>$value</key>";
     }
     else {
-        $html .= "<option value='./?" . $pathwayUrlParamStr . "&repo=" . $value . "'>$value</key>";
+        $html .= "<option value='./?" . $pathwayUriParamStr . "&repo=" . $value . "'>$value</key>";
     }
   }
 
@@ -80,7 +80,7 @@ Repo:
 </div> 
 <p>If you would like to edit the symbols (shapes), markers (arrowheads), colors or other properties of the pathvisio pathway template, let Anders or Alex know. When you are added as an authorized user, you can edit your 
 <?php
-  echo "<a href='" . $pathwayTemplateSvgUrlEditable . "'>"
+  echo "<a href='" . $pathwayTemplateSvgUriEditable . "'>"
 ?>
 SVG pathway template file</a> in the <span style="font-weight: bold">DEV</span> branch of your github fork of <a href="https://github.com/wikipathways/pathvisio">pathvisio</a>, commit, and view your changes on this page. Note that your commits on Github may take a few seconds before they show up here.</p>
 
@@ -95,30 +95,30 @@ SVG pathway template file</a> in the <span style="font-weight: bold">DEV</span> 
   //   $repo = $_GET['repo'];
   // }
 
-  echo "<div id='javascript-svg-pathway-container' class='pathway'>";
-    $pathwayTemplateSvg = simplexml_load_file($pathwayTemplateSvgUrl);
+  echo "<div id='javascript-svg-diagram-container' class='pathway'>";
+    $pathwayTemplateSvg = simplexml_load_file($pathwayTemplateSvgUri);
     echo $pathwayTemplateSvg->saveXML();
   echo "</div>";
 
   // PathVisio (Java) SVG
 
-  $batikSvg = simplexml_load_file($batikSvgUrl);
+  $batikSvg = simplexml_load_file($batikSvgUri);
 
-  echo "<div id='java-svg-pathway-container' class='pathway' style='display: none;'>";
+  echo "<div id='java-svg-diagram-container' class='pathway' style='display: none;'>";
     echo $batikSvg->saveXML();
   echo "</div>";
  
-  echo "<div id='java-png-pathway-container' class='pathway' style='display: none;'>";
-    echo '<img id="img" src="' . $pngUrl . '"/>';
+  echo "<div id='java-png-diagram-container' class='pathway' style='display: none;'>";
+    echo '<img id="img" src="' . $pngUri . '"/>';
   echo "</div>";
 
   // XML GPML (from either wikipathways.org REST API or local /test/gpml/ folder)
 
-  $gpmlStr = file_get_contents($pathwayUrl);
+  $gpmlStr = file_get_contents($pathwayUri);
   $doc = new DOMDocument();
   $doc->loadXML($gpmlStr);
 
-  echo "<div id='xml-gpml-pathway-container' class='pathway' style='display:none'>";
+  echo "<div id='xml-gpml-diagram-container' class='pathway' style='display:none'>";
 
     // need to use LIBXML_NOEMPTYTAG option, because it appears Chrome will incorrectly close the self-closing tags in gpml.
 
@@ -130,7 +130,7 @@ SVG pathway template file</a> in the <span style="font-weight: bold">DEV</span> 
 
   // JSON GPML 
 
-  echo "<div id='json-gpml-pathway-container' class='pathway' style='display:none'>";
+  echo "<div id='json-gpml-diagram-container' class='pathway' style='display:none'>";
     echo "<textarea name='json-gpml-for-reading' id='json-gpml-for-reading' rows='40' cols='180'>Not yet implemented.</textarea>";
   echo "</div>";
 
@@ -183,9 +183,9 @@ SVG pathway template file</a> in the <span style="font-weight: bold">DEV</span> 
   window.onload = function() {
     //pathway.load('#pathway-image', '../../test/gpml/fill-and-stroke-colors.gpml');
     //pathway.load('#pathway-image', '../../test/gpml/shapes.gpml');
-    pathvisio.pathway.load('#pathway-image', url);
+    pathvisio.pathway.load('#pathway-image', uri);
 
-    //pathvisio.drawFromUrl('#pathway-image', url, 'gpml+xml');
+    //pathvisio.drawFromUri('#pathway-image', uri, 'gpml+xml');
     //var sJson = JSON.stringify(pathway, undefined, 2);
     //$('#json-gpml-for-reading').text(sJson);
 
@@ -194,55 +194,55 @@ SVG pathway template file</a> in the <span style="font-weight: bold">DEV</span> 
     // I wanted to make the pathvisio SVG, the PathVisio (Java) SVG and the PathVisio (Java) PNG all the same size.
     // But the code below does not work.
 
-    var javaScriptSvgWidth = self.javaScriptSvgWidth = $('#javascript-svg-pathway-container svg')[0].getAttribute('width');
+    var javaScriptSvgWidth = self.javaScriptSvgWidth = $('#javascript-svg-diagram-container svg')[0].getAttribute('width');
     //console.log('javaScriptSvgWidth');
     //console.log(javaScriptSvgWidth);
-    var javaScriptSvgHeight = self.javaScriptSvgHeight = $('#javascript-svg-pathway-container svg')[0].getAttribute('height');
+    var javaScriptSvgHeight = self.javaScriptSvgHeight = $('#javascript-svg-diagram-container svg')[0].getAttribute('height');
     //console.log('javaScriptSvgHeight');
     //console.log(javaScriptSvgHeight);
 
-    var javaScriptSvgBBoxWidth = self.javaScriptSvgBBoxWidth = $('#javascript-svg-pathway-container svg')[0].getBBox().width;
+    var javaScriptSvgBBoxWidth = self.javaScriptSvgBBoxWidth = $('#javascript-svg-diagram-container svg')[0].getBBox().width;
     //console.log('javaScriptSvgBBoxWidth');
     //console.log(javaScriptSvgBBoxWidth);
-    var javaScriptSvgBBoxHeight = self.javaScriptSvgBBoxHeight = $('#javascript-svg-pathway-container svg')[0].getBBox().height;
+    var javaScriptSvgBBoxHeight = self.javaScriptSvgBBoxHeight = $('#javascript-svg-diagram-container svg')[0].getBBox().height;
     //console.log('javaScriptSvgBBoxHeight');
     //console.log(javaScriptSvgBBoxHeight);
 
-    var javaPngWidth = self.javaPngWidth =  $('#java-png-pathway-container img')[0].getAttribute('width');
-    var javaPngHeight = self.javaPngHeight =  $('#java-png-pathway-container img')[0].getAttribute('height');
+    var javaPngWidth = self.javaPngWidth =  $('#java-png-diagram-container img')[0].getAttribute('width');
+    var javaPngHeight = self.javaPngHeight =  $('#java-png-diagram-container img')[0].getAttribute('height');
 
-    var javaPngBBoxWidth = self.javaPngBBoxWidth = $('#java-png-pathway-container img')[0].getBoundingClientRect().width;
+    var javaPngBBoxWidth = self.javaPngBBoxWidth = $('#java-png-diagram-container img')[0].getBoundingClientRect().width;
     //console.log('javaPngBBoxWidth');
     //console.log(javaPngBBoxWidth);
-    var javaPngBBoxHeight = self.javaPngBBoxHeight = $('#java-png-pathway-container img')[0].getBoundingClientRect().height;
+    var javaPngBBoxHeight = self.javaPngBBoxHeight = $('#java-png-diagram-container img')[0].getBoundingClientRect().height;
     var correctionFactor =  javaScriptSvgBBoxHeight / javaPngBBoxHeight;
 
     if (local === true) {
-      //$('#java-png-pathway-container img')[0].setAttribute('width', (javaScriptSvgBBoxWidth) + "px");
-      //$('#java-png-pathway-container img')[0].setAttribute('height', (javaScriptSvgBBoxHeight) + "px");
+      //$('#java-png-diagram-container img')[0].setAttribute('width', (javaScriptSvgBBoxWidth) + "px");
+      //$('#java-png-diagram-container img')[0].setAttribute('height', (javaScriptSvgBBoxHeight) + "px");
     }
     else {
-      //$('#java-png-pathway-container img')[0].setAttribute('width', (javaScriptSvgWidth) + "px");
-      //$('#java-png-pathway-container img')[0].setAttribute('height', (javaScriptSvgHeight) + "px");
-      //$('#java-png-pathway-container img')[0].setAttribute('width', (2 * javaScriptSvgBBoxWidth) + "px");
-      //$('#java-png-pathway-container img')[0].setAttribute('height', (2 * javaScriptSvgBBoxHeight) + "px");
-      //$('#java-png-pathway-container img')[0].setAttribute('width', (javaPngBBoxWidth * (javaScriptSvgWidth / javaPngBBoxWidth)) + "px");
-      //$('#java-png-pathway-container img')[0].setAttribute('height', (javaPngBBoxHeight * (javaScriptSvgHeight / javaPngBBoxHeight)) + "px");
+      //$('#java-png-diagram-container img')[0].setAttribute('width', (javaScriptSvgWidth) + "px");
+      //$('#java-png-diagram-container img')[0].setAttribute('height', (javaScriptSvgHeight) + "px");
+      //$('#java-png-diagram-container img')[0].setAttribute('width', (2 * javaScriptSvgBBoxWidth) + "px");
+      //$('#java-png-diagram-container img')[0].setAttribute('height', (2 * javaScriptSvgBBoxHeight) + "px");
+      //$('#java-png-diagram-container img')[0].setAttribute('width', (javaPngBBoxWidth * (javaScriptSvgWidth / javaPngBBoxWidth)) + "px");
+      //$('#java-png-diagram-container img')[0].setAttribute('height', (javaPngBBoxHeight * (javaScriptSvgHeight / javaPngBBoxHeight)) + "px");
     };
 
     /*
-    $('#java-png-pathway-container img')[0].setAttribute('width', (javaPngWidth * correctionFactor) + "px");
-    $('#java-png-pathway-container img')[0].setAttribute('height', (javaPngHeight * correctionFactor) + "px");
+    $('#java-png-diagram-container img')[0].setAttribute('width', (javaPngWidth * correctionFactor) + "px");
+    $('#java-png-diagram-container img')[0].setAttribute('height', (javaPngHeight * correctionFactor) + "px");
      */
 
     /*
-    $('#java-png-pathway-container img')[0].setAttribute('width', (javaScriptSvgBBoxWidth) + "px");
-    $('#java-png-pathway-container img')[0].setAttribute('height', (javaScriptSvgBBoxHeight) + "px");
+    $('#java-png-diagram-container img')[0].setAttribute('width', (javaScriptSvgBBoxWidth) + "px");
+    $('#java-png-diagram-container img')[0].setAttribute('height', (javaScriptSvgBBoxHeight) + "px");
 
-    var javaScriptSvgWidth = $('#javascript-svg-pathway-container svg')[0].getAttribute('width');
-    var javaScriptSvgHeight = $('#javascript-svg-pathway-container svg')[0].getAttribute('height');
-    $('#java-png-pathway-container img')[0].setAttribute('width', 0.985*width + "px");
-    $('#java-png-pathway-container img')[0].setAttribute('height', 0.985*height + "px");
+    var javaScriptSvgWidth = $('#javascript-svg-diagram-container svg')[0].getAttribute('width');
+    var javaScriptSvgHeight = $('#javascript-svg-diagram-container svg')[0].getAttribute('height');
+    $('#java-png-diagram-container img')[0].setAttribute('width', 0.985*width + "px");
+    $('#java-png-diagram-container img')[0].setAttribute('height', 0.985*height + "px");
 
     //*/
 
@@ -257,7 +257,7 @@ SVG pathway template file</a> in the <span style="font-weight: bold">DEV</span> 
     $('div.pathway').each(function(i) {
       this.style.display = 'none';
     });
-    $('#' + creator + "-pathway-container")[0].style.display = 'block';
+    $('#' + creator + "-diagram-container")[0].style.display = 'block';
     $('#json-gpml-for-reading').text(sJson);
   };
 </script>

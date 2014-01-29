@@ -2257,7 +2257,7 @@
     </Graphics>
   </Line>
   <Line GraphId="e_216_REACTOME_70494">
-    <Comment Source="WikiPathways-description">Cytosolic enolase dimer catalyzes the reversible reaction of phosphoenolpyruvate and water to form 2-phosphoglycerate. Three enolase isozymes have been purified and biochemically characterized. The alpha isoform is widely expressed (Giallongo et al. 1986). The beta isoform is expressed in muscle. Evidence for its function in vivo in humans comes from studies of a patient in whom a point mutation in the gene encoding the enzyme was associated specifically with reduced enolase activity in muscle extracts, and with other symptoms consistent with a defect in glycolysis (Comi et al. 2001). The gamma isoform of human enolase is normally expressed in neural tissue. It is not known to have distinctive biochemical functions, but is of possible clinical interest as a marker of some types of neuroendocrine and lung tumors (McAleese et al. 1988). Verma and Kurl (1993) identifed a possible fourth isoform, a "lung-specific" enolase whose expression is increased in response to dexamethasone treatment. The protein has not been biochemically characterized, however, nor have the levels of mRNA and protein in other tissues been examined. Thus, the observation that this protein is particularly similar in its predicted amino acid sequence to a duck crystallin (Wistow et al. 1988) raises the possibility that its normal function is unrelated to glycolysis.</Comment>
+    <Comment Source="WikiPathways-description">Cytosolic enolase dimer catalyzes the reversible reaction of phosphoenolpyruvate and water to form 2-phosphoglycerate. Three enolase isozymes have been purified and biochemically characterized. The alpha isoform is widely expressed (Giallongo et al. 1986). The beta isoform is expressed in muscle. Evidence for its function in vivo in humans comes from studies of a patient in whom a point mutation in the gene encoding the enzyme was associated specifically with reduced enolase activity in muscle extracts, and with other symptoms consistent with a defect in glycolysis (Comi et al. 2001). The gamma isoform of human enolase is normally expressed in neural tissue. It is not known to have distinctive biochemical functions, but is of possible clinical interest as a marker of some types of neuroendocrine and lung tumors (McAleese et al. 1988). Verma and Kuri (1993) identifed a possible fourth isoform, a "lung-specific" enolase whose expression is increased in response to dexamethasone treatment. The protein has not been biochemically characterized, however, nor have the levels of mRNA and protein in other tissues been examined. Thus, the observation that this protein is particularly similar in its predicted amino acid sequence to a duck crystallin (Wistow et al. 1988) raises the possibility that its normal function is unrelated to glycolysis.</Comment>
     <BiopaxRef>lit_141510</BiopaxRef>
     <BiopaxRef>lit_141517</BiopaxRef>
     <BiopaxRef>lit_141548</BiopaxRef>
@@ -5287,7 +5287,7 @@
       <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">6-Phosphofructo-2-kinase/fructose-2,6-bisphosphatase: a metabolic signaling enzyme.</bp:TITLE>
       <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Pilkis, SJ</bp:AUTHORS>
       <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Claus, TH</bp:AUTHORS>
-      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Kurland, IJ</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Kuriand, IJ</bp:AUTHORS>
       <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Lange, AJ</bp:AUTHORS>
       <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Annu Rev Biochem 64:799-835</bp:SOURCE>
     </bp:PublicationXref>
@@ -5468,7 +5468,7 @@
       <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Crystal structure of the autocatalytic initiator of glycogen biosynthesis, glycogenin.</bp:TITLE>
       <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Gibbons, BJ</bp:AUTHORS>
       <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Roach, PJ</bp:AUTHORS>
-      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Hurley, TD</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Huriey, TD</bp:AUTHORS>
       <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">J Mol Biol 319:463-77</bp:SOURCE>
     </bp:PublicationXref>
     <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="lit_71546">
