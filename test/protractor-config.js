@@ -66,7 +66,7 @@ exports.config = {
   // and
   // https://code.google.com/p/selenium/source/browse/javascript/webdriver/capabilities.js
   capabilities: { 
-    'browserName': ['chrome', 'safari', 'firefox']
+    'browserName': ['chrome', 'safari', 'firefox'],
   },
 
   // ----- More information for your tests ----

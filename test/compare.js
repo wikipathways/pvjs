@@ -31,7 +31,7 @@ var developmentLoader = function() {
     uriParamList = {
       'svg-disabled': false,
       'gpml': null,
-      'gpmlRev': 0,
+      'rev': 0,
       'creator': 'pathvisiojs-dev',
       'account': '',
       'branch': ''

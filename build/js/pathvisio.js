@@ -1,5 +1,5 @@
 //! pathvisiojs 0.9.8
-//! Built on 2014-01-28
+//! Built on 2014-01-30
 //! https://github.com/wikipathways/pathvisiojs
 //! License: http://www.apache.org/licenses/LICENSE-2.0/
 
@@ -5232,7 +5232,16 @@ pathvisiojs.view.pathwayDiagram = function(){
           //loadDiagramArgs.customSymbols = customSymbols;
           //*
           pathvisiojs.view.pathwayDiagram.svg.load(loadDiagramArgs, function(diagram) {
-            callback(null, diagram);
+            if (!!diagram) {
+              callback(null, diagram);
+            }
+            else {
+              // TODO refactor this to not just assume PNG will be available as fallback
+              loadDiagramArgs.renderableSourceDataElement = sourceData[1];
+              pathvisiojs.view.pathwayDiagram.img.load(loadDiagramArgs, function(diagram) {
+                callback(null, diagram);
+              });
+            }
           });
           //*/
         }
@@ -5294,7 +5303,7 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
     viewport.attr("transform", translationMatrixString);
   }
 
-  function load(args, callback) {
+  function load(args, callbackOutside) {
     var diagramContainer = args.container, //a d3 selection corresponding to the containing element in the parent document
       containerWidth = args.containerWidth,
       containerHeight = args.containerHeight,
@@ -5333,13 +5342,14 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
               pathvisiojs.context = json['@context'];
 
               if (!json || json === 'fail') {
+                callbackOutside(null);
                 throw new Error("Could not convert input source data to pathvisioJsJson.");
               }
 
               //console.log('json');
               //console.log(json);
               pathway = json;
-              callback(null);
+              callback(null, json);
             })
           }
         },
@@ -5463,7 +5473,7 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
       }
     ],
     function(err, results) {
-      callback(svg);
+      callbackOutside(svg);
     });
   }
 
@@ -6456,8 +6466,10 @@ pathvisiojs.view.pathwayDiagram.svg.node.EntityNode = function(){
         var cssClass = 'node entity-node ' + strcase.paramCase(d.nodeType) + ' ';
         if (d.nodeType === 'DataNode') {
           cssClass += strcase.paramCase(d.dataNodeType) + ' ';
+	  cssClass += strcase.paramCase('label-'+decodeURIComponent(d.text.line[0])) + ' ';
           if (!!d.DatasourceReference) {
             cssClass += 'has-xref ';
+	    cssClass += strcase.paramCase('xref-'+decodeURIComponent(d['DatasourceReference'].ID+','+d['DatasourceReference'].Database)) + ' ';
           }
         }
         if (d.hasOwnProperty('CellularComponent')) {
