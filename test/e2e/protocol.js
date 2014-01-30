@@ -35,7 +35,7 @@ function testPathway(pathwayName) {
     return ptor.wait(forElementToBePresent(by.css('#pathvisiojs-is-loaded')), 30 * 1000);
   }).
   then(function() {
-    console.log('Running ' + pathwayName + ' rendering test protocol...');
+    //console.log('Running ' + pathwayName + ' rendering test protocol...');
     testElementCount(pathwayName, 'InfoBox', element, '#viewport .info-box');
     testElementCount(pathwayName, 'EdgeAnchor', element, '#viewport .anchor');
     testElementCount(pathwayName, 'DataNode', element, '#viewport .data-node');

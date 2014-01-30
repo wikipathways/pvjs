@@ -180,7 +180,16 @@ pathvisiojs.view.pathwayDiagram = function(){
           //loadDiagramArgs.customSymbols = customSymbols;
           //*
           pathvisiojs.view.pathwayDiagram.svg.load(loadDiagramArgs, function(diagram) {
-            callback(null, diagram);
+            if (!!diagram) {
+              callback(null, diagram);
+            }
+            else {
+              // TODO refactor this to not just assume PNG will be available as fallback
+              loadDiagramArgs.renderableSourceDataElement = sourceData[1];
+              pathvisiojs.view.pathwayDiagram.img.load(loadDiagramArgs, function(diagram) {
+                callback(null, diagram);
+              });
+            }
           });
           //*/
         }
