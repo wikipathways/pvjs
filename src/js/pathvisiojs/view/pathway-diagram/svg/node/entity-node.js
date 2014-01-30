@@ -13,8 +13,10 @@ pathvisiojs.view.pathwayDiagram.svg.node.EntityNode = function(){
         var cssClass = 'node entity-node ' + strcase.paramCase(d.nodeType) + ' ';
         if (d.nodeType === 'DataNode') {
           cssClass += strcase.paramCase(d.dataNodeType) + ' ';
+	  cssClass += strcase.paramCase('label-'+decodeURIComponent(d.text.line[0])) + ' ';
           if (!!d.DatasourceReference) {
             cssClass += 'has-xref ';
+	    cssClass += strcase.paramCase('xref-'+decodeURIComponent(d['DatasourceReference'].ID+','+d['DatasourceReference'].Database)) + ' ';
           }
         }
         if (d.hasOwnProperty('CellularComponent')) {
