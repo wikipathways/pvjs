@@ -77,6 +77,7 @@ module.exports = function(grunt) {
 
 // ----------
 var packageJson = grunt.file.readJSON("package.json"),
+    testPathwaysElementCounts = grunt.file.readJSON("test/data/protocol/counts.json"),
     distributionJs = "build/js/pathvisio.js",
     distributionCss = "build/css/pathvisiojs.css",
     minifiedJs = "build/js/pathvisio.min.js",
@@ -237,8 +238,6 @@ grunt.initConfig({
     grunt.config.set('protractor.run_chrome.options.args.specs', ['test/e2e/' + val + '.js']);
     grunt.task.run('protractor:run_chrome')
   });
-  //grunt.registerTask('mytest', ['protractor:run_chrome']);
-
 
   // Default task(s).
   grunt.registerTask('default', ['build']);

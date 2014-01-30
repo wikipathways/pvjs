@@ -1,417 +1,350 @@
 'use strict';
 
-
 function forElementToBePresent(findBy) {
   return function() {
     return ptor.isElementPresent(findBy);
   };
 }
 
-var ptor = protractor.getInstance();
-ptor.ignoreSynchronization = true;
-
-var bodyElements, shapes, loadingIconBeforePathwayLoaded, loadingIconAfterPathwayLoaded,
-  shapesInShapes;
-
-var baseUri = 'http://localhost:3000/';
-
-function testTheCount(gpmlFile, elementName, expectedCount) {
+function testElementCount(pathwayName, elementName, element, selector) {
   //console.log('elementName: ' + elementName);
   //console.log('expectedCount: ' + expectedCount);
-  describe(gpmlFile, function() {
-    it('should have ' + expectedCount + ' ' + elementName + 's', function() {
+  
+  var expectedCount = testPathwayData[pathwayName][elementName + 'Count'];
+
+  if (expectedCount > 0) {
+    ptor.findElements(protractor.By.css(selector)).
+    then(function(arr){
+      var length=arr.length; //length
+      describe(pathwayName + ' test protocol pathway', function() {
+        it('should have ' + expectedCount + ' ' + elementName + 's', function() {
+          expect(length).toEqual(expectedCount);
+        });
+      });
     });
+  }
+}
+
+function testPathway(pathwayName) {
+  var expectedCount;
+
+  var uri = baseUri + "test/development.html?gpml=" + baseUri + "test/data/protocol/" + pathwayName + ".gpml.xml" ;
+
+  ptor.get(uri).
+  then(function() {
+    return ptor.wait(forElementToBePresent(by.css('#pathvisiojs-is-loaded')), 30 * 1000);
+  }).
+  then(function() {
+    console.log('Running ' + pathwayName + ' rendering test protocol...');
+    testElementCount(pathwayName, 'InfoBox', element, '#viewport .info-box');
+    testElementCount(pathwayName, 'EdgeAnchor', element, '#viewport .anchor');
+    testElementCount(pathwayName, 'DataNode', element, '#viewport .data-node');
+    testElementCount(pathwayName, 'DataNodeGeneProduct', element, '#viewport .gene-product');
+    testElementCount(pathwayName, 'DataNodeMetabolite', element, '#viewport .metabolite');
+    testElementCount(pathwayName, 'DataNodePathway', element, '#viewport .data-node.pathway');
+    testElementCount(pathwayName, 'DataNodeProtein', element, '#viewport .protein');
+    testElementCount(pathwayName, 'DataNodeRna', element, '#viewport .rna');
+    testElementCount(pathwayName, 'DataNodeUnknown', element, '#viewport .unknown');
+    testElementCount(pathwayName, 'Group', element, '#viewport .group-node');
+    testElementCount(pathwayName, 'Edge', element, '#viewport .edge');
+    testElementCount(pathwayName, 'GraphicalLine', element, '#viewport .graphical-line');
+    testElementCount(pathwayName, 'Interaction', element, '#viewport .interaction');
   });
 }
 
-describe('myTest', function() {
-  it('should run', function() {
+var ptor = protractor.getInstance();
+ptor.ignoreSynchronization = true;
+
+// TODO get this from the config or Grunt files
+var baseUri = 'http://localhost:3000/';
+
+var testPathwayData = {
+    "elbows": {
+        "DataNodeMetaboliteCount": 0, 
+        "InfoBoxCount": 1, 
+        "DataNodeRnaCount": 0, 
+        "AnchorCount": 576, 
+        "EdgeCount": 23, 
+        "ShapeCount": 0, 
+        "GroupCount": 0, 
+        "NodeAnchorCount": 576, 
+        "GraphicalLineCount": 0, 
+        "InteractionCount": 23, 
+        "DataNodePathwayCount": 0, 
+        "DataNodeProteinCount": 0, 
+        "DataNodeUnknownCount": 0, 
+        "DataNodeCount": 46, 
+        "LabelCount": 2, 
+        "EdgeAnchorCount": 0, 
+        "NodeCount": 48, 
+        "DataNodeGeneProductCount": 46
+    }, 
+    "anchors": {
+        "DataNodeMetaboliteCount": 2, 
+        "InfoBoxCount": 1, 
+        "DataNodeRnaCount": 0, 
+        "AnchorCount": 82, 
+        "EdgeCount": 9, 
+        "ShapeCount": 1, 
+        "GroupCount": 1, 
+        "NodeAnchorCount": 72, 
+        "GraphicalLineCount": 0, 
+        "InteractionCount": 9, 
+        "DataNodePathwayCount": 1, 
+        "DataNodeProteinCount": 0, 
+        "DataNodeUnknownCount": 0, 
+        "DataNodeCount": 4, 
+        "LabelCount": 0, 
+        "EdgeAnchorCount": 10, 
+        "NodeCount": 6, 
+        "DataNodeGeneProductCount": 1
+    }, 
+    "interactions": {
+        "DataNodeMetaboliteCount": 1, 
+        "InfoBoxCount": 1, 
+        "DataNodeRnaCount": 0, 
+        "AnchorCount": 1058, 
+        "EdgeCount": 72, 
+        "ShapeCount": 1, 
+        "GroupCount": 0, 
+        "NodeAnchorCount": 1032, 
+        "GraphicalLineCount": 0, 
+        "InteractionCount": 72, 
+        "DataNodePathwayCount": 0, 
+        "DataNodeProteinCount": 0, 
+        "DataNodeUnknownCount": 0, 
+        "DataNodeCount": 66, 
+        "LabelCount": 19, 
+        "EdgeAnchorCount": 26, 
+        "NodeCount": 86, 
+        "DataNodeGeneProductCount": 65
+    }, 
+    "text": {
+        "DataNodeMetaboliteCount": 0, 
+        "InfoBoxCount": 1, 
+        "DataNodeRnaCount": 0, 
+        "AnchorCount": 528, 
+        "EdgeCount": 0, 
+        "ShapeCount": 0, 
+        "GroupCount": 0, 
+        "NodeAnchorCount": 528, 
+        "GraphicalLineCount": 0, 
+        "InteractionCount": 0, 
+        "DataNodePathwayCount": 0, 
+        "DataNodeProteinCount": 0, 
+        "DataNodeUnknownCount": 0, 
+        "DataNodeCount": 0, 
+        "LabelCount": 44, 
+        "EdgeAnchorCount": 0, 
+        "NodeCount": 44, 
+        "DataNodeGeneProductCount": 0
+    }, 
+    "graphical-lines": {
+        "DataNodeMetaboliteCount": 0, 
+        "InfoBoxCount": 1, 
+        "DataNodeRnaCount": 0, 
+        "AnchorCount": 228, 
+        "EdgeCount": 10, 
+        "ShapeCount": 1, 
+        "GroupCount": 0, 
+        "NodeAnchorCount": 228, 
+        "GraphicalLineCount": 10, 
+        "InteractionCount": 0, 
+        "DataNodePathwayCount": 0, 
+        "DataNodeProteinCount": 0, 
+        "DataNodeUnknownCount": 0, 
+        "DataNodeCount": 8, 
+        "LabelCount": 10, 
+        "EdgeAnchorCount": 0, 
+        "NodeCount": 19, 
+        "DataNodeGeneProductCount": 8
+    }, 
+    "size-and-proportion": {
+        "DataNodeMetaboliteCount": 0, 
+        "InfoBoxCount": 1, 
+        "DataNodeRnaCount": 0, 
+        "AnchorCount": 192, 
+        "EdgeCount": 16, 
+        "ShapeCount": 12, 
+        "GroupCount": 0, 
+        "NodeAnchorCount": 192, 
+        "GraphicalLineCount": 16, 
+        "InteractionCount": 0, 
+        "DataNodePathwayCount": 0, 
+        "DataNodeProteinCount": 0, 
+        "DataNodeUnknownCount": 0, 
+        "DataNodeCount": 0, 
+        "LabelCount": 4, 
+        "EdgeAnchorCount": 0, 
+        "NodeCount": 16, 
+        "DataNodeGeneProductCount": 0
+    }, 
+    "curves": {
+        "DataNodeMetaboliteCount": 0, 
+        "InfoBoxCount": 1, 
+        "DataNodeRnaCount": 0, 
+        "AnchorCount": 576, 
+        "EdgeCount": 23, 
+        "ShapeCount": 0, 
+        "GroupCount": 0, 
+        "NodeAnchorCount": 576, 
+        "GraphicalLineCount": 0, 
+        "InteractionCount": 23, 
+        "DataNodePathwayCount": 0, 
+        "DataNodeProteinCount": 0, 
+        "DataNodeUnknownCount": 0, 
+        "DataNodeCount": 46, 
+        "LabelCount": 2, 
+        "EdgeAnchorCount": 0, 
+        "NodeCount": 48, 
+        "DataNodeGeneProductCount": 46
+    }, 
+    "shapes": {
+        "DataNodeMetaboliteCount": 0, 
+        "InfoBoxCount": 1, 
+        "DataNodeRnaCount": 0, 
+        "AnchorCount": 864, 
+        "EdgeCount": 0, 
+        "ShapeCount": 45, 
+        "GroupCount": 7, 
+        "NodeAnchorCount": 864, 
+        "GraphicalLineCount": 0, 
+        "InteractionCount": 0, 
+        "DataNodePathwayCount": 0, 
+        "DataNodeProteinCount": 0, 
+        "DataNodeUnknownCount": 0, 
+        "DataNodeCount": 18, 
+        "LabelCount": 2, 
+        "EdgeAnchorCount": 0, 
+        "NodeCount": 72, 
+        "DataNodeGeneProductCount": 18
+    }, 
+    "z-index": {
+        "DataNodeMetaboliteCount": 0, 
+        "InfoBoxCount": 1, 
+        "DataNodeRnaCount": 0, 
+        "AnchorCount": 254, 
+        "EdgeCount": 3, 
+        "ShapeCount": 11, 
+        "GroupCount": 0, 
+        "NodeAnchorCount": 252, 
+        "GraphicalLineCount": 0, 
+        "InteractionCount": 3, 
+        "DataNodePathwayCount": 0, 
+        "DataNodeProteinCount": 0, 
+        "DataNodeUnknownCount": 0, 
+        "DataNodeCount": 2, 
+        "LabelCount": 8, 
+        "EdgeAnchorCount": 2, 
+        "NodeCount": 21, 
+        "DataNodeGeneProductCount": 2
+    }, 
+    "citations": {
+        "DataNodeMetaboliteCount": 1, 
+        "InfoBoxCount": 1, 
+        "DataNodeRnaCount": 0, 
+        "AnchorCount": 48, 
+        "EdgeCount": 3, 
+        "ShapeCount": 1, 
+        "GroupCount": 0, 
+        "NodeAnchorCount": 48, 
+        "GraphicalLineCount": 0, 
+        "InteractionCount": 3, 
+        "DataNodePathwayCount": 1, 
+        "DataNodeProteinCount": 0, 
+        "DataNodeUnknownCount": 0, 
+        "DataNodeCount": 3, 
+        "LabelCount": 0, 
+        "EdgeAnchorCount": 0, 
+        "NodeCount": 4, 
+        "DataNodeGeneProductCount": 1
+    }, 
+    "gpml-data-nodes": {
+        "DataNodeMetaboliteCount": 4, 
+        "InfoBoxCount": 1, 
+        "DataNodeRnaCount": 4, 
+        "AnchorCount": 336, 
+        "EdgeCount": 0, 
+        "ShapeCount": 2, 
+        "GroupCount": 0, 
+        "NodeAnchorCount": 336, 
+        "GraphicalLineCount": 0, 
+        "InteractionCount": 0, 
+        "DataNodePathwayCount": 4, 
+        "DataNodeProteinCount": 4, 
+        "DataNodeUnknownCount": 4, 
+        "DataNodeCount": 24, 
+        "LabelCount": 2, 
+        "EdgeAnchorCount": 0, 
+        "NodeCount": 28, 
+        "DataNodeGeneProductCount": 4
+    }, 
+    "fill-and-stroke": {
+        "DataNodeMetaboliteCount": 5, 
+        "InfoBoxCount": 1, 
+        "DataNodeRnaCount": 0, 
+        "AnchorCount": 756, 
+        "EdgeCount": 12, 
+        "ShapeCount": 10, 
+        "GroupCount": 5, 
+        "NodeAnchorCount": 756, 
+        "GraphicalLineCount": 12, 
+        "InteractionCount": 0, 
+        "DataNodePathwayCount": 10, 
+        "DataNodeProteinCount": 0, 
+        "DataNodeUnknownCount": 0, 
+        "DataNodeCount": 25, 
+        "LabelCount": 23, 
+        "EdgeAnchorCount": 0, 
+        "NodeCount": 63, 
+        "DataNodeGeneProductCount": 10
+    }, 
+    "groups": {
+        "DataNodeMetaboliteCount": 2, 
+        "InfoBoxCount": 1, 
+        "DataNodeRnaCount": 1, 
+        "AnchorCount": 327, 
+        "EdgeCount": 12, 
+        "ShapeCount": 0, 
+        "GroupCount": 8, 
+        "NodeAnchorCount": 324, 
+        "GraphicalLineCount": 1, 
+        "InteractionCount": 11, 
+        "DataNodePathwayCount": 2, 
+        "DataNodeProteinCount": 2, 
+        "DataNodeUnknownCount": 1, 
+        "DataNodeCount": 15, 
+        "LabelCount": 4, 
+        "EdgeAnchorCount": 3, 
+        "NodeCount": 27, 
+        "DataNodeGeneProductCount": 7
+    }, 
+    "gpml-labels": {
+        "DataNodeMetaboliteCount": 0, 
+        "InfoBoxCount": 1, 
+        "DataNodeRnaCount": 0, 
+        "AnchorCount": 528, 
+        "EdgeCount": 0, 
+        "ShapeCount": 0, 
+        "GroupCount": 0, 
+        "NodeAnchorCount": 528, 
+        "GraphicalLineCount": 0, 
+        "InteractionCount": 0, 
+        "DataNodePathwayCount": 0, 
+        "DataNodeProteinCount": 0, 
+        "DataNodeUnknownCount": 0, 
+        "DataNodeCount": 0, 
+        "LabelCount": 44, 
+        "EdgeAnchorCount": 0, 
+        "NodeCount": 44, 
+        "DataNodeGeneProductCount": 0
+    }
+};
+
+for (var pathwayName in testPathwayData) {
+  describe(pathwayName, function() {
+    it('should render', function() {
+    });
   });
-});
-
-ptor.get(baseUri + "test/development.html?gpml=" + baseUri + "test/data/protocol/anchors.gpml.xml").
-  then(function() {
-    console.log('************** running anchors rendering test protocol...');
-    return ptor.wait(forElementToBePresent(by.css('#pathvisiojs-is-loaded')), 30 * 1000);
-  }).
-  then(function() {
-    var expectedCount = 1;
-    expect(element.all(by.css('#viewport .info-box')).count()).toEqual(expectedCount);
-    testTheCount('anchors test protocol pathway', 'info-box', expectedCount);
-    return 'success';
-  }).
-  then(function() {
-    var expectedCount = 22; // includes anchors as nodes
-    testTheCount('anchors test protocol pathway', 'node', expectedCount);
-    expect(element.all(by.css('#viewport .node')).count()).toEqual(expectedCount);
-    return 'success';
-  }).
-  then(function() {
-    var expectedCount = 10;
-    testTheCount('anchors test protocol pathway', 'anchor', expectedCount);
-    expect(element.all(by.css('#viewport .anchor')).count()).toEqual(expectedCount);
-    return 'success';
-  }).
-  then(function() {
-    var expectedCount = 4;
-    testTheCount('anchors test protocol pathway', 'DataNode', expectedCount);
-    expect(element.all(by.css('#viewport .data-node')).count()).toEqual(expectedCount);
-    return 'success';
-  }).
-  then(function() {
-    var expectedCount = 1;
-    expect(element.all(by.css('#viewport .gene-product')).count()).toEqual(expectedCount);
-    testTheCount('anchors test protocol pathway', 'gene-product', expectedCount);
-    return 'sucess';
-  }).
-  then(function() {
-    var expectedCount = 2;
-    expect(element.all(by.css('#viewport .metabolite')).count()).toEqual(expectedCount);
-    testTheCount('anchors test protocol pathway', 'metabolite', expectedCount);
-    return 'sucess';
-  }).
-  then(function() {
-    var expectedCount = 1;
-    expect(element.all(by.css('#viewport .data-node.pathway')).count()).toEqual(expectedCount);
-    testTheCount('anchors test protocol pathway', 'pathway (as data-node)', expectedCount);
-    return 'sucess';
-  }).
-  then(function() {
-    var expectedCount = 0;
-    expect(element.all(by.css('#viewport .protein')).count()).toEqual(expectedCount);
-    testTheCount('anchors test protocol pathway', 'protein', expectedCount);
-    return 'sucess';
-  }).
-  then(function() {
-    var expectedCount = 0;
-    expect(element.all(by.css('#viewport .rna')).count()).toEqual(expectedCount);
-    testTheCount('anchors test protocol pathway', 'rna', expectedCount);
-    return 'sucess';
-  }).
-  then(function() {
-    var expectedCount = 0;
-    expect(element.all(by.css('#viewport .unknown')).count()).toEqual(expectedCount);
-    testTheCount('anchors test protocol pathway', 'unknown', expectedCount);
-    return 'sucess';
-  }).
-  then(function() {
-    var expectedCount = 1;
-    expect(element.all(by.css('#viewport .group-node')).count()).toEqual(expectedCount);
-    testTheCount('anchors test protocol pathway', 'group', expectedCount);
-    return 'sucess';
-  }).
-  then(function() {
-    var expectedCount = 9;
-    expect(element.all(by.css('#viewport .edge')).count()).toEqual(expectedCount);
-    testTheCount('anchors test protocol pathway', 'edge', expectedCount);
-    return 'success';
-  }).
-  then(function() {
-    var expectedCount = 9;
-    expect(element.all(by.css('#viewport .interaction')).count()).toEqual(expectedCount);
-    testTheCount('anchors test protocol pathway', 'GPML Interaction', expectedCount);
-    return 'success';
-  }).
-  then(function() {
-    console.log('************** running graphical lines rendering test protocol...');
-    ptor.get(baseUri + "test/development.html?gpml=" + baseUri + "test/data/protocol/graphical-lines.gpml.xml");
-    return ptor.wait(forElementToBePresent(by.css('#pathvisiojs-is-loaded')), 30 * 1000);
-  }).
-  then(function() {
-    var expectedCount = 9;
-    expect(element.all(by.css('#viewport .node')).count()).toEqual(expectedCount);
-    testTheCount('graphical-line test protocol pathway', 'node', expectedCount);
-    return 'success';
-  }).
-  then(function() {
-    var expectedCount = 3;
-    expect(element.all(by.css('#viewport .edge')).count()).toEqual(expectedCount);
-    testTheCount('graphical-line test protocol pathway', 'edge', expectedCount);
-    return 'success';
-  }).
-  then(function() {
-    var expectedCount = 9;
-    expect(element.all(by.css('#viewport .graphical-line')).count()).toEqual(expectedCount);
-    testTheCount('graphical-line test protocol pathway', 'GPML GraphicalLine', expectedCount);
-    return 'success';
-  }).
-  then(function() {
-    console.log('************** running GPML Label rendering test protocol...');
-    ptor.get(baseUri + "test/development.html?gpml=" + baseUri + "test/data/protocol/gpml-labels.gpml.xml");
-    return ptor.wait(forElementToBePresent(by.css('#pathvisiojs-is-loaded')), 30 * 1000);
-  }).
-  then(function() {
-    // This is using the direction from APico that citations that apply to an entire pathway
-    // are not to be displayed, so there are actually 6 citation list strings in this
-    // pathway, but only 5 of them are element-specific.
-    var expectedCount = 5;
-    expect(element.all(by.css('#viewport .citation')).count()).toEqual(expectedCount);
-    testTheCount('GPML Label test protocol pathway', 'element-specific citation list string', expectedCount);
-    return 'success';
-  }).
-  then(function() {
-    var expectedCount = 9;
-    expect(element.all(by.css('#viewport .node')).count()).toEqual(expectedCount);
-    testTheCount('GPML Label test protocol pathway', 'node', expectedCount);
-    return 'success';
-  }).
-  then(function() {
-    var expectedCount = 3;
-    expect(element.all(by.css('#viewport .edge')).count()).toEqual(expectedCount);
-    testTheCount('GPML Label test protocol pathway', 'edge', expectedCount);
-    return 'success';
-  }).
-  then(function() {
-    console.log('************** running fill-and-stroke rendering test protocol...');
-    ptor.get(baseUri + "test/development.html?gpml=" + baseUri + "test/data/protocol/fill-and-stroke.gpml.xml");
-    return ptor.wait(forElementToBePresent(by.css('#pathvisiojs-is-loaded')), 30 * 1000);
-  }).
-  then(function() {
-    var expectedCount = 9;
-    expect(element.all(by.css('#viewport .node')).count()).toEqual(expectedCount);
-    testTheCount('fill-and-stroke test protocol pathway', 'node', expectedCount);
-    return 'success';
-  }).
-  then(function() {
-    var expectedCount = 3;
-    expect(element.all(by.css('#viewport .edge')).count()).toEqual(expectedCount);
-    testTheCount('fill-and-stroke test protocol pathway', 'edge', expectedCount);
-    return 'success';
-  }).
-  then(function() {
-    console.log('************** running z-index rendering test protocol...');
-    ptor.get(baseUri + "test/development.html?gpml=" + baseUri + "test/data/protocol/z-index.gpml.xml");
-    return ptor.wait(forElementToBePresent(by.css('#pathvisiojs-is-loaded')), 30 * 1000);
-  }).
-  then(function() {
-    var expectedCount = 9;
-    expect(element.all(by.css('#viewport .node')).count()).toEqual(expectedCount);
-    testTheCount('z-index test protocol pathway', 'node', expectedCount);
-    return 'success';
-  }).
-  then(function() {
-    var expectedCount = 3;
-    expect(element.all(by.css('#viewport .edge')).count()).toEqual(expectedCount);
-    testTheCount('z-index test protocol pathway', 'edge', expectedCount);
-    return 'success';
-  }).
-  then(function() {
-    console.log('************** running size-and-proportion rendering test protocol...');
-    ptor.get(baseUri + "test/development.html?gpml=" + baseUri + "test/data/protocol/size-and-proportion.gpml.xml");
-    return ptor.wait(forElementToBePresent(by.css('#pathvisiojs-is-loaded')), 30 * 1000);
-  }).
-  then(function() {
-    var expectedCount = 9;
-    expect(element.all(by.css('#viewport .node')).count()).toEqual(expectedCount);
-    testTheCount('size-and-proportion test protocol pathway', 'node', expectedCount);
-    return 'success';
-  }).
-  then(function() {
-    var expectedCount = 3;
-    expect(element.all(by.css('#viewport .edge')).count()).toEqual(expectedCount);
-    testTheCount('size-and-proportion test protocol pathway', 'edge', expectedCount);
-    return 'success';
-  }).
-  then(function() {
-    console.log('************** running gpml-data-nodes rendering test protocol...');
-    ptor.get(baseUri + "test/development.html?gpml=" + baseUri + "test/data/protocol/gpml-data-nodes.gpml.xml");
-    return ptor.wait(forElementToBePresent(by.css('#pathvisiojs-is-loaded')), 30 * 1000);
-  }).
-  then(function() {
-    var expectedCount = 9;
-    expect(element.all(by.css('#viewport .node')).count()).toEqual(expectedCount);
-    testTheCount('gpml-data-nodes test protocol pathway', 'node', expectedCount);
-    return 'success';
-  }).
-  then(function() {
-    var expectedCount = 3;
-    expect(element.all(by.css('#viewport .edge')).count()).toEqual(expectedCount);
-    testTheCount('gpml-data-nodes test protocol pathway', 'edge', expectedCount);
-    return 'success';
-  }).
-  then(function() {
-    console.log('************** running text rendering test protocol...');
-    ptor.get(baseUri + "test/development.html?gpml=" + baseUri + "test/data/protocol/text.gpml.xml");
-    return ptor.wait(forElementToBePresent(by.css('#pathvisiojs-is-loaded')), 30 * 1000);
-  }).
-  then(function() {
-    // This is using the direction from APico that citations that apply to an entire pathway
-    // are not to be displayed, so there are actually 6 citation list strings in this
-    // pathway, but only 5 of them are element-specific.
-    var expectedCount = 5;
-    expect(element.all(by.css('#viewport .citation')).count()).toEqual(expectedCount);
-    testTheCount('text test protocol pathway', 'element-specific citation list string', expectedCount);
-    return 'success';
-  }).
-  then(function() {
-    var expectedCount = 9;
-    expect(element.all(by.css('#viewport .node')).count()).toEqual(expectedCount);
-    testTheCount('text test protocol pathway', 'node', expectedCount);
-    return 'success';
-  }).
-  then(function() {
-    var expectedCount = 3;
-    expect(element.all(by.css('#viewport .edge')).count()).toEqual(expectedCount);
-    testTheCount('text test protocol pathway', 'edge', expectedCount);
-    return 'success';
-  }).
-  then(function() {
-    console.log('************** running citations rendering test protocol...');
-    ptor.get(baseUri + "test/development.html?gpml=" + baseUri + "test/data/protocol/citations.gpml.xml");
-    return ptor.wait(forElementToBePresent(by.css('#pathvisiojs-is-loaded')), 30 * 1000);
-  }).
-  then(function() {
-    // This is using the direction from APico that citations that apply to an entire pathway
-    // are not to be displayed, so there are actually 6 citation list strings in this
-    // pathway, but only 5 of them are element-specific.
-    var expectedCount = 5;
-    expect(element.all(by.css('#viewport .citation')).count()).toEqual(expectedCount);
-    testTheCount('citations test protocol pathway', 'element-specific citation list string', expectedCount);
-    return 'success';
-  }).
-  then(function() {
-    var expectedCount = 9;
-    expect(element.all(by.css('#viewport .node')).count()).toEqual(expectedCount);
-    testTheCount('citations test protocol pathway', 'node', expectedCount);
-    return 'success';
-  }).
-  then(function() {
-    var expectedCount = 3;
-    expect(element.all(by.css('#viewport .edge')).count()).toEqual(expectedCount);
-    testTheCount('citations test protocol pathway', 'edge', expectedCount);
-    return 'success';
-  }).
-  then(function() {
-    console.log('************** running shapes rendering test protocol...');
-    ptor.get(baseUri + "test/development.html?gpml=" + baseUri + "test/data/protocol/shapes.gpml.xml");
-    return ptor.wait(forElementToBePresent(by.css('#pathvisiojs-is-loaded')), 30 * 1000);
-  }).
-  then(function() {
-    var expectedCount = 31;
-    expect(element.all(by.css('#viewport .node')).count()).toEqual(expectedCount);
-    testTheCount('shapes test protocol pathway', 'node', expectedCount);
-    return 'success';
-  }).
-  then(function() {
-    var expectedCount = 0;
-    expect(element.all(by.css('#viewport .edge')).count()).toEqual(expectedCount);
-    testTheCount('shapes test protocol pathway', 'edge', expectedCount);
-    return 'success';
-  }).
-  then(function() {
-    console.log('************** running interactions rendering test protocol...');
-    ptor.get(baseUri + "test/development.html?gpml=" + baseUri + "test/data/protocol/interactions.gpml.xml");
-    return ptor.wait(forElementToBePresent(by.css('#pathvisiojs-is-loaded')), 30 * 1000);
-  }).
-  then(function() {
-    return ptor.sleep(3 * 1000);
-  }).
-  then(function() {
-    var expectedCount = 115; // DataNodes (66), Anchors (26), Shapes (1), Labels (22)
-    expect(element.all(by.css('#viewport .node')).count()).toEqual(expectedCount);
-    testTheCount('interactions test protocol pathway', 'node', expectedCount);
-    return 'success';
-  }).
-  then(function() {
-    var expectedCount = 62;
-    expect(element.all(by.css('#viewport .edge')).count()).toEqual(expectedCount);
-    testTheCount('interactions test protocol pathway', 'edge', expectedCount);
-    return 'success';
-  }).
-  then(function() {
-    console.log('************** running curves rendering test protocol...');
-    ptor.get(baseUri + "test/development.html?gpml=" + baseUri + "test/data/protocol/curves.gpml.xml");
-  }).
-  then(function() {
-    return ptor.wait(forElementToBePresent(by.css('#pathvisiojs-is-loaded')), 30 * 1000);
-  }).
-  then(function() {
-    var expectedCount = 51;
-    expect(element.all(by.css('#viewport .node')).count()).toEqual(expectedCount);
-    testTheCount('curves test protocol pathway', 'node', expectedCount);
-    return 'success';
-  }).
-  then(function() {
-    return ptor.sleep(5 * 1000);
-  }).
-  then(function() {
-    var expectedCount = 23;
-    expect(element.all(by.css('#viewport .edge')).count()).toEqual(expectedCount);
-    testTheCount('curves test protocol pathway', 'edge', expectedCount);
-    return 'success';
-  }).
-  then(function() {
-    console.log('************** running elbows rendering test protocol...');
-    ptor.get(baseUri + "test/development.html?gpml=" + baseUri + "test/data/protocol/elbows.gpml.xml");
-  }).
-  then(function() {
-    return ptor.wait(forElementToBePresent(by.css('#pathvisiojs-is-loaded')), 30 * 1000);
-  }).
-  then(function() {
-    var expectedCount = 51;
-    expect(element.all(by.css('#viewport .node')).count()).toEqual(expectedCount);
-    testTheCount('elbows test protocol pathway', 'node', expectedCount);
-    return 'success';
-  }).
-  then(function() {
-    return ptor.sleep(5 * 1000);
-  }).
-  then(function() {
-    var expectedCount = 23;
-    expect(element.all(by.css('#viewport .edge')).count()).toEqual(expectedCount);
-    testTheCount('elbows test protocol pathway', 'edge', expectedCount);
-    return 'success';
-  }).
-  then(function() {
-    console.log('************** running groups rendering test protocol...');
-    ptor.get(baseUri + "test/development.html?gpml=" + baseUri + "test/data/protocol/groups.gpml.xml");
-    return ptor.wait(forElementToBePresent(by.css('#pathvisiojs-is-loaded')), 30 * 1000);
-  }).
-  then(function() {
-    return ptor.sleep(5 * 1000);
-  }).
-  then(function() {
-    var expectedCount = 31;
-    expect(element.all(by.css('#viewport .node')).count()).toEqual(expectedCount);
-    testTheCount('groups test protocol pathway', 'node', expectedCount);
-    return 'success';
-  }).
-  then(function() {
-    var expectedCount = 8;
-    expect(element.all(by.css('#viewport .group-node')).count()).toEqual(expectedCount);
-    testTheCount('groups test protocol pathway', 'groups, also called group-node', expectedCount);
-    return 'success';
-  }).
-  then(function() {
-    var expectedCount = 4;
-    expect(element.all(by.css('#viewport .complex')).count()).toEqual(expectedCount);
-    testTheCount('groups test protocol pathway', 'groups of type "complex"', expectedCount);
-    return 'success';
-  }).
-  then(function() {
-    var expectedCount = 1;
-    expect(element.all(by.css('#viewport .group-node.group')).count()).toEqual(expectedCount);
-    testTheCount('groups test protocol pathway', 'groups of type "group"', expectedCount);
-    return 'success';
-  }).
-  then(function() {
-    var expectedCount = 2;
-    expect(element.all(by.css('#viewport .group-node.pathway')).count()).toEqual(expectedCount);
-    testTheCount('groups test protocol pathway', 'groups of type "pathway"', expectedCount);
-    return 'success';
-  }).
-  then(function() {
-    var expectedCount = 1;
-    expect(element.all(by.css('#viewport .group-node.none')).count()).toEqual(expectedCount);
-    testTheCount('groups test protocol pathway', 'groups of type "none"', expectedCount);
-    return 'success';
-  }).
-  then(function() {
-    var expectedCount = 12;
-    expect(element.all(by.css('#viewport .edge')).count()).toEqual(expectedCount);
-    testTheCount('groups test protocol pathway', 'edge', expectedCount);
-    return 'success';
-  });
-
-
-
+  testPathway(pathwayName);
+}
