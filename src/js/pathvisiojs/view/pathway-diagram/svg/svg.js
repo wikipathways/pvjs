@@ -26,7 +26,7 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
     viewport.attr("transform", translationMatrixString);
   }
 
-  function load(args, callback) {
+  function load(args, callbackOutside) {
     var diagramContainer = args.container, //a d3 selection corresponding to the containing element in the parent document
       containerWidth = args.containerWidth,
       containerHeight = args.containerHeight,
@@ -65,13 +65,14 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
               pathvisiojs.context = json['@context'];
 
               if (!json || json === 'fail') {
+                callbackOutside(null);
                 throw new Error("Could not convert input source data to pathvisioJsJson.");
               }
 
               //console.log('json');
               //console.log(json);
               pathway = json;
-              callback(null);
+              callback(null, json);
             })
           }
         },
@@ -195,7 +196,7 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
       }
     ],
     function(err, results) {
-      callback(svg);
+      callbackOutside(svg);
     });
   }
 
