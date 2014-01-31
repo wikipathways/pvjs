@@ -1,5 +1,5 @@
-"use strict";
 pathvisiojs.data.gpml.element.node.groupNode = function() {
+  'use strict';
 
   var groupTypeToShapeTypeMappings = {
     'Complex':'complex',

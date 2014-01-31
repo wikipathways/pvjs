@@ -1,5 +1,5 @@
-"use strict";
 pathvisiojs.data.gpml.edge = function(){
+  'use strict';
 
   var strokeStyleMappings = {
     'Broken': 'dashed'

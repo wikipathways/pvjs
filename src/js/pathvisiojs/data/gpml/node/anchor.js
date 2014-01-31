@@ -1,6 +1,5 @@
-"use strict"
-
 pathvisiojs.data.gpml.node.anchor = function() {
+  'use strict';
 
   // anchors
   // an anchor is an attachment point at which an edge can originate or terminate.

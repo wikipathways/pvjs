@@ -1,4 +1,5 @@
 pathvisiojs.view.annotation = function(){
+  'use strict';
   function render(annotationData) {
     self.annotationData = annotationData;
     var annotation = d3.select("#annotation")

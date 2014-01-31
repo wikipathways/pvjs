@@ -1,6 +1,6 @@
-"use strict";
-
 pathvisiojs.view.pathwayDiagram = function(){
+  'use strict';
+
   // currently just using Gecko (Firefox) list of supported image formats for the HTML img tag:
   // https://developer.mozilla.org/en-US/docs/Web/HTML/Element/Img
   // TODO decide what to do if the user specifies an SVG image as a dataSource element
@@ -79,7 +79,8 @@ pathvisiojs.view.pathwayDiagram = function(){
     // The IE9 detection is a temporary hack. It is used because IE9 cannot currently convert GPML to pathvisiojsJson,
     // so it cannot display the resulting SVG.
     // TODO get gpml to pathvisiojsJson conversion working with IE9
-    if (Modernizr.inlinesvg && (pathvisiojs.utilities.isIE() !== 9)) {
+    if (Modernizr.inlinesvg && (!pathvisiojs.utilities.isIE())) {
+    //if (Modernizr.inlinesvg && (pathvisiojs.utilities.isIE() !== 9)) {
       supportedViewMethods.push('svg');
     }
     
@@ -209,7 +210,7 @@ pathvisiojs.view.pathwayDiagram = function(){
         // TODO refactor tests so they don't need this hack.
         d3.select('body').append('span')
         .attr('id', 'pathvisiojs-is-loaded');
-        console.log('Pathvisiojs done loading.');
+        //console.log('Pathvisiojs done loading.');
         callback(null);
       }
     ]);

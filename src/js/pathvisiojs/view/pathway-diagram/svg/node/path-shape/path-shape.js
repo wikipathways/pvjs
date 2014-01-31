@@ -1,4 +1,6 @@
 pathvisiojs.view.pathwayDiagram.svg.node.pathShape = function(){
+  'use strict';
+
   function render(parent, data) {
     var re;
     var pathShapeNameToUse = strcase.camelCase(data.ShapeType);

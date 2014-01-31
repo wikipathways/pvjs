@@ -1,4 +1,5 @@
 pathvisiojs.pathway.comment = function(){
+  'use strict';
 
   function toRenderableJson() {
     try {

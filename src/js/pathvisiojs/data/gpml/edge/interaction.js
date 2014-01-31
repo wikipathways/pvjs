@@ -1,5 +1,5 @@
-"use strict";
 pathvisiojs.data.gpml.edge.interaction = function(){
+  'use strict';
 
   //*
   //var jsonPathway = {};

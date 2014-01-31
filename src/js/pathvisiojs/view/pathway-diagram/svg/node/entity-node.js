@@ -1,5 +1,5 @@
-"use strict";
 pathvisiojs.view.pathwayDiagram.svg.node.EntityNode = function(){
+  'use strict';
   function render(args) {
     if (!args.data) {
       throw new Error('EntityNode data missing.');

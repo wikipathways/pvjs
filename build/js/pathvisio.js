@@ -1,5 +1,5 @@
-//! pathvisiojs 0.9.8
-//! Built on 2014-01-30
+//! pathvisiojs 1.0.0
+//! Built on 2014-01-31
 //! https://github.com/wikipathways/pathvisiojs
 //! License: http://www.apache.org/licenses/LICENSE-2.0/
 
@@ -8,14 +8,39 @@ pathvisioNS["tmp/pathvisiojs.html"] = '<div id="pathvisiojs-container" style="wi
 pathvisioNS["tmp/pathvisiojs.svg"] = '<svg id="pathvisiojs-diagram" version="1.1" baseProfile="full" xmlns="http://www.w3.org/1999/xlink" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ev="http://www.w3.org/2001/xml-events" width="100%" height="100%" style="display: inline; width: inherit; min-width: inherit; max-width: inherit; height: inherit; min-height: inherit; max-height: inherit; " preserveAspectRatio="xMidYMid" onmouseup="svgPanZoom.handleMouseUp(evt)" onmousedown="svgPanZoom.handleMouseDown(evt)" onmousemove="svgPanZoom.handleMouseMove(evt)" onmouseleave="svgPanZoom.handleMouseUp(evt)" xlink="http://www.w3.org/1999/xlink" ev="http://www.w3.org/2001/xml-events"><g><desc>This SVG file contains all the graphical elements (markers and symbols in defs as well as\nstyle data) used by the program pathvisiojs, which has two components:\n1) a viewer for transforming GPML biological pathway data into an SVG visual representation and\n2) an editor for creating both views and models for biological pathways.</desc></g><title>pathvisiojs diagram</title><defs><marker id="shape-library-markers-arrow-svg-start-default" preserveAspectRatio="none" viewBox="0 0 12 12" markerWidth="12" markerHeight="12" markerUnits="strokeWidth" orient="auto" refX="0" refY="6"><g id="g-src-shape-library-markers-arrow-svg-start-default" class="solid-stroke default-fill-color">\n\n	<!-- arrow markers: triangular polygons, no stroke -->\n\n	<rect class="board-fill-color" stroke="none" x="0" y="5.4" width="2" height="1.2"></rect>\n	<polygon stroke-width="0" points="12,11 0,6 12,1"></polygon>\n\n</g></marker><marker id="shape-library-markers-arrow-svg-end-default" preserveAspectRatio="none" viewBox="0 0 12 12" markerWidth="12" markerHeight="12" markerUnits="strokeWidth" orient="auto" refX="12" refY="6"><g id="g-src-shape-library-markers-arrow-svg-end-default" class="solid-stroke default-fill-color" transform="rotate(180, 6, 6)">\n\n	<!-- arrow markers: triangular polygons, no stroke -->\n\n	<rect class="board-fill-color" stroke="none" x="0" y="5.4" width="2" height="1.2"></rect>\n	<polygon stroke-width="0" points="12,11 0,6 12,1"></polygon>\n\n</g></marker><marker id="shape-library-markers-mim-necessary-stimulation-svg-start-default" preserveAspectRatio="none" viewBox="0 0 16 12" markerWidth="16" markerHeight="12" markerUnits="strokeWidth" orient="auto" refX="0" refY="6"><g id="g-src-shape-library-markers-mim-necessary-stimulation-svg-start-default" class="board-fill-color default-stroke-color solid-stroke">\n\n	<!-- mim-necessary-stimulation markers: triangular polygons, drawing-board fill, default color stroke; and vertical line -->\n\n	<rect class="board-fill-color" stroke="none" x="0" y="5.4" width="2" height="1.2"></rect>\n	<line fill="none" stroke-width="1" x1="14" y1="0" x2="14" y2="12"></line>\n	<line fill="none" stroke="none" x1="16" y1="6" x2="16" y2="6"></line> <!-- dummy point -->\n	<polygon stroke-width="1" points="0,6 9,11 9,1"></polygon>\n\n</g></marker><marker id="shape-library-markers-mim-necessary-stimulation-svg-end-default" preserveAspectRatio="none" viewBox="0 0 16 12" markerWidth="16" markerHeight="12" markerUnits="strokeWidth" orient="auto" refX="16" refY="6"><g id="g-src-shape-library-markers-mim-necessary-stimulation-svg-end-default" class="board-fill-color default-stroke-color solid-stroke" transform="rotate(180, 8, 6)">\n\n	<!-- mim-necessary-stimulation markers: triangular polygons, drawing-board fill, default color stroke; and vertical line -->\n\n	<rect class="board-fill-color" stroke="none" x="0" y="5.4" width="2" height="1.2"></rect>\n	<line fill="none" stroke-width="1" x1="14" y1="0" x2="14" y2="12"></line>\n	<line fill="none" stroke="none" x1="16" y1="6" x2="16" y2="6"></line> <!-- dummy point -->\n	<polygon stroke-width="1" points="0,6 9,11 9,1"></polygon>\n\n</g></marker><marker id="shape-library-markers-mim-binding-svg-start-default" preserveAspectRatio="none" viewBox="0 0 12 12" markerWidth="12" markerHeight="12" markerUnits="strokeWidth" orient="auto" refX="0" refY="6"><g id="g-src-shape-library-markers-mim-binding-svg-start-default" class="solid-stroke default-fill-color">\n\n	<!-- mim-binding markers: four-point polygon, no stroke -->\n\n	<rect class="board-fill-color" stroke="none" x="0" y="5.4" width="2" height="1.2"></rect>\n	<polygon stroke-width="0" points="12,12 0,6 12,0 5,6 "></polygon>\n\n</g></marker><marker id="shape-library-markers-mim-binding-svg-end-default" preserveAspectRatio="none" viewBox="0 0 12 12" markerWidth="12" markerHeight="12" markerUnits="strokeWidth" orient="auto" refX="12" refY="6"><g id="g-src-shape-library-markers-mim-binding-svg-end-default" class="solid-stroke default-fill-color" transform="rotate(180, 6, 6)">\n\n	<!-- mim-binding markers: four-point polygon, no stroke -->\n\n	<rect class="board-fill-color" stroke="none" x="0" y="5.4" width="2" height="1.2"></rect>\n	<polygon stroke-width="0" points="12,12 0,6 12,0 5,6 "></polygon>\n\n</g></marker><marker id="shape-library-markers-mim-conversion-svg-start-default" preserveAspectRatio="none" viewBox="0 0 12 12" markerWidth="12" markerHeight="12" markerUnits="strokeWidth" orient="auto" refX="0" refY="6"><g id="g-src-shape-library-markers-mim-conversion-svg-start-default" class="solid-stroke default-fill-color">\n\n	<!-- mim-conversion markers: triangular polygons, no stroke -->\n\n	<rect class="board-fill-color" stroke="none" x="0" y="5.4" width="2" height="1.2"></rect>\n	<polygon stroke-width="0" points="12,11 0,6 12,1"></polygon>\n\n</g></marker><marker id="shape-library-markers-mim-conversion-svg-end-default" preserveAspectRatio="none" viewBox="0 0 12 12" markerWidth="12" markerHeight="12" markerUnits="strokeWidth" orient="auto" refX="12" refY="6"><g id="g-src-shape-library-markers-mim-conversion-svg-end-default" class="solid-stroke default-fill-color" transform="rotate(180, 6, 6)">\n\n	<!-- mim-conversion markers: triangular polygons, no stroke -->\n\n	<rect class="board-fill-color" stroke="none" x="0" y="5.4" width="2" height="1.2"></rect>\n	<polygon stroke-width="0" points="12,11 0,6 12,1"></polygon>\n\n</g></marker><marker id="shape-library-markers-mim-stimulation-svg-start-default" preserveAspectRatio="none" viewBox="0 0 12 12" markerWidth="12" markerHeight="12" markerUnits="strokeWidth" orient="auto" refX="0" refY="6"><g id="g-src-shape-library-markers-mim-stimulation-svg-start-default" class="board-fill-color default-stroke-color solid-stroke">\n\n	<!-- mim-stimulation markers: triangular polygons, drawing-board fill, default color stroke -->\n\n	<rect class="board-fill-color" stroke="none" x="0" y="5.4" width="2" height="1.2"></rect>\n	<line stroke="none" fill="none" x1="12" y1="6" x2="12" y2="6"></line> <!-- dummy point -->\n	<polygon stroke-width="1" points="0,6 11,11 11,1"></polygon>\n\n</g></marker><marker id="shape-library-markers-mim-stimulation-svg-end-default" preserveAspectRatio="none" viewBox="0 0 12 12" markerWidth="12" markerHeight="12" markerUnits="strokeWidth" orient="auto" refX="12" refY="6"><g id="g-src-shape-library-markers-mim-stimulation-svg-end-default" class="board-fill-color default-stroke-color solid-stroke" transform="rotate(180, 6, 6)">\n\n	<!-- mim-stimulation markers: triangular polygons, drawing-board fill, default color stroke -->\n\n	<rect class="board-fill-color" stroke="none" x="0" y="5.4" width="2" height="1.2"></rect>\n	<line stroke="none" fill="none" x1="12" y1="6" x2="12" y2="6"></line> <!-- dummy point -->\n	<polygon stroke-width="1" points="0,6 11,11 11,1"></polygon>\n\n</g></marker><marker id="shape-library-markers-mim-modification-svg-start-default" preserveAspectRatio="none" viewBox="0 0 12 12" markerWidth="12" markerHeight="12" markerUnits="strokeWidth" orient="auto" refX="0" refY="6"><g id="g-src-shape-library-markers-mim-modification-svg-start-default" class="default-fill-color solid-stroke">\n\n	<!-- mim-modification markers: four-point polygon, no stroke -->\n\n	<rect class="board-fill-color" stroke="none" x="0" y="5.4" width="2" height="1.2"></rect>\n	<polygon stroke-width="0" points="12,12 0,6 12,0 5,6 "></polygon>\n\n</g></marker><marker id="shape-library-markers-mim-modification-svg-end-default" preserveAspectRatio="none" viewBox="0 0 12 12" markerWidth="12" markerHeight="12" markerUnits="strokeWidth" orient="auto" refX="12" refY="6"><g id="g-src-shape-library-markers-mim-modification-svg-end-default" class="default-fill-color solid-stroke" transform="rotate(180, 6, 6)">\n\n	<!-- mim-modification markers: four-point polygon, no stroke -->\n\n	<rect class="board-fill-color" stroke="none" x="0" y="5.4" width="2" height="1.2"></rect>\n	<polygon stroke-width="0" points="12,12 0,6 12,0 5,6 "></polygon>\n\n</g></marker><marker id="shape-library-markers-mim-catalysis-svg-start-default" preserveAspectRatio="none" viewBox="0 0 12 12" markerWidth="12" markerHeight="12" markerUnits="strokeWidth" orient="auto" refX="0" refY="6"><g id="g-src-shape-library-markers-mim-catalysis-svg-start-default" class="board-fill-color default-stroke-color solid-stroke">\n\n	<!-- mim-catalysis markers: circle, drawing-board fill and default color stroke -->\n\n	<circle cx="6.0" cy="6" r="5.3px" stroke-width="1px"></circle>\n\n</g></marker><marker id="shape-library-markers-mim-catalysis-svg-end-default" preserveAspectRatio="none" viewBox="0 0 12 12" markerWidth="12" markerHeight="12" markerUnits="strokeWidth" orient="auto" refX="12" refY="6"><g id="g-src-shape-library-markers-mim-catalysis-svg-end-default" class="board-fill-color default-stroke-color solid-stroke" transform="rotate(180, 6, 6)">\n\n	<!-- mim-catalysis markers: circle, drawing-board fill and default color stroke -->\n\n	<circle cx="6.0" cy="6" r="5.3px" stroke-width="1px"></circle>\n\n</g></marker><marker id="shape-library-markers-mim-inhibition-svg-start-default" preserveAspectRatio="none" viewBox="0 0 10 20" markerWidth="10" markerHeight="20" markerUnits="strokeWidth" orient="auto" refX="0" refY="10"><g id="g-src-shape-library-markers-mim-inhibition-svg-start-default" class="board-fill-color default-stroke-color solid-stroke">\n\n	<!-- mim-inhibition markers: vertical line; and extended drawing-board rect -->\n	\n	<rect stroke="none" x="0" y="9" width="8" height="2"></rect>\n	<line fill="none" stroke-width="1.8" x1="7" y1="0" x2="7" y2="20"></line>\n\n</g></marker><marker id="shape-library-markers-mim-inhibition-svg-end-default" preserveAspectRatio="none" viewBox="0 0 10 20" markerWidth="10" markerHeight="20" markerUnits="strokeWidth" orient="auto" refX="10" refY="10"><g id="g-src-shape-library-markers-mim-inhibition-svg-end-default" class="board-fill-color default-stroke-color solid-stroke" transform="rotate(180, 5, 10)">\n\n	<!-- mim-inhibition markers: vertical line; and extended drawing-board rect -->\n	\n	<rect stroke="none" x="0" y="9" width="8" height="2"></rect>\n	<line fill="none" stroke-width="1.8" x1="7" y1="0" x2="7" y2="20"></line>\n\n</g></marker><marker id="shape-library-markers-mim-cleavage-svg-start-default" preserveAspectRatio="none" viewBox="0 0 20 30" markerWidth="20" markerHeight="30" markerUnits="strokeWidth" orient="auto" refX="9" refY="15"><g id="g-src-shape-library-markers-mim-cleavage-svg-start-default" class="board-fill-color default-stroke-color solid-stroke">\n\n	<!-- mim-cleavage markers: two lines and extended drawing-board rect -->\n\n	<rect stroke="none" x="0" y="14.3" width="18.4" height="1.4"></rect>\n	<line fill="none" stroke-width="1" x1="18" y1="14.5" x2="18" y2="30"></line>	\n	<line fill="none" stroke-width="1" x1="18" y1="30" x2="0" y2="0"></line>	\n\n\n</g></marker><marker id="shape-library-markers-mim-cleavage-svg-end-default" preserveAspectRatio="none" viewBox="0 0 20 30" markerWidth="20" markerHeight="30" markerUnits="strokeWidth" orient="auto" refX="10" refY="15"><g id="g-src-shape-library-markers-mim-cleavage-svg-end-default" class="board-fill-color default-stroke-color solid-stroke" transform="rotate(180, 10, 15)">\n\n	<!-- mim-cleavage markers: two lines and extended drawing-board rect -->\n\n	<rect stroke="none" x="0" y="14.3" width="18.4" height="1.4"></rect>\n	<line fill="none" stroke-width="1" x1="18" y1="14.5" x2="18" y2="30"></line>	\n	<line fill="none" stroke-width="1" x1="18" y1="30" x2="0" y2="0"></line>	\n\n\n</g></marker><marker id="shape-library-markers-mim-covalent-bond-svg-start-default" preserveAspectRatio="none" viewBox="0 0 12 12" markerWidth="12" markerHeight="12" markerUnits="strokeWidth" orient="auto" refX="-0.5" refY="6"><g id="g-src-shape-library-markers-mim-covalent-bond-svg-start-default" class="solid-stroke default-fill-color">\n\n	<!-- mim-covalent-bond markers: not much to see here! -->\n	<rect x="0" y="0" width="0" height="0" stroke="none" fill="none" stroke-width="0"></rect>\n\n</g></marker><marker id="shape-library-markers-mim-covalent-bond-svg-end-default" preserveAspectRatio="none" viewBox="0 0 12 12" markerWidth="12" markerHeight="12" markerUnits="strokeWidth" orient="auto" refX="11" refY="6"><g id="g-src-shape-library-markers-mim-covalent-bond-svg-end-default" class="solid-stroke default-fill-color" transform="rotate(180, 6, 6)">\n\n	<!-- mim-covalent-bond markers: not much to see here! -->\n	<rect x="0" y="0" width="0" height="0" stroke="none" fill="none" stroke-width="0"></rect>\n\n</g></marker><marker id="shape-library-markers-mim-transcription-translation-svg-start-default" preserveAspectRatio="none" viewBox="0 0 20 24" markerWidth="20" markerHeight="24" markerUnits="strokeWidth" orient="auto" refX="0" refY="12"><g id="g-src-shape-library-markers-mim-transcription-translation-svg-start-default" class="board-fill-color default-stroke-color solid-stroke">\n\n	<!-- mim-transcription-translation markers: two lines and an open trigular polygon, plus extended drawing-board rect -->\n\n	<rect stroke="none" x="0" y="11" width="12" height="2"></rect>\n	<line fill="none" stroke-width="1" x1="15" y1="12" x2="15" y2="5"></line>\n	<line fill="none" stroke-width="1" x1="15.5" y1="5" x2="8" y2="5"></line>\n	<polygon stroke-width="1" points="0,5 8,1 8,9"></polygon>\n\n</g></marker><marker id="shape-library-markers-mim-transcription-translation-svg-end-default" preserveAspectRatio="none" viewBox="0 0 20 24" markerWidth="20" markerHeight="24" markerUnits="strokeWidth" orient="auto" refX="20" refY="12"><g id="g-src-shape-library-markers-mim-transcription-translation-svg-end-default" class="board-fill-color default-stroke-color solid-stroke" transform="rotate(180, 10, 12)">\n\n	<!-- mim-transcription-translation markers: two lines and an open trigular polygon, plus extended drawing-board rect -->\n\n	<rect stroke="none" x="0" y="11" width="12" height="2"></rect>\n	<line fill="none" stroke-width="1" x1="15" y1="12" x2="15" y2="5"></line>\n	<line fill="none" stroke-width="1" x1="15.5" y1="5" x2="8" y2="5"></line>\n	<polygon stroke-width="1" points="0,5 8,1 8,9"></polygon>\n\n</g></marker><marker id="shape-library-markers-mim-gap-svg-start-default" preserveAspectRatio="none" viewBox="0 0 12 12" markerWidth="12" markerHeight="12" markerUnits="strokeWidth" orient="auto" refX="0" refY="6"><g id="g-src-shape-library-markers-mim-gap-svg-start-default" class="board-fill-color solid-stroke">\n\n	<!-- mim-gap markers: just an extended drawing-board rect -->\n	<!-- \n	TODO This could be refactored to make the shape match the viewbox.\n	It can overlap the side of the shape, blanking out a small part of it when the edge is at an angle.\n	-->\n\n	<rect stroke="none" x="0" y="5.3" width="8" height="1.4"></rect>\n\n</g></marker><marker id="shape-library-markers-mim-gap-svg-end-default" preserveAspectRatio="none" viewBox="0 0 12 12" markerWidth="12" markerHeight="12" markerUnits="strokeWidth" orient="auto" refX="12" refY="6"><g id="g-src-shape-library-markers-mim-gap-svg-end-default" class="board-fill-color solid-stroke" transform="rotate(180, 6, 6)">\n\n	<!-- mim-gap markers: just an extended drawing-board rect -->\n	<!-- \n	TODO This could be refactored to make the shape match the viewbox.\n	It can overlap the side of the shape, blanking out a small part of it when the edge is at an angle.\n	-->\n\n	<rect stroke="none" x="0" y="5.3" width="8" height="1.4"></rect>\n\n</g></marker><marker id="shape-library-markers-t-bar-svg-start-default" preserveAspectRatio="none" viewBox="0 0 10 20" markerWidth="10" markerHeight="20" markerUnits="strokeWidth" orient="auto" refX="0" refY="10"><g id="g-src-shape-library-markers-t-bar-svg-start-default" class="board-fill-color default-stroke-color solid-stroke">\n\n        <!-- t-bar markers: vertical line; and extended drawing-board rect -->\n	\n	<rect stroke="none" x="0" y="9" width="8" height="2"></rect>\n	<line fill="none" stroke-width="1.8" x1="7" y1="0" x2="7" y2="20"></line>\n\n</g></marker><marker id="shape-library-markers-t-bar-svg-end-default" preserveAspectRatio="none" viewBox="0 0 10 20" markerWidth="10" markerHeight="20" markerUnits="strokeWidth" orient="auto" refX="10" refY="10"><g id="g-src-shape-library-markers-t-bar-svg-end-default" class="board-fill-color default-stroke-color solid-stroke" transform="rotate(180, 5, 10)">\n\n        <!-- t-bar markers: vertical line; and extended drawing-board rect -->\n	\n	<rect stroke="none" x="0" y="9" width="8" height="2"></rect>\n	<line fill="none" stroke-width="1.8" x1="7" y1="0" x2="7" y2="20"></line>\n\n</g></marker><marker id="shape-library-markers-none-svg-start-default" preserveAspectRatio="none" viewBox="0 0 0 0" markerWidth="0" markerHeight="0" markerUnits="strokeWidth" orient="auto" refX="0" refY="6"><g id="g-src-shape-library-markers-none-svg-start-default" class="board-fill-color board-stroke-color node shape">\n\n	<rect x="0" y="0" width="0" height="0" stroke="none" fill="none" stroke-width="0"></rect>\n\n</g></marker><marker id="shape-library-markers-none-svg-end-default" preserveAspectRatio="none" viewBox="0 0 0 0" markerWidth="0" markerHeight="0" markerUnits="strokeWidth" orient="auto" refX="11" refY="6"><g id="g-src-shape-library-markers-none-svg-end-default" class="board-fill-color board-stroke-color node shape" transform="rotate(180, 0, 0)">\n\n	<rect x="0" y="0" width="0" height="0" stroke="none" fill="none" stroke-width="0"></rect>\n\n</g></marker><marker id="shape-library-markers-mim-branching-left-svg-start-default" preserveAspectRatio="none" viewBox="0 0 12 12" markerWidth="12" markerHeight="12" markerUnits="strokeWidth" orient="auto" refX="0.4" refY="6"><g id="g-src-shape-library-markers-mim-branching-left-svg-start-default" class="board-fill-color default-stroke-color solid-stroke">\n\n	<!-- mim-branching-left markers: line and extended drawing-board rect -->\n\n	<rect stroke="none" x="0.4" y="5.3" width="3.1" height="1.4"></rect>\n	<line fill="none" stroke-width="1" x1="3.9" y1="6.2" x2="0.2" y2="0"></line>	\n\n</g></marker><marker id="shape-library-markers-mim-branching-left-svg-end-default" preserveAspectRatio="none" viewBox="0 0 12 12" markerWidth="12" markerHeight="12" markerUnits="strokeWidth" orient="auto" refX="11.6" refY="6"><g id="g-src-shape-library-markers-mim-branching-left-svg-end-default" class="board-fill-color default-stroke-color solid-stroke" transform="rotate(180, 6, 6)">\n\n	<!-- mim-branching-left markers: line and extended drawing-board rect -->\n\n	<rect stroke="none" x="0.4" y="5.3" width="3.1" height="1.4"></rect>\n	<line fill="none" stroke-width="1" x1="3.9" y1="6.2" x2="0.2" y2="0"></line>	\n\n</g></marker><marker id="shape-library-markers-mim-branching-right-svg-start-default" preserveAspectRatio="none" viewBox="0 0 4 12" markerWidth="4" markerHeight="12" markerUnits="strokeWidth" orient="auto" refX="0.4" refY="6"><g id="g-src-shape-library-markers-mim-branching-right-svg-start-default" class="board-fill-color default-stroke-color solid-stroke">\n\n	<!-- mim-branching-right markers: line and extended drawing-board rect -->\n\n	<rect stroke="none" x="0.4" y="5.3" width="3.1" height="1.4"></rect>\n	<line fill="none" stroke-width="1" x1="0.2" y1="12" x2="3.9" y2="5.8"></line>	\n\n</g></marker><marker id="shape-library-markers-mim-branching-right-svg-end-default" preserveAspectRatio="none" viewBox="0 0 4 12" markerWidth="4" markerHeight="12" markerUnits="strokeWidth" orient="auto" refX="3.6" refY="6"><g id="g-src-shape-library-markers-mim-branching-right-svg-end-default" class="board-fill-color default-stroke-color solid-stroke" transform="rotate(180, 2, 6)">\n\n	<!-- mim-branching-right markers: line and extended drawing-board rect -->\n\n	<rect stroke="none" x="0.4" y="5.3" width="3.1" height="1.4"></rect>\n	<line fill="none" stroke-width="1" x1="0.2" y1="12" x2="3.9" y2="5.8"></line>	\n\n</g></marker><style type="text/css">	svg {\n		color-interpolation: auto;\n		image-rendering: auto;\n		shape-rendering: auto;\n		vector-effect: non-scaling-stroke;\n                background: white;\n	/* removed fill and stroke since they override marker specs */\n	/*	fill: white;\n    		stroke: black; */\n	}\n\n	/* default color for pathway elements */\n	.default-fill-color {\n		fill: black; \n	}\n	.default-stroke-color {\n		stroke: black;\n	}\n	\n	/* default color of the background drawing board */ 	\n	.board-fill-color {\n		fill: white;\n	}\n	.board-stroke-color {\n		stroke: white;\n	}\n\n	.text-area {\n		font-family: Sans-Serif, Helvetica, Arial;\n		text-align: center;\n		vertical-align: middle;\n		font-size: 10px;\n		fill: black;\n		fill-opacity: 1;\n		stroke: none;\n	}\n\n	.citation {\n		font-family: Sans-Serif, Helvetica, Arial;\n		text-align: center;\n		vertical-align: top;\n		font-size: 7px;\n		fill: #999999;\n		fill-opacity: 1;\n		stroke: none;\n	}\n\n	.info-box {\n		font-family: Sans-Serif;\n		font-size: 10px;\n		fill: black;\n		stroke: none;\n		text-align: left;\n		vertical-align: top;\n	}\n\n	.info-box-item-property-name {\n		font-weight: bold;\n	}\n\n	.info-box-item-property-value {\n	}\n\n	.data-node {\n		text-align: right;\n		fill-opacity: 1;\n		fill: white;\n		stroke: black;\n		stroke-width: 1;\n		stroke-dasharray: 0;\n		stroke-miterlimit: 1;\n    		pointer-events:auto;\n	}\n	.data-node:hover {\n	 	cursor: pointer;\n	}\n	\n	.has-xref {\n	}\n\n	.data-node.gene-product {\n	}\n\n	.metabolite {\n		stroke: blue;\n	}\n\n	.data-node.metabolite &gt; .text-area {\n		fill: blue;\n		fill-opacity: 1;\n		stroke: none;\n	}\n\n	.data-node.pathway {\n		stroke: none;\n		fill-opacity: 0;\n	}\n\n	.data-node.pathway &gt; .text-area {\n		fill: rgb(20,150,30);\n		fill-opacity: 1;\n		font-size: 12px;\n		font-weight: bold;\n	}\n\n	.data-node.protein {\n	}\n\n	.data-node.rna {\n	}\n\n	.data-node.unknown {\n	}\n\n	.label {\n		stroke: null;\n		stroke-width: 0;\n		fill-opacity: 0;\n		stroke-dasharray: 0;\n		stroke-miterlimit: 1;\n	}\n\n	.shape {\n		fill-opacity: 0;\n		stroke: black;\n		stroke-dasharray: 0;\n		stroke-miterlimit: 1;\n	}\n\n	.shape.none {\n		fill: none;\n		fill-opacity: 0;\n		stroke: none;\n	}\n\n	g.group-node &gt; .shape {\n		fill-opacity: 0.098;\n		stroke: gray;\n		stroke-miterlimit: 1;\n		stroke-width: 1px;\n    		pointer-events:none;\n	}\n\n	.group-node {\n		fill-opacity: 0.098;\n		stroke: gray;\n		stroke-miterlimit: 1;\n		stroke-width: 1px;\n    		pointer-events:none;\n	}\n\n	.group-node &gt; .text-area {\n		fill-opacity: 0.4;\n		font-family: Serif, Times;\n		font-size: 32px;\n		fill: black;\n		stroke-width: 0;\n		font-weight: bold;\n  	}	\n\n	.group-node.none {\n		fill: rgb(180,180,100);\n		stroke-dasharray: 5,3;\n	}\n\n	.group-node.none &gt; .text-area {\n		display: none;\n  	}	\n\n	/*.group-node.none:hover {\n		fill: rgb(255,180,100);\n		fill-opacity: 0.05;\n	}*/\n\n	.group-node.group {\n		fill-opacity: 0;\n		stroke: none;\n	}\n\n	.group-node.group &gt; .text-area {\n		display: none;\n  	}\n	/*.group-node.group:hover {\n		fill: rgb(0,0,255);\n		stroke-width: 1px;\n		stroke-dasharray: 5,3;\n		stroke: gray;\n		fill-opacity: 0.1;\n	}*/\n\n	.group-node.complex {\n		fill: rgb(180,180,100);\n	}\n\n	.group-node.complex &gt; .text-area {\n		display: none;\n  	}\n	/*.group-node.complex:hover {\n		fill: rgb(255,0,0);\n		fill-opacity: 0.05;\n	}*/	\n\n  	.group-node.pathway {\n		fill: rgb(0,255,0);\n		stroke-dasharray: 5,3;\n	}\n	/*.group-node.pathway:hover {\n		fill: rgb(0,255,0);\n		fill-opacity: 0.2;\n	}*/\n	.group-node.pathway &gt; .text-area {\n		fill: rgb(20,150,30);\n		stroke: rgb(20,150,30);\n  }\n\n  .cellular-component {\n		fill-opacity: 0;\n		stroke: silver;\n	}\n\n  .graphical-line {\n		fill:none;\n		stroke: black; \n		stroke-width: 1px; \n	}\n\n	.interaction {\n		fill:none;\n		stroke: black; \n		stroke-width: 1px; \n	}\n\n	marker {\n		/* this is what should work per the spec\n		   stroke-dasharray: none; */\n		/* but I need to add this to make it work in Safari */\n		stroke-dasharray: 9999999999999999999999999;\n	}\n\n  .marker-end {\n    -webkit-transform: rotate(180deg);\n    -webkit-transform-origin: 50% 50%;\n\n    -o-transform: rotate(180deg); \n    -o-transform-origin: 50% 50%;\n\n    transform: rotate(180deg);\n    transform-origin: 50% 50%;\n  }\n\n	.solid-stroke {\n		/* this is what should work per the spec\n		   stroke-dasharray: none; */\n		/* but I need to add this to make it work in Safari */\n		stroke-dasharray: 9999999999999999999999999;\n	}\n\n	.dashed-stroke {\n		stroke-dasharray: 5,3;\n	}\n\n  .highlighted-node {\n		fill: yellow;\n    fill-opacity: 0.2;\n		stroke: orange; \n    stroke-width: 3px;\n  }\n</style></defs><filter id="highlight" width="150%" height="150%"><feOffset result="offOut" in="SourceGraphic" dx="30" dy="30"></feOffset><feGaussianBlur result="blurOut" in="offOut" stdDeviation="10"></feGaussianBlur><feBlend in="SourceGraphic" in2="blurOut" mode="normal"></feBlend></filter><g id="viewport" transform="matrix(0.6710888444694338, 0, 0, 0.6710888444694338, 364.8176552543344, 20) "></g></svg>\n';
 ;
 
-"use strict"
+// IE8 only allows console.log when Developer Tools is open. This will prevent errors
+// from showing up if we use console.log without DevTools being open.
+// from http://stackoverflow.com/questions/3326650/console-is-undefined-error-for-internet-explorer
+
+/**
+ * Protect window.console method calls, e.g. console is not defined on IE
+ * unless dev tools are open, and IE doesn't define console.debug
+ */
+(function() {
+ if (!window.console) {
+   window.console = {};
+ }
+ // union of Chrome, FF, IE, and Safari console methods
+ var m = [
+ "log", "info", "warn", "error", "debug", "trace", "dir", "group",
+ "groupCollapsed", "groupEnd", "time", "timeEnd", "profile", "profileEnd",
+ "dirxml", "assert", "count", "markTimeline", "timeStamp", "clear"
+ ];
+ // define undefined methods as noops to prevent errors
+ for (var i = 0; i < m.length; i++) {
+   if (!window.console[m[i]]) {
+   window.console[m[i]] = function() {};
+   }    
+ } 
+})();
 
 var pathvisiojs = function(){
+  'use strict';
 
   var svg, pathway, args;
 
   function load(args) {
-    console.log(args);
+    //console.log(args);
 
     // for now, load will just load a visual representation of a pathway, but
     // this could change in the future if we add capabilities for analytics or data conversion.
@@ -40,7 +65,7 @@ var pathvisiojs = function(){
     };
 
     async.each(configArray, updateConfigsAsNeeded, function(err){
-      console.log(pathvisiojs.config.bridgedbLinkOutsUriStub);
+      //console.log(pathvisiojs.config.bridgedbLinkOutsUriStub);
       pathvisiojs.view.pathwayDiagram.load(args);
     });
   }
@@ -52,6 +77,7 @@ var pathvisiojs = function(){
 ;
 
 pathvisiojs.utilities = function(){
+  'use strict';
 
   // from here: http://www.cjboco.com/blog.cfm/post/determining-an-elements-width-and-height-using-javascript/
   // TODO have not tested x-browser yet.
@@ -85,7 +111,7 @@ pathvisiojs.utilities = function(){
     var ret = {};
     var len = arguments.length;
     for (var i=0; i<len; i++) {
-      for (p in arguments[i]) {
+      for (var p in arguments[i]) {
         if (arguments[i].hasOwnProperty(p)) {
           ret[p] = arguments[i][p];
         }
@@ -345,6 +371,7 @@ pathvisiojs.config.pathwaySearchUriStub = '/index.php?title=Special:SearchPathwa
 ;
 
 pathvisiojs.data = function(){
+  'use strict';
 
   // For now, pathvisio.js will attempt to convert any input data, as long as it is of type
   // GPML or has no type specified, into JSON.
@@ -395,6 +422,7 @@ pathvisiojs.data = function(){
 ;
 
 pathvisiojs.data.bridgedb = function(){
+  'use strict';
 
   function getXrefAnnotationDataByDataNode(singleSpecies, id, datasource, label, desc, callback) {
     //For unannotated nodes, without datasource or identifier
@@ -498,7 +526,7 @@ pathvisiojs.data.bridgedb = function(){
 
   function getXrefAliases(singleSpecies, systemCode, xRefId, callback) {
     var bridgedbUri = pathvisiojs.config.bridgedbLinkOutsUriStub + encodeURIComponent(singleSpecies) + '/xrefs/' + encodeURIComponent(systemCode) + '/' + encodeURIComponent(xRefId);
-    console.log(bridgedbUri);
+    //console.log(bridgedbUri);
     d3.tsv(bridgedbUri)
     .response(function(request) { 
       return d3.tsv.parseRows(request.responseText, function(d) {
@@ -516,1714 +544,8 @@ pathvisiojs.data.bridgedb = function(){
 }();
 ;
 
-pathvisiojs.data.bridgedb.dataSources = [
-   {
-      "database":"Affy",
-      "id":"X",
-      "homePage":"http://www.affymetrix.com/",
-      "linkOut":"https://www.affymetrix.com/LinkServlet?probeset=$id",
-      "example":"1851_s_at",
-      "dataNodeType":"probe",
-      "species":"",
-      "priority":0,
-      "unknown":"urn:miriam:affy.probeset",
-      "regex":"\d{4,}((_[asx])?_at)?",
-      "fullName":"Affymetrix Probeset"
-   },
-   {
-      "database":"Agilent",
-      "id":"Ag",
-      "homePage":"http://agilent.com",
-      "linkOut":"",
-      "example":"A_24_P98555",
-      "dataNodeType":"probe",
-      "species":"",
-      "priority":0,
-      "unknown":"Ag",
-      "regex":"A_\d+_.+",
-      "fullName":"Agilent"
-   },
-   {
-      "database":"BIND",
-      "id":"Bi",
-      "homePage":"http://www.bind.ca/",
-      "linkOut":"http://www.bind.ca/Action?identifier=bindid&idsearch=$id",
-      "example":"",
-      "dataNodeType":"interaction",
-      "species":"",
-      "priority":1,
-      "unknown":"urn:miriam:bind",
-      "regex":"^\d+$",
-      "fullName":"BIND"
-   },
-   {
-      "database":"BioCyc",
-      "id":"Bc",
-      "homePage":"http://biocyc.org",
-      "linkOut":"http://biocyc.org/getid?id=$id",
-      "example":"ECOLI:CYT-D-UBIOX-CPLX",
-      "dataNodeType":"gene",
-      "species":"",
-      "priority":1,
-      "unknown":"urn:miriam:biocyc",
-      "regex":"^\w+\:[A-Za-z0-9-]+$",
-      "fullName":"BioCyc"
-   },
-   {
-      "database":"BioGrid",
-      "id":"Bg",
-      "homePage":"http://thebiogrid.org/",
-      "linkOut":"http://thebiogrid.org/$id",
-      "example":"31623",
-      "dataNodeType":"interaction",
-      "species":"",
-      "priority":1,
-      "unknown":"urn:miriam:biogrid",
-      "regex":"^\d+$",
-      "fullName":"BioGRID"
-   },
-   {
-      "database":"BioModels Database",
-      "id":"Bm",
-      "homePage":"http://www.ebi.ac.uk/biomodels/",
-      "linkOut":"http://www.ebi.ac.uk/biomodels-main/$id",
-      "example":"BIOMD0000000048",
-      "dataNodeType":"pathway",
-      "species":"",
-      "priority":1,
-      "unknown":"urn:miriam:biomodels.db",
-      "regex":"^((BIOMD|MODEL)\d{10})|(BMID\d{12})$",
-      "fullName":"BioModels Database"
-   },
-   {
-      "database":"BioSystems",
-      "id":"Bs",
-      "homePage":"http://www.ncbi.nlm.nih.gov/biosystems/",
-      "linkOut":"http://www.ncbi.nlm.nih.gov/biosystems/$id",
-      "example":"1",
-      "dataNodeType":"pathway",
-      "species":"",
-      "priority":1,
-      "unknown":"urn:miriam:biosystems",
-      "regex":"^\d+$",
-      "fullName":"BioSystems"
-   },
-   {
-      "database":"BRENDA",
-      "id":"Br",
-      "homePage":"http://www.brenda-enzymes.org/",
-      "linkOut":"http://www.brenda-enzymes.org/php/result_flat.php4?ecno=$id",
-      "example":"1.1.1.1",
-      "dataNodeType":"",
-      "species":"",
-      "priority":1,
-      "unknown":"urn:miriam:brenda",
-      "regex":"^((\d+\.-\.-\.-)|(\d+\.\d+\.-\.-)|(\d+\.\d+\.\d+\.-)|(\d+\.\d+\.\d+\.\d+))$",
-      "fullName":"BRENDA"
-   },
-   {
-      "database":"CAS",
-      "id":"Ca",
-      "homePage":"http://commonchemistry.org",
-      "linkOut":"http://commonchemistry.org/ChemicalDetail.aspx?ref=$id",
-      "example":"50-00-0",
-      "dataNodeType":"metabolite",
-      "species":"",
-      "priority":1,
-      "unknown":"urn:miriam:cas",
-      "regex":"^\d{1,7}\-\d{2}\-\d$",
-      "fullName":"CAS"
-   },
-   {
-      "database":"CCDS",
-      "id":"Cc",
-      "homePage":"http://identifiers.org/ccds/",
-      "linkOut":"http://www.ncbi.nlm.nih.gov/CCDS/CcdsBrowse.cgi?REQUEST=ALLFIELDS&DATA=$id",
-      "example":"CCDS33337",
-      "dataNodeType":"gene",
-      "species":"",
-      "priority":0,
-      "unknown":"",
-      "regex":"^CCDS\d+\.\d+$",
-      "fullName":"Consensus CDS"
-   },
-   {
-      "database":"ChEBI",
-      "id":"Ce",
-      "homePage":"http://www.ebi.ac.uk/chebi/",
-      "linkOut":"http://www.ebi.ac.uk/chebi/searchId.do?chebiId=$id",
-      "example":"CHEBI:36927",
-      "dataNodeType":"metabolite",
-      "species":"",
-      "priority":1,
-      "unknown":"urn:miriam:obo.chebi",
-      "regex":"^CHEBI:\d+$",
-      "fullName":"ChEBI"
-   },
-   {
-      "database":"Chemspider",
-      "id":"Cs",
-      "homePage":"http://www.chemspider.com/",
-      "linkOut":"http://www.chemspider.com/Chemical-Structure.$id.html",
-      "example":"56586",
-      "dataNodeType":"metabolite",
-      "species":"",
-      "priority":1,
-      "unknown":"urn:miriam:chemspider",
-      "regex":"^\d+$",
-      "fullName":"ChemSpider"
-   },
-   {
-      "database":"CodeLink",
-      "id":"Ge",
-      "homePage":"http://www.appliedmicroarrays.com/",
-      "linkOut":"",
-      "example":"GE86325",
-      "dataNodeType":"probe",
-      "species":"",
-      "priority":0,
-      "unknown":"Ge",
-      "regex":"",
-      "fullName":"CodeLink"
-   },
-   {
-      "database":"Database of Interacting Proteins",
-      "id":"Dip",
-      "homePage":"http://dip.doe-mbi.ucla.edu/",
-      "linkOut":"http://dip.doe-mbi.ucla.edu/dip/DIPview.cgi?ID=$id",
-      "example":"DIP-743N",
-      "dataNodeType":"interaction",
-      "species":"",
-      "priority":1,
-      "unknown":"urn:miriam:dip",
-      "regex":"^DIP[\:\-]\d{3}[EN]$",
-      "fullName":"Database of Interacting Proteins"
-   },
-   {
-      "database":"dbSNP",
-      "id":"Sn",
-      "homePage":"http://www.ncbi.nlm.nih.gov/sites/entrez?db=snp",
-      "linkOut":"http://www.ncbi.nlm.nih.gov/projects/SNP/snp_ref.cgi?rs=$id",
-      "example":"121909098",
-      "dataNodeType":"gene",
-      "species":"",
-      "priority":1,
-      "unknown":"",
-      "regex":"^\d+$",
-      "fullName":"dbSNP"
-   },
-   {
-      "database":"DrugBank",
-      "id":"Dr",
-      "homePage":"http://www.drugbank.ca/",
-      "linkOut":"http://www.drugbank.ca/drugs/$id",
-      "example":"DB00001",
-      "dataNodeType":"metabolite",
-      "species":"",
-      "priority":1,
-      "unknown":"urn:miriam:drugbank",
-      "regex":"^DB\d{5}$",
-      "fullName":"DrugBank"
-   },
-   {
-      "database":"EcoCyc",
-      "id":"Eco",
-      "homePage":"http://ecocyc.org/",
-      "linkOut":"http://ecocyc.org/ECOLI/NEW-IMAGE?type=NIL&object=$id",
-      "example":"325-BISPHOSPHATE-NUCLEOTIDASE-RXN",
-      "dataNodeType":"interaction",
-      "species":"Escherichia coli",
-      "priority":1,
-      "unknown":"Eco",
-      "regex":"",
-      "fullName":"EcoCyc"
-   },
-   {
-      "database":"EcoGene",
-      "id":"Ec",
-      "homePage":"http://ecogene.org/",
-      "linkOut":"http://ecogene.org/geneInfo.php?eg_id=$id",
-      "example":"EG10173",
-      "dataNodeType":"gene",
-      "species":"Escherichia coli",
-      "priority":1,
-      "unknown":"urn:miriam:ecogene",
-      "regex":"^EG\d+$",
-      "fullName":"EcoGene"
-   },
-   {
-      "database":"EMBL",
-      "id":"Em",
-      "homePage":"http://www.ebi.ac.uk/embl/",
-      "linkOut":"http://www.ebi.ac.uk/ena/data/view/$id",
-      "example":"X58356",
-      "dataNodeType":"gene",
-      "species":"",
-      "priority":1,
-      "unknown":"urn:miriam:ena.embl",
-      "regex":"^[A-Z]+[0-9]+$",
-      "fullName":"European Nucleotide Archive"
-   },
-   {
-      "database":"Ensembl",
-      "id":"En",
-      "homePage":"http://www.ensembl.org/",
-      "linkOut":"http://www.ensembl.org/id/$id",
-      "example":"ENSG00000139618",
-      "dataNodeType":"gene",
-      "species":"",
-      "priority":1,
-      "unknown":"urn:miriam:ensembl",
-      "regex":"^ENS[A-Z]*[FPTG]\d{11}$",
-      "fullName":"Ensembl"
-   },
-   {
-      "database":"Ensembl B. subtilis",
-      "id":"EnBs",
-      "homePage":"http://www.ensembl.org",
-      "linkOut":"http://bacteria.ensembl.org/Bacillus/B_subtilis/Gene/Summary?g=$id",
-      "example":"EBBACG00000000013",
-      "dataNodeType":"gene",
-      "species":"Bacillus subtilis",
-      "priority":1,
-      "unknown":"EnBs",
-      "regex":"EBBACG\d{11}",
-      "fullName":"Ensembl"
-   },
-   {
-      "database":"Ensembl C. elegans",
-      "id":"EnCe",
-      "homePage":"http://www.ensembl.org",
-      "linkOut":"http://www.ensembl.org/Caenorhabditis_elegans/Gene/Summary?g=$id",
-      "example":"Y42H9B.1",
-      "dataNodeType":"gene",
-      "species":"Caenorhabditis elegans",
-      "priority":1,
-      "unknown":"EnCe",
-      "regex":"",
-      "fullName":"Ensembl"
-   },
-   {
-      "database":"Ensembl Chicken",
-      "id":"EnGg",
-      "homePage":"http://www.ensembl.org",
-      "linkOut":"http://www.ensembl.org/Gallus_gallus/Gene/Summary?g=$id",
-      "example":"ENSGALG00000021736",
-      "dataNodeType":"gene",
-      "species":"Gallus gallus",
-      "priority":1,
-      "unknown":"EnGg",
-      "regex":"ENSGALG\d{11}",
-      "fullName":"Ensembl"
-   },
-   {
-      "database":"Ensembl Chimp",
-      "id":"EnPt",
-      "homePage":"http://www.ensembl.org",
-      "linkOut":"http://www.ensembl.org/Pan_troglodytes/Gene/Summary?g=$id",
-      "example":"ENSPTRG00000036034",
-      "dataNodeType":"gene",
-      "species":"Pan troglodytes",
-      "priority":1,
-      "unknown":"EnPt",
-      "regex":"ENSPTRG\d{11}",
-      "fullName":"Ensembl"
-   },
-   {
-      "database":"Ensembl Cow",
-      "id":"EnBt",
-      "homePage":"http://www.ensembl.org",
-      "linkOut":"http://www.ensembl.org/Bos_taurus/Gene/Summary?g=$id",
-      "example":"ENSBTAG00000043548",
-      "dataNodeType":"gene",
-      "species":"Bos taurus",
-      "priority":1,
-      "unknown":"EnBt",
-      "regex":"ENSBTAG\d{11}",
-      "fullName":"Ensembl"
-   },
-   {
-      "database":"Ensembl Dog",
-      "id":"EnCf",
-      "homePage":"http://www.ensembl.org",
-      "linkOut":"http://www.ensembl.org/Canis_familiaris/Gene/Summary?g=$id",
-      "example":"ENSCAFG00000025860",
-      "dataNodeType":"gene",
-      "species":"Canis familiaris",
-      "priority":1,
-      "unknown":"EnCf",
-      "regex":"ENSCAFG\d{11}",
-      "fullName":"Ensembl"
-   },
-   {
-      "database":"Ensembl E. coli",
-      "id":"EnEc",
-      "homePage":"http://www.ensembl.org",
-      "linkOut":"http://bacteria.ensembl.org/Escherichia_Shigella/E_coli_K12/Gene/Summary?g=$id",
-      "example":"EBESCG00000000010",
-      "dataNodeType":"gene",
-      "species":"Escherichia coli",
-      "priority":1,
-      "unknown":"EnEc",
-      "regex":"EBESCG\d{11}",
-      "fullName":"Ensembl"
-   },
-   {
-      "database":"Ensembl Fruitfly",
-      "id":"EnDm",
-      "homePage":"http://www.ensembl.org",
-      "linkOut":"http://www.ensembl.org/Drosophila_melanogaster/Gene/Summary?g=$id",
-      "example":"FBgn0032956",
-      "dataNodeType":"gene",
-      "species":"Drosophila melanogaster",
-      "priority":1,
-      "unknown":"EnDm",
-      "regex":"FBgn\d{7}",
-      "fullName":"Ensembl"
-   },
-   {
-      "database":"Ensembl Horse",
-      "id":"EnQc",
-      "homePage":"http://www.ensembl.org",
-      "linkOut":"http://www.ensembl.org/Equus_caballus/Gene/Summary?g=$id",
-      "example":"ENSECAG00000026160",
-      "dataNodeType":"gene",
-      "species":"Equus caballus",
-      "priority":1,
-      "unknown":"EnQc",
-      "regex":"ENSECAG\d{11}",
-      "fullName":"Ensembl"
-   },
-   {
-      "database":"Ensembl Human",
-      "id":"EnHs",
-      "homePage":"http://www.ensembl.org",
-      "linkOut":"http://www.ensembl.org/Homo_sapiens/Gene/Summary?g=$id",
-      "example":"ENSG00000139618",
-      "dataNodeType":"gene",
-      "species":"Homo sapiens",
-      "priority":1,
-      "unknown":"EnHs",
-      "regex":"ENSG\d{11}",
-      "fullName":"Ensembl"
-   },
-   {
-      "database":"Ensembl M. tuberculosis",
-      "id":"EnMx",
-      "homePage":"http://www.ensembl.org",
-      "linkOut":"http://bacteria.ensembl.org/Mycobacterium/M_tuberculosis_H37Rv/Gene/Summary?g=$id",
-      "example":"EBMYCG00000003122",
-      "dataNodeType":"gene",
-      "species":"Mycobacterium tuberculosis",
-      "priority":1,
-      "unknown":"EnMx",
-      "regex":"EBMYCG\d{11}",
-      "fullName":"Ensembl"
-   },
-   {
-      "database":"Ensembl Mosquito",
-      "id":"EnAg",
-      "homePage":"http://www.ensembl.org",
-      "linkOut":"http://www.ensembl.org/Anopheles_gambiae/Gene/Summary?_q=$id",
-      "example":"AGAP006864",
-      "dataNodeType":"gene",
-      "species":"Anopheles gambiae",
-      "priority":1,
-      "unknown":"EnAg",
-      "regex":"AGAP\d{6}",
-      "fullName":"Ensembl"
-   },
-   {
-      "database":"Ensembl Mouse",
-      "id":"EnMm",
-      "homePage":"http://www.ensembl.org",
-      "linkOut":"http://www.ensembl.org/Mus_musculus/Gene/Summary?g=$id",
-      "example":"ENSMUSG00000017167",
-      "dataNodeType":"gene",
-      "species":"Mus musculus",
-      "priority":1,
-      "unknown":"EnMm",
-      "regex":"ENSMUSG\d{11}",
-      "fullName":"Ensembl"
-   },
-   {
-      "database":"Ensembl Pig",
-      "id":"EnSs",
-      "homePage":"http://www.ensembl.org",
-      "linkOut":"http://www.ensembl.org/Sus_scrofa/Gene/Summary?g=$id",
-      "example":"ENSSSCG00000004244",
-      "dataNodeType":"gene",
-      "species":"Sus scrofa",
-      "priority":1,
-      "unknown":"EnSs",
-      "regex":"ENSSSCG\d{11}",
-      "fullName":"Ensembl"
-   },
-   {
-      "database":"Ensembl Plants",
-      "id":"EP",
-      "homePage":"http://plants.ensembl.org/",
-      "linkOut":"http://plants.ensembl.org/id/$id",
-      "example":"AT1G73965",
-      "dataNodeType":"gene",
-      "species":"",
-      "priority":1,
-      "unknown":"urn:miriam:ensembl.plant",
-      "regex":"^\w+$",
-      "fullName":"Ensembl Plants"
-   },
-   {
-      "database":"Ensembl Rat",
-      "id":"EnRn",
-      "homePage":"http://www.ensembl.org",
-      "linkOut":"http://www.ensembl.org/Rattus_norvegicus/Gene/Summary?g=$id",
-      "example":"ENSRNOG00000016648",
-      "dataNodeType":"gene",
-      "species":"Rattus norvegicus",
-      "priority":1,
-      "unknown":"EnRn",
-      "regex":"ENSRNOG\d{11}",
-      "fullName":"Ensembl"
-   },
-   {
-      "database":"Ensembl Xenopus",
-      "id":"EnXt",
-      "homePage":"http://www.ensembl.org",
-      "linkOut":"http://www.ensembl.org/Xenopus_tropicalis/Gene/Summary?g=$id",
-      "example":"ENSXETG00000029448",
-      "dataNodeType":"gene",
-      "species":"Xenopus tropicalis",
-      "priority":1,
-      "unknown":"EnXt",
-      "regex":"ENSXETG\d{11}",
-      "fullName":"Ensembl"
-   },
-   {
-      "database":"Ensembl Yeast",
-      "id":"EnSc",
-      "homePage":"http://www.ensembl.org",
-      "linkOut":"http://www.ensembl.org/Saccharomyces_cerevisiae/Gene/Summary?g=$id",
-      "example":"YGR147C",
-      "dataNodeType":"gene",
-      "species":"Saccharomyces cerevisiae",
-      "priority":1,
-      "unknown":"EnSc",
-      "regex":"Y[A-Z][RL]\d{3}[WC](?:\-[A-Z])?",
-      "fullName":"Ensembl"
-   },
-   {
-      "database":"Ensembl Zebrafish",
-      "id":"EnDr",
-      "homePage":"http://www.ensembl.org",
-      "linkOut":"http://www.ensembl.org/Danio_rerio/Gene/Summary?g=$id",
-      "example":"ENSDARG00000024771",
-      "dataNodeType":"gene",
-      "species":"Danio rerio",
-      "priority":1,
-      "unknown":"EnDr",
-      "regex":"ENSDARG\d{11}",
-      "fullName":"Ensembl"
-   },
-   {
-      "database":"Entrez Gene",
-      "id":"L",
-      "homePage":"http://www.ncbi.nlm.nih.gov/gene",
-      "linkOut":"http://www.ncbi.nlm.nih.gov/gene/$id",
-      "example":"100010",
-      "dataNodeType":"gene",
-      "species":"",
-      "priority":1,
-      "unknown":"urn:miriam:ncbigene",
-      "regex":"^\d+$",
-      "fullName":"Entrez Gene"
-   },
-   {
-      "database":"Enzyme Nomenclature",
-      "id":"E",
-      "homePage":"http://www.ebi.ac.uk/intenz/",
-      "linkOut":"http://www.ebi.ac.uk/intenz/query?cmd=SearchEC&ec=$id",
-      "example":"1.1.1.1",
-      "dataNodeType":"gene",
-      "species":"",
-      "priority":1,
-      "unknown":"urn:miriam:ec-code",
-      "regex":"^\d+\.-\.-\.-|\d+\.\d+\.-\.-|\d+\.\d+\.\d+\.-|\d+\.\d+\.\d+\.(n)?\d+$",
-      "fullName":"Enzyme Nomenclature"
-   },
-   {
-      "database":"FlyBase",
-      "id":"F",
-      "homePage":"http://flybase.org/",
-      "linkOut":"http://flybase.org/reports/$id.html",
-      "example":"FBgn0011293",
-      "dataNodeType":"gene",
-      "species":"Drosophila melanogaster",
-      "priority":1,
-      "unknown":"urn:miriam:flybase",
-      "regex":"^FB\w{2}\d{7}$",
-      "fullName":"FlyBase"
-   },
-   {
-      "database":"GenBank",
-      "id":"G",
-      "homePage":"http://www.ncbi.nlm.nih.gov/genbank/",
-      "linkOut":"http://www.ncbi.nlm.nih.gov/nuccore/$id",
-      "example":"NW_004190323",
-      "dataNodeType":"gene",
-      "species":"",
-      "priority":0,
-      "unknown":"G",
-      "regex":"(\w\d{5})|(\w{2}\d{6})|(\w{3}\d{5})",
-      "fullName":"GenBank"
-   },
-   {
-      "database":"Gene Wiki",
-      "id":"Gw",
-      "homePage":"http://en.wikipedia.org/wiki/Portal:Gene_Wiki",
-      "linkOut":"http://plugins.biogps.org/cgi-bin/wp.cgi?id=$id",
-      "example":"1017",
-      "dataNodeType":"gene",
-      "species":"",
-      "priority":0,
-      "unknown":"Gw",
-      "regex":"\d+",
-      "fullName":"Gene Wiki"
-   },
-   {
-      "database":"GeneOntology",
-      "id":"T",
-      "homePage":"http://www.ebi.ac.uk/QuickGO/",
-      "linkOut":"http://www.ebi.ac.uk/QuickGO/GTerm?id=$id",
-      "example":"GO:0006915",
-      "dataNodeType":"gene",
-      "species":"",
-      "priority":0,
-      "unknown":"urn:miriam:obo.go",
-      "regex":"^GO:\d{7}$",
-      "fullName":"Gene Ontology"
-   },
-   {
-      "database":"Gramene Arabidopsis",
-      "id":"EnAt",
-      "homePage":"http://www.gramene.org/",
-      "linkOut":"http://www.gramene.org/Arabidopsis_thaliana/Gene/Summary?g=$id",
-      "example":"ATMG01360-TAIR-G",
-      "dataNodeType":"gene",
-      "species":"Arabidopsis thaliana",
-      "priority":1,
-      "unknown":"EnAt",
-      "regex":"AT[\dCM]G\d{5}\-TAIR\-G",
-      "fullName":"Grameen Arabidopsis"
-   },
-   {
-      "database":"Gramene Genes DB",
-      "id":"Gg",
-      "homePage":"http://www.gramene.org/",
-      "linkOut":"http://www.gramene.org/db/genes/search_gene?acc=$id",
-      "example":"GR:0060184",
-      "dataNodeType":"gene",
-      "species":"",
-      "priority":1,
-      "unknown":"Gg",
-      "regex":"GR:\d+",
-      "fullName":"Gramene Genes"
-   },
-   {
-      "database":"Gramene Literature",
-      "id":"Gl",
-      "homePage":"http://www.gramene.org/",
-      "linkOut":"http://www.gramene.org/db/literature/pub_search?ref_id=$id",
-      "example":"6200",
-      "dataNodeType":"gene",
-      "species":"",
-      "priority":0,
-      "unknown":"Gl",
-      "regex":"",
-      "fullName":"Gramene Literature"
-   },
-   {
-      "database":"Gramene Maize",
-      "id":"EnZm",
-      "homePage":"http://www.ensembl.org",
-      "linkOut":"http://www.maizesequence.org/Zea_mays/Gene/Summary?g=$id",
-      "example":"GRMZM2G174107",
-      "dataNodeType":"gene",
-      "species":"",
-      "priority":1,
-      "unknown":"EnZm",
-      "regex":"",
-      "fullName":"Gramene Maize"
-   },
-   {
-      "database":"Gramene Pathway",
-      "id":"Gp",
-      "homePage":"http://www.gramene.org/pathway",
-      "linkOut":"",
-      "example":"AAH72400",
-      "dataNodeType":"pathway",
-      "species":"",
-      "priority":1,
-      "unknown":"Gp",
-      "regex":"",
-      "fullName":"Gramene Pathway"
-   },
-   {
-      "database":"Gramene Rice",
-      "id":"EnOj",
-      "homePage":"http://www.gramene.org/",
-      "linkOut":"http://www.gramene.org/Oryza_sativa/Gene/Summary?db=core;g=$id",
-      "example":"osa-MIR171a",
-      "dataNodeType":"gene",
-      "species":"",
-      "priority":1,
-      "unknown":"EnOj",
-      "regex":"",
-      "fullName":"Gramene Rice"
-   },
-   {
-      "database":"HGNC",
-      "id":"H",
-      "homePage":"http://www.genenames.org",
-      "linkOut":"http://www.genenames.org/data/hgnc_data.php?match=$id",
-      "example":"DAPK1",
-      "dataNodeType":"gene",
-      "species":"Homo sapiens",
-      "priority":1,
-      "unknown":"urn:miriam:hgnc.symbol",
-      "regex":"^[A-Za-z0-9]+",
-      "fullName":"HGNC Symbol"
-   },
-   {
-      "database":"HGNC Accession number",
-      "id":"Hac",
-      "homePage":"http://www.genenames.org",
-      "linkOut":"http://www.genenames.org/data/hgnc_data.php?hgnc_id=$id",
-      "example":"HGNC:2674",
-      "dataNodeType":"gene",
-      "species":"Homo sapiens",
-      "priority":1,
-      "unknown":"urn:miriam:hgnc",
-      "regex":"^(HGNC:)?\d{1,5}$",
-      "fullName":"HGNC"
-   },
-   {
-      "database":"HMDB",
-      "id":"Ch",
-      "homePage":"http://www.hmdb.ca/",
-      "linkOut":"http://www.hmdb.ca/metabolites/$id",
-      "example":"HMDB00001",
-      "dataNodeType":"metabolite",
-      "species":"",
-      "priority":1,
-      "unknown":"urn:miriam:hmdb",
-      "regex":"^HMDB\d{5}$",
-      "fullName":"HMDB"
-   },
-   {
-      "database":"HomoloGene",
-      "id":"Hg",
-      "homePage":"http://www.ncbi.nlm.nih.gov/homologene/",
-      "linkOut":"http://www.ncbi.nlm.nih.gov/homologene/$id",
-      "example":"1000",
-      "dataNodeType":"gene",
-      "species":"",
-      "priority":1,
-      "unknown":"urn:miriam:homologene",
-      "regex":"^\d+$",
-      "fullName":"HomoloGene"
-   },
-   {
-      "database":"HPRD",
-      "id":"Hp",
-      "homePage":"http://www.hprd.org/",
-      "linkOut":"",
-      "example":"",
-      "dataNodeType":"interaction",
-      "species":"Homo sapiens",
-      "priority":1,
-      "unknown":"urn:miriam:hprd",
-      "regex":"",
-      "fullName":"HPRD"
-   },
-   {
-      "database":"Illumina",
-      "id":"Il",
-      "homePage":"http://www.illumina.com/",
-      "linkOut":"",
-      "example":"ILMN_5668",
-      "dataNodeType":"probe",
-      "species":"",
-      "priority":0,
-      "unknown":"Il",
-      "regex":"ILMN_\d+",
-      "fullName":"Illumina"
-   },
-   {
-      "database":"IntAct",
-      "id":"Ia",
-      "homePage":"http://www.ebi.ac.uk/intact/",
-      "linkOut":"http://www.ebi.ac.uk/intact/pages/details/details.xhtml?interactionAc=$id",
-      "example":"EBI-2307691",
-      "dataNodeType":"interaction",
-      "species":"",
-      "priority":1,
-      "unknown":"urn:miriam:intact",
-      "regex":"^EBI\-[0-9]+$",
-      "fullName":"IntAct"
-   },
-   {
-      "database":"InterPro",
-      "id":"I",
-      "homePage":"http://www.ebi.ac.uk/interpro/",
-      "linkOut":"http://www.ebi.ac.uk/interpro/DisplayIproEntry?ac=$id",
-      "example":"IPR000100",
-      "dataNodeType":"protein",
-      "species":"",
-      "priority":1,
-      "unknown":"urn:miriam:interpro",
-      "regex":"^IPR\d{6}$",
-      "fullName":"InterPro"
-   },
-   {
-      "database":"IPI",
-      "id":"Ip",
-      "homePage":"http://www.ebi.ac.uk/IPI",
-      "linkOut":"http://www.ebi.ac.uk/cgi-bin/dbfetch?db=IPI&id=$id&format=default",
-      "example":"IPI00000001",
-      "dataNodeType":"protein",
-      "species":"",
-      "priority":1,
-      "unknown":"urn:miriam:ipi",
-      "regex":"^IPI\d{8}$",
-      "fullName":"IPI"
-   },
-   {
-      "database":"IRGSP Gene",
-      "id":"Ir",
-      "homePage":"http://rgp.dna.affrc.go.jp/IRGSP/",
-      "linkOut":"",
-      "example":"Os12g0561000",
-      "dataNodeType":"gene",
-      "species":"",
-      "priority":1,
-      "unknown":"Ir",
-      "regex":"Os\d{2}g\d+",
-      "fullName":"IRGSP Gene"
-   },
-   {
-      "database":"Kegg Compound",
-      "id":"Ck",
-      "homePage":"http://www.genome.jp/kegg/ligand.html",
-      "linkOut":"http://www.genome.jp/dbget-bin/www_bget?cpd:$id",
-      "example":"C12345",
-      "dataNodeType":"metabolite",
-      "species":"",
-      "priority":1,
-      "unknown":"urn:miriam:kegg.compound",
-      "regex":"^C\d+$",
-      "fullName":"KEGG Compound"
-   },
-   {
-      "database":"KEGG Drug",
-      "id":"Kd",
-      "homePage":"http://www.genome.jp/kegg/drug/",
-      "linkOut":"http://www.genome.jp/dbget-bin/www_bget?dr:$id",
-      "example":"D00123",
-      "dataNodeType":"metabolite",
-      "species":"",
-      "priority":1,
-      "unknown":"urn:miriam:kegg.drug",
-      "regex":"^D\d+$",
-      "fullName":"KEGG Drug"
-   },
-   {
-      "database":"KEGG Genes",
-      "id":"Kg",
-      "homePage":"http://www.genome.jp/kegg/genes.html",
-      "linkOut":"http://www.genome.jp/dbget-bin/www_bget?$id",
-      "example":"syn:ssr3451",
-      "dataNodeType":"gene",
-      "species":"",
-      "priority":1,
-      "unknown":"urn:miriam:kegg.genes",
-      "regex":"^\w+:[\w\d\.-]*$",
-      "fullName":"KEGG Genes"
-   },
-   {
-      "database":"KEGG Glycan",
-      "id":"Kgl",
-      "homePage":"http://www.genome.jp/kegg/glycan/",
-      "linkOut":"http://www.genome.jp/dbget-bin/www_bget?gl:$id",
-      "example":"G00123",
-      "dataNodeType":"metabolite",
-      "species":"",
-      "priority":1,
-      "unknown":"urn:miriam:kegg.glycan",
-      "regex":"^G\d+$",
-      "fullName":"KEGG Glycan"
-   },
-   {
-      "database":"KEGG Pathway",
-      "id":"Kp",
-      "homePage":"http://www.genome.jp/kegg/pathway.html",
-      "linkOut":"http://www.genome.jp/dbget-bin/www_bget?pathway+$id",
-      "example":"hsa00620",
-      "dataNodeType":"pathway",
-      "species":"",
-      "priority":1,
-      "unknown":"urn:miriam:kegg.pathway",
-      "regex":"^\w{2,4}\d{5}$",
-      "fullName":"KEGG Pathway"
-   },
-   {
-      "database":"KEGG Reaction",
-      "id":"Kr",
-      "homePage":"http://www.genome.jp/kegg/reaction/",
-      "linkOut":"http://www.genome.jp/dbget-bin/www_bget?rn:$id",
-      "example":"R00100",
-      "dataNodeType":"protein",
-      "species":"",
-      "priority":1,
-      "unknown":"urn:miriam:kegg.reaction",
-      "regex":"^R\d+$",
-      "fullName":"KEGG Reaction"
-   },
-   {
-      "database":"LIPID MAPS",
-      "id":"Lm",
-      "homePage":"http://www.lipidmaps.org",
-      "linkOut":"http://www.lipidmaps.org/data/get_lm_lipids_dbgif.php?LM_ID=$id",
-      "example":"LMPR0102010012",
-      "dataNodeType":"metabolite",
-      "species":"",
-      "priority":1,
-      "unknown":"urn:miriam:lipidmaps",
-      "regex":"^LM(FA|GL|GP|SP|ST|PR|SL|PK)[0-9]{4}([0-9a-zA-Z]{4,6})?$",
-      "fullName":"LIPID MAPS"
-   },
-   {
-      "database":"LipidBank",
-      "id":"Lb",
-      "homePage":"http://lipidbank.jp/index.html",
-      "linkOut":"http://lipidbank.jp/cgi-bin/detail.cgi?id=$id",
-      "example":"BBA0001",
-      "dataNodeType":"metabolite",
-      "species":"",
-      "priority":1,
-      "unknown":"urn:miriam:lipidbank",
-      "regex":"^\w+\d+$",
-      "fullName":"LipidBank"
-   },
-   {
-      "database":"MACiE",
-      "id":"Ma",
-      "homePage":"http://www.ebi.ac.uk/thornton-srv/databases/MACiE/index.html",
-      "linkOut":"http://www.ebi.ac.uk/thornton-srv/databases/cgi-bin/MACiE/entry/getPage.pl?id=$id",
-      "example":"M0001",
-      "dataNodeType":"protein",
-      "species":"",
-      "priority":1,
-      "unknown":"urn:miriam:macie",
-      "regex":"^M\d{4}$",
-      "fullName":"MACiE"
-   },
-   {
-      "database":"MaizeGDB",
-      "id":"Mg",
-      "homePage":"",
-      "linkOut":"http://www.maizegdb.org/cgi-bin/displaylocusresults.cgi?term=$id",
-      "example":"acc1",
-      "dataNodeType":"gene",
-      "species":"Zea mays",
-      "priority":1,
-      "unknown":"Mg",
-      "regex":"",
-      "fullName":"MaizeGDB"
-   },
-   {
-      "database":"MatrixDB",
-      "id":"Md",
-      "homePage":"http://matrixdb.ibcp.fr/",
-      "linkOut":"http://matrixdb.ibcp.fr/cgi-bin/model/report/default?name=$id&class=Association",
-      "example":"P00747_P07355",
-      "dataNodeType":"interaction",
-      "species":"",
-      "priority":1,
-      "unknown":"urn:miriam:matrixdb.association",
-      "regex":"^([A-N,R-Z][0-9][A-Z][A-Z, 0-9][A-Z, 0-9][0-9])_.*|([O,P,Q][0-9][A-Z, 0-9][A-Z, 0-9][A-Z, 0-9][0-9]_.*)|(GAG_.*)|(MULT_.*)|(PFRAG_.*)|(LIP_.*)|(CAT_.*)$",
-      "fullName":"MatrixDB"
-   },
-   {
-      "database":"MetaCyc",
-      "id":"Mc",
-      "homePage":"http://www.metacyc.org/",
-      "linkOut":"http://www.metacyc.org/META/NEW-IMAGE?type=NIL&object=$id",
-      "example":"D-GLUTAMATE-OXIDASE-RXN",
-      "dataNodeType":"interaction",
-      "species":"",
-      "priority":1,
-      "unknown":"Mc",
-      "regex":"",
-      "fullName":"MetaCyc"
-   },
-   {
-      "database":"MGI",
-      "id":"M",
-      "homePage":"http://www.informatics.jax.org/",
-      "linkOut":"http://www.informatics.jax.org/marker/$id",
-      "example":"MGI:2442292",
-      "dataNodeType":"gene",
-      "species":"Mus musculus",
-      "priority":1,
-      "unknown":"urn:miriam:mgd",
-      "regex":"^MGI:\d+$",
-      "fullName":"Mouse Genome Database"
-   },
-   {
-      "database":"MINT",
-      "id":"Mi",
-      "homePage":"http://mint.bio.uniroma2.it/mint/",
-      "linkOut":"http://mint.bio.uniroma2.it/mint/search/inFrameInteraction.do?interactionAc=$id",
-      "example":"MINT-10000",
-      "dataNodeType":"interaction",
-      "species":"",
-      "priority":1,
-      "unknown":"urn:miriam:mint",
-      "regex":"^MINT\-\d{1,5}$",
-      "fullName":"MINT"
-   },
-   {
-      "database":"miRBase mature sequence",
-      "id":"Mbm",
-      "homePage":"http://www.mirbase.org/",
-      "linkOut":"http://www.mirbase.org/cgi-bin/mature.pl?mature_acc=$id",
-      "example":"MIMAT0000001",
-      "dataNodeType":"gene",
-      "species":"",
-      "priority":1,
-      "unknown":"urn:miriam:mirbase.mature",
-      "regex":"MIMAT\d{7}",
-      "fullName":"miRBase mature sequence"
-   },
-   {
-      "database":"miRBase Sequence",
-      "id":"Mb",
-      "homePage":"http://microrna.sanger.ac.uk/",
-      "linkOut":"http://microrna.sanger.ac.uk/cgi-bin/sequences/mirna_entry.pl?acc=$id",
-      "example":"MI0000001",
-      "dataNodeType":"gene",
-      "species":"",
-      "priority":1,
-      "unknown":"urn:miriam:mirbase",
-      "regex":"MI\d{7}",
-      "fullName":"miRBase Sequence"
-   },
-   {
-      "database":"NASC Gene",
-      "id":"N",
-      "homePage":"http://arabidopsis.info/",
-      "linkOut":"",
-      "example":"ATMG00960-TAIR-G",
-      "dataNodeType":"gene",
-      "species":"Arabidopsis thaliana",
-      "priority":1,
-      "unknown":"N",
-      "regex":"AT[\dCM]G\d{5}\-TAIR\-G",
-      "fullName":"NASC Gene"
-   },
-   {
-      "database":"NCBI Protein",
-      "id":"Np",
-      "homePage":"http://www.ncbi.nlm.nih.gov/protein",
-      "linkOut":"http://www.ncbi.nlm.nih.gov/protein/$id",
-      "example":"CAA71118.1",
-      "dataNodeType":"protein",
-      "species":"",
-      "priority":1,
-      "unknown":"urn:miriam:ncbiprotein",
-      "regex":"^\w+\d+(\.\d+)?$",
-      "fullName":"NCBI Protein"
-   },
-   {
-      "database":"NCI Pathway Interaction Database",
-      "id":"Pid",
-      "homePage":"http://pid.nci.nih.gov/",
-      "linkOut":"http://pid.nci.nih.gov/search/pathway_landing.shtml?what=graphic&jpg=on&pathway_id=$id",
-      "example":"pi3kcipathway",
-      "dataNodeType":"pathway",
-      "species":"",
-      "priority":1,
-      "unknown":"urn:miriam:pid.pathway",
-      "regex":"^\w+$",
-      "fullName":"NCI Pathway Interaction Database"
-   },
-   {
-      "database":"NuGO wiki",
-      "id":"Nw",
-      "homePage":"http://wiki.nugo.org",
-      "linkOut":"http://wiki.nugo.org/index.php/$id",
-      "example":"HMDB00001",
-      "dataNodeType":"metabolite",
-      "species":"",
-      "priority":0,
-      "unknown":"Nw",
-      "regex":"",
-      "fullName":"NuGO wiki"
-   },
-   {
-      "database":"OMIM",
-      "id":"Om",
-      "homePage":"http://omim.org/",
-      "linkOut":"http://omim.org/entry/$id",
-      "example":"603903",
-      "dataNodeType":"gene",
-      "species":"",
-      "priority":0,
-      "unknown":"urn:miriam:omim",
-      "regex":"^[*#+%^]?\d{6}$",
-      "fullName":"OMIM"
-   },
-   {
-      "database":"Oryzabase",
-      "id":"Ob",
-      "homePage":"http://www.shigen.nig.ac.jp/rice/oryzabase",
-      "linkOut":"http://www.shigen.nig.ac.jp/rice/oryzabase/gateway/gatewayAction.do?target=symbol&id=$id",
-      "example":"468",
-      "dataNodeType":"gene",
-      "species":"Oryza sativa",
-      "priority":1,
-      "unknown":"Ob",
-      "regex":"",
-      "fullName":"Oryzabase"
-   },
-   {
-      "database":"Other",
-      "id":"O",
-      "homePage":"",
-      "linkOut":"",
-      "example":"",
-      "dataNodeType":"gene",
-      "species":"",
-      "priority":1,
-      "unknown":"O",
-      "regex":"",
-      "fullName":"Other"
-   },
-   {
-      "database":"Pathway Commons",
-      "id":"Pc",
-      "homePage":"http://www.pathwaycommons.org/pc/",
-      "linkOut":"http://www.pathwaycommons.org/pc/record2.do?id=$id",
-      "example":"485991",
-      "dataNodeType":"pathway",
-      "species":"",
-      "priority":1,
-      "unknown":"urn:miriam:pathwaycommons",
-      "regex":"^\d+$",
-      "fullName":"Pathway Commons"
-   },
-   {
-      "database":"PDB",
-      "id":"Pd",
-      "homePage":"http://www.pdb.org/",
-      "linkOut":"http://www.rcsb.org/pdb/explore/explore.do?structureId=$id",
-      "example":"2gc4",
-      "dataNodeType":"protein",
-      "species":"",
-      "priority":0,
-      "unknown":"urn:miriam:pdb",
-      "regex":"^[0-9][A-Za-z0-9]{3}$",
-      "fullName":"Protein Data Bank"
-   },
-   {
-      "database":"Pfam",
-      "id":"Pf",
-      "homePage":"http://pfam.sanger.ac.uk/",
-      "linkOut":"http://pfam.sanger.ac.uk/family/$id/",
-      "example":"PF01234",
-      "dataNodeType":"protein",
-      "species":"",
-      "priority":1,
-      "unknown":"urn:miriam:pfam",
-      "regex":"^PF\d{5}$",
-      "fullName":"Pfam"
-   },
-   {
-      "database":"PharmGKB Drug",
-      "id":"Pgd",
-      "homePage":"http://www.pharmgkb.org/",
-      "linkOut":"http://www.pharmgkb.org/drug/$id",
-      "example":"PA448710",
-      "dataNodeType":"metabolite",
-      "species":"",
-      "priority":1,
-      "unknown":"urn:miriam:pharmgkb.drug",
-      "regex":"^PA\d+$",
-      "fullName":"PharmGKB Drug"
-   },
-   {
-      "database":"PharmGKB Gene",
-      "id":"Pgg",
-      "homePage":"http://www.pharmgkb.org/",
-      "linkOut":"http://www.pharmgkb.org/gene/$id",
-      "example":"PA131",
-      "dataNodeType":"gene",
-      "species":"",
-      "priority":1,
-      "unknown":"urn:miriam:pharmgkb.gene",
-      "regex":"^PA\w+$",
-      "fullName":"PharmGKB Gene"
-   },
-   {
-      "database":"PharmGKB Pathways",
-      "id":"Pgp",
-      "homePage":"http://www.pharmgkb.org/",
-      "linkOut":"http://www.pharmgkb.org/pathway/$id",
-      "example":"PA146123006",
-      "dataNodeType":"pathway",
-      "species":"",
-      "priority":1,
-      "unknown":"urn:miriam:pharmgkb.pathways",
-      "regex":"^PA\d+$",
-      "fullName":"PharmGKB Pathways"
-   },
-   {
-      "database":"PhosphoSite Protein",
-      "id":"Pp",
-      "homePage":"http://www.phosphosite.org/homeAction.do",
-      "linkOut":"http://www.phosphosite.org/proteinAction.do?id=$id",
-      "example":"12300",
-      "dataNodeType":"protein",
-      "species":"",
-      "priority":1,
-      "unknown":"urn:miriam:phosphosite.protein",
-      "regex":"^\d{5}$",
-      "fullName":"PhosphoSite Protein"
-   },
-   {
-      "database":"PINA",
-      "id":"Pi",
-      "homePage":"http://cbg.garvan.unsw.edu.au/pina/",
-      "linkOut":"http://cbg.garvan.unsw.edu.au/pina/interactome.oneP.do?ac=$id&showExtend=null",
-      "example":"Q13485",
-      "dataNodeType":"interaction",
-      "species":"",
-      "priority":1,
-      "unknown":"urn:miriam:pina",
-      "regex":"^([A-N,R-Z][0-9][A-Z][A-Z, 0-9][A-Z, 0-9][0-9])|([O,P,Q][0-9][A-Z, 0-9][A-Z, 0-9][A-Z, 0-9][0-9])$",
-      "fullName":"PINA"
-   },
-   {
-      "database":"PlantGDB",
-      "id":"Pl",
-      "homePage":"http://www.plantgdb.org/",
-      "linkOut":"",
-      "example":"PUT-157a-Vitis_vinifera-37378",
-      "dataNodeType":"gene",
-      "species":"",
-      "priority":1,
-      "unknown":"Pl",
-      "regex":"PUT-[\w\d-]+",
-      "fullName":"PlantGDB"
-   },
-   {
-      "database":"PubChem-bioassay",
-      "id":"Cpb",
-      "homePage":"http://www.ncbi.nlm.nih.gov/sites/entrez?db=pcassay ",
-      "linkOut":"http://pubchem.ncbi.nlm.nih.gov/assay/assay.cgi?aid=$id",
-      "example":"1018",
-      "dataNodeType":"metabolite",
-      "species":"",
-      "priority":1,
-      "unknown":"urn:miriam:pubchem.bioassay",
-      "regex":"^\d+$",
-      "fullName":"PubChem-bioassay"
-   },
-   {
-      "database":"PubChem-compound",
-      "id":"Cpc",
-      "homePage":"http://pubchem.ncbi.nlm.nih.gov/",
-      "linkOut":"http://pubchem.ncbi.nlm.nih.gov/summary/summary.cgi?cid=$id",
-      "example":"100101",
-      "dataNodeType":"metabolite",
-      "species":"",
-      "priority":1,
-      "unknown":"urn:miriam:pubchem.compound",
-      "regex":"^\d+$",
-      "fullName":"PubChem-compound"
-   },
-   {
-      "database":"PubChem-substance",
-      "id":"Cps",
-      "homePage":"http://pubchem.ncbi.nlm.nih.gov/",
-      "linkOut":"http://pubchem.ncbi.nlm.nih.gov/summary/summary.cgi?sid=$id",
-      "example":"100101",
-      "dataNodeType":"metabolite",
-      "species":"",
-      "priority":1,
-      "unknown":"urn:miriam:pubchem.substance",
-      "regex":"^\d+$",
-      "fullName":"PubChem-substance"
-   },
-   {
-      "database":"Reactome",
-      "id":"Re",
-      "homePage":"http://www.reactome.org/",
-      "linkOut":"http://www.reactome.org/cgi-bin/eventbrowser_st_id?FROM_REACTOME=1&ST_ID=$id",
-      "example":"REACT_1590",
-      "dataNodeType":"pathway",
-      "species":"",
-      "priority":1,
-      "unknown":"urn:miriam:reactome",
-      "regex":"^REACT_\d+(\.\d+)?$",
-      "fullName":"Reactome"
-   },
-   {
-      "database":"RefSeq",
-      "id":"Q",
-      "homePage":"http://www.ncbi.nlm.nih.gov/projects/RefSeq/",
-      "linkOut":"http://www.ncbi.nlm.nih.gov/entrez/viewer.fcgi?val=$id",
-      "example":"NP_012345",
-      "dataNodeType":"gene",
-      "species":"",
-      "priority":1,
-      "unknown":"urn:miriam:refseq",
-      "regex":"^(NC|AC|NG|NT|NW|NZ|NM|NR|XM|XR|NP|AP|XP|ZP)_\d+$",
-      "fullName":"RefSeq"
-   },
-   {
-      "database":"RESID",
-      "id":"Res",
-      "homePage":"http://www.ebi.ac.uk/RESID/",
-      "linkOut":"http://srs.ebi.ac.uk/srsbin/cgi-bin/wgetz?-id+6JSUg1NA6u4+-e+[RESID:'$id']",
-      "example":"AA0001",
-      "dataNodeType":"protein",
-      "species":"",
-      "priority":1,
-      "unknown":"urn:miriam:resid",
-      "regex":"^AA\d{4}$",
-      "fullName":"RESID"
-   },
-   {
-      "database":"Rfam",
-      "id":"Rf",
-      "homePage":"",
-      "linkOut":"http://www.sanger.ac.uk/cgi-bin/Rfam/getacc?$id",
-      "example":"RF00066",
-      "dataNodeType":"gene",
-      "species":"",
-      "priority":1,
-      "unknown":"Rf",
-      "regex":"RF\d+",
-      "fullName":"RFAM"
-   },
-   {
-      "database":"RGD",
-      "id":"R",
-      "homePage":"http://rgd.mcw.edu/",
-      "linkOut":"http://rgd.mcw.edu/tools/genes/genes_view.cgi?id=$id",
-      "example":"2018",
-      "dataNodeType":"gene",
-      "species":"Rattus norvegicus",
-      "priority":1,
-      "unknown":"urn:miriam:rgd",
-      "regex":"^\d{4,7}$",
-      "fullName":"Rat Genome Database"
-   },
-   {
-      "database":"Rhea",
-      "id":"Rh",
-      "homePage":"http://www.ebi.ac.uk/rhea/",
-      "linkOut":"http://www.ebi.ac.uk/rhea/reaction.xhtml?id=$id",
-      "example":"12345",
-      "dataNodeType":"interaction",
-      "species":"",
-      "priority":1,
-      "unknown":"urn:miriam:rhea",
-      "regex":"^\d{5}$",
-      "fullName":"Rhea"
-   },
-   {
-      "database":"Rice Ensembl Gene",
-      "id":"Os",
-      "homePage":"http://www.gramene.org/Oryza_sativa",
-      "linkOut":"http://www.gramene.org/Oryza_sativa/geneview?gene=$id",
-      "example":"LOC_Os04g54800",
-      "dataNodeType":"gene",
-      "species":"Oryza sativa",
-      "priority":1,
-      "unknown":"Os",
-      "regex":"",
-      "fullName":"Rice Ensembl Gene"
-   },
-   {
-      "database":"SGD",
-      "id":"D",
-      "homePage":"http://www.yeastgenome.org/",
-      "linkOut":"http://www.yeastgenome.org/cgi-bin/locus.fpl?dbid=$id",
-      "example":"S000028457",
-      "dataNodeType":"gene",
-      "species":"Saccharomyces cerevisiae",
-      "priority":1,
-      "unknown":"urn:miriam:sgd",
-      "regex":"^S\d+$",
-      "fullName":"SGD"
-   },
-   {
-      "database":"Small Molecule Pathway Database",
-      "id":"Sm",
-      "homePage":"http://www.smpdb.ca/pathways",
-      "linkOut":"http://pathman.smpdb.ca/pathways/$id/pathway",
-      "example":"SMP00001",
-      "dataNodeType":"pathway",
-      "species":"",
-      "priority":1,
-      "unknown":"urn:miriam:smpdb",
-      "regex":"^SMP\d{5}$",
-      "fullName":"Small Molecule Pathway Database"
-   },
-   {
-      "database":"SMART",
-      "id":"Sma",
-      "homePage":"http://smart.embl-heidelberg.de/",
-      "linkOut":"http://smart.embl-heidelberg.de/smart/do_annotation.pl?DOMAIN=$id",
-      "example":"SM00015",
-      "dataNodeType":"protein",
-      "species":"",
-      "priority":1,
-      "unknown":"urn:miriam:smart",
-      "regex":"^SM\d{5}$",
-      "fullName":"SMART"
-   },
-   {
-      "database":"SPIKE",
-      "id":"Sk",
-      "homePage":"http://www.cs.tau.ac.il/~spike/",
-      "linkOut":"http://www.cs.tau.ac.il/~spike/maps/$id.html",
-      "example":"spike00001",
-      "dataNodeType":"interaction",
-      "species":"",
-      "priority":1,
-      "unknown":"urn:miriam:spike.map",
-      "regex":"^spike\d{5}$",
-      "fullName":"SPIKE Map"
-   },
-   {
-      "database":"SPRINT",
-      "id":"Spr",
-      "homePage":"http://www.bioinf.manchester.ac.uk/dbbrowser/sprint/",
-      "linkOut":"http://www.bioinf.manchester.ac.uk/cgi-bin/dbbrowser/sprint/searchprintss.cgi?prints_accn=$id&display_opts=Prints&category=None&queryform=false&regexpr=off",
-      "example":"PR00001",
-      "dataNodeType":"protein",
-      "species":"",
-      "priority":1,
-      "unknown":"urn:miriam:sprint",
-      "regex":"^PR\d{5}$",
-      "fullName":"SPRINT"
-   },
-   {
-      "database":"STRING",
-      "id":"Str",
-      "homePage":"http://string.embl.de/",
-      "linkOut":"http://string.embl.de/interactions/$id",
-      "example":"P53350",
-      "dataNodeType":"protein",
-      "species":"",
-      "priority":1,
-      "unknown":"urn:miriam:string",
-      "regex":"^([A-N,R-Z][0-9][A-Z][A-Z, 0-9][A-Z, 0-9][0-9])|([O,P,Q][0-9][A-Z, 0-9][A-Z, 0-9][A-Z, 0-9][0-9])|([0-9][A-Za-z0-9]{3})$",
-      "fullName":"STRING"
-   },
-   {
-      "database":"SubstrateDB",
-      "id":"Sdb",
-      "homePage":"http://substrate.burnham.org/",
-      "linkOut":"http://substrate.burnham.org/protein/annotation/$id/html",
-      "example":"1915",
-      "dataNodeType":"protein",
-      "species":"",
-      "priority":0,
-      "unknown":"urn:miriam:pmap.substratedb",
-      "regex":"^\d+$",
-      "fullName":"SubstrateDB"
-   },
-   {
-      "database":"SubtiWiki",
-      "id":"Sw",
-      "homePage":"http://www.subtiwiki.uni-goettingen.de/wiki/index.php/Main_Page",
-      "linkOut":"http://www.subtiwiki.uni-goettingen.de/wiki/index.php/$id",
-      "example":"BSU29180",
-      "dataNodeType":"gene",
-      "species":"Bacillus subtilis",
-      "priority":1,
-      "unknown":"urn:miriam:subtiwiki",
-      "regex":"^BSU\d{5}$",
-      "fullName":"SubtiWiki"
-   },
-   {
-      "database":"SUPFAM",
-      "id":"Sf",
-      "homePage":"http://supfam.org/SUPERFAMILY/",
-      "linkOut":"http://supfam.org/SUPERFAMILY/cgi-bin/scop.cgi?ipid=$id",
-      "example":"SSF57615",
-      "dataNodeType":"protein",
-      "species":"",
-      "priority":1,
-      "unknown":"urn:miriam:supfam",
-      "regex":"^\w+$",
-      "fullName":"SUPFAM"
-   },
-   {
-      "database":"SWISS-MODEL",
-      "id":"Sw",
-      "homePage":"http://swissmodel.expasy.org/",
-      "linkOut":"http://swissmodel.expasy.org/repository/smr.php?sptr_ac=$id",
-      "example":"P23298",
-      "dataNodeType":"protein",
-      "species":"",
-      "priority":1,
-      "unknown":"urn:miriam:swiss-model",
-      "regex":"^\w+$",
-      "fullName":"SWISS-MODEL"
-   },
-   {
-      "database":"Systems Biology Ontology",
-      "id":"Sbo",
-      "homePage":"http://www.ebi.ac.uk/sbo/",
-      "linkOut":"http://www.ebi.ac.uk/sbo/main/$id",
-      "example":"SBO:0000262",
-      "dataNodeType":"ontology",
-      "species":"",
-      "priority":1,
-      "unknown":"urn:miriam:biomodels.sbo",
-      "regex":"^SBO:\d{7}$",
-      "fullName":"Systems Biology Ontology"
-   },
-   {
-      "database":"TAIR",
-      "id":"A",
-      "homePage":"http://arabidopsis.org/index.jsp",
-      "linkOut":"http://arabidopsis.org/servlets/TairObject?type=locus&name=$id",
-      "example":"AT1G01030",
-      "dataNodeType":"gene",
-      "species":"",
-      "priority":1,
-      "unknown":"urn:miriam:tair.locus",
-      "regex":"^AT[1-5]G\d{5}$",
-      "fullName":"TAIR Locus"
-   },
-   {
-      "database":"TIGR",
-      "id":"Ti",
-      "homePage":"http://www.jcvi.org/",
-      "linkOut":"",
-      "example":"12012.t00308",
-      "dataNodeType":"gene",
-      "species":"",
-      "priority":1,
-      "unknown":"Ti",
-      "regex":"",
-      "fullName":"TIGR"
-   },
-   {
-      "database":"TTD Drug",
-      "id":"Td",
-      "homePage":"http://bidd.nus.edu.sg/group/cjttd/TTD_HOME.asp",
-      "linkOut":"http://bidd.nus.edu.sg/group/cjttd/ZFTTDDRUG.asp?ID=$id",
-      "example":"DAP000773",
-      "dataNodeType":"metabolite",
-      "species":"",
-      "priority":1,
-      "unknown":"urn:miriam:ttd.drug",
-      "regex":"^DAP\d+$",
-      "fullName":"TTD Drug"
-   },
-   {
-      "database":"TTD Target",
-      "id":"Tt",
-      "homePage":"http://bidd.nus.edu.sg/group/cjttd/TTD_HOME.asp",
-      "linkOut":"http://bidd.nus.edu.sg/group/cjttd/ZFTTDDetail.asp?ID=$id",
-      "example":"TTDS00056",
-      "dataNodeType":"protein",
-      "species":"",
-      "priority":1,
-      "unknown":"urn:miriam:ttd.target",
-      "regex":"^TTDS\d+$",
-      "fullName":"TTD Target"
-   },
-   {
-      "database":"TubercuList",
-      "id":"Tb",
-      "homePage":"http://tuberculist.epfl.ch",
-      "linkOut":"http://tuberculist.epfl.ch/quicksearch.php?gene+name=$id",
-      "example":"Rv0064",
-      "dataNodeType":"gene",
-      "species":"Mycobacterium tuberculosis",
-      "priority":1,
-      "unknown":"Tb",
-      "regex":"Rv\d{4}(A|B|c|\.\d)?",
-      "fullName":"TubercuList"
-   },
-   {
-      "database":"UCSC Genome Browser",
-      "id":"Uc",
-      "homePage":"http://genome.ucsc.edu/",
-      "linkOut":"http://genome.ucsc.edu/cgi-bin/hgTracks?position=$id",
-      "example":"uc001tyh.1",
-      "dataNodeType":"gene",
-      "species":"",
-      "priority":1,
-      "unknown":"Uc",
-      "regex":"uc\d{3}[a-z]{3}\.\d",
-      "fullName":"UCSC Genome Browser"
-   },
-   {
-      "database":"UniGene",
-      "id":"U",
-      "homePage":"http://www.ncbi.nlm.nih.gov/sites/entrez?db=unigene",
-      "linkOut":"http://www.ncbi.nlm.nih.gov/UniGene/clust.cgi?UGID=1548618&SEARCH=$id",
-      "example":"Hs.553708",
-      "dataNodeType":"gene",
-      "species":"",
-      "priority":1,
-      "unknown":"U",
-      "regex":"[A-Z][a-z][a-z]?\.\d+",
-      "fullName":"UniGene"
-   },
-   {
-      "database":"Unipathway",
-      "id":"Up",
-      "homePage":"http://www.grenoble.prabi.fr/obiwarehouse/unipathway",
-      "linkOut":"http://www.grenoble.prabi.fr/obiwarehouse/unipathway/upa?upid=$id",
-      "example":"UPA00206",
-      "dataNodeType":"pathway",
-      "species":"",
-      "priority":1,
-      "unknown":"urn:miriam:unipathway",
-      "regex":"^UPA\d{5}$",
-      "fullName":"Unipathway"
-   },
-   {
-      "database":"Uniprot-TrEMBL",
-      "id":"S",
-      "homePage":"http://www.uniprot.org/",
-      "linkOut":"http://www.uniprot.org/uniprot/$id",
-      "example":"P62158",
-      "dataNodeType":"protein",
-      "species":"",
-      "priority":1,
-      "unknown":"urn:miriam:uniprot",
-      "regex":"^([A-N,R-Z][0-9][A-Z][A-Z, 0-9][A-Z, 0-9][0-9])|([O,P,Q][0-9][A-Z, 0-9][A-Z, 0-9][A-Z, 0-9][0-9])|($",
-      "fullName":"UniProtKB/TrEMBL"
-   },
-   {
-      "database":"Uniprot-SwissProt",
-      "id":"Sp",
-      "homePage":"http://www.uniprot.org/",
-      "linkOut":"http://www.uniprot.org/uniprot/$id",
-      "example":"CALM_HUMAN",
-      "dataNodeType":"protein",
-      "species":"",
-      "priority":1,
-      "unknown":"Sp",
-      "regex":"^[A-Z0-9]+_[A-Z]+$",
-      "fullName":"UniProtKB/Swiss-Prot"
-   },
-   {
-      "database":"Wheat gene names",
-      "id":"Wn",
-      "homePage":"http://wheat.pw.usda.gov/",
-      "linkOut":"http://wheat.pw.usda.gov/report?class=gene;name=$id",
-      "example":"5S-Rrna-D1_(Triticum)",
-      "dataNodeType":"gene",
-      "species":"Triticum aestivum",
-      "priority":1,
-      "unknown":"Wn",
-      "regex":"",
-      "fullName":"Wheat gene names"
-   },
-   {
-      "database":"Wheat gene refs",
-      "id":"Wr",
-      "homePage":"http://wheat.pw.usda.gov/",
-      "linkOut":"http://wheat.pw.usda.gov/cgi-bin/graingenes/report.cgi?class=reference&name=$id",
-      "example":"WGS-95-1333",
-      "dataNodeType":"probe",
-      "species":"Triticum aestivum",
-      "priority":0,
-      "unknown":"Wr",
-      "regex":"",
-      "fullName":"Wheat gene refs"
-   },
-   {
-      "database":"WikiGenes",
-      "id":"Wg",
-      "homePage":"http://www.wikigenes.org/",
-      "linkOut":"http://www.wikigenes.org/e/gene/e/$id.html",
-      "example":"7157",
-      "dataNodeType":"gene",
-      "species":"",
-      "priority":0,
-      "unknown":"Wg",
-      "regex":"",
-      "fullName":"WikiGenes"
-   },
-   {
-      "database":"WikiPathways",
-      "id":"Wp",
-      "homePage":"http://www.wikipathways.org/",
-      "linkOut":"http://www.wikipathways.org/index.php/Pathway:$id",
-      "example":"WP100",
-      "dataNodeType":"pathway",
-      "species":"",
-      "priority":1,
-      "unknown":"urn:miriam:wikipathways",
-      "regex":"WP\d{1,5}",
-      "fullName":"WikiPathways"
-   },
-   {
-      "database":"Wikipedia",
-      "id":"Wi",
-      "homePage":"http://www.wikipedia.org",
-      "linkOut":"http://en.wikipedia.org/wiki/$id",
-      "example":"Acetate",
-      "dataNodeType":"metabolite",
-      "species":"",
-      "priority":0,
-      "unknown":"Wi",
-      "regex":"",
-      "fullName":"Wikipedia"
-   },
-   {
-      "database":"WormBase",
-      "id":"W",
-      "homePage":"http://www.wormbase.org/",
-      "linkOut":"http://www.wormbase.org/db/gene/gene?name=$id;class=Gene",
-      "example":"WBGene00000001",
-      "dataNodeType":"gene",
-      "species":"Caenorhabditis elegans",
-      "priority":1,
-      "unknown":"urn:miriam:wormbase",
-      "regex":"^WBGene\d{8}$",
-      "fullName":"WormBase"
-   },
-   {
-      "database":"ZFIN",
-      "id":"Z",
-      "homePage":"http://zfin.org",
-      "linkOut":"http://zfin.org/action/marker/view/$id",
-      "example":"ZDB-GENE-041118-11",
-      "dataNodeType":"gene",
-      "species":"Danio rerio",
-      "priority":1,
-      "unknown":"urn:miriam:zfin",
-      "regex":"ZDB\-GENE\-\d+\-\d+",
-      "fullName":"ZFIN Gene"
-   }
-];
-;
-
 pathvisiojs.data.biopax = function(){
+  'use strict';
 
   // TODO get ontology terms and other data
 
@@ -2256,6 +578,7 @@ pathvisiojs.data.biopax = function(){
 ;
 
 pathvisiojs.data.pathvisiojsJson = function(){
+  'use strict';
 
   // For now, pathvisio.js will attempt to convert any input data, as long as it is of type
   // GPML or has no type specified, into JSON.
@@ -2305,8 +628,8 @@ pathvisiojs.data.pathvisiojsJson = function(){
 
 ;
 
-"use strict";
 pathvisiojs.data.gpml = function(){
+  'use strict';
 
   var pathvisioDefaultStyleValues = {
     'FontSize':{
@@ -2465,8 +788,8 @@ pathvisiojs.data.gpml = function(){
     // for doing this in Java, we could look at 
     // https://code.google.com/p/json-io/
 
-    console.log('GPML');
-    console.log(gpml);
+    //console.log('GPML');
+    //console.log(gpml);
 
     var pathway = {};
     pathway.xmlns = gpmlPathway.attr('xmlns');
@@ -2911,8 +1234,6 @@ pathvisiojs.data.gpml = function(){
                 pathway.elements.sort(function(a, b) {
                   return a.zIndex - b.zIndex;
                 });
-
-                console.log('pathwayNestedByGrouping');
                 callbackInside(null, pathway);
               },
               function(pathway, callbackInside){
@@ -2923,9 +1244,6 @@ pathvisiojs.data.gpml = function(){
                 pathway.pathwayNestedByGrouping = d3.nest()
                 .key(function(d) { return d.isContainedBy; })
                 .entries(pathway.elements);
-
-                console.log('pathwayNestedByGrouping');
-                console.log(pathway.pathwayNestedByGrouping);
                 callbackInside(null, pathway);
               },
               function(pathway, callbackInside){
@@ -3039,7 +1357,7 @@ pathvisiojs.data.gpml = function(){
 pathvisiojs.data.gpml.node = pathvisiojs.data.gpml.node || {};
 ;
 
-"use strict";
+'use strict';
 
 // includes all GPML elements. Is parent of node and edge.
 
@@ -3239,8 +1557,8 @@ pathvisiojs.data.gpml.element.toRenderableJson = function(gpmlElement, jsonEleme
 };
 ;
 
-"use strict";
 pathvisiojs.data.gpml.text = function() {
+  'use strict';
 
   var pathvisioDefaultStyleValues = {
     'text':{
@@ -3325,8 +1643,8 @@ pathvisiojs.data.gpml.namespaces = [
 ]
 ;
 
-"use strict";
 pathvisiojs.data.gpml.biopaxRef = function(){
+  'use strict';
 
   function getAllAsRenderableJson(gpmlElement, callback) {
     var publicationXrefs, jsonPublicationXref, tagName = gpmlElement[0][0].tagName;
@@ -3350,7 +1668,7 @@ pathvisiojs.data.gpml.biopaxRef = function(){
 }();
 ;
 
-"use strict";
+'use strict';
 
 // includes GPML elements of type EntityNode and Group
 
@@ -3608,8 +1926,8 @@ pathvisiojs.data.gpml.element.node.getPortCoordinates = function(boxDimensions, 
 }
 ;
 
-"use strict";
 pathvisiojs.data.gpml.element.node.groupNode = function() {
+  'use strict';
 
   var groupTypeToShapeTypeMappings = {
     'Complex':'complex',
@@ -3743,8 +2061,6 @@ pathvisiojs.data.gpml.element.node.groupNode = function() {
 
 ;
 
-"use strict";
-
 // includes GPML elements of type Shape, Label and DataNode
 
 pathvisiojs.data.gpml.element.node.entityNode = Object.create(pathvisiojs.data.gpml.element.node);
@@ -3757,6 +2073,7 @@ pathvisiojs.data.gpml.element.node.entityNode.setJsonRotationValue = function(js
 }
 
 pathvisiojs.data.gpml.element.node.entityNode.toRenderableJson = function(gpmlEntityNode, jsonEntityNode, pathvisioDefaultStyleValues, pathwayIri, EntityNodeCallback) {
+  'use strict';
   var graphId = gpmlEntityNode.attr('GraphId') || ('id' + uuid.v4());
   jsonEntityNode["@id"] = 'pathwayIri:' + graphId;
   jsonEntityNode.GraphId = graphId;
@@ -3831,8 +2148,7 @@ pathvisiojs.data.gpml.element.node.entityNode.toRenderableJson = function(gpmlEn
 }
 ;
 
-"use strict";
-
+// TODO I don't know why these two elements below are here.
 pathvisiojs.data.gpml.element.node.entityNode.dataNode = Object.create(pathvisiojs.data.gpml.element.node.entityNode);
 
 var pathvisioDefaultStyleValues = {
@@ -3873,6 +2189,7 @@ var pathvisioDefaultStyleValues = {
 }
 
 pathvisiojs.data.gpml.element.node.entityNode.dataNode.toRenderableJson = function(gpmlDataNode, pathwayIri, callbackInside) {
+  'use strict';
   var jsonDataNode = {};
   var dataNodeType = gpmlDataNode.attr('Type');
   if (!dataNodeType) {
@@ -3917,8 +2234,6 @@ pathvisiojs.data.gpml.element.node.entityNode.dataNode.toRenderableJson = functi
 }
 ;
 
-"use strict";
-
 pathvisiojs.data.gpml.element.node.entityNode.label = Object.create(pathvisiojs.data.gpml.element.node.entityNode);
 
 pathvisiojs.data.gpml.element.node.entityNode.label.Rotation = null;
@@ -3928,6 +2243,7 @@ pathvisiojs.data.gpml.element.node.entityNode.label.FontSize = 10;
 pathvisiojs.data.gpml.element.node.entityNode.label.FontWeight = null;
 
 pathvisiojs.data.gpml.element.node.entityNode.label.toRenderableJson = function(gpmlLabel, pathwayIri, callback) {
+  'use strict';
   /*
   console.log('gpmlLabel');
   console.log(gpmlLabel[0][0]);
@@ -3964,8 +2280,8 @@ pathvisiojs.data.gpml.element.node.entityNode.label.toRenderableJson = function(
 }
 ;
 
-"use strict";
 pathvisiojs.data.gpml.element.node.entityNode.shape = function(){
+  'use strict';
 
   var pathvisioDefaultStyleValues = {
     'Shape':{
@@ -4078,9 +2394,8 @@ pathvisiojs.data.gpml.element.node.entityNode.shape = function(){
 
 ;
 
-"use strict"
-
 pathvisiojs.data.gpml.node.anchor = function() {
+  'use strict';
 
   // anchors
   // an anchor is an attachment point at which an edge can originate or terminate.
@@ -4196,8 +2511,8 @@ pathvisiojs.data.gpml.node.anchor = function() {
 }();
 ;
 
-"use strict";
 pathvisiojs.data.gpml.edge = function(){
+  'use strict';
 
   var strokeStyleMappings = {
     'Broken': 'dashed'
@@ -4386,8 +2701,8 @@ toRenderableJson:toRenderableJson
 }();
 ;
 
-"use strict";
 pathvisiojs.data.gpml.edge.interaction = function(){
+  'use strict';
 
   //*
   //var jsonPathway = {};
@@ -4674,8 +2989,8 @@ return {
 }();
 ;
 
-"use strict";
 pathvisiojs.data.gpml.edge.graphicalLine = function(){
+  'use strict';
 
   //*
   //var jsonPathway = {};
@@ -4810,6 +3125,7 @@ pathvisiojs.data.gpml.edge.graphicalLine = function(){
 ;
 
 pathvisiojs.data.gpml.edge.point = function(){
+  'use strict';
 
   var gpmlRelXToJsonSideAndPositionMapping = { 
     '-1.0': {'side': 'left'},
@@ -4872,6 +3188,7 @@ pathvisiojs.view = pathvisiojs.view || {};
 ;
 
 pathvisiojs.view.annotation = function(){
+  'use strict';
   function render(annotationData) {
     self.annotationData = annotationData;
     var annotation = d3.select("#annotation")
@@ -5017,6 +3334,7 @@ pathvisiojs.view.annotation = function(){
 ;
 
 pathvisiojs.view.annotation.citation = function(){
+  'use strict';
     function render(organism, node) {
     }
 
@@ -5027,6 +3345,7 @@ pathvisiojs.view.annotation.citation = function(){
 ;
 
 pathvisiojs.view.annotation.xRef = function(){
+  'use strict';
   var cachedAnnotationData = {};
 
   function render(organism, id, datasource, label, desc) {
@@ -5044,7 +3363,7 @@ pathvisiojs.view.annotation.xRef = function(){
       };
       pathvisiojs.view.annotation.render(data);
 
-      console.log(pathvisiojs.config.bridgedbLinkOutsUriStub);
+      //console.log(pathvisiojs.config.bridgedbLinkOutsUriStub);
       //then retrieve the bridgedb data
       var xRefData = pathvisiojs.data.bridgedb.getXrefAnnotationDataByDataNode(organism, id, datasource, label, desc, function(annotationData) {
         setCachedAnnotationData(organism, label, id, datasource, annotationData);
@@ -5067,9 +3386,9 @@ pathvisiojs.view.annotation.xRef = function(){
 }();
 ;
 
-"use strict";
-
 pathvisiojs.view.pathwayDiagram = function(){
+  'use strict';
+
   // currently just using Gecko (Firefox) list of supported image formats for the HTML img tag:
   // https://developer.mozilla.org/en-US/docs/Web/HTML/Element/Img
   // TODO decide what to do if the user specifies an SVG image as a dataSource element
@@ -5148,7 +3467,8 @@ pathvisiojs.view.pathwayDiagram = function(){
     // The IE9 detection is a temporary hack. It is used because IE9 cannot currently convert GPML to pathvisiojsJson,
     // so it cannot display the resulting SVG.
     // TODO get gpml to pathvisiojsJson conversion working with IE9
-    if (Modernizr.inlinesvg && (pathvisiojs.utilities.isIE() !== 9)) {
+    if (Modernizr.inlinesvg && (!pathvisiojs.utilities.isIE())) {
+    //if (Modernizr.inlinesvg && (pathvisiojs.utilities.isIE() !== 9)) {
       supportedViewMethods.push('svg');
     }
     
@@ -5278,7 +3598,7 @@ pathvisiojs.view.pathwayDiagram = function(){
         // TODO refactor tests so they don't need this hack.
         d3.select('body').append('span')
         .attr('id', 'pathvisiojs-is-loaded');
-        console.log('Pathvisiojs done loading.');
+        //console.log('Pathvisiojs done loading.');
         callback(null);
       }
     ]);
@@ -5292,9 +3612,8 @@ pathvisiojs.view.pathwayDiagram = function(){
      
 ;
 
-"use strict";
-
 pathvisiojs.view.pathwayDiagram.svg = function(){
+  'use strict';
 
   var svg, shapesAvailable, markersAvailable, contextLevelInput,
     renderableTypeToSvgElementMappings = {
@@ -5808,8 +4127,8 @@ else if (dataElement.renderableType === 'Interaction') {
 }();
 ;
 
-"use strict";
 pathvisiojs.view.pathwayDiagram.svg.infoBox = function(){
+  'use strict';
     
   function render(viewport, pathway) {
     if (!viewport || !pathway) {
@@ -5878,10 +4197,13 @@ pathvisiojs.view.pathwayDiagram.svg.infoBox = function(){
 // but SVG Symbols are never visible on their own.
 // See also: ./node/use-element.js
 
-// a hack because I don't know how to pass the svg variable to the function appendCustom() when it's part of async.each().
-var svg;
 
 pathvisiojs.view.pathwayDiagram.svg.symbol = function(){
+  'use strict';
+
+  // a hack because I don't know how to pass the svg variable to the function appendCustom() when it's part of async.each().
+  // TODO refactor
+  var svg;
 
   var semanticNameToIdMapping = { 
     'datanode':'shape-library-symbols-rectangle-svg',
@@ -5967,9 +4289,8 @@ pathvisiojs.view.pathwayDiagram.svg.symbol = function(){
 }();
 ;
 
-"use strict"
-
 pathvisiojs.view.pathwayDiagram.svg.publicationXref = function(){
+  'use strict';
 
   function getReferenceNumberForDisplay(pathway, rdfId) {
     var displayNumberForDisplay = null;
@@ -6107,8 +4428,8 @@ pathvisiojs.view.pathwayDiagram.svg.publicationXref = function(){
 }();
 ;
 
-"use strict";
 pathvisiojs.view.pathwayDiagram.svg.node = function(){
+  'use strict';
   function dragmove(d) {
     /*
     console.log(d3.event.x);
@@ -6322,9 +4643,8 @@ pathvisiojs.view.pathwayDiagram.svg.node = function(){
 }();
 ;
 
-"use strict"
-
 pathvisiojs.view.pathwayDiagram.svg.node.anchor = function(){
+  'use strict';
 
   function render(container, parentEdgeId, data) {
     // renders all anchors for a given edge
@@ -6446,8 +4766,8 @@ pathvisiojs.view.pathwayDiagram.svg.node.anchor = function(){
 }();
 ;
 
-"use strict";
 pathvisiojs.view.pathwayDiagram.svg.node.EntityNode = function(){
+  'use strict';
   function render(args) {
     if (!args.data) {
       throw new Error('EntityNode data missing.');
@@ -6506,6 +4826,8 @@ pathvisiojs.view.pathwayDiagram.svg.node.EntityNode = function(){
 ;
 
 pathvisiojs.view.pathwayDiagram.svg.node.pathShape = function(){
+  'use strict';
+
   function render(parent, data) {
     var re;
     var pathShapeNameToUse = strcase.camelCase(data.ShapeType);
@@ -6648,6 +4970,7 @@ pathvisiojs.view.pathwayDiagram.svg.node.pathShape = function(){
 ;
 
 pathvisiojs.view.pathwayDiagram.svg.node.pathShape.arc = function(){
+  'use strict';
 
   function getAttributes(nodeWidth, nodeHeight, borderWidth) {
       var attributes = [
@@ -6667,6 +4990,7 @@ pathvisiojs.view.pathwayDiagram.svg.node.pathShape.arc = function(){
 ;
 
 pathvisiojs.view.pathwayDiagram.svg.node.pathShape.brace = function(){
+  'use strict';
 
   function getAttributes(nodeWidth, nodeHeight, borderWidth) {
       var attributes = [
@@ -6686,6 +5010,7 @@ pathvisiojs.view.pathwayDiagram.svg.node.pathShape.brace = function(){
 ;
 
 pathvisiojs.view.pathwayDiagram.svg.node.pathShape.complex = function(){
+  'use strict';
 
   function getAttributes(nodeWidth, nodeHeight) {
       var attributes = [
@@ -6712,6 +5037,7 @@ pathvisiojs.view.pathwayDiagram.svg.node.pathShape.complex = function(){
 ;
 
 pathvisiojs.view.pathwayDiagram.svg.node.pathShape.endoplasmicReticulum = function(){
+  'use strict';
 
   function getAttributes(nodeWidth, nodeHeight, borderWidth) {
       var attributes = [
@@ -6731,6 +5057,7 @@ pathvisiojs.view.pathwayDiagram.svg.node.pathShape.endoplasmicReticulum = functi
 ;
 
 pathvisiojs.view.pathwayDiagram.svg.node.pathShape.golgiApparatus = function(){
+  'use strict';
 
   function getAttributes(nodeWidth, nodeHeight, borderWidth) {
       var attributes = [
@@ -6758,6 +5085,7 @@ pathvisiojs.view.pathwayDiagram.svg.node.pathShape.golgiApparatus = function(){
 ;
 
 pathvisiojs.view.pathwayDiagram.svg.node.pathShape.gridSquare = function(){
+  'use strict';
 
   function getAttributes(nodeWidth, nodeHeight, borderWidth) {
       var attributes = [
@@ -6777,6 +5105,7 @@ pathvisiojs.view.pathwayDiagram.svg.node.pathShape.gridSquare = function(){
 ;
 
 pathvisiojs.view.pathwayDiagram.svg.node.pathShape.hexagon = function(){
+  'use strict';
 
   function getAttributes(nodeWidth, nodeHeight, borderWidth) {
       var attributes = [
@@ -6796,6 +5125,7 @@ pathvisiojs.view.pathwayDiagram.svg.node.pathShape.hexagon = function(){
 ;
 
 pathvisiojs.view.pathwayDiagram.svg.node.pathShape.mimDegradation = function(){
+  'use strict';
 
   function getAttributes(nodeWidth, nodeHeight, borderWidth) {
       var attributes = [
@@ -6819,6 +5149,7 @@ pathvisiojs.view.pathwayDiagram.svg.node.pathShape.mimDegradation = function(){
 ;
 
 pathvisiojs.view.pathwayDiagram.svg.node.pathShape.mitochondria = function(){
+  'use strict';
 
   function getAttributes(nodeWidth, nodeHeight, borderWidth) {
       var attributes = [
@@ -6842,6 +5173,7 @@ pathvisiojs.view.pathwayDiagram.svg.node.pathShape.mitochondria = function(){
 ;
 
 pathvisiojs.view.pathwayDiagram.svg.node.pathShape.none = function(){
+  'use strict';
 
   function getAttributes(nodeWidth, nodeHeight, borderWidth) {
       var attributes = [
@@ -6860,6 +5192,7 @@ pathvisiojs.view.pathwayDiagram.svg.node.pathShape.none = function(){
 ;
 
 pathvisiojs.view.pathwayDiagram.svg.node.pathShape.oval = function(){
+  'use strict';
 
   function getAttributes(nodeWidth, nodeHeight, borderWidth) {
       var attributes = [
@@ -6879,6 +5212,7 @@ pathvisiojs.view.pathwayDiagram.svg.node.pathShape.oval = function(){
 ;
 
 pathvisiojs.view.pathwayDiagram.svg.node.pathShape.ovalDouble = function(){
+  'use strict';
 
   function getAttributes(nodeWidth, nodeHeight) {
       var attributes = [
@@ -6903,6 +5237,7 @@ pathvisiojs.view.pathwayDiagram.svg.node.pathShape.ovalDouble = function(){
 ;
 
 pathvisiojs.view.pathwayDiagram.svg.node.pathShape.pentagon = function(){
+  'use strict';
 
   function getAttributes(nodeWidth, nodeHeight, borderWidth) {
       var attributes = [
@@ -6921,6 +5256,7 @@ pathvisiojs.view.pathwayDiagram.svg.node.pathShape.pentagon = function(){
 ;
 
 pathvisiojs.view.pathwayDiagram.svg.node.pathShape.rectangle = function(){
+  'use strict';
 
   function getAttributes(nodeWidth, nodeHeight, borderWidth) {
       var attributes = [
@@ -6939,6 +5275,7 @@ pathvisiojs.view.pathwayDiagram.svg.node.pathShape.rectangle = function(){
 ;
 
 pathvisiojs.view.pathwayDiagram.svg.node.pathShape.roundedRectangle = function(){
+  'use strict';
 
   function getAttributes(nodeWidth, nodeHeight, borderWidth) {
       var attributes = [
@@ -6965,37 +5302,37 @@ pathvisiojs.view.pathwayDiagram.svg.node.pathShape.roundedRectangle = function()
 ;
 
 pathvisiojs.view.pathwayDiagram.svg.node.pathShape.roundedRectangleDouble = function(){
+  'use strict';
 
   function getAttributes(nodeWidth, nodeHeight) {
-      var attributes = [
-          {
-	  name:'d',
-          path:
-                'm6,13c0,-3.80365 3.19635,-7 7,-7l'
-                + (nodeWidth - 26)
-                + ',0c3.80365,0 7,3.19635 7,7l0,'
-                + (nodeHeight - 26)
-                + 'c0,3.80365 -3.19635,7 -7,7l'
-                + (26 - nodeWidth)
-                + ',0c-3.80365,0 -7,-3.19635 -7,-7l0,'
-                + (26 - nodeHeight)
-                + 'z'
-        },
-
-        {
-	  name:'d',
-          path: 'm0,10c0,-5.43379 4.56621,-10 10,-10l'
-                + (nodeWidth - 20)
-                + ',0c5.43379,0 10,4.56621 10,10l0,'
-                + (nodeHeight - 20)
-                + 'c0,5.43379 -4.56621,10 -10,10l'
-                + (20 - nodeWidth)
-                + ',0c-5.43379,0 -10,-4.56621 -10,-10l0,'
-                + (20 - nodeHeight)
-                + 'z'
-        }
-      ];
-      return attributes;
+    var attributes = [
+      {
+        name:'d',
+        path:
+          'm6,13c0,-3.80365 3.19635,-7 7,-7l'
+        + (nodeWidth - 26)
+        + ',0c3.80365,0 7,3.19635 7,7l0,'
+        + (nodeHeight - 26)
+        + 'c0,3.80365 -3.19635,7 -7,7l'
+        + (26 - nodeWidth)
+        + ',0c-3.80365,0 -7,-3.19635 -7,-7l0,'
+        + (26 - nodeHeight)
+        + 'z'
+      },
+      {
+        name:'d',
+        path: 'm0,10c0,-5.43379 4.56621,-10 10,-10l'
+        + (nodeWidth - 20)
+        + ',0c5.43379,0 10,4.56621 10,10l0,'
+        + (nodeHeight - 20)
+        + 'c0,5.43379 -4.56621,10 -10,10l'
+        + (20 - nodeWidth)
+        + ',0c-5.43379,0 -10,-4.56621 -10,-10l0,'
+        + (20 - nodeHeight)
+        + 'z'
+      }
+    ];
+    return attributes;
   }
 
   return {
@@ -7005,6 +5342,7 @@ pathvisiojs.view.pathwayDiagram.svg.node.pathShape.roundedRectangleDouble = func
 ;
 
 pathvisiojs.view.pathwayDiagram.svg.node.pathShape.sarcoplasmicReticulum = function(){
+  'use strict';
 
   function getAttributes(nodeWidth, nodeHeight, borderWidth) {
       var attributes = [
@@ -7024,6 +5362,7 @@ pathvisiojs.view.pathwayDiagram.svg.node.pathShape.sarcoplasmicReticulum = funct
 ;
 
 pathvisiojs.view.pathwayDiagram.svg.node.pathShape.triangle = function(){
+  'use strict';
 
   function getAttributes(nodeWidth, nodeHeight, borderWidth) {
       var attributes = [
@@ -7041,8 +5380,8 @@ pathvisiojs.view.pathwayDiagram.svg.node.pathShape.triangle = function(){
 }();
 ;
 
-"use strict";
 pathvisiojs.view.pathwayDiagram.svg.node.text = function(){
+  'use strict';
 
   // for more details, see 
   // http://www.w3.org/TR/SVG11/text.html#TextAnchorProperty
@@ -7167,6 +5506,7 @@ pathvisiojs.view.pathwayDiagram.svg.node.text = function(){
 ;
 
 pathvisiojs.view.pathwayDiagram.svg.node.groupNode = function(){
+  'use strict';
   function render(args, callback) {
     if (!args.container) {
       throw new Error('Error: container element not specified for rendering groupNode.');
@@ -7192,19 +5532,21 @@ pathvisiojs.view.pathwayDiagram.svg.node.groupNode = function(){
 }();
 ;
 
-"use strict"
-
 pathvisiojs.view.pathwayDiagram.svg.node.useElement = function(){
+  'use strict';
   
   var pathwayHere, allSymbolNamesHere;
 
   function dragmove(d) {
+    /*
     console.log(d3.event.x);
     console.log('d');
     console.log(d);
     console.log(d.id);
     console.log('this');
     console.log(this);
+    //*/
+
     // don't have anchors rendered yet
     /*
     var changingAnchors = pathwayHere.elements.filter(function(element) {return element.parentId === d.id});
@@ -7372,11 +5714,10 @@ pathvisiojs.view.pathwayDiagram.svg.node.useElement = function(){
 }();
 ;
 
-"use strict";
-
 // Edges (interactions and graphical lines)
 
 pathvisiojs.view.pathwayDiagram.svg.edge = function(){
+  'use strict';
 
   function getPointAtPositionById(edgeElementId, position) {
     // position refers to percentage of total length along
@@ -7755,8 +6096,8 @@ pathvisiojs.view.pathwayDiagram.svg.edge = function(){
   
 ;
 
-"use strict";
 pathvisiojs.view.pathwayDiagram.svg.edge.graphicalLine = function(){
+  'use strict';
   //function render(svg, container, data) {
   function render(args) {
     var svg = args.svg;
@@ -7906,8 +6247,8 @@ pathvisiojs.view.pathwayDiagram.svg.edge.graphicalLine = function(){
   
 ;
 
-"use strict";
 pathvisiojs.view.pathwayDiagram.svg.edge.interaction = function(){
+  'use strict';
   function getMarkerNameFromInteractionGraph(InteractionGraph) {
     var interactionType;
     if (!InteractionGraph) {
@@ -8102,8 +6443,8 @@ pathvisiojs.view.pathwayDiagram.svg.edge.interaction = function(){
   
 ;
 
-"use strict"
 pathvisiojs.view.pathwayDiagram.svg.edge.marker = function(){
+  'use strict';
 
   // the way SVG works makes this code more complex than it should need to be. Essentially, we
   // are trying to reuse the markers defined in the SVG template, but we also need to be able
@@ -8350,7 +6691,6 @@ pathvisiojs.view.pathwayDiagram.svg.edge.marker = function(){
 
     var defaultMarker, refX, refY, viewBox, viewBoxElements;
     if (position === 'end') {
-      console.log('end');
       defaultMarker = d3.select('#' + markerIdStub + '-'+position+'-default');
       refX = parseFloat(defaultMarker.attr('refX'));
       refY = parseFloat(defaultMarker.attr('refY'));
@@ -8393,6 +6733,7 @@ pathvisiojs.view.pathwayDiagram.svg.edge.marker = function(){
 ;
 
 pathvisiojs.view.pathwayDiagram.svg.edge.point = function(){
+  'use strict';
 
   var anchorPositionMappings = { "-1":0, "-0.5":0.333, "0":0.5, "0.5":0.667, "1":1 };
 
@@ -8512,219 +6853,222 @@ pathvisiojs.view.pathwayDiagram.svg.edge.point = function(){
 ;
 
 pathvisiojs.view.pathwayDiagram.svg.edge.path = function(){	
-    function getPath(edge) {
-	var path;
-	var type = edge.ConnectorType;
-	
-	if (type == 'Straight'){
-          if (edge.Point.length == 2) {
-            return svgLine(edge.Point);
-          }
-          else {
-            console.log("Too many points for a straight line!");
-            return null;
-          }
-	}
+  'use strict';
 
-	else if (type == 'Segmented') {
-	    return svgLine(edge.Point);
-	}
+  function getPath(edge) {
+    var path;
+    var type = edge.ConnectorType;
 
-	else if (type == 'Elbow'){
-	    return svgLine(calcPathpoints(edge.Point));
-	}
-
-	else if (type == 'Curved'){
-	    return svgCurve(calcPathpoints(edge.Point));
-	}
-	
-	else {
-	    console.log("Unknown connector type: " + type);
-	    return null;
-	}
-    }
-
-    function calcPathpoints(p){
-	//check to see if all waypoints are provided
-	if (p.length == 2) {
-	  p = calcAllWaypoints(p);
-	}
-
-	var ppts = [];
-
-	//first path point is start
-	ppts[0] = p[0];
-
-	//intermediate path points
-	var axis = getAxis(p[0]); //TODO: account for starting on an anchor..
-	var i;
-	for (i=1; i<p.length; i++){ 
-	  var dy = p[i].y - p[i-1].y;
-	  var dx = p[i].x - p[i-1].x;
-	  
-	  if (axis == 1){ //Vertical
-	  	ppts[i] = {x:p[i-1].x,y:p[i-1].y+dy};
-	  } else { //Horizontal
-		ppts[i] = {x:p[i-1].x+dx,y:p[i-1].y};
-	  }
-	  axis = (axis+1)%2;  //toggle 1|0
-	}
-
-	// final path point is end
-	ppts[p.length] = p[p.length-1];
-
-        return ppts; 
-    }
-
-    function calcAllWaypoints(p) {
-        var wptCount = getNumWaypoints(p);
-	var offset = 20;
-	var start = p[0];
-	var end = p[1];
-
-	var wpts = [];
-	
-	// first waypoint is start
-	wpts[0] = start;
-
-	// calc new waypoints	
-	if (wptCount == 0) {
-		//done!
-	}
-	else if (wptCount == 1) {
-		wpts[1] = calcWaypoint(start, end, getAxis(start), getDir(end));
-	} else if (wptCount == 2){
-		wpts[1] = calcWaypoint(start, {x:(end.x + offset * getDir(end)), y:(end.y + offset * getDir(end))}, getAxis(start), getDir(start));
-		wpts[2] = calcWaypoint(end, wpts[1], getAxis(end), getDir(end));
-	} else if (wptCount == 3){
-		wpts[2] = {x:(start.x + (end.x - start.x)/2), y:(start.y + (end.y - start.y)/2)};
-		wpts[1] = calcWaypoint(start, wpts[2], getAxis(start), getDir(start));
-	 	wpts[3] = calcWaypoint(end, wpts[2], getAxis(end), getDir(end));
-	} else {
-		console.log("Too many waypoint estimated!!!");
-	}
-
-	// final waypoint is end
-	wpts[wptCount+1] = end;
-
-//console.log(wptCount);
-//console.log(wpts);
-
-	return wpts;
-    }
-
-    function calcWaypoint(start, end, axis, dir){
-	var offset = 20;
-	var x = 0;
-	var y = 0;
-	if (axis == 1){ //Vertical
-	  x = start.x + (end.x - start.x)/2;
-	  y = start.y + offset * dir;
-	} else {  //Horizontal
-	  x = start.x + offset * dir;
-	  y = start.y + (end.y - start.y)/2;
-	}
-	return {x:x, y:y};
-    }
-
-    function getNumWaypoints(pts){
-        var start = pts[0];
-	var end = pts[1];
-	
-	var leftToRight = sign(end.x - start.x) > 0; 
-	var left = leftToRight ? start : end;
-	var right = leftToRight ? end : start;
-
-	var leftIsBottom = sign(left.y - right.y) < 0; 
-	var z = leftIsBottom ? 1 : 0;
-	var x = leftToRight ? getSide(start) : getSide(end);
-	var y = leftToRight ? getSide(end) : getSide(start);
-
-	var wptMatrix = [
-				[
-						[ 1, 1 ],
-						[ 2, 2 ],
-						[ 1, 3 ],
-						[ 0, 2 ]
-				],
-				[
-						[ 2, 0 ],
-						[ 1, 1 ],
-						[ 0, 2 ],
-						[ 1, 1 ],
-				],
-				[
-						[ 3, 1 ],
-						[ 2, 2 ],
-						[ 1, 1 ],
-						[ 2, 0 ],
-				],
-				[
-						[ 2, 2 ],
-						[ 3, 3 ],
-						[ 2, 2 ],
-						[ 1, 1 ],
-				]
-	]
-
-	return wptMatrix[x][y][z];
-    }
-
-    function sign(x) { 
-	return x ? x < 0 ? -1 : 1 : 0; //caution: sign("0") -> 1 
-    };
-
-    function getSide(p){
-	if(Math.abs(p.RelX) > Math.abs(p.RelY)) {
-	  if(p.RelX > 0) {
-            return 1; //East
-	  } else {
-            return 3; //West
-	  }
- 	} else {
-	  if(p.RelY > 0) {
-            return 2; //South
-	  } else {
-            return 0; //North
-	  }
-	}
+    if (type == 'Straight'){
+      if (edge.Point.length == 2) {
+        return svgLine(edge.Point);
       }
-
-    function getAxis(p) {
-        if (Math.abs(p.RelX) > Math.abs(p.RelY)){
-           return 0; // Y-Axis; Vertical
-        } else {
-          return 1; // X-Axis; Horzontal
-        }
+      else {
+        // TODO throw errors or use console.warn instead of using console.log
+        console.log("Too many points for a straight line!");
+        return null;
+      }
     }
 
-    function getDir(p){ 
-        if(Math.abs(p.RelX) > Math.abs(p.RelY)) {
-          if(p.RelX > 0) {
-            return 1; //Right
-          } else {
-            return -1; //Left
-          }
-        } else {
-          if(p.RelY > 0) {
-            return 1; //Down
-          } else {
-            return -1; //Up
-          }
-        }
+    else if (type == 'Segmented') {
+      return svgLine(edge.Point);
     }
 
-    //for generating line segments through a path of points (pathpoints, not waypoints)
-    var svgLine = d3.svg.line()
-	.x(function(d) {return d.x; })
-	.y(function(d) {return d.y;})
-	.interpolate("linear");
+    else if (type == 'Elbow'){
+      return svgLine(calcPathpoints(edge.Point));
+    }
 
-    //for generating bezier curves through a path of points (pathpoints, not waypoints)
-    var svgCurve = d3.svg.line()
-        .x(function(d) {return d.x; })
-        .y(function(d) {return d.y;})
-        .interpolate("basis");
+    else if (type == 'Curved'){
+      return svgCurve(calcPathpoints(edge.Point));
+    }
+
+    else {
+      console.log("Unknown connector type: " + type);
+      return null;
+    }
+  }
+
+  function calcPathpoints(p){
+    //check to see if all waypoints are provided
+    if (p.length == 2) {
+      p = calcAllWaypoints(p);
+    }
+
+    var ppts = [];
+
+    //first path point is start
+    ppts[0] = p[0];
+
+    //intermediate path points
+    var axis = getAxis(p[0]); //TODO: account for starting on an anchor..
+    var i;
+    for (i=1; i<p.length; i++){ 
+      var dy = p[i].y - p[i-1].y;
+      var dx = p[i].x - p[i-1].x;
+
+      if (axis == 1){ //Vertical
+        ppts[i] = {x:p[i-1].x,y:p[i-1].y+dy};
+      } else { //Horizontal
+        ppts[i] = {x:p[i-1].x+dx,y:p[i-1].y};
+      }
+      axis = (axis+1)%2;  //toggle 1|0
+    }
+
+    // final path point is end
+    ppts[p.length] = p[p.length-1];
+
+    return ppts; 
+  }
+
+  function calcAllWaypoints(p) {
+    var wptCount = getNumWaypoints(p);
+    var offset = 20;
+    var start = p[0];
+    var end = p[1];
+
+    var wpts = [];
+
+    // first waypoint is start
+    wpts[0] = start;
+
+    // calc new waypoints	
+    if (wptCount == 0) {
+      //done!
+    }
+    else if (wptCount == 1) {
+      wpts[1] = calcWaypoint(start, end, getAxis(start), getDir(end));
+    } else if (wptCount == 2){
+      wpts[1] = calcWaypoint(start, {x:(end.x + offset * getDir(end)), y:(end.y + offset * getDir(end))}, getAxis(start), getDir(start));
+      wpts[2] = calcWaypoint(end, wpts[1], getAxis(end), getDir(end));
+    } else if (wptCount == 3){
+      wpts[2] = {x:(start.x + (end.x - start.x)/2), y:(start.y + (end.y - start.y)/2)};
+      wpts[1] = calcWaypoint(start, wpts[2], getAxis(start), getDir(start));
+      wpts[3] = calcWaypoint(end, wpts[2], getAxis(end), getDir(end));
+    } else {
+      console.log("Too many waypoint estimated!!!");
+    }
+
+    // final waypoint is end
+    wpts[wptCount+1] = end;
+
+    //console.log(wptCount);
+    //console.log(wpts);
+
+    return wpts;
+  }
+
+  function calcWaypoint(start, end, axis, dir){
+    var offset = 20;
+    var x = 0;
+    var y = 0;
+    if (axis == 1){ //Vertical
+      x = start.x + (end.x - start.x)/2;
+      y = start.y + offset * dir;
+    } else {  //Horizontal
+      x = start.x + offset * dir;
+      y = start.y + (end.y - start.y)/2;
+    }
+    return {x:x, y:y};
+  }
+
+  function getNumWaypoints(pts){
+    var start = pts[0];
+    var end = pts[1];
+
+    var leftToRight = sign(end.x - start.x) > 0; 
+    var left = leftToRight ? start : end;
+    var right = leftToRight ? end : start;
+
+    var leftIsBottom = sign(left.y - right.y) < 0; 
+    var z = leftIsBottom ? 1 : 0;
+    var x = leftToRight ? getSide(start) : getSide(end);
+    var y = leftToRight ? getSide(end) : getSide(start);
+
+    var wptMatrix = [
+      [
+      [ 1, 1 ],
+      [ 2, 2 ],
+      [ 1, 3 ],
+      [ 0, 2 ]
+    ],
+    [
+      [ 2, 0 ],
+      [ 1, 1 ],
+      [ 0, 2 ],
+      [ 1, 1 ],
+    ],
+    [
+      [ 3, 1 ],
+      [ 2, 2 ],
+      [ 1, 1 ],
+      [ 2, 0 ],
+    ],
+    [
+      [ 2, 2 ],
+      [ 3, 3 ],
+      [ 2, 2 ],
+      [ 1, 1 ],
+    ]
+    ]
+
+    return wptMatrix[x][y][z];
+  }
+
+  function sign(x) { 
+    return x ? x < 0 ? -1 : 1 : 0; //caution: sign("0") -> 1 
+  };
+
+  function getSide(p){
+    if(Math.abs(p.RelX) > Math.abs(p.RelY)) {
+      if(p.RelX > 0) {
+        return 1; //East
+      } else {
+        return 3; //West
+      }
+    } else {
+      if(p.RelY > 0) {
+        return 2; //South
+      } else {
+        return 0; //North
+      }
+    }
+  }
+
+  function getAxis(p) {
+    if (Math.abs(p.RelX) > Math.abs(p.RelY)){
+      return 0; // Y-Axis; Vertical
+    } else {
+      return 1; // X-Axis; Horzontal
+    }
+  }
+
+  function getDir(p){ 
+    if(Math.abs(p.RelX) > Math.abs(p.RelY)) {
+      if(p.RelX > 0) {
+        return 1; //Right
+      } else {
+        return -1; //Left
+      }
+    } else {
+      if(p.RelY > 0) {
+        return 1; //Down
+      } else {
+        return -1; //Up
+      }
+    }
+  }
+
+  //for generating line segments through a path of points (pathpoints, not waypoints)
+  var svgLine = d3.svg.line()
+  .x(function(d) {return d.x; })
+  .y(function(d) {return d.y;})
+  .interpolate("linear");
+
+  //for generating bezier curves through a path of points (pathpoints, not waypoints)
+  var svgCurve = d3.svg.line()
+  .x(function(d) {return d.x; })
+  .y(function(d) {return d.y;})
+  .interpolate("basis");
 
   return {
     getPath:getPath
@@ -8732,13 +7076,12 @@ pathvisiojs.view.pathwayDiagram.svg.edge.path = function(){
 }();
 ;
 
-"use strict";
-
 // TODO remove controls that don't work with this element
 // This code is for the HTML img element. It displays the
 // diagram as a PNG, JPG, GIF, etc.
 
 pathvisiojs.view.pathwayDiagram.img = function(){
+  'use strict';
 
   function load(args, callback) {
     if (!args) {

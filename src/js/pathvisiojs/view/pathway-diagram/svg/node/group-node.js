@@ -1,4 +1,5 @@
 pathvisiojs.view.pathwayDiagram.svg.node.groupNode = function(){
+  'use strict';
   function render(args, callback) {
     if (!args.container) {
       throw new Error('Error: container element not specified for rendering groupNode.');

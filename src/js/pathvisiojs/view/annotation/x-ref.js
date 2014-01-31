@@ -1,4 +1,5 @@
 pathvisiojs.view.annotation.xRef = function(){
+  'use strict';
   var cachedAnnotationData = {};
 
   function render(organism, id, datasource, label, desc) {
@@ -16,7 +17,7 @@ pathvisiojs.view.annotation.xRef = function(){
       };
       pathvisiojs.view.annotation.render(data);
 
-      console.log(pathvisiojs.config.bridgedbLinkOutsUriStub);
+      //console.log(pathvisiojs.config.bridgedbLinkOutsUriStub);
       //then retrieve the bridgedb data
       var xRefData = pathvisiojs.data.bridgedb.getXrefAnnotationDataByDataNode(organism, id, datasource, label, desc, function(annotationData) {
         setCachedAnnotationData(organism, label, id, datasource, annotationData);

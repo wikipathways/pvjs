@@ -1,5 +1,3 @@
-"use strict";
-
 // includes GPML elements of type Shape, Label and DataNode
 
 pathvisiojs.data.gpml.element.node.entityNode = Object.create(pathvisiojs.data.gpml.element.node);
@@ -12,6 +10,7 @@ pathvisiojs.data.gpml.element.node.entityNode.setJsonRotationValue = function(js
 }
 
 pathvisiojs.data.gpml.element.node.entityNode.toRenderableJson = function(gpmlEntityNode, jsonEntityNode, pathvisioDefaultStyleValues, pathwayIri, EntityNodeCallback) {
+  'use strict';
   var graphId = gpmlEntityNode.attr('GraphId') || ('id' + uuid.v4());
   jsonEntityNode["@id"] = 'pathwayIri:' + graphId;
   jsonEntityNode.GraphId = graphId;
