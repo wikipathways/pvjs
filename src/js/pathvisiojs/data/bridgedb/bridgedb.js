@@ -1,4 +1,5 @@
 pathvisiojs.data.bridgedb = function(){
+  'use strict';
 
   function getXrefAnnotationDataByDataNode(singleSpecies, id, datasource, label, desc, callback) {
     //For unannotated nodes, without datasource or identifier
@@ -102,7 +103,7 @@ pathvisiojs.data.bridgedb = function(){
 
   function getXrefAliases(singleSpecies, systemCode, xRefId, callback) {
     var bridgedbUri = pathvisiojs.config.bridgedbLinkOutsUriStub + encodeURIComponent(singleSpecies) + '/xrefs/' + encodeURIComponent(systemCode) + '/' + encodeURIComponent(xRefId);
-    console.log(bridgedbUri);
+    //console.log(bridgedbUri);
     d3.tsv(bridgedbUri)
     .response(function(request) { 
       return d3.tsv.parseRows(request.responseText, function(d) {

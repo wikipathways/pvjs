@@ -1,4 +1,5 @@
 pathvisiojs.view.pathwayDiagram.svg.edge.point = function(){
+  'use strict';
 
   var anchorPositionMappings = { "-1":0, "-0.5":0.333, "0":0.5, "0.5":0.667, "1":1 };
 

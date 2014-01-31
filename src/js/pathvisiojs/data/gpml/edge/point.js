@@ -1,4 +1,5 @@
 pathvisiojs.data.gpml.edge.point = function(){
+  'use strict';
 
   var gpmlRelXToJsonSideAndPositionMapping = { 
     '-1.0': {'side': 'left'},

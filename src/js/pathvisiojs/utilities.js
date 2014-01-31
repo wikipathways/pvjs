@@ -1,4 +1,5 @@
 pathvisiojs.utilities = function(){
+  'use strict';
 
   // from here: http://www.cjboco.com/blog.cfm/post/determining-an-elements-width-and-height-using-javascript/
   // TODO have not tested x-browser yet.
@@ -32,7 +33,7 @@ pathvisiojs.utilities = function(){
     var ret = {};
     var len = arguments.length;
     for (var i=0; i<len; i++) {
-      for (p in arguments[i]) {
+      for (var p in arguments[i]) {
         if (arguments[i].hasOwnProperty(p)) {
           ret[p] = arguments[i][p];
         }

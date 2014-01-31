@@ -1,10 +1,9 @@
-"use strict";
-
 // TODO remove controls that don't work with this element
 // This code is for the HTML img element. It displays the
 // diagram as a PNG, JPG, GIF, etc.
 
 pathvisiojs.view.pathwayDiagram.img = function(){
+  'use strict';
 
   function load(args, callback) {
     if (!args) {

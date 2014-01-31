@@ -1,5 +1,5 @@
-"use strict";
 pathvisiojs.data.gpml.element.node.entityNode.shape = function(){
+  'use strict';
 
   var pathvisioDefaultStyleValues = {
     'Shape':{

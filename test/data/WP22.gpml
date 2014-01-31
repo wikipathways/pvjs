@@ -10,59 +10,6 @@ Kandasamy, K., Mohan, S. S., Raju, R., Keerthikumar, S., Kumar, G. S. S., Venugo
   <Attribute Key="org.pathvisio.model.WindowHeight" Value="11190.0" />
   <Attribute Key="org.pathvisio.model.WindowWidth" Value="15480.0" />
   <Graphics BoardWidth="933.0" BoardHeight="1214.0" />
-  <DataNode TextLabel="IL9" GraphId="af61f" Type="Protein" GroupRef="da350">
-    <Attribute Key="org.pathvisio.model.BackpageHead" Value="IL6" />
-    <Attribute Key="org.pathvisio.model.GenMAPP-Xref" Value="" />
-    <Graphics CenterX="292.9999999999988" CenterY="245.0" Width="33.333333333333336" Height="20.0" ZOrder="33338" FontName="SansSerif" FontWeight="Bold" FontSize="12" Valign="Middle" />
-    <Xref Database="Entrez Gene" ID="3578" />
-  </DataNode>
-  <DataNode TextLabel="IL2RG" GraphId="c6ecc" Type="Protein" GroupRef="da350">
-    <Attribute Key="org.pathvisio.model.BackpageHead" Value="IL6ST" />
-    <Attribute Key="org.pathvisio.model.GenMAPP-Xref" Value="" />
-    <Graphics CenterX="270.6666666666624" CenterY="399.0" Width="48.0" Height="20.0" ZOrder="33343" FontName="SansSerif" FontWeight="Bold" FontSize="12" Valign="Middle" />
-    <Xref Database="Entrez Gene" ID="3561" />
-  </DataNode>
-  <DataNode TextLabel="IL9R" GraphId="bde62" Type="Protein" GroupRef="da350">
-    <Attribute Key="org.pathvisio.model.BackpageHead" Value="IL6R" />
-    <Attribute Key="org.pathvisio.model.GenMAPP-Xref" Value="" />
-    <Graphics CenterX="319.66666666666424" CenterY="399.0" Width="48.0" Height="20.0" ZOrder="33350" FontName="SansSerif" FontWeight="Bold" FontSize="12" Valign="Middle" />
-    <Xref Database="Entrez Gene" ID="3581" />
-  </DataNode>
-  <State GraphRef="bde62" TextLabel="P" GraphId="d5801">
-    <Graphics RelX="-1.0" RelY="1.0" Width="16.5" Height="17.5" FillColor="ffff00" ShapeType="Oval" />
-    <Xref Database="" ID="" />
-  </State>
-  <Interaction GraphId="ad093" GroupRef="da350">
-    <Graphics ZOrder="33290" LineThickness="3.0" Color="ff3399">
-      <Point X="292.99999999999875" Y="255.0" GraphRef="af61f" RelX="0.0" RelY="1.0" />
-      <Point X="293.66666666666424" Y="292.0" GraphRef="cbca1" RelX="0.0" RelY="-1.0" />
-    </Graphics>
-    <Xref Database="" ID="" />
-  </Interaction>
-  <Interaction GraphId="a9793" GroupRef="da350">
-    <Graphics ZOrder="33299" LineThickness="3.0">
-      <Point X="270.6666666666631" Y="333.0" GraphRef="a3c05" RelX="0.0" RelY="1.0" />
-      <Point X="270.6666666666624" Y="389.0" GraphRef="c6ecc" RelX="0.0" RelY="-1.0" />
-    </Graphics>
-    <Xref Database="" ID="" />
-  </Interaction>
-  <Interaction GraphId="eceac" GroupRef="da350">
-    <Graphics ZOrder="33308" LineThickness="3.0">
-      <Point X="319.66666666666515" Y="331.0" GraphRef="f719c" RelX="0.0" RelY="1.0" />
-      <Point X="319.66666666666424" Y="389.0" GraphRef="bde62" RelX="0.0" RelY="-1.0" />
-    </Graphics>
-    <Xref Database="" ID="" />
-  </Interaction>
-  <Shape GraphId="cbca1" GroupRef="da350">
-    <Graphics CenterX="293.66666666666424" CenterY="306.0" Width="28.0" Height="28.0" ZOrder="33317" FillColor="ff3399" FontSize="10" Valign="Middle" ShapeType="Oval" Color="ff0066" Rotation="0.0" />
-  </Shape>
-  <Shape GraphId="a3c05" GroupRef="da350">
-    <Graphics CenterX="270.6666666666631" CenterY="317.5" Width="30.0" Height="31.0" ZOrder="33318" FontSize="10" Valign="Middle" ShapeType="Arc" LineThickness="3.0" Rotation="0.0" />
-  </Shape>
-  <Shape GraphId="f719c" GroupRef="da350">
-    <Graphics CenterX="319.66666666666515" CenterY="315.5" Width="30.0" Height="31.0" ZOrder="33319" FontSize="10" Valign="Middle" ShapeType="Arc" LineThickness="3.0" Rotation="0.0" />
-  </Shape>
-  <Group GroupId="da350" Style="Group" />
   <InfoBox CenterX="15.0" CenterY="8.333333333333334" />
   <Biopax>
     <bp:openControlledVocabulary xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#">

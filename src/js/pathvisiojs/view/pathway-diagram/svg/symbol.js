@@ -2,10 +2,13 @@
 // but SVG Symbols are never visible on their own.
 // See also: ./node/use-element.js
 
-// a hack because I don't know how to pass the svg variable to the function appendCustom() when it's part of async.each().
-var svg;
 
 pathvisiojs.view.pathwayDiagram.svg.symbol = function(){
+  'use strict';
+
+  // a hack because I don't know how to pass the svg variable to the function appendCustom() when it's part of async.each().
+  // TODO refactor
+  var svg;
 
   var semanticNameToIdMapping = { 
     'datanode':'shape-library-symbols-rectangle-svg',

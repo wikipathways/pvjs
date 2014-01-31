@@ -1,4 +1,5 @@
 pathvisiojs.data.biopax = function(){
+  'use strict';
 
   // TODO get ontology terms and other data
 
