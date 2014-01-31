@@ -1,13 +1,15 @@
 {
   "name": "es5-shim",
-  "_cacheHeaders": {
-    "ETag": "\"d1cfcc059f5dac7b780f0fcd4f8ffec2\"",
-    "Content-Length": "70024",
-    "Content-Type": "text/html; charset=utf-8"
+  "homepage": "https://github.com/kriskowal/es5-shim",
+  "version": "2.3.0",
+  "_release": "2.3.0",
+  "_resolution": {
+    "type": "version",
+    "tag": "v2.3.0",
+    "commit": "16e070c763588290718a907d0fa0a132993e5d6a"
   },
-  "_release": "e-tag:d1cfcc059",
-  "main": "index",
-  "_source": "https://github.com/es-shims/es5-shim",
-  "_target": "*",
-  "_originalSource": "https://github.com/es-shims/es5-shim"
+  "_source": "git://github.com/kriskowal/es5-shim.git",
+  "_target": "~2.3.0",
+  "_originalSource": "es5-shim",
+  "_direct": true
 }
