@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Pathway xmlns="http://pathvisio.org/GPML/2013a" Name="IL-9 Signaling Pathway" Organism="Homo sapiens" License="Freely available under Creative Commons license">
+  <Comment Source="WikiPathways-category">Cellular Process</Comment>
+  <Comment Source="WikiPathways-description">IL-9 is a multifunctional cytokine, belong to a family of cytokines. IL-9 was initially reported as a T cell growth factor in mice. It is now known to target multiple cell types. It plays an important role in the expansion and recruitment of mast cells in response to intestinal nematode infection or during autoimmune encephalomyelitis. It is also known to act on various cell types known to be involved in asthma including T cells, B cells, mast cells, eosinophils, neutrophils, and epithelial cells. IL 9 can promote the expression of TGF-beta in lipopolysaccharide induced monocytes and macrophages. IL-9 is also known to play important roles in conditions including airway inflammation, EAE and parasitic infections. Mitogen-activated protein kinase pathway is activated transiently by IL-9, which in turn leads to the growth stimulation of hematopoietic cell lines. IL-9 signals through the heterodimeric receptor composed of a specific chain (IL-9R) and a gamma chain (IL2RG), which is shared between IL-2, IL-4, IL-7, IL15 and IL-21. The IL-9R and IL-2RG associates with JAK1 and JAK3 respectively. Receptor engagement results in JAK1- JAK3 cross phosphorylation and activation of the JAK proteins which leads to the activation of Signal transducer and activator of transcription (STAT-1, STAT-3 and STAT-5) and Insulin receptor substrate 1 and 2 (IRS1 and IRS2)/PI3K cascades. IL-9 stimulation also results in the activation of MEK/ERK signaling cascade.
+
+Please access this pathway at [http://www.netpath.org/netslim/IL_9_pathway.html NetSlim] database.
+
+If you use this pathway, you must cite following paper:
+Kandasamy, K., Mohan, S. S., Raju, R., Keerthikumar, S., Kumar, G. S. S., Venugopal, A. K., Telikicherla, D., Navarro, J. D., Mathivanan, S., Pecquet, C., Gollapudi, S. K., Tattikota, S. G., Mohan, S., Padhukasahasram, H., Subbannayya, Y., Goel, R., Jacob, H. K. C., Zhong, J., Sekhar, R., Nanjappa, V., Balakrishnan, L., Subbaiah, R., Ramachandra, Y. L., Rahiman, B. A., Prasad, T. S. K., Lin, J., Houtman, J. C. D., Desiderio, S., Renauld, J., Constantinescu, S. N., Ohara, O., Hirano, T., Kubo, M., Singh, S., Khatri, P., Draghici, S., Bader, G. D., Sander, C., Leonard, W. J. and Pandey, A. (2010). NetPath: A public resource of curated signal transduction pathways. &lt;i&gt;Genome Biology&lt;/i&gt;. 11:R3.</Comment>
+  <Attribute Key="org.pathvisio.model.WindowHeight" Value="11190.0" />
+  <Attribute Key="org.pathvisio.model.WindowWidth" Value="15480.0" />
+  <Graphics BoardWidth="933.0" BoardHeight="1214.0" />
+  <DataNode TextLabel="IL9" GraphId="af61f" Type="Protein" GroupRef="da350">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="IL6" />
+    <Attribute Key="org.pathvisio.model.GenMAPP-Xref" Value="" />
+    <Graphics CenterX="292.9999999999988" CenterY="245.0" Width="33.333333333333336" Height="20.0" ZOrder="33338" FontName="SansSerif" FontWeight="Bold" FontSize="12" Valign="Middle" />
+    <Xref Database="Entrez Gene" ID="3578" />
+  </DataNode>
+  <DataNode TextLabel="IL2RG" GraphId="c6ecc" Type="Protein" GroupRef="da350">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="IL6ST" />
+    <Attribute Key="org.pathvisio.model.GenMAPP-Xref" Value="" />
+    <Graphics CenterX="270.6666666666624" CenterY="399.0" Width="48.0" Height="20.0" ZOrder="33343" FontName="SansSerif" FontWeight="Bold" FontSize="12" Valign="Middle" />
+    <Xref Database="Entrez Gene" ID="3561" />
+  </DataNode>
+  <DataNode TextLabel="IL9R" GraphId="bde62" Type="Protein" GroupRef="da350">
+    <Attribute Key="org.pathvisio.model.BackpageHead" Value="IL6R" />
+    <Attribute Key="org.pathvisio.model.GenMAPP-Xref" Value="" />
+    <Graphics CenterX="319.66666666666424" CenterY="399.0" Width="48.0" Height="20.0" ZOrder="33350" FontName="SansSerif" FontWeight="Bold" FontSize="12" Valign="Middle" />
+    <Xref Database="Entrez Gene" ID="3581" />
+  </DataNode>
+  <State GraphRef="bde62" TextLabel="P" GraphId="d5801">
+    <Graphics RelX="-1.0" RelY="1.0" Width="16.5" Height="17.5" FillColor="ffff00" ShapeType="Oval" />
+    <Xref Database="" ID="" />
+  </State>
+  <Interaction GraphId="ad093" GroupRef="da350">
+    <Graphics ZOrder="33290" LineThickness="3.0" Color="ff3399">
+      <Point X="292.99999999999875" Y="255.0" GraphRef="af61f" RelX="0.0" RelY="1.0" />
+      <Point X="293.66666666666424" Y="292.0" GraphRef="cbca1" RelX="0.0" RelY="-1.0" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="a9793" GroupRef="da350">
+    <Graphics ZOrder="33299" LineThickness="3.0">
+      <Point X="270.6666666666631" Y="333.0" GraphRef="a3c05" RelX="0.0" RelY="1.0" />
+      <Point X="270.6666666666624" Y="389.0" GraphRef="c6ecc" RelX="0.0" RelY="-1.0" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="eceac" GroupRef="da350">
+    <Graphics ZOrder="33308" LineThickness="3.0">
+      <Point X="319.66666666666515" Y="331.0" GraphRef="f719c" RelX="0.0" RelY="1.0" />
+      <Point X="319.66666666666424" Y="389.0" GraphRef="bde62" RelX="0.0" RelY="-1.0" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Shape GraphId="cbca1" GroupRef="da350">
+    <Graphics CenterX="293.66666666666424" CenterY="306.0" Width="28.0" Height="28.0" ZOrder="33317" FillColor="ff3399" FontSize="10" Valign="Middle" ShapeType="Oval" Color="ff0066" Rotation="0.0" />
+  </Shape>
+  <Shape GraphId="a3c05" GroupRef="da350">
+    <Graphics CenterX="270.6666666666631" CenterY="317.5" Width="30.0" Height="31.0" ZOrder="33318" FontSize="10" Valign="Middle" ShapeType="Arc" LineThickness="3.0" Rotation="0.0" />
+  </Shape>
+  <Shape GraphId="f719c" GroupRef="da350">
+    <Graphics CenterX="319.66666666666515" CenterY="315.5" Width="30.0" Height="31.0" ZOrder="33319" FontSize="10" Valign="Middle" ShapeType="Arc" LineThickness="3.0" Rotation="0.0" />
+  </Shape>
+  <Group GroupId="da350" Style="Group" />
+  <InfoBox CenterX="15.0" CenterY="8.333333333333334" />
+  <Biopax>
+    <bp:openControlledVocabulary xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#">
+      <bp:TERM xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Interleukin mediated signaling pathway</bp:TERM>
+      <bp:ID xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PW:0000512</bp:ID>
+      <bp:Ontology xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Pathway Ontology</bp:Ontology>
+    </bp:openControlledVocabulary>
+    <bp:openControlledVocabulary xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#">
+      <bp:TERM xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">interleukin-9 signaling pathway</bp:TERM>
+      <bp:ID xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PW:0000909</bp:ID>
+      <bp:Ontology xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Pathway Ontology</bp:Ontology>
+    </bp:openControlledVocabulary>
+  </Biopax>
+</Pathway>
+
