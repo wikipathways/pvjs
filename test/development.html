@@ -1,271 +1,266 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
-<html style="margin: 0; width: 100%; height: 100%; ">
-<head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
 
-  <title>Pathvisiojs Testing and Development</title>
+    <title>Pathvisiojs Testing and Development</title>
 
-  <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css">
-  <link rel="stylesheet" href="../src/css/pathvisiojs.css">
-  <link rel="stylesheet" href="../src/css/annotation.css">
-  <link rel="stylesheet" href="../src/css/pan-zoom.css">
-</head>
-   
+    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../src/css/pathvisiojs.css">
+    <link rel="stylesheet" href="../src/css/annotation.css">
+    <link rel="stylesheet" href="../src/css/pan-zoom.css">
 
-<body style="margin: 0; width: 100%; height: 100%; ">
-  <div id="pathvisiojs-dev" style="width:inherit; height:inherit; margin:0; ">
-  </div>
+    <script src="../lib/aight//aight.min.js"></script>
+    <script src="../lib/es5-shim/es5-sham.min.js"></script>
+    <!--[if lt IE 9]>
+    <script>
+      // IE8 only allows console.log when Developer Tools is open. This will prevent errors
+      // from showing up if I use console.log without DevTools being open.
+      // from http://stackoverflow.com/questions/3326650/console-is-undefined-error-for-internet-explorer
 
-  <!--[if lt IE 9]>
-  <script>
-    // IE8 only allows console.log when Developer Tools is open. This will prevent errors
-    // from showing up if I use console.log without DevTools being open.
-    // from http://stackoverflow.com/questions/3326650/console-is-undefined-error-for-internet-explorer
+      /**
+       * Protect window.console method calls, e.g. console is not defined on IE
+       * unless dev tools are open, and IE doesn't define console.debug
+       */
+      (function() {
+       if (!window.console) {
+         window.console = {};
+       }
+       // union of Chrome, FF, IE, and Safari console methods
+       var m = [
+       "log", "info", "warn", "error", "debug", "trace", "dir", "group",
+       "groupCollapsed", "groupEnd", "time", "timeEnd", "profile", "profileEnd",
+       "dirxml", "assert", "count", "markTimeline", "timeStamp", "clear"
+       ];
+       // define undefined methods as noops to prevent errors
+       for (var i = 0; i < m.length; i++) {
+         if (!window.console[m[i]]) {
+         window.console[m[i]] = function() {};
+         }    
+       } 
+      })();
+    </script>
+    <![endif]-->
+  </head>
+     
+  <body style="margin: 0; width: 100%; height: 100%; ">
+    <div id="pathvisiojs-dev" style="width:inherit; height:inherit; margin:0; ">
+    </div>
 
-    /**
-     * Protect window.console method calls, e.g. console is not defined on IE
-     * unless dev tools are open, and IE doesn't define console.debug
-     */
-    (function() {
-     if (!window.console) {
-       window.console = {};
-     }
-     // union of Chrome, FF, IE, and Safari console methods
-     var m = [
-     "log", "info", "warn", "error", "debug", "trace", "dir", "group",
-     "groupCollapsed", "groupEnd", "time", "timeEnd", "profile", "profileEnd",
-     "dirxml", "assert", "count", "markTimeline", "timeStamp", "clear"
-     ];
-     // define undefined methods as noops to prevent errors
-     for (var i = 0; i < m.length; i++) {
-       if (!window.console[m[i]]) {
-       window.console[m[i]] = function() {};
-       }    
-     } 
-    })();
-  </script>
+    <script src="../lib/rgb-color/rgb-color.min.js"></script>
+    <script src="../lib/strcase/dist/strcase.min.js"></script>
+    <script src="../lib/async/lib/async.js"></script>
+    <script src="../lib/d3/d3.min.js"></script>
+    <script src="../lib/aight/aight.d3.min.js"></script>
+    <script src="../lib/jquery/jquery.min.js"></script>
+    <script src="../lib/typeahead.js/dist/typeahead.min.js"></script>
+    <script src="../lib/modernizr/modernizr.js"></script>
+    <script src="../lib/svg-pan-zoom/svg-pan-zoom.js"></script>
+    <script src="../lib/node-uuid/uuid.js"></script>
+    <script src="../lib/blueimp-load-image/js/load-image.min.js"></script>
+    <script src="../lib/jsonld.js/js/jsonld.js"></script>
+    <script src="../lib/jsonld.js/js/Promise.js"></script>
 
-  <script src="http://ie7-js.googlecode.com/svn/version/2.1(beta4)/IE9.js"></script>
-  <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
-  <script src="../lib/es5-shim/es5-shim.js"></script>
-  <script src="../lib/Xccessors/xccessors-standard.js"></script>
+    <!-- compare.js has the code responsible for setting up this page.
+    Much of the compare.js code is specific to the functionality of
+    this test page, but it does include the call to load pathvisiojs.
+    This call is a working example of what anyone wanting to deploy
+    pathvisiojs could use.  -->
+    <script src="./compare.js"></script>
 
-  <![endif]-->
-
-  <script src="../lib/rgb-color/rgb-color.min.js"></script>
-  <script src="../lib/strcase/dist/strcase.min.js"></script>
-  <script src="../lib/async/lib/async.js"></script>
-  <script src="../lib/d3/d3.min.js"></script>
-  <script src="../lib/jquery/jquery.min.js"></script>
-  <script src="../lib/typeahead.js/dist/typeahead.min.js"></script>
-  <script src="../lib/modernizr/modernizr.js"></script>
-  <script src="../lib/svg-pan-zoom/svg-pan-zoom.js"></script>
-  <script src="../lib/node-uuid/uuid.js"></script>
-  <script src="../lib/blueimp-load-image/js/load-image.min.js"></script>
-  <script src="../lib/jsonld.js/js/jsonld.js"></script>
-  <script src="../lib/jsonld.js/js/Promise.js"></script>
-
-  <!-- compare.js has the code responsible for setting up this page.
-  Much of the compare.js code is specific to the functionality of
-  this test page, but it does include the call to load pathvisiojs.
-  This call is a working example of what anyone wanting to deploy
-  pathvisiojs could use.  -->
-  <script src="./compare.js"></script>
-
-  <script>
-window.onload = function() {
-  async.waterfall([
-    function(callback) {
-      developmentLoader.preload(function(parsedInputData) {
-        console.log('parsedInputData');
-        console.log(parsedInputData);
-        callback(null, parsedInputData);
-      });
-    },
-    function(parsedInputData, callback) {
-
-        // Specify an image for each semantic element you would like to customize.
-        // If no image is specified for a semantic element, the default will be used.
-        // You can use the same image for multiple semantic elements if you choose to,
-        // but every semanticName must be unique.
-     /*   var customSymbols = [
-          {
-            'semanticName': 'rectangle',
-            'uri': srcDirectoryUri + 'shape-library/symbols/rectangle.svg'
-          }
-        ];
-    //*/
-      var customMarkers = [
-        {
-          'semanticName': 'arrow',
-          //'uri': 'http://wikipathways.org/skins/common/images/poweredby_mediawiki_88x31.png' // can use PNG or SVG
-          'uri': srcDirectoryUri + 'shape-library/markers/arrow.svg'
-        },
-        {
-          'semanticName': 'necessary-stimulation',
-          'uri': srcDirectoryUri + 'shape-library/markers/mim-necessary-stimulation.svg'
-        },
-        {
-          'semanticName': 'binding',
-          'uri': srcDirectoryUri + 'shape-library/markers/mim-binding.svg'
-        },
-        {
-          'semanticName': 'conversion',
-          'uri': srcDirectoryUri + 'shape-library/markers/mim-conversion.svg'
-        },
-        {
-          'semanticName': 'stimulation',
-          'uri': srcDirectoryUri + 'shape-library/markers/mim-stimulation.svg'
-        },
-        {
-          'semanticName': 'modification',
-          'uri': srcDirectoryUri + 'shape-library/markers/mim-modification.svg'
-        },
-        {
-          'semanticName': 'catalysis',
-          'uri': srcDirectoryUri + 'shape-library/markers/mim-catalysis.svg'
-        },
-        {
-          'semanticName': 'inhibition',
-          'uri': srcDirectoryUri + 'shape-library/markers/mim-inhibition.svg'
-        },
-        {
-          'semanticName': 'cleavage',
-          'uri': srcDirectoryUri + 'shape-library/markers/mim-cleavage.svg'
-        },
-        {
-          'semanticName': 'covalent-bond',
-          'uri': srcDirectoryUri + 'shape-library/markers/mim-covalent-bond.svg'
-        },
-        {
-          'semanticName': 'transcription-translation',
-          'uri': srcDirectoryUri + 'shape-library/markers/mim-transcription-translation.svg'
-        },
-        {
-          'semanticName': 'gap',
-          'uri': srcDirectoryUri + 'shape-library/markers/mim-gap.svg'
-        },
-        {
-          'semanticName': 'inhibitory-activity',
-          'uri': srcDirectoryUri + 'shape-library/markers/t-bar.svg'
-        },
-        {
-          'semanticName': 'unspecified',
-          'uri': srcDirectoryUri + 'shape-library/markers/none.svg'
-        },
-        {
-          'semanticName': 'activity',
-          'uri': srcDirectoryUri + 'shape-library/markers/arrow.svg'
-        },
-        {
-          'semanticName': 'mim-branching-left',
-          'uri': srcDirectoryUri + 'shape-library/markers/mim-branching-left.svg'
-        },
-        {
-          'semanticName': 'mim-branching-right',
-          'uri': srcDirectoryUri + 'shape-library/markers/mim-branching-right.svg'
-        },
-        {
-          'semanticName': 'mim-necessary-stimulation',
-          'uri': srcDirectoryUri + 'shape-library/markers/mim-necessary-stimulation.svg'
-        },
-        {
-          'semanticName': 'mim-binding',
-          'uri': srcDirectoryUri + 'shape-library/markers/mim-binding.svg'
-        },
-        {
-          'semanticName': 'mim-conversion',
-          'uri': srcDirectoryUri + 'shape-library/markers/mim-conversion.svg'
-        },
-        {
-          'semanticName': 'mim-stimulation',
-          'uri': srcDirectoryUri + 'shape-library/markers/mim-stimulation.svg'
-        },
-        {
-          'semanticName': 'mim-modification',
-          'uri': srcDirectoryUri + 'shape-library/markers/mim-modification.svg'
-        },
-        {
-          'semanticName': 'mim-catalysis',
-          'uri': srcDirectoryUri + 'shape-library/markers/mim-catalysis.svg'
-        },
-        {
-          'semanticName': 'mim-inhibition',
-          'uri': srcDirectoryUri + 'shape-library/markers/mim-inhibition.svg'
-        },
-        {
-          'semanticName': 'mim-cleavage',
-          'uri': srcDirectoryUri + 'shape-library/markers/mim-cleavage.svg'
-        },
-        {
-          'semanticName': 'mim-covalent-bond',
-          'uri': srcDirectoryUri + 'shape-library/markers/mim-covalent-bond.svg'
-        },
-        {
-          'semanticName': 'mim-transcription-translation',
-          'uri': srcDirectoryUri + 'shape-library/markers/mim-transcription-translation.svg'
-        },
-        {
-          'semanticName': 'mim-gap',
-          'uri': srcDirectoryUri + 'shape-library/markers/mim-gap.svg'
-        },
-        {
-          'semanticName': 't-bar',
-          'uri': srcDirectoryUri + 'shape-library/markers/t-bar.svg'
-        },
-        {
-          'semanticName': 'none',
-          'uri': srcDirectoryUri + 'shape-library/markers/none.svg'
-        }
-      ];
-
-      // for element scaling, we are using the SVG terms for all graphical representations of pathways.
-      // preserveAspectRatio refers to the vertical and horizontal alignment of the image.
-
-      // each optional parameter below overrides the default specfied in config.js if it is specified
-      pathvisiojs.load({
-        container: '#pathvisiojs-dev', // required. as of now, this can only be a CSS selector: http://www.w3.org/TR/CSS2/selector.html
-        fitToContainer:true, //optional. A fitToContainer value of false means that the diagram should be the size specified by the diagram creator, without any scaling (full size as per GPML width and height). A value of true means that diagram should be scaled down, if required, to fit entirely within the element specified by the container selector, while preserving aspect ratio. 
-        // optional. default is true.
-        sourceData:parsedInputData.sourceData,// at least one element required in array
-        /*
-        sourceData:[
-          {
-            uri:'wp.org/wp1.gpml',
-            fileType:'gpml' // generally will correspond to filename extension
+    <script>
+      window.onload = function() {
+        async.waterfall([
+          function(callback) {
+            developmentLoader.preload(function(parsedInputData) {
+              console.log('parsedInputData');
+              console.log(parsedInputData);
+              callback(null, parsedInputData);
+            });
           },
-          {
-            uri:'wp.org/wp1.png',
-            fileType:'png'
+          function(parsedInputData, callback) {
+
+              // Specify an image for each semantic element you would like to customize.
+              // If no image is specified for a semantic element, the default will be used.
+              // You can use the same image for multiple semantic elements if you choose to,
+              // but every semanticName must be unique.
+           /*   var customSymbols = [
+                {
+                  'semanticName': 'rectangle',
+                  'uri': srcDirectoryUri + 'shape-library/symbols/rectangle.svg'
+                }
+              ];
+          //*/
+            var customMarkers = [
+              {
+                'semanticName': 'arrow',
+                //'uri': 'http://wikipathways.org/skins/common/images/poweredby_mediawiki_88x31.png' // can use PNG or SVG
+                'uri': srcDirectoryUri + 'shape-library/markers/arrow.svg'
+              },
+              {
+                'semanticName': 'necessary-stimulation',
+                'uri': srcDirectoryUri + 'shape-library/markers/mim-necessary-stimulation.svg'
+              },
+              {
+                'semanticName': 'binding',
+                'uri': srcDirectoryUri + 'shape-library/markers/mim-binding.svg'
+              },
+              {
+                'semanticName': 'conversion',
+                'uri': srcDirectoryUri + 'shape-library/markers/mim-conversion.svg'
+              },
+              {
+                'semanticName': 'stimulation',
+                'uri': srcDirectoryUri + 'shape-library/markers/mim-stimulation.svg'
+              },
+              {
+                'semanticName': 'modification',
+                'uri': srcDirectoryUri + 'shape-library/markers/mim-modification.svg'
+              },
+              {
+                'semanticName': 'catalysis',
+                'uri': srcDirectoryUri + 'shape-library/markers/mim-catalysis.svg'
+              },
+              {
+                'semanticName': 'inhibition',
+                'uri': srcDirectoryUri + 'shape-library/markers/mim-inhibition.svg'
+              },
+              {
+                'semanticName': 'cleavage',
+                'uri': srcDirectoryUri + 'shape-library/markers/mim-cleavage.svg'
+              },
+              {
+                'semanticName': 'covalent-bond',
+                'uri': srcDirectoryUri + 'shape-library/markers/mim-covalent-bond.svg'
+              },
+              {
+                'semanticName': 'transcription-translation',
+                'uri': srcDirectoryUri + 'shape-library/markers/mim-transcription-translation.svg'
+              },
+              {
+                'semanticName': 'gap',
+                'uri': srcDirectoryUri + 'shape-library/markers/mim-gap.svg'
+              },
+              {
+                'semanticName': 'inhibitory-activity',
+                'uri': srcDirectoryUri + 'shape-library/markers/t-bar.svg'
+              },
+              {
+                'semanticName': 'unspecified',
+                'uri': srcDirectoryUri + 'shape-library/markers/none.svg'
+              },
+              {
+                'semanticName': 'activity',
+                'uri': srcDirectoryUri + 'shape-library/markers/arrow.svg'
+              },
+              {
+                'semanticName': 'mim-branching-left',
+                'uri': srcDirectoryUri + 'shape-library/markers/mim-branching-left.svg'
+              },
+              {
+                'semanticName': 'mim-branching-right',
+                'uri': srcDirectoryUri + 'shape-library/markers/mim-branching-right.svg'
+              },
+              {
+                'semanticName': 'mim-necessary-stimulation',
+                'uri': srcDirectoryUri + 'shape-library/markers/mim-necessary-stimulation.svg'
+              },
+              {
+                'semanticName': 'mim-binding',
+                'uri': srcDirectoryUri + 'shape-library/markers/mim-binding.svg'
+              },
+              {
+                'semanticName': 'mim-conversion',
+                'uri': srcDirectoryUri + 'shape-library/markers/mim-conversion.svg'
+              },
+              {
+                'semanticName': 'mim-stimulation',
+                'uri': srcDirectoryUri + 'shape-library/markers/mim-stimulation.svg'
+              },
+              {
+                'semanticName': 'mim-modification',
+                'uri': srcDirectoryUri + 'shape-library/markers/mim-modification.svg'
+              },
+              {
+                'semanticName': 'mim-catalysis',
+                'uri': srcDirectoryUri + 'shape-library/markers/mim-catalysis.svg'
+              },
+              {
+                'semanticName': 'mim-inhibition',
+                'uri': srcDirectoryUri + 'shape-library/markers/mim-inhibition.svg'
+              },
+              {
+                'semanticName': 'mim-cleavage',
+                'uri': srcDirectoryUri + 'shape-library/markers/mim-cleavage.svg'
+              },
+              {
+                'semanticName': 'mim-covalent-bond',
+                'uri': srcDirectoryUri + 'shape-library/markers/mim-covalent-bond.svg'
+              },
+              {
+                'semanticName': 'mim-transcription-translation',
+                'uri': srcDirectoryUri + 'shape-library/markers/mim-transcription-translation.svg'
+              },
+              {
+                'semanticName': 'mim-gap',
+                'uri': srcDirectoryUri + 'shape-library/markers/mim-gap.svg'
+              },
+              {
+                'semanticName': 't-bar',
+                'uri': srcDirectoryUri + 'shape-library/markers/t-bar.svg'
+              },
+              {
+                'semanticName': 'none',
+                'uri': srcDirectoryUri + 'shape-library/markers/none.svg'
+              }
+            ];
+
+            // for element scaling, we are using the SVG terms for all graphical representations of pathways.
+            // preserveAspectRatio refers to the vertical and horizontal alignment of the image.
+
+            // each optional parameter below overrides the default specfied in config.js if it is specified
+            pathvisiojs.load({
+              container: '#pathvisiojs-dev', // required. as of now, this can only be a CSS selector: http://www.w3.org/TR/CSS2/selector.html
+              fitToContainer:true, //optional. A fitToContainer value of false means that the diagram should be the size specified by the diagram creator, without any scaling (full size as per GPML width and height). A value of true means that diagram should be scaled down, if required, to fit entirely within the element specified by the container selector, while preserving aspect ratio. 
+              // optional. default is true.
+              sourceData:parsedInputData.sourceData,// at least one element required in array
+              /*
+              sourceData:[
+                {
+                  uri:'wp.org/wp1.gpml',
+                  fileType:'gpml' // generally will correspond to filename extension
+                },
+                {
+                  uri:'wp.org/wp1.png',
+                  fileType:'png'
+                }
+              ], 
+              //*/
+              cssUri: srcDirectoryUri + 'css/pathway-diagram.css', // optional
+              bridgedbLinkOutsUriStub: 'http://pointer.ucsf.edu/d3/r/data-sources/bridgedb/bridgedb.php/', // optional
+              bridgedbDatasources: 'http://pointer.ucsf.edu/d3/r/data-sources/bridgedb-datasources.php', // optional
+              diagramLoadingIconUri: 'http://www.wikipathways.org/wpi/extensions/PathwayViewer/img/loading.gif', // optional
+              diagramNotAvailableIconUri: 'http://www.wikipathways.org/wpi/extensions/PathwayViewer/img/imageNotAvailable.jpg', // optional
+              imgDiagramUriStub: 'http://www.wikipathways.org/wpi.php?action=downloadFile&type=png&pwTitle=Pathway:', // optional
+              pathwaySearchUriStub: 'http://wikipathways.org//index.php?title=Special:SearchPathways&doSearch=1&query=', // optional
+              customMarkers: customMarkers, //optional
+              //customSymbols: customSymbols, //optional
+              highlightNodes: [ //optional
+                {'type': 'label', 'value': 'CRH', 'color': 'red'},
+                {'type': 'xref', 'value': '8525,Entrez%20Gene', 'color': '#FF0000'}
+              ],
+              hiddenElements: [ //optional
+                'highlight-by-label-input',
+                'fit-to-screen-control'
+              ]
+            });
           }
-        ], 
-        //*/
-        cssUri: srcDirectoryUri + 'css/pathway-diagram.css', // optional
-        bridgedbLinkOutsUriStub: 'http://pointer.ucsf.edu/d3/r/data-sources/bridgedb/bridgedb.php/', // optional
-        bridgedbDatasources: 'http://pointer.ucsf.edu/d3/r/data-sources/bridgedb-datasources.php', // optional
-        diagramLoadingIconUri: 'http://www.wikipathways.org/wpi/extensions/PathwayViewer/img/loading.gif', // optional
-        diagramNotAvailableIconUri: 'http://www.wikipathways.org/wpi/extensions/PathwayViewer/img/imageNotAvailable.jpg', // optional
-        imgDiagramUriStub: 'http://www.wikipathways.org/wpi.php?action=downloadFile&type=png&pwTitle=Pathway:', // optional
-        pathwaySearchUriStub: 'http://wikipathways.org//index.php?title=Special:SearchPathways&doSearch=1&query=', // optional
-        customMarkers: customMarkers, //optional
-        //customSymbols: customSymbols, //optional
-        highlightNodes: [ //optional
-          {'type': 'label', 'value': 'CRH', 'color': 'red'},
-          {'type': 'xref', 'value': '8525,Entrez%20Gene', 'color': '#FF0000'}
         ],
-        hiddenElements: [ //optional
-          'highlight-by-label-input',
-          'fit-to-screen-control'
-        ]
-      });
-    }
-  ],
-  function(err) {
-    console.log('successfully loaded.');
-  });
-}
-
-
-  </script>
-</body>
+        function(err) {
+          console.log('successfully loaded.');
+        });
+      }
+    </script>
+  </body>
 </html>
