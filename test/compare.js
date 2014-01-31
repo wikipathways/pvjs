@@ -3,6 +3,17 @@ var srcDirectoryUri;
 var pvjsSources;
 var pathvisioNS = pathvisioNS || {};
 
+function serializeXmlToString(xmlDoc) {
+  var oSerializer;
+  if (!(pathvisiojs.utilities.isIE()) || (pathvisiojs.utilities.isIE() > 8)) {
+    oSerializer = new XMLSerializer();
+    return oSerializer.serializeToString(xmlDoc);
+  }
+  else {
+    throw new Error('IE8 and older do not support XMLSerializer');
+  }
+}
+
 var developmentLoader = function() {
 
   /* *******************
@@ -368,16 +379,6 @@ var developmentLoader = function() {
   };
 }();
 
-function serializeXmlToString(xmlDoc) {
-  var oSerializer;
-  if (!(pathvisiojs.utilities.isIE()) || (pathvisiojs.utilities.isIE() > 8)) {
-    oSerializer = new XMLSerializer();
-    return oSerializer.serializeToString(xmlDoc);
-  }
-  else {
-    throw new Error('IE8 and older do not support XMLSerializer');
-  }
-}
 
 /* *******************
 /* Until we finish automating the Grunt build process, we are manually getting the html template with this function.
