@@ -586,6 +586,21 @@ pathvisiojs.data.gpml = function(){
                 pathway.Group = jsonGroups;
                 pathway.elements = pathway.elements.concat(pathway.Group);
 
+                var relativeZIndexByRenderableType = {
+                  'GroupNode': 0,
+                  'Interaction': 1,
+                  'GraphicalLine': 2,
+                  'Anchor': 3,
+                  'EntityNode': 4
+                }
+
+                // if two elements have the same z-index, they will be rendered by this sub-sort
+                pathway.elements.sort(function(a, b) {
+                  return relativeZIndexByRenderableType[b.renderableType] - relativeZIndexByRenderableType[a.renderableType];
+                });
+
+                // sort by explicitly set z-index for all elements except GroupNodes, which use the loweest z-index
+                // of their contained elements, and anchors, which use their parent element's z-index //TODO check whether anchors have been set to have a z-index
                 pathway.elements.sort(function(a, b) {
                   return a.zIndex - b.zIndex;
                 });

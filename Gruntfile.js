@@ -266,7 +266,7 @@ grunt.initConfig({
   // test
   grunt.registerTask('test-min', 'Run local tests for development', function(val) {
     grunt.option('spec', 'minimal')
-    grunt.task.run('protractor-e2e')
+    grunt.task.run('protractor-safari')
   });
 
   grunt.registerTask('test', 'Run extensive local tests', function(val) {

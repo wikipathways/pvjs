@@ -30,7 +30,10 @@ pathvisiojs.data.gpml.element.node.groupNode = function() {
 
     var groupContents = group.contains;
     groupContents = pathvisiojs.utilities.convertToArray(groupContents);
-    groupContents.forEach(function(groupContent) {
+
+    // TODO check what happens if the contained element lacks a z-index
+    dimensions.zIndex = groupContents[0].zIndex;
+    async.each(groupContents, function(groupContent, callbackInside) {
       if (groupContent.renderableType === 'EntityNode') {
         dimensions.topLeftCorner.x = Math.min(dimensions.topLeftCorner.x, groupContent.x);
         dimensions.topLeftCorner.y = Math.min(dimensions.topLeftCorner.y, groupContent.y);
@@ -48,6 +51,9 @@ pathvisiojs.data.gpml.element.node.groupNode = function() {
       dimensions.width = (dimensions.bottomRightCorner.x - dimensions.topLeftCorner.x) + 2 * (group.padding + group.borderWidth);
       dimensions.height = (dimensions.bottomRightCorner.y - dimensions.topLeftCorner.y) + 2 * (group.padding + group.borderWidth);
       dimensions.zIndex = Math.min(dimensions.zIndex, groupContent.zIndex);
+      callbackInside(null);
+    },
+    function (err) {
       callback(dimensions);
     });
   }

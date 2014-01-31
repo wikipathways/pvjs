@@ -285,30 +285,22 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
 
     var i = 0;
     async.each(data, function(item, callbackInside) {
-      console.log('data');
-      console.log(data);
-      console.log('item');
-      console.log(item);
       if (item.key !== 'undefined') {
         container = viewport.select('#' + strcase.paramCase(item.key));
       }
       else {
         container = viewport;
       }
-      console.log(container[0][0]);
 
       container.selectAll('.element')
       .data(item.values)
       .enter()
       .append(function(d) {
-        console.log('d');
-        console.log(d);
         var childElementName = renderableTypeToSvgElementMappings[strcase.camelCase(d.renderableType)];
         var child = document.createElementNS('http://www.w3.org/2000/svg', childElementName);
         return child;
       })
       .attr("id", function (d) {
-        console.log(strcase.paramCase(d['@id']));
         return strcase.paramCase(d['@id']);
       })
       .attr('class', 'element');
@@ -327,7 +319,6 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
   // other elements, this function will call itself back to render
   // the elements within the groupNode.
   function updateElementProperties(args, callback){
-    console.log(args);
     var svg = args.svg,
       data = args.data,
       pathway = args.pathway,
@@ -351,8 +342,6 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
     data.forEach(function(dataElement) {
       renderingArgs.data = dataElement;
       renderingArgs.element = d3.select('#' + strcase.paramCase(dataElement['@id']));
-      console.log('#' + strcase.paramCase(dataElement['@id']));
-      console.log(renderingArgs.element);
       if (dataElement.renderableType === 'GraphicalLine') {                                                                                        
         pathvisiojs.view.pathwayDiagram.svg.edge.graphicalLine.render(renderingArgs);                                                          
       } 
@@ -394,8 +383,6 @@ else if (dataElement.renderableType === 'Interaction') {
         .entries(pathway.elements);
         
         renderArgs.data = pathwayNestedByGrouping;
-        console.log('pathwayNestedByGrouping');
-        console.log(pathwayNestedByGrouping);
 
         appendElementsInDomOrder(renderArgs, function() {
           callbackInside(null, svg);
@@ -413,8 +400,6 @@ else if (dataElement.renderableType === 'Interaction') {
         renderArgs.data = pathwayNestedByDependencies;
         //*/
 
-        console.log('renderArgs.data');
-        console.log(renderArgs.data);
 
         updateElementProperties(renderArgs, function() {
           callback(svg);

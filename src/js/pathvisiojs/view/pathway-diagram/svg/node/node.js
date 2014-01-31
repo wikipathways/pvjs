@@ -40,7 +40,6 @@ pathvisiojs.view.pathwayDiagram.svg.node = function(){
   }
 
   function render(args, callback) {
-    console.log(args);
     if (!args) {
       throw new Error('Need input args to render a node.');
     }
@@ -51,8 +50,6 @@ pathvisiojs.view.pathwayDiagram.svg.node = function(){
       parentDataElement,
       translatedX,
       translatedY;
-
-      console.log(nodeContainer);
 
     if (!pathway) {
       throw new Error('Need a pathway to render a node.');
@@ -70,8 +67,6 @@ pathvisiojs.view.pathwayDiagram.svg.node = function(){
       })[0];
       translatedX = data.x - parentDataElement.x;
       translatedY = data.y - parentDataElement.y;
-      console.log('parentDataElement');
-      console.log(parentDataElement);
     }
     else {
       translatedX = data.x;
@@ -111,8 +106,6 @@ pathvisiojs.view.pathwayDiagram.svg.node = function(){
     .call(drag)
 
 
-    console.log('nodeContainer');
-    console.log(nodeContainer);
 
     /****************** 
      * background shape
