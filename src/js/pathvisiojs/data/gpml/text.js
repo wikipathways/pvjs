@@ -1,5 +1,5 @@
-"use strict";
 pathvisiojs.data.gpml.text = function() {
+  'use strict';
 
   var pathvisioDefaultStyleValues = {
     'text':{

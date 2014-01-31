@@ -12,6 +12,7 @@
 // There are other types of SVG curves, but I understand the Java code to use bezier curves.
 
 pathvisiojs.view.pathwayDiagram.svg.edge.pathData = function(){
+  'use strict';
   function getPathDirectionForElbowFromPoint(pathway, edge, point) {
     var direction, otherEndDirection, otherEndPoint;
 
@@ -248,16 +249,16 @@ pathvisiojs.view.pathwayDiagram.svg.edge.pathData = function(){
             }
           }
 
-                console.log('pathCoordinatesArray');
-                console.log(pathCoordinatesArray);
+                //console.log('pathCoordinatesArray');
+                //console.log(pathCoordinatesArray);
                 self.pathCoordinatesArray = pathCoordinatesArray;
           index = 0;
           do {
             index += 1;
             pathData += ' L ' + pathCoordinatesArray[index].x + ' ' + pathCoordinatesArray[index].y;
           } while (index < pathCoordinatesArray.length - 1);
-                console.log('pathData');
-                console.log(pathData);
+                //console.log('pathData');
+                //console.log(pathData);
                 callback(pathData);
 
         });

@@ -1,11 +1,11 @@
 {
   "name": "es5-shim",
   "_cacheHeaders": {
-    "ETag": "\"43b308c6f0bc727215037d823e26899a\"",
-    "Content-Length": "70020",
+    "ETag": "\"d1cfcc059f5dac7b780f0fcd4f8ffec2\"",
+    "Content-Length": "70024",
     "Content-Type": "text/html; charset=utf-8"
   },
-  "_release": "e-tag:43b308c6f",
+  "_release": "e-tag:d1cfcc059",
   "main": "index",
   "_source": "https://github.com/es-shims/es5-shim",
   "_target": "*",

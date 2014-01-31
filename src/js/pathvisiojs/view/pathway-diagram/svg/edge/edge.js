@@ -1,8 +1,7 @@
-"use strict";
-
 // Edges (interactions and graphical lines)
 
 pathvisiojs.view.pathwayDiagram.svg.edge = function(){
+  'use strict';
 
   function getPointAtPositionById(edgeElementId, position) {
     // position refers to percentage of total length along

@@ -1,5 +1,5 @@
-"use strict";
 pathvisiojs.data.gpml = function(){
+  'use strict';
 
   var pathvisioDefaultStyleValues = {
     'FontSize':{
@@ -158,8 +158,8 @@ pathvisiojs.data.gpml = function(){
     // for doing this in Java, we could look at 
     // https://code.google.com/p/json-io/
 
-    console.log('GPML');
-    console.log(gpml);
+    //console.log('GPML');
+    //console.log(gpml);
 
     var pathway = {};
     pathway.xmlns = gpmlPathway.attr('xmlns');
@@ -604,8 +604,6 @@ pathvisiojs.data.gpml = function(){
                 pathway.elements.sort(function(a, b) {
                   return a.zIndex - b.zIndex;
                 });
-
-                console.log('pathwayNestedByGrouping');
                 callbackInside(null, pathway);
               },
               function(pathway, callbackInside){
@@ -616,9 +614,6 @@ pathvisiojs.data.gpml = function(){
                 pathway.pathwayNestedByGrouping = d3.nest()
                 .key(function(d) { return d.isContainedBy; })
                 .entries(pathway.elements);
-
-                console.log('pathwayNestedByGrouping');
-                console.log(pathway.pathwayNestedByGrouping);
                 callbackInside(null, pathway);
               },
               function(pathway, callbackInside){

@@ -1,5 +1,5 @@
-"use strict";
 pathvisiojs.view.pathwayDiagram.svg.infoBox = function(){
+  'use strict';
     
   function render(viewport, pathway) {
     if (!viewport || !pathway) {

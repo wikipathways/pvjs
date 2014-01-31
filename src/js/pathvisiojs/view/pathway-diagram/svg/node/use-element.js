@@ -1,16 +1,18 @@
-"use strict"
-
 pathvisiojs.view.pathwayDiagram.svg.node.useElement = function(){
+  'use strict';
   
   var pathwayHere, allSymbolNamesHere;
 
   function dragmove(d) {
+    /*
     console.log(d3.event.x);
     console.log('d');
     console.log(d);
     console.log(d.id);
     console.log('this');
     console.log(this);
+    //*/
+
     // don't have anchors rendered yet
     /*
     var changingAnchors = pathwayHere.elements.filter(function(element) {return element.parentId === d.id});

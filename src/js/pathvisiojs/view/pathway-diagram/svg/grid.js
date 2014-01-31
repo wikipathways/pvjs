@@ -1,4 +1,5 @@
 pathvisiojs.view.pathwayDiagram.svg.grid = function(){
+  'use strict';
 
 /*  Linear algebra conventions call for specifying an element of a matrix as row #, column #.
  *  The rows and columns use one-based indexing. Example: Element.1,2 is the element in the first row and the second column.

@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 // includes GPML elements of type EntityNode and Group
 

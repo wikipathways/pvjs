@@ -1,5 +1,5 @@
-"use strict";
 pathvisiojs.view.pathwayDiagram.svg.node.text = function(){
+  'use strict';
 
   // for more details, see 
   // http://www.w3.org/TR/SVG11/text.html#TextAnchorProperty

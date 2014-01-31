@@ -1,5 +1,5 @@
-"use strict"
 pathvisiojs.view.pathwayDiagram.svg.edge.marker = function(){
+  'use strict';
 
   // the way SVG works makes this code more complex than it should need to be. Essentially, we
   // are trying to reuse the markers defined in the SVG template, but we also need to be able
@@ -246,7 +246,6 @@ pathvisiojs.view.pathwayDiagram.svg.edge.marker = function(){
 
     var defaultMarker, refX, refY, viewBox, viewBoxElements;
     if (position === 'end') {
-      console.log('end');
       defaultMarker = d3.select('#' + markerIdStub + '-'+position+'-default');
       refX = parseFloat(defaultMarker.attr('refX'));
       refY = parseFloat(defaultMarker.attr('refY'));
