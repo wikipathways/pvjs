@@ -1,0 +1,16 @@
+{
+  "name": "aight",
+  "version": "1.2.2",
+  "main": "./aight.js",
+  "homepage": "https://github.com/shawnbot/aight",
+  "_release": "1.2.2",
+  "_resolution": {
+    "type": "version",
+    "tag": "v1.2.2",
+    "commit": "a093c5af48d272ab43656d1610f4f02245e8f9c6"
+  },
+  "_source": "git://github.com/shawnbot/aight.git",
+  "_target": "~1.2.2",
+  "_originalSource": "aight",
+  "_direct": true
+}

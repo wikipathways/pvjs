@@ -8,7 +8,6 @@
     "async": "~0.2.5",
     "blueimp-load-image": "~1.11.0",
     "d3": ">= 3.2.8",
-    "es5-shim": "https://github.com/es-shims/es5-shim",
     "html5-shiv": "http://html5shim.googlecode.com/svn/trunk/html5.js",
     "ie9-shim": "http://ie7-js.googlecode.com/svn/version/2.1(beta4)/IE9.js",
     "font-awesome": "~4.0.3",
@@ -20,7 +19,9 @@
     "strcase": "https://github.com/ariutta/strcase.git#~0.6.0",
     "svg-pan-zoom": "latest",
     "typeahead.js": "~0.9.3",
-    "xccessors": "https://github.com/eligrey/Xccessors.git"
+    "xccessors": "https://github.com/eligrey/Xccessors.git",
+    "es5-shim": "~2.3.0",
+    "aight": "~1.2.2"
   },
   "resolutions": {
     "jquery": "1.10.2"
