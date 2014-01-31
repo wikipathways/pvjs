@@ -52,8 +52,6 @@ pathvisiojs.view.pathwayDiagram.svg.edge = function(){
         point.x = point.x - parentDataElement.x;
         point.y = point.y - parentDataElement.y;
       });
-      console.log('parentDataElement');
-      console.log(parentDataElement);
     }
 
     /*

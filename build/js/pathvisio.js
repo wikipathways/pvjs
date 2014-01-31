@@ -3625,7 +3625,7 @@ pathvisiojs.data.gpml.element.node.groupNode = function() {
 
     var groupContents = group.contains;
     groupContents = pathvisiojs.utilities.convertToArray(groupContents);
-    groupContents.forEach(function(groupContent) {
+    async.each(groupContents, function(groupContent) {
       if (groupContent.renderableType === 'EntityNode') {
         dimensions.topLeftCorner.x = Math.min(dimensions.topLeftCorner.x, groupContent.x);
         dimensions.topLeftCorner.y = Math.min(dimensions.topLeftCorner.y, groupContent.y);
@@ -3643,8 +3643,11 @@ pathvisiojs.data.gpml.element.node.groupNode = function() {
       dimensions.width = (dimensions.bottomRightCorner.x - dimensions.topLeftCorner.x) + 2 * (group.padding + group.borderWidth);
       dimensions.height = (dimensions.bottomRightCorner.y - dimensions.topLeftCorner.y) + 2 * (group.padding + group.borderWidth);
       dimensions.zIndex = Math.min(dimensions.zIndex, groupContent.zIndex);
-      callback(dimensions);
+    },
+    function () {
     });
+    dimensions.zIndex = dimensions.zIndex - 1;
+    callback(dimensions);
   }
 
   function toRenderableJson(pathway, gpmlGroup, pathwayIri, callbackOutside) {
