@@ -2893,6 +2893,21 @@ pathvisiojs.data.gpml = function(){
                 pathway.Group = jsonGroups;
                 pathway.elements = pathway.elements.concat(pathway.Group);
 
+                var relativeZIndexByRenderableType = {
+                  'GroupNode': 0,
+                  'Interaction': 1,
+                  'GraphicalLine': 2,
+                  'Anchor': 3,
+                  'EntityNode': 4
+                }
+
+                // if two elements have the same z-index, they will be rendered by this sub-sort
+                pathway.elements.sort(function(a, b) {
+                  return relativeZIndexByRenderableType[b.renderableType] - relativeZIndexByRenderableType[a.renderableType];
+                });
+
+                // sort by explicitly set z-index for all elements except GroupNodes, which use the loweest z-index
+                // of their contained elements, and anchors, which use their parent element's z-index //TODO check whether anchors have been set to have a z-index
                 pathway.elements.sort(function(a, b) {
                   return a.zIndex - b.zIndex;
                 });
@@ -3625,7 +3640,10 @@ pathvisiojs.data.gpml.element.node.groupNode = function() {
 
     var groupContents = group.contains;
     groupContents = pathvisiojs.utilities.convertToArray(groupContents);
-    async.each(groupContents, function(groupContent) {
+
+    // TODO check what happens if the contained element lacks a z-index
+    dimensions.zIndex = groupContents[0].zIndex;
+    async.each(groupContents, function(groupContent, callbackInside) {
       if (groupContent.renderableType === 'EntityNode') {
         dimensions.topLeftCorner.x = Math.min(dimensions.topLeftCorner.x, groupContent.x);
         dimensions.topLeftCorner.y = Math.min(dimensions.topLeftCorner.y, groupContent.y);
@@ -3643,11 +3661,11 @@ pathvisiojs.data.gpml.element.node.groupNode = function() {
       dimensions.width = (dimensions.bottomRightCorner.x - dimensions.topLeftCorner.x) + 2 * (group.padding + group.borderWidth);
       dimensions.height = (dimensions.bottomRightCorner.y - dimensions.topLeftCorner.y) + 2 * (group.padding + group.borderWidth);
       dimensions.zIndex = Math.min(dimensions.zIndex, groupContent.zIndex);
+      callbackInside(null);
     },
-    function () {
+    function (err) {
+      callback(dimensions);
     });
-    dimensions.zIndex = dimensions.zIndex - 1;
-    callback(dimensions);
   }
 
   function toRenderableJson(pathway, gpmlGroup, pathwayIri, callbackOutside) {
@@ -3993,8 +4011,6 @@ pathvisiojs.data.gpml.element.node.entityNode.shape = function(){
     
     // some shapes have GPML values that do not match what is visually displayed in PathVisio-Java.
     // Below we correct the GPMl so that the display in pathvisiojs will matches the display in PathVisio-Java.
-    console.log('gpmlShape at first');
-    console.log(gpmlShape);
     self.myGpmlShape = gpmlShape;
     var gpmlWidth, gpmlCenterX; 
     if (gpmlShape.select('Graphics').attr('ShapeType') === 'Triangle') {
@@ -4002,8 +4018,6 @@ pathvisiojs.data.gpml.element.node.entityNode.shape = function(){
       gpmlCenterX = parseFloat(gpmlShape.select('Graphics').attr('CenterX'));
       gpmlShape.select('Graphics').attr('CenterX', gpmlCenterX + gpmlWidth * 0.27);
       gpmlShape.select('Graphics').attr('Width', gpmlWidth * 0.98);
-      console.log('gpmlShape');
-      console.log(gpmlShape);
     }
 
     var jsonShape = {};
@@ -5565,30 +5579,22 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
 
     var i = 0;
     async.each(data, function(item, callbackInside) {
-      console.log('data');
-      console.log(data);
-      console.log('item');
-      console.log(item);
       if (item.key !== 'undefined') {
         container = viewport.select('#' + strcase.paramCase(item.key));
       }
       else {
         container = viewport;
       }
-      console.log(container[0][0]);
 
       container.selectAll('.element')
       .data(item.values)
       .enter()
       .append(function(d) {
-        console.log('d');
-        console.log(d);
         var childElementName = renderableTypeToSvgElementMappings[strcase.camelCase(d.renderableType)];
         var child = document.createElementNS('http://www.w3.org/2000/svg', childElementName);
         return child;
       })
       .attr("id", function (d) {
-        console.log(strcase.paramCase(d['@id']));
         return strcase.paramCase(d['@id']);
       })
       .attr('class', 'element');
@@ -5607,7 +5613,6 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
   // other elements, this function will call itself back to render
   // the elements within the groupNode.
   function updateElementProperties(args, callback){
-    console.log(args);
     var svg = args.svg,
       data = args.data,
       pathway = args.pathway,
@@ -5631,8 +5636,6 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
     data.forEach(function(dataElement) {
       renderingArgs.data = dataElement;
       renderingArgs.element = d3.select('#' + strcase.paramCase(dataElement['@id']));
-      console.log('#' + strcase.paramCase(dataElement['@id']));
-      console.log(renderingArgs.element);
       if (dataElement.renderableType === 'GraphicalLine') {                                                                                        
         pathvisiojs.view.pathwayDiagram.svg.edge.graphicalLine.render(renderingArgs);                                                          
       } 
@@ -5674,8 +5677,6 @@ else if (dataElement.renderableType === 'Interaction') {
         .entries(pathway.elements);
         
         renderArgs.data = pathwayNestedByGrouping;
-        console.log('pathwayNestedByGrouping');
-        console.log(pathwayNestedByGrouping);
 
         appendElementsInDomOrder(renderArgs, function() {
           callbackInside(null, svg);
@@ -5693,8 +5694,6 @@ else if (dataElement.renderableType === 'Interaction') {
         renderArgs.data = pathwayNestedByDependencies;
         //*/
 
-        console.log('renderArgs.data');
-        console.log(renderArgs.data);
 
         updateElementProperties(renderArgs, function() {
           callback(svg);
@@ -6150,7 +6149,6 @@ pathvisiojs.view.pathwayDiagram.svg.node = function(){
   }
 
   function render(args, callback) {
-    console.log(args);
     if (!args) {
       throw new Error('Need input args to render a node.');
     }
@@ -6161,8 +6159,6 @@ pathvisiojs.view.pathwayDiagram.svg.node = function(){
       parentDataElement,
       translatedX,
       translatedY;
-
-      console.log(nodeContainer);
 
     if (!pathway) {
       throw new Error('Need a pathway to render a node.');
@@ -6180,8 +6176,6 @@ pathvisiojs.view.pathwayDiagram.svg.node = function(){
       })[0];
       translatedX = data.x - parentDataElement.x;
       translatedY = data.y - parentDataElement.y;
-      console.log('parentDataElement');
-      console.log(parentDataElement);
     }
     else {
       translatedX = data.x;
@@ -6221,8 +6215,6 @@ pathvisiojs.view.pathwayDiagram.svg.node = function(){
     .call(drag)
 
 
-    console.log('nodeContainer');
-    console.log(nodeContainer);
 
     /****************** 
      * background shape
@@ -7190,8 +7182,6 @@ pathvisiojs.view.pathwayDiagram.svg.node.groupNode = function(){
       })
 
       var groupContents = args.data.contains;
-      console.log('args.data.contains');
-      console.log(args.data.contains);
       callback(groupContainer, groupContents);
     });
   }
@@ -7436,8 +7426,6 @@ pathvisiojs.view.pathwayDiagram.svg.edge = function(){
         point.x = point.x - parentDataElement.x;
         point.y = point.y - parentDataElement.y;
       });
-      console.log('parentDataElement');
-      console.log(parentDataElement);
     }
 
     /*
