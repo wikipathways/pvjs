@@ -4,7 +4,6 @@ var pvjsSources;
 var pathvisioNS = pathvisioNS || {};
 
 var developmentLoader = function() {
-  var oSerializer = new XMLSerializer();
 
   /* *******************
   /* Get the desired GPML file URL or WikiPathways ID from the URL parameters.
@@ -256,14 +255,13 @@ var developmentLoader = function() {
     var viewport = svg.append('g').
     attr('id', 'viewport');
 
-    var oSerializer = new XMLSerializer();
-    pathvisioNS['tmp/pathvisiojs.svg'] = oSerializer.serializeToString(svg[0][0]);
+    pathvisioNS['tmp/pathvisiojs.svg'] = serializeXmlToString(svg[0][0]);
     callback();
   }
 
   function generateHtmlTemplate(callback) {
     d3.html(srcDirectoryUri + 'pathvisiojs.html', function(html) {
-      pathvisioNS['tmp/pathvisiojs.html'] = oSerializer.serializeToString(html);
+      pathvisioNS['tmp/pathvisiojs.html'] = serializeXmlToString(html);
       callback();
     });
   }
@@ -370,6 +368,17 @@ var developmentLoader = function() {
   };
 }();
 
+function serializeXmlToString(xmlDoc) {
+  var oSerializer;
+  if (!(pathvisiojs.utilities.isIE()) || (pathvisiojs.utilities.isIE() > 8)) {
+    oSerializer = new XMLSerializer();
+    return oSerializer.serializeToString(xmlDoc);
+  }
+  else {
+    throw new Error('IE8 and older do not support XMLSerializer');
+  }
+}
+
 /* *******************
 /* Until we finish automating the Grunt build process, we are manually getting the html template with this function.
 /* *******************/
@@ -383,8 +392,7 @@ var getPathvisiojsHtmlTemplate = function() {
   html.select('svg').remove();
   var html00 = html[0][0];
 
-  var oSerializer = new XMLSerializer();
-  var serializedHtml = oSerializer.serializeToString(html00);
+  var serializedHtml = serializeXmlToString(html00);
   console.log(serializedHtml);
 }
 
@@ -410,7 +418,6 @@ var getPathvisiojsSvgTemplate = function() {
   });
   var svg00 = svg[0][0];
   //thanks MDN
-  var oSerializer = new XMLSerializer();
-  var serializedSvg = oSerializer.serializeToString(svg00);
+  var serializedSvg = serializeXmlToString(svg00);
   console.log(serializedSvg);
 }
