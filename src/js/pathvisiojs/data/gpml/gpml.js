@@ -596,9 +596,11 @@ pathvisiojs.data.gpml = function(){
 
                 // if two elements have the same z-index, they will be rendered by this sub-sort
                 pathway.elements.sort(function(a, b) {
-                  return relativeZIndexByRenderableType[b.renderableType] - relativeZIndexByRenderableType[a.renderableType];
+                  return relativeZIndexByRenderableType[a.renderableType] - relativeZIndexByRenderableType[b.renderableType];
                 });
-
+                callbackInside(null, pathway);
+              },
+              function(pathway, callbackInside){
                 // sort by explicitly set z-index for all elements except GroupNodes, which use the loweest z-index
                 // of their contained elements, and anchors, which use their parent element's z-index //TODO check whether anchors have been set to have a z-index
                 pathway.elements.sort(function(a, b) {
