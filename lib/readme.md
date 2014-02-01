@@ -1,4 +1,4 @@
-=== Third party libs used in production
+### Third party libs used in production
 These are the specific jars that should be deployed with pathvisio.min.js in production.
 
 * aight/aight.d3.min.js
