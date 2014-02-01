@@ -7,9 +7,9 @@ These are the specific jars that should be deployed with pathvisio.min.js in pro
 * blueimp-load-image/js/load-image.min.js
 * d3/d3.min.js
 * es5-shim/es5-sham.min.js
+* jquery/jquery.min.js  *-conflicts with WikiPathways*
 * jsonld.js/js/jsonld.js
 * jsonld.js/js/Promise.js
-* jquery/jquery.min.js  *-conflicts with WikiPathways*
 * modernizr/modernizr.js
 * node-uuid/uuid.js
 * rgb-color/rgb-color.min.js
