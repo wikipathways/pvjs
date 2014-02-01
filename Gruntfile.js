@@ -174,8 +174,8 @@ grunt.initConfig({
         }
     },
     concurrent: {
-        //protractor_test: ['protractor-chrome', 'protractor-firefox']
-        protractor_test: ['protractor-chrome', 'protractor-safari', 'protractor-firefox']
+        protractor_test: ['protractor-chrome', 'protractor-firefox']
+        //protractor_test: ['protractor-chrome', 'protractor-safari', 'protractor-firefox']
     },
     protractor: {
       options: {
