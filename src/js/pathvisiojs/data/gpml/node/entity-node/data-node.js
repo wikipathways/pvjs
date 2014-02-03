@@ -1,5 +1,4 @@
-"use strict";
-
+// TODO I don't know why these two elements below are here.
 pathvisiojs.data.gpml.element.node.entityNode.dataNode = Object.create(pathvisiojs.data.gpml.element.node.entityNode);
 
 var pathvisioDefaultStyleValues = {
@@ -40,6 +39,7 @@ var pathvisioDefaultStyleValues = {
 }
 
 pathvisiojs.data.gpml.element.node.entityNode.dataNode.toRenderableJson = function(gpmlDataNode, pathwayIri, callbackInside) {
+  'use strict';
   var jsonDataNode = {};
   var dataNodeType = gpmlDataNode.attr('Type');
   if (!dataNodeType) {

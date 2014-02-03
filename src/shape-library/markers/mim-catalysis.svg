@@ -20,6 +20,6 @@
 
 	<!-- mim-catalysis markers: circle, drawing-board fill and default color stroke -->
 
-	<circle cx="6.1" cy="6" r="5.3px" stroke-width="1px"/>
+	<circle cx="6.0" cy="6" r="5.3px" stroke-width="1px"/>
 
 </svg>

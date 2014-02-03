@@ -1,4 +1,5 @@
 pathvisiojs.view.annotation = function(){
+  'use strict';
   function render(annotationData) {
     self.annotationData = annotationData;
     var annotation = d3.select("#annotation")
@@ -21,7 +22,7 @@ pathvisiojs.view.annotation = function(){
 
     var detailsSearchUri = annotation.select('#annotation-header-search').select('a')
     .attr('href', function(d) {
-    	return pathvisiojs.config.pathwaySearchUriStub() + d.header;
+    	return pathvisiojs.config.pathwaySearchUriStub + d.header;
      })
      .attr('title', function(d) {return 'Search for pathways containing ' + d.header; });
 
@@ -45,14 +46,16 @@ pathvisiojs.view.annotation = function(){
 
     var annotationListItemsContainer = annotation.selectAll('#annotation-items-container')
     .data(function(d) {
-      //debug//console.log('d annotationListItemsContainer');
-      //debug//console.log(d);
-      //if a single string, then assume special case: img src for loading gif
+      //if a single string, then check for special case: img src for loading gif
       if (typeof d.listItems[0] === 'string'){
+       if (d.listItems[0].split('.').pop() == 'gif'){
 	annotationDescription.append('br');
 	annotationDescription.append('br');
 	annotationDescription.append('img').attr('src', d.listItems[0]).attr('style', 'width: 20px');
-	//fake item list that effectively clears the display while loading gif is active
+       } else { //display the custom text
+	annotationDescription.append('p').html('<font color="red">'+d.listItems[0]+'</font>');
+       }
+        //fake item list that effectively clears the display while loading gif is active
         return [{"key":"clear","values":[{"clear": "clear"}]}];
       } else {
       //debug//console.log([d.listItems]);

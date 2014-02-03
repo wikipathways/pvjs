@@ -1,6 +1,5 @@
-"use strict"
-
 pathvisiojs.data.gpml.node.anchor = function() {
+  'use strict';
 
   // anchors
   // an anchor is an attachment point at which an edge can originate or terminate.
@@ -25,7 +24,7 @@ pathvisiojs.data.gpml.node.anchor = function() {
           jsonAnchor = {};
           gpmlAnchor = d3.select(this);
           graphId = gpmlAnchor.attr('GraphId') || ('id' + uuid.v4());
-          elementIri = pathwayIri + graphId;
+          elementIri = 'pathwayIri:' + graphId;
           jsonAnchor['@id'] = elementIri;
           jsonAnchor['@type'] = [
             'node',

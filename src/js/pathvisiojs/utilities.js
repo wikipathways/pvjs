@@ -1,48 +1,9 @@
 pathvisiojs.utilities = function(){
-
-  // from http://stackoverflow.com/questions/2454295/javascript-concatenate-properties-from-multiple-objects-associative-array
-
-  function collect() {
-    var ret = {};
-    var len = arguments.length;
-    for (var i=0; i<len; i++) {
-      for (p in arguments[i]) {
-        if (arguments[i].hasOwnProperty(p)) {
-          ret[p] = arguments[i][p];
-        }
-      }
-    }
-    return ret;
-  }
-
-  /**
-   * From http://stackoverflow.com/questions/7770235/change-text-direction-of-textbox-automatically
-   * What about Chinese characters that go top to bottom?
-   */
-
-  function getTextDirection(text) {
-
-    var x =  new RegExp("[\x00-\x80]+"); // is ascii
-
-    //alert(x.test($this.val()));
-
-    var isAscii = x.test(text);
-
-    var direction;
-    if (isAscii) {
-      direction = "ltr";
-    }
-    else {
-      direction = "rtl";
-    }
-
-    return direction;
-  }  
+  'use strict';
 
   // from here: http://www.cjboco.com/blog.cfm/post/determining-an-elements-width-and-height-using-javascript/
   // TODO have not tested x-browser yet.
   // could use jquery, but I want to remove it as a dependency for pv.js.
-
   Element.prototype.getElementWidth = function() {
     if (typeof this.clip !== "undefined") {
       return this.clip.width;
@@ -67,41 +28,19 @@ pathvisiojs.utilities = function(){
     }
   };
 
-  function strToHtmlId(str) {
-    var re = /\W/gi;
-    var id = str.replace(re, "");
-    return id;
+  function collect() {
+    // from http://stackoverflow.com/questions/2454295/javascript-concatenate-properties-from-multiple-objects-associative-array
+    var ret = {};
+    var len = arguments.length;
+    for (var i=0; i<len; i++) {
+      for (var p in arguments[i]) {
+        if (arguments[i].hasOwnProperty(p)) {
+          ret[p] = arguments[i][p];
+        }
+      }
+    }
+    return ret;
   }
-
-  function isUrl(str) {
-
-    // from https://gist.github.com/samuelcole/920312
-
-    var urlPattern = /(?:(?=[\s`!()\[\]{};:'".,<>?«»“”‘’])|\b)((?:[a-z][\w-]+:(?:\/{1,3}|[a-z0-9%])|www\d{0,3}[.]|[a-z0-9.\-]+[.][a-z]{2,4}\/|[a-z0-9.\-]+[.](?:com|org|net))(?:[^\s()<>]+|\(([^\s()<>]+|(\([^\s()<>]+\)))*\))*(?:\(([^\s()<>]+|(\([^\s()<>]+\)))*\)|[^\s`!()\[\]{};:'".,<>?«»“”‘’]|\b))/gi;
-    return urlPattern.test(str);
-  }
-
-  function splitStringByNewLine(str) {
-
-    // PathVisio (Java) uses '&#xA;' for indicating newline, and browsers convert this into '\r\n' or '\n' in JavaScript.
-
-    return str.split(/\r\n|\r|\n/g);
-  }
-
-  // this both clones a node and inserts it at the same level of the DOM
-  // as the element it was cloned from.
-  // it returns a d3 selection of the cloned element
-  function cloneNode(selector) {
-    var node = d3.select(selector).node();
-    return d3.select(node.parentNode.insertBefore(node.cloneNode(true), node.nextSibling));
-  }
-
-  // see http://stackoverflow.com/questions/18082/validate-numbers-in-javascript-isnumeric
-
-  function isNumber(n) {
-    return !isNaN(parseFloat(n)) && isFinite(n);
-  }
-
 
   function clone(src) {
     function mixin(dest, source, copyFunc) {
@@ -155,29 +94,12 @@ pathvisiojs.utilities = function(){
 
   }  
 
-  function getUrlParam(name) {
-
-    // Thanks to http://stackoverflow.com/questions/11582512/how-to-get-url-parameters-with-javascript
-    // This will be replaced once we get the backend php to get the json
-
-    var parameter = decodeURIComponent((new RegExp('[?|&]' + name + '=' + '([^&;]+?)(&|#|;|$)').exec(location.search)||[,""])[1].replace(/\+/g, '%20'))||null;
-    if (!!parameter) {
-      return parameter;
-    }
-    else {
-      console.warn('Warning: URL parameter "' + name + '" is null.');
-      return null;
-    }
-  }
-
-  function isWikiPathwaysId(data) {
-    data = data.trim();
-    if (data.substr(0,2).toUpperCase() === 'WP' && isNumber(data.substr(data.length - 1))) {
-      return true;
-    }
-    else {
-      return false;
-    }
+  // this both clones a node and inserts it at the same level of the DOM
+  // as the element it was cloned from.
+  // it returns a d3 selection of the cloned element
+  function cloneNode(selector) {
+    var node = d3.select(selector).node();
+    return d3.select(node.parentNode.insertBefore(node.cloneNode(true), node.nextSibling));
   }
 
   function convertToArray(object) {
@@ -219,7 +141,42 @@ pathvisiojs.utilities = function(){
     return result;
   }
 
-  function getWindowDimensions(object) {
+  function getTextDirection(text) {
+    /**
+     * From http://stackoverflow.com/questions/7770235/change-text-direction-of-textbox-automatically
+     * What about Chinese characters that go top to bottom?
+     */
+    var x =  new RegExp("[\x00-\x80]+"); // is ascii
+
+    //alert(x.test($this.val()));
+
+    var isAscii = x.test(text);
+
+    var direction;
+    if (isAscii) {
+      direction = "ltr";
+    }
+    else {
+      direction = "rtl";
+    }
+
+    return direction;
+  }  
+
+  function getUriParam(name) {
+    // Thanks to http://stackoverflow.com/questions/11582512/how-to-get-uri-parameters-with-javascript
+    // This will be replaced once we get the backend php to get the json
+    var parameter = decodeURIComponent((new RegExp('[?|&]' + name + '=' + '([^&;]+?)(&|#|;|$)').exec(location.search)||[,""])[1].replace(/\+/g, '%20'))||null;
+    if (!!parameter) {
+      return parameter;
+    }
+    else {
+      console.warn('Warning: URL parameter "' + name + '" is null.');
+      return null;
+    }
+  }
+
+ function getWindowDimensions(object) {
     var winW = 630, winH = 460;
     if (document.body && document.body.width) {
      winW = document.body.width;
@@ -238,9 +195,46 @@ pathvisiojs.utilities = function(){
     return {'width':winW, 'height':winH};
   }
 
-  // from http://stackoverflow.com/questions/5306680/move-an-array-element-from-one-array-position-to-another
+  function intersect(a, b) {
+    // modified version of https://github.com/juliangruber/intersect/blob/master/index.js
+    var res = [];
+    for (var i = 0; i < a.length; i++) {
+      if (b.indexOf(a[i]) > -1) res.push(a[i]);
+    }
+    return res;
+  }
+
+  function isIE() {
+    var myNav = navigator.userAgent.toLowerCase();
+    return (myNav.indexOf('msie') != -1) ? parseInt(myNav.split('msie')[1]) : false;
+  }
+
+  function isUri(str) {
+    // from https://gist.github.com/samuelcole/920312
+    var uriPattern = /(?:(?=[\s`!()\[\]{};:'".,<>?«»“”‘’])|\b)((?:[a-z][\w-]+:(?:\/{1,3}|[a-z0-9%])|www\d{0,3}[.]|[a-z0-9.\-]+[.][a-z]{2,4}\/|[a-z0-9.\-]+[.](?:com|org|net))(?:[^\s()<>]+|\(([^\s()<>]+|(\([^\s()<>]+\)))*\))*(?:\(([^\s()<>]+|(\([^\s()<>]+\)))*\)|[^\s`!()\[\]{};:'".,<>?«»“”‘’]|\b))/gi;
+    return uriPattern.test(str);
+  }
+
+  // see http://stackoverflow.com/questions/18082/validate-numbers-in-javascript-isnumeric
+  function isNumber(n) {
+    return !isNaN(parseFloat(n)) && isFinite(n);
+  }
+  var isOdd = function(num) {
+    return num % 2;
+  }
+
+  function isWikiPathwaysId(data) {
+    data = data.trim();
+    if (data.substr(0,2).toUpperCase() === 'WP' && isNumber(data.substr(data.length - 1))) {
+      return true;
+    }
+    else {
+      return false;
+    }
+  }
 
   function moveArrayItem(arr, old_index, new_index) {
+    // from http://stackoverflow.com/questions/5306680/move-an-array-element-from-one-array-position-to-another
     if (new_index >= arr.length) {
       var k = new_index - arr.length;
       while ((k--) + 1) {
@@ -251,24 +245,35 @@ pathvisiojs.utilities = function(){
     return arr; // for testing purposes
   }
 
-  var isOdd = function(num) { return num % 2;}
+  function splitStringByNewLine(str) {
+    // PathVisio (Java) uses '&#xA;' for indicating newline, and browsers convert this into '\r\n' or '\n' in JavaScript.
+    return str.split(/\r\n|\r|\n/g);
+  }
+
+  function strToHtmlId(str) {
+    var re = /\W/gi;
+    var id = str.replace(re, "");
+    return id;
+  }
 
   return{
-    collect:collect,
-    isUrl:isUrl,
-    splitStringByNewLine:splitStringByNewLine,
-    getUrlParam:getUrlParam,
-    cloneNode:cloneNode,
     clone:clone,
+    cloneNode:cloneNode,
+    collect:collect,
     convertToArray:convertToArray,
-    getWindowDimensions:getWindowDimensions,
-    moveArrayItem:moveArrayItem,
-    isOdd:isOdd,
-    isWikiPathwaysId:isWikiPathwaysId,
-    isNumber:isNumber,
-    strToHtmlId:strToHtmlId,
     getObjectType:getObjectType,
-    getTextDirection:getTextDirection
+    getTextDirection:getTextDirection,
+    getUriParam:getUriParam,
+    getWindowDimensions:getWindowDimensions,
+    isIE:isIE,
+    intersect:intersect,
+    isNumber:isNumber,
+    isOdd:isOdd,
+    isUri:isUri,
+    isWikiPathwaysId:isWikiPathwaysId,
+    moveArrayItem:moveArrayItem,
+    splitStringByNewLine:splitStringByNewLine,
+    strToHtmlId:strToHtmlId
   };
 }();
 

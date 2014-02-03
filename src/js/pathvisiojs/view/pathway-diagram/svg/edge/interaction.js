@@ -1,5 +1,5 @@
-"use strict";
 pathvisiojs.view.pathwayDiagram.svg.edge.interaction = function(){
+  'use strict';
   function getMarkerNameFromInteractionGraph(InteractionGraph) {
     var interactionType;
     if (!InteractionGraph) {
