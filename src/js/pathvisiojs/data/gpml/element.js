@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 // includes all GPML elements. Is parent of node and edge.
 

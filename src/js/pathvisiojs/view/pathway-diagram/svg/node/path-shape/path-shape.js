@@ -1,4 +1,6 @@
 pathvisiojs.view.pathwayDiagram.svg.node.pathShape = function(){
+  'use strict';
+
   function render(parent, data) {
     var re;
     var pathShapeNameToUse = strcase.camelCase(data.ShapeType);
@@ -27,7 +29,7 @@ pathvisiojs.view.pathwayDiagram.svg.node.pathShape = function(){
     //other attributes extracted and applied to new g element
     var stroke = 1
     var transform = '';
-    var g = parent.append('g');
+    var g = parent.insert('g', ':first-child');
     g.attr('stroke-width', function(d) {
         if(!isNaN(d.borderWidth)){
           stroke = d.borderWidth; //LineThickness in GPML

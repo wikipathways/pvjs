@@ -1,341 +1,404 @@
 var module = {};
+var srcDirectoryUri;
 var pvjsSources;
-function getUrlParam(name) {
+var pathvisioNS = pathvisioNS || {};
 
-  // Thanks to http://stackoverflow.com/questions/11582512/how-to-get-url-parameters-with-javascript
-  // This will be replaced once we get the backend php to get the json
-
-  var parameter = decodeURIComponent((new RegExp('[?|&]' + name + '=' + '([^&;]+?)(&|#|;|$)').exec(location.search)||[,""])[1].replace(/\+/g, '%20'))||null;
-  if (!!parameter) {
-    return parameter;
+function serializeXmlToString(xmlDoc) {
+  var oSerializer;
+  if (!(pathvisiojs.utilities.isIE()) || (pathvisiojs.utilities.isIE() > 8)) {
+    oSerializer = new XMLSerializer();
+    return oSerializer.serializeToString(xmlDoc);
   }
   else {
-    return null;
+    throw new Error('IE8 and older do not support XMLSerializer');
   }
 }
 
-function getUrlParamList() {
-  urlParamList = {
-    'svg-disabled': false,
-    'gpml': null,
-    'gpmlRev': 0,
-    'creator': 'pathvisio-js-dev',
-    'account': '',
-    'branch': ''
-  };
+var developmentLoader = function() {
 
-  Object.keys(urlParamList).forEach(function(element) {
-    if (!!getUrlParam(element)) {
-      urlParamList[element] = getUrlParam(element);
-    }
-    window.setTimeout(function() {
-      $('#' + element).val(urlParamList[element]);
-    }, 50)
-  });
+  /* *******************
+  /* Get the desired GPML file URL or WikiPathways ID from the URL parameters.
+  /* *******************/
 
-  return urlParamList;
-}
+  // If you want to the GPML file URL or WikiPathways ID you want to display, you can
+  // hard code it as the data parameter in the pathvisiojs.load() function below
 
-function loadScripts(array, callback){  
-  var loader = function(src,handler){  
-    var script = document.createElement('script');  
-    script.src = src;  
-    script.onload = script.onreadystatechange = function(){  
-      script.onreadystatechange = script.onload = null;  
-      if(/MSIE ([6-9]+\.\d+);/.test(navigator.userAgent))window.setTimeout(function(){handler();},8,this);  
-      else handler();  
-    }  
-    var head = document.getElementsByTagName('head')[0];  
-    (head || document.body).appendChild( script );  
-  };  
-  (function(){  
-    if(array.length!=0){  
-      loader(array.shift(),arguments.callee);  
-    }else{  
-      callback && callback();  
-    }  
-  })();  
-}
+  function getUriParam(name) {
 
-function updateParams(updatedParam) {
-  var targetUrl = currentUrl + '?' + updatedParam.key + '=' + updatedParam.value;
+    // Thanks to http://stackoverflow.com/questions/11582512/how-to-get-uri-parameters-with-javascript
+    // This will be replaced once we get the backend php to get the GPML
 
-  Object.keys(urlParamList).forEach(function(element) {
-    if (element === updatedParam.key) {
-      urlParamList[element] = updatedParam.value;
+    var parameter = decodeURIComponent((new RegExp('[?|&]' + name + '=' + '([^&;]+?)(&|#|;|$)').exec(location.search)||[,""])[1].replace(/\+/g, '%20'))||null;
+    if (!!parameter) {
+      return parameter;
     }
     else {
-      targetUrl += '&' + element + '=' + urlParamList[element];
+      return null;
     }
-  });
-
-  location.href = targetUrl;
-}
-
-function generateHtmlView(callback) {
-  d3.html(srcDirectoryUrl + 'pathvisiojs.html', function(html) {
-    var svg = html.querySelector('#pathway-svg');
-    svg.setAttribute('style', 'display: none; ');
-    svg.setAttribute('width', '500px');
-    svg.setAttribute('height', '500px');
-
-    var oSerializer = new XMLSerializer();
-    pathvisioNS['tmp/pathvisiojs.html'] = oSerializer.serializeToString(html);
-    callback();
-  });
-}
-
-var urlParamList = getUrlParamList();
-
-var hostname = decodeURI(window.location.hostname);
-
-var currentUrl = document.location;
-var pathvisiojsRootDirectoryUrl = document.location.pathname.split('test/compare.html')[0];
-var srcDirectoryUrl = (pathvisiojsRootDirectoryUrl + 'src/');
-
-/*********************************************
-  Load UI for this test/dev comparison page 
-/********************************************/
-
-var pathvisiojs = pathvisiojs || {};
-var pathvisioNS;
-var gpmlUrl;
-window.onload = function() {
-  if (urlParamList['svg-disabled']) {
-    Modernizr.svg = false;
-    $('#svg-disabled').prop('checked', true);
   }
 
-  async.series([
-    function(callback) {
-      var gruntFileUrl = '../Gruntfile.js'; // just for testing/development purposes
-      loadScripts([gruntFileUrl], function() {
-        callback(null);
-      });
-    },
-    function(callback) {
-      pathvisioNS = [];
-      generateHtmlView(function() {
-        callback(null);
-      });
-    },
-    function(callback) {
-      var pvjsSourcesDev = pvjsSources.slice(1); //this file is only used in the build process
-
-      // In dev mode, different servers will use different configs.
-      // The code below sets this config file.
-      // For production, we will use default.js for our default config settings and
-      // optionally build other versions as needed if we need a built version that
-      // doesn't use the config settings in default.js.
-      var serverSpecificJsConfigFileName;
-      var regDomainPattern = /^(?!:\/\/)([a-zA-Z0-9]+\.)?[a-zA-Z0-9][a-zA-Z0-9-]+\.[a-zA-Z]{2,6}?$/i
-      var regexResult = regDomainPattern.exec(hostname);
-      if (!!regexResult) {
-        // www is the same as a bare domain for our purposes, e.g., www.example.org === example.org
-        if (!!regexResult[1]) {
-          serverSpecificJsConfigFileName = regexResult[0];
-        }
-        else {
-          serverSpecificJsConfigFileName = 'www.' + regexResult[0];
-        }
+  function getUriParamList() {
+    uriParamList = {
+      'svg-disabled': false,
+      'gpml': null,
+      'rev': 0,
+      'creator': 'pathvisiojs-dev',
+      'account': '',
+      'branch': ''
+    };
+    Object.keys(uriParamList).forEach(function(element) {
+      if (!!getUriParam(element)) {
+        uriParamList[element] = getUriParam(element);
       }
-      else { //if it's an IP address, just use localhost
-        serverSpecificJsConfigFileName = 'localhost';
-      }
-
-      serverSpecificJsConfigFileName = strcase.paramCase(serverSpecificJsConfigFileName);
-      pvjsSourcesDev[1] = 'config/' + serverSpecificJsConfigFileName + '.js';
-
-      pvjsSourcesDev = pvjsSourcesDev.map(function(source) {
-        return '../' + source;
-      });
-
-      loadScripts(pvjsSourcesDev, function() {
-        callback(null);
-      });
-    }
-  ],
-  function(err) {
-    // Specify an image for each semantic element you would like to customize.
-    // If no image is specified for a semantic element, the default will be used.
-    // You can use the same image for multiple semantic elements if you choose to,
-    // but every semanticName must be unique.
- /*   var customSymbols = [
-      {
-        'semanticName': 'rectangle',
-        'url': srcDirectoryUrl + 'shape-library/symbols/rectangle.svg'
-      }
-    ];
-//*/
-        console.log('pathvisiojs.config.bridgedbLinkOutsUrlStub()');
-        console.log(pathvisiojs.config.bridgedbLinkOutsUrlStub());
-    var customMarkers = [
-      {
-        'semanticName': 'arrow',
-        //'url': 'http://wikipathways.org/skins/common/images/poweredby_mediawiki_88x31.png' // can use PNG or SVG
-        'url': srcDirectoryUrl + 'shape-library/markers/arrow.svg'
-      },
-      {
-        'semanticName': 'necessary-stimulation',
-        'url': srcDirectoryUrl + 'shape-library/markers/mim-necessary-stimulation.svg'
-      },
-      {
-        'semanticName': 'binding',
-        'url': srcDirectoryUrl + 'shape-library/markers/mim-binding.svg'
-      },
-      {
-        'semanticName': 'conversion',
-        'url': srcDirectoryUrl + 'shape-library/markers/mim-conversion.svg'
-      },
-      {
-        'semanticName': 'stimulation',
-        'url': srcDirectoryUrl + 'shape-library/markers/mim-stimulation.svg'
-      },
-      {
-        'semanticName': 'modification',
-        'url': srcDirectoryUrl + 'shape-library/markers/mim-modification.svg'
-      },
-      {
-        'semanticName': 'catalysis',
-        'url': srcDirectoryUrl + 'shape-library/markers/mim-catalysis.svg'
-      },
-      {
-        'semanticName': 'inhibition',
-        'url': srcDirectoryUrl + 'shape-library/markers/mim-inhibition.svg'
-      },
-      {
-        'semanticName': 'cleavage',
-        'url': srcDirectoryUrl + 'shape-library/markers/mim-cleavage.svg'
-      },
-      {
-        'semanticName': 'covalent-bond',
-        'url': srcDirectoryUrl + 'shape-library/markers/mim-covalent-bond.svg'
-      },
-      {
-        'semanticName': 'transcription-translation',
-        'url': srcDirectoryUrl + 'shape-library/markers/mim-transcription-translation.svg'
-      },
-      {
-        'semanticName': 'gap',
-        'url': srcDirectoryUrl + 'shape-library/markers/mim-gap.svg'
-      },
-      {
-        'semanticName': 'inhibitory-activity',
-        'url': srcDirectoryUrl + 'shape-library/markers/t-bar.svg'
-      },
-      {
-        'semanticName': 'unspecified',
-        'url': srcDirectoryUrl + 'shape-library/markers/none.svg'
-      },
-      {
-        'semanticName': 'activity',
-        'url': srcDirectoryUrl + 'shape-library/markers/arrow.svg'
-      },
-      {
-        'semanticName': 'mim-branching-left',
-        'url': srcDirectoryUrl + 'shape-library/markers/mim-branching-left.svg'
-      },
-      {
-        'semanticName': 'mim-branching-right',
-        'url': srcDirectoryUrl + 'shape-library/markers/mim-branching-right.svg'
-      },
-      {
-        'semanticName': 'mim-necessary-stimulation',
-        'url': srcDirectoryUrl + 'shape-library/markers/mim-necessary-stimulation.svg'
-      },
-      {
-        'semanticName': 'mim-binding',
-        'url': srcDirectoryUrl + 'shape-library/markers/mim-binding.svg'
-      },
-      {
-        'semanticName': 'mim-conversion',
-        'url': srcDirectoryUrl + 'shape-library/markers/mim-conversion.svg'
-      },
-      {
-        'semanticName': 'mim-stimulation',
-        'url': srcDirectoryUrl + 'shape-library/markers/mim-stimulation.svg'
-      },
-      {
-        'semanticName': 'mim-modification',
-        'url': srcDirectoryUrl + 'shape-library/markers/mim-modification.svg'
-      },
-      {
-        'semanticName': 'mim-catalysis',
-        'url': srcDirectoryUrl + 'shape-library/markers/mim-catalysis.svg'
-      },
-      {
-        'semanticName': 'mim-inhibition',
-        'url': srcDirectoryUrl + 'shape-library/markers/mim-inhibition.svg'
-      },
-      {
-        'semanticName': 'mim-cleavage',
-        'url': srcDirectoryUrl + 'shape-library/markers/mim-cleavage.svg'
-      },
-      {
-        'semanticName': 'mim-covalent-bond',
-        'url': srcDirectoryUrl + 'shape-library/markers/mim-covalent-bond.svg'
-      },
-      {
-        'semanticName': 'mim-transcription-translation',
-        'url': srcDirectoryUrl + 'shape-library/markers/mim-transcription-translation.svg'
-      },
-      {
-        'semanticName': 'mim-gap',
-        'url': srcDirectoryUrl + 'shape-library/markers/mim-gap.svg'
-      },
-      {
-        'semanticName': 't-bar',
-        'url': srcDirectoryUrl + 'shape-library/markers/t-bar.svg'
-      },
-      {
-        'semanticName': 'none',
-        'url': srcDirectoryUrl + 'shape-library/markers/none.svg'
-      }
-    ];
-
-    // for element scaling, we are using the SVG terms for all graphical representations of pathways.
-    // preserveAspectRatio refers to the vertical and horizontal alignment of the image.
-
-    pathvisiojs.load({
-      container: '#pathvisio-js-dev', //as of now, this can only be a CSS selector: http://www.w3.org/TR/CSS2/selector.html
-      width: 400,
-      height: 300,
-      fitToContainer:true, //A fitToContainer value of false means that the diagram should be the size specified by the diagram creator, without any scaling (full size as per GPML width and height). A value of true means that diagram should be scaled down, if required, to fit entirely within the element specified by the container selector, while preserving aspect ratio. 
-      data: urlParamList.gpml,
-      //gpmlRev: urlParamList.gpmlRev,
-      cssUrl: srcDirectoryUrl + 'css/pathway-diagram.css',
-      customMarkers: customMarkers,
-      //customSymbols: customSymbols,
-      highlightNodes: [
-        {'parameter': 'label', 'parameterValue': 'CRH', 'color': 'red'},
-        {'parameter': 'xref', 'parameterValue': '8525,Entrez%20Gene', 'color': '#FF0000'}
-      ],
-      hiddenElements: [
-        'find',
-        'wikipathways-link'
-      ]
+      window.setTimeout(function() {
+        $('#' + element).val(uriParamList[element]);
+      }, 50)
     });
-  });
+    return uriParamList;
+  }
 
-  // test for whether urlParamList.gpml is a WikiPathways ID
-  // If it is not a WikiPathways ID, the WikiPathways widget will not be able to load the pathway.
-  if (urlParamList.gpml.indexOf('.gpml') === -1 && urlParamList.gpml.indexOf('.xml') === -1) {
+  function updateParams(updatedParam) {
+    var targetUri = currentUri + '?' + updatedParam.key + '=' + updatedParam.value;
+
+    Object.keys(uriParamList).forEach(function(element) {
+      if (element === updatedParam.key) {
+        uriParamList[element] = updatedParam.value;
+      }
+      else {
+        targetUri += '&' + element + '=' + uriParamList[element];
+      }
+    });
+
+    location.href = targetUri;
+  }
+
+  function parseUriParams(callback) {
+    // uriParams can be a WikiPathways ID (WP1), a uri for a GPML file (http://www.wikipathways.org/gpmlfile.gpml)
+    // or a uri for another type of file.
+    var uriParams = getUriParamList();
+    console.log(uriParams);
+    if (!uriParams) {
+      throw new Error('No URI params to parse.');
+    }
+
+    // object we will return
+    var parsedInputData = {};
+    parsedInputData.sourceData = [];
+    var uri;
+
+    var svgDisabled = parsedInputData.svgDisabled = uriParams['svg-disabled'] || false;
+    var gpmlParam = uriParams.gpml; // this might be equal to the value of uriParams.gpml, but it might not.
+
+    var wpId, wpRevision, gpmlUri, pngUri;
+
+    if (pathvisiojs.utilities.isUri(gpmlParam)) {
+      uri = gpmlParam;
+      if (uri.indexOf('.gpml') > -1) {
+        parsedInputData.sourceData.push({
+          uri:gpmlParam,
+          fileType:'gpml'
+        });
+
+        pngUri = pathvisiojs.config.diagramNotAvailableIconUri;
+        parsedInputData.sourceData.push({
+          uri:pngUri,
+          fileType:'png'
+        });
+
+        console.log(parsedInputData);
+        callback(parsedInputData);
+      }
+      else {
+        throw new Error('Pathvisiojs cannot handle the data source type entered.');
+      }
+    }
+    else {
+      if (pathvisiojs.utilities.isWikiPathwaysId(gpmlParam)) {
+        wpRevision = uriParams.rev || 0;
+        // TODO this is messy if we later want to use a data format that is not GPML
+        gpmlUri = getGpmlUri(gpmlParam, wpRevision); //get uri
+        parsedInputData.sourceData.push({
+          uri:gpmlUri,
+          fileType:'gpml'
+        });
+
+        pngUri = encodeURI('http://www.wikipathways.org/wpi//wpi.php?action=downloadFile&type=png&pwTitle=Pathway:' + gpmlParam + '&revision=' + wpRevision);
+        parsedInputData.sourceData.push({
+          uri:pngUri,
+          fileType:'png'
+        });
+
+        parsedInputData.wpId = gpmlParam;
+        parsedInputData.revision = wpRevision;
+        console.log(parsedInputData);
+        callback(parsedInputData);
+      }
+      else {
+        throw new Error('Pathvisiojs cannot handle the data source type entered.');
+      }
+    }
+  }
+
+  // TODO getGpmlUri() and getJson() should move under pathvisiojs.data...
+  // if the input is a WP ID, we can get the uri for GPML.
+  function getGpmlUri(wpId, revision) {
+    var gpmlUri;
+
+    // test whether the server serving this file is on a wikipathways.org domain (wikipathways.org, test3.wikipathways.org, etc.)
+    var re = /wikipathways\.org/; 
+    var isOnWikiPathwaysDomain = re.test(document.location.origin);
+
+    // I don't know what this is doing. It might be a start at handling display of multiple pathways on a page.
+    var PathwayViewer_viewers = PathwayViewer_viewers || [];
+
+    if (pathvisiojs.utilities.isWikiPathwaysId(wpId)) { // if the input is a WP ID
+      if (PathwayViewer_viewers.length > 0 && isOnWikiPathwaysDomain) { // if we are also on a *.wikipathways.org domain
+        gpmlUri = PathwayViewer_viewers[0].gpml.gpmlUri; // TODO we are not handling multiple pathways on one page here
+      }
+      else {
+        gpmlUri = 'http://pointer.ucsf.edu/d3/r/data-sources/gpml.php?id=' + wpId + '&rev=' + revision;
+      }
+    }
+    else {
+      throw new Error('Pathvisiojs cannot handle the data source type entered.');
+    }
+
+    // be sure server has set gpml mime type to application/xml or application/gpml+xml
+
+    return gpmlUri;
+  }
+
+
+  function getUriParam(name) {
+
+    // Thanks to http://stackoverflow.com/questions/11582512/how-to-get-uri-parameters-with-javascript
+    // This will be replaced once we get the backend php to get the json
+
+    var parameter = decodeURIComponent((new RegExp('[?|&]' + name + '=' + '([^&;]+?)(&|#|;|$)').exec(location.search)||[,""])[1].replace(/\+/g, '%20'))||null;
+    if (!!parameter) {
+      return parameter;
+    }
+    else {
+      return null;
+    }
+  }
+
+  function loadScripts(array, callback){  
+    var loader = function(src,handler){  
+      var script = document.createElement('script');  
+      script.src = src;  
+      script.onload = script.onreadystatechange = function(){  
+        script.onreadystatechange = script.onload = null;  
+        if(/MSIE ([6-9]+\.\d+);/.test(navigator.userAgent))window.setTimeout(function(){handler();},8,this);  
+        else handler();  
+      }  
+      var head = document.getElementsByTagName('head')[0];  
+      (head || document.body).appendChild( script );  
+    };  
+    (function(){  
+      if(array.length!=0){  
+        loader(array.shift(),arguments.callee);  
+      }else{  
+        callback && callback();  
+      }  
+    })();  
+  }
+
+  function updateParams(updatedParam) {
+    var targetUri = currentUri + '?' + updatedParam.key + '=' + updatedParam.value;
+
+    Object.keys(uriParamList).forEach(function(element) {
+      if (element === updatedParam.key) {
+        uriParamList[element] = updatedParam.value;
+      }
+      else {
+        targetUri += '&' + element + '=' + uriParamList[element];
+      }
+    });
+
+    location.href = targetUri;
+  }
+
+  function generateSvgTemplate(callback) {
+    var docFragment = document.createDocumentFragment();
+    var svg = d3.select(docFragment).append('svg').
+    attr('id', 'pathvisiojs-diagram').
+    attr('version', '1.1').
+    attr('baseProfile', 'full').
+    attr('xmlns', 'http://www.w3.org/2000/svg').
+    attr('xmlns:xmlns:xlink', 'http://www.w3.org/1999/xlink').
+    attr('xmlns:xmlns:ev', 'http://www.w3.org/2001/xml-events').
+    attr('width', '100%').
+    attr('height', '100%').
+    attr('style', 'display: none; ');
+
+    var g = svg.append('g')
+
+    var title = svg.append('title').
+    text('pathvisiojs diagram');
+
+    var desc = g.append('desc').
+    text('This SVG file contains all the graphical elements (markers and symbols in defs as well as\nstyle data) used by the program pathvisiojs, which has two components:\n1) a viewer for transforming GPML biological pathway data into an SVG visual representation and\n2) an editor for creating both views and models for biological pathways.');
+
+    var defs = svg.append('defs');
+
+    var filter = svg.append('filter').
+    attr('id', 'highlight').
+    attr('width', '150%').
+    attr('height', '150%');
+
+    filter.append('feOffset').
+    attr('result', 'offOut').
+    attr('in', 'SourceGraphic').
+    attr('dx', '30').
+    attr('dy', '30');
+
+    filter.append('feGaussianBlur').
+    attr('result', 'blurOut').
+    attr('in', 'offOut').
+    attr('stdDeviation', '10');
+
+    filter.append('feBlend').
+    attr('in', 'SourceGraphic').
+    attr('in2', 'blurOut').
+    attr('mode', 'normal');
+
+    var viewport = svg.append('g').
+    attr('id', 'viewport');
+
+    pathvisioNS['tmp/pathvisiojs.svg'] = serializeXmlToString(svg[0][0]);
+    callback();
+  }
+
+  function generateHtmlTemplate(callback) {
+    d3.html(srcDirectoryUri + 'pathvisiojs.html', function(html) {
+      pathvisioNS['tmp/pathvisiojs.html'] = serializeXmlToString(html);
+      callback();
+    });
+  }
+
+  function preload(outsideCallback) {
+    var hostname = decodeURI(window.location.hostname);
+
+    var currentUri = document.location;
+    var pathname = document.location.pathname;
+    var pathvisiojsRootDirectoryUri = pathname.split('test/development.html')[0];
+    srcDirectoryUri = (pathvisiojsRootDirectoryUri + 'src/');
+
+    async.waterfall([
+      function(callback) {
+        var gruntFileUri = '../Gruntfile.js'; // just for testing/development purposes
+        loadScripts([gruntFileUri], function() {
+          callback(null);
+        });
+      },
+      function(callback) {
+        if (pathname.indexOf('development.html') > -1) { //if this is the development version
+          var pvjsSourcesDev = pvjsSources.slice(1); //this file is only used in the build process
+
+      /*
+          // In dev mode, different servers will use different configs.
+          // The code below sets this config file.
+          // For production, we will use default.js for our default config settings and
+          // optionally build other versions as needed if we need a built version that
+          // doesn't use the config settings in default.js.
+          var serverSpecificJsConfigFileName;
+          var regDomainPattern = /^(?!:\/\/)([a-zA-Z0-9]+\.)?[a-zA-Z0-9][a-zA-Z0-9-]+\.[a-zA-Z]{2,6}?$/i
+          var regexResult = regDomainPattern.exec(hostname);
+          if (!!regexResult) {
+            // www is the same as a bare domain for our purposes, e.g., www.example.org === example.org
+            if (!!regexResult[1]) {
+              serverSpecificJsConfigFileName = regexResult[0];
+            }
+            else {
+              serverSpecificJsConfigFileName = 'www.' + regexResult[0];
+            }
+          }
+          else { //if it's an IP address, just use localhost
+            serverSpecificJsConfigFileName = 'localhost';
+          }
+
+          serverSpecificJsConfigFileName = strcase.paramCase(serverSpecificJsConfigFileName);
+          pvjsSourcesDev[1] = 'config/' + serverSpecificJsConfigFileName + '.js';
+
+      //*/
+          pvjsSourcesDev = pvjsSourcesDev.map(function(source) {
+            return '../' + source;
+          });
+
+          loadScripts(pvjsSourcesDev, function() {
+            callback(null);
+          });
+        }
+        else { //if this is the production version
+          callback(null);
+        }
+      },
+      function(callback) {
+        parseUriParams(function(parsedInputData) {
+          callback(null, parsedInputData);
+        });
+      },
+      function(parsedInputData, callback) {
+        if (parsedInputData.svgDisabled) {
+          Modernizr.svg = Modernizr.inlinesvg = false;
+          $('#svg-disabled').prop('checked', true);
+        }
+        if (pathname.indexOf('development.html') > -1) { //if this is the development version
+          generateHtmlTemplate(function() {
+            generateSvgTemplate(function() {
+              console.log(pathvisioNS);
+              outsideCallback(parsedInputData);
+            });
+          });
+        }
+        else { //if this is the production version
+          outsideCallback(parsedInputData);
+        }
+      }
+    ]);
+  }
+
+  function loadFrames(inputData, callback) {
+    console.log(inputData);
     window.setTimeout(function() {
-        $('#current-wikipathways-viewer').prepend('<iframe id="current-wiki-pathways-widget" src="http://www.wikipathways.org/wpi/PathwayWidget.php?id=' + urlParamList.gpml + '" width="500px" height="500px" />')
-        }, 50);
+      inputData.forEach(function(inputDataElement) {
+        $('#' + inputDataElement.containerId).prepend('<iframe id="' + inputDataElement.containerId + '-frame" src="' + inputDataElement.frameSrc + '" style="width:inherit; height:inherit; margin:0; " />')
+      });
+      callback();
+    }, 50);
+
+    //*
+    //*/
   }
-  else {
-    console.warn('GPML data source specified is not a WP ID. WP widget cannot display this GPML data as a pathway image.');
-  }
-}
+
+  return{
+    preload:preload,
+    loadFrames:loadFrames,
+    parseUriParams:parseUriParams
+  };
+}();
 
 
 /* *******************
 /* Until we finish automating the Grunt build process, we are manually getting the html template with this function.
 /* *******************/
 
+function copyToClipboard(text) {
+  window.prompt("Copy to clipboard: Ctrl+C, Enter", text);
+}
+
 var getPathvisiojsHtmlTemplate = function() {
-  var svg = d3.select('#pathway-svg');
+  var html = pathvisiojs.utilities.cloneNode('#pathvisiojs-container');
+  html.select('svg').remove();
+  var html00 = html[0][0];
+
+  var serializedHtml = serializeXmlToString(html00);
+  console.log(serializedHtml);
+}
+
+var getPathvisiojsSvgTemplate = function() {
+  var svg = pathvisiojs.utilities.cloneNode('#pathvisiojs-diagram');
   svg.select('#viewport').selectAll('*').remove();
   var marker, oldMarkerId, newMarkerId;
   var markers = svg.selectAll('marker');
@@ -354,7 +417,8 @@ var getPathvisiojsHtmlTemplate = function() {
     newSymbolId = 'shape-library' + oldSymbolId.split('-shape-library')[1];
     symbol.attr('id', newSymbolId);
   });
-  return d3.select('#pathvisio-js-container')[0][0];
+  var svg00 = svg[0][0];
+  //thanks MDN
+  var serializedSvg = serializeXmlToString(svg00);
+  console.log(serializedSvg);
 }
-
-

@@ -1,5 +1,5 @@
-"use strict";
 pathvisiojs.view.pathwayDiagram.svg.edge.graphicalLine = function(){
+  'use strict';
   //function render(svg, container, data) {
   function render(args) {
     var svg = args.svg;

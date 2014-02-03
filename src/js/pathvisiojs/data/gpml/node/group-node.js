@@ -1,5 +1,5 @@
-"use strict";
 pathvisiojs.data.gpml.element.node.groupNode = function() {
+  'use strict';
 
   var groupTypeToShapeTypeMappings = {
     'Complex':'complex',
@@ -30,7 +30,10 @@ pathvisiojs.data.gpml.element.node.groupNode = function() {
 
     var groupContents = group.contains;
     groupContents = pathvisiojs.utilities.convertToArray(groupContents);
-    groupContents.forEach(function(groupContent) {
+
+    // TODO check what happens if the contained element lacks a z-index
+    dimensions.zIndex = groupContents[0].zIndex;
+    async.each(groupContents, function(groupContent, callbackInside) {
       if (groupContent.renderableType === 'EntityNode') {
         dimensions.topLeftCorner.x = Math.min(dimensions.topLeftCorner.x, groupContent.x);
         dimensions.topLeftCorner.y = Math.min(dimensions.topLeftCorner.y, groupContent.y);
@@ -47,6 +50,10 @@ pathvisiojs.data.gpml.element.node.groupNode = function() {
       dimensions.y = dimensions.topLeftCorner.y - group.padding - group.borderWidth;
       dimensions.width = (dimensions.bottomRightCorner.x - dimensions.topLeftCorner.x) + 2 * (group.padding + group.borderWidth);
       dimensions.height = (dimensions.bottomRightCorner.y - dimensions.topLeftCorner.y) + 2 * (group.padding + group.borderWidth);
+      dimensions.zIndex = Math.min(dimensions.zIndex, groupContent.zIndex);
+      callbackInside(null);
+    },
+    function (err) {
       callback(dimensions);
     });
   }
@@ -60,7 +67,7 @@ pathvisiojs.data.gpml.element.node.groupNode = function() {
     var graphId = gpmlGroup.attr('GraphId') || ('id' + uuid.v4());
     jsonGroup.GraphId = graphId;
     groupId = gpmlGroup.attr('GroupId') || ('id' + uuid.v4());
-    jsonGroup["@id"] = pathwayIri + groupId;
+    jsonGroup["@id"] = 'pathwayIri:' + groupId;
     jsonGroup.GroupId = groupId;
     groupType = gpmlGroup.attr('Style') || 'None';
 

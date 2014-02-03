@@ -1,12 +1,13 @@
-  <div id="pathvisio-js-container" style="width: inherit; min-width: inherit; max-width: inherit; height: inherit; min-height: inherit; max-height: inherit; position: absolute; ">
+  <div id="pathvisiojs-container" style="width: inherit; min-width: inherit; max-width: inherit; height: inherit; min-height: inherit; max-height: inherit; position: absolute; ">
 
     <!-- **********************************************************************
     Pathway Container (JavaScript inserts pathway image inside this div)
     *********************************************************************** -->
 
-    <div id="pathway-container" style="width: inherit; min-width: inherit; max-width: inherit; height: inherit; min-height: inherit; max-height: inherit; " class="y-mid">
+    <div id="diagram-container" style="width: inherit; min-width: inherit; max-width: inherit; height: inherit; min-height: inherit; max-height: inherit; ">
 
-      <svg id="pathway-svg"
+      <!--
+      <svg id="pathvisiojs-diagram"
         version="1.1"
         baseProfile="full"
         xmlns="http://www.w3.org/2000/svg"
@@ -38,9 +39,8 @@
         </g>
 
       </svg>
+      -->
 
-    
-      
     </div>
     
     <div id="typeahead" style="position: absolute; top: 5px; right: 5px;">
@@ -97,7 +97,7 @@
       Fullscreen Control 
       *********************************************************************** -->
 
-      <div id="fit-to-screen-control" style="position: absolute; bottom: 5px; right: 8px;">                           
+      <div id="fit-to-screen-control" class="fit-to-screen-controls"  style="position: absolute; bottom: 5px; right: 0px;">                           
         <img class="icon-screenshot" style="color:#aaa" src="../src/img/fitscreen_icon.png"></i>                                                        
       </div>    
 

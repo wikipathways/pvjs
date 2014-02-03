@@ -1,7 +1,7 @@
 pathvisiojs
 ============
 
-JavaScript-based diagram viewer and editor intended for biological pathways. This project is supported by the same community that maintains the Java-based pathway diagram editor [PathVisio](http://www.pathvisio.org/), but the codebases between pathvisiojs and PathVisio-Java are entirely distinct. PathVisio-Java plugins will not work with pathvisiojs.
+JavaScript-based diagram viewer (implemented) and editor (planned) intended for biological pathways. This project is supported by the same community that maintains the Java-based pathway diagram editor [PathVisio](http://www.pathvisio.org/), but the codebases between pathvisiojs and PathVisio-Java are entirely distinct. PathVisio-Java plugins will not work with pathvisiojs.
 
 All code is in beta stage, and any APIs are subject to change.
 
@@ -10,7 +10,7 @@ Demos
 
 * [gh-pages](http://wikipathways.github.io/pathvisiojs/test/)
 
-Installing
+How To Add It To Your Site
 ===================
 Pathvisiojs depends on the following JS libraries:
   * [rgb-color](https://www.github.com/ariutta/rgb-color/)
@@ -20,19 +20,45 @@ Pathvisiojs depends on the following JS libraries:
   * [jquery](https://www.github.com/components/jquery/)
   * [typeahead.js](https://www.github.com/twitter/typeahead.js/)
   * [Modernizr](https://www.github.com/Modernizr/Modernizr/)
-  * [screenfull.js](https://www.github.com/sindresorhus/screenfull.js)
   * [svg-pan-zoom](https://www.github.com/ariutta/svg-pan-zoom/)
-  * [PathFinding.js](https://www.github.com/qiao/PathFinding.js/)
   * [jsonld.js](https://www.github.com/digitalbazaar/jsonld.js/)
 
-and the following stylesheets:
-  * font-awesome
-  * pathvisiojs.css
-  * annotation.css
-  * pan-zoom.css
-  * pathway-diagram.css
+and the font-awesome icons.
 
-You can make it run in the browser by copying one of the [pathvisiojs load snippets](https://gist.github.com/ariutta/8377189).
+You can make it run in the browser by adding references in your HTML document to the library files and pathvisiojs. Checkout [this example](https://github.com/wikipathways/pathvisiojs/blob/master/test/production.html) or the bower.json file for more about dependencies. Then call the pathvisiojs.load() method with a value for the container and the sourceData parameters. All the other parameters are optional.
+
+```js
+      pathvisiojs.load({
+        container: '#production-container', //as of now, this can only be a CSS selector: http://www.w3.org/TR/CSS2/selector.html
+        fitToContainer:true, //A fitToContainer value of false means that the diagram should be the size specified by the diagram creator, without any scaling (full size as per GPML width and height). A value of true means that diagram should be scaled down, if required, to fit entirely within the element specified by the container selector, while preserving aspect ratio. 
+        sourceData:[ // at least one item required
+          {
+            uri:'http://example.org/pathway.gpml',
+            fileType:'gpml' // generally will correspond to filename extension
+          },
+          {
+            uri:'http://example.org/pathway.png',
+            fileType:'png'
+          }
+        ],
+        //cssUri: srcDirectoryUri + 'css/pathway-diagram.css',
+        //customMarkers: customMarkers,
+        //customSymbols: customSymbols,
+        bridgedbLinkOutsUriStub: 'http://pointer.ucsf.edu/d3/r/data-sources/bridgedb/bridgedb.php/', // optional
+        diagramLoadingIconUri: 'http://www.wikipathways.org/wpi/extensions/PathwayViewer/img/loading.gif', // optional
+        diagramNotAvailableIconUri: 'http://www.wikipathways.org/wpi/extensions/PathwayViewer/img/imageNotAvailable.jpg', // optional
+        imgDiagramUriStub: 'http://www.wikipathways.org/wpi.php?action=downloadFile&type=png&pwTitle=Pathway:', // optional
+        pathwaySearchUriStub: 'http://wikipathways.org//index.php?title=Special:SearchPathways&doSearch=1&query=', // optional
+        highlightNodes: [
+          {'parameter': 'label', 'parameterValue': 'CRH', 'color': 'red'},
+          {'parameter': 'xref', 'parameterValue': '8525,Entrez%20Gene', 'color': '#FF0000'}
+        ],
+        hiddenElements: [
+          'find',
+          'wikipathways-link'
+        ]
+      })
+```
 
 How To Get Involved
 ===================
@@ -74,7 +100,7 @@ To view your changes as you edit, you can use the functionalities in the [test d
 $ cd ~/Sites/pathvisiojs/src/test/ #update this to where the pathvisiojs directory is actually located on your computer
 ```
 
-If you add a JS file, you will need to add a reference to it in the "sources" array in [compare.js](https://github.com/wikipathways/pathvisiojs/blob/master/test/compare.js#L111) and in [Gruntfile.js](https://github.com/wikipathways/pathvisiojs/blob/master/Gruntfile.js#L10).
+If you add a JS file, you will need to add a reference to it in the "pvJsSources" array in in [Gruntfile.js](https://github.com/wikipathways/pathvisiojs/blob/master/Gruntfile.js#L10).
 
 The [README](https://github.com/wikipathways/pathvisiojs/tree/master/test/README.md) in this directory includes information on how to view diagrams during development and how to run tests.
 

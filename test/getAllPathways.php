@@ -44,7 +44,7 @@ http://google-styleguide.googlecode.com/svn/trunk/jsoncstyleguide.xml#General_Gu
     <?php
 /*
       foreach (glob("gpml/*.gpml") as $filename) {
-          echo "<li><a href='../src/views/index.php?pathwayUrl=../../test/".$filename."'>".$filename."</a></li>";
+          echo "<li><a href='../src/views/index.php?pathwayUri=../../test/".$filename."'>".$filename."</a></li>";
       }
 */
      ?>
@@ -55,9 +55,9 @@ http://google-styleguide.googlecode.com/svn/trunk/jsoncstyleguide.xml#General_Gu
     
     <?php
 /*
-      $completeurl = "http://www.wikipathways.org/wpi/webservice/webservice.php/listPathways";
-      //$completeurl = "http://www.wikipathways.org/wpi/webservice/webservice.php/listPathways?organism=Homo%20sapiens";
-      $xml = simplexml_load_file($completeurl);
+      $completeuri = "http://www.wikipathways.org/wpi/webservice/webservice.php/listPathways";
+      //$completeuri = "http://www.wikipathways.org/wpi/webservice/webservice.php/listPathways?organism=Homo%20sapiens";
+      $xml = simplexml_load_file($completeuri);
 
       $xml->registerXPathNamespace('ns1', 'http://www.wso2.org/php/xsd');
       $xml->registerXPathNamespace('ns2', 'http://www.wikipathways.org/webservice');
