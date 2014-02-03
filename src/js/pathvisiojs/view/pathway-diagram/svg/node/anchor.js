@@ -1,6 +1,5 @@
-"use strict"
-
 pathvisiojs.view.pathwayDiagram.svg.node.anchor = function(){
+  'use strict';
 
   function render(container, parentEdgeId, data) {
     // renders all anchors for a given edge

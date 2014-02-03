@@ -1,7 +1,7 @@
 {
   "name": "pathvisiojs",
-  "version": "0.8.0",
-  "description": "Biological pathway viewer and editor.",
+  "version": "1.0.2",
+  "description": "Diagram viewer and editor for biological pathways.",
   "main": "Gruntfile.js",
   "directories": {
     "test": "test"
@@ -44,7 +44,13 @@
     "protractor": "~0.15.0",
     "express": "~3.4.7",
     "reload": "~0.1.0",
-    "colors": "~0.6.2"
+    "colors": "~0.6.2",
+    "grunt-sync-pkg": "~0.1.2",
+    "grunt-protractor-runner": "~0.2.1",
+    "grunt-concurrent": "~0.4.3",
+    "grunt-net": "~0.1.2",
+    "node.extend": "~1.0.9",
+    "JSON": "~1.0.0"
   },
   "dependencies": {
     "grunt-string-to-js": "0.0.3",

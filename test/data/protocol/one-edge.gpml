@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Pathway xmlns="http://pathvisio.org/GPML/2013a" Name="New Pathway" Version="20140130">
+  <Graphics BoardWidth="197.0" BoardHeight="237.0" />
+  <Interaction>
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="96.0" Y="127.0" />
+      <Point X="167.0" Y="207.0" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <InfoBox CenterX="0.0" CenterY="0.0" />
+</Pathway>
+

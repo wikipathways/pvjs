@@ -2,24 +2,28 @@
   "author": "Pathvisiojs team",
   "name": "pathvisiojs",
   "description": "Diagram viewer and editor for biological pathways",
-  "version": "0.8.0",
+  "version": "1.0.2",
   "homepage": "http://wikipathways.github.io/pathvisiojs/",
   "dependencies": {
-    "jquery": "1.10.2",
-    "d3": ">= 3.2.8",
-    "screenfull": "~1.1.0",
     "async": "~0.2.5",
-    "typeahead.js": "~0.9.3",
+    "blueimp-load-image": "~1.11.0",
+    "d3": ">= 3.2.8",
+    "font-awesome": "~4.0.3",
+    "jquery": "1.10.2",
     "jsonld.js": "~0.1.25",
+    "modernizr": "~2.7.0",
+    "node-uuid": "~1.4.1",
+    "rgb-color": "latest",
     "strcase": "https://github.com/ariutta/strcase.git#~0.6.0",
     "svg-pan-zoom": "latest",
-    "modernizr": "~2.7.0",
-    "PathFinding.js": "latest",
-    "rgb-color": "latest",
-    "node-uuid": "~1.4.1",
-    "font-awesome": "~4.0.3"
+    "typeahead.js": "~0.9.3",
+    "es5-shim": "~2.3.0",
+    "aight": "~1.2.2"
   },
   "resolutions": {
     "jquery": "1.10.2"
-  }
+  },
+  "main": [
+    "Gruntfile.js"
+  ]
 }

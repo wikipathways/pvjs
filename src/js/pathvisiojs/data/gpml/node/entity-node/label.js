@@ -1,5 +1,3 @@
-"use strict";
-
 pathvisiojs.data.gpml.element.node.entityNode.label = Object.create(pathvisiojs.data.gpml.element.node.entityNode);
 
 pathvisiojs.data.gpml.element.node.entityNode.label.Rotation = null;
@@ -9,6 +7,7 @@ pathvisiojs.data.gpml.element.node.entityNode.label.FontSize = 10;
 pathvisiojs.data.gpml.element.node.entityNode.label.FontWeight = null;
 
 pathvisiojs.data.gpml.element.node.entityNode.label.toRenderableJson = function(gpmlLabel, pathwayIri, callback) {
+  'use strict';
   /*
   console.log('gpmlLabel');
   console.log(gpmlLabel[0][0]);

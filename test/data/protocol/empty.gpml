@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Pathway xmlns="http://pathvisio.org/GPML/2013a" Name="IL-9 Signaling Pathway" Organism="Homo sapiens" License="Freely available under Creative Commons license">
+  <Attribute Key="org.pathvisio.model.WindowHeight" Value="11190.0" />
+  <Attribute Key="org.pathvisio.model.WindowWidth" Value="15480.0" />
+  <Graphics BoardWidth="933.0" BoardHeight="1214.0" />
+  <InfoBox CenterX="15.0" CenterY="8.333333333333334" />
+</Pathway>
+

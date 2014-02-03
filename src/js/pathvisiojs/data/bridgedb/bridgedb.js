@@ -1,15 +1,24 @@
 pathvisiojs.data.bridgedb = function(){
-
-  var bridgedbLinkOutsUrlStub = pathvisiojs.config.bridgedbLinkOutsUrlStub();
-  var bridgedbDatasources = pathvisiojs.config.bridgedbDatasources();
+  'use strict';
 
   function getXrefAnnotationDataByDataNode(singleSpecies, id, datasource, label, desc, callback) {
+    //For unannotated nodes, without datasource or identifier
+    if (null == id || null == datasource){
+        var annotationData = {
+          "header": label,
+          "description": desc,
+          "listItems": ['Missing ID and datasource']
+        };
+        callback(annotationData);  
+    } else {   
     getDataSources(function(dataSources) {
       var dataSourceRowCorrespondingToDataNodeXrefDatabase = getDataSourceRowByName(datasource, dataSources);
       var systemCode = dataSourceRowCorrespondingToDataNodeXrefDatabase.systemCode;
       getXrefAliases(singleSpecies, systemCode, id, function(xRefAliases) {
         var currentDataSourceRow;
-        var listItems = xRefAliases.map(function(xRefAlias) {
+        var listItems = [];
+        if (typeof xRefAliases != 'undefined') { //BridgeDb Error
+        listItems = xRefAliases.map(function(xRefAlias) {
           var listItem = {}
           listItem.title = xRefAlias.dataSourceName;
           listItem.text = xRefAlias.xRefId;
@@ -22,6 +31,7 @@ pathvisiojs.data.bridgedb = function(){
           }
           return listItem;
         });
+        }
 
         listItems.sort(function(a, b) {
           if (a.priority === b.priority)
@@ -67,6 +77,7 @@ pathvisiojs.data.bridgedb = function(){
         callback(annotationData);
       });
     });
+   }
   }
 
   function getDataSourceRowByName(dataSourceName, dataSources) {
@@ -79,10 +90,10 @@ pathvisiojs.data.bridgedb = function(){
   }
 
   function getDataSources(callback) {
-    d3.tsv(bridgedbDatasources)
+    d3.tsv(pathvisiojs.config.bridgedbDatasources)
     .response(function(request) {
       return d3.tsv.parseRows(request.responseText, function(d) {
-        return {dataSourceName: d[0], systemCode: d[1], websiteUrl: d[2], linkoutPattern: d[3], exampleIdentifier: d[4], entityIdentified: d[5], singleSpecies: d[6], priority: d[7], uri: d[8], regex: d[9], officialName: d[10]};
+        return {dataSourceName: d[0], systemCode: d[1], websiteUri: d[2], linkoutPattern: d[3], exampleIdentifier: d[4], entityIdentified: d[5], singleSpecies: d[6], priority: d[7], uri: d[8], regex: d[9], officialName: d[10]};
       });
     })
     .get(function(error, rows) {
@@ -91,9 +102,9 @@ pathvisiojs.data.bridgedb = function(){
   }
 
   function getXrefAliases(singleSpecies, systemCode, xRefId, callback) {
-    var bridgedbUrl = bridgedbLinkOutsUrlStub + encodeURIComponent(singleSpecies) + '/xrefs/' + encodeURIComponent(systemCode) + '/' + encodeURIComponent(xRefId);
-    console.log(bridgedbUrl);
-    d3.tsv(bridgedbUrl)
+    var bridgedbUri = pathvisiojs.config.bridgedbLinkOutsUriStub + encodeURIComponent(singleSpecies) + '/xrefs/' + encodeURIComponent(systemCode) + '/' + encodeURIComponent(xRefId);
+    //console.log(bridgedbUri);
+    d3.tsv(bridgedbUri)
     .response(function(request) { 
       return d3.tsv.parseRows(request.responseText, function(d) {
         return {xRefId: d[0], dataSourceName: d[1]}; 

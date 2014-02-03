@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Pathway xmlns="http://pathvisio.org/GPML/2013a" Name="Rendering Test Protocol for DataNodes" Version="20130815" Organism="Anopheles gambiae">
+  <Comment Source="WikiPathways-description">This pathway can be deleted once release 36 is shipped.</Comment>
+  <Graphics BoardWidth="892.3016983016983" BoardHeight="785.4815301392441"/>
+  <DataNode TextLabel="GeneProduct" GraphId="bbd97" Type="GeneProduct">
+    <Graphics CenterX="61.1242201513961" CenterY="71.7948717948718" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="" ID=""/>
+  </DataNode>
+  <DataNode TextLabel="Metabolite" GraphId="c7fc2" Type="Metabolite">
+    <Graphics CenterX="61.1242201513961" CenterY="123.0769230769231" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff"/>
+    <Xref Database="" ID=""/>
+  </DataNode>
+  <DataNode TextLabel="Pathway" GraphId="ec253" Type="Pathway">
+    <Graphics CenterX="61.1242201513961" CenterY="178.93490565622176" Width="80.0" Height="20.0" ZOrder="32768" FontWeight="Bold" FontSize="12" Valign="Middle" ShapeType="None" Color="14961e"/>
+    <Xref Database="" ID=""/>
+  </DataNode>
+  <DataNode TextLabel="Protein" GraphId="d4b93" Type="Protein">
+    <Graphics CenterX="61.1242201513961" CenterY="231.03066867772765" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="" ID=""/>
+  </DataNode>
+  <DataNode TextLabel="Rna" GraphId="a9150" Type="Rna">
+    <Graphics CenterX="61.1242201513961" CenterY="288.5886314988484" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="" ID=""/>
+  </DataNode>
+  <DataNode TextLabel="Unknown" GraphId="fca47">
+    <Graphics CenterX="61.1242201513961" CenterY="338.16128107149797" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle"/>
+    <Xref Database="" ID=""/>
+  </DataNode>
+  <DataNode TextLabel="Unknown" GraphId="e78e2">
+    <Graphics CenterX="61.1242201513961" CenterY="717.5800751886047" Width="80.0" Height="20.0" ZOrder="32769" FontSize="10" Valign="Middle"/>
+    <Xref Database="" ID=""/>
+  </DataNode>
+  <DataNode TextLabel="GeneProduct" GraphId="adfa3" Type="GeneProduct">
+    <Graphics CenterX="61.1242201513961" CenterY="455.1931514878128" Width="80.0" Height="20.0" ZOrder="32770" FontSize="10" Valign="Middle"/>
+    <Xref Database="" ID=""/>
+  </DataNode>
+  <DataNode TextLabel="Pathway" GraphId="ca37f" Type="Pathway">
+    <Graphics CenterX="61.1242201513961" CenterY="558.0816660551592" Width="80.0" Height="20.0" ZOrder="32771" FontWeight="Bold" FontSize="12" Valign="Middle" ShapeType="None" Color="14961e"/>
+    <Xref Database="" ID=""/>
+  </DataNode>
+  <DataNode TextLabel="Metabolite" GraphId="bb1e3" Type="Metabolite">
+    <Graphics CenterX="61.1242201513961" CenterY="506.4752027698641" Width="80.0" Height="20.0" ZOrder="32772" FontSize="10" Valign="Middle" Color="0000ff"/>
+    <Xref Database="" ID=""/>
+  </DataNode>
+  <DataNode TextLabel="Rna" GraphId="eec23" Type="Rna">
+    <Graphics CenterX="61.1242201513961" CenterY="668.0074256159551" Width="80.0" Height="20.0" ZOrder="32773" FontSize="10" Valign="Middle"/>
+    <Xref Database="" ID=""/>
+  </DataNode>
+  <DataNode TextLabel="Protein" GraphId="cfb0e" Type="Protein">
+    <Graphics CenterX="61.1242201513961" CenterY="604.759562368092" Width="80.0" Height="20.0" ZOrder="32774" FontSize="10" Valign="Middle"/>
+    <Xref Database="" ID=""/>
+  </DataNode>
+  <DataNode TextLabel="Unknown" GraphId="c725d">
+    <Graphics CenterX="185.38777388828225" CenterY="716.3776853454381" Width="80.0" Height="20.0" ZOrder="32776" FillColor="ededed" FontName="Helvetica" FontSize="10" Valign="Middle" ShapeType="RoundedRectangle" Color="333333"/>
+    <Xref Database="" ID=""/>
+  </DataNode>
+  <DataNode TextLabel="GeneProduct" GraphId="c9952" Type="GeneProduct">
+    <Graphics CenterX="185.38777388828225" CenterY="453.9907616446462" Width="80.0" Height="20.0" ZOrder="32777" FillColor="ededed" FontName="Helvetica" FontSize="10" Valign="Middle" ShapeType="RoundedRectangle" Color="333333"/>
+    <Xref Database="" ID=""/>
+  </DataNode>
+  <DataNode TextLabel="Pathway" GraphId="cb8a4" Type="Pathway">
+    <Graphics CenterX="185.38777388828225" CenterY="556.8792762119926" Width="80.0" Height="20.0" ZOrder="32778" FillColor="14961e" FontName="Helvetica" FontWeight="Bold" FontSize="12" Valign="Middle" ShapeType="RoundedRectangle" Color="ededed"/>
+    <Xref Database="" ID=""/>
+  </DataNode>
+  <DataNode TextLabel="Metabolite" GraphId="ae9a4" Type="Metabolite">
+    <Graphics CenterX="185.38777388828225" CenterY="505.27281292669755" Width="80.0" Height="20.0" ZOrder="32779" FillColor="0000ff" FontName="Helvetica" FontWeight="Bold" FontSize="10" Valign="Middle" ShapeType="RoundedRectangle" Color="ededed"/>
+    <Xref Database="" ID=""/>
+  </DataNode>
+  <DataNode TextLabel="Rna" GraphId="e01b4" Type="Rna">
+    <Graphics CenterX="185.38777388828225" CenterY="666.8050357727884" Width="80.0" Height="20.0" ZOrder="32780" FillColor="ededed" FontName="Helvetica" FontSize="10" Valign="Middle" ShapeType="RoundedRectangle" Color="333333"/>
+    <Xref Database="" ID=""/>
+  </DataNode>
+  <DataNode TextLabel="Protein" GraphId="c0772" Type="Protein">
+    <Graphics CenterX="185.38777388828225" CenterY="603.5571725249254" Width="80.0" Height="20.0" ZOrder="32781" FillColor="ededed" FontName="Helvetica" FontSize="10" Valign="Middle" ShapeType="RoundedRectangle" Color="333333"/>
+    <Xref Database="" ID=""/>
+  </DataNode>
+  <DataNode TextLabel="Unknown" GraphId="dd121">
+    <Graphics CenterX="185.38777388828225" CenterY="338.16128107149797" Width="80.0" Height="20.0" ZOrder="32783" FillColor="333333" FontName="Helvetica" FontWeight="Bold" FontSize="10" Valign="Middle" ShapeType="RoundedRectangle" Color="ededed"/>
+    <Xref Database="" ID=""/>
+  </DataNode>
+  <DataNode TextLabel="GeneProduct" GraphId="ad34e" Type="GeneProduct">
+    <Graphics CenterX="185.38777388828225" CenterY="71.7948717948718" Width="80.0" Height="20.0" ZOrder="32784" FillColor="333333" FontName="Helvetica" FontWeight="Bold" FontSize="10" Valign="Middle" ShapeType="RoundedRectangle" Color="ededed"/>
+    <Xref Database="" ID=""/>
+  </DataNode>
+  <DataNode TextLabel="Pathway" GraphId="f52c9" Type="Pathway">
+    <Graphics CenterX="185.38777388828225" CenterY="178.93490565622173" Width="80.0" Height="20.0" ZOrder="32785" FillColor="14961e" FontName="Helvetica" FontWeight="Bold" FontSize="12" Valign="Middle" ShapeType="RoundedRectangle" Color="ededed"/>
+    <Xref Database="" ID=""/>
+  </DataNode>
+  <DataNode TextLabel="Metabolite" GraphId="b5f5f" Type="Metabolite">
+    <Graphics CenterX="185.38777388828225" CenterY="123.0769230769231" Width="80.0" Height="20.0" ZOrder="32786" FillColor="0000ff" FontName="Helvetica" FontWeight="Bold" FontSize="10" Valign="Middle" ShapeType="RoundedRectangle" Color="ededed"/>
+    <Xref Database="" ID=""/>
+  </DataNode>
+  <DataNode TextLabel="Rna" GraphId="aa3dd" Type="Rna">
+    <Graphics CenterX="185.38777388828225" CenterY="288.5886314988484" Width="80.0" Height="20.0" ZOrder="32787" FillColor="333333" FontName="Helvetica" FontWeight="Bold" FontSize="10" Valign="Middle" ShapeType="RoundedRectangle" Color="ededed"/>
+    <Xref Database="" ID=""/>
+  </DataNode>
+  <DataNode TextLabel="Protein" GraphId="ab90e" Type="Protein">
+    <Graphics CenterX="185.38777388828225" CenterY="231.03066867772765" Width="80.0" Height="20.0" ZOrder="32788" FillColor="333333" FontName="Helvetica" FontWeight="Bold" FontSize="10" Valign="Middle" ShapeType="RoundedRectangle" Color="ededed"/>
+    <Xref Database="" ID=""/>
+  </DataNode>
+  <Label TextLabel="This pathway can be deleted once release 36 is shipped.&#10;The test protocol pathways with be stored at:" GraphId="fc02b">
+    <Graphics CenterX="478.30169830169825" CenterY="53.5" Width="318.0" Height="33.0" ZOrder="33017" FillColor="ffffff" FontSize="10" Valign="Middle"/>
+  </Label>
+  <Label TextLabel="https://github.com/wikipathways/pathvisiojs/tree/master/test/data/test-protocol" GraphId="c7540" Href="https://github.com/wikipathways/pathvisiojs/tree/master/test/e2e">
+    <Graphics CenterX="486.6508491508491" CenterY="83.97202797202797" Width="373.30169830169825" Height="32.012987012987026" ZOrder="33018" FillColor="ffffff" FontSize="10" Align="Left" Color="0000ff"/>
+  </Label>
+  <Shape GraphId="ae6ab">
+    <Graphics CenterX="185.38777388828228" CenterY="584.111074798108" Width="105.05563853622105" Height="342.74091068227204" ZOrder="-2" FillColor="333333" FontName="Helvetica" FontSize="10" Valign="Middle" ShapeType="Rectangle" Rotation="0.0"/>
+  </Shape>
+  <Shape GraphId="db4be">
+    <Graphics CenterX="61.12422015139611" CenterY="584.111074798108" Width="105.05563853622105" Height="342.7409106822721" ZOrder="16384" FillColor="333333" FontSize="10" Valign="Middle" ShapeType="Rectangle" Rotation="0.0"/>
+  </Shape>
+  <InfoBox CenterX="0.0" CenterY="0.0"/>
+  <Biopax/>
+</Pathway>
