@@ -75,7 +75,8 @@
 	 	cursor: pointer;
 	}
 	
-	.has-xref {
+	.has-xref:hover {
+		cursor: pointer;
 	}
 
 	.data-node.gene-product {
