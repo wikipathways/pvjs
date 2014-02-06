@@ -349,6 +349,7 @@ else if (dataElement.renderableType === 'Interaction') {
       } 
       else if (dataElement.renderableType === 'GroupNode') {
         pathvisiojs.view.pathwayDiagram.svg.node.groupNode.render(renderingArgs, function(groupContainer, groupContents) {
+          // TODO this used to render the group contents, but now the callback does nothing
         });
       }
       else if (dataElement.renderableType === 'EntityNode') {
@@ -377,12 +378,9 @@ else if (dataElement.renderableType === 'Interaction') {
 
     async.waterfall([
       function(callbackInside){
-        var pathwayNestedByGrouping = d3.nest()
-        .key(function(d) { return d.isContainedBy; })
-        .entries(pathway.elements);
-        
-        renderArgs.data = pathwayNestedByGrouping;
-
+        // create the required elements and their ids in DOM order,
+        // without specifying width, height, etc.
+        renderArgs.data = pathway.pathwayNestedByGrouping;
         appendElementsInDomOrder(renderArgs, function() {
           callbackInside(null, svg);
         });
@@ -390,16 +388,8 @@ else if (dataElement.renderableType === 'Interaction') {
       function(svg, callbackInside){
         //TODO for the non-cached version, this should sort the elements by dependency, so that group contents are updated before their containing group,
         //and an edge is updated before any edges that rely on it.
+        // this would be using something like pathway.pathwayElementsNestedByDependency
         renderArgs.data = pathway.elements;
-
-        /*
-        var pathwayNestedByDependencies = d3.nest()
-        .key(function(d) { return d.hasDependencies; })
-        .entries(pathway.elements);
-        renderArgs.data = pathwayNestedByDependencies;
-        //*/
-
-
         updateElementProperties(renderArgs, function() {
           callback(svg);
         });
