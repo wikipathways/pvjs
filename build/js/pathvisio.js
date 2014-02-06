@@ -1275,6 +1275,11 @@ pathvisiojs.data.gpml = function(){
           pathway.elements.sort(function(a, b) {
             return a.zIndex - b.zIndex;
           });
+
+          pathway.pathwayNestedByGrouping = d3.nest()
+          .key(function(d) { return d.isContainedBy; })
+          .entries(pathway.elements);
+
           self.myPathway = pathway;
           callbackOutside(pathway);
         }
