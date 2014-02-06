@@ -594,19 +594,27 @@ pathvisiojs.data.gpml = function(){
                   'EntityNode': 4
                 }
 
-                // if two elements have the same z-index, they will be rendered by this sub-sort
+                // sort by explicitly set z-index for all elements except GroupNodes, which use the lowest z-index
+                // of their contained elements, and anchors, which use their parent element's z-index
+                //TODO check whether anchors have been set to have a z-index
                 pathway.elements.sort(function(a, b) {
-                  return relativeZIndexByRenderableType[a.renderableType] - relativeZIndexByRenderableType[b.renderableType];
+                  var aPriority, bPriority;
+                  if (a.zIndex !== b.zIndex) {
+                    // if two elements have the same z-index,
+                    // they will be sub-sorted by renderableElementType priority,
+                    // as indicated in relativeZIndexByRenderableType
+                    aPriority = a.zIndex + relativeZIndexByRenderableType[a.renderableType];
+                    bPriority = b.zIndex + relativeZIndexByRenderableType[b.renderableType];
+                  }
+                  else {
+                    aPriority = a.zIndex;
+                    bPriority = b.zIndex;
+                  }
+                  return aPriority - bPriority;
                 });
                 callbackInside(null, pathway);
               },
               function(pathway, callbackInside){
-                // sort by explicitly set z-index for all elements except GroupNodes, which use the loweest z-index
-                // of their contained elements, and anchors, which use their parent element's z-index //TODO check whether anchors have been set to have a z-index
-                pathway.elements.sort(function(a, b) {
-                  return a.zIndex - b.zIndex;
-                });
-
                 /*
                  * we don't need this until we start rendering without cached data
                 pathway.pathwayNestedByDependencies = d3.nest()
@@ -621,8 +629,6 @@ pathvisiojs.data.gpml = function(){
                 var firstOrderElement = pathway.pathwayNestedByGrouping.filter(function(group) {
                   return group.key === 'undefined';
                 })[0];
-console.log(firstOrderElement);
-console.log(pathway.pathwayNestedByGrouping.indexOf(firstOrderElement));
                 pathway.pathwayNestedByGrouping = pathvisiojs.utilities.moveArrayItem(pathway.pathwayNestedByGrouping, pathway.pathwayNestedByGrouping.indexOf(firstOrderElement), 0);
                 callbackInside(null, pathway);
               },

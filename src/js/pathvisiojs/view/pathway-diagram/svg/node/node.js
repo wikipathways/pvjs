@@ -40,7 +40,6 @@ pathvisiojs.view.pathwayDiagram.svg.node = function(){
   }
 
   function render(args, callback) {
-    console.log(args);
     if (!args) {
       throw new Error('Need input args to render a node.');
     }
@@ -122,8 +121,6 @@ pathvisiojs.view.pathwayDiagram.svg.node = function(){
     // else check for whether it is available as a pathShape
 //    else {
       //console.log('We will use a pathShape to render this ' + shapeType);
-      console.log(nodeContainer);
-      console.log(data);
       pathvisiojs.view.pathwayDiagram.svg.node.pathShape.render(nodeContainer, data);
 //    }
 
