@@ -1,5 +1,5 @@
-//! pathvisiojs 1.0.2
-//! Built on 2014-01-31
+//! pathvisiojs 1.0.3
+//! Built on 2014-02-05
 //! https://github.com/wikipathways/pathvisiojs
 //! License: http://www.apache.org/licenses/LICENSE-2.0/
 
@@ -601,6 +601,8 @@ pathvisiojs.data.pathvisiojsJson = function(){
     if (fileType === 'gpml') {
       pathvisiojs.data.gpml.get(renderableSourceDataElement, function(gpml) {
         pathvisiojs.data.gpml.toRenderableJson(gpml, uri, function(json) {
+          console.log('json');
+          console.log(json);
           callback(json);
         });
       });
@@ -788,8 +790,8 @@ pathvisiojs.data.gpml = function(){
     // for doing this in Java, we could look at 
     // https://code.google.com/p/json-io/
 
-    //console.log('GPML');
-    //console.log(gpml);
+    console.log('GPML');
+    console.log(gpml);
 
     var pathway = {};
     pathway.xmlns = gpmlPathway.attr('xmlns');
@@ -1224,28 +1226,42 @@ pathvisiojs.data.gpml = function(){
                   'EntityNode': 4
                 }
 
-                // if two elements have the same z-index, they will be rendered by this sub-sort
+                // sort by explicitly set z-index for all elements except GroupNodes, which use the lowest z-index
+                // of their contained elements, and anchors, which use their parent element's z-index
+                //TODO check whether anchors have been set to have a z-index
                 pathway.elements.sort(function(a, b) {
-                  return relativeZIndexByRenderableType[a.renderableType] - relativeZIndexByRenderableType[b.renderableType];
+                  var aPriority, bPriority;
+                  if (a.zIndex !== b.zIndex) {
+                    // if two elements have the same z-index,
+                    // they will be sub-sorted by renderableElementType priority,
+                    // as indicated in relativeZIndexByRenderableType
+                    aPriority = a.zIndex + relativeZIndexByRenderableType[a.renderableType];
+                    bPriority = b.zIndex + relativeZIndexByRenderableType[b.renderableType];
+                  }
+                  else {
+                    aPriority = a.zIndex;
+                    bPriority = b.zIndex;
+                  }
+                  return aPriority - bPriority;
                 });
                 callbackInside(null, pathway);
               },
               function(pathway, callbackInside){
-                // sort by explicitly set z-index for all elements except GroupNodes, which use the loweest z-index
-                // of their contained elements, and anchors, which use their parent element's z-index //TODO check whether anchors have been set to have a z-index
-                pathway.elements.sort(function(a, b) {
-                  return a.zIndex - b.zIndex;
-                });
-                callbackInside(null, pathway);
-              },
-              function(pathway, callbackInside){
+                /*
+                 * we don't need this until we start rendering without cached data
                 pathway.pathwayNestedByDependencies = d3.nest()
                 .key(function(d) { return d.hasDependencies; })
                 .entries(pathway.elements);
+                //*/
 
                 pathway.pathwayNestedByGrouping = d3.nest()
                 .key(function(d) { return d.isContainedBy; })
                 .entries(pathway.elements);
+
+                var firstOrderElement = pathway.pathwayNestedByGrouping.filter(function(group) {
+                  return group.key === 'undefined';
+                })[0];
+                pathway.pathwayNestedByGrouping = pathvisiojs.utilities.moveArrayItem(pathway.pathwayNestedByGrouping, pathway.pathwayNestedByGrouping.indexOf(firstOrderElement), 0);
                 callbackInside(null, pathway);
               },
               function(pathway, callbackInside){
@@ -3965,6 +3981,7 @@ else if (dataElement.renderableType === 'Interaction') {
       } 
       else if (dataElement.renderableType === 'GroupNode') {
         pathvisiojs.view.pathwayDiagram.svg.node.groupNode.render(renderingArgs, function(groupContainer, groupContents) {
+          // TODO this used to render the group contents, but now the callback does nothing
         });
       }
       else if (dataElement.renderableType === 'EntityNode') {
@@ -3993,12 +4010,9 @@ else if (dataElement.renderableType === 'Interaction') {
 
     async.waterfall([
       function(callbackInside){
-        var pathwayNestedByGrouping = d3.nest()
-        .key(function(d) { return d.isContainedBy; })
-        .entries(pathway.elements);
-        
-        renderArgs.data = pathwayNestedByGrouping;
-
+        // create the required elements and their ids in DOM order,
+        // without specifying width, height, etc.
+        renderArgs.data = pathway.pathwayNestedByGrouping;
         appendElementsInDomOrder(renderArgs, function() {
           callbackInside(null, svg);
         });
@@ -4006,16 +4020,8 @@ else if (dataElement.renderableType === 'Interaction') {
       function(svg, callbackInside){
         //TODO for the non-cached version, this should sort the elements by dependency, so that group contents are updated before their containing group,
         //and an edge is updated before any edges that rely on it.
+        // this would be using something like pathway.pathwayElementsNestedByDependency
         renderArgs.data = pathway.elements;
-
-        /*
-        var pathwayNestedByDependencies = d3.nest()
-        .key(function(d) { return d.hasDependencies; })
-        .entries(pathway.elements);
-        renderArgs.data = pathwayNestedByDependencies;
-        //*/
-
-
         updateElementProperties(renderArgs, function() {
           callback(svg);
         });
@@ -4831,6 +4837,10 @@ pathvisiojs.view.pathwayDiagram.svg.node.pathShape = function(){
   'use strict';
 
   function render(parent, data) {
+    /*
+    console.log(parent);
+    console.log(data);
+    //*/
     var re;
     var pathShapeNameToUse = strcase.camelCase(data.ShapeType);
     if (!pathvisiojs.view.pathwayDiagram.svg.node.pathShape.hasOwnProperty(pathShapeNameToUse)) {
@@ -6305,7 +6315,7 @@ pathvisiojs.view.pathwayDiagram.svg.edge.interaction = function(){
           cssClass += 'has-xref ';
           if (!!data.DatasourceReference.ID) {
             interaction.on("click", function(d,i) {
-              pathvisiojs.view.annotation.xRef.render(args.pathway.Organism, d['DatasourceReference'].ID, d['DatasourceReference'].Database, d.InteractionGraph[0].interactsWith.text.line[0]+' + '+d.InteractionGraph[0].text.line[0], d.renderableType); 
+              pathvisiojs.view.annotation.xRef.render(args.pathway.Organism, d['DatasourceReference'].ID, d['DatasourceReference'].Database, d.renderableType, d.markerStart+'<-->'+d.markerEnd); // d.InteractionGraph[0].interactsWith.text.line[0]+' + '+d.InteractionGraph[0].text.line[0], d.renderableType); 
 	      //That's capital 'O' Organism from GPML vocab.
 	      //Names of interaction partners is given as header, which is also used to form site query, 
 	      // thus the "+" is used to convey both the interaction and query logic.
