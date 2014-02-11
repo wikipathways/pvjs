@@ -79,7 +79,8 @@ pathvisiojs.view.pathwayDiagram = function(){
     // The IE9 detection is a temporary hack. It is used because IE9 cannot currently convert GPML to pathvisiojsJson,
     // so it cannot display the resulting SVG.
     // TODO get gpml to pathvisiojsJson conversion working with IE9
-    if (Modernizr.inlinesvg && (!pathvisiojs.utilities.isIE())) {
+    if (Modernizr.inlinesvg) {
+    //if (Modernizr.inlinesvg && (!pathvisiojs.utilities.isIE())) {
     //if (Modernizr.inlinesvg && (pathvisiojs.utilities.isIE() !== 9)) {
       supportedViewMethods.push('svg');
     }

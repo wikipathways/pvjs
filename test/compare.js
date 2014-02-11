@@ -242,6 +242,7 @@ var developmentLoader = function() {
 
     var defs = svg.append('defs');
 
+    // TODO can we delete this filter?
     var filter = svg.append('filter').
     attr('id', 'highlight').
     attr('width', '150%').
