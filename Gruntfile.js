@@ -6,7 +6,7 @@ var pvjsSources = [
   'src/js/pathvisiojs/data/data.js',
   'src/js/pathvisiojs/data/bridgedb/bridgedb.js',
   'src/js/pathvisiojs/data/biopax/biopax.js',
-  'src/js/pathvisiojs/data/pathvisiojs-json/pathvisiojs-json.js',
+  'src/js/pathvisiojs/data/pvjson/pvjson.js',
   'src/js/pathvisiojs/data/gpml/gpml.js',
   'src/js/pathvisiojs/data/gpml/element.js',
   'src/js/pathvisiojs/data/gpml/text.js',
