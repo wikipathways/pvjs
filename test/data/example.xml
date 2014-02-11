@@ -1,0 +1,9 @@
+<Address xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="SimpleAddress.xsd">
+  <Recipient>Mr. Walter C. Brown</Recipient>
+  <House>49</House>
+  <Street>Featherstone Street</Street>
+  <Town>LONDON</Town>
+  <PostCode>EC1Y 8SY</PostCode>
+  <Country>UK</Country>
+</Address>
