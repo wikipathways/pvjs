@@ -21,10 +21,40 @@ pathvisiojs.data.gpml = function(){
     }
 
     if (fileType === 'gpml') {
-      // TODO d3.xml doesn't seem to work with IE8
-      d3.xml(uri, function(gpml) {
-        callback(gpml);
-      });
+      if (pathvisiojs.utilities.isIE() !== 9) {
+        // d3.xml does not work with IE9 (and probably earlier), so we're using d3.xhr instead of d3.xml for IE9
+        // TODO file a bug report on d3 issue tracker
+        d3.xml(uri, function(gpmlDoc) {
+          var gpml = gpmlDoc.documentElement;
+          callback(gpml);
+        });
+      }
+      else {
+        async.waterfall([
+          function(callbackInside) {
+            if (!$) {
+              // TODO should we use requirejs for loading scripts instead?
+              pathvisiojs.utilities.loadScripts(['http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js'], function() {
+                callbackInside(null);
+              })
+            }
+            else {
+              callbackInside(null);
+            }
+          },
+          function(callbackInside) {
+            d3.xhr(uri, 'application/xml', function(error, data) {
+              var gpmlString = data.responseText;
+              callbackInside(null, gpmlString);
+            });
+          },
+          function(gpmlString, callbackInside) {
+            var gpmlDoc = $.parseXML(gpmlString);
+            var gpml = gpmlDoc.documentElement;
+            callback(gpml);
+          }
+        ]);
+      }
     }
     else {
       throw new Error('Cannot get GPML from the specified input.');
@@ -153,7 +183,8 @@ pathvisiojs.data.gpml = function(){
   }
 
   function toRenderableJson(gpml, pathwayIri, callbackOutside){
-    var gpmlPathway = d3.select(gpml).select('Pathway');
+    var gpmlPathway = d3.select(gpml);
+    //var gpmlPathway = d3.select(gpml).select('Pathway');
 
     // for doing this in Java, we could look at 
     // https://code.google.com/p/json-io/
@@ -648,7 +679,7 @@ pathvisiojs.data.gpml = function(){
           .key(function(d) { return d.isContainedBy; })
           .entries(pathway.elements);
 
-          self.myPathway = pathway;
+          //self.myPathway = pathway;
           callbackOutside(pathway);
         }
       });

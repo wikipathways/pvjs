@@ -1,5 +1,5 @@
 //! pathvisiojs 1.0.3
-//! Built on 2014-02-05
+//! Built on 2014-02-10
 //! https://github.com/wikipathways/pathvisiojs
 //! License: http://www.apache.org/licenses/LICENSE-2.0/
 
@@ -311,6 +311,28 @@ pathvisiojs.utilities = function(){
     }
   }
 
+  // TODO should we use requirejs for loading scripts instead?
+  function loadScripts(array, callback){  
+    var loader = function(src,handler){  
+      var script = document.createElement('script');  
+      script.src = src;  
+      script.onload = script.onreadystatechange = function(){  
+        script.onreadystatechange = script.onload = null;  
+        if(/MSIE ([6-9]+\.\d+);/.test(navigator.userAgent))window.setTimeout(function(){handler();},8,this);  
+        else handler();  
+      }  
+      var head = document.getElementsByTagName('head')[0];  
+      (head || document.body).appendChild( script );  
+    };  
+    (function(){  
+      if(array.length!=0){  
+        loader(array.shift(),arguments.callee);  
+      }else{  
+        callback && callback();  
+      }  
+    })();  
+  }
+
   function moveArrayItem(arr, old_index, new_index) {
     // from http://stackoverflow.com/questions/5306680/move-an-array-element-from-one-array-position-to-another
     if (new_index >= arr.length) {
@@ -349,6 +371,7 @@ pathvisiojs.utilities = function(){
     isOdd:isOdd,
     isUri:isUri,
     isWikiPathwaysId:isWikiPathwaysId,
+    loadScripts:loadScripts,
     moveArrayItem:moveArrayItem,
     splitStringByNewLine:splitStringByNewLine,
     strToHtmlId:strToHtmlId
@@ -653,10 +676,40 @@ pathvisiojs.data.gpml = function(){
     }
 
     if (fileType === 'gpml') {
-      // TODO d3.xml doesn't seem to work with IE8
-      d3.xml(uri, function(gpml) {
-        callback(gpml);
-      });
+      if (pathvisiojs.utilities.isIE() !== 9) {
+        // d3.xml does not work with IE9 (and probably earlier), so we're using d3.xhr instead of d3.xml for IE9
+        // TODO file a bug report on d3 issue tracker
+        d3.xml(uri, function(gpmlDoc) {
+          var gpml = gpmlDoc.documentElement;
+          callback(gpml);
+        });
+      }
+      else {
+        async.waterfall([
+          function(callbackInside) {
+            if (!$) {
+              // TODO should we use requirejs for loading scripts instead?
+              pathvisiojs.utilities.loadScripts(['http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js'], function() {
+                callbackInside(null);
+              })
+            }
+            else {
+              callbackInside(null);
+            }
+          },
+          function(callbackInside) {
+            d3.xhr(uri, 'application/xml', function(error, data) {
+              var gpmlString = data.responseText;
+              callbackInside(null, gpmlString);
+            });
+          },
+          function(gpmlString, callbackInside) {
+            var gpmlDoc = $.parseXML(gpmlString);
+            var gpml = gpmlDoc.documentElement;
+            callback(gpml);
+          }
+        ]);
+      }
     }
     else {
       throw new Error('Cannot get GPML from the specified input.');
@@ -785,7 +838,8 @@ pathvisiojs.data.gpml = function(){
   }
 
   function toRenderableJson(gpml, pathwayIri, callbackOutside){
-    var gpmlPathway = d3.select(gpml).select('Pathway');
+    var gpmlPathway = d3.select(gpml);
+    //var gpmlPathway = d3.select(gpml).select('Pathway');
 
     // for doing this in Java, we could look at 
     // https://code.google.com/p/json-io/
@@ -1280,7 +1334,7 @@ pathvisiojs.data.gpml = function(){
           .key(function(d) { return d.isContainedBy; })
           .entries(pathway.elements);
 
-          self.myPathway = pathway;
+          //self.myPathway = pathway;
           callbackOutside(pathway);
         }
       });
@@ -3490,7 +3544,8 @@ pathvisiojs.view.pathwayDiagram = function(){
     // The IE9 detection is a temporary hack. It is used because IE9 cannot currently convert GPML to pathvisiojsJson,
     // so it cannot display the resulting SVG.
     // TODO get gpml to pathvisiojsJson conversion working with IE9
-    if (Modernizr.inlinesvg && (!pathvisiojs.utilities.isIE())) {
+    if (Modernizr.inlinesvg) {
+    //if (Modernizr.inlinesvg && (!pathvisiojs.utilities.isIE())) {
     //if (Modernizr.inlinesvg && (pathvisiojs.utilities.isIE() !== 9)) {
       supportedViewMethods.push('svg');
     }
