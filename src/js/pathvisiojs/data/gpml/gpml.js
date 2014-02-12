@@ -591,9 +591,6 @@ pathvisiojs.data.gpml = function(){
       function(err, results) {
         var groupsFrame, jsonGroups = [];
         if (!!pathway.Group) {
-          console.log('pathway.Group');
-          console.log(pathway.Group);
-          console.log(pathway);
           groupsFrame = {
             '@context': pathway['@context'],
             '@type': 'GroupNode',
@@ -625,8 +622,6 @@ pathvisiojs.data.gpml = function(){
                 callbackInside(null, jsonGroups);
               },
               function(jsonGroups, callbackInside){
-                console.log('jsonGroups');
-                console.log(jsonGroups);
                 pathway.Group = jsonGroups;
                 pathway.elements = pathway.elements.concat(pathway.Group);
 
