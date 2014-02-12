@@ -2957,6 +2957,13 @@
     <Comment Source="Reactome">REACT_4769</Comment>
     <Graphics CenterX="5160.0" CenterY="937.0" Width="80.0" Height="20.0" ZOrder="28672" FillColor="ffffff" FontSize="10" Valign="Middle" />
   </Label>
+  <Label TextLabel="cytoplasm" GraphId="comp_text_1316">
+    <Graphics CenterX="2575.0" CenterY="867.5" Width="78.0" Height="33.0" ZOrder="28672" FillColor="ffffff" FontSize="10" Valign="Middle" />
+  </Label>
+  <Shape GraphId="comp_1316">
+    <Attribute Key="org.pathvisio.DoubleLineProperty" Value="Double" />
+    <Graphics CenterX="1671.0" CenterY="823.0" Width="3300.0" Height="132.0" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="RoundedRectangle" LineThickness="3.0" Color="c0c0c0" Rotation="0.0" />
+  </Shape>
   <Group GroupId="1407750.26866068013384425" Style="Complex" />
   <Group GroupId="1407390.3575707758019925" Style="Complex" />
   <Group GroupId="1406890.20354281619170667" Style="Complex" />
