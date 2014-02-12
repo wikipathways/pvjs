@@ -5,7 +5,7 @@ pathvisiojs.data.gpml.edge = function(){
     'Broken': 'dashed'
   };
 
-  function toRenderableJson(gpmlEdge, pathwayIri, callback) {
+  function toPvjson(gpmlEdge, pathwayIri, callback) {
     var jsonAnchorEdge, anchor, jsonAnchor, points, jsonPoints, interactionType, target, targetId, groupRef;
     var jsonEdge = {};
     var graphId = gpmlEdge.attr('GraphId') || ('id' + uuid.v4());
@@ -94,15 +94,15 @@ pathvisiojs.data.gpml.edge = function(){
     }
     //*/
 
-    pathvisiojs.data.gpml.node.anchor.toRenderableJson(gpmlEdge, jsonEdge, 'edge', pathwayIri, function(jsonEdge) {
-      pathvisiojs.data.gpml.element.toRenderableJson(gpmlEdge, jsonEdge, function(jsonEdge) {
+    pathvisiojs.data.gpml.node.anchor.toPvjson(gpmlEdge, jsonEdge, 'edge', pathwayIri, function(jsonEdge) {
+      pathvisiojs.data.gpml.element.toPvjson(gpmlEdge, jsonEdge, function(jsonEdge) {
         callback(jsonEdge);
       });
     });
   }
 
   /*
-     function toRenderableJson(gpmlEdge, jsonEdge, callback) {
+     function toPvjson(gpmlEdge, jsonEdge, callback) {
      try {
      jsonEdge.id = gpmlEdge.attr('GraphId');
      jsonEdge.renderableType = 'edge';
@@ -168,7 +168,7 @@ pathvisiojs.data.gpml.edge = function(){
 
      var jsonPoints = [];
      gpmlPoints.each(function() {
-     pathvisiojs.data.gpml.edge.point.toRenderableJson(d3.select(this), function(jsonPoint) {
+     pathvisiojs.data.gpml.edge.point.toPvjson(d3.select(this), function(jsonPoint) {
      jsonPoints.push(jsonPoint);
      });
      });
@@ -183,6 +183,6 @@ catch (e) {
 //*/
 
 return {
-toRenderableJson:toRenderableJson
+toPvjson:toPvjson
 };
 }();

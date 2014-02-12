@@ -17,7 +17,7 @@ pathvisiojs.data.gpml.edge.point = function(){
     '1.0': {'side': 'bottom'}
   };
 
-  function toRenderableJson(gpmlPoint, callback) {
+  function toPvjson(gpmlPoint, callback) {
     var jsonPoint = {};
     try {
       jsonPoint.x = parseFloat(gpmlPoint.attr('X'));
@@ -51,6 +51,6 @@ pathvisiojs.data.gpml.edge.point = function(){
   }
 
   return {
-    toRenderableJson:toRenderableJson
+    toPvjson:toPvjson
   };
 }();

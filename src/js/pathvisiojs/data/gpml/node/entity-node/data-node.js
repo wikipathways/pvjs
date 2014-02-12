@@ -10,6 +10,11 @@ var pathvisioDefaultStyleValues = {
       'FontSize':10,
       'FontWeight':null
     },
+    'Complex':{
+      'Color':null,
+      'FontSize':10,
+      'FontWeight':null
+    },
     'Protein':{
       'Color':null,
       'FontSize':10,
@@ -38,7 +43,7 @@ var pathvisioDefaultStyleValues = {
   }
 }
 
-pathvisiojs.data.gpml.element.node.entityNode.dataNode.toRenderableJson = function(gpmlDataNode, pathwayIri, callbackInside) {
+pathvisiojs.data.gpml.element.node.entityNode.dataNode.toPvjson = function(gpmlDataNode, pathwayIri, callbackInside) {
   'use strict';
   var jsonDataNode = {};
   var dataNodeType = gpmlDataNode.attr('Type');
@@ -53,7 +58,7 @@ pathvisiojs.data.gpml.element.node.entityNode.dataNode.toRenderableJson = functi
 
   var thisPathvisioDefaultStyleValues = pathvisiojs.utilities.collect(pathvisioDefaultStyleValues.DataNode, pathvisioDefaultStyleValues.DataNode[dataNodeType]);
 
-  pathvisiojs.data.gpml.element.node.entityNode.toRenderableJson(gpmlDataNode, jsonDataNode, thisPathvisioDefaultStyleValues, pathwayIri, function(jsonDataNode) {
+  pathvisiojs.data.gpml.element.node.entityNode.toPvjson(gpmlDataNode, jsonDataNode, thisPathvisioDefaultStyleValues, pathwayIri, function(jsonDataNode) {
     var database, ID, 
     datasourceReference = gpmlDataNode.select('Xref');
     if (!!datasourceReference) {
@@ -65,7 +70,7 @@ pathvisiojs.data.gpml.element.node.entityNode.dataNode.toRenderableJson = functi
         jsonDataNode.DatasourceReference.ID = ID;
       }
     }
-    pathvisiojs.data.gpml.text.toRenderableJson(gpmlDataNode, thisPathvisioDefaultStyleValues, function(text) {
+    pathvisiojs.data.gpml.text.toPvjson(gpmlDataNode, thisPathvisioDefaultStyleValues, function(text) {
       if (!!text) {
         jsonDataNode.text = text;
       }

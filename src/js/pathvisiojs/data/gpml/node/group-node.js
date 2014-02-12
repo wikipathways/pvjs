@@ -58,7 +58,7 @@ pathvisiojs.data.gpml.element.node.groupNode = function() {
     });
   }
 
-  function toRenderableJson(pathway, gpmlGroup, pathwayIri, callbackOutside) {
+  function toPvjson(pathway, gpmlGroup, pathwayIri, callbackOutside) {
     var jsonGroup = {},
       groupId,
       shapeType,
@@ -104,7 +104,7 @@ pathvisiojs.data.gpml.element.node.groupNode = function() {
     // borderWidth twice -- once here and once in CSS.
 
     jsonGroup.borderWidth = 1;
-    pathvisiojs.data.gpml.text.toRenderableJson(gpmlGroup, pathvisioDefaultStyleValues, function(text) {
+    pathvisiojs.data.gpml.text.toPvjson(gpmlGroup, pathvisioDefaultStyleValues, function(text) {
       /*
       console.log('text');
       console.log(text);
@@ -119,14 +119,14 @@ pathvisiojs.data.gpml.element.node.groupNode = function() {
         jsonGroup.text.textAlign = 'center';
         jsonGroup.text.verticalAlign = 'middle';
       }
-      pathvisiojs.data.gpml.element.node.toRenderableJson(gpmlGroup, jsonGroup, function(jsonGroup) {
+      pathvisiojs.data.gpml.element.node.toPvjson(gpmlGroup, jsonGroup, function(jsonGroup) {
         callbackOutside(jsonGroup);
       });
     });
   }
 
   return {
-    toRenderableJson:toRenderableJson,
+    toPvjson:toPvjson,
     getGroupDimensions:getGroupDimensions
   };
 }();

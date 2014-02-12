@@ -76,9 +76,9 @@ pathvisiojs.view.pathwayDiagram = function(){
     var supportedViewMethods = ['img'];
 
     // TODO support svg that is not inline in the svg viewMethod
-    // The IE9 detection is a temporary hack. It is used because IE9 cannot currently convert GPML to pathvisiojsJson,
+    // The IE9 detection is a temporary hack. It is used because IE9 cannot currently convert GPML to pvjson,
     // so it cannot display the resulting SVG.
-    // TODO get gpml to pathvisiojsJson conversion working with IE9
+    // TODO get gpml to pvjson conversion working with IE9
     if (Modernizr.inlinesvg) {
     //if (Modernizr.inlinesvg && (!pathvisiojs.utilities.isIE())) {
     //if (Modernizr.inlinesvg && (pathvisiojs.utilities.isIE() !== 9)) {
