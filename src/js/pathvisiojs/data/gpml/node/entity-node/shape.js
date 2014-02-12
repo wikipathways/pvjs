@@ -41,7 +41,7 @@ pathvisiojs.data.gpml.element.node.entityNode.shape = function(){
     }
   }
 
-  function toRenderableJson(gpmlShape, pathwayIri, callback) {
+  function toPvjson(gpmlShape, pathwayIri, callback) {
     
     // some shapes have GPML values that do not match what is visually displayed in PathVisio-Java.
     // Below we correct the GPMl so that the display in pathvisiojs will matches the display in PathVisio-Java.
@@ -77,8 +77,8 @@ pathvisiojs.data.gpml.element.node.entityNode.shape = function(){
       thisPathvisioDefaultStyleValues = pathvisioDefaultStyleValues.Shape;
     }
 
-    pathvisiojs.data.gpml.element.node.entityNode.toRenderableJson(gpmlShape, jsonShape, thisPathvisioDefaultStyleValues, pathwayIri, function(jsonShape) {
-      pathvisiojs.data.gpml.text.toRenderableJson(gpmlShape, thisPathvisioDefaultStyleValues, function(text) {
+    pathvisiojs.data.gpml.element.node.entityNode.toPvjson(gpmlShape, jsonShape, thisPathvisioDefaultStyleValues, pathwayIri, function(jsonShape) {
+      pathvisiojs.data.gpml.text.toPvjson(gpmlShape, thisPathvisioDefaultStyleValues, function(text) {
         if (!!text) {
           jsonShape.text = text;
         }
@@ -105,7 +105,7 @@ pathvisiojs.data.gpml.element.node.entityNode.shape = function(){
   }
 
   return {
-    toRenderableJson:toRenderableJson
+    toPvjson:toPvjson
   };
 }();
 

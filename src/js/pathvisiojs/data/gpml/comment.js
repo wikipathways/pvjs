@@ -1,7 +1,7 @@
 pathvisiojs.pathway.comment = function(){
   'use strict';
 
-  function toRenderableJson() {
+  function toPvjson() {
     try {
 
     }
@@ -13,7 +13,7 @@ pathvisiojs.pathway.comment = function(){
 
 
   return {
-    toRenderableJson:toRenderableJson
+    toPvjson:toPvjson
   };
 }();
 

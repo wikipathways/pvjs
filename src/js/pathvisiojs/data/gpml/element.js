@@ -172,11 +172,11 @@ pathvisiojs.data.gpml.element.fontName = {};
 pathvisiojs.data.gpml.element.fontName.swing = 'Arial';
 pathvisiojs.data.gpml.element.fontName.gpml = null;
   
-pathvisiojs.data.gpml.element.toRenderableJson = function(gpmlElement, jsonElement, elementCallback) {
+pathvisiojs.data.gpml.element.toPvjson = function(gpmlElement, jsonElement, elementCallback) {
   jsonElement["@type"] = jsonElement["@type"] || [];
   jsonElement["@type"].push("element");
 
-  pathvisiojs.data.gpml.biopaxRef.getAllAsRenderableJson(gpmlElement, function(publicationXrefs) {
+  pathvisiojs.data.gpml.biopaxRef.getAllAsPvjson(gpmlElement, function(publicationXrefs) {
     if (!!publicationXrefs) {
       jsonElement.PublicationXref = publicationXrefs;
     }

@@ -57,9 +57,9 @@ pathvisiojs.data.gpml.edge.interaction = function(){
     return semanticName;
   }
 
-  function toRenderableJson(gpml, gpmlInteraction, pathwayIri, callback) {
+  function toPvjson(gpml, gpmlInteraction, pathwayIri, callback) {
     var jsonAnchorInteraction, anchor, jsonAnchor, points, jsonPoints, interactionType, target, targetId, groupRef, source, sourceId;
-    pathvisiojs.data.gpml.edge.toRenderableJson(gpmlInteraction, pathwayIri, function(jsonInteraction) {
+    pathvisiojs.data.gpml.edge.toPvjson(gpmlInteraction, pathwayIri, function(jsonInteraction) {
       //console.log('jsonInteraction');
       //console.log(jsonInteraction);
 
@@ -198,7 +198,7 @@ pathvisiojs.data.gpml.edge.interaction = function(){
   }
 
   /*
-     function toRenderableJson(gpmlEdge, jsonEdge, callback) {
+     function toPvjson(gpmlEdge, jsonEdge, callback) {
      try {
      jsonEdge.id = gpmlEdge.attr('GraphId');
      jsonEdge.renderableType = 'edge';
@@ -264,7 +264,7 @@ pathvisiojs.data.gpml.edge.interaction = function(){
 
      var jsonPoints = [];
      gpmlPoints.each(function() {
-     pathvisiojs.data.gpml.edge.point.toRenderableJson(d3.select(this), function(jsonPoint) {
+     pathvisiojs.data.gpml.edge.point.toPvjson(d3.select(this), function(jsonPoint) {
      jsonPoints.push(jsonPoint);
      });
      });
@@ -279,7 +279,7 @@ catch (e) {
 //*/
 
 return {
-  toRenderableJson:toRenderableJson,
+  toPvjson:toPvjson,
   getGpmlArrowHeadNameFromSemanticName:getGpmlArrowHeadNameFromSemanticName,
   getSemanticNameFromGpmlArrowHeadName:getSemanticNameFromGpmlArrowHeadName
 };

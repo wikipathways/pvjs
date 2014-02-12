@@ -144,11 +144,11 @@ pathvisiojs.data.gpml.element.node.getPorts = function(jsonNode, callback) {
 
 // gpmlNode is NOT referring to data nodes exclusively. It is also referring to any other non-edge elements that can have anchors.
 
-pathvisiojs.data.gpml.element.node.toRenderableJson = function(gpmlNode, jsonNode, callback) {
+pathvisiojs.data.gpml.element.node.toPvjson = function(gpmlNode, jsonNode, callback) {
   jsonNode["@type"] = jsonNode["@type"] || [];
   jsonNode["@type"].push("node");
 
-  pathvisiojs.data.gpml.element.toRenderableJson(gpmlNode, jsonNode, function(jsonNode) {
+  pathvisiojs.data.gpml.element.toPvjson(gpmlNode, jsonNode, function(jsonNode) {
     callback(jsonNode);
   });
 

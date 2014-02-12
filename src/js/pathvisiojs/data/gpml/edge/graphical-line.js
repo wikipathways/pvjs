@@ -9,9 +9,9 @@ pathvisiojs.data.gpml.edge.graphicalLine = function(){
   };
   //*/
 
-  function toRenderableJson(gpml, gpmlGraphicalLine, pathwayIri, callback) {
+  function toPvjson(gpml, gpmlGraphicalLine, pathwayIri, callback) {
     var jsonAnchorGraphicalLine, anchor, jsonAnchor, points, jsonPoints, graphicalLineType, target, targetId, groupRef;
-    pathvisiojs.data.gpml.edge.toRenderableJson(gpmlGraphicalLine, pathwayIri, function(jsonGraphicalLine) {
+    pathvisiojs.data.gpml.edge.toPvjson(gpmlGraphicalLine, pathwayIri, function(jsonGraphicalLine) {
       //console.log('jsonGraphicalLine');
       //console.log(jsonGraphicalLine);
 
@@ -47,7 +47,7 @@ pathvisiojs.data.gpml.edge.graphicalLine = function(){
   }
 
   /*
-  function toRenderableJson(gpmlEdge, jsonEdge, callback) {
+  function toPvjson(gpmlEdge, jsonEdge, callback) {
     try {
       jsonEdge.id = gpmlEdge.attr('GraphId');
       jsonEdge.renderableType = 'edge';
@@ -113,7 +113,7 @@ pathvisiojs.data.gpml.edge.graphicalLine = function(){
 
       var jsonPoints = [];
       gpmlPoints.each(function() {
-        pathvisiojs.data.gpml.edge.point.toRenderableJson(d3.select(this), function(jsonPoint) {
+        pathvisiojs.data.gpml.edge.point.toPvjson(d3.select(this), function(jsonPoint) {
           jsonPoints.push(jsonPoint);
         });
       });
@@ -128,6 +128,6 @@ pathvisiojs.data.gpml.edge.graphicalLine = function(){
   //*/
 
   return {
-    toRenderableJson:toRenderableJson
+    toPvjson:toPvjson
   };
 }();

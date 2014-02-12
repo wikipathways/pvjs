@@ -416,7 +416,7 @@ pathvisiojs.data = function(){
 
     if (fileType === 'gpml') {
       pathvisiojs.data.gpml.get(sourceData, function(gpml) {
-        pathvisiojs.data.gpml.toRenderableJson(gpml, uri, function(json) {
+        pathvisiojs.data.gpml.toPvjson(gpml, uri, function(json) {
           callback(json);
         });
       });
@@ -572,7 +572,7 @@ pathvisiojs.data.biopax = function(){
 
   // TODO get ontology terms and other data
 
-  function toRenderableJson(xmlBiopax, callback) {
+  function toPvjson(xmlBiopax, callback) {
     try {
       d3.ns.prefix.bp = 'http://www.biopax.org/owldoc/Level3/';
       d3.ns.prefix.rdf = 'http://www.w3.org/1999/02/22-rdf-syntax-ns#';
@@ -594,13 +594,13 @@ pathvisiojs.data.biopax = function(){
   }
 
   return {
-    toRenderableJson:toRenderableJson
+    toPvjson:toPvjson
   };
 }();
 
 ;
 
-pathvisiojs.data.pathvisiojsJson = function(){
+pathvisiojs.data.pvjson = function(){
   'use strict';
 
   // For now, pathvisio.js will attempt to convert any input data, as long as it is of type
@@ -619,11 +619,11 @@ pathvisiojs.data.pathvisiojsJson = function(){
       return new Error('No fileType specified.');
     }
 
-    // TODO handle if renderableSourceDataElement.object
+    // TODO handle if renderableSourceDataElement.object exists
 
     if (fileType === 'gpml') {
       pathvisiojs.data.gpml.get(renderableSourceDataElement, function(gpml) {
-        pathvisiojs.data.gpml.toRenderableJson(gpml, uri, function(json) {
+        pathvisiojs.data.gpml.toPvjson(gpml, uri, function(json) {
           console.log('json');
           console.log(json);
           callback(json);
@@ -837,7 +837,7 @@ pathvisiojs.data.gpml = function(){
     return jsonElement;
   }
 
-  function toRenderableJson(gpml, pathwayIri, callbackOutside){
+  function toPvjson(gpml, pathwayIri, callbackOutside){
     var gpmlPathway = d3.select(gpml);
     //var gpmlPathway = d3.select(gpml).select('Pathway');
 
@@ -1000,7 +1000,7 @@ pathvisiojs.data.gpml = function(){
             callback(null, pathway['@context']);
           },
           PublicationXref: function(callback){
-            pathvisiojs.data.gpml.biopaxRef.getAllAsRenderableJson(gpmlPathway, function(publicationXrefs) {
+            pathvisiojs.data.gpml.biopaxRef.getAllAsPvjson(gpmlPathway, function(publicationXrefs) {
               if (!!publicationXrefs) {
                 pathway.PublicationXref = publicationXrefs;
                 callback(null, 'BiopaxRefs are all converted.');
@@ -1113,7 +1113,7 @@ pathvisiojs.data.gpml = function(){
           Biopax: function(callback){
             var xmlBiopax = gpmlPathway.selectAll('Biopax');
             if (xmlBiopax[0].length > 0) {
-              pathvisiojs.data.biopax.toRenderableJson(xmlBiopax, function(jsonBiopax) {
+              pathvisiojs.data.biopax.toPvjson(xmlBiopax, function(jsonBiopax) {
                 pathway.Biopax = jsonBiopax;
               });
               callback(null, 'Biopax all converted.');
@@ -1128,7 +1128,7 @@ pathvisiojs.data.gpml = function(){
               pathway.DataNode = [];
               dataNodes.each(function() {
                 gpmlDataNode = d3.select(this);
-                pathvisiojs.data.gpml.element.node.entityNode.dataNode.toRenderableJson(gpmlDataNode, pathwayIri, function(jsonDataNode) {
+                pathvisiojs.data.gpml.element.node.entityNode.dataNode.toPvjson(gpmlDataNode, pathwayIri, function(jsonDataNode) {
                   pathway.DataNode.push(jsonDataNode);
                   pathway.nodes = pathway.nodes.concat(jsonDataNode);
                   pathway.elements = pathway.elements.concat(jsonDataNode);
@@ -1146,7 +1146,7 @@ pathvisiojs.data.gpml = function(){
               pathway.Label = [];
               gpmlPathway.selectAll('Label').each(function() {
                 gpmlLabel = d3.select(this);
-                pathvisiojs.data.gpml.element.node.entityNode.label.toRenderableJson(gpmlLabel, pathwayIri, function(jsonLabel) {
+                pathvisiojs.data.gpml.element.node.entityNode.label.toPvjson(gpmlLabel, pathwayIri, function(jsonLabel) {
                   pathway.Label.push(jsonLabel);
                   pathway.nodes = pathway.nodes.concat(jsonLabel);
                   pathway.elements = pathway.elements.concat(jsonLabel);
@@ -1164,7 +1164,7 @@ pathvisiojs.data.gpml = function(){
               pathway.Shape = [];
               gpmlPathway.selectAll('Shape').each(function() {
                 gpmlShape = d3.select(this);
-                pathvisiojs.data.gpml.element.node.entityNode.shape.toRenderableJson(gpmlShape, pathwayIri, function(jsonShape) {
+                pathvisiojs.data.gpml.element.node.entityNode.shape.toPvjson(gpmlShape, pathwayIri, function(jsonShape) {
                   pathway.Shape.push(jsonShape);
                   pathway.nodes = pathway.nodes.concat(jsonShape);
                   pathway.elements = pathway.elements.concat(jsonShape);
@@ -1185,7 +1185,7 @@ pathvisiojs.data.gpml = function(){
               pathway.Group = [];
               gpmlPathway.selectAll('Group').each(function() {
                 gpmlGroup = d3.select(this);
-                pathvisiojs.data.gpml.element.node.groupNode.toRenderableJson(gpml, gpmlGroup, pathwayIri, function(jsonGroup) {
+                pathvisiojs.data.gpml.element.node.groupNode.toPvjson(gpml, gpmlGroup, pathwayIri, function(jsonGroup) {
                   pathway.Group.push(jsonGroup);
                   pathway.nodes = pathway.nodes.concat(jsonGroup);
                 });
@@ -1203,7 +1203,7 @@ pathvisiojs.data.gpml = function(){
               pathway.GraphicalLine = [];
               gpmlPathway.selectAll('GraphicalLine').each(function() {
                 gpmlGraphicalLine = d3.select(this);
-                pathvisiojs.data.gpml.edge.graphicalLine.toRenderableJson(gpml, gpmlGraphicalLine, pathwayIri, function(jsonGraphicalLine) {
+                pathvisiojs.data.gpml.edge.graphicalLine.toPvjson(gpml, gpmlGraphicalLine, pathwayIri, function(jsonGraphicalLine) {
                   pathway.GraphicalLine.push(jsonGraphicalLine);
                   pathway.edges = pathway.edges.concat(jsonGraphicalLine);
                   pathway.elements = pathway.elements.concat(jsonGraphicalLine);
@@ -1222,7 +1222,7 @@ pathvisiojs.data.gpml = function(){
               pathway.Interaction = [];
               gpmlPathway.selectAll('Interaction').each(function() {
                 gpmlInteraction = d3.select(this);
-                pathvisiojs.data.gpml.edge.interaction.toRenderableJson(gpml, gpmlInteraction, pathwayIri, function(jsonInteraction) {
+                pathvisiojs.data.gpml.edge.interaction.toPvjson(gpml, gpmlInteraction, pathwayIri, function(jsonInteraction) {
                   pathway.Interaction.push(jsonInteraction);
                   pathway.edges = pathway.edges.concat(jsonInteraction);
                   pathway.elements = pathway.elements.concat(jsonInteraction);
@@ -1420,7 +1420,7 @@ pathvisiojs.data.gpml = function(){
 
   return {
     get:get,
-    toRenderableJson:toRenderableJson,
+    toPvjson:toPvjson,
     getLineStyle:getLineStyle,
     getBorderStyle:getBorderStyle,
     setBorderStyleAsJson:setBorderStyleAsJson,
@@ -1429,8 +1429,8 @@ pathvisiojs.data.gpml = function(){
   };
 }();
 
-// hack required because we call ...node.anchors.toRenderableJson() before we
-// call the other ...node.toRenderableJson() methods
+// hack required because we call ...node.anchors.toPvjson() before we
+// call the other ...node.toPvjson() methods
 pathvisiojs.data.gpml.node = pathvisiojs.data.gpml.node || {};
 ;
 
@@ -1608,11 +1608,11 @@ pathvisiojs.data.gpml.element.fontName = {};
 pathvisiojs.data.gpml.element.fontName.swing = 'Arial';
 pathvisiojs.data.gpml.element.fontName.gpml = null;
   
-pathvisiojs.data.gpml.element.toRenderableJson = function(gpmlElement, jsonElement, elementCallback) {
+pathvisiojs.data.gpml.element.toPvjson = function(gpmlElement, jsonElement, elementCallback) {
   jsonElement["@type"] = jsonElement["@type"] || [];
   jsonElement["@type"].push("element");
 
-  pathvisiojs.data.gpml.biopaxRef.getAllAsRenderableJson(gpmlElement, function(publicationXrefs) {
+  pathvisiojs.data.gpml.biopaxRef.getAllAsPvjson(gpmlElement, function(publicationXrefs) {
     if (!!publicationXrefs) {
       jsonElement.PublicationXref = publicationXrefs;
     }
@@ -1646,7 +1646,7 @@ pathvisiojs.data.gpml.text = function() {
     }
   }
 
-  function toRenderableJson(gpmlNode, inputDefaultValues, textCallbackOutside) {
+  function toPvjson(gpmlNode, inputDefaultValues, textCallbackOutside) {
     /*
     console.log('gpmlNode');
     console.log(gpmlNode[0][0]);
@@ -1705,7 +1705,7 @@ pathvisiojs.data.gpml.text = function() {
   }
 
   return {
-    toRenderableJson:toRenderableJson
+    toPvjson:toPvjson
   };
 }();
 ;
@@ -1723,7 +1723,7 @@ pathvisiojs.data.gpml.namespaces = [
 pathvisiojs.data.gpml.biopaxRef = function(){
   'use strict';
 
-  function getAllAsRenderableJson(gpmlElement, callback) {
+  function getAllAsPvjson(gpmlElement, callback) {
     var publicationXrefs, jsonPublicationXref, tagName = gpmlElement[0][0].tagName;
     var biopaxRefs = gpmlElement.selectAll(tagName + ' > BiopaxRef');
     if (biopaxRefs[0].length > 0) {
@@ -1740,7 +1740,7 @@ pathvisiojs.data.gpml.biopaxRef = function(){
   }
 
   return {
-    getAllAsRenderableJson:getAllAsRenderableJson
+    getAllAsPvjson:getAllAsPvjson
   };
 }();
 ;
@@ -1891,11 +1891,11 @@ pathvisiojs.data.gpml.element.node.getPorts = function(jsonNode, callback) {
 
 // gpmlNode is NOT referring to data nodes exclusively. It is also referring to any other non-edge elements that can have anchors.
 
-pathvisiojs.data.gpml.element.node.toRenderableJson = function(gpmlNode, jsonNode, callback) {
+pathvisiojs.data.gpml.element.node.toPvjson = function(gpmlNode, jsonNode, callback) {
   jsonNode["@type"] = jsonNode["@type"] || [];
   jsonNode["@type"].push("node");
 
-  pathvisiojs.data.gpml.element.toRenderableJson(gpmlNode, jsonNode, function(jsonNode) {
+  pathvisiojs.data.gpml.element.toPvjson(gpmlNode, jsonNode, function(jsonNode) {
     callback(jsonNode);
   });
 
@@ -2063,7 +2063,7 @@ pathvisiojs.data.gpml.element.node.groupNode = function() {
     });
   }
 
-  function toRenderableJson(pathway, gpmlGroup, pathwayIri, callbackOutside) {
+  function toPvjson(pathway, gpmlGroup, pathwayIri, callbackOutside) {
     var jsonGroup = {},
       groupId,
       shapeType,
@@ -2109,7 +2109,7 @@ pathvisiojs.data.gpml.element.node.groupNode = function() {
     // borderWidth twice -- once here and once in CSS.
 
     jsonGroup.borderWidth = 1;
-    pathvisiojs.data.gpml.text.toRenderableJson(gpmlGroup, pathvisioDefaultStyleValues, function(text) {
+    pathvisiojs.data.gpml.text.toPvjson(gpmlGroup, pathvisioDefaultStyleValues, function(text) {
       /*
       console.log('text');
       console.log(text);
@@ -2124,14 +2124,14 @@ pathvisiojs.data.gpml.element.node.groupNode = function() {
         jsonGroup.text.textAlign = 'center';
         jsonGroup.text.verticalAlign = 'middle';
       }
-      pathvisiojs.data.gpml.element.node.toRenderableJson(gpmlGroup, jsonGroup, function(jsonGroup) {
+      pathvisiojs.data.gpml.element.node.toPvjson(gpmlGroup, jsonGroup, function(jsonGroup) {
         callbackOutside(jsonGroup);
       });
     });
   }
 
   return {
-    toRenderableJson:toRenderableJson,
+    toPvjson:toPvjson,
     getGroupDimensions:getGroupDimensions
   };
 }();
@@ -2149,7 +2149,7 @@ pathvisiojs.data.gpml.element.node.entityNode.setJsonRotationValue = function(js
   return jsonNode;
 }
 
-pathvisiojs.data.gpml.element.node.entityNode.toRenderableJson = function(gpmlEntityNode, jsonEntityNode, pathvisioDefaultStyleValues, pathwayIri, EntityNodeCallback) {
+pathvisiojs.data.gpml.element.node.entityNode.toPvjson = function(gpmlEntityNode, jsonEntityNode, pathvisioDefaultStyleValues, pathwayIri, EntityNodeCallback) {
   'use strict';
   var graphId = gpmlEntityNode.attr('GraphId') || ('id' + uuid.v4());
   jsonEntityNode["@id"] = 'pathwayIri:' + graphId;
@@ -2218,7 +2218,7 @@ pathvisiojs.data.gpml.element.node.entityNode.toRenderableJson = function(gpmlEn
     //console.log('ports');
     //console.log(ports);
     jsonEntityNode.Port = ports;
-    pathvisiojs.data.gpml.element.node.toRenderableJson(gpmlEntityNode, jsonEntityNode, function(jsonEntityNode) {
+    pathvisiojs.data.gpml.element.node.toPvjson(gpmlEntityNode, jsonEntityNode, function(jsonEntityNode) {
       EntityNodeCallback(jsonEntityNode, ports);
     });
   });
@@ -2233,6 +2233,11 @@ var pathvisioDefaultStyleValues = {
     'LineStyle':null,
     'FillColor':null,
     'GeneProduct':{
+      'Color':null,
+      'FontSize':10,
+      'FontWeight':null
+    },
+    'Complex':{
       'Color':null,
       'FontSize':10,
       'FontWeight':null
@@ -2265,7 +2270,7 @@ var pathvisioDefaultStyleValues = {
   }
 }
 
-pathvisiojs.data.gpml.element.node.entityNode.dataNode.toRenderableJson = function(gpmlDataNode, pathwayIri, callbackInside) {
+pathvisiojs.data.gpml.element.node.entityNode.dataNode.toPvjson = function(gpmlDataNode, pathwayIri, callbackInside) {
   'use strict';
   var jsonDataNode = {};
   var dataNodeType = gpmlDataNode.attr('Type');
@@ -2280,7 +2285,7 @@ pathvisiojs.data.gpml.element.node.entityNode.dataNode.toRenderableJson = functi
 
   var thisPathvisioDefaultStyleValues = pathvisiojs.utilities.collect(pathvisioDefaultStyleValues.DataNode, pathvisioDefaultStyleValues.DataNode[dataNodeType]);
 
-  pathvisiojs.data.gpml.element.node.entityNode.toRenderableJson(gpmlDataNode, jsonDataNode, thisPathvisioDefaultStyleValues, pathwayIri, function(jsonDataNode) {
+  pathvisiojs.data.gpml.element.node.entityNode.toPvjson(gpmlDataNode, jsonDataNode, thisPathvisioDefaultStyleValues, pathwayIri, function(jsonDataNode) {
     var database, ID, 
     datasourceReference = gpmlDataNode.select('Xref');
     if (!!datasourceReference) {
@@ -2292,7 +2297,7 @@ pathvisiojs.data.gpml.element.node.entityNode.dataNode.toRenderableJson = functi
         jsonDataNode.DatasourceReference.ID = ID;
       }
     }
-    pathvisiojs.data.gpml.text.toRenderableJson(gpmlDataNode, thisPathvisioDefaultStyleValues, function(text) {
+    pathvisiojs.data.gpml.text.toPvjson(gpmlDataNode, thisPathvisioDefaultStyleValues, function(text) {
       if (!!text) {
         jsonDataNode.text = text;
       }
@@ -2319,7 +2324,7 @@ pathvisiojs.data.gpml.element.node.entityNode.label.FillColor = null;
 pathvisiojs.data.gpml.element.node.entityNode.label.FontSize = 10;
 pathvisiojs.data.gpml.element.node.entityNode.label.FontWeight = null;
 
-pathvisiojs.data.gpml.element.node.entityNode.label.toRenderableJson = function(gpmlLabel, pathwayIri, callback) {
+pathvisiojs.data.gpml.element.node.entityNode.label.toPvjson = function(gpmlLabel, pathwayIri, callback) {
   'use strict';
   /*
   console.log('gpmlLabel');
@@ -2331,8 +2336,8 @@ pathvisiojs.data.gpml.element.node.entityNode.label.toRenderableJson = function(
   //*/
   var jsonLabel = {};
   jsonLabel.nodeType = "Label";
-  pathvisiojs.data.gpml.element.node.entityNode.toRenderableJson(gpmlLabel, jsonLabel, pathvisiojs.data.gpml.element.node.entityNode.label, pathwayIri, function(jsonLabel) {
-    pathvisiojs.data.gpml.text.toRenderableJson(gpmlLabel, pathvisiojs.data.gpml.element.node.entityNode.label, function(text) {
+  pathvisiojs.data.gpml.element.node.entityNode.toPvjson(gpmlLabel, jsonLabel, pathvisiojs.data.gpml.element.node.entityNode.label, pathwayIri, function(jsonLabel) {
+    pathvisiojs.data.gpml.text.toPvjson(gpmlLabel, pathvisiojs.data.gpml.element.node.entityNode.label, function(text) {
       if (!!text) {
         jsonLabel.text = text;
       }
@@ -2400,7 +2405,7 @@ pathvisiojs.data.gpml.element.node.entityNode.shape = function(){
     }
   }
 
-  function toRenderableJson(gpmlShape, pathwayIri, callback) {
+  function toPvjson(gpmlShape, pathwayIri, callback) {
     
     // some shapes have GPML values that do not match what is visually displayed in PathVisio-Java.
     // Below we correct the GPMl so that the display in pathvisiojs will matches the display in PathVisio-Java.
@@ -2436,8 +2441,8 @@ pathvisiojs.data.gpml.element.node.entityNode.shape = function(){
       thisPathvisioDefaultStyleValues = pathvisioDefaultStyleValues.Shape;
     }
 
-    pathvisiojs.data.gpml.element.node.entityNode.toRenderableJson(gpmlShape, jsonShape, thisPathvisioDefaultStyleValues, pathwayIri, function(jsonShape) {
-      pathvisiojs.data.gpml.text.toRenderableJson(gpmlShape, thisPathvisioDefaultStyleValues, function(text) {
+    pathvisiojs.data.gpml.element.node.entityNode.toPvjson(gpmlShape, jsonShape, thisPathvisioDefaultStyleValues, pathwayIri, function(jsonShape) {
+      pathvisiojs.data.gpml.text.toPvjson(gpmlShape, thisPathvisioDefaultStyleValues, function(text) {
         if (!!text) {
           jsonShape.text = text;
         }
@@ -2464,7 +2469,7 @@ pathvisiojs.data.gpml.element.node.entityNode.shape = function(){
   }
 
   return {
-    toRenderableJson:toRenderableJson
+    toPvjson:toPvjson
   };
 }();
 
@@ -2487,7 +2492,7 @@ pathvisiojs.data.gpml.node.anchor = function() {
   //  initialEdgeDirection: direction (in degrees) by which the edge emanates from the anchor (only for anchors attached to nodes, not edges)
   // }
 
-  function toRenderableJson(gpmlParentElement, jsonParentElement, elementType, pathwayIri, callback) {
+  function toPvjson(gpmlParentElement, jsonParentElement, elementType, pathwayIri, callback) {
     var gpmlAnchors, gpmlAnchor, jsonAnchor, elementIri, graphId;
     if (elementType === 'edge') {
       gpmlAnchors = gpmlParentElement.selectAll('Anchor');
@@ -2528,7 +2533,7 @@ pathvisiojs.data.gpml.node.anchor = function() {
       }
     }
     else {
-      throw new Error('anchor.toRenderableJson doesnt know how to handle anything other than edges as parent elements right now. handling other elements needs to be implemented.');
+      throw new Error('anchor.toPvjson doesnt know how to handle anything other than edges as parent elements right now. handling other elements needs to be implemented.');
     }
   }
 
@@ -2582,7 +2587,7 @@ pathvisiojs.data.gpml.node.anchor = function() {
   }
 
   return {
-    toRenderableJson:toRenderableJson,
+    toPvjson:toPvjson,
     getAllFromNode:getAllFromNode
   };
 }();
@@ -2595,7 +2600,7 @@ pathvisiojs.data.gpml.edge = function(){
     'Broken': 'dashed'
   };
 
-  function toRenderableJson(gpmlEdge, pathwayIri, callback) {
+  function toPvjson(gpmlEdge, pathwayIri, callback) {
     var jsonAnchorEdge, anchor, jsonAnchor, points, jsonPoints, interactionType, target, targetId, groupRef;
     var jsonEdge = {};
     var graphId = gpmlEdge.attr('GraphId') || ('id' + uuid.v4());
@@ -2684,15 +2689,15 @@ pathvisiojs.data.gpml.edge = function(){
     }
     //*/
 
-    pathvisiojs.data.gpml.node.anchor.toRenderableJson(gpmlEdge, jsonEdge, 'edge', pathwayIri, function(jsonEdge) {
-      pathvisiojs.data.gpml.element.toRenderableJson(gpmlEdge, jsonEdge, function(jsonEdge) {
+    pathvisiojs.data.gpml.node.anchor.toPvjson(gpmlEdge, jsonEdge, 'edge', pathwayIri, function(jsonEdge) {
+      pathvisiojs.data.gpml.element.toPvjson(gpmlEdge, jsonEdge, function(jsonEdge) {
         callback(jsonEdge);
       });
     });
   }
 
   /*
-     function toRenderableJson(gpmlEdge, jsonEdge, callback) {
+     function toPvjson(gpmlEdge, jsonEdge, callback) {
      try {
      jsonEdge.id = gpmlEdge.attr('GraphId');
      jsonEdge.renderableType = 'edge';
@@ -2758,7 +2763,7 @@ pathvisiojs.data.gpml.edge = function(){
 
      var jsonPoints = [];
      gpmlPoints.each(function() {
-     pathvisiojs.data.gpml.edge.point.toRenderableJson(d3.select(this), function(jsonPoint) {
+     pathvisiojs.data.gpml.edge.point.toPvjson(d3.select(this), function(jsonPoint) {
      jsonPoints.push(jsonPoint);
      });
      });
@@ -2773,7 +2778,7 @@ catch (e) {
 //*/
 
 return {
-toRenderableJson:toRenderableJson
+toPvjson:toPvjson
 };
 }();
 ;
@@ -2837,9 +2842,9 @@ pathvisiojs.data.gpml.edge.interaction = function(){
     return semanticName;
   }
 
-  function toRenderableJson(gpml, gpmlInteraction, pathwayIri, callback) {
+  function toPvjson(gpml, gpmlInteraction, pathwayIri, callback) {
     var jsonAnchorInteraction, anchor, jsonAnchor, points, jsonPoints, interactionType, target, targetId, groupRef, source, sourceId;
-    pathvisiojs.data.gpml.edge.toRenderableJson(gpmlInteraction, pathwayIri, function(jsonInteraction) {
+    pathvisiojs.data.gpml.edge.toPvjson(gpmlInteraction, pathwayIri, function(jsonInteraction) {
       //console.log('jsonInteraction');
       //console.log(jsonInteraction);
 
@@ -2978,7 +2983,7 @@ pathvisiojs.data.gpml.edge.interaction = function(){
   }
 
   /*
-     function toRenderableJson(gpmlEdge, jsonEdge, callback) {
+     function toPvjson(gpmlEdge, jsonEdge, callback) {
      try {
      jsonEdge.id = gpmlEdge.attr('GraphId');
      jsonEdge.renderableType = 'edge';
@@ -3044,7 +3049,7 @@ pathvisiojs.data.gpml.edge.interaction = function(){
 
      var jsonPoints = [];
      gpmlPoints.each(function() {
-     pathvisiojs.data.gpml.edge.point.toRenderableJson(d3.select(this), function(jsonPoint) {
+     pathvisiojs.data.gpml.edge.point.toPvjson(d3.select(this), function(jsonPoint) {
      jsonPoints.push(jsonPoint);
      });
      });
@@ -3059,7 +3064,7 @@ catch (e) {
 //*/
 
 return {
-  toRenderableJson:toRenderableJson,
+  toPvjson:toPvjson,
   getGpmlArrowHeadNameFromSemanticName:getGpmlArrowHeadNameFromSemanticName,
   getSemanticNameFromGpmlArrowHeadName:getSemanticNameFromGpmlArrowHeadName
 };
@@ -3077,9 +3082,9 @@ pathvisiojs.data.gpml.edge.graphicalLine = function(){
   };
   //*/
 
-  function toRenderableJson(gpml, gpmlGraphicalLine, pathwayIri, callback) {
+  function toPvjson(gpml, gpmlGraphicalLine, pathwayIri, callback) {
     var jsonAnchorGraphicalLine, anchor, jsonAnchor, points, jsonPoints, graphicalLineType, target, targetId, groupRef;
-    pathvisiojs.data.gpml.edge.toRenderableJson(gpmlGraphicalLine, pathwayIri, function(jsonGraphicalLine) {
+    pathvisiojs.data.gpml.edge.toPvjson(gpmlGraphicalLine, pathwayIri, function(jsonGraphicalLine) {
       //console.log('jsonGraphicalLine');
       //console.log(jsonGraphicalLine);
 
@@ -3115,7 +3120,7 @@ pathvisiojs.data.gpml.edge.graphicalLine = function(){
   }
 
   /*
-  function toRenderableJson(gpmlEdge, jsonEdge, callback) {
+  function toPvjson(gpmlEdge, jsonEdge, callback) {
     try {
       jsonEdge.id = gpmlEdge.attr('GraphId');
       jsonEdge.renderableType = 'edge';
@@ -3181,7 +3186,7 @@ pathvisiojs.data.gpml.edge.graphicalLine = function(){
 
       var jsonPoints = [];
       gpmlPoints.each(function() {
-        pathvisiojs.data.gpml.edge.point.toRenderableJson(d3.select(this), function(jsonPoint) {
+        pathvisiojs.data.gpml.edge.point.toPvjson(d3.select(this), function(jsonPoint) {
           jsonPoints.push(jsonPoint);
         });
       });
@@ -3196,7 +3201,7 @@ pathvisiojs.data.gpml.edge.graphicalLine = function(){
   //*/
 
   return {
-    toRenderableJson:toRenderableJson
+    toPvjson:toPvjson
   };
 }();
 ;
@@ -3220,7 +3225,7 @@ pathvisiojs.data.gpml.edge.point = function(){
     '1.0': {'side': 'bottom'}
   };
 
-  function toRenderableJson(gpmlPoint, callback) {
+  function toPvjson(gpmlPoint, callback) {
     var jsonPoint = {};
     try {
       jsonPoint.x = parseFloat(gpmlPoint.attr('X'));
@@ -3254,7 +3259,7 @@ pathvisiojs.data.gpml.edge.point = function(){
   }
 
   return {
-    toRenderableJson:toRenderableJson
+    toPvjson:toPvjson
   };
 }();
 ;
@@ -3541,9 +3546,9 @@ pathvisiojs.view.pathwayDiagram = function(){
     var supportedViewMethods = ['img'];
 
     // TODO support svg that is not inline in the svg viewMethod
-    // The IE9 detection is a temporary hack. It is used because IE9 cannot currently convert GPML to pathvisiojsJson,
+    // The IE9 detection is a temporary hack. It is used because IE9 cannot currently convert GPML to pvjson,
     // so it cannot display the resulting SVG.
-    // TODO get gpml to pathvisiojsJson conversion working with IE9
+    // TODO get gpml to pvjson conversion working with IE9
     if (Modernizr.inlinesvg) {
     //if (Modernizr.inlinesvg && (!pathvisiojs.utilities.isIE())) {
     //if (Modernizr.inlinesvg && (pathvisiojs.utilities.isIE() !== 9)) {
@@ -3752,7 +3757,7 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
             });
           },
           pathway: function(callback){
-            pathvisiojs.data.pathvisiojsJson.get(renderableSourceDataElement, function(json) {
+            pathvisiojs.data.pvjson.get(renderableSourceDataElement, function(json) {
               pathvisiojs.context = json['@context'];
 
               if (!json || json === 'fail') {

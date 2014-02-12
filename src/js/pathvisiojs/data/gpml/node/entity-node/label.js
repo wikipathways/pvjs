@@ -6,7 +6,7 @@ pathvisiojs.data.gpml.element.node.entityNode.label.FillColor = null;
 pathvisiojs.data.gpml.element.node.entityNode.label.FontSize = 10;
 pathvisiojs.data.gpml.element.node.entityNode.label.FontWeight = null;
 
-pathvisiojs.data.gpml.element.node.entityNode.label.toRenderableJson = function(gpmlLabel, pathwayIri, callback) {
+pathvisiojs.data.gpml.element.node.entityNode.label.toPvjson = function(gpmlLabel, pathwayIri, callback) {
   'use strict';
   /*
   console.log('gpmlLabel');
@@ -18,8 +18,8 @@ pathvisiojs.data.gpml.element.node.entityNode.label.toRenderableJson = function(
   //*/
   var jsonLabel = {};
   jsonLabel.nodeType = "Label";
-  pathvisiojs.data.gpml.element.node.entityNode.toRenderableJson(gpmlLabel, jsonLabel, pathvisiojs.data.gpml.element.node.entityNode.label, pathwayIri, function(jsonLabel) {
-    pathvisiojs.data.gpml.text.toRenderableJson(gpmlLabel, pathvisiojs.data.gpml.element.node.entityNode.label, function(text) {
+  pathvisiojs.data.gpml.element.node.entityNode.toPvjson(gpmlLabel, jsonLabel, pathvisiojs.data.gpml.element.node.entityNode.label, pathwayIri, function(jsonLabel) {
+    pathvisiojs.data.gpml.text.toPvjson(gpmlLabel, pathvisiojs.data.gpml.element.node.entityNode.label, function(text) {
       if (!!text) {
         jsonLabel.text = text;
       }

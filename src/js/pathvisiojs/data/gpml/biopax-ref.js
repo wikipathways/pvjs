@@ -1,7 +1,7 @@
 pathvisiojs.data.gpml.biopaxRef = function(){
   'use strict';
 
-  function getAllAsRenderableJson(gpmlElement, callback) {
+  function getAllAsPvjson(gpmlElement, callback) {
     var publicationXrefs, jsonPublicationXref, tagName = gpmlElement[0][0].tagName;
     var biopaxRefs = gpmlElement.selectAll(tagName + ' > BiopaxRef');
     if (biopaxRefs[0].length > 0) {
@@ -18,6 +18,6 @@ pathvisiojs.data.gpml.biopaxRef = function(){
   }
 
   return {
-    getAllAsRenderableJson:getAllAsRenderableJson
+    getAllAsPvjson:getAllAsPvjson
   };
 }();
