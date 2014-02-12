@@ -41,11 +41,11 @@ pathvisiojs.view.pathwayDiagram.svg.edge = function(){
     var markerEndName = args.data.markerEnd;
     //console.log('markerEndName');
     //console.log(markerEndName);
-    var edgeId = strcase.paramCase(data['@id']);
+    var edgeId = strcase.paramCase(data['id']);
 
     if (data.hasOwnProperty('isContainedBy')) {
       parentDataElement = pathway.elements.filter(function(element) {
-        return element['@id'] === data.isContainedBy;
+        return element['id'] === data.isContainedBy;
       })[0];
       data.Point.forEach(function(point) {
         point.x = point.x - parentDataElement.x;
