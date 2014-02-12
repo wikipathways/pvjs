@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Pathway xmlns="http://pathvisio.org/GPML/2013a" Name="New Pathway" Version="20140211">
+  <Graphics BoardWidth="1130.0" BoardHeight="1170.0" />
+  <DataNode TextLabel="Rna" GraphId="fbe18" Type="Rna" GroupRef="d9e09">
+    <Graphics CenterX="58.958477508650546" CenterY="137.204152249135" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="" ID="" />
+  </DataNode>
+  <DataNode TextLabel="Unknown" GraphId="efe87" GroupRef="d9e09">
+    <Graphics CenterX="218.95847750865047" CenterY="137.204152249135" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="" ID="" />
+  </DataNode>
+  <Group GroupId="d9e09" Style="Complex" />
+  <InfoBox CenterX="0.0" CenterY="0.0" />
+  <Biopax />
+</Pathway>
+

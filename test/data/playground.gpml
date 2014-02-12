@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Pathway xmlns="http://pathvisio.org/GPML/2013a" Name="New Pathway" Version="20140130">
+  <Graphics BoardWidth="1021.9519519519519" BoardHeight="419.1021021021021" />
+  <DataNode TextLabel="GeneProduct" GraphId="b047f" Type="GeneProduct">
+    <Graphics CenterX="528.528528528529" CenterY="189.18918918918928" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="" ID="" />
+  </DataNode>
+  <DataNode TextLabel="Metabolite" GraphId="ec3e0" Type="Metabolite">
+    <Graphics CenterX="776.7767767767772" CenterY="201.20120120120137" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Xref Database="" ID="" />
+  </DataNode>
+  <DataNode TextLabel="Metabolite" GraphId="ec303" Type="Metabolite">
+    <Graphics CenterX="705.7057057057067" CenterY="334.33433433433476" Width="80.0" Height="20.0" ZOrder="32770" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Xref Database="" ID="" />
+  </DataNode>
+  <DataNode TextLabel="GeneProduct" GraphId="c0926" Type="GeneProduct">
+    <Graphics CenterX="457.45745745745813" CenterY="322.3223223223226" Width="80.0" Height="20.0" ZOrder="32771" FontSize="10" Valign="Middle" />
+    <Xref Database="" ID="" />
+  </DataNode>
+  <Interaction>
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="568.528528528529" Y="189.18918918918928" GraphRef="b047f" RelX="1.0" RelY="0.0" ArrowHead="Arrow" />
+      <Point X="736.7767767767772" Y="201.20120120120137" GraphRef="ec3e0" RelX="-1.0" RelY="0.0" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="fe8e9">
+    <Graphics ZOrder="32769" LineThickness="1.0">
+      <Point X="497.45745745745813" Y="322.3223223223226" GraphRef="c0926" RelX="1.0" RelY="0.0" />
+      <Point X="665.7057057057067" Y="334.33433433433476" GraphRef="ec303" RelX="-1.0" RelY="0.0" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <InfoBox CenterX="0.0" CenterY="0.0" />
+  <Biopax />
+</Pathway>
+
