@@ -872,7 +872,15 @@ pathvisiojs.data.gpml = function(){
           '@context': function(callback){
             pathway['@context'] = {
               '@vocab':'http://vocabularies.wikipathways.org/gpml#',
+              '@base': pathwayIri,
               'gpml':'http://vocabularies.wikipathways.org/gpml#',
+              'id':'@id',
+              /*
+              'id': {
+                '@id': 'http://purl.org/dc/terms/identifier',
+                '@type': '@id'
+              },
+              //*/
               'xsd': 'http://www.w3.org/2001/XMLSchema#',
               'wp':'http://vocabularies.wikipathways.org/wp#',
               'biopax': 'http://www.biopax.org/release/biopax-level3.owl#',
@@ -1238,6 +1246,9 @@ pathvisiojs.data.gpml = function(){
       function(err, results) {
         var groupsFrame, jsonGroups = [];
         if (!!pathway.Group) {
+          console.log('pathway.Group');
+          console.log(pathway.Group);
+          console.log(pathway);
           groupsFrame = {
             '@context': pathway['@context'],
             '@type': 'GroupNode',
@@ -1269,6 +1280,8 @@ pathvisiojs.data.gpml = function(){
                 callbackInside(null, jsonGroups);
               },
               function(jsonGroups, callbackInside){
+                console.log('jsonGroups');
+                console.log(jsonGroups);
                 pathway.Group = jsonGroups;
                 pathway.elements = pathway.elements.concat(pathway.Group);
 
@@ -1661,7 +1674,7 @@ pathvisiojs.data.gpml.text = function() {
         text = gpmlNode.attr('TextLabel');
       if (!!text) {
         jsonText = {};
-        jsonText['@id'] = ('id' + uuid.v4());
+        jsonText['id'] = ('id' + uuid.v4());
         jsonText.line = text.split(/\r\n|\r|\n|&#xA;/g);
 
         var graphics = gpmlNode.select('Graphics');
@@ -2072,7 +2085,7 @@ pathvisiojs.data.gpml.element.node.groupNode = function() {
     var graphId = gpmlGroup.attr('GraphId') || ('id' + uuid.v4());
     jsonGroup.GraphId = graphId;
     groupId = gpmlGroup.attr('GroupId') || ('id' + uuid.v4());
-    jsonGroup["@id"] = 'pathwayIri:' + groupId;
+    jsonGroup["id"] = groupId;
     jsonGroup.GroupId = groupId;
     groupType = gpmlGroup.attr('Style') || 'None';
 
@@ -2152,12 +2165,12 @@ pathvisiojs.data.gpml.element.node.entityNode.setJsonRotationValue = function(js
 pathvisiojs.data.gpml.element.node.entityNode.toPvjson = function(gpmlEntityNode, jsonEntityNode, pathvisioDefaultStyleValues, pathwayIri, EntityNodeCallback) {
   'use strict';
   var graphId = gpmlEntityNode.attr('GraphId') || ('id' + uuid.v4());
-  jsonEntityNode["@id"] = 'pathwayIri:' + graphId;
+  jsonEntityNode["id"] = '' + graphId;
   jsonEntityNode.GraphId = graphId;
 
   var isContainedBy = gpmlEntityNode.attr('GroupRef');
   if (!!isContainedBy) {
-    jsonEntityNode.isContainedBy = 'pathwayIri:' + isContainedBy;
+    jsonEntityNode.isContainedBy = isContainedBy;
   }
 
   var shapeType = gpmlEntityNode.select('Graphics').attr('ShapeType') || 'rectangle';
@@ -2502,15 +2515,15 @@ pathvisiojs.data.gpml.node.anchor = function() {
           jsonAnchor = {};
           gpmlAnchor = d3.select(this);
           graphId = gpmlAnchor.attr('GraphId') || ('id' + uuid.v4());
-          elementIri = 'pathwayIri:' + graphId;
-          jsonAnchor['@id'] = elementIri;
+          elementIri = '' + graphId;
+          jsonAnchor['id'] = elementIri;
           jsonAnchor['@type'] = [
             'node',
             'element',
             'Element',
             'Anchor'
           ];
-          jsonAnchor.dependsOn = jsonParentElement['@id'];
+          jsonAnchor.dependsOn = jsonParentElement['id'];
           jsonAnchor.anchorPosition = gpmlAnchor.attr('Position');
           if (!!jsonParentElement.stroke) {
             jsonAnchor.backgroundColor = jsonParentElement.stroke;
@@ -2604,15 +2617,15 @@ pathvisiojs.data.gpml.edge = function(){
     var jsonAnchorEdge, anchor, jsonAnchor, points, jsonPoints, interactionType, target, targetId, groupRef;
     var jsonEdge = {};
     var graphId = gpmlEdge.attr('GraphId') || ('id' + uuid.v4());
-    var elementIri = 'pathwayIri:' + graphId;
-    jsonEdge['@id'] = elementIri;
+    var elementIri = '' + graphId;
+    jsonEdge['id'] = elementIri;
     jsonEdge.GraphId = graphId;
 
     var containingGroupRef = gpmlEdge.attr('GroupRef');
     var isContainedBy;
     var dependsOn = [];
     if (!!containingGroupRef) {
-      isContainedBy = jsonEdge.isContainedBy = 'pathwayIri:' + containingGroupRef;
+      isContainedBy = jsonEdge.isContainedBy = '' + containingGroupRef;
       dependsOn.push(isContainedBy);
     }
 
@@ -2637,9 +2650,9 @@ pathvisiojs.data.gpml.edge = function(){
       if ((relX !== null && relX !== undefined) && (relY !== null && relY !== undefined)) {
         pointObj['@type'] = 'SnappedPoint';
 
-        dependsOn.push('pathwayIri:' + point.attr('GraphRef'));
+        dependsOn.push('' + point.attr('GraphRef'));
 
-        pointObj.hasReference = 'pathwayIri:' + point.attr('GraphRef');
+        pointObj.hasReference = '' + point.attr('GraphRef');
         pointObj.RelX = relX;
         pointObj.RelY = relY;
         pointObj.x = parseFloat(point.attr('X'));
@@ -2676,13 +2689,13 @@ pathvisiojs.data.gpml.edge = function(){
         jsonAnchorEdge = {};
         anchor = d3.select(this);
         elementIri = pathwayIri + anchor.attr('GraphId');
-        jsonAnchorEdge['@id'] = pathwayIri + anchor.attr('GraphId');
+        jsonAnchorEdge['id'] = pathwayIri + anchor.attr('GraphId');
         jsonAnchorEdge['@type'] = [
           'element',
           'Edge',
           'Anchor'
         ];
-        jsonAnchorEdge.dependsOn = jsonEdge['@id'];
+        jsonAnchorEdge.dependsOn = jsonEdge['id'];
         jsonAnchorEdge.anchorPosition = anchor.attr('Position');
         jsonEdge.Anchor.push(jsonAnchorEdge);
       })
@@ -2890,7 +2903,7 @@ pathvisiojs.data.gpml.edge.interaction = function(){
               }
             }
           }
-          InteractionGraphMember['@id'] = pathwayIri + sourceId;
+          InteractionGraphMember['id'] = sourceId || 'no-source';
 
           targetId = gpmlTarget.getAttribute('GraphRef');
           if (!!targetId) {
@@ -2904,7 +2917,7 @@ pathvisiojs.data.gpml.edge.interaction = function(){
               }
             }
 
-            InteractionGraphMember.interactsWith = pathwayIri + targetId;
+            InteractionGraphMember.interactsWith = targetId;
             InteractionGraphMember.interactionType = interactionType;
           }
           interactionTypeExistenceCheck = jsonInteraction['@type'].indexOf(interactionType);
@@ -3997,7 +4010,7 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
         return child;
       })
       .attr("id", function (d) {
-        return strcase.paramCase(d['@id']);
+        return strcase.paramCase(d['id']);
       })
       .attr('class', 'element');
       i += 1;
@@ -4037,7 +4050,7 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
     var renderingArgs = args;
     data.forEach(function(dataElement) {
       renderingArgs.data = dataElement;
-      renderingArgs.element = d3.select('#' + strcase.paramCase(dataElement['@id']));
+      renderingArgs.element = d3.select('#' + strcase.paramCase(dataElement['id']));
       if (dataElement.renderableType === 'GraphicalLine') {                                                                                        
         pathvisiojs.view.pathwayDiagram.svg.edge.graphicalLine.render(renderingArgs);                                                          
       } 
@@ -4175,7 +4188,7 @@ else if (dataElement.renderableType === 'Interaction') {
           var topLevelData = [];
           framedDataTopLevel['@graph'].forEach(function(element) {
             if (!element.dependsOn) {
-              topLevelData.push(element['@id']);
+              topLevelData.push(element['id']);
             }
           });
           callbackInside(null, topLevelData);
@@ -4184,7 +4197,7 @@ else if (dataElement.renderableType === 'Interaction') {
     },
     function(err, results) {
       var resultsData = results.hierarchicalData['@graph'].filter(function(element) {
-        return (results.topLevelData.indexOf(element['@id']) > -1);
+        return (results.topLevelData.indexOf(element['id']) > -1);
       });
     })
   }
@@ -4566,7 +4579,7 @@ pathvisiojs.view.pathwayDiagram.svg.node = function(){
 
     if (data.hasOwnProperty('isContainedBy')) {
       parentDataElement = pathway.elements.filter(function(element) {
-        return element['@id'] === data.isContainedBy;
+        return element['id'] === data.isContainedBy;
       })[0];
       translatedX = data.x - parentDataElement.x;
       translatedY = data.y - parentDataElement.y;
@@ -4695,7 +4708,7 @@ pathvisiojs.view.pathwayDiagram.svg.node = function(){
     var allDataNodesWithText = pathway.DataNode.filter(function(d, i) {return (!!d.text);});
     var selectedNodes = allDataNodesWithText.filter(function(d, i) {return d.text.line.indexOf(nodeLabel) !== -1;});
     selectedNodes.forEach(function(node) {
-      var nodeContainer = svg.select('#pathway-iri-' + node.GraphId); //strcase.paramCase(node['@id']));
+      var nodeContainer = svg.select('#pathway-iri-' + node.GraphId); //strcase.paramCase(node['id']));
       var height = nodeContainer[0][0].getBBox().height;
       var width = nodeContainer[0][0].getBBox().width; 
       nodeContainer.append('rect') 
@@ -5523,7 +5536,7 @@ pathvisiojs.view.pathwayDiagram.svg.node.text = function(){
     .enter()
     .append('g')
     .attr("id", function (d) {
-      return 'text-container' + strcase.paramCase(d['@id']);
+      return 'text-container' + strcase.paramCase(d['id']);
     })
     .attr('transform', function(d) {
       return 'translate(' + text.cache.translate.dx + ' ' + text.cache.translate.dy + ')';
@@ -5655,7 +5668,7 @@ pathvisiojs.view.pathwayDiagram.svg.node.useElement = function(){
   function render(parent, data) {
     var node = parent.append("use")
     .data([data])
-    .attr("id", function (d) {return 'node-' + strcase.paramCase(d['@id']);})
+    .attr("id", function (d) {return 'node-' + strcase.paramCase(d['id']);})
     .attr("class", function (d) {
       return 'symbol ';
     })
@@ -5834,11 +5847,11 @@ pathvisiojs.view.pathwayDiagram.svg.edge = function(){
     var markerEndName = args.data.markerEnd;
     //console.log('markerEndName');
     //console.log(markerEndName);
-    var edgeId = strcase.paramCase(data['@id']);
+    var edgeId = strcase.paramCase(data['id']);
 
     if (data.hasOwnProperty('isContainedBy')) {
       parentDataElement = pathway.elements.filter(function(element) {
-        return element['@id'] === data.isContainedBy;
+        return element['id'] === data.isContainedBy;
       })[0];
       data.Point.forEach(function(point) {
         point.x = point.x - parentDataElement.x;

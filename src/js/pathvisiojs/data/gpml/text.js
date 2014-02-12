@@ -25,7 +25,7 @@ pathvisiojs.data.gpml.text = function() {
         text = gpmlNode.attr('TextLabel');
       if (!!text) {
         jsonText = {};
-        jsonText['@id'] = ('id' + uuid.v4());
+        jsonText['id'] = ('id' + uuid.v4());
         jsonText.line = text.split(/\r\n|\r|\n|&#xA;/g);
 
         var graphics = gpmlNode.select('Graphics');

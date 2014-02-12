@@ -64,7 +64,7 @@ pathvisiojs.view.pathwayDiagram.svg.node.text = function(){
     .enter()
     .append('g')
     .attr("id", function (d) {
-      return 'text-container' + strcase.paramCase(d['@id']);
+      return 'text-container' + strcase.paramCase(d['id']);
     })
     .attr('transform', function(d) {
       return 'translate(' + text.cache.translate.dx + ' ' + text.cache.translate.dy + ')';
