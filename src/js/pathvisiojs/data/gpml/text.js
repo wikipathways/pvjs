@@ -10,7 +10,7 @@ pathvisiojs.data.gpml.text = function() {
     }
   }
 
-  function toRenderableJson(gpmlNode, inputDefaultValues, textCallbackOutside) {
+  function toPvjson(gpmlNode, inputDefaultValues, textCallbackOutside) {
     /*
     console.log('gpmlNode');
     console.log(gpmlNode[0][0]);
@@ -69,6 +69,6 @@ pathvisiojs.data.gpml.text = function() {
   }
 
   return {
-    toRenderableJson:toRenderableJson
+    toPvjson:toPvjson
   };
 }();

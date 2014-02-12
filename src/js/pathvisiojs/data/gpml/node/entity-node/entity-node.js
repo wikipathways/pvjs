@@ -9,7 +9,7 @@ pathvisiojs.data.gpml.element.node.entityNode.setJsonRotationValue = function(js
   return jsonNode;
 }
 
-pathvisiojs.data.gpml.element.node.entityNode.toRenderableJson = function(gpmlEntityNode, jsonEntityNode, pathvisioDefaultStyleValues, pathwayIri, EntityNodeCallback) {
+pathvisiojs.data.gpml.element.node.entityNode.toPvjson = function(gpmlEntityNode, jsonEntityNode, pathvisioDefaultStyleValues, pathwayIri, EntityNodeCallback) {
   'use strict';
   var graphId = gpmlEntityNode.attr('GraphId') || ('id' + uuid.v4());
   jsonEntityNode["@id"] = 'pathwayIri:' + graphId;
@@ -78,7 +78,7 @@ pathvisiojs.data.gpml.element.node.entityNode.toRenderableJson = function(gpmlEn
     //console.log('ports');
     //console.log(ports);
     jsonEntityNode.Port = ports;
-    pathvisiojs.data.gpml.element.node.toRenderableJson(gpmlEntityNode, jsonEntityNode, function(jsonEntityNode) {
+    pathvisiojs.data.gpml.element.node.toPvjson(gpmlEntityNode, jsonEntityNode, function(jsonEntityNode) {
       EntityNodeCallback(jsonEntityNode, ports);
     });
   });
