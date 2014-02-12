@@ -300,7 +300,7 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
         return child;
       })
       .attr("id", function (d) {
-        return strcase.paramCase(d['@id']);
+        return strcase.paramCase(d['id']);
       })
       .attr('class', 'element');
       i += 1;
@@ -340,7 +340,7 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
     var renderingArgs = args;
     data.forEach(function(dataElement) {
       renderingArgs.data = dataElement;
-      renderingArgs.element = d3.select('#' + strcase.paramCase(dataElement['@id']));
+      renderingArgs.element = d3.select('#' + strcase.paramCase(dataElement['id']));
       if (dataElement.renderableType === 'GraphicalLine') {                                                                                        
         pathvisiojs.view.pathwayDiagram.svg.edge.graphicalLine.render(renderingArgs);                                                          
       } 
@@ -478,7 +478,7 @@ else if (dataElement.renderableType === 'Interaction') {
           var topLevelData = [];
           framedDataTopLevel['@graph'].forEach(function(element) {
             if (!element.dependsOn) {
-              topLevelData.push(element['@id']);
+              topLevelData.push(element['id']);
             }
           });
           callbackInside(null, topLevelData);
@@ -487,7 +487,7 @@ else if (dataElement.renderableType === 'Interaction') {
     },
     function(err, results) {
       var resultsData = results.hierarchicalData['@graph'].filter(function(element) {
-        return (results.topLevelData.indexOf(element['@id']) > -1);
+        return (results.topLevelData.indexOf(element['id']) > -1);
       });
     })
   }

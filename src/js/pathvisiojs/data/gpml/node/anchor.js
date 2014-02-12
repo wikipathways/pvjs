@@ -24,15 +24,15 @@ pathvisiojs.data.gpml.node.anchor = function() {
           jsonAnchor = {};
           gpmlAnchor = d3.select(this);
           graphId = gpmlAnchor.attr('GraphId') || ('id' + uuid.v4());
-          elementIri = 'pathwayIri:' + graphId;
-          jsonAnchor['@id'] = elementIri;
+          elementIri = '' + graphId;
+          jsonAnchor['id'] = elementIri;
           jsonAnchor['@type'] = [
             'node',
             'element',
             'Element',
             'Anchor'
           ];
-          jsonAnchor.dependsOn = jsonParentElement['@id'];
+          jsonAnchor.dependsOn = jsonParentElement['id'];
           jsonAnchor.anchorPosition = gpmlAnchor.attr('Position');
           if (!!jsonParentElement.stroke) {
             jsonAnchor.backgroundColor = jsonParentElement.stroke;

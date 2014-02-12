@@ -12,12 +12,12 @@ pathvisiojs.data.gpml.element.node.entityNode.setJsonRotationValue = function(js
 pathvisiojs.data.gpml.element.node.entityNode.toPvjson = function(gpmlEntityNode, jsonEntityNode, pathvisioDefaultStyleValues, pathwayIri, EntityNodeCallback) {
   'use strict';
   var graphId = gpmlEntityNode.attr('GraphId') || ('id' + uuid.v4());
-  jsonEntityNode["@id"] = 'pathwayIri:' + graphId;
+  jsonEntityNode["id"] = '' + graphId;
   jsonEntityNode.GraphId = graphId;
 
   var isContainedBy = gpmlEntityNode.attr('GroupRef');
   if (!!isContainedBy) {
-    jsonEntityNode.isContainedBy = 'pathwayIri:' + isContainedBy;
+    jsonEntityNode.isContainedBy = isContainedBy;
   }
 
   var shapeType = gpmlEntityNode.select('Graphics').attr('ShapeType') || 'rectangle';

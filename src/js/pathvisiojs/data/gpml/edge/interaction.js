@@ -105,7 +105,7 @@ pathvisiojs.data.gpml.edge.interaction = function(){
               }
             }
           }
-          InteractionGraphMember['@id'] = pathwayIri + sourceId;
+          InteractionGraphMember['id'] = sourceId || 'no-source';
 
           targetId = gpmlTarget.getAttribute('GraphRef');
           if (!!targetId) {
@@ -119,7 +119,7 @@ pathvisiojs.data.gpml.edge.interaction = function(){
               }
             }
 
-            InteractionGraphMember.interactsWith = pathwayIri + targetId;
+            InteractionGraphMember.interactsWith = targetId;
             InteractionGraphMember.interactionType = interactionType;
           }
           interactionTypeExistenceCheck = jsonInteraction['@type'].indexOf(interactionType);
