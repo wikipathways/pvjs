@@ -1,4 +1,4 @@
-//! pathvisiojs 1.0.3
+//! pathvisiojs 1.0.4
 //! Built on 2014-02-11
 //! https://github.com/wikipathways/pathvisiojs
 //! License: http://www.apache.org/licenses/LICENSE-2.0/
