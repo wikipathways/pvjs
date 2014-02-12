@@ -8,6 +8,13 @@ pathvisiojs.data.gpml = function(){
     }
   }
 
+  var defaults = {
+    'FontSize':{
+      'Type':"FontSize",
+      'Value':10
+    }
+  }
+
   function get(sourceData, callback) {
     var uri = sourceData.uri;
     var object = sourceData.object;
@@ -60,6 +67,18 @@ pathvisiojs.data.gpml = function(){
       throw new Error('Cannot get GPML from the specified input.');
     }
   }
+
+  function gpmlColorToCssColorNew(gpmlColor) {
+    var color = new RGBColor(gpmlColor);
+    if (color.ok) {
+      return color.toHex();
+    }
+    else {
+      console.warn('Could not convert GPML Color value of "' + gpmlColor + '" to a valid CSS color. Using "#c0c0c0" as a fallback.');
+      return '#c0c0c0';
+    }
+  }
+
 
   function gpmlColorToCssColor(gpmlColor, pathvisioDefault) {
     var color;
@@ -778,6 +797,7 @@ pathvisiojs.data.gpml = function(){
     getBorderStyle:getBorderStyle,
     setBorderStyleAsJson:setBorderStyleAsJson,
     gpmlColorToCssColor:gpmlColorToCssColor,
+    gpmlColorToCssColorNew:gpmlColorToCssColorNew,
     setColorAsJson:setColorAsJson
   };
 }();
