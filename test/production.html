@@ -97,10 +97,7 @@
             diagramNotAvailableIconUri: 'http://www.wikipathways.org/wpi/extensions/PathwayViewer/img/imageNotAvailable.jpg', // optional
             imgDiagramUriStub: 'http://www.wikipathways.org/wpi.php?action=downloadFile&type=png&pwTitle=Pathway:', // optional
             pathwaySearchUriStub: 'http://wikipathways.org//index.php?title=Special:SearchPathways&doSearch=1&query=', // optional
-            highlightNodes: [
-              {'parameter': 'label', 'parameterValue': 'CRH', 'color': 'red'},
-              {'parameter': 'xref', 'parameterValue': '8525,Entrez%20Gene', 'color': '#FF0000'}
-            ],
+            highlights: parsedInputData.highlights, //optional
             hiddenElements: [
               'find',
               'wikipathways-link'
