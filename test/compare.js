@@ -23,7 +23,7 @@ var developmentLoader = function() {
   // If you want to the GPML file URL or WikiPathways ID you want to display, you can
   // hard code it as the data parameter in the pathvisiojs.load() function below
 
-  function getUriParam(name) {
+  function getUriParamByName(name) {
 
     // Thanks to http://stackoverflow.com/questions/11582512/how-to-get-uri-parameters-with-javascript
     // This will be replaced once we get the backend php to get the GPML
@@ -37,8 +37,10 @@ var developmentLoader = function() {
     }
   }
 
-  function getUriParamList() {
-    uriParamList = {
+  function convertUriParamsToJson() {
+    // this includes both explicit and implicit URI params, e.g.,
+    // if svg-disabled is not specified as a URI param, it will still be included in this object with its default value of false.
+    uriParams = {
       'svg-disabled': false,
       'gpml': null,
       'rev': 0,
@@ -46,26 +48,54 @@ var developmentLoader = function() {
       'account': '',
       'branch': ''
     };
-    Object.keys(uriParamList).forEach(function(element) {
-      if (!!getUriParam(element)) {
-        uriParamList[element] = getUriParam(element);
+    Object.keys(uriParams).forEach(function(element) {
+      if (!!getUriParamByName(element)) {
+        uriParams[element] = getUriParamByName(element);
       }
       window.setTimeout(function() {
-        $('#' + element).val(uriParamList[element]);
+        $('#' + element).val(uriParams[element]);
       }, 50)
     });
-    return uriParamList;
+
+    var locationSearch = location.search;
+    var colors = getUriParamByName('colors');
+    if (!!colors) {
+      colors = colors.split(',');
+    }
+
+    var selectorStrings = locationSearch.match(/(xref=|label=)(.*?)&/gi);
+    var highlights;
+    if (!!selectorStrings) {
+      highlights = selectorStrings.map(function(selectorString, index) {
+        var highlight = {};
+        var selectorType =  selectorString.match(/xref|label/)[0];
+        var selectorValue = selectorString.match(/=(.*?)&/)[0].slice(1, -1);
+        highlight.selector = '.' + strcase.paramCase(selectorType + '-' + selectorValue);
+        highlight.style = {};
+        highlight.style.fill = colors[index];
+        highlight.style.stroke = colors[index];
+        return highlight;
+      });
+
+      if (highlights.length > 0) {
+        uriParams.highlights = highlights;
+      }
+    }
+
+    console.log('uriParams');
+    console.log(uriParams);
+    return uriParams;
   }
 
   function updateParams(updatedParam) {
     var targetUri = currentUri + '?' + updatedParam.key + '=' + updatedParam.value;
 
-    Object.keys(uriParamList).forEach(function(element) {
+    Object.keys(uriParams).forEach(function(element) {
       if (element === updatedParam.key) {
-        uriParamList[element] = updatedParam.value;
+        uriParams[element] = updatedParam.value;
       }
       else {
-        targetUri += '&' + element + '=' + uriParamList[element];
+        targetUri += '&' + element + '=' + uriParams[element];
       }
     });
 
@@ -75,8 +105,7 @@ var developmentLoader = function() {
   function parseUriParams(callback) {
     // uriParams can be a WikiPathways ID (WP1), a uri for a GPML file (http://www.wikipathways.org/gpmlfile.gpml)
     // or a uri for another type of file.
-    var uriParams = getUriParamList();
-    console.log(uriParams);
+    var uriParams = convertUriParamsToJson();
     if (!uriParams) {
       throw new Error('No URI params to parse.');
     }
@@ -84,8 +113,12 @@ var developmentLoader = function() {
     // object we will return
     var parsedInputData = {};
     parsedInputData.sourceData = [];
-    var uri;
 
+    if (!!uriParams.highlights) {
+      parsedInputData.highlights = uriParams.highlights;
+    }
+
+    var uri;
     var svgDisabled = parsedInputData.svgDisabled = uriParams['svg-disabled'] || false;
     var gpmlParam = uriParams.gpml; // this might be equal to the value of uriParams.gpml, but it might not.
 
@@ -130,6 +163,7 @@ var developmentLoader = function() {
 
         parsedInputData.wpId = gpmlParam;
         parsedInputData.revision = wpRevision;
+        console.log('parsedInputData');
         console.log(parsedInputData);
         callback(parsedInputData);
       }
@@ -168,12 +202,9 @@ var developmentLoader = function() {
     return gpmlUri;
   }
 
-
-  function getUriParam(name) {
-
+  function getUriParamByName(name) {
     // Thanks to http://stackoverflow.com/questions/11582512/how-to-get-uri-parameters-with-javascript
     // This will be replaced once we get the backend php to get the json
-
     var parameter = decodeURIComponent((new RegExp('[?|&]' + name + '=' + '([^&;]+?)(&|#|;|$)').exec(location.search)||[,""])[1].replace(/\+/g, '%20'))||null;
     if (!!parameter) {
       return parameter;
@@ -207,12 +238,12 @@ var developmentLoader = function() {
   function updateParams(updatedParam) {
     var targetUri = currentUri + '?' + updatedParam.key + '=' + updatedParam.value;
 
-    Object.keys(uriParamList).forEach(function(element) {
+    Object.keys(uriParams).forEach(function(element) {
       if (element === updatedParam.key) {
-        uriParamList[element] = updatedParam.value;
+        uriParams[element] = updatedParam.value;
       }
       else {
-        targetUri += '&' + element + '=' + uriParamList[element];
+        targetUri += '&' + element + '=' + uriParams[element];
       }
     });
 

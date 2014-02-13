@@ -1,5 +1,5 @@
 //! pathvisiojs 1.0.5
-//! Built on 2014-02-12
+//! Built on 2014-02-13
 //! https://github.com/wikipathways/pathvisiojs
 //! License: http://www.apache.org/licenses/LICENSE-2.0/
 
@@ -3600,7 +3600,7 @@ pathvisiojs.view.pathwayDiagram = function(){
       cssUri = args.cssUri,
       customMarkers = args.customMarkers,
       //customSymbols = args.customSymbols,
-      highlightNodes = args.highlightNodes,
+      highlights = args.highlights,
       hiddenElements = args.hiddenElements,
       userSpecifiedContainer, // the element matching the user-specified selector. the user specified selector is the parameter "container" in the pathvisiojs.load() method.
       pathvisioJsContainer,
@@ -3662,6 +3662,7 @@ pathvisiojs.view.pathwayDiagram = function(){
         loadDiagramArgs.containerWidth = containerWidth;
         loadDiagramArgs.containerHeight = containerHeight;
         loadDiagramArgs.fitToContainer = fitToContainer;
+        loadDiagramArgs.highlights = fitToContainer;
 
         // ********************************************
         // Check for SVG support. If false, use static image (png, jpg, gif, etc.) fallback
@@ -4708,6 +4709,28 @@ pathvisiojs.view.pathwayDiagram.svg.node = function(){
     return port;
   }
 
+  function highlight(selector, style, svgId) {
+    svgId = svgId || 'pathvisiojs-diagram';
+    var svg = d3.select('#' + svgId);
+    var styles = d3.map(style).entries();
+    var selectedNodes = svg.selectAll(selector);
+    selectedNodes.each(function() {
+      var node = d3.select(this);
+      console.log(node);
+      self.myNode = node;
+      var height = node[0][0].getBBox().height;
+      var width = node[0][0].getBBox().width; 
+      var highlighter = node.append('rect') 
+      .attr('x', -2.5)
+      .attr('y', -2.5)
+      .attr('width', width + 5)
+      .attr('height', height + 5);
+
+      styles.forEach(function(styleAttribute){
+        highlighter.attr(strcase.paramCase(styleAttribute.key), styleAttribute.value);
+      });
+    });
+  }  
 
   function highlightByLabel(svg, pathway, nodeLabel) {
     var svg = d3.selectAll('#pathvisiojs-diagram');
@@ -4731,6 +4754,7 @@ pathvisiojs.view.pathwayDiagram.svg.node = function(){
     //renderAll:renderAll,
     render:render,
     getPortCoordinates:getPortCoordinates,
+    highlight:highlight,
     highlightByLabel:highlightByLabel
   };
 }();
@@ -4874,10 +4898,10 @@ pathvisiojs.view.pathwayDiagram.svg.node.EntityNode = function(){
         var cssClass = 'node entity-node ' + strcase.paramCase(d.nodeType) + ' ';
         if (d.nodeType === 'DataNode') {
           cssClass += strcase.paramCase(d.dataNodeType) + ' ';
-	  cssClass += strcase.paramCase('label-'+decodeURIComponent(d.text.line[0])) + ' ';
+          cssClass += strcase.paramCase('label-' + decodeURIComponent(d.text.line[0])) + ' ';
           if (!!d.DatasourceReference) {
             cssClass += 'has-xref ';
-	    cssClass += strcase.paramCase('xref-'+decodeURIComponent(d['DatasourceReference'].ID+','+d['DatasourceReference'].Database)) + ' ';
+            cssClass += strcase.paramCase('xref-' + decodeURIComponent(d['DatasourceReference'].ID + ',' + d['DatasourceReference'].Database)) + ' ';
           }
         }
         if (d.hasOwnProperty('CellularComponent')) {

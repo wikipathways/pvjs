@@ -110,7 +110,7 @@ pathvisiojs.view.pathwayDiagram = function(){
       cssUri = args.cssUri,
       customMarkers = args.customMarkers,
       //customSymbols = args.customSymbols,
-      highlightNodes = args.highlightNodes,
+      highlights = args.highlights,
       hiddenElements = args.hiddenElements,
       userSpecifiedContainer, // the element matching the user-specified selector. the user specified selector is the parameter "container" in the pathvisiojs.load() method.
       pathvisioJsContainer,
@@ -172,6 +172,7 @@ pathvisiojs.view.pathwayDiagram = function(){
         loadDiagramArgs.containerWidth = containerWidth;
         loadDiagramArgs.containerHeight = containerHeight;
         loadDiagramArgs.fitToContainer = fitToContainer;
+        loadDiagramArgs.highlights = fitToContainer;
 
         // ********************************************
         // Check for SVG support. If false, use static image (png, jpg, gif, etc.) fallback
