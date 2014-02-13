@@ -21,11 +21,9 @@ pathvisiojs.data.gpml.element.node.entityNode.toPvjson = function(gpmlEntityNode
   }
 
   var shapeType = gpmlEntityNode.select('Graphics').attr('ShapeType') || 'rectangle';
-  if (shapeType === 'None') {
-    shapeType = 'rectangle';
-  }
   shapeType = strcase.paramCase(shapeType);
   jsonEntityNode.ShapeType = shapeType;
+
   jsonEntityNode.zIndex = parseFloat(gpmlEntityNode.select('Graphics').attr('ZOrder'));
   jsonEntityNode.renderableType = 'EntityNode';
 

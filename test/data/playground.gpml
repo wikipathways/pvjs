@@ -1,12 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Pathway xmlns="http://pathvisio.org/GPML/2013a" Name="New Pathway" Version="20140130">
-  <Graphics BoardWidth="846.7767767767772" BoardHeight="470.8943089430895" />
+  <Graphics BoardWidth="846.7767767767772" BoardHeight="619.1056910569102" />
   <DataNode TextLabel="default geneproduct" GraphId="b562d" Type="GeneProduct">
     <Graphics CenterX="153.11653116531164" CenterY="100.94850948509485" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
     <Xref Database="" ID="" />
   </DataNode>
   <DataNode TextLabel="Default Metabolite" GraphId="ac01e" Type="Metabolite">
-    <Graphics CenterX="155.14905149051492" CenterY="58.94308943089431" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Graphics CenterX="155.14905149051492" CenterY="58.94308943089431" Width="80.0" Height="20.0" ZOrder="32768" FontWeight="Bold" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Xref Database="" ID="" />
+  </DataNode>
+  <DataNode TextLabel="Pathway" GraphId="ff9fc" Type="Pathway">
+    <Graphics CenterX="157.18157181571826" CenterY="568.4281842818425" Width="80.0" Height="20.0" ZOrder="32768" FontWeight="Bold" FontSize="12" Valign="Middle" ShapeType="None" Color="14961e" />
     <Xref Database="" ID="" />
   </DataNode>
   <DataNode TextLabel="top geneproduct" GraphId="a99c1" Type="GeneProduct">
@@ -15,6 +19,10 @@
   </DataNode>
   <DataNode TextLabel="Metabolite" GraphId="ed2e0" Type="Metabolite">
     <Graphics CenterX="378.5636856368564" CenterY="57.425474254742575" Width="80.0" Height="20.0" ZOrder="32775" FontSize="10" Valign="Middle" Color="ffcccc" />
+    <Xref Database="" ID="" />
+  </DataNode>
+  <DataNode TextLabel="Pathway" GraphId="d549a" Type="Pathway">
+    <Graphics CenterX="297.9403794037941" CenterY="572.3306233062328" Width="80.0" Height="20.0" ZOrder="32776" FontWeight="Bold" FontSize="12" Valign="Middle" ShapeType="None" />
     <Xref Database="" ID="" />
   </DataNode>
   <Label TextLabel="default Label" GraphId="b695e">
