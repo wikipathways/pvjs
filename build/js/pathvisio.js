@@ -3662,7 +3662,7 @@ pathvisiojs.view.pathwayDiagram = function(){
         loadDiagramArgs.containerWidth = containerWidth;
         loadDiagramArgs.containerHeight = containerHeight;
         loadDiagramArgs.fitToContainer = fitToContainer;
-        loadDiagramArgs.highlights = fitToContainer;
+        loadDiagramArgs.highlights = highlights;
 
         // ********************************************
         // Check for SVG support. If false, use static image (png, jpg, gif, etc.) fallback
@@ -3752,6 +3752,7 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
       fitToContainer = args.fitToContainer,
       customMarkers = args.customMarkers,
       //customSymbols = args.customSymbols,
+      highlights = args.highlights,
       pathway,
       diagramContainer,
       svg;
@@ -3805,6 +3806,12 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
         })
       },
       function(callback) {
+        if (!!highlights) {
+          highlights.forEach(function(highlight) {
+            pathvisiojs.view.pathwayDiagram.svg.node.highlight(highlight.selector, highlight.style)
+          });
+        }
+
         var viewport = svg.select('#viewport');
 
         /* not all containers will have a width or height style attribute. this is now done using the same logic
@@ -4713,6 +4720,10 @@ pathvisiojs.view.pathwayDiagram.svg.node = function(){
     svgId = svgId || 'pathvisiojs-diagram';
     var svg = d3.select('#' + svgId);
     var styles = d3.map(style).entries();
+    var styleString = '';
+    styles.forEach(function(styleAttribute) {
+      styleString += strcase.paramCase(styleAttribute.key) + ':' + styleAttribute.value + '; ';
+    });
     var selectedNodes = svg.selectAll(selector);
     selectedNodes.each(function() {
       var node = d3.select(this);
@@ -4720,15 +4731,18 @@ pathvisiojs.view.pathwayDiagram.svg.node = function(){
       self.myNode = node;
       var height = node[0][0].getBBox().height;
       var width = node[0][0].getBBox().width; 
+      //TODO get the border width and set the offset based on border width
       var highlighter = node.append('rect') 
       .attr('x', -2.5)
       .attr('y', -2.5)
+      .attr('class', 'highlighted-node')
+      .attr('style', styleString)
       .attr('width', width + 5)
       .attr('height', height + 5);
 
-      styles.forEach(function(styleAttribute){
-        highlighter.attr(strcase.paramCase(styleAttribute.key), styleAttribute.value);
-      });
+      /*
+      pathvisiojs.view.pathwayDiagram.svg.node.highlight(".label-map2-k6", {fill:'green', stroke:'red'})
+      //*/
     });
   }  
 

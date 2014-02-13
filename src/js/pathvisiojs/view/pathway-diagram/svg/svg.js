@@ -34,6 +34,7 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
       fitToContainer = args.fitToContainer,
       customMarkers = args.customMarkers,
       //customSymbols = args.customSymbols,
+      highlights = args.highlights,
       pathway,
       diagramContainer,
       svg;
@@ -87,6 +88,12 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
         })
       },
       function(callback) {
+        if (!!highlights) {
+          highlights.forEach(function(highlight) {
+            pathvisiojs.view.pathwayDiagram.svg.node.highlight(highlight.selector, highlight.style)
+          });
+        }
+
         var viewport = svg.select('#viewport');
 
         /* not all containers will have a width or height style attribute. this is now done using the same logic
