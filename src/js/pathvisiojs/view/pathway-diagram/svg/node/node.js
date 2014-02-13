@@ -185,6 +185,28 @@ pathvisiojs.view.pathwayDiagram.svg.node = function(){
     return port;
   }
 
+  function highlight(selector, style, svgId) {
+    svgId = svgId || 'pathvisiojs-diagram';
+    var svg = d3.select('#' + svgId);
+    var styles = d3.map(style).entries();
+    var selectedNodes = svg.selectAll(selector);
+    selectedNodes.each(function() {
+      var node = d3.select(this);
+      console.log(node);
+      self.myNode = node;
+      var height = node[0][0].getBBox().height;
+      var width = node[0][0].getBBox().width; 
+      var highlighter = node.append('rect') 
+      .attr('x', -2.5)
+      .attr('y', -2.5)
+      .attr('width', width + 5)
+      .attr('height', height + 5);
+
+      styles.forEach(function(styleAttribute){
+        highlighter.attr(strcase.paramCase(styleAttribute.key), styleAttribute.value);
+      });
+    });
+  }  
 
   function highlightByLabel(svg, pathway, nodeLabel) {
     var svg = d3.selectAll('#pathvisiojs-diagram');
@@ -208,6 +230,7 @@ pathvisiojs.view.pathwayDiagram.svg.node = function(){
     //renderAll:renderAll,
     render:render,
     getPortCoordinates:getPortCoordinates,
+    highlight:highlight,
     highlightByLabel:highlightByLabel
   };
 }();
