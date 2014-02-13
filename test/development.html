@@ -244,10 +244,7 @@
               pathwaySearchUriStub: 'http://wikipathways.org//index.php?title=Special:SearchPathways&doSearch=1&query=', // optional
               customMarkers: customMarkers, //optional
               //customSymbols: customSymbols, //optional
-              highlightNodes: [ //optional
-                {'type': 'label', 'value': 'CRH', 'color': 'red'},
-                {'type': 'xref', 'value': '8525,Entrez%20Gene', 'color': '#FF0000'}
-              ],
+              highlights: parsedInputData.highlights, //optional
               hiddenElements: [ //optional
                 'highlight-by-label-input',
                 'fit-to-screen-control'

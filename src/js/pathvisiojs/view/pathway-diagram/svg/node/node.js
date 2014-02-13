@@ -189,6 +189,10 @@ pathvisiojs.view.pathwayDiagram.svg.node = function(){
     svgId = svgId || 'pathvisiojs-diagram';
     var svg = d3.select('#' + svgId);
     var styles = d3.map(style).entries();
+    var styleString = '';
+    styles.forEach(function(styleAttribute) {
+      styleString += strcase.paramCase(styleAttribute.key) + ':' + styleAttribute.value + '; ';
+    });
     var selectedNodes = svg.selectAll(selector);
     selectedNodes.each(function() {
       var node = d3.select(this);
@@ -196,15 +200,18 @@ pathvisiojs.view.pathwayDiagram.svg.node = function(){
       self.myNode = node;
       var height = node[0][0].getBBox().height;
       var width = node[0][0].getBBox().width; 
+      //TODO get the border width and set the offset based on border width
       var highlighter = node.append('rect') 
       .attr('x', -2.5)
       .attr('y', -2.5)
+      .attr('class', 'highlighted-node')
+      .attr('style', styleString)
       .attr('width', width + 5)
       .attr('height', height + 5);
 
-      styles.forEach(function(styleAttribute){
-        highlighter.attr(strcase.paramCase(styleAttribute.key), styleAttribute.value);
-      });
+      /*
+      pathvisiojs.view.pathwayDiagram.svg.node.highlight(".label-map2-k6", {fill:'green', stroke:'red'})
+      //*/
     });
   }  
 

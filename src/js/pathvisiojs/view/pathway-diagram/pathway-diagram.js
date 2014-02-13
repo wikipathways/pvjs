@@ -172,7 +172,7 @@ pathvisiojs.view.pathwayDiagram = function(){
         loadDiagramArgs.containerWidth = containerWidth;
         loadDiagramArgs.containerHeight = containerHeight;
         loadDiagramArgs.fitToContainer = fitToContainer;
-        loadDiagramArgs.highlights = fitToContainer;
+        loadDiagramArgs.highlights = highlights;
 
         // ********************************************
         // Check for SVG support. If false, use static image (png, jpg, gif, etc.) fallback
