@@ -756,6 +756,16 @@ pathvisiojs.data.gpml = function(){
     }
   }
 
+  function setColorAsJsonNew(jsonElement, currentGpmlColorValue) {
+    var jsonColor = gpmlColorToCssColorNew(currentGpmlColorValue);
+    jsonElement.color = jsonColor;
+    jsonElement.borderColor = jsonColor;
+    if (jsonElement.hasOwnProperty('text')) {
+      jsonElement.text.color = jsonColor;
+    }
+    return jsonElement;
+  }
+
   function setColorAsJson(jsonElement, currentGpmlColorValue, defaultGpmlColorValue) {
     var jsonColor;
     if (currentGpmlColorValue !== defaultGpmlColorValue) {
@@ -806,6 +816,27 @@ pathvisiojs.data.gpml = function(){
     }
   }
 
+  function getBorderStyleNew(gpmlLineStyle) {
+
+    // Double-lined EntityNodes will be handled by using a symbol with double lines.
+    // Double-lined edges will be rendered as single-lined, solid edges, because we
+    // shouldn't need double-lined edges other than for cell walls/membranes, which
+    // should be symbols. Any double-lined edges are curation issues.
+
+    var lineStyleToBorderStyleMapping = {
+      'Solid':'solid',
+      'Double':'solid',
+      'Broken':'dashed'
+    };
+    var borderStyle = lineStyleToBorderStyleMapping[gpmlLineStyle];
+    if (!!borderStyle) {
+      return borderStyle;
+    }
+    else {
+      console.warn('LineStyle "' + gpmlLineStyle + '" does not have a corresponding borderStyle. Using "solid"');
+      return 'solid';
+    }
+  }
   function getBorderStyle(gpmlLineStyle, pathvisioDefault) {
 
     // Double-lined EntityNodes will be handled by using a symbol with double lines.
@@ -840,6 +871,12 @@ pathvisiojs.data.gpml = function(){
       
       return 'whatever the default value is';
     }
+  }
+
+  function setBorderStyleAsJsonNew(jsonElement, currentGpmlLineStyleValue) {
+    var borderStyle = getBorderStyleNew(currentGpmlLineStyleValue);
+    jsonElement.borderStyle = borderStyle;
+    return jsonElement;
   }
 
   function setBorderStyleAsJson(jsonElement, currentGpmlLineStyleValue, defaultGpmlLineStyleValue) {
@@ -1449,10 +1486,13 @@ pathvisiojs.data.gpml = function(){
     get:get,
     toPvjson:toPvjson,
     getLineStyle:getLineStyle,
+    getBorderStyleNew:getBorderStyleNew,
+    setBorderStyleAsJsonNew:setBorderStyleAsJsonNew,
     getBorderStyle:getBorderStyle,
     setBorderStyleAsJson:setBorderStyleAsJson,
     gpmlColorToCssColor:gpmlColorToCssColor,
     gpmlColorToCssColorNew:gpmlColorToCssColorNew,
+    setColorAsJsonNew:setColorAsJsonNew,
     setColorAsJson:setColorAsJson
   };
 }();
@@ -1773,262 +1813,233 @@ pathvisiojs.data.gpml.biopaxRef = function(){
 }();
 ;
 
-'use strict';
-
 // includes GPML elements of type EntityNode and Group
+pathvisiojs.data.gpml.element.node = function() { 
+  'use strict';
 
-pathvisiojs.data.gpml.element.node = Object.create(pathvisiojs.data.gpml.element);
+  var defaults = {};
+  defaults.backgroundImage = {};
 
-pathvisiojs.data.gpml.element.node.shapeType = pathvisiojs.data.gpml.element.node.backgroundImage = {};
-pathvisiojs.data.gpml.element.node.shapeType.swing = 'Rectangle';
-pathvisiojs.data.gpml.element.node.shapeType.gpml = 'Rectangle';
+  defaults.shapeType = {};
+  defaults.shapeType.swing = 'Rectangle';
+  defaults.shapeType.gpml = 'Rectangle';
 
-pathvisiojs.data.gpml.element.node.valign = pathvisiojs.data.gpml.element.node.verticalAlign = {};
-pathvisiojs.data.gpml.element.node.valign.swing = 'Middle';
-pathvisiojs.data.gpml.element.node.valign.gpml = 'Middle';
+  defaults.valign = defaults.verticalAlign = {};
+  defaults.valign.swing = 'Middle';
+  defaults.valign.gpml = 'Middle';
 
-pathvisiojs.data.gpml.element.node.align = pathvisiojs.data.gpml.element.node.textAlign = {};
-pathvisiojs.data.gpml.element.node.align.swing = 'Center';
-pathvisiojs.data.gpml.element.node.align.gpml = null;
+  defaults.align = defaults.textAlign = {};
+  defaults.align.swing = 'Center';
+  defaults.align.gpml = null;
 
-pathvisiojs.data.gpml.element.node.padding = {};
-pathvisiojs.data.gpml.element.node.padding.swing = '0.5em';
-pathvisiojs.data.gpml.element.node.padding.gpml = null;
+  defaults.padding = {};
+  defaults.padding.swing = '0.5em';
+  defaults.padding.gpml = null;
 
-pathvisiojs.data.gpml.element.node.lineThickness = pathvisiojs.data.gpml.element.node.borderWidth = {};
-pathvisiojs.data.gpml.element.node.lineThickness.swing = 1;
-pathvisiojs.data.gpml.element.node.lineThickness.gpml = null;
+  defaults.lineThickness = defaults.borderWidth = {};
+  defaults.lineThickness.swing = 1;
+  defaults.lineThickness.gpml = null;
 
-pathvisiojs.data.gpml.element.node.lineStyle = pathvisiojs.data.gpml.element.node.borderStyle;
+  defaults.lineStyle = defaults.borderStyle;
 
-pathvisiojs.data.gpml.element.node.setJsonBackgroundColor = function(jsonNode, currentGpmlFillColorValue, defaultGpmlFillColorValue) {
-  var jsonBackgroundColor;
-  if (currentGpmlFillColorValue !== defaultGpmlFillColorValue) {
-    jsonBackgroundColor = pathvisiojs.data.gpml.gpmlColorToCssColor(currentGpmlFillColorValue, defaultGpmlFillColorValue);
-    jsonNode.backgroundColor = jsonBackgroundColor;
-  }
-  return jsonNode;
-}
-
-pathvisiojs.data.gpml.element.node.getPorts = function(jsonNode, callback) {
-  var getPerpendicularLine = function(sx, sy, rotate) {
-    var rad = rotate * Math.PI/180;
-    var sideAngleRotation = 2 * Math.PI - rad;
-    var dx, dy;
-    var sideAngleBeforeRotate = Math.atan2(sy, sx);
-    var dx = Math.cos(sideAngleBeforeRotate + sideAngleRotation - Math.PI/2);
-    var dy = Math.sin(sideAngleBeforeRotate + sideAngleRotation - Math.PI/2);
-    return {'dx': dx, 'dy': dy};
+  var setJsonBackgroundColor = function(jsonNode, currentGpmlFillColorValue, defaultGpmlFillColorValue) {
+    var jsonBackgroundColor;
+    if (currentGpmlFillColorValue !== defaultGpmlFillColorValue) {
+      jsonBackgroundColor = pathvisiojs.data.gpml.gpmlColorToCssColor(currentGpmlFillColorValue, defaultGpmlFillColorValue);
+      jsonNode.backgroundColor = jsonBackgroundColor;
+    }
+    return jsonNode;
   }
 
-  var ports = [];
-  var relXYCombinations = [
+  var getPorts = function(jsonNode, callback) {
+    var getPerpendicularLine = function(sx, sy, rotate) {
+      var rad = rotate * Math.PI/180;
+      var sideAngleRotation = 2 * Math.PI - rad;
+      var dx, dy;
+      var sideAngleBeforeRotate = Math.atan2(sy, sx);
+      var dx = Math.cos(sideAngleBeforeRotate + sideAngleRotation - Math.PI/2);
+      var dy = Math.sin(sideAngleBeforeRotate + sideAngleRotation - Math.PI/2);
+      return {'dx': dx, 'dy': dy};
+    }
+
+    var ports = [];
+    var relXYCombinations = [
+      {
+      RelX: -0.5,
+      RelY: -1
+    },
     {
-    RelX: -0.5,
-    RelY: -1
-  },
-  {
-    RelX: 0,
-    RelY: -1
-  },
-  {
-    RelX: 0.5,
-    RelY: -1
-  },
-  {
-    RelX: 1,
-    RelY: -0.5
-  },
-  {
-    RelX: 1,
-    RelY: 0
-  },
-  {
-    RelX: 1,
-    RelY: 0.5
-  },
-  {
-    RelX: -0.5,
-    RelY: 1
-  },
-  {
-    RelX: 0,
-    RelY: 1
-  },
-  {
-    RelX: 0.5,
-    RelY: 1
-  },
-  {
-    RelX: -1,
-    RelY: -0.5
-  },
-  {
-    RelX: -1,
-    RelY: 0
-  },
-  {
-    RelX: -1,
-    RelY: 0.5
+      RelX: 0,
+      RelY: -1
+    },
+    {
+      RelX: 0.5,
+      RelY: -1
+    },
+    {
+      RelX: 1,
+      RelY: -0.5
+    },
+    {
+      RelX: 1,
+      RelY: 0
+    },
+    {
+      RelX: 1,
+      RelY: 0.5
+    },
+    {
+      RelX: -0.5,
+      RelY: 1
+    },
+    {
+      RelX: 0,
+      RelY: 1
+    },
+    {
+      RelX: 0.5,
+      RelY: 1
+    },
+    {
+      RelX: -1,
+      RelY: -0.5
+    },
+    {
+      RelX: -1,
+      RelY: 0
+    },
+    {
+      RelX: -1,
+      RelY: 0.5
+    }
+    ];
+
+    var side = {};
+
+    var x, y, perpendicularUnitVector, rotate;
+    relXYCombinations.forEach(function(relXYCombination) {
+      if (Math.abs(relXYCombination.RelX) === 1) {
+        side.sx = relXYCombination.RelX;
+        side.sy = 0;
+      }
+      else {
+        side.sx = 0;
+        side.sy = relXYCombination.RelY;
+      }
+
+      // if rotate has a value, keep the value. Otherwise, it's 0deg.
+
+      rotate = jsonNode.rotate || 0;
+      perpendicularUnitVector = getPerpendicularLine(side.sx, side.sy, rotate);
+
+      /*
+       * then get line represented by side
+       * and then get perpendicular to that line, taking
+       * into account rotation
+       * */
+
+      ports.push({
+        'x': (jsonNode.x + jsonNode.width * (relXYCombination.RelX + 1)/2),
+        'y': (jsonNode.y + jsonNode.height * (relXYCombination.RelY + 1)/2),
+        'positionRelative':{
+          '@context':{
+            'position':{
+              '@value':'relative'
+            }
+          },
+          'x': 100 * (relXYCombination.RelX + 1)/2 + '%',
+          'y': 100 * (relXYCombination.RelY + 1)/2 + '%'
+        },
+        'dx': perpendicularUnitVector.dx,
+        'dy': perpendicularUnitVector.dy,
+        '@type':'Port'
+      }); 
+    }); 
+    callback(ports);
   }
-  ];
 
-  var side = {};
+  // gpmlNode is NOT referring to data nodes exclusively. It is also referring to any other non-edge elements that can have anchors.
 
-  var x, y, perpendicularUnitVector, rotate;
-  relXYCombinations.forEach(function(relXYCombination) {
-    if (Math.abs(relXYCombination.RelX) === 1) {
-      side.sx = relXYCombination.RelX;
-      side.sy = 0;
-    }
-    else {
-      side.sx = 0;
-      side.sy = relXYCombination.RelY;
-    }
+  var toPvjson = function(gpmlNode, jsonNode, callback) {
+    jsonNode["@type"] = jsonNode["@type"] || [];
+    jsonNode["@type"].push("node");
 
-    // if rotate has a value, keep the value. Otherwise, it's 0deg.
-
-    rotate = jsonNode.rotate || 0;
-    perpendicularUnitVector = getPerpendicularLine(side.sx, side.sy, rotate);
+    pathvisiojs.data.gpml.element.toPvjson(gpmlNode, jsonNode, function(jsonNode) {
+      callback(jsonNode);
+    });
 
     /*
-     * then get line represented by side
-     * and then get perpendicular to that line, taking
-     * into account rotation
-     * */
+       var comments = gpmlNode.selectAll('Comment');
+       if (comments[0].length > 0) {
+       jsonNode.comments = [];
+       comments.each(function() {
+       jsonNode.comments.push(d3.select(this).text());
+       });
+       }
 
-    ports.push({
-      'x': (jsonNode.x + jsonNode.width * (relXYCombination.RelX + 1)/2),
-      'y': (jsonNode.y + jsonNode.height * (relXYCombination.RelY + 1)/2),
-      'positionRelative':{
-        '@context':{
-          'position':{
-            '@value':'relative'
-          }
-        },
-        'x': 100 * (relXYCombination.RelX + 1)/2 + '%',
-        'y': 100 * (relXYCombination.RelY + 1)/2 + '%'
-      },
-      'dx': perpendicularUnitVector.dx,
-      'dy': perpendicularUnitVector.dy,
-      '@type':'Port'
-    }); 
-  }); 
-  callback(ports);
-}
+    // Be warned that support for zIndex in SVG is spotty (non-existent? TODO check css cross-browser). You should rely on ordering in the DOM.
 
-// gpmlNode is NOT referring to data nodes exclusively. It is also referring to any other non-edge elements that can have anchors.
+    var shapeType = gpmlNode.select('Graphics').attr('ShapeType'); 
+    if (!shapeType) {
 
-pathvisiojs.data.gpml.element.node.toPvjson = function(gpmlNode, jsonNode, callback) {
-  jsonNode["@type"] = jsonNode["@type"] || [];
-  jsonNode["@type"].push("node");
+  // To display correctly, a data-node must have a shape type.
+  // If no shape type is specified in GPML, this code will
+  // make the default be 'rectangle'
 
-  pathvisiojs.data.gpml.element.toPvjson(gpmlNode, jsonNode, function(jsonNode) {
-    callback(jsonNode);
-  });
-
-  /*
-     var comments = gpmlNode.selectAll('Comment');
-     if (comments[0].length > 0) {
-     jsonNode.comments = [];
-     comments.each(function() {
-     jsonNode.comments.push(d3.select(this).text());
-     });
-     }
-
-  // Be warned that support for zIndex in SVG is spotty (non-existent? TODO check css cross-browser). You should rely on ordering in the DOM.
-
-  var zIndex = gpmlNode.select('Graphics').attr('ZOrder');
-  if (!!zIndex) {
-  jsonNode.zIndex = parseFloat(zIndex);
-  }
-
-  var centerX = parseFloat(gpmlNode.select('Graphics').attr('CenterX'));
-  jsonNode.width = parseFloat(gpmlNode.select('Graphics').attr('Width'));
-  jsonNode.x = centerX - jsonNode.width/2;
-
-  var centerY = parseFloat(gpmlNode.select('Graphics').attr('CenterY'));
-  jsonNode.height = parseFloat(gpmlNode.select('Graphics').attr('Height'));
-  jsonNode.y = centerY - jsonNode.height/2;
-
-  jsonNode.id = gpmlNode.attr('GraphId');
-
-  var shapeType = gpmlNode.select('Graphics').attr('ShapeType'); 
-  if (!shapeType) {
-
-// To display correctly, a data-node must have a shape type.
-// If no shape type is specified in GPML, this code will
-// make the default be 'rectangle'
-
-if (jsonNode.nodeType === 'data-node') {
-jsonNode.shapeType = "rectangle";
-}
-else {
-jsonNode.shapeType = "none";
-}
-}
-else {
-jsonNode.shapeType = strcase.paramCase(shapeType);
-}
-
-var strokeWidth = gpmlNode.select('Graphics').attr('LineThickness'); 
-if (!!strokeWidth) {
-jsonNode.strokeWidth = strokeWidth;
-}
-
-var attributes = gpmlNode.selectAll('Attribute');
-console.log('attributes');
-console.log(attributes);
-///*
-var doubleProperty, cellularComponent;
-if (attributes.length > 0) {
-doubleProperty = attributes.filter(function(d, i) {
-console.log('this');
-console.log(this);
-return d3.select(this).attr('Key') === 'org.pathvisio.DoubleLineProperty' && d3.select(this).attr('Value') === 'Double';
-});
-if (doubleProperty[0].length > 0) {
-jsonNode.shapeType = shapeType + '-double';
-}
-cellularComponent = attributes.filter(function(d, i) {
-return d3.select(this).attr('Key') === 'org.pathvisiojs.CellularComponentProperty' && d3.select(this).attr('Value') != 'None';
-});
-if (cellularComponent[0].length > 0) {
-jsonNode.cellularComponent = cellularComponent.attr('Value');
-}
-}
-
-
-
-// BiopaxRefs 
-
-try {
-  if (element.hasOwnProperty('biopaxRef')) {
-    element.biopaxRefs = pathvisiojs.utilities.convertToArray( element.biopaxRef );
-    delete element.biopaxRef;
-
-    //biopaxRefs.forEach(function(element, index, array) {
-    // do something
-    //});
+  if (jsonNode.nodeType === 'data-node') {
+  jsonNode.shapeType = "rectangle";
   }
   else {
-    console.log("No element(s) named 'biopaxRef' found for this node in this gpml file.");
+  jsonNode.shapeType = "none";
   }
-}
-catch (e) {
-  console.log("Error converting node's biopaxRef to json: " + e.message);
-}
+  }
+  else {
+  jsonNode.shapeType = strcase.paramCase(shapeType);
+  }
 
-delete element.graphics;
-//*/
-}
+  var strokeWidth = gpmlNode.select('Graphics').attr('LineThickness'); 
+  if (!!strokeWidth) {
+  jsonNode.strokeWidth = strokeWidth;
+  }
 
-pathvisiojs.data.gpml.element.node.getPortCoordinates = function(boxDimensions, relX, relY) {
-  var port = {};
-  port.x = boxDimensions.x + (relX * boxDimensions.width);
-  port.y = boxDimensions.y + (relY * boxDimensions.height);
-  return port;
-}
+  var attributes = gpmlNode.selectAll('Attribute');
+  console.log('attributes');
+  console.log(attributes);
+  ///*
+  var doubleProperty, cellularComponent;
+  if (attributes.length > 0) {
+  doubleProperty = attributes.filter(function(d, i) {
+  console.log('this');
+  console.log(this);
+  return d3.select(this).attr('Key') === 'org.pathvisio.DoubleLineProperty' && d3.select(this).attr('Value') === 'Double';
+  });
+  if (doubleProperty[0].length > 0) {
+  jsonNode.shapeType = shapeType + '-double';
+  }
+  cellularComponent = attributes.filter(function(d, i) {
+  return d3.select(this).attr('Key') === 'org.pathvisiojs.CellularComponentProperty' && d3.select(this).attr('Value') != 'None';
+  });
+  if (cellularComponent[0].length > 0) {
+  jsonNode.cellularComponent = cellularComponent.attr('Value');
+  }
+  }
+  //*/
+  }
+
+  var getPortCoordinates = function(boxDimensions, relX, relY) {
+    var port = {};
+    port.x = boxDimensions.x + (relX * boxDimensions.width);
+    port.y = boxDimensions.y + (relY * boxDimensions.height);
+    return port;
+  }
+
+  return {
+    setJsonBackgroundColor:setJsonBackgroundColor,
+    getPorts:getPorts,
+    getPortCoordinates:getPortCoordinates,
+    toPvjson:toPvjson
+  };
+}();
 ;
 
 pathvisiojs.data.gpml.element.node.groupNode = function() {
@@ -2189,11 +2200,9 @@ pathvisiojs.data.gpml.element.node.entityNode.toPvjson = function(gpmlEntityNode
   }
 
   var shapeType = gpmlEntityNode.select('Graphics').attr('ShapeType') || 'rectangle';
-  if (shapeType === 'None') {
-    shapeType = 'rectangle';
-  }
   shapeType = strcase.paramCase(shapeType);
   jsonEntityNode.ShapeType = shapeType;
+
   jsonEntityNode.zIndex = parseFloat(gpmlEntityNode.select('Graphics').attr('ZOrder'));
   jsonEntityNode.renderableType = 'EntityNode';
 
@@ -2255,48 +2264,6 @@ pathvisiojs.data.gpml.element.node.entityNode.toPvjson = function(gpmlEntityNode
 
 pathvisiojs.data.gpml.element.node.entityNode.dataNode = function() {
 
-  var pathvisioDefaultStyleValues = {
-    'DataNode':{
-      'LineStyle':null,
-      'FillColor':null,
-      'Complex':{
-        'Color':null,
-        'FontSize':10,
-        'FontWeight':null
-      },
-      'GeneProduct':{
-        'Color':null,
-        'FontSize':10,
-        'FontWeight':null
-      },
-      'Metabolite':{
-        'Color':'0000ff',
-        'FontSize':10,
-        'FontWeight':null
-      },
-      'Pathway':{
-        'Color':'14961e',
-        'FontSize':12,
-        'FontWeight':'Bold'
-      },
-      'Protein':{
-        'Color':null,
-        'FontSize':10,
-        'FontWeight':null
-      },
-      'Rna':{
-        'Color':null,
-        'FontSize':10,
-        'FontWeight':null
-      },
-      'Unknown':{
-        'Color':null,
-        'FontSize':10,
-        'FontWeight':null
-      }
-    }
-  }
-
   var defaults = {
     'Color':'000000',
     'FillColor':'ffffff',
@@ -2305,6 +2272,7 @@ pathvisiojs.data.gpml.element.node.entityNode.dataNode = function() {
     'LineStyle':'Solid',
   };
 
+  /*
   var defaultsByType = {};
 
   defaultsByType.Complex = Object.create(defaults);
@@ -2321,6 +2289,7 @@ pathvisiojs.data.gpml.element.node.entityNode.dataNode = function() {
   defaultsByType.Protein = Object.create(defaults);
   defaultsByType.Rna = Object.create(defaults);
   defaultsByType.Unknown = Object.create(defaults);
+  //*/
 
   var toPvjson = function(gpmlDataNode, pathwayIri, callbackInside) {
     'use strict';
@@ -2335,9 +2304,9 @@ pathvisiojs.data.gpml.element.node.entityNode.dataNode = function() {
     jsonDataNode["@type"].push("DataNode");
     jsonDataNode["@type"].push(dataNodeType);
 
-    var thisPathvisioDefaultStyleValues = pathvisiojs.utilities.collect(pathvisioDefaultStyleValues.DataNode, pathvisioDefaultStyleValues.DataNode[dataNodeType]);
+    //var defaultsForThisDataNode = defaultsByType[dataNodeType];
 
-    pathvisiojs.data.gpml.element.node.entityNode.toPvjson(gpmlDataNode, jsonDataNode, thisPathvisioDefaultStyleValues, pathwayIri, function(jsonDataNode) {
+    pathvisiojs.data.gpml.element.node.entityNode.toPvjson(gpmlDataNode, jsonDataNode, defaults, pathwayIri, function(jsonDataNode) {
       var database, ID, 
       datasourceReference = gpmlDataNode.select('Xref');
       if (!!datasourceReference) {
@@ -2349,20 +2318,19 @@ pathvisiojs.data.gpml.element.node.entityNode.dataNode = function() {
           jsonDataNode.DatasourceReference.ID = ID;
         }
       }
-      pathvisiojs.data.gpml.text.toPvjson(gpmlDataNode, thisPathvisioDefaultStyleValues, function(text) {
+      pathvisiojs.data.gpml.text.toPvjson(gpmlDataNode, defaults, function(text) {
         if (!!text) {
           jsonDataNode.text = text;
         }
-        jsonDataNode = pathvisiojs.data.gpml.setBorderStyleAsJson(jsonDataNode,
-                                                                  gpmlDataNode.select('Graphics').attr('LineStyle'),
-                                                                  thisPathvisioDefaultStyleValues.LineStyle);
-        
-        jsonDataNode = pathvisiojs.data.gpml.setColorAsJson(jsonDataNode,
-                                                            gpmlDataNode.select('Graphics').attr('Color'),
-                                                            thisPathvisioDefaultStyleValues.Color);
 
-        var jsonBackgroundColor = gpmlDataNode.select('Graphics').attr('FillColor') || defaultsByType[dataNodeType].FillColor;
-        jsonDataNode.backgroundColor = jsonBackgroundColor;
+        var gpmlLineStyle = gpmlDataNode.select('Graphics').attr('LineStyle') || defaults.LineStyle;
+        jsonDataNode = pathvisiojs.data.gpml.setBorderStyleAsJsonNew(jsonDataNode, gpmlLineStyle);
+        
+        var gpmlColor = gpmlDataNode.select('Graphics').attr('Color') || defaults.Color;
+        jsonDataNode = pathvisiojs.data.gpml.setColorAsJsonNew(jsonDataNode, gpmlColor);
+
+        var gpmlFillColor = gpmlDataNode.select('Graphics').attr('FillColor') || defaults.FillColor;
+        jsonDataNode = pathvisiojs.data.gpml.element.node.setJsonBackgroundColor(jsonDataNode, gpmlFillColor);
         callbackInside(jsonDataNode);
       });
     });
