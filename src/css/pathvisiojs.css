@@ -37,7 +37,7 @@ body {
   margin-right: 20px;
 }
 
-.typeahead,
+#typeahead,
 .tt-query,
 .tt-hint {
   width: 180px;
@@ -53,11 +53,14 @@ body {
   outline: none;
 }
 
-.typeahead {
+#typeahead {
   background-color: #fff;
+  position: absolute;
+  top: 5px;
+  right: 5px;
 }
 
-.typeahead:focus {
+#typeahead:focus {
   border: 2px solid #0097cf;
 }
 
@@ -115,8 +118,25 @@ body {
   vertical-align: middle
 }
 
+.pathvisiojs-container {
+  width: inherit;
+  min-width: inherit;
+  max-width: inherit;
+  height: inherit;
+  min-height: inherit;
+  max-height: inherit;
+  position: absolute;
+}
+
 #diagram-container > * {
   display: block;
   margin-left: auto;
   margin-right: auto
+}
+
+#viewer-toolbar {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  height: inherit;
 }
