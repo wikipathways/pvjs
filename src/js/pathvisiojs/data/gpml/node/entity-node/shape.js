@@ -3,7 +3,7 @@ pathvisiojs.data.gpml.element.node.entityNode.shape = function(){
 
   var defaults = {
     'Color':'000000',
-    'FillColor':'ffffff',
+    'FillColor':'Transparent',
     'FontSize':10,
     'FontWeight':'Normal',
     'LineStyle':'Solid',

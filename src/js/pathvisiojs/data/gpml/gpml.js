@@ -69,13 +69,19 @@ pathvisiojs.data.gpml = function(){
   }
 
   function gpmlColorToCssColorNew(gpmlColor) {
-    var color = new RGBColor(gpmlColor);
-    if (color.ok) {
-      return color.toHex();
+    var color;
+    if (gpmlColor.toLowerCase() === 'transparent') {
+      return 'transparent';
     }
     else {
-      console.warn('Could not convert GPML Color value of "' + gpmlColor + '" to a valid CSS color. Using "#c0c0c0" as a fallback.');
-      return '#c0c0c0';
+      color = new RGBColor(gpmlColor);
+      if (color.ok) {
+        return color.toHex();
+      }
+      else {
+        console.warn('Could not convert GPML Color value of "' + gpmlColor + '" to a valid CSS color. Using "#c0c0c0" as a fallback.');
+        return '#c0c0c0';
+      }
     }
   }
 
