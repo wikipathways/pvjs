@@ -186,8 +186,33 @@ pathvisiojs.view.pathwayDiagram.svg.node = function(){
   }
 
   function highlight(args) {
-    var selector = args.selector,
-    cssClass = args.cssClass || 'highlighted-node',
+    var getSelector = {
+      selector: function(input) {
+        return input;
+      },
+      label: function(input) {
+        var selector = '.' + pathvisiojs.view.pathwayDiagram.svg.convertToCssClassName('label-' + decodeURIComponent(input));
+        return selector;
+      },
+      xref: function(input) {
+        var selector = '.' + pathvisiojs.view.pathwayDiagram.svg.convertToCssClassName('xref-' + decodeURIComponent(input));
+        return selector;
+      }
+    };
+
+    var argsEntries = d3.map(args).entries();
+    var methodsInGetSelector = d3.map(getSelector).entries();
+    var i = 0;
+    var selector, method;
+    do {
+      method = methodsInGetSelector.filter(function(methodsInGetSelector){return methodsInGetSelector.key === argsEntries[i].key;});
+      if (method.length > 0) {
+        selector = method[0].value(argsEntries[i].value);
+      }
+      i += 1;
+    } while ((!selector) && i < argsEntries.length);
+
+    var cssClass = args.cssClass || 'highlighted-node',
     style = args.style,
     svgId = args.svgId || 'pathvisiojs-diagram';
 
@@ -220,7 +245,7 @@ pathvisiojs.view.pathwayDiagram.svg.node = function(){
     svg.selectAll('.highlighted-from-typeahead').remove();
     var args = {};
     args.svgId = svgId;
-    args.selector = '.' + strcase.paramCase('.label-' + nodeLabel);
+    args.label = nodeLabel;
     args.cssClass = 'highlighted-node highlighted-from-typeahead';
     highlight(args);
     d3.select('#clear-highlights-from-typeahead')[0][0].style.visibility = 'visible';

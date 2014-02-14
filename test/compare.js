@@ -63,14 +63,14 @@ var developmentLoader = function() {
       colors = colors.split(',');
     }
 
-    var selectorStrings = locationSearch.match(/(xref=|label=)(.*?)&/gi);
+    var findElementsByStrings = locationSearch.match(/(xref=|label=|selector=)(.*?)&/gi);
     var highlights;
-    if (!!selectorStrings) {
-      highlights = selectorStrings.map(function(selectorString, index) {
+    if (!!findElementsByStrings) {
+      highlights = findElementsByStrings.map(function(findElementsByString, index) {
         var highlight = {};
-        var selectorType =  selectorString.match(/xref|label/)[0];
-        var selectorValue = selectorString.match(/=(.*?)&/)[0].slice(1, -1);
-        highlight.selector = '.' + strcase.paramCase(selectorType + '-' + selectorValue);
+        var findElementsBy = findElementsByString.match(/xref|label|selector/)[0];
+        var findElementsByValue = findElementsByString.match(/=(.*?)&/)[0].slice(1, -1);
+        highlight[findElementsBy] = findElementsByValue;
         highlight.style = {};
         highlight.style.fill = colors[index];
         highlight.style.stroke = colors[index];
@@ -306,7 +306,7 @@ var developmentLoader = function() {
 
   function generateHtmlTemplate(callback) {
     d3.html(srcDirectoryUri + 'pathvisiojs.html', function(html) {
-      pathvisioNS['tmp/pathvisiojs.html'] = serializeXmlToString(html);
+      pathvisioNS['src/pathvisiojs.html'] = serializeXmlToString(html);
       callback();
     });
   }
