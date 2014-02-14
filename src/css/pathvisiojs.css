@@ -2,6 +2,7 @@ body {
   background-color: white;
   font-family: Helvetica, sans-serif, Arial
 }
+
 .navigator .highlight{
     opacity:    0.4;
     filter:     alpha(opacity=40);
@@ -9,11 +10,13 @@ body {
     outline:    none;
     background-color: #900;
 }
+
 .highlight{
     opacity:    0.1;
     filter:     alpha(opacity=40);
     background-color: white;
 }
+
 .highlight:hover, .highlight:focus{
     filter:     alpha(opacity=70);
     opacity:    0.7;

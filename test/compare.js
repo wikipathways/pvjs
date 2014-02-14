@@ -113,6 +113,8 @@ var developmentLoader = function() {
     // object we will return
     var parsedInputData = {};
     parsedInputData.sourceData = [];
+        console.log('uriParams.highlights');
+        console.log(JSON.stringify(uriParams.highlights));
 
     if (!!uriParams.highlights) {
       parsedInputData.highlights = uriParams.highlights;

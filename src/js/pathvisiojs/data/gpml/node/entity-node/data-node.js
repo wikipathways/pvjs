@@ -8,25 +8,6 @@ pathvisiojs.data.gpml.element.node.entityNode.dataNode = function() {
     'LineStyle':'Solid',
   };
 
-  /*
-  var defaultsByType = {};
-
-  defaultsByType.Complex = Object.create(defaults);
-  defaultsByType.GeneProduct = Object.create(defaults);
-
-  defaultsByType.Metabolite = Object.create(defaults);
-  defaultsByType.Metabolite.Color = '0000ff';
-
-  defaultsByType.Pathway = Object.create(defaults);
-  defaultsByType.Pathway.Color = '14961e';
-  defaultsByType.Pathway.FontSize = '12';
-  defaultsByType.Pathway.FontWeight = 'Bold';
-
-  defaultsByType.Protein = Object.create(defaults);
-  defaultsByType.Rna = Object.create(defaults);
-  defaultsByType.Unknown = Object.create(defaults);
-  //*/
-
   var toPvjson = function(gpmlDataNode, pathwayIri, callbackInside) {
     'use strict';
     var jsonDataNode = {};
@@ -39,8 +20,6 @@ pathvisiojs.data.gpml.element.node.entityNode.dataNode = function() {
     jsonDataNode["@type"] = jsonDataNode["@type"] || [];
     jsonDataNode["@type"].push("DataNode");
     jsonDataNode["@type"].push(dataNodeType);
-
-    //var defaultsForThisDataNode = defaultsByType[dataNodeType];
 
     pathvisiojs.data.gpml.element.node.entityNode.toPvjson(gpmlDataNode, jsonDataNode, defaults, pathwayIri, function(jsonDataNode) {
       var database, ID, 
