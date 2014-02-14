@@ -107,13 +107,32 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
           fitAndCenterDiagramWithinViewport(viewport, containerWidth, containerHeight, pathway.image.width, pathway.image.height);
         }
 
-        var fitToScreen = d3.select('body').select('#fit-to-screen-control');
-        fitToScreen.on("click", function(d,i){
+        /*
+        //TODO get large screen view working
+        var zoomInControl = d3.select('#zoom-in')
+        .on("click", function(d,i){
+          svgPanZoom.zoomIn();
+        });
+        //*/
+
+        var resetPanZoomControl = d3.select('#reset-pan-zoom')
+        .on("click", function(d,i){
+          //svgPanZoom.resetZoom();
           fitAndCenterDiagramWithinViewport(viewport, containerWidth, containerHeight, pathway.image.width, pathway.image.height);
         });
 
-        var fullscreen = d3.select('body').select('#fullscreen-control');
-        fullscreen.on("click", function(d,i){
+        /*
+        //TODO get large screen view working
+        var zoomOutControl = d3.select('#zoom-out')
+        .on("click", function(d,i){
+          svgPanZoom.zoomOut();
+        });
+        //*/
+
+        /*
+        //TODO get large screen view working
+        var fullscreen = d3.select('#full-screen-control')
+        .on("click", function(d,i){
           var pvjs = document.getElementById("pathvisiojs-dev").innerHTML;
           var newwin = window.open('','','width=800,height=600');
           var doc = newwin.document;
@@ -121,6 +140,7 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
           doc.write(pvjs);
           doc.close();	
         });
+        //*/
 
         svgPanZoom.init({
           //'root': 'svg', //Alex, what is this line for? It doesn't appear to be doing anything and might be intended to be doing what the line below that I added is doing.
@@ -267,6 +287,24 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
     });
   }
 
+  var convertToId = function(inputString) {
+    var id = (inputString).replace(/[^(\w|\-)]/g, '').toLowerCase();
+    // to make valid id per HTML4 spec, I'm ensuring the first character is a letter
+    if (!/^[a-zA-Z]/.test(id)) {
+      id = 'id-' + id;
+    }
+    return id;
+  }
+
+  var convertToCssClassName = function(inputString) {
+    var cssClassName = (inputString).replace(/[^(\w|\-)]/g, '').toLowerCase();
+    // to make valid cssClassName per HTML4 spec, I'm ensuring the first character is a letter
+    if (!/^[a-zA-Z]/.test(cssClassName)) {
+      cssClassName = 'class-' + cssClassName;
+    }
+    return cssClassName;
+  }
+
   // this function does not render all elements. Rather, it renders
   // one or more selected elements that are given as inputs.
   // If one or more of these elements are a groupNode that contains
@@ -296,7 +334,7 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
     var i = 0;
     async.each(data, function(item, callbackInside) {
       if (item.key !== 'undefined') {
-        container = viewport.select('#' + strcase.paramCase(item.key));
+        container = viewport.select('#' + convertToId(item.key));
       }
       else {
         container = viewport;
@@ -311,7 +349,7 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
         return child;
       })
       .attr("id", function (d) {
-        return strcase.paramCase(d['id']);
+        return convertToId(d['id']);
       })
       .attr('class', 'element');
       i += 1;
@@ -351,7 +389,7 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
     var renderingArgs = args;
     data.forEach(function(dataElement) {
       renderingArgs.data = dataElement;
-      renderingArgs.element = d3.select('#' + strcase.paramCase(dataElement['id']));
+      renderingArgs.element = d3.select('#' + convertToId(dataElement['id']));
       if (dataElement.renderableType === 'GraphicalLine') {                                                                                        
         pathvisiojs.view.pathwayDiagram.svg.edge.graphicalLine.render(renderingArgs);                                                          
       } 
@@ -408,104 +446,9 @@ else if (dataElement.renderableType === 'Interaction') {
     ]);
   }
 
-
-      //pathvisiojs.view.pathwayDiagram.svg.grid.render(svg);
-
-      /*
-      async.series([
-        function(callbackInside2) {
-          args.container = args.svg.select('#viewport');
-          args.data = results.groupData;
-          appendElementsInDomOrder(args, function() {
-            console.log(1);
-          });
-          callbackInside2(null, svg);
-        },
-        function(callbackInside2) {
-          args.container = args.svg.select('#viewport');
-          args.data = results.notGroupedData;
-          self.args = args;
-          appendElementsInDomOrder(args, function() {
-            console.log(2);
-            callbackInside2(null, svg);
-          });
-        }
-      ],
-      function(err, results) {
-        callback(svg);
-      })
-    })
-  }
-  //*/
-  /*
-  function render(args, callback){
-    if (!args.svg) {
-      throw new Error("No svg specified.");
-    }
-    if (!args.pathway) {
-      throw new Error("No data entered to render.");
-    }
-
-    async.parallel({
-      'hierarchicalData': function(callbackInside) {
-        var frame = {
-          '@context': pathway['@context'],
-          '@type': 'element'
-        };  
-        jsonld.frame(args.pathway, frame, function(err, hierarchicalData) {
-          callbackInside(null, hierarchicalData);
-        });
-      },
-      'groupData': function(callbackInside) {
-        var frame = {
-          '@context': pathway['@context'],
-          '@type': 'GroupNode'
-        };  
-        jsonld.frame(args.pathway, frame, function(err, groupData) {
-          callbackInside(null, groupData);
-        });
-      },
-      'grid': function(callbackInside) {
-        pathvisioNS.grid = {};
-        var frame = {
-          '@context': pathway['@context'],
-          '@type': 'EntityNode'
-        };  
-        jsonld.frame(args.pathway, frame, function(err, framedData) {
-          pathvisiojs.view.pathwayDiagram.pathFinder.generateGridData(framedData['@graph'], args.pathway.image.width, args.pathway.image.height, function() {
-            callbackInside(null);
-          });
-        });
-      },
-      'topLevelData': function(callbackInside) {
-        var inputTopLevel = pathvisiojs.utilities.clone(args.pathway);
-        inputTopLevel['@context'] = contextLevelInput;
-        var topLevelFrame = {
-          "@context": contextLevelInput,
-          "@type":"element",
-          "dependsOn": {}        
-        };
-        jsonld.frame(inputTopLevel, topLevelFrame, function(err, framedDataTopLevel) {
-          var topLevelData = [];
-          framedDataTopLevel['@graph'].forEach(function(element) {
-            if (!element.dependsOn) {
-              topLevelData.push(element['id']);
-            }
-          });
-          callbackInside(null, topLevelData);
-        });
-      }
-    },
-    function(err, results) {
-      var resultsData = results.hierarchicalData['@graph'].filter(function(element) {
-        return (results.topLevelData.indexOf(element['id']) > -1);
-      });
-    })
-  }
-  //*/
-
   return {
-    //render:render,
+    convertToId:convertToId,
+    convertToCssClassName:convertToCssClassName,
     renderWithCachedData:renderWithCachedData,
     appendElementsInDomOrder:appendElementsInDomOrder,
     load:load,

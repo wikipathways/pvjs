@@ -89,7 +89,7 @@ pathvisiojs.view.pathwayDiagram = function(){
   }
 
   function loadHtmlTemplate(userSpecifiedContainer, callback) {
-    userSpecifiedContainer.html(pathvisioNS['tmp/pathvisiojs.html']);
+    userSpecifiedContainer.html(pathvisioNS['src/pathvisiojs.html']);
     var diagramContainer = userSpecifiedContainer.select('#diagram-container');
     callback(diagramContainer);
   }

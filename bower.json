@@ -18,7 +18,8 @@
     "svg-pan-zoom": "latest",
     "typeahead.js": "~0.9.3",
     "es5-shim": "~2.3.0",
-    "aight": "~1.2.2"
+    "aight": "~1.2.2",
+    "bootstrap": "~3.1.1"
   },
   "resolutions": {
     "jquery": "1.10.2"

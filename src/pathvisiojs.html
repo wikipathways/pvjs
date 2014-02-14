@@ -1,4 +1,4 @@
-<div id="pathvisiojs-container" class="pathvisiojs-container">
+<div id="pathvisiojs-container" style="width: inherit; height: inherit;">
 
   <!-- **********************************************************************
     Pathway Container (JavaScript inserts pathway image inside this div)
@@ -10,16 +10,25 @@
     Highlight Element by Label Control
     *********************************************************************** -->
   <div id="typeahead">
-    <input id="highlight-by-label-input" placeholder="Enter node name to highlight." role="textbox" aria-autocomplete="list" aria-haspopup="true">
-    <i id="clear-highlights-from-typeahead" class="icon-remove"></i>
+    <input id="highlight-by-label-input" placeholder="Enter node name to highlight" role="textbox" aria-autocomplete="list" aria-haspopup="true">
+    <i id="clear-highlights-from-typeahead" class="control-icon icon-remove"></i>
   </div> 
 
   <!-- **********************************************************************
-    Fit to screen Control 
-  *********************************************************************** -->
-  <div id="fit-to-screen-control" class="fit-to-screen-controls">                           
-    <img class="icon-screenshot" src="../src/img/fitscreen_icon.png"></i>          
-  </div>    
+    Pan/Zoom Controls 
+    *********************************************************************** -->
+  <div id="pan-zoom-control" class="pan-zoom-controls">                           
+    <!-- TODO get this working
+    <i id="zoom-in" class="control-icon pan-zoom-control-icon glyphicon glyphicon-plus-sign"></i>
+    -->
+    <i id="reset-pan-zoom" class="control-icon pan-zoom-control-icon glyphicon glyphicon-screenshot"></i>
+    <!-- TODO get this working
+    <i id="zoom-out" class="control-icon pan-zoom-control-icon glyphicon glyphicon-minus-sign"></i>
+    -->
+    <!-- TODO get this working
+    <i id="full-screen-control" class="control-icon pan-zoom-control-icon glyphicon glyphicon-fullscreen"></i>
+    -->
+  </div>
 
   <div id="viewer-toolbar">
   </div>
