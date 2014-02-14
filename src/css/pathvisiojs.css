@@ -35,6 +35,13 @@ body {
 
 .fit-to-screen-controls {
   margin-right: 20px;
+  position: absolute;
+  bottom: 5px;
+  right: 0px;
+}
+
+#icon-screenshot {
+ color:#aaa;
 }
 
 #typeahead,
@@ -140,3 +147,7 @@ body {
   right: 0px;
   height: inherit;
 }
+
+#clear-highlights-from-typeahead {
+  visibility:hidden;
+  color: #c0c0c0;
