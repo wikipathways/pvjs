@@ -44,7 +44,7 @@ pathvisiojs.view.pathwayDiagram.svg.node.useElement = function(){
   function render(parent, data) {
     var node = parent.append("use")
     .data([data])
-    .attr("id", function (d) {return 'node-' + strcase.paramCase(d['id']);})
+    .attr("id", function (d) {return 'node-' + pathvisiojs.view.pathwayDiagram.svg.convertToId(d['id']);})
     .attr("class", function (d) {
       return 'symbol ';
     })

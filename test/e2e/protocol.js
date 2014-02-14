@@ -28,7 +28,7 @@ function testElementCount(pathwayName, elementName, element, selector) {
 function testPathway(pathwayName) {
   var expectedCount;
 
-  var uri = baseUri + "test/development.html?gpml=" + baseUri + "test/data/protocol/" + pathwayName + ".gpml.xml" ;
+  var uri = baseUri + "test/production.html?gpml=" + baseUri + "test/data/protocol/" + pathwayName + ".gpml.xml" ;
 
   ptor.get(uri).
   then(function() {
