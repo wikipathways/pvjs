@@ -1,6 +1,14 @@
 pathvisiojs.data.gpml.element.node.entityNode.shape = function(){
   'use strict';
 
+  var defaults = {
+    'Color':'000000',
+    'FillColor':'ffffff',
+    'FontSize':10,
+    'FontWeight':'Normal',
+    'LineStyle':'Solid',
+  };
+
   var pathvisioDefaultStyleValues = {
     'Shape':{
       'Rotation':'0.0',
@@ -87,9 +95,8 @@ pathvisiojs.data.gpml.element.node.entityNode.shape = function(){
                       gpmlShape.select('Graphics').attr('Color'),
                       thisPathvisioDefaultStyleValues.Color);
 
-        jsonShape = pathvisiojs.data.gpml.element.node.setJsonBackgroundColor(jsonShape,
-                      gpmlShape.select('Graphics').attr('FillColor'),
-                      thisPathvisioDefaultStyleValues.FillColor);
+        var gpmlFillColor = gpmlShape.select('Graphics').attr('FillColor') || defaults.FillColor;
+        jsonShape = pathvisiojs.data.gpml.element.node.setJsonBackgroundColor(jsonShape, gpmlFillColor);
 
         jsonShape = pathvisiojs.data.gpml.element.node.entityNode.setJsonRotationValue(jsonShape,
                       gpmlShape.select('Graphics').attr('Rotation'),

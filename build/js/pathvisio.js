@@ -1,4 +1,4 @@
-//! pathvisiojs 1.0.5
+//! pathvisiojs 1.0.6
 //! Built on 2014-02-13
 //! https://github.com/wikipathways/pathvisiojs
 //! License: http://www.apache.org/licenses/LICENSE-2.0/
@@ -1723,52 +1723,47 @@ pathvisiojs.data.gpml.text = function() {
     console.log('textCallbackOutside');
     console.log(textCallbackOutside);
     //*/
-    try {
-      var thisPathvisioDefaultStyleValues = pathvisiojs.utilities.collect(pathvisioDefaultStyleValues.text, inputDefaultValues);
-      var jsonText, textAlign, verticalAlign, fontStyle, fontWeight, fontSize, fontFamily,
-        text = gpmlNode.attr('TextLabel');
-      if (!!text) {
-        jsonText = {};
-        jsonText['id'] = ('id' + uuid.v4());
-        jsonText.line = text.split(/\r\n|\r|\n|&#xA;/g);
+    var thisPathvisioDefaultStyleValues = pathvisiojs.utilities.collect(pathvisioDefaultStyleValues.text, inputDefaultValues);
+    var jsonText, textAlign, verticalAlign, fontStyle, fontWeight, fontSize, fontFamily,
+      text = gpmlNode.attr('TextLabel');
+    if (!!text) {
+      jsonText = {};
+      jsonText['id'] = ('id' + uuid.v4());
+      jsonText.line = text.split(/\r\n|\r|\n|&#xA;/g);
 
-        var graphics = gpmlNode.select('Graphics');
-        var textAlign, fontStyle, fontWeight, fontSize, fontFamily;
-        if (!!graphics[0][0]) {
-          textAlign = gpmlNode.select('Graphics').attr('Align') || 'center';
-          jsonText.textAlign = textAlign.toLowerCase();
+      var graphics = gpmlNode.select('Graphics');
+      var textAlign, fontStyle, fontWeight, fontSize, fontFamily;
+      if (!!graphics[0][0]) {
+        textAlign = gpmlNode.select('Graphics').attr('Align') || 'center';
+        jsonText.textAlign = textAlign.toLowerCase();
 
-          verticalAlign = gpmlNode.select('Graphics').attr('Valign') || 'middle';
-          jsonText.verticalAlign = verticalAlign.toLowerCase();
+        verticalAlign = gpmlNode.select('Graphics').attr('Valign') || 'middle';
+        jsonText.verticalAlign = verticalAlign.toLowerCase();
 
-          fontStyle = gpmlNode.select('Graphics').attr('FontStyle');
-          if (fontStyle !== thisPathvisioDefaultStyleValues['FontStyle'] && !!fontStyle) {
-            jsonText.fontStyle = fontStyle.toLowerCase();
-          }
-
-          fontWeight = gpmlNode.select('Graphics').attr('FontWeight');
-          if (fontWeight !== thisPathvisioDefaultStyleValues['FontWeight'] && !!fontWeight) {
-            jsonText.fontWeight = fontWeight.toLowerCase();
-          }
-
-          fontSize = gpmlNode.select('Graphics').attr('FontSize') || 10;
-          if (parseFloat(fontSize) !== thisPathvisioDefaultStyleValues['FontSize'] && !!fontSize) {
-            jsonText.fontSize = parseFloat(fontSize);
-          }
-
-          fontFamily = gpmlNode.select('Graphics').attr('FontName');
-          if (fontFamily !== thisPathvisioDefaultStyleValues['FontName'] && !!fontFamily) {
-            jsonText.fontFamily = fontFamily;
-          }
+        fontStyle = gpmlNode.select('Graphics').attr('FontStyle');
+        if (fontStyle !== thisPathvisioDefaultStyleValues['FontStyle'] && !!fontStyle) {
+          jsonText.fontStyle = fontStyle.toLowerCase();
         }
-        textCallbackOutside(jsonText);
+
+        fontWeight = gpmlNode.select('Graphics').attr('FontWeight');
+        if (fontWeight !== thisPathvisioDefaultStyleValues['FontWeight'] && !!fontWeight) {
+          jsonText.fontWeight = fontWeight.toLowerCase();
+        }
+
+        fontSize = gpmlNode.select('Graphics').attr('FontSize') || 10;
+        if (parseFloat(fontSize) !== thisPathvisioDefaultStyleValues['FontSize'] && !!fontSize) {
+          jsonText.fontSize = parseFloat(fontSize);
+        }
+
+        fontFamily = gpmlNode.select('Graphics').attr('FontName');
+        if (fontFamily !== thisPathvisioDefaultStyleValues['FontName'] && !!fontFamily) {
+          jsonText.fontFamily = fontFamily;
+        }
       }
-      else {
-        textCallbackOutside(null);
-      }
+      textCallbackOutside(jsonText);
     }
-    catch (e) {
-      throw new Error("Error converting gpmlNode's text to renderable json: " + e.message);
+    else {
+      textCallbackOutside(null);
     }
   }
 
@@ -1842,12 +1837,9 @@ pathvisiojs.data.gpml.element.node = function() {
 
   defaults.lineStyle = defaults.borderStyle;
 
-  var setJsonBackgroundColor = function(jsonNode, currentGpmlFillColorValue, defaultGpmlFillColorValue) {
-    var jsonBackgroundColor;
-    if (currentGpmlFillColorValue !== defaultGpmlFillColorValue) {
-      jsonBackgroundColor = pathvisiojs.data.gpml.gpmlColorToCssColor(currentGpmlFillColorValue, defaultGpmlFillColorValue);
-      jsonNode.backgroundColor = jsonBackgroundColor;
-    }
+  var setJsonBackgroundColor = function(jsonNode, currentGpmlFillColorValue) {
+    var jsonBackgroundColor = pathvisiojs.data.gpml.gpmlColorToCssColorNew(currentGpmlFillColorValue);
+    jsonNode.backgroundColor = jsonBackgroundColor;
     return jsonNode;
   }
 
@@ -2272,25 +2264,6 @@ pathvisiojs.data.gpml.element.node.entityNode.dataNode = function() {
     'LineStyle':'Solid',
   };
 
-  /*
-  var defaultsByType = {};
-
-  defaultsByType.Complex = Object.create(defaults);
-  defaultsByType.GeneProduct = Object.create(defaults);
-
-  defaultsByType.Metabolite = Object.create(defaults);
-  defaultsByType.Metabolite.Color = '0000ff';
-
-  defaultsByType.Pathway = Object.create(defaults);
-  defaultsByType.Pathway.Color = '14961e';
-  defaultsByType.Pathway.FontSize = '12';
-  defaultsByType.Pathway.FontWeight = 'Bold';
-
-  defaultsByType.Protein = Object.create(defaults);
-  defaultsByType.Rna = Object.create(defaults);
-  defaultsByType.Unknown = Object.create(defaults);
-  //*/
-
   var toPvjson = function(gpmlDataNode, pathwayIri, callbackInside) {
     'use strict';
     var jsonDataNode = {};
@@ -2303,8 +2276,6 @@ pathvisiojs.data.gpml.element.node.entityNode.dataNode = function() {
     jsonDataNode["@type"] = jsonDataNode["@type"] || [];
     jsonDataNode["@type"].push("DataNode");
     jsonDataNode["@type"].push(dataNodeType);
-
-    //var defaultsForThisDataNode = defaultsByType[dataNodeType];
 
     pathvisiojs.data.gpml.element.node.entityNode.toPvjson(gpmlDataNode, jsonDataNode, defaults, pathwayIri, function(jsonDataNode) {
       var database, ID, 
@@ -2390,6 +2361,14 @@ pathvisiojs.data.gpml.element.node.entityNode.label.toPvjson = function(gpmlLabe
 
 pathvisiojs.data.gpml.element.node.entityNode.shape = function(){
   'use strict';
+
+  var defaults = {
+    'Color':'000000',
+    'FillColor':'ffffff',
+    'FontSize':10,
+    'FontWeight':'Normal',
+    'LineStyle':'Solid',
+  };
 
   var pathvisioDefaultStyleValues = {
     'Shape':{
@@ -2477,9 +2456,8 @@ pathvisiojs.data.gpml.element.node.entityNode.shape = function(){
                       gpmlShape.select('Graphics').attr('Color'),
                       thisPathvisioDefaultStyleValues.Color);
 
-        jsonShape = pathvisiojs.data.gpml.element.node.setJsonBackgroundColor(jsonShape,
-                      gpmlShape.select('Graphics').attr('FillColor'),
-                      thisPathvisioDefaultStyleValues.FillColor);
+        var gpmlFillColor = gpmlShape.select('Graphics').attr('FillColor') || defaults.FillColor;
+        jsonShape = pathvisiojs.data.gpml.element.node.setJsonBackgroundColor(jsonShape, gpmlFillColor);
 
         jsonShape = pathvisiojs.data.gpml.element.node.entityNode.setJsonRotationValue(jsonShape,
                       gpmlShape.select('Graphics').attr('Rotation'),
@@ -3808,7 +3786,7 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
       function(callback) {
         if (!!highlights) {
           highlights.forEach(function(highlight) {
-            pathvisiojs.view.pathwayDiagram.svg.node.highlight(highlight.selector, highlight.style)
+            pathvisiojs.view.pathwayDiagram.svg.node.highlight(highlight)
           });
         }
 
@@ -3914,6 +3892,10 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
 
               pathvisiojs.view.pathwayDiagram.svg.node.highlightByLabel(svg, pathway, nodeLabel);
             }
+          });
+
+          d3.select('#clear-highlights-from-typeahead').on('click', function() {
+            pathvisiojs.view.pathwayDiagram.svg.node.clearHighlightsFromTypeahead();
           });
           callback(null, 'svg loaded');
         }
@@ -4716,60 +4698,63 @@ pathvisiojs.view.pathwayDiagram.svg.node = function(){
     return port;
   }
 
-  function highlight(selector, style, svgId) {
-    svgId = svgId || 'pathvisiojs-diagram';
+  function highlight(args) {
+    var selector = args.selector,
+    cssClass = args.cssClass || 'highlighted-node',
+    style = args.style,
+    svgId = args.svgId || 'pathvisiojs-diagram';
+
     var svg = d3.select('#' + svgId);
-    var styles = d3.map(style).entries();
-    var styleString = '';
-    styles.forEach(function(styleAttribute) {
-      styleString += strcase.paramCase(styleAttribute.key) + ':' + styleAttribute.value + '; ';
-    });
+    var styles, styleString = '';
+    if (!!style) {
+      styles = d3.map(style).entries();
+      styles.forEach(function(styleAttribute) {
+        styleString += strcase.paramCase(styleAttribute.key) + ':' + styleAttribute.value + '; ';
+      });
+    }
     var selectedNodes = svg.selectAll(selector);
     selectedNodes.each(function() {
       var node = d3.select(this);
-      console.log(node);
-      self.myNode = node;
       var height = node[0][0].getBBox().height;
       var width = node[0][0].getBBox().width; 
       //TODO get the border width and set the offset based on border width
       var highlighter = node.append('rect') 
       .attr('x', -2.5)
       .attr('y', -2.5)
-      .attr('class', 'highlighted-node')
+      .attr('class', cssClass)
       .attr('style', styleString)
       .attr('width', width + 5)
       .attr('height', height + 5);
-
-      /*
-      pathvisiojs.view.pathwayDiagram.svg.node.highlight(".label-map2-k6", {fill:'green', stroke:'red'})
-      //*/
     });
   }  
 
   function highlightByLabel(svg, pathway, nodeLabel) {
-    var svg = d3.selectAll('#pathvisiojs-diagram');
-    svg.selectAll('.highlighted-node').remove();
-    var allDataNodesWithText = pathway.DataNode.filter(function(d, i) {return (!!d.text);});
-    var selectedNodes = allDataNodesWithText.filter(function(d, i) {return d.text.line.indexOf(nodeLabel) !== -1;});
-    selectedNodes.forEach(function(node) {
-      var nodeContainer = svg.select('#pathway-iri-' + node.GraphId); //strcase.paramCase(node['id']));
-      var height = nodeContainer[0][0].getBBox().height;
-      var width = nodeContainer[0][0].getBBox().width; 
-      nodeContainer.append('rect') 
-      .attr('class', 'highlighted-node')
-      .attr('x', -2.5)
-      .attr('y', -2.5)
-      .attr('width', width + 5)
-      .attr('height', height + 5);
-    });
-  }  
+    var svgId = svg.attr('id') || 'pathvisiojs-diagram';
+    svg.selectAll('.highlighted-from-typeahead').remove();
+    var args = {};
+    args.svgId = svgId;
+    args.selector = '.' + strcase.paramCase('.label-' + nodeLabel);
+    args.cssClass = 'highlighted-node highlighted-from-typeahead';
+    highlight(args);
+    d3.select('#clear-highlights-from-typeahead')[0][0].style.visibility = 'visible';
+  }
+
+  function clearHighlightsFromTypeahead(svgId) {
+    svgId = svgId || 'pathvisiojs-diagram';
+    var svg = d3.select('#' + svgId);
+    svg.selectAll('.highlighted-from-typeahead').remove();
+    // TODO this won't work well if we have more than one diagram on the page
+    d3.select('#highlight-by-label-input')[0][0].value = '';
+    d3.select('#clear-highlights-from-typeahead')[0][0].style.visibility = 'hidden';
+  }
 
   return {
     //renderAll:renderAll,
     render:render,
     getPortCoordinates:getPortCoordinates,
     highlight:highlight,
-    highlightByLabel:highlightByLabel
+    highlightByLabel:highlightByLabel,
+    clearHighlightsFromTypeahead:clearHighlightsFromTypeahead
   };
 }();
 ;
