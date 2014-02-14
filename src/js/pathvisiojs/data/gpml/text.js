@@ -19,52 +19,47 @@ pathvisiojs.data.gpml.text = function() {
     console.log('textCallbackOutside');
     console.log(textCallbackOutside);
     //*/
-    try {
-      var thisPathvisioDefaultStyleValues = pathvisiojs.utilities.collect(pathvisioDefaultStyleValues.text, inputDefaultValues);
-      var jsonText, textAlign, verticalAlign, fontStyle, fontWeight, fontSize, fontFamily,
-        text = gpmlNode.attr('TextLabel');
-      if (!!text) {
-        jsonText = {};
-        jsonText['id'] = ('id' + uuid.v4());
-        jsonText.line = text.split(/\r\n|\r|\n|&#xA;/g);
+    var thisPathvisioDefaultStyleValues = pathvisiojs.utilities.collect(pathvisioDefaultStyleValues.text, inputDefaultValues);
+    var jsonText, textAlign, verticalAlign, fontStyle, fontWeight, fontSize, fontFamily,
+      text = gpmlNode.attr('TextLabel');
+    if (!!text) {
+      jsonText = {};
+      jsonText['id'] = ('id' + uuid.v4());
+      jsonText.line = text.split(/\r\n|\r|\n|&#xA;/g);
 
-        var graphics = gpmlNode.select('Graphics');
-        var textAlign, fontStyle, fontWeight, fontSize, fontFamily;
-        if (!!graphics[0][0]) {
-          textAlign = gpmlNode.select('Graphics').attr('Align') || 'center';
-          jsonText.textAlign = textAlign.toLowerCase();
+      var graphics = gpmlNode.select('Graphics');
+      var textAlign, fontStyle, fontWeight, fontSize, fontFamily;
+      if (!!graphics[0][0]) {
+        textAlign = gpmlNode.select('Graphics').attr('Align') || 'center';
+        jsonText.textAlign = textAlign.toLowerCase();
 
-          verticalAlign = gpmlNode.select('Graphics').attr('Valign') || 'middle';
-          jsonText.verticalAlign = verticalAlign.toLowerCase();
+        verticalAlign = gpmlNode.select('Graphics').attr('Valign') || 'middle';
+        jsonText.verticalAlign = verticalAlign.toLowerCase();
 
-          fontStyle = gpmlNode.select('Graphics').attr('FontStyle');
-          if (fontStyle !== thisPathvisioDefaultStyleValues['FontStyle'] && !!fontStyle) {
-            jsonText.fontStyle = fontStyle.toLowerCase();
-          }
-
-          fontWeight = gpmlNode.select('Graphics').attr('FontWeight');
-          if (fontWeight !== thisPathvisioDefaultStyleValues['FontWeight'] && !!fontWeight) {
-            jsonText.fontWeight = fontWeight.toLowerCase();
-          }
-
-          fontSize = gpmlNode.select('Graphics').attr('FontSize') || 10;
-          if (parseFloat(fontSize) !== thisPathvisioDefaultStyleValues['FontSize'] && !!fontSize) {
-            jsonText.fontSize = parseFloat(fontSize);
-          }
-
-          fontFamily = gpmlNode.select('Graphics').attr('FontName');
-          if (fontFamily !== thisPathvisioDefaultStyleValues['FontName'] && !!fontFamily) {
-            jsonText.fontFamily = fontFamily;
-          }
+        fontStyle = gpmlNode.select('Graphics').attr('FontStyle');
+        if (fontStyle !== thisPathvisioDefaultStyleValues['FontStyle'] && !!fontStyle) {
+          jsonText.fontStyle = fontStyle.toLowerCase();
         }
-        textCallbackOutside(jsonText);
+
+        fontWeight = gpmlNode.select('Graphics').attr('FontWeight');
+        if (fontWeight !== thisPathvisioDefaultStyleValues['FontWeight'] && !!fontWeight) {
+          jsonText.fontWeight = fontWeight.toLowerCase();
+        }
+
+        fontSize = gpmlNode.select('Graphics').attr('FontSize') || 10;
+        if (parseFloat(fontSize) !== thisPathvisioDefaultStyleValues['FontSize'] && !!fontSize) {
+          jsonText.fontSize = parseFloat(fontSize);
+        }
+
+        fontFamily = gpmlNode.select('Graphics').attr('FontName');
+        if (fontFamily !== thisPathvisioDefaultStyleValues['FontName'] && !!fontFamily) {
+          jsonText.fontFamily = fontFamily;
+        }
       }
-      else {
-        textCallbackOutside(null);
-      }
+      textCallbackOutside(jsonText);
     }
-    catch (e) {
-      throw new Error("Error converting gpmlNode's text to renderable json: " + e.message);
+    else {
+      textCallbackOutside(null);
     }
   }
 

@@ -90,7 +90,7 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
       function(callback) {
         if (!!highlights) {
           highlights.forEach(function(highlight) {
-            pathvisiojs.view.pathwayDiagram.svg.node.highlight(highlight.selector, highlight.style)
+            pathvisiojs.view.pathwayDiagram.svg.node.highlight(highlight)
           });
         }
 
@@ -196,6 +196,10 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
 
               pathvisiojs.view.pathwayDiagram.svg.node.highlightByLabel(svg, pathway, nodeLabel);
             }
+          });
+
+          d3.select('#clear-highlights-from-typeahead').on('click', function() {
+            pathvisiojs.view.pathwayDiagram.svg.node.clearHighlightsFromTypeahead();
           });
           callback(null, 'svg loaded');
         }

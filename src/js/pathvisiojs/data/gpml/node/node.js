@@ -27,12 +27,9 @@ pathvisiojs.data.gpml.element.node = function() {
 
   defaults.lineStyle = defaults.borderStyle;
 
-  var setJsonBackgroundColor = function(jsonNode, currentGpmlFillColorValue, defaultGpmlFillColorValue) {
-    var jsonBackgroundColor;
-    if (currentGpmlFillColorValue !== defaultGpmlFillColorValue) {
-      jsonBackgroundColor = pathvisiojs.data.gpml.gpmlColorToCssColor(currentGpmlFillColorValue, defaultGpmlFillColorValue);
-      jsonNode.backgroundColor = jsonBackgroundColor;
-    }
+  var setJsonBackgroundColor = function(jsonNode, currentGpmlFillColorValue) {
+    var jsonBackgroundColor = pathvisiojs.data.gpml.gpmlColorToCssColorNew(currentGpmlFillColorValue);
+    jsonNode.backgroundColor = jsonBackgroundColor;
     return jsonNode;
   }
 
