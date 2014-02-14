@@ -49,10 +49,21 @@ You can make it run in the browser by adding references in your HTML document to
         diagramNotAvailableIconUri: 'http://www.wikipathways.org/wpi/extensions/PathwayViewer/img/imageNotAvailable.jpg', // optional
         imgDiagramUriStub: 'http://www.wikipathways.org/wpi.php?action=downloadFile&type=png&pwTitle=Pathway:', // optional
         pathwaySearchUriStub: 'http://wikipathways.org//index.php?title=Special:SearchPathways&doSearch=1&query=', // optional
-        highlightNodes: [
-          {'parameter': 'label', 'parameterValue': 'CRH', 'color': 'red'},
-          {'parameter': 'xref', 'parameterValue': '8525,Entrez%20Gene', 'color': '#FF0000'}
-        ],
+        highlights: [ // uses the format '.label-' or '.xref-' + the label text or xref value in parameter-case
+        {
+          "selector": ".label-apc",
+          "style": {
+            "fill": "green",
+            "stroke": "green"
+          }
+        },
+        {
+          "selector": ".xref-hmdb00193-hmdb",
+          "style": {
+            "fill": "blue",
+            "stroke": "blue"
+          }
+        }],
         hiddenElements: [
           'find',
           'wikipathways-link'
