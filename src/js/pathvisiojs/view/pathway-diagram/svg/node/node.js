@@ -256,7 +256,9 @@ pathvisiojs.view.pathwayDiagram.svg.node = function(){
     var svg = d3.select('#' + svgId);
     svg.selectAll('.highlighted-from-typeahead').remove();
     // TODO this won't work well if we have more than one diagram on the page
-    d3.select('#highlight-by-label-input')[0][0].value = '';
+    var highlightByLabelInput = d3.select('#highlight-by-label-input');
+    highlightByLabelInput[0][0].value = '';
+    highlightByLabelInput.attr('placeholder', '');
     d3.select('#clear-highlights-from-typeahead')[0][0].style.visibility = 'hidden';
   }
 
