@@ -1,7 +1,7 @@
-//! pathvisiojs 1.0.6
-//! Built on 2014-02-14
-//! https://github.com/wikipathways/pathvisiojs
-//! License: http://www.apache.org/licenses/LICENSE-2.0/
+/* pathvisiojs 1.0.7
+Built on 2014-02-14
+https://github.com/wikipathways/pathvisiojs
+License: http://www.apache.org/licenses/LICENSE-2.0/ */
 
 @import url("//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css");
 
@@ -156,7 +156,7 @@
   visibility:hidden;
   color: #c0c0c0;
 }
-;
+
 
 .annotation {
   font-family: "Helvetica Neue", Helvetica, sans-serif;
@@ -307,7 +307,7 @@ header.annotation-header {
   font-size:50%;
   text-decoration:none;
 }
-;
+
 
 .ui-cytoscape-panzoom {
 	position: absolute;
