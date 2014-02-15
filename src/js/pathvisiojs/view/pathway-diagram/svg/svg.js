@@ -288,7 +288,8 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
   }
 
   var convertToId = function(inputString) {
-    var id = (inputString).replace(/[^(\w|\-)]/g, '').toLowerCase();
+    var id = strcase.paramCase(inputString);
+    //var id = (inputString).replace(/[^(\w|\-)]/g, '').toLowerCase();
     // to make valid id per HTML4 spec, I'm ensuring the first character is a letter
     if (!/^[a-zA-Z]/.test(id)) {
       id = 'id-' + id;
@@ -297,7 +298,8 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
   }
 
   var convertToCssClassName = function(inputString) {
-    var cssClassName = (inputString).replace(/[^(\w|\-)]/g, '').toLowerCase();
+    var cssClassName = strcase.paramCase(inputString);
+    //var cssClassName = (inputString).replace(/[^(\w|\-)]/g, '').toLowerCase();
     // to make valid cssClassName per HTML4 spec, I'm ensuring the first character is a letter
     if (!/^[a-zA-Z]/.test(cssClassName)) {
       cssClassName = 'class-' + cssClassName;

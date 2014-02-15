@@ -103,12 +103,12 @@ grunt.initConfig({
     },
     concat: {
         options: {
-          separator: ';\n\n',
-          banner: "//! <%= pkg.name %> <%= pkg.version %>\n"
-              + "//! Built on <%= grunt.template.today('yyyy-mm-dd') %>\n"
+          separator: '\n\n',
+          banner: "/* <%= pkg.name %> <%= pkg.version %>\n"
+              + "Built on <%= grunt.template.today('yyyy-mm-dd') %>\n"
               //+ "//! Git commit: <%= gitInfo %>\n"
-              + "//! https://github.com/wikipathways/pathvisiojs\n"
-              + "//! License: http://www.apache.org/licenses/LICENSE-2.0/\n\n",
+              + "https://github.com/wikipathways/pathvisiojs\n"
+              + "License: http://www.apache.org/licenses/LICENSE-2.0/ */\n\n",
           process: true
         },
         distJs: {
@@ -153,7 +153,7 @@ grunt.initConfig({
         afterconcat: [ distributionJs ]
     },
     str2js: {
-      pathvisioNS: { 'tmp/pathvisiojs.js': ['src/pathvisiojs.html', 'tmp/pathvisiojs.svg']}
+      pathvisioNS: { 'tmp/pathvisiojs.js': ['src/pathvisiojs.html', 'src/css/pathway-diagram.css', 'tmp/pathvisiojs.svg']}
     },
     browserify: {
       dist: {
