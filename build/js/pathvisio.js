@@ -1,4 +1,4 @@
-/* pathvisiojs 1.0.7
+/* pathvisiojs 1.0.8
 Built on 2014-02-14
 https://github.com/wikipathways/pathvisiojs
 License: http://www.apache.org/licenses/LICENSE-2.0/ */
@@ -3884,8 +3884,11 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
           nodeLabels = [];
           if (pathway.hasOwnProperty('DataNode')) {
             pathway.DataNode.forEach(function(node) {
-              if (!!node.text) {
-                nodeLabels.push(node.text.line[0]);
+              if (node.hasOwnProperty('text')) {
+                nodeLabel = node.text.line[0];
+                if (nodeLabels.indexOf(nodeLabel) === -1) {
+                  nodeLabels.push(node.text.line[0]);
+                }
               }
             });
 
@@ -4726,7 +4729,9 @@ pathvisiojs.view.pathwayDiagram.svg.node = function(){
     var svg = d3.select('#' + svgId);
     svg.selectAll('.highlighted-from-typeahead').remove();
     // TODO this won't work well if we have more than one diagram on the page
-    d3.select('#highlight-by-label-input')[0][0].value = '';
+    var highlightByLabelInput = d3.select('#highlight-by-label-input');
+    highlightByLabelInput[0][0].value = '';
+    highlightByLabelInput.attr('placeholder', '');
     d3.select('#clear-highlights-from-typeahead')[0][0].style.visibility = 'hidden';
   }
 

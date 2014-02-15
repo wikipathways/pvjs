@@ -176,8 +176,11 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
           nodeLabels = [];
           if (pathway.hasOwnProperty('DataNode')) {
             pathway.DataNode.forEach(function(node) {
-              if (!!node.text) {
-                nodeLabels.push(node.text.line[0]);
+              if (node.hasOwnProperty('text')) {
+                nodeLabel = node.text.line[0];
+                if (nodeLabels.indexOf(nodeLabel) === -1) {
+                  nodeLabels.push(node.text.line[0]);
+                }
               }
             });
 
