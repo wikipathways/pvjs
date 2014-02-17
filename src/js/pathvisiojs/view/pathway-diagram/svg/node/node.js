@@ -63,7 +63,7 @@ pathvisiojs.view.pathwayDiagram.svg.node = function(){
 
     if (data.hasOwnProperty('isContainedBy')) {
       parentDataElement = pathway.elements.filter(function(element) {
-        return element['id'] === data.isContainedBy;
+        return element.id === data.isContainedBy;
       })[0];
       translatedX = data.x - parentDataElement.x;
       translatedY = data.y - parentDataElement.y;
@@ -87,23 +87,23 @@ pathvisiojs.view.pathwayDiagram.svg.node = function(){
     .attr("style", function (d) {
       var style = '';
       if (d.hasOwnProperty('backgroundColor')) {
-	if (d.ShapeType == 'brace' || d.ShapeType == 'arc'){ 
-	  //Brace color is NOT for fill and should always be transparent
-	  style = 'fill-opacity:0; ';
-	} 
-        else if (d.nodeType == 'Label' && d.backgroundColor == '#ffffff'){  
-	  //Label fill attr is programmatically IGNORED when set to Java editor default of white.
-	  //This is obviously a hack that should ultimately be resolved by fixing the editor's 
-	  // default for label backgroundColor.
-	  style = '' ;
-	}
-	else {
+        if (d.ShapeType == 'brace' || d.ShapeType == 'arc'){
+          //Brace color is NOT for fill and should always be transparent
+          style = 'fill-opacity:0; ';
+        }
+        else if (d.nodeType == 'Label' && d.backgroundColor == '#ffffff'){
+          //Label fill attr is programmatically IGNORED when set to Java editor default of white.
+          //This is obviously a hack that should ultimately be resolved by fixing the editor's 
+          // default for label backgroundColor.
+          style = '' ;
+        }
+        else {
           style = 'fill:' + d.backgroundColor + '; fill-opacity:1; ';
-	}
+        }
       }
       return style;
     })
-    .call(drag)
+    .call(drag);
 
 
 
@@ -201,13 +201,14 @@ pathvisiojs.view.pathwayDiagram.svg.node = function(){
     };
 
     var argsEntries = d3.map(args).entries();
-    var methodsInGetSelector = d3.map(getSelector).entries();
+    var methodsInGetSelector = d3.map(getSelector).keys();
     var i = 0;
-    var selector, method;
+    var selector, method, methodIndex;
     do {
-      method = methodsInGetSelector.filter(function(methodsInGetSelector){return methodsInGetSelector.key === argsEntries[i].key;});
-      if (method.length > 0) {
-        selector = method[0].value(argsEntries[i].value);
+      methodIndex = methodsInGetSelector.indexOf(argsEntries[i].key);
+      if (methodIndex !== -1) {
+        method = methodsInGetSelector[methodIndex];
+        selector = getSelector[method](argsEntries[i].value);
       }
       i += 1;
     } while ((!selector) && i < argsEntries.length);
@@ -228,9 +229,9 @@ pathvisiojs.view.pathwayDiagram.svg.node = function(){
     selectedNodes.each(function() {
       var node = d3.select(this);
       var height = node[0][0].getBBox().height;
-      var width = node[0][0].getBBox().width; 
+      var width = node[0][0].getBBox().width;
       //TODO get the border width and set the offset based on border width
-      var highlighter = node.append('rect') 
+      var highlighter = node.append('rect')
       .attr('x', -2.5)
       .attr('y', -2.5)
       .attr('class', cssClass)
@@ -238,7 +239,7 @@ pathvisiojs.view.pathwayDiagram.svg.node = function(){
       .attr('width', width + 5)
       .attr('height', height + 5);
     });
-  }  
+  }
 
   function highlightByLabel(svg, pathway, nodeLabel) {
     var svgId = svg.attr('id') || 'pathvisiojs-diagram';
