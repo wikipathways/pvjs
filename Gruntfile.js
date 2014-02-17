@@ -221,7 +221,7 @@ grunt.initConfig({
       },
       pages: {
         options: {
-          remote: 'git@github.com:wikipathways/pathvisiojs.git',
+          remote: 'origin',
           branch: 'gh-pages'
         }
       },
