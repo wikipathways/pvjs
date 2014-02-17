@@ -79,12 +79,12 @@ module.exports = function(grunt) {
 // ----------
 var packageJson = grunt.file.readJSON("package.json"),
     testPathwaysElementCounts = grunt.file.readJSON("test/data/protocol/counts.json"),
-    distributionJs = "build/js/pathvisio.js",
-    distributionCss = "build/css/pathvisiojs.css",
-    minifiedJs = "build/js/pathvisio.min.js",
-    minifiedCss = "build/js/pathvisiojs.min.css",
+    distributionJs = "dist/js/pathvisio.js",
+    distributionCss = "dist/css/pathvisiojs.css",
+    minifiedJs = "dist/js/pathvisio.min.js",
+    minifiedCss = "dist/js/pathvisiojs.min.css",
     packageDirName = "pathvisiojs-" + packageJson.version,
-    packageDir = "build/" + packageDirName + "/",
+    packageDir = "dist/" + packageDirName + "/",
     releaseRoot = "../site-build/built-pathvisiojs/";
 
 // ----------
@@ -92,7 +92,7 @@ var packageJson = grunt.file.readJSON("package.json"),
 grunt.initConfig({
     pkg: packageJson,
     clean: {
-        build: ["build"],
+        dist: ["dist"],
         package: [packageDir],
         release: {
             src: [releaseRoot],
@@ -122,7 +122,7 @@ grunt.initConfig({
     },
     uglify: {
       options: {
-        mangle: false
+        mangle: true 
       },
       pathvisiojs: {
           src: [ distributionJs ],
@@ -211,6 +211,26 @@ grunt.initConfig({
         port:5004,
         tasks: ['protractor-e2e']
       }
+    },
+    buildcontrol: {
+      options: {
+        dir: 'dist',
+        commit: true,
+        push: true,
+        message: 'Built %sourceName% from commit %sourceCommit% on branch %sourceBranch%'
+      },
+      pages: {
+        options: {
+          remote: 'git@github.com:wikipathways/pathvisiojs.git',
+          branch: 'gh-pages'
+        }
+      },
+      local: {
+        options: {
+          remote: '../',
+          branch: 'build'
+        }
+      }
     }
   });
 
@@ -226,6 +246,7 @@ grunt.initConfig({
   grunt.loadNpmTasks('grunt-sync-pkg');
   grunt.loadNpmTasks('grunt-concurrent');
   grunt.loadNpmTasks('grunt-protractor-runner');
+  grunt.loadNpmTasks('grunt-build-control');
   //grunt.loadNpmTasks("grunt-net");
 
   grunt.registerTask('protractor-chrome', 'Run local tests for development', function() {

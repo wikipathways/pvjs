@@ -24,7 +24,7 @@ pathvisiojs.data.gpml.edge.interaction = function(){
   };
 
   function getGpmlArrowHeadNameFromSemanticName(semanticName) {
-    for (gpmlArrowHeadName in gpmlArrowHeadsToSemanticMappings) {
+    for (var gpmlArrowHeadName in gpmlArrowHeadsToSemanticMappings) {
       if (gpmlArrowHeadsToSemanticMappings[gpmlArrowHeadName] === semanticName) {
         return gpmlArrowHeadName;
       }
@@ -64,11 +64,11 @@ pathvisiojs.data.gpml.edge.interaction = function(){
 
       points = gpmlInteraction.selectAll('Point');
 
-      var database, ID, 
+      var database, ID,
       datasourceReference = gpmlInteraction.select('Xref');
       if (!!datasourceReference) {
-        database = datasourceReference.attr('Database')
-        ID = datasourceReference.attr('ID')
+        database = datasourceReference.attr('Database');
+        ID = datasourceReference.attr('ID');
         if (!!database && !!ID) {
           jsonInteraction.DatasourceReference = {};
           jsonInteraction.DatasourceReference.Database = database;
@@ -98,7 +98,7 @@ pathvisiojs.data.gpml.edge.interaction = function(){
             }
           }
         }
-        InteractionGraphMember['id'] = sourceId || 'no-source';
+        InteractionGraphMember.id = sourceId || 'no-source';
 
         targetId = gpmlTarget.getAttribute('GraphRef');
         if (!!targetId) {
@@ -188,7 +188,7 @@ pathvisiojs.data.gpml.edge.interaction = function(){
       }
 
       callback(jsonInteraction);
-    })
+    });
   }
 
   /*

@@ -9,16 +9,20 @@
     "unused": false,
 
     "globals": {
-        "xml": true,
+        "async": true,
+        "loadImage": true,
+        "jsonld": true,
+        "Modernizr": true,
+        "uuid": true,
+        "svgPanZoom": true,
+        "typeahead": true,
         "root": true,
+        "pathvisioNS": true,
         "alert": true,
-        "pathvisio": true,
-        "caseConverter": true,
-        "DataGridRenderer": true,
-        "CSVParser": true,
+        "pathvisiojs": true,
+        "strcase": true,
         "$": true,
         "console": true,
-        "self": true,
         "d3": true,
 	"RGBColor": true
     }

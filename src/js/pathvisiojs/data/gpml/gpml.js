@@ -6,14 +6,14 @@ pathvisiojs.data.gpml = function(){
       'Type':"FontSize",
       'Value':10
     }
-  }
+  };
 
   var defaults = {
     'FontSize':{
       'Type':"FontSize",
       'Value':10
     }
-  }
+  };
 
   function get(sourceData, callback) {
     var uri = sourceData.uri;
@@ -43,7 +43,7 @@ pathvisiojs.data.gpml = function(){
               // TODO should we use requirejs for loading scripts instead?
               pathvisiojs.utilities.loadScripts(['http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js'], function() {
                 callbackInside(null);
-              })
+              });
             }
             else {
               callbackInside(null);
@@ -133,10 +133,10 @@ pathvisiojs.data.gpml = function(){
   // TODO can we delete this function?
 
   function getLineStyle(gpmlElement) {
-    var LineStyle, attributes; 
+    var LineStyle, attributes;
     var graphics = gpmlElement.select('Graphics');
     if (!!graphics) {
-      LineStyle = graphics.attr('LineStyle'); 
+      LineStyle = graphics.attr('LineStyle');
       if (!!LineStyle) {
         return LineStyle;
       }
@@ -548,7 +548,7 @@ pathvisiojs.data.gpml = function(){
                   pathway.nodes = pathway.nodes.concat(jsonDataNode);
                   pathway.elements = pathway.elements.concat(jsonDataNode);
                 });
-              })
+              });
               callback(null, 'DataNodes are all converted.');
             }
             else {
@@ -566,7 +566,7 @@ pathvisiojs.data.gpml = function(){
                   pathway.nodes = pathway.nodes.concat(jsonLabel);
                   pathway.elements = pathway.elements.concat(jsonLabel);
                 });
-              })
+              });
               callback(null, 'Labels are all converted.');
             }
             else {
@@ -584,7 +584,7 @@ pathvisiojs.data.gpml = function(){
                   pathway.nodes = pathway.nodes.concat(jsonShape);
                   pathway.elements = pathway.elements.concat(jsonShape);
                 });
-              })
+              });
               callback(null, 'Shapes are all converted.');
             }
             else {
@@ -604,7 +604,7 @@ pathvisiojs.data.gpml = function(){
                   pathway.Group.push(jsonGroup);
                   pathway.nodes = pathway.nodes.concat(jsonGroup);
                 });
-              })
+              });
               callback(null, 'Groups are all converted.');
             }
             else {
@@ -623,7 +623,7 @@ pathvisiojs.data.gpml = function(){
                   pathway.edges = pathway.edges.concat(jsonGraphicalLine);
                   pathway.elements = pathway.elements.concat(jsonGraphicalLine);
                 });
-              })
+              });
               callback(null, 'GraphicalLines are all converted.');
             }
             else {
@@ -642,7 +642,7 @@ pathvisiojs.data.gpml = function(){
                   pathway.edges = pathway.edges.concat(jsonInteraction);
                   pathway.elements = pathway.elements.concat(jsonInteraction);
                 });
-              })
+              });
               callback(null, 'Interactions are all converted.');
             }
             else {
@@ -657,7 +657,7 @@ pathvisiojs.data.gpml = function(){
             '@context': pathway['@context'],
             '@type': 'GroupNode',
             'contains': {}
-          };  
+          };
           jsonld.frame(pathway, groupsFrame, function(err, framedGroups) {
             async.waterfall([
               function(callbackInside){
@@ -693,7 +693,7 @@ pathvisiojs.data.gpml = function(){
                   'GraphicalLine': 2,
                   'Anchor': 3,
                   'EntityNode': 4
-                }
+                };
 
                 // sort by explicitly set z-index for all elements except GroupNodes, which use the lowest z-index
                 // of their contained elements, and anchors, which use their parent element's z-index
@@ -734,7 +734,7 @@ pathvisiojs.data.gpml = function(){
                 callbackInside(null, pathway);
               },
               function(pathway, callbackInside){
-                self.myPathway = pathway;
+                //self.myPathway = pathway;
                 callbackOutside(pathway);
               }
             ]);

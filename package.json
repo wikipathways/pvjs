@@ -50,7 +50,8 @@
     "grunt-concurrent": "~0.4.3",
     "grunt-net": "~0.1.2",
     "node.extend": "~1.0.9",
-    "JSON": "~1.0.0"
+    "JSON": "~1.0.0",
+    "grunt-build-control": "~0.1.2"
   },
   "dependencies": {
     "grunt-string-to-js": "0.0.3",
