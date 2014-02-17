@@ -36,7 +36,6 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
       //customSymbols = args.customSymbols,
       highlights = args.highlights,
       pathway,
-      diagramContainer,
       svg;
 
 
@@ -45,10 +44,10 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
         async.parallel({
           preloadSvg: function(callback) {
             var preloadDiagramArgs = {};
-              preloadDiagramArgs.container = diagramContainer;
-              preloadDiagramArgs.customMarkers = customMarkers,
-              //preloadDiagramArgs.customSymbols = customSymbols,
-              preloadDiagramArgs.cssUri = cssUri;
+            preloadDiagramArgs.container = diagramContainer;
+            preloadDiagramArgs.customMarkers = customMarkers;
+            preloadDiagramArgs.cssUri = cssUri;
+            //preloadDiagramArgs.customSymbols = customSymbols;
 
             pathvisiojs.view.pathwayDiagram.svg.loadPartials(preloadDiagramArgs, function(svgTemplate) {
               svg = svgTemplate;
@@ -73,24 +72,24 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
               //console.log(json);
               pathway = json;
               callback(null, json);
-            })
+            });
           }
         },
         function(err, results){
           //TODO get pathwayWidth and Height
 
           callback(null);
-        })
+        });
       },
       function(callback){
         pathvisiojs.view.pathwayDiagram.svg.renderWithCachedData(svg, pathway, function() {
           callback(null);
-        })
+        });
       },
       function(callback) {
         if (!!highlights) {
           highlights.forEach(function(highlight) {
-            pathvisiojs.view.pathwayDiagram.svg.node.highlight(highlight)
+            pathvisiojs.view.pathwayDiagram.svg.node.highlight(highlight);
           });
         }
 
@@ -243,7 +242,7 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
       function(callback) {
         diagramContainer.html(pathvisioNS['tmp/pathvisiojs.svg']);
 
-        svg = diagramContainer.select('#pathvisiojs-diagram')
+        svg = diagramContainer.select('#pathvisiojs-diagram');
         svg.attr('style', 'display: inline; width: inherit; min-width: inherit; max-width: inherit; height: inherit; min-height: inherit; max-height: inherit; ') // TODO this should be moved to the CSS file
         .attr('preserveAspectRatio', 'xMidYMid');
 
@@ -253,7 +252,7 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
         if (!!args.customMarkers) {
           pathvisiojs.view.pathwayDiagram.svg.edge.marker.loadAllCustom(svg, customMarkers, function() {
             callback(null);
-          })
+          });
         }
         else {
           callback(null);
@@ -270,7 +269,7 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
           callback(null);
         }
       },
-      //*/      
+      //*/
       function(callback) {
         if (!!cssUri) {
           d3.text(cssUri, 'text/css', function(data) {
@@ -278,7 +277,7 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
             var style = defs.append('style').attr('type', "text/css");
             style.text(data);
             callback(null);
-          })
+          });
         }
         else {
           callback(null);
@@ -298,7 +297,7 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
       id = 'id-' + id;
     }
     return id;
-  }
+  };
 
   var convertToCssClassName = function(inputString) {
     var cssClassName = strcase.paramCase(inputString);
@@ -308,7 +307,7 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
       cssClassName = 'class-' + cssClassName;
     }
     return cssClassName;
-  }
+  };
 
   // this function does not render all elements. Rather, it renders
   // one or more selected elements that are given as inputs.
@@ -333,7 +332,7 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
     }
     if (!pathway) {
       throw new Error("No pathway specified.");
-    } 
+    }
     data = pathvisiojs.utilities.convertToArray(data);
 
     var i = 0;
@@ -354,7 +353,7 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
         return child;
       })
       .attr("id", function (d) {
-        return convertToId(d['id']);
+        return convertToId(d.id);
       })
       .attr('class', 'element');
       i += 1;
@@ -388,19 +387,19 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
     }
     if (!pathway) {
       throw new Error("No pathway specified.");
-    } 
+    }
     data = pathvisiojs.utilities.convertToArray(data);
 
     var renderingArgs = args;
     data.forEach(function(dataElement) {
       renderingArgs.data = dataElement;
-      renderingArgs.element = d3.select('#' + convertToId(dataElement['id']));
-      if (dataElement.renderableType === 'GraphicalLine') {                                                                                        
-        pathvisiojs.view.pathwayDiagram.svg.edge.graphicalLine.render(renderingArgs);                                                          
-      } 
+      renderingArgs.element = d3.select('#' + convertToId(dataElement.id));
+      if (dataElement.renderableType === 'GraphicalLine') {
+        pathvisiojs.view.pathwayDiagram.svg.edge.graphicalLine.render(renderingArgs);
+      }
 else if (dataElement.renderableType === 'Interaction') {
         pathvisiojs.view.pathwayDiagram.svg.edge.interaction.render(renderingArgs);
-      } 
+      }
       else if (dataElement.renderableType === 'GroupNode') {
         pathvisiojs.view.pathwayDiagram.svg.node.groupNode.render(renderingArgs, function(groupContainer, groupContents) {
           // TODO this used to render the group contents, but now the callback does nothing
