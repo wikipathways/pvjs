@@ -76,6 +76,32 @@ var specFileName;
 
 module.exports = function(grunt) {
 
+// see http://stackoverflow.com/questions/11293857/fastest-way-to-copy-file-in-node-js
+var fs = require('fs');
+function copyFile(source, target, cb) {
+  var cbCalled = false;
+
+  var rd = fs.createReadStream(source);
+  rd.on("error", function(err) {
+    done(err);
+  });
+  var wr = fs.createWriteStream(target);
+  wr.on("error", function(err) {
+    done(err);
+  });
+  wr.on("close", function(ex) {
+    done();
+  });
+  rd.pipe(wr);
+
+  function done(err) {
+    if (!cbCalled) {
+      cb(err);
+      cbCalled = true;
+    }
+  }
+}
+
 // ----------
 var packageJson = grunt.file.readJSON("package.json"),
     testPathwaysElementCounts = grunt.file.readJSON("test/data/protocol/counts.json"),
@@ -251,15 +277,15 @@ grunt.initConfig({
 
   grunt.registerTask('protractor-chrome', 'Run local tests for development', function() {
     grunt.config.set('protractor.chrome.options.args.specs', ['test/e2e/' + grunt.option('spec') + '.js']);
-    grunt.task.run('protractor:chrome')
+    grunt.task.run('protractor:chrome');
   });
   grunt.registerTask('protractor-safari', 'Run local tests for development', function() {
     grunt.config.set('protractor.safari.options.args.specs', ['test/e2e/' + grunt.option('spec') + '.js']);
-    grunt.task.run('protractor:safari')
+    grunt.task.run('protractor:safari');
   });
   grunt.registerTask('protractor-firefox', 'Run local tests for development', function() {
     grunt.config.set('protractor.firefox.options.args.specs', ['test/e2e/' + grunt.option('spec') + '.js']);
-    grunt.task.run('protractor:firefox')
+    grunt.task.run('protractor:firefox');
   });
   grunt.registerTask('protractor-e2e', ['concurrent:protractor_test']);
 
@@ -283,15 +309,20 @@ grunt.initConfig({
   // quick-build 
   grunt.registerTask('quick-build', ['sync', 'str2js', 'git-describe', 'concat', 'uglify']);
 
+  // copy-files-to-dist copy files like index.html demo file to dist directory
+  grunt.registerTask('copy-files-to-dist', 'Copy files to dist directory', function() {
+    copyFile('./demo.html', './dist/index.html');
+  });
+
   // test
   grunt.registerTask('test-min', 'Run local tests for development', function(val) {
-    grunt.option('spec', 'minimal')
-    grunt.task.run('protractor-safari')
+    grunt.option('spec', 'minimal');
+    grunt.task.run('protractor-safari');
   });
 
   grunt.registerTask('test', 'Run extensive local tests', function(val) {
-    grunt.option('spec', val)
-    grunt.task.run('protractor-e2e')
+    grunt.option('spec', val);
+    grunt.task.run('protractor-e2e');
   });
 
   // Default task(s).
