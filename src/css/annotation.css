@@ -31,6 +31,8 @@ header.annotation-header {
 
 .annotation-header-search {
   vertical-align: 10%;
+  text-decoration: none; /* tweaks needed for wp */
+  font-size: 60%; /* tweaks needed for wp */
 }
 
 .annotation-header-search:hover {
