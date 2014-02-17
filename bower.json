@@ -8,7 +8,6 @@
     "async": "~0.2.5",
     "blueimp-load-image": "~1.11.0",
     "d3": ">= 3.2.8",
-    "font-awesome": "~4.0.3",
     "jquery": "1.10.2",
     "jsonld.js": "~0.1.25",
     "modernizr": "~2.7.0",

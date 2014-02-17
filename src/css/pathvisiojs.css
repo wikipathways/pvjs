@@ -61,6 +61,8 @@
   position: absolute;
   top: 5px;
   right: 5px;
+  line-height: 1.0em; /* needed for wp */
+  display: flex; /* needed for wp */
 }
 
 #typeahead:focus {
