@@ -35,8 +35,7 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
       customMarkers = args.customMarkers,
       //customSymbols = args.customSymbols,
       highlights = args.highlights,
-      pathway,
-      svg;
+      pathway;
 
 
     async.waterfall([
@@ -49,14 +48,15 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
             preloadDiagramArgs.cssUri = cssUri;
             //preloadDiagramArgs.customSymbols = customSymbols;
 
-            pathvisiojs.view.pathwayDiagram.svg.loadPartials(preloadDiagramArgs, function(svgTemplate) {
-              svg = svgTemplate;
-
+            pathvisiojs.view.pathwayDiagram.svg.loadPartials(preloadDiagramArgs, function(docFragment, svg) {
               if (!svg) {
                 throw new Error("Could not load SVG template.");
               }
 
-              callback(null);
+              var results = {};
+              results.docFragment = docFragment;
+              results.svg = svg;
+              callback(null, results);
             });
           },
           pathway: function(callback){
@@ -78,19 +78,32 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
         function(err, results){
           //TODO get pathwayWidth and Height
 
-          callback(null);
+          callback(null, results.preloadSvg.docFragment, results.preloadSvg.svg, results.pathway);
         });
       },
-      function(callback){
+      function(docFragment, svg, pathway, callback){
         pathvisiojs.view.pathwayDiagram.svg.renderWithCachedData(svg, pathway, function() {
           console.log('finallysvg');
+          console.log(docFragment);
           console.log(svg);
           self.finallysvg = svg;
-          diagramContainer.append(svg[0][0]);
-          callback(null);
+          self.finallydocFragment = docFragment;
+          var svgns = "http://www.w3.org/2000/svg";
+          var insertedSvg = document.createElementNS(svgns, 'svg');
+          var svgNode = document.importNode(svg[0][0],true);
+          var diagramContainerElement = diagramContainer[0][0];
+          var loadingIcon = diagramContainerElement.querySelector('#loading-icon');
+          insertedSvg.innerHTML = svgNode.innerHTML;
+          diagramContainerElement.replaceChild(insertedSvg, loadingIcon);
+
+          //svg = document.importNode(svg[0][0],true); // surprisingly optional in these browsers
+          //document.body.appendChild(svg);
+
+          //diagramContainer.append(svg[0][0]);
+          callback(null, svg);
         });
       },
-      function(callback) {
+      function(svg, callback) {
         if (!!highlights) {
           highlights.forEach(function(highlight) {
             pathvisiojs.view.pathwayDiagram.svg.node.highlight(highlight);
@@ -244,22 +257,22 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
     async.waterfall([
       function(callback) {
         var docFragment = document.createDocumentFragment();
-        var svg = d3.select(docFragment).append('body').html(pathvisioNS['tmp/pathvisiojs.svg']).select('#pathvisiojs-diagram')
+        var svg = d3.select(docFragment).append('div').html(pathvisioNS['tmp/pathvisiojs.svg']).select('#pathvisiojs-diagram')
         .attr('preserveAspectRatio', 'xMidYMid');
         
         console.log('svg');
         console.log(svg);
 
-        callback(null, svg);
+        callback(null, docFragment, svg);
       },
-      function(svg, callback) {
+      function(docFragment, svg, callback) {
         if (!!args.customMarkers) {
           pathvisiojs.view.pathwayDiagram.svg.edge.marker.loadAllCustom(svg, customMarkers, function() {
-            callback(null, svg);
+            callback(null, docFragment, svg);
           });
         }
         else {
-          callback(null, svg);
+          callback(null, docFragment, svg);
         }
       },
       /*
@@ -274,7 +287,7 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
         }
       },
       //*/
-      function(svg, callback) {
+      function(docFragment, svg, callback) {
         console.log('svgtext');
         console.log(svg);
         if (!!cssUri) {
@@ -282,16 +295,19 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
             var defs = svg.select('defs');
             var style = defs.append('style').attr('type', "text/css");
             style.text(data);
-            callback(null, svg);
+            callback(null, docFragment, svg);
           });
         }
         else {
-          callback(null, svg);
+          callback(null, docFragment, svg);
         }
       }
     ],
-    function(err, results) {
-      callbackOutside(results);
+    function(err, docFragment, svg) {
+      console.log('docFragment');
+      console.log(docFragment);
+      console.log(svg);
+      callbackOutside(docFragment, svg);
     });
   }
 
