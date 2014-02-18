@@ -40,7 +40,7 @@ var developmentLoader = function() {
   function convertUriParamsToJson() {
     // this includes both explicit and implicit URI params, e.g.,
     // if svg-disabled is not specified as a URI param, it will still be included in this object with its default value of false.
-    uriParams = {
+    var uriParams = {
       'svg-disabled': false,
       'gpml': null,
       'rev': 0,
@@ -54,7 +54,7 @@ var developmentLoader = function() {
       }
       window.setTimeout(function() {
         $('#' + element).val(uriParams[element]);
-      }, 50)
+      }, 50);
     });
 
     var locationSearch = location.search;
@@ -204,52 +204,29 @@ var developmentLoader = function() {
     return gpmlUri;
   }
 
-  function getUriParamByName(name) {
-    // Thanks to http://stackoverflow.com/questions/11582512/how-to-get-uri-parameters-with-javascript
-    // This will be replaced once we get the backend php to get the json
-    var parameter = decodeURIComponent((new RegExp('[?|&]' + name + '=' + '([^&;]+?)(&|#|;|$)').exec(location.search)||[,""])[1].replace(/\+/g, '%20'))||null;
-    if (!!parameter) {
-      return parameter;
-    }
-    else {
-      return null;
-    }
-  }
-
-  function loadScripts(array, callback){  
-    var loader = function(src,handler){  
-      var script = document.createElement('script');  
-      script.src = src;  
-      script.onload = script.onreadystatechange = function(){  
-        script.onreadystatechange = script.onload = null;  
-        if(/MSIE ([6-9]+\.\d+);/.test(navigator.userAgent))window.setTimeout(function(){handler();},8,this);  
-        else handler();  
-      }  
-      var head = document.getElementsByTagName('head')[0];  
-      (head || document.body).appendChild( script );  
-    };  
-    (function(){  
-      if(array.length!=0){  
-        loader(array.shift(),arguments.callee);  
-      }else{  
-        callback && callback();  
-      }  
-    })();  
-  }
-
-  function updateParams(updatedParam) {
-    var targetUri = currentUri + '?' + updatedParam.key + '=' + updatedParam.value;
-
-    Object.keys(uriParams).forEach(function(element) {
-      if (element === updatedParam.key) {
-        uriParams[element] = updatedParam.value;
+  function loadScripts(array, callback){
+    var loader = function(src,handler){
+      var script = document.createElement('script');
+      script.src = src;
+      script.onload = script.onreadystatechange = function(){
+        script.onreadystatechange = script.onload = null;
+        if(/MSIE ([6-9]+\.\d+);/.test(navigator.userAgent)) {
+          window.setTimeout(function(){handler();},8,this);
+        }
+        else {
+          handler();
+        }
+      };
+      var head = document.getElementsByTagName('head')[0];
+      (head || document.body).appendChild( script );
+    };
+    (function(){
+      if(array.length!==0){
+        loader(array.shift(),arguments.callee);
+      }else{
+        callback();
       }
-      else {
-        targetUri += '&' + element + '=' + uriParams[element];
-      }
-    });
-
-    location.href = targetUri;
+    })();
   }
 
   function generateSvgTemplate(callback) {
@@ -265,7 +242,7 @@ var developmentLoader = function() {
     attr('height', '100%').
     attr('style', 'display: none; ');
 
-    var g = svg.append('g')
+    var g = svg.append('g');
 
     var title = svg.append('title').
     text('pathvisiojs diagram');
@@ -328,7 +305,7 @@ var developmentLoader = function() {
       },
       function(callback) {
         if (pathname.indexOf('development.html') > -1) { //if this is the development version
-          var pvjsSourcesDev = pvjsSources.slice(1); //this file is only used in the build process
+          var pvjsSourcesDev = pvjsSources; //this file is only used in the build process
 
       /*
           // In dev mode, different servers will use different configs.
@@ -397,7 +374,7 @@ var developmentLoader = function() {
     console.log(inputData);
     window.setTimeout(function() {
       inputData.forEach(function(inputDataElement) {
-        $('#' + inputDataElement.containerId).prepend('<iframe id="' + inputDataElement.containerId + '-frame" src="' + inputDataElement.frameSrc + '" style="width:inherit; height:inherit; margin:0; " />')
+        $('#' + inputDataElement.containerId).prepend('<iframe id="' + inputDataElement.containerId + '-frame" src="' + inputDataElement.frameSrc + '" style="width:inherit; height:inherit; margin:0; " />');
       });
       callback();
     }, 50);
@@ -429,7 +406,7 @@ var getPathvisiojsHtmlTemplate = function() {
 
   var serializedHtml = serializeXmlToString(html00);
   console.log(serializedHtml);
-}
+};
 
 var getPathvisiojsSvgTemplate = function() {
   var svg = pathvisiojs.utilities.cloneNode('#pathvisiojs-diagram');
@@ -455,4 +432,4 @@ var getPathvisiojsSvgTemplate = function() {
   //thanks MDN
   var serializedSvg = serializeXmlToString(svg00);
   console.log(serializedSvg);
-}
+};

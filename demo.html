@@ -1,141 +1,99 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
-<head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<!DOCTYPE html>
+<html style="margin: 0; width: 100%; height: 100%; ">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
 
-  <title>Pathvisiojs Simple Built Production Example</title>
+    <title>Pathvisiojs Simple Built Production Example</title>
 
-  <!--
-  <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css" media="screen">
-  <link rel="stylesheet" href="http://wikipathways.github.io/pathvisiojs/src/css/pathvisiojs.css" media="screen">
-  <link rel="stylesheet" href="http://wikipathways.github.io/pathvisiojs/src/css/annotation.css" media="screen">
-  <link rel="stylesheet" href="http://wikipathways.github.io/pathvisiojs/src/css/pan-zoom.css" media="screen">
-  <link rel="stylesheet" href="http://wikipathways.github.io/pathvisiojs/src/css/pathway-diagram.css" media="screen">
-  -->
+    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css" media="screen">
+    <link rel="stylesheet" href="/dist/lib/pathvisiojs/css/pathvisiojs.css">
 
-  <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css" media="screen">
-  <link rel="stylesheet" href="../src/css/pathvisiojs.css" media="screen">
-  <link rel="stylesheet" href="../src/css/annotation.css" media="screen">
-  <link rel="stylesheet" href="../src/css/pan-zoom.css" media="screen">
-  <link rel="stylesheet" href="../src/css/pathway-diagram.css" media="screen">
+    <!--[if lt IE 9]>
+    <script>
+      // IE8 only allows console.log when Developer Tools is open. This will prevent errors
+      // from showing up if I use console.log without DevTools being open.
+      // from http://stackoverflow.com/questions/3326650/console-is-undefined-error-for-internet-explorer
 
-  <!--[if lt IE 9]>
-  <script src="http://ie7-js.googlecode.com/svn/version/2.1(beta4)/IE9.js"></script>
-  <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
-  <script src="../lib/es5-shim/es5-shim.js"></script>
-  <script src="../lib/Xccessors/xccessors-standard.js"></script>
+      /**
+       * Protect window.console method calls, e.g. console is not defined on IE
+       * unless dev tools are open, and IE doesn't define console.debug
+       */
+      (function() {
+       if (!window.console) {
+         window.console = {};
+       }
+       // union of Chrome, FF, IE, and Safari console methods
+       var m = [
+       "log", "info", "warn", "error", "debug", "trace", "dir", "group",
+       "groupCollapsed", "groupEnd", "time", "timeEnd", "profile", "profileEnd",
+       "dirxml", "assert", "count", "markTimeline", "timeStamp", "clear"
+       ];
+       // define undefined methods as noops to prevent errors
+       for (var i = 0; i < m.length; i++) {
+         if (!window.console[m[i]]) {
+         window.console[m[i]] = function() {};
+         }    
+       } 
+      })();
+    </script>
+    <![endif]-->
+  </head>
+
+  <body style="margin: 0; width: 100%; height: 100%; ">
+    <div id="production-container" style="width:inherit; height:inherit; margin:0; overflow:hidden;">
+    </div>
+    <script src="/dist/lib/async/js/async.min.js"></script>
+    <script src="/dist/lib/d3/js/d3-with-aight.min.js"></script>
+    <script src="/dist/lib/jquery/js/jquery.min.js"></script>
+    <script src="/dist/lib/typeahead/js/typeahead.min.js"></script>
+    <script src="/dist/lib/modernizr/js/modernizr.min.js"></script>
+    <script src="/dist/lib/jsonld/js/jsonld.min.js"></script>
+    <script src="/dist/lib/pathvisiojs/js/pathvisiojs.min.js"></script>
+    <script src="/dist/parse-uri-params.js"></script>
 
   <script>
-
-    // IE8 only allows console.log when Developer Tools is open. This will prevent errors
-    // from showing up if I use console.log without DevTools being open.
-    // from http://stackoverflow.com/questions/3326650/console-is-undefined-error-for-internet-explorer
-
-    /**
-    * Protect window.console method calls, e.g. console is not defined on IE
-    * unless dev tools are open, and IE doesn't define console.debug
-    */
-    (function() {
-    if (!window.console) {
-    window.console = {};
-    }
-    // union of Chrome, FF, IE, and Safari console methods
-    var m = [
-    "log", "info", "warn", "error", "debug", "trace", "dir", "group",
-    "groupCollapsed", "groupEnd", "time", "timeEnd", "profile", "profileEnd",
-    "dirxml", "assert", "count", "markTimeline", "timeStamp", "clear"
-    ];
-    // define undefined methods as noops to prevent errors
-    for (var i = 0; i < m.length; i++) {
-    if (!window.console[m[i]]) {
-    window.console[m[i]] = function() {};
-    }    
-    } 
-    })();
-  </script>
-  <![endif]-->
-
-
-</head>
-
-<body>
-  <div id="body">
-    <div id="header">
-      <h1>Pathvisiojs Simple Built Production Example</h1>
-    </div>
-    <div id="main">
-      <div id="production-container" style="width: 500px; height: 500px; border:1px solid black; ">
-      </div>
-    </div>
-    <div id="footer">
-      <p>(c) WikiPathways 2013</p>
-    </div>
-  </div>
-  <!--
-  <script src="http://wikipathways.github.io/pathvisiojs/lib/lib/rgb-color/rgb-color.min.js"></script>
-  <script src="http://wikipathways.github.io/pathvisiojs/lib/lib/strcase/dist/strcase.min.js"></script>
-  <script src="http://wikipathways.github.io/pathvisiojs/lib/lib/async/lib/async.js"></script>
-  <script src="http://wikipathways.github.io/pathvisiojs/lib/lib/d3/d3.min.js"></script>
-  <script src="http://wikipathways.github.io/pathvisiojs/lib/lib/jquery/jquery.min.js"></script>
-  <script src="http://wikipathways.github.io/pathvisiojs/lib/lib/typeahead.js/dist/typeahead.min.js"></script>
-  <script src="http://wikipathways.github.io/pathvisiojs/lib/lib/modernizr/modernizr.js"></script>
-  <script src="http://wikipathways.github.io/pathvisiojs/lib/lib/screenfull/dist/screenfull.min.js"></script>
-  <script src="http://wikipathways.github.io/pathvisiojs/lib/lib/svg-pan-zoom/svg-pan-zoom.js"></script>
-  <script src="http://wikipathways.github.io/pathvisiojs/lib/lib/PathFinding.js/lib/pathfinding-browser.min.js"></script>
-  <script src="http://wikipathways.github.io/pathvisiojs/lib/lib/node-uuid/uuid.js"></script>
-  <script src="http://wikipathways.github.io/pathvisiojs/lib/lib/jsonld.js/js/jsonld.js"></script>
-  <script src="http://wikipathways.github.io/pathvisiojs/lib/lib/jsonld.js/js/Promise.js"></script>
-  <script src="http://wikipathways.github.io/pathvisiojs/lib/lib/jsonld.js/js/rdfa.js"></script>
-  <script src="http://wikipathways.github.io/pathvisiojs/build/js/pathvisio.min.js"></script>
-  -->
-  <script src="../lib/rgb-color/rgb-color.min.js"></script>
-  <script src="../lib/strcase/dist/strcase.min.js"></script>
-  <script src="../lib/async/lib/async.js"></script>
-  <script src="../lib/d3/d3.min.js"></script>
-  <script src="../lib/jquery/jquery.min.js"></script>
-  <script src="../lib/typeahead.js/dist/typeahead.min.js"></script>
-  <script src="../lib/modernizr/modernizr.js"></script>
-  <script src="../lib/svg-pan-zoom/svg-pan-zoom.js"></script>
-  <script src="../lib/node-uuid/uuid.js"></script>
-  <script src="../lib/jsonld.js/js/jsonld.js"></script>
-  <script src="../lib/jsonld.js/js/Promise.js"></script>
-  <script src="./compare.js"></script>
-  <script src="../build/localhost/js/pathvisio.min.js"></script>
-
-
-  <script>
-    async.waterfall([
-      function(callback) {
-        developmentLoader.parseUriParams(function(parsedInputData) {
-          callback(null, parsedInputData);
-        });
-      },    
-      function(parsedInputData, callback) {
         /* *******************
         /* Load pathvisiojs
         /* *******************/
-
+  window.onload = function() {
         pathvisiojs.load({
           container: '#production-container', //as of now, this can only be a CSS selector: http://www.w3.org/TR/CSS2/selector.html
           fitToContainer:true, //A fitToContainer value of false means that the diagram should be the size specified by the diagram creator, without any scaling (full size as per GPML width and height). A value of true means that diagram should be scaled down, if required, to fit entirely within the element specified by the container selector, while preserving aspect ratio. 
-          sourceData:parsedInputData.sourceData, //at least one element required
-          wpId:parsedInputData.wpId, //optional
-          wpRevision:'', //optional
+          sourceData:[{ // at least one item required
+            uri:'http://pointer.ucsf.edu/d3/r/data-sources/gpml.php?id=WP1',
+            fileType:'gpml' // generally will correspond to filename extension
+          }, {
+            uri:'http://www.wikipathways.org/wpi.php?action=downloadFile&type=png&pwTitle=Pathway:WP1',
+            fileType:'png'
+          }],
           //cssUri: srcDirectoryUri + 'css/pathway-diagram.css',
           //customMarkers: customMarkers,
           //customSymbols: customSymbols,
-          highlightNodes: [
-            {'parameter': 'label', 'parameterValue': 'CRH', 'color': 'red'},
-            {'parameter': 'xref', 'parameterValue': '8525,Entrez%20Gene', 'color': '#FF0000'}
-          ],
-          hiddenElements: [
+          bridgedbLinkOutsUriStub: 'http://pointer.ucsf.edu/d3/r/data-sources/bridgedb/bridgedb.php/', // optional
+          bridgedbDatasources: 'http://pointer.ucsf.edu/d3/r/data-sources/bridgedb-datasources.php', // optional
+          diagramLoadingIconUri: 'http://www.wikipathways.org/wpi/extensions/PathwayViewer/img/loading.gif', // optional
+          diagramNotAvailableIconUri: 'http://www.wikipathways.org/wpi/extensions/PathwayViewer/img/imageNotAvailable.jpg', // optional
+          pathwaySearchUriStub: 'http://wikipathways.org//index.php?title=Special:SearchPathways&doSearch=1&query=', // optional
+          highlights: [{ //optional
+          "label": "APC",
+          "style": {
+            "fill": "green",
+            "stroke": "green"
+          }
+          }, {
+            "xref": "HMDB00193,HMDB",
+            "style": {
+              "fill": "blue",
+              "stroke": "blue"
+            }
+          }],
+          hiddenElements: [ // this doesn't actually work yet
             'find',
             'wikipathways-link'
           ]
         });
-
-        callback(null);
-      }    
-    ]);
+  }
   </script>
 
 </body>
