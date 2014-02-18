@@ -48,13 +48,12 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
             preloadDiagramArgs.cssUri = cssUri;
             //preloadDiagramArgs.customSymbols = customSymbols;
 
-            pathvisiojs.view.pathwayDiagram.svg.loadPartials(preloadDiagramArgs, function(docFragment, svg) {
+            pathvisiojs.view.pathwayDiagram.svg.loadPartials(preloadDiagramArgs, function(svg) {
               if (!svg) {
                 throw new Error("Could not load SVG template.");
               }
 
               var results = {};
-              results.docFragment = docFragment;
               results.svg = svg;
               callback(null, results);
             });
@@ -71,6 +70,7 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
               //console.log('json');
               //console.log(json);
               pathway = json;
+              self.myPathway = json;
               callback(null, json);
             });
           }
@@ -78,28 +78,14 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
         function(err, results){
           //TODO get pathwayWidth and Height
 
-          callback(null, results.preloadSvg.docFragment, results.preloadSvg.svg, results.pathway);
+          callback(null, results.preloadSvg.svg, results.pathway);
         });
       },
-      function(docFragment, svg, pathway, callback){
+      function(svg, pathway, callback){
         pathvisiojs.view.pathwayDiagram.svg.renderWithCachedData(svg, pathway, function() {
           console.log('finallysvg');
-          console.log(docFragment);
           console.log(svg);
-          self.finallysvg = svg;
-          self.finallydocFragment = docFragment;
-          var svgns = "http://www.w3.org/2000/svg";
-          var insertedSvg = document.createElementNS(svgns, 'svg');
-          var svgNode = document.importNode(svg[0][0],true);
-          var diagramContainerElement = diagramContainer[0][0];
-          var loadingIcon = diagramContainerElement.querySelector('#loading-icon');
-          insertedSvg.innerHTML = svgNode.innerHTML;
-          diagramContainerElement.replaceChild(insertedSvg, loadingIcon);
-
-          //svg = document.importNode(svg[0][0],true); // surprisingly optional in these browsers
-          //document.body.appendChild(svg);
-
-          //diagramContainer.append(svg[0][0]);
+          svg.attr('style', 'display:inline');
           callback(null, svg);
         });
       },
@@ -258,23 +244,22 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
 
     async.waterfall([
       function(callback) {
-        var docFragment = document.createDocumentFragment();
-        var svg = d3.select(docFragment).append('div').html(pathvisioNS['tmp/pathvisiojs.svg']).select('#pathvisiojs-diagram')
+        var svg = diagramContainer.append('div').html(pathvisioNS['tmp/pathvisiojs.svg']).select('#pathvisiojs-diagram')
         .attr('preserveAspectRatio', 'xMidYMid');
         
         console.log('svg');
         console.log(svg);
 
-        callback(null, docFragment, svg);
+        callback(null, svg);
       },
-      function(docFragment, svg, callback) {
+      function(svg, callback) {
         if (!!args.customMarkers) {
           pathvisiojs.view.pathwayDiagram.svg.edge.marker.loadAllCustom(svg, customMarkers, function() {
-            callback(null, docFragment, svg);
+            callback(null, svg);
           });
         }
         else {
-          callback(null, docFragment, svg);
+          callback(null, svg);
         }
       },
       /*
@@ -289,7 +274,7 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
         }
       },
       //*/
-      function(docFragment, svg, callback) {
+      function(svg, callback) {
         console.log('svgtext');
         console.log(svg);
         if (!!cssUri) {
@@ -297,19 +282,16 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
             var defs = svg.select('defs');
             var style = defs.append('style').attr('type', "text/css");
             style.text(data);
-            callback(null, docFragment, svg);
+            callback(null, svg);
           });
         }
         else {
-          callback(null, docFragment, svg);
+          callback(null, svg);
         }
       }
     ],
-    function(err, docFragment, svg) {
-      console.log('docFragment');
-      console.log(docFragment);
-      console.log(svg);
-      callbackOutside(docFragment, svg);
+    function(err, svg) {
+      callbackOutside(svg);
     });
   }
 
