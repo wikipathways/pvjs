@@ -1,6 +1,5 @@
 var pvjsSources = [
-  'tmp/pathvisiojs.js', //we only use this one in the Gruntfile, not in development mode in test/compare.js,
-  'src/js/pathvisiojs/pathvisio.js',
+  'src/js/pathvisiojs/pathvisiojs.js',
   'src/js/pathvisiojs/utilities.js',
   'config/default.js',
   'src/js/pathvisiojs/data/data.js',
@@ -76,56 +75,22 @@ var specFileName;
 
 module.exports = function(grunt) {
 
-// see http://stackoverflow.com/questions/11293857/fastest-way-to-copy-file-in-node-js
-var fs = require('fs');
-function copyFile(source, target, cb) {
-  var cbCalled = false;
 
-  var rd = fs.createReadStream(source);
-  rd.on("error", function(err) {
-    done(err);
-  });
-  var wr = fs.createWriteStream(target);
-  wr.on("error", function(err) {
-    done(err);
-  });
-  wr.on("close", function(ex) {
-    done();
-  });
-  rd.pipe(wr);
-
-  function done(err) {
-    if (!cbCalled) {
-      cb(err);
-      cbCalled = true;
-    }
-  }
-}
 
 // ----------
 var packageJson = grunt.file.readJSON("package.json"),
     testPathwaysElementCounts = grunt.file.readJSON("test/data/protocol/counts.json"),
-    distributionJs = "dist/js/pathvisio.js",
-    distributionCss = "dist/css/pathvisiojs.css",
-    minifiedJs = "dist/js/pathvisio.min.js",
-    minifiedCss = "dist/js/pathvisiojs.min.css",
-    packageDirName = "pathvisiojs-" + packageJson.version,
-    packageDir = "dist/" + packageDirName + "/",
-    releaseRoot = "../site-build/built-pathvisiojs/";
+    tmpDir = "./tmp/",
+    distDir = "./dist/",
+    distLibDir = distDir + "lib/";
 
 // ----------
 // Project configuration.
 grunt.initConfig({
     pkg: packageJson,
     clean: {
-        dist: ["dist"],
-        package: [packageDir],
-        release: {
-            src: [releaseRoot],
-            options: {
-                force: true
-            }
-        }
+      build: [distDir],
+      temp: [tmpDir]
     },
     concat: {
         options: {
@@ -137,22 +102,55 @@ grunt.initConfig({
               + "License: http://www.apache.org/licenses/LICENSE-2.0/ */\n\n",
           process: true
         },
-        distJs: {
-            src:  [ "<banner>" ].concat(pvjsSources),
-            dest: distributionJs
+        pathvisiojsJs: {
+            src:  ['./lib/es5-shim/es5-sham.min.js', './lib/blueimp-load-image/js/load-image.min.js', './lib/rgb-color/rgb-color.js', './lib/node-uuid/uuid.js', './lib/strcase/dist/strcase.min.js', './lib/svg-pan-zoom/svg-pan-zoom.js', './lib/blueimp-load-image/js/load-image.min.js', 'tmp/pathvisiojs-temp.js'].concat(pvjsSources),
+            //src:  [ '<banner>' ].concat(pvjsSources),
+            dest: tmpDir + 'pathvisiojs/js/pathvisiojs.js'
         },
-        distCss: {
-            src:  [ "<banner>" ].concat(pvjsCssSources),
-            dest: distributionCss
+        pathvisiojsDistCss: {
+            src:  pvjsCssSources,
+            dest: distLibDir + 'pathvisiojs/css/pathvisiojs.css'
+        },
+        d3WithAight: {
+            src:  [ './lib/aight/aight.min.js', './lib/d3/d3.min.js', './lib/aight/aight.d3.min.js' ],
+            dest: tmpDir + 'd3/js/d3-with-aight.js'
+        },
+        jsonld: {
+            src:  [ './lib/jsonld.js/js/jsonld.js', './lib/jsonld.js/js/Promise.js' ],
+            dest: tmpDir + 'jsonld/js/jsonld.js'
         }
     },
     uglify: {
       options: {
-        mangle: true 
+        mangle: true
       },
       pathvisiojs: {
-          src: [ distributionJs ],
-          dest: minifiedJs
+        src: [ tmpDir + 'pathvisiojs/js/pathvisiojs.js' ],
+        dest: distLibDir + 'pathvisiojs/js/pathvisiojs.min.js'
+      },
+      async: {
+        src: [ './lib/async/lib/async.js' ],
+        dest: distLibDir + 'async/js/async.min.js'
+      },
+      d3: {
+        src: [ tmpDir + 'd3/js/d3-with-aight.js' ],
+        dest: distLibDir + 'd3/js/d3-with-aight.min.js'
+      },
+      jquery: {
+        src: [ './lib/jquery/jquery.min.js' ],
+        dest: distLibDir + 'jquery/js/jquery.min.js'
+      },
+      typeahead: {
+        src: [ './lib/typeahead.js/dist/typeahead.min.js' ],
+        dest: distLibDir + 'typeahead/js/typeahead.min.js'
+      },
+      jsonld: {
+        src: [ tmpDir + 'jsonld/js/jsonld.js' ],
+        dest: distLibDir + 'jsonld/js/jsonld.min.js'
+      },
+      modernizr: {
+        src: [ './lib/modernizr/modernizr.js' ],
+        dest: distLibDir + 'modernizr/js/modernizr.min.js'
       }
     },
     watch: {
@@ -172,14 +170,14 @@ grunt.initConfig({
       //*/
     },
     jshint: {
-        options: {
-            jshintrc: '.jshintrc'
-        },
-        beforeconcat: pvjsSources,
-        afterconcat: [ distributionJs ]
+      options: {
+        jshintrc: '.jshintrc'
+      },
+      beforeconcat: pvjsSources,
+      afterconcat: [ distLibDir + 'pathvisiojs/js/pathvisiojs.min.js' ]
     },
     str2js: {
-      pathvisioNS: { 'tmp/pathvisiojs.js': ['src/pathvisiojs.html', 'src/css/pathway-diagram.css', 'tmp/pathvisiojs.svg']}
+      pathvisioNS: { 'tmp/pathvisiojs-temp.js': ['src/pathvisiojs.html', 'tmp/pathvisiojs.svg']}
     },
     browserify: {
       dist: {
@@ -187,21 +185,21 @@ grunt.initConfig({
           'node_modules/node-xml2json/index.js': ['client/scripts/**/*.js', 'client/scripts/**/*.coffee'],
           //'build/module.js': ['client/scripts/**/*.js', 'client/scripts/**/*.coffee'],
         }/*,
-        options: {
-          transform: ['coffeeify']
-        }//*/
-      }
+options: {
+transform: ['coffeeify']
+}//*/
+}
     },
     "git-describe": {
-        build: {
-            options: {
-                prop: "gitInfo"
-            }
+      build: {
+        options: {
+          prop: "gitInfo"
         }
+      }
     },
     concurrent: {
-        protractor_test: ['protractor-chrome', 'protractor-firefox']
-        //protractor_test: ['protractor-chrome', 'protractor-safari', 'protractor-firefox']
+      protractor_test: ['protractor-chrome', 'protractor-firefox']
+      //protractor_test: ['protractor-chrome', 'protractor-safari', 'protractor-firefox']
     },
     protractor: {
       options: {
@@ -256,6 +254,16 @@ grunt.initConfig({
           remote: '../',
           branch: 'build'
         }
+      },
+    },
+    copy: {
+      index: {
+        src: './demo.html',
+        dest: './dist/index.html',
+      },
+      parseUriParams: {
+        src: './test/compare.js',
+        dest: './dist/parse-uri-params.js',
       }
     }
   });
@@ -273,6 +281,7 @@ grunt.initConfig({
   grunt.loadNpmTasks('grunt-concurrent');
   grunt.loadNpmTasks('grunt-protractor-runner');
   grunt.loadNpmTasks('grunt-build-control');
+  grunt.loadNpmTasks('grunt-contrib-copy');
   //grunt.loadNpmTasks("grunt-net");
 
   grunt.registerTask('protractor-chrome', 'Run local tests for development', function() {
@@ -304,15 +313,11 @@ grunt.initConfig({
   });
 
   // build 
-  grunt.registerTask('build', ['sync', 'str2js', 'clean:build', 'git-describe', 'jshint:beforeconcat', 'concat', 'jshint:afterconcat', 'uglify']);
+  grunt.registerTask('build', ['sync', 'str2js', 'clean:build', 'git-describe', 'jshint:beforeconcat', 'concat', 'jshint:afterconcat', 'uglify', 'copy']);
+  //grunt.registerTask('build', ['sync', 'clean:temp', 'str2js', 'clean:build', 'git-describe', 'jshint:beforeconcat', 'concat', 'jshint:afterconcat', 'uglify', 'copy']);
 
   // quick-build 
-  grunt.registerTask('quick-build', ['sync', 'str2js', 'git-describe', 'concat', 'uglify']);
-
-  // copy-files-to-dist copy files like index.html demo file to dist directory
-  grunt.registerTask('copy-files-to-dist', 'Copy files to dist directory', function() {
-    copyFile('./demo.html', './dist/index.html');
-  });
+  grunt.registerTask('quick-build', ['sync', 'str2js', 'clean:build', 'git-describe', 'concat', 'uglify', 'copy']);
 
   // test
   grunt.registerTask('test-min', 'Run local tests for development', function(val) {

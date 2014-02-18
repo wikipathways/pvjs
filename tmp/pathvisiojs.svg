@@ -310,7 +310,8 @@ style data) used by the program pathvisiojs, which has two components:
 	 	cursor: pointer;
 	}
 	
-	.has-xref {
+	.has-xref:hover {
+		cursor: pointer;
 	}
 
 	.data-node.gene-product {
@@ -500,4 +501,4 @@ style data) used by the program pathvisiojs, which has two components:
 		stroke: orange; 
     stroke-width: 3px;
   }
-</style></defs><filter id="highlight" width="150%" height="150%"><feOffset result="offOut" in="SourceGraphic" dx="30" dy="30"></feOffset><feGaussianBlur result="blurOut" in="offOut" stdDeviation="10"></feGaussianBlur><feBlend in="SourceGraphic" in2="blurOut" mode="normal"></feBlend></filter><g id="viewport" transform="matrix(0.6710888444694338, 0, 0, 0.6710888444694338, 364.8176552543344, 20) "></g></svg>
+</style></defs><filter id="highlight" width="150%" height="150%"><feOffset result="offOut" in="SourceGraphic" dx="30" dy="30"></feOffset><feGaussianBlur result="blurOut" in="offOut" stdDeviation="10"></feGaussianBlur><feBlend in="SourceGraphic" in2="blurOut" mode="normal"></feBlend></filter><g id="viewport" transform="matrix(0.9264531435349941, 0, 0, 0.9264531435349941, 607.8902728351127, 20) "></g></svg>
