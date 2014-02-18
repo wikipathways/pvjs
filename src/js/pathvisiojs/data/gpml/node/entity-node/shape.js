@@ -47,14 +47,13 @@ pathvisiojs.data.gpml.element.node.entityNode.shape = function(){
         'Color':'c0c0c0'
       }
     }
-  }
+  };
 
   function toPvjson(gpmlShape, pathwayIri, callback) {
     
     // some shapes have GPML values that do not match what is visually displayed in PathVisio-Java.
     // Below we correct the GPMl so that the display in pathvisiojs will matches the display in PathVisio-Java.
-    self.myGpmlShape = gpmlShape;
-    var gpmlWidth, gpmlCenterX; 
+    var gpmlWidth, gpmlCenterX;
     if (gpmlShape.select('Graphics').attr('ShapeType') === 'Triangle') {
       gpmlWidth = parseFloat(gpmlShape.select('Graphics').attr('Width'));
       gpmlCenterX = parseFloat(gpmlShape.select('Graphics').attr('CenterX'));

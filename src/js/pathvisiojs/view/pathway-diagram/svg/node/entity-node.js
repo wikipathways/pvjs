@@ -16,14 +16,14 @@ pathvisiojs.view.pathwayDiagram.svg.node.EntityNode = function(){
           cssClass += pathvisiojs.view.pathwayDiagram.svg.convertToCssClassName('label-' + decodeURIComponent(d.text.line[0])) + ' ';
           if (!!d.DatasourceReference) {
             cssClass += 'has-xref ';
-            cssClass += pathvisiojs.view.pathwayDiagram.svg.convertToCssClassName('xref-' + decodeURIComponent(d['DatasourceReference'].ID + ',' + d['DatasourceReference'].Database)) + ' ';
+            cssClass += pathvisiojs.view.pathwayDiagram.svg.convertToCssClassName('xref-' + decodeURIComponent(d.DatasourceReference.ID + ',' + d.DatasourceReference.Database)) + ' ';
           }
         }
         if (d.hasOwnProperty('CellularComponent')) {
           cssClass += 'cellular-component ' + pathvisiojs.view.pathwayDiagram.svg.convertToCssClassName(d.CellularComponent) + ' ';
         }
         return cssClass;
-      })
+      });
       if (args.data.nodeType === 'DataNode') { //all datanodes should be clickable
         var notDragged = true;
         nodeContainer
@@ -36,10 +36,10 @@ pathvisiojs.view.pathwayDiagram.svg.node.EntityNode = function(){
         .on("mouseup", function(d,i) {
           if (notDragged) {
             var dfId = null, dfDb = null;
-            if (!!d['DatasourceReference']){
-              if (!!d['DatasourceReference'].ID && !!d['DatasourceReference'].Database){ 
-                dfId = d['DatasourceReference'].ID;
-                dfDb = d['DatasourceReference'].Database;
+            if (!!d.DatasourceReference){
+              if (!!d.DatasourceReference.ID && !!d.DatasourceReference.Database){
+                dfId = d.DatasourceReference.ID;
+                dfDb = d.DatasourceReference.Database;
               }
             }
 
