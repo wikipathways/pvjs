@@ -1,7 +1,7 @@
 pathvisiojs.view.pathwayDiagram.svg = function(){
   'use strict';
 
-  var svg, shapesAvailable, markersAvailable, contextLevelInput,
+  var shapesAvailable, markersAvailable, contextLevelInput,
     renderableTypeToSvgElementMappings = {
       entityNode: 'g',
       groupNode: 'g',
@@ -104,6 +104,8 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
         });
       },
       function(svg, callback) {
+        console.log('highlightssvg');
+        console.log(svg);
         if (!!highlights) {
           highlights.forEach(function(highlight) {
             pathvisiojs.view.pathwayDiagram.svg.node.highlight(highlight);
@@ -181,9 +183,9 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
             svgInFocus = false;
           }
         });
-        callback(null);
+        callback(null, svg);
       },
-      function(callback){
+      function(svg, callback){
         //* Node Highlighter
 
         var nodeLabels, nodeLabel;
@@ -239,11 +241,11 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
           d3.select('#clear-highlights-from-typeahead').on('click', function() {
             pathvisiojs.view.pathwayDiagram.svg.node.clearHighlightsFromTypeahead();
           });
-          callback(null, 'svg loaded');
+          callback(null, svg);
         }
       }
     ],
-    function(err, results) {
+    function(err, svg) {
       callbackOutside(svg);
     });
   }
@@ -398,6 +400,8 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
       pathway = args.pathway,
       container = args.container;
 
+        console.log('before update svg');
+        console.log(svg[0][0]);
     if (!container) {
       throw new Error("No container specified.");
     }
@@ -411,8 +415,36 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
       throw new Error("No pathway specified.");
     }
     data = pathvisiojs.utilities.convertToArray(data);
-
     var renderingArgs = args;
+
+    async.each(data, function(dataElement, callbackInside) {
+      renderingArgs.data = dataElement;
+      renderingArgs.element = d3.select('#' + convertToId(dataElement.id));
+      if (dataElement.renderableType === 'GraphicalLine') {
+        pathvisiojs.view.pathwayDiagram.svg.edge.graphicalLine.render(renderingArgs);
+      }
+else if (dataElement.renderableType === 'Interaction') {
+        pathvisiojs.view.pathwayDiagram.svg.edge.interaction.render(renderingArgs);
+      }
+      else if (dataElement.renderableType === 'GroupNode') {
+        pathvisiojs.view.pathwayDiagram.svg.node.groupNode.render(renderingArgs, function(groupContainer, groupContents) {
+          // TODO this used to render the group contents, but now the callback does nothing
+        });
+      }
+      else if (dataElement.renderableType === 'EntityNode') {
+        pathvisiojs.view.pathwayDiagram.svg.node.EntityNode.render(renderingArgs);
+      }
+
+      callbackInside(null);
+    },
+    function(err){
+      callback(svg);
+    });
+
+
+
+
+    /*
     data.forEach(function(dataElement) {
       renderingArgs.data = dataElement;
       renderingArgs.element = d3.select('#' + convertToId(dataElement.id));
@@ -432,6 +464,7 @@ else if (dataElement.renderableType === 'Interaction') {
       }
     });
     callback(null, 'Successfully rendered elements');
+    //*/
   }
 
   function renderWithCachedData(svg, pathway, callback){
@@ -465,7 +498,9 @@ else if (dataElement.renderableType === 'Interaction') {
         //and an edge is updated before any edges that rely on it.
         // this would be using something like pathway.pathwayElementsNestedByDependency
         renderArgs.data = pathway.elements;
-        updateElementProperties(renderArgs, function() {
+        updateElementProperties(renderArgs, function(svg) {
+        console.log('after update svg');
+        console.log(svg[0][0]);
           callback(svg);
         });
       }
