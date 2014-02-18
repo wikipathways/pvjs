@@ -12,7 +12,13 @@ Demo
 
 How To Add It To Your Site
 ===================
-You can copy [this example](https://github.com/wikipathways/pathvisiojs/blob/gh-pages/index.html) to see how to add pathvisiojs to your HTML page. Be sure to notice how all the dependencies listed in the [bower.json file](https://github.com/wikipathways/pathvisiojs/blob/master/bower.json) are referenced in the example HTML file. You don't need to reference the './parse-uri-params.js' file unless you want to use URL parameters to highlight selected elements.
+It's as simple as referencing the pathvisiojs CSS and JavaScript files and [the dependencies](https://github.com/wikipathways/pathvisiojs/tree/gh-pages/lib) in your HTML document:
+```HTML
+<link rel="stylesheet" href="http://wikipathways.github.io/pathvisiojs/lib/pathvisiojs/css/pathvisiojs.css">
+<script src="http://wikipathways.github.io/pathvisiojs/lib/pathvisiojs/js/pathvisiojs.min.js"></script>
+```
+
+To add the dependencies, you can copy [this example](https://github.com/wikipathways/pathvisiojs/blob/gh-pages/index.html). 
 
 The [pathvisiojs.load() method](https://github.com/wikipathways/pathvisiojs/blob/gh-pages/index.html#L60) requires a value for the container and for the sourceData parameters. All the other parameters are optional. In production, avoid using window.onload as shown in the example, because you could overwrite an earlier window.onload call.
 
