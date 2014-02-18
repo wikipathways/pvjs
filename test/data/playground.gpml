@@ -1,45 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Pathway xmlns="http://pathvisio.org/GPML/2013a" Name="New Pathway" Version="20140130">
-  <Graphics BoardWidth="846.7767767767772" BoardHeight="619.1056910569102" />
-  <DataNode TextLabel="default geneproduct" GraphId="b562d" Type="GeneProduct">
-    <Graphics CenterX="153.11653116531164" CenterY="100.94850948509485" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
-    <Xref Database="" ID="" />
-  </DataNode>
-  <DataNode TextLabel="Default Metabolite" GraphId="ac01e" Type="Metabolite">
-    <Graphics CenterX="155.14905149051492" CenterY="58.94308943089431" Width="80.0" Height="20.0" ZOrder="32768" FontWeight="Bold" FontSize="10" Valign="Middle" Color="0000ff" />
-    <Xref Database="" ID="" />
-  </DataNode>
-  <DataNode TextLabel="Pathway" GraphId="ff9fc" Type="Pathway">
-    <Graphics CenterX="157.18157181571826" CenterY="568.4281842818425" Width="80.0" Height="20.0" ZOrder="32768" FontWeight="Bold" FontSize="12" Valign="Middle" ShapeType="None" Color="14961e" />
-    <Xref Database="" ID="" />
-  </DataNode>
-  <DataNode TextLabel="top geneproduct" GraphId="a99c1" Type="GeneProduct">
-    <Graphics CenterX="380.5962059620594" CenterY="105.52845528455285" Width="80.0" Height="20.0" ZOrder="32771" FontSize="10" Color="ffcccc" />
-    <Xref Database="" ID="" />
-  </DataNode>
-  <DataNode TextLabel="Metabolite" GraphId="ed2e0" Type="Metabolite">
-    <Graphics CenterX="378.5636856368564" CenterY="57.425474254742575" Width="80.0" Height="20.0" ZOrder="32775" FontSize="10" Valign="Middle" Color="ffcccc" />
-    <Xref Database="" ID="" />
-  </DataNode>
-  <DataNode TextLabel="Pathway" GraphId="d549a" Type="Pathway">
-    <Graphics CenterX="297.9403794037941" CenterY="572.3306233062328" Width="80.0" Height="20.0" ZOrder="32776" FontWeight="Bold" FontSize="12" Valign="Middle" ShapeType="None" />
-    <Xref Database="" ID="" />
-  </DataNode>
-  <Label TextLabel="default Label" GraphId="b695e">
-    <Graphics CenterX="151.08401084010842" CenterY="178.86178861788616" Width="80.0" Height="20.0" ZOrder="28672" FillColor="ffffff" FontSize="10" Valign="Middle" />
-  </Label>
-  <Label TextLabel="top Label" GraphId="a96b0">
-    <Graphics CenterX="378.5636856368562" CenterY="183.44173441734412" Width="80.0" Height="20.0" ZOrder="32770" FillColor="ffffff" FontSize="10" Color="ffcccc" />
-  </Label>
-  <Shape TextLabel="default cell" GraphId="fc246">
+  <Graphics BoardWidth="753.0" BoardHeight="612.3306233062328" />
+  <Shape GraphId="ab81b">
     <Attribute Key="org.pathvisio.CellularComponentProperty" Value="Cell" />
     <Attribute Key="org.pathvisio.DoubleLineProperty" Value="Double" />
-    <Graphics CenterX="150.4952574525746" CenterY="347.9884823848239" Width="125.8387533875339" Height="146.8414634146341" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="RoundedRectangle" LineThickness="3.0" Color="c0c0c0" Rotation="0.0" />
+    <Graphics CenterX="260.75" CenterY="292.75" Width="418.5" Height="330.5" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="RoundedRectangle" LineThickness="3.0" Color="c0c0c0" Rotation="0.0" />
   </Shape>
-  <Shape TextLabel="top cell" GraphId="ea73a">
-    <Attribute Key="org.pathvisio.CellularComponentProperty" Value="Cell" />
-    <Attribute Key="org.pathvisio.DoubleLineProperty" Value="Double" />
-    <Graphics CenterX="377.9749322493224" CenterY="352.5684281842818" Width="125.8387533875339" Height="146.8414634146341" ZOrder="32769" FontSize="10" ShapeType="RoundedRectangle" LineThickness="3.0" Color="ffcccc" Rotation="0.0" />
+  <Shape GraphId="a5d35">
+    <Attribute Key="org.pathvisio.CellularComponentProperty" Value="Extracellular region" />
+    <Graphics CenterX="633.25" CenterY="390.25" Width="179.5" Height="311.5" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="RoundedRectangle" LineStyle="Broken" Color="c0c0c0" Rotation="0.0" />
   </Shape>
   <InfoBox CenterX="0.0" CenterY="0.0" />
   <Biopax />

@@ -7,49 +7,11 @@ pathvisiojs.data.gpml.element.node.entityNode.shape = function(){
     'FontSize':10,
     'FontWeight':'Normal',
     'LineStyle':'Solid',
+    'LineThickness':1,
+    'Rotation':'0.0'
   };
 
-  var pathvisioDefaultStyleValues = {
-    'Shape':{
-      'Rotation':'0.0',
-      'Color':null,
-      'FillColor':null,
-      'FontSize':10,
-      'FontWeight':null,
-      'LineStyle':null,
-      'LineThickness':null,
-      'Cell':{
-        'Color':'c0c0c0',
-        'LineStyle':'Broken'
-      },
-      'Nucleus':{
-        'Color':'c0c0c0'
-      },
-      'EndoplasmicReticulum':{
-        'Color':'c0c0c0'
-      },
-      'GolgiApparatus':{
-        'Color':'c0c0c0'
-      },
-      'Mitochondria':{
-        'Color':'c0c0c0'
-      },
-      'SarcoplasmicReticulum':{
-        'Color':'c0c0c0'
-      },
-      'Organelle':{
-        'Color':'c0c0c0'
-      },
-      'Vesicle':{
-        'Color':'c0c0c0'
-      },
-      'ExtracellularRegion':{
-        'Color':'c0c0c0'
-      }
-    }
-  };
-
-  function toPvjson(gpmlShape, pathwayIri, callback) {
+  function toPvjson(gpmlShape, callback) {
     
     // some shapes have GPML values that do not match what is visually displayed in PathVisio-Java.
     // Below we correct the GPMl so that the display in pathvisiojs will matches the display in PathVisio-Java.
@@ -76,34 +38,26 @@ pathvisiojs.data.gpml.element.node.entityNode.shape = function(){
       }
     }
 
-    var thisPathvisioDefaultStyleValues;
-    if (!!jsonShape.CellularComponent) {
-      thisPathvisioDefaultStyleValues = pathvisiojs.utilities.collect(pathvisioDefaultStyleValues.Shape, pathvisioDefaultStyleValues.Shape[strcase.classCase(jsonShape.CellularComponent)]);
-    }
-    else {
-      thisPathvisioDefaultStyleValues = pathvisioDefaultStyleValues.Shape;
-    }
-
-    pathvisiojs.data.gpml.element.node.entityNode.toPvjson(gpmlShape, jsonShape, thisPathvisioDefaultStyleValues, pathwayIri, function(jsonShape) {
-      pathvisiojs.data.gpml.text.toPvjson(gpmlShape, thisPathvisioDefaultStyleValues, function(text) {
+    pathvisiojs.data.gpml.element.node.entityNode.toPvjson(gpmlShape, jsonShape, function(jsonShape) {
+      pathvisiojs.data.gpml.text.toPvjson(gpmlShape, defaults, function(text) {
         if (!!text) {
           jsonShape.text = text;
         }
 
         jsonShape = pathvisiojs.data.gpml.setColorAsJson(jsonShape,
                       gpmlShape.select('Graphics').attr('Color'),
-                      thisPathvisioDefaultStyleValues.Color);
+                      defaults.Color);
 
         var gpmlFillColor = gpmlShape.select('Graphics').attr('FillColor') || defaults.FillColor;
         jsonShape = pathvisiojs.data.gpml.element.node.setJsonBackgroundColor(jsonShape, gpmlFillColor);
 
         jsonShape = pathvisiojs.data.gpml.element.node.entityNode.setJsonRotationValue(jsonShape,
                       gpmlShape.select('Graphics').attr('Rotation'),
-                      thisPathvisioDefaultStyleValues.Rotation);
+                      defaults.Rotation);
 
         jsonShape = pathvisiojs.data.gpml.setBorderStyleAsJson(jsonShape,
                       gpmlShape.select('Graphics').attr('LineStyle'),
-                      thisPathvisioDefaultStyleValues.LineStyle);
+                      defaults.LineStyle);
 
         callback(jsonShape);
       });
