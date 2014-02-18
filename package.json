@@ -51,7 +51,8 @@
     "grunt-net": "~0.1.2",
     "node.extend": "~1.0.9",
     "JSON": "~1.0.0",
-    "grunt-build-control": "~0.1.2"
+    "grunt-build-control": "~0.1.2",
+    "grunt-contrib-copy": "~0.5.0"
   },
   "dependencies": {
     "grunt-string-to-js": "0.0.3",
