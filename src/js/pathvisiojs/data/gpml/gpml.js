@@ -543,7 +543,7 @@ pathvisiojs.data.gpml = function(){
               pathway.DataNode = [];
               dataNodes.each(function() {
                 gpmlDataNode = d3.select(this);
-                pathvisiojs.data.gpml.element.node.entityNode.dataNode.toPvjson(gpmlDataNode, pathwayIri, function(jsonDataNode) {
+                pathvisiojs.data.gpml.element.node.entityNode.dataNode.toPvjson(gpmlDataNode, function(jsonDataNode) {
                   pathway.DataNode.push(jsonDataNode);
                   pathway.nodes = pathway.nodes.concat(jsonDataNode);
                   pathway.elements = pathway.elements.concat(jsonDataNode);
@@ -561,7 +561,7 @@ pathvisiojs.data.gpml = function(){
               pathway.Label = [];
               gpmlPathway.selectAll('Label').each(function() {
                 gpmlLabel = d3.select(this);
-                pathvisiojs.data.gpml.element.node.entityNode.label.toPvjson(gpmlLabel, pathwayIri, function(jsonLabel) {
+                pathvisiojs.data.gpml.element.node.entityNode.label.toPvjson(gpmlLabel, function(jsonLabel) {
                   pathway.Label.push(jsonLabel);
                   pathway.nodes = pathway.nodes.concat(jsonLabel);
                   pathway.elements = pathway.elements.concat(jsonLabel);
@@ -579,7 +579,7 @@ pathvisiojs.data.gpml = function(){
               pathway.Shape = [];
               gpmlPathway.selectAll('Shape').each(function() {
                 gpmlShape = d3.select(this);
-                pathvisiojs.data.gpml.element.node.entityNode.shape.toPvjson(gpmlShape, pathwayIri, function(jsonShape) {
+                pathvisiojs.data.gpml.element.node.entityNode.shape.toPvjson(gpmlShape, function(jsonShape) {
                   pathway.Shape.push(jsonShape);
                   pathway.nodes = pathway.nodes.concat(jsonShape);
                   pathway.elements = pathway.elements.concat(jsonShape);
@@ -600,7 +600,7 @@ pathvisiojs.data.gpml = function(){
               pathway.Group = [];
               gpmlPathway.selectAll('Group').each(function() {
                 gpmlGroup = d3.select(this);
-                pathvisiojs.data.gpml.element.node.groupNode.toPvjson(gpml, gpmlGroup, pathwayIri, function(jsonGroup) {
+                pathvisiojs.data.gpml.element.node.groupNode.toPvjson(gpml, gpmlGroup, function(jsonGroup) {
                   pathway.Group.push(jsonGroup);
                   pathway.nodes = pathway.nodes.concat(jsonGroup);
                 });
@@ -618,7 +618,7 @@ pathvisiojs.data.gpml = function(){
               pathway.GraphicalLine = [];
               gpmlPathway.selectAll('GraphicalLine').each(function() {
                 gpmlGraphicalLine = d3.select(this);
-                pathvisiojs.data.gpml.edge.graphicalLine.toPvjson(gpml, gpmlGraphicalLine, pathwayIri, function(jsonGraphicalLine) {
+                pathvisiojs.data.gpml.edge.graphicalLine.toPvjson(gpml, gpmlGraphicalLine, function(jsonGraphicalLine) {
                   pathway.GraphicalLine.push(jsonGraphicalLine);
                   pathway.edges = pathway.edges.concat(jsonGraphicalLine);
                   pathway.elements = pathway.elements.concat(jsonGraphicalLine);
@@ -637,7 +637,7 @@ pathvisiojs.data.gpml = function(){
               pathway.Interaction = [];
               gpmlPathway.selectAll('Interaction').each(function() {
                 gpmlInteraction = d3.select(this);
-                pathvisiojs.data.gpml.edge.interaction.toPvjson(gpml, gpmlInteraction, pathwayIri, function(jsonInteraction) {
+                pathvisiojs.data.gpml.edge.interaction.toPvjson(gpml, gpmlInteraction, function(jsonInteraction) {
                   pathway.Interaction.push(jsonInteraction);
                   pathway.edges = pathway.edges.concat(jsonInteraction);
                   pathway.elements = pathway.elements.concat(jsonInteraction);

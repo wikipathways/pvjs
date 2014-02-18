@@ -53,9 +53,9 @@ pathvisiojs.data.gpml.edge.interaction = function(){
     return semanticName;
   }
 
-  function toPvjson(gpml, gpmlInteraction, pathwayIri, callback) {
+  function toPvjson(gpml, gpmlInteraction, callback) {
     var jsonAnchorInteraction, anchor, jsonAnchor, points, jsonPoints, interactionType, target, targetId, groupRef, source, sourceId;
-    pathvisiojs.data.gpml.edge.toPvjson(gpmlInteraction, pathwayIri, function(jsonInteraction) {
+    pathvisiojs.data.gpml.edge.toPvjson(gpmlInteraction, function(jsonInteraction) {
       //console.log('jsonInteraction');
       //console.log(jsonInteraction);
 
