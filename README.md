@@ -3,67 +3,18 @@ pathvisiojs
 
 JavaScript-based diagram viewer (implemented) and editor (planned) intended for biological pathways. This project is supported by the same community that maintains the Java-based pathway diagram editor [PathVisio](http://www.pathvisio.org/), but the codebases between pathvisiojs and PathVisio-Java are entirely distinct. PathVisio-Java plugins will not work with pathvisiojs.
 
-All code is in beta stage, and any APIs are subject to change.
+All JavaScript APIs in pathvisiojs are in beta stage and are subject to change.
 
-Demos
-=====
+Demo
+====
 
-* [gh-pages](http://wikipathways.github.io/pathvisiojs/test/)
+* [gh-pages](http://wikipathways.github.io/pathvisiojs/)
 
 How To Add It To Your Site
 ===================
-Pathvisiojs depends on the following JS libraries:
-  * [rgb-color](https://www.github.com/ariutta/rgb-color/)
-  * [strcase](https://www.github.com/tower/strcase/)
-  * [async](https://www.github.com/caolan/async/)
-  * [d3](https://www.github.com/mbostock/d3/)
-  * [jquery](https://www.github.com/components/jquery/)
-  * [typeahead.js](https://www.github.com/twitter/typeahead.js/)
-  * [Modernizr](https://www.github.com/Modernizr/Modernizr/)
-  * [svg-pan-zoom](https://www.github.com/ariutta/svg-pan-zoom/)
-  * [jsonld.js](https://www.github.com/digitalbazaar/jsonld.js/)
+You can copy [this example](https://github.com/wikipathways/pathvisiojs/blob/gh-pages/index.html) to see how to add pathvisiojs to your HTML page. Be sure to notice how all the dependencies listed in the [bower.json file](https://github.com/wikipathways/pathvisiojs/blob/master/bower.json) are referenced in the example HTML file. You don't need to reference the './parse-uri-params.js' file unless you want to use URL parameters to highlight selected elements.
 
-and the font-awesome icons.
-
-You can make it run in the browser by adding references in your HTML document to the library files and pathvisiojs. Checkout [this example](https://github.com/wikipathways/pathvisiojs/blob/master/test/production.html) or the bower.json file for more about dependencies. Then call the pathvisiojs.load() method with a value for the container and the sourceData parameters. All the other parameters are optional.
-
-```js
-      pathvisiojs.load({
-        container: '#production-container', //as of now, this can only be a CSS selector: http://www.w3.org/TR/CSS2/selector.html
-        fitToContainer:true, //A fitToContainer value of false means that the diagram should be the size specified by the diagram creator, without any scaling (full size as per GPML width and height). A value of true means that diagram should be scaled down, if required, to fit entirely within the element specified by the container selector, while preserving aspect ratio. 
-        sourceData:[ // at least one item required
-          {
-            uri:'http://example.org/pathway.gpml',
-            fileType:'gpml' // generally will correspond to filename extension
-          },
-          {
-            uri:'http://example.org/pathway.png',
-            fileType:'png'
-          }
-        ],
-        //cssUri: srcDirectoryUri + 'css/pathway-diagram.css',
-        //customMarkers: customMarkers,
-        //customSymbols: customSymbols,
-        bridgedbLinkOutsUriStub: 'http://pointer.ucsf.edu/d3/r/data-sources/bridgedb/bridgedb.php/', // optional
-        diagramLoadingIconUri: 'http://www.wikipathways.org/wpi/extensions/PathwayViewer/img/loading.gif', // optional
-        diagramNotAvailableIconUri: 'http://www.wikipathways.org/wpi/extensions/PathwayViewer/img/imageNotAvailable.jpg', // optional
-        imgDiagramUriStub: 'http://www.wikipathways.org/wpi.php?action=downloadFile&type=png&pwTitle=Pathway:', // optional
-        pathwaySearchUriStub: 'http://wikipathways.org//index.php?title=Special:SearchPathways&doSearch=1&query=', // optional
-        highlights: [{
-          "label": "APC",
-          "style": {
-            "fill": "green",
-            "stroke": "green"
-          }
-        }, {
-          "xref": "HMDB00193,HMDB",
-          "style": {
-            "fill": "blue",
-            "stroke": "blue"
-          }
-        }]
-      })
-```
+The [pathvisiojs.load() method](https://github.com/wikipathways/pathvisiojs/blob/gh-pages/index.html#L60) requires a value for the container and for the sourceData parameters. All the other parameters are optional. In production, avoid using window.onload as shown in the example, because you could overwrite an earlier window.onload call.
 
 How To Get Involved
 ===================
