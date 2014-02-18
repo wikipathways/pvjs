@@ -21,6 +21,7 @@ pathvisiojs.view.pathwayDiagram.svg.node.pathShape = function(){
     }
 
     //style attribute modified on parent 
+    /*
     var style = parent.attr('style');
     parent.attr('style', function(d) {
         if(d.hasOwnProperty('borderColor')) {
@@ -29,9 +30,10 @@ pathvisiojs.view.pathwayDiagram.svg.node.pathShape = function(){
 	  }
         }
         return style;})
+        //*/
 
     //other attributes extracted and applied to new g element
-    var stroke = 1
+    var stroke = 1;
     var transform = '';
     var g = parent.insert('g', ':first-child');
     g.attr('stroke-width', function(d) {

@@ -83,6 +83,10 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
       },
       function(callback){
         pathvisiojs.view.pathwayDiagram.svg.renderWithCachedData(svg, pathway, function() {
+          console.log('finallysvg');
+          console.log(svg);
+          self.finallysvg = svg;
+          diagramContainer.append(svg[0][0]);
           callback(null);
         });
       },
@@ -142,7 +146,6 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
         //*/
 
         svgPanZoom.init({
-          //'root': 'svg', //Alex, what is this line for? It doesn't appear to be doing anything and might be intended to be doing what the line below that I added is doing.
           'selector': 'svg',
           'zoomEnabled': false,
           'minZoom': '0.1',
@@ -238,24 +241,25 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
       //customSymbols = args.customSymbols,
       cssUri = args.cssUri;
 
-    async.series([
+    async.waterfall([
       function(callback) {
-        diagramContainer.html(pathvisioNS['tmp/pathvisiojs.svg']);
-
-        svg = diagramContainer.select('#pathvisiojs-diagram');
-        svg.attr('style', 'display: inline; width: inherit; min-width: inherit; max-width: inherit; height: inherit; min-height: inherit; max-height: inherit; ') // TODO this should be moved to the CSS file
+        var docFragment = document.createDocumentFragment();
+        var svg = d3.select(docFragment).append('body').html(pathvisioNS['tmp/pathvisiojs.svg']).select('#pathvisiojs-diagram')
         .attr('preserveAspectRatio', 'xMidYMid');
+        
+        console.log('svg');
+        console.log(svg);
 
-        callback(null);
+        callback(null, svg);
       },
-      function(callback) {
+      function(svg, callback) {
         if (!!args.customMarkers) {
           pathvisiojs.view.pathwayDiagram.svg.edge.marker.loadAllCustom(svg, customMarkers, function() {
-            callback(null);
+            callback(null, svg);
           });
         }
         else {
-          callback(null);
+          callback(null, svg);
         }
       },
       /*
@@ -270,22 +274,24 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
         }
       },
       //*/
-      function(callback) {
+      function(svg, callback) {
+        console.log('svgtext');
+        console.log(svg);
         if (!!cssUri) {
           d3.text(cssUri, 'text/css', function(data) {
             var defs = svg.select('defs');
             var style = defs.append('style').attr('type', "text/css");
             style.text(data);
-            callback(null);
+            callback(null, svg);
           });
         }
         else {
-          callback(null);
+          callback(null, svg);
         }
       }
     ],
     function(err, results) {
-      callbackOutside(svg);
+      callbackOutside(results);
     });
   }
 
