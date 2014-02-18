@@ -5,7 +5,7 @@ pathvisiojs.data.gpml.edge = function(){
     'Broken': 'dashed'
   };
 
-  function toPvjson(gpmlEdge, pathwayIri, callback) {
+  function toPvjson(gpmlEdge, callback) {
     var jsonAnchorEdge, anchor, jsonAnchor, points, jsonPoints, interactionType, target, targetId, groupRef;
     var jsonEdge = {};
     var graphId = gpmlEdge.attr('GraphId') || ('id' + uuid.v4());
@@ -94,7 +94,7 @@ pathvisiojs.data.gpml.edge = function(){
     }
     //*/
 
-    pathvisiojs.data.gpml.node.anchor.toPvjson(gpmlEdge, jsonEdge, 'edge', pathwayIri, function(jsonEdge) {
+    pathvisiojs.data.gpml.node.anchor.toPvjson(gpmlEdge, jsonEdge, 'edge', function(jsonEdge) {
       pathvisiojs.data.gpml.element.toPvjson(gpmlEdge, jsonEdge, function(jsonEdge) {
         callback(jsonEdge);
       });

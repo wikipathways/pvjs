@@ -9,9 +9,9 @@ pathvisiojs.data.gpml.edge.graphicalLine = function(){
   };
   //*/
 
-  function toPvjson(gpml, gpmlGraphicalLine, pathwayIri, callback) {
+  function toPvjson(gpml, gpmlGraphicalLine, callback) {
     var jsonAnchorGraphicalLine, anchor, jsonAnchor, points, jsonPoints, graphicalLineType, target, targetId, groupRef;
-    pathvisiojs.data.gpml.edge.toPvjson(gpmlGraphicalLine, pathwayIri, function(jsonGraphicalLine) {
+    pathvisiojs.data.gpml.edge.toPvjson(gpmlGraphicalLine, function(jsonGraphicalLine) {
       //console.log('jsonGraphicalLine');
       //console.log(jsonGraphicalLine);
 

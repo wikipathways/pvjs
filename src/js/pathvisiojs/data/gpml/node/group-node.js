@@ -58,7 +58,7 @@ pathvisiojs.data.gpml.element.node.groupNode = function() {
     });
   }
 
-  function toPvjson(pathway, gpmlGroup, pathwayIri, callbackOutside) {
+  function toPvjson(pathway, gpmlGroup, callbackOutside) {
     var jsonGroup = {},
       groupId,
       shapeType,

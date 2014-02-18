@@ -2,6 +2,10 @@ pathvisiojs.view.pathwayDiagram.svg.node.pathShape = function(){
   'use strict';
 
   function render(parent, data) {
+    console.log('data');
+    console.log(data);
+    console.log(data.width);
+    console.log(data.height);
     /*
     console.log(parent);
     console.log(data);
@@ -25,9 +29,9 @@ pathvisiojs.view.pathwayDiagram.svg.node.pathShape = function(){
     var style = parent.attr('style');
     parent.attr('style', function(d) {
         if(d.hasOwnProperty('borderColor')) {
-	  if(d.nodeType != 'Label'){  //Label "Color" attrs are NOT for borderColor of svg-specific rectangle shape
-            style += 'stroke:' + d.borderColor + '; ';
-	  }
+  if(d.nodeType != 'Label'){  //Label "Color" attrs are NOT for borderColor of svg-specific rectangle shape
+        style += 'stroke:' + d.borderColor + '; ';
+  }
         }
         return style;})
         //*/
@@ -37,27 +41,28 @@ pathvisiojs.view.pathwayDiagram.svg.node.pathShape = function(){
     var transform = '';
     var g = parent.insert('g', ':first-child');
     g.attr('stroke-width', function(d) {
-        if(!isNaN(d.borderWidth)){
-          stroke = d.borderWidth; //LineThickness in GPML
-        }
-        return stroke;})
-      .attr('transform', function(d) {
-        if (d.rotate){
-          transform += ' rotate(' + d.rotate + ',' + d.width/2 + ',' + d.height/2 + ')';
-        }
-        return transform;});
+      if (!!d.borderWidth) {
+        stroke = d.borderWidth; //LineThickness in GPML
+      }
+      return stroke;
+    })
+    .attr('transform', function(d) {
+      if (!!d.rotate) {
+        transform += ' rotate(' + d.rotate + ',' + d.width/2 + ',' + d.height/2 + ')';
+      }
+      return transform;
+    });
 
     var nodeAttributes = pathvisiojs.view.pathwayDiagram.svg.node.pathShape[pathShapeNameToUse].getAttributes(data.width, data.height, data.borderWidth);
     nodeAttributes.forEach(function(attribute) {
-
-     if(attribute.scale == 'true'){
+      if(attribute.scale){
         g.attr('stroke-width', function(d) {
           return stroke / ((d.width + d.height) / 200);
-	})
-	.attr('transform', function(d) {
-	  transform += ' scale('+d.width/100+', '+d.height/100+')';
-	  return transform;
-	});
+        })
+        .attr('transform', function(d) {
+          transform += ' scale('+d.width/100+', '+d.height/100+')';
+          return transform;
+        });
      }
 
       //handle alt path types and lists of attrs
@@ -65,13 +70,13 @@ pathvisiojs.view.pathwayDiagram.svg.node.pathShape = function(){
       var names = [attribute.name];
       var paths = [attribute.path];
       if (attribute.alt){
-	child = attribute.alt;
-	names = attribute.name;
-	paths = attribute.path;
+        child = attribute.alt;
+        names = attribute.name;
+        paths = attribute.path;
       }
       var childElement = g.append(child);
       for(var i = 0; i < names.length; i++){
-	childElement.attr(names[i], paths[i]);
+        childElement.attr(names[i], paths[i]);
       }
     });
   }

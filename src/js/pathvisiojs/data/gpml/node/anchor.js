@@ -14,7 +14,7 @@ pathvisiojs.data.gpml.node.anchor = function() {
   //  initialEdgeDirection: direction (in degrees) by which the edge emanates from the anchor (only for anchors attached to nodes, not edges)
   // }
 
-  function toPvjson(gpmlParentElement, jsonParentElement, elementType, pathwayIri, callback) {
+  function toPvjson(gpmlParentElement, jsonParentElement, elementType, callback) {
     var gpmlAnchors, gpmlAnchor, jsonAnchor, elementIri, graphId;
     if (elementType === 'edge') {
       gpmlAnchors = gpmlParentElement.selectAll('Anchor');

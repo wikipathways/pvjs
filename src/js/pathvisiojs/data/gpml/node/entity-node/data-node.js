@@ -8,7 +8,7 @@ pathvisiojs.data.gpml.element.node.entityNode.dataNode = function() {
     'LineStyle':'Solid',
   };
 
-  var toPvjson = function(gpmlDataNode, pathwayIri, callbackInside) {
+  var toPvjson = function(gpmlDataNode, callbackInside) {
     'use strict';
     var jsonDataNode = {};
     var dataNodeType = gpmlDataNode.attr('Type');
@@ -21,7 +21,7 @@ pathvisiojs.data.gpml.element.node.entityNode.dataNode = function() {
     jsonDataNode["@type"].push("DataNode");
     jsonDataNode["@type"].push(dataNodeType);
 
-    pathvisiojs.data.gpml.element.node.entityNode.toPvjson(gpmlDataNode, jsonDataNode, defaults, pathwayIri, function(jsonDataNode) {
+    pathvisiojs.data.gpml.element.node.entityNode.toPvjson(gpmlDataNode, jsonDataNode, function(jsonDataNode) {
       var database, ID, 
       datasourceReference = gpmlDataNode.select('Xref');
       if (!!datasourceReference) {
