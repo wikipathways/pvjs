@@ -258,12 +258,12 @@ transform: ['coffeeify']
     },
     copy: {
       index: {
-        src: './demo.html',
+        src: './demos/index.html',
         dest: './dist/index.html',
       },
-      parseUriParams: {
-        src: './test/compare.js',
-        dest: './dist/parse-uri-params.js',
+      demos: {
+        src: './dist/lib/',
+        dest: './demos/lib/',
       }
     }
   });

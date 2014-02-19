@@ -1,48 +1,31 @@
 // includes GPML elements of type EntityNode and Group
-pathvisiojs.data.gpml.element.node = function() { 
+pathvisiojs.data.gpml.element.node = function() {
   'use strict';
 
   var defaults = {};
   defaults.backgroundImage = {};
-
   defaults.shapeType = {};
-  defaults.shapeType.swing = 'Rectangle';
-  defaults.shapeType.gpml = 'Rectangle';
-
   defaults.valign = defaults.verticalAlign = {};
-  defaults.valign.swing = 'Middle';
-  defaults.valign.gpml = 'Middle';
-
   defaults.align = defaults.textAlign = {};
-  defaults.align.swing = 'Center';
-  defaults.align.gpml = null;
-
   defaults.padding = {};
-  defaults.padding.swing = '0.5em';
-  defaults.padding.gpml = null;
-
   defaults.lineThickness = defaults.borderWidth = {};
-  defaults.lineThickness.swing = 1;
-  defaults.lineThickness.gpml = null;
-
   defaults.lineStyle = defaults.borderStyle;
 
   var setJsonBackgroundColor = function(jsonNode, currentGpmlFillColorValue) {
     var jsonBackgroundColor = pathvisiojs.data.gpml.gpmlColorToCssColorNew(currentGpmlFillColorValue);
     jsonNode.backgroundColor = jsonBackgroundColor;
     return jsonNode;
-  }
+  };
 
   var getPorts = function(jsonNode, callback) {
     var getPerpendicularLine = function(sx, sy, rotate) {
       var rad = rotate * Math.PI/180;
       var sideAngleRotation = 2 * Math.PI - rad;
-      var dx, dy;
       var sideAngleBeforeRotate = Math.atan2(sy, sx);
       var dx = Math.cos(sideAngleBeforeRotate + sideAngleRotation - Math.PI/2);
       var dy = Math.sin(sideAngleBeforeRotate + sideAngleRotation - Math.PI/2);
       return {'dx': dx, 'dy': dy};
-    }
+    };
 
     var ports = [];
     var relXYCombinations = [
@@ -135,10 +118,10 @@ pathvisiojs.data.gpml.element.node = function() {
         'dx': perpendicularUnitVector.dx,
         'dy': perpendicularUnitVector.dy,
         '@type':'Port'
-      }); 
-    }); 
+      });
+    });
     callback(ports);
-  }
+  };
 
   // gpmlNode is NOT referring to data nodes exclusively. It is also referring to any other non-edge elements that can have anchors.
 
@@ -206,14 +189,14 @@ pathvisiojs.data.gpml.element.node = function() {
   }
   }
   //*/
-  }
+  };
 
   var getPortCoordinates = function(boxDimensions, relX, relY) {
     var port = {};
     port.x = boxDimensions.x + (relX * boxDimensions.width);
     port.y = boxDimensions.y + (relY * boxDimensions.height);
     return port;
-  }
+  };
 
   return {
     setJsonBackgroundColor:setJsonBackgroundColor,
