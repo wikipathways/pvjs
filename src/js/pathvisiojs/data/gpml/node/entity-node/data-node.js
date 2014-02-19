@@ -1,4 +1,5 @@
 pathvisiojs.data.gpml.element.node.entityNode.dataNode = function() {
+  'use strict';
 
   var defaults = {
     'Color':'000000',
@@ -6,10 +7,10 @@ pathvisiojs.data.gpml.element.node.entityNode.dataNode = function() {
     'FontSize':10,
     'FontWeight':'Normal',
     'LineStyle':'Solid',
+    'LineThickness':1
   };
 
   var toPvjson = function(gpmlDataNode, callbackInside) {
-    'use strict';
     var jsonDataNode = {};
     var dataNodeType = gpmlDataNode.attr('Type');
     if (!dataNodeType) {
@@ -22,11 +23,11 @@ pathvisiojs.data.gpml.element.node.entityNode.dataNode = function() {
     jsonDataNode["@type"].push(dataNodeType);
 
     pathvisiojs.data.gpml.element.node.entityNode.toPvjson(gpmlDataNode, jsonDataNode, function(jsonDataNode) {
-      var database, ID, 
-      datasourceReference = gpmlDataNode.select('Xref');
+      var database, ID,
+        datasourceReference = gpmlDataNode.select('Xref');
       if (!!datasourceReference) {
-        database = datasourceReference.attr('Database')
-        ID = datasourceReference.attr('ID')
+        database = datasourceReference.attr('Database');
+        ID = datasourceReference.attr('ID');
         if (!!database && !!ID) {
           jsonDataNode.DatasourceReference = {};
           jsonDataNode.DatasourceReference.Database = database;
@@ -49,7 +50,7 @@ pathvisiojs.data.gpml.element.node.entityNode.dataNode = function() {
         callbackInside(jsonDataNode);
       });
     });
-  }
+  };
 
   return {
     toPvjson:toPvjson
