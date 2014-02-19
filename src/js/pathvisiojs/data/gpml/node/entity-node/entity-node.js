@@ -19,9 +19,9 @@ pathvisiojs.data.gpml.element.node.entityNode = function(){
     return jsonNode;
   };
 
-  var toPvjson = function(gpmlEntityNode, jsonEntityNode, EntityNodeCallback) {
+  var toPvjson = function(gpmlEntityNode, jsonEntityNode, callback) {
     var graphId = gpmlEntityNode.attr('GraphId') || ('id' + uuid.v4());
-    jsonEntityNode.id = '' + graphId;
+    jsonEntityNode.id = graphId;
     jsonEntityNode.GraphId = graphId;
 
     var isContainedBy = gpmlEntityNode.attr('GroupRef');
@@ -30,16 +30,37 @@ pathvisiojs.data.gpml.element.node.entityNode = function(){
     }
 
     // TODO decide whether we always need a shape
-    var shapeType = gpmlEntityNode.select('Graphics').attr('ShapeType') || 'rectangle';
-    shapeType = strcase.paramCase(shapeType);
-    jsonEntityNode.ShapeType = shapeType;
+    var glyph = gpmlEntityNode.select('Graphics').attr('ShapeType') || 'rectangle';
+    glyph = strcase.paramCase(glyph);
+    jsonEntityNode.ShapeType = glyph;
+
+    if  (!!glyph) {
+      // set stroke and fill colors to their GPML values
+      // label: {
+      //  color: '#000000',
+      // },
+      // glyph: {
+      //  stroke: '#000000',
+      //  fill: '#ffffff',
+      // }
+    }
+    else {
+      // set stroke and fill colors to transparent and text color to its GPML value
+      // label: {
+      //  color: '#000000',
+      // },
+      // glyph: {
+      //  stroke: 'transparent',
+      //  fill: 'transparent',
+      // }
+    }
 
     jsonEntityNode.zIndex = parseFloat(gpmlEntityNode.select('Graphics').attr('ZOrder'));
     jsonEntityNode.renderableType = 'EntityNode';
 
     jsonEntityNode["@type"] = jsonEntityNode["@type"] || [];
     jsonEntityNode["@type"].push("EntityNode");
-    jsonEntityNode["@type"].push(shapeType);
+    jsonEntityNode["@type"].push(glyph);
     var groupedStatus = isContainedBy || 'notGrouped';
     jsonEntityNode["@type"].push(groupedStatus);
 
@@ -75,7 +96,7 @@ pathvisiojs.data.gpml.element.node.entityNode = function(){
         return d3.select(this).attr('Key') === 'org.pathvisio.DoubleLineProperty' && d3.select(this).attr('Value') === 'Double';
       });
       if (doubleProperty[0].length > 0) {
-        jsonEntityNode.ShapeType = shapeType + '-double';
+        jsonEntityNode.ShapeType = glyph + '-double';
       }
     }
 
@@ -84,7 +105,7 @@ pathvisiojs.data.gpml.element.node.entityNode = function(){
       //console.log(ports);
       jsonEntityNode.Port = ports;
       pathvisiojs.data.gpml.element.node.toPvjson(gpmlEntityNode, jsonEntityNode, function(jsonEntityNode) {
-        EntityNodeCallback(jsonEntityNode, ports);
+        callback(jsonEntityNode, ports);
       });
     });
   };

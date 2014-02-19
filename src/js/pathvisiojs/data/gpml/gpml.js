@@ -1,13 +1,6 @@
 pathvisiojs.data.gpml = function(){
   'use strict';
 
-  var pathvisioDefaultStyleValues = {
-    'FontSize':{
-      'Type':"FontSize",
-      'Value':10
-    }
-  };
-
   var defaults = {
     'FontSize':{
       'Type':"FontSize",
@@ -848,6 +841,6 @@ pathvisiojs.data.gpml = function(){
   };
 }();
 
-// hack required because we call ...node.anchors.toPvjson() before we
+// TODO hack required because we call ...node.anchors.toPvjson() before we
 // call the other ...node.toPvjson() methods
 pathvisiojs.data.gpml.node = pathvisiojs.data.gpml.node || {};
