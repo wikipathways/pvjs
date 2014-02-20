@@ -61,6 +61,26 @@ pathvisiojs.data.gpml = function(){
     }
   }
 
+  function gpmlColorAndShapeTypeToCss(gpmlColor, gpmlShapeType) {
+    var result = {
+      label:{
+        color:null
+      },
+      shape:{
+        stroke:null,
+        fill:null
+      }
+    };
+    if (gpmlShapeType.toLowerCase() !== 'none') {
+      result.label.color = gpmlColorToCssColorNew(gpmlColor);
+    }
+    else {
+      style.color = gpmlColorToCssColorNew(gpmlColor); // color just means text-color in this case
+      style.stroke = 'transparent';
+    }
+    return style;
+  }
+
   function gpmlColorToCssColorNew(gpmlColor) {
     var color;
     if (gpmlColor.toLowerCase() === 'transparent') {
