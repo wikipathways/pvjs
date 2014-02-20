@@ -233,6 +233,28 @@ pathvisiojs.utilities = function(){
     }
   }
 
+  // TODO should we use requirejs for loading scripts instead?
+  function loadScripts(array, callback){  
+    var loader = function(src,handler){  
+      var script = document.createElement('script');  
+      script.src = src;  
+      script.onload = script.onreadystatechange = function(){  
+        script.onreadystatechange = script.onload = null;  
+        if(/MSIE ([6-9]+\.\d+);/.test(navigator.userAgent))window.setTimeout(function(){handler();},8,this);  
+        else handler();  
+      }  
+      var head = document.getElementsByTagName('head')[0];  
+      (head || document.body).appendChild( script );  
+    };  
+    (function(){  
+      if(array.length!=0){  
+        loader(array.shift(),arguments.callee);  
+      }else{  
+        callback && callback();  
+      }  
+    })();  
+  }
+
   function moveArrayItem(arr, old_index, new_index) {
     // from http://stackoverflow.com/questions/5306680/move-an-array-element-from-one-array-position-to-another
     if (new_index >= arr.length) {
@@ -271,6 +293,7 @@ pathvisiojs.utilities = function(){
     isOdd:isOdd,
     isUri:isUri,
     isWikiPathwaysId:isWikiPathwaysId,
+    loadScripts:loadScripts,
     moveArrayItem:moveArrayItem,
     splitStringByNewLine:splitStringByNewLine,
     strToHtmlId:strToHtmlId

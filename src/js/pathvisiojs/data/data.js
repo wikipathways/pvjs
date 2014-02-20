@@ -21,7 +21,7 @@ pathvisiojs.data = function(){
 
     if (fileType === 'gpml') {
       pathvisiojs.data.gpml.get(sourceData, function(gpml) {
-        pathvisiojs.data.gpml.toRenderableJson(gpml, uri, function(json) {
+        pathvisiojs.data.gpml.toPvjson(gpml, uri, function(json) {
           callback(json);
         });
       });

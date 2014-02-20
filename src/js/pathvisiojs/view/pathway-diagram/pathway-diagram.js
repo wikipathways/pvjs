@@ -76,10 +76,11 @@ pathvisiojs.view.pathwayDiagram = function(){
     var supportedViewMethods = ['img'];
 
     // TODO support svg that is not inline in the svg viewMethod
-    // The IE9 detection is a temporary hack. It is used because IE9 cannot currently convert GPML to pathvisiojsJson,
+    // The IE9 detection is a temporary hack. It is used because IE9 cannot currently convert GPML to pvjson,
     // so it cannot display the resulting SVG.
-    // TODO get gpml to pathvisiojsJson conversion working with IE9
-    if (Modernizr.inlinesvg && (!pathvisiojs.utilities.isIE())) {
+    // TODO get gpml to pvjson conversion working with IE9
+    if (Modernizr.inlinesvg) {
+    //if (Modernizr.inlinesvg && (!pathvisiojs.utilities.isIE())) {
     //if (Modernizr.inlinesvg && (pathvisiojs.utilities.isIE() !== 9)) {
       supportedViewMethods.push('svg');
     }
@@ -88,7 +89,7 @@ pathvisiojs.view.pathwayDiagram = function(){
   }
 
   function loadHtmlTemplate(userSpecifiedContainer, callback) {
-    userSpecifiedContainer.html(pathvisioNS['tmp/pathvisiojs.html']);
+    userSpecifiedContainer.html(pathvisioNS['src/pathvisiojs.html']);
     var diagramContainer = userSpecifiedContainer.select('#diagram-container');
     callback(diagramContainer);
   }
@@ -109,7 +110,7 @@ pathvisiojs.view.pathwayDiagram = function(){
       cssUri = args.cssUri,
       customMarkers = args.customMarkers,
       //customSymbols = args.customSymbols,
-      highlightNodes = args.highlightNodes,
+      highlights = args.highlights,
       hiddenElements = args.hiddenElements,
       userSpecifiedContainer, // the element matching the user-specified selector. the user specified selector is the parameter "container" in the pathvisiojs.load() method.
       pathvisioJsContainer,
@@ -171,6 +172,7 @@ pathvisiojs.view.pathwayDiagram = function(){
         loadDiagramArgs.containerWidth = containerWidth;
         loadDiagramArgs.containerHeight = containerHeight;
         loadDiagramArgs.fitToContainer = fitToContainer;
+        loadDiagramArgs.highlights = highlights;
 
         // ********************************************
         // Check for SVG support. If false, use static image (png, jpg, gif, etc.) fallback

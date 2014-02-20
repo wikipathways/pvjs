@@ -1,146 +1,69 @@
-  <div id="pathvisiojs-container" style="width: inherit; min-width: inherit; max-width: inherit; height: inherit; min-height: inherit; max-height: inherit; position: absolute; ">
+<div id="pathvisiojs-container" style="width: inherit; height: inherit;">
 
-    <!-- **********************************************************************
+  <!-- **********************************************************************
     Pathway Container (JavaScript inserts pathway image inside this div)
     *********************************************************************** -->
+  <div id="diagram-container">
+  </div>
 
-    <div id="diagram-container" style="width: inherit; min-width: inherit; max-width: inherit; height: inherit; min-height: inherit; max-height: inherit; ">
+  <!-- **********************************************************************
+    Highlight Element by Label Control
+    *********************************************************************** -->
+  <div id="typeahead">
+    <input id="highlight-by-label-input" placeholder="Enter node name to highlight" role="textbox" aria-autocomplete="list" aria-haspopup="true">
+    <i id="clear-highlights-from-typeahead" class="control-icon icon-remove"></i>
+  </div> 
 
-      <!--
-      <svg id="pathvisiojs-diagram"
-        version="1.1"
-        baseProfile="full"
-        xmlns="http://www.w3.org/2000/svg"
-        xmlns:xlink="http://www.w3.org/1999/xlink"
-        xmlns:ev="http://www.w3.org/2001/xml-events"
-        width="100%"
-        height="100%">
+  <!-- **********************************************************************
+    Pan/Zoom Controls 
+    *********************************************************************** -->
+  <div id="pan-zoom-control" class="pan-zoom-controls">                           
+    <!-- TODO get this working
+    <i id="zoom-in" class="control-icon pan-zoom-control-icon glyphicon glyphicon-plus-sign"></i>
+    -->
+    <i id="reset-pan-zoom" class="control-icon pan-zoom-control-icon glyphicon glyphicon-screenshot"></i>
+    <!-- TODO get this working
+    <i id="zoom-out" class="control-icon pan-zoom-control-icon glyphicon glyphicon-minus-sign"></i>
+    -->
+    <!-- TODO get this working
+    <i id="full-screen-control" class="control-icon pan-zoom-control-icon glyphicon glyphicon-fullscreen"></i>
+    -->
+  </div>
 
-        <g>
-        <title>pathvisiojs pathway diagram</title>
-        <desc>
-          This SVG file contains all the graphical elements (markers and symbols in defs as well as
-          style data) used by the program pathvisiojs, which has two components: 
-          1) a viewer for transforming GPML biological pathway data into an SVG visual representation and 
-          2) an editor for creating both views and models for biological pathways.
-        </desc>
-        </g>
-        <defs>
+  <div id="viewer-toolbar">
+  </div>
 
-          <filter id = "highlight" width = "150%" height = "150%">
-            <feOffset result = "offOut" in = "SourceGraphic" dx = "30" dy = "30"/>
-              <feGaussianBlur result = "blurOut" in = "offOut" stdDeviation = "10"/>
-            <feBlend in = "SourceGraphic" in2 = "blurOut" mode = "normal"/>
-          </filter>
-
-        </defs>
-
-        <g id="viewport">
-        </g>
-
-      </svg>
-      -->
-
-    </div>
-    
-    <div id="typeahead" style="position: absolute; top: 5px; right: 5px;">
-    <!-- **********************************************************************
-      Highlight Element by Label Control
-      *********************************************************************** -->
-
-      <input id="highlight-by-label-input" placeholder="Enter node name to highlight." role="textbox" aria-autocomplete="list" aria-haspopup="true">
-
-      </div> 
-     
-   
-      <!-- **********************************************************************
-      Pan Zoom Control
-      see http://bumbu.github.io/cytoscape.js/debug/ for example of cytoscape.js 
-      *********************************************************************** -->
-
-<!--      <div id="pan-zoom-control" class="ui-cytoscape-panzoom">
-        <div class="ui-cytoscape-panzoom-zoom-in ui-cytoscape-panzoom-zoom-button">
-          <span class="icon icon-plus"></span>
-        </div>
-        <div class="ui-cytoscape-panzoom-zoom-out ui-cytoscape-panzoom-zoom-button">
-          <span class="icon icon-minus"></span>
-        </div>
-        <div class="ui-cytoscape-panzoom-reset ui-cytoscape-panzoom-zoom-button">
-          <span class="icon icon-resize-full"></span>
-        </div>
-        <div class="ui-cytoscape-panzoom-slider">
-          <div class="ui-cytoscape-panzoom-slider-background">
-          </div>
-          <div class="ui-cytoscape-panzoom-slider-handle" style="top: 42.80000001192093px;">
-            <span class="icon icon-minus"></span>
-          </div>
-          <div class="ui-cytoscape-panzoom-no-zoom-tick" style="top: 42.80000001192093px;">
-          </div>
-        </div>
-        <div class="ui-cytoscape-panzoom-panner">
-          <div class="ui-cytoscape-panzoom-panner-handle">
-          </div>
-          <div class="ui-cytoscape-panzoom-pan-up ui-cytoscape-panzoom-pan-button">
-          </div>
-          <div class="ui-cytoscape-panzoom-pan-down ui-cytoscape-panzoom-pan-button">
-          </div>
-          <div class="ui-cytoscape-panzoom-pan-left ui-cytoscape-panzoom-pan-button">
-          </div>
-          <div class="ui-cytoscape-panzoom-pan-right ui-cytoscape-panzoom-pan-button">
-          </div>
-          <div class="ui-cytoscape-panzoom-pan-indicator" style="display: none; left: 22.424611085682006px; top: 0.12287108520014556px; background-color: rgb(127, 127, 127); background-position: initial initial; background-repeat: initial initial;">
-          </div>
-        </div>
-      </div>
--->
-      <!-- **********************************************************************
-      Fullscreen Control 
-      *********************************************************************** -->
-
-      <div id="fit-to-screen-control" class="fit-to-screen-controls"  style="position: absolute; bottom: 5px; right: 0px;">                           
-        <img class="icon-screenshot" style="color:#aaa" src="../src/img/fitscreen_icon.png"></i>                                                        
-      </div>    
-
-   <!--   <div id="fullscreen-control" style="position: absolute; bottom: 5px; right: 8px;">
-        <i class="icon-fullscreen" style="color:#aaa"></i>
-      </div>
-   -->
-
-    <div id="viewer-toolbar" style="position: absolute; top: 0px; right: 0px; height: inherit">
-    </div>
-      
-    <!-- **********************************************************************
+  <!-- **********************************************************************
     Details Frame
     *********************************************************************** -->
-
-    <div id="annotation" class="annotation ui-draggable" style="visibility: hidden; position: absolute; right: 75px; top: 100px;">
-      <header class="annotation-header">
+  <div id="annotation" class="annotation ui-draggable">
+    <header class="annotation-header">
       <span id="annotation-move" class="annotation-header-move">
         <i class="icon-move"></i>
       </span>
-      <span class="annotation-header-close" class="annotation-header-close">                                                                                    
-        <i class="icon-remove"></i>                                                                                                                             
+      <span class="annotation-header-close" class="annotation-header-close">
+        <i class="icon-remove"></i>
       </span>   
       <span id="annotation-header-text" class="annotation-header-text">
         Header
       </span> 
       <span id="annotation-header-search" class="annotation-header-search" title="Search for pathways containing 'Header Text'">
         <a href="http://wikipathways.org//index.php?title=Special:SearchPathways">
-          <i class="icon-search" style="color:blue; font-size:50% ; text-decoration:none"></i>
+          <i class="icon-search"></i>
         </a>
       </span>
       <div id="annotation-description" class="annotation-description">
         <h2>description</h2>
       </div>
-      </header>
-      <span class="annotation-items-container" class="annotation-items-container">
-        <ul id="annotation-items-container">
-          <!-- List items inside this ul element are generated automatically by JavaScript.
-          Each item will be composed of a title and text. The text can be set to be an href.
-          You can edit the styling of the title by editing CSS class "annotation-item-title"
-          and the styling of the text by editing CSS class "annotation-item-text.
-          -->
-        </ul>
-      </span>
-    </div>
+    </header>
+    <span class="annotation-items-container" class="annotation-items-container">
+      <ul id="annotation-items-container">
+        <!-- List items inside this ul element are generated automatically by JavaScript.
+            Each item will be composed of a title and text. The text can be set to be an href.
+            You can edit the styling of the title by editing CSS class "annotation-item-title"
+            and the styling of the text by editing CSS class "annotation-item-text.
+            -->
+      </ul>
+    </span>
   </div>
+</div>

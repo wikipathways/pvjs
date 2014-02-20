@@ -3,7 +3,7 @@ pathvisiojs.data.biopax = function(){
 
   // TODO get ontology terms and other data
 
-  function toRenderableJson(xmlBiopax, callback) {
+  function toPvjson(xmlBiopax, callback) {
     try {
       d3.ns.prefix.bp = 'http://www.biopax.org/owldoc/Level3/';
       d3.ns.prefix.rdf = 'http://www.w3.org/1999/02/22-rdf-syntax-ns#';
@@ -25,7 +25,7 @@ pathvisiojs.data.biopax = function(){
   }
 
   return {
-    toRenderableJson:toRenderableJson
+    toPvjson:toPvjson
   };
 }();
 

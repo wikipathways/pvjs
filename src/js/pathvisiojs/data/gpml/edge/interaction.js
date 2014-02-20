@@ -1,11 +1,11 @@
 pathvisiojs.data.gpml.edge.interaction = function(){
   'use strict';
 
-  //*
-  //var jsonPathway = {};
-  // TODO this isn't getting the linetype info for determining whether activity is direct or indirect yet
-  var gpmlArrowHeadToSemanticMappings = {
+  // TODO do something with the linetype info to specify whether interaction is direct or indirect
+
+  var gpmlArrowHeadsToSemanticMappings = {
     'Arrow':'Activity',
+    'ArrowArrow':'BidirectionalActivity',
     'TBar':'InhibitoryActivity',
     'mim-catalysis':'Catalysis',
     'mim-inhibition':'Inhibition',
@@ -22,17 +22,13 @@ pathvisiojs.data.gpml.edge.interaction = function(){
     "mim-gap":"Gap",
     "Line":"Unspecified"
   };
-  //*/
 
   function getGpmlArrowHeadNameFromSemanticName(semanticName) {
-    for (gpmlArrowHeadName in gpmlArrowHeadToSemanticMappings) {
-      if (gpmlArrowHeadToSemanticMappings[gpmlArrowHeadName] === semanticName) {
+    for (var gpmlArrowHeadName in gpmlArrowHeadsToSemanticMappings) {
+      if (gpmlArrowHeadsToSemanticMappings[gpmlArrowHeadName] === semanticName) {
         return gpmlArrowHeadName;
       }
     }
-
-    // if we get to here, there is no GPML ArrowHead name that matches the
-    // semantic name. This should probably be in a try, catch, finally block.
 
     if (!gpmlArrowHeadName) {
       gpmlArrowHeadName = semanticName;
@@ -44,7 +40,7 @@ pathvisiojs.data.gpml.edge.interaction = function(){
   function getSemanticNameFromGpmlArrowHeadName(gpmlArrowHeadName) {
     var semanticName;
     if (!!gpmlArrowHeadName) {
-      semanticName = gpmlArrowHeadToSemanticMappings[gpmlArrowHeadName];
+      semanticName = gpmlArrowHeadsToSemanticMappings[gpmlArrowHeadName];
       if (!semanticName) {
         semanticName = gpmlArrowHeadName;
         console.warn('No semantic name found for GPML ArrowHead name "' + gpmlArrowHeadName + '". Returning original GPML ArrowHead name as semantic name.');
@@ -57,9 +53,9 @@ pathvisiojs.data.gpml.edge.interaction = function(){
     return semanticName;
   }
 
-  function toRenderableJson(gpml, gpmlInteraction, pathwayIri, callback) {
+  function toPvjson(gpml, gpmlInteraction, callback) {
     var jsonAnchorInteraction, anchor, jsonAnchor, points, jsonPoints, interactionType, target, targetId, groupRef, source, sourceId;
-    pathvisiojs.data.gpml.edge.toRenderableJson(gpmlInteraction, pathwayIri, function(jsonInteraction) {
+    pathvisiojs.data.gpml.edge.toPvjson(gpmlInteraction, function(jsonInteraction) {
       //console.log('jsonInteraction');
       //console.log(jsonInteraction);
 
@@ -68,11 +64,11 @@ pathvisiojs.data.gpml.edge.interaction = function(){
 
       points = gpmlInteraction.selectAll('Point');
 
-      var database, ID, 
+      var database, ID,
       datasourceReference = gpmlInteraction.select('Xref');
       if (!!datasourceReference) {
-        database = datasourceReference.attr('Database')
-        ID = datasourceReference.attr('ID')
+        database = datasourceReference.attr('Database');
+        ID = datasourceReference.attr('ID');
         if (!!database && !!ID) {
           jsonInteraction.DatasourceReference = {};
           jsonInteraction.DatasourceReference.Database = database;
@@ -80,66 +76,48 @@ pathvisiojs.data.gpml.edge.interaction = function(){
         }
       }
 
-      // Arrowheads on both ends of a single graphical Interaction would represent two semantic Interactions
-
       function buildInteractionGraph(gpmlSource, gpmlTarget, callbackBIG) {
-        //console.log('gpmlSource');
-        //console.log(gpmlSource);
-        //console.log('gpmlTarget');
-        //console.log(gpmlTarget);
+        /*
+        console.log('gpmlSource');
+        console.log(gpmlSource);
+        console.log('gpmlTarget');
+        console.log(gpmlTarget);
+        //*/
         var InteractionGraphMember = {};
-        interactionType = getSemanticNameFromGpmlArrowHeadName(gpmlTarget.getAttribute('ArrowHead'));
-        var interactionTypeExistenceCheck;
-        if (!!interactionType) {
-          jsonInteraction.InteractionGraph = jsonInteraction.InteractionGraph || [];
+        jsonInteraction.InteractionGraph = jsonInteraction.InteractionGraph || [];
 
-          sourceId = gpmlSource.getAttribute('GraphRef');
-          if (!!sourceId) {
-            source = gpml.querySelector('[GraphId=' + sourceId + ']');
-            if (source.tagName === 'Anchor') {
-              sourceId = source.parentNode.parentNode.getAttribute('GraphId');
-            }
-            else {
-              if (source.tagName === 'Group') {
-                sourceId = source.getAttribute('GroupId');
-              }
-            }
-          }
-          InteractionGraphMember['@id'] = pathwayIri + sourceId;
-
-          targetId = gpmlTarget.getAttribute('GraphRef');
-          if (!!targetId) {
-            target = gpml.querySelector('[GraphId=' + targetId + ']');
-            if (target.tagName === 'Anchor') {
-              targetId = target.parentNode.parentNode.getAttribute('GraphId');
-            }
-            else {
-              if (target.tagName === 'Group') {
-                targetId = target.getAttribute('GroupId');
-              }
-            }
-
-            InteractionGraphMember.interactsWith = pathwayIri + targetId;
-            InteractionGraphMember.interactionType = interactionType;
-          }
-          interactionTypeExistenceCheck = jsonInteraction['@type'].indexOf(interactionType);
-          if (interactionTypeExistenceCheck === -1) {
-            jsonInteraction['@type'].push(interactionType);
+        sourceId = gpmlSource.getAttribute('GraphRef');
+        if (!!sourceId) {
+          source = gpml.querySelector('[GraphId=' + sourceId + ']');
+          if (source.tagName === 'Anchor') {
+            sourceId = source.parentNode.parentNode.getAttribute('GraphId');
           }
           else {
-            //jsonInteraction['@type'][interactionTypeExistenceCheck] = 'Bidirectional-' + interactionType;
-            jsonInteraction['@type'].push('Bidirectional-' + interactionType);
+            if (source.tagName === 'Group') {
+              sourceId = source.getAttribute('GroupId');
+            }
           }
-
-          jsonInteraction.InteractionGraph.push(InteractionGraphMember);
-          // TODO add the reaction, if it exists
-          //'ex:Anchor': pathwayIri + '#Reaction1'
-
-          callbackBIG(InteractionGraphMember, strcase.paramCase(interactionType));
         }
-        else {
-          callbackBIG(null, 'unspecified');
+        InteractionGraphMember.id = sourceId || 'no-source';
+
+        targetId = gpmlTarget.getAttribute('GraphRef');
+        if (!!targetId) {
+          target = gpml.querySelector('[GraphId=' + targetId + ']');
+          if (target.tagName === 'Anchor') {
+            targetId = target.parentNode.parentNode.getAttribute('GraphId');
+          }
+          else {
+            if (target.tagName === 'Group') {
+              targetId = target.getAttribute('GroupId');
+            }
+          }
+          InteractionGraphMember.interactsWith = targetId;
         }
+        jsonInteraction.InteractionGraph.push(InteractionGraphMember);
+        // TODO add the reaction, if it exists
+        //'ex:Anchor': pathwayIri + '#Reaction1'
+
+        callbackBIG(InteractionGraphMember);
       }
 
       var firstPoint = points[0][0];
@@ -148,37 +126,53 @@ pathvisiojs.data.gpml.edge.interaction = function(){
       var lastPoint = points[0][points[0].length - 1];
       var lastGpmlArrowHeadName = lastPoint.getAttribute('ArrowHead');
 
-      // first function below has inputs lastPoint, firstPoint because it
-      // corresponds to the marker type for the first point
-
-
       if (!!firstGpmlArrowHeadName && !!lastGpmlArrowHeadName) {
-        buildInteractionGraph(lastPoint, firstPoint, function(InteractionGraphMember, interactionType) {
+        interactionType = getSemanticNameFromGpmlArrowHeadName(firstPoint.getAttribute('ArrowHead') + lastPoint.getAttribute('ArrowHead'));
+
+        // function below has inputs lastPoint, firstPoint because it
+        // corresponds to the marker type for the first point
+        buildInteractionGraph(lastPoint, firstPoint, function(InteractionGraphMember) {
         });
-        buildInteractionGraph(firstPoint, lastPoint, function(InteractionGraphMember, interactionType) {
+        // TODO figure out the best way to handle bidirectional interactions, etc.
+        // Should arrowheads on both ends of a single graphical Interaction represent two semantic Interactions?
+        buildInteractionGraph(firstPoint, lastPoint, function(InteractionGraphMember) {
         });
       }
       else {
         if (!!firstGpmlArrowHeadName || !!lastGpmlArrowHeadName) {
           if (!!firstGpmlArrowHeadName) {
-            buildInteractionGraph(lastPoint, firstPoint, function(InteractionGraphMember, interactionType) {
+            buildInteractionGraph(lastPoint, firstPoint, function(InteractionGraphMember) {
             });
+            interactionType = getSemanticNameFromGpmlArrowHeadName(firstPoint.getAttribute('ArrowHead'));
           }
 
           if (!!lastGpmlArrowHeadName) {
-            buildInteractionGraph(firstPoint, lastPoint, function(InteractionGraphMember, interactionType) {
+            interactionType = getSemanticNameFromGpmlArrowHeadName(lastPoint.getAttribute('ArrowHead'));
+            buildInteractionGraph(firstPoint, lastPoint, function(InteractionGraphMember) {
             });
           }
         }
         else {
           lastPoint.setAttribute('ArrowHead', 'Line');
-          buildInteractionGraph(firstPoint, lastPoint, function(InteractionGraphMember, interactionType) {
+          interactionType = getSemanticNameFromGpmlArrowHeadName(lastPoint.getAttribute('ArrowHead'));
+          buildInteractionGraph(firstPoint, lastPoint, function(InteractionGraphMember) {
           });
         }
       }
 
-      // TODO this is temporary solution. In the future, we will want to get
-      // the marker id from the interactionType at render time.
+      if (!!interactionType) {
+        jsonInteraction['@type'].push(interactionType);
+        jsonInteraction.interactionType = strcase.paramCase(interactionType);
+      }
+      else {
+        jsonInteraction['@type'].push('unspecified');
+        jsonInteraction.interactionType = 'unspecified';
+        console.warn('Interaction Type unable to be determined. Setting it to "unspecified."');
+      }
+
+      // TODO this is a temporary solution.
+      // In the future, we will want to update the view code such that we specify at render time
+      // the marker(s) and line type (and possibly other attributes) based on the interactionType.
       if (firstGpmlArrowHeadName) {
         jsonInteraction.markerStart = strcase.paramCase(firstGpmlArrowHeadName);
       }
@@ -194,11 +188,11 @@ pathvisiojs.data.gpml.edge.interaction = function(){
       }
 
       callback(jsonInteraction);
-    })
+    });
   }
 
   /*
-     function toRenderableJson(gpmlEdge, jsonEdge, callback) {
+     function toPvjson(gpmlEdge, jsonEdge, callback) {
      try {
      jsonEdge.id = gpmlEdge.attr('GraphId');
      jsonEdge.renderableType = 'edge';
@@ -264,7 +258,7 @@ pathvisiojs.data.gpml.edge.interaction = function(){
 
      var jsonPoints = [];
      gpmlPoints.each(function() {
-     pathvisiojs.data.gpml.edge.point.toRenderableJson(d3.select(this), function(jsonPoint) {
+     pathvisiojs.data.gpml.edge.point.toPvjson(d3.select(this), function(jsonPoint) {
      jsonPoints.push(jsonPoint);
      });
      });
@@ -279,7 +273,7 @@ catch (e) {
 //*/
 
 return {
-  toRenderableJson:toRenderableJson,
+  toPvjson:toPvjson,
   getGpmlArrowHeadNameFromSemanticName:getGpmlArrowHeadNameFromSemanticName,
   getSemanticNameFromGpmlArrowHeadName:getSemanticNameFromGpmlArrowHeadName
 };

@@ -10,20 +10,20 @@ pathvisiojs.view.pathwayDiagram.svg.node.EntityNode = function(){
 
     pathvisiojs.view.pathwayDiagram.svg.node.render(args, function(nodeContainer) {
       nodeContainer.attr("class", function (d) {
-        var cssClass = 'node entity-node ' + strcase.paramCase(d.nodeType) + ' ';
+        var cssClass = 'node entity-node ' + pathvisiojs.view.pathwayDiagram.svg.convertToCssClassName(d.nodeType) + ' ';
         if (d.nodeType === 'DataNode') {
-          cssClass += strcase.paramCase(d.dataNodeType) + ' ';
-	  cssClass += strcase.paramCase('label-'+decodeURIComponent(d.text.line[0])) + ' ';
+          cssClass += pathvisiojs.view.pathwayDiagram.svg.convertToCssClassName(d.dataNodeType) + ' ';
+          cssClass += pathvisiojs.view.pathwayDiagram.svg.convertToCssClassName('label-' + decodeURIComponent(d.text.line[0])) + ' ';
           if (!!d.DatasourceReference) {
             cssClass += 'has-xref ';
-	    cssClass += strcase.paramCase('xref-'+decodeURIComponent(d['DatasourceReference'].ID+','+d['DatasourceReference'].Database)) + ' ';
+            cssClass += pathvisiojs.view.pathwayDiagram.svg.convertToCssClassName('xref-' + decodeURIComponent(d.DatasourceReference.ID + ',' + d.DatasourceReference.Database)) + ' ';
           }
         }
         if (d.hasOwnProperty('CellularComponent')) {
-          cssClass += 'cellular-component ' + strcase.paramCase(d.CellularComponent) + ' ';
+          cssClass += 'cellular-component ' + pathvisiojs.view.pathwayDiagram.svg.convertToCssClassName(d.CellularComponent) + ' ';
         }
         return cssClass;
-      })
+      });
       if (args.data.nodeType === 'DataNode') { //all datanodes should be clickable
         var notDragged = true;
         nodeContainer
@@ -36,10 +36,10 @@ pathvisiojs.view.pathwayDiagram.svg.node.EntityNode = function(){
         .on("mouseup", function(d,i) {
           if (notDragged) {
             var dfId = null, dfDb = null;
-            if (!!d['DatasourceReference']){
-              if (!!d['DatasourceReference'].ID && !!d['DatasourceReference'].Database){ 
-                dfId = d['DatasourceReference'].ID;
-                dfDb = d['DatasourceReference'].Database;
+            if (!!d.DatasourceReference){
+              if (!!d.DatasourceReference.ID && !!d.DatasourceReference.Database){
+                dfId = d.DatasourceReference.ID;
+                dfDb = d.DatasourceReference.Database;
               }
             }
 
