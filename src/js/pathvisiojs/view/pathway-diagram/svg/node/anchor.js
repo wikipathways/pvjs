@@ -28,7 +28,7 @@ pathvisiojs.view.pathwayDiagram.svg.node.anchor = function(){
     var defaultAnchorHeight = 10;
 
     // TODO refactor svg.node.render() so we can use it for the other nodes and for anchors instead of basically repeating much of that method here
-    var nodeContainer = container.selectAll('.node.anchor.parent-edge-' + strcase.paramCase(parentEdgeId))
+    var nodeContainer = container.selectAll('.node.anchor.parent-edge-' + pathvisiojs.view.pathwayDiagram.svg.convertToId(parentEdgeId))
     .data(data)
     .enter()
     .append("g")
@@ -38,7 +38,7 @@ pathvisiojs.view.pathwayDiagram.svg.node.anchor = function(){
       var translateY = anchorCoordinates.y - defaultAnchorHeight/2;
       return 'translate(' + translateX + ' ' + translateY + ')';
     })
-    .attr('class', 'node anchor parent-edge-' + strcase.paramCase(parentEdgeId))
+    .attr('class', 'node anchor parent-edge-' + pathvisiojs.view.pathwayDiagram.svg.convertToId(parentEdgeId))
     .attr("style", function (d) {
       var style;
       if (d.hasOwnProperty('backgroundColor')) {

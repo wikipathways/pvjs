@@ -45,7 +45,7 @@
   </head>
      
   <body style="margin: 0; width: 100%; height: 100%; ">
-    <div id="pathvisiojs-dev" style="width:inherit; height:inherit; margin:0; ">
+    <div id="pathvisiojs-dev" style="width:inherit; height:inherit; margin:0; overflow:hidden;">
     </div>
 
     <script src="../lib/rgb-color/rgb-color.min.js"></script>
@@ -74,8 +74,6 @@
         async.waterfall([
           function(callback) {
             developmentLoader.preload(function(parsedInputData) {
-              console.log('parsedInputData');
-              console.log(parsedInputData);
               callback(null, parsedInputData);
             });
           },
@@ -246,10 +244,7 @@
               pathwaySearchUriStub: 'http://wikipathways.org//index.php?title=Special:SearchPathways&doSearch=1&query=', // optional
               customMarkers: customMarkers, //optional
               //customSymbols: customSymbols, //optional
-              highlightNodes: [ //optional
-                {'type': 'label', 'value': 'CRH', 'color': 'red'},
-                {'type': 'xref', 'value': '8525,Entrez%20Gene', 'color': '#FF0000'}
-              ],
+              highlights: parsedInputData.highlights, //optional
               hiddenElements: [ //optional
                 'highlight-by-label-input',
                 'fit-to-screen-control'

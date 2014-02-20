@@ -1,7 +1,7 @@
 pathvisiojs.view.pathwayDiagram.svg = function(){
   'use strict';
 
-  var svg, shapesAvailable, markersAvailable, contextLevelInput,
+  var shapesAvailable, markersAvailable, contextLevelInput,
     renderableTypeToSvgElementMappings = {
       entityNode: 'g',
       groupNode: 'g',
@@ -34,9 +34,8 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
       fitToContainer = args.fitToContainer,
       customMarkers = args.customMarkers,
       //customSymbols = args.customSymbols,
-      pathway,
-      diagramContainer,
-      svg;
+      highlights = args.highlights,
+      pathway;
 
 
     async.waterfall([
@@ -44,23 +43,23 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
         async.parallel({
           preloadSvg: function(callback) {
             var preloadDiagramArgs = {};
-              preloadDiagramArgs.container = diagramContainer;
-              preloadDiagramArgs.customMarkers = customMarkers,
-              //preloadDiagramArgs.customSymbols = customSymbols,
-              preloadDiagramArgs.cssUri = cssUri;
+            preloadDiagramArgs.container = diagramContainer;
+            preloadDiagramArgs.customMarkers = customMarkers;
+            preloadDiagramArgs.cssUri = cssUri;
+            //preloadDiagramArgs.customSymbols = customSymbols;
 
-            pathvisiojs.view.pathwayDiagram.svg.loadPartials(preloadDiagramArgs, function(svgTemplate) {
-              svg = svgTemplate;
-
+            pathvisiojs.view.pathwayDiagram.svg.loadPartials(preloadDiagramArgs, function(svg) {
               if (!svg) {
                 throw new Error("Could not load SVG template.");
               }
 
-              callback(null);
+              var results = {};
+              results.svg = svg;
+              callback(null, results);
             });
           },
           pathway: function(callback){
-            pathvisiojs.data.pathvisiojsJson.get(renderableSourceDataElement, function(json) {
+            pathvisiojs.data.pvjson.get(renderableSourceDataElement, function(json) {
               pathvisiojs.context = json['@context'];
 
               if (!json || json === 'fail') {
@@ -71,22 +70,34 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
               //console.log('json');
               //console.log(json);
               pathway = json;
+              self.myPathway = json;
               callback(null, json);
-            })
+            });
           }
         },
         function(err, results){
           //TODO get pathwayWidth and Height
 
-          callback(null);
-        })
+          callback(null, results.preloadSvg.svg, results.pathway);
+        });
       },
-      function(callback){
+      function(svg, pathway, callback){
         pathvisiojs.view.pathwayDiagram.svg.renderWithCachedData(svg, pathway, function() {
-          callback(null);
-        })
+          console.log('finallysvg');
+          console.log(svg);
+          svg.attr('style', 'display:inline');
+          callback(null, svg);
+        });
       },
-      function(callback) {
+      function(svg, callback) {
+        console.log('highlightssvg');
+        console.log(svg);
+        if (!!highlights) {
+          highlights.forEach(function(highlight) {
+            pathvisiojs.view.pathwayDiagram.svg.node.highlight(highlight);
+          });
+        }
+
         var viewport = svg.select('#viewport');
 
         /* not all containers will have a width or height style attribute. this is now done using the same logic
@@ -100,13 +111,32 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
           fitAndCenterDiagramWithinViewport(viewport, containerWidth, containerHeight, pathway.image.width, pathway.image.height);
         }
 
-        var fitToScreen = d3.select('body').select('#fit-to-screen-control');
-        fitToScreen.on("click", function(d,i){
+        /*
+        //TODO get large screen view working
+        var zoomInControl = d3.select('#zoom-in')
+        .on("click", function(d,i){
+          svgPanZoom.zoomIn();
+        });
+        //*/
+
+        var resetPanZoomControl = d3.select('#reset-pan-zoom')
+        .on("click", function(d,i){
+          //svgPanZoom.resetZoom();
           fitAndCenterDiagramWithinViewport(viewport, containerWidth, containerHeight, pathway.image.width, pathway.image.height);
         });
 
-        var fullscreen = d3.select('body').select('#fullscreen-control');
-        fullscreen.on("click", function(d,i){
+        /*
+        //TODO get large screen view working
+        var zoomOutControl = d3.select('#zoom-out')
+        .on("click", function(d,i){
+          svgPanZoom.zoomOut();
+        });
+        //*/
+
+        /*
+        //TODO get large screen view working
+        var fullscreen = d3.select('#full-screen-control')
+        .on("click", function(d,i){
           var pvjs = document.getElementById("pathvisiojs-dev").innerHTML;
           var newwin = window.open('','','width=800,height=600');
           var doc = newwin.document;
@@ -114,9 +144,9 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
           doc.write(pvjs);
           doc.close();	
         });
+        //*/
 
         svgPanZoom.init({
-          //'root': 'svg', //Alex, what is this line for? It doesn't appear to be doing anything and might be intended to be doing what the line below that I added is doing.
           'selector': 'svg',
           'zoomEnabled': false,
           'minZoom': '0.1',
@@ -139,9 +169,9 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
             svgInFocus = false;
           }
         });
-        callback(null);
+        callback(null, svg);
       },
-      function(callback){
+      function(svg, callback){
         //* Node Highlighter
 
         var nodeLabels, nodeLabel;
@@ -149,8 +179,11 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
           nodeLabels = [];
           if (pathway.hasOwnProperty('DataNode')) {
             pathway.DataNode.forEach(function(node) {
-              if (!!node.text) {
-                nodeLabels.push(node.text.line[0]);
+              if (node.hasOwnProperty('text')) {
+                nodeLabel = node.text.line[0];
+                if (nodeLabels.indexOf(nodeLabel) === -1) {
+                  nodeLabels.push(node.text.line[0]);
+                }
               }
             });
 
@@ -190,11 +223,15 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
               pathvisiojs.view.pathwayDiagram.svg.node.highlightByLabel(svg, pathway, nodeLabel);
             }
           });
-          callback(null, 'svg loaded');
+
+          d3.select('#clear-highlights-from-typeahead').on('click', function() {
+            pathvisiojs.view.pathwayDiagram.svg.node.clearHighlightsFromTypeahead();
+          });
+          callback(null, svg);
         }
       }
     ],
-    function(err, results) {
+    function(err, svg) {
       callbackOutside(svg);
     });
   }
@@ -205,24 +242,24 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
       //customSymbols = args.customSymbols,
       cssUri = args.cssUri;
 
-    async.series([
+    async.waterfall([
       function(callback) {
-        diagramContainer.html(pathvisioNS['tmp/pathvisiojs.svg']);
-
-        svg = diagramContainer.select('#pathvisiojs-diagram')
-        svg.attr('style', 'display: inline; width: inherit; min-width: inherit; max-width: inherit; height: inherit; min-height: inherit; max-height: inherit; ') // TODO this should be moved to the CSS file
+        var svg = diagramContainer.append('div').html(pathvisioNS['tmp/pathvisiojs.svg']).select('#pathvisiojs-diagram')
         .attr('preserveAspectRatio', 'xMidYMid');
+        
+        console.log('svg');
+        console.log(svg);
 
-        callback(null);
+        callback(null, svg);
       },
-      function(callback) {
+      function(svg, callback) {
         if (!!args.customMarkers) {
           pathvisiojs.view.pathwayDiagram.svg.edge.marker.loadAllCustom(svg, customMarkers, function() {
-            callback(null);
-          })
+            callback(null, svg);
+          });
         }
         else {
-          callback(null);
+          callback(null, svg);
         }
       },
       /*
@@ -236,25 +273,47 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
           callback(null);
         }
       },
-      //*/      
-      function(callback) {
+      //*/
+      function(svg, callback) {
+        console.log('svgtext');
+        console.log(svg);
         if (!!cssUri) {
           d3.text(cssUri, 'text/css', function(data) {
             var defs = svg.select('defs');
             var style = defs.append('style').attr('type', "text/css");
             style.text(data);
-            callback(null);
-          })
+            callback(null, svg);
+          });
         }
         else {
-          callback(null);
+          callback(null, svg);
         }
       }
     ],
-    function(err, results) {
+    function(err, svg) {
       callbackOutside(svg);
     });
   }
+
+  var convertToId = function(inputString) {
+    var id = strcase.paramCase(inputString);
+    //var id = (inputString).replace(/[^(\w|\-)]/g, '').toLowerCase();
+    // to make valid id per HTML4 spec, I'm ensuring the first character is a letter
+    if (!/^[a-zA-Z]/.test(id)) {
+      id = 'id-' + id;
+    }
+    return id;
+  };
+
+  var convertToCssClassName = function(inputString) {
+    var cssClassName = strcase.paramCase(inputString);
+    //var cssClassName = (inputString).replace(/[^(\w|\-)]/g, '').toLowerCase();
+    // to make valid cssClassName per HTML4 spec, I'm ensuring the first character is a letter
+    if (!/^[a-zA-Z]/.test(cssClassName)) {
+      cssClassName = 'class-' + cssClassName;
+    }
+    return cssClassName;
+  };
 
   // this function does not render all elements. Rather, it renders
   // one or more selected elements that are given as inputs.
@@ -279,13 +338,13 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
     }
     if (!pathway) {
       throw new Error("No pathway specified.");
-    } 
+    }
     data = pathvisiojs.utilities.convertToArray(data);
 
     var i = 0;
     async.each(data, function(item, callbackInside) {
       if (item.key !== 'undefined') {
-        container = viewport.select('#' + strcase.paramCase(item.key));
+        container = viewport.select('#' + convertToId(item.key));
       }
       else {
         container = viewport;
@@ -300,7 +359,7 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
         return child;
       })
       .attr("id", function (d) {
-        return strcase.paramCase(d['@id']);
+        return convertToId(d.id);
       })
       .attr('class', 'element');
       i += 1;
@@ -323,6 +382,8 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
       pathway = args.pathway,
       container = args.container;
 
+        console.log('before update svg');
+        console.log(svg[0][0]);
     if (!container) {
       throw new Error("No container specified.");
     }
@@ -334,21 +395,50 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
     }
     if (!pathway) {
       throw new Error("No pathway specified.");
-    } 
+    }
     data = pathvisiojs.utilities.convertToArray(data);
-
     var renderingArgs = args;
-    data.forEach(function(dataElement) {
+
+    async.each(data, function(dataElement, callbackInside) {
       renderingArgs.data = dataElement;
-      renderingArgs.element = d3.select('#' + strcase.paramCase(dataElement['@id']));
-      if (dataElement.renderableType === 'GraphicalLine') {                                                                                        
-        pathvisiojs.view.pathwayDiagram.svg.edge.graphicalLine.render(renderingArgs);                                                          
-      } 
+      renderingArgs.element = d3.select('#' + convertToId(dataElement.id));
+      if (dataElement.renderableType === 'GraphicalLine') {
+        pathvisiojs.view.pathwayDiagram.svg.edge.graphicalLine.render(renderingArgs);
+      }
 else if (dataElement.renderableType === 'Interaction') {
         pathvisiojs.view.pathwayDiagram.svg.edge.interaction.render(renderingArgs);
-      } 
+      }
       else if (dataElement.renderableType === 'GroupNode') {
         pathvisiojs.view.pathwayDiagram.svg.node.groupNode.render(renderingArgs, function(groupContainer, groupContents) {
+          // TODO this used to render the group contents, but now the callback does nothing
+        });
+      }
+      else if (dataElement.renderableType === 'EntityNode') {
+        pathvisiojs.view.pathwayDiagram.svg.node.EntityNode.render(renderingArgs);
+      }
+
+      callbackInside(null);
+    },
+    function(err){
+      callback(svg);
+    });
+
+
+
+
+    /*
+    data.forEach(function(dataElement) {
+      renderingArgs.data = dataElement;
+      renderingArgs.element = d3.select('#' + convertToId(dataElement.id));
+      if (dataElement.renderableType === 'GraphicalLine') {
+        pathvisiojs.view.pathwayDiagram.svg.edge.graphicalLine.render(renderingArgs);
+      }
+else if (dataElement.renderableType === 'Interaction') {
+        pathvisiojs.view.pathwayDiagram.svg.edge.interaction.render(renderingArgs);
+      }
+      else if (dataElement.renderableType === 'GroupNode') {
+        pathvisiojs.view.pathwayDiagram.svg.node.groupNode.render(renderingArgs, function(groupContainer, groupContents) {
+          // TODO this used to render the group contents, but now the callback does nothing
         });
       }
       else if (dataElement.renderableType === 'EntityNode') {
@@ -356,6 +446,7 @@ else if (dataElement.renderableType === 'Interaction') {
       }
     });
     callback(null, 'Successfully rendered elements');
+    //*/
   }
 
   function renderWithCachedData(svg, pathway, callback){
@@ -377,12 +468,9 @@ else if (dataElement.renderableType === 'Interaction') {
 
     async.waterfall([
       function(callbackInside){
-        var pathwayNestedByGrouping = d3.nest()
-        .key(function(d) { return d.isContainedBy; })
-        .entries(pathway.elements);
-        
-        renderArgs.data = pathwayNestedByGrouping;
-
+        // create the required elements and their ids in DOM order,
+        // without specifying width, height, etc.
+        renderArgs.data = pathway.pathwayNestedByGrouping;
         appendElementsInDomOrder(renderArgs, function() {
           callbackInside(null, svg);
         });
@@ -390,121 +478,20 @@ else if (dataElement.renderableType === 'Interaction') {
       function(svg, callbackInside){
         //TODO for the non-cached version, this should sort the elements by dependency, so that group contents are updated before their containing group,
         //and an edge is updated before any edges that rely on it.
+        // this would be using something like pathway.pathwayElementsNestedByDependency
         renderArgs.data = pathway.elements;
-
-        /*
-        var pathwayNestedByDependencies = d3.nest()
-        .key(function(d) { return d.hasDependencies; })
-        .entries(pathway.elements);
-        renderArgs.data = pathwayNestedByDependencies;
-        //*/
-
-
-        updateElementProperties(renderArgs, function() {
+        updateElementProperties(renderArgs, function(svg) {
+        console.log('after update svg');
+        console.log(svg[0][0]);
           callback(svg);
         });
       }
     ]);
   }
 
-
-      //pathvisiojs.view.pathwayDiagram.svg.grid.render(svg);
-
-      /*
-      async.series([
-        function(callbackInside2) {
-          args.container = args.svg.select('#viewport');
-          args.data = results.groupData;
-          appendElementsInDomOrder(args, function() {
-            console.log(1);
-          });
-          callbackInside2(null, svg);
-        },
-        function(callbackInside2) {
-          args.container = args.svg.select('#viewport');
-          args.data = results.notGroupedData;
-          self.args = args;
-          appendElementsInDomOrder(args, function() {
-            console.log(2);
-            callbackInside2(null, svg);
-          });
-        }
-      ],
-      function(err, results) {
-        callback(svg);
-      })
-    })
-  }
-  //*/
-  /*
-  function render(args, callback){
-    if (!args.svg) {
-      throw new Error("No svg specified.");
-    }
-    if (!args.pathway) {
-      throw new Error("No data entered to render.");
-    }
-
-    async.parallel({
-      'hierarchicalData': function(callbackInside) {
-        var frame = {
-          '@context': pathway['@context'],
-          '@type': 'element'
-        };  
-        jsonld.frame(args.pathway, frame, function(err, hierarchicalData) {
-          callbackInside(null, hierarchicalData);
-        });
-      },
-      'groupData': function(callbackInside) {
-        var frame = {
-          '@context': pathway['@context'],
-          '@type': 'GroupNode'
-        };  
-        jsonld.frame(args.pathway, frame, function(err, groupData) {
-          callbackInside(null, groupData);
-        });
-      },
-      'grid': function(callbackInside) {
-        pathvisioNS.grid = {};
-        var frame = {
-          '@context': pathway['@context'],
-          '@type': 'EntityNode'
-        };  
-        jsonld.frame(args.pathway, frame, function(err, framedData) {
-          pathvisiojs.view.pathwayDiagram.pathFinder.generateGridData(framedData['@graph'], args.pathway.image.width, args.pathway.image.height, function() {
-            callbackInside(null);
-          });
-        });
-      },
-      'topLevelData': function(callbackInside) {
-        var inputTopLevel = pathvisiojs.utilities.clone(args.pathway);
-        inputTopLevel['@context'] = contextLevelInput;
-        var topLevelFrame = {
-          "@context": contextLevelInput,
-          "@type":"element",
-          "dependsOn": {}        
-        };
-        jsonld.frame(inputTopLevel, topLevelFrame, function(err, framedDataTopLevel) {
-          var topLevelData = [];
-          framedDataTopLevel['@graph'].forEach(function(element) {
-            if (!element.dependsOn) {
-              topLevelData.push(element['@id']);
-            }
-          });
-          callbackInside(null, topLevelData);
-        });
-      }
-    },
-    function(err, results) {
-      var resultsData = results.hierarchicalData['@graph'].filter(function(element) {
-        return (results.topLevelData.indexOf(element['@id']) > -1);
-      });
-    })
-  }
-  //*/
-
   return {
-    //render:render,
+    convertToId:convertToId,
+    convertToCssClassName:convertToCssClassName,
     renderWithCachedData:renderWithCachedData,
     appendElementsInDomOrder:appendElementsInDomOrder,
     load:load,

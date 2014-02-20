@@ -23,7 +23,7 @@ var developmentLoader = function() {
   // If you want to the GPML file URL or WikiPathways ID you want to display, you can
   // hard code it as the data parameter in the pathvisiojs.load() function below
 
-  function getUriParam(name) {
+  function getUriParamByName(name) {
 
     // Thanks to http://stackoverflow.com/questions/11582512/how-to-get-uri-parameters-with-javascript
     // This will be replaced once we get the backend php to get the GPML
@@ -37,8 +37,10 @@ var developmentLoader = function() {
     }
   }
 
-  function getUriParamList() {
-    uriParamList = {
+  function convertUriParamsToJson() {
+    // this includes both explicit and implicit URI params, e.g.,
+    // if svg-disabled is not specified as a URI param, it will still be included in this object with its default value of false.
+    var uriParams = {
       'svg-disabled': false,
       'gpml': null,
       'rev': 0,
@@ -46,26 +48,54 @@ var developmentLoader = function() {
       'account': '',
       'branch': ''
     };
-    Object.keys(uriParamList).forEach(function(element) {
-      if (!!getUriParam(element)) {
-        uriParamList[element] = getUriParam(element);
+    Object.keys(uriParams).forEach(function(element) {
+      if (!!getUriParamByName(element)) {
+        uriParams[element] = getUriParamByName(element);
       }
       window.setTimeout(function() {
-        $('#' + element).val(uriParamList[element]);
-      }, 50)
+        $('#' + element).val(uriParams[element]);
+      }, 50);
     });
-    return uriParamList;
+
+    var locationSearch = location.search;
+    var colors = getUriParamByName('colors');
+    if (!!colors) {
+      colors = colors.split(',');
+    }
+
+    var findElementsByStrings = locationSearch.match(/(xref=|label=|selector=)(.*?)&/gi);
+    var highlights;
+    if (!!findElementsByStrings) {
+      highlights = findElementsByStrings.map(function(findElementsByString, index) {
+        var highlight = {};
+        var findElementsBy = findElementsByString.match(/xref|label|selector/)[0];
+        var findElementsByValue = findElementsByString.match(/=(.*?)&/)[0].slice(1, -1);
+        highlight[findElementsBy] = findElementsByValue;
+        highlight.style = {};
+        highlight.style.fill = colors[index];
+        highlight.style.stroke = colors[index];
+        return highlight;
+      });
+
+      if (highlights.length > 0) {
+        uriParams.highlights = highlights;
+      }
+    }
+
+    console.log('uriParams');
+    console.log(uriParams);
+    return uriParams;
   }
 
   function updateParams(updatedParam) {
     var targetUri = currentUri + '?' + updatedParam.key + '=' + updatedParam.value;
 
-    Object.keys(uriParamList).forEach(function(element) {
+    Object.keys(uriParams).forEach(function(element) {
       if (element === updatedParam.key) {
-        uriParamList[element] = updatedParam.value;
+        uriParams[element] = updatedParam.value;
       }
       else {
-        targetUri += '&' + element + '=' + uriParamList[element];
+        targetUri += '&' + element + '=' + uriParams[element];
       }
     });
 
@@ -75,8 +105,7 @@ var developmentLoader = function() {
   function parseUriParams(callback) {
     // uriParams can be a WikiPathways ID (WP1), a uri for a GPML file (http://www.wikipathways.org/gpmlfile.gpml)
     // or a uri for another type of file.
-    var uriParams = getUriParamList();
-    console.log(uriParams);
+    var uriParams = convertUriParamsToJson();
     if (!uriParams) {
       throw new Error('No URI params to parse.');
     }
@@ -84,8 +113,14 @@ var developmentLoader = function() {
     // object we will return
     var parsedInputData = {};
     parsedInputData.sourceData = [];
-    var uri;
+        console.log('uriParams.highlights');
+        console.log(JSON.stringify(uriParams.highlights));
 
+    if (!!uriParams.highlights) {
+      parsedInputData.highlights = uriParams.highlights;
+    }
+
+    var uri;
     var svgDisabled = parsedInputData.svgDisabled = uriParams['svg-disabled'] || false;
     var gpmlParam = uriParams.gpml; // this might be equal to the value of uriParams.gpml, but it might not.
 
@@ -130,6 +165,7 @@ var developmentLoader = function() {
 
         parsedInputData.wpId = gpmlParam;
         parsedInputData.revision = wpRevision;
+        console.log('parsedInputData');
         console.log(parsedInputData);
         callback(parsedInputData);
       }
@@ -168,55 +204,29 @@ var developmentLoader = function() {
     return gpmlUri;
   }
 
-
-  function getUriParam(name) {
-
-    // Thanks to http://stackoverflow.com/questions/11582512/how-to-get-uri-parameters-with-javascript
-    // This will be replaced once we get the backend php to get the json
-
-    var parameter = decodeURIComponent((new RegExp('[?|&]' + name + '=' + '([^&;]+?)(&|#|;|$)').exec(location.search)||[,""])[1].replace(/\+/g, '%20'))||null;
-    if (!!parameter) {
-      return parameter;
-    }
-    else {
-      return null;
-    }
-  }
-
-  function loadScripts(array, callback){  
-    var loader = function(src,handler){  
-      var script = document.createElement('script');  
-      script.src = src;  
-      script.onload = script.onreadystatechange = function(){  
-        script.onreadystatechange = script.onload = null;  
-        if(/MSIE ([6-9]+\.\d+);/.test(navigator.userAgent))window.setTimeout(function(){handler();},8,this);  
-        else handler();  
-      }  
-      var head = document.getElementsByTagName('head')[0];  
-      (head || document.body).appendChild( script );  
-    };  
-    (function(){  
-      if(array.length!=0){  
-        loader(array.shift(),arguments.callee);  
-      }else{  
-        callback && callback();  
-      }  
-    })();  
-  }
-
-  function updateParams(updatedParam) {
-    var targetUri = currentUri + '?' + updatedParam.key + '=' + updatedParam.value;
-
-    Object.keys(uriParamList).forEach(function(element) {
-      if (element === updatedParam.key) {
-        uriParamList[element] = updatedParam.value;
+  function loadScripts(array, callback){
+    var loader = function(src,handler){
+      var script = document.createElement('script');
+      script.src = src;
+      script.onload = script.onreadystatechange = function(){
+        script.onreadystatechange = script.onload = null;
+        if(/MSIE ([6-9]+\.\d+);/.test(navigator.userAgent)) {
+          window.setTimeout(function(){handler();},8,this);
+        }
+        else {
+          handler();
+        }
+      };
+      var head = document.getElementsByTagName('head')[0];
+      (head || document.body).appendChild( script );
+    };
+    (function(){
+      if(array.length!==0){
+        loader(array.shift(),arguments.callee);
+      }else{
+        callback();
       }
-      else {
-        targetUri += '&' + element + '=' + uriParamList[element];
-      }
-    });
-
-    location.href = targetUri;
+    })();
   }
 
   function generateSvgTemplate(callback) {
@@ -232,7 +242,7 @@ var developmentLoader = function() {
     attr('height', '100%').
     attr('style', 'display: none; ');
 
-    var g = svg.append('g')
+    var g = svg.append('g');
 
     var title = svg.append('title').
     text('pathvisiojs diagram');
@@ -242,6 +252,7 @@ var developmentLoader = function() {
 
     var defs = svg.append('defs');
 
+    // TODO can we delete this filter?
     var filter = svg.append('filter').
     attr('id', 'highlight').
     attr('width', '150%').
@@ -272,7 +283,7 @@ var developmentLoader = function() {
 
   function generateHtmlTemplate(callback) {
     d3.html(srcDirectoryUri + 'pathvisiojs.html', function(html) {
-      pathvisioNS['tmp/pathvisiojs.html'] = serializeXmlToString(html);
+      pathvisioNS['src/pathvisiojs.html'] = serializeXmlToString(html);
       callback();
     });
   }
@@ -294,7 +305,7 @@ var developmentLoader = function() {
       },
       function(callback) {
         if (pathname.indexOf('development.html') > -1) { //if this is the development version
-          var pvjsSourcesDev = pvjsSources.slice(1); //this file is only used in the build process
+          var pvjsSourcesDev = pvjsSources; //this file is only used in the build process
 
       /*
           // In dev mode, different servers will use different configs.
@@ -363,7 +374,7 @@ var developmentLoader = function() {
     console.log(inputData);
     window.setTimeout(function() {
       inputData.forEach(function(inputDataElement) {
-        $('#' + inputDataElement.containerId).prepend('<iframe id="' + inputDataElement.containerId + '-frame" src="' + inputDataElement.frameSrc + '" style="width:inherit; height:inherit; margin:0; " />')
+        $('#' + inputDataElement.containerId).prepend('<iframe id="' + inputDataElement.containerId + '-frame" src="' + inputDataElement.frameSrc + '" style="width:inherit; height:inherit; margin:0; " />');
       });
       callback();
     }, 50);
@@ -395,7 +406,7 @@ var getPathvisiojsHtmlTemplate = function() {
 
   var serializedHtml = serializeXmlToString(html00);
   console.log(serializedHtml);
-}
+};
 
 var getPathvisiojsSvgTemplate = function() {
   var svg = pathvisiojs.utilities.cloneNode('#pathvisiojs-diagram');
@@ -421,4 +432,4 @@ var getPathvisiojsSvgTemplate = function() {
   //thanks MDN
   var serializedSvg = serializeXmlToString(svg00);
   console.log(serializedSvg);
-}
+};

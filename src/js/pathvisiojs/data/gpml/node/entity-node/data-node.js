@@ -1,84 +1,58 @@
-// TODO I don't know why these two elements below are here.
-pathvisiojs.data.gpml.element.node.entityNode.dataNode = Object.create(pathvisiojs.data.gpml.element.node.entityNode);
-
-var pathvisioDefaultStyleValues = {
-  'DataNode':{
-    'LineStyle':null,
-    'FillColor':null,
-    'GeneProduct':{
-      'Color':null,
-      'FontSize':10,
-      'FontWeight':null
-    },
-    'Protein':{
-      'Color':null,
-      'FontSize':10,
-      'FontWeight':null
-    },
-    'Rna':{
-      'Color':null,
-      'FontSize':10,
-      'FontWeight':null
-    },
-    'Unknown':{
-      'Color':null,
-      'FontSize':10,
-      'FontWeight':null
-    },
-    'Pathway':{
-      'Color':'14961e',
-      'FontSize':12,
-      'FontWeight':'Bold'
-    },
-    'Metabolite':{
-      'Color':'0000ff',
-      'FontSize':10,
-      'FontWeight':null
-    }
-  }
-}
-
-pathvisiojs.data.gpml.element.node.entityNode.dataNode.toRenderableJson = function(gpmlDataNode, pathwayIri, callbackInside) {
+pathvisiojs.data.gpml.element.node.entityNode.dataNode = function() {
   'use strict';
-  var jsonDataNode = {};
-  var dataNodeType = gpmlDataNode.attr('Type');
-  if (!dataNodeType) {
-    dataNodeType = 'Unknown';
-  }
-  jsonDataNode.nodeType = "DataNode";
-  jsonDataNode.dataNodeType = dataNodeType;
-  jsonDataNode["@type"] = jsonDataNode["@type"] || [];
-  jsonDataNode["@type"].push("DataNode");
-  jsonDataNode["@type"].push(dataNodeType);
 
-  var thisPathvisioDefaultStyleValues = pathvisiojs.utilities.collect(pathvisioDefaultStyleValues.DataNode, pathvisioDefaultStyleValues.DataNode[dataNodeType]);
+  var defaults = {
+    'Color':'000000',
+    'FillColor':'ffffff',
+    'FontSize':10,
+    'FontWeight':'Normal',
+    'LineStyle':'Solid',
+    'LineThickness':1
+  };
 
-  pathvisiojs.data.gpml.element.node.entityNode.toRenderableJson(gpmlDataNode, jsonDataNode, thisPathvisioDefaultStyleValues, pathwayIri, function(jsonDataNode) {
-    var database, ID, 
-    datasourceReference = gpmlDataNode.select('Xref');
-    if (!!datasourceReference) {
-      database = datasourceReference.attr('Database')
-      ID = datasourceReference.attr('ID')
-      if (!!database && !!ID) {
-        jsonDataNode.DatasourceReference = {};
-        jsonDataNode.DatasourceReference.Database = database;
-        jsonDataNode.DatasourceReference.ID = ID;
-      }
+  var toPvjson = function(gpmlDataNode, callbackInside) {
+    var jsonDataNode = {};
+    var dataNodeType = gpmlDataNode.attr('Type');
+    if (!dataNodeType) {
+      dataNodeType = 'Unknown';
     }
-    pathvisiojs.data.gpml.text.toRenderableJson(gpmlDataNode, thisPathvisioDefaultStyleValues, function(text) {
-      if (!!text) {
-        jsonDataNode.text = text;
+    jsonDataNode.nodeType = "DataNode";
+    jsonDataNode.dataNodeType = dataNodeType;
+    jsonDataNode["@type"] = jsonDataNode["@type"] || [];
+    jsonDataNode["@type"].push("DataNode");
+    jsonDataNode["@type"].push(dataNodeType);
+
+    pathvisiojs.data.gpml.element.node.entityNode.toPvjson(gpmlDataNode, jsonDataNode, function(jsonDataNode) {
+      var database, ID,
+        datasourceReference = gpmlDataNode.select('Xref');
+      if (!!datasourceReference) {
+        database = datasourceReference.attr('Database');
+        ID = datasourceReference.attr('ID');
+        if (!!database && !!ID) {
+          jsonDataNode.DatasourceReference = {};
+          jsonDataNode.DatasourceReference.Database = database;
+          jsonDataNode.DatasourceReference.ID = ID;
+        }
       }
-      jsonDataNode = pathvisiojs.data.gpml.setBorderStyleAsJson(jsonDataNode,
-                                                                gpmlDataNode.select('Graphics').attr('LineStyle'),
-                                                                thisPathvisioDefaultStyleValues.LineStyle);
-      jsonDataNode = pathvisiojs.data.gpml.setColorAsJson(jsonDataNode,
-                                                          gpmlDataNode.select('Graphics').attr('Color'),
-                                                          thisPathvisioDefaultStyleValues.Color);
-      jsonDataNode = pathvisiojs.data.gpml.element.node.setJsonBackgroundColor(jsonDataNode,
-                                                                       gpmlDataNode.select('Graphics').attr('FillColor'),
-                                                                       thisPathvisioDefaultStyleValues.FillColor);
-      callbackInside(jsonDataNode);
+      pathvisiojs.data.gpml.text.toPvjson(gpmlDataNode, defaults, function(text) {
+        if (!!text) {
+          jsonDataNode.text = text;
+        }
+
+        var gpmlLineStyle = gpmlDataNode.select('Graphics').attr('LineStyle') || defaults.LineStyle;
+        jsonDataNode = pathvisiojs.data.gpml.setBorderStyleAsJsonNew(jsonDataNode, gpmlLineStyle);
+        
+        var gpmlColor = gpmlDataNode.select('Graphics').attr('Color') || defaults.Color;
+        jsonDataNode = pathvisiojs.data.gpml.setColorAsJsonNew(jsonDataNode, gpmlColor);
+
+        var gpmlFillColor = gpmlDataNode.select('Graphics').attr('FillColor') || defaults.FillColor;
+        jsonDataNode = pathvisiojs.data.gpml.element.node.setJsonBackgroundColor(jsonDataNode, gpmlFillColor);
+        callbackInside(jsonDataNode);
+      });
     });
-  });
-}
+  };
+
+  return {
+    toPvjson:toPvjson
+  };
+}();
