@@ -3,7 +3,7 @@ pathvisiojs.data.gpml.element.node = function() {
   'use strict';
 
   var defaults = {};
-  defaults.backgroundImage = {};
+  defaults.glyph = {};
   defaults.shapeType = {};
   defaults.valign = defaults.verticalAlign = {};
   defaults.align = defaults.textAlign = {};
