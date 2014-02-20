@@ -1,61 +1,85 @@
-body {
+@import url("//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css");
+
+#pathvisiojs-container {
   background-color: white;
-  font-family: Helvetica, sans-serif, Arial
+  font-family: Helvetica, sans-serif, Arial;
+  width: inherit;
+  min-width: inherit;
+  max-width: inherit;
+  height: inherit;
+  min-height: inherit;
+  max-height: inherit;
+  position: relative;
 }
+
 .navigator .highlight{
-    opacity:    0.4;
-    filter:     alpha(opacity=40);
-    border:     2px solid #900;
-    outline:    none;
-    background-color: #900;
+  opacity:    0.4;
+  filter:     alpha(opacity=40);
+  border:     2px solid #900;
+  outline:    none;
+  background-color: #900;
 }
+
 .highlight{
-    opacity:    0.1;
-    filter:     alpha(opacity=40);
-    background-color: white;
+  opacity: 0.1;
+  filter: alpha(opacity=40);
+  background-color: white;
 }
+
 .highlight:hover, .highlight:focus{
-    filter:     alpha(opacity=70);
-    opacity:    0.7;
-    border:     2px solid gold;
-    outline:    10px auto gold;
-    background-color: transparent;
+  filter:     alpha(opacity=70);
+  opacity:    0.7;
+  border:     2px solid gold;
+  outline:    10px auto gold;
+  background-color: transparent;
 }
 
-.icon-screenshot:hover {
+.control-icon {
+ color:#aaa;
+}
+
+.control-icon:hover {
    cursor: pointer;
 }
-  
-.icon-fullscreen:hover {
-   cursor: pointer;
+
+.pan-zoom-control-icon {
+  display: block;
+  padding: 4px;
 }
 
-.fit-to-screen-controls {
-  margin-right: 20px;
+.pan-zoom-controls {
+  position: absolute;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  bottom: 5px;
+  right: 5px;
 }
 
-.typeahead,
+#typeahead {
+  background-color: #fff;
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  line-height: 1.0em; /* needed for wp */
+  display: flex; /* needed for wp */
+}
+
+#typeahead:focus {
+  border: 2px solid #0097cf;
+}
+
 .tt-query,
 .tt-hint {
   width: 180px;
   height: 20px;
   padding: 4px 6px;
-  margin-right: 20px;
   font-size: 12px;
-  line-height: 30px;
   border: 2px solid #ccc;
   -webkit-border-radius: 8px;
      -moz-border-radius: 8px;
           border-radius: 8px;
   outline: none;
-}
-
-.typeahead {
-  background-color: #fff;
-}
-
-.typeahead:focus {
-  border: 2px solid #0097cf;
 }
 
 .tt-query {
@@ -116,4 +140,16 @@ body {
   display: block;
   margin-left: auto;
   margin-right: auto
+}
+
+#viewer-toolbar {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  height: inherit;
+}
+
+#clear-highlights-from-typeahead {
+  visibility:hidden;
+  color: #c0c0c0;
 }

@@ -1,12 +1,12 @@
 pathvisiojs.data.gpml = function(){
   'use strict';
 
-  var pathvisioDefaultStyleValues = {
+  var defaults = {
     'FontSize':{
       'Type':"FontSize",
       'Value':10
     }
-  }
+  };
 
   function get(sourceData, callback) {
     var uri = sourceData.uri;
@@ -21,15 +21,63 @@ pathvisiojs.data.gpml = function(){
     }
 
     if (fileType === 'gpml') {
-      // TODO d3.xml doesn't seem to work with IE8
-      d3.xml(uri, function(gpml) {
-        callback(gpml);
-      });
+      if (pathvisiojs.utilities.isIE() !== 9) {
+        // d3.xml does not work with IE9 (and probably earlier), so we're using d3.xhr instead of d3.xml for IE9
+        // TODO file a bug report on d3 issue tracker
+        d3.xml(uri, function(gpmlDoc) {
+          var gpml = gpmlDoc.documentElement;
+          callback(gpml);
+        });
+      }
+      else {
+        async.waterfall([
+          function(callbackInside) {
+            if (!$) {
+              // TODO should we use requirejs for loading scripts instead?
+              pathvisiojs.utilities.loadScripts(['http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js'], function() {
+                callbackInside(null);
+              });
+            }
+            else {
+              callbackInside(null);
+            }
+          },
+          function(callbackInside) {
+            d3.xhr(uri, 'application/xml', function(error, data) {
+              var gpmlString = data.responseText;
+              callbackInside(null, gpmlString);
+            });
+          },
+          function(gpmlString, callbackInside) {
+            var gpmlDoc = $.parseXML(gpmlString);
+            var gpml = gpmlDoc.documentElement;
+            callback(gpml);
+          }
+        ]);
+      }
     }
     else {
       throw new Error('Cannot get GPML from the specified input.');
     }
   }
+
+  function gpmlColorToCssColorNew(gpmlColor) {
+    var color;
+    if (gpmlColor.toLowerCase() === 'transparent') {
+      return 'transparent';
+    }
+    else {
+      color = new RGBColor(gpmlColor);
+      if (color.ok) {
+        return color.toHex();
+      }
+      else {
+        console.warn('Could not convert GPML Color value of "' + gpmlColor + '" to a valid CSS color. Using "#c0c0c0" as a fallback.');
+        return '#c0c0c0';
+      }
+    }
+  }
+
 
   function gpmlColorToCssColor(gpmlColor, pathvisioDefault) {
     var color;
@@ -52,6 +100,16 @@ pathvisiojs.data.gpml = function(){
     }
   }
 
+  function setColorAsJsonNew(jsonElement, currentGpmlColorValue) {
+    var jsonColor = gpmlColorToCssColorNew(currentGpmlColorValue);
+    jsonElement.color = jsonColor;
+    jsonElement.borderColor = jsonColor;
+    if (jsonElement.hasOwnProperty('text')) {
+      jsonElement.text.color = jsonColor;
+    }
+    return jsonElement;
+  }
+
   function setColorAsJson(jsonElement, currentGpmlColorValue, defaultGpmlColorValue) {
     var jsonColor;
     if (currentGpmlColorValue !== defaultGpmlColorValue) {
@@ -68,10 +126,10 @@ pathvisiojs.data.gpml = function(){
   // TODO can we delete this function?
 
   function getLineStyle(gpmlElement) {
-    var LineStyle, attributes; 
+    var LineStyle, attributes;
     var graphics = gpmlElement.select('Graphics');
     if (!!graphics) {
-      LineStyle = graphics.attr('LineStyle'); 
+      LineStyle = graphics.attr('LineStyle');
       if (!!LineStyle) {
         return LineStyle;
       }
@@ -102,6 +160,27 @@ pathvisiojs.data.gpml = function(){
     }
   }
 
+  function getBorderStyleNew(gpmlLineStyle) {
+
+    // Double-lined EntityNodes will be handled by using a symbol with double lines.
+    // Double-lined edges will be rendered as single-lined, solid edges, because we
+    // shouldn't need double-lined edges other than for cell walls/membranes, which
+    // should be symbols. Any double-lined edges are curation issues.
+
+    var lineStyleToBorderStyleMapping = {
+      'Solid':'solid',
+      'Double':'solid',
+      'Broken':'dashed'
+    };
+    var borderStyle = lineStyleToBorderStyleMapping[gpmlLineStyle];
+    if (!!borderStyle) {
+      return borderStyle;
+    }
+    else {
+      console.warn('LineStyle "' + gpmlLineStyle + '" does not have a corresponding borderStyle. Using "solid"');
+      return 'solid';
+    }
+  }
   function getBorderStyle(gpmlLineStyle, pathvisioDefault) {
 
     // Double-lined EntityNodes will be handled by using a symbol with double lines.
@@ -138,6 +217,12 @@ pathvisiojs.data.gpml = function(){
     }
   }
 
+  function setBorderStyleAsJsonNew(jsonElement, currentGpmlLineStyleValue) {
+    var borderStyle = getBorderStyleNew(currentGpmlLineStyleValue);
+    jsonElement.borderStyle = borderStyle;
+    return jsonElement;
+  }
+
   function setBorderStyleAsJson(jsonElement, currentGpmlLineStyleValue, defaultGpmlLineStyleValue) {
     var borderStyle;
 
@@ -152,14 +237,15 @@ pathvisiojs.data.gpml = function(){
     return jsonElement;
   }
 
-  function toRenderableJson(gpml, pathwayIri, callbackOutside){
-    var gpmlPathway = d3.select(gpml).select('Pathway');
+  function toPvjson(gpml, pathwayIri, callbackOutside){
+    var gpmlPathway = d3.select(gpml);
+    //var gpmlPathway = d3.select(gpml).select('Pathway');
 
     // for doing this in Java, we could look at 
     // https://code.google.com/p/json-io/
 
-    //console.log('GPML');
-    //console.log(gpml);
+    console.log('GPML');
+    console.log(gpml);
 
     var pathway = {};
     pathway.xmlns = gpmlPathway.attr('xmlns');
@@ -186,7 +272,15 @@ pathvisiojs.data.gpml = function(){
           '@context': function(callback){
             pathway['@context'] = {
               '@vocab':'http://vocabularies.wikipathways.org/gpml#',
+              '@base': pathwayIri,
               'gpml':'http://vocabularies.wikipathways.org/gpml#',
+              'id':'@id',
+              /*
+              'id': {
+                '@id': 'http://purl.org/dc/terms/identifier',
+                '@type': '@id'
+              },
+              //*/
               'xsd': 'http://www.w3.org/2001/XMLSchema#',
               'wp':'http://vocabularies.wikipathways.org/wp#',
               'biopax': 'http://www.biopax.org/release/biopax-level3.owl#',
@@ -314,7 +408,7 @@ pathvisiojs.data.gpml = function(){
             callback(null, pathway['@context']);
           },
           PublicationXref: function(callback){
-            pathvisiojs.data.gpml.biopaxRef.getAllAsRenderableJson(gpmlPathway, function(publicationXrefs) {
+            pathvisiojs.data.gpml.biopaxRef.getAllAsPvjson(gpmlPathway, function(publicationXrefs) {
               if (!!publicationXrefs) {
                 pathway.PublicationXref = publicationXrefs;
                 callback(null, 'BiopaxRefs are all converted.');
@@ -427,7 +521,7 @@ pathvisiojs.data.gpml = function(){
           Biopax: function(callback){
             var xmlBiopax = gpmlPathway.selectAll('Biopax');
             if (xmlBiopax[0].length > 0) {
-              pathvisiojs.data.biopax.toRenderableJson(xmlBiopax, function(jsonBiopax) {
+              pathvisiojs.data.biopax.toPvjson(xmlBiopax, function(jsonBiopax) {
                 pathway.Biopax = jsonBiopax;
               });
               callback(null, 'Biopax all converted.');
@@ -442,12 +536,12 @@ pathvisiojs.data.gpml = function(){
               pathway.DataNode = [];
               dataNodes.each(function() {
                 gpmlDataNode = d3.select(this);
-                pathvisiojs.data.gpml.element.node.entityNode.dataNode.toRenderableJson(gpmlDataNode, pathwayIri, function(jsonDataNode) {
+                pathvisiojs.data.gpml.element.node.entityNode.dataNode.toPvjson(gpmlDataNode, function(jsonDataNode) {
                   pathway.DataNode.push(jsonDataNode);
                   pathway.nodes = pathway.nodes.concat(jsonDataNode);
                   pathway.elements = pathway.elements.concat(jsonDataNode);
                 });
-              })
+              });
               callback(null, 'DataNodes are all converted.');
             }
             else {
@@ -460,12 +554,12 @@ pathvisiojs.data.gpml = function(){
               pathway.Label = [];
               gpmlPathway.selectAll('Label').each(function() {
                 gpmlLabel = d3.select(this);
-                pathvisiojs.data.gpml.element.node.entityNode.label.toRenderableJson(gpmlLabel, pathwayIri, function(jsonLabel) {
+                pathvisiojs.data.gpml.element.node.entityNode.label.toPvjson(gpmlLabel, function(jsonLabel) {
                   pathway.Label.push(jsonLabel);
                   pathway.nodes = pathway.nodes.concat(jsonLabel);
                   pathway.elements = pathway.elements.concat(jsonLabel);
                 });
-              })
+              });
               callback(null, 'Labels are all converted.');
             }
             else {
@@ -478,12 +572,12 @@ pathvisiojs.data.gpml = function(){
               pathway.Shape = [];
               gpmlPathway.selectAll('Shape').each(function() {
                 gpmlShape = d3.select(this);
-                pathvisiojs.data.gpml.element.node.entityNode.shape.toRenderableJson(gpmlShape, pathwayIri, function(jsonShape) {
+                pathvisiojs.data.gpml.element.node.entityNode.shape.toPvjson(gpmlShape, function(jsonShape) {
                   pathway.Shape.push(jsonShape);
                   pathway.nodes = pathway.nodes.concat(jsonShape);
                   pathway.elements = pathway.elements.concat(jsonShape);
                 });
-              })
+              });
               callback(null, 'Shapes are all converted.');
             }
             else {
@@ -499,11 +593,11 @@ pathvisiojs.data.gpml = function(){
               pathway.Group = [];
               gpmlPathway.selectAll('Group').each(function() {
                 gpmlGroup = d3.select(this);
-                pathvisiojs.data.gpml.element.node.groupNode.toRenderableJson(gpml, gpmlGroup, pathwayIri, function(jsonGroup) {
+                pathvisiojs.data.gpml.element.node.groupNode.toPvjson(gpml, gpmlGroup, function(jsonGroup) {
                   pathway.Group.push(jsonGroup);
                   pathway.nodes = pathway.nodes.concat(jsonGroup);
                 });
-              })
+              });
               callback(null, 'Groups are all converted.');
             }
             else {
@@ -517,12 +611,12 @@ pathvisiojs.data.gpml = function(){
               pathway.GraphicalLine = [];
               gpmlPathway.selectAll('GraphicalLine').each(function() {
                 gpmlGraphicalLine = d3.select(this);
-                pathvisiojs.data.gpml.edge.graphicalLine.toRenderableJson(gpml, gpmlGraphicalLine, pathwayIri, function(jsonGraphicalLine) {
+                pathvisiojs.data.gpml.edge.graphicalLine.toPvjson(gpml, gpmlGraphicalLine, function(jsonGraphicalLine) {
                   pathway.GraphicalLine.push(jsonGraphicalLine);
                   pathway.edges = pathway.edges.concat(jsonGraphicalLine);
                   pathway.elements = pathway.elements.concat(jsonGraphicalLine);
                 });
-              })
+              });
               callback(null, 'GraphicalLines are all converted.');
             }
             else {
@@ -536,12 +630,12 @@ pathvisiojs.data.gpml = function(){
               pathway.Interaction = [];
               gpmlPathway.selectAll('Interaction').each(function() {
                 gpmlInteraction = d3.select(this);
-                pathvisiojs.data.gpml.edge.interaction.toRenderableJson(gpml, gpmlInteraction, pathwayIri, function(jsonInteraction) {
+                pathvisiojs.data.gpml.edge.interaction.toPvjson(gpml, gpmlInteraction, function(jsonInteraction) {
                   pathway.Interaction.push(jsonInteraction);
                   pathway.edges = pathway.edges.concat(jsonInteraction);
                   pathway.elements = pathway.elements.concat(jsonInteraction);
                 });
-              })
+              });
               callback(null, 'Interactions are all converted.');
             }
             else {
@@ -556,7 +650,7 @@ pathvisiojs.data.gpml = function(){
             '@context': pathway['@context'],
             '@type': 'GroupNode',
             'contains': {}
-          };  
+          };
           jsonld.frame(pathway, groupsFrame, function(err, framedGroups) {
             async.waterfall([
               function(callbackInside){
@@ -592,34 +686,48 @@ pathvisiojs.data.gpml = function(){
                   'GraphicalLine': 2,
                   'Anchor': 3,
                   'EntityNode': 4
-                }
+                };
 
-                // if two elements have the same z-index, they will be rendered by this sub-sort
+                // sort by explicitly set z-index for all elements except GroupNodes, which use the lowest z-index
+                // of their contained elements, and anchors, which use their parent element's z-index
+                //TODO check whether anchors have been set to have a z-index
                 pathway.elements.sort(function(a, b) {
-                  return relativeZIndexByRenderableType[a.renderableType] - relativeZIndexByRenderableType[b.renderableType];
+                  var aPriority, bPriority;
+                  if (a.zIndex !== b.zIndex) {
+                    // if two elements have the same z-index,
+                    // they will be sub-sorted by renderableElementType priority,
+                    // as indicated in relativeZIndexByRenderableType
+                    aPriority = a.zIndex + relativeZIndexByRenderableType[a.renderableType];
+                    bPriority = b.zIndex + relativeZIndexByRenderableType[b.renderableType];
+                  }
+                  else {
+                    aPriority = a.zIndex;
+                    bPriority = b.zIndex;
+                  }
+                  return aPriority - bPriority;
                 });
                 callbackInside(null, pathway);
               },
               function(pathway, callbackInside){
-                // sort by explicitly set z-index for all elements except GroupNodes, which use the loweest z-index
-                // of their contained elements, and anchors, which use their parent element's z-index //TODO check whether anchors have been set to have a z-index
-                pathway.elements.sort(function(a, b) {
-                  return a.zIndex - b.zIndex;
-                });
-                callbackInside(null, pathway);
-              },
-              function(pathway, callbackInside){
+                /*
+                 * we don't need this until we start rendering without cached data
                 pathway.pathwayNestedByDependencies = d3.nest()
                 .key(function(d) { return d.hasDependencies; })
                 .entries(pathway.elements);
+                //*/
 
                 pathway.pathwayNestedByGrouping = d3.nest()
                 .key(function(d) { return d.isContainedBy; })
                 .entries(pathway.elements);
+
+                var firstOrderElement = pathway.pathwayNestedByGrouping.filter(function(group) {
+                  return group.key === 'undefined';
+                })[0];
+                pathway.pathwayNestedByGrouping = pathvisiojs.utilities.moveArrayItem(pathway.pathwayNestedByGrouping, pathway.pathwayNestedByGrouping.indexOf(firstOrderElement), 0);
                 callbackInside(null, pathway);
               },
               function(pathway, callbackInside){
-                self.myPathway = pathway;
+                //self.myPathway = pathway;
                 callbackOutside(pathway);
               }
             ]);
@@ -629,7 +737,12 @@ pathvisiojs.data.gpml = function(){
           pathway.elements.sort(function(a, b) {
             return a.zIndex - b.zIndex;
           });
-          self.myPathway = pathway;
+
+          pathway.pathwayNestedByGrouping = d3.nest()
+          .key(function(d) { return d.isContainedBy; })
+          .entries(pathway.elements);
+
+          //self.myPathway = pathway;
           callbackOutside(pathway);
         }
       });
@@ -715,15 +828,19 @@ pathvisiojs.data.gpml = function(){
 
   return {
     get:get,
-    toRenderableJson:toRenderableJson,
+    toPvjson:toPvjson,
     getLineStyle:getLineStyle,
+    getBorderStyleNew:getBorderStyleNew,
+    setBorderStyleAsJsonNew:setBorderStyleAsJsonNew,
     getBorderStyle:getBorderStyle,
     setBorderStyleAsJson:setBorderStyleAsJson,
     gpmlColorToCssColor:gpmlColorToCssColor,
+    gpmlColorToCssColorNew:gpmlColorToCssColorNew,
+    setColorAsJsonNew:setColorAsJsonNew,
     setColorAsJson:setColorAsJson
   };
 }();
 
-// hack required because we call ...node.anchors.toRenderableJson() before we
-// call the other ...node.toRenderableJson() methods
+// TODO hack required because we call ...node.anchors.toPvjson() before we
+// call the other ...node.toPvjson() methods
 pathvisiojs.data.gpml.node = pathvisiojs.data.gpml.node || {};

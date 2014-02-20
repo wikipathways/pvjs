@@ -14,7 +14,7 @@ pathvisiojs.data.gpml.node.anchor = function() {
   //  initialEdgeDirection: direction (in degrees) by which the edge emanates from the anchor (only for anchors attached to nodes, not edges)
   // }
 
-  function toRenderableJson(gpmlParentElement, jsonParentElement, elementType, pathwayIri, callback) {
+  function toPvjson(gpmlParentElement, jsonParentElement, elementType, callback) {
     var gpmlAnchors, gpmlAnchor, jsonAnchor, elementIri, graphId;
     if (elementType === 'edge') {
       gpmlAnchors = gpmlParentElement.selectAll('Anchor');
@@ -24,15 +24,15 @@ pathvisiojs.data.gpml.node.anchor = function() {
           jsonAnchor = {};
           gpmlAnchor = d3.select(this);
           graphId = gpmlAnchor.attr('GraphId') || ('id' + uuid.v4());
-          elementIri = 'pathwayIri:' + graphId;
-          jsonAnchor['@id'] = elementIri;
+          elementIri = '' + graphId;
+          jsonAnchor['id'] = elementIri;
           jsonAnchor['@type'] = [
             'node',
             'element',
             'Element',
             'Anchor'
           ];
-          jsonAnchor.dependsOn = jsonParentElement['@id'];
+          jsonAnchor.dependsOn = jsonParentElement['id'];
           jsonAnchor.anchorPosition = gpmlAnchor.attr('Position');
           if (!!jsonParentElement.stroke) {
             jsonAnchor.backgroundColor = jsonParentElement.stroke;
@@ -55,7 +55,7 @@ pathvisiojs.data.gpml.node.anchor = function() {
       }
     }
     else {
-      throw new Error('anchor.toRenderableJson doesnt know how to handle anything other than edges as parent elements right now. handling other elements needs to be implemented.');
+      throw new Error('anchor.toPvjson doesnt know how to handle anything other than edges as parent elements right now. handling other elements needs to be implemented.');
     }
   }
 
@@ -109,7 +109,7 @@ pathvisiojs.data.gpml.node.anchor = function() {
   }
 
   return {
-    toRenderableJson:toRenderableJson,
+    toPvjson:toPvjson,
     getAllFromNode:getAllFromNode
   };
 }();

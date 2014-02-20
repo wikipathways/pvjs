@@ -57,7 +57,7 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
             });
           },
           pathway: function(callback){
-            pathvisiojs.data.pathvisiojsJson.get(renderableSourceDataElement, function(json) {
+            pathvisiojs.data.pvjson.get(renderableSourceDataElement, function(json) {
               pathvisiojs.context = json['@context'];
 
               if (!json || json === 'fail') {
@@ -524,7 +524,7 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
           var topLevelData = [];
           framedDataTopLevel['@graph'].forEach(function(element) {
             if (!element.dependsOn) {
-              topLevelData.push(element['@id']);
+              topLevelData.push(element['id']);
             }
           });
           callbackInside(null, topLevelData);
@@ -533,7 +533,7 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
     },
     function(err, results) {
       var resultsData = results.hierarchicalData['@graph'].filter(function(element) {
-        return (results.topLevelData.indexOf(element['@id']) > -1);
+        return (results.topLevelData.indexOf(element['id']) > -1);
       });
     })
   }

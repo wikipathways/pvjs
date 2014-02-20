@@ -1,7 +1,9 @@
 .annotation {
   font-family: "Helvetica Neue", Helvetica, sans-serif;
   display: inline-block;
-  position: relative;
+  position: absolute;
+  right: 75px;
+  top: 100px;
   vertical-align: text-top;
   text-align: center;
   margin: 0;
@@ -14,6 +16,7 @@
   -moz-box-shadow: 0 1px 3px rgba(0,0,0,0.3),inset 0 1px 1px rgba(255,255,255,0.8);
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3),inset 0 1px 1px rgba(255, 255, 255, 0.8);
   padding: 10px 5px 0 5px;
+  visibility: hidden;
 }
 
 header.annotation-header {
@@ -28,6 +31,8 @@ header.annotation-header {
 
 .annotation-header-search {
   vertical-align: 10%;
+  text-decoration: none; /* tweaks needed for wp */
+  font-size: 60%; /* tweaks needed for wp */
 }
 
 .annotation-header-search:hover {
@@ -137,4 +142,10 @@ header.annotation-header {
 
 .tooltip {
   font-size: 8pt;
+}
+
+#icon-search {
+  color:blue;
+  font-size:50%;
+  text-decoration:none;
 }

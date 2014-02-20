@@ -2,13 +2,12 @@
   "author": "Pathvisiojs team",
   "name": "pathvisiojs",
   "description": "Diagram viewer and editor for biological pathways",
-  "version": "1.0.2",
+  "version": "1.0.8",
   "homepage": "http://wikipathways.github.io/pathvisiojs/",
   "dependencies": {
     "async": "~0.2.5",
     "blueimp-load-image": "~1.11.0",
     "d3": ">= 3.2.8",
-    "font-awesome": "~4.0.3",
     "jquery": "1.10.2",
     "jsonld.js": "~0.1.25",
     "modernizr": "~2.7.0",
@@ -18,7 +17,8 @@
     "svg-pan-zoom": "latest",
     "typeahead.js": "~0.9.3",
     "es5-shim": "~2.3.0",
-    "aight": "~1.2.2"
+    "aight": "~1.2.2",
+    "bootstrap": "~3.1.1"
   },
   "resolutions": {
     "jquery": "1.10.2"
