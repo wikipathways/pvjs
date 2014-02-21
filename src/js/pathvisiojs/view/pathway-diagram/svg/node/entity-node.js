@@ -13,7 +13,9 @@ pathvisiojs.view.pathwayDiagram.svg.node.EntityNode = function(){
         var cssClass = 'node entity-node ' + pathvisiojs.view.pathwayDiagram.svg.convertToCssClassName(d.nodeType) + ' ';
         if (d.nodeType === 'DataNode') {
           cssClass += pathvisiojs.view.pathwayDiagram.svg.convertToCssClassName(d.dataNodeType) + ' ';
-          cssClass += pathvisiojs.view.pathwayDiagram.svg.convertToCssClassName('label-' + decodeURIComponent(d.text.line[0])) + ' ';
+          if (!!d.text) {
+            cssClass += pathvisiojs.view.pathwayDiagram.svg.convertToCssClassName('label-' + decodeURIComponent(d.text.line[0])) + ' ';
+          }
           if (!!d.DatasourceReference) {
             cssClass += 'has-xref ';
             cssClass += pathvisiojs.view.pathwayDiagram.svg.convertToCssClassName('xref-' + decodeURIComponent(d.DatasourceReference.ID + ',' + d.DatasourceReference.Database)) + ' ';
