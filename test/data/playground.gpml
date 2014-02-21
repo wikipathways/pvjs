@@ -1,14 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Pathway xmlns="http://pathvisio.org/GPML/2013a" Name="New Pathway" Version="20140130">
-  <Graphics BoardWidth="753.0" BoardHeight="612.3306233062328" />
-  <Shape GraphId="ab81b">
+  <Graphics BoardWidth="1288.663309788563" BoardHeight="576.0" />
+  <DataNode TextLabel="mytextlabel" GraphId="fd721" Type="GeneProduct">
+    <Graphics CenterX="208.54700854700857" CenterY="191.45299145299145" Width="80.0" Height="20.0" ZOrder="32768" FillColor="Transparent" FontSize="10" Valign="Middle" />
+    <Xref Database="" ID="" />
+  </DataNode>
+  <Label TextLabel="mytextlabel" GraphId="f846c">
+    <Graphics CenterX="191.45299145299145" CenterY="258.11965811965814" Width="80.0" Height="20.0" ZOrder="28672" FontSize="10" Valign="Middle" ShapeType="Rectangle" />
+  </Label>
+  <Shape TextLabel="mytextlabel" GraphId="dac2f">
     <Attribute Key="org.pathvisio.CellularComponentProperty" Value="Cell" />
-    <Attribute Key="org.pathvisio.DoubleLineProperty" Value="Double" />
-    <Graphics CenterX="260.75" CenterY="292.75" Width="418.5" Height="330.5" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="RoundedRectangle" LineThickness="3.0" Color="c0c0c0" Rotation="0.0" />
-  </Shape>
-  <Shape GraphId="a5d35">
-    <Attribute Key="org.pathvisio.CellularComponentProperty" Value="Extracellular region" />
-    <Graphics CenterX="633.25" CenterY="390.25" Width="179.5" Height="311.5" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="RoundedRectangle" LineStyle="Broken" Color="c0c0c0" Rotation="0.0" />
+    <Graphics CenterX="221.97222222222223" CenterY="380.94658119658123" Width="80.0" Height="20.0" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="Rectangle" Rotation="0.0" />
   </Shape>
   <InfoBox CenterX="0.0" CenterY="0.0" />
   <Biopax />
