@@ -283,6 +283,7 @@ pathvisiojs.data.gpml = function(){
 
         // TODO call the Java RPC updater or in some other way call for the file to be updated.
 
+        console.warn('GPML namespace is not one pathvisiojs can handle.');
         callbackOutside('fail');
         //alert('Pathvisiojs may not fully support the version of GPML provided (xmlns: ' + pathway.xmlns + '). Please convert to the supported version of GPML (xmlns: ' + pathvisiojs.data.gpml.namespaces[0] + ').');
       }
