@@ -8,6 +8,21 @@ pathvisiojs.data.gpml = function(){
     }
   };
 
+  var convertGpmlGraphicsToPvjson = function(gpmlElement, pvjsonElement) {
+    pvjsonElement = pvjsonElement || {};
+    var attribute,
+      i,
+      graphics = d3.select(gpmlElement).select('Graphics')[0][0];
+
+    if (!!graphics) {
+      for (i = 0; i < graphics.attributes.length; i++) {
+        attribute = graphics.attributes[i];
+        console.log(attribute.name + " = " + attribute.value);
+        pvjsonElement.style = {};
+      }
+    }
+  };
+
   function get(sourceData, callback) {
     var uri = sourceData.uri;
     var object = sourceData.object;
@@ -26,6 +41,7 @@ pathvisiojs.data.gpml = function(){
         // TODO file a bug report on d3 issue tracker
         d3.xml(uri, function(gpmlDoc) {
           var gpml = gpmlDoc.documentElement;
+          self.myGpml = gpml;
           callback(gpml);
         });
       }
@@ -34,6 +50,7 @@ pathvisiojs.data.gpml = function(){
           function(callbackInside) {
             if (!$) {
               // TODO should we use requirejs for loading scripts instead?
+              // This URI should get moved into config.js.
               pathvisiojs.utilities.loadScripts(['http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js'], function() {
                 callbackInside(null);
               });
@@ -75,10 +92,10 @@ pathvisiojs.data.gpml = function(){
       result.label.color = gpmlColorToCssColorNew(gpmlColor);
     }
     else {
-      style.color = gpmlColorToCssColorNew(gpmlColor); // color just means text-color in this case
-      style.stroke = 'transparent';
+      result.color = gpmlColorToCssColorNew(gpmlColor); // color just means text-color in this case
+      result.stroke = 'transparent';
     }
-    return style;
+    return result;
   }
 
   function gpmlColorToCssColorNew(gpmlColor) {
@@ -271,6 +288,7 @@ pathvisiojs.data.gpml = function(){
     pathway.xmlns = gpmlPathway.attr('xmlns');
     pathway.nodes = [];
     pathway.edges = [];
+    pathway.paths = [];
     pathway.elements = [];
 
     // test for whether file is GPML
@@ -557,10 +575,11 @@ pathvisiojs.data.gpml = function(){
               pathway.DataNode = [];
               dataNodes.each(function() {
                 gpmlDataNode = d3.select(this);
-                pathvisiojs.data.gpml.element.node.entityNode.dataNode.toPvjson(gpmlDataNode, function(jsonDataNode) {
+                pathvisiojs.data.gpml.element.node.entityNode.dataNode.toPvjson(gpmlDataNode, function(jsonDataNode, jsonPaths) {
                   pathway.DataNode.push(jsonDataNode);
                   pathway.nodes = pathway.nodes.concat(jsonDataNode);
                   pathway.elements = pathway.elements.concat(jsonDataNode);
+                  pathway.paths = pathway.paths.concat(jsonPaths);
                 });
               });
               callback(null, 'DataNodes are all converted.');
