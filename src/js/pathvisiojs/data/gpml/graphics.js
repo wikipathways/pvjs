@@ -174,7 +174,6 @@ pathvisiojs.data.gpml.graphics = function(){
         return pvjsonZIndex;
       }
     };
-    self.mygpmlToPvjsonConverter = gpmlToPvjsonConverter;
 
     var attributeName, attributeListItem, attributeListItemName, attributeList = [];
     if (!!graphics) {
