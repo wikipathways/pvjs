@@ -12,6 +12,9 @@ pathvisiojs.view.pathwayDiagram.svg.node.pathShape = function(){
     //*/
     var re;
     var pathShapeNameToUse = strcase.camelCase(data.ShapeType);
+    console.log('pathShapeNameToUse');
+    console.log(data.ShapeType);
+    console.log(pathShapeNameToUse);
     if (!pathvisiojs.view.pathwayDiagram.svg.node.pathShape.hasOwnProperty(pathShapeNameToUse)) {
       re = /Double$/gi;
       pathShapeNameToUse = pathShapeNameToUse.replace(re, '');
