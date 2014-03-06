@@ -8,19 +8,164 @@ pathvisiojs.data.gpml = function(){
     }
   };
 
-  var convertGpmlGraphicsToPvjson = function(gpmlElement, pvjsonElement) {
-    pvjsonElement = pvjsonElement || {};
-    var attribute,
-      i,
-      graphics = d3.select(gpmlElement).select('Graphics')[0][0];
+  // Removes confusion of GroupId vs. GraphId by just using GraphId to identify containing elements
+  var addIsContainedByAttribute = function(gpmlSelection) {
+    gpmlSelection.selectAll('Group').each(function() {
+      var groupSelection = d3.select(this);
+      var groupId = groupSelection.attr('GroupId');
+      var graphId = groupSelection.attr('GraphId');
+      var groupedElementsSelection = gpmlSelection.selectAll('[GroupRef=' + groupId + ']').each(function(){
+        var groupedElementSelection = d3.select(this);
+        groupedElementSelection.attr('IsContainedBy', graphId);
+      });
+    });
+    return gpmlSelection;
+  };
 
-    if (!!graphics) {
-      for (i = 0; i < graphics.attributes.length; i++) {
-        attribute = graphics.attributes[i];
-        console.log(attribute.name + " = " + attribute.value);
-        pvjsonElement.style = {};
+  var selectByMultipleTagNames = function(args){
+    var gpmlSelection = args.gpmlSelection;
+    var elementTags = args.elementTags;
+    var elementsSelection;
+    var newElementsSelection;
+    elementTags.forEach(function(elementTag){
+      newElementsSelection = gpmlSelection.selectAll(elementTag);
+      if (!!newElementsSelection[0][0]) {
+        if (!!elementsSelection) {
+          elementsSelection[0] = elementsSelection[0].concat(newElementsSelection[0]);
+        }
+        else {
+          elementsSelection = newElementsSelection;
+        }
       }
-    }
+    });
+    return elementsSelection;
+  };
+
+  // Fills in implicit values
+  var makeExplicit = function(gpmlSelection) {
+    var groupSelection, groupGroupSelection, groupNoneSelection, groupPathwaySelection, groupComplexSelection;
+    var groupGraphicsSelection, groupGroupGraphicsSelection, groupNoneGraphicsSelection, groupPathwayGraphicsSelection, groupComplexGraphicsSelection;
+    var groupsSelection = gpmlSelection.selectAll('Group').each(function(){
+      groupSelection = d3.select(this);
+      groupGraphicsSelection = groupSelection.append('Graphics')
+      .attr('FontSize', '32')
+      .attr('FontWeight', 'Bold');
+    });
+    var groupGroupsSelection = gpmlSelection.selectAll('Group[Style=Group]').each(function(){
+      groupGroupSelection = d3.select(this);
+      groupGroupGraphicsSelection = groupGroupSelection.select('Graphics')
+      .attr('ShapeType', 'Rectangle')
+      .attr('LineStyle', 'Broken')
+      .attr('Color', 'Transparent')
+      .attr('FillColor', 'Transparent');
+    });
+    var groupNonesSelection = gpmlSelection.selectAll('Group[Style=None]').each(function(){
+      groupNoneSelection = d3.select(this);
+      groupNoneGraphicsSelection = groupNoneSelection.select('Graphics')
+      .attr('ShapeType', 'Rectangle')
+      .attr('LineStyle', 'Broken')
+      .attr('Color', '808080')
+      .attr('FillColor', 'B4B464');
+    });
+    var groupComplexsSelection = gpmlSelection.selectAll('Group[Style=Complex]').each(function(){
+      groupComplexSelection = d3.select(this);
+      groupComplexGraphicsSelection = groupComplexSelection.select('Graphics')
+      .attr('ShapeType', 'Complex')
+      .attr('Color', '808080')
+      .attr('FillColor', 'B4B464');
+    });
+    var groupPathwaysSelection = gpmlSelection.selectAll('Group[Style=Pathway]').each(function(){
+      groupPathwaySelection = d3.select(this);
+      groupPathwayGraphicsSelection = groupPathwaySelection.select('Graphics')
+      .attr('ShapeType', 'Rectangle')
+      .attr('LineStyle', 'Broken')
+      .attr('Color', '808080')
+      .attr('FillColor', '00FF00');
+    });
+
+    var selectAllGraphicalElementsArgs = {};
+    selectAllGraphicalElementsArgs.gpmlSelection = gpmlSelection;
+    selectAllGraphicalElementsArgs.elementTags = [
+      'DataNode',
+      'Label',
+      'Shape',
+      'State',
+      'Anchor',
+      'Interaction',
+      'GraphicalLine'
+    ];
+    var graphicalElementsSelection = selectByMultipleTagNames(selectAllGraphicalElementsArgs);
+    var graphId, graphIdStub, graphIdStubs = [];
+    // graphIdStub is whatever follows 'id' at the beginning of the GraphId string
+    graphicalElementsSelection.filter(function(){
+      return (!!d3.select(this).attr('GraphId'));
+    }).each(function(DataNode){
+      graphId = d3.select(this).attr('GraphId');
+      if (graphId.slice(0,2) === 'id') {
+        graphIdStub = graphId.slice(2, graphId.length);
+        graphIdStubs.push(graphIdStub);
+      }
+    });
+    graphIdStubs.sort(function(a,b){
+      return parseInt(a, 32) - parseInt(b, 32);
+    });
+    var largestGraphIdStub = graphIdStubs[graphIdStubs.length - 1] || 0;
+
+    // Add a GraphId to every element missing a GraphId by converting the largest graphIdStub to int, incrementing,
+    // converting back to base32 and appending it to the string 'id'.
+
+    graphicalElementsSelection.filter(function(){
+      return (!d3.select(this).attr('GraphId'));
+    }).each(function(){
+      largestGraphIdStub = (parseInt(largestGraphIdStub, 32) + 1).toString(32);
+      d3.select(this).select('Graphics').attr('GraphId', 'id' + largestGraphIdStub);
+    });
+
+    var selectAllNodesArgs = {};
+    selectAllNodesArgs.gpmlSelection = gpmlSelection;
+    selectAllNodesArgs.elementTags = [
+      'DataNode',
+      'Label',
+      'Shape',
+      'State'
+    ];
+    var nodesSelection = selectByMultipleTagNames(selectAllNodesArgs);
+    nodesSelection.filter(function(){
+      return (!d3.select(this).select('Graphics').attr('ShapeType'));
+    }).each(function(){
+      d3.select(this).select('Graphics').attr('ShapeType', 'Rectangle');
+    });
+
+    nodesSelection.filter(function(){
+      return (!d3.select(this).select('Graphics').attr('Color'));
+    }).each(function(){
+      d3.select(this).select('Graphics').attr('Color', '000000');
+    });
+
+    nodesSelection.filter(function(){
+      return (!d3.select(this).select('Graphics').attr('FillColor'));
+    }).each(function(){
+      d3.select(this).select('Graphics').attr('FillColor', 'ffffff');
+    });
+
+    nodesSelection.filter(function(){
+      return (!d3.select(this).select('Graphics').attr('LineThickness'));
+    }).each(function(){
+      d3.select(this).select('Graphics').attr('LineThickness', 1);
+    });
+
+    nodesSelection.filter(function(){
+      return (!d3.select(this).select('Graphics').attr('ZOrder'));
+    }).each(function(){
+      d3.select(this).select('Graphics').attr('ZOrder', 10000);
+    });
+
+    nodesSelection.filter(function(){
+      return (!d3.select(this).select('Graphics').attr('Valign'));
+    }).each(function(){
+      d3.select(this).select('Graphics').attr('Valign', 'Top');
+    });
+    return gpmlSelection;
   };
 
   function get(sourceData, callback) {
@@ -275,8 +420,8 @@ pathvisiojs.data.gpml = function(){
   }
 
   function toPvjson(gpml, pathwayIri, callbackOutside){
-    var gpmlPathway = d3.select(gpml);
-    //var gpmlPathway = d3.select(gpml).select('Pathway');
+    var gpmlSelection = addIsContainedByAttribute(makeExplicit(d3.select(gpml)));
+    //var gpmlSelection = d3.select(gpml).select('Pathway');
 
     // for doing this in Java, we could look at 
     // https://code.google.com/p/json-io/
@@ -285,10 +430,11 @@ pathvisiojs.data.gpml = function(){
     console.log(gpml);
 
     var pathway = {};
-    pathway.xmlns = gpmlPathway.attr('xmlns');
+    pathway.xmlns = gpmlSelection.attr('xmlns');
     pathway.nodes = [];
     pathway.edges = [];
     pathway.paths = [];
+    pathway.text = [];
     pathway.elements = [];
 
     // test for whether file is GPML
@@ -447,7 +593,7 @@ pathvisiojs.data.gpml = function(){
             callback(null, pathway['@context']);
           },
           PublicationXref: function(callback){
-            pathvisiojs.data.gpml.biopaxRef.getAllAsPvjson(gpmlPathway, function(publicationXrefs) {
+            pathvisiojs.data.gpml.biopaxRef.getAllAsPvjson(gpmlSelection, function(publicationXrefs) {
               if (!!publicationXrefs) {
                 pathway.PublicationXref = publicationXrefs;
                 callback(null, 'BiopaxRefs are all converted.');
@@ -458,7 +604,7 @@ pathvisiojs.data.gpml = function(){
             });
           },
           DataSource: function(callback){
-            var jsonDataSource = gpmlPathway.attr('Data-Source');
+            var jsonDataSource = gpmlSelection.attr('Data-Source');
             if (!!jsonDataSource) {
               pathway.DataSource = jsonDataSource;
               callback(null, 'DataSource converted.');
@@ -468,7 +614,7 @@ pathvisiojs.data.gpml = function(){
             }
           },
           Version: function(callback){
-            var jsonVersion = gpmlPathway.attr('Version');
+            var jsonVersion = gpmlSelection.attr('Version');
             if (!!jsonVersion) {
               pathway.Version = jsonVersion;
               callback(null, 'Version converted.');
@@ -478,7 +624,7 @@ pathvisiojs.data.gpml = function(){
             }
           },
           Author: function(callback){
-            var jsonAuthor = gpmlPathway.attr('Author');
+            var jsonAuthor = gpmlSelection.attr('Author');
             if (!!jsonAuthor) {
               pathway.Author = jsonAuthor;
               callback(null, 'Author converted.');
@@ -488,7 +634,7 @@ pathvisiojs.data.gpml = function(){
             }
           },
           Maintainer: function(callback){
-            var jsonMaintainer = gpmlPathway.attr('Maintainer');
+            var jsonMaintainer = gpmlSelection.attr('Maintainer');
             if (!!jsonMaintainer) {
               pathway.Maintainer = jsonMaintainer;
               callback(null, 'Maintainer converted.');
@@ -498,7 +644,7 @@ pathvisiojs.data.gpml = function(){
             }
           },
           Email: function(callback){
-            var jsonEmail = gpmlPathway.attr('Email');
+            var jsonEmail = gpmlSelection.attr('Email');
             if (!!jsonEmail) {
               pathway.Email = jsonEmail;
               callback(null, 'Email converted.');
@@ -508,7 +654,7 @@ pathvisiojs.data.gpml = function(){
             }
           },
           LastModified: function(callback){
-            var jsonLastModified = gpmlPathway.attr('Last-Modified');
+            var jsonLastModified = gpmlSelection.attr('Last-Modified');
             if (!!jsonLastModified) {
               pathway.LastModified = jsonLastModified;
               callback(null, 'LastModified converted.');
@@ -518,7 +664,7 @@ pathvisiojs.data.gpml = function(){
             }
           },
           License: function(callback){
-            var jsonLicense = gpmlPathway.attr('License');
+            var jsonLicense = gpmlSelection.attr('License');
             if (!!jsonLicense) {
               pathway.License = jsonLicense;
               callback(null, 'License converted.');
@@ -528,7 +674,7 @@ pathvisiojs.data.gpml = function(){
             }
           },
           Name: function(callback){
-            var jsonName = gpmlPathway.attr('Name');
+            var jsonName = gpmlSelection.attr('Name');
             if (!!jsonName) {
               pathway.Name = jsonName;
               callback(null, 'Name converted.');
@@ -538,7 +684,7 @@ pathvisiojs.data.gpml = function(){
             }
           },
           Organism: function(callback){
-            var jsonOrganism = gpmlPathway.attr('Organism');
+            var jsonOrganism = gpmlSelection.attr('Organism');
             if (!!jsonOrganism) {
               pathway.Organism = jsonOrganism;
               callback(null, 'Organism converted.');
@@ -552,13 +698,13 @@ pathvisiojs.data.gpml = function(){
               '@context': {
                 '@vocab': 'http://schema.org/'
               },
-              'width':parseFloat(gpmlPathway.select('Graphics').attr('BoardWidth')),
-              'height':parseFloat(gpmlPathway.select('Graphics').attr('BoardHeight'))
+              'width':parseFloat(gpmlSelection.select('Graphics').attr('BoardWidth')),
+              'height':parseFloat(gpmlSelection.select('Graphics').attr('BoardHeight'))
             };
             callback(null, pathway.image);
           },
           Biopax: function(callback){
-            var xmlBiopax = gpmlPathway.selectAll('Biopax');
+            var xmlBiopax = gpmlSelection.selectAll('Biopax');
             if (xmlBiopax[0].length > 0) {
               pathvisiojs.data.biopax.toPvjson(xmlBiopax, function(jsonBiopax) {
                 pathway.Biopax = jsonBiopax;
@@ -570,16 +716,17 @@ pathvisiojs.data.gpml = function(){
             }
           },
           DataNode: function(callback){
-            var gpmlDataNode, dataNodes = gpmlPathway.selectAll('DataNode');
-            if (dataNodes[0].length > 0) {
+            var dataNodeSelection, dataNodesSelection = gpmlSelection.selectAll('DataNode');
+            if (dataNodesSelection[0].length > 0) {
               pathway.DataNode = [];
-              dataNodes.each(function() {
-                gpmlDataNode = d3.select(this);
-                pathvisiojs.data.gpml.element.node.entityNode.dataNode.toPvjson(gpmlDataNode, function(jsonDataNode, jsonPaths) {
+              dataNodesSelection.each(function() {
+                dataNodeSelection = d3.select(this);
+                pathvisiojs.data.gpml.element.node.entityNode.dataNode.toPvjson(gpmlSelection, dataNodeSelection, function(jsonDataNode, jsonPath, pvjsonText) {
                   pathway.DataNode.push(jsonDataNode);
                   pathway.nodes = pathway.nodes.concat(jsonDataNode);
                   pathway.elements = pathway.elements.concat(jsonDataNode);
-                  pathway.paths = pathway.paths.concat(jsonPaths);
+                  pathway.paths = pathway.paths.concat(jsonPath);
+                  pathway.text = pathway.text.concat(pvjsonText);
                 });
               });
               callback(null, 'DataNodes are all converted.');
@@ -589,10 +736,10 @@ pathvisiojs.data.gpml = function(){
             }
           },
           Label: function(callback){
-            var gpmlLabel, labels = gpmlPathway.selectAll('Label');
+            var gpmlLabel, labels = gpmlSelection.selectAll('Label');
             if (labels[0].length > 0) {
               pathway.Label = [];
-              gpmlPathway.selectAll('Label').each(function() {
+              gpmlSelection.selectAll('Label').each(function() {
                 gpmlLabel = d3.select(this);
                 pathvisiojs.data.gpml.element.node.entityNode.label.toPvjson(gpmlLabel, function(jsonLabel) {
                   pathway.Label.push(jsonLabel);
@@ -607,10 +754,10 @@ pathvisiojs.data.gpml = function(){
             }
           },
           Shape: function(callback){
-            var gpmlShape, shapes = gpmlPathway.selectAll('Shape');
+            var gpmlShape, shapes = gpmlSelection.selectAll('Shape');
             if (shapes[0].length > 0) {
               pathway.Shape = [];
-              gpmlPathway.selectAll('Shape').each(function() {
+              gpmlSelection.selectAll('Shape').each(function() {
                 gpmlShape = d3.select(this);
                 pathvisiojs.data.gpml.element.node.entityNode.shape.toPvjson(gpmlShape, function(jsonShape) {
                   pathway.Shape.push(jsonShape);
@@ -628,10 +775,10 @@ pathvisiojs.data.gpml = function(){
             // Note: this calculates all the data for each group-node, except for its dimensions.
             // The dimenensions can only be calculated once all the rest of the elements have been
             // converted from GPML to JSON.
-            var gpmlGroup, groups = gpmlPathway.selectAll('Group');
+            var gpmlGroup, groups = gpmlSelection.selectAll('Group');
             if (groups[0].length > 0) {
               pathway.Group = [];
-              gpmlPathway.selectAll('Group').each(function() {
+              gpmlSelection.selectAll('Group').each(function() {
                 gpmlGroup = d3.select(this);
                 pathvisiojs.data.gpml.element.node.groupNode.toPvjson(gpml, gpmlGroup, function(jsonGroup) {
                   pathway.Group.push(jsonGroup);
@@ -646,10 +793,10 @@ pathvisiojs.data.gpml = function(){
           },
           //*
           GraphicalLine: function(callback){
-            var gpmlGraphicalLine, graphicalLines = gpmlPathway.selectAll('GraphicalLine');
+            var gpmlGraphicalLine, graphicalLines = gpmlSelection.selectAll('GraphicalLine');
             if (graphicalLines[0].length > 0) {
               pathway.GraphicalLine = [];
-              gpmlPathway.selectAll('GraphicalLine').each(function() {
+              gpmlSelection.selectAll('GraphicalLine').each(function() {
                 gpmlGraphicalLine = d3.select(this);
                 pathvisiojs.data.gpml.edge.graphicalLine.toPvjson(gpml, gpmlGraphicalLine, function(jsonGraphicalLine) {
                   pathway.GraphicalLine.push(jsonGraphicalLine);
@@ -665,10 +812,10 @@ pathvisiojs.data.gpml = function(){
           },
           //*/
           Interaction: function(callback){
-            var gpmlInteraction, interactions = gpmlPathway.selectAll('Interaction');
+            var gpmlInteraction, interactions = gpmlSelection.selectAll('Interaction');
             if (interactions[0].length > 0) {
               pathway.Interaction = [];
-              gpmlPathway.selectAll('Interaction').each(function() {
+              gpmlSelection.selectAll('Interaction').each(function() {
                 gpmlInteraction = d3.select(this);
                 pathvisiojs.data.gpml.edge.interaction.toPvjson(gpml, gpmlInteraction, function(jsonInteraction) {
                   pathway.Interaction.push(jsonInteraction);
@@ -877,7 +1024,8 @@ pathvisiojs.data.gpml = function(){
     gpmlColorToCssColor:gpmlColorToCssColor,
     gpmlColorToCssColorNew:gpmlColorToCssColorNew,
     setColorAsJsonNew:setColorAsJsonNew,
-    setColorAsJson:setColorAsJson
+    setColorAsJson:setColorAsJson,
+    makeExplicit:makeExplicit
   };
 }();
 

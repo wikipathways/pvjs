@@ -2,11 +2,11 @@ pathvisiojs.view.pathwayDiagram.svg.node.pathShape = function(){
   'use strict';
 
   function render(parent, data) {
+    /*
     console.log('data');
     console.log(data);
     console.log(data.width);
     console.log(data.height);
-    /*
     console.log(parent);
     console.log(data);
     //*/
