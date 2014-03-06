@@ -143,12 +143,6 @@ pathvisiojs.data.gpml = function(){
     });
 
     nodesSelection.filter(function(){
-      return (!d3.select(this).select('Graphics').attr('FillColor'));
-    }).each(function(){
-      d3.select(this).select('Graphics').attr('FillColor', 'ffffff');
-    });
-
-    nodesSelection.filter(function(){
       return (!d3.select(this).select('Graphics').attr('LineThickness'));
     }).each(function(){
       d3.select(this).select('Graphics').attr('LineThickness', 1);
@@ -165,6 +159,21 @@ pathvisiojs.data.gpml = function(){
     }).each(function(){
       d3.select(this).select('Graphics').attr('Valign', 'Top');
     });
+
+    var shapesSelection = gpmlSelection.selectAll('Shape');
+    shapesSelection.filter(function(){
+      return (!d3.select(this).select('Graphics').attr('FillColor'));
+    }).each(function(){
+      d3.select(this).select('Graphics').attr('FillColor', 'Transparent');
+    });
+
+    var dataNodesSelection = gpmlSelection.selectAll('DataNode');
+    dataNodesSelection.filter(function(){
+      return (!d3.select(this).select('Graphics').attr('FillColor'));
+    }).each(function(){
+      d3.select(this).select('Graphics').attr('FillColor', 'ffffff');
+    });
+
     return gpmlSelection;
   };
 
