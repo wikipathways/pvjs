@@ -53,19 +53,19 @@ pathvisiojs.data.gpml.edge.interaction = function(){
     return semanticName;
   }
 
-  function toPvjson(gpml, gpmlInteraction, callback) {
+  function toPvjson(gpmlSelection, interactionSelection, callback) {
     var jsonAnchorInteraction, anchor, jsonAnchor, points, jsonPoints, interactionType, target, targetId, groupRef, source, sourceId;
-    pathvisiojs.data.gpml.edge.toPvjson(gpmlInteraction, function(jsonInteraction) {
+    pathvisiojs.data.gpml.edge.toPvjson(interactionSelection, function(jsonInteraction) {
       //console.log('jsonInteraction');
       //console.log(jsonInteraction);
 
       jsonInteraction['@type'].push('Interaction');
       jsonInteraction.renderableType = 'Interaction';
 
-      points = gpmlInteraction.selectAll('Point');
+      points = interactionSelection.selectAll('Point');
 
       var database, ID,
-      datasourceReference = gpmlInteraction.select('Xref');
+      datasourceReference = interactionSelection.select('Xref');
       if (!!datasourceReference) {
         database = datasourceReference.attr('Database');
         ID = datasourceReference.attr('ID');
@@ -76,19 +76,19 @@ pathvisiojs.data.gpml.edge.interaction = function(){
         }
       }
 
-      function buildInteractionGraph(gpmlSource, gpmlTarget, callbackBIG) {
+      function buildInteractionGraph(sourceSelection, targetSelection, callbackBIG) {
         /*
-        console.log('gpmlSource');
-        console.log(gpmlSource);
-        console.log('gpmlTarget');
-        console.log(gpmlTarget);
+        console.log('sourceSelection');
+        console.log(sourceSelection);
+        console.log('targetSelection');
+        console.log(targetSelection);
         //*/
         var InteractionGraphMember = {};
         jsonInteraction.InteractionGraph = jsonInteraction.InteractionGraph || [];
 
-        sourceId = gpmlSource.getAttribute('GraphRef');
+        sourceId = sourceSelection.getAttribute('GraphRef');
         if (!!sourceId) {
-          source = gpml.querySelector('[GraphId=' + sourceId + ']');
+          source = gpmlSelection.querySelector('[GraphId=' + sourceId + ']');
           if (source.tagName === 'Anchor') {
             sourceId = source.parentNode.parentNode.getAttribute('GraphId');
           }
@@ -100,9 +100,9 @@ pathvisiojs.data.gpml.edge.interaction = function(){
         }
         InteractionGraphMember.id = sourceId || 'no-source';
 
-        targetId = gpmlTarget.getAttribute('GraphRef');
+        targetId = targetSelection.getAttribute('GraphRef');
         if (!!targetId) {
-          target = gpml.querySelector('[GraphId=' + targetId + ']');
+          target = gpmlSelection.querySelector('[GraphId=' + targetId + ']');
           if (target.tagName === 'Anchor') {
             targetId = target.parentNode.parentNode.getAttribute('GraphId');
           }
@@ -187,90 +187,15 @@ pathvisiojs.data.gpml.edge.interaction = function(){
         jsonInteraction.markerEnd = 'none';
       }
 
-      callback(jsonInteraction);
+      var pvjsonPath = {}, pvjsonText = {};
+      pathvisiojs.data.gpml.element.toPvjsonNew(gpmlSelection, interactionSelection, pvjsonPath, function(pvjsonPath, pvjsonText) {
+        pathvisiojs.data.gpml.graphics.toPvjson(gpmlSelection, interactionSelection, pvjsonPath, pvjsonText, function(pvjsonPath, updatedPvjsonText) {
+          pvjsonPath.points = jsonInteraction.Point;
+          callback(jsonInteraction, pvjsonPath);
+        });
+      });
     });
   }
-
-  /*
-     function toPvjson(gpmlEdge, jsonEdge, callback) {
-     try {
-     jsonEdge.id = gpmlEdge.attr('GraphId');
-     jsonEdge.renderableType = 'edge';
-     var connectorType = gpmlEdge.select('Graphics').attr('ConnectorType');
-     if (!!connectorType) {
-     jsonEdge.connectorType = connectorType.toLowerCase();
-     }
-     else {
-     jsonEdge.connectorType = 'straight';
-     }
-
-     var attribute;
-     var strokeStyle = strokeStyleMappings[String(gpmlEdge.select('Graphics').attr('LineStyle'))];
-     if (!!strokeStyle) {
-     jsonEdge.strokeStyle = strokeStyle;
-     }
-     else {
-     attribute = gpmlEdge.select('Attribute'); 
-     if (!!attribute[0][0]) {
-     console.log(attribute);
-     if ((attribute.attr('Key') === "org.pathvisiojs.DoubleLineProperty") && (attribute.attr('Value') === "Double")) {
-     jsonEdge.strokeStyle = 'double';
-     }
-     }
-     }
-
-     var stroke = String(gpmlEdge.select('Graphics').attr('Color'));
-     if (!!stroke) {
-     var color = new RGBColor(stroke);
-     if (color.ok) {
-     jsonEdge.stroke = color.toHex();
-     }
-     }
-
-     jsonEdge.strokeWidth = gpmlEdge.select('Graphics').attr('LineThickness');
-
-     jsonEdge.zIndex = gpmlEdge.select('Graphics').attr('ZOrder');
-
-     var xRef = gpmlEdge.select('Xref');
-     if (xRef > 0) {
-     if ((!xRef.attr('Database')) && (!xRef.attr('ID'))) {
-     jsonEdge.xRef = xRef;
-     }
-     }
-
-     var gpmlPoints = gpmlEdge.selectAll('Point');
-     self.gpmlPoints = gpmlPoints;
-     var markerStart = markerMappings[gpmlPoints[0][0].getAttribute('ArrowHead')];
-     if (!!markerStart) {
-     jsonEdge.markerStart = markerStart;
-     }
-     else {
-     jsonEdge.markerStart = 'none';
-     }
-     var lastPointIndex = gpmlPoints[0].length - 1;
-     var markerEnd = markerMappings[gpmlPoints[0][lastPointIndex].getAttribute('ArrowHead')];
-     if (!!markerEnd) {
-     jsonEdge.markerEnd = markerEnd;
-     }
-     else {
-     jsonEdge.markerEnd = 'none';
-     }
-
-     var jsonPoints = [];
-     gpmlPoints.each(function() {
-     pathvisiojs.data.gpml.edge.point.toPvjson(d3.select(this), function(jsonPoint) {
-     jsonPoints.push(jsonPoint);
-     });
-     });
-jsonEdge.points = jsonPoints;
-callback(jsonEdge);
-}
-catch (e) {
-  console.log("Error converting edge to json: " + e.message);
-  return e;
-}
-}
-//*/
 
 return {
   toPvjson:toPvjson,

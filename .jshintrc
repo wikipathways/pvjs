@@ -9,21 +9,22 @@
     "unused": false,
 
     "globals": {
-        "async": true,
-        "loadImage": true,
-        "jsonld": true,
-        "Modernizr": true,
-        "uuid": true,
-        "svgPanZoom": true,
-        "typeahead": true,
-        "root": true,
-        "pathvisioNS": true,
-        "alert": true,
-        "pathvisiojs": true,
-        "strcase": true,
         "$": true,
+        "alert": true,
+        "async": true,
         "console": true,
         "d3": true,
-	"RGBColor": true
+        "jsonld": true,
+        "loadImage": true,
+        "Modernizr": true,
+        "pathvisiojs": true,
+        "pathvisioNS": true,
+	"RGBColor": true,
+        "root": true,
+	"self":true,
+        "strcase": true,
+        "svgPanZoom": true,
+        "typeahead": true,
+        "uuid": true
     }
 }

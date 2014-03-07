@@ -17,7 +17,7 @@ pathvisiojs.data.gpml.graphics = function(){
       pvjsonHeight,
       pvjsonWidth,
       pvjsonStrokeWidth,
-      gpmlShapeType,
+      gpmlShapeType = '',
       pvjsonShape,
       pvjsonZIndex,
       pvjsonTextAlign,
@@ -61,7 +61,7 @@ pathvisiojs.data.gpml.graphics = function(){
         console.log(gpmlDoubleLineProperty);
         //*/
         gpmlShapeType = gpmlShapeTypeValue;
-        if (gpmlShapeType === 'None') {
+        if (gpmlShapeType.toLowerCase() === 'none') {
           pvjsonShape = 'rectangle';
         }
         else {
@@ -85,7 +85,7 @@ pathvisiojs.data.gpml.graphics = function(){
       },
       Color: function(gpmlColorValue){
         var cssColor = gpmlColorToCssColor(gpmlColorValue);
-        if (gpmlShapeType !== 'None') {
+        if (gpmlShapeType.toLowerCase() !== 'none') {
           pvjsonElement.stroke = cssColor;
         }
         else {
@@ -146,7 +146,7 @@ pathvisiojs.data.gpml.graphics = function(){
         return pvjsonY;
       },
       RelX: function(gpmlRelXValue) {
-        pvjsonRelX = parseFloat(gpmlRelXValue);
+        var pvjsonRelX = parseFloat(gpmlRelXValue);
         pvjsonElement.relX = pvjsonRelX;
         pvjsonText.relX = pvjsonRelX;
         parentElement = gpmlSelection.select('[GraphId=' + elementSelection.attr('GraphId') + ']');
@@ -159,12 +159,12 @@ pathvisiojs.data.gpml.graphics = function(){
         return pvjsonX;
       },
       RelY: function(gpmlRelYValue) {
-        gpmlRelYValue = parseFloat(gpmlRelYValue);
-        pvjsonElement.relY = gpmlRelYValue;
-        pvjsonText.relY = gpmlRelYValue;
+        var pvjsonRelY = parseFloat(gpmlRelYValue);
+        pvjsonElement.relY = pvjsonRelY;
+        pvjsonText.relY = pvjsonRelY;
         var parentCenterY = parentElement.attr('CenterY');
         var parentHeight = parentElement.attr('Height');
-        var gpmlCenterYValue = parentCenterY + gpmlRelYValue * parentHeight/2;
+        var gpmlCenterYValue = parentCenterY + pvjsonRelY * parentHeight/2;
         pvjsonY = gpmlCenterYValue - pvjsonHeight/2;
         pvjsonElement.y = pvjsonY;
         pvjsonText.y = pvjsonY;
@@ -210,7 +210,7 @@ pathvisiojs.data.gpml.graphics = function(){
         }
         else {
           console.warn('Pathvisiojs has no handler for attribute "' + attributeListItemName + '"');
-          attributeListItemName = strcase.paramCase(attributeListItemName);
+          attributeListItemName = strcase.camelCase(attributeListItemName);
           pvjsonElement[attributeListItemName] = attributeListItem.value;
         }
       });

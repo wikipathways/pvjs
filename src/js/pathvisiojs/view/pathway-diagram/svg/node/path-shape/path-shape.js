@@ -2,6 +2,8 @@ pathvisiojs.view.pathwayDiagram.svg.node.pathShape = function(){
   'use strict';
 
   function render(parent, data) {
+    var re;
+    var pathShapeNameToUse = strcase.camelCase(data.ShapeType);
     /*
     console.log('data');
     console.log(data);
@@ -9,12 +11,10 @@ pathvisiojs.view.pathwayDiagram.svg.node.pathShape = function(){
     console.log(data.height);
     console.log(parent);
     console.log(data);
-    //*/
-    var re;
-    var pathShapeNameToUse = strcase.camelCase(data.ShapeType);
     console.log('pathShapeNameToUse');
     console.log(data.ShapeType);
     console.log(pathShapeNameToUse);
+    //*/
     if (!pathvisiojs.view.pathwayDiagram.svg.node.pathShape.hasOwnProperty(pathShapeNameToUse)) {
       re = /Double$/gi;
       pathShapeNameToUse = pathShapeNameToUse.replace(re, '');

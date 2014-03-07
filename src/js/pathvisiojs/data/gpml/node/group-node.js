@@ -11,7 +11,7 @@ pathvisiojs.data.gpml.element.node.groupNode = function() {
   var pathvisioDefaultStyleValues = {
     'FontSize':null,
     'FontWeight':null
-  }
+  };
 
   function getGroupDimensions(group, callback) {
     /*
@@ -29,6 +29,8 @@ pathvisiojs.data.gpml.element.node.groupNode = function() {
     dimensions.bottomRightCorner.y = 0;
 
     var groupContents = group.contains;
+    console.log('groupContents');
+    console.log(groupContents);
     groupContents = pathvisiojs.utilities.convertToArray(groupContents);
 
     // TODO check what happens if the contained element lacks a z-index
@@ -58,20 +60,21 @@ pathvisiojs.data.gpml.element.node.groupNode = function() {
     });
   }
 
-  function toPvjson(pathway, gpmlGroup, callbackOutside) {
+  function toPvjson(gpmlSelection, groupSelection, callback) {
     var jsonGroup = {},
       groupId,
       shapeType,
+      jsonPath = {},
       groupType;
 
-    var graphId = gpmlGroup.attr('GraphId') || ('id' + uuid.v4());
+    var graphId = groupSelection.attr('GraphId') || ('id' + uuid.v4());
     jsonGroup.GraphId = graphId;
-    groupId = gpmlGroup.attr('GroupId') || ('id' + uuid.v4());
-    jsonGroup["id"] = groupId;
+    groupId = groupSelection.attr('GroupId') || ('id' + uuid.v4());
+    jsonGroup.id = groupId;
     jsonGroup.GroupId = groupId;
-    groupType = gpmlGroup.attr('Style') || 'None';
+    groupType = groupSelection.attr('Style') || 'None';
 
-    var shapeType = groupTypeToShapeTypeMappings[groupType];
+    shapeType = groupTypeToShapeTypeMappings[groupType];
     jsonGroup.ShapeType = shapeType || 'rectangle';
 
     jsonGroup.renderableType = 'GroupNode';
@@ -104,7 +107,7 @@ pathvisiojs.data.gpml.element.node.groupNode = function() {
     // borderWidth twice -- once here and once in CSS.
 
     jsonGroup.borderWidth = 1;
-    pathvisiojs.data.gpml.text.toPvjson(gpmlGroup, pathvisioDefaultStyleValues, function(text) {
+    pathvisiojs.data.gpml.text.toPvjson(groupSelection, pathvisioDefaultStyleValues, function(text) {
       /*
       console.log('text');
       console.log(text);
@@ -119,8 +122,23 @@ pathvisiojs.data.gpml.element.node.groupNode = function() {
         jsonGroup.text.textAlign = 'center';
         jsonGroup.text.verticalAlign = 'middle';
       }
-      pathvisiojs.data.gpml.element.node.toPvjson(gpmlGroup, jsonGroup, function(jsonGroup) {
-        callbackOutside(jsonGroup);
+      pathvisiojs.data.gpml.element.node.toPvjson(groupSelection, jsonGroup, function(jsonGroup) {
+        //*
+        pathvisiojs.data.gpml.element.toPvjsonNew(gpmlSelection, groupSelection, jsonPath, function(jsonPath, pvjsonText) {
+          pathvisiojs.data.gpml.graphics.toPvjson(gpmlSelection, groupSelection, jsonPath, pvjsonText, function(jsonPath, updatedPvjsonText) {
+            pvjsonText = updatedPvjsonText;
+            /*
+            console.log('jsonPath inside');
+            console.log(jsonPath);
+            console.log('pvjsonText inside');
+            console.log(pvjsonText);
+            console.log('jsonDataNode inside');
+            console.log(jsonDataNode);
+            //*/
+            callback(jsonGroup, jsonPath, pvjsonText);
+          });
+        });
+        //*/
       });
     });
   }

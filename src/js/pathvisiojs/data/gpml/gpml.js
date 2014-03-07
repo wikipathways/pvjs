@@ -13,10 +13,12 @@ pathvisiojs.data.gpml = function(){
     gpmlSelection.selectAll('Group').each(function() {
       var groupSelection = d3.select(this);
       var groupId = groupSelection.attr('GroupId');
+      groupSelection.attr('GroupId', null);
       var graphId = groupSelection.attr('GraphId');
       var groupedElementsSelection = gpmlSelection.selectAll('[GroupRef=' + groupId + ']').each(function(){
-        var groupedElementSelection = d3.select(this);
-        groupedElementSelection.attr('IsContainedBy', graphId);
+        var groupedElementSelection = d3.select(this)
+        .attr('IsContainedBy', graphId)
+        .attr('GroupRef', null);
       });
     });
     return gpmlSelection;
@@ -124,6 +126,18 @@ pathvisiojs.data.gpml = function(){
       d3.select(this).select('Graphics').attr('GraphId', 'id' + largestGraphIdStub);
     });
 
+    var labelsSelection = gpmlSelection.selectAll('Label');
+    labelsSelection.filter(function(){
+      return (!d3.select(this).select('Graphics').attr('ShapeType'));
+    }).each(function(){
+      d3.select(this).select('Graphics').attr('ShapeType', 'None');
+    });
+    labelsSelection.filter(function(){
+      return (!d3.select(this).select('Graphics').attr('FillColor'));
+    }).each(function(){
+      d3.select(this).select('Graphics').attr('FillColor', 'Transparent');
+    });
+
     var selectAllNodesArgs = {};
     selectAllNodesArgs.gpmlSelection = gpmlSelection;
     selectAllNodesArgs.elementTags = [
@@ -174,20 +188,14 @@ pathvisiojs.data.gpml = function(){
       return (!d3.select(this).select('Graphics').attr('FillColor'));
     }).each(function(){
       d3.select(this).select('Graphics').attr('FillColor', 'Transparent');
-    })
-
-    var labelsSelection = gpmlSelection.selectAll('Label');
-    labelsSelection.filter(function(){
-      return (!d3.select(this).select('Graphics').attr('FillColor'));
-    }).each(function(){
-      d3.select(this).select('Graphics').attr('FillColor', 'Transparent');
     });
 
     var dataNodeSelection, dataNodeType;
     var dataNodesSelection = gpmlSelection.selectAll('DataNode').each(function(){
-      dataNodeSelection = d3.select(this); 
+      dataNodeSelection = d3.select(this);
       dataNodeType = dataNodeSelection.attr('Type');
-      dataNodeSelection.attr('BiologicalType', dataNodeType);
+      dataNodeSelection.attr('BiologicalType', dataNodeType)
+      .attr('Type', null);
     });
 
     dataNodesSelection.filter(function(){
@@ -196,14 +204,34 @@ pathvisiojs.data.gpml = function(){
       d3.select(this).select('Graphics').attr('FillColor', 'ffffff');
     });
 
-    var doubleLinesSelection = gpmlSelection.selectAll('[Key="org.pathvisio.DoubleLineProperty"]').each(function(){
-      d3.select(this.parentElement).select('Graphics').attr('LineStyle', 'Double');
-    });
-
     var cellularComponentsSelection = gpmlSelection.selectAll('[Key="org.pathvisio.CellularComponentProperty"]').each(function(){
       cellularComponentValue = d3.select(this).attr('Value');
       d3.select(this.parentElement).attr('CellularComponent', cellularComponentValue);
     });
+
+    // This applies to both nodes and edges
+    var doubleLinesSelection = gpmlSelection.selectAll('[Key="org.pathvisio.DoubleLineProperty"]').each(function(){
+      d3.select(this.parentElement).select('Graphics').attr('LineStyle', 'Double');
+    });
+
+    var selectAllEdgesArgs = {};
+    selectAllEdgesArgs.gpmlSelection = gpmlSelection;
+    selectAllEdgesArgs.elementTags = [
+      'Interaction',
+      'GraphicalLine'
+    ];
+    var edgesSelection = selectByMultipleTagNames(selectAllEdgesArgs);
+    edgesSelection.filter(function(){
+      return (!d3.select(this).select('Graphics').attr('ConnectorType'));
+    }).each(function(){
+      d3.select(this).select('Graphics').attr('ConnectorType', 'Straight');
+    });
+    edgesSelection.filter(function(){
+      return (!d3.select(this).select('Graphics').attr('Color'));
+    }).each(function(){
+      d3.select(this).select('Graphics').attr('Color', '000000');
+    });
+
     return gpmlSelection;
   };
 
@@ -534,7 +562,10 @@ pathvisiojs.data.gpml = function(){
               'borderColor':'css2:box.html#propdef-border-color',
               'borderWidth':'css2:box.html#propdef-border-width',
               'borderStyle':'css2:box.html#propdef-border-style',
-              'x':'css2:visuren.html#propdef-left',
+              'x': {
+                '@id': 'css2:visuren.html#propdef-left',
+                '@type': 'xsd:integer'
+              },
               'y':'css2:visuren.html#propdef-top',
               'width':'css2:visudet.html#propdef-width',
               'height':'css2:visudet.html#propdef-height',
@@ -759,11 +790,20 @@ pathvisiojs.data.gpml = function(){
               pathway.DataNode = [];
               dataNodesSelection.each(function() {
                 dataNodeSelection = d3.select(this);
-                pathvisiojs.data.gpml.element.node.entityNode.dataNode.toPvjson(gpmlSelection, dataNodeSelection, function(jsonDataNode, jsonPath, pvjsonText) {
+                pathvisiojs.data.gpml.element.node.entityNode.dataNode.toPvjson(gpmlSelection, dataNodeSelection, function(jsonDataNode, pvjsonPath, pvjsonText) {
+                  /*
+                  console.log('jsonDataNode');
+                  console.log(jsonDataNode);
+                  console.log('pvjsonPath');
+                  console.log(pvjsonPath);
+                  console.log('pvjsonText');
+                  console.log(pvjsonText);
+                  //*/
                   pathway.DataNode.push(jsonDataNode);
                   pathway.nodes = pathway.nodes.concat(jsonDataNode);
                   pathway.elements = pathway.elements.concat(jsonDataNode);
-                  pathway.paths = pathway.paths.concat(jsonPath);
+                  pathway.elementsNew = pathway.paths.concat(pvjsonPath);
+                  pathway.paths = pathway.paths.concat(pvjsonPath);
                   pathway.text = pathway.text.concat(pvjsonText);
                 });
               });
@@ -774,15 +814,26 @@ pathvisiojs.data.gpml = function(){
             }
           },
           Label: function(callback){
-            var gpmlLabel, labels = gpmlSelection.selectAll('Label');
-            if (labels[0].length > 0) {
+            var labelSelection, labelsSelection = gpmlSelection.selectAll('Label');
+            if (labelsSelection[0].length > 0) {
               pathway.Label = [];
               gpmlSelection.selectAll('Label').each(function() {
-                gpmlLabel = d3.select(this);
-                pathvisiojs.data.gpml.element.node.entityNode.label.toPvjson(gpmlLabel, function(jsonLabel) {
+                labelSelection = d3.select(this);
+                pathvisiojs.data.gpml.element.node.entityNode.label.toPvjson(gpmlSelection, labelSelection, function(jsonLabel, pvjsonPath, pvjsonText) {
+                  /*
+                  console.log('jsonLabel');
+                  console.log(jsonLabel);
+                  console.log('pvjsonPath');
+                  console.log(pvjsonPath);
+                  console.log('pvjsonText');
+                  console.log(pvjsonText);
+                  //*/
                   pathway.Label.push(jsonLabel);
                   pathway.nodes = pathway.nodes.concat(jsonLabel);
                   pathway.elements = pathway.elements.concat(jsonLabel);
+                  pathway.elementsNew = pathway.paths.concat(pvjsonPath);
+                  pathway.paths = pathway.paths.concat(pvjsonPath);
+                  pathway.text = pathway.text.concat(pvjsonText);
                 });
               });
               callback(null, 'Labels are all converted.');
@@ -792,15 +843,26 @@ pathvisiojs.data.gpml = function(){
             }
           },
           Shape: function(callback){
-            var gpmlShape, shapes = gpmlSelection.selectAll('Shape');
-            if (shapes[0].length > 0) {
+            var shapeSelection, shapesSelection = gpmlSelection.selectAll('Shape');
+            if (shapesSelection[0].length > 0) {
               pathway.Shape = [];
               gpmlSelection.selectAll('Shape').each(function() {
-                gpmlShape = d3.select(this);
-                pathvisiojs.data.gpml.element.node.entityNode.shape.toPvjson(gpmlShape, function(jsonShape) {
+                shapeSelection = d3.select(this);
+                pathvisiojs.data.gpml.element.node.entityNode.shape.toPvjson(gpmlSelection, shapeSelection, function(jsonShape, pvjsonPath, pvjsonText) {
                   pathway.Shape.push(jsonShape);
                   pathway.nodes = pathway.nodes.concat(jsonShape);
                   pathway.elements = pathway.elements.concat(jsonShape);
+                  pathway.elementsNew = pathway.paths.concat(pvjsonPath);
+                  pathway.paths = pathway.paths.concat(pvjsonPath);
+                  pathway.text = pathway.text.concat(pvjsonText);
+                  /*
+                  console.log('jsonShape');
+                  console.log(jsonShape);
+                  console.log('pvjsonPath');
+                  console.log(pvjsonPath);
+                  console.log('pvjsonText');
+                  console.log(pvjsonText);
+                  //*/
                 });
               });
               callback(null, 'Shapes are all converted.');
@@ -813,14 +875,25 @@ pathvisiojs.data.gpml = function(){
             // Note: this calculates all the data for each group-node, except for its dimensions.
             // The dimenensions can only be calculated once all the rest of the elements have been
             // converted from GPML to JSON.
-            var gpmlGroup, groups = gpmlSelection.selectAll('Group');
-            if (groups[0].length > 0) {
+            var groupSelection, groupsSelection = gpmlSelection.selectAll('Group');
+            if (groupsSelection[0].length > 0) {
               pathway.Group = [];
               gpmlSelection.selectAll('Group').each(function() {
-                gpmlGroup = d3.select(this);
-                pathvisiojs.data.gpml.element.node.groupNode.toPvjson(gpml, gpmlGroup, function(jsonGroup) {
+                groupSelection = d3.select(this);
+                pathvisiojs.data.gpml.element.node.groupNode.toPvjson(gpmlSelection, groupSelection, function(jsonGroup, pvjsonPath, pvjsonText) {
                   pathway.Group.push(jsonGroup);
                   pathway.nodes = pathway.nodes.concat(jsonGroup);
+                  pathway.elementsNew = pathway.paths.concat(pvjsonPath);
+                  pathway.paths = pathway.paths.concat(pvjsonPath);
+                  pathway.text = pathway.text.concat(pvjsonText);
+                  /*
+                  console.log('jsonGroup');
+                  console.log(jsonGroup);
+                  console.log('pvjsonPath');
+                  console.log(pvjsonPath);
+                  console.log('pvjsonText');
+                  console.log(pvjsonText);
+                  //*/
                 });
               });
               callback(null, 'Groups are all converted.');
@@ -831,15 +904,23 @@ pathvisiojs.data.gpml = function(){
           },
           //*
           GraphicalLine: function(callback){
-            var gpmlGraphicalLine, graphicalLines = gpmlSelection.selectAll('GraphicalLine');
-            if (graphicalLines[0].length > 0) {
+            var graphicalLineSelection, graphicalLinesSelection = gpmlSelection.selectAll('GraphicalLine');
+            if (graphicalLinesSelection[0].length > 0) {
               pathway.GraphicalLine = [];
               gpmlSelection.selectAll('GraphicalLine').each(function() {
-                gpmlGraphicalLine = d3.select(this);
-                pathvisiojs.data.gpml.edge.graphicalLine.toPvjson(gpml, gpmlGraphicalLine, function(jsonGraphicalLine) {
+                graphicalLineSelection = d3.select(this);
+                pathvisiojs.data.gpml.edge.graphicalLine.toPvjson(gpml, graphicalLineSelection, function(jsonGraphicalLine, pvjsonPath) {
                   pathway.GraphicalLine.push(jsonGraphicalLine);
                   pathway.edges = pathway.edges.concat(jsonGraphicalLine);
                   pathway.elements = pathway.elements.concat(jsonGraphicalLine);
+                  pathway.elementsNew = pathway.paths.concat(pvjsonPath);
+                  pathway.paths = pathway.paths.concat(pvjsonPath);
+                  //*
+                  console.log('jsonGraphicalLine');
+                  console.log(jsonGraphicalLine);
+                  console.log('pvjsonPath');
+                  console.log(pvjsonPath);
+                  //*/
                 });
               });
               callback(null, 'GraphicalLines are all converted.');
@@ -850,15 +931,23 @@ pathvisiojs.data.gpml = function(){
           },
           //*/
           Interaction: function(callback){
-            var gpmlInteraction, interactions = gpmlSelection.selectAll('Interaction');
-            if (interactions[0].length > 0) {
+            var interactionSelection, interactionsSelection = gpmlSelection.selectAll('Interaction');
+            if (interactionsSelection[0].length > 0) {
               pathway.Interaction = [];
               gpmlSelection.selectAll('Interaction').each(function() {
-                gpmlInteraction = d3.select(this);
-                pathvisiojs.data.gpml.edge.interaction.toPvjson(gpml, gpmlInteraction, function(jsonInteraction) {
+                interactionSelection = d3.select(this);
+                pathvisiojs.data.gpml.edge.interaction.toPvjson(gpml, interactionSelection, function(jsonInteraction, pvjsonPath) {
                   pathway.Interaction.push(jsonInteraction);
                   pathway.edges = pathway.edges.concat(jsonInteraction);
                   pathway.elements = pathway.elements.concat(jsonInteraction);
+                  pathway.elementsNew = pathway.paths.concat(pvjsonPath);
+                  pathway.paths = pathway.paths.concat(pvjsonPath);
+                  //*
+                  console.log('jsonInteraction');
+                  console.log(jsonInteraction);
+                  console.log('pvjsonPath');
+                  console.log(pvjsonPath);
+                  //*/
                 });
               });
               callback(null, 'Interactions are all converted.');
@@ -877,9 +966,13 @@ pathvisiojs.data.gpml = function(){
             'contains': {}
           };
           jsonld.frame(pathway, groupsFrame, function(err, framedGroups) {
+            console.log('framedGroups');
+            console.log(framedGroups);
             async.waterfall([
               function(callbackInside){
                 framedGroups['@graph'].forEach(function(jsonGroup) {
+                  console.log('jsonGroup');
+                  console.log(jsonGroup);
                   // Some GPML files contain empty groups due to a PathVisio-Java bug. They are deleted
                   // here because only groups that pass the test (!!jsonGroup.contains) are added to
                   // the jsonGroups array, and the jsonGroups array overwrites pathway.Group.
