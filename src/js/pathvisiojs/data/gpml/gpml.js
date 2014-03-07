@@ -43,13 +43,16 @@ pathvisiojs.data.gpml = function(){
 
   // Fills in implicit values
   var makeExplicit = function(gpmlSelection) {
-    var groupSelection, groupGroupSelection, groupNoneSelection, groupPathwaySelection, groupComplexSelection;
+    var groupSelection, groupGroupSelection, groupNoneSelection, groupPathwaySelection, groupComplexSelection, cellularComponentValue;
     var groupGraphicsSelection, groupGroupGraphicsSelection, groupNoneGraphicsSelection, groupPathwayGraphicsSelection, groupComplexGraphicsSelection;
     var groupsSelection = gpmlSelection.selectAll('Group').each(function(){
       groupSelection = d3.select(this);
       groupGraphicsSelection = groupSelection.append('Graphics')
+      .attr('Align', 'Center')
+      .attr('Valign', 'Middle')
       .attr('FontSize', '32')
-      .attr('FontWeight', 'Bold');
+      .attr('FontWeight', 'Bold')
+      .attr('LineThickness', 1);
     });
     var groupGroupsSelection = gpmlSelection.selectAll('Group[Style=Group]').each(function(){
       groupGroupSelection = d3.select(this);
@@ -155,6 +158,12 @@ pathvisiojs.data.gpml = function(){
     });
 
     nodesSelection.filter(function(){
+      return (!d3.select(this).select('Graphics').attr('Align'));
+    }).each(function(){
+      d3.select(this).select('Graphics').attr('Align', 'Center');
+    });
+
+    nodesSelection.filter(function(){
       return (!d3.select(this).select('Graphics').attr('Valign'));
     }).each(function(){
       d3.select(this).select('Graphics').attr('Valign', 'Top');
@@ -165,15 +174,36 @@ pathvisiojs.data.gpml = function(){
       return (!d3.select(this).select('Graphics').attr('FillColor'));
     }).each(function(){
       d3.select(this).select('Graphics').attr('FillColor', 'Transparent');
+    })
+
+    var labelsSelection = gpmlSelection.selectAll('Label');
+    labelsSelection.filter(function(){
+      return (!d3.select(this).select('Graphics').attr('FillColor'));
+    }).each(function(){
+      d3.select(this).select('Graphics').attr('FillColor', 'Transparent');
     });
 
-    var dataNodesSelection = gpmlSelection.selectAll('DataNode');
+    var dataNodeSelection, dataNodeType;
+    var dataNodesSelection = gpmlSelection.selectAll('DataNode').each(function(){
+      dataNodeSelection = d3.select(this); 
+      dataNodeType = dataNodeSelection.attr('Type');
+      dataNodeSelection.attr('BiologicalType', dataNodeType);
+    });
+
     dataNodesSelection.filter(function(){
       return (!d3.select(this).select('Graphics').attr('FillColor'));
     }).each(function(){
       d3.select(this).select('Graphics').attr('FillColor', 'ffffff');
     });
 
+    var doubleLinesSelection = gpmlSelection.selectAll('[Key="org.pathvisio.DoubleLineProperty"]').each(function(){
+      d3.select(this.parentElement).select('Graphics').attr('LineStyle', 'Double');
+    });
+
+    var cellularComponentsSelection = gpmlSelection.selectAll('[Key="org.pathvisio.CellularComponentProperty"]').each(function(){
+      cellularComponentValue = d3.select(this).attr('Value');
+      d3.select(this.parentElement).attr('CellularComponent', cellularComponentValue);
+    });
     return gpmlSelection;
   };
 
@@ -268,7 +298,6 @@ pathvisiojs.data.gpml = function(){
       }
     }
   }
-
 
   function gpmlColorToCssColor(gpmlColor, pathvisioDefault) {
     var color;

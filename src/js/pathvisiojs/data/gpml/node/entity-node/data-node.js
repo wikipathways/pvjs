@@ -10,55 +10,30 @@ pathvisiojs.data.gpml.element.node.entityNode.dataNode = function() {
     'LineThickness':1
   };
 
-  var makeExplicit = function(gpmlSelection) {
-    var dataNodesSelection = gpmlSelection.selectAll('DataNode');
-    dataNodesSelection.filter(function(){
-      return (!d3.select(this).select('Graphics').attr('ShapeType'));
-    }).each(function(DataNode){
-      d3.select(this).select('Graphics').attr('ShapeType', 'Rectangle');
-    });
-
-    dataNodesSelection.filter(function(){
-      return (!d3.select(this).select('Graphics').attr('Color'));
-    }).each(function(DataNode){
-      d3.select(this).select('Graphics').attr('Color', '000000');
-    });
-
-    dataNodesSelection.filter(function(){
-      return (!d3.select(this).select('Graphics').attr('FillColor'));
-    }).each(function(DataNode){
-      d3.select(this).select('Graphics').attr('FillColor', 'ffffff');
-    });
-
-    dataNodesSelection.filter(function(){
-      return (!d3.select(this).select('Graphics').attr('LineThickness'));
-    }).each(function(DataNode){
-      d3.select(this).select('Graphics').attr('LineThickness', 1);
-    });
-
-    dataNodesSelection.filter(function(){
-      return (!d3.select(this).select('Graphics').attr('ZOrder'));
-    }).each(function(DataNode){
-      d3.select(this).select('Graphics').attr('ZOrder', 10000);
-    });
-
-    dataNodesSelection.filter(function(){
-      return (!d3.select(this).select('Graphics').attr('Valign'));
-    }).each(function(DataNode){
-      d3.select(this).select('Graphics').attr('Valign', 'Top');
-    });
-    return gpmlSelection;
-  };
-
   var toPvjson = function(gpmlSelection, dataNodeSelection, callbackInside) {
     var jsonPath = {},
-      pvjsonText;
-    pathvisiojs.data.gpml.graphics.toPvjson(gpmlSelection, dataNodeSelection, jsonPath, function(jsonPath, updatedPvjsonText) {
-      pvjsonText = updatedPvjsonText;
-      console.log('jsonPath');
-      console.log(jsonPath);
-      console.log(pvjsonText);
+      pvjsonText = {};
+
+      // This works when I just process the graphics attributes, but the one below, which processes both the element attributes and the graphics attributes, does not. 
+      //*
+      pathvisiojs.data.gpml.graphics.toPvjson(gpmlSelection, dataNodeSelection, jsonPath, pvjsonText, function(jsonPath, updatedPvjsonText) {
+        pvjsonText = updatedPvjsonText;
+        console.log('jsonPath');
+        console.log(jsonPath);
+        console.log(pvjsonText);
+      });
+      //*/
+
+    /*
+    pathvisiojs.data.gpml.element.toPvjsonNew(gpmlSelection, dataNodeSelection, jsonPath, function(jsonPath, updatedPvjsonText) {
+      pathvisiojs.data.gpml.graphics.toPvjson(gpmlSelection, dataNodeSelection, jsonPath, updatedPvjsonText, function(jsonPath, updatedPvjsonText) {
+        pvjsonText = updatedPvjsonText;
+        console.log('jsonPath');
+        console.log(jsonPath);
+        console.log(pvjsonText);
+      });
     });
+    //*/
 
     var jsonDataNode = {};
     var dataNodeType = dataNodeSelection.attr('Type');
