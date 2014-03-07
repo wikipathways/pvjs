@@ -8,24 +8,26 @@ pathvisiojs.data.gpml.graphics = function(){
     }
   };
 
-  var toPvjson = function(gpmlSelection, elementSelection, pvjsonElement, callback) {
+  var toPvjson = function(gpmlSelection, elementSelection, pvjsonElement, pvjsonText, callback) {
       var parentElement,
-      pvjsonText = {},
       attribute,
       i,
       graphics = elementSelection.select('Graphics')[0][0],
+      gpmlDoubleLineProperty = '',
       pvjsonHeight,
       pvjsonWidth,
       pvjsonStrokeWidth,
       gpmlShapeType,
       pvjsonShape,
       pvjsonZIndex,
-      pvjsonRelX,
+      pvjsonTextAlign,
+      pvjsonVerticalAlign,
       pvjsonRelY,
       pvjsonX,
       pvjsonY;
 
     var attributeDependencyOrder = [
+      'LineStyle',
       'ShapeType',
       'FillColor',
       'Color',
@@ -40,33 +42,35 @@ pathvisiojs.data.gpml.graphics = function(){
 
     var gpmlToPvjsonConverter = {
       LineStyle: function(gpmlLineStyleValue){
-        // LineStyle of "Double" is set using a new element named "Attribute"
-        // but it's not actually an attribute on the Graphics element.
-        // It is handled when determining ShapeType below.
         var pvjsonStrokeDasharray;
         // TODO hard-coding these here is not the most maintainable
         if (gpmlLineStyleValue === 'Broken') {
           pvjsonStrokeDasharray = '5,3';
+          pvjsonElement.strokeDasharray = pvjsonStrokeDasharray;
         }
-        else {
-          pvjsonStrokeDasharray = '9999999999999999999999999';
+        else if (gpmlLineStyleValue === 'Double') {
+          gpmlDoubleLineProperty = '-double';
         }
-        pvjsonElement.strokeDasharray = pvjsonStrokeDasharray;
         return pvjsonStrokeDasharray;
       },
       ShapeType: function(gpmlShapeTypeValue){
-        var doubleProperty;
+        /*
+        console.log('gpmlShapeTypeValue');
+        console.log(gpmlShapeTypeValue);
+        console.log('gpmlDoubleLineProperty');
+        console.log(gpmlDoubleLineProperty);
+        //*/
         gpmlShapeType = gpmlShapeTypeValue;
         if (gpmlShapeType === 'None') {
           pvjsonShape = 'rectangle';
         }
         else {
-          pvjsonShape = strcase.paramCase(gpmlShapeType);
-          doubleProperty = elementSelection.select('[Key="org.pathvisio.DoubleLineProperty"]')[0][0];
-          if (!!doubleProperty) {
-            pvjsonShape += '-double';
-          }
+          pvjsonShape = strcase.paramCase(gpmlShapeType) + gpmlDoubleLineProperty;
         }
+        /*
+        console.log('pvjsonShape');
+        console.log(pvjsonShape);
+        //*/
         pvjsonElement.shape = pvjsonShape;
         return pvjsonShape;
       },
@@ -114,7 +118,6 @@ pathvisiojs.data.gpml.graphics = function(){
         return pvjsonStrokeWidth;
       },
       Width: function(gpmlWidthValue) {
-        console.log(gpmlWidthValue);
         gpmlWidthValue = parseFloat(gpmlWidthValue);
         pvjsonWidth = gpmlWidthValue + pvjsonStrokeWidth;
         pvjsonElement.width = pvjsonWidth;
@@ -166,6 +169,16 @@ pathvisiojs.data.gpml.graphics = function(){
         pvjsonElement.y = pvjsonY;
         pvjsonText.y = pvjsonY;
         return pvjsonY;
+      },
+      Align: function(gpmlAlignValue) {
+        pvjsonTextAlign = strcase.paramCase(gpmlAlignValue);
+        pvjsonText.textAlign = pvjsonTextAlign;
+        return pvjsonTextAlign;
+      },
+      Valign: function(gpmlValignValue) {
+        pvjsonVerticalAlign = strcase.paramCase(gpmlValignValue);
+        pvjsonText.verticalAlign = pvjsonVerticalAlign;
+        return pvjsonVerticalAlign;
       },
       ZOrder: function(gpmlZOrderValue) {
         pvjsonZIndex = parseFloat(gpmlZOrderValue);
