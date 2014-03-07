@@ -11,22 +11,22 @@ pathvisiojs.data.gpml.element.node.entityNode.shape = function(){
     'Rotation':'0.0'
   };
 
-  function toPvjson(gpmlShape, callback) {
+  function toPvjson(gpmlSelection, shapeSelection, callback) {
     
     // some shapes have GPML values that do not match what is visually displayed in PathVisio-Java.
     // Below we correct the GPMl so that the display in pathvisiojs will matches the display in PathVisio-Java.
     var gpmlWidth, gpmlCenterX;
-    if (gpmlShape.select('Graphics').attr('ShapeType') === 'Triangle') {
-      gpmlWidth = parseFloat(gpmlShape.select('Graphics').attr('Width'));
-      gpmlCenterX = parseFloat(gpmlShape.select('Graphics').attr('CenterX'));
-      gpmlShape.select('Graphics').attr('CenterX', gpmlCenterX + gpmlWidth * 0.27);
-      gpmlShape.select('Graphics').attr('Width', gpmlWidth * 0.98);
+    if (shapeSelection.select('Graphics').attr('ShapeType') === 'Triangle') {
+      gpmlWidth = parseFloat(shapeSelection.select('Graphics').attr('Width'));
+      gpmlCenterX = parseFloat(shapeSelection.select('Graphics').attr('CenterX'));
+      shapeSelection.select('Graphics').attr('CenterX', gpmlCenterX + gpmlWidth * 0.27);
+      shapeSelection.select('Graphics').attr('Width', gpmlWidth * 0.98);
     }
 
-    var jsonShape = {};
+    var jsonShape = {}, jsonPath = {};
     jsonShape.nodeType = "Shape";
 
-    var attributes = gpmlShape.selectAll('Attribute');
+    var attributes = shapeSelection.selectAll('Attribute');
     var CellularComponent;
     if (attributes.length > 0) {
       CellularComponent = attributes.filter(function(d, i) {
@@ -38,28 +38,42 @@ pathvisiojs.data.gpml.element.node.entityNode.shape = function(){
       }
     }
 
-    pathvisiojs.data.gpml.element.node.entityNode.toPvjson(gpmlShape, jsonShape, function(jsonShape) {
-      pathvisiojs.data.gpml.text.toPvjson(gpmlShape, defaults, function(text) {
+    pathvisiojs.data.gpml.element.node.entityNode.toPvjson(shapeSelection, jsonShape, function(jsonShape) {
+      pathvisiojs.data.gpml.text.toPvjson(shapeSelection, defaults, function(text) {
         if (!!text) {
           jsonShape.text = text;
         }
 
         jsonShape = pathvisiojs.data.gpml.setColorAsJson(jsonShape,
-                      gpmlShape.select('Graphics').attr('Color'),
+                      shapeSelection.select('Graphics').attr('Color'),
                       defaults.Color);
 
-        var gpmlFillColor = gpmlShape.select('Graphics').attr('FillColor') || defaults.FillColor;
+        var gpmlFillColor = shapeSelection.select('Graphics').attr('FillColor') || defaults.FillColor;
         jsonShape = pathvisiojs.data.gpml.element.node.setJsonBackgroundColor(jsonShape, gpmlFillColor);
 
         jsonShape = pathvisiojs.data.gpml.element.node.entityNode.setJsonRotationValue(jsonShape,
-                      gpmlShape.select('Graphics').attr('Rotation'),
+                      shapeSelection.select('Graphics').attr('Rotation'),
                       defaults.Rotation);
 
         jsonShape = pathvisiojs.data.gpml.setBorderStyleAsJson(jsonShape,
-                      gpmlShape.select('Graphics').attr('LineStyle'),
+                      shapeSelection.select('Graphics').attr('LineStyle'),
                       defaults.LineStyle);
-
-        callback(jsonShape);
+        //*
+        pathvisiojs.data.gpml.element.toPvjsonNew(gpmlSelection, shapeSelection, jsonPath, function(jsonPath, pvjsonText) {
+          pathvisiojs.data.gpml.graphics.toPvjson(gpmlSelection, shapeSelection, jsonPath, pvjsonText, function(jsonPath, updatedPvjsonText) {
+            pvjsonText = updatedPvjsonText;
+            /*
+            console.log('jsonPath inside');
+            console.log(jsonPath);
+            console.log('pvjsonText inside');
+            console.log(pvjsonText);
+            console.log('jsonDataNode inside');
+            console.log(jsonDataNode);
+            //*/
+            callback(jsonShape, jsonPath, pvjsonText);
+          });
+        });
+        //*/
       });
     });
   }

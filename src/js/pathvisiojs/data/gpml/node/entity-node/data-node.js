@@ -15,7 +15,7 @@ pathvisiojs.data.gpml.element.node.entityNode.dataNode = function() {
       pvjsonText = {};
 
       // This works when I just process the graphics attributes, but the one below, which processes both the element attributes and the graphics attributes, does not. 
-      //*
+      /*
       pathvisiojs.data.gpml.graphics.toPvjson(gpmlSelection, dataNodeSelection, jsonPath, pvjsonText, function(jsonPath, updatedPvjsonText) {
         pvjsonText = updatedPvjsonText;
         console.log('jsonPath');
@@ -24,16 +24,6 @@ pathvisiojs.data.gpml.element.node.entityNode.dataNode = function() {
       });
       //*/
 
-    /*
-    pathvisiojs.data.gpml.element.toPvjsonNew(gpmlSelection, dataNodeSelection, jsonPath, function(jsonPath, updatedPvjsonText) {
-      pathvisiojs.data.gpml.graphics.toPvjson(gpmlSelection, dataNodeSelection, jsonPath, updatedPvjsonText, function(jsonPath, updatedPvjsonText) {
-        pvjsonText = updatedPvjsonText;
-        console.log('jsonPath');
-        console.log(jsonPath);
-        console.log(pvjsonText);
-      });
-    });
-    //*/
 
     var jsonDataNode = {};
     var dataNodeType = dataNodeSelection.attr('Type');
@@ -71,13 +61,28 @@ pathvisiojs.data.gpml.element.node.entityNode.dataNode = function() {
 
         var gpmlFillColor = dataNodeSelection.select('Graphics').attr('FillColor') || defaults.FillColor;
         jsonDataNode = pathvisiojs.data.gpml.element.node.setJsonBackgroundColor(jsonDataNode, gpmlFillColor);
-        callbackInside(jsonDataNode, jsonPath, pvjsonText);
+
+        //*
+        pathvisiojs.data.gpml.element.toPvjsonNew(gpmlSelection, dataNodeSelection, jsonPath, function(jsonPath, pvjsonText) {
+          pathvisiojs.data.gpml.graphics.toPvjson(gpmlSelection, dataNodeSelection, jsonPath, pvjsonText, function(jsonPath, updatedPvjsonText) {
+            pvjsonText = updatedPvjsonText;
+            /*
+            console.log('jsonPath inside');
+            console.log(jsonPath);
+            console.log('pvjsonText inside');
+            console.log(pvjsonText);
+            console.log('jsonDataNode inside');
+            console.log(jsonDataNode);
+            //*/
+            callbackInside(jsonDataNode, jsonPath, pvjsonText);
+          });
+        });
+        //*/
       });
     });
   };
 
   return {
-    toPvjson:toPvjson,
-    makeExplicit:makeExplicit
+    toPvjson:toPvjson
   };
 }();

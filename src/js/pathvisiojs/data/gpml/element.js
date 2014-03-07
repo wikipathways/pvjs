@@ -39,10 +39,10 @@ pathvisiojs.data.gpml.element = function(){
   // TODO can we delete this function?
 
   var getLineStyle = function(gpmlElement) {
-    var LineStyle, attributes; 
+    var LineStyle, attributes;
     var graphics = gpmlElement.select('Graphics');
     if (!!graphics) {
-      LineStyle = graphics.attr('LineStyle'); 
+      LineStyle = graphics.attr('LineStyle');
       if (!!LineStyle) {
         return LineStyle;
       }
@@ -163,7 +163,8 @@ pathvisiojs.data.gpml.element = function(){
 
     var gpmlToPvjsonConverter = {
       GraphId: function(gpmlGraphIdValue){
-        pvjsonElement.id = gpmlGraphIdValue;
+        // TODO this is a hack so we don't have two items with the same ID while I'm building out the code to create the flattened data structure
+        pvjsonElement.id = 'new' + gpmlGraphIdValue;
         pvjsonText.id = 'text' + gpmlGraphIdValue;
         pvjsonText.describes = gpmlGraphIdValue;
         return gpmlGraphIdValue;
@@ -203,7 +204,7 @@ pathvisiojs.data.gpml.element = function(){
       }
       else {
         console.warn('Pathvisiojs has no handler for attribute "' + attributeListItemName + '"');
-        attributeListItemName = strcase.paramCase(attributeListItemName);
+        attributeListItemName = strcase.camelCase(attributeListItemName);
         pvjsonElement[attributeListItemName] = attributeListItem.value;
       }
     });
