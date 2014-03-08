@@ -9,16 +9,16 @@ pathvisiojs.data.gpml.edge.graphicalLine = function(){
   };
   //*/
 
-  function toPvjson(gpmlSelection, gpmlGraphicalLine, callback) {
+  function toPvjson(gpmlSelection, graphicalLineSelection, callback) {
     var jsonAnchorGraphicalLine, anchor, jsonAnchor, points, jsonPoints, graphicalLineType, target, targetId, groupRef;
-    pathvisiojs.data.gpml.edge.toPvjson(gpmlGraphicalLine, function(jsonGraphicalLine) {
+    pathvisiojs.data.gpml.edge.toPvjson(graphicalLineSelection, function(jsonGraphicalLine) {
       //console.log('jsonGraphicalLine');
       //console.log(jsonGraphicalLine);
 
       jsonGraphicalLine['@type'].push('GraphicalLine');
       jsonGraphicalLine.renderableType = 'GraphicalLine';
 
-      points = gpmlGraphicalLine.selectAll('Point');
+      points = graphicalLineSelection.selectAll('Point');
 
       var firstPoint = points[0][0];
       if (!!firstPoint.getAttribute('ArrowHead')) {
@@ -37,12 +37,12 @@ pathvisiojs.data.gpml.edge.graphicalLine = function(){
         jsonGraphicalLine.markerEnd = 'none';
       }
 
-      jsonGraphicalLine.ConnectorType = (gpmlGraphicalLine.select('Graphics').attr('ConnectorType'));
+      jsonGraphicalLine.ConnectorType = (graphicalLineSelection.select('Graphics').attr('ConnectorType'));
       if (!jsonGraphicalLine.ConnectorType) {
 	jsonGraphicalLine.ConnectorType = 'Straight';
       }
 
-      var pvpvjsonPath = {}, pvjsonText = {};
+      var pvjsonPath = {}, pvjsonText = {};
       pathvisiojs.data.gpml.element.toPvjsonNew(gpmlSelection, graphicalLineSelection, pvjsonPath, function(pvjsonPath, pvjsonText) {
         pathvisiojs.data.gpml.graphics.toPvjson(gpmlSelection, graphicalLineSelection, pvjsonPath, pvjsonText, function(pvjsonPath, updatedPvjsonText) {
           pvjsonPath.points = jsonGraphicalLine.Point;

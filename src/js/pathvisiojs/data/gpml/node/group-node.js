@@ -29,29 +29,27 @@ pathvisiojs.data.gpml.element.node.groupNode = function() {
     dimensions.bottomRightCorner.y = 0;
 
     var groupContents = group.contains;
-    console.log('groupContents');
-    console.log(groupContents);
     groupContents = pathvisiojs.utilities.convertToArray(groupContents);
 
     // TODO check what happens if the contained element lacks a z-index
     dimensions.zIndex = groupContents[0].zIndex;
     async.each(groupContents, function(groupContent, callbackInside) {
-      if (groupContent.renderableType === 'EntityNode') {
+      if (!groupContent.hasOwnProperty('points')) {
         dimensions.topLeftCorner.x = Math.min(dimensions.topLeftCorner.x, groupContent.x);
         dimensions.topLeftCorner.y = Math.min(dimensions.topLeftCorner.y, groupContent.y);
         dimensions.bottomRightCorner.x = Math.max(dimensions.bottomRightCorner.x, groupContent.x + groupContent.width);
         dimensions.bottomRightCorner.y = Math.max(dimensions.bottomRightCorner.y, groupContent.y + groupContent.height);
       }
       else {
-        dimensions.topLeftCorner.x = Math.min(dimensions.topLeftCorner.x, groupContent.Point[0].x, groupContent.Point[groupContent.Point.length - 1].x);
-        dimensions.topLeftCorner.y = Math.min(dimensions.topLeftCorner.y, groupContent.Point[0].y, groupContent.Point[groupContent.Point.length - 1].y);
-        dimensions.bottomRightCorner.x = Math.max(dimensions.bottomRightCorner.x, groupContent.Point[0].x, groupContent.Point[groupContent.Point.length - 1].x);
-        dimensions.bottomRightCorner.y = Math.max(dimensions.bottomRightCorner.y, groupContent.Point[0].y, groupContent.Point[groupContent.Point.length - 1].y);
+        dimensions.topLeftCorner.x = Math.min(dimensions.topLeftCorner.x, groupContent.points[0].x, groupContent.points[groupContent.points.length - 1].x);
+        dimensions.topLeftCorner.y = Math.min(dimensions.topLeftCorner.y, groupContent.points[0].y, groupContent.points[groupContent.points.length - 1].y);
+        dimensions.bottomRightCorner.x = Math.max(dimensions.bottomRightCorner.x, groupContent.points[0].x, groupContent.points[groupContent.points.length - 1].x);
+        dimensions.bottomRightCorner.y = Math.max(dimensions.bottomRightCorner.y, groupContent.points[0].y, groupContent.points[groupContent.points.length - 1].y);
       }
-      dimensions.x = dimensions.topLeftCorner.x - group.padding - group.borderWidth;
-      dimensions.y = dimensions.topLeftCorner.y - group.padding - group.borderWidth;
-      dimensions.width = (dimensions.bottomRightCorner.x - dimensions.topLeftCorner.x) + 2 * (group.padding + group.borderWidth);
-      dimensions.height = (dimensions.bottomRightCorner.y - dimensions.topLeftCorner.y) + 2 * (group.padding + group.borderWidth);
+      dimensions.x = dimensions.topLeftCorner.x - group.padding - group.strokeWidth;
+      dimensions.y = dimensions.topLeftCorner.y - group.padding - group.strokeWidth;
+      dimensions.width = (dimensions.bottomRightCorner.x - dimensions.topLeftCorner.x) + 2 * (group.padding + group.strokeWidth);
+      dimensions.height = (dimensions.bottomRightCorner.y - dimensions.topLeftCorner.y) + 2 * (group.padding + group.strokeWidth);
       dimensions.zIndex = Math.min(dimensions.zIndex, groupContent.zIndex);
       callbackInside(null);
     },
@@ -64,7 +62,7 @@ pathvisiojs.data.gpml.element.node.groupNode = function() {
     var jsonGroup = {},
       groupId,
       shapeType,
-      jsonPath = {},
+      pvjsonPath = {},
       groupType;
 
     var graphId = groupSelection.attr('GraphId') || ('id' + uuid.v4());
@@ -80,6 +78,10 @@ pathvisiojs.data.gpml.element.node.groupNode = function() {
     jsonGroup.renderableType = 'GroupNode';
     jsonGroup.nodeType = "GroupNode";
     jsonGroup.groupType = groupType;
+
+    pvjsonPath.renderableType = 'GroupNode';
+    pvjsonPath.nodeType = "GroupNode";
+    pvjsonPath.groupType = groupType;
 
     jsonGroup["@type"] = [];
     jsonGroup["@type"].push(shapeType);
@@ -98,15 +100,15 @@ pathvisiojs.data.gpml.element.node.groupNode = function() {
 
     jsonGroup.padding = groupTypeToPaddingValueMappings[groupType];
 
-    // Groups in PathVisio (Java) appear to have a default borderWidth
+    // Groups in PathVisio (Java) appear to have a default strokeWidth
     // of 1px at normal zoom levels, but unlike for edges and EntityNodes, 
-    // this borderWidth does not change when I zoom in or out.
+    // this strokeWidth does not change when I zoom in or out.
     //
     // TODO this should be updated to check for whether it is defined
     // in CSS. If it is, this could conflict or require defining
-    // borderWidth twice -- once here and once in CSS.
+    // strokeWidth twice -- once here and once in CSS.
 
-    jsonGroup.borderWidth = 1;
+    jsonGroup.strokeWidth = 1;
     pathvisiojs.data.gpml.text.toPvjson(groupSelection, pathvisioDefaultStyleValues, function(text) {
       /*
       console.log('text');
@@ -124,18 +126,18 @@ pathvisiojs.data.gpml.element.node.groupNode = function() {
       }
       pathvisiojs.data.gpml.element.node.toPvjson(groupSelection, jsonGroup, function(jsonGroup) {
         //*
-        pathvisiojs.data.gpml.element.toPvjsonNew(gpmlSelection, groupSelection, jsonPath, function(jsonPath, pvjsonText) {
-          pathvisiojs.data.gpml.graphics.toPvjson(gpmlSelection, groupSelection, jsonPath, pvjsonText, function(jsonPath, updatedPvjsonText) {
+        pathvisiojs.data.gpml.element.toPvjsonNew(gpmlSelection, groupSelection, pvjsonPath, function(pvjsonPath, pvjsonText) {
+          pathvisiojs.data.gpml.graphics.toPvjson(gpmlSelection, groupSelection, pvjsonPath, pvjsonText, function(pvjsonPath, updatedPvjsonText) {
             pvjsonText = updatedPvjsonText;
-            /*
-            console.log('jsonPath inside');
-            console.log(jsonPath);
+            //*
+            console.log('jsonGroup inside');
+            console.log(jsonGroup);
+            console.log('pvjsonPath inside');
+            console.log(pvjsonPath);
             console.log('pvjsonText inside');
             console.log(pvjsonText);
-            console.log('jsonDataNode inside');
-            console.log(jsonDataNode);
             //*/
-            callback(jsonGroup, jsonPath, pvjsonText);
+            callback(jsonGroup, pvjsonPath, pvjsonText);
           });
         });
         //*/
