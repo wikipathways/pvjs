@@ -1,17 +1,45 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Pathway xmlns="http://pathvisio.org/GPML/2013a" Name="New Pathway" Version="20140130">
-  <Graphics BoardWidth="1288.663309788563" BoardHeight="576.0" />
-  <DataNode TextLabel="mytextlabel" GraphId="fd721" Type="GeneProduct">
-    <Graphics CenterX="208.54700854700857" CenterY="191.45299145299145" Width="80.0" Height="20.0" ZOrder="32768" FillColor="Transparent" FontSize="10" Valign="Middle" />
+  <Graphics BoardWidth="1994.1573033707864" BoardHeight="832.8333333333337" />
+  <DataNode TextLabel="GeneProduct" GraphId="a0957" Type="GeneProduct" GroupRef="af7b9">
+    <Graphics CenterX="582.8651685393257" CenterY="554.7752808988763" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
     <Xref Database="" ID="" />
   </DataNode>
-  <Label TextLabel="mytextlabel" GraphId="f846c">
-    <Graphics CenterX="191.45299145299145" CenterY="258.11965811965814" Width="80.0" Height="20.0" ZOrder="28672" FontSize="10" Valign="Middle" ShapeType="Rectangle" />
+  <DataNode TextLabel="Metabolite" GraphId="aa1c1" Type="Metabolite" GroupRef="baf40">
+    <Graphics CenterX="516.8539325842698" CenterY="157.30337078651687" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Xref Database="" ID="" />
+  </DataNode>
+  <DataNode TextLabel="Pathway" GraphId="fceb8" Type="Pathway" GroupRef="baf40">
+    <Graphics CenterX="502.55898876404495" CenterY="204.10393258426973" Width="80.0" Height="20.0" ZOrder="32768" FontWeight="Bold" FontSize="12" Valign="Middle" ShapeType="None" Color="14961e" />
+    <Xref Database="" ID="" />
+  </DataNode>
+  <DataNode TextLabel="LIN-39" GraphId="b6748" Type="GeneProduct" GroupRef="af7b9">
+    <Graphics CenterX="570.8071161048691" CenterY="504.911985018727" Width="46.666666666666664" Height="20.0" ZOrder="32771" FontSize="10" Valign="Middle" />
+    <Xref Database="WormBase" ID="C07H6.7" />
+  </DataNode>
+  <Interaction GraphId="idbeb22516">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="300.69930069930075" Y="123.87612387612388" />
+      <Point X="170.82917082917083" Y="315.6843156843157" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <GraphicalLine GraphId="idffad7613">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="1066.933066933067" Y="433.5664335664336" />
+      <Point X="990.0099900099901" Y="466.5334665334666" />
+    </Graphics>
+  </GraphicalLine>
+  <Label TextLabel="Label" GraphId="c8f3d">
+    <Graphics CenterX="1027.9720279720282" CenterY="284.7152847152847" Width="80.0" Height="20.0" ZOrder="28672" FillColor="ffffff" FontSize="10" Valign="Middle" />
   </Label>
-  <Shape TextLabel="mytextlabel" GraphId="dac2f">
+  <Shape GraphId="e7d9e">
     <Attribute Key="org.pathvisio.CellularComponentProperty" Value="Cell" />
-    <Graphics CenterX="221.97222222222223" CenterY="380.94658119658123" Width="80.0" Height="20.0" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="Rectangle" Rotation="0.0" />
+    <Attribute Key="org.pathvisio.DoubleLineProperty" Value="Double" />
+    <Graphics CenterX="1346.4033466533467" CenterY="467.7819680319681" Width="198.30219780219775" Height="129.37112887112892" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="RoundedRectangle" LineThickness="3.0" Color="c0c0c0" Rotation="0.8929184232494549" />
   </Shape>
+  <Group GroupId="af7b9" Style="Complex" />
+  <Group GroupId="baf40" Style="Pathway" />
   <InfoBox CenterX="0.0" CenterY="0.0" />
   <Biopax />
 </Pathway>

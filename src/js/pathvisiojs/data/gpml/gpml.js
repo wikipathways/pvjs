@@ -45,48 +45,9 @@ pathvisiojs.data.gpml = function(){
 
   // Fills in implicit values
   var makeExplicit = function(gpmlSelection) {
-    var groupSelection, groupGroupSelection, groupNoneSelection, groupPathwaySelection, groupComplexSelection, cellularComponentValue;
-    var groupGraphicsSelection, groupGroupGraphicsSelection, groupNoneGraphicsSelection, groupPathwayGraphicsSelection, groupComplexGraphicsSelection;
-    var groupsSelection = gpmlSelection.selectAll('Group').each(function(){
-      groupSelection = d3.select(this);
-      groupGraphicsSelection = groupSelection.append('Graphics')
-      .attr('Align', 'Center')
-      .attr('Valign', 'Middle')
-      .attr('FontSize', '32')
-      .attr('FontWeight', 'Bold')
-      .attr('LineThickness', 1);
-    });
-    var groupGroupsSelection = gpmlSelection.selectAll('Group[Style=Group]').each(function(){
-      groupGroupSelection = d3.select(this);
-      groupGroupGraphicsSelection = groupGroupSelection.select('Graphics')
-      .attr('ShapeType', 'Rectangle')
-      .attr('LineStyle', 'Broken')
-      .attr('Color', 'Transparent')
-      .attr('FillColor', 'Transparent');
-    });
-    var groupNonesSelection = gpmlSelection.selectAll('Group[Style=None]').each(function(){
-      groupNoneSelection = d3.select(this);
-      groupNoneGraphicsSelection = groupNoneSelection.select('Graphics')
-      .attr('ShapeType', 'Rectangle')
-      .attr('LineStyle', 'Broken')
-      .attr('Color', '808080')
-      .attr('FillColor', 'B4B464');
-    });
-    var groupComplexsSelection = gpmlSelection.selectAll('Group[Style=Complex]').each(function(){
-      groupComplexSelection = d3.select(this);
-      groupComplexGraphicsSelection = groupComplexSelection.select('Graphics')
-      .attr('ShapeType', 'Complex')
-      .attr('Color', '808080')
-      .attr('FillColor', 'B4B464');
-    });
-    var groupPathwaysSelection = gpmlSelection.selectAll('Group[Style=Pathway]').each(function(){
-      groupPathwaySelection = d3.select(this);
-      groupPathwayGraphicsSelection = groupPathwaySelection.select('Graphics')
-      .attr('ShapeType', 'Rectangle')
-      .attr('LineStyle', 'Broken')
-      .attr('Color', '808080')
-      .attr('FillColor', '00FF00');
-    });
+    var groupSelection, groupGroupSelection, groupNoneSelection, groupPathwaySelection, groupComplexSelection, cellularComponentValue,
+      groupGraphicsSelection, groupGroupGraphicsSelection, groupNoneGraphicsSelection, groupPathwayGraphicsSelection, groupComplexGraphicsSelection,
+      graphId, graphIdStub, graphIdStubs = [];
 
     var selectAllGraphicalElementsArgs = {};
     selectAllGraphicalElementsArgs.gpmlSelection = gpmlSelection;
@@ -97,140 +58,213 @@ pathvisiojs.data.gpml = function(){
       'State',
       'Anchor',
       'Interaction',
-      'GraphicalLine'
+      'GraphicalLine',
+      'Group'
     ];
     var graphicalElementsSelection = selectByMultipleTagNames(selectAllGraphicalElementsArgs);
-    var graphId, graphIdStub, graphIdStubs = [];
     // graphIdStub is whatever follows 'id' at the beginning of the GraphId string
-    graphicalElementsSelection.filter(function(){
-      return (!!d3.select(this).attr('GraphId'));
-    }).each(function(DataNode){
-      graphId = d3.select(this).attr('GraphId');
-      if (graphId.slice(0,2) === 'id') {
-        graphIdStub = graphId.slice(2, graphId.length);
-        graphIdStubs.push(graphIdStub);
+    if (!!graphicalElementsSelection) {
+      graphicalElementsSelection.filter(function(){
+        return (!!d3.select(this).attr('GraphId'));
+      }).each(function(DataNode){
+        graphId = d3.select(this).attr('GraphId');
+        if (graphId.slice(0,2) === 'id') {
+          graphIdStub = graphId.slice(2, graphId.length);
+          graphIdStubs.push(graphIdStub);
+        }
+      });
+      graphIdStubs.sort(function(a,b){
+        return parseInt(a, 32) - parseInt(b, 32);
+      });
+      var largestGraphIdStub = graphIdStubs[graphIdStubs.length - 1] || 0;
+
+      // Add a GraphId to every element missing a GraphId by converting the largest graphIdStub to int, incrementing,
+      // converting back to base32 and appending it to the string 'id'.
+      graphicalElementsSelection.filter(function(){
+        return (!d3.select(this).attr('GraphId'));
+      }).each(function(){
+        largestGraphIdStub = (parseInt(largestGraphIdStub, 32) + 1).toString(32);
+        d3.select(this).attr('GraphId', 'id' + largestGraphIdStub);
+      });
+
+      var groupsSelection = gpmlSelection.selectAll('Group').each(function(){
+        groupSelection = d3.select(this);
+        groupGraphicsSelection = groupSelection.append('Graphics')
+        .attr('Align', 'Center')
+        .attr('Valign', 'Middle')
+        .attr('FontSize', '32')
+        .attr('FontWeight', 'Bold')
+        .attr('LineThickness', 1);
+      });
+      var groupGroupsSelection = gpmlSelection.selectAll('Group[Style=Group]').each(function(){
+        groupGroupSelection = d3.select(this);
+        groupGroupGraphicsSelection = groupGroupSelection.select('Graphics')
+        .attr('Padding', '8')
+        .attr('ShapeType', 'None')
+        .attr('LineStyle', 'Broken')
+        .attr('Color', '808080')
+        .attr('FillColor', 'Transparent');
+      });
+      var groupNonesSelection = gpmlSelection.selectAll('Group[Style=None]').each(function(){
+        groupNoneSelection = d3.select(this);
+        groupNoneGraphicsSelection = groupNoneSelection.select('Graphics')
+        .attr('Padding', '8')
+        .attr('ShapeType', 'Rectangle')
+        .attr('LineStyle', 'Broken')
+        .attr('Color', '808080')
+        .attr('FillColor', 'B4B464');
+      });
+      var groupComplexesSelection = gpmlSelection.selectAll('Group[Style=Complex]').each(function(){
+        groupComplexSelection = d3.select(this);
+        groupComplexGraphicsSelection = groupComplexSelection.select('Graphics')
+        .attr('Padding', '11')
+        .attr('ShapeType', 'Complex')
+        .attr('Color', '808080')
+        .attr('FillColor', 'B4B464');
+      });
+      var groupPathwaysSelection = gpmlSelection.selectAll('Group[Style=Pathway]').each(function(){
+        groupPathwaySelection = d3.select(this);
+        groupPathwayGraphicsSelection = groupPathwaySelection.select('Graphics')
+        .attr('Padding', '8')
+        .attr('ShapeType', 'Rectangle')
+        .attr('LineStyle', 'Broken')
+        .attr('Color', '808080')
+        .attr('FillColor', '00FF00');
+      });
+
+      // nodesSelection does not include Groups
+      var selectAllNodesArgs = {};
+      selectAllNodesArgs.gpmlSelection = gpmlSelection;
+      selectAllNodesArgs.elementTags = [
+        'DataNode',
+        'Label',
+        'Shape',
+        'State'
+      ];
+      var nodesSelection = selectByMultipleTagNames(selectAllNodesArgs);
+      if (!!nodesSelection) {
+        var labelsSelection = gpmlSelection.selectAll('Label');
+        if (!!labelsSelection) {
+          labelsSelection.filter(function(){
+            return (!d3.select(this).select('Graphics').attr('ShapeType'));
+          }).each(function(){
+            d3.select(this).select('Graphics').attr('ShapeType', 'None');
+          });
+          labelsSelection.filter(function(){
+            return (!d3.select(this).select('Graphics').attr('FillColor'));
+          }).each(function(){
+            d3.select(this).select('Graphics').attr('FillColor', 'Transparent');
+          });
+        }
+
+        nodesSelection.filter(function(){
+          return (!d3.select(this).select('Graphics').attr('Padding'));
+        }).each(function(){
+          d3.select(this).select('Graphics').attr('Padding', '0.5em');
+        });
+
+        nodesSelection.filter(function(){
+          return (!d3.select(this).select('Graphics').attr('ShapeType'));
+        }).each(function(){
+          d3.select(this).select('Graphics').attr('ShapeType', 'Rectangle');
+        });
+
+        nodesSelection.filter(function(){
+          return (!d3.select(this).select('Graphics').attr('Color'));
+        }).each(function(){
+          d3.select(this).select('Graphics').attr('Color', '000000');
+        });
+
+        nodesSelection.filter(function(){
+          return (!d3.select(this).select('Graphics').attr('LineThickness'));
+        }).each(function(){
+          d3.select(this).select('Graphics').attr('LineThickness', 1);
+        });
+
+        nodesSelection.filter(function(){
+          return (!d3.select(this).select('Graphics').attr('ZOrder'));
+        }).each(function(){
+          d3.select(this).select('Graphics').attr('ZOrder', 10000);
+        });
+
+        nodesSelection.filter(function(){
+          return (!d3.select(this).select('Graphics').attr('Align'));
+        }).each(function(){
+          d3.select(this).select('Graphics').attr('Align', 'Center');
+        });
+
+        nodesSelection.filter(function(){
+          return (!d3.select(this).select('Graphics').attr('Valign'));
+        }).each(function(){
+          d3.select(this).select('Graphics').attr('Valign', 'Top');
+        });
+
+        var shapesSelection = gpmlSelection.selectAll('Shape');
+        if (!!shapesSelection) {
+          shapesSelection.filter(function(){
+            return (!d3.select(this).select('Graphics').attr('FillColor'));
+          }).each(function(){
+            d3.select(this).select('Graphics').attr('FillColor', 'Transparent');
+          });
+
+          shapesSelection.filter(function(){
+            return (d3.select(this).select('Graphics').attr('Rotation') === '0.0');
+          }).each(function(){
+            d3.select(this).select('Graphics').attr('Rotation', null);
+          });
+
+          var cellularComponentsSelection = shapesSelection.selectAll('[Key="org.pathvisio.CellularComponentProperty"]').each(function(){
+            cellularComponentValue = d3.select(this).attr('Value');
+            d3.select(this.parentElement).attr('CellularComponent', cellularComponentValue);
+          });
+        }
+
+        var dataNodeSelection, dataNodeType;
+        var dataNodesSelection = gpmlSelection.selectAll('DataNode');
+        if (!!dataNodesSelection) {
+          /*
+          dataNodesSelection.each(function(){
+            dataNodeSelection = d3.select(this);
+            dataNodeType = dataNodeSelection.attr('Type');
+            dataNodeSelection.attr('BiologicalType', dataNodeType)
+            .attr('Type', null);
+          });
+          //*/
+
+          dataNodesSelection.filter(function(){
+            return (!d3.select(this).select('Graphics').attr('FillColor'));
+          }).each(function(){
+            d3.select(this).select('Graphics').attr('FillColor', 'ffffff');
+          });
+        }
+
       }
-    });
-    graphIdStubs.sort(function(a,b){
-      return parseInt(a, 32) - parseInt(b, 32);
-    });
-    var largestGraphIdStub = graphIdStubs[graphIdStubs.length - 1] || 0;
 
-    // Add a GraphId to every element missing a GraphId by converting the largest graphIdStub to int, incrementing,
-    // converting back to base32 and appending it to the string 'id'.
+      // This applies to both nodes and edges
+      var doubleLinesSelection = gpmlSelection.selectAll('[Key="org.pathvisio.DoubleLineProperty"]').each(function(){
+        d3.select(this.parentElement).select('Graphics').attr('LineStyle', 'Double');
+      });
 
-    graphicalElementsSelection.filter(function(){
-      return (!d3.select(this).attr('GraphId'));
-    }).each(function(){
-      largestGraphIdStub = (parseInt(largestGraphIdStub, 32) + 1).toString(32);
-      d3.select(this).select('Graphics').attr('GraphId', 'id' + largestGraphIdStub);
-    });
-
-    var labelsSelection = gpmlSelection.selectAll('Label');
-    labelsSelection.filter(function(){
-      return (!d3.select(this).select('Graphics').attr('ShapeType'));
-    }).each(function(){
-      d3.select(this).select('Graphics').attr('ShapeType', 'None');
-    });
-    labelsSelection.filter(function(){
-      return (!d3.select(this).select('Graphics').attr('FillColor'));
-    }).each(function(){
-      d3.select(this).select('Graphics').attr('FillColor', 'Transparent');
-    });
-
-    var selectAllNodesArgs = {};
-    selectAllNodesArgs.gpmlSelection = gpmlSelection;
-    selectAllNodesArgs.elementTags = [
-      'DataNode',
-      'Label',
-      'Shape',
-      'State'
-    ];
-    var nodesSelection = selectByMultipleTagNames(selectAllNodesArgs);
-    nodesSelection.filter(function(){
-      return (!d3.select(this).select('Graphics').attr('ShapeType'));
-    }).each(function(){
-      d3.select(this).select('Graphics').attr('ShapeType', 'Rectangle');
-    });
-
-    nodesSelection.filter(function(){
-      return (!d3.select(this).select('Graphics').attr('Color'));
-    }).each(function(){
-      d3.select(this).select('Graphics').attr('Color', '000000');
-    });
-
-    nodesSelection.filter(function(){
-      return (!d3.select(this).select('Graphics').attr('LineThickness'));
-    }).each(function(){
-      d3.select(this).select('Graphics').attr('LineThickness', 1);
-    });
-
-    nodesSelection.filter(function(){
-      return (!d3.select(this).select('Graphics').attr('ZOrder'));
-    }).each(function(){
-      d3.select(this).select('Graphics').attr('ZOrder', 10000);
-    });
-
-    nodesSelection.filter(function(){
-      return (!d3.select(this).select('Graphics').attr('Align'));
-    }).each(function(){
-      d3.select(this).select('Graphics').attr('Align', 'Center');
-    });
-
-    nodesSelection.filter(function(){
-      return (!d3.select(this).select('Graphics').attr('Valign'));
-    }).each(function(){
-      d3.select(this).select('Graphics').attr('Valign', 'Top');
-    });
-
-    var shapesSelection = gpmlSelection.selectAll('Shape');
-    shapesSelection.filter(function(){
-      return (!d3.select(this).select('Graphics').attr('FillColor'));
-    }).each(function(){
-      d3.select(this).select('Graphics').attr('FillColor', 'Transparent');
-    });
-
-    var dataNodeSelection, dataNodeType;
-    var dataNodesSelection = gpmlSelection.selectAll('DataNode').each(function(){
-      dataNodeSelection = d3.select(this);
-      dataNodeType = dataNodeSelection.attr('Type');
-      dataNodeSelection.attr('BiologicalType', dataNodeType)
-      .attr('Type', null);
-    });
-
-    dataNodesSelection.filter(function(){
-      return (!d3.select(this).select('Graphics').attr('FillColor'));
-    }).each(function(){
-      d3.select(this).select('Graphics').attr('FillColor', 'ffffff');
-    });
-
-    var cellularComponentsSelection = gpmlSelection.selectAll('[Key="org.pathvisio.CellularComponentProperty"]').each(function(){
-      cellularComponentValue = d3.select(this).attr('Value');
-      d3.select(this.parentElement).attr('CellularComponent', cellularComponentValue);
-    });
-
-    // This applies to both nodes and edges
-    var doubleLinesSelection = gpmlSelection.selectAll('[Key="org.pathvisio.DoubleLineProperty"]').each(function(){
-      d3.select(this.parentElement).select('Graphics').attr('LineStyle', 'Double');
-    });
-
-    var selectAllEdgesArgs = {};
-    selectAllEdgesArgs.gpmlSelection = gpmlSelection;
-    selectAllEdgesArgs.elementTags = [
-      'Interaction',
-      'GraphicalLine'
-    ];
-    var edgesSelection = selectByMultipleTagNames(selectAllEdgesArgs);
-    edgesSelection.filter(function(){
-      return (!d3.select(this).select('Graphics').attr('ConnectorType'));
-    }).each(function(){
-      d3.select(this).select('Graphics').attr('ConnectorType', 'Straight');
-    });
-    edgesSelection.filter(function(){
-      return (!d3.select(this).select('Graphics').attr('Color'));
-    }).each(function(){
-      d3.select(this).select('Graphics').attr('Color', '000000');
-    });
+      var selectAllEdgesArgs = {};
+      selectAllEdgesArgs.gpmlSelection = gpmlSelection;
+      selectAllEdgesArgs.elementTags = [
+        'Interaction',
+        'GraphicalLine'
+      ];
+      var edgesSelection = selectByMultipleTagNames(selectAllEdgesArgs);
+      if (!!edgesSelection) {
+        edgesSelection.filter(function(){
+          return (!d3.select(this).select('Graphics').attr('ConnectorType'));
+        }).each(function(){
+          d3.select(this).select('Graphics').attr('ConnectorType', 'Straight');
+        });
+        edgesSelection.filter(function(){
+          return (!d3.select(this).select('Graphics').attr('Color'));
+        }).each(function(){
+          d3.select(this).select('Graphics').attr('Color', '000000');
+        });
+      }
+    }
 
     return gpmlSelection;
   };
@@ -878,28 +912,31 @@ pathvisiojs.data.gpml = function(){
             var groupSelection, groupsSelection = gpmlSelection.selectAll('Group');
             if (groupsSelection[0].length > 0) {
               pathway.Group = [];
+              var groups = [];
               gpmlSelection.selectAll('Group').each(function() {
                 groupSelection = d3.select(this);
                 pathvisiojs.data.gpml.element.node.groupNode.toPvjson(gpmlSelection, groupSelection, function(jsonGroup, pvjsonPath, pvjsonText) {
                   pathway.Group.push(jsonGroup);
+                  groups.push(pvjsonPath);
                   pathway.nodes = pathway.nodes.concat(jsonGroup);
                   pathway.elementsNew = pathway.paths.concat(pvjsonPath);
                   pathway.paths = pathway.paths.concat(pvjsonPath);
                   pathway.text = pathway.text.concat(pvjsonText);
-                  /*
+                  //*
                   console.log('jsonGroup');
                   console.log(jsonGroup);
                   console.log('pvjsonPath');
                   console.log(pvjsonPath);
+                  console.log(pvjsonPath.id);
                   console.log('pvjsonText');
                   console.log(pvjsonText);
                   //*/
                 });
               });
-              callback(null, 'Groups are all converted.');
+              callback(null, groups);
             }
             else {
-              callback(null, 'No groups to convert.');
+              callback(null, null);
             }
           },
           //*
@@ -915,7 +952,7 @@ pathvisiojs.data.gpml = function(){
                   pathway.elements = pathway.elements.concat(jsonGraphicalLine);
                   pathway.elementsNew = pathway.paths.concat(pvjsonPath);
                   pathway.paths = pathway.paths.concat(pvjsonPath);
-                  //*
+                  /*
                   console.log('jsonGraphicalLine');
                   console.log(jsonGraphicalLine);
                   console.log('pvjsonPath');
@@ -958,113 +995,36 @@ pathvisiojs.data.gpml = function(){
           }
       },
       function(err, results) {
-        var groupsFrame, jsonGroups = [];
-        if (!!pathway.Group) {
-          groupsFrame = {
-            '@context': pathway['@context'],
-            '@type': 'GroupNode',
-            'contains': {}
-          };
-          jsonld.frame(pathway, groupsFrame, function(err, framedGroups) {
-            console.log('framedGroups');
-            console.log(framedGroups);
-            async.waterfall([
-              function(callbackInside){
-                framedGroups['@graph'].forEach(function(jsonGroup) {
-                  console.log('jsonGroup');
-                  console.log(jsonGroup);
-                  // Some GPML files contain empty groups due to a PathVisio-Java bug. They are deleted
-                  // here because only groups that pass the test (!!jsonGroup.contains) are added to
-                  // the jsonGroups array, and the jsonGroups array overwrites pathway.Group.
-                  if (!!jsonGroup.contains) {
-                    pathvisiojs.data.gpml.element.node.groupNode.getGroupDimensions(jsonGroup, function(dimensions) {
-                      jsonGroup.x = dimensions.x;
-                      jsonGroup.y = dimensions.y;
-                      jsonGroup.width = dimensions.width;
-                      jsonGroup.height = dimensions.height;
-                      jsonGroup.zIndex = dimensions.zIndex;
-                      pathvisiojs.data.gpml.element.node.getPorts(jsonGroup, function(ports) {
-                        jsonGroup.Port = ports;
-                        if (jsonGroups.indexOf(jsonGroup) === -1) {
-                          jsonGroups.push(jsonGroup);
-                        }
-                      });
-                    });
-                  }
-                });
-                callbackInside(null, jsonGroups);
-              },
-              function(jsonGroups, callbackInside){
-                pathway.Group = jsonGroups;
-                pathway.elements = pathway.elements.concat(pathway.Group);
-
-                var relativeZIndexByRenderableType = {
-                  'GroupNode': 0,
-                  'Interaction': 1,
-                  'GraphicalLine': 2,
-                  'Anchor': 3,
-                  'EntityNode': 4
-                };
-
-                // sort by explicitly set z-index for all elements except GroupNodes, which use the lowest z-index
-                // of their contained elements, and anchors, which use their parent element's z-index
-                //TODO check whether anchors have been set to have a z-index
-                pathway.elements.sort(function(a, b) {
-                  var aPriority, bPriority;
-                  if (a.zIndex !== b.zIndex) {
-                    // if two elements have the same z-index,
-                    // they will be sub-sorted by renderableElementType priority,
-                    // as indicated in relativeZIndexByRenderableType
-                    aPriority = a.zIndex + relativeZIndexByRenderableType[a.renderableType];
-                    bPriority = b.zIndex + relativeZIndexByRenderableType[b.renderableType];
-                  }
-                  else {
-                    aPriority = a.zIndex;
-                    bPriority = b.zIndex;
-                  }
-                  return aPriority - bPriority;
-                });
-                callbackInside(null, pathway);
-              },
-              function(pathway, callbackInside){
-                /*
-                 * we don't need this until we start rendering without cached data
-                pathway.pathwayNestedByDependencies = d3.nest()
-                .key(function(d) { return d.hasDependencies; })
-                .entries(pathway.elements);
-                //*/
-
-                pathway.pathwayNestedByGrouping = d3.nest()
-                .key(function(d) { return d.isContainedBy; })
-                .entries(pathway.elements);
-
-                var firstOrderElement = pathway.pathwayNestedByGrouping.filter(function(group) {
-                  return group.key === 'undefined';
-                })[0];
-                pathway.pathwayNestedByGrouping = pathvisiojs.utilities.moveArrayItem(pathway.pathwayNestedByGrouping, pathway.pathwayNestedByGrouping.indexOf(firstOrderElement), 0);
-                callbackInside(null, pathway);
-              },
-              function(pathway, callbackInside){
-                //self.myPathway = pathway;
-                callbackOutside(pathway);
-              }
-            ]);
+        var contents, groupsFrame, jsonGroups = [];
+        if (!!results.Group) {
+          pathway.elementsNew.filter(function(element){
+            return element.nodeType === 'GroupNode';
+          }).forEach(function(group) {
+            contents = pathway.elementsNew.filter(function(element){
+              return element.isContainedBy === group.id;
+            });
+            group.contains = contents;
+            pathvisiojs.data.gpml.element.node.groupNode.getGroupDimensions(group, function(dimensions){
+              group.x = dimensions.x;
+              group.y = dimensions.y;
+              group.width = dimensions.width;
+              group.height = dimensions.height;
+              group.zIndex = dimensions.zIndex;
+            });
           });
         }
-        else {
-          pathway.elements.sort(function(a, b) {
-            return a.zIndex - b.zIndex;
-          });
+        pathway.elements.sort(function(a, b) {
+          return a.zIndex - b.zIndex;
+        });
 
-          pathway.pathwayNestedByGrouping = d3.nest()
-          .key(function(d) { return d.isContainedBy; })
-          .entries(pathway.elements);
+        pathway.pathwayNestedByGrouping = d3.nest()
+        .key(function(d) { return d.isContainedBy; })
+        .entries(pathway.elements);
 
-          //self.myPathway = pathway;
-          callbackOutside(pathway);
-        }
+        //self.myPathway = pathway;
+        callbackOutside(pathway);
       });
-      }
+    }
 /*
       // Comments 
 

@@ -93,6 +93,11 @@ pathvisiojs.data.gpml.graphics = function(){
         }
         pvjsonText.fill = cssColor;
       },
+      Padding: function(gpmlPaddingValue){
+        var cssPadding = gpmlPaddingValue;
+        pvjsonElement.padding = cssPadding;
+        pvjsonText.padding = cssPadding;
+      },
       FontSize: function(gpmlFontSizeValue){
         var cssFontSize = gpmlFontSizeValue;
         pvjsonText.fontSize = cssFontSize;

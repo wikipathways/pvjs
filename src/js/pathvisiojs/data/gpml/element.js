@@ -164,7 +164,7 @@ pathvisiojs.data.gpml.element = function(){
     var gpmlToPvjsonConverter = {
       GraphId: function(gpmlGraphIdValue){
         // TODO this is a hack so we don't have two items with the same ID while I'm building out the code to create the flattened data structure
-        pvjsonElement.id = 'new' + gpmlGraphIdValue;
+        pvjsonElement.id = gpmlGraphIdValue;
         pvjsonText.id = 'text' + gpmlGraphIdValue;
         pvjsonText.describes = gpmlGraphIdValue;
         return gpmlGraphIdValue;
@@ -172,6 +172,10 @@ pathvisiojs.data.gpml.element = function(){
       TextLabel: function(gpmlTextLabelValue){
         pvjsonText.textContent = gpmlTextLabelValue;
         return gpmlTextLabelValue;
+      },
+      Type: function(gpmlTypeValue){
+        pvjsonElement.biologicalType = gpmlTypeValue;
+        return gpmlTypeValue;
       },
       IsContainedBy: function(gpmlIsContainedByValue){
         pvjsonElement.isContainedBy = gpmlIsContainedByValue;
@@ -222,32 +226,5 @@ pathvisiojs.data.gpml.element = function(){
     setBorderStyleAsJson:setBorderStyleAsJson
   };
 }();
-
-/*
-// set default values. "swing" refers to PathVisio-Java.
-pathvisiojs.data.gpml.element.color = {};
-pathvisiojs.data.gpml.element.color.swing = '000000';
-pathvisiojs.data.gpml.element.color.gpml = null;
-
-pathvisiojs.data.gpml.element.fillColor = {};
-pathvisiojs.data.gpml.element.fillColor.swing = 'ffffff';
-pathvisiojs.data.gpml.element.fillColor.gpml = null;
-
-pathvisiojs.data.gpml.element.lineStyle = {};
-pathvisiojs.data.gpml.element.lineStyle.swing = 'Solid';
-pathvisiojs.data.gpml.element.lineStyle.gpml = null;
-
-pathvisiojs.data.gpml.element.fontSize = {};
-pathvisiojs.data.gpml.element.fontSize.swing = 10;
-pathvisiojs.data.gpml.element.fontSize.gpml = 10;
-
-pathvisiojs.data.gpml.element.fontWeight = {};
-pathvisiojs.data.gpml.element.fontWeight.swing = null;
-pathvisiojs.data.gpml.element.fontWeight.gpml = null;
-
-pathvisiojs.data.gpml.element.fontName = {};
-pathvisiojs.data.gpml.element.fontName.swing = 'Arial';
-pathvisiojs.data.gpml.element.fontName.gpml = null;
-//*/
   
 
