@@ -997,7 +997,7 @@ pathvisiojs.data.gpml = function(){
       function(err, results) {
         var contents, groupsFrame, jsonGroups = [];
         if (!!results.Group) {
-          pathway.elementsNew.filter(function(element){
+          pathway.paths.filter(function(element){
             return element.nodeType === 'GroupNode';
           }).forEach(function(group) {
             contents = pathway.elementsNew.filter(function(element){
