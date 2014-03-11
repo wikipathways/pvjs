@@ -137,7 +137,7 @@ pathvisiojs.data.gpml.element = function(){
 
   //*
   var toPvjsonNew = function(gpmlSelection, elementSelection, pvjsonElement, callback) {
-      var pvjsonText = {},
+    var pvjsonText = {},
       attribute,
       i,
       pvjsonHeight,
@@ -150,6 +150,8 @@ pathvisiojs.data.gpml.element = function(){
       pvjsonRelY,
       pvjsonX,
       pvjsonY;
+    pvjsonElement.graphicalType = 'path';
+    pvjsonText.graphicalType = 'text';
 
     var attributeDependencyOrder = [
       'GraphId',

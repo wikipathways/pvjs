@@ -824,20 +824,20 @@ pathvisiojs.data.gpml = function(){
               pathway.DataNode = [];
               dataNodesSelection.each(function() {
                 dataNodeSelection = d3.select(this);
-                pathvisiojs.data.gpml.element.node.entityNode.dataNode.toPvjson(gpmlSelection, dataNodeSelection, function(jsonDataNode, pvjsonPath, pvjsonText) {
+                pathvisiojs.data.gpml.element.node.entityNode.dataNode.toPvjson(gpmlSelection, dataNodeSelection, function(jsonDataNode, pvjsonElements, pvjsonText) {
                   /*
                   console.log('jsonDataNode');
                   console.log(jsonDataNode);
-                  console.log('pvjsonPath');
-                  console.log(pvjsonPath);
+                  console.log('pvjsonElements');
+                  console.log(pvjsonElements);
                   console.log('pvjsonText');
                   console.log(pvjsonText);
                   //*/
                   pathway.DataNode.push(jsonDataNode);
                   pathway.nodes = pathway.nodes.concat(jsonDataNode);
                   pathway.elements = pathway.elements.concat(jsonDataNode);
-                  pathway.elementsNew = pathway.paths.concat(pvjsonPath);
-                  pathway.paths = pathway.paths.concat(pvjsonPath);
+                  pathway.elementsNew = pathway.paths.concat(pvjsonElements);
+                  pathway.paths = pathway.paths.concat(pvjsonElements);
                   pathway.text = pathway.text.concat(pvjsonText);
                 });
               });
@@ -853,20 +853,20 @@ pathvisiojs.data.gpml = function(){
               pathway.Label = [];
               gpmlSelection.selectAll('Label').each(function() {
                 labelSelection = d3.select(this);
-                pathvisiojs.data.gpml.element.node.entityNode.label.toPvjson(gpmlSelection, labelSelection, function(jsonLabel, pvjsonPath, pvjsonText) {
+                pathvisiojs.data.gpml.element.node.entityNode.label.toPvjson(gpmlSelection, labelSelection, function(jsonLabel, pvjsonElements, pvjsonText) {
                   /*
                   console.log('jsonLabel');
                   console.log(jsonLabel);
-                  console.log('pvjsonPath');
-                  console.log(pvjsonPath);
+                  console.log('pvjsonElements');
+                  console.log(pvjsonElements);
                   console.log('pvjsonText');
                   console.log(pvjsonText);
                   //*/
                   pathway.Label.push(jsonLabel);
                   pathway.nodes = pathway.nodes.concat(jsonLabel);
                   pathway.elements = pathway.elements.concat(jsonLabel);
-                  pathway.elementsNew = pathway.paths.concat(pvjsonPath);
-                  pathway.paths = pathway.paths.concat(pvjsonPath);
+                  pathway.elementsNew = pathway.paths.concat(pvjsonElements);
+                  pathway.paths = pathway.paths.concat(pvjsonElements);
                   pathway.text = pathway.text.concat(pvjsonText);
                 });
               });
@@ -882,18 +882,18 @@ pathvisiojs.data.gpml = function(){
               pathway.Shape = [];
               gpmlSelection.selectAll('Shape').each(function() {
                 shapeSelection = d3.select(this);
-                pathvisiojs.data.gpml.element.node.entityNode.shape.toPvjson(gpmlSelection, shapeSelection, function(jsonShape, pvjsonPath, pvjsonText) {
+                pathvisiojs.data.gpml.element.node.entityNode.shape.toPvjson(gpmlSelection, shapeSelection, function(jsonShape, pvjsonElements, pvjsonText) {
                   pathway.Shape.push(jsonShape);
                   pathway.nodes = pathway.nodes.concat(jsonShape);
                   pathway.elements = pathway.elements.concat(jsonShape);
-                  pathway.elementsNew = pathway.paths.concat(pvjsonPath);
-                  pathway.paths = pathway.paths.concat(pvjsonPath);
+                  pathway.elementsNew = pathway.paths.concat(pvjsonElements);
+                  pathway.paths = pathway.paths.concat(pvjsonElements);
                   pathway.text = pathway.text.concat(pvjsonText);
                   /*
                   console.log('jsonShape');
                   console.log(jsonShape);
-                  console.log('pvjsonPath');
-                  console.log(pvjsonPath);
+                  console.log('pvjsonElements');
+                  console.log(pvjsonElements);
                   console.log('pvjsonText');
                   console.log(pvjsonText);
                   //*/
@@ -915,19 +915,19 @@ pathvisiojs.data.gpml = function(){
               var groups = [];
               gpmlSelection.selectAll('Group').each(function() {
                 groupSelection = d3.select(this);
-                pathvisiojs.data.gpml.element.node.groupNode.toPvjson(gpmlSelection, groupSelection, function(jsonGroup, pvjsonPath, pvjsonText) {
+                pathvisiojs.data.gpml.element.node.groupNode.toPvjson(gpmlSelection, groupSelection, function(jsonGroup, pvjsonElements, pvjsonText) {
                   pathway.Group.push(jsonGroup);
-                  groups.push(pvjsonPath);
+                  groups.push(pvjsonElements);
                   pathway.nodes = pathway.nodes.concat(jsonGroup);
-                  pathway.elementsNew = pathway.paths.concat(pvjsonPath);
-                  pathway.paths = pathway.paths.concat(pvjsonPath);
+                  pathway.elementsNew = pathway.paths.concat(pvjsonElements);
+                  pathway.paths = pathway.paths.concat(pvjsonElements);
                   pathway.text = pathway.text.concat(pvjsonText);
                   //*
                   console.log('jsonGroup');
                   console.log(jsonGroup);
-                  console.log('pvjsonPath');
-                  console.log(pvjsonPath);
-                  console.log(pvjsonPath.id);
+                  console.log('pvjsonElements');
+                  console.log(pvjsonElements);
+                  console.log(pvjsonElements.id);
                   console.log('pvjsonText');
                   console.log(pvjsonText);
                   //*/
@@ -946,17 +946,17 @@ pathvisiojs.data.gpml = function(){
               pathway.GraphicalLine = [];
               gpmlSelection.selectAll('GraphicalLine').each(function() {
                 graphicalLineSelection = d3.select(this);
-                pathvisiojs.data.gpml.edge.graphicalLine.toPvjson(gpml, graphicalLineSelection, function(jsonGraphicalLine, pvjsonPath) {
+                pathvisiojs.data.gpml.edge.graphicalLine.toPvjson(gpml, graphicalLineSelection, function(jsonGraphicalLine, pvjsonElements) {
                   pathway.GraphicalLine.push(jsonGraphicalLine);
                   pathway.edges = pathway.edges.concat(jsonGraphicalLine);
                   pathway.elements = pathway.elements.concat(jsonGraphicalLine);
-                  pathway.elementsNew = pathway.paths.concat(pvjsonPath);
-                  pathway.paths = pathway.paths.concat(pvjsonPath);
+                  pathway.elementsNew = pathway.paths.concat(pvjsonElements);
+                  pathway.paths = pathway.paths.concat(pvjsonElements);
                   /*
                   console.log('jsonGraphicalLine');
                   console.log(jsonGraphicalLine);
-                  console.log('pvjsonPath');
-                  console.log(pvjsonPath);
+                  console.log('pvjsonElements');
+                  console.log(pvjsonElements);
                   //*/
                 });
               });
@@ -973,17 +973,17 @@ pathvisiojs.data.gpml = function(){
               pathway.Interaction = [];
               gpmlSelection.selectAll('Interaction').each(function() {
                 interactionSelection = d3.select(this);
-                pathvisiojs.data.gpml.edge.interaction.toPvjson(gpml, interactionSelection, function(jsonInteraction, pvjsonPath) {
+                pathvisiojs.data.gpml.edge.interaction.toPvjson(gpml, interactionSelection, function(jsonInteraction, pvjsonElements) {
                   pathway.Interaction.push(jsonInteraction);
                   pathway.edges = pathway.edges.concat(jsonInteraction);
                   pathway.elements = pathway.elements.concat(jsonInteraction);
-                  pathway.elementsNew = pathway.paths.concat(pvjsonPath);
-                  pathway.paths = pathway.paths.concat(pvjsonPath);
+                  pathway.elementsNew = pathway.paths.concat(pvjsonElements);
+                  pathway.paths = pathway.paths.concat(pvjsonElements);
                   //*
                   console.log('jsonInteraction');
                   console.log(jsonInteraction);
-                  console.log('pvjsonPath');
-                  console.log(pvjsonPath);
+                  console.log('pvjsonElements');
+                  console.log(pvjsonElements);
                   //*/
                 });
               });

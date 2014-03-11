@@ -52,11 +52,17 @@ pathvisiojs.data.gpml.element.node.entityNode.dataNode = function() {
         jsonDataNode = pathvisiojs.data.gpml.element.node.setJsonBackgroundColor(jsonDataNode, gpmlFillColor);
 
         //*
-        pathvisiojs.data.gpml.element.toPvjsonNew(gpmlSelection, dataNodeSelection, pvjsonPath, function(pvjsonPath, pvjsonText) {
+        pathvisiojs.data.gpml.element.toPvjsonNew(gpmlSelection, dataNodeSelection, pvjsonPath, function(pvjsonPath, updatedPvjsonText) {
+          pvjsonText = updatedPvjsonText;
           pathvisiojs.data.gpml.graphics.toPvjson(gpmlSelection, dataNodeSelection, pvjsonPath, pvjsonText, function(pvjsonPath, updatedPvjsonText) {
             pvjsonText = updatedPvjsonText;
             if (!!jsonDataNode.DatasourceReference) {
               pvjsonPath.datasourceReference = jsonDataNode.DatasourceReference;
+            }
+
+            var pvjsonElements = [pvjsonPath];
+            if (!!pvjsonText.textContent) {
+              pvjsonElements.push(pvjsonText);
             }
             /*
             console.log('pvjsonPath inside');
@@ -66,7 +72,7 @@ pathvisiojs.data.gpml.element.node.entityNode.dataNode = function() {
             console.log('jsonDataNode inside');
             console.log(jsonDataNode);
             //*/
-            callbackInside(jsonDataNode, pvjsonPath, pvjsonText);
+            callbackInside(jsonDataNode, pvjsonElements, pvjsonText);
           });
         });
         //*/

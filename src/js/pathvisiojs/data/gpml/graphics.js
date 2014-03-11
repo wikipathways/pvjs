@@ -96,10 +96,10 @@ pathvisiojs.data.gpml.graphics = function(){
       Padding: function(gpmlPaddingValue){
         var cssPadding = gpmlPaddingValue;
         pvjsonElement.padding = cssPadding;
-        pvjsonText.padding = cssPadding;
+        pvjsonText.containerPadding = cssPadding;
       },
       FontSize: function(gpmlFontSizeValue){
-        var cssFontSize = gpmlFontSizeValue;
+        var cssFontSize = parseFloat(gpmlFontSizeValue);
         pvjsonText.fontSize = cssFontSize;
       },
       FontWeight: function(gpmlFontWeightValue){
@@ -126,28 +126,28 @@ pathvisiojs.data.gpml.graphics = function(){
         gpmlWidthValue = parseFloat(gpmlWidthValue);
         pvjsonWidth = gpmlWidthValue + pvjsonStrokeWidth;
         pvjsonElement.width = pvjsonWidth;
-        pvjsonText.width = pvjsonWidth;
+        pvjsonText.containerWidth = pvjsonWidth;
         return pvjsonWidth;
       },
       Height: function(gpmlHeightValue) {
         gpmlHeightValue = parseFloat(gpmlHeightValue);
         pvjsonHeight = gpmlHeightValue + pvjsonStrokeWidth;
         pvjsonElement.height = pvjsonHeight;
-        pvjsonText.height = pvjsonHeight;
+        pvjsonText.containerHeight = pvjsonHeight;
         return pvjsonHeight;
       },
       CenterX: function(gpmlCenterXValue) {
         gpmlCenterXValue = parseFloat(gpmlCenterXValue);
         pvjsonX = gpmlCenterXValue - pvjsonWidth/2;
         pvjsonElement.x = pvjsonX;
-        pvjsonText.x = pvjsonX;
+        pvjsonText.containerX = pvjsonX;
         return pvjsonX;
       },
       CenterY: function(gpmlCenterYValue) {
         gpmlCenterYValue = parseFloat(gpmlCenterYValue);
         pvjsonY = gpmlCenterYValue - pvjsonHeight/2;
         pvjsonElement.y = pvjsonY;
-        pvjsonText.y = pvjsonY;
+        pvjsonText.containerY = pvjsonY;
         return pvjsonY;
       },
       RelX: function(gpmlRelXValue) {
@@ -160,7 +160,7 @@ pathvisiojs.data.gpml.graphics = function(){
         var gpmlCenterXValue = parentCenterX + gpmlRelXValue * parentWidth/2;
         pvjsonX = gpmlCenterXValue - pvjsonWidth/2;
         pvjsonElement.x = pvjsonX;
-        pvjsonText.x = pvjsonX;
+        pvjsonText.containerX = pvjsonX;
         return pvjsonX;
       },
       RelY: function(gpmlRelYValue) {
@@ -171,8 +171,7 @@ pathvisiojs.data.gpml.graphics = function(){
         var parentHeight = parentElement.attr('Height');
         var gpmlCenterYValue = parentCenterY + pvjsonRelY * parentHeight/2;
         pvjsonY = gpmlCenterYValue - pvjsonHeight/2;
-        pvjsonElement.y = pvjsonY;
-        pvjsonText.y = pvjsonY;
+        pvjsonText.containerY = pvjsonY;
         return pvjsonY;
       },
       Align: function(gpmlAlignValue) {
