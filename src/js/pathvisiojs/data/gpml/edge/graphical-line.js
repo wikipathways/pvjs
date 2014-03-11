@@ -43,6 +43,8 @@ pathvisiojs.data.gpml.edge.graphicalLine = function(){
       }
 
       var pvjsonPath = {}, pvjsonText = {};
+      pvjsonPath.networkType = 'edge';
+      pvjsonPath.gpmlType = 'GraphicalLine';
       pathvisiojs.data.gpml.element.toPvjsonNew(gpmlSelection, graphicalLineSelection, pvjsonPath, function(pvjsonPath, pvjsonText) {
         pathvisiojs.data.gpml.graphics.toPvjson(gpmlSelection, graphicalLineSelection, pvjsonPath, pvjsonText, function(pvjsonPath, updatedPvjsonText) {
           pvjsonPath.points = jsonGraphicalLine.Point;

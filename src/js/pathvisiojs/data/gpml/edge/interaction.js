@@ -188,6 +188,8 @@ pathvisiojs.data.gpml.edge.interaction = function(){
       }
 
       var pvjsonPath = {}, pvjsonText = {};
+      pvjsonPath.networkType = 'edge';
+      pvjsonPath.gpmlType = 'Interaction';
       pathvisiojs.data.gpml.element.toPvjsonNew(gpmlSelection, interactionSelection, pvjsonPath, function(pvjsonPath, pvjsonText) {
         pathvisiojs.data.gpml.graphics.toPvjson(gpmlSelection, interactionSelection, pvjsonPath, pvjsonText, function(pvjsonPath, updatedPvjsonText) {
           pvjsonPath.points = jsonInteraction.Point;

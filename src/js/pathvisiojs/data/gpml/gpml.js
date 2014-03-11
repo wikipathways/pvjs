@@ -996,23 +996,24 @@ pathvisiojs.data.gpml = function(){
       },
       function(err, results) {
         var contents, groupsFrame, jsonGroups = [];
-        if (!!results.Group) {
-          pathway.paths.filter(function(element){
-            return element.nodeType === 'GroupNode';
-          }).forEach(function(group) {
-            contents = pathway.elementsNew.filter(function(element){
-              return element.isContainedBy === group.id;
-            });
-            group.contains = contents;
-            pathvisiojs.data.gpml.element.node.groupNode.getGroupDimensions(group, function(dimensions){
-              group.x = dimensions.x;
-              group.y = dimensions.y;
-              group.width = dimensions.width;
-              group.height = dimensions.height;
-              group.zIndex = dimensions.zIndex;
-            });
+        var groupContentsCandidates = pathway.paths.filter(function(candidate){
+          return (candidate.nodeType !== 'GroupNode' && candidate.networkType !== 'edge');
+        });
+        pathway.paths.filter(function(path){
+          return path.nodeType === 'GroupNode';
+        }).forEach(function(group) {
+          contents = groupContentsCandidates.filter(function(element){
+            return element.isContainedBy === group.id;
           });
-        }
+          group.contains = contents;
+          pathvisiojs.data.gpml.element.node.groupNode.getGroupDimensions(group, function(dimensions){
+            group.x = dimensions.x;
+            group.y = dimensions.y;
+            group.width = dimensions.width;
+            group.height = dimensions.height;
+            group.zIndex = dimensions.zIndex;
+          });
+        });
         pathway.elements.sort(function(a, b) {
           return a.zIndex - b.zIndex;
         });
