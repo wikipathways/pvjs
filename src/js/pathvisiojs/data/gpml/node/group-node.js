@@ -129,6 +129,9 @@ pathvisiojs.data.gpml.element.node.groupNode = function() {
         pathvisiojs.data.gpml.element.toPvjsonNew(gpmlSelection, groupSelection, pvjsonPath, function(pvjsonPath, pvjsonText) {
           pathvisiojs.data.gpml.graphics.toPvjson(gpmlSelection, groupSelection, pvjsonPath, pvjsonText, function(pvjsonPath, updatedPvjsonText) {
             pvjsonText = updatedPvjsonText;
+            if (!!pvjsonText.textContent) {
+              pvjsonPath = [pvjsonPath, pvjsonText];
+            }
             //*
             console.log('jsonGroup inside');
             console.log(jsonGroup);
