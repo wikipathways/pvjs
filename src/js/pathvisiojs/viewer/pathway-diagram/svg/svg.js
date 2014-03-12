@@ -468,6 +468,32 @@ else if (dataElement.renderableType === 'Interaction') {
 
     async.waterfall([
       function(callbackInside){
+        var renderingArgs = {};
+
+        async.each(pathway.elementsNew, function(dataElement, callbackEach) {
+          if (dataElement.graphicalType === 'path') {
+            console.log('path');
+            pathvisiojs.view.pathwayDiagram.svg.path.render(viewport, dataElement);
+          }
+          else if (dataElement.graphicalType === 'text') {
+            console.log('text');
+            //pathvisiojs.view.pathwayDiagram.svg.edge.interaction.render(renderingArgs);
+          }
+          else if (dataElement.graphicalType === 'image') {
+            console.log('image');
+            /*
+            pathvisiojs.view.pathwayDiagram.svg.node.groupNode.render(renderingArgs, function(groupContainer, groupContents) {
+              // TODO this used to render the group contents, but now the callback does nothing
+            });
+            //*/
+          }
+          callbackEach(null);
+        },
+        function(err){
+          callbackInside(null);
+        });
+      },
+      function(callbackInside){
         // create the required elements and their ids in DOM order,
         // without specifying width, height, etc.
         renderArgs.data = pathway.pathwayNestedByGrouping;
