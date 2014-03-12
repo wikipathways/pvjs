@@ -1,14 +1,25 @@
-pathvisiojs.view.pathwayDiagram.svg.path.rectangle = function(){
+pathvisiojs.view.pathwayDiagram.svg.node.pathShape.rectangle = function(){
   'use strict';
 
-  function getAttributes(nodeWidth, nodeHeight, borderWidth) {
-      var attributes = [
-        {
-          name:'d',
-          path: 'm0,0l'+ nodeWidth +',0l0,'+ nodeHeight + 'l-' + nodeWidth +',0l0,-' + nodeHeight +'z'
-        }
-      ];
-      return attributes;
+  function getAttributes(data) {
+    var x = data.x,
+      y = data.y,
+      width = data.width,
+      height = data.height;
+
+    var path = 'M ' + x + ' ' + y +
+      'L' + width + ' ' + y +
+      'L' + width + ' ' + height +
+      'L' + x + ' ' + height +
+      'Z';
+
+    var attributes = [
+      {
+        name:'d',
+        path: path
+      }
+    ];
+    return attributes;
   }
 
   return {

@@ -42,7 +42,7 @@ pathvisiojs.view.pathwayDiagram.svg.path = function(){
           path.attr('stroke', strokeValue);
         },
         rotation: function(rotationValue) {
-          var transform = ' rotate(' + rotationValue + ',' + data.width/2 + ',' + data.height/2 + ')';
+          var transform = 'translate(' + data.x + ' ' + data.y + ') rotate(' + rotationValue + ',' + data.width/2 + ',' + data.height/2 + ')';
           path.attr('transform', transform);
         },
         strokeWidth: function(strokeWidthValue) {
@@ -54,8 +54,6 @@ pathvisiojs.view.pathwayDiagram.svg.path = function(){
       var elementAttributes = d3.map(data).entries();
       d3.map(data).entries().forEach(function(elementAttribute){
         elementAttributeKey = elementAttribute.key;
-        console.log('elementAttributeKey');
-        console.log(elementAttributeKey);
         if (pathRenderer.hasOwnProperty(elementAttributeKey)) {
           pathRenderer[elementAttributeKey](elementAttribute.value);
         }
@@ -63,14 +61,12 @@ pathvisiojs.view.pathwayDiagram.svg.path = function(){
       self.mydata = data;
       self.myelementAttributes = elementAttributes;
 
-      var shapeSpecificAttributes = pathvisiojs.view.pathwayDiagram.svg.path[pathNameToUse].getAttributes(data.x, data.y, data.width, data.height, data.strokeWidth);
+      var shapeSpecificAttributes = pathvisiojs.view.pathwayDiagram.svg.path[pathNameToUse].getAttributes(data);
       shapeSpecificAttributes.forEach(function(attribute) {
+        console.log('attribute');
+        console.log(attribute);
         var names = [attribute.name];
         var paths = [attribute.path];
-        if (attribute.alt){
-          names = attribute.name;
-          paths = attribute.path;
-        }
         for(var i = 0; i < names.length; i++){
           path.attr(names[i], paths[i]);
         }

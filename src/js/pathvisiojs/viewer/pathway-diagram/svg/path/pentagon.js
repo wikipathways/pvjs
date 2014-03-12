@@ -1,14 +1,18 @@
-pathvisiojs.view.pathwayDiagram.svg.path.pentagon = function(){
+pathvisiojs.view.pathwayDiagram.svg.node.pathShape.pentagon = function(){
   'use strict';
 
-  function getAttributes(nodeWidth, nodeHeight, borderWidth) {
-      var attributes = [
-        {
-          name:'d',
-          path: 'm0,'+0.81*nodeHeight+'l0,-'+0.62*nodeHeight+'l'+0.62*nodeWidth+',-'+0.19*nodeHeight+'l'+0.38*nodeWidth+','+0.5*nodeHeight+'l-'+0.38*nodeWidth+','+0.5*nodeHeight+'l-'+0.62*nodeWidth+',-'+0.19*nodeHeight+'z'
-        }
-      ];
-      return attributes;
+  function getAttributes(data) {
+    var x = data.x,
+      y = data.y,
+      width = data.width,
+      height = data.height;
+    var attributes = [
+      {
+        name:'d',
+        path: 'm0,'+0.81*height+'l0,-'+0.62*height+'l'+0.62*width+',-'+0.19*height+'l'+0.38*width+','+0.5*height+'l-'+0.38*width+','+0.5*height+'l-'+0.62*width+',-'+0.19*height+'z'
+      }
+    ];
+    return attributes;
   }
 
   return {

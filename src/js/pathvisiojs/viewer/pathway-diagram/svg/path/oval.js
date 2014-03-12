@@ -1,15 +1,30 @@
-pathvisiojs.view.pathwayDiagram.svg.path.oval = function(){
+pathvisiojs.view.pathwayDiagram.svg.node.pathShape.oval = function(){
   'use strict';
 
-  function getAttributes(nodeWidth, nodeHeight, borderWidth) {
-      var attributes = [
-        {
-          name:'d',
-          scale:'true', //adds transform and stroke-width attrs to g container
-          path: 'm0,50c0,-27.62431 22.37569,-50 50,-50c27.62431,0 50,22.37569 50,50c0,27.62431 -22.37569,50 -50,50c-27.62431,0 -50,-22.37569 -50,-50z'
-        }
-      ];
-      return attributes;
+  // TODO don't repeat this with the def in ovalDouble
+  function drawEllipse(x, y, width, height) {
+    var width_over_2 = width / 2,
+      width_two_thirds = width * 2 / 3,
+      height_over_2 = height / 2;
+    var pathData = 'm ' + x + ' ' + (y - height_over_2) + ' ' +
+    'c ' + (x + width_two_thirds) + ' ' + (y - height_over_2) + ' ' + (x + width_two_thirds) + ' ' + (y + height_over_2) + ' ' + (x) + ' ' + (y + height_over_2) +
+    'c ' + (x - width_two_thirds) +  ' ' + (y + height_over_2) +  ' ' + (x - width_two_thirds) +  ' ' + (y - height_over_2) + ' ' + (x) +  ' ' + (y - height_over_2) +
+    'z';
+  }
+
+  function getAttributes(data) {
+    var x = data.x,
+      y = data.y,
+      width = data.width,
+      height = data.height;
+    var path = drawEllipse(x, y, width, height);
+    var attributes = [
+      {
+        name:'d',
+        path:path
+      }
+    ];
+    return attributes;
   }
 
   return {
