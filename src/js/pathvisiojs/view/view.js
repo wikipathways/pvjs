@@ -1,3 +1,0 @@
-pathvisiojs.view = pathvisiojs.view || {};
-
-     

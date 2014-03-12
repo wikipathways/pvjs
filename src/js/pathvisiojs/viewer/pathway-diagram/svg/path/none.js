@@ -1,14 +1,14 @@
-pathvisiojs.view.pathwayDiagram.svg.path.none = function(){
+pathvisiojs.view.pathwayDiagram.svg.node.pathShape.none = function(){
   'use strict';
 
-  function getAttributes(nodeWidth, nodeHeight, borderWidth) {
-      var attributes = [
-        {
-          name:'d',
-          path: 'M0 0'
-        }
-      ];
-      return attributes;
+  function getAttributes(data) {
+    var attributes = [
+      {
+        name:'d',
+        path: 'M0 0'
+      }
+    ];
+    return attributes;
   }
 
   return {

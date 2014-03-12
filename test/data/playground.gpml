@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Pathway xmlns="http://pathvisio.org/GPML/2013a" Name="New Pathway" Version="20140130">
-  <Graphics BoardWidth="1990.251836306401" BoardHeight="1311.6441854498262" />
+  <Graphics BoardWidth="1548.5537583254036" BoardHeight="1311.528662420382" />
   <DataNode TextLabel="GeneProduct" GraphId="b3e12" Type="GeneProduct" GroupRef="f23b1">
     <BiopaxRef>e67</BiopaxRef>
     <Graphics CenterX="654.6146527117039" CenterY="212.17887725975248" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
@@ -46,7 +46,7 @@
     <Graphics RelX="-0.49857278782112074" RelY="-1.0" Width="54.23406279733564" Height="57.442911512844915" ShapeType="Oval" />
     <Xref Database="" ID="" />
   </State>
-  <Interaction GroupRef="ccd04">
+  <Interaction GraphId="id7d59120a" GroupRef="ccd04">
     <Graphics ConnectorType="Curved" ZOrder="12288" LineThickness="1.0">
       <Point X="619.410085632731" Y="617.9733587059943" GraphRef="f6148" RelX="0.0" RelY="-1.0" />
       <Point X="728.325404376784" Y="527.1170313986678" />
@@ -55,14 +55,14 @@
     </Graphics>
     <Xref Database="" ID="" />
   </Interaction>
-  <Interaction GroupRef="bc7f2">
+  <Interaction GraphId="id70883ec2" GroupRef="bc7f2">
     <Graphics ZOrder="12288" LineThickness="1.0">
       <Point X="1147.4405328258792" Y="212.17887725975243" GraphRef="f3a61" RelX="-1.0" RelY="0.0" />
       <Point X="1054.6116504854367" Y="211.1650485436893" />
     </Graphics>
     <Xref Database="" ID="" />
   </Interaction>
-  <Interaction GroupRef="ab03a">
+  <Interaction GraphId="idf919b031" GroupRef="ab03a">
     <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
       <Point X="1167.4595623215969" Y="610.3615604186493" GraphRef="db69d" RelX="0.0" RelY="-1.0" ArrowHead="mim-transcription-translation" />
       <Point X="1252.1408182683153" Y="552.8068506184586" />
@@ -70,14 +70,14 @@
     </Graphics>
     <Xref Database="" ID="" />
   </Interaction>
-  <Interaction GroupRef="c3dec">
+  <Interaction GraphId="ida10e2f6e" GroupRef="c3dec">
     <Graphics ZOrder="12288" LineThickness="1.0">
       <Point X="165.7823501427211" Y="273.24288223069794" GraphRef="ca685" RelX="0.0" RelY="1.0" />
       <Point X="216.8981921979066" Y="330.16175071360624" GraphRef="d61e2" RelX="-1.0" RelY="0.0" />
     </Graphics>
     <Xref Database="" ID="" />
   </Interaction>
-  <GraphicalLine GroupRef="bc7f2">
+  <GraphicalLine GraphId="idc010a432" GroupRef="bc7f2">
     <Graphics ZOrder="12288" LineThickness="1.0">
       <Point X="1364.4529019980962" Y="331.1132254995242" GraphRef="d5218" RelX="1.0" RelY="0.0" />
       <Point X="1518.5537583254036" Y="388.20171265461465" />
@@ -90,6 +90,11 @@
   </Shape>
   <Shape GraphId="ca685" GroupRef="c3dec">
     <Graphics CenterX="165.7823501427211" CenterY="221.91936251189327" Width="109.91960038058994" Height="102.30780209324456" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="Arc" Rotation="6.280094625246352" />
+  </Shape>
+  <Shape GraphId="aa331">
+    <Attribute Key="org.pathvisio.CellularComponentProperty" Value="Nucleus" />
+    <Attribute Key="org.pathvisio.DoubleLineProperty" Value="Double" />
+    <Graphics CenterX="829.9363057324833" CenterY="1085.1003184713372" Width="610.1910828025465" Height="252.72929936305718" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="Oval" LineThickness="3.0" Color="c0c0c0" Rotation="0.0" />
   </Shape>
   <Group GroupId="f23b1" Style="Complex">
     <BiopaxRef>d7b</BiopaxRef>
@@ -111,14 +116,13 @@
       <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Glasgow RE</bp:AUTHORS>
       <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Barrera M Jr</bp:AUTHORS>
     </bp:PublicationXref>
-    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="e67">
-      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">12356</bp:ID>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="ec3">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">3472</bp:ID>
       <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
-      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Investigation of rheological and drug release properties of oil gels containing fumed silica [proceedings].</bp:TITLE>
-      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">J Pharm Pharmacol</bp:SOURCE>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">[Clinical testing of bronchospasmolytics in combined alternating test schedules].</bp:TITLE>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Int J Clin Pharmacol Biopharm</bp:SOURCE>
       <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1976</bp:YEAR>
-      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Sherriff M</bp:AUTHORS>
-      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Enever RP</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Kaik G</bp:AUTHORS>
     </bp:PublicationXref>
     <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="d7b">
       <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">346267</bp:ID>
@@ -130,13 +134,14 @@
       <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Majuri H</bp:AUTHORS>
       <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Helenius T</bp:AUTHORS>
     </bp:PublicationXref>
-    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="ec3">
-      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">3472</bp:ID>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="e67">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">12356</bp:ID>
       <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
-      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">[Clinical testing of bronchospasmolytics in combined alternating test schedules].</bp:TITLE>
-      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Int J Clin Pharmacol Biopharm</bp:SOURCE>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Investigation of rheological and drug release properties of oil gels containing fumed silica [proceedings].</bp:TITLE>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">J Pharm Pharmacol</bp:SOURCE>
       <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1976</bp:YEAR>
-      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Kaik G</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Sherriff M</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Enever RP</bp:AUTHORS>
     </bp:PublicationXref>
   </Biopax>
 </Pathway>
