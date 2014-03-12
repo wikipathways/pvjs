@@ -63,7 +63,27 @@ var pvjsSources = [
   'src/js/pathvisiojs/viewer/pathway-diagram/svg/edge/marker.js',
   'src/js/pathvisiojs/viewer/pathway-diagram/svg/edge/point.js',
   'src/js/pathvisiojs/viewer/pathway-diagram/svg/edge/path.js',
-  'src/js/pathvisiojs/viewer/pathway-diagram/img/img.js'
+  'src/js/pathvisiojs/viewer/pathway-diagram/img/img.js',
+  'src/js/pathvisiojs/viewer/pathway-diagram/svg/path/path.js',
+  'src/js/pathvisiojs/viewer/pathway-diagram/svg/path/arc.js',
+  'src/js/pathvisiojs/viewer/pathway-diagram/svg/path/brace.js',
+  'src/js/pathvisiojs/viewer/pathway-diagram/svg/path/complex.js',
+  'src/js/pathvisiojs/viewer/pathway-diagram/svg/path/endoplasmic-reticulum.js',
+  'src/js/pathvisiojs/viewer/pathway-diagram/svg/path/golgi-apparatus.js',
+  'src/js/pathvisiojs/viewer/pathway-diagram/svg/path/grid-square.js',
+  'src/js/pathvisiojs/viewer/pathway-diagram/svg/path/hexagon.js',
+  'src/js/pathvisiojs/viewer/pathway-diagram/svg/path/mim-degradation.js',
+  'src/js/pathvisiojs/viewer/pathway-diagram/svg/path/mitochondria.js',
+  'src/js/pathvisiojs/viewer/pathway-diagram/svg/path/none.js',
+  'src/js/pathvisiojs/viewer/pathway-diagram/svg/path/oval.js',
+  'src/js/pathvisiojs/viewer/pathway-diagram/svg/path/oval-double.js',
+  'src/js/pathvisiojs/viewer/pathway-diagram/svg/path/pentagon.js',
+  'src/js/pathvisiojs/viewer/pathway-diagram/svg/path/rectangle.js',
+  'src/js/pathvisiojs/viewer/pathway-diagram/svg/path/rounded-rectangle.js',
+  'src/js/pathvisiojs/viewer/pathway-diagram/svg/path/rounded-rectangle-double.js',
+  'src/js/pathvisiojs/viewer/pathway-diagram/svg/path/sarcoplasmic-reticulum.js',
+  'src/js/pathvisiojs/viewer/pathway-diagram/svg/path/triangle.js',
+  'src/js/pathvisiojs/viewer/pathway-diagram/svg/text/text.js'
 ];
 
 var pvjsCssSources = [

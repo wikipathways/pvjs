@@ -533,9 +533,8 @@ pathvisiojs.data.gpml = function(){
     pathway.xmlns = gpmlSelection.attr('xmlns');
     pathway.nodes = [];
     pathway.edges = [];
-    pathway.paths = [];
-    pathway.text = [];
     pathway.elements = [];
+    pathway.elementsNew = [];
 
     // test for whether file is GPML
 
@@ -836,9 +835,7 @@ pathvisiojs.data.gpml = function(){
                   pathway.DataNode.push(jsonDataNode);
                   pathway.nodes = pathway.nodes.concat(jsonDataNode);
                   pathway.elements = pathway.elements.concat(jsonDataNode);
-                  pathway.elementsNew = pathway.paths.concat(pvjsonElements);
-                  pathway.paths = pathway.paths.concat(pvjsonElements);
-                  pathway.text = pathway.text.concat(pvjsonText);
+                  pathway.elementsNew = pathway.elementsNew.concat(pvjsonElements);
                 });
               });
               callback(null, 'DataNodes are all converted.');
@@ -865,9 +862,7 @@ pathvisiojs.data.gpml = function(){
                   pathway.Label.push(jsonLabel);
                   pathway.nodes = pathway.nodes.concat(jsonLabel);
                   pathway.elements = pathway.elements.concat(jsonLabel);
-                  pathway.elementsNew = pathway.paths.concat(pvjsonElements);
-                  pathway.paths = pathway.paths.concat(pvjsonElements);
-                  pathway.text = pathway.text.concat(pvjsonText);
+                  pathway.elementsNew = pathway.elementsNew.concat(pvjsonElements);
                 });
               });
               callback(null, 'Labels are all converted.');
@@ -886,9 +881,7 @@ pathvisiojs.data.gpml = function(){
                   pathway.Shape.push(jsonShape);
                   pathway.nodes = pathway.nodes.concat(jsonShape);
                   pathway.elements = pathway.elements.concat(jsonShape);
-                  pathway.elementsNew = pathway.paths.concat(pvjsonElements);
-                  pathway.paths = pathway.paths.concat(pvjsonElements);
-                  pathway.text = pathway.text.concat(pvjsonText);
+                  pathway.elementsNew = pathway.elementsNew.concat(pvjsonElements);
                   /*
                   console.log('jsonShape');
                   console.log(jsonShape);
@@ -919,9 +912,7 @@ pathvisiojs.data.gpml = function(){
                   pathway.Group.push(jsonGroup);
                   groups.push(pvjsonElements);
                   pathway.nodes = pathway.nodes.concat(jsonGroup);
-                  pathway.elementsNew = pathway.paths.concat(pvjsonElements);
-                  pathway.paths = pathway.paths.concat(pvjsonElements);
-                  pathway.text = pathway.text.concat(pvjsonText);
+                  pathway.elementsNew = pathway.elementsNew.concat(pvjsonElements);
                   //*
                   console.log('jsonGroup');
                   console.log(jsonGroup);
@@ -950,8 +941,7 @@ pathvisiojs.data.gpml = function(){
                   pathway.GraphicalLine.push(jsonGraphicalLine);
                   pathway.edges = pathway.edges.concat(jsonGraphicalLine);
                   pathway.elements = pathway.elements.concat(jsonGraphicalLine);
-                  pathway.elementsNew = pathway.paths.concat(pvjsonElements);
-                  pathway.paths = pathway.paths.concat(pvjsonElements);
+                  pathway.elementsNew = pathway.elementsNew.concat(pvjsonElements);
                   /*
                   console.log('jsonGraphicalLine');
                   console.log(jsonGraphicalLine);
@@ -977,8 +967,7 @@ pathvisiojs.data.gpml = function(){
                   pathway.Interaction.push(jsonInteraction);
                   pathway.edges = pathway.edges.concat(jsonInteraction);
                   pathway.elements = pathway.elements.concat(jsonInteraction);
-                  pathway.elementsNew = pathway.paths.concat(pvjsonElements);
-                  pathway.paths = pathway.paths.concat(pvjsonElements);
+                  pathway.elementsNew = pathway.elementsNew.concat(pvjsonElements);
                   //*
                   console.log('jsonInteraction');
                   console.log(jsonInteraction);
@@ -996,11 +985,11 @@ pathvisiojs.data.gpml = function(){
       },
       function(err, results) {
         var contents, groupsFrame, jsonGroups = [];
-        var groupContentsCandidates = pathway.paths.filter(function(candidate){
+        var groupContentsCandidates = pathway.elementsNew.filter(function(candidate){
           return (candidate.nodeType !== 'GroupNode' && candidate.networkType !== 'edge');
         });
-        pathway.paths.filter(function(path){
-          return path.nodeType === 'GroupNode';
+        pathway.elementsNew.filter(function(element){
+          return element.nodeType === 'GroupNode';
         }).forEach(function(group) {
           contents = groupContentsCandidates.filter(function(element){
             return element.isContainedBy === group.id;
@@ -1013,6 +1002,9 @@ pathvisiojs.data.gpml = function(){
             group.height = dimensions.height;
             group.zIndex = dimensions.zIndex;
           });
+        });
+        pathway.elements.sort(function(a, b) {
+          return a.zIndex - b.zIndex;
         });
         pathway.elements.sort(function(a, b) {
           return a.zIndex - b.zIndex;
