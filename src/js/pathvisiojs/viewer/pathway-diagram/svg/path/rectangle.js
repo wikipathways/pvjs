@@ -1,4 +1,4 @@
-pathvisiojs.view.pathwayDiagram.svg.node.pathShape.rectangle = function(){
+pathvisiojs.view.pathwayDiagram.svg.path.rectangle = function(){
   'use strict';
 
   function getAttributes(data) {
@@ -8,9 +8,9 @@ pathvisiojs.view.pathwayDiagram.svg.node.pathShape.rectangle = function(){
       height = data.height;
 
     var path = 'M ' + x + ' ' + y +
-      'L' + width + ' ' + y +
-      'L' + width + ' ' + height +
-      'L' + x + ' ' + height +
+      'L' + (x + width) + ' ' + y +
+      'L' + (x + width) + ' ' + (y + height) +
+      'L' + (x) + ' ' + (y + height) +
       'Z';
 
     var attributes = [

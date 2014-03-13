@@ -1,4 +1,4 @@
-pathvisiojs.view.pathwayDiagram.svg.node.pathShape.oval = function(){
+pathvisiojs.view.pathwayDiagram.svg.path.oval = function(){
   'use strict';
 
   // TODO don't repeat this with the def in ovalDouble
@@ -10,6 +10,7 @@ pathvisiojs.view.pathwayDiagram.svg.node.pathShape.oval = function(){
     'c ' + (x + width_two_thirds) + ' ' + (y - height_over_2) + ' ' + (x + width_two_thirds) + ' ' + (y + height_over_2) + ' ' + (x) + ' ' + (y + height_over_2) +
     'c ' + (x - width_two_thirds) +  ' ' + (y + height_over_2) +  ' ' + (x - width_two_thirds) +  ' ' + (y - height_over_2) + ' ' + (x) +  ' ' + (y - height_over_2) +
     'z';
+    return pathData;
   }
 
   function getAttributes(data) {
@@ -17,7 +18,9 @@ pathvisiojs.view.pathwayDiagram.svg.node.pathShape.oval = function(){
       y = data.y,
       width = data.width,
       height = data.height;
-    var path = drawEllipse(x, y, width, height);
+    var cx = x + width/2;
+    var cy = y + height/2;
+    var path = drawEllipse(cx, cy, width, height);
     var attributes = [
       {
         name:'d',

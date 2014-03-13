@@ -1,4 +1,4 @@
-pathvisiojs.view.pathwayDiagram.svg.node.pathShape.sarcoplasmicReticulum = function(){
+pathvisiojs.view.pathwayDiagram.svg.path.sarcoplasmicReticulum = function(){
   'use strict';
 
   function getAttributes(data) {

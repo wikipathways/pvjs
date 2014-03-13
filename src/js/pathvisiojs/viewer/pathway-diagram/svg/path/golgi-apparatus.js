@@ -1,4 +1,4 @@
-pathvisiojs.view.pathwayDiagram.svg.node.pathShape.golgiApparatus = function(){
+pathvisiojs.view.pathwayDiagram.svg.path.golgiApparatus = function(){
   'use strict';
 
   function getAttributes(data) {

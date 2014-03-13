@@ -1,4 +1,4 @@
-pathvisiojs.view.pathwayDiagram.svg.node.pathShape.gridSquare = function(){
+pathvisiojs.view.pathwayDiagram.svg.path.gridSquare = function(){
   'use strict';
 
   function getAttributes(data) {

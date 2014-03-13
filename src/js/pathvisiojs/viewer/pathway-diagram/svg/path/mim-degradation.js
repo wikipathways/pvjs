@@ -1,4 +1,4 @@
-pathvisiojs.view.pathwayDiagram.svg.node.pathShape.mimDegradation = function(){
+pathvisiojs.view.pathwayDiagram.svg.path.mimDegradation = function(){
   'use strict';
 
   function getAttributes(data) {

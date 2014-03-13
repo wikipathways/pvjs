@@ -1,4 +1,4 @@
-pathvisiojs.view.pathwayDiagram.svg.node.pathShape.brace = function(){
+pathvisiojs.view.pathwayDiagram.svg.path.brace = function(){
   'use strict';
 
   function getAttributes(data) {

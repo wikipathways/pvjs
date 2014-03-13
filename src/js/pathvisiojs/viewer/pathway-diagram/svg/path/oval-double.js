@@ -1,14 +1,14 @@
-pathvisiojs.view.pathwayDiagram.svg.node.pathShape.ovalDouble = function(){
+pathvisiojs.view.pathwayDiagram.svg.path.ovalDouble = function(){
   'use strict';
 
   function drawEllipse(x, y, width, height) {
     var width_over_2 = width / 2,
       width_two_thirds = width * 2 / 3,
       height_over_2 = height / 2;
-    var pathData = 'm ' + x + ' ' + (y - height_over_2) + ' ' +
-    'c ' + (x + width_two_thirds) + ' ' + (y - height_over_2) + ' ' + (x + width_two_thirds) + ' ' + (y + height_over_2) + ' ' + (x) + ' ' + (y + height_over_2) +
-    'c ' + (x - width_two_thirds) +  ' ' + (y + height_over_2) +  ' ' + (x - width_two_thirds) +  ' ' + (y - height_over_2) + ' ' + (x) +  ' ' + (y - height_over_2) +
-    'z';
+    var pathData = 'M ' + x + ' ' + (y - height_over_2) + ' ' +
+      'C ' + (x + width_two_thirds) + ' ' + (y - height_over_2) + ' ' + (x + width_two_thirds) + ' ' + (y + height_over_2) + ' ' + (x) + ' ' + (y + height_over_2) +
+      'C ' + (x - width_two_thirds) +  ' ' + (y + height_over_2) +  ' ' + (x - width_two_thirds) +  ' ' + (y - height_over_2) + ' ' + (x) +  ' ' + (y - height_over_2);
+    return pathData;
   }
 
   function getAttributes(data) {
@@ -16,8 +16,13 @@ pathvisiojs.view.pathwayDiagram.svg.node.pathShape.ovalDouble = function(){
       y = data.y,
       width = data.width,
       height = data.height;
-    var outerEllipse = drawEllipse(x, y, width, height);
-    var innerEllipse = drawEllipse(x + 3, y + 3, width - 3, height - 3);
+    var cxOuter = x + width/2;
+    var cyOuter = y + height/2;
+    var outerEllipse = drawEllipse(cxOuter, cyOuter, width, height);
+    var doubleLineGap = 3;
+    var cxInner = cxOuter + doubleLineGap;
+    var cyInner = cyOuter + doubleLineGap;
+    var innerEllipse = drawEllipse(cxInner, cyInner, width - 2*doubleLineGap, height - 2*doubleLineGap);
 
     /*
 m74.23027,549.04834

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Pathway xmlns="http://pathvisio.org/GPML/2013a" Name="New Pathway" Version="20140130">
-  <Graphics BoardWidth="1548.5537583254036" BoardHeight="1311.528662420382" />
+  <Graphics BoardWidth="1548.5537583254036" BoardHeight="1210.3160114932305" />
   <DataNode TextLabel="GeneProduct" GraphId="b3e12" Type="GeneProduct" GroupRef="f23b1">
     <BiopaxRef>e67</BiopaxRef>
     <Graphics CenterX="654.6146527117039" CenterY="212.17887725975248" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
@@ -94,7 +94,12 @@
   <Shape GraphId="aa331">
     <Attribute Key="org.pathvisio.CellularComponentProperty" Value="Nucleus" />
     <Attribute Key="org.pathvisio.DoubleLineProperty" Value="Double" />
-    <Graphics CenterX="829.9363057324833" CenterY="1085.1003184713372" Width="610.1910828025465" Height="252.72929936305718" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="Oval" LineThickness="3.0" Color="c0c0c0" Rotation="0.0" />
+    <Graphics CenterX="832.1501656469623" CenterY="1053.9513618117019" Width="610.1910828025465" Height="252.72929936305718" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="Oval" LineThickness="3.0" Color="c0c0c0" Rotation="0.0" />
+  </Shape>
+  <Shape GraphId="fdb30">
+    <Attribute Key="org.pathvisio.CellularComponentProperty" Value="Nucleus" />
+    <Attribute Key="org.pathvisio.DoubleLineProperty" Value="Double" />
+    <Graphics CenterX="846.7057956211444" CenterY="981.6994767951277" Width="147.2457070482369" Height="87.02962651670437" ZOrder="32770" FontSize="10" Valign="Middle" ShapeType="Oval" LineThickness="3.0" Color="c0c0c0" Rotation="0.0" />
   </Shape>
   <Group GroupId="f23b1" Style="Complex">
     <BiopaxRef>d7b</BiopaxRef>
