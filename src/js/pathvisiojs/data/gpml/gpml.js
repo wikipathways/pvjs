@@ -996,6 +996,8 @@ pathvisiojs.data.gpml = function(){
           });
           group.contains = contents;
           pathvisiojs.data.gpml.element.node.groupNode.getGroupDimensions(group, function(dimensions){
+            console.log('dimensions');
+            console.log(dimensions);
             group.x = dimensions.x;
             group.y = dimensions.y;
             group.width = dimensions.width;

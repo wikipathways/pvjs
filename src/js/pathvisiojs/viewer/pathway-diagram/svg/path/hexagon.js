@@ -1,4 +1,4 @@
-pathvisiojs.view.pathwayDiagram.svg.node.pathShape.hexagon = function(){
+pathvisiojs.view.pathwayDiagram.svg.path.hexagon = function(){
   'use strict';
 
   function getAttributes(data) {

@@ -1,4 +1,4 @@
-pathvisiojs.view.pathwayDiagram.svg.node.pathShape.arc = function(){
+pathvisiojs.view.pathwayDiagram.svg.path.arc = function(){
   'use strict';
 
   function getAttributes(data) {

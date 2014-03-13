@@ -63,6 +63,8 @@ pathvisiojs.view.pathwayDiagram.svg.path = function(){
 
       var shapeSpecificAttributes = pathvisiojs.view.pathwayDiagram.svg.path[pathNameToUse].getAttributes(data);
       shapeSpecificAttributes.forEach(function(attribute) {
+        console.log('pathNameToUse');
+        console.log(pathNameToUse);
         console.log('attribute');
         console.log(attribute);
         var names = [attribute.name];

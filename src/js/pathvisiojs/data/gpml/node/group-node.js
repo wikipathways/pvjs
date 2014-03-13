@@ -27,6 +27,8 @@ pathvisiojs.data.gpml.element.node.groupNode = function() {
     dimensions.bottomRightCorner = {};
     dimensions.bottomRightCorner.x = 0;
     dimensions.bottomRightCorner.y = 0;
+    // TODO what happens if this were set to '0.5em'?
+    var padding = parseFloat(group.padding);
 
     var groupContents = group.contains;
     groupContents = pathvisiojs.utilities.convertToArray(groupContents);
@@ -46,10 +48,10 @@ pathvisiojs.data.gpml.element.node.groupNode = function() {
         dimensions.bottomRightCorner.x = Math.max(dimensions.bottomRightCorner.x, groupContent.points[0].x, groupContent.points[groupContent.points.length - 1].x);
         dimensions.bottomRightCorner.y = Math.max(dimensions.bottomRightCorner.y, groupContent.points[0].y, groupContent.points[groupContent.points.length - 1].y);
       }
-      dimensions.x = dimensions.topLeftCorner.x - group.padding - group.strokeWidth;
-      dimensions.y = dimensions.topLeftCorner.y - group.padding - group.strokeWidth;
-      dimensions.width = (dimensions.bottomRightCorner.x - dimensions.topLeftCorner.x) + 2 * (group.padding + group.strokeWidth);
-      dimensions.height = (dimensions.bottomRightCorner.y - dimensions.topLeftCorner.y) + 2 * (group.padding + group.strokeWidth);
+      dimensions.x = dimensions.topLeftCorner.x - padding - group.strokeWidth;
+      dimensions.y = dimensions.topLeftCorner.y - padding - group.strokeWidth;
+      dimensions.width = (dimensions.bottomRightCorner.x - dimensions.topLeftCorner.x) + 2 * (padding + group.strokeWidth);
+      dimensions.height = (dimensions.bottomRightCorner.y - dimensions.topLeftCorner.y) + 2 * (padding + group.strokeWidth);
       dimensions.zIndex = Math.min(dimensions.zIndex, groupContent.zIndex);
       callbackInside(null);
     },

@@ -1,4 +1,4 @@
-pathvisiojs.view.pathwayDiagram.svg.node.pathShape.pentagon = function(){
+pathvisiojs.view.pathwayDiagram.svg.path.pentagon = function(){
   'use strict';
 
   function getAttributes(data) {
