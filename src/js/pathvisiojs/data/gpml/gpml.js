@@ -940,7 +940,7 @@ pathvisiojs.data.gpml = function(){
                 pathvisiojs.data.gpml.edge.graphicalLine.toPvjson(gpml, graphicalLineSelection, function(jsonGraphicalLine, pvjsonElements) {
                   //pathway.GraphicalLine.push(jsonGraphicalLine);
                   //pathway.edges = pathway.edges.concat(jsonGraphicalLine);
-                  pathway.elements = pathway.elements.concat(jsonGraphicalLine);
+                  //pathway.elements = pathway.elements.concat(jsonGraphicalLine);
                   pathway.elementsNew = pathway.elementsNew.concat(pvjsonElements);
                   /*
                   console.log('jsonGraphicalLine');
@@ -966,7 +966,7 @@ pathvisiojs.data.gpml = function(){
                 pathvisiojs.data.gpml.edge.interaction.toPvjson(gpml, interactionSelection, function(jsonInteraction, pvjsonElements) {
                   //pathway.Interaction.push(jsonInteraction);
                   //pathway.edges = pathway.edges.concat(jsonInteraction);
-                  pathway.elements = pathway.elements.concat(jsonInteraction);
+                  //pathway.elements = pathway.elements.concat(jsonInteraction);
                   pathway.elementsNew = pathway.elementsNew.concat(pvjsonElements);
                   //*
                   console.log('jsonInteraction');
@@ -1005,16 +1005,15 @@ pathvisiojs.data.gpml = function(){
             group.zIndex = dimensions.zIndex;
           });
         });
-        pathway.elements.sort(function(a, b) {
-          return a.zIndex - b.zIndex;
-        });
-        pathway.elements.sort(function(a, b) {
+        pathway.elementsNew.sort(function(a, b) {
           return a.zIndex - b.zIndex;
         });
 
+        /*
         pathway.pathwayNestedByGrouping = d3.nest()
         .key(function(d) { return d.isContainedBy; })
         .entries(pathway.elements);
+        //*/
 
         //self.myPathway = pathway;
         callbackOutside(pathway);

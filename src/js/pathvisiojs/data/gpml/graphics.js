@@ -74,6 +74,23 @@ pathvisiojs.data.gpml.graphics = function(){
         pvjsonElement.shape = pvjsonShape;
         return pvjsonShape;
       },
+      ConnectorType: function(gpmlConnectorTypeValue){
+        /*
+        console.log('gpmlConnectorTypeValue');
+        console.log(gpmlConnectorTypeValue);
+        console.log('gpmlDoubleLineProperty');
+        console.log(gpmlDoubleLineProperty);
+        //*/
+        var gpmlConnectorType = gpmlConnectorTypeValue;
+        pvjsonShape = strcase.paramCase('line-' + gpmlConnectorType) + gpmlDoubleLineProperty;
+        /*
+        console.log('pvjsonShape');
+        console.log(pvjsonShape);
+        //*/
+        pvjsonElement.connectorType = gpmlConnectorType;
+        pvjsonElement.shape = pvjsonShape;
+        return pvjsonShape;
+      },
       FillColor: function(gpmlFillColorValue){
         var cssColor = gpmlColorToCssColor(gpmlFillColorValue);
         if (gpmlShapeType.toLowerCase() !== 'none') {
