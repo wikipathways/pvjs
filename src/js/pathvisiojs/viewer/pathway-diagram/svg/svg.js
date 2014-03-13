@@ -405,9 +405,10 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
       if (dataElement.renderableType === 'GraphicalLine') {
         pathvisiojs.view.pathwayDiagram.svg.edge.graphicalLine.render(renderingArgs);
       }
-else if (dataElement.renderableType === 'Interaction') {
+      else if (dataElement.renderableType === 'Interaction') {
         pathvisiojs.view.pathwayDiagram.svg.edge.interaction.render(renderingArgs);
       }
+      /*
       else if (dataElement.renderableType === 'GroupNode') {
         pathvisiojs.view.pathwayDiagram.svg.node.groupNode.render(renderingArgs, function(groupContainer, groupContents) {
           // TODO this used to render the group contents, but now the callback does nothing
@@ -416,37 +417,13 @@ else if (dataElement.renderableType === 'Interaction') {
       else if (dataElement.renderableType === 'EntityNode') {
         pathvisiojs.view.pathwayDiagram.svg.node.EntityNode.render(renderingArgs);
       }
+      //*/
 
       callbackInside(null);
     },
     function(err){
       callback(svg);
     });
-
-
-
-
-    /*
-    data.forEach(function(dataElement) {
-      renderingArgs.data = dataElement;
-      renderingArgs.element = d3.select('#' + convertToId(dataElement.id));
-      if (dataElement.renderableType === 'GraphicalLine') {
-        pathvisiojs.view.pathwayDiagram.svg.edge.graphicalLine.render(renderingArgs);
-      }
-else if (dataElement.renderableType === 'Interaction') {
-        pathvisiojs.view.pathwayDiagram.svg.edge.interaction.render(renderingArgs);
-      }
-      else if (dataElement.renderableType === 'GroupNode') {
-        pathvisiojs.view.pathwayDiagram.svg.node.groupNode.render(renderingArgs, function(groupContainer, groupContents) {
-          // TODO this used to render the group contents, but now the callback does nothing
-        });
-      }
-      else if (dataElement.renderableType === 'EntityNode') {
-        pathvisiojs.view.pathwayDiagram.svg.node.EntityNode.render(renderingArgs);
-      }
-    });
-    callback(null, 'Successfully rendered elements');
-    //*/
   }
 
   function renderWithCachedData(svg, pathway, callback){
