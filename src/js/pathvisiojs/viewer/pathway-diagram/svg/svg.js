@@ -467,9 +467,11 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
           callbackEach(null);
         },
         function(err){
-          callbackInside(null);
+          //callbackInside(null);
+          callback(svg);
         });
       },
+      /*
       function(callbackInside){
         // create the required elements and their ids in DOM order,
         // without specifying width, height, etc.
@@ -489,6 +491,7 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
           callback(svg);
         });
       }
+      //*/
     ]);
   }
 
