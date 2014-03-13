@@ -22,8 +22,8 @@ pathvisiojs.data.gpml.element.node.groupNode = function() {
     //*/
     var dimensions = {};
     dimensions.topLeftCorner = {};
-    dimensions.topLeftCorner.x = 99999;
-    dimensions.topLeftCorner.y = 99999;
+    dimensions.topLeftCorner.x = 9999999999999999999999999999;
+    dimensions.topLeftCorner.y = 9999999999999999999999999999;
     dimensions.bottomRightCorner = {};
     dimensions.bottomRightCorner.x = 0;
     dimensions.bottomRightCorner.y = 0;
@@ -33,8 +33,7 @@ pathvisiojs.data.gpml.element.node.groupNode = function() {
     var groupContents = group.contains;
     groupContents = pathvisiojs.utilities.convertToArray(groupContents);
 
-    // TODO check what happens if the contained element lacks a z-index
-    dimensions.zIndex = groupContents[0].zIndex;
+    dimensions.zIndex = 9999999999999999999999999999;
     async.each(groupContents, function(groupContent, callbackInside) {
       if (!groupContent.hasOwnProperty('points')) {
         dimensions.topLeftCorner.x = Math.min(dimensions.topLeftCorner.x, groupContent.x);
@@ -56,6 +55,7 @@ pathvisiojs.data.gpml.element.node.groupNode = function() {
       callbackInside(null);
     },
     function (err) {
+      dimensions.zIndex = dimensions.zIndex - 0.1;
       callback(dimensions);
     });
   }

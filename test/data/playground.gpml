@@ -39,7 +39,11 @@
     <Xref Database="" ID="" />
   </DataNode>
   <DataNode TextLabel="GeneProduct" GraphId="d61e2" Type="GeneProduct" GroupRef="c3dec">
-    <Graphics CenterX="256.8981921979066" CenterY="330.16175071360624" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Graphics CenterX="332.7408888271201" CenterY="281.0044473428199" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="" ID="" />
+  </DataNode>
+  <DataNode TextLabel="Metabolite&#xA;line&#xA;text" GraphId="a35e2" Type="Metabolite">
+    <Graphics CenterX="864.8001368413172" CenterY="406.800238403233" Width="163.65815328365738" Height="135.83772544072502" ZOrder="32771" FontSize="10" Valign="Middle" Color="0000ff" />
     <Xref Database="" ID="" />
   </DataNode>
   <State GraphRef="b3e12" TextLabel="" GraphId="fc49f">
@@ -72,8 +76,8 @@
   </Interaction>
   <Interaction GraphId="ida10e2f6e" GroupRef="c3dec">
     <Graphics ZOrder="12288" LineThickness="1.0">
-      <Point X="165.7823501427211" Y="273.24288223069794" GraphRef="ca685" RelX="0.0" RelY="1.0" />
-      <Point X="216.8981921979066" Y="330.16175071360624" GraphRef="d61e2" RelX="-1.0" RelY="0.0" />
+      <Point X="241.62504677193456" Y="224.08557885991138" GraphRef="ca685" RelX="0.0" RelY="1.0" />
+      <Point X="292.7408888271201" Y="281.0044473428199" GraphRef="d61e2" RelX="-1.0" RelY="0.0" />
     </Graphics>
     <Xref Database="" ID="" />
   </Interaction>
@@ -106,7 +110,7 @@
     <Graphics CenterX="140.37768993395815" CenterY="705.5253640495914" Width="90.48372585109604" Height="129.37112887112892" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="RoundedRectangle" LineThickness="3.0" Color="c0c0c0" Rotation="0.5244847041969358" />
   </Shape>
   <Shape GraphId="ca685" GroupRef="c3dec">
-    <Graphics CenterX="165.7823501427211" CenterY="221.91936251189327" Width="109.91960038058994" Height="102.30780209324456" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="Arc" Rotation="6.280094625246352" />
+    <Graphics CenterX="241.6250467719346" CenterY="172.7620591411067" Width="109.91960038058994" Height="102.30780209324456" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="Arc" Rotation="6.280094625246352" />
   </Shape>
   <Shape GraphId="aa331">
     <Attribute Key="org.pathvisio.CellularComponentProperty" Value="Nucleus" />

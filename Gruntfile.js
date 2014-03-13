@@ -208,7 +208,8 @@ grunt.initConfig({
     browserify: {
       dist: {
         files: {
-          'node_modules/node-xml2json/index.js': ['client/scripts/**/*.js', 'client/scripts/**/*.coffee'],
+          './lib/entities/entities.js': ['./node_modules/entities/index.js'],
+          //'node_modules/node-xml2json/index.js': ['client/scripts/**/*.js', 'client/scripts/**/*.coffee'],
           //'build/module.js': ['client/scripts/**/*.js', 'client/scripts/**/*.coffee'],
         }/*,
 options: {

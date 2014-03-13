@@ -172,7 +172,7 @@ pathvisiojs.data.gpml.element = function(){
         return gpmlGraphIdValue;
       },
       TextLabel: function(gpmlTextLabelValue){
-        pvjsonText.textContent = gpmlTextLabelValue;
+        pvjsonText.textContent = he.decode(gpmlTextLabelValue);
         return gpmlTextLabelValue;
       },
       Type: function(gpmlTypeValue){

@@ -204,7 +204,7 @@ pathvisiojs.data.gpml.graphics = function(){
       ZOrder: function(gpmlZOrderValue) {
         pvjsonZIndex = parseFloat(gpmlZOrderValue);
         pvjsonElement.zIndex = pvjsonZIndex;
-        pvjsonText.zIndex = pvjsonZIndex;
+        pvjsonText.zIndex = pvjsonZIndex + 0.5;
         return pvjsonZIndex;
       }
     };

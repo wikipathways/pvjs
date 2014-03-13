@@ -405,10 +405,9 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
       if (dataElement.renderableType === 'GraphicalLine') {
         pathvisiojs.view.pathwayDiagram.svg.edge.graphicalLine.render(renderingArgs);
       }
-      else if (dataElement.renderableType === 'Interaction') {
+else if (dataElement.renderableType === 'Interaction') {
         pathvisiojs.view.pathwayDiagram.svg.edge.interaction.render(renderingArgs);
       }
-      /*
       else if (dataElement.renderableType === 'GroupNode') {
         pathvisiojs.view.pathwayDiagram.svg.node.groupNode.render(renderingArgs, function(groupContainer, groupContents) {
           // TODO this used to render the group contents, but now the callback does nothing
@@ -417,13 +416,37 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
       else if (dataElement.renderableType === 'EntityNode') {
         pathvisiojs.view.pathwayDiagram.svg.node.EntityNode.render(renderingArgs);
       }
-      //*/
 
       callbackInside(null);
     },
     function(err){
       callback(svg);
     });
+
+
+
+
+    /*
+    data.forEach(function(dataElement) {
+      renderingArgs.data = dataElement;
+      renderingArgs.element = d3.select('#' + convertToId(dataElement.id));
+      if (dataElement.renderableType === 'GraphicalLine') {
+        pathvisiojs.view.pathwayDiagram.svg.edge.graphicalLine.render(renderingArgs);
+      }
+else if (dataElement.renderableType === 'Interaction') {
+        pathvisiojs.view.pathwayDiagram.svg.edge.interaction.render(renderingArgs);
+      }
+      else if (dataElement.renderableType === 'GroupNode') {
+        pathvisiojs.view.pathwayDiagram.svg.node.groupNode.render(renderingArgs, function(groupContainer, groupContents) {
+          // TODO this used to render the group contents, but now the callback does nothing
+        });
+      }
+      else if (dataElement.renderableType === 'EntityNode') {
+        pathvisiojs.view.pathwayDiagram.svg.node.EntityNode.render(renderingArgs);
+      }
+    });
+    callback(null, 'Successfully rendered elements');
+    //*/
   }
 
   function renderWithCachedData(svg, pathway, callback){
@@ -445,34 +468,6 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
 
     async.waterfall([
       function(callbackInside){
-        var renderingArgs = {};
-
-        async.each(pathway.elementsNew, function(dataElement, callbackEach) {
-          if (dataElement.graphicalType === 'path') {
-            console.log('path');
-            pathvisiojs.view.pathwayDiagram.svg.path.render(viewport, dataElement);
-          }
-          else if (dataElement.graphicalType === 'text') {
-            console.log('text');
-            pathvisiojs.view.pathwayDiagram.svg.text.render(viewport, dataElement);
-          }
-          else if (dataElement.graphicalType === 'image') {
-            console.log('image');
-            /*
-            pathvisiojs.view.pathwayDiagram.svg.node.groupNode.render(renderingArgs, function(groupContainer, groupContents) {
-              // TODO this used to render the group contents, but now the callback does nothing
-            });
-            //*/
-          }
-          callbackEach(null);
-        },
-        function(err){
-          //callbackInside(null);
-          callback(svg);
-        });
-      },
-      /*
-      function(callbackInside){
         // create the required elements and their ids in DOM order,
         // without specifying width, height, etc.
         renderArgs.data = pathway.pathwayNestedByGrouping;
@@ -491,7 +486,6 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
           callback(svg);
         });
       }
-      //*/
     ]);
   }
 

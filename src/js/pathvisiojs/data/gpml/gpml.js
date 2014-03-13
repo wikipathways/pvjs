@@ -66,7 +66,7 @@ pathvisiojs.data.gpml = function(){
     if (!!graphicalElementsSelection) {
       graphicalElementsSelection.filter(function(){
         return (!!d3.select(this).attr('GraphId'));
-      }).each(function(DataNode){
+      }).each(function(){
         graphId = d3.select(this).attr('GraphId');
         if (graphId.slice(0,2) === 'id') {
           graphIdStub = graphId.slice(2, graphId.length);
@@ -184,7 +184,7 @@ pathvisiojs.data.gpml = function(){
         nodesSelection.filter(function(){
           return (!d3.select(this).select('Graphics').attr('ZOrder'));
         }).each(function(){
-          d3.select(this).select('Graphics').attr('ZOrder', 10000);
+          d3.select(this).select('Graphics').attr('ZOrder', 0);
         });
 
         nodesSelection.filter(function(){
@@ -533,7 +533,7 @@ pathvisiojs.data.gpml = function(){
     pathway.xmlns = gpmlSelection.attr('xmlns');
     //pathway.nodes = [];
     //pathway.edges = [];
-    pathway.elements = [];
+    //pathway.elements = [];
     pathway.elementsNew = [];
 
     // test for whether file is GPML
@@ -986,7 +986,7 @@ pathvisiojs.data.gpml = function(){
       function(err, results) {
         var contents, groupsFrame, jsonGroups = [];
         var groupContentsCandidates = pathway.elementsNew.filter(function(candidate){
-          return (candidate.nodeType !== 'GroupNode' && candidate.networkType !== 'edge');
+          return (candidate.nodeType !== 'GroupNode');
         });
         pathway.elementsNew.filter(function(element){
           return element.nodeType === 'GroupNode';
@@ -1004,6 +1004,9 @@ pathvisiojs.data.gpml = function(){
             group.height = dimensions.height;
             group.zIndex = dimensions.zIndex;
           });
+        });
+        pathway.elementsNew.sort(function(a, b) {
+          return a.zIndex - b.zIndex;
         });
         pathway.elementsNew.sort(function(a, b) {
           return a.zIndex - b.zIndex;
