@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Pathway xmlns="http://pathvisio.org/GPML/2013a" Name="New Pathway" Version="20140130">
-  <Graphics BoardWidth="1548.5537583254036" BoardHeight="1210.3160114932305" />
+  <Graphics BoardWidth="2028.5955056179773" BoardHeight="1210.3160114932305" />
   <DataNode TextLabel="GeneProduct" GraphId="b3e12" Type="GeneProduct" GroupRef="f23b1">
     <BiopaxRef>e67</BiopaxRef>
     <Graphics CenterX="654.6146527117039" CenterY="212.17887725975248" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
@@ -77,12 +77,29 @@
     </Graphics>
     <Xref Database="" ID="" />
   </Interaction>
+  <Interaction>
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="1502.8089887640447" Y="682.5842696629213" />
+      <Point X="1721.9101123595503" Y="950.8426966292134" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction>
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="1998.5955056179773" Y="507.0224719101123" />
+      <Point X="1669.9438202247188" Y="577.2471910112359" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
   <GraphicalLine GraphId="idc010a432" GroupRef="bc7f2">
     <Graphics ZOrder="12288" LineThickness="1.0">
       <Point X="1364.4529019980962" Y="331.1132254995242" GraphRef="d5218" RelX="1.0" RelY="0.0" />
       <Point X="1518.5537583254036" Y="388.20171265461465" />
     </Graphics>
   </GraphicalLine>
+  <Label TextLabel="Label" GraphId="a954a">
+    <Graphics CenterX="1379.2134831460671" CenterY="957.865168539326" Width="80.0" Height="20.0" ZOrder="28672" FillColor="ffffff" FontSize="10" Valign="Middle" />
+  </Label>
   <Shape GraphId="e7d9e" GroupRef="a4759">
     <Attribute Key="org.pathvisio.CellularComponentProperty" Value="Cell" />
     <Attribute Key="org.pathvisio.DoubleLineProperty" Value="Double" />

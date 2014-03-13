@@ -16,13 +16,11 @@ pathvisiojs.view.pathwayDiagram.svg.path.ovalDouble = function(){
       y = data.y,
       width = data.width,
       height = data.height;
-    var cxOuter = x + width/2;
-    var cyOuter = y + height/2;
-    var outerEllipse = drawEllipse(cxOuter, cyOuter, width, height);
+    var cx = x + width/2;
+    var cy = y + height/2;
+    var outerEllipse = drawEllipse(cx, cy, width, height);
     var doubleLineGap = 3;
-    var cxInner = cxOuter + doubleLineGap;
-    var cyInner = cyOuter + doubleLineGap;
-    var innerEllipse = drawEllipse(cxInner, cyInner, width - 2*doubleLineGap, height - 2*doubleLineGap);
+    var innerEllipse = drawEllipse(cx, cy, width - 2*doubleLineGap, height - 2*doubleLineGap);
 
     /*
 m74.23027,549.04834
