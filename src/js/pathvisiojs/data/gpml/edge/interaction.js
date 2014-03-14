@@ -195,7 +195,7 @@ pathvisiojs.data.gpml.edge.interaction = function(){
           console.log('jsonInteraction');
           console.log(jsonInteraction);
           pvjsonPath.points = jsonInteraction.Point;
-          callback(jsonInteraction, pvjsonPath);
+          callback(pvjsonPath);
         });
       });
     });

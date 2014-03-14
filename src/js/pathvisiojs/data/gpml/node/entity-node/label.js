@@ -50,7 +50,7 @@ pathvisiojs.data.gpml.element.node.entityNode.label = function(){
             console.log('jsonDataNode inside');
             console.log(jsonDataNode);
             //*/
-            callback(jsonLabel, jsonPath, pvjsonText);
+            callback(jsonPath);
           });
         });
         //*/
