@@ -142,7 +142,7 @@ pathvisiojs.data.gpml.element.node.groupNode = function() {
             console.log('pvjsonText inside');
             console.log(pvjsonText);
             //*/
-            callback(jsonGroup, pvjsonPath, pvjsonText);
+            callback(pvjsonPath);
           });
         });
         //*/

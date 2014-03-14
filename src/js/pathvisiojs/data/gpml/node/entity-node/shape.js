@@ -70,7 +70,7 @@ pathvisiojs.data.gpml.element.node.entityNode.shape = function(){
             console.log('jsonDataNode inside');
             console.log(jsonDataNode);
             //*/
-            callback(jsonShape, jsonPath, pvjsonText);
+            callback(jsonPath);
           });
         });
         //*/
