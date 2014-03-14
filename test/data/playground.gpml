@@ -43,7 +43,15 @@
     <Xref Database="" ID="" />
   </DataNode>
   <DataNode TextLabel="Metabolite&#xA;line&#xA;text" GraphId="a35e2" Type="Metabolite">
-    <Graphics CenterX="864.8001368413172" CenterY="406.800238403233" Width="163.65815328365738" Height="135.83772544072502" ZOrder="32771" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Graphics CenterX="609.1821593132274" CenterY="423.6541709875024" Width="163.65815328365738" Height="135.83772544072502" ZOrder="32771" FontStyle="Italic" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Xref Database="" ID="" />
+  </DataNode>
+  <DataNode TextLabel="Metabolite&#xA;line&#xA;texting" GraphId="eebc5" Type="Metabolite">
+    <Graphics CenterX="838.283282908733" CenterY="432.24967660548" Width="163.65815328365738" Height="135.83772544072502" ZOrder="32772" FontName="Times New Roman" FontSize="10" Valign="Bottom" Align="Right" Color="0000ff" />
+    <Xref Database="" ID="" />
+  </DataNode>
+  <DataNode TextLabel="Metabolite&#xA;line&#xA;text" GraphId="b3641" Type="Metabolite">
+    <Graphics CenterX="369.3506986390702" CenterY="425.39574402121025" Width="163.65815328365738" Height="135.83772544072502" ZOrder="32773" FontWeight="Bold" FontSize="10" Align="Left" Color="0000ff" />
     <Xref Database="" ID="" />
   </DataNode>
   <State GraphRef="b3e12" TextLabel="" GraphId="fc49f">
@@ -115,7 +123,7 @@
   <Shape GraphId="aa331">
     <Attribute Key="org.pathvisio.CellularComponentProperty" Value="Nucleus" />
     <Attribute Key="org.pathvisio.DoubleLineProperty" Value="Double" />
-    <Graphics CenterX="832.1501656469623" CenterY="1053.9513618117019" Width="610.1910828025465" Height="252.72929936305718" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="Oval" LineThickness="3.0" Color="c0c0c0" Rotation="0.0" />
+    <Graphics CenterX="832.1501656469623" CenterY="1053.9513618117019" Width="610.1910828025465" Height="252.72929936305718" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="Oval" LineThickness="8.0" Color="c0c0c0" Rotation="0.0" />
   </Shape>
   <Shape GraphId="fdb30">
     <Attribute Key="org.pathvisio.CellularComponentProperty" Value="Nucleus" />

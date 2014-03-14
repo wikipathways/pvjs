@@ -41,11 +41,11 @@ pathvisiojs.view.pathwayDiagram.svg.path = function(){
         path.attr('stroke', strokeValue);
       },
       rotation: function(rotationValue) {
-        var transform = 'translate(' + data.x + ' ' + data.y + ') rotate(' + rotationValue + ',' + data.width/2 + ',' + data.height/2 + ')';
+        var transform = 'rotate(' + rotationValue + ',' + (data.x + data.width/2) + ',' + (data.y + data.height/2) + ')';
         path.attr('transform', transform);
       },
       strokeWidth: function(strokeWidthValue) {
-        path.attr('strokeWidth', strokeWidthValue);
+        path.attr('stroke-width', strokeWidthValue);
       }
     };
 
@@ -57,8 +57,6 @@ pathvisiojs.view.pathwayDiagram.svg.path = function(){
         pathRenderer[elementAttributeKey](elementAttribute.value);
       }
     });
-    self.mydata = data;
-    self.myelementAttributes = elementAttributes;
 
     var shapeSpecificAttributes = pathvisiojs.view.pathwayDiagram.svg.path[pathNameToUse].getAttributes(data);
     shapeSpecificAttributes.forEach(function(attribute) {
