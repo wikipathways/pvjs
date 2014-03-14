@@ -119,6 +119,14 @@ pathvisiojs.data.gpml.graphics = function(){
         var cssFontSize = parseFloat(gpmlFontSizeValue);
         pvjsonText.fontSize = cssFontSize;
       },
+      FontName: function(gpmlFontNameValue){
+        var cssFontFamily = gpmlFontNameValue;
+        pvjsonText.fontFamily = cssFontFamily;
+      },
+      FontStyle: function(gpmlFontStyleValue){
+        var cssFontStyle = gpmlFontStyleValue.toLowerCase();
+        pvjsonText.fontStyle = cssFontStyle;
+      },
       FontWeight: function(gpmlFontWeightValue){
         var cssFontWeight = gpmlFontWeightValue.toLowerCase();
         pvjsonText.fontWeight = cssFontWeight;

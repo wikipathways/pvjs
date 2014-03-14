@@ -39,7 +39,6 @@ pathvisiojs.view.pathwayDiagram.svg.path.roundedRectangleDouble = function(){
       {
         name:'d',
         path: innerRoundedRectangle + ' ' + outerRoundedRectangle
-          
       }
     ];
     return attributes;
