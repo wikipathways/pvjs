@@ -11,6 +11,8 @@ pathvisiojs.data.gpml.element.node.entityNode.label = function(){
   };
 
   var toPvjson = function(gpmlSelection, labelSelection, callback) {
+    var pvjsonPath = {},
+      pvjsonText = {};
     /*
     console.log('labelSelection');
     console.log(labelSelection[0][0]);
@@ -20,7 +22,7 @@ pathvisiojs.data.gpml.element.node.entityNode.label = function(){
     console.log(callback);
     //*/
 
-    var jsonLabel = {}, jsonPath = {};
+    var jsonLabel = {};
     jsonLabel.nodeType = "Label";
     pathvisiojs.data.gpml.element.node.entityNode.toPvjson(labelSelection, jsonLabel, function(jsonLabel) {
       pathvisiojs.data.gpml.text.toPvjson(labelSelection, defaults, function(text) {
@@ -39,18 +41,22 @@ pathvisiojs.data.gpml.element.node.entityNode.label = function(){
         }
 
         //*
-        pathvisiojs.data.gpml.element.toPvjsonNew(gpmlSelection, labelSelection, jsonPath, function(jsonPath, pvjsonText) {
-          pathvisiojs.data.gpml.graphics.toPvjson(gpmlSelection, labelSelection, jsonPath, pvjsonText, function(jsonPath, updatedPvjsonText) {
+        pathvisiojs.data.gpml.element.toPvjsonNew(gpmlSelection, labelSelection, pvjsonPath, function(pvjsonPath, pvjsonText) {
+          pathvisiojs.data.gpml.graphics.toPvjson(gpmlSelection, labelSelection, pvjsonPath, pvjsonText, function(pvjsonPath, updatedPvjsonText) {
             pvjsonText = updatedPvjsonText;
+            var pvjsonElements = [pvjsonPath];
+            if (!!pvjsonText.textContent) {
+              pvjsonElements.push(pvjsonText);
+            }
             /*
-            console.log('jsonPath inside');
-            console.log(jsonPath);
+            console.log('pvjsonPath inside');
+            console.log(pvjsonPath);
             console.log('pvjsonText inside');
             console.log(pvjsonText);
             console.log('jsonDataNode inside');
             console.log(jsonDataNode);
             //*/
-            callback(jsonPath);
+            callback(pvjsonElements);
           });
         });
         //*/
