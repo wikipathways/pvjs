@@ -1,16 +1,6 @@
 pathvisiojs.view.pathwayDiagram.svg.path.ovalDouble = function(){
   'use strict';
 
-  function drawEllipse(x, y, width, height) {
-    var width_over_2 = width / 2,
-      width_two_thirds = width * 2 / 3,
-      height_over_2 = height / 2;
-    var pathData = 'M ' + x + ' ' + (y - height_over_2) + ' ' +
-      'C ' + (x + width_two_thirds) + ' ' + (y - height_over_2) + ' ' + (x + width_two_thirds) + ' ' + (y + height_over_2) + ' ' + (x) + ' ' + (y + height_over_2) +
-      'C ' + (x - width_two_thirds) +  ' ' + (y + height_over_2) +  ' ' + (x - width_two_thirds) +  ' ' + (y - height_over_2) + ' ' + (x) +  ' ' + (y - height_over_2);
-    return pathData;
-  }
-
   function getAttributes(data) {
     var x = data.x,
       y = data.y,
@@ -19,8 +9,8 @@ pathvisiojs.view.pathwayDiagram.svg.path.ovalDouble = function(){
       doubleLineGap = 2 * data.strokeWidth || 6;
     var cx = x + width/2;
     var cy = y + height/2;
-    var outerEllipse = drawEllipse(cx, cy, width, height);
-    var innerEllipse = drawEllipse(cx, cy, width - 2*doubleLineGap, height - 2*doubleLineGap);
+    var outerEllipse = pathvisiojs.view.pathwayDiagram.svg.path.oval.drawEllipse(cx, cy, width, height);
+    var innerEllipse = pathvisiojs.view.pathwayDiagram.svg.path.oval.drawEllipse(cx, cy, width - 2*doubleLineGap, height - 2*doubleLineGap);
 
     /*
 m74.23027,549.04834

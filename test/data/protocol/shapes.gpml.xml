@@ -253,6 +253,9 @@
     <Attribute Key="org.pathvisio.DoubleLineProperty" Value="Double" />
     <Graphics CenterX="497.85693213460354" CenterY="1005.7836359616277" Width="201.790322580645" Height="49.532258064516" ZOrder="32986" FontSize="10" Valign="Middle" ShapeType="Mitochondria" Rotation="0.0" />
   </Shape>
+  <Shape TextLabel="Arc" GraphId="aa7de">
+    <Graphics CenterX="161.1162248028981" CenterY="75.09179570839828" Width="97.93182324732058" Height="62.29585439329384" ZOrder="33032" FontSize="10" Valign="Middle" ShapeType="Arc" Rotation="3.141592653589793" />
+  </Shape>
   <Group GroupId="f8097" />
   <Group GroupId="bf229" Style="Complex" />
   <Group GroupId="bbf57" Style="Group" />
