@@ -6,10 +6,13 @@ pathvisiojs.view.pathwayDiagram.svg.path.brace = function(){
       y = data.y,
       width = data.width,
       height = data.height;
+    var pathData = 'm' + x + ',' + (y + height) +
+      'C' + (x) + ' ' + (y) + ' ' + (x + width/2) + ' ' + (y + height) + ' ' + (x + width/2) + ' ' + (y) +
+      'C' + (x + width/2) + ' ' + (y + height) + ' ' + (x + width) + ' ' + (y) + ' ' + (x + width) + ' ' + (y + height);
     var attributes = [
       {
         name:'d',
-        path: 'm1.5,98.5c0,-32.50001 8.16667,-48.75 24.5,-48.75s24.5,-16.25001 24.5,-48.75c0,32.49999 8.16666,48.75 24.49999,48.75s24.5,16.24999 24.5,48.75'
+        path: pathData
       }
     ];
     return attributes;

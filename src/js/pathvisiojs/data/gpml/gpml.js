@@ -215,6 +215,15 @@ pathvisiojs.data.gpml = function(){
           d3.select(this).select('Graphics').attr('Valign', 'Top');
         });
 
+        var statesSelection = gpmlSelection.selectAll('State');
+        if (!!statesSelection) {
+          statesSelection.filter(function(){
+            return (!d3.select(this).select('Graphics').attr('FillColor'));
+          }).each(function(){
+            d3.select(this).select('Graphics').attr('FillColor', 'ffffff');
+          });
+        }
+
         var shapesSelection = gpmlSelection.selectAll('Shape');
         if (!!shapesSelection) {
           shapesSelection.filter(function(){
@@ -239,31 +248,19 @@ pathvisiojs.data.gpml = function(){
         // Below we correct the GPML so that the display in pathvisiojs will match the display in PathVisio-Java.
         var gpmlWidth, correctedGpmlWidth, gpmlHeight, gpmlCenterX, gpmlCenterY, xScaleFactor;
         var triangleSelection,
-          triangleDxAsPercentageOfWidth = 0.307584375,
-          triangleDxPlusWidthAsPercentageOfWidth = 1.24596225,
+          triangleXCorrectionFactor = 0.311,
+          triangleWidthCorrectionFactor = 0.938,
           triangleYScaleFactor = 0.868;
         var trianglesSelection = shapesSelection.selectAll('[ShapeType="Triangle"]').each(function(){
           triangleSelection = d3.select(this);
-          console.log('triangleSelection');
-          console.log(triangleSelection);
           gpmlCenterX = parseFloat(triangleSelection.attr('CenterX'));
           gpmlCenterY = parseFloat(triangleSelection.attr('CenterY'));
           gpmlWidth = parseFloat(triangleSelection.attr('Width'));
           gpmlHeight = parseFloat(triangleSelection.attr('Height'));
 
-          console.log('gpmlWidth');
-          console.log(gpmlWidth);
-          console.log('gpmlCenterX');
-          console.log(gpmlCenterX);
           var uncorrectedX = gpmlCenterX - gpmlWidth/2;
-          console.log('uncorrectedX');
-          console.log(uncorrectedX);
-          var correctedX = uncorrectedX + gpmlWidth * triangleDxAsPercentageOfWidth;
-          console.log('correctedX');
-          console.log(correctedX);
-          var correctedWidth = (uncorrectedX + gpmlWidth * triangleDxPlusWidthAsPercentageOfWidth) - correctedX;
-          console.log('correctedWidth');
-          console.log(correctedWidth);
+          var correctedX = uncorrectedX + gpmlWidth * triangleXCorrectionFactor;
+          var correctedWidth = gpmlWidth * triangleWidthCorrectionFactor;
           triangleSelection.attr('CenterX', correctedX + correctedWidth / 2)
           .attr('Height', gpmlHeight * triangleYScaleFactor)
           .attr('Width', correctedWidth);
@@ -276,13 +273,23 @@ pathvisiojs.data.gpml = function(){
           arcSelection.attr('CenterY', gpmlCenterY + gpmlHeight / 2);
         });
         var pentagonSelection,
-          pentagonXScaleFactor = 452/500;
+          pentagonXScaleFactor = 0.904,
+          pentagonYScaleFactor = 0.95;
         var pentagonsSelection = shapesSelection.selectAll('[ShapeType="Pentagon"]').each(function(){
           pentagonSelection = d3.select(this);
           gpmlWidth = parseFloat(pentagonSelection.attr('Width'));
+          gpmlHeight = parseFloat(pentagonSelection.attr('Height'));
           gpmlCenterX = parseFloat(pentagonSelection.attr('CenterX'));
           pentagonSelection.attr('CenterX', gpmlCenterX + gpmlWidth * (1 - pentagonXScaleFactor) / 2)
-          .attr('Width', gpmlWidth * pentagonXScaleFactor);
+          .attr('Width', gpmlWidth * pentagonXScaleFactor)
+          .attr('Height', gpmlHeight * pentagonYScaleFactor);
+        });
+        var hexagonSelection,
+          hexagonYScaleFactor = 0.88;
+        var hexagonsSelection = shapesSelection.selectAll('[ShapeType="Hexagon"]').each(function(){
+          hexagonSelection = d3.select(this);
+          gpmlHeight = parseFloat(hexagonSelection.attr('Height'));
+          hexagonSelection.attr('Height', gpmlHeight * hexagonYScaleFactor);
         });
 
         var dataNodeSelection, dataNodeType;
@@ -962,6 +969,27 @@ pathvisiojs.data.gpml = function(){
             }
             else {
               callback(null, 'No shapes to convert.');
+            }
+          },
+          State: function(callback){
+            var stateSelection, statesSelection = gpmlSelection.selectAll('State');
+            if (statesSelection[0].length > 0) {
+              pathway.states = [];
+              statesSelection.each(function() {
+                stateSelection = d3.select(this);
+                pathvisiojs.data.gpml.state.toPvjson(gpmlSelection, stateSelection, function(pvjsonElements) {
+                  /*
+                  console.log('pvjsonElements');
+                  console.log(pvjsonElements);
+                  //*/
+                  pathway.states = pvjsonElements;
+                  pathway.elementsNew = pathway.elementsNew.concat(pvjsonElements);
+                });
+              });
+              callback(null, 'States are all converted.');
+            }
+            else {
+              callback(null, 'No states to convert.');
             }
           },
           Group: function(callback){
