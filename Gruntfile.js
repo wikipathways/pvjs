@@ -19,6 +19,7 @@ var pvjsSources = [
   'src/js/pathvisiojs/data/gpml/node/entity-node/label.js',
   'src/js/pathvisiojs/data/gpml/node/entity-node/shape.js',
   'src/js/pathvisiojs/data/gpml/node/anchor.js',
+  'src/js/pathvisiojs/data/gpml/state.js',
   'src/js/pathvisiojs/data/gpml/edge/edge.js',
   'src/js/pathvisiojs/data/gpml/edge/interaction.js',
   'src/js/pathvisiojs/data/gpml/edge/graphical-line.js',

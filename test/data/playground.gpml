@@ -1,25 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Pathway xmlns="http://pathvisio.org/GPML/2013a" Name="New Pathway" Version="20140130">
-  <Graphics BoardWidth="4391.111111111111" BoardHeight="1620.428371043792" />
-  <Shape GraphId="aa331">
-    <Attribute Key="org.pathvisio.CellularComponentProperty" Value="Nucleus" />
-    <Attribute Key="org.pathvisio.DoubleLineProperty" Value="Double" />
-    <Graphics CenterX="1202.9366825008933" CenterY="1464.0637213622633" Width="610.1910828025465" Height="252.72929936305718" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="Oval" LineThickness="8.0" Color="c0c0c0" Rotation="0.0" />
-  </Shape>
+  <Graphics BoardWidth="2508.527607361963" BoardHeight="1620.428371043792" />
+  <DataNode TextLabel="GeneProduct" GraphId="c86d0" Type="GeneProduct">
+    <Graphics CenterX="870.967741935484" CenterY="1437.2759856630826" Width="80.0" Height="20.0" ZOrder="32768" FillColor="ff3399" FontSize="10" Valign="Middle" />
+    <Xref Database="" ID="" />
+  </DataNode>
+  <State GraphRef="c86d0" TextLabel="P" GraphId="d0638">
+    <Graphics RelX="1.0" RelY="1.0" Width="15.0" Height="15.0" ShapeType="Oval" />
+    <Xref Database="" ID="" />
+  </State>
   <Shape GraphId="cb0b1">
-    <Graphics CenterX="2522.22222222222" CenterY="871.2121212121212" Width="682.8282828282818" Height="1000.0" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="Triangle" Color="ff0000" Rotation="0.0" />
+    <Graphics CenterX="1530.6748466257668" CenterY="654.9079754601228" Width="1895.7055214723923" Height="1088.9570552147238" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="Mitochondria" Color="ff0000" Rotation="0.0" />
   </Shape>
   <Shape GraphId="f6566">
-    <Graphics CenterX="2708.333333333333" CenterY="859.8484848484849" Width="638.88888888889" Height="871.2121212121212" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="Rectangle" Rotation="0.0" />
-  </Shape>
-  <Shape GraphId="fdb30">
-    <Attribute Key="org.pathvisio.CellularComponentProperty" Value="Nucleus" />
-    <Attribute Key="org.pathvisio.DoubleLineProperty" Value="Double" />
-    <Graphics CenterX="1204.8518630368749" CenterY="1453.6095891546781" Width="147.2457070482369" Height="87.02962651670437" ZOrder="32770" FontSize="10" Valign="Middle" ShapeType="Oval" LineThickness="3.0" Color="c0c0c0" Rotation="0.0" />
-  </Shape>
-  <Shape GraphId="da66b">
-    <Attribute Key="org.pathvisio.DoubleLineProperty" Value="Double" />
-    <Graphics CenterX="503.1723732047414" CenterY="1324.043891233677" Width="500.0" Height="200.0" ZOrder="32777" FontSize="10" Valign="Middle" ShapeType="Triangle" LineThickness="3.0" Color="66ff66" Rotation="0.0" />
+    <Graphics CenterX="1530.6748466257663" CenterY="656.4417177914111" Width="1895.7055214723919" Height="1067.4846625766868" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="Rectangle" Rotation="0.0" />
   </Shape>
   <InfoBox CenterX="0.0" CenterY="0.0" />
   <Biopax>

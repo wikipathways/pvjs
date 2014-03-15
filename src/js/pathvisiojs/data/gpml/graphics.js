@@ -179,24 +179,35 @@ pathvisiojs.data.gpml.graphics = function(){
         var pvjsonRelX = parseFloat(gpmlRelXValue);
         pvjsonElement.relX = pvjsonRelX;
         pvjsonText.relX = pvjsonRelX;
-        parentElement = gpmlSelection.select('[GraphId=' + elementSelection.attr('GraphId') + ']');
-        var parentCenterX = parentElement.attr('CenterX');
-        var parentWidth = parentElement.attr('Width');
+        parentElement = gpmlSelection.select('[GraphId=' + elementSelection.attr('GraphRef') + ']');
+        console.log('parentElement');
+        console.log(parentElement);
+        var parentCenterX = parseFloat(parentElement.select('Graphics').attr('CenterX'));
+        var parentWidth = parseFloat(parentElement.select('Graphics').attr('Width'));
+        var parentZIndex = parseFloat(parentElement.select('Graphics').attr('ZOrder'));
         var gpmlCenterXValue = parentCenterX + gpmlRelXValue * parentWidth/2;
+        console.log('gpmlCenterXValue');
+        console.log(gpmlCenterXValue);
         pvjsonX = gpmlCenterXValue - pvjsonWidth/2;
         pvjsonElement.x = pvjsonX;
         pvjsonText.containerX = pvjsonX;
+        pvjsonElement.zIndex = parentZIndex + 0.2;
+        pvjsonText.zIndex = parentZIndex + 0.3;
+        pvjsonText.containerPadding = '0';
+        pvjsonText.fontSize = '10';
         return pvjsonX;
       },
       RelY: function(gpmlRelYValue) {
         var pvjsonRelY = parseFloat(gpmlRelYValue);
         pvjsonElement.relY = pvjsonRelY;
         pvjsonText.relY = pvjsonRelY;
-        var parentCenterY = parentElement.attr('CenterY');
-        var parentHeight = parentElement.attr('Height');
+        var parentCenterY = parentElement.select('Graphics').attr('CenterY');
+        var parentHeight = parentElement.select('Graphics').attr('Height');
         var gpmlCenterYValue = parentCenterY + pvjsonRelY * parentHeight/2;
         pvjsonY = gpmlCenterYValue - pvjsonHeight/2;
-        pvjsonText.containerY = pvjsonY;
+        pvjsonElement.y = pvjsonY;
+        // TODO this and other elements here are hacks
+        pvjsonText.containerY = pvjsonY + 12;
         return pvjsonY;
       },
       Align: function(gpmlAlignValue) {

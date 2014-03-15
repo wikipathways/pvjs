@@ -2,10 +2,21 @@ pathvisiojs.view.pathwayDiagram.svg.path.hexagon = function(){
   'use strict';
 
   function getAttributes(data) {
+    var x = data.x,
+      y = data.y,
+      width = data.width,
+      height = data.height;
+    var pathData = 'M' + (x + 0.25 * width) + ',' + y +
+      'l' + (0.5 * width) + ',' + 0 +
+      'l' + (0.25 * width) + ',' + (0.5 * height) +
+      'l' + (-0.25 * width) + ',' + (0.5 * height) +
+      'l' + (-0.5 * width) + ',' + 0 +
+      'l' + (-0.25 * width) + ',' + (-0.5 * height) +
+      'z';
       var attributes = [
         {
           name:'d',
-          path: 'm1.42004,50.99635l21.07262,-42.13943l56.19152,0l21.0667,42.13943l-21.0667,42.14507l-56.19152,0l-21.07262,-42.14507z'
+          path: pathData
         }
       ];
       return attributes;
