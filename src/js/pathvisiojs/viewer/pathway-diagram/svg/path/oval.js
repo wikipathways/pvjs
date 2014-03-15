@@ -6,10 +6,9 @@ pathvisiojs.view.pathwayDiagram.svg.path.oval = function(){
     var width_over_2 = width / 2,
       width_two_thirds = width * 2 / 3,
       height_over_2 = height / 2;
-    var pathData = 'm ' + x + ' ' + (y - height_over_2) + ' ' +
-    'c ' + (x + width_two_thirds) + ' ' + (y - height_over_2) + ' ' + (x + width_two_thirds) + ' ' + (y + height_over_2) + ' ' + (x) + ' ' + (y + height_over_2) +
-    'c ' + (x - width_two_thirds) +  ' ' + (y + height_over_2) +  ' ' + (x - width_two_thirds) +  ' ' + (y - height_over_2) + ' ' + (x) +  ' ' + (y - height_over_2) +
-    'z';
+    var pathData = 'M ' + x + ' ' + (y - height_over_2) + ' ' +
+      'C ' + (x + width_two_thirds) + ' ' + (y - height_over_2) + ' ' + (x + width_two_thirds) + ' ' + (y + height_over_2) + ' ' + (x) + ' ' + (y + height_over_2) +
+      'C ' + (x - width_two_thirds) +  ' ' + (y + height_over_2) +  ' ' + (x - width_two_thirds) +  ' ' + (y - height_over_2) + ' ' + (x) +  ' ' + (y - height_over_2);
     return pathData;
   }
 
@@ -31,6 +30,7 @@ pathvisiojs.view.pathwayDiagram.svg.path.oval = function(){
   }
 
   return {
+    drawEllipse:drawEllipse,
     getAttributes:getAttributes
   };
 }();

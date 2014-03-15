@@ -6,10 +6,21 @@ pathvisiojs.view.pathwayDiagram.svg.path.arc = function(){
       y = data.y,
       width = data.width,
       height = data.height;
+
+    var yControlPoint = height * (2/3);
+
+    var pathData = 'M ' + x + ' ' + y + ' ' +
+      'C ' + (x) + ' ' + (y + yControlPoint) + ' ' + (x + width) + ' ' + (y + yControlPoint) + ' ' + (x + width) + ' ' + (y);
+
     var attributes = [
       {
         name:'d',
-        path: 'M' + (99.5 + data.x) + ',' + (50 + data.y) + 'c0,27.338341 -22.162117,49.5 -49.5,49.5s-49.5,-22.161659 -49.5,-49.5'
+        path: pathData
+        /*
+        path: 'M' + (99.5 + x) + ',' + (50 + y) +
+          'c0,27.338341 -22.162117,49.5 -49.5,49.5' +
+          's-49.5,-22.161659 -49.5,-49.5'
+          //*/
       }
     ];
     return attributes;

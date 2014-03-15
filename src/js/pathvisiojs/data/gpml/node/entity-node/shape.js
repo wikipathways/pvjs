@@ -13,30 +13,10 @@ pathvisiojs.data.gpml.element.node.entityNode.shape = function(){
 
   function toPvjson(gpmlSelection, shapeSelection, callback) {
     
-    // some shapes have GPML values that do not match what is visually displayed in PathVisio-Java.
-    // Below we correct the GPMl so that the display in pathvisiojs will matches the display in PathVisio-Java.
-    var gpmlWidth, gpmlCenterX;
-    if (shapeSelection.select('Graphics').attr('ShapeType') === 'Triangle') {
-      gpmlWidth = parseFloat(shapeSelection.select('Graphics').attr('Width'));
-      gpmlCenterX = parseFloat(shapeSelection.select('Graphics').attr('CenterX'));
-      shapeSelection.select('Graphics').attr('CenterX', gpmlCenterX + gpmlWidth * 0.27);
-      shapeSelection.select('Graphics').attr('Width', gpmlWidth * 0.98);
-    }
 
     var jsonShape = {}, jsonPath = {};
     jsonShape.nodeType = "Shape";
 
-    var attributes = shapeSelection.selectAll('Attribute');
-    var CellularComponent;
-    if (attributes.length > 0) {
-      CellularComponent = attributes.filter(function(d, i) {
-        return d3.select(this).attr('Key') === 'org.pathvisio.CellularComponentProperty' && d3.select(this).attr('Value') !== 'None';
-      });
-
-      if (CellularComponent[0].length > 0) {
-        jsonShape.CellularComponent = CellularComponent.attr('Value');
-      }
-    }
 
     pathvisiojs.data.gpml.element.node.entityNode.toPvjson(shapeSelection, jsonShape, function(jsonShape) {
       pathvisiojs.data.gpml.text.toPvjson(shapeSelection, defaults, function(text) {

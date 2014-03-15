@@ -6,10 +6,7 @@ pathvisiojs.view.pathwayDiagram.svg.path.roundedRectangle = function(){
       y = data.y,
       width = data.width,
       height = data.height;
-    var attributes = [
-      {
-        name:'d',
-        path: 'm0,10' +
+    var pathData = 'M' + x + ',' + (y + 10) + ' ' +
           'c0,-5.43379 4.56621,-10 10,-10' +
           'l' + (width - 20) + ',0' +
           'c5.43379,0 10,4.56621 10,10' +
@@ -18,7 +15,11 @@ pathvisiojs.view.pathwayDiagram.svg.path.roundedRectangle = function(){
           'l' + (20 - width) + ',0' +
           'c-5.43379,0 -10,-4.56621 -10,-10' +
           'l0,' + (20 - height) +
-          'z'
+          'z';
+    var attributes = [
+      {
+        name:'d',
+        path: pathData
       }
     ];
     return attributes;

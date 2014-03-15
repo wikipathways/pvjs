@@ -179,6 +179,10 @@ pathvisiojs.data.gpml.element = function(){
         pvjsonElement.biologicalType = gpmlTypeValue;
         return gpmlTypeValue;
       },
+      CellularComponent: function(gpmlCellularComponentValue){
+        pvjsonElement.cellularComponent = gpmlCellularComponentValue;
+        return gpmlCellularComponentValue;
+      },
       IsContainedBy: function(gpmlIsContainedByValue){
         pvjsonElement.isContainedBy = gpmlIsContainedByValue;
         return gpmlIsContainedByValue;

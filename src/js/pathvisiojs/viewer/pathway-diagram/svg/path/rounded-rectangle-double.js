@@ -9,6 +9,8 @@ pathvisiojs.view.pathwayDiagram.svg.path.roundedRectangleDouble = function(){
       y = data.y,
       width = data.width,
       height = data.height;
+      console.log('data');
+      console.log(data);
       /*
     var outerRoundedRectangle = drawRoundedRectangle(x, y, width, height);
     var innerRoundedRectangle = drawRoundedRectangle(x + 3, y + 3, width - 3, height - 3);

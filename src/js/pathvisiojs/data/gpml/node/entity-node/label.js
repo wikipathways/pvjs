@@ -13,6 +13,7 @@ pathvisiojs.data.gpml.element.node.entityNode.label = function(){
   var toPvjson = function(gpmlSelection, labelSelection, callback) {
     var pvjsonPath = {},
       pvjsonText = {};
+    pvjsonPath.nodeType = "Label";
     /*
     console.log('labelSelection');
     console.log(labelSelection[0][0]);
@@ -21,24 +22,6 @@ pathvisiojs.data.gpml.element.node.entityNode.label = function(){
     console.log('callback');
     console.log(callback);
     //*/
-
-    var jsonLabel = {};
-    jsonLabel.nodeType = "Label";
-    pathvisiojs.data.gpml.element.node.entityNode.toPvjson(labelSelection, jsonLabel, function(jsonLabel) {
-      pathvisiojs.data.gpml.text.toPvjson(labelSelection, defaults, function(text) {
-        if (!!text) {
-          jsonLabel.text = text;
-        }
-
-        jsonLabel = pathvisiojs.data.gpml.setColorAsJson(jsonLabel,
-                      labelSelection.select('Graphics').attr('Color'),
-                      defaults.Color);
-
-        var gpmlBackgroundColor = labelSelection.select('Graphics').attr('FillColor') || defaults.FillColor;
-        var jsonBackgroundColor = pathvisiojs.data.gpml.gpmlColorToCssColor(gpmlBackgroundColor, defaults.FillColor);
-        if (!!jsonBackgroundColor) {
-          jsonLabel.backgroundColor = jsonBackgroundColor;
-        }
 
         //*
         pathvisiojs.data.gpml.element.toPvjsonNew(gpmlSelection, labelSelection, pvjsonPath, function(pvjsonPath, pvjsonText) {
@@ -60,8 +43,6 @@ pathvisiojs.data.gpml.element.node.entityNode.label = function(){
           });
         });
         //*/
-      });
-    });
   };
 
   return {

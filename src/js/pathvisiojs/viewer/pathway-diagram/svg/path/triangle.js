@@ -9,7 +9,10 @@ pathvisiojs.view.pathwayDiagram.svg.path.triangle = function(){
     var attributes = [
       {
         name:'d',
-        path: 'm' + x + ','+height+'l' + y + ',-'+height+'l'+width+','+height/2+'l-'+width+','+height/2+'z'
+        path: 'M' + x + ',' + y +
+          'L' + (x + width) + ',' + (y + height/2) +
+          'L' + x + ',' + (y + height) +
+          'z'
       }
     ];
     return attributes;
