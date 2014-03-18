@@ -324,7 +324,9 @@ pathvisiojs.data.gpml = function(){
         'Interaction',
         'GraphicalLine'
       ];
-      var edgesSelection = selectByMultipleTagNames(selectAllEdgesArgs);
+      var edgesSelection = selectByMultipleTagNames(selectAllEdgesArgs).each(function(){
+        d3.select(this).select('Graphics').attr('FillColor', 'Transparent');
+      });
       if (!!edgesSelection) {
         edgesSelection.filter(function(){
           return (!d3.select(this).select('Graphics').attr('ConnectorType'));
