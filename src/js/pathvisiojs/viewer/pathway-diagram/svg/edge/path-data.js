@@ -367,6 +367,6 @@ pathvisiojs.view.pathwayDiagram.svg.edge.pathData = function(){
   }
 
   return {
-    get:get
+    //get:get
   };
 }();

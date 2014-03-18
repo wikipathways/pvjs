@@ -1,31 +1,85 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Pathway xmlns="http://pathvisio.org/GPML/2013a" Name="New Pathway" Version="20140130">
-  <Graphics BoardWidth="2508.527607361963" BoardHeight="1620.428371043792" />
+  <Graphics BoardWidth="3662.957987108797" BoardHeight="1834.1430742706777" />
   <DataNode TextLabel="GeneProduct" GraphId="c86d0" Type="GeneProduct">
-    <Graphics CenterX="870.967741935484" CenterY="1437.2759856630826" Width="80.0" Height="20.0" ZOrder="32768" FillColor="ff3399" FontSize="10" Valign="Middle" />
+    <Graphics CenterX="1972.2335647202945" CenterY="1786.6430742706777" Width="80.0" Height="20.0" ZOrder="32768" FillColor="ff3399" FontSize="10" Valign="Middle" />
+    <Xref Database="" ID="" />
+  </DataNode>
+  <DataNode TextLabel="GeneProduct" GraphId="e110c" Type="GeneProduct">
+    <Graphics CenterX="139.9422832292513" CenterY="226.44682533698855" Width="80.0" Height="20.0" ZOrder="32774" FontSize="10" Valign="Middle" />
+    <Xref Database="" ID="" />
+  </DataNode>
+  <DataNode TextLabel="Metabolite" GraphId="f3e1e" Type="Metabolite">
+    <Graphics CenterX="511.53212520593064" CenterY="367.3805601317955" Width="80.0" Height="20.0" ZOrder="32775" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Xref Database="" ID="" />
+  </DataNode>
+  <DataNode TextLabel="GeneProduct" GraphId="b24c7" Type="GeneProduct">
+    <Graphics CenterX="139.11856000025625" CenterY="116.06791265165086" Width="80.0" Height="20.0" ZOrder="32777" FontSize="10" Valign="Middle" />
+    <Xref Database="" ID="" />
+  </DataNode>
+  <DataNode TextLabel="Metabolite" GraphId="ed553" Type="Metabolite">
+    <Graphics CenterX="510.7084019769356" CenterY="257.00164744645804" Width="80.0" Height="20.0" ZOrder="32778" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Xref Database="" ID="" />
+  </DataNode>
+  <DataNode TextLabel="GeneProduct" GraphId="d8e9c" Type="GeneProduct">
+    <Graphics CenterX="127.58643479432544" CenterY="392.01519436499524" Width="80.0" Height="20.0" ZOrder="32780" FontSize="10" Valign="Middle" />
+    <Xref Database="" ID="" />
+  </DataNode>
+  <DataNode TextLabel="Metabolite" GraphId="b2724" Type="Metabolite">
+    <Graphics CenterX="499.1762767710048" CenterY="532.9489291598022" Width="80.0" Height="20.0" ZOrder="32781" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Xref Database="" ID="" />
+  </DataNode>
+  <DataNode TextLabel="GeneProduct" GraphId="f4956" Type="GeneProduct">
+    <Graphics CenterX="121.82037219135998" CenterY="663.8438599333641" Width="80.0" Height="20.0" ZOrder="32783" FontSize="10" Valign="Middle" />
+    <Xref Database="" ID="" />
+  </DataNode>
+  <DataNode TextLabel="Metabolite" GraphId="ee375" Type="Metabolite">
+    <Graphics CenterX="493.4102141680395" CenterY="804.777594728171" Width="80.0" Height="20.0" ZOrder="32784" FontSize="10" Valign="Middle" Color="0000ff" />
     <Xref Database="" ID="" />
   </DataNode>
   <State GraphRef="c86d0" TextLabel="P" GraphId="d0638">
     <Graphics RelX="1.0" RelY="1.0" Width="15.0" Height="15.0" ShapeType="Oval" />
     <Xref Database="" ID="" />
   </State>
+  <Interaction GraphId="b0ed3">
+    <Graphics ConnectorType="Segmented" ZOrder="32773" LineThickness="1.0">
+      <Point X="179.9422832292513" Y="226.44682533698855" GraphRef="e110c" RelX="1.0" RelY="0.0" />
+      <Point X="329.4892915980231" Y="276.7710049423394" />
+      <Point X="471.5321252059307" Y="367.3805601317955" GraphRef="f3e1e" RelX="-1.0" RelY="0.0" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="b006d">
+    <Graphics ZOrder="32776" LineThickness="1.0">
+      <Point X="179.11856000025625" Y="116.06791265165086" GraphRef="b24c7" RelX="1.0" RelY="0.0" />
+      <Point X="470.70840197693565" Y="257.00164744645804" GraphRef="ed553" RelX="-1.0" RelY="0.0" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="fbd63">
+    <Graphics ConnectorType="Elbow" ZOrder="32779" LineThickness="1.0">
+      <Point X="167.58643479432544" Y="392.01519436499524" GraphRef="d8e9c" RelX="1.0" RelY="0.0" />
+      <Point X="317.1334431630972" Y="462.48206176239876" />
+      <Point X="459.1762767710047" Y="532.9489291598022" GraphRef="b2724" RelX="-1.0" RelY="0.0" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="c8a4c">
+    <Graphics ConnectorType="Curved" ZOrder="32782" LineThickness="1.0">
+      <Point X="161.82037219135998" Y="663.8438599333641" GraphRef="f4956" RelX="1.0" RelY="0.0" />
+      <Point X="311.3673805601319" Y="734.3107273307676" />
+      <Point X="453.4102141680395" Y="804.777594728171" GraphRef="ee375" RelX="-1.0" RelY="0.0" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
   <Shape GraphId="cb0b1">
-    <Graphics CenterX="1530.6748466257668" CenterY="654.9079754601228" Width="1895.7055214723923" Height="1088.9570552147238" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="Mitochondria" Color="ff0000" Rotation="0.0" />
+    <Graphics CenterX="2631.9406694105774" CenterY="1004.2750640677173" Width="1895.7055214723923" Height="1088.9570552147238" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="Mitochondria" Color="ff0000" Rotation="0.0" />
   </Shape>
   <Shape GraphId="f6566">
-    <Graphics CenterX="1530.6748466257663" CenterY="656.4417177914111" Width="1895.7055214723919" Height="1067.4846625766868" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="Rectangle" Rotation="0.0" />
+    <Graphics CenterX="2631.9406694105764" CenterY="1005.8088063990056" Width="1895.7055214723919" Height="1067.4846625766868" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="Rectangle" Rotation="0.0" />
   </Shape>
   <InfoBox CenterX="0.0" CenterY="0.0" />
   <Biopax>
-    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="e67">
-      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">12356</bp:ID>
-      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
-      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Investigation of rheological and drug release properties of oil gels containing fumed silica [proceedings].</bp:TITLE>
-      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">J Pharm Pharmacol</bp:SOURCE>
-      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1976</bp:YEAR>
-      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Sherriff M</bp:AUTHORS>
-      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Enever RP</bp:AUTHORS>
-    </bp:PublicationXref>
     <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="d7b">
       <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">346267</bp:ID>
       <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
@@ -35,6 +89,15 @@
       <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Liewendahl K</bp:AUTHORS>
       <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Majuri H</bp:AUTHORS>
       <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Helenius T</bp:AUTHORS>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="e67">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">12356</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Investigation of rheological and drug release properties of oil gels containing fumed silica [proceedings].</bp:TITLE>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">J Pharm Pharmacol</bp:SOURCE>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1976</bp:YEAR>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Sherriff M</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Enever RP</bp:AUTHORS>
     </bp:PublicationXref>
     <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="ec3">
       <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">3472</bp:ID>
