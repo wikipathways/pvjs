@@ -14,12 +14,6 @@ pathvisiojs.data.gpml.element.node.groupNode = function() {
   };
 
   function getGroupDimensions(group, callback) {
-    /*
-    console.log('group');
-    console.log(group);
-    console.log('groupContents');
-    console.log(groupContents);
-    //*/
     var dimensions = {};
     dimensions.topLeftCorner = {};
     dimensions.topLeftCorner.x = 9999999999999999999999999999;
@@ -112,10 +106,6 @@ pathvisiojs.data.gpml.element.node.groupNode = function() {
 
     jsonGroup.strokeWidth = 1;
     pathvisiojs.data.gpml.text.toPvjson(groupSelection, pathvisioDefaultStyleValues, function(text) {
-      /*
-      console.log('text');
-      console.log(text);
-      //*/
       if (!!text) {
         jsonGroup.text = text;
 
@@ -134,14 +124,6 @@ pathvisiojs.data.gpml.element.node.groupNode = function() {
             if (!!pvjsonText.textContent) {
               pvjsonPath = [pvjsonPath, pvjsonText];
             }
-            //*
-            console.log('jsonGroup inside');
-            console.log(jsonGroup);
-            console.log('pvjsonPath inside');
-            console.log(pvjsonPath);
-            console.log('pvjsonText inside');
-            console.log(pvjsonText);
-            //*/
             callback(pvjsonPath);
           });
         });

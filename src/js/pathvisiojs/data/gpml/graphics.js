@@ -54,12 +54,6 @@ pathvisiojs.data.gpml.graphics = function(){
         return pvjsonStrokeDasharray;
       },
       ShapeType: function(gpmlShapeTypeValue){
-        /*
-        console.log('gpmlShapeTypeValue');
-        console.log(gpmlShapeTypeValue);
-        console.log('gpmlDoubleLineProperty');
-        console.log(gpmlDoubleLineProperty);
-        //*/
         gpmlShapeType = gpmlShapeTypeValue;
         if (gpmlShapeType.toLowerCase() === 'none') {
           pvjsonShape = 'rectangle';
@@ -67,26 +61,12 @@ pathvisiojs.data.gpml.graphics = function(){
         else {
           pvjsonShape = strcase.paramCase(gpmlShapeType) + gpmlDoubleLineProperty;
         }
-        /*
-        console.log('pvjsonShape');
-        console.log(pvjsonShape);
-        //*/
         pvjsonElement.shape = pvjsonShape;
         return pvjsonShape;
       },
       ConnectorType: function(gpmlConnectorTypeValue){
-        /*
-        console.log('gpmlConnectorTypeValue');
-        console.log(gpmlConnectorTypeValue);
-        console.log('gpmlDoubleLineProperty');
-        console.log(gpmlDoubleLineProperty);
-        //*/
         var gpmlConnectorType = gpmlConnectorTypeValue;
         pvjsonShape = strcase.paramCase('line-' + gpmlConnectorType) + gpmlDoubleLineProperty;
-        /*
-        console.log('pvjsonShape');
-        console.log(pvjsonShape);
-        //*/
         pvjsonElement.connectorType = gpmlConnectorType;
         pvjsonElement.shape = pvjsonShape;
         return pvjsonShape;
@@ -111,12 +91,24 @@ pathvisiojs.data.gpml.graphics = function(){
         pvjsonText.fill = cssColor;
       },
       Padding: function(gpmlPaddingValue){
-        var cssPadding = gpmlPaddingValue;
+        var cssPadding;
+        if (pathvisiojs.utilities.isNumber(gpmlPaddingValue)) {
+          cssPadding = parseFloat(gpmlPaddingValue);
+        }
+        else {
+          cssPadding = gpmlPaddingValue;
+        }
         pvjsonElement.padding = cssPadding;
         pvjsonText.containerPadding = cssPadding;
       },
       FontSize: function(gpmlFontSizeValue){
-        var cssFontSize = parseFloat(gpmlFontSizeValue);
+        var cssFontSize;
+        if (pathvisiojs.utilities.isNumber(gpmlFontSizeValue)) {
+          cssFontSize = parseFloat(gpmlFontSizeValue);
+        }
+        else {
+          cssFontSize = gpmlFontSizeValue;
+        }
         pvjsonText.fontSize = cssFontSize;
       },
       FontName: function(gpmlFontNameValue){
