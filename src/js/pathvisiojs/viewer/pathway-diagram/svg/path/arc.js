@@ -15,7 +15,7 @@ pathvisiojs.view.pathwayDiagram.svg.path.arc = function(){
     var attributes = [
       {
         name:'d',
-        path: pathData
+        value: pathData
         /*
         path: 'M' + (99.5 + x) + ',' + (50 + y) +
           'c0,27.338341 -22.162117,49.5 -49.5,49.5' +

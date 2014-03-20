@@ -9,7 +9,7 @@ pathvisiojs.view.pathwayDiagram.svg.path.gridSquare = function(){
     var attributes = [
       {
         name:'d',
-        path: 'm1,1l99,0l0,99l-99,0l0,-99z'
+        value: 'm1,1l99,0l0,99l-99,0l0,-99z'
       }
     ];
     return attributes;

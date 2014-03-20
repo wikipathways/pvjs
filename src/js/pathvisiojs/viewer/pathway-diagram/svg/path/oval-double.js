@@ -24,7 +24,7 @@ z
     var attributes = [
       {
         name:'d',
-        path:outerEllipse + ' ' + innerEllipse
+        value:outerEllipse + ' ' + innerEllipse
       }
     ];
     return attributes;

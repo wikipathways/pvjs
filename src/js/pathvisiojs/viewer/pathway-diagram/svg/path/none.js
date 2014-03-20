@@ -5,7 +5,7 @@ pathvisiojs.view.pathwayDiagram.svg.path.none = function(){
     var attributes = [
       {
         name:'d',
-        path: 'M0 0'
+        value: 'M0 0'
       }
     ];
     return attributes;

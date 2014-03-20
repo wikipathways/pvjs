@@ -19,11 +19,11 @@ pathvisiojs.view.pathwayDiagram.svg.path.oval = function(){
       height = data.height;
     var cx = x + width/2;
     var cy = y + height/2;
-    var path = drawEllipse(cx, cy, width, height);
+    var pathData = drawEllipse(cx, cy, width, height);
     var attributes = [
       {
         name:'d',
-        path:path
+        value:pathData
       }
     ];
     return attributes;

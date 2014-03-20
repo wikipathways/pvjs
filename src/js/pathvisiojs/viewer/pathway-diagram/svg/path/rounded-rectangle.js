@@ -19,7 +19,7 @@ pathvisiojs.view.pathwayDiagram.svg.path.roundedRectangle = function(){
     var attributes = [
       {
         name:'d',
-        path: pathData
+        value: pathData
       }
     ];
     return attributes;

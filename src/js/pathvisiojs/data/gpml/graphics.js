@@ -202,10 +202,11 @@ pathvisiojs.data.gpml.graphics = function(){
         var pvjsonRelY = parseFloat(gpmlRelYValue);
         pvjsonElement.relY = pvjsonRelY;
         pvjsonText.relY = pvjsonRelY;
-        var parentCenterY = parentElement.select('Graphics').attr('CenterY');
-        var parentHeight = parentElement.select('Graphics').attr('Height');
-        var gpmlCenterYValue = parentCenterY + pvjsonRelY * parentHeight/2;
-        pvjsonY = gpmlCenterYValue - pvjsonHeight/2;
+        var parentCenterY = parseFloat(parentElement.select('Graphics').attr('CenterY'));
+        var parentHeight = parseFloat(parentElement.select('Graphics').attr('Height'));
+        var elementCenterY = parentCenterY + pvjsonRelY * parentHeight/2;
+        // TODO do we need to consider LineThickness (strokewidth) here?
+        pvjsonY = elementCenterY - pvjsonHeight/2;
         pvjsonElement.y = pvjsonY;
         // TODO this and other elements here are hacks
         pvjsonText.containerY = pvjsonY + 12;

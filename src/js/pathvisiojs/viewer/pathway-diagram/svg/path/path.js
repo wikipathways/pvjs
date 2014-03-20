@@ -2,30 +2,21 @@ pathvisiojs.view.pathwayDiagram.svg.path = function(){
   'use strict';
 
   function render(parent, data) {
-    var re, pathNameToUse;
+    var re, shapeNameFormatted;
     if (!!data.shape) {
-      pathNameToUse = strcase.camelCase(data.shape);
-      /*
-      console.log('***********************');
-      console.log('data');
-      console.log(data);
-      console.log(parent);
-      console.log(data);
-      console.log('data.shape');
-      console.log(data.shape);
-      console.log('pathNameToUse');
-      console.log(pathNameToUse);
-      //*/
-
-      if (!pathvisiojs.view.pathwayDiagram.svg.path.hasOwnProperty(pathNameToUse)) {
+      shapeNameFormatted = strcase.camelCase(data.shape);
+      if (!pathvisiojs.view.pathwayDiagram.svg.path.hasOwnProperty(shapeNameFormatted)) {
+        // if pathvisiojs cannot render the shape name indicated, check for whether the shape name a double-line shape.
+        // If so, check whether pathvisiojs can render a single-line version of the shape.
+        // If yes, render the single-line version. Otherwise, render a rounded rectangle.
         re = /double$/gi;
-        pathNameToUse = pathNameToUse.replace(re, '');
-        if (pathvisiojs.view.pathwayDiagram.svg.path.hasOwnProperty(pathNameToUse)) {
+        shapeNameFormatted = shapeNameFormatted.replace(re, '');
+        if (pathvisiojs.view.pathwayDiagram.svg.path.hasOwnProperty(shapeNameFormatted)) {
           console.warn('Requested path "' + data.shape + '" is not available with linetype of "Double". Using linetype of "Solid" instead');
         }
         else {
           console.warn('Requested path "' + data.shape + '" is not available. Using path "rounded-rectangle" instead');
-          pathNameToUse = 'roundedRectangle';
+          shapeNameFormatted = 'roundedRectangle';
         }
       }
 
@@ -46,7 +37,6 @@ pathvisiojs.view.pathwayDiagram.svg.path = function(){
         },
         markerEnd: function(markerEndValue) {
           path.attr('marker-end', 'url(#src-shape-library-markers-' + markerEndValue + '-svg-end-default)');
-          //path.attr('marker-end', 'url(#' + markerEndValue + '-end-black)');
         },
         rotation: function(rotationValue) {
           var transform = 'rotate(' + rotationValue + ',' + (data.x + data.width/2) + ',' + (data.y + data.height/2) + ')';
@@ -57,28 +47,23 @@ pathvisiojs.view.pathwayDiagram.svg.path = function(){
         }
       };
 
-      var elementAttributeKey;
-      var elementAttributes = d3.map(data).entries();
-      d3.map(data).entries().forEach(function(elementAttribute){
-        elementAttributeKey = elementAttribute.key;
-        if (pathRenderer.hasOwnProperty(elementAttributeKey)) {
-          pathRenderer[elementAttributeKey](elementAttribute.value);
+      // These are generic attributes that can apply to any pathShape.
+      var genericAttributeName, genericAttributeValue;
+      var genericAttributes = d3.map(data).entries();
+      d3.map(data).entries().forEach(function(genericAttribute){
+        genericAttributeName = genericAttribute.key;
+        genericAttributeValue = genericAttribute.value;
+        if (pathRenderer.hasOwnProperty(genericAttributeName)) {
+          pathRenderer[genericAttributeName](genericAttributeValue);
         }
       });
 
-      var shapeSpecificAttributes = pathvisiojs.view.pathwayDiagram.svg.path[pathNameToUse].getAttributes(data);
-      shapeSpecificAttributes.forEach(function(attribute) {
-        /*
-        console.log('pathNameToUse');
-        console.log(pathNameToUse);
-        console.log('attribute');
-        console.log(attribute);
-        //*/
-        var names = [attribute.name];
-        var paths = [attribute.path];
-        for(var i = 0; i < names.length; i++){
-          path.attr(names[i], paths[i]);
-        }
+      // These attributes apply only to the specific pathShape indicated by "shapeNameFormatted".
+      // At time of writing (2014-03-20), the only attribute specified for any shape is the "d" attribute (path data),
+      // but pathvisiojs is capable of rendering other attributes if they were to be specified.
+      var specificAttributes = pathvisiojs.view.pathwayDiagram.svg.path[shapeNameFormatted].getAttributes(data);
+      specificAttributes.forEach(function(attribute) {
+        path.attr(attribute.name, attribute.value);
       });
     }
   }

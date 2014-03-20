@@ -9,7 +9,7 @@ pathvisiojs.view.pathwayDiagram.svg.path.pentagon = function(){
     var attributes = [
       {
         name:'d',
-        path: 'M' + x + ',' + (y + 0.81*height) +
+        value: 'M' + x + ',' + (y + 0.81*height) +
           'l0,-' + 0.62*height +
           'l' + 0.62*width + ',-' + 0.19*height +
           'l' + 0.38*width+',' + 0.5*height +

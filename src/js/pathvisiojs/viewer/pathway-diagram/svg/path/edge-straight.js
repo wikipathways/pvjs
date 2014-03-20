@@ -7,7 +7,7 @@ pathvisiojs.view.pathwayDiagram.svg.path.edgeStraight = function(){
     var attributes = [
       {
         name:'d',
-        path: 'm99.5,50c0,27.338341 -22.162117,49.5 -49.5,49.5s-49.5,-22.161659 -49.5,-49.5'
+        value: 'm99.5,50c0,27.338341 -22.162117,49.5 -49.5,49.5s-49.5,-22.161659 -49.5,-49.5'
       }
     ];
     return attributes;

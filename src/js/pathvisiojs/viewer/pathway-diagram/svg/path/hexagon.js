@@ -16,7 +16,7 @@ pathvisiojs.view.pathwayDiagram.svg.path.hexagon = function(){
       var attributes = [
         {
           name:'d',
-          path: pathData
+          value: pathData
         }
       ];
       return attributes;
