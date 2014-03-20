@@ -338,6 +338,39 @@ pathvisiojs.data.gpml = function(){
         }).each(function(){
           d3.select(this).select('Graphics').attr('Color', '000000');
         });
+
+        var anchorsSelection = gpmlSelection.selectAll('Anchor').each(function(){
+          var parentGraphicsSelection = d3.select(this.parentElement);
+          var anchorSelection = d3.select(this);
+          var shapeTypeValue = anchorSelection.attr('Shape');
+          var graphics = anchorSelection.append('Graphics');
+          graphics.attr('ShapeType', shapeTypeValue);
+          anchorSelection.attr('Shape', null);
+
+          var positionValue = anchorSelection.attr('Position');
+          graphics.attr('Position', positionValue);
+          anchorSelection.attr('Position', null);
+
+          graphics.attr('LineThickness', 0);
+          graphics.attr('FillColor', parentGraphicsSelection.attr('Color'));
+          // In a future version of GPML, we could improve rendering speed if we included the cached X and Y values for Anchors, just like we currently do for Points.
+        });
+        if (!!anchorsSelection) {
+          anchorsSelection.filter(function(){
+            return (d3.select(this).select('Graphics').attr('ShapeType') === 'Circle');
+          }).each(function(){
+            d3.select(this).select('Graphics').attr('ShapeType', 'Oval');
+            d3.select(this).select('Graphics').attr('Width', 8);
+            d3.select(this).select('Graphics').attr('Height', 8);
+          });
+          anchorsSelection.filter(function(){
+            return (d3.select(this).select('Graphics').attr('ShapeType') === 'None');
+          }).each(function(){
+            d3.select(this).select('Graphics').attr('ShapeType', null);
+            d3.select(this).select('Graphics').attr('Width', 4);
+            d3.select(this).select('Graphics').attr('Height', 4);
+          });
+        }
       }
     }
 
@@ -973,6 +1006,25 @@ pathvisiojs.data.gpml = function(){
               callback(null, 'No shapes to convert.');
             }
           },
+          /*
+          Anchor: function(callback){
+            var anchorSelection, anchorsSelection = gpmlSelection.selectAll('Anchor');
+            if (anchorsSelection[0].length > 0) {
+              pathway.anchors = [];
+              anchorsSelection.each(function() {
+                anchorSelection = d3.select(this);
+                pathvisiojs.data.gpml.anchor.toPvjson(gpmlSelection, anchorSelection, function(pvjsonElements) {
+                  pathway.anchors = pvjsonElements;
+                  pathway.elementsNew = pathway.elementsNew.concat(pvjsonElements);
+                });
+              });
+              callback(null, 'Anchors are all converted.');
+            }
+            else {
+              callback(null, 'No anchors to convert.');
+            }
+          },
+          //*/
           State: function(callback){
             var stateSelection, statesSelection = gpmlSelection.selectAll('State');
             if (statesSelection[0].length > 0) {
@@ -1009,7 +1061,7 @@ pathvisiojs.data.gpml = function(){
                   //groups.push(pvjsonElements);
                   //pathway.nodes = pathway.nodes.concat(jsonGroup);
                   pathway.elementsNew = pathway.elementsNew.concat(pvjsonElements);
-                  //*
+                  /*
                   console.log('pvjsonElements');
                   console.log(pvjsonElements);
                   console.log(pvjsonElements.id);
@@ -1060,7 +1112,7 @@ pathvisiojs.data.gpml = function(){
                   //pathway.edges = pathway.edges.concat(jsonInteraction);
                   //pathway.elements = pathway.elements.concat(jsonInteraction);
                   pathway.elementsNew = pathway.elementsNew.concat(pvjsonElements);
-                  //*
+                  /*
                   console.log('pvjsonElements');
                   console.log(pvjsonElements);
                   //*/
@@ -1074,7 +1126,7 @@ pathvisiojs.data.gpml = function(){
           }
       },
       function(err, results) {
-        var contents, groupsFrame, jsonGroups = [];
+        var contents, groupsFrame, jsonGroups = [], index, elementsBefore, elementsAfter;
         var groupContentsCandidates = pathway.elementsNew.filter(function(candidate){
           return (candidate.nodeType !== 'GroupNode');
         });
@@ -1084,16 +1136,26 @@ pathvisiojs.data.gpml = function(){
           contents = groupContentsCandidates.filter(function(element){
             return element.isContainedBy === group.id;
           });
-          group.contains = contents;
-          pathvisiojs.data.gpml.element.node.groupNode.getGroupDimensions(group, function(dimensions){
-            console.log('dimensions');
-            console.log(dimensions);
-            group.x = dimensions.x;
-            group.y = dimensions.y;
-            group.width = dimensions.width;
-            group.height = dimensions.height;
-            group.zIndex = dimensions.zIndex;
-          });
+          if (contents.length > 0) {
+            group.contains = contents;
+            pathvisiojs.data.gpml.element.node.groupNode.getGroupDimensions(group, function(dimensions){
+              /*
+              console.log('dimensions');
+              console.log(dimensions);
+              //*/
+              group.x = dimensions.x;
+              group.y = dimensions.y;
+              group.width = dimensions.width;
+              group.height = dimensions.height;
+              group.zIndex = dimensions.zIndex;
+            });
+          }
+          else { // PathVisio-Java has a bug where it sometimes produces empty groups. These groups are deleted here.
+            index = pathway.elementsNew.indexOf(group);
+            elementsBefore = pathway.elementsNew.slice(0,index);
+            elementsAfter = pathway.elementsNew.slice(index + 1, pathway.elementsNew.length);
+            pathway.elementsNew = elementsBefore.concat(elementsAfter);
+          }
         });
         pathway.elementsNew.sort(function(a, b) {
           return a.zIndex - b.zIndex;

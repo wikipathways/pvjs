@@ -17,40 +17,49 @@ pathvisiojs.view.pathwayDiagram.svg.text = function(){
     //*/
 
   function convertToPx(inputString, fontSize) {
-    // if current fontSize is 12pt, 1em = 12pt = 16px = 100%
-    var inputStringLowerCased = inputString.toLowerCase(),
-      px;
-    if (inputStringLowerCased.indexOf('em') > -1) {
-      px = inputStringLowerCased.slice(0,inputStringLowerCased.length-2) * fontSize;
-    }
-    else if (inputStringLowerCased.indexOf('px') > -1) {
-      px = inputStringLowerCased.slice(0,inputStringLowerCased.length-2);
-    }
-    else if (inputStringLowerCased.indexOf('pt') > -1) {
-      px = inputStringLowerCased.slice(0,inputStringLowerCased.length-2) * (4/3);
-    }
-    else if (inputStringLowerCased.indexOf('%') > -1) {
-      px = (inputStringLowerCased.slice(0,inputStringLowerCased.length-1) / 100) * fontSize;
+    // if current fontSize is 12pt, then 1em = 12pt = 16px = 100%
+    var inputStringLowerCased, px;
+    if (pathvisiojs.utilities.isNumber(inputString)) {
+      px = inputString;
     }
     else {
-      px = inputString;
+      inputStringLowerCased = inputString.toLowerCase();
+      if (inputStringLowerCased.indexOf('em') > -1) {
+        px = inputStringLowerCased.slice(0,inputStringLowerCased.length-2) * fontSize;
+      }
+      else if (inputStringLowerCased.indexOf('px') > -1) {
+        px = inputStringLowerCased.slice(0,inputStringLowerCased.length-2);
+      }
+      else if (inputStringLowerCased.indexOf('pt') > -1) {
+        px = inputStringLowerCased.slice(0,inputStringLowerCased.length-2) * (4/3);
+      }
+      else if (inputStringLowerCased.indexOf('%') > -1) {
+        px = (inputStringLowerCased.slice(0,inputStringLowerCased.length-1) / 100) * fontSize;
+      }
+      else {
+        px = inputString;
+      }
     }
     return px;
   }
 
   function render(parent, data) {
+    /*
     console.log('****************');
     console.log('parent');
     console.log(parent);
     console.log('data');
     console.log(data);
+    //*/
     var containerPadding = data.containerPadding || 0,
       containerWidth = data.containerWidth,
       containerHeight = data.containerHeight,
       fontSize = data.fontSize;
     var containerPaddingInPx = convertToPx(containerPadding, fontSize);
+    /*
     console.log('containerPaddingInPx');
     console.log(containerPaddingInPx);
+    //*/
     var textAnchor;
     if (data.textAlign == 'left'){
       textAnchor = 'start';
@@ -92,8 +101,6 @@ pathvisiojs.view.pathwayDiagram.svg.text = function(){
       return 'translate(' + xTranslation + ' ' + yTranslation + ')';
     })
     .attr("class", "text-area");
-    console.log('textArea');
-    console.log(textArea);
 
     var textLine = textArea.selectAll('text')
     .data(function(d) {

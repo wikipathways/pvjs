@@ -83,15 +83,11 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
       },
       function(svg, pathway, callback){
         pathvisiojs.view.pathwayDiagram.svg.renderWithCachedData(svg, pathway, function() {
-          console.log('finallysvg');
-          console.log(svg);
           svg.attr('style', 'display:inline');
           callback(null, svg);
         });
       },
       function(svg, callback) {
-        console.log('highlightssvg');
-        console.log(svg);
         if (!!highlights) {
           highlights.forEach(function(highlight) {
             pathvisiojs.view.pathwayDiagram.svg.node.highlight(highlight);
@@ -275,8 +271,6 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
       },
       //*/
       function(svg, callback) {
-        console.log('svgtext');
-        console.log(svg);
         if (!!cssUri) {
           d3.text(cssUri, 'text/css', function(data) {
             var defs = svg.select('defs');
@@ -382,8 +376,6 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
       pathway = args.pathway,
       container = args.container;
 
-        console.log('before update svg');
-        console.log(svg[0][0]);
     if (!container) {
       throw new Error("No container specified.");
     }
@@ -449,15 +441,12 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
 
         async.each(pathway.elementsNew, function(dataElement, callbackEach) {
           if (dataElement.graphicalType === 'path') {
-            console.log('path');
             pathvisiojs.view.pathwayDiagram.svg.path.render(viewport, dataElement);
           }
           else if (dataElement.graphicalType === 'text') {
-            console.log('text');
             pathvisiojs.view.pathwayDiagram.svg.text.render(viewport, dataElement);
           }
           else if (dataElement.graphicalType === 'image') {
-            console.log('image');
             /*
             pathvisiojs.view.pathwayDiagram.svg.node.groupNode.render(renderingArgs, function(groupContainer, groupContents) {
               // TODO this used to render the group contents, but now the callback does nothing

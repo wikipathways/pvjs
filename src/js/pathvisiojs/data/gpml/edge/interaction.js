@@ -54,16 +54,13 @@ pathvisiojs.data.gpml.edge.interaction = function(){
   }
 
   function toPvjson(gpmlSelection, interactionSelection, callback) {
-    pathvisiojs.data.gpml.edge.point.toPvjson(interactionSelection, function(pvjsonPoints) {
-      console.log('pvjsonPoints');
-      console.log(pvjsonPoints);
-    });
 
-    var jsonAnchorInteraction, anchor, jsonAnchor, points, jsonPoints, interactionType, target, targetId, groupRef, source, sourceId;
-    pathvisiojs.data.gpml.edge.toPvjson(interactionSelection, function(jsonInteraction) {
+    var jsonAnchorInteraction, anchor, jsonAnchor, points, jsonPoints, interactionType, target, targetId, groupRef, source, sourceId, pvjsonElements;
+    //pathvisiojs.data.gpml.edge.toPvjson(interactionSelection, function(jsonInteraction) {
       //console.log('jsonInteraction');
       //console.log(jsonInteraction);
 
+      /*
       jsonInteraction['@type'].push('Interaction');
       jsonInteraction.renderableType = 'Interaction';
 
@@ -80,14 +77,10 @@ pathvisiojs.data.gpml.edge.interaction = function(){
           jsonInteraction.DatasourceReference.ID = ID;
         }
       }
+      //*/
 
+      /*
       function buildInteractionGraph(sourceSelection, targetSelection, callbackBIG) {
-        /*
-        console.log('sourceSelection');
-        console.log(sourceSelection);
-        console.log('targetSelection');
-        console.log(targetSelection);
-        //*/
         var InteractionGraphMember = {};
         jsonInteraction.InteractionGraph = jsonInteraction.InteractionGraph || [];
 
@@ -124,7 +117,9 @@ pathvisiojs.data.gpml.edge.interaction = function(){
 
         callbackBIG(InteractionGraphMember);
       }
+      //*/
 
+      /*
       var firstPoint = points[0][0];
       var firstGpmlArrowHeadName = firstPoint.getAttribute('ArrowHead');
 
@@ -174,10 +169,12 @@ pathvisiojs.data.gpml.edge.interaction = function(){
         jsonInteraction.interactionType = 'unspecified';
         console.warn('Interaction Type unable to be determined. Setting it to "unspecified."');
       }
+      //*/
 
       // TODO this is a temporary solution.
       // In the future, we will want to update the view code such that we specify at render time
       // the marker(s) and line type (and possibly other attributes) based on the interactionType.
+      /*
       if (firstGpmlArrowHeadName) {
         jsonInteraction.markerStart = strcase.paramCase(firstGpmlArrowHeadName);
       }
@@ -191,19 +188,22 @@ pathvisiojs.data.gpml.edge.interaction = function(){
       else {
         jsonInteraction.markerEnd = 'none';
       }
+      //*/
 
       var pvjsonPath = {}, pvjsonText = {};
       pvjsonPath.networkType = 'edge';
       pvjsonPath.gpmlType = 'Interaction';
       pathvisiojs.data.gpml.element.toPvjsonNew(gpmlSelection, interactionSelection, pvjsonPath, function(pvjsonPath, pvjsonText) {
         pathvisiojs.data.gpml.graphics.toPvjson(gpmlSelection, interactionSelection, pvjsonPath, pvjsonText, function(pvjsonPath, updatedPvjsonText) {
-          console.log('jsonInteraction');
-          console.log(jsonInteraction);
-          pvjsonPath.points = jsonInteraction.Point;
-          callback(pvjsonPath);
+          pathvisiojs.data.gpml.edge.point.toPvjson(gpmlSelection, interactionSelection, pvjsonPath, function(pvjsonPath) {
+            pathvisiojs.data.gpml.anchor.toPvjson(gpmlSelection, interactionSelection, pvjsonPath, function(pvjsonAnchor) {
+              pvjsonElements = [pvjsonPath].concat(pvjsonAnchor);
+              callback(pvjsonElements);
+            });
+          });
         });
       });
-    });
+    //});
   }
 
 return {
