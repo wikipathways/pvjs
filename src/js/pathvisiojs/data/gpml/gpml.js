@@ -1128,7 +1128,7 @@ pathvisiojs.data.gpml = function(){
           }
       },
       function(err, results) {
-        var contents, groupsFrame, jsonGroups = [], index, elementsBefore, elementsAfter;
+        var contents, groupsFrame, jsonGroups = [], index, elementsBefore, elementsAfter, textElementsDescribingGroup, text;
         var groupContentsCandidates = pathway.elementsNew.filter(function(candidate){
           return (candidate.nodeType !== 'GroupNode');
         });
@@ -1141,18 +1141,25 @@ pathvisiojs.data.gpml = function(){
           if (contents.length > 0) {
             group.contains = contents;
             pathvisiojs.data.gpml.element.node.groupNode.getGroupDimensions(group, function(dimensions){
-              /*
-              console.log('dimensions');
-              console.log(dimensions);
-              //*/
               group.x = dimensions.x;
               group.y = dimensions.y;
               group.width = dimensions.width;
               group.height = dimensions.height;
               group.zIndex = dimensions.zIndex;
+              textElementsDescribingGroup = pathway.elementsNew.filter(function(element){
+                return (element.describes === group.id);
+              });
+              if (textElementsDescribingGroup.length > 0) {
+                text = textElementsDescribingGroup[0];
+                text.containerX = dimensions.x;
+                text.containerY = dimensions.y;
+                text.containerWidth = dimensions.width;
+                text.containerHeight = dimensions.height;
+                text.zIndex = dimensions.zIndex;
+              }
             });
           }
-          else { // PathVisio-Java has a bug where it sometimes produces empty groups. These groups are deleted here.
+          else { // PathVisio-Java has a bug where it sometimes produces empty groups. Such groups are deleted here.
             index = pathway.elementsNew.indexOf(group);
             elementsBefore = pathway.elementsNew.slice(0,index);
             elementsAfter = pathway.elementsNew.slice(index + 1, pathway.elementsNew.length);

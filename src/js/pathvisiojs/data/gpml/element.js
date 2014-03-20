@@ -177,7 +177,7 @@ pathvisiojs.data.gpml.element = function(){
         return gpmlStyleValue;
       },
       Href: function(gpmlHrefValue){
-        pvjsonHref = he.decode(gpmlHrefValue);
+        pvjsonHref = encodeURI(he.decode(gpmlHrefValue));
         pvjsonElement.href = pvjsonHref;
         return pvjsonHref;
       },

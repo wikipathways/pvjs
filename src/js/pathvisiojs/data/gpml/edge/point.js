@@ -1,22 +1,6 @@
 pathvisiojs.data.gpml.edge.point = function(){
   'use strict';
 
-  var gpmlRelXToJsonSideAndPositionMapping = {
-    '-1.0': {'side': 'left'},
-    '-0.5': {'position': 0.25},
-    '0.0': {'position': 0.5},
-    '0.5': {'position': 0.75},
-    '1.0': {'side': 'right'}
-  };
-
-  var gpmlRelValueToPvjsonPositionAndOrientationMapping = {
-    '-1.0': {position:0, orientation:-1},
-    '-0.5': {position:0.25, orientation:0},
-    '0.0': {position:0.5, orientation:0},
-    '0.5': {position:0.75, orientation:0},
-    '1.0': {position:1, orientation:1}
-  };
-
   var getPvjsonPositionAndOrientationMapping = function(relValue, identifier, gpmlSelection, pvjsonIsAttachedTo) {
     var result = {}, position, elementAttachedTo, elementAttachedToDimension;
     var relToUpperLeftCorner = (relValue + 1) / 2;
@@ -55,36 +39,13 @@ pathvisiojs.data.gpml.edge.point = function(){
     return result;
   };
 
-  var gpmlRelYToJsonSideAndPositionMapping = {
-    '-1.0': {'side': 'top'},
-    '-0.5': {'position': 0.25},
-    '0.0': {'position': 0.5},
-    '0.5': {'position': 0.75},
-    '1.0': {'side': 'bottom'}
-  };
-
   function toPvjson(gpmlSelection, gpmlEdgeSelection, pvjsonEdge, callback) {
     var point, gpmlPointSelection, gpmlPoint, pvjsonPoint, pvjsonPoints, gpmlPoints = [], pvjsonX, pvjsonY, parentElement, pvjsonMarker, pvjsonIsAttachedTo;
 
     gpmlEdgeSelection.selectAll('Point').each(function(d, i) {
-      /*
-      console.log('d');
-      console.log(d);
-      console.log('i');
-      console.log(i);
-      //*/
       point = this;
       gpmlPointSelection = d3.select(this);
       gpmlPoint = {};
-      /*
-      gpmlPoint.x = parseFloat(gpmlPointSelection.attr('X'));
-      gpmlPoint.y = parseFloat(gpmlPointSelection.attr('Y'));
-
-      var relX = String(gpmlPointSelection.attr('RelX'));
-      gpmlPoint.RelX = relX;
-      var relY = String(gpmlPointSelection.attr('RelY'));
-      gpmlPoint.RelY = relY;
-      //*/
 
       var attributeDependencyOrder = [
         'GraphRef',
@@ -120,22 +81,6 @@ pathvisiojs.data.gpml.edge.point = function(){
           }
           gpmlPoint.anchor[2] = pvjsonPositionAndOrientationX.orientation;
           return gpmlRelXValueInteger;
-          /*
-          var pvjsonRelX = parseFloat(gpmlRelXValue);
-          pvjsonEdge.relX = pvjsonRelX;
-          parentElement = gpmlSelection.select('[GraphId=' + gpmlEdgeSelection.attr('GraphRef') + ']');
-          console.log('parentElement');
-          console.log(parentElement);
-          var parentCenterX = parseFloat(parentElement.select('Graphics').attr('CenterX'));
-          var parentWidth = parseFloat(parentElement.select('Graphics').attr('Width'));
-          var parentZIndex = parseFloat(parentElement.select('Graphics').attr('ZOrder'));
-          var pvjsonX = parentCenterX + gpmlRelXValue * parentWidth/2;
-          console.log('pvjsonX');
-          console.log(pvjsonX);
-          pvjsonEdge.x = pvjsonX;
-          pvjsonEdge.zIndex = parentZIndex + 0.2;
-          return pvjsonX;
-          //*/
         },
         RelY: function(gpmlRelYValue) {
           var gpmlRelYValueString = gpmlRelYValue.toString();
@@ -193,20 +138,6 @@ pathvisiojs.data.gpml.edge.point = function(){
         }
       });
 
-      /*
-      var side;
-      var position;
-      if (!!relX && !!relY && relX != 'null' && relY != 'null') {
-        if (relX == '0.0' && relY == '0.0') {
-          gpmlPoint.anchorId = gpmlPointSelection.attr('GraphRef');
-        }
-        else {
-          side = gpmlRelXToJsonSideAndPositionMapping[relX].side !== undefined ? gpmlRelXToJsonSideAndPositionMapping[relX].side : gpmlRelYToJsonSideAndPositionMapping[relY].side;
-          position = gpmlRelXToJsonSideAndPositionMapping[relX].position !== undefined ? gpmlRelXToJsonSideAndPositionMapping[relX].position : gpmlRelYToJsonSideAndPositionMapping[relY].position;
-          gpmlPoint.anchorId = String(gpmlPointSelection.attr('GraphRef')) + String(side) + String(position);
-        }
-      }
-      //*/
       gpmlPoints.push(gpmlPoint);
     });
 
