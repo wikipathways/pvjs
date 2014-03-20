@@ -1,16 +1,20 @@
-// TODO this is currently just a renamed copy of lineStraight
 pathvisiojs.view.pathwayDiagram.svg.path.lineElbow = function(){
   'use strict';
 
+  //for generating line segments through a path of points (pathpoints, not waypoints)
+  var svgLine = d3.svg.line()
+  .x(function(d) {return d.x;})
+  .y(function(d) {return d.y;})
+  .interpolate("step-after");
+  //.interpolate("linear");
+
   function getAttributes(data) {
-    var x0 = data.points[0].x,
-      y0 = data.points[0].y,
-      x1 = data.points[1].x,
-      y1 = data.points[1].y;
+    var pathData = svgLine(data.points);
+
     var attributes = [
       {
         name:'d',
-        path: 'M' + x0 + ',' + y0 + ' L' + x1 + ',' + y1
+        path: pathData
       }
     ];
     return attributes;

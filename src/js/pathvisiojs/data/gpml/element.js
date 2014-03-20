@@ -149,13 +149,14 @@ pathvisiojs.data.gpml.element = function(){
       pvjsonRelX,
       pvjsonRelY,
       pvjsonX,
-      pvjsonY;
+      pvjsonY,
+      pvjsonTextContent,
+      pvjsonHref;
     pvjsonElement.graphicalType = 'path';
     pvjsonText.graphicalType = 'text';
 
     var attributeDependencyOrder = [
       'GraphId',
-      'GraphRef',
       'GraphRef',
       'IsContainedBy',
       'TextLabel',
@@ -171,9 +172,19 @@ pathvisiojs.data.gpml.element = function(){
         pvjsonText.describes = gpmlGraphIdValue;
         return gpmlGraphIdValue;
       },
+      Style: function(gpmlStyleValue){
+        pvjsonText.groupStyle = gpmlStyleValue;
+        return gpmlStyleValue;
+      },
+      Href: function(gpmlHrefValue){
+        pvjsonHref = he.decode(gpmlHrefValue);
+        pvjsonElement.href = pvjsonHref;
+        return pvjsonHref;
+      },
       TextLabel: function(gpmlTextLabelValue){
-        pvjsonText.textContent = he.decode(gpmlTextLabelValue);
-        return gpmlTextLabelValue;
+        pvjsonTextContent = he.decode(gpmlTextLabelValue);
+        pvjsonText.textContent = pvjsonTextContent;
+        return pvjsonTextContent;
       },
       Type: function(gpmlTypeValue){
         pvjsonElement.biologicalType = gpmlTypeValue;

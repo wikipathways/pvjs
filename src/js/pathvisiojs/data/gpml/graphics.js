@@ -147,6 +147,11 @@ pathvisiojs.data.gpml.graphics = function(){
         pvjsonElement.strokeWidth = pvjsonStrokeWidth;
         return pvjsonStrokeWidth;
       },
+      Position: function(gpmlPositionValue) {
+        var pvjsonPosition = parseFloat(gpmlPositionValue);
+        pvjsonElement.position = pvjsonPosition;
+        return pvjsonPosition;
+      },
       Width: function(gpmlWidthValue) {
         gpmlWidthValue = parseFloat(gpmlWidthValue);
         pvjsonWidth = gpmlWidthValue + pvjsonStrokeWidth;
@@ -180,14 +185,10 @@ pathvisiojs.data.gpml.graphics = function(){
         pvjsonElement.relX = pvjsonRelX;
         pvjsonText.relX = pvjsonRelX;
         parentElement = gpmlSelection.select('[GraphId=' + elementSelection.attr('GraphRef') + ']');
-        console.log('parentElement');
-        console.log(parentElement);
         var parentCenterX = parseFloat(parentElement.select('Graphics').attr('CenterX'));
         var parentWidth = parseFloat(parentElement.select('Graphics').attr('Width'));
         var parentZIndex = parseFloat(parentElement.select('Graphics').attr('ZOrder'));
         var gpmlCenterXValue = parentCenterX + gpmlRelXValue * parentWidth/2;
-        console.log('gpmlCenterXValue');
-        console.log(gpmlCenterXValue);
         pvjsonX = gpmlCenterXValue - pvjsonWidth/2;
         pvjsonElement.x = pvjsonX;
         pvjsonText.containerX = pvjsonX;

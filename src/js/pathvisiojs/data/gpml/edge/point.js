@@ -9,6 +9,52 @@ pathvisiojs.data.gpml.edge.point = function(){
     '1.0': {'side': 'right'}
   };
 
+  var gpmlRelValueToPvjsonPositionAndOrientationMapping = {
+    '-1.0': {position:0, orientation:-1},
+    '-0.5': {position:0.25, orientation:0},
+    '0.0': {position:0.5, orientation:0},
+    '0.5': {position:0.75, orientation:0},
+    '1.0': {position:1, orientation:1}
+  };
+
+  var getPvjsonPositionAndOrientationMapping = function(relValue, identifier, gpmlSelection, pvjsonIsAttachedTo) {
+    var result = {}, position, elementAttachedTo, elementAttachedToDimension;
+    var relToUpperLeftCorner = (relValue + 1) / 2;
+    if (relToUpperLeftCorner < 0 || relToUpperLeftCorner > 1) {
+      elementAttachedTo = d3.select(gpmlSelection).select('*[GraphId=' + pvjsonIsAttachedTo + ']');
+      if (identifier === 'RelX') {
+        elementAttachedToDimension = elementAttachedTo.attr('Width');
+      }
+      else {
+        elementAttachedToDimension = elementAttachedTo.attr('Height');
+      }
+      if (relToUpperLeftCorner < 0) {
+        position = 0;
+        result.offset = relToUpperLeftCorner * elementAttachedToDimension;
+      }
+      else {
+        position = 1;
+        result.offset = (relToUpperLeftCorner - 1) * elementAttachedToDimension;
+      }
+    }
+    else {
+      position = relToUpperLeftCorner;
+    }
+
+    if (position === 0) {
+      result.orientation = -1;
+    }
+    else if (position === 1) {
+      result.orientation = 1;
+    }
+    else {
+      result.orientation = 0;
+    }
+
+    result.position = position;
+    return result;
+  };
+
   var gpmlRelYToJsonSideAndPositionMapping = {
     '-1.0': {'side': 'top'},
     '-0.5': {'position': 0.25},
@@ -17,20 +63,137 @@ pathvisiojs.data.gpml.edge.point = function(){
     '1.0': {'side': 'bottom'}
   };
 
-  function toPvjson(gpmlEdgeSelection, callback) {
-    var gpmlPointSelection, gpmlPoint, pvjsonPoint, pvjsonPoints;
-    var gpmlPoints = [];
-    gpmlEdgeSelection.selectAll('Point').each(function() {
+  function toPvjson(gpmlSelection, gpmlEdgeSelection, pvjsonEdge, callback) {
+    var point, gpmlPointSelection, gpmlPoint, pvjsonPoint, pvjsonPoints, gpmlPoints = [], pvjsonX, pvjsonY, parentElement, pvjsonMarker, pvjsonIsAttachedTo;
+
+    gpmlEdgeSelection.selectAll('Point').each(function(d, i) {
+      /*
+      console.log('d');
+      console.log(d);
+      console.log('i');
+      console.log(i);
+      //*/
+      point = this;
       gpmlPointSelection = d3.select(this);
-      console.log('gpmlPointSelection');
-      console.log(gpmlPointSelection);
       gpmlPoint = {};
+      /*
       gpmlPoint.x = parseFloat(gpmlPointSelection.attr('X'));
       gpmlPoint.y = parseFloat(gpmlPointSelection.attr('Y'));
 
       var relX = String(gpmlPointSelection.attr('RelX'));
+      gpmlPoint.RelX = relX;
       var relY = String(gpmlPointSelection.attr('RelY'));
+      gpmlPoint.RelY = relY;
+      //*/
 
+      var attributeDependencyOrder = [
+        'GraphRef',
+        'RelX',
+        'RelY',
+        'X',
+        'Y'
+      ];
+
+      var gpmlToPvjsonConverter = {
+        X: function(gpmlXValue) {
+          pvjsonX = parseFloat(gpmlXValue);
+          gpmlPoint.x = pvjsonX;
+          return pvjsonX;
+        },
+        Y: function(gpmlYValue) {
+          pvjsonY = parseFloat(gpmlYValue);
+          gpmlPoint.y = pvjsonY;
+          return pvjsonY;
+        },
+        RelX: function(gpmlRelXValue) {
+          // see jsPlumb anchor model: http://jsplumbtoolkit.com/doc/anchors
+          // anchor:[ 0.5, 1, 0, 1 ]
+          var gpmlRelXValueString = gpmlRelXValue.toString();
+          var gpmlRelXValueInteger = parseFloat(gpmlRelXValue);
+          gpmlPoint.RelX = gpmlRelXValueInteger;
+          var pvjsonPositionAndOrientationX = getPvjsonPositionAndOrientationMapping(gpmlRelXValueInteger, 'RelX', gpmlSelection, pvjsonIsAttachedTo);
+          gpmlPoint.anchor = gpmlPoint.anchor || [];
+          gpmlPoint.anchor[0] = pvjsonPositionAndOrientationX.position;
+          gpmlPoint.anchor[2] = pvjsonPositionAndOrientationX.orientation;
+          if (!!pvjsonPositionAndOrientationX.offset) {
+            gpmlPoint.anchor[4] = pvjsonPositionAndOrientationX.offset;
+          }
+          gpmlPoint.anchor[2] = pvjsonPositionAndOrientationX.orientation;
+          return gpmlRelXValueInteger;
+          /*
+          var pvjsonRelX = parseFloat(gpmlRelXValue);
+          pvjsonEdge.relX = pvjsonRelX;
+          parentElement = gpmlSelection.select('[GraphId=' + gpmlEdgeSelection.attr('GraphRef') + ']');
+          console.log('parentElement');
+          console.log(parentElement);
+          var parentCenterX = parseFloat(parentElement.select('Graphics').attr('CenterX'));
+          var parentWidth = parseFloat(parentElement.select('Graphics').attr('Width'));
+          var parentZIndex = parseFloat(parentElement.select('Graphics').attr('ZOrder'));
+          var pvjsonX = parentCenterX + gpmlRelXValue * parentWidth/2;
+          console.log('pvjsonX');
+          console.log(pvjsonX);
+          pvjsonEdge.x = pvjsonX;
+          pvjsonEdge.zIndex = parentZIndex + 0.2;
+          return pvjsonX;
+          //*/
+        },
+        RelY: function(gpmlRelYValue) {
+          var gpmlRelYValueString = gpmlRelYValue.toString();
+          var gpmlRelYValueInteger = parseFloat(gpmlRelYValue);
+          gpmlPoint.RelY = gpmlRelYValueInteger;
+          var pvjsonPositionAndOrientationY = getPvjsonPositionAndOrientationMapping(gpmlRelYValueInteger, 'RelY', gpmlSelection, pvjsonIsAttachedTo);
+          gpmlPoint.anchor = gpmlPoint.anchor || [];
+          gpmlPoint.anchor[1] = pvjsonPositionAndOrientationY.position;
+          gpmlPoint.anchor[3] = pvjsonPositionAndOrientationY.orientation;
+          if (!!pvjsonPositionAndOrientationY.offset) {
+            gpmlPoint.anchor[5] = pvjsonPositionAndOrientationY.offset;
+          }
+          return gpmlRelYValueInteger;
+        },
+        GraphRef: function(gpmlGraphRefValue){
+          pvjsonIsAttachedTo = gpmlGraphRefValue;
+          gpmlPoint.isAttachedTo = gpmlGraphRefValue;
+          return gpmlGraphRefValue;
+        },
+        ArrowHead: function(gpmlArrowHeadValue) {
+          pvjsonMarker = strcase.paramCase(gpmlArrowHeadValue);
+          if (i===0) {
+            pvjsonEdge.markerStart = pvjsonMarker;
+          }
+          else {
+            pvjsonEdge.markerEnd = pvjsonMarker;
+          }
+          return pvjsonMarker;
+        }
+      };
+
+      var attribute, attributeName, attributeListItem, attributeListItemName, attributeList = [];
+      for (var attributeIndex = 0; attributeIndex < point.attributes.length; attributeIndex++) {
+        attribute = point.attributes[attributeIndex];
+        attributeName = attribute.name;
+        attributeListItem = {
+          name: attributeName,
+          value: attribute.value,
+          dependencyOrder: attributeDependencyOrder.indexOf(attributeName),
+        };
+        attributeList.push(attributeListItem);
+      }
+      attributeList.sort(function(a, b) {
+        return a.dependencyOrder - b.dependencyOrder;
+      });
+      attributeList.forEach(function(attributeListItem){
+        attributeListItemName = attributeListItem.name;
+        if (gpmlToPvjsonConverter.hasOwnProperty(attributeListItemName)) {
+          gpmlToPvjsonConverter[attributeListItemName](attributeListItem.value);
+        }
+        else {
+          console.warn('Pathvisiojs has no handler for attribute "' + attributeListItemName + '"');
+          attributeListItemName = strcase.camelCase(attributeListItemName);
+          pvjsonEdge[attributeListItemName] = attributeListItem.value;
+        }
+      });
+
+      /*
       var side;
       var position;
       if (!!relX && !!relY && relX != 'null' && relY != 'null') {
@@ -43,6 +206,7 @@ pathvisiojs.data.gpml.edge.point = function(){
           gpmlPoint.anchorId = String(gpmlPointSelection.attr('GraphRef')) + String(side) + String(position);
         }
       }
+      //*/
       gpmlPoints.push(gpmlPoint);
     });
 
@@ -73,7 +237,8 @@ pathvisiojs.data.gpml.edge.point = function(){
     else {
       console.warn("Unknown connector type: " + type);
     }
-    callback(pvjsonPoints);
+    pvjsonEdge.points = pvjsonPoints;
+    callback(pvjsonEdge);
   }
 
   function calcPathpoints(p){
@@ -149,7 +314,7 @@ pathvisiojs.data.gpml.edge.point = function(){
     var offset = 20;
     var x = 0;
     var y = 0;
-    if (axis == 1){ //Vertical
+    if (axis === 1){ //Vertical
       x = start.x + (end.x - start.x)/2;
       y = start.y + offset * dir;
     } else {  //Horizontal
