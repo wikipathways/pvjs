@@ -9,7 +9,7 @@ pathvisiojs.view.pathwayDiagram.svg.path.complex = function(){
     var attributes = [
       {
         name:'d',
-        path: 'M ' + (x + 18) + ' ' + y +
+        value: 'M ' + (x + 18) + ' ' + y +
           ' L ' + (x + width - 18) + ' ' + y +
           ' L ' + (x + width) + ' ' + (y + 18) +
           ' L ' + (x + width) + ' ' + (y + height - 18) +

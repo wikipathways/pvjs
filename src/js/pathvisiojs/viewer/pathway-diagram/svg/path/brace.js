@@ -12,7 +12,7 @@ pathvisiojs.view.pathwayDiagram.svg.path.brace = function(){
     var attributes = [
       {
         name:'d',
-        path: pathData
+        value: pathData
       }
     ];
     return attributes;

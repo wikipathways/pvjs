@@ -34,7 +34,7 @@ pathvisiojs.view.pathwayDiagram.svg.path.mitochondria = function(){
     var attributes = [
       {
         name:'d',
-        path: pathData
+        value: pathData
       }
     ];
     return attributes;

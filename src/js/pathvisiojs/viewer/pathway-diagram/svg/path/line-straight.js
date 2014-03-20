@@ -9,7 +9,7 @@ pathvisiojs.view.pathwayDiagram.svg.path.lineStraight = function(){
     var attributes = [
       {
         name:'d',
-        path: 'M' + x0 + ',' + y0 + ' L' + x1 + ',' + y1
+        value: 'M' + x0 + ',' + y0 + ' L' + x1 + ',' + y1
       }
     ];
     return attributes;

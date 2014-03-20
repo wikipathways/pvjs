@@ -5,7 +5,7 @@ pathvisiojs.view.pathwayDiagram.svg.path.lineElbow = function(){
   var svgLine = d3.svg.line()
   .x(function(d) {return d.x;})
   .y(function(d) {return d.y;})
-  .interpolate("step-after");
+  .interpolate("linear");
   //.interpolate("linear");
 
   function getAttributes(data) {
@@ -14,7 +14,7 @@ pathvisiojs.view.pathwayDiagram.svg.path.lineElbow = function(){
     var attributes = [
       {
         name:'d',
-        path: pathData
+        value: pathData
       }
     ];
     return attributes;

@@ -324,10 +324,12 @@ pathvisiojs.data.gpml = function(){
         'Interaction',
         'GraphicalLine'
       ];
-      var edgesSelection = selectByMultipleTagNames(selectAllEdgesArgs).each(function(){
-        d3.select(this).select('Graphics').attr('FillColor', 'Transparent');
-      });
+      var edgesSelection = selectByMultipleTagNames(selectAllEdgesArgs);
+
       if (!!edgesSelection) {
+        edgesSelection.each(function(){
+          d3.select(this).select('Graphics').attr('FillColor', 'Transparent');
+        });
         edgesSelection.filter(function(){
           return (!d3.select(this).select('Graphics').attr('ConnectorType'));
         }).each(function(){
