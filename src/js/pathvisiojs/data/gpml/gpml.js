@@ -92,13 +92,13 @@ pathvisiojs.data.gpml = function(){
         groupGraphicsSelection = groupSelection.append('Graphics')
         .attr('Align', 'Center')
         .attr('Valign', 'Middle')
-        .attr('FontSize', '32')
         .attr('FontWeight', 'Bold')
         .attr('LineThickness', 1);
       });
       var groupGroupsSelection = gpmlSelection.selectAll('Group[Style=Group]').each(function(){
         groupGroupSelection = d3.select(this);
         groupGroupGraphicsSelection = groupGroupSelection.select('Graphics')
+        .attr('FontSize', '1')
         .attr('Padding', '8')
         .attr('ShapeType', 'None')
         .attr('LineStyle', 'Broken')
@@ -108,6 +108,7 @@ pathvisiojs.data.gpml = function(){
       var groupNonesSelection = gpmlSelection.selectAll('Group[Style=None]').each(function(){
         groupNoneSelection = d3.select(this);
         groupNoneGraphicsSelection = groupNoneSelection.select('Graphics')
+        .attr('FontSize', '1')
         .attr('Padding', '8')
         .attr('ShapeType', 'Rectangle')
         .attr('LineStyle', 'Broken')
@@ -122,6 +123,7 @@ pathvisiojs.data.gpml = function(){
           d3.select(this).select('Graphics').attr('ShapeType', 'None');
           groupNoneSelection = d3.select(this);
           groupNoneGraphicsSelection = groupNoneSelection.select('Graphics')
+          .attr('FontSize', '1')
           .attr('Padding', '8')
           .attr('ShapeType', 'Rectangle')
           .attr('LineStyle', 'Broken')
@@ -133,6 +135,7 @@ pathvisiojs.data.gpml = function(){
       var groupComplexesSelection = gpmlSelection.selectAll('Group[Style=Complex]').each(function(){
         groupComplexSelection = d3.select(this);
         groupComplexGraphicsSelection = groupComplexSelection.select('Graphics')
+        .attr('FontSize', '1')
         .attr('Padding', '11')
         .attr('ShapeType', 'Complex')
         .attr('Color', '808080')
@@ -141,6 +144,7 @@ pathvisiojs.data.gpml = function(){
       var groupPathwaysSelection = gpmlSelection.selectAll('Group[Style=Pathway]').each(function(){
         groupPathwaySelection = d3.select(this);
         groupPathwayGraphicsSelection = groupPathwaySelection.select('Graphics')
+        .attr('FontSize', '32')
         .attr('Padding', '8')
         .attr('ShapeType', 'Rectangle')
         .attr('LineStyle', 'Broken')

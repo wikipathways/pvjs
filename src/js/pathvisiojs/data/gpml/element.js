@@ -152,6 +152,7 @@ pathvisiojs.data.gpml.element = function(){
       pvjsonY,
       pvjsonTextContent,
       pvjsonHref;
+    pvjsonElement.gpmlType = elementSelection[0][0].tagName;
     pvjsonElement.graphicalType = 'path';
     pvjsonText.graphicalType = 'text';
 
@@ -183,6 +184,7 @@ pathvisiojs.data.gpml.element = function(){
       },
       TextLabel: function(gpmlTextLabelValue){
         pvjsonTextContent = he.decode(gpmlTextLabelValue);
+        pvjsonElement.textContent = pvjsonTextContent;
         pvjsonText.textContent = pvjsonTextContent;
         return pvjsonTextContent;
       },

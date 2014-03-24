@@ -38,6 +38,37 @@ pathvisiojs.view.pathwayDiagram.svg.path = function(){
         markerEnd: function(markerEndValue) {
           path.attr('marker-end', 'url(#src-shape-library-markers-' + markerEndValue + '-svg-end-default)');
         },
+        datasourceReference: function(datasourceReferenceValue) {
+
+
+
+
+
+
+
+          var notDragged = true;
+          path.on("mousedown", function(d,i) {
+            notDragged = true;
+          })
+          .on("mousemove", function(d,i) {
+            notDragged = false;
+          })
+          .on("mouseup", function(d,i) {
+            if (notDragged) {
+              var dfId = datasourceReferenceValue.id;
+              var dfDatabase = datasourceReferenceValue.database;
+              var dfOrganism = datasourceReferenceValue.organism;
+              pathvisiojs.view.annotation.xRef.render(dfOrganism, dfId, dfDatabase, data.textContent, data.dataNodeType);
+
+            }
+          });
+
+
+
+
+
+
+        },
         rotation: function(rotationValue) {
           var transform = 'rotate(' + rotationValue + ',' + (data.x + data.width/2) + ',' + (data.y + data.height/2) + ')';
           path.attr('transform', transform);
