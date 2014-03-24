@@ -1,10 +1,5 @@
-pathvisiojs.data.gpml.element.node.groupNode = function() {
+pathvisiojs.data.gpml.group = function() {
   'use strict';
-
-  var pathvisioDefaultStyleValues = {
-    'FontSize':null,
-    'FontWeight':null
-  };
 
   function getGroupDimensions(group, callback) {
     var dimensions = {};

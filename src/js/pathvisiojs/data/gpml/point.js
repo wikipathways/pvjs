@@ -1,4 +1,4 @@
-pathvisiojs.data.gpml.edge.point = function(){
+pathvisiojs.data.gpml.point = function(){
   'use strict';
 
   var getPvjsonPositionAndOrientationMapping = function(relValue, identifier, gpmlSelection, pvjsonIsAttachedTo) {

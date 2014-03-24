@@ -937,7 +937,7 @@ pathvisiojs.data.gpml = function(){
               //pathway.DataNode = [];
               dataNodesSelection.each(function() {
                 dataNodeSelection = d3.select(this);
-                pathvisiojs.data.gpml.element.node.entityNode.dataNode.toPvjson(gpmlSelection, dataNodeSelection, function(pvjsonElements) {
+                pathvisiojs.data.gpml.dataNode.toPvjson(gpmlSelection, dataNodeSelection, function(pvjsonElements) {
                   /*
                   console.log('jsonDataNode');
                   console.log(jsonDataNode);
@@ -964,7 +964,7 @@ pathvisiojs.data.gpml = function(){
               //pathway.Label = [];
               gpmlSelection.selectAll('Label').each(function() {
                 labelSelection = d3.select(this);
-                pathvisiojs.data.gpml.element.node.entityNode.label.toPvjson(gpmlSelection, labelSelection, function(pvjsonElements) {
+                pathvisiojs.data.gpml.label.toPvjson(gpmlSelection, labelSelection, function(pvjsonElements) {
                   /*
                   console.log('jsonLabel');
                   console.log(jsonLabel);
@@ -991,7 +991,7 @@ pathvisiojs.data.gpml = function(){
               //pathway.Shape = [];
               gpmlSelection.selectAll('Shape').each(function() {
                 shapeSelection = d3.select(this);
-                pathvisiojs.data.gpml.element.node.entityNode.shape.toPvjson(gpmlSelection, shapeSelection, function(pvjsonElements) {
+                pathvisiojs.data.gpml.shape.toPvjson(gpmlSelection, shapeSelection, function(pvjsonElements) {
                   //pathway.Shape.push(jsonShape);
                   //pathway.nodes = pathway.nodes.concat(jsonShape);
                   //pathway.elements = pathway.elements.concat(jsonShape);
@@ -1062,7 +1062,7 @@ pathvisiojs.data.gpml = function(){
               var groups = [];
               gpmlSelection.selectAll('Group').each(function() {
                 groupSelection = d3.select(this);
-                pathvisiojs.data.gpml.element.node.groupNode.toPvjson(gpmlSelection, groupSelection, function(pvjsonElements) {
+                pathvisiojs.data.gpml.group.toPvjson(gpmlSelection, groupSelection, function(pvjsonElements) {
                   //pathway.Group.push(jsonGroup);
                   //groups.push(pvjsonElements);
                   //pathway.nodes = pathway.nodes.concat(jsonGroup);
@@ -1087,7 +1087,7 @@ pathvisiojs.data.gpml = function(){
               //pathway.GraphicalLine = [];
               gpmlSelection.selectAll('GraphicalLine').each(function() {
                 graphicalLineSelection = d3.select(this);
-                pathvisiojs.data.gpml.edge.graphicalLine.toPvjson(gpml, graphicalLineSelection, function(pvjsonElements) {
+                pathvisiojs.data.gpml.graphicalLine.toPvjson(gpml, graphicalLineSelection, function(pvjsonElements) {
                   //pathway.GraphicalLine.push(jsonGraphicalLine);
                   //pathway.edges = pathway.edges.concat(jsonGraphicalLine);
                   //pathway.elements = pathway.elements.concat(jsonGraphicalLine);
@@ -1113,7 +1113,7 @@ pathvisiojs.data.gpml = function(){
               //pathway.Interaction = [];
               gpmlSelection.selectAll('Interaction').each(function() {
                 interactionSelection = d3.select(this);
-                pathvisiojs.data.gpml.edge.interaction.toPvjson(gpml, interactionSelection, function(pvjsonElements) {
+                pathvisiojs.data.gpml.interaction.toPvjson(gpml, interactionSelection, function(pvjsonElements) {
                   //pathway.Interaction.push(jsonInteraction);
                   //pathway.edges = pathway.edges.concat(jsonInteraction);
                   //pathway.elements = pathway.elements.concat(jsonInteraction);
@@ -1144,7 +1144,7 @@ pathvisiojs.data.gpml = function(){
           });
           if (contents.length > 0) {
             group.contains = contents;
-            pathvisiojs.data.gpml.element.node.groupNode.getGroupDimensions(group, function(dimensions){
+            pathvisiojs.data.gpml.group.getGroupDimensions(group, function(dimensions){
               group.x = dimensions.x;
               group.y = dimensions.y;
               group.width = dimensions.width;
