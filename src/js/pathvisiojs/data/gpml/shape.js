@@ -1,19 +1,7 @@
-pathvisiojs.data.gpml.element.node.entityNode.shape = function(){
+pathvisiojs.data.gpml.shape = function(){
   'use strict';
 
-  var defaults = {
-    'Color':'000000',
-    'FillColor':'Transparent',
-    'FontSize':10,
-    'FontWeight':'Normal',
-    'LineStyle':'Solid',
-    'LineThickness':1,
-    'Rotation':'0.0'
-  };
-
   function toPvjson(gpmlSelection, shapeSelection, callback) {
-    
-
     var pvjsonPath = {};
     pvjsonPath.nodeType = "Shape";
 
@@ -24,12 +12,6 @@ pathvisiojs.data.gpml.element.node.entityNode.shape = function(){
         if (!!pvjsonText.textContent) {
           pvjsonElements.push(pvjsonText);
         }
-        /*
-        console.log('pvjsonPath inside');
-        console.log(pvjsonPath);
-        console.log('pvjsonText inside');
-        console.log(pvjsonText);
-        //*/
         callback(pvjsonElements);
       });
     });

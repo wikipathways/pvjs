@@ -1,4 +1,4 @@
-pathvisiojs.data.gpml.element.node.entityNode.dataNode = function() {
+pathvisiojs.data.gpml.dataNode = function() {
   'use strict';
 
   var toPvjson = function(gpmlSelection, dataNodeSelection, callbackInside) {

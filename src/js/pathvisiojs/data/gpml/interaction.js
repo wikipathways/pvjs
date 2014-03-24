@@ -1,4 +1,4 @@
-pathvisiojs.data.gpml.edge.interaction = function(){
+pathvisiojs.data.gpml.interaction = function(){
   'use strict';
 
   // TODO do something with the linetype info to specify whether interaction is direct or indirect
@@ -195,7 +195,7 @@ pathvisiojs.data.gpml.edge.interaction = function(){
       pvjsonPath.gpmlType = 'Interaction';
       pathvisiojs.data.gpml.element.toPvjsonNew(gpmlSelection, interactionSelection, pvjsonPath, function(pvjsonPath, pvjsonText) {
         pathvisiojs.data.gpml.graphics.toPvjson(gpmlSelection, interactionSelection, pvjsonPath, pvjsonText, function(pvjsonPath, updatedPvjsonText) {
-          pathvisiojs.data.gpml.edge.point.toPvjson(gpmlSelection, interactionSelection, pvjsonPath, function(pvjsonPath) {
+          pathvisiojs.data.gpml.point.toPvjson(gpmlSelection, interactionSelection, pvjsonPath, function(pvjsonPath) {
             pathvisiojs.data.gpml.anchor.toPvjson(gpmlSelection, interactionSelection, pvjsonPath, function(pvjsonAnchor) {
               pvjsonElements = [pvjsonPath].concat(pvjsonAnchor);
               callback(pvjsonElements);

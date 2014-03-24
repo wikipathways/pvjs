@@ -3,7 +3,7 @@ pathvisiojs.data.gpml.anchor = function() {
 
   // anchors
   // see jsPlumb anchor model: http://jsplumbtoolkit.com/doc/anchors
-  // TODO The documention below is out-of-date. See also pathvisiojs.data.gpml.edge.point()
+  // TODO The documention below is out-of-date. See also pathvisiojs.data.gpml.point()
   // This model is not fully formed.
   // an anchor is an attachment point at which an edge can originate or terminate.
   // It has the following elements:
