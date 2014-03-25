@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Pathway xmlns="http://pathvisio.org/GPML/2013a" Name="New Pathway" Version="20140130" Organism="Aspergillus niger">
+  <BiopaxRef>b41</BiopaxRef>
   <Graphics BoardWidth="1434.4476885644767" BoardHeight="1155.3603037589753" />
   <DataNode TextLabel="GeneProduct" GraphId="c86d0" Type="GeneProduct">
     <Graphics CenterX="1145.417922262196" CenterY="373.2352530416277" Width="80.0" Height="20.0" ZOrder="32768" FillColor="cccccc" FontSize="10" Valign="Middle" />
@@ -22,6 +23,7 @@
     <Xref Database="" ID="" />
   </DataNode>
   <DataNode TextLabel="GeneProduct" GraphId="fc51d" Type="GeneProduct">
+    <BiopaxRef>b02</BiopaxRef>
     <Graphics CenterX="257.4525745257454" CenterY="31.842818428184305" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
     <Xref Database="" ID="" />
   </DataNode>
@@ -42,6 +44,7 @@
     <Xref Database="" ID="" />
   </State>
   <State GraphRef="c86d0" TextLabel="Ub" GraphId="b40d8">
+    <BiopaxRef>a27</BiopaxRef>
     <Graphics RelX="-1.0" RelY="-1.0" Width="15.0" Height="15.0" FillColor="ccffff" ShapeType="Oval" Color="ff3366" />
     <Xref Database="" ID="" />
   </State>
@@ -121,6 +124,7 @@
     <Xref Database="" ID="" />
   </Interaction>
   <GraphicalLine>
+    <BiopaxRef>d0c</BiopaxRef>
     <Graphics ZOrder="12288" LineThickness="1.0">
       <Point X="365.8644986449865" Y="65.51219512195124" GraphRef="d9eac" RelX="0.0" RelY="0.0" />
       <Point X="311.6531165311653" Y="150.40650406504065" />
@@ -171,6 +175,48 @@
       <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Int J Clin Pharmacol Biopharm</bp:SOURCE>
       <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1976</bp:YEAR>
       <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Kaik G</bp:AUTHORS>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="d0c">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">512</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">The refined crystal structure of bovine beta-trypsin at 1.8 A resolution. II. Crystallographic refinement, calcium binding site, benzamidine binding site and active site at pH 7.0.</bp:TITLE>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">J Mol Biol</bp:SOURCE>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1975</bp:YEAR>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Bode W</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Schwager P</bp:AUTHORS>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="b02">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">51</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Conformational changes induced in a homogeneous anti-type III pneumococcal antibody by oligosaccharides of increasing size.</bp:TITLE>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Biochemistry</bp:SOURCE>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1975</bp:YEAR>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Jaton JC</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Huser H</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Braun DG</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Givol D</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Pecht I</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Schlessinger J</bp:AUTHORS>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="b41">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">624</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Tentative classification of NAD(P)-linked dehydrogenases in regard to their stereochemistry of hydrogen transfer to the coenzyme.</bp:TITLE>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Naturwissenschaften</bp:SOURCE>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1975</bp:YEAR>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Alizade MA</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Brendel K</bp:AUTHORS>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="a27">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">563</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Development of a miniature pH glass electrode with field-effect-transistor amplifier for biomedical applications.</bp:TITLE>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Med Biol Eng</bp:SOURCE>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1975</bp:YEAR>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Ahn BK</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Wist AO</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Liu CC</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Ko WH</bp:AUTHORS>
     </bp:PublicationXref>
   </Biopax>
 </Pathway>
