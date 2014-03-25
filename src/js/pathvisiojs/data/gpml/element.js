@@ -123,20 +123,8 @@ pathvisiojs.data.gpml.element = function(){
     return jsonElement;
   };
 
-  var toPvjson = function(gpmlElement, jsonElement, elementCallback) {
-    jsonElement["@type"] = jsonElement["@type"] || [];
-    jsonElement["@type"].push("element");
-
-    pathvisiojs.data.gpml.biopaxRef.getAllAsPvjson(gpmlElement, function(publicationXrefs) {
-      if (!!publicationXrefs) {
-        jsonElement.PublicationXref = publicationXrefs;
-      }
-      elementCallback(jsonElement);
-    });
-  };
-
   //*
-  var toPvjsonNew = function(gpmlSelection, elementSelection, pvjsonElement, callback) {
+  var toPvjson = function(gpmlSelection, elementSelection, pvjsonElement, callback) {
     var pvjsonText = {},
       attribute,
       i,
@@ -243,7 +231,6 @@ pathvisiojs.data.gpml.element = function(){
 
   return {
     toPvjson:toPvjson,
-    toPvjsonNew:toPvjsonNew,
     gpmlColorToCssColor:gpmlColorToCssColor,
     setColorAsJson:setColorAsJson,
     getLineStyle:getLineStyle,

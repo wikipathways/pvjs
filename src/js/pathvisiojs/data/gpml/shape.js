@@ -5,7 +5,7 @@ pathvisiojs.data.gpml.shape = function(){
     var pvjsonPath = {};
     pvjsonPath.nodeType = "Shape";
 
-    pathvisiojs.data.gpml.element.toPvjsonNew(gpmlSelection, shapeSelection, pvjsonPath, function(pvjsonPath, pvjsonText) {
+    pathvisiojs.data.gpml.element.toPvjson(gpmlSelection, shapeSelection, pvjsonPath, function(pvjsonPath, pvjsonText) {
       pathvisiojs.data.gpml.graphics.toPvjson(gpmlSelection, shapeSelection, pvjsonPath, pvjsonText, function(pvjsonPath, updatedPvjsonText) {
         pvjsonText = updatedPvjsonText;
         var pvjsonElements = [pvjsonPath];

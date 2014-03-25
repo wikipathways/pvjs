@@ -15,7 +15,7 @@ pathvisiojs.data.gpml.state = function(){
     //*/
 
         //*
-        pathvisiojs.data.gpml.element.toPvjsonNew(gpmlSelection, stateSelection, pvjsonPath, function(pvjsonPath, pvjsonText) {
+        pathvisiojs.data.gpml.element.toPvjson(gpmlSelection, stateSelection, pvjsonPath, function(pvjsonPath, pvjsonText) {
           pathvisiojs.data.gpml.graphics.toPvjson(gpmlSelection, stateSelection, pvjsonPath, pvjsonText, function(pvjsonPath, updatedPvjsonText) {
             pvjsonText = updatedPvjsonText;
             var pvjsonElements = [pvjsonPath];

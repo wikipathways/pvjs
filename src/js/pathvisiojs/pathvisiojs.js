@@ -34,7 +34,8 @@ var pathvisiojs = {
     this.args = args;
     this.model = {};
     this.model.elements = [];
-    this.data.model = this.data.gpml.model = this.data.gpml.interaction.model = this.model;
+    this.data.model = this.data.gpml.model = this.data.gpml.graphics.model = this.data.gpml.group.model = this.data.gpml.interaction.model = this.view.model = this.view.pathwayDiagram.model = this.view.pathwayDiagram.svg.model = this.model;
+
     //console.log(args);
 
     // for now, load will just load a visual representation of a pathway, but

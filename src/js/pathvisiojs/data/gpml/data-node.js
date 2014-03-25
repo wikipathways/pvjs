@@ -17,7 +17,7 @@ pathvisiojs.data.gpml.dataNode = function() {
 
 
 
-    pathvisiojs.data.gpml.element.toPvjsonNew(gpmlSelection, dataNodeSelection, pvjsonPath, function(pvjsonPath, updatedPvjsonText) {
+    pathvisiojs.data.gpml.element.toPvjson(gpmlSelection, dataNodeSelection, pvjsonPath, function(pvjsonPath, updatedPvjsonText) {
       pvjsonText = updatedPvjsonText;
       pathvisiojs.data.gpml.graphics.toPvjson(gpmlSelection, dataNodeSelection, pvjsonPath, pvjsonText, function(pvjsonPath, updatedPvjsonText) {
         pvjsonText = updatedPvjsonText;
@@ -42,6 +42,7 @@ pathvisiojs.data.gpml.dataNode = function() {
 
 
 
+          /*
           pvjsonText.myWidth = function() {
             var describedElementId = this.describes;
             var describedElement = pathway.elements.filter(function(element) {
@@ -49,6 +50,7 @@ pathvisiojs.data.gpml.dataNode = function() {
             })[0];
             return describedElement.width + 5;
           };
+          //*/
 
           pvjsonElements.push(pvjsonText);
         }

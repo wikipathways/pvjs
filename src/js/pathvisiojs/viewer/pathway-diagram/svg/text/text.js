@@ -44,7 +44,7 @@ pathvisiojs.view.pathwayDiagram.svg.text = function(){
   }
 
   function render(parent, data) {
-    /*
+    //*
     console.log('****************');
     console.log('parent');
     console.log(parent);
@@ -52,7 +52,7 @@ pathvisiojs.view.pathwayDiagram.svg.text = function(){
     console.log(data);
     //*/
     var containerPadding = data.containerPadding || 0,
-      containerWidth = data.containerWidth,
+      containerWidth = data.containerWidth(),
       containerHeight = data.containerHeight,
       fontSize = data.fontSize;
     var containerPaddingInPx = convertToPx(containerPadding, fontSize);
