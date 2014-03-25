@@ -52,9 +52,8 @@ pathvisiojs.data.gpml.interaction = {
   },
 
   toPvjson: function(gpmlSelection, interactionSelection, callback) {
-    console.log('this in interaction')
-    console.log(this)
     var model = this.model;
+    var interactionInstance = this;
 
     var jsonAnchorInteraction, anchor, jsonAnchor, points, jsonPoints, interactionType, target, targetId, groupRef, source, sourceId, pvjsonElements;
     //pathvisiojs.data.gpml.edge.toPvjson(interactionSelection, function(jsonInteraction) {
@@ -194,7 +193,7 @@ pathvisiojs.data.gpml.interaction = {
       var pvjsonPath = {}, pvjsonText = {};
       pvjsonPath.networkType = 'edge';
       pvjsonPath.gpmlType = 'Interaction';
-      pathvisiojs.data.gpml.element.toPvjsonNew(gpmlSelection, interactionSelection, pvjsonPath, function(pvjsonPath, pvjsonText) {
+      pathvisiojs.data.gpml.element.toPvjson(gpmlSelection, interactionSelection, pvjsonPath, function(pvjsonPath, pvjsonText) {
         pathvisiojs.data.gpml.graphics.toPvjson(gpmlSelection, interactionSelection, pvjsonPath, pvjsonText, function(pvjsonPath, updatedPvjsonText) {
           pathvisiojs.data.gpml.point.toPvjson(gpmlSelection, interactionSelection, pvjsonPath, function(pvjsonPath) {
             pathvisiojs.data.gpml.anchor.toPvjson(gpmlSelection, interactionSelection, pvjsonPath, function(pvjsonAnchor) {

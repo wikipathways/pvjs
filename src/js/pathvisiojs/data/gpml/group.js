@@ -1,7 +1,5 @@
-pathvisiojs.data.gpml.group = function() {
-  'use strict';
-
-  function getGroupDimensions(group, callback) {
+pathvisiojs.data.gpml.group = {
+  getGroupDimensions: function(group, callback) {
     var dimensions = {};
     dimensions.topLeftCorner = {};
     dimensions.topLeftCorner.x = 9999999999999999999999999999;
@@ -40,12 +38,14 @@ pathvisiojs.data.gpml.group = function() {
       dimensions.zIndex = dimensions.zIndex - 0.1;
       callback(dimensions);
     });
-  }
+  },
 
-  function toPvjson(gpmlSelection, groupSelection, callback) {
+  toPvjson: function(elementsPossiblyInGroup, gpmlSelection, groupSelection, callback) {
     var pvjsonPath = {},
       groupId,
-      groupType;
+      groupType,
+      textElementsDescribingGroup,
+      model = this.model;
 
     pvjsonPath.renderableType = 'GroupNode';
     pvjsonPath.nodeType = "GroupNode";
@@ -53,20 +53,66 @@ pathvisiojs.data.gpml.group = function() {
     groupType = groupSelection.attr('Style') || 'None';
     pvjsonPath.groupType = groupType;
 
-    pathvisiojs.data.gpml.element.toPvjsonNew(gpmlSelection, groupSelection, pvjsonPath, function(pvjsonPath, pvjsonText) {
+
+
+
+
+
+
+
+
+
+
+
+    pathvisiojs.data.gpml.element.toPvjson(gpmlSelection, groupSelection, pvjsonPath, function(pvjsonPath, pvjsonText) {
+
+
+
       pathvisiojs.data.gpml.graphics.toPvjson(gpmlSelection, groupSelection, pvjsonPath, pvjsonText, function(pvjsonPath, updatedPvjsonText) {
+
+
+
+
+
+          var contents = elementsPossiblyInGroup.filter(function(element){
+            return element.isContainedBy === pvjsonPath.id;
+          });
+          if (contents.length > 0) {
+            pvjsonPath.contains = contents;
+            pathvisiojs.data.gpml.group.getGroupDimensions(pvjsonPath, function(dimensions){
+              pvjsonPath.x = dimensions.x;
+              pvjsonPath.y = dimensions.y;
+              pvjsonPath.width = dimensions.width;
+              pvjsonPath.height = dimensions.height;
+              pvjsonPath.zIndex = dimensions.zIndex;
+              pvjsonText.containerX = dimensions.x;
+              pvjsonText.containerY = dimensions.y;
+              pvjsonText.containerWidth = dimensions.width;
+
+
+              pvjsonText.containerWidth = function() {
+                var parentElement = model.elements.filter(function(element) {
+                  return element.id === pvjsonText.describes;
+                })[0];
+                var textWidth = parentElement.width;
+                return textWidth;
+              };
+
+              pvjsonText.containerHeight = dimensions.height;
+              pvjsonText.zIndex = dimensions.zIndex;
+            });
+          }
+
+
+
+        var pvjsonElements = [pvjsonPath];
         pvjsonText = updatedPvjsonText;
         if (!!pvjsonText.textContent) {
-          pvjsonPath = [pvjsonPath, pvjsonText];
+          pvjsonElements.push(pvjsonText);
         }
-        callback(pvjsonPath);
+        callback(pvjsonElements);
       });
     });
   }
-
-  return {
-    toPvjson:toPvjson,
-    getGroupDimensions:getGroupDimensions
-  };
-}();
+};
 

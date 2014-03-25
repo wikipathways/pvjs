@@ -26,7 +26,7 @@ pathvisiojs.data.gpml.graphicalLine = function(){
       pvjsonText = {};
 
     pvjsonPath.networkType = 'edge';
-    pathvisiojs.data.gpml.element.toPvjsonNew(gpmlSelection, graphicalLineSelection, pvjsonPath, function(pvjsonPath, pvjsonText) {
+    pathvisiojs.data.gpml.element.toPvjson(gpmlSelection, graphicalLineSelection, pvjsonPath, function(pvjsonPath, pvjsonText) {
       pathvisiojs.data.gpml.graphics.toPvjson(gpmlSelection, graphicalLineSelection, pvjsonPath, pvjsonText, function(pvjsonPath, updatedPvjsonText) {
         pathvisiojs.data.gpml.point.toPvjson(gpmlSelection, graphicalLineSelection, pvjsonPath, function(pvjsonPath) {
           pathvisiojs.data.gpml.anchor.toPvjson(gpmlSelection, graphicalLineSelection, pvjsonPath, function(pvjsonAnchor) {

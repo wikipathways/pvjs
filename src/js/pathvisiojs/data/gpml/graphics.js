@@ -1,14 +1,12 @@
-pathvisiojs.data.gpml.graphics = function(){
-  'use strict';
-
-  var defaults = {
+pathvisiojs.data.gpml.graphics = {
+  defaults: {
     'FontSize':{
       'Type':"FontSize",
       'Value':10
     }
-  };
+  },
 
-  var toPvjson = function(gpmlSelection, elementSelection, pvjsonElement, pvjsonText, callback) {
+  toPvjson: function(gpmlSelection, elementSelection, pvjsonElement, pvjsonText, callback) {
       var parentElement,
       attribute,
       i,
@@ -24,7 +22,8 @@ pathvisiojs.data.gpml.graphics = function(){
       pvjsonVerticalAlign,
       pvjsonRelY,
       pvjsonX,
-      pvjsonY;
+      pvjsonY,
+      model = this.model;
 
     var attributeDependencyOrder = [
       'LineStyle',
@@ -148,7 +147,14 @@ pathvisiojs.data.gpml.graphics = function(){
         gpmlWidthValue = parseFloat(gpmlWidthValue);
         pvjsonWidth = gpmlWidthValue + pvjsonStrokeWidth;
         pvjsonElement.width = pvjsonWidth;
-        pvjsonText.containerWidth = pvjsonWidth;
+        //pvjsonText.containerWidth = pvjsonWidth;
+        pvjsonText.containerWidth = function() {
+          var parentElement = model.elements.filter(function(element) {
+            return element.id === pvjsonText.describes;
+          })[0];
+          var textWidth = parentElement.width;
+          return textWidth;
+        };
         return pvjsonWidth;
       },
       Height: function(gpmlHeightValue) {
@@ -267,9 +273,5 @@ pathvisiojs.data.gpml.graphics = function(){
       }
     }
     callback(pvjsonElement, pvjsonText);
-  };
-
-  return {
-    toPvjson:toPvjson
-  };
-}();
+  }
+};

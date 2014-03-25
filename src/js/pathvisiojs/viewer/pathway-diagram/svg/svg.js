@@ -1,16 +1,13 @@
-pathvisiojs.view.pathwayDiagram.svg = function(){
-  'use strict';
-
-  var shapesAvailable, markersAvailable, contextLevelInput,
-    renderableTypeToSvgElementMappings = {
+pathvisiojs.view.pathwayDiagram.svg = {
+    renderableTypeToSvgElementMappings: {
       entityNode: 'g',
       groupNode: 'g',
       interaction: 'path',
       graphicalLine: 'path'
-    };
+    },
 
   //calculates the proper scaling and translations to fit content (i.e., diagram) to screen (i.e., viewport)
-  function fitAndCenterDiagramWithinViewport(viewport, viewportWidth, viewportHeight, diagramWidth, diagramHeight) {
+  fitAndCenterDiagramWithinViewport: function(viewport, viewportWidth, viewportHeight, diagramWidth, diagramHeight) {
     // viewport is a d3 selection
 
     var fitScreenScale = Math.min(viewportWidth/diagramWidth, viewportHeight/diagramHeight);
@@ -23,9 +20,9 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
     var translationMatrixString = 'matrix(' + fitScreenScale + ', 0, 0, ' + fitScreenScale + ', ' + xTranslation + ', ' + yTranslation + ') ';
     
     viewport.attr("transform", translationMatrixString);
-  }
+  },
 
-  function load(args, callbackOutside) {
+  load: function(args, callbackOutside) {
     var diagramContainer = args.container, //a d3 selection corresponding to the containing element in the parent document
       containerWidth = args.containerWidth,
       containerHeight = args.containerHeight,
@@ -36,7 +33,7 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
       //customSymbols = args.customSymbols,
       highlights = args.highlights,
       pathway;
-
+    var svgRenderer = this;
 
     async.waterfall([
       function(callback){
@@ -104,7 +101,7 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
         //*/
         var fitScreenScale;
         if (fitToContainer) {
-          fitAndCenterDiagramWithinViewport(viewport, containerWidth, containerHeight, pathway.image.width, pathway.image.height);
+          svgRenderer.fitAndCenterDiagramWithinViewport(viewport, containerWidth, containerHeight, pathway.image.width, pathway.image.height);
         }
 
         /*
@@ -118,7 +115,7 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
         var resetPanZoomControl = d3.select('#reset-pan-zoom')
         .on("click", function(d,i){
           //svgPanZoom.resetZoom();
-          fitAndCenterDiagramWithinViewport(viewport, containerWidth, containerHeight, pathway.image.width, pathway.image.height);
+          svgRenderer.fitAndCenterDiagramWithinViewport(viewport, containerWidth, containerHeight, pathway.image.width, pathway.image.height);
         });
 
         /*
@@ -230,9 +227,9 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
     function(err, svg) {
       callbackOutside(svg);
     });
-  }
+  },
 
-  function loadPartials(args, callbackOutside) {
+  loadPartials: function(args, callbackOutside) {
     var diagramContainer = args.container,
       customMarkers = args.customMarkers,
       //customSymbols = args.customSymbols,
@@ -287,9 +284,9 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
     function(err, svg) {
       callbackOutside(svg);
     });
-  }
+  },
 
-  var convertToId = function(inputString) {
+  convertToId: function(inputString) {
     var id = strcase.paramCase(inputString);
     //var id = (inputString).replace(/[^(\w|\-)]/g, '').toLowerCase();
     // to make valid id per HTML4 spec, I'm ensuring the first character is a letter
@@ -297,9 +294,9 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
       id = 'id-' + id;
     }
     return id;
-  };
+  },
 
-  var convertToCssClassName = function(inputString) {
+  convertToCssClassName: function(inputString) {
     var cssClassName = strcase.paramCase(inputString);
     //var cssClassName = (inputString).replace(/[^(\w|\-)]/g, '').toLowerCase();
     // to make valid cssClassName per HTML4 spec, I'm ensuring the first character is a letter
@@ -307,19 +304,20 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
       cssClassName = 'class-' + cssClassName;
     }
     return cssClassName;
-  };
+  },
 
   // this function does not render all elements. Rather, it renders
   // one or more selected elements that are given as inputs.
   // If one or more of these elements are a groupNode that contains
   // other elements, this function will call itself back to render
   // the elements within the groupNode.
-  function appendElementsInDomOrder(args, callback){
+  appendElementsInDomOrder: function(args, callback){
     var svg = args.svg,
       data = args.data,
       pathway = args.pathway,
       viewport = args.container,
       container;
+    var svgRenderer = this;
 
     if (!viewport) {
       throw new Error("No viewport specified.");
@@ -338,7 +336,7 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
     var i = 0;
     async.each(data, function(item, callbackInside) {
       if (item.key !== 'undefined') {
-        container = viewport.select('#' + convertToId(item.key));
+        container = viewport.select('#' + svgRenderer.convertToId(item.key));
       }
       else {
         container = viewport;
@@ -348,12 +346,12 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
       .data(item.values)
       .enter()
       .append(function(d) {
-        var childElementName = renderableTypeToSvgElementMappings[strcase.camelCase(d.renderableType)];
+        var childElementName = svgRenderer.renderableTypeToSvgElementMappings[strcase.camelCase(d.renderableType)];
         var child = document.createElementNS('http://www.w3.org/2000/svg', childElementName);
         return child;
       })
       .attr("id", function (d) {
-        return convertToId(d.id);
+        return svgRenderer.convertToId(d.id);
       })
       .attr('class', 'element');
       i += 1;
@@ -363,14 +361,14 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
     function(err){
       callback(null, 'Successfully rendered elements');
     });
-  }
+  },
 
   // this function does not render all elements. Rather, it renders
   // one or more selected elements that are given as inputs.
   // If one or more of these elements are a groupNode that contains
   // other elements, this function will call itself back to render
   // the elements within the groupNode.
-  function updateElementProperties(args, callback){
+  updateElementProperties: function(args, callback){
     var svg = args.svg,
       data = args.data,
       pathway = args.pathway,
@@ -393,7 +391,7 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
 
     async.each(data, function(dataElement, callbackInside) {
       renderingArgs.data = dataElement;
-      renderingArgs.element = d3.select('#' + convertToId(dataElement.id));
+      renderingArgs.element = d3.select('#' + this.convertToId(dataElement.id));
       if (dataElement.renderableType === 'GraphicalLine') {
         pathvisiojs.view.pathwayDiagram.svg.edge.graphicalLine.render(renderingArgs);
       }
@@ -416,9 +414,9 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
     function(err){
       callback(svg);
     });
-  }
+  },
 
-  function renderWithCachedData(svg, pathway, callback){
+  renderWithCachedData: function(svg, pathway, callback){
     if (!svg) {
       throw new Error("No svg specified.");
     }
@@ -483,13 +481,4 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
       //*/
     ]);
   }
-
-  return {
-    convertToId:convertToId,
-    convertToCssClassName:convertToCssClassName,
-    renderWithCachedData:renderWithCachedData,
-    appendElementsInDomOrder:appendElementsInDomOrder,
-    load:load,
-    loadPartials:loadPartials
-  };
-}();
+};

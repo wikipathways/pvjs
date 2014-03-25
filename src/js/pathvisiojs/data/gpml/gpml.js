@@ -1051,34 +1051,6 @@ pathvisiojs.data.gpml = {
               callback(null, 'No states to convert.');
             }
           },
-          Group: function(callback){
-            // Note: this calculates all the data for each group-node, except for its dimensions.
-            // The dimenensions can only be calculated once all the rest of the elements have been
-            // converted from GPML to JSON.
-            var groupSelection, groupsSelection = gpmlSelection.selectAll('Group');
-            if (groupsSelection[0].length > 0) {
-              //pathway.Group = [];
-              var groups = [];
-              gpmlSelection.selectAll('Group').each(function() {
-                groupSelection = d3.select(this);
-                pathvisiojs.data.gpml.group.toPvjson(gpmlSelection, groupSelection, function(pvjsonElements) {
-                  //pathway.Group.push(jsonGroup);
-                  //groups.push(pvjsonElements);
-                  //pathway.nodes = pathway.nodes.concat(jsonGroup);
-                  pathway.elements = pathway.elements.concat(pvjsonElements);
-                  /*
-                  console.log('pvjsonElements');
-                  console.log(pvjsonElements);
-                  console.log(pvjsonElements.id);
-                  //*/
-                });
-              });
-              callback(null, groups);
-            }
-            else {
-              callback(null, null);
-            }
-          },
           //*
           GraphicalLine: function(callback){
             var graphicalLineSelection, graphicalLinesSelection = gpmlSelection.selectAll('GraphicalLine');
@@ -1131,47 +1103,36 @@ pathvisiojs.data.gpml = {
           }
       },
       function(err, results) {
-        var contents, groupsFrame, jsonGroups = [], index, elementsBefore, elementsAfter, textElementsDescribingGroup, text;
-        var groupContentsCandidates = pathway.elements.filter(function(candidate){
-          return (candidate.nodeType !== 'GroupNode');
-        });
-        pathway.elements.filter(function(element){
-          return element.nodeType === 'GroupNode';
-        }).forEach(function(group) {
-          contents = groupContentsCandidates.filter(function(element){
-            return element.isContainedBy === group.id;
-          });
-          if (contents.length > 0) {
-            group.contains = contents;
-            pathvisiojs.data.gpml.group.getGroupDimensions(group, function(dimensions){
-              group.x = dimensions.x;
-              group.y = dimensions.y;
-              group.width = dimensions.width;
-              group.height = dimensions.height;
-              group.zIndex = dimensions.zIndex;
-              textElementsDescribingGroup = pathway.elements.filter(function(element){
-                return (element.describes === group.id);
-              });
-              if (textElementsDescribingGroup.length > 0) {
-                text = textElementsDescribingGroup[0];
-                text.containerX = dimensions.x;
-                text.containerY = dimensions.y;
-                text.containerWidth = dimensions.width;
-                text.containerHeight = dimensions.height;
-                text.zIndex = dimensions.zIndex;
-              }
+        var contents,
+          index,
+          elementsBefore,
+          elementsAfter,
+          textElementsDescribingGroup,
+          text;
+
+
+        // Note: this calculates all the data for each group-node, except for its dimensions.
+        // The dimenensions can only be calculated once all the rest of the elements have been
+        // converted from GPML to JSON.
+        var groupSelection, groupsSelection = gpmlSelection.selectAll('Group');
+        if (groupsSelection[0].length > 0) {
+          //pathway.Group = [];
+          var groups = [];
+          gpmlSelection.selectAll('Group').each(function() {
+            groupSelection = d3.select(this);
+            pathvisiojs.data.gpml.group.toPvjson(pathway.elements, gpmlSelection, groupSelection, function(pvjsonElements) {
+              //pathway.Group.push(jsonGroup);
+              //groups.push(pvjsonElements);
+              //pathway.nodes = pathway.nodes.concat(jsonGroup);
+              pathway.elements = pathway.elements.concat(pvjsonElements);
+              /*
+              console.log('pvjsonElements');
+              console.log(pvjsonElements);
+              console.log(pvjsonElements.id);
+              //*/
             });
-          }
-          else { // PathVisio-Java has a bug where it sometimes produces empty groups. Such groups are deleted here.
-            index = pathway.elements.indexOf(group);
-            elementsBefore = pathway.elements.slice(0,index);
-            elementsAfter = pathway.elements.slice(index + 1, pathway.elements.length);
-            pathway.elements = elementsBefore.concat(elementsAfter);
-          }
-        });
-        pathway.elements.sort(function(a, b) {
-          return a.zIndex - b.zIndex;
-        });
+          });
+        }
         pathway.elements.sort(function(a, b) {
           return a.zIndex - b.zIndex;
         });
