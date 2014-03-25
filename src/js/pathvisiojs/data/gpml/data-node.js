@@ -1,7 +1,7 @@
 pathvisiojs.data.gpml.dataNode = function() {
   'use strict';
 
-  var toPvjson = function(gpmlSelection, dataNodeSelection, callbackInside) {
+  var toPvjson = function(pathway, gpmlSelection, dataNodeSelection, callbackInside) {
     var pvjsonPath = {},
       pvjsonText = {};
 
@@ -39,6 +39,17 @@ pathvisiojs.data.gpml.dataNode = function() {
 
         var pvjsonElements = [pvjsonPath];
         if (!!pvjsonText.textContent) {
+
+
+
+          pvjsonText.myWidth = function() {
+            var describedElementId = this.describes;
+            var describedElement = pathway.elements.filter(function(element) {
+              return element.id === describedElementId;
+            })[0];
+            return describedElement.width + 5;
+          };
+
           pvjsonElements.push(pvjsonText);
         }
         callbackInside(pvjsonElements);

@@ -25,12 +25,15 @@
   }
 })();
 
-var pathvisiojs = function(){
-  'use strict';
+var pathvisiojs = {
+  load: function(args) {
+    var svg,
+      pathway;
 
-  var svg, pathway, args;
-
-  function load(args) {
+    this.args = args;
+    this.model = {};
+    this.model.elements = [];
+    this.data.model = this.data.gpml.model = this.data.gpml.interaction.model = this.model;
     //console.log(args);
 
     // for now, load will just load a visual representation of a pathway, but
@@ -60,8 +63,4 @@ var pathvisiojs = function(){
       pathvisiojs.view.pathwayDiagram.load(args);
     });
   }
-
-  return {
-    load:load
-  };
-}();
+};

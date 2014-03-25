@@ -1,9 +1,7 @@
-pathvisiojs.data.gpml.interaction = function(){
-  'use strict';
-
+pathvisiojs.data.gpml.interaction = {
   // TODO do something with the linetype info to specify whether interaction is direct or indirect
 
-  var gpmlArrowHeadsToSemanticMappings = {
+  gpmlArrowHeadsToSemanticMappings: {
     'Arrow':'Activity',
     'ArrowArrow':'BidirectionalActivity',
     'TBar':'InhibitoryActivity',
@@ -21,11 +19,11 @@ pathvisiojs.data.gpml.interaction = function(){
     "mim-transcription-translation":"TranscriptionTranslation",
     "mim-gap":"Gap",
     "Line":"Unspecified"
-  };
+  },
 
-  function getGpmlArrowHeadNameFromSemanticName(semanticName) {
-    for (var gpmlArrowHeadName in gpmlArrowHeadsToSemanticMappings) {
-      if (gpmlArrowHeadsToSemanticMappings[gpmlArrowHeadName] === semanticName) {
+  getGpmlArrowHeadNameFromSemanticName: function(semanticName) {
+    for (var gpmlArrowHeadName in this.gpmlArrowHeadsToSemanticMappings) {
+      if (this.gpmlArrowHeadsToSemanticMappings[gpmlArrowHeadName] === semanticName) {
         return gpmlArrowHeadName;
       }
     }
@@ -35,12 +33,12 @@ pathvisiojs.data.gpml.interaction = function(){
       console.warn('No GPML ArrowHead name found for semantic name "' + semanticName + '". Returning original semantic name as GPML ArrowHead name. PathVisio-Java will delete this ArrowHead from the GPML file if it edits this file.');
     }
     return gpmlArrowHeadName;
-  }
+  },
 
-  function getSemanticNameFromGpmlArrowHeadName(gpmlArrowHeadName) {
+  getSemanticNameFromGpmlArrowHeadName: function(gpmlArrowHeadName) {
     var semanticName;
     if (!!gpmlArrowHeadName) {
-      semanticName = gpmlArrowHeadsToSemanticMappings[gpmlArrowHeadName];
+      semanticName = this.gpmlArrowHeadsToSemanticMappings[gpmlArrowHeadName];
       if (!semanticName) {
         semanticName = gpmlArrowHeadName;
         console.warn('No semantic name found for GPML ArrowHead name "' + gpmlArrowHeadName + '". Returning original GPML ArrowHead name as semantic name.');
@@ -51,9 +49,12 @@ pathvisiojs.data.gpml.interaction = function(){
     }
 
     return semanticName;
-  }
+  },
 
-  function toPvjson(gpmlSelection, interactionSelection, callback) {
+  toPvjson: function(gpmlSelection, interactionSelection, callback) {
+    console.log('this in interaction')
+    console.log(this)
+    var model = this.model;
 
     var jsonAnchorInteraction, anchor, jsonAnchor, points, jsonPoints, interactionType, target, targetId, groupRef, source, sourceId, pvjsonElements;
     //pathvisiojs.data.gpml.edge.toPvjson(interactionSelection, function(jsonInteraction) {
@@ -198,6 +199,7 @@ pathvisiojs.data.gpml.interaction = function(){
           pathvisiojs.data.gpml.point.toPvjson(gpmlSelection, interactionSelection, pvjsonPath, function(pvjsonPath) {
             pathvisiojs.data.gpml.anchor.toPvjson(gpmlSelection, interactionSelection, pvjsonPath, function(pvjsonAnchor) {
               pvjsonElements = [pvjsonPath].concat(pvjsonAnchor);
+              model.elements = model.elements.concat(pvjsonElements);
               callback(pvjsonElements);
             });
           });
@@ -205,10 +207,4 @@ pathvisiojs.data.gpml.interaction = function(){
       });
     //});
   }
-
-return {
-  toPvjson:toPvjson,
-  getGpmlArrowHeadNameFromSemanticName:getGpmlArrowHeadNameFromSemanticName,
-  getSemanticNameFromGpmlArrowHeadName:getSemanticNameFromGpmlArrowHeadName
 };
-}();
