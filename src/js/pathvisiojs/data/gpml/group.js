@@ -42,6 +42,7 @@ pathvisiojs.data.gpml.group = {
 
   toPvjson: function(elementsPossiblyInGroup, gpmlSelection, groupSelection, callback) {
     var pvjsonPath = {},
+      pvjsonElements = [],
       groupId,
       groupType,
       textElementsDescribingGroup,
@@ -69,6 +70,7 @@ pathvisiojs.data.gpml.group = {
 
 
       pathvisiojs.data.gpml.graphics.toPvjson(gpmlSelection, groupSelection, pvjsonPath, pvjsonText, function(pvjsonPath, updatedPvjsonText) {
+        pvjsonText = updatedPvjsonText;
 
 
 
@@ -90,6 +92,7 @@ pathvisiojs.data.gpml.group = {
               pvjsonText.containerWidth = dimensions.width;
 
 
+              // TODO move all of these functions to a model section so they aren't repeated (e.g., this also appears in graphics.js)
               pvjsonText.containerWidth = function() {
                 var parentElement = model.elements.filter(function(element) {
                   return element.id === pvjsonText.describes;
@@ -101,15 +104,12 @@ pathvisiojs.data.gpml.group = {
               pvjsonText.containerHeight = dimensions.height;
               pvjsonText.zIndex = dimensions.zIndex;
             });
+            pvjsonElements.push(pvjsonPath);
+
+            if (!!pvjsonText.textContent) {
+              pvjsonElements.push(pvjsonText);
+            }
           }
-
-
-
-        var pvjsonElements = [pvjsonPath];
-        pvjsonText = updatedPvjsonText;
-        if (!!pvjsonText.textContent) {
-          pvjsonElements.push(pvjsonText);
-        }
         callback(pvjsonElements);
       });
     });
