@@ -648,7 +648,7 @@ pathvisiojs.data.gpml = function(){
     //pathway.nodes = [];
     //pathway.edges = [];
     //pathway.elements = [];
-    pathway.elementsNew = [];
+    pathway.elements = [];
 
     // test for whether file is GPML
 
@@ -949,7 +949,7 @@ pathvisiojs.data.gpml = function(){
                   //pathway.DataNode.push(jsonDataNode);
                   //pathway.nodes = pathway.nodes.concat(jsonDataNode);
                   //pathway.elements = pathway.elements.concat(jsonDataNode);
-                  pathway.elementsNew = pathway.elementsNew.concat(pvjsonElements);
+                  pathway.elements = pathway.elements.concat(pvjsonElements);
                 });
               });
               callback(null, 'DataNodes are all converted.');
@@ -976,7 +976,7 @@ pathvisiojs.data.gpml = function(){
                   //pathway.Label.push(jsonLabel);
                   //pathway.nodes = pathway.nodes.concat(jsonLabel);
                   //pathway.elements = pathway.elements.concat(jsonLabel);
-                  pathway.elementsNew = pathway.elementsNew.concat(pvjsonElements);
+                  pathway.elements = pathway.elements.concat(pvjsonElements);
                 });
               });
               callback(null, 'Labels are all converted.');
@@ -995,7 +995,7 @@ pathvisiojs.data.gpml = function(){
                   //pathway.Shape.push(jsonShape);
                   //pathway.nodes = pathway.nodes.concat(jsonShape);
                   //pathway.elements = pathway.elements.concat(jsonShape);
-                  pathway.elementsNew = pathway.elementsNew.concat(pvjsonElements);
+                  pathway.elements = pathway.elements.concat(pvjsonElements);
                   /*
                   console.log('jsonShape');
                   console.log(jsonShape);
@@ -1021,7 +1021,7 @@ pathvisiojs.data.gpml = function(){
                 anchorSelection = d3.select(this);
                 pathvisiojs.data.gpml.anchor.toPvjson(gpmlSelection, anchorSelection, function(pvjsonElements) {
                   pathway.anchors = pvjsonElements;
-                  pathway.elementsNew = pathway.elementsNew.concat(pvjsonElements);
+                  pathway.elements = pathway.elements.concat(pvjsonElements);
                 });
               });
               callback(null, 'Anchors are all converted.');
@@ -1043,7 +1043,7 @@ pathvisiojs.data.gpml = function(){
                   console.log(pvjsonElements);
                   //*/
                   pathway.states = pvjsonElements;
-                  pathway.elementsNew = pathway.elementsNew.concat(pvjsonElements);
+                  pathway.elements = pathway.elements.concat(pvjsonElements);
                 });
               });
               callback(null, 'States are all converted.');
@@ -1066,7 +1066,7 @@ pathvisiojs.data.gpml = function(){
                   //pathway.Group.push(jsonGroup);
                   //groups.push(pvjsonElements);
                   //pathway.nodes = pathway.nodes.concat(jsonGroup);
-                  pathway.elementsNew = pathway.elementsNew.concat(pvjsonElements);
+                  pathway.elements = pathway.elements.concat(pvjsonElements);
                   /*
                   console.log('pvjsonElements');
                   console.log(pvjsonElements);
@@ -1091,7 +1091,7 @@ pathvisiojs.data.gpml = function(){
                   //pathway.GraphicalLine.push(jsonGraphicalLine);
                   //pathway.edges = pathway.edges.concat(jsonGraphicalLine);
                   //pathway.elements = pathway.elements.concat(jsonGraphicalLine);
-                  pathway.elementsNew = pathway.elementsNew.concat(pvjsonElements);
+                  pathway.elements = pathway.elements.concat(pvjsonElements);
                   /*
                   console.log('jsonGraphicalLine');
                   console.log(jsonGraphicalLine);
@@ -1117,7 +1117,7 @@ pathvisiojs.data.gpml = function(){
                   //pathway.Interaction.push(jsonInteraction);
                   //pathway.edges = pathway.edges.concat(jsonInteraction);
                   //pathway.elements = pathway.elements.concat(jsonInteraction);
-                  pathway.elementsNew = pathway.elementsNew.concat(pvjsonElements);
+                  pathway.elements = pathway.elements.concat(pvjsonElements);
                   /*
                   console.log('pvjsonElements');
                   console.log(pvjsonElements);
@@ -1133,10 +1133,10 @@ pathvisiojs.data.gpml = function(){
       },
       function(err, results) {
         var contents, groupsFrame, jsonGroups = [], index, elementsBefore, elementsAfter, textElementsDescribingGroup, text;
-        var groupContentsCandidates = pathway.elementsNew.filter(function(candidate){
+        var groupContentsCandidates = pathway.elements.filter(function(candidate){
           return (candidate.nodeType !== 'GroupNode');
         });
-        pathway.elementsNew.filter(function(element){
+        pathway.elements.filter(function(element){
           return element.nodeType === 'GroupNode';
         }).forEach(function(group) {
           contents = groupContentsCandidates.filter(function(element){
@@ -1150,7 +1150,7 @@ pathvisiojs.data.gpml = function(){
               group.width = dimensions.width;
               group.height = dimensions.height;
               group.zIndex = dimensions.zIndex;
-              textElementsDescribingGroup = pathway.elementsNew.filter(function(element){
+              textElementsDescribingGroup = pathway.elements.filter(function(element){
                 return (element.describes === group.id);
               });
               if (textElementsDescribingGroup.length > 0) {
@@ -1164,16 +1164,16 @@ pathvisiojs.data.gpml = function(){
             });
           }
           else { // PathVisio-Java has a bug where it sometimes produces empty groups. Such groups are deleted here.
-            index = pathway.elementsNew.indexOf(group);
-            elementsBefore = pathway.elementsNew.slice(0,index);
-            elementsAfter = pathway.elementsNew.slice(index + 1, pathway.elementsNew.length);
-            pathway.elementsNew = elementsBefore.concat(elementsAfter);
+            index = pathway.elements.indexOf(group);
+            elementsBefore = pathway.elements.slice(0,index);
+            elementsAfter = pathway.elements.slice(index + 1, pathway.elements.length);
+            pathway.elements = elementsBefore.concat(elementsAfter);
           }
         });
-        pathway.elementsNew.sort(function(a, b) {
+        pathway.elements.sort(function(a, b) {
           return a.zIndex - b.zIndex;
         });
-        pathway.elementsNew.sort(function(a, b) {
+        pathway.elements.sort(function(a, b) {
           return a.zIndex - b.zIndex;
         });
 

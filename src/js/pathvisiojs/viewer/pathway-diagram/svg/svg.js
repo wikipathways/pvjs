@@ -439,7 +439,7 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
       function(callbackInside){
         var renderingArgs = {};
 
-        async.each(pathway.elementsNew, function(dataElement, callbackEach) {
+        async.each(pathway.elements, function(dataElement, callbackEach) {
           if (dataElement.graphicalType === 'path') {
             pathvisiojs.view.pathwayDiagram.svg.path.render(viewport, dataElement);
           }

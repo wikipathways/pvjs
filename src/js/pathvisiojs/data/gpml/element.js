@@ -156,6 +156,7 @@ pathvisiojs.data.gpml.element = function(){
     pvjsonElement.graphicalType = 'path';
     pvjsonText.graphicalType = 'text';
 
+
     var attributeDependencyOrder = [
       'GraphId',
       'GraphRef',
@@ -206,32 +207,37 @@ pathvisiojs.data.gpml.element = function(){
       },
     };
 
-    var attributeName, attributeListItem, attributeListItemName, attributeList = [];
-    for (i = 0; i < elementSelection[0][0].attributes.length; i++) {
-      attribute = elementSelection[0][0].attributes[i];
-      attributeName = attribute.name;
-      attributeListItem = {
-        name: attributeName,
-        value: attribute.value,
-        dependencyOrder: attributeDependencyOrder.indexOf(attributeName),
-      };
-      attributeList.push(attributeListItem);
-    }
-    attributeList.sort(function(a, b) {
-      return a.dependencyOrder - b.dependencyOrder;
-    });
-    attributeList.forEach(function(attributeListItem){
-      attributeListItemName = attributeListItem.name;
-      if (gpmlToPvjsonConverter.hasOwnProperty(attributeListItemName)) {
-        gpmlToPvjsonConverter[attributeListItemName](attributeListItem.value);
+    pathvisiojs.data.gpml.biopaxRef.getAllAsPvjson(elementSelection, function(publicationXrefs) {
+      if (!!publicationXrefs) {
+        pvjsonElement.publicationXrefs = publicationXrefs;
       }
-      else {
-        console.warn('Pathvisiojs has no handler for attribute "' + attributeListItemName + '"');
-        attributeListItemName = strcase.camelCase(attributeListItemName);
-        pvjsonElement[attributeListItemName] = attributeListItem.value;
+      var attributeName, attributeListItem, attributeListItemName, attributeList = [];
+      for (i = 0; i < elementSelection[0][0].attributes.length; i++) {
+        attribute = elementSelection[0][0].attributes[i];
+        attributeName = attribute.name;
+        attributeListItem = {
+          name: attributeName,
+          value: attribute.value,
+          dependencyOrder: attributeDependencyOrder.indexOf(attributeName),
+        };
+        attributeList.push(attributeListItem);
       }
+      attributeList.sort(function(a, b) {
+        return a.dependencyOrder - b.dependencyOrder;
+      });
+      attributeList.forEach(function(attributeListItem){
+        attributeListItemName = attributeListItem.name;
+        if (gpmlToPvjsonConverter.hasOwnProperty(attributeListItemName)) {
+          gpmlToPvjsonConverter[attributeListItemName](attributeListItem.value);
+        }
+        else {
+          console.warn('Pathvisiojs has no handler for attribute "' + attributeListItemName + '"');
+          attributeListItemName = strcase.camelCase(attributeListItemName);
+          pvjsonElement[attributeListItemName] = attributeListItem.value;
+        }
+      });
+      callback(pvjsonElement, pvjsonText);
     });
-    callback(pvjsonElement, pvjsonText);
   };
   //*/
 
