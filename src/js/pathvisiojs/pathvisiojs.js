@@ -28,7 +28,8 @@
 var pathvisiojs = {
   load: function(args) {
     var svg,
-      pathway;
+      pathway,
+      pathvisiojs = this;
 
     this.args = args;
     this.model = {};
