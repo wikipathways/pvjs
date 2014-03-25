@@ -1,15 +1,13 @@
-pathvisiojs.data.gpml = function(){
-  'use strict';
-
-  var defaults = {
+pathvisiojs.data.gpml = {
+  defaults: {
     'FontSize':{
       'Type':"FontSize",
       'Value':10
     }
-  };
+  },
 
   // Removes confusion of GroupId vs. GraphId by just using GraphId to identify containing elements
-  var addIsContainedByAttribute = function(gpmlSelection) {
+  addIsContainedByAttribute: function(gpmlSelection) {
     gpmlSelection.selectAll('Group').each(function() {
       var groupSelection = d3.select(this);
       var groupId = groupSelection.attr('GroupId');
@@ -22,9 +20,9 @@ pathvisiojs.data.gpml = function(){
       });
     });
     return gpmlSelection;
-  };
+  },
 
-  var selectByMultipleTagNames = function(args){
+  selectByMultipleTagNames: function(args){
     var gpmlSelection = args.gpmlSelection;
     var elementTags = args.elementTags;
     var elementsSelection;
@@ -41,10 +39,10 @@ pathvisiojs.data.gpml = function(){
       }
     });
     return elementsSelection;
-  };
+  },
 
   // Fills in implicit values
-  var makeExplicit = function(gpmlSelection) {
+  makeExplicit: function(gpmlSelection) {
     var groupSelection, groupGroupSelection, groupNoneSelection, groupPathwaySelection, groupComplexSelection, cellularComponentValue,
       groupGraphicsSelection, groupGroupGraphicsSelection, groupNoneGraphicsSelection, groupPathwayGraphicsSelection, groupComplexGraphicsSelection,
       graphId, graphIdStub, graphIdStubs = [];
@@ -61,7 +59,7 @@ pathvisiojs.data.gpml = function(){
       'GraphicalLine',
       'Group'
     ];
-    var graphicalElementsSelection = selectByMultipleTagNames(selectAllGraphicalElementsArgs);
+    var graphicalElementsSelection = this.selectByMultipleTagNames(selectAllGraphicalElementsArgs);
     // graphIdStub is whatever follows 'id' at the beginning of the GraphId string
     if (!!graphicalElementsSelection) {
       graphicalElementsSelection.filter(function(){
@@ -161,7 +159,7 @@ pathvisiojs.data.gpml = function(){
         'Shape',
         'State'
       ];
-      var nodesSelection = selectByMultipleTagNames(selectAllNodesArgs);
+      var nodesSelection = this.selectByMultipleTagNames(selectAllNodesArgs);
       if (!!nodesSelection) {
         var labelsSelection = gpmlSelection.selectAll('Label');
         if (!!labelsSelection) {
@@ -328,7 +326,7 @@ pathvisiojs.data.gpml = function(){
         'Interaction',
         'GraphicalLine'
       ];
-      var edgesSelection = selectByMultipleTagNames(selectAllEdgesArgs);
+      var edgesSelection = this.selectByMultipleTagNames(selectAllEdgesArgs);
 
       if (!!edgesSelection) {
         edgesSelection.each(function(){
@@ -381,9 +379,9 @@ pathvisiojs.data.gpml = function(){
     }
 
     return gpmlSelection;
-  };
+  },
 
-  function get(sourceData, callback) {
+  get: function(sourceData, callback) {
     var uri = sourceData.uri;
     var object = sourceData.object;
     var fileType = sourceData.fileType;
@@ -436,9 +434,9 @@ pathvisiojs.data.gpml = function(){
     else {
       throw new Error('Cannot get GPML from the specified input.');
     }
-  }
+  },
 
-  function gpmlColorAndShapeTypeToCss(gpmlColor, gpmlShapeType) {
+  gpmlColorAndShapeTypeToCss: function(gpmlColor, gpmlShapeType) {
     var result = {
       label:{
         color:null
@@ -449,16 +447,16 @@ pathvisiojs.data.gpml = function(){
       }
     };
     if (gpmlShapeType.toLowerCase() !== 'none') {
-      result.label.color = gpmlColorToCssColorNew(gpmlColor);
+      result.label.color = this.gpmlColorToCssColorNew(gpmlColor);
     }
     else {
-      result.color = gpmlColorToCssColorNew(gpmlColor); // color just means text-color in this case
+      result.color = this.gpmlColorToCssColorNew(gpmlColor); // color just means text-color in this case
       result.stroke = 'transparent';
     }
     return result;
-  }
+  },
 
-  function gpmlColorToCssColorNew(gpmlColor) {
+  gpmlColorToCssColorNew: function(gpmlColor) {
     var color;
     if (gpmlColor.toLowerCase() === 'transparent') {
       return 'transparent';
@@ -473,9 +471,9 @@ pathvisiojs.data.gpml = function(){
         return '#c0c0c0';
       }
     }
-  }
+  },
 
-  function gpmlColorToCssColor(gpmlColor, pathvisioDefault) {
+  gpmlColorToCssColor: function(gpmlColor, pathvisioDefault) {
     var color;
     if (gpmlColor !== pathvisioDefault) {
       if (!!gpmlColor) {
@@ -494,22 +492,22 @@ pathvisiojs.data.gpml = function(){
     else {
       return pathvisioDefault;
     }
-  }
+  },
 
-  function setColorAsJsonNew(jsonElement, currentGpmlColorValue) {
-    var jsonColor = gpmlColorToCssColorNew(currentGpmlColorValue);
+  setColorAsJsonNew: function(jsonElement, currentGpmlColorValue) {
+    var jsonColor = this.gpmlColorToCssColorNew(currentGpmlColorValue);
     jsonElement.color = jsonColor;
     jsonElement.borderColor = jsonColor;
     if (jsonElement.hasOwnProperty('text')) {
       jsonElement.text.color = jsonColor;
     }
     return jsonElement;
-  }
+  },
 
-  function setColorAsJson(jsonElement, currentGpmlColorValue, defaultGpmlColorValue) {
+  setColorAsJson: function(jsonElement, currentGpmlColorValue, defaultGpmlColorValue) {
     var jsonColor;
     if (currentGpmlColorValue !== defaultGpmlColorValue) {
-      jsonColor = gpmlColorToCssColor(currentGpmlColorValue, defaultGpmlColorValue);
+      jsonColor = this.gpmlColorToCssColor(currentGpmlColorValue, defaultGpmlColorValue);
       jsonElement.color = jsonColor;
       jsonElement.borderColor = jsonColor;
       if (jsonElement.hasOwnProperty('text')) {
@@ -517,11 +515,11 @@ pathvisiojs.data.gpml = function(){
       }
     }
     return jsonElement;
-  }
+  },
 
   // TODO can we delete this function?
 
-  function getLineStyle(gpmlElement) {
+  getLineStyle: function(gpmlElement) {
     var LineStyle, attributes;
     var graphics = gpmlElement.select('Graphics');
     if (!!graphics) {
@@ -554,9 +552,9 @@ pathvisiojs.data.gpml = function(){
         }
       }
     }
-  }
+  },
 
-  function getBorderStyleNew(gpmlLineStyle) {
+  getBorderStyleNew: function(gpmlLineStyle) {
 
     // Double-lined EntityNodes will be handled by using a symbol with double lines.
     // Double-lined edges will be rendered as single-lined, solid edges, because we
@@ -576,8 +574,9 @@ pathvisiojs.data.gpml = function(){
       console.warn('LineStyle "' + gpmlLineStyle + '" does not have a corresponding borderStyle. Using "solid"');
       return 'solid';
     }
-  }
-  function getBorderStyle(gpmlLineStyle, pathvisioDefault) {
+  },
+
+  getBorderStyle: function(gpmlLineStyle, pathvisioDefault) {
 
     // Double-lined EntityNodes will be handled by using a symbol with double lines.
     // Double-lined edges will be rendered as single-lined, solid edges, because we
@@ -611,15 +610,15 @@ pathvisiojs.data.gpml = function(){
       
       return 'whatever the default value is';
     }
-  }
+  },
 
-  function setBorderStyleAsJsonNew(jsonElement, currentGpmlLineStyleValue) {
-    var borderStyle = getBorderStyleNew(currentGpmlLineStyleValue);
+  setBorderStyleAsJsonNew: function(jsonElement, currentGpmlLineStyleValue) {
+    var borderStyle = this.getBorderStyleNew(currentGpmlLineStyleValue);
     jsonElement.borderStyle = borderStyle;
     return jsonElement;
-  }
+  },
 
-  function setBorderStyleAsJson(jsonElement, currentGpmlLineStyleValue, defaultGpmlLineStyleValue) {
+  setBorderStyleAsJson: function(jsonElement, currentGpmlLineStyleValue, defaultGpmlLineStyleValue) {
     var borderStyle;
 
     // this check happens twice because it doesn't make sense to have getBorderStyle() tell us
@@ -627,14 +626,14 @@ pathvisiojs.data.gpml = function(){
     // default here.
 
     if (currentGpmlLineStyleValue !== defaultGpmlLineStyleValue) {
-      borderStyle = getBorderStyle(currentGpmlLineStyleValue, defaultGpmlLineStyleValue);
+      borderStyle = this.getBorderStyle(currentGpmlLineStyleValue, defaultGpmlLineStyleValue);
       jsonElement.borderStyle = borderStyle;
     }
     return jsonElement;
-  }
+  },
 
-  function toPvjson(gpml, pathwayIri, callbackOutside){
-    var gpmlSelection = addIsContainedByAttribute(makeExplicit(d3.select(gpml)));
+  toPvjson: function(gpml, pathwayIri, callbackOutside){
+    var gpmlSelection = this.addIsContainedByAttribute(this.makeExplicit(d3.select(gpml)));
     //var gpmlSelection = d3.select(gpml).select('Pathway');
 
     // for doing this in Java, we could look at 
@@ -937,7 +936,7 @@ pathvisiojs.data.gpml = function(){
               //pathway.DataNode = [];
               dataNodesSelection.each(function() {
                 dataNodeSelection = d3.select(this);
-                pathvisiojs.data.gpml.dataNode.toPvjson(gpmlSelection, dataNodeSelection, function(pvjsonElements) {
+                pathvisiojs.data.gpml.dataNode.toPvjson(pathway, gpmlSelection, dataNodeSelection, function(pvjsonElements) {
                   /*
                   console.log('jsonDataNode');
                   console.log(jsonDataNode);
@@ -1265,22 +1264,7 @@ pathvisiojs.data.gpml = function(){
       throw new Error('Pathvisiojs does not support the data format provided. Please convert to GPML and retry.');
     }
   }
-
-  return {
-    get:get,
-    toPvjson:toPvjson,
-    getLineStyle:getLineStyle,
-    getBorderStyleNew:getBorderStyleNew,
-    setBorderStyleAsJsonNew:setBorderStyleAsJsonNew,
-    getBorderStyle:getBorderStyle,
-    setBorderStyleAsJson:setBorderStyleAsJson,
-    gpmlColorToCssColor:gpmlColorToCssColor,
-    gpmlColorToCssColorNew:gpmlColorToCssColorNew,
-    setColorAsJsonNew:setColorAsJsonNew,
-    setColorAsJson:setColorAsJson,
-    makeExplicit:makeExplicit
-  };
-}();
+};
 
 // TODO hack required because we call ...node.anchors.toPvjson() before we
 // call the other ...node.toPvjson() methods

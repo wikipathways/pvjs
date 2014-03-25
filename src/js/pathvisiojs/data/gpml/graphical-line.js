@@ -30,6 +30,7 @@ pathvisiojs.data.gpml.graphicalLine = function(){
       pathvisiojs.data.gpml.graphics.toPvjson(gpmlSelection, graphicalLineSelection, pvjsonPath, pvjsonText, function(pvjsonPath, updatedPvjsonText) {
         pathvisiojs.data.gpml.point.toPvjson(gpmlSelection, graphicalLineSelection, pvjsonPath, function(pvjsonPath) {
           pathvisiojs.data.gpml.anchor.toPvjson(gpmlSelection, graphicalLineSelection, pvjsonPath, function(pvjsonAnchor) {
+
             pvjsonElements = [pvjsonPath].concat(pvjsonAnchor);
             callback(pvjsonElements);
           });
