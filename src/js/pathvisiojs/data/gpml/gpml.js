@@ -642,7 +642,7 @@ pathvisiojs.data.gpml = {
     console.log('GPML');
     console.log(gpml);
 
-    var pathway = {};
+    var pathway = this.model;
     pathway.xmlns = gpmlSelection.attr('xmlns');
     //pathway.nodes = [];
     //pathway.edges = [];

@@ -3,7 +3,6 @@ pathvisiojs.data = {
   // GPML or has no type specified, into JSON.
   // TODO Later, this functionality can be extended to include other data types and
   // to test for data type when it is not specified.
-  model: this.model,
   get: function(sourceData, callback) {
     console.log('model in data');
     console.log(this.model);

@@ -199,7 +199,6 @@ pathvisiojs.data.gpml.interaction = {
           pathvisiojs.data.gpml.point.toPvjson(gpmlSelection, interactionSelection, pvjsonPath, function(pvjsonPath) {
             pathvisiojs.data.gpml.anchor.toPvjson(gpmlSelection, interactionSelection, pvjsonPath, function(pvjsonAnchor) {
               pvjsonElements = [pvjsonPath].concat(pvjsonAnchor);
-              model.elements = model.elements.concat(pvjsonElements);
               callback(pvjsonElements);
             });
           });
