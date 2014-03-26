@@ -254,7 +254,7 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
       },
       function(svg, callback) {
         if (!!args.customMarkers) {
-          pathvisiojs.view.pathwayDiagram.svg.edge.marker.loadAllCustom(svg, customMarkers, function() {
+          pathvisiojs.view.pathwayDiagram.svg.marker.loadAllCustom(svg, customMarkers, function() {
             callback(null, svg);
           });
         }

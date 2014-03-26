@@ -35,7 +35,7 @@ var pvjsSources = [
   'src/js/pathvisiojs/viewer/pathway-diagram/svg/node/group-node.js',
   'src/js/pathvisiojs/viewer/pathway-diagram/svg/node/use-element.js',
   'src/js/pathvisiojs/viewer/pathway-diagram/svg/edge/edge.js',
-  'src/js/pathvisiojs/viewer/pathway-diagram/svg/edge/marker.js',
+  'src/js/pathvisiojs/viewer/pathway-diagram/svg/marker/marker.js',
   'src/js/pathvisiojs/viewer/pathway-diagram/img/img.js',
   'src/js/pathvisiojs/viewer/pathway-diagram/svg/path/path.js',
   'src/js/pathvisiojs/viewer/pathway-diagram/svg/path/arc.js',
