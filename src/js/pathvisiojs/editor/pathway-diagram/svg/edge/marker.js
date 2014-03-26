@@ -1,4 +1,4 @@
-pathvisiojs.view.pathwayDiagram.svg.edge.marker = function(){
+pathvisiojs.view.pathwayDiagram.svg.marker = function(){
   'use strict';
 
   // the way SVG works makes this code more complex than it should need to be. Essentially, we
@@ -220,8 +220,8 @@ pathvisiojs.view.pathwayDiagram.svg.edge.marker = function(){
       semanticName = customMarker.semanticName;
       markerUri = customMarker.uri;
       paramCaseUri = strcase.paramCase(markerUri);
-      pathvisiojs.view.pathwayDiagram.svg.edge.marker.semanticNameToIdMapping[semanticName] = paramCaseUri;
-      pathvisiojs.view.pathwayDiagram.svg.edge.marker.colorsAvailable[paramCaseUri] = ['default'];
+      pathvisiojs.view.pathwayDiagram.svg.marker.semanticNameToIdMapping[semanticName] = paramCaseUri;
+      pathvisiojs.view.pathwayDiagram.svg.marker.colorsAvailable[paramCaseUri] = ['default'];
       if (uniqueMarkerShapeUris.indexOf(markerUri) === -1) {
         uniqueMarkerShapeUris.push(markerUri);
       }
@@ -236,7 +236,7 @@ pathvisiojs.view.pathwayDiagram.svg.edge.marker = function(){
   function appendNonDefaultColorMarkerBothEnds(svg, markerIdStub, color, callback) {
     appendNonDefaultColorMarker(svg, markerIdStub, 'start', color, function() {
       appendNonDefaultColorMarker(svg, markerIdStub, 'end', color, function() {
-        pathvisiojs.view.pathwayDiagram.svg.edge.marker.colorsAvailable[markerIdStub].push(color);
+        pathvisiojs.view.pathwayDiagram.svg.marker.colorsAvailable[markerIdStub].push(color);
         callback();
       });
     });

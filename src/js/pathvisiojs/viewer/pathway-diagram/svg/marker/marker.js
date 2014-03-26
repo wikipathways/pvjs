@@ -1,5 +1,4 @@
-pathvisiojs.view.pathwayDiagram.svg.edge.marker = function(){
-  'use strict';
+pathvisiojs.view.pathwayDiagram.svg.marker = {
 
   // the way SVG works makes this code more complex than it should need to be. Essentially, we
   // are trying to reuse the markers defined in the SVG template, but we also need to be able
@@ -7,9 +6,7 @@ pathvisiojs.view.pathwayDiagram.svg.edge.marker = function(){
   // template svg, whether it is at the start or end of a path and whether
   // a color other than black (the color specified in the template) is desired.
 
-  var svg;
-
-  var semanticNameToIdMapping = {
+  semanticNameToIdMapping: {
     'arrow':'shape-library-markers-arrow-svg',
     'necessary-stimulation':'shape-library-markers-mim-necessary-stimulation-svg',
     'binding':'shape-library-markers-mim-binding-svg',
@@ -40,9 +37,9 @@ pathvisiojs.view.pathwayDiagram.svg.edge.marker = function(){
     'mim-gap':'shape-library-markers-mim-gap-svg',
     't-bar':'shape-library-markers-t-bar-svg',
     'none':'shape-library-markers-none-svg'
-  };
+  },
 
-  var colorsAvailable = {
+  colorsAvailable: {
     'shape-library-markers-arrow-svg':['default'],
     'shape-library-markers-mim-necessary-stimulation-svg':['default'],
     'shape-library-markers-mim-binding-svg':['default'],
@@ -59,29 +56,13 @@ pathvisiojs.view.pathwayDiagram.svg.edge.marker = function(){
     'shape-library-markers-mim-branching-left-svg':['default'],
     'shape-library-markers-mim-branching-right-svg':['default'],
     'shape-library-markers-none-svg':['default']
-  };
+  },
 
-  function appendCustom(uniqueMarkerShapeUri, callback) {
-    var idStub = strcase.paramCase(uniqueMarkerShapeUri);
-    var startId = idStub + '-start-default';
-    var endId = idStub + '-end-default';
-    var markerStart = svg.select('defs').select('#' + startId);
-
-    markerStart = svg.select('defs').append('marker')
-    .attr('id', startId)
-    .attr('preserveAspectRatio', 'none');
-    processSvg(uniqueMarkerShapeUri, markerStart, startId, false);
-
-    var markerEnd = svg.select('defs').select('#' + endId);
-    markerEnd = svg.select('defs').append('marker')
-    .attr('id', endId)
-    .attr('preserveAspectRatio', 'none');
-    processSvg(uniqueMarkerShapeUri, markerEnd, endId, true);
-
-    callback(null);
-  }
-
-  function processSvg(uniqueMarkerShapeUri, marker, markerId, rotate){
+  processSvg: function(uniqueMarkerShapeUri, marker, markerId, rotate){
+    console.log('thisprocessSvg');
+    console.log(this);
+    // TODO avoid repeating svg selection
+    var svg = d3.select('svg');
     d3.xml(uniqueMarkerShapeUri, 'image/svg+xml', function(svgXml) {
       var newMarker = d3.select(svgXml.documentElement);
       var width = newMarker.attr('width');
@@ -129,7 +110,8 @@ pathvisiojs.view.pathwayDiagram.svg.edge.marker = function(){
         g.appendChild(newMarkerChildren[0]);
       } while (newMarkerChildren.length > 0);
     });
-  }
+    return svg;
+  },
 
 //    }
 //    else {
@@ -202,15 +184,48 @@ pathvisiojs.view.pathwayDiagram.svg.edge.marker = function(){
   }
 */
 
-  function loadAllCustom(thisSvg, customMarkers, callback) {
+
+
+  loadAllCustom: function(thisSvg, customMarkers, callback) {
+    console.log('thisloadAllCustom');
+    console.log(this);
     console.log('thisSvg');
     console.log(thisSvg);
-    svg = thisSvg;
+
+    var markerProcessor = this;
+    var semanticNameToIdMapping = this.semanticNameToIdMapping;
+    var colorsAvailable = this.colorsAvailable;
+    var svg = thisSvg;
     var image = null;
     var img = null;
     var marker = null;
     var dimensions = null;
     var dimensionSet = [];
+
+    var appendCustom = function(uniqueMarkerShapeUri, callback) {
+      console.log('thisappendCustom');
+      console.log(this);
+      console.log(markerProcessor);
+      // TODO avoid repeating svg selection
+      var svg = d3.select('svg');
+      var idStub = strcase.paramCase(uniqueMarkerShapeUri);
+      var startId = idStub + '-start-default';
+      var endId = idStub + '-end-default';
+      var markerStart = svg.select('defs').select('#' + startId);
+
+      markerStart = svg.select('defs').append('marker')
+      .attr('id', startId)
+      .attr('preserveAspectRatio', 'none');
+      markerProcessor.processSvg(uniqueMarkerShapeUri, markerStart, startId, false);
+
+      var markerEnd = svg.select('defs').select('#' + endId);
+      markerEnd = svg.select('defs').append('marker')
+      .attr('id', endId)
+      .attr('preserveAspectRatio', 'none');
+      markerProcessor.processSvg(uniqueMarkerShapeUri, markerEnd, endId, true);
+
+      callback(null);
+    };
 
     var semanticName;
     var markerUri;
@@ -220,8 +235,8 @@ pathvisiojs.view.pathwayDiagram.svg.edge.marker = function(){
       semanticName = customMarker.semanticName;
       markerUri = customMarker.uri;
       paramCaseUri = strcase.paramCase(markerUri);
-      pathvisiojs.view.pathwayDiagram.svg.edge.marker.semanticNameToIdMapping[semanticName] = paramCaseUri;
-      pathvisiojs.view.pathwayDiagram.svg.edge.marker.colorsAvailable[paramCaseUri] = ['default'];
+      semanticNameToIdMapping[semanticName] = paramCaseUri;
+      colorsAvailable[paramCaseUri] = ['default'];
       if (uniqueMarkerShapeUris.indexOf(markerUri) === -1) {
         uniqueMarkerShapeUris.push(markerUri);
       }
@@ -231,18 +246,24 @@ pathvisiojs.view.pathwayDiagram.svg.edge.marker = function(){
         // if any of the saves produced an error, err would equal that error
       callback(null);
     });
-  }
+  },
 
-  function appendNonDefaultColorMarkerBothEnds(svg, markerIdStub, color, callback) {
+  appendNonDefaultColorMarkerBothEnds: function(svg, markerIdStub, color, callback) {
+    console.log('thisappendNonDefaultColorMarkerBothEnds');
+    console.log(this);
+    var colorsAvailable = this.colorsAvailable;
+    var appendNonDefaultColorMarker = this.appendNonDefaultColorMarker;
     appendNonDefaultColorMarker(svg, markerIdStub, 'start', color, function() {
       appendNonDefaultColorMarker(svg, markerIdStub, 'end', color, function() {
-        pathvisiojs.view.pathwayDiagram.svg.edge.marker.colorsAvailable[markerIdStub].push(color);
+        colorsAvailable[markerIdStub].push(color);
         callback();
       });
     });
-  }
+  },
 
-  function appendNonDefaultColorMarker(svg, markerIdStub, position, color, callback) {
+  appendNonDefaultColorMarker: function(svg, markerIdStub, position, color, callback) {
+    console.log('thisappendNonDefaultColorMarker');
+    console.log(this);
     var defaultId = markerIdStub + '-' + position + '-default';
     var marker = pathvisiojs.utilities.cloneNode('#' + defaultId);
 
@@ -279,11 +300,4 @@ pathvisiojs.view.pathwayDiagram.svg.edge.marker = function(){
 
     callback(markerId);
   }
- 
-  return {
-    appendNonDefaultColorMarkerBothEnds:appendNonDefaultColorMarkerBothEnds,
-    loadAllCustom:loadAllCustom,
-    semanticNameToIdMapping:semanticNameToIdMapping,
-    colorsAvailable:colorsAvailable
-  };
-}();
+};

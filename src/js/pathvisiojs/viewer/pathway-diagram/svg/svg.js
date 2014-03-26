@@ -45,7 +45,7 @@ pathvisiojs.view.pathwayDiagram.svg = {
             preloadDiagramArgs.cssUri = cssUri;
             //preloadDiagramArgs.customSymbols = customSymbols;
 
-            pathvisiojs.view.pathwayDiagram.svg.loadPartials(preloadDiagramArgs, function(svg) {
+            svgRenderer.loadPartials(preloadDiagramArgs, function(svg) {
               if (!svg) {
                 throw new Error("Could not load SVG template.");
               }
@@ -79,7 +79,7 @@ pathvisiojs.view.pathwayDiagram.svg = {
         });
       },
       function(svg, pathway, callback){
-        pathvisiojs.view.pathwayDiagram.svg.renderWithCachedData(svg, pathway, function() {
+        svgRenderer.renderWithCachedData(svg, pathway, function() {
           svg.attr('style', 'display:inline');
           callback(null, svg);
         });
@@ -87,7 +87,7 @@ pathvisiojs.view.pathwayDiagram.svg = {
       function(svg, callback) {
         if (!!highlights) {
           highlights.forEach(function(highlight) {
-            pathvisiojs.view.pathwayDiagram.svg.node.highlight(highlight);
+            svgRenderer.node.highlight(highlight);
           });
         }
 
@@ -196,7 +196,7 @@ pathvisiojs.view.pathwayDiagram.svg = {
              console.warn('Error: No data node value entered.');
              }
              else {
-             pathvisiojs.view.pathwayDiagram.svg.node.highlightByLabel(svg, nodeLabel);
+             svgRenderer.node.highlightByLabel(svg, nodeLabel);
              }
              });
           //*/
@@ -213,12 +213,12 @@ pathvisiojs.view.pathwayDiagram.svg = {
               // TODO refactor this so it calls a generic highlightDataNodeByLabel function that can call
               // a highlighter for svg, png, etc. as appropriate.
 
-              pathvisiojs.view.pathwayDiagram.svg.node.highlightByLabel(svg, pathway, nodeLabel);
+              svgRenderer.node.highlightByLabel(svg, pathway, nodeLabel);
             }
           });
 
           d3.select('#clear-highlights-from-typeahead').on('click', function() {
-            pathvisiojs.view.pathwayDiagram.svg.node.clearHighlightsFromTypeahead();
+            svgRenderer.node.clearHighlightsFromTypeahead();
           });
           callback(null, svg);
         }
@@ -229,7 +229,59 @@ pathvisiojs.view.pathwayDiagram.svg = {
     });
   },
 
+  generateSvgTemplate: function (callback) {
+    var docFragment = document.createDocumentFragment();
+    var svg = d3.select(docFragment).append('svg').
+    attr('id', 'pathvisiojs-diagram').
+    attr('version', '1.1').
+    attr('baseProfile', 'full').
+    attr('xmlns', 'http://www.w3.org/2000/svg').
+    attr('xmlns:xmlns:xlink', 'http://www.w3.org/1999/xlink').
+    attr('xmlns:xmlns:ev', 'http://www.w3.org/2001/xml-events').
+    attr('width', '100%').
+    attr('height', '100%').
+    attr('style', 'display: none; ');
+
+    var g = svg.append('g');
+
+    var title = svg.append('title').
+    text('pathvisiojs diagram');
+
+    var desc = g.append('desc').
+    text('This SVG file contains all the graphical elements (markers and symbols in defs as well as\nstyle data) used by the program pathvisiojs, which has two components:\n1) a viewer for transforming GPML biological pathway data into an SVG visual representation and\n2) an editor for creating both views and models for biological pathways.');
+
+    var defs = svg.append('defs');
+
+    // TODO can we delete this filter?
+    var filter = svg.append('filter').
+    attr('id', 'highlight').
+    attr('width', '150%').
+    attr('height', '150%');
+
+    filter.append('feOffset').
+    attr('result', 'offOut').
+    attr('in', 'SourceGraphic').
+    attr('dx', '30').
+    attr('dy', '30');
+
+    filter.append('feGaussianBlur').
+    attr('result', 'blurOut').
+    attr('in', 'offOut').
+    attr('stdDeviation', '10');
+
+    filter.append('feBlend').
+    attr('in', 'SourceGraphic').
+    attr('in2', 'blurOut').
+    attr('mode', 'normal');
+
+    var viewport = svg.append('g').
+    attr('id', 'viewport');
+    callback(docFragment);
+  },
+
   loadPartials: function(args, callbackOutside) {
+    var svgRenderer = this;
+    var svgTemplateGenerator = this.generateSvgTemplate;
     var diagramContainer = args.container,
       customMarkers = args.customMarkers,
       //customSymbols = args.customSymbols,
@@ -239,15 +291,18 @@ pathvisiojs.view.pathwayDiagram.svg = {
       function(callback) {
         var svg = diagramContainer.append('div').html(pathvisioNS['tmp/pathvisiojs.svg']).select('#pathvisiojs-diagram')
         .attr('preserveAspectRatio', 'xMidYMid');
-        
-        console.log('svg');
-        console.log(svg);
 
-        callback(null, svg);
+        svgTemplateGenerator(function(svgTemplate) {
+          console.log('svgTemplate');
+          console.log(svgTemplate);
+          console.log('svg');
+          console.log(svg);
+          callback(null, svg);
+        });
       },
       function(svg, callback) {
         if (!!args.customMarkers) {
-          pathvisiojs.view.pathwayDiagram.svg.edge.marker.loadAllCustom(svg, customMarkers, function() {
+          svgRenderer.marker.loadAllCustom(svg, customMarkers, function() {
             callback(null, svg);
           });
         }
@@ -258,7 +313,7 @@ pathvisiojs.view.pathwayDiagram.svg = {
       /*
       function(callback) {
         if (!!args.customSymbols) {
-          pathvisiojs.view.pathwayDiagram.svg.symbol.loadAllCustom(svg, customSymbols, function() {
+          svgRenderer.symbol.loadAllCustom(svg, customSymbols, function() {
             callback(null);
           })
         }
@@ -318,7 +373,7 @@ pathvisiojs.view.pathwayDiagram.svg = {
 
     var viewport = svg.select('#viewport');
 
-    pathvisiojs.view.pathwayDiagram.svg.infoBox.render(viewport, pathway);
+    svgRenderer.infoBox.render(viewport, pathway);
 
     var renderArgs = {};
     renderArgs.svg = svg;
@@ -331,14 +386,14 @@ pathvisiojs.view.pathwayDiagram.svg = {
 
         async.each(pathway.elements, function(dataElement, callbackEach) {
           if (dataElement.graphicalType === 'path') {
-            pathvisiojs.view.pathwayDiagram.svg.path.render(viewport, dataElement);
+            svgRenderer.path.render(viewport, dataElement);
           }
           else if (dataElement.graphicalType === 'text') {
-            pathvisiojs.view.pathwayDiagram.svg.text.render(viewport, dataElement);
+            svgRenderer.text.render(viewport, dataElement);
           }
           else if (dataElement.graphicalType === 'image') {
             /*
-            pathvisiojs.view.pathwayDiagram.svg.node.groupNode.render(renderingArgs, function(groupContainer, groupContents) {
+            svgRenderer.node.groupNode.render(renderingArgs, function(groupContainer, groupContents) {
               // TODO this used to render the group contents, but now the callback does nothing
             });
             //*/

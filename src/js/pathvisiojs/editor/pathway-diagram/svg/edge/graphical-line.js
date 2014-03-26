@@ -92,7 +92,7 @@ pathvisiojs.view.pathwayDiagram.svg.edge.graphicalLine = function(){
         return style;
       })
       .attr("marker-start", function (data) {
-        var markerStart = pathvisiojs.view.pathwayDiagram.svg.edge.marker.render(viewport, data.markerStart, 'start', data.stroke);
+        var markerStart = pathvisiojs.view.pathwayDiagram.svg.marker.render(viewport, data.markerStart, 'start', data.stroke);
         if (data.hasOwnProperty('strokeStyle')) {
           if (data.strokeStyle === 'double') {
             //hack to manage marker scaling; this marker should not have any features itself
@@ -102,7 +102,7 @@ pathvisiojs.view.pathwayDiagram.svg.edge.graphicalLine = function(){
         return 'url(#' + markerStart + ')';
       })
       .attr("marker-end", function (data) {
-        var markerEnd = pathvisiojs.view.pathwayDiagram.svg.edge.marker.render(viewport, data.markerEnd, 'end', data.stroke);
+        var markerEnd = pathvisiojs.view.pathwayDiagram.svg.marker.render(viewport, data.markerEnd, 'end', data.stroke);
         if (data.hasOwnProperty('strokeStyle')) {
           if (data.strokeStyle === 'double') {
             //hack to manage marker scaling; this marker should not have any features itself
@@ -130,8 +130,8 @@ pathvisiojs.view.pathwayDiagram.svg.edge.graphicalLine = function(){
             .attr("d", pathData)
             .attr("class", "stroke-color-equals-default-fill-color")
             .attr("style", "stroke-width:" + data.strokeWidth + '; ')
-            .attr("marker-start", 'url(#' + pathvisiojs.view.pathwayDiagram.svg.edge.marker.render(viewport, data.markerStart, 'start', data.stroke) + ')')
-            .attr("marker-end", 'url(#' + pathvisiojs.view.pathwayDiagram.svg.edge.marker.render(viewport, data.markerEnd, 'end', data.stroke) + ')');
+            .attr("marker-start", 'url(#' + pathvisiojs.view.pathwayDiagram.svg.marker.render(viewport, data.markerStart, 'start', data.stroke) + ')')
+            .attr("marker-end", 'url(#' + pathvisiojs.view.pathwayDiagram.svg.marker.render(viewport, data.markerEnd, 'end', data.stroke) + ')');
           }
         }
         return pathData;
