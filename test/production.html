@@ -49,11 +49,13 @@
     <script src="../demos/lib/typeahead/js/typeahead.min.js"></script>
     <script src="../demos/lib/modernizr/js/modernizr.min.js"></script>
     <script src="../demos/lib/jsonld/js/jsonld.min.js"></script>
+    <script src="../demos/lib/he/he.min.js"></script>
     <script src="../demos/lib/pathvisiojs/js/pathvisiojs.min.js"></script>
     <script src="./compare.js"></script>
 
     <script>
       var Modernizr = Modernizr || {};
+      var pathvisiojsInstance1;
       async.waterfall([
         function(callback) {
           developmentLoader.parseUriParams(function(parsedInputData) {
@@ -65,7 +67,8 @@
           /* Load pathvisiojs
           /* *******************/
 
-          pathvisiojs.load({
+          pathvisiojsInstance1 = Object.create(pathvisiojs);
+          pathvisiojsInstance1.load({
             container: '#production-container', //as of now, this can only be a CSS selector: http://www.w3.org/TR/CSS2/selector.html
             fitToContainer:true, //A fitToContainer value of false means that the diagram should be the size specified by the diagram creator, without any scaling (full size as per GPML width and height). A value of true means that diagram should be scaled down, if required, to fit entirely within the element specified by the container selector, while preserving aspect ratio. 
             sourceData:parsedInputData.sourceData, //at least one element required

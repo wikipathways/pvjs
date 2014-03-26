@@ -44,7 +44,7 @@ pathvisiojs.view.pathwayDiagram.svg.text = function(){
   }
 
   function render(parent, data) {
-    //*
+    /*
     console.log('****************');
     console.log('parent');
     console.log(parent);

@@ -150,6 +150,10 @@ grunt.initConfig({
       modernizr: {
         src: [ './lib/modernizr/modernizr.js' ],
         dest: distLibDir + 'modernizr/js/modernizr.min.js'
+      },
+      he: {
+        src:  [ './lib/he/he.js' ],
+        dest: distLibDir + 'he/he.min.js'
       }
     },
     watch: {
