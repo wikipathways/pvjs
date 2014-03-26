@@ -1,7 +1,8 @@
-pathvisiojs.view.pathwayDiagram.svg.publicationXref = function(){
-  'use strict';
+pathvisiojs.view.pathwayDiagram.svg.publicationXref = {
 
-  function getReferenceNumberForDisplay(pathway, rdfId) {
+  getReferenceNumberForDisplay: function(rdfId) {
+    var publicationXrefInstance = this;
+    var model = publicationXrefInstance.model;
     var displayNumberForDisplay = null;
     var i = -1;
     var currentPublicationXref;
@@ -9,23 +10,23 @@ pathvisiojs.view.pathwayDiagram.svg.publicationXref = function(){
 
     do {
       i += 1;
-      currentPublicationXref = pathway.Biopax.PublicationXref[i];
+      currentPublicationXref = model.Biopax.PublicationXref[i];
       if (typeof currentPublicationXref != 'undefined'){
         if (currentPublicationXref.rdfId === rdfId) {
           found = true;
           displayNumberForDisplay = i + 1;
         }
       }
-    } while (found === false && i < pathway.Biopax.PublicationXref.length);
+    } while (found === false && i < model.Biopax.PublicationXref.length);
 
     return displayNumberForDisplay;
-  }
+  },
 
   // Create a string of citation numbers for display,
   // delimited by commas, and
   // replacing any consecutive series of numbers with the
   // first and last joined by a hyphen.
-  function createPublicationXrefString(displayNumbers) {
+  createPublicationXrefString: function(displayNumbers) {
     var publicationXrefString;
     if (displayNumbers.length === 1) {
       publicationXrefString = displayNumbers[0];
@@ -69,69 +70,82 @@ pathvisiojs.view.pathwayDiagram.svg.publicationXref = function(){
     }
 
     return publicationXrefString;
-  }
+  },
 
-  function getPublicationXrefString(pathway, rdfIds, callback) {
+  getPublicationXrefString: function(rdfIds, callback) {
+    var publicationXrefInstance = this;
+    var model = publicationXrefInstance.model;
     var displayNumbers = [];
     var publicationXrefString = '';
     // make sure it's an array
     rdfIds = pathvisiojs.utilities.convertToArray(rdfIds);
     rdfIds.forEach(function(rdfId) {
-      var num = getReferenceNumberForDisplay(pathway, rdfId);
+      var num = publicationXrefInstance.getReferenceNumberForDisplay(rdfId);
       if(!!num) {
-        displayNumbers.push(num); 
-      }	
+        displayNumbers.push(num);
+      }
     });
     if (displayNumbers.length > 0){
-      publicationXrefString = createPublicationXrefString(displayNumbers);
+      publicationXrefString = publicationXrefInstance.createPublicationXrefString(displayNumbers);
     }
     callback(publicationXrefString);
-  }
+  },
 
-  function render(target, targetType, pathway, rdfIds) {
+  //function render(target, targetType, pathway, rdfIds) {
+  render: function(containerSelection, targetData) {
+    var publicationXrefInstance = this,
+      translateX,
+      translateY;
     /* targetType can be any of the following:
      * node
      * edge
      * not currently but maybe in the future: diagram (applies to the whole pathway)
     //*/
 
-    var viewport, text;
-    getPublicationXrefString(pathway, rdfIds, function(publicationXrefString) {
-      if (targetType === 'node') {
-	var nodeWidth = target[0][0]['__data__'].width;
-	var textLength = publicationXrefString.toString().length;
-	var offset = nodeWidth - textLength *3 / 2 - 2;
-        target.append('text')
+    var text;
+    publicationXrefInstance.getPublicationXrefString(targetData.publicationXrefs, function(publicationXrefString) {
+      var textLength = publicationXrefString.toString().length;
+      if (targetData.networkType === 'node') {
+        var nodeWidth = targetData.width;
+        var offsetX = nodeWidth - textLength * 3 / 2 - 2;
+        translateX = targetData.x + offsetX;
+        translateY = targetData.y - 4;
+        containerSelection.append('text')
         .attr('class', 'citation')
-        .attr('transform', function(d) {return 'translate('+offset+' -4)';})
+        .attr('transform', function(d) {return 'translate(' + translateX + ' ' + translateY + ')';})
         .text(publicationXrefString);
       }
       else {
-
         // TODO don't repeat svg definition
-        viewport = d3.select('svg > #viewport');
-        if (targetType === 'edge') {
-          viewport = d3.select('svg > #viewport');
-          text = viewport.append('text')
-          .attr('class', 'citation')
-          .attr('transform', function(d) {return 'translate(0 -10)';});
+        if (targetData.networkType === 'edge') {
+          var publicationXrefPosition = 0.5;
+          var edgeElement = d3.select('#' + targetData.id)[0][0];
+          var totalLength = edgeElement.getTotalLength();
+          var point = edgeElement.getPointAtLength(publicationXrefPosition * totalLength);
+          var offset = -4;
+          translateX = point.x + offset - textLength * 3;
+          translateY = point.y + offset;
 
+          text = containerSelection.append('text')
+          .attr('class', 'citation')
+          .attr('transform', function(d) {return 'translate(' + translateX + ' ' + translateY + ')';})
+          .text(publicationXrefString);
+
+          /*
+           * This had a problem with displaying text upside down sometimes,
+           * depending on the orientation of the associated edge
           text.append('textPath')
-          .attr('xlink:xlink:href', '#' + target)
+          .attr('xlink:xlink:href', '#' + targetData.id)
           .attr('startOffset', '50%')
           .text(publicationXrefString);
+          //*/
 
         }
         else {
-          throw new Error('Pathvisiojs cannot render a citation for targets of this type: ' + targetType);
+          throw new Error('Pathvisiojs cannot render a citation for targets of this type: ' + targetData.networkType);
         }
       }
-    })
+    });
 
   }
-
-  return {
-    getPublicationXrefString:getPublicationXrefString,
-    render:render
-  };
-}();
+};

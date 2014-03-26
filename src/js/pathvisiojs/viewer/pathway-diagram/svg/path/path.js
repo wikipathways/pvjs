@@ -23,6 +23,9 @@ pathvisiojs.view.pathwayDiagram.svg.path = function(){
       var path = parent.append('path');
 
       var pathRenderer = {
+        id: function(idValue){
+          path.attr('id', idValue);
+        },
         strokeDasharray: function(strokeDasharrayValue){
           path.attr('stroke-dasharray', strokeDasharrayValue);
         },

@@ -5,7 +5,8 @@ pathvisiojs.data.gpml.label = function(){
     var pvjsonPath = {},
       pvjsonText = {};
 
-    pvjsonPath.nodeType = "Label";
+    pvjsonPath.networkType = 'node';
+    pvjsonPath.nodeType = 'Label';
 
     pathvisiojs.data.gpml.element.toPvjson(gpmlSelection, labelSelection, pvjsonPath, function(pvjsonPath, pvjsonText) {
       pathvisiojs.data.gpml.graphics.toPvjson(gpmlSelection, labelSelection, pvjsonPath, pvjsonText, function(pvjsonPath, updatedPvjsonText) {

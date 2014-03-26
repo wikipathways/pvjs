@@ -30,6 +30,7 @@ pathvisiojs.data.gpml.anchor = function() {
       pvjsonAnchor.gpmlType = 'Anchor';
       pvjsonAnchor.isAttachedTo = pvjsonEdge.id;
       pvjsonAnchor.zIndex = pvjsonEdge.zIndex + 0.1;
+      pvjsonAnchor.networkType = 'node';
 
       pathvisiojs.data.gpml.element.toPvjson(gpmlSelection, anchorSelection, pvjsonAnchor, function(pvjsonAnchor, pvjsonText) {
         pathvisiojs.data.gpml.graphics.toPvjson(gpmlSelection, anchorSelection, pvjsonAnchor, pvjsonText, function(pvjsonAnchor, updatedPvjsonText) {

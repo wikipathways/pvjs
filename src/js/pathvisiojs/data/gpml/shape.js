@@ -3,6 +3,7 @@ pathvisiojs.data.gpml.shape = function(){
 
   function toPvjson(gpmlSelection, shapeSelection, callback) {
     var pvjsonPath = {};
+    pvjsonPath.networkType = 'node';
     pvjsonPath.nodeType = "Shape";
 
     pathvisiojs.data.gpml.element.toPvjson(gpmlSelection, shapeSelection, pvjsonPath, function(pvjsonPath, pvjsonText) {
