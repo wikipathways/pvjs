@@ -4,7 +4,8 @@ pathvisiojs.data.gpml.state = function(){
   var toPvjson = function(gpmlSelection, stateSelection, callback) {
     var pvjsonPath = {},
       pvjsonText = {};
-    pvjsonPath.nodeType = "State";
+    pvjsonPath.networkType = 'node';
+    pvjsonPath.nodeType = 'State';
     /*
     console.log('stateSelection');
     console.log(stateSelection[0][0]);

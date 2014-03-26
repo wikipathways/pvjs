@@ -49,6 +49,7 @@ pathvisiojs.data.gpml.group = {
       model = this.model;
 
     pvjsonPath.renderableType = 'GroupNode';
+    pvjsonPath.networkType = 'node';
     pvjsonPath.nodeType = "GroupNode";
 
     groupType = groupSelection.attr('Style') || 'None';

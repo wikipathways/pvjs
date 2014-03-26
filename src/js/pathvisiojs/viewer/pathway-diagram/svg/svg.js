@@ -306,117 +306,9 @@ pathvisiojs.view.pathwayDiagram.svg = {
     return cssClassName;
   },
 
-  // this function does not render all elements. Rather, it renders
-  // one or more selected elements that are given as inputs.
-  // If one or more of these elements are a groupNode that contains
-  // other elements, this function will call itself back to render
-  // the elements within the groupNode.
-  appendElementsInDomOrder: function(args, callback){
-    var svg = args.svg,
-      data = args.data,
-      pathway = args.pathway,
-      viewport = args.container,
-      container;
-    var svgRenderer = this;
-
-    if (!viewport) {
-      throw new Error("No viewport specified.");
-    }
-    if (!data) {
-      throw new Error("No data entered to render.");
-    }
-    if (!svg) {
-      throw new Error("No svg specified.");
-    }
-    if (!pathway) {
-      throw new Error("No pathway specified.");
-    }
-    data = pathvisiojs.utilities.convertToArray(data);
-
-    var i = 0;
-    async.each(data, function(item, callbackInside) {
-      if (item.key !== 'undefined') {
-        container = viewport.select('#' + svgRenderer.convertToId(item.key));
-      }
-      else {
-        container = viewport;
-      }
-
-      container.selectAll('.element')
-      .data(item.values)
-      .enter()
-      .append(function(d) {
-        var childElementName = svgRenderer.renderableTypeToSvgElementMappings[strcase.camelCase(d.renderableType)];
-        var child = document.createElementNS('http://www.w3.org/2000/svg', childElementName);
-        return child;
-      })
-      .attr("id", function (d) {
-        return svgRenderer.convertToId(d.id);
-      })
-      .attr('class', 'element');
-      i += 1;
-
-      callbackInside(null);
-    },
-    function(err){
-      callback(null, 'Successfully rendered elements');
-    });
-  },
-
-  // this function does not render all elements. Rather, it renders
-  // one or more selected elements that are given as inputs.
-  // If one or more of these elements are a groupNode that contains
-  // other elements, this function will call itself back to render
-  // the elements within the groupNode.
-  updateElementProperties: function(args, callback){
-    var svg = args.svg,
-      data = args.data,
-      pathway = args.pathway,
-      container = args.container;
-
-    if (!container) {
-      throw new Error("No container specified.");
-    }
-    if (!data) {
-      throw new Error("No data entered to render.");
-    }
-    if (!svg) {
-      throw new Error("No svg specified.");
-    }
-    if (!pathway) {
-      throw new Error("No pathway specified.");
-    }
-    data = pathvisiojs.utilities.convertToArray(data);
-    var renderingArgs = args;
-
-    async.each(data, function(dataElement, callbackInside) {
-      renderingArgs.data = dataElement;
-      renderingArgs.element = d3.select('#' + this.convertToId(dataElement.id));
-      if (dataElement.renderableType === 'GraphicalLine') {
-        pathvisiojs.view.pathwayDiagram.svg.edge.graphicalLine.render(renderingArgs);
-      }
-      else if (dataElement.renderableType === 'Interaction') {
-        pathvisiojs.view.pathwayDiagram.svg.edge.interaction.render(renderingArgs);
-      }
-      /*
-      else if (dataElement.renderableType === 'GroupNode') {
-        pathvisiojs.view.pathwayDiagram.svg.node.groupNode.render(renderingArgs, function(groupContainer, groupContents) {
-          // TODO this used to render the group contents, but now the callback does nothing
-        });
-      }
-      else if (dataElement.renderableType === 'EntityNode') {
-        pathvisiojs.view.pathwayDiagram.svg.node.EntityNode.render(renderingArgs);
-      }
-      //*/
-
-      callbackInside(null);
-    },
-    function(err){
-      callback(svg);
-    });
-  },
 
   renderWithCachedData: function(svg, pathway, callback){
+    var svgRenderer = this;
     if (!svg) {
       throw new Error("No svg specified.");
     }
@@ -454,31 +346,23 @@ pathvisiojs.view.pathwayDiagram.svg = {
           callbackEach(null);
         },
         function(err){
-          //callbackInside(null);
-          callback(svg);
-        });
-      },
-      /*
-      function(callbackInside){
-        // create the required elements and their ids in DOM order,
-        // without specifying width, height, etc.
-        renderArgs.data = pathway.pathwayNestedByGrouping;
-        appendElementsInDomOrder(renderArgs, function() {
           callbackInside(null, svg);
         });
       },
       function(svg, callbackInside){
-        //TODO for the non-cached version, this should sort the elements by dependency, so that group contents are updated before their containing group,
-        //and an edge is updated before any edges that rely on it.
-        // this would be using something like pathway.pathwayElementsNestedByDependency
-        renderArgs.data = pathway.elements;
-        updateElementProperties(renderArgs, function(svg) {
-        console.log('after update svg');
-        console.log(svg[0][0]);
-          callback(svg);
-        });
+        var elementsWithPublicationXrefs = pathway.elements.filter(function(element){return !!element.publicationXrefs;});
+        if (elementsWithPublicationXrefs.length > 0) {
+          elementsWithPublicationXrefs.forEach(function(elementWithPublicationXrefs) {
+            console.log('elementWithPublicationXrefs');
+            console.log(elementWithPublicationXrefs);
+            svgRenderer.publicationXref.render(viewport, elementWithPublicationXrefs);
+          });
+        }
+        callbackInside(null, svg);
+      },
+      function(svg, callbackInside){
+        callback(svg);
       }
-      //*/
     ]);
   }
 };

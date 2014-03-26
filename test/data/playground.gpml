@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Pathway xmlns="http://pathvisio.org/GPML/2013a" Name="New Pathway" Version="20140130" Organism="Aspergillus niger">
   <BiopaxRef>b41</BiopaxRef>
-  <Graphics BoardWidth="1434.4476885644767" BoardHeight="1155.3603037589753" />
+  <Graphics BoardWidth="1309.7029702970299" BoardHeight="557.922143028401" />
   <DataNode TextLabel="GeneProduct" GraphId="c86d0" Type="GeneProduct">
     <Graphics CenterX="1145.417922262196" CenterY="373.2352530416277" Width="80.0" Height="20.0" ZOrder="32768" FillColor="cccccc" FontSize="10" Valign="Middle" />
     <Xref Database="" ID="" />
@@ -45,7 +45,7 @@
   </State>
   <State GraphRef="c86d0" TextLabel="Ub" GraphId="b40d8">
     <BiopaxRef>a27</BiopaxRef>
-    <Graphics RelX="-1.0" RelY="-1.0" Width="15.0" Height="15.0" FillColor="ccffff" ShapeType="Oval" Color="ff3366" />
+    <Graphics RelX="-0.9695863746958651" RelY="-1.0" Width="15.0" Height="15.0" FillColor="ccffff" ShapeType="Oval" Color="ff3366" />
     <Xref Database="" ID="" />
   </State>
   <State GraphRef="c86d0" TextLabel="" GraphId="e6044">
@@ -125,6 +125,7 @@
   </Interaction>
   <GraphicalLine>
     <BiopaxRef>d0c</BiopaxRef>
+    <BiopaxRef>c5e</BiopaxRef>
     <Graphics ZOrder="12288" LineThickness="1.0">
       <Point X="365.8644986449865" Y="65.51219512195124" GraphRef="d9eac" RelX="0.0" RelY="0.0" />
       <Point X="311.6531165311653" Y="150.40650406504065" />
@@ -217,6 +218,26 @@
       <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Wist AO</bp:AUTHORS>
       <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Liu CC</bp:AUTHORS>
       <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Ko WH</bp:AUTHORS>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="b19">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">6123</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Genetic and developmental variation in mouse brain tryptophan hydroxylase activity.</bp:TITLE>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Brain Res</bp:SOURCE>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1976</bp:YEAR>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Diez JA</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Sze PY</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Ginsburg BE</bp:AUTHORS>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="c5e">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">234</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Changes in erythrocyte 2,3 diphosphoglycerate in women following short term maximal exercise.</bp:TITLE>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Eur J Appl Physiol Occup Physiol</bp:SOURCE>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1975</bp:YEAR>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Bonner HW</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Tate CA</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Buffington CK</bp:AUTHORS>
     </bp:PublicationXref>
   </Biopax>
 </Pathway>

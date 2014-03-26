@@ -9,11 +9,12 @@ pathvisiojs.data.gpml.dataNode = function() {
     if (!dataNodeType) {
       dataNodeType = 'Unknown';
     }
-    pvjsonPath.nodeType = "DataNode";
+    pvjsonPath.networkType = 'node';
+    pvjsonPath.nodeType = 'DataNode';
     pvjsonPath.dataNodeType = dataNodeType;
-    pvjsonPath["@type"] = pvjsonPath["@type"] || [];
-    pvjsonPath["@type"].push("DataNode");
-    pvjsonPath["@type"].push(dataNodeType);
+    pvjsonPath['@type'] = pvjsonPath['@type'] || [];
+    pvjsonPath['@type'].push('DataNode');
+    pvjsonPath['@type'].push(dataNodeType);
 
 
 
