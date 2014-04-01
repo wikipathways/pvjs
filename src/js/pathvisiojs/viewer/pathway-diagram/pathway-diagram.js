@@ -174,14 +174,92 @@ pathvisiojs.view.pathwayDiagram = function(){
         loadDiagramArgs.fitToContainer = fitToContainer;
         loadDiagramArgs.highlights = highlights;
 
+        //*
+        pathvisiojs.data.pvjson.get(renderableSourceDataElement, function(json) {
+          pathvisiojs.context = json['@context'];
+
+          if (!json || json === 'fail') {
+            callback(null);
+            throw new Error("Could not convert input source data to pathvisioJsJson.");
+          }
+
+          //console.log('json');
+          //console.log(json);
+          pathway = json;
+          self.myPathway = json;
+          var crossPlatformShapesInstance1 = Object.create(crossPlatformShapes);
+          crossPlatformShapesInstance1.init({
+            targetSelector:'#diagram-container',
+            id: 'my-svg2',
+            format: renderableSourceDataElement.selectedViewMethod,
+            width:containerWidth,
+            height:containerHeight,
+            backgroundColor: 'gray',
+            customShapes: { // optional
+              arc: {
+                href: 'http://upload.wikimedia.org/wikipedia/commons/5/5c/Triangular_arch.svg'
+              },
+              brace:{
+                href: 'http://farm2.staticflickr.com/1175/1331501691_931c8a09d1_z.jpg'
+              },
+              mitochondria:{
+                href: 'http://farm1.staticflickr.com/128/393913249_f0a61946dc_n.jpg'
+              }
+            }
+          },
+          function(viewport) {
+            var elementRenderingData;
+            async.each(pathway.elements, function(dataElement, callbackEach) {
+              if (dataElement.gpmlType === 'Interaction' || dataElement.gpmlType === 'DataNode' || dataElement.gpmlType === 'Group') {
+                elementRenderingData = crossPlatformShapesInstance1[strcase.camelCase(dataElement.shape)](dataElement);
+                var element = viewport.append(elementRenderingData.elementName);
+                elementRenderingData.attributes.forEach(function(attribute) {
+                  element.attr(attribute.name, attribute.value);
+                });
+              }
+              callbackEach(null);
+            });
+          });
+          callback(null, json);
+        });
+        //*/
+        /*
+  var crossPlatformShapesInstance2 = Object.create(crossPlatformShapes);
+  crossPlatformShapesInstance2.init({
+    targetSelector:'#pathvisiojs-dev',
+    id: 'my-svg2',
+    format: 'svg',
+    width:600,
+    height:600
+  },
+  function() {
+    var rectangle3RenderingData = crossPlatformShapesInstance2.rectangle({
+      x:20,
+      y:50,
+      width:80,
+      height:40,
+      color:'purple',
+      backgroundColor:'white',
+      rotation:45});
+    var rectangle3 = d3.select('#my-svg2').select('#viewport').append(rectangle3RenderingData.elementName);
+    rectangle3RenderingData.attributes.forEach(function(attribute) {
+      rectangle3.attr(attribute.name, attribute.value);
+    });
+  });
+  //*/
+
+
+
+
+
         // ********************************************
         // Check for SVG support. If false, use static image (png, jpg, gif, etc.) fallback
         // ********************************************
+        /*
         if (renderableSourceDataElement.selectedViewMethod === 'svg') { // TODO get this working in IE9
           loadDiagramArgs.cssUri = cssUri;
           loadDiagramArgs.customMarkers = customMarkers;
           //loadDiagramArgs.customSymbols = customSymbols;
-          //*
           pathvisiojs.view.pathwayDiagram.svg.load(loadDiagramArgs, function(diagram) {
             if (!!diagram) {
               callback(null, diagram);
@@ -194,13 +272,13 @@ pathvisiojs.view.pathwayDiagram = function(){
               });
             }
           });
-          //*/
         }
         else {
           pathvisiojs.view.pathwayDiagram.img.load(loadDiagramArgs, function(diagram) {
             callback(null, diagram);
           });
         }
+          //*/
       },
       function(diagram, callback){
         // ********************************************
