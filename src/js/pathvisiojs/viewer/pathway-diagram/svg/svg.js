@@ -375,7 +375,7 @@ pathvisiojs.view.pathwayDiagram.svg = {
 
     var crossPlatformShapesInstance1 = Object.create(crossPlatformShapes);
     crossPlatformShapesInstance1.init({
-      targetImageSelector:'svg',
+      targetSelector:'svg',
       backgroundColor: 'gray',
       customShapes: { // optional
         arc: {
