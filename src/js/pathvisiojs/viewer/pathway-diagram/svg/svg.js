@@ -45,13 +45,13 @@ pathvisiojs.view.pathwayDiagram.svg = {
             preloadDiagramArgs.cssUri = cssUri;
             //preloadDiagramArgs.customSymbols = customSymbols;
 
-            svgRenderer.loadPartials(preloadDiagramArgs, function(svg) {
-              if (!svg) {
+            svgRenderer.loadPartials(preloadDiagramArgs, function(svgSelection) {
+              if (!svgSelection) {
                 throw new Error("Could not load SVG template.");
               }
 
               var results = {};
-              results.svg = svg;
+              results.svgSelection = svgSelection;
               callback(null, results);
             });
           },
@@ -75,23 +75,23 @@ pathvisiojs.view.pathwayDiagram.svg = {
         function(err, results){
           //TODO get pathwayWidth and Height
 
-          callback(null, results.preloadSvg.svg, results.pathway);
+          callback(null, results.preloadSvg.svgSelection, results.pathway);
         });
       },
-      function(svg, pathway, callback){
-        svgRenderer.renderWithCachedData(svg, pathway, function() {
-          svg.attr('style', 'display:inline');
-          callback(null, svg);
+      function(svgSelection, pathway, callback){
+        svgRenderer.renderWithCachedData(svgSelection, pathway, function() {
+          svgSelection.attr('style', 'display:inline');
+          callback(null, svgSelection);
         });
       },
-      function(svg, callback) {
+      function(svgSelection, callback) {
         if (!!highlights) {
           highlights.forEach(function(highlight) {
             svgRenderer.node.highlight(highlight);
           });
         }
 
-        var viewport = svg.select('#viewport');
+        var viewport = svgSelection.select('#viewport');
 
         /* not all containers will have a width or height style attribute. this is now done using the same logic
          * but uses boundingClientRect() instead. the code is located in pathway-diagram.js
@@ -147,7 +147,7 @@ pathvisiojs.view.pathwayDiagram.svg = {
         });
 
         var svgInFocus = false;
-        svg.on("click", function(d, i){
+        svgSelection.on("click", function(d, i){
           svgPanZoom.enableZoom();
           svgInFocus = true;
         })
@@ -162,9 +162,9 @@ pathvisiojs.view.pathwayDiagram.svg = {
             svgInFocus = false;
           }
         });
-        callback(null, svg);
+        callback(null, svgSelection);
       },
-      function(svg, callback){
+      function(svgSelection, callback){
         //* Node Highlighter
 
         var nodeLabels, nodeLabel;
@@ -213,25 +213,25 @@ pathvisiojs.view.pathwayDiagram.svg = {
               // TODO refactor this so it calls a generic highlightDataNodeByLabel function that can call
               // a highlighter for svg, png, etc. as appropriate.
 
-              svgRenderer.node.highlightByLabel(svg, pathway, nodeLabel);
+              svgRenderer.node.highlightByLabel(svgSelection, pathway, nodeLabel);
             }
           });
 
           d3.select('#clear-highlights-from-typeahead').on('click', function() {
             svgRenderer.node.clearHighlightsFromTypeahead();
           });
-          callback(null, svg);
+          callback(null, svgSelection);
         }
       }
     ],
-    function(err, svg) {
-      callbackOutside(svg);
+    function(err, svgSelection) {
+      callbackOutside(svgSelection);
     });
   },
 
   generateSvgTemplate: function (callback) {
     var docFragment = document.createDocumentFragment();
-    var svg = d3.select(docFragment).append('svg').
+    var svgSelection = d3.select(docFragment).append('svg').
     attr('id', 'pathvisiojs-diagram').
     attr('version', '1.1').
     attr('baseProfile', 'full').
@@ -242,18 +242,18 @@ pathvisiojs.view.pathwayDiagram.svg = {
     attr('height', '100%').
     attr('style', 'display: none; ');
 
-    var g = svg.append('g');
+    var g = svgSelection.append('g');
 
-    var title = svg.append('title').
+    var title = svgSelection.append('title').
     text('pathvisiojs diagram');
 
     var desc = g.append('desc').
     text('This SVG file contains all the graphical elements (markers and symbols in defs as well as\nstyle data) used by the program pathvisiojs, which has two components:\n1) a viewer for transforming GPML biological pathway data into an SVG visual representation and\n2) an editor for creating both views and models for biological pathways.');
 
-    var defs = svg.append('defs');
+    var defs = svgSelection.append('defs');
 
     // TODO can we delete this filter?
-    var filter = svg.append('filter').
+    var filter = svgSelection.append('filter').
     attr('id', 'highlight').
     attr('width', '150%').
     attr('height', '150%');
@@ -274,7 +274,7 @@ pathvisiojs.view.pathwayDiagram.svg = {
     attr('in2', 'blurOut').
     attr('mode', 'normal');
 
-    var viewport = svg.append('g').
+    var viewport = svgSelection.append('g').
     attr('id', 'viewport');
     callback(docFragment);
   },
@@ -289,25 +289,25 @@ pathvisiojs.view.pathwayDiagram.svg = {
 
     async.waterfall([
       function(callback) {
-        var svg = diagramContainer.append('div').html(pathvisioNS['tmp/pathvisiojs.svg']).select('#pathvisiojs-diagram')
+        var svgSelection = diagramContainer.append('div').html(pathvisioNS['tmp/pathvisiojs.svg']).select('#pathvisiojs-diagram')
         .attr('preserveAspectRatio', 'xMidYMid');
 
         svgTemplateGenerator(function(svgTemplate) {
           console.log('svgTemplate');
           console.log(svgTemplate);
-          console.log('svg');
-          console.log(svg);
-          callback(null, svg);
+          console.log('svgSelection');
+          console.log(svgSelection);
+          callback(null, svgSelection);
         });
       },
-      function(svg, callback) {
+      function(svgSelection, callback) {
         if (!!args.customMarkers) {
-          svgRenderer.marker.loadAllCustom(svg, customMarkers, function() {
-            callback(null, svg);
+          svgRenderer.marker.loadAllCustom(svgSelection, customMarkers, function() {
+            callback(null, svgSelection);
           });
         }
         else {
-          callback(null, svg);
+          callback(null, svgSelection);
         }
       },
       /*
@@ -322,22 +322,22 @@ pathvisiojs.view.pathwayDiagram.svg = {
         }
       },
       //*/
-      function(svg, callback) {
+      function(svgSelection, callback) {
         if (!!cssUri) {
           d3.text(cssUri, 'text/css', function(data) {
-            var defs = svg.select('defs');
+            var defs = svgSelection.select('defs');
             var style = defs.append('style').attr('type', "text/css");
             style.text(data);
-            callback(null, svg);
+            callback(null, svgSelection);
           });
         }
         else {
-          callback(null, svg);
+          callback(null, svgSelection);
         }
       }
     ],
-    function(err, svg) {
-      callbackOutside(svg);
+    function(err, svgSelection) {
+      callbackOutside(svgSelection);
     });
   },
 
@@ -361,32 +361,67 @@ pathvisiojs.view.pathwayDiagram.svg = {
     return cssClassName;
   },
 
-
-  renderWithCachedData: function(svg, pathway, callback){
+  renderWithCachedData: function(svgSelection, pathway, callback){
     var svgRenderer = this;
-    if (!svg) {
-      throw new Error("No svg specified.");
+    if (!svgSelection) {
+      throw new Error("No svgSelection specified.");
     }
     if (!pathway) {
       throw new Error("No data entered to render.");
     }
 
-    var viewport = svg.select('#viewport');
+    var viewport = svgSelection.select('#viewport');
+
+
+    var crossPlatformShapesInstance1 = Object.create(crossPlatformShapes);
+    crossPlatformShapesInstance1.init({
+      targetImageSelector:'svg',
+      backgroundColor: 'gray',
+      customShapes: { // optional
+        arc: {
+          href: 'http://upload.wikimedia.org/wikipedia/commons/5/5c/Triangular_arch.svg'
+        },
+        brace:{
+          href: 'http://farm2.staticflickr.com/1175/1331501691_931c8a09d1_z.jpg'
+        },
+        mitochondria:{
+          href: 'http://farm1.staticflickr.com/128/393913249_f0a61946dc_n.jpg'
+        }
+      }
+    });
 
     svgRenderer.infoBox.render(viewport, pathway);
 
     var renderArgs = {};
-    renderArgs.svg = svg;
+    renderArgs.svgSelection = svgSelection;
     renderArgs.container = viewport;
     renderArgs.pathway = pathway;
+
+/*
+var docFrag = document.createDocumentFragment();
+d3.select(docFrag).append('svg').append('path').attr('d', 'M0,0 L10,10');
+var myPath = d3.select(docFrag).select('path')[0][0];
+myPath.getTotalLength();
+myPath.getBBox();
+//*/
+
 
     async.waterfall([
       function(callbackInside){
         var renderingArgs = {};
-
+        var elementRenderingData;
         async.each(pathway.elements, function(dataElement, callbackEach) {
           if (dataElement.graphicalType === 'path') {
             svgRenderer.path.render(viewport, dataElement);
+
+          if (dataElement.gpmlType === 'Interaction') {
+            elementRenderingData = crossPlatformShapesInstance1[strcase.camelCase(dataElement.shape)](dataElement);
+            var element = viewport.append(elementRenderingData.elementName);
+            elementRenderingData.attributes.forEach(function(attribute) {
+              element.attr(attribute.name, attribute.value);
+            });
+          }
+
           }
           else if (dataElement.graphicalType === 'text') {
             svgRenderer.text.render(viewport, dataElement);
@@ -401,10 +436,10 @@ pathvisiojs.view.pathwayDiagram.svg = {
           callbackEach(null);
         },
         function(err){
-          callbackInside(null, svg);
+          callbackInside(null, svgSelection);
         });
       },
-      function(svg, callbackInside){
+      function(svgSelection, callbackInside){
         var elementsWithPublicationXrefs = pathway.elements.filter(function(element){return !!element.publicationXrefs;});
         if (elementsWithPublicationXrefs.length > 0) {
           elementsWithPublicationXrefs.forEach(function(elementWithPublicationXrefs) {
@@ -413,10 +448,10 @@ pathvisiojs.view.pathwayDiagram.svg = {
             svgRenderer.publicationXref.render(viewport, elementWithPublicationXrefs);
           });
         }
-        callbackInside(null, svg);
+        callbackInside(null, svgSelection);
       },
-      function(svg, callbackInside){
-        callback(svg);
+      function(svgSelection, callbackInside){
+        callback(svgSelection);
       }
     ]);
   }
