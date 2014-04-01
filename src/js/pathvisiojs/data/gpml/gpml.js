@@ -91,7 +91,8 @@ pathvisiojs.data.gpml = {
         .attr('Align', 'Center')
         .attr('Valign', 'Middle')
         .attr('FontWeight', 'Bold')
-        .attr('LineThickness', 1);
+        .attr('LineThickness', 1)
+        .attr('FillOpacity', 0.3);
       });
       var groupGroupsSelection = gpmlSelection.selectAll('Group[Style=Group]').each(function(){
         groupGroupSelection = d3.select(this);

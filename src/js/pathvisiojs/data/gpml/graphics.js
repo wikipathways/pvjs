@@ -74,6 +74,7 @@ pathvisiojs.data.gpml.graphics = {
         var cssColor = gpmlColorToCssColor(gpmlFillColorValue);
         if (gpmlShapeType.toLowerCase() !== 'none') {
           pvjsonElement.fill = cssColor;
+          pvjsonElement.backgroundColor = cssColor;
         }
         else {
           pvjsonElement.fill = 'transparent';
@@ -83,6 +84,7 @@ pathvisiojs.data.gpml.graphics = {
         var cssColor = gpmlColorToCssColor(gpmlColorValue);
         if (gpmlShapeType.toLowerCase() !== 'none') {
           pvjsonElement.stroke = cssColor;
+          pvjsonElement.color = cssColor;
         }
         else {
           pvjsonElement.stroke = 'transparent';

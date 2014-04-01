@@ -32,6 +32,9 @@ pathvisiojs.view.pathwayDiagram.svg.path = function(){
         fill: function(fillValue){
           path.attr('fill', fillValue);
         },
+        fillOpacity: function(fillOpacityValue){
+          path.attr('fill-opacity', fillOpacityValue);
+        },
         stroke: function(strokeValue){
           path.attr('stroke', strokeValue);
         },

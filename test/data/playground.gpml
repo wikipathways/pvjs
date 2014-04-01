@@ -28,7 +28,7 @@
     <Xref Database="" ID="" />
   </DataNode>
   <DataNode TextLabel="Metabolite" GraphId="c989a" Type="Metabolite">
-    <Graphics CenterX="488.48238482384824" CenterY="126.01626016260163" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Graphics CenterX="497.5433403427938" CenterY="95.5385006897845" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff" />
     <Xref Database="" ID="" />
   </DataNode>
   <DataNode TextLabel="GeneProduct" GraphId="e1646" Type="GeneProduct">
@@ -52,25 +52,18 @@
     <Graphics RelX="-0.2809684684684612" RelY="0.323198198198196" Width="15.0" Height="15.0" FillColor="Transparent" ShapeType="Oval" />
     <Xref Database="" ID="" />
   </State>
-  <Interaction>
+  <Interaction GraphId="id8f45f0c7">
     <Graphics ZOrder="12288" LineThickness="1.0">
       <Point X="1164.3564356435645" Y="392.0792079207922" />
       <Point X="1276.039603960396" Y="392.0792079207922" />
     </Graphics>
     <Xref Database="" ID="" />
   </Interaction>
-  <Interaction>
+  <Interaction GraphId="id163842d9">
     <Graphics ZOrder="12288" LineThickness="1.0">
       <Point X="297.4525745257454" Y="31.8428184281843" GraphRef="fc51d" RelX="1.0" RelY="0.0" />
-      <Point X="468.4823848238482" Y="116.01626016260161" GraphRef="c989a" RelX="-0.5" RelY="-1.0" ArrowHead="Arrow" />
+      <Point X="477.5433403427937" Y="85.5385006897845" GraphRef="c989a" RelX="-0.5" RelY="-1.0" ArrowHead="Arrow" />
       <Anchor Position="0.4" Shape="None" GraphId="d9eac" />
-    </Graphics>
-    <Xref Database="" ID="" />
-  </Interaction>
-  <Interaction>
-    <Graphics ZOrder="12288" LineThickness="1.0">
-      <Point X="516.233062330623" Y="50.13550135501355" GraphRef="e1646" RelX="-1.0" RelY="0.0" />
-      <Point X="365.8644986449865" Y="65.51219512195124" GraphRef="d9eac" RelX="0.0" RelY="0.0" ArrowHead="mim-catalysis" />
     </Graphics>
     <Xref Database="" ID="" />
   </Interaction>
@@ -123,11 +116,11 @@
     </Graphics>
     <Xref Database="" ID="" />
   </Interaction>
-  <GraphicalLine>
+  <GraphicalLine GraphId="ida35b85e">
     <BiopaxRef>d0c</BiopaxRef>
     <BiopaxRef>c5e</BiopaxRef>
     <Graphics ZOrder="12288" LineThickness="1.0">
-      <Point X="365.8644986449865" Y="65.51219512195124" GraphRef="d9eac" RelX="0.0" RelY="0.0" />
+      <Point X="369.4888808525647" Y="53.32109133282438" GraphRef="d9eac" RelX="0.0" RelY="0.0" />
       <Point X="311.6531165311653" Y="150.40650406504065" />
     </Graphics>
   </GraphicalLine>
@@ -140,14 +133,24 @@
   <Group GroupId="ae02f" Style="Complex" TextLabel="group object" />
   <InfoBox CenterX="0.0" CenterY="0.0" />
   <Biopax>
-    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="e67">
-      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">12356</bp:ID>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="d0c">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">512</bp:ID>
       <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
-      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Investigation of rheological and drug release properties of oil gels containing fumed silica [proceedings].</bp:TITLE>
-      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">J Pharm Pharmacol</bp:SOURCE>
-      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1976</bp:YEAR>
-      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Sherriff M</bp:AUTHORS>
-      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Enever RP</bp:AUTHORS>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">The refined crystal structure of bovine beta-trypsin at 1.8 A resolution. II. Crystallographic refinement, calcium binding site, benzamidine binding site and active site at pH 7.0.</bp:TITLE>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">J Mol Biol</bp:SOURCE>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1975</bp:YEAR>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Bode W</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Schwager P</bp:AUTHORS>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="c5e">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">234</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Changes in erythrocyte 2,3 diphosphoglycerate in women following short term maximal exercise.</bp:TITLE>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Eur J Appl Physiol Occup Physiol</bp:SOURCE>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1975</bp:YEAR>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Bonner HW</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Tate CA</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Buffington CK</bp:AUTHORS>
     </bp:PublicationXref>
     <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="d7b">
       <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">346267</bp:ID>
@@ -159,6 +162,17 @@
       <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Majuri H</bp:AUTHORS>
       <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Helenius T</bp:AUTHORS>
     </bp:PublicationXref>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="a27">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">563</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Development of a miniature pH glass electrode with field-effect-transistor amplifier for biomedical applications.</bp:TITLE>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Med Biol Eng</bp:SOURCE>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1975</bp:YEAR>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Ahn BK</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Wist AO</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Liu CC</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Ko WH</bp:AUTHORS>
+    </bp:PublicationXref>
     <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="f49">
       <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">3523</bp:ID>
       <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
@@ -169,22 +183,24 @@
       <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Glasgow RE</bp:AUTHORS>
       <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Barrera M Jr</bp:AUTHORS>
     </bp:PublicationXref>
-    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="ec3">
-      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">3472</bp:ID>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="b19">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">6123</bp:ID>
       <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
-      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">[Clinical testing of bronchospasmolytics in combined alternating test schedules].</bp:TITLE>
-      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Int J Clin Pharmacol Biopharm</bp:SOURCE>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Genetic and developmental variation in mouse brain tryptophan hydroxylase activity.</bp:TITLE>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Brain Res</bp:SOURCE>
       <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1976</bp:YEAR>
-      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Kaik G</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Diez JA</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Sze PY</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Ginsburg BE</bp:AUTHORS>
     </bp:PublicationXref>
-    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="d0c">
-      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">512</bp:ID>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="e67">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">12356</bp:ID>
       <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
-      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">The refined crystal structure of bovine beta-trypsin at 1.8 A resolution. II. Crystallographic refinement, calcium binding site, benzamidine binding site and active site at pH 7.0.</bp:TITLE>
-      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">J Mol Biol</bp:SOURCE>
-      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1975</bp:YEAR>
-      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Bode W</bp:AUTHORS>
-      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Schwager P</bp:AUTHORS>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Investigation of rheological and drug release properties of oil gels containing fumed silica [proceedings].</bp:TITLE>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">J Pharm Pharmacol</bp:SOURCE>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1976</bp:YEAR>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Sherriff M</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Enever RP</bp:AUTHORS>
     </bp:PublicationXref>
     <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="b02">
       <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">51</bp:ID>
@@ -208,36 +224,13 @@
       <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Alizade MA</bp:AUTHORS>
       <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Brendel K</bp:AUTHORS>
     </bp:PublicationXref>
-    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="a27">
-      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">563</bp:ID>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="ec3">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">3472</bp:ID>
       <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
-      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Development of a miniature pH glass electrode with field-effect-transistor amplifier for biomedical applications.</bp:TITLE>
-      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Med Biol Eng</bp:SOURCE>
-      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1975</bp:YEAR>
-      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Ahn BK</bp:AUTHORS>
-      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Wist AO</bp:AUTHORS>
-      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Liu CC</bp:AUTHORS>
-      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Ko WH</bp:AUTHORS>
-    </bp:PublicationXref>
-    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="b19">
-      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">6123</bp:ID>
-      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
-      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Genetic and developmental variation in mouse brain tryptophan hydroxylase activity.</bp:TITLE>
-      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Brain Res</bp:SOURCE>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">[Clinical testing of bronchospasmolytics in combined alternating test schedules].</bp:TITLE>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Int J Clin Pharmacol Biopharm</bp:SOURCE>
       <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1976</bp:YEAR>
-      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Diez JA</bp:AUTHORS>
-      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Sze PY</bp:AUTHORS>
-      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Ginsburg BE</bp:AUTHORS>
-    </bp:PublicationXref>
-    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="c5e">
-      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">234</bp:ID>
-      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
-      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Changes in erythrocyte 2,3 diphosphoglycerate in women following short term maximal exercise.</bp:TITLE>
-      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Eur J Appl Physiol Occup Physiol</bp:SOURCE>
-      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1975</bp:YEAR>
-      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Bonner HW</bp:AUTHORS>
-      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Tate CA</bp:AUTHORS>
-      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Buffington CK</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Kaik G</bp:AUTHORS>
     </bp:PublicationXref>
   </Biopax>
 </Pathway>

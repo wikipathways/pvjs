@@ -59,8 +59,6 @@ pathvisiojs.view.pathwayDiagram.svg.marker = {
   },
 
   processSvg: function(uniqueMarkerShapeUri, marker, markerId, rotate){
-    console.log('thisprocessSvg');
-    console.log(this);
     // TODO avoid repeating svg selection
     var svg = d3.select('svg');
     d3.xml(uniqueMarkerShapeUri, 'image/svg+xml', function(svgXml) {
@@ -187,11 +185,6 @@ pathvisiojs.view.pathwayDiagram.svg.marker = {
 
 
   loadAllCustom: function(thisSvg, customMarkers, callback) {
-    console.log('thisloadAllCustom');
-    console.log(this);
-    console.log('thisSvg');
-    console.log(thisSvg);
-
     var markerProcessor = this;
     var semanticNameToIdMapping = this.semanticNameToIdMapping;
     var colorsAvailable = this.colorsAvailable;
@@ -203,9 +196,6 @@ pathvisiojs.view.pathwayDiagram.svg.marker = {
     var dimensionSet = [];
 
     var appendCustom = function(uniqueMarkerShapeUri, callback) {
-      console.log('thisappendCustom');
-      console.log(this);
-      console.log(markerProcessor);
       // TODO avoid repeating svg selection
       var svg = d3.select('svg');
       var idStub = strcase.paramCase(uniqueMarkerShapeUri);
@@ -243,14 +233,12 @@ pathvisiojs.view.pathwayDiagram.svg.marker = {
     });
 
     async.each(uniqueMarkerShapeUris, appendCustom, function(err){
-        // if any of the saves produced an error, err would equal that error
+      // if any of the saves produced an error, err would equal that error
       callback(null);
     });
   },
 
   appendNonDefaultColorMarkerBothEnds: function(svg, markerIdStub, color, callback) {
-    console.log('thisappendNonDefaultColorMarkerBothEnds');
-    console.log(this);
     var colorsAvailable = this.colorsAvailable;
     var appendNonDefaultColorMarker = this.appendNonDefaultColorMarker;
     appendNonDefaultColorMarker(svg, markerIdStub, 'start', color, function() {
@@ -262,8 +250,6 @@ pathvisiojs.view.pathwayDiagram.svg.marker = {
   },
 
   appendNonDefaultColorMarker: function(svg, markerIdStub, position, color, callback) {
-    console.log('thisappendNonDefaultColorMarker');
-    console.log(this);
     var defaultId = markerIdStub + '-' + position + '-default';
     var marker = pathvisiojs.utilities.cloneNode('#' + defaultId);
 
