@@ -210,7 +210,7 @@ pathvisiojs.view.pathwayDiagram = function(){
           function(viewport) {
             var elementRenderingData;
             async.each(pathway.elements, function(dataElement, callbackEach) {
-              if (dataElement.gpmlType === 'Interaction' || dataElement.gpmlType === 'DataNode' || dataElement.gpmlType === 'Group') {
+              if (dataElement.gpmlType === 'Shape' || dataElement.gpmlType === 'Label' || dataElement.gpmlType === 'GraphicalLine' || dataElement.gpmlType === 'Interaction' || dataElement.gpmlType === 'DataNode' || dataElement.gpmlType === 'Group') {
                 elementRenderingData = crossPlatformShapesInstance1[strcase.camelCase(dataElement.shape)](dataElement);
                 var element = viewport.append(elementRenderingData.elementName);
                 elementRenderingData.attributes.forEach(function(attribute) {
@@ -222,35 +222,6 @@ pathvisiojs.view.pathwayDiagram = function(){
           });
           callback(null, json);
         });
-        //*/
-        /*
-  var crossPlatformShapesInstance2 = Object.create(crossPlatformShapes);
-  crossPlatformShapesInstance2.init({
-    targetSelector:'#pathvisiojs-dev',
-    id: 'my-svg2',
-    format: 'svg',
-    width:600,
-    height:600
-  },
-  function() {
-    var rectangle3RenderingData = crossPlatformShapesInstance2.rectangle({
-      x:20,
-      y:50,
-      width:80,
-      height:40,
-      color:'purple',
-      backgroundColor:'white',
-      rotation:45});
-    var rectangle3 = d3.select('#my-svg2').select('#viewport').append(rectangle3RenderingData.elementName);
-    rectangle3RenderingData.attributes.forEach(function(attribute) {
-      rectangle3.attr(attribute.name, attribute.value);
-    });
-  });
-  //*/
-
-
-
-
 
         // ********************************************
         // Check for SVG support. If false, use static image (png, jpg, gif, etc.) fallback

@@ -28,7 +28,7 @@
     <Xref Database="" ID="" />
   </DataNode>
   <DataNode TextLabel="Metabolite" GraphId="c989a" Type="Metabolite">
-    <Graphics CenterX="497.5433403427938" CenterY="95.5385006897845" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Graphics CenterX="503.46050010610736" CenterY="110.33140009806853" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff" />
     <Xref Database="" ID="" />
   </DataNode>
   <DataNode TextLabel="GeneProduct" GraphId="e1646" Type="GeneProduct">
@@ -36,7 +36,7 @@
     <Xref Database="" ID="" />
   </DataNode>
   <DataNode TextLabel="Pathway" GraphId="afc3c" Type="Pathway">
-    <Graphics CenterX="225.609756097561" CenterY="112.46612466124661" Width="80.0" Height="20.0" ZOrder="32768" FontWeight="Bold" FontSize="12" Valign="Middle" ShapeType="None" Color="14961e" />
+    <Graphics CenterX="203.42040698513492" CenterY="110.98683472041822" Width="80.0" Height="20.0" ZOrder="32768" FontWeight="Bold" FontSize="12" Valign="Middle" ShapeType="None" Color="14961e" />
     <Xref Database="" ID="" />
   </DataNode>
   <State GraphRef="c86d0" TextLabel="P" GraphId="d0638">
@@ -62,7 +62,7 @@
   <Interaction GraphId="id163842d9">
     <Graphics ZOrder="12288" LineThickness="1.0">
       <Point X="297.4525745257454" Y="31.8428184281843" GraphRef="fc51d" RelX="1.0" RelY="0.0" />
-      <Point X="477.5433403427937" Y="85.5385006897845" GraphRef="c989a" RelX="-0.5" RelY="-1.0" ArrowHead="Arrow" />
+      <Point X="483.46050010610736" Y="100.33140009806853" GraphRef="c989a" RelX="-0.5" RelY="-1.0" ArrowHead="Arrow" />
       <Anchor Position="0.4" Shape="None" GraphId="d9eac" />
     </Graphics>
     <Xref Database="" ID="" />
@@ -119,13 +119,15 @@
   <GraphicalLine GraphId="ida35b85e">
     <BiopaxRef>d0c</BiopaxRef>
     <BiopaxRef>c5e</BiopaxRef>
-    <Graphics ZOrder="12288" LineThickness="1.0">
-      <Point X="369.4888808525647" Y="53.32109133282438" GraphRef="d9eac" RelX="0.0" RelY="0.0" />
+    <Graphics ConnectorType="Curved" ZOrder="12288" LineThickness="1.0">
+      <Point X="371.8557447578902" Y="59.238251096137994" GraphRef="d9eac" RelX="0.0" RelY="0.0" />
+      <Point X="330.45449959788" Y="87.27810650887575" />
+      <Point X="291.42011834319527" Y="118.84230528695821" />
       <Point X="311.6531165311653" Y="150.40650406504065" />
     </Graphics>
   </GraphicalLine>
   <Label TextLabel="Label" GraphId="a6be7">
-    <Graphics CenterX="611.1111111111111" CenterY="113.14363143631437" Width="80.0" Height="20.0" ZOrder="28672" FillColor="ffffff" FontSize="10" Valign="Middle" />
+    <Graphics CenterX="664.3655489809335" CenterY="107.22647167300072" Width="80.0" Height="20.0" ZOrder="28672" FillColor="ffffff" FontSize="10" Valign="Middle" />
   </Label>
   <Group GroupId="d4d6b" Style="Pathway" TextLabel="group label" />
   <Group GroupId="bb9ac" GraphId="a82b4" />
