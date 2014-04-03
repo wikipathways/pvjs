@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Pathway xmlns="http://pathvisio.org/GPML/2013a" Name="Rendering Test Protocol for groups" Version="20130809" Organism="Anopheles gambiae">
   <Comment Source="WikiPathways-description">This pathway can be deleted once release 36 is shipped.</Comment>
-  <Graphics BoardWidth="1114.0" BoardHeight="1257.3436322219593" />
+  <Graphics BoardWidth="1114.0" BoardHeight="573.1922913298731" />
   <DataNode TextLabel="GeneProduct" GraphId="c98ed" Type="GeneProduct" GroupRef="f9c9c">
     <Graphics CenterX="137.88487282463188" CenterY="123.15930388219545" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
     <Xref Database="" ID="" />
@@ -23,11 +23,11 @@
     <Xref Database="" ID="" />
   </DataNode>
   <DataNode TextLabel="Pathway" GraphId="f3866" Type="Pathway" GroupRef="bc74e">
-    <Graphics CenterX="416.79732629146747" CenterY="447.8072105774696" Width="80.0" Height="20.0" ZOrder="32768" FontWeight="Bold" FontSize="12" Valign="Middle" ShapeType="None" Color="14961e" />
+    <Graphics CenterX="460.8297712509112" CenterY="381.75854313830365" Width="80.0" Height="20.0" ZOrder="32768" FontWeight="Bold" FontSize="12" Valign="Middle" ShapeType="None" Color="14961e" />
     <Xref Database="" ID="" />
   </DataNode>
   <DataNode TextLabel="GeneProduct" GraphId="c43c2" Type="GeneProduct" GroupRef="bc74e">
-    <Graphics CenterX="465.86345381526104" CenterY="485.9437751004016" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Graphics CenterX="682.5494329577863" CenterY="451.1813185534721" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
     <Xref Database="" ID="" />
   </DataNode>
   <DataNode TextLabel="GeneProduct" GraphId="fefb4" Type="GeneProduct" GroupRef="d0dcc">
@@ -96,8 +96,8 @@
   </Interaction>
   <Interaction GraphId="id3bea2e99">
     <Graphics ConnectorType="Curved" ZOrder="12288" LineThickness="1.0">
-      <Point X="368.79732629146747" Y="448.34135170820264" GraphRef="fabb3" RelX="-1.0" RelY="-0.5" />
-      <Point X="397.86345381526104" Y="391.8725392081386" />
+      <Point X="412.8297712509112" Y="390.1142369920958" GraphRef="fabb3" RelX="-1.0" RelY="-0.5" />
+      <Point X="397.86345381526104" Y="362.7589818500852" />
       <Point X="271.89022757697455" Y="335.40372670807454" />
       <Point X="145.91700133868807" Y="373.5392418535427" GraphRef="c5880" RelX="0.0" RelY="-1.0" ArrowHead="Arrow" />
     </Graphics>
@@ -159,7 +159,7 @@
     <Graphics CenterX="616.7360248447201" CenterY="74.21118012422349" Width="109.0" Height="20.0" ZOrder="32807" FillColor="ffffff" FontWeight="Bold" FontSize="10" Valign="Middle" />
   </Label>
   <Label TextLabel="Group style: Pathway" GraphId="c4c10">
-    <Graphics CenterX="435.17855015740685" CenterY="533.1922913298731" Width="109.0" Height="20.0" ZOrder="32808" FillColor="ffffff" FontWeight="Bold" FontSize="10" Valign="Middle" />
+    <Graphics CenterX="669.2457575733969" CenterY="484.52485216417205" Width="109.0" Height="20.0" ZOrder="32808" FillColor="ffffff" FontWeight="Bold" FontSize="10" Valign="Middle" />
   </Label>
   <Label TextLabel="Group style: None" GraphId="fbdbc">
     <Graphics CenterX="138.28881987577617" CenterY="499.490683229813" Width="109.0" Height="20.0" ZOrder="32809" FillColor="ffffff" FontWeight="Bold" FontSize="10" Valign="Middle" />
@@ -168,7 +168,10 @@
   <Group GroupId="a7abb" GraphId="cb201" Style="Group" />
   <Group GroupId="dff2b" GraphId="fa2a3" Style="Complex" />
   <Group GroupId="ab59a" GraphId="a2c9b" Style="Pathway" />
-  <Group GroupId="bc74e" GraphId="fabb3" Style="Pathway" />
+  <Group GroupId="bc74e" GraphId="fabb3" Style="Pathway" TextLabel="This is a pathway">
+    <Comment>a comment here</Comment>
+    <Comment>Type your comment here</Comment>
+  </Group>
   <Group GroupId="d0dcc" GraphId="c5880" />
   <Group GroupId="ca247" Style="Complex" />
   <Group GroupId="c8c08" GraphId="a9133" Style="Complex" />

@@ -45,7 +45,8 @@ pathvisiojs.data.gpml.anchor = function() {
             pvjsonAnchorPosition = pvjsonAnchor.position;
             pvjsonAnchor.x = firstPoint.x + pvjsonAnchorPosition * (lastPoint.x - firstPoint.x) - pvjsonAnchorWidth/2;
             pvjsonAnchor.y = firstPoint.y + pvjsonAnchorPosition * (lastPoint.y - firstPoint.y) - pvjsonAnchorHeight/2;
-            console.warn('No cached X and Y data available for this gpml Anchor element. Assuming LineType of Straight for anchor position calculation.');
+            console.warn('No cached X and Y data available for the Anchor for the edge element below. Assuming LineType of Straight for anchor position calculation.');
+            console.log(gpmlEdgeSelection[0][0]);
           }
           pvjsonAnchors.push(pvjsonAnchor);
           });
