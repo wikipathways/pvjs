@@ -138,7 +138,8 @@ pathvisiojs.data.gpml = {
         .attr('Padding', '11')
         .attr('ShapeType', 'Complex')
         .attr('Color', '808080')
-        .attr('FillColor', 'B4B464');
+        .attr('FillColor', 'B4B464')
+        .attr('LineStyle', 'Solid');
       });
       var groupPathwaysSelection = gpmlSelection.selectAll('Group[Style=Pathway]').each(function(){
         groupPathwaySelection = d3.select(this);
@@ -174,6 +175,47 @@ pathvisiojs.data.gpml = {
             return (!d3.select(this).select('Graphics').attr('FillColor'));
           }).each(function(){
             d3.select(this).select('Graphics').attr('FillColor', 'Transparent');
+          });
+        }
+
+        var statesSelection = gpmlSelection.selectAll('State');
+        if (!!statesSelection) {
+          statesSelection.filter(function(){
+            return (!d3.select(this).select('Graphics').attr('FillColor'));
+          }).each(function(){
+            d3.select(this).select('Graphics').attr('FillColor', 'ffffff');
+          });
+
+          statesSelection.filter(function(){
+            return (!d3.select(this).select('Graphics').attr('FontSize'));
+          }).each(function(){
+            d3.select(this).select('Graphics').attr('FontSize', 10);
+          });
+
+          statesSelection.filter(function(){
+            return (!d3.select(this).select('Graphics').attr('Valign'));
+          }).each(function(){
+            d3.select(this).select('Graphics').attr('Valign', 'Middle');
+          });
+        }
+
+        var shapesSelection = gpmlSelection.selectAll('Shape');
+        if (!!shapesSelection) {
+          shapesSelection.filter(function(){
+            return (!d3.select(this).select('Graphics').attr('FillColor'));
+          }).each(function(){
+            d3.select(this).select('Graphics').attr('FillColor', 'Transparent');
+          });
+
+          shapesSelection.filter(function(){
+            return (d3.select(this).select('Graphics').attr('Rotation') === '0.0');
+          }).each(function(){
+            d3.select(this).select('Graphics').attr('Rotation', null);
+          });
+
+          var cellularComponentsSelection = shapesSelection.selectAll('[Key="org.pathvisio.CellularComponentProperty"]').each(function(){
+            cellularComponentValue = d3.select(this).attr('Value');
+            d3.select(this.parentElement).attr('CellularComponent', cellularComponentValue);
           });
         }
 
@@ -225,35 +267,6 @@ pathvisiojs.data.gpml = {
         }).each(function(){
           d3.select(this).select('Graphics').attr('Valign', 'Top');
         });
-
-        var statesSelection = gpmlSelection.selectAll('State');
-        if (!!statesSelection) {
-          statesSelection.filter(function(){
-            return (!d3.select(this).select('Graphics').attr('FillColor'));
-          }).each(function(){
-            d3.select(this).select('Graphics').attr('FillColor', 'ffffff');
-          });
-        }
-
-        var shapesSelection = gpmlSelection.selectAll('Shape');
-        if (!!shapesSelection) {
-          shapesSelection.filter(function(){
-            return (!d3.select(this).select('Graphics').attr('FillColor'));
-          }).each(function(){
-            d3.select(this).select('Graphics').attr('FillColor', 'Transparent');
-          });
-
-          shapesSelection.filter(function(){
-            return (d3.select(this).select('Graphics').attr('Rotation') === '0.0');
-          }).each(function(){
-            d3.select(this).select('Graphics').attr('Rotation', null);
-          });
-
-          var cellularComponentsSelection = shapesSelection.selectAll('[Key="org.pathvisio.CellularComponentProperty"]').each(function(){
-            cellularComponentValue = d3.select(this).attr('Value');
-            d3.select(this.parentElement).attr('CellularComponent', cellularComponentValue);
-          });
-        }
 
         // some shapes have GPML values that do not match what is visually displayed in PathVisio-Java.
         // Below we correct the GPML so that the display in pathvisiojs will match the display in PathVisio-Java.
@@ -355,8 +368,9 @@ pathvisiojs.data.gpml = {
         var anchorsSelection = gpmlSelection.selectAll('Anchor').each(function(){
           var parentGraphicsSelection = d3.select(this.parentElement);
           var anchorSelection = d3.select(this);
-          var shapeTypeValue = anchorSelection.attr('Shape');
           var graphics = anchorSelection.append('Graphics');
+
+          var shapeTypeValue = anchorSelection.attr('Shape') || 'None';
           graphics.attr('ShapeType', shapeTypeValue);
           anchorSelection.attr('Shape', null);
 
@@ -379,7 +393,6 @@ pathvisiojs.data.gpml = {
           anchorsSelection.filter(function(){
             return (d3.select(this).select('Graphics').attr('ShapeType') === 'None');
           }).each(function(){
-            d3.select(this).select('Graphics').attr('ShapeType', null);
             d3.select(this).select('Graphics').attr('Width', 4);
             d3.select(this).select('Graphics').attr('Height', 4);
           });

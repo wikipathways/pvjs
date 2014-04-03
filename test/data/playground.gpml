@@ -28,7 +28,7 @@
     <Xref Database="" ID="" />
   </DataNode>
   <DataNode TextLabel="Metabolite" GraphId="c989a" Type="Metabolite">
-    <Graphics CenterX="503.46050010610736" CenterY="110.33140009806853" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Graphics CenterX="503.46050010610736" CenterY="121.86352530399934" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff" />
     <Xref Database="" ID="" />
   </DataNode>
   <DataNode TextLabel="GeneProduct" GraphId="e1646" Type="GeneProduct">
@@ -62,8 +62,8 @@
   <Interaction GraphId="id163842d9">
     <Graphics ZOrder="12288" LineThickness="1.0">
       <Point X="297.4525745257454" Y="31.8428184281843" GraphRef="fc51d" RelX="1.0" RelY="0.0" />
-      <Point X="483.46050010610736" Y="100.33140009806853" GraphRef="c989a" RelX="-0.5" RelY="-1.0" ArrowHead="Arrow" />
-      <Anchor Position="0.4" Shape="None" GraphId="d9eac" />
+      <Point X="483.46050010610736" Y="111.86352530399932" GraphRef="c989a" RelX="-0.5" RelY="-1.0" ArrowHead="Arrow" />
+      <Anchor Position="0.4803289635293141" Shape="None" GraphId="d9eac" />
     </Graphics>
     <Xref Database="" ID="" />
   </Interaction>
@@ -119,16 +119,21 @@
   <GraphicalLine GraphId="ida35b85e">
     <BiopaxRef>d0c</BiopaxRef>
     <BiopaxRef>c5e</BiopaxRef>
-    <Graphics ConnectorType="Curved" ZOrder="12288" LineThickness="1.0">
-      <Point X="371.8557447578902" Y="59.238251096137994" GraphRef="d9eac" RelX="0.0" RelY="0.0" />
-      <Point X="330.45449959788" Y="87.27810650887575" />
+    <Graphics ConnectorType="Curved" ZOrder="12288" LineThickness="1.0" Color="ff0000">
+      <Point X="386.79756862799843" Y="70.27908162272759" GraphRef="d9eac" RelX="0.0" RelY="0.0" ArrowHead="TBar" />
+      <Point X="339.1088434855968" Y="87.27810650887575" />
       <Point X="291.42011834319527" Y="118.84230528695821" />
-      <Point X="311.6531165311653" Y="150.40650406504065" />
+      <Point X="311.6531165311653" Y="150.40650406504065" ArrowHead="Arrow" />
     </Graphics>
   </GraphicalLine>
   <Label TextLabel="Label" GraphId="a6be7">
     <Graphics CenterX="664.3655489809335" CenterY="107.22647167300072" Width="80.0" Height="20.0" ZOrder="28672" FillColor="ffffff" FontSize="10" Valign="Middle" />
   </Label>
+  <Shape GraphId="a9b35">
+    <Attribute Key="org.pathvisio.CellularComponentProperty" Value="Nucleus" />
+    <Attribute Key="org.pathvisio.DoubleLineProperty" Value="Double" />
+    <Graphics CenterX="821.7300181653043" CenterY="96.0261126248865" Width="131.29019073569464" Height="69.52815622161668" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="Oval" LineThickness="3.0" Color="c0c0c0" Rotation="0.0" />
+  </Shape>
   <Group GroupId="d4d6b" Style="Pathway" TextLabel="group label" />
   <Group GroupId="bb9ac" GraphId="a82b4" />
   <Group GroupId="c2fea" GraphId="dee44" />

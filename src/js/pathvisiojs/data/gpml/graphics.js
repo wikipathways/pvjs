@@ -49,6 +49,8 @@ pathvisiojs.data.gpml.graphics = {
         }
         else if (gpmlLineStyleValue === 'Double') {
           gpmlDoubleLineProperty = '-double';
+          // The line below is left here for future reference, but after discussing with AP, the desired behavior is for the entire shape to be filled. -AR
+          //pvjsonElement.fillRule = 'evenodd';
         }
         return pvjsonStrokeDasharray;
       },

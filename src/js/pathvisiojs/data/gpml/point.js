@@ -101,7 +101,7 @@ pathvisiojs.data.gpml.point = function(){
           return gpmlGraphRefValue;
         },
         ArrowHead: function(gpmlArrowHeadValue) {
-          pvjsonMarker = strcase.paramCase(gpmlArrowHeadValue);
+          pvjsonMarker = strcase.camelCase(gpmlArrowHeadValue);
           if (i===0) {
             pvjsonEdge.markerStart = pvjsonMarker;
           }
