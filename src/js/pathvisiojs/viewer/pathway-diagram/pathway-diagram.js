@@ -212,12 +212,29 @@ pathvisiojs.view.pathwayDiagram = function(){
               targetSelector:'#my-svg2'
             });
 
-            var elementRenderingData;
+            var elementRenderingData, shapeName;
             async.each(pathway.elements, function(dataElement, callbackEach) {
               var renderingData = dataElement;
               renderingData.containerSelector = '#viewport';
+              shapeName = strcase.camelCase(dataElement.shape);
               if (dataElement.shape !== 'none') {
-                elementRenderingData = crossPlatformShapesInstance1[strcase.camelCase(dataElement.shape)](renderingData);
+
+                if (!crossPlatformShapesInstance1.hasOwnProperty(shapeName)) {
+                  // if pathvisiojs cannot render the shape name indicated, check for whether the shape name a double-line shape.
+                  // If so, check whether pathvisiojs can render a single-line version of the shape.
+                  // If yes, render the single-line version. Otherwise, render a rounded rectangle.
+                  var re = /double$/gi;
+                  shapeName = shapeName.replace(re, '');
+                  if (crossPlatformShapesInstance1.hasOwnProperty(shapeName)) {
+                    console.warn('Requested path "' + dataElement.shape + '" is not available with linetype of "Double". Using linetype of "Solid" instead');
+                  }
+                  else {
+                    console.warn('Requested path "' + dataElement.shape + '" is not available. Using path "rounded-rectangle" instead');
+                    shapeName = 'roundedRectangle';
+                  }
+                }
+
+                elementRenderingData = crossPlatformShapesInstance1[shapeName](renderingData);
               }
 
               if (!!dataElement.textContent) {

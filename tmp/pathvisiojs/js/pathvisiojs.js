@@ -1,5 +1,5 @@
 /* pathvisiojs 1.0.8
-Built on 2014-03-25
+Built on 2014-04-02
 https://github.com/wikipathways/pathvisiojs
 License: http://www.apache.org/licenses/LICENSE-2.0/ */
 
@@ -1945,7 +1945,8 @@ pathvisiojs.data.gpml = {
         .attr('Align', 'Center')
         .attr('Valign', 'Middle')
         .attr('FontWeight', 'Bold')
-        .attr('LineThickness', 1);
+        .attr('LineThickness', 1)
+        .attr('FillOpacity', 0.1);
       });
       var groupGroupsSelection = gpmlSelection.selectAll('Group[Style=Group]').each(function(){
         groupGroupSelection = d3.select(this);
@@ -1991,12 +1992,14 @@ pathvisiojs.data.gpml = {
         .attr('Padding', '11')
         .attr('ShapeType', 'Complex')
         .attr('Color', '808080')
-        .attr('FillColor', 'B4B464');
+        .attr('FillColor', 'B4B464')
+        .attr('LineStyle', 'Solid');
       });
       var groupPathwaysSelection = gpmlSelection.selectAll('Group[Style=Pathway]').each(function(){
         groupPathwaySelection = d3.select(this);
         groupPathwayGraphicsSelection = groupPathwaySelection.select('Graphics')
-        .attr('FontSize', '32')
+        .attr('FontSize', '1')
+        //.attr('FontSize', '32')
         .attr('Padding', '8')
         .attr('ShapeType', 'Rectangle')
         .attr('LineStyle', 'Broken')
@@ -2028,6 +2031,54 @@ pathvisiojs.data.gpml = {
             d3.select(this).select('Graphics').attr('FillColor', 'Transparent');
           });
         }
+
+        var statesSelection = gpmlSelection.selectAll('State');
+        if (!!statesSelection) {
+          statesSelection.filter(function(){
+            return (!d3.select(this).select('Graphics').attr('FillColor'));
+          }).each(function(){
+            d3.select(this).select('Graphics').attr('FillColor', 'ffffff');
+          });
+
+          statesSelection.filter(function(){
+            return (!d3.select(this).select('Graphics').attr('FontSize'));
+          }).each(function(){
+            d3.select(this).select('Graphics').attr('FontSize', 10);
+          });
+
+          statesSelection.filter(function(){
+            return (!d3.select(this).select('Graphics').attr('Valign'));
+          }).each(function(){
+            d3.select(this).select('Graphics').attr('Valign', 'Middle');
+          });
+        }
+
+        var shapesSelection = gpmlSelection.selectAll('Shape');
+        if (!!shapesSelection) {
+          shapesSelection.filter(function(){
+            return (!d3.select(this).select('Graphics').attr('FillColor'));
+          }).each(function(){
+            d3.select(this).select('Graphics').attr('FillColor', 'Transparent');
+          });
+
+          shapesSelection.filter(function(){
+            return (d3.select(this).select('Graphics').attr('Rotation') === '0.0');
+          }).each(function(){
+            d3.select(this).select('Graphics').attr('Rotation', null);
+          });
+
+          var cellularComponentsSelection = shapesSelection.selectAll('[Key="org.pathvisio.CellularComponentProperty"]').each(function(){
+            cellularComponentValue = d3.select(this).attr('Value');
+            d3.select(this.parentElement).attr('CellularComponent', cellularComponentValue);
+          });
+        }
+
+        // "Ellipse" is the word that other graphics libraries seem to have standardized on.
+        nodesSelection.filter(function(){
+          return (d3.select(this).select('Graphics').attr('ShapeType') === 'Oval');
+        }).each(function(){
+          d3.select(this).select('Graphics').attr('ShapeType', 'Ellipse');
+        });
 
         nodesSelection.filter(function(){
           return (!d3.select(this).select('Graphics').attr('Padding'));
@@ -2070,35 +2121,6 @@ pathvisiojs.data.gpml = {
         }).each(function(){
           d3.select(this).select('Graphics').attr('Valign', 'Top');
         });
-
-        var statesSelection = gpmlSelection.selectAll('State');
-        if (!!statesSelection) {
-          statesSelection.filter(function(){
-            return (!d3.select(this).select('Graphics').attr('FillColor'));
-          }).each(function(){
-            d3.select(this).select('Graphics').attr('FillColor', 'ffffff');
-          });
-        }
-
-        var shapesSelection = gpmlSelection.selectAll('Shape');
-        if (!!shapesSelection) {
-          shapesSelection.filter(function(){
-            return (!d3.select(this).select('Graphics').attr('FillColor'));
-          }).each(function(){
-            d3.select(this).select('Graphics').attr('FillColor', 'Transparent');
-          });
-
-          shapesSelection.filter(function(){
-            return (d3.select(this).select('Graphics').attr('Rotation') === '0.0');
-          }).each(function(){
-            d3.select(this).select('Graphics').attr('Rotation', null);
-          });
-
-          var cellularComponentsSelection = shapesSelection.selectAll('[Key="org.pathvisio.CellularComponentProperty"]').each(function(){
-            cellularComponentValue = d3.select(this).attr('Value');
-            d3.select(this.parentElement).attr('CellularComponent', cellularComponentValue);
-          });
-        }
 
         // some shapes have GPML values that do not match what is visually displayed in PathVisio-Java.
         // Below we correct the GPML so that the display in pathvisiojs will match the display in PathVisio-Java.
@@ -2200,8 +2222,9 @@ pathvisiojs.data.gpml = {
         var anchorsSelection = gpmlSelection.selectAll('Anchor').each(function(){
           var parentGraphicsSelection = d3.select(this.parentElement);
           var anchorSelection = d3.select(this);
-          var shapeTypeValue = anchorSelection.attr('Shape');
           var graphics = anchorSelection.append('Graphics');
+
+          var shapeTypeValue = anchorSelection.attr('Shape') || 'None';
           graphics.attr('ShapeType', shapeTypeValue);
           anchorSelection.attr('Shape', null);
 
@@ -2217,14 +2240,13 @@ pathvisiojs.data.gpml = {
           anchorsSelection.filter(function(){
             return (d3.select(this).select('Graphics').attr('ShapeType') === 'Circle');
           }).each(function(){
-            d3.select(this).select('Graphics').attr('ShapeType', 'Oval');
+            d3.select(this).select('Graphics').attr('ShapeType', 'Ellipse');
             d3.select(this).select('Graphics').attr('Width', 8);
             d3.select(this).select('Graphics').attr('Height', 8);
           });
           anchorsSelection.filter(function(){
             return (d3.select(this).select('Graphics').attr('ShapeType') === 'None');
           }).each(function(){
-            d3.select(this).select('Graphics').attr('ShapeType', null);
             d3.select(this).select('Graphics').attr('Width', 4);
             d3.select(this).select('Graphics').attr('Height', 4);
           });
@@ -3094,7 +3116,7 @@ pathvisiojs.data.gpml.graphics = {
     }
   },
 
-  toPvjson: function(gpmlSelection, elementSelection, pvjsonElement, pvjsonText, callback) {
+  toPvjson: function(gpmlSelection, elementSelection, pvjsonElement, callback) {
       var parentElement,
       attribute,
       i,
@@ -3102,7 +3124,7 @@ pathvisiojs.data.gpml.graphics = {
       gpmlDoubleLineProperty = '',
       pvjsonHeight,
       pvjsonWidth,
-      pvjsonStrokeWidth,
+      pvjsonBorderWidth,
       gpmlShapeType = '',
       pvjsonShape,
       pvjsonZIndex,
@@ -3137,17 +3159,14 @@ pathvisiojs.data.gpml.graphics = {
         }
         else if (gpmlLineStyleValue === 'Double') {
           gpmlDoubleLineProperty = '-double';
+          // The line below is left here for future reference, but after discussing with AP, the desired behavior is for the entire shape to be filled. -AR
+          //pvjsonElement.fillRule = 'evenodd';
         }
         return pvjsonStrokeDasharray;
       },
       ShapeType: function(gpmlShapeTypeValue){
         gpmlShapeType = gpmlShapeTypeValue;
-        if (gpmlShapeType.toLowerCase() === 'none') {
-          pvjsonShape = 'rectangle';
-        }
-        else {
-          pvjsonShape = strcase.paramCase(gpmlShapeType) + gpmlDoubleLineProperty;
-        }
+        pvjsonShape = strcase.paramCase(gpmlShapeType) + gpmlDoubleLineProperty;
         pvjsonElement.shape = pvjsonShape;
         return pvjsonShape;
       },
@@ -3161,21 +3180,19 @@ pathvisiojs.data.gpml.graphics = {
       FillColor: function(gpmlFillColorValue){
         var cssColor = gpmlColorToCssColor(gpmlFillColorValue);
         if (gpmlShapeType.toLowerCase() !== 'none') {
-          pvjsonElement.fill = cssColor;
+          pvjsonElement.backgroundColor = cssColor;
         }
         else {
-          pvjsonElement.fill = 'transparent';
+          pvjsonElement.backgroundColor = 'transparent';
         }
+      },
+      FillOpacity: function(gpmlFillOpacityValue){
+        var cssFillOpacity = parseFloat(gpmlFillOpacityValue);
+        pvjsonElement.fillOpacity = cssFillOpacity;
       },
       Color: function(gpmlColorValue){
         var cssColor = gpmlColorToCssColor(gpmlColorValue);
-        if (gpmlShapeType.toLowerCase() !== 'none') {
-          pvjsonElement.stroke = cssColor;
-        }
-        else {
-          pvjsonElement.stroke = 'transparent';
-        }
-        pvjsonText.fill = cssColor;
+        pvjsonElement.color = cssColor;
       },
       Padding: function(gpmlPaddingValue){
         var cssPadding;
@@ -3186,7 +3203,6 @@ pathvisiojs.data.gpml.graphics = {
           cssPadding = gpmlPaddingValue;
         }
         pvjsonElement.padding = cssPadding;
-        pvjsonText.containerPadding = cssPadding;
       },
       FontSize: function(gpmlFontSizeValue){
         var cssFontSize;
@@ -3196,19 +3212,19 @@ pathvisiojs.data.gpml.graphics = {
         else {
           cssFontSize = gpmlFontSizeValue;
         }
-        pvjsonText.fontSize = cssFontSize;
+        pvjsonElement.fontSize = cssFontSize;
       },
       FontName: function(gpmlFontNameValue){
         var cssFontFamily = gpmlFontNameValue;
-        pvjsonText.fontFamily = cssFontFamily;
+        pvjsonElement.fontFamily = cssFontFamily;
       },
       FontStyle: function(gpmlFontStyleValue){
         var cssFontStyle = gpmlFontStyleValue.toLowerCase();
-        pvjsonText.fontStyle = cssFontStyle;
+        pvjsonElement.fontStyle = cssFontStyle;
       },
       FontWeight: function(gpmlFontWeightValue){
         var cssFontWeight = gpmlFontWeightValue.toLowerCase();
-        pvjsonText.fontWeight = cssFontWeight;
+        pvjsonElement.fontWeight = cssFontWeight;
       },
       Rotation: function(gpmlRotationValue) {
         // GPML can hold a rotation value for State elements in an element named "Attribute" like this:
@@ -3218,13 +3234,13 @@ pathvisiojs.data.gpml.graphics = {
         var pvjsonRotation = gpmlRotationValue * 180/Math.PI; //converting from radians to degrees
         // TODO how do we want to store this value?
         pvjsonElement.rotation = pvjsonRotation;
-        pvjsonText.rotation = pvjsonRotation;
         return pvjsonRotation;
       },
       LineThickness: function(gpmlLineThicknessValue) {
-        pvjsonStrokeWidth = parseFloat(gpmlLineThicknessValue);
-        pvjsonElement.strokeWidth = pvjsonStrokeWidth;
-        return pvjsonStrokeWidth;
+        pvjsonBorderWidth = parseFloat(gpmlLineThicknessValue);
+        pvjsonElement.borderWidth = pvjsonBorderWidth;
+        pvjsonElement.strokeWidth = pvjsonBorderWidth;
+        return pvjsonBorderWidth;
       },
       Position: function(gpmlPositionValue) {
         var pvjsonPosition = parseFloat(gpmlPositionValue);
@@ -3233,43 +3249,31 @@ pathvisiojs.data.gpml.graphics = {
       },
       Width: function(gpmlWidthValue) {
         gpmlWidthValue = parseFloat(gpmlWidthValue);
-        pvjsonWidth = gpmlWidthValue + pvjsonStrokeWidth;
+        pvjsonWidth = gpmlWidthValue + pvjsonBorderWidth;
         pvjsonElement.width = pvjsonWidth;
-        //pvjsonText.containerWidth = pvjsonWidth;
-        pvjsonText.containerWidth = function() {
-          var parentElement = model.elements.filter(function(element) {
-            return element.id === pvjsonText.describes;
-          })[0];
-          var textWidth = parentElement.width;
-          return textWidth;
-        };
         return pvjsonWidth;
       },
       Height: function(gpmlHeightValue) {
         gpmlHeightValue = parseFloat(gpmlHeightValue);
-        pvjsonHeight = gpmlHeightValue + pvjsonStrokeWidth;
+        pvjsonHeight = gpmlHeightValue + pvjsonBorderWidth;
         pvjsonElement.height = pvjsonHeight;
-        pvjsonText.containerHeight = pvjsonHeight;
         return pvjsonHeight;
       },
       CenterX: function(gpmlCenterXValue) {
         gpmlCenterXValue = parseFloat(gpmlCenterXValue);
         pvjsonX = gpmlCenterXValue - pvjsonWidth/2;
         pvjsonElement.x = pvjsonX;
-        pvjsonText.containerX = pvjsonX;
         return pvjsonX;
       },
       CenterY: function(gpmlCenterYValue) {
         gpmlCenterYValue = parseFloat(gpmlCenterYValue);
         pvjsonY = gpmlCenterYValue - pvjsonHeight/2;
         pvjsonElement.y = pvjsonY;
-        pvjsonText.containerY = pvjsonY;
         return pvjsonY;
       },
       RelX: function(gpmlRelXValue) {
         var pvjsonRelX = parseFloat(gpmlRelXValue);
         pvjsonElement.relX = pvjsonRelX;
-        pvjsonText.relX = pvjsonRelX;
         parentElement = gpmlSelection.select('[GraphId=' + elementSelection.attr('GraphRef') + ']');
         var parentCenterX = parseFloat(parentElement.select('Graphics').attr('CenterX'));
         var parentWidth = parseFloat(parentElement.select('Graphics').attr('Width'));
@@ -3277,17 +3281,14 @@ pathvisiojs.data.gpml.graphics = {
         var gpmlCenterXValue = parentCenterX + gpmlRelXValue * parentWidth/2;
         pvjsonX = gpmlCenterXValue - pvjsonWidth/2;
         pvjsonElement.x = pvjsonX;
-        pvjsonText.containerX = pvjsonX;
         pvjsonElement.zIndex = parentZIndex + 0.2;
-        pvjsonText.zIndex = parentZIndex + 0.3;
-        pvjsonText.containerPadding = '0';
-        pvjsonText.fontSize = '10';
+        //pvjsonText.containerPadding = '0';
+        //pvjsonText.fontSize = '10';
         return pvjsonX;
       },
       RelY: function(gpmlRelYValue) {
         var pvjsonRelY = parseFloat(gpmlRelYValue);
         pvjsonElement.relY = pvjsonRelY;
-        pvjsonText.relY = pvjsonRelY;
         var parentCenterY = parseFloat(parentElement.select('Graphics').attr('CenterY'));
         var parentHeight = parseFloat(parentElement.select('Graphics').attr('Height'));
         var elementCenterY = parentCenterY + pvjsonRelY * parentHeight/2;
@@ -3295,23 +3296,22 @@ pathvisiojs.data.gpml.graphics = {
         pvjsonY = elementCenterY - pvjsonHeight/2;
         pvjsonElement.y = pvjsonY;
         // TODO this and other elements here are hacks
-        pvjsonText.containerY = pvjsonY + 12;
+        //pvjsonText.containerY = pvjsonY + 12;
         return pvjsonY;
       },
       Align: function(gpmlAlignValue) {
         pvjsonTextAlign = strcase.paramCase(gpmlAlignValue);
-        pvjsonText.textAlign = pvjsonTextAlign;
+        pvjsonElement.textAlign = pvjsonTextAlign;
         return pvjsonTextAlign;
       },
       Valign: function(gpmlValignValue) {
         pvjsonVerticalAlign = strcase.paramCase(gpmlValignValue);
-        pvjsonText.verticalAlign = pvjsonVerticalAlign;
+        pvjsonElement.verticalAlign = pvjsonVerticalAlign;
         return pvjsonVerticalAlign;
       },
       ZOrder: function(gpmlZOrderValue) {
         pvjsonZIndex = parseFloat(gpmlZOrderValue);
         pvjsonElement.zIndex = pvjsonZIndex;
-        pvjsonText.zIndex = pvjsonZIndex + 0.5;
         return pvjsonZIndex;
       }
     };
@@ -3360,7 +3360,7 @@ pathvisiojs.data.gpml.graphics = {
         }
       }
     }
-    callback(pvjsonElement, pvjsonText);
+    callback(pvjsonElement);
   }
 };
 
@@ -3492,8 +3492,7 @@ pathvisiojs.data.gpml.element = function(){
 
   //*
   var toPvjson = function(gpmlSelection, elementSelection, pvjsonElement, callback) {
-    var pvjsonText = {},
-      attribute,
+    var attribute,
       i,
       pvjsonHeight,
       pvjsonWidth,
@@ -3509,7 +3508,6 @@ pathvisiojs.data.gpml.element = function(){
       pvjsonHref;
     pvjsonElement.gpmlType = elementSelection[0][0].tagName;
     pvjsonElement.graphicalType = 'path';
-    pvjsonText.graphicalType = 'text';
 
 
     var attributeDependencyOrder = [
@@ -3525,12 +3523,10 @@ pathvisiojs.data.gpml.element = function(){
       GraphId: function(gpmlGraphIdValue){
         // TODO this is a hack so we don't have two items with the same ID while I'm building out the code to create the flattened data structure
         pvjsonElement.id = gpmlGraphIdValue;
-        pvjsonText.id = 'text' + gpmlGraphIdValue;
-        pvjsonText.describes = gpmlGraphIdValue;
         return gpmlGraphIdValue;
       },
       Style: function(gpmlStyleValue){
-        pvjsonText.groupStyle = gpmlStyleValue;
+        pvjsonElement.groupStyle = gpmlStyleValue;
         return gpmlStyleValue;
       },
       Href: function(gpmlHrefValue){
@@ -3541,7 +3537,6 @@ pathvisiojs.data.gpml.element = function(){
       TextLabel: function(gpmlTextLabelValue){
         pvjsonTextContent = he.decode(gpmlTextLabelValue);
         pvjsonElement.textContent = pvjsonTextContent;
-        pvjsonText.textContent = pvjsonTextContent;
         return pvjsonTextContent;
       },
       Type: function(gpmlTypeValue){
@@ -3591,7 +3586,7 @@ pathvisiojs.data.gpml.element = function(){
           pvjsonElement[attributeListItemName] = attributeListItem.value;
         }
       });
-      callback(pvjsonElement, pvjsonText);
+      callback(pvjsonElement);
     });
   };
   //*/
@@ -3719,8 +3714,8 @@ pathvisiojs.data.gpml.group = {
   getGroupDimensions: function(group, callback) {
     var dimensions = {};
     dimensions.topLeftCorner = {};
-    dimensions.topLeftCorner.x = 9999999999999999999999999999;
-    dimensions.topLeftCorner.y = 9999999999999999999999999999;
+    dimensions.topLeftCorner.x = Infinity;
+    dimensions.topLeftCorner.y = Infinity;
     dimensions.bottomRightCorner = {};
     dimensions.bottomRightCorner.x = 0;
     dimensions.bottomRightCorner.y = 0;
@@ -3730,7 +3725,7 @@ pathvisiojs.data.gpml.group = {
     var groupContents = group.contains;
     groupContents = pathvisiojs.utilities.convertToArray(groupContents);
 
-    dimensions.zIndex = 9999999999999999999999999999;
+    dimensions.zIndex = Infinity;
     async.each(groupContents, function(groupContent, callbackInside) {
       if (!groupContent.hasOwnProperty('points')) {
         dimensions.topLeftCorner.x = Math.min(dimensions.topLeftCorner.x, groupContent.x);
@@ -3783,17 +3778,11 @@ pathvisiojs.data.gpml.group = {
 
 
 
-    pathvisiojs.data.gpml.element.toPvjson(gpmlSelection, groupSelection, pvjsonPath, function(pvjsonPath, pvjsonText) {
+    pathvisiojs.data.gpml.element.toPvjson(gpmlSelection, groupSelection, pvjsonPath, function(pvjsonPath) {
 
 
 
-      pathvisiojs.data.gpml.graphics.toPvjson(gpmlSelection, groupSelection, pvjsonPath, pvjsonText, function(pvjsonPath, updatedPvjsonText) {
-        pvjsonText = updatedPvjsonText;
-
-
-
-
-
+      pathvisiojs.data.gpml.graphics.toPvjson(gpmlSelection, groupSelection, pvjsonPath, function(pvjsonPath) {
           var contents = elementsPossiblyInGroup.filter(function(element){
             return element.isContainedBy === pvjsonPath.id;
           });
@@ -3805,28 +3794,8 @@ pathvisiojs.data.gpml.group = {
               pvjsonPath.width = dimensions.width;
               pvjsonPath.height = dimensions.height;
               pvjsonPath.zIndex = dimensions.zIndex;
-              pvjsonText.containerX = dimensions.x;
-              pvjsonText.containerY = dimensions.y;
-              pvjsonText.containerWidth = dimensions.width;
-
-
-              // TODO move all of these functions to a model section so they aren't repeated (e.g., this also appears in graphics.js)
-              pvjsonText.containerWidth = function() {
-                var parentElement = model.elements.filter(function(element) {
-                  return element.id === pvjsonText.describes;
-                })[0];
-                var textWidth = parentElement.width;
-                return textWidth;
-              };
-
-              pvjsonText.containerHeight = dimensions.height;
-              pvjsonText.zIndex = dimensions.zIndex;
             });
             pvjsonElements.push(pvjsonPath);
-
-            if (!!pvjsonText.textContent) {
-              pvjsonElements.push(pvjsonText);
-            }
           }
         callback(pvjsonElements);
       });
@@ -3840,9 +3809,7 @@ pathvisiojs.data.gpml.dataNode = function() {
   'use strict';
 
   var toPvjson = function(pathway, gpmlSelection, dataNodeSelection, callbackInside) {
-    var pvjsonPath = {},
-      pvjsonText = {};
-
+    var pvjsonPath = {};
     var dataNodeType = dataNodeSelection.attr('Type');
     if (!dataNodeType) {
       dataNodeType = 'Unknown';
@@ -3856,11 +3823,8 @@ pathvisiojs.data.gpml.dataNode = function() {
 
 
 
-    pathvisiojs.data.gpml.element.toPvjson(gpmlSelection, dataNodeSelection, pvjsonPath, function(pvjsonPath, updatedPvjsonText) {
-      pvjsonText = updatedPvjsonText;
-      pathvisiojs.data.gpml.graphics.toPvjson(gpmlSelection, dataNodeSelection, pvjsonPath, pvjsonText, function(pvjsonPath, updatedPvjsonText) {
-        pvjsonText = updatedPvjsonText;
-
+    pathvisiojs.data.gpml.element.toPvjson(gpmlSelection, dataNodeSelection, pvjsonPath, function(pvjsonPath) {
+      pathvisiojs.data.gpml.graphics.toPvjson(gpmlSelection, dataNodeSelection, pvjsonPath, function(pvjsonPath) {
         var database, id, datasourceReference,
           datasourceReferenceSelection = dataNodeSelection.select('Xref');
         if (!!datasourceReferenceSelection) {
@@ -3872,27 +3836,10 @@ pathvisiojs.data.gpml.dataNode = function() {
             datasourceReference.id = id;
             datasourceReference.organism = gpmlSelection.attr('Organism');
             pvjsonPath.datasourceReference = datasourceReference;
-            pvjsonText.datasourceReference = datasourceReference;
           }
         }
 
         var pvjsonElements = [pvjsonPath];
-        if (!!pvjsonText.textContent) {
-
-
-
-          /*
-          pvjsonText.myWidth = function() {
-            var describedElementId = this.describes;
-            var describedElement = pathway.elements.filter(function(element) {
-              return element.id === describedElementId;
-            })[0];
-            return describedElement.width + 5;
-          };
-          //*/
-
-          pvjsonElements.push(pvjsonText);
-        }
         callbackInside(pvjsonElements);
       });
     });
@@ -3908,19 +3855,14 @@ pathvisiojs.data.gpml.label = function(){
   'use strict';
 
   var toPvjson = function(gpmlSelection, labelSelection, callback) {
-    var pvjsonPath = {},
-      pvjsonText = {};
+    var pvjsonPath = {};
 
     pvjsonPath.networkType = 'node';
     pvjsonPath.nodeType = 'Label';
 
-    pathvisiojs.data.gpml.element.toPvjson(gpmlSelection, labelSelection, pvjsonPath, function(pvjsonPath, pvjsonText) {
-      pathvisiojs.data.gpml.graphics.toPvjson(gpmlSelection, labelSelection, pvjsonPath, pvjsonText, function(pvjsonPath, updatedPvjsonText) {
-        pvjsonText = updatedPvjsonText;
+    pathvisiojs.data.gpml.element.toPvjson(gpmlSelection, labelSelection, pvjsonPath, function(pvjsonPath) {
+      pathvisiojs.data.gpml.graphics.toPvjson(gpmlSelection, labelSelection, pvjsonPath, function(pvjsonPath) {
         var pvjsonElements = [pvjsonPath];
-        if (!!pvjsonText.textContent) {
-          pvjsonElements.push(pvjsonText);
-        }
         callback(pvjsonElements);
       });
     });
@@ -3940,13 +3882,9 @@ pathvisiojs.data.gpml.shape = function(){
     pvjsonPath.networkType = 'node';
     pvjsonPath.nodeType = "Shape";
 
-    pathvisiojs.data.gpml.element.toPvjson(gpmlSelection, shapeSelection, pvjsonPath, function(pvjsonPath, pvjsonText) {
-      pathvisiojs.data.gpml.graphics.toPvjson(gpmlSelection, shapeSelection, pvjsonPath, pvjsonText, function(pvjsonPath, updatedPvjsonText) {
-        pvjsonText = updatedPvjsonText;
+    pathvisiojs.data.gpml.element.toPvjson(gpmlSelection, shapeSelection, pvjsonPath, function(pvjsonPath) {
+      pathvisiojs.data.gpml.graphics.toPvjson(gpmlSelection, shapeSelection, pvjsonPath, function(pvjsonPath) {
         var pvjsonElements = [pvjsonPath];
-        if (!!pvjsonText.textContent) {
-          pvjsonElements.push(pvjsonText);
-        }
         callback(pvjsonElements);
       });
     });
@@ -3964,8 +3902,7 @@ pathvisiojs.data.gpml.state = function(){
   'use strict';
 
   var toPvjson = function(gpmlSelection, stateSelection, callback) {
-    var pvjsonPath = {},
-      pvjsonText = {};
+    var pvjsonPath = {};
     pvjsonPath.networkType = 'node';
     pvjsonPath.nodeType = 'State';
     /*
@@ -3978,13 +3915,9 @@ pathvisiojs.data.gpml.state = function(){
     //*/
 
         //*
-        pathvisiojs.data.gpml.element.toPvjson(gpmlSelection, stateSelection, pvjsonPath, function(pvjsonPath, pvjsonText) {
-          pathvisiojs.data.gpml.graphics.toPvjson(gpmlSelection, stateSelection, pvjsonPath, pvjsonText, function(pvjsonPath, updatedPvjsonText) {
-            pvjsonText = updatedPvjsonText;
+        pathvisiojs.data.gpml.element.toPvjson(gpmlSelection, stateSelection, pvjsonPath, function(pvjsonPath) {
+          pathvisiojs.data.gpml.graphics.toPvjson(gpmlSelection, stateSelection, pvjsonPath, function(pvjsonPath) {
             var pvjsonElements = [pvjsonPath];
-            if (!!pvjsonText.textContent) {
-              pvjsonElements.push(pvjsonText);
-            }
             /*
             console.log('pvjsonPath inside');
             console.log(pvjsonPath);
@@ -4024,7 +3957,7 @@ pathvisiojs.data.gpml.anchor = function() {
 
 
   function toPvjson(gpmlSelection, gpmlEdgeSelection, pvjsonEdge, callback) {
-    var anchor, anchorSelection, pvjsonAnchor, pvjsonAnchors = [], pvjsonX, pvjsonY, parentElement, pvjsonMarker, pvjsonText, attachedPoint, pvjsonAnchorPosition, pvjsonAnchorWidth, pvjsonAnchorHeight;
+    var anchor, anchorSelection, pvjsonAnchor, pvjsonAnchors = [], pvjsonX, pvjsonY, parentElement, pvjsonMarker, attachedPoint, pvjsonAnchorPosition, pvjsonAnchorWidth, pvjsonAnchorHeight;
     var points = pvjsonEdge.points;
     var pointCount = points.length;
     var firstPoint = points[0];
@@ -4039,8 +3972,8 @@ pathvisiojs.data.gpml.anchor = function() {
       pvjsonAnchor.zIndex = pvjsonEdge.zIndex + 0.1;
       pvjsonAnchor.networkType = 'node';
 
-      pathvisiojs.data.gpml.element.toPvjson(gpmlSelection, anchorSelection, pvjsonAnchor, function(pvjsonAnchor, pvjsonText) {
-        pathvisiojs.data.gpml.graphics.toPvjson(gpmlSelection, anchorSelection, pvjsonAnchor, pvjsonText, function(pvjsonAnchor, updatedPvjsonText) {
+      pathvisiojs.data.gpml.element.toPvjson(gpmlSelection, anchorSelection, pvjsonAnchor, function(pvjsonAnchor) {
+        pathvisiojs.data.gpml.graphics.toPvjson(gpmlSelection, anchorSelection, pvjsonAnchor, function(pvjsonAnchor) {
           attachedPoint = d3.select(gpmlSelection).select('Point[GraphRef=' + pvjsonAnchor.id + ']');
           pvjsonAnchorWidth = pvjsonAnchor.width;
           pvjsonAnchorHeight = pvjsonAnchor.height;
@@ -4054,8 +3987,6 @@ pathvisiojs.data.gpml.anchor = function() {
             pvjsonAnchor.y = firstPoint.y + pvjsonAnchorPosition * (lastPoint.y - firstPoint.y) - pvjsonAnchorHeight/2;
             console.warn('No cached X and Y data available for this gpml Anchor element. Assuming LineType of Straight for anchor position calculation.');
           }
-          
-          // not returning updatedPvjsonText, because anchors don't have text
           pvjsonAnchors.push(pvjsonAnchor);
           });
         });
@@ -4311,11 +4242,11 @@ pathvisiojs.data.gpml.interaction = {
       }
       //*/
 
-      var pvjsonPath = {}, pvjsonText = {};
+      var pvjsonPath = {};
       pvjsonPath.networkType = 'edge';
       pvjsonPath.gpmlType = 'Interaction';
-      pathvisiojs.data.gpml.element.toPvjson(gpmlSelection, interactionSelection, pvjsonPath, function(pvjsonPath, pvjsonText) {
-        pathvisiojs.data.gpml.graphics.toPvjson(gpmlSelection, interactionSelection, pvjsonPath, pvjsonText, function(pvjsonPath, updatedPvjsonText) {
+      pathvisiojs.data.gpml.element.toPvjson(gpmlSelection, interactionSelection, pvjsonPath, function(pvjsonPath) {
+        pathvisiojs.data.gpml.graphics.toPvjson(gpmlSelection, interactionSelection, pvjsonPath, function(pvjsonPath) {
           pathvisiojs.data.gpml.point.toPvjson(gpmlSelection, interactionSelection, pvjsonPath, function(pvjsonPath) {
             pathvisiojs.data.gpml.anchor.toPvjson(gpmlSelection, interactionSelection, pvjsonPath, function(pvjsonAnchor) {
               pvjsonElements = [pvjsonPath].concat(pvjsonAnchor);
@@ -4353,12 +4284,11 @@ pathvisiojs.data.gpml.graphicalLine = function(){
       source,
       sourceId,
       pvjsonElements,
-      pvjsonPath = {},
-      pvjsonText = {};
+      pvjsonPath = {};
 
     pvjsonPath.networkType = 'edge';
-    pathvisiojs.data.gpml.element.toPvjson(gpmlSelection, graphicalLineSelection, pvjsonPath, function(pvjsonPath, pvjsonText) {
-      pathvisiojs.data.gpml.graphics.toPvjson(gpmlSelection, graphicalLineSelection, pvjsonPath, pvjsonText, function(pvjsonPath, updatedPvjsonText) {
+    pathvisiojs.data.gpml.element.toPvjson(gpmlSelection, graphicalLineSelection, pvjsonPath, function(pvjsonPath) {
+      pathvisiojs.data.gpml.graphics.toPvjson(gpmlSelection, graphicalLineSelection, pvjsonPath, function(pvjsonPath) {
         pathvisiojs.data.gpml.point.toPvjson(gpmlSelection, graphicalLineSelection, pvjsonPath, function(pvjsonPath) {
           pathvisiojs.data.gpml.anchor.toPvjson(gpmlSelection, graphicalLineSelection, pvjsonPath, function(pvjsonAnchor) {
 
@@ -4479,7 +4409,7 @@ pathvisiojs.data.gpml.point = function(){
           return gpmlGraphRefValue;
         },
         ArrowHead: function(gpmlArrowHeadValue) {
-          pvjsonMarker = strcase.paramCase(gpmlArrowHeadValue);
+          pvjsonMarker = strcase.camelCase(gpmlArrowHeadValue);
           if (i===0) {
             pvjsonEdge.markerStart = pvjsonMarker;
           }
@@ -5106,14 +5036,89 @@ pathvisiojs.view.pathwayDiagram = function(){
         loadDiagramArgs.fitToContainer = fitToContainer;
         loadDiagramArgs.highlights = highlights;
 
+        //*
+        pathvisiojs.data.pvjson.get(renderableSourceDataElement, function(json) {
+          pathvisiojs.context = json['@context'];
+
+          if (!json || json === 'fail') {
+            callback(null);
+            throw new Error("Could not convert input source data to pathvisioJsJson.");
+          }
+
+          pathway = json;
+          self.myPathway = json;
+          var crossPlatformShapesInstance1 = Object.create(crossPlatformShapes);
+          crossPlatformShapesInstance1.init({
+            targetSelector:'#diagram-container',
+            id: 'my-svg2',
+            format: renderableSourceDataElement.selectedViewMethod,
+            width:containerWidth,
+            height:containerHeight,
+            backgroundColor: 'white',
+            customShapes: { // optional
+              arc: {
+                href: 'http://upload.wikimedia.org/wikipedia/commons/5/5c/Triangular_arch.svg'
+              },
+              brace:{
+                href: 'http://farm2.staticflickr.com/1175/1331501691_931c8a09d1_z.jpg'
+              },
+              mitochondria:{
+                href: 'http://farm1.staticflickr.com/128/393913249_f0a61946dc_n.jpg'
+              }
+            }
+          },
+          function(viewport) {
+
+            var crossPlatformTextInstance1 = Object.create(crossPlatformText);
+            crossPlatformTextInstance1.init({
+              targetSelector:'#my-svg2'
+            });
+
+            var elementRenderingData, shapeName;
+            async.each(pathway.elements, function(dataElement, callbackEach) {
+              var renderingData = dataElement;
+              renderingData.containerSelector = '#viewport';
+              shapeName = strcase.camelCase(dataElement.shape);
+              if (dataElement.shape !== 'none') {
+
+                if (!crossPlatformShapesInstance1.hasOwnProperty(shapeName)) {
+                  // if pathvisiojs cannot render the shape name indicated, check for whether the shape name a double-line shape.
+                  // If so, check whether pathvisiojs can render a single-line version of the shape.
+                  // If yes, render the single-line version. Otherwise, render a rounded rectangle.
+                  var re = /double$/gi;
+                  shapeName = shapeName.replace(re, '');
+                  if (crossPlatformShapesInstance1.hasOwnProperty(shapeName)) {
+                    console.warn('Requested path "' + dataElement.shape + '" is not available with linetype of "Double". Using linetype of "Solid" instead');
+                  }
+                  else {
+                    console.warn('Requested path "' + dataElement.shape + '" is not available. Using path "rounded-rectangle" instead');
+                    shapeName = 'roundedRectangle';
+                  }
+                }
+
+                elementRenderingData = crossPlatformShapesInstance1[shapeName](renderingData);
+              }
+
+              if (!!dataElement.textContent) {
+                var textRenderingData = dataElement;
+                textRenderingData.id = 'text-for-' + dataElement.id;
+                textRenderingData.containerSelector = '#viewport';
+                crossPlatformTextInstance1.render(renderingData);
+              }
+              callbackEach(null);
+            });
+          });
+          callback(null, json);
+        });
+
         // ********************************************
         // Check for SVG support. If false, use static image (png, jpg, gif, etc.) fallback
         // ********************************************
+        /*
         if (renderableSourceDataElement.selectedViewMethod === 'svg') { // TODO get this working in IE9
           loadDiagramArgs.cssUri = cssUri;
           loadDiagramArgs.customMarkers = customMarkers;
           //loadDiagramArgs.customSymbols = customSymbols;
-          //*
           pathvisiojs.view.pathwayDiagram.svg.load(loadDiagramArgs, function(diagram) {
             if (!!diagram) {
               callback(null, diagram);
@@ -5126,13 +5131,13 @@ pathvisiojs.view.pathwayDiagram = function(){
               });
             }
           });
-          //*/
         }
         else {
           pathvisiojs.view.pathwayDiagram.img.load(loadDiagramArgs, function(diagram) {
             callback(null, diagram);
           });
         }
+          //*/
       },
       function(diagram, callback){
         // ********************************************
@@ -5205,13 +5210,13 @@ pathvisiojs.view.pathwayDiagram.svg = {
             preloadDiagramArgs.cssUri = cssUri;
             //preloadDiagramArgs.customSymbols = customSymbols;
 
-            pathvisiojs.view.pathwayDiagram.svg.loadPartials(preloadDiagramArgs, function(svg) {
-              if (!svg) {
+            svgRenderer.loadPartials(preloadDiagramArgs, function(svgSelection) {
+              if (!svgSelection) {
                 throw new Error("Could not load SVG template.");
               }
 
               var results = {};
-              results.svg = svg;
+              results.svgSelection = svgSelection;
               callback(null, results);
             });
           },
@@ -5235,23 +5240,23 @@ pathvisiojs.view.pathwayDiagram.svg = {
         function(err, results){
           //TODO get pathwayWidth and Height
 
-          callback(null, results.preloadSvg.svg, results.pathway);
+          callback(null, results.preloadSvg.svgSelection, results.pathway);
         });
       },
-      function(svg, pathway, callback){
-        pathvisiojs.view.pathwayDiagram.svg.renderWithCachedData(svg, pathway, function() {
-          svg.attr('style', 'display:inline');
-          callback(null, svg);
+      function(svgSelection, pathway, callback){
+        svgRenderer.renderWithCachedData(svgSelection, pathway, function() {
+          svgSelection.attr('style', 'display:inline');
+          callback(null, svgSelection);
         });
       },
-      function(svg, callback) {
+      function(svgSelection, callback) {
         if (!!highlights) {
           highlights.forEach(function(highlight) {
-            pathvisiojs.view.pathwayDiagram.svg.node.highlight(highlight);
+            svgRenderer.node.highlight(highlight);
           });
         }
 
-        var viewport = svg.select('#viewport');
+        var viewport = svgSelection.select('#viewport');
 
         /* not all containers will have a width or height style attribute. this is now done using the same logic
          * but uses boundingClientRect() instead. the code is located in pathway-diagram.js
@@ -5307,7 +5312,7 @@ pathvisiojs.view.pathwayDiagram.svg = {
         });
 
         var svgInFocus = false;
-        svg.on("click", function(d, i){
+        svgSelection.on("click", function(d, i){
           svgPanZoom.enableZoom();
           svgInFocus = true;
         })
@@ -5322,9 +5327,9 @@ pathvisiojs.view.pathwayDiagram.svg = {
             svgInFocus = false;
           }
         });
-        callback(null, svg);
+        callback(null, svgSelection);
       },
-      function(svg, callback){
+      function(svgSelection, callback){
         //* Node Highlighter
 
         var nodeLabels, nodeLabel;
@@ -5356,7 +5361,7 @@ pathvisiojs.view.pathwayDiagram.svg = {
              console.warn('Error: No data node value entered.');
              }
              else {
-             pathvisiojs.view.pathwayDiagram.svg.node.highlightByLabel(svg, nodeLabel);
+             svgRenderer.node.highlightByLabel(svg, nodeLabel);
              }
              });
           //*/
@@ -5373,23 +5378,75 @@ pathvisiojs.view.pathwayDiagram.svg = {
               // TODO refactor this so it calls a generic highlightDataNodeByLabel function that can call
               // a highlighter for svg, png, etc. as appropriate.
 
-              pathvisiojs.view.pathwayDiagram.svg.node.highlightByLabel(svg, pathway, nodeLabel);
+              svgRenderer.node.highlightByLabel(svgSelection, pathway, nodeLabel);
             }
           });
 
           d3.select('#clear-highlights-from-typeahead').on('click', function() {
-            pathvisiojs.view.pathwayDiagram.svg.node.clearHighlightsFromTypeahead();
+            svgRenderer.node.clearHighlightsFromTypeahead();
           });
-          callback(null, svg);
+          callback(null, svgSelection);
         }
       }
     ],
-    function(err, svg) {
-      callbackOutside(svg);
+    function(err, svgSelection) {
+      callbackOutside(svgSelection);
     });
   },
 
+  generateSvgTemplate: function (callback) {
+    var docFragment = document.createDocumentFragment();
+    var svgSelection = d3.select(docFragment).append('svg').
+    attr('id', 'pathvisiojs-diagram').
+    attr('version', '1.1').
+    attr('baseProfile', 'full').
+    attr('xmlns', 'http://www.w3.org/2000/svg').
+    attr('xmlns:xmlns:xlink', 'http://www.w3.org/1999/xlink').
+    attr('xmlns:xmlns:ev', 'http://www.w3.org/2001/xml-events').
+    attr('width', '100%').
+    attr('height', '100%').
+    attr('style', 'display: none; ');
+
+    var g = svgSelection.append('g');
+
+    var title = svgSelection.append('title').
+    text('pathvisiojs diagram');
+
+    var desc = g.append('desc').
+    text('This SVG file contains all the graphical elements (markers and symbols in defs as well as\nstyle data) used by the program pathvisiojs, which has two components:\n1) a viewer for transforming GPML biological pathway data into an SVG visual representation and\n2) an editor for creating both views and models for biological pathways.');
+
+    var defs = svgSelection.append('defs');
+
+    // TODO can we delete this filter?
+    var filter = svgSelection.append('filter').
+    attr('id', 'highlight').
+    attr('width', '150%').
+    attr('height', '150%');
+
+    filter.append('feOffset').
+    attr('result', 'offOut').
+    attr('in', 'SourceGraphic').
+    attr('dx', '30').
+    attr('dy', '30');
+
+    filter.append('feGaussianBlur').
+    attr('result', 'blurOut').
+    attr('in', 'offOut').
+    attr('stdDeviation', '10');
+
+    filter.append('feBlend').
+    attr('in', 'SourceGraphic').
+    attr('in2', 'blurOut').
+    attr('mode', 'normal');
+
+    var viewport = svgSelection.append('g').
+    attr('id', 'viewport');
+    callback(docFragment);
+  },
+
   loadPartials: function(args, callbackOutside) {
+    var svgRenderer = this;
+    var svgTemplateGenerator = this.generateSvgTemplate;
     var diagramContainer = args.container,
       customMarkers = args.customMarkers,
       //customSymbols = args.customSymbols,
@@ -5397,28 +5454,31 @@ pathvisiojs.view.pathwayDiagram.svg = {
 
     async.waterfall([
       function(callback) {
-        var svg = diagramContainer.append('div').html(pathvisioNS['tmp/pathvisiojs.svg']).select('#pathvisiojs-diagram')
+        var svgSelection = diagramContainer.append('div').html(pathvisioNS['tmp/pathvisiojs.svg']).select('#pathvisiojs-diagram')
         .attr('preserveAspectRatio', 'xMidYMid');
-        
-        console.log('svg');
-        console.log(svg);
 
-        callback(null, svg);
+        svgTemplateGenerator(function(svgTemplate) {
+          console.log('svgTemplate');
+          console.log(svgTemplate);
+          console.log('svgSelection');
+          console.log(svgSelection);
+          callback(null, svgSelection);
+        });
       },
-      function(svg, callback) {
+      function(svgSelection, callback) {
         if (!!args.customMarkers) {
-          pathvisiojs.view.pathwayDiagram.svg.edge.marker.loadAllCustom(svg, customMarkers, function() {
-            callback(null, svg);
+          svgRenderer.marker.loadAllCustom(svgSelection, customMarkers, function() {
+            callback(null, svgSelection);
           });
         }
         else {
-          callback(null, svg);
+          callback(null, svgSelection);
         }
       },
       /*
       function(callback) {
         if (!!args.customSymbols) {
-          pathvisiojs.view.pathwayDiagram.svg.symbol.loadAllCustom(svg, customSymbols, function() {
+          svgRenderer.symbol.loadAllCustom(svg, customSymbols, function() {
             callback(null);
           })
         }
@@ -5427,22 +5487,22 @@ pathvisiojs.view.pathwayDiagram.svg = {
         }
       },
       //*/
-      function(svg, callback) {
+      function(svgSelection, callback) {
         if (!!cssUri) {
           d3.text(cssUri, 'text/css', function(data) {
-            var defs = svg.select('defs');
+            var defs = svgSelection.select('defs');
             var style = defs.append('style').attr('type', "text/css");
             style.text(data);
-            callback(null, svg);
+            callback(null, svgSelection);
           });
         }
         else {
-          callback(null, svg);
+          callback(null, svgSelection);
         }
       }
     ],
-    function(err, svg) {
-      callbackOutside(svg);
+    function(err, svgSelection) {
+      callbackOutside(svgSelection);
     });
   },
 
@@ -5466,39 +5526,74 @@ pathvisiojs.view.pathwayDiagram.svg = {
     return cssClassName;
   },
 
-
-  renderWithCachedData: function(svg, pathway, callback){
+  renderWithCachedData: function(svgSelection, pathway, callback){
     var svgRenderer = this;
-    if (!svg) {
-      throw new Error("No svg specified.");
+    if (!svgSelection) {
+      throw new Error("No svgSelection specified.");
     }
     if (!pathway) {
       throw new Error("No data entered to render.");
     }
 
-    var viewport = svg.select('#viewport');
+    var viewport = svgSelection.select('#viewport');
 
-    pathvisiojs.view.pathwayDiagram.svg.infoBox.render(viewport, pathway);
+
+    var crossPlatformShapesInstance1 = Object.create(crossPlatformShapes);
+    crossPlatformShapesInstance1.init({
+      targetSelector:'svg',
+      backgroundColor: 'gray',
+      customShapes: { // optional
+        arc: {
+          href: 'http://upload.wikimedia.org/wikipedia/commons/5/5c/Triangular_arch.svg'
+        },
+        brace:{
+          href: 'http://farm2.staticflickr.com/1175/1331501691_931c8a09d1_z.jpg'
+        },
+        mitochondria:{
+          href: 'http://farm1.staticflickr.com/128/393913249_f0a61946dc_n.jpg'
+        }
+      }
+    });
+
+    svgRenderer.infoBox.render(viewport, pathway);
 
     var renderArgs = {};
-    renderArgs.svg = svg;
+    renderArgs.svgSelection = svgSelection;
     renderArgs.container = viewport;
     renderArgs.pathway = pathway;
+
+/*
+var docFrag = document.createDocumentFragment();
+d3.select(docFrag).append('svg').append('path').attr('d', 'M0,0 L10,10');
+var myPath = d3.select(docFrag).select('path')[0][0];
+myPath.getTotalLength();
+myPath.getBBox();
+//*/
+
 
     async.waterfall([
       function(callbackInside){
         var renderingArgs = {};
-
+        var elementRenderingData;
         async.each(pathway.elements, function(dataElement, callbackEach) {
           if (dataElement.graphicalType === 'path') {
-            pathvisiojs.view.pathwayDiagram.svg.path.render(viewport, dataElement);
+            svgRenderer.path.render(viewport, dataElement);
+
+          if (dataElement.gpmlType === 'Interaction') {
+            elementRenderingData = crossPlatformShapesInstance1[strcase.camelCase(dataElement.shape)](dataElement);
+            var element = viewport.append(elementRenderingData.elementName);
+            elementRenderingData.attributes.forEach(function(attribute) {
+              element.attr(attribute.name, attribute.value);
+            });
+          }
+
           }
           else if (dataElement.graphicalType === 'text') {
-            pathvisiojs.view.pathwayDiagram.svg.text.render(viewport, dataElement);
+            svgRenderer.text.render(viewport, dataElement);
           }
           else if (dataElement.graphicalType === 'image') {
             /*
-            pathvisiojs.view.pathwayDiagram.svg.node.groupNode.render(renderingArgs, function(groupContainer, groupContents) {
+            svgRenderer.node.groupNode.render(renderingArgs, function(groupContainer, groupContents) {
               // TODO this used to render the group contents, but now the callback does nothing
             });
             //*/
@@ -5506,10 +5601,10 @@ pathvisiojs.view.pathwayDiagram.svg = {
           callbackEach(null);
         },
         function(err){
-          callbackInside(null, svg);
+          callbackInside(null, svgSelection);
         });
       },
-      function(svg, callbackInside){
+      function(svgSelection, callbackInside){
         var elementsWithPublicationXrefs = pathway.elements.filter(function(element){return !!element.publicationXrefs;});
         if (elementsWithPublicationXrefs.length > 0) {
           elementsWithPublicationXrefs.forEach(function(elementWithPublicationXrefs) {
@@ -5518,10 +5613,10 @@ pathvisiojs.view.pathwayDiagram.svg = {
             svgRenderer.publicationXref.render(viewport, elementWithPublicationXrefs);
           });
         }
-        callbackInside(null, svg);
+        callbackInside(null, svgSelection);
       },
-      function(svg, callbackInside){
-        callback(svg);
+      function(svgSelection, callbackInside){
+        callback(svgSelection);
       }
     ]);
   }
@@ -6543,7 +6638,7 @@ pathvisiojs.view.pathwayDiagram.svg.edge = function(){
       markerEndAttributeValue;
     async.series({
       'markerStartAttributeValue': function(callback) {
-        var markerStartIdStub = pathvisiojs.view.pathwayDiagram.svg.edge.marker.semanticNameToIdMapping[markerStartName];
+        var markerStartIdStub = pathvisiojs.view.pathwayDiagram.svg.marker.semanticNameToIdMapping[markerStartName];
         if (!!markerStartIdStub) {
           if (!!stroke) { // if edge is not of default stroke color (at time of writing, this was black)
             if (markerStartName === 'none') { // if no marker is to be used, JSON data will specify 'none'
@@ -6551,8 +6646,8 @@ pathvisiojs.view.pathwayDiagram.svg.edge = function(){
               callback(null, markerStartAttributeValue);
             }
             else {
-              if (pathvisiojs.view.pathwayDiagram.svg.edge.marker.colorsAvailable[markerStartIdStub].indexOf(stroke) === -1) { // if no marker of this stroke color exists
-                pathvisiojs.view.pathwayDiagram.svg.edge.marker.appendNonDefaultColorMarkerBothEnds(svg, markerStartIdStub, stroke, function() {
+              if (pathvisiojs.view.pathwayDiagram.svg.marker.colorsAvailable[markerStartIdStub].indexOf(stroke) === -1) { // if no marker of this stroke color exists
+                pathvisiojs.view.pathwayDiagram.svg.marker.appendNonDefaultColorMarkerBothEnds(svg, markerStartIdStub, stroke, function() {
                   markerStartAttributeValue = 'url(#' + strcase.paramCase(markerStartIdStub + '-start-' + stroke) + ')';
                   callback(null, markerStartAttributeValue);
                 });
@@ -6575,7 +6670,7 @@ pathvisiojs.view.pathwayDiagram.svg.edge = function(){
         }
       },
       'markerEndAttributeValue': function(callback) {
-        var markerEndIdStub = pathvisiojs.view.pathwayDiagram.svg.edge.marker.semanticNameToIdMapping[markerEndName];
+        var markerEndIdStub = pathvisiojs.view.pathwayDiagram.svg.marker.semanticNameToIdMapping[markerEndName];
         if (!!markerEndIdStub) {
           if (!!stroke) { // if edge is not of default stroke color (at time of writing, this was black)
             if (markerEndName === 'none') { // if no marker is to be used, JSON data will specify 'none'
@@ -6583,8 +6678,8 @@ pathvisiojs.view.pathwayDiagram.svg.edge = function(){
               callback(null, markerEndAttributeValue);
             }
             else {
-              if (pathvisiojs.view.pathwayDiagram.svg.edge.marker.colorsAvailable[markerEndIdStub].indexOf(stroke) === -1) { // if no marker of this stroke color exists
-                pathvisiojs.view.pathwayDiagram.svg.edge.marker.appendNonDefaultColorMarkerBothEnds(svg, markerEndIdStub, stroke, function() {
+              if (pathvisiojs.view.pathwayDiagram.svg.marker.colorsAvailable[markerEndIdStub].indexOf(stroke) === -1) { // if no marker of this stroke color exists
+                pathvisiojs.view.pathwayDiagram.svg.marker.appendNonDefaultColorMarkerBothEnds(svg, markerEndIdStub, stroke, function() {
                   markerEndAttributeValue = 'url(#' + strcase.paramCase(markerEndIdStub + '-end-' + stroke) + ')';
                   callback(null, markerEndAttributeValue);
                 });
@@ -6775,7 +6870,7 @@ pathvisiojs.view.pathwayDiagram.svg.edge = function(){
         return style;
       })
       .attr("marker-start", function (data) {
-        var markerStart = pathvisiojs.view.pathwayDiagram.svg.edge.marker.render(viewport, data.markerStart, 'start', data.stroke);
+        var markerStart = pathvisiojs.view.pathwayDiagram.svg.marker.render(viewport, data.markerStart, 'start', data.stroke);
         if (data.hasOwnProperty('strokeStyle')) {
           if (data.strokeStyle === 'double') {
             //hack to manage marker scaling; this marker should not have any features itself
@@ -6785,7 +6880,7 @@ pathvisiojs.view.pathwayDiagram.svg.edge = function(){
         return 'url(#' + markerStart + ')';
       })
       .attr("marker-end", function (data) {
-        var markerEnd = pathvisiojs.view.pathwayDiagram.svg.edge.marker.render(viewport, data.markerEnd, 'end', data.stroke);
+        var markerEnd = pathvisiojs.view.pathwayDiagram.svg.marker.render(viewport, data.markerEnd, 'end', data.stroke);
         if (data.hasOwnProperty('strokeStyle')) {
           if (data.strokeStyle === 'double') {
             //hack to manage marker scaling; this marker should not have any features itself
@@ -6813,8 +6908,8 @@ pathvisiojs.view.pathwayDiagram.svg.edge = function(){
             .attr("d", pathData)
             .attr("class", "stroke-color-equals-default-fill-color")
             .attr("style", "stroke-width:" + data.strokeWidth + '; ')
-            .attr("marker-start", 'url(#' + pathvisiojs.view.pathwayDiagram.svg.edge.marker.render(viewport, data.markerStart, 'start', data.stroke) + ')')
-            .attr("marker-end", 'url(#' + pathvisiojs.view.pathwayDiagram.svg.edge.marker.render(viewport, data.markerEnd, 'end', data.stroke) + ')');
+            .attr("marker-start", 'url(#' + pathvisiojs.view.pathwayDiagram.svg.marker.render(viewport, data.markerStart, 'start', data.stroke) + ')')
+            .attr("marker-end", 'url(#' + pathvisiojs.view.pathwayDiagram.svg.marker.render(viewport, data.markerEnd, 'end', data.stroke) + ')');
           }
         }
         return pathData;
@@ -6833,8 +6928,7 @@ pathvisiojs.view.pathwayDiagram.svg.edge = function(){
   
 
 
-pathvisiojs.view.pathwayDiagram.svg.edge.marker = function(){
-  'use strict';
+pathvisiojs.view.pathwayDiagram.svg.marker = {
 
   // the way SVG works makes this code more complex than it should need to be. Essentially, we
   // are trying to reuse the markers defined in the SVG template, but we also need to be able
@@ -6842,9 +6936,7 @@ pathvisiojs.view.pathwayDiagram.svg.edge.marker = function(){
   // template svg, whether it is at the start or end of a path and whether
   // a color other than black (the color specified in the template) is desired.
 
-  var svg;
-
-  var semanticNameToIdMapping = {
+  semanticNameToIdMapping: {
     'arrow':'shape-library-markers-arrow-svg',
     'necessary-stimulation':'shape-library-markers-mim-necessary-stimulation-svg',
     'binding':'shape-library-markers-mim-binding-svg',
@@ -6875,9 +6967,9 @@ pathvisiojs.view.pathwayDiagram.svg.edge.marker = function(){
     'mim-gap':'shape-library-markers-mim-gap-svg',
     't-bar':'shape-library-markers-t-bar-svg',
     'none':'shape-library-markers-none-svg'
-  };
+  },
 
-  var colorsAvailable = {
+  colorsAvailable: {
     'shape-library-markers-arrow-svg':['default'],
     'shape-library-markers-mim-necessary-stimulation-svg':['default'],
     'shape-library-markers-mim-binding-svg':['default'],
@@ -6894,29 +6986,11 @@ pathvisiojs.view.pathwayDiagram.svg.edge.marker = function(){
     'shape-library-markers-mim-branching-left-svg':['default'],
     'shape-library-markers-mim-branching-right-svg':['default'],
     'shape-library-markers-none-svg':['default']
-  };
+  },
 
-  function appendCustom(uniqueMarkerShapeUri, callback) {
-    var idStub = strcase.paramCase(uniqueMarkerShapeUri);
-    var startId = idStub + '-start-default';
-    var endId = idStub + '-end-default';
-    var markerStart = svg.select('defs').select('#' + startId);
-
-    markerStart = svg.select('defs').append('marker')
-    .attr('id', startId)
-    .attr('preserveAspectRatio', 'none');
-    processSvg(uniqueMarkerShapeUri, markerStart, startId, false);
-
-    var markerEnd = svg.select('defs').select('#' + endId);
-    markerEnd = svg.select('defs').append('marker')
-    .attr('id', endId)
-    .attr('preserveAspectRatio', 'none');
-    processSvg(uniqueMarkerShapeUri, markerEnd, endId, true);
-
-    callback(null);
-  }
-
-  function processSvg(uniqueMarkerShapeUri, marker, markerId, rotate){
+  processSvg: function(uniqueMarkerShapeUri, marker, markerId, rotate){
+    // TODO avoid repeating svg selection
+    var svg = d3.select('svg');
     d3.xml(uniqueMarkerShapeUri, 'image/svg+xml', function(svgXml) {
       var newMarker = d3.select(svgXml.documentElement);
       var width = newMarker.attr('width');
@@ -6964,7 +7038,8 @@ pathvisiojs.view.pathwayDiagram.svg.edge.marker = function(){
         g.appendChild(newMarkerChildren[0]);
       } while (newMarkerChildren.length > 0);
     });
-  }
+    return svg;
+  },
 
 //    }
 //    else {
@@ -7037,15 +7112,40 @@ pathvisiojs.view.pathwayDiagram.svg.edge.marker = function(){
   }
 */
 
-  function loadAllCustom(thisSvg, customMarkers, callback) {
-    console.log('thisSvg');
-    console.log(thisSvg);
-    svg = thisSvg;
+
+
+  loadAllCustom: function(thisSvg, customMarkers, callback) {
+    var markerProcessor = this;
+    var semanticNameToIdMapping = this.semanticNameToIdMapping;
+    var colorsAvailable = this.colorsAvailable;
+    var svg = thisSvg;
     var image = null;
     var img = null;
     var marker = null;
     var dimensions = null;
     var dimensionSet = [];
+
+    var appendCustom = function(uniqueMarkerShapeUri, callback) {
+      // TODO avoid repeating svg selection
+      var svg = d3.select('svg');
+      var idStub = strcase.paramCase(uniqueMarkerShapeUri);
+      var startId = idStub + '-start-default';
+      var endId = idStub + '-end-default';
+      var markerStart = svg.select('defs').select('#' + startId);
+
+      markerStart = svg.select('defs').append('marker')
+      .attr('id', startId)
+      .attr('preserveAspectRatio', 'none');
+      markerProcessor.processSvg(uniqueMarkerShapeUri, markerStart, startId, false);
+
+      var markerEnd = svg.select('defs').select('#' + endId);
+      markerEnd = svg.select('defs').append('marker')
+      .attr('id', endId)
+      .attr('preserveAspectRatio', 'none');
+      markerProcessor.processSvg(uniqueMarkerShapeUri, markerEnd, endId, true);
+
+      callback(null);
+    };
 
     var semanticName;
     var markerUri;
@@ -7055,29 +7155,31 @@ pathvisiojs.view.pathwayDiagram.svg.edge.marker = function(){
       semanticName = customMarker.semanticName;
       markerUri = customMarker.uri;
       paramCaseUri = strcase.paramCase(markerUri);
-      pathvisiojs.view.pathwayDiagram.svg.edge.marker.semanticNameToIdMapping[semanticName] = paramCaseUri;
-      pathvisiojs.view.pathwayDiagram.svg.edge.marker.colorsAvailable[paramCaseUri] = ['default'];
+      semanticNameToIdMapping[semanticName] = paramCaseUri;
+      colorsAvailable[paramCaseUri] = ['default'];
       if (uniqueMarkerShapeUris.indexOf(markerUri) === -1) {
         uniqueMarkerShapeUris.push(markerUri);
       }
     });
 
     async.each(uniqueMarkerShapeUris, appendCustom, function(err){
-        // if any of the saves produced an error, err would equal that error
+      // if any of the saves produced an error, err would equal that error
       callback(null);
     });
-  }
+  },
 
-  function appendNonDefaultColorMarkerBothEnds(svg, markerIdStub, color, callback) {
+  appendNonDefaultColorMarkerBothEnds: function(svg, markerIdStub, color, callback) {
+    var colorsAvailable = this.colorsAvailable;
+    var appendNonDefaultColorMarker = this.appendNonDefaultColorMarker;
     appendNonDefaultColorMarker(svg, markerIdStub, 'start', color, function() {
       appendNonDefaultColorMarker(svg, markerIdStub, 'end', color, function() {
-        pathvisiojs.view.pathwayDiagram.svg.edge.marker.colorsAvailable[markerIdStub].push(color);
+        colorsAvailable[markerIdStub].push(color);
         callback();
       });
     });
-  }
+  },
 
-  function appendNonDefaultColorMarker(svg, markerIdStub, position, color, callback) {
+  appendNonDefaultColorMarker: function(svg, markerIdStub, position, color, callback) {
     var defaultId = markerIdStub + '-' + position + '-default';
     var marker = pathvisiojs.utilities.cloneNode('#' + defaultId);
 
@@ -7114,14 +7216,7 @@ pathvisiojs.view.pathwayDiagram.svg.edge.marker = function(){
 
     callback(markerId);
   }
- 
-  return {
-    appendNonDefaultColorMarkerBothEnds:appendNonDefaultColorMarkerBothEnds,
-    loadAllCustom:loadAllCustom,
-    semanticNameToIdMapping:semanticNameToIdMapping,
-    colorsAvailable:colorsAvailable
-  };
-}();
+};
 
 
 // TODO remove controls that don't work with this element
@@ -7270,6 +7365,9 @@ pathvisiojs.view.pathwayDiagram.svg.path = function(){
         },
         fill: function(fillValue){
           path.attr('fill', fillValue);
+        },
+        fillOpacity: function(fillOpacityValue){
+          path.attr('fill-opacity', fillOpacityValue);
         },
         stroke: function(strokeValue){
           path.attr('stroke', strokeValue);
