@@ -143,7 +143,8 @@ pathvisiojs.data.gpml = {
       var groupPathwaysSelection = gpmlSelection.selectAll('Group[Style=Pathway]').each(function(){
         groupPathwaySelection = d3.select(this);
         groupPathwayGraphicsSelection = groupPathwaySelection.select('Graphics')
-        .attr('FontSize', '32')
+        .attr('FontSize', '1')
+        //.attr('FontSize', '32')
         .attr('Padding', '8')
         .attr('ShapeType', 'Rectangle')
         .attr('LineStyle', 'Broken')
@@ -175,6 +176,13 @@ pathvisiojs.data.gpml = {
             d3.select(this).select('Graphics').attr('FillColor', 'Transparent');
           });
         }
+
+        // "Ellipse" is the word that other graphics libraries seem to have standardized on.
+        nodesSelection.filter(function(){
+          return (d3.select(this).select('Graphics').attr('ShapeType') === 'Oval');
+        }).each(function(){
+          d3.select(this).select('Graphics').attr('ShapeType', 'Ellipse');
+        });
 
         nodesSelection.filter(function(){
           return (!d3.select(this).select('Graphics').attr('Padding'));
@@ -364,7 +372,7 @@ pathvisiojs.data.gpml = {
           anchorsSelection.filter(function(){
             return (d3.select(this).select('Graphics').attr('ShapeType') === 'Circle');
           }).each(function(){
-            d3.select(this).select('Graphics').attr('ShapeType', 'Oval');
+            d3.select(this).select('Graphics').attr('ShapeType', 'Ellipse');
             d3.select(this).select('Graphics').attr('Width', 8);
             d3.select(this).select('Graphics').attr('Height', 8);
           });

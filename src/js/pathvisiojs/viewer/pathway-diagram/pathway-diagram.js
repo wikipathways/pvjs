@@ -183,8 +183,6 @@ pathvisiojs.view.pathwayDiagram = function(){
             throw new Error("Could not convert input source data to pathvisioJsJson.");
           }
 
-          //console.log('json');
-          //console.log(json);
           pathway = json;
           self.myPathway = json;
           var crossPlatformShapesInstance1 = Object.create(crossPlatformShapes);
@@ -194,7 +192,7 @@ pathvisiojs.view.pathwayDiagram = function(){
             format: renderableSourceDataElement.selectedViewMethod,
             width:containerWidth,
             height:containerHeight,
-            backgroundColor: 'gray',
+            backgroundColor: 'white',
             customShapes: { // optional
               arc: {
                 href: 'http://upload.wikimedia.org/wikipedia/commons/5/5c/Triangular_arch.svg'
@@ -208,14 +206,27 @@ pathvisiojs.view.pathwayDiagram = function(){
             }
           },
           function(viewport) {
+
+            var crossPlatformTextInstance1 = Object.create(crossPlatformText);
+            crossPlatformTextInstance1.init({
+              targetSelector:'#my-svg2'
+            });
+
             var elementRenderingData;
             async.each(pathway.elements, function(dataElement, callbackEach) {
               if (dataElement.gpmlType === 'Shape' || dataElement.gpmlType === 'Label' || dataElement.gpmlType === 'GraphicalLine' || dataElement.gpmlType === 'Interaction' || dataElement.gpmlType === 'DataNode' || dataElement.gpmlType === 'Group') {
-                elementRenderingData = crossPlatformShapesInstance1[strcase.camelCase(dataElement.shape)](dataElement);
-                var element = viewport.append(elementRenderingData.elementName);
-                elementRenderingData.attributes.forEach(function(attribute) {
-                  element.attr(attribute.name, attribute.value);
-                });
+                var renderingData = dataElement;
+                renderingData.containerSelector = '#viewport';
+                if (dataElement.shape !== 'none') {
+                  elementRenderingData = crossPlatformShapesInstance1[strcase.camelCase(dataElement.shape)](renderingData);
+                }
+
+                if (!!dataElement.textContent) {
+                  var textRenderingData = dataElement;
+                  textRenderingData.id = 'text-for-' + dataElement.id;
+                  textRenderingData.containerSelector = '#viewport';
+                  crossPlatformTextInstance1.render(renderingData);
+                }
               }
               callbackEach(null);
             });
