@@ -214,19 +214,17 @@ pathvisiojs.view.pathwayDiagram = function(){
 
             var elementRenderingData;
             async.each(pathway.elements, function(dataElement, callbackEach) {
-              if (dataElement.gpmlType === 'Shape' || dataElement.gpmlType === 'Label' || dataElement.gpmlType === 'GraphicalLine' || dataElement.gpmlType === 'Interaction' || dataElement.gpmlType === 'DataNode' || dataElement.gpmlType === 'Group') {
-                var renderingData = dataElement;
-                renderingData.containerSelector = '#viewport';
-                if (dataElement.shape !== 'none') {
-                  elementRenderingData = crossPlatformShapesInstance1[strcase.camelCase(dataElement.shape)](renderingData);
-                }
+              var renderingData = dataElement;
+              renderingData.containerSelector = '#viewport';
+              if (dataElement.shape !== 'none') {
+                elementRenderingData = crossPlatformShapesInstance1[strcase.camelCase(dataElement.shape)](renderingData);
+              }
 
-                if (!!dataElement.textContent) {
-                  var textRenderingData = dataElement;
-                  textRenderingData.id = 'text-for-' + dataElement.id;
-                  textRenderingData.containerSelector = '#viewport';
-                  crossPlatformTextInstance1.render(renderingData);
-                }
+              if (!!dataElement.textContent) {
+                var textRenderingData = dataElement;
+                textRenderingData.id = 'text-for-' + dataElement.id;
+                textRenderingData.containerSelector = '#viewport';
+                crossPlatformTextInstance1.render(renderingData);
               }
               callbackEach(null);
             });

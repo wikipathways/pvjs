@@ -6,13 +6,9 @@ pathvisiojs.data.gpml.shape = function(){
     pvjsonPath.networkType = 'node';
     pvjsonPath.nodeType = "Shape";
 
-    pathvisiojs.data.gpml.element.toPvjson(gpmlSelection, shapeSelection, pvjsonPath, function(pvjsonPath, pvjsonText) {
-      pathvisiojs.data.gpml.graphics.toPvjson(gpmlSelection, shapeSelection, pvjsonPath, pvjsonText, function(pvjsonPath, updatedPvjsonText) {
-        pvjsonText = updatedPvjsonText;
+    pathvisiojs.data.gpml.element.toPvjson(gpmlSelection, shapeSelection, pvjsonPath, function(pvjsonPath) {
+      pathvisiojs.data.gpml.graphics.toPvjson(gpmlSelection, shapeSelection, pvjsonPath, function(pvjsonPath) {
         var pvjsonElements = [pvjsonPath];
-        if (!!pvjsonText.textContent) {
-          pvjsonElements.push(pvjsonText);
-        }
         callback(pvjsonElements);
       });
     });
