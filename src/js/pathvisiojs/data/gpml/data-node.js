@@ -2,9 +2,7 @@ pathvisiojs.data.gpml.dataNode = function() {
   'use strict';
 
   var toPvjson = function(pathway, gpmlSelection, dataNodeSelection, callbackInside) {
-    var pvjsonPath = {},
-      pvjsonText = {};
-
+    var pvjsonPath = {};
     var dataNodeType = dataNodeSelection.attr('Type');
     if (!dataNodeType) {
       dataNodeType = 'Unknown';
@@ -18,11 +16,8 @@ pathvisiojs.data.gpml.dataNode = function() {
 
 
 
-    pathvisiojs.data.gpml.element.toPvjson(gpmlSelection, dataNodeSelection, pvjsonPath, function(pvjsonPath, updatedPvjsonText) {
-      pvjsonText = updatedPvjsonText;
-      pathvisiojs.data.gpml.graphics.toPvjson(gpmlSelection, dataNodeSelection, pvjsonPath, pvjsonText, function(pvjsonPath, updatedPvjsonText) {
-        pvjsonText = updatedPvjsonText;
-
+    pathvisiojs.data.gpml.element.toPvjson(gpmlSelection, dataNodeSelection, pvjsonPath, function(pvjsonPath) {
+      pathvisiojs.data.gpml.graphics.toPvjson(gpmlSelection, dataNodeSelection, pvjsonPath, function(pvjsonPath) {
         var database, id, datasourceReference,
           datasourceReferenceSelection = dataNodeSelection.select('Xref');
         if (!!datasourceReferenceSelection) {
@@ -34,27 +29,10 @@ pathvisiojs.data.gpml.dataNode = function() {
             datasourceReference.id = id;
             datasourceReference.organism = gpmlSelection.attr('Organism');
             pvjsonPath.datasourceReference = datasourceReference;
-            pvjsonText.datasourceReference = datasourceReference;
           }
         }
 
         var pvjsonElements = [pvjsonPath];
-        if (!!pvjsonText.textContent) {
-
-
-
-          /*
-          pvjsonText.myWidth = function() {
-            var describedElementId = this.describes;
-            var describedElement = pathway.elements.filter(function(element) {
-              return element.id === describedElementId;
-            })[0];
-            return describedElement.width + 5;
-          };
-          //*/
-
-          pvjsonElements.push(pvjsonText);
-        }
         callbackInside(pvjsonElements);
       });
     });

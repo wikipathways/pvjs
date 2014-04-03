@@ -6,7 +6,7 @@ pathvisiojs.data.gpml.graphics = {
     }
   },
 
-  toPvjson: function(gpmlSelection, elementSelection, pvjsonElement, pvjsonText, callback) {
+  toPvjson: function(gpmlSelection, elementSelection, pvjsonElement, callback) {
       var parentElement,
       attribute,
       i,
@@ -14,7 +14,7 @@ pathvisiojs.data.gpml.graphics = {
       gpmlDoubleLineProperty = '',
       pvjsonHeight,
       pvjsonWidth,
-      pvjsonStrokeWidth,
+      pvjsonBorderWidth,
       gpmlShapeType = '',
       pvjsonShape,
       pvjsonZIndex,
@@ -54,12 +54,7 @@ pathvisiojs.data.gpml.graphics = {
       },
       ShapeType: function(gpmlShapeTypeValue){
         gpmlShapeType = gpmlShapeTypeValue;
-        if (gpmlShapeType.toLowerCase() === 'none') {
-          pvjsonShape = 'rectangle';
-        }
-        else {
-          pvjsonShape = strcase.paramCase(gpmlShapeType) + gpmlDoubleLineProperty;
-        }
+        pvjsonShape = strcase.paramCase(gpmlShapeType) + gpmlDoubleLineProperty;
         pvjsonElement.shape = pvjsonShape;
         return pvjsonShape;
       },
@@ -73,23 +68,19 @@ pathvisiojs.data.gpml.graphics = {
       FillColor: function(gpmlFillColorValue){
         var cssColor = gpmlColorToCssColor(gpmlFillColorValue);
         if (gpmlShapeType.toLowerCase() !== 'none') {
-          pvjsonElement.fill = cssColor;
           pvjsonElement.backgroundColor = cssColor;
         }
         else {
-          pvjsonElement.fill = 'transparent';
+          pvjsonElement.backgroundColor = 'transparent';
         }
+      },
+      FillOpacity: function(gpmlFillOpacityValue){
+        var cssFillOpacity = parseFloat(gpmlFillOpacityValue);
+        pvjsonElement.fillOpacity = cssFillOpacity;
       },
       Color: function(gpmlColorValue){
         var cssColor = gpmlColorToCssColor(gpmlColorValue);
-        if (gpmlShapeType.toLowerCase() !== 'none') {
-          pvjsonElement.stroke = cssColor;
-          pvjsonElement.color = cssColor;
-        }
-        else {
-          pvjsonElement.stroke = 'transparent';
-        }
-        pvjsonText.fill = cssColor;
+        pvjsonElement.color = cssColor;
       },
       Padding: function(gpmlPaddingValue){
         var cssPadding;
@@ -100,7 +91,6 @@ pathvisiojs.data.gpml.graphics = {
           cssPadding = gpmlPaddingValue;
         }
         pvjsonElement.padding = cssPadding;
-        pvjsonText.containerPadding = cssPadding;
       },
       FontSize: function(gpmlFontSizeValue){
         var cssFontSize;
@@ -110,19 +100,19 @@ pathvisiojs.data.gpml.graphics = {
         else {
           cssFontSize = gpmlFontSizeValue;
         }
-        pvjsonText.fontSize = cssFontSize;
+        pvjsonElement.fontSize = cssFontSize;
       },
       FontName: function(gpmlFontNameValue){
         var cssFontFamily = gpmlFontNameValue;
-        pvjsonText.fontFamily = cssFontFamily;
+        pvjsonElement.fontFamily = cssFontFamily;
       },
       FontStyle: function(gpmlFontStyleValue){
         var cssFontStyle = gpmlFontStyleValue.toLowerCase();
-        pvjsonText.fontStyle = cssFontStyle;
+        pvjsonElement.fontStyle = cssFontStyle;
       },
       FontWeight: function(gpmlFontWeightValue){
         var cssFontWeight = gpmlFontWeightValue.toLowerCase();
-        pvjsonText.fontWeight = cssFontWeight;
+        pvjsonElement.fontWeight = cssFontWeight;
       },
       Rotation: function(gpmlRotationValue) {
         // GPML can hold a rotation value for State elements in an element named "Attribute" like this:
@@ -132,13 +122,13 @@ pathvisiojs.data.gpml.graphics = {
         var pvjsonRotation = gpmlRotationValue * 180/Math.PI; //converting from radians to degrees
         // TODO how do we want to store this value?
         pvjsonElement.rotation = pvjsonRotation;
-        pvjsonText.rotation = pvjsonRotation;
         return pvjsonRotation;
       },
       LineThickness: function(gpmlLineThicknessValue) {
-        pvjsonStrokeWidth = parseFloat(gpmlLineThicknessValue);
-        pvjsonElement.strokeWidth = pvjsonStrokeWidth;
-        return pvjsonStrokeWidth;
+        pvjsonBorderWidth = parseFloat(gpmlLineThicknessValue);
+        pvjsonElement.borderWidth = pvjsonBorderWidth;
+        pvjsonElement.strokeWidth = pvjsonBorderWidth;
+        return pvjsonBorderWidth;
       },
       Position: function(gpmlPositionValue) {
         var pvjsonPosition = parseFloat(gpmlPositionValue);
@@ -147,43 +137,31 @@ pathvisiojs.data.gpml.graphics = {
       },
       Width: function(gpmlWidthValue) {
         gpmlWidthValue = parseFloat(gpmlWidthValue);
-        pvjsonWidth = gpmlWidthValue + pvjsonStrokeWidth;
+        pvjsonWidth = gpmlWidthValue + pvjsonBorderWidth;
         pvjsonElement.width = pvjsonWidth;
-        //pvjsonText.containerWidth = pvjsonWidth;
-        pvjsonText.containerWidth = function() {
-          var parentElement = model.elements.filter(function(element) {
-            return element.id === pvjsonText.describes;
-          })[0];
-          var textWidth = parentElement.width;
-          return textWidth;
-        };
         return pvjsonWidth;
       },
       Height: function(gpmlHeightValue) {
         gpmlHeightValue = parseFloat(gpmlHeightValue);
-        pvjsonHeight = gpmlHeightValue + pvjsonStrokeWidth;
+        pvjsonHeight = gpmlHeightValue + pvjsonBorderWidth;
         pvjsonElement.height = pvjsonHeight;
-        pvjsonText.containerHeight = pvjsonHeight;
         return pvjsonHeight;
       },
       CenterX: function(gpmlCenterXValue) {
         gpmlCenterXValue = parseFloat(gpmlCenterXValue);
         pvjsonX = gpmlCenterXValue - pvjsonWidth/2;
         pvjsonElement.x = pvjsonX;
-        pvjsonText.containerX = pvjsonX;
         return pvjsonX;
       },
       CenterY: function(gpmlCenterYValue) {
         gpmlCenterYValue = parseFloat(gpmlCenterYValue);
         pvjsonY = gpmlCenterYValue - pvjsonHeight/2;
         pvjsonElement.y = pvjsonY;
-        pvjsonText.containerY = pvjsonY;
         return pvjsonY;
       },
       RelX: function(gpmlRelXValue) {
         var pvjsonRelX = parseFloat(gpmlRelXValue);
         pvjsonElement.relX = pvjsonRelX;
-        pvjsonText.relX = pvjsonRelX;
         parentElement = gpmlSelection.select('[GraphId=' + elementSelection.attr('GraphRef') + ']');
         var parentCenterX = parseFloat(parentElement.select('Graphics').attr('CenterX'));
         var parentWidth = parseFloat(parentElement.select('Graphics').attr('Width'));
@@ -191,17 +169,14 @@ pathvisiojs.data.gpml.graphics = {
         var gpmlCenterXValue = parentCenterX + gpmlRelXValue * parentWidth/2;
         pvjsonX = gpmlCenterXValue - pvjsonWidth/2;
         pvjsonElement.x = pvjsonX;
-        pvjsonText.containerX = pvjsonX;
         pvjsonElement.zIndex = parentZIndex + 0.2;
-        pvjsonText.zIndex = parentZIndex + 0.3;
-        pvjsonText.containerPadding = '0';
-        pvjsonText.fontSize = '10';
+        //pvjsonText.containerPadding = '0';
+        //pvjsonText.fontSize = '10';
         return pvjsonX;
       },
       RelY: function(gpmlRelYValue) {
         var pvjsonRelY = parseFloat(gpmlRelYValue);
         pvjsonElement.relY = pvjsonRelY;
-        pvjsonText.relY = pvjsonRelY;
         var parentCenterY = parseFloat(parentElement.select('Graphics').attr('CenterY'));
         var parentHeight = parseFloat(parentElement.select('Graphics').attr('Height'));
         var elementCenterY = parentCenterY + pvjsonRelY * parentHeight/2;
@@ -209,23 +184,22 @@ pathvisiojs.data.gpml.graphics = {
         pvjsonY = elementCenterY - pvjsonHeight/2;
         pvjsonElement.y = pvjsonY;
         // TODO this and other elements here are hacks
-        pvjsonText.containerY = pvjsonY + 12;
+        //pvjsonText.containerY = pvjsonY + 12;
         return pvjsonY;
       },
       Align: function(gpmlAlignValue) {
         pvjsonTextAlign = strcase.paramCase(gpmlAlignValue);
-        pvjsonText.textAlign = pvjsonTextAlign;
+        pvjsonElement.textAlign = pvjsonTextAlign;
         return pvjsonTextAlign;
       },
       Valign: function(gpmlValignValue) {
         pvjsonVerticalAlign = strcase.paramCase(gpmlValignValue);
-        pvjsonText.verticalAlign = pvjsonVerticalAlign;
+        pvjsonElement.verticalAlign = pvjsonVerticalAlign;
         return pvjsonVerticalAlign;
       },
       ZOrder: function(gpmlZOrderValue) {
         pvjsonZIndex = parseFloat(gpmlZOrderValue);
         pvjsonElement.zIndex = pvjsonZIndex;
-        pvjsonText.zIndex = pvjsonZIndex + 0.5;
         return pvjsonZIndex;
       }
     };
@@ -274,6 +248,6 @@ pathvisiojs.data.gpml.graphics = {
         }
       }
     }
-    callback(pvjsonElement, pvjsonText);
+    callback(pvjsonElement);
   }
 };

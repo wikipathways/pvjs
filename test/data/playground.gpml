@@ -36,7 +36,7 @@
     <Xref Database="" ID="" />
   </DataNode>
   <DataNode TextLabel="Pathway" GraphId="afc3c" Type="Pathway">
-    <Graphics CenterX="203.42040698513492" CenterY="110.98683472041822" Width="80.0" Height="20.0" ZOrder="32768" FontWeight="Bold" FontSize="12" Valign="Middle" ShapeType="None" Color="14961e" />
+    <Graphics CenterX="191.25495686348037" CenterY="112.20337973258367" Width="80.0" Height="20.0" ZOrder="32768" FontWeight="Bold" FontSize="12" Valign="Middle" ShapeType="None" Color="14961e" />
     <Xref Database="" ID="" />
   </DataNode>
   <State GraphRef="c86d0" TextLabel="P" GraphId="d0638">

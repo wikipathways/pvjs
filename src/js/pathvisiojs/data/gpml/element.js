@@ -125,8 +125,7 @@ pathvisiojs.data.gpml.element = function(){
 
   //*
   var toPvjson = function(gpmlSelection, elementSelection, pvjsonElement, callback) {
-    var pvjsonText = {},
-      attribute,
+    var attribute,
       i,
       pvjsonHeight,
       pvjsonWidth,
@@ -142,7 +141,6 @@ pathvisiojs.data.gpml.element = function(){
       pvjsonHref;
     pvjsonElement.gpmlType = elementSelection[0][0].tagName;
     pvjsonElement.graphicalType = 'path';
-    pvjsonText.graphicalType = 'text';
 
 
     var attributeDependencyOrder = [
@@ -158,12 +156,10 @@ pathvisiojs.data.gpml.element = function(){
       GraphId: function(gpmlGraphIdValue){
         // TODO this is a hack so we don't have two items with the same ID while I'm building out the code to create the flattened data structure
         pvjsonElement.id = gpmlGraphIdValue;
-        pvjsonText.id = 'text' + gpmlGraphIdValue;
-        pvjsonText.describes = gpmlGraphIdValue;
         return gpmlGraphIdValue;
       },
       Style: function(gpmlStyleValue){
-        pvjsonText.groupStyle = gpmlStyleValue;
+        pvjsonElement.groupStyle = gpmlStyleValue;
         return gpmlStyleValue;
       },
       Href: function(gpmlHrefValue){
@@ -174,7 +170,6 @@ pathvisiojs.data.gpml.element = function(){
       TextLabel: function(gpmlTextLabelValue){
         pvjsonTextContent = he.decode(gpmlTextLabelValue);
         pvjsonElement.textContent = pvjsonTextContent;
-        pvjsonText.textContent = pvjsonTextContent;
         return pvjsonTextContent;
       },
       Type: function(gpmlTypeValue){
@@ -224,7 +219,7 @@ pathvisiojs.data.gpml.element = function(){
           pvjsonElement[attributeListItemName] = attributeListItem.value;
         }
       });
-      callback(pvjsonElement, pvjsonText);
+      callback(pvjsonElement);
     });
   };
   //*/

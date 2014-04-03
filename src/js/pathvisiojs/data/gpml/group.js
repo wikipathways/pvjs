@@ -2,8 +2,8 @@ pathvisiojs.data.gpml.group = {
   getGroupDimensions: function(group, callback) {
     var dimensions = {};
     dimensions.topLeftCorner = {};
-    dimensions.topLeftCorner.x = 9999999999999999999999999999;
-    dimensions.topLeftCorner.y = 9999999999999999999999999999;
+    dimensions.topLeftCorner.x = Infinity;
+    dimensions.topLeftCorner.y = Infinity;
     dimensions.bottomRightCorner = {};
     dimensions.bottomRightCorner.x = 0;
     dimensions.bottomRightCorner.y = 0;
@@ -13,7 +13,7 @@ pathvisiojs.data.gpml.group = {
     var groupContents = group.contains;
     groupContents = pathvisiojs.utilities.convertToArray(groupContents);
 
-    dimensions.zIndex = 9999999999999999999999999999;
+    dimensions.zIndex = Infinity;
     async.each(groupContents, function(groupContent, callbackInside) {
       if (!groupContent.hasOwnProperty('points')) {
         dimensions.topLeftCorner.x = Math.min(dimensions.topLeftCorner.x, groupContent.x);
@@ -66,17 +66,11 @@ pathvisiojs.data.gpml.group = {
 
 
 
-    pathvisiojs.data.gpml.element.toPvjson(gpmlSelection, groupSelection, pvjsonPath, function(pvjsonPath, pvjsonText) {
+    pathvisiojs.data.gpml.element.toPvjson(gpmlSelection, groupSelection, pvjsonPath, function(pvjsonPath) {
 
 
 
-      pathvisiojs.data.gpml.graphics.toPvjson(gpmlSelection, groupSelection, pvjsonPath, pvjsonText, function(pvjsonPath, updatedPvjsonText) {
-        pvjsonText = updatedPvjsonText;
-
-
-
-
-
+      pathvisiojs.data.gpml.graphics.toPvjson(gpmlSelection, groupSelection, pvjsonPath, function(pvjsonPath) {
           var contents = elementsPossiblyInGroup.filter(function(element){
             return element.isContainedBy === pvjsonPath.id;
           });
@@ -88,28 +82,8 @@ pathvisiojs.data.gpml.group = {
               pvjsonPath.width = dimensions.width;
               pvjsonPath.height = dimensions.height;
               pvjsonPath.zIndex = dimensions.zIndex;
-              pvjsonText.containerX = dimensions.x;
-              pvjsonText.containerY = dimensions.y;
-              pvjsonText.containerWidth = dimensions.width;
-
-
-              // TODO move all of these functions to a model section so they aren't repeated (e.g., this also appears in graphics.js)
-              pvjsonText.containerWidth = function() {
-                var parentElement = model.elements.filter(function(element) {
-                  return element.id === pvjsonText.describes;
-                })[0];
-                var textWidth = parentElement.width;
-                return textWidth;
-              };
-
-              pvjsonText.containerHeight = dimensions.height;
-              pvjsonText.zIndex = dimensions.zIndex;
             });
             pvjsonElements.push(pvjsonPath);
-
-            if (!!pvjsonText.textContent) {
-              pvjsonElements.push(pvjsonText);
-            }
           }
         callback(pvjsonElements);
       });
