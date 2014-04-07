@@ -264,7 +264,7 @@ pathvisiojs.renderer = function(){
                           var dfId = dataElement.datasourceReference.id;
                           var dfDatabase = dataElement.datasourceReference.database;
                           var dfOrganism = dataElement.datasourceReference.organism;
-                          diagramAnnotation.xRef.render(dfOrganism, dfId, dfDatabase, dataElement.textContent, dataElement.dataNodeType);
+                          pathvisiojs.renderer.annotation.xRef.render(dfOrganism, dfId, dfDatabase, dataElement.textContent, dataElement.dataNodeType);
                         }
                       });
                     }

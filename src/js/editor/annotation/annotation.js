@@ -1,4 +1,4 @@
-diagramAnnotation = function(){
+pathvisiojs.renderer.annotation = function(){
   'use strict';
   function render(annotationData) {
     self.annotationData = annotationData;

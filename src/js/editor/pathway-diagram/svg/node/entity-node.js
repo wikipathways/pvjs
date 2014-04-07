@@ -45,7 +45,7 @@ pathvisiojs.renderer.svg.node.EntityNode = function(){
               }
             }
 
-            diagramAnnotation.xRef.render(args.pathway.Organism, dfId, dfDb, d.text.line.join(' '), d.dataNodeType); //that's capital 'O' Organism from GPML vocab
+            pathvisiojs.renderer.annotation.xRef.render(args.pathway.Organism, dfId, dfDb, d.text.line.join(' '), d.dataNodeType); //that's capital 'O' Organism from GPML vocab
 
           }
         });
