@@ -24,7 +24,7 @@ var pvjsSources = [
   'src/js/renderer/renderer.js',
   'src/js/renderer/info-box.js',
   'src/js/renderer/publication-xref.js',
-  'src/js/renderer/img/img.js',
+  'src/js/renderer/img.js',
 ];
 
 var pvjsCssSources = [
