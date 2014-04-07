@@ -323,7 +323,7 @@ pathvisiojs.renderer = function(){
           var elementsWithPublicationXrefs = data.elements.filter(function(element){return !!element.publicationXrefs;});
           if (elementsWithPublicationXrefs.length > 0) {
             elementsWithPublicationXrefs.forEach(function(elementWithPublicationXrefs) {
-              pathvisiojs.renderer.svg.publicationXref.render(viewport, elementWithPublicationXrefs);
+              pathvisiojs.renderer.publicationXref.render(viewport, elementWithPublicationXrefs);
             });
           }
         }
