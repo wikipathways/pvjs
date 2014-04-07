@@ -1,4 +1,4 @@
-pathvisiojs.view.pathwayDiagram.svg.edge.graphicalLine = function(){
+pathvisiojs.renderer.svg.edge.graphicalLine = function(){
   'use strict';
   //function render(svg, container, data) {
   function render(args) {
@@ -12,7 +12,7 @@ pathvisiojs.view.pathwayDiagram.svg.edge.graphicalLine = function(){
     console.log(data);
     //*/
 
-    pathvisiojs.view.pathwayDiagram.svg.edge.render(args, function(graphicalLine) {
+    pathvisiojs.renderer.svg.edge.render(args, function(graphicalLine) {
       graphicalLine.attr("class", function (data) {
         var cssClass = 'edge graphical-line';
         if (data.hasOwnProperty('strokeStyle')) {
@@ -35,9 +35,9 @@ pathvisiojs.view.pathwayDiagram.svg.edge.graphicalLine = function(){
     });
 
 
-    //pathvisiojs.view.pathwayDiagram.svg.edge.setAttributes(svg, graphicalLine, data, data.markerStart, data.markerEnd);
+    //pathvisiojs.renderer.svg.edge.setAttributes(svg, graphicalLine, data, data.markerStart, data.markerEnd);
 
-    //.call(pathvisiojs.view.pathwayDiagram.svg.edge.setAttributes);
+    //.call(pathvisiojs.renderer.svg.edge.setAttributes);
 
     /*
     // Update…
@@ -92,7 +92,7 @@ pathvisiojs.view.pathwayDiagram.svg.edge.graphicalLine = function(){
         return style;
       })
       .attr("marker-start", function (data) {
-        var markerStart = pathvisiojs.view.pathwayDiagram.svg.marker.render(viewport, data.markerStart, 'start', data.stroke);
+        var markerStart = pathvisiojs.renderer.svg.marker.render(viewport, data.markerStart, 'start', data.stroke);
         if (data.hasOwnProperty('strokeStyle')) {
           if (data.strokeStyle === 'double') {
             //hack to manage marker scaling; this marker should not have any features itself
@@ -102,7 +102,7 @@ pathvisiojs.view.pathwayDiagram.svg.edge.graphicalLine = function(){
         return 'url(#' + markerStart + ')';
       })
       .attr("marker-end", function (data) {
-        var markerEnd = pathvisiojs.view.pathwayDiagram.svg.marker.render(viewport, data.markerEnd, 'end', data.stroke);
+        var markerEnd = pathvisiojs.renderer.svg.marker.render(viewport, data.markerEnd, 'end', data.stroke);
         if (data.hasOwnProperty('strokeStyle')) {
           if (data.strokeStyle === 'double') {
             //hack to manage marker scaling; this marker should not have any features itself
@@ -117,7 +117,7 @@ pathvisiojs.view.pathwayDiagram.svg.edge.graphicalLine = function(){
       // Somehow, d (the d3 selection data) gets redefined after this attr is defined.
 
       .attr("d", function (data) {
-        pathData = pathvisiojs.view.pathwayDiagram.svg.edge.pathData.get(viewport, pathway, data);
+        pathData = pathvisiojs.renderer.svg.edge.pathData.get(viewport, pathway, data);
         if (data.hasOwnProperty('strokeStyle')) {
           if (data.strokeStyle === 'double') {
 
@@ -130,8 +130,8 @@ pathvisiojs.view.pathwayDiagram.svg.edge.graphicalLine = function(){
             .attr("d", pathData)
             .attr("class", "stroke-color-equals-default-fill-color")
             .attr("style", "stroke-width:" + data.strokeWidth + '; ')
-            .attr("marker-start", 'url(#' + pathvisiojs.view.pathwayDiagram.svg.marker.render(viewport, data.markerStart, 'start', data.stroke) + ')')
-            .attr("marker-end", 'url(#' + pathvisiojs.view.pathwayDiagram.svg.marker.render(viewport, data.markerEnd, 'end', data.stroke) + ')');
+            .attr("marker-start", 'url(#' + pathvisiojs.renderer.svg.marker.render(viewport, data.markerStart, 'start', data.stroke) + ')')
+            .attr("marker-end", 'url(#' + pathvisiojs.renderer.svg.marker.render(viewport, data.markerEnd, 'end', data.stroke) + ')');
           }
         }
         return pathData;

@@ -1,4 +1,4 @@
-pathvisiojs.view.pathwayDiagram.svg.node.pathShape.none = function(){
+pathvisiojs.renderer.svg.node.pathShape.none = function(){
   'use strict';
 
   function getAttributes(nodeWidth, nodeHeight, borderWidth) {

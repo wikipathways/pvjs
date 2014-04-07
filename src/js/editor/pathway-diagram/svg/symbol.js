@@ -3,7 +3,7 @@
 // See also: ./node/use-element.js
 
 
-pathvisiojs.view.pathwayDiagram.svg.symbol = function(){
+pathvisiojs.renderer.svg.symbol = function(){
   'use strict';
 
   // a hack because I don't know how to pass the svg variable to the function appendCustom() when it's part of async.each().

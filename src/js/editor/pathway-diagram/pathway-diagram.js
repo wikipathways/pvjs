@@ -1,4 +1,4 @@
-pathvisiojs.view.pathwayDiagram = function(){
+pathvisiojs.renderer = function(){
   'use strict';
 
   // currently just using Gecko (Firefox) list of supported image formats for the HTML img tag:
@@ -97,8 +97,8 @@ pathvisiojs.view.pathwayDiagram = function(){
   function load(args) {
     // this function gets a reference to a GPML file and draws a visual representation of the pathway
     // TODO Much of the SVG creation code should be moved to ./svg/svg.js so we just call
-    // pathvisiojs.view.pathwayDiagram.svg.load() in the same way as we do for
-    // pathvisiojs.view.pathwayDiagram.img.load()
+    // pathvisiojs.renderer.svg.load() in the same way as we do for
+    // pathvisiojs.renderer.img.load()
 
     // ********************************************
     // Check for minimum required set of parameters
@@ -182,14 +182,14 @@ pathvisiojs.view.pathwayDiagram = function(){
           loadDiagramArgs.customMarkers = customMarkers;
           //loadDiagramArgs.customSymbols = customSymbols;
           //*
-          pathvisiojs.view.pathwayDiagram.svg.load(loadDiagramArgs, function(diagram) {
+          pathvisiojs.renderer.svg.load(loadDiagramArgs, function(diagram) {
             if (!!diagram) {
               callback(null, diagram);
             }
             else {
               // TODO refactor this to not just assume PNG will be available as fallback
               loadDiagramArgs.renderableSourceDataElement = sourceData[1];
-              pathvisiojs.view.pathwayDiagram.img.load(loadDiagramArgs, function(diagram) {
+              pathvisiojs.renderer.img.load(loadDiagramArgs, function(diagram) {
                 callback(null, diagram);
               });
             }
@@ -197,7 +197,7 @@ pathvisiojs.view.pathwayDiagram = function(){
           //*/
         }
         else {
-          pathvisiojs.view.pathwayDiagram.img.load(loadDiagramArgs, function(diagram) {
+          pathvisiojs.renderer.img.load(loadDiagramArgs, function(diagram) {
             callback(null, diagram);
           });
         }

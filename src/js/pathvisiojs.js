@@ -60,9 +60,13 @@ var pathvisiojs = {
       callback(null);
     };
 
+    if (args.hasOwnProperty('pathwaySearchUriStub')) {
+      diagramAnnotation.pathwaySearchUriStub = args.pathwaySearchUriStub;
+    }
+
     async.each(configArray, updateConfigsAsNeeded, function(err){
       //console.log(pathvisiojs.config.bridgedbLinkOutsUriStub);
-      pathvisiojs.view.pathwayDiagram.load(args);
+      pathvisiojs.renderer.load(args);
     });
   }
 };

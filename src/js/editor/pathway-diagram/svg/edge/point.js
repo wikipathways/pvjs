@@ -1,4 +1,4 @@
-pathvisiojs.view.pathwayDiagram.svg.edge.point = function(){
+pathvisiojs.renderer.svg.edge.point = function(){
   'use strict';
 
   var anchorPositionMappings = { "-1":0, "-0.5":0.333, "0":0.5, "0.5":0.667, "1":1 };
@@ -82,12 +82,12 @@ pathvisiojs.view.pathwayDiagram.svg.edge.point = function(){
       }
       else {
         if (edgeTerminusRef.type === 'node') {
-          coordinates = pathvisiojs.view.pathwayDiagram.svg.node.getPortCoordinates(edgeTerminusRef.element, point.relX, point.relY);
+          coordinates = pathvisiojs.renderer.svg.node.getPortCoordinates(edgeTerminusRef.element, point.relX, point.relY);
         }
         else {
           if (edgeTerminusRef.type === 'group') {
-            var groupDimensions = pathvisiojs.view.pathwayDiagram.svg.node.groupNode.getDimensions(pathway, edgeTerminusRef.groupId);
-            coordinates = pathvisiojs.view.pathwayDiagram.svg.node.getPortCoordinates(groupDimensions, point.relX, point.relY);
+            var groupDimensions = pathvisiojs.renderer.svg.node.groupNode.getDimensions(pathway, edgeTerminusRef.groupId);
+            coordinates = pathvisiojs.renderer.svg.node.getPortCoordinates(groupDimensions, point.relX, point.relY);
           }
           else {
             return 'error';

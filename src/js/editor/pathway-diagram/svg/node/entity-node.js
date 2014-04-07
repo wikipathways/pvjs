@@ -1,4 +1,4 @@
-pathvisiojs.view.pathwayDiagram.svg.node.EntityNode = function(){
+pathvisiojs.renderer.svg.node.EntityNode = function(){
   'use strict';
   function render(args) {
     if (!args.data) {
@@ -8,21 +8,21 @@ pathvisiojs.view.pathwayDiagram.svg.node.EntityNode = function(){
       throw new Error('Pathway not specified for this EntityNode. Pathway is needed for items like setting the Organism for DataNode annotations.');
     }
 
-    pathvisiojs.view.pathwayDiagram.svg.node.render(args, function(nodeContainer) {
+    pathvisiojs.renderer.svg.node.render(args, function(nodeContainer) {
       nodeContainer.attr("class", function (d) {
-        var cssClass = 'node entity-node ' + pathvisiojs.view.pathwayDiagram.svg.convertToCssClassName(d.nodeType) + ' ';
+        var cssClass = 'node entity-node ' + pathvisiojs.renderer.svg.convertToCssClassName(d.nodeType) + ' ';
         if (d.nodeType === 'DataNode') {
-          cssClass += pathvisiojs.view.pathwayDiagram.svg.convertToCssClassName(d.dataNodeType) + ' ';
+          cssClass += pathvisiojs.renderer.svg.convertToCssClassName(d.dataNodeType) + ' ';
           if (!!d.text) {
-            cssClass += pathvisiojs.view.pathwayDiagram.svg.convertToCssClassName('label-' + decodeURIComponent(d.text.line[0])) + ' ';
+            cssClass += pathvisiojs.renderer.svg.convertToCssClassName('label-' + decodeURIComponent(d.text.line[0])) + ' ';
           }
           if (!!d.DatasourceReference) {
             cssClass += 'has-xref ';
-            cssClass += pathvisiojs.view.pathwayDiagram.svg.convertToCssClassName('xref-' + decodeURIComponent(d.DatasourceReference.ID + ',' + d.DatasourceReference.Database)) + ' ';
+            cssClass += pathvisiojs.renderer.svg.convertToCssClassName('xref-' + decodeURIComponent(d.DatasourceReference.ID + ',' + d.DatasourceReference.Database)) + ' ';
           }
         }
         if (d.hasOwnProperty('CellularComponent')) {
-          cssClass += 'cellular-component ' + pathvisiojs.view.pathwayDiagram.svg.convertToCssClassName(d.CellularComponent) + ' ';
+          cssClass += 'cellular-component ' + pathvisiojs.renderer.svg.convertToCssClassName(d.CellularComponent) + ' ';
         }
         return cssClass;
       });
@@ -45,7 +45,7 @@ pathvisiojs.view.pathwayDiagram.svg.node.EntityNode = function(){
               }
             }
 
-            pathvisiojs.view.annotation.xRef.render(args.pathway.Organism, dfId, dfDb, d.text.line.join(' '), d.dataNodeType); //that's capital 'O' Organism from GPML vocab
+            diagramAnnotation.xRef.render(args.pathway.Organism, dfId, dfDb, d.text.line.join(' '), d.dataNodeType); //that's capital 'O' Organism from GPML vocab
 
           }
         });

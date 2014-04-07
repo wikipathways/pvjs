@@ -1,4 +1,4 @@
-pathvisiojs.view.pathwayDiagram.svg.node.pathShape = function(){
+pathvisiojs.renderer.svg.node.pathShape = function(){
   'use strict';
 
   function render(parent, data) {
@@ -15,10 +15,10 @@ pathvisiojs.view.pathwayDiagram.svg.node.pathShape = function(){
     console.log(data.ShapeType);
     console.log(pathShapeNameToUse);
     //*/
-    if (!pathvisiojs.view.pathwayDiagram.svg.node.pathShape.hasOwnProperty(pathShapeNameToUse)) {
+    if (!pathvisiojs.renderer.svg.node.pathShape.hasOwnProperty(pathShapeNameToUse)) {
       re = /Double$/gi;
       pathShapeNameToUse = pathShapeNameToUse.replace(re, '');
-      if (pathvisiojs.view.pathwayDiagram.svg.node.pathShape.hasOwnProperty(pathShapeNameToUse)) {
+      if (pathvisiojs.renderer.svg.node.pathShape.hasOwnProperty(pathShapeNameToUse)) {
         console.warn('Requested pathShape "' + data.ShapeType + '" is not available with linetype of "Double". Using linetype of "Solid" instead');
       }
       else {
@@ -56,7 +56,7 @@ pathvisiojs.view.pathwayDiagram.svg.node.pathShape = function(){
       return transform;
     });
 
-    var nodeAttributes = pathvisiojs.view.pathwayDiagram.svg.node.pathShape[pathShapeNameToUse].getAttributes(data.width, data.height, data.borderWidth);
+    var nodeAttributes = pathvisiojs.renderer.svg.node.pathShape[pathShapeNameToUse].getAttributes(data.width, data.height, data.borderWidth);
     nodeAttributes.forEach(function(attribute) {
       if(attribute.scale){
         g.attr('stroke-width', function(d) {
@@ -107,7 +107,7 @@ pathvisiojs.view.pathwayDiagram.svg.node.pathShape = function(){
 
     var nodeData = pathShape[0].parentNode.__data__;
     var shapeType = strcase.camelCase(nodeData.shapeType);
-    var pathShapeAttributes = pathvisiojs.view.pathwayDiagram.svg.node.shape.pathShape[shapeType].getAttributes(nodeData.width, nodeData.height);
+    var pathShapeAttributes = pathvisiojs.renderer.svg.node.shape.pathShape[shapeType].getAttributes(nodeData.width, nodeData.height);
     pathShapeAttributes.forEach(function(attribute) {
       pathShape.attr(attribute.name, attribute.value)
     });

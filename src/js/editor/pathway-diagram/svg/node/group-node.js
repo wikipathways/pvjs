@@ -1,4 +1,4 @@
-pathvisiojs.view.pathwayDiagram.svg.node.groupNode = function(){
+pathvisiojs.renderer.svg.node.groupNode = function(){
   'use strict';
   function render(args, callback) {
     if (!args.container) {
@@ -8,9 +8,9 @@ pathvisiojs.view.pathwayDiagram.svg.node.groupNode = function(){
       throw new Error('Error: group data missing for rendering groupNode.');
     }
 
-    pathvisiojs.view.pathwayDiagram.svg.node.render(args, function(groupContainer) {
+    pathvisiojs.renderer.svg.node.render(args, function(groupContainer) {
       groupContainer.attr("class", function (d) {
-        var cssClass = 'node group-node ' + pathvisiojs.view.pathwayDiagram.svg.convertToCssClassName(d.groupType) + ' ';
+        var cssClass = 'node group-node ' + pathvisiojs.renderer.svg.convertToCssClassName(d.groupType) + ' ';
         return cssClass;
       })
 

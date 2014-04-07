@@ -1,4 +1,4 @@
-pathvisiojs.view.pathwayDiagram.svg.edge.path = function(){	
+pathvisiojs.renderer.svg.edge.path = function(){	
   'use strict';
 
   function getPath(edge) {

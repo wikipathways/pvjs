@@ -11,7 +11,7 @@
 // [W3C documention on cubic bezier curves for SVG](http://www.w3.org/TR/SVG/paths.html#PathDataLinetoCommands)
 // There are other types of SVG curves, but I understand the Java code to use bezier curves.
 
-pathvisiojs.view.pathwayDiagram.svg.edge.pathData = function(){
+pathvisiojs.renderer.svg.edge.pathData = function(){
   'use strict';
   function getPathDirectionForElbowFromPoint(pathway, edge, point) {
     var direction, otherEndDirection, otherEndPoint;
@@ -100,12 +100,12 @@ pathvisiojs.view.pathwayDiagram.svg.edge.pathData = function(){
     var pointStart = edge.Point[0];
 
     /*
-    var source = pathvisiojs.view.pathwayDiagram.svg.edge.point.getCoordinates(pathway, pointStart);
+    var source = pathvisiojs.renderer.svg.edge.point.getCoordinates(pathway, pointStart);
 
     var pointCoordinatesArray = self.pointCoordinatesArray = [];
     var pointCoordinates;
     edge.Point.forEach(function(element) {
-      pointCoordinates = pathvisiojs.view.pathwayDiagram.svg.edge.point.getCoordinates(pathway, element);
+      pointCoordinates = pathvisiojs.renderer.svg.edge.point.getCoordinates(pathway, element);
       pointCoordinatesArray.push(pointCoordinates)
     })
 
@@ -124,7 +124,7 @@ pathvisiojs.view.pathwayDiagram.svg.edge.pathData = function(){
     }
 
     var pointEnd = edge.Point[edge.Point.length - 1];
-    //var target = pathvisiojs.view.pathwayDiagram.svg.edge.point.getCoordinates(pathway, pointEnd);
+    //var target = pathvisiojs.renderer.svg.edge.point.getCoordinates(pathway, pointEnd);
 
     if (pointEnd.dx === undefined) {
       target.dx = 0;
@@ -164,7 +164,7 @@ pathvisiojs.view.pathwayDiagram.svg.edge.pathData = function(){
         async.series([
           function(callbackInside){
             if (edge.Point.length === 2) {
-              pathvisiojs.view.pathwayDiagram.pathFinder.getPath(pathway, edge, function(data) {
+              pathvisiojs.renderer.pathFinder.getPath(pathway, edge, function(data) {
                 pathCoordinatesArray = data;
                 callbackInside(null);
               });
@@ -289,7 +289,7 @@ pathvisiojs.view.pathwayDiagram.svg.edge.pathData = function(){
 
 
             if (edge.Point.length === 2) {
-              pathCoordinatesArray = pathvisiojs.view.pathwayDiagram.pathFinder.getPath(pathway, edge);
+              pathCoordinatesArray = pathvisiojs.renderer.pathFinder.getPath(pathway, edge);
             }
             else {
               pathCoordinatesArray = edge.Point;

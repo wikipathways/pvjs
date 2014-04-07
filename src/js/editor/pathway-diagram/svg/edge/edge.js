@@ -1,13 +1,13 @@
 // Edges (interactions and graphical lines)
 
-pathvisiojs.view.pathwayDiagram.svg.edge = function(){
+pathvisiojs.renderer.svg.edge = function(){
   'use strict';
 
   function getPointAtPositionById(edgeElementId, position) {
     // position refers to percentage of total length along
     // edge from start toward end
 
-    var edgeElement = d3.select('#' + pathvisiojs.view.pathwayDiagram.svg.convertToId(edgeElementId))[0][0];
+    var edgeElement = d3.select('#' + pathvisiojs.renderer.svg.convertToId(edgeElementId))[0][0];
     var totalLength = edgeElement.getTotalLength();
     var lengthFromStartToPosition = position * totalLength;
     var point = edgeElement.getPointAtLength(lengthFromStartToPosition);
@@ -41,7 +41,7 @@ pathvisiojs.view.pathwayDiagram.svg.edge = function(){
     var markerEndName = args.data.markerEnd;
     //console.log('markerEndName');
     //console.log(markerEndName);
-    var edgeId = pathvisiojs.view.pathwayDiagram.svg.convertToId(data['id']);
+    var edgeId = pathvisiojs.renderer.svg.convertToId(data['id']);
 
     if (data.hasOwnProperty('isContainedBy')) {
       parentDataElement = pathway.elements.filter(function(element) {
@@ -90,7 +90,7 @@ pathvisiojs.view.pathwayDiagram.svg.edge = function(){
       markerEndAttributeValue;
     async.series({
       'markerStartAttributeValue': function(callback) {
-        var markerStartIdStub = pathvisiojs.view.pathwayDiagram.svg.marker.semanticNameToIdMapping[markerStartName];
+        var markerStartIdStub = pathvisiojs.renderer.svg.marker.semanticNameToIdMapping[markerStartName];
         if (!!markerStartIdStub) {
           if (!!stroke) { // if edge is not of default stroke color (at time of writing, this was black)
             if (markerStartName === 'none') { // if no marker is to be used, JSON data will specify 'none'
@@ -98,8 +98,8 @@ pathvisiojs.view.pathwayDiagram.svg.edge = function(){
               callback(null, markerStartAttributeValue);
             }
             else {
-              if (pathvisiojs.view.pathwayDiagram.svg.marker.colorsAvailable[markerStartIdStub].indexOf(stroke) === -1) { // if no marker of this stroke color exists
-                pathvisiojs.view.pathwayDiagram.svg.marker.appendNonDefaultColorMarkerBothEnds(svg, markerStartIdStub, stroke, function() {
+              if (pathvisiojs.renderer.svg.marker.colorsAvailable[markerStartIdStub].indexOf(stroke) === -1) { // if no marker of this stroke color exists
+                pathvisiojs.renderer.svg.marker.appendNonDefaultColorMarkerBothEnds(svg, markerStartIdStub, stroke, function() {
                   markerStartAttributeValue = 'url(#' + strcase.paramCase(markerStartIdStub + '-start-' + stroke) + ')';
                   callback(null, markerStartAttributeValue);
                 });
@@ -122,7 +122,7 @@ pathvisiojs.view.pathwayDiagram.svg.edge = function(){
         }
       },
       'markerEndAttributeValue': function(callback) {
-        var markerEndIdStub = pathvisiojs.view.pathwayDiagram.svg.marker.semanticNameToIdMapping[markerEndName];
+        var markerEndIdStub = pathvisiojs.renderer.svg.marker.semanticNameToIdMapping[markerEndName];
         if (!!markerEndIdStub) {
           if (!!stroke) { // if edge is not of default stroke color (at time of writing, this was black)
             if (markerEndName === 'none') { // if no marker is to be used, JSON data will specify 'none'
@@ -130,8 +130,8 @@ pathvisiojs.view.pathwayDiagram.svg.edge = function(){
               callback(null, markerEndAttributeValue);
             }
             else {
-              if (pathvisiojs.view.pathwayDiagram.svg.marker.colorsAvailable[markerEndIdStub].indexOf(stroke) === -1) { // if no marker of this stroke color exists
-                pathvisiojs.view.pathwayDiagram.svg.marker.appendNonDefaultColorMarkerBothEnds(svg, markerEndIdStub, stroke, function() {
+              if (pathvisiojs.renderer.svg.marker.colorsAvailable[markerEndIdStub].indexOf(stroke) === -1) { // if no marker of this stroke color exists
+                pathvisiojs.renderer.svg.marker.appendNonDefaultColorMarkerBothEnds(svg, markerEndIdStub, stroke, function() {
                   markerEndAttributeValue = 'url(#' + strcase.paramCase(markerEndIdStub + '-end-' + stroke) + ')';
                   callback(null, markerEndAttributeValue);
                 });
@@ -180,7 +180,7 @@ pathvisiojs.view.pathwayDiagram.svg.edge = function(){
 
               // fill in intermediate points using default algorithmic layout
 
-              pathvisiojs.view.pathwayDiagram.pathFinder.getPath(svg, data, function(convertedPointSet) {
+              pathvisiojs.renderer.pathFinder.getPath(svg, data, function(convertedPointSet) {
                 callback(null, convertedPointSet);
               });
             }
@@ -260,7 +260,7 @@ pathvisiojs.view.pathwayDiagram.svg.edge = function(){
       })
       .attr("fill", 'none')
       .attr("d", function (data) {
-        return pathvisiojs.view.pathwayDiagram.svg.edge.path.getPath(data); //createPathDataString(results.convertedPointSet);
+        return pathvisiojs.renderer.svg.edge.path.getPath(data); //createPathDataString(results.convertedPointSet);
       });
 
      /****************** 
@@ -268,7 +268,7 @@ pathvisiojs.view.pathwayDiagram.svg.edge = function(){
        * ***************/
 
       if (data.hasOwnProperty('Anchor')) {
-        pathvisiojs.view.pathwayDiagram.svg.node.anchor.render(container, edgeId, data.Anchor);
+        pathvisiojs.renderer.svg.node.anchor.render(container, edgeId, data.Anchor);
       }
 
       /****************** 
@@ -276,7 +276,7 @@ pathvisiojs.view.pathwayDiagram.svg.edge = function(){
        * ***************/
 
       if (data.hasOwnProperty('PublicationXref')) {
-        pathvisiojs.view.pathwayDiagram.svg.publicationXref.render(edgeId, 'edge', pathway, data.PublicationXref);
+        pathvisiojs.renderer.svg.publicationXref.render(edgeId, 'edge', pathway, data.PublicationXref);
         callback(edge);
       }
       else {
@@ -322,7 +322,7 @@ pathvisiojs.view.pathwayDiagram.svg.edge = function(){
         return style;
       })
       .attr("marker-start", function (data) {
-        var markerStart = pathvisiojs.view.pathwayDiagram.svg.marker.render(viewport, data.markerStart, 'start', data.stroke);
+        var markerStart = pathvisiojs.renderer.svg.marker.render(viewport, data.markerStart, 'start', data.stroke);
         if (data.hasOwnProperty('strokeStyle')) {
           if (data.strokeStyle === 'double') {
             //hack to manage marker scaling; this marker should not have any features itself
@@ -332,7 +332,7 @@ pathvisiojs.view.pathwayDiagram.svg.edge = function(){
         return 'url(#' + markerStart + ')';
       })
       .attr("marker-end", function (data) {
-        var markerEnd = pathvisiojs.view.pathwayDiagram.svg.marker.render(viewport, data.markerEnd, 'end', data.stroke);
+        var markerEnd = pathvisiojs.renderer.svg.marker.render(viewport, data.markerEnd, 'end', data.stroke);
         if (data.hasOwnProperty('strokeStyle')) {
           if (data.strokeStyle === 'double') {
             //hack to manage marker scaling; this marker should not have any features itself
@@ -347,7 +347,7 @@ pathvisiojs.view.pathwayDiagram.svg.edge = function(){
       // Somehow, d (the d3 selection data) gets redefined after this attr is defined.
 
       .attr("d", function (data) {
-        pathData = pathvisiojs.view.pathwayDiagram.svg.edge.pathData.get(viewport, pathway, data);
+        pathData = pathvisiojs.renderer.svg.edge.pathData.get(viewport, pathway, data);
         if (data.hasOwnProperty('strokeStyle')) {
           if (data.strokeStyle === 'double') {
 
@@ -360,8 +360,8 @@ pathvisiojs.view.pathwayDiagram.svg.edge = function(){
             .attr("d", pathData)
             .attr("class", "stroke-color-equals-default-fill-color")
             .attr("style", "stroke-width:" + data.strokeWidth + '; ')
-            .attr("marker-start", 'url(#' + pathvisiojs.view.pathwayDiagram.svg.marker.render(viewport, data.markerStart, 'start', data.stroke) + ')')
-            .attr("marker-end", 'url(#' + pathvisiojs.view.pathwayDiagram.svg.marker.render(viewport, data.markerEnd, 'end', data.stroke) + ')');
+            .attr("marker-start", 'url(#' + pathvisiojs.renderer.svg.marker.render(viewport, data.markerStart, 'start', data.stroke) + ')')
+            .attr("marker-end", 'url(#' + pathvisiojs.renderer.svg.marker.render(viewport, data.markerEnd, 'end', data.stroke) + ')');
           }
         }
         return pathData;
