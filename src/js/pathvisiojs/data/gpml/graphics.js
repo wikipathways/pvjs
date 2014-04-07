@@ -63,7 +63,6 @@ pathvisiojs.data.gpml.graphics = {
       ConnectorType: function(gpmlConnectorTypeValue){
         var gpmlConnectorType = gpmlConnectorTypeValue;
         pvjsonShape = strcase.paramCase('line-' + gpmlConnectorType) + gpmlDoubleLineProperty;
-        pvjsonElement.connectorType = gpmlConnectorType;
         pvjsonElement.shape = pvjsonShape;
         return pvjsonShape;
       },
@@ -129,7 +128,6 @@ pathvisiojs.data.gpml.graphics = {
       LineThickness: function(gpmlLineThicknessValue) {
         pvjsonBorderWidth = parseFloat(gpmlLineThicknessValue);
         pvjsonElement.borderWidth = pvjsonBorderWidth;
-        pvjsonElement.strokeWidth = pvjsonBorderWidth;
         return pvjsonBorderWidth;
       },
       Position: function(gpmlPositionValue) {
