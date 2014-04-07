@@ -1,4 +1,4 @@
-pathvisiojs.view.pathwayDiagram.svg.node.pathShape.mitochondria = function(){
+pathvisiojs.renderer.svg.node.pathShape.mitochondria = function(){
   'use strict';
 
   function getAttributes(nodeWidth, nodeHeight, borderWidth) {

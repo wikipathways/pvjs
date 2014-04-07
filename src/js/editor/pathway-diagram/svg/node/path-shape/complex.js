@@ -1,4 +1,4 @@
-pathvisiojs.view.pathwayDiagram.svg.node.pathShape.complex = function(){
+pathvisiojs.renderer.svg.node.pathShape.complex = function(){
   'use strict';
 
   function getAttributes(nodeWidth, nodeHeight) {

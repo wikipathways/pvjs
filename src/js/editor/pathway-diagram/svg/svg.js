@@ -1,4 +1,4 @@
-pathvisiojs.view.pathwayDiagram.svg = function(){
+pathvisiojs.renderer.svg = function(){
   'use strict';
 
   var shapesAvailable, markersAvailable, contextLevelInput,
@@ -48,7 +48,7 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
             preloadDiagramArgs.cssUri = cssUri;
             //preloadDiagramArgs.customSymbols = customSymbols;
 
-            pathvisiojs.view.pathwayDiagram.svg.loadPartials(preloadDiagramArgs, function(svg) {
+            pathvisiojs.renderer.svg.loadPartials(preloadDiagramArgs, function(svg) {
               if (!svg) {
                 throw new Error("Could not load SVG template.");
               }
@@ -82,7 +82,7 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
         });
       },
       function(svg, pathway, callback){
-        pathvisiojs.view.pathwayDiagram.svg.renderWithCachedData(svg, pathway, function() {
+        pathvisiojs.renderer.svg.renderWithCachedData(svg, pathway, function() {
           console.log('finallysvg');
           console.log(svg);
           svg.attr('style', 'display:inline');
@@ -94,7 +94,7 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
         console.log(svg);
         if (!!highlights) {
           highlights.forEach(function(highlight) {
-            pathvisiojs.view.pathwayDiagram.svg.node.highlight(highlight);
+            pathvisiojs.renderer.svg.node.highlight(highlight);
           });
         }
 
@@ -203,7 +203,7 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
              console.warn('Error: No data node value entered.');
              }
              else {
-             pathvisiojs.view.pathwayDiagram.svg.node.highlightByLabel(svg, nodeLabel);
+             pathvisiojs.renderer.svg.node.highlightByLabel(svg, nodeLabel);
              }
              });
           //*/
@@ -220,12 +220,12 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
               // TODO refactor this so it calls a generic highlightDataNodeByLabel function that can call
               // a highlighter for svg, png, etc. as appropriate.
 
-              pathvisiojs.view.pathwayDiagram.svg.node.highlightByLabel(svg, pathway, nodeLabel);
+              pathvisiojs.renderer.svg.node.highlightByLabel(svg, pathway, nodeLabel);
             }
           });
 
           d3.select('#clear-highlights-from-typeahead').on('click', function() {
-            pathvisiojs.view.pathwayDiagram.svg.node.clearHighlightsFromTypeahead();
+            pathvisiojs.renderer.svg.node.clearHighlightsFromTypeahead();
           });
           callback(null, svg);
         }
@@ -254,7 +254,7 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
       },
       function(svg, callback) {
         if (!!args.customMarkers) {
-          pathvisiojs.view.pathwayDiagram.svg.marker.loadAllCustom(svg, customMarkers, function() {
+          pathvisiojs.renderer.svg.marker.loadAllCustom(svg, customMarkers, function() {
             callback(null, svg);
           });
         }
@@ -265,7 +265,7 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
       /*
       function(callback) {
         if (!!args.customSymbols) {
-          pathvisiojs.view.pathwayDiagram.svg.symbol.loadAllCustom(svg, customSymbols, function() {
+          pathvisiojs.renderer.svg.symbol.loadAllCustom(svg, customSymbols, function() {
             callback(null);
           })
         }
@@ -403,18 +403,18 @@ pathvisiojs.view.pathwayDiagram.svg = function(){
       renderingArgs.data = dataElement;
       renderingArgs.element = d3.select('#' + convertToId(dataElement.id));
       if (dataElement.renderableType === 'GraphicalLine') {
-        pathvisiojs.view.pathwayDiagram.svg.edge.graphicalLine.render(renderingArgs);
+        pathvisiojs.renderer.svg.edge.graphicalLine.render(renderingArgs);
       }
 else if (dataElement.renderableType === 'Interaction') {
-        pathvisiojs.view.pathwayDiagram.svg.edge.interaction.render(renderingArgs);
+        pathvisiojs.renderer.svg.edge.interaction.render(renderingArgs);
       }
       else if (dataElement.renderableType === 'GroupNode') {
-        pathvisiojs.view.pathwayDiagram.svg.node.groupNode.render(renderingArgs, function(groupContainer, groupContents) {
+        pathvisiojs.renderer.svg.node.groupNode.render(renderingArgs, function(groupContainer, groupContents) {
           // TODO this used to render the group contents, but now the callback does nothing
         });
       }
       else if (dataElement.renderableType === 'EntityNode') {
-        pathvisiojs.view.pathwayDiagram.svg.node.EntityNode.render(renderingArgs);
+        pathvisiojs.renderer.svg.node.EntityNode.render(renderingArgs);
       }
 
       callbackInside(null);
@@ -431,18 +431,18 @@ else if (dataElement.renderableType === 'Interaction') {
       renderingArgs.data = dataElement;
       renderingArgs.element = d3.select('#' + convertToId(dataElement.id));
       if (dataElement.renderableType === 'GraphicalLine') {
-        pathvisiojs.view.pathwayDiagram.svg.edge.graphicalLine.render(renderingArgs);
+        pathvisiojs.renderer.svg.edge.graphicalLine.render(renderingArgs);
       }
 else if (dataElement.renderableType === 'Interaction') {
-        pathvisiojs.view.pathwayDiagram.svg.edge.interaction.render(renderingArgs);
+        pathvisiojs.renderer.svg.edge.interaction.render(renderingArgs);
       }
       else if (dataElement.renderableType === 'GroupNode') {
-        pathvisiojs.view.pathwayDiagram.svg.node.groupNode.render(renderingArgs, function(groupContainer, groupContents) {
+        pathvisiojs.renderer.svg.node.groupNode.render(renderingArgs, function(groupContainer, groupContents) {
           // TODO this used to render the group contents, but now the callback does nothing
         });
       }
       else if (dataElement.renderableType === 'EntityNode') {
-        pathvisiojs.view.pathwayDiagram.svg.node.EntityNode.render(renderingArgs);
+        pathvisiojs.renderer.svg.node.EntityNode.render(renderingArgs);
       }
     });
     callback(null, 'Successfully rendered elements');
@@ -459,7 +459,7 @@ else if (dataElement.renderableType === 'Interaction') {
 
     var viewport = svg.select('#viewport');
 
-    pathvisiojs.view.pathwayDiagram.svg.infoBox.render(viewport, pathway);
+    pathvisiojs.renderer.svg.infoBox.render(viewport, pathway);
 
     var renderArgs = {};
     renderArgs.svg = svg;

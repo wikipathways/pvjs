@@ -1,4 +1,4 @@
-pathvisiojs.view.pathwayDiagram.svg.grid = function(){
+pathvisiojs.renderer.svg.grid = function(){
   'use strict';
 
 /*  Linear algebra conventions call for specifying an element of a matrix as row #, column #.

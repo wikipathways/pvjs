@@ -1,4 +1,4 @@
-pathvisiojs.view.pathwayDiagram.svg.publicationXref = function(){
+pathvisiojs.renderer.svg.publicationXref = function(){
   'use strict';
 
   function getReferenceNumberForDisplay(pathway, rdfId) {

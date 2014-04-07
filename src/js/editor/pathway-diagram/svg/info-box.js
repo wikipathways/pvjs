@@ -1,4 +1,4 @@
-pathvisiojs.view.pathwayDiagram.svg.infoBox = function(){
+pathvisiojs.renderer.svg.infoBox = function(){
   'use strict';
     
   function render(viewport, pathway) {
@@ -27,7 +27,7 @@ pathvisiojs.view.pathwayDiagram.svg.infoBox = function(){
 
     /*
     if (pathway.hasOwnProperty('PublicationXref')) {
-      pathvisiojs.view.pathwayDiagram.svg.publicationXref.getPublicationXrefString(pathway, pathway.PublicationXref, function(publicationXrefString) {
+      pathvisiojs.renderer.svg.publicationXref.getPublicationXrefString(pathway, pathway.PublicationXref, function(publicationXrefString) {
         infoBox.push({'key':'Citation(s)', 'value':publicationXrefString});
       })
     }

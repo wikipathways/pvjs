@@ -1,4 +1,4 @@
-pathvisiojs.view.pathwayDiagram.svg.edge.interaction = function(){
+pathvisiojs.renderer.svg.edge.interaction = function(){
   'use strict';
   function getMarkerNameFromInteractionGraph(InteractionGraph) {
     var interactionType;
@@ -47,14 +47,14 @@ pathvisiojs.view.pathwayDiagram.svg.edge.interaction = function(){
       }
     }
 
-    pathvisiojs.view.pathwayDiagram.svg.edge.render(args, function(interaction) {
+    pathvisiojs.renderer.svg.edge.render(args, function(interaction) {
       interaction.attr("class", function (data) {
         var cssClass = 'edge interaction' + ' ';
         if (!!data.DatasourceReference) {
           cssClass += 'has-xref ';
           if (!!data.DatasourceReference.ID) {
             interaction.on("click", function(d,i) {
-              pathvisiojs.view.annotation.xRef.render(args.pathway.Organism, d['DatasourceReference'].ID, d['DatasourceReference'].Database, d.renderableType, d.markerStart+'<-->'+d.markerEnd); // d.InteractionGraph[0].interactsWith.text.line[0]+' + '+d.InteractionGraph[0].text.line[0], d.renderableType); 
+              diagramAnnotation.xRef.render(args.pathway.Organism, d['DatasourceReference'].ID, d['DatasourceReference'].Database, d.renderableType, d.markerStart+'<-->'+d.markerEnd); // d.InteractionGraph[0].interactsWith.text.line[0]+' + '+d.InteractionGraph[0].text.line[0], d.renderableType); 
 	      //That's capital 'O' Organism from GPML vocab.
 	      //Names of interaction partners is given as header, which is also used to form site query, 
 	      // thus the "+" is used to convey both the interaction and query logic.
@@ -82,7 +82,7 @@ pathvisiojs.view.pathwayDiagram.svg.edge.interaction = function(){
 
 
     // I want to get the marker name from the interactionType later.
-    //pathvisiojs.view.pathwayDiagram.svg.edge.setAttributes(svg, interaction, data, markerStart, markerEnd);
+    //pathvisiojs.renderer.svg.edge.setAttributes(svg, interaction, data, markerStart, markerEnd);
 
     /*
     // Update…
@@ -137,7 +137,7 @@ pathvisiojs.view.pathwayDiagram.svg.edge.interaction = function(){
         return style;
       })
       .attr("marker-start", function (data) {
-        var markerStart = pathvisiojs.view.pathwayDiagram.svg.marker.render(viewport, data.markerStart, 'start', data.stroke);
+        var markerStart = pathvisiojs.renderer.svg.marker.render(viewport, data.markerStart, 'start', data.stroke);
         if (data.hasOwnProperty('strokeStyle')) {
           if (data.strokeStyle === 'double') {
             //hack to manage marker scaling; this marker should not have any features itself
@@ -147,7 +147,7 @@ pathvisiojs.view.pathwayDiagram.svg.edge.interaction = function(){
         return 'url(#' + markerStart + ')';
       })
       .attr("marker-end", function (data) {
-        var markerEnd = pathvisiojs.view.pathwayDiagram.svg.marker.render(viewport, data.markerEnd, 'end', data.stroke);
+        var markerEnd = pathvisiojs.renderer.svg.marker.render(viewport, data.markerEnd, 'end', data.stroke);
         if (data.hasOwnProperty('strokeStyle')) {
           if (data.strokeStyle === 'double') {
             //hack to manage marker scaling; this marker should not have any features itself
@@ -162,7 +162,7 @@ pathvisiojs.view.pathwayDiagram.svg.edge.interaction = function(){
       // Somehow, d (the d3 selection data) gets redefined after this attr is defined.
 
       .attr("d", function (data) {
-        pathData = pathvisiojs.view.pathwayDiagram.svg.edge.pathData.get(viewport, pathway, data);
+        pathData = pathvisiojs.renderer.svg.edge.pathData.get(viewport, pathway, data);
         if (data.hasOwnProperty('strokeStyle')) {
           if (data.strokeStyle === 'double') {
 
@@ -175,8 +175,8 @@ pathvisiojs.view.pathwayDiagram.svg.edge.interaction = function(){
             .attr("d", pathData)
             .attr("class", "stroke-color-equals-default-fill-color")
             .attr("style", "stroke-width:" + data.strokeWidth + '; ')
-            .attr("marker-start", 'url(#' + pathvisiojs.view.pathwayDiagram.svg.marker.render(viewport, data.markerStart, 'start', data.stroke) + ')')
-            .attr("marker-end", 'url(#' + pathvisiojs.view.pathwayDiagram.svg.marker.render(viewport, data.markerEnd, 'end', data.stroke) + ')');
+            .attr("marker-start", 'url(#' + pathvisiojs.renderer.svg.marker.render(viewport, data.markerStart, 'start', data.stroke) + ')')
+            .attr("marker-end", 'url(#' + pathvisiojs.renderer.svg.marker.render(viewport, data.markerEnd, 'end', data.stroke) + ')');
           }
         }
         return pathData;

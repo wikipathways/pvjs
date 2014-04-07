@@ -2,7 +2,7 @@
 // This code is for the HTML img element. It displays the
 // diagram as a PNG, JPG, GIF, etc.
 
-pathvisiojs.view.pathwayDiagram.img = function(){
+pathvisiojs.renderer.img = function(){
   'use strict';
 
   function load(args, callback) {

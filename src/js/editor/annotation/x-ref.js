@@ -1,4 +1,4 @@
-pathvisiojs.view.annotation.xRef = function(){
+diagramAnnotation.xRef = function(){
   'use strict';
   var cachedAnnotationData = {};
 
@@ -6,7 +6,7 @@ pathvisiojs.view.annotation.xRef = function(){
     var data = getCachedAnnotationData(organism, label, id, datasource);
     if (data){
       //if cache, then use it
-      pathvisiojs.view.annotation.render(data);
+      diagramAnnotation.render(data);
     }
     else {
       //else render immediate data and loading gif
@@ -15,13 +15,13 @@ pathvisiojs.view.annotation.xRef = function(){
         "description": desc,
         "listItems":[pathvisiojs.config.diagramLoadingIconUri] 
       };
-      pathvisiojs.view.annotation.render(data);
+      diagramAnnotation.render(data);
 
       //console.log(pathvisiojs.config.bridgedbLinkOutsUriStub);
       //then retrieve the bridgedb data
       var xRefData = pathvisiojs.formatConverter.bridgedb.getXrefAnnotationDataByDataNode(organism, id, datasource, label, desc, function(annotationData) {
         setCachedAnnotationData(organism, label, id, datasource, annotationData);
-        pathvisiojs.view.annotation.render(annotationData);
+        diagramAnnotation.render(annotationData);
       });
     }
   }

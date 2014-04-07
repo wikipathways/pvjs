@@ -1,4 +1,4 @@
-pathvisiojs.view.pathwayDiagram.svg.node.text = function(){
+pathvisiojs.renderer.svg.node.text = function(){
   'use strict';
 
   // for more details, see 
@@ -64,7 +64,7 @@ pathvisiojs.view.pathwayDiagram.svg.node.text = function(){
     .enter()
     .append('g')
     .attr("id", function (d) {
-      return 'text-container' + pathvisiojs.view.pathwayDiagram.svg.convertToId(d['id']);
+      return 'text-container' + pathvisiojs.renderer.svg.convertToId(d['id']);
     })
     .attr('transform', function(d) {
       return 'translate(' + text.cache.translate.dx + ' ' + text.cache.translate.dy + ')';

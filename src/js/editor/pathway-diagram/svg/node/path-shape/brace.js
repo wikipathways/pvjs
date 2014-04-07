@@ -1,4 +1,4 @@
-pathvisiojs.view.pathwayDiagram.svg.node.pathShape.brace = function(){
+pathvisiojs.renderer.svg.node.pathShape.brace = function(){
   'use strict';
 
   function getAttributes(nodeWidth, nodeHeight, borderWidth) {

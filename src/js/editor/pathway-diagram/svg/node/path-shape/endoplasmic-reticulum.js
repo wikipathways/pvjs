@@ -1,4 +1,4 @@
-pathvisiojs.view.pathwayDiagram.svg.node.pathShape.endoplasmicReticulum = function(){
+pathvisiojs.renderer.svg.node.pathShape.endoplasmicReticulum = function(){
   'use strict';
 
   function getAttributes(nodeWidth, nodeHeight, borderWidth) {

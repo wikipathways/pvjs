@@ -17,9 +17,9 @@ Handling Pathvisiojs Template
 
 Loading Pathway
 
-1) pathvisiojs.load() calls pathvisiojs.view.pathwayDiagram.load()
-2) pathvisiojs.view.pathwayDiagram.load() calls pathvisiojs.view.pathwayDiagram.svg.loadPartials() (this is messy if we don't actually render an SVG)
-3) pathvisiojs.view.pathwayDiagram.svg.loadPartials() inserts template (div#pathvisiojs-container from src/pathvisio.html) into target container specified by user in pathvisiojs.load()
+1) pathvisiojs.load() calls pathvisiojs.renderer.load()
+2) pathvisiojs.renderer.load() calls pathvisiojs.renderer.svg.loadPartials() (this is messy if we don't actually render an SVG)
+3) pathvisiojs.renderer.svg.loadPartials() inserts template (div#pathvisiojs-container from src/pathvisio.html) into target container specified by user in pathvisiojs.load()
 4) Once data is ready (currently this means GPML is converted to JSON) and if an SVG is to be rendered, then we use the SVG in the pathvisiojs template as our starting point
     for rendering the pathway diagram.
 

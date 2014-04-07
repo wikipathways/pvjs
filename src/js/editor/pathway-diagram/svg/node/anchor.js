@@ -1,4 +1,4 @@
-pathvisiojs.view.pathwayDiagram.svg.node.anchor = function(){
+pathvisiojs.renderer.svg.node.anchor = function(){
   'use strict';
 
   function render(container, parentEdgeId, data) {
@@ -28,17 +28,17 @@ pathvisiojs.view.pathwayDiagram.svg.node.anchor = function(){
     var defaultAnchorHeight = 10;
 
     // TODO refactor svg.node.render() so we can use it for the other nodes and for anchors instead of basically repeating much of that method here
-    var nodeContainer = container.selectAll('.node.anchor.parent-edge-' + pathvisiojs.view.pathwayDiagram.svg.convertToId(parentEdgeId))
+    var nodeContainer = container.selectAll('.node.anchor.parent-edge-' + pathvisiojs.renderer.svg.convertToId(parentEdgeId))
     .data(data)
     .enter()
     .append("g")
     .attr('transform', function(d) {
-      var anchorCoordinates = pathvisiojs.view.pathwayDiagram.svg.edge.getPointAtPositionById(parentEdgeId, d.anchorPosition)
+      var anchorCoordinates = pathvisiojs.renderer.svg.edge.getPointAtPositionById(parentEdgeId, d.anchorPosition)
       var translateX = anchorCoordinates.x - defaultAnchorWidth/2;
       var translateY = anchorCoordinates.y - defaultAnchorHeight/2;
       return 'translate(' + translateX + ' ' + translateY + ')';
     })
-    .attr('class', 'node anchor parent-edge-' + pathvisiojs.view.pathwayDiagram.svg.convertToId(parentEdgeId))
+    .attr('class', 'node anchor parent-edge-' + pathvisiojs.renderer.svg.convertToId(parentEdgeId))
     .attr("style", function (d) {
       var style;
       if (d.hasOwnProperty('backgroundColor')) {
@@ -66,7 +66,7 @@ pathvisiojs.view.pathwayDiagram.svg.node.anchor = function(){
       if (!d.height) {
         d.height = defaultAnchorHeight;
       }
-      pathvisiojs.view.pathwayDiagram.svg.node.pathShape.render(thisNodeContainer, d);
+      pathvisiojs.renderer.svg.node.pathShape.render(thisNodeContainer, d);
     });
 
     /*
@@ -75,11 +75,11 @@ pathvisiojs.view.pathwayDiagram.svg.node.anchor = function(){
     .enter()
     .append('use')
     .attr('x', function(d) {
-      var anchorCoordinates = pathvisiojs.view.pathwayDiagram.svg.edge.getPointAtPositionById(parentEdgeId, d.anchorPosition)
+      var anchorCoordinates = pathvisiojs.renderer.svg.edge.getPointAtPositionById(parentEdgeId, d.anchorPosition)
       return anchorCoordinates.x - defaultAnchorWidth/2;
     })
     .attr('y', function(d) {
-      var anchorCoordinates = pathvisiojs.view.pathwayDiagram.svg.edge.getPointAtPositionById(parentEdgeId, d.anchorPosition)
+      var anchorCoordinates = pathvisiojs.renderer.svg.edge.getPointAtPositionById(parentEdgeId, d.anchorPosition)
       return anchorCoordinates.y - defaultAnchorHeight/2;
     })
     .attr('width', defaultAnchorWidth)
@@ -89,7 +89,7 @@ pathvisiojs.view.pathwayDiagram.svg.node.anchor = function(){
       var backgroundImage = d.backgroundImage;
       if (!!backgroundImage) {
         // check for whether desired shape type is available as a symbol
-        backgroundImageId = pathvisiojs.view.pathwayDiagram.svg.symbol.semanticNameToIdMapping[strcase.paramCase(backgroundImage)]; 
+        backgroundImageId = pathvisiojs.renderer.svg.symbol.semanticNameToIdMapping[strcase.paramCase(backgroundImage)]; 
         if (!!backgroundImageId) {
           //console.log('We will use an SVG "use" element to render this ' + shapeType);
           return '#' + backgroundImageId;

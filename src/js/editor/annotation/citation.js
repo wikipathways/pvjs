@@ -1,4 +1,4 @@
-pathvisiojs.view.annotation.citation = function(){
+diagramAnnotation.citation = function(){
   'use strict';
     function render(organism, node) {
     }

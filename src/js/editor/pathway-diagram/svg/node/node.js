@@ -1,4 +1,4 @@
-pathvisiojs.view.pathwayDiagram.svg.node = function(){
+pathvisiojs.renderer.svg.node = function(){
   'use strict';
   function dragmove(d) {
     /*
@@ -35,7 +35,7 @@ pathvisiojs.view.pathwayDiagram.svg.node = function(){
     args.svg = d3.select('svg');
     args.pathway = pathwayHere;
     args.uniformlyScalingShapesList = uniformlyScalingShapesListHere;
-    pathvisiojs.view.pathwayDiagram.svg.render(args, function(){console.log('rendered after drag');});
+    pathvisiojs.renderer.svg.render(args, function(){console.log('rendered after drag');});
     */
   }
 
@@ -114,14 +114,14 @@ pathvisiojs.view.pathwayDiagram.svg.node = function(){
     var shapeType = strcase.paramCase(data.ShapeType);
     
     // check for whether desired shape type is available as a symbol
-//    if (pathvisiojs.view.pathwayDiagram.svg.symbol.semanticNameToIdMapping.hasOwnProperty(shapeType)) {
+//    if (pathvisiojs.renderer.svg.symbol.semanticNameToIdMapping.hasOwnProperty(shapeType)) {
       //console.log('We will use an SVG "use" element to render this ' + shapeType);
-//      pathvisiojs.view.pathwayDiagram.svg.node.useElement.render(nodeContainer, data);
+//      pathvisiojs.renderer.svg.node.useElement.render(nodeContainer, data);
 //    }
     // else check for whether it is available as a pathShape
 //    else {
       //console.log('We will use a pathShape to render this ' + shapeType);
-      pathvisiojs.view.pathwayDiagram.svg.node.pathShape.render(nodeContainer, data);
+      pathvisiojs.renderer.svg.node.pathShape.render(nodeContainer, data);
 //    }
 
     /****************** 
@@ -129,7 +129,7 @@ pathvisiojs.view.pathwayDiagram.svg.node = function(){
      * ***************/
 
     if (data.hasOwnProperty('text')) {
-      pathvisiojs.view.pathwayDiagram.svg.node.text.render(nodeContainer, data);
+      pathvisiojs.renderer.svg.node.text.render(nodeContainer, data);
     }
 
     /****************** 
@@ -137,7 +137,7 @@ pathvisiojs.view.pathwayDiagram.svg.node = function(){
      * ***************/
 
     if (data.hasOwnProperty('PublicationXref')) {
-      pathvisiojs.view.pathwayDiagram.svg.publicationXref.render(nodeContainer, 'node', args.pathway, data.PublicationXref);
+      pathvisiojs.renderer.svg.publicationXref.render(nodeContainer, 'node', args.pathway, data.PublicationXref);
     }
 
     callback(nodeContainer);
@@ -191,11 +191,11 @@ pathvisiojs.view.pathwayDiagram.svg.node = function(){
         return input;
       },
       label: function(input) {
-        var selector = '.' + pathvisiojs.view.pathwayDiagram.svg.convertToCssClassName('label-' + decodeURIComponent(input));
+        var selector = '.' + pathvisiojs.renderer.svg.convertToCssClassName('label-' + decodeURIComponent(input));
         return selector;
       },
       xref: function(input) {
-        var selector = '.' + pathvisiojs.view.pathwayDiagram.svg.convertToCssClassName('xref-' + decodeURIComponent(input));
+        var selector = '.' + pathvisiojs.renderer.svg.convertToCssClassName('xref-' + decodeURIComponent(input));
         return selector;
       }
     };

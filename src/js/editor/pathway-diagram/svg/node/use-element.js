@@ -1,4 +1,4 @@
-pathvisiojs.view.pathwayDiagram.svg.node.useElement = function(){
+pathvisiojs.renderer.svg.node.useElement = function(){
   'use strict';
   
   var pathwayHere, allSymbolNamesHere;
@@ -38,13 +38,13 @@ pathvisiojs.view.pathwayDiagram.svg.node.useElement = function(){
     args.svg = d3.select('svg');
     args.pathway = pathwayHere;
     args.allSymbolNames = allSymbolNamesHere;
-    pathvisiojs.view.pathwayDiagram.svg.render(args, function(){console.log('rendered after drag');});
+    pathvisiojs.renderer.svg.render(args, function(){console.log('rendered after drag');});
   }
 
   function render(parent, data) {
     var node = parent.append("use")
     .data([data])
-    .attr("id", function (d) {return 'node-' + pathvisiojs.view.pathwayDiagram.svg.convertToId(d['id']);})
+    .attr("id", function (d) {return 'node-' + pathvisiojs.renderer.svg.convertToId(d['id']);})
     .attr("class", function (d) {
       return 'symbol ';
     })
@@ -143,7 +143,7 @@ pathvisiojs.view.pathwayDiagram.svg.node.useElement = function(){
         //*/
     .attr("xlink:xlink:href", function(d) {
       var shapeType = strcase.paramCase(d.ShapeType);
-      var symbolId = pathvisiojs.view.pathwayDiagram.svg.symbol.semanticNameToIdMapping[shapeType];
+      var symbolId = pathvisiojs.renderer.svg.symbol.semanticNameToIdMapping[shapeType];
       return '#' + symbolId;
     });
   }
