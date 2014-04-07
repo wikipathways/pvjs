@@ -60,10 +60,6 @@ var pathvisiojs = {
       callback(null);
     };
 
-    if (args.hasOwnProperty('pathwaySearchUriStub')) {
-      diagramAnnotation.pathwaySearchUriStub = args.pathwaySearchUriStub;
-    }
-
     async.each(configArray, updateConfigsAsNeeded, function(err){
       //console.log(pathvisiojs.config.bridgedbLinkOutsUriStub);
       pathvisiojs.renderer.load(args);

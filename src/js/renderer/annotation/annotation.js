@@ -1,4 +1,4 @@
-var diagramAnnotation = function(){
+pathvisiojs.renderer.annotation = function(){
   'use strict';
 
   var pathwaySearchUriStub = '/index.php?title=Special:SearchPathways&doSearch=1&query=';
