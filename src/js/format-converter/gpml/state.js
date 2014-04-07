@@ -1,4 +1,4 @@
-pathvisiojs.data.gpml.state = function(){
+pathvisiojs.formatConverter.gpml.state = function(){
   'use strict';
 
   var toPvjson = function(gpmlSelection, stateSelection, callback) {
@@ -15,8 +15,8 @@ pathvisiojs.data.gpml.state = function(){
     //*/
 
         //*
-        pathvisiojs.data.gpml.element.toPvjson(gpmlSelection, stateSelection, pvjsonPath, function(pvjsonPath) {
-          pathvisiojs.data.gpml.graphics.toPvjson(gpmlSelection, stateSelection, pvjsonPath, function(pvjsonPath) {
+        pathvisiojs.formatConverter.gpml.element.toPvjson(gpmlSelection, stateSelection, pvjsonPath, function(pvjsonPath) {
+          pathvisiojs.formatConverter.gpml.graphics.toPvjson(gpmlSelection, stateSelection, pvjsonPath, function(pvjsonPath) {
             var pvjsonElements = [pvjsonPath];
             /*
             console.log('pvjsonPath inside');

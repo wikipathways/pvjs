@@ -1,4 +1,4 @@
-pathvisiojs.data.biopax = function(){
+pathvisiojs.formatConverter.biopax = function(){
   'use strict';
 
   // TODO get ontology terms and other data

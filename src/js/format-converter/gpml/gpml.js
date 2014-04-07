@@ -1,4 +1,4 @@
-pathvisiojs.data.gpml = {
+pathvisiojs.formatConverter.gpml = {
   defaults: {
     'FontSize':{
       'Type':"FontSize",
@@ -673,17 +673,17 @@ pathvisiojs.data.gpml = {
 
     // test for whether file is GPML
 
-    if ( pathvisiojs.data.gpml.namespaces.indexOf(pathway.xmlns) !== -1 ) {
+    if ( pathvisiojs.formatConverter.gpml.namespaces.indexOf(pathway.xmlns) !== -1 ) {
 
       // test for whether the GPML file version matches the latest version (only the latest version will be supported by pathvisiojs).
 
-      if (pathvisiojs.data.gpml.namespaces.indexOf(pathway.xmlns) !== 0) {
+      if (pathvisiojs.formatConverter.gpml.namespaces.indexOf(pathway.xmlns) !== 0) {
 
         // TODO call the Java RPC updater or in some other way call for the file to be updated.
 
         console.warn('GPML namespace is not one pathvisiojs can handle.');
         callbackOutside('fail');
-        //alert('Pathvisiojs may not fully support the version of GPML provided (xmlns: ' + pathway.xmlns + '). Please convert to the supported version of GPML (xmlns: ' + pathvisiojs.data.gpml.namespaces[0] + ').');
+        //alert('Pathvisiojs may not fully support the version of GPML provided (xmlns: ' + pathway.xmlns + '). Please convert to the supported version of GPML (xmlns: ' + pathvisiojs.formatConverter.gpml.namespaces[0] + ').');
       }
       else {
 
@@ -830,7 +830,7 @@ pathvisiojs.data.gpml = {
             callback(null, pathway['@context']);
           },
           PublicationXref: function(callback){
-            pathvisiojs.data.gpml.biopaxRef.getAllAsPvjson(gpmlSelection, function(publicationXrefs) {
+            pathvisiojs.formatConverter.gpml.biopaxRef.getAllAsPvjson(gpmlSelection, function(publicationXrefs) {
               if (!!publicationXrefs) {
                 pathway.PublicationXref = publicationXrefs;
                 callback(null, 'BiopaxRefs are all converted.');
@@ -943,7 +943,7 @@ pathvisiojs.data.gpml = {
           Biopax: function(callback){
             var xmlBiopax = gpmlSelection.selectAll('Biopax');
             if (xmlBiopax[0].length > 0) {
-              pathvisiojs.data.biopax.toPvjson(xmlBiopax, function(jsonBiopax) {
+              pathvisiojs.formatConverter.biopax.toPvjson(xmlBiopax, function(jsonBiopax) {
                 pathway.Biopax = jsonBiopax;
               });
               callback(null, 'Biopax all converted.');
@@ -958,7 +958,7 @@ pathvisiojs.data.gpml = {
               //pathway.DataNode = [];
               dataNodesSelection.each(function() {
                 dataNodeSelection = d3.select(this);
-                pathvisiojs.data.gpml.dataNode.toPvjson(pathway, gpmlSelection, dataNodeSelection, function(pvjsonElements) {
+                pathvisiojs.formatConverter.gpml.dataNode.toPvjson(pathway, gpmlSelection, dataNodeSelection, function(pvjsonElements) {
                   /*
                   console.log('jsonDataNode');
                   console.log(jsonDataNode);
@@ -985,7 +985,7 @@ pathvisiojs.data.gpml = {
               //pathway.Label = [];
               gpmlSelection.selectAll('Label').each(function() {
                 labelSelection = d3.select(this);
-                pathvisiojs.data.gpml.label.toPvjson(gpmlSelection, labelSelection, function(pvjsonElements) {
+                pathvisiojs.formatConverter.gpml.label.toPvjson(gpmlSelection, labelSelection, function(pvjsonElements) {
                   /*
                   console.log('jsonLabel');
                   console.log(jsonLabel);
@@ -1012,7 +1012,7 @@ pathvisiojs.data.gpml = {
               //pathway.Shape = [];
               gpmlSelection.selectAll('Shape').each(function() {
                 shapeSelection = d3.select(this);
-                pathvisiojs.data.gpml.shape.toPvjson(gpmlSelection, shapeSelection, function(pvjsonElements) {
+                pathvisiojs.formatConverter.gpml.shape.toPvjson(gpmlSelection, shapeSelection, function(pvjsonElements) {
                   //pathway.Shape.push(jsonShape);
                   //pathway.nodes = pathway.nodes.concat(jsonShape);
                   //pathway.elements = pathway.elements.concat(jsonShape);
@@ -1040,7 +1040,7 @@ pathvisiojs.data.gpml = {
               pathway.anchors = [];
               anchorsSelection.each(function() {
                 anchorSelection = d3.select(this);
-                pathvisiojs.data.gpml.anchor.toPvjson(gpmlSelection, anchorSelection, function(pvjsonElements) {
+                pathvisiojs.formatConverter.gpml.anchor.toPvjson(gpmlSelection, anchorSelection, function(pvjsonElements) {
                   pathway.anchors = pvjsonElements;
                   pathway.elements = pathway.elements.concat(pvjsonElements);
                 });
@@ -1058,7 +1058,7 @@ pathvisiojs.data.gpml = {
               pathway.states = [];
               statesSelection.each(function() {
                 stateSelection = d3.select(this);
-                pathvisiojs.data.gpml.state.toPvjson(gpmlSelection, stateSelection, function(pvjsonElements) {
+                pathvisiojs.formatConverter.gpml.state.toPvjson(gpmlSelection, stateSelection, function(pvjsonElements) {
                   /*
                   console.log('pvjsonElements');
                   console.log(pvjsonElements);
@@ -1080,7 +1080,7 @@ pathvisiojs.data.gpml = {
               //pathway.GraphicalLine = [];
               gpmlSelection.selectAll('GraphicalLine').each(function() {
                 graphicalLineSelection = d3.select(this);
-                pathvisiojs.data.gpml.graphicalLine.toPvjson(gpml, graphicalLineSelection, function(pvjsonElements) {
+                pathvisiojs.formatConverter.gpml.graphicalLine.toPvjson(gpml, graphicalLineSelection, function(pvjsonElements) {
                   //pathway.GraphicalLine.push(jsonGraphicalLine);
                   //pathway.edges = pathway.edges.concat(jsonGraphicalLine);
                   //pathway.elements = pathway.elements.concat(jsonGraphicalLine);
@@ -1106,7 +1106,7 @@ pathvisiojs.data.gpml = {
               //pathway.Interaction = [];
               gpmlSelection.selectAll('Interaction').each(function() {
                 interactionSelection = d3.select(this);
-                pathvisiojs.data.gpml.interaction.toPvjson(gpml, interactionSelection, function(pvjsonElements) {
+                pathvisiojs.formatConverter.gpml.interaction.toPvjson(gpml, interactionSelection, function(pvjsonElements) {
                   //pathway.Interaction.push(jsonInteraction);
                   //pathway.edges = pathway.edges.concat(jsonInteraction);
                   //pathway.elements = pathway.elements.concat(jsonInteraction);
@@ -1142,7 +1142,7 @@ pathvisiojs.data.gpml = {
           var groups = [];
           gpmlSelection.selectAll('Group').each(function() {
             groupSelection = d3.select(this);
-            pathvisiojs.data.gpml.group.toPvjson(pathway.elements, gpmlSelection, groupSelection, function(pvjsonElements) {
+            pathvisiojs.formatConverter.gpml.group.toPvjson(pathway.elements, gpmlSelection, groupSelection, function(pvjsonElements) {
               //pathway.Group.push(jsonGroup);
               //groups.push(pvjsonElements);
               //pathway.nodes = pathway.nodes.concat(jsonGroup);
@@ -1251,4 +1251,4 @@ pathvisiojs.data.gpml = {
 
 // TODO hack required because we call ...node.anchors.toPvjson() before we
 // call the other ...node.toPvjson() methods
-pathvisiojs.data.gpml.node = pathvisiojs.data.gpml.node || {};
+pathvisiojs.formatConverter.gpml.node = pathvisiojs.formatConverter.gpml.node || {};

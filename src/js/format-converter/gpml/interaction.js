@@ -1,4 +1,4 @@
-pathvisiojs.data.gpml.interaction = {
+pathvisiojs.formatConverter.gpml.interaction = {
   // TODO do something with the linetype info to specify whether interaction is direct or indirect
 
   gpmlArrowHeadsToSemanticMappings: {
@@ -56,7 +56,7 @@ pathvisiojs.data.gpml.interaction = {
     var interactionInstance = this;
 
     var jsonAnchorInteraction, anchor, jsonAnchor, points, jsonPoints, interactionType, target, targetId, groupRef, source, sourceId, pvjsonElements;
-    //pathvisiojs.data.gpml.edge.toPvjson(interactionSelection, function(jsonInteraction) {
+    //pathvisiojs.formatConverter.gpml.edge.toPvjson(interactionSelection, function(jsonInteraction) {
       //console.log('jsonInteraction');
       //console.log(jsonInteraction);
 
@@ -193,10 +193,10 @@ pathvisiojs.data.gpml.interaction = {
       var pvjsonPath = {};
       pvjsonPath.networkType = 'edge';
       pvjsonPath.gpmlType = 'Interaction';
-      pathvisiojs.data.gpml.element.toPvjson(gpmlSelection, interactionSelection, pvjsonPath, function(pvjsonPath) {
-        pathvisiojs.data.gpml.graphics.toPvjson(gpmlSelection, interactionSelection, pvjsonPath, function(pvjsonPath) {
-          pathvisiojs.data.gpml.point.toPvjson(gpmlSelection, interactionSelection, pvjsonPath, function(pvjsonPath) {
-            pathvisiojs.data.gpml.anchor.toPvjson(gpmlSelection, interactionSelection, pvjsonPath, function(pvjsonAnchor) {
+      pathvisiojs.formatConverter.gpml.element.toPvjson(gpmlSelection, interactionSelection, pvjsonPath, function(pvjsonPath) {
+        pathvisiojs.formatConverter.gpml.graphics.toPvjson(gpmlSelection, interactionSelection, pvjsonPath, function(pvjsonPath) {
+          pathvisiojs.formatConverter.gpml.point.toPvjson(gpmlSelection, interactionSelection, pvjsonPath, function(pvjsonPath) {
+            pathvisiojs.formatConverter.gpml.anchor.toPvjson(gpmlSelection, interactionSelection, pvjsonPath, function(pvjsonAnchor) {
               pvjsonElements = [pvjsonPath].concat(pvjsonAnchor);
               callback(pvjsonElements);
             });

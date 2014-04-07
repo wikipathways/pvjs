@@ -56,7 +56,7 @@ pathvisiojs.view.pathwayDiagram.svg = {
             });
           },
           pathway: function(callback){
-            pathvisiojs.data.pvjson.get(renderableSourceDataElement, function(json) {
+            pathvisiojs.formatConverter.pvjson.get(renderableSourceDataElement, function(json) {
               pathvisiojs.context = json['@context'];
 
               if (!json || json === 'fail') {
