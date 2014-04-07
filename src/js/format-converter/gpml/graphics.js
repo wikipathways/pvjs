@@ -1,4 +1,4 @@
-pathvisiojs.data.gpml.graphics = {
+pathvisiojs.formatConverter.gpml.graphics = {
   defaults: {
     'FontSize':{
       'Type':"FontSize",

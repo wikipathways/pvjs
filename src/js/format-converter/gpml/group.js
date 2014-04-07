@@ -1,4 +1,4 @@
-pathvisiojs.data.gpml.group = {
+pathvisiojs.formatConverter.gpml.group = {
   getGroupDimensions: function(group, callback) {
     var dimensions = {};
     dimensions.topLeftCorner = {};
@@ -66,17 +66,17 @@ pathvisiojs.data.gpml.group = {
 
 
 
-    pathvisiojs.data.gpml.element.toPvjson(gpmlSelection, groupSelection, pvjsonPath, function(pvjsonPath) {
+    pathvisiojs.formatConverter.gpml.element.toPvjson(gpmlSelection, groupSelection, pvjsonPath, function(pvjsonPath) {
 
 
 
-      pathvisiojs.data.gpml.graphics.toPvjson(gpmlSelection, groupSelection, pvjsonPath, function(pvjsonPath) {
+      pathvisiojs.formatConverter.gpml.graphics.toPvjson(gpmlSelection, groupSelection, pvjsonPath, function(pvjsonPath) {
           var contents = elementsPossiblyInGroup.filter(function(element){
             return element.isContainedBy === pvjsonPath.id;
           });
           if (contents.length > 0) {
             pvjsonPath.contains = contents;
-            pathvisiojs.data.gpml.group.getGroupDimensions(pvjsonPath, function(dimensions){
+            pathvisiojs.formatConverter.gpml.group.getGroupDimensions(pvjsonPath, function(dimensions){
               pvjsonPath.x = dimensions.x;
               pvjsonPath.y = dimensions.y;
               pvjsonPath.width = dimensions.width;

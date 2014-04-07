@@ -34,7 +34,7 @@ var pathvisiojs = {
     this.args = args;
     this.model = {};
     this.model.elements = [];
-    this.data.model = this.data.gpml.model = this.data.gpml.graphics.model = this.data.gpml.group.model = this.data.gpml.interaction.model = this.view.model = this.view.pathwayDiagram.model = this.view.pathwayDiagram.svg.model = this.view.pathwayDiagram.svg.publicationXref.model = this.model;
+    this.formatConverter.model = this.formatConverter.gpml.model = this.formatConverter.gpml.graphics.model = this.formatConverter.gpml.group.model = this.formatConverter.gpml.interaction.model = this.view.model = this.view.pathwayDiagram.model = this.view.pathwayDiagram.svg.model = this.view.pathwayDiagram.svg.publicationXref.model = this.model;
 
     //console.log(args);
 

@@ -1,4 +1,4 @@
-pathvisiojs.data.gpml.label = function(){
+pathvisiojs.formatConverter.gpml.label = function(){
   'use strict';
 
   var toPvjson = function(gpmlSelection, labelSelection, callback) {
@@ -7,8 +7,8 @@ pathvisiojs.data.gpml.label = function(){
     pvjsonPath.networkType = 'node';
     pvjsonPath.nodeType = 'Label';
 
-    pathvisiojs.data.gpml.element.toPvjson(gpmlSelection, labelSelection, pvjsonPath, function(pvjsonPath) {
-      pathvisiojs.data.gpml.graphics.toPvjson(gpmlSelection, labelSelection, pvjsonPath, function(pvjsonPath) {
+    pathvisiojs.formatConverter.gpml.element.toPvjson(gpmlSelection, labelSelection, pvjsonPath, function(pvjsonPath) {
+      pathvisiojs.formatConverter.gpml.graphics.toPvjson(gpmlSelection, labelSelection, pvjsonPath, function(pvjsonPath) {
         var pvjsonElements = [pvjsonPath];
         callback(pvjsonElements);
       });

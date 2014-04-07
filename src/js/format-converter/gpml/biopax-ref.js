@@ -1,4 +1,4 @@
-pathvisiojs.data.gpml.biopaxRef = function(){
+pathvisiojs.formatConverter.gpml.biopaxRef = function(){
   'use strict';
 
   function getAllAsPvjson(gpmlElement, callback) {

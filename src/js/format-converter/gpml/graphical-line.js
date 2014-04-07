@@ -1,4 +1,4 @@
-pathvisiojs.data.gpml.graphicalLine = function(){
+pathvisiojs.formatConverter.gpml.graphicalLine = function(){
   'use strict';
 
   //*
@@ -25,10 +25,10 @@ pathvisiojs.data.gpml.graphicalLine = function(){
       pvjsonPath = {};
 
     pvjsonPath.networkType = 'edge';
-    pathvisiojs.data.gpml.element.toPvjson(gpmlSelection, graphicalLineSelection, pvjsonPath, function(pvjsonPath) {
-      pathvisiojs.data.gpml.graphics.toPvjson(gpmlSelection, graphicalLineSelection, pvjsonPath, function(pvjsonPath) {
-        pathvisiojs.data.gpml.point.toPvjson(gpmlSelection, graphicalLineSelection, pvjsonPath, function(pvjsonPath) {
-          pathvisiojs.data.gpml.anchor.toPvjson(gpmlSelection, graphicalLineSelection, pvjsonPath, function(pvjsonAnchor) {
+    pathvisiojs.formatConverter.gpml.element.toPvjson(gpmlSelection, graphicalLineSelection, pvjsonPath, function(pvjsonPath) {
+      pathvisiojs.formatConverter.gpml.graphics.toPvjson(gpmlSelection, graphicalLineSelection, pvjsonPath, function(pvjsonPath) {
+        pathvisiojs.formatConverter.gpml.point.toPvjson(gpmlSelection, graphicalLineSelection, pvjsonPath, function(pvjsonPath) {
+          pathvisiojs.formatConverter.gpml.anchor.toPvjson(gpmlSelection, graphicalLineSelection, pvjsonPath, function(pvjsonAnchor) {
 
             pvjsonElements = [pvjsonPath].concat(pvjsonAnchor);
             callback(pvjsonElements);

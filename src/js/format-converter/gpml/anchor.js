@@ -1,9 +1,9 @@
-pathvisiojs.data.gpml.anchor = function() {
+pathvisiojs.formatConverter.gpml.anchor = function() {
   'use strict';
 
   // anchors
   // see jsPlumb anchor model: http://jsplumbtoolkit.com/doc/anchors
-  // TODO The documention below is out-of-date. See also pathvisiojs.data.gpml.point()
+  // TODO The documention below is out-of-date. See also pathvisiojs.formatConverter.gpml.point()
   // This model is not fully formed.
   // an anchor is an attachment point at which an edge can originate or terminate.
   // It has the following elements:
@@ -32,8 +32,8 @@ pathvisiojs.data.gpml.anchor = function() {
       pvjsonAnchor.zIndex = pvjsonEdge.zIndex + 0.1;
       pvjsonAnchor.networkType = 'node';
 
-      pathvisiojs.data.gpml.element.toPvjson(gpmlSelection, anchorSelection, pvjsonAnchor, function(pvjsonAnchor) {
-        pathvisiojs.data.gpml.graphics.toPvjson(gpmlSelection, anchorSelection, pvjsonAnchor, function(pvjsonAnchor) {
+      pathvisiojs.formatConverter.gpml.element.toPvjson(gpmlSelection, anchorSelection, pvjsonAnchor, function(pvjsonAnchor) {
+        pathvisiojs.formatConverter.gpml.graphics.toPvjson(gpmlSelection, anchorSelection, pvjsonAnchor, function(pvjsonAnchor) {
           attachedPoint = d3.select(gpmlSelection).select('Point[GraphRef=' + pvjsonAnchor.id + ']');
           pvjsonAnchorWidth = pvjsonAnchor.width;
           pvjsonAnchorHeight = pvjsonAnchor.height;

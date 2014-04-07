@@ -1,4 +1,4 @@
-pathvisiojs.data.gpml.dataNode = function() {
+pathvisiojs.formatConverter.gpml.dataNode = function() {
   'use strict';
 
   var toPvjson = function(pathway, gpmlSelection, dataNodeSelection, callbackInside) {
@@ -16,8 +16,8 @@ pathvisiojs.data.gpml.dataNode = function() {
 
 
 
-    pathvisiojs.data.gpml.element.toPvjson(gpmlSelection, dataNodeSelection, pvjsonPath, function(pvjsonPath) {
-      pathvisiojs.data.gpml.graphics.toPvjson(gpmlSelection, dataNodeSelection, pvjsonPath, function(pvjsonPath) {
+    pathvisiojs.formatConverter.gpml.element.toPvjson(gpmlSelection, dataNodeSelection, pvjsonPath, function(pvjsonPath) {
+      pathvisiojs.formatConverter.gpml.graphics.toPvjson(gpmlSelection, dataNodeSelection, pvjsonPath, function(pvjsonPath) {
         var database, id, datasourceReference,
           datasourceReferenceSelection = dataNodeSelection.select('Xref');
         if (!!datasourceReferenceSelection) {

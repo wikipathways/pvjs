@@ -1,4 +1,4 @@
-pathvisiojs.data.bridgedb = function(){
+pathvisiojs.formatConverter.bridgedb = function(){
   'use strict';
 
   function getXrefAnnotationDataByDataNode(singleSpecies, id, datasource, label, desc, callback) {

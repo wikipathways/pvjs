@@ -1,4 +1,4 @@
-pathvisiojs.data = {
+pathvisiojs.formatConverter = {
   // For now, pathvisio.js will attempt to convert any input data, as long as it is of type
   // GPML or has no type specified, into JSON.
   // TODO Later, this functionality can be extended to include other data types and

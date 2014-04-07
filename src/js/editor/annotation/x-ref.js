@@ -19,7 +19,7 @@ pathvisiojs.view.annotation.xRef = function(){
 
       //console.log(pathvisiojs.config.bridgedbLinkOutsUriStub);
       //then retrieve the bridgedb data
-      var xRefData = pathvisiojs.data.bridgedb.getXrefAnnotationDataByDataNode(organism, id, datasource, label, desc, function(annotationData) {
+      var xRefData = pathvisiojs.formatConverter.bridgedb.getXrefAnnotationDataByDataNode(organism, id, datasource, label, desc, function(annotationData) {
         setCachedAnnotationData(organism, label, id, datasource, annotationData);
         pathvisiojs.view.annotation.render(annotationData);
       });

@@ -177,7 +177,7 @@ pathvisiojs.view.pathwayDiagram = function(){
         loadDiagramArgs.highlights = highlights;
 
         if (renderableSourceDataElement.selectedViewMethod !== 'img') {
-          pathvisiojs.data.pvjson.get(renderableSourceDataElement, function(json) {
+          pathvisiojs.formatConverter.pvjson.get(renderableSourceDataElement, function(json) {
             pathvisiojs.context = json['@context'];
 
             if (!json || json === 'fail') {

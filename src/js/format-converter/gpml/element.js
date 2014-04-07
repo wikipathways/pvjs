@@ -1,4 +1,4 @@
-pathvisiojs.data.gpml.element = function(){
+pathvisiojs.formatConverter.gpml.element = function(){
   // ...element includes all GPML elements and is the parent of both ...node and ...edge.
   'use strict';
 
@@ -190,7 +190,7 @@ pathvisiojs.data.gpml.element = function(){
       },
     };
 
-    pathvisiojs.data.gpml.biopaxRef.getAllAsPvjson(elementSelection, function(publicationXrefs) {
+    pathvisiojs.formatConverter.gpml.biopaxRef.getAllAsPvjson(elementSelection, function(publicationXrefs) {
       if (!!publicationXrefs) {
         pvjsonElement.publicationXrefs = publicationXrefs;
       }

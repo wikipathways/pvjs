@@ -1,4 +1,4 @@
-pathvisiojs.data.gpml.text = function() {
+pathvisiojs.formatConverter.gpml.text = function() {
   'use strict';
 
   var pathvisioDefaultStyleValues = {

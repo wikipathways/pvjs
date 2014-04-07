@@ -1,4 +1,4 @@
-pathvisiojs.data.pvjson = function(){
+pathvisiojs.formatConverter.pvjson = function(){
   'use strict';
 
   // For now, pathvisio.js will attempt to convert any input data, as long as it is of type
@@ -20,8 +20,8 @@ pathvisiojs.data.pvjson = function(){
     // TODO handle if renderableSourceDataElement.object exists
 
     if (fileType === 'gpml') {
-      pathvisiojs.data.gpml.get(renderableSourceDataElement, function(gpml) {
-        pathvisiojs.data.gpml.toPvjson(gpml, uri, function(json) {
+      pathvisiojs.formatConverter.gpml.get(renderableSourceDataElement, function(gpml) {
+        pathvisiojs.formatConverter.gpml.toPvjson(gpml, uri, function(json) {
           console.log('json');
           console.log(json);
           callback(json);
