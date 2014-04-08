@@ -117,7 +117,6 @@ pathvisiojs.renderer = function(){
       pathvisioJsContainer,
       diagramContainer,
       renderableSourceDataElement;
-    var renderer = this;
 
     if (!sourceData[0].uri) {
       throw new Error('No sourceData uri specified.');
@@ -342,12 +341,19 @@ pathvisiojs.renderer = function(){
       },
       function(svgSelection, data, callback){
         if (renderableSourceDataElement.selectedViewMethod === 'svg') {
+          var cssData,
+            style,
+            defs = svgSelection.select('defs');
           if (!!cssUri) {
-            d3.text(cssUri, 'text/css', function(data) {
-              var defs = svgSelection.select('defs');
-              var style = defs.append('style').attr('type', "text/css");
-              style.text(data);
+            d3.text(cssUri, 'text/css', function(cssData) {
+              style = defs.append('style').attr('type', "text/css");
+              style.text(cssData);
             });
+          }
+          else {
+            cssData = pathvisioNS['src/css/pathway-diagram.css'];
+            style = defs.append('style').attr('type', "text/css");
+            style.text(cssData);
           }
 
           svgPanZoom.init({
@@ -386,7 +392,7 @@ pathvisiojs.renderer = function(){
 
 
         if (!!data) {
-          renderer.highlighter.load(svgSelection, data);
+          pathvisiojs.renderer.highlighter.load(svgSelection, data);
         }
 
         // ********************************************
