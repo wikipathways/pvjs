@@ -31,6 +31,19 @@ var pvjsSources = [
   'src/js/renderer/highlighter.js',
 ];
 
+// rarely used libraries (will concatenate with pvjs, because it's unlikely anyone will have them already cached)
+var rarelyUsedJsLibraries = [
+  './lib/es5-shim/es5-sham.min.js',
+  './lib/he/he.js',
+  './lib/rgb-color/rgb-color.js',
+  './lib/node-uuid/uuid.js',
+  './lib/strcase/dist/strcase.min.js',
+  './lib/cross-platform-text/js/cross-platform-text.min.js',
+  './lib/cross-platform-shapes/js/cross-platform-shapes.min.js',
+  './lib/svg-pan-zoom/svg-pan-zoom.js',
+  './lib/blueimp-load-image/js/load-image.min.js'
+];
+
 var pvjsCssSources = [
   'src/css/pathvisiojs.css',
   'src/css/annotation.css',
@@ -70,7 +83,7 @@ grunt.initConfig({
           process: true
         },
         pathvisiojsJs: {
-            src:  ['./lib/es5-shim/es5-sham.min.js', './lib/blueimp-load-image/js/load-image.min.js', './lib/rgb-color/rgb-color.js', './lib/node-uuid/uuid.js', './lib/strcase/dist/strcase.min.js', './lib/svg-pan-zoom/svg-pan-zoom.js', './lib/blueimp-load-image/js/load-image.min.js', 'tmp/pathvisiojs-temp.js'].concat(pvjsSources),
+            src:  rarelyUsedJsLibraries.concat(['tmp/pathvisiojs-temp.js']).concat(pvjsSources),
             //src:  [ '<banner>' ].concat(pvjsSources),
             dest: tmpDir + 'pathvisiojs/js/pathvisiojs.js'
         },
@@ -118,10 +131,6 @@ grunt.initConfig({
       modernizr: {
         src: [ './lib/modernizr/modernizr.js' ],
         dest: distLibDir + 'modernizr/js/modernizr.min.js'
-      },
-      he: {
-        src:  [ './lib/he/he.js' ],
-        dest: distLibDir + 'he/he.min.js'
       }
     },
     watch: {
@@ -148,7 +157,7 @@ grunt.initConfig({
       afterconcat: [ distLibDir + 'pathvisiojs/js/pathvisiojs.min.js' ]
     },
     str2js: {
-      pathvisioNS: { 'tmp/pathvisiojs-temp.js': ['src/pathvisiojs.html', 'tmp/pathvisiojs.svg']}
+      pathvisioNS: { 'tmp/pathvisiojs-temp.js': ['src/pathvisiojs.html', 'tmp/pathvisiojs.svg', 'src/css/pathway-diagram.css']}
     },
     browserify: {
       dist: {

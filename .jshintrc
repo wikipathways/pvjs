@@ -26,6 +26,8 @@
         "strcase": true,
         "svgPanZoom": true,
         "typeahead": true,
+        "crossPlatformText": true,
+        "crossPlatformShapes": true,
         "uuid": true
     }
 }
