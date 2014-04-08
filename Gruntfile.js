@@ -159,7 +159,7 @@ grunt.initConfig({
       afterconcat: [ tmpDir + 'pathvisiojs/js/pathvisiojs.js' ]
     },
     str2js: {
-      pathvisioNS: { 'tmp/pathvisiojs-temp.js': ['src/pathvisiojs.html', 'tmp/pathvisiojs.svg', 'src/css/pathway-diagram.css']}
+      pathvisioNS: { 'tmp/pathvisiojs-temp.js': ['src/pathvisiojs.html', 'src/css/pathway-diagram.css']}
     },
     browserify: {
       dist: {
