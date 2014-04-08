@@ -1,46 +1,47 @@
 pathvisiojs.renderer.infoBox = function(){
   'use strict';
     
-  function render(viewport, pathway) {
-    if (!viewport || !pathway) {
+  function render(viewport, data) {
+    if (!viewport || !data) {
       return console.warn('Error: Missing input parameters.');
     }
 
     // Although gpml has x and y values for infobox, we have decided to ignore them and always set it in the upper left.
 
-    var infoBox = [];
-    if (pathway.hasOwnProperty('Name')) {
-      infoBox.push({'key':'Title', 'value':pathway.Name});
+    var infoBoxData = [];
+    if (data.hasOwnProperty('Name')) {
+      infoBoxData.push({'key':'Title', 'value':data.Name});
     }
 
-    if (pathway.hasOwnProperty('License')) {
-      infoBox.push({'key':'Availability', 'value':pathway.License});
+    if (data.hasOwnProperty('License')) {
+      infoBoxData.push({'key':'Availability', 'value':data.License});
     }
 
-    if (pathway.hasOwnProperty('LastModified')) {
-      infoBox.push({'key':'Last modified', 'value':pathway.LastModified});
+    if (data.hasOwnProperty('LastModified')) {
+      infoBoxData.push({'key':'Last modified', 'value':data.LastModified});
     }
 
-    if (pathway.hasOwnProperty('Organism')) {
-      infoBox.push({'key':'Organism', 'value':pathway.Organism});
+    if (data.hasOwnProperty('Organism')) {
+      infoBoxData.push({'key':'Organism', 'value':data.Organism});
     }
 
     /*
-    if (pathway.hasOwnProperty('PublicationXref')) {
-      pathvisiojs.view.pathwayDiagram.svg.publicationXref.getPublicationXrefString(pathway, pathway.PublicationXref, function(publicationXrefString) {
-        infoBox.push({'key':'Citation(s)', 'value':publicationXrefString});
+    if (data.hasOwnProperty('PublicationXref')) {
+      pathvisiojs.renderer.publicationXref.getPublicationXrefString(data, data.PublicationXref, function(publicationXrefString) {
+        infoBoxData.push({'key':'Citation(s)', 'value':publicationXrefString});
       })
     }
     //*/
 
-    var infoBox = viewport.selectAll("g.info-box")
-    .data([infoBox])
+    // TODO do we need to check for whether info box data exists?
+    var infoBoxSelection = viewport.selectAll("g.info-box")
+    .data([infoBoxData])
     .enter()
     .append("g")
     .attr("id", function (d,i) {return "info-box-" + i; })
     .attr("class", "text-area info-box");
 
-    var infoBoxItems = infoBox.selectAll("text")
+    var infoBoxItems = infoBoxSelection.selectAll("text")
     .data(function(d) {return d;})
     .enter()
     .append("text")
