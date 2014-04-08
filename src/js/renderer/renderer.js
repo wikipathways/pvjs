@@ -1,6 +1,23 @@
 pathvisiojs.renderer = function(){
   'use strict';
 
+  // TODO move this into svg-pan-zoom
+  //calculates the proper scaling and translations to fit content (i.e., diagram) to screen (i.e., viewport)
+  function fitAndCenterDiagramWithinViewport(viewport, viewportWidth, viewportHeight, diagramWidth, diagramHeight) {
+    // viewport is a d3 selection
+
+    var fitScreenScale = Math.min(viewportWidth/diagramWidth, viewportHeight/diagramHeight);
+    var diagramWidthScaled = fitScreenScale * diagramWidth;
+    var diagramHeightScaled = fitScreenScale * diagramHeight;
+
+    var xTranslation = viewportWidth/2 - diagramWidthScaled/2 + 10; //plus margin-left
+    var yTranslation = viewportHeight/2 - diagramHeightScaled/2 + 20; //plus margin-top
+
+    var translationMatrixString = 'matrix(' + fitScreenScale + ', 0, 0, ' + fitScreenScale + ', ' + xTranslation + ', ' + yTranslation + ') ';
+    
+    viewport.attr("transform", translationMatrixString);
+  }
+
   // currently just using Gecko (Firefox) list of supported image formats for the HTML img tag:
   // https://developer.mozilla.org/en-US/docs/Web/HTML/Element/Img
   // TODO decide what to do if the user specifies an SVG image as a dataSource element
@@ -107,6 +124,8 @@ pathvisiojs.renderer = function(){
     var userSpecifiedContainerSelector = args.container,
       sourceData = args.sourceData,
       fitToContainer = args.fitToContainer,
+      containerWidth,
+      containerHeight,
       cssUri = args.cssUri,
       customMarkers = args.customMarkers,
       //customSymbols = args.customSymbols,
@@ -166,13 +185,13 @@ pathvisiojs.renderer = function(){
 
         callback(null, containerWidth, containerHeight, renderableSourceDataElement);
       },
-      function(containerWidth, containerHeight, renderableSourceDataElement, callback){
+      function(thisContainerWidth, thisContainerHeight, renderableSourceDataElement, callback){
         var svg, pathway,
         loadDiagramArgs = {};
         loadDiagramArgs.container = diagramContainer;
         loadDiagramArgs.renderableSourceDataElement = renderableSourceDataElement;
-        loadDiagramArgs.containerWidth = containerWidth;
-        loadDiagramArgs.containerHeight = containerHeight;
+        loadDiagramArgs.containerWidth = containerWidth = thisContainerWidth;
+        loadDiagramArgs.containerHeight = containerHeight = thisContainerHeight;
         loadDiagramArgs.fitToContainer = fitToContainer;
         loadDiagramArgs.highlights = highlights;
 
@@ -355,6 +374,29 @@ pathvisiojs.renderer = function(){
             style = defs.append('style').attr('type', "text/css");
             style.text(cssData);
           }
+
+
+
+          // TODO move this into svg-pan-zoom
+          var viewport = svgSelection.select('#viewport');
+
+          /* not all containers will have a width or height style attribute. this is now done using the same logic
+           * but uses boundingClientRect() instead. the code is located in pathway-diagram.js
+          var container = d3.select('body').select('#diagram-container');
+          var containerWidth = parseInt(container.style("width")) - 40; //account for space for pan/zoom controls
+          var containerHeight = parseInt(container.style("height")) -20; //account for space for search field
+          //*/
+          var fitScreenScale;
+          if (fitToContainer) {
+            fitAndCenterDiagramWithinViewport(viewport, containerWidth, containerHeight, data.image.width, data.image.height);
+          }
+
+          var resetPanZoomControl = d3.select('#reset-pan-zoom')
+          .on("click", function(d,i){
+            //svgPanZoom.resetZoom();
+            fitAndCenterDiagramWithinViewport(viewport, containerWidth, containerHeight, data.image.width, data.image.height);
+          });
+          // end move into svg-pan-zoom
 
           svgPanZoom.init({
             'selector': '#my-svg2',
