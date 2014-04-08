@@ -13,10 +13,14 @@
         "alert": true,
         "async": true,
         "console": true,
+        "crossPlatformText": true,
+        "crossPlatformShapes": true,
         "d3": true,
+        "global": true,
 	"he":true,
         "jsonld": true,
         "loadImage": true,
+        "module": true,
         "Modernizr": true,
         "pathvisiojs": true,
         "pathvisioNS": true,
@@ -26,8 +30,6 @@
         "strcase": true,
         "svgPanZoom": true,
         "typeahead": true,
-        "crossPlatformText": true,
-        "crossPlatformShapes": true,
         "uuid": true
     }
 }

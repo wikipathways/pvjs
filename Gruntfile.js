@@ -32,6 +32,7 @@ var pvjsSources = [
 ];
 
 // rarely used libraries (will concatenate with pvjs, because it's unlikely anyone will have them already cached)
+var rarelyUsedJsLibraries = [
   './lib/es5-shim/es5-sham.min.js',
   './lib/he/he.js',
   './lib/rgb-color/rgb-color.js',
@@ -76,11 +77,11 @@ grunt.initConfig({
     concat: {
         options: {
           separator: '\n\n',
-          banner: "/* <%= pkg.name %> <%= pkg.version %>\n"
-              + "Built on <%= grunt.template.today('yyyy-mm-dd') %>\n"
-              //+ "//! Git commit: <%= gitInfo %>\n"
-              + "https://github.com/wikipathways/pathvisiojs\n"
-              + "License: http://www.apache.org/licenses/LICENSE-2.0/ */\n\n",
+          banner: "/* <%= pkg.name %> <%= pkg.version %>\n" +
+              "Built on <%= grunt.template.today('yyyy-mm-dd') %>\n" +
+              //"//! Git commit: <%= gitInfo %>\n" +
+              "https://github.com/wikipathways/pathvisiojs\n" +
+              "License: http://www.apache.org/licenses/LICENSE-2.0/ */\n\n",
           process: true
         },
         pathvisiojsJs: {
@@ -297,8 +298,8 @@ transform: ['coffeeify']
   });
 
   // build 
-  grunt.registerTask('build', ['sync', 'str2js', 'clean:build', 'git-describe', 'jshint:beforeconcat', 'concat', 'jshint:afterconcat', 'uglify', 'clean:demoLibs', 'copy']);
-  //grunt.registerTask('build', ['sync', 'clean:temp', 'str2js', 'clean:build', 'git-describe', 'jshint:beforeconcat', 'concat', 'jshint:afterconcat', 'uglify', 'copy']);
+  grunt.registerTask('build', ['sync', 'str2js', 'clean:build', 'git-describe', 'jshint:beforeconcat', 'concat', 'uglify', 'clean:demoLibs', 'copy', 'buildcontrol:pages']);
+  //grunt.registerTask('build', ['sync', 'str2js', 'clean:build', 'git-describe', 'jshint:beforeconcat', 'concat', 'jshint:afterconcat', 'uglify', 'clean:demoLibs', 'copy']);
 
   // quick-build 
   grunt.registerTask('quick-build', ['sync', 'str2js', 'clean:build', 'git-describe', 'concat', 'uglify', 'clean:demoLibs', 'copy']);
