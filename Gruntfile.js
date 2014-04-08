@@ -235,7 +235,7 @@ transform: ['coffeeify']
       local: {
         options: {
           remote: '../',
-          branch: 'build'
+          branch: 'master'
         }
       },
     },
@@ -298,7 +298,7 @@ transform: ['coffeeify']
   });
 
   // build 
-  grunt.registerTask('build', ['sync', 'str2js', 'clean:build', 'git-describe', 'jshint:beforeconcat', 'concat', 'uglify', 'clean:demoLibs', 'copy', 'buildcontrol:pages']);
+  grunt.registerTask('build', ['sync', 'str2js', 'clean:build', 'git-describe', 'jshint:beforeconcat', 'concat', 'uglify', 'clean:demoLibs', 'copy', 'buildcontrol:local', 'buildcontrol:pages']);
   //grunt.registerTask('build', ['sync', 'str2js', 'clean:build', 'git-describe', 'jshint:beforeconcat', 'concat', 'jshint:afterconcat', 'uglify', 'clean:demoLibs', 'copy']);
 
   // quick-build 
