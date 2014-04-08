@@ -11,8 +11,8 @@ pathvisiojs.renderer.annotation = function(){
     //Special drag code to update absolute position of annotation panel
     var dragAbs = d3.behavior.drag()
     .on("drag", function(d,i){
-      var dright = parseInt(annotation.style("right"));
-      var dtop = parseInt(annotation.style("top"));
+      var dright = parseInt(annotation.style("right"), 10);
+      var dtop = parseInt(annotation.style("top"), 10);
       dright-=d3.event.dx;
       dtop+=d3.event.dy;
       annotation.style("right", dright+"px");

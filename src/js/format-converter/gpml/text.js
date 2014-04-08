@@ -8,7 +8,7 @@ pathvisiojs.formatConverter.gpml.text = function() {
       'FontStyle':null,
       'FontName':null
     }
-  }
+  };
 
   function toPvjson(gpmlNode, inputDefaultValues, textCallbackOutside) {
     /*
@@ -24,11 +24,10 @@ pathvisiojs.formatConverter.gpml.text = function() {
       text = gpmlNode.attr('TextLabel');
     if (!!text) {
       jsonText = {};
-      jsonText['id'] = ('id' + uuid.v4());
+      jsonText.id = ('id' + uuid.v4());
       jsonText.line = text.split(/\r\n|\r|\n|&#xA;/g);
 
       var graphics = gpmlNode.select('Graphics');
-      var textAlign, fontStyle, fontWeight, fontSize, fontFamily;
       if (!!graphics[0][0]) {
         textAlign = gpmlNode.select('Graphics').attr('Align') || 'center';
         jsonText.textAlign = textAlign.toLowerCase();
@@ -37,22 +36,22 @@ pathvisiojs.formatConverter.gpml.text = function() {
         jsonText.verticalAlign = verticalAlign.toLowerCase();
 
         fontStyle = gpmlNode.select('Graphics').attr('FontStyle');
-        if (fontStyle !== thisPathvisioDefaultStyleValues['FontStyle'] && !!fontStyle) {
+        if (fontStyle !== thisPathvisioDefaultStyleValues.FontStyle && !!fontStyle) {
           jsonText.fontStyle = fontStyle.toLowerCase();
         }
 
         fontWeight = gpmlNode.select('Graphics').attr('FontWeight');
-        if (fontWeight !== thisPathvisioDefaultStyleValues['FontWeight'] && !!fontWeight) {
+        if (fontWeight !== thisPathvisioDefaultStyleValues.FontWeight && !!fontWeight) {
           jsonText.fontWeight = fontWeight.toLowerCase();
         }
 
         fontSize = gpmlNode.select('Graphics').attr('FontSize') || 10;
-        if (parseFloat(fontSize) !== thisPathvisioDefaultStyleValues['FontSize'] && !!fontSize) {
+        if (parseFloat(fontSize) !== thisPathvisioDefaultStyleValues.FontSize && !!fontSize) {
           jsonText.fontSize = parseFloat(fontSize);
         }
 
         fontFamily = gpmlNode.select('Graphics').attr('FontName');
-        if (fontFamily !== thisPathvisioDefaultStyleValues['FontName'] && !!fontFamily) {
+        if (fontFamily !== thisPathvisioDefaultStyleValues.FontName && !!fontFamily) {
           jsonText.fontFamily = fontFamily;
         }
       }

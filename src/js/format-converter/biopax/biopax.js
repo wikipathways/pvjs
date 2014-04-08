@@ -7,7 +7,7 @@ pathvisiojs.formatConverter.biopax = function(){
     try {
       d3.ns.prefix.bp = 'http://www.biopax.org/owldoc/Level3/';
       d3.ns.prefix.rdf = 'http://www.w3.org/1999/02/22-rdf-syntax-ns#';
-      d3.ns.qualify('bp:PublicationXref');      
+      d3.ns.qualify('bp:PublicationXref');
       var xmlBiopaxPubs = xmlBiopax.selectAll('PublicationXref');
       var jsonBiopax = {};
       jsonBiopax.PublicationXref = [];

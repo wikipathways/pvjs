@@ -47,7 +47,7 @@ pathvisiojs.utilities = function(){
       var name, s, i, empty = {};
       for(name in source){
         // the (!(name in empty) || empty[name] !== s) condition avoids copying properties in "source"
-        // inherited from Object.prototype.	 For example, if dest has a custom toString() method,
+        // inherited from Object.prototype. For example, if dest has a custom toString() method,
         // don't overwrite it with the toString() method that source inherited from Object.prototype
         s = source[name];
         if(!(name in dest) || (dest[name] !== s && (!(name in empty) || empty[name] !== s))){
@@ -92,7 +92,7 @@ pathvisiojs.utilities = function(){
     }
     return mixin(r, src, clone);
 
-  }  
+  }
 
   // this both clones a node and inserts it at the same level of the DOM
   // as the element it was cloned from.
@@ -161,7 +161,7 @@ pathvisiojs.utilities = function(){
     }
 
     return direction;
-  }  
+  }
 
   function getUriParam(name) {
     // Thanks to http://stackoverflow.com/questions/11582512/how-to-get-uri-parameters-with-javascript
@@ -199,14 +199,16 @@ pathvisiojs.utilities = function(){
     // modified version of https://github.com/juliangruber/intersect/blob/master/index.js
     var res = [];
     for (var i = 0; i < a.length; i++) {
-      if (b.indexOf(a[i]) > -1) res.push(a[i]);
+      if (b.indexOf(a[i]) > -1) {
+        res.push(a[i]);
+      }
     }
     return res;
   }
 
   function isIE() {
     var myNav = navigator.userAgent.toLowerCase();
-    return (myNav.indexOf('msie') != -1) ? parseInt(myNav.split('msie')[1]) : false;
+    return (myNav.indexOf('msie') != -1) ? parseInt(myNav.split('msie')[1], 10) : false;
   }
 
   function isUri(str) {
@@ -219,9 +221,10 @@ pathvisiojs.utilities = function(){
   function isNumber(n) {
     return !isNaN(parseFloat(n)) && isFinite(n);
   }
+
   var isOdd = function(num) {
     return num % 2;
-  }
+  };
 
   function isWikiPathwaysId(data) {
     data = data.trim();
@@ -231,28 +234,6 @@ pathvisiojs.utilities = function(){
     else {
       return false;
     }
-  }
-
-  // TODO should we use requirejs for loading scripts instead?
-  function loadScripts(array, callback){  
-    var loader = function(src,handler){  
-      var script = document.createElement('script');  
-      script.src = src;  
-      script.onload = script.onreadystatechange = function(){  
-        script.onreadystatechange = script.onload = null;  
-        if(/MSIE ([6-9]+\.\d+);/.test(navigator.userAgent))window.setTimeout(function(){handler();},8,this);  
-        else handler();  
-      }  
-      var head = document.getElementsByTagName('head')[0];  
-      (head || document.body).appendChild( script );  
-    };  
-    (function(){  
-      if(array.length!=0){  
-        loader(array.shift(),arguments.callee);  
-      }else{  
-        callback && callback();  
-      }  
-    })();  
   }
 
   function moveArrayItem(arr, old_index, new_index) {
@@ -293,12 +274,8 @@ pathvisiojs.utilities = function(){
     isOdd:isOdd,
     isUri:isUri,
     isWikiPathwaysId:isWikiPathwaysId,
-    loadScripts:loadScripts,
     moveArrayItem:moveArrayItem,
     splitStringByNewLine:splitStringByNewLine,
     strToHtmlId:strToHtmlId
   };
 }();
-
-
-

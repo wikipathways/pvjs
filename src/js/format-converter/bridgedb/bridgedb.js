@@ -3,14 +3,15 @@ pathvisiojs.formatConverter.bridgedb = function(){
 
   function getXrefAnnotationDataByDataNode(singleSpecies, id, datasource, label, desc, callback) {
     //For unannotated nodes, without datasource or identifier
-    if (null == id || null == datasource){
+    if (null === id || null === datasource){
         var annotationData = {
           "header": label,
           "description": desc,
           "listItems": ['Missing ID and datasource']
         };
-        callback(annotationData);  
-    } else {   
+        callback(annotationData);
+    }
+    else {
     getDataSources(function(dataSources) {
       var dataSourceRowCorrespondingToDataNodeXrefDatabase = getDataSourceRowByName(datasource, dataSources);
       var systemCode = dataSourceRowCorrespondingToDataNodeXrefDatabase.systemCode;
@@ -19,7 +20,7 @@ pathvisiojs.formatConverter.bridgedb = function(){
         var listItems = [];
         if (typeof xRefAliases != 'undefined') { //BridgeDb Error
         listItems = xRefAliases.map(function(xRefAlias) {
-          var listItem = {}
+          var listItem = {};
           listItem.title = xRefAlias.dataSourceName;
           listItem.text = xRefAlias.xRefId;
           currentDataSourceRow = getDataSourceRowByName(xRefAlias.dataSourceName, dataSources);
@@ -48,7 +49,7 @@ pathvisiojs.formatConverter.bridgedb = function(){
         .entries(listItems);
 
         // handle case where nothing is returned by bridgedb webservice
-        if (nestedListItems.length == 0){
+        if (nestedListItems.length === 0){
           var uri = "";
           var ds = getDataSourceRowByName(datasource, dataSources);
            if (ds.hasOwnProperty('linkoutPattern')) {
@@ -105,9 +106,9 @@ pathvisiojs.formatConverter.bridgedb = function(){
     var bridgedbUri = pathvisiojs.config.bridgedbLinkOutsUriStub + encodeURIComponent(singleSpecies) + '/xrefs/' + encodeURIComponent(systemCode) + '/' + encodeURIComponent(xRefId);
     //console.log(bridgedbUri);
     d3.tsv(bridgedbUri)
-    .response(function(request) { 
+    .response(function(request) {
       return d3.tsv.parseRows(request.responseText, function(d) {
-        return {xRefId: d[0], dataSourceName: d[1]}; 
+        return {xRefId: d[0], dataSourceName: d[1]};
       });
     })
     .get(function(error, rows) {
