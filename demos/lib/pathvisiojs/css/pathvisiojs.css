@@ -3,8 +3,6 @@ Built on 2014-04-07
 https://github.com/wikipathways/pathvisiojs
 License: http://www.apache.org/licenses/LICENSE-2.0/ */
 
-@import url("//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css");
-
 #pathvisiojs-container {
   background-color: white;
   font-family: Helvetica, sans-serif, Arial;
