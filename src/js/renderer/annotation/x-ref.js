@@ -4,16 +4,16 @@ pathvisiojs.renderer.annotation.xRef = function(){
 
   function render(organism, id, datasource, label, desc) {
     var data = getCachedAnnotationData(organism, label, id, datasource);
-    if (data){
+    if (!!data){
       //if cache, then use it
       pathvisiojs.renderer.annotation.render(data);
     }
     else {
       //else render immediate data and loading gif
-      var data = {
+      data = {
         "header": label,
         "description": desc,
-        "listItems":[pathvisiojs.config.diagramLoadingIconUri] 
+        "listItems":[pathvisiojs.config.diagramLoadingIconUri]
       };
       pathvisiojs.renderer.annotation.render(data);
 

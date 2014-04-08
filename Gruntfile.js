@@ -41,7 +41,9 @@ var rarelyUsedJsLibraries = [
   './lib/cross-platform-text/js/cross-platform-text.min.js',
   './lib/cross-platform-shapes/js/cross-platform-shapes.min.js',
   './lib/svg-pan-zoom/svg-pan-zoom.js',
-  './lib/blueimp-load-image/js/load-image.min.js'
+  './lib/blueimp-load-image/js/load-image.min.js',
+  './lib/jsonld.js/js/jsonld.js',
+  './lib/jsonld.js/js/Promise.js'
 ];
 
 var pvjsCssSources = [
@@ -154,7 +156,7 @@ grunt.initConfig({
         jshintrc: '.jshintrc'
       },
       beforeconcat: pvjsSources,
-      afterconcat: [ distLibDir + 'pathvisiojs/js/pathvisiojs.min.js' ]
+      afterconcat: [ tmpDir + 'pathvisiojs/js/pathvisiojs.js' ]
     },
     str2js: {
       pathvisioNS: { 'tmp/pathvisiojs-temp.js': ['src/pathvisiojs.html', 'tmp/pathvisiojs.svg', 'src/css/pathway-diagram.css']}

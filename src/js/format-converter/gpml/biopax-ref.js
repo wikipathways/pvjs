@@ -9,7 +9,7 @@ pathvisiojs.formatConverter.gpml.biopaxRef = function(){
       biopaxRefs.each(function() {
         jsonPublicationXref = d3.select(this)[0][0].textContent;
         publicationXrefs.push(jsonPublicationXref);
-      })
+      });
       callback(publicationXrefs);
     }
     else {

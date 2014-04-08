@@ -5,4 +5,4 @@ pathvisiojs.formatConverter.gpml.namespaces = [
   "http://genmapp.org/GPML/2010a",
   "http://genmapp.org/GPML/2008a",
   "http://genmapp.org/GPML/2007"
-]
+];
