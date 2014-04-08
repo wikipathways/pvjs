@@ -28,6 +28,7 @@ var pvjsSources = [
   'src/js/renderer/annotation/annotation.js',
   'src/js/renderer/annotation/citation.js',
   'src/js/renderer/annotation/x-ref.js',
+  'src/js/renderer/highlighter.js',
 ];
 
 var pvjsCssSources = [

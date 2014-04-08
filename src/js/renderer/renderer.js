@@ -117,6 +117,7 @@ pathvisiojs.renderer = function(){
       pathvisioJsContainer,
       diagramContainer,
       renderableSourceDataElement;
+    var renderer = this;
 
     if (!sourceData[0].uri) {
       throw new Error('No sourceData uri specified.');
@@ -327,9 +328,9 @@ pathvisiojs.renderer = function(){
             });
           }
         }
-        callbackInside(null);
+        callbackInside(null, data);
       },
-      function(callback){
+      function(data, callback){
         if (renderableSourceDataElement.selectedViewMethod === 'svg') {
           var svgSelection = d3.select('#my-svg2');
 
@@ -364,13 +365,22 @@ pathvisiojs.renderer = function(){
               svgInFocus = false;
             }
           });
-          callback(null);
+          callback(null, svgSelection, data);
         }
         else {
-          callback(null);
+          callback(null, null, data);
         }
       },
-      function(callback){
+      function(svgSelection, data, callback){
+        //******************
+        //* Node Highlighter
+        //******************
+
+
+        if (!!data) {
+          renderer.highlighter.load(svgSelection, data);
+        }
+
         // ********************************************
         // Remove loading icon
         // ********************************************
