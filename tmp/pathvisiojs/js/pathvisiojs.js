@@ -1,5 +1,5 @@
 /* pathvisiojs 1.0.8
-Built on 2014-04-07
+Built on 2014-04-08
 https://github.com/wikipathways/pathvisiojs
 License: http://www.apache.org/licenses/LICENSE-2.0/ */
 
@@ -858,43 +858,14 @@ var crossPlatformText={init:function(args,callback){var crossPlatformTextInstanc
 var crossPlatformShapesNS=crossPlatformShapesNS||{};crossPlatformShapesNS["markers.svg"]='<svg id="markers" version="1.1" baseProfile="full" xmlns="http://www.w3.org/1999/xlink" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ev="http://www.w3.org/2001/xml-events" preserveAspectRatio="xMidYMid">\n<g>\n<desc>This SVG file contains a set of markers that can be duplicated for other colors.</desc>\n</g>\n<title>markers</title>\n<defs>\n<marker id="shape-library-markers-arrow-svg-start-default" preserveAspectRatio="none" viewBox="0 0 12 12" markerWidth="12" markerHeight="12" markerUnits="strokeWidth" orient="auto" refX="0" refY="6"><g id="g-src-shape-library-markers-arrow-svg-start-default" class="solid-stroke default-fill-color">\n\n	<!-- arrow markers: triangular polygons, no stroke -->\n\n	<rect class="board-fill-color" stroke="none" x="0" y="5.4" width="2" height="1.2"></rect>\n	<polygon stroke-width="0" points="12,11 0,6 12,1"></polygon>\n\n</g></marker>\n<marker id="shape-library-markers-arrow-svg-end-default" preserveAspectRatio="none" viewBox="0 0 12 12" markerWidth="12" markerHeight="12" markerUnits="strokeWidth" orient="auto" refX="12" refY="6"><g id="g-src-shape-library-markers-arrow-svg-end-default" class="solid-stroke default-fill-color" transform="rotate(180, 6, 6)">\n\n	<!-- arrow markers: triangular polygons, no stroke -->\n\n	<rect class="board-fill-color" stroke="none" x="0" y="5.4" width="2" height="1.2"></rect>\n	<polygon stroke-width="0" points="12,11 0,6 12,1"></polygon>\n\n</g></marker>\n<marker id="shape-library-markers-mim-necessary-stimulation-svg-start-default" preserveAspectRatio="none" viewBox="0 0 16 12" markerWidth="16" markerHeight="12" markerUnits="strokeWidth" orient="auto" refX="0" refY="6">\n<g id="g-src-shape-library-markers-mim-necessary-stimulation-svg-start-default" class="board-fill-color default-stroke-color solid-stroke">\n\n	<!-- mim-necessary-stimulation markers: triangular polygons, drawing-board fill, default color stroke; and vertical line -->\n\n	<rect class="board-fill-color" stroke="none" x="0" y="5.4" width="2" height="1.2"></rect>\n	<line fill="none" stroke-width="1" x1="14" y1="0" x2="14" y2="12"></line>\n	<line fill="none" stroke="none" x1="16" y1="6" x2="16" y2="6"></line> <!-- dummy point -->\n	<polygon stroke-width="1" points="0,6 9,11 9,1"></polygon>\n\n</g></marker>\n<marker id="shape-library-markers-mim-necessary-stimulation-svg-end-default" preserveAspectRatio="none" viewBox="0 0 16 12" markerWidth="16" markerHeight="12" markerUnits="strokeWidth" orient="auto" refX="16" refY="6"><g id="g-src-shape-library-markers-mim-necessary-stimulation-svg-end-default" class="board-fill-color default-stroke-color solid-stroke" transform="rotate(180, 8, 6)">\n\n	<!-- mim-necessary-stimulation markers: triangular polygons, drawing-board fill, default color stroke; and vertical line -->\n\n	<rect class="board-fill-color" stroke="none" x="0" y="5.4" width="2" height="1.2"></rect>\n	<line fill="none" stroke-width="1" x1="14" y1="0" x2="14" y2="12"></line>\n	<line fill="none" stroke="none" x1="16" y1="6" x2="16" y2="6"></line> <!-- dummy point -->\n	<polygon stroke-width="1" points="0,6 9,11 9,1"></polygon>\n\n</g></marker>\n<marker id="shape-library-markers-mim-binding-svg-start-default" preserveAspectRatio="none" viewBox="0 0 12 12" markerWidth="12" markerHeight="12" markerUnits="strokeWidth" orient="auto" refX="0" refY="6"><g id="g-src-shape-library-markers-mim-binding-svg-start-default" class="solid-stroke default-fill-color">\n\n	<!-- mim-binding markers: four-point polygon, no stroke -->\n\n	<rect class="board-fill-color" stroke="none" x="0" y="5.4" width="2" height="1.2"></rect>\n	<polygon stroke-width="0" points="12,12 0,6 12,0 5,6 "></polygon>\n\n</g></marker>\n<marker id="shape-library-markers-mim-binding-svg-end-default" preserveAspectRatio="none" viewBox="0 0 12 12" markerWidth="12" markerHeight="12" markerUnits="strokeWidth" orient="auto" refX="12" refY="6"><g id="g-src-shape-library-markers-mim-binding-svg-end-default" class="solid-stroke default-fill-color" transform="rotate(180, 6, 6)">\n\n	<!-- mim-binding markers: four-point polygon, no stroke -->\n\n	<rect class="board-fill-color" stroke="none" x="0" y="5.4" width="2" height="1.2"></rect>\n	<polygon stroke-width="0" points="12,12 0,6 12,0 5,6 "></polygon>\n\n</g></marker>\n<marker id="shape-library-markers-mim-conversion-svg-start-default" preserveAspectRatio="none" viewBox="0 0 12 12" markerWidth="12" markerHeight="12" markerUnits="strokeWidth" orient="auto" refX="0" refY="6"><g id="g-src-shape-library-markers-mim-conversion-svg-start-default" class="solid-stroke default-fill-color">\n\n	<!-- mim-conversion markers: triangular polygons, no stroke -->\n\n	<rect class="board-fill-color" stroke="none" x="0" y="5.4" width="2" height="1.2"></rect>\n	<polygon stroke-width="0" points="12,11 0,6 12,1"></polygon>\n\n</g></marker>\n<marker id="shape-library-markers-mim-conversion-svg-end-default" preserveAspectRatio="none" viewBox="0 0 12 12" markerWidth="12" markerHeight="12" markerUnits="strokeWidth" orient="auto" refX="12" refY="6"><g id="g-src-shape-library-markers-mim-conversion-svg-end-default" class="solid-stroke default-fill-color" transform="rotate(180, 6, 6)">\n\n	<!-- mim-conversion markers: triangular polygons, no stroke -->\n\n	<rect class="board-fill-color" stroke="none" x="0" y="5.4" width="2" height="1.2"></rect>\n	<polygon stroke-width="0" points="12,11 0,6 12,1"></polygon>\n\n</g></marker>\n<marker id="shape-library-markers-mim-stimulation-svg-start-default" preserveAspectRatio="none" viewBox="0 0 12 12" markerWidth="12" markerHeight="12" markerUnits="strokeWidth" orient="auto" refX="0" refY="6"><g id="g-src-shape-library-markers-mim-stimulation-svg-start-default" class="board-fill-color default-stroke-color solid-stroke">\n\n	<!-- mim-stimulation markers: triangular polygons, drawing-board fill, default color stroke -->\n\n	<rect class="board-fill-color" stroke="none" x="0" y="5.4" width="2" height="1.2"></rect>\n	<line stroke="none" fill="none" x1="12" y1="6" x2="12" y2="6"></line> <!-- dummy point -->\n	<polygon stroke-width="1" points="0,6 11,11 11,1"></polygon>\n\n</g></marker><marker id="shape-library-markers-mim-stimulation-svg-end-default" preserveAspectRatio="none" viewBox="0 0 12 12" markerWidth="12" markerHeight="12" markerUnits="strokeWidth" orient="auto" refX="12" refY="6"><g id="g-src-shape-library-markers-mim-stimulation-svg-end-default" class="board-fill-color default-stroke-color solid-stroke" transform="rotate(180, 6, 6)">\n\n	<!-- mim-stimulation markers: triangular polygons, drawing-board fill, default color stroke -->\n\n	<rect class="board-fill-color" stroke="none" x="0" y="5.4" width="2" height="1.2"></rect>\n	<line stroke="none" fill="none" x1="12" y1="6" x2="12" y2="6"></line> <!-- dummy point -->\n	<polygon stroke-width="1" points="0,6 11,11 11,1"></polygon>\n\n</g></marker><marker id="shape-library-markers-mim-modification-svg-start-default" preserveAspectRatio="none" viewBox="0 0 12 12" markerWidth="12" markerHeight="12" markerUnits="strokeWidth" orient="auto" refX="0" refY="6"><g id="g-src-shape-library-markers-mim-modification-svg-start-default" class="default-fill-color solid-stroke">\n\n	<!-- mim-modification markers: four-point polygon, no stroke -->\n\n	<rect class="board-fill-color" stroke="none" x="0" y="5.4" width="2" height="1.2"></rect>\n	<polygon stroke-width="0" points="12,12 0,6 12,0 5,6 "></polygon>\n\n</g></marker><marker id="shape-library-markers-mim-modification-svg-end-default" preserveAspectRatio="none" viewBox="0 0 12 12" markerWidth="12" markerHeight="12" markerUnits="strokeWidth" orient="auto" refX="12" refY="6"><g id="g-src-shape-library-markers-mim-modification-svg-end-default" class="default-fill-color solid-stroke" transform="rotate(180, 6, 6)">\n\n	<!-- mim-modification markers: four-point polygon, no stroke -->\n\n	<rect class="board-fill-color" stroke="none" x="0" y="5.4" width="2" height="1.2"></rect>\n	<polygon stroke-width="0" points="12,12 0,6 12,0 5,6 "></polygon>\n\n</g></marker><marker id="shape-library-markers-mim-catalysis-svg-start-default" preserveAspectRatio="none" viewBox="0 0 12 12" markerWidth="12" markerHeight="12" markerUnits="strokeWidth" orient="auto" refX="0" refY="6"><g id="g-src-shape-library-markers-mim-catalysis-svg-start-default" class="board-fill-color default-stroke-color solid-stroke">\n\n	<!-- mim-catalysis markers: circle, drawing-board fill and default color stroke -->\n\n	<circle cx="6.0" cy="6" r="5.3px" stroke-width="1px"></circle>\n\n</g></marker><marker id="shape-library-markers-mim-catalysis-svg-end-default" preserveAspectRatio="none" viewBox="0 0 12 12" markerWidth="12" markerHeight="12" markerUnits="strokeWidth" orient="auto" refX="12" refY="6"><g id="g-src-shape-library-markers-mim-catalysis-svg-end-default" class="board-fill-color default-stroke-color solid-stroke" transform="rotate(180, 6, 6)">\n\n	<!-- mim-catalysis markers: circle, drawing-board fill and default color stroke -->\n\n	<circle cx="6.0" cy="6" r="5.3px" stroke-width="1px"></circle>\n\n</g></marker><marker id="shape-library-markers-mim-inhibition-svg-start-default" preserveAspectRatio="none" viewBox="0 0 10 20" markerWidth="10" markerHeight="20" markerUnits="strokeWidth" orient="auto" refX="0" refY="10"><g id="g-src-shape-library-markers-mim-inhibition-svg-start-default" class="board-fill-color default-stroke-color solid-stroke">\n\n	<!-- mim-inhibition markers: vertical line; and extended drawing-board rect -->\n	\n	<rect stroke="none" x="0" y="9" width="8" height="2"></rect>\n	<line fill="none" stroke-width="1.8" x1="7" y1="0" x2="7" y2="20"></line>\n\n</g></marker><marker id="shape-library-markers-mim-inhibition-svg-end-default" preserveAspectRatio="none" viewBox="0 0 10 20" markerWidth="10" markerHeight="20" markerUnits="strokeWidth" orient="auto" refX="10" refY="10"><g id="g-src-shape-library-markers-mim-inhibition-svg-end-default" class="board-fill-color default-stroke-color solid-stroke" transform="rotate(180, 5, 10)">\n\n	<!-- mim-inhibition markers: vertical line; and extended drawing-board rect -->\n	\n	<rect stroke="none" x="0" y="9" width="8" height="2"></rect>\n	<line fill="none" stroke-width="1.8" x1="7" y1="0" x2="7" y2="20"></line>\n\n</g></marker><marker id="shape-library-markers-mim-cleavage-svg-start-default" preserveAspectRatio="none" viewBox="0 0 20 30" markerWidth="20" markerHeight="30" markerUnits="strokeWidth" orient="auto" refX="9" refY="15"><g id="g-src-shape-library-markers-mim-cleavage-svg-start-default" class="board-fill-color default-stroke-color solid-stroke">\n\n	<!-- mim-cleavage markers: two lines and extended drawing-board rect -->\n\n	<rect stroke="none" x="0" y="14.3" width="18.4" height="1.4"></rect>\n	<line fill="none" stroke-width="1" x1="18" y1="14.5" x2="18" y2="30"></line>	\n	<line fill="none" stroke-width="1" x1="18" y1="30" x2="0" y2="0"></line>	\n\n\n</g></marker><marker id="shape-library-markers-mim-cleavage-svg-end-default" preserveAspectRatio="none" viewBox="0 0 20 30" markerWidth="20" markerHeight="30" markerUnits="strokeWidth" orient="auto" refX="10" refY="15"><g id="g-src-shape-library-markers-mim-cleavage-svg-end-default" class="board-fill-color default-stroke-color solid-stroke" transform="rotate(180, 10, 15)">\n\n	<!-- mim-cleavage markers: two lines and extended drawing-board rect -->\n\n	<rect stroke="none" x="0" y="14.3" width="18.4" height="1.4"></rect>\n	<line fill="none" stroke-width="1" x1="18" y1="14.5" x2="18" y2="30"></line>	\n	<line fill="none" stroke-width="1" x1="18" y1="30" x2="0" y2="0"></line>	\n\n\n</g></marker><marker id="shape-library-markers-mim-covalent-bond-svg-start-default" preserveAspectRatio="none" viewBox="0 0 12 12" markerWidth="12" markerHeight="12" markerUnits="strokeWidth" orient="auto" refX="-0.5" refY="6"><g id="g-src-shape-library-markers-mim-covalent-bond-svg-start-default" class="solid-stroke default-fill-color">\n\n	<!-- mim-covalent-bond markers: not much to see here! -->\n	<rect x="0" y="0" width="0" height="0" stroke="none" fill="none" stroke-width="0"></rect>\n\n</g></marker><marker id="shape-library-markers-mim-covalent-bond-svg-end-default" preserveAspectRatio="none" viewBox="0 0 12 12" markerWidth="12" markerHeight="12" markerUnits="strokeWidth" orient="auto" refX="11" refY="6"><g id="g-src-shape-library-markers-mim-covalent-bond-svg-end-default" class="solid-stroke default-fill-color" transform="rotate(180, 6, 6)">\n\n	<!-- mim-covalent-bond markers: not much to see here! -->\n	<rect x="0" y="0" width="0" height="0" stroke="none" fill="none" stroke-width="0"></rect>\n\n</g></marker><marker id="shape-library-markers-mim-transcription-translation-svg-start-default" preserveAspectRatio="none" viewBox="0 0 20 24" markerWidth="20" markerHeight="24" markerUnits="strokeWidth" orient="auto" refX="0" refY="12"><g id="g-src-shape-library-markers-mim-transcription-translation-svg-start-default" class="board-fill-color default-stroke-color solid-stroke">\n\n	<!-- mim-transcription-translation markers: two lines and an open trigular polygon, plus extended drawing-board rect -->\n\n	<rect stroke="none" x="0" y="11" width="12" height="2"></rect>\n	<line fill="none" stroke-width="1" x1="15" y1="12" x2="15" y2="5"></line>\n	<line fill="none" stroke-width="1" x1="15.5" y1="5" x2="8" y2="5"></line>\n	<polygon stroke-width="1" points="0,5 8,1 8,9"></polygon>\n\n</g></marker><marker id="shape-library-markers-mim-transcription-translation-svg-end-default" preserveAspectRatio="none" viewBox="0 0 20 24" markerWidth="20" markerHeight="24" markerUnits="strokeWidth" orient="auto" refX="20" refY="12"><g id="g-src-shape-library-markers-mim-transcription-translation-svg-end-default" class="board-fill-color default-stroke-color solid-stroke" transform="rotate(180, 10, 12)">\n\n	<!-- mim-transcription-translation markers: two lines and an open trigular polygon, plus extended drawing-board rect -->\n\n	<rect stroke="none" x="0" y="11" width="12" height="2"></rect>\n	<line fill="none" stroke-width="1" x1="15" y1="12" x2="15" y2="5"></line>\n	<line fill="none" stroke-width="1" x1="15.5" y1="5" x2="8" y2="5"></line>\n	<polygon stroke-width="1" points="0,5 8,1 8,9"></polygon>\n\n</g></marker><marker id="shape-library-markers-mim-gap-svg-start-default" preserveAspectRatio="none" viewBox="0 0 12 12" markerWidth="12" markerHeight="12" markerUnits="strokeWidth" orient="auto" refX="0" refY="6"><g id="g-src-shape-library-markers-mim-gap-svg-start-default" class="board-fill-color solid-stroke">\n\n	<!-- mim-gap markers: just an extended drawing-board rect -->\n	<!-- \n	TODO This could be refactored to make the shape match the viewbox.\n	It can overlap the side of the shape, blanking out a small part of it when the edge is at an angle.\n	-->\n\n	<rect stroke="none" x="0" y="5.3" width="8" height="1.4"></rect>\n\n</g></marker><marker id="shape-library-markers-mim-gap-svg-end-default" preserveAspectRatio="none" viewBox="0 0 12 12" markerWidth="12" markerHeight="12" markerUnits="strokeWidth" orient="auto" refX="12" refY="6"><g id="g-src-shape-library-markers-mim-gap-svg-end-default" class="board-fill-color solid-stroke" transform="rotate(180, 6, 6)">\n\n	<!-- mim-gap markers: just an extended drawing-board rect -->\n	<!-- \n	TODO This could be refactored to make the shape match the viewbox.\n	It can overlap the side of the shape, blanking out a small part of it when the edge is at an angle.\n	-->\n\n	<rect stroke="none" x="0" y="5.3" width="8" height="1.4"></rect>\n\n</g></marker><marker id="shape-library-markers-t-bar-svg-start-default" preserveAspectRatio="none" viewBox="0 0 10 20" markerWidth="10" markerHeight="20" markerUnits="strokeWidth" orient="auto" refX="0" refY="10"><g id="g-src-shape-library-markers-t-bar-svg-start-default" class="board-fill-color default-stroke-color solid-stroke">\n\n        <!-- t-bar markers: vertical line; and extended drawing-board rect -->\n	\n	<rect stroke="none" x="0" y="9" width="8" height="2"></rect>\n	<line fill="none" stroke-width="1.8" x1="7" y1="0" x2="7" y2="20"></line>\n\n</g></marker><marker id="shape-library-markers-t-bar-svg-end-default" preserveAspectRatio="none" viewBox="0 0 10 20" markerWidth="10" markerHeight="20" markerUnits="strokeWidth" orient="auto" refX="10" refY="10"><g id="g-src-shape-library-markers-t-bar-svg-end-default" class="board-fill-color default-stroke-color solid-stroke" transform="rotate(180, 5, 10)">\n\n        <!-- t-bar markers: vertical line; and extended drawing-board rect -->\n	\n	<rect stroke="none" x="0" y="9" width="8" height="2"></rect>\n	<line fill="none" stroke-width="1.8" x1="7" y1="0" x2="7" y2="20"></line>\n\n</g></marker><marker id="shape-library-markers-none-svg-start-default" preserveAspectRatio="none" viewBox="0 0 0 0" markerWidth="0" markerHeight="0" markerUnits="strokeWidth" orient="auto" refX="0" refY="6"><g id="g-src-shape-library-markers-none-svg-start-default" class="board-fill-color board-stroke-color node shape">\n\n	<rect x="0" y="0" width="0" height="0" stroke="none" fill="none" stroke-width="0"></rect>\n\n</g></marker><marker id="shape-library-markers-none-svg-end-default" preserveAspectRatio="none" viewBox="0 0 0 0" markerWidth="0" markerHeight="0" markerUnits="strokeWidth" orient="auto" refX="11" refY="6"><g id="g-src-shape-library-markers-none-svg-end-default" class="board-fill-color board-stroke-color node shape" transform="rotate(180, 0, 0)">\n\n	<rect x="0" y="0" width="0" height="0" stroke="none" fill="none" stroke-width="0"></rect>\n\n</g></marker><marker id="shape-library-markers-mim-branching-left-svg-start-default" preserveAspectRatio="none" viewBox="0 0 12 12" markerWidth="12" markerHeight="12" markerUnits="strokeWidth" orient="auto" refX="0.4" refY="6"><g id="g-src-shape-library-markers-mim-branching-left-svg-start-default" class="board-fill-color default-stroke-color solid-stroke">\n\n	<!-- mim-branching-left markers: line and extended drawing-board rect -->\n\n	<rect stroke="none" x="0.4" y="5.3" width="3.1" height="1.4"></rect>\n	<line fill="none" stroke-width="1" x1="3.9" y1="6.2" x2="0.2" y2="0"></line>	\n\n</g></marker><marker id="shape-library-markers-mim-branching-left-svg-end-default" preserveAspectRatio="none" viewBox="0 0 12 12" markerWidth="12" markerHeight="12" markerUnits="strokeWidth" orient="auto" refX="11.6" refY="6"><g id="g-src-shape-library-markers-mim-branching-left-svg-end-default" class="board-fill-color default-stroke-color solid-stroke" transform="rotate(180, 6, 6)">\n\n	<!-- mim-branching-left markers: line and extended drawing-board rect -->\n\n	<rect stroke="none" x="0.4" y="5.3" width="3.1" height="1.4"></rect>\n	<line fill="none" stroke-width="1" x1="3.9" y1="6.2" x2="0.2" y2="0"></line>	\n\n</g></marker><marker id="shape-library-markers-mim-branching-right-svg-start-default" preserveAspectRatio="none" viewBox="0 0 4 12" markerWidth="4" markerHeight="12" markerUnits="strokeWidth" orient="auto" refX="0.4" refY="6"><g id="g-src-shape-library-markers-mim-branching-right-svg-start-default" class="board-fill-color default-stroke-color solid-stroke">\n\n	<!-- mim-branching-right markers: line and extended drawing-board rect -->\n\n	<rect stroke="none" x="0.4" y="5.3" width="3.1" height="1.4"></rect>\n	<line fill="none" stroke-width="1" x1="0.2" y1="12" x2="3.9" y2="5.8"></line>	\n\n</g></marker><marker id="shape-library-markers-mim-branching-right-svg-end-default" preserveAspectRatio="none" viewBox="0 0 4 12" markerWidth="4" markerHeight="12" markerUnits="strokeWidth" orient="auto" refX="3.6" refY="6"><g id="g-src-shape-library-markers-mim-branching-right-svg-end-default" class="board-fill-color default-stroke-color solid-stroke" transform="rotate(180, 2, 6)">\n\n	<!-- mim-branching-right markers: line and extended drawing-board rect -->\n\n	<rect stroke="none" x="0.4" y="5.3" width="3.1" height="1.4"></rect>\n	<line fill="none" stroke-width="1" x1="0.2" y1="12" x2="3.9" y2="5.8"></line>	\n\n</g>\n</marker>\n<style type="text/css">	\n	/* default color for pathway elements */\n	.default-fill-color {\n		fill: black; \n	}\n	.default-stroke-color {\n		stroke: black;\n	}\n	\n	/* default color of the background drawing board */ 	\n	.board-fill-color {\n		fill: white;\n	}\n	.board-stroke-color {\n		stroke: white;\n	}\n\n	marker {\n		/* this is what should work per the spec\n		   stroke-dasharray: none; */\n		/* but I need to add this to make it work in Safari */\n		stroke-dasharray: 9999999999999999999999999;\n	}\n</style>\n</defs>\n</svg>\n';var crossPlatformShapes={init:function(args,callback){var customShapes=args.customShapes,crossPlatformShapesInstance=this;this.svg.crossPlatformShapesInstance=this.svg.path.crossPlatformShapesInstance=crossPlatformShapesInstance;var format,targetSelector=args.targetSelector,target=document.querySelector(targetSelector),targetTagName=target.tagName.toLowerCase(),targetSelection=d3.select(target);"div"===targetTagName?(format=args.format,this[format].targetSelection=targetSelection,this.setFormat(format,customShapes,targetTagName,targetSelection),crossPlatformShapesInstance[format].init(args,function(viewport){callback&&callback(viewport)})):(format=targetTagName,this[format].targetImageSelection=targetSelection,this.setFormat(format,customShapes,targetTagName,targetSelection),this[format].init(args,function(viewport){callback&&callback(viewport)}))},setFormat:function(format,customShapes,targetTagName){var crossPlatformShapesInstance=this;this[format].targetTagName=targetTagName;var presetShapesNames=["arc","arrow","brace","complex","endoplasmicReticulum","golgiApparatus","hexagon","lineCurved","lineElbow","lineSegmented","lineStraight","mimDegradation","mitochondria","ellipseDouble","ellipse","pentagon","rectangle","roundedRectangleDouble","roundedRectangle","sarcoplasmicReticulum","triangle","mimNecessaryStimulation","mimBinding","mimConversion","mimStimulation","mimModification","mimCatalysis","mimInhibition","mimCleavage","mimCovalentBond","mimTranscriptionTranslation","mimGap","tBar","mimBranchingLeft","mimBranchingRight"];presetShapesNames.forEach(function(presetShapeName){crossPlatformShapesInstance[presetShapeName]=function(data,callback){return crossPlatformShapesInstance[format].path.render(presetShapeName,data,callback)}}),customShapes&&(crossPlatformShapesInstance.customShapes=customShapes,crossPlatformShapesInstance[format].image.customShapes=customShapes,d3.map(customShapes).keys().forEach(function(customShapeName){crossPlatformShapesInstance[customShapeName]=function(data,callback){return crossPlatformShapesInstance[format].image.render(customShapeName,data,callback)}}))}};crossPlatformShapes.pathCalculator={},crossPlatformShapes.pathCalculator.arc=function(data){"use strict";var x=data.x,y=data.y,width=data.width,height=data.height,yControlPoint=height*(2/3),pathData=[{command:"moveTo",points:[x,y]},{command:"bezierCurveTo",points:[x,y+yControlPoint,x+width,y+yControlPoint,x+width,y]}];return pathData},crossPlatformShapes.pathCalculator.arrow=function(data){"use strict";var x=data.x,y=data.y,width=data.width,height=data.height,pathData=[{command:"moveTo",points:[x,y]},{command:"lineTo",points:[x+width,y+height/2]},{command:"lineTo",points:[x,y+height]},{command:"closePath",points:[]}];return pathData},crossPlatformShapes.pathCalculator.brace=function(data){"use strict";var x=data.x,y=data.y,width=data.width,height=data.height,pathData=[{command:"moveTo",points:[x,y+height]},{command:"bezierCurveTo",points:[x,y,x+width/2,y+height,x+width/2,y]},{command:"bezierCurveTo",points:[x+width/2,y+height,x+width,y,x+width,y+height]}];return pathData},crossPlatformShapes.pathCalculator.complex=function(data){"use strict";var x=data.x,y=data.y,width=data.width,height=data.height,pathData=[{command:"moveTo",points:[x+18,y]},{command:"lineTo",points:[x+width-18,y]},{command:"lineTo",points:[x+width,y+18]},{command:"lineTo",points:[x+width,y+height-18]},{command:"lineTo",points:[x+width-18,y+height]},{command:"lineTo",points:[x+18,y+height]},{command:"lineTo",points:[x,y+height-18]},{command:"lineTo",points:[x,y+18]},{command:"closePath",points:[]}];return pathData},crossPlatformShapes.pathCalculator.endoplasmicReticulum=function(data){"use strict";var x=data.x,y=data.y,width=data.width,height=data.height,pathData=[{command:"moveTo",points:[x,y]},{command:"lineTo",points:[x+width,y]},{command:"lineTo",points:[x+width,y+height]},{command:"lineTo",points:[x,y+height]},{command:"closePath",points:[]}];return pathData},crossPlatformShapes.pathCalculator.golgiApparatus=function(data){"use strict";var x=data.x,y=data.y,width=data.width,height=data.height,pathData=[{command:"moveTo",points:[x,y]},{command:"lineTo",points:[x+width,y]},{command:"lineTo",points:[x+width,y+height]},{command:"lineTo",points:[x,y+height]},{command:"closePath",points:[]}];return pathData},crossPlatformShapes.pathCalculator.hexagon=function(data){"use strict";var x=data.x,y=data.y,width=data.width,height=data.height,pathData=[{command:"moveTo",points:[x,y]},{command:"lineTo",points:[x+width,y]},{command:"lineTo",points:[x+width,y+height]},{command:"lineTo",points:[x,y+height]},{command:"closePath",points:[]}];return pathData},crossPlatformShapes.pathCalculator.lineCurved=function(data){"use strict";var svgCurve=d3.svg.line().x(function(d){return d.x}).y(function(d){return d.y}).interpolate("basis"),pathData=svgCurve(data.points);return pathData},crossPlatformShapes.pathCalculator.lineElbow=function(data){"use strict";var svgLine=d3.svg.line().x(function(d){return d.x}).y(function(d){return d.y}).interpolate("linear"),pathData=svgLine(data.points);return pathData},crossPlatformShapes.pathCalculator.lineSegmented=function(data){"use strict";var svgLine=d3.svg.line().x(function(d){return d.x}).y(function(d){return d.y}).interpolate("linear"),pathData=svgLine(data.points);return pathData},crossPlatformShapes.pathCalculator.lineStraight=function(data){"use strict";var x0=data.points[0].x,y0=data.points[0].y,x1=data.points[1].x,y1=data.points[1].y,pathData=[{command:"moveTo",points:[x0,y0]},{command:"lineTo",points:[x1,y1]}];return pathData},crossPlatformShapes.pathCalculator.mimDegradation=function(data){"use strict";var x=data.x,y=data.y,width=data.width,height=data.height,ellipse=crossPlatformShapes.pathCalculator.ellipse(data),line=[{command:"moveTo",points:[x,y]},{command:"lineTo",points:[x+width,y+height]}],pathData=ellipse.concat(line);return pathData},crossPlatformShapes.pathCalculator.mitochondria=function(data){"use strict";var outerEllipse=(data.x,data.y,data.width,data.height,crossPlatformShapes.pathCalculator.ellipse(data)),pathData=outerEllipse;return pathData},crossPlatformShapes.pathCalculator.ellipseDouble=function(data){"use strict";var outerEllipse=crossPlatformShapes.pathCalculator.ellipse(data),innerEllipseData=data,doubleLineGap=2*data.borderWidth||6;innerEllipseData.x=data.x+doubleLineGap,innerEllipseData.y=data.y+doubleLineGap,innerEllipseData.width=data.width-2*doubleLineGap,innerEllipseData.height=data.height-2*doubleLineGap;var innerEllipse=crossPlatformShapes.pathCalculator.ellipse(innerEllipseData),pathData=outerEllipse.concat(innerEllipse);return pathData},crossPlatformShapes.pathCalculator.ellipse=function(data){"use strict";var x=data.x,y=data.y,width=data.width,height=data.height,cx=x+width/2,cy=y+height/2,width_two_thirds=2*width/3,height_over_2=height/2,pathData=[{command:"moveTo",points:[cx,cy-height_over_2]},{command:"bezierCurveTo",points:[cx+width_two_thirds,cy-height_over_2,cx+width_two_thirds,cy+height_over_2,cx,cy+height_over_2]},{command:"bezierCurveTo",points:[cx-width_two_thirds,cy+height_over_2,cx-width_two_thirds,cy-height_over_2,cx,cy-height_over_2]}];return pathData},crossPlatformShapes.pathCalculator.pentagon=function(data){"use strict";var x=data.x,y=data.y,width=data.width,height=data.height,pathData=[{command:"moveTo",points:[x,y]},{command:"lineTo",points:[x+width,y]},{command:"lineTo",points:[x+width,y+height]},{command:"lineTo",points:[x,y+height]},{command:"closePath",points:[]}];return pathData},crossPlatformShapes.pathCalculator.rectangle=function(data){"use strict";var x=data.x,y=data.y,width=data.width,height=data.height,pathData=[{command:"moveTo",points:[x,y]},{command:"lineTo",points:[x+width,y]},{command:"lineTo",points:[x+width,y+height]},{command:"lineTo",points:[x,y+height]},{command:"closePath",points:[]}];return pathData},crossPlatformShapes.pathCalculator.roundedRectangleDouble=function(data){"use strict";var x=data.x,y=data.y,width=data.width,height=data.height,borderWidth=data.borderWidth,outerRoundedRectangle=crossPlatformShapes.pathCalculator.roundedRectangle(data),innerRoundedRectangleData=data,doubleLineGap=2*borderWidth||6;innerRoundedRectangleData.x=x+doubleLineGap,innerRoundedRectangleData.y=y+doubleLineGap,innerRoundedRectangleData.width=width-2*doubleLineGap,innerRoundedRectangleData.height=height-2*doubleLineGap;var innerRoundedRectangle=crossPlatformShapes.pathCalculator.roundedRectangle(innerRoundedRectangleData),pathData=outerRoundedRectangle.concat(innerRoundedRectangle);return pathData},crossPlatformShapes.pathCalculator.roundedRectangle=function(data){"use strict";var x=data.x,y=data.y,width=data.width,height=data.height,pathData=[{command:"moveTo",points:[x,y+10]},{command:"bezierCurveTo",points:[x,y+10-5.43379,x+4.56621,y,x+10,y]},{command:"lineTo",points:[x+width-10,y]},{command:"bezierCurveTo",points:[x+width-10+5.43379,y,x+width,y+4.56621,x+width,y+10]},{command:"lineTo",points:[x+width,y+height-10]},{command:"bezierCurveTo",points:[x+width,y+height-10+5.43379,x+width-4.56621,y+height,x+width-10,y+height]},{command:"lineTo",points:[x+10,y+height]},{command:"bezierCurveTo",points:[x+10-5.43379,y+height,x,y+height-4.56621,x,y+height-10]},{command:"closePath",points:[]}];return pathData},crossPlatformShapes.pathCalculator.sarcoplasmicReticulum=function(data){"use strict";var x=data.x,y=data.y,width=data.width,height=data.height,pathData=[{command:"moveTo",points:[x,y]},{command:"lineTo",points:[x+width,y]},{command:"lineTo",points:[x+width,y+height]},{command:"lineTo",points:[x,y+height]},{command:"closePath",points:[]}];return pathData},crossPlatformShapes.pathCalculator.triangle=function(data){"use strict";var x=data.x,y=data.y,width=data.width,height=data.height,pathData=[{command:"moveTo",points:[x,y]},{command:"lineTo",points:[x+width,y]},{command:"lineTo",points:[x+width,y+height]},{command:"lineTo",points:[x,y+height]},{command:"closePath",points:[]}];return pathData},crossPlatformShapes.pathCalculator.arc=function(data){"use strict";var x=data.x,y=data.y,width=data.width,height=data.height,yControlPoint=height*(2/3),pathData=[{command:"moveTo",points:[x,y]},{command:"bezierCurveTo",points:[x,y+yControlPoint,x+width,y+yControlPoint,x+width,y]}];return pathData},crossPlatformShapes.pathCalculator.arc=function(data){"use strict";var x=data.x,y=data.y,width=data.width,height=data.height,yControlPoint=height*(2/3),pathData=[{command:"moveTo",points:[x,y]},{command:"bezierCurveTo",points:[x,y+yControlPoint,x+width,y+yControlPoint,x+width,y]}];return pathData},crossPlatformShapes.pathCalculator.arc=function(data){"use strict";var x=data.x,y=data.y,width=data.width,height=data.height,yControlPoint=height*(2/3),pathData=[{command:"moveTo",points:[x,y]},{command:"bezierCurveTo",points:[x,y+yControlPoint,x+width,y+yControlPoint,x+width,y]}];return pathData},crossPlatformShapes.pathCalculator.arc=function(data){"use strict";var x=data.x,y=data.y,width=data.width,height=data.height,yControlPoint=height*(2/3),pathData=[{command:"moveTo",points:[x,y]},{command:"bezierCurveTo",points:[x,y+yControlPoint,x+width,y+yControlPoint,x+width,y]}];return pathData},crossPlatformShapes.pathCalculator.arc=function(data){"use strict";var x=data.x,y=data.y,width=data.width,height=data.height,yControlPoint=height*(2/3),pathData=[{command:"moveTo",points:[x,y]},{command:"bezierCurveTo",points:[x,y+yControlPoint,x+width,y+yControlPoint,x+width,y]}];
 return pathData},crossPlatformShapes.pathCalculator.arc=function(data){"use strict";var x=data.x,y=data.y,width=data.width,height=data.height,yControlPoint=height*(2/3),pathData=[{command:"moveTo",points:[x,y]},{command:"bezierCurveTo",points:[x,y+yControlPoint,x+width,y+yControlPoint,x+width,y]}];return pathData},crossPlatformShapes.pathCalculator.arc=function(data){"use strict";var x=data.x,y=data.y,width=data.width,height=data.height,yControlPoint=height*(2/3),pathData=[{command:"moveTo",points:[x,y]},{command:"bezierCurveTo",points:[x,y+yControlPoint,x+width,y+yControlPoint,x+width,y]}];return pathData},crossPlatformShapes.pathCalculator.arc=function(data){"use strict";var x=data.x,y=data.y,width=data.width,height=data.height,yControlPoint=height*(2/3),pathData=[{command:"moveTo",points:[x,y]},{command:"bezierCurveTo",points:[x,y+yControlPoint,x+width,y+yControlPoint,x+width,y]}];return pathData},crossPlatformShapes.pathCalculator.arc=function(data){"use strict";var x=data.x,y=data.y,width=data.width,height=data.height,yControlPoint=height*(2/3),pathData=[{command:"moveTo",points:[x,y]},{command:"bezierCurveTo",points:[x,y+yControlPoint,x+width,y+yControlPoint,x+width,y]}];return pathData},crossPlatformShapes.pathCalculator.tBar=function(data){"use strict";var x=data.x,y=data.y,height=(data.width,data.height),pathData=[{command:"moveTo",points:[x,y]},{command:"lineTo",points:[x,y+height]}];return pathData},crossPlatformShapes.pathCalculator.arc=function(data){"use strict";var x=data.x,y=data.y,width=data.width,height=data.height,yControlPoint=height*(2/3),pathData=[{command:"moveTo",points:[x,y]},{command:"bezierCurveTo",points:[x,y+yControlPoint,x+width,y+yControlPoint,x+width,y]}];return pathData},crossPlatformShapes.pathCalculator.arc=function(data){"use strict";var x=data.x,y=data.y,width=data.width,height=data.height,yControlPoint=height*(2/3),pathData=[{command:"moveTo",points:[x,y]},{command:"bezierCurveTo",points:[x,y+yControlPoint,x+width,y+yControlPoint,x+width,y]}];return pathData},crossPlatformShapes.customShapes={arc:{href:"http://www.example.org/arc.png"},brace:{href:"http://www.example.org/brace.png"},rectangle:{href:"http://www.example.org/rectangle.png"}},crossPlatformShapes.svg={init:function(args,callback){{var viewport,defs,width=args.width||"100%",height=args.height||"100%",backgroundColor=args.backgroundColor||"#ffffff";this.crossPlatformShapesInstance}if("svg"!==this.targetTagName){var id=args.id||"cross-platform-shape-svg";targetImageSelection=this.targetSelection.append("svg").attr("id",id).attr("version","1.1").attr("baseProfile","full").attr("xmlns","http://www.w3.org/1999/xlink").attr("xmlns:xmlns:xlink","http://www.w3.org/1999/xlink").attr("xmlns:xmlns:ev","http://www.w3.org/2001/xml-events").attr("preserveAspectRatio","xMidYMid").attr("width",width).attr("height",height).attr("style","background-color:"+backgroundColor+"; "),this.path.targetImageSelection=this.image.targetImageSelection=targetImageSelection,defs=targetImageSelection.append("defs").attr("id","defs"),this.marker.targetImageSelectionDefs=defs,viewport=targetImageSelection.append("g").attr("id","viewport")}else targetImageSelection=this.targetImageSelection,this.path.targetImageSelection=this.image.targetImageSelection=targetImageSelection,this.marker.targetImageSelectionDefs=this.targetImageSelection.select("defs"),viewport=targetImageSelection.select("#viewport"),viewport[0][0]||(viewport=targetImageSelection.select("g"));this.path.availableMarkers=this.marker.availableMarkers={},this.path.backgroundColor=this.marker.backgroundColor=backgroundColor,targetImageSelection.attr("style","background-color:"+backgroundColor+"; "),callback&&callback(viewport)}},crossPlatformShapes.svg.image={render:function(shapeName,data,callback){var customShapes=this.customShapes,shapeSelection=targetImageSelection.select(data.containerSelector).append("image").attr("xlink:xlink:href",customShapes[shapeName].href).attr("x",data.x||0).attr("y",data.y||0).attr("width",data.width||0).attr("height",data.height||0),rotation=data.rotation;rotation&&shapeSelection.attr("transform","rotate("+rotation+","+(data.x+data.width/2)+","+(data.y+data.height/2)+")"),callback&&callback(shapeSelection[0][0])}},crossPlatformShapes.svg.marker={generateId:function(name,position,color){var id=("id-"+name+"-"+position+"-"+color).replace(/[^A-Za-z0-9-]/g,"").toLowerCase();return id},append:function(name,position,color,callback){var availableMarkers=this.availableMarkers,targetImageSelectionDefs=this.targetImageSelectionDefs,backgroundColor=this.backgroundColor,markerData={arrow:{markerElement:{markerWidth:12,markerHeight:12},shapes:[{elementTag:"rect",x:0,y:5.4,width:2,height:1.2,stroke:backgroundColor,fill:backgroundColor},{elementTag:"polygon",points:"12,11 0,6 12,1","stroke-width":0,fill:color}]},mimBinding:{markerElement:{markerWidth:12,markerHeight:12},shapes:[{elementTag:"rect",x:0,y:5.4,width:2,height:1.2,stroke:backgroundColor,fill:backgroundColor},{elementTag:"polygon",points:"12,12 0,6 12,0 5,6","stroke-width":0,fill:color}]},mimNecessaryStimulation:{markerElement:{markerWidth:16,markerHeight:12},shapes:[{elementTag:"rect",x:0,y:5.4,width:2,height:1.2,stroke:"none",fill:backgroundColor},{elementTag:"line",x1:14,y1:0,x2:14,y2:12,stroke:color,"stroke-width":1,fill:"none"},{elementTag:"line",x1:16,y1:6,x2:16,y2:6,stroke:"none",fill:"none"},{elementTag:"polygon",points:"0,6 9,11 9,1","stroke-width":1,stroke:color,fill:backgroundColor}]},mimStimulation:{markerElement:{markerWidth:12,markerHeight:12},shapes:[{elementTag:"rect",x:0,y:5.4,width:2,height:1.2,stroke:"none",fill:backgroundColor},{elementTag:"line",x1:12,y1:6,x2:12,y2:6,stroke:"none",fill:"none"},{elementTag:"polygon",points:"0,6 11,11 11,1","stroke-width":1,stroke:color,fill:backgroundColor}]},mimModification:{markerElement:{markerWidth:12,markerHeight:12},shapes:[{elementTag:"rect",x:0,y:5.4,width:2,height:1.2,stroke:backgroundColor,fill:backgroundColor},{elementTag:"polygon",points:"12,12 0,6 12,0 5,6","stroke-width":0,fill:color}]},mimCatalysis:{markerElement:{markerWidth:12,markerHeight:12},shapes:[{elementTag:"circle",cx:6,cy:6,r:"5.3px",stroke:color,"stroke-width":1,fill:backgroundColor}]},mimCleavage:{markerElement:{markerWidth:20,markerHeight:30},shapes:[{elementTag:"rect",x:0,y:14.3,width:18.4,height:1.4,stroke:backgroundColor,fill:backgroundColor},{elementTag:"line",stroke:color,"stroke-width":1,x1:18,y1:14.5,x2:18,y2:30},{elementTag:"line",stroke:color,"stroke-width":1,x1:18,y1:30,x2:0,y2:0}]},mimCovalentBond:{markerElement:{markerWidth:12,markerHeight:12},shapes:[{elementTag:"rect",x:0,y:0,width:0,height:0,stroke:backgroundColor,"stroke-width":0,fill:backgroundColor}]},mimTranscriptionTranslation:{markerElement:{markerWidth:20,markerHeight:24},shapes:[{elementTag:"rect",x:0,y:11,width:12,height:2,stroke:backgroundColor,fill:backgroundColor},{elementTag:"line",stroke:color,fill:"none","stroke-width":1,x1:15,y1:12,x2:15,y2:5},{elementTag:"line",stroke:color,fill:"none","stroke-width":1,x1:15.5,y1:5,x2:8,y2:5},{elementTag:"polygon",points:"0,5 8,1 8,9","stroke-width":1,stroke:color,fill:backgroundColor}]},mimGap:{markerElement:{markerWidth:12,markerHeight:12},shapes:[{elementTag:"rect",x:0,y:5.3,width:8,height:1.4,stroke:"none",fill:backgroundColor}]},mimBranchingLeft:{markerElement:{markerWidth:12,markerHeight:12},shapes:[{elementTag:"rect",x:.4,y:5.3,width:3.1,height:1.4,fill:backgroundColor,stroke:"none"},{elementTag:"line",fill:"none",stroke:color,"stroke-width":1,x1:3.9,y1:6.2,x2:.2,y2:0}]},mimBranchingRight:{markerElement:{markerWidth:12,markerHeight:12},shapes:[{elementTag:"rect",x:.4,y:5.3,width:3.1,height:1.4,fill:backgroundColor,stroke:"none"},{elementTag:"line",fill:"none",stroke:color,"stroke-width":1,x1:.2,y1:12,x2:3.9,y2:5.8}]},tBar:{markerElement:{markerWidth:10,markerHeight:20},shapes:[{elementTag:"rect",x:0,y:9,width:8,height:2,fill:backgroundColor},{elementTag:"line",x:0,y:0,width:12,height:12,stroke:color,"stroke-width":1.8,x1:7,y1:0,x2:7,y2:20}]}};if(markerData.mimInhibition=markerData.tBar,markerData.mimConversion=markerData.arrow,markerData[name]){var markerId=this.generateId(name,position,color),markerAttributeValue="url(#"+markerId+")";if(availableMarkers[markerId])callback(markerAttributeValue);else{var marker=targetImageSelectionDefs.append("marker").attr("id",markerId).attr("orient","auto").attr("markerUnits","strokeWidth").attr("preserveAspectRatio","none").attr("refY",markerData[name].markerElement.markerHeight/2).attr("viewBox","0 0 "+markerData[name].markerElement.markerWidth+" "+markerData[name].markerElement.markerHeight);d3.map(markerData[name].markerElement).entries().forEach(function(attribute){marker.attr(attribute.key,attribute.value)}),"end"===position?marker.attr("refX",markerData[name].markerElement.markerWidth):marker.attr("refX",0);var markerContainer=marker.append("g").attr("id","g-"+markerId);"end"===position&&markerContainer.attr("transform","rotate(180, "+markerData[name].markerElement.markerWidth/2+", "+markerData[name].markerElement.markerHeight/2+")"),markerData[name].shapes.forEach(function(shape){var shapeSelection=markerContainer.append(shape.elementTag);d3.map(shape).entries().forEach(function(attribute){"elementTag"!==attribute.key&&shapeSelection.attr(attribute.key,attribute.value)})}),availableMarkers[markerId]=!0,callback(markerAttributeValue)}}else console.warn('Marker (arrowhead) named "'+name+'" is not available.'),callback("none")}},crossPlatformShapes.svg.path={generateMarkerId:function(name,position,color){var id=("id-"+name+"-"+position+"-"+color).replace(/[^A-Za-z0-9-]/g,"").toLowerCase();return id},render:function(shapeName,data,callback){var targetImageSelection=this.targetImageSelection,crossPlatformShapesInstance=(this.availableMarkers,this.crossPlatformShapesInstance),attributeDependencyOrder=["color","markerStart","markerEnd"],canvasPathCommandToSvgPathCommandMappings={moveTo:"M",lineTo:"L",closePath:"Z",bezierCurveTo:"C",quadraticCurveTo:"Q"},shapeSelection=targetImageSelection.select(data.containerSelector).append("path"),shapesUsingD3PathGenerators=["lineCurved","lineElbow","lineSegmented"],d="";if(-1===shapesUsingD3PathGenerators.indexOf(shapeName)){var pathSegments=crossPlatformShapes.pathCalculator[shapeName](data);pathSegments.forEach(function(pathSegment){d+=canvasPathCommandToSvgPathCommandMappings[pathSegment.command],d+=pathSegment.points.join(",")})}else d=crossPlatformShapes.pathCalculator[shapeName](data);shapeSelection.attr("d",d);var backgroundColor=data.backgroundColor||"transparent";shapeSelection.attr("fill",backgroundColor);var color,attributeListItemName,attributeListItemValue,svgPathAttributeGenerator={id:function(idValue){shapeSelection.attr("id",idValue)},strokeDasharray:function(strokeDasharrayValue){shapeSelection.attr("stroke-dasharray",strokeDasharrayValue)},fillOpacity:function(fillOpacityValue){shapeSelection.attr("fill-opacity",fillOpacityValue)},color:function(colorValue){color=colorValue,shapeSelection.attr("stroke",colorValue)},markerStart:function(markerStartValue){crossPlatformShapesInstance.svg.marker.append(markerStartValue,"start",color,function(markerAttributeValue){shapeSelection.attr("marker-start",markerAttributeValue)})},markerEnd:function(markerEndValue){crossPlatformShapesInstance.svg.marker.append(markerEndValue,"end",color,function(markerAttributeValue){shapeSelection.attr("marker-end",markerAttributeValue)})},rotation:function(rotationValue){var transform="rotate("+rotationValue+","+(data.x+data.width/2)+","+(data.y+data.height/2)+")";shapeSelection.attr("transform",transform)},borderWidth:function(borderWidthValue){shapeSelection.attr("stroke-width",borderWidthValue)}},attributeList=d3.map(data).entries().sort(function(a,b){return attributeDependencyOrder.indexOf(a.key)-attributeDependencyOrder.indexOf(b.key)});attributeList.forEach(function(attributeListItem){attributeListItemName=attributeListItem.key,attributeListItemValue=attributeListItem.value,svgPathAttributeGenerator.hasOwnProperty(attributeListItemName)&&svgPathAttributeGenerator[attributeListItemName](attributeListItemValue)}),callback&&callback(shapeSelection[0][0])}},crossPlatformShapes.canvas={};
 
-svgPanZoom = function(){
 
-  /** 
-   * This code is licensed under the following BSD license:
-   *
-   * Copyright 2009-2010 Andrea Leofreddi <a.leofreddi@itcharm.com>. All rights reserved.
-   * 
-   * Redistribution and use in source and binary forms, with or without modification, are
-   * permitted provided that the following conditions are met:
-   * 
-   *    1. Redistributions of source code must retain the above copyright notice, this list of
-   *       conditions and the following disclaimer.
-   * 
-   *    2. Redistributions in binary form must reproduce the above copyright notice, this list
-   *       of conditions and the following disclaimer in the documentation and/or other materials
-   *       provided with the distribution.
-   * 
-   * THIS SOFTWARE IS PROVIDED BY Andrea Leofreddi ``AS IS'' AND ANY EXPRESS OR IMPLIED
-   * WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND
-   * FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL Andrea Leofreddi OR
-   * CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
-   * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
-   * SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON
-   * ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
-   * NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
-   * ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-   * 
-  * The views and conclusions contained in the software and documentation are those of the
-    * authors and should not be interpreted as representing official policies, either expressed
-    * or implied, of Andrea Leofreddi.
-    */
+window.svgPanZoom = (function(document) {
 
   'use strict';
 
-  var state = 'none', viewportCTM, stateTarget, stateOrigin, stateTf;
+  var state = 'none', stateTarget, stateOrigin, stateTf;
 
-  /// CONFIGURATION 
+  /// CONFIGURATION
   /// ====>
 
   var panEnabled = true; // true or false: enable or disable panning (default enabled)
@@ -906,12 +877,11 @@ svgPanZoom = function(){
   var onZoom = null; // Zoom callback
 
   /// <====
-  /// END OF CONFIGURATION 
+  /// END OF CONFIGURATION
 
   /**
-   * Enable svgPanZoom 
+   * Enable svgPanZoom
    */
-
   function init(args) {
     args = args || {};
     getSvg(args.selector, function(err, svg) {
@@ -944,9 +914,8 @@ svgPanZoom = function(){
   }
 
   /**
-   * Change settings 
+   * Change settings
    */
-
   function setZoomScaleSensitivity(newZoomScaleSensitivity) {
     zoomScaleSensitivity = newZoomScaleSensitivity;
   }
@@ -978,31 +947,32 @@ svgPanZoom = function(){
   /**
    * Register handlers
    */
-
   function setupHandlers(svg){
     setAttributes(svg, {
       'onmouseup': 'svgPanZoom.handleMouseUp(evt)',
       'onmousedown': 'svgPanZoom.handleMouseDown(evt)',
       'onmousemove': 'svgPanZoom.handleMouseMove(evt)',
-      'onmouseleave' : 'svgPanZoom.handleMouseUp(evt)', // Decomment this to stop the pan functionality when dragging out of the SVG element; Note that 'onmouseleave' works over parent svg and all children.
+
+      // Decomment this to stop the pan functionality when dragging out of the SVG element;
+      // Note that 'onmouseleave' works over parent svg and all children.
+      'onmouseleave' : 'svgPanZoom.handleMouseUp(evt)',
     });
 
-    svg.setAttribute('xmlns', 'http://www.w3.org/1999/xlink')
-    svg.setAttributeNS('xmlns', 'xlink', 'http://www.w3.org/1999/xlink')
-    svg.setAttributeNS('xmlns', 'ev', 'http://www.w3.org/2001/xml-events')
+    svg.setAttribute('xmlns', 'http://www.w3.org/1999/xlink');
+    svg.setAttributeNS('xmlns', 'xlink', 'http://www.w3.org/1999/xlink');
+    svg.setAttributeNS('xmlns', 'ev', 'http://www.w3.org/2001/xml-events');
 
-    if(navigator.userAgent.toLowerCase().indexOf('webkit') >= 0) {
-      svg.addEventListener('mousewheel', handleMouseWheel, false); // Chrome/Safari
+    //Needed for Internet Explorer, otherwise the viewport overflows.
+    if (svg.parentNode !== null) {
+      svg.setAttribute('style', 'overflow: hidden');
     }
-    else {
-      svg.addEventListener('DOMMouseScroll', handleMouseWheel, false); // Others
-    }
+
+    window.addWheelListener(svg, handleMouseWheel);
   }
 
   /**
-   * Retrieves the svg element for SVG manipulation. The element is then cached into the viewport global variable.
+   * Retrieves the svg element for SVG manipulation.
    */
-
   function getViewport(svg) {
     var initialViewportCTM, svgViewBox;
     if (!svg.__viewportElement) {
@@ -1028,22 +998,54 @@ svgPanZoom = function(){
       }
     }
 
-    viewportCTM = svg.__viewportElement.getCTM();
     return svg.__viewportElement;
   }
 
   /**
+   * Time-based cache for svg.getScreenCTM().
+   * Needed because getScreenCTM() is very slow on Firefox (FF 28 at time of writing).
+   * The cache expires every 300ms... this is a pretty safe time because it's only called
+   * when we're zooming, when the screenCTM is unlikely/impossible to change.
+   */
+  var getScreenCTMCached = (function() {
+    var svgs = {};
+    return function(svg) {
+      var cur = Date.now();
+      if (svgs.hasOwnProperty(svg)) {
+        var cached = svgs[svg];
+        if (cur - cached.time > 300) {
+          //Cache expired
+          cached.time = cur;
+          cached.ctm = svg.getScreenCTM();
+        }
+        return cached.ctm;
+      } else {
+        var ctm = svg.getScreenCTM();
+        svgs[svg] = {time: cur, ctm: ctm};
+        return ctm;
+      }
+    }
+  })();
+
+  /**
    * Get an SVGPoint of the mouse co-ordinates of the event, relative to the SVG element.
    */
-
-  function getRelativeMousePoint(evt) {
-    var svg = (evt.target.tagName === 'svg' || evt.target.tagName === 'SVG') ? evt.target : evt.target.ownerSVGElement || evt.target.correspondingElement.ownerSVGElement;
+  function getRelativeMousePoint(svg, evt) {
     var point = svg.createSVGPoint();
-    point.x = evt.clientX
+    point.x = evt.clientX;
     point.y = evt.clientY;
-    point = point.matrixTransform(svg.getScreenCTM().inverse());
+    point = point.matrixTransform(getScreenCTMCached(svg).inverse());
     return point;
-  };
+  }
+
+  function getSvgCenterPoint(svg) {
+	var width = svg.width.baseVal.valueInSpecifiedUnits;
+	var height = svg.height.baseVal.valueInSpecifiedUnits;
+	var point = svg.createSVGPoint();
+	point.x = width/2;
+	point.y = height/2;
+	return point;
+  }
 
   /**
    * Instance an SVGPoint object with given event coordinates.
@@ -1063,7 +1065,6 @@ svgPanZoom = function(){
   /**
    * Sets the current transform matrix of an element.
    */
-
   function setCTM(element, matrix) {
     var s = 'matrix(' + matrix.a + ',' + matrix.b + ',' + matrix.c + ',' + matrix.d + ',' + matrix.e + ',' + matrix.f + ')';
     element.setAttribute('transform', s);
@@ -1072,7 +1073,6 @@ svgPanZoom = function(){
   /**
    * Dumps a matrix to a string (useful for debug).
    */
-
   function dumpMatrix(matrix) {
     var s = '[ ' + matrix.a + ', ' + matrix.c + ', ' + matrix.e + '\n  ' + matrix.b + ', ' + matrix.d + ', ' + matrix.f + '\n  0, 0, 1 ]';
     return s;
@@ -1250,6 +1250,7 @@ svgPanZoom = function(){
       var viewport = getViewport(svg);
       tx = svg.getBBox().width * panIncrement * directionXY.x;
       ty = svg.getBBox().height * panIncrement * directionXY.y;
+      var viewportCTM = viewport.getCTM();
       viewportCTM.e += tx;
       viewportCTM.f += ty;
       setCTM(viewport, viewportCTM);
@@ -1261,38 +1262,22 @@ svgPanZoom = function(){
       throw new Error('No scale specified for zoom. Please enter a number.');
     }
     getSvg(args.selector, function(err, svg) {
-      var viewport = getViewport(svg);
-      viewportCTM.a = viewportCTM.d = args.scale;
-      if ( viewportCTM.a < minZoom ) { viewportCTM.a = viewportCTM.d = minZoom ; } 
-      if ( viewportCTM.a > maxZoom ) { viewportCTM.a = viewportCTM.d = maxZoom ; } 
-      setCTM(viewport, viewportCTM);
-      if (onZoom) { onZoom(viewportCTM.a); }
+      var p = getSvgCenterPoint(svg);
+      zoomAtPoint(svg, p, args.scale, true);
     });
   }
 
   function zoomIn(selector) {
-
-    // TODO zoom origin isn't center of screen
-
     getSvg(selector, function(err, svg) {
-      var viewport = getViewport(svg);
-      viewportCTM.a = viewportCTM.d = (1 + zoomScaleSensitivity) * viewportCTM.a;
-      if ( viewportCTM.a > maxZoom ) { viewportCTM.a = viewportCTM.d = maxZoom ; }
-      setCTM(viewport, viewportCTM);
-      if (onZoom) { onZoom(viewportCTM.a); }
+      var p = getSvgCenterPoint(svg);
+      zoomAtPoint(svg, p, 1 + zoomScaleSensitivity);
     });
   }
 
   function zoomOut(selector) {
-
-    // TODO zoom origin isn't center of screen
-
     getSvg(selector, function(err, svg) {
-      var viewport = getViewport(svg);
-      viewportCTM.a = viewportCTM.d = (1/(1 + zoomScaleSensitivity)) * viewportCTM.a;
-      if ( viewportCTM.a < minZoom ) { viewportCTM.a = viewportCTM.d = minZoom ; } 
-      setCTM(viewport, viewportCTM);
-      if (onZoom) { onZoom(viewportCTM.a); }
+      var p = getSvgCenterPoint(svg);
+      zoomAtPoint(svg, p, 1/(1 + zoomScaleSensitivity));
     });
   }
 
@@ -1303,12 +1288,12 @@ svgPanZoom = function(){
 
       var bBox = svg.getBBox();
       var boundingClientRect = svg.getBoundingClientRect();
-      oldCTM = newCTM = viewportCTM;
+      oldCTM = newCTM = viewport.getCTM();
       var newScale = Math.min(boundingClientRect.width/bBox.width, boundingClientRect.height/bBox.height);
       newCTM.a = newScale * oldCTM.a; //x-scale
       newCTM.d = newScale * oldCTM.d; //y-scale
-      newCTM.e = oldCTM.e * newScale - (boundingClientRect.width - bBox.width * newScale)/2 - bBox.x * newScale; //x-transform
-      newCTM.f = oldCTM.f * newScale - (boundingClientRect.height - bBox.height * newScale)/2 - bBox.y * newScale; //y-transform
+      newCTM.e = oldCTM.e * newScale + (boundingClientRect.width - bBox.width * newScale)/2 - bBox.x * newScale; //x-transform
+      newCTM.f = oldCTM.f * newScale + (boundingClientRect.height - bBox.height * newScale)/2 - bBox.y * newScale; //y-transform
       setCTM(viewport, newCTM);
       if (onZoom) { onZoom(newCTM.a); }
     });
@@ -1317,7 +1302,6 @@ svgPanZoom = function(){
   /**
    * Handle mouse wheel event.
    */
-
   function handleMouseWheel(evt) {
     if(!zoomEnabled) {
       return;
@@ -1334,38 +1318,67 @@ svgPanZoom = function(){
 
     var delta;
 
-    if(evt.wheelDelta)
-      delta = evt.wheelDelta / 360; // Chrome/Safari
-    else
-      delta = evt.detail / -9; // Mozilla
+    if ('deltaMode' in evt && evt.deltaMode === 0) {
+      //Make empirical adjustments for browsers that give deltaY in 
+      //pixels (deltaMode=0).
 
-    var z = Math.pow(1 + zoomScaleSensitivity, delta);
+      if (evt.wheelDelta) {
+        //Normalizer for Chrome
+        delta = evt.deltaY / Math.abs(evt.wheelDelta/3) 
+      } else {
+        //Others. Possibly tablets? Use a value just in case
+        delta = evt.deltaY / 120;
+      }
+    } else if ('mozPressure' in evt) {
+      //Normalizer for newer Firefox
+      //NOTE: May need to change detection at some point if mozPressure disappears.
+      delta = evt.deltaY / 3;
+    }
+    else {
+      //Others should be reasonably normalized by the mousewheel code at the end of the file.
+      delta = evt.deltaY;
+    }
 
-    var g = getViewport(svg);
-
-    var p = getRelativeMousePoint(evt);
-    p = p.matrixTransform(g.getCTM().inverse());
-
-    // Compute new scale matrix in current mouse position
-    var k = svg.createSVGMatrix().translate(p.x, p.y).scale(z).translate(-p.x, -p.y);
-  	var wasZoom = g.getCTM();
-  	var setZoom = g.getCTM().multiply(k);
-  	
-  	if ( setZoom.a < minZoom ) { setZoom.a = setZoom.d = wasZoom.a }
-  	if ( setZoom.a > maxZoom ) { setZoom.a = setZoom.d = wasZoom.a } 	
-  	if ( setZoom.a != wasZoom.a ) { setCTM(g, setZoom) } 
-
-    if(typeof(stateTf) == 'undefined')
-      stateTf = g.getCTM().inverse();
-
-    stateTf = stateTf.multiply(k.inverse());
-    if (onZoom) { onZoom(g.getCTM().a); }
+    var p = getRelativeMousePoint(svg, evt);
+    var zoom = Math.pow(1 + zoomScaleSensitivity, delta);
+    zoomAtPoint(svg, p, zoom);
   }
 
   /**
+   * Zoom in at an SVG point.
+   * @param svg The SVG element
+   * @param point The SVG point at which the zoom should happen (where 0,0 is top left corner)
+   * @param zoomScale Number representing how much to zoom.
+   * @param zoomAbsolute Default false. If true, zoomScale is treated as an absolute value.
+   *					 Otherwise, zoomScale is treated as a multiplied (e.g. 1.10 would zoom in 10%)
+   */
+  function zoomAtPoint(svg, point, zoomScale, zoomAbsolute) {
+    var viewport = getViewport(svg);
+    var viewportCTM = viewport.getCTM();
+    point = point.matrixTransform(viewportCTM.inverse());
+
+    var k = svg.createSVGMatrix().translate(point.x, point.y).scale(zoomScale).translate(-point.x, -point.y);
+    var wasZoom = viewportCTM;
+    var setZoom = viewportCTM.multiply(k);
+
+    if (zoomAbsolute) {
+      setZoom.a = setZoom.d = zoomScale;
+    }
+
+    if ( setZoom.a < minZoom ) { setZoom.a = setZoom.d = wasZoom.a; }
+    if ( setZoom.a > maxZoom ) { setZoom.a = setZoom.d = wasZoom.a; }
+    if ( setZoom.a != wasZoom.a ) { setCTM(viewport, setZoom); }
+
+    if(typeof(stateTf) == 'undefined')
+      stateTf = setZoom.inverse();
+
+    stateTf = stateTf.multiply(k.inverse());
+    if (onZoom) { onZoom(setZoom.a); }
+  }
+  
+  /**
    * Handle mouse move event.
    */
-
   function handleMouseMove(evt) {
     if(evt.preventDefault) {
       evt.preventDefault();
@@ -1375,7 +1388,7 @@ svgPanZoom = function(){
     }
 
     var svg = (evt.target.tagName === 'svg' || evt.target.tagName === 'SVG') ? evt.target : evt.target.ownerSVGElement || evt.target.correspondingElement.ownerSVGElement;
-    
+
     var g = getViewport(svg);
 
     if(state == 'pan' && panEnabled) {
@@ -1393,11 +1406,10 @@ svgPanZoom = function(){
     }
   }
 
-/**
-   * Handle double click event. 
+  /**
+   * Handle double click event.
    * See handleMouseDown() for alternate detection method.
    */
-
   function handleDblClick(evt) {
     if(evt.preventDefault) {
       evt.preventDefault();
@@ -1407,47 +1419,29 @@ svgPanZoom = function(){
     }
 
     var svg = (evt.target.tagName === 'svg' || evt.target.tagName === 'SVG') ? evt.target : evt.target.ownerSVGElement || evt.target
-.correspondingElement.ownerSVGElement;
+      .correspondingElement.ownerSVGElement;
 
-    var zoomFactor = 4; // 4x zoom!
+    var zoomFactor;
     if(evt.shiftKey){
-        zoomFactor = -1.66; // zoom out when shift key pressed
+      zoomFactor = 1/((1 + zoomScaleSensitivity) * 2); // zoom out when shift key pressed
+    }
+    else {
+      zoomFactor = (1 + zoomScaleSensitivity) * 2;
     }
 
-    var z = 1 + zoomScaleSensitivity * zoomFactor;
-
-    var g = getViewport(svg);
-
-    var p = getRelativeMousePoint(evt);
-
-    p = p.matrixTransform(g.getCTM().inverse());
-
-    // Compute new scale matrix in current mouse position                                                         
-    var k = svg.createSVGMatrix().translate(p.x, p.y).scale(z).translate(-p.x, -p.y);
-  	var wasZoom = g.getCTM();
-  	var setZoom = g.getCTM().multiply(k);
-  	
-  	if ( setZoom.a < minZoom ) { setZoom.a = setZoom.d = wasZoom.a }
-  	if ( setZoom.a > maxZoom ) { setZoom.a = setZoom.d = wasZoom.a } 	
-  	if ( setZoom.a != wasZoom.a ) { setCTM(g, setZoom) } 
-
-    if(typeof(stateTf) == 'undefined')
-      stateTf = g.getCTM().inverse();
-
-    stateTf = stateTf.multiply(k.inverse());
-    if (onZoom) { onZoom(g.getCTM().a); }
+    var p = getRelativeMousePoint(svg, evt);
+    zoomAtPoint(svg, p, zoomFactor );
   }
-  
+
   /**
    * Handle click event.
    */
-
   function handleMouseDown(evt) {
-    // Double click detection; more consistent than ondblclick                                                    
+    // Double click detection; more consistent than ondblclick
     if(evt.detail==2){
         handleDblClick(evt);
     }
-    
+
     if(evt.preventDefault) {
       evt.preventDefault();
     }
@@ -1460,8 +1454,8 @@ svgPanZoom = function(){
     var g = getViewport(svg);
 
     if(
-      evt.target.tagName == 'svg' 
-        || !dragEnabled // Pan anyway when drag is disabled and the user clicked on an element 
+      evt.target.tagName == 'svg'
+        || !dragEnabled // Pan anyway when drag is disabled and the user clicked on an element
     ) {
       // Pan mode
       state = 'pan';
@@ -1484,7 +1478,6 @@ svgPanZoom = function(){
   /**
    * Handle mouse button release event.
    */
-
   function handleMouseUp(evt) {
     if(evt.preventDefault) {
       evt.preventDefault();
@@ -1520,7 +1513,78 @@ svgPanZoom = function(){
     enableDrag:enableDrag,
     disableDrag:disableDrag
   };
-}();
+})(document);
+
+//Cross-browser wheel event, from: https://developer.mozilla.org/en-US/docs/Web/Reference/Events/wheel
+if (!window.hasOwnProperty('addWheelListener')) {
+	// creates a global "addWheelListener" method
+	// example: addWheelListener( elem, function( e ) { console.log( e.deltaY ); e.preventDefault(); } );
+	(function(window,document) {
+
+		var prefix = "", _addEventListener, onwheel, support;
+
+		// detect event model
+		if ( window.addEventListener ) {
+			_addEventListener = "addEventListener";
+		} else {
+			_addEventListener = "attachEvent";
+			prefix = "on";
+		}
+
+		// detect available wheel event
+		support = "onwheel" in document.createElement("div") ? "wheel" : // Modern browsers support "wheel"
+				  document.onmousewheel !== undefined ? "mousewheel" : // Webkit and IE support at least "mousewheel"
+				  "DOMMouseScroll"; // let's assume that remaining browsers are older Firefox
+
+        window.addWheelListener = function( elem, callback, useCapture ) {
+			_addWheelListener( elem, support, callback, useCapture );
+
+			// handle MozMousePixelScroll in older Firefox
+			if( support == "DOMMouseScroll" ) {
+				_addWheelListener( elem, "MozMousePixelScroll", callback, useCapture );
+			}
+		};
+
+		function _addWheelListener( elem, eventName, callback, useCapture ) {
+			elem[ _addEventListener ]( prefix + eventName, support == "wheel" ? callback : function( originalEvent ) {
+				!originalEvent && ( originalEvent = window.event );
+
+				// create a normalized event object
+				var event = {
+					// keep a ref to the original event object
+					originalEvent: originalEvent,
+					// NOTE: clientX and clientY are not in Mozilla example, but are needed for svg-pan-zoom
+					clientX: originalEvent.clientX,
+					clientY: originalEvent.clientY,
+					target: originalEvent.target || originalEvent.srcElement,
+					type: "wheel",
+					deltaMode: originalEvent.type == "MozMousePixelScroll" ? 0 : 1,
+					deltaX: 0,
+					deltaZ: 0,
+					preventDefault: function() {
+						originalEvent.preventDefault ?
+							originalEvent.preventDefault() :
+							originalEvent.returnValue = false;
+					}
+				};
+
+				// calculate deltaY (and deltaX) according to the event
+				if ( support == "mousewheel" ) {
+					event.deltaY = - 1/40 * originalEvent.wheelDelta;
+					// Webkit also support wheelDeltaX
+					originalEvent.wheelDeltaX && ( event.deltaX = - 1/40 * originalEvent.wheelDeltaX );
+				} else {
+					event.deltaY = originalEvent.detail;
+				}
+
+				// it's time to fire the callback
+				return callback( event );
+
+			}, useCapture || false );
+		}
+
+	})(window,document);
+}
 
 
 !function(a){"use strict";var b=function(a,c,d){var e,f,g=document.createElement("img");if(g.onerror=c,g.onload=function(){!f||d&&d.noRevoke||b.revokeObjectURL(f),c&&c(b.scale(g,d))},b.isInstanceOf("Blob",a)||b.isInstanceOf("File",a))e=f=b.createObjectURL(a),g._type=a.type;else{if("string"!=typeof a)return!1;e=a,d&&d.crossOrigin&&(g.crossOrigin=d.crossOrigin)}return e?(g.src=e,g):b.readFile(a,function(a){var b=a.target;b&&b.result?g.src=b.result:c&&c(a)})},c=window.createObjectURL&&window||window.URL&&URL.revokeObjectURL&&URL||window.webkitURL&&webkitURL;b.isInstanceOf=function(a,b){return Object.prototype.toString.call(b)==="[object "+a+"]"},b.transformCoordinates=function(){},b.getTransformedOptions=function(a){return a},b.renderImageToCanvas=function(a,b,c,d,e,f,g,h,i,j){return a.getContext("2d").drawImage(b,c,d,e,f,g,h,i,j),a},b.hasCanvasOption=function(a){return a.canvas||a.crop},b.scale=function(a,c){c=c||{};var d,e,f,g,h,i,j,k,l,m=document.createElement("canvas"),n=a.getContext||b.hasCanvasOption(c)&&m.getContext,o=a.naturalWidth||a.width,p=a.naturalHeight||a.height,q=o,r=p,s=function(){var a=Math.max((f||q)/q,(g||r)/r);a>1&&(q=Math.ceil(q*a),r=Math.ceil(r*a))},t=function(){var a=Math.min((d||q)/q,(e||r)/r);1>a&&(q=Math.ceil(q*a),r=Math.ceil(r*a))};return n&&(c=b.getTransformedOptions(c),j=c.left||0,k=c.top||0,c.sourceWidth?(h=c.sourceWidth,void 0!==c.right&&void 0===c.left&&(j=o-h-c.right)):h=o-j-(c.right||0),c.sourceHeight?(i=c.sourceHeight,void 0!==c.bottom&&void 0===c.top&&(k=p-i-c.bottom)):i=p-k-(c.bottom||0),q=h,r=i),d=c.maxWidth,e=c.maxHeight,f=c.minWidth,g=c.minHeight,n&&d&&e&&c.crop?(q=d,r=e,l=h/i-d/e,0>l?(i=e*h/d,void 0===c.top&&void 0===c.bottom&&(k=(p-i)/2)):l>0&&(h=d*i/e,void 0===c.left&&void 0===c.right&&(j=(o-h)/2))):((c.contain||c.cover)&&(f=d=d||f,g=e=e||g),c.cover?(t(),s()):(s(),t())),n?(m.width=q,m.height=r,b.transformCoordinates(m,c),b.renderImageToCanvas(m,a,j,k,h,i,0,0,q,r)):(a.width=q,a.height=r,a)},b.createObjectURL=function(a){return c?c.createObjectURL(a):!1},b.revokeObjectURL=function(a){return c?c.revokeObjectURL(a):!1},b.readFile=function(a,b,c){if(window.FileReader){var d=new FileReader;if(d.onload=d.onerror=b,c=c||"readAsDataURL",d[c])return d[c](a),d}return!1},"function"==typeof define&&define.amd?define(function(){return b}):a.loadImage=b}(this),function(a){"use strict";"function"==typeof define&&define.amd?define(["load-image"],a):a(window.loadImage)}(function(a){"use strict";if(window.navigator&&window.navigator.platform&&/iP(hone|od|ad)/.test(window.navigator.platform)){var b=a.renderImageToCanvas;a.detectSubsampling=function(a){var b,c;return a.width*a.height>1048576?(b=document.createElement("canvas"),b.width=b.height=1,c=b.getContext("2d"),c.drawImage(a,-a.width+1,0),0===c.getImageData(0,0,1,1).data[3]):!1},a.detectVerticalSquash=function(a,b){var c,d,e,f,g,h=a.naturalHeight||a.height,i=document.createElement("canvas"),j=i.getContext("2d");for(b&&(h/=2),i.width=1,i.height=h,j.drawImage(a,0,0),c=j.getImageData(0,0,1,h).data,d=0,e=h,f=h;f>d;)g=c[4*(f-1)+3],0===g?e=f:d=f,f=e+d>>1;return f/h||1},a.renderImageToCanvas=function(c,d,e,f,g,h,i,j,k,l){if("image/jpeg"===d._type){var m,n,o,p,q=c.getContext("2d"),r=document.createElement("canvas"),s=1024,t=r.getContext("2d");if(r.width=s,r.height=s,q.save(),m=a.detectSubsampling(d),m&&(e/=2,f/=2,g/=2,h/=2),n=a.detectVerticalSquash(d,m),m||1!==n){for(f*=n,k=Math.ceil(s*k/g),l=Math.ceil(s*l/h/n),j=0,p=0;h>p;){for(i=0,o=0;g>o;)t.clearRect(0,0,s,s),t.drawImage(d,e,f,g,h,-o,-p,g,h),q.drawImage(r,0,0,s,s,i,j,k,l),o+=s,i+=k;p+=s,j+=l}return q.restore(),c}}return b(c,d,e,f,g,h,i,j,k,l)}}}),function(a){"use strict";"function"==typeof define&&define.amd?define(["load-image"],a):a(window.loadImage)}(function(a){"use strict";var b=a.hasCanvasOption;a.hasCanvasOption=function(a){return b(a)||a.orientation},a.transformCoordinates=function(a,b){var c=a.getContext("2d"),d=a.width,e=a.height,f=b.orientation;if(f)switch(f>4&&(a.width=e,a.height=d),f){case 2:c.translate(d,0),c.scale(-1,1);break;case 3:c.translate(d,e),c.rotate(Math.PI);break;case 4:c.translate(0,e),c.scale(1,-1);break;case 5:c.rotate(.5*Math.PI),c.scale(1,-1);break;case 6:c.rotate(.5*Math.PI),c.translate(0,-e);break;case 7:c.rotate(.5*Math.PI),c.translate(d,-e),c.scale(-1,1);break;case 8:c.rotate(-.5*Math.PI),c.translate(-d,0)}},a.getTransformedOptions=function(a){if(!a.orientation||1===a.orientation)return a;var b,c={};for(b in a)a.hasOwnProperty(b)&&(c[b]=a[b]);switch(a.orientation){case 2:c.left=a.right,c.right=a.left;break;case 3:c.left=a.right,c.top=a.bottom,c.right=a.left,c.bottom=a.top;break;case 4:c.top=a.bottom,c.bottom=a.top;break;case 5:c.left=a.top,c.top=a.left,c.right=a.bottom,c.bottom=a.right;break;case 6:c.left=a.top,c.top=a.right,c.right=a.bottom,c.bottom=a.left;break;case 7:c.left=a.bottom,c.top=a.right,c.right=a.top,c.bottom=a.left;break;case 8:c.left=a.bottom,c.top=a.left,c.right=a.top,c.bottom=a.right}return a.orientation>4&&(c.maxWidth=a.maxHeight,c.maxHeight=a.maxWidth,c.minWidth=a.minHeight,c.minHeight=a.minWidth,c.sourceWidth=a.sourceHeight,c.sourceHeight=a.sourceWidth),c}}),function(a){"use strict";"function"==typeof define&&define.amd?define(["load-image"],a):a(window.loadImage)}(function(a){"use strict";var b=window.Blob&&(Blob.prototype.slice||Blob.prototype.webkitSlice||Blob.prototype.mozSlice);a.blobSlice=b&&function(){var a=this.slice||this.webkitSlice||this.mozSlice;return a.apply(this,arguments)},a.metaDataParsers={jpeg:{65505:[]}},a.parseMetaData=function(b,c,d){d=d||{};var e=this,f=d.maxMetaDataSize||262144,g={},h=!(window.DataView&&b&&b.size>=12&&"image/jpeg"===b.type&&a.blobSlice);(h||!a.readFile(a.blobSlice.call(b,0,f),function(b){if(b.target.error)return console.log(b.target.error),c(g),void 0;var f,h,i,j,k=b.target.result,l=new DataView(k),m=2,n=l.byteLength-4,o=m;if(65496===l.getUint16(0)){for(;n>m&&(f=l.getUint16(m),f>=65504&&65519>=f||65534===f);){if(h=l.getUint16(m+2)+2,m+h>l.byteLength){console.log("Invalid meta data: Invalid segment size.");break}if(i=a.metaDataParsers.jpeg[f])for(j=0;j<i.length;j+=1)i[j].call(e,l,m,h,g,d);m+=h,o=m}!d.disableImageHead&&o>6&&(g.imageHead=k.slice?k.slice(0,o):new Uint8Array(k).subarray(0,o))}else console.log("Invalid JPEG file: Missing JPEG marker.");c(g)},"readAsArrayBuffer"))&&c(g)}}),function(a){"use strict";"function"==typeof define&&define.amd?define(["load-image","load-image-meta"],a):a(window.loadImage)}(function(a){"use strict";a.ExifMap=function(){return this},a.ExifMap.prototype.map={Orientation:274},a.ExifMap.prototype.get=function(a){return this[a]||this[this.map[a]]},a.getExifThumbnail=function(a,b,c){var d,e,f;if(!c||b+c>a.byteLength)return console.log("Invalid Exif data: Invalid thumbnail data."),void 0;for(d=[],e=0;c>e;e+=1)f=a.getUint8(b+e),d.push((16>f?"0":"")+f.toString(16));return"data:image/jpeg,%"+d.join("%")},a.exifTagTypes={1:{getValue:function(a,b){return a.getUint8(b)},size:1},2:{getValue:function(a,b){return String.fromCharCode(a.getUint8(b))},size:1,ascii:!0},3:{getValue:function(a,b,c){return a.getUint16(b,c)},size:2},4:{getValue:function(a,b,c){return a.getUint32(b,c)},size:4},5:{getValue:function(a,b,c){return a.getUint32(b,c)/a.getUint32(b+4,c)},size:8},9:{getValue:function(a,b,c){return a.getInt32(b,c)},size:4},10:{getValue:function(a,b,c){return a.getInt32(b,c)/a.getInt32(b+4,c)},size:8}},a.exifTagTypes[7]=a.exifTagTypes[1],a.getExifValue=function(b,c,d,e,f,g){var h,i,j,k,l,m,n=a.exifTagTypes[e];if(!n)return console.log("Invalid Exif data: Invalid tag type."),void 0;if(h=n.size*f,i=h>4?c+b.getUint32(d+8,g):d+8,i+h>b.byteLength)return console.log("Invalid Exif data: Invalid data offset."),void 0;if(1===f)return n.getValue(b,i,g);for(j=[],k=0;f>k;k+=1)j[k]=n.getValue(b,i+k*n.size,g);if(n.ascii){for(l="",k=0;k<j.length&&(m=j[k],"\x00"!==m);k+=1)l+=m;return l}return j},a.parseExifTag=function(b,c,d,e,f){var g=b.getUint16(d,e);f.exif[g]=a.getExifValue(b,c,d,b.getUint16(d+2,e),b.getUint32(d+4,e),e)},a.parseExifTags=function(a,b,c,d,e){var f,g,h;if(c+6>a.byteLength)return console.log("Invalid Exif data: Invalid directory offset."),void 0;if(f=a.getUint16(c,d),g=c+2+12*f,g+4>a.byteLength)return console.log("Invalid Exif data: Invalid directory size."),void 0;for(h=0;f>h;h+=1)this.parseExifTag(a,b,c+2+12*h,d,e);return a.getUint32(g,d)},a.parseExifData=function(b,c,d,e,f){if(!f.disableExif){var g,h,i,j=c+10;if(1165519206===b.getUint32(c+4)){if(j+8>b.byteLength)return console.log("Invalid Exif data: Invalid segment size."),void 0;if(0!==b.getUint16(c+8))return console.log("Invalid Exif data: Missing byte alignment offset."),void 0;switch(b.getUint16(j)){case 18761:g=!0;break;case 19789:g=!1;break;default:return console.log("Invalid Exif data: Invalid byte alignment marker."),void 0}if(42!==b.getUint16(j+2,g))return console.log("Invalid Exif data: Missing TIFF marker."),void 0;h=b.getUint32(j+4,g),e.exif=new a.ExifMap,h=a.parseExifTags(b,j,j+h,g,e),h&&!f.disableExifThumbnail&&(i={exif:{}},h=a.parseExifTags(b,j,j+h,g,i),i.exif[513]&&(e.exif.Thumbnail=a.getExifThumbnail(b,j+i.exif[513],i.exif[514]))),e.exif[34665]&&!f.disableExifSub&&a.parseExifTags(b,j,j+e.exif[34665],g,e),e.exif[34853]&&!f.disableExifGps&&a.parseExifTags(b,j,j+e.exif[34853],g,e)}}},a.metaDataParsers.jpeg[65505].push(a.parseExifData)}),function(a){"use strict";"function"==typeof define&&define.amd?define(["load-image","load-image-exif"],a):a(window.loadImage)}(function(a){"use strict";a.ExifMap.prototype.tags={256:"ImageWidth",257:"ImageHeight",34665:"ExifIFDPointer",34853:"GPSInfoIFDPointer",40965:"InteroperabilityIFDPointer",258:"BitsPerSample",259:"Compression",262:"PhotometricInterpretation",274:"Orientation",277:"SamplesPerPixel",284:"PlanarConfiguration",530:"YCbCrSubSampling",531:"YCbCrPositioning",282:"XResolution",283:"YResolution",296:"ResolutionUnit",273:"StripOffsets",278:"RowsPerStrip",279:"StripByteCounts",513:"JPEGInterchangeFormat",514:"JPEGInterchangeFormatLength",301:"TransferFunction",318:"WhitePoint",319:"PrimaryChromaticities",529:"YCbCrCoefficients",532:"ReferenceBlackWhite",306:"DateTime",270:"ImageDescription",271:"Make",272:"Model",305:"Software",315:"Artist",33432:"Copyright",36864:"ExifVersion",40960:"FlashpixVersion",40961:"ColorSpace",40962:"PixelXDimension",40963:"PixelYDimension",42240:"Gamma",37121:"ComponentsConfiguration",37122:"CompressedBitsPerPixel",37500:"MakerNote",37510:"UserComment",40964:"RelatedSoundFile",36867:"DateTimeOriginal",36868:"DateTimeDigitized",37520:"SubSecTime",37521:"SubSecTimeOriginal",37522:"SubSecTimeDigitized",33434:"ExposureTime",33437:"FNumber",34850:"ExposureProgram",34852:"SpectralSensitivity",34855:"PhotographicSensitivity",34856:"OECF",34864:"SensitivityType",34865:"StandardOutputSensitivity",34866:"RecommendedExposureIndex",34867:"ISOSpeed",34868:"ISOSpeedLatitudeyyy",34869:"ISOSpeedLatitudezzz",37377:"ShutterSpeedValue",37378:"ApertureValue",37379:"BrightnessValue",37380:"ExposureBias",37381:"MaxApertureValue",37382:"SubjectDistance",37383:"MeteringMode",37384:"LightSource",37385:"Flash",37396:"SubjectArea",37386:"FocalLength",41483:"FlashEnergy",41484:"SpatialFrequencyResponse",41486:"FocalPlaneXResolution",41487:"FocalPlaneYResolution",41488:"FocalPlaneResolutionUnit",41492:"SubjectLocation",41493:"ExposureIndex",41495:"SensingMethod",41728:"FileSource",41729:"SceneType",41730:"CFAPattern",41985:"CustomRendered",41986:"ExposureMode",41987:"WhiteBalance",41988:"DigitalZoomRatio",41989:"FocalLengthIn35mmFilm",41990:"SceneCaptureType",41991:"GainControl",41992:"Contrast",41993:"Saturation",41994:"Sharpness",41995:"DeviceSettingDescription",41996:"SubjectDistanceRange",42016:"ImageUniqueID",42032:"CameraOwnerName",42033:"BodySerialNumber",42034:"LensSpecification",42035:"LensMake",42036:"LensModel",42037:"LensSerialNumber",0:"GPSVersionID",1:"GPSLatitudeRef",2:"GPSLatitude",3:"GPSLongitudeRef",4:"GPSLongitude",5:"GPSAltitudeRef",6:"GPSAltitude",7:"GPSTimeStamp",8:"GPSSatellites",9:"GPSStatus",10:"GPSMeasureMode",11:"GPSDOP",12:"GPSSpeedRef",13:"GPSSpeed",14:"GPSTrackRef",15:"GPSTrack",16:"GPSImgDirectionRef",17:"GPSImgDirection",18:"GPSMapDatum",19:"GPSDestLatitudeRef",20:"GPSDestLatitude",21:"GPSDestLongitudeRef",22:"GPSDestLongitude",23:"GPSDestBearingRef",24:"GPSDestBearing",25:"GPSDestDistanceRef",26:"GPSDestDistance",27:"GPSProcessingMethod",28:"GPSAreaInformation",29:"GPSDateStamp",30:"GPSDifferential",31:"GPSHPositioningError"},a.ExifMap.prototype.stringValues={ExposureProgram:{0:"Undefined",1:"Manual",2:"Normal program",3:"Aperture priority",4:"Shutter priority",5:"Creative program",6:"Action program",7:"Portrait mode",8:"Landscape mode"},MeteringMode:{0:"Unknown",1:"Average",2:"CenterWeightedAverage",3:"Spot",4:"MultiSpot",5:"Pattern",6:"Partial",255:"Other"},LightSource:{0:"Unknown",1:"Daylight",2:"Fluorescent",3:"Tungsten (incandescent light)",4:"Flash",9:"Fine weather",10:"Cloudy weather",11:"Shade",12:"Daylight fluorescent (D 5700 - 7100K)",13:"Day white fluorescent (N 4600 - 5400K)",14:"Cool white fluorescent (W 3900 - 4500K)",15:"White fluorescent (WW 3200 - 3700K)",17:"Standard light A",18:"Standard light B",19:"Standard light C",20:"D55",21:"D65",22:"D75",23:"D50",24:"ISO studio tungsten",255:"Other"},Flash:{0:"Flash did not fire",1:"Flash fired",5:"Strobe return light not detected",7:"Strobe return light detected",9:"Flash fired, compulsory flash mode",13:"Flash fired, compulsory flash mode, return light not detected",15:"Flash fired, compulsory flash mode, return light detected",16:"Flash did not fire, compulsory flash mode",24:"Flash did not fire, auto mode",25:"Flash fired, auto mode",29:"Flash fired, auto mode, return light not detected",31:"Flash fired, auto mode, return light detected",32:"No flash function",65:"Flash fired, red-eye reduction mode",69:"Flash fired, red-eye reduction mode, return light not detected",71:"Flash fired, red-eye reduction mode, return light detected",73:"Flash fired, compulsory flash mode, red-eye reduction mode",77:"Flash fired, compulsory flash mode, red-eye reduction mode, return light not detected",79:"Flash fired, compulsory flash mode, red-eye reduction mode, return light detected",89:"Flash fired, auto mode, red-eye reduction mode",93:"Flash fired, auto mode, return light not detected, red-eye reduction mode",95:"Flash fired, auto mode, return light detected, red-eye reduction mode"},SensingMethod:{1:"Undefined",2:"One-chip color area sensor",3:"Two-chip color area sensor",4:"Three-chip color area sensor",5:"Color sequential area sensor",7:"Trilinear sensor",8:"Color sequential linear sensor"},SceneCaptureType:{0:"Standard",1:"Landscape",2:"Portrait",3:"Night scene"},SceneType:{1:"Directly photographed"},CustomRendered:{0:"Normal process",1:"Custom process"},WhiteBalance:{0:"Auto white balance",1:"Manual white balance"},GainControl:{0:"None",1:"Low gain up",2:"High gain up",3:"Low gain down",4:"High gain down"},Contrast:{0:"Normal",1:"Soft",2:"Hard"},Saturation:{0:"Normal",1:"Low saturation",2:"High saturation"},Sharpness:{0:"Normal",1:"Soft",2:"Hard"},SubjectDistanceRange:{0:"Unknown",1:"Macro",2:"Close view",3:"Distant view"},FileSource:{3:"DSC"},ComponentsConfiguration:{0:"",1:"Y",2:"Cb",3:"Cr",4:"R",5:"G",6:"B"},Orientation:{1:"top-left",2:"top-right",3:"bottom-right",4:"bottom-left",5:"left-top",6:"right-top",7:"right-bottom",8:"left-bottom"}},a.ExifMap.prototype.getText=function(a){var b=this.get(a);switch(a){case"LightSource":case"Flash":case"MeteringMode":case"ExposureProgram":case"SensingMethod":case"SceneCaptureType":case"SceneType":case"CustomRendered":case"WhiteBalance":case"GainControl":case"Contrast":case"Saturation":case"Sharpness":case"SubjectDistanceRange":case"FileSource":case"Orientation":return this.stringValues[a][b];case"ExifVersion":case"FlashpixVersion":return String.fromCharCode(b[0],b[1],b[2],b[3]);case"ComponentsConfiguration":return this.stringValues[a][b[0]]+this.stringValues[a][b[1]]+this.stringValues[a][b[2]]+this.stringValues[a][b[3]];case"GPSVersionID":return b[0]+"."+b[1]+"."+b[2]+"."+b[3]}return String(b)},function(a){var b,c=a.tags,d=a.map;for(b in c)c.hasOwnProperty(b)&&(d[c[b]]=b)}(a.ExifMap.prototype),a.ExifMap.prototype.getAll=function(){var a,b,c={};for(a in this)this.hasOwnProperty(a)&&(b=this.tags[a],b&&(c[b]=this.getText(b)));return c}});
