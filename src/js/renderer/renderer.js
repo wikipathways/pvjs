@@ -391,11 +391,35 @@ pathvisiojs.renderer = function(){
             fitAndCenterDiagramWithinViewport(viewport, containerWidth, containerHeight, data.image.width, data.image.height);
           }
 
+          var zoomInControl = d3.select('#zoom-in')
+          .on("click", function(d,i){
+            svgPanZoom.zoomIn();
+          });
+
           var resetPanZoomControl = d3.select('#reset-pan-zoom')
           .on("click", function(d,i){
             //svgPanZoom.resetZoom();
             fitAndCenterDiagramWithinViewport(viewport, containerWidth, containerHeight, data.image.width, data.image.height);
           });
+
+          var zoomOutControl = d3.select('#zoom-out')
+          .on("click", function(d,i){
+            svgPanZoom.zoomOut();
+          });
+
+          /*
+          //TODO get large screen view working
+          var fullscreen = d3.select('#full-screen-control')
+          .on("click", function(d,i){
+            var pvjs = document.getElementById("pathvisiojs-dev").innerHTML;
+            var newwin = window.open('','','width=800,height=600');
+            var doc = newwin.document;
+            doc.open();
+            doc.write(pvjs);
+            doc.close();	
+          });
+          //*/
+
           // end move into svg-pan-zoom
 
           svgPanZoom.init({
@@ -421,6 +445,7 @@ pathvisiojs.renderer = function(){
               svgInFocus = false;
             }
           });
+
           callback(null, svgSelection, data);
         }
         else {
