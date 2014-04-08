@@ -1,4 +1,4 @@
 node_modules/
 dist/
-demos/
+demos/lib/
 tmp/
