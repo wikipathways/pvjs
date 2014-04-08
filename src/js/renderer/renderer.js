@@ -333,7 +333,15 @@ pathvisiojs.renderer = function(){
       function(data, callback){
         if (renderableSourceDataElement.selectedViewMethod === 'svg') {
           var svgSelection = d3.select('#my-svg2');
-
+          pathvisiojs.renderer.infoBox.render(viewport, data);
+          callback(null, svgSelection, data);
+        }
+        else {
+          callback(null, null, data);
+        }
+      },
+      function(svgSelection, data, callback){
+        if (renderableSourceDataElement.selectedViewMethod === 'svg') {
           if (!!cssUri) {
             d3.text(cssUri, 'text/css', function(data) {
               var defs = svgSelection.select('defs');
