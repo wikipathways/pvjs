@@ -32,7 +32,6 @@ var pvjsSources = [
 ];
 
 // rarely used libraries (will concatenate with pvjs, because it's unlikely anyone will have them already cached)
-var rarelyUsedJsLibraries = [
   './lib/es5-shim/es5-sham.min.js',
   './lib/he/he.js',
   './lib/rgb-color/rgb-color.js',
