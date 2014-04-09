@@ -282,7 +282,8 @@ var developmentLoader = function() {
   }
 
   function generateHtmlTemplate(callback) {
-    d3.html(srcDirectoryUri + 'pathvisiojs.html', function(html) {
+    d3.html(srcDirectoryUri + 'pathvisiojs.html', function(docfrag) {
+      var html = docfrag.firstChild;
       pathvisioNS['src/pathvisiojs.html'] = serializeXmlToString(html);
       callback();
     });
