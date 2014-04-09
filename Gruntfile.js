@@ -93,6 +93,10 @@ grunt.initConfig({
             src:  pvjsCssSources,
             dest: distLibDir + 'pathvisiojs/css/pathvisiojs.css'
         },
+        he: { // can't minify this without producing errors
+            src:  [ './lib/he/he.js' ],
+            dest: distLibDir + 'he/js/he.js'
+        },
         d3WithAight: {
             src:  [ './lib/aight/aight.min.js', './lib/d3/d3.min.js', './lib/aight/aight.d3.min.js' ],
             dest: tmpDir + 'd3/js/d3-with-aight.js'
