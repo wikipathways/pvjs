@@ -195,7 +195,7 @@ pathvisiojs.renderer = function(){
         loadDiagramArgs.fitToContainer = fitToContainer;
         loadDiagramArgs.highlights = highlights;
 
-        if (renderableSourceDataElement.selectedViewMethod !== 'img') {
+        if (renderableSourceDataElement.selectedViewMethod !== 'img' && (!pathvisiojs.utilities.isIE() || (pathvisiojs.utilities.isIE() > 8))) {
           pathvisiojs.formatConverter.pvjson.get(renderableSourceDataElement, function(json) {
             pathvisiojs.context = json['@context'];
 
