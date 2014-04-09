@@ -61,7 +61,7 @@ pathvisiojs.formatConverter.gpml = {
     ];
     var graphicalElementsSelection = this.selectByMultipleTagNames(selectAllGraphicalElementsArgs);
     // graphIdStub is whatever follows 'id' at the beginning of the GraphId string
-    if (!!graphicalElementsSelection) {
+    if (!!graphicalElementsSelection[0][0]) {
       graphicalElementsSelection.filter(function(){
         return (!!d3.select(this).attr('GraphId'));
       }).each(function(){
@@ -85,7 +85,8 @@ pathvisiojs.formatConverter.gpml = {
         d3.select(this).attr('GraphId', 'id' + largestGraphIdStub);
       });
 
-      var groupsSelection = gpmlSelection.selectAll('Group').each(function(){
+      var groupsSelection = gpmlSelection.selectAll('Group');
+      groupsSelection.each(function(){
         groupSelection = d3.select(this);
         groupGraphicsSelection = groupSelection.append('Graphics')
         .attr('Align', 'Center')
@@ -115,10 +116,14 @@ pathvisiojs.formatConverter.gpml = {
         .attr('FillColor', 'B4B464');
       });
 
-      if (!!groupsSelection) {
+      //*
+      if (!!groupsSelection[0][0]) {
         groupsSelection.filter(function(){
-          return (!d3.select(this).select('Graphics').attr('ShapeType'));
-        }).each(function(){
+          var graphicsSelection = d3.select(this).select('Graphics');
+          console.log(this);
+          console.log(graphicsSelection.attr('ShapeType'));
+          return (!graphicsSelection.attr('ShapeType'));
+        }).each(function(d, i){
           d3.select(this).select('Graphics').attr('ShapeType', 'None');
           groupNoneSelection = d3.select(this);
           groupNoneGraphicsSelection = groupNoneSelection.select('Graphics')
@@ -130,6 +135,7 @@ pathvisiojs.formatConverter.gpml = {
           .attr('FillColor', 'B4B464');
         });
       }
+      //*/
 
       var groupComplexesSelection = gpmlSelection.selectAll('Group[Style=Complex]').each(function(){
         groupComplexSelection = d3.select(this);
@@ -163,9 +169,9 @@ pathvisiojs.formatConverter.gpml = {
         'State'
       ];
       var nodesSelection = this.selectByMultipleTagNames(selectAllNodesArgs);
-      if (!!nodesSelection) {
+      if (!!nodesSelection[0][0]) {
         var labelsSelection = gpmlSelection.selectAll('Label');
-        if (!!labelsSelection) {
+        if (!!labelsSelection[0][0]) {
           labelsSelection.filter(function(){
             return (!d3.select(this).select('Graphics').attr('ShapeType'));
           }).each(function(){
@@ -173,13 +179,13 @@ pathvisiojs.formatConverter.gpml = {
           });
           labelsSelection.filter(function(){
             return (!d3.select(this).select('Graphics').attr('FillColor'));
-          }).each(function(){
+          }).each(function(d, i){
             d3.select(this).select('Graphics').attr('FillColor', 'Transparent');
           });
         }
 
         var statesSelection = gpmlSelection.selectAll('State');
-        if (!!statesSelection) {
+        if (!!statesSelection[0][0]) {
           statesSelection.filter(function(){
             return (!d3.select(this).select('Graphics').attr('FillColor'));
           }).each(function(){
@@ -200,7 +206,7 @@ pathvisiojs.formatConverter.gpml = {
         }
 
         var shapesSelection = gpmlSelection.selectAll('Shape');
-        if (!!shapesSelection) {
+        if (!!shapesSelection[0][0]) {
           shapesSelection.filter(function(){
             return (!d3.select(this).select('Graphics').attr('FillColor'));
           }).each(function(){
@@ -215,7 +221,9 @@ pathvisiojs.formatConverter.gpml = {
 
           var cellularComponentsSelection = shapesSelection.selectAll('[Key="org.pathvisio.CellularComponentProperty"]').each(function(){
             cellularComponentValue = d3.select(this).attr('Value');
-            d3.select(this.parentElement).attr('CellularComponent', cellularComponentValue);
+            // IE11 doesn't like parentNode, but I think some other browsers don't support parentElement
+            var parent = this.parentElement || this.parentNode;
+            d3.select(parent).attr('CellularComponent', cellularComponentValue);
           });
         }
 
@@ -275,7 +283,8 @@ pathvisiojs.formatConverter.gpml = {
           triangleXCorrectionFactor = 0.311,
           triangleWidthCorrectionFactor = 0.938,
           triangleYScaleFactor = 0.868;
-        var trianglesSelection = shapesSelection.selectAll('[ShapeType="Triangle"]').each(function(){
+        var trianglesSelection = shapesSelection.selectAll('[ShapeType="Triangle"]');
+        trianglesSelection.each(function(){
           triangleSelection = d3.select(this);
           gpmlCenterX = parseFloat(triangleSelection.attr('CenterX'));
           gpmlCenterY = parseFloat(triangleSelection.attr('CenterY'));
@@ -318,7 +327,7 @@ pathvisiojs.formatConverter.gpml = {
 
         var dataNodeSelection, dataNodeType;
         var dataNodesSelection = gpmlSelection.selectAll('DataNode');
-        if (!!dataNodesSelection) {
+        if (!!dataNodesSelection[0][0]) {
           /*
           dataNodesSelection.each(function(){
             dataNodeSelection = d3.select(this);
@@ -339,7 +348,9 @@ pathvisiojs.formatConverter.gpml = {
 
       // This applies to both nodes and edges
       var doubleLinesSelection = gpmlSelection.selectAll('[Key="org.pathvisio.DoubleLineProperty"]').each(function(){
-        d3.select(this.parentElement).select('Graphics').attr('LineStyle', 'Double');
+        // IE11 doesn't like parentNode, but I think some other browsers don't support parentElement
+        var parent = this.parentElement || this.parentNode;
+        d3.select(parent).select('Graphics').attr('LineStyle', 'Double');
       });
 
       var selectAllEdgesArgs = {};
@@ -355,18 +366,22 @@ pathvisiojs.formatConverter.gpml = {
           d3.select(this).select('Graphics').attr('FillColor', 'Transparent');
         });
         edgesSelection.filter(function(){
-          return (!d3.select(this).select('Graphics').attr('ConnectorType'));
-        }).each(function(){
+          var graphicsSelection = d3.select(this).select('Graphics');
+          return (!graphicsSelection.attr('ConnectorType'));
+        }).each(function(d, i){
           d3.select(this).select('Graphics').attr('ConnectorType', 'Straight');
         });
         edgesSelection.filter(function(){
           return (!d3.select(this).select('Graphics').attr('Color'));
-        }).each(function(){
+        }).each(function(d, i){
           d3.select(this).select('Graphics').attr('Color', '000000');
         });
 
-        var anchorsSelection = gpmlSelection.selectAll('Anchor').each(function(){
-          var parentGraphicsSelection = d3.select(this.parentElement);
+        var anchorsSelection = gpmlSelection.selectAll('Anchor');
+        anchorsSelection.each(function(d, i){
+          // IE11 doesn't like parentNode, but I think some other browsers don't support parentElement
+          var parent = this.parentElement || this.parentNode;
+          var parentGraphicsSelection = d3.select(parent);
           var anchorSelection = d3.select(this);
           var graphics = anchorSelection.append('Graphics');
 
@@ -382,17 +397,27 @@ pathvisiojs.formatConverter.gpml = {
           graphics.attr('FillColor', parentGraphicsSelection.attr('Color'));
           // In a future version of GPML, we could improve rendering speed if we included the cached X and Y values for Anchors, just like we currently do for Points.
         });
-        if (!!anchorsSelection) {
+        if (!!anchorsSelection[0][0]) {
           anchorsSelection.filter(function(){
-            return (d3.select(this).select('Graphics').attr('ShapeType') === 'Circle');
-          }).each(function(){
+            var graphicsSelection = d3.select(this).select('Graphics');
+            var result = false;
+            if (!!graphicsSelection[0][0]) {
+              result = graphicsSelection.attr('ShapeType') === 'Circle';
+            }
+            return result;
+          }).each(function(d, i){
             d3.select(this).select('Graphics').attr('ShapeType', 'Ellipse');
             d3.select(this).select('Graphics').attr('Width', 8);
             d3.select(this).select('Graphics').attr('Height', 8);
           });
           anchorsSelection.filter(function(){
-            return (d3.select(this).select('Graphics').attr('ShapeType') === 'None');
-          }).each(function(){
+            var graphicsSelection = d3.select(this).select('Graphics');
+            var result = false;
+            if (!!graphicsSelection[0][0]) {
+              result = graphicsSelection.attr('ShapeType') === 'None';
+            }
+            return result;
+          }).each(function(d, i){
             d3.select(this).select('Graphics').attr('Width', 4);
             d3.select(this).select('Graphics').attr('Height', 4);
           });
