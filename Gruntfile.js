@@ -305,8 +305,12 @@ transform: ['coffeeify']
   grunt.registerTask('build', ['sync', 'str2js', 'clean:build', 'git-describe', 'jshint:beforeconcat', 'concat', 'uglify', 'clean:demoLibs', 'copy', 'buildcontrol:pages']);
   //grunt.registerTask('build', ['sync', 'str2js', 'clean:build', 'git-describe', 'jshint:beforeconcat', 'concat', 'jshint:afterconcat', 'uglify', 'clean:demoLibs', 'copy']);
 
+  // update just the pathvisiojs build, not the libraries
+  //grunt.registerTask('build-pv', ['sync', 'str2js', 'git-describe', 'jshint:beforeconcat', 'concat:pathvisiojsJs', 'concat:pathvisiojsDistCss', 'uglify:pathvisiojs', 'copy', 'buildcontrol:pages']);
+  grunt.registerTask('build-pv', ['sync', 'str2js', 'git-describe', 'jshint:beforeconcat', 'concat:pathvisiojsJs', 'concat:pathvisiojsDistCss', 'uglify:pathvisiojs', 'copy']);
+
   // quick-build 
-  grunt.registerTask('quick-build', ['sync', 'str2js', 'clean:build', 'git-describe', 'concat', 'uglify', 'clean:demoLibs', 'copy']);
+  grunt.registerTask('quick-build', ['sync', 'str2js', 'git-describe', 'concat', 'uglify', 'copy']);
 
   // test
   grunt.registerTask('test-min', 'Run local tests for development', function(val) {
