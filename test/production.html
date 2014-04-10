@@ -11,10 +11,14 @@
 
     <!--[if lt IE 9]>
     <script>
+
+      // pvjs won't run on IE8 and earlier
+      var pathvisiojs = {};
+      pathvisiojs.init = {};
+
       // IE8 only allows console.log when Developer Tools is open. This will prevent errors
       // from showing up if I use console.log without DevTools being open.
       // from http://stackoverflow.com/questions/3326650/console-is-undefined-error-for-internet-explorer
-
       /**
        * Protect window.console method calls, e.g. console is not defined on IE
        * unless dev tools are open, and IE doesn't define console.debug
@@ -53,42 +57,46 @@
     <script src="./compare.js"></script>
 
     <script>
-      var Modernizr = Modernizr || {};
-      var pathvisiojsInstance1;
-      async.waterfall([
-        function(callback) {
-          developmentLoader.parseUriParams(function(parsedInputData) {
-            callback(null, parsedInputData);
-          });
-        },    
-        function(parsedInputData, callback) {
-          /* *******************
-          /* Load pathvisiojs
-          /* *******************/
+    window.addEventListener('load',
+      function() {
+        var Modernizr = Modernizr || {};
+        var pathvisiojsInstance1;
+        async.waterfall([
+          function(callback) {
+            developmentLoader.parseUriParams(function(parsedInputData) {
+              callback(null, parsedInputData);
+            });
+          },    
+          function(parsedInputData, callback) {
+            /* *******************
+            /* Load pathvisiojs
+            /* *******************/
 
-          pathvisiojsInstance1 = Object.create(pathvisiojs);
-          pathvisiojsInstance1.load({
-            container: '#production-container', //as of now, this can only be a CSS selector: http://www.w3.org/TR/CSS2/selector.html
-            fitToContainer:true, //A fitToContainer value of false means that the diagram should be the size specified by the diagram creator, without any scaling (full size as per GPML width and height). A value of true means that diagram should be scaled down, if required, to fit entirely within the element specified by the container selector, while preserving aspect ratio. 
-            sourceData:parsedInputData.sourceData, //at least one element required
-            //cssUri: srcDirectoryUri + 'css/pathway-diagram.css',
-            //customMarkers: customMarkers,
-            //customSymbols: customSymbols,
-            bridgedbLinkOutsUriStub: 'http://pointer.ucsf.edu/d3/r/data-sources/bridgedb/bridgedb.php/', // optional
-            bridgedbDatasources: 'http://pointer.ucsf.edu/d3/r/data-sources/bridgedb-datasources.php', // optional
-            diagramLoadingIconUri: 'http://www.wikipathways.org/wpi/extensions/PathwayViewer/img/loading.gif', // optional
-            diagramNotAvailableIconUri: 'http://www.wikipathways.org/wpi/extensions/PathwayViewer/img/imageNotAvailable.jpg', // optional
-            imgDiagramUriStub: 'http://www.wikipathways.org/wpi.php?action=downloadFile&type=png&pwTitle=Pathway:', // optional
-            pathwaySearchUriStub: 'http://wikipathways.org//index.php?title=Special:SearchPathways&doSearch=1&query=', // optional
-            highlights: parsedInputData.highlights, //optional
-            hiddenElements: [
-              'find',
-              'wikipathways-link'
-            ]
-          });
-          callback(null);
-        }    
-      ]);
+            pathvisiojsInstance1 = Object.create(pathvisiojs);
+            pathvisiojsInstance1.load({
+              container: '#production-container', //as of now, this can only be a CSS selector: http://www.w3.org/TR/CSS2/selector.html
+              fitToContainer:true, //A fitToContainer value of false means that the diagram should be the size specified by the diagram creator, without any scaling (full size as per GPML width and height). A value of true means that diagram should be scaled down, if required, to fit entirely within the element specified by the container selector, while preserving aspect ratio. 
+              sourceData:parsedInputData.sourceData, //at least one element required
+              //cssUri: srcDirectoryUri + 'css/pathway-diagram.css',
+              //customMarkers: customMarkers,
+              //customSymbols: customSymbols,
+              bridgedbLinkOutsUriStub: 'http://pointer.ucsf.edu/d3/r/data-sources/bridgedb/bridgedb.php/', // optional
+              bridgedbDatasources: 'http://pointer.ucsf.edu/d3/r/data-sources/bridgedb-datasources.php', // optional
+              diagramLoadingIconUri: 'http://www.wikipathways.org/wpi/extensions/PathwayViewer/img/loading.gif', // optional
+              diagramNotAvailableIconUri: 'http://www.wikipathways.org/wpi/extensions/PathwayViewer/img/imageNotAvailable.jpg', // optional
+              imgDiagramUriStub: 'http://www.wikipathways.org/wpi.php?action=downloadFile&type=png&pwTitle=Pathway:', // optional
+              pathwaySearchUriStub: 'http://wikipathways.org//index.php?title=Special:SearchPathways&doSearch=1&query=', // optional
+              highlights: parsedInputData.highlights, //optional
+              hiddenElements: [
+                'find',
+                'wikipathways-link'
+              ]
+            });
+            callback(null);
+          }    
+        ]);
+      });
+    }, false);
     </script>
   </body>
 </html>

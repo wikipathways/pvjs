@@ -305,51 +305,20 @@ pathvisiojs.formatConverter.gpml = {
           var correctedHeight = gpmlHeight * triangleHeightCorrectionFactor;
 
           var gpmlRotation = triangleSelection.attr('Rotation') || 0;
-          console.log('gpmlRotation');
-          console.log(gpmlRotation / Math.PI + 'Pi radians');
-          console.log(gpmlRotation * 180 / Math.PI + ' degrees');
           // Remember that GPML saves rotation in radians, even though PathVisio-Java displays rotation in degrees.
           // This conversion changes the rotation to reflect the angle between the green rotation control dot in PathVisio-Java and the X-axis.
           var angleToControlPoint = 2 * Math.PI - gpmlRotation;
-          console.log('angleToControlPoint');
-          console.log(angleToControlPoint / Math.PI + 'Pi radians');
-          console.log(angleToControlPoint * 180 / Math.PI + ' degrees');
           var triangleXCorrectionAccountingForRotation = triangleXCorrectionFactor * Math.cos(angleToControlPoint) * gpmlWidth + triangleYCorrectionFactor * Math.sin(angleToControlPoint) * gpmlHeight;
-          console.log('triangleXCorrectionAccountingForRotation');
-          console.log(triangleXCorrectionAccountingForRotation);
 
           /*
-          console.log('gpmlCenterX');
-          console.log(gpmlCenterX);
-          console.log('gpmlWidth');
-          console.log(gpmlWidth);
           var leftSideOfBBox = (gpmlCenterX - gpmlWidth/2);
-          console.log('leftSideOfBBox');
-          console.log(leftSideOfBBox);
-
           var leftSideOfTriangle = (gpmlCenterX + triangleXCorrectionFactor * gpmlWidth - gpmlWidth/2);
-          console.log('leftSideOfTriangle');
-          console.log(leftSideOfTriangle);
-
           var rightSideOfBBox = (gpmlCenterX + gpmlWidth/2);
-          console.log('rightSideOfBBox');
-          console.log(rightSideOfBBox);
-
           var rightSideOfTriangle = (gpmlCenterX + triangleXCorrectionFactor * gpmlWidth) + correctedWidth;
-          console.log('rightSideOfTriangle');
-          console.log(rightSideOfTriangle);
           //*/
 
           var distanceTriangleTipExtendsBeyondBBox = ((gpmlCenterX + triangleXCorrectionFactor * gpmlWidth - gpmlWidth/2) + correctedWidth) - (gpmlCenterX + gpmlWidth/2);
-          /*
-          console.log('distanceTriangleTipExtendsBeyondBBox');
-          console.log(distanceTriangleTipExtendsBeyondBBox);
-          //*/
           var triangleYCorrection = (-1) * distanceTriangleTipExtendsBeyondBBox * Math.sin(angleToControlPoint) + triangleYCorrectionFactor * Math.cos(angleToControlPoint) * gpmlHeight;
-          //*
-          console.log('triangleYCorrection');
-          console.log(triangleYCorrection);
-          //*/
 
 
           var correctedX = uncorrectedX + triangleXCorrectionAccountingForRotation;
