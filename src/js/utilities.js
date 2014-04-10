@@ -1,34 +1,33 @@
-pathvisiojs.utilities = function(){
-  //'use strict';
-
-  // from here: http://www.cjboco.com/blog.cfm/post/determining-an-elements-width-and-height-using-javascript/
-  // TODO have not tested x-browser yet.
-  // could use jquery, but I want to remove it as a dependency for pv.js.
-  Element.prototype.getElementWidth = function() {
-    if (typeof this.clip !== "undefined") {
-      return this.clip.width;
+// from here: http://www.cjboco.com/blog.cfm/post/determining-an-elements-width-and-height-using-javascript/
+// TODO have not tested x-browser yet.
+// could use jquery, but I want to remove it as a dependency for pv.js.
+Element.prototype.getElementWidth = function() {
+  if (typeof this.clip !== "undefined") {
+    return this.clip.width;
+  } else {
+    if (this.style.pixelWidth) {
+      return this.style.pixelWidth;
     } else {
-      if (this.style.pixelWidth) {
-        return this.style.pixelWidth;
-      } else {
-        return this.width;
-      }
+      return this.width;
     }
-  };
+  }
+};
 
-  Element.prototype.getElementHeight = function() {
-    if (typeof this.clip !== "undefined") {
-      return this.clip.width;
+Element.prototype.getElementHeight = function() {
+  if (typeof this.clip !== "undefined") {
+    return this.clip.width;
+  } else {
+    if (this.style.pixelHeight) {
+      return this.style.pixelHeight;
     } else {
-      if (this.style.pixelHeight) {
-        return this.style.pixelHeight;
-      } else {
-        return this.height;
-      }
+      return this.height;
     }
-  };
+  }
+};
 
-  function collect() {
+
+pathvisiojs.utilities = {
+  collect: function() {
     // from http://stackoverflow.com/questions/2454295/javascript-concatenate-properties-from-multiple-objects-associative-array
     var ret = {};
     var len = arguments.length;
@@ -40,9 +39,8 @@ pathvisiojs.utilities = function(){
       }
     }
     return ret;
-  }
-
-  function clone(src) {
+  },
+  clone: function(src) {
     function mixin(dest, source, copyFunc) {
       var name, s, i, empty = {};
       for(name in source){
@@ -79,7 +77,7 @@ pathvisiojs.utilities = function(){
       r = [];
       for(i = 0, l = src.length; i < l; ++i){
         if(i in src){
-          r.push(clone(src[i]));
+          r.push(this.clone(src[i]));
         }
       }
       // we don't clone functions for performance reasons
@@ -90,40 +88,37 @@ pathvisiojs.utilities = function(){
       // generic objects
       r = src.constructor ? new src.constructor() : {};
     }
-    return mixin(r, src, clone);
+    return mixin(r, src, this.clone);
 
-  }
-
+  },
   // this both clones a node and inserts it at the same level of the DOM
   // as the element it was cloned from.
   // it returns a d3 selection of the cloned element
-  function cloneNode(selector) {
+  cloneNode: function(selector) {
     var node = d3.select(selector).node();
     return d3.select(node.parentNode.insertBefore(node.cloneNode(true), node.nextSibling));
-  }
-
-  function convertToArray(object) {
+  },
+  convertToArray: function(object) {
     var array = null;
-    if (getObjectType( object ) === 'Object' ) {
+    if (this.getObjectType( object ) === 'Object' ) {
       array = [];
       array.push(object);
       return array;
     }
     else {
-      if( getObjectType( object ) === 'Array' ) {
+      if( this.getObjectType( object ) === 'Array' ) {
         return object;
       }
       else {
-        if( getObjectType( object ) === 'String' ) {
+        if( this.getObjectType( object ) === 'String' ) {
           array = [];
           array.push(object);
           return array;
         }
       }
     }
-  }
-
-  function getObjectType(object) {
+  },
+  getObjectType: function(object) {
     var result;
     if (Object.prototype.toString.call( object ) === '[object Object]' ) {
       result = 'Object';
@@ -139,9 +134,8 @@ pathvisiojs.utilities = function(){
       }
     }
     return result;
-  }
-
-  function getTextDirection(text) {
+  },
+  getTextDirection: function(text) {
     /**
      * From http://stackoverflow.com/questions/7770235/change-text-direction-of-textbox-automatically
      * What about Chinese characters that go top to bottom?
@@ -161,9 +155,8 @@ pathvisiojs.utilities = function(){
     }
 
     return direction;
-  }
-
-  function getUriParam(name) {
+  },
+  getUriParam: function(name) {
     // Thanks to http://stackoverflow.com/questions/11582512/how-to-get-uri-parameters-with-javascript
     // This will be replaced once we get the backend php to get the json
     var parameter = decodeURIComponent((new RegExp('[?|&]' + name + '=' + '([^&;]+?)(&|#|;|$)').exec(location.search)||[,""])[1].replace(/\+/g, '%20'))||null;
@@ -174,9 +167,9 @@ pathvisiojs.utilities = function(){
       console.warn('Warning: URL parameter "' + name + '" is null.');
       return null;
     }
-  }
+  },
 
- function getWindowDimensions(object) {
+ getWindowDimensions: function(object) {
     var winW = 630, winH = 460;
     if (document.body && document.body.width) {
      winW = document.body.width;
@@ -193,9 +186,8 @@ pathvisiojs.utilities = function(){
      winH = window.innerHeight;
     }
     return {'width':winW, 'height':winH};
-  }
-
-  function intersect(a, b) {
+  },
+  intersect: function(a, b) {
     // modified version of https://github.com/juliangruber/intersect/blob/master/index.js
     var res = [];
     for (var i = 0; i < a.length; i++) {
@@ -204,40 +196,34 @@ pathvisiojs.utilities = function(){
       }
     }
     return res;
-  }
-
-  function isIE() {
+  },
+  isIE: function() {
     var myNav = navigator.userAgent.toLowerCase();
     return (myNav.indexOf('msie') != -1) ? parseInt(myNav.split('msie')[1], 10) : false;
-  }
-
-  function isUri(str) {
+  },
+  isUri: function(str) {
     // from https://gist.github.com/samuelcole/920312
     var uriPattern = /(?:(?=[\s`!()\[\]{};:'".,<>?«»“”‘’])|\b)((?:[a-z][\w-]+:(?:\/{1,3}|[a-z0-9%])|www\d{0,3}[.]|[a-z0-9.\-]+[.][a-z]{2,4}\/|[a-z0-9.\-]+[.](?:com|org|net))(?:[^\s()<>]+|\(([^\s()<>]+|(\([^\s()<>]+\)))*\))*(?:\(([^\s()<>]+|(\([^\s()<>]+\)))*\)|[^\s`!()\[\]{};:'".,<>?«»“”‘’]|\b))/gi;
     return uriPattern.test(str);
-  }
-
+  },
   // see http://stackoverflow.com/questions/18082/validate-numbers-in-javascript-isnumeric
-  function isNumber(n) {
+  isNumber: function(n) {
     return !isNaN(parseFloat(n)) && isFinite(n);
-  }
-
-  var isOdd = function(num) {
+  },
+  isOdd: function(num) {
     return num % 2;
-  };
-
-  function isWikiPathwaysId(data) {
+  },
+  isWikiPathwaysId: function(data) {
     data = data.trim();
-    if (data.substr(0,2).toUpperCase() === 'WP' && isNumber(data.substr(data.length - 1))) {
+    if (data.substr(0,2).toUpperCase() === 'WP' && this.isNumber(data.substr(data.length - 1))) {
       return true;
     }
     else {
       return false;
     }
-  }
-
+  },
   // TODO should we use requirejs for loading scripts instead?
-  function loadScripts(array, callback){
+  loadScripts: function(array, callback){
     var loader = function(src,handler){
       var script = document.createElement('script');
       script.src = src;
@@ -255,15 +241,14 @@ pathvisiojs.utilities = function(){
     };
     (function(){
       if (array.length !== 0){
-        loader(array.shift(),arguments.callee);
+        loader(array.shift(), this.loadScripts);
       }
       else{
         callback();
       }
     })();
-  }
-
-  function moveArrayItem(arr, old_index, new_index) {
+  },
+  moveArrayItem: function(arr, old_index, new_index) {
     // from http://stackoverflow.com/questions/5306680/move-an-array-element-from-one-array-position-to-another
     if (new_index >= arr.length) {
       var k = new_index - arr.length;
@@ -273,37 +258,14 @@ pathvisiojs.utilities = function(){
     }
     arr.splice(new_index, 0, arr.splice(old_index, 1)[0]);
     return arr; // for testing purposes
-  }
-
-  function splitStringByNewLine(str) {
+  },
+  splitStringByNewLine: function(str) {
     // PathVisio (Java) uses '&#xA;' for indicating newline, and browsers convert this into '\r\n' or '\n' in JavaScript.
     return str.split(/\r\n|\r|\n/g);
-  }
-
-  function strToHtmlId(str) {
+  },
+  strToHtmlId: function(str) {
     var re = /\W/gi;
     var id = str.replace(re, "");
     return id;
   }
-
-  return{
-    clone:clone,
-    cloneNode:cloneNode,
-    collect:collect,
-    convertToArray:convertToArray,
-    getObjectType:getObjectType,
-    getTextDirection:getTextDirection,
-    getUriParam:getUriParam,
-    getWindowDimensions:getWindowDimensions,
-    isIE:isIE,
-    intersect:intersect,
-    isNumber:isNumber,
-    isOdd:isOdd,
-    isUri:isUri,
-    isWikiPathwaysId:isWikiPathwaysId,
-    loadScripts:loadScripts,
-    moveArrayItem:moveArrayItem,
-    splitStringByNewLine:splitStringByNewLine,
-    strToHtmlId:strToHtmlId
-  };
-}();
+};
