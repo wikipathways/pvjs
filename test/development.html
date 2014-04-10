@@ -74,8 +74,9 @@
     <script src="./compare.js"></script>
 
     <script>
-      var pathvisiojsDemo;
-      window.onload = function() {
+    window.addEventListener('load',
+      function() {
+        var pathvisiojsDemo;
         async.waterfall([
           function(callback) {
             developmentLoader.preload(function(parsedInputData) {
@@ -262,7 +263,7 @@
         function(err) {
           console.log('successfully loaded.');
         });
-      }
+    }, false);
     </script>
   </body>
 </html>
