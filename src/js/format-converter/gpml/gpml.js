@@ -712,6 +712,7 @@ pathvisiojs.formatConverter.gpml = {
   },
 
   toPvjson: function(gpml, pathwayIri, callbackOutside){
+    var response = {};
     var gpmlSelection = this.addIsContainedByAttribute(this.makeExplicit(d3.select(gpml)));
     //var gpmlSelection = d3.select(gpml).select('Pathway');
 
@@ -739,7 +740,9 @@ pathvisiojs.formatConverter.gpml = {
         // TODO call the Java RPC updater or in some other way call for the file to be updated.
 
         console.warn('GPML namespace is not one pathvisiojs can handle.');
-        callbackOutside('fail');
+        response.success = false;
+        response.message = 'GPML namespace is not one pathvisiojs can handle.';
+        utside(response);
         //alert('Pathvisiojs may not fully support the version of GPML provided (xmlns: ' + pathway.xmlns + '). Please convert to the supported version of GPML (xmlns: ' + pathvisiojs.formatConverter.gpml.namespaces[0] + ').');
       }
       else {
@@ -1223,7 +1226,9 @@ pathvisiojs.formatConverter.gpml = {
         //*/
 
         //self.myPathway = pathway;
-        callbackOutside(pathway);
+        response.success = true;
+        response.data = pathway;
+        callbackOutside(response);
       });
     }
 /*
