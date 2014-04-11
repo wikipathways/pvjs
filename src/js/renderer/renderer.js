@@ -111,11 +111,8 @@ pathvisiojs.renderer = function(){
     callback(diagramContainer);
   }
 
-  function load(args) {
+  function load(args, callbackOutside) {
     // this function gets a reference to a GPML file and draws a visual representation of the pathway
-    // TODO Much of the SVG creation code should be moved to ./svg/svg.js so we just call
-    // pathvisiojs.renderer.svg.load() in the same way as we do for
-    // pathvisiojs.renderer.img.load()
 
     // ********************************************
     // Check for minimum required set of parameters
@@ -137,8 +134,17 @@ pathvisiojs.renderer = function(){
       diagramContainer,
       renderableSourceDataElement;
 
-    if (!sourceData[0].uri) {
-      throw new Error('No sourceData uri specified.');
+    callbackOutside = pathvisiojs.renderer.load;
+    var sourceDataIsValid = false;
+    if (!!sourceData) {
+      if (sourceData.length > 0) {
+        if (!!sourceData[0].uri) {
+          sourceDataIsValid = true;
+        }
+      }
+    }
+    if (!sourceDataIsValid) {
+      throw new Error('No valid source data specified.');
     }
 
     if (!userSpecifiedContainerSelector) {
@@ -195,16 +201,22 @@ pathvisiojs.renderer = function(){
         loadDiagramArgs.fitToContainer = fitToContainer;
         loadDiagramArgs.highlights = highlights;
 
+        // TODO refactor this to be more generalizable for other data formats
         if (renderableSourceDataElement.selectedViewMethod !== 'img') {
         //if (renderableSourceDataElement.selectedViewMethod !== 'img' && (!pathvisiojs.utilities.isIE() || (pathvisiojs.utilities.isIE() > 8))) {
-          pathvisiojs.formatConverter.pvjson.get(renderableSourceDataElement, function(json) {
-            pathvisiojs.context = json['@context'];
+          pathvisiojs.formatConverter.pvjson.get(renderableSourceDataElement, function(response) {
 
-            if (!json || json === 'fail') {
-              callback(null);
-              throw new Error("Could not convert input source data to pathvisioJsJson.");
+            if (!response.success) {
+              var indexOfUnconvertableSourceDataElement = sourceData.indexOf(renderableSourceDataElement);
+              args.sourceData = sourceData.slice(indexOfUnconvertableSourceDataElement);
+              callbackOutside(args);
+              //callbackOutside(null);
+              //throw new Error("Could not convert input source data to pvjson.");
             }
 
+            var json = response.data;
+
+            pathvisiojs.context = json['@context'];
             pathway = json;
             self.myPathway = json;
             var crossPlatformShapesInstance1 = Object.create(crossPlatformShapes);

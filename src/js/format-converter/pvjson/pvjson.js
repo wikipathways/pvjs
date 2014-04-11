@@ -21,15 +21,15 @@ pathvisiojs.formatConverter.pvjson = function(){
 
     if (fileType === 'gpml') {
       pathvisiojs.formatConverter.gpml.get(renderableSourceDataElement, function(gpml) {
-        pathvisiojs.formatConverter.gpml.toPvjson(gpml, uri, function(json) {
-          console.log('json');
-          console.log(json);
-          callback(json);
+        pathvisiojs.formatConverter.gpml.toPvjson(gpml, uri, function(response) {
+          console.log('pvjson');
+          console.log(response.data);
+          callback(response);
         });
       });
     }
     else {
-      throw new Error('Cannot get jGpml from the specified input.');
+      throw new Error('Cannot get pvjson from the specified input.');
     }
 
     // This is just an experiment with using mongodb for caching json,
