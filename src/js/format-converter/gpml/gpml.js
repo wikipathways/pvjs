@@ -742,7 +742,7 @@ pathvisiojs.formatConverter.gpml = {
         console.warn('GPML namespace is not one pathvisiojs can handle.');
         response.success = false;
         response.message = 'GPML namespace is not one pathvisiojs can handle.';
-        utside(response);
+        callbackOutside(response);
         //alert('Pathvisiojs may not fully support the version of GPML provided (xmlns: ' + pathway.xmlns + '). Please convert to the supported version of GPML (xmlns: ' + pathvisiojs.formatConverter.gpml.namespaces[0] + ').');
       }
       else {
