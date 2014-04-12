@@ -526,6 +526,8 @@ pathvisiojs.renderer = function(){
           loadDiagramArgs.fitToContainer = fitToContainer;
           loadDiagramArgs.highlights = highlights;
 
+          diagramContainer.select('#typeahead').remove();
+          diagramContainer.select('#pan-zoom-control').remove();
           pathvisiojs.renderer.img.load(loadDiagramArgs, function(diagram) {
             callback(null, null);
           });
