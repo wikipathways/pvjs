@@ -450,17 +450,9 @@ pathvisiojs.renderer = function(){
                 style.text(cssData);
               }
 
-
-
               // TODO move this into svg-pan-zoom
               var viewport = svgSelection.select('#viewport');
 
-              /* not all containers will have a width or height style attribute. this is now done using the same logic
-               * but uses boundingClientRect() instead. the code is located in pathway-diagram.js
-              var container = d3.select('body').select('#diagram-container');
-              var containerWidth = parseInt(container.style("width")) - 40; //account for space for pan/zoom controls
-              var containerHeight = parseInt(container.style("height")) -20; //account for space for search field
-              //*/
               var fitScreenScale;
               if (fitToContainer) {
                 fitAndCenterDiagramWithinViewport(viewport, containerWidth, containerHeight, diagramData.image.width, diagramData.image.height);
@@ -520,8 +512,6 @@ pathvisiojs.renderer = function(){
                   svgInFocus = false;
                 }
               });
-
-
 
               callback(null, svgSelection);
             }
