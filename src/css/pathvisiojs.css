@@ -7,7 +7,7 @@
   height: inherit;
   min-height: inherit;
   max-height: inherit;
-  position: relative;
+  position: absolute;
 }
 
 .navigator .highlight{
@@ -129,12 +129,11 @@
   height: inherit;
   min-height: inherit;
   max-height: inherit;
-  position: absolute; 
   display: table-cell;
   vertical-align: middle
 }
 
-#diagram-container > * {
+#loading-icon {
   display: block;
   margin-left: auto;
   margin-right: auto
