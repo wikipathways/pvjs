@@ -320,7 +320,6 @@ pathvisiojs.formatConverter.gpml = {
           var distanceTriangleTipExtendsBeyondBBox = ((gpmlCenterX + triangleXCorrectionFactor * gpmlWidth - gpmlWidth/2) + correctedWidth) - (gpmlCenterX + gpmlWidth/2);
           var triangleYCorrection = (-1) * distanceTriangleTipExtendsBeyondBBox * Math.sin(angleToControlPoint) + triangleYCorrectionFactor * Math.cos(angleToControlPoint) * gpmlHeight;
 
-
           var correctedX = uncorrectedX + triangleXCorrectionAccountingForRotation;
           var correctedY = uncorrectedY + triangleYCorrection;
 
@@ -333,9 +332,29 @@ pathvisiojs.formatConverter.gpml = {
         var arcSelection;
         var arcsSelection = shapesSelection.selectAll('[ShapeType="Arc"]').each(function(){
           arcSelection = d3.select(this);
-          gpmlHeight = parseFloat(arcSelection.attr('Height'));
+
+          var gpmlHeight = parseFloat(arcSelection.attr('Height'));
+          var gpmlWidth = parseFloat(arcSelection.attr('Width'));
+          var correctedHeight = gpmlHeight / 2;
+
+          // TODO refactor this code to be DRY (repeated above)
+          var gpmlRotation = arcSelection.attr('Rotation') || 0;
+          // Remember that GPML saves rotation in radians, even though PathVisio-Java displays rotation in degrees.
+          // This conversion changes the rotation to reflect the angle between the green rotation control dot in PathVisio-Java and the X-axis.
+          var angleToControlPoint = 2 * Math.PI - gpmlRotation;
+
+          gpmlCenterX = parseFloat(arcSelection.attr('CenterX'));
           gpmlCenterY = parseFloat(arcSelection.attr('CenterY'));
-          arcSelection.attr('CenterY', gpmlCenterY + gpmlHeight / 2);
+          var x = gpmlCenterX - gpmlWidth / 2;
+          var y = gpmlCenterY - gpmlHeight / 2;
+
+          var correctedX = x + correctedHeight * Math.sin(angleToControlPoint);
+          var correctedY = y + correctedHeight * Math.cos(angleToControlPoint);
+
+          var correctedCenterX = correctedX + gpmlWidth / 2;
+          var correctedCenterY = correctedY + correctedHeight;
+          arcSelection.attr('CenterX', correctedCenterX)
+          .attr('CenterY', correctedCenterY);
         });
         var pentagonSelection,
           pentagonXScaleFactor = 0.904,

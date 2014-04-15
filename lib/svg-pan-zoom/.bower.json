@@ -1,6 +1,6 @@
 {
   "name": "svg-pan-zoom",
-  "version": "1.3.5",
+  "version": "1.3.7",
   "homepage": "https://github.com/ariutta/svg-pan-zoom",
   "authors": [
     "Andrea Leofreddi <a.leofreddi@itcharm.com>",
@@ -24,11 +24,11 @@
     "test",
     "tests"
   ],
-  "_release": "1.3.5",
+  "_release": "1.3.7",
   "_resolution": {
     "type": "version",
-    "tag": "v1.3.5",
-    "commit": "783943412a8fc6e9ae096a8346026aa540bd537d"
+    "tag": "1.3.7",
+    "commit": "66524f608333a70d52c4ecea34ca1bb1b02aef71"
   },
   "_source": "git://github.com/ariutta/svg-pan-zoom.git",
   "_target": "*",
