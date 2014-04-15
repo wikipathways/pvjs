@@ -51,6 +51,24 @@ pathvisiojs.renderer.highlighter = {
       }
     });
 
+    $( "#highlight-by-label-input" ).bind("keypress", pressed);
+    function pressed(e) {
+      if (e.keyCode === 13)
+      {
+        // TODO refactor this. it's repeated above.
+        var typeaheadElementValue = $("#highlight-by-label-input").val();
+        if (!typeaheadElementValue) {
+          throw new Error("No data node value entered for type-ahead node highlighter.");
+        }
+        else {
+          // TODO refactor this so it calls a generic highlightDataNodeByLabel function that can call
+          // a highlighter for svg, png, etc. as appropriate.
+          highlighter.highlightByLabel(svgSelection, data, typeaheadElementValue);
+          $("#highlight-by-label-input").typeahead('setQuery', '');
+        }
+      }
+    }
+
     d3.select('#clear-highlights-from-typeahead').on('click', function() {
       highlighter.clearHighlightsFromTypeahead(svgSelection);
     });

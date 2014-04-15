@@ -305,7 +305,7 @@ pathvisiojs.renderer = function(){
         containerHeight = thisContainerHeight;
 
         if (sourceDataFileTypes[renderableSourceDataElement.fileType].imageGeneratedDynamically) {
-          var diagramData;
+          var pvjson;
           // ***************
           // Start getting diagram data in pvjson format
           // ***************
@@ -319,8 +319,8 @@ pathvisiojs.renderer = function(){
                 }
                 else {
                   diagramId = generateDiagramId(renderableSourceDataElement.uri);
-                  diagramData = response.data;
-                  self.mydiagramData = diagramData;
+                  pvjson = response.data;
+                  self.mypvjson = pvjson;
 
                   // ***************
                   // Start crossPlatformShapes
@@ -357,7 +357,7 @@ pathvisiojs.renderer = function(){
                     });
 
                     var shapeName;
-                    async.each(diagramData.elements, function(dataElement, callbackEach) {
+                    async.each(pvjson.elements, function(dataElement, callbackEach) {
                       var renderingData = dataElement;
                       renderingData.containerSelector = '#viewport';
                       shapeName = strcase.camelCase(dataElement.shape);
@@ -421,7 +421,7 @@ pathvisiojs.renderer = function(){
               // ***************
             },
             function(vectorRendererCallback){
-              var elementsWithPublicationXrefs = diagramData.elements.filter(function(element){return !!element.publicationXrefs;});
+              var elementsWithPublicationXrefs = pvjson.elements.filter(function(element){return !!element.publicationXrefs;});
               if (elementsWithPublicationXrefs.length > 0) {
                 elementsWithPublicationXrefs.forEach(function(elementWithPublicationXrefs) {
                   pathvisiojs.renderer.publicationXref.render(viewport, elementWithPublicationXrefs);
@@ -431,7 +431,7 @@ pathvisiojs.renderer = function(){
             },
             function(vectorRendererCallback){
               var svgSelection = d3.select('#' + diagramId);
-              pathvisiojs.renderer.infoBox.render(viewport, diagramData);
+              pathvisiojs.renderer.infoBox.render(viewport, pvjson);
               vectorRendererCallback(null, svgSelection);
             },
             function(svgSelection, vectorRendererCallback){
@@ -455,7 +455,7 @@ pathvisiojs.renderer = function(){
 
               var fitScreenScale;
               if (fitToContainer) {
-                fitAndCenterDiagramWithinViewport(viewport, containerWidth, containerHeight, diagramData.image.width, diagramData.image.height);
+                fitAndCenterDiagramWithinViewport(viewport, containerWidth, containerHeight, pvjson.image.width, pvjson.image.height);
               }
 
               /*
@@ -467,7 +467,7 @@ pathvisiojs.renderer = function(){
               var resetPanZoomControl = d3.select('#reset-pan-zoom')
               .on("click", function(d,i){
                 //svgPanZoom.resetZoom();
-                fitAndCenterDiagramWithinViewport(viewport, containerWidth, containerHeight, diagramData.image.width, diagramData.image.height);
+                fitAndCenterDiagramWithinViewport(viewport, containerWidth, containerHeight, pvjson.image.width, pvjson.image.height);
               });
 
               var zoomOutControl = d3.select('#zoom-out')
@@ -515,6 +515,8 @@ pathvisiojs.renderer = function(){
                   svgInFocus = false;
                 }
               });
+
+              pathvisiojs.renderer.highlighter.load(svgSelection, pvjson);
 
               callback(null, svgSelection);
             }
