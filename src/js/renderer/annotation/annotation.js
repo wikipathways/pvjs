@@ -4,7 +4,6 @@ pathvisiojs.renderer.annotation = function(){
   var pathwaySearchUriStub = '/index.php?title=Special:SearchPathways&doSearch=1&query=';
 
   function render(annotationData) {
-    self.annotationData = annotationData;
     var annotation = d3.select("#annotation")
     .data([annotationData]);
  
@@ -13,15 +12,30 @@ pathvisiojs.renderer.annotation = function(){
     .on("drag", function(d,i){
       var dright = parseInt(annotation.style("right"), 10);
       var dtop = parseInt(annotation.style("top"), 10);
-      dright-=d3.event.dx;
-      dtop+=d3.event.dy;
+      dright -= d3.event.dx;
+      dtop += d3.event.dy;
       annotation.style("right", dright+"px");
       annotation.style("top", dtop+"px");
     });
 
 
     var annotationHeaderText = annotation.select('#annotation-header-text')
+    /*
+    .style('font-size', function(d) {
+      return '10px';
+    })
+    //*/
     .text(function(d) { return d.header; });
+    
+    var annotationHeaderTextWidth = annotationHeaderText[0][0].getBoundingClientRect().width;
+    var annotationHeaderTextSize = 22; // TODO this is bad if it gets changed in the CSS and not here.
+    if (annotationHeaderTextWidth > 190) {
+      do {
+        annotationHeaderTextSize -= 1;
+        annotationHeaderText.style('font-size', annotationHeaderTextSize + 'px')
+        annotationHeaderTextWidth = annotationHeaderText[0][0].getBoundingClientRect().width;
+      } while (annotationHeaderTextWidth > 190 || annotationHeaderTextSize < 7); // font-size of 6 is really small.
+    }
 
     var detailsSearchUri = annotation.select('#annotation-header-search').select('a')
     .attr('href', function(d) {
@@ -32,7 +46,7 @@ pathvisiojs.renderer.annotation = function(){
 
     var annotationIconMove = annotation.select('i.icon-move')
     .on("mousedown", function(d, i){
-	//add dragAbs function when icon is pressed
+      //add dragAbs function when icon is pressed
       annotation.call(dragAbs);
     })
     .on("mouseup", function(d, i){
