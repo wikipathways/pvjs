@@ -32,7 +32,7 @@ pathvisiojs.renderer.annotation = function(){
     if (annotationHeaderTextWidth > 190) {
       do {
         annotationHeaderTextSize -= 1;
-        annotationHeaderText.style('font-size', annotationHeaderTextSize + 'px')
+        annotationHeaderText.style('font-size', annotationHeaderTextSize + 'px');
         annotationHeaderTextWidth = annotationHeaderText[0][0].getBoundingClientRect().width;
       } while (annotationHeaderTextWidth > 190 || annotationHeaderTextSize < 7); // font-size of 6 is really small.
     }
