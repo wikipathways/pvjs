@@ -458,6 +458,7 @@ pathvisiojs.renderer = function(){
                 fitAndCenterDiagramWithinViewport(viewport, containerWidth, containerHeight, diagramData.image.width, diagramData.image.height);
               }
 
+              /*
               var zoomInControl = d3.select('#zoom-in')
               .on("click", function(d,i){
                 svgPanZoom.zoomIn();
@@ -473,6 +474,7 @@ pathvisiojs.renderer = function(){
               .on("click", function(d,i){
                 svgPanZoom.zoomOut();
               });
+              //*/
 
               /*
               //TODO get large screen view working
@@ -492,6 +494,7 @@ pathvisiojs.renderer = function(){
               svgPanZoom.init({
                 'selector': '#' + diagramId,
                 'zoomEnabled': false,
+                'controlIconsEnabled': true,
                 'minZoom': '0.1',
                 'maxZoom': '8.0',
               });
