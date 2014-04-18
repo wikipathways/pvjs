@@ -241,10 +241,6 @@ transform: ['coffeeify']
       },
     },
     copy: {
-      index: {
-        src: './demos/index.html',
-        dest: './dist/index.html',
-      },
       demos: {
         expand: true,
         cwd: './dist/lib/',
