@@ -53,7 +53,9 @@
     "JSON": "~1.0.0",
     "grunt-build-control": "~0.1.2",
     "grunt-contrib-copy": "~0.5.0",
-    "grunt-string-to-js": "0.0.3"
+    "grunt-string-to-js": "0.0.3",
+    "deglobalify": "~0.2.0",
+    "brfs": "~1.0.2"
   },
   "dependencies": {
     "grunt-string-to-js": "0.0.3",

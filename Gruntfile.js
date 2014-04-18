@@ -151,6 +151,13 @@ grunt.initConfig({
         tasks: ['build']
       }
       //*/
+      browserify: {
+        files: ['./src/**/*.js'],
+        tasks: ['browserify:dev'],
+        options: {
+          livereload: true
+        }
+      }
     },
     jshint: {
       options: {
@@ -163,16 +170,24 @@ grunt.initConfig({
       pathvisioNS: { 'tmp/pathvisiojs-temp.js': ['src/pathvisiojs.html', 'src/css/pathway-diagram.css']}
     },
     browserify: {
-      dist: {
+      dev: {
         files: {
-          //'./lib/entities/entities.js': ['./node_modules/entities/index.js'],
-          //'node_modules/node-xml2json/index.js': ['client/scripts/**/*.js', 'client/scripts/**/*.coffee'],
-          //'build/module.js': ['client/scripts/**/*.js', 'client/scripts/**/*.coffee'],
-        }/*,
-options: {
-transform: ['coffeeify']
-}//*/
-}
+          'dist/lib/pathvisiojs/js/pathvisiojs.js': ['src/js/pathvisiojs.js'],
+        },
+        options: {
+          bundleOptions: {debug: true}
+        , transform: ['deglobalify', 'brfs']
+        }
+      },
+      build: {
+        files: {
+          'dist/lib/pathvisiojs/js/pathvisiojs.js': ['src/js/pathvisiojs.js'],
+        },
+        options: {
+          bundleOptions: {}
+        , transform: ['deglobalify']
+        }
+      }
     },
     "git-describe": {
       build: {
@@ -322,6 +337,8 @@ transform: ['coffeeify']
     grunt.option('spec', val);
     grunt.task.run('protractor-e2e');
   });
+
+  grunt.registerTask('dev', 'Live Browserify', ['browserify:dev', 'watch:browserify'])
 
   // Default task(s).
   grunt.registerTask('default', ['build']);
