@@ -100,7 +100,7 @@ grunt.initConfig({
         },
         d3WithAight: {
             src:  [ './lib/aight/aight.min.js', './lib/d3/d3.min.js', './lib/aight/aight.d3.min.js' ],
-            dest: tmpDir + 'd3/js/d3-with-aight.js'
+            dest: distLibDir + 'd3/js/d3-with-aight.js'
         },
         jsonld: {
             src:  [ './lib/jsonld.js/js/jsonld.js', './lib/jsonld.js/js/Promise.js' ],
@@ -118,10 +118,6 @@ grunt.initConfig({
       async: {
         src: [ './lib/async/lib/async.js' ],
         dest: distLibDir + 'async/js/async.min.js'
-      },
-      d3: {
-        src: [ tmpDir + 'd3/js/d3-with-aight.js' ],
-        dest: distLibDir + 'd3/js/d3-with-aight.min.js'
       },
       jquery: {
         src: [ './lib/jquery/jquery.min.js' ],
