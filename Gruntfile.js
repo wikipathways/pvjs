@@ -40,7 +40,7 @@ var rarelyUsedJsLibraries = [
   './lib/strcase/dist/strcase.min.js',
   './lib/cross-platform-text/js/cross-platform-text.min.js',
   './lib/cross-platform-shapes/js/cross-platform-shapes.min.js',
-  './lib/svg-pan-zoom/svg-pan-zoom.js',
+  './lib/svg-pan-zoom/dist/svg-pan-zoom.min.js',
   './lib/svg-pan-zoom/control-icons.js',
   './lib/blueimp-load-image/js/load-image.min.js',
   './lib/jsonld.js/js/jsonld.js',

@@ -8,9 +8,14 @@ Capabilities:
   * Zoom with mouse events (wheel or double-click) or custom JavaScript hooks
   * Element dragging with mouse events (custom JavaScript hooks not provided, but if you need them, check out [D3.js](http://d3js.org/))
 
-Demo
-----
- Pan and zoom the SVG tiger on [github pages](http://ariutta.github.io/svg-pan-zoom/).
+Demos
+-----
+ Pan and zoom the SVG tiger on github pages:
+ * [Single Inline SVG](http://ariutta.github.io/svg-pan-zoom/demo/inline.html)
+ * [Multiple Inline SVGs](http://ariutta.github.io/svg-pan-zoom/demo/multi-instance.html)
+ * [SVG Inserted with 'Embed' Element](http://ariutta.github.io/svg-pan-zoom/demo/embed.html)
+ * [SVG Inserted with 'Object' Element](http://ariutta.github.io/svg-pan-zoom/demo/object.html)
+ * [SVG Inserted with 'Img' Element](http://ariutta.github.io/svg-pan-zoom/demo/img.html) (These cannot be panned/zoomed.)
 
 How To Use
 ----------
@@ -35,9 +40,9 @@ If you want to override the defaults, you can optionally specify one or more arg
 ```js
 svgPanZoom.init({
   'selector': '#my-svg',
+  'controlIconsEnabled': true,
   'panEnabled': true, 
   'zoomEnabled': true,
-  'controlIconsEnabled': true,
   'dragEnabled': false,
   'zoomScaleSensitivity': 0.2,
   'minZoom': 0.5,
@@ -48,6 +53,7 @@ svgPanZoom.init({
 
 If any arguments are specified, they must have the following value types:
 * 'selector' must be a [CSS selector](http://www.w3.org/TR/CSS2/selector.html). If left blank, svg-pan-zoom will look for the first SVG document in your HTML document.
+* 'controlIconsEnabled' must be true or false. Default is false.
 * 'panEnabled' must be true or false. Default is true.
 * 'zoomEnabled' must be true or false. Default is true.
 * 'dragEnabled' must be true or false. Default is false.
