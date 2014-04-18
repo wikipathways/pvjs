@@ -250,6 +250,10 @@ transform: ['coffeeify']
         cwd: './dist/lib/',
         src: ['**'],
         dest: './demos/lib/',
+      },
+      pathvisiojs: {
+        src: tmpDir + 'pathvisiojs/js/pathvisiojs.js',
+        dest: './dist/lib/pathvisiojs/js/pathvisiojs.js'
       }
     }
   });
