@@ -302,15 +302,18 @@ transform: ['coffeeify']
     grunt.config.set(name, val);
   });
 
-  // build 
-  grunt.registerTask('build', ['sync', 'str2js', 'clean:build', 'git-describe', 'jshint:beforeconcat', 'concat', 'uglify', 'clean:demoLibs', 'copy', 'buildcontrol:pages']);
+  // build
+  grunt.registerTask('build', ['sync', 'str2js', 'clean:build', 'git-describe', 'jshint:beforeconcat', 'concat', 'uglify', 'clean:demoLibs', 'copy']);
   //grunt.registerTask('build', ['sync', 'str2js', 'clean:build', 'git-describe', 'jshint:beforeconcat', 'concat', 'jshint:afterconcat', 'uglify', 'clean:demoLibs', 'copy']);
+
+  // build and publish gh-pages
+  grunt.registerTask('build-and-push-demo', ['build', 'buildcontrol:pages'])
 
   // update just the pathvisiojs build, not the libraries
   //grunt.registerTask('build-pv', ['sync', 'str2js', 'git-describe', 'jshint:beforeconcat', 'concat:pathvisiojsJs', 'concat:pathvisiojsDistCss', 'uglify:pathvisiojs', 'copy', 'buildcontrol:pages']);
   grunt.registerTask('build-pv', ['sync', 'str2js', 'git-describe', 'jshint:beforeconcat', 'concat:pathvisiojsJs', 'concat:pathvisiojsDistCss', 'uglify:pathvisiojs', 'copy']);
 
-  // quick-build 
+  // quick-build
   grunt.registerTask('quick-build', ['sync', 'str2js', 'git-describe', 'concat', 'uglify', 'copy']);
 
   // test
