@@ -18,6 +18,8 @@
     <script src="./../dist/lib/jquery/js/jquery.min.js"></script>
     <script src="./../dist/lib/typeahead/js/typeahead.min.js"></script>
     <script src="./../dist/lib/modernizr/js/modernizr.min.js"></script>
+    <script src="./../lib/cross-platform-shapes/js/cross-platform-shapes.js"></script>
+    <script src="./../lib/cross-platform-text/js/cross-platform-text.js"></script>
     <script src="./../dist/lib/pathvisiojs/js/pathvisiojs.js"></script>
 
     <script src="./../dist/plugins/pathvisiojs-notifications/pathvisiojs-notifications.js"></script>
@@ -82,7 +84,7 @@
 
     $('#pathvisiojs-container2').pathvisiojs({
       fitToContainer: false
-    , manualRender: false
+    , manualRender: true
     , sourceData: [
         // at least one item required
         {

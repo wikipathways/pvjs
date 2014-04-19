@@ -66,7 +66,7 @@ var _ = require('lodash')
     Utils.addClassForD3(this.$element, 'loading')
 
     // Remove loading state after pathvisiojs is loaded
-    this.on('loaded', function(){
+    this.on('rendered', function(){
       Utils.removeClassForD3(pvjs.$element, 'loading')
     })
 
@@ -116,7 +116,7 @@ var _ = require('lodash')
     this.sourceData.fileType = this.options.sourceData[this.sourceData.sourceIndex].fileType
 
     if (Renderer.canRender(this.sourceData)) {
-      if (Renderer.needDataPreload(this.sourceData)) {
+      if (Renderer.needDataConverted(this.sourceData)) {
         FormatConverter.loadAndConvert(pvjs, function(error, pvjson){
           if (error) {
             pvjs.trigger('error', {message: error})
