@@ -1,6 +1,7 @@
 node_modules/
 lib/
-dist/
+dist/*
+!dist/plugins/
 demos/lib/
 tmp/
 .idea/
