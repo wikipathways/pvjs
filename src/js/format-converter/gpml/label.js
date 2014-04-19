@@ -1,4 +1,8 @@
-pathvisiojs.formatConverter.gpml.label = function(){
+var Element = require('./element.js')
+  , Graphics = require('./graphics.js')
+  ;
+
+module.exports = function(){
   'use strict';
 
   var toPvjson = function(gpmlSelection, labelSelection, callback) {
@@ -7,8 +11,8 @@ pathvisiojs.formatConverter.gpml.label = function(){
     pvjsonPath.networkType = 'node';
     pvjsonPath.nodeType = 'Label';
 
-    pathvisiojs.formatConverter.gpml.element.toPvjson(gpmlSelection, labelSelection, pvjsonPath, function(pvjsonPath) {
-      pathvisiojs.formatConverter.gpml.graphics.toPvjson(gpmlSelection, labelSelection, pvjsonPath, function(pvjsonPath) {
+    Element.toPvjson(gpmlSelection, labelSelection, pvjsonPath, function(pvjsonPath) {
+      Graphics.toPvjson(gpmlSelection, labelSelection, pvjsonPath, function(pvjsonPath) {
         var pvjsonElements = [pvjsonPath];
         callback(pvjsonElements);
       });

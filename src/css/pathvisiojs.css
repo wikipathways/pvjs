@@ -1,152 +1,33 @@
-#pathvisiojs-container {
+.pathvisiojs-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
   background-color: white;
   font-family: Helvetica, sans-serif, Arial;
-  width: inherit;
-  min-width: inherit;
-  max-width: inherit;
-  height: inherit;
-  min-height: inherit;
-  max-height: inherit;
+}
+
+.pathvisiojs-container.loading {
+  opacity: 0.7;
+}
+
+.pathvisiojs-container.loading:after {
+  content: '';
   position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 32px;
+  height: 32px;
+  margin: -16px 0 0 -16px;
+  background: url('http://www.wikipathways.org/wpi/extensions/PathwayViewer/img/loading.gif');
 }
 
-.navigator .highlight{
-  opacity:    0.4;
-  filter:     alpha(opacity=40);
-  border:     2px solid #900;
-  outline:    none;
-  background-color: #900;
-}
-
-.highlight{
-  opacity: 0.1;
-  filter: alpha(opacity=40);
-  background-color: white;
-}
-
-.highlight:hover, .highlight:focus{
-  filter:     alpha(opacity=70);
-  opacity:    0.7;
-  border:     2px solid gold;
-  outline:    10px auto gold;
-  background-color: transparent;
-}
-
-.control-icon {
- color:#aaa;
-}
-
-.control-icon:hover {
-   cursor: pointer;
-}
-
-.pan-zoom-control-icon {
-  display: block;
-  padding: 4px;
-}
-
-.pan-zoom-controls {
+/* Centering image */
+.pathvisiojs-container .pathvisiojs-img {
   position: absolute;
-  text-align: center;
-  margin-left: auto;
-  margin-right: auto;
-  bottom: 5px;
-  right: 5px;
-}
-
-#typeahead {
-  background-color: #fff;
-  position: absolute;
-  top: 5px;
-  right: 5px;
-  line-height: 1.0em; /* needed for wp */
-  display: flex; /* needed for wp */
-}
-
-#typeahead:focus {
-  border: 2px solid #0097cf;
-}
-
-.tt-query,
-.tt-hint {
-  width: 180px;
-  height: 20px;
-  padding: 4px 6px;
-  font-size: 12px;
-  border: 2px solid #ccc;
-  -webkit-border-radius: 8px;
-     -moz-border-radius: 8px;
-          border-radius: 8px;
-  outline: none;
-}
-
-.tt-query {
-  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
-     -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
-          box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
-}
-
-.tt-hint {
-  color: #999
-}
-
-.tt-dropdown-menu {
-  width: 220px;
-  margin-top: 12px;
-  padding: 8px 0;
-  background-color: #fff;
-  border: 1px solid #ccc;
-  border: 1px solid rgba(0, 0, 0, 0.2);
-  -webkit-border-radius: 8px;
-     -moz-border-radius: 8px;
-          border-radius: 8px;
-  -webkit-box-shadow: 0 5px 10px rgba(0,0,0,.2);
-     -moz-box-shadow: 0 5px 10px rgba(0,0,0,.2);
-          box-shadow: 0 5px 10px rgba(0,0,0,.2);
-}
-
-.tt-suggestion {
-  padding: 3px 20px;
-  font-size: 18px;
-  line-height: 24px;
-}
-
-.tt-suggestion.tt-is-under-cursor {
-  color: #fff;
-  background-color: #0097cf;
-
-}
-
-.tt-suggestion p {
-  margin: 0;
-  text-align: left;
-}
-
-#diagram-container {
-  width: inherit;
-  min-width: inherit;
-  max-width: inherit;
-  height: inherit;
-  min-height: inherit;
-  max-height: inherit;
-  display: table-cell;
-  vertical-align: middle
-}
-
-#loading-icon {
-  display: block;
-  margin-left: auto;
-  margin-right: auto
-}
-
-#viewer-toolbar {
-  position: absolute;
-  top: 0px;
-  right: 0px;
-  height: inherit;
-}
-
-#clear-highlights-from-typeahead {
-  visibility:hidden;
-  color: #c0c0c0;
+  margin: auto;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
 }

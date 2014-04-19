@@ -1,4 +1,11 @@
-pathvisiojs.formatConverter.gpml.group = {
+'use strict';
+
+var Utils = require('./../../utilities.js')
+  , Element = require('./element.js')
+  , Graphics = require('./graphics.js')
+  ;
+
+var Group = {
   getGroupDimensions: function(group, callback) {
     var dimensions = {};
     dimensions.topLeftCorner = {};
@@ -12,7 +19,7 @@ pathvisiojs.formatConverter.gpml.group = {
     var borderWidth = group.borderWidth;
 
     var groupContents = group.contains;
-    groupContents = pathvisiojs.utilities.convertToArray(groupContents);
+    groupContents = Utils.convertToArray(groupContents);
 
     dimensions.zIndex = Infinity;
     async.each(groupContents, function(groupContent, callbackInside) {
@@ -55,28 +62,14 @@ pathvisiojs.formatConverter.gpml.group = {
     groupType = groupSelection.attr('Style') || 'None';
     pvjsonPath.groupType = groupType;
 
-
-
-
-
-
-
-
-
-
-
-
-    pathvisiojs.formatConverter.gpml.element.toPvjson(gpmlSelection, groupSelection, pvjsonPath, function(pvjsonPath) {
-
-
-
-      pathvisiojs.formatConverter.gpml.graphics.toPvjson(gpmlSelection, groupSelection, pvjsonPath, function(pvjsonPath) {
+    Element.toPvjson(gpmlSelection, groupSelection, pvjsonPath, function(pvjsonPath) {
+      Graphics.toPvjson(gpmlSelection, groupSelection, pvjsonPath, function(pvjsonPath) {
           var contents = elementsPossiblyInGroup.filter(function(element){
             return element.isContainedBy === pvjsonPath.id;
           });
           if (contents.length > 0) {
             pvjsonPath.contains = contents;
-            pathvisiojs.formatConverter.gpml.group.getGroupDimensions(pvjsonPath, function(dimensions){
+            Group.getGroupDimensions(pvjsonPath, function(dimensions){
               pvjsonPath.x = dimensions.x;
               pvjsonPath.y = dimensions.y;
               pvjsonPath.width = dimensions.width;
@@ -91,3 +84,4 @@ pathvisiojs.formatConverter.gpml.group = {
   }
 };
 
+module.exports = Group;

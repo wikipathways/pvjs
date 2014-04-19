@@ -48,9 +48,7 @@ var rarelyUsedJsLibraries = [
 ];
 
 var pvjsCssSources = [
-  'src/css/pathvisiojs.css',
-  'src/css/annotation.css',
-  'src/css/pan-zoom.css'
+  'src/css/pathvisiojs.css'
 ];
 
 var specFileName;

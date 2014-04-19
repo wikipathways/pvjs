@@ -3,3 +3,4 @@ lib/
 dist/
 demos/lib/
 tmp/
+.idea/

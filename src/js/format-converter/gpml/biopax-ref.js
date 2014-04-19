@@ -1,7 +1,7 @@
-pathvisiojs.formatConverter.gpml.biopaxRef = function(){
-  'use strict';
+'use strict';
 
-  function getAllAsPvjson(gpmlElement, callback) {
+module.exports = {
+  getAllAsPvjson: function(gpmlElement, callback) {
     var publicationXrefs, jsonPublicationXref, tagName = gpmlElement[0][0].tagName;
     var biopaxRefs = gpmlElement.selectAll(tagName + ' > BiopaxRef');
     if (biopaxRefs[0].length > 0) {
@@ -16,8 +16,4 @@ pathvisiojs.formatConverter.gpml.biopaxRef = function(){
       callback(null);
     }
   }
-
-  return {
-    getAllAsPvjson:getAllAsPvjson
-  };
-}();
+}

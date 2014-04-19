@@ -1,4 +1,78 @@
-pathvisiojs.renderer = function(){
+module.exports = function(){
+
+  /**
+   * Check if renderer supports rendering a given file type
+   *
+   * @param  {string} type
+   * @return {boolean}
+   */
+  function canRender(sourceData) {
+    return true
+  }
+
+  /**
+   * Check if data should be preloaded and parsed
+   *
+   * @param  {object} sourceData sourceData object
+   * @return {boolean}
+   */
+  function needDataPreload(sourceData) {
+    return true
+  }
+
+  /**
+   * Ask renderer to remove everything what is rendered
+   * Useful when rendering a specific type or source failed and next one will be tried
+   *
+   * @param  {Object} pvjs Instace Object
+   * @return {boolean} success state
+   */
+  function destroyRender(pvjs, sourceData) {
+    return true
+  }
+
+  /**
+   * Renders a given sourceData object
+   * @param  {Object} pvjs       pvjs Instance Object
+   * @param  {Object} sourceData sourceData Instance Object
+   */
+  function render(pvjs, sourceData) {
+    console.log('rendered')
+  }
+
+  return {
+    canRender: canRender
+  , needDataPreload: needDataPreload
+  , destroyRender: destroyRender
+  , render: render
+  }
+}()
+
+//     // The viewMethods are sorted in order of preference - viewMethod with lower index will be used if more than one is returned.
+//     , renderersMap = {
+//     gpml:   ['svg'], // Could add canvas support
+//     // biopax: ['svg'], // Not supported. Could add canvas support
+//     // pdf:    ['pdf'], // Not supported. This would be future. we might use pdf.js or we could just try using an embed or object tag.
+//     png:    ['img'],
+//     jpg:    ['img'],
+//     jpeg:   ['img'],
+//     jpe:    ['img'],
+//     jif:    ['img'],
+//     jfif:   ['img'],
+//     jfi:    ['img'],
+//     gif:    ['img'],
+//     ico:    ['img'],
+//     bmp:    ['img'],
+//     dib:    ['img']
+// }
+//     // Making an assumption that all browsers we care about support the HTML img tag
+//     , supportedRenderers = ['img']
+
+// if (Modernizr && Modernizr.inlinesvg) {
+//     supportedRenderers.push('svg')
+// }
+
+renderer = function(){
   'use strict';
 
   function generateDiagramId(uri){
@@ -19,7 +93,7 @@ pathvisiojs.renderer = function(){
     var yTranslation = viewportHeight/2 - diagramHeightScaled/2 + 20; //plus margin-top
 
     var translationMatrixString = 'matrix(' + fitScreenScale + ', 0, 0, ' + fitScreenScale + ', ' + xTranslation + ', ' + yTranslation + ') ';
-    
+
     viewport.attr("transform", translationMatrixString);
   }
 
@@ -178,7 +252,7 @@ pathvisiojs.renderer = function(){
   }
 
   //function getImageFormatByDataSourceFileType(fileType) {
-  //this is trying to detect which browser the user is currently using 
+  //this is trying to detect which browser the user is currently using
   function getSupportedViewMethods() {
     //making an assumption that all browsers we care about support the HTML img tag
 
@@ -193,7 +267,7 @@ pathvisiojs.renderer = function(){
     if (Modernizr.inlinesvg && (pathvisiojs.utilities.isIE() !== 9)) {
       supportedViewMethods.push('svg');
     }
-    
+
     return supportedViewMethods;
   }
 
@@ -485,7 +559,7 @@ pathvisiojs.renderer = function(){
                 var doc = newwin.document;
                 doc.open();
                 doc.write(pvjs);
-                doc.close();	
+                doc.close();
               });
               //*/
 
@@ -555,4 +629,4 @@ pathvisiojs.renderer = function(){
   };
 }();
 
-     
+
