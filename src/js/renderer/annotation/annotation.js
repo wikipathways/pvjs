@@ -1,4 +1,4 @@
-pathvisiojs.renderer.annotation = function(){
+module.exports = function(){
   'use strict';
 
   var pathwaySearchUriStub = '/index.php?title=Special:SearchPathways&doSearch=1&query=';
@@ -6,7 +6,7 @@ pathvisiojs.renderer.annotation = function(){
   function render(annotationData) {
     var annotation = d3.select("#annotation")
     .data([annotationData]);
- 
+
     //Special drag code to update absolute position of annotation panel
     var dragAbs = d3.behavior.drag()
     .on("drag", function(d,i){
@@ -26,7 +26,7 @@ pathvisiojs.renderer.annotation = function(){
     })
     //*/
     .text(function(d) { return d.header; });
-    
+
     var annotationHeaderTextWidth = annotationHeaderText[0][0].getBoundingClientRect().width;
     var annotationHeaderTextSize = 22; // TODO this is bad if it gets changed in the CSS and not here.
     if (annotationHeaderTextWidth > 190) {
@@ -152,10 +152,10 @@ pathvisiojs.renderer.annotation = function(){
     .text(function(d) {return ' ' + d.text; });
     // Exit
     annotationItemLinkedTextElements.exit().remove();
-    
+
     annotation[0][0].style.visibility = 'visible';
   }
-      
+
   return {
     render:render,
     pathwaySearchUriStub:pathwaySearchUriStub

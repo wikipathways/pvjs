@@ -1,5 +1,10 @@
-pathvisiojs.formatConverter.bridgedb = function(){
+var Utils = require('./../../utilities.js');
+
+module.exports = function(){
   'use strict';
+
+  var bridgedbLinkOutsUriStub = 'http://pointer.ucsf.edu/d3/r/data-sources/bridgedb/bridgedb.php/';
+  var bridgedbDatasources = 'http://pointer.ucsf.edu/d3/r/data-sources/bridgedb-datasources.php';
 
   function getXrefAnnotationDataByDataNode(singleSpecies, id, datasource, label, desc, callback) {
     //For unannotated nodes, without datasource or identifier
@@ -38,7 +43,7 @@ pathvisiojs.formatConverter.bridgedb = function(){
           if (a.priority === b.priority)
           {
               var x = a.title.toLowerCase(), y = b.title.toLowerCase();
-              
+
               return x < y ? -1 : x > y ? 1 : 0;
           }
           return b.priority - a.priority;
@@ -64,11 +69,11 @@ pathvisiojs.formatConverter.bridgedb = function(){
 
         var specifiedListItem = nestedListItems.filter(function(element) {return (element.key == datasource);})[0];
         var currentListItemIndex = nestedListItems.indexOf(specifiedListItem);
-        nestedListItems = pathvisiojs.utilities.moveArrayItem(nestedListItems, currentListItemIndex, 0);
+        nestedListItems = Utils.moveArrayItem(nestedListItems, currentListItemIndex, 0);
 
         var specifiedXRefId = specifiedListItem.values.filter(function(element) {return (element.text == id);})[0];
         var currentXRefIdIndex = specifiedListItem.values.indexOf(specifiedXRefId);
-        specifiedListItem.values = pathvisiojs.utilities.moveArrayItem(specifiedListItem.values, currentXRefIdIndex, 0);
+        specifiedListItem.values = Utils.moveArrayItem(specifiedListItem.values, currentXRefIdIndex, 0);
 
         var annotationData = {
           "header": label,
@@ -91,7 +96,7 @@ pathvisiojs.formatConverter.bridgedb = function(){
   }
 
   function getDataSources(callback) {
-    d3.tsv(pathvisiojs.config.bridgedbDatasources)
+    d3.tsv(bridgedbDatasources)
     .response(function(request) {
       return d3.tsv.parseRows(request.responseText, function(d) {
         return {dataSourceName: d[0], systemCode: d[1], websiteUri: d[2], linkoutPattern: d[3], exampleIdentifier: d[4], entityIdentified: d[5], singleSpecies: d[6], priority: d[7], uri: d[8], regex: d[9], officialName: d[10]};
@@ -103,7 +108,7 @@ pathvisiojs.formatConverter.bridgedb = function(){
   }
 
   function getXrefAliases(singleSpecies, systemCode, xRefId, callback) {
-    var bridgedbUri = pathvisiojs.config.bridgedbLinkOutsUriStub + encodeURIComponent(singleSpecies) + '/xrefs/' + encodeURIComponent(systemCode) + '/' + encodeURIComponent(xRefId);
+    var bridgedbUri = bridgedbLinkOutsUriStub + encodeURIComponent(singleSpecies) + '/xrefs/' + encodeURIComponent(systemCode) + '/' + encodeURIComponent(xRefId);
     //console.log(bridgedbUri);
     d3.tsv(bridgedbUri)
     .response(function(request) {
