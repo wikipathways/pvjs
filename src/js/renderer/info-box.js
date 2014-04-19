@@ -1,7 +1,7 @@
-pathvisiojs.renderer.infoBox = function(){
-  'use strict';
-    
-  function render(viewport, data) {
+'use strict';
+
+module.exports = {
+  render: function(viewport, data) {
     if (!viewport || !data) {
       return console.warn('Error: Missing input parameters.');
     }
@@ -58,8 +58,4 @@ pathvisiojs.renderer.infoBox = function(){
     .attr("class", "info-box-item-property-value")
     .text(function (d) {return d.value;});
   }
-
-  return {
-    render:render
-  };
-}();
+}

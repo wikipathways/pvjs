@@ -1,5 +1,5 @@
 // TODO this only works for GPML DataNodes with SVG at present.
-pathvisiojs.renderer.highlighter = {
+module.exports = {
   load: function(svgSelection, data, callback) {
     'use strict';
     var highlighter = this;

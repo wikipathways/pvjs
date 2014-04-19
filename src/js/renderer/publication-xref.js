@@ -1,4 +1,4 @@
-pathvisiojs.renderer.publicationXref = {
+module.exports = {
 
   getReferenceNumberForDisplay: function(rdfId) {
     var publicationXrefInstance = this;
