@@ -1,9 +1,9 @@
-pathvisiojs.formatConverter.biopax = function(){
-  'use strict';
+'use strict';
 
+module.exports = {
   // TODO get ontology terms and other data
 
-  function toPvjson(xmlBiopax, callback) {
+  toPvjson: function(xmlBiopax, callback) {
     try {
       d3.ns.prefix.bp = 'http://www.biopax.org/owldoc/Level3/';
       d3.ns.prefix.rdf = 'http://www.w3.org/1999/02/22-rdf-syntax-ns#';
@@ -23,9 +23,5 @@ pathvisiojs.formatConverter.biopax = function(){
       throw new Error("Error converting biopax to json: " + e.message);
     }
   }
-
-  return {
-    toPvjson:toPvjson
-  };
-}();
+}
 

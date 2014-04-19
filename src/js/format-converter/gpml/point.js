@@ -1,4 +1,6 @@
-pathvisiojs.formatConverter.gpml.point = function(){
+var Strcase = require('./../../../../lib/strcase/index.js');
+
+module.exports = function(){
   'use strict';
 
   var getPvjsonPositionAndOrientationMapping = function(relValue, identifier, gpmlSelection, pvjsonIsAttachedTo) {
@@ -101,7 +103,7 @@ pathvisiojs.formatConverter.gpml.point = function(){
           return gpmlGraphRefValue;
         },
         ArrowHead: function(gpmlArrowHeadValue) {
-          pvjsonMarker = strcase.camelCase(gpmlArrowHeadValue);
+          pvjsonMarker = Strcase.camelCase(gpmlArrowHeadValue);
           if (i===0) {
             pvjsonEdge.markerStart = pvjsonMarker;
           }
@@ -133,7 +135,7 @@ pathvisiojs.formatConverter.gpml.point = function(){
         }
         else {
           console.warn('Pathvisiojs has no handler for attribute "' + attributeListItemName + '"');
-          attributeListItemName = strcase.camelCase(attributeListItemName);
+          attributeListItemName = Strcase.camelCase(attributeListItemName);
           pvjsonEdge[attributeListItemName] = attributeListItem.value;
         }
       });
@@ -215,7 +217,7 @@ pathvisiojs.formatConverter.gpml.point = function(){
     // first waypoint is start
     wpts[0] = start;
 
-    // calc new waypoints	
+    // calc new waypoints
     if (wptCount === 0) {
       //done!
     }
@@ -299,7 +301,7 @@ pathvisiojs.formatConverter.gpml.point = function(){
   }
 
   function sign(x) {
-    return x ? x < 0 ? -1 : 1 : 0; //caution: sign("0") -> 1 
+    return x ? x < 0 ? -1 : 1 : 0; //caution: sign("0") -> 1
   }
 
   function getSide(p){

@@ -1,4 +1,8 @@
-pathvisiojs.formatConverter.gpml.anchor = function() {
+var Element = require('./element.js')
+  , Graphics = require('./graphics.js')
+  ;
+
+module.exports = function() {
   'use strict';
 
   // anchors
@@ -32,8 +36,8 @@ pathvisiojs.formatConverter.gpml.anchor = function() {
       pvjsonAnchor.zIndex = pvjsonEdge.zIndex + 0.1;
       pvjsonAnchor.networkType = 'node';
 
-      pathvisiojs.formatConverter.gpml.element.toPvjson(gpmlSelection, anchorSelection, pvjsonAnchor, function(pvjsonAnchor) {
-        pathvisiojs.formatConverter.gpml.graphics.toPvjson(gpmlSelection, anchorSelection, pvjsonAnchor, function(pvjsonAnchor) {
+      Element.toPvjson(gpmlSelection, anchorSelection, pvjsonAnchor, function(pvjsonAnchor) {
+        Graphics.toPvjson(gpmlSelection, anchorSelection, pvjsonAnchor, function(pvjsonAnchor) {
           attachedPoint = d3.select(gpmlSelection).select('Point[GraphRef=' + pvjsonAnchor.id + ']');
           pvjsonAnchorWidth = pvjsonAnchor.width;
           pvjsonAnchorHeight = pvjsonAnchor.height;
@@ -61,10 +65,10 @@ pathvisiojs.formatConverter.gpml.anchor = function() {
     var parentId, renderableType, id, position, x, y, sideOffsetX, sideOffsetY, positionOffsetX, positionOffsetY;
     /*
     var elementSides = [
-      {'side': 'top', 'initialEdgeDirection': 90}, 
-      {'side': 'right', 'initialEdgeDirection': 0}, 
-      {'side': 'bottom', 'initialEdgeDirection': 270}, 
-      {'side': 'left', 'initialEdgeDirection': 180} 
+      {'side': 'top', 'initialEdgeDirection': 90},
+      {'side': 'right', 'initialEdgeDirection': 0},
+      {'side': 'bottom', 'initialEdgeDirection': 270},
+      {'side': 'left', 'initialEdgeDirection': 180}
     ];
     //*/
     var elementSides = [

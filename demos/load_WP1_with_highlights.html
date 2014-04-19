@@ -6,43 +6,8 @@
 
     <title>Pathvisiojs Simple Built Production Example</title>
 
-    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css" media="screen">
     <link rel="stylesheet" href="./../dist/lib/pathvisiojs/css/pathvisiojs.css">
 
-    <!--[if lt IE 9]>
-    <script>
-      // IE8 only allows console.log when Developer Tools is open. This will prevent errors
-      // from showing up if I use console.log without DevTools being open.
-      // from http://stackoverflow.com/questions/3326650/console-is-undefined-error-for-internet-explorer
-
-      /**
-       * Protect window.console method calls, e.g. console is not defined on IE
-       * unless dev tools are open, and IE doesn't define console.debug
-       */
-      (function() {
-       if (!window.console) {
-         window.console = {};
-       }
-       // union of Chrome, FF, IE, and Safari console methods
-       var m = [
-       "log", "info", "warn", "error", "debug", "trace", "dir", "group",
-       "groupCollapsed", "groupEnd", "time", "timeEnd", "profile", "profileEnd",
-       "dirxml", "assert", "count", "markTimeline", "timeStamp", "clear"
-       ];
-       // define undefined methods as noops to prevent errors
-       for (var i = 0; i < m.length; i++) {
-         if (!window.console[m[i]]) {
-         window.console[m[i]] = function() {};
-         }
-       }
-      })();
-    </script>
-    <![endif]-->
-  </head>
-
-  <body style="margin: 0; width: 100%; height: 100%; ">
-    <div id="production-container" style="width:inherit; height:inherit; margin:0; overflow:hidden;">
-    </div>
     <script src="./../dist/lib/async/js/async.min.js"></script>
     <script src="./../dist/lib/d3/js/d3-with-aight.js"></script>
     <script src="./../dist/lib/he/js/he.js"></script>
@@ -51,51 +16,102 @@
     <script src="./../dist/lib/modernizr/js/modernizr.min.js"></script>
     <script src="./../dist/lib/pathvisiojs/js/pathvisiojs.js"></script>
 
+    <style type="text/css">
+      html, body{width: 100%;height: 100%;margin: 0;}
+    </style>
+  </head>
+  <body>
+    <div id="pathvisiojs-container" style="width: 700px; height: 600px; border: 1px solid #ccc;">text<b>test2</b>test3</div>
+    <div id="pathvisiojs-container2" style="width: 700px; height: 100px; border: 1px solid #ccc;">2text<b>2test2</b>2test3</div>
+
+
   <script>
-        /* *******************
-        /* Load pathvisiojs
-        /* *******************/
-    window.onload = function() {
-      var pathvisiojsInstance1;
-      pathvisiojsInstance1 = Object.create(pathvisiojs);
-      pathvisiojsInstance1.load({
-        container: '#production-container', //as of now, this can only be a CSS selector: http://www.w3.org/TR/CSS2/selector.html
-        fitToContainer:true, //A fitToContainer value of false means that the diagram should be the size specified by the diagram creator, without any scaling (full size as per GPML width and height). A value of true means that diagram should be scaled down, if required, to fit entirely within the element specified by the container selector, while preserving aspect ratio.
-        sourceData:[{ // at least one item required
+  /* *******************
+  /* Load pathvisiojs
+  /* *******************/
+  $(function(){
+    $('#pathvisiojs-container').pathvisiojs({
+      fitToContainer: true
+    , manualRender: true
+    , sourceData: [
+        // at least one item required
+        {
+          uri:'http://localhost/pathvisiojs/dist_new/data/wp1.xml',
+          // uri:'http://pointer.ucsf.edu/d3/r/data-sources/gpml.php?id=WP1',
+          fileType:'gpml' // generally will correspond to filename extension
+        }
+      , {
+          uri:'http://www.wikipathways.org//wpi/wpi.php?action=downloadFile&type=png&pwTitle=Pathway:WP1',
+          fileType:'biopax'
+        }
+      , {
+          uri:'http://www.wikipathways.org//wpi/wpi.php?action=downloadFile&type=png&pwTitle=Pathway:WP1',
+          fileType:'png'
+        }
+      ]
+    })
+
+    // Get first element from array of instances
+    var pathInstance = $('#pathvisiojs-container').pathvisiojs('get').pop()
+
+    // Load plugins
+    // pathvisiojs_notifications(pathInstance, {displayErrors: true, displayWarnings: true})
+
+    // Call renderer
+    pathInstance.render()
+
+    // pathInstance.highlight([
+    //   {
+    //     "label": "APC"
+    //   , "style": {
+    //       "fill": "green"
+    //     , "stroke": "green"
+    //     }
+    //   }
+    // , {
+    //     "xref": "HMDB00193,HMDB"
+    //   , "style": {
+    //       "fill": "blue"
+    //     , "stroke": "blue"
+    //     }
+    //   }
+    // ])
+
+    $('#pathvisiojs-container2').pathvisiojs({
+      fitToContainer: false
+    , manualRender: false
+    , sourceData: [
+        // at least one item required
+        {
+          uri:'http://www.wikipathways.org//wpi/wpi.php?action=downloadFile&type=png&pwTitle=Pathway:WP1',
+          fileType:'biopax'
+        }
+      , {
+          uri:'http://www.wikipathways.org//wpi/wpi.php?action=downloadFile&type=png&pwTitle=Pathway:WP1',
+          fileType:'png'
+        }
+      , {
           uri:'http://pointer.ucsf.edu/d3/r/data-sources/gpml.php?id=WP1',
           fileType:'gpml' // generally will correspond to filename extension
-        }, {
-          uri:'http://www.wikipathways.org/wpi.php?action=downloadFile&type=png&pwTitle=Pathway:WP1',
-          fileType:'png'
-        }],
-        //cssUri: srcDirectoryUri + 'css/pathway-diagram.css',
-        //customMarkers: customMarkers,
-        //customSymbols: customSymbols,
-        bridgedbLinkOutsUriStub: 'http://pointer.ucsf.edu/d3/r/data-sources/bridgedb/bridgedb.php/', // optional
-        bridgedbDatasources: 'http://pointer.ucsf.edu/d3/r/data-sources/bridgedb-datasources.php', // optional
-        diagramLoadingIconUri: 'http://www.wikipathways.org/wpi/extensions/PathwayViewer/img/loading.gif', // optional
-        diagramNotAvailableIconUri: 'http://www.wikipathways.org/wpi/extensions/PathwayViewer/img/imageNotAvailable.jpg', // optional
-        pathwaySearchUriStub: 'http://wikipathways.org//index.php?title=Special:SearchPathways&doSearch=1&query=', // optional
-        highlights: [{ //optional
-          "label": "Hmgcr",
-          "style": {
-            "fill": "green",
-            "stroke": "green"
-          }
-          }, {
-            "xref": "HMDB00619,HMDB",
-            "style": {
-              "fill": "blue",
-              "stroke": "blue"
-            }
-        }],
-        hiddenElements: [ // this doesn't actually work yet
-          'find',
-          'wikipathways-link'
-        ]
-      });
-    }
+        }
+      ]
+    })
+
+    // Get first element from array of instances
+    var pathInstance = $('#pathvisiojs-container2').pathvisiojs('get').pop()
+
+    // Load plugins
+    // pathvisiojs_notifications(pathInstance, {displayErrors: true, displayWarnings: true})
+
+    // Call renderer
+    // pathInstance.render()
+
+  })
   </script>
+
+  <div class="test"></div>
+  <div class="test"></div>
+  <div class="test test2"></div>
 
 </body>
 </html>
