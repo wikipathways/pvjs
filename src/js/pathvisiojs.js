@@ -1,4 +1,5 @@
 var _ = require('lodash')
+  , fs = require('fs')
   , Utils = require('./utilities.js')
   , Renderer = require('./renderer/renderer.js')
   , FormatConverter = require('./format-converter/format-converter.js')
@@ -58,6 +59,10 @@ var _ = require('lodash')
    */
   Pathvisiojs.prototype.initContainer = function() {
     var pvjs = this
+      , containerContents = fs.readFileSync(__dirname + '/../pathvisiojs.html').toString()
+
+    // Add default container elements
+    this.$element.html(containerContents)
 
     // Set container class
     Utils.addClassForD3(this.$element, 'pathvisiojs-container')

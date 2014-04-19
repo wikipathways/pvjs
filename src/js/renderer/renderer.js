@@ -4,6 +4,7 @@ var Img = require('./img.js')
   , InfoBox = require('./info-box.js')
   , PublicationXref = require('./publication-xref.js')
   , Highlighter = require('./highlighter.js')
+  , XRef = require('./annotation/x-ref.js')
   , SvgPanZoom = require('./../../../lib/svg-pan-zoom/dist/svg-pan-zoom.js')
   ;
 
@@ -188,7 +189,7 @@ module.exports = function(){
                           var dfId = dataElement.datasourceReference.id;
                           var dfDatabase = dataElement.datasourceReference.database;
                           var dfOrganism = dataElement.datasourceReference.organism;
-                          pathvisiojs.renderer.annotation.xRef.render(dfOrganism, dfId, dfDatabase, dataElement.textContent, dataElement.dataNodeType);
+                          XRef.render(dfOrganism, dfId, dfDatabase, dataElement.textContent, dataElement.dataNodeType);
                         }
                       });
                     }
