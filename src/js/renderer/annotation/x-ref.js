@@ -6,11 +6,11 @@ module.exports = function(){
   'use strict';
   var cachedAnnotationData = {};
 
-  function render(organism, id, datasource, label, desc) {
+  function render(pvjs, organism, id, datasource, label, desc) {
     var data = getCachedAnnotationData(organism, label, id, datasource);
     if (!!data){
       //if cache, then use it
-      Annotation.render(data);
+      Annotation.render(pvjs, data);
     }
     else {
       //else render immediate data and loading gif
@@ -21,13 +21,13 @@ module.exports = function(){
         "description": desc,
         "listItems":[diagramLoadingIconUri]
       };
-      Annotation.render(data);
+      Annotation.render(pvjs, data);
 
       //console.log(pathvisiojs.config.bridgedbLinkOutsUriStub);
       //then retrieve the bridgedb data
       var xRefData = Bridgedb.getXrefAnnotationDataByDataNode(organism, id, datasource, label, desc, function(annotationData) {
         setCachedAnnotationData(organism, label, id, datasource, annotationData);
-        Annotation.render(annotationData);
+        Annotation.render(pvjs, annotationData);
       });
     }
   }

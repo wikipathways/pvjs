@@ -3,8 +3,8 @@ module.exports = function(){
 
   var pathwaySearchUriStub = '/index.php?title=Special:SearchPathways&doSearch=1&query=';
 
-  function render(annotationData) {
-    var annotation = d3.select("#annotation")
+  function render(pvjs, annotationData) {
+    var annotation = pvjs.$element.select(".annotation")
     .data([annotationData]);
 
     //Special drag code to update absolute position of annotation panel
@@ -19,7 +19,7 @@ module.exports = function(){
     });
 
 
-    var annotationHeaderText = annotation.select('#annotation-header-text')
+    var annotationHeaderText = annotation.select('.annotation-header-text')
     /*
     .style('font-size', function(d) {
       return '10px';
@@ -37,7 +37,7 @@ module.exports = function(){
       } while (annotationHeaderTextWidth > 190 || annotationHeaderTextSize < 7); // font-size of 6 is really small.
     }
 
-    var detailsSearchUri = annotation.select('#annotation-header-search').select('a')
+    var detailsSearchUri = annotation.select('.annotation-header-search').select('a')
     .attr('href', function(d) {
       // TODO make this generic
       return pathwaySearchUriStub + d.header;
@@ -59,10 +59,10 @@ module.exports = function(){
       annotation[0][0].style.visibility = 'hidden';
     });
 
-    var annotationDescription = annotation.select('#annotation-description')
+    var annotationDescription = annotation.select('.annotation-description')
     .text(function(d) { return d.description; });
 
-    var annotationListItemsContainer = annotation.selectAll('#annotation-items-container')
+    var annotationListItemsContainer = annotation.selectAll('.annotation-items-container')
     .data(function(d) {
       //if a single string, then check for special case: img src for loading gif
       if (typeof d.listItems[0] === 'string'){

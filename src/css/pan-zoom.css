@@ -184,3 +184,17 @@
 	position: absolute;
 	z-index: 999;
 }
+
+.pan-zoom-control-icon {
+  display: block;
+  padding: 4px;
+}
+
+.pan-zoom-controls {
+  position: absolute;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  bottom: 5px;
+  right: 5px;
+}
